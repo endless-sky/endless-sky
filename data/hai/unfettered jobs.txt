@@ -275,7 +275,7 @@ mission "Unfettered Small Medicals Rush"
 	repeat
 	name "Express medical supplies to <planet>"
 	description "The Unfettered hospitals on <destination> are in urgent need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered before <date> for <payment>."
-	deadline 6 1
+	deadline 5 1
 	cargo "medical supplies" 15 2 .05
 	source
 		attributes "unfettered"
@@ -300,7 +300,7 @@ mission "Unfettered Big Medicals Rush"
 	repeat
 	name "Medical supplies to <planet>"
 	description "The Unfettered hospitals on <destination> are in need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered before <date> for <payment>."
-	deadline 14 1
+	deadline 10 1
 	cargo "medicals" 35 2 .05
 	source
 		attributes "unfettered"
