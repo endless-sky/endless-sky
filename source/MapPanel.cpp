@@ -903,17 +903,16 @@ void MapPanel::UpdateCache()
 	for(const auto &it : GameData::Systems())
 	{
 		const System *system = &it.second;
-		if(!system->IsValid() || system->Inaccessible() || !player.HasSeen(*system))
+		if(!system->IsValid() || !player.HasSeen(*system))
 			continue;
 
 		for(const System *link : system->Links())
 			if(link < system || !player.HasSeen(*link))
 			{
-				// Only draw links between two visible systems if one of the two is
+				// Only draw links between two systems if one of the two is
 				// visited. Also, avoid drawing twice by only drawing in the
 				// direction of increasing pointer values.
-				if((!player.HasVisited(*system) && !player.HasVisited(*link))
-						|| !link->IsValid() || link->Inaccessible())
+				if((!player.HasVisited(*system) && !player.HasVisited(*link)) || !link->IsValid())
 					continue;
 
 				bool isClose = (system == &playerSystem || link == &playerSystem);
