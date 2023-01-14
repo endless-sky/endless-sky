@@ -29,7 +29,7 @@ namespace {
 	const int TIMID = (1 << 2);
 	const int DISABLES = (1 << 3);
 	const int PLUNDERS = (1 << 4);
-	const int HEROIC = (1 << 5);
+	const int RANGING = (1 << 5);
 	const int STAYING = (1 << 6);
 	const int ENTERING = (1 << 7);
 	const int NEMESIS = (1 << 8);
@@ -53,6 +53,7 @@ namespace {
 	const int TARGET = (1 << 26);
 	const int MARKED = (1 << 27);
 	const int LAUNCHING = (1 << 28);
+	const int DARING = (1 << 29);
 
 	const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -60,7 +61,7 @@ namespace {
 		{"timid", TIMID},
 		{"disables", DISABLES},
 		{"plunders", PLUNDERS},
-		{"heroic", HEROIC},
+		{"ranging", RANGING},
 		{"staying", STAYING},
 		{"entering", ENTERING},
 		{"nemesis", NEMESIS},
@@ -83,7 +84,13 @@ namespace {
 		{"merciful", MERCIFUL},
 		{"target", TARGET},
 		{"marked", MARKED},
-		{"launching", LAUNCHING}
+		{"launching", LAUNCHING},
+		{"daring", DARING}
+	};
+
+	// Tokens that combine two or more flags.
+  	const map<string, int> COMPOSITE_TOKEN = {
+		{"heroic", DARING | RANGING}
 	};
 
 	const double DEFAULT_CONFUSION = 10.;
@@ -173,9 +180,16 @@ bool Personality::IsTimid() const
 
 
 
-bool Personality::IsHeroic() const
+bool Personality::IsRanging() const
 {
-	return flags & HEROIC;
+	return flags & RANGING;
+}
+
+
+
+bool Personality::IsDaring() const
+{
+	return flags & DARING;
 }
 
 
@@ -384,7 +398,7 @@ void Personality::UpdateConfusion(bool isFiring)
 Personality Personality::Defender()
 {
 	Personality defender;
-	defender.flags = STAYING | MARKED | HEROIC | UNCONSTRAINED | TARGET;
+	defender.flags = STAYING | MARKED | RANGING | UNCONSTRAINED | TARGET;
 	return defender;
 }
 
@@ -395,7 +409,7 @@ Personality Personality::Defender()
 Personality Personality::DefenderFighter()
 {
 	Personality defender;
-	defender.flags = STAYING | HEROIC | UNCONSTRAINED;
+	defender.flags = STAYING | RANGING | UNCONSTRAINED;
 	return defender;
 }
 
@@ -406,13 +420,17 @@ void Personality::Parse(const DataNode &node, int index, bool remove)
 	const string &token = node.Token(index);
 
 	auto it = TOKEN.find(token);
-	if(it != TOKEN.end())
+
+	if(it == TOKEN.end())
 	{
-		if(remove)
-			flags &= ~it->second;
-		else
-			flags |= it->second;
+		it = COMPOSITE_TOKEN.find(token);
+		if(it == COMPOSITE_TOKEN.end())
+			node.PrintTrace("Warning: Skipping unrecognized personality \"" + token + "\":");
 	}
+
+	if(remove)
+		flags &= ~it->second;
 	else
-		node.PrintTrace("Warning: Skipping unrecognized personality \"" + token + "\":");
+		flags |= it->second;
+	return;
 }
