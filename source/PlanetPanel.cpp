@@ -279,6 +279,7 @@ void PlanetPanel::TakeOffIfReady()
 		if(!absentCannotFly.empty())
 		{
 			string shipNames = out.str();
+			// Pop back the last ", " in the string.
 			shipNames.pop_back();
 			shipNames.pop_back();
 			GetUI()->Push(new Dialog(this, &PlanetPanel::CheckWarningsAndTakeOff,
