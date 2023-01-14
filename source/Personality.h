@@ -41,7 +41,8 @@ public:
 	bool IsPacifist() const;
 	bool IsForbearing() const;
 	bool IsTimid() const;
-	bool IsHeroic() const;
+	bool IsRanging() const;
+	bool IsDaring() const;
 	bool IsNemesis() const;
 
 	// How they fight:
