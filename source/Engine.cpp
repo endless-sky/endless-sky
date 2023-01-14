@@ -2243,7 +2243,7 @@ void Engine::FillRadar()
 		const set<const System *> &links = (flagship->JumpNavigation().HasJumpDrive()) ?
 			playerSystem->JumpNeighbors(flagship->JumpNavigation().JumpRange()) : playerSystem->Links();
 		for(const System *system : links)
-			if(player.HasSeen(*system))
+			if(!system->Invisible() && player.HasSeen(*system))
 				radar[calcTickTock].AddPointer(
 					(system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,
 					system->Position() - playerSystem->Position());
