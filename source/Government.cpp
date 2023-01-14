@@ -276,7 +276,7 @@ void Government::Load(const DataNode &node)
 			}
 			else
 				raidFleets.emplace_back(make_pair(raidingFleet,
-					child.Size() > valueIndex ? child.Value(valueIndex + 1.) : 2.));
+					child.Size() > (valueIndex + 1.) ? child.Value(valueIndex + 1.) : 2.));
 		}
 		else if(key == "enforces" && child.Token(valueIndex) == "all")
 		{
