@@ -2516,8 +2516,7 @@ size_t Engine::FleetPlacementLimit(const LimitedEvents<Fleet> &fleet, unsigned f
 	else if(!frames && fleet.InitialCount() <= 0)
 		// During an initialCount spawn, if the initialCount is 0, there's nothing to spawn.
 		return 0;
-
-	if(!frames)
+	else if(!frames)
 		return static_cast<size_t>(max<int>(0, fleet.InitialCount() -
 			CountFleetsWithCategory(fleet.Category())));
 
