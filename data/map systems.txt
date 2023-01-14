@@ -10146,12 +10146,12 @@ system Durax
 	fleet "Large Syndicate" 2500
 	fleet "Korath Raid" 7000
 		ignore enemy strength
-		non-disabled limit 5
+		non-disabled limit 4
 		limit 7
 		category korath
 	fleet "Korath Miners" 17000
 		ignore enemy strength
-		non-disabled limit 3
+		non-disabled limit 2
 		limit 7
 		category korath
 	object
@@ -21076,7 +21076,7 @@ system Misam
 	fleet "Large Core Pirates" 2000
 	fleet "Korath Raid" 5000
 		ignore enemy strength
-		non-disabled limit 5
+		non-disabled limit 3
 		limit 7
 		category korath
 	fleet "Korath Large Raid" 11000
