@@ -2303,7 +2303,7 @@ ship "Mammoth"
 		"hull" 7400
 		"required crew" 18
 		"bunks" 30
-		"mass" 680
+		"mass" 688
 		"drag" 11.9
 		"heat dissipation" .32
 		"fuel capacity" 1000
