@@ -130,14 +130,15 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 	on enter "Host"
 		dialog `You arrive in the system expecting to find a vault and the ship repairing, but it's a trap! The Auxiliary from earlier is indeed here, but it's not damaged at all, and it looks like it's waiting for you with quite a few drones. Whatever the case, it probably has the jump drives on board or on the nearby planet. You should first capture the ship, as asked by the Unfettered, and then inspect the planet. Strangely, you do not find a single trace of the particles in this system.`
 	npc capture
-		government "Alpha"
+		government "Cerberus"
 		system "Host"
 		personality heroic nemesis staying vindictive target
-		ship "Alpha Auxiliary" "Settler"
+		ship "Alpha Auxiliary (Pirate Crew)" "Settler"
 		conversation
-			`While capturing the ship, you noticed that only very few of the crew were actually Alphas. What little were Alphas seem to have disappeared. They probably used an escape pod to get away unoticed in the middle of the fight, or maybe they were never there in the first place. Whatever the case, you cannot find any trace of them. The crew was composed of mercenaries. There was no doubt who was in command of this vessel, however. The jump drives don't seem to be aboard the ship. You should head to the Alpha base to see if you can find them or anything else of interest.`
+			`While capturing the ship, you noticed that only very few of the crew were actually Alphas. What little were Alphas seem to have disappeared. They probably used an escape pod to get away unoticed in the middle of the fight, or maybe they were never there in the first place. Whatever the case, you cannot find any trace of them. The crew was composed of a mix of mercenaries and indoctrinated pirates.`
+			`There was no doubt who was in command of this vessel, however. The jump drives don't seem to be aboard the ship. You should head to the Alpha base to see if you can find them or anything else of interest.`
 	npc
-		government "Alpha"
+		government "Cerberus"
 		system "Host"
 		personality heroic nemesis staying
 		ship "Far Osk 27" "Prancer"
@@ -148,7 +149,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		ship "Far Osk 27" "Dart"
 	# additional fighters if the Alphas were uncontested by the mercenaries. one can use these to fill their Auxiliary with fighters ;)
 	npc
-		government "Alpha"
+		government "Cerberus"
 		system "Host"
 		personality heroic nemesis staying
 		to spawn
@@ -162,12 +163,11 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
-		dialog `You have landed, but without the jump drives. Go and look for traces of fuel from the Auxiliary in systems neighboring Hi Yahr. Don't forget to land on the Alpha base to recover any information or jump drives it may have!`
+		dialog `You have landed, but without the jump drives. Go and look for traces of fuel from the Auxiliary in systems neighboring Hi Yahr. Don't forget to land on the Alpha base to recover any information or jump drives it may have! Don't forget the Jump Drives need to be on your flagship or in cargo.`
 	to complete
 		has "Unfettered: Alphas 3: Bring The Spoils: offered"
 		has "flagship model: Alpha Auxiliary"
 	on complete
-		outfit "Alpha Pirate Crew" -1
 		outfit "Jump Drive" -10
 		log `Captured the Alpha Auxiliary. The Alphas had a trap set but it failed. Or at least that's what they want everyone to think.`
 		payment 10000000
@@ -267,11 +267,10 @@ mission "Unfettered: Alphas 3: Bring The Spoils"
 			`	There are also multiple flight logs. It seems they had been using this Auxiliary as a mobile base and for bringing jump drives to the Unfettered. These logs probably contain indications of where they have been getting the jump drives, but analyzing all of them will take more time. It doesn't take much, though, to notice they have spent significant time near Korath Exile territory. It is now time to leave the planet and go see the Chiefs.`
 				accept
 			label warning
-			"Before leaving, you remember that the Unfettered want you to show them the Auxiliary, and they probably expect you to land with it as flagship. Make sure you bring all 10 jump drives back if they are on escorts, and that you keep this ship alive at all cost. It may be wise to wait a bit and replenish your fuel in this system, using the Wanderer ramscoop."
+			"Before leaving, you remember that the Unfettered want you to show them the Auxiliary, and they probably expect you to land with it as flagship. Make sure you bring all 10 jump drives back in your cargo or on the flagship, and that you keep this ship alive at all cost. It may be wise to wait a bit and replenish your fuel in this system, using the Wanderer ramscoop."
 		outfit "Jump Drive" 10
-		clear "unfettered: capped auxiliary"
 	on enter "Host"
-		dialog "Before leaving, you remember that the Unfettered want you to show them the Auxiliary, and they probably expect you to land with it as flagship. Make sure you bring all 10 jump drives back if they are on escorts, and that you keep this ship alive at all cost. It may be wise to wait a bit and replenish your fuel in this system, using the Wanderer ramscoop."
+		dialog "Before leaving, you remember that the Unfettered want you to show them the Auxiliary, and they probably expect you to land with it as flagship.Make sure you bring all 10 jump drives back in your cargo or on the flagship, and that you keep this ship alive at all cost. It may be wise to wait a bit and replenish your fuel in this system, using the Wanderer ramscoop."
 	on enter "Ehma Ti" "Hi Yahr" "Wah Yoot"
 		dialog `When you arrive in the Unfettered system, you hail Mera, asking for clarifications on what happened. She relays a message back to you, later on, "I am truly sorry, <first>, obviously I was wrong. The particles were left on purpose by the Alphas, evidently hoping I would tell you to go after those. I am not going to pretend I had no idea - it was something in the back of my mind, since a normal captain just appeared to find these specific particles so conveniently."`
 

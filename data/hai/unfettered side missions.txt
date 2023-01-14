@@ -367,14 +367,6 @@ fleet "Emergency Sympathizer Food"
 		"Grasshopper (Tracker)"
 
 
-outfit "Alpha Pirate Crew"
-	category "Hand to Hand"
-	thumbnail "outfit/unknown"
-	"crew attack" -45
-	"crew defense" -45
-	"unplunderable" 1
-	description "This ship is mostly manned by pirates and not actual Alphas, though they do lead them."
-	description "You need to land on the Alpha base in the Host system, with this outfit and the Auxiliary."
 
 # needs its own definition to have a proper model
 ship "Alpha Auxiliary"
@@ -407,18 +399,22 @@ ship "Alpha Auxiliary"
 		"Korath Disruptor"
 		"Korath Slicer Turret"
 		"Bullfrog Anti-Missile" 2
-		"Alpha Pirate Crew"
 
 		"Double Plasma Core"
 		"Systems Core (Large)" 2
 		"Large Heat Shunt" 2
 		"Wanderer Ramscoop"
-		"Fuel Pod" 7
-		"Brig"
+		"Fuel Processor" 2
+		"Brig" 2
+		"Fragmentation Grenades" 20
+		"Laser Rifle" 30
 
 		`"Bufaer" Atomic Thruster`
 		"Steering (Planetary Class)"
 		"Jump Drive"
+		"Scram Drive"
+	engine -41. 180.5 0.45
+	engine 41. 180.5 0.45
 	gun -12 -180 "Hai Tracker Pod"
 	gun 12 -180 "Hai Tracker Pod"
 	turret 0 -72 "Bullfrog Anti-Missile"
@@ -440,6 +436,10 @@ ship "Alpha Auxiliary"
 	"final explode" "final explosion large"
 	description "The Auxiliary is the Republic Navy's logistical backbone. The size and durability of a capital ship but more cargo and passenger space than any other Navy ship, the Auxiliary is used whenever the Navy needs large amounts of troops or cargo transported with a guarantee that they'll reach the destination."
 	description " The Auxiliary was built with modularity in mind, allowing the ship to be fitted for more cargo or bunk space depending on the mission. This modularity makes the ship rather expensive to build, however, and therefore a rare sight to see."
+
+# make it have a given amount of crew since you are expected to capture it
+ship "Alpha Auxiliary" "Alpha Auxiliary (Pirate Crew)"
+	crew 100
 
 # TODO: when possible to define a cargo for npc, use that and some custom outfitters
 ship "Alpha Auxiliary" "Alpha Auxiliary (Bringing Supplies)"
