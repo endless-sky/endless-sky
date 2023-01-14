@@ -87,8 +87,6 @@ test-data "quarg rescue"
 						accept
 		conditions
 			"%TEST%: SCANNING ILLEGALS"
-			"Ruin: Landing: offered"
-
 
 test-data "quarg scanning"
 	category "savegame"
@@ -188,7 +186,6 @@ test-data "quarg scanning"
 						accept
 		conditions
 			"%TEST%: SCANNING ILLEGALS"
-			"Ruin: Landing: offered"
 
 
 test-data "quarg atrocity"
@@ -289,7 +286,6 @@ test-data "quarg atrocity"
 						accept
 		conditions
 			"%TEST%: SCANNING ILLEGALS"
-			"Ruin: Landing: offered"
 
 # just so the mission actually works
 mission "%TEST%: Wardragon Scanning You!"
