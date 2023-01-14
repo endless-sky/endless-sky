@@ -980,7 +980,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				&& parent->Position().Distance(it->Position()) > 500.)
 			MoveEscort(*it, command);
 		// Otherwise, attack targets depending on how heroic you are.
-		else if(target && (targetDistance < 2000. || personality.IsRanging()))
+		else if(target && personality.WithinAggroRange(targetDistance))
 			MoveIndependent(*it, command);
 		// This ship does not feel like fighting.
 		else
@@ -1189,12 +1189,12 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	if(parentTarget && !parentTarget->IsTargetable())
 		parentTarget.reset();
 
-	// Find the closest enemy ship (if there is one). If this ship is "ranging,"
+	// Find the closest enemy ship (if there is one). If this ship has no aggro range
 	// it will attack any ship in system. Otherwise, if all its weapons have a
 	// range higher than 2000, it will engage ships up to 50% beyond its range.
-	// If a ship has short range weapons and is not ranging, it will engage any
+	// If a ship has short range weapons and it has an aggro range, it will engage any
 	// ship that is within 3000 of it.
-	double closest = person.IsRanging() ? numeric_limits<double>::infinity() :
+	double closest = !person.HasAggroRange() ? numeric_limits<double>::infinity() :
 		(minRange > 1000.) ? maxRange * 1.5 : 4000.;
 	bool hasNemesis = false;
 	bool canPlunder = person.Plunders() && ship.Cargo().Free();
