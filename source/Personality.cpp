@@ -53,6 +53,7 @@ namespace {
 	const int TARGET = (1 << 26);
 	const int MARKED = (1 << 27);
 	const int LAUNCHING = (1 << 28);
+	const int PRAGMATIC = (1 << 29);
 
 	const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -83,7 +84,8 @@ namespace {
 		{"merciful", MERCIFUL},
 		{"target", TARGET},
 		{"marked", MARKED},
-		{"launching", LAUNCHING}
+		{"launching", LAUNCHING},
+		{"pragmatic", PRAGMATIC}
 	};
 
 	const double DEFAULT_CONFUSION = 10.;
@@ -246,6 +248,13 @@ bool Personality::IsOpportunistic() const
 bool Personality::IsMerciful() const
 {
 	return flags & MERCIFUL;
+}
+
+
+
+bool Personality::IsPragmatic() const
+{
+	return flags & PRAGMATIC;
 }
 
 
