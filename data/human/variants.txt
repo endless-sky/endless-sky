@@ -1202,6 +1202,10 @@ ship "Cutthroat" "Cutthroat (Jousting)"
 		"A520 Atomic Thruster"
 		"A255 Atomic Steering"
 		"Hyperdrive"
+	gun -21.5 -18 "Heavy Rocket Pod"
+	gun 21.5 -18 "Heavy Rocket Pod"
+	gun -11 -8.5 "Twin Modified Blaster"
+	gun 11 -8.5 "Twin Modified Blaster"
 
 
 

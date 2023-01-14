@@ -1301,10 +1301,10 @@ ship "Cutthroat"
 		
 	engine -22 47
 	engine 22 47
-	gun -21.5 -18 "Javelin Mini Pod"
-	gun 21.5 -18 "Javelin Mini Pod"
-	gun -11 -8.5 "Beam Laser"
-	gun 11 -8.5 "Beam Laser"
+	gun -21.5 -18 "Torpedo Pod"
+	gun 21.5 -18 "Torpedo Pod"
+	gun -11 -8.5 "Twin Modified Blaster"
+	gun 11 -8.5 "Twin Modified Blaster"
 	leak "leak" 60 50
 	leak "flame" 50 80
 	explode "tiny explosion" 15
