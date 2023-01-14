@@ -2294,8 +2294,8 @@ ship "Leviathan"
 
 
 ship "Mammoth"
-	sprite "ship/mammoth"
-	thumbnail "thumbnail/mammoth"
+	sprite "ship/pirate mammoth"
+	thumbnail "thumbnail/pirate mammoth"
 	attributes
 		category "Utility"
 		"cost" 18800000
@@ -3069,8 +3069,8 @@ ship "Scout"
 
 
 ship "Scrapper"
-	sprite "ship/scrapper"
-	thumbnail "thumbnail/scrapper"
+	sprite "ship/pirate scrapper"
+	thumbnail "thumbnail/pirate scrapper"
 	attributes
 		category "Interceptor"
 		"cost" 60000
