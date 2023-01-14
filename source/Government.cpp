@@ -103,7 +103,7 @@ void Government::Load(const DataNode &node)
 			displayName = name;
 	}
 
-	notClearedRaids = true;
+	bool notClearedRaids = true;
 
 	for(const DataNode &child : node)
 	{
