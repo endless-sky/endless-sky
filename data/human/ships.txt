@@ -1301,6 +1301,8 @@ ship "Cutthroat"
 		
 	engine -22 47
 	engine 22 47
+	engine -13 43.5 .7
+	engine 13 43.5 .7
 	gun -21.5 -18 "Torpedo Pod"
 	gun 21.5 -18 "Torpedo Pod"
 	gun -11 -8.5 "Twin Modified Blaster"
