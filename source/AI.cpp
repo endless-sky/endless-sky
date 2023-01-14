@@ -656,7 +656,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			(!personality.IsHeroic() && !personality.IsStaying()
 			&& healthRemaining < RETREAT_HEALTH + .25 * personality.IsCoward()));
 		if(!it->IsYours() && shouldFlee && (personality.IsPragmatic() ||
-			( target && target->GetGovernment()->IsEnemy(gov) && !target->IsDisabled()
+			(target && target->GetGovernment()->IsEnemy(gov) && !target->IsDisabled()
 			&& (!it->GetParent() || !it->GetParent()->GetGovernment()->IsEnemy(gov)))))
 		{
 			// Make sure the ship has somewhere to flee to.
