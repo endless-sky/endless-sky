@@ -877,7 +877,8 @@ void MapDetailPanel::DrawOrbits()
 			continue;
 
 		Point pos = orbitCenter + object.Position() * scale;
-		if(object.HasValidPlanet() && object.GetPlanet()->IsAccessible(player.Flagship()))
+		if(object.HasValidPlanet() && object.GetPlanet()->IsAccessible(player.Flagship()) &&
+				(!object.GetWormhole() || !object.GetWormhole()->WormholeDestination(selectedSystem).Inaccessible()))
 			planets[object.GetPlanet()] = pos;
 
 		const float *rgb = Radar::GetColor(object.RadarType(player.Flagship())).Get();
