@@ -1492,7 +1492,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	{
 		int64_t lingerTime = ship.StepLingering(totalSteps);
 		if(lingerTime >= 0)
-			shouldStay = lingerTime < max(300, 2*origin->MinimumFleetPeriod());
+			shouldStay = lingerTime < max(300, origin->MinimumFleetPeriod() / 2);
 	}
 
 	// Ships should choose a random system/planet for travel if they do not
