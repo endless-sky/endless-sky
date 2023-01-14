@@ -89,7 +89,7 @@ namespace {
 	};
 
 	// Tokens that combine two or more flags.
-  	const map<string, int> COMPOSITE_TOKEN = {
+	const map<string, int> COMPOSITE_TOKEN = {
 		{"heroic", DARING | RANGING}
 	};
 
