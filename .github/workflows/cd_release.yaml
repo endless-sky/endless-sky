@@ -22,6 +22,8 @@ jobs:
           sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev
       - name: Setup sccache
         uses: ./.github/sccache
+        with:
+          read-only: 'true'
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v10
         with:
