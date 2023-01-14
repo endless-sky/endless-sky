@@ -103,6 +103,8 @@ void Government::Load(const DataNode &node)
 			displayName = name;
 	}
 
+	notClearedRaids = true;
+
 	for(const DataNode &child : node)
 	{
 		bool remove = child.Token(0) == "remove";
@@ -121,8 +123,11 @@ void Government::Load(const DataNode &node)
 		{
 			if(key == "provoked on scan")
 				provokedOnScan = false;
-			else if(key == "raid")
+			else if(key == "raid" && (!hasValue || (notClearedRaids && !add && !remove)))
+			{
 				raidFleets.clear();
+				notClearedRaids = false;
+			}
 			else if(key == "display name")
 				displayName = name;
 			else if(key == "death sentence")
@@ -259,15 +264,18 @@ void Government::Load(const DataNode &node)
 			language = child.Token(valueIndex);
 		else if(key == "raid")
 		{
-			if(!add)
-				raidFleets.clear();
-			if(child.Size() >= 2)
+			if(remove)
+			{
+				for(auto it = raidFleets.begin(); it != raidFleets.end(); ++it)
+					if(it->Name() == child.Token(valueIndex))
+					{
+						raidFleets.erase(it);
+						break;
+					}
+			}
+			else if(child.Size() >= 2)
 				raidFleets.emplace_back(make_pair(GameData::Fleets().Get(child.Token(1)),
 					child.Size() >= 3 ? child.Value(2) : 2.));
-			else
-				for(const DataNode &grand : child)
-					raidFleets.emplace_back(make_pair(GameData::Fleets().Get(grand.Token(0)),
-						child.Size() >= 2 ? child.Value(1) : 2.));
 		}
 		else if(key == "enforces" && child.Token(valueIndex) == "all")
 		{
