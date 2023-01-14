@@ -41,12 +41,12 @@
 # Clearly, you'll need to manually correct a few things. The commas
 # and periods are in the wrong place, the wrong letters are
 # capitalized, and it's probably best to avoid common names and
-# religious concepts. (Adam = the first man in some religions.) You 
-# should also make sure the end product is pronounceable, with 
-# particular attention to ' characters in Exile words. These are meant 
-# to represent glottal stops; if you are unfamiliar, imagine what the 
-# word would sound like with a k in place of the '. If it is too 
-# difficult, add some vowels or move letters around. After manual 
+# religious concepts. (Adam = the first man in some religions.) You
+# should also make sure the end product is pronounceable, with
+# particular attention to ' characters in Exile words. These are meant
+# to represent glottal stops; if you are unfamiliar, imagine what the
+# word would sound like with a k in place of the '. If it is too
+# difficult, add some vowels or move letters around. After manual
 # tweaking, you might end up with something like this:
 #
 # EXILE:  Famas ralarehet, aga' agrap kapimef ranrupuhet.
@@ -139,5 +139,4 @@ for line in sys.stdin:
     print("EXILE:    "+" ".join(exiles))
     print("EFRETI:   "+" ".join(efretis))
     print("")
-        
 
