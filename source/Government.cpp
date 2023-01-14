@@ -268,7 +268,7 @@ void Government::Load(const DataNode &node)
 			if(remove)
 			{
 				for(auto it = raidFleets.begin(); it != raidFleets.end(); ++it)
-					if(it.first == raidingFleet)
+					if(it->first == raidingFleet)
 					{
 						raidFleets.erase(it);
 						break;
