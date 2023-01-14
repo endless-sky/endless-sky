@@ -903,7 +903,7 @@ void MapPanel::UpdateCache()
 	for(const auto &it : GameData::Systems())
 	{
 		const System *system = &it.second;
-		if(!system->IsValid() || !player.HasSeen(*system))
+		if(!system->IsValid() || system->Invisible() || !player.HasSeen(*system))
 			continue;
 
 		for(const System *link : system->Links())

@@ -470,7 +470,7 @@ const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance
 	{
 		const Planet &planet = it.second;
 		// Skip planets with incomplete data or which are in invisible systems.
-		if(!planet.IsValid() || planet.GetSystem() && planet.GetSystem()->Invisible())
+		if(!planet.IsValid() || (planet.GetSystem() && planet.GetSystem()->Invisible()))
 			continue;
 		// Skip planets that do not offer special jobs or missions, unless they were explicitly listed as options.
 		if(planet.IsWormhole() || (requireSpaceport && !planet.HasSpaceport()) || (!hasClearance && !planet.CanLand()))
