@@ -444,6 +444,15 @@ public:
 	std::shared_ptr<Ship> GetParent() const;
 	const std::vector<std::weak_ptr<Ship>> &GetEscorts() const;
 
+	// Called if the ship has nothing to do, to determine if it wants to
+	// linger awhile before leaving. Timer resets if this is not called
+	// every AI step. Gaps indicate the ship decided not to linger.
+	int64_t StepLingering(int64_t aiTotalSteps);
+
+	// How long has the ship been lingering?
+	// Returns -1 if the ship does not want to linger.
+	int64_t LingerTime() const;
+
 
 private:
 	// Add or remove a ship from this ship's list of escorts.
@@ -622,6 +631,9 @@ private:
 	std::weak_ptr<Ship> parent;
 
 	bool removeBays = false;
+
+	// Time the ship started lingering, and last time it considered whether to linger.
+	std::pair<int64_t, int64_t> linger = { 0, 0 };
 };
 
 

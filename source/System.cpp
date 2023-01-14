@@ -472,6 +472,14 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 		attributes.erase("uninhabited");
 	else
 		attributes.insert("uninhabited");
+
+	int minPeriod = numeric_limits<int>::max();
+	for(auto &event : fleets)
+		minPeriod = min<int>(minPeriod, event.Period());
+	if(minPeriod == numeric_limits<int>::max())
+		minimumFleetPeriod = 0;
+	else
+		minimumFleetPeriod = minPeriod;
 }
 
 
@@ -884,6 +892,13 @@ double System::Danger() const
 			danger += static_cast<double>(fleet.Get()->Strength()) / fleet.Period();
 	}
 	return danger;
+}
+
+
+
+int System::MinimumFleetPeriod() const
+{
+	return minimumFleetPeriod;
 }
 
 
