@@ -41,7 +41,6 @@ public:
 	bool IsPacifist() const;
 	bool IsForbearing() const;
 	bool IsTimid() const;
-	bool IsRanging() const;
 	bool IsDaring() const;
 	bool IsNemesis() const;
 
@@ -81,6 +80,10 @@ public:
 	const Point &Confusion() const;
 	void UpdateConfusion(bool isFiring);
 
+	// How far the ship is willing to travel to reach its goal:
+	bool HasAggroRange() const;
+	bool WithinAggroRange(double targetDistance) const;
+
 	// Personality to use for ships defending a planet from domination:
 	static Personality Defender();
 	static Personality DefenderFighter();
@@ -98,6 +101,7 @@ private:
 	double aimMultiplier;
 	Point confusion;
 	Point confusionVelocity;
+	double aggroRange;
 };
 
 

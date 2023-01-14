@@ -29,7 +29,7 @@ namespace {
 	const int TIMID = (1 << 2);
 	const int DISABLES = (1 << 3);
 	const int PLUNDERS = (1 << 4);
-	const int RANGING = (1 << 5);
+	const int DARING = (1 << 5);
 	const int STAYING = (1 << 6);
 	const int ENTERING = (1 << 7);
 	const int NEMESIS = (1 << 8);
@@ -53,7 +53,6 @@ namespace {
 	const int TARGET = (1 << 26);
 	const int MARKED = (1 << 27);
 	const int LAUNCHING = (1 << 28);
-	const int DARING = (1 << 29);
 
 	const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -61,7 +60,7 @@ namespace {
 		{"timid", TIMID},
 		{"disables", DISABLES},
 		{"plunders", PLUNDERS},
-		{"ranging", RANGING},
+		{"daring", DARING},
 		{"staying", STAYING},
 		{"entering", ENTERING},
 		{"nemesis", NEMESIS},
@@ -84,15 +83,10 @@ namespace {
 		{"merciful", MERCIFUL},
 		{"target", TARGET},
 		{"marked", MARKED},
-		{"launching", LAUNCHING},
-		{"daring", DARING}
+		{"launching", LAUNCHING}
 	};
 
-	// Tokens that combine two or more flags.
-	const map<string, int> COMPOSITE_TOKEN = {
-		{"heroic", DARING | RANGING}
-	};
-
+	const double DEFAULT_AGGRO_RANGE = 2000;
 	const double DEFAULT_CONFUSION = 10.;
 }
 
@@ -100,7 +94,8 @@ namespace {
 
 // Default settings for player's ships.
 Personality::Personality() noexcept
-	: flags(DISABLES), confusionMultiplier(DEFAULT_CONFUSION), aimMultiplier(1.)
+	: flags(DISABLES), confusionMultiplier(DEFAULT_CONFUSION), aimMultiplier(1.),
+	aggroRange(DEFAULT_AGGRO_RANGE)
 {
 }
 
@@ -126,6 +121,17 @@ void Personality::Load(const DataNode &node)
 			else
 				confusionMultiplier = child.Value(1);
 		}
+		else if(child.Size() > 1 && child.Token(0) == "aggro" && child.Token(1) == "range")
+		{
+			if(remove)
+				aggroRange = DEFAULT_AGGRO_RANGE;
+			else if(child.Size() > 2 && child.Token(2) == "infinite")
+				aggroRange = -1;
+			else if(child.Size() > 2 && child.IsNumber(2))
+				aggroRange = max<double>(0,child.Value(2));
+			else
+				child.PrintTrace("Cannot parse this \"aggro range\" tag:");
+		}
 		else
 		{
 			for(int i = 0; i < child.Size(); ++i)
@@ -143,6 +149,14 @@ void Personality::Save(DataWriter &out) const
 	out.BeginChild();
 	{
 		out.Write("confusion", confusionMultiplier);
+		if(aggroRange == DEFAULT_AGGRO_RANGE)
+		{
+			// Do not write out the default aggro range (waste of a line)
+		}
+		else if(aggroRange > 0)
+			out.Write("aggro range", aggroRange);
+		else
+			out.Write("aggro range infinity");
 		for(const auto &it : TOKEN)
 			if(flags & it.second)
 				out.Write(it.first);
@@ -176,13 +190,6 @@ bool Personality::IsForbearing() const
 bool Personality::IsTimid() const
 {
 	return flags & TIMID;
-}
-
-
-
-bool Personality::IsRanging() const
-{
-	return flags & RANGING;
 }
 
 
@@ -398,7 +405,8 @@ void Personality::UpdateConfusion(bool isFiring)
 Personality Personality::Defender()
 {
 	Personality defender;
-	defender.flags = STAYING | MARKED | RANGING | UNCONSTRAINED | TARGET;
+	defender.flags = STAYING | MARKED | DARING | UNCONSTRAINED | TARGET;
+	defender.aggroRange = -1;
 	return defender;
 }
 
@@ -409,8 +417,23 @@ Personality Personality::Defender()
 Personality Personality::DefenderFighter()
 {
 	Personality defender;
-	defender.flags = STAYING | RANGING | UNCONSTRAINED;
+	defender.flags = STAYING | DARING | UNCONSTRAINED;
+	defender.aggroRange = -1;
 	return defender;
+}
+
+
+
+bool Personality::HasAggroRange() const
+{
+	return aggroRange > numeric_limits<double>::epsilon();
+}
+
+
+
+bool Personality::WithinAggroRange(double targetDistance) const
+{
+	return !(aggroRange > numeric_limits<double>::epsilon()) || targetDistance <= aggroRange;
 }
 
 
@@ -419,18 +442,30 @@ void Personality::Parse(const DataNode &node, int index, bool remove)
 {
 	const string &token = node.Token(index);
 
-	auto it = TOKEN.find(token);
-
-	if(it == TOKEN.end())
+	if(remove && token == "heroic")
 	{
-		it = COMPOSITE_TOKEN.find(token);
-		if(it == COMPOSITE_TOKEN.end())
+		flags &= ~DARING;
+		aggroRange = DEFAULT_AGGRO_RANGE;
+	}
+	else if(remove && token == "hunting")
+		aggroRange = DEFAULT_AGGRO_RANGE;
+	else if(token == "heroic")
+	{
+		flags |= DARING;
+		aggroRange = -1;
+	}
+	else if(token == "hunting")
+		aggroRange = -1;
+	else
+	{
+		auto it = TOKEN.find(token);
+		if(it == TOKEN.end())
 			node.PrintTrace("Warning: Skipping unrecognized personality \"" + token + "\":");
+		else if(remove)
+			flags &= ~it->second;
+		else
+			flags |= it->second;
 	}
 
-	if(remove)
-		flags &= ~it->second;
-	else
-		flags |= it->second;
 	return;
 }
