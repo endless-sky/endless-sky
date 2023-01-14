@@ -495,8 +495,6 @@ void AI::ClearOrders()
 
 void AI::Step(const PlayerInfo &player, Command &activeCommands)
 {
-	totalSteps++;
-
 	// First, figure out the comparative strengths of the present governments.
 	const System *playerSystem = player.GetSystem();
 	map<const Government *, int64_t> strength;
@@ -1484,16 +1482,11 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	}
 
 	// A ship has restricted movement options if it is 'staying' or is hostile to its parent.
-	bool shouldStay = ship.GetPersonality().IsStaying()
-			|| (ship.GetParent() && ship.GetParent()->GetGovernment()->IsEnemy(gov));
 	const System *origin = ship.GetSystem();
-
-	if(!shouldStay && origin)
-	{
-		int64_t lingerTime = ship.StepLingering(totalSteps);
-		if(lingerTime >= 0)
-			shouldStay = lingerTime < max(300, origin->MinimumFleetPeriod() / 2);
-	}
+	const bool shouldStay = ship.GetPersonality().IsStaying()
+			|| (ship.GetParent() && ship.GetParent()->GetGovernment()->IsEnemy(gov))
+			|| (origin && ship.GetPersonality().IsLingering() &&
+			Random::Int(max<int>(300, origin->MinimumFleetPeriod())));
 
 	// Ships should choose a random system/planet for travel if they do not
 	// already have a system/planet in mind, and are free to move about.

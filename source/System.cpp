@@ -486,13 +486,11 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 	else
 		attributes.insert("uninhabited");
 
-	int minPeriod = numeric_limits<int>::max();
+	minimumFleetPeriod = numeric_limits<int>::max();
 	for(auto &event : fleets)
-		minPeriod = min<int>(minPeriod, event.Period());
-	if(minPeriod == numeric_limits<int>::max())
+		minimumFleetPeriod = min<int>(minimumFleetPeriod, event.Period());
+	if(minimumFleetPeriod == numeric_limits<int>::max())
 		minimumFleetPeriod = 0;
-	else
-		minimumFleetPeriod = minPeriod;
 }
 
 
