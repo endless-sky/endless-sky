@@ -356,6 +356,7 @@ fleet "Korath Surveillance"
 		"Ra'at Ik 621 (Probes)"
 		"Kas'ik Tek 7" 9
 
+
 fleet "Korath Stealth Relay"
 	government "Korath"
 	names "korath"
