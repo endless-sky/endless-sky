@@ -208,8 +208,8 @@ void DistanceMap::Init(const Ship *ship)
 		Edge top = edges.top();
 		edges.pop();
 
-		// If the system is invisible, it cannot be used.
-		if(top.next->Invisible())
+		// If the system is inaccessible, it cannot be used.
+		if(top.next->Inaccessible())
 			continue;
 
 		// Source is only defined when given a ship and a destination system.

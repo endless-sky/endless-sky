@@ -166,8 +166,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			}
 			else if(key == "hidden")
 				hidden = false;
-			else if(key == "invisible")
-				invisible = false;
+			else if(key == "inaccessible")
+				inaccessible = false;
 
 			// If not in "overwrite" mode, move on to the next node.
 			if(overwriteAll)
@@ -179,8 +179,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		// Handle the attributes which can be "removed."
 		if(key == "hidden")
 			hidden = true;
-		else if(key == "invisible")
-			invisible = true;
+		else if(key == "inaccessible")
+			inaccessible = true;
 		else if(!hasValue && key != "object")
 		{
 			child.PrintTrace("Error: Expected key to have a value:");
@@ -575,7 +575,8 @@ const set<const System *> &System::JumpNeighbors(double neighborDistance) const
 
 
 
-// Whether this system can be seen when not linked.
+// Defines whether this system can be seen when not linked. A hidden system will
+// not appear when in view range, only when linked to a visited system.
 bool System::Hidden() const
 {
 	return hidden;
@@ -583,10 +584,10 @@ bool System::Hidden() const
 
 
 
-// Whether this system can be seen.
-bool System::Invisible() const
+// Defines whether this system can be accessed or interacted with in any way.
+bool System::Inaccessible() const
 {
-	return invisible;
+	return inaccessible;
 }
 
 

@@ -246,7 +246,7 @@ Engine::Engine(PlayerInfo &player)
 	const set<const System *> &links = (flagship && flagship->JumpNavigation().HasJumpDrive()) ?
 		player.GetSystem()->JumpNeighbors(flagship->JumpNavigation().JumpRange()) : player.GetSystem()->Links();
 	for(const System *system : links)
-		if(!system->Invisible() && player.HasSeen(*system))
+		if(!system->Inaccessible() && player.HasSeen(*system))
 			radar[calcTickTock].AddPointer(
 				(system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,
 				system->Position() - player.GetSystem()->Position());
@@ -2243,7 +2243,7 @@ void Engine::FillRadar()
 		const set<const System *> &links = (flagship->JumpNavigation().HasJumpDrive()) ?
 			playerSystem->JumpNeighbors(flagship->JumpNavigation().JumpRange()) : playerSystem->Links();
 		for(const System *system : links)
-			if(!system->Invisible() && player.HasSeen(*system))
+			if(!system->Inaccessible() && player.HasSeen(*system))
 				radar[calcTickTock].AddPointer(
 					(system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,
 					system->Position() - playerSystem->Position());

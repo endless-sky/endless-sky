@@ -315,7 +315,8 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 		for(const System *link : system.Links())
 		{
 			// Only draw visible systems known to be attached to the jump systems.
-			if((!player.HasVisited(system) && !player.HasVisited(*link)) || system.Invisible() || link->Invisible())
+			if((!player.HasVisited(system) && !player.HasVisited(*link))
+					|| system.Inaccessible() || link->Inaccessible())
 				continue;
 
 			// Draw the system link. This will double-draw the jump
@@ -462,7 +463,7 @@ bool MapPanel::Click(int x, int y, int clicks)
 	for(const auto &it : GameData::Systems())
 	{
 		const System &system = it.second;
-		if(system.IsValid() && !system.Invisible() && click.Distance(system.Position()) < 10.
+		if(system.IsValid() && !system.Inaccessible() && click.Distance(system.Position()) < 10.
 				&& (player.HasSeen(system) || &system == specialSystem))
 		{
 			Select(&system);
@@ -688,7 +689,7 @@ void MapPanel::Find(const string &name)
 	for(const auto &it : GameData::Systems())
 	{
 		const System &system = it.second;
-		if(system.IsValid() && !system.Invisible() && player.HasVisited(system))
+		if(system.IsValid() && !system.Inaccessible() && player.HasVisited(system))
 		{
 			int index = Search(it.first, name);
 			if(index >= 0 && index < bestIndex)
@@ -787,8 +788,8 @@ void MapPanel::UpdateCache()
 	for(const auto &it : GameData::Systems())
 	{
 		const System &system = it.second;
-		// Ignore systems which are invisible or have been referred to, but not actually defined.
-		if(!system.IsValid() || system.Invisible())
+		// Ignore systems which are inaccessible or have been referred to, but not actually defined.
+		if(!system.IsValid() || system.Inaccessible())
 			continue;
 		// Ignore systems the player has never seen, unless they have a pending mission that lets them see it.
 		if(!player.HasSeen(system) && &system != specialSystem)
@@ -903,7 +904,7 @@ void MapPanel::UpdateCache()
 	for(const auto &it : GameData::Systems())
 	{
 		const System *system = &it.second;
-		if(!system->IsValid() || system->Invisible() || !player.HasSeen(*system))
+		if(!system->IsValid() || system->Inaccessible() || !player.HasSeen(*system))
 			continue;
 
 		for(const System *link : system->Links())
@@ -912,7 +913,8 @@ void MapPanel::UpdateCache()
 				// Only draw links between two visible systems if one of the two is
 				// visited. Also, avoid drawing twice by only drawing in the
 				// direction of increasing pointer values.
-				if((!player.HasVisited(*system) && !player.HasVisited(*link)) || !link->IsValid() || link->Invisible())
+				if((!player.HasVisited(*system) && !player.HasVisited(*link))
+						|| !link->IsValid() || link->Inaccessible())
 					continue;
 
 				bool isClose = (system == &playerSystem || link == &playerSystem);

@@ -3667,8 +3667,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			for(const System *link : links)
 			{
 				// Not all systems in range are necessarily visible. Don't allow
-				// jumping to systems which haven't been seen.
-				if(link->Invisible() || !player.HasSeen(*link))
+				// jumping to systems which haven't been seen or that are inaccessible.
+				if(link->Inaccessible() || !player.HasSeen(*link))
 					continue;
 
 				Point direction = link->Position() - ship.GetSystem()->Position();

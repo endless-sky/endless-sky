@@ -450,8 +450,8 @@ const System *LocationFilter::PickSystem(const System *origin) const
 	for(const auto &it : GameData::Systems())
 	{
 		const System &system = it.second;
-		// Skip systems with incomplete data or that are invisible.
-		if(!system.IsValid() || system.Invisible())
+		// Skip systems with incomplete data or that are inaccessible.
+		if(!system.IsValid() || system.Inaccessible())
 			continue;
 		if(Matches(&system, origin))
 			options.push_back(&system);
@@ -469,8 +469,8 @@ const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance
 	for(const auto &it : GameData::Planets())
 	{
 		const Planet &planet = it.second;
-		// Skip planets with incomplete data or which are in invisible systems.
-		if(!planet.IsValid() || (planet.GetSystem() && planet.GetSystem()->Invisible()))
+		// Skip planets with incomplete data or which are from iaccessible systems.
+		if(!planet.IsValid() || (planet.GetSystem() && planet.GetSystem()->Inaccessible()))
 			continue;
 		// Skip planets that do not offer special jobs or missions, unless they were explicitly listed as options.
 		if(planet.IsWormhole() || (requireSpaceport && !planet.HasSpaceport()) || (!hasClearance && !planet.CanLand()))
