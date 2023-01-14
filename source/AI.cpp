@@ -1482,13 +1482,11 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	}
 
 	// A ship has restricted movement options if it is 'staying' or is hostile to its parent.
-	bool shouldStay = ship.GetPersonality().IsStaying()
-			|| (ship.GetParent() && ship.GetParent()->GetGovernment()->IsEnemy(gov));
 	const System *origin = ship.GetSystem();
-
-	if(!shouldStay && origin && ship.GetPersonality().IsLingering() &&
-			Random::Int(max<int>(1, origin->MinimumFleetPeriod())))
-		shouldStay = true;
+	bool shouldStay = ship.GetPersonality().IsStaying()
+			|| (ship.GetParent() && ship.GetParent()->GetGovernment()->IsEnemy(gov))
+			|| (origin && ship.GetPersonality().IsLingering() &&
+			Random::Int(max<int>(1, origin->MinimumFleetPeriod())));
 
 	// Ships should choose a random system/planet for travel if they do not
 	// already have a system/planet in mind, and are free to move about.
