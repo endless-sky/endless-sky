@@ -190,14 +190,14 @@ mission "HI2-MP"
 				`	"I'd rather not go out there with that rain."`
 					goto decline
 			`	You walk in a straight line for about an hour, occasionally being hit by splintering rain drops despite the cover provided by buildings and local structures. Kirrie takes you to the very edge of the town where you would be able to see the hills and mountains in the distance, were it not for the colossal rain clouds and constant downpour. One or two warehouses have a fair bit of rust on their doors, and just once you spot one with a damaged roof. You can also make out the shapes of small trees and bushes not too far out.`
-			`	"Now, Captain, start looking for something suspicious, where would you?" he asks as he shows you some sort of identification card, explaining that it can open any of the warehouse doors.`
+			`	"Now, Captain, start looking for something suspicious, where would you?"`
 			choice
 				`	(Check the warehouses with the rusty doors.)`
 				`	(Check the warehouse with the leaking roof.)`
 					goto reactor
 				`	(Go further out and check the trees and bushes.)`
 					goto trees
-			`	Kirrie uses his card to open the door, explaining that it is an access card granted to Heliarch agents in the event they need to conduct any work such as this, or simply to identify themselves as an agent. Unfortunately the warehouse turns out to contain nothing of any significance. It's storage for what Kirrie says are toy parts: just mountains of plastic stacked together. You check a few more like this, but none turn out to have anything. The rain is starting to get heavier.`
+			`	Kirrie approaches the door, and it opens without him as much as touching it. Unfortunately the warehouse turns out to contain nothing of any significance. It's storage for what Kirrie says are toy parts: just mountains of plastic stacked together. You check a few more like this, but none turn out to have anything. The rain is starting to get heavier.`
 			choice
 				`	(Check the warehouse with the leaky roof now.)`
 					goto reactor
@@ -211,7 +211,7 @@ mission "HI2-MP"
 			label reactor
 			apply
 				"resistance evidence" ++
-			`	Kirrie tries to open the door but can't get his card to work. "All the doors to these warehouses, my card should open. Damaged, the reader doesn't seem to be," he says. He decides that he must get in, and grabs a small sidearm, busting the door open with a couple shots.`
+			`	Kirrie approaches the door, and waits for a few seconds, as if expecting it to open. When it doesn't, he picks his headpiece off, and fiddles with it briefly. He puts it on again, and waits some more, again to no avail. "To all of these warehouses I should have access. Damaged, the door's electronics don't seem to be," he comments. He decides that he must get in, and grabs a small sidearm, busting the door open with a couple shots.`
 			`	At first glance there is nothing inside, but after he furiously crawls all over the place, he puts his head to a large metal panel on the opposite end of the room, before shooting that too. You approach him to find a hidden staircase leading underground.`
 			`	On your way down, Kirrie yells for you to take cover, and you barely escape a barrage of shots as you head back up. Kirrie isn't as lucky, as one of the shots hit one of his back legs just before he is back at the stairs. You go to help him up before any more shots come, but he seems to make do with just five good legs well enough.`
 			`	You two head back up, and Kirrie tells you to be alert and watch the staircase, as he reaches for a small radio-like device to call for support. A few minutes later, a pair of Heliarch Punishers land nearby, and dozens of armed agents enter the warehouse, while you head to one of the ships with Kirrie, and wait as his wound is treated.`
@@ -236,7 +236,7 @@ mission "HI2-MP"
 				`	(Check the warehouses with the rusty doors.)`
 				`	(Check the warehouse with the leaky roof.)`
 					goto reactor
-			`	Kirrie uses his card to open the door, explaining that it is an access card granted to Heliarch agents in the event they need to conduct any work such as this, or simply to identify themselves as an agent. Unfortunately the warehouse turns out to contain nothing of any significance. It's storage for what Kirrie says are toy parts: just mountains of plastic stacked together. You check a few more like this but none turn out to have anything, and as the rain and wind become too much to walk through, you take shelter in one of the warehouses.`
+			`	Kirrie approaches the door, and it opens without him as much as touching it. Unfortunately the warehouse turns out to contain nothing of any significance. It's storage for what Kirrie says are toy parts: just mountains of plastic stacked together. You check a few more like this but none turn out to have anything, and as the rain and wind become too much to walk through, you take shelter in one of the warehouses.`
 			`	Once the weather settles near nightfall, Iplora notifies him that she and Tugroob are already back at the ship, so you two decide to return as well.`
 			`	It seems Tugroob found some evidence of some smuggled weapons passing through here, but nothing major. They get back in their bunks, saying you may depart now.`
 				accept
@@ -1827,7 +1827,15 @@ mission "Heliarch License"
 				`	(Take the circlet.)`
 			label circlet
 			`	You pick up the circlet, and raise it to your head, the Heliarch consuls all standing up when you do. You bring it down and adjust it to your head. Once the "crowning" is done, many of the consuls cheer in celebration, with something akin to a round of applause, and more of the speeches from before.`
-			`	When it's all over, you're escorted back to your ship, where you're told that the circlet serves as a permission to buy certain outfits. They also hand you a small box, which you soon realize is a translation device. "One of us you now are, Captain," the Saryd says. "Find some new work in our job boards, you may, if properly equipped, you are."`
+			`	When it's all over, you're escorted out by some of the guards, but remain in the restricted sections, being now brought to a much smaller room, where a pair of Heliarch in lab coats are working at some device reminiscent of a hospital's ultrasound machine. One of them asks you for your circlet, attaching it to various cables near the machine's controls. "Configure your circlet we now shall, so that to your will it responds," the other says, gesturing for you to take a seat, and holding a large, helmet-like piece, with a cable at the top connecting to the machine.`
+			choice
+				`	"To my will? What do you mean?"`
+				`	"Is this really necessary?"`
+			`	"Mere jewelry pieces or symbols of rank these are not," the one tinkering with your circlet explains. "Serve they do as links, interfaces between a Heliarch's will and our Coalition's machines and programs. Allow you they will to access some of our restricted ring sections, and serve as well as keys to our many outfitters, they do."`
+			`	They gesture for you to sit, and you comply, having the helmet placed over your head. It blocks out your sight completely, and feels a lot heavier that you had imagined. "Begin now, we shall," you barely hear one of the Heliarchs say as most of the sound is muffled. Once the process starts, you hear some wave-like humming echo inside your head, and it doesn't take long before you feel as if you're being spun around. Before you get too uncomfortable, the Heliarchs stop the machine, and take the helmet off of you. "All done we are. Here," they say handing you your circlet back.`
+			`	Putting it on again, you don't notice any difference, but they push you to "try it out" on one of the doors. You get up from your seat, moving to the entrance door, and it opens up when you're a few steps away still. You think to close it, and it does. You repeat a few more times, and turn back to the Heliarchs, who seem amused by seeing you play with your new ability. You look now to the helmet, and with a thought it turns out, seemingly spinning around a head it assumes it is attached to. You turn it off, and test with the lights, and some of the computers there too.`
+			`	When you're done, the two Heliarchs explain some more, "As of a lower rank you are, permit you not access to everything and everywhere, your circlet will. Not yet, at least. But, as mentioned, come to some of the restricted sections, you now many. On many of our worlds, find you will Heliarch outfitters, where now available some of our equipment will be. Permit you to take on some jobs we put up for Heliarch agents here in the restricted sections, the circlet also will."`
+			`	They commend you for having joined up, and bid you farewell, having the guards now bring you back to your ship. The three Heliarch consuls who greeted you are waiting for you when you arrive, and hand you a small box, which you soon realize is a translation device. "One of us you now are, Captain," the Saryd says. "Trust you we do to uphold the Coalition's values and laws."`
 			`	The trio congratulates you once again, and wish you safe travels.`
 
 event "first heliarch unlock"
