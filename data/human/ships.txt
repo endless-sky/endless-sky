@@ -2299,15 +2299,15 @@ ship "Mammoth"
 	attributes
 		category "Utility"
 		"cost" 18800000
-		"shields" 7800
+		"shields" 6200
 		"hull" 7400
 		"required crew" 18
 		"bunks" 30
 		"mass" 688
-		"drag" 10.5
+		"drag" 11.9
 		"heat dissipation" .32
 		"fuel capacity" 1000
-		"cargo space" 420
+		"cargo space" 400
 		"outfit space" 536
 		"weapon capacity" 294
 		"engine capacity" 114
@@ -2605,6 +2605,64 @@ ship "Nest"
 	explode "large explosion" 5
 	"final explode" "final explosion medium"
 	description `Southbound Shipyards quickly answered the Free Worlds' call for a carrier by building modified cargo containers for Haulers - adding a pair of Fighter docking arms, some additional outfit space, and even a couple of bunks. Access to the fighters from within the ship is so inconvenient that most pilots opt to just stay aboard their fighters when in flight. While the technical name for this ship is "Hauler I: Type F," Southbound assembly workers started calling the single container variant the "Nest" due to its complement of Finch Fighters, and the name stuck.`
+
+
+
+ship "Nighthawk"
+	sprite "ship/pirate nighthawk"
+	thumbnail "thumbnail/pirate nighthawk"
+	attributes
+		category "Transport"
+		"cost" 2530000
+		"shields" 4000
+		"hull" 1100
+		"required crew" 4
+		"bunks" 28
+		"mass" 267
+		"drag" 5.2
+		"heat dissipation" .65
+		"fuel capacity" 700
+		"cargo space" 16
+		"outfit space" 362
+		"weapon capacity" 102
+		"engine capacity" 123
+		weapon
+			"blast radius" 60
+			"shield damage" 600
+			"hull damage" 300
+			"hit force" 900
+	outfits
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret"
+		
+		"RT-I Radiothermal"
+		"KP-6 Photovoltaic Array" 3
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		"Large Radar Jammer"
+		"Tactical Scanner"
+		"Laser Rifle" 24
+		"Nerve Gas" 10
+		
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+		
+	engine -42.5 63 .8
+	engine 42.5 63 .8
+	engine -24 68 .6
+	engine 24 68 .6
+	turret 0 -6 "Heavy Anti-Missile Turret"
+	turret -26 15 "Quad Blaster Turret"
+	turret 26 15 "Quad Blaster Turret"
+	leak "leak" 50 50
+	leak "flame" 70 80
+	explode "tiny explosion" 15
+	explode "small explosion" 34
+	explode "medium explosion" 18
+	explode "large explosion" 2
+	"final explode" "final explosion small"
+	description "This is a modified Blackbird for ground raids and slave trading. It comes with an extra turret mount for suppressive fire on ground operations and additional hull reinforcement to resist returning fire."
 
 
 
