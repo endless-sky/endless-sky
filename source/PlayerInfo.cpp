@@ -1071,39 +1071,42 @@ void PlayerInfo::AddShip(const shared_ptr<Ship> &ship)
 
 
 // Adds a ship of the given model with the given name to the player's fleet.
-// If this ship is being gifted, it costs nothing and starts fully depreciated.
-const Ship *PlayerInfo::BuyShip(const Ship *model, const string &name, const string id, bool isGift)
+void PlayerInfo::BuyShip(const Ship *model, const string &name)
 {
 	if(!model)
 		return nullptr;
 
 	int day = date.DaysSinceEpoch();
-	int64_t cost = isGift ? 0 : stockDepreciation.Value(*model, day);
+	int64_t cost = stockDepreciation.Value(*model, day);
 	if(accounts.Credits() >= cost)
 	{
-		// Copy the model instance into a new instance.
-		ships.push_back(make_shared<Ship>(*model));
-		ships.back()->SetName(!name.empty() ? name : GameData::Phrases().Get("civilian")->Get());
-		ships.back()->SetSystem(system);
-		ships.back()->SetPlanet(planet);
-		ships.back()->SetIsSpecial();
-		ships.back()->SetIsYours();
-		ships.back()->SetGovernment(GameData::PlayerGovernment());
+		AddShipModel(model, name);
 
 		accounts.AddCredits(-cost);
 		flagship.reset();
 
-		// Store named ships with their model so they can be checked later.
-		if(isGift && !id.empty())
-			giftedShips[id].clone(ships.back()->UUID());
-		// Record the transfer of this ship in the depreciation and stock info.
-		else if(!isGift)
-		{
-			depreciation.Buy(*model, day, &stockDepreciation);
-			for(const auto &it : model->Outfits())
-				stock[it.first] -= it.second;
-		}
+		depreciation.Buy(*model, day, &stockDepreciation);
+		for(const auto &it : model->Outfits())
+			stock[it.first] -= it.second;
 	}
+}
+
+
+
+// Because this ship is being gifted, it costs nothing and starts fully depreciated.
+const Ship *PlayerInfo::GiftShip(const Ship *model, const string &name, const string id)
+{
+	if(!model)
+		return nullptr;
+
+	AddShipModel(model, name);
+
+	flagship.reset();
+
+	// Store named ships with their model so they can be checked later.
+	if(isGift && !id.empty())
+		giftedShips[id].clone(ships.back()->UUID());
+
 	return ships.back().get();
 }
 
@@ -4104,6 +4107,20 @@ void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
 			*first = false;
 		}
 	}
+}
+
+
+
+// Add a new ship corresponding to this model and name to the ships list.
+void AddShipModel(const Ship *model, const std::string &name)
+{
+	ships.push_back(make_shared<Ship>(*model));
+	ships.back()->SetName(!name.empty() ? name : GameData::Phrases().Get("civilian")->Get());
+	ships.back()->SetSystem(system);
+	ships.back()->SetPlanet(planet);
+	ships.back()->SetIsSpecial();
+	ships.back()->SetIsYours();
+	ships.back()->SetGovernment(GameData::PlayerGovernment());
 }
 
 
