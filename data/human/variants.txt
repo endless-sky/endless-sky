@@ -1187,6 +1187,24 @@ ship "Cruiser" "Cruiser (Jump Plasma Anti-Missile)"
 
 
 
+ship "Cutthroat" "Cutthroat (Jousting)"
+	outfits
+		"Twin Modified Blaster" 2
+		"Heavy Rocket Pod" 2
+		"Heavy Rocket Storage Rack"
+		"Heavy Rocket" 14
+		
+		"Fission Reactor"
+		"Supercapacitor"
+		"Water Coolant System"
+		"D23-QP Shield Generator"
+		
+		"A520 Atomic Thruster"
+		"A255 Atomic Steering"
+		"Hyperdrive"
+
+
+
 ship "Dreadnought" "Dreadnought (Jump)"
 	outfits
 		"Torpedo Launcher" 4

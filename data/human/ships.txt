@@ -1260,6 +1260,61 @@ ship "Cruiser"
 
 
 
+ship "Cutthroat"
+	sprite "ship/pirate cutthroat"
+	thumbnail "thumbnail/pirate cutthroat"
+	attributes
+		category "Light Warship"
+		"cost" 900000
+		"shields" 2800
+		"hull" 700
+		"required crew" 4
+		"bunks" 9
+		"mass" 171
+		"drag" 3
+		"heat dissipation" .8
+		"fuel capacity" 500
+		"cargo space" 37
+		"outfit space" 282
+		"weapon capacity" 60
+		"engine capacity" 111
+		weapon
+			"blast radius" 36
+			"shield damage" 360
+			"hull damage" 180
+			"hit force" 540
+	outfits
+		"Twin Modified Blaster" 2
+		"Torpedo Pod" 2
+		"Torpedo Storage Rack"
+		"Torpedo" 21
+		
+		"Fission Reactor"
+		"LP036a Battery Pack"
+		"Water Coolant System"
+		"D23-QP Shield Generator"
+		
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Volcano Afterburner"
+		"Hyperdrive"
+		
+	engine -22 47
+	engine 22 47
+	gun -21.5 -18 "Javelin Mini Pod"
+	gun 21.5 -18 "Javelin Mini Pod"
+	gun -11 -8.5 "Beam Laser"
+	gun 11 -8.5 "Beam Laser"
+	leak "leak" 60 50
+	leak "flame" 50 80
+	explode "tiny explosion" 15
+	explode "small explosion" 20
+	explode "medium explosion" 10
+	"final explode" "final explosion small"
+	description "Cutthroat is what the pirates call this Clipper with extra engine pods bolted on to it, with the sole purpose of maximizing speed to outrun all but the most fine-tuned ship in the sky."
+
+
+
 ship "Dagger"
 	sprite "ship/dagger"
 	thumbnail "thumbnail/dagger"
