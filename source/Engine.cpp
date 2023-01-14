@@ -1688,12 +1688,15 @@ void Engine::SpawnFleets()
 			if(!gov)
 				continue;
 
-			// Don't spawn a fleet if its allies in-system already far outnumber
-			// its enemies. This is to avoid having a system get mobbed with
-			// massive numbers of "reinforcements" during a battle.
-			int64_t enemyStrength = ai.EnemyStrength(gov);
-			if(enemyStrength && ai.AllyStrength(gov) > 2 * enemyStrength)
-				continue;
+			if(!fleet.Get()->GetPersonality().IsEnthusiastic())
+			{
+				// Don't spawn a fleet if its allies in-system already far outnumber
+				// its enemies. This is to avoid having a system get mobbed with
+				// massive numbers of "reinforcements" during a battle.
+				int64_t enemyStrength = ai.EnemyStrength(gov);
+				if(enemyStrength && ai.AllyStrength(gov) > 2 * enemyStrength)
+					continue;
+			}
 
 			fleet.Get()->Enter(*player.GetSystem(), newShips);
 		}

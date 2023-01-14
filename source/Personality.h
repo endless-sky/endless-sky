@@ -75,6 +75,7 @@ public:
 	bool IsTarget() const;
 	bool IsMarked() const;
 	bool IsMute() const;
+	bool IsEnthusiastic() const;
 
 	// Current inaccuracy in this ship's targeting:
 	const Point &Confusion() const;

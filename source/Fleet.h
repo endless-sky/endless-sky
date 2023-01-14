@@ -72,6 +72,7 @@ public:
 	static void Place(const System &system, Ship &ship);
 
 	int64_t Strength() const;
+	const Personality &GetPersonality() const;
 
 
 private:
