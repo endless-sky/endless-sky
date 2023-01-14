@@ -2765,6 +2765,7 @@ system Alcyone
 	fleet "Large Core Pirates" 600
 	fleet "Large Syndicate" 1200
 	fleet "Korath Large Raid" 50000
+		ignore enemy strength
 	object
 		sprite star/m5
 		distance 49.6028
@@ -3713,7 +3714,9 @@ system Almach
 	fleet "Large Core Pirates" 1400
 	fleet "Large Syndicate" 6000
 	fleet "Korath Large Raid" 50000
+		ignore enemy strength
 	fleet "Korath Miners" 25000
+		ignore enemy strength
 	object
 		sprite star/k8
 		period 10
@@ -4250,6 +4253,7 @@ system "Alpha Hydri"
 	fleet "Small Syndicate" 4000
 	fleet "Large Syndicate" 9000
 	fleet "Korath Large Raid" 40000
+		ignore enemy strength
 	object
 		sprite star/g0
 		distance 23.474
@@ -5469,6 +5473,8 @@ system Atik
 	fleet "Large Core Pirates" 18000
 	fleet "Human Miners" 5000
 	fleet "Korath Miners" 15000
+		ignore enemy strength
+		non-disabled limit 3
 	object
 		sprite star/b-giant
 		distance 150
@@ -10139,7 +10145,15 @@ system Durax
 	fleet "Large Core Pirates" 900
 	fleet "Large Syndicate" 2500
 	fleet "Korath Raid" 7000
+		ignore enemy strength
+		non-disabled limit 5
+		limit 7
+		category korath
 	fleet "Korath Miners" 17000
+		ignore enemy strength
+		non-disabled limit 3
+		limit 7
+		category korath
 	object
 		sprite star/g0-old
 		period 10
@@ -17615,9 +17629,20 @@ system "Kor Ak'Mari"
 	trade Metal 217
 	trade Plastic 524
 	fleet "Korath Raid" 3600
+		ignore enemy strength
+		limit 10
+		category korath
 	fleet "Korath Miners" 7500
+		ignore enemy strength
+		limit 10
+		category korath
 	fleet "Korath Large Raid" 3600
+		ignore enemy strength
+		limit 10
+		category korath
 	fleet "Korath Defense" 3600
+		ignore enemy strength
+		initial count 1
 	object
 		sprite star/carbon
 		period 100
@@ -17683,10 +17708,21 @@ system "Kor En'lakfar"
 	trade Metal 236
 	trade Plastic 488
 	fleet "Korath Raid" 1250
+		ignore enemy strength
+		limit 10
+		category korath
 	fleet "Korath Home" 720
+		ignore enemy strength
+		initial count 1
 	fleet "Korath Large Raid" 15000
+		ignore enemy strength
+		limit 10
+		category korath
 	fleet "Korath Surveillance" 32000
+		ignore enemy strength
 	fleet "Korath Defense" 1775
+		ignore enemy strength
+		initial count 1
 	fleet "Korath Civilian Miners" 6000
 	fleet "Korath Civilian Large" 955
 	fleet "Korsmanath A'awojs" 2000
@@ -17753,8 +17789,16 @@ system "Kor Fel'tar"
 	trade Metal 256
 	trade Plastic 478
 	fleet "Korath Raid" 2050
+		ignore enemy strength
+		limit 10
+		category korath
 	fleet "Korath Home" 1200
+		ignore enemy strength
+		limit 10
+		category korath
 	fleet "Korath Defense" 2400
+		ignore enemy strength
+		initial count 1
 	fleet "Korath Civilian Miners" 5000
 	fleet "Korath Civilian Large" 1600
 	fleet "Korath Surveillance" 24000
@@ -17825,9 +17869,19 @@ system "Kor Men"
 	trade Metal 240
 	trade Plastic 497
 	fleet "Korath Home" 800
+		ignore enemy strength
+		initial count 1
 	fleet "Korath Raid" 2040
+		ignore enemy strength
+		limit 10
+		category korath
 	fleet "Korath Defense" 2900
+		ignore enemy strength
+		initial count 1
 	fleet "Korath Large Raid" 21000
+		ignore enemy strength
+		limit 10
+		category korath
 	fleet "Korath Surveillance" 46000
 	fleet "Korath Civilian Large" 1500
 	fleet "Korath Civilian Miners" 8000
@@ -17894,12 +17948,25 @@ system "Kor Nor'peli"
 	trade Metal 517
 	trade Plastic 423
 	fleet "Korath Defense" 1700
+		ignore enemy strength
+		initial count 1
 	fleet "Korath Large Raid" 16000
+		ignore enemy strength
+		limit 10
+		category korath
 	fleet "Korath Ember Waste Raid" 1350
+		ignore enemy strength
+		limit 10
+		category korath
 	fleet "Korath Ember Waste Large Raid" 20000
+		ignore enemy strength
+		limit 10
+		category korath
 	fleet "Korath Surveillance" 48000
 	fleet "Korath Civilian Large" 2000
 	fleet "Korath Home" 900
+		ignore enemy strength
+		initial count 1
 	fleet "Korsmanath A'awojs" 1100
 	object
 		sprite star/k3
@@ -17970,11 +18037,21 @@ system "Kor Tar'bei"
 	trade Plastic 402
 	fleet "Korath Civilian Miners" 5000
 	fleet "Korath Home" 1000
+		ignore enemy strength
+		initial count 1
 	fleet "Korath Civilian Large" 1000
 	fleet "Korath Defense" 2600
+		ignore enemy strength
+		initial count 1
 	fleet "Korath Ember Waste Raid" 3050
+		ignore enemy strength
+		limit 10
+		category korath
 	fleet "Korath Surveillance" 50000
 	fleet "Korath Ember Waste Large Raid" 30000
+		ignore enemy strength
+		limit 10
+		category korath
 	fleet "Korsmanath A'awojs" 900
 	object
 		sprite star/m3
@@ -18028,9 +18105,19 @@ system "Kor Zena'i"
 	trade Metal 478
 	trade Plastic 381
 	fleet "Korath Raid" 1850
+		ignore enemy strength
+		limit 10
+		category korath
 	fleet "Korath Home" 1170
+		ignore enemy strength
+		initial count 1
 	fleet "Korath Defense" 1660
+		ignore enemy strength
+		initial count 1
 	fleet "Korath Large Raid" 16000
+		ignore enemy strength
+		limit 10
+		category korath
 	fleet "Korath Surveillance" 31000
 	fleet "Korath Civilian Large" 845
 	fleet "Korsmanath A'awojs" 2500
@@ -20988,10 +21075,21 @@ system Misam
 	fleet "Small Core Pirates" 750
 	fleet "Large Core Pirates" 2000
 	fleet "Korath Raid" 5000
+		ignore enemy strength
+		non-disabled limit 5
+		limit 7
+		category korath
 	fleet "Korath Large Raid" 11000
+		ignore enemy strength
+		non-disabled limit 3
+		category korath
 	fleet "Human Miners" 10000
 	fleet "Large Syndicate" 20000
 	fleet "Korath Miners" 15000
+		ignore enemy strength
+		non-disabled limit 3
+		limit 7
+		category korath
 	object
 		sprite star/f5-old
 		distance 50
@@ -23744,6 +23842,7 @@ system Polaris
 	fleet "Large Syndicate" 2000
 	fleet "Small Core Pirates" 1500
 	fleet "Korath Large Raid" 50000
+		ignore enemy strength
 	object
 		sprite star/f5
 		period 10
@@ -26949,6 +27048,7 @@ system Sheratan
 	fleet "Small Core Pirates" 3000
 	fleet "Large Core Pirates" 5000
 	fleet "Korath Large Raid" 40000
+		ignore enemy strength
 	object
 		sprite star/f5
 		distance 21.0246
