@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 
+#include <limits>
 #include <map>
 
 using namespace std;
@@ -125,7 +126,7 @@ void Personality::Load(const DataNode &node)
 		{
 			if(remove)
 				aggroRange = DEFAULT_AGGRO_RANGE;
-			else if(child.Size() > 2 && child.Token(2) == "infinite")
+			else if(child.Size() > 2 && child.Token(2) == "infinity")
 				aggroRange = -1;
 			else if(child.Size() > 2 && child.IsNumber(2))
 				aggroRange = max<double>(0,child.Value(2));
@@ -154,9 +155,9 @@ void Personality::Save(DataWriter &out) const
 			// Do not write out the default aggro range (waste of a line)
 		}
 		else if(aggroRange > 0)
-			out.Write("aggro range", aggroRange);
+			out.Write("aggro", "range", aggroRange);
 		else
-			out.Write("aggro range infinity");
+			out.Write("aggro", "range", "infinity");
 		for(const auto &it : TOKEN)
 			if(flags & it.second)
 				out.Write(it.first);
