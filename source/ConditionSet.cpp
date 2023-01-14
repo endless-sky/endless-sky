@@ -7,14 +7,18 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "ConditionSet.h"
 
+#include "ConditionsStore.h"
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "Files.h"
+#include "Logger.h"
 #include "Random.h"
 
 #include <algorithm>
@@ -54,11 +58,11 @@ namespace {
 			{"-", [](int64_t a, int64_t b) { return a - b; }},
 			{"/", [](int64_t a, int64_t b) { return b ? a / b : numeric_limits<int64_t>::max(); }}
 		};
-		
+
 		auto it = opMap.find(op);
 		return (it != opMap.end() ? it->second : nullptr);
 	}
-	
+
 	// Indicate if the operation is a comparison or modifies the condition.
 	bool IsComparison(const string &op)
 	{
@@ -67,7 +71,7 @@ namespace {
 		};
 		return comparison.count(op);
 	}
-	
+
 	bool IsAssignment(const string &op)
 	{
 		static const set<string> assignment = {
@@ -75,7 +79,7 @@ namespace {
 		};
 		return assignment.count(op);
 	}
-	
+
 	bool IsSimple(const string &op)
 	{
 		static const set<string> simple = {
@@ -83,7 +87,7 @@ namespace {
 		};
 		return simple.count(op);
 	}
-	
+
 	int Precedence(const string &op)
 	{
 		static const map<string, int> precedence = {
@@ -93,7 +97,7 @@ namespace {
 		};
 		return precedence.at(op);
 	}
-	
+
 	// Test to determine if unsupported operations are requested.
 	bool HasInvalidOperators(const vector<string> &tokens)
 	{
@@ -106,7 +110,7 @@ namespace {
 				return true;
 		return false;
 	}
-	
+
 	// Ensure the ConditionSet line has balanced parentheses on both sides.
 	bool HasUnbalancedParentheses(const vector<string> &tokens)
 	{
@@ -124,7 +128,7 @@ namespace {
 		}
 		return parentheses;
 	}
-	
+
 	// Perform a preliminary assessment of the input condition, to determine if it is remotely well-formed.
 	// The final assessment of its validity will be whether it parses into an evaluable Expression.
 	bool IsValidCondition(const DataNode &node)
@@ -133,23 +137,24 @@ namespace {
 		int assigns = count_if(tokens.begin(), tokens.end(), IsAssignment);
 		int compares = count_if(tokens.begin(), tokens.end(), IsComparison);
 		if(assigns + compares != 1)
-			node.PrintTrace("An expression must either perform a comparison, or an assign a value:");
+			node.PrintTrace("Error: An expression must either perform a comparison or assign a value:");
 		else if(HasInvalidOperators(tokens))
-			node.PrintTrace("Brackets, braces, exponentiation, and boolean/bitwise math are not supported:");
+			node.PrintTrace("Error: Brackets, braces, exponentiation, and boolean/bitwise math are not supported:");
 		else if(HasUnbalancedParentheses(tokens))
-			node.PrintTrace("Unbalanced parentheses in condition expression:");
+			node.PrintTrace("Error: Unbalanced parentheses in condition expression:");
 		else if(count_if(tokens.begin(), tokens.end(), [](const string &token)
 				{ return token.size() > 1 && token.front() == '('; }))
-			node.PrintTrace("Parentheses must be separate from tokens:");
+			node.PrintTrace("Error: Parentheses must be separate from tokens:");
 		else
 			return true;
-		
+
 		return false;
 	}
-	
+
 	// Converts the given vector of condition tokens (like "reputation: Republic",
 	// "random", or "4") into the integral values they have at runtime.
-	vector<int64_t> SubstituteValues(const vector<string> &side, const map<string, int64_t> &conditions, const map<string, int64_t> &created)
+	vector<int64_t> SubstituteValues(const vector<string> &side, const ConditionsStore &conditions,
+		const ConditionsStore &created)
 	{
 		auto result = vector<int64_t>();
 		result.reserve(side.size());
@@ -162,18 +167,21 @@ namespace {
 				value = static_cast<int64_t>(DataNode::Value(str));
 			else
 			{
-				const auto temp = created.find(str);
-				const auto perm = conditions.find(str);
-				if(temp != created.end())
-					value = temp->second;
-				else if(perm != conditions.end())
-					value = perm->second;
+				const auto temp = created.HasGet(str);
+				if(temp.first)
+					value = temp.second;
+				else
+				{
+					const auto perm = conditions.HasGet(str);
+					if(perm.first)
+						value = perm.second;
+				}
 			}
 			result.emplace_back(value);
 		}
 		return result;
 	}
-	
+
 	bool UsedAll(const vector<bool> &status)
 	{
 		for(auto v : status)
@@ -181,9 +189,10 @@ namespace {
 				return false;
 		return true;
 	}
-	
+
 	// Finding the left operand's index if getLeft = true. The operand's index is the first non-empty, non-used index.
-	size_t FindOperandIndex(const vector<string> &tokens, const vector<int> &resultIndices, const size_t &opIndex, bool getLeft)
+	size_t FindOperandIndex(const vector<string> &tokens, const vector<int> &resultIndices,
+		const size_t &opIndex, bool getLeft)
 	{
 		// Start at the operator index (left), or just past it (right).
 		size_t index = opIndex + !getLeft;
@@ -196,18 +205,18 @@ namespace {
 		// Trace any used data to find the latest result.
 		while(resultIndices.at(index) > 0)
 			index = resultIndices.at(index);
-		
+
 		return index;
 	}
-	
+
 	void PrintConditionError(const vector<string> &side)
 	{
 		string message = "Error decomposing complex condition expression:\nFound:\t";
 		for(const string &str : side)
 			message += " \"" + str + "\"";
-		Files::LogError(message);
+		Logger::LogError(message);
 	}
-	
+
 	bool IsUnrepresentable(const string &token)
 	{
 		if(DataNode::IsNumber(token))
@@ -249,7 +258,7 @@ void ConditionSet::Save(DataWriter &out) const
 {
 	for(const Expression &expression : expressions)
 		expression.Save(out);
-	
+
 	for(const ConditionSet &child : children)
 	{
 		out.Write(child.isOr ? "or" : "and");
@@ -277,8 +286,8 @@ void ConditionSet::Add(const DataNode &node)
 	// Special keywords have a node size of 1 (never, and, or), or 2 (unary operators).
 	// Simple conditions have a node size of 3, while complex conditions feature a single
 	// non-simple operator (e.g. <=) and any number of simple operators.
-	static const string UNRECOGNIZED = "Unrecognized condition expression:";
-	static const string UNREPRESENTABLE = "Unrepresentable condition value encountered";
+	static const string UNRECOGNIZED = "Warning: Unrecognized condition expression:";
+	static const string UNREPRESENTABLE = "Error: Unrepresentable condition value encountered:";
 	if(node.Size() == 2)
 	{
 		if(IsUnrepresentable(node.Token(1)))
@@ -295,7 +304,8 @@ void ConditionSet::Add(const DataNode &node)
 		// If a child node has assignment operators, warn on load since
 		// these will be processed after all non-child expressions.
 		if(children.back().hasAssign)
-			node.PrintTrace("Assignment expressions contained within and/or groups are applied last. This may be unexpected.");
+			node.PrintTrace("Warning: Assignment expressions contained within and/or groups are applied last."
+			" This may be unexpected.");
 	}
 	else if(IsValidCondition(node))
 	{
@@ -330,7 +340,7 @@ void ConditionSet::Add(const DataNode &node)
 						op = token;
 					else
 					{
-						node.PrintTrace("Assignment operators must be the second token:");
+						node.PrintTrace("Error: Assignment operators must be the second token:");
 						return;
 					}
 				}
@@ -343,7 +353,7 @@ void ConditionSet::Add(const DataNode &node)
 	}
 	if(!expressions.empty() && expressions.back().IsEmpty())
 	{
-		node.PrintTrace("Condition parses to an empty set:");
+		node.PrintTrace("Warning: Condition parses to an empty set:");
 		expressions.pop_back();
 	}
 }
@@ -368,7 +378,7 @@ bool ConditionSet::Add(const string &firstToken, const string &secondToken)
 		expressions.emplace_back(firstToken, "-=", "1");
 	else
 		return false;
-	
+
 	hasAssign |= !expressions.back().IsTestable();
 	return true;
 }
@@ -382,7 +392,7 @@ bool ConditionSet::Add(const string &name, const string &op, const string &value
 	BinFun fun = Op(op);
 	if(!fun)
 		return false;
-	
+
 	hasAssign |= !IsComparison(op);
 	expressions.emplace_back(name, op, value);
 	return true;
@@ -396,7 +406,7 @@ bool ConditionSet::Add(const vector<string> &lhs, const string &op, const vector
 	BinFun fun = Op(op);
 	if(!fun)
 		return false;
-	
+
 	hasAssign |= !IsComparison(op);
 	expressions.emplace_back(lhs, op, rhs);
 	return true;
@@ -404,14 +414,14 @@ bool ConditionSet::Add(const vector<string> &lhs, const string &op, const vector
 
 
 
-// Check if the given condition values satify this set of conditions. Performs any assignments
+// Check if the given condition values satisfy this set of conditions. Performs any assignments
 // on a temporary condition map, if this set mixes comparisons and modifications.
-bool ConditionSet::Test(const Conditions &conditions) const
+bool ConditionSet::Test(const ConditionsStore &conditions) const
 {
 	// If this ConditionSet contains any expressions with operators that
 	// modify the condition map, then they must be applied before testing,
 	// to generate any temporary conditions needed.
-	Conditions created;
+	ConditionsStore created;
 	if(hasAssign)
 		TestApply(conditions, created);
 	return TestSet(conditions, created);
@@ -420,13 +430,13 @@ bool ConditionSet::Test(const Conditions &conditions) const
 
 
 // Modify the given set of conditions.
-void ConditionSet::Apply(Conditions &conditions) const
+void ConditionSet::Apply(ConditionsStore &conditions) const
 {
-	Conditions unused;
+	ConditionsStore unused;
 	for(const Expression &expression : expressions)
 		if(!expression.IsTestable())
 			expression.Apply(conditions, unused);
-	
+
 	for(const ConditionSet &child : children)
 		child.Apply(conditions);
 }
@@ -434,7 +444,7 @@ void ConditionSet::Apply(Conditions &conditions) const
 
 
 // Check if this set is satisfied by either the created, temporary conditions, or the given conditions.
-bool ConditionSet::TestSet(const Conditions &conditions, const Conditions &created) const
+bool ConditionSet::TestSet(const ConditionsStore &conditions, const ConditionsStore &created) const
 {
 	// Not all expressions may be testable: some may have been used to form the "created" condition map.
 	for(const Expression &expression : expressions)
@@ -446,7 +456,7 @@ bool ConditionSet::TestSet(const Conditions &conditions, const Conditions &creat
 			if(result == isOr)
 				return result;
 		}
-	
+
 	for(const ConditionSet &child : children)
 	{
 		bool result = child.TestSet(conditions, created);
@@ -462,12 +472,12 @@ bool ConditionSet::TestSet(const Conditions &conditions, const Conditions &creat
 
 // Construct new, temporary conditions based on the assignment expressions in
 // this ConditionSet and the values in the player's conditions map.
-void ConditionSet::TestApply(const Conditions &conditions, Conditions &created) const
+void ConditionSet::TestApply(const ConditionsStore &conditions, ConditionsStore &created) const
 {
 	for(const Expression &expression : expressions)
 		if(!expression.IsTestable())
 			expression.TestApply(conditions, created);
-	
+
 	for(const ConditionSet &child : children)
 		child.TestApply(conditions, created);
 }
@@ -536,7 +546,7 @@ bool ConditionSet::Expression::IsTestable() const
 
 
 // Evaluate both the left- and right-hand sides of the expression, then compare the evaluated numeric values.
-bool ConditionSet::Expression::Test(const Conditions &conditions, const Conditions &created) const
+bool ConditionSet::Expression::Test(const ConditionsStore &conditions, const ConditionsStore &created) const
 {
 	int64_t lhs = left.Evaluate(conditions, created);
 	int64_t rhs = right.Evaluate(conditions, created);
@@ -546,9 +556,9 @@ bool ConditionSet::Expression::Test(const Conditions &conditions, const Conditio
 
 
 // Assign the computed value to the desired condition.
-void ConditionSet::Expression::Apply(Conditions &conditions, Conditions &created) const
+void ConditionSet::Expression::Apply(ConditionsStore &conditions, ConditionsStore &created) const
 {
-	int64_t &c = conditions[Name()];
+	auto &c = conditions[Name()];
 	int64_t value = right.Evaluate(conditions, created);
 	c = fun(c, value);
 }
@@ -556,9 +566,9 @@ void ConditionSet::Expression::Apply(Conditions &conditions, Conditions &created
 
 
 // Assign the computed value to the desired temporary condition.
-void ConditionSet::Expression::TestApply(const Conditions &conditions, Conditions &created) const
+void ConditionSet::Expression::TestApply(const ConditionsStore &conditions, ConditionsStore &created) const
 {
-	int64_t &c = created[Name()];
+	auto &c = created[Name()];
 	int64_t value = right.Evaluate(conditions, created);
 	c = fun(c, value);
 }
@@ -570,7 +580,7 @@ ConditionSet::Expression::SubExpression::SubExpression(const vector<string> &sid
 {
 	if(side.empty())
 		return;
-	
+
 	ParseSide(side);
 	GenerateSequence();
 }
@@ -642,16 +652,17 @@ bool ConditionSet::Expression::SubExpression::IsEmpty() const
 
 
 // Evaluate the SubExpression using the given condition maps.
-int64_t ConditionSet::Expression::SubExpression::Evaluate(const Conditions &conditions, const Conditions &created) const
+int64_t ConditionSet::Expression::SubExpression::Evaluate(const ConditionsStore &conditions,
+	const ConditionsStore &created) const
 {
 	// Sanity check.
 	if(tokens.empty())
 		return 0;
-	
+
 	// For SubExpressions with no Operations (i.e. simple conditions), tokens will consist
 	// of only the condition or numeric value to be returned as-is after substitution.
 	auto data = SubstituteValues(tokens, conditions, created);
-	
+
 	if(!sequence.empty())
 	{
 		// Each Operation adds to the end of the data vector.
@@ -659,7 +670,7 @@ int64_t ConditionSet::Expression::SubExpression::Evaluate(const Conditions &cond
 		for(const Operation &op : sequence)
 			data.emplace_back(op.fun(data[op.a], data[op.b]));
 	}
-	
+
 	return data.back();
 }
 
@@ -690,7 +701,7 @@ void ConditionSet::Expression::SubExpression::ParseSide(const vector<string> &si
 		else
 			tokens.emplace_back(side[i]);
 	}
-	
+
 	if(tokens.empty() || !operatorCount)
 		operators.clear();
 	else if(parentheses % 2 != 0)
@@ -736,16 +747,16 @@ void ConditionSet::Expression::SubExpression::GenerateSequence()
 				usedOps.at(opIndex++) = true;
 				break;
 			}
-			
+
 			size_t workingIndex = opStack.back();
 			opStack.pop_back();
-			
+
 			// A left parentheses results in a no-op step.
 			if(operators.at(workingIndex) == "(")
 			{
 				if(operators.at(opIndex) != ")")
 				{
-					Files::LogError("Did not find matched parentheses:");
+					Logger::LogError("Did not find matched parentheses:");
 					PrintConditionError(ToStrings());
 					tokens.clear();
 					operators.clear();
@@ -765,10 +776,10 @@ void ConditionSet::Expression::SubExpression::GenerateSequence()
 	{
 		size_t workingIndex = opStack.back();
 		opStack.pop_back();
-		
+
 		if(operators.at(workingIndex) == "(" || operators.at(workingIndex) == ")")
 		{
-			Files::LogError("Mismatched parentheses:" + ToString());
+			Logger::LogError("Mismatched parentheses:" + ToString());
 			tokens.clear();
 			operators.clear();
 			sequence.clear();
@@ -789,19 +800,19 @@ bool ConditionSet::Expression::SubExpression::AddOperation(vector<int> &data, si
 	// operator index never exceeds the size of the tokens vector.
 	size_t leftIndex = FindOperandIndex(tokens, data, opIndex, true);
 	size_t rightIndex = FindOperandIndex(tokens, data, opIndex, false);
-	
+
 	// Bail out if the pointed token is in-bounds and empty.
 	if((leftIndex < tokens.size() && tokens.at(leftIndex).empty())
 			|| (rightIndex < tokens.size() && tokens.at(rightIndex).empty()))
 	{
-		Files::LogError("Unable to obtain valid operand for function \"" + operators.at(opIndex) + "\" with tokens:");
+		Logger::LogError("Unable to obtain valid operand for function \"" + operators.at(opIndex) + "\" with tokens:");
 		PrintConditionError(tokens);
 		tokens.clear();
 		operators.clear();
 		sequence.clear();
 		return false;
 	}
-	
+
 	// Record use of an operand by writing where its latest value is found.
 	data.at(leftIndex) = index;
 	data.at(rightIndex) = index;
@@ -809,7 +820,7 @@ bool ConditionSet::Expression::SubExpression::AddOperation(vector<int> &data, si
 	sequence.emplace_back(operators.at(opIndex), leftIndex, rightIndex);
 	// Update the pointed index for the next operation.
 	++index;
-	
+
 	return true;
 }
 

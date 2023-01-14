@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef COLLISION_SET_H_
@@ -30,7 +33,7 @@ public:
 	// Initialize a collision set. The cell size and cell count should both be
 	// powers of two; otherwise, they are rounded down to a power of two.
 	CollisionSet(unsigned cellSize, unsigned cellCount);
-	
+
 	// Clear all objects in the set. Specify which engine step we are on, so we
 	// know what animation frame each object is on.
 	void Clear(int step);
@@ -38,7 +41,7 @@ public:
 	void Add(Body &body);
 	// Finish adding objects (and organize them into the final lookup table).
 	void Finish();
-	
+
 	// Get the first object that collides with the given projectile. If a
 	// "closest hit" value is given, update that value.
 	Body *Line(const Projectile &projectile, double *closestHit = nullptr) const;
@@ -46,47 +49,56 @@ public:
 	// position or its entire expected trajectory (for the auto-firing AI).
 	Body *Line(const Point &from, const Point &to, double *closestHit = nullptr,
 		const Government *pGov = nullptr, const Body *target = nullptr) const;
-	
+
 	// Get all objects within the given range of the given point.
 	const std::vector<Body *> &Circle(const Point &center, double radius) const;
 	// Get all objects touching a ring with a given inner and outer range
 	// centered at the given point.
 	const std::vector<Body *> &Ring(const Point &center, double inner, double outer) const;
-	
-	
+
+	// Get all objects within this collision set.
+	const std::vector<Body *> &All() const;
+
+
 private:
 	class Entry {
 	public:
 		Entry() = default;
-		Entry(Body *body, int x, int y) : body(body), x(x), y(y) {}
-		
+		Entry(Body *body, unsigned seenIndex, int x, int y) : body(body), seenIndex(seenIndex), x(x), y(y) {}
+
 		Body *body;
+		unsigned seenIndex;
 		int x;
 		int y;
 	};
-	
-	
+
+
 private:
 	// The size of individual cells of the grid.
 	unsigned CELL_SIZE;
 	unsigned SHIFT;
 	unsigned CELL_MASK;
-	
+
 	// The number of grid cells.
 	unsigned CELLS;
 	unsigned WRAP_MASK;
-	
+
 	// The current game engine step.
 	int step;
-	
+
 	// Vectors to store the objects in the collision set.
+	std::vector<Body *> all;
 	std::vector<Entry> added;
 	std::vector<Entry> sorted;
 	// After Finish(), counts[index] is where a certain bin begins.
 	std::vector<unsigned> counts;
-	
+
 	// Vector for returning the result of a circle query.
 	mutable std::vector<Body *> result;
+
+	// Keep track of which objects we've already considered
+	mutable std::vector<unsigned> seen;
+	mutable unsigned seenEpoch = 0;
 };
 
 

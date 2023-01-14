@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "LogbookPanel.h"
@@ -71,7 +74,7 @@ void LogbookPanel::Draw()
 {
 	// Dim out everything outside this panel.
 	DrawBackdrop();
-	
+
 	// Draw the panel. The sidebar should be slightly darker than the rest.
 	const Color &sideColor = *GameData::Colors().Get("logbook sidebar");
 	FillShader::Fill(
@@ -88,7 +91,7 @@ void LogbookPanel::Draw()
 		Point(Screen::Left() + SIDEBAR_WIDTH - .5, 0.),
 		Point(1., Screen::Height()),
 		lineColor);
-	
+
 	const Sprite *edgeSprite = SpriteSet::Get("ui/right edge");
 	if(edgeSprite->Height())
 	{
@@ -100,13 +103,13 @@ void LogbookPanel::Draw()
 		for( ; pos.Y() - .5 * spriteHeight < Screen::Bottom(); pos.Y() += spriteHeight)
 			SpriteShader::Draw(edgeSprite, pos);
 	}
-	
+
 	// Colors to be used for drawing the log.
 	const Font &font = FontSet::Get(14);
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
-	
+
 	// Draw the sidebar.
 	// The currently selected sidebar item should be highlighted. This is how
 	// big the highlight rectangle is.
@@ -127,15 +130,15 @@ void LogbookPanel::Draw()
 	}
 
 	maxCategoryScroll = max(0., maxCategoryScroll + pos.Y() - Screen::Bottom());
-	
+
 	// Parameters for drawing the main text:
 	WrappedText wrap(font);
 	wrap.SetAlignment(Alignment::JUSTIFIED);
 	wrap.SetWrapWidth(TEXT_WIDTH - 2. * PAD);
-	
+
 	// Draw the main text.
 	pos = Screen::TopLeft() + Point(SIDEBAR_WIDTH + PAD, PAD + .5 * (LINE_HEIGHT - font.Height()) - scroll);
-	
+
 	// Branch based on whether this is an ordinary log month or a special page.
 	auto pit = player.SpecialLogs().find(selectedName);
 	if(selectedDate && begin != end)
@@ -146,7 +149,7 @@ void LogbookPanel::Draw()
 			string date = it->first.ToString();
 			font.Draw({date, layout}, pos + Point(0., textOffset.Y()), dim);
 			pos.Y() += LINE_HEIGHT;
-		
+
 			wrap.Wrap(it->second);
 			wrap.Draw(pos, medium);
 			pos.Y() += wrap.Height() + GAP;
@@ -158,13 +161,13 @@ void LogbookPanel::Draw()
 		{
 			font.Draw(it.first, pos + textOffset, bright);
 			pos.Y() += LINE_HEIGHT;
-		
+
 			wrap.Wrap(it.second);
 			wrap.Draw(pos, medium);
 			pos.Y() += wrap.Height() + GAP;
 		}
 	}
-	
+
 	maxScroll = max(0., scroll + pos.Y() - Screen::Bottom());
 }
 
@@ -179,6 +182,11 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		double direction = (key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN);
 		Drag(0., (Screen::Height() - 100.) * direction);
 	}
+	else if(key == SDLK_HOME || key == SDLK_END)
+	{
+		double direction = (key == SDLK_HOME) - (key == SDLK_END);
+		Drag(0., maxScroll * direction);
+	}
 	else if(key == SDLK_UP || key == SDLK_DOWN)
 	{
 		// Find the index of the currently selected line.
@@ -188,7 +196,7 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 				break;
 		if(i == contents.size())
 			return true;
-		
+
 		if(key == SDLK_DOWN)
 		{
 			++i;
@@ -228,7 +236,7 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 
 			// Check if it's too far down or up
 			int position = i * LINE_HEIGHT - categoryScroll;
-						
+
 			// If it's out of bounds, recenter it
 			if(position < MINIMUM_SELECTION_DISTANCE || position > (Screen::Height() - MINIMUM_SELECTION_DISTANCE))
 				categoryScroll = position - (Screen::Height() / 2);
@@ -236,7 +244,7 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			categoryScroll = max(categoryScroll, 0.);
 		}
 	}
-	
+
 	return true;
 }
 
@@ -261,7 +269,7 @@ bool LogbookPanel::Click(int x, int y, int clicks)
 	}
 	else if(x > WIDTH)
 		GetUI()->Pop(this);
-	
+
 	return true;
 }
 
@@ -273,7 +281,7 @@ bool LogbookPanel::Drag(double dx, double dy)
 		scroll = max(0., min(maxScroll, scroll - dy));
 	else
 		categoryScroll = max(0., min(maxCategoryScroll, categoryScroll - dy));
-	
+
 	return true;
 }
 
@@ -309,7 +317,7 @@ void LogbookPanel::Update(bool selectLast)
 		begin = end = player.Logbook().end();
 		return;
 	}
-	
+
 	// Check what years and months have entries for them.
 	set<int> years;
 	set<int> months;
@@ -319,7 +327,7 @@ void LogbookPanel::Update(bool selectLast)
 		if(it.first.Year() == selectedDate.Year() && it.first.Month() >= 1 && it.first.Month() <= 12)
 			months.insert(it.first.Month());
 	}
-	
+
 	// Generate the table of contents.
 	for(int year : years)
 	{
@@ -338,7 +346,7 @@ void LogbookPanel::Update(bool selectLast)
 		begin = end = player.Logbook().end();
 		return;
 	}
-	
+
 	// Make sure a month is selected, within the current year.
 	if(!selectedDate.Month())
 	{

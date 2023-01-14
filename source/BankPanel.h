@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef BANK_PANEL_H_
@@ -27,30 +30,30 @@ class PlayerInfo;
 class BankPanel : public Panel {
 public:
 	explicit BankPanel(PlayerInfo &player);
-	
+
 	virtual void Step() override;
 	virtual void Draw() override;
-	
-	
+
+
 protected:
 	// Overrides from Panel.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;
-	
-	
+
+
 private:
 	// Callback for the dialogs asking you to enter an amount to pay extra on an
 	// existing loan or the total amount for a new loan.
 	void PayExtra(const std::string &str);
 	void NewMortgage(const std::string &str);
-	
-	
+
+
 private:
 	PlayerInfo &player;
 	// Loan amount you're prequalified for.
 	int64_t qualify;
 	int selectedRow = 0;
-	
+
 	bool mergedMortgages = false;
 	int mortgageRows = 0;
 };

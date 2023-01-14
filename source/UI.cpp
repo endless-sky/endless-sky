@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "UI.h"
@@ -29,7 +32,7 @@ using namespace std;
 bool UI::Handle(const SDL_Event &event)
 {
 	bool handled = false;
-	
+
 	vector<shared_ptr<Panel>>::iterator it = stack.end();
 	while(it != stack.begin() && !handled)
 	{
@@ -37,7 +40,7 @@ bool UI::Handle(const SDL_Event &event)
 		// Panels that are about to be popped cannot handle any other events.
 		if(count(toPop.begin(), toPop.end(), it->get()))
 			continue;
-		
+
 		if(event.type == SDL_MOUSEMOTION)
 		{
 			if(event.motion.state & SDL_BUTTON(1))
@@ -75,16 +78,16 @@ bool UI::Handle(const SDL_Event &event)
 			Command command(event.key.keysym.sym);
 			handled = (*it)->KeyDown(event.key.keysym.sym, event.key.keysym.mod, command, !event.key.repeat);
 		}
-		
+
 		// If this panel does not want anything below it to receive events, do
 		// not let this event trickle further down the stack.
 		if((*it)->TrapAllEvents())
 			break;
 	}
-	
+
 	// Handle any queued push or pop commands.
 	PushOrPop();
-	
+
 	return handled;
 }
 
@@ -95,7 +98,7 @@ void UI::StepAll()
 {
 	// Handle any queued push or pop commands.
 	PushOrPop();
-	
+
 	// Step all the panels.
 	for(shared_ptr<Panel> &panel : stack)
 		panel->Step();
@@ -110,13 +113,13 @@ void UI::DrawAll()
 	// course of drawing the screen.
 	for(const shared_ptr<Panel> &it : stack)
 		it->ClearZones();
-	
+
 	// Find the topmost full-screen panel. Nothing below that needs to be drawn.
 	vector<shared_ptr<Panel>>::const_iterator it = stack.end();
 	while(it != stack.begin())
 		if((*--it)->IsFullScreen())
 			break;
-	
+
 	for( ; it != stack.end(); ++it)
 		(*it)->Draw();
 }
@@ -149,6 +152,19 @@ void UI::Pop(const Panel *panel)
 
 
 
+// Remove the given panel and every panel that is higher in the stack.
+void UI::PopThrough(const Panel *panel)
+{
+	for(auto it = stack.rbegin(); it != stack.rend(); ++it)
+	{
+		toPop.push_back(it->get());
+		if(it->get() == panel)
+			break;
+	}
+}
+
+
+
 // Check whether the given panel is on top of the existing panels, i.e. is the
 // active one, on this Step. Any panels that have been pushed this Step are not
 // considered.
@@ -165,10 +181,10 @@ shared_ptr<Panel> UI::Top() const
 {
 	if(!toPush.empty())
 		return toPush.back();
-	
+
 	if(!stack.empty())
 		return stack.back();
-	
+
 	return shared_ptr<Panel>();
 }
 
@@ -192,10 +208,10 @@ shared_ptr<Panel> UI::Root() const
 	{
 		if(toPush.empty())
 			return shared_ptr<Panel>();
-		
+
 		return toPush.front();
 	}
-	
+
 	return stack.front();
 }
 
@@ -262,7 +278,7 @@ void UI::PushOrPop()
 		if(panel)
 			stack.push_back(panel);
 	toPush.clear();
-	
+
 	// These panels should be popped but not deleted (because someone else
 	// owns them and is managing their creation and deletion).
 	for(const Panel *panel : toPop)
