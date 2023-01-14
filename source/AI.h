@@ -192,9 +192,6 @@ private:
 	// helps limit how often certain actions occur (such as changing targets).
 	int step = 0;
 
-	// Total number of calls to AI::Step()
-	int64_t totalSteps = 0;
-
 	// Command applied by the player's "autopilot."
 	Command autoPilot;
 	// General firing command for ships. This is a data member to avoid

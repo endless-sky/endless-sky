@@ -4128,31 +4128,6 @@ const vector<weak_ptr<Ship>> &Ship::GetEscorts() const
 
 
 
-int64_t Ship::StepLingering(int64_t aiTotalSteps)
-{
-	if(!personality.IsLingering())
-		return -1;
-	else if(aiTotalSteps == linger.second + 1)
-		// Tick the linger counter forward one frame.
-		linger.second = aiTotalSteps;
-	else
-		// Ship stopped lingering, and wants to linger again.
-		linger.first = linger.second = aiTotalSteps;
-	return linger.second - linger.first;
-}
-
-
-
-int64_t Ship::LingerTime() const
-{
-	if(!personality.IsLingering())
-		return -1;
-	else
-		return max<int64_t>(0, linger.second - linger.first);
-}
-
-
-
 // Add escorts to this ship. Escorts look to the parent ship for movement
 // cues and try to stay with it when it lands or goes into hyperspace.
 void Ship::AddEscort(Ship &ship)
