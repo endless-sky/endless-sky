@@ -1274,7 +1274,7 @@ ship "Cutthroat"
 		"drag" 3
 		"heat dissipation" .8
 		"fuel capacity" 500
-		"cargo space" 37
+		"cargo space" 27
 		"outfit space" 282
 		"weapon capacity" 60
 		"engine capacity" 111
