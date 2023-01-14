@@ -326,7 +326,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			bool isWelcomeHere = !system.GetGovernment()->IsEnemy(government);
 			for(const System *neighbor : (hasJump ? system.JumpNeighbors(jumpDistance) : system.Links()))
 			{
-				if(neighbor.Invisible())
+				if(neighbor->Invisible())
 					continue;
 				// If this ship is not "welcome" in the current system, prefer to have
 				// it enter from a system that is friendly to it. (This is for realism,
