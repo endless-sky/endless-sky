@@ -51,6 +51,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Trade.h"
 #include "text/truncate.hpp"
 #include "UI.h"
+#include "Wormhole.h"
 #include "text/WrappedText.h"
 
 #include <algorithm>
@@ -879,7 +880,7 @@ void MapDetailPanel::DrawOrbits()
 		Point pos = orbitCenter + object.Position() * scale;
 		if(object.HasValidPlanet() && object.GetPlanet()->IsAccessible(player.Flagship())
 				&& (!object.GetPlanet()->GetWormhole()
-				|| !object.GetPlanet()->GetWormhole()->WormholeDestination(selectedSystem).Inaccessible()))
+				|| !object.GetPlanet()->GetWormhole()->WormholeDestination(*selectedSystem).Inaccessible()))
 			planets[object.GetPlanet()] = pos;
 
 		const float *rgb = Radar::GetColor(object.RadarType(player.Flagship())).Get();
