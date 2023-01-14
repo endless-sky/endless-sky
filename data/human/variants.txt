@@ -1191,7 +1191,7 @@ ship "Cutthroat" "Cutthroat (Jousting)"
 	outfits
 		"Twin Modified Blaster" 2
 		"Heavy Rocket Pod" 2
-		"Heavy Rocket Storage Rack"
+		"Heavy Rocket Rack"
 		"Heavy Rocket" 14
 		
 		"Fission Reactor"
