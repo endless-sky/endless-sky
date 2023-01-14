@@ -123,7 +123,7 @@ void Government::Load(const DataNode &node)
 		{
 			if(key == "provoked on scan")
 				provokedOnScan = false;
-			else if(key == "raid" && (!hasValue || (notClearedRaids && !add && !remove)))
+			else if(key == "raid" && !hasValue)
 			{
 				raidFleets.clear();
 				notClearedRaids = false;
@@ -264,6 +264,11 @@ void Government::Load(const DataNode &node)
 			language = child.Token(valueIndex);
 		else if(key == "raid")
 		{
+			if(notClearedRaids && !add && !remove)
+			{
+				raidFleets.clear();
+				notClearedRaids = false;
+			}
 			const Fleet *raidingFleet = GameData::Fleets().Get(child.Token(valueIndex));
 			if(remove)
 			{
