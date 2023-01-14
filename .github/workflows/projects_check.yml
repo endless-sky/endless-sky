@@ -8,7 +8,6 @@ on:
     paths:
       - '.github/workflows/projects_check.yml'
       - 'copyright'
-      - 'EndlessSky.xcodeproj/**'
       - '*.cbp'
       - 'source/**'
       - 'tests/unit/**'
@@ -18,7 +17,6 @@ on:
     paths:
       - '.github/workflows/projects_check.yml'
       - 'copyright'
-      - 'EndlessSky.xcodeproj/**'
       - '*.cbp'
       - 'source/**'
       - 'tests/unit/**'
@@ -32,25 +30,6 @@ jobs:
   changed:
     uses: ./.github/workflows/compute-changes.yml
 
-  check-xcode:
-    name: XCode
-    needs: changed
-    if: ${{ needs.changed.outputs.xcode_files || needs.changed.outputs.game_code }}
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 1
-    - name: Install dependencies
-      run: python3 -m pip install --user docopt openstep_parser pbxproj
-    - name: Validate XCode .pbxproj file
-      run: ./utils/check_xcode.sh
-    - name: Upload XCode patch
-      if: failure()
-      uses: actions/upload-artifact@v3
-      with:
-        name: xcode-project.patch
-        path: xcode-project.patch
 
   check-codeblocks:
     name: CodeBlocks
