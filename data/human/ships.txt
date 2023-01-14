@@ -2299,15 +2299,15 @@ ship "Mammoth"
 	attributes
 		category "Utility"
 		"cost" 18800000
-		"shields" 7800
+		"shields" 6200
 		"hull" 7400
 		"required crew" 18
 		"bunks" 30
 		"mass" 688
-		"drag" 10.5
+		"drag" 11.9
 		"heat dissipation" .32
 		"fuel capacity" 1000
-		"cargo space" 420
+		"cargo space" 400
 		"outfit space" 536
 		"weapon capacity" 294
 		"engine capacity" 114
