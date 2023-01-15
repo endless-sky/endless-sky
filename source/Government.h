@@ -17,9 +17,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define GOVERNMENT_H_
 
 #include "Color.h"
+#include "ExclusiveItem.h"
 #include "LocationFilter.h"
 
 #include <map>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -63,9 +65,10 @@ public:
 	// toward the player.
 	double AttitudeToward(const Government *other) const;
 	double InitialPlayerReputation() const;
-	// Get the amount that your reputation changes for the given offense. The
-	// given value should be a combination of one or more ShipEvent values.
-	double PenaltyFor(int eventType) const;
+	// Get the amount that your reputation changes for the given offense against the given government.
+	// The given value should be a combination of one or more ShipEvent values.
+	// Returns 0 if the Government is null.
+	double PenaltyFor(int eventType, const Government *other) const;
 	// In order to successfully bribe this government you must pay them this
 	// fraction of your fleet's value. (Zero means they cannot be bribed.)
 	double GetBribeFraction() const;
@@ -132,9 +135,10 @@ private:
 	std::string name;
 	std::string displayName;
 	int swizzle = 0;
-	Color color;
+	ExclusiveItem<Color> color;
 
 	std::vector<double> attitudeToward;
+	std::map<unsigned, std::map<int, double>> customPenalties;
 	double initialPlayerReputation = 0.;
 	std::map<int, double> penaltyFor;
 	std::map<const Outfit*, int> illegals;
@@ -152,6 +156,10 @@ private:
 	double crewAttack = 1.;
 	double crewDefense = 2.;
 	bool provokedOnScan = false;
+	// If a government appears in this set, and the reputation with this government is affected by actions,
+	// and events performed against that government, use the penalties that government applies for the
+	// action instead of this governments own penalties.
+	std::set<unsigned> useForeignPenaltiesFor;
 };
 
 

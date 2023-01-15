@@ -317,6 +317,10 @@ void UniverseObjects::CheckReferences()
 	for(auto &&it : formations)
 		if(it.second.Name().empty())
 			NameAndWarn("formation", it);
+	// Any stock colors should have been loaded from game data files.
+	for(const auto &it : colors)
+		if(!it.second.IsLoaded())
+			Warn("color", it.first);
 }
 
 
@@ -334,9 +338,9 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 	for(const DataNode &node : data)
 	{
 		const string &key = node.Token(0);
-		if(key == "color" && node.Size() >= 6)
+		if(key == "color" && node.Size() >= 5)
 			colors.Get(node.Token(1))->Load(
-				node.Value(2), node.Value(3), node.Value(4), node.Value(5));
+				node.Value(2), node.Value(3), node.Value(4), node.Size() >= 6 ? node.Value(5) : 1.);
 		else if(key == "conversation" && node.Size() >= 2)
 			conversations.Get(node.Token(1))->Load(node);
 		else if(key == "effect" && node.Size() >= 2)
