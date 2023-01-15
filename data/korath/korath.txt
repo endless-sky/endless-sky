@@ -209,7 +209,7 @@ fleet "Korath Raid"
 	fighters "korath"
 	cargo 1
 	personality
-		disables plunders opportunistic harvests hunting lingering
+		disables plunders opportunistic harvests hunting lingering pragmatic coward
 	variant 4
 		"Palavret"
 		"'olofez" 2
@@ -248,7 +248,7 @@ fleet "Korath Miners"
 	fighters "korath"
 	cargo 0
 	personality
-		timid disables plunders frugal mining harvests
+		timid disables plunders frugal mining harvests pragmatic coward
 	variant
 		"Rano'erek"
 		"'olofez (Digger)" 4
@@ -362,7 +362,7 @@ fleet "Korath Large Raid"
 	fighters "korath"
 	cargo 1
 	personality
-		disables plunders opportunistic harvests hunting lingering
+		disables plunders opportunistic harvests hunting lingering pragmatic coward
 	variant 5
 		"Palavret" 2
 		"'olofez" 4
