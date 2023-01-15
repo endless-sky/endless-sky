@@ -19,6 +19,12 @@ Version 0.10.0
     * Starts may be unlocked based on global conditions. (@RisingLeaf)
     # Graphics
     * More parallax! (@Azure3141, @quyykk)
+    # Build system
+    * CMake! (@quyykk)
+      * TODO: this
+      * Fix MacOS bundle. (@RisingLeaf)
+      * Added support for debugging integration tests. (@quyykk)
+      * Remove xcode project, use cmake to generate one on demand. (@quyykk)
   * Bug fixes:
     * Content bugs:
       * Typo fixes. (@a-random-lemurian, @Anarchist2, @Aneutronic, @aradapilot, @Deltaspace0, @EjoThims, @Ember369, @Hecter94, @hmglasgow, @Kepler-69c, @nathan-b, @opusforlife2, @real-dam, @ThrawnCA, @williaji, @zlonghofer)
@@ -55,6 +61,8 @@ Version 0.10.0
       * Earth Day jobs can no longer offer with deadlines after Earth Day itself. (@warp-core)
       * Improved some Graveyard planet descriptions. (@Improvise#7330 (Discord), @RisingLeaf)
       * Coalition Games jobs can no longer offer with deadlines after July (when the Games end). (@Arachi-Lover)
+      * Fixed a typo of 'automaton' in the Kas'ik Tek 7 definition and gave it a crew equivalent of 1. (@Hurleveur)
+      * Corrected an oversight where the Kimek Briar was not given reverse thrusters alongside the other civilian Coalition ships. (@Arachi-Lover)
     * Engine bugs:
       * Various style fixes. (@tibetiroka, @petervdmeer)
       * Fixed rendering of some compressed PNGs. (@quyykk)
@@ -79,6 +87,8 @@ Version 0.10.0
       * Fixed various issues reported by Cppchecks. (@mike-f1)
       * Less than 1 unit of free cargo space is no longer rounded down when attempting to buy an outfit into cargo. (@warp-core)
       * Fixed a crash due to a nullpointer dereference in the parallax code when the player has no flagship. (@warp-core)
+      * Fixed a vector iterator incompatibility in ShipInfoDisplay. (@warp-core)
+      * Park off-system escorts that fail flight or bunk checks. (@yjhn, @Amazinite)
   * Game content:
     * New content:
       * Two new human guns: Twin Blaster and Modified Twin Blaster. (@Daeridanii1)
@@ -111,6 +121,10 @@ Version 0.10.0
       * Added a short mission chain about delivering a large inheritance. (@Anarchist2)
       * Additional human ship names. @bene-dictator)
       * The Embersylph: a new form of spacefaring life form that can be found in parts of the Ember Waste under certain circumstances. (@Saugia)
+      * Added pirate versions of some human ships. (@1010todd)
+        * Mammoth (pirate Behemoth).
+        * Nighthawk (pirate Blackbird).
+      * Added the Scrapper, a low-end ship built from scrap Shuttle parts. (@1010todd)
     * Mission changes:
       * Adjusted human bounty jobs to make them more active. (@Anarchist2)
         * The target ships will only spawn in a system one jump away from the source.
@@ -140,6 +154,8 @@ Version 0.10.0
       * Remnant Shattered Light 3 now gives better information about the location of the ship. (@McloughlinGuy)
       * Human jobs requiring brigs or luxury accommodations will now appear in the job board but be blocked if the outfit is not present. (@bene-dictator)
       * Improved text in Remnant: Salvage 4 to better describe mission objective and failure condition. (@ThrawnCA)
+      * Improved some writing in FW Southern Battle 1B. (@Zitchas)
+      * The Behemoth bounty target in FW Bounty 2 is now a Mammoth. (@1010todd, @Saugia)
     * Balance:
       * Adjusted the Sparrow and Flivver to better match their roles. (@Hecter94)
         * Flivver:
@@ -194,6 +210,17 @@ Version 0.10.0
           * Required crew: 2 -> 1
       * Reduced the lifetime of the Hai Tracker from 600 to 475 (range reduced from 8400 to 6650). (@Zitchas)
       * Buffed the Hai Wiliwaw Cooling. 570 -> 660 cooling. (@Zitchas)
+      * Buffed the Hai Grasshopper. (@Hurleveur)
+        * Outfit space: 169 -> 198
+        * Weapon capacity: 38 -> 47
+        * Some adjustments to outfitting and a new variant carrying an Ion Cannon.
+      * Adjusted the Quicksilver. (@Zitchas)
+        * Reduce chassic cost: 1090000 -> 836000
+        * Increased cargo space: 10 -> 15
+        * Removed the Cooling Ducts and use a cheaper generator.
+      * Reduce the 0.9.15 afterburner buff. (@Amazinite)
+        * Halved the buffs to thrust and fuel usage.
+        * Slightly nerfed the newer afterburners.
     * Graphics:
       * Added sprites for the Remnant Swan. (@Saugia)
       * Remodelled Korath Thermal Repeater sprites. (@Daeridanii1)
@@ -224,8 +251,14 @@ Version 0.10.0
         * Also moved the Ikatila'ej, Korsmmanath A'awoj, Heron, and Emerald Sword to this category.
       * Danforth's ship now also have the "timid" personality in "Wanderers: Alpha Surveillance G". (@Quantumshark)
       * Add some diversity to the sale of Hai ships. (@MasterOfGrey)
-      * The Cloaking Device is now in the "Unique" outfit category. (@czartrak)
-      * The descriptions of the Heliarch reactors indicate that they used anti-matter catalyzed fusion technology. (@Arachi-Lover)
+      * Moved the Cloaking Device is now to the "Unique" outfit category. (@czartrak)
+      * The descriptions of the Heliarch reactors now indicate that they used anti-matter catalyzed fusion technology. (@Arachi-Lover)
+      * Added a reference to the player's manual to thecredits. (@hmglasgow)
+      * Separated planet and system definitions into their own files. (@Amazinite)
+      * Brighten some government colors to improve map readability. (@TomGoodIdea)
+      * Used custom penalties to improve Remnant and Quarg reactions to actions against some foreign governments. (@Hurleveur)
+      * Added departure distances to systems with Quarg Ringworlds. (@RisingLeaf)
+      * Void Sprites now drop Void Sprite Parts. (@Quantumshark, @Saugia)
   * Game mechanics:
     * New mechanics:
       * New autoconditions:
@@ -252,9 +285,10 @@ Version 0.10.0
       * TODO: find a concise way to describe the foreign penalty thing for governments. (@Hurleveur)
       * Missions can now define a "to accept" condition set. (@rovermicrover)
       * Governments can use named "stock" colors instead of always defining a color literal. (@warp-core)
-      * A "flotsam chance" attribute for outfits which determines the chance the outfit will be dropped as flotsam when the ship carrying it explodes. (@Azure3141)
+      * Added a "flotsam chance" attribute for outfits which determines the chance the outfit will be dropped as flotsam when the ship carrying it explodes. (@Azure3141)
       * Governments can define custom values for various actions against foreign governments. (@warp-core)
-      * An "optical jamming" attribute that workd similarly to radar jamming, but against optically guided missiles. (@Hurleveur)
+      * Added an "optical jamming" attribute that workd similarly to radar jamming, but against optically guided missiles. (@Hurleveur)
+      * Added the "invisible" system property which makes systems inaccessible. (@yjhn, @Amazinite)
     * Mechanic changes:
       * Frugal ships now consider their health percentage instead of the sum of their shield and hull percentages. (@Hurleveur)
       * Changed the scanning formula for detecting illegal cargo so more legal cargo can conceal illegal cargo in the hold, making it less likely to be detected. (@quyykk)
@@ -291,6 +325,7 @@ Version 0.10.0
     * The outfitter only shows one tutorial each time it opens, and tutorials have titles. (@Hurleveur)
     * Selecting a new system in the mission panel selects the first mission involving that system, instead of looking down from the previously selected mission. (@alextd)
     * Switching the map to the mission view recentres on the system of the auto-selected mission. (@alextd)
+    * Made the secondary weapon icons in the HUD clickable. (@warp-core, @quyykk, @tehhowch, @tibetiroka, @Hurleveur)
   * Under the hood:
     * Cache attraction and deterrence values. (@Hurleveur)
     * Added a warning when no plural name is defined for ships and outfits with names ending in 's'. (@warp-core)
@@ -339,10 +374,6 @@ Version 0.10.0
     * Fixed the project check CI when adding a new test file. (@quyykk)
     * Added missing runtime dependency. (@quyykk)
     * No longer report condition errors in unit testing. (@quyykk)
-    * CMake! (@quyykk)
-      * TODO: this
-      * Fix MacOS bundle. (@RisingLeaf)
-      * Added support for debugging integration tests. (@quyykk)
     * Added CI to verify integration test syntax. (@quyykk)
     * Fixed test presets not working. (@quyykk)
     * Reduced the output delay when running integration tests with the --debug flag. (@quyykk)
@@ -356,6 +387,8 @@ Version 0.10.0
     * Simplified data parsing CI jobs. (@quyykk)
     * Use dedicated sccache GHA support + Linux support. (@quyykk)
     * Disabled various invisible, landing missions that were causing an integration test to fail. (@warp-core)
+    * Reorganized the build instructions. (@Zitchas)
+    * Added the "install" folder to .gitignore. (@Zitchas)
 
 Version 0.9.16.1:
   * Breaking changes:
