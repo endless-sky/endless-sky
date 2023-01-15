@@ -2368,6 +2368,7 @@ fleet "Large Northern Pirates"
 	variant 1
 		"Valkyrie"
 		"Lance (Gatling)" 2
+		"Raven"
 	variant 2
 		"Mule"
 		"Lance"
