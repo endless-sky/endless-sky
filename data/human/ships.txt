@@ -3532,7 +3532,7 @@ ship "Valkyrie"
 	explode "medium explosion" 25
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
-	description "Valkyries are pirated Aeries converted into more of a standalone warship than a support carrier. Losing a turret in place of increased armor protection, as well as boasting two more gun mounts, Valkyries can both take and put out noticeable amounts of damage. However, due to the extra weight, they are somewhat slower and lose a bit of shield efficiency."
+	description "Valkyries are pirated Aeries converted into more of a standalone warship than a support carrier. Losing a turret and a few bunks in place of increased armor protection, as well as boasting two more gun mounts, Valkyries can both take and put out noticeable amounts of damage. However, due to the extra weight, they are somewhat slower and lose a bit of shield efficiency."
 
 
 
