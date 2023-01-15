@@ -41,6 +41,7 @@ public:
 	bool IsPacifist() const;
 	bool IsForbearing() const;
 	bool IsTimid() const;
+	bool IsHunting() const;
 	bool IsDaring() const;
 	bool IsNemesis() const;
 

@@ -30,7 +30,7 @@ namespace {
 	const int TIMID = (1 << 2);
 	const int DISABLES = (1 << 3);
 	const int PLUNDERS = (1 << 4);
-	const int DARING = (1 << 5);
+	const int HUNTING = (1 << 5);
 	const int STAYING = (1 << 6);
 	const int ENTERING = (1 << 7);
 	const int NEMESIS = (1 << 8);
@@ -56,6 +56,7 @@ namespace {
 	const int LAUNCHING = (1 << 28);
 	const int LINGERING = (1 << 29);
 	const int PRAGMATIC = (1 << 30);
+	const int DARING = (1 << 31);
 
 	const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -63,7 +64,7 @@ namespace {
 		{"timid", TIMID},
 		{"disables", DISABLES},
 		{"plunders", PLUNDERS},
-		{"daring", DARING},
+		{"hunting", HUNTING},
 		{"staying", STAYING},
 		{"entering", ENTERING},
 		{"nemesis", NEMESIS},
@@ -88,7 +89,13 @@ namespace {
 		{"marked", MARKED},
 		{"launching", LAUNCHING},
 		{"lingering", LINGERING},
-		{"pragmatic", PRAGMATIC}
+		{"pragmatic", PRAGMATIC},
+		{"daring", DARING}
+	};
+
+	// Tokens that combine two or more flags.
+	const map<string, int> COMPOSITE_TOKEN = {
+		{"heroic", DARING | HUNTING}
 	};
 
 	const double DEFAULT_AGGRO_RANGE = 2000;
@@ -195,6 +202,13 @@ bool Personality::IsForbearing() const
 bool Personality::IsTimid() const
 {
 	return flags & TIMID;
+}
+
+
+
+bool Personality::IsHunting() const
+{
+	return flags & HUNTING;
 }
 
 
@@ -424,8 +438,7 @@ void Personality::UpdateConfusion(bool isFiring)
 Personality Personality::Defender()
 {
 	Personality defender;
-	defender.flags = STAYING | MARKED | DARING | UNCONSTRAINED | TARGET;
-	defender.aggroRange = -1;
+	defender.flags = STAYING | MARKED | HUNTING | UNCONSTRAINED | TARGET;
 	return defender;
 }
 
@@ -436,8 +449,7 @@ Personality Personality::Defender()
 Personality Personality::DefenderFighter()
 {
 	Personality defender;
-	defender.flags = STAYING | DARING | UNCONSTRAINED;
-	defender.aggroRange = -1;
+	defender.flags = STAYING | HUNTING | UNCONSTRAINED;
 	return defender;
 }
 
