@@ -176,12 +176,12 @@ namespace {
 		return transferred;
 	}
 
-	// Ships which are ionized have a chance for their weapons to jam,
+	// Ships which are scrambled have a chance for their weapons to jam,
 	// delaying their firing for another reload cycle. The less energy
-	// a ship has relative to its max and the more ionized the ship is,
+	// a ship has relative to its max and the more scrambled the ship is,
 	// the higher the chance that a weapon will jam. The jam chance is
 	// capped at 50%. Very small amounts of scrambling are ignored.
-	// The scale is such that a weapon with an ion damage of 5 and a reload
+	// The scale is such that a weapon with a scrambling damage of 5 and a reload
 	// of 60 (i.e. the ion cannon) will only ever push a ship to a jam chance
 	// of 5% when it is at 100% energy.
 	double CalculateJamChance(double maxEnergy, double scrambling)
