@@ -22,8 +22,6 @@ public:
 	static bool IsPrintDataArgument(const char *const *argv);
 	static void Print(const char *const *argv);
 	static void Help();
-
-	static void PrintString(const string &toPrint);
 };
 
 #endif
