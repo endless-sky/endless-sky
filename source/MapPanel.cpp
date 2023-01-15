@@ -1148,12 +1148,11 @@ void MapPanel::DrawSystems()
 			starOffset = Point(0, 0);
 
 		// Draws the star sprites.
-		for(string stars : node.mapIcon)
+		for(string star : node.mapIcon)
 		{
 			starAngle = starAngle + spin;
 			Point starRotate(cos(starAngle), sin(starAngle));
-			string displayStar = stars;
-			SpriteShader::Draw(SpriteSet::Get(displayStar), pos + zoom * starOffset * starRotate, zoom / 8);
+			SpriteShader::Draw(SpriteSet::Get(star), pos + zoom * starOffset * starRotate, zoom / 8);
 		}
 
 		if(commodity == SHOW_GOVERNMENT && node.government && node.government->GetName() != "Uninhabited")

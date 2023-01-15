@@ -454,12 +454,13 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 	// Calculate the solar power and solar wind.
 	solarPower = 0.;
 	solarWind = 0.;
+	mapIcon.clear();
 	for(const StellarObject &object : objects)
 	{
 		solarPower += GameData::SolarPower(object.GetSprite());
 		solarWind += GameData::SolarWind(object.GetSprite());
 		if(GameData::StarIcon(object.GetSprite()) != "null")
-			mapIcon.push_back(GameData::StarIcon(object.GetSprite()));
+			mapIcon.emplace_back(GameData::StarIcon(object.GetSprite()));
 	}
 
 	// Systems only have a single auto-attribute, "uninhabited." It is set if
