@@ -626,6 +626,34 @@ ship "Bulk Freighter" "Bulk Freighter (Proton)"
 
 
 
+ship "Bulwark" "Bulwark (Heavy)"
+	outfits
+		"Plasma Cannon" 2
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		"Heavy Laser Turret"
+		"Anti-Missile Turret" 2
+		"Fission Reactor"
+		"LP144a Battery Pack"
+		"nGVF-BB Fuel Cell"
+		"D94-YV Shield Generator"
+		"Water Coolant System"
+		"Tactical Scanner"
+		"Laser Rifle" 19
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+	
+	gun "Torpedo Launcher" 
+	gun "Plasma Cannon"
+	gun "Torpedo Launcher" 
+	gun "Plasma Cannon"
+	turret "Anti-Missile Turret"
+	turret "Anti-Missile Turret"
+	turret "Heavy Laser Turret"
+
+
+
 ship "Carrier" "Carrier (Jump)"
 	outfits
 		"Particle Cannon" 4

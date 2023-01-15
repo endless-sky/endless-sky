@@ -806,6 +806,69 @@ ship "Bulk Freighter"
 
 
 
+ship "Bulwark"
+	sprite "ship/pirate bulwark"
+	thumbnail "thumbnail/pirate bulwark"
+	attributes
+		category "Medium Warship"
+		"cost" 3960000
+		"shields" 7000
+		"hull" 5500
+		"required crew" 19
+		"bunks" 31
+		"mass" 880
+		"drag" 14.4
+		"heat dissipation" .35
+		"fuel capacity" 500
+		"cargo space" 10
+		"outfit space" 511
+		"weapon capacity" 213
+		"engine capacity" 120
+		weapon
+			"blast radius" 120
+			"shield damage" 1200
+			"hull damage" 600
+			"hit force" 1800
+	outfits
+		"Plasma Cannon" 2
+		"Heavy Rocket Launcher" 2
+		"Heavy Rocket" 60
+		"Heavy Rocket Rack" 2
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret"
+		
+		"Fission Reactor"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"Water Coolant System"
+		"Tactical Scanner"
+		"Laser Rifle" 19
+		
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+		
+	engine 31.5 89.5
+	engine -31.5 89.5
+	gun 52.5 -0.5 "Heavy Rocket Launcher"
+	gun 52.5 -0.5 "Plasma Cannon"
+	gun -52.5 -0.5 "Heavy Rocket Launcher"
+	gun -52.5 -0.5 "Plasma Cannon"
+	turret 35.5 29.5 "Quad Blaster Turret"
+	turret -35.5 29.5 "Quad Blaster Turret"
+	turret 0 0.5 "Heavy Anti-Missile Turret"
+	leak "leak" 40 50
+	leak "flame" 40 80
+	leak "big leak" 70 30
+	explode "tiny explosion" 5
+	explode "small explosion" 15
+	explode "medium explosion" 30
+	explode "large explosion" 20
+	"final explode" "final explosion medium"
+	description `The Bulwark is basically what you get for welding a bunch of scraps on to a Bastion. A tough, slow brawler most often used by warlords to protect their properties from raids either by the authorities or their rivals. Due to lack of speed and cargo space these ships rarely participate in raiding merchant convoys outside their home system.`
+
+
+
 ship "Carrier"
 	sprite "ship/carrier"
 	thumbnail "thumbnail/carrier"
@@ -1257,6 +1320,64 @@ ship "Cruiser"
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
 	description "The Republic Cruiser is a relatively recent design, a much larger version of the Frigate designed to be able to take on an entire pirate fleet if necessary. In addition to a wide variety of weaponry, Cruisers have space to carry four attack drones: fast, pilotless fighters that can be controlled remotely."
+
+
+
+ship "Cutthroat"
+	sprite "ship/pirate cutthroat"
+	thumbnail "thumbnail/pirate cutthroat"
+	attributes
+		category "Light Warship"
+		"cost" 1100000
+		"shields" 2800
+		"hull" 600
+		"required crew" 4
+		"bunks" 6
+		"mass" 182
+		"drag" 3.4
+		"heat dissipation" .8
+		"fuel capacity" 500
+		"cargo space" 27
+		"outfit space" 282
+		"weapon capacity" 60
+		"engine capacity" 111
+		weapon
+			"blast radius" 36
+			"shield damage" 360
+			"hull damage" 180
+			"hit force" 540
+	outfits
+		"Twin Modified Blaster" 2
+		"Torpedo Pod" 2
+		"Torpedo Storage Rack"
+		"Torpedo" 21
+		
+		"Fission Reactor"
+		"LP036a Battery Pack"
+		"Water Coolant System"
+		"D23-QP Shield Generator"
+		"Laser Rifle" 5
+		
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Volcano Afterburner"
+		"Hyperdrive"
+		
+	engine -22 47
+	engine 22 47
+	engine -13 43.5 .7
+	engine 13 43.5 .7
+	gun -21.5 -18 "Torpedo Pod"
+	gun 21.5 -18 "Torpedo Pod"
+	gun -11 -8.5 "Twin Modified Blaster"
+	gun 11 -8.5 "Twin Modified Blaster"
+	leak "leak" 60 50
+	leak "flame" 50 80
+	explode "tiny explosion" 15
+	explode "small explosion" 20
+	explode "medium explosion" 10
+	"final explode" "final explosion small"
+	description `Pirates call this heavily modified Clipper the "Cutthroat." With an extra pair of engine pods bolted on for the sole purpose of maximizing speed, it can catch or outrun all but the most fine-tuned ships in the sky.`
 
 
 
