@@ -41,7 +41,6 @@ class Ship;
 class ShopPanel : public Panel {
 public:
 	explicit ShopPanel(PlayerInfo &player, bool isOutfitter);
-	~ShopPanel();
 
 	virtual void Step() override;
 	virtual void Draw() override;
