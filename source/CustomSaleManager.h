@@ -38,7 +38,7 @@ public:
 
 
 private:
-	static std::map<CustomSale::SellType, CustomSale> customSales;
+	static std::map<CustomSale::SellType, CustomSale> customSales = {};
 };
 
 #endif
