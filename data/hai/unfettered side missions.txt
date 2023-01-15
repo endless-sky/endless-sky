@@ -1455,7 +1455,7 @@ mission "Unfettered: Hunger Stories 1"
 				`	(Offer to take them to <destination>.)`
 				`	(Offer your condolences and move on.)`
 					goto condolences
-			`	While it's awkard to wait for your crew to translate, it gives you time to choose your words. "Your brothers and sisters in the south have food and shelter for your family. I can take you there if you want."`
+			`	While it's awkward to wait for your crew to translate, it gives you time to choose your words. "Your brothers and sisters in the south have food and shelter for your family. I can take you there if you want."`
 			`	She hesitates but then the baby starts to cry. She looks at you with tears in her eyes and nods. You send some crew with her to help her pack her things and bring them to the ship.`
 				accept
 			
@@ -1552,7 +1552,7 @@ mission "Unfettered: Hunger Stories 3"
 			label bribe
 			action
 				payment -500
-			`	You see movement in your peripheral vision just as you feel the credits pulled from your hand. One of the children off to your side darted forward before you could react and is now handing your credits to the leader. She checks the amount and then gives you a satisfied smile. Aty credits nod, the group vanishes into the life of the street.`
+			`	You see movement in your peripheral vision just as you feel the credits pulled from your hand. One of the children off to your side darted forward before you could react and is now handing your credits to the leader. She checks the amount and then gives you a satisfied smile. At her nod, the group vanishes into the life of the street.`
 			`	You make your way quickly back to the spaceport, certain that the kids are shadowing you. It's with some relief that you make it through the security checkpoint.`
 				decline
 			
