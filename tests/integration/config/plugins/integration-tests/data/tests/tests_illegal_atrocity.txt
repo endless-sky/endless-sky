@@ -314,6 +314,8 @@ test "Launch Quarg Scanning Mission And Board"
 		branch "floating"
 			"test: steps to wait" > 0
 		input
+			key p
+		input
 			key "return"
 
 test "Boarding Test - Repair Friendly Ship"

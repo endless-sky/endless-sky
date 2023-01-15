@@ -360,8 +360,8 @@ Politics::Punishment Politics::CalculateFine(PlayerInfo &player, const Governmen
 			for(const auto &it : ship->Outfits())
 				if(it.second)
 				{
-					int64_t fine = it.first->Get("illegal");
-					if(it.first->Get("atrocity") > 0. || fine < 0)
+					int64_t fine = gov->Fines(it.first);
+					if(gov->Condemns(it.first))
 						punishment.isAtrocity = true;
 
 					if(fine > 0 || punishment.isAtrocity)
