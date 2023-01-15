@@ -1981,9 +1981,6 @@ fleet "Large Southern Pirates"
 	variant 1
 		"Falcon"
 		"Nighthawk (Raider)"
-	variant 2
-		"Cutthroat" 2
-		"Cutthroat (Jousting)"
 	variant 1
 		"Osprey"
 		"Cutthroat"
