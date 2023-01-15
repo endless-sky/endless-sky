@@ -3474,6 +3474,68 @@ ship "Surveillance Drone"
 
 
 
+ship "Valkyrie"
+	sprite "ship/pirate valkyrie"
+	thumbnail "thumbnail/pirate valkyrie"
+	attributes
+		category "Medium Warship"
+		"cost" 3900000
+		"shields" 4800
+		"hull" 2800
+		"required crew" 17
+		"bunks" 28
+		"mass" 170
+		"drag" 4.5
+		"heat dissipation" .62
+		"fuel capacity" 500
+		"cargo space" 36
+		"outfit space" 395
+		"weapon capacity" 160
+		"engine capacity" 95
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Quad Blaster Turret" 2
+		"Particle Cannon" 2
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		
+		"NT-200 Nucleovoltaic"
+		"KP-6 Photovoltaic Panel" 3
+		"LP072a Battery Pack"
+		"D67-TM Shield Generator"
+		"Large Radar Jammer"
+		"Laser Rifle" 18
+		
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+		
+	engine 15 97
+	engine -15 97
+	gun -12 -78 "Particle Cannon"
+	gun 12 -78 "Particle Cannon"
+	gun -64 -19 "Torpedo Launcher"
+	gun 64 -19 "Torpedo Launcher"
+	turret -31 15.5
+	turret 31 15.5
+	bay "Fighter" -43.5 2
+	bay "Fighter" 43.5 2
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description "Valkyries are pirated Aeries converted into more of a standalone warship than a support carrier. Losing a turret in place of increased armor protection, as well as boasting two more gun mounts, Valkyries can both take and put out noticable amounts of damage. However, due to the extra weight, they are somewhat slower."
+
+
+
 ship "Vanguard"
 	sprite "ship/vanguard"
 	thumbnail "thumbnail/vanguard"

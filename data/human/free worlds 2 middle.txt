@@ -2033,7 +2033,10 @@ event "pirate use mammoth"
 	fleet "Large Northern Pirates"
 		add variant
 			"Mammoth"
-
+		add variant
+			"Mammoth"
+			"Valkyrie" 
+			"Dagger" 2
 
 
 government "Syndicate (Hostile)"
