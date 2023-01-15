@@ -80,7 +80,7 @@ namespace {
 	bool Imports(const map<CustomSale::SellType, CustomSale> &customSales, const Outfit *outfit)
 	{
 		const auto &it = customSales.find(CustomSale::SellType::IMPORT);
-		return it != customSales.end() && it.second.Has(*outfit);
+		return it != customSales.end() && it->second.Has(*outfit);
 	}
 }
 
