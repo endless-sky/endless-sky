@@ -64,7 +64,6 @@ double CustomSaleManager::OutfitRelativeCost(const Outfit &outfit)
 
 
 
-// Get the full cost of this ship on the planet, depending on the outfit prices.
 int64_t CustomSaleManager::ShipCost(const Ship &ship)
 {
 	int64_t localCost = ship.ChassisCost();

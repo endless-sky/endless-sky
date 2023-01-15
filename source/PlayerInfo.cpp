@@ -715,6 +715,10 @@ void PlayerInfo::IncrementDate()
 		accounts.AddCredits(salariesIncome + tributeIncome + b.assetsReturns);
 	}
 
+
+	// The standard prices will be used to query the value of the fleet of the player, instead of the local prices.
+	CustomSaleManager::Clear();
+
 	// For accounting, keep track of the player's net worth. This is for
 	// calculation of yearly income to determine maximum mortgage amounts.
 	int64_t assets = depreciation.Value(ships, date.DaysSinceEpoch());
@@ -1623,8 +1627,6 @@ bool PlayerInfo::TakeOff(UI *ui)
 			out << ".";
 		Messages::Add(out.str(), Messages::Importance::High);
 	}
-
-	CustomSaleManager::Clear();
 
 	return true;
 }

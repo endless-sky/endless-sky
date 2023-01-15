@@ -23,7 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "Conversation.h"
 #include "CustomSale.h"
-#include "CustomSaleManager.h"
 #include "Effect.h"
 #include "Fleet.h"
 #include "FormationPattern.h"
@@ -127,7 +126,6 @@ private:
 	TextReplacements substitutions;
 	Trade trade;
 	std::vector<StartConditions> startConditions;
-	CustomSaleManager customSaleManager;
 	std::map<std::string, std::vector<std::string>> ratings;
 	std::map<const Sprite *, std::string> landingMessages;
 	std::map<const Sprite *, double> solarPower;
