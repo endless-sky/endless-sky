@@ -381,8 +381,6 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		if(object.message || object.planet)
 			continue;
 
-		mapIcon.push_back(GameData::StarIcon(object.GetSprite()));
-
 		const StellarObject *root = &object;
 		while(root->parent >= 0)
 			root = &objects[root->parent];
@@ -460,7 +458,8 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 	{
 		solarPower += GameData::SolarPower(object.GetSprite());
 		solarWind += GameData::SolarWind(object.GetSprite());
-		mapIcon.push_back(GameData::StarIcon(object.GetSprite()));
+		if(GameData::StarIcon(object.GetSprite()) != "null")
+			mapIcon.push_back(GameData::StarIcon(object.GetSprite()));
 	}
 
 	// Systems only have a single auto-attribute, "uninhabited." It is set if

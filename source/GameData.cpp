@@ -722,7 +722,7 @@ double GameData::SolarWind(const Sprite *sprite)
 const string GameData::StarIcon(const Sprite *sprite)
 {
 	auto it = objects.starIcon.find(sprite);
-	return (it == objects.starIcon.end() ? "" : it->second);
+	return (it == objects.starIcon.end() ? "null" : it->second);
 }
 
 

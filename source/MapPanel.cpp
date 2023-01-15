@@ -886,11 +886,13 @@ void MapPanel::UpdateCache()
 			}
 		}
 
+		vector<string> unmappedSystem = {"map/unexplored-star"};
+
 		nodes.emplace_back(system.Position(), color,
 			player.KnowsName(system) ? system.Name() : "",
 			(&system == &playerSystem) ? closeNameColor : farNameColor,
 			player.HasVisited(system) ? system.GetGovernment() : nullptr,
-			system.GetMapIcon(), player.HasVisited(system));
+			player.HasVisited(system) ? system.GetMapIcon() : unmappedSystem);
 	}
 
 	// Now, update the cache of the links.
@@ -1150,7 +1152,7 @@ void MapPanel::DrawSystems()
 		{
 			starAngle = starAngle + spin;
 			Point starRotate(cos(starAngle), sin(starAngle));
-			string displayStar = (node.isVisited) ? stars : "map/unexplored-star";
+			string displayStar = stars;
 			SpriteShader::Draw(SpriteSet::Get(displayStar), pos + zoom * starOffset * starRotate, zoom / 8);
 		}
 
@@ -1181,9 +1183,13 @@ void MapPanel::DrawNames()
 	// Draw names for all systems you have visited.
 	bool useBigFont = (zoom > 2.);
 	const Font &font = FontSet::Get(useBigFont ? 18 : 14);
-	Point offset(useBigFont ? 8. : 6., -.5 * font.Height());
 	for(const Node &node : nodes)
+	{
+		int namewidth = font.Width(node.name);
+		Point offset(useBigFont ? -namewidth / 2 : -namewidth / 2, 0.75 * font.Height());
 		font.Draw(node.name, zoom * (node.position + center) + offset, node.nameColor);
+	}
+
 }
 
 
