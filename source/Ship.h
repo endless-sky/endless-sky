@@ -25,9 +25,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "EsUuid.h"
 #include "FireCommand.h"
 #include "Outfit.h"
-#include "Port.h"
 #include "Personality.h"
 #include "Point.h"
+#include "Port.h"
 #include "ShipJumpNavigation.h"
 
 #include <list>
