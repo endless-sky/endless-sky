@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Color;
 class ConditionsStore;
 class Conversation;
+class CustomSale;
 class DataNode;
 class DataWriter;
 class Date;

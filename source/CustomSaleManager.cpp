@@ -13,8 +13,9 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "ConditionsStore.h"
 #include "CustomSaleManager.h"
+
+#include "ConditionsStore.h"
 #include "GameData.h"
 #include "Outfit.h"
 #include "Planet.h"
