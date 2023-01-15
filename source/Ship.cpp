@@ -3524,7 +3524,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	discharge += damage.Discharge();
 	corrosion += damage.Corrosion();
 	ionization += damage.Ion();
-	scrambling += damage.scrambling();
+	scrambling += damage.Scrambling();
 	burning += damage.Burn();
 	leakage += damage.Leak();
 
@@ -3575,7 +3575,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 				|| ((damage.Heat() || damage.Burn()) && isOverheated)
 				|| ((damage.Energy() || damage.Ion()) && Energy() < 0.5)
 				|| ((damage.Fuel() || damage.Leak()) && fuel < navigation.JumpFuel() * 2.)
-				|| (damage.scrambling() && CalculateJamChance(Energy(), scrambling) > 0.1)
+				|| (damage.Scrambling() && CalculateJamChance(Energy(), scrambling) > 0.1)
 				|| (damage.Slowing() && slowness > 10.)
 				|| (damage.Disruption() && disruption > 100.)))
 		type |= ShipEvent::PROVOKE;
@@ -4008,7 +4008,7 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 	// Since weapons fire from within the shields, hull and "status" damages are dealt in full.
 	hull -= weapon.FiringHull() + relativeHullChange;
 	ionization += weapon.FiringIon();
-	scrambling += weapon.Firingscrambling();
+	scrambling += weapon.FiringScrambling();
 	disruption += weapon.FiringDisruption();
 	slowness += weapon.FiringSlowing();
 	discharge += weapon.FiringDischarge();
