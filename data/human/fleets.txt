@@ -2362,7 +2362,7 @@ fleet "Large Northern Pirates"
 		"Aerie" 2
 		"Dagger" 4
 		"Firebird"
-	variant 1
+	variant 2
 		"Valkyrie"
 		"Lance" 2
 	variant 1
