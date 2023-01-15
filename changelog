@@ -116,7 +116,7 @@ Version 0.10.0
       * It is now possible to demand tribute from Unfettered Hai worlds. (@Hurleveur)
       * A short mission chain about "Hound Racing," featuring the return of an old face. (@Anarchist2)
       * A mission about smuggling wool. (@Anarchist2)
-      * Hails and news items hinting to the player about the requirements for the Ther Might Be Riots mission chain. (@Zitchas)
+      * Hails and news items hinting to the player about the requirements for the There Might Be Riots mission chain. (@Zitchas)
       * Added a variety of new hails for Free Worlds and Republic ships. (@bene-dictator)
       * Added a short mission chain about delivering a large inheritance. (@Anarchist2)
       * Additional human ship names. @bene-dictator)
@@ -219,8 +219,8 @@ Version 0.10.0
         * Increased cargo space: 10 -> 15
         * Removed the Cooling Ducts and use a cheaper generator.
       * Reduce the 0.9.15 afterburner buff. (@Amazinite)
-        * Halved the buffs to thrust and fuel usage.
-        * Slightly nerfed the newer afterburners.
+        * Reduced thrust by 20-30% and increased fuel usage by 20-30% on all afterburners.
+        * For reference, in 0.9.15, afterburners gained a 50% increase in thrust, 70-80% decrease in fuel usage, and 33% decrease in size.
     * Graphics:
       * Added sprites for the Remnant Swan. (@Saugia)
       * Remodelled Korath Thermal Repeater sprites. (@Daeridanii1)
@@ -253,7 +253,7 @@ Version 0.10.0
       * Add some diversity to the sale of Hai ships. (@MasterOfGrey)
       * Moved the Cloaking Device is now to the "Unique" outfit category. (@czartrak)
       * The descriptions of the Heliarch reactors now indicate that they used anti-matter catalyzed fusion technology. (@Arachi-Lover)
-      * Added a reference to the player's manual to thecredits. (@hmglasgow)
+      * Added a reference to the player's manual to the credits. (@hmglasgow)
       * Separated planet and system definitions into their own files. (@Amazinite)
       * Brighten some government colors to improve map readability. (@TomGoodIdea)
       * Used custom penalties to improve Remnant and Quarg reactions to actions against some foreign governments. (@Hurleveur)
@@ -287,7 +287,7 @@ Version 0.10.0
       * Governments can use named "stock" colors instead of always defining a color literal. (@warp-core)
       * Added a "flotsam chance" attribute for outfits which determines the chance the outfit will be dropped as flotsam when the ship carrying it explodes. (@Azure3141)
       * Governments can define custom values for various actions against foreign governments. (@warp-core)
-      * Added an "optical jamming" attribute that workd similarly to radar jamming, but against optically guided missiles. (@Hurleveur)
+      * Added an "optical jamming" attribute that works similarly to radar jamming, but against optically guided missiles. (@Hurleveur)
       * Added the "invisible" system property which makes systems inaccessible. (@yjhn, @Amazinite)
     * Mechanic changes:
       * Frugal ships now consider their health percentage instead of the sum of their shield and hull percentages. (@Hurleveur)
@@ -309,7 +309,7 @@ Version 0.10.0
     * Changed the default screen mode to full screen. (@samrocketman)
     * Separate governments with the same display name and color will no longer appear separately in the map key. (@warp-core)
     * Added option for only parking or unparking ships in the current system. (@Koranir)
-    * The settings panel can now have mmultiple pages. (@warp-core)
+    * The settings panel can now have multiple pages. (@warp-core)
     * Added a button to open the plugins folder to the plugins panel. (@quyykk, @tehhowch)
     * Outfits can now have non-unique display names. (@RisingLeaf, @quyykk, @Hurleveur, @Amazinite)
     * The boarding panel will now indicate how many crew were transferred to a captured ship. (@warp-core)
@@ -386,7 +386,7 @@ Version 0.10.0
     * Improved the test parse script. (@quyykk)
     * Simplified data parsing CI jobs. (@quyykk)
     * Use dedicated sccache GHA support + Linux support. (@quyykk)
-    * Disabled various invisible, landing missions that were causing an integration test to fail. (@warp-core)
+    * Disabled various invisible landing missions that were causing an integration test to fail. (@warp-core)
     * Reorganized the build instructions. (@Zitchas)
     * Added the "install" folder to .gitignore. (@Zitchas)
 
