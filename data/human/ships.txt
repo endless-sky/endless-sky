@@ -3484,14 +3484,14 @@ ship "Valkyrie"
 		"hull" 2800
 		"required crew" 17
 		"bunks" 28
-		"mass" 173
+		"mass" 157
 		"drag" 4.9
 		"heat dissipation" .62
 		"fuel capacity" 500
-		"cargo space" 36
-		"outfit space" 395
-		"weapon capacity" 160
-		"engine capacity" 95
+		"cargo space" 32
+		"outfit space" 400
+		"weapon capacity" 170
+		"engine capacity" 82
 		weapon
 			"blast radius" 80
 			"shield damage" 800
