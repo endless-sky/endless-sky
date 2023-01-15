@@ -1431,11 +1431,13 @@ mission "Unfettered: Ambush"
 
 
 mission "Unfettered: Hunger Stories 1"
-	name `Transport family to <destination>`
+	minor
+	name `Transport a family of <passengers> to <destination>`
 	description `Transport a bereaved Unfettered family to <destination>.`
 	source "Firelode"
 	destination "Hai-home"
-	clearance `You contact the authorities when you enter the system and they say they will have a team waiting when you land.`
+	passengers 2
+	clearance `You contact the authorities and they say they will have a team waiting when you land.`
 	to offer
 		has "unfettered: hunger"
 	on offer
@@ -1453,7 +1455,7 @@ mission "Unfettered: Hunger Stories 1"
 				`	(Offer to take them to <destination>.)`
 				`	(Offer your condolences and move on.)`
 					goto "condolences"
-			`	While it's awkard to wait for your crew to translate, it gives you time to choose your words. "Your brothers and sisters in the south have food and shelter for your family. If you want to go, I can take you there."`
+			`	While it's awkard to wait for your crew to translate, it gives you time to choose your words. "Your brothers and sisters in the south have food and shelter for your family. I can take you there if you want."`
 			`	She hesitates but then the baby starts to cry. She looks at you with tears in her eyes and nods. You send some crew with her to help her pack her things and bring them to the ship.`
 				accept
 			
@@ -1462,8 +1464,8 @@ mission "Unfettered: Hunger Stories 1"
 				decline
 
 			label "condolences"
-			`	You tell her you are sorry for her loss. You see anger flare across her features as you turn to leave and if she wasn't holding an infant she might well have attacked you. "What good are your words monkey-man?" she shouts. " Will they feed my children? Did you come all this way to make fun of us? We have to choose between dying for a new world or starving on this one. Go back through the wormhole and give your words to your own kind!"`
-			`	A group of Unfettered roughly screen you off from the distraught mother and tell you to go to leave. She continues screaming at you and crying as you walk away.`
+			`	You tell her you are sorry for her loss. You see anger flare across her features as you turn to leave and if she wasn't holding an infant she might well have attacked you. "What good are your words monkey-man?" she shouts. "Will they feed my children? Did you come all this way to make fun of us? We have to choose between dying for a new world or starving on this one. Go back through the wormhole and give your words to your own kind!"`
+			`	A group of Unfettered roughly screen you off from the distraught mother and tells you to leave. She continues screaming at you and crying as you walk away.`
 				decline
 
 	on complete
@@ -1531,8 +1533,7 @@ mission "Unfettered: Hunger Stories 2"
 
 
 mission "Unfettered: Hunger Stories 3"
-	name `Encounter a gang of Unfettered children.`
-	description `Deal with a gang of Unfettered children.`
+	minor
 	source "Warfeed"
 	to offer
 		has "unfettered: hunger"
