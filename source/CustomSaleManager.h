@@ -33,7 +33,7 @@ public:
 	static void Refresh(const Planet &planet, const ConditionsStore &conditions);
 	// Return if this outfit is imported; meaning it is displayed but cannot be bought.
 	static bool Imports(const Outfit &outfit);
-	
+
 	// Get the full/relative cost of the outfit/ship with the last cached conditions.
 	static int64_t OutfitCost(const Outfit &outfit);
 	static double OutfitRelativeCost(const Outfit &outfit);
