@@ -55,6 +55,7 @@ namespace {
 	const int MARKED = (1 << 27);
 	const int LAUNCHING = (1 << 28);
 	const int LINGERING = (1 << 29);
+	const int PRAGMATIC = (1 << 30);
 
 	const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -86,7 +87,8 @@ namespace {
 		{"target", TARGET},
 		{"marked", MARKED},
 		{"launching", LAUNCHING},
-		{"lingering", LINGERING}
+		{"lingering", LINGERING},
+		{"pragmatic", PRAGMATIC}
 	};
 
 	const double DEFAULT_AGGRO_RANGE = 2000;
@@ -270,6 +272,13 @@ bool Personality::IsOpportunistic() const
 bool Personality::IsMerciful() const
 {
 	return flags & MERCIFUL;
+}
+
+
+
+bool Personality::IsPragmatic() const
+{
+	return flags & PRAGMATIC;
 }
 
 
