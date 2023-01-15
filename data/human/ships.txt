@@ -811,19 +811,20 @@ ship "Bulwark"
 	thumbnail "thumbnail/pirate bulwark"
 	attributes
 		category "Medium Warship"
-		"cost" 3960000
+		"cost" 4360000
 		"shields" 7000
-		"hull" 5500
+		"hull" 5600
 		"required crew" 19
 		"bunks" 31
 		"mass" 881
-		"drag" 14.4
+		"drag" 13.4
 		"heat dissipation" .35
 		"fuel capacity" 500
 		"cargo space" 12
-		"outfit space" 511
-		"weapon capacity" 213
+		"outfit space" 521
+		"weapon capacity" 223
 		"engine capacity" 120
+		"threshold percentage" .08
 		weapon
 			"blast radius" 120
 			"shield damage" 1200
