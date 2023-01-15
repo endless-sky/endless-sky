@@ -97,7 +97,7 @@ public:
 	// systems within that jump range instead of the jump range given.
 	const std::set<const System *> &JumpNeighbors(double neighborDistance) const;
 	// Defines whether this system can be seen when not linked. A hidden system will
-	// not appear when in view range, only when linked to a visited system.
+	// not appear when in view range, except when linked to a visited system.
 	bool Hidden() const;
 	// Defines whether this system can be accessed or interacted with in any way.
 	bool Inaccessible() const;
@@ -207,7 +207,7 @@ private:
 	std::map<double, std::set<const System *>> neighbors;
 
 	// Defines whether this system can be seen when not linked. A hidden system will
-	// not appear when in view range, only when linked to a visited system.
+	// not appear when in view range, except when linked to a visited system.
 	bool hidden = false;
 	// Defines whether this system can be accessed or interacted with in any way.
 	bool inaccessible = false;

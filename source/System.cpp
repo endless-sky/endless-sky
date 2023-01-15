@@ -591,7 +591,7 @@ const set<const System *> &System::JumpNeighbors(double neighborDistance) const
 
 
 // Defines whether this system can be seen when not linked. A hidden system will
-// not appear when in view range, only when linked to a visited system.
+// not appear when in view range, except when linked to a visited system.
 bool System::Hidden() const
 {
 	return hidden;

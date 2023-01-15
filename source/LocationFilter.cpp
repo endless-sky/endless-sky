@@ -469,7 +469,7 @@ const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance
 	for(const auto &it : GameData::Planets())
 	{
 		const Planet &planet = it.second;
-		// Skip planets with incomplete data or which are from iaccessible systems.
+		// Skip planets with incomplete data or which are from inaccessible systems.
 		if(!planet.IsValid() || (planet.GetSystem() && planet.GetSystem()->Inaccessible()))
 			continue;
 		// Skip planets that do not offer special jobs or missions, unless they were explicitly listed as options.
