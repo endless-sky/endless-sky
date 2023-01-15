@@ -1454,16 +1454,16 @@ mission "Unfettered: Hunger Stories 1"
 			choice
 				`	(Offer to take them to <destination>.)`
 				`	(Offer your condolences and move on.)`
-					goto "condolences"
+					goto condolences
 			`	While it's awkard to wait for your crew to translate, it gives you time to choose your words. "Your brothers and sisters in the south have food and shelter for your family. I can take you there if you want."`
 			`	She hesitates but then the baby starts to cry. She looks at you with tears in her eyes and nods. You send some crew with her to help her pack her things and bring them to the ship.`
 				accept
 			
-			label "business"
+			label business
 			`	The Unfettered mother never notices you as you pass by. You see the family later in a long queue for food rations.`
 				decline
 
-			label "condolences"
+			label condolences
 			`	You tell her you are sorry for her loss. You see anger flare across her features as you turn to leave and if she wasn't holding an infant she might well have attacked you. "What good are your words monkey-man?" she shouts. "Will they feed my children? Did you come all this way to make fun of us? We have to choose between dying for a new world or starving on this one. Go back through the wormhole and give your words to your own kind!"`
 			`	A group of Unfettered roughly screen you off from the distraught mother and tells you to leave. She continues screaming at you and crying as you walk away.`
 				decline
@@ -1476,10 +1476,12 @@ mission "Unfettered: Hunger Stories 1"
 
 
 mission "Unfettered: Hunger Stories 2"
-	name `Transport warrior to <destination>`
+	minor
+	name `Transport a Hai warrior to <destination>`
 	description `Transport an Unfettered warrior to <destination>.`
 	source "Darkcloak"
 	destination "Makerplace"
+	passengers 1
 	to offer
 		has "unfettered: hunger"
 	on offer
@@ -1489,37 +1491,37 @@ mission "Unfettered: Hunger Stories 2"
 			`	It takes you a moment to parse what he is saying as his accent is difficult to understand. You would guess he learned Human language in class but has never spoken with native speakers. You think he is offering to be your translator and bodyguard.`
 			choice
 				`(Hire him.)`
-					goto "hire"
+					goto hire
 				`(Politely decline.)`
-					goto "polite"
+					goto polite
 				`(Laugh at him and walk away.)`
-					goto "laugh"
+					goto laugh
 			
-			label "hire"
+			label hire
 			`	The young Unfettered proves diligent in his work. He steers you away from some vendors and towards others and the prices and quality are at least competitive. Several times his staff has flashed out and blocked people who might have bumped into you. While some of the vendors you traded with were amused by his translations, most worked through him rather than speaking to you directly. He even kept watch while you were eating, though he did seem to be distracted by the food.`
 			`	At the end of the day, he follows you to the <ship> and you pay him his fee. He surprises you though, by following you on board. "I will watch over you until you make it back to the Fettered worlds. You should be safe enough on <destination>." From the prices you saw in the resturants and shops, the amount you paid would feed him for a few days at most.`
 			choice
 				`	(Give him transport.)`
-					goto "transport"
+					goto transport
 				`	(Escort him off the ship.)`
-					goto "escort"
+					goto escort
 				
-			label "polite"
+			label polite
 			`	You tell him that you can take care of yourself. He nods to acknowledge your decision but maintains eye contact. He then turns and walks away.`
 			`	You see him around the space port a few times: once working as a porter, another loading cargo. Both seem like odd jobs for someone with his apparent skills and neither will pay very well. As you are heading back to your ship you see him at one of the small food stalls that sells really cheap noodle cups and you wonder if that's the only time he's eaten today.`
 				decline
 
-			label "laugh"
+			label laugh
 			`	You find yourself flat on your back looking up at the young Unfettered. He's holding your sidearm and point it at you with the safety off. You later decide that he must have swept your legs with the staff and grabbed your weapon, but it happened so swiftly you never saw it.`
 			`	"I was wrong," he says as he secures your weapon inside his jacket. "I though you warrior. Have respect. You just monkey after all."`
 			`	He walks off causally, never bothering to turn around.`
 				decline
 
-			label "escort"
+			label escort
 			`	His eyes narrow when you tell him to leave. "Mistake to refuse generosity of True Hai," he says. You get the distinct impression that he'd take it further if he wasn't on your ship. As it is, he leaves peacefully and you close the hatch.`
 				decline
 
-			label "transport"
+			label transport
 			`	You drop the Hai off at the galley and tell him to eat as much as he wants while you prepare the ship for launch. When you return after reaching orbit, his belly is noticably distendend. He seems more relaxed than he did at the spaceport, but that could just be the on-coming food coma. You take him to the uniform locker and find him some boots and a jumpsuit, though you have to make some quick alterations with your knife to accommodate his tail. He asks for a sewing kit and says that he can finish the job.`
 				accept
 
@@ -1543,16 +1545,20 @@ mission "Unfettered: Hunger Stories 3"
 			`	On your way back to your ship, a gang of Unfettered children block your path and move to encircle you. One of the older girls steps forward and in halting Human says, "Trespass. 500 credits. Then go." You can see half a dozen of them and all of them are half your size.`
 			choice
 				`	(Pay them.)`
-					goto "bribe"
+					goto bribe
 				`	(Grab my weapon.)`
-					goto "fight"
+					goto fight
 
-			label "bribe"	
+			label bribe
+			action
+				payment -500
 			`	You see movement in your peripheral vision just as you feel the credits pulled from your hand. One of the children off to your side darted forward before you could react and is now handing your credits to the leader. She checks the amound and then gives you a satisfied smile. Aty credits nod, the group vanishes into the life of the street.`
 			`	You make your way quickly back to the spaceport, certain that the kids are shadowing you. It's with some relief that you make it through the security checkpoint.`
 				decline
 			
-			label "fight"
+			label fight
+			action
+				payment -5000
 			`	You reach for your sidearm only to find that it isn't there. It seems like a dozen pairs of paws are on you, some tearing at your clothes and some climbing on you. You spin around to try and shake them off. You end up rolling on the ground and then, as suddenly as it began, everything stops and you are alone in the street. You check yourself quickly and you seem to be uninjured. Your clothes are in tatters, though, and your sidearm, communicator, and bag are nowhwere to be seen.`
 			`	You make your way back to the spaceport. For once, it's useful to be the alien. The guards are quickly able to quickly clear you even without documentation. You hear them laughing as you head for the safety of your ship. You've no doubt that the story of he monkey robbed by children is already making the rounds.`
 				decline
