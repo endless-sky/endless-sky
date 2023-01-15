@@ -3482,16 +3482,16 @@ ship "Valkyrie"
 		"cost" 3900000
 		"shields" 4800
 		"hull" 2800
-		"required crew" 17
+		"required crew" 10
 		"bunks" 28
 		"mass" 157
 		"drag" 4.9
-		"heat dissipation" .62
+		"heat dissipation" .63
 		"fuel capacity" 500
 		"cargo space" 32
 		"outfit space" 400
 		"weapon capacity" 170
-		"engine capacity" 82
+		"engine capacity" 75
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -3532,7 +3532,7 @@ ship "Valkyrie"
 	explode "medium explosion" 25
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
-	description "Valkyries are pirated Aeries converted into more of a standalone warship than a support carrier. Losing a turret in place of increased armor protection, as well as boasting two more gun mounts, Valkyries can both take and put out noticeable amounts of damage. However, due to the extra weight, they are somewhat slower."
+	description "Valkyries are pirated Aeries converted into more of a standalone warship than a support carrier. Losing a turret in place of increased armor protection, as well as boasting two more gun mounts, Valkyries can both take and put out noticeable amounts of damage. However, due to the extra weight, they are somewhat slower and lose a bit of shield efficiency."
 
 
 
