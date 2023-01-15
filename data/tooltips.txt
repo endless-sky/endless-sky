@@ -735,7 +735,7 @@ tip "ion damage / second:"
 	`Reduces the target's energy. Ionization slowly wears off over time.`
 
 tip "scrambling damage / second:"
-	`Causes weapon failures. scrambling slowly wears off over time.`
+	`Causes weapon failures. Scrambling slowly wears off over time.`
 
 tip "slowing damage / second:"
 	`Reduces the target's turn rate, acceleration, and top speed. Slowing wears off over time.`
