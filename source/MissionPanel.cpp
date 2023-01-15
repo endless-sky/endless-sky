@@ -583,12 +583,12 @@ void MissionPanel::SetSelectedScrollAndCenter(bool immediate)
 	// Auto select the destination system for the current mission.
 	if(availableIt != available.end())
 	{
-		selectedSystem = availableIt->Destination()->GetSystem();
+		selectedSystem = availableIt->Destination().GetSystem();
 		DoScroll(available, availableIt, availableScroll, false);
 	}
 	else if(acceptedIt != accepted.end())
 	{
-		selectedSystem = acceptedIt->Destination()->GetSystem();
+		selectedSystem = acceptedIt->Destination().GetSystem();
 		DoScroll(accepted, acceptedIt, acceptedScroll, true);
 	}
 
