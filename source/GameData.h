@@ -117,7 +117,7 @@ public:
 	static const Set<CustomSale> &CustomSales();
 	static std::map<CustomSale::SellType, CustomSale> GetCustomSales(const Planet &planet,
 		const ConditionsStore &conditions);
-	static double OutfitCost(const std::map<CustomSale::SellType, CustomSale> &sales, const Outfit &outfit);
+	static double OutfitRelativeCost(const std::map<CustomSale::SellType, CustomSale> &sales, const Outfit &outfit);
 	static const Set<Effect> &Effects();
 	static const Set<GameEvent> &Events();
 	static const Set<Fleet> &Fleets();

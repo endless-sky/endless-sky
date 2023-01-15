@@ -273,7 +273,7 @@ int64_t Depreciation::Value(const Ship *ship, int day, int count) const
 // Get the value of an outfit.
 int64_t Depreciation::Value(const Outfit *outfit, int day, int count) const
 {
-	int64_t cost = outfit->Cost() * (customSales ? (GameData::OutfitCost(*customSales, *outfit)) : 1);
+	int64_t cost = outfit->Cost() * (customSales ? (GameData::OutfitRelativeCost(*customSales, *outfit)) : 1);
 	if(outfit->Get("installable") < 0.)
 		return count * cost;
 

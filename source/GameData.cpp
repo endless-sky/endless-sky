@@ -515,7 +515,7 @@ map<CustomSale::SellType, CustomSale> GameData::GetCustomSales(const Planet &pla
 
 
 
-double GameData::OutfitCost(const map<CustomSale::SellType, CustomSale> &sale, const Outfit &outfit)
+double GameData::OutfitRelativeCost(const map<CustomSale::SellType, CustomSale> &sale, const Outfit &outfit)
 {
 	if(sale.empty())
 		return 1.;

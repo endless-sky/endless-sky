@@ -150,7 +150,7 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 			if(planet->HasOutfitter())
 			{
 				if(planet->Outfitter().Has(selected))
-					return (GameData::OutfitCost(GameData::GetCustomSales(*planet, player.Conditions()),
+					return (GameData::OutfitRelativeCost(GameData::GetCustomSales(*planet, player.Conditions()),
 						*selected));
 				else
 					value = -.1;
