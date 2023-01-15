@@ -62,6 +62,9 @@ MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool 
 			case Planet::Friendliness::DOMINATED:
 				reputationLabel = "Dominated";
 				break;
+			default:
+				reputationLabel = "Friendly";
+				break;
 		}
 	}
 
