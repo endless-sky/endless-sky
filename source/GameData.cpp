@@ -21,7 +21,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "ConditionsStore.h"
 #include "Conversation.h"
-#include "CustomSale.h"
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"

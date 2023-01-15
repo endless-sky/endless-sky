@@ -79,8 +79,8 @@ namespace {
 
 	bool Imports(const map<CustomSale::SellType, CustomSale> &customSales, const Outfit *outfit)
 	{
-		return customSales.count(CustomSale::SellType::IMPORT) &&
-			customSales.at(CustomSale::SellType::IMPORT).Has(*outfit);
+		const auto &it = customSales.find(CustomSales::SellType::IMPORT);
+		return it != customSales.end() && it.second.Has(*outfit);
 	}
 }
 

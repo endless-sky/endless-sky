@@ -31,7 +31,8 @@ namespace
 		{CustomSale::SellType::DEFAULT, ""},
 		{CustomSale::SellType::IMPORT, "import"}
 	};
-	// Default value for finding prices and offsets, that should not conflict with actual values.
+	// Initially put values at this to know if we found what we're looking for,
+	// whilst allowing 0 in the searched list.
 	const double DEFAULT = numeric_limits<double>::infinity();
 }
 
@@ -70,7 +71,16 @@ void CustomSale::Load(const DataNode &node, bool eventChange)
 		bool add = child.Token(0) == "add";
 
 		int keyIndex = (add || remove);
-		bool hasKey = child.Size() > 1;
+		bool hasKey = child.Size() > keyIndex;
+
+		if(!hasKey)
+			if(remove)
+				Clear();
+			else
+			{
+				child.PrintTrace("Error: skipping entry with empty \"add\":");
+				continue;
+			}
 
 		const string &key = child.Token(keyIndex);
 
@@ -79,9 +89,7 @@ void CustomSale::Load(const DataNode &node, bool eventChange)
 
 		if(remove)
 		{
-			if(!hasKey)
-				Clear();
-			else if(key == "outfit" && mode == "outfits")
+			if(key == "outfit" && mode == "outfits")
 			{
 				// If an outfit is specified remove only that one. Otherwise clear all of them.
 				if(child.Size() >= 3)
@@ -349,26 +357,6 @@ const string &CustomSale::GetShown(CustomSale::SellType sellType)
 
 
 
-const Sale<Outfit> &CustomSale::GetOutfits()
-{
-	if(!seen.empty() && cacheValid)
-		return seen;
-	else
-		seen.clear();
-	for(auto it : relativeOutfitPrices)
-		seen.insert(it.first);
-	for(auto it : relativeOutfitOffsets)
-		seen.insert(it.first);
-	for(auto &&sale : relativePrices)
-		seen.Add(*sale.first);
-	for(auto &&sale : relativeOffsets)
-		seen.Add(*sale.first);
-	cacheValid = true;
-	return seen;
-}
-
-
-
 bool CustomSale::Has(const Outfit &item) const
 {
 	if(relativeOutfitPrices.find(&item) != relativeOutfitPrices.end())
@@ -396,7 +384,8 @@ bool CustomSale::Matches(const Planet &planet, const ConditionsStore &playerCond
 
 bool CustomSale::IsEmpty()
 {
-	return GetOutfits().empty();
+	return relativePrices.empty() && relativeOffsets.empty() &&
+		relativeOutfitPrices.empty() && relativeOutfitOffsets.empty();
 }
 
 

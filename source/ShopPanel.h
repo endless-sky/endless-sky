@@ -18,8 +18,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
-#include "CustomSale.h"
 #include "ClickZone.h"
+#include "CustomSale.h"
 #include "Mission.h"
 #include "OutfitInfoDisplay.h"
 #include "Point.h"

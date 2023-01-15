@@ -38,9 +38,9 @@ class Outfit;
 class CustomSale {
 public:
 	// Sell types: none is meant to be default, meaning the visibility depends on the outfitter,
-	// import means it is shown whilst still not being buyable
+	// import means it is shown whilst still not being buyable.
 	//
-	// The numbers correspond to the priority, hidden will override import which will override visible.
+	// The numbers correspond to the priority, import will override the default.
 	enum class SellType {
 		DEFAULT = 0,
 		IMPORT = 1
@@ -64,9 +64,6 @@ public:
 
 	// Convert the given sellType into a string.
 	static const std::string &GetShown(SellType sellType);
-
-	// Return all outfits that are affected by this CustomSale.
-	const Sale<Outfit> &GetOutfits();
 
 	bool Has(const Outfit &item) const;
 

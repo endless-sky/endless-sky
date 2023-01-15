@@ -219,7 +219,7 @@ void MapSalesPanel::DrawKey() const
 	SpriteShader::Draw(back, Screen::TopLeft() + Point(WIDTH + 10, 0) + .5 * Point(back->Width(), back->Height()));
 
 	Color bright(.6f, .6f);
-	const Color &dim = *GameData::Colors().Get("dim");
+	Color dim(.3f, .3f);
 	const Font &font = FontSet::Get(14);
 
 	Point pos(Screen::Left() + 50. + WIDTH, Screen::Top() + 12.);
