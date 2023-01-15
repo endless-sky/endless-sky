@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Person.h"
@@ -61,6 +64,14 @@ void Person::FinishLoading()
 
 
 
+// Prevent this person from being spawned in any system.
+void Person::NeverSpawn()
+{
+	frequency = 0;
+}
+
+
+
 // Find out how often this person should appear in the given system. If this
 // person is dead or already active, this will return zero.
 int Person::Frequency(const System *system) const
@@ -69,7 +80,7 @@ int Person::Frequency(const System *system) const
 	// links, don't create them in systems with no links.
 	if(!system || IsDestroyed() || IsPlaced() || system->Links().empty())
 		return 0;
-	
+
 	return (location.IsEmpty() || location.Matches(system)) ? frequency : 0;
 }
 
@@ -109,7 +120,7 @@ bool Person::IsDestroyed() const
 {
 	if(ships.empty() || !ships.front())
 		return true;
-	
+
 	const Ship &flagship = *ships.front();
 	return (flagship.IsDestroyed() || (flagship.GetSystem() && flagship.GetGovernment() != government));
 }
@@ -138,13 +149,13 @@ void Person::Restore()
 
 
 
-// Check if a person is already placed somehwere.
+// Check if a person is already placed somewhere.
 bool Person::IsPlaced() const
 {
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem())
 			return true;
-	
+
 	return false;
 }
 

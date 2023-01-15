@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Coalition Folklore: Saryd"
 	minor
@@ -88,7 +91,7 @@ mission "Coalition Folklore: Arach"
 			`	You follow her around the central portion of the city to a building which from the outside looks like some form of auditorium; there, some Arachi in uniform are seeing to the entries of the "patrons" of the event. "A human? Quite an exotic guest you've brought, lady Matlub," one of them says to your guide as she shows him a touchpad displaying two tickets. He verifies them and allows the two of you to enter. The inside reminds you of an opera house, with a large stage in front of dozens of rows of seats, and six levels of balconies on both sides. Matlub leads you to two excellent seats in one of the first few rows, and she helps you "adjust" the chair so that you're more comfortably seated. Just before the stage is an area a few steps below the level of the seats, with a few Arach musicians fine-tuning a variety of instruments. Up on the ceiling, and on all of the balconies, you see small cameras pointed at the stage to broadcast the event for those who didn't have the chance to attend it live.`
 			`	As the rows and balconies fill up with more guests, you notice a few Kimek and Saryds amidst the masses of Arachi, most of them accompanying an Arach patron; a few are seemingly patrons themselves, coming in on their own. A great many of them seem to take notice of you as you look around, but your patron studiously ignores the attention.`
 			choice
-				`	"I can see why you were speaking so highly about this, looks like a really organised event."`
+				`	"I can see why you were speaking so highly about this, looks like a really organized event."`
 				`	"Not every day that they see a human in one of these, I take it?"`
 			`	She nods. "A prestigious event, this is. Bring friends from all around the Coalition to watch, the patrons do. The most unique guest we've had, you are."`
 			`	Once all seats are filled, the doors are closed, and an Arach comes to the stage. "Welcome you, esteemed guests, to this celebration of saga and song, our theater does," he says. "Make you wait any longer, I shall not, so for our first play, a timeless classic dear to all, I present: Moonstruck."`
@@ -100,7 +103,7 @@ mission "Coalition Folklore: Arach"
 				`	(Leave.)`
 					goto leave
 			`	Once everyone is seated, the same Arach from before goes to the stage again. "A surprise for you, tonight we have. A brand new play, an anonymous group of patrons commissioned. As a critique of one of the issues that persist in our society, described it is. For our second play: Babbling Bebliss."`
-			`	As he leaves, the curtains open to a set of an Arach street, where a child is purchasing some form of candy. From behind a building in the set, an Arach wearing tall, blue and white "socks" emerges as trumpets and tubas start playing an obnoxious track. He runs for the child and knocks the candy to the ground as he makes some gargling sound. Matlub sighs, saying, "Gibberish, it is. Nonsense, and words best left untranslated." The Arach actor goes on to cling to the walls of the building and grab things from inside the candy shop, throwing them wildly. By now, many well dressed patrons, most likely members of House Bebliss, are getting up and leaving the theater. Meanwhile, a group of Arachi on one of the balconies doesn't even try to muffle their laughter.`
+			`	As he leaves, the curtains open to a set of an Arach street, where a child is purchasing some form of candy. From behind a building in the set, an Arach wearing tall, blue and white "socks" emerges as trumpets and tubas start playing an obnoxious track. He runs for the child and knocks the candy to the ground as he makes some gargling sound. Matlub sighs, saying, "Gibberish, it is. Nonsense, and words best left untranslated." The Arach actor goes on to cling to the walls of the building and grab things from inside the candy shop, throwing them wildly. By now, many well-dressed patrons, most likely members of House Bebliss, are getting up and leaving the theater. Meanwhile, a group of Arachi on one of the balconies doesn't even try to muffle their laughter.`
 			`	The scene continues as a couple comes to the set, walking down the street. As they're about to lean in for what looks like a kiss, the Arach leaps from the building, landing on the bachelor with a thud. He steals the kiss, as the tubas and trumpets blast as loudly as they can. After a while, the authorities show up, only for the Arach to make a run for it down the street. The orchestra plays a tune that is as uncoordinated as his movements, and the curtains close. Not many in the audience manifest themselves, most sighing or getting ready to leave, save for the group that was laughing earlier who are now very vocal in announcing their appreciation for the play. "Know of subtlety, House Chamgar does not," Matlub says. "A shame it is, that tainted the soiree with this rivalry, they have."`
 			`	The doors open once again as new patrons cycle in to watch the third play.`
 			choice

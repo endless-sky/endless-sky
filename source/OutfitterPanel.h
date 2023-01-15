@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef OUTFITTER_PANEL_H_
@@ -39,12 +42,13 @@ class Ship;
 class OutfitterPanel : public ShopPanel {
 public:
 	explicit OutfitterPanel(PlayerInfo &player);
-	
+
 	virtual void Step() override;
-	
-	
+
+
 protected:
 	virtual int TileSize() const override;
+	virtual int VisibilityCheckboxesSize() const override;
 	virtual int DrawPlayerShipInfo(const Point &point) override;
 	virtual bool HasItem(const std::string &name) const override;
 	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) override;
@@ -60,14 +64,16 @@ protected:
 	virtual bool ShouldHighlight(const Ship *ship) override;
 	virtual void DrawKey() override;
 	virtual void ToggleForSale() override;
+	virtual void ToggleStorage() override;
 	virtual void ToggleCargo() override;
-	
-	
+
+
+
+
 private:
 	static bool ShipCanBuy(const Ship *ship, const Outfit *outfit);
 	static bool ShipCanSell(const Ship *ship, const Outfit *outfit);
 	static void DrawOutfit(const Outfit &outfit, const Point &center, bool isSelected, bool isOwned);
-	bool HasMapped(int mapSize) const;
 	bool IsLicense(const std::string &name) const;
 	bool HasLicense(const std::string &name) const;
 	std::string LicenseName(const std::string &name) const;
@@ -76,19 +82,19 @@ private:
 	// Shared code for reducing the selected ships to those that have the
 	// same quantity of the selected outfit.
 	const std::vector<Ship *> GetShipsToOutfit(bool isBuy = false) const;
-	
+
 private:
 	// Record whether we've checked if the player needs ammo refilled.
 	bool checkedRefill = false;
-	// Allow toggling whether outfits that are for sale are shown. If turned
-	// off, only outfits in the currently selected ships are shown.
+	// Allow toggling whether outfits that are for sale are shown.
 	bool showForSale = true;
-	// Remember what ships are selected if the player switches to cargo.
-	Ship *previousShip = nullptr;
-	std::set<Ship *> previousShips;
-	
+	// Allow toggling whether stored outfits are shown.
+	bool showStorage = true;
+	// Allow toggling whether outfits in cargo are shown.
+	bool showCargo = true;
+
 	Sale<Outfit> outfitter;
-	
+
 	// Keep track of how many of the outfitter help screens have been shown
 	bool checkedHelp = false;
 };

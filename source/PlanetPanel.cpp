@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "PlanetPanel.h"
@@ -51,16 +54,16 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	bank.reset(new BankPanel(player));
 	spaceport.reset(new SpaceportPanel(player));
 	hiring.reset(new HiringPanel(player));
-	
+
 	text.SetFont(FontSet::Get(14));
 	text.SetAlignment(Alignment::JUSTIFIED);
 	text.SetWrapWidth(480);
 	text.Wrap(planet.Description());
-	
+
 	// Since the loading of landscape images is deferred, make sure that the
 	// landscapes for this system are loaded before showing the planet panel.
 	GameData::Preload(planet.Landscape());
-	GameData::FinishLoading();
+	GameData::FinishLoadingSprites();
 }
 
 
@@ -74,7 +77,7 @@ void PlanetPanel::Step()
 		TakeOffIfReady();
 		return;
 	}
-	
+
 	// If the player starts a new game, exits the shipyard without buying
 	// anything, clicks to the bank, then returns to the shipyard and buys a
 	// ship, make sure they are shown an intro mission.
@@ -94,14 +97,14 @@ void PlanetPanel::Draw()
 {
 	if(player.IsDead())
 		return;
-	
+
 	Information info;
 	info.SetSprite("land", planet.Landscape());
-	
+
 	const Ship *flagship = player.Flagship();
 	if(flagship && flagship->CanBeFlagship())
 		info.SetCondition("has ship");
-	
+
 	if(planet.CanUseServices())
 	{
 		const auto &port = planet.GetPort();
@@ -117,16 +120,16 @@ void PlanetPanel::Draw()
 			if(port.HasService(Port::ServicesType::Trading) && system.HasTrade())
 				info.SetCondition("has trade");
 		}
-		
+
 		if(flagship && planet.HasPort())
 		{
 			info.SetCondition("has port");
 			info.SetString("port name", port.Name());
 		}
-		
+
 		if(planet.HasShipyard())
 			info.SetCondition("has shipyard");
-		
+
 		if(planet.HasOutfitter())
 			for(const auto &it : player.Ships())
 				if(it->GetSystem() == &system && !it->IsDisabled())
@@ -135,9 +138,9 @@ void PlanetPanel::Draw()
 					break;
 				}
 	}
-	
+
 	ui.Draw(info, this);
-	
+
 	if(!selectedPanel)
 		text.Draw(Point(-300., 80.), *GameData::Colors().Get("bright"));
 }
@@ -149,7 +152,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 {
 	Panel *oldPanel = selectedPanel;
 	const Ship *flagship = player.Flagship();
-	
+
 	bool hasAccess = planet.CanUseServices();
 	if(key == 'd' && flagship && flagship->CanBeFlagship())
 	{
@@ -212,12 +215,12 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else
 		return false;
-	
+
 	// If we are here, it is because something happened to change the selected
 	// planet UI panel. So, we need to pop the old selected panel:
 	if(oldPanel)
 		GetUI()->Pop(oldPanel);
-	
+
 	return true;
 }
 
@@ -229,11 +232,13 @@ void PlanetPanel::TakeOffIfReady()
 	if(!GetUI()->IsTop(this) && !GetUI()->IsTop(trading.get()) && !GetUI()->IsTop(bank.get())
 			&& !GetUI()->IsTop(spaceport.get()) && !GetUI()->IsTop(hiring.get()))
 		return;
-	
+
 	// If something happens here that cancels the order to take off, don't try
 	// to take off until the button is clicked again.
 	requestedLaunch = false;
-	
+
+	absentCannotFly.clear();
+
 	// Check for any landing missions that have not been offered.
 	Mission *mission = player.MissionToOffer(Mission::LANDING);
 	if(mission)
@@ -241,30 +246,68 @@ void PlanetPanel::TakeOffIfReady()
 		mission->Do(Mission::OFFER, player, GetUI());
 		return;
 	}
-	
+
 	// Check whether the player can be warned before takeoff.
 	if(player.ShouldLaunch())
 	{
 		TakeOff();
 		return;
 	}
-	
+
 	// Check if any of the player's ships are configured in such a way that they
-	// will be impossible to fly.
-	const auto flightChecks = player.FlightCheck();
+	// will be impossible to fly. If so, let the player choose whether to park them.
+	ostringstream out;
+	flightChecks = player.FlightCheck();
 	if(!flightChecks.empty())
+	{
 		for(const auto &result : flightChecks)
 		{
-			// If there is a flightcheck error, it will be the first (and only) entry.
+			// If there is a flight check error, it will be the first (and only) entry.
 			auto &check = result.second.front();
 			if(check.back() == '!')
 			{
-				GetUI()->Push(new ConversationPanel(player,
-					*GameData::Conversations().Get("flight check: " + check), nullptr, result.first));
-				return;
+				// If the ship with a flight check error is in another system, then the only thing the player
+				// can do is park it. But if the ship is with the player, then they may be able to make changes
+				// to rectify the error. As such, provide a conversation for any single present ship, but
+				// record and report all absent ships later.
+				if(result.first->GetSystem() != &system)
+				{
+					out << result.first->Name() << ", ";
+					absentCannotFly.push_back(result.first);
+				}
+				else
+				{
+					GetUI()->Push(new ConversationPanel(player,
+						*GameData::Conversations().Get("flight check: " + check), nullptr, result.first));
+					return;
+				}
 			}
 		}
-	
+		if(!absentCannotFly.empty())
+		{
+			string shipNames = out.str();
+			// Pop back the last ", " in the string.
+			shipNames.pop_back();
+			shipNames.pop_back();
+			GetUI()->Push(new Dialog(this, &PlanetPanel::CheckWarningsAndTakeOff,
+				"Some of your ships in other systems are not be able to fly:\n" + shipNames +
+				"\nDo you want to park those ships and depart?", Truncate::MIDDLE));
+			return;
+		}
+	}
+
+	CheckWarningsAndTakeOff();
+}
+
+
+
+void PlanetPanel::CheckWarningsAndTakeOff()
+{
+	// Park out of system ships that cannot fly.
+	for(const auto &ship : absentCannotFly)
+		ship->SetIsParked(true);
+	absentCannotFly.clear();
+
 	// Check for items that would be sold, or mission passengers that would be abandoned on-planet.
 	const Ship *flagship = player.Flagship();
 	const CargoHold &cargo = player.Cargo();
@@ -291,7 +334,7 @@ void PlanetPanel::TakeOffIfReady()
 					break;
 				}
 	}
-	
+
 	if(nonJumpCount > 0 || cargoToSell > 0 || overbooked > 0)
 	{
 		ostringstream out;
@@ -299,15 +342,15 @@ void PlanetPanel::TakeOffIfReady()
 		if(missionCargoToSell > 0 || overbooked > 0)
 		{
 			bool both = ((cargoToSell > 0 && cargo.MissionCargoSize()) && overbooked > 0);
-			out << "If you take off now you will fail a mission due to not having enough ";
-			
+			out << "If you take off now you will abort a mission due to not having enough ";
+
 			if(overbooked > 0)
 			{
 				out << "bunks available for " << overbooked;
 				out << (overbooked > 1 ? " of the passengers" : " passenger");
 				out << (both ? " and not having enough " : ".");
 			}
-			
+
 			if(missionCargoToSell > 0)
 			{
 				out << "cargo space to hold " << missionCargoToSell;
@@ -329,7 +372,7 @@ void PlanetPanel::TakeOffIfReady()
 		else
 		{
 			out << "If you take off now you will have to sell ";
-			
+
 			if(cargoToSell == 1)
 				out << "a ton of cargo";
 			else if(cargoToSell > 0)
@@ -340,7 +383,7 @@ void PlanetPanel::TakeOffIfReady()
 		GetUI()->Push(new Dialog(this, &PlanetPanel::TakeOff, out.str()));
 		return;
 	}
-	
+
 	// There was no need to ask the player whether we can get rid of anything,
 	// so go ahead and take off.
 	TakeOff();
@@ -350,6 +393,7 @@ void PlanetPanel::TakeOffIfReady()
 
 void PlanetPanel::TakeOff()
 {
+	flightChecks.clear();
 	player.Save();
 	if(player.TakeOff(GetUI()))
 	{

@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef ENDLESS_SKY_AC_TEST_H_
@@ -37,8 +40,12 @@ class Test {
 public:
 	// Status indicators for the test that we selected (if any).
 	enum class Status {ACTIVE, PARTIAL, BROKEN, KNOWN_FAILURE, MISSING_FEATURE};
-	
-	
+
+	// A tag type to denote a failing test that is not an error, such as a
+	// "known failure" test failing.
+	struct known_failure_tag {};
+
+
 public:
 	// Class representing a single step in a test
 	class TestStep {
@@ -57,7 +64,7 @@ public:
 			CALL,
 			// Step that adds game-data, either in the config-directories or in the game directly.
 			INJECT,
-			// Step that performs input (key, mouse, command). Does cause the game to step (to proces the inputs).
+			// Step that performs input (key, mouse, command). Does cause the game to step (to process the inputs).
 			INPUT,
 			// Label to jump to (similar as is done in conversations). Does not cause the game to step.
 			LABEL,
@@ -68,13 +75,13 @@ public:
 			WATCHDOG,
 		};
 
-		
-		
+
+
 	public:
 		TestStep(Type stepType);
 		void LoadInput(const DataNode &node);
-		
-		
+
+
 	public:
 		Type stepType = Type::ASSERT;
 		std::string nameOrLabel;
@@ -90,14 +97,14 @@ public:
 		// debug printing, so keeping the strings for now.
 		std::string jumpOnTrueTarget;
 		std::string jumpOnFalseTarget;
-		
+
 		unsigned int watchdog = 0;
-		
+
 		// Input variables.
 		Command command;
 		std::set<std::string> inputKeys;
-		Uint16 modKeys;
-		
+		Uint16 modKeys = 0;
+
 		// Mouse/Pointer input variables.
 		int XValue = 0;
 		int YValue = 0;
@@ -105,25 +112,27 @@ public:
 		bool clickMiddle = false;
 		bool clickRight = false;
 	};
-	
-	
+
+
 public:
 	const std::string &Name() const;
+	Status GetStatus() const;
 	const std::string &StatusText() const;
-	
+
 	// Check the game status and perform the next test action.
 	void Step(TestContext &context, PlayerInfo &player, Command &commandToGive) const;
-	
+
 	void Load(const DataNode &node);
-	
-	
+
+
 private:
 	void LoadSequence(const DataNode &node);
-	
+
 	// Fail the test using the given message as reason.
 	void Fail(const TestContext &context, const PlayerInfo &player, const std::string &testFailReason) const;
-	
-	
+	void UnexpectedSuccessResult() const;
+
+
 private:
 	std::string name;
 	Status status = Status::ACTIVE;

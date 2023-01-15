@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef IMAGE_SET_H_
@@ -38,15 +41,17 @@ public:
 	// Determine whether the given path or name is for a sprite whose loading
 	// should be deferred until needed.
 	static bool IsDeferred(const std::string &path);
-	
-	
+
+
 public:
 	// ImageSets should be created with a name, as some image paths (e.g. plugin icons)
 	// do not contain the associated image name.
 	ImageSet(std::string name);
-	
+
 	// Get the name of the sprite for this image set.
 	const std::string &Name() const;
+	// Whether this image set is empty, i.e. has no images.
+	bool IsEmpty() const;
 	// Add a single image to this set. Assume the name of the image has already
 	// been checked to make sure it belongs in this set.
 	void Add(std::string path);
@@ -59,8 +64,8 @@ public:
 	// called, the internal image buffers and mask vector will be cleared, but
 	// the paths are saved in case the sprite needs to be loaded again.
 	void Upload(Sprite *sprite);
-	
-	
+
+
 private:
 	// Name of the sprite that will be initialized with these images.
 	std::string name;

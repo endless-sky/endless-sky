@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef STELLAR_OBJECT_H_
@@ -30,32 +33,31 @@ class Ship;
 class StellarObject : public Body {
 public:
 	StellarObject();
-	
-	/* Functions provided by the Body base class:
-	bool HasSprite() const;
-	int Width() const;
-	int Height() const;
-	Frame GetFrame(int step = -1) const;
-	const Point &Position() const;
-	const Point &Velocity() const;
-	const Angle &Facing() const;
-	Point Unit() const;
-	*/
-	
+
+	// Functions provided by the Body base class:
+	// bool HasSprite() const;
+	// int Width() const;
+	// int Height() const;
+	// Frame GetFrame(int step = -1) const;
+	// const Point &Position() const;
+	// const Point &Velocity() const;
+	// const Angle &Facing() const;
+	// Point Unit() const;
+
 	// Get the radius of this planet, i.e. how close you must be to land.
 	double Radius() const;
-	
+
 	// Determine if this object represents a planet with valid data.
 	bool HasValidPlanet() const;
 	// Get this object's planet, if any. It may or may not be fully defined.
 	const Planet *GetPlanet() const;
-	
+
 	// Only planets that you can land on have names.
 	const std::string &Name() const;
 	// If it is impossible to land on this planet, get the message
 	// explaining why (e.g. too hot, too cold, etc.).
 	const std::string &LandingMessage() const;
-	
+
 	// Get the radar color to be used for displaying this object.
 	int RadarType(const Ship *ship) const;
 	// Check if this is a star.
@@ -70,22 +72,22 @@ public:
 	const std::vector<RandomEvent<Hazard>> &Hazards() const;
 	// Find out how far this object is from its parent.
 	double Distance() const;
-	
-	
+
+
 private:
 	const Planet *planet;
-	
+
 	double distance;
 	double speed;
 	double offset;
 	std::vector<RandomEvent<Hazard>> hazards;
 	int parent;
-	
+
 	const std::string *message;
 	bool isStar;
 	bool isStation;
 	bool isMoon;
-	
+
 	// Let System handle setting all the values of an Object.
 	friend class System;
 };

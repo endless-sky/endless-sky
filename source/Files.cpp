@@ -7,12 +7,16 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Files.h"
 
 #include "File.h"
+#include "Logger.h"
 
 #include <SDL2/SDL.h>
 
@@ -21,11 +25,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define STRICT
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
-#endif
-
-#include <sys/stat.h>
+#else
 #include <dirent.h>
+#include <sys/stat.h>
 #include <unistd.h>
+#include <utime.h>
+#endif
 
 #include <algorithm>
 #include <cstdlib>
@@ -39,16 +44,15 @@ using namespace std;
 namespace {
 	string resources;
 	string config;
-	
+
 	string dataPath;
 	string imagePath;
 	string soundPath;
 	string savePath;
 	string testPath;
-	
-	mutex errorMutex;
+
 	File errorLog;
-	
+
 	// Convert windows-style directory separators ('\\') to standard '/'.
 #if defined _WIN32
 	void FixWindowsSlashes(string &path)
@@ -58,6 +62,23 @@ namespace {
 				c = '/';
 	}
 #endif
+
+	// Open the given folder in a separate window.
+	void OpenFolder(const string &path)
+	{
+#if SDL_VERSION_ATLEAST(2, 0, 14)
+		if(SDL_OpenURL(("file://" + path).c_str()))
+			Logger::LogError("Warning: SDL_OpenURL failed with \"" + string(SDL_GetError()) + "\"");
+#elif defined(__linux__)
+		// Some supported distributions do not have an up-to-date SDL.
+		cout.flush();
+		if(int result = WEXITSTATUS(system(("xdg-open file://" + path).c_str())))
+			Logger::LogError("Warning: xdg-open failed with error code " + to_string(result) + ".");
+#else
+#warning SDL 2.0.14 or higher is needed for opening folders!
+		Logger::LogError("Warning: No handler found to open \"" + path + "\" in a new window.");
+#endif
+	}
 }
 
 
@@ -73,9 +94,9 @@ void Files::Init(const char * const *argv)
 			resources = *it;
 		else if((arg == "-c" || arg == "--config") && *++it)
 			config = *it;
-			
+
 	}
-	
+
 	if(resources.empty())
 	{
 		// Find the path to the resource directory. This will depend on the
@@ -83,7 +104,7 @@ void Files::Init(const char * const *argv)
 		char *str = SDL_GetBasePath();
 		if(!str)
 			throw runtime_error("Unable to get path to resource directory!");
-		
+
 		resources = str;
 		SDL_free(str);
 	}
@@ -102,10 +123,6 @@ void Files::Init(const char * const *argv)
 		resources = LOCAL_PATH + RESOURCE_PATH;
 	else if(!resources.compare(0, STANDARD_PATH.length(), STANDARD_PATH))
 		resources = STANDARD_PATH + RESOURCE_PATH;
-#elif defined __APPLE__
-	// Special case for Mac OS X: the resources are in ../Resources relative to
-	// the folder the binary is in.
-	resources = resources + "../Resources/";
 #endif
 	// If the resources are not here, search in the directories containing this
 	// one. This allows, for example, a Mac app that does not actually have the
@@ -120,7 +137,7 @@ void Files::Init(const char * const *argv)
 	dataPath = resources + "data/";
 	imagePath = resources + "images/";
 	soundPath = resources + "sounds/";
-	
+
 	if(config.empty())
 	{
 		// Find the path to the directory for saved games (and create it if it does
@@ -128,7 +145,7 @@ void Files::Init(const char * const *argv)
 		char *str = SDL_GetPrefPath("endless-sky", "saves");
 		if(!str)
 			throw runtime_error("Unable to get path to saves directory!");
-		
+
 		savePath = str;
 #if defined _WIN32
 		FixWindowsSlashes(savePath);
@@ -147,7 +164,7 @@ void Files::Init(const char * const *argv)
 			config += '/';
 		savePath = config + "saves/";
 	}
-	
+
 	// Create the "plugins" directory if it does not yet exist, so that it is
 	// clear to the user where plugins should go.
 	{
@@ -155,7 +172,7 @@ void Files::Init(const char * const *argv)
 		if(str != nullptr)
 			SDL_free(str);
 	}
-	
+
 	// Check that all the directories exist.
 	if(!Exists(dataPath) || !Exists(imagePath) || !Exists(soundPath))
 		throw runtime_error("Unable to find the resource directories!");
@@ -218,29 +235,29 @@ vector<string> Files::List(string directory)
 {
 	if(directory.empty() || directory.back() != '/')
 		directory += '/';
-	
+
 	vector<string> list;
-	
+
 #if defined _WIN32
 	WIN32_FIND_DATAW ffd;
 	HANDLE hFind = FindFirstFileW(Utf8::ToUTF16(directory + '*').c_str(), &ffd);
 	if(!hFind)
 		return list;
-	
+
 	do {
-		if(!ffd.cFileName || ffd.cFileName[0] == '.')
+		if(ffd.cFileName[0] == '.')
 			continue;
-		
+
 		if(!(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
 			list.push_back(directory + Utf8::ToUTF8(ffd.cFileName));
 	} while(FindNextFileW(hFind, &ffd));
-	
+
 	FindClose(hFind);
 #else
 	DIR *dir = opendir(directory.c_str());
 	if(!dir)
 		return list;
-	
+
 	while(true)
 	{
 		dirent *ent = readdir(dir);
@@ -249,18 +266,18 @@ vector<string> Files::List(string directory)
 		// Skip dotfiles (including "." and "..").
 		if(ent->d_name[0] == '.')
 			continue;
-		
+
 		string name = directory + ent->d_name;
 		// Don't assume that this operating system's implementation of dirent
 		// includes the t_type field; in particular, on Windows it will not.
 		struct stat buf;
 		stat(name.c_str(), &buf);
 		bool isRegularFile = S_ISREG(buf.st_mode);
-		
+
 		if(isRegularFile)
 			list.push_back(name);
 	}
-	
+
 	closedir(dir);
 #endif
 
@@ -275,7 +292,7 @@ vector<string> Files::ListDirectories(string directory)
 {
 	if(directory.empty() || directory.back() != '/')
 		directory += '/';
-	
+
 	vector<string> list;
 
 #if defined _WIN32
@@ -283,21 +300,21 @@ vector<string> Files::ListDirectories(string directory)
 	HANDLE hFind = FindFirstFileW(Utf8::ToUTF16(directory + '*').c_str(), &ffd);
 	if(!hFind)
 		return list;
-	
+
 	do {
-		if(!ffd.cFileName || ffd.cFileName[0] == '.')
+		if(ffd.cFileName[0] == '.')
 			continue;
-		
+
 		if(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 			list.push_back(directory + Utf8::ToUTF8(ffd.cFileName) + '/');
 	} while(FindNextFileW(hFind, &ffd));
-	
+
 	FindClose(hFind);
 #else
 	DIR *dir = opendir(directory.c_str());
 	if(!dir)
 		return list;
-	
+
 	while(true)
 	{
 		dirent *ent = readdir(dir);
@@ -306,14 +323,14 @@ vector<string> Files::ListDirectories(string directory)
 		// Skip dotfiles (including "." and "..").
 		if(ent->d_name[0] == '.')
 			continue;
-		
+
 		string name = directory + ent->d_name;
 		// Don't assume that this operating system's implementation of dirent
 		// includes the t_type field; in particular, on Windows it will not.
 		struct stat buf;
 		stat(name.c_str(), &buf);
 		bool isDirectory = S_ISDIR(buf.st_mode);
-		
+
 		if(isDirectory)
 		{
 			if(name.back() != '/')
@@ -321,7 +338,7 @@ vector<string> Files::ListDirectories(string directory)
 			list.push_back(name);
 		}
 	}
-	
+
 	closedir(dir);
 #endif
 
@@ -345,29 +362,29 @@ void Files::RecursiveList(string directory, vector<string> *list)
 {
 	if(directory.empty() || directory.back() != '/')
 		directory += '/';
-	
+
 #if defined _WIN32
 	WIN32_FIND_DATAW ffd;
 	HANDLE hFind = FindFirstFileW(Utf8::ToUTF16(directory + '*').c_str(), &ffd);
 	if(hFind == INVALID_HANDLE_VALUE)
 		return;
-	
+
 	do {
-		if(!ffd.cFileName || ffd.cFileName[0] == '.')
+		if(ffd.cFileName[0] == '.')
 			continue;
-		
+
 		if(!(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
 			list->push_back(directory + Utf8::ToUTF8(ffd.cFileName));
 		else
 			RecursiveList(directory + Utf8::ToUTF8(ffd.cFileName) + '/', list);
 	} while(FindNextFileW(hFind, &ffd));
-	
+
 	FindClose(hFind);
 #else
 	DIR *dir = opendir(directory.c_str());
 	if(!dir)
 		return;
-	
+
 	while(true)
 	{
 		dirent *ent = readdir(dir);
@@ -376,7 +393,7 @@ void Files::RecursiveList(string directory, vector<string> *list)
 		// Skip dotfiles (including "." and "..").
 		if(ent->d_name[0] == '.')
 			continue;
-		
+
 		string name = directory + ent->d_name;
 		// Don't assume that this operating system's implementation of dirent
 		// includes the t_type field; in particular, on Windows it will not.
@@ -384,13 +401,13 @@ void Files::RecursiveList(string directory, vector<string> *list)
 		stat(name.c_str(), &buf);
 		bool isRegularFile = S_ISREG(buf.st_mode);
 		bool isDirectory = S_ISDIR(buf.st_mode);
-		
+
 		if(isRegularFile)
 			list->push_back(name);
 		else if(isDirectory)
 			RecursiveList(name + '/', list);
 	}
-	
+
 	closedir(dir);
 #endif
 }
@@ -430,6 +447,18 @@ void Files::Copy(const string &from, const string &to)
 	CopyFileW(Utf8::ToUTF16(from).c_str(), Utf8::ToUTF16(to).c_str(), false);
 #else
 	Write(to, Read(from));
+	// Preserve the timestamps of the original file.
+	struct stat buf;
+	if(stat(from.c_str(), &buf))
+		Logger::LogError("Error: Cannot stat \"" + from + "\".");
+	else
+	{
+		struct utimbuf times;
+		times.actime = buf.st_atime;
+		times.modtime = buf.st_mtime;
+		if(utime(to.c_str(), &times))
+			Logger::LogError("Error: Failed to preserve the timestamps for \"" + to + "\".");
+	}
 #endif
 }
 
@@ -470,7 +499,9 @@ string Files::Name(const string &path)
 FILE *Files::Open(const string &path, bool write)
 {
 #if defined _WIN32
-	return _wfopen(Utf8::ToUTF16(path).c_str(), write ? L"w" : L"rb");
+	FILE *file = nullptr;
+	_wfopen_s(&file, Utf8::ToUTF16(path).c_str(), write ? L"w" : L"rb");
+	return file;
 #else
 	return fopen(path.c_str(), write ? "wb" : "rb");
 #endif
@@ -491,7 +522,7 @@ string Files::Read(FILE *file)
 	string result;
 	if(!file)
 		return result;
-	
+
 	// Find the remaining number of bytes in the file.
 	size_t start = ftell(file);
 	fseek(file, 0, SEEK_END);
@@ -501,12 +532,12 @@ string Files::Read(FILE *file)
 	result.reserve(size + 1);
 	result.resize(size);
 	fseek(file, start, SEEK_SET);
-	
+
 	// Read the file data.
 	size_t bytes = fread(&result[0], 1, result.size(), file);
 	if(bytes != result.size())
 		throw runtime_error("Error reading file!");
-	
+
 	return result;
 }
 
@@ -524,26 +555,33 @@ void Files::Write(FILE *file, const string &data)
 {
 	if(!file)
 		return;
-	
+
 	fwrite(&data[0], 1, data.size(), file);
 }
 
 
 
-void Files::LogError(const string &message)
+// Open this user's plugins directory in their native file explorer.
+void Files::OpenUserPluginFolder()
 {
-	lock_guard<mutex> lock(errorMutex);
-	cerr << message << endl;
+	OpenFolder(Config() + "plugins");
+}
+
+
+
+void Files::LogErrorToFile(const string &message)
+{
 	if(!errorLog)
 	{
 		errorLog = File(config + "errors.txt", true);
 		if(!errorLog)
 		{
-			cerr << "Unable to create \"errors.txt\" " << (config.empty() ? "in current directory" : "in \"" + config + "\"") << endl;
+			cerr << "Unable to create \"errors.txt\" " << (config.empty()
+				? "in current directory" : "in \"" + config + "\"") << endl;
 			return;
 		}
 	}
-	
+
 	Write(errorLog, message);
 	fwrite("\n", 1, 1, errorLog);
 	fflush(errorLog);

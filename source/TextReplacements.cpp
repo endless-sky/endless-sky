@@ -7,12 +7,16 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "TextReplacements.h"
 
 #include "ConditionSet.h"
+#include "ConditionsStore.h"
 #include "DataNode.h"
 #include "PlayerInfo.h"
 
@@ -29,19 +33,19 @@ void TextReplacements::Load(const DataNode &node)
 	// reserved, as these ones are done on the fly after all other replacements
 	// have been done.
 	const set<string> reserved = {"<first>", "<last>", "<ship>"};
-	
+
 	for(const DataNode &child : node)
 	{
 		if(child.Size() < 2)
 		{
-			child.PrintTrace("Skipping improper substitution syntax:");
+			child.PrintTrace("Skipping substitution key with no replacement:");
 			continue;
 		}
-		
+
 		string key = child.Token(0);
 		if(key.empty())
 		{
-			child.PrintTrace("Cannot replace an empty string:");
+			child.PrintTrace("Error: Cannot replace the empty string:");
 			continue;
 		}
 		if(key.front() != '<')
@@ -56,10 +60,10 @@ void TextReplacements::Load(const DataNode &node)
 		}
 		if(reserved.count(key))
 		{
-			child.PrintTrace("Skipping reserved substitution key \"" + key + "\":");
+			child.PrintTrace("Skipping reserved substitution key:");
 			continue;
 		}
-		
+
 		ConditionSet toSubstitute(child);
 		substitutions.emplace_back(key, make_pair(std::move(toSubstitute), child.Token(1)));
 	}
@@ -79,7 +83,7 @@ void TextReplacements::Revert(TextReplacements &other)
 // Add new text replacements to the given map after evaltuating all possible replacements.
 // This text replacement will overwrite the value of any existing keys in the given map
 // if the map and this TextReplacements share a key.
-void TextReplacements::Substitutions(map<string, string> &subs, const map<string, int64_t> &conditions) const
+void TextReplacements::Substitutions(map<string, string> &subs, const ConditionsStore &conditions) const
 {
 	for(const auto &sub : substitutions)
 	{

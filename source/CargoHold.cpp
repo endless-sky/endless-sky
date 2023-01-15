@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "CargoHold.h"
@@ -16,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataWriter.h"
 #include "Depreciation.h"
 #include "GameData.h"
+#include "Government.h"
 #include "Mission.h"
 #include "Outfit.h"
 #include "System.h"
@@ -33,14 +37,14 @@ namespace {
 		vector<const Outfit *> sortedOutfits;
 		for(const auto &it : outfits)
 			sortedOutfits.emplace_back(it.first);
-		
+
 		sort(sortedOutfits.begin(), sortedOutfits.end(),
 			[](const Outfit *lhs, const Outfit *rhs)
 			{
 				return lhs->Mass() > rhs->Mass();
 			}
 		);
-		
+
 		return sortedOutfits;
 	}
 }
@@ -106,13 +110,13 @@ void CargoHold::Save(DataWriter &out) const
 				out.BeginChild();
 			}
 			first = false;
-			
+
 			out.Write(it.first, it.second);
 		}
 	// We only need to EndChild() if at least one line was written above.
 	if(!first)
 		out.EndChild();
-	
+
 	// Save all outfits, even ones which have only been referred to.
 	bool firstOutfit = true;
 	for(const auto &it : outfits)
@@ -126,7 +130,7 @@ void CargoHold::Save(DataWriter &out) const
 				out.BeginChild();
 			}
 			first = false;
-			
+
 			// If this is the first outfit to be written, print the opening tag.
 			if(firstOutfit)
 			{
@@ -134,8 +138,8 @@ void CargoHold::Save(DataWriter &out) const
 				out.BeginChild();
 			}
 			firstOutfit = false;
-			
-			out.Write(it.first->Name(), it.second);
+
+			out.Write(it.first->TrueName(), it.second);
 		}
 	// Back out any indentation blocks that are set, depending on what sorts of
 	// cargo were written to the file.
@@ -143,7 +147,7 @@ void CargoHold::Save(DataWriter &out) const
 		out.EndChild();
 	if(!first)
 		out.EndChild();
-	
+
 	// Mission cargo is not saved because it is repopulated when the missions
 	// are read rather than when the cargo is read.
 }
@@ -174,11 +178,25 @@ int CargoHold::Free() const
 
 
 
+double CargoHold::FreePrecise() const
+{
+	return size - UsedPrecise();
+}
+
+
+
 // Get the total amount of cargo space used, rounded up to the nearest ton.
 // (Some outfits may have non-integral masses.)
 int CargoHold::Used() const
 {
 	return CommoditiesSize() + OutfitsSize() + MissionCargoSize();
+}
+
+
+
+double CargoHold::UsedPrecise() const
+{
+	return CommoditiesSize() + OutfitsSizePrecise() + MissionCargoSize();
 }
 
 
@@ -197,10 +215,17 @@ int CargoHold::CommoditiesSize() const
 // Get the total mass of outfit cargo, rounded up to the nearest ton.
 int CargoHold::OutfitsSize() const
 {
+	return ceil(OutfitsSizePrecise());
+}
+
+
+
+double CargoHold::OutfitsSizePrecise() const
+{
 	double size = 0.;
 	for(const auto &it : outfits)
 		size += it.second * it.first->Mass();
-	return ceil(size);
+	return size;
 }
 
 
@@ -214,7 +239,7 @@ bool CargoHold::HasOutfits() const
 	for(const auto &it : outfits)
 		if(it.second)
 			return true;
-	
+
 	return false;
 }
 
@@ -244,8 +269,8 @@ bool CargoHold::HasMissionCargo() const
 bool CargoHold::IsEmpty() const
 {
 	// The outfits map's entries are not erased if they are equal to zero, so
-	// it's not enough to just test outfits.empty().
-	return commodities.empty() && !HasOutfits() && missionCargo.empty() && passengers.empty();
+	// it's not enough to just test outfits.empty(). Same goes for commodities.
+	return !CommoditiesSize() && !HasOutfits() && missionCargo.empty() && passengers.empty();
 }
 
 
@@ -350,14 +375,15 @@ int CargoHold::Transfer(const string &commodity, int amount, CargoHold &to)
 {
 	if(!amount)
 		return 0;
-	
+
 	// Remove up to the specified tons of cargo from this cargo hold, adding
 	// them to the given cargo hold if possible. If not possible, add the
 	// remainder back to this cargo hold, even if there is not space for it.
+	// Do not invalidate existing iterators by modifying the container.
 	int removed = Remove(commodity, amount);
 	int added = to.Add(commodity, removed);
 	commodities[commodity] += removed - added;
-	
+
 	return added;
 }
 
@@ -368,14 +394,15 @@ int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold &to)
 {
 	if(!amount)
 		return 0;
-	
+
 	// Remove up to the specified number of items from this cargo hold, adding
 	// them to the given cargo hold if possible. If not possible, add the
 	// remainder back to this cargo hold, even if there is not space for it.
+	// Do not invalidate existing iterators by modifying the container.
 	int removed = Remove(outfit, amount);
 	int added = to.Add(outfit, removed);
 	outfits[outfit] += removed - added;
-	
+
 	return added;
 }
 
@@ -387,7 +414,7 @@ int CargoHold::Transfer(const Mission *mission, int amount, CargoHold &to)
 	// A negative amount means a transfer in the opposite direction.
 	if(amount < 0)
 		return -to.Transfer(mission, -amount, *this);
-	
+
 	// If transferring 0 cargo, don't create an entry in the destination cargo
 	// hold unless told to transfer 0 and the amount in this cargo hold is 0.
 	int existing = Get(mission);
@@ -399,10 +426,10 @@ int CargoHold::Transfer(const Mission *mission, int amount, CargoHold &to)
 	// Don't transfer 0 tons unless that's all that exists.
 	if(existing && !amount)
 		return 0;
-	
+
 	missionCargo[mission] -= amount;
 	to.missionCargo[mission] += amount;
-	
+
 	return amount;
 }
 
@@ -414,12 +441,12 @@ int CargoHold::TransferPassengers(const Mission *mission, int amount, CargoHold 
 	// A negative amount means a transfer in the opposite direction.
 	if(amount < 0)
 		return -to.TransferPassengers(mission, -amount, *this);
-	
+
 	// Check if the destination cargo hold has a limit on the number of bunks.
 	amount = min(amount, GetPassengers(mission));
 	if(to.bunks >= 0)
 		amount = max(0, min(amount, to.BunksFree()));
-	
+
 	if(amount)
 	{
 		passengers[mission] -= amount;
@@ -463,7 +490,7 @@ int CargoHold::Add(const string &commodity, int amount)
 {
 	if(amount < 0)
 		return -Remove(commodity, -amount);
-	
+
 	// If this cargo hold has a size limit, apply it.
 	if(size >= 0)
 		amount = max(0, min(amount, Free()));
@@ -478,7 +505,7 @@ int CargoHold::Add(const Outfit *outfit, int amount)
 {
 	if(amount < 0)
 		return -Remove(outfit, -amount);
-	
+
 	// If the outfit has mass and this cargo hold has a size limit, apply it.
 	double mass = outfit->Mass();
 	if(size >= 0 && mass > 0.)
@@ -494,7 +521,7 @@ int CargoHold::Remove(const string &commodity, int amount)
 {
 	if(amount < 0)
 		return Add(commodity, -amount);
-	
+
 	amount = min(amount, commodities[commodity]);
 	commodities[commodity] -= amount;
 	return amount;
@@ -507,7 +534,7 @@ int CargoHold::Remove(const Outfit *outfit, int amount)
 {
 	if(amount < 0)
 		return Add(outfit, -amount);
-	
+
 	amount = min(amount, outfits[outfit]);
 	outfits[outfit] -= amount;
 	return amount;
@@ -537,7 +564,7 @@ void CargoHold::RemoveMissionCargo(const Mission *mission)
 }
 
 
-	
+
 // Get the total value of all this cargo, in the given system.
 int64_t CargoHold::Value(const System *system) const
 {
@@ -557,21 +584,27 @@ int64_t CargoHold::Value(const System *system) const
 // be charged for any illegal outfits plus the sum of the fines for all
 // missions. If the returned value is negative, you are carrying something so
 // bad that it warrants a death sentence.
-int CargoHold::IllegalCargoFine() const
+int CargoHold::IllegalCargoFine(const Government *government) const
 {
 	int totalFine = 0;
 	// Carrying an illegal outfit is only half as bad as having it equipped.
 	// Only the worst illegal outfit is fined.
 	for(const auto &it : outfits)
 	{
-		int fine = it.first->Get("illegal");
-		if(it.first->Get("atrocity") > 0.)
+		// The code for adding and removing outfits does not clear the entry in the
+		// map if its value becomes zero, so we need to check if the outfit is
+		// actually inside the cargo hold.
+		if(!it.second)
+			continue;
+
+		int fine = government->Fines(it.first);
+		if(government->Condemns(it.first))
 			return -1;
 		if(fine < 0)
 			return fine;
 		totalFine = max(totalFine, fine / 2);
 	}
-	
+
 	// Fines for illegal mission cargo and passengers are added together to
 	// avoid the player being able to stack multiple illegal jobs at once
 	// and avoid the bulk of the penalties when fined.
@@ -583,7 +616,7 @@ int CargoHold::IllegalCargoFine() const
 		if(!it.first->IsFailed())
 			totalFine += fine;
 	}
-	
+
 	for(const auto &it : passengers)
 	{
 		int fine = it.first->IllegalCargoFine();
@@ -592,6 +625,26 @@ int CargoHold::IllegalCargoFine() const
 		if(!it.first->IsFailed())
 			totalFine += fine;
 	}
-	
+
 	return totalFine;
+}
+
+
+
+// Returns the amount tons of illegal cargo.
+int CargoHold::IllegalCargoAmount() const
+{
+	int count = 0;
+
+	// Find any illegal outfits inside the cargo hold.
+	for(const auto &it : outfits)
+		if(it.first->Get("illegal") || it.first->Get("atrocity") > 0.)
+			count += it.second * max(0., it.first->Mass() + it.first->Get("scan brightness"));
+
+	// Find any illegal mission cargo.
+	for(const auto &it : missionCargo)
+		if(it.first->IllegalCargoFine())
+			count += it.second;
+
+	return count;
 }

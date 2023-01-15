@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "MapShipyardPanel.h"
@@ -61,6 +64,20 @@ const Sprite *MapShipyardPanel::SelectedSprite() const
 const Sprite *MapShipyardPanel::CompareSprite() const
 {
 	return compare ? compare->Thumbnail() ? compare->Thumbnail() : compare->GetSprite() : nullptr;
+}
+
+
+
+int MapShipyardPanel::SelectedSpriteSwizzle() const
+{
+	return selected->CustomSwizzle();
+}
+
+
+
+int MapShipyardPanel::CompareSpriteSwizzle() const
+{
+	return compare->CustomSwizzle();
 }
 
 
@@ -122,7 +139,7 @@ double MapShipyardPanel::SystemValue(const System *system) const
 {
 	if(!system || !player.HasVisited(*system) || !system->IsInhabited(player.Flagship()))
 		return numeric_limits<double>::quiet_NaN();
-	
+
 	// Visiting a system is sufficient to know what ports are available on its planets.
 	double value = -.5;
 	for(const StellarObject &object : system->Objects())
@@ -170,18 +187,18 @@ void MapShipyardPanel::DrawItems()
 		auto it = catalog.find(category);
 		if(it == catalog.end())
 			continue;
-		
+
 		// Draw the header. If this category is collapsed, skip drawing the items.
 		if(DrawHeader(corner, category))
 			continue;
-		
+
 		for(const Ship *ship : it->second)
 		{
 			string price = Format::Credits(ship->Cost()) + " credits";
-			
+
 			string info = Format::Number(ship->Attributes().Get("shields")) + " shields / ";
 			info += Format::Number(ship->Attributes().Get("hull")) + " hull";
-			
+
 			bool isForSale = true;
 			if(player.HasVisited(*selectedSystem))
 			{
@@ -195,11 +212,12 @@ void MapShipyardPanel::DrawItems()
 			}
 			if(!isForSale && onlyShowSoldHere)
 				continue;
-			
+
 			const Sprite *sprite = ship->Thumbnail();
 			if(!sprite)
 				sprite = ship->GetSprite();
-			Draw(corner, sprite, isForSale, ship == selected, ship->ModelName(), price, info);
+			Draw(corner, sprite, ship->CustomSwizzle(), isForSale, ship == selected,
+					ship->ModelName(), price, info);
 			list.push_back(ship);
 		}
 	}
@@ -220,7 +238,7 @@ void MapShipyardPanel::Init()
 					catalog[ship->Attributes().Category()].push_back(ship);
 					seen.insert(ship);
 				}
-	
+
 	for(auto &it : catalog)
 		sort(it.second.begin(), it.second.end(),
 			[](const Ship *a, const Ship *b) { return a->ModelName() < b->ModelName(); });
