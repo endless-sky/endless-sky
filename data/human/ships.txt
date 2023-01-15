@@ -3484,8 +3484,8 @@ ship "Valkyrie"
 		"hull" 2800
 		"required crew" 17
 		"bunks" 28
-		"mass" 170
-		"drag" 4.5
+		"mass" 173
+		"drag" 4.9
 		"heat dissipation" .62
 		"fuel capacity" 500
 		"cargo space" 36
