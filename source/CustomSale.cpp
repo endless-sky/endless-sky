@@ -74,6 +74,7 @@ void CustomSale::Load(const DataNode &node, bool eventChange)
 		bool hasKey = child.Size() > keyIndex;
 
 		if(!hasKey)
+		{
 			if(remove)
 				Clear();
 			else
@@ -81,6 +82,7 @@ void CustomSale::Load(const DataNode &node, bool eventChange)
 				child.PrintTrace("Error: skipping entry with empty \"add\":");
 				continue;
 			}
+		}
 
 		const string &key = child.Token(keyIndex);
 
