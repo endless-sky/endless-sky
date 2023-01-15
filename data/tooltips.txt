@@ -23,7 +23,7 @@ tip "afterburner corrosion:"
 tip "afterburner ion:"
 	`Accumulated ionization per second when firing this afterburner.`
 
-tip "afterburner scrambling:"
+tip "afterburner scramble:"
 	`Accumulated scrambling per second when firing this afterburner.`
 
 tip "afterburner leakage:"
@@ -431,7 +431,7 @@ tip "reverse thrusting corrosion:"
 tip "reverse thrusting ion:"
 	`Accumulated ionization per second when firing reverse thrusters.`
 
-tip "reverse thrusting scrambling:"
+tip "reverse thrusting scramble:"
 	`Accumulated scrambling per second when firing reverse thrusters.`
 
 tip "reverse thrusting leakage:"
@@ -560,7 +560,7 @@ tip "thrusting corrosion:"
 tip "thrusting ion:"
 	`Accumulated ionization per second when firing thrusters.`
 
-tip "thrusting scrambling:"
+tip "thrusting scramble:"
 	`Accumulated scrambling per second when firing thrusters.`
 
 tip "thrusting leakage:"
@@ -605,7 +605,7 @@ tip "turning corrosion:"
 tip "turning ion:"
 	`Accumulated ionization per second when turning.`
 
-tip "turning scrambling:"
+tip "turning scramble:"
 	`Accumulated scrambling per second when turning.`
 
 tip "turning leakage:"
