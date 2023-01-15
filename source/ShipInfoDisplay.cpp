@@ -39,7 +39,7 @@ using namespace std;
 
 ShipInfoDisplay::ShipInfoDisplay(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed)
 {
-	Update(ship, player, descriptionCollapsed, true);
+	Update(ship, player, descriptionCollapsed);
 }
 
 
