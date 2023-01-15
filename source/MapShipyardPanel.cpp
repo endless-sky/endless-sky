@@ -213,7 +213,7 @@ void MapShipyardPanel::DrawItems()
 				for(const StellarObject &object : selectedSystem->Objects())
 					if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->Shipyard().Has(ship))
 					{
-						price = Format::Credits(CustomSaleManager::ShipCost(ship)) + " credits";
+						price = Format::Credits(CustomSaleManager::ShipCost(*ship)) + " credits";
 						isForSale = true;
 						break;
 					}
