@@ -3482,16 +3482,16 @@ ship "Valkyrie"
 		"cost" 3900000
 		"shields" 4800
 		"hull" 2800
-		"required crew" 10
-		"bunks" 28
+		"required crew" 9
+		"bunks" 26
 		"mass" 157
 		"drag" 4.9
 		"heat dissipation" .63
 		"fuel capacity" 500
-		"cargo space" 32
+		"cargo space" 41
 		"outfit space" 400
 		"weapon capacity" 170
-		"engine capacity" 75
+		"engine capacity" 76
 		weapon
 			"blast radius" 80
 			"shield damage" 800
