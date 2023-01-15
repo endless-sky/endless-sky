@@ -1492,9 +1492,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 	// Handle ionization effects, etc.
 	if(ionization)
-		CreateSparks(visuals, "ion spark", ionization * .1);
+		CreateSparks(visuals, "ion spark", ionization * .05);
 	if(scrambling)
-		CreateSparks(visuals, "scramble spark", scrambling * .1);
+		CreateSparks(visuals, "scramble spark", scrambling * .05);
 	if(disruption)
 		CreateSparks(visuals, "disruption spark", disruption * .1);
 	if(slowness)
