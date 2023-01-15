@@ -1198,6 +1198,7 @@ ship "Cutthroat" "Cutthroat (Jousting)"
 		"Supercapacitor"
 		"Water Coolant System"
 		"D23-QP Shield Generator"
+		"Laser Rifle" 5
 		
 		"A520 Atomic Thruster"
 		"A255 Atomic Steering"

@@ -1293,6 +1293,7 @@ ship "Cutthroat"
 		"LP036a Battery Pack"
 		"Water Coolant System"
 		"D23-QP Shield Generator"
+		"Laser Rifle" 5
 		
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
