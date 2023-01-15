@@ -181,7 +181,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 			else if(key == "firing ion")
 				firingIon = value;
 			else if(key == "firing scrambling")
-				firingscrambling = value;
+				firingScrambling = value;
 			else if(key == "firing slowing")
 				firingSlowing = value;
 			else if(key == "firing disruption")

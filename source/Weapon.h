@@ -116,7 +116,7 @@ public:
 	double FiringHull() const;
 	double FiringShields() const;
 	double FiringIon() const;
-	double Firingscrambling() const;
+	double FiringScrambling() const;
 	double FiringSlowing() const;
 	double FiringDisruption() const;
 	double FiringDischarge() const;
@@ -266,7 +266,7 @@ private:
 	double firingHull = 0.;
 	double firingShields = 0.;
 	double firingIon = 0.;
-	double firingscrambling = 0.;
+	double firingScrambling = 0.;
 	double firingSlowing = 0.;
 	double firingDisruption = 0.;
 	double firingDischarge = 0.;
@@ -365,7 +365,7 @@ inline double Weapon::FiringHeat() const { return firingHeat; }
 inline double Weapon::FiringHull() const { return firingHull; }
 inline double Weapon::FiringShields() const { return firingShields; }
 inline double Weapon::FiringIon() const{ return firingIon; }
-inline double Weapon::Firingscrambling() const { return firingscrambling; }
+inline double Weapon::FiringScrambling() const { return firingScrambling; }
 inline double Weapon::FiringSlowing() const{ return firingSlowing; }
 inline double Weapon::FiringDisruption() const{ return firingDisruption; }
 inline double Weapon::FiringDischarge() const{ return firingDischarge; }
