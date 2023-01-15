@@ -1485,7 +1485,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	const System *origin = ship.GetSystem();
 	const bool shouldStay = ship.GetPersonality().IsStaying()
 			|| (ship.GetParent() && ship.GetParent()->GetGovernment()->IsEnemy(gov))
-			|| (origin && ship.GetPersonality().IsLingering() &&
+			|| (origin && !ship.IsFleeing() && ship.GetPersonality().IsLingering() &&
 			Random::Int(max<int>(300, origin->MinimumFleetPeriod())));
 
 	// Ships should choose a random system/planet for travel if they do not
