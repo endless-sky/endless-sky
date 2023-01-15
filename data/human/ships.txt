@@ -816,11 +816,11 @@ ship "Bulwark"
 		"hull" 5500
 		"required crew" 19
 		"bunks" 31
-		"mass" 880
+		"mass" 881
 		"drag" 14.4
 		"heat dissipation" .35
 		"fuel capacity" 500
-		"cargo space" 10
+		"cargo space" 12
 		"outfit space" 511
 		"weapon capacity" 213
 		"engine capacity" 120
