@@ -38,7 +38,7 @@ AlertLabel::AlertLabel(const Point &position, const Projectile &projectile, cons
 {
 	bool isDangerous = false;
 	isTargetingFlagship = false;
-	if (flagship)
+	if(flagship)
 	{
 		isTargetingFlagship = projectile.TargetPtr() == flagship;
 		double maxHP = flagship->Attributes().Get("hull") + flagship->Attributes().Get("shield");
