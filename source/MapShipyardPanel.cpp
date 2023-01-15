@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapShipyardPanel.h"
 
 #include "CoreStartData.h"
+#include "CustomSaleManager.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Planet.h"
@@ -142,13 +143,17 @@ double MapShipyardPanel::SystemValue(const System *system) const
 
 	// Visiting a system is sufficient to know what ports are available on its planets.
 	double value = -.6;
-	double baseCost = selected ? selected->LocalCost(nullptr, player.Conditions()) : 1.;
+	CustomSaleManager::Clear();
+	double baseCost = selected ? CustomSaleManager::ShipCost(*selected) : selected->Cost();
 	for(const StellarObject &object : system->Objects())
 		if(object.HasSprite() && object.HasValidPlanet())
 		{
 			const auto &shipyard = object.GetPlanet()->Shipyard();
 			if(shipyard.Has(selected))
-				return selected->LocalCost(object.GetPlanet(), player.Conditions()) / baseCost;
+			{
+				CustomSaleManager::Refresh(*object.GetPlanet(), player.Conditions());
+				return CustomSaleManager::ShipCost(*selected) / baseCost;
+			}
 			// Return a negative value to signify this is different from a cost of 0.
 			if(!shipyard.empty())
 				value = -.1;
@@ -208,7 +213,7 @@ void MapShipyardPanel::DrawItems()
 				for(const StellarObject &object : selectedSystem->Objects())
 					if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->Shipyard().Has(ship))
 					{
-						price = Format::Credits(ship->LocalCost(object.GetPlanet(), player.Conditions())) + " credits";
+						price = Format::Credits(CustomSaleManager::ShipCost(ship)) + " credits";
 						isForSale = true;
 						break;
 					}

@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Audio.h"
 #include "ConversationPanel.h"
+#include "CustomSaleManager.h"
 #include "DataFile.h"
 #include "DataWriter.h"
 #include "Dialog.h"
@@ -1611,7 +1612,6 @@ bool PlayerInfo::TakeOff(UI *ui)
 	accounts.AddCredits(income);
 	cargo.Clear();
 	stockDepreciation = Depreciation();
-	depreciation.Refresh(nullptr);
 	if(sold)
 	{
 		// Report how much excess cargo was sold, and what profit you earned.
@@ -1623,6 +1623,8 @@ bool PlayerInfo::TakeOff(UI *ui)
 			out << ".";
 		Messages::Add(out.str(), Messages::Importance::High);
 	}
+
+	CustomSaleManager::Clear();
 
 	return true;
 }
@@ -2525,14 +2527,6 @@ const Depreciation &PlayerInfo::FleetDepreciation() const
 const Depreciation &PlayerInfo::StockDepreciation() const
 {
 	return stockDepreciation;
-}
-
-
-
-void PlayerInfo::RefreshDepreciations(const std::map<CustomSale::SellType, CustomSale> *sales)
-{
-	depreciation.Refresh(sales);
-	stockDepreciation.Refresh(sales);
 }
 
 

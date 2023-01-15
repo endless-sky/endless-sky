@@ -1151,24 +1151,6 @@ int64_t Ship::ChassisCost() const
 
 
 
-// Get the full cost of this ship on the planet, depending on the outfit prices.
-int64_t Ship::LocalCost(const Planet *planet, const ConditionsStore &conditions) const
-{
-	int64_t localCost = ChassisCost();
-	if(planet)
-	{
-		const map<CustomSale::SellType, CustomSale> &sales = GameData::GetCustomSales(*planet, conditions);
-		for(auto &&it : Outfits())
-			localCost += GameData::OutfitRelativeCost(sales, *it.first) * it.first->Cost() * it.second;
-	}
-	else
-		for(auto &&it : Outfits())
-			localCost += it.first->Cost() * it.second;
-	return localCost;
-}
-
-
-
 int64_t Ship::Strength() const
 {
 	return Cost();

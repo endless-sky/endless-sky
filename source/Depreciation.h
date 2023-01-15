@@ -16,8 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef DEPRECIATION_H_
 #define DEPRECIATION_H_
 
-#include "CustomSale.h"
-
 #include <cstdint>
 #include <map>
 #include <memory>
@@ -49,8 +47,6 @@ public:
 	bool IsLoaded() const;
 	// If no records have been loaded, initialize with an entire fleet.
 	void Init(const std::vector<std::shared_ptr<Ship>> &fleet, int day);
-	// Refresh the custom sale prices.
-	void Refresh(const std::map<CustomSale::SellType, CustomSale> *customSales);
 
 	// Add a ship, and all its outfits, to the depreciation record.
 	void Buy(const Ship &ship, int day, Depreciation *source = nullptr);
@@ -90,7 +86,6 @@ private:
 
 	std::map<const Ship *, std::map<int, int>> ships;
 	std::map<const Outfit *, std::map<int, int>> outfits;
-	const std::map<CustomSale::SellType, CustomSale> *customSales;
 };
 
 

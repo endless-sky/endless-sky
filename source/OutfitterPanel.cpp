@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/alignment.hpp"
 #include "Color.h"
+#include "CustomSaleManager.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
 #include "text/Font.h"
@@ -75,12 +76,6 @@ namespace {
 				toRefill.emplace(outfit->Ammo());
 		}
 		return toRefill;
-	}
-
-	bool Imports(const map<CustomSale::SellType, CustomSale> &customSales, const Outfit *outfit)
-	{
-		const auto &it = customSales.find(CustomSale::SellType::IMPORT);
-		return it != customSales.end() && it->second.Has(*outfit);
 	}
 }
 
@@ -244,7 +239,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 		message = "(not sold here)";
 
 	// For now there is only default or import.
-	if(Imports(customSales, outfit))
+	if(CustomSaleManager::Imports(customSales, *outfit))
 		message += " (" + CustomSale::GetShown(CustomSale::SellType::IMPORT) + ")";
 
 	if(!message.empty())
@@ -359,7 +354,7 @@ bool OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 		return false;
 
 	bool isAlreadyOwned = checkAlreadyOwned && IsAlreadyOwned();
-	if(!((outfitter.Has(selectedOutfit) && !Imports(customSales, selectedOutfit))
+	if(!((outfitter.Has(selectedOutfit) && !Imports(customSales, *selectedOutfit))
 			|| player.Stock(selectedOutfit) > 0 || isAlreadyOwned))
 		return false;
 
@@ -450,7 +445,7 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 			else
 			{
 				// Check if the outfit is for sale or in stock so that we can actually buy it.
-				if(!planet->Outfitter().Has(selectedOutfit) || Imports(customSales, selectedOutfit) ||
+				if(!planet->Outfitter().Has(selectedOutfit) || Imports(customSales, *selectedOutfit) ||
 						player.Stock(selectedOutfit) <= 0)
 					continue;
 				player.Cargo().Add(selectedOutfit);
@@ -532,7 +527,7 @@ void OutfitterPanel::FailBuy() const
 		return;
 	}
 
-	if(Imports(customSales, selectedOutfit))
+	if(Imports(customSales, *selectedOutfit))
 	{
 		GetUI()->Push(new Dialog("You can only sell this outfit here, "
 			"it is meant to be imported, generally for a good price."));

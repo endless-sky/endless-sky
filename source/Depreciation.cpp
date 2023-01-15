@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Depreciation.h"
 
-#include "CustomSale.h"
+#include "CustomSaleManager.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "GameData.h"
@@ -147,13 +147,6 @@ void Depreciation::Init(const vector<shared_ptr<Ship>> &fleet, int day)
 
 
 
-void Depreciation::Refresh(const std::map<CustomSale::SellType, CustomSale> *customSales)
-{
-	this->customSales = customSales;
-}
-
-
-
 // Add a ship, and all its outfits, to the depreciation record.
 void Depreciation::Buy(const Ship &ship, int day, Depreciation *source)
 {
@@ -237,7 +230,6 @@ int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day) cons
 	for(const auto &it : shipCount)
 		value += Value(it.first, day, it.second);
 	for(const auto &it : outfitCount)
-		// This will only use the custom values of the local outfitter if the player is landed.
 		value += Value(it.first, day, it.second);
 	return value;
 }
@@ -273,7 +265,7 @@ int64_t Depreciation::Value(const Ship *ship, int day, int count) const
 // Get the value of an outfit.
 int64_t Depreciation::Value(const Outfit *outfit, int day, int count) const
 {
-	int64_t cost = outfit->Cost() * (customSales ? (GameData::OutfitRelativeCost(*customSales, *outfit)) : 1);
+	int64_t cost = CustomSaleManager::OutfitCost(outfit);
 	if(outfit->Get("installable") < 0.)
 		return count * cost;
 

@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define GAME_DATA_H_
 
 #include "CategoryTypes.h"
-#include "CustomSale.h"
 #include "Sale.h"
 #include "Set.h"
 #include "Trade.h"
@@ -115,9 +114,6 @@ public:
 	static const Set<Color> &Colors();
 	static const Set<Conversation> &Conversations();
 	static const Set<CustomSale> &CustomSales();
-	static std::map<CustomSale::SellType, CustomSale> GetCustomSales(const Planet &planet,
-		const ConditionsStore &conditions);
-	static double OutfitRelativeCost(const std::map<CustomSale::SellType, CustomSale> &sales, const Outfit &outfit);
 	static const Set<Effect> &Effects();
 	static const Set<GameEvent> &Events();
 	static const Set<Fleet> &Fleets();

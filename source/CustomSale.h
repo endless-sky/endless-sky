@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef CustomSale_H_
-#define CustomSale_H_
+#ifndef CUSTOM_SALE_H_
+#define CUSTOM_SALE_H_
 
 #include "ConditionSet.h"
 #include "LocationFilter.h"

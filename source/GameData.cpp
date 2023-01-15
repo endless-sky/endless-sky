@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "ConditionsStore.h"
 #include "Conversation.h"
+#include "CustomSale.h"
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -501,29 +502,6 @@ const Set<Conversation> &GameData::Conversations()
 const Set<CustomSale> &GameData::CustomSales()
 {
 	return objects.customSales;
-}
-
-
-
-map<CustomSale::SellType, CustomSale> GameData::GetCustomSales(const Planet &planet, const ConditionsStore &conditions)
-{
-	map<CustomSale::SellType, CustomSale> matchingSales;
-	for(const auto &sale : GameData::CustomSales())
-		matchingSales[sale.second.GetSellType()].Add(sale.second, planet, conditions);
-	return matchingSales;
-}
-
-
-
-double GameData::OutfitRelativeCost(const map<CustomSale::SellType, CustomSale> &sale, const Outfit &outfit)
-{
-	if(sale.empty())
-		return 1.;
-	// Iterate in the opposite order, since any higher customSale has priority.
-	for(auto &&selling = sale.rbegin(); selling != sale.rend(); ++selling)
-		if(selling->second.Has(outfit))
-			return selling->second.GetRelativeCost(outfit);
-	return 1.;
 }
 
 

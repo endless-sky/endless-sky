@@ -98,6 +98,8 @@ target_sources(EndlessSkyLib PRIVATE
 	CoreStartData.h
 	CustomSale.cpp
 	CustomSale.h
+	CustomSaleManager.cpp
+	CustomSaleManager.h
 	DamageDealt.h
 	DamageProfile.cpp
 	DamageProfile.h
