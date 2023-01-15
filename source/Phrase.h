@@ -43,7 +43,7 @@ public:
 	std::string Get() const;
 
 	// Get every possible result of this phrase.
-	std::vector<std::string> GetAll() const;
+	void GetAll(const std::function<void(const std::string &)> &toCall) const;
 
 
 private:

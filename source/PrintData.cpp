@@ -704,27 +704,33 @@ namespace {
 			}
 
 		if(!phrase)
-		{
 			cout << "Error: invalid phrase name: \"" + phraseName + "\".\n";
-			return;
-		}
-
-		if(randomSample)
-		{
+		else if(randomSample)
 			for(int i = 0; i < randomCount; i++)
 				cout << phrase->Get() << '\n';
-			return;
+		else if(count)
+		{
+			int resultCount = 0;
+
+			auto counter = [&resultCount](const string &result) -> void
+			{
+				if(!result.empty())
+					resultCount++;
+			};
+
+			phrase->GetAll(counter);
+
+			cout << "Permutations of phrase: \"" << phrase->Name() << "\" = " << resultCount << '\n';
 		}
-
-		vector<string> results = phrase->GetAll();
-
-		if(count)
-			cout << "Permutations of phrase: \"" << phrase->Name() << "\" = "
-					<< results.size() << '\n';
 		else
-			for(const auto &it : results)
-				cout << it << '\n';
+		{
+			auto printer = [](const string &result) -> void
+			{
+				cout << result << '\n';
+			};
 
+			phrase->GetAll(printer);
+		}
 	}
 
 

@@ -93,7 +93,7 @@ string Phrase::Get() const
 
 
 
-vector<string> Phrase::GetAll() const
+void Phrase::GetAll(const function<void(const string &)> &toCall) const
 {
 	static auto CombineVectors = [](vector<string> &base, const vector<string> &toAdd) -> void
 	{
@@ -111,8 +111,6 @@ vector<string> Phrase::GetAll() const
 		for(const string &toPush : toAdd)
 			base.push_back(toPush);
 	};
-
-	vector<string> result;
 
 	// Iterate over each sentence in this phrase.
 	// Each sentence is its own set of possible results;
@@ -148,7 +146,12 @@ vector<string> Phrase::GetAll() const
 					// and append each of those to each of the existing partial results for this choice.
 					else if(element.second)
 					{
-						vector<string> subPhraseVector = element.second->GetAll();
+						vector<string> subPhraseVector;
+						auto getAll = [&subPhraseVector](const string &result) -> void
+						{
+							subPhraseVector.push_back(result);
+						};
+						element.second->GetAll(getAll);
 						CombineVectors(choiceVector, subPhraseVector);
 					}
 				}
@@ -162,11 +165,9 @@ vector<string> Phrase::GetAll() const
 			CombineVectors(sentenceVector, partVector);
 		}
 
-		// Append each possible result for this sentence to the final result vector.
-		PushToVector(result, sentenceVector);
+		for(const auto &it : sentenceVector)
+			toCall(it);
 	}
-
-	return result;
 }
 
 
