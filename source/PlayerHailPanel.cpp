@@ -41,7 +41,8 @@ using namespace std;
 
 
 
-PlayerHailPanel::PlayerHailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<void(const Government *)> bribeCallback)
+PlayerHailPanel::PlayerHailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship,
+		function<void(const Government *)> bribeCallback)
 	: player(player), ship(ship), bribeCallback(bribeCallback)
 {
 

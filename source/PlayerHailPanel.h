@@ -38,7 +38,8 @@ class StellarObject;
 // to bribe a planet to allow you to land there.
 class PlayerHailPanel : public HailPanel {
 public:
-	PlayerHailPanel(PlayerInfo &player, const std::shared_ptr<Ship> &ship, std::function<void(const Government *)> bribeCallback);
+	PlayerHailPanel(PlayerInfo &player, const std::shared_ptr<Ship> &ship,
+		std::function<void(const Government *)> bribeCallback);
 	PlayerHailPanel(PlayerInfo &player, const StellarObject *object);
 
 	virtual void Draw() override;

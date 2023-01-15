@@ -39,7 +39,8 @@ using namespace std;
 
 
 
-IllegalHailPanel::IllegalHailPanel(PlayerInfo &player, const Ship &hailingShip, Ship &scannedShip, const Politics::Punishment &fine)
+IllegalHailPanel::IllegalHailPanel(PlayerInfo &player, const Ship &hailingShip, Ship &scannedShip,
+		const Politics::Punishment &fine)
 	: player(player), hailingShip(hailingShip), scannedShip(scannedShip), fine(fine)
 {
 	const Government *gov = hailingShip.GetGovernment();
@@ -50,7 +51,8 @@ IllegalHailPanel::IllegalHailPanel(PlayerInfo &player, const Ship &hailingShip, 
 	header += " is hailing you:";
 
 	static const std::string defaultMessage
-		= "You've been detected carrying illegal <type> and have been issued a fine of <fine> credits. \n\tDump your cargo immediately or we'll be forced to disable and board your ship.";
+		= "You've been detected carrying illegal <type> and have been issued a fine of <fine> credits."
+			" \n\tDump your cargo immediately or we'll be forced to disable and board your ship.";
 
 
 	cantSurrender = fine.reason == Politics::Punishment::Outfit;
