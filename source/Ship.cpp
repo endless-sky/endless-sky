@@ -1491,7 +1491,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	DoGeneration();
 
 	// Handle ionization effects, etc.
-	if(ionization || scrambling)
+	if(ionization)
 		CreateSparks(visuals, "ion spark", ionization * .1);
 	if(scrambling)
 		CreateSparks(visuals, "scramble spark", scrambling * .1);
