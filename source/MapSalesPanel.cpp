@@ -263,10 +263,10 @@ void MapSalesPanel::DrawKey() const
 		// 6 distinct representative colors and the price multiplier each color represents.
 		const double priceRange[] = {
 			minColor,
-			(1. - (1. - minColor) * minColor + minColor) / 2.,
-			1. - (1. - minColor) * minColor,
-			(maxColor - 1.) * (1. / 3.) + 1.,
-			(maxColor - 1.) * (2. / 3.) + 1.,
+			(.5 * minColor * minColor) - minColor * .5 + .5,
+			(minColor * (minColor - 1.)) + 1.,
+			maxColor * (1. / 3.) + (2. / 3.),
+			maxColor * (2. / 3.) + (1. / 3.),
 			maxColor
 		};
 		for(int i = 0; i < 6; ++i)
