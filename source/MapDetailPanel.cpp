@@ -878,14 +878,18 @@ void MapDetailPanel::DrawOrbits()
 			continue;
 
 		Point pos = orbitCenter + object.Position() * scale;
-		// A special case to handle: wormholes which would lead to an inaccessible location should not
+		// Special case: wormholes which would lead to an inaccessible location should not
 		// be drawn as landable.
-		if(object.HasValidPlanet() && object.GetPlanet()->IsAccessible(player.Flagship())
-				&& (!object.GetPlanet()->GetWormhole()
-				|| !object.GetPlanet()->GetWormhole()->WormholeDestination(*selectedSystem).Inaccessible()))
+		bool hasPlanet = object.HasValidPlanet();
+		bool inaccessible = hasPlanet && object.GetPlanet()->GetWormhole()
+			&& object.GetPlanet()->GetWormhole()->WormholeDestination(*selectedSystem).Inaccessible();
+		if(hasPlanet && object.GetPlanet()->IsAccessible(player.Flagship()) && !inaccessible)
 			planets[object.GetPlanet()] = pos;
 
-		const float *rgb = Radar::GetColor(object.RadarType(player.Flagship())).Get();
+		// The above wormhole check prevents the wormhole from being selected, but does not change its color
+		// on the orbits radar.
+		const float *rgb = inaccessible ? Radar::GetColor(Radar::INACTIVE).Get()
+			: Radar::GetColor(object.RadarType(player.Flagship())).Get();
 		// Darken and saturate the color, and make it opaque.
 		Color color(max(0.f, rgb[0] * 1.2f - .2f), max(0.f, rgb[1] * 1.2f - .2f), max(0.f, rgb[2] * 1.2f - .2f), 1.f);
 		RingShader::Draw(pos, object.Radius() * scale + 1., 0.f, color);
