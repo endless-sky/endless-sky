@@ -68,7 +68,7 @@ ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, InfoPanelState state)
 	{
 		// Find the player's flagship. It may not be first in the list, if the
 		// first item in the list cannot be a flagship.
-		while(shipIt != player.Ships().end() && shipIt->get() != player.Flagship())
+		while(shipIt != this->panelState.Ships().end() && shipIt->get() != player.Flagship())
 			++shipIt;
 	}
 
@@ -92,7 +92,7 @@ void ShipInfoPanel::Draw()
 	// Fill in the information for how this interface should be drawn.
 	Information interfaceInfo;
 	interfaceInfo.SetCondition("ship tab");
-	if(panelState.CanEdit() && (shipIt != player.Ships().end())
+	if(panelState.CanEdit() && (shipIt != panelState.Ships().end())
 			&& (shipIt->get() != player.Flagship() || (*shipIt)->IsParked()))
 	{
 		if(!(*shipIt)->IsDisabled())
@@ -119,7 +119,7 @@ void ShipInfoPanel::Draw()
 
 	// Draw all the different information sections.
 	ClearZones();
-	if(shipIt == player.Ships().end())
+	if(shipIt == panelState.Ships().end())
 		return;
 	Rectangle cargoBounds = infoPanelUi->GetBox("cargo");
 	DrawShipStats(infoPanelUi->GetBox("stats"));
