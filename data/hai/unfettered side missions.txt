@@ -1471,7 +1471,7 @@ mission "Unfettered: Hunger Stories 1"
 	on complete
 		payment 300000
 		conversation
-			`You are suprised to see a military honor guard in addition to what you assume are social services. They greet the family with a keening trill that your crewmember says is a sound of mourning. The Hai move in close and surround the group in what seems to be a group hug and then they move together into the spaceport. One of the Hai soldiers approaches you and says, "Thank you for brining our family back together" and gives you your payment of <payment>.`
+			`You are surprised to see a military honor guard in addition to what you assume are social services. They greet the family with a keening trill that your crewmember says is a sound of mourning. The Hai move in close and surround the group in what seems to be a group hug and then they move together into the spaceport. One of the Hai soldiers approaches you and says, "Thank you for brining our family back together" and gives you your payment of <payment>.`
 
 
 
@@ -1499,7 +1499,7 @@ mission "Unfettered: Hunger Stories 2"
 			
 			label hire
 			`	The young Unfettered proves diligent in his work. He steers you away from some vendors and towards others and the prices and quality are at least competitive. Several times his staff has flashed out and blocked people who might have bumped into you. While some of the vendors you traded with were amused by his translations, most worked through him rather than speaking to you directly. He even kept watch while you were eating, though he did seem to be distracted by the food.`
-			`	At the end of the day, he follows you to the <ship> and you pay him his fee. He surprises you though, by following you on board. "I will watch over you until you make it back to the Fettered worlds. You should be safe enough on <destination>." From the prices you saw in the resturants and shops, the amount you paid would feed him for a few days at most.`
+			`	At the end of the day, he follows you to the <ship> and you pay him his fee. He surprises you though, by following you on board. "I will watch over you until you make it back to the Fettered worlds. You should be safe enough on <destination>." From the prices you saw in the restaurants and shops, the amount you paid would feed him for a few days at most.`
 			choice
 				`	(Give him transport.)`
 					goto transport
@@ -1522,7 +1522,7 @@ mission "Unfettered: Hunger Stories 2"
 				decline
 
 			label transport
-			`	You drop the Hai off at the galley and tell him to eat as much as he wants while you prepare the ship for launch. When you return after reaching orbit, his belly is noticably distendend. He seems more relaxed than he did at the spaceport, but that could just be the on-coming food coma. You take him to the uniform locker and find him some boots and a jumpsuit, though you have to make some quick alterations with your knife to accommodate his tail. He asks for a sewing kit and says that he can finish the job.`
+			`	You drop the Hai off at the galley and tell him to eat as much as he wants while you prepare the ship for launch. When you return after reaching orbit, his belly is noticeably distended. He seems more relaxed than he did at the spaceport, but that could just be the on-coming food coma. You take him to the uniform locker and find him some boots and a jumpsuit, though you have to make some quick alterations with your knife to accommodate his tail. He asks for a sewing kit and says that he can finish the job.`
 				accept
 
 	on complete
@@ -1552,7 +1552,7 @@ mission "Unfettered: Hunger Stories 3"
 			label bribe
 			action
 				payment -500
-			`	You see movement in your peripheral vision just as you feel the credits pulled from your hand. One of the children off to your side darted forward before you could react and is now handing your credits to the leader. She checks the amound and then gives you a satisfied smile. Aty credits nod, the group vanishes into the life of the street.`
+			`	You see movement in your peripheral vision just as you feel the credits pulled from your hand. One of the children off to your side darted forward before you could react and is now handing your credits to the leader. She checks the amount and then gives you a satisfied smile. Aty credits nod, the group vanishes into the life of the street.`
 			`	You make your way quickly back to the spaceport, certain that the kids are shadowing you. It's with some relief that you make it through the security checkpoint.`
 				decline
 			
