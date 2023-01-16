@@ -215,7 +215,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		GetUI()->Push(new MissionPanel(player));
 	else if(key == 'r')
 		pageIndex = pageIndex >= pages - 1 ? pageIndex : pageIndex + 1;
-	else if(key == 'z')
+	else if(key == 'e')
 		pageIndex = pageIndex <= 1 ? pageIndex : pageIndex - 1;
 	else if(key == 'l' && player.HasLogs())
 		GetUI()->Push(new LogbookPanel(player));
@@ -245,11 +245,11 @@ bool ShipInfoPanel::Click(int x, int y, int /* clicks */)
 
 	double yDimension = GameData::Interfaces().Get("hardpoint buttons")->GetValue("y dimension");
 	if(point.X() <= nextHardpoint.X() + 145. && point.X() >= nextHardpoint.X() + 105.
-		&& point.Y() <= nextHardpoint.Y() + yDimension && point.Y() >= nextHardpoint.Y() - yDimension)
+		&& point.Y() <= nextHardpoint.Y() - yDimension && point.Y() >= nextHardpoint.Y() + yDimension)
 		return DoKey('r');
 	if(point.X() <= previousHardpoint.X() + 60. && point.X() >= previousHardpoint.X()
-		&& point.Y() <= previousHardpoint.Y() + yDimension && point.Y() >= previousHardpoint.Y() - yDimension)
-		return DoKey('z');
+		&& point.Y() <= previousHardpoint.Y() - yDimension && point.Y() >= previousHardpoint.Y() + yDimension)
+		return DoKey('e');
 
 	for(const auto &zone : commodityZones)
 		if(zone.Contains(point))
@@ -594,10 +594,10 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 		const Interface *hardpointButtonValues = GameData::Interfaces().Get("hardpoint buttons");
 		layout.align = Alignment::RIGHT;
 		nextHardpoint = Point(centerX + LABEL_DX, hardpointButtonValues->GetValue("y position"));
-		font.Draw({"next>", layout}, nextHardpoint , Color(.5, .0));
+		font.Draw({"n_ext>", layout}, nextHardpoint , Color(.5, .0));
 		layout.align = Alignment::LEFT;
 		previousHardpoint = Point(centerX - LABEL_DX - LABEL_WIDTH, 260.);
-		font.Draw({"<previous", layout}, previousHardpoint, Color(.5, .0));
+		font.Draw({"<p_revious", layout}, previousHardpoint, Color(.5, .0));
 	}
 
 	// Make sure the line for whatever hardpoint we're hovering is always on top.
