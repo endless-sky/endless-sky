@@ -1462,14 +1462,18 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				set "Hai Reveal: what are the other options?"
 			`	"Ah, well those are difficult to explain, since the options worth using will depend on exactly what happens in the meeting. One thing Sayari was very right to remind me of before is that there are normal channels and processes to follow, and those must be followed. We're an old people, Captain <last>, and not always a very patient people. We've forged a system of government with systems and processes to allow almost any internal situation to be handled without resorting to base hysteria, and to actively punish and isolate those who try and subvert those processes. It is a difficult pill to swallow sometimes, but it works, and it has ensured stability since before humans learned to bash rocks together."`
 			`	Her mouth quirks in a sly little smile. "Aimet has always been the master navigator of those systems. He's responsible for improving one of them for the first time in two thousand years." She frowns. "It's actually very odd that he wasn't chosen for the Triad last time we were here."`
-				goto return
+				goto surprise
 			label aimet
 			action
 				set "Hai Reveal: who is Aimet?"
 			`	"He is the..." she pauses to look up aimlessly, "I don't think it translates quite right. You have a phenomenon in your language where you amalgamate words sometimes, like an engineer who works specifically on solutions to problems might be called a 'solutioneer'. We have a similar thing with our words for political systems and navigator. It's a title he has earned."`
 			`	She spreads her arms, 'palms' up, in a human gesture indicating a loss for words. "Our system of government has systems and processes to allow almost any internal situation to be handled without resorting to base hysteria, and to actively punish and isolate those who try and subvert those processes. It is a difficult pill to swallow sometimes, but it works, and it has ensured stability since before humans learned to bash rocks together. Aimet is the master navigator of those systems. He's responsible for improving one of them for the first time in two thousand years."`
+
+			# SCENE CHANGE
+
+			# Moderator, guards, Sayari, and an agent return.
 			
-			label return
+			label surprise
 			# The stone acorn is the emblem of the Hai central government: sturdy,
 			# stable, and unmoving. Inedible, as a sign that the Hai would never
 			# take necessities from each other. Just like the government, a stone
@@ -1496,7 +1500,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				`	"Who is Aimet?"`
 					to display
 						has "Hai Reveal: will there be war?"
-						not "Hai Reveal: what are the other options?"
+						not "Hai Reveal: who is Aimet?"
 				`	"What is the message?"`
 					goto message
 			`	As the beeping intensifies, Teeneep thinks for a second before responding. "Well, the answer-" but before she can finish, several Hai enter the room, surrounding Sayari. Two armed guards look sternly at the startled Teeneep, while a Hai wearing unusual marks of office bears an intensely unemotional face.`
@@ -1504,23 +1508,26 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			label message
 			`	The beeping intensifies and Teeneep shows you the message. "Teeneep is hereby subpoenaed by the full Elder Council for an immediate emergency meeting." No sooner do you read this than Sayari returns, aside several other Hai. Two armed guards look sternly at Teeneep, while a Hai wearing unusual marks of office bears an intensely unemotional face.`
 			label nervous
-			`	A nervous young Hai rushes through the doorway, weaving to the middle, bringing a welcome end to the standoff. She gives an elegant curtsy, curving her tail's instead of a skirt, and pulls a paper out of nowhere. Reading from its elegant calligraphy, she says, "By order of the Elder Council, Teeneep will immediately accompany the Moderator," she motions to the unemotional Hai, "to the Council Chambers for an emergency meeting. Sayari's presence is also required, but Captain <first> <last> is given an alternative. A functionary," she points to herself, "will escort the Captain, and relay questions in their absence."`
+			`	A nervous young Hai rushes through the doorway, weaving between people into the middle of the crowd, bringing a welcome end to the standoff. She gives an elegant curtsy, curving her tail's tip in place of a skirt, and pulls a paper out of nowhere. Reading its elegant calligraphy, she says, "By order of the Elder Council, Teeneep will immediately accompany the moderator," she motions to the unemotional Hai, "to the Council Chambers for an emergency meeting. Sayari's presence is also required, but Captain <first> <last> is given an alternative. A functionary," she points to herself, "will escort the Captain, and relay questions in their absence."`
 			# The "nervous young Hai" is an intelligence operative with high-level
 			# clearance, who has been carefully selected for this situation. She
-			# is keenly aware of what Hai behaviors humans find cute and
-			# disarming, and is using her considerable acting skill to hide her
-			# true purpose from Captain Last. Anything she "accidentally lets
-			# slip" is an intentional transfer of information from the Hai
-			# government to Captain Last. The Moderator, the guards, and Sayari
-			# all know this. Teeneep doesn't.
-			`	"Before we depart, Captain <last>," the Moderator says, "I need you to confirm you are able to act as a witness, and confirm that the threat carried from the Unfettered was indeed real."`
+			# is displaying behaviors she knows humans find cute and disarming, to
+			# get Captain Last to underestimate her. Any information she "lets slip"
+			# is a calculated move by the Elders or Hai intelligence. The guards,
+			# Sayari, and the moderator know this, but Teeneep doesn't.
+			`	"Before we depart, Captain <last>," the moderator says, "I need you to confirm you are able to act as a witness, and confirm that the threat carried from the Unfettered was indeed real."`
 			choice
 				`	"That is correct."`
 					goto correct
 				`	"I can also testify to the human position on the matter."`
-			`	The moderator pulls a strange face and says, "Right, well, I doubt that will be necessary.`
+			`	The moderator says, in a dispassionate tone, "Right, well, I doubt that will be necessary."`
 			label correct
-			`	The Moderator looks at you. "Your presence," he says pointedly, "is distasteful to many Elders, and," he pauses, "opens opportunities to others. Those factions offer you a once in a lifetime opportunity: access to confidential files from Hai intelligence services, in a private reading room. You may travel between the proceedings and reading room at your leisure. At the end of the proceedings, our internal classified news network will brief you on the proceedings' results.`
+			`	As his expression changes from unemotional to impassive, the moderator continues. "Your presence," he says pointedly, "is distasteful to many Elders, and," he pauses, "presents opportunities to others. Those factions offer you a once in a lifetime opportunity: access to confidential files from Hai intelligence services, in a private reading room. You may travel between the proceedings and reading room at your leisure. At the end of the proceedings, our internal classified news network will brief you on the proceedings' results.`
+
+			# SCENE CHANGE
+
+			# People filter out, and Captain Last can choose where to go next (and how quickly)
+
 			action
 					"Hai Reveal [A11] Sound the Alarm: time" = 1
 			# Randomly choose whether the proceedings or reading room are offered first
@@ -1568,21 +1575,31 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			action
 				set "Hai Reveal [A11] Sound the Alarm: asked about files"
 			`	"Oh, all manner of information. Current and past interactions of our species, including the Unfettered, with other races. The Korath, Human, Quarg, and Wwww-" She twitches nervously, as if she caught herself before saying something she shouldn't. "-wwweeeellll, given the situation, I'd expect details about Teeneep's past, the Unfettered, and our interactions with human pirates.`
-			`	"You'll have a clearance level of hazel-2, which gives you some juicy information. Some pages will be redacted, but there will be enough lingering text so you'll know the nature of the redacted information. Even the redactions are telling: you will learn about our Elders by the nature of what they choose to redact.`
-			`	"This is definitely a once-in-a-lifetime opportunity; it is exceptionally rare for the Hai to share hazel-level information with outsiders. Oh, my!" She nibbles her finger and thinks for a moment. "Your supporters in the Elder Council must place supreme trust in you to take this risk! I will, of course, relay their questions and your answers. Afterwards, you can view the internal news broadcast describing the proceedings, which will show you the highlights. Also, you can travel between the proceedings and the reading room at your leisure."`
+			`	"You'll have a clearance level of Hazel-2, which gives you some juicy information. Some pages will be redacted, but there will be enough lingering text so you'll know the nature of the redacted information. Even the redactions are telling: you will learn about our Elders by the nature of what they choose to redact.`
+			`	"This is definitely a once-in-a-lifetime opportunity; it is exceptionally rare for the Hai to share Hazel-level information with outsiders. Oh, my!" She nibbles her fingers and thinks for a moment. "Your supporters in the Elder Council must place supreme trust in you to take this risk! I will, of course, relay their questions and your answers. Afterwards, you can view the internal news broadcast describing the proceedings, which will show you the highlights. Also, you can travel between the proceedings and the reading room at your leisure."`
 			`	Her ears perk up as she smiles again, awaiting your response.`
 				goto wherego
 
+			# THE READING ROOM
+
 			label reading
+
+			# Entry points. We get here every time Captain Last leaves the proceedings,
+			# or upon first entering, or after each report is read.
+
 			branch reading7
-				"Hai Reveal [A11] Sound the Alarm: time" >= 7
-			# Next opportunity to return is at time 4, when Amit is about to speak.
+				"Hai Reveal [A11] Sound the Alarm: time" == 7
+			# Next opportunity to return is at time 4, when Aimet is about to speak.
 			branch reading4
-				"Hai Reveal [A11] Sound the Alarm: time" >= 4
+				"Hai Reveal [A11] Sound the Alarm: time" == 4
 			# First question happens at time 2
 			branch reading2
-				"Hai Reveal [A11] Sound the Alarm: time" >= 2
-			# time < 2
+				"Hai Reveal [A11] Sound the Alarm: time" == 2
+			# Initial entry to reading room if player skips beginning of proceedings
+			branch reading1
+				"Hai Reveal [A11] Sound the Alarm: time" == 1
+			branch library
+			label reading1
 			`	You enter a small room with a holographic display and two hovering balls that appear to detect the movement of your hands in the hologram.`
 			`	"The search system is quite complicated, so I prepared a list of documents that Sayari and the Elders thought you would find most interesting, given your current and anticipated situation." She waves her hands and the title pages of selection of documents come up. She pokes one document, and a book appears in the holoprojector, which she is able to manipulate as if it were real. Closing the book returns the interface to the list of documents."`
 				goto library
@@ -1593,12 +1610,15 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				`	"I'd rather return to the proceedings to answer their question."`
 					goto return2
 				`	"It was a constructive discussion."`
+					goto library
 				`	"I witnessed the test of two wills."`
+					goto library
 				`	"The meeting was poignant."`
+					goto library
 				`	"Very aggressive and confronting."`
 					goto library
 			label reading4
-			`	"Oh my! Oh! Captain <last>, I'm sorry to interrupt, but the proceedings are entering an intense phase. Teeneep is in serious trouble, but..." She touches an unseen earbud, and her expression changes to awe. "...but I think our most respected Elder is about to defend her. Do you want to return?"`
+			`	"Oh my! Oh! Captain <last>, I'm sorry to interrupt, but the proceedings are entering an intense phase. Teeneep is in serious trouble, but..." She touches an unseen earbud, and her expression changes to awe. "...but I think Aimet is about to defend her. Do you want to return?"`
 			choice
 				`	"Yes, lets go back now."`
 					goto return4
@@ -1730,7 +1750,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			`	"Captain, since you have become involved as a witness, protocol dictates that the session will be held in your language, though for the sake of order normal council directions will still be in Hai. We will begin in a moment."`
 				goto proceedings
 			label nohurry
-			`	The functionary explains the proceedings while leading you to Sayari. "The session will be mostly in your language since you're involved as a witness. The Moderator will lead; they're rarely present, but this is quite a momentous event."`
+			`	The functionary explains the proceedings while leading you to Sayari. "The session will be mostly in your language since you're involved as a witness. The moderator will lead; they're rarely present, but this is quite a momentous event."`
 			label proceedings
 			`	After everyone is set in place, the moderator abruptly starts. "Teeneep has provided a confession about her visit to the Unfettered, incitement to war, involvement of outside government in internal Hai matters, and other concerns. She has justified this by an argument of necessity, that it is essential for action to be taken to produce both a peaceful outcome for the ongoing crisis with humanity and to heal a hole in the heart of our society."`
 			`	When the moderator refers to 'healing the hole', it is spoken with an emphasis that implies heavy quotation, and you can hear the muttering of translations and scoffs rippling out among the Elders in the room.`
@@ -1788,28 +1808,28 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				"Hai Reveal [A11] Sound the Alarm: time" = 3
 			`	Sayari gives you a meaningful look and whispers, "A lot of them paid attention to that..."`
 			`	The next Elder to their feet is an older lady Hai, and her expression alone is enough to cause a flicker of concern to disrupt Teeneep's careful mask of calm. She gestures around the room, pointing with a digit and squinting at several others in the room. "You are, all of you, cowards. This is the highest chamber of the Hai, elected to protect and serve, and to ensure the enduring stability of the great edifice which is now a hundred millennia of stability. This one here has sought to upend that authority and topple that edifice in favor of nothing more than a statistical blip. Five thousand Hai in two hundred years is barely a concern. That many managed to get themselves killed swimming with Gelo Appanoh in the last decade alone! Freedom through peace, peace through order, order through security, and security through secrecy. This is the mandate of this chamber, and no matter how virtuous the challenger may be, this threat cannot be allowed to stand!"`
-			action
-				"Hai Reveal [A11] Sound the Alarm: time" = 4
 			choice
 				`	(Remain silent and listen.)`
 				`	"That response was sickening. I'm going to the reading room."`
 					goto reading
 				`	"If you'll pardon me, I have some reports to read."`
 					goto reading
+			action
+				"Hai Reveal [A11] Sound the Alarm: time" = 4
 			`	There is a growing rumble of assent as the crescendo of her impassioned statement crests to its conclusion. She levels a clawed finger directly at Teeneep and the room is filled with the angry cries of both those emboldened by her diatribe and those distressed by her implication. The moderator makes several attempts to restore order as over a dozen Elders jump to their feet, but the cacophony is not so easily restrained. At your side, Sayari's expression is ashen, but Teeneep seems to be seeking out a particular face somewhere in the room with a fierce intensity.`
 			`	There is a shift in the sound of the room and your attention is drawn to one Hai in particular, a particularly elderly man who struggles to his feet in a series of pained stages. The effect on the assembly is profound, though. A ripple of silence flows outward from his position, and Elders all around promptly drop back into their seats as it reaches them, leaving a scant handful who were too slow to react to have their final words trail off awkwardly. Only the last speaker remains on her feet, the moderator weakly announcing in Hai what you know to be, "The council hears Aimet."`
 				goto continue4
 			label return4
 			`	On the short walk to the proceedings, the functionary explains, "A firebrand named Gemnali has made serious accusations against Teeneep."`
-			`	You can hear the tail end of a diatribe, as only one last speaker remains on her feet. The room has fallen to an awed silence as the the moderator weakly announces in Hai what you know to be, "The council hears Aimet."`
+			`	You can hear the tail end of a diatribe, as only one last speaker remains on her feet. The room has fallen to an awed silence as the the moderator weakly announces in Hai, "The council hears Aimet."`
 			label continue4
+			action
+				"Hai Reveal [A11] Sound the Alarm: time" = 5
 			`	"Security through secrecy..." He coughs. "You throw that in there as if it were always so Gemnali but, unlike you, I was there when it was added to the mandate of this chamber."`
 			`	He peers around the room, and you realize he is blind, or nearly so. "Freedom may be achieved through peace, but peace must not be maintained at the cost of freedom. Order may not be pursued at the cost of peace, nor security at the cost of order. Always this mandate must be considered in both directions. To censure this woman, to resist action on this matter... You would have us pursue secrecy at the cost of security."`
 			`	He coughs again, and it echoes in the silence of nearly a hundred Hai holding their breath. When he continues, his voice grows stronger and sharper. "My eyes may not see as well as they used to, but there are many in this chamber who are yet too blind to see. The edifice of our stability is not threatened by this woman who would have us restore security to our lost brethren. It is you who would use her virtue to topple it yourself."`
 			`	The silence stretches with all eyes on Gemnali. She clenches her fists, shaking with barely suppressed emotion, before collapsing back into her seat as if physically struck.`
 			`	Whatever spell had held the room is immediately broken and a susurrus of murmuring rises to fill its space. Within the noise a certain phrase starts to be repeated multiple times, drawing an expression of shock from Sayari.`
-			action
-				"Hai Reveal [A11] Sound the Alarm: time" = 5
 			choice
 				`	"What are they saying?"`
 				`	"What just happened?"`
@@ -1852,7 +1872,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 
 
 			label return7
-			`	After a minute of walking, you arrive at an empty room. "It seems Teeneep and Sayari have departed to have private discussions," says the functionary, "but I can tell you where to meet with the human diplomats. I'll take you to a summary of the proceedings instead."`
+			`	After a minute of walking, you arrive at an empty room. "It seems Teeneep and Sayari have departed to have private discussions, but I can tell you where to meet with the human diplomats. I'll take you to a summary of the proceedings instead."`
 			choice
 				`	"Yes, I certainly want the summary."`
 				`	"No, it's time for dinner."`
