@@ -1270,7 +1270,7 @@ void Engine::EnterSystem()
 			double attraction = .005 * (factors.first - factors.second - raidFleet.second);
 			// Consider the other fleets in the local system.
 			// Do not take into account the raid fleet, that would just mess with the minimum attraction of it.
-			auto raidStrength = raidFleet.Strength();
+			auto raidStrength = raidFleet.first->Strength();
 			for(const auto &fleet : system->Fleets())
 			{
 				const Government *fleetGov = fleet.Get()->GetGovernment();

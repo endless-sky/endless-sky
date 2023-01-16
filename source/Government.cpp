@@ -120,7 +120,7 @@ void Government::Load(const DataNode &node)
 		const string &key = child.Token((add || remove) ? 1 : 0);
 		int valueIndex = (add || remove) ? 2 : 1;
 		bool hasValue = child.Size() > valueIndex;
-		
+
 		// If add is not specified we delete all of existing raid data.
 		bool shouldOverwrite = (key == "raid" && !add && clearRaids);
 
