@@ -979,7 +979,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		else if((personality.IsTimid() || (it->IsYours() && healthRemaining < RETREAT_HEALTH))
 				&& parent->Position().Distance(it->Position()) > 500.)
 			MoveEscort(*it, command);
-		// Otherwise, attack targets depending on how heroic you are.
+		// Otherwise, attack targets depending on your hunting attribute.
 		else if(target && (targetDistance < 2000. || personality.IsHunting()))
 			MoveIndependent(*it, command);
 		// This ship does not feel like fighting.
