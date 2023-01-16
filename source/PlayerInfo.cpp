@@ -1223,11 +1223,12 @@ pair<double, double> PlayerInfo::RaidFleetFactors() const
 
 double PlayerInfo::RaidFleetAttraction(const std::pair<const Fleet *, double> &raidFleet, const System *system) const
 {
+	double attraction = 0.;
 	const Government *raidGovernment = raidFleet.first->GetGovernment();
 	if(raidGovernment && raidGovernment->IsEnemy())
 	{
 		pair<double, double> factors = RaidFleetFactors();
-		double attraction = .005 * (factors.first - factors.second - raidFleet.second);
+		attraction = .005 * (factors.first - factors.second - raidFleet.second);
 		// Consider the other fleets in the local system.
 		// Do not take into account the raid fleet, that would just mess with the minimum attraction of it.
 		auto raidStrength = raidFleet.first->Strength();
@@ -1241,6 +1242,7 @@ double PlayerInfo::RaidFleetAttraction(const std::pair<const Fleet *, double> &r
 				* ((fleet.Get()->Strength() / fleet.Period()) / raidStrength);
 		}
 	}
+	return attraction;
 }
 
 
