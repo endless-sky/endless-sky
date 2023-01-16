@@ -49,7 +49,7 @@ mission "Resistance: Smuggling: Charity 1"
 				`	"I'd be glad to help you. Have the supplies loaded into my ship."`
 				`	"That's a noble cause, but I don't work as a cargo hauler, sorry."`
 					decline
-			`	Her mouth produces something of a chirping, clicking sound, "Grateful I am, Captain. Pay you much, we cannot, but helping many, you will be. Of that you I assure."`
+			`	Her mouth produces something of a chirping, clicking sound, "Grateful I am, Captain. Pay you as well as some other jobs, we may not, but know that helping many, you will be. Of that you I assure."`
 			`	She signals to some workers with similar uniforms, and in a few minutes they bring the cargo crates to your ship. More colleagues are already on <planet> working with more captains, she explains, and suggests to look for them when you arrive. She thanks you again, and wishes you a good trip to <planet>.`
 				accept
 			label metchiree
@@ -109,7 +109,7 @@ mission "Resistance: Smuggling: Charity 2"
 				`	"Sorry, charity doesn't pay much and I'm kind of in need of cash."`
 					decline
 			`	"An ever-colder world, <planet> is. Left the planet, many have, but wish to abandon their homes, lots of Kimek there do not," she explains. "Lacking proper winter clothing for the harsher weather, many are, and led to many job losses, the snowfall has, so delivering various coats and warm clothing pieces, we are."`
-			`	She slowly raises up one leg, struggles for footing with her other five, and waves to a group of other Kimek with the same blue uniform. They come to you and she continues. "Unsuited for such cold climates, we Kimek are, so fall to illnesses, many on <planet> also do. Agreed to help them, these fine doctors have," she says, pointing to the <bunks> Kimek doctors, who all greet you briefly with nods and some leg movement. "Received more incentive funds, we have, so paid more than last time, you will be. Compensate you enough for how much this helps, <payment> cannot, but hope, I do, that worth it to you, it is."`
+			`	She slowly raises up one leg, struggles for footing with her other five, and waves to a group of other Kimek with the same blue uniform. They come to you and she continues. "Unsuited for such cold climates, we Kimek are, so fall to illnesses, many on <planet> also do. Agreed to help them, these fine doctors have," she says, pointing to the <bunks> Kimek doctors, who all greet you briefly with nods and some leg movement. "Received more incentive funds, we have, so paid more than last time, you will be, as thanks for your continued assistance. Help compensate you enough for how much this helps, <payment> hopefully will."`
 			`	Some workers bring <cargo> into your ship, while you show the <bunks> Kimek doctors their bunks. The Kimek who met you here wishes you all a safe trip to <planet>, and moves on to speak with some other captains.`
 				accept
 			label metchiree
@@ -190,7 +190,7 @@ mission "Resistance: Smuggling: Grenades"
 			`You drop off the crates full of charity goods, and the spaceport workers start getting them up on vehicles to transport them to the poor. One of the workers transfers 261,000 credits to your account, thanking you for the help.`
 			branch metchiree
 				has "Resistance: Questions: done"
-			`	As they move the last few crates, you hear a rapid tapping approaching from behind, and when you turn to investigate a Kimek tackles you. Some more join in, covering your head with some dark sack, and start shoving you around once they restrain you. You call out for help, but nobody comes. The Kimek keep pushing and tugging at you as they bring you around the city. After many minutes, you hear some doors close behind you, and your captors force you into some cramped room or compartment. You try to stand up straight, but hit your head against the ceiling. It feels as if the room was tugged down in a moment, and when it stops, you're walked around for a while longer. Finally, the Kimek seat you and remove the sack from your head.`
+			`	As they move the last few crates, you hear a rapid tapping approaching from behind, and when you turn to investigate a Kimek tackles you. Some more join in, covering your head with some dark sack, and start shoving you around once they restrain you. You call out for help, but nobody comes. The Kimek keep pushing and tugging at you as they bring you around the city. After many minutes, you hear some doors close behind you, and your captors force you into some cramped room or compartment. You try to stand up straight, but hit your head against the ceiling. It soon becomes clear you're in an elevator, moving down, and when it stops, you're walked around for a while longer. Finally, the Kimek seat you and remove the sack from your head.`
 			`	Though you're underground, the insides remind you of an office building or call center; several Kimek are working in cubicles, most examining computer screens while others speak into communicators. You look back to where you reckon you came from, seeing the entrance to a short elevator by the end of a hallway. Coming around the corner, a Kimek you recognize approaches to sit opposite to you - the Kimek who first contacted you about the charity missions. A group of the blue uniformed Kimek follow after her as they bring a crate: one of the crates you transported here. "Forgive us for the discomfort you must, Captain," she says, as the workers open up the crate, revealing several Heliarch guns stuffed inside. "Wished to speak away from prying eyes, I did. Rest easy, you may, harm you, we will not."`
 			choice
 				`	"What do you want from me?"`
@@ -246,7 +246,7 @@ mission "Resistance: Smuggling: Grenades"
 		outfit "Fragmentation Grenades" -100
 		payment 3400000
 		conversation
-			`As you approach the standard docking bay, a message pops up on your monitor telling you to go to the edge of the city. You follow the instructions and find yourself in the middle of several dozen warehouses. Another message arrives and asks that you unload the crates and bring them to a specified warehouse. As this information comes in, you notice that a cargo loader the spaceport workers use has been prepared for you. You get the grenades out of your ship as fast as you can, worried that someone might see you, and start moving them to the designated warehouse. The door is open, with a few Arachi waiting inside by a staircase. They say nothing to you and simply help with the grenades, taking them off of the cargo loader and bringing them down the stairs, box by box.`
+			`As you approach the standard docking bay, a message pops up on your monitor telling you to go to the edge of the city. You follow the instructions and find yourself in the middle of several dozen warehouses. Another message arrives and asks that you unload the grenades and bring them to a specified warehouse. As this information comes in, you notice that a few Arachi have arrived just outside your ship with some cargo loaders, seemingly waiting for you to begin moving the smuggled weapons. You open up your hatch, and help them get the grenade crates out of your ship as fast as you can, worried that someone might see you, bringing them to the designated warehouse. The door is open, with a few more Arachi waiting inside by a staircase. They say nothing to you and simply take the grenades crates, taking them off of the cargo loader and bringing them down the stairs, crate by crate.`
 			`	When you're done with the last one, one of the Arachi hands you several credit chips, worth <payment> in total. "Contact you for more deliveries of this kind, we will," they say as they head down with the final grenade box. You head back to your ship, and leave for the usual hangars.`
 
 mission "Resistance: Smuggling: AM"
@@ -266,7 +266,7 @@ mission "Resistance: Smuggling: AM"
 		has "Heliarch Investigation 2: active"
 	on offer
 		conversation
-			`You land to find an Arach Heliarch agent waiting for you. "Forgive me for this intrusion, you must, Captain <last>, but orders to inspect your ship, I have," she says. She heads inside your ship before you can say anything, and rushes to the cockpit, asking you to close the door after you get there too. Her eyes trail the interior for a while, then she approaches you. "Helped the Lunarium with supplies before, you have," she whispers. "In need of more such services, we are. Means to defend ourselves against the Heliarch missiles, we require, so sent to ask you for three of the largest human anti-missile turrets, I was."`
+			`Shortly after you land, an Arach approaches your ship, waiting for you to come out. When you do, she pulls out a Heliarch badge. "Forgive me for this intrusion, you must, Captain <last>, but orders to inspect your ship, I have." She heads inside your ship before you can say anything, and rushes to the cockpit, asking you to close the door after you get there too. Her eyes trail the interior for a while, then she approaches you. "Helped the Lunarium with supplies before, you have," she whispers. "In need of more such services, we are. Means to defend ourselves against the Heliarch missiles, we require, so sent to ask you for three of the largest human anti-missile turrets, I was."`
 			choice
 				`	"Where should I take them to?"`
 				`	"I'm not sure human anti-missiles will be very effective against your missiles."`
@@ -274,9 +274,9 @@ mission "Resistance: Smuggling: AM"
 			`	"Brought to <destination>, they must be. The factories there, numerous and alike, they are. Hopes to produce our own, in secret, we have."`
 				goto accept
 			label effective
-			`	"The simpler their mechanisms, the faster that replicate them, we can," she says. "Strong enough to stop the Finishers, I hope they are... Bring the turrets to <destination>, you must."`
+			`	"The simpler their mechanisms, the faster that replicate them, we can," she says. "Strong enough to stop the finishers, I hope they are... Bring the turrets to <destination>, you must."`
 			label accept
-			`	She asks for your monitor, and, after tinkering with the controls for a minute, plugs a small, round device into it. "Allow us to more easily contact you, this will," she explains. "After delivered the goods to <planet>, you have, message you for more missions, we shall. Good luck, and thanks, Captain." Once the 'inspection' is done, she leaves your ship and scurries off.`
+			`	She asks for your monitor, and, after tinkering with the controls for a minute, plugs a small, round device into it. "Allow us to more easily contact you, this will. Accessed by a separate network entirely, the device is. Simply a means to receive our messages, it is. Leave traces on its hardware, communications will not, and gain access to the network on its own, it cannot, so traced back to us, you won't be, unless caught by the Heliarchs during our communications, you are," she explains. "After delivered the goods to <planet>, you have, message you for more missions, we shall. Good luck, and thanks, Captain." Once the 'inspection' is done, she leaves your ship and scurries off.`
 				accept
 	on accept
 		log "Agreed to smuggle three of the largest human anti-missile turrets to the Lunarium. They hope to reverse-engineer them to defend against Heliarch weaponry, though the effectiveness of human designs here is dubious."
@@ -288,6 +288,7 @@ mission "Resistance: Smuggling: AM"
 		payment 900000
 		conversation
 			`Your monitor beeps loudly as you prepare for your descent onto <planet>, indicating that you have a message. The message details instructions on how to complete your delivery. Under the guise that you're transporting heavy factory equipment, you stop on a landing pad adjacent to a massive automated compound. A gantry crane moves the turrets down to ground levels, setting them on cargo platforms, which are then pulled into a large warehouse. Once all is done, you see that <payment> have been added to your account.`
+			`	You look to your monitor again, and see a message explaining the Lunarium would happily take more copies of smuggled equipment, if you wish to help further. The message details they've prepared an interface similar to the job board's for you, which the device installed in your ship will display whenever they have such jobs available.`
 
 mission "Resistance: Smuggling: Torpedoes"
 	landing
@@ -357,12 +358,12 @@ mission "Resistance: Smuggling: Heat"
 		has "Heliarch Investigation 2: active"
 	on offer
 		conversation
-			`Once again, the Lunarium's device starts beeping as you land, and your monitor shifts to the same messaging screen as last time. "Hello again Captain. Chiree, it is. Thank you for the torpedoes, I must, already at work on producing more like them, we are. Win us battles, however, they alone will not, so asking you to help us once again, I am. Received word, we have, of some more weapons developed by humans. Quickly heat up ships, they can, and so a great help against Heliarch attacks, they would be."`
+			`Once again, the Lunarium's device starts beeping as you land, and your monitor flickers to the same messaging screen as last time. "Hello again Captain. Chiree, it is. Thank you for the torpedoes, I must, already at work on producing more like them, we are. Win us battles, however, they alone will not, so asking you to help us once again, I am. Received word, we have, of some more weapons developed by humans. Quickly heat up ships, they can, and so a great help against Heliarch attacks, they would be."`
 			choice
 				`	"What do you need me to do?"`
 					goto accept
 				`	"You have 'received word' of that? From whom? Who's telling you of these weapons?"`
-			`	For how fast she typed before, Chiree takes a long time to answer. "Know that, we do not," is what first appears on the screen. "First contacted centuries ago, we were. Unsure, we still are, if trustworthy, whoever is sending the messages is, but always right on their information, they are. The first to bring us human outfits, you are not; whoever they are, brought us caches of some human platings and guns, decades ago, they did. Seen, their ships never were, only the crates and containers, we found."`
+			`	For how fast she typed before, Chiree takes a long time to answer. "Know that, we do not," is what first appears on the screen. "First contacted centuries ago, we were. Unsure, we still are, if trustworthy, whoever is sending the messages is, but always right they are on their information. The first to bring us human outfits, you are not; whoever they are, brought us caches of some human platings and guns, decades ago, they did. Seen, their ships never were, only the crates and containers, we found."`
 			choice
 				`	"So why do you trust these mystery informants so much?"`
 				`	"Whatever the case, just tell me what you need me to do."`
@@ -370,7 +371,7 @@ mission "Resistance: Smuggling: Heat"
 			`	"Because helped us, they always have, and in dire need of help, we are," she shoots back in an instant. "Given us a fighting chance, they have," she adds.`
 			label accept
 			`	She quickly types out another message. "A larger delivery, this will be, so a good hiding spot, we'll need. To <destination>, bring two 'plasma turrets' and ten 'flamethrowers' you must. Paid <payment>, you will be."`
-			`	The beeping stops and your monitor returns to normal again.`
+			`	The beeping stops and your monitor screen goes back to normal.`
 				accept
 	on accept
 		log "Agreed to bring the Lunarium some plasma turrets and flamethrowers They seem to believe heat damage will be effective against Heliarch ships."
@@ -415,8 +416,8 @@ mission "Resistance: Smuggling: Reactors"
 			choice
 				`	"Why is that a problem? I already delivered the grenades to that planet."`
 				`	"Did something change about <planet>?"`
-			`	"Larger than other equipment you've brought us, these generators are," the next message says. "The 'armageddon core,' 'fusion reactor' and 'breeder reactor', what we need are, but take a long time to move such large pieces, it will. Risk being seen, we cannot, so only in some days, delivered they may be. Every month the rotating patrols switch. New patrols on the fifth usually arrive, so delivered during that window before the fifth, the reactors must be. Pay you well for this, we will, <payment>."`
-			`	She signs off, the beeping stops, and your monitor returns to normal.`
+			`	"Larger than other equipment you've brought us, these generators are," the next message says. "The 'armageddon core,' 'fusion reactor' and 'breeder reactor', what we need are, but take a long time it will to move such large pieces. Risk being seen, we cannot, so only in some days, delivered they may be. Every month the rotating patrols switch. New patrols on the fifth usually arrive, so delivered during that window before the fifth, the reactors must be. Pay you well for this, we will, <payment>."`
+			`	She signs off, the beeping stops, and your monitor screen returns to normal.`
 				accept
 	on accept
 		log "The Lunarium will need more power than the Coalition solar panels can provide to take on the Heliarchs. Agreed to provide them samples of human shipboard nuclear reactors to reproduce to this end."
@@ -444,7 +445,7 @@ mission "Resistance: Smuggling: Reactors"
 			label reactors
 			`	"Fit for battle, solar panels are not. Come to fight the Heliarchs, we eventually will, so better power generation for our weapons, we'll need," he says, and then points in the direction of the spaceport. "More efficient, Heliarch reactors are, but too difficult to steal them, it is. Too risky. Only provide energy for our facilities, they do. Studied and reproduced for use in our ships, the reactors you brought us will be."`
 			label end
-			`	They bid you farewell and head into the cave, and you get back inside your ship. Once you land back at the city hangars, the device installed in your monitor beeps again with a message from Chiree. "Helped us a great deal you have, Captain <last>. Contact you like this, I may not, but find more offers for smuggling jobs, on our planets you may. Appreciated, any more equipment you bring us will be, and of course, pay well we would." She signs off, and the beeps stop.`
+			`	They bid you farewell and head into the cave, and you get back inside your ship. Once you land back at the city hangars, the device installed in your monitor beeps again with a message from Chiree. "Helped us a great deal you have, Captain <last>. Contact you like this again, I may not, but find more offers for smuggling jobs, you will. Appreciated, any more equipment you bring us will be, and of course, pay well we would." She signs off, and the beeps stop.`
 
 
 
