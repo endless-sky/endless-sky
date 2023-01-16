@@ -1187,6 +1187,29 @@ ship "Cruiser" "Cruiser (Jump Plasma Anti-Missile)"
 
 
 
+ship "Cutthroat" "Cutthroat (Jousting)"
+	outfits
+		"Twin Modified Blaster" 2
+		"Heavy Rocket Pod" 2
+		"Heavy Rocket Rack"
+		"Heavy Rocket" 14
+		
+		"Fission Reactor"
+		"Supercapacitor"
+		"Water Coolant System"
+		"D23-QP Shield Generator"
+		"Laser Rifle" 5
+		
+		"A520 Atomic Thruster"
+		"A255 Atomic Steering"
+		"Hyperdrive"
+	gun -21.5 -18 "Heavy Rocket Pod"
+	gun 21.5 -18 "Heavy Rocket Pod"
+	gun -11 -8.5 "Twin Modified Blaster"
+	gun 11 -8.5 "Twin Modified Blaster"
+
+
+
 ship "Dreadnought" "Dreadnought (Jump)"
 	outfits
 		"Torpedo Launcher" 4
@@ -2328,6 +2351,46 @@ ship "Nest" "Nest (Sidewinder)"
 
 
 
+ship "Nighthawk" "Nighthawk (Raider)"
+	crew 28
+	outfits
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret"
+		
+		"RT-I Radiothermal"
+		"KP-6 Photovoltaic Array" 3
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		"Large Radar Jammer"
+		"Tactical Scanner"
+		"Laser Rifle" 28
+		"Nerve Gas" 10
+		
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+
+
+ship "Nighthawk" "Nighthawk (Slaver)"
+	outfits
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret"
+		
+		"RT-I Radiothermal"
+		"KP-6 Photovoltaic Array" 3
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		"Large Radar Jammer"
+		"Laser Rifle" 6
+		"Brig"
+		
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+
+
 ship "Osprey" "Osprey (Alien Weapons)"
 	outfits
 		"Ion Cannon" 2
@@ -2609,6 +2672,42 @@ ship "Scout" "Scout (Speedy)"
 		"Outfits Expansion"
 		"A370 Atomic Thruster"
 		"A255 Atomic Steering"
+		"Hyperdrive"
+
+
+
+ship "Scrapper" "Scrapper (Minimal)"
+	outfits
+		"Energy Blaster"
+		"KP-6 Photovoltaic Panel"
+		"LP036a Battery Pack"
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+		"Hyperdrive"
+
+
+
+ship "Scrapper" "Scrapper (Gatling)"
+	outfits
+		"Gatling Gun"
+		"Gatling Gun Ammo" 3000
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		"Hyperdrive"
+
+
+
+ship "Scrapper" "Scrapper (Mod Blaster)"
+	outfits
+		"Modified Blaster"
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
 		"Hyperdrive"
 
 
