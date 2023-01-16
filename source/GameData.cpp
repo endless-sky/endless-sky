@@ -136,6 +136,9 @@ future<void> GameData::BeginLoad(bool onlyLoadData, bool debugMode)
 		Music::Init(sources);
 	}
 
+	// Provide TestData with non-const access to the UniverseObjects so it can directly inject data.
+	TestData::ConfigureObjects(objects);
+
 	return objects.Load(sources, debugMode);
 }
 
