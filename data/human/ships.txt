@@ -806,6 +806,70 @@ ship "Bulk Freighter"
 
 
 
+ship "Bulwark"
+	sprite "ship/pirate bulwark"
+	thumbnail "thumbnail/pirate bulwark"
+	attributes
+		category "Medium Warship"
+		"cost" 4360000
+		"shields" 7000
+		"hull" 5600
+		"required crew" 19
+		"bunks" 31
+		"mass" 881
+		"drag" 13.4
+		"heat dissipation" .35
+		"fuel capacity" 500
+		"cargo space" 12
+		"outfit space" 521
+		"weapon capacity" 223
+		"engine capacity" 120
+		"threshold percentage" .08
+		weapon
+			"blast radius" 120
+			"shield damage" 1200
+			"hull damage" 600
+			"hit force" 1800
+	outfits
+		"Plasma Cannon" 2
+		"Heavy Rocket Launcher" 2
+		"Heavy Rocket" 60
+		"Heavy Rocket Rack" 2
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret"
+		
+		"Fission Reactor"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"Water Coolant System"
+		"Tactical Scanner"
+		"Laser Rifle" 19
+		
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+		
+	engine 31.5 89.5
+	engine -31.5 89.5
+	gun 52.5 -0.5 "Heavy Rocket Launcher"
+	gun 52.5 -0.5 "Plasma Cannon"
+	gun -52.5 -0.5 "Heavy Rocket Launcher"
+	gun -52.5 -0.5 "Plasma Cannon"
+	turret 35.5 29.5 "Quad Blaster Turret"
+	turret -35.5 29.5 "Quad Blaster Turret"
+	turret 0 0.5 "Heavy Anti-Missile Turret"
+	leak "leak" 40 50
+	leak "flame" 40 80
+	leak "big leak" 70 30
+	explode "tiny explosion" 5
+	explode "small explosion" 15
+	explode "medium explosion" 30
+	explode "large explosion" 20
+	"final explode" "final explosion medium"
+	description `The Bulwark is basically what you get by welding a bunch of scrap metal on to a Bastion. It is a tough, slow brawler that is most often used by warlords to protect their properties, whether it'd be their ships or hideouts from raids by either the authorities or their rivals. Due to their lack of speed and cargo space these ships rarely participate in raiding merchant convoys outside their home system.`
+
+
+
 ship "Carrier"
 	sprite "ship/carrier"
 	thumbnail "thumbnail/carrier"
@@ -3590,7 +3654,7 @@ ship "Valkyrie"
 	explode "medium explosion" 25
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
-	description "Valkyries are pirated Aeries converted into more of a standalone warship than a support carrier. Losing a turret and a few bunks in place of increased armor protection, as well as boasting two more gun mounts, Valkyries can both take and put out noticeable amounts of damage. However, due to the extra weight, they are somewhat slower and lose a bit of shield efficiency."
+	description "Valkyries are pirate Aeries converted into more of a standalone warship than a support carrier. Losing a turret and a few bunks in place of increased armor protection, as well as boasting two more gun mounts, allows Valkyries to both take and put out noticeable amounts of damage. However, due to the extra weight, they are somewhat slower and lose a bit of shield efficiency."
 
 
 
