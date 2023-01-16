@@ -19,7 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Files.h"
-#include "GameData.h"
 #include "Mission.h"
 #include "UniverseObjects.h"
 
