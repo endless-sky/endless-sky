@@ -27,6 +27,72 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+namespace {
+	std::tuple<double, double> CalculateMinMaxRanges(const vector<Hardpoint> &hardpoints)
+	{
+		double rangeMin = numeric_limits<double>::infinity();
+		double rangeMax = 0.;
+		for(const Hardpoint &hardpoint : hardpoints)
+		{
+			if(hardpoint.IsAntiMissile())
+				continue;
+
+			const auto *weapon = hardpoint.GetOutfit();
+			if(!weapon)
+				continue;
+
+			const auto range = weapon->Range();
+			rangeMin = min(rangeMin, range);
+			rangeMax = max(rangeMax, range);
+		}
+
+		return { rangeMin, rangeMax };
+	}
+
+
+	double CalculateTurretsMaxRange(const vector<Hardpoint> &hardpoints)
+	{
+		double rangeMaxTurrets = 0;
+		for(const Hardpoint &hardpoint : hardpoints)
+		{
+			if(hardpoint.IsAntiMissile())
+				continue;
+
+			if(!hardpoint.CanAim())
+				continue;
+
+			const auto *weapon = hardpoint.GetOutfit();
+			if(!weapon)
+				continue;
+
+			const auto range = weapon->Range();
+			rangeMaxTurrets = max(rangeMaxTurrets, range);
+		}
+		return rangeMaxTurrets;
+	}
+
+}
+
+
+
+Armament::Armament(const Armament &other)
+	: streamReload(other.streamReload)
+	, hardpoints(other.hardpoints)
+{
+	RecreateViewsAndRanges();
+}
+
+
+
+Armament &Armament::operator=(const Armament &other)
+{
+	streamReload = other.streamReload;
+	hardpoints = other.hardpoints;
+
+	RecreateViewsAndRanges();
+	return *this;
+}
+
 
 
 // Add a gun hardpoint (fixed-direction weapon).
@@ -110,6 +176,10 @@ int Armament::Add(const Outfit *outfit, int count)
 		else
 			streamReload.erase(outfit);
 	}
+
+	// Update 'shortcuts'
+	RecreateViewsAndRanges();
+
 	return added;
 }
 
@@ -122,6 +192,8 @@ void Armament::FinishLoading()
 	for(Hardpoint &hardpoint : hardpoints)
 		if(hardpoint.GetOutfit())
 			hardpoint.Install(hardpoint.GetOutfit());
+
+	RecreateViewsAndRanges();
 
 	ReloadAll();
 }
@@ -151,6 +223,11 @@ void Armament::UninstallAll()
 {
 	for(auto &hardpoint : hardpoints)
 		hardpoint.Uninstall();
+
+	turrettedWeapons.clear();
+	nonAMWeapons.clear();
+	fixedWeapons.clear();
+	antiMissileWeapons.clear();
 }
 
 
@@ -171,6 +248,8 @@ void Armament::Swap(int first, int second)
 	const Outfit *outfit = hardpoints[first].GetOutfit();
 	hardpoints[first].Install(hardpoints[second].GetOutfit());
 	hardpoints[second].Install(outfit);
+
+	RecreateViewsAndRanges();
 }
 
 
@@ -182,6 +261,51 @@ const vector<Hardpoint> &Armament::Get() const
 }
 
 
+
+const std::vector<Hardpoint *> &Armament::TurrettedWeapons() const
+{
+	return turrettedWeapons;
+}
+
+
+
+const std::vector<Hardpoint *> &Armament::NonAMWeapons() const
+{
+	return nonAMWeapons;
+}
+
+
+
+const std::vector<Hardpoint *> &Armament::FixedWeapons() const
+{
+	return fixedWeapons;
+}
+
+
+
+const std::vector<Hardpoint *> &Armament::AntiMissileWeapons() const
+{
+	return antiMissileWeapons;
+}
+
+
+
+int Armament::WeaponIndex(const Hardpoint &hardpoint) const
+{
+	return &hardpoint - &hardpoints.front();
+}
+
+
+
+std::pair<double, double> Armament::GetMinMaxRange() const
+{
+	return { minRange, maxRange };
+}
+
+double Armament::GetTurretsMaxRange() const
+{
+	return maxTurretsRange;
+}
 
 // Determine how many fixed gun hardpoints are on this ship.
 int Armament::GunCount() const
@@ -225,34 +349,49 @@ set<const Outfit *> Armament::RestockableAmmo() const
 // Adjust the aim of the turrets.
 void Armament::Aim(const FireCommand &command)
 {
-	for(unsigned i = 0; i < hardpoints.size(); ++i)
-		hardpoints[i].Aim(command.Aim(i));
+	for(auto *hardpoint : turrettedWeapons)
+	{
+		int index = WeaponIndex(*hardpoint);
+		hardpoint->Aim(command.Aim(index));
+	}
 }
 
 
 
 // Fire the given weapon, if it is ready. If it did not fire because it is
 // not ready, return false.
-void Armament::Fire(int index, Ship &ship, vector<Projectile> &projectiles, vector<Visual> &visuals, bool jammed)
+void Armament::Fire(int index, Ship &ship, vector<Projectile> &projectiles
+	, vector<Visual> &visuals, bool jammed)
 {
 	if(static_cast<unsigned>(index) >= hardpoints.size() || !hardpoints[index].IsReady())
 		return;
 
+	auto &hp = hardpoints[index];
+
 	// A weapon that has already started a burst ignores stream timing.
-	if(!hardpoints[index].WasFiring())
+	if(!hp.WasFiring())
 	{
-		auto it = streamReload.find(hardpoints[index].GetOutfit());
+		auto it = streamReload.find(hp.GetOutfit());
 		if(it != streamReload.end())
 		{
 			if(it->second > 0)
 				return;
-			it->second += it->first->Reload() * hardpoints[index].BurstRemaining();
+			it->second += it->first->Reload() * hp.BurstRemaining();
 		}
 	}
 	if(jammed)
-		hardpoints[index].Jam();
+		hp.Jam();
 	else
-		hardpoints[index].Fire(ship, projectiles, visuals);
+		hp.Fire(ship, projectiles, visuals);
+}
+
+
+
+void Armament::Fire(const Hardpoint &hardpoint, Ship &ship, std::vector<Projectile> &projectiles
+	, std::vector<Visual> &visuals, bool jammed)
+{
+	int index = WeaponIndex(hardpoint);
+	Fire(index, ship, projectiles, visuals, jammed);
 }
 
 
@@ -263,13 +402,24 @@ bool Armament::FireAntiMissile(int index, Ship &ship, const Projectile &projecti
 	if(static_cast<unsigned>(index) >= hardpoints.size() || !hardpoints[index].IsReady())
 		return false;
 
+	auto &hp = hardpoints[index];
+
 	if(jammed)
 	{
-		hardpoints[index].Jam();
+		hp.Jam();
 		return false;
 	}
 
-	return hardpoints[index].FireAntiMissile(ship, projectile, visuals);
+	return hp.FireAntiMissile(ship, projectile, visuals);
+}
+
+
+
+bool Armament::FireAntiMissile(const Hardpoint &hardpoint, Ship &ship, const Projectile &projectile
+	, std::vector<Visual> &visuals, bool jammed)
+{
+	int index = WeaponIndex(hardpoint);
+	return FireAntiMissile(index, ship, projectile, visuals, jammed);
 }
 
 
@@ -277,8 +427,11 @@ bool Armament::FireAntiMissile(int index, Ship &ship, const Projectile &projecti
 // Update the reload counters.
 void Armament::Step(const Ship &ship)
 {
-	for(Hardpoint &hardpoint : hardpoints)
-		hardpoint.Step();
+	for(Hardpoint *hardpoint : turrettedWeapons)
+		hardpoint->Step();
+
+	for(Hardpoint *hardpoint : fixedWeapons)
+		hardpoint->Step();
 
 	for(auto &it : streamReload)
 	{
@@ -287,4 +440,31 @@ void Armament::Step(const Ship &ship)
 		// Always reload to the quickest firing interval.
 		it.second = max(it.second, 1 - count);
 	}
+}
+
+
+
+void Armament::RecreateViewsAndRanges()
+{
+	turrettedWeapons.clear();
+	nonAMWeapons.clear();
+	fixedWeapons.clear();
+	antiMissileWeapons.clear();
+	for(auto &hardpoint : hardpoints)
+	{
+		if(!hardpoint.GetOutfit())
+			continue;
+
+		if(hardpoint.CanAim())
+			turrettedWeapons.push_back(&hardpoint);
+		else
+			fixedWeapons.push_back(&hardpoint);
+
+		if(hardpoint.IsAntiMissile())
+			antiMissileWeapons.push_back(&hardpoint);
+		else
+			nonAMWeapons.push_back(&hardpoint);
+	}
+	tie(minRange, maxRange) = CalculateMinMaxRanges(hardpoints);
+	maxTurretsRange = CalculateTurretsMaxRange(hardpoints);
 }

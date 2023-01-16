@@ -2739,15 +2739,15 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 	if(CannotAct())
 		return false;
 
-	double jamChance = CalculateJamChance(Energy(), ionization);
-
-	const vector<Hardpoint> &hardpoints = armament.Get();
-	for(unsigned i = 0; i < hardpoints.size(); ++i)
+	for(auto *hardpoint : armament.AntiMissileWeapons())
 	{
-		const Weapon *weapon = hardpoints[i].GetOutfit();
-		if(weapon && CanFire(weapon))
-			if(armament.FireAntiMissile(i, *this, projectile, visuals, Random::Real() < jamChance))
+		const Weapon *weapon = hardpoint->GetOutfit();
+		if(CanFire(weapon))
+		{
+			const double jamChance = CalculateJamChance(Energy(), ionization);
+			if(armament.FireAntiMissile(*hardpoint, *this, projectile, visuals, Random::Real() < jamChance))
 				return true;
+		}
 	}
 
 	return false;
@@ -3903,6 +3903,13 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 
 // Get the list of weapons.
 Armament &Ship::GetArmament()
+{
+	return armament;
+}
+
+
+
+const Armament &Ship::GetArmament() const
 {
 	return armament;
 }
