@@ -3444,6 +3444,7 @@ system Aleit
 	government Quarg
 	attributes "ringworld"
 	arrival 700
+	departure 1000
 	habitable 700
 	belt 1864
 	haze _menu/haze-blackbody
@@ -11143,6 +11144,7 @@ system Ekuarik
 	government Heliarch
 	attributes "ringworld"
 	arrival 700
+	departure 1000
 	habitable 700
 	belt 1711
 	link Belug
@@ -11622,6 +11624,7 @@ system Enif
 	government Quarg
 	attributes "ringworld" "south"
 	arrival 700
+	departure 1000
 	habitable 700
 	belt 1974
 	link Sadalmelik
@@ -15386,6 +15389,7 @@ system "Hevru Hai"
 	government Quarg
 	attributes "ringworld"
 	arrival 700
+	departure 1000
 	habitable 700
 	belt 1245
 	link "Fah Soom"
@@ -17949,6 +17953,7 @@ system "Ki War Ek"
 	government Heliarch
 	attributes "ringworld"
 	arrival 700
+	departure 1000
 	habitable 700
 	belt 1777
 	haze _menu/haze-133
@@ -25323,6 +25328,7 @@ system Quaru
 	government Heliarch
 	attributes "ringworld"
 	arrival 700
+	departure 1000
 	habitable 700
 	belt 1440
 	haze _menu/haze-133
