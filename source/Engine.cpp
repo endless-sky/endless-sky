@@ -1263,32 +1263,15 @@ void Engine::EnterSystem()
 
 	for(const auto &raidFleet : system->GetGovernment()->RaidFleets())
 	{
-		const Government *raidGovernment = raidFleet.first->GetGovernment();
-		if(raidGovernment && raidGovernment->IsEnemy())
-		{
-			pair<double, double> factors = player.RaidFleetFactors();
-			double attraction = .005 * (factors.first - factors.second - raidFleet.second);
-			// Consider the other fleets in the local system.
-			// Do not take into account the raid fleet, that would just mess with the minimum attraction of it.
-			auto raidStrength = raidFleet.first->Strength();
-			for(const auto &fleet : system->Fleets())
-			{
-				const Government *fleetGov = fleet.Get()->GetGovernment();
-				// If the fleet is neutral to player and raider or hostile to both, it won't matter.
-				// If it is hostile to the player raids will increase,
-				// and hostility to the raiders make raids decrease.
-				attraction -= (fleetGov->IsEnemy(raidGovernment) - fleetGov->IsEnemy(GameData::PlayerGovernment()))
-					* ((fleet.Get()->Strength() / fleet.Period()) / raidStrength);
-			}
-			if(attraction > 0.)
-				for(int i = 0; i < 10; ++i)
-					if(Random::Real() < attraction)
-					{
-						raidFleet.first->Place(*system, newShips);
-						Messages::Add("Your fleet has attracted the interest of a "
-								+ raidGovernment->GetName() + " raiding party.", Messages::Importance::Highest);
-					}
-		}
+		double attraction = player.RaidFleetAttraction(raidFleet, system);
+		if(attraction > 0.)
+			for(int i = 0; i < 10; ++i)
+				if(Random::Real() < attraction)
+				{
+					raidFleet.first->Place(*system, newShips);
+					Messages::Add("Your fleet has attracted the interest of a "
+							+ raidGovernment->GetName() + " raiding party.", Messages::Importance::Highest);
+				}
 	}
 
 	grudge.clear();

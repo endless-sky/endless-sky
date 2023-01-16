@@ -1221,6 +1221,30 @@ pair<double, double> PlayerInfo::RaidFleetFactors() const
 
 
 
+double PlayerInfo::RaidFleetAttraction(const std::pair<const Fleet *, double> &raidFleet, const System *system) const
+{
+	const Government *raidGovernment = raidFleet.first->GetGovernment();
+	if(raidGovernment && raidGovernment->IsEnemy())
+	{
+		pair<double, double> factors = RaidFleetFactors();
+		double attraction = .005 * (factors.first - factors.second - raidFleet.second);
+		// Consider the other fleets in the local system.
+		// Do not take into account the raid fleet, that would just mess with the minimum attraction of it.
+		auto raidStrength = raidFleet.first->Strength();
+		for(const auto &fleet : system->Fleets())
+		{
+			const Government *fleetGov = fleet.Get()->GetGovernment();
+			// If the fleet is neutral to player and raider or hostile to both, it won't matter.
+			// If it is hostile to the player raids will increase,
+			// and hostility to the raiders make raids decrease.
+			attraction -= (fleetGov->IsEnemy(raidGovernment) - fleetGov->IsEnemy(GameData::PlayerGovernment()))
+				* ((fleet.Get()->Strength() / fleet.Period()) / raidStrength);
+		}
+	}
+}
+
+
+
 // Get cargo information.
 CargoHold &PlayerInfo::Cargo()
 {
@@ -3283,6 +3307,22 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	visitedSystemProvider.SetGetFunction(visitedSystemFun);
 	visitedSystemProvider.SetHasFunction(visitedSystemFun);
+
+	auto &&systemAttractionProvider = conditions.GetProviderPrefixed("attraction in system: ");
+	auto systemAttractionFun = [this](const string &name) -> bool
+	{
+		const System *system = GameData::Systems().Find(name.substr(strlen("attraction in system: ")));
+		if(!system)
+			return 0;
+
+		double totalAttraction = 0;
+		for(const auto &raidFleet : system->GetGovernment()->RaidFleets())
+			totalAttraction += RaidFleetAttraction(raidFleet, system);
+		// It will be made into an integer so scale it up for more precision.
+		return totalAttraction * 1000.;
+	};
+	systemAttractionProvider.SetGetFunction(systemAttractionFun);
+	systemAttractionProvider.SetHasFunction(systemAttractionFun);
 
 	// Read-only navigation conditions.
 	auto HyperspaceTravelDays = [](const System *origin, const System *destination) -> int
