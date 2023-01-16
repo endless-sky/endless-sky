@@ -92,7 +92,7 @@ mission "Pact Supplies Convoy (Dirt Belt)"
 	on complete
 		payment 35000
 		"assisted free worlds" ++
-		dialog phrase "generic cargo delivery payment"
+		dialog `After you land at Longjump's spaceport, a militia officer comes to inspect your ship before giving it the all-clear to be unloaded. "Thank you for your service. The Pact will remember your assistance." He hands you your payment of <payment> and makes his way to the next convoy ship.`
 
 mission "Pact Supplies Escort (Dirt Belt)"
 	name "Escort weapons convoy to Longjump"
@@ -142,7 +142,7 @@ mission "Pact Supplies Escort (Dirt Belt)"
 	on complete
 		payment 35000
 		"assisted free worlds" ++
-		dialog phrase "generic cargo delivery payment"
+		dialog `After you land at Longjump's spaceport, a militia officer comes to greet you. "Thank you for your service. The Pact will remember your assistance." He hands you your payment of <payment>.`
 
 
 
