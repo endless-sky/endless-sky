@@ -55,6 +55,7 @@ ship "vyu-Ira"
 		"energy protection" 2
 		"force protection" 1
 		"ion protection" 2
+		"scramble protection" 2
 		"slowing protection" 1
 		weapon
 			"blast radius" 200
