@@ -82,7 +82,7 @@ bool TestData::Inject() const
 	{
 		case Type::SAVEGAME:
 			return InjectSavegame();
-		case Type::MISSION;
+		case Type::MISSION:
 			return InjectMission();
 		default:
 			return false;
