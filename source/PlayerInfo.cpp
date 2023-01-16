@@ -995,11 +995,15 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 
 	auto flightChecks = map<const shared_ptr<Ship>, vector<string>>{};
 	for(const auto &ship : ships)
-		if(ship->GetSystem() == system && !ship->IsDisabled() && !ship->IsParked())
+		if(ship->GetSystem() && !ship->IsDisabled() && !ship->IsParked())
 		{
 			auto checks = ship->FlightCheck();
 			if(!checks.empty())
 				flightChecks.emplace(ship, checks);
+
+			// Only check bays for in-system ships.
+			if(ship->GetSystem() != system)
+				continue;
 
 			categoryCount[ship->Attributes().Category()].emplace_back(ship);
 			// Ensure bayCount has an entry for this category for the special case
