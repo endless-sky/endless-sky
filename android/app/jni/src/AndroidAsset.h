@@ -42,8 +42,14 @@ public:
 	}
 
 	/// Open a directory and retrieve everything in it
-	std::vector<std::string> DirectoryList(const std::string& dir_name)
+	std::vector<std::string> DirectoryList(const std::string& path)
 	{
+		// 6.0 asset manager doesn't like trailing slashes.
+		std::string dir_name = path;
+		if (!path.empty() && path.back() == '/')
+		{
+			dir_name.pop_back();
+		}
 		std::vector<std::string> ret;
 		jmethodID list_mid = m_env->GetMethodID(m_env->GetObjectClass(m_asset_manager),
 				"list", "(Ljava/lang/String;)[Ljava/lang/String;");
@@ -100,8 +106,9 @@ public:
 
 			// Cheat #1... if the path doesn't begin with /endless-sky-data, then
 			// its not an asset.
-			const char ESD[] = "/endless-sky-data";
-			if (dir_name.substr(0, sizeof(ESD)-1) != ESD)
+			const char ESD[] = "endless-sky-data";
+			if (dir_name.substr(0, sizeof(ESD)-1) != ESD &&
+			    dir_name.substr(1, sizeof(ESD)-1) != ESD)
 			{
 				return false;
 			}
