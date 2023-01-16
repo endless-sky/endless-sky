@@ -105,7 +105,7 @@ void Government::Load(const DataNode &node)
 
 	// If raid fleets already exist, clear all existing raid fleets if the "add" or "remove" keywords aren't used
 	// and a "raid" key is encountered.
-	bool clearRaids = !raidFleets.isEmpty();
+	bool clearRaids = !raidFleets.empty();
 
 	for(const DataNode &child : node)
 	{
