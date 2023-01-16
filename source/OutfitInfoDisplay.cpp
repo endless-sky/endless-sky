@@ -448,6 +448,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		outfit.FiringHull(),
 		outfit.FiringShields(),
 		outfit.FiringIon() * 100.,
+		outfit.FiringScramble() * 100.,
 		outfit.FiringSlowing() * 100.,
 		outfit.FiringDisruption() * 100.,
 		outfit.FiringDischarge() * 100.,
