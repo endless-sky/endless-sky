@@ -100,7 +100,7 @@ protected:
 	float zoom = 1.f;
 	float scale = 1.f;
 
-	double alpha = 1.0;
+	double alpha = 1.;
 
 	// Government, for use in collision checks.
 	const Government *government = nullptr;
