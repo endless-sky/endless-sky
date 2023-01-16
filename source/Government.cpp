@@ -104,7 +104,7 @@ void Government::Load(const DataNode &node)
 	}
 
 	// No need to consider clearing it if it's empty.
-	bool clearedRaids = raidFleets.isEmpty();
+	bool clearedRaids = !raidFleets.isEmpty();
 
 	for(const DataNode &child : node)
 	{
