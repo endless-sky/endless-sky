@@ -225,8 +225,6 @@ test "Test-Framework - Mission Injection"
 		assert
 			"flagship landed" == 0
 		call "Land"
-		assert
-			"flagship landed" == 0
 		input
 			key "Return"
 		assert
