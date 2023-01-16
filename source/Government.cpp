@@ -459,8 +459,9 @@ const string &Government::Language() const
 
 
 
-// Pirate raids in this government's systems use this fleet definition. If
-// it is null, there are no pirate raids.
+// Pirate raids in this government's systems use these fleet definitions. If
+// it is empty, there are no pirate raids.
+// The second attribute denotes the minimal attraction required for the fleet to appear.
 const std::vector<std::pair<const Fleet *, double>> &Government::RaidFleets() const
 {
 	return raidFleets;
