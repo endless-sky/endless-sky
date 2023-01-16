@@ -798,12 +798,8 @@ outfit "Dual Pulse Pistols"
 outfit "True Unfettered License"
 	category "Licenses"
 	thumbnail "outfit/true unfettered license"
-	"mass" -1
-	"capture attack" 5
-	"capture defense" 15
-	"unplunderable" 1
 	description "This sword may be a bit of a strange license, but its intention is to inspire pride to the wearer, and when the Unfettered see it they show respect. This was given by one of their warlords as a sign of trust, and it is quite handy in fights."
-	description "	This blade is capable of absorbing incoming shots, protecting its wearer from harm. When it strikes enemies, it is as if whatever it hits was never there, somehow absorbed by the blade. Somehow, the blade feels very light, and as though it was accompanying the strikes of its owner. However, its most handy feature no doubt is the fact that it requires no source of power whatsoever, as if it was feeding off matter itself."
+	description "	Somehow, the blade feels very light, and as though it was accompanying the strikes of its owner. The blade itself is mostly intended to be defensive, and fits you quite well even though it was clearly meant for a Hai."
 
 outfit "Ionic Blade"
 	category "Unique"
