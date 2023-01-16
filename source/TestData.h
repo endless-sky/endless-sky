@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <string>
 
+class DataFile;
 class DataNode;
 class UniverseObjects;
 
@@ -40,7 +41,7 @@ public:
 
 
 private:
-	const DataNode *GetContentsNode() const;
+	const DataNode *GetContentsNode(const DataFile &sourceData) const;
 
 	// Writes out testdata as savegame file.
 	bool InjectSavegame() const;

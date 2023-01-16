@@ -98,11 +98,8 @@ void TestData::ConfigureObjects(UniverseObjects &incomingObjects)
 
 
 
-const DataNode *TestData::GetContentsNode() const
+const DataNode *TestData::GetContentsNode(const DataFile &sourceData) const
 {
-	// Open the source-file and scan until we find the test-data
-	// Then scan for the contents keyword
-	DataFile sourceData(sourceDataFile);
 	for(const DataNode &rootNode : sourceData)
 		// Check if we have found our dataset.
 		if(rootNode.Size() > 1 && rootNode.Token(0) == "test-data" && rootNode.Token(1) == dataSetName)
@@ -118,8 +115,9 @@ const DataNode *TestData::GetContentsNode() const
 // Write out testdata as savegame into the saves directory.
 bool TestData::InjectSavegame() const
 {
+	const DataFile sourceData(sourceDataFile);
 	// Get the contents node in the test data.
-	const auto &nodePtr = GetContentsNode();
+	const auto &nodePtr = GetContentsNode(sourceData);
 	if(!nodePtr)
 		return false;
 	const DataNode &dataNode = *nodePtr;
@@ -142,8 +140,9 @@ bool TestData::InjectMission() const
 	if(!objects)
 		return false;
 
+	const DataFile sourceData(sourceDataFile);
 	// Get the contents node in the test data.
-	const auto &nodePtr = GetContentsNode();
+	const auto &nodePtr = GetContentsNode(sourceData);
 	if(!nodePtr)
 		return false;
 
