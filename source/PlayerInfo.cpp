@@ -3309,7 +3309,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	visitedSystemProvider.SetHasFunction(visitedSystemFun);
 
 	auto &&systemAttractionProvider = conditions.GetProviderPrefixed("attraction in system: ");
-	auto systemAttractionFun = [this](const string &name) -> bool
+	auto systemAttractionFun = [this](const string &name) -> double
 	{
 		const System *system = GameData::Systems().Find(name.substr(strlen("attraction in system: ")));
 		if(!system)
