@@ -510,14 +510,14 @@ const Wormhole *Planet::GetWormhole() const
 // land on this planet.
 bool Planet::IsAccessible(const Ship *ship) const
 {
-	if(!ship)
-		return false;
 	// If this is a wormhole that leads to an inaccessible system, no ship can land here.
-	if(wormhole && ship->GetSystem() && wormhole->WormholeDestination(*ship->GetSystem()).Inaccessible())
+	if(wormhole && ship && ship->GetSystem() && wormhole->WormholeDestination(*ship->GetSystem()).Inaccessible())
 		return false;
 	// If there are no required attributes, then any ship may land here.
 	if(IsUnrestricted())
 		return true;
+	if(!ship)
+		return false;
 
 	const auto &shipAttributes = ship->Attributes();
 	return all_of(requiredAttributes.cbegin(), requiredAttributes.cend(),
