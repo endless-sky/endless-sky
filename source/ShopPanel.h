@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "OutfitInfoDisplay.h"
 #include "Point.h"
 #include "ShipInfoDisplay.h"
+#include "Dropdown.h"
 
 #include <map>
 #include <set>
@@ -113,7 +114,7 @@ protected:
 	static const int SIDEBAR_WIDTH = 250;
 	static const int INFOBAR_WIDTH = 300;
 	static const int SIDE_WIDTH = SIDEBAR_WIDTH + INFOBAR_WIDTH;
-	static const int BUTTON_HEIGHT = 70;
+	static const int BUTTON_HEIGHT = 100;
 	static const int SHIP_SIZE = 250;
 	static const int OUTFIT_SIZE = 183;
 
@@ -169,6 +170,10 @@ protected:
 	mutable Point warningPoint;
 	mutable std::string warningType;
 
+	Dropdown selected_quantity;
+	bool quantity_is_modifier = false;
+	Dropdown outfit_disposition;
+
 
 private:
 	bool DoScroll(double dy);
@@ -185,6 +190,8 @@ private:
 	// Check if the given point is within the button zone, and if so return the
 	// letter of the button (or ' ' if it's not on a button).
 	char CheckButton(int x, int y);
+
+	void DispositionChanged(const std::string& value);
 };
 
 

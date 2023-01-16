@@ -83,6 +83,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Dictionary.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/DistanceMap.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/DrawList.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/Dropdown.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Effect.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Engine.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/EscortDisplay.cpp

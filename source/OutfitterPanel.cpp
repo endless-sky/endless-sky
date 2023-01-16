@@ -392,7 +392,7 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 				playerConditions.Set("license: " + licenseName, true);
 	}
 
-	int modifier = Modifier();
+	int modifier = stoi(selected_quantity.GetSelected());
 	for(int i = 0; i < modifier && CanBuy(alreadyOwned); ++i)
 	{
 		// Special case: maps.

@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShopPanel.h"
 
+#include "Rectangle.h"
 #include "text/alignment.hpp"
 #include "CategoryTypes.h"
 #include "Color.h"
@@ -58,6 +59,11 @@ namespace {
 	{
 		return ship.GetSystem() == here && !ship.IsDisabled();
 	}
+
+	// disposition menu options
+	const string INSTALL_IN_SHIP = "Install in ship";
+	const string MOVE_TO_CARGO = "Move to cargo";
+	// const string MOVE_TO_STORAGE = "Move to storage"; // TODO
 }
 
 static const unsigned int LONG_CLICK_DURATION = 500; // milliseconds
@@ -72,6 +78,18 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 		playerShips.insert(playerShip);
 	SetIsFullScreen(true);
 	SetInterruptible(false);
+
+	selected_quantity.SetAlign(Dropdown::LEFT);
+	selected_quantity.SetFontSize(14);
+	selected_quantity.SetPadding(0);
+	selected_quantity.SetOptions({"1", "10", "100", "1000"});
+
+	outfit_disposition.SetEnabled(isOutfitter);
+	outfit_disposition.SetAlign(Dropdown::LEFT);
+	outfit_disposition.SetFontSize(14);
+	outfit_disposition.SetPadding(0);
+	outfit_disposition.SetOptions({INSTALL_IN_SHIP, MOVE_TO_CARGO /*, MOVE_TO_STORAGE */});
+	outfit_disposition.SetCallback([this](int, const std::string& value) { this->DispositionChanged(value); });
 }
 
 
@@ -346,7 +364,7 @@ void ShopPanel::DrawButtons()
 
 	const Point creditsPoint(
 		Screen::Right() - SIDEBAR_WIDTH + 10,
-		Screen::Bottom() - 65);
+		Screen::Bottom() - BUTTON_HEIGHT + 5);
 	font.Draw("You have:", creditsPoint, dim);
 
 	const auto credits = Format::Credits(player.Accounts().Credits()) + " credits";
@@ -382,11 +400,25 @@ void ShopPanel::DrawButtons()
 	if(modifier > 1)
 	{
 		string mod = "x " + to_string(modifier);
-		int modWidth = font.Width(mod);
-		font.Draw(mod, buyCenter + Point(-.5 * modWidth, 10.), dim);
-		if(CanSellMultiple())
-			font.Draw(mod, sellCenter + Point(-.5 * modWidth, 10.), dim);
+		selected_quantity.SetSelected(to_string(modifier));
+		quantity_is_modifier = true;
 	}
+	else if (quantity_is_modifier)
+	{
+		// User has released modifier keys. Reset quantity dropdown to 1x
+		selected_quantity.SetSelected("1");
+		quantity_is_modifier = false;
+	}
+
+	font.Draw("Quantity:", Screen::BottomRight() - Point(240, 68), dim);
+
+	const Point sqCenter = Screen::BottomRight() - Point(150, 60);
+	selected_quantity.SetPosition(Rectangle(sqCenter, {45, 20}));
+	selected_quantity.Draw();
+
+	const Point odCenter = Screen::BottomRight() - Point(65, 60);
+	outfit_disposition.SetPosition(Rectangle(odCenter, {110, 20}));
+	outfit_disposition.Draw();
 }
 
 
@@ -624,7 +656,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			FailSell(toStorage);
 		else
 		{
-			int modifier = CanSellMultiple() ? Modifier() : 1;
+			int modifier = CanSellMultiple() ? stoi(selected_quantity.GetSelected()) : 1;
 			for(int i = 0; i < modifier && CanSell(toStorage); ++i)
 				Sell(toStorage);
 			player.UpdateCargoCapacities();
@@ -724,6 +756,9 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 {
 	dragShip = nullptr;
 	// Handle clicks on the buttons.
+	if (selected_quantity.MouseDown(x, y) ||
+	    outfit_disposition.MouseDown(x, y))
+		return true;
 	char button = CheckButton(x, y);
 	if(button)
 		return DoKey(button);
@@ -821,7 +856,7 @@ bool ShopPanel::Hover(int x, int y)
 	Point point(x, y);
 	// Check that the point is not in the button area.
 	hoverButton = CheckButton(x, y);
-	if(hoverButton)
+	if(selected_quantity.Hover(x, y) || outfit_disposition.Hover(x, y) || hoverButton)
 	{
 		shipInfo.ClearHover();
 		outfitInfo.ClearHover();
@@ -844,6 +879,9 @@ bool ShopPanel::Hover(int x, int y)
 
 bool ShopPanel::Drag(double dx, double dy)
 {
+	if (selected_quantity.MouseMove(dx, dy) ||
+	    outfit_disposition.MouseMove(dx, dy))
+		return true;
 	if(dragShip)
 	{
 		isDraggingShip = true;
@@ -879,6 +917,9 @@ bool ShopPanel::Drag(double dx, double dy)
 
 bool ShopPanel::Release(int x, int y)
 {
+	if (selected_quantity.MouseUp(x, y) ||
+	    outfit_disposition.MouseUp(x, y))
+		return true;
 	if (isDraggingShip)
 	{
 		dragShip = nullptr;
@@ -893,6 +934,7 @@ bool ShopPanel::Release(int x, int y)
 			{
 				playerShips.clear();
 				playerShips.insert(playerShip);
+				outfit_disposition.SetSelected(INSTALL_IN_SHIP);
 			}
 		}
 		else
@@ -1105,7 +1147,10 @@ void ShopPanel::SideSelect(Ship *ship)
 			if(other.get() == ship || other.get() == playerShip)
 				on = !on;
 			else if(on)
+			{
 				playerShips.insert(other.get());
+				outfit_disposition.SetSelected(INSTALL_IN_SHIP);
+			}
 		}
 	}
 	else if(!control)
@@ -1134,7 +1179,10 @@ void ShopPanel::SideSelect(Ship *ship)
 		// Already here. remove it if this turns out to be a long click
 		shipToRemoveIfLongClick = ship;
 	else
+	{
 		playerShips.insert(playerShip);
+		outfit_disposition.SetSelected(INSTALL_IN_SHIP);
+	}
 	sameSelectedTopY = true;
 }
 
@@ -1346,4 +1394,26 @@ char ShopPanel::CheckButton(int x, int y)
 		return 'l';
 
 	return ' ';
+}
+
+
+
+// Called when the outfit disposition dropdown has changed value
+void ShopPanel::DispositionChanged(const std::string& value)
+{
+	// Purchasing to cargo or installing in a ship is controlled by what ships
+	// are selected.
+	if (value == INSTALL_IN_SHIP)
+	{
+		if (playerShips.empty())
+		{
+			SideSelect(0);
+		}
+	}
+	else if (value == MOVE_TO_CARGO)
+	{
+		playerShips.clear();
+		selectedShip = nullptr;
+		playerShip = nullptr;
+	}
 }

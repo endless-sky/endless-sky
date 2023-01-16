@@ -65,8 +65,8 @@ public:
 	{
 		jobject context = (jobject)SDL_AndroidGetActivity();
       // void getFile(java.lang.String, java.lang.String)
-      jmethodID getFile = m_env->GetMethodID(m_env->GetObjectClass(context),
-					"getFile", "(Ljava/lang/String;Ljava/lang/String;)[B");
+		jmethodID getFile = m_env->GetMethodID(m_env->GetObjectClass(context),
+				"getFile", "(Ljava/lang/String;Ljava/lang/String;)[B");
 
 		// This method is blocking while the user selects or cancels the file.
 		jstring prompt_str = m_env->NewStringUTF(prompt.c_str());
