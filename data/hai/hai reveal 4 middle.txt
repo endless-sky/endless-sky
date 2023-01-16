@@ -1514,7 +1514,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			# is displaying behaviors she knows humans find cute and disarming, to
 			# get Captain Last to underestimate her. Any information she "lets slip"
 			# is a calculated move by the Elders or Hai intelligence. The guards,
-			# Sayari, and the moderator know this, but Teeneep doesn't.
+			# Sayari, and the moderator know this.
 			`	"Before we depart, Captain <last>," the moderator says, "I need you to confirm you are able to act as a witness, and confirm that the threat carried from the Unfettered was indeed real."`
 			choice
 				`	"That is correct."`
@@ -1677,15 +1677,33 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			action
 				set "Hai Reveal [A11] Sound the Alarm: human book"
 				"Hai Reveal [A11] Sound the Alarm: time" ++
-			`	FIXME: HUMAN CIVIL WAR BOOK`
+			`	The report refers to recent goings-on in human space as the Human Civil War, and follows the political and military situation, with commentary about human public opinions, theories of past Pug interference, and effects of the war on the Hai. Apparently, there was a massive influx of human refugees to Hai space during the war, which strained their social support systems. What is most surprising is the level of detail the book has on fleet movements and internal political discussions.`
+			`	Some of the details in the report were secrets the Hai shouldn't have known about know about. You recognize some of the information as private war planning discussions known only to yourself and a handful of other people. The level of detail they knew of the command hierarchy, fleet movements, special ops missions, intelligence services, and even the construction process of Syndicate nukes, is quite disturbing. Little in the report is new to you, apart from its very presence in a report.`
+			`	This points to a vast intelligence network; it seems Hai aren't as harmless as their cute furry exterior implies. You look up at the functionary, and she gives you a friendly little smile that seems more sinister now than it did a minute ago.`
+			`	Of course, if their intelligence agencies are so capable, shouldn't they have been able to solve their pirate problems?`
 				goto reading
+				to display
+					not "Hai Reveal [A11] Sound the Alarm: pirates book"
+			`	It seems that, although the Hai have trouble tracking small, independent, anarchist, groups, they have no trouble with large, established, hierarchies. Their very approach to anarchists was flawed: make deals with the biggest groups, as if those were heads of an anarchist hierarchy. The weakness of Hai intelligence is asymmetric warfare.`
+				goto reading
+				to display
+					has "Hai Reveal [A11] Sound the Alarm: pirates book"
 
 			label pirates
 			action
 				set "Hai Reveal [A11] Sound the Alarm: pirates book"
 				"Hai Reveal [A11] Sound the Alarm: time" ++
-			`	FIXME: PIRATES BOOK`
+			`	The report begins with a brief summary of Hai involvement with anarchist groups, which dates back from the founding of the first anarchist colony, Freedom, around the same time as human first contact. Apparently, the Hai have had generally positive relations with the largest organizations on anarchist planets. The Hai trade humanitarian supplies or other goods for assistance from the anarchist planets, even ones as distant as Thule and Greenrock.`
+			`	Much of the nature of the "assistance from anarchist planets" is redacted, but it seems it mostly involves shutting down groups that try to reveal the Hai. However, there are notes about deals with anarchists who oppose slavery, arranging massive rescues, bringing thousands of slaves at a time to freedom in Hai space. Also, they have an amnesty program for pirates who have committed no serious crimes, which explains the abundance of reformed pirates on Allhome.`
+			`	Recent anti-pirate actions by the Free Worlds have weakened the large anarchist organizations that had deals with the Hai. This hindered the Hai ability to control pirates' activities near Ultima Thule, leading to the current crisis. Previous approaches that worked with large organizations, haven't worked with small pirate groups.`
+			`	They can't track small pirate groups, but they clearly have an intelligence network. Is it good for anything?`
 				goto reading
+				to display
+					not "Hai Reveal [A11] Sound the Alarm: human book"
+			`	It seems that, although the Hai have no trouble with large, established, heirarchies, they have trouble tracking small, independent, anarchist, groups. Their very approach to anarchists was flawed: make deals with the biggest groups, as if those were heads of an anarchist hierarchy. The weakness of Hai intelligence is asymmetric warfare.`
+				goto reading
+				to display
+					has "Hai Reveal [A11] Sound the Alarm: human book"
 
 			label teeneep1
 			action
