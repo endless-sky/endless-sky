@@ -1700,7 +1700,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				goto reading
 				to display
 					not "Hai Reveal [A11] Sound the Alarm: human book"
-			`	It seems that, although the Hai have no trouble with large, established, heirarchies, they have trouble tracking small, independent, anarchist, groups. Their very approach to anarchists was flawed: make deals with the biggest groups, as if those were heads of an anarchist hierarchy. The weakness of Hai intelligence is asymmetric warfare.`
+			`	It seems that, although the Hai have no trouble with large, established, hierarchies, they have trouble tracking small, independent, anarchist, groups. Their very approach to anarchists was flawed: make deals with the biggest groups, as if those were heads of an anarchist hierarchy. The weakness of Hai intelligence is asymmetric warfare.`
 				goto reading
 				to display
 					has "Hai Reveal [A11] Sound the Alarm: human book"
@@ -1709,7 +1709,9 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			action
 				set "Hai Reveal [A11] Sound the Alarm: teeneep1 book"
 				"Hai Reveal [A11] Sound the Alarm: time" ++
-			`	FIXME: TEENEEP1`
+			`	This is an extremely biased report of Teeneep's life up to full physical maturity. It focuses on chaotic incidents of her past, and uses them to justify the claim that she has always been a menace to society.`
+			`	The most telling event happens shortly after Teeneep's mother mysteriously vanishes on a science expedition to Darkwaste, leaving the young Hai quite stressed. At school, she saw a teacher berating a classmate about "unfettered tendencies." In response, she stood on a table and started chanting anti-bullying protest slogans. The whole class joined her, and they marched through the hallways chanting. Eventually the entire school was doing it, and they locked themselves in a well-stocked cafeteria, refusing to come out until the teacher was fired.  Two days later, the teacher was unemployed, and Teeneep was in a "mandatory juvenile behavior modification program."`
+			`	Also, throughout the report, there were complaints about Teeneep befriending "problematic members of society." This included former pirates, Unfettered Hai, freed slaves, and even reformed violent convicts. The report admits Teeneep generally had a positive impact on the lives she touched, but insists that her desire to enter "that part of society" is a major concern.`
 				goto reading
 
 			label teeneep2
