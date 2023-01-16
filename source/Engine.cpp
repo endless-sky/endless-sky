@@ -1270,14 +1270,15 @@ void Engine::EnterSystem()
 			double attraction = .005 * (factors.first - factors.second - raidFleet.second);
 			// Consider the other fleets in the local system.
 			// Do not take into account the raid fleet, that would just mess with the minimum attraction of it.
+			auto raidStrength = raidFleet.Strength();
 			for(const auto &fleet : system->Fleets())
 			{
-				const Government *fleetGov = fleet.Get().GetGovernment();
+				const Government *fleetGov = fleet.Get()->GetGovernment();
 				// If the fleet is neutral to player and raider or hostile to both, it won't matter.
 				// If it is hostile to the player raids will increase,
 				// and hostility to the raiders make raids decrease.
-				attraction -= sqrt(fleet.Get()->Strength() / 10000.) / fleet.Period()
-					* (fleetGov->IsEnemy(raidGovernment) - fleetGov->IsEnemy(GameData::PlayerGovernment()));
+				attraction -= (fleetGov->IsEnemy(raidGovernment) - fleetGov->IsEnemy(GameData::PlayerGovernment()))
+					* (raidStrength / (fleet.Get()->Strength() / fleet.Period()));
 			}
 			if(attraction > 0.)
 				for(int i = 0; i < 10; ++i)

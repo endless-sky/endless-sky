@@ -103,8 +103,7 @@ void Government::Load(const DataNode &node)
 			displayName = name;
 	}
 
-	// No need to consider clearing it if it's empty.
-	bool clearedRaids = !raidFleets.isEmpty();
+	bool clearedRaids = false;
 
 	for(const DataNode &child : node)
 	{
@@ -119,13 +118,19 @@ void Government::Load(const DataNode &node)
 		const string &key = child.Token((add || remove) ? 1 : 0);
 		int valueIndex = (add || remove) ? 2 : 1;
 		bool hasValue = child.Size() > valueIndex;
+		
+		// If add is not specified we delete all of existing raid data.
+		bool shouldOverwrite = (key == "raid" && !add && !clearedRaids);
 
-		if(remove && !hasValue)
+		if(remove || shouldOverwrite)
 		{
 			if(key == "provoked on scan")
 				provokedOnScan = false;
 			else if(key == "raid")
+			{
 				raidFleets.clear();
+				clearedRaids = true;
+			}
 			else if(key == "display name")
 				displayName = name;
 			else if(key == "death sentence")
@@ -236,11 +241,6 @@ void Government::Load(const DataNode &node)
 			fine = add ? fine + child.Value(valueIndex) : child.Value(valueIndex);
 		else if(key == "raid")
 		{
-			if(!clearedRaids && !add && !remove)
-			{
-				raidFleets.clear();
-				clearedRaids = true;
-			}
 			const Fleet *raidingFleet = GameData::Fleets().Get(child.Token(valueIndex));
 			if(remove)
 			{
