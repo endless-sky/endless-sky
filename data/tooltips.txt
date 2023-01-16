@@ -791,6 +791,9 @@ tip "firing shields / second:"
 tip "firing ion / second:"
 	`Reduces energy levels for some time after this weapon is fired.`
 
+tip "firing scramble / second:"
+	`Jams the weapons for some time after this weapon is fired.`
+
 tip "firing slowing / second:"
 	`Reduces the turn rate, acceleration, and top speed of the ship when this weapon is fired. Slowing wears off over time.`
 
