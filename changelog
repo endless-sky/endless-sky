@@ -106,8 +106,8 @@ Version 0.10.0
         * Ikatila'ej: a large mining and manufacturing ship with a unique spinal weapon.
       * A surveillance drone for the Korath Exiles: the Kas'ik Tek 7. (@Saugia)
       * A person ship for MasterOfGrey. (@Saugia)
-      * Quarg now consider possession of their outfits or ships to be attrocities and will permmanently imprison the player if they are caught with them. (@Arachi-Lover)
-      * Increased cooperation between Tarazed corporation and the Free Worlds early in the cammpaign. (@bene-dictator)
+      * Quarg now consider possession of their outfits or ships to be atrocities and will permanently imprison the player if they are caught with them. (@Arachi-Lover)
+      * Increased cooperation between Tarazed Corporation and the Free Worlds early in the campaign. (@bene-dictator)
       * A new Free Worlds side mission about expanding infrastructure on Zug. (@bene-dictator)
       * Added basic human jobs with shorter ranges than usual; 1 to 3 jumps. (@Zitchas)
       * Six new pirate hails. (@bene-dictator)
@@ -119,7 +119,7 @@ Version 0.10.0
       * Hails and news items hinting to the player about the requirements for the There Might Be Riots mission chain. (@Zitchas)
       * Added a variety of new hails for Free Worlds and Republic ships. (@bene-dictator)
       * Added a short mission chain about delivering a large inheritance. (@Anarchist2)
-      * Additional human ship names. @bene-dictator)
+      * Additional human ship names. (@bene-dictator)
       * The Embersylph: a new form of spacefaring life form that can be found in parts of the Ember Waste under certain circumstances. (@Saugia)
       * Added pirate versions of some human ships. (@1010todd)
         * Mammoth (pirate Behemoth).
@@ -134,7 +134,7 @@ Version 0.10.0
         * Add more maximum combat rating checks.
         * Generally increase offer rates.
         * Additional changes to assassination pirate jobs:
-          * Remove "assassinate military target" jobs due to overlap with the "eliminate law enforcement" jobs.
+          * Removed "assassinate military target" jobs due to overlap with the "eliminate law enforcement" jobs.
           * The spawn ranges are not as restricted as normal bounties, but the most extreme cases have been reduced.
           * Adjusted assassination target fleets to contain a weak transport with light escorts.
       * Improved some conversation text in early FW missions. (@Anarchist2)
