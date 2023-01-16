@@ -290,7 +290,7 @@ tip "inertia reduction:"
 tip "ion protection:"
 	`Protection against weapons that do ion damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in ion damage, while a total value of 11 only results in a 10 percent reduction.`
 
-tip "scrambling protection:"
+tip "scramble protection:"
 	`Protection against weapons that do scrambling damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in ion damage, while a total value of 11 only results in a 10 percent reduction.`
 
 tip "ion resistance:"
@@ -305,16 +305,16 @@ tip "ion resistance fuel:"
 tip "ion resistance heat:"
 	`Heat generated per second when resisting ion damage.`
 
-tip "scrambling resistance:"
+tip "scramble resistance:"
 	`How much scrambling damage this ship can resist per second.`
 
-tip "scrambling resistance energy:"
+tip "scramble resistance energy:"
 	`Energy consumed per second when resisting scrambling damage.`
 
-tip "scrambling resistance fuel:"
+tip "scramble resistance fuel:"
 	`Fuel consumed per second when resisting scrambling damage.`
 
-tip "scrambling resistance heat:"
+tip "scramble resistance heat:"
 	`Heat generated per second when resisting scrambling damage.`
 
 tip "jump speed:"
@@ -929,7 +929,7 @@ tip "firing shields / shot:"
 tip "firing ion / shot:"
 	`Each shot increases the ship's ionization by this amount. Ionization reduces the ship's energy and slowly wears off over time.`
 
-tip "firing scrambling / shot:"
+tip "firing scramble / shot:"
 	`Each shot increases the ship's scrambling by this amount. This jams the weapons and slowly wears off over time.`
 
 tip "firing slowing / shot:"

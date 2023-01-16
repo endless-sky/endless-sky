@@ -2277,10 +2277,10 @@ void Ship::DoGeneration()
 
 	if(scrambling)
 	{
-		double scramblingResistance = attributes.Get("scrambling resistance");
-		double scramblingEnergy = attributes.Get("scrambling resistance energy") / scramblingResistance;
-		double scramblingFuel = attributes.Get("scrambling resistance fuel") / scramblingResistance;
-		double scramblingHeat = attributes.Get("scrambling resistance heat") / scramblingResistance;
+		double scramblingResistance = attributes.Get("scramble resistance");
+		double scramblingEnergy = attributes.Get("scramble resistance energy") / scramblingResistance;
+		double scramblingFuel = attributes.Get("scramble resistance fuel") / scramblingResistance;
+		double scramblingHeat = attributes.Get("scramble resistance heat") / scramblingResistance;
 		DoStatusEffect(isDisabled, scrambling, scramblingResistance,
 			energy, scramblingEnergy, fuel, scramblingFuel, heat, scramblingHeat);
 	}
@@ -4010,7 +4010,7 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 	// Since weapons fire from within the shields, hull and "status" damages are dealt in full.
 	hull -= weapon.FiringHull() + relativeHullChange;
 	ionization += weapon.FiringIon();
-	scrambling += weapon.FiringScrambling();
+	scrambling += weapon.FiringScramble();
 	disruption += weapon.FiringDisruption();
 	slowness += weapon.FiringSlowing();
 	discharge += weapon.FiringDischarge();
