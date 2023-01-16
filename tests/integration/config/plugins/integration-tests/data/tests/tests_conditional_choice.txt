@@ -50,9 +50,6 @@ test-data "conditional choice"
 			history
 		visited "Terra Incognita"
 		"visited planet" Ruin
-		conditions
-			# to skip the landing on ruin conversation
-			"Ruin: Landing: offered"
 
 
 mission "%TEST%: CONDITIONAL CHOICE"
