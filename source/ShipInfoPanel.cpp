@@ -241,8 +241,7 @@ bool ShipInfoPanel::Click(int x, int y, int /* clicks */)
 
 	selectedCommodity.clear();
 	selectedPlunder = nullptr;
-
-	double yDimension = GameData::Interfaces().Get("hardpoint buttons")->GetValue("y dimension");
+	double yDimension = GameData::Interfaces().Get("hardpoint buttons")->GetValue("y dimensions");
 	if(x <= nextHardpoint.X() + 145. && x >= nextHardpoint.X() + 105.
 		&& y <= nextHardpoint.Y() + yDimension && y >= nextHardpoint.Y() - yDimension)
 		return DoKey('e');
