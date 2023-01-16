@@ -103,7 +103,8 @@ void Government::Load(const DataNode &node)
 			displayName = name;
 	}
 
-	bool notClearedRaids = true;
+	// No need to consider clearing it if it's empty.
+	bool clearedRaids = raidFleets.isEmpty();
 
 	for(const DataNode &child : node)
 	{
@@ -119,15 +120,12 @@ void Government::Load(const DataNode &node)
 		int valueIndex = (add || remove) ? 2 : 1;
 		bool hasValue = child.Size() > valueIndex;
 
-		if(remove)
+		if(remove && !hasValue)
 		{
 			if(key == "provoked on scan")
 				provokedOnScan = false;
-			else if(key == "raid" && !hasValue)
-			{
+			else if(key == "raid")
 				raidFleets.clear();
-				notClearedRaids = false;
-			}
 			else if(key == "display name")
 				displayName = name;
 			else if(key == "death sentence")
@@ -236,6 +234,27 @@ void Government::Load(const DataNode &node)
 			bribe = add ? bribe + child.Value(valueIndex) : child.Value(valueIndex);
 		else if(key == "fine")
 			fine = add ? fine + child.Value(valueIndex) : child.Value(valueIndex);
+		else if(key == "raid")
+		{
+			if(!clearedRaids && !add && !remove)
+			{
+				raidFleets.clear();
+				clearedRaids = true;
+			}
+			const Fleet *raidingFleet = GameData::Fleets().Get(child.Token(valueIndex));
+			if(remove)
+			{
+				for(auto it = raidFleets.begin(); it != raidFleets.end(); ++it)
+					if(it->first == raidingFleet)
+					{
+						raidFleets.erase(it);
+						break;
+					}
+			}
+			else
+				raidFleets.emplace_back(make_pair(raidingFleet,
+					child.Size() > (valueIndex + 1.) ? child.Value(valueIndex + 1.) : 2.));
+		}
 		else if(add)
 			child.PrintTrace("Error: Unsupported use of add:");
 		else if(key == "display name")
@@ -262,27 +281,6 @@ void Government::Load(const DataNode &node)
 			hostileDisabledHail = GameData::Phrases().Get(child.Token(valueIndex));
 		else if(key == "language")
 			language = child.Token(valueIndex);
-		else if(key == "raid")
-		{
-			if(notClearedRaids && !add && !remove)
-			{
-				raidFleets.clear();
-				notClearedRaids = false;
-			}
-			const Fleet *raidingFleet = GameData::Fleets().Get(child.Token(valueIndex));
-			if(remove)
-			{
-				for(auto it = raidFleets.begin(); it != raidFleets.end(); ++it)
-					if(it->first == raidingFleet)
-					{
-						raidFleets.erase(it);
-						break;
-					}
-			}
-			else
-				raidFleets.emplace_back(make_pair(raidingFleet,
-					child.Size() > (valueIndex + 1.) ? child.Value(valueIndex + 1.) : 2.));
-		}
 		else if(key == "enforces" && child.Token(valueIndex) == "all")
 		{
 			enforcementZones.clear();
