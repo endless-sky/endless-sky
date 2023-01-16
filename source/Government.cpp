@@ -103,7 +103,7 @@ void Government::Load(const DataNode &node)
 			displayName = name;
 	}
 
-	bool clearedRaids = false;
+	bool clearRaids = false;
 
 	for(const DataNode &child : node)
 	{
@@ -120,7 +120,7 @@ void Government::Load(const DataNode &node)
 		bool hasValue = child.Size() > valueIndex;
 		
 		// If add is not specified we delete all of existing raid data.
-		bool shouldOverwrite = (key == "raid" && !add && !clearedRaids);
+		bool shouldOverwrite = (key == "raid" && !add && !clearRaids);
 
 		if(remove || shouldOverwrite)
 		{
@@ -129,7 +129,7 @@ void Government::Load(const DataNode &node)
 			else if(key == "raid")
 			{
 				raidFleets.clear();
-				clearedRaids = true;
+				clearRaids = true;
 			}
 			else if(key == "display name")
 				displayName = name;
