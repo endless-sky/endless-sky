@@ -2042,22 +2042,6 @@ event "end battle of alioth"
 
 
 
-mission "Pirate Use Mammoth"
-	landing
-	invisible
-	to offer
-		has "event: end battle of alioth"
-	on offer
-		event "pirate use mammoth"
-		fail
-
-event "pirate use mammoth"
-	fleet "Large Northern Pirates"
-		add variant
-			"Mammoth"
-
-
-
 government "Syndicate (Hostile)"
 	swizzle 4
 	color 0 .41 .71

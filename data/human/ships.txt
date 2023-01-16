@@ -806,6 +806,70 @@ ship "Bulk Freighter"
 
 
 
+ship "Bulwark"
+	sprite "ship/pirate bulwark"
+	thumbnail "thumbnail/pirate bulwark"
+	attributes
+		category "Medium Warship"
+		"cost" 4360000
+		"shields" 7000
+		"hull" 5600
+		"required crew" 19
+		"bunks" 31
+		"mass" 881
+		"drag" 13.4
+		"heat dissipation" .35
+		"fuel capacity" 500
+		"cargo space" 12
+		"outfit space" 521
+		"weapon capacity" 223
+		"engine capacity" 120
+		"threshold percentage" .08
+		weapon
+			"blast radius" 120
+			"shield damage" 1200
+			"hull damage" 600
+			"hit force" 1800
+	outfits
+		"Plasma Cannon" 2
+		"Heavy Rocket Launcher" 2
+		"Heavy Rocket" 60
+		"Heavy Rocket Rack" 2
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret"
+		
+		"Fission Reactor"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"Water Coolant System"
+		"Tactical Scanner"
+		"Laser Rifle" 19
+		
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+		
+	engine 31.5 89.5
+	engine -31.5 89.5
+	gun 52.5 -0.5 "Heavy Rocket Launcher"
+	gun 52.5 -0.5 "Plasma Cannon"
+	gun -52.5 -0.5 "Heavy Rocket Launcher"
+	gun -52.5 -0.5 "Plasma Cannon"
+	turret 35.5 29.5 "Quad Blaster Turret"
+	turret -35.5 29.5 "Quad Blaster Turret"
+	turret 0 0.5 "Heavy Anti-Missile Turret"
+	leak "leak" 40 50
+	leak "flame" 40 80
+	leak "big leak" 70 30
+	explode "tiny explosion" 5
+	explode "small explosion" 15
+	explode "medium explosion" 30
+	explode "large explosion" 20
+	"final explode" "final explosion medium"
+	description `The Bulwark is basically what you get by welding a bunch of scrap metal on to a Bastion. It is a tough, slow brawler that is most often used by warlords to protect their properties, whether it'd be their ships or hideouts from raids by either the authorities or their rivals. Due to their lack of speed and cargo space these ships rarely participate in raiding merchant convoys outside their home system.`
+
+
+
 ship "Carrier"
 	sprite "ship/carrier"
 	thumbnail "thumbnail/carrier"
@@ -3529,6 +3593,68 @@ ship "Surveillance Drone"
 	explode "tiny explosion" 15
 	description "Surveillance drones are unarmed drones used by the Republic navy to scan ships and planets in a star system."
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
+
+
+
+ship "Valkyrie"
+	sprite "ship/pirate valkyrie"
+	thumbnail "thumbnail/pirate valkyrie"
+	attributes
+		category "Medium Warship"
+		"cost" 3900000
+		"shields" 4800
+		"hull" 2800
+		"required crew" 9
+		"bunks" 26
+		"mass" 157
+		"drag" 4.9
+		"heat dissipation" .63
+		"fuel capacity" 500
+		"cargo space" 41
+		"outfit space" 400
+		"weapon capacity" 170
+		"engine capacity" 76
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Quad Blaster Turret" 2
+		"Particle Cannon" 2
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		
+		"NT-200 Nucleovoltaic"
+		"KP-6 Photovoltaic Panel" 3
+		"LP072a Battery Pack"
+		"D67-TM Shield Generator"
+		"Large Radar Jammer"
+		"Laser Rifle" 18
+		
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+		
+	engine 15 97
+	engine -15 97
+	gun -12 -78 "Particle Cannon"
+	gun 12 -78 "Particle Cannon"
+	gun -64 -19 "Torpedo Launcher"
+	gun 64 -19 "Torpedo Launcher"
+	turret -31 15.5
+	turret 31 15.5
+	bay "Fighter" -43.5 2
+	bay "Fighter" 43.5 2
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description "Valkyries are pirated Aeries converted into more of a standalone warship than a support carrier. Losing a turret and a few bunks in place of increased armor protection, as well as boasting two more gun mounts, Valkyries can both take and put out noticeable amounts of damage. However, due to the extra weight, they are somewhat slower and lose a bit of shield efficiency."
 
 
 
