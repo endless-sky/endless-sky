@@ -1278,7 +1278,7 @@ void Engine::EnterSystem()
 				// If it is hostile to the player raids will increase,
 				// and hostility to the raiders make raids decrease.
 				attraction -= (fleetGov->IsEnemy(raidGovernment) - fleetGov->IsEnemy(GameData::PlayerGovernment()))
-					* (raidStrength / (fleet.Get()->Strength() / fleet.Period()));
+					* ((fleet.Get()->Strength() / fleet.Period()) / raidStrength);
 			}
 			if(attraction > 0.)
 				for(int i = 0; i < 10; ++i)
