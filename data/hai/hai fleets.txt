@@ -717,13 +717,13 @@ fleet "Large Unfettered"
 	personality
 		disables plunders
 	variant 2
-		"Shield Beetle"
+		"Shield Beetle (Unfettered)"
 		"Lightning Bug (Pulse)" 2
 	variant 2
 		"Shield Beetle (Tracker)"
 		"Lightning Bug" 2
 	variant 1
-		"Shield Beetle"
+		"Shield Beetle (Unfettered)"
 		"Lightning Bug (Pulse)"
 	variant 1
 		"Shield Beetle (Tracker)"
@@ -742,18 +742,55 @@ fleet "Large Unfettered"
 		"Lightning Bug (Pulse)" 2
 	variant 2
 		"Shield Beetle (Pulse)"
-		"Shield Beetle"
+		"Shield Beetle (Unfettered)"
 	variant 2
 		"Shield Beetle (Pulse)"
 		"Shield Beetle (Tracker)"
 	variant
 		"Shield Beetle (Pulse)"
-		"Shield Beetle"
+		"Shield Beetle (Unfettered)"
 		"Lightning Bug (Pulse)" 2
 	variant
 		"Shield Beetle (Pulse)"
 		"Shield Beetle (Tracker)"
 		"Lightning Bug" 2
+	variant 4
+		"Sea Scorpion (Pulse)" 3
+	variant 3
+		"Sea Scorpion (Pulse)" 2
+		"Sea Scorpion" 2
+	variant 2
+		"Sea Scorpion (Pulse)" 2
+		"Shield Beetle (Unfettered)"
+	variant 2
+		"Sea Scorpion (Ion)"
+		"Sea Scorpion (Pulse)"
+		"Shield Beetle (Unfettered)"
+	variant 2
+		"Sea Scorpion (Pulse)" 2
+		"Shield Beetle (Pulse)"
+	variant 4
+		"Sea Scorpion" 3
+	variant 3
+		"Sea Scorpion" 4
+	variant 2
+		"Sea Scorpion" 2
+		"Shield Beetle (Unfettered)"
+	variant 2
+		"Sea Scorpion" 2
+		"Shield Beetle (Pulse)"
+	variant 2
+		"Lightning Bug"
+		"Sea Scorpion"
+		"Shield Beetle (Pulse)"
+	variant 2
+		"Lightning Bug"
+		"Sea Scorpion (Ion)"
+		"Shield Beetle (Pulse)"
+	variant 2
+		"Lightning Bug (Pulse)"
+		"Sea Scorpion (Pulse)"
+		"Shield Beetle (Pulse)"
 
 fleet "Large Plundering Unfettered"
 	government "Hai (Unfettered)"
