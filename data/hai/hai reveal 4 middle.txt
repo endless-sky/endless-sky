@@ -1626,7 +1626,8 @@ mission "Hai Reveal [A11] Sound the Alarm"
 					goto library
 
 			label reading7
-			`	"I'm so sorry, Captain <last>, but your time here is at an end. I have strict instructions to escort you out when the proceedings complete. You may be happy to hear that the Elder Council voted to take no action on Teeneep. It seems she may soon trigger an election, creating the chaos that is part of her charm, but that was to be expected, right? Some Elders have referred to her as Eyrisen of the Mythos," she giggles, "and if I was religious, I'd agree.`
+			`	Before you can move on to the next report, the functionary interrupts you.`
+			`	"Captain <last>, the proceedings have completed, and your time here is at an end. The Elder Council voted not to punish Teeneep, probably because she is about to trigger an election. Some Elders have referred to her as Eyrisen of the Mythos," she giggles, "and if I was religious, I'd agree.`
 			`	"I'll escort you to Teeneep's and Sayari's waiting room now."`
 				goto return7
 
@@ -1672,19 +1673,23 @@ mission "Hai Reveal [A11] Sound the Alarm"
 					goto militech
 					to display
 						not "Hai Reveal [A11] Sound the Alarm: militech book"
+				`	"Holographic Concealment Technology"`
+					goto militech
+					to display
+						not "Hai Reveal [A11] Sound the Alarm: holotech book"
 
 			label human
 			action
 				set "Hai Reveal [A11] Sound the Alarm: human book"
 				"Hai Reveal [A11] Sound the Alarm: time" ++
 			`	The report refers to recent goings-on in human space as the Human Civil War, and follows the political and military situation, with commentary about human public opinions, theories of past Pug interference, and effects of the war on the Hai. Apparently, there was a massive influx of human refugees to Hai space during the war, which strained their social support systems. What is most surprising is the level of detail the book has on fleet movements and internal political discussions.`
-			`	Some of the details in the report were secrets the Hai shouldn't have known about know about. You recognize some of the information as private war planning discussions known only to yourself and a handful of other people. The level of detail they knew of the command hierarchy, fleet movements, special ops missions, intelligence services, and even the construction process of Syndicate nukes, is quite disturbing. Little in the report is new to you, apart from its very presence in a report.`
+			`	Some of the details in the report were secrets the Hai shouldn't have known about know about. You recognize some of the information as private war planning discussions known only to yourself and a handful of other people. The level of detail they knew of the command hierarchy, fleet movements, special ops missions, intelligence services, and even the construction process of Syndicate nukes, is quite disturbing.`
 			`	This points to a vast intelligence network; it seems Hai aren't as harmless as their cute furry exterior implies. You look up at the functionary, and she gives you a friendly little smile that seems more sinister now than it did a minute ago.`
 			`	Of course, if their intelligence agencies are so capable, shouldn't they have been able to solve their pirate problems?`
 				goto reading
 				to display
 					not "Hai Reveal [A11] Sound the Alarm: pirates book"
-			`	It seems that, although the Hai have trouble tracking small, independent, anarchist, groups, they have no trouble with large, established, hierarchies. Their very approach to anarchists was flawed: make deals with the biggest groups, as if those were heads of an anarchist hierarchy. The weakness of Hai intelligence is asymmetric warfare.`
+			`	It seems that, although the Hai have trouble tracking small, independent, anarchist, groups, they have no trouble with large, established, hierarchies. Their very approach to anarchists was flawed: make deals with the biggest groups, as if those were heads of an anarchist hierarchy. The weakness of the Hai intelligence service is asymmetric warfare.`
 				goto reading
 				to display
 					has "Hai Reveal [A11] Sound the Alarm: pirates book"
@@ -1694,13 +1699,13 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				set "Hai Reveal [A11] Sound the Alarm: pirates book"
 				"Hai Reveal [A11] Sound the Alarm: time" ++
 			`	The report begins with a brief summary of Hai involvement with anarchist groups, which dates back from the founding of the first anarchist colony, Freedom, around the same time as human first contact. Apparently, the Hai have had generally positive relations with the largest organizations on anarchist planets. The Hai trade humanitarian supplies or other goods for assistance from the anarchist planets, even ones as distant as Thule and Greenrock.`
-			`	Much of the nature of the "assistance from anarchist planets" is redacted, but it seems it mostly involves shutting down groups that try to reveal the Hai. However, there are notes about deals with anarchists who oppose slavery, arranging massive rescues, bringing thousands of slaves at a time to freedom in Hai space. Also, they have an amnesty program for pirates who have committed no serious crimes, which explains the abundance of reformed pirates on Allhome.`
-			`	Recent anti-pirate actions by the Free Worlds have weakened the large anarchist organizations that had deals with the Hai. This hindered the Hai ability to control pirates' activities near Ultima Thule, leading to the current crisis. Previous approaches that worked with large organizations, haven't worked with small pirate groups.`
+			`	Much of the nature of the "assistance from anarchist planets" is redacted, but it seems it mostly involves shutting down groups that try to reveal or harm the Hai. However, there are notes about deals with anarchists who oppose slavery, arranging massive rescues, bringing thousands of slaves at a time to freedom in Hai space. Also, there is an amnesty program for pirates who have committed no serious crimes, which explains the abundance of reformed pirates on Allhome.`
+			`	Recent anti-pirate actions by the Free Worlds and Republic Navy have weakened the large anarchist organizations that had deals with the Hai. This hindered the Hai ability to control pirates' activities near Ultima Thule, leading to the current crisis. Previous approaches that worked with large organizations, haven't worked with small pirate groups.`
 			`	They can't track small pirate groups, but they clearly have an intelligence network. Is it good for anything?`
 				goto reading
 				to display
 					not "Hai Reveal [A11] Sound the Alarm: human book"
-			`	It seems that, although the Hai have no trouble with large, established, hierarchies, they have trouble tracking small, independent, anarchist, groups. Their very approach to anarchists was flawed: make deals with the biggest groups, as if those were heads of an anarchist hierarchy. The weakness of Hai intelligence is asymmetric warfare.`
+			`	It seems that, although the Hai have no trouble with large, established, hierarchies, they have trouble tracking small, independent, anarchist, groups. Their very approach to anarchists was flawed: make deals with the biggest groups, as if those were heads of an anarchist hierarchy. The weakness of the Hai intelligence service is asymmetric warfare.`
 				goto reading
 				to display
 					has "Hai Reveal [A11] Sound the Alarm: human book"
@@ -1724,7 +1729,8 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				set "Hai Reveal [A11] Sound the Alarm: teeneep1 book"
 				"Hai Reveal [A11] Sound the Alarm: time" ++
 			`	This is an extremely biased report of Teeneep's life up to full physical maturity. It focuses on chaotic incidents of her past, and uses them to justify the claim that she has always been a menace to society.`
-			`	The most telling event happens shortly after Teeneep's mother mysteriously vanishes on a science expedition to Darkwaste, leaving the young Hai quite stressed. At school, she saw a teacher berating a classmate about "unfettered tendencies." In response, she stood on a table and started chanting anti-bullying protest slogans. The whole class joined her, and they marched through the hallways chanting. An hour later, the entire school was doing it, and they locked themselves in a well-stocked cafeteria, refusing to come out until the teacher was fired.  Two days later, the teacher was unemployed, and Teeneep was in a "mandatory juvenile behavior modification program."`
+			`	The most telling event happens shortly after Teeneep's mother mysteriously vanishes on a science expedition to Darkwaste, leaving the young Hai quite stressed. Soon after, at school, she saw a teacher berating a classmate about "unfettered tendencies." In response, she stood on a table and started chanting anti-bullying protest slogans. The whole class joined in, and they marched through the hallways chanting. An hour later, all students in the school was doing it, and they locked themselves in a well-stocked cafeteria, refusing to come out until the teacher was fired.`
+			`	Two days later, the offending teacher was unemployed, and Teeneep was in a "mandatory juvenile behavior modification program" which the report says she was "failing spectacularly."`
 			`	Also, throughout the report, there were complaints about Teeneep befriending "problematic members of society." This included former pirates, Unfettered Hai, freed slaves, and even reformed violent convicts. The report admits Teeneep generally had a positive impact on the lives she touched, but insists that her tendency to enter "that part of society" is a major concern. In particular, it notes that her quite athletic combat abilities developed in her youth during her time with "troubled individuals."`
 				goto reading
 
@@ -1748,7 +1754,12 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				set "Hai Reveal [A11] Sound the Alarm: unfettered book"
 				"Hai Reveal [A11] Sound the Alarm: time" ++
 			`	This report begins with an economic analysis of the cost of raids at Wah Ki, which it places at a staggering 3.5 billion credits per day. This is 1.5 billion impact on trade; 1.5 billion for military fleet repairs, replacements, ammunition, and infrastructure to support it; and an estimated 500 million in humanitarian aid to the Unfettered, to prevent the problem from worsening. It compares that to "full Hai unification" for which the cost is 8 billion credits per day: 3 billion in humanitarian aid to the Unfettered, and 5 billion in military aid.`
-			`	The remaining 80% of the report is redacted in its entirety, save for a few section headings. "Choot'k: Insane Risk-Taker or Brilliant Strategist?" "Multi-Decadal Timeline Expected before Unfettered Progress," "Theories on the Sentient Evolution of Nocturnal Raptors," and "History of Pug Responses to Hostilities."`
+			`	The remaining 80% of the report is redacted in its entirety, save for a few section headings:`
+			`	-	Multi-Decadal Timeline Expected before Unfettered Progress`
+			`	-	Choot'k: Insane Risk-Taker or Brilliant Strategist?`
+			`	-	Unfettered Interrogation Methods`
+			`	-	Theories on the Sentient Evolution of Nocturnal Raptors`
+			`	-	History of Pug Responses to Hostilities`
 				goto reading
 
 			label quarg
@@ -1765,8 +1776,16 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				"Hai Reveal [A11] Sound the Alarm: time" ++
 			`	Predictably, the report begins with Hai hulls, which it claims are superior to human hulls by every measure. However, it warns that there are no other fields in which Hai clearly lead, and warns that the humans may soon surpass the Hai in military technology.`
 			`	Hai have a perceived advantage in several fields which, the report says, are unjustified. Hai engines are more efficient than human atomic engines, but no faster, and humans have ion and plasma alternatives. Likewise, human atomic generators are hotter-running than those of the Hai, but humans have far more options for power. Hai shields were vastly superior, until the Syndicate's recent advancements. Hai anti-missile systems' superiority is merely a myth; human systems are as effective per ton. Of course, Hai cooling and ramscoop technology is primitive compared to humans, even with the return of the Ladybug.`
-			`	What is most concerning to the Hai is the inferiority of their weapons. They note that the ion cannon is effective against humans only because human ships rarely pack large batteries. Other Hai weapons are only marginally better than human alternatives. Meanwhile, a few plasma cannons and flame-throwers can easily shut down a Shield Beetle. Striking a beetle from 45 degrees to the front with four particle cannons will completely paralyze it until it is disabled. Recent human missiles are quite deadly, as are electron beams and plasma turrets. In all, the Hai are quite fearful of human weapons and question whether they could win an all-out war without Unfettered advancements.`
+			`	What is most concerning to the Hai is human weapons. They note that the Hai ion cannon is effective against humans only because human ships rarely pack large batteries. Other Hai weapons are only marginally better than human alternatives. Meanwhile, a few plasma cannons and flame-throwers can easily shut down a Shield Beetle. Striking a beetle from 45 degrees to the front with four particle cannons will completely paralyze it until it is disabled. Recent human missiles are quite deadly, as are electron beams and plasma turrets. In all, the Hai are quite fearful of human weapons and question whether they could win an all-out war without Unfettered advancements.`
 				goto reading
+
+			label militech
+			action
+				set "Hai Reveal [A11] Sound the Alarm: holotech book"
+				"Hai Reveal [A11] Sound the Alarm: time" ++
+			`	FIXME: HOLOTECH BOOK`
+				goto reading
+
 
 			# SCENE CHANGE
 
