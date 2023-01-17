@@ -999,7 +999,7 @@ void System::UpdateNeighbors(const Set<System> &systems, double distance, const 
 	// Add the neighbor systems if the links are active.
 	for(auto &link : conditionLinks)
 		// If we are not provided a player assume the link is not valid.
-		if(player && link.second.Test(player->Conditions() && !link.Inaccessible()))
+		if(player && link.second.Test(player->Conditions() && !link.first->Inaccessible()))
 			links.insert(link.first);
 
 	for(const System *system : accessibleLinks)
