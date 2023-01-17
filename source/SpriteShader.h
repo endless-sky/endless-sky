@@ -80,8 +80,10 @@ private:
 		static ShaderState state;
 	public:
 		// Draw a sprite.
-		static void Draw(const Sprite *sprite, const Point &position, float zoom = 1.f, int swizzle = 0, float frame = 0.f);
-		static Item Prepare(const Sprite *sprite, const Point &position, float zoom = 1.f, int swizzle = 0, float frame = 0.f);
+		static void Draw(const Sprite *sprite, const Point &position, float zoom = 1.f, int swizzle = 0,
+			float frame = 0.f);
+		static Item Prepare(const Sprite *sprite, const Point &position, float zoom = 1.f, int swizzle = 0,
+			float frame = 0.f);
 
 		static void Bind();
 		static void Add(const Item &item, bool withBlur = false);
@@ -319,7 +321,8 @@ void SpriteShader::ShaderImpl<T>::Init(bool useShaderSwizzle)
 
 // Initialize the shaders.
 template <typename T>
-void SpriteShader::ShaderImpl<T>::Draw(const Sprite *sprite, const Point &position, float zoom, int swizzle, float frame)
+void SpriteShader::ShaderImpl<T>::Draw(const Sprite *sprite, const Point &position, float zoom, int swizzle,
+	float frame)
 {
 	if(!sprite)
 		return;

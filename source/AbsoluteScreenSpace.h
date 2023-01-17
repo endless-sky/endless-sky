@@ -16,9 +16,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef ABSOLUTESCREENSPACE_H_
 #define ABSOLUTESCREENSPACE_H_
 
-#include "Point.h"
 
+#include "Point.h"
 #include "ScreenSpace.h"
+
 #include <memory>
 
 // Implementation of a Screen Space with coordinates in the user's raw pixel screen

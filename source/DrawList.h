@@ -16,10 +16,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef DRAW_LIST_H_
 #define DRAW_LIST_H_
 
-#include "Body.h"
-#include "Preferences.h"
-#include "Point.h"
 #include "AbsoluteScreenSpace.h"
+#include "Body.h"
+#include "Point.h"
+#include "Preferences.h"
 #include "ScaledScreenSpace.h"
 #include "ScreenSpace.h"
 #include "Sprite.h"

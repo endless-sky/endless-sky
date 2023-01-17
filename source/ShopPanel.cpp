@@ -493,7 +493,8 @@ void ShopPanel::DrawMain()
 
 	// What amount would mainScroll have to equal to make nextY equal the
 	// bottom of the screen? (Also leave space for the "key" at the bottom.)
-	maxMainScroll = max(0., nextY + mainScroll - screenSpace->Height() / 2 - TILE_SIZE / 2 + VisibilityCheckboxesSize() + 40.);
+	maxMainScroll = max(0.,
+		nextY + mainScroll - screenSpace->Height() / 2 - TILE_SIZE / 2 + VisibilityCheckboxesSize() + 40.);
 
 	PointerShader::UISpace::Draw(Point(screenSpace->Right() - 10 - SIDE_WIDTH, screenSpace->Top() + 10),
 		Point(0., -1.), 10.f, 10.f, 5.f, Color(mainScroll > 0 ? .8f : .2f, 0.f));

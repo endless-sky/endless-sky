@@ -15,9 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "FillShader.h"
 
+#include "AbsoluteScreenSpace.h"
 #include "Color.h"
 #include "Point.h"
-#include "AbsoluteScreenSpace.h"
 #include "ScreenSpace.h"
 #include "Shader.h"
 

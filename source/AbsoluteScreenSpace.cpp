@@ -1,5 +1,5 @@
 /* AbsoluteScreenSpace.cpp
-Copyright (c) 2023 Daniel Weiner
+Copyright (c) 2023 by Daniel Weiner
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software

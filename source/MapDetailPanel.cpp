@@ -812,7 +812,8 @@ void MapDetailPanel::DrawInfo()
 void MapDetailPanel::DrawOrbits()
 {
 	const Sprite *orbitSprite = SpriteSet::Get("ui/orbits and key");
-	SpriteShader::UISpace::Draw(orbitSprite, screenSpace->TopRight() + .5 * Point(-orbitSprite->Width(), orbitSprite->Height()));
+	SpriteShader::UISpace::Draw(
+		orbitSprite, screenSpace->TopRight() + .5 * Point(-orbitSprite->Width(), orbitSprite->Height()));
 	Point orbitCenter = screenSpace->TopRight() + Point(-120., 160.);
 
 	if(!player.HasVisited(*selectedSystem))

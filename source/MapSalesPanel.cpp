@@ -220,7 +220,8 @@ int MapSalesPanel::CompareSpriteSwizzle() const
 void MapSalesPanel::DrawKey() const
 {
 	const Sprite *back = SpriteSet::Get("ui/sales key");
-	SpriteShader::UISpace::Draw(back, screenSpace->TopLeft() + Point(WIDTH + 10, 0) + .5 * Point(back->Width(), back->Height()));
+	SpriteShader::UISpace::Draw(
+		back, screenSpace->TopLeft() + Point(WIDTH + 10, 0) + .5 * Point(back->Width(), back->Height()));
 
 	Color bright(.6f, .6f);
 	Color dim(.3f, .3f);

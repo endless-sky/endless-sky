@@ -19,8 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Angle.h"
 #include "Body.h"
 #include "CollisionSet.h"
-#include "Point.h"
 #include "DrawList.h"
+#include "Point.h"
 #include "WeightedList.h"
 
 #include <list>

@@ -82,7 +82,8 @@ namespace {
 
 	size_t MaxDisplayedMissions(bool onRight)
 	{
-		return static_cast<unsigned>(max(0, static_cast<int>(floor((screenSpace->Height() - (onRight ? 160. : 190.)) / 20.))));
+		return static_cast<unsigned>(
+			max(0, static_cast<int>(floor((screenSpace->Height() - (onRight ? 160. : 190.)) / 20.))));
 	}
 
 	// Compute the required scroll amount for the given list of jobs/missions.

@@ -15,12 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AsteroidField.h"
 
+#include "AbsoluteScreenSpace.h"
 #include "DrawList.h"
 #include "Mask.h"
 #include "Minable.h"
 #include "Projectile.h"
 #include "Random.h"
-#include "AbsoluteScreenSpace.h"
 #include "SpriteSet.h"
 
 #include <algorithm>
