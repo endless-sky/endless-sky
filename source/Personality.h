@@ -42,8 +42,8 @@ public:
 	bool IsForbearing() const;
 	bool IsTimid() const;
 	bool IsHunting() const;
-	bool IsDaring() const;
 	bool IsNemesis() const;
+	bool IsDaring() const;
 
 	// How they fight:
 	bool IsFrugal() const;

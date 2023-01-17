@@ -420,7 +420,6 @@ void Personality::Parse(const DataNode &node, int index, bool remove)
 	const string &token = node.Token(index);
 
 	auto it = TOKEN.find(token);
-
 	if(it == TOKEN.end())
 	{
 		it = COMPOSITE_TOKEN.find(token);
@@ -432,5 +431,4 @@ void Personality::Parse(const DataNode &node, int index, bool remove)
 		flags &= ~it->second;
 	else
 		flags |= it->second;
-	return;
 }
