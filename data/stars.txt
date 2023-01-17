@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 # Star attributes (solar power and solar wind). In general, a star either
 # provides a lot of solar power or a lot of solar wind (ramscoop recharge rate)
@@ -172,12 +175,24 @@ star "star/nova"
 star "star/nova-old"
 	power 0.3
 	wind 6
-star "star/wr0"
+star "star/nova-small"
+	power 0.2
+	wind 4
+star "star/wr"
 	power 0.4
 	wind 4
-star "star/wr1"
+star "star/protostar-orange"
+	power 0.5
+	wind 3
+star "star/protostar-yellow"
 	power 0.4
-	wind 4
+	wind 5
+
+# Rogue planet with unusual properties
+star "planet/rogue-radiating"
+	power .2
+	wind .6
+
 star "star/neutron"
 	power 4
 	wind 0.4

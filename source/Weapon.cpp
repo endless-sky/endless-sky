@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Weapon.h"
@@ -177,6 +180,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				firingShields = value;
 			else if(key == "firing ion")
 				firingIon = value;
+			else if(key == "firing scramble")
+				firingScramble = value;
 			else if(key == "firing slowing")
 				firingSlowing = value;
 			else if(key == "firing disruption")
@@ -227,6 +232,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[ENERGY_DAMAGE] = value;
 			else if(key == "ion damage")
 				damage[ION_DAMAGE] = value;
+			else if(key == "scrambling damage")
+				damage[WEAPON_JAMMING_DAMAGE] = value;
 			else if(key == "disruption damage")
 				damage[DISRUPTION_DAMAGE] = value;
 			else if(key == "slowing damage")
@@ -248,7 +255,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[RELATIVE_DISABLED_DAMAGE] = value;
 				relativeDisabledDamageSet = true;
 			}
-			else if (key == "relative minable damage")
+			else if(key == "relative minable damage")
 			{
 				damage[RELATIVE_MINABLE_DAMAGE] = value;
 				relativeMinableDamageSet = true;
