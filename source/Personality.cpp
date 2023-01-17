@@ -398,7 +398,7 @@ void Personality::UpdateConfusion(bool isFiring)
 Personality Personality::Defender()
 {
 	Personality defender;
-	defender.flags = STAYING | MARKED | HUNTING | UNCONSTRAINED | TARGET;
+	defender.flags = STAYING | MARKED | HUNTING | DARING | UNCONSTRAINED | TARGET;
 	return defender;
 }
 
@@ -409,7 +409,7 @@ Personality Personality::Defender()
 Personality Personality::DefenderFighter()
 {
 	Personality defender;
-	defender.flags = STAYING | HUNTING | UNCONSTRAINED;
+	defender.flags = STAYING | HUNTING | DARING | UNCONSTRAINED;
 	return defender;
 }
 
