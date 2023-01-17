@@ -694,7 +694,7 @@ void PreferencesPanel::DrawPlugins()
 			if(sprite)
 			{
 				Point center(130., top.Y() + .5 * sprite->Height());
-				SpriteShader::Draw(sprite, center);
+				SpriteShader::UISpace::Draw(sprite, center);
 				top.Y() += sprite->Height() + 10.;
 			}
 

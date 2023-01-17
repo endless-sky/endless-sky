@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ImageBuffer.h"
 #include "Preferences.h"
-#include "Screen.h"
+#include "ScaledScreenSpace.h"
 
 #include "opengl.h"
 #include <SDL2/SDL.h>
@@ -134,7 +134,7 @@ Point Sprite::Center() const
 // Get the texture index, based on whether the screen is high DPI or not.
 uint32_t Sprite::Texture() const
 {
-	return Texture(Screen::IsHighResolution());
+	return Texture(ScaledScreenSpace::instance()->IsHighResolution());
 }
 
 

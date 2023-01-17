@@ -28,7 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 #include "Rectangle.h"
 #include "RingShader.h"
-#include "Screen.h"
+#include "ScaledScreenSpace.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
@@ -189,7 +189,7 @@ double Interface::GetValue(const string &name) const
 // Get the point's location, given the current screen dimensions.
 Point Interface::AnchoredPoint::Get() const
 {
-	return position + .5 * Screen::Dimensions() * anchor;
+	return position + .5 * ScaledScreenSpace::instance()->Dimensions() * anchor;
 }
 
 
@@ -463,10 +463,10 @@ void Interface::ImageElement::Draw(const Rectangle &rect, const Information &inf
 	{
 		Color color = (isColored ? info.GetOutlineColor() : Color(1.f, 1.f));
 		Point unit = info.GetSpriteUnit(name);
-		OutlineShader::Draw(sprite, rect.Center(), rect.Dimensions(), color, unit, frame);
+		OutlineShader::UISpace::Draw(sprite, rect.Center(), rect.Dimensions(), color, unit, frame);
 	}
 	else
-		SpriteShader::Draw(sprite, rect.Center(), rect.Width() / sprite->Width(), 0, frame);
+		SpriteShader::UISpace::Draw(sprite, rect.Center(), rect.Width() / sprite->Width(), 0, frame);
 }
 
 
@@ -654,7 +654,7 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 		if(!rect.Width() || !rect.Height())
 			return;
 
-		RingShader::Draw(rect.Center(), .5 * rect.Width(), width, value, *color, segments > 1. ? segments : 0.);
+		RingShader::UISpace::Draw(rect.Center(), .5 * rect.Width(), width, value, *color, segments > 1. ? segments : 0.);
 	}
 	else
 	{
@@ -677,7 +677,7 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 			Point to = start + min(v, value) * dimensions;
 			v += empty;
 
-			LineShader::Draw(from, to, width, *color);
+			LineShader::UISpace::Draw(from, to, width, *color);
 		}
 	}
 }

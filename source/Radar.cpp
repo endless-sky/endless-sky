@@ -108,11 +108,11 @@ void Radar::Draw(const Point &center, double scale, double radius, double pointe
 		else if(endExcess > 0)
 			v -= endExcess * v.Unit();
 
-		LineShader::Draw(start + center, start + v + center, 1.f, line.color);
+		LineShader::UISpace::Draw(start + center, start + v + center, 1.f, line.color);
 	}
 
 	// Draw StellarObjects and ships.
-	RingShader::Bind();
+	RingShader::UISpace::Bind();
 	for(const Object &object : objects)
 	{
 		Point position = object.position * scale;
@@ -121,15 +121,15 @@ void Radar::Draw(const Point &center, double scale, double radius, double pointe
 			position *= radius / length;
 		position += center;
 
-		RingShader::Add(position, object.outer, object.inner, object.color);
+		RingShader::UISpace::Add(position, object.outer, object.inner, object.color);
 	}
-	RingShader::Unbind();
+	RingShader::UISpace::Unbind();
 
 	// Draw neighboring system indicators.
-	PointerShader::Bind();
+	PointerShader::UISpace::Bind();
 	for(const Pointer &pointer : pointers)
-		PointerShader::Add(center, pointer.unit, 10.f, 10.f, pointerRadius, pointer.color);
-	PointerShader::Unbind();
+		PointerShader::UISpace::Add(center, pointer.unit, 10.f, 10.f, pointerRadius, pointer.color);
+	PointerShader::UISpace::Unbind();
 }
 
 

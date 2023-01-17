@@ -20,12 +20,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Minable.h"
 #include "Projectile.h"
 #include "Random.h"
-#include "Screen.h"
+#include "AbsoluteScreenSpace.h"
 #include "SpriteSet.h"
 
 #include <algorithm>
 #include <cmath>
 #include <cstdlib>
+#include <memory>
 
 using namespace std;
 
@@ -111,7 +112,7 @@ void AsteroidField::Step(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flo
 
 
 // Draw the asteroids, centered on the given location.
-void AsteroidField::Draw(DrawList &draw, const Point &center, double zoom) const
+void AsteroidField::Draw(DrawList::ViewSpace &draw, const Point &center, double zoom) const
 {
 	for(const Asteroid &asteroid : asteroids)
 		asteroid.Draw(draw, center, zoom);
@@ -224,11 +225,12 @@ void AsteroidField::Asteroid::Step()
 
 
 // Draw any instances of this asteroid that are on screen.
-void AsteroidField::Asteroid::Draw(DrawList &draw, const Point &center, double zoom) const
+void AsteroidField::Asteroid::Draw(DrawList::ViewSpace &draw, const Point &center, double zoom) const
 {
+	std::shared_ptr<AbsoluteScreenSpace> screenSpace = AbsoluteScreenSpace::instance();
 	// Any object within this range must be drawn.
-	Point topLeft = center + (Screen::TopLeft() - size) / zoom;
-	Point bottomRight = center + (Screen::BottomRight() + size) / zoom;
+	Point topLeft = center + (screenSpace->TopLeft() - size) / zoom;
+	Point bottomRight = center + (screenSpace->BottomRight() + size) / zoom;
 
 	// Figure out the position of the first instance of this asteroid that is to
 	// the right of and below the top left corner of the screen.

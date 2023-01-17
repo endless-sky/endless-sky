@@ -96,8 +96,8 @@ void AmmoDisplay::Draw(const Rectangle &ammoBox, const Point &iconDim) const
 		const auto &playerSelectedWeapons = player.SelectedSecondaryWeapons();
 		bool isSelected = (playerSelectedWeapons.find(it.first) != playerSelectedWeapons.end());
 
-		SpriteShader::Draw(it.first->Icon(), pos + iconOff);
-		SpriteShader::Draw(isSelected ? selectedSprite : unselectedSprite, pos + boxOff);
+		SpriteShader::UISpace::Draw(it.first->Icon(), pos + iconOff);
+		SpriteShader::UISpace::Draw(isSelected ? selectedSprite : unselectedSprite, pos + boxOff);
 
 		auto iconCenter = Point(iconCenterX, pos.Y() + ammoIconHeight / 2.);
 		ammoIconZones.emplace_back(iconCenter, iconDim, it.first);

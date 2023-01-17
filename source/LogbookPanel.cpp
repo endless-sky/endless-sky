@@ -25,7 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/layout.hpp"
 #include "PlayerInfo.h"
 #include "Preferences.h"
-#include "Screen.h"
+#include "ScaledScreenSpace.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
@@ -33,6 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/WrappedText.h"
 
 #include <algorithm>
+#include <memory>
 #include <set>
 
 using namespace std;
@@ -51,6 +52,8 @@ namespace {
 	const string MONTH[] = {
 		"  January", "  February", "  March", "  April", "  May", "  June",
 		"  July", "  August", "  September", "  October", "  November", "  December"};
+
+	std::shared_ptr<ScaledScreenSpace> screenSpace = ScaledScreenSpace::instance();
 }
 
 
@@ -78,18 +81,18 @@ void LogbookPanel::Draw()
 	// Draw the panel. The sidebar should be slightly darker than the rest.
 	const Color &sideColor = *GameData::Colors().Get("logbook sidebar");
 	FillShader::Fill(
-		Point(Screen::Left() + .5 * SIDEBAR_WIDTH, 0.),
-		Point(SIDEBAR_WIDTH, Screen::Height()),
+		Point(screenSpace->Left() + .5 * SIDEBAR_WIDTH, 0.),
+		Point(SIDEBAR_WIDTH, screenSpace->Height()),
 		sideColor);
 	const Color &backColor = *GameData::Colors().Get("logbook background");
 	FillShader::Fill(
-		Point(Screen::Left() + SIDEBAR_WIDTH + .5 * TEXT_WIDTH, 0.),
-		Point(TEXT_WIDTH, Screen::Height()),
+		Point(screenSpace->Left() + SIDEBAR_WIDTH + .5 * TEXT_WIDTH, 0.),
+		Point(TEXT_WIDTH, screenSpace->Height()),
 		backColor);
 	const Color &lineColor = *GameData::Colors().Get("logbook line");
 	FillShader::Fill(
-		Point(Screen::Left() + SIDEBAR_WIDTH - .5, 0.),
-		Point(1., Screen::Height()),
+		Point(screenSpace->Left() + SIDEBAR_WIDTH - .5, 0.),
+		Point(1., screenSpace->Height()),
 		lineColor);
 
 	const Sprite *edgeSprite = SpriteSet::Get("ui/right edge");
@@ -98,10 +101,10 @@ void LogbookPanel::Draw()
 		// If the screen is high enough, the edge sprite should repeat.
 		double spriteHeight = edgeSprite->Height();
 		Point pos(
-			Screen::Left() + WIDTH + .5 * edgeSprite->Width(),
-			Screen::Top() + .5 * spriteHeight);
-		for( ; pos.Y() - .5 * spriteHeight < Screen::Bottom(); pos.Y() += spriteHeight)
-			SpriteShader::Draw(edgeSprite, pos);
+			screenSpace->Left() + WIDTH + .5 * edgeSprite->Width(),
+			screenSpace->Top() + .5 * spriteHeight);
+		for( ; pos.Y() - .5 * spriteHeight < screenSpace->Bottom(); pos.Y() += spriteHeight)
+			SpriteShader::UISpace::Draw(edgeSprite, pos);
 	}
 
 	// Colors to be used for drawing the log.
@@ -117,7 +120,7 @@ void LogbookPanel::Draw()
 	Point highlightOffset = Point(4. - PAD, 0.) + .5 * highlightSize;
 	Point textOffset(0., .5 * (LINE_HEIGHT - font.Height()));
 	// Start at this point on the screen:
-	Point pos = Screen::TopLeft() + Point(PAD, PAD - categoryScroll);
+	Point pos = screenSpace->TopLeft() + Point(PAD, PAD - categoryScroll);
 	for(size_t i = 0; i < contents.size(); ++i)
 	{
 		if(selectedDate ? dates[i].Month() == selectedDate.Month() : selectedName == contents[i])
@@ -129,7 +132,7 @@ void LogbookPanel::Draw()
 		pos.Y() += LINE_HEIGHT;
 	}
 
-	maxCategoryScroll = max(0., maxCategoryScroll + pos.Y() - Screen::Bottom());
+	maxCategoryScroll = max(0., maxCategoryScroll + pos.Y() - screenSpace->Bottom());
 
 	// Parameters for drawing the main text:
 	WrappedText wrap(font);
@@ -137,7 +140,7 @@ void LogbookPanel::Draw()
 	wrap.SetWrapWidth(TEXT_WIDTH - 2. * PAD);
 
 	// Draw the main text.
-	pos = Screen::TopLeft() + Point(SIDEBAR_WIDTH + PAD, PAD + .5 * (LINE_HEIGHT - font.Height()) - scroll);
+	pos = screenSpace->TopLeft() + Point(SIDEBAR_WIDTH + PAD, PAD + .5 * (LINE_HEIGHT - font.Height()) - scroll);
 
 	// Branch based on whether this is an ordinary log month or a special page.
 	auto pit = player.SpecialLogs().find(selectedName);
@@ -168,7 +171,7 @@ void LogbookPanel::Draw()
 		}
 	}
 
-	maxScroll = max(0., scroll + pos.Y() - Screen::Bottom());
+	maxScroll = max(0., scroll + pos.Y() - screenSpace->Bottom());
 }
 
 
@@ -180,7 +183,7 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
 	{
 		double direction = (key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN);
-		Drag(0., (Screen::Height() - 100.) * direction);
+		Drag(0., (screenSpace->Height() - 100.) * direction);
 	}
 	else if(key == SDLK_HOME || key == SDLK_END)
 	{
@@ -238,8 +241,8 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			int position = i * LINE_HEIGHT - categoryScroll;
 
 			// If it's out of bounds, recenter it
-			if(position < MINIMUM_SELECTION_DISTANCE || position > (Screen::Height() - MINIMUM_SELECTION_DISTANCE))
-				categoryScroll = position - (Screen::Height() / 2);
+			if(position < MINIMUM_SELECTION_DISTANCE || position > (screenSpace->Height() - MINIMUM_SELECTION_DISTANCE))
+				categoryScroll = position - (screenSpace->Height() / 2);
 
 			categoryScroll = max(categoryScroll, 0.);
 		}
@@ -252,8 +255,8 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 
 bool LogbookPanel::Click(int x, int y, int clicks)
 {
-	x -= Screen::Left();
-	y -= Screen::Top();
+	x -= screenSpace->Left();
+	y -= screenSpace->Top();
 	if(x < SIDEBAR_WIDTH)
 	{
 		size_t index = (y - PAD + categoryScroll) / LINE_HEIGHT;
@@ -277,7 +280,7 @@ bool LogbookPanel::Click(int x, int y, int clicks)
 
 bool LogbookPanel::Drag(double dx, double dy)
 {
-	if((hoverPoint.X() - Screen::Left()) > SIDEBAR_WIDTH)
+	if((hoverPoint.X() - screenSpace->Left()) > SIDEBAR_WIDTH)
 		scroll = max(0., min(maxScroll, scroll - dy));
 	else
 		categoryScroll = max(0., min(maxCategoryScroll, categoryScroll - dy));

@@ -31,13 +31,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "PointerShader.h"
-#include "Screen.h"
+#include "ScaledScreenSpace.h"
 #include "Ship.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "text/truncate.hpp"
 #include "UI.h"
+
+#include <memory>
 
 class System;
 
@@ -56,7 +58,7 @@ namespace {
 			Dialog::Draw();
 
 			randomPos = cancelPos - Point(80., 0.);
-			SpriteShader::Draw(SpriteSet::Get("ui/dialog cancel"), randomPos);
+			SpriteShader::UISpace::Draw(SpriteSet::Get("ui/dialog cancel"), randomPos);
 
 			const Font &font = FontSet::Get(14);
 			static const string label = "Random";
@@ -79,6 +81,8 @@ namespace {
 	private:
 		Point randomPos;
 	};
+
+	std::shared_ptr<ScaledScreenSpace> screenSpace = ScaledScreenSpace::instance();
 }
 
 
@@ -132,7 +136,7 @@ void ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY
 {
 	const Ship *ship = GameData::Ships().Get(name);
 	zones.emplace_back(point, Point(SHIP_SIZE, SHIP_SIZE), ship, scrollY);
-	if(point.Y() + SHIP_SIZE / 2 < Screen::Top() || point.Y() - SHIP_SIZE / 2 > Screen::Bottom())
+	if(point.Y() + SHIP_SIZE / 2 < screenSpace->Top() || point.Y() - SHIP_SIZE / 2 > screenSpace->Bottom())
 		return;
 
 	DrawShip(*ship, point, ship == selectedShip);
@@ -182,7 +186,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 		Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + 20 + TileSize());
 
 		double descriptionOffset = 35.;
-		Point descCenter(Screen::Right() - SIDE_WIDTH + INFOBAR_WIDTH / 2, startPoint.Y() + 20.);
+		Point descCenter(screenSpace->Right() - SIDE_WIDTH + INFOBAR_WIDTH / 2, startPoint.Y() + 20.);
 
 		// Maintenance note: This can be replaced with collapsed.contains() in C++20
 		if(!collapsed.count("description"))
@@ -194,7 +198,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 		{
 			std::string label = "description";
 			font.Draw(label, startPoint + Point(35., 12.), dim);
-			SpriteShader::Draw(collapsedArrow, startPoint + Point(20., 20.));
+			SpriteShader::UISpace::Draw(collapsedArrow, startPoint + Point(20., 20.));
 		}
 
 		// Calculate the new ClickZone for the description.
@@ -216,9 +220,9 @@ int ShipyardPanel::DrawDetails(const Point &center)
 		Point attrPoint(startPoint.X(), startPoint.Y() + descriptionOffset);
 		Point outfPoint(startPoint.X(), attrPoint.Y() + shipInfo.AttributesHeight());
 
-		SpriteShader::Draw(background, spriteCenter);
+		SpriteShader::UISpace::Draw(background, spriteCenter);
 		if(shipSprite)
-			SpriteShader::Draw(shipSprite, spriteCenter, spriteScale, swizzle);
+			SpriteShader::UISpace::Draw(shipSprite, spriteCenter, spriteScale, swizzle);
 
 		shipInfo.DrawAttributes(attrPoint);
 		shipInfo.DrawOutfits(outfPoint);

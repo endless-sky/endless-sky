@@ -198,7 +198,7 @@ void HailPanel::Draw()
 	float zoom = min(2.f, 400.f / max(sprite->Width(), sprite->Height()));
 	Point center(-170., -10.);
 
-	DrawList draw;
+	DrawList::UISpace draw;
 	// If this is a ship, copy its swizzle, animation settings, etc.
 	if(ship)
 		draw.Add(Body(*ship, center, Point(), facing, zoom));

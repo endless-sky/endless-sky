@@ -22,11 +22,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "text/layout.hpp"
 #include "Rectangle.h"
-#include "Screen.h"
+#include "ScaledScreenSpace.h"
 #include "text/Table.h"
 
 #include <algorithm>
 #include <cmath>
+#include <memory>
 
 using namespace std;
 
@@ -98,6 +99,7 @@ void ItemInfoDisplay::DrawAttributes(const Point &topLeft) const
 
 void ItemInfoDisplay::DrawTooltips() const
 {
+	std::shared_ptr<ScaledScreenSpace> screenSpace = ScaledScreenSpace::instance();
 	if(!hoverCount || hoverCount-- < HOVER_TIME || !hoverText.Height())
 		return;
 
@@ -105,9 +107,9 @@ void ItemInfoDisplay::DrawTooltips() const
 	Point boxSize = textSize + Point(20., 20.);
 
 	Point topLeft = hoverPoint;
-	if(topLeft.X() + boxSize.X() > Screen::Right())
+	if(topLeft.X() + boxSize.X() > screenSpace->Right())
 		topLeft.X() -= boxSize.X();
-	if(topLeft.Y() + boxSize.Y() > Screen::Bottom())
+	if(topLeft.Y() + boxSize.Y() > screenSpace->Bottom())
 		topLeft.Y() -= boxSize.Y();
 
 	FillShader::Fill(topLeft + .5 * boxSize, boxSize, *GameData::Colors().Get("tooltip background"));

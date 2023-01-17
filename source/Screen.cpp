@@ -57,18 +57,7 @@ int Screen::Zoom()
 void Screen::SetZoom(int percent)
 {
 	USER_ZOOM = max(100, min(200, percent));
-
-	// Make sure the zoom factor is not set too high for the full UI to fit.
-	static const int MIN_WIDTH = 1000; // Width of main menu
-	static const int MIN_HEIGHT = 500; // Height of preferences panel
-	int minZoomX = 100 * RAW_WIDTH / MIN_WIDTH;
-	int minZoomY = 100 * RAW_HEIGHT / MIN_HEIGHT;
-	int minZoom = min(minZoomX, minZoomY);
-	// Never go below 100% zoom, no matter how small the window is
-	minZoom = max(minZoom, 100);
-	// Use increments of 10, like the user setting
-	minZoom -= minZoom % 10;
-	EFFECTIVE_ZOOM = min(minZoom, UserZoom());
+	EFFECTIVE_ZOOM = min(MinZoom(), UserZoom());
 
 	WIDTH = RAW_WIDTH * 100 / EFFECTIVE_ZOOM;
 	HEIGHT = RAW_HEIGHT * 100 / EFFECTIVE_ZOOM;
@@ -97,7 +86,10 @@ Point Screen::Dimensions()
 	return Point(WIDTH, HEIGHT);
 }
 
-
+Point Screen::RawDimensions()
+{
+    return Point(RAW_WIDTH, RAW_HEIGHT);
+}
 
 int Screen::Width()
 {
@@ -153,7 +145,25 @@ int Screen::Bottom()
 	return HEIGHT / 2;
 }
 
+int Screen::RawLeft()
+{
+    return RAW_WIDTH / -2;
+}
 
+int Screen::RawTop()
+{
+    return RAW_HEIGHT / -2;
+}
+
+int Screen::RawRight()
+{
+    return RAW_WIDTH / 2;
+}
+
+int Screen::RawBottom()
+{
+    return RAW_HEIGHT / 2;
+}
 
 Point Screen::TopLeft()
 {
@@ -179,4 +189,40 @@ Point Screen::BottomLeft()
 Point Screen::BottomRight()
 {
 	return Point(.5 * WIDTH, .5 * HEIGHT);
+}
+
+Point Screen::RawTopLeft()
+{
+    return Point(-.5 * RAW_WIDTH, -.5 * RAW_HEIGHT);
+}
+
+Point Screen::RawTopRight()
+{
+    return Point(.5 * RAW_WIDTH, -.5 * RAW_HEIGHT);
+}
+
+Point Screen::RawBottomLeft()
+{
+    return Point(-.5 * RAW_WIDTH, .5 * RAW_HEIGHT);
+}
+
+Point Screen::RawBottomRight()
+{
+    return Point(.5 * RAW_WIDTH, .5 * RAW_HEIGHT);
+}
+
+int Screen::MinZoom()
+{
+    // Make sure the zoom factor is not set too high for the full UI to fit.
+	static const int MIN_WIDTH = 1000; // Width of main menu
+	static const int MIN_HEIGHT = 500; // Height of preferences panel
+	int minZoomX = 100 * RAW_WIDTH / MIN_WIDTH;
+	int minZoomY = 100 * RAW_HEIGHT / MIN_HEIGHT;
+	int minZoom = min(minZoomX, minZoomY);
+	// Never go below 100% zoom, no matter how small the window is
+	minZoom = max(minZoom, 100);
+	// Use increments of 10, like the user setting
+	minZoom -= minZoom % 10;
+
+	return minZoom;
 }

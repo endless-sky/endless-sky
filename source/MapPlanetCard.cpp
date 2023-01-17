@@ -27,14 +27,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "PointerShader.h"
 #include "Politics.h"
-#include "Screen.h"
+#include "ScaledScreenSpace.h"
 #include "SpriteShader.h"
 #include "StellarObject.h"
 #include "text/WrappedText.h"
 
+#include <memory>
+
 using namespace std;
 
-
+namespace {
+	std::shared_ptr<ScaledScreenSpace> screenSpace = ScaledScreenSpace::instance();
+}
 
 MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool hasVisited)
 	: number(number), hasVisited(hasVisited), planetName(object.Name())
@@ -80,7 +84,7 @@ MapPlanetCard::ClickAction MapPlanetCard::Click(int x, int y, int clicks)
 			isSelected = true;
 
 			// The first category is the planet name and is not selectable.
-			if(x > Screen::Left() + planetIconMaxSize &&
+			if(x > screenSpace->Left() + planetIconMaxSize &&
 					relativeY > textStart + categorySize && relativeY < textStart + categorySize * categories)
 				selectedCategory = (relativeY - textStart - categorySize) / categorySize;
 			else
@@ -137,7 +141,7 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 		// The top part goes out of the screen so we can draw there. The bottom would go out of this panel.
 		const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
 
-		auto spriteItem = SpriteShader::Prepare(sprite, Point(Screen::Left() + planetIconMaxSize / 2.,
+		auto spriteItem = SpriteShader::UISpace::Prepare(sprite, Point(screenSpace->Left() + planetIconMaxSize / 2.,
 			uiPoint.Y() + height / 2.), spriteScale);
 
 		float clip = 1.f;
@@ -154,9 +158,9 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 		spriteItem.position[1] -= (sprite->Height() * ((1.f - clip) * .5f)) * spriteScale;
 		spriteItem.transform[3] *= clip;
 
-		SpriteShader::Bind();
-		SpriteShader::Add(spriteItem);
-		SpriteShader::Unbind();
+		SpriteShader::UISpace::Bind();
+		SpriteShader::UISpace::Add(spriteItem);
+		SpriteShader::UISpace::Unbind();
 
 		// Check if drawing a category would not go out of the panel.
 		const auto FitsCategory = [availableBottomSpace, categorySize, height]
@@ -186,14 +190,14 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 
 		// Draw the arrow pointing to the selected category.
 		if(FitsCategory(categories - (selectedCategory + 1.)))
-			PointerShader::Draw(uiPoint + Point(margin, textStart + 8. + (selectedCategory + 1) * categorySize),
+			PointerShader::UISpace::Draw(uiPoint + Point(margin, textStart + 8. + (selectedCategory + 1) * categorySize),
 				Point(1., 0.), 10.f, 10.f, 0.f, medium);
 
 		if(isSelected)
 			Highlight(availableBottomSpace);
 	}
 	else
-		yCoordinate = Screen::Bottom();
+		yCoordinate = screenSpace->Bottom();
 
 	return isShown;
 }
@@ -240,7 +244,7 @@ void MapPlanetCard::Highlight(double availableSpace) const
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	const double width = planetCardInterface->GetValue("width");
 
-	FillShader::Fill(Point(Screen::Left() + width / 2., yCoordinate + availableSpace / 2.),
+	FillShader::Fill(Point(screenSpace->Left() + width / 2., yCoordinate + availableSpace / 2.),
 		Point(width, availableSpace), *GameData::Colors().Get("item selected"));
 }
 
@@ -262,6 +266,6 @@ double MapPlanetCard::AvailableBottomSpace() const
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	double height = planetCardInterface->GetValue("height");
 
-	return min(height, max(0., Screen::Top() +
+	return min(height, max(0., screenSpace->Top() +
 		min(MapDetailPanel::PlanetPanelHeight(), maxPlanetPanelHeight) - yCoordinate));
 }

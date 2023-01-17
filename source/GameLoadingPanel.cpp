@@ -101,11 +101,11 @@ void GameLoadingPanel::Draw()
 	// Draw the loading circle.
 	Angle da(ANGLE_OFFSET);
 	Angle a(0.);
-	PointerShader::Bind();
+	PointerShader::UISpace::Bind();
 	for(int i = 0; i < progress; ++i)
 	{
-		PointerShader::Add(Point(), a.Unit(), 8.f, 20.f, 140.f, Color(.5f, 0.f));
+		PointerShader::UISpace::Add(Point(), a.Unit(), 8.f, 20.f, 140.f, Color(.5f, 0.f));
 		a += da;
 	}
-	PointerShader::Unbind();
+	PointerShader::UISpace::Unbind();
 }

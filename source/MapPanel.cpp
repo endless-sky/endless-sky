@@ -41,7 +41,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Politics.h"
 #include "Preferences.h"
 #include "RingShader.h"
-#include "Screen.h"
+#include "ScaledScreenSpace.h"
 #include "Ship.h"
 #include "ShipJumpNavigation.h"
 #include "SpriteShader.h"
@@ -141,6 +141,8 @@ namespace {
 
 		return false;
 	}
+
+	std::shared_ptr<ScaledScreenSpace> screenSpace = ScaledScreenSpace::instance();
 }
 
 const float MapPanel::OUTER = 6.f;
@@ -163,7 +165,7 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	SetInterruptible(false);
 	// Recalculate the fog each time the map is opened, just in case the player
 	// bought a map since the last time they viewed the map.
-	FogShader::Redraw();
+	FogShader::UISpace::Redraw();
 
 	// Recalculate escort positions every time the map is opened, as they may
 	// be changing systems even if the player does not.
@@ -213,24 +215,24 @@ void MapPanel::Draw()
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	for(const auto &it : GameData::Galaxies())
-		SpriteShader::Draw(it.second.GetSprite(), Zoom() * (center + it.second.Position()), Zoom());
+		SpriteShader::UISpace::Draw(it.second.GetSprite(), Zoom() * (center + it.second.Position()), Zoom());
 
 	if(Preferences::Has("Hide unexplored map regions"))
-		FogShader::Draw(center, Zoom(), player);
+		FogShader::UISpace::Draw(center, Zoom(), player);
 
 	// Draw the "visible range" circle around your current location.
 	const Color &viewRangeColor = *GameData::Colors().Get("map view range color");
-	RingShader::Draw(Zoom() * (playerSystem.Position() + center),
+	RingShader::UISpace::Draw(Zoom() * (playerSystem.Position() + center),
 		System::DEFAULT_NEIGHBOR_DISTANCE * Zoom(), 2.0f, 1.0f, viewRangeColor);
 	// Draw the jump range circle around your current location if it is different than the
 	// visible range.
 	const Color &jumpRangeColor = *GameData::Colors().Get("map jump range color");
 	if(playerJumpDistance != System::DEFAULT_NEIGHBOR_DISTANCE)
-		RingShader::Draw(Zoom() * (playerSystem.Position() + center),
+		RingShader::UISpace::Draw(Zoom() * (playerSystem.Position() + center),
 			(playerJumpDistance + .5) * Zoom(), (playerJumpDistance - .5) * Zoom(), jumpRangeColor);
 
 	Color brightColor(.4f, 0.f);
-	RingShader::Draw(Zoom() * (selectedSystem->Position() + center),
+	RingShader::UISpace::Draw(Zoom() * (selectedSystem->Position() + center),
 		11.f, 9.f, brightColor);
 
 	// Advance a "blink" timer.
@@ -254,7 +256,7 @@ void MapPanel::Draw()
 		const Font &font = FontSet::Get(18);
 
 		const string &message = player.HasVisited(*selectedSystem) ? UNAVAILABLE : UNKNOWN;
-		Point point(-font.Width(message) / 2, Screen::Top() + 40);
+		Point point(-font.Width(message) / 2, screenSpace->Top() + 40);
 		font.Draw(message, point + Point(1, 1), black);
 		font.Draw(message, point, red);
 	}
@@ -310,7 +312,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 		Color color = Color(.5f * alpha, 0.f);
 		if(player.HasVisited(system) && system.IsInhabited(flagship) && gov)
 			color = gov->GetColor().Additive(alpha);
-		RingShader::Draw(from, OUTER, INNER, color);
+		RingShader::UISpace::Draw(from, OUTER, INNER, color);
 
 		for(const System *link : system.Links())
 		{
@@ -322,7 +324,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 			// path if it is via hyperlink, to increase brightness.
 			Point to = link->Position() - center + drawPos;
 			Point unit = (from - to).Unit() * LINK_OFFSET;
-			LineShader::Draw(from - unit, to + unit, LINK_WIDTH, lineColor);
+			LineShader::UISpace::Draw(from - unit, to + unit, LINK_WIDTH, lineColor);
 
 			if(drawnSystems.count(link))
 				continue;
@@ -332,7 +334,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 			Color color = Color(.5f * alpha, 0.f);
 			if(player.HasVisited(*link) && link->IsInhabited(flagship) && gov)
 				color = gov->GetColor().Additive(alpha);
-			RingShader::Draw(to, OUTER, INNER, color);
+			RingShader::UISpace::Draw(to, OUTER, INNER, color);
 		}
 
 		unsigned missionCounter = 0;
@@ -393,13 +395,13 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 		double length = (to - from).Length();
 		int segments = static_cast<int>(length / 15.);
 		for(int i = 0; i < segments; ++i)
-			LineShader::Draw(
+			LineShader::UISpace::Draw(
 				from + unit * ((i * length) / segments + 2.),
 				from + unit * (((i + 1) * length) / segments - 2.),
 				LINK_WIDTH, bright);
 	}
-	LineShader::Draw(to, to + Angle(-30.).Rotate(unit) * -10., LINK_WIDTH, bright);
-	LineShader::Draw(to, to + Angle(30.).Rotate(unit) * -10., LINK_WIDTH, bright);
+	LineShader::UISpace::Draw(to, to + Angle(-30.).Rotate(unit) * -10., LINK_WIDTH, bright);
+	LineShader::UISpace::Draw(to, to + Angle(30.).Rotate(unit) * -10., LINK_WIDTH, bright);
 }
 
 
@@ -1002,7 +1004,7 @@ void MapPanel::DrawTravelPlan()
 		Point from = Zoom() * (next->Position() + center);
 		Point to = Zoom() * (previous->Position() + center);
 		Point unit = (from - to).Unit() * LINK_OFFSET;
-		LineShader::Draw(from - unit, to + unit, 3.f, drawColor);
+		LineShader::UISpace::Draw(from - unit, to + unit, 3.f, drawColor);
 
 		previous = next;
 	}
@@ -1028,7 +1030,7 @@ void MapPanel::DrawEscorts()
 
 			// Active and parked ships are drawn/indicated by a ring in the center.
 			if(squad.second.activeShips || squad.second.parkedShips)
-				RingShader::Draw(pos, INNER - 1.f, 0.f, squad.second.activeShips ? active : parked);
+				RingShader::UISpace::Draw(pos, INNER - 1.f, 0.f, squad.second.activeShips ? active : parked);
 
 			if(squad.second.outfits.size())
 				// Stored outfits are drawn/indicated by 8 short rays out of the system center.
@@ -1038,7 +1040,7 @@ void MapPanel::DrawEscorts()
 					Angle angle = Angle(7.5f + 45.f * i);
 					Point from = pos + angle.Unit() * OUTER;
 					Point to = from + angle.Unit() * 4.f;
-					LineShader::Draw(from, to, 2.f, active);
+					LineShader::UISpace::Draw(from, to, 2.f, active);
 				}
 		}
 }
@@ -1087,7 +1089,7 @@ void MapPanel::DrawWormholes()
 		// If an arrow is being drawn, the link will always be drawn too. Draw
 		// the link only for the first instance of it in this set.
 		if(link.first < link.second || !arrowsToDraw.count(make_pair(link.second, link.first)))
-			LineShader::Draw(from, to, LINK_WIDTH, wormholeDim);
+			LineShader::UISpace::Draw(from, to, LINK_WIDTH, wormholeDim);
 
 		// Compute the start and end positions of the arrow edges.
 		Point arrowStem = zoom * ARROW_LENGTH * offset;
@@ -1096,9 +1098,9 @@ void MapPanel::DrawWormholes()
 
 		// Draw the arrowhead.
 		Point fromTip = from - arrowStem;
-		LineShader::Draw(from, fromTip, LINK_WIDTH, arrowColor);
-		LineShader::Draw(from - arrowLeft, fromTip, LINK_WIDTH, arrowColor);
-		LineShader::Draw(from - arrowRight, fromTip, LINK_WIDTH, arrowColor);
+		LineShader::UISpace::Draw(from, fromTip, LINK_WIDTH, arrowColor);
+		LineShader::UISpace::Draw(from - arrowLeft, fromTip, LINK_WIDTH, arrowColor);
+		LineShader::UISpace::Draw(from - arrowRight, fromTip, LINK_WIDTH, arrowColor);
 	}
 }
 
@@ -1115,7 +1117,7 @@ void MapPanel::DrawLinks()
 		from -= unit;
 		to += unit;
 
-		LineShader::Draw(from, to, LINK_WIDTH, link.color);
+		LineShader::UISpace::Draw(from, to, LINK_WIDTH, link.color);
 	}
 }
 
@@ -1137,7 +1139,7 @@ void MapPanel::DrawSystems()
 	for(const Node &node : nodes)
 	{
 		Point pos = zoom * (node.position + center);
-		RingShader::Draw(pos, OUTER, INNER, node.color);
+		RingShader::UISpace::Draw(pos, OUTER, INNER, node.color);
 
 		if(commodity == SHOW_GOVERNMENT && node.government && node.government->GetName() != "Uninhabited")
 		{
@@ -1191,8 +1193,8 @@ void MapPanel::DrawMissions()
 		++missionCount[specialSystem].drawn;
 		Angle a = Angle(MISSION_POINTERS_ANGLE_DELTA * missionCount[specialSystem].drawn);
 		Point pos = Zoom() * (specialSystem->Position() + center);
-		PointerShader::Draw(pos, a.Unit(), 20.f, 27.f, -4.f, black);
-		PointerShader::Draw(pos, a.Unit(), 11.5f, 21.5f, -6.f, specialColor);
+		PointerShader::UISpace::Draw(pos, a.Unit(), 20.f, 27.f, -4.f, black);
+		PointerShader::UISpace::Draw(pos, a.Unit(), 11.5f, 21.5f, -6.f, specialColor);
 	}
 	// Calculate the available (and unavailable) jobs, but don't draw them yet.
 	for(const Mission &mission : player.AvailableJobs())
@@ -1302,9 +1304,9 @@ void MapPanel::DrawTooltips()
 		size += Point(20., 20.);
 		Point topLeft = (hoverSystem->Position() + center) * Zoom();
 		// Do not overflow the screen dimensions.
-		if(topLeft.X() + size.X() > Screen::Right())
+		if(topLeft.X() + size.X() > screenSpace->Right())
 			topLeft.X() -= size.X();
-		if(topLeft.Y() + size.Y() > Screen::Bottom())
+		if(topLeft.Y() + size.Y() > screenSpace->Bottom())
 			topLeft.Y() -= size.Y();
 		// Draw the background fill and the tooltip text.
 		FillShader::Fill(topLeft + .5 * size, size, *GameData::Colors().Get("tooltip background"));
@@ -1327,6 +1329,6 @@ void MapPanel::DrawPointer(Point position, unsigned &systemCount, const Color &c
 		return;
 	Angle angle = Angle(MISSION_POINTERS_ANGLE_DELTA * systemCount);
 	if(drawBack)
-		PointerShader::Draw(position, angle.Unit(), 14.f + bigger, 19.f + 2 * bigger, -4.f, black);
-	PointerShader::Draw(position, angle.Unit(), 8.f + bigger, 15.f + 2 * bigger, -6.f, color);
+		PointerShader::UISpace::Draw(position, angle.Unit(), 14.f + bigger, 19.f + 2 * bigger, -4.f, black);
+	PointerShader::UISpace::Draw(position, angle.Unit(), 8.f + bigger, 15.f + 2 * bigger, -6.f, color);
 }

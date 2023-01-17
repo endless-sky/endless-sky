@@ -50,7 +50,7 @@ void MenuAnimationPanel::Draw()
 	for(int i = 0; i < 60; ++i)
 	{
 		Color color(.5f * alpha, 0.f);
-		PointerShader::Draw(Point(), a.Unit(), 8.f, 20.f, 140.f * alpha, color);
+		PointerShader::UISpace::Draw(Point(), a.Unit(), 8.f, 20.f, 140.f * alpha, color);
 		a += da;
 	}
 }

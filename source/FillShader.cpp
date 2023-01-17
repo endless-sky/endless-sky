@@ -17,7 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Color.h"
 #include "Point.h"
-#include "Screen.h"
+#include "AbsoluteScreenSpace.h"
+#include "ScreenSpace.h"
 #include "Shader.h"
 
 #include <stdexcept>
@@ -31,6 +32,8 @@ namespace {
 
 	GLuint vao;
 	GLuint vbo;
+
+	std::shared_ptr<ScreenSpace> screenSpace = AbsoluteScreenSpace::instance();
 }
 
 
@@ -99,7 +102,7 @@ void FillShader::Fill(const Point &center, const Point &size, const Color &color
 	glUseProgram(shader.Object());
 	glBindVertexArray(vao);
 
-	GLfloat scale[2] = {2.f / Screen::Width(), -2.f / Screen::Height()};
+	GLfloat scale[2] = {2.f / screenSpace->Width(), -2.f / screenSpace->Height()};
 	glUniform2fv(scaleI, 1, scale);
 
 	GLfloat centerV[2] = {static_cast<float>(center.X()), static_cast<float>(center.Y())};

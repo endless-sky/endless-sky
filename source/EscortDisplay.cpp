@@ -117,7 +117,7 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 		// Figure out what scale should be applied to the ship sprite.
 		float scale = min(ICON_SIZE / escort.sprite->Width(), ICON_SIZE / escort.sprite->Height());
 		Point size(escort.sprite->Width() * scale, escort.sprite->Height() * scale);
-		OutlineShader::Draw(escort.sprite, pos, size, color);
+		OutlineShader::UISpace::Draw(escort.sprite, pos, size, color);
 		zones.push_back(pos);
 		stacks.push_back(escort.ships);
 		// Draw the number of ships in this stack.
@@ -153,12 +153,12 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 				const Color &color = (isSplit ? halfColor : fullColor)[i];
 
 				Point to = from + Point(width * min(1., escort.high[i]), 0.);
-				LineShader::Draw(from, to, 1.5f, color);
+				LineShader::UISpace::Draw(from, to, 1.5f, color);
 
 				if(isSplit)
 				{
 					Point to = from + Point(width * max(0., escort.low[i]), 0.);
-					LineShader::Draw(from, to, 1.5f, color);
+					LineShader::UISpace::Draw(from, to, 1.5f, color);
 				}
 			}
 			from.Y() += 4.;

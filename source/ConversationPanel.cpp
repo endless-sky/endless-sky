@@ -31,7 +31,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "Preferences.h"
-#include "Screen.h"
+#include "ScaledScreenSpace.h"
+#include "ScreenSpace.h"
 #include "shift.h"
 #include "Ship.h"
 #include "Sprite.h"
@@ -44,6 +45,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #endif
 
 #include <iterator>
+#include <memory>
 
 using namespace std;
 
@@ -55,6 +57,8 @@ namespace {
 	const int WIDTH = 540;
 	// Margin on either side of the text.
 	const int MARGIN = 20;
+
+	std::shared_ptr<ScreenSpace> screenSpace = AbsoluteScreenSpace::instance();
 }
 
 
@@ -101,8 +105,8 @@ void ConversationPanel::Draw()
 	const Color &back = *GameData::Colors().Get("conversation background");
 	double boxWidth = WIDTH + 2. * MARGIN - 10.;
 	FillShader::Fill(
-		Point(Screen::Left() + .5 * boxWidth, 0.),
-		Point(boxWidth, Screen::Height()),
+		Point(screenSpace->Left() + .5 * boxWidth, 0.),
+		Point(boxWidth, screenSpace->Height()),
 		back);
 
 	const Sprite *edgeSprite = SpriteSet::Get("ui/right edge");
@@ -111,10 +115,10 @@ void ConversationPanel::Draw()
 		// If the screen is high enough, the edge sprite should repeat.
 		double spriteHeight = edgeSprite->Height();
 		Point pos(
-			Screen::Left() + boxWidth + .5 * edgeSprite->Width(),
-			Screen::Top() + .5 * spriteHeight);
-		for( ; pos.Y() - .5 * spriteHeight < Screen::Bottom(); pos.Y() += spriteHeight)
-			SpriteShader::Draw(edgeSprite, pos);
+			screenSpace->Left() + boxWidth + .5 * edgeSprite->Width(),
+			screenSpace->Top() + .5 * spriteHeight);
+		for( ; pos.Y() - .5 * spriteHeight < screenSpace->Bottom(); pos.Y() += spriteHeight)
+			SpriteShader::UISpace::Draw(edgeSprite, pos);
 	}
 
 	// Get the font and colors we'll need for drawing everything.
@@ -126,8 +130,8 @@ void ConversationPanel::Draw()
 
 	// Figure out where we should start drawing.
 	Point point(
-		Screen::Left() + MARGIN,
-		Screen::Top() + MARGIN + scroll);
+		screenSpace->Left() + MARGIN,
+		screenSpace->Top() + MARGIN + scroll);
 	// Draw all the conversation text up to this point.
 	for(const Paragraph &it : text)
 		point = it.Draw(point, gray);
@@ -139,7 +143,7 @@ void ConversationPanel::Draw()
 		static const string done = "[done]";
 		int width = font.Width(done);
 		int height = font.Height();
-		Point off(Screen::Left() + MARGIN + WIDTH - width, point.Y());
+		Point off(screenSpace->Left() + MARGIN + WIDTH - width, point.Y());
 		font.Draw(done, off, bright);
 
 		// Handle clicks on this button.
@@ -177,7 +181,7 @@ void ConversationPanel::Draw()
 		static const string ok = "[ok]";
 		int width = font.Width(ok);
 		int height = font.Height();
-		Point off(Screen::Left() + MARGIN + WIDTH - width, point.Y());
+		Point off(screenSpace->Left() + MARGIN + WIDTH - width, point.Y());
 		font.Draw(ok, off, bright);
 
 		// Handle clicks on this button.
@@ -211,7 +215,7 @@ void ConversationPanel::Draw()
 		}
 	}
 	// Store the total height of the text.
-	maxScroll = min(0., Screen::Top() - (point.Y() - scroll) + font.Height() + 15.);
+	maxScroll = min(0., screenSpace->Top() - (point.Y() - scroll) + font.Height() + 15.);
 
 	// Reset the hover flag. If the mouse is still moving than the flag will be set in the next frame.
 	isHovering = false;
@@ -509,7 +513,7 @@ Point ConversationPanel::Paragraph::Draw(Point point, const Color &color) const
 	if(scene)
 	{
 		Point offset(WIDTH / 2, 20 * !isFirst + scene->Height() / 2);
-		SpriteShader::Draw(scene, point + offset);
+		SpriteShader::UISpace::Draw(scene, point + offset);
 		point.Y() += 20 * !isFirst + scene->Height() + 20;
 	}
 	wrap.Draw(point, color);

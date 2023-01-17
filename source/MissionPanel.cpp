@@ -36,7 +36,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PointerShader.h"
 #include "Preferences.h"
 #include "RingShader.h"
-#include "Screen.h"
+#include "ScaledScreenSpace.h"
 #include "Ship.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
@@ -47,6 +47,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
+#include <memory>
 #include <sstream>
 
 using namespace std;
@@ -56,6 +57,8 @@ namespace {
 
 	// Hovering over sort buttons for this many frames activates the tooltip.
 	const int HOVER_TIME = 60;
+
+	std::shared_ptr<ScaledScreenSpace> screenSpace = ScaledScreenSpace::instance();
 
 	// Check if the mission involves the given system,
 	bool Involves(const Mission &mission, const System *system)
@@ -79,7 +82,7 @@ namespace {
 
 	size_t MaxDisplayedMissions(bool onRight)
 	{
-		return static_cast<unsigned>(max(0, static_cast<int>(floor((Screen::Height() - (onRight ? 160. : 190.)) / 20.))));
+		return static_cast<unsigned>(max(0, static_cast<int>(floor((screenSpace->Height() - (onRight ? 160. : 190.)) / 20.))));
 	}
 
 	// Compute the required scroll amount for the given list of jobs/missions.
@@ -219,7 +222,7 @@ void MissionPanel::Draw()
 		from -= unit;
 		to += unit;
 
-		LineShader::Draw(from, to, 5.f, routeColor);
+		LineShader::UISpace::Draw(from, to, 5.f, routeColor);
 
 		system = next;
 	}
@@ -238,7 +241,7 @@ void MissionPanel::Draw()
 	if(player.GetPlanet())
 	{
 		pos = DrawPanel(
-			Screen::TopLeft() + Point(0., -availableScroll),
+			screenSpace->TopLeft() + Point(0., -availableScroll),
 			"Missions available here:",
 			available.size(),
 			true);
@@ -246,7 +249,7 @@ void MissionPanel::Draw()
 	}
 
 	pos = DrawPanel(
-		Screen::TopRight() + Point(-SIDE_WIDTH, -acceptedScroll),
+		screenSpace->TopRight() + Point(-SIDE_WIDTH, -acceptedScroll),
 		"Your current missions:",
 		AcceptedVisible());
 	DrawList(accepted, pos, acceptedIt);
@@ -348,16 +351,16 @@ bool MissionPanel::Click(int x, int y, int clicks)
 {
 	dragSide = 0;
 
-	if(x > Screen::Right() - 80 && y > Screen::Bottom() - 50)
+	if(x > screenSpace->Right() - 80 && y > screenSpace->Bottom() - 50)
 		return DoKey('p');
 
-	if(x < Screen::Left() + SIDE_WIDTH)
+	if(x < screenSpace->Left() + SIDE_WIDTH)
 	{
 		// Panel header
-		if(y + static_cast<int>(availableScroll) < Screen::Top() + 30)
+		if(y + static_cast<int>(availableScroll) < screenSpace->Top() + 30)
 		{
 			dragSide = -1;
-			if(y + static_cast<int>(availableScroll) < Screen::Top() + 10)
+			if(y + static_cast<int>(availableScroll) < screenSpace->Top() + 10)
 			{
 				// empty space
 				return false;
@@ -381,7 +384,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			return false;
 		}
 		// Available missions
-		unsigned index = max(0, (y + static_cast<int>(availableScroll) - 36 - Screen::Top()) / 20);
+		unsigned index = max(0, (y + static_cast<int>(availableScroll) - 36 - screenSpace->Top()) / 20);
 		if(index < available.size())
 		{
 			availableIt = available.begin();
@@ -393,10 +396,10 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			return true;
 		}
 	}
-	else if(x >= Screen::Right() - SIDE_WIDTH)
+	else if(x >= screenSpace->Right() - SIDE_WIDTH)
 	{
 		// Accepted missions
-		int index = max(0, (y + static_cast<int>(acceptedScroll) - 36 - Screen::Top()) / 20);
+		int index = max(0, (y + static_cast<int>(acceptedScroll) - 36 - screenSpace->Top()) / 20);
 		if(index < AcceptedVisible())
 		{
 			acceptedIt = accepted.begin();
@@ -514,13 +517,13 @@ bool MissionPanel::Drag(double dx, double dy)
 	if(dragSide < 0)
 	{
 		availableScroll = max(0.,
-			min(available.size() * 20. + 190. - Screen::Height(),
+			min(available.size() * 20. + 190. - screenSpace->Height(),
 				availableScroll - dy));
 	}
 	else if(dragSide > 0)
 	{
 		acceptedScroll = max(0.,
-			min(accepted.size() * 20. + 160. - Screen::Height(),
+			min(accepted.size() * 20. + 160. - screenSpace->Height(),
 				acceptedScroll - dy));
 	}
 	else
@@ -537,24 +540,24 @@ bool MissionPanel::Hover(int x, int y)
 	dragSide = 0;
 	int oldSort = hoverSort;
 	hoverSort = -1;
-	unsigned index = max(0, (y + static_cast<int>(availableScroll) - 36 - Screen::Top()) / 20);
-	if(x < Screen::Left() + SIDE_WIDTH)
+	unsigned index = max(0, (y + static_cast<int>(availableScroll) - 36 - screenSpace->Top()) / 20);
+	if(x < screenSpace->Left() + SIDE_WIDTH)
 	{
 		if(index < available.size())
 		{
 			dragSide = -1;
 
 			// Hovering over sort buttons
-			if(y + static_cast<int>(availableScroll) < Screen::Top() + 30 && y >= Screen::Top() + 10
-				&& x >= Screen::Left() + SIDE_WIDTH - 110)
+			if(y + static_cast<int>(availableScroll) < screenSpace->Top() + 30 && y >= screenSpace->Top() + 10
+				&& x >= screenSpace->Left() + SIDE_WIDTH - 110)
 			{
-				hoverSort = (x - Screen::Left() - SIDE_WIDTH + 110) / 30;
+				hoverSort = (x - screenSpace->Left() - SIDE_WIDTH + 110) / 30;
 				if(hoverSort > 3)
 					hoverSort = -1;
 			}
 		}
 	}
-	else if(x >= Screen::Right() - SIDE_WIDTH)
+	else if(x >= screenSpace->Right() - SIDE_WIDTH)
 	{
 		if(static_cast<int>(index) < AcceptedVisible())
 			dragSide = 1;
@@ -601,13 +604,13 @@ void MissionPanel::SetSelectedScrollAndCenter(bool immediate)
 void MissionPanel::DrawKey() const
 {
 	const Sprite *back = SpriteSet::Get("ui/mission key");
-	SpriteShader::Draw(back, Screen::BottomLeft() + .5 * Point(back->Width(), -back->Height()));
+	SpriteShader::UISpace::Draw(back, screenSpace->BottomLeft() + .5 * Point(back->Width(), -back->Height()));
 
 	const Font &font = FontSet::Get(14);
 	Point angle = Point(1., 1.).Unit();
 
 	const int ROWS = 5;
-	Point pos(Screen::Left() + 10., Screen::Bottom() - ROWS * 20. + 5.);
+	Point pos(screenSpace->Left() + 10., screenSpace->Bottom() - ROWS * 20. + 5.);
 	Point pointerOff(5., 5.);
 	Point textOff(8., -.5 * font.Height());
 
@@ -636,7 +639,7 @@ void MissionPanel::DrawKey() const
 
 	for(int i = 0; i < ROWS; ++i)
 	{
-		PointerShader::Draw(pos + pointerOff, angle, 10.f, 18.f, 0.f, COLOR[i]);
+		PointerShader::UISpace::Draw(pos + pointerOff, angle, 10.f, 18.f, 0.f, COLOR[i]);
 		font.Draw(LABEL[i], pos + textOff, i == selected ? bright : dim);
 		pos.Y() += 20.;
 	}
@@ -648,7 +651,7 @@ void MissionPanel::DrawKey() const
 void MissionPanel::DrawSelectedSystem() const
 {
 	const Sprite *sprite = SpriteSet::Get("ui/selected system");
-	SpriteShader::Draw(sprite, Point(0., Screen::Top() + .5f * sprite->Height()));
+	SpriteShader::UISpace::Draw(sprite, Point(0., screenSpace->Top() + .5f * sprite->Height()));
 
 	string text;
 	if(!player.KnowsName(*selectedSystem))
@@ -670,7 +673,7 @@ void MissionPanel::DrawSelectedSystem() const
 		text += " (" + to_string(jumps) + " jumps away)";
 
 	const Font &font = FontSet::Get(14);
-	Point pos(-175., Screen::Top() + .5 * (30. - font.Height()));
+	Point pos(-175., screenSpace->Top() + .5 * (30. - font.Height()));
 	font.Draw({text, {350, Alignment::CENTER, Truncate::MIDDLE}},
 		pos, *GameData::Colors().Get("bright"));
 }
@@ -693,9 +696,9 @@ void MissionPanel::DrawMissionSystem(const Mission &mission, const Color &color)
 
 	double zoom = Zoom();
 	auto drawRing = [&](const System *system, const Color &drawColor)
-		{ RingShader::Add(zoom * (system->Position() + center), 22.f, 20.5f, drawColor); };
+		{ RingShader::UISpace::Add(zoom * (system->Position() + center), 22.f, 20.5f, drawColor); };
 
-	RingShader::Bind();
+	RingShader::UISpace::Bind();
 	{
 		// Draw a colored ring around the destination system.
 		drawRing(mission.Destination()->GetSystem(), color);
@@ -706,7 +709,7 @@ void MissionPanel::DrawMissionSystem(const Mission &mission, const Color &color)
 		for(const System *system : hasVisited)
 			drawRing(system, visited);
 	}
-	RingShader::Unbind();
+	RingShader::UISpace::Unbind();
 }
 
 
@@ -728,18 +731,18 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 	const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
 	Point edgePos = pos + Point(.5 * size.X(), size.Y());
 	Point bottomOff(0., .5 * bottom->Height());
-	SpriteShader::Draw(bottom, edgePos + bottomOff);
+	SpriteShader::UISpace::Draw(bottom, edgePos + bottomOff);
 
 	const Sprite *left = SpriteSet::Get("ui/left edge");
 	const Sprite *right = SpriteSet::Get("ui/right edge");
 	double dy = .5 * left->Height();
 	Point leftOff(-.5 * (size.X() + left->Width()), 0.);
 	Point rightOff(.5 * (size.X() + right->Width()), 0.);
-	while(dy && edgePos.Y() > Screen::Top())
+	while(dy && edgePos.Y() > screenSpace->Top())
 	{
 		edgePos.Y() -= dy;
-		SpriteShader::Draw(left, edgePos + leftOff);
-		SpriteShader::Draw(right, edgePos + rightOff);
+		SpriteShader::UISpace::Draw(left, edgePos + leftOff);
+		SpriteShader::UISpace::Draw(right, edgePos + rightOff);
 		edgePos.Y() -= dy;
 	}
 
@@ -760,13 +763,13 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 	// Draw Sorting Columns
 	if(entries && sorter)
 	{
-		SpriteShader::Draw(arrow[player.ShouldSortAscending()], pos + Point(SIDE_WIDTH - 15., 7.5));
+		SpriteShader::UISpace::Draw(arrow[player.ShouldSortAscending()], pos + Point(SIDE_WIDTH - 15., 7.5));
 
-		SpriteShader::Draw(sortIcon[player.GetAvailableSortType()], pos + Point(SIDE_WIDTH - 45., 7.5));
+		SpriteShader::UISpace::Draw(sortIcon[player.GetAvailableSortType()], pos + Point(SIDE_WIDTH - 45., 7.5));
 
-		SpriteShader::Draw(acceptable[player.ShouldSortSeparatePossible()], pos + Point(SIDE_WIDTH - 75., 7.5));
+		SpriteShader::UISpace::Draw(acceptable[player.ShouldSortSeparatePossible()], pos + Point(SIDE_WIDTH - 75., 7.5));
 
-		SpriteShader::Draw(rush[player.ShouldSortSeparateDeadline()], pos + Point(SIDE_WIDTH - 105., 7.5));
+		SpriteShader::UISpace::Draw(rush[player.ShouldSortSeparateDeadline()], pos + Point(SIDE_WIDTH - 105., 7.5));
 
 		if(hoverSort >= 0)
 			FillShader::Fill(pos + Point(SIDE_WIDTH - 105. + 30 * hoverSort, 7.5), Point(22., 16.), highlight);
@@ -819,7 +822,7 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos, const std::li
 				highlight);
 
 		if(it->Deadline())
-			SpriteShader::Draw(fast, pos + Point(-4., 8.));
+			SpriteShader::UISpace::Draw(fast, pos + Point(-4., 8.));
 
 		bool canAccept = (&list == &available ? it->CanAccept(player) : IsSatisfied(*it));
 		font.Draw({it->Name(), {SIDE_WIDTH - 11, Truncate::BACK}},
@@ -856,7 +859,7 @@ void MissionPanel::DrawMissionInfo()
 		wrap.Wrap(acceptedIt->Description());
 	else
 		return;
-	wrap.Draw(Point(-190., Screen::Bottom() - 213.), *GameData::Colors().Get("bright"));
+	wrap.Draw(Point(-190., screenSpace->Bottom() - 213.), *GameData::Colors().Get("bright"));
 }
 
 
@@ -902,7 +905,7 @@ void MissionPanel::DrawTooltips()
 		// Add 10px margin to all sides of the text.
 		Point size(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
 		size += Point(20., 20.);
-		Point topLeft = Point(Screen::Left() + SIDE_WIDTH - 120. + 30 * hoverSort, Screen::Top() + 30.);
+		Point topLeft = Point(screenSpace->Left() + SIDE_WIDTH - 120. + 30 * hoverSort, screenSpace->Top() + 30.);
 		// Draw the background fill and the tooltip text.
 		FillShader::Fill(topLeft + .5 * size, size, *GameData::Colors().Get("tooltip background"));
 		hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));

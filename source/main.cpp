@@ -15,6 +15,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
+#include "AbsoluteScreenSpace.h"
 #include "Audio.h"
 #include "Command.h"
 #include "Conversation.h"
@@ -36,7 +37,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "PrintData.h"
+#include "ScaledScreenSpace.h"
 #include "Screen.h"
+#include "ScreenSpace.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "Test.h"
@@ -400,7 +403,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		// we should draw the game panels instead:
 		(menuPanels.IsEmpty() ? gamePanels : menuPanels).DrawAll();
 		if(isFastForward)
-			SpriteShader::Draw(SpriteSet::Get("ui/fast forward"), Screen::TopLeft() + Point(10., 10.));
+			SpriteShader::UISpace::Draw(SpriteSet::Get("ui/fast forward"), Screen::TopLeft() + Point(10., 10.));
 
 		GameWindow::Step();
 

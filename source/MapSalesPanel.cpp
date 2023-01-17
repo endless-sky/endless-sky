@@ -32,7 +32,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PointerShader.h"
 #include "Preferences.h"
 #include "RingShader.h"
-#include "Screen.h"
+#include "ScaledScreenSpace.h"
 #include "Ship.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
@@ -43,8 +43,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <algorithm>
+#include <memory>
 
 using namespace std;
+
+namespace {
+	std::shared_ptr<ScaledScreenSpace> screenSpace = ScaledScreenSpace::instance();
+}
 
 const double MapSalesPanel::ICON_HEIGHT = 90.;
 const double MapSalesPanel::PAD = 8.;
@@ -97,7 +102,7 @@ bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 {
 	if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
 	{
-		scroll += static_cast<double>((Screen::Height() - 100) * ((key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN)));
+		scroll += static_cast<double>((screenSpace->Height() - 100) * ((key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN)));
 		scroll = min(0., max(-maxScroll, scroll));
 	}
 	else if(key == SDLK_HOME)
@@ -129,7 +134,7 @@ bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 
 bool MapSalesPanel::Click(int x, int y, int clicks)
 {
-	if(x < Screen::Left() + WIDTH)
+	if(x < screenSpace->Left() + WIDTH)
 	{
 		Point point(x, y);
 
@@ -151,10 +156,10 @@ bool MapSalesPanel::Click(int x, int y, int clicks)
 				break;
 			}
 	}
-	else if(x >= Screen::Left() + WIDTH + 30 && x < Screen::Left() + WIDTH + 190 && y < Screen::Top() + 70)
+	else if(x >= screenSpace->Left() + WIDTH + 30 && x < screenSpace->Left() + WIDTH + 190 && y < screenSpace->Top() + 70)
 	{
 		// This click was in the map key.
-		onlyShowSoldHere = (!onlyShowSoldHere && y >= Screen::Top() + 42 && y < Screen::Top() + 62);
+		onlyShowSoldHere = (!onlyShowSoldHere && y >= screenSpace->Top() + 42 && y < screenSpace->Top() + 62);
 	}
 	else
 		return MapPanel::Click(x, y, clicks);
@@ -167,7 +172,7 @@ bool MapSalesPanel::Click(int x, int y, int clicks)
 // Check to see if the mouse is over the scrolling pane.
 bool MapSalesPanel::Hover(int x, int y)
 {
-	isDragging = (x < Screen::Left() + WIDTH);
+	isDragging = (x < screenSpace->Left() + WIDTH);
 
 	return isDragging ? true : MapPanel::Hover(x, y);
 }
@@ -215,13 +220,13 @@ int MapSalesPanel::CompareSpriteSwizzle() const
 void MapSalesPanel::DrawKey() const
 {
 	const Sprite *back = SpriteSet::Get("ui/sales key");
-	SpriteShader::Draw(back, Screen::TopLeft() + Point(WIDTH + 10, 0) + .5 * Point(back->Width(), back->Height()));
+	SpriteShader::UISpace::Draw(back, screenSpace->TopLeft() + Point(WIDTH + 10, 0) + .5 * Point(back->Width(), back->Height()));
 
 	Color bright(.6f, .6f);
 	Color dim(.3f, .3f);
 	const Font &font = FontSet::Get(14);
 
-	Point pos(Screen::Left() + 50. + WIDTH, Screen::Top() + 12.);
+	Point pos(screenSpace->Left() + 50. + WIDTH, screenSpace->Top() + 12.);
 	Point textOff(10., -.5 * font.Height());
 
 	static const double VALUE[] = {
@@ -234,12 +239,12 @@ void MapSalesPanel::DrawKey() const
 	for(int i = 0; i < 3; ++i)
 	{
 		bool isSelected = (VALUE[i] == selectedValue);
-		RingShader::Draw(pos, OUTER, INNER, MapColor(VALUE[i]));
+		RingShader::UISpace::Draw(pos, OUTER, INNER, MapColor(VALUE[i]));
 		font.Draw(KeyLabel(i), pos + textOff, isSelected ? bright : dim);
 		if(onlyShowSoldHere && i == 2)
 		{
 			// If we're filtering out items not sold here, draw a pointer.
-			PointerShader::Draw(pos + Point(-7., 0.), Point(1., 0.), 10.f, 10.f, 0.f, bright);
+			PointerShader::UISpace::Draw(pos + Point(-7., 0.), Point(1., 0.), 10.f, 10.f, 0.f, bright);
 		}
 		pos.Y() += 20.;
 	}
@@ -251,20 +256,20 @@ void MapSalesPanel::DrawPanel() const
 {
 	const Color &back = *GameData::Colors().Get("map side panel background");
 	FillShader::Fill(
-		Point(Screen::Width() * -.5 + WIDTH * .5, 0.),
-		Point(WIDTH, Screen::Height()),
+		Point(screenSpace->Width() * -.5 + WIDTH * .5, 0.),
+		Point(WIDTH, screenSpace->Height()),
 		back);
 
 	const Sprite *edgeSprite = SpriteSet::Get("ui/right edge");
 	if(edgeSprite->Height())
 	{
-		int steps = Screen::Height() / edgeSprite->Height();
+		int steps = screenSpace->Height() / edgeSprite->Height();
 		for(int y = -steps; y <= steps; ++y)
 		{
 			Point pos(
-				Screen::Width() * -.5f + WIDTH + .5f * edgeSprite->Width(),
+				screenSpace->Width() * -.5f + WIDTH + .5f * edgeSprite->Width(),
 				y * edgeSprite->Height());
-			SpriteShader::Draw(edgeSprite, pos);
+			SpriteShader::UISpace::Draw(edgeSprite, pos);
 		}
 	}
 }
@@ -291,32 +296,32 @@ void MapSalesPanel::DrawInfo() const
 
 		const Color &back = *GameData::Colors().Get("map side panel background");
 		Point size(width, height);
-		Point topLeft(Screen::Right() - size.X(), Screen::Top());
+		Point topLeft(screenSpace->Right() - size.X(), screenSpace->Top());
 		FillShader::Fill(topLeft + .5 * size, size, back);
 
 		Point leftPos = topLeft + Point(
 			-.5 * left->Width(),
 			size.Y() - .5 * left->Height());
-		SpriteShader::Draw(left, leftPos);
+		SpriteShader::UISpace::Draw(left, leftPos);
 		// The top left corner of the bottom sprite should be 10 x units right
 		// of the bottom left corner of the left edge sprite.
 		Point bottomPos = leftPos + Point(
 			10. + .5 * (bottom->Width() - left->Width()),
 			.5 * (left->Height() + bottom->Height()));
-		SpriteShader::Draw(bottom, bottomPos);
+		SpriteShader::UISpace::Draw(bottom, bottomPos);
 
 		if(compare >= 0)
 		{
 			compareInfo.DrawAttributes(topLeft);
 			topLeft.X() += compareInfo.PanelWidth() + box->Width();
 
-			SpriteShader::Draw(box, topLeft + Point(-50., 100.));
+			SpriteShader::UISpace::Draw(box, topLeft + Point(-50., 100.));
 			DrawSprite(topLeft + Point(-95., 5.), SelectedSprite(), SelectedSpriteSwizzle());
 			DrawSprite(topLeft + Point(-95., 105.), CompareSprite(), CompareSpriteSwizzle());
 		}
 		else
 		{
-			SpriteShader::Draw(box, topLeft + Point(-60., 50.));
+			SpriteShader::UISpace::Draw(box, topLeft + Point(-60., 50.));
 			DrawSprite(topLeft + Point(-95., 5.), SelectedSprite(), SelectedSpriteSwizzle());
 		}
 		selectedInfo.DrawAttributes(topLeft);
@@ -333,7 +338,7 @@ bool MapSalesPanel::DrawHeader(Point &corner, const string &category)
 	hidPrevious = hide;
 
 	const Sprite *arrow = SpriteSet::Get(hide ? "ui/collapsed" : "ui/expanded");
-	SpriteShader::Draw(arrow, corner + Point(15., 25.));
+	SpriteShader::UISpace::Draw(arrow, corner + Point(15., 25.));
 
 	const Color &textColor = *GameData::Colors().Get(hide ? "medium" : "bright");
 	const Font &bigFont = FontSet::Get(18);
@@ -356,7 +361,7 @@ void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite, int sw
 		// No swizzle was specified, so default to the player swizzle.
 		if(swizzle == -1)
 			swizzle = GameData::PlayerGovernment()->GetSwizzle();
-		SpriteShader::Draw(sprite, corner + iconOffset, scale, swizzle);
+		SpriteShader::UISpace::Draw(sprite, corner + iconOffset, scale, swizzle);
 	}
 }
 
@@ -379,7 +384,7 @@ void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, int swizzle, bool 
 	Point storageOffset(ICON_HEIGHT, infoOffset.Y() + font.Height() + pad);
 	Point blockSize(WIDTH, ICON_HEIGHT);
 
-	if(corner.Y() < Screen::Bottom() && corner.Y() + ICON_HEIGHT >= Screen::Top())
+	if(corner.Y() < screenSpace->Bottom() && corner.Y() + ICON_HEIGHT >= screenSpace->Top())
 	{
 		if(isSelected)
 			FillShader::Fill(corner + .5 * blockSize, blockSize, selectionColor);
@@ -422,10 +427,10 @@ void MapSalesPanel::ScrollTo(int index)
 		return;
 
 	const ClickZone<int> &it = zones[selected];
-	if(it.Bottom() > Screen::Bottom())
-		scroll += Screen::Bottom() - it.Bottom();
-	if(it.Top() < Screen::Top())
-		scroll += Screen::Top() - it.Top();
+	if(it.Bottom() > screenSpace->Bottom())
+		scroll += screenSpace->Bottom() - it.Bottom();
+	if(it.Top() < screenSpace->Top())
+		scroll += screenSpace->Top() - it.Top();
 }
 
 

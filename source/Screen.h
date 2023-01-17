@@ -39,6 +39,8 @@ public:
 	static bool IsHighResolution();
 
 	static Point Dimensions();
+	static Point RawDimensions();
+
 	static int Width();
 	static int Height();
 
@@ -51,10 +53,22 @@ public:
 	static int Right();
 	static int Bottom();
 
+	static int RawLeft();
+	static int RawTop();
+	static int RawRight();
+	static int RawBottom();
+
 	static Point TopLeft();
 	static Point TopRight();
 	static Point BottomLeft();
 	static Point BottomRight();
+
+	static Point RawTopLeft();
+	static Point RawTopRight();
+	static Point RawBottomLeft();
+	static Point RawBottomRight();
+
+	static int MinZoom();
 };
 
 

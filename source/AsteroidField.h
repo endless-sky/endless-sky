@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Body.h"
 #include "CollisionSet.h"
 #include "Point.h"
+#include "DrawList.h"
 #include "WeightedList.h"
 
 #include <list>
@@ -27,7 +28,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-class DrawList;
 class Flotsam;
 class Minable;
 class Projectile;
@@ -57,7 +57,7 @@ public:
 	// Move all the asteroids forward one time step, and populate the asteroid and minable collision sets.
 	void Step(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam, int step);
 	// Draw the asteroid field, with the field of view centered on the given point.
-	void Draw(DrawList &draw, const Point &center, double zoom) const;
+	void Draw(DrawList::ViewSpace &draw, const Point &center, double zoom) const;
 	// Check if the given projectile has hit any of the asteroids, using the information
 	// in the collision sets. If a collision occurs, returns a pointer to the hit body.
 	Body *Collide(const Projectile &projectile, double *closestHit);
@@ -74,7 +74,7 @@ private:
 		Asteroid(const Sprite *sprite, double energy);
 
 		void Step();
-		void Draw(DrawList &draw, const Point &center, double zoom) const;
+		void Draw(DrawList::ViewSpace &draw, const Point &center, double zoom) const;
 
 	private:
 		Angle spin;

@@ -22,12 +22,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Point.h"
 #include "Preferences.h"
-#include "Screen.h"
+#include "ScaledScreenSpace.h"
 #include "text/Format.h"
 #include "UI.h"
 
+#include <memory>
+
 using namespace std;
 
+namespace {
+	std::shared_ptr<ScaledScreenSpace> screenSpace = ScaledScreenSpace::instance();
+}
 
 
 // Move the state of this panel forward one game step.
@@ -203,7 +208,7 @@ void Panel::DrawBackdrop() const
 
 	// Darken everything but the dialog.
 	const Color &back = *GameData::Colors().Get("dialog backdrop");
-	FillShader::Fill(Point(), Point(Screen::Width(), Screen::Height()), back);
+	FillShader::Fill(Point(), Point(screenSpace->Width(), screenSpace->Height()), back);
 }
 
 

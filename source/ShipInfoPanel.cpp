@@ -438,8 +438,8 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	// Draw the ship, using the black silhouette swizzle.
 	if(sprite)
 	{
-		SpriteShader::Draw(sprite, bounds.Center(), scale, 28);
-		OutlineShader::Draw(sprite, bounds.Center(), scale * Point(sprite->Width(), sprite->Height()), Color(.5f));
+		SpriteShader::UISpace::Draw(sprite, bounds.Center(), scale, 28);
+		OutlineShader::UISpace::Draw(sprite, bounds.Center(), scale * Point(sprite->Width(), sprite->Height()), Color(.5f));
 	}
 
 	// Figure out how tall each part of the weapon listing will be.
@@ -626,10 +626,10 @@ void ShipInfoPanel::DrawLine(const Point &from, const Point &to, const Color &co
 	Color black(0.f, 1.f);
 	Point mid(to.X(), from.Y());
 
-	LineShader::Draw(from, mid, 3.5f, black);
-	LineShader::Draw(mid, to, 3.5f, black);
-	LineShader::Draw(from, mid, 1.5f, color);
-	LineShader::Draw(mid, to, 1.5f, color);
+	LineShader::UISpace::Draw(from, mid, 3.5f, black);
+	LineShader::UISpace::Draw(mid, to, 3.5f, black);
+	LineShader::UISpace::Draw(from, mid, 1.5f, color);
+	LineShader::UISpace::Draw(mid, to, 1.5f, color);
 }
 
 

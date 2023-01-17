@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Radar.h"
 #include "Rectangle.h"
+#include "ScreenSpace.h"
 
 #include <condition_variable>
 #include <list>
@@ -184,8 +185,9 @@ private:
 	bool hasFinishedCalculating = true;
 	bool terminate = false;
 	bool wasActive = false;
-	DrawList draw[2];
-	BatchDrawList batchDraw[2];
+	DrawList::UISpace uiDraw[2];
+	DrawList::ViewSpace viewDraw[2];
+	BatchDrawList::ViewSpace batchDraw[2];
 	Radar radar[2];
 	// Viewport position and velocity.
 	Point center;
@@ -207,6 +209,8 @@ private:
 	const Sprite *highlightSprite = nullptr;
 	Point highlightUnit;
 	float highlightFrame = 0.f;
+	std::shared_ptr<ScreenSpace> uiScreenSpace;
+	std::shared_ptr<ScreenSpace> viewScreenSpace;
 
 	int step = 0;
 

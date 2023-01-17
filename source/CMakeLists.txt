@@ -46,6 +46,8 @@ endif()
 # Every source file (and header file) should be listed here, except main.cpp.
 # If you add a new file, add it to this list.
 target_sources(EndlessSkyLib PRIVATE
+	AbsoluteScreenSpace.cpp
+	AbsoluteScreenSpace.h
 	AI.cpp
 	AI.h
 	Account.cpp
@@ -64,7 +66,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Audio.h
 	BankPanel.cpp
 	BankPanel.h
-	BatchDrawList.cpp
 	BatchDrawList.h
 	BatchShader.cpp
 	BatchShader.h
@@ -115,7 +116,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Dictionary.h
 	DistanceMap.cpp
 	DistanceMap.h
-	DrawList.cpp
 	DrawList.h
 	Effect.cpp
 	Effect.h
@@ -281,8 +281,11 @@ target_sources(EndlessSkyLib PRIVATE
 	Sale.h
 	SavedGame.cpp
 	SavedGame.h
+	ScaledScreenSpace.cpp
+	ScaledScreenSpace.h
 	Screen.cpp
 	Screen.h
+	ScreenSpace.h
 	Set.h
 	Shader.cpp
 	Shader.h

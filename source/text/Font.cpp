@@ -21,13 +21,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../ImageBuffer.h"
 #include "../Point.h"
 #include "../Preferences.h"
-#include "../Screen.h"
+#include "../ScaledScreenSpace.h"
 #include "truncate.hpp"
 
 #include <algorithm>
 #include <cmath>
 #include <cstdlib>
 #include <cstring>
+#include <memory>
 
 using namespace std;
 
@@ -77,6 +78,7 @@ namespace {
 		"}\n";
 
 	const int KERN = 2;
+	std::shared_ptr<ScaledScreenSpace> screenSpace = ScaledScreenSpace::instance();
 }
 
 
@@ -143,10 +145,10 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 	glUniform4fv(colorI, 1, color.Get());
 
 	// Update the scale, only if the screen size has changed.
-	if(Screen::Width() != screenWidth || Screen::Height() != screenHeight)
+	if(screenSpace->Width() != screenWidth || screenSpace->Height() != screenHeight)
 	{
-		screenWidth = Screen::Width();
-		screenHeight = Screen::Height();
+		screenWidth = screenSpace->Width();
+		screenHeight = screenSpace->Height();
 		GLfloat scale[2] = {2.f / screenWidth, -2.f / screenHeight};
 		glUniform2fv(scaleI, 1, scale);
 	}

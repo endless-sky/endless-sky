@@ -15,10 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Weather.h"
 
+#include "AbsoluteScreenSpace.h"
 #include "Angle.h"
 #include "Hazard.h"
 #include "Random.h"
-#include "Screen.h"
 #include "Visual.h"
 
 #include <cmath>
@@ -89,7 +89,7 @@ void Weather::Step(vector<Visual> &visuals, const Point &center)
 	{
 		// Find the farthest possible point from the screen center and use that as
 		// our new max range. Multiply by 2 to account for the max view zoom level.
-		double newMax = 2. * Screen::Dimensions().Length();
+		double newMax = 2. * AbsoluteScreenSpace::instance()->Dimensions().Length();
 		// Maintain the same density of effects by dividing the new area
 		// by the old. (The pis cancel out and therefore need not be taken
 		// into account.)

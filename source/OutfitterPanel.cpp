@@ -30,7 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
-#include "Screen.h"
+#include "ScaledScreenSpace.h"
 #include "Ship.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
@@ -76,6 +76,8 @@ namespace {
 		}
 		return toRefill;
 	}
+
+	std::shared_ptr<ScaledScreenSpace> screenSpace = ScaledScreenSpace::instance();
 }
 
 
@@ -170,7 +172,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 {
 	const Outfit *outfit = GameData::Outfits().Get(name);
 	zones.emplace_back(point, Point(OUTFIT_SIZE, OUTFIT_SIZE), outfit, scrollY);
-	if(point.Y() + OUTFIT_SIZE / 2 < Screen::Top() || point.Y() - OUTFIT_SIZE / 2 > Screen::Bottom())
+	if(point.Y() + OUTFIT_SIZE / 2 < screenSpace->Top() || point.Y() - OUTFIT_SIZE / 2 > screenSpace->Bottom())
 		return;
 
 	bool isSelected = (outfit == selectedOutfit);
@@ -288,7 +290,7 @@ int OutfitterPanel::DrawDetails(const Point &center)
 		Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + 20 + tileSize);
 
 		double descriptionOffset = 35.;
-		Point descCenter(Screen::Right() - SIDE_WIDTH + INFOBAR_WIDTH / 2, startPoint.Y() + 20.);
+		Point descCenter(screenSpace->Right() - SIDE_WIDTH + INFOBAR_WIDTH / 2, startPoint.Y() + 20.);
 
 		// Maintenance note: This can be replaced with collapsed.contains() in C++20
 		if(!collapsed.count("description"))
@@ -300,7 +302,7 @@ int OutfitterPanel::DrawDetails(const Point &center)
 		{
 			std::string label = "description";
 			font.Draw(label, startPoint + Point(35., 12.), dim);
-			SpriteShader::Draw(collapsedArrow, startPoint + Point(20., 20.));
+			SpriteShader::UISpace::Draw(collapsedArrow, startPoint + Point(20., 20.));
 		}
 
 		// Calculate the new ClickZone for the description.
@@ -322,9 +324,9 @@ int OutfitterPanel::DrawDetails(const Point &center)
 		Point attrPoint(startPoint.X(), startPoint.Y() + descriptionOffset);
 		Point reqsPoint(startPoint.X(), attrPoint.Y() + outfitInfo.AttributesHeight());
 
-		SpriteShader::Draw(background, thumbnailCenter);
+		SpriteShader::UISpace::Draw(background, thumbnailCenter);
 		if(thumbnail)
-			SpriteShader::Draw(thumbnail, thumbnailCenter);
+			SpriteShader::UISpace::Draw(thumbnail, thumbnailCenter);
 
 		outfitInfo.DrawAttributes(attrPoint);
 		outfitInfo.DrawRequirements(reqsPoint);
@@ -806,25 +808,25 @@ bool OutfitterPanel::ShouldHighlight(const Ship *ship)
 void OutfitterPanel::DrawKey()
 {
 	const Sprite *back = SpriteSet::Get("ui/outfitter key");
-	SpriteShader::Draw(back, Screen::BottomLeft() + .5 * Point(back->Width(), -back->Height()));
+	SpriteShader::UISpace::Draw(back, screenSpace->BottomLeft() + .5 * Point(back->Width(), -back->Height()));
 
 	const Font &font = FontSet::Get(14);
 	Color color[2] = {*GameData::Colors().Get("medium"), *GameData::Colors().Get("bright")};
 	const Sprite *box[2] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
 
-	Point pos = Screen::BottomLeft() + Point(10., -VisibilityCheckboxesSize() - 20.);
+	Point pos = screenSpace->BottomLeft() + Point(10., -VisibilityCheckboxesSize() - 20.);
 	Point off = Point(10., -.5 * font.Height());
-	SpriteShader::Draw(box[showForSale], pos);
+	SpriteShader::UISpace::Draw(box[showForSale], pos);
 	font.Draw("Show outfits for sale", pos + off, color[showForSale]);
 	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){ ToggleForSale(); });
 
 	pos.Y() += 20.;
-	SpriteShader::Draw(box[showCargo], pos);
+	SpriteShader::UISpace::Draw(box[showCargo], pos);
 	font.Draw("Show outfits in cargo", pos + off, color[showCargo]);
 	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){ ToggleCargo(); });
 
 	pos.Y() += 20.;
-	SpriteShader::Draw(box[showStorage], pos);
+	SpriteShader::UISpace::Draw(box[showStorage], pos);
 	font.Draw("Show outfits in storage", pos + off, color[showStorage]);
 	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){ ToggleStorage(); });
 }
@@ -918,8 +920,8 @@ void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool 
 	const Sprite *thumbnail = outfit.Thumbnail();
 	const Sprite *back = SpriteSet::Get(
 		isSelected ? "ui/outfitter selected" : "ui/outfitter unselected");
-	SpriteShader::Draw(back, center);
-	SpriteShader::Draw(thumbnail, center);
+	SpriteShader::UISpace::Draw(back, center);
+	SpriteShader::UISpace::Draw(thumbnail, center);
 
 	// Draw the outfit name.
 	const string &name = outfit.DisplayName();

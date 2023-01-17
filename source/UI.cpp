@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Command.h"
 #include "Panel.h"
-#include "Screen.h"
+#include "ScaledScreenSpace.h"
 
 #include <SDL2/SDL.h>
 
@@ -25,7 +25,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-
+namespace {
+	std::shared_ptr<ScaledScreenSpace> screenSpace = ScaledScreenSpace::instance();
+}
 
 // Handle an event. The event is handed to each panel on the stack until one
 // of them handles it. If none do, this returns false.
@@ -45,17 +47,17 @@ bool UI::Handle(const SDL_Event &event)
 		{
 			if(event.motion.state & SDL_BUTTON(1))
 				handled = (*it)->Drag(
-					event.motion.xrel * 100. / Screen::Zoom(),
-					event.motion.yrel * 100. / Screen::Zoom());
+					event.motion.xrel * 100. / screenSpace->Zoom(),
+					event.motion.yrel * 100. / screenSpace->Zoom());
 			else
 				handled = (*it)->Hover(
-					Screen::Left() + event.motion.x * 100 / Screen::Zoom(),
-					Screen::Top() + event.motion.y * 100 / Screen::Zoom());
+					screenSpace->Left() + event.motion.x * 100 / screenSpace->Zoom(),
+					screenSpace->Top() + event.motion.y * 100 / screenSpace->Zoom());
 		}
 		else if(event.type == SDL_MOUSEBUTTONDOWN)
 		{
-			int x = Screen::Left() + event.button.x * 100 / Screen::Zoom();
-			int y = Screen::Top() + event.button.y * 100 / Screen::Zoom();
+			int x = screenSpace->Left() + event.button.x * 100 / screenSpace->Zoom();
+			int y = screenSpace->Top() + event.button.y * 100 / screenSpace->Zoom();
 			if(event.button.button == 1)
 			{
 				handled = (*it)->ZoneClick(Point(x, y));
@@ -67,8 +69,8 @@ bool UI::Handle(const SDL_Event &event)
 		}
 		else if(event.type == SDL_MOUSEBUTTONUP)
 		{
-			int x = Screen::Left() + event.button.x * 100 / Screen::Zoom();
-			int y = Screen::Top() + event.button.y * 100 / Screen::Zoom();
+			int x = screenSpace->Left() + event.button.x * 100 / screenSpace->Zoom();
+			int y = screenSpace->Top() + event.button.y * 100 / screenSpace->Zoom();
 			handled = (*it)->Release(x, y);
 		}
 		else if(event.type == SDL_MOUSEWHEEL)
@@ -265,7 +267,7 @@ Point UI::GetMouse()
 	int x = 0;
 	int y = 0;
 	SDL_GetMouseState(&x, &y);
-	return Screen::TopLeft() + Point(x, y) * (100. / Screen::Zoom());
+	return screenSpace->TopLeft() + Point(x, y) * (100. / screenSpace->Zoom());
 }
 
 

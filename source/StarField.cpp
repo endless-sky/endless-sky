@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "StarField.h"
 
+#include "AbsoluteScreenSpace.h"
 #include "Angle.h"
 #include "Body.h"
 #include "DrawList.h"
@@ -51,7 +52,7 @@ namespace {
 	const double STAR_ZOOM = 0.70;
 	const double HAZE_ZOOM = 0.90;
 
-	void AddHaze(DrawList &drawList, const std::vector<Body> &haze,
+	void AddHaze(DrawList::ViewSpace &drawList, const std::vector<Body> &haze,
 		const Point &topLeft, const Point &bottomRight, double transparency)
 	{
 		for(auto &&it : haze)
@@ -69,6 +70,7 @@ namespace {
 					drawList.Add(it, Point(x, y), transparency);
 		}
 	}
+	std::shared_ptr<AbsoluteScreenSpace> screenSpace = AbsoluteScreenSpace::instance();
 }
 
 
@@ -157,7 +159,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 			unit /= pow(zoom, .75);
 
 			float baseZoom = static_cast<float>(2. * zoom);
-			GLfloat scale[2] = {baseZoom / Screen::Width(), -baseZoom / Screen::Height()};
+			GLfloat scale[2] = {baseZoom / screenSpace->Width(), -baseZoom / screenSpace->Height()};
 			glUniform2fv(scaleI, 1, scale);
 
 			GLfloat rotate[4] = {
@@ -172,10 +174,10 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 			double borderX = fabs(vel.X()) + 1.;
 			double borderY = fabs(vel.Y()) + 1.;
 			// Find the absolute bounds of the star field we must draw.
-			int minX = pos.X() + (Screen::Left() - borderX) / zoom;
-			int minY = pos.Y() + (Screen::Top() - borderY) / zoom;
-			int maxX = pos.X() + (Screen::Right() + borderX) / zoom;
-			int maxY = pos.Y() + (Screen::Bottom() + borderY) / zoom;
+			int minX = pos.X() + (screenSpace->Left() - borderX) / zoom;
+			int minY = pos.Y() + (screenSpace->Top() - borderY) / zoom;
+			int maxX = pos.X() + (screenSpace->Right() + borderX) / zoom;
+			int maxY = pos.Y() + (screenSpace->Bottom() + borderY) / zoom;
 			// Round down to the start of the nearest tile.
 			minX &= ~(TILE_SIZE - 1l);
 			minY &= ~(TILE_SIZE - 1l);
@@ -211,7 +213,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 	if(isParallax)
 		zoom = baseZoom * HAZE_ZOOM;
 
-	DrawList drawList;
+	DrawList::ViewSpace drawList;
 	drawList.Clear(0, zoom);
 	drawList.SetCenter(pos);
 
@@ -226,8 +228,8 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 	// Any object within this range must be drawn. Some haze sprites may repeat
 	// more than once if the view covers a very large area.
 	Point size = Point(1., 1.) * haze[0].front().Radius();
-	Point topLeft = pos + (Screen::TopLeft() - size) / zoom;
-	Point bottomRight = pos + (Screen::BottomRight() + size) / zoom;
+	Point topLeft = pos + (screenSpace->TopLeft() - size) / zoom;
+	Point bottomRight = pos + (screenSpace->BottomRight() + size) / zoom;
 	if(transparency > 0.)
 		AddHaze(drawList, haze[1], topLeft, bottomRight, 1 - transparency);
 	AddHaze(drawList, haze[0], topLeft, bottomRight, transparency);

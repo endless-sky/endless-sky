@@ -23,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
-#include "Screen.h"
+#include "ScaledScreenSpace.h"
 #include "Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -32,11 +32,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cmath>
 #include <limits>
+#include <memory>
 #include <set>
 
 using namespace std;
 
-
+namespace {
+	std::shared_ptr<ScaledScreenSpace> screenSpace = ScaledScreenSpace::instance();
+}
 
 MapOutfitterPanel::MapOutfitterPanel(PlayerInfo &player)
 	: MapSalesPanel(player, true)
@@ -181,7 +184,7 @@ void MapOutfitterPanel::DrawItems()
 	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
 		DoHelp("map advanced shops");
 	list.clear();
-	Point corner = Screen::TopLeft() + Point(0, scroll);
+	Point corner = screenSpace->TopLeft() + Point(0, scroll);
 	for(const string &category : categories)
 	{
 		auto it = catalog.find(category);
@@ -253,7 +256,7 @@ void MapOutfitterPanel::DrawItems()
 			list.push_back(outfit);
 		}
 	}
-	maxScroll = corner.Y() - scroll - .5 * Screen::Height();
+	maxScroll = corner.Y() - scroll - .5 * screenSpace->Height();
 }
 
 

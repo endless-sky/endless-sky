@@ -40,7 +40,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Preferences.h"
 #include "Radar.h"
 #include "RingShader.h"
-#include "Screen.h"
+#include "ScaledScreenSpace.h"
 #include "Ship.h"
 #include "ShipJumpNavigation.h"
 #include "Sprite.h"
@@ -87,6 +87,7 @@ namespace {
 		// Return the angle, plus the length as a tie-breaker.
 		return make_pair(angle, length);
 	}
+	std::shared_ptr<ScaledScreenSpace> screenSpace = ScaledScreenSpace::instance();
 }
 
 double MapDetailPanel::scroll = 0.;
@@ -152,8 +153,8 @@ double MapDetailPanel::PlanetPanelHeight()
 bool MapDetailPanel::Hover(int x, int y)
 {
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
-	isPlanetViewSelected = (x < Screen::Left() + planetCardInterface->GetValue("width")
-		&& y < Screen::Top() + PlanetPanelHeight());
+	isPlanetViewSelected = (x < screenSpace->Left() + planetCardInterface->GetValue("width")
+		&& y < screenSpace->Top() + PlanetPanelHeight());
 
 	return isPlanetViewSelected ? true : MapPanel::Hover(x, y);
 }
@@ -347,7 +348,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
 	const double arrowOffset = mapInterface->GetValue("arrow x offset");
 	const double planetCardHeight = planetCardInterface->GetValue("height");
-	if(x < Screen::Left() + 160)
+	if(x < screenSpace->Left() + 160)
 	{
 		// The player clicked in the left-hand interface. This could be the system
 		// name, the system government, a planet box, the commodity listing, or nothing.
@@ -364,14 +365,14 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		else if(y >= governmentY && y < governmentY + 25)
 			SetCommodity(SHOW_GOVERNMENT);
 	}
-	if(y <= Screen::Top() + planetPanelHeight + 30 && x <= Screen::Left() + planetCardWidth + arrowOffset + 10)
+	if(y <= screenSpace->Top() + planetPanelHeight + 30 && x <= screenSpace->Left() + planetCardWidth + arrowOffset + 10)
 	{
-		if(maxScroll && x > Screen::Left() + planetCardWidth + arrowOffset - 10)
+		if(maxScroll && x > screenSpace->Left() + planetCardWidth + arrowOffset - 10)
 		{
 			// The arrows are of size 10.
 			const double arrowVerticalOffset = mapInterface->GetValue("arrow y offset") + 10.;
-			bool arrowUp = (y < Screen::Top() + arrowVerticalOffset);
-			bool arrowDown = (!arrowUp && y > Screen::Top() + planetPanelHeight - arrowVerticalOffset);
+			bool arrowUp = (y < screenSpace->Top() + arrowVerticalOffset);
+			bool arrowDown = (!arrowUp && y > screenSpace->Top() + planetPanelHeight - arrowVerticalOffset);
 			SetScroll(scroll + (arrowUp ? -planetCardHeight : arrowDown ? planetCardHeight : 0.));
 		}
 		else
@@ -404,7 +405,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		}
 		return true;
 	}
-	else if(x >= Screen::Right() - 240 && y <= Screen::Top() + 270)
+	else if(x >= screenSpace->Right() - 240 && y <= screenSpace->Top() + 270)
 	{
 		// The player has clicked within the "orbits" scene.
 		// Select the nearest planet to the click point.
@@ -450,11 +451,11 @@ bool MapDetailPanel::RClick(int x, int y)
 		return true;
 	// TODO: rewrite the map panels to be driven from interfaces.txt so these XY
 	// positions aren't hard-coded.
-	else if(x >= Screen::Right() - 240 && y >= Screen::Top() + 10 && y <= Screen::Top() + 270)
+	else if(x >= screenSpace->Right() - 240 && y >= screenSpace->Top() + 10 && y <= screenSpace->Top() + 270)
 	{
 		// Only handle clicks on the actual orbits element, rather than the whole UI region.
 		// (Note: this isn't perfect, and the clickable area extends into the angled sides a bit.)
-		const Point orbitCenter(Screen::TopRight() + Point(-120., 160.));
+		const Point orbitCenter(screenSpace->TopRight() + Point(-120., 160.));
 		auto uiClick = Point(x, y) - orbitCenter;
 		if(uiClick.Length() > 130)
 			return true;
@@ -506,7 +507,7 @@ void MapDetailPanel::DrawKey()
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Font &font = FontSet::Get(14);
 
-	Point pos = Screen::TopRight() + Point(-110., 310.);
+	Point pos = screenSpace->TopRight() + Point(-110., 310.);
 	Point headerOff(-5., -.5 * font.Height());
 	Point textOff(10., -.5 * font.Height());
 
@@ -534,7 +535,7 @@ void MapDetailPanel::DrawKey()
 
 		for(int i = 0; i <= 3; ++i)
 		{
-			RingShader::Draw(pos, OUTER, INNER, MapColor(i * (2. / 3.) - 1.));
+			RingShader::UISpace::Draw(pos, OUTER, INNER, MapColor(i * (2. / 3.) - 1.));
 			int price = range.low + ((range.high - range.low) * i) / 3;
 			font.Draw(to_string(price), pos + textOff, dim);
 			pos.Y() += 20.;
@@ -550,7 +551,7 @@ void MapDetailPanel::DrawKey()
 
 		for(int i = 0; i < 4; ++i)
 		{
-			RingShader::Draw(pos, OUTER, INNER, MapColor(VALUE[i]));
+			RingShader::UISpace::Draw(pos, OUTER, INNER, MapColor(VALUE[i]));
 			font.Draw(LABEL[commodity == SHOW_OUTFITTER][i], pos + textOff, dim);
 			pos.Y() += 20.;
 		}
@@ -564,7 +565,7 @@ void MapDetailPanel::DrawKey()
 		};
 		for(int i = 0; i < 3; ++i)
 		{
-			RingShader::Draw(pos, OUTER, INNER, MapColor(1 - i));
+			RingShader::UISpace::Draw(pos, OUTER, INNER, MapColor(1 - i));
 			font.Draw(LABEL[i], pos + textOff, dim);
 			pos.Y() += 20.;
 		}
@@ -591,7 +592,7 @@ void MapDetailPanel::DrawKey()
 					make_pair(displayName, displayColor));
 			if(foundIt != alreadyDisplayed.end())
 				continue;
-			RingShader::Draw(pos, OUTER, INNER, GovernmentColor(it.second));
+			RingShader::UISpace::Draw(pos, OUTER, INNER, GovernmentColor(it.second));
 			font.Draw(displayName, pos + textOff, dim);
 			pos.Y() += 20.;
 			alreadyDisplayed.emplace_back(displayName, displayColor);
@@ -605,32 +606,32 @@ void MapDetailPanel::DrawKey()
 		// Each system is colored in accordance with the player's reputation
 		// with its owning government. The specific colors associated with a
 		// given reputation (0.1, 100, and 10000) are shown for each sign.
-		RingShader::Draw(pos, OUTER, INNER, ReputationColor(1e-1, true, false));
-		RingShader::Draw(pos + Point(12., 0.), OUTER, INNER, ReputationColor(1e2, true, false));
-		RingShader::Draw(pos + Point(24., 0.), OUTER, INNER, ReputationColor(1e4, true, false));
+		RingShader::UISpace::Draw(pos, OUTER, INNER, ReputationColor(1e-1, true, false));
+		RingShader::UISpace::Draw(pos + Point(12., 0.), OUTER, INNER, ReputationColor(1e2, true, false));
+		RingShader::UISpace::Draw(pos + Point(24., 0.), OUTER, INNER, ReputationColor(1e4, true, false));
 		font.Draw("Friendly", pos + textOff + Point(24., 0.), dim);
 		pos.Y() += 20.;
 
-		RingShader::Draw(pos, OUTER, INNER, ReputationColor(-1e-1, false, false));
-		RingShader::Draw(pos + Point(12., 0.), OUTER, INNER, ReputationColor(-1e2, false, false));
-		RingShader::Draw(pos + Point(24., 0.), OUTER, INNER, ReputationColor(-1e4, false, false));
+		RingShader::UISpace::Draw(pos, OUTER, INNER, ReputationColor(-1e-1, false, false));
+		RingShader::UISpace::Draw(pos + Point(12., 0.), OUTER, INNER, ReputationColor(-1e2, false, false));
+		RingShader::UISpace::Draw(pos + Point(24., 0.), OUTER, INNER, ReputationColor(-1e4, false, false));
 		font.Draw("Hostile", pos + textOff + Point(24., 0.), dim);
 		pos.Y() += 20.;
 
-		RingShader::Draw(pos, OUTER, INNER, ReputationColor(0., false, false));
+		RingShader::UISpace::Draw(pos, OUTER, INNER, ReputationColor(0., false, false));
 		font.Draw("Restricted", pos + textOff, dim);
 		pos.Y() += 20.;
 
-		RingShader::Draw(pos, OUTER, INNER, ReputationColor(0., false, true));
+		RingShader::UISpace::Draw(pos, OUTER, INNER, ReputationColor(0., false, true));
 		font.Draw("Dominated", pos + textOff, dim);
 		pos.Y() += 20.;
 	}
 
-	RingShader::Draw(pos, OUTER, INNER, UninhabitedColor());
+	RingShader::UISpace::Draw(pos, OUTER, INNER, UninhabitedColor());
 	font.Draw("Uninhabited", pos + textOff, dim);
 	pos.Y() += 20.;
 
-	RingShader::Draw(pos, OUTER, INNER, UnexploredColor());
+	RingShader::UISpace::Draw(pos, OUTER, INNER, UnexploredColor());
 	font.Draw("Unexplored", pos + textOff, dim);
 }
 
@@ -658,16 +659,16 @@ void MapDetailPanel::DrawInfo()
 	bool hasVisited = player.HasVisited(*selectedSystem);
 
 	// Draw the panel for the planets. If the system was not visited, no planets will be shown.
-	const double minimumSize = max(minPlanetPanelHeight, Screen::Height() - bottomGovY - systemSprite->Height());
+	const double minimumSize = max(minPlanetPanelHeight, screenSpace->Height() - bottomGovY - systemSprite->Height());
 	planetPanelHeight = hasVisited ? min(min(minimumSize, maxPlanetPanelHeight),
 		(planetCards.size()) * planetHeight) : 0.;
 	Point size(planetWidth, planetPanelHeight);
 	// This needs to fill from the start of the screen.
-	FillShader::Fill(Screen::TopLeft() + Point(size.X() / 2., size.Y() / 2.),
+	FillShader::Fill(screenSpace->TopLeft() + Point(size.X() / 2., size.Y() / 2.),
 		size, back);
 
 	const double startingX = mapInterface->GetValue("starting X");
-	Point uiPoint(Screen::Left() + startingX, Screen::Top());
+	Point uiPoint(screenSpace->Left() + startingX, screenSpace->Top());
 
 	// Draw the basic information for visitable planets in this system.
 	if(hasVisited && !planetCards.empty())
@@ -686,34 +687,34 @@ void MapDetailPanel::DrawInfo()
 		}
 
 		// Edges:
-		Point pos(Screen::Left(), Screen::Top());
+		Point pos(screenSpace->Left(), screenSpace->Top());
 		const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
 		Point edgePos = pos + Point(.5 * size.X(), size.Y());
 		Point bottomOff(-23.5, .5 * bottom->Height() - 1);
-		SpriteShader::Draw(bottom, edgePos + bottomOff);
+		SpriteShader::UISpace::Draw(bottom, edgePos + bottomOff);
 
 		const Sprite *right = SpriteSet::Get("ui/right edge");
 		Point rightOff(.5 * (size.X() + right->Width()) - 1, -right->Height() / 2.);
-		SpriteShader::Draw(right, edgePos + rightOff);
+		SpriteShader::UISpace::Draw(right, edgePos + rightOff);
 
 		if(maxScroll)
 		{
 			const double arrowOffsetX = mapInterface->GetValue("arrow x offset");
 			const double arrowOffsetY = mapInterface->GetValue("arrow y offset");
 			// Draw the pointers to go up and down by a planet at most.
-			PointerShader::Draw(Point(Screen::Left() + planetWidth + arrowOffsetX,
-				Screen::Top() + arrowOffsetY), Point(0., -1.), 10.f, 10.f, 5.f, scroll ? medium : dim);
-			PointerShader::Draw(Point(Screen::Left() + planetWidth + arrowOffsetX,
-				Screen::Top() - arrowOffsetY + planetPanelHeight), Point(0., 1.), 10.f, 10.f, 5.f,
+			PointerShader::UISpace::Draw(Point(screenSpace->Left() + planetWidth + arrowOffsetX,
+				screenSpace->Top() + arrowOffsetY), Point(0., -1.), 10.f, 10.f, 5.f, scroll ? medium : dim);
+			PointerShader::UISpace::Draw(Point(screenSpace->Left() + planetWidth + arrowOffsetX,
+				screenSpace->Top() - arrowOffsetY + planetPanelHeight), Point(0., 1.), 10.f, 10.f, 5.f,
 				(scroll < maxScroll) ? medium : dim);
 		}
 	}
 
 	const double textMargin = mapInterface->GetValue("text margin");
-	uiPoint = Point(Screen::Left() + textMargin, Screen::Bottom() - bottomGovY);
+	uiPoint = Point(screenSpace->Left() + textMargin, screenSpace->Bottom() - bottomGovY);
 
 	// Draw the information for the government of this system at the top of the trade sprite.
-	SpriteShader::Draw(systemSprite, uiPoint + Point(systemSprite->Width() / 2. - textMargin, 0.));
+	SpriteShader::UISpace::Draw(systemSprite, uiPoint + Point(systemSprite->Width() / 2. - textMargin, 0.));
 
 	const Font &font = FontSet::Get(14);
 	string systemName = player.KnowsName(*selectedSystem) ?
@@ -726,15 +727,15 @@ void MapDetailPanel::DrawInfo()
 		selectedSystem->GetGovernment()->GetName() : "Unknown Government";
 	font.Draw({gov, alignLeft}, uiPoint + Point(0., 13.), (commodity == SHOW_GOVERNMENT) ? medium : dim);
 	if(commodity == SHOW_GOVERNMENT)
-		PointerShader::Draw(uiPoint + Point(0., 20.), Point(1., 0.),
+		PointerShader::UISpace::Draw(uiPoint + Point(0., 20.), Point(1., 0.),
 			10.f, 10.f, 0.f, medium);
 
 	const double tradeHeight = mapInterface->GetValue("trade height");
-	uiPoint = Point(Screen::Left() + startingX, Screen::Bottom() - tradeHeight);
+	uiPoint = Point(screenSpace->Left() + startingX, screenSpace->Bottom() - tradeHeight);
 
 	// Trade sprite goes after at the bottom.
 	const Sprite *tradeSprite = SpriteSet::Get("ui/map trade");
-	SpriteShader::Draw(tradeSprite, uiPoint);
+	SpriteShader::UISpace::Draw(tradeSprite, uiPoint);
 	tradeY = uiPoint.Y() - tradeSprite->Height() / 2. + 15.;
 
 	// Adapt the coordinates for the text (the sprite is drawn from a center coordinate).
@@ -780,7 +781,7 @@ void MapDetailPanel::DrawInfo()
 		font.Draw({price, alignRight}, uiPoint, color);
 
 		if(isSelected)
-			PointerShader::Draw(uiPoint + Point(0., 7.), Point(1., 0.), 10.f, 10.f, 0.f, color);
+			PointerShader::UISpace::Draw(uiPoint + Point(0., 7.), Point(1., 0.), 10.f, 10.f, 0.f, color);
 
 		uiPoint.Y() += 20.;
 	}
@@ -791,15 +792,15 @@ void MapDetailPanel::DrawInfo()
 		static const int X_OFFSET = 240;
 		static const int WIDTH = 500;
 		const Sprite *panelSprite = SpriteSet::Get("ui/description panel");
-		Point pos(Screen::Right() - X_OFFSET - .5f * panelSprite->Width(),
-			Screen::Top() + .5f * panelSprite->Height());
-		SpriteShader::Draw(panelSprite, pos);
+		Point pos(screenSpace->Right() - X_OFFSET - .5f * panelSprite->Width(),
+			screenSpace->Top() + .5f * panelSprite->Height());
+		SpriteShader::UISpace::Draw(panelSprite, pos);
 
 		WrappedText text(font);
 		text.SetAlignment(Alignment::JUSTIFIED);
 		text.SetWrapWidth(WIDTH - 20);
 		text.Wrap(selectedPlanet->Description());
-		text.Draw(Point(Screen::Right() - X_OFFSET - WIDTH, Screen::Top() + 20), medium);
+		text.Draw(Point(screenSpace->Right() - X_OFFSET - WIDTH, screenSpace->Top() + 20), medium);
 	}
 
 	DrawButtons("is ports");
@@ -811,8 +812,8 @@ void MapDetailPanel::DrawInfo()
 void MapDetailPanel::DrawOrbits()
 {
 	const Sprite *orbitSprite = SpriteSet::Get("ui/orbits and key");
-	SpriteShader::Draw(orbitSprite, Screen::TopRight() + .5 * Point(-orbitSprite->Width(), orbitSprite->Height()));
-	Point orbitCenter = Screen::TopRight() + Point(-120., 160.);
+	SpriteShader::UISpace::Draw(orbitSprite, screenSpace->TopRight() + .5 * Point(-orbitSprite->Width(), orbitSprite->Height()));
+	Point orbitCenter = screenSpace->TopRight() + Point(-120., 160.);
 
 	if(!player.HasVisited(*selectedSystem))
 		return;
@@ -865,7 +866,7 @@ void MapDetailPanel::DrawOrbits()
 		}
 
 		double radius = object.Distance() * scale;
-		RingShader::Draw(orbitCenter + parentPos * scale,
+		RingShader::UISpace::Draw(orbitCenter + parentPos * scale,
 			radius + .7, radius - .7,
 			habitColor[habit]);
 	}
@@ -892,7 +893,7 @@ void MapDetailPanel::DrawOrbits()
 			: Radar::GetColor(object.RadarType(player.Flagship())).Get();
 		// Darken and saturate the color, and make it opaque.
 		Color color(max(0.f, rgb[0] * 1.2f - .2f), max(0.f, rgb[1] * 1.2f - .2f), max(0.f, rgb[2] * 1.2f - .2f), 1.f);
-		RingShader::Draw(pos, object.Radius() * scale + 1., 0.f, color);
+		RingShader::UISpace::Draw(pos, object.Radius() * scale + 1., 0.f, color);
 	}
 
 	// If the player has a pending order for escorts to move to a new system, draw it.
@@ -910,26 +911,26 @@ void MapDetailPanel::DrawOrbits()
 			auto a = Angle{45.};
 			auto inc = Angle{90.};
 
-			PointerShader::Bind();
+			PointerShader::UISpace::Bind();
 			for(int i = 0; i < 4; ++i)
 			{
-				PointerShader::Add(uiPoint, a.Unit(), 6.f, 6.f, -3.f, *color);
+				PointerShader::UISpace::Add(uiPoint, a.Unit(), 6.f, 6.f, -3.f, *color);
 				a += inc;
 			}
-			PointerShader::Unbind();
+			PointerShader::UISpace::Unbind();
 		}
 	}
 
 	// Draw the selection ring on top of everything else.
 	for(const StellarObject &object : selectedSystem->Objects())
 		if(selectedPlanet && object.GetPlanet() == selectedPlanet)
-			RingShader::Draw(orbitCenter + object.Position() * scale,
+			RingShader::UISpace::Draw(orbitCenter + object.Position() * scale,
 				object.Radius() * scale + 5., object.Radius() * scale + 4.,
 				habitColor[6]);
 
 	// Draw the name of the selected planet.
 	const string &name = selectedPlanet ? selectedPlanet->Name() : selectedSystem->Name();
-	Point namePos(Screen::Right() - 190., Screen::Top() + 7.);
+	Point namePos(screenSpace->Right() - 190., screenSpace->Top() + 7.);
 	font.Draw({name, {180, Alignment::CENTER, Truncate::BACK}},
 		namePos, *GameData::Colors().Get("medium"));
 }

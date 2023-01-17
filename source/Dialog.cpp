@@ -124,21 +124,21 @@ void Dialog::Draw()
 
 	// Draw the top section of the dialog box.
 	pos.Y() += top->Height() * .5;
-	SpriteShader::Draw(top, pos);
+	SpriteShader::UISpace::Draw(top, pos);
 	pos.Y() += top->Height() * .5;
 
 	// The middle section is duplicated depending on how long the text is.
 	for(int i = 0; i < height; ++i)
 	{
 		pos.Y() += middle->Height() * .5;
-		SpriteShader::Draw(middle, pos);
+		SpriteShader::UISpace::Draw(middle, pos);
 		pos.Y() += middle->Height() * .5;
 	}
 
 	// Draw the bottom section.
 	const Font &font = FontSet::Get(14);
 	pos.Y() += bottom->Height() * .5;
-	SpriteShader::Draw(bottom, pos);
+	SpriteShader::UISpace::Draw(bottom, pos);
 	pos.Y() += bottom->Height() * .5 - 25.;
 
 	// Draw the buttons, including optionally the cancel button.
@@ -150,7 +150,7 @@ void Dialog::Draw()
 	{
 		string cancelText = isMission ? "Decline" : "Cancel";
 		cancelPos = pos + Point(10., 0.);
-		SpriteShader::Draw(cancel, cancelPos);
+		SpriteShader::UISpace::Draw(cancel, cancelPos);
 		Point labelPos(
 			cancelPos.X() - .5 * font.Width(cancelText),
 			cancelPos.Y() - .5 * font.Height());

@@ -64,9 +64,9 @@ void AlertLabel::Draw() const
 	const double angle[3] = {330., 210., 90.};
 	for(int i = 0; i < 3; i++)
 	{
-		RingShader::Draw(position * zoom, radius, 1.2f, .16f, *color, 0.f, angle[i] + rotation);
+		RingShader::UISpace::Draw(position * zoom, radius, 1.2f, .16f, *color, 0.f, angle[i] + rotation);
 		if(isTargetingFlagship)
-			PointerShader::Draw(position * zoom, Angle(angle[i] + 30. + rotation).Unit(),
+			PointerShader::UISpace::Draw(position * zoom, Angle(angle[i] + 30. + rotation).Unit(),
 				7.5f, (i ? 10.f : 22.f) * zoom, radius + (i ? 10.f : 20.f) * zoom, *color);
 	}
 }

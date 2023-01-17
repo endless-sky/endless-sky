@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "PlanetLabel.h"
 
+#include "AbsoluteScreenSpace.h"
 #include "Angle.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -25,6 +26,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PointerShader.h"
 #include "Preferences.h"
 #include "RingShader.h"
+#include "ScaledScreenSpace.h"
+#include "ScreenSpace.h"
 #include "StellarObject.h"
 #include "System.h"
 
@@ -141,25 +144,26 @@ void PlanetLabel::Draw() const
 	double innerAngle = LINE_ANGLE[direction];
 	double outerAngle = innerAngle - 360. * GAP / (2. * PI * radius);
 	Point unit = Angle(innerAngle).Unit();
-	RingShader::Draw(position, radius + INNER_SPACE, 2.3f, .9f, color, 0.f, innerAngle);
-	RingShader::Draw(position, radius + INNER_SPACE + GAP, 1.3f, .6f, color, 0.f, outerAngle);
+	RingShader::ViewSpace::Draw(position, radius + INNER_SPACE, 2.3f, .9f, color, 0.f, innerAngle);
+	RingShader::ViewSpace::Draw(position, radius + INNER_SPACE + GAP, 1.3f, .6f, color, 0.f, outerAngle);
 
 	if(!name.empty())
 	{
 		Point from = position + (radius + INNER_SPACE + LINE_GAP) * unit;
 		Point to = from + LINE_LENGTH * unit;
-		LineShader::Draw(from, to, 1.3f, color);
+		Point toUiSpace = ScreenSpace::ConvertPoint<AbsoluteScreenSpace, ScaledScreenSpace>(to);
+		LineShader::ViewSpace::Draw(from, to, 1.3f, color);
 
-		double nameX = to.X() + (direction < 2 ? 2. : -bigFont.Width(name) - 2.);
-		bigFont.DrawAliased(name, nameX, to.Y() - .5 * bigFont.Height(), color);
+		double nameX = toUiSpace.X() + (direction < 2 ? 2. : -bigFont.Width(name) - 2.);
+		bigFont.DrawAliased(name, nameX, toUiSpace.Y() - .5 * bigFont.Height(), color);
 
-		double governmentX = to.X() + (direction < 2 ? 4. : -font.Width(government) - 4.);
-		font.DrawAliased(government, governmentX, to.Y() + .5 * bigFont.Height() + 1., color);
+		double governmentX = toUiSpace.X() + (direction < 2 ? 4. : -font.Width(government) - 4.);
+		font.DrawAliased(government, governmentX, toUiSpace.Y() + .5 * bigFont.Height() + 1., color);
 	}
 	Angle barbAngle(innerAngle + 36.);
 	for(int i = 0; i < hostility; ++i)
 	{
 		barbAngle += Angle(800. / (radius + 25.));
-		PointerShader::Draw(position, barbAngle.Unit(), 15.f, 15.f, radius + 25., color);
+		PointerShader::ViewSpace::Draw(position, barbAngle.Unit(), 15.f, 15.f, radius + 25., color);
 	}
 }
