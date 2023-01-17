@@ -25622,7 +25622,7 @@ system Rutilicus
 	fleet "Small Militia" 6000
 	fleet "Human Miners" 3000
 	object
-		sprite "star/thorne-zytkow"
+		sprite star/g5
 		period 10
 	object
 		sprite planet/rock6
