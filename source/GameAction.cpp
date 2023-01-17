@@ -181,7 +181,8 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 	else if((key == "give" || key == "take") && child.Size() >= 3 && child.Token(1) == "ship")
 	{
 		ShipManager manager;
-		giftShips.emplace(GameData::Ships().Get(child.Token(2)), manager.Load(child));
+		manager.Load(child);
+		giftShips.emplace(GameData::Ships().Get(child.Token(2)), manager);
 	}
 	else if(key == "outfit" && hasValue)
 	{
