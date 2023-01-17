@@ -96,7 +96,7 @@ Version 0.10.0
       * Additional Hai names and hail phrases. (@MasterOfGrey)
       * A person ship for Gefüllte Taubenbrust. (@Saugia)
       * Two new Hai transport ships: the Cicada and Scarab. (@Saugia)
-      * A new ship and some outfits for the Unfettereed. (@beccabunny, @EjoThims, @Hurleveur)
+      * A new ship and some outfits for the Unfettered. (@beccabunny, @EjoThims, @Hurleveur)
         * The Sea Scorpion: a medium warship.
         * Tripulse Shredder.
         * Ionic Blaster and Turret weapons.
@@ -113,7 +113,7 @@ Version 0.10.0
       * Six new pirate hails. (@bene-dictator)
       * Added descriptions to the tier 1 Pug ships. (@McloughlinGuy)
       * A Remnant job to disable (but not destroy or capture) a stranded Korath world-ship. (@rovermicrover)
-      * It is now possible to demand tribute from Unfettered Hai worlds. (@Hurleveur)
+      * It is now possible to demand tribute from appropriate Unfettered Hai worlds. (@Hurleveur)
       * A short mission chain about "Hound Racing," featuring the return of an old face. (@Anarchist2)
       * A mission about smuggling wool. (@Anarchist2)
       * Hails and news items hinting to the player about the requirements for the There Might Be Riots mission chain. (@Zitchas)
@@ -124,7 +124,7 @@ Version 0.10.0
       * Added pirate versions of some human ships. (@1010todd)
         * Mammoth (pirate Behemoth).
         * Nighthawk (pirate Blackbird).
-		* Cutthroat (pirate Clipper).
+        * Cutthroat (pirate Clipper).
       * Added the Scrapper, a low-end ship built from scrap Shuttle parts. (@1010todd)
     * Mission changes:
       * Adjusted human bounty jobs to make them more active. (@Anarchist2)
@@ -162,13 +162,13 @@ Version 0.10.0
         * Flivver:
           * +10 cargo sapce (5 -> 15)
           * -9 weapon capacity (25 -> 16)
-          * Remove its two Meteor Missile Pods
+          * Removed its two Meteor Missile Pods
         * Sparrow:
           * +200 shields (1200 -> 1400)
           * +5 weapon capacity (20 -> 25)
       * Made the Falcon and Leviathan more distinct from each other. (@Anarchist2)
         * Falcon:
-          * +16 crew (75 -> 91)
+          * +16 required crew (75 -> 91)
           * +40 cargo space (90 -> 130)
           * +20 outfit space (540 -> 560)
           * +10 weapon capacity (240 -> 250)
@@ -176,7 +176,7 @@ Version 0.10.0
           * +120 mass (480 -> 600)
           * +0.5 drag (7.6 -> 8.1)
         * Marauder Falcon:
-          * +14 requires crew (43 -> 57)
+          * +14 required crew (43 -> 57)
           * +16 bunks (80 -> 96)
           * +20 cargo space (60 -> 80)
           * +40 outfit space (580 -> 620)
@@ -190,7 +190,7 @@ Version 0.10.0
       * Increased the outfit space and weapon capacity of the Rainmaker (230 -> 240 and 60 -> 70). (@Pointedstick)
       * Buffed the Star Queen. (@Anarchist2)
         * -1300000 base cost (5.5M -> 4.2M)
-        * -8 requires crew (41 -> 33)
+        * -8 required crew (41 -> 33)
       * The Rano'ereks that appear as miners in human space are now better able to defend themselves. (@ravenshining)
       * Made the battle in Terraforming Tundra less difficult. (@Anarchist2)
       * Added a Small Biochemical Cell to the Summer Leaf. (@warp-core)
@@ -202,7 +202,7 @@ Version 0.10.0
         * Added damage dropoff with range beyond 45 units. Damage is halved by maximum range.
       * Increased the size of some Large Syndicate fleet variants. (@Quantumshark)
       * Added a small amount of inertia reduction and force protection to Quarg engines. (@Zitchas)
-      * Made the Unfettered Hai attacking Wah Ki cowards and the Hai defending the system merciful, so fewer Unfettered die there. (@Hurleveur)
+      * Made the Unfettered Hai attacking Wah Ki cowards and the Hai defending the system merciful, so fewer Unfettered get disabled or die there. (@Hurleveur)
       * Slightly buffed the Berserker and Hawk. (@Zitchas)
         * Berserker:
           * Mass: 110 -> 90
@@ -250,15 +250,15 @@ Version 0.10.0
       * Improved descriptions of various planets: Longjump, Buccaneer Bay, Poisonwood, Bourne, Millrace, and Solace. (@bene-dictator)
       * Added a new category to the shipyard: Superheavy. (@Saugia)
         * Also moved the Ikatila'ej, Korsmmanath A'awoj, Heron, and Emerald Sword to this category.
-      * Danforth's ship now also have the "timid" personality in "Wanderers: Alpha Surveillance G". (@Quantumshark)
+      * Danforth's ship now also has the "timid" personality in "Wanderers: Alpha Surveillance G". (@Quantumshark)
       * Add some diversity to the sale of Hai ships. (@MasterOfGrey)
-      * Moved the Cloaking Device is now to the "Unique" outfit category. (@czartrak)
-      * The descriptions of the Heliarch reactors now indicate that they used anti-matter catalyzed fusion technology. (@Arachi-Lover)
+      * Moved the Cloaking Device to the "Unique" outfit category. (@czartrak)
+      * The descriptions of the Heliarch reactors now indicate that they use anti-matter catalyzed fusion technology. (@Arachi-Lover)
       * Governments that reuse colors now refer to named "stock" colors instead of providing their own color literals. (@warp-core)
       * Added a reference to the player's manual to the credits. (@hmglasgow)
       * Separated planet and system definitions into their own files. (@Amazinite)
       * Brighten some government colors to improve map readability. (@TomGoodIdea)
-      * Used custom penalties to improve Remnant and Quarg reactions to actions against some foreign governments. (@Hurleveur)
+      * Added custom penalties to improve Remnant and Quarg reactions to actions against some foreign governments. (@Hurleveur)
       * Added departure distances to systems with Quarg Ringworlds. (@RisingLeaf)
       * Void Sprites now drop Void Sprite Parts. (@Quantumshark, @Saugia)
   * Game mechanics:
@@ -280,7 +280,7 @@ Version 0.10.0
       * Added a new "merciful" personality that causes ships to avoid attacking hostile ships that are fleeing. (@Hurleveur, @quyykk)
       * Added "drag reduction" and "inertia reduction" attributes. (@Azure3141)
       * Systems can now define a "departure distance", a minimum distance a ship must be from the centre to jump to another system. (@RisingLeaf, @petervdmeer, @quyykk)
-      * When taking off from a planet with an outfitter with more outfits in cargo than there is space for, store them instead of selling them. (@warp-core)
+      * When taking off from a planet with an outfitter while having more outfits in cargo than there is space for, store them instead of selling them. (@warp-core)
       * Ship variant definitions can now remove all the bays from the base definition. (@daggs1)
       * It is now possible to offer a mission in the shipyard or outfitter. (@rovermmicrover)
       * A system definition can now include a custom value for the invisible fence radius. (@a-random-lemurian)
@@ -307,13 +307,13 @@ Version 0.10.0
   * User interface:
     * Added shortcut keys for parking and unparking ships. (@Terin)
     * Added a setting to always underline the shortcut hotkey on button labels. (@warp-core)
-    * Display the jump range separately to the view range on the map. (@RisingLeaf)
+    * Changed the line style for the jump range in the map to differentiate it from the view range. (@RisingLeaf)
     * Changed the default screen mode to full screen. (@samrocketman)
     * Separate governments with the same display name and color will no longer appear separately in the map key. (@warp-core)
     * Added option for only parking or unparking ships in the current system. (@Koranir)
     * The settings panel can now have multiple pages. (@warp-core)
-    * Added a button to open the plugins folder to the plugins panel. (@quyykk, @tehhowch)
-    * Outfits can now have non-unique display names. (@RisingLeaf, @quyykk, @Hurleveur, @Amazinite)
+    * Added a button to the plugins panel which opens the plugins folder. (@quyykk, @tehhowch)
+    * Outfits can now have non-unique display names, different from their real name. (@RisingLeaf, @quyykk, @Hurleveur, @Amazinite)
     * The boarding panel will now indicate how many crew were transferred to a captured ship. (@warp-core)
     * Added indicator overlays for missiles. (@Koranir)
     * Added an 's' unit symbol for attributes that are in seconds. (@Koranir)
@@ -348,7 +348,7 @@ Version 0.10.0
     * Added a method for checking if the Personality has been defined. (@RisingLeaf)
     * Added a coarse check to Mask::Collide() to improve performance. (@mike-f1)
     * Improved CollisionSet performance. (@mike-f1)
-    * Made use of existing Color methods instead of replicating their ffunctionality in MapPaenl. (@warp-core)
+    * Made use of existing Color methods instead of replicating their functionality in MapPanel. (@warp-core)
     * The "color" root node allows defining only the RGB values, using 1. as the default alpha value. (@warp-core)
   * CI/CD and development environment:
     * A variety of new integration tests for new and existing features. (@Hurleveur, @warp-core)
