@@ -831,7 +831,7 @@ outfit "Plasma Grenades"
 	"capture attack" 2.1
 	"capture defense" 1.2
 	"unplunderable" 1
-	description `With development of more plasma-based weaponry, the Scin invented their own type of grenades using plasma to create powerful explosions. They are effective at clearing out large groups of enemies, and are less of a hazard than unpredictable fragementation grenades, allowing them to be a bit more reliable for defensive use. These grenades are kept in odd magentic storage devices that fortunately don't accidentally detonate them - except on rare occasions.`
+	description `With development of more plasma-based weaponry, the Scin invented their own type of grenades using plasma to create powerful explosions. They are effective at clearing out large groups of enemies, and are less of a hazard than unpredictable fragmentation grenades, allowing them to be a bit more reliable for defensive use. These grenades are kept in odd magentic storage devices that fortunately don't accidentally detonate them - except on rare occasions.`
 
 
 
