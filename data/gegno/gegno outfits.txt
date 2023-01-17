@@ -811,6 +811,30 @@ effect "bludgeon impact"
 	sound "bludgeon impact"
 
 
+
+# Hand to Hand Weapons
+
+outfit "Savagery Guisarme"
+	category "Hand to Hand"
+	cost 21000
+	thumbnail "outfit/savagery guisarme"
+	"capture attack" .9
+	"capture defense" .8
+	"unplunderable" 1
+	description `This is a ceremonial spear-like weapon presented to Vi warriors when they officially become part of the military. On the forward end are several long, sharp pikes that can easily pierce enemies, and on the rear end is a built-in cannon that can fire up to two explosive rounds. The cannon rounds are rarely used by the Vi unless they deem it absolutely necessary to defeat their foe, or to deal with unanticipated outside factors.`
+
+outfit "Plasma Grenades"
+	plural "Plasma Grenades"
+	category "Hand to Hand"
+	cost 17000
+	thumbnail "outfit/plasma grenades"
+	"capture attack" 2.1
+	"capture defense" 1.2
+	"unplunderable" 1
+	description `With development of more plasma-based weaponry, the Scin invented their own type of grenades using plasma to create powerful explosions. They are effective at clearing out large groups of enemies, and are less of a hazard than unpredictable fragementation grenades, allowing them to be a bit more reliable for defensive use. These grenades are kept in odd magentic storage devices that fortunately don't accidentally detonate them - except on rare occasions.`
+
+
+
 # Special Outfits
 
 outfit "Gegno Civilian License"
