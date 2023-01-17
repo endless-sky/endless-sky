@@ -349,9 +349,10 @@ namespace {
 				<< "shots/second" << ',' << "energy/shot" << ',' << "heat/shot" << ',' << "recoil/shot" << ','
 				<< "energy/s" << ',' << "heat/s" << ',' << "recoil/s" << ',' << "shield/s" << ','
 				<< "discharge/s" << ',' << "hull/s" << ',' << "corrosion/s" << ',' << "heat dmg/s" << ','
-				<< "burn dmg/s" << ',' << "energy dmg/s" << ',' << "ion dmg/s" << ',' << "slow dmg/s" << ','
-				<< "disruption dmg/s" << ',' << "piercing" << ',' << "fuel dmg/s" << ',' << "leak dmg/s" << ','
-				<< "push/s" << ',' << "homing" << ',' << "strength" << ',' << "deterrence" << '\n';
+				<< "burn dmg/s" << ',' << "energy dmg/s" << ',' << "ion dmg/s" << ',' << "scramble dmg/s" << ','
+				<< "slow dmg/s" << ',' << "disruption dmg/s" << ',' << "piercing" << ',' << "fuel dmg/s" << ','
+				<< "leak dmg/s" << ',' << "push/s" << ',' << "homing" << ',' << "strength" << ','
+				<< "deterrence" << '\n';
 
 			for(auto &it : GameData::Outfits())
 			{
@@ -405,6 +406,8 @@ namespace {
 				cout << energyDmg << ',';
 				double ionDmg = outfit.IonDamage() * 100. * fireRate;
 				cout << ionDmg << ',';
+				double scrambleDmg = outfit.ScramblingDamage() * 100. * fireRate;
+				cout << scrambleDmg << ',';
 				double slowDmg = outfit.SlowingDamage() * fireRate;
 				cout << slowDmg << ',';
 				double disruptDmg = outfit.DisruptionDamage() * fireRate;
