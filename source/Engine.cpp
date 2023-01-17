@@ -1688,9 +1688,9 @@ void Engine::SpawnFleets()
 			if(!gov)
 				continue;
 
-			// If this fleet is not enthusiastic, do not spawn a fleet if its allies 
-			// in-system already far outnumber its enemies. This is to avoid 
-			// having a system get mobbed with massive numbers of 
+			// If this fleet is not enthusiastic, do not spawn a fleet if its allies
+			// in-system already far outnumber its enemies. This is to avoid
+			// having a system get mobbed with massive numbers of
 			// "reinforcements" during a battle.
 			if(!fleet.Get()->GetPersonality().IsEnthusiastic())
 			{
