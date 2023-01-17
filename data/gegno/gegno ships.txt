@@ -224,6 +224,7 @@ ship "Dunite"
 		
 		"C3 Scrap Cell"
 		"R01 Skirmish Battery"
+		"Savagery Pike"
 
 		"RG15 Torch Thruster"
 		"RG15 Torch Steering"
@@ -272,6 +273,7 @@ ship "Augen"
 		"C17 Warzone Core"
 		"C27 Campaign Core"
 		"R04 Crusade Battery"
+		"Savagery Pike" 280
 		
 		"RG3 Torch Thruster" 4
 		"RG3 Torch Steering" 2
@@ -384,6 +386,7 @@ ship "Slate"
 	outfits
 		"C3 Scrap Cell"
 		"R01 Skirmish Battery"
+		"Savagery Pike" 1
 		
 		"RG15 Torch Thruster"
 		"RG15 Torch Steering"
@@ -425,6 +428,7 @@ ship "Schist"
 		
 		"C7 Brawl Cell"
 		"R02 Battlezone Battery"
+		"Savagery Pike" 23
 		
 		"RG18 Torch Thruster"
 		"RG18 Torch Steering"
@@ -499,6 +503,7 @@ ship "Eclogite"
 		
 		"C7 Brawl Cell"
 		"R03 Warforge Battery"
+		"Savagery Pike" 9
 		
 		"RG18 Torch Thruster"
 		"RG18 Torch Steering"
@@ -548,6 +553,7 @@ ship "Diorite"
 		
 		"C17 Warzone Core"
 		"R02 Battlezone Battery"
+		"Savagery Pike" 14
 		
 		"RG18 Torch Thruster"
 		"RG3 Torch Steering"
@@ -613,6 +619,7 @@ ship "Hornfel"
 		
 		"C17 Warzone Core"
 		"R03 Warforge Battery"
+		"Savagery Pike" 32
 		
 		"RG18 Torch Thruster"
 		"RG18 Torch Steering"
@@ -735,6 +742,7 @@ ship "Gneiss"
 		
 		"C17 Warzone Core"
 		"R04 Crusade Battery"
+		"Savagery Pike" 112
 		
 		"RG3 Torch Thruster"
 		"RG3 Torch Steering"
@@ -807,6 +815,7 @@ ship "Protolith"
 		"C7 Brawl Cell" 2
 		"C3 Scrap Cell"
 		"R03 Warforge Battery" 3
+		"Savagery Pike" 53
 		
 		"RG3 Torch Thruster"
 		"RG15 Torch Thruster"
@@ -921,6 +930,7 @@ ship "Mica"
 	outfits
 		"C3 Scrap Cell"
 		"R01 Skirmish Battery"
+		"Plasma Grenades"
 		
 		"SC-12 Plasma Thruster"
 		"SC-12 Plasma Steering"
@@ -1016,6 +1026,7 @@ ship "Tridymite"
 	outfits
 		"C7 Brawl Cell"
 		"R02 Battlezone Battery"
+		"Plasma Grenades" 4
 		
 		"SC-14 Plasma Thruster"
 		"SC-14 Plasma Steering"
@@ -1064,6 +1075,7 @@ ship "Felsic"
 		
 		"C17 Warzone Core"
 		"R02 Battlezone Battery"
+		"Plasma Grenades" 9
 		
 		"SC-14 Plasma Thruster"
 		"SC-14 Plasma Steering"
@@ -1114,6 +1126,7 @@ ship "Feldspar"
 		
 		"C27 Campaign Core"
 		"R03 Warforge Battery"
+		"Plasma Grenades" 66
 		
 		"SC-15 Plasma Thrusters"
 		"SC-12 Plasma Steering"
@@ -1194,6 +1207,7 @@ ship "Epidote"
 		"C17 Warzone Core"
 		"R02 Battlezone Battery"
 		"R03 Warforge Battery"
+		"Plasma Grenades" 51
 		
 		"SC-15 Plasma Thrusters"
 		"SC-14 Plasma Steering" 2
