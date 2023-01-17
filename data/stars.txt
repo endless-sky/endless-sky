@@ -187,6 +187,9 @@ star "star/protostar-orange"
 star "star/protostar-yellow"
 	power 0.4
 	wind 5
+star "star/thorne-zytkow"
+	power 6
+	wind 2.5
 
 # Rogue planet with unusual properties
 star "planet/rogue-radiating"
