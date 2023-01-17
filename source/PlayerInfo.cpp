@@ -3323,7 +3323,11 @@ void PlayerInfo::RegisterDerivedConditions()
 
 		double totalAttraction = 0;
 		for(const auto &raidFleet : system->GetGovernment()->RaidFleets())
-			totalAttraction += RaidFleetAttraction(raidFleet, system);
+		{
+			double fleetAttraction = RaidFleetAttraction(raidFleet, system);
+			if(fleetAttraction > 0)
+				totalAttraction += fleetAttraction;
+		}
 		// It will be made into an integer so scale it up for more precision.
 		return totalAttraction * 1000.;
 	};
