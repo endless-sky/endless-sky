@@ -1861,13 +1861,6 @@ fleet "Small Southern Pirates"
 		"Scrapper (Minimal)"
 	variant 1
 		"Scrapper (Gatling)"
-	variant 1
-		"Nighthawk"
-	variant 1
-		"Nighthawk (Slaver)"
-		"Sparrow" 2
-	variant 1
-		"Cutthroat"
 
 fleet "Large Southern Pirates"
 	government "Pirate"
@@ -1978,12 +1971,6 @@ fleet "Large Southern Pirates"
 		"Falcon (Heavy)"
 	variant 1
 		"Falcon (Laser)"
-	variant 1
-		"Falcon"
-		"Nighthawk (Raider)"
-	variant 1
-		"Osprey"
-		"Cutthroat"
 
 fleet "Small Independent"
 	government "Independent"
