@@ -1626,8 +1626,8 @@ mission "Hai Reveal [A11] Sound the Alarm"
 					goto library
 
 			label reading7
-			`	"I'm so sorry, Captain <last>, but your time here is at an end. I have strict instructions to escort you out when the proceedings complete. You may be happy to hear that the Elder Council voted to take no action on Teeneep. Unfortunately, it seems she may soon trigger an election, creating the chaos that is part of her charm. Some Elders have referred to her as Eyrisen of the Mythos," she giggles, "and if I was religious, I'd agree.`
-			`	"By the way, Captain, please spend more time up North in the future." She probably means Unfettered space, the home of Hai that could use your help. "I'll escort you to Teeneep's and Sayari's waiting room now."`
+			`	"I'm so sorry, Captain <last>, but your time here is at an end. I have strict instructions to escort you out when the proceedings complete. You may be happy to hear that the Elder Council voted to take no action on Teeneep. It seems she may soon trigger an election, creating the chaos that is part of her charm, but that was to be expected, right? Some Elders have referred to her as Eyrisen of the Mythos," she giggles, "and if I was religious, I'd agree.`
+			`	"I'll escort you to Teeneep's and Sayari's waiting room now."`
 				goto return7
 
 			label library
@@ -1747,15 +1747,16 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			action
 				set "Hai Reveal [A11] Sound the Alarm: unfettered book"
 				"Hai Reveal [A11] Sound the Alarm: time" ++
-			`	This report begins with an economic analysis of the cost of raids at Wah Ki, which it places at a staggering 3.5 billion credits per day. This is 1.5 billion impact on trade, 1.5 billion for repairs, replacements, and infrastructure to support it; and an estimated 500 million in humanitarian aid to the Unfettered, to prevent the problem from worsening. It compares that to "full Hai unification" for which the cost is 7 billion credits per day: 3 billion in humanitarian aid to the Unfettered, and 4 billion in military aid.`
-			`	The remaining 80% of the report is redacted in its entirety, save for a few section headings. "Choot'k: Insane Risk-Taker or Brilliant Strategist?" "Multi-Decadal Timeline before Unfettered Progress"`
+			`	This report begins with an economic analysis of the cost of raids at Wah Ki, which it places at a staggering 3.5 billion credits per day. This is 1.5 billion impact on trade; 1.5 billion for military fleet repairs, replacements, ammunition, and infrastructure to support it; and an estimated 500 million in humanitarian aid to the Unfettered, to prevent the problem from worsening. It compares that to "full Hai unification" for which the cost is 8 billion credits per day: 3 billion in humanitarian aid to the Unfettered, and 5 billion in military aid.`
+			`	The remaining 80% of the report is redacted in its entirety, save for a few section headings. "Choot'k: Insane Risk-Taker or Brilliant Strategist?" "Multi-Decadal Timeline Expected before Unfettered Progress," "Theories on the Sentient Evolution of Nocturnal Raptors," and "History of Pug Responses to Hostilities."`
 				goto reading
 
 			label quarg
 			action
 				set "Hai Reveal [A11] Sound the Alarm: quarg book"
 				"Hai Reveal [A11] Sound the Alarm: time" ++
-			`	FIXME: QUARG BOOK`
+			`	This report is surprisingly light on details of any interest. It seems the Hai view the Quarg as a nearby race of friendly neighbors. There's frequent cultural exchanges, and a large food trade in both directions. Apparently, "genuine Hai cuisine" is popular among the Quarg, especially the famous Hai acorn cookies. In return, the Hai use Quarg spices extensively, including some of the meals you've eaten since you arrived. The spices are described as, "subtle and mysterious."`
+			`	Between the mundane and cultural, you find a few interesting facts. Hai have noticed that Quarg ringworlds are lined with what appear to be hyperdrive emissions elements, which the Quarg won't discuss. There's also some lingering frustration about the Quarg refusing to help fend off Korath raids. This is partly due to the Hai having to fight for themselves, but mostly out of a belief that more Korath would have survived the war if the Quarg had intervened. Also, the Hai apparently have no interest in developing the jump drives Quarg have in abundance due to "the fate of the Korath," and warnings from the Quarg about the dangers of the jump drive manufacturing process.`
 				goto reading
 
 			label militech
@@ -1905,10 +1906,12 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				`	"Yes, I certainly want the summary."`
 				`	"No, it's time for dinner."`
 					goto spydinner
-			`	"As you wish," she says. After a minute or two listening to her chat about the importance of Teeneep's work, you arrive at a common area with a holoprojector. She leaves you with the crowd of Elders, functionaries, and diplomats, and the news report begins."`
+			`	"As you wish," she says. After a minute or two listening to her chat about the importance of Teeneep's work, you arrive at a common area with a holoprojector. Before she departs, her face turns dead serious and she whispers, "After this all blows over, you'll be needed up North. Keep your eyes in that direction, Captain; many lives will depend on it."`
+			`	You open your mouth to respond, but she quickly vanishes into the crowd. Surrounding you are Elders, functionaries, and diplomats, all awaiting the news report that is about to begin."`
 				goto news
 			label spydinner
-			`	"As you wish," she says. After a minute or two listening to her chat about the importance of Teeneep's work, you arrive at a cafeteria. She helps you find the best dishes, and leaves you with Alondo and Remington. The two men have a surprisingly civilized conversation the entire time. Albeit mostly about work.`
+			`	"As you wish," she says. After a minute or two listening to her chat about the importance of Teeneep's work, you arrive at a cafeteria. She helps you find the best dishes, and leads you to the seating area. Before she departs, her face turns dead serious and she whispers, "After this all blows over, you'll be needed up North. Keep your eyes in that direction, Captain; many lives will depend on it." You open your mouth to respond, but she quickly vanishes into the crowd.`
+			`	You hear Alondo and Remington behind you; one of them asks you to sit and eat with them. The dinner is quite pleasant and they have a surprisingly civilized conversation the entire time. Albeit mostly about work.`
 				goto panic
 
 			label diplomats
