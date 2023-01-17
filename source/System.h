@@ -164,6 +164,7 @@ public:
 	// in per frame).
 	double Danger() const;
 
+	// The smallest arrival period of a fleet (or 0 if no fleets arrive)
 	int MinimumFleetPeriod() const;
 
 
