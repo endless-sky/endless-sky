@@ -5339,7 +5339,7 @@ mission "Deal Change 1"
 			`	"My sincerest apologies, but I'm afraid that is confidential information. Our prioritization of privacy is one of our main selling points."`
 			choice
 				`	"I'll take the job."`
-				`	"I don't like the idea of carrying an unknown cargo. Count me out."`
+				`	"I don't like the idea of carrying unknown cargo. Count me out."`
 					goto nope
 			label agree
 			`	The man smiles. "I'm glad to hear that. We'll have the cargo loaded onto your ship by sundown." He walks away into the spaceport, leaving you to prepare for the journey.`
