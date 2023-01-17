@@ -187,17 +187,18 @@ bool Personality::IsHunting() const
 
 
 
+bool Personality::IsNemesis() const
+{
+	return flags & NEMESIS;
+}
+
+
+
 bool Personality::IsDaring() const
 {
 	return flags & DARING;
 }
 
-
-
-bool Personality::IsNemesis() const
-{
-	return flags & NEMESIS;
-}
 
 
 
