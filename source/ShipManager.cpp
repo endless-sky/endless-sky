@@ -58,7 +58,7 @@ void ShipManager::Load(const DataNode &child)
 		else if(key == "amount")
 		{
 			if(grand.Value(1) <= 0)
-				child.PrintTrace("Error: Skipping invalid ship quantity:" + to_string(newManager.count));
+				child.PrintTrace("Error: Skipping invalid negative ship quantity:" + child.Token(1));
 			else
 				count = grand.Value(1) * (taking ? -1 : 1);
 		}
