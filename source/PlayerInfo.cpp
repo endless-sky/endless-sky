@@ -995,11 +995,15 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 
 	auto flightChecks = map<const shared_ptr<Ship>, vector<string>>{};
 	for(const auto &ship : ships)
-		if(ship->GetSystem() == system && !ship->IsDisabled() && !ship->IsParked())
+		if(ship->GetSystem() && !ship->IsDisabled() && !ship->IsParked())
 		{
 			auto checks = ship->FlightCheck();
 			if(!checks.empty())
 				flightChecks.emplace(ship, checks);
+
+			// Only check bays for in-system ships.
+			if(ship->GetSystem() != system)
+				continue;
 
 			categoryCount[ship->Attributes().Category()].emplace_back(ship);
 			// Ensure bayCount has an entry for this category for the special case
@@ -2231,7 +2235,7 @@ void PlayerInfo::SetTravelDestination(const Planet *planet)
 
 
 // Check which secondary weapons the player has selected.
-const set<const Outfit *> &PlayerInfo::SelectedWeapons() const
+const set<const Outfit *> &PlayerInfo::SelectedSecondaryWeapons() const
 {
 	return selectedWeapons;
 }
@@ -2239,7 +2243,7 @@ const set<const Outfit *> &PlayerInfo::SelectedWeapons() const
 
 
 // Cycle through all available secondary weapons.
-void PlayerInfo::SelectNext()
+void PlayerInfo::SelectNextSecondary()
 {
 	if(!flagship || flagship->Outfits().empty())
 		return;
@@ -2290,6 +2294,25 @@ void PlayerInfo::SelectNext()
 	// was selected when we entered this function.
 	if(selectedWeapons.size() == 1)
 		selectedWeapons.clear();
+}
+
+
+
+void PlayerInfo::DeselectAllSecondaries()
+{
+	selectedWeapons.clear();
+}
+
+
+
+void PlayerInfo::ToggleAnySecondary(const Outfit *outfit)
+{
+	if(!flagship)
+		return;
+
+	const auto it = selectedWeapons.insert(outfit);
+	if(!it.second)
+		selectedWeapons.erase(it.first);
 }
 
 
