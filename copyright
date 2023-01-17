@@ -908,10 +908,10 @@ License: CC-BY-SA-4.0
 Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
 
 Files:
- images/ship/mammoth*
- images/ship/scrapper*
- images/thumbnail/mammoth*
- images/thumbnail/scrapper*
+ images/ship/pirate?mammoth*
+ images/ship/pirate?scrapper*
+ images/thumbnail/pirate?mammoth*
+ images/thumbnail/pirate?scrapper*
 Copyright: 1010todd
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser and Becca Tommaso under the same license. Incorporating texture made with JSPlacement by WindMillArt <https://windmillart.net/>.
@@ -956,6 +956,17 @@ Files:
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Detailed by Anarchist2.
+
+Files:
+ images/ship/pirate?nighthawk*
+ images/ship/pirate?cutthroat*
+ images/ship/pirate?bulwark*
+ images/thumbnail/pirate?nighthawk*
+ images/thumbnail/pirate?cutthroat*
+ images/thumbnail/pirate?bulwark*
+Copyright: 1010Todd
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser and Anarchist2 under the same license. Incorporating texture made with JSPlacement by WindMillArt <https://windmillart.net/>.
 
 Files:
  images/ship/mfalcon*
@@ -1752,6 +1763,13 @@ Files:
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/ship/pirate?valkyrie*
+ images/thumbnail/pirate?valkyrie*
+Copyright: Saugia <https://github.com/Saugia>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license) and 1010todd (under the same license). Incorporating texture made with JSPlacement by WindMillArt <https://windmillart.net/>.
 
 Files:
  sounds/drill*
