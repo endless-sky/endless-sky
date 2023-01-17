@@ -35,7 +35,6 @@ void ShipManager::Load(const DataNode &child)
 		return;
 	}
 	bool taking = token == "take";
-	const Ship *ship = GameData::Ships().Get(child.Token(2));
 	if(child.Size() >= 4)
 		name = child.Token(3);
 
