@@ -59,6 +59,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <mmsystem.h>
 #endif
 
+#ifdef __linux__
+#include <sys/sysinfo.h>
+#endif
+
 using namespace std;
 
 void PrintHelp();
@@ -75,6 +79,14 @@ void InitConsole();
 // Entry point for the EndlessSky executable
 int main(int argc, char *argv[])
 {
+#ifdef __linux__
+	struct sysinfo si;
+	if (0 == sysinfo(&si))
+	{
+		SDL_Log("Available memory: %lu %lu %lu, %d", si.totalram, si.freeram, si.sharedram, si.mem_unit);
+	}
+#endif
+
 	// Handle command-line arguments
 #ifdef _WIN32
 	if(argc > 1)

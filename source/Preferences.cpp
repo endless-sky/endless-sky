@@ -24,6 +24,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Logger.h"
 #include "Screen.h"
 
+#ifdef __linux__
+#include <sys/sysinfo.h>
+#endif
+
 #include <algorithm>
 #include <map>
 
@@ -77,6 +81,14 @@ void Preferences::Load()
 	settings["fullscreen"] = true;
 	settings["Show buttons on map"] = true;
 	settings["Automatic firing"] = true;
+
+	// Default to "Reduced graphics" if the device has less than 2 gig of ram
+	struct sysinfo si;
+	if (0 == sysinfo(&si))
+	{
+		if (si.totalram * si.mem_unit < 2 * 1024*1024*1024)
+			settings["Reduced graphics"] = true;
+	}
 #endif
 
 	DataFile prefs(Files::Config() + "preferences.txt");

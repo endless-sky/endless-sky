@@ -244,7 +244,7 @@ int Dropdown::IdxFromPoint(int x, int y)
 		// We have validated that we are within the dropdown, but floating point
 		// errors still mean idx is occasionally out of bounds. Clamp it.
 		if (idx < 0) idx = 0;
-		if (idx >= options.size()) idx = options.size() - 1;
+		if (idx >= static_cast<int>(options.size())) idx = options.size() - 1;
 		return idx;
 	}
 	return -1;

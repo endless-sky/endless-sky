@@ -493,7 +493,7 @@ void PreferencesPanel::DrawSettings()
 		"Performance",
 		"Show CPU / GPU load",
 		"Render motion blur",
-		"Reduce large graphics",
+		"Reduced graphics",
 		"Draw background haze",
 		"Draw starfield",
 		"Parallax background",

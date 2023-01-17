@@ -20,7 +20,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Mask.h"
 #include "MaskManager.h"
 #include "Sprite.h"
+#include "Preferences.h"
 
+#include <SDL2/SDL_log.h>
 #include <algorithm>
 #include <cassert>
 #include <iterator>
@@ -223,6 +225,15 @@ void ImageSet::ValidateFrames() noexcept(false)
 void ImageSet::Load() noexcept(false)
 {
 	assert(framePaths[0].empty() && "should call ValidateFrames before calling Load");
+
+	if (Preferences::Has("Reduced graphics") && paths[0].size() > 10)
+	{
+		// remove every other frame
+		for (ssize_t i = paths[0].size() - 1; i >= 0; i -= 2)
+		{
+			paths[0].erase(paths[0].begin() + i);
+		}
+	}
 
 	// Determine how many frames there will be, total. The image buffers will
 	// not actually be allocated until the first image is loaded (at which point

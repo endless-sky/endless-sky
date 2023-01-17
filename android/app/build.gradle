@@ -59,9 +59,9 @@ android {
     aaptOptions {
         ignoreAssetsPattern "!.svn:!.git:.*:!CVS:!thumbs.db:!picasa.ini:!*.scc:*~"
     }
-    packagingOptions{
-        doNotStrip "*/*/*.so"
-    }
+    //packagingOptions{
+    //    doNotStrip "*/*/*.so"
+    //}
 }
 
 dependencies {

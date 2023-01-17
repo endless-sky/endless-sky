@@ -57,9 +57,16 @@ void Sprite::AddFrames(ImageBuffer &buffer, bool is2x)
 		frames = buffer.Frames();
 	}
 
-	// Check whether this sprite is large enough to require size reduction.
-	if(Preferences::Has("Reduce large graphics") && buffer.Width() * buffer.Height() >= 1000000)
+	// Reduce the size of the textures (and the GPU memory load) if we are in
+	// "Reduced graphics" mode. Don't mess with ui graphics though.
+	if(Preferences::Has("Reduced graphics"))
+	{
 		buffer.ShrinkToHalfSize();
+		while (buffer.Width() * buffer.Height() >= 250000)
+		{
+			buffer.ShrinkToHalfSize();
+		}
+	}
 
 	// Upload the images as a single array texture.
 	glGenTextures(1, &texture[is2x]);
