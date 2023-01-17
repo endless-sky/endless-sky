@@ -1,0 +1,165 @@
+test-data "Mission On Entering Sol"
+	description "A mission that will be offfered upon entering the Sol system."
+	contents
+		mission "1 Sol Entering Mission - No Conversations"
+			entering
+			source
+				system "Sol"
+			destination "Silver"
+		mission "2 Sol Entering Mission - Offer Conversation"
+			entering
+			source
+				system "Sol"
+			destination "Silver"
+			on offer
+				conversation
+					`It doesn't matter what these say.`
+					choice
+						`	"I couldn't agree more!"`
+					action
+						"test: whatever" ++
+					`	I need to put another text node here before the endpoint.`
+						accept
+		mission "3 Sol Entering Mission - Accept Conversation"
+			entering
+			source
+				system "Sol"
+			destination "Silver"
+			on accept
+				conversation
+					`This mission has already been accepted.`
+					choice
+						`	"I couldn't agree more!"`
+					action
+						"test: whatever" ++
+					`	I need to put another text node here before the endpoint.`
+						decline
+		mission "4 Sol Entering Mission - Complete Conversation"
+			entering
+			source
+				system "Sol"
+			destination "Silver"
+			on Complete
+				conversation
+					`It is done!`
+					choice
+						`	"Yay!"`
+					action
+						set "test: whatever 2" ++
+					`	GRRR!`
+						decline
+		mission "5 Sol Entering Mission - Offer and Complete Conversations"
+			entering
+			source
+				system "Sol"
+			destination "Silver"
+			on offer
+				conversation
+					`You have no choice but to accept.`
+					choice
+						`	"I couldn't agree more!"`
+					action
+						"test: whatever" ++
+					`	I need to put another text node here before the endpoint.`
+						accept
+			on complete
+				conversation
+					`That's done as well!`
+					choice
+						`	"Yay!"`
+					action
+						set "test: whatever 2" ++
+					`	GRRR!`
+						decline
+		mission "6 Sol Entering Mission - Offer and Accept Conversations"
+			entering
+			source
+				system "Sol"
+			destination "Silver"
+			on offer
+				conversation
+					`How many missions is too many missions?`
+					choice
+						`	"I couldn't agree more!"`
+					action
+						"test: whatever" ++
+					`	I need to put another text node here before the endpoint.`
+						accept
+			on accept
+				Conversation
+					`Another conversation.`
+					choice
+						`	"I couldn't agree more!"`
+					action
+						"test: whatever" ++
+					`	I need to put another text node here before the endpoint.`
+						decline
+
+
+
+test "Entering Mission Offering 1"
+	status active
+	sequence
+		inject "Mission On Entering Sol"
+		inject "Three Earthly Barges"
+		call "Load First Savegame"
+		navigate
+			travel "Vega"
+			"travel destination" "Silver"
+		call "Depart"
+		# The first mission should offer immediately.
+		assert
+			"1 Sol Entering Mission - No Conversations: active" > 0
+		# Navigate the conversation to accept the second mission.
+		input
+			key 1
+			key "Return"
+		assert
+			"2 Sol Entering Mission - No Conversations: active" > 0
+			"3 Sol Entering Mission - No Conversations: active" > 0
+		# Navigate the 'on accept' conversation of hte third mission.
+		input
+			key 1
+			key "Return"
+		# The fourth mission should be silently accepted.
+		assert
+			"4 Sol Entering Mission - No Conversations: active" > 0
+		# Accept the fifth mission.
+		input
+			key 1
+			key "Return"
+		assert
+			"5 Sol Entering Mission - No Conversations: active" > 0
+		# Accept the sixth mission and complete its 'on accept' conversation.
+		input
+			key 1
+			key "Return"
+			key 1
+			key "Return"
+		assert
+			"6 Sol Entering Mission - No Conversations: active" > 0
+			"test: whatever" == 5
+		input
+			command jump
+		label notVega
+		branch notVega
+			not "flagship system: Vega"
+		call "Land"
+		# The first, second, third, and sixth missions should complete immediately upon landing.
+		assert
+			"1 Sol Entering Mission - No Conversations: done" > 0
+			"2 Sol Entering Mission - No Conversations: done" > 0
+			"3 Sol Entering Mission - No Conversations: done" > 0
+			"6 Sol Entering Mission - No Conversations: done" > 0
+		input
+			key 1
+			key "Return"
+		assert
+			"test: whatever" == 6
+		input
+			key 1
+			key "Return"
+		assert
+			"4 Sol Entering Mission - No Conversations: done" > 0
+			"5 Sol Entering Mission - No Conversations: done" > 0
+			"test: whatever" == 7
