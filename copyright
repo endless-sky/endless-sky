@@ -960,8 +960,10 @@ Comment: Detailed by Anarchist2.
 Files:
  images/ship/pirate?nighthawk*
  images/ship/pirate?cutthroat*
+ images/ship/pirate?bulwark*
  images/thumbnail/pirate?nighthawk*
  images/thumbnail/pirate?cutthroat*
+ images/thumbnail/pirate?bulwark*
 Copyright: 1010Todd
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser and Anarchist2 under the same license. Incorporating texture made with JSPlacement by WindMillArt <https://windmillart.net/>.
@@ -1761,6 +1763,13 @@ Files:
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/ship/pirate?valkyrie*
+ images/thumbnail/pirate?valkyrie*
+Copyright: Saugia <https://github.com/Saugia>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license) and 1010todd (under the same license). Incorporating texture made with JSPlacement by WindMillArt <https://windmillart.net/>.
 
 Files:
  sounds/drill*
