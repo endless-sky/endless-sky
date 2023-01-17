@@ -37,9 +37,9 @@ namespace {
 	map<const string, float> LANDING_SPEED = {
 		{"very slow landing", .8f},
 		{"slow landing", .9f},
+		{"normal landing", 1.f},
 		{"fast landing", 1.1f},
-		{"very fast landing", 1.2f},
-		{"normal landing", 1.f}
+		{"very fast landing", 1.2f}
 	};
 	const string WORMHOLE = "wormhole";
 	const string PLANET = "planet";
