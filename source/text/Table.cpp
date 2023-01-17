@@ -238,7 +238,7 @@ void Table::DrawUnderline() const
 
 void Table::DrawUnderline(const Color &color) const
 {
-	FillShader::Fill(point + lineOff - Point(0., 2.), lineSize, color);
+	FillShader::UISpace::Fill(point + lineOff - Point(0., 2.), lineSize, color);
 }
 
 
@@ -253,7 +253,7 @@ void Table::DrawHighlight() const
 
 void Table::DrawHighlight(const Color &color) const
 {
-	FillShader::Fill(GetCenterPoint(), GetRowSize(), color);
+	FillShader::UISpace::Fill(GetCenterPoint(), GetRowSize(), color);
 }
 
 

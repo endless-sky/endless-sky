@@ -169,7 +169,7 @@ void Dialog::Draw()
 	// Draw the input, if any.
 	if(!isMission && (intFun || stringFun))
 	{
-		FillShader::Fill(inputPos, Point(WIDTH - 20., 20.), back);
+		FillShader::UISpace::Fill(inputPos, Point(WIDTH - 20., 20.), back);
 
 		Point stringPos(
 			inputPos.X() - (WIDTH - 20) * .5 + 5.,
@@ -178,7 +178,7 @@ void Dialog::Draw()
 		font.Draw(inputText, stringPos, bright);
 
 		Point barPos(stringPos.X() + font.FormattedWidth(inputText) + 2., inputPos.Y());
-		FillShader::Fill(barPos, Point(1., 16.), dim);
+		FillShader::UISpace::Fill(barPos, Point(1., 16.), dim);
 	}
 }
 

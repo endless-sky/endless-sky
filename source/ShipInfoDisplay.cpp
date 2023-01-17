@@ -87,7 +87,7 @@ void ShipInfoDisplay::DrawAttributes(const Point &topLeft, const bool sale) cons
 		point = Draw(point, saleLabels, saleValues);
 
 		const Color &color = *GameData::Colors().Get("medium");
-		FillShader::Fill(point + Point(.5 * WIDTH, 5.), Point(WIDTH - 20., 1.), color);
+		FillShader::UISpace::Fill(point + Point(.5 * WIDTH, 5.), Point(WIDTH - 20., 1.), color);
 	}
 	else
 		point -= Point(0, 10.);

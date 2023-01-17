@@ -117,7 +117,7 @@ void StartConditionsPanel::Draw()
 
 		bool isHighlighted = it == startIt || (hasHover && zone.Contains(hoverPoint));
 		if(it == startIt)
-			FillShader::Fill(zone.Center(), zone.Dimensions(), selectedBackground.Additive(opacity));
+			FillShader::UISpace::Fill(zone.Center(), zone.Dimensions(), selectedBackground.Additive(opacity));
 
 		const auto name = DisplayText(
 			it->Revealed(GameData::GlobalConditions()) ? it->GetDisplayName() : "???", Truncate::BACK);

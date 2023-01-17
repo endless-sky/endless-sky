@@ -208,7 +208,7 @@ void Panel::DrawBackdrop() const
 
 	// Darken everything but the dialog.
 	const Color &back = *GameData::Colors().Get("dialog backdrop");
-	FillShader::Fill(Point(), Point(screenSpace->Width(), screenSpace->Height()), back);
+	FillShader::UISpace::Fill(Point(), Point(screenSpace->Width(), screenSpace->Height()), back);
 }
 
 

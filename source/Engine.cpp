@@ -974,7 +974,7 @@ void Engine::Draw() const
 	}
 
 	if(flash)
-		FillShader::Fill(Point(), Point(viewScreenSpace->Width(), viewScreenSpace->Height()), Color(flash, flash));
+		FillShader::ViewSpace::Fill(Point(), Point(viewScreenSpace->Width(), viewScreenSpace->Height()), Color(flash, flash));
 
 	// Draw messages. Draw the most recent messages first, as some messages
 	// may be wrapped onto multiple lines.

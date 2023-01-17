@@ -104,7 +104,7 @@ void ConversationPanel::Draw()
 	// of the margin is included in the filled rectangle drawn here:
 	const Color &back = *GameData::Colors().Get("conversation background");
 	double boxWidth = WIDTH + 2. * MARGIN - 10.;
-	FillShader::Fill(
+	FillShader::UISpace::Fill(
 		Point(screenSpace->Left() + .5 * boxWidth, 0.),
 		Point(boxWidth, screenSpace->Height()),
 		back);
@@ -165,10 +165,10 @@ void ConversationPanel::Draw()
 			}
 
 			// Fill in whichever entry box is active right now.
-			FillShader::Fill(center, fieldSize, selectionColor);
+			FillShader::UISpace::Fill(center, fieldSize, selectionColor);
 			// Draw the text cursor.
 			center.X() += font.FormattedWidth({choice ? lastName : firstName, layout}) - 67;
-			FillShader::Fill(center, Point(1., 16.), dim);
+			FillShader::UISpace::Fill(center, Point(1., 16.), dim);
 		}
 
 		font.Draw("First name:", point + Point(40, 0), dim);
@@ -206,7 +206,7 @@ void ConversationPanel::Draw()
 				choice = index;
 
 			if(index == choice)
-				FillShader::Fill(center + Point(-5, 0), size + Point(30, 0), selectionColor);
+				FillShader::UISpace::Fill(center + Point(-5, 0), size + Point(30, 0), selectionColor);
 			AddZone(zone, [this, index](){ this->ClickChoice(index); });
 			++index;
 

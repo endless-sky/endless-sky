@@ -256,7 +256,7 @@ void MapSalesPanel::DrawKey() const
 void MapSalesPanel::DrawPanel() const
 {
 	const Color &back = *GameData::Colors().Get("map side panel background");
-	FillShader::Fill(
+	FillShader::UISpace::Fill(
 		Point(screenSpace->Width() * -.5 + WIDTH * .5, 0.),
 		Point(WIDTH, screenSpace->Height()),
 		back);
@@ -298,7 +298,7 @@ void MapSalesPanel::DrawInfo() const
 		const Color &back = *GameData::Colors().Get("map side panel background");
 		Point size(width, height);
 		Point topLeft(screenSpace->Right() - size.X(), screenSpace->Top());
-		FillShader::Fill(topLeft + .5 * size, size, back);
+		FillShader::UISpace::Fill(topLeft + .5 * size, size, back);
 
 		Point leftPos = topLeft + Point(
 			-.5 * left->Width(),
@@ -388,7 +388,7 @@ void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, int swizzle, bool 
 	if(corner.Y() < screenSpace->Bottom() && corner.Y() + ICON_HEIGHT >= screenSpace->Top())
 	{
 		if(isSelected)
-			FillShader::Fill(corner + .5 * blockSize, blockSize, selectionColor);
+			FillShader::UISpace::Fill(corner + .5 * blockSize, blockSize, selectionColor);
 
 		DrawSprite(corner, sprite, swizzle);
 

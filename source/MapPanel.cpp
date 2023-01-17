@@ -1309,7 +1309,7 @@ void MapPanel::DrawTooltips()
 		if(topLeft.Y() + size.Y() > screenSpace->Bottom())
 			topLeft.Y() -= size.Y();
 		// Draw the background fill and the tooltip text.
-		FillShader::Fill(topLeft + .5 * size, size, *GameData::Colors().Get("tooltip background"));
+		FillShader::UISpace::Fill(topLeft + .5 * size, size, *GameData::Colors().Get("tooltip background"));
 		hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
 	}
 }

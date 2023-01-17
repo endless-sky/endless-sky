@@ -141,7 +141,7 @@ void ShopPanel::Draw()
 
 		Point size(WIDTH, wrap.Height() + 2 * PAD);
 		Point anchor = Point(warningPoint.X(), min<double>(warningPoint.Y() + size.Y(), screenSpace->Bottom()));
-		FillShader::Fill(anchor - .5 * size, size, backColor);
+		FillShader::UISpace::Fill(anchor - .5 * size, size, backColor);
 		wrap.Draw(anchor - size + Point(PAD, PAD), textColor);
 	}
 
@@ -186,11 +186,11 @@ void ShopPanel::DrawShipsSidebar()
 	sideDetailHeight = 0;
 
 	// Fill in the background.
-	FillShader::Fill(
+	FillShader::UISpace::Fill(
 		Point(screenSpace->Right() - SIDEBAR_WIDTH / 2, 0.),
 		Point(SIDEBAR_WIDTH, screenSpace->Height()),
 		*GameData::Colors().Get("panel background"));
-	FillShader::Fill(
+	FillShader::UISpace::Fill(
 		Point(screenSpace->Right() - SIDEBAR_WIDTH, 0.),
 		Point(1, screenSpace->Height()),
 		*GameData::Colors().Get("shop side panel background"));
@@ -308,11 +308,11 @@ void ShopPanel::DrawDetailsSidebar()
 	// Fill in the background.
 	const Color &line = *GameData::Colors().Get("dim");
 	const Color &back = *GameData::Colors().Get("shop info panel background");
-	FillShader::Fill(
+	FillShader::UISpace::Fill(
 		Point(screenSpace->Right() - SIDEBAR_WIDTH - INFOBAR_WIDTH, 0.),
 		Point(1., screenSpace->Height()),
 		line);
-	FillShader::Fill(
+	FillShader::UISpace::Fill(
 		Point(screenSpace->Right() - SIDEBAR_WIDTH - INFOBAR_WIDTH / 2, 0.),
 		Point(INFOBAR_WIDTH - 1., screenSpace->Height()),
 		back);
@@ -337,9 +337,9 @@ void ShopPanel::DrawButtons()
 {
 	// The last 70 pixels on the end of the side panel are for the buttons:
 	Point buttonSize(SIDEBAR_WIDTH, BUTTON_HEIGHT);
-	FillShader::Fill(screenSpace->BottomRight() - .5 * buttonSize, buttonSize,
+	FillShader::UISpace::Fill(screenSpace->BottomRight() - .5 * buttonSize, buttonSize,
 		*GameData::Colors().Get("shop side panel background"));
-	FillShader::Fill(
+	FillShader::UISpace::Fill(
 		Point(screenSpace->Right() - SIDEBAR_WIDTH / 2, screenSpace->Bottom() - BUTTON_HEIGHT),
 		Point(SIDEBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
 
@@ -362,21 +362,21 @@ void ShopPanel::DrawButtons()
 	const Color &inactive = *GameData::Colors().Get("inactive");
 
 	const Point buyCenter = screenSpace->BottomRight() - Point(210, 25);
-	FillShader::Fill(buyCenter, Point(60, 30), back);
+	FillShader::UISpace::Fill(buyCenter, Point(60, 30), back);
 	string BUY = IsAlreadyOwned() ? (playerShip ? "_Install" : "_Cargo") : "_Buy";
 	bigFont.Draw(BUY,
 		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
 		CanBuy() ? hoverButton == 'b' ? hover : active : inactive);
 
 	const Point sellCenter = screenSpace->BottomRight() - Point(130, 25);
-	FillShader::Fill(sellCenter, Point(60, 30), back);
+	FillShader::UISpace::Fill(sellCenter, Point(60, 30), back);
 	static const string SELL = "_Sell";
 	bigFont.Draw(SELL,
 		sellCenter - .5 * Point(bigFont.Width(SELL), bigFont.Height()),
 		CanSell() ? hoverButton == 's' ? hover : active : inactive);
 
 	const Point leaveCenter = screenSpace->BottomRight() - Point(45, 25);
-	FillShader::Fill(leaveCenter, Point(70, 30), back);
+	FillShader::UISpace::Fill(leaveCenter, Point(70, 30), back);
 	static const string LEAVE = "_Leave";
 	bigFont.Draw(LEAVE,
 		leaveCenter - .5 * Point(bigFont.Width(LEAVE), bigFont.Height()),

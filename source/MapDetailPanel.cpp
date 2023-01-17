@@ -664,7 +664,7 @@ void MapDetailPanel::DrawInfo()
 		(planetCards.size()) * planetHeight) : 0.;
 	Point size(planetWidth, planetPanelHeight);
 	// This needs to fill from the start of the screen.
-	FillShader::Fill(screenSpace->TopLeft() + Point(size.X() / 2., size.Y() / 2.),
+	FillShader::UISpace::Fill(screenSpace->TopLeft() + Point(size.X() / 2., size.Y() / 2.),
 		size, back);
 
 	const double startingX = mapInterface->GetValue("starting X");

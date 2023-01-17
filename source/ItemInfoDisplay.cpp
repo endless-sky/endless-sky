@@ -112,7 +112,7 @@ void ItemInfoDisplay::DrawTooltips() const
 	if(topLeft.Y() + boxSize.Y() > screenSpace->Bottom())
 		topLeft.Y() -= boxSize.Y();
 
-	FillShader::Fill(topLeft + .5 * boxSize, boxSize, *GameData::Colors().Get("tooltip background"));
+	FillShader::UISpace::Fill(topLeft + .5 * boxSize, boxSize, *GameData::Colors().Get("tooltip background"));
 	hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
 }
 
