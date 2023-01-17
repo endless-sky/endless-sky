@@ -748,20 +748,15 @@ namespace {
 		"--outfits"
 	};
 
-	const set<string> VALID_ARGS()
-	{
-		set<string> result = OUTFIT_ARGS;
-
-		result.insert("-s");
-		result.insert("--ships");
-		result.insert("--sales");
-		result.insert("--planets");
-		result.insert("--systems");
-		result.insert("--matches");
-		result.insert("--phrase");
-
-		return result;
-	}
+	const set<string> OTHER_VALID_ARGS = {
+		"-s",
+		"--ships",
+		"--sales",
+		"--planets",
+		"--systems",
+		"--matches",
+		"--phrase"
+	};
 }
 
 
@@ -771,7 +766,7 @@ bool PrintData::IsPrintDataArgument(const char *const *argv)
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
 		string arg = *it;
-		if(VALID_ARGS().count(arg))
+		if(OTHER_VALID_ARGS.count(arg) || OUTFIT_ARGS.count(arg))
 			return true;
 	}
 	return false;
