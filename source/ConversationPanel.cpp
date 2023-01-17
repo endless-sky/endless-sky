@@ -58,7 +58,7 @@ namespace {
 	// Margin on either side of the text.
 	const int MARGIN = 20;
 
-	std::shared_ptr<ScreenSpace> screenSpace = AbsoluteScreenSpace::instance();
+	std::shared_ptr<ScreenSpace> screenSpace = ScaledScreenSpace::instance();
 }
 
 
