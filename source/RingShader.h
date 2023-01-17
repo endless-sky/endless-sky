@@ -57,14 +57,14 @@ private:
 		static ShaderState state;
 
 	public:
-		static void Draw(const Point &pos, float out, float in, const Color &color);
-		static void Draw(const Point &pos, float radius, float width, float fraction,
-						 const Color &color, float dash = 0.f, float startAngle = 0.f);
+		static void Draw(const Point& pos, float out, float in, const Color& color);
+		static void Draw(const Point& pos, float radius, float width, float fraction,
+			const Color& color, float dash = 0.f, float startAngle = 0.f);
 
 		static void Bind();
-		static void Add(const Point &pos, float out, float in, const Color &color);
-		static void Add(const Point &pos, float radius, float width, float fraction,
-						const Color &color, float dash = 0.f, float startAngle = 0.f);
+		static void Add(const Point& pos, float out, float in, const Color& color);
+		static void Add(const Point& pos, float radius, float width, float fraction,
+			const Color& color, float dash = 0.f, float startAngle = 0.f);
 		static void Unbind();
 		static void Init();
 	};
@@ -83,7 +83,7 @@ RingShader::ShaderState RingShader::ShaderImpl<T>::state;
 template <typename T>
 void RingShader::ShaderImpl<T>::Init()
 {
-	static const char *vertexCode =
+	static const char* vertexCode =
 		"// vertex ring state.shader\n"
 		"precision mediump float;\n"
 		"uniform vec2 scale;\n"
@@ -99,7 +99,7 @@ void RingShader::ShaderImpl<T>::Init()
 		"  gl_Position = vec4((coord + position) * scale, 0.f, 1.f);\n"
 		"}\n";
 
-	static const char *fragmentCode =
+	static const char* fragmentCode =
 		"// fragment ring state.shader\n"
 		"precision mediump float;\n"
 		"uniform vec4 color;\n"
@@ -148,7 +148,7 @@ void RingShader::ShaderImpl<T>::Init()
 		-1.f, -1.f,
 		-1.f, 1.f,
 		1.f, -1.f,
-		1.f, 1.f};
+		1.f, 1.f };
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 
 	glEnableVertexAttribArray(state.shader.Attrib("vert"));
@@ -160,15 +160,15 @@ void RingShader::ShaderImpl<T>::Init()
 }
 
 template <typename T>
-void RingShader::ShaderImpl<T>::Draw(const Point &pos, float out, float in, const Color &color)
+void RingShader::ShaderImpl<T>::Draw(const Point& pos, float out, float in, const Color& color)
 {
 	float width = .5f * (1.f + out - in);
 	Draw(pos, out - width, width, 1.f, color);
 }
 
 template <typename T>
-void RingShader::ShaderImpl<T>::Draw(const Point &pos, float radius, float width, float fraction,
-									 const Color &color, float dash, float startAngle)
+void RingShader::ShaderImpl<T>::Draw(const Point& pos, float radius, float width, float fraction,
+	const Color& color, float dash, float startAngle)
 {
 	Bind();
 
@@ -187,22 +187,22 @@ void RingShader::ShaderImpl<T>::Bind()
 	glUseProgram(state.shader.Object());
 	glBindVertexArray(state.vao);
 
-	GLfloat scale[2] = {2.f / screenSpace->Width(), -2.f / screenSpace->Height()};
+	GLfloat scale[2] = { 2.f / screenSpace->Width(), -2.f / screenSpace->Height() };
 	glUniform2fv(state.scaleI, 1, scale);
 }
 
 template <typename T>
-void RingShader::ShaderImpl<T>::Add(const Point &pos, float out, float in, const Color &color)
+void RingShader::ShaderImpl<T>::Add(const Point& pos, float out, float in, const Color& color)
 {
 	float width = .5f * (1.f + out - in);
 	Add(pos, out - width, width, 1.f, color);
 }
 
 template <typename T>
-void RingShader::ShaderImpl<T>::Add(const Point &pos, float radius, float width, float fraction,
-									const Color &color, float dash, float startAngle)
+void RingShader::ShaderImpl<T>::Add(const Point& pos, float radius, float width, float fraction,
+	const Color& color, float dash, float startAngle)
 {
-	GLfloat position[2] = {static_cast<float>(pos.X()), static_cast<float>(pos.Y())};
+	GLfloat position[2] = { static_cast<float>(pos.X()), static_cast<float>(pos.Y()) };
 	glUniform2fv(state.positionI, 1, position);
 
 	glUniform1f(state.radiusI, radius);

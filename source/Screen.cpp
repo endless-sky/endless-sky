@@ -88,7 +88,7 @@ Point Screen::Dimensions()
 
 Point Screen::RawDimensions()
 {
-    return Point(RAW_WIDTH, RAW_HEIGHT);
+	return Point(RAW_WIDTH, RAW_HEIGHT);
 }
 
 int Screen::Width()
@@ -147,22 +147,22 @@ int Screen::Bottom()
 
 int Screen::RawLeft()
 {
-    return RAW_WIDTH / -2;
+	return RAW_WIDTH / -2;
 }
 
 int Screen::RawTop()
 {
-    return RAW_HEIGHT / -2;
+	return RAW_HEIGHT / -2;
 }
 
 int Screen::RawRight()
 {
-    return RAW_WIDTH / 2;
+	return RAW_WIDTH / 2;
 }
 
 int Screen::RawBottom()
 {
-    return RAW_HEIGHT / 2;
+	return RAW_HEIGHT / 2;
 }
 
 Point Screen::TopLeft()
@@ -193,27 +193,27 @@ Point Screen::BottomRight()
 
 Point Screen::RawTopLeft()
 {
-    return Point(-.5 * RAW_WIDTH, -.5 * RAW_HEIGHT);
+	return Point(-.5 * RAW_WIDTH, -.5 * RAW_HEIGHT);
 }
 
 Point Screen::RawTopRight()
 {
-    return Point(.5 * RAW_WIDTH, -.5 * RAW_HEIGHT);
+	return Point(.5 * RAW_WIDTH, -.5 * RAW_HEIGHT);
 }
 
 Point Screen::RawBottomLeft()
 {
-    return Point(-.5 * RAW_WIDTH, .5 * RAW_HEIGHT);
+	return Point(-.5 * RAW_WIDTH, .5 * RAW_HEIGHT);
 }
 
 Point Screen::RawBottomRight()
 {
-    return Point(.5 * RAW_WIDTH, .5 * RAW_HEIGHT);
+	return Point(.5 * RAW_WIDTH, .5 * RAW_HEIGHT);
 }
 
 int Screen::MinZoom()
 {
-    // Make sure the zoom factor is not set too high for the full UI to fit.
+	// Make sure the zoom factor is not set too high for the full UI to fit.
 	static const int MIN_WIDTH = 1000; // Width of main menu
 	static const int MIN_HEIGHT = 500; // Height of preferences panel
 	int minZoomX = 100 * RAW_WIDTH / MIN_WIDTH;
