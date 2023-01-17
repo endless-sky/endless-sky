@@ -76,7 +76,7 @@ double ScreenSpace::ConversionFactor()
 	std::shared_ptr<ScreenSpace> from = ScreenSpace::Variant<T>::instance();
 	std::shared_ptr<ScreenSpace> to = ScreenSpace::Variant<U>::instance();
 
-	return static_cast<double)(from->Zoom()) / static_cast<double>(to->Zoom());
+	return static_cast<double>(from->Zoom()) / static_cast<double>(to->Zoom());
 }
 
 template<typename T, typename U>
