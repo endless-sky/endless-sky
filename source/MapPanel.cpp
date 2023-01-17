@@ -244,8 +244,8 @@ void MapPanel::Draw()
 	DrawEscorts();
 	DrawLinks();
 	DrawSystems();
-	DrawNames();
 	DrawMissions();
+	DrawNames();
 	DrawTooltips();
 
 	if(selectedSystem != &playerSystem && !distance.HasRoute(selectedSystem))
@@ -272,9 +272,9 @@ void MapPanel::DrawButtons(const string &condition)
 	Information info;
 	info.SetCondition(condition);
 	const Interface *mapInterface = GameData::Interfaces().Get("map");
-	if(player.MapZoom() >= static_cast<int>(mapInterface->GetValue("max zoom")))
+	if(player.MapZoom() >= static_cast<float>(mapInterface->GetValue("max zoom")))
 		info.SetCondition("max zoom");
-	if(player.MapZoom() <= static_cast<int>(mapInterface->GetValue("min zoom")))
+	if(player.MapZoom() <= static_cast<float>(mapInterface->GetValue("min zoom")))
 		info.SetCondition("min zoom");
 	const Interface *mapButtonUi = GameData::Interfaces().Get("map buttons");
 	mapButtonUi->Draw(info, this);
@@ -445,9 +445,9 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 		return true;
 	}
 	else if(key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS)
-		player.SetMapZoom(min(static_cast<int>(mapInterface->GetValue("max zoom")), player.MapZoom() + 1));
+		player.SetMapZoom(min(static_cast<float>(mapInterface->GetValue("max zoom")), player.MapZoom() + 0.5f));
 	else if(key == SDLK_MINUS || key == SDLK_KP_MINUS)
-		player.SetMapZoom(max(static_cast<int>(mapInterface->GetValue("min zoom")), player.MapZoom() - 1));
+		player.SetMapZoom(max(static_cast<float>(mapInterface->GetValue("min zoom")), player.MapZoom() - 0.5f));
 	else
 		return false;
 
@@ -528,9 +528,9 @@ bool MapPanel::Scroll(double dx, double dy)
 	Point anchor = mouse / Zoom() - center;
 	const Interface *mapInterface = GameData::Interfaces().Get("map");
 	if(dy > 0.)
-		player.SetMapZoom(min(static_cast<int>(mapInterface->GetValue("max zoom")), player.MapZoom() + 1));
+		player.SetMapZoom(min(static_cast<float>(mapInterface->GetValue("max zoom")), player.MapZoom() + 0.5f));
 	else if(dy < 0.)
-		player.SetMapZoom(max(static_cast<int>(mapInterface->GetValue("min zoom")), player.MapZoom() - 1));
+		player.SetMapZoom(max(static_cast<float>(mapInterface->GetValue("min zoom")), player.MapZoom() - 0.5f));
 
 	// Now, Zoom() has changed (unless at one of the limits). But, we still want
 	// anchor to be the same, so:
@@ -1129,11 +1129,16 @@ void MapPanel::DrawSystems()
 
 	// Draw the circles for the systems.
 	double zoom = Zoom();
+	float ringSize = INNER + zoom;
+	float ringFade = zoom <= 0.75 ? 0.9 : 1.1 - zoom / 2.5;
 	for(const Node &node : nodes)
 	{
 		Point pos = zoom * (node.position + center);
 
-		// Ensures every multiple-star system has a deterministic but distinct rotation.
+		// System rings fade as you zoom in.
+		RingShader::Draw(pos, ringSize + 2.5, ringSize, node.color.Transparent(ringFade));
+
+		// Ensures every multiple-star system has a unique, deterministic rotation.
 		float starAngle = node.name.length() + node.position.Length();
 		float spin = 4 * acos(0.0) / node.mapIcon.size();
 
@@ -1170,7 +1175,7 @@ void MapPanel::DrawNames()
 {
 	// Don't draw if too small.
 	double zoom = Zoom();
-	if(zoom <= 0.5)
+	if(zoom <= 0.75)
 		return;
 
 	// Draw names for all systems you have visited.
@@ -1180,7 +1185,8 @@ void MapPanel::DrawNames()
 	{
 		int namewidth = font.Width(node.name);
 		Point offset(useBigFont ? -namewidth / 2 : -namewidth / 2, 0.75 * font.Height());
-		font.Draw(node.name, zoom * (node.position + center) + offset, node.nameColor);
+		font.Draw(node.name, zoom * (node.position + center) + offset,
+					Color::Combine(1. -pow(zoom / 3., 2), node.nameColor, pow(zoom / 3., 2), node.color));
 	}
 
 }

@@ -2565,7 +2565,7 @@ void PlayerInfo::SetMapColoring(int index)
 
 
 // Get the map zoom level.
-int PlayerInfo::MapZoom() const
+float PlayerInfo::MapZoom() const
 {
 	return mapZoom;
 }
@@ -2573,7 +2573,7 @@ int PlayerInfo::MapZoom() const
 
 
 // Set the map zoom level.
-void PlayerInfo::SetMapZoom(int level)
+void PlayerInfo::SetMapZoom(float level)
 {
 	mapZoom = level;
 }

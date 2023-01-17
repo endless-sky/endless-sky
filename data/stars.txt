@@ -251,6 +251,11 @@ star "star/neutron"
 	power 4
 	wind 0.4
 	icon map/neutron-star
+	
+star "star/black-hole"
+	power 0
+	wind 0
+	icon map/supermassive-black-hole-star
 
 # Dwarves scaled like stars.
 star "star/o-dwarf"
