@@ -689,7 +689,7 @@ test "Depart"
 		input
 		# The ships zoom gets restored at a rate of about .01 per step, so wait for a bit more than 100 steps to get to full zoom/full control.
 		call "Wait 55 steps"
-	  call "Wait 55 steps"
+		call "Wait 55 steps"
 
 
 test "Sell first ship"
