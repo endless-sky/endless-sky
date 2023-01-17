@@ -1640,6 +1640,14 @@ mission "Hai Reveal [A11] Sound the Alarm"
 					goto pirates
 					to display
 						not "Hai Reveal [A11] Sound the Alarm: pirates book"
+				`	"History of Hai-Korath Relations"`
+					goto korath1
+					to display
+						not "Hai Reveal [A11] Sound the Alarm: korath1 book"
+				`	"Nature of the Korath"`
+					goto korath2
+					to display
+						not "Hai Reveal [A11] Sound the Alarm: korath2 book"
 				`	"Evidence of Teeneep's Disruptive Influence. Part 1: Before Public Life"`
 					goto teeneep1
 					to display
@@ -1652,14 +1660,6 @@ mission "Hai Reveal [A11] Sound the Alarm"
 					goto teeneep3
 					to display
 						not "Hai Reveal [A11] Sound the Alarm: teeneep3 book"
-				`	"History of Hai-Korath Relations"`
-					goto korath1
-					to display
-						not "Hai Reveal [A11] Sound the Alarm: korath1 book"
-				`	"Nature of the Korath"`
-					goto korath2
-					to display
-						not "Hai Reveal [A11] Sound the Alarm: korath2 book"
 				`	"Unfettered Military Activity and its Economic Impact on the Hai"`
 					goto unfettered
 					to display
@@ -1705,6 +1705,20 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				to display
 					has "Hai Reveal [A11] Sound the Alarm: human book"
 
+			label korath1
+			action
+				set "Hai Reveal [A11] Sound the Alarm: korath1 book"
+				"Hai Reveal [A11] Sound the Alarm: time" ++
+			`	FIXME: KORATH1`
+				goto reading
+
+			label korath2
+			action
+				set "Hai Reveal [A11] Sound the Alarm: korath2 book"
+				"Hai Reveal [A11] Sound the Alarm: time" ++
+			`	FIXME: KORATH2`
+				goto reading
+
 			label teeneep1
 			action
 				set "Hai Reveal [A11] Sound the Alarm: teeneep1 book"
@@ -1728,25 +1742,12 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			`	FIXME: TEENEEP3`
 				goto reading
 
-			label korath1
-			action
-				set "Hai Reveal [A11] Sound the Alarm: korath1 book"
-				"Hai Reveal [A11] Sound the Alarm: time" ++
-			`	FIXME: KORATH1`
-				goto reading
-
-			label korath2
-			action
-				set "Hai Reveal [A11] Sound the Alarm: korath2 book"
-				"Hai Reveal [A11] Sound the Alarm: time" ++
-			`	FIXME: KORATH2`
-				goto reading
-
 			label unfettered
 			action
 				set "Hai Reveal [A11] Sound the Alarm: unfettered book"
 				"Hai Reveal [A11] Sound the Alarm: time" ++
-			`	FIXME: UNFETTERED`
+			`	This report begins with an economic analysis of the cost of raids at Wah Ki, which it places at a staggering 3.5 billion credits per day. This is 1.5 billion impact on trade, 1.5 billion for repairs, replacements, and infrastructure to support it; and an estimated 500 million in humanitarian aid to the Unfettered, to prevent the problem from worsening. It compares that to "full Hai unification" for which the cost is 7 billion credits per day: 3 billion in humanitarian aid to the Unfettered, and 4 billion in military aid.`
+			`	The remaining 80% of the report is redacted in its entirety, save for a few section headings. "Choot'k: Insane Risk-Taker or Brilliant Strategist?" "Multi-Decadal Timeline before Unfettered Progress"`
 				goto reading
 
 			label quarg
@@ -1761,8 +1762,8 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				set "Hai Reveal [A11] Sound the Alarm: militech book"
 				"Hai Reveal [A11] Sound the Alarm: time" ++
 			`	Predictably, the report begins with Hai hulls, which it claims are superior to human hulls by every measure. However, it warns that there are no other fields in which Hai clearly lead, and warns that the humans may soon surpass the Hai in military technology.`
-			`	Hai have a perceived advantage in several fields which, the report says, are unjustified. Hai engines are more efficient than human atomic engines, but no faster, and humans have ion and plasma alternatives. Likewise, human atomic generators are hotter-running than those of the Hai, but humans have far more options for power. Hai shields were vastly superior, until the Syndicate's recent advancements. Hai anti-missile systems' superiority is merely a myth; human systems are as effective per ton. Of course, Hai cooling and ramscoop technology is primitive compared to humans.`
-			`	What is most concerning to the Hai is the inferiority of their weapons. They note that the ion cannon is effective against humans only because human ships rarely pack large batteries. Other Hai weapons are only marginally better than human alternatives. Meanwhile, a few plasma cannons and flame-throwers can easily shut down a Shield Beetle. Striking a beetle from 45 degrees to the front with four particle cannons will completely paralyze it until it is disabled. Recent human missiles are quite deadly, as are electron beams and plasma turrets. In all, the Hai are quite fearful of human weapons and doubt they could win an all-out war without Unfettered advancements.`
+			`	Hai have a perceived advantage in several fields which, the report says, are unjustified. Hai engines are more efficient than human atomic engines, but no faster, and humans have ion and plasma alternatives. Likewise, human atomic generators are hotter-running than those of the Hai, but humans have far more options for power. Hai shields were vastly superior, until the Syndicate's recent advancements. Hai anti-missile systems' superiority is merely a myth; human systems are as effective per ton. Of course, Hai cooling and ramscoop technology is primitive compared to humans, even with the return of the Ladybug.`
+			`	What is most concerning to the Hai is the inferiority of their weapons. They note that the ion cannon is effective against humans only because human ships rarely pack large batteries. Other Hai weapons are only marginally better than human alternatives. Meanwhile, a few plasma cannons and flame-throwers can easily shut down a Shield Beetle. Striking a beetle from 45 degrees to the front with four particle cannons will completely paralyze it until it is disabled. Recent human missiles are quite deadly, as are electron beams and plasma turrets. In all, the Hai are quite fearful of human weapons and question whether they could win an all-out war without Unfettered advancements.`
 				goto reading
 
 			# SCENE CHANGE
