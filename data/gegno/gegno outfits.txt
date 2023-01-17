@@ -814,10 +814,10 @@ effect "bludgeon impact"
 
 # Hand to Hand Weapons
 
-outfit "Savagery Guisarme"
+outfit "Savagery Pike"
 	category "Hand to Hand"
 	cost 21000
-	thumbnail "outfit/savagery guisarme"
+	thumbnail "outfit/savagery pike"
 	"capture attack" .9
 	"capture defense" .8
 	"unplunderable" 1
