@@ -62,6 +62,8 @@
 			<Add option="-fno-rtti" />
 			<Add directory="C:/dev64/include" />
 		</Compiler>
+		<Unit filename="source/AbsoluteScreenSpace.cpp" />
+		<Unit filename="source/AbsoluteScreenSpace.h" />
 		<Unit filename="source/AI.cpp" />
 		<Unit filename="source/AI.h" />
 		<Unit filename="source/Account.cpp" />
@@ -295,8 +297,11 @@
 		<Unit filename="source/Sale.h" />
 		<Unit filename="source/SavedGame.cpp" />
 		<Unit filename="source/SavedGame.h" />
+		<Unit filename="source/ScaledScreenSpace.cpp" />
+		<Unit filename="source/ScaledScreenSpace.h" />
 		<Unit filename="source/Screen.cpp" />
 		<Unit filename="source/Screen.h" />
+		<Unit filename="source/ScreenSpace.h" />
 		<Unit filename="source/AmmoDisplay.cpp" />
 		<Unit filename="source/AmmoDisplay.h" />
 		<Unit filename="source/Set.h" />

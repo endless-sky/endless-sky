@@ -25,9 +25,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // Implementation of a Screen Space with coordinates relative to the the user's zoom
 // level. This is used when rendering UI elements that scale with user scaling
 // settings. Can only be used in the drawing thread.
-class ScaledScreenSpace : public ScreenSpace {
+class ScaledScreenSpace : public ScreenSpace
+{
 public:
-
 	// Zoom level as specified by the user.
 	int UserZoom() override;
 	// Effective zoom level, as restricted by the current resolution / window size.
@@ -54,7 +54,8 @@ public:
 	Point BottomRight() override;
 
 	// Get a singleton instance of ScaledScreenSpace.
-    [[nodiscard]] static std::shared_ptr<ScaledScreenSpace> instance();
+	static std::shared_ptr<ScaledScreenSpace> instance();
+
 private:
 	ScaledScreenSpace() = default;
 };

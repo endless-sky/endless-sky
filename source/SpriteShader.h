@@ -37,10 +37,13 @@ using namespace std;
 // adjusting the scale, rotation, clipping, fading, etc. of a sprite; this is
 // most often just for use by the DrawList class, which calculates those input
 // parameters based on an object's rotation, animation frame, etc.
-class SpriteShader {
-friend DrawList;
+class SpriteShader
+{
+	friend DrawList;
+
 public:
-	class Item {
+	class Item
+	{
 	public:
 		uint32_t texture = 0;
 		uint32_t swizzle = 0;
@@ -52,8 +55,10 @@ public:
 		float clip = 1.f;
 		float alpha = 1.f;
 	};
+
 private:
-	class ShaderState {
+	class ShaderState
+	{
 	public:
 		bool useShaderSwizzle;
 		Shader shader;
@@ -72,24 +77,26 @@ private:
 
 		static const vector<vector<GLint>> SWIZZLE;
 	};
-	template<typename T>
-	class ShaderImpl {
-	friend SpriteShader;
+	template <typename T>
+	class ShaderImpl
+	{
+		friend SpriteShader;
 
 	private:
 		static ShaderState state;
+
 	public:
 		// Draw a sprite.
 		static void Draw(const Sprite *sprite, const Point &position, float zoom = 1.f, int swizzle = 0,
-			float frame = 0.f);
+						 float frame = 0.f);
 		static Item Prepare(const Sprite *sprite, const Point &position, float zoom = 1.f, int swizzle = 0,
-			float frame = 0.f);
+							float frame = 0.f);
 
 		static void Bind();
 		static void Add(const Item &item, bool withBlur = false);
 		static void Unbind();
 		static void Init(bool useShaderSwizzle);
-};
+	};
 
 public:
 	typedef typename SpriteShader::ShaderImpl<AbsoluteScreenSpace> ViewSpace;
@@ -98,11 +105,10 @@ public:
 	static void Init(bool useShaderSwizzle);
 };
 
-
-template<typename T>
+template <typename T>
 SpriteShader::ShaderState SpriteShader::ShaderImpl<T>::state;
 
-template<typename T>
+template <typename T>
 // Initialize the shaders.
 void SpriteShader::ShaderImpl<T>::Init(bool useShaderSwizzle)
 {
@@ -128,154 +134,150 @@ void SpriteShader::ShaderImpl<T>::Init(bool useShaderSwizzle)
 		"}\n";
 
 	ostringstream fragmentCodeStream;
-	fragmentCodeStream <<
-		"// fragment sprite shader\n"
-		"precision mediump float;\n"
+	fragmentCodeStream << "// fragment sprite shader\n"
+						  "precision mediump float;\n"
 #ifdef ES_GLES
-		"precision mediump sampler2DArray;\n"
+						  "precision mediump sampler2DArray;\n"
 #endif
-		"uniform sampler2DArray tex;\n"
-		"uniform float frame;\n"
-		"uniform float frameCount;\n"
-		"uniform vec2 blur;\n";
-	if(useShaderSwizzle) fragmentCodeStream <<
-		"uniform int swizzler;\n";
-	fragmentCodeStream <<
-		"uniform float alpha;\n"
-		"const int range = 5;\n"
+						  "uniform sampler2DArray tex;\n"
+						  "uniform float frame;\n"
+						  "uniform float frameCount;\n"
+						  "uniform vec2 blur;\n";
+	if (useShaderSwizzle)
+		fragmentCodeStream << "uniform int swizzler;\n";
+	fragmentCodeStream << "uniform float alpha;\n"
+						  "const int range = 5;\n"
 
-		"in vec2 fragTexCoord;\n"
+						  "in vec2 fragTexCoord;\n"
 
-		"out vec4 finalColor;\n"
+						  "out vec4 finalColor;\n"
 
-		"void main() {\n"
-		"  float first = floor(frame);\n"
-		"  float second = mod(ceil(frame), frameCount);\n"
-		"  float fade = frame - first;\n"
-		"  vec4 color;\n"
-		"  if(blur.x == 0.f && blur.y == 0.f)\n"
-		"  {\n"
-		"    if(fade != 0.f)\n"
-		"      color = mix(\n"
-		"        texture(tex, vec3(fragTexCoord, first)),\n"
-		"        texture(tex, vec3(fragTexCoord, second)), fade);\n"
-		"    else\n"
-		"      color = texture(tex, vec3(fragTexCoord, first));\n"
-		"  }\n"
-		"  else\n"
-		"  {\n"
-		"    color = vec4(0., 0., 0., 0.);\n"
-		"    const float divisor = float(range * (range + 2) + 1);\n"
-		"    for(int i = -range; i <= range; ++i)\n"
-		"    {\n"
-		"      float scale = float(range + 1 - abs(i)) / divisor;\n"
-		"      vec2 coord = fragTexCoord + (blur * float(i)) / float(range);\n"
-		"      if(fade != 0.f)\n"
-		"        color += scale * mix(\n"
-		"          texture(tex, vec3(coord, first)),\n"
-		"          texture(tex, vec3(coord, second)), fade);\n"
-		"      else\n"
-		"        color += scale * texture(tex, vec3(coord, first));\n"
-		"    }\n"
-		"  }\n";
+						  "void main() {\n"
+						  "  float first = floor(frame);\n"
+						  "  float second = mod(ceil(frame), frameCount);\n"
+						  "  float fade = frame - first;\n"
+						  "  vec4 color;\n"
+						  "  if(blur.x == 0.f && blur.y == 0.f)\n"
+						  "  {\n"
+						  "    if(fade != 0.f)\n"
+						  "      color = mix(\n"
+						  "        texture(tex, vec3(fragTexCoord, first)),\n"
+						  "        texture(tex, vec3(fragTexCoord, second)), fade);\n"
+						  "    else\n"
+						  "      color = texture(tex, vec3(fragTexCoord, first));\n"
+						  "  }\n"
+						  "  else\n"
+						  "  {\n"
+						  "    color = vec4(0., 0., 0., 0.);\n"
+						  "    const float divisor = float(range * (range + 2) + 1);\n"
+						  "    for(int i = -range; i <= range; ++i)\n"
+						  "    {\n"
+						  "      float scale = float(range + 1 - abs(i)) / divisor;\n"
+						  "      vec2 coord = fragTexCoord + (blur * float(i)) / float(range);\n"
+						  "      if(fade != 0.f)\n"
+						  "        color += scale * mix(\n"
+						  "          texture(tex, vec3(coord, first)),\n"
+						  "          texture(tex, vec3(coord, second)), fade);\n"
+						  "      else\n"
+						  "        color += scale * texture(tex, vec3(coord, first));\n"
+						  "    }\n"
+						  "  }\n";
 
 	// Only included when hardware swizzle not supported, GL <3.3 and GLES
-	if(useShaderSwizzle)
+	if (useShaderSwizzle)
 	{
-		fragmentCodeStream <<
-		"  switch (swizzler) {\n"
-		"    case 0:\n"
-		"      color = color.rgba;\n"
-		"      break;\n"
-		"    case 1:\n"
-		"      color = color.rbga;\n"
-		"      break;\n"
-		"    case 2:\n"
-		"      color = color.grba;\n"
-		"      break;\n"
-		"    case 3:\n"
-		"      color = color.brga;\n"
-		"      break;\n"
-		"    case 4:\n"
-		"      color = color.gbra;\n"
-		"      break;\n"
-		"    case 5:\n"
-		"      color = color.bgra;\n"
-		"      break;\n"
-		"    case 6:\n"
-		"      color = color.gbba;\n"
-		"      break;\n"
-		"    case 7:\n"
-		"      color = color.rbba;\n"
-		"      break;\n"
-		"    case 8:\n"
-		"      color = color.rgga;\n"
-		"      break;\n"
-		"    case 9:\n"
-		"      color = color.bbba;\n"
-		"      break;\n"
-		"    case 10:\n"
-		"      color = color.ggga;\n"
-		"      break;\n"
-		"    case 11:\n"
-		"      color = color.rrra;\n"
-		"      break;\n"
-		"    case 12:\n"
-		"      color = color.bbga;\n"
-		"      break;\n"
-		"    case 13:\n"
-		"      color = color.bbra;\n"
-		"      break;\n"
-		"    case 14:\n"
-		"      color = color.ggra;\n"
-		"      break;\n"
-		"    case 15:\n"
-		"      color = color.bgga;\n"
-		"      break;\n"
-		"    case 16:\n"
-		"      color = color.brra;\n"
-		"      break;\n"
-		"    case 17:\n"
-		"      color = color.grra;\n"
-		"      break;\n"
-		"    case 18:\n"
-		"      color = color.bgba;\n"
-		"      break;\n"
-		"    case 19:\n"
-		"      color = color.brba;\n"
-		"      break;\n"
-		"    case 20:\n"
-		"      color = color.grga;\n"
-		"      break;\n"
-		"    case 21:\n"
-		"      color = color.ggba;\n"
-		"      break;\n"
-		"    case 22:\n"
-		"      color = color.rrba;\n"
-		"      break;\n"
-		"    case 23:\n"
-		"      color = color.rrga;\n"
-		"      break;\n"
-		"    case 24:\n"
-		"      color = color.gbga;\n"
-		"      break;\n"
-		"    case 25:\n"
-		"      color = color.rbra;\n"
-		"      break;\n"
-		"    case 26:\n"
-		"      color = color.rgra;\n"
-		"      break;\n"
-		"    case 27:\n"
-		"      color = vec4(color.b, 0.f, 0.f, color.a);\n"
-		"      break;\n"
-		"    case 28:\n"
-		"      color = vec4(0.f, 0.f, 0.f, color.a);\n"
-		"      break;\n"
-		"  }\n";
+		fragmentCodeStream << "  switch (swizzler) {\n"
+							  "    case 0:\n"
+							  "      color = color.rgba;\n"
+							  "      break;\n"
+							  "    case 1:\n"
+							  "      color = color.rbga;\n"
+							  "      break;\n"
+							  "    case 2:\n"
+							  "      color = color.grba;\n"
+							  "      break;\n"
+							  "    case 3:\n"
+							  "      color = color.brga;\n"
+							  "      break;\n"
+							  "    case 4:\n"
+							  "      color = color.gbra;\n"
+							  "      break;\n"
+							  "    case 5:\n"
+							  "      color = color.bgra;\n"
+							  "      break;\n"
+							  "    case 6:\n"
+							  "      color = color.gbba;\n"
+							  "      break;\n"
+							  "    case 7:\n"
+							  "      color = color.rbba;\n"
+							  "      break;\n"
+							  "    case 8:\n"
+							  "      color = color.rgga;\n"
+							  "      break;\n"
+							  "    case 9:\n"
+							  "      color = color.bbba;\n"
+							  "      break;\n"
+							  "    case 10:\n"
+							  "      color = color.ggga;\n"
+							  "      break;\n"
+							  "    case 11:\n"
+							  "      color = color.rrra;\n"
+							  "      break;\n"
+							  "    case 12:\n"
+							  "      color = color.bbga;\n"
+							  "      break;\n"
+							  "    case 13:\n"
+							  "      color = color.bbra;\n"
+							  "      break;\n"
+							  "    case 14:\n"
+							  "      color = color.ggra;\n"
+							  "      break;\n"
+							  "    case 15:\n"
+							  "      color = color.bgga;\n"
+							  "      break;\n"
+							  "    case 16:\n"
+							  "      color = color.brra;\n"
+							  "      break;\n"
+							  "    case 17:\n"
+							  "      color = color.grra;\n"
+							  "      break;\n"
+							  "    case 18:\n"
+							  "      color = color.bgba;\n"
+							  "      break;\n"
+							  "    case 19:\n"
+							  "      color = color.brba;\n"
+							  "      break;\n"
+							  "    case 20:\n"
+							  "      color = color.grga;\n"
+							  "      break;\n"
+							  "    case 21:\n"
+							  "      color = color.ggba;\n"
+							  "      break;\n"
+							  "    case 22:\n"
+							  "      color = color.rrba;\n"
+							  "      break;\n"
+							  "    case 23:\n"
+							  "      color = color.rrga;\n"
+							  "      break;\n"
+							  "    case 24:\n"
+							  "      color = color.gbga;\n"
+							  "      break;\n"
+							  "    case 25:\n"
+							  "      color = color.rbra;\n"
+							  "      break;\n"
+							  "    case 26:\n"
+							  "      color = color.rgra;\n"
+							  "      break;\n"
+							  "    case 27:\n"
+							  "      color = vec4(color.b, 0.f, 0.f, color.a);\n"
+							  "      break;\n"
+							  "    case 28:\n"
+							  "      color = vec4(0.f, 0.f, 0.f, color.a);\n"
+							  "      break;\n"
+							  "  }\n";
 	}
-	fragmentCodeStream <<
-		"  finalColor = color * alpha;\n"
-		"}\n";
+	fragmentCodeStream << "  finalColor = color * alpha;\n"
+						  "}\n";
 
 	static const string fragmentCodeString = fragmentCodeStream.str();
 	static const char *fragmentCode = fragmentCodeString.c_str();
@@ -289,7 +291,7 @@ void SpriteShader::ShaderImpl<T>::Init(bool useShaderSwizzle)
 	state.blurI = state.shader.Uniform("blur");
 	state.clipI = state.shader.Uniform("clip");
 	state.alphaI = state.shader.Uniform("alpha");
-	if(state.useShaderSwizzle)
+	if (state.useShaderSwizzle)
 		state.swizzlerI = state.shader.Uniform("swizzler");
 
 	glUseProgram(state.shader.Object());
@@ -305,10 +307,9 @@ void SpriteShader::ShaderImpl<T>::Init(bool useShaderSwizzle)
 
 	GLfloat vertexData[] = {
 		-.5f, -.5f,
-		-.5f,  .5f,
-		 .5f, -.5f,
-		 .5f,  .5f
-	};
+		-.5f, .5f,
+		.5f, -.5f,
+		.5f, .5f};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 
 	glEnableVertexAttribArray(state.shader.Attrib("vert"));
@@ -322,9 +323,9 @@ void SpriteShader::ShaderImpl<T>::Init(bool useShaderSwizzle)
 // Initialize the shaders.
 template <typename T>
 void SpriteShader::ShaderImpl<T>::Draw(const Sprite *sprite, const Point &position, float zoom, int swizzle,
-	float frame)
+									   float frame)
 {
-	if(!sprite)
+	if (!sprite)
 		return;
 
 	Bind();
@@ -332,12 +333,11 @@ void SpriteShader::ShaderImpl<T>::Draw(const Sprite *sprite, const Point &positi
 	Unbind();
 }
 
-
-template<typename T>
+template <typename T>
 SpriteShader::Item SpriteShader::ShaderImpl<T>::Prepare(const Sprite *sprite, const Point &position,
-	float zoom, int swizzle, float frame)
+														float zoom, int swizzle, float frame)
 {
-	if(!sprite)
+	if (!sprite)
 		return {};
 
 	Item item;
@@ -356,8 +356,7 @@ SpriteShader::Item SpriteShader::ShaderImpl<T>::Prepare(const Sprite *sprite, co
 	return item;
 }
 
-
-template<typename T>
+template <typename T>
 void SpriteShader::ShaderImpl<T>::Bind()
 {
 	std::shared_ptr<ScreenSpace> screenSpace = ScreenSpace::Variant<T>::instance();
@@ -368,8 +367,7 @@ void SpriteShader::ShaderImpl<T>::Bind()
 	glUniform2fv(state.scaleI, 1, scale);
 }
 
-
-template<typename T>
+template <typename T>
 void SpriteShader::ShaderImpl<T>::Add(const Item &item, bool withBlur)
 {
 	glBindTexture(GL_TEXTURE_2D_ARRAY, item.texture);
@@ -387,7 +385,7 @@ void SpriteShader::ShaderImpl<T>::Add(const Item &item, bool withBlur)
 	// Bounds check for the swizzle value:
 	int swizzle = (static_cast<size_t>(item.swizzle) >= SpriteShader::ShaderState::SWIZZLE.size() ? 0 : item.swizzle);
 	// Set the color swizzle.
-	if(state.useShaderSwizzle)
+	if (state.useShaderSwizzle)
 		glUniform1i(state.swizzlerI, swizzle);
 	else
 		glTexParameteriv(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_SWIZZLE_RGBA, SpriteShader::ShaderState::SWIZZLE[swizzle].data());
@@ -395,12 +393,11 @@ void SpriteShader::ShaderImpl<T>::Add(const Item &item, bool withBlur)
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
-
-template<typename T>
+template <typename T>
 void SpriteShader::ShaderImpl<T>::Unbind()
 {
 	// Reset the swizzle.
-	if(state.useShaderSwizzle)
+	if (state.useShaderSwizzle)
 		glUniform1i(state.swizzlerI, 0);
 	else
 		glTexParameteriv(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_SWIZZLE_RGBA, SpriteShader::ShaderState::SWIZZLE[0].data());

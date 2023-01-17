@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef ABSOLUTESCREENSPACE_H_
 #define ABSOLUTESCREENSPACE_H_
 
-
 #include "Point.h"
 #include "ScreenSpace.h"
 
@@ -26,9 +25,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // dimensions. This is used when rendering elements that are unaffected by user
 // scaling settings, such as the main space view. Can only be used in the drawing
 // thread.
-class AbsoluteScreenSpace : public ScreenSpace {
+class AbsoluteScreenSpace : public ScreenSpace
+{
 public:
-
 	// Zoom level as specified by the user.
 	int UserZoom() override;
 	// Effective zoom level, as restricted by the current resolution / window size.
@@ -56,13 +55,13 @@ public:
 	Point BottomRight() override;
 
 	// Get a singleton instance of AbsoluteScreenSpace.
-    [[nodiscard]] static std::shared_ptr<AbsoluteScreenSpace> instance();
+	static std::shared_ptr<AbsoluteScreenSpace> instance();
+
 private:
 	bool highDpi = false;
 	int zoom = 100;
 
 	AbsoluteScreenSpace() = default;
 };
-
 
 #endif

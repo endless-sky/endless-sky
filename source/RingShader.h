@@ -31,9 +31,11 @@ using namespace std;
 
 // Class representing a state.shader that draws round "dots," either filled in or with
 // transparent centers (i.e. circles or rings).
-class RingShader {
+class RingShader
+{
 private:
-	class ShaderState {
+	class ShaderState
+	{
 	public:
 		Shader shader;
 		GLint scaleI;
@@ -48,22 +50,25 @@ private:
 		GLuint vao;
 		GLuint vbo;
 	};
-	template<typename T>
-	class ShaderImpl {
+	template <typename T>
+	class ShaderImpl
+	{
 	private:
 		static ShaderState state;
+
 	public:
 		static void Draw(const Point &pos, float out, float in, const Color &color);
 		static void Draw(const Point &pos, float radius, float width, float fraction,
-			const Color &color, float dash = 0.f, float startAngle = 0.f);
+						 const Color &color, float dash = 0.f, float startAngle = 0.f);
 
 		static void Bind();
 		static void Add(const Point &pos, float out, float in, const Color &color);
 		static void Add(const Point &pos, float radius, float width, float fraction,
-			const Color &color, float dash = 0.f, float startAngle = 0.f);
+						const Color &color, float dash = 0.f, float startAngle = 0.f);
 		static void Unbind();
 		static void Init();
 	};
+
 public:
 	static void Init();
 	typedef typename RingShader::ShaderImpl<AbsoluteScreenSpace> ViewSpace;
@@ -72,10 +77,10 @@ public:
 
 #endif
 
-template<typename T>
+template <typename T>
 RingShader::ShaderState RingShader::ShaderImpl<T>::state;
 
-template<typename T>
+template <typename T>
 void RingShader::ShaderImpl<T>::Init()
 {
 	static const char *vertexCode =
@@ -141,10 +146,9 @@ void RingShader::ShaderImpl<T>::Init()
 
 	GLfloat vertexData[] = {
 		-1.f, -1.f,
-		-1.f,  1.f,
-		 1.f, -1.f,
-		 1.f,  1.f
-	};
+		-1.f, 1.f,
+		1.f, -1.f,
+		1.f, 1.f};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 
 	glEnableVertexAttribArray(state.shader.Attrib("vert"));
@@ -155,18 +159,16 @@ void RingShader::ShaderImpl<T>::Init()
 	glBindVertexArray(0);
 }
 
-
-template<typename T>
+template <typename T>
 void RingShader::ShaderImpl<T>::Draw(const Point &pos, float out, float in, const Color &color)
 {
-	float width = .5f * (1.f + out - in) ;
+	float width = .5f * (1.f + out - in);
 	Draw(pos, out - width, width, 1.f, color);
 }
 
-
-template<typename T>
+template <typename T>
 void RingShader::ShaderImpl<T>::Draw(const Point &pos, float radius, float width, float fraction,
-	const Color &color, float dash, float startAngle)
+									 const Color &color, float dash, float startAngle)
 {
 	Bind();
 
@@ -175,12 +177,11 @@ void RingShader::ShaderImpl<T>::Draw(const Point &pos, float radius, float width
 	Unbind();
 }
 
-
-template<typename T>
+template <typename T>
 void RingShader::ShaderImpl<T>::Bind()
 {
 	std::shared_ptr<ScreenSpace> screenSpace = ScreenSpace::Variant<T>::instance();
-	if(!state.shader.Object())
+	if (!state.shader.Object())
 		throw runtime_error("RingShader: Bind() called before Init().");
 
 	glUseProgram(state.shader.Object());
@@ -190,17 +191,16 @@ void RingShader::ShaderImpl<T>::Bind()
 	glUniform2fv(state.scaleI, 1, scale);
 }
 
-template<typename T>
+template <typename T>
 void RingShader::ShaderImpl<T>::Add(const Point &pos, float out, float in, const Color &color)
 {
-	float width = .5f * (1.f + out - in) ;
+	float width = .5f * (1.f + out - in);
 	Add(pos, out - width, width, 1.f, color);
 }
 
-
-template<typename T>
+template <typename T>
 void RingShader::ShaderImpl<T>::Add(const Point &pos, float radius, float width, float fraction,
-	const Color &color, float dash, float startAngle)
+									const Color &color, float dash, float startAngle)
 {
 	GLfloat position[2] = {static_cast<float>(pos.X()), static_cast<float>(pos.Y())};
 	glUniform2fv(state.positionI, 1, position);
@@ -216,7 +216,7 @@ void RingShader::ShaderImpl<T>::Add(const Point &pos, float radius, float width,
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
-template<typename T>
+template <typename T>
 void RingShader::ShaderImpl<T>::Unbind()
 {
 	glBindVertexArray(0);
