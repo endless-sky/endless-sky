@@ -398,8 +398,8 @@ outfit "Old Man's Sword"
 	category "Unique"
 	cost 120000
 	thumbnail "outfit/old sword"
-	"capture attack" 3
-	"capture defense" 3
+	"capture attack" 0.95
+	"capture defense" 0.95
 	"unplunderable" 1
 	description "Received this from a pair of siblings whom you helped out by fulfilling their eccentric father's last will and testament on Prime."
 	description "	While swords are seen today as being old curios and commemorative objects, rendered useless when gunpowder became dominant on the battlefield thousands of years ago, this sword is unlike any you're seen before. Despite how heavy it looks, it is remarkably light, and there are inscriptions on the blade on it that don't appear to be like any human language."
