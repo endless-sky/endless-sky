@@ -21,7 +21,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameAction.h"
 #include "LocationFilter.h"
 #include "Phrase.h"
-#include "ShipManager.h"
 
 #include <map>
 #include <memory>

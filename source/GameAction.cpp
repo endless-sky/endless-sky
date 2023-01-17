@@ -179,7 +179,10 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 		Dialog::ParseTextNode(child, isSpecial ? 3 : 1, text);
 	}
 	else if((key == "give" || key == "take") && child.Size() >= 3 && child.Token(1) == "ship")
-		ShipManager::Load(child, giftShips);
+	{
+		ShipManager manager;
+		giftShips.emplace(GameData::Ships().Get(child.Token(2)), manager.Load(child));
+	}
 	else if(key == "outfit" && hasValue)
 	{
 		int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));

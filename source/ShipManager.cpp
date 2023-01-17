@@ -26,7 +26,7 @@ using namespace std;
 
 
 
-void ShipManager::Load(const DataNode &child, map<const Ship *, ShipManager> &shipsList)
+void ShipManager::Load(const DataNode &child)
 {
 	const string token = child.Token(0);
 	if(child.Size() < 3 || child.Token(1) != "ship")
@@ -36,9 +36,8 @@ void ShipManager::Load(const DataNode &child, map<const Ship *, ShipManager> &sh
 	}
 	bool taking = token == "take";
 	const Ship *ship = GameData::Ships().Get(child.Token(2));
-	ShipManager newManager;
 	if(child.Size() >= 4)
-		newManager.name = child.Token(3);
+		name = child.Token(3);
 
 	for(const DataNode &grand : child)
 	{
@@ -46,28 +45,29 @@ void ShipManager::Load(const DataNode &child, map<const Ship *, ShipManager> &sh
 		if(taking)
 		{
 			if(key == "unconstrained")
-				newManager.unconstrained = true;
+				unconstrained = true;
 			else if(key == "with outfits")
-				newManager.withOutfits = true;
+				withOutfits = true;
 			else
 				child.PrintTrace("Error: Skipping unrecognized take ship node argument:");
 		}
 		else if(grand.Size() < 2)
 			grand.PrintTrace("Error: Expected a value argument:");
 		else if(key == "id")
-			newManager.id = grand.Token(1);
+			id = grand.Token(1);
 		else if(key == "amount")
-			newManager.count = grand.Value(1) * (taking ? -1 : 1);
+		{
+			if(grand.Value(1) <= 0)
+				child.PrintTrace("Error: Skipping invalid ship quantity:" + to_string(newManager.count));
+			else
+				count = grand.Value(1) * (taking ? -1 : 1);
+		}
 		else
 			child.PrintTrace("Error: Skipping unrecognized ship " + token + " node argument:");
 	}
 
-	if(newManager.count <= 0)
-		child.PrintTrace("Error: Skipping invalid ship quantity:" + to_string(newManager.count));
-	else if(taking && !newManager.id.empty() && newManager.count != 1)
-		child.PrintTrace("Error: Skipping invalid ship quantity with a specified unique id:");
-	else
-		shipsList.emplace(ship, newManager);
+	if(taking && !id.empty() && count != 1)
+		child.PrintTrace("Error: Invalid ship quantity with a specified unique id:");
 }
 
 

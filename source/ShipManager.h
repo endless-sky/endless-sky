@@ -30,18 +30,24 @@ class Ship;
 // Used to contain and manage gift/take ship, and owns commands.
 class ShipManager {
 public:
-	// Parse the node and add a shipManager to the given shipList if the node is correct.
-	static void Load(const DataNode &child, std::map<const Ship *, ShipManager> &shipsList);
+	void Load(const DataNode &child);
 
 
 public:
+	// Get a list of ships that satisfies these conditions, to take them away later.
 	std::vector<std::shared_ptr<Ship>> SatisfyingShips(const PlayerInfo &player, const Ship *model) const;
+	// Returns if the player meets the conditions; if they have the ships ready to be taken.
 	bool Satisfies(const PlayerInfo &player, const Ship *model) const;
 
+	// The in game name of the given/taken ship.
 	const std::string &Name() const;
+	// The identifier that the given/taken ship will have.
 	const std::string &Id() const;
+	// The amount of ships we will take/give.
 	int Count() const;
+	// If true, the ship will be taken no matter what; even if it is not in the same system, or parked.
 	bool Unconstrained() const;
+	// If true, the ship's outfits will be taken from the player, otherwise they will be left in the stock.
 	bool WithOutfits() const;
 
 
