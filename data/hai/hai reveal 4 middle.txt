@@ -1710,8 +1710,8 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				set "Hai Reveal [A11] Sound the Alarm: teeneep1 book"
 				"Hai Reveal [A11] Sound the Alarm: time" ++
 			`	This is an extremely biased report of Teeneep's life up to full physical maturity. It focuses on chaotic incidents of her past, and uses them to justify the claim that she has always been a menace to society.`
-			`	The most telling event happens shortly after Teeneep's mother mysteriously vanishes on a science expedition to Darkwaste, leaving the young Hai quite stressed. At school, she saw a teacher berating a classmate about "unfettered tendencies." In response, she stood on a table and started chanting anti-bullying protest slogans. The whole class joined her, and they marched through the hallways chanting. Eventually the entire school was doing it, and they locked themselves in a well-stocked cafeteria, refusing to come out until the teacher was fired.  Two days later, the teacher was unemployed, and Teeneep was in a "mandatory juvenile behavior modification program."`
-			`	Also, throughout the report, there were complaints about Teeneep befriending "problematic members of society." This included former pirates, Unfettered Hai, freed slaves, and even reformed violent convicts. The report admits Teeneep generally had a positive impact on the lives she touched, but insists that her desire to enter "that part of society" is a major concern.`
+			`	The most telling event happens shortly after Teeneep's mother mysteriously vanishes on a science expedition to Darkwaste, leaving the young Hai quite stressed. At school, she saw a teacher berating a classmate about "unfettered tendencies." In response, she stood on a table and started chanting anti-bullying protest slogans. The whole class joined her, and they marched through the hallways chanting. An hour later, the entire school was doing it, and they locked themselves in a well-stocked cafeteria, refusing to come out until the teacher was fired.  Two days later, the teacher was unemployed, and Teeneep was in a "mandatory juvenile behavior modification program."`
+			`	Also, throughout the report, there were complaints about Teeneep befriending "problematic members of society." This included former pirates, Unfettered Hai, freed slaves, and even reformed violent convicts. The report admits Teeneep generally had a positive impact on the lives she touched, but insists that her tendency to enter "that part of society" is a major concern. In particular, it notes that her quite athletic combat abilities developed during her time with "troubled individuals."`
 				goto reading
 
 			label teeneep2
@@ -1760,8 +1760,14 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			action
 				set "Hai Reveal [A11] Sound the Alarm: militech book"
 				"Hai Reveal [A11] Sound the Alarm: time" ++
-			`	FIXME: MILITARY TECH BOOK`
+			`	Predictably, the report begins with Hai hulls, which it claims are superior to human hulls by every measure. However, it warns that there are no other fields in which Hai clearly lead, and warns that the humans may soon surpass the Hai in military technology.`
+			`	Hai have a perceived advantage in several fields which, the report says, are unjustified. Hai engines are more efficient than human atomic engines, but no faster, and humans have ion and plasma alternatives. Likewise, human atomic generators are hotter-running than those of the Hai, but humans have far more options for power. Hai shields were vastly superior, until the Syndicate's recent advancements. Hai anti-missile systems' superiority is merely a myth; human systems are as effective per ton. Of course, Hai cooling and ramscoop technology is primitive compared to humans.`
+			`	What is most concerning to the Hai is the inferiority of their weapons. They note that the ion cannon is effective against humans only because human ships rarely pack large batteries. Other Hai weapons are only marginally better than human alternatives. Meanwhile, a few plasma cannons and flame-throwers can easily shut down a Shield Beetle. Striking a beetle from 45 degrees to the front with four particle cannons will completely paralyze it until it is disabled. Recent human missiles are quite deadly, as are electron beams and plasma turrets. In all, the Hai are quite fearful of human weapons and doubt they could win an all-out war without Unfettered advancements.`
 				goto reading
+
+			# SCENE CHANGE
+
+			# Beginning of the proceedings
 
 			label hurry
 			# Player "was in a hurry to get to the proceedings," so they catch Teeneep and Sayari talking.
