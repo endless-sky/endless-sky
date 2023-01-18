@@ -1641,11 +1641,11 @@ mission "Hai Reveal [A11] Sound the Alarm"
 
 			label library
 			choice
-				`	HMS-9Y4C12A: Troubles in Human Space`
+				`	HUM-9Y4C12A: Troubles in Human Space`
 					goto human
 					to display
 						not "Hai Reveal [A11] Sound the Alarm: human book"
-				`	HMS-9XC401Q: The Pirate Problem: Causes and Solutions`
+				`	HUM-9XC401Q: The Pirate Problem: Causes and Solutions`
 					goto pirates
 					to display
 						not "Hai Reveal [A11] Sound the Alarm: pirates book"
