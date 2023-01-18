@@ -782,9 +782,9 @@ ship "Gneiss"
 	description `Gneiss battleships are the Gegno Vi's true sword and shield in war. They are slightly older than the Hornfels and Schists, but carry the heaviest armament, bearing three huge mounts dedicated to holding enormous Ballistic Cannons. Gniess also have extremely strong armor plating, and can take a hefty beating while firing threatening broadsides at the opposing force.`
 	description `	Unfortunately, in exchange for huge firepower and defensive armor, they lack speed and maneuverability, even when fitted with the largest engine systems the Vi have to offer.`
 
-ship "Protolith"
-	sprite "ship/gegno protolith"
-	thumbnail "thumbnail/gegno protolith"
+ship "Granulite"
+	sprite "ship/gegno granulite"
+	thumbnail "thumbnail/gegno granulite"
 	attributes
 		category "Heavy Freighter"
 		licenses
@@ -857,7 +857,7 @@ ship "Protolith"
 	explode "medium explosion" 35
 	explode "small explosion" 25
 	"final explode" "final explosion large"
-	description `Protoliths are descendants of the Gegno's early generation ships used to colonize nearby systems before the invention of the hyperdrive. They now carry hundreds of Vi both in and out of war, and huge cargo loads to supply depots. They are not typically used as warships, but can support enough weaponry to threaten most smaller vessels, or fend off larger ships long enough for reinforcements to arrive.`
+	description `Granulites are descendants of the Gegno's early generation ships used to colonize nearby systems before the invention of the hyperdrive. They now carry hundreds of Vi both in and out of war, and huge cargo loads to supply depots. They are not typically used as warships, but can support enough weaponry to threaten most smaller vessels, or fend off larger ships long enough for reinforcements to arrive.`
 
 # Gegno Scin:
 
