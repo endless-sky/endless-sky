@@ -32,6 +32,12 @@ class DrawList;
 
 using namespace std;
 
+#ifdef ES_GLES
+// ES_GLES always uses the shader, not this, so use a dummy value to compile.
+// (the correct value is usually 0x8E46, so don't use that)
+#define GL_TEXTURE_SWIZZLE_RGBA 0xBEEF
+#endif
+
 // Class for drawing sprites. You can optionally draw a sprite with a custom
 // zoom level or color swizzle. A more complicated function is also provided for
 // adjusting the scale, rotation, clipping, fading, etc. of a sprite; this is

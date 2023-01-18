@@ -15,12 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "SpriteShader.h"
 
-#ifdef ES_GLES
-// ES_GLES always uses the shader, not this, so use a dummy value to compile.
-// (the correct value is usually 0x8E46, so don't use that)
-#define GL_TEXTURE_SWIZZLE_RGBA 0xBEEF
-#endif
-
 const vector<vector<GLint>> SpriteShader::ShaderState::SWIZZLE = {
 	{GL_RED, GL_GREEN, GL_BLUE, GL_ALPHA}, // 0 red + yellow markings (republic)
 	{GL_RED, GL_BLUE, GL_GREEN, GL_ALPHA}, // 1 red + magenta markings
