@@ -280,5 +280,5 @@ mission "Korath Boarding Response"
 	destination "Earth"
 	npc kill
 		government "Korath"
-		personality nemesis harvests plunders unconstrained heroic staying
-		fleet "Korath Defense" 3
+		personality harvests plunders unconstrained coward
+		fleet "Korath Defense" 4
