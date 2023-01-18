@@ -119,7 +119,7 @@ fleet "Vi Transport"
 	variant
 		"Schist (Heavy Load)"
 	variant
-		"Protolith"
+		"Granulite"
 
 fleet "Vi Cargo"
 	government "Gegno Vi"
@@ -143,7 +143,7 @@ fleet "Vi Cargo"
 		"Hornfel (Heavy Load)"
 		"Schist (Heavy Load)"
 	variant
-		"Protolith"
+		"Granulite"
 		"Schist (Heavy Load)"
 
 fleet "Vi Small II"
