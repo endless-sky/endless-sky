@@ -109,4 +109,4 @@ hazard "Neutron Star Magnetic Field"
 		"target effect" "spark"
 		"damage dropoff" 0 450
 		"dropoff modifier" 0
-		"shield damage" 2
+		"shield damage" 6
