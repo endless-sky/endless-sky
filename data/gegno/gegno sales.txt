@@ -47,14 +47,14 @@ outfitter "Gegno Intermediate"
 shipyard "Vi Cargo"
 	"Slate"
 	"Schist"
-	
-shipyard "Vi Warships I"
-	"Eclogite"
-	"Diorite"
 
-shipyard "Vi Warships II"
+shipyard "Vi Warships I"
 	"Hornfel"
 	"Gneiss"
+
+shipyard "Vi Warships II"
+	"Eclogite"
+	"Diorite"
 
 shipyard "Vi Utility"
 	"Granulite"

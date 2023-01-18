@@ -3856,8 +3856,6 @@ planet Ternituul
 	spaceport `Here, the spaceport is built very close to and partly in the ground, making it slightly dangerous for any craft trying to land here. Undeterred by the gloomy appearance of this graveyard world, the nearby Vi are occasionally chanting or lighting fires for the deceased, even while exiting their ships.`
 	government "Gegno Vi"
 	"required reputation" 1
-	shipyard "Vi Warships II"
-	shipyard "Vi Utility"
 	outfitter "Vi Basic"
 	bribe 0
 	security 0

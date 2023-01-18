@@ -13683,6 +13683,7 @@ system Ghhil
 		period 357.423
 	object Ruelogakk
 		sprite planet/station0
+			scale 0.5
 		distance 2600
 		period 968.187
 	object
@@ -29911,14 +29912,6 @@ system Uttna
 		sprite planet/gas7-hot
 		distance 17699
 		period 17195.8
-		object
-			sprite planet/station0
-			distance 218
-			period 55.16
-		object
-			sprite planet/station2c
-			distance 403
-			period 211.72
 
 system "Uwa Fahn"
 	pos 35.1585 -491.67
