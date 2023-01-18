@@ -821,7 +821,7 @@ outfit "Savagery Pike"
 	"capture attack" .9
 	"capture defense" .9
 	"unplunderable" 1
-	description `This is a ceremonial spear-like weapon presented to Vi warriors when they officially become part of the military. On the forward end are several long, sharp pikes that can easily pierce enemies, and on the rear end is a built-in cannon that can fire up to two explosive rounds. The cannon rounds are rarely used by the Vi unless they deem it absolutely necessary to defeat their foe, or to deal with unanticipated outside factors.`
+	description `This is a ceremonial spear-like weapon presented to Vi warriors when they officially become part of the military. On the forward end are several long, sharp pikes that can easily pierce enemies, and on the rear end is a built-in cannon that can fire up to two explosive rounds. The cannon rounds are rarely used by the Vi unless they deem it absolutely necessary to defeat their foe or deal with unanticipated outside factors.`
 
 outfit "Irate Carronade"
 	category "Hand to Hand"
