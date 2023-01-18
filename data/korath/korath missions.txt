@@ -265,7 +265,7 @@ mission "Korath Bounty"
 	minor
 	deadline 7
 	to offer
-#		random < 5
+		random < 5
 		or
 			"reputation: Korath" < -5000
 			"reputation: Korath (Civilian)" < -100
