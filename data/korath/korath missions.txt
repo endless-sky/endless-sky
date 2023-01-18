@@ -265,11 +265,28 @@ mission "Korath Boarding Response"
 	minor
 	deadline 1
 	to offer
-		random < 5
-		or
-			"reputation: Korath" < -5000
-			"reputation: Korath (Civilian)" < -30
 		not "Korath Boarding Response: active"
+		or
+			random < 5
+			and
+				random < 10
+				"reputation: Korath" < -100
+			and
+				random < 25
+				"reputation: Korath" < -1000
+			and
+				random < 50
+				"reputation: Korath" < -10000
+
+			and
+				random < 10
+				"reputation: Korath (Civilian)" < 0
+			and
+				random < 25
+				"reputation: Korath (Civilian)" < -100
+			and
+				random < 50
+				"reputation: Korath (Civilian)" < -1000
 	source
 		government Korath "Korath (Civilian)"
 		system Alcyone Almach "Alpha Hydri" Atik Durax Misam Polaris Sheratan
