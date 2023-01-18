@@ -263,11 +263,11 @@ mission "Korath Bounty"
 	boarding
 	repeat
 	minor
-	deadline 7
+	deadline 1
 	to offer
 		random < 5
 		or
-			"reputation: Korath" < -5000
+			"reputation: Korath" < -1000
 			"reputation: Korath (Civilian)" < -30
 		not "Korath Bounty: active"
 	source
@@ -277,10 +277,8 @@ mission "Korath Bounty"
 		conversation
 			"An angry hiss comes over your radio and you see a strange pulse along the hull of the Korath vessel. Your ship detects a powerful hyperwave emission followed by several capital ships jumping in. You had best finish your business with this ship before yours is reduced to a ball of super-heated plasma."
 				accept
-	on fail
-		dialog "It seems the Korath have finally given up the chase. You're safe... for now."
 	destination "Earth"
 	npc kill
 		government "Korath"
-		personality nemesis harvests plunders unconstrained heroic
+		personality nemesis harvests plunders unconstrained heroic staying
 		fleet "Korath Defense" 3
