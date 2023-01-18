@@ -1186,7 +1186,7 @@ void MapPanel::DrawNames()
 		int namewidth = font.Width(node.name);
 		Point offset(useBigFont ? -namewidth / 2 : -namewidth / 2, 0.75 * font.Height());
 		font.Draw(node.name, zoom * (node.position + center) + offset,
-					Color::Combine(1. -pow(zoom / 3., 2), node.nameColor, pow(zoom / 3., 2), node.color));
+					Color::Combine(1. -pow(zoom / 3., 2), node.nameColor, zoom / 3., node.color));
 	}
 
 }
