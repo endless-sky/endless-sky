@@ -67,7 +67,7 @@ mission "Rulei Planet"
 		attributes "rulei planet"
 	on offer
 		conversation
-			`	It feels as though there is a tremendous weight on your mind while you visit this world. The same sort of purple starlit hues of the alien ship from above can also be found in strange formations on the surface. Unlike the the whispers from before, the voices here are unbearable, especially the closer you get to the surface.`
+			`	It feels as though there is a tremendous weight on your mind while you visit this world. The same sort of purple starlit hues of the alien ship from above can also be found in various strange formations across the land. Unlike the the whispers from before, the voices here are unbearable, especially the closer you get to the surface.`
 			`You can barely hear yourself think, and it's enough to drive any living thing mad. However, the most ominous sensation here is that feeling of your consciousness being pulled at from beneath you, like something is attempting to drag your mind down below.`
 		
 			`It's best you don't remain here for too long.`
