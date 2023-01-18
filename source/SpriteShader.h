@@ -43,13 +43,12 @@ using namespace std;
 // adjusting the scale, rotation, clipping, fading, etc. of a sprite; this is
 // most often just for use by the DrawList class, which calculates those input
 // parameters based on an object's rotation, animation frame, etc.
-class SpriteShader
-{
+class SpriteShader {
 	friend DrawList;
 
+
 public:
-	class Item
-	{
+	class Item {
 	public:
 		uint32_t texture = 0;
 		uint32_t swizzle = 0;
@@ -63,8 +62,7 @@ public:
 	};
 
 private:
-	class ShaderState
-	{
+	class ShaderState {
 	public:
 		bool useShaderSwizzle;
 		Shader shader;
@@ -84,12 +82,13 @@ private:
 		static const vector<vector<GLint>> SWIZZLE;
 	};
 	template <typename T>
-	class ShaderImpl
-	{
+	class ShaderImpl {
 		friend SpriteShader;
+
 
 	private:
 		static ShaderState state;
+
 
 	public:
 		// Draw a sprite.
@@ -104,6 +103,7 @@ private:
 		static void Init(bool useShaderSwizzle);
 	};
 
+
 public:
 	typedef typename SpriteShader::ShaderImpl<AbsoluteScreenSpace> ViewSpace;
 	typedef typename SpriteShader::ShaderImpl<ScaledScreenSpace> UISpace;
@@ -111,8 +111,12 @@ public:
 	static void Init(bool useShaderSwizzle);
 };
 
+
+
 template <typename T>
 SpriteShader::ShaderState SpriteShader::ShaderImpl<T>::state;
+
+
 
 template <typename T>
 // Initialize the shaders.
@@ -326,6 +330,8 @@ void SpriteShader::ShaderImpl<T>::Init(bool useShaderSwizzle)
 	glBindVertexArray(0);
 }
 
+
+
 // Initialize the shaders.
 template <typename T>
 void SpriteShader::ShaderImpl<T>::Draw(const Sprite *sprite, const Point &position, float zoom, int swizzle,
@@ -338,6 +344,8 @@ void SpriteShader::ShaderImpl<T>::Draw(const Sprite *sprite, const Point &positi
 	Add(Prepare(sprite, position, zoom, swizzle, frame));
 	Unbind();
 }
+
+
 
 template <typename T>
 SpriteShader::Item SpriteShader::ShaderImpl<T>::Prepare(const Sprite *sprite, const Point &position,
@@ -362,10 +370,12 @@ SpriteShader::Item SpriteShader::ShaderImpl<T>::Prepare(const Sprite *sprite, co
 	return item;
 }
 
+
+
 template <typename T>
 void SpriteShader::ShaderImpl<T>::Bind()
 {
-	std::shared_ptr<ScreenSpace> screenSpace = ScreenSpace::Variant<T>::instance();
+	ScreenSpacePtr screenSpace = ScreenSpace::Variant<T>::instance();
 	glUseProgram(state.shader.Object());
 	glBindVertexArray(state.vao);
 
@@ -399,6 +409,8 @@ void SpriteShader::ShaderImpl<T>::Add(const Item &item, bool withBlur)
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
+
+
 template <typename T>
 void SpriteShader::ShaderImpl<T>::Unbind()
 {
@@ -411,5 +423,7 @@ void SpriteShader::ShaderImpl<T>::Unbind()
 	glBindVertexArray(0);
 	glUseProgram(0);
 }
+
+
 
 #endif

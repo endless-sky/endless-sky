@@ -28,7 +28,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cmath>
 #include <cstdint>
-#include <memory>
 #include <vector>
 
 using namespace std;
@@ -58,6 +57,7 @@ private:
 		// Draw all the items in this list.
 		void Draw() const;
 
+
 	private:
 		// Determine if the given object should be drawn at all.
 		bool Cull(const Body &body, const Point &position, const Point &blur) const;
@@ -74,21 +74,26 @@ private:
 		Point center;
 		Point centerVelocity;
 	};
+
+
 public:
 	typedef typename DrawList::DrawListImpl<AbsoluteScreenSpace> ViewSpace;
 	typedef typename DrawList::DrawListImpl<ScaledScreenSpace> UISpace;
 };
 
+
+
 template<typename T>
 // Clear the list.
 void DrawList::DrawListImpl<T>::Clear(int step, double zoom)
 {
-	std::shared_ptr<ScreenSpace> screenSpace = ScreenSpace::Variant<T>::instance();
+	ScreenSpacePtr screenSpace = ScreenSpace::Variant<T>::instance();
 	items.clear();
 	this->step = step;
 	this->zoom = zoom;
 	isHighDPI = (screenSpace->IsHighResolution() ? zoom > .5 : zoom > 1.);
 }
+
 
 
 template<typename T>
@@ -99,12 +104,14 @@ void DrawList::DrawListImpl<T>::SetCenter(const Point &center, const Point &cent
 }
 
 
+
 template<typename T>
 // Add an object based on the Body class.
 bool DrawList::DrawListImpl<T>::Add(const Body &body, double cloak)
 {
 	return Add(body, body.Position(), cloak);
 }
+
 
 
 template<typename T>
@@ -163,10 +170,11 @@ void DrawList::DrawListImpl<T>::Draw() const
 }
 
 
+
 template<typename T>
 bool DrawList::DrawListImpl<T>::Cull(const Body &body, const Point &position, const Point &blur) const
 {
-	std::shared_ptr<ScreenSpace> screenSpace = ScreenSpace::Variant<T>::instance();
+	ScreenSpacePtr screenSpace = ScreenSpace::Variant<T>::instance();
 	if(!body.HasSprite() || !body.Zoom())
 		return true;
 
@@ -185,6 +193,7 @@ bool DrawList::DrawListImpl<T>::Cull(const Body &body, const Point &position, co
 
 	return false;
 }
+
 
 
 template<typename T>
@@ -225,5 +234,7 @@ void DrawList::DrawListImpl<T>::Push(const Body &body, Point pos, Point blur, do
 
 	items.push_back(item);
 }
+
+
 
 #endif

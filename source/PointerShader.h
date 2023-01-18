@@ -23,7 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ScreenSpace.h"
 #include "Shader.h"
 
-#include <memory>
 #include <stdexcept>
 
 using namespace std;
@@ -49,6 +48,8 @@ private:
 	class ShaderImpl {
 	private:
 		static ShaderState state;
+
+
 	public:
 		static void Init();
 
@@ -60,6 +61,8 @@ private:
 			const Color &color);
 		static void Unbind();
 	};
+
+
 public:
 	static void Init();
 
@@ -67,8 +70,12 @@ public:
 	typedef typename PointerShader::ShaderImpl<ScaledScreenSpace> UISpace;
 };
 
+
+
 template<typename T>
 PointerShader::ShaderState PointerShader::ShaderImpl<T>::state;
+
+
 
 template<typename T>
 void PointerShader::ShaderImpl<T>::Init()
@@ -141,6 +148,7 @@ void PointerShader::ShaderImpl<T>::Init()
 }
 
 
+
 template<typename T>
 void PointerShader::ShaderImpl<T>::Draw(const Point &center, const Point &angle,
 	float width, float height, float offset, const Color &color)
@@ -153,10 +161,11 @@ void PointerShader::ShaderImpl<T>::Draw(const Point &center, const Point &angle,
 }
 
 
+
 template<typename T>
 void PointerShader::ShaderImpl<T>::Bind()
 {
-	std::shared_ptr<ScreenSpace> screenSpace = ScreenSpace::Variant<T>::instance();
+	ScreenSpacePtr screenSpace = ScreenSpace::Variant<T>::instance();
 	if(!state.shader.Object())
 		throw runtime_error("PointerShader: Bind() called before Init().");
 
@@ -166,6 +175,7 @@ void PointerShader::ShaderImpl<T>::Bind()
 	GLfloat scale[2] = {2.f / screenSpace->Width(), -2.f / screenSpace->Height()};
 	glUniform2fv(state.scaleI, 1, scale);
 }
+
 
 
 template<typename T>
@@ -189,12 +199,14 @@ void PointerShader::ShaderImpl<T>::Add(const Point &center, const Point &angle,
 }
 
 
+
 template<typename T>
 void PointerShader::ShaderImpl<T>::Unbind()
 {
 	glBindVertexArray(0);
 	glUseProgram(0);
 }
+
 
 
 #endif

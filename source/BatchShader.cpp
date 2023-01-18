@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "BatchShader.h"
 
+
+
 // Initialize the shaders.
 void BatchShader::Init()
 {

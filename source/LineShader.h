@@ -23,7 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ScreenSpace.h"
 #include "Shader.h"
 
-#include <memory>
 #include <stdexcept>
 
 using namespace std;
@@ -49,18 +48,26 @@ private:
 	class ShaderImpl {
 	private:
 		static ShaderState state;
+
+
 	public:
 		static void Init();
 		static void Draw(const Point &from, const Point &to, float width, const Color &color);
 	};
+
+
 public:
 	static void Init();
 	typedef typename LineShader::ShaderImpl<AbsoluteScreenSpace> ViewSpace;
 	typedef typename LineShader::ShaderImpl<ScaledScreenSpace> UISpace;
 };
 
+
+
 template<typename T>
 LineShader::ShaderState LineShader::ShaderImpl<T>::state;
+
+
 
 template<typename T>
 void LineShader::ShaderImpl<T>::Init()
@@ -127,10 +134,11 @@ void LineShader::ShaderImpl<T>::Init()
 }
 
 
+
 template<typename T>
 void LineShader::ShaderImpl<T>::Draw(const Point &from, const Point &to, float width, const Color &color)
 {
-	std::shared_ptr<ScreenSpace> screenSpace = ScreenSpace::Variant<T>::instance();
+	ScreenSpacePtr screenSpace = ScreenSpace::Variant<T>::instance();
 	if(!state.shader.Object())
 		throw runtime_error("LineShader: Draw() called before Init().");
 
@@ -158,5 +166,7 @@ void LineShader::ShaderImpl<T>::Draw(const Point &from, const Point &to, float w
 	glBindVertexArray(0);
 	glUseProgram(0);
 }
+
+
 
 #endif

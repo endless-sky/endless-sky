@@ -22,9 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Shader.h"
 #include "Sprite.h"
 
-#include <memory>
 #include <vector>
-
 
 class BatchDrawList;
 
@@ -33,7 +31,7 @@ using namespace std;
 // Class for drawing sprites in a batch. The input to each draw command is a
 // sprite, whether it should be drawn high DPI, and the vertex data.
 class BatchShader {
-friend BatchDrawList;
+	friend BatchDrawList;
 private:
 	class ShaderState {
 	public:
@@ -53,6 +51,8 @@ private:
 	class ShaderImpl {
 	private:
 		static ShaderState state;
+
+
 	public:
 		static void Init();
 
@@ -60,6 +60,8 @@ private:
 		static void Add(const Sprite *sprite, bool isHighDPI, const std::vector<float> &data);
 		static void Unbind();
 	};
+
+
 public:
 	// Initialize the shaders.
 	static void Init();
@@ -68,8 +70,12 @@ public:
 	typedef typename BatchShader::ShaderImpl<ScaledScreenSpace> UISpace;
 };
 
+
+
 template<typename T>
 BatchShader::ShaderState BatchShader::ShaderImpl<T>::state;
+
+
 
 // Initialize the shaders.
 template<typename T>
@@ -150,7 +156,7 @@ void BatchShader::ShaderImpl<T>::Init()
 template<typename T>
 void BatchShader::ShaderImpl<T>::Bind()
 {
-	std::shared_ptr<ScreenSpace> screenSpace = ScreenSpace::Variant<T>::instance();
+	ScreenSpacePtr screenSpace = ScreenSpace::Variant<T>::instance();
 	glUseProgram(state.shader.Object());
 	glBindVertexArray(state.vao);
 	// Bind the vertex buffer so we can upload data to it.

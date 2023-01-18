@@ -15,78 +15,101 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ScaledScreenSpace.h"
 
-// Zoom level as specified by the user.
-int ScaledScreenSpace::UserZoom()
-{
-	return Screen::UserZoom();
-}
+
+
 // Effective zoom level, as restricted by the current resolution / window size.
 int ScaledScreenSpace::Zoom()
 {
 	return Screen::Zoom();
 }
-void ScaledScreenSpace::SetZoom(int percent)
-{
-	Screen::SetZoom(percent);
-}
 
-// Specify that this is a high-DPI window.
-void ScaledScreenSpace::SetHighDPI(bool isHighDPI)
-{
-	Screen::SetHighDPI(isHighDPI);
-}
+
+
 // This is true if the screen is high DPI, or if the zoom is above 100%.
 bool ScaledScreenSpace::IsHighResolution()
 {
 	return Screen::IsHighResolution();
 }
+
+
+
 Point ScaledScreenSpace::Dimensions()
 {
 	return Screen::Dimensions();
 }
+
+
+
 int ScaledScreenSpace::Width() const
 {
 	return Screen::Width();
 }
+
+
+
 int ScaledScreenSpace::Height() const
 {
 	return Screen::Height();
 }
+
+
 
 // Get the positions of the edges and corners of the viewport.
 int ScaledScreenSpace::Left()
 {
 	return Screen::Left();
 }
+
+
+
 int ScaledScreenSpace::Top()
 {
 	return Screen::Top();
 }
+
+
+
 int ScaledScreenSpace::Right()
 {
 	return Screen::Right();
 }
+
+
+
 int ScaledScreenSpace::Bottom()
 {
 	return Screen::Bottom();
 }
 
+
+
 Point ScaledScreenSpace::TopLeft()
 {
 	return Screen::TopLeft();
 }
+
+
+
 Point ScaledScreenSpace::TopRight()
 {
 	return Screen::TopRight();
 }
+
+
+
 Point ScaledScreenSpace::BottomLeft()
 {
 	return Screen::BottomLeft();
 }
+
+
+
 Point ScaledScreenSpace::BottomRight()
 {
 	return Screen::BottomRight();
 }
+
+
 
 std::shared_ptr<ScaledScreenSpace> ScaledScreenSpace::instance()
 {

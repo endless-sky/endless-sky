@@ -27,7 +27,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cmath>
 #include <map>
-#include <memory>
 #include <vector>
 
 using namespace std;
@@ -37,8 +36,8 @@ using namespace std;
 class BatchDrawList {
 private:
 	template<typename T>
-		class DrawListImpl {
-			public:
+	class DrawListImpl {
+	public:
 		// Clear the list, also setting the global time step for animation.
 		void Clear(int step = 0, double zoom = 1.);
 		void SetCenter(const Point &center);
@@ -73,16 +72,20 @@ private:
 		// coordinates, and the index of the sprite frame.
 		std::map<const Sprite *, std::vector<float>> data;
 	};
+
+
 public:
 	typedef typename BatchDrawList::DrawListImpl<AbsoluteScreenSpace> ViewSpace;
 	typedef typename BatchDrawList::DrawListImpl<ScaledScreenSpace> UISpace;
 };
 
+
+
 // Clear the list, also setting the global time step for animation.
 template<typename T>
 void BatchDrawList::DrawListImpl<T>::Clear(int step, double zoom)
 {
-	std::shared_ptr<ScreenSpace> screenSpace = ScreenSpace::Variant<T>::instance();
+	ScreenSpacePtr screenSpace = ScreenSpace::Variant<T>::instance();
 	data.clear();
 	this->step = step;
 	this->zoom = zoom;
@@ -139,6 +142,8 @@ void BatchDrawList::DrawListImpl<T>::Draw() const
 	BatchShader::ShaderImpl<T>::Unbind();
 }
 
+
+
 template <typename T>
 inline void BatchDrawList::DrawListImpl<T>::Push(vector<float> &v, const Point &pos, float s, float t, float frame)
 {
@@ -149,10 +154,12 @@ inline void BatchDrawList::DrawListImpl<T>::Push(vector<float> &v, const Point &
 	v.push_back(frame);
 }
 
+
+
 template <typename T>
 bool BatchDrawList::DrawListImpl<T>::Cull(const Body &body, const Point &position) const
 {
-	std::shared_ptr<ScreenSpace> screenSpace = ScreenSpace::Variant<T>::instance();
+	ScreenSpacePtr screenSpace = ScreenSpace::Variant<T>::instance();
 	if(!body.HasSprite() || !body.Zoom())
 		return true;
 
@@ -212,5 +219,7 @@ bool BatchDrawList::DrawListImpl<T>::Add(const Body &body, Point position, float
 
 	return true;
 }
+
+
 
 #endif

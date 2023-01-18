@@ -24,18 +24,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ScreenSpace.h"
 #include "Shader.h"
 
-#include <memory>
 #include <stdexcept>
 
 using namespace std;
 
 // Class representing a state.shader that draws round "dots," either filled in or with
 // transparent centers (i.e. circles or rings).
-class RingShader
-{
+class RingShader {
 private:
-	class ShaderState
-	{
+	class ShaderState {
 	public:
 		Shader shader;
 		GLint scaleI;
@@ -50,11 +47,12 @@ private:
 		GLuint vao;
 		GLuint vbo;
 	};
+
 	template <typename T>
-	class ShaderImpl
-	{
+	class ShaderImpl {
 	private:
 		static ShaderState state;
+
 
 	public:
 		static void Draw(const Point &pos, float out, float in, const Color &color);
@@ -69,16 +67,19 @@ private:
 		static void Init();
 	};
 
+
 public:
 	static void Init();
 	typedef typename RingShader::ShaderImpl<AbsoluteScreenSpace> ViewSpace;
 	typedef typename RingShader::ShaderImpl<ScaledScreenSpace> UISpace;
 };
 
-#endif
+
 
 template <typename T>
 RingShader::ShaderState RingShader::ShaderImpl<T>::state;
+
+
 
 template <typename T>
 void RingShader::ShaderImpl<T>::Init()
@@ -159,12 +160,16 @@ void RingShader::ShaderImpl<T>::Init()
 	glBindVertexArray(0);
 }
 
+
+
 template <typename T>
 void RingShader::ShaderImpl<T>::Draw(const Point &pos, float out, float in, const Color &color)
 {
 	float width = .5f * (1.f + out - in);
 	Draw(pos, out - width, width, 1.f, color);
 }
+
+
 
 template <typename T>
 void RingShader::ShaderImpl<T>::Draw(const Point &pos, float radius, float width, float fraction,
@@ -177,10 +182,12 @@ void RingShader::ShaderImpl<T>::Draw(const Point &pos, float radius, float width
 	Unbind();
 }
 
+
+
 template <typename T>
 void RingShader::ShaderImpl<T>::Bind()
 {
-	std::shared_ptr<ScreenSpace> screenSpace = ScreenSpace::Variant<T>::instance();
+	ScreenSpacePtr screenSpace = ScreenSpace::Variant<T>::instance();
 	if(!state.shader.Object())
 		throw runtime_error("RingShader: Bind() called before Init().");
 
@@ -191,12 +198,16 @@ void RingShader::ShaderImpl<T>::Bind()
 	glUniform2fv(state.scaleI, 1, scale);
 }
 
+
+
 template <typename T>
 void RingShader::ShaderImpl<T>::Add(const Point &pos, float out, float in, const Color &color)
 {
 	float width = .5f * (1.f + out - in);
 	Add(pos, out - width, width, 1.f, color);
 }
+
+
 
 template <typename T>
 void RingShader::ShaderImpl<T>::Add(const Point &pos, float radius, float width, float fraction,
@@ -216,9 +227,15 @@ void RingShader::ShaderImpl<T>::Add(const Point &pos, float radius, float width,
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
+
+
 template <typename T>
 void RingShader::ShaderImpl<T>::Unbind()
 {
 	glBindVertexArray(0);
 	glUseProgram(0);
 }
+
+
+
+#endif

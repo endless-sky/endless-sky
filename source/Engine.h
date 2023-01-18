@@ -209,8 +209,8 @@ private:
 	const Sprite *highlightSprite = nullptr;
 	Point highlightUnit;
 	float highlightFrame = 0.f;
-	std::shared_ptr<ScreenSpace> uiScreenSpace;
-	std::shared_ptr<ScreenSpace> viewScreenSpace;
+	ScreenSpacePtr uiScreenSpace;
+	ScreenSpacePtr viewScreenSpace;
 
 	int step = 0;
 

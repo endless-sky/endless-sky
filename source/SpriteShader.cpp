@@ -47,6 +47,8 @@ const vector<vector<GLint>> SpriteShader::ShaderState::SWIZZLE = {
 	{GL_ZERO, GL_ZERO, GL_ZERO, GL_ALPHA} // 28 black only (outline)
 };
 
+
+
 // Initialize the shaders.
 void SpriteShader::Init(bool useShaderSwizzle)
 {

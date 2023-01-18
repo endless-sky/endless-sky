@@ -23,7 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ScreenSpace.h"
 #include "Shader.h"
 
-#include <memory>
 #include <stdexcept>
 
 // Class holding a function to fill a rectangular region of the screen with a
@@ -47,10 +46,14 @@ private:
 	class ShaderImpl {
 	private:
 		static ShaderState state;
+
+
 	public:
 		static void Init();
 		static void Fill(const Point &center, const Point &size, const Color &color);
 	};
+
+
 public:
 	static void Init();
 	typedef typename FillShader::ShaderImpl<AbsoluteScreenSpace> ViewSpace;
@@ -124,7 +127,7 @@ void FillShader::ShaderImpl<T>::Init()
 template<typename T>
 void FillShader::ShaderImpl<T>::Fill(const Point &center, const Point &size, const Color &color)
 {
-	std::shared_ptr<ScreenSpace> screenSpace = ScreenSpace::Variant<T>::instance();
+	ScreenSpacePtr screenSpace = ScreenSpace::Variant<T>::instance();
 	if(!state.shader.Object())
 		throw std::runtime_error("FillShader: Draw() called before Init().");
 

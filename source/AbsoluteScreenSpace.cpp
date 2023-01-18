@@ -13,83 +13,105 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-
 #include "AbsoluteScreenSpace.h"
 
 #include "Screen.h"
 
-// Zoom level as specified by the user.
-int AbsoluteScreenSpace::UserZoom()
-{
-	return zoom;
-}
+
+
 // Effective zoom level, as restricted by the current resolution / window size.
 int AbsoluteScreenSpace::Zoom()
 {
 	return 100;
 }
-void AbsoluteScreenSpace::SetZoom(int percent)
-{
-	zoom = percent;
-}
 
-// Specify that this is a high-DPI window.
-void AbsoluteScreenSpace::SetHighDPI(bool isHighDPI)
-{
-	highDpi = isHighDPI;
-}
+
+
 // This is true if the screen is high DPI, or if the zoom is above 100%.
 bool AbsoluteScreenSpace::IsHighResolution()
 {
-	return highDpi;
+	return Screen::IsHighResolution() && Screen::Zoom() <= 100;
 }
+
+
+
 Point AbsoluteScreenSpace::Dimensions()
 {
 	return Screen::RawDimensions();
 }
+
+
+
 int AbsoluteScreenSpace::Width() const
 {
 	return Screen::RawWidth();
 }
+
+
+
 int AbsoluteScreenSpace::Height() const
 {
 	return Screen::RawHeight();
 }
+
+
 
 // Get the positions of the edges and corners of the viewport.
 int AbsoluteScreenSpace::Left()
 {
 	return Screen::RawLeft();
 }
+
+
+
 int AbsoluteScreenSpace::Top()
 {
 	return Screen::RawTop();
 }
+
+
+
 int AbsoluteScreenSpace::Right()
 {
 	return Screen::RawRight();
 }
+
+
+
 int AbsoluteScreenSpace::Bottom()
 {
 	return Screen::RawBottom();
 }
 
+
+
 Point AbsoluteScreenSpace::TopLeft()
 {
 	return Screen::RawTopLeft();
 }
+
+
+
 Point AbsoluteScreenSpace::TopRight()
 {
 	return Screen::RawTopRight();
 }
+
+
+
 Point AbsoluteScreenSpace::BottomLeft()
 {
 	return Screen::RawBottomLeft();
 }
+
+
+
 Point AbsoluteScreenSpace::BottomRight()
 {
 	return Screen::RawBottomRight();
 }
+
+
 
 std::shared_ptr<AbsoluteScreenSpace> AbsoluteScreenSpace::instance()
 {

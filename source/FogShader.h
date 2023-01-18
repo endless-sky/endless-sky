@@ -29,7 +29,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
-#include <memory>
 #include <vector>
 
 using namespace std;
@@ -38,7 +37,7 @@ using namespace std;
 class FogShader {
 private:
 	class ShaderState {
-	friend FogShader;
+		friend FogShader;
 	public:
 		// Scale of the mask image:
 		static const int GRID = 16;
@@ -73,11 +72,15 @@ private:
 	class ShaderImpl {
 	private:
 		static ShaderState state;
+
+
 	public:
 		static void Init();
 		static void Redraw();
 		static void Draw(const Point &center, double zoom, const PlayerInfo &player);
 	};
+
+
 public:
 	static void Init();
 	typedef typename FogShader::ShaderImpl<AbsoluteScreenSpace> ViewSpace;
@@ -85,8 +88,11 @@ public:
 };
 
 
+
 template<typename T>
 FogShader::ShaderState FogShader::ShaderImpl<T>::state;
+
+
 
 template<typename T>
 void FogShader::ShaderImpl<T>::Init()
@@ -154,11 +160,14 @@ void FogShader::ShaderImpl<T>::Init()
 }
 
 
+
 template<typename T>
 void FogShader::ShaderImpl<T>::Redraw()
 {
 	state.previousZoom = 0.;
 }
+
+
 
 template<typename T>
 void FogShader::ShaderImpl<T>::Draw(const Point &center, double zoom, const PlayerInfo &player)
@@ -169,7 +178,7 @@ void FogShader::ShaderImpl<T>::Draw(const Point &center, double zoom, const Play
 		ORTH = FogShader::ShaderState::ORTH,
 		DIAG = FogShader::ShaderState::DIAG,
 		LIMIT = FogShader::ShaderState::LIMIT;
-	static std::shared_ptr<ScreenSpace> screenSpace = ScreenSpace::Variant<T>::instance();
+	static ScreenSpacePtr screenSpace = ScreenSpace::Variant<T>::instance();
 
 	// Generate a scaled-down mask image that represents the entire screen plus
 	// enough pixels beyond the screen to include any systems that may be off
@@ -287,6 +296,7 @@ void FogShader::ShaderImpl<T>::Draw(const Point &center, double zoom, const Play
 	glUseProgram(0);
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
+
 
 
 #endif

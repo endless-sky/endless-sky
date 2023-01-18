@@ -25,17 +25,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // dimensions. This is used when rendering elements that are unaffected by user
 // scaling settings, such as the main space view. Can only be used in the drawing
 // thread.
-class AbsoluteScreenSpace : public ScreenSpace
-{
+class AbsoluteScreenSpace : public ScreenSpace {
 public:
-	// Zoom level as specified by the user.
-	int UserZoom() override;
 	// Effective zoom level, as restricted by the current resolution / window size.
 	int Zoom() override;
-	void SetZoom(int percent) override;
-
-	// Specify that this is a high-DPI window.
-	void SetHighDPI(bool isHighDPI = true) override;
 
 	// This is true if the screen is high DPI, or if the zoom is above 100%.
 	bool IsHighResolution() override;
@@ -57,10 +50,8 @@ public:
 	// Get a singleton instance of AbsoluteScreenSpace.
 	static std::shared_ptr<AbsoluteScreenSpace> instance();
 
-private:
-	bool highDpi = false;
-	int zoom = 100;
 
+private:
 	AbsoluteScreenSpace() = default;
 };
 

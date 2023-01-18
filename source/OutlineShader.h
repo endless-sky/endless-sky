@@ -24,17 +24,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Shader.h"
 #include "Sprite.h"
 
-#include <memory>
-
 using namespace std;
 
 // Functions for drawing the "outline" of a sprite, i.e. a Sobel filter of its
 // alpha channel.
-class OutlineShader
-{
+class OutlineShader {
 private:
-	class ShaderState
-	{
+	class ShaderState {
 	public:
 		Shader shader;
 		GLint scaleI;
@@ -50,10 +46,10 @@ private:
 	};
 
 	template <typename T>
-	class ShaderImpl
-	{
+	class ShaderImpl {
 	private:
 		static ShaderState state;
+
 
 	public:
 		static void Init();
@@ -62,14 +58,19 @@ private:
 						const Color &color, const Point &unit = Point(0., -1.), float frame = 0.f);
 	};
 
+
 public:
 	static void Init();
 	typedef typename OutlineShader::ShaderImpl<AbsoluteScreenSpace> ViewSpace;
 	typedef typename OutlineShader::ShaderImpl<ScaledScreenSpace> UISpace;
 };
 
+
+
 template <typename T>
 OutlineShader::ShaderState OutlineShader::ShaderImpl<T>::state;
+
+
 
 template <typename T>
 void OutlineShader::ShaderImpl<T>::Init()
@@ -188,11 +189,13 @@ void OutlineShader::ShaderImpl<T>::Init()
 	glBindVertexArray(0);
 }
 
+
+
 template <typename T>
 void OutlineShader::ShaderImpl<T>::Draw(const Sprite *sprite, const Point &pos, const Point &size,
 										const Color &color, const Point &unit, float frame)
 {
-	std::shared_ptr<ScreenSpace> screenSpace = ScreenSpace::Variant<T>::instance();
+	ScreenSpacePtr screenSpace = ScreenSpace::Variant<T>::instance();
 	glUseProgram(state.shader.Object());
 	glBindVertexArray(state.vao);
 
@@ -229,5 +232,7 @@ void OutlineShader::ShaderImpl<T>::Draw(const Sprite *sprite, const Point &pos, 
 	glBindVertexArray(0);
 	glUseProgram(0);
 }
+
+
 
 #endif

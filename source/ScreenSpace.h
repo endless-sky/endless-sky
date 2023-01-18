@@ -20,19 +20,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <memory>
 
+class ScreenSpace;
+
+typedef typename std::shared_ptr<ScreenSpace> ScreenSpacePtr;
+
 // A representation of screen dimensions. Depending on implementation, this can either
 // be affected by user scaling settings, or ignore those settings entirely. Can only
 // be used in the drawing thread.
 class ScreenSpace {
 public:
-	// Zoom level as specified by the user.
-	virtual int UserZoom() = 0;
 	// Effective zoom level, as restricted by the current resolution / window size.
 	virtual int Zoom() = 0;
-	virtual void SetZoom(int percent) = 0;
 
-	// Specify that this is a high-DPI window.
-	virtual void SetHighDPI(bool isHighDPI = true) = 0;
 	// This is true if the screen is high DPI, or if the zoom is above 100%.
 	virtual bool IsHighResolution() = 0;
 
@@ -64,33 +63,40 @@ public:
 	static Point ConvertPoint(const Point &point);
 
 	template<typename T>
-	struct Variant {
+	class Variant {
+	public:
 		// Get a singleton instance of AbsoluteScreenSpace.
-		static std::shared_ptr<ScreenSpace> instance();
+		static ScreenSpacePtr instance();
 	};
 };
 
-template<typename T, typename U>
+
+
+template<typename SpaceA, typename SpaceB>
 double ScreenSpace::ConversionFactor()
 {
-	std::shared_ptr<ScreenSpace> from = ScreenSpace::Variant<T>::instance();
-	std::shared_ptr<ScreenSpace> to = ScreenSpace::Variant<U>::instance();
+	ScreenSpacePtr from = ScreenSpace::Variant<SpaceA>::instance();
+	ScreenSpacePtr to = ScreenSpace::Variant<SpaceB>::instance();
 
 	return static_cast<double>(from->Zoom()) / static_cast<double>(to->Zoom());
 }
 
-template<typename T, typename U>
+
+
+template<typename SpaceA, typename SpaceB>
 Point ScreenSpace::ConvertPoint(const Point &point)
 {
-	return point * ConversionFactor<T, U>();
+	return point * ConversionFactor<SpaceA, SpaceB>();
 }
+
 
 
 template<typename T>
-std::shared_ptr<ScreenSpace> ScreenSpace::Variant<T>::instance()
+ScreenSpacePtr ScreenSpace::Variant<T>::instance()
 {
 	return T::instance();
 }
+
 
 
 #endif
