@@ -278,7 +278,7 @@ mission "Korath Bounty"
 			"An angry hiss comes over your radio and you see a strange pulse along the hull of the Korath vessel. Your ship detects a powerful hyperwave emission followed by several capital ships jumping in. You had best finish your business with this ship before yours is reduced to a ball of super-heated plasma."
 				accept
 	on fail
-		dialog "It seems the Korath have finally given up the chase. You're safe - for now."
+		dialog "It seems the Korath have finally given up the chase. You're safe... for now."
 	destination "Earth"
 	npc kill
 		government "Korath"
