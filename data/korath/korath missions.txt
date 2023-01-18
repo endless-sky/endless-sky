@@ -258,7 +258,7 @@ mission "Small Scale Delivery"
 		payment 1000
 		dialog `You find a Korath who seems to have been waiting for you in the spaceport. They greet you by showing their palms, then outstretch their hands as if waiting to receive the package. You hand off the small delivery and they hand you a small payment of <payment>.`
 
-mission "Korath Bounty"
+mission "Korath Boarding Response"
 	invisible
 	boarding
 	repeat
@@ -269,7 +269,7 @@ mission "Korath Bounty"
 		or
 			"reputation: Korath" < -1000
 			"reputation: Korath (Civilian)" < -30
-		not "Korath Bounty: active"
+		not "Korath Boarding Response: active"
 	source
 		government Korath "Korath (Civilian)"
 		system Alcyone Almach "Alpha Hydri" Atik Durax Misam Polaris Sheratan
