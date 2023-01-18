@@ -908,8 +908,8 @@ planet "Dueitch Ae"
 	description `	Although preservation is a primary goal, the Scin still manipulate the planet for the sake of research. Even if it's not harming the environment directly, patches of the planet have been converted into large experimentation grounds, some a bit less humane than others.`
 	spaceport `The spaceport you are staying at is one huge circular construction outfitted with strange looking devices and technology, very much in contrast to the surrounding natural environment. In an open section located at the center is a small forest being observed by the nearby Scin. Some of them, however, seem to be more interested in observing you.`
 	government "Gegno Scin"
-	shipyard "Gegno Scin Ships"
-	outfitter "Gegno Scin Outfits"
+	shipyard "Scin Cargo"
+	outfitter "Scin Basic"
 	"required reputation" 1
 	bribe 0
 	security 0
@@ -921,8 +921,10 @@ planet "Dueyu Eitch"
 	description `	Three distinct subspecies can be seen walking about: one that is very bulky and scaly in appearance, another slimmer and more bone-like, and the third a combination of the first two; all stand at heights varying between a human being and a Quarg.`
 	spaceport `You get many strange looks while you are in what is presumably one of the busiest spaceports on the planet, and it's hard to interpret the moods of beings you are not familiar with, especially varying among different subspecies. Strange foods and drinks are passed around occasionally, and radically different behaviors at every corner of the eye can make all of this seem very overwhelming. In the end, the watchful eye of warriors from each group of Gegno reminds you that this is not your place to find either curiosity or complacency.`
 	government Gegno
-	shipyard "Gegno Ships"
-	outfitter "Gegno Outfits"
+	shipyard "Gegno Basic"
+	shipyard "Gegno Intermediate"
+	outfitter "Gegno Basic"
+	outfitter "Gegno Intermediate"
 	"required reputation" 1
 	security 0
 
@@ -1002,6 +1004,11 @@ planet "Ef Aourtdye"
 	description `	A majority of the mining, cargo, and refinery vessel shipyards in Gegno space are also found here, newly constructed out of the freshly processed materials and quickly prepared to be put into service.`
 	spaceport `The Gegno here are much too busy to pay any attention to you as it seems this spaceport is part of a larger refinery site. The largest Gegno heave around large metallic containers of either processed materials or various structural parts, while the Gegno closer to your own height are working with machinery. At the far end of the spaceport you can see large rugged vehicles leaving or entering the site on paths that branch out to several more factories in the distance.`
 	government Gegno
+	shipyard "Gegno Intermediate"
+	shipyard "Gegno Advanced"
+	outfitter "Gegno Basic"
+	outfitter "Gegno Intermediate"
+	outfitter "Gegno Advanced"
 	"required reputation" 1
 	security 0
 
@@ -1012,6 +1019,7 @@ planet "Ef Osch"
 	spaceport `Each island vessel serves as a makeshift yet functioning spaceport with all of the basic facilities. From as far as you can see, there are two lines of vessels in your area, and although they are miles apart, they form a runway-like pattern.`
 	spaceport `	The island ports are built in a variety of sizes. The Scin fly their ships down the pattern as if it's a highway, staying neatly in the center until they find a port that accommodates the ship they are piloting.`
 	government "Gegno Scin"
+	outfitter "Scin Basic"
 	"required reputation" 1
 	bribe 0
 	security 0
@@ -1102,6 +1110,10 @@ planet Enbye
 	spaceport `Rows of alternating towers stretch far ahead and behind the one your spacecraft is stationed at, and a thick layer of fog surrounds them like a floor blocking your view. Every now and then, the fog breaks, revealing the large shipyards down below either side of you, followed by a new row of towers.`
 	spaceport `	Off in the distance of the breaking fog is one vast gray structure, almost taking up your field of view. The closer you look at the mass, the more buildings there seem to be. If you stare too long, though, the nearby guards gesture more aggressively towards you, suggesting you keep your attention to yourself. It is unlikely you could get anywhere near there without being labeled a threat.`
 	government "Gegno Vi"
+	shipyard "Vi Warships I"
+	shipyard "Vi Utility"
+	outfitter "Vi Basic"
+	outfitter "Vi Intermediate"
 	"required reputation" 1
 	bribe 0
 	security 0
@@ -1112,6 +1124,10 @@ planet "Enn Bue"
 	description `Lengthy oval-like shipyards speckle the surface of this otherwise inhospitable desert planet, home to most of the Gegno Scin's ship production. A majority of material wealth comes from the neighboring gas giant's moons; however, the strong gravitational pull occasionally generates natural disasters that ravage the surface. Despite all of this, the Scin remain vigilant and efficient in their craftworks.`
 	spaceport `Enveloped in a large black dome, this spaceport is a lot quieter inside than the loud winds and storms often found outside. It has definitely seen a severe duststorm or two, but still holds tight together. The Gegno Scin here give you lengthy stares, and oddly enough you notice that they take turns to observe you. One will look up then look back down to themselves, which is soon followed by another's attention.`
 	government "Gegno Scin"
+	shipyard "Scin Cargo"
+	shipyard "Scin Warships"
+	outfitter "Scin Basic"
+	outfitter "Scin Intermediate"
 	"required reputation" 1
 	bribe 0
 	security 0
@@ -1589,8 +1605,10 @@ planet Graede
 	description `Unlike the homeworld of the Gegno, the capital of the Vi is covered in astounding natural beauty where the land is untouched. Vast tracts of forests spread across relatively low mountain ranges, and a variety of both small and large marsupials can be seen running to and fro. Despite all of this, there are many plowed fields that have been converted to industrial ranges and shipyards, and several large cities have begun to grow towards the sky. `
 	spaceport `The structure you're parked at seems to be just a section of a much larger rectangular building with many other sections and rods projecting out from it. From the height you are at, you can see the wilderness stretch for miles, occasionally interrupted with another tall-reaching spaceport or factory.`
 	government "Gegno Vi"
-	shipyard "Gegno Vi Ships"
-	outfitter "Gegno Vi Outfits"
+	shipyard "Vi Cargo"
+	shipyard "Vi Warships I"
+	outfitter "Vi Basic"
+	outfitter "Vi Intermediate"
 	"required reputation" 1
 	bribe 0
 	security 0
@@ -1702,6 +1720,8 @@ planet "Gue Faur"
 	description `Like most Gegno Scin planets, Gue Faur is a steep jungle planet full of all sorts of life. Surprisingly, a majority of the Scin's population resides on this planet rather than their capital. A great percentage of inhabitants consists of researchers and scientists, and all sorts of greenhouses and biodomes are visible everywhere.`
 	spaceport `The spaceport seems very busy with all sorts of Gegno Scin walking around in a hurried fashion. Some of them are wearing long, sleek jackets while others wear more feather-like plating. Once in a while, a Scin stops nearby to observe and record you, and then carries on as if nothing happened.`
 	government "Gegno Scin"
+	shipyard "Scin Utility"
+	outfitter "Scin Advanced"
 	"required reputation" 1
 	bribe 0
 	security 0
@@ -3535,6 +3555,7 @@ planet "Sies Upi"
 	spaceport `This spaceport seems a lot more militarized than other Gegno planet spaceports, full of geared up Vi with their ships parked close by. The roar of an enormous cruiser's engines can be heard just as often as the shutting down of another. There doesn't look to be very many non-military personnel here, and it feels somewhat claustrophobic with all of the guards standing around.`
 	government "Gegno Vi"
 	"required reputation" 1
+	outfitter "Vi Basic"
 	bribe 0
 	security 0
 
@@ -3836,6 +3857,9 @@ planet Ternituul
 	spaceport `Here, the spaceport is built very close to and partly in the ground, making it slightly dangerous for any craft trying to land here. Undeterred by the gloomy appearance of this graveyard world, the nearby Vi are occasionally chanting or lighting fires for the deceased, even while exiting their ships.`
 	government "Gegno Vi"
 	"required reputation" 1
+	shipyard "Vi Warships II"
+	shipyard "Vi Utility"
+	outfitter "Vi Basic"
 	bribe 0
 	security 0
 
