@@ -257,3 +257,30 @@ mission "Small Scale Delivery"
 	on complete
 		payment 1000
 		dialog `You find a Korath who seems to have been waiting for you in the spaceport. They greet you by showing their palms, then outstretch their hands as if waiting to receive the package. You hand off the small delivery and they hand you a small payment of <payment>.`
+
+mission "Korath Bounty"
+	invisible
+	boarding
+	repeat
+	minor
+	deadline 7
+	to offer
+#		random < 5
+		or
+			"reputation: Korath" < -5000
+			"reputation: Korath (Civilian)" < -100
+		not "Korath Bounty: active"
+	source
+		government Korath "Korath (Civilian)"
+		system Alcyone Almach "Alpha Hydri" Atik Durax Misam Polaris Sheratan
+	on offer
+		conversation
+			"An angry hiss comes over your radio and you see a strange pulse along the hull of the Korath vessel. Your ship detects a powerful hyperwave emission followed by several capital ships jumping in. You had best finish your business with this ship before yours is reduced to a ball of super-heated plasma."
+				accept
+	on fail
+		dialog "It seems the Korath have finally given up the chase. You're safe - for now."
+	destination "Earth"
+	npc kill
+		government "Korath"
+		personality nemesis harvests plunders unconstrained heroic
+		fleet "Korath Defense" 3
