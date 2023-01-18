@@ -38,7 +38,7 @@ outfitter "Gegno Intermediate"
 	"RG18 Torch Steering"
 	"RG18 Torch Thruster"
 	
-outfitter "Gegno Advanced"
+#outfitter "Gegno Advanced"
 
 
 	
@@ -85,7 +85,7 @@ outfitter "Vi Intermediate"
 	"R03 Warforge Battery"
 	"R04 Crusade Battery"
 	
-outfitter "Vi Advanced"
+#outfitter "Vi Advanced"
 
 
 
