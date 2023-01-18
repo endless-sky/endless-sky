@@ -267,7 +267,7 @@ mission "Korath Boarding Response"
 	to offer
 		random < 5
 		or
-			"reputation: Korath" < -1000
+			"reputation: Korath" < -5000
 			"reputation: Korath (Civilian)" < -30
 		not "Korath Boarding Response: active"
 	source
