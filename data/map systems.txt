@@ -15747,7 +15747,7 @@ system Iliniza
 		distance 237.35
 		period 53.0563
 	object "Enn Bue"
-		sprite planet/oberon-b
+		sprite planet/desert5-b
 		distance 720
 		period 280.318
 	object
@@ -22303,7 +22303,7 @@ system Ookmya
 		distance 6114.1
 		period 2151.51
 	object Ternituul
-		sprite planet/dust4
+		sprite planet/desert10-b
 		distance 7375.1
 		period 2850.35
 	object
