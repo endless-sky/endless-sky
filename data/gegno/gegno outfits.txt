@@ -840,7 +840,7 @@ outfit "Plasmasickle"
 	"capture attack" .7
 	"capture defense" .6
 	"unplunderable" 1
-	description `Plasmasickles are specialized assault weapons that are very reliant on close-quarters combat. Using a small portion of the Scin's recent plasma technology, the blade can be heated to higher temperatures in order to slice through tougher targets. Only select groups of Scin crew are equipped with these, but are trained well enough in assassination to use them effectively.`
+	description `Plasmasickles are specialized assault weapons that are very reliant on close-quarters combat. Using a small portion of the Scin's recent plasma technology, the blade can be heated to higher temperatures in order to slice through tougher targets. Only select groups of Scin crew are equipped with these, but they are trained well enough in assassination to use them effectively.`
 
 outfit "Plasma Grenades"
 	plural "Plasma Grenades"
