@@ -157,8 +157,8 @@ outfit "Ionic Blaster Prototype"
 		"hit force" 72
 		"shield damage" 70
 		"hull damage" 30
-		"ion damage" 1
-		"scrambling damage" 1
+		"ion damage" 0.5
+		"scrambling damage" 1.5
 	description "The Unfettered conflict with the rest of the Hai has put pressure on them to gain a technological edge, despite their limited resources. The Ionic Blaster is a result of that pressure. It is much smaller than the venerable Ion Cannon, but is still able to apply the same weapon jamming and energy draining effects, while also doing more raw damage for its size."
 
 outfit "Ionic Turret Prototype"
@@ -188,8 +188,8 @@ outfit "Ionic Turret Prototype"
 		"hit force" 60
 		"shield damage" 100
 		"hull damage" 50
-		"ion damage" 14
-		"scrambling damage" 14
+		"ion damage" 21
+		"scrambling damage" 7
 	description "This weapon improves upon the ionization capabilities of the Ion Cannon, while also being turret-mounted, enabling it to fire at enemies in any direction, not just those directly ahead."
 	description "	This design cannot yet be mass produced, but those that have been produced are prized by the few lucky enough to possess them."
 
