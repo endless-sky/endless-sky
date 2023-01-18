@@ -835,7 +835,7 @@ outfit "Irate Carronade"
 	
 outfit "Plasmasickle"
 	category "Hand to Hand"
-	cost
+	cost 17000
 	thumbnail "outfit/plasmasickle"
 	"capture attack" .7
 	"capture defense" .6
