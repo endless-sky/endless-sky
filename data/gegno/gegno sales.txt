@@ -116,7 +116,7 @@ outfitter "Scin Basic"
 	"SC-14 Plasma Thruster"
 
 outfitter "Scin Intermediate"
-	"Acuit Battery"
+	"Acuit Artillery"
 	"Astuit Battery"
 	"R03 Warforge Battery"
 	"R04 Crusade Battery"

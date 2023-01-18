@@ -1008,7 +1008,6 @@ planet "Ef Aourtdye"
 	shipyard "Gegno Advanced"
 	outfitter "Gegno Basic"
 	outfitter "Gegno Intermediate"
-	outfitter "Gegno Advanced"
 	"required reputation" 1
 	security 0
 
