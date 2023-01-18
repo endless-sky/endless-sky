@@ -294,6 +294,7 @@ mission "Korath Boarding Response"
 		conversation
 			"An angry hiss comes over your radio, and you see a strange pulse along the hull of the Korath vessel. Your ship detects a powerful hyperwave emission followed by several capital ships jumping in. You had best finish your business with this ship before yours is reduced to a ball of superheated plasma."
 				accept
+	# The destination is mandatory, but its choice won't affect anything due to "deadline 1"
 	destination "Kessel Sepret"
 	npc kill
 		government "Korath"
