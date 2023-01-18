@@ -35,8 +35,8 @@ ship "Albatross"
 		"outfit space" 672
 		"weapon capacity" 236
 		"engine capacity" 142
-		"shield generation" 100
-		"shield energy" 100
+		"shield generation" 5.2
+		"shield energy" 4.6
 		"hull repair rate" 1.5
 		"hull energy" 1.2
 		"outfit scan power" 18
