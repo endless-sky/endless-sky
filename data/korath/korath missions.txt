@@ -270,12 +270,15 @@ mission "Korath Boarding Response"
 			and
 				random < 5
 				"reputation: Korath" < -10
+				"reputation: Korath" >= -100
 			and
 				random < 10
 				"reputation: Korath" < -100
+				"reputation: Korath" >= -1000
 			and
 				random < 25
 				"reputation: Korath" < -1000
+				"reputation: Korath" >= -10000
 			and
 				random < 50
 				"reputation: Korath" < -10000
@@ -283,12 +286,14 @@ mission "Korath Boarding Response"
 			and
 				random < 10
 				"reputation: Korath (Civilian)" < 0
+				"reputation: Korath (Civilian)" >= -300
 			and
 				random < 25
-				"reputation: Korath (Civilian)" < -100
+				"reputation: Korath (Civilian)" < -300
+				"reputation: Korath (Civilian)" >= -3000
 			and
 				random < 50
-				"reputation: Korath (Civilian)" < -1000
+				"reputation: Korath (Civilian)" < -3000
 	source
 		government Korath "Korath (Civilian)"
 		system Alcyone Almach "Alpha Hydri" Atik Durax Misam Polaris Sheratan
@@ -300,5 +305,5 @@ mission "Korath Boarding Response"
 	destination "Kessel Sepret"
 	npc kill
 		government "Korath"
-		personality harvests plunders unconstrained coward
+		personality harvests plunders unconstrained coward uninterested entering
 		fleet "Korath Defense" 4
