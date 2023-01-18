@@ -268,7 +268,7 @@ mission "Korath Bounty"
 		random < 5
 		or
 			"reputation: Korath" < -5000
-			"reputation: Korath (Civilian)" < -100
+			"reputation: Korath (Civilian)" < -30
 		not "Korath Bounty: active"
 	source
 		government Korath "Korath (Civilian)"
