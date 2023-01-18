@@ -275,7 +275,7 @@ mission "Korath Boarding Response"
 		system Alcyone Almach "Alpha Hydri" Atik Durax Misam Polaris Sheratan
 	on offer
 		conversation
-			"An angry hiss comes over your radio and you see a strange pulse along the hull of the Korath vessel. Your ship detects a powerful hyperwave emission followed by several capital ships jumping in. You had best finish your business with this ship before yours is reduced to a ball of super-heated plasma."
+			"An angry hiss comes over your radio, and you see a strange pulse along the hull of the Korath vessel. Your ship detects a powerful hyperwave emission followed by several capital ships jumping in. You had best finish your business with this ship before yours is reduced to a ball of super-heated plasma."
 				accept
 	destination "Earth"
 	npc kill
