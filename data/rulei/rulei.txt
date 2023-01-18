@@ -18,7 +18,7 @@ mission "Relic of the Past"
 		never
 	npc save
 		government "Rulei"
-		personality heroic vindictive staying mute
+		personality heroic vindictive staying mute unconstrained frugal
 		system "Kanguwa"
 		ship "vyu-Ira" "Solemnity"
 
