@@ -100,3 +100,13 @@ hazard "Small Black Hole Gravity"
 		"damage dropoff" 120 1700
 		"dropoff modifier" 0
 
+
+
+hazard "Neutron Star Magnetic Field"
+	"constant strength"
+	"range" 450
+	weapon
+		"target effect" "spark"
+		"damage dropoff" 0 450
+		"dropoff modifier" 0
+		"shield damage" 2
