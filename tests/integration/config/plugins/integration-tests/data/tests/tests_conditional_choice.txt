@@ -50,9 +50,6 @@ test-data "conditional choice"
 			history
 		visited "Terra Incognita"
 		"visited planet" Ruin
-		conditions
-			# to skip the landing on ruin conversation
-			"Ruin: Landing: offered"
 
 
 mission "%TEST%: CONDITIONAL CHOICE"
@@ -157,7 +154,7 @@ test "Test Conditions"
 			"test: succeed test" = "succeed test"
 			"test: failed test" = "failed test"
 			# if we launched
-			"test: flagship planet: Ruin" = "flagship planet: Ruin"
+			"test: flagship landed" = "flagship landed"
 
 
 test "Conditional Test"
