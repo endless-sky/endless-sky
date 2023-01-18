@@ -503,6 +503,8 @@ mission "Gegno Hunter Fleets"
 	to offer
 		has "Gegno Genocide Defense: offered"
 		not "Gegno Hunter Fleets: active"
+	to complete
+		never
 	npc
 		government "Gegno"
 		personality nemesis heroic vindictive
