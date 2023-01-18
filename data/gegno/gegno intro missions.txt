@@ -502,7 +502,7 @@ mission "Gegno Hunter Fleets"
 	repeat
 	to offer
 		has "Gegno Genocide Defense: offered"
-		not "Gegno Hunter Fleets"
+		not "Gegno Hunter Fleets: active"
 	npc
 		government "Gegno"
 		personality nemesis heroic vindictive
