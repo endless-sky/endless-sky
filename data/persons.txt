@@ -1481,7 +1481,7 @@ ship "Modified Boxwing"
 
 person "Gefullte Taubenbrust"
 	government "Author"
-	frequency 1000
+	frequency 200
 	personality
 		heroic plunders opportunistic
 	phrase
@@ -1704,7 +1704,7 @@ effect "fusion cannon cloud"
 
 person "MasterOfGrey"
 	government "Author"
-	frequency 1000
+	frequency 200
 	personality
 		heroic plunders opportunistic
 	system
