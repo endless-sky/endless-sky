@@ -18810,7 +18810,7 @@ system Lloloi
 	habitable 10000
 	belt 1338
 	"jump range" 90
-	haze _menu/haze-full
+	haze _menu/haze-33
 	link Kanguwa
 	link Vanguwo
 	link Zolpulti
@@ -21341,7 +21341,7 @@ system Msalbit
 	arrival 5000
 	habitable 13720
 	belt 1333
-	haze _menu/haze-133
+	haze _menu/haze-blackbody
 	link Kanguwa
 	link Yranjiu
 	minables aluminum 29 4.6
