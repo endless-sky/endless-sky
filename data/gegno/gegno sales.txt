@@ -32,7 +32,7 @@ shipyard "Gegno Vi Ships"
 	"Eclogite"
 	"Gneiss"
 	"Hornfel"
-	"Protolith"
+	"Granulite"
 	"Schist"
 	"Slate"
 	
