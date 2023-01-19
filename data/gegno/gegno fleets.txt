@@ -1,3 +1,4 @@
+
 # Copyright (c) 2022 by Saugia
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -146,7 +147,7 @@ fleet "Vi Cargo"
 		"Granulite"
 		"Schist (Heavy Load)"
 
-fleet "Vi Small II"
+fleet "Small Vi II"
 	government "Gegno Vi"
 	names "gegno vi"
 	cargo 2
