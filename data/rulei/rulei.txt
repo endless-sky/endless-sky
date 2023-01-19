@@ -50,12 +50,12 @@ mission "Ira Contact"
 			choice
 				`	"Where am I?"`
 			label where
-			`	Once again, the whispers start to pick up. The swirl of endless voices continues on in your head for several more seconds, each one more unbearable than the last. Finally, they cease, and you're left in another moment's worth of silence.`
+			`	Once again, the whispers start to pick up. The swirl of endless voices continues on in your head for several more seconds, each one more agonizing than the last. Finally, they cease, and you're left in another moment's worth of silence.`
 			`	"T h e  E n d."`
 			choice
 				`	"What do you mean by "The End"?"`
 			`	The voices resume in the background, but if there's anything you can tell, it's that they've taken a more dreary tone than before. You try once more to communicate with the ship, but despite the constant whispers, it no longer answers. "The End" might possibly be referring to some type of extinction.`
-			`Taking another look at the vessel, it seems to have some sort of advanced origin. Eerily star-like patterns flow on its surface, and it doesn't visibly have any standard means of propulsion. At the rear end is some type of floating section of parts that hums in a strange tune. The Rulei were probably far more advanced than anything human, even possibly in line with something like the Quarg.`
+			`Taking another look at the vessel, it seems to have some sort of advanced origin. Eerily star-like patterns flow on its surface, and it doesn't visibly have any standard means of propulsion. At the rear end is some type of floating ring of objects that hum in a strange tune as they rotate. The Rulei were probably far more advanced than anything human, even possibly in line with the Quarg.`
 			`The planets below seem to have an abnormal appearance similar to that of the starship, but, for some reason, even looking at them gives you a headache. Something intense must have happened here a long time ago.`
 				decline
 				
@@ -67,7 +67,7 @@ mission "Rulei Planet"
 		attributes "rulei planet"
 	on offer
 		conversation
-			`	It feels as though there is a tremendous weight on your mind while you visit this world. The same sort of purple starlit hues of the alien ship from above can also be found in various strange formations across the land. Unlike the the whispers from before, the voices here are unbearable, especially the closer you get to the surface.`
+			`	It feels as though there is a tremendous weight on your mind while you visit this world. The same sort of purple starlit hues of the alien ship from above can also be found in various strange formations across the land. Unlike the the whispers from before, the voices here are painfully unbearable, especially the closer you get to the surface.`
 			`You can barely hear yourself think, and it's enough to drive any living thing mad. However, the most ominous sensation here is a persistent feeling of your consciousness being pulled at from beneath you, like something is attempting to drag your mind into the planet below.`
 		
 			`It's best you don't remain here for too long.`
