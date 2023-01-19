@@ -100,3 +100,22 @@ hazard "Small Black Hole Gravity"
 		"damage dropoff" 120 1700
 		"dropoff modifier" 0
 
+
+
+hazard "Magnetar Radiation"
+	"constant strength"
+	"range" 3000
+	weapon
+		"discharge damage" 0.5
+		"damage dropoff" 120 3000
+		"hull damage" 1
+		"energy damage" 20
+
+hazard "Magnetar Magnetic Field"
+	"constant strength"
+	"range" 1500
+	weapon
+		"gravitational"
+		"hit force" -10
+		"damage dropoff" 20 5100
+		"dropoff modifier" 0

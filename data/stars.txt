@@ -197,6 +197,11 @@ star "star/neutron"
 	power 4
 	wind 0.4
 
+# This star should always be used with the hazard designed for it.
+star "star/magnetar"
+	power 8
+	wind 2
+
 # Dwarves scaled like stars.
 star "star/o-dwarf"
 	power 1.1
