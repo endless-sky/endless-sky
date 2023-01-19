@@ -86,6 +86,7 @@ namespace {
 PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, const System *system, double zoom)
 	: position(position * zoom), radius(object.Radius() * zoom)
 {
+	double viewScale = ScreenSpace::ConversionFactor<AbsoluteScreenSpace, ScaledScreenSpace>();
 	const Planet &planet = *object.GetPlanet();
 	name = planet.Name();
 	if(planet.IsWormhole())
@@ -110,7 +111,7 @@ PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, con
 		return;
 
 	// Figure out how big the label has to be.
-	double width = max(FontSet::Get(18).Width(name), FontSet::Get(14).Width(government)) + 8.;
+	double width = (max(FontSet::Get(18).Width(name), FontSet::Get(14).Width(government)) + 8.) * viewScale;
 
 	// Try to find a label direction that not overlapping under any zoom.
 	for(int d = 0; d < 4; ++d)
@@ -152,12 +153,13 @@ void PlanetLabel::Draw() const
 		Point from = position + (radius + INNER_SPACE + LINE_GAP) * unit;
 		Point to = from + LINE_LENGTH * unit;
 		Point toUiSpace = ScreenSpace::ConvertPoint<AbsoluteScreenSpace, ScaledScreenSpace>(to);
+		double viewScale = ScreenSpace::ConversionFactor<AbsoluteScreenSpace, ScaledScreenSpace>();
 		LineShader::ViewSpace::Draw(from, to, 1.3f, color);
 
-		double nameX = toUiSpace.X() + (direction < 2 ? 2. : -bigFont.Width(name) - 2.);
+		double nameX = toUiSpace.X() + (direction < 2 ? 2. : -bigFont.Width(name) * viewScale - 2.);
 		bigFont.DrawAliased(name, nameX, toUiSpace.Y() - .5 * bigFont.Height(), color);
 
-		double governmentX = toUiSpace.X() + (direction < 2 ? 4. : -font.Width(government) - 4.);
+		double governmentX = toUiSpace.X() + (direction < 2 ? 4. : -font.Width(government) * viewScale - 4.);
 		font.DrawAliased(government, governmentX, toUiSpace.Y() + .5 * bigFont.Height() + 1., color);
 	}
 	Angle barbAngle(innerAngle + 36.);
