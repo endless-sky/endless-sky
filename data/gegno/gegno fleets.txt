@@ -159,8 +159,6 @@ fleet "Vi Small II"
 		"Diorite"
 	variant
 		"Diorite"
-	variant 
-		"Diorite" 2
 	variant
 		"Eclogite" 2
 		"Diorite"

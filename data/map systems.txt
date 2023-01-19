@@ -4609,7 +4609,8 @@ system Anbrim
 	asteroids "medium metal" 39 3.4
 	asteroids "large metal" 9 2.6
 	minables yottrite 2 6.7
-	fleet "Scin Transport" 4000
+	fleet "Scin Small" 7900
+	fleet "Vi Small" 7900
 	object
 		sprite star/nova-core
 		period 1000
@@ -11718,8 +11719,8 @@ system Evrae
 	fleet "Small Scin" 800
 	fleet "Large Scin" 1600
 	fleet "Scin Cargo" 2200
-	fleet "Small Vi" 3900
-	fleet "Large Vi" 4900
+	fleet "Small Vi" 4900
+	fleet "Large Vi" 5900
 	object
 		sprite star/a5
 		distance 1.24
