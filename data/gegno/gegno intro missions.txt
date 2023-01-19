@@ -505,7 +505,7 @@ mission "Gegno Hunter Fleets"
 		not "Gegno Hunter Fleets: active"
 	to complete
 		never
-	npc
+	npc save
 		government "Gegno"
 		personality nemesis heroic vindictive
 		system
@@ -521,7 +521,7 @@ mission "Gegno Hunter Fleets"
 				"Halite" 18
 				"Felsic" 3
 				"Coesite" 5
-	npc
+	npc save
 		government "Gegno"
 		personality nemesis heroic vindictive
 		system
@@ -535,7 +535,7 @@ mission "Gegno Hunter Fleets"
 				"Felsic" 4
 				"Coesite" 4
 				"Eclogite" 3
-	npc
+	npc save
 		government "Gegno"
 		personality nemesis heroic vindictive
 		system
