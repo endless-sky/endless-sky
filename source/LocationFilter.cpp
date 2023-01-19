@@ -264,7 +264,8 @@ bool LocationFilter::IsEmpty() const
 {
 	return planets.empty() && attributes.empty() && systems.empty() && governments.empty()
 		&& !center && originMaxDistance < 0 && notFilters.empty() && neighborFilters.empty()
-		&& outfits.empty() && shipCategory.empty();
+		&& outfits.empty() && shipCategory.empty()
+		&& landmarkPlanetNames.empty() && landmarkSystemNames.empty();
 }
 
 
