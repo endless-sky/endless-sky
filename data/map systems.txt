@@ -11275,6 +11275,7 @@ system Eogho
 	asteroids "small metal" 17 6.26
 	asteroids "medium metal" 9 6.98
 	asteroids "large metal" 46 6.84
+	fleet "Gegno Basic" 2200
 	object
 		sprite star/b0
 		period 10
