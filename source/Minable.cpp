@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "Effect.h"
 #include "Flotsam.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Mask.h"
 #include "Outfit.h"
@@ -68,9 +69,9 @@ void Minable::Load(const DataNode &node)
 	}
 
 	if(displayName.empty())
-		displayName = name;
+		displayName = Format::Capitalize(name);
 	if(noun.empty())
-		noun = "asteroid";
+		noun = "Asteroid";
 }
 
 

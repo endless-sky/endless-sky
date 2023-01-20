@@ -744,8 +744,7 @@ void Engine::Step(bool isActive)
 			targetAsteroid->GetSprite(),
 			targetAsteroid->Facing().Unit(),
 			targetAsteroid->GetFrame(step));
-		info.SetString("target name", Format::Capitalize(targetAsteroid->DisplayName())
-				+ " " + Format::Capitalize(targetAsteroid->Noun()));
+		info.SetString("target name", targetAsteroid->DisplayName() + " " + targetAsteroid->Noun());
 
 		targetVector = targetAsteroid->Position() - center;
 
