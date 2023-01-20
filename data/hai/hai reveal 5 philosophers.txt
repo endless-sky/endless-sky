@@ -311,7 +311,7 @@ mission "Hai Reveal [B04] The Riddle"
 	landing
 	name "Follow a Lead on <planet>"
 	description `Fly to <planet> and talk to Giti's online contact about the disappearances.`
-	source "Earth"
+	source "Canyon"
 	destination "Wayfarer"
 	to offer
 		has "Hai Reveal [B03] Contact Giti: done"
@@ -366,7 +366,7 @@ conversation "giti tripped an alert"
 	`	The door makes several creaking and snapping noises as it slides back into place. It takes most of your strength, but you manage to close it. The man, whose Republic Intelligence uniform is labeled with the name "Agent Kopkow," gestures for you to take one of the only seats in the room. He takes the one opposite and Giti sits at her desk. The other three agents remain standing.`
 		goto encounters
 	label broke
-	`	The man, whose Republic Intelligence uniform is labeled with the name "Agent Kopkow", punches the door, knocking it back into place and shutting it in one motion. He gestures for you to take one of the only seats in the room. He takes the one opposite and Giti sits at her desk. The other three agents remain standing.`
+	`	The man, whose Republic Intelligence uniform is labeled with the name "Agent Kopkow," punches the door, knocking it back into place and shutting it in one motion. He gestures for you to take one of the only seats in the room. He takes the one opposite and Giti sits at her desk. The other three agents remain standing.`
 	label encounters
 	`	You've had some encounters with Republic Intelligence, but you know what everyone knows. They're the top police force of the Republic, dealing with high-profile civilian crimes that local authorities can't handle: murder investigations, interplanetary kidnappings, and the like. They also gather intelligence throughout human space, and possibly beyond, reporting directly to the Republic Parliament... which mostly means it's beholden to the interests of the members of Parliament.`
 	choice
@@ -649,7 +649,6 @@ mission "Hai Reveal [B08] Syndicate Internal Affairs"
 	passengers 1
 	to offer
 		has "Hai Reveal [B07] Sayari's Update: done"
-		not "event: knows about keystones and wormholes"
 	on offer
 		fail "Hai Reveal [B02-S] Republic Intelligence Stalkers"
 		log `Giti tripped an alert which places you both under the jurisdiction of a Syndicate Internal Affairs investigation. You've were sent directly to Hephaestus.`
@@ -733,25 +732,25 @@ mission "Hai Reveal [B09] Scanning Devil-Hide"
 					decline
 					to display
 						has "Hai Reveal [B09] Scanning Devil-Hide: label wormhole"
-				label wormhole
-				action
-					set "Hai Reveal [B09] Scanning Devil-Hide: label wormhole"
-				`	"The wormhole is nothing remarkable. The wormholes at Ultima Thule and Deneb have the same readings. Certainly, it is stable and we can fly through it without worrying about spaghettification. I'm not surprised to find a wormhole here, given how far away Devil-Hide is. The Deneb wormhole leads to another galaxy; this system is just outside of ours."`
-					goto scan
-				label anomaly
-				action
-					set "Hai Reveal [B09] Scanning Devil-Hide: label anomaly"
-				`	"It looks like a collapsing wormhole, and it seems to scatter any hyperwaves that come towards it, which would wreak havoc with anyone trying to plot a course here through hyperspace. I expect it may be the reason why the jump drive didn't take us to the jump target.`
-				choice
-					`	"What do you mean?"`
-					`	"If we're not at the jump target, where are we?"`
-				`	"Well, we're about 0.17 light-years away from the location you tried to jump to. I'm not a theoretical hyperparticle physicist, but I expect this anomaly has something to do with it. When we take this data back home, I'm sure an army of scientists will look it over."`
-					goto scan
-				label pink
-				action
-					set "Hai Reveal [B09] Scanning Devil-Hide: label pink"
-				`	"The spatial anomaly is slowly leaking some pink material that defies all analysis. It bears some similarity to the contents of a jump drive, which also defies all analysis. I'd wager it has something to do with the system being invisible. When we get home, I'll be sure our hyperspace researchers give it a thorough going-over."`
-					goto scan
+			label wormhole
+			action
+				set "Hai Reveal [B09] Scanning Devil-Hide: label wormhole"
+			`	"The wormhole is nothing remarkable. The wormholes at Ultima Thule and Deneb have the same readings. Certainly, it is stable and we can fly through it without worrying about spaghettification. I'm not surprised to find a wormhole here, given how far away Devil-Hide is. The Deneb wormhole leads to another galaxy; this system is just outside of ours."`
+				goto scan
+			label anomaly
+			action
+				set "Hai Reveal [B09] Scanning Devil-Hide: label anomaly"
+			`	"It looks like a collapsing wormhole, and it seems to scatter any hyperwaves that come towards it, which would wreak havoc with anyone trying to plot a course here through hyperspace. I expect it may be the reason why the jump drive didn't take us to the jump target.`
+			choice
+				`	"What do you mean?"`
+				`	"If we're not at the jump target, where are we?"`
+			`	"Well, we're about 0.17 light-years away from the location you tried to jump to. I'm not a theoretical hyperparticle physicist, but I expect this anomaly has something to do with it. When we take this data back home, I'm sure an army of scientists will look it over."`
+				goto scan
+			label pink
+			action
+				set "Hai Reveal [B09] Scanning Devil-Hide: label pink"
+			`	"The spatial anomaly is slowly leaking some pink material that defies all analysis. It bears some similarity to the contents of a jump drive, which also defies all analysis. I'd wager it has something to do with the system being invisible. When we get home, I'll be sure our hyperspace researchers give it a thorough going-over."`
+				goto scan
 		dialog `During the trip you take the time to tell Giti the basics about the Hai. She had already known they existed, but hadn't been privy to any details of what was going on now. Knowing that the disappearances you've been hunting extend to Hai space seems to answer more questions than it creates and she takes the revelation of how significant this is to current events easily in stride.`
 	on enter "Devil-Hide"
 		log `Found a bizarre planet with a subterranean colony in its moon. The planet defies analysis and seems to violate the known laws of physics. There is enough evidence of Hai tech to assume Hai presence in addition to the humans able to be detected. However, the scanners could not see the full extent of what's there due to interference from the planet.`
