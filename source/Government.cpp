@@ -74,6 +74,34 @@ namespace {
 
 
 
+Government::RaidFleet::RaidFleet(const Fleet *fleet, double minAttraction, double maxAttraction)
+	: fleet(fleet), minAttraction(minAttraction), maxAttraction(maxAttraction)
+{
+}
+
+
+
+const Fleet *Government::RaidFleet::GetFleet() const
+{
+	return fleet;
+}
+
+
+
+double Government::RaidFleet::MinAttraction() const
+{
+	return minAttraction;
+}
+
+
+
+double Government::RaidFleet::MaxAttraction() const
+{
+	return maxAttraction;
+}
+
+
+
 // Default constructor.
 Government::Government()
 {
@@ -175,14 +203,14 @@ void Government::Load(const DataNode &node)
 			if(remove)
 			{
 				for(auto it = raidFleets.begin(); it != raidFleets.end(); )
-					if(it->first == fleet)
+					if(it->GetFleet() == fleet)
 						it = raidFleets.erase(it);
 					else
 						++it;
 			}
 			else
-				raidFleets.emplace_back(fleet,
-					make_pair((child.Size() > (valueIndex + 1) ? child.Value(valueIndex + 1) : 2.),
+				raidFleets.emplace_back(RaidFleet(fleet,
+					(child.Size() > (valueIndex + 1) ? child.Value(valueIndex + 1) : 2.),
 					child.Size() > (valueIndex + 2) ? child.Value(valueIndex + 2) : 0.));
 		}
 		// Handle the attributes which cannot have a value removed.
@@ -476,7 +504,7 @@ const string &Government::Language() const
 // Pirate raids in this government's systems use these fleet definitions. If
 // it is empty, there are no pirate raids.
 // The second attribute denotes the minimal and maximal attraction required for the fleet to appear.
-const vector<pair<const Fleet *, pair<double, double>>> &Government::RaidFleets() const
+const vector<RaidFleet> &Government::RaidFleets() const
 {
 	return raidFleets;
 }

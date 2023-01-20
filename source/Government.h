@@ -46,6 +46,21 @@ class System;
 // bribe than others.
 class Government {
 public:
+	class RaidFleet {
+		public:
+			RaidFleet(const Fleet *fleet, double minAttraction, double maxAttraction);
+			const Fleet *GetFleet() const;
+			double MinAttraction() const;
+			double MaxAttraction() const;
+
+		private:
+			const Fleet *fleet = nullptr;
+			double minAttraction;
+			double maxAttraction;
+	}
+
+
+public:
 	// Default constructor.
 	Government();
 
@@ -92,7 +107,7 @@ public:
 	// Pirate raids in this government's systems use these fleet definitions. If
 	// it is empty, there are no pirate raids.
 	// The second attribute denotes the minimal and maximal attraction required for the fleet to appear.
-	const std::vector<std::pair<const Fleet *, std::pair<double, double>>> &RaidFleets() const;
+	const std::vector<RaidFleet> &RaidFleets() const;
 
 	// Check if, according to the politics stored by GameData, this government is
 	// an enemy of the given government right now.
