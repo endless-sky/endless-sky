@@ -9079,7 +9079,7 @@ system "Deep Space 7C"
 		distance 2557.67
 		period 2509.76
 	object "Devil-Run Wormhole"
-		sprite planet/wormhole-red
+		sprite planet/wormhole
 		distance 4106.27
 		period 5105.48
 
@@ -9577,6 +9577,7 @@ system Devil-Run
 	government Uninhabited
 	arrival 1080
 	habitable 1080
+	haze _menu/haze-pink
 	asteroids "small rock" 121 1.9558
 	asteroids "medium rock" 14 1.9096
 	asteroids "large rock" 28 1.4784
@@ -9605,7 +9606,7 @@ system Devil-Run
 		distance 351.97
 		period 80.3723
 	object "Devil-Run Wormhole"
-		sprite planet/wormhole-red
+		sprite planet/wormhole
 		distance 1805.33
 		period 933.647
 

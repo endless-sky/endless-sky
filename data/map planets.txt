@@ -853,7 +853,6 @@ planet Devil-Eye
 	description `There are automated deuterium refineries on this planet, siphoning deuterium from cave walls. The refinery equipment looks Hai in origin. Some mesas have fuel pumps, filling containers with fuel for later transport to the planet's moon.`
 
 planet "Devil-Run Wormhole"
-	attributes "requires: quantum keystone"
 	spaceport ``
 	wormhole "Devil-Run Wormhole"
 
