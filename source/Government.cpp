@@ -103,9 +103,9 @@ void Government::Load(const DataNode &node)
 			displayName = name;
 	}
 
-	// If raid fleets already exist, clear all existing raid fleets if the "add" or "remove" keywords aren't used
-	// and a "raid" key is encountered.
-	bool clearRaids = !raidFleets.empty();
+	// For the following keys, if this data node defines a new value for that
+	// key, the old values should be cleared (unless using the "add" keyword).
+	set<string> shouldOverwrite = {"raid"};
 
 	for(const DataNode &child : node)
 	{
@@ -121,18 +121,20 @@ void Government::Load(const DataNode &node)
 		int valueIndex = (add || remove) ? 2 : 1;
 		bool hasValue = child.Size() > valueIndex;
 
-		// If add is not specified we delete all of existing raid data.
-		bool shouldOverwrite = (key == "raid" && !add && clearRaids);
+		// Check for conditions that require clearing this key's current value.
+		// "remove <key>" means to clear the key's previous contents.
+		// "remove <key> <value>" means to remove just that value from the key.
+		bool removeAll = (remove && !hasValue && !(key == "object" && child.HasChildren()));
+		// If this is the first entry for the given key, and we are not in "add"
+		// or "remove" mode, its previous value should be cleared.
+		bool overwriteAll = (!add && !remove && shouldOverwrite.count(key));
 
-		if(remove || shouldOverwrite)
+		if(removeAll || overwriteAll)
 		{
 			if(key == "provoked on scan")
 				provokedOnScan = false;
 			else if(key == "raid")
-			{
 				raidFleets.clear();
-				clearRaids = false;
-			}
 			else if(key == "display name")
 				displayName = name;
 			else if(key == "death sentence")
@@ -158,8 +160,32 @@ void Government::Load(const DataNode &node)
 			else if(key == "atrocities")
 				atrocities.clear();
 			else
-				child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
+				child.PrintTrace("Cannot \"remove\" the given key:");
+
+			// If not in "overwrite" mode, move on to the next node.
+			if(overwriteAll)
+				shouldOverwrite.erase(key);
+			else
+				continue;
 		}
+
+		if(key == "raid")
+		{
+			const Fleet *fleet = GameData::Fleets().Get(child.Token(valueIndex));
+			if(remove)
+			{
+				for(auto it = raidFleets.begin(); it != raidFleets.end(); )
+					if(it->first == fleet)
+						it = raidFleets.erase(it);
+					else
+						++it
+			}
+			else
+				raidFleets.emplace_back(fleet, child.Size() > (valueIndex + 1) ? child.Value(valueIndex + 1) : 2.);
+		}
+		// Handle the attributes which cannot have a value removed.
+		else if(remove)
+			child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
 		else if(key == "attitude toward")
 		{
 			for(const DataNode &grand : child)
@@ -241,22 +267,6 @@ void Government::Load(const DataNode &node)
 			bribe = add ? bribe + child.Value(valueIndex) : child.Value(valueIndex);
 		else if(key == "fine")
 			fine = add ? fine + child.Value(valueIndex) : child.Value(valueIndex);
-		else if(key == "raid")
-		{
-			const Fleet *raidingFleet = GameData::Fleets().Get(child.Token(valueIndex));
-			if(remove)
-			{
-				for(auto it = raidFleets.begin(); it != raidFleets.end(); ++it)
-					if(it->first == raidingFleet)
-					{
-						raidFleets.erase(it);
-						break;
-					}
-			}
-			else
-				raidFleets.emplace_back(make_pair(raidingFleet,
-					child.Size() > (valueIndex + 1.) ? child.Value(valueIndex + 1.) : 2.));
-		}
 		else if(add)
 			child.PrintTrace("Error: Unsupported use of add:");
 		else if(key == "display name")
