@@ -60,6 +60,7 @@ private:
 		int next;
 		// Conditions for displaying the text:
 		ConditionSet conditions;
+		bool isPhrase = false;
 	};
 
 
