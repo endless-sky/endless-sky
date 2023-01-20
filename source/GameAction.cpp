@@ -157,7 +157,7 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 	{
 		ShipManager manager;
 		manager.Load(child);
-		giftShips.emplace(manager);
+		giftShips.emplace_back(manager);
 	}
 	else if(key == "outfit" && hasValue)
 	{
@@ -308,7 +308,7 @@ const map<const Outfit *, int> &GameAction::Outfits() const noexcept
 
 
 
-const set<ShipManager> &GameAction::Ships() const noexcept
+const vector<ShipManager> &GameAction::Ships() const noexcept
 {
 	return giftShips;
 }
