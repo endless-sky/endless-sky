@@ -2725,7 +2725,7 @@ planet "New Tortuga"
 	"required reputation" -10
 	bribe 0.03
 	security 0
-	tribute 1000
+	tribute 1400
 		threshold 5000
 		fleet "Large Core Pirates" 10
 		fleet "Small Core Pirates" 15
