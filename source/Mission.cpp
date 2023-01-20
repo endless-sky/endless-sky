@@ -1048,10 +1048,16 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 
 bool Mission::RequiresShip(const string &shipId) const
 {
+	auto requiresShip = [&actions](Trigger trigger) -> bool
+	{
+		const auto &it = actions.find(trigger);
+		if(it != actions.end() && it->second.RequiresShip(ship))
+			return true;
+		return false;
+	};
+	
 	// Check if any uncompleted actions required for the mission needs this ship.
-	if(actions[Trigger::COMPLETE].RequiresShip(ship) ||
-			actions[Trigger::STOPOVER].RequiresShip(ship) && !stopovers.empty() ||
-			actions[Trigger::WAYPOINT].RequiresShip(ship) && !waypoints.empty())
+	if(requiresShip(Trigger::COMPLETE) || requiresShip(Trigger::STOPOVER) || requiresShip(Trigger::WAYPOINT))
 		return true;
 
 	return false;
