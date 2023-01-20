@@ -658,7 +658,7 @@ const Set<Wormhole> &GameData::Wormholes()
 
 
 
-// Replace all occurrences ${phrase name} with the expanded phrase from Phrases()
+// Replace all occurrences ${phrase name} with the expanded phrase from objects.phrases
 std::string GameData::ExpandPhrases(const std::string &source)
 {
 	string result;
@@ -668,14 +668,14 @@ std::string GameData::ExpandPhrases(const std::string &source)
 		size_t var = source.find("${", next);
 		if(var == string::npos)
 			break;
-		if(var > next)
+		else if(var > next)
 			result.append(source, next, var - next);
 		next = source.find('}', var);
 		if(next == string::npos)
 			break;
 		++next;
 		string phraseName = string{source, var + 2, next - var - 3};
-		const Phrase *phrase = GameData::Phrases().Find(phraseName);
+		const Phrase *phrase = objects.phrases.Find(phraseName);
 		result.append(phrase ? phrase->Get() : phraseName);
 	}
 	// Optimization for most common case: no phrase in string:
