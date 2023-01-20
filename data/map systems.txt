@@ -9535,6 +9535,7 @@ system Denebola
 		period 2677.01
 
 system Devil-Hide
+	hidden
 	pos -1047 -775
 	government "Pirate (Devil-Run Gang)"
 	arrival 500
