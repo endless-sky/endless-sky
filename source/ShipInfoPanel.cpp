@@ -92,7 +92,7 @@ void ShipInfoPanel::Draw()
 	// Fill in the information for how this interface should be drawn.
 	Information interfaceInfo;
 	interfaceInfo.SetCondition("ship tab");
-	if(panelState.CanEdit() && (shipIt != panelState.Ships().end())
+	if(panelState.CanEdit() && shipIt != panelState.Ships().end()
 			&& (shipIt->get() != player.Flagship() || (*shipIt)->IsParked()))
 	{
 		if(!(*shipIt)->IsDisabled())
