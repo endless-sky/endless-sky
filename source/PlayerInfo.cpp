@@ -1237,7 +1237,7 @@ double PlayerInfo::RaidFleetAttraction(const pair<const Fleet *, double> &raidFl
 		attraction = .005 * (factors.first - factors.second - raidFleet.second);
 		// Then we consider the strength of other fleets in the system.
 		auto raidStrength = raidFleet.first->Strength();
-		if(system)
+		if(system && raidStrength)
 			for(const auto &fleet : system->Fleets())
 			{
 				const Government *gov = fleet.Get()->GetGovernment();
@@ -1254,7 +1254,7 @@ double PlayerInfo::RaidFleetAttraction(const pair<const Fleet *, double> &raidFl
 				}
 			}
 	}
-	return min(0., attraction);
+	return max(0., min(1., attraction));
 }
 
 
