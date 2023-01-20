@@ -4134,7 +4134,7 @@ void PlayerInfo::ForgetGiftedShip(const Ship &oldShip)
 	if(shipToForget != giftedShips.end())
 	{
 		for(auto &mission : missions)
-			if(mission.RequiresShip(shipToForget.first));
+			if(mission.RequiresShip(shipToForget.first))
 				mission.Fail();
 		giftedShips.erase(shipToForget);
 	}
