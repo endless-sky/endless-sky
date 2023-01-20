@@ -181,7 +181,9 @@ void Government::Load(const DataNode &node)
 						++it;
 			}
 			else
-				raidFleets.emplace_back(fleet, child.Size() > (valueIndex + 1) ? child.Value(valueIndex + 1) : 2.);
+				raidFleets.emplace_back(fleet,
+					make_pair((child.Size() > (valueIndex + 1) ? child.Value(valueIndex + 1) : 2.),
+					child.Size() > (valueIndex + 2) ? child.Value(valueIndex + 2) : 0.);
 		}
 		// Handle the attributes which cannot have a value removed.
 		else if(remove)
@@ -474,7 +476,7 @@ const string &Government::Language() const
 // Pirate raids in this government's systems use these fleet definitions. If
 // it is empty, there are no pirate raids.
 // The second attribute denotes the minimal attraction required for the fleet to appear.
-const std::vector<std::pair<const Fleet *, double>> &Government::RaidFleets() const
+const vector<pair<const Fleet *, pair<double, double>>> &Government::RaidFleets() const
 {
 	return raidFleets;
 }

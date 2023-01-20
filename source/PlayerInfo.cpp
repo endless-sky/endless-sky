@@ -1225,7 +1225,7 @@ pair<double, double> PlayerInfo::RaidFleetFactors() const
 
 
 
-double PlayerInfo::RaidFleetAttraction(const pair<const Fleet *, double> &raidFleet, const System *system) const
+double PlayerInfo::RaidFleetAttraction(const pair<const Fleet *, pair<double, double>> &raidFleet, const System *system) const
 {
 	double attraction = 0.;
 	const Government *raidGov = raidFleet.first->GetGovernment();
@@ -1234,7 +1234,11 @@ double PlayerInfo::RaidFleetAttraction(const pair<const Fleet *, double> &raidFl
 		// The player's base attraction to a fleet is determined by their fleet attraction minus
 		// their fleet deterence, minus whatever the minimum attraction of this raid fleet is.
 		pair<double, double> factors = RaidFleetFactors();
-		attraction = .005 * (factors.first - factors.second - raidFleet.second);
+		// If there is a maximum attraction for this fleet, and we are above it, it will not spawn.
+		if(raidFleet.second.second && factors.first > raidFleet.second.second)
+			return 0;
+
+		attraction = .005 * (factors.first - factors.second - raidFleet.second.first);
 		// Then we consider the strength of other fleets in the system.
 		auto raidStrength = raidFleet.first->Strength();
 		if(system && raidStrength)
@@ -2979,7 +2983,7 @@ void PlayerInfo::RegisterDerivedConditions()
 			safeChance *= noFleetProb;
 		}
 		// The probability of any single fleet appearing is 1 - chance.
-		return round((1. - chance) * 1000.);
+		return round((1. - safeChance) * 1000.);
 	};
 	systemAttractionProvider.SetGetFunction(systemAttractionFun);
 	systemAttractionProvider.SetHasFunction(systemAttractionFun);
