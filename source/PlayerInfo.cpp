@@ -1225,7 +1225,8 @@ pair<double, double> PlayerInfo::RaidFleetFactors() const
 
 
 
-double PlayerInfo::RaidFleetAttraction(const pair<const Fleet *, pair<double, double>> &raidFleet, const System *system) const
+double PlayerInfo::RaidFleetAttraction(
+	const pair<const Fleet *, pair<double, double>> &raidFleet, const System *system) const
 {
 	double attraction = 0.;
 	const Government *raidGov = raidFleet.first->GetGovernment();

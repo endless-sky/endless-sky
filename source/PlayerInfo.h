@@ -160,7 +160,8 @@ public:
 	void SetShipOrder(const std::vector<std::shared_ptr<Ship>> &newOrder);
 	// Get the attraction factors of the player's fleet to raid fleets.
 	std::pair<double, double> RaidFleetFactors() const;
-	double RaidFleetAttraction(const std::pair<const Fleet *, std::pair<double, double>> &raidFleet, const System *system) const;
+	double RaidFleetAttraction(
+		const std::pair<const Fleet *, std::pair<double, double>> &raidFleet, const System *system) const;
 
 	// Get cargo information.
 	CargoHold &Cargo();

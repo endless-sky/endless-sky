@@ -91,7 +91,7 @@ public:
 	const std::string &Language() const;
 	// Pirate raids in this government's systems use these fleet definitions. If
 	// it is empty, there are no pirate raids.
-	// The second attribute denotes the minimal attraction required for the fleet to appear.
+	// The second attribute denotes the minimal and maximal attraction required for the fleet to appear.
 	const std::vector<std::pair<const Fleet *, std::pair<double, double>>> &RaidFleets() const;
 
 	// Check if, according to the politics stored by GameData, this government is
