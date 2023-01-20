@@ -1268,9 +1268,9 @@ void Engine::EnterSystem()
 			for(int i = 0; i < 10; ++i)
 				if(Random::Real() < attraction)
 				{
-					raidFleet.first->Place(*system, newShips);
+					raidFleet.GetFleet()->Place(*system, newShips);
 					Messages::Add("Your fleet has attracted the interest of a "
-							+ raidFleet.first->GetGovernment()->GetName() + " raiding party.",
+							+ raidFleet.GetFleet()->GetGovernment()->GetName() + " raiding party.",
 							Messages::Importance::Highest);
 				}
 	}
