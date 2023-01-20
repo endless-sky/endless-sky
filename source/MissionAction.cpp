@@ -234,14 +234,8 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 	}
 
 	for(auto &&it : action.Ships())
-	{
-		// If this ship is being given, the player doesn't need to have it.
-		if(it.second.Count() > 0)
-			continue;
-
-		if(!it.second.CanBeDone(player, it.first))
+		if(!it.CanBeDone(player, it.first))
 			return false;
-	}
 
 	for(auto &&it : requiredOutfits)
 	{

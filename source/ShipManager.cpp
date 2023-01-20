@@ -87,7 +87,7 @@ void ShipManager::Save(DataWriter &out) const
 
 bool ShipManager::CanBeDone(const PlayerInfo &player) const
 {
-	// If we are giving ships this is always satisfied.
+	// If we are giving ships there are no conditions to meet.
 	return count > 0 || static_cast<int>(SatisfyingShips(player).size()) == abs(count);
 }
 
