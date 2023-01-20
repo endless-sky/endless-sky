@@ -193,7 +193,7 @@ void Conversation::Load(const DataNode &node, const string &missionName)
 		else
 		{
 			// This is an ordinary text node (isPhrase=0) or a phrase (isPhrase=1)
-			int isPhrase = child.Size() == 2;
+			bool isPhrase = child.Size() == 2;
 
 			// If the previous node is a choice, or if the previous node ended
 			// in a goto, or if the new node has a condition, then create a new
