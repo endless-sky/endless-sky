@@ -151,7 +151,6 @@ private:
 	double fine = 1.;
 	std::vector<LocationFilter> enforcementZones;
 	LocationFilter travelRestrictions;
-	bool hasTravelRestrictions = false;
 	const Conversation *deathSentence = nullptr;
 	const Phrase *friendlyHail = nullptr;
 	const Phrase *friendlyDisabledHail = nullptr;

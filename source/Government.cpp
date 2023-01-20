@@ -282,9 +282,6 @@ void Government::Load(const DataNode &node)
 		friendlyDisabledHail = GameData::Phrases().Get("friendly disabled");
 	if(!hostileDisabledHail)
 		hostileDisabledHail = GameData::Phrases().Get("hostile disabled");
-
-	// Store this bool to not have to check IsEmpty all the time.
-	hasTravelRestrictions = travelRestrictions.IsEmpty();
 }
 
 
@@ -579,12 +576,12 @@ bool Government::IsProvokedOnScan() const
 
 bool Government::IsRestrictedFrom(const System &system) const
 {
-	return hasTravelRestrictions && travelRestrictions.Matches(&system);
+	return !travelRestrictions.IsEmpty() && travelRestrictions.Matches(&system);
 }
 
 
 
 bool Government::IsRestrictedFrom(const Planet &planet) const
 {
-	return hasTravelRestrictions && travelRestrictions.Matches(&planet);
+	return !travelRestrictions.IsEmpty() && travelRestrictions.Matches(&planet);
 }
