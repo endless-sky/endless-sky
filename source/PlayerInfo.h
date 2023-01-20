@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Date.h"
 #include "Depreciation.h"
 #include "GameEvent.h"
+#include "Government.h"
 #include "Mission.h"
 #include "SystemEntry.h"
 
@@ -36,7 +37,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <utility>
 #include <vector>
 
-class Government;
 class Outfit;
 class Planet;
 class Rectangle;
