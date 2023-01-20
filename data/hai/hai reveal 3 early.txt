@@ -312,6 +312,7 @@ mission "Hai Building Mountaintop [2] Recruits"
 				accept
 	on stopover
 		event "hai dog and pony done" 1
+		"hai dog and pony" ++
 		conversation
 			`You have finally visited every world in Hai space and sold the pitch to the people. With any luck, enough will sign up to make it work. Terry indicates that you may now take her to Mountaintop without further stops, but then adds, "I do have some leftover materials though, so I'll get you to do some final spruiking if you stop anywhere else along the way."`
 	on complete
@@ -328,6 +329,7 @@ mission "Hai Building Mountaintop [2a] Sales Job"
 		not planet "Mountaintop"
 		not planet "Darkwaste"
 		government "Hai"
+		"hai dog and pony" != 16
 	to offer
 		has "Hai Building Mountaintop [2] Recruits: active"
 	on offer
