@@ -39,7 +39,7 @@ public:
 	void Do(PlayerInfo &player) const;
 
 	// The model of the concerned ship.
-	const Ship *Ship() const;
+	const Ship *ShipModel() const;
 	// The in game name of the given/taken ship.
 	const std::string &Name() const;
 	// The identifier that the given/taken ship will have.

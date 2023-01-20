@@ -267,7 +267,7 @@ string GameAction::Validate() const
 
 	// Transferred content must be defined & valid.
 	for(auto &&it : giftShips)
-		if(!it->Ship()->IsValid())
+		if(!it->ShipModel()->IsValid())
 			return "gift ship model \"" + it->Ship()->VariantName() + "\"";
 	for(auto &&outfit : giftOutfits)
 		if(!outfit.first->IsDefined())

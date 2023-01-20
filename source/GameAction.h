@@ -63,7 +63,7 @@ public:
 	int64_t Payment() const noexcept;
 	int64_t Fine() const noexcept;
 	const std::map<const Outfit *, int> &Outfits() const noexcept;
-	const set<ShipManager> &Ships() const noexcept;
+	const std::set<ShipManager> &Ships() const noexcept;
 
 	// Perform this action.
 	void Do(PlayerInfo &player, UI *ui) const;
