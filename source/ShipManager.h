@@ -30,7 +30,7 @@ class Ship;
 // Used to contain and manage gift/take ship, and owns commands.
 class ShipManager {
 public:
-	void Load(const DataNode &child);
+	void Load(const DataNode &node);
 
 	// Get a list of ships that satisfies these conditions, to take them away later.
 	std::vector<std::shared_ptr<Ship>> SatisfyingShips(const PlayerInfo &player, const Ship *model) const;

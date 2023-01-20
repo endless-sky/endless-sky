@@ -26,21 +26,21 @@ using namespace std;
 
 
 
-void ShipManager::Load(const DataNode &child)
+void ShipManager::Load(const DataNode &node)
 {
-	const string token = child.Token(0);
-	if(child.Size() < 3 || child.Token(1) != "ship")
+	const string token = node.Token(0);
+	if(node.Size() < 3 || node.Token(1) != "ship")
 	{
-		child.PrintTrace("Error: Skipping unsupported \"" + token + "\" syntax:");
+		node.PrintTrace("Error: Skipping unsupported \"" + token + "\" syntax:");
 		return;
 	}
 	bool taking = token == "take";
-	if(child.Size() >= 4)
-		name = child.Token(3);
+	if(node.Size() >= 4)
+		name = node.Token(3);
 
-	for(const DataNode &grand : child)
+	for(const DataNode &child : node)
 	{
-		const string key = grand.Token(0);
+		const string key = child.Token(0);
 		if(taking)
 		{
 			if(key == "unconstrained")
@@ -48,25 +48,25 @@ void ShipManager::Load(const DataNode &child)
 			else if(key == "with outfits")
 				withOutfits = true;
 			else
-				child.PrintTrace("Error: Skipping unrecognized take ship node argument:");
+				node.PrintTrace("Error: Skipping unrecognized take ship node argument:");
 		}
-		else if(grand.Size() < 2)
-			grand.PrintTrace("Error: Expected a value argument:");
+		else if(child.Size() < 2)
+			child.PrintTrace("Error: Expected a value argument:");
 		else if(key == "id")
-			id = grand.Token(1);
+			id = child.Token(1);
 		else if(key == "amount")
 		{
-			if(grand.Value(1) <= 0)
-				child.PrintTrace("Error: Skipping invalid negative ship quantity:" + child.Token(1));
+			if(child.Value(1) <= 0)
+				node.PrintTrace("Error: Skipping invalid negative ship quantity:" + node.Token(1));
 			else
-				count = grand.Value(1) * (taking ? -1 : 1);
+				count = child.Value(1) * (taking ? -1 : 1);
 		}
 		else
-			child.PrintTrace("Error: Skipping unrecognized ship " + token + " node argument:");
+			node.PrintTrace("Error: Skipping unrecognized ship " + token + " node argument:");
 	}
 
 	if(taking && !id.empty() && count != 1)
-		child.PrintTrace("Error: Invalid ship quantity with a specified unique id:");
+		node.PrintTrace("Error: Invalid ship quantity with a specified unique id:");
 }
 
 
