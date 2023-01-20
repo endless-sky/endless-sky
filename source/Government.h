@@ -57,7 +57,7 @@ public:
 			const Fleet *fleet = nullptr;
 			double minAttraction;
 			double maxAttraction;
-	}
+	};
 
 
 public:
