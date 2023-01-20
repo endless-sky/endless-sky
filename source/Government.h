@@ -169,7 +169,7 @@ private:
 	const Phrase *hostileHail = nullptr;
 	const Phrase *hostileDisabledHail = nullptr;
 	std::string language;
-	std::vector<std::pair<const Fleet *, std::pair<double, double>>> raidFleets;
+	std::vector<RaidFleet> raidFleets;
 	double crewAttack = 1.;
 	double crewDefense = 2.;
 	bool provokedOnScan = false;
