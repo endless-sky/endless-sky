@@ -529,13 +529,13 @@ mission "Feed Them To The Wolves"
 	on complete
 		clear "unfettered: stopped on Greenbloom"
 		log `The plan was to escort a Hai fleet carying supplies and passengers into Unfettered space but an opportunity to feed them to the wolves instead was presented, and taken.`
-		# still gets lost because they're busy shipping all of these supplies to Unfettered space.
+		# The shipment gets lost faster, because they're busy shipping all of these supplies to Unfettered space and can't dedicate as much resources to escorts.
 		event "unfettered: shipment lost" 30
 		set "unfettered: hunger"
-		# make the hunger last a bit longer (just 10 days or so)
+		# Make the hunger last around 20 days longer.
 		"unfettered: hunger stops" = -500
 		payment 4000000
-		dialog `As before, a voice addresses you once you are alone in your quarters. "We have transferred 4 million credits to your account, and made sure the elder will not bother you. Do be aware, however, that a food situation has arrisen, not because of our small operation, but because of the bomb's presence in the first place."`
+		dialog `As before, a voice addresses you once you are alone in your quarters. "We have transferred 4 million credits to your account, and made sure the elder will not bother you. Do be aware, however, that a food situation has arrisen, not because of our small operation, but because of the bomb's presence in the first place. The Unfettered will probably be busy for some time because of it, and not offer missions for a short while."`
 
 
 

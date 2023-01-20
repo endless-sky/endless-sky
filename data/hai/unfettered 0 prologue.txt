@@ -1017,7 +1017,7 @@ mission "Unfettered: Escort Hai Fleet"
 	on complete
 		clear "unfettered: stopped on Greenbloom"
 		log `Escorted a Hai fleet carying supplies and passengers into Unfettered space.`
-		event "unfettered: shipment lost" 20 30
+		event "unfettered: shipment lost" 30 50
 		set "unfettered: hunger"
 		# if there already was a hunger situation make it last longer
 		clear "unfettered: hunger stops"
@@ -1038,7 +1038,7 @@ mission "Unfettered: Escort Hai Fleet"
 			label dosmth
 			`	"Of course you can! Even as we speak many Hai are bringing food to our brethren, and so can you. Due to the exceptional circumstances jobs are available to bring more food than ever, for a price corresponding to the seriousness of the situation."`
 			label introduce
-			`	"Only now I realize I have failed to introduce myself... My name is Vai'chi, and I will probably forever be in your debt. May the leaves keep on flowing your way, and I hope we see each others again."`
+			`	"Only now I realize I have failed to introduce myself... My name is Vai'chi, and I will probably forever be in your debt. May the leaves keep on flowing your way, and I hope we see each others again. In the meantime, you should know that the Unfettered will probably be busy for some time because of this food crisis, and will not offer missions for a short while."`
 		log "Minor People" "Vai'chi" `A Hai governor that is not scared to put herself in danger in order to muster Hai and Unfettered supporters alike. She seems to understand the Unfettered well, and to honestly want to help them.`
 
 # need to make you land to make the fleets spawn, because they can't be waiting for you in this system until you arrive.
