@@ -331,9 +331,9 @@ mission "Hai Building Mountaintop [2a] Sales Job"
 		not planet "Mountaintop"
 		not planet "Darkwaste"
 		government "Hai"
-		not "hai dog and pony final stop"
 	to offer
 		has "Hai Building Mountaintop [2] Recruits: active"
+		not "hai dog and pony final stop"
 	on offer
 		"hai dog and pony" ++
 		conversation
