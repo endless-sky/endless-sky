@@ -43,9 +43,13 @@ void Minable::Load(const DataNode &node)
 
 	for(const DataNode &child : node)
 	{
+		if(child.Token(0) == "display name" && child.Size() >= 2)
+			displayName = child.Token(1);
+		else if(child.Token(0) == "noun" && child.Size() >= 2)
+			noun = child.Token(1);
 		// A full sprite definition (frame rate, etc.) is not needed, because
 		// the frame rate will be set randomly and it will always be looping.
-		if(child.Token(0) == "sprite" && child.Size() >= 2)
+		else if(child.Token(0) == "sprite" && child.Size() >= 2)
 			SetSprite(SpriteSet::Get(child.Token(1)));
 		else if(child.Token(0) == "hull" && child.Size() >= 2)
 			hull = child.Value(1);
@@ -62,6 +66,11 @@ void Minable::Load(const DataNode &node)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+
+	if(displayName.empty())
+		displayName = name;
+	if(noun.empty())
+		noun = "asteroid";
 }
 
 
@@ -69,6 +78,20 @@ void Minable::Load(const DataNode &node)
 const string &Minable::Name() const
 {
 	return name;
+}
+
+
+
+const string &Minable::DisplayName() const
+{
+	return displayName;
+}
+
+
+
+const string &Minable::Noun() const
+{
+	return noun;
 }
 
 

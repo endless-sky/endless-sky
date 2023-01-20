@@ -49,14 +49,18 @@ public:
 
 	// Load a definition of a minable object.
 	void Load(const DataNode &node);
+private:
 	const std::string &Name() const;
+public:
+	const std::string &DisplayName() const;
+	const std::string &Noun() const;
 
 	// Place a minable object with up to the given energy level, on a random
 	// orbit and a random position along that orbit.
 	void Place(double energy, double beltRadius);
 
 	// Move the object forward one step. If it has been reduced to zero hull, it
-	// will "explode" instead of moving, creating flotsam and explosion effects.
+	// will "explode" instead of moving, creating flotsam and explosion effects.o
 	// In that case it will return false, meaning it should be deleted.
 	bool Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
 
@@ -69,6 +73,8 @@ public:
 
 private:
 	std::string name;
+	std::string displayName;
+	std::string noun;
 	// Current angular position relative to the focus of the elliptical orbit,
 	// in radians. An angle of zero is the periapsis point.
 	double theta;
