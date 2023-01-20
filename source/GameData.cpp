@@ -658,6 +658,7 @@ const Set<Wormhole> &GameData::Wormholes()
 
 
 
+// Replace all occurrences ${phrase name} with the expanded phrase from Phrases()
 std::string GameData::ExpandPhrases(const std::string &source)
 {
 	string result;
