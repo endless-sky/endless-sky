@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <map>
 
 class DataNode;
+class DataWriter;
 class PlayerInfo;
 class Ship;
 
@@ -31,11 +32,14 @@ class Ship;
 class ShipManager {
 public:
 	void Load(const DataNode &node);
+	void Save(DataWriter &out)
 
-	void Do(PlayerInfo &player, const Ship *model) const;
 	// Returns if the player meets the conditions; if they have the ships ready to be taken.
-	bool CanBeDone(const PlayerInfo &player, const Ship *model) const;
+	bool CanBeDone(const PlayerInfo &player) const;
+	void Do(PlayerInfo &player) const;
 
+	// The model of the concerned ship.
+	const Ship *Ship() const;
 	// The in game name of the given/taken ship.
 	const std::string &Name() const;
 	// The identifier that the given/taken ship will have.
@@ -50,10 +54,11 @@ public:
 
 private:
 	// Get a list of ships that satisfies these conditions, to take them away later.
-	std::vector<std::shared_ptr<Ship>> SatisfyingShips(const PlayerInfo &player, const Ship *model) const;
+	std::vector<std::shared_ptr<Ship>> SatisfyingShips(const PlayerInfo &player) const;
 
 
 private:
+	const Ship *model = nullptr;
 	std::string name;
 	std::string id;
 	int count = 1;

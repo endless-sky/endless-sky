@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipManager.h"
 
 #include "DataNode.h"
+#include "DataWriter.h"
 #include "EsUuid.h"
 #include "GameData.h"
 #include "Messages.h"
@@ -37,6 +38,7 @@ void ShipManager::Load(const DataNode &node)
 		return;
 	}
 	bool taking = token == "take";
+	model = GameData::Ships().Get(node.Token(2));
 	if(node.Size() >= 4)
 		name = node.Token(3);
 
@@ -73,7 +75,25 @@ void ShipManager::Load(const DataNode &node)
 
 
 
-void ShipManager::Do(PlayerInfo &player, const Ship *model) const
+void ShipManager::Save(DataWriter &out)
+{
+	out.Write(Count() > 0 ? "give" : "take", "ship",
+		model->VariantName(), Name(), abs(Count()),
+		Unconstrained() ? "unconstrained" : "constrained",
+		WithOutfits() ? "with outfits" : "without outfits");
+}
+
+
+
+bool ShipManager::CanBeDone(const PlayerInfo &player) const
+{
+	// If we are giving ships this is always satisfied.
+	return count > 0 || static_cast<int>(SatisfyingShips(player).size()) == abs(count);
+}
+
+
+
+void ShipManager::Do(PlayerInfo &player) const
 {
 	if(model->ModelName().empty())
 		return;
@@ -86,7 +106,7 @@ void ShipManager::Do(PlayerInfo &player, const Ship *model) const
 	}
 	else
 	{
-		auto toTake = SatisfyingShips(player, model);
+		auto toTake = SatisfyingShips(player);
 		if(toTake.size() == 1)
 			shipName = Name();
 		for(const auto &ship : toTake)
@@ -99,10 +119,9 @@ void ShipManager::Do(PlayerInfo &player, const Ship *model) const
 
 
 
-bool ShipManager::CanBeDone(const PlayerInfo &player, const Ship *model) const
+const Ship *ShipManager::Ship() const
 {
-	// If we are giving ships this is always satisfied.
-	return count > 0 || static_cast<int>(SatisfyingShips(player, model).size()) == abs(count);
+	return model;
 }
 
 
@@ -141,7 +160,7 @@ bool ShipManager::WithOutfits() const
 
 
 
-vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player, const Ship *model) const
+vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player) const
 {
 	const System *here = player.GetSystem();
 	const auto &shipID = player.GiftedShips().find(id);

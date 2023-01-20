@@ -157,7 +157,7 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 	{
 		ShipManager manager;
 		manager.Load(child);
-		giftShips.emplace(GameData::Ships().Get(child.Token(2)), manager);
+		giftShips.emplace(manager);
 	}
 	else if(key == "outfit" && hasValue)
 	{
@@ -236,10 +236,7 @@ void GameAction::Save(DataWriter &out) const
 			out.EndChild();
 		}
 	for(auto &&it : giftShips)
-		out.Write(it.second.Count() > 0 ? "give" : "take", "ship",
-				it.first->VariantName(), it.second.Name(), abs(it.second.Count()),
-				it.second.Unconstrained() ? "unconstrained" : "constrained",
-				it.second.WithOutfits() ? "with outfits" : "without outfits");
+		it.Save(out);
 	for(auto &&it : giftOutfits)
 		out.Write("outfit", it.first->TrueName(), it.second);
 	if(payment)
@@ -270,8 +267,8 @@ string GameAction::Validate() const
 
 	// Transferred content must be defined & valid.
 	for(auto &&it : giftShips)
-		if(!it.first->IsValid())
-			return "gift ship model \"" + it.first->VariantName() + "\"";
+		if(!it->Ship()->IsValid())
+			return "gift ship model \"" + it->Ship()->VariantName() + "\"";
 	for(auto &&outfit : giftOutfits)
 		if(!outfit.first->IsDefined())
 			return "gift outfit \"" + outfit.first->TrueName() + "\"";
@@ -311,7 +308,7 @@ const map<const Outfit *, int> &GameAction::Outfits() const noexcept
 
 
 
-const map<const Ship *, ShipManager> &GameAction::Ships() const noexcept
+const set<ShipManager> &GameAction::Ships() const noexcept
 {
 	return giftShips;
 }
