@@ -55,8 +55,8 @@ mission "Ira Contact"
 			choice
 				`	"What do you mean by "The End"?"`
 			`	The voices resume in the background, but if there's anything you can tell, it's that they've taken a more dreary tone than before. You try once more to communicate with the ship, but despite the constant whispers, it no longer answers. "The End" might possibly be referring to some type of extinction.`
-			`Taking another look at the vessel, it seems to have some sort of advanced origin. Eerily star-like patterns flow on its surface, and it doesn't visibly have any standard means of propulsion. At the rear end is some type of floating ring of objects that hum in a strange tune as they rotate. The Rulei were probably far more advanced than anything human, even possibly in line with the Quarg.`
-			`The planets below seem to have an abnormal appearance similar to that of the starship, but, for some reason, even looking at them gives you a headache. Something intense must have happened here a long time ago.`
+			`Taking another look at the vessel, it seems to have some sort of advanced origin. Eerie star-like patterns flow on its surface, and it doesn't visibly have any standard means of propulsion. At the rear end is some type of floating ring of objects that hum in a strange tune as they rotate. The Rulei were probably far more advanced than anything human, even possibly in line with the Quarg.`
+			`The planets below seem to have an abnormal appearance similar to that of the starship, but for some reason even looking at them gives you a headache. Something intense must have happened here a long time ago.`
 				decline
 				
 				
