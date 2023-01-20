@@ -328,7 +328,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 	// then the outfits, before adding any new ones.
 	for(auto &&it : giftShips)
 		if(it.Count() < 0)
-			it.Do(player, it.first);
+			it.Do(player);
 	for(auto &&it : giftOutfits)
 		if(it.second < 0)
 			DoGift(player, it.first, it.second, ui);
@@ -337,7 +337,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 			DoGift(player, it.first, it.second, ui);
 	for(auto &&it : giftShips)
 		if(it.Count() > 0)
-			it.Do(player, it.first);
+			it.Do(player);
 
 	if(payment)
 	{
