@@ -1234,8 +1234,9 @@ double PlayerInfo::RaidFleetAttraction(const pair<const Fleet *, pair<double, do
 		// The player's base attraction to a fleet is determined by their fleet attraction minus
 		// their fleet deterence, minus whatever the minimum attraction of this raid fleet is.
 		pair<double, double> factors = RaidFleetFactors();
+		double &maxAttraction = raidFleet.second.second;
 		// If there is a maximum attraction for this fleet, and we are above it, it will not spawn.
-		if(raidFleet.second.second && factors.first > raidFleet.second.second)
+		if(maxAttraction && factors.first > maxAttraction)
 			return 0;
 
 		attraction = .005 * (factors.first - factors.second - raidFleet.second.first);
