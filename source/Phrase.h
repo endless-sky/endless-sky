@@ -30,6 +30,10 @@ class DataNode;
 // Class representing a set of rules for generating text strings from words.
 class Phrase {
 public:
+	// Replace all occurrences ${phrase name} with the expanded phrase from GameData::Phrases()
+	static std::string ExpandPhrases(const std::string &source);
+
+
 	Phrase() = default;
 	// Construct and Load() at the same time.
 	Phrase(const DataNode &node);
