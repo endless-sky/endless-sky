@@ -19,7 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 #include "text/Format.h"
 #include "GameData.h"
-#include "Phrase.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 
@@ -200,11 +199,6 @@ void Conversation::Load(const DataNode &node, const string &missionName)
 			if(nodes.empty() || !nodes.back().canMergeOnto || HasDisplayRestriction(child))
 				AddNode();
 
-			if(child.Size() == 2)
-				nodes.back().elements.back().phrase == child.Token(1);
-			else
-				nodes.back().elements.back().text += child.Token(1);
-
 			// Always append a newline to the end of the text.
 			nodes.back().elements.back().text += child.Token(0) + '\n';
 
@@ -368,7 +362,7 @@ Conversation Conversation::Instantiate(map<string, string> &subs, int jumps, int
 	for(Node &node : result.nodes)
 	{
 		for(Element &element : node.elements)
-			element.text = Format::Replace(Format::ExpandPhrases(element.text), subs);
+			element.text = Format::Replace(GameData::ExpandPhrases(element.text), subs);
 		if(!node.actions.IsEmpty())
 			node.actions = node.actions.Instantiate(subs, jumps, payload);
 	}

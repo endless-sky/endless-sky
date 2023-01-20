@@ -664,23 +664,24 @@ std::string GameData::ExpandPhrases(const std::string &source)
 	size_t next = 0;
 	while(next < source.length())
 	{
-		size_t var = source.find("${", start);
+		size_t var = source.find("${", next);
 		if(var == string::npos)
 			break;
-		result.append(source, next, var - next - 1);
-		next = entry.find('}', var);
+		if(var > next)
+			result.append(source, next, var - next);
+		next = source.find('}', var);
 		if(next == string::npos)
 			break;
-		++right;
+		++next;
 		string phraseName = string{source, var + 2, next - var - 3};
-		const Phrase *phrase = GameData::Phrases().Get(phraseName);
+		const Phrase *phrase = GameData::Phrases().Find(phraseName);
 		result.append(phrase ? phrase->Get() : phraseName);
 	}
 	// Optimization for most common case: no phrase in string:
 	if(!next)
 		return source;
 	else if(next < source.length())
-		result.append(source, string::npos);
+		result.append(source, next, string::npos);
 	return result;
 }
 
