@@ -107,9 +107,10 @@ vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player, 
 
 
 
-bool ShipManager::Satisfies(const PlayerInfo &player, const Ship *model) const
+bool ShipManager::CanBeDone(const PlayerInfo &player, const Ship *model) const
 {
-	return static_cast<int>(SatisfyingShips(player, model).size()) == abs(count);
+	// If we are giving ships this is always satisfied.
+	return count > 0 || static_cast<int>(SatisfyingShips(player, model).size()) == abs(count);
 }
 
 

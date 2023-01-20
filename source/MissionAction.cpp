@@ -239,7 +239,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 		if(it.second.Count() > 0)
 			continue;
 
-		if(!it.second.Satisfies(player, it.first))
+		if(!it.second.CanBeDone(player, it.first))
 			return false;
 	}
 

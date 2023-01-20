@@ -32,12 +32,10 @@ class ShipManager {
 public:
 	void Load(const DataNode &child);
 
-
-public:
 	// Get a list of ships that satisfies these conditions, to take them away later.
 	std::vector<std::shared_ptr<Ship>> SatisfyingShips(const PlayerInfo &player, const Ship *model) const;
 	// Returns if the player meets the conditions; if they have the ships ready to be taken.
-	bool Satisfies(const PlayerInfo &player, const Ship *model) const;
+	bool CanBeDone(const PlayerInfo &player, const Ship *model) const;
 
 	// The in game name of the given/taken ship.
 	const std::string &Name() const;
