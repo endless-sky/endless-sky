@@ -32,7 +32,7 @@ mission "Ira Contact"
 		log "Factions" "Rulei" `The Rulei were likely an ancient technologically advanced civilization from long ago.`
 			`They communicate through some sort of invasive psychonic ability.`
 		conversation
-			`The second you jump into this system you begin to experience a strange, uncomfortable sensation. You feel an overwhelming sense of emptiness, but at the same time the intensity of this feeling suggests that something must be there. You barely have enough time to try and make sense of this oddity as only seconds later, you start to hear ominous whispering, as if something is behind you.`
+			`The second you jump into this system you begin to experience a strange, uncomfortable sensation. You feel an overwhelming sense of emptiness, but at the same time the intensity of this feeling suggests that something must be there. You barely have enough time to try and make sense of this oddity as only seconds later you start to hear ominous whispering, as if something is behind you.`
 			choice
 				`	(Turn around.)`
 			`	You turn your head around to look, but the source of the whispers remains at the back of your head, like an itch that can't be reached. You can't even remotely understand the language, and the whispers progressively increase in volume. The louder they get, the more there are. It sounds like thousands of differently pitched voices are speaking all at once now, and your senses all feel overloaded. Just before you think you can't take anymore, everything falls completely silent.`
