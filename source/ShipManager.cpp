@@ -119,7 +119,7 @@ void ShipManager::Do(PlayerInfo &player) const
 
 
 
-const Ship *ShipManager::Ship() const
+const Ship *ShipManager::ShipModel() const
 {
 	return model;
 }
