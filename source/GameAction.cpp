@@ -157,7 +157,7 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 	{
 		ShipManager manager;
 		manager.Load(child);
-		giftShips.emplace(manager);
+		giftShips.insert(manager);
 	}
 	else if(key == "outfit" && hasValue)
 	{

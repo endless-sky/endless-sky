@@ -79,7 +79,7 @@ private:
 	std::map<std::string, std::map<std::string, std::string>> specialLogText;
 
 	std::map<const GameEvent *, std::pair<int, int>> events;
-	std::map<const Ship *, ShipManager> giftShips;
+	std::set<ShipManager> giftShips;
 	std::map<const Outfit *, int> giftOutfits;
 
 	int64_t payment = 0;
