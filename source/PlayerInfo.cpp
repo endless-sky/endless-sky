@@ -2959,18 +2959,27 @@ void PlayerInfo::RegisterDerivedConditions()
 		return rff.first - rff.second;
 	});
 
-	auto &&systemAttractionProvider = conditions.GetProviderPrefixed("attraction in system: ");
+	auto &&systemAttractionProvider = conditions.GetProviderPrefixed("raid chance in system: ");
 	auto systemAttractionFun = [this](const string &name) -> double
 	{
-		const System *system = GameData::Systems().Find(name.substr(strlen("attraction in system: ")));
+		const System *system = GameData::Systems().Find(name.substr(strlen("raid chance in system: ")));
 		if(!system)
-			return 0;
+			return 0.;
 
-		double totalAttraction = 0;
+		// This variable represents the probability of no raid fleets spawning.
+		double chance = 1.;
 		for(const auto &raidFleet : system->GetGovernment()->RaidFleets())
-			totalAttraction += RaidFleetAttraction(raidFleet, system);
-		
-		return round(totalAttraction * 1000.);
+		{
+			// The attraction is the % chance for a single instance of this fleet to appear.
+			double attraction = RaidFleetAttraction(raidFleet, system);
+			// Calculate the % chance for no instances to appear from 10 rolls.
+			double prob = pow(1. - attraction, 10.);
+			// The chance of neither of two fleets appearing is the chance of the first not appearing
+			// times the chance of the second not appearing.
+			chance *= prob;
+		}
+		// The probability of any single fleet appearing is 1 - chance.
+		return round((1. - chance) * 1000.);
 	};
 	systemAttractionProvider.SetGetFunction(systemAttractionFun);
 	systemAttractionProvider.SetHasFunction(systemAttractionFun);
