@@ -560,20 +560,22 @@ Color MapPanel::MapColor(double value) const
 	else if(value <= 0. || value == 1.)
 		return CommodityColor(value);
 	// Comparing different prices, with colors in the cold or hot ranges whilst ignoring too blue.
+	double invertedMinColor = 1. / minColor;
+	double invertedMaxColor = 1. / maxColor;
 	if(value < 1.)
 	{
 		double unvalue = 1. / value;
 		return Color(
 			.3 - value * minColor * .8,
 			unvalue * minColor * .8,
-			(unvalue > (1. / minColor) * .4 && unvalue < (1. / minColor) * .75) ? unvalue * minColor * .4 : 0.);
+			(unvalue > invertedMinColor * .4 && unvalue < invertedMinColor * .75) ? unvalue * minColor * .4 : 0.);
 	}
 	else
 	{
 		return Color(
-			.6 + ((value > maxColor * .8) ? value / maxColor * .4 : 0.),
-			1. - value / maxColor * 2.,
-			(value > maxColor * .6) ? value / maxColor * .8 : .5 - value / maxColor);
+			.6 + ((value > maxColor * .8) ? value * invertedMaxColor * .4 : 0.),
+			1. - value * invertedMaxColor * 2.,
+			(value > maxColor * .6) ? value * invertedMaxColor * .8 : .5 - value * invertedMaxColor);
 	}
 }
 
