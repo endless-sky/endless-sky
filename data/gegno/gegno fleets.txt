@@ -269,7 +269,7 @@ fleet "Vi Warfleet"
 	names "gegno vi"
 	cargo 0
 	personality
-		heroic vindictive opportunistic
+		heroic vindictive opportunistic harvests
 	variant 5
 		"Hornfel"
 		"Eclogite" 2
@@ -294,7 +294,7 @@ fleet "Scin Warfleet"
 	names "gegno scin"
 	cargo 0
 	personality
-		vindictive opportunistic
+		vindictive opportunistic harvests
 	variant 5
 		"Felsic"
 		"Coesite" 3
