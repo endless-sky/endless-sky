@@ -1228,25 +1228,33 @@ pair<double, double> PlayerInfo::RaidFleetFactors() const
 double PlayerInfo::RaidFleetAttraction(const pair<const Fleet *, double> &raidFleet, const System *system) const
 {
 	double attraction = 0.;
-	const Government *raidGovernment = raidFleet.first->GetGovernment();
-	if(raidGovernment && raidGovernment->IsEnemy())
+	const Government *raidGov = raidFleet.first->GetGovernment();
+	if(raidGov && raidGov->IsEnemy())
 	{
+		// The player's base attraction to a fleet is determined by their fleet attraction minus
+		// their fleet deterence, minus whatever the minimum attraction of this raid fleet is.
 		pair<double, double> factors = RaidFleetFactors();
 		attraction = .005 * (factors.first - factors.second - raidFleet.second);
-		// Consider the other fleets in the local system.
-		// Do not take into account the raid fleet, that would just mess with the minimum attraction of it.
+		// Then we consider the strength of other fleets in the system.
 		auto raidStrength = raidFleet.first->Strength();
-		for(const auto &fleet : system->Fleets())
-		{
-			const Government *fleetGov = fleet.Get()->GetGovernment();
-			// If the fleet is neutral to player and raider or hostile to both, it won't matter.
-			// If it is hostile to the player raids will increase,
-			// and hostility to the raiders make raids decrease.
-			attraction -= (fleetGov->IsEnemy(raidGovernment) - fleetGov->IsEnemy(GameData::PlayerGovernment()))
-				* ((fleet.Get()->Strength() / fleet.Period()) / raidStrength);
-		}
+		if(system)
+			for(const auto &fleet : system->Fleets())
+			{
+				const Government *gov = fleet.Get()->GetGovernment();
+				if(gov)
+				{
+					// If this fleet is neutral or hostile to both the player and raid fleet, it has
+					// no impact on the attraction. If the fleet is hostile to only the player, the
+					// raid attraction will increase. If the fleet is hostile to only the raid fleet,
+					// the raid attraction will decrease. The amount of increase or decrease is determined
+					// by the strength of the fleet relative to the raid fleet. System fleets which are
+					// stronger have a larger impact.
+					double strength = fleet.Get()->Strength() / fleet.Period();
+					attraction -= (gov->IsEnemy(raidGov) - gov->IsEnemy()) * (strength / raidStrength);
+				}
+			}
 	}
-	return attraction;
+	return min(0., attraction);
 }
 
 
@@ -2951,6 +2959,22 @@ void PlayerInfo::RegisterDerivedConditions()
 		return rff.first - rff.second;
 	});
 
+	auto &&systemAttractionProvider = conditions.GetProviderPrefixed("attraction in system: ");
+	auto systemAttractionFun = [this](const string &name) -> double
+	{
+		const System *system = GameData::Systems().Find(name.substr(strlen("attraction in system: ")));
+		if(!system)
+			return 0;
+
+		double totalAttraction = 0;
+		for(const auto &raidFleet : system->GetGovernment()->RaidFleets())
+			totalAttraction += RaidFleetAttraction(raidFleet, system);
+		
+		return round(totalAttraction * 1000.);
+	};
+	systemAttractionProvider.SetGetFunction(systemAttractionFun);
+	systemAttractionProvider.SetHasFunction(systemAttractionFun);
+
 	// Special conditions for cargo and passenger space.
 	// If boarding a ship, missions should not consider the space available
 	// in the player's entire fleet. The only fleet parameter offered to a
@@ -3313,26 +3337,6 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	visitedSystemProvider.SetGetFunction(visitedSystemFun);
 	visitedSystemProvider.SetHasFunction(visitedSystemFun);
-
-	auto &&systemAttractionProvider = conditions.GetProviderPrefixed("attraction in system: ");
-	auto systemAttractionFun = [this](const string &name) -> double
-	{
-		const System *system = GameData::Systems().Find(name.substr(strlen("attraction in system: ")));
-		if(!system)
-			return 0;
-
-		double totalAttraction = 0;
-		for(const auto &raidFleet : system->GetGovernment()->RaidFleets())
-		{
-			double fleetAttraction = RaidFleetAttraction(raidFleet, system);
-			if(fleetAttraction > 0)
-				totalAttraction += fleetAttraction;
-		}
-		// It will be made into an integer so scale it up for more precision.
-		return totalAttraction * 1000.;
-	};
-	systemAttractionProvider.SetGetFunction(systemAttractionFun);
-	systemAttractionProvider.SetHasFunction(systemAttractionFun);
 
 	// Read-only navigation conditions.
 	auto HyperspaceTravelDays = [](const System *origin, const System *destination) -> int
