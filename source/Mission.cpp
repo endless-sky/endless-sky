@@ -231,6 +231,8 @@ void Mission::Load(const DataNode &node)
 				toComplete.Load(child);
 			else if(child.Token(1) == "fail")
 				toFail.Load(child);
+			else if(child.Token(1) == "accept")
+				toAccept.Load(child);
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
@@ -374,6 +376,15 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.BeginChild();
 			{
 				toOffer.Save(out);
+			}
+			out.EndChild();
+		}
+		if(!toAccept.IsEmpty())
+		{
+			out.Write("to", "accept");
+			out.BeginChild();
+			{
+				toAccept.Save(out);
 			}
 			out.EndChild();
 		}
@@ -739,6 +750,10 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 
 bool Mission::CanAccept(const PlayerInfo &player) const
 {
+	const auto &playerConditions = player.Conditions();
+	if(!toAccept.Test(playerConditions))
+		return false;
+
 	auto it = actions.find(OFFER);
 	if(it != actions.end() && !it->second.CanBeDone(player))
 		return false;
@@ -881,8 +896,6 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 		cargoNeeded -= flagship->Cargo().Free();
 		bunksNeeded -= flagship->Cargo().BunksFree();
 	}
-	if(cargoNeeded < 0 && bunksNeeded < 0)
-		return "";
 
 	map<string, string> subs;
 	GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
@@ -892,6 +905,9 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 	if(flagship)
 		subs["<ship>"] = flagship->Name();
 
+	const auto &playerConditions = player.Conditions();
+	subs["<conditions>"] = toAccept.Test(playerConditions) ? "meet" : "do not meet";
+
 	ostringstream out;
 	if(bunksNeeded > 0)
 		out << (bunksNeeded == 1 ? "another bunk" : to_string(bunksNeeded) + " more bunks");
@@ -899,6 +915,8 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 		out << " and ";
 	if(cargoNeeded > 0)
 		out << (cargoNeeded == 1 ? "another ton" : to_string(cargoNeeded) + " more tons") << " of cargo space";
+	if(bunksNeeded <= 0 && cargoNeeded <= 0)
+		out << "no additional space";
 	subs["<capacity>"] = out.str();
 
 	string message = Format::Replace(blocked, subs);
@@ -1271,6 +1289,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	// Copy the conditions. The offer conditions must be copied too, because they
 	// may depend on a condition that other mission offers might change.
 	result.toOffer = toOffer;
+	result.toAccept = toAccept;
 	result.toComplete = toComplete;
 	result.toFail = toFail;
 
