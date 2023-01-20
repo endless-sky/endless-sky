@@ -46,7 +46,7 @@ mission "Ira Contact"
 				`	"Where am I?"`
 					goto where
 			`	The numerous whispers begin to pick up again, but rather than becoming louder, it sounds like they are going back and forth in your head. It almost seems they are having a discussion. After a few more seconds of this, dead silence resumes, and then a single word.`
-			`	"P r e c u r s o r s. R u l e i."`
+			`	"P r e c u r s o r s."`
 			choice
 				`	"Where am I?"`
 			label where
