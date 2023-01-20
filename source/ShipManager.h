@@ -32,8 +32,7 @@ class ShipManager {
 public:
 	void Load(const DataNode &node);
 
-	// Get a list of ships that satisfies these conditions, to take them away later.
-	std::vector<std::shared_ptr<Ship>> SatisfyingShips(const PlayerInfo &player, const Ship *model) const;
+	void Do(PlayerInfo &player, const Ship *model) const;
 	// Returns if the player meets the conditions; if they have the ships ready to be taken.
 	bool CanBeDone(const PlayerInfo &player, const Ship *model) const;
 
@@ -47,6 +46,11 @@ public:
 	bool Unconstrained() const;
 	// If true, the ship's outfits will be taken from the player, otherwise they will be left in the stock.
 	bool WithOutfits() const;
+
+
+private:
+	// Get a list of ships that satisfies these conditions, to take them away later.
+	std::vector<std::shared_ptr<Ship>> SatisfyingShips(const PlayerInfo &player, const Ship *model) const;
 
 
 private:

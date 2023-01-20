@@ -34,31 +34,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	void DoGift(PlayerInfo &player, const Ship *model, const ShipManager &giftShip)
-	{
-		if(model->ModelName().empty())
-			return;
-
-		string shipName;
-		int count = giftShip.Count();
-		if(count > 0)
-		{
-			for(int i = 0; i < count; ++i)
-				shipName = player.GiftShip(model, giftShip.Name(), giftShip.Id())->Name();
-		}
-		else
-		{
-			auto toTake = giftShip.SatisfyingShips(player, model);
-			if(toTake.size() == 1)
-				shipName = giftShip.Name();
-			for(const auto &ship : toTake)
-				player.TakeShip(ship.get(), giftShip.WithOutfits() ? model : nullptr);
-		}
-		Messages::Add((abs(count) == 1 ? "The " + model->ModelName() + " \"" + shipName + "\" was " :
-			to_string(abs(count)) + " " + model->PluralModelName() + " were ") +
-			(count > 0 ? "added to" : "removed from") + " your fleet.", Messages::Importance::High);
-	}
-
 	void DoGift(PlayerInfo &player, const Outfit *outfit, int count, UI *ui)
 	{
 		// Maps are not transferrable; they represent the player's spatial awareness.
@@ -356,7 +331,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 	// then the outfits, before adding any new ones.
 	for(auto &&it : giftShips)
 		if(it.second.Count() < 0)
-			DoGift(player, it.first, it.second);
+			it.second.Do(player, it.first);
 	for(auto &&it : giftOutfits)
 		if(it.second < 0)
 			DoGift(player, it.first, it.second, ui);
@@ -365,7 +340,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 			DoGift(player, it.first, it.second, ui);
 	for(auto &&it : giftShips)
 		if(it.second.Count() > 0)
-			DoGift(player, it.first, it.second);
+			it.second.Do(player, it.first);
 
 	if(payment)
 	{

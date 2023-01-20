@@ -16,7 +16,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipManager.h"
 
 #include "DataNode.h"
+#include "EsUuid.h"
 #include "GameData.h"
+#include "Messages.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
 
@@ -71,38 +73,28 @@ void ShipManager::Load(const DataNode &node)
 
 
 
-vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player, const Ship *model) const
+void ShipManager::Do(PlayerInfo &player, const Ship *model) const
 {
-	const System *here = player.GetSystem();
-	const auto &shipID = player.GiftedShips().find(id);
-	bool foundShip = shipID != player.GiftedShips().end();
-	vector<shared_ptr<Ship>> toSell;
+	if(model->ModelName().empty())
+		return;
 
-	for(const auto &ship : player.Ships())
-		if((ship->ModelName() == model->ModelName())
-			&& (unconstrained || (ship->GetSystem() == here && !ship->IsDisabled() && !ship->IsParked()))
-			&& (id.empty() || (foundShip && ship->UUID() == shipID->second))
-			&& (name.empty() || name == ship->Name()))
-		{
-			// If a variant has been specified, or the keyword "with outfits" is specified,
-			// this ship must have each outfit specified in that variant definition.
-			if(model->VariantName() != model->ModelName() || withOutfits)
-				for(const auto &it : model->Outfits())
-				{
-					const auto &outfit = ship->Outfits().find(it.first);
-					int amountEquipped = (outfit != ship->Outfits().end() ? outfit->second : 0);
-					if(it.second > amountEquipped)
-						continue;
-				}
-
-			toSell.emplace_back(ship);
-
-			// We do not want any more ships than is specified.
-			if(static_cast<int>(toSell.size()) >= abs(count))
-				break;
-		}
-
-	return toSell;
+	string shipName;
+	if(count > 0)
+	{
+		for(int i = 0; i < count; ++i)
+			shipName = player.GiftShip(model, Name(), Id())->Name();
+	}
+	else
+	{
+		auto toTake = SatisfyingShips(player, model);
+		if(toTake.size() == 1)
+			shipName = Name();
+		for(const auto &ship : toTake)
+			player.TakeShip(ship.get(), WithOutfits() ? model : nullptr);
+	}
+	Messages::Add((abs(count) == 1 ? "The " + model->ModelName() + " \"" + shipName + "\" was " :
+		to_string(abs(count)) + " " + model->PluralModelName() + " were ") +
+		(count > 0 ? "added to" : "removed from") + " your fleet.", Messages::Importance::High);
 }
 
 
@@ -145,4 +137,40 @@ bool ShipManager::Unconstrained() const
 bool ShipManager::WithOutfits() const
 {
 	return withOutfits;
+}
+
+
+
+vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player, const Ship *model) const
+{
+	const System *here = player.GetSystem();
+	const auto &shipID = player.GiftedShips().find(id);
+	bool foundShip = shipID != player.GiftedShips().end();
+	vector<shared_ptr<Ship>> toSell;
+
+	for(const auto &ship : player.Ships())
+		if((ship->ModelName() == model->ModelName())
+			&& (unconstrained || (ship->GetSystem() == here && !ship->IsDisabled() && !ship->IsParked()))
+			&& (id.empty() || (foundShip && ship->UUID() == shipID->second))
+			&& (name.empty() || name == ship->Name()))
+		{
+			// If a variant has been specified, or the keyword "with outfits" is specified,
+			// this ship must have each outfit specified in that variant definition.
+			if(model->VariantName() != model->ModelName() || withOutfits)
+				for(const auto &it : model->Outfits())
+				{
+					const auto &outfit = ship->Outfits().find(it.first);
+					int amountEquipped = (outfit != ship->Outfits().end() ? outfit->second : 0);
+					if(it.second > amountEquipped)
+						continue;
+				}
+
+			toSell.emplace_back(ship);
+
+			// We do not want any more ships than is specified.
+			if(static_cast<int>(toSell.size()) >= abs(count))
+				break;
+		}
+
+	return toSell;
 }
