@@ -658,6 +658,34 @@ const Set<Wormhole> &GameData::Wormholes()
 
 
 
+std::string GameData::ExpandPhrases(const std::string &source)
+{
+	string result;
+	size_t next = 0;
+	while(next < source.length())
+	{
+		size_t var = source.find("${", start);
+		if(var == string::npos)
+			break;
+		result.append(source, next, var - next - 1);
+		next = entry.find('}', var);
+		if(next == string::npos)
+			break;
+		++right;
+		string phraseName = string{source, var + 2, next - var - 3};
+		const Phrase *phrase = GameData::Phrases().Get(phraseName);
+		result.append(phrase ? phrase->Get() : phraseName);
+	}
+	// Optimization for most common case: no phrase in string:
+	if(!next)
+		return source;
+	else if(next < source.length())
+		result.append(source, string::npos);
+	return result;
+}
+
+
+
 const Government *GameData::PlayerGovernment()
 {
 	return playerGovernment;

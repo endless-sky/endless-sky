@@ -188,26 +188,25 @@ void Conversation::Load(const DataNode &node, const string &missionName)
 			nodes.back().actions.Load(child, missionName);
 		}
 		// Check for common errors such as indenting a goto incorrectly:
-		else if(child.Size() > 2 || (child.Size() == 2 && child.Token(0) != "phrase"))
+		else if(child.Size() > 1)
 			child.PrintTrace("Error: Conversation text should be a single token:");
 		else
 		{
-			// This is an ordinary text node (isPhrase=0) or a phrase (isPhrase=1)
-			int isPhrase = child.Size() == 2;
-
+			// This is just an ordinary text node.
 			// If the previous node is a choice, or if the previous node ended
 			// in a goto, or if the new node has a condition, then create a new
 			// node. Otherwise, just merge this new paragraph into the previous
-			// node. Phrases can't be merged either.
-			if(isPhrase || nodes.empty() || !nodes.back().canMergeOnto || HasDisplayRestriction(child))
+			// node.
+			if(nodes.empty() || !nodes.back().canMergeOnto || HasDisplayRestriction(child))
 				AddNode();
 
+			if(child.Size() == 2)
+				nodes.back().elements.back().phrase == child.Token(1);
+			else
+				nodes.back().elements.back().text += child.Token(1);
+
 			// Always append a newline to the end of the text.
-			nodes.back().elements.back().text += child.Token(isPhrase);
-			nodes.back().elements.back().isPhrase = isPhrase;
-			nodes.back().canMergeOnto = !isPhrase;
-			if(!isPhrase)
-				nodes.back().elements.back().text += "\n";
+			nodes.back().elements.back().text += child.Token(0) + '\n';
 
 			// Check whether there is a goto attached to this block of text. If
 			// so, future nodes can't merge onto this one.
@@ -369,17 +368,7 @@ Conversation Conversation::Instantiate(map<string, string> &subs, int jumps, int
 	for(Node &node : result.nodes)
 	{
 		for(Element &element : node.elements)
-		{
-			if(element.isPhrase)
-			{
-				const Phrase * phrase = GameData::Phrases().Find(element.text);
-				if(phrase)
-					element.text = phrase->Get();
-				element.text += "\n";
-				element.isPhrase = false;
-			}
-			element.text = Format::Replace(element.text, subs);
-		}
+			element.text = Format::Replace(Format::ExpandPhrases(element.text), subs);
 		if(!node.actions.IsEmpty())
 			node.actions = node.actions.Instantiate(subs, jumps, payload);
 	}

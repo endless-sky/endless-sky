@@ -136,6 +136,9 @@ public:
 	static const Set<TestData> &TestDataSets();
 	static const Set<Wormhole> &Wormholes();
 
+	// Replace all occurrences ${phrase name} with the expanded phrase from Phrases()
+	static std::string ExpandPhrases(const std::string &source);
+
 	static ConditionsStore &GlobalConditions();
 
 	static const Government *PlayerGovernment();
