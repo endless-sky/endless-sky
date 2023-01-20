@@ -286,10 +286,10 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 
 
 
-bool MissionAction::RequiresShip(const Ship &ship) const
+bool MissionAction::RequiresShip(const string &shipId) const
 {
 	for(auto &&it : action.Ships())
-		if(it.Id() == ship.UUID())
+		if(it.Id() == shipId)
 			return true;
 	return false;
 }

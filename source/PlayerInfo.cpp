@@ -4133,10 +4133,10 @@ void PlayerInfo::ForgetGiftedShip(const Ship &oldShip)
 		[&id](const std::pair<const string, EsUuid> &shipId) { return id == shipId.second; });
 	if(shipToForget != giftedShips.end())
 	{
-		giftedShips.erase(shipToForget);
 		for(auto &mission : missions)
-			if(mission.RequiresShip(oldShip));
+			if(mission.RequiresShip(shipToForget.first));
 				mission.Fail();
+		giftedShips.erase(shipToForget);
 	}
 }
 

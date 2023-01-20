@@ -59,7 +59,7 @@ public:
 	// take place in a system that does not match the specified LocationFilter.
 	bool CanBeDone(const PlayerInfo &player, const std::shared_ptr<Ship> &boardingShip = nullptr) const;
 	// Check if this action requires this ship to exist in order to ever be completed.
-	bool RequiresShip(const Ship &ship) const;
+	bool RequiresShip(const std::string &shipId) const;
 	// Perform this action. If a conversation is shown, the given destination
 	// will be highlighted in the map if you bring it up.
 	void Do(PlayerInfo &player, UI *ui = nullptr, const System *destination = nullptr,

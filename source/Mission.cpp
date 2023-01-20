@@ -1046,7 +1046,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 
 
 
-bool Mission::RequiresShip(const Ship &ship) const
+bool Mission::RequiresShip(const string &shipId) const
 {
 	// Check if any uncompleted actions required for the mission needs this ship.
 	if(actions[Trigger::COMPLETE].RequiresShip(ship) ||
