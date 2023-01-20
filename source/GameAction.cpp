@@ -267,8 +267,8 @@ string GameAction::Validate() const
 
 	// Transferred content must be defined & valid.
 	for(auto &&it : giftShips)
-		if(!it->ShipModel()->IsValid())
-			return "gift ship model \"" + it->Ship()->VariantName() + "\"";
+		if(!it.ShipModel()->IsValid())
+			return "gift ship model \"" + it.ShipModel()->VariantName() + "\"";
 	for(auto &&outfit : giftOutfits)
 		if(!outfit.first->IsDefined())
 			return "gift outfit \"" + outfit.first->TrueName() + "\"";
@@ -327,8 +327,8 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 	// If multiple outfits, ships are being transferred, first remove the ships,
 	// then the outfits, before adding any new ones.
 	for(auto &&it : giftShips)
-		if(it.second.Count() < 0)
-			it.second.Do(player, it.first);
+		if(it.Count() < 0)
+			it.Do(player, it.first);
 	for(auto &&it : giftOutfits)
 		if(it.second < 0)
 			DoGift(player, it.first, it.second, ui);
@@ -336,8 +336,8 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 		if(it.second > 0)
 			DoGift(player, it.first, it.second, ui);
 	for(auto &&it : giftShips)
-		if(it.second.Count() > 0)
-			it.second.Do(player, it.first);
+		if(it.Count() > 0)
+			it.Do(player, it.first);
 
 	if(payment)
 	{

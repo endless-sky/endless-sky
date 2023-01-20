@@ -75,7 +75,7 @@ void ShipManager::Load(const DataNode &node)
 
 
 
-void ShipManager::Save(DataWriter &out)
+void ShipManager::Save(DataWriter &out) const
 {
 	out.Write(Count() > 0 ? "give" : "take", "ship",
 		model->VariantName(), Name(), abs(Count()),

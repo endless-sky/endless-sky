@@ -32,7 +32,7 @@ class Ship;
 class ShipManager {
 public:
 	void Load(const DataNode &node);
-	void Save(DataWriter &out);
+	void Save(DataWriter &out) const;
 
 	// Returns if the player meets the conditions; if they have the ships ready to be taken.
 	bool CanBeDone(const PlayerInfo &player) const;
