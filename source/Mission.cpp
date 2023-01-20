@@ -1046,6 +1046,19 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 
 
 
+bool Mission::RequiresShip(const Ship &ship) const
+{
+	// Check if any uncompleted actions required for the mission needs this ship.
+	if(actions[Trigger::COMPLETE].RequiresShip(ship) ||
+			actions[Trigger::STOPOVER].RequiresShip(ship) && !stopovers.empty() ||
+			actions[Trigger::WAYPOINT].RequiresShip(ship) && !waypoints.empty())
+		return true;
+
+	return false;
+}
+
+
+
 // Get a list of NPCs associated with this mission. Every time the player
 // takes off from a planet, they should be added to the active ships.
 const list<NPC> &Mission::NPCs() const

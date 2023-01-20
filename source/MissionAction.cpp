@@ -286,6 +286,16 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 
 
 
+bool MissionAction::RequiresShip(const Ship &ship) const
+{
+	for(auto &&it : action.Ships())
+		if(it.Id() == ship.UUID())
+			return true;
+	return false;
+}
+
+
+
 void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination,
 	const shared_ptr<Ship> &ship, const bool isUnique) const
 {
