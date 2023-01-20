@@ -43,7 +43,7 @@ public:
 	const std::string &Name() const;
 	// The identifier that the given/taken ship will have.
 	const std::string &Id() const;
-	// The amount of ships we will take/give.
+	// The number of ships we will take/give.
 	int Count() const;
 	// If true, the ship will be taken no matter what; even if it is not in the same system, or parked.
 	bool Unconstrained() const;
