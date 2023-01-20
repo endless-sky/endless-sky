@@ -178,7 +178,7 @@ void Government::Load(const DataNode &node)
 					if(it->first == fleet)
 						it = raidFleets.erase(it);
 					else
-						++it
+						++it;
 			}
 			else
 				raidFleets.emplace_back(fleet, child.Size() > (valueIndex + 1) ? child.Value(valueIndex + 1) : 2.);
