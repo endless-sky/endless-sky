@@ -234,7 +234,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 	}
 
 	for(auto &&it : action.Ships())
-		if(!it.CanBeDone(player, it.first))
+		if(!it.CanBeDone(player))
 			return false;
 
 	for(auto &&it : requiredOutfits)
