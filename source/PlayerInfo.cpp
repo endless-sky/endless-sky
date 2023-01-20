@@ -2967,16 +2967,16 @@ void PlayerInfo::RegisterDerivedConditions()
 			return 0.;
 
 		// This variable represents the probability of no raid fleets spawning.
-		double chance = 1.;
+		double safeChance = 1.;
 		for(const auto &raidFleet : system->GetGovernment()->RaidFleets())
 		{
 			// The attraction is the % chance for a single instance of this fleet to appear.
 			double attraction = RaidFleetAttraction(raidFleet, system);
 			// Calculate the % chance for no instances to appear from 10 rolls.
-			double prob = pow(1. - attraction, 10.);
+			double noFleetProb = pow(1. - attraction, 10.);
 			// The chance of neither of two fleets appearing is the chance of the first not appearing
 			// times the chance of the second not appearing.
-			chance *= prob;
+			safeChance *= noFleetProb;
 		}
 		// The probability of any single fleet appearing is 1 - chance.
 		return round((1. - chance) * 1000.);
