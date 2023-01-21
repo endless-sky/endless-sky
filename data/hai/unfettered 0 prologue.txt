@@ -781,7 +781,7 @@ mission "Unfettered: Prove Your Strength 2"
 			label cut
 			`	"Ye humans always be obsessed with yer doubloons... So many much greater a variety of booty ye could be seeking. Rest assured, it be quite the coffer. I be taking a mere quarter of the total bounty, and ye should well remember how well ye were paid for the ones ye've already delivered to me brethren."`
 			label leave
-			`	"One last warning for ye: Ye should sail the skies with a hyper drive, especially with the dangers of where we be headed. A  jump drive won't do us any favors getting there, but 'twill bring more than a mite of unwanted company. Nor should we risk the Wanderers decided to fit ye with a hempen halter from yer association with us." You accompany him to your ship, and he seems actually impressed, even more so when seeing the interior. "Your ship indeed be... adequate, for a warrior and this task," he begrudges.`
+			`	"One last warning for ye: Ye should sail the skies with a hyper drive, especially with the dangers of where we be headed. A jump drive won't do us any favors getting there, but 'twill bring more than a mite of unwanted company. Nor should we risk the Wanderers decided to fit ye with a hempen halter from yer association with us." You accompany him to your ship, and he seems actually impressed, even more so when seeing the interior. "Your ship indeed be... adequate, for a warrior and this task," he begrudges.`
 				accept
 	on visit
 		dialog "You do not have the jump drives. You either did not go to <destination> to get the jump drives yet, or you left your escort allocated to carrying the jump drives behind - better launch and wait for it."
