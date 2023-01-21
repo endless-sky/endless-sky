@@ -7,7 +7,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 news "wanderer civilians, no dialog 1"
 	location
@@ -299,10 +302,10 @@ news "Wanderers and the Eye"
 
 news "Wanderers and Korath"
 	to show
-		has "Wanderers: Sestor: Final: done"
+		has "wanderers sestor done"
 	location
-			government "Wanderer"
-			not attributes "evacuation"
+		government "Wanderer"
+		not attributes "evacuation"
 	name
 		word
 			"Wanderer merchant captain"
@@ -315,7 +318,7 @@ news "Wanderers and Korath"
 		word
 			"The Korath have [enormous, gigantic] ships that many of them live on their whole lives. I cannot [imagine, fathom] doing the same."
 			"Have you [seen, viewed] a Korath up close? They only have feathers on their neck. How [strange, odd]."
-			"The engines the Korath use have no regard for [effciency, subtlety]. But I must admit, they are much more powerful than ours."
+			"The engines the Korath use have no regard for [efficiency, subtlety]. But I must admit, they are much more powerful than ours."
 			"The Korath cannot pay [well, adequately] for their transport jobs, but they insist on paying [despite it, nonetheless]."
 			"I am trying to [learn, understand] more words of the Korath language. It is a difficult [task, undertaking], but it is important to learn the language of those who we are [undertaking, rescuing]."
 			"Have you been on a Korath [world, planet]? It is a [sobering, depressing] reminder of the importance of our [task, work]."
@@ -325,10 +328,10 @@ news "Wanderers and Korath"
 
 news "Wanderer Linguistics"
 	to show
-		has "Wanderers: Sestor: Final: done"
+		has "wanderers sestor done"
 	location
-			government "Wanderer"
-			not attributes "evacuation"
+		government "Wanderer"
+		not attributes "evacuation"
 	name
 		word
 			"Wanderer linguist"
