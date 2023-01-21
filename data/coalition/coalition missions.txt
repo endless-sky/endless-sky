@@ -3111,3 +3111,52 @@ mission "Coalition: Outskirts Gauger Ready"
 			`	While the Arachi work on the outfit, she explains that they used the probe's algorithms to have the scanners excel at finding basic energy signatures, such as heat or energy levels of other ships. "Made to check for complex machinery like outfits, or recognize specific cargo types, it was not, but still find uses for its current form, I'm sure you will."`
 			`	When everything's ready, you two head back inside your ship, and the elevator brings you back up. You fly back to the main landing area, and she pulls close to you just before you open your hatch. "Now, still... experimental, the outfit is, and provide the Heliarchs with a potentially faulty product, we do not wish. So, naturally, not yet registered it with them, we have. Provide you with more copies, we cannot, so careful not to lose this one, you should be." She thanks you again for helping out, and leaves for her workplace.`
 				decline
+
+
+
+mission "Heliarchs Buy Jump Drive Mission"
+	minor
+	landing
+	to offer
+		has "Coalition: First Contact: done"
+		has "outfit (cargo): Jump Drive"
+	to complete
+		has "Heliarchs Buy Jump Drive Job"
+	source
+		government "Heliarch"
+	on offer
+		conversation
+			`Your ship has barely touched down in the <origin> when several dozen Heliarch warships of all sizes start landing around you. The local garrison wastes no time in hailing you. "Captain <last>, our esteemed friend. Noticed it was that in your possession an extra jump drive is. Aid us tremendously any extra copies would, so if willing to sell your spare to us you are, thank you with <payment> we will." Many Heliarchs leave the ships, staring at the <ship> as they eagerly wait for your decision.`
+			choice
+				`	(Accept the deal.)`
+				`	(Not now.)`
+					defer
+				`	(No, you're not interested in selling your jump drives.)`
+					decline
+			`	She thanks you profusely, and as if collectively told about the decision in an instant, all the Heliarch personnel stop gawking, and make space for an army of engineers to come and remove the spare jump drive from your ship. Still watching the scene, only now in formations, the Heliarch agents whisper among themselves, rarely shifting their eyes, as if looking at a spectacle.`
+			`	When the drive is out of your ship, it is secured in an excessively reinforced container, and transported to a restricted section of the ring, under the guard of hundreds of armed guards. The Heliarch who hailed you, an Arach, personally comes to you, thanking you again and handing you <payment>. "Honor us you do with such generosity, Captain. Though made great progress in studying jump drives and their mechanisms, we have, still incapable of creating our own, we are, and means of acquiring new copies we have not. Tremendously valuable, each and every drive you could bring us is, so prepare special job requests for them, I will. If interested in selling any more jump drives, you are, check the job boards in the rings, from now on you should."`
+			`	She thanks you yet again, salutes, and leaves to follow the entourage guarding the newly purchased jump drive.`
+				accept
+	on accept
+		"coalition jobs" >?= 30
+		outfit "Jump Drive" -1
+		payment 5000000
+
+mission "Heliarchs Buy Jump Drive Job"
+	job
+	repeat
+	name "Sell Jump Drive"
+	description "Sell a jump drive to the Heliarchs for five million credits."
+	source
+		government "Heliarch"
+	to offer
+		not "Coalition: Lost: Offer: active"
+		has "Heliarchs Buy Jump Drive Mission: done"
+		has "outfit (cargo): Jump Drive"
+	to fail
+		has "Heliarchs Buy Jump Drive Job: active"
+	on accept
+		dialog "Heliarch engineer teams carefully remove the spare jump drive from your ship, and bring it to a restricted section of the ring. You're approached by the Heliarch who supervised the procedure, who thanks you for bringing in another drive, and hands you the pay of five million credits."
+		"coalition jobs" += 2
+		outfit "Jump Drive" -1
+		payment 5000000
