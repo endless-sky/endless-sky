@@ -353,7 +353,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 		return "You have already mapped all the systems shown by this map, "
 			"so there is no reason to buy another.";
 
-	if(HasLicense(selectedOutfit->Name()))
+	if(HasLicense(selectedOutfit->TrueName()))
 		return "You already have one of these licenses, "
 			"so there is no reason to buy another.";
 
@@ -521,9 +521,9 @@ void OutfitterPanel::Buy(bool onlyOwned)
 	}
 
 	// Special case: licenses.
-	if(IsLicense(selectedOutfit->Name()))
+	if(IsLicense(selectedOutfit->TrueName()))
 	{
-		player.Conditions()[LicenseName(selectedOutfit->Name())] = true;
+		player.Conditions()[LicenseName(selectedOutfit->TrueName())] = true;
 		player.Accounts().AddCredits(-selectedOutfit->Cost());
 		return;
 	}
