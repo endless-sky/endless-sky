@@ -729,7 +729,7 @@ ship "Modified Shield Beetle"
 	explode "large explosion" 53
 	explode "huge explosion" 22
 	"final explode" "final explosion large"
-	description "This is a prototype created by the Unfettered. They have upgraded its shield matrix as well as pretty much everything else they could, but this process has sacrificed stability and increased heat generation."
+	description "This is a prototype created by the Unfettered. They have upgraded its shield matrix as well as most other components of the ship, but this process has sacrificed stability and increased heat generation."
 
 
 
