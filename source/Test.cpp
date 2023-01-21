@@ -552,7 +552,7 @@ std::set<std::string> Test::RelevantConditions() const
 			case TestStep::Type::CALL:
 				{
 					auto calledTest = GameData::Tests().Find(step.nameOrLabel);
-					if(nullptr == calledTest)
+					if(!calledTest)
 						continue;
 
 					for(const auto &name : calledTest->RelevantConditions())
