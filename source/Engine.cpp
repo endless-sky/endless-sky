@@ -1551,13 +1551,7 @@ void Engine::CalculateStep()
 		batchDraw[calcTickTock].AddVisual(visual);
 
 	// Update fleets, remove fleets with no ships.
-	for(auto it = fleets.begin(); it != fleets.end(); )
-	{
-		if(it->ShouldBeRemoved())
-			it = fleets.erase(it);
-		else
-			++it;
-	}
+	Prune(fleets);
 
 	// Keep track of how much of the CPU time we are using.
 	loadSum += loadTimer.Time();
