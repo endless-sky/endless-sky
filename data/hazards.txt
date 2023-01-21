@@ -127,4 +127,3 @@ hazard "Magnetar Magnetic Field"
 		"hit force" -10
 		"damage dropoff" 20 5100
 		"dropoff modifier" 0
-    
