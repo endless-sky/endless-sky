@@ -1236,7 +1236,7 @@ double PlayerInfo::RaidFleetAttraction(const Government::RaidFleet &raid, const 
 		// their fleet deterence, minus whatever the minimum attraction of this raid fleet is.
 		pair<double, double> factors = RaidFleetFactors();
 		// If there is a maximum attraction for this fleet, and we are above it, it will not spawn.
-		if(raid.MaxAttraction() && factors.first > raid.MaxAttraction())
+		if(raid.MaxAttraction() > 0 && factors.first > raid.MaxAttraction())
 			return 0;
 
 		attraction = .005 * (factors.first - factors.second - raidFleet->MinAttraction());
