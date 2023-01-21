@@ -160,7 +160,7 @@ void NPC::Load(const DataNode &node, string missionName)
 			else if(eventType == ShipEvent::NONE)
 				child.PrintTrace("Error: invalid ShipEvent.");
 			else
-				npcActions.insert(make_pair(eventType, MissionAction(child, missionName, true)));
+				npcActions.emplace(eventType, MissionAction(child, missionName, true));
 		}
 		else if(child.Token(0) == "ship")
 		{
