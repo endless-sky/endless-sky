@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Angle.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
-#include "GameData.h"
 #include "Government.h"
 #include "LineShader.h"
 #include "pi.h"
