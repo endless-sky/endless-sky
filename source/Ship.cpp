@@ -1798,12 +1798,13 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		if(isDisabled)
 			landingPlanet = nullptr;
 
+		// Calculate the speed at which we will land/take off.
+		if(!landingSpeed)
+			CalculateLandingSpeed();
 		// Special ships do not disappear forever when they land; they
 		// just slowly refuel.
 		if(landingPlanet && zoom)
 		{
-			if(!landingSpeed)
-				CalculateLandingSpeed();
 			// Move the ship toward the center of the planet while landing.
 			if(GetTargetStellar())
 				position = .97 * position + .03 * GetTargetStellar()->Position();
