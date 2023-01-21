@@ -310,7 +310,9 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 	int missionCargoToSell = cargo.MissionCargoSize();
 	// Will you have to sell something other than regular cargo?
 	int commoditiesToSell = cargo.CommoditiesSize();
-	int outfitsToSell = cargo.OutfitsSize();
+	int outfitsToSell = 0;
+	for(auto &it : cargo.Outfits())
+		outfitsToSell += it.second;
 	// Count how many active ships we have that cannot make the jump (e.g. due to lack of fuel,
 	// drive, or carrier). All such ships will have been logged in the player's flightcheck.
 	size_t nonJumpCount = 0;
@@ -336,7 +338,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		if(missionCargoToSell > 0 || overbooked > 0)
 		{
 			bool both = (missionCargoToSell > 0 && overbooked > 0);
-			out << "If you take off now you will abort a mission due to not having enough ";
+			out << "If you take off now, you will abort a mission due to not having enough ";
 
 			if(overbooked > 0)
 			{
