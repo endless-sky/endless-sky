@@ -39,7 +39,9 @@ jobs:
         STEAM_VERSION=$(curl -sSf https://repo.steampowered.com/steamrt-images-sniper/snapshots/latest-container-runtime-depot/VERSION.txt --output -)
         echo "RT_VERSION=$STEAM_VERSION" >> $GITHUB_ENV
     - name: Build Endless Sky
-      run: docker-compose run steam-${{ matrix.arch }}
+      run: |
+        cd steam
+        docker-compose run steam-${{ matrix.arch }}
 
     # Test the binary
     - name: Install xvfb runtime dependencies
@@ -68,7 +70,9 @@ jobs:
     - name: Execute integration data parsing test
       run: ./steam-container-runtime/depot/run-in-sniper ./utils/test_parse.sh -- ./build/steam-${{ matrix.arch }}/endless-sky tests/integration/config
     - name: Execute tests
-      run: docker-compose run test-steam-${{ matrix.arch }}
+      run: |
+        cd steam
+        docker-compose run test-steam-${{ matrix.arch }}
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
