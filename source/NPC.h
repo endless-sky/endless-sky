@@ -59,7 +59,7 @@ public:
 	// Construct and Load() at the same time.
 	NPC(const DataNode &node, std::string missionName = "");
 
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, std::string missionName = "");
 	// Note: the Save() function can assume this is an instantiated mission, not
 	// a template, so fleets will be replaced by individual ships already.
 	void Save(DataWriter &out) const;
@@ -139,7 +139,6 @@ private:
 	bool mustAccompany = false;
 	std::map<const Ship *, int> shipActions;
 
-	std::string missionName;
 	std::map<const std::string, MissionAction> npcActions;
 };
 
