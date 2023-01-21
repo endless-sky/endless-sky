@@ -1050,7 +1050,17 @@ mission "Unfettered: Escort Hai Fleet"
 			label dosmth
 			`	"Of course you can! Even as we speak many Hai are bringing food to our brethren, and so can you. Due to the exceptional circumstances jobs are available to bring more food than ever, for a price corresponding to the seriousness of the situation."`
 			label introduce
-			`	"Only now I realize I have failed to introduce myself... My name is Vai'chi, and I will probably forever be in your debt. May the leaves keep on flowing your way, and I hope we see each others again. In the meantime, you should know that the Unfettered will probably be busy for some time because of this food crisis, and will not offer missions for a short while."`
+			`	"Only now I realize I have failed to introduce myself... My name is Vai'chi, and I will probably forever be in your debt. May the leaves keep on flowing your way, and I hope we see each others again. In the meantime, you should know that the Unfettered will probably be busy for some time because of this food crisis."`
+			branch over
+				not "unfettered: warned the hai governor escort about the mercenary attack"
+			`	"My security detachment has told me that you warned them of a great threat. It may be thanks to you that we managed to arrive safely today, and for that I thank you." She then leaves.`
+			`	`
+			`	Once you get back to your ship you see you received an encrypted message, consisting only of 4 words:`
+			`	"Nemo Me Impune Lacessit"`
+			`	You then notice that you have been fined 1 million credits for 'smuggling of illegal goods' it seems that it is the Unfettered that emited this fine...`
+			action
+				fine 1000000
+			label over
 		log "Minor People" "Vai'chi" `A Hai governor that is not scared to put herself in danger in order to muster Hai and Unfettered supporters alike. She seems to understand the Unfettered well, and to honestly want to help them.`
 
 # need to make you land to make the fleets spawn, because they can't be waiting for you in this system until you arrive.
@@ -1090,6 +1100,17 @@ mission "Unfettered: Taking Off With Hai Fleet"
 					goto leave
 				`	"Wait, that's not all, they somehow spoke to me in my quarters. Go check there, please."`
 			`	This alarms them a lot, and they proceed to a full examination of the bridge, but to no avail. "Whoever it is that spoke to you must know about our scanning methods. It is very dangerous to proceed with the mission but we have no choice, all we can do is have heavier escorts."`
+			`	Then, almost methodically, she passes the scanner on you, and stops herself, stunned. She then aims her rifle at you. "Do. Not. Move."`
+			choice
+				`	(Do as told.)`
+				`	(Try to defend yourself.)`
+					goto defend
+			`	She shoots at your shoulder, making you feel dizzy for a while.`
+				goto recovered
+			label defend
+			`	To her surprise, you try to dodge the shot, but all you manage to do is to get yourself stunned by multiple shots, all apparently aiming at your shoulder. You lose consciousness.`
+			label recovered
+			`	When you have recovered, she explains. "Someone had placed a tracker on your shoulder. A very nasty kind of tracker, and I did not want to find out what else it could do before shooting it. Sorry if I took you by surprise, captain, but you did well to warn us."`
 			label leave
 			branch otherships
 				"ships: Space Liner" + "ships: Transport" + "ships: Light Freighter" + "ships: Heavy Freighter" + "ships: Utility" + "ships: Interceptor" + "ships: Light Warship" + "ships: Medium Warship" + "ships: Heavy Warship" >= 1
@@ -1116,7 +1137,7 @@ outfit "Materials"
 # A modified version with small buffs and disabled faster.
 ship "Bactrian" "Bactrian (Cerberus)"
 	add attributes
-		"threshold percentage" .15
+		"threshold percentage" .1
 		"outfit space" 17
 		"weapon capacity" 20
 	outfits

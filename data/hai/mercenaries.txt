@@ -489,15 +489,7 @@ mission "Mercenaries: Bar Selling 2"
 
 
 
-# they'll help you take out the governor's escort if you agree to the deal
-event "friendly mercenaries"
-	"reputation: Mercenaries" >?= 0
-
-event "end of deal"
-	"reputation: Mercenaries" <?= -1000
-
-# SPOILERS: the tracker is not on the ship, it's on you so that's why the Hai don't find it, and this communication can happen.
-# the mercenaries want that governor down because she can easily help the Hai-Unfettered Hai unite, given she understands the Unfettered well.
+# SPOILERS: the mercenaries want that governor down because she can easily help the Hai-Unfettered Hai unite, given she understands the Unfettered well.
 # They will only take her hostage here, she may come back later.
 mission "Mercenaries: Feed Them To The Wolves"
 	landing
@@ -508,15 +500,14 @@ mission "Mercenaries: Feed Them To The Wolves"
 	to offer
 		has "Unfettered: Escort Hai Fleet: active"
 	on offer
-		dialog `You are alone in your quarters, waiting for the Hai admiral's arrival, when you hear a mysterious voice. "She of the Void requests that you bring those ships to <waypoints>. Do so and you will be richly rewarded. Do not worry about the supplies, we will bring them to the Unfettered, we are only acting in their best interest, after all. Whatever you decide, you do not want to speak of us to them." Do you accept?`
-	on accept
-		event "friendly mercenaries"
-		event "end of deal" 15
+		dialog `You are alone in your quarters, waiting for the security detachment of the Hai admiral to arrive, when you hear a mysterious voice. "She of the Void requests that you bring those ships to <waypoints>, without delay. Do so and you will be richly rewarded. Do not worry about the supplies, we will bring them to the Unfettered, we are only acting in their best interest, after all. Whatever you decide, you do not want to speak of us to them." Do you accept?`
 	waypoint "Waypoint"
 	on waypoint
+		"reputation: Mercenaries" >?= 0
 		conversation
 			`One of the unindentified ships hail you. "Thank you, Captain. Here is part of your reward: 1 million credits. You may help us by taking out these Hai ships, but it may be wise not to so that the rest of the Hai government will not suspect you, and think this was an unfortunate pirate attack. When this is done, go to Warfeed for your reward. They are going to be in high need of food, and you should bring them as much as you can to compensate for this small... delay in Hai food supplies."`
-			`	Right after that, the governor's ship hails you. "What have you done?"`
+			`	Right after that, the governor's ship hails you. "What have you done?" You feel like she was about to continue, but before she could all communications were jammed.`
+			`	You can see some pirates present with the Mercenaries' fleets, probably to distract other Hai ships that happen to be in the system.`
 		payment 1000000
 	npc
 		# the Alphas and their minions let the Mercenaries alone so that this would happen. They probably even gave them a tip about it, but not in person.
@@ -524,19 +515,27 @@ mission "Mercenaries: Feed Them To The Wolves"
 		system "Waypoint"
 		personality disables plunders staying harvests
 		fleet "Large Northern Pirates" 5
+	npc
+		government "Pirate"
+		system "Waypoint"
+		personality entering uninterested plunders disables coward
+		fleet "Small Northern Pirates" 5
 	to complete
 		has "Unfettered: Escort Hai Fleet: failed"
 		not "Unfettered: Escort Hai Fleet: aborted"
+	on abort
+		"reputation: Mercenaries" <?= -1000
 	on complete
+		"reputation: Mercenaries" <?= -1000
 		clear "unfettered: stopped on Greenbloom"
 		log `The plan was to escort a Hai fleet carying supplies and passengers into Unfettered space but an opportunity to feed them to the wolves instead was presented, and taken.`
-		# The shipment gets lost faster, because they're busy shipping all of these supplies to Unfettered space and can't dedicate as much resources to escorts.
+		# The shipment gets lost faster, because they're busy shipping all of these supplies to Unfettered space and can't dedicate as much resources to stealing Alpha supplies.
 		event "unfettered: shipment lost" 30
 		set "unfettered: hunger"
 		# Make the hunger last around 20 days longer.
 		"unfettered: hunger stops" = -500
 		payment 4000000
-		dialog `As before, a voice addresses you once you are alone in your quarters. "We have transferred 4 million credits to your account, and made sure the elder will not bother you. Do be aware, however, that a food situation has arrisen, not because of our small operation, but because of the bomb's presence in the first place. The Unfettered will probably be busy for some time because of it, and not offer missions for a short while."`
+		dialog `As before, a voice addresses you once you are alone in your quarters. "We have transferred 4 million credits to your account, and made sure the elder will not bother you. Do be aware, however, that a food situation has arrisen, not because of our small operation, but because of the bomb's presence in the first place. The Unfettered will probably be busy for some time... About the governor, if it can ease your conscience, we only captured her."`
 
 
 
