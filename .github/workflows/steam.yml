@@ -18,7 +18,7 @@ jobs:
   build_linux:
     name: Linux
     needs: changed
-    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed_outputs.cmake_files == 'true' }}
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.cmake_files == 'true' }}
     runs-on: ubuntu-22.04
     strategy:
       matrix:
