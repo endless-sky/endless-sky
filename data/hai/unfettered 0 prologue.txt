@@ -483,6 +483,9 @@ mission "Unfettered Jump Drive Trading"
 				defer
 	on accept
 		clear "unfettered: blade rodeo"
+		clear "choice: turret"
+		clear "choice: tripulse"
+		clear "choice: blaster"
 		outfit "Jump Drive" -1
 		outfit "Hyperdrive" 1
 		"reputation: Hai (Unfettered)" >?= 40
