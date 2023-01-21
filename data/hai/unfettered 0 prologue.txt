@@ -364,7 +364,8 @@ mission "Unfettered Jump Drive Trading"
 				`	(Leave and come back another time.)`
 			action
 				clear "unfettered: uninterested in weapons"
-			`	"How rude," says the engineer as you walk off and return to your ship.`
+				"unfettered: jd to sell" ++
+			`	"How rude, you better hope there will be someone else to guide you, next time!" Says the engineer as you walk off and return to your ship.`
 					defer
 			label uninterested
 			action
