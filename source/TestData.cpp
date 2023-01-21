@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Files.h"
+#include "GameData.h"
 #include "Mission.h"
 #include "UniverseObjects.h"
 
@@ -124,10 +125,6 @@ bool TestData::InjectSavegame() const
 
 bool TestData::InjectMission() const
 {
-	// If 'objects' is null, we can't inject anything here.
-	if(!objects)
-		return false;
-
 	const DataFile sourceData(sourceDataFile);
 	// Get the contents node in the test data.
 	const auto &nodePtr = GetContentsNode(sourceData);
@@ -137,7 +134,7 @@ bool TestData::InjectMission() const
 	const DataNode &dataNode = *nodePtr;
 	for(const DataNode &node : dataNode)
 		if(node.Token(0) == "mission" && node.Size() > 1)
-			objects->missions.Get(node.Token(1))->Load(node);
+			GameData::Objects().missions.Get(node.Token(1))->Load(node);
 
 	return true;
 }
