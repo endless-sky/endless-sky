@@ -298,6 +298,17 @@ void NPC::Save(DataWriter &out) const
 		if(!conversation->IsEmpty())
 			conversation->Save(out);
 
+		for(const auto &it : npcActions)
+		{
+			string name = ShipEvent::TypeToString(it.first);
+			out.Write("on", name);
+			out.BeginChild();
+			{
+				it.second.Save(out);
+			}
+			out.EndChild();
+		}
+
 		for(const shared_ptr<Ship> &ship : ships)
 		{
 			ship->Save(out);
