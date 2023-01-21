@@ -1089,7 +1089,7 @@ void MapPanel::DrawWormholes()
 	{
 		// Get the wormhole link color.
 		const Color &arrowColor = *link.color;
-		const Color &wormholeDim = Color::Combine(1.f, arrowColor, -0.66f, arrowColor);
+		const Color &wormholeDim = Color::Multiply(.33f, arrowColor);
 
 		// Compute the start and end positions of the wormhole link.
 		Point from = zoom * (link.from->Position() + center);
