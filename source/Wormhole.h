@@ -31,6 +31,8 @@ class System;
 // Class representing a wormhole in a planet.
 class Wormhole {
 public:
+	// Default constructor.
+	Wormhole();
 	// Load a wormhole's description from a file.
 	void Load(const DataNode &node);
 	// Load a wormhole from a given planet.
