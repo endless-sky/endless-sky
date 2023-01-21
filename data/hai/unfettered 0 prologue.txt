@@ -122,7 +122,7 @@ mission "First Contact: Unfettered"
 				decline
 			
 			label sell
-			`	"Bring us a jump drive," the say, "and we will count you among our friends. Bring us more, and we may even consider you worthy of a share of the plunder, when we take back what is ours."`
+			`	"Bring us a jump drive," they say, "and we will count you among our friends. Bring us more, and we may even consider you worthy of a share of the plunder, when we take back what is ours."`
 				decline
 	
 	on decline
@@ -372,7 +372,7 @@ mission "Unfettered Jump Drive Trading"
 
 phrase "Essential Unfettered Mission Fail"
 	word
-		`You have failed an essential Unfettered mission. You may want to reload your previous save.`
+		`You have failed an essential Unfettered mission. You may want to reload your previous save if you want to be able to finish the campaign.`
 
 
 
