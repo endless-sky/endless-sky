@@ -2670,8 +2670,17 @@ int Ship::Scan()
 				, Messages::Importance::Low);
 
 		if(target->GetPersonality().IsSecretive() && target->GetGovernment()->IsProvokedOnScan())
-			Messages::Add("Please refrain from scanning us or we will be forced to take action.",
+		{
+			// If this ship has no name, show its model name instead.
+			string tag;
+			const string &gov = ship->GetGovernment()->GetName();
+			if(!ship->Name().empty())
+				tag = gov + " " + ship->Noun() + " \"" + ship->Name() + "\": ";
+			else
+				tag = ship->ModelName() + " (" + gov + "): ";
+			Messages::Add(tag + "Please refrain from scanning us or we will be forced to take action.",
 				Messages::Importance::Highest);
+		}
 	}
 	else if(startedScanning && target->isYours)
 		Messages::Add("The " + government->GetName() + " " + Noun() + " \""
