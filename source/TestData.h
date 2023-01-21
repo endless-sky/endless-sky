@@ -20,7 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class DataFile;
 class DataNode;
-class UniverseObjects;
 
 
 
@@ -32,8 +31,6 @@ public:
 	// Function to inject the test-data into the game or into the games
 	// environment.
 	bool Inject() const;
-
-	static void ConfigureObjects(UniverseObjects &incomingObjects);
 
 	// Types of datafiles that can be stored.
 	enum class Type {UNSPECIFIED, SAVEGAME, MISSION};

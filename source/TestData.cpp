@@ -24,10 +24,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-namespace {
-	UniverseObjects *objects = nullptr;
-}
-
 
 
 const string &TestData::Name() const
@@ -86,13 +82,6 @@ bool TestData::Inject() const
 		default:
 			return false;
 	}
-}
-
-
-
-void TestData::ConfigureObjects(UniverseObjects &incomingObjects)
-{
-	objects = &incomingObjects;
 }
 
 
