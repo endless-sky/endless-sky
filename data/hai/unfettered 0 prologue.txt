@@ -382,7 +382,7 @@ mission "Unfettered Jump Drive Trading"
 			label meet
 			action
 				log "Minor People" "Desneeparu" `An Unfettered warrior that knows how to handle a blade. Was tested by her before being given access to new Unfettered weapons. Would have been a goner had she not been holding back.`
-			`	She does some kind of salute with her fist before leaving. "I most go now. I hope you will find the weapon you need, Captain."`
+			`	She does some kind of salute with her fist before leaving. "I must go now. I hope you will find the weapon you need, Captain."`
 			`	<The engineer> proceeds to take you underground to what looks like a very basic weapon testing range. They explain, "We prefer to do most of our testing on the field of battle. Here we only make sure the weapon actually fires before Unfettered captains can get their hands on it." You keep walking until you enter the outfitter section of the facility, where you notice the items on display are much more advanced than anything you have seen available on the surface: so much so it could almost pass for a 'normal' Hai outfitter, were it not for the overcharged, oppressive feel of the testing grounds.`
 			`	"Welcome to the advanced section of the outfitter, Captain! It is only for our most distinguished guests. Now that you have sold us multiple jump drives, I can tell you that we offer something much more valuable than money. For now, I can only offer you the mighty Tripulse Shredder, but eventually we will give you access to all kinds of weapons. Two Tripulse Shredders and our sympathy for one jump drive is the deal I propose," they say, presenting the weapons to you. Now that you can take a closer look, you notice these weapons seem fairly similar to other Hai weaponry, but they are enhanced in one way or another.`
 			label weapons
@@ -439,7 +439,7 @@ mission "Unfettered Jump Drive Trading"
 			label buytripulse
 			action
 				outfit "Tripulse Shredder" 2
-			`	They order their crew to do the transfer and come address you before leaving. "Do note that if you ever want more weapons, we will always be willing to trade them for jump drives in the job board. However, we can always offer money instead if that is of higher value to you. Of course, we can only do this exchange here on <origin>, given it is where these advanced weapons are produced and stocked."`
+			`	They order their crew to do the transfer and come to address you before leaving. "Do note that if you ever want more weapons, we will always be willing to trade them for jump drives in the job board. However, we can always offer money instead if that is of higher value to you. Of course, we can only do this exchange here on <origin>, given it is where these advanced weapons are produced and stocked."`
 				accept
 
 			label dodge
