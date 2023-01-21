@@ -305,7 +305,7 @@ mission "Unfettered Jump Drive Trading"
 	substitutions
 		<hood> ", with their face hidden"
 			has "unfettered: blade rodeo"
-		<learned> "It did take you 2 tries, but I am glad that you were able to learn from your mistake."
+		<learned> "It did take you two tries, but I am glad that you were able to learn from your mistake."
 			"unfettered: blade rodeo" == 1
 		<learned> "You finally learned from your mistakes. This is why our challenges are never fatal."
 			"unfettered: blade rodeo" == 2
@@ -353,13 +353,24 @@ mission "Unfettered Jump Drive Trading"
 					"unfettered: blade rodeo" > 1
 				goto blade
 			`	You exit your ship and immediately the engineer starts to lead you to the outfitter. "We have weapons to show you for your assistance in providing us with jump drives. For now you will only be allowed to trade for the one, but if you continue to provide assistance to us, you may prove yourself worthy to access the others." They never stop to ask if you are actually interested in new weapons.`
+			label repeat
 			choice
-				`	(Say nothing.)`
+				`	(Follow them.)`
 					goto next
 				`	"I'm not really interested in Hai weapons."`
+					to display
+						not "unfettered: uninterested in weapons"
+					goto uninterested
 				`	(Leave and come back another time.)`
+			action
+				clear "unfettered: uninterested in weapons"
+			`	"How rude," says the engineer as you walk off and return to your ship.`
 					defer
+			label uninterested
+			action
+				set "unfettered: uninterested in weapons"
 			`	"These are not standard Hai weapons, Captain, trust me. Also, it would be ill-advised to judge before seeing them, would it not?"`
+				goto repeat
 			label next
 			`	They lead you through the usual outfitter but then go to an area you have never noticed before, probably because you were not meant to. As you are about to pass through what you assume to be a security check, an Unfettered throws a blade at your face!`
 			label blade
@@ -483,6 +494,7 @@ mission "Unfettered Jump Drive Trading"
 					"unfettered: jd to sell" > "Unfettered Jump Drive 4: failed"
 				defer
 	on accept
+		clear "unfettered: uninterested in weapons"
 		clear "unfettered: blade rodeo"
 		clear "choice: turret"
 		clear "choice: tripulse"
