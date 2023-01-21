@@ -1,4 +1,4 @@
-/* DistanceMap.cpp
+/* RoutePlan.cpp
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -14,6 +14,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "RoutePlan.h"
+
+
 
 // RoutePlan is a wrapper on DistanceMap that uses destination
 RoutePlan::RoutePlan(const System &center, const System &destination)
