@@ -68,7 +68,7 @@ ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, InfoPanelState state)
 	{
 		// Find the player's flagship. It may not be first in the list, if the
 		// first item in the list cannot be a flagship.
-		while(shipIt != player.Ships().end() && shipIt->get() != player.Flagship())
+		while(shipIt != this->panelState.Ships().end() && shipIt->get() != player.Flagship())
 			++shipIt;
 	}
 
@@ -92,7 +92,7 @@ void ShipInfoPanel::Draw()
 	// Fill in the information for how this interface should be drawn.
 	Information interfaceInfo;
 	interfaceInfo.SetCondition("ship tab");
-	if(panelState.CanEdit() && (shipIt != player.Ships().end())
+	if(panelState.CanEdit() && (shipIt != panelState.Ships().end())
 			&& (shipIt->get() != player.Flagship() || (*shipIt)->IsParked()))
 	{
 		if(!(*shipIt)->IsDisabled())
@@ -119,7 +119,7 @@ void ShipInfoPanel::Draw()
 
 	// Draw all the different information sections.
 	ClearZones();
-	if(shipIt == player.Ships().end())
+	if(shipIt == panelState.Ships().end())
 		return;
 	Rectangle cargoBounds = infoPanelUi->GetBox("cargo");
 	DrawShipStats(infoPanelUi->GetBox("stats"));
@@ -436,8 +436,11 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 		scale = min(scale, (LABEL_DX - LABEL_PAD) / (2. * maxX));
 
 	// Draw the ship, using the black silhouette swizzle.
-	SpriteShader::Draw(sprite, bounds.Center(), scale, 28);
-	OutlineShader::Draw(sprite, bounds.Center(), scale * Point(sprite->Width(), sprite->Height()), Color(.5f));
+	if(sprite)
+	{
+		SpriteShader::Draw(sprite, bounds.Center(), scale, 28);
+		OutlineShader::Draw(sprite, bounds.Center(), scale * Point(sprite->Width(), sprite->Height()), Color(.5f));
+	}
 
 	// Figure out how tall each part of the weapon listing will be.
 	int gunRows = max(count[0][0], count[1][0]);

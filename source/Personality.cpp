@@ -125,7 +125,6 @@ void Personality::Load(const DataNode &node)
 				Parse(child, i, remove);
 		}
 	}
-
 	isDefined = true;
 }
 

@@ -36,6 +36,8 @@ public:
 	void Save(DataWriter &out) const;
 	bool IsDefined() const;
 
+	bool IsDefined() const;
+
 	// Who a ship decides to attack:
 	bool IsPacifist() const;
 	bool IsForbearing() const;
