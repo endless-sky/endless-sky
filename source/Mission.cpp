@@ -1440,15 +1440,14 @@ int Mission::CalculateJumps(const System *sourceSystem)
 		auto it = destinations.begin();
 		auto bestIt = it;
 		for(++it; it != destinations.end(); ++it)
-			if(distance.Days(*it) < distance.Days(*bestIt))
+			if(distance.Days(**it) < distance.Days(**bestIt))
 				bestIt = it;
 
 		sourceSystem = *bestIt;
-		expectedJumps += distance.Days(*bestIt);
+		expectedJumps += distance.Days(**bestIt);
 		destinations.erase(bestIt);
 	}
-	DistanceMap distance(sourceSystem);
-	expectedJumps += distance.Days(destination->GetSystem());
+	expectedJumps += RoutePlan(*sourceSystem, *destination->GetSystem()).Days();
 
 	return expectedJumps;
 }
