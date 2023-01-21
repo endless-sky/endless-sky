@@ -1,4 +1,4 @@
-/* Fleet.cpp
+/* FleetLoader.cpp
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Fleet.h"
 #include "Logger.h"
 #include "Phrase.h"
 #include "pi.h"
@@ -277,7 +278,7 @@ const Government *FleetLoader::GetGovernment() const
 
 
 // Choose a fleet to be created during flight, and have it enter the system via jump or planetary departure.
-void FleetLoader::Enter(const System &system, list<shared_ptr<Ship>> &ships, vector<FleetHolder> &fleets,
+void FleetLoader::Enter(const System &system, list<shared_ptr<Ship>> &ships, vector<Fleet> &fleets,
 	const Planet *planet) const
 {
 	if(variants.empty() || personality.IsDerelict())
@@ -411,7 +412,7 @@ void FleetLoader::Enter(const System &system, list<shared_ptr<Ship>> &ships, vec
 
 	// Create an instance for the fleet that gets spawned.
 	fleets.emplace_back();
-	fleets.back().name = fleetName;
+	fleets.back().SetName(fleetName);
 
 	// Place all the ships in the chosen fleet variant.
 	shared_ptr<Ship> flagship;
@@ -443,20 +444,20 @@ void FleetLoader::Enter(const System &system, list<shared_ptr<Ship>> &ships, vec
 		else
 		{
 			flagship = ship;
-			fleets.back().flagship = flagship;
+			fleets.back().SetFlagship(flagship);
 		}
 
-		fleets.back().ships.insert(ship);
 
 		SetCargo(&*ship);
 	}
+	fleets.back().SetShips(placed);
 }
 
 
 
 // Place one of the variants in the given system, already "in action." If the carried flag is set,
 // only uncarried ships will be added to the list (as any carriables will be stored in bays).
-void FleetLoader::Place(const System &system, list<shared_ptr<Ship>> &ships, vector<FleetHolder> &fleets,
+void FleetLoader::Place(const System &system, list<shared_ptr<Ship>> &ships, vector<Fleet> &fleets,
 	bool carried) const
 {
 	if(variants.empty())
@@ -472,7 +473,7 @@ void FleetLoader::Place(const System &system, list<shared_ptr<Ship>> &ships, vec
 
 	// Create an instance for the fleet that gets spawned.
 	fleets.emplace_back();
-	fleets.back().name = fleetName;
+	fleets.back().SetName(fleetName);
 
 	// Place all the ships in the chosen fleet variant.
 	shared_ptr<Ship> flagship;
@@ -500,13 +501,12 @@ void FleetLoader::Place(const System &system, list<shared_ptr<Ship>> &ships, vec
 		else
 		{
 			flagship = ship;
-			fleets.back().flagship = flagship;
+			fleets.back().SetFlagship(flagship);
 		}
 
 		SetCargo(&*ship);
-
-		fleets.back().ships.insert(ship);
 	}
+	fleets.back().SetShips(placed);
 }
 
 

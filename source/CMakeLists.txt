@@ -136,6 +136,8 @@ target_sources(EndlessSkyLib PRIVATE
 	FireCommand.h
 	Fleet.cpp
 	Fleet.h
+	FleetLoader.cpp
+	FleetLoader.h
 	Flotsam.cpp
 	Flotsam.h
 	FogShader.cpp

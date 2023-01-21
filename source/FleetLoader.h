@@ -1,4 +1,4 @@
-/* Fleet.h
+/* FleetLoader.h
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef FLEET_H_
-#define FLEET_H_
+#ifndef FLEETLOADER_H_
+#define FLEETLOADER_H_
 
 #include "Personality.h"
 #include "Sale.h"
@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class DataNode;
 class Government;
+class Fleet;
 class Outfit;
 class Phrase;
 class Planet;
@@ -46,14 +47,6 @@ class System;
 // names are chosen based on a given random "phrase" generator.
 class FleetLoader {
 public:
-	// Struct to hold an instance of a fleet.
-	struct FleetHolder {
-		std::string name;
-		std::shared_ptr<Ship> flagship;
-		std::set<std::shared_ptr<Ship>> ships;
-	};
-
-public:
 	FleetLoader() = default;
 	// Construct and Load() at the same time.
 	FleetLoader(const DataNode &node);
@@ -69,11 +62,11 @@ public:
 	const Government *GetGovernment() const;
 
 	// Choose a fleet to be created during flight, and have it enter the system via jump or planetary departure.
-	void Enter(const System &system, std::list<std::shared_ptr<Ship>> &ships, std::vector<FleetHolder> &fleets,
+	void Enter(const System &system, std::list<std::shared_ptr<Ship>> &ships, std::vector<Fleet> &fleets,
 			const Planet *planet = nullptr) const;
 	// Place a fleet in the given system, already "in action." If the carried flag is set, only
 	// uncarried ships will be added to the list (as any carriables will be stored in bays).
-	void Place(const System &system, std::list<std::shared_ptr<Ship>> &ships, std::vector<FleetHolder> &fleets,
+	void Place(const System &system, std::list<std::shared_ptr<Ship>> &ships, std::vector<Fleet> &fleets,
 			bool carried = true) const;
 	void Place(const System &system, std::list<std::shared_ptr<Ship>> &ships, bool carried = true) const;
 

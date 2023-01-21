@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "DrawList.h"
 #include "EscortDisplay.h"
+#include "Fleet.h"
 #include "FleetLoader.h"
 #include "Information.h"
 #include "Point.h"
@@ -164,7 +165,7 @@ private:
 	std::list<std::shared_ptr<Flotsam>> flotsam;
 	std::vector<Visual> visuals;
 	AsteroidField asteroids;
-	std::vector<FleetLoader::FleetHolder> fleets;
+	std::vector<Fleet> fleets;
 
 	// New objects created within the latest step:
 	std::list<std::shared_ptr<Ship>> newShips;
