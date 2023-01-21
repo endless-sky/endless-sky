@@ -846,7 +846,8 @@ void Engine::Step(bool isActive)
 					info.SetString("PSystem", "Parent Sys: " + PSystem);
 				}
 				string person = "Personality: ";
-				person += (target->GetPersonality().IsHeroic() ? "Heroic" : target->GetPersonality().IsCoward() ? "Coward" : target->GetPersonality().IsFleeing() ? "Fleeing" : "Other");
+				person += (target->GetPersonality().IsHeroic() ? "Heroic" : target->
+					GetPersonality().IsCoward() ? "Coward" : target->GetPersonality().IsFleeing() ? "Fleeing" : "Other");
 				info.SetString("personality", person);
 				string JumpStatus = (target->IsEnteringHyperspace() ? "Jumping" : target->IsReadyToJump(true) ? "Jump Ready" : "Not Ready");
 					info.SetString("jumpstatus", JumpStatus);
