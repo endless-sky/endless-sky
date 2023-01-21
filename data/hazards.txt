@@ -102,6 +102,14 @@ hazard "Small Black Hole Gravity"
 
 
 
+hazard "Neutron Star Magnetic Field"
+	"constant strength"
+	"range" 450
+	weapon
+		"damage dropoff" 0 450
+		"dropoff modifier" 0
+		"shield damage" 6
+
 hazard "Magnetar Radiation"
 	"constant strength"
 	"range" 3000
@@ -119,3 +127,4 @@ hazard "Magnetar Magnetic Field"
 		"hit force" -10
 		"damage dropoff" 20 5100
 		"dropoff modifier" 0
+    
