@@ -1239,7 +1239,7 @@ double PlayerInfo::RaidFleetAttraction(const Government::RaidFleet &raid, const 
 		if(raid.MaxAttraction() > 0 && factors.first > raid.MaxAttraction())
 			return 0;
 
-		attraction = .005 * (factors.first - factors.second - raid->MinAttraction());
+		attraction = .005 * (factors.first - factors.second - raid.MinAttraction());
 		// Then we consider the strength of other fleets in the system.
 		int64_t raidStrength = raidFleet->Strength();
 		if(system && raidStrength)
