@@ -197,7 +197,7 @@ mission "Hai Reveal [C04] Cleanup"
 	on enter Almaaz
 		dialog `As you depart the planet, you notice a new system has appeared on your scanners to the southwest. You should adjust your destination accordingly.`
 	on enter "Al Hurr"
-		dialog `As you enter the system, your computer registers the same impossible readings as you found on Devil-Run. It seems that, whoever hid Elenchus, has taken care to hide this safe haven as well.`
+		dialog `As you enter the system, your computer registers the same impossible readings as you found in Devil-Run. It seems that, whoever hid Elenchus, has taken care to hide this safe haven as well.`
 	on offer
 		event "lofty goals"
 		log `Confirmed the loose end is Terry. Discovered the existence of another system in the Far North only accessible via jump drive.`
