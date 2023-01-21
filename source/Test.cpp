@@ -534,7 +534,7 @@ const string &Test::StatusText() const
 
 
 // Get the names of the conditions relevant for this test.
-const std::set<std::string> Test::RelevantConditions() const
+std::set<std::string> Test::RelevantConditions() const
 {
 	set<string> conditionNames;
 	for(const auto &step : steps)
