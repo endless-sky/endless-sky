@@ -1300,7 +1300,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 				bay.ship->SetSwizzle(bay.ship->customSwizzle >= 0 ? bay.ship->customSwizzle : swizzle);
 		}
 	}
-	    // Get the weapon ranges for this ship, so the Ai can call it. ajc
+	    // Get the weapon ranges for this ship, so the Ai can call it.
     const vector<Hardpoint> &hardpoints = armament.Get();
     for(unsigned i = 0; i < hardpoints.size(); ++i)
     {
@@ -1315,7 +1315,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 }
 
 
-// various weapon raanges for this ship. ajc.
+// various weapon raanges for this ship.
 double Ship::TurretRange() const
 {
     return turretRange;
