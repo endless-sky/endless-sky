@@ -1300,16 +1300,16 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 				bay.ship->SetSwizzle(bay.ship->customSwizzle >= 0 ? bay.ship->customSwizzle : swizzle);
 		}
 	}
-	    // Get the weapon ranges for this ship, so the Ai can call it.
-    const vector<Hardpoint> &hardpoints = armament.Get();
-    for(unsigned i = 0; i < hardpoints.size(); ++i)
-    {
+		// Get the weapon ranges for this ship, so the Ai can call it.
+	const vector<Hardpoint> &hardpoints = armament.Get();
+	for(unsigned i = 0; i < hardpoints.size(); ++i)
+	{
 		const Weapon *weapon = hardpoints[i].GetOutfit();
 		if(weapon && !weapon->Ammo() && weapon->DoesDamage() && hardpoints[i].IsTurret())
 			turretRange = max(turretRange, weapon->Range() + hardpoints[i].GetPoint().Length());
 		else if(weapon && !weapon->Ammo() && weapon->DoesDamage() && hardpoints[i].IsGun())
 			gunRange = max(gunRange, weapon->Range() + hardpoints[i].GetPoint().Length());
-    }
+	}
 }
 
 
@@ -1317,14 +1317,14 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 // Functions providing various weapon ranges for this ship.
 double Ship::TurretRange() const
 {
-    return turretRange;
+	return turretRange;
 }
 
 
 
 double Ship::GunRange() const
 {
-    return gunRange;
+	return gunRange;
 }
 
 
@@ -3515,7 +3515,7 @@ double Ship::TurnRate() const
 
 double Ship::TrueTurnRate() const
 {
-    return attributes.Get("turn") / Mass() * 1. / (1. + slowness * .05);
+	return attributes.Get("turn") / Mass() * 1. / (1. + slowness * .05);
 }
 
 
