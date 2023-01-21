@@ -450,6 +450,7 @@ mission "Unfettered Jump Drive Trading"
 			`	"So this is how you 'fight,' Captain? You hide? You dodge? You refuse to seize our weapons, so you will not have them."`
 				to display
 					not "unfettered: flee from the blade"
+			``
 				goto fail
 			label flee
 			action
