@@ -41,6 +41,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Politics.h"
 #include "Preferences.h"
 #include "RingShader.h"
+#include "RoutePlan.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipJumpNavigation.h"
