@@ -19,6 +19,24 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+namespace {
+	const map<string, int> EVENT_NAMES = {
+		{"assist", ASSIST},
+		{"scan cargo", SCAN_CARGO},
+		{"scan outfits", SCAN_OUTFITS},
+		{"provoke", PROVOKE},
+		{"disable", DISABLE},
+		{"board", BOARD},
+		{"capture", CAPTURE},
+		{"destroy", DESTROY},
+		{"atrocity", ATROCITY},
+		{"jump", JUMP},
+		// Combination events
+		{"scan", SCAN_CARGO & SCAN_OUTFITS},
+		{"kill", CAPTURE & DESTROY}
+	};
+}
+
 
 
 ShipEvent::ShipEvent(const Government *actor, const shared_ptr<Ship> &target, int type)
@@ -79,46 +97,19 @@ int ShipEvent::Type() const
 
 string ShipEvent::TypeToString(int type)
 {
-	static const map<int, string> types = {
-		{ASSIST, "assist"},
-		{SCAN_CARGO, "scan cargo"},
-		{SCAN_OUTFITS, "scan outfits"},
-		{SCAN_CARGO & SCAN_OUTFITS, "scan"},
-		{PROVOKE, "provoke"},
-		{DISABLE, "disable"},
-		{BOARD, "board"},
-		{CAPTURE, "capture"},
-		{DESTROY, "destroy"},
-		{ATROCITY, "atrocity"},
-		{JUMP, "jump"},
-	};
-
-	auto it = types.find(type);
-	if(it == types.end())
+	auto it = find_if(EVENT_NAMES.begin(), EVENT_NAMES.end(),
+			[&type](const auto &it) -> bool { return type == it.second; });
+	if(it == EVENT_NAMES.end())
 		return "none";
-	return it->second;
+	return it->first;
 }
 
 
 
 int ShipEvent::TypeFromString(const string &name)
 {
-	static const map<string, int> types = {
-		{"assist", ASSIST},
-		{"scan cargo", SCAN_CARGO},
-		{"scan outfits", SCAN_OUTFITS},
-		{"scan", SCAN_CARGO & SCAN_OUTFITS},
-		{"provoke", PROVOKE},
-		{"disable", DISABLE},
-		{"board", BOARD},
-		{"capture", CAPTURE},
-		{"destroy", DESTROY},
-		{"atrocity", ATROCITY},
-		{"jump", JUMP},
-	};
-
-	auto it = types.find(name);
-	if(it != types.end())
-		return it->second;
-	return NONE;
+	auto it = EVENT_NAMES.find(name);
+	if(it == EVENT_NAMES.end())
+		return NONE;
+	return it->second;
 }
