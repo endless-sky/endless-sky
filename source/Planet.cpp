@@ -179,7 +179,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 			text += '\n';
 		}
 		else if(key == "landing speed")
-			landingSpeed = min(0.0001, value);
+			landingSpeed = min(0.0001, child.Value(hasValue ? valueIndex : 0));
 		else if(key == "government")
 			government = GameData::Governments().Get(value);
 		else if(key == "required reputation")
