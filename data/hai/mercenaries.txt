@@ -149,7 +149,7 @@ ship Antlion
 	explode "small explosion" 40
 	explode "tiny explosion" 40
 	"final explode" "final explosion large"
-	description "This ship was built near the end of the Korath raids to be fast enough to catch and delay the raiders of the time. Whilst ordinarily it could not defeat one alone, its energy weapons and drones let it hold its own until cavalry arrived, and sometimes even win the fight if lucky. It is not able to sustain prolonged combat, but it is now renowned for attacking vulnerable targets in human space and disappearing before anyone can react, as if always one move ahead."
+	description "This ship was built near the end of the Korath raids to be fast enough to catch and delay the raiders of the time. Whilst ordinarily it could not defeat one alone, its energy weapons and drones let it hold its own until the cavalry arrived, and sometimes even win the fight if they got lucky. It is not able to sustain prolonged combat, but it is now renowned for attacking vulnerable targets in human space and disappearing before anyone can react, as if always one move ahead."
 	description "	When the raids suddenly ended, this ship turned out to be less useful in the subsequent Unfettered conflict, and was stolen by Mercenaries who chose to remain neutral in the conflict."
 
 
@@ -184,7 +184,7 @@ ship "Tick"
 	turret 0 -15
 	leak "leak" 60 50
 	explode "tiny explosion" 17
-	description "This drone was customized with the idea of using either a Repeater, to complement ion attacks, or a Bullfrog Anti-Missile, to keep its owner safe. The denser materials used allow for better protection, at the cost of a bit of mass and heat dissipation."
+	description "This drone was customized with the idea of using either a Repeater, to complement ion attacks, or a Bullfrog Anti-Missile, to keep its owner safe. The denser materials used allow for better protection, at the cost of a bit more mass and lower heat dissipation."
 	description "	This handy drone was only made possible thanks to scavenging, and combining multiple alien technologies."
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
@@ -254,7 +254,7 @@ ship "Sea Dragon"
 	explode "large explosion" 18
 	"final explode" "final explosion medium"
 	description "The Sea Scorpion was designed to serve as a mobile platform to launch Trackers from. After decades of hard work, the Unfettered are finally able to mass produce them. The ever growing fleet of Sea Scorpions enables the Unfettered to employ new tactics against the other Hai which alleviate some of their numerical, technological, and logistical disadvantages."
-	description "	This version was built from stronger materials, allowing a stronger hull, at the cost of heat dissipation. The owners also made modifications in order to make this ship more agile, and flexible, with increased fuel and engine capacity. It is a terror on the battlefield, using its speed and high damage of the Tripulse Shredders to its advantage."
+	description "	This version was built from stronger materials, allowing a stronger hull, at the cost of heat dissipation. The owners also made modifications in order to make this ship more agile and flexible, with increased fuel and engine capacity. It is a terror on the battlefield, using its speed and high damage of the Tripulse Shredders to its advantage."
 
 
 
@@ -385,7 +385,7 @@ mission "Mercenaries: Betrayal For The Bars"
 			`You call your crew to help and try to barricade the ship to prevent escape, but they cannot find anyone. You wonder how they could get away. Just to be sure, you check around the cargo bay. It seems like nothing is missing, but a few bars of gold are out of place. Maybe it was just a malfunction with the ship's gravitational systems.`
 				defer
 			label run
-			`As you run, you see a silouette running too. They are armed, and you think you recognize the uniform of a member of your crew. Could they be running after the intruder too? Is this just a big misunderstanding?`
+			`As you run, you see a silhouette of someone running. They are armed, and you think you recognize the uniform of a member of your crew. Could they be running after the intruder too? Is this just a big misunderstanding?`
 			choice
 				`(Order them to stand down.)`
 				`(Follow them to see where they are going.)`
@@ -405,7 +405,7 @@ mission "Mercenaries: Betrayal For The Bars"
 			`There is no doubt that you were heard, but the only reaction from the silouette is to run faster, and by another, more direct path. You cannot catch them, and you assume they escaped your ship, as later on you cannot find any intruders when doing a full search of your ship. Thankfully, they didn't manage to steal anything, surprisingly they only moved a few gold bars.`
 				accept
 			label shoot
-			`You hit the crew member in the shoulder and they fall. You go remove their weapon to be safe and ask for an explanation, but the only answer you get is "nemo me impune lacessit" before they lose consciousness. Looking into their eyes, you could see terror. You put them at a nearby hospital, but when you come back later, the crew member is gone, and no one has seen or heard anything.`
+			`You hit the crew member in the shoulder and they fall. You remove their weapon to be safe and ask for an explanation, but the only answer you get is "nemo me impune lacessit" before they lose consciousness. Looking into their eyes, you could see terror. You put them at a nearby hospital, but when you come back later, the crew member is gone, and no one has seen or heard anything.`
 				decline
 			label hello
 			`In order to be sure to avoid any misunderstanding, you shout "Hello?" to see if someone answers. Nobody does. You still head into the cargo bay, a bit more alert than before. As you enter, you see that a few gold bars have fallen off the pile. That was probably the sound you heard.`
@@ -421,7 +421,7 @@ mission "Mercenaries: Betrayal For The Bars"
 				`(Ignorance is bliss.)`
 				`(I prefer not to stay in the dark. Wake them.)`
 					goto light
-			`You throw a bucket of water on the crew member, waking them up.`
+			`You splash water on the crew member, waking them up.`
 			label bliss
 			`You leave the traitor here on this world, and they seem thankful but deeply troubled by what happened. You wonder what could have attracted such attention to you. Whatever it was should probably be safely stashed away, or gotten rid off.`
 				accept
@@ -432,7 +432,7 @@ mission "Mercenaries: Betrayal For The Bars"
 				`(This is it. I want to know all.)`
 				`(Ignorance is bliss.)`
 					goto bliss
-			`They takes a deep breath. "An important organization wants these gold bars you have on board. They're not just normal gold. If you were to sell them to me, I could give you a very generous price of 1000000 credits per bar, and you wouldn't be bothered by this again. 1 million per bar. You see, something is within these bars, something of the highest importance, and they want all of them. They will not stop until they have every single one. I may have told you too much for them to allow me to live already."`
+			`They take a deep breath. "An important organization wants these gold bars you have on board. They're not just normal gold. If you were to sell them to me, I could give you a very generous price of 1000000 credits per bar, and you wouldn't be bothered by this again. 1 million per bar. You see, something is within these bars, something of the highest importance, and they want all of them. They will not stop until they have every single one. I may have told you too much for them to allow me to live already."`
 			choice
 				`(Sell the bars.)`
 				`(Keep the bars, and drop that traitor on the planet.)`
@@ -550,7 +550,7 @@ mission "Mercenaries: Duel Squared"
 		has "mercenaries: accepted duel"
 		has "Unfettered: Cavalry Arrives: done"
 	on offer
-		dialog `The two mysterious ships hail you, "We are ready for a fight in orbit whenever you are. If you want, you can still call this off... At a cost."`
+		dialog `The two mysterious ships hail you, "We are ready for a fight in orbit whenever you are. If you want, you can still call this off... at a cost."`
 		fine 10000000
 	on accept
 		"mercenaries: duel startday" = day
@@ -620,7 +620,7 @@ mission "Mercenaries: Daemons Unleashed"
 				`	"May I wear your colors as well?"`
 					goto wearcolors
 				`	"How can I restore my reputation with the Unfettered?"`
-				`	End the connection.`
+				`	(End the connection.)`
 					goto endco
 			`	"They will probably forget about it if you sell them a Jump Drive."`
 			choice
@@ -687,14 +687,14 @@ mission "Unfettered: Special Cargo 1B"
 		not "outfit (all): Mystery Cube"
 	on offer
 		conversation
-			`You land on the planet next to another empty spot, hoping the Degenerate will land there. She does not seem to want to take any chances, and lands near a few of her own warships. As you depart the ship, your hairs stand up on the back of your neck. You try to get close to the Degenerate without drawing too much attention to yourself, and eventually arrive.`
+			`You land on the planet next to another empty spot, hoping the Degenerate will land there. She does not seem to want to take any chances, and lands near a few of her own warships. As you depart the ship, your hairs stand up on the back of your neck. You try to get close to the Degenerate without drawing too much attention to yourself, and eventually arrive there, undetected.`
 			choice
 				`	(Try to steal the item.)`
 					goto steal
 				`	(Try to bargain.)`
 					goto bargain
 				`	(Try to take an isolated pirate captive and ask for the item in exchange.)`
-			`	In front of the ship there's a group of pirates, and you see one of them separate from the others to go within the ship. Judging from his appearance and the way others where addressing him, you assume him to be the leader of that small band, at least. You sneak past the group in front and follow him.`
+			`	In front of the ship there's a group of pirates, and you see one of them separate from the others to go within the ship. Judging from his appearance and the way others were addressing him, you assume him to be the leader of that small band, at least. You sneak past the group in front and follow him.`
 			branch luckyish
 				random < 20
 			`	You get close up behind him and are about to pull your gun... when he suddenly turns back and throws the hardest haymaker you've ever experienced! You drop like a sack to the floor and never wake up again. That pirate probably has had some experience with backstabbings before.`
@@ -726,7 +726,7 @@ mission "Unfettered: Special Cargo 1B"
 			`	This bridge is very luxurious, you see that this warlord likes comfort, for herself at least. But you cannot find anything that looks unique at all.`
 				goto caught
 			label cargo
-			`	There are a lot of exotic things here, most of which are probably not legal at all. You better choose what to take with you, and fast! You also notice the presence of gold bars. There's no way you could carry all of them back with you discreetly, but you can drop them off the ship and then go grab them once you are out, hoping nobody will notice. Looking through a porthole you don't see anyone around at the moment. Conveniently, there is even some sand on the ground there, so the bars should sink in, and be harder to notice.`
+			`	There are a lot of exotic things here, most of which are probably not legal at all. You better choose what to take with you, and fast! You also notice the presence of gold bars. There's no way you could carry all of them back with you discreetly, but you can drop them off the ship and then go grab them once you are out, hoping nobody will notice. Looking through a porthole, you don't see anyone around at the moment. Conveniently, there is even some sand on the ground there, so the bars should sink in, and be harder to notice.`
 			branch knowsbars
 				has "Mercenaries: Betrayal For The Bars: declined"
 			`	It may not be what you're looking for, but these bars are probably worth a small fortune, and you reckon you could get away with a few tons of them, with some luck and an antigrav unit that a fellow crew member could bring, if you only threw these out the window. They have special markings on them and are probably worth more than the value of the gold alone! You can always take out the pirate lord's ship afterward and claim them as your own, as they are more heavy and take more space than any of the other items which could interest the warlord.`
@@ -776,7 +776,7 @@ mission "Unfettered: Special Cargo 1B"
 			action
 				outfit "Gold Bars" 5
 			label dropbars
-			`	You drop the gold and then leave the ship. Afterwards, you go around the ship to the location where they are partially buried in the sand, and take them discreetly with some members of your crew. You have to silence one or two curious pirates, but that's about it, and you can now head back to your ship. As expected, they have noticed the theft. you see them launching before you can do so yourself. This will be a bumpy ride.`
+			`	You drop the gold and then leave the ship. Afterwards, you go around the ship to the location where they are partially buried in the sand, and take them discreetly with some members of your crew. You have to silence one or two curious pirates, but that's about it, and you can now head back to your ship. As expected, they have noticed the theft. You see them launching before you can do so yourself. This will be a bumpy ride.`
 				flee
 			label caught
 			`	You do not manage to find the item here. However, you've attracted way too much suspicion by looking and opening crates everywhere you could. One local worker asks you something about mechanics. Being no engineer yourself, you cannot make any sense of what he says, even less formulate a correct response, and he calls a guard over you. You are captured and sold as a slave, condemned to a few years of hard work before a sad death.`
