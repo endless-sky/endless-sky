@@ -31,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Preferences.h"
 #include "Random.h"
+#include "RoutePlan.h"
 #include "Ship.h"
 #include "ShipEvent.h"
 #include "ShipJumpNavigation.h"
@@ -216,7 +217,7 @@ namespace {
 			return false;
 
 		// If the ship has no drive (or doesn't require fuel), no refuel.
-		if(!ship.JumpFuel())
+		if(!ship.JumpNavigation().JumpFuel())
 			return false;
 
 		// Now we know it could refuel. But it could also jump along the route
@@ -283,7 +284,7 @@ namespace {
 
 				const Planet &planet = *object.GetPlanet();
 				if(planet.IsWormhole() && planet.IsAccessible(&ship)
-						&& &planet.GetWormhole()->WormholeDestination(*from) == to)
+						&& &planet.GetWormhole()->WormholeDestination(*from) == nextSystem)
 				{
 					ship.SetTargetStellar(&object);
 					ship.SetTargetSystem(nullptr);
@@ -1688,18 +1689,6 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 			if(!(parent.IsEnteringHyperspace() || parent.IsReadyToJump()) || !EscortsReadyToJump(ship))
 				command |= Command::WAIT;
 		}
-		else if(ship.GetTargetStellar())
-		{
-			MoveToPlanet(ship, command);
-			if(parent.IsEnteringHyperspace())
-				command |= Command::LAND;
-		}
-		else if(needsFuel)
-			// Return to the system center to maximize solar collection rate.
-			MoveTo(ship, command, Point(), Point(), 40., 0.1);
-		else
-			// This ship has no route to the parent's destination system, so protect it until it jumps away.
-			KeepStation(ship, command, parent);
 	}
 	// If an escort is out of fuel, they should refuel without waiting for the
 	// "parent" to land (because the parent may not be planning on landing).
