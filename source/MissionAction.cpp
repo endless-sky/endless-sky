@@ -58,14 +58,14 @@ namespace {
 
 
 // Construct and Load() at the same time.
-MissionAction::MissionAction(const DataNode &node, const string &missionName, bool isNPC)
+MissionAction::MissionAction(const DataNode &node, const string &missionName, bool isNPCAction)
 {
-	Load(node, missionName, isNPC);
+	Load(node, missionName, isNPCAction);
 }
 
 
 
-void MissionAction::Load(const DataNode &node, const string &missionName, bool isNPC)
+void MissionAction::Load(const DataNode &node, const string &missionName, bool isNPCAction)
 {
 	if(node.Size() >= 2)
 		trigger = node.Token(1);
@@ -113,7 +113,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName, bool i
 		else if(key == "outfit" && child.Size() >= 3 && child.Token(2) == "0")
 		{
 			// Do not support this syntax for NPC actions, since they were created after it was deprecated.
-			if(isNPC)
+			if(isNPCAction)
 			{
 				child.PrintTrace("Error: unsupported use of \"outfit\" inside an NPC action.");
 				continue;

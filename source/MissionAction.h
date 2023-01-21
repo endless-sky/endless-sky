@@ -43,9 +43,9 @@ class MissionAction {
 public:
 	MissionAction() = default;
 	// Construct and Load() at the same time.
-	MissionAction(const DataNode &node, const std::string &missionName, bool isNPC = false);
+	MissionAction(const DataNode &node, const std::string &missionName, bool isNPCAction = false);
 
-	void Load(const DataNode &node, const std::string &missionName, bool isNPC = false);
+	void Load(const DataNode &node, const std::string &missionName, bool isNPCAction = false);
 	// Note: the Save() function can assume this is an instantiated mission, not
 	// a template, so it only has to save a subset of the data.
 	void Save(DataWriter &out) const;
