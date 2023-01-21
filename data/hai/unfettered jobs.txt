@@ -378,7 +378,6 @@ mission "Unfettered Small Medicals Rush"
 		dialog phrase "unfettered medicals payment dialog"
 
 
-
 mission "Unfettered Big Medicals Rush"
 	job
 	repeat
@@ -392,8 +391,6 @@ mission "Unfettered Big Medicals Rush"
 		distance 5 7
 		government "Hai"
 		attributes "spaceport"
-	destination
-		attributes "unfettered"
 	to offer
 		has "Unfettered Jump Drive 1: offered"
 		random < 40
