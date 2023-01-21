@@ -456,6 +456,7 @@ ship "Blackbird" "Blackbird (Prisoner Transport)"
 
 
 ship "Blackbird" "Blackbird (Hai Trafficker)"
+	crew 3
 	add attributes
 		"mass" 53
 		"outfit space" -51
@@ -507,6 +508,7 @@ ship "Bounder" "Bounder (Luxury)"
 
 
 ship "Bounder" "Bounder (Hai Trafficker)"
+	crew 1
 	outfits
 		"A255 Atomic Steering"
 		"A370 Atomic Thruster"
@@ -566,6 +568,23 @@ ship "Bulk Freighter" "Bulk Freighter (Hai)"
 	turret "Chameleon Anti-Missile"
 	turret "Chameleon Anti-Missile"
 	turret "Pulse Turret"
+
+
+ship "Bulk Freighter" "Bulk Freighter (Hai Trafficker)"
+	outfits
+		`"Biroo" Atomic Thruster`
+		`"Biroo" Reverse Thruster`
+		"A375 Atomic Steering"
+		"Breeder Reactor"
+		Brig
+		"Chameleon Anti-Missile" 3
+		"Hai Diamond Regenerator"
+		"LP072a Battery Pack"
+		"Liquid Nitrogen Cooler"
+		"Pulse Rifle" 10
+		Ramscoop
+		"Scram Drive"
+		"Security Station" 3
 
 
 ship "Bulk Freighter" "Bulk Freighter (Heavy)"
@@ -780,6 +799,7 @@ ship "Clipper" "Clipper (Speedy)"
 
 
 ship "Clipper" "Clipper (Hai Trafficker)"
+	crew 3
 	add attributes
 		"mass" 31
 		"outfit space" -25
@@ -994,6 +1014,7 @@ ship "Corvette" "Corvette (Particle Chaser)"
 
 
 ship "Corvette" "Corvette (Hai Trafficker)"
+	crew 8
 	add attributes
 		"mass" 53
 		"outfit space" -51
@@ -1599,6 +1620,7 @@ ship "Freighter" "Freighter (Secret Cargo)"
 
 
 ship "Freighter" "Freighter (Hai Trafficker)"
+	crew 2
 	add attributes
 		"mass" 31
 		"outfit space" -25
@@ -2337,6 +2359,7 @@ ship "Mule" "Mule (Hai Engines)"
 
 
 ship "Mule" "Mule (Hai Trafficker)"
+	crew 14
 	outfits
 		`"Basrem" Reverse Thruster`
 		`"Bondir" Atomic Thruster`
@@ -2920,6 +2943,7 @@ ship "Star Queen" "Star Queen (Hai)"
 
 
 ship "Star Queen" "Star Queen (Hai Trafficker)"
+	crew 33
 	outfits
 		`"Biroo" Atomic Steering`
 		`"Biroo" Atomic Thruster`

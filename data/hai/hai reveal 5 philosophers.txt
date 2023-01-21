@@ -295,8 +295,8 @@ mission "Hai Reveal [B03] Contact Giti"
 			label whazzit
 			`	"I have some leads on the smuggling operation, but there's something else you'll want to know about, too.`
 			label gossip
-			`	She types on a console while talking to you. "Certain people have noticed that you have had close interactions with Teeneep and I through this, and people have asked whether you are responsible for the mess caused by Teeneep going public with information you helped her find." Her expression is very serious. "We have not told them every detail, but we made it clear to your diplomats that the issue was a matter which would have blocked any solution until it was resolved, regardless of if you helped or not. They understand that your involvement has helped move towards a solution, even if parts of it could be misconstrued when seen from the outside.`
-			`	After Sayari finishes her sentence, she presses a button labeled "Eip-iteep" which activates a holographic map.`
+			`	Certain people have noticed that you have had close interactions with Teeneep and I through this, and people have asked whether you are responsible for the mess caused by Teeneep going public with information you helped her find." Her expression is very serious. "We have not told them every detail, but we made it clear to your diplomats that the issue was a matter which would have blocked any solution until it was resolved, regardless of if you helped or not. They understand that your involvement has helped move towards a solution, even if parts of it could be misconstrued when seen from the outside.`
+			`	After Sayari finishes her piece, she presses a button labeled "Eip-iteep" on a console which activates a holographic map.`
 			`	"These are known possible smuggling operations used to justify the <origin> operation. Unfortunately, while many matches were found, there was nothing in the new data that conclusively linked to the mysterious symbol. No human escapees had been tested for mild cadmium poisoning, so that was a dead end too. I know it's been thrust into the background pretty heavily, but did you find anything yourself? We need to decide if we're setting this aside or not."`
 			choice
 				`	"I've met a researcher named Giti who has been quite informative."`
@@ -347,71 +347,36 @@ mission "Hai Reveal [B04] The Riddle"
 
 
 
+mission "Hai Reveal [B05] Seek Elenchus"
+	landing
+	name "Seek Elenchus"
+	description `Map a route to the Devil-Hide system and seek there the aspiration described on the angry cat symbol as "Elenchus."`
+	source "Canyon"
+	destination "Elenchus"
+	to offer
+		has "Hai Reveal [B03] Contact Giti: done"
+	on offer
+		event "reveal devil-hide"
+
+
 event "reveal devil-hide"
 	system "Devil-Hide"
 		remove hidden
 
 
 
-conversation "giti tripped an alert"
-	`After a long series of shuttles, high-speed rails, and a several-minute-long elevator ride, you once again reach Giti's office.`
-	`	You enter the room, and she closes the door. "Captain <last>! Welcome back. Please, come in. I've been working on that translation, and I've finally figured it out. The nonsense words I thought were a riddle were actually a formula for calculating a jump target from the size of a hyperspace aperture, the origin, and a direction. I've managed the direction, and I could determine an origin if I had the size."`
-	choice
-		`	"Does 0.184 steradians sound right?"`
-		`	"My favorite number has always been 0.184."`
-	`	"I'll try that." She pulls out a pencil and paper, and works out some numbers. "Yes, that was it. The system is in the middle of Syndicate-"`
-	`	Suddenly, Giti's door bashes open, and four people in Republic Intelligence uniforms storm in. They each have a hand on their holstered weapons, but none make any move to draw them.`
-	`	"Captain <last>," says the man to your right, "please shut the door."`
-	`	You look over at the bent door and damaged frame, wondering if the man is serious.`
-	choice
-		`	"I'll try."`
-			goto shut
-		`	"You just broke the door."`
-			goto broke
-		`	(Draw your weapon.)`
-	`	You are not faster than four trained intelligence operatives.`
-		die
-	label shut
-	`	The door makes several creaking and snapping noises as it slides back into place. It takes most of your strength, but you manage to close it. The man, whose Republic Intelligence uniform is labeled with the name "Agent Kopkow," gestures for you to take one of the only seats in the room. He takes the one opposite and Giti sits at her desk. The other three agents remain standing.`
-		goto encounters
-	label broke
-	`	The man, whose Republic Intelligence uniform is labeled with the name "Agent Kopkow," punches the door, unbending it and shutting it in one motion. He gestures for you to take one of the only seats in the room. He takes the one opposite and Giti sits at her desk. The other three agents remain standing.`
-	label encounters
-	`	You've had some encounters with Republic Intelligence, but you know what everyone knows. They're the top police force of the Republic, dealing with high-profile civilian crimes that local authorities can't handle: murder investigations, interplanetary kidnappings, and the like. They also gather intelligence throughout human space, and possibly beyond, reporting directly to the Republic Parliament... which mostly means it's beholden to the interests of the members of Parliament.`
-	choice
-		`	"What's the problem?"`
-			goto uncomplaining
-		`	"I'm on an urgent mission that is critical for three governments. Don't bar my way."`
-	`	Uncannily, the agents all smirk at you at the same time. Kopkow responds flatly, "We don't respond well to threats."`
-	label uncomplaining
-	`	"Now, Captain <last>, your friend Giti here has tripped a flag in our systems that marks what you're looking into as an item of particular interest to Syndicate Internal Affairs. In fact, it is an interest which they have exclusive and sole jurisdiction over, even over and above us." He looks at you meaningfully. "That requires an Act of Parliament in a closed session, which has not occurred for a significant length of time, if you catch my drift."`
-	`	He clears his throat. "We've been following you recently, and interrogating some people you've met. Since we have determined that you have found... something, and that it is meaningful, we must send you to Hephaestus. We request that you take Giti, any information or equipment you were planning to take, and go immediately and directly. Do you understand?"`
-	choice
-		`	"Yes"`
-			accept
-		`	"I would prefer not to."`
-	`	Agent Kopkow narrows his eyes at you very slightly. "This is not an optional request." Beyond your line of sight you can hear the faint rustle of clothing shift where the agents are still standing.`
-	choice
-		`	(Comply.)`
-			accept
-		`	(Draw your weapon.)`
-	`	You are not faster than four trained intelligence operatives.`
-		die
-
-
-
-mission "Hai Reveal [B05] Lovelace Analysis"
+mission "Hai Reveal [B06] Lovelace Analysis"
 	landing
 	name "Hunting Smugglers"
-	description `Find and board a smuggler's ship. Your display will identify them as the "Smuggler" government, but they will still look like merchants. Try Syndicate space or the Far North. Then investigate any leads and return to <planet>.`
+	description `Find and board a smuggler's ship. Your display will identify them as the "Smuggler" government, but they will still look like merchants. Try Syndicate space or the Far North. Bring any useful information to Giti at <planet>.`
 	source Ada
 	destination Earth
 	clearance
 	to offer
 		has "Hai Reveal [B04] The Riddle: done"
 	to complete
-		has "Hai Reveal [B06] Boarded Smuggler: offered"
-		not "Hai Reveal [B06] Boarded Smuggler: active"
+		has "Hai Reveal [B07-1] Boarded Smuggler: offered"
+		not "Hai Reveal [B07-1] Boarded Smuggler: active"
 	on visit
 		dialog `You have not yet boarded a ship to learn anything about the smugglers. You will need to do this to continue.`
 	on offer
@@ -528,30 +493,32 @@ fleet "Smuggler (Hai Traffickers)"
 	names "civilian"
 	cargo 0
 	personality timid
-	variant 7
+	variant 10
 		"Blackbird (Hai Trafficker)"
 	variant 5
-		"Star Queen (Hai Trafficker)"
+		"Bulk Freighter (Hai Trafficker)"
 	variant 5
 		"Mule (Hai Trafficker)"
+	variant 3
+		"Star Queen (Hai Trafficker)"
 	variant 3
 		"Clipper (Hai Trafficker)"
 	variant 3
 		"Freighter (Hai Trafficker)"
-	variant 2
+	variant 3
 		"Corvette (Hai Trafficker)"
-	variant 2
+	variant 3
 		"Bounder (Hai Trafficker)"
 
 
-mission "Hai Reveal [B06] Boarded Smuggler"
+mission "Hai Reveal [B07-1] Boarded Smuggler"
 	name "0.184 steradians"
 	description "Report the information you found to Giti on <planet>."
 	boarding
 	destination Earth
 	clearance
 	to offer
-		has "Hai Reveal [B05] Lovelace Analysis: active"
+		has "Hai Reveal [B06] Lovelace Analysis: active"
 	source
 		government "Smuggler (Hai Trafficker)"
 	on offer
@@ -570,41 +537,34 @@ mission "Hai Reveal [B06] Boarded Smuggler"
 		fleet "pirate raid" 3
 
 
-mission "Hai Reveal [B07-1] Smuggler Ambush"
-	# The second smuggler serves to show they don't always carry slaves
-	invisible
-	boarding
-	destination Earth
-	deadline 1
-	to offer
-		has "Hai Reveal [B06] Boarded Smuggler: offered"
-	source
-		government "Smuggler (Hai Trafficker)"
-	on offer
-		conversation
-			`You scan this smuggling ship and notice only the basic crew are on board. Even so, the ship begins to self-destruct, and escape pods float away, just like before. Just as you wrap up, your ship informs you of incoming hostile ships. You prepare for another wave.`
-				launch
-	npc kill
-		government "Pirate"
-		personality nemesis harvests plunders entering
-		fleet "pirate raid" 2
-
-
+# Later smugglers have a mix of info vs. none.
 mission "Hai Reveal [B07-2] Smuggler Ambush"
-	# After the second smuggler, you get no more information, but the
-	# smugglers always blow up and call pirates.
 	invisible
-	repeat
 	boarding
+	repeat
 	destination Earth
 	deadline 1
 	to offer
-		has "Hai Reveal [B07-1] Smuggler Ambush: offered"
+		has "Hai Reveal [B07-1] Boarded Smuggler: offered"
+		has "Hai Reveal [B06] Lovelace Analysis: active"
 	source
 		government "Smuggler (Hai Trafficker)"
 	on offer
 		conversation
-			`As before, the smugglers set the self-destruct mechanism and abandon their ship and its contents, and your ship detects more incoming hostile vessels. You prepare for another wave.`
+			branch steradians                           # 1:10 chance of steradians
+				random < 10
+			branch victim                               # 2:10 chance of victim w/o steradians
+				random < 22
+			# Smuggler was smuggling something else.    # 7:10 chance of just cargo
+			`You scan this smuggling ship and notice only the basic crew are on board, along with all manner of illegal items. The ship begins to self-destruct and escape pods float away, just like before. As you wrap up, your ship informs you of incoming hostile ships.`
+				launch
+			label steradians
+			# Victim read the navigation logs on an Elenchus-bound ship.
+			`As before, a doomed kidnapping victim screams to you about 0.184 steradians, but cannot escape before the smugglers set the self-destruct mechanism. While their escape pods float away, your ship detects incoming hostile vessels, and you prepare for battle.`
+				launch
+			label victim
+			# Victim did not read the navigation logs, or was en-route to a holding area instead of Elenchus.
+			`A doomed kidnapping victim screams for help, and you try to rescue them. Before you reach the airlock, the smugglers set the self-destruct mechanism and depart in escape pods. Your ship detects incoming hostile vessels and you prepare for battle.`
 				launch
 	npc kill
 		government "Pirate"
@@ -612,13 +572,13 @@ mission "Hai Reveal [B07-2] Smuggler Ambush"
 		fleet "pirate raid" 2
 
 
-mission "Hai Reveal [B07-3] Cleanup"
+mission "Hai Reveal [B07-3] Smuggler Cleanup"
 	invisible
 	to offer
-		has "Hai Reveal [B05] Lovelace Analysis: active"
+		has "Hai Reveal [B06] Lovelace Analysis: active"
 		has "Hai Reveal [B08] Syndicate Internal Affairs: offered"
 	on offer
-		fail "Hai Reveal [B05] Lovelace Analysis"
+		fail "Hai Reveal [B06] Lovelace Analysis"
 
 
 
@@ -634,12 +594,70 @@ mission "Hai Reveal [B08] Syndicate Internal Affairs"
 	clearance
 	passengers 1
 	to offer
-		has "Hai Reveal [B06] Boarded Smuggler: done"
+		has "Hai Reveal [B07-1] Boarded Smuggler: done"
 	on offer
 		fail "Hai Reveal [B02-S] Republic Intelligence Stalkers"
 		log `Giti tripped an alert which places you both under the jurisdiction of a Syndicate Internal Affairs investigation. You've were sent directly to Hephaestus.`
-		log "Minor People" `Agent Kopkow` `A Republic Intelligence officer who intercepted your investigation with Giti before involving you with Syndicate Internal Affairs.`
-		conversation "giti tripped an alert"
+		log "Minor People" `Agent Horst Kopkow` `A Republic Intelligence officer who intercepted your investigation with Giti before involving you with Syndicate Internal Affairs. From her unprompted knowledge of his first name, it seems this may not have been her first run-in with the law.`
+		log "Factions" "Republic Intelligence" `This is the top police force of the Republic, dealing with high-profile civilian crimes that local authorities can't handle: murder investigations, interplanetary kidnappings, and the like. They also gather intelligence throughout human space, and possibly beyond, reporting directly to the Republic Parliament... which mostly means it's beholden to the interests of the members of Parliament.`
+		conversation
+			`After a long series of shuttles, high-speed rails, and a several-minute-long elevator ride, you once again reach Giti's office.`
+			`	You enter the room, and she closes the door. "Captain <last>! Welcome back. Please, come in. I've been working on that translation, and I've finally figured it out. The nonsense words I thought were a riddle were actually a formula for calculating a jump target from the size of a hyperspace aperture, the origin, and a direction. I've managed the direction, and I could determine an origin if I had the size."`
+			choice
+				`	"Does '0.184 steradians' sound like the answer?"`
+				`	"My favorite number has always been 0.184."`
+			`	"I'll try that." She pulls out a pencil and paper, and works out some numbers. A few minutes later, she says, "Yes, that was it. The system is in the middle of Syndicate-"`
+			`	Suddenly, Giti's door bashes open, and four people in Republic Intelligence uniforms storm in. They each have a hand on their holstered weapons, but none make any move to draw them. Giti sighs, rolls her eyes, and says, "Oh, not again, Horst. Maintenance just replaced that door."`
+			`	"Captain <last>," says the large brawny man to your right, "please shut the door."`
+			`	You look over at the bent door and damaged frame, and then back at the man, wondering if is serious. From his deathly stare, it seems to be so. Giti look of genuine concern warns you to be cautious in this situation.`
+			choice
+				`	"How? You just broke the door."`
+					goto broke
+				`	"I'll try."`
+					goto shut
+				`	"I think we all need to calm down and talk this through."`
+					goto broke
+				`	(Draw your weapon.)`
+					goto die
+				die
+			label shut
+			`	The door makes several creaking and snapping noises as it slides back into place. It takes most of your strength, but you manage to close it. The man, whose Republic Intelligence uniform is labeled with the name "Agent Kopkow," gestures for you to take one of the only seats in the room. He takes the one opposite and Giti sits at her desk. The other three agents stand around you.`
+				goto encounters
+			label broke
+			`	The man, whose Republic Intelligence uniform is labeled with the name "Agent Kopkow," punches the door, unbending it and shutting it in one motion. He gestures for you to take one of the only seats in the room. He takes the one opposite and Giti sits at her desk. The other three agents stand around you.`
+			label encounters
+			`	You've had some encounters with Republic Intelligence, but you know what everyone knows. They're the top police force of the Republic, dealing with high-profile civilian crimes that local authorities can't handle: murder investigations, interplanetary kidnappings, and the like. They also gather intelligence throughout human space, and possibly beyond, reporting directly to the Republic Parliament... which mostly means it's beholden to the interests of the members of Parliament.`
+			choice
+				`	"If Parliament's interests are repeatedly ruining and replacing library doors, then the Republic is in quite a sorry shape."`
+					goto humor
+				`	"I'm on an urgent mission that is critical for three governments. Don't bar my way."`
+				`	"What's the problem?"`
+					goto uncomplaining
+			`	Uncannily, the agents all smirk at you at the same time. Kopkow responds flatly, "We don't respond well to threats."`
+				goto uncomplaining
+			label humor
+			`	Giti gives a nervous laugh while Kopkow glares at you without blinking. You think you see him start to smile, but that may have been wishful thinking.`
+			label uncomplaining
+			`	"Now, Captain <last>, your friend Giti here has tripped a flag in our systems that marks what you're looking into as an item of particular interest to Syndicate Internal Affairs. In fact, it is an interest which they have exclusive and sole jurisdiction over, even over and above us." He looks at you meaningfully. "That requires an Act of Parliament in a closed session, which has not occurred for a significant length of time, if you catch my drift."`
+			`	He clears his throat. "We've been following you recently, and interrogating some people you've met. Since we have determined that you have found... something, and that it is meaningful, we must send you to Hephaestus. We request that you take Giti, any information or equipment you were planning to take, and go immediately and directly. Do you understand?"`
+			choice
+				`	"I've always wanted to take a holiday on Hephaestus anyway. Let's go!"`
+					accept
+				`	"Yes."`
+					accept
+				`	"It's time for you gentlemen to leave and let us get about our business."`
+			`	Agent Kopkow narrows his eyes at you very slightly. "This is not an optional request." Beyond your line of sight you can hear the faint rustle of clothing shift where the agents are still standing.`
+			choice
+				`	"The answer is no and this conversation is over."`
+				`	"Alright, let's go."`
+					accept
+				`	(Draw your weapon.)`
+					goto die
+			`	You can feel fists hit either side of your head, and you pass out. A while later, you wake up gagged with four men holding your arms and legs. They're walking, carrying you somewhere. Eventually, they reach your ship and let you down. It seems this was not an optional trip after all.`
+				accept
+			label die
+			`	Once your fingers graze the edge of your pistol, a foot slams into side of your neck while a fist braces your head. You can hear your spine snap just before everything goes dark. As you ponder your mistake, you realize the rumors were true: the brain does survive a few minutes without the body.`
+				die
 	on fail
 		"reputation: Republic" <?= -100
 		"reputation: Syndicate" <?= -100
@@ -697,9 +715,10 @@ mission "Hai Reveal [B09] Scanning Devil-Hide"
 			`	He pauses while getting ready to leave. "Oh, and you should probably tell her about the Hai at this point. We don't know if she knows, but if she doesn't she needs to know the basics. The scanners will flag anything we can explicitly identify as Hai tech, so the time has come. Good luck."`
 				accept
 	on enter "Devil-Run"
-		log `Found a strange spatial anomaly and a wormhole in the Devil-Run system. The wormhole is nothing out of the ordinary, and leads to a region just beyond The Deep. However, the spatial anomaly seems to be hiding the star system, and Giti says it would prevent any attempts to jump directly to it. To enter the system, we had to jump to another location, 0.17 light-years away.`
+		log `Found a strange spatial anomaly and a wormhole in the Devil-Run system. The wormhole is nothing out of the ordinary, and leads to a region just beyond The Deep. However, the spatial anomaly seems to be hiding the star system, and Giti says it would prevent any attempts to jump directly to it. To enter the system, we had to jump to another location, about 0.18 light-years away.`
 		conversation
-			`Giti turns on the scanning equipment.`
+			`During the trip you take the time to tell Giti the basics about the Hai. She had already known they existed, but hadn't been privy to any details of what was going on now. Knowing that the disappearances you've been hunting extend to Hai space seems to answer more questions than it creates and she takes the revelation of how significant this is to current events easily in stride.`
+			`Once you reach Devil-Run, everything turns pink, and you see sights you never thought possible. Giti turns on the scanning equipment.`
 			label scan
 			choice
 				`	"Tell me about the wormhole."`
@@ -721,23 +740,22 @@ mission "Hai Reveal [B09] Scanning Devil-Hide"
 			label wormhole
 			action
 				set "Hai Reveal [B09] Scanning Devil-Hide: label wormhole"
-			`	"The wormhole is nothing remarkable. The wormholes at Ultima Thule and Deneb have the same readings. Certainly, it is stable and we can fly through it without worrying about spaghettification. I'm not surprised to find a wormhole here, given how far away Devil-Hide is. The Deneb wormhole leads to another galaxy; this system is just outside of ours."`
+			`	"The wormhole is nothing remarkable. The wormholes at Ultima Thule and Deneb have the same readings. Certainly, it is stable and we can fly through it without worrying about spaghettification. I'm not surprised to find a wormhole here, given how far away Devil-Hide is. The Deneb wormhole leads to another galaxy; Devil-Hide is just outside of our own."`
 				goto scan
 			label anomaly
 			action
 				set "Hai Reveal [B09] Scanning Devil-Hide: label anomaly"
-			`	"It looks like a collapsing wormhole, and it seems to scatter any hyperwaves that come towards it, which would wreak havoc with anyone trying to plot a course here through hyperspace. I expect it may be the reason why the jump drive didn't take us to the jump target.`
+			`	"It looks like a collapsing wormhole, but there's a solid object at its core. That may, perhaps, be keeping the wormhole from collapsing entirely. Any hyperwaves sent to it scatter every which-way. This would wreak havoc with anyone trying to plot a course here through hyperspace. If my depended on it, I'd guess the anomaly is what caused the jump drive to take us away from the jump target.`
 			choice
 				`	"What do you mean?"`
 				`	"If we're not at the jump target, where are we?"`
-			`	"Well, we're about 0.17 light-years away from the location you tried to jump to. I'm not a theoretical hyperparticle physicist, but I expect this anomaly has something to do with it. When we take this data back home, I'm sure an army of scientists will look it over."`
+			`	"Well, we're about 0.18 light-years away from the location you tried to jump to. Actually, we're within 0.007% of the square root of pi light-years away. I'm not a hyperfield theorist, but I expect this anomaly has something to do with it. When we take this data back home, I'm sure an army of scientists will look it over."`
 				goto scan
 			label pink
 			action
 				set "Hai Reveal [B09] Scanning Devil-Hide: label pink"
-			`	"The spatial anomaly is slowly leaking some pink material that defies all analysis. It bears some similarity to the contents of a jump drive, which also defies all analysis. I'd wager it has something to do with the system being invisible. When we get home, I'll be sure our hyperspace researchers give it a thorough going-over."`
+			`	"The spatial anomaly is slowly leaking some pink material that defies all analysis. It bears some similarity to the particles in a jump drive, which also defies all analysis. I guess, since the only similarities are that I can't analyze them, and they're pink, it may all be a pink herring. I wonder if it has something to do with the system being invisible? When we get home, I'll be sure every to have hyperspace researcher I know give it a thorough going-over."`
 				goto scan
-		dialog `During the trip you take the time to tell Giti the basics about the Hai. She had already known they existed, but hadn't been privy to any details of what was going on now. Knowing that the disappearances you've been hunting extend to Hai space seems to answer more questions than it creates and she takes the revelation of how significant this is to current events easily in stride.`
 	on enter "Devil-Hide"
 		log `Found a bizarre planet with a subterranean colony in its moon. The planet defies analysis and seems to violate the known laws of physics. There is enough evidence of Hai tech to assume Hai presence in addition to the humans able to be detected. However, the scanners could not see the full extent of what's there due to interference from the planet.`
 		conversation

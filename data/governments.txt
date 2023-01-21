@@ -119,7 +119,7 @@ government "Deep Security"
 		"Merchant" .5
 		"Pirate" -.2
 		"Pirate (Devil-Run Gang)" -.2
-		"Smuggler (Hai Trafficker)" -.2
+		"Smuggler (Hai Trafficker)" .05
 	"friendly hail" "friendly deep"
 	"hostile hail" "hostile deep"
 
@@ -132,7 +132,7 @@ government "Deep Security that won't enter wormhole"
 		"Merchant" .5
 		"Pirate" -.2
 		"Pirate (Devil-Run Gang)" -.2
-		"Smuggler (Hai Trafficker)" -.2
+		"Smuggler (Hai Trafficker)" .05
 	"friendly hail" "friendly deep"
 	"hostile hail" "hostile deep"
 
@@ -166,7 +166,7 @@ government "Elenctic Commune"
 		"Hai (Friendly Unfettered)" .1
 		"Pirate" -.2
 		"Pirate (Devil-Run Gang)" -.2
-		"Smuggler (Hai Trafficker)" -.2
+		"Smuggler (Hai Trafficker)" .05
 	"bribe" .05
 
 government "Escort"
@@ -234,7 +234,7 @@ government "Free Worlds"
 		"Militia" .3
 		"Pirate" -.4
 		"Pirate (Devil-Run Gang)" -.4
-		"Smuggler (Hai Trafficker)" .3
+		"Smuggler (Hai Trafficker)" .05
 		"Neutral" .1
 	"bribe" .1
 	"friendly hail" "friendly free worlds"
@@ -253,7 +253,7 @@ government "Free Worlds that won't enter wormhole"
 		"Militia" .3
 		"Pirate" -.4
 		"Pirate (Devil-Run Gang)" -.4
-		"Smuggler (Hai Trafficker)" .3
+		"Smuggler (Hai Trafficker)" .05
 		"Neutral" .1
 	"bribe" .1
 	"friendly hail" "friendly free worlds"
@@ -758,7 +758,7 @@ government "Militia"
 		"Merchant" .3
 		"Pirate" -.4
 		"Pirate (Devil-Run Gang)" -.4
-		"Smuggler (Hai Trafficker)" .3
+		"Smuggler (Hai Trafficker)" .05
 	"bribe" .1
 	"friendly hail" "friendly militia"
 	"hostile hail" "hostile militia"
@@ -785,7 +785,7 @@ government "Navy (Oathkeeper)"
 		"Militia" .1
 		"Pirate" -.3
 		"Pirate (Devil-Run Gang)" -.3
-		"Smuggler (Hai Trafficker)" .25
+		"Smuggler (Hai Trafficker)" .05
 		"Kor Sestor" -.01
 		"Kor Mereti" -.01
 		"Navy Intelligence" 1
@@ -804,7 +804,7 @@ government "Neutral"
 		"Merchant" .3
 		"Pirate" -.2
 		"Pirate (Devil-Run Gang)" -.2
-		"Smuggler (Hai Trafficker)" -.2
+		"Smuggler (Hai Trafficker)" .05
 	"bribe" .05
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
@@ -1017,7 +1017,7 @@ government "Republic"
 		"Pirate" -.3
 		"Pirate (Devil-Run Gang)" -.3
 		"Republic that won't enter wormhole" 1
-		"Smuggler (Hai Trafficker)" .25
+		"Smuggler (Hai Trafficker)" .05
 		"Navy Intelligence" 1
 		"Republic Intelligence" 1
 		"Navy (Oathkeeper)" 1
@@ -1049,7 +1049,7 @@ government "Republic that won't enter wormhole"
 		"Pirate" -.3
 		"Pirate (Devil-Run Gang)" -.3
 		"Republic" 1
-		"Smuggler (Hai Trafficker)" .25
+		"Smuggler (Hai Trafficker)" .05
 		"Navy Intelligence" 1
 		"Republic Intelligence" 1
 		"Navy (Oathkeeper)" 1
@@ -1135,7 +1135,7 @@ government "Syndicate"
 		"Merchant" .3
 		"Pirate" -.4
 		"Pirate (Devil-Run Gang)" -.4
-		"Smuggler (Hai Trafficker)" .3
+		"Smuggler (Hai Trafficker)" .05
 		"Syndicate that won't enter wormhole" 1
 		"Korath" -.5
 	"bribe" .08
@@ -1153,7 +1153,7 @@ government "Syndicate that won't enter wormhole"
 		"Merchant" .3
 		"Pirate" -.4
 		"Pirate (Devil-Run Gang)" -.4
-		"Smuggler (Hai Trafficker)" .3
+		"Smuggler (Hai Trafficker)" .05
 		"Syndicate" 1
 		"Korath" -.5
 	"bribe" .08
