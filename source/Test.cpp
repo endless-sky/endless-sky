@@ -85,6 +85,8 @@ namespace {
 		event.key.state = SDL_PRESSED;
 		event.key.repeat = 0;
 		event.key.keysym.sym = SDL_GetKeyFromName(keyName);
+		if(event.key.keysym.sym == SDLK_UNKNOWN)
+			return false;
 		event.key.keysym.mod = modKeys;
 		return SDL_PushEvent(&event);
 	}
@@ -362,6 +364,12 @@ void Test::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "sequence")
 			LoadSequence(child);
+		else if(child.Token(0) == "description")
+		{
+			// Provides a human friendly description of the test, but it is not used internally.
+		}
+		else
+			child.PrintTrace("Error: Skipping unrecognized attribute:");
 	}
 }
 
@@ -488,7 +496,7 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 					// TODO: combine keys with mouse-inputs
 					for(const string &key : stepToRun.inputKeys)
 						if(!KeyInputToEvent(key.c_str(), stepToRun.modKeys))
-							Fail(context, player, "key input towards SDL eventqueue failed");
+							Fail(context, player, "key \"" + key + + "\" input towards SDL eventqueue failed");
 				}
 				// TODO: handle mouse inputs
 				// Make sure that we run a gameloop to process the input.

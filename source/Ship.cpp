@@ -176,18 +176,18 @@ namespace {
 		return transferred;
 	}
 
-	// Ships which are ionized have a chance for their weapons to jam,
+	// Ships which are scrambled have a chance for their weapons to jam,
 	// delaying their firing for another reload cycle. The less energy
-	// a ship has relative to its max and the more ionized the ship is,
+	// a ship has relative to its max and the more scrambled the ship is,
 	// the higher the chance that a weapon will jam. The jam chance is
-	// capped at 50%. Very small amounts of ionization are ignored.
-	// The scale is such that a weapon with an ion damage of 5 and a reload
+	// capped at 50%. Very small amounts of scrambling are ignored.
+	// The scale is such that a weapon with a scrambling damage of 5 and a reload
 	// of 60 (i.e. the ion cannon) will only ever push a ship to a jam chance
 	// of 5% when it is at 100% energy.
-	double CalculateJamChance(double maxEnergy, double ionization)
+	double CalculateJamChance(double maxEnergy, double scrambling)
 	{
 		double scale = maxEnergy * 220.;
-		return ionization > .1 ? min(0.5, scale ? ionization / scale : 1.) : 0.;
+		return scrambling > .1 ? min(0.5, scale ? scrambling / scale : 1.) : 0.;
 	}
 }
 
@@ -505,6 +505,13 @@ void Ship::Load(const DataNode &node)
 			description += child.Token(1);
 			description += '\n';
 		}
+		else if(key == "remove" && child.Size() >= 2)
+		{
+			if(child.Token(1) == "bays")
+				removeBays = true;
+			else
+				child.PrintTrace("Skipping unsupported \"remove\":");
+		}
 		else if(key != "actions")
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -553,7 +560,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			customSwizzle = base->CustomSwizzle();
 		if(baseAttributes.Attributes().empty())
 			baseAttributes = base->baseAttributes;
-		if(bays.empty() && !base->bays.empty())
+		if(bays.empty() && !base->bays.empty() && !removeBays)
 			bays = base->bays;
 		if(enginePoints.empty())
 			enginePoints = base->enginePoints;
@@ -611,6 +618,8 @@ void Ship::FinishLoading(bool isNewInstance)
 			armament = merged;
 		}
 	}
+	else if(removeBays)
+		bays.clear();
 	// Check that all the "equipped" weapons actually match what your ship
 	// has, and that they are truly weapons. Remove any excess weapons and
 	// warn if any non-weapon outfits are "installed" in a hardpoint.
@@ -777,12 +786,9 @@ void Ship::FinishLoading(bool isNewInstance)
 		attributes.Set("drag", 100.);
 	}
 
-	// Only the player's ships make use of attraction and deterrence.
-	if(isYours)
-	{
-		attraction = CalculateAttraction();
-		deterrence = CalculateDeterrence();
-	}
+	// Calculate the values used to determine this ship's value and danger.
+	attraction = CalculateAttraction();
+	deterrence = CalculateDeterrence();
 
 	if(!warning.empty())
 	{
@@ -1198,6 +1204,8 @@ vector<string> Ship::FlightCheck() const
 		checks.emplace_back("no thruster!");
 	else if(!turn)
 		checks.emplace_back("no steering!");
+	else if(RequiredCrew() > attributes.Get("bunks"))
+		checks.emplace_back("insufficient bunks!");
 
 	// If no errors were found, check all warning conditions:
 	if(checks.empty())
@@ -1262,6 +1270,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	// Make sure various special status values are reset.
 	heat = IdleHeat();
 	ionization = 0.;
+	scrambling = 0.;
 	disruption = 0.;
 	slowness = 0.;
 	discharge = 0.;
@@ -1399,7 +1408,14 @@ void Ship::SetPersonality(const Personality &other)
 
 
 
-void Ship::SetHail(const Phrase &phrase)
+const Phrase *Ship::GetHailPhrase() const
+{
+	return hail;
+}
+
+
+
+void Ship::SetHailPhrase(const Phrase &phrase)
 {
 	hail = &phrase;
 }
@@ -1478,7 +1494,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 	// Handle ionization effects, etc.
 	if(ionization)
-		CreateSparks(visuals, "ion spark", ionization * .1);
+		CreateSparks(visuals, "ion spark", ionization * .05);
+	if(scrambling)
+		CreateSparks(visuals, "scramble spark", scrambling * .05);
 	if(disruption)
 		CreateSparks(visuals, "disruption spark", disruption * .1);
 	if(slowness)
@@ -1573,10 +1591,19 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					Jettison(it.first, Random::Binomial(it.second, .25));
 				for(const auto &it : cargo.Outfits())
 					Jettison(it.first, Random::Binomial(it.second, .25));
-				// Ammunition has a 5% chance to survive as flotsam
+				// Ammunition has a default 5% chance to survive as flotsam.
 				for(const auto &it : outfits)
-					if(it.first->Category() == "Ammunition")
+				{
+					double flotsamChance = it.first->Get("flotsam chance");
+					if(flotsamChance > 0.)
+						Jettison(it.first, Random::Binomial(it.second, flotsamChance));
+					// 0 valued 'flotsamChance' means default, which is 5% for ammunition.
+					// At this point, negative values are the only non-zero values possible.
+					// Negative values override the default chance for ammunition
+					// so the outfit cannot be dropped as flotsam.
+					else if(it.first->Category() == "Ammunition" && !flotsamChance)
 						Jettison(it.first, Random::Binomial(it.second, .05));
+				}
 				for(shared_ptr<Flotsam> &it : jettisoned)
 					it->Place(*this);
 				flotsam.splice(flotsam.end(), jettisoned);
@@ -1589,6 +1616,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			energy = 0.;
 			heat = 0.;
 			ionization = 0.;
+			scrambling = 0.;
 			fuel = 0.;
 			velocity = Point();
 			MarkForRemoval();
@@ -1903,6 +1931,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				discharge += scale * attributes.Get("turning discharge");
 				corrosion += scale * attributes.Get("turning corrosion");
 				ionization += scale * attributes.Get("turning ion");
+				scrambling += scale * attributes.Get("turning scramble");
 				leakage += scale * attributes.Get("turning leakage");
 				burning += scale * attributes.Get("turning burn");
 				slowness += scale * attributes.Get("turning slowing");
@@ -1960,6 +1989,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					discharge += scale * attributes.Get(isThrusting ? "thrusting discharge" : "reverse thrusting discharge");
 					corrosion += scale * attributes.Get(isThrusting ? "thrusting corrosion" : "reverse thrusting corrosion");
 					ionization += scale * attributes.Get(isThrusting ? "thrusting ion" : "reverse thrusting ion");
+					scrambling += scale * attributes.Get(isThrusting ? "thrusting scramble" :
+						"reverse thrusting scramble");
 					burning += scale * attributes.Get(isThrusting ? "thrusting burn" : "reverse thrusting burn");
 					leakage += scale * attributes.Get(isThrusting ? "thrusting leakage" : "reverse thrusting leakage");
 					slowness += scale * attributes.Get(isThrusting ? "thrusting slowing" : "reverse thrusting slowing");
@@ -1983,6 +2014,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			double dischargeCost = attributes.Get("afterburner discharge");
 			double corrosionCost = attributes.Get("afterburner corrosion");
 			double ionCost = attributes.Get("afterburner ion");
+			double scramblingCost = attributes.Get("afterburner scramble");
 			double leakageCost = attributes.Get("afterburner leakage");
 			double burningCost = attributes.Get("afterburner burn");
 
@@ -2001,6 +2033,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				discharge += dischargeCost;
 				corrosion += corrosionCost;
 				ionization += ionCost;
+				scrambling += scramblingCost;
 				leakage += leakageCost;
 				burning += burningCost;
 
@@ -2242,6 +2275,16 @@ void Ship::DoGeneration()
 			energy, ionEnergy, fuel, ionFuel, heat, ionHeat);
 	}
 
+	if(scrambling)
+	{
+		double scramblingResistance = attributes.Get("scramble resistance");
+		double scramblingEnergy = attributes.Get("scramble resistance energy") / scramblingResistance;
+		double scramblingFuel = attributes.Get("scramble resistance fuel") / scramblingResistance;
+		double scramblingHeat = attributes.Get("scramble resistance heat") / scramblingResistance;
+		DoStatusEffect(isDisabled, scrambling, scramblingResistance,
+			energy, scramblingEnergy, fuel, scramblingFuel, heat, scramblingHeat);
+	}
+
 	if(disruption)
 	{
 		double disruptionResistance = attributes.Get("disruption resistance");
@@ -2325,7 +2368,7 @@ void Ship::DoGeneration()
 	double maxHull = attributes.Get("hull");
 	hull = min(hull, maxHull);
 
-	isDisabled = hull < MinimumHull() || (!crew && RequiredCrew());
+	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
 
 	// Whenever not actively scanning, the amount of
 	// scan information the ship has "decays" over time.
@@ -2340,35 +2383,25 @@ void Ship::DoGeneration()
 		PauseAnimation();
 	else
 	{
-		// Ramscoops work much better when close to the system center. Even if a
-		// ship has no ramscoop, it can harvest a tiny bit of fuel by flying
-		// close to the star. Carried fighters can't collect fuel or energy this way.
+		// Ramscoops work much better when close to the system center.
 		if(currentSystem)
 		{
 			double scale = .2 + 1.8 / (.001 * position.Length() + 1);
-			fuel += currentSystem->SolarWind() * .03 * scale * (sqrt(attributes.Get("ramscoop")) + .05 * scale);
+			fuel += currentSystem->SolarWind() * .03 * scale * sqrt(attributes.Get("ramscoop"));
 
 			double solarScaling = currentSystem->SolarPower() * scale;
-			// Overheated ships produce half as much energy from solar collection.
-			energy += solarScaling * attributes.Get("solar collection") * (isOverheated ? 0.5 : 1.);
+			energy += solarScaling * attributes.Get("solar collection");
 			heat += solarScaling * attributes.Get("solar heat");
 		}
 
 		double coolingEfficiency = CoolingEfficiency();
-		// Overheated ships disable their reactors, which typically have both energy and
-		// heat generation.
-		if(!isOverheated)
-		{
-			energy += attributes.Get("energy generation");
-			heat += attributes.Get("heat generation");
-		}
-		energy -= attributes.Get("energy consumption");
+		energy += attributes.Get("energy generation") - attributes.Get("energy consumption");
 		fuel += attributes.Get("fuel generation");
+		heat += attributes.Get("heat generation");
 		heat -= coolingEfficiency * attributes.Get("cooling");
 
-		// Convert fuel into energy and heat only when the required amount of fuel is available
-		// and the ship is not overheated.
-		if(!isOverheated && attributes.Get("fuel consumption") <= fuel)
+		// Convert fuel into energy and heat only when the required amount of fuel is available.
+		if(attributes.Get("fuel consumption") <= fuel)
 		{
 			fuel -= attributes.Get("fuel consumption");
 			energy += attributes.Get("fuel energy");
@@ -2695,7 +2728,7 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 
 	antiMissileRange = 0.;
 
-	double jamChance = CalculateJamChance(Energy(), ionization);
+	double jamChance = CalculateJamChance(Energy(), scrambling);
 
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
@@ -2725,7 +2758,7 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 	if(CannotAct())
 		return false;
 
-	double jamChance = CalculateJamChance(Energy(), ionization);
+	double jamChance = CalculateJamChance(Energy(), scrambling);
 
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
@@ -2781,14 +2814,6 @@ bool Ship::IsTargetable() const
 bool Ship::IsOverheated() const
 {
 	return isOverheated;
-}
-
-
-
-// A paralyzed ship is one that is overheated and has no energy left.
-bool Ship::IsParalyzed() const
-{
-	return isOverheated && !energy;
 }
 
 
@@ -3060,6 +3085,7 @@ void Ship::Recharge(bool atSpaceport)
 
 	heat = IdleHeat();
 	ionization = 0.;
+	scrambling = 0.;
 	disruption = 0.;
 	slowness = 0.;
 	discharge = 0.;
@@ -3500,6 +3526,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	discharge += damage.Discharge();
 	corrosion += damage.Corrosion();
 	ionization += damage.Ion();
+	scrambling += damage.Scrambling();
 	burning += damage.Burn();
 	leakage += damage.Leak();
 
@@ -3532,8 +3559,12 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	if(!wasDestroyed && IsDestroyed())
 		type |= ShipEvent::DESTROY;
 
+	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
 	if(heat > MaximumHeat())
+	{
 		isOverheated = true;
+		isDisabled = true;
+	}
 	else if(heat < .9 * MaximumHeat())
 		isOverheated = false;
 
@@ -3546,7 +3577,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 				|| ((damage.Heat() || damage.Burn()) && isOverheated)
 				|| ((damage.Energy() || damage.Ion()) && Energy() < 0.5)
 				|| ((damage.Fuel() || damage.Leak()) && fuel < navigation.JumpFuel() * 2.)
-				|| (damage.Ion() && CalculateJamChance(Energy(), ionization) > 0.1)
+				|| (damage.Scrambling() && CalculateJamChance(Energy(), scrambling) > 0.1)
 				|| (damage.Slowing() && slowness > 10.)
 				|| (damage.Disruption() && disruption > 100.)))
 		type |= ShipEvent::PROVOKE;
@@ -3652,7 +3683,7 @@ bool Ship::CanBeCarried() const
 
 bool Ship::Carry(const shared_ptr<Ship> &ship)
 {
-	if(!ship || !ship->CanBeCarried())
+	if(!ship || !ship->CanBeCarried() || ship->IsDisabled())
 		return false;
 
 	// Check only for the category that we are interested in.
@@ -3979,6 +4010,7 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 	// Since weapons fire from within the shields, hull and "status" damages are dealt in full.
 	hull -= weapon.FiringHull() + relativeHullChange;
 	ionization += weapon.FiringIon();
+	scrambling += weapon.FiringScramble();
 	disruption += weapon.FiringDisruption();
 	slowness += weapon.FiringSlowing();
 	discharge += weapon.FiringDischarge();
