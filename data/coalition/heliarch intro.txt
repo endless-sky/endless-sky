@@ -294,75 +294,73 @@ mission "HI2-SS"
 				`	"Of course. Where are we headed?"`
 				`	"Sorry, I'll have to refuse this time."`
 					goto decline
-			`	"Reports of suspicious transactions at an outdated, abandoned warehouse, we have received. For storage of the few crops that can grow here, used it was," he says as you put in the coordinates he gave you.`
-			`	You follow Tugroob to the storage area after landing, spotting a desert storm brewing in the distance as you make your way there. A large crack has formed around the area where he said the crops were originally planted and tested.`
-			`	The barn is large enough that it could have held more stockpile than any medium-sized Arach freighters in its early days. Now a dilapidated husk, the barn is missing many of the planks that made up the walls in more then a few spots.`
+			`	"An abandoned mining operation our target is. Received we have reports of suspicious activity near the complex, ships that recently there headed in spite of it shutting down years ago," he explains, and you input the coordinates he gives you into your navigator.`
+			`	You fly to the coordinates, and come to the remains of a gargantuan mining operation, an enormous hole torn into the planet's surface, spiralling down to what must be nearly a kilometer below the otherwise relatively untouched surface. Near the edge, you spot a medium-sized building, made up of a few interconnected blocks, and dirtied up by the planet's sand. Tugroob tells you it must have been the base for the mining workers and managing team, when the mine was active.`
+			`	Close to the building, farther out from the digging hole, you see a few landing pads of large enough size for even the largest of freighters, likely there for the raw ore to be shipped off via spacecraft to smelting facilities. You land on one of them, and you and Tugroob leave your ship. As you step off the landing pad, Tugroob calls your attention to a desert storm brewing in the distance, and says you two should get started before it reaches here.`
 			choice
-				`	"Let's check out the barn."`
-				`	"Maybe we should enter that hole where the crops used to be."`
+				`	"Let's check out the building."`
+				`	"Maybe we should try heading down the mining hole."`
 					goto hole
-			`	The two of you head inside to find the place nearly empty, save for a few crates and barrels in the corners.`
-			`	You follow Tugroob to the upper levels but once again find nothing but dusty containers. A small gap between the planks here allows some sand to come inside. The storm is getting closer.`
-			`	"Much too obvious a hiding spot, this would be," he says.`
+			`	Left alone for years, the base for the mining operation has no power, so Tugroob has to force the door, gripping to the walls and pulling hard with his front legs until it slides open.`
+			`	The place is surprisingly tidy, if dusty near the door with what sand's been let and the previous owners didn't bother cleaning out before packing up and leaving. Various cabinets, archives and work stations dominate the initial room, and you can see it connects to a collective bedroom, filled with bunks, and a storage area.`
+			`	"No other entrances there seem to be. If hiding anything here, others were, force their way in they had to, just like us," Tugroob says.`
 			choice
-				`	"You're right. Should we go outside and check around that hole?"`
+				`	"Doesn't look like anyone's been in here in a while. Let's check the mining hole."`
 					goto hole2
-				`	"Maybe, but they could be trying to hide in plain sight. Let's open up these crates."`
-			`	You two go about opening all the crates on the upper floor but finish empty handed.`
-			`	"Find nothing here we will, Captain," Tugroob says.`
+				`	"There might be something hidden here. Let's look around."`
+			`	You two go about checking every drawer, archive and boxes of all sizes in the first room, but only end up finding a few scattered documents related to the mine, and some old doodles made by what must have been very bored workers. Tugroob tries to get the computers on, but no manner of tinkering brings any electricity to them. The building really is completely out of power.`
+			`	"Find nothing here we will, Captain," Tugroob says, looking to the outside at the approaching sandstorm.`
 			choice
 				`	"Sorry, let's go outside and check that hole while we can."`
 					goto hole3
-				`	"Hold on. We can still check the ones down there."`
-			`	At this point, Tugroob grips the containers with all of his legs and brings his entire body weight against them, crushing each crate and barrel open. Once everything is broken up and it turns out there was nothing inside any of them after all, you two try to leave, but with the sandstorm raging strong, you decide to wait it out inside the barn.`
+				`	"Hold on. Let's try the other rooms."`
+			`	You head to the dormitories while Tugroob quickly works his way through what remains in the storage. You check under and over all the beds, and look for anything that might be out of the ordinary, but find nothing. The bedroom leads still to two larger modules of the building, one the restrooms, and the other a dining area, but again turn empty-handed.`
+			`	Tugroob comes to meet you, having finished with the storage, and reporting he too found nothing of note. You two try to leave, but the storm's finally reached here, and so you decide to wait it out inside.`
 				goto fail
 			label hole3
-			`	You two find the hole, but with the storm making it too dificult to see any safe path for you to get down there, you two head back inside to wait for better visibility.`
+			`	You two head out to descend the mine, but with a step outside it's clear the storm's caught up to you. You still attempt to move to the hole, but with the raging sand makes it too difficult to even find a way to start heading down safely. You two head back inside to wait for better visiblity.`
 				goto fail
 			label hole
-			`	You two carefully make your way down the hole. It bottoms out around ten meters below the barn.`
-			`	As you come down, Tugroob points to the cracked, rocky walls. He says that most of them were unstable, and you should watch out for rock slides.`
-			`	Looking around, you spot several smaller holes on the walls just large enough for a human or Saryd arm. There are also few larger cracks that you two shouldn't have much trouble going through.`
+			`	You two approach the hole, and find one of the many ramps leading down the spiral, carefully make your way down. You pass by some large mining vehicles, akin to very large trucks with thick tracks instead of wheels, and many bores and drills at the front. Tugroob explains they are used to open up tunnels that extend outwards from the main dig hole, to reach lesser mineral deposits without needing to excavate needlessly.`
+			`	Continuing on your way down, he points to some of the holes made by the machines, and to many more vehicles deep down, near the bottom.`
 			choice
-				`	(Reach my arms inside the smaller holes to look for anything there.)`
-				`	(Head for the larger cracks to see if they lead to anything.)`
-					goto rockraider
-			`	You carefully go about putting your arm inside a few of the holes, with Tugroob helping you up for the ones you couldn't reach, but ultimately you find nothing.`
-			`	A few small rocks fell while you were doing so, but thankfully you and Tugroob are unscathed. Sand is piling up inside from the storm raging above.`
-			`	"Dangerous, it will be, to remain here for long, Captain," Tugroob says.`
+				`	(Keep going down.)`
+				`	(Investigate the nearby vehicles and tunnels.)`
+					goto tunnel
+			`	You two speed up as you continue plunging down the mine, and as you're about a quarter of the way down you can see the bottom clearer. Over the years, it seems the local storms have been filling it up with sand, and with the operation inactive, nobody's bothered clearing it out. The sand's not enough to have reached the larger mining machines, but you suspect even they'll be covered completely in the coming years.`
+			`	Tugroob stops you at one point, taking your attention to the top of hole. The clear sky is growing darker, and you can see the wind picking up and launching some smaller rocks down. "Much time we have not, Captain. Search we cannot amidst a sandstorm, and reach in time the bottom we will not."`
 			choice
-				`	(Head for the larger cracks in the wall now.)`
-					goto rockraider
-				`	(Head back up while you still can, and check the barn.)`
-			`	Tugroob crawls back up while you cling to him, as the path you took before proves to be much too risky with the reduced visibility.`
-			`	The two of you head inside to find the place nearly empty, save for a few crates and barrels in the corners.`
-			`	You follow Tugroob to the upper levels but once again find nothing but dusty containers. A small gap between the planks here allows piles of sand to come inside. The storm envelops the barn.`
-			`	"Much too obvious a hiding spot, this would be," he says, but seeing as the storm doesn't let up, you two break open the crates, just in case. To Tugroob's frustration, you find nothing.`
+				`	(Try and investigate the vehicles and tunnels to the sides instead.)`
+					goto tunnel
+				`	(Head back up and investigate the building)`
+			`	You two rush back up, with Tugroob helping you save some time by climbing one of the walls straight up as you cling to him, rather than following the spiralling ramps. You reach the building a few minutes before the storm engulfs it, and covers the dig hole completely. As it has no power, Tugroob has to force the door open, gripping to the walls and pulling hard with his front legs until it slides open.`
+			`	The place is surprisingly tidy, if dusty near the door with what sand's been let and the previous owners didn't bother cleaning out before packing up and leaving. Various cabinets, archives and work stations dominate the initial room, and you can see it connects to a collective bedroom, filled with bunks, and a storage area.`
+			`	"No other entrances there seem to be. If hiding anything here, others were, force their way in they had to, just like us," Tugroob says.`
+			`	Given the storm's trapped you in, you two turn over every drawer, archive and box, look over everything in the storage area, try and get the computers to work, to no avail, and even check the bedroom, and its connecting dining area and restrooms. Your search doesn't bear fruit, though, and so you're left waiting inside as the storm rages around the building.`
 				goto fail
-			label rockraider
+			label tunnel
 			apply
 				"resistance evidence" ++
-			`	You find a hole large enough for both of you and enter, Tugroob holding a flashlight to illuminate the path below. Larger rocks occasionally fall, and Tugroob has to prevent some from hitting you, quickly crawling around the walls to try and slow them down so you have time to move away.`
-			`	Eventually you two arrive at a pair of wooden beams, in what looks like a mineshaft. A few lights on the walls flicker on as you approach them.`
-			`	You're about to go forward when you're stopped by Tugroob. He crawls around the entrance, looping it several times without ever going further in. He only stops to slowly reach one leg inside, then right back out after apparently touching something.`
-			`	He comes back down and says, "Request support equipment to get through safely, we must." Using a communication device, he calls for assistance from Heliarch agents, warning them about the sandstorm.`
-			`	Shortly after, several dozen Heliarch agents are there, most of them working to keep the sand out, while a few follow you two inside with some form of cutting tool. They use it to surgically remove what Tugroob was slowly examining before: several extremely thin wires, connected to some type of machinery hidden within the wooden beams.`
-			`	After they're done, the agents storm the place but find nobody. What they do find are dozens upon dozens of crates filled to the brim with Heliarch staves and blaster guns.`
-			`	They escort you two back outside as the agents prepare to bring the smuggled weapons to their own ships. Though the storm is still raging on, you can make out the shape of a few Heliarch Interdictors parked near your own ship right before you take off. You regroup with Iplora and Kirrie, and they ask Tugroob for more details on the ordeal, before they head to their own bunks.`
+			`	You and Tugroob start checking the vehicles first, then briefly look into the tunnels they dug into the sides of the mining hole. The holes mostly head in straight lines down, forming straightforward paths to where the lesser ore veins were. Knowing how the vehicles operate better than you, Tugroob checks them first, before joining you in exploring the tunnels.`
+			`	The sand's coming more and more into the mine hole, brought in by the storm, when you two come to a vehicle that wasn't driven back fully, and is still blocking the entrance to its tunnel. Tugroob climbs up to see if there's any way to crawl inside, but is more suprised upon checking the driving controls: it's still operational. He drives it back, opening up the hole, and you two go in.`
+			`	Lighting the way ahead with your flashlight, you're surprised to see this tunnel is dug slightly upwards, and brings you not to a large, dug out ore vein spot, but to a rustic mineshaft. A few lights on the walls flicker on as you approach them, lighting up the wooden beams supporting the long hallway. Before you go further inside, you're stopped by Tugroob, who crawls around the floor, walls and ceiling just before the first lamp, looping several times without ever going further in. He only stops to slowly reach one leg inside, then right back out after apparently touching something.`
+			`	`"Request support equipment to get through safely, we must," he says, and using a communication device, he calls for assistance from Heliarch agents, warning them about the sandstorm. You head back up to the building, to wait for them.`
+			`	Shortly after, several dozen Heliarch agents arrive, most of them working to keep the sand out, while a few follow you two down and inside the peculiar tunnel, bringing some form of cutting tool, and several pieces of sensor equipment. After checking with the sensors for a few minutes, they use the tool to surgically remove what Tugroob was slowly examining before: several extremely thin wires, connected to some type of machinery hidden within the wooden beams.`
+			`	After they're done, the agents storm the place but find nobody. What they do find are dozens upon dozens of crates filled to the brim with Heliarch staves, blaster guns, confrontation gear and other weaponry.`
+			`	They escort you and Tugroob back outside as the agents prepare to bring the smuggled weapons to their own ships. Though the storm is still raging on, you can make out the shape of a few Heliarch Interdictors parked near your own ship right before you take off. You regroup with Iplora and Kirrie, and they ask Tugroob for more details on the ordeal, before they head to their own bunks.`
 				accept
 			label hole2
-			`	You two carefully make your way down the hole. It bottoms out around ten meters below the barn.`
-			`	As you come down, Tugroob points to the cracked, rocky walls. He says that most of them were unstable, and you should watch out for rock slides.`
-			`	Looking around, you spot several smaller holes on the walls just large enough for a human or Saryd arm. There are also few larger cracks that you two shouldn't have much trouble going through.`
+			`	You two exit the building and approach the hole, finding one of the many ramps leading down the spiral, carefully make your way down. You pass by some large mining vehicles, akin to very large trucks with thick tracks instead of wheels, and many bores and drills at the front. Tugroob explains they are used to open up tunnels that extend outwards from the main dig hole, to reach lesser mineral deposits without needing to excavate needlessly.`
+			`	Continuing on your way down, he points to some of the holes made by the machines, and to many more vehicles deep down, near the bottom.`
 			choice
-				`	(Reach my arms inside the smaller holes to look for anything there.)`
-				`	(Head for the larger cracks to see if they lead to anything.)`
-					goto rockraider
-			`	You carefully go about putting your arm inside a few of the holes, with Tugroob helping you up for the ones you couldn't reach, but ultimately you find nothing.`
-			`	Many small rocks fell while you were checking the holes, but miraculously you both remain unscathed. Unfortunately, too much sand from the storm above is piling up for you to look around for more holes or the exact location of the larger cracks you saw before.`
-			`	"Dangerous, it will be, to remain here for long, Captain," Tugroob says as he urges you to cling to them. He carefully crawls back up, and you two take refuge inside the barn.`
+				`	(Keep going down.)`
+				`	(Investigate the nearby vehicles and tunnels.)`
+					goto tunnel
+			`	You two speed up as you continue plunging down the mine, and as you're about a quarter of the way down you can see the bottom clearer. Over the years, it seems the local storms have been filling it up with sand, and with the operation inactive, nobody's bothered clearing it out. The sand's not enough to have reached the larger mining machines, but you suspect even they'll be covered completely in the coming years.`
+			`	Tugroob stops you at one point, taking your attention to the top of hole. The clear sky has grown much darker, with the storm clouds covering most of it, and you can see the wind's picked up and is launching many smaller rocks down, as sand seeps more and more into the hole. "Leave we must, Captain. Search we cannot amidst a sandstorm, and reach in time the bottom we will not."`
+			`	To save time and avoid the long spiralling ramps, Tugroob cuts his way up the hole, climbing its walls while carefully avoiding the rocks and falling sand, all the while you cling to him. You barely reach the building before the storm fully engulfs the mine, and decide to wait there, searching around more while you're at it, but ultimately finding nothing.`
 			label fail
-			`	Night falls, with no sign of the storm dying down, and after receiving a notification from Iplora, Tugroob informs you that you should both head back to the ship and pick her and Kirrie up. As soon as the storm lets up slightly, he helps you out of the barn and through the raging winds, until you reach your ship. You two meet up with the rest of the group, and the agents head to their bunks.`
+			`	Night falls, with no sign of the storm dying down, and after receiving a notification from Iplora, Tugroob informs you that you should both head back to the ship and pick her and Kirrie up. As soon as the storm lets up slightly, he helps you out of the building and through the raging winds, until you reach your ship. You two meet up with the rest of the group, and the agents head to their bunks.`
 				accept
 			label decline
 			`	"I see," he says. He gives you the coordinates he needs to go to and you drop him off before returning to the hangars.`
