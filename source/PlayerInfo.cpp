@@ -688,16 +688,8 @@ void PlayerInfo::IncrementDate()
 	}
 
 	// Check what salaries and tribute the player receives.
-	auto GetIncome = [&](string prefix)
-	{
-		int64_t total = 0;
-		auto it = conditions.PrimariesLowerBound(prefix);
-		for( ; it != conditions.PrimariesEnd() && !it->first.compare(0, prefix.length(), prefix); ++it)
-			total += it->second;
-		return total;
-	};
-	int64_t salariesIncome = GetIncome("salary: ");
-	int64_t tributeIncome = GetIncome("tribute: ");
+	int64_t salariesIncome = accounts.SalariesIncomeTotal();
+	int64_t tributeIncome = GetTributeTotal();
 	FleetBalance b = MaintenanceAndReturns();
 	if(salariesIncome || tributeIncome || b.assetsReturns)
 	{
@@ -875,6 +867,7 @@ int64_t PlayerInfo::Salaries() const
 	// Every crew member except the player receives 100 credits per day.
 	return 100 * (crew - 1);
 }
+
 
 
 
@@ -2113,9 +2106,26 @@ bool PlayerInfo::SetTribute(const string &planetTrueName, int64_t payment)
 
 
 
+// Get a list of all tribute that the player receives.
 const map<const Planet *, int64_t> PlayerInfo::GetTribute() const
 {
 	return tributeReceived;
+}
+
+
+
+// Get the total sum of the tribute the player receives.
+int64_t PlayerInfo::GetTributeTotal() const
+{
+	return accumulate(
+		tributeReceived.begin(),
+		tributeReceived.end(),
+		0,
+		[](int64_t value, const std::map<const Planet *, int64_t>::value_type& t)
+		{
+			return value + t.second;
+		}
+	);
 }
 
 
@@ -2717,16 +2727,8 @@ void PlayerInfo::ApplyChanges()
 	destroyedPersons.clear();
 
 	// Check which planets you have dominated.
-	static const string prefix = "tribute: ";
-	for(auto it = Conditions().PrimariesLowerBound(prefix); it != Conditions().PrimariesEnd(); ++it)
-	{
-		if(it->first.compare(0, prefix.length(), prefix))
-			break;
-
-		const Planet *planet = GameData::Planets().Find(it->first.substr(prefix.length()));
-		if(planet)
-			GameData::GetPolitics().DominatePlanet(planet);
-	}
+	for(auto it = tributeReceived.begin(); it != tributeReceived.end(); ++ it)
+		GameData::GetPolitics().DominatePlanet(it->first);
 
 	// Issue warnings for any data which has been mentioned but not actually defined, and
 	// ensure that all "undefined" data is appropriately named.

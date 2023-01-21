@@ -46,6 +46,7 @@ public:
 
 	// Structural income.
 	const std::map<std::string, int64_t> &SalariesIncome() const;
+	int64_t SalariesIncomeTotal() const;
 	void SetSalaryIncome(std::string name, int64_t ammount);
 
 	// Overdue crew salaries:

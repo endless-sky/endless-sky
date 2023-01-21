@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 
 #include <algorithm>
+#include <numeric>
 #include <sstream>
 
 using namespace std;
@@ -304,6 +305,21 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 const map<string, int64_t> &Account::SalariesIncome() const
 {
 	return salariesIncome;
+}
+
+
+
+int64_t Account::SalariesIncomeTotal() const
+{
+	return accumulate(
+		salariesIncome.begin(),
+		salariesIncome.end(),
+		0,
+		[](int64_t value, const std::map<string, int64_t>::value_type& t)
+		{
+			return value + t.second;
+		}
+	);
 }
 
 

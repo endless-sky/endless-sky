@@ -88,14 +88,13 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 
 	// Add owned licenses
 	const string PREFIX = "license: ";
-	for(auto it = player.Conditions().PrimariesBegin(); it != player.Conditions().PrimariesEnd(); ++it)
-		if(it->first.compare(0, PREFIX.length(), PREFIX) == 0 && it->second > 0)
-		{
-			const string name = it->first.substr(PREFIX.length()) + " License";
-			const Outfit *outfit = GameData::Outfits().Get(name);
-			if(outfit)
-				catalog[outfit->Category()].insert(name);
-		}
+	for(const string &it : player.Licenses())
+	{
+		const string name = it + " License";
+		const Outfit *outfit = GameData::Outfits().Get(name);
+		if(outfit)
+			catalog[outfit->Category()].insert(name);
+	}
 
 	if(player.GetPlanet())
 		outfitter = player.GetPlanet()->Outfitter();
