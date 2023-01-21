@@ -2673,11 +2673,11 @@ int Ship::Scan()
 		{
 			// If this ship has no name, show its model name instead.
 			string tag;
-			const string &gov = ship->GetGovernment()->GetName();
-			if(!ship->Name().empty())
-				tag = gov + " " + ship->Noun() + " \"" + ship->Name() + "\": ";
+			const string &gov = target->GetGovernment()->GetName();
+			if(!target->Name().empty())
+				tag = gov + " " + target->Noun() + " \"" + target->Name() + "\": ";
 			else
-				tag = ship->ModelName() + " (" + gov + "): ";
+				tag = target->ModelName() + " (" + gov + "): ";
 			Messages::Add(tag + "Please refrain from scanning us or we will be forced to take action.",
 				Messages::Importance::Highest);
 		}
