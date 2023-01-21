@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.16..3.25)
 include(CMakeDependentOption)
 option(ES_USE_VCPKG "Use vcpkg to get dependencies." ON)
 cmake_dependent_option(ES_GLES "Build the game with OpenGL ES" OFF UNIX OFF)
+cmake_dependent_option(ES_STEAM "Build the game for the Steam Linux runtime" OFF UNIX OFF)
 cmake_dependent_option(ES_USE_SYSTEM_LIBRARIES "Use system libraries instead of the vcpkg ones." ON UNIX OFF)
 cmake_dependent_option(ES_USE_OFFSCREEN
 	"Use SDL's offscreen backend instead of Xvfb for the integration tests" OFF UNIX OFF)
@@ -23,8 +24,11 @@ set(CMAKE_BUILD_RPATH_USE_ORIGIN ON)
 
 # Setup vcpkg.
 if(ES_USE_VCPKG)
-	include(utils/vcpkg_bootstrap.cmake)
-	x_vcpkg_bootstrap()
+	# The CMake version in the Sniper runtime is too old, so assume there is already a vcpkg/ directory.
+	if(NOT ES_STEAM)
+		include(utils/vcpkg_bootstrap.cmake)
+		x_vcpkg_bootstrap()
+	endif()
 
 	set(VCPKG_BOOTSTRAP_OPTIONS "-disableMetrics")
 	set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
@@ -34,7 +38,7 @@ if(ES_USE_VCPKG)
 endif()
 
 if(ES_USE_SYSTEM_LIBRARIES)
-	if(UNIX AND NOT APPLE)
+	if(UNIX AND NOT APPLE AND NOT ES_STEAM)
 		# If using the system libraries from a Linux distro, statically link every other library needed.
 		# This is to make sure that the resulting binary has no dependencies on libraries (other than
 		# the system ones) and can thus be distributed as a simple binary.
@@ -43,6 +47,11 @@ if(ES_USE_SYSTEM_LIBRARIES)
 else()
 	# Tell vcpkg to use the required libraries.
 	list(APPEND VCPKG_MANIFEST_FEATURES "system-libs")
+endif()
+
+# Some system libraries aren't available on the default Sniper runtime and need to be built from source.
+if(ES_STEAM)
+	list(APPEND VCPKG_MANIFEST_FEATURES "steam-libs")
 endif()
 
 # Various helpful options for IDEs.
@@ -165,6 +174,11 @@ if(ES_GLES)
 	target_link_libraries(EndlessSky PRIVATE OpenGL::OpenGL OpenGL::EGL)
 	target_compile_definitions(EndlessSkyLib PUBLIC ES_GLES)
 else()
+	# The Steam runtime can't rely on GLVND being available, so link against the legacy interface.
+	if(ES_STEAM)
+		set(OpenGL_GL_PREFERENCE "LEGACY")
+	endif()
+
 	find_package(OpenGL REQUIRED)
 	target_link_libraries(EndlessSky PRIVATE OpenGL::GL)
 
