@@ -234,7 +234,7 @@ void Government::Load(const DataNode &node)
 		}
 		else if(key == "trusted")
 		{
-			bool clearTrusted = !trusted.isEmpty();
+			bool clearTrusted = !trusted.empty();
 			for(const DataNode &grand : child)
 			{
 				bool remove = grand.Token(0) == "remove";
