@@ -1057,7 +1057,7 @@ mission "Unfettered: Escort Hai Fleet"
 			`	`
 			`	Once you get back to your ship you see you received an encrypted message, consisting only of 4 words:`
 			`	"Nemo Me Impune Lacessit"`
-			`	You then notice that you have been fined 1 million credits for 'smuggling of illegal goods' it seems that it is the Unfettered that emited this fine...`
+			`	You then notice that you have been fined 1 million credits for 'smuggling of illegal goods' it seems that it is the Unfettered that emitted this fine...`
 			action
 				fine 1000000
 			label over

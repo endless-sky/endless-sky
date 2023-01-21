@@ -506,7 +506,7 @@ mission "Mercenaries: Feed Them To The Wolves"
 		"reputation: Mercenaries" >?= 0
 		conversation
 			`One of the unindentified ships hail you. "Thank you, Captain. Here is part of your reward: 1 million credits. You may help us by taking out these Hai ships, but it may be wise not to so that the rest of the Hai government will not suspect you, and think this was an unfortunate pirate attack. When this is done, go to Warfeed for your reward. They are going to be in high need of food, and you should bring them as much as you can to compensate for this small... delay in Hai food supplies."`
-			`	Right after that, the governor's ship hails you. "What have you done?" You feel like she was about to continue, but before she could all communications were jammed.`
+			`	Right after that, the governor's ship hails you. "What have you done?" You feel like she was about to continue, but before she could all communications are jammed.`
 			`	You can see some pirates present with the Mercenaries' fleets, probably to distract other Hai ships that happen to be in the system.`
 		payment 1000000
 	npc
