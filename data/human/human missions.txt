@@ -296,7 +296,7 @@ mission "Pookie, Part 5"
 			choice
 				`	"I'm <first>, and I'm here to return a missing pet."`
 				`	(Wait quietly.)`
-					goto inside	
+					goto inside
 			`	The servant says, "Ah, you're the one with the dog. Come inside, mistress has been expecting you."`
 				goto enter
 			label inside
