@@ -124,15 +124,15 @@ phrase "unfettered mining payment dialog"
 		" you brought"
 	word
 		" seem "
-		" appear"
+		" appear "
 	word
 		"satisfied."
 		"enthused."
 		"content."
 		"happy."
 	word
-		`"Keep this up and we will be building new ships in no time!`
-		`"This will allow us to repair our ships!`
+		` "Keep this up and we will be building new ships in no time!`
+		` "This will allow us to repair our ships!`
 	word
 		` Some captains use asteroids as target practice, but find it too dull and easy to fight an enemy that does not react,"`
 		` Too few captains are patient enough to gather asteroids like you are. Most of them try to get the resources from enemy ships, but this is a safer way to do it,"`
@@ -162,7 +162,7 @@ phrase "unfettered mining payment dialog"
 	word
 		`" `
 	word
-		"They then gives you <payment>."
+		"They then give you <payment>."
 
 mission "Unfettered Silicon Asteroid Mining"
 	job
