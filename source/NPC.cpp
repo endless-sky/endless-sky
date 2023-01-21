@@ -182,7 +182,7 @@ void NPC::Load(const DataNode &node)
 		{
 			if(child.HasChildren())
 			{
-				fleets.emplace_back(ExclusiveItem<Fleet>(Fleet(child)));
+				fleets.emplace_back(ExclusiveItem<FleetLoader>(FleetLoader(child)));
 				if(child.Size() >= 2)
 				{
 					// Copy the custom fleet in lieu of reparsing the same DataNode.
@@ -193,7 +193,7 @@ void NPC::Load(const DataNode &node)
 			}
 			else if(child.Size() >= 2)
 			{
-				auto fleet = ExclusiveItem<Fleet>(GameData::Fleets().Get(child.Token(1)));
+				auto fleet = ExclusiveItem<FleetLoader>(GameData::Fleets().Get(child.Token(1)));
 				if(child.Size() >= 3 && child.Value(2) > 1.)
 					fleets.insert(fleets.end(), child.Value(2), fleet);
 				else
@@ -606,7 +606,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		result.ships.push_back(make_shared<Ship>(**shipIt));
 		result.ships.back()->SetName(*nameIt);
 	}
-	for(const ExclusiveItem<Fleet> &fleet : fleets)
+	for(const ExclusiveItem<FleetLoader> &fleet : fleets)
 		fleet->Place(*result.system, result.ships, false);
 	// Ships should either "enter" the system or start out there.
 	for(const shared_ptr<Ship> &ship : result.ships)
@@ -618,7 +618,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 			ship->Disable();
 
 		if(personality.IsEntering())
-			Fleet::Enter(*result.system, *ship);
+			FleetLoader::Enter(*result.system, *ship);
 		else if(result.planet)
 		{
 			// A valid planet was specified in the template, so these NPCs start out landed.
@@ -626,7 +626,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 			ship->SetPlanet(result.planet);
 		}
 		else
-			Fleet::Place(*result.system, *ship);
+			FleetLoader::Place(*result.system, *ship);
 	}
 
 	// String replacement:

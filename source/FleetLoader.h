@@ -44,7 +44,7 @@ class System;
 // lists one or more ships. All the ships in a fleet share a certain government,
 // AI personality, and set of friendly and hostile "hail" messages, and the ship
 // names are chosen based on a given random "phrase" generator.
-class Fleet {
+class FleetLoader {
 public:
 	// Struct to hold an instance of a fleet.
 	struct FleetHolder {
@@ -54,9 +54,9 @@ public:
 	};
 
 public:
-	Fleet() = default;
+	FleetLoader() = default;
 	// Construct and Load() at the same time.
-	Fleet(const DataNode &node);
+	FleetLoader(const DataNode &node);
 
 	void Load(const DataNode &node);
 

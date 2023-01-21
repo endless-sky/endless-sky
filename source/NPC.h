@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Conversation.h"
 #include "EsUuid.h"
 #include "ExclusiveItem.h"
-#include "Fleet.h"
+#include "FleetLoader.h"
 #include "LocationFilter.h"
 #include "Personality.h"
 #include "Phrase.h"
@@ -129,7 +129,7 @@ private:
 	std::list<std::shared_ptr<Ship>> ships;
 	std::list<const Ship *> stockShips;
 	std::list<std::string> shipNames;
-	std::list<ExclusiveItem<Fleet>> fleets;
+	std::list<ExclusiveItem<FleetLoader>> fleets;
 
 	// This must be done to each ship in this set to complete the mission:
 	int succeedIf = 0;

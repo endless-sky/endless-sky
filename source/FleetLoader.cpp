@@ -13,7 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "Fleet.h"
+#include "FleetLoader.h"
 
 #include "DataNode.h"
 #include "GameData.h"
@@ -149,14 +149,14 @@ namespace {
 
 
 // Construct and Load() at the same time.
-Fleet::Fleet(const DataNode &node)
+FleetLoader::FleetLoader(const DataNode &node)
 {
 	Load(node);
 }
 
 
 
-void Fleet::Load(const DataNode &node)
+void FleetLoader::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
 		fleetName = node.Token(1);
@@ -232,7 +232,7 @@ void Fleet::Load(const DataNode &node)
 
 
 
-bool Fleet::IsValid(bool requireGovernment) const
+bool FleetLoader::IsValid(bool requireGovernment) const
 {
 	// Generally, a government is required for a fleet to be valid.
 	if(requireGovernment && !government)
@@ -254,7 +254,7 @@ bool Fleet::IsValid(bool requireGovernment) const
 
 
 
-void Fleet::RemoveInvalidVariants()
+void FleetLoader::RemoveInvalidVariants()
 {
 	int total = variants.TotalWeight();
 	int count = erase_if(variants, [](const Variant &v) noexcept -> bool { return !v.IsValid(); });
@@ -269,7 +269,7 @@ void Fleet::RemoveInvalidVariants()
 
 
 // Get the government of this fleet.
-const Government *Fleet::GetGovernment() const
+const Government *FleetLoader::GetGovernment() const
 {
 	return government;
 }
@@ -277,7 +277,7 @@ const Government *Fleet::GetGovernment() const
 
 
 // Choose a fleet to be created during flight, and have it enter the system via jump or planetary departure.
-void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, vector<FleetHolder> &fleets,
+void FleetLoader::Enter(const System &system, list<shared_ptr<Ship>> &ships, vector<FleetHolder> &fleets,
 	const Planet *planet) const
 {
 	if(variants.empty() || personality.IsDerelict())
@@ -456,7 +456,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, vector<Fl
 
 // Place one of the variants in the given system, already "in action." If the carried flag is set,
 // only uncarried ships will be added to the list (as any carriables will be stored in bays).
-void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, vector<FleetHolder> &fleets,
+void FleetLoader::Place(const System &system, list<shared_ptr<Ship>> &ships, vector<FleetHolder> &fleets,
 	bool carried) const
 {
 	if(variants.empty())
@@ -513,7 +513,7 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, vector<Fl
 
 // Place one of the variants in the given system, already "in action." If the carried flag is set,
 // only uncarried ships will be added to the list (as any carriables will be stored in bays).
-void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carried) const
+void FleetLoader::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carried) const
 {
 	if(variants.empty())
 		return;
@@ -561,7 +561,7 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 
 
 // Do the randomization to make a ship enter or be in the given system.
-const System *Fleet::Enter(const System &system, Ship &ship, const System *source)
+const System *FleetLoader::Enter(const System &system, Ship &ship, const System *source)
 {
 	if(system.Links().empty() || (source && !system.Links().count(source)))
 	{
@@ -589,7 +589,7 @@ const System *Fleet::Enter(const System &system, Ship &ship, const System *sourc
 
 
 
-void Fleet::Place(const System &system, Ship &ship)
+void FleetLoader::Place(const System &system, Ship &ship)
 {
 	// Choose a random inhabited object in the system to spawn around.
 	auto center = ChooseCenter(system);
@@ -604,7 +604,7 @@ void Fleet::Place(const System &system, Ship &ship)
 
 
 
-int64_t Fleet::Strength() const
+int64_t FleetLoader::Strength() const
 {
 	return variants.Average(std::mem_fn(&Variant::Strength));
 }
@@ -613,7 +613,7 @@ int64_t Fleet::Strength() const
 
 // Obtain a positional reference and the radius of the object at that position (e.g. a planet).
 // Spaceport status can be modified during normal gameplay, so this information is not cached.
-pair<Point, double> Fleet::ChooseCenter(const System &system)
+pair<Point, double> FleetLoader::ChooseCenter(const System &system)
 {
 	auto centers = vector<pair<Point, double>>();
 	for(const StellarObject &object : system.Objects())
@@ -627,7 +627,7 @@ pair<Point, double> Fleet::ChooseCenter(const System &system)
 
 
 
-vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) const
+vector<shared_ptr<Ship>> FleetLoader::Instantiate(const vector<const Ship *> &ships) const
 {
 	vector<shared_ptr<Ship>> placed;
 	for(const Ship *model : ships)
@@ -656,7 +656,7 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) c
 
 
 
-bool Fleet::PlaceFighter(shared_ptr<Ship> fighter, vector<shared_ptr<Ship>> &placed) const
+bool FleetLoader::PlaceFighter(shared_ptr<Ship> fighter, vector<shared_ptr<Ship>> &placed) const
 {
 	if(!fighter->CanBeCarried())
 		return false;
@@ -674,7 +674,7 @@ bool Fleet::PlaceFighter(shared_ptr<Ship> fighter, vector<shared_ptr<Ship>> &pla
 // If outfits were specified, but not commodities, do not pick commodities.
 // If commodities were specified, but not outfits, do not pick outfits.
 // If neither or both were specified, choose commodities more often..
-void Fleet::SetCargo(Ship *ship) const
+void FleetLoader::SetCargo(Ship *ship) const
 {
 	const bool canChooseOutfits = commodities.empty() || !outfitters.empty();
 	const bool canChooseCommodities = outfitters.empty() || !commodities.empty();

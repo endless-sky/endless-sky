@@ -23,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "Conversation.h"
 #include "Effect.h"
-#include "Fleet.h"
+#include "FleetLoader.h"
 #include "FormationPattern.h"
 #include "Galaxy.h"
 #include "GameEvent.h"
@@ -99,7 +99,7 @@ private:
 	Set<Conversation> conversations;
 	Set<Effect> effects;
 	Set<GameEvent> events;
-	Set<Fleet> fleets;
+	Set<FleetLoader> fleets;
 	Set<FormationPattern> formations;
 	Set<Galaxy> galaxies;
 	Set<Government> governments;

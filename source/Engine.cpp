@@ -342,7 +342,7 @@ void Engine::Place()
 		if(!pos)
 		{
 			ship->SetPlanet(nullptr);
-			Fleet::Place(*ship->GetSystem(), *ship);
+			FleetLoader::Place(*ship->GetSystem(), *ship);
 		}
 		// This ship is taking off from a planet.
 		else
@@ -1305,7 +1305,7 @@ void Engine::EnterSystem()
 				CreateWeather(hazard, stellar.Position());
 	}
 
-	const Fleet *raidFleet = system->GetGovernment()->RaidFleet();
+	const FleetLoader *raidFleet = system->GetGovernment()->RaidFleet();
 	const Government *raidGovernment = raidFleet ? raidFleet->GetGovernment() : nullptr;
 	if(raidGovernment && raidGovernment->IsEnemy())
 	{
@@ -1803,7 +1803,7 @@ void Engine::SpawnPersons()
 					ship->SetParent(parent);
 				// Make sure all ships in a "person" definition enter from the
 				// same source system.
-				source = Fleet::Enter(*player.GetSystem(), *ship, source);
+				source = FleetLoader::Enter(*player.GetSystem(), *ship, source);
 				newShips.push_back(ship);
 			}
 

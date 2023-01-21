@@ -34,7 +34,7 @@ class DataNode;
 class DataWriter;
 class Date;
 class Effect;
-class Fleet;
+class FleetLoader;
 class FormationPattern;
 class Galaxy;
 class GameEvent;
@@ -115,7 +115,7 @@ public:
 	static const Set<Conversation> &Conversations();
 	static const Set<Effect> &Effects();
 	static const Set<GameEvent> &Events();
-	static const Set<Fleet> &Fleets();
+	static const Set<FleetLoader> &Fleets();
 	static const Set<FormationPattern> &Formations();
 	static const Set<Galaxy> &Galaxies();
 	static const Set<Government> &Governments();

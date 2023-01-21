@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef PLANET_H_
 #define PLANET_H_
 
-#include "Fleet.h"
+#include "FleetLoader.h"
 #include "Sale.h"
 
 #include <list>
@@ -138,7 +138,7 @@ public:
 
 	// Demand tribute, and get the planet's response.
 	std::string DemandTribute(PlayerInfo &player) const;
-	void DeployDefense(std::list<std::shared_ptr<Ship>> &ships, std::vector<Fleet::FleetHolder> &fleets) const;
+	void DeployDefense(std::list<std::shared_ptr<Ship>> &ships, std::vector<FleetLoader::FleetHolder> &fleets) const;
 	void ResetDefense() const;
 
 
@@ -174,7 +174,7 @@ private:
 	int defenseThreshold = 4000;
 	mutable bool isDefending = false;
 	// The defense fleets that should be spawned (in order of specification).
-	std::vector<const Fleet *> defenseFleets;
+	std::vector<const FleetLoader *> defenseFleets;
 	// How many fleets have been spawned, and the index of the next to be spawned.
 	mutable size_t defenseDeployed = 0;
 	// Ships that have been created by instantiating its defense fleets.

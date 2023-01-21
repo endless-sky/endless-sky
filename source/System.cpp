@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Angle.h"
 #include "DataNode.h"
 #include "Date.h"
-#include "Fleet.h"
+#include "FleetLoader.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Hazard.h"
@@ -229,7 +229,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		}
 		else if(key == "fleet")
 		{
-			const Fleet *fleet = GameData::Fleets().Get(value);
+			const FleetLoader *fleet = GameData::Fleets().Get(value);
 			if(remove)
 			{
 				for(auto it = fleets.begin(); it != fleets.end(); ++it)
@@ -857,7 +857,7 @@ double System::Exports(const string &commodity) const
 
 
 // Get the probabilities of various fleets entering this system.
-const vector<RandomEvent<Fleet>> &System::Fleets() const
+const vector<RandomEvent<FleetLoader>> &System::Fleets() const
 {
 	return fleets;
 }

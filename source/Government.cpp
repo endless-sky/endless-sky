@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Conversation.h"
 #include "DataNode.h"
-#include "Fleet.h"
+#include "FleetLoader.h"
 #include "GameData.h"
 #include "Outfit.h"
 #include "Phrase.h"
@@ -439,7 +439,7 @@ const string &Government::Language() const
 
 // Pirate raids in this government's systems use this fleet definition. If
 // it is null, there are no pirate raids.
-const Fleet *Government::RaidFleet() const
+const FleetLoader *Government::RaidFleet() const
 {
 	return raidFleet;
 }

@@ -27,7 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class Conversation;
 class DataNode;
-class Fleet;
+class FleetLoader;
 class Phrase;
 class Planet;
 class PlayerInfo;
@@ -90,7 +90,7 @@ public:
 	const std::string &Language() const;
 	// Pirate raids in this government's systems use this fleet definition. If
 	// it is null, there are no pirate raids.
-	const Fleet *RaidFleet() const;
+	const FleetLoader *RaidFleet() const;
 
 	// Check if, according to the politics stored by GameData, this government is
 	// an enemy of the given government right now.
@@ -152,7 +152,7 @@ private:
 	const Phrase *hostileHail = nullptr;
 	const Phrase *hostileDisabledHail = nullptr;
 	std::string language;
-	const Fleet *raidFleet = nullptr;
+	const FleetLoader *raidFleet = nullptr;
 	double crewAttack = 1.;
 	double crewDefense = 2.;
 	bool provokedOnScan = false;

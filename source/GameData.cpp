@@ -27,7 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Effect.h"
 #include "Files.h"
 #include "FillShader.h"
-#include "Fleet.h"
+#include "FleetLoader.h"
 #include "FogShader.h"
 #include "text/FontSet.h"
 #include "FormationPattern.h"
@@ -73,7 +73,7 @@ using namespace std;
 
 namespace {
 	UniverseObjects objects;
-	Set<Fleet> defaultFleets;
+	Set<FleetLoader> defaultFleets;
 	Set<Government> defaultGovernments;
 	Set<Planet> defaultPlanets;
 	Set<System> defaultSystems;
@@ -510,7 +510,7 @@ const Set<GameEvent> &GameData::Events()
 
 
 
-const Set<Fleet> &GameData::Fleets()
+const Set<FleetLoader> &GameData::Fleets()
 {
 	return objects.fleets;
 }
