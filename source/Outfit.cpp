@@ -132,7 +132,6 @@ namespace {
 		{"slowing resistance fuel", 0.},
 		{"slowing resistance heat", 0.},
 		{"crew equivalent", 0.},
-		{"landing speed", 0.},
 
 		// "Protection" attributes appear in denominators and are incremented by 1.
 		{"shield protection", -0.99},
