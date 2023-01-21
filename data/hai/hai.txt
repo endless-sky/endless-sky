@@ -796,14 +796,14 @@ phrase "defeated unfettered challenger"
 		"."
 		"!"
 	word
-		" What more do you want from me?"
-		" Do not presume you may board me."
-		" Do not even think about capturing my ship."
-		" Now it is over, time to lay down your weapons."
-		" I accept my fate, take what is rightfully yours."
-		" Great stories will be told of our battle!"
-		" You have the right to plunder."
-		" It would seem you are as strong as some pretended, perhaps even more."
+		" What more do you want from me?" 3
+		" Do not presume you may board me." 3
+		" Do not even think about capturing my ship." 3
+		" Now it is over, time to lay down your weapons." 3
+		" I accept my fate, take what is rightfully yours." 3
+		" Great stories will be told of our battle!" 3
+		" You have the right to plunder." 3
+		" It would seem you are as strong as some pretended, perhaps even more." 3
 		" Finish me! I would rather die than have to live with this insult."
 	replace
 		"% me" ""
