@@ -1240,7 +1240,7 @@ void Engine::EnterSystem()
 	{
 		for(const auto &fleet : system->Fleets())
 			if(fleet.Get()->GetGovernment() && Random::Int(fleet.Period()) < 60)
-				fleet.Get()->Place(*system, newShips, fleets);
+				fleets.emplace_back(fleet.Get()->Place(*system, newShips));
 
 		auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point origin)
 		{
@@ -1270,7 +1270,7 @@ void Engine::EnterSystem()
 			for(int i = 0; i < 10; ++i)
 				if(Random::Real() < attraction)
 				{
-					raidFleet->Place(*system, newShips, fleets);
+					fleets.emplace_back(raidFleet->Place(*system, newShips));
 					Messages::Add("Your fleet has attracted the interest of a "
 							+ raidGovernment->GetName() + " raiding party.", Messages::Importance::Highest);
 				}
@@ -1697,7 +1697,7 @@ void Engine::SpawnFleets()
 			if(enemyStrength && ai.AllyStrength(gov) > 2 * enemyStrength)
 				continue;
 
-			fleet.Get()->Enter(*player.GetSystem(), newShips, fleets);
+			fleets.emplace_back(fleet.Get()->Enter(*player.GetSystem(), newShips));
 		}
 }
 

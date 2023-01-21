@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef FLEETLOADER_H_
 #define FLEETLOADER_H_
 
+#include "Fleet.h"
 #include "Personality.h"
 #include "Sale.h"
 #include "Variant.h"
@@ -30,7 +31,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class DataNode;
 class Government;
-class Fleet;
 class Outfit;
 class Phrase;
 class Planet;
@@ -62,13 +62,10 @@ public:
 	const Government *GetGovernment() const;
 
 	// Choose a fleet to be created during flight, and have it enter the system via jump or planetary departure.
-	void Enter(const System &system, std::list<std::shared_ptr<Ship>> &ships, std::vector<Fleet> &fleets,
-			const Planet *planet = nullptr) const;
+	Fleet Enter(const System &system, std::list<std::shared_ptr<Ship>> &ships, const Planet *planet = nullptr) const;
 	// Place a fleet in the given system, already "in action." If the carried flag is set, only
 	// uncarried ships will be added to the list (as any carriables will be stored in bays).
-	void Place(const System &system, std::list<std::shared_ptr<Ship>> &ships, std::vector<Fleet> &fleets,
-			bool carried = true) const;
-	void Place(const System &system, std::list<std::shared_ptr<Ship>> &ships, bool carried = true) const;
+	Fleet Place(const System &system, std::list<std::shared_ptr<Ship>> &ships, bool carried = true) const;
 
 	// Do the randomization to make a ship enter or be in the given system.
 	// Return the system that was chosen for the ship to enter from.

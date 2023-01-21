@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "GameData.h"
 #include "Government.h"
-#include "Fleet.h"
 #include "Logger.h"
 #include "Phrase.h"
 #include "pi.h"
@@ -278,16 +277,17 @@ const Government *FleetLoader::GetGovernment() const
 
 
 // Choose a fleet to be created during flight, and have it enter the system via jump or planetary departure.
-void FleetLoader::Enter(const System &system, list<shared_ptr<Ship>> &ships, vector<Fleet> &fleets,
-	const Planet *planet) const
+Fleet FleetLoader::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Planet *planet) const
 {
+	Fleet returnFleet;
+
 	if(variants.empty() || personality.IsDerelict())
-		return;
+		return returnFleet;
 
 	// Pick a fleet variant to instantiate.
 	const vector<const Ship *> &variantShips = variants.Get().Ships();
 	if(variantShips.empty())
-		return;
+		return returnFleet;
 
 	// Figure out what system the fleet is starting in, where it is going, and
 	// what position it should start from in the system.
@@ -389,7 +389,7 @@ void FleetLoader::Enter(const System &system, list<shared_ptr<Ship>> &ships, vec
 			// Log this error.
 			Logger::LogError("Fleet::Enter: Unable to find valid stellar object for planet \""
 				+ planet->TrueName() + "\" in system \"" + system.Name() + "\"");
-			return;
+			return returnFleet;
 		}
 		// To take off from the planet, all non-carried ships must be able to access it.
 		else if(planet->IsUnrestricted() || all_of(placed.cbegin(), placed.cend(), [&](const shared_ptr<Ship> &ship)
@@ -403,16 +403,15 @@ void FleetLoader::Enter(const System &system, list<shared_ptr<Ship>> &ships, vec
 		{
 			// If there are no departure paths, then there are no arrival paths either.
 			if(source == target)
-				return;
+				return returnFleet;
 			// Otherwise, have the fleet arrive here from the target system.
 			std::swap(source, target);
 			planet = nullptr;
 		}
 	}
 
-	// Create an instance for the fleet that gets spawned.
-	fleets.emplace_back();
-	fleets.back().SetName(fleetName);
+
+	returnFleet.SetName(fleetName);
 
 	// Place all the ships in the chosen fleet variant.
 	shared_ptr<Ship> flagship;
@@ -444,36 +443,37 @@ void FleetLoader::Enter(const System &system, list<shared_ptr<Ship>> &ships, vec
 		else
 		{
 			flagship = ship;
-			fleets.back().SetFlagship(flagship);
+			returnFleet.SetFlagship(flagship);
 		}
 
 
 		SetCargo(&*ship);
 	}
-	fleets.back().SetShips(placed);
+	returnFleet.SetShips(placed);
+
+	return returnFleet;
 }
 
 
 
 // Place one of the variants in the given system, already "in action." If the carried flag is set,
 // only uncarried ships will be added to the list (as any carriables will be stored in bays).
-void FleetLoader::Place(const System &system, list<shared_ptr<Ship>> &ships, vector<Fleet> &fleets,
-	bool carried) const
+Fleet FleetLoader::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carried) const
 {
+	Fleet returnFleet;
+
 	if(variants.empty())
-		return;
+		return returnFleet;
 
 	// Pick a fleet variant to instantiate.
 	const vector<const Ship *> &variantShips = variants.Get().Ships();
 	if(variantShips.empty())
-		return;
+		return returnFleet;
 
 	// Determine where the fleet is going to or coming from.
 	auto center = ChooseCenter(system);
 
-	// Create an instance for the fleet that gets spawned.
-	fleets.emplace_back();
-	fleets.back().SetName(fleetName);
+	returnFleet.SetName(fleetName);
 
 	// Place all the ships in the chosen fleet variant.
 	shared_ptr<Ship> flagship;
@@ -501,61 +501,14 @@ void FleetLoader::Place(const System &system, list<shared_ptr<Ship>> &ships, vec
 		else
 		{
 			flagship = ship;
-			fleets.back().SetFlagship(flagship);
+			returnFleet.SetFlagship(flagship);
 		}
 
 		SetCargo(&*ship);
 	}
-	fleets.back().SetShips(placed);
-}
+	returnFleet.SetShips(placed);
 
-
-
-// Place one of the variants in the given system, already "in action." If the carried flag is set,
-// only uncarried ships will be added to the list (as any carriables will be stored in bays).
-void FleetLoader::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carried) const
-{
-	if(variants.empty())
-		return;
-
-	// Pick a fleet variant to instantiate.
-	const vector<const Ship *> &variantShips = variants.Get().Ships();
-	if(variantShips.empty())
-		return;
-
-	// Determine where the fleet is going to or coming from.
-	auto center = ChooseCenter(system);
-
-	// Place all the ships in the chosen fleet variant.
-	shared_ptr<Ship> flagship;
-	vector<shared_ptr<Ship>> placed = Instantiate(variantShips);
-	for(shared_ptr<Ship> &ship : placed)
-	{
-		// If this is a fighter and someone can carry it, no need to position it.
-		if(carried && PlaceFighter(ship, placed))
-			continue;
-
-		Angle angle = Angle::Random();
-		Point pos = center.first + Angle::Random().Unit() * OffsetFrom(center);
-		double velocity = 0;
-		if(!ship->GetPersonality().IsDerelict())
-			velocity = Random::Real() * ship->MaxVelocity();
-		else
-			ship->Disable();
-
-		ships.push_front(ship);
-		ship->SetSystem(&system);
-		ship->Place(pos, velocity * angle.Unit(), angle);
-
-		if(flagship)
-			ship->SetParent(flagship);
-		else
-		{
-			flagship = ship;
-		}
-
-		SetCargo(&*ship);
-	}
+	return returnFleet;
 }
 
 

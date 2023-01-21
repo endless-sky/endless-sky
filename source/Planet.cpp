@@ -626,7 +626,7 @@ void Planet::DeployDefense(list<shared_ptr<Ship>> &ships, vector<Fleet> &fleets)
 		return;
 
 	auto end = defenders.begin();
-	defenseFleets[defenseDeployed]->Enter(*GetSystem(), defenders, fleets, this);
+	fleets.emplace_back(defenseFleets[defenseDeployed]->Enter(*GetSystem(), defenders, this));
 	ships.insert(ships.begin(), defenders.begin(), end);
 
 	// All defenders use a special personality.
