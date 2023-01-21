@@ -619,7 +619,6 @@ mission "Hai Reveal [B08] Syndicate Internal Affairs"
 					goto broke
 				`	(Draw your weapon.)`
 					goto die
-				die
 			label shut
 			`	The door makes several creaking and snapping noises as it slides back into place. It takes most of your strength, but you manage to close it. The man, whose Republic Intelligence uniform is labeled with the name "Agent Kopkow," gestures for you to take one of the only seats in the room. He takes the one opposite and Giti sits at her desk. The other three agents stand around you.`
 				goto encounters
@@ -628,9 +627,9 @@ mission "Hai Reveal [B08] Syndicate Internal Affairs"
 			label encounters
 			`	You've had some encounters with Republic Intelligence, but you know what everyone knows. They're the top police force of the Republic, dealing with high-profile civilian crimes that local authorities can't handle: murder investigations, interplanetary kidnappings, and the like. They also gather intelligence throughout human space, and possibly beyond, reporting directly to the Republic Parliament... which mostly means it's beholden to the interests of the members of Parliament.`
 			choice
+				`	"I'm on an urgent mission that is critical for three governments. Don't bar my way."`
 				`	"If Parliament's interests are repeatedly ruining and replacing library doors, then the Republic is in quite a sorry shape."`
 					goto humor
-				`	"I'm on an urgent mission that is critical for three governments. Don't bar my way."`
 				`	"What's the problem?"`
 					goto uncomplaining
 			`	Uncannily, the agents all smirk at you at the same time. Kopkow responds flatly, "We don't respond well to threats."`
@@ -641,11 +640,11 @@ mission "Hai Reveal [B08] Syndicate Internal Affairs"
 			`	"Now, Captain <last>, your friend Giti here has tripped a flag in our systems that marks what you're looking into as an item of particular interest to Syndicate Internal Affairs. In fact, it is an interest which they have exclusive and sole jurisdiction over, even over and above us." He looks at you meaningfully. "That requires an Act of Parliament in a closed session, which has not occurred for a significant length of time, if you catch my drift."`
 			`	He clears his throat. "We've been following you recently, and interrogating some people you've met. Since we have determined that you have found... something, and that it is meaningful, we must send you to Hephaestus. We request that you take Giti, any information or equipment you were planning to take, and go immediately and directly. Do you understand?"`
 			choice
+				`	"It's time for you gentlemen to leave and let us get about our business."`
 				`	"I've always wanted to take a holiday on Hephaestus anyway. Let's go!"`
 					accept
 				`	"Yes."`
 					accept
-				`	"It's time for you gentlemen to leave and let us get about our business."`
 			`	Agent Kopkow narrows his eyes at you very slightly. "This is not an optional request." Beyond your line of sight you can hear the faint rustle of clothing shift where the agents are still standing.`
 			choice
 				`	"The answer is no and this conversation is over."`
@@ -656,7 +655,7 @@ mission "Hai Reveal [B08] Syndicate Internal Affairs"
 			`	You can feel fists hit either side of your head, and you pass out. A while later, you wake up gagged with four men holding your arms and legs. They're walking, carrying you somewhere. Eventually, they reach your ship and let you down. It seems this was not an optional trip after all.`
 				accept
 			label die
-			`	Once your fingers graze the edge of your pistol, a foot slams into side of your neck while a fist braces your head. You can hear your spine snap just before everything goes dark. As you ponder your mistake, you realize the rumors were true: the brain does survive a few minutes without the body.`
+			`	Once your fingers graze the edge of your pistol, a foot slams into side of your neck while a fist braces your head. You can hear your spine snap just before everything goes dark. As you ponder your mistake, you realize the rumors were true: the brain does survive for a few minutes without the body.`
 				die
 	on fail
 		"reputation: Republic" <?= -100
@@ -1312,8 +1311,8 @@ mission "Hai Reveal [B13] Freedom"
 			label anomaly
 			action
 				set "Hai Reveal [B13] Freedom: label anomaly"
-			`	The human leader answers. "Devil-Run was one of several systems listed on a cartouche found on the anarchist colony of Freedom soon after it was settled. The settlers dug deeper and found a ship of unknown design with a jump drive installed, and two more in a cargo bay. They took this as an obvious invitation to explore, so they recorded the cartouche, destroyed it, and checked every star system. Some had the 'anomalies' as you called them, and were impossible to find.`
-			`	"As for the 'anomaly', it has a mechanism at its heart. Something shaped like a tree, about five hundred meters long, and two hundred meters wide. We can't get closer to it than about 250,000 kilometers, so we don't know much about it. It is clearly artificial, and deliberate, but benevolent: it kept us hidden for over a century."`
+			`	The human leader answers. "Devil-Run was one of several systems listed on a cartouche found on the anarchist colony of Freedom soon after it was settled. The settlers dug deeper and found a ship of unknown design with a jump drive installed, and two more in its cargo bay. They took this as an obvious invitation to explore, so they recorded the cartouche, destroyed it, and checked every star system. Some had the 'anomalies' as you called them, and were impossible to find.`
+			`	"As for the 'anomaly', it has a mechanism at its heart. Something shaped like a tree, about a kilometer long, and six hundred meters wide. Actually, it's similar in shape to the ship the Freedom settlers found, just a whole lot bigger. We can't get closer to it than about 250,000 kilometers, so we don't know much about it. It is clearly artificial, and deliberate, but benevolent: it kept us hidden for over a century."`
 				goto questions
 			label home
 			action
