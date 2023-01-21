@@ -1462,13 +1462,6 @@ string Ship::GetHail(map<string, string> &&subs) const
 
 
 
-const Phrase *Ship::GetHailPhrase() const
-{
-	return hail;
-}
-
-
-
 // Set the commands for this ship to follow this timestep.
 void Ship::SetCommands(const Command &command)
 {

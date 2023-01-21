@@ -34,7 +34,6 @@ public:
 
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
-	bool IsDefined() const;
 
 	bool IsDefined() const;
 
