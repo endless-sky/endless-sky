@@ -810,6 +810,45 @@ void Engine::Step(bool isActive)
 				info.SetString("target energy", to_string(energy));
 				int heat = round(100. * target->Heat());
 				info.SetString("target heat", to_string(heat) + "%");
+                int turret = round(target->TurretRange());
+                info.SetString("target turret", to_string(turret) + " ");
+                int gun = round(target->GunRange());
+                info.SetString("target gun", to_string(gun) + " ");
+                int turn = round(60 * target->TrueTurnRate());
+                info.SetString("target turnrate", to_string(turn) + " ");
+				int dis = target->CountIncoming();
+				info.SetString("target ion", to_string(dis));
+				int escorts = 0;
+				if(!target->GetParent())
+					escorts = target->GetEscorts().size();
+                string name = "Parent: " + (!target->GetParent() ? "I'm the parent of " + to_string(escorts) :
+                        target->GetParent()->Name());
+				info.SetString("parent", name);
+				if(target->GetParent())
+				{
+					string PSystem = target->GetParent()->GetSystem()->Name();
+					info.SetString("PSystem", "Parent Sys: " + PSystem);
+				}
+				string person = "Personality: ";
+				person += (target->GetPersonality().IsHeroic() ? "Heroic" : target->GetPersonality().IsCoward() ? "Coward" : target->GetPersonality().IsFleeing() ? "Fleeing" : "Other");
+                info.SetString("personality", person);
+				string JumpStatus = (target->IsEnteringHyperspace() ? "Jumping" : target->IsReadyToJump(true) ? "Jump Ready" : "Not Ready");
+					info.SetString("jumpstatus", JumpStatus);
+                if(target->GetTargetStellar() && target->GetTargetStellar()->GetPlanet())
+                 {
+                 string stellar = target->GetTargetStellar()->GetPlanet()->Name();
+                 info.SetString("stellar", "Planet: " + stellar);
+                 }
+                if(target->GetTargetSystem())
+                {
+					string system = target->GetTargetSystem()->Name();
+                info.SetString("system", "System: " + system);
+                }
+                if(target->GetActivity().size())
+                {
+					string targetActivity = target->GetActivity();
+                info.SetString("target activity", targetActivity);
+                }
 			}
 		}
 	}

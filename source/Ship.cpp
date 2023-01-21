@@ -1300,8 +1300,36 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 				bay.ship->SetSwizzle(bay.ship->customSwizzle >= 0 ? bay.ship->customSwizzle : swizzle);
 		}
 	}
+	    // Get the weapon ranges for this ship, so the Ai can call it. ajc
+    const vector<Hardpoint> &hardpoints = armament.Get();
+    for(unsigned i = 0; i < hardpoints.size(); ++i)
+    {
+			const Weapon *weapon = hardpoints[i].GetOutfit();
+			if(weapon && !weapon->Ammo() && weapon->DoesDamage() && hardpoints[i].IsTurret())
+				turretRange = max(turretRange, weapon->Range() + hardpoints[i].GetPoint().Length());
+			else if(weapon && !weapon->Ammo() && weapon->DoesDamage() && hardpoints[i].IsGun())
+				gunRange = max(gunRange, weapon->Range() + hardpoints[i].GetPoint().Length());
+			if(weapon && !weapon->Ammo() && weapon->DoesDamage() && hardpoints[i].IsDefensive())
+				defenseRange = max(defenseRange, weapon->Range() + hardpoints[i].GetPoint().Length());
+    }
 }
 
+
+// various weapon raanges for this ship. ajc.
+double Ship::TurretRange() const
+{
+    return turretRange;
+}
+
+double Ship::GunRange() const
+{
+    return gunRange;
+}
+
+double Ship::DefenseRange() const
+{
+    return defenseRange;
+}
 
 
 // Set the name of this particular ship.
@@ -3469,6 +3497,13 @@ double Ship::InertialMass() const
 double Ship::TurnRate() const
 {
 	return attributes.Get("turn") / InertialMass();
+}
+
+
+
+double Ship::TrueTurnRate() const
+{
+    return attributes.Get("turn") / Mass() * 1. / (1. + slowness * .05);
 }
 
 
