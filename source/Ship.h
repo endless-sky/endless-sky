@@ -581,7 +581,6 @@ private:
 	// A Ship can be locked into one of three special states: landing,
 	// hyperspacing, and exploding. Each one must track some special counters:
 	const Planet *landingPlanet = nullptr;
-	float landingSpeed = 0.02f;
 
 	ShipJumpNavigation navigation;
 	int hyperspaceCount = 0;
