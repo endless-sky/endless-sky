@@ -139,7 +139,7 @@ private:
 	bool mustAccompany = false;
 	std::map<const Ship *, int> shipActions;
 
-	std::map<const std::string, MissionAction> npcActions;
+	std::map<int, MissionAction> npcActions;
 };
 
 

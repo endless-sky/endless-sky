@@ -153,7 +153,15 @@ void NPC::Load(const DataNode &node, string missionName)
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
 		else if(child.Token(0) == "on" && child.Size() >= 2)
-			npcActions.insert(make_pair(child.Token(1), MissionAction(child, missionName, true)));
+		{
+			int eventType = ShipEvent::TypeFromString(child.Token(1));
+			if(eventType == ShipEvent::JUMP)
+				child.PrintTrace("Error: \"jump\" is not a supported event for NPC actions.");
+			else if(eventType == ShipEvent::NONE)
+				child.PrintTrace("Error: invalid ShipEvent.");
+			else
+				npcActions.insert(make_pair(eventType, MissionAction(child, missionName, true)));
+		}
 		else if(child.Token(0) == "ship")
 		{
 			if(child.HasChildren() && child.Size() == 2)
@@ -454,9 +462,9 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 		if(bay.ship)
 			shipActions[bay.ship.get()] |= type;
 
-	auto it = npcActions.find(ShipEvent::TypeToString(type));
-	if(it != npcActions.end())
-		it->second.Do(player, ui);
+	for(auto &it : npcActions)
+		if(type & it.first)
+			it.second.Do(player, ui);
 
 	// Check if the success status has changed. If so, display a message.
 	if(isVisible && !alreadyFailed && HasFailed())

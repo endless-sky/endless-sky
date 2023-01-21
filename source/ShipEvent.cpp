@@ -80,19 +80,43 @@ int ShipEvent::Type() const
 string ShipEvent::TypeToString(int type)
 {
 	static const map<int, string> types = {
-		{(1 << 0), "assist"},
-		{(1 << 1), "scan cargo"},
-		{(1 << 2), "scan outfits"},
-		{(1 << 3), "provoke"},
-		{(1 << 4), "disable"},
-		{(1 << 5), "board"},
-		{(1 << 6), "capture"},
-		{(1 << 7), "destroy"},
-		{(1 << 8), "atrocity"},
-		{(1 << 9), "jump"},
+		{ASSIST, "assist"},
+		{SCAN_CARGO, "scan cargo"},
+		{SCAN_OUTFITS, "scan outfits"},
+		{PROVOKE, "provoke"},
+		{DISABLE, "disable"},
+		{BOARD, "board"},
+		{CAPTURE, "capture"},
+		{DESTROY, "destroy"},
+		{ATROCITY, "atrocity"},
+		{JUMP, "jump"},
 	};
+
 	auto it = types.find(type);
 	if(it == types.end())
 		return "none";
 	return it->second;
+}
+
+
+
+int ShipEvent::TypeFromString(const string &name)
+{
+	static const map<string, int> types = {
+		{"assist", ASSIST},
+		{"scan cargo", SCAN_CARGO},
+		{"scan outfits", SCAN_OUTFITS},
+		{"provoke", PROVOKE},
+		{"disable", DISABLE},
+		{"board", BOARD},
+		{"capture", CAPTURE},
+		{"destroy", DESTROY},
+		{"atrocity", ATROCITY},
+		{"jump", JUMP},
+	};
+
+	auto it = types.find(name);
+	if(it != types.end())
+		return it->second;
+	return NONE;
 }

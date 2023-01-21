@@ -83,6 +83,8 @@ public:
 
 	static std::string TypeToString(int type);
 
+	static int TypeFromString(const std::string &name);
+
 
 private:
 	std::shared_ptr<Ship> actor;
