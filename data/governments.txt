@@ -891,6 +891,14 @@ government "Pug"
 	"hostile hail" "hostile pug"
 	"hostile disabled hail" "hostile pug"
 
+# Used for the Pug ships/anomalies that hide star systems.
+government "Pug (Anomaly)"
+	swizzle 0
+	color "governments: Pug"
+
+	language "Pug (Anomaly)"
+	"player reputation" 1
+
 # A pug government with distinct reputation toward the player compared to those met during the main campaign.
 government "Pug (Wanderer)"
 	"display name" "Pug"

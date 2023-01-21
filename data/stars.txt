@@ -188,6 +188,12 @@ star "star/protostar-yellow"
 	power 0.4
 	wind 5
 
+# High-tier Pug ship generating strange anomaly made of jump drive particles
+# that have been filling a system for over a century.
+star "star/pug-cloaker"
+	power 0.1
+	wind 40
+
 # Rogue planet with unusual properties
 star "planet/rogue-radiating"
 	power .2

@@ -9577,16 +9577,7 @@ system Devil-Run
 	government Uninhabited
 	arrival 1080
 	habitable 1080
-	haze _menu/haze-pink
-	asteroids "small rock" 121 1.9558
-	asteroids "medium rock" 14 1.9096
-	asteroids "large rock" 28 1.4784
-	asteroids "small metal" 8 1.8326
-	asteroids "medium metal" 77 2.2946
-	asteroids "large metal" 19 1.7094
-	minables uranium 46 2.98163
-	minables tungsten 18 3.78094
-	minables titanium 4 2.67322
+	haze _menu/pug-cloak
 	trade Clothing 271
 	trade Electronics 722
 	trade Equipment 623
@@ -9597,7 +9588,6 @@ system Devil-Run
 	trade Medical 801
 	trade Metal 273
 	trade Plastic 394
-	fleet "Korath Raid" 30000
 	object
 		sprite star/g0
 		period 10
@@ -9608,6 +9598,10 @@ system Devil-Run
 	object "Devil-Run Wormhole"
 		sprite planet/wormhole
 		distance 1805.33
+		period 933.647
+	object
+		sprite star/pug-cloaker
+		distance 1205.33
 		period 933.647
 
 system Diespiter
