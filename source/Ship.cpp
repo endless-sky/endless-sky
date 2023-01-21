@@ -1304,32 +1304,29 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
     const vector<Hardpoint> &hardpoints = armament.Get();
     for(unsigned i = 0; i < hardpoints.size(); ++i)
     {
-			const Weapon *weapon = hardpoints[i].GetOutfit();
-			if(weapon && !weapon->Ammo() && weapon->DoesDamage() && hardpoints[i].IsTurret())
-				turretRange = max(turretRange, weapon->Range() + hardpoints[i].GetPoint().Length());
-			else if(weapon && !weapon->Ammo() && weapon->DoesDamage() && hardpoints[i].IsGun())
-				gunRange = max(gunRange, weapon->Range() + hardpoints[i].GetPoint().Length());
-			// if(weapon && !weapon->Ammo() && weapon->DoesDamage() && hardpoints[i].IsDefensive())
-				// defenseRange = max(defenseRange, weapon->Range() + hardpoints[i].GetPoint().Length());
+		const Weapon *weapon = hardpoints[i].GetOutfit();
+		if(weapon && !weapon->Ammo() && weapon->DoesDamage() && hardpoints[i].IsTurret())
+			turretRange = max(turretRange, weapon->Range() + hardpoints[i].GetPoint().Length());
+		else if(weapon && !weapon->Ammo() && weapon->DoesDamage() && hardpoints[i].IsGun())
+			gunRange = max(gunRange, weapon->Range() + hardpoints[i].GetPoint().Length());
     }
 }
 
 
-// various weapon raanges for this ship.
+
+// Functions providing various weapon ranges for this ship.
 double Ship::TurretRange() const
 {
     return turretRange;
 }
+
+
 
 double Ship::GunRange() const
 {
     return gunRange;
 }
 
-// double Ship::DefenseRange() const
-// {
-//     return defenseRange;
-// }
 
 
 // Set the name of this particular ship.

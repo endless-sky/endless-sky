@@ -172,8 +172,8 @@ public:
 	void Place(Point position = Point(), Point velocity = Point(), Angle angle = Angle(), bool isDeparting = true);
     double turretRange = 0;
     double gunRange = 0;
-    double TurretRange() const;
-    double GunRange() const;
+	double TurretRange() const;
+	double GunRange() const;
 	void SetName(const std::string &name);
 	void SetSystem(const System *system);
 	void SetPlanet(const Planet *planet);
@@ -274,7 +274,7 @@ public:
 	// The direction that the ship is steering. If positive, the ship is steering right.
 	// If negative, the ship is steering left.
 	double SteeringDirection() const;
-	//set and count incoming projectiles.
+	// Set and count incoming projectiles.
 	int CountIncoming() const;
 	void SetIncoming(int count = 0);
 	int CountTargeting() const;
@@ -359,7 +359,7 @@ public:
 	// Get this ship's movement characteristics.
 	double Mass() const;
 	double InertialMass() const;
-    double TrueTurnRate() const;
+	double TrueTurnRate() const;
 	double TurnRate() const;
 	double Acceleration() const;
 	double MaxVelocity() const;
