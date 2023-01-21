@@ -1113,10 +1113,10 @@ outfit "Materials"
 	"mass" 1
 	description "These are simple building materials, meant for the construction of Unfettered houses."
 
-# A modified version with small buffs and disabled faster so it doesn't blow as often to the Korath.
+# A modified version with small buffs and disabled faster.
 ship "Bactrian" "Bactrian (Cerberus)"
 	add attributes
-		"threshold percentage" .4
+		"threshold percentage" .15
 		"outfit space" 17
 		"weapon capacity" 20
 	outfits
@@ -1167,7 +1167,7 @@ mission "Unfettered: Materials Intercepted Job Board Notification"
 mission "Unfettered: Materials Intercepted"
 	job
 	name `Sookootow: Looking for stolen cargo`
-	description `Sookootow wants an apt captain to find the <npc> that has stolen the materials needed for the development of the urban areas, and bring those materials back to <destination>. They should be located in the pirate worlds near Korath space.`
+	description `Sookootow wants an apt captain to find the <npc> that has stolen the materials needed for the development of the urban areas, and bring those materials back to <destination>. They should be in northern pirate space, east or west.`
 	source
 		attributes "unfettered"
 	to offer
@@ -1210,7 +1210,7 @@ mission "Unfettered: Materials Intercepted"
 					goto whyhire
 				`	"Why is the trip so dangerous if the cargo is worthless?"`
 			label worthless
-			`	"Our contact mentioned having to sometimes fight Korath invaders, as well as having to pass trough the big no man's land that leads to the wormhole afterwards, which has some pirates here and there. However, maybe she exaggerated the risks, in order to increase the cost. We are quite desperate for materials, and thus ready to pay quite a hefty price."`
+			`	"Our contact mentioned having to sometimes fight alien invaders, although they did not want to specify which. They also have to pass trough the big no man's land that leads to the wormhole afterwards, which has some pirates here and there. However, maybe she exaggerated the risks, in order to increase the cost. We are quite desperate for materials, and thus ready to pay quite a hefty price."`
 			label choose
 			choice
 				`	"I will try to bring the loot back without attracting too much attention."`

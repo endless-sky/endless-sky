@@ -150,7 +150,7 @@ ship Antlion
 	explode "tiny explosion" 40
 	"final explode" "final explosion large"
 	description "This ship was built near the end of the Korath raids to be fast enough to catch and delay the raiders of the time. Whilst ordinarily it could not defeat one alone, its energy weapons and drones let it hold its own until cavalry arrived, and sometimes even win the fight if lucky. It is not able to sustain prolonged combat, but it is now renowned for attacking vulnerable targets in human space and disappearing before anyone can react, as if always one move ahead."
-	description "When the raids suddenly ended, this ship turned out to be less useful in the subsequent Unfettered conflict, and was stolen by Mercenaries who chose to remain neutral in the conflict."
+	description "	When the raids suddenly ended, this ship turned out to be less useful in the subsequent Unfettered conflict, and was stolen by Mercenaries who chose to remain neutral in the conflict."
 
 
 ship "Tick"
@@ -185,7 +185,7 @@ ship "Tick"
 	leak "leak" 60 50
 	explode "tiny explosion" 17
 	description "This drone was customized with the idea of using either a Repeater, to complement ion attacks, or a Bullfrog Anti-Missile, to keep its owner safe. The denser materials used allow for better protection, at the cost of a bit of mass and heat dissipation."
-	description "This handy drone was only made possible thanks to scavenging, and combining multiple alien technologies."
+	description "	This handy drone was only made possible thanks to scavenging, and combining multiple alien technologies."
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 
@@ -254,7 +254,7 @@ ship "Sea Dragon"
 	explode "large explosion" 18
 	"final explode" "final explosion medium"
 	description "The Sea Scorpion was designed to serve as a mobile platform to launch Trackers from. After decades of hard work, the Unfettered are finally able to mass produce them. The ever growing fleet of Sea Scorpions enables the Unfettered to employ new tactics against the other Hai which alleviate some of their numerical, technological, and logistical disadvantages."
-	description "This version was built from stronger materials, allowing a stronger hull, at the cost of heat dissipation. The owners also made modifications in order to make this ship more agile, and flexible, with increased fuel and engine capacity. It is a terror on the battlefield, using its speed and high damage of the Tripulse Shredders to its advantage."
+	description "	This version was built from stronger materials, allowing a stronger hull, at the cost of heat dissipation. The owners also made modifications in order to make this ship more agile, and flexible, with increased fuel and engine capacity. It is a terror on the battlefield, using its speed and high damage of the Tripulse Shredders to its advantage."
 
 
 
