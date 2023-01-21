@@ -159,8 +159,7 @@ private:
 	mutable Sale<Ship> shipyard;
 	mutable Sale<Outfit> outfitter;
 
-	const Government *government = nullptr;
-	float landingSpeed = 0.f;
+	const Government *government = nullptr;-
 	double requiredReputation = 0.;
 	double bribe = 0.01;
 	double security = .25;
