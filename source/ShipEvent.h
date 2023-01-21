@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define SHIP_EVENT_H_
 
 #include <memory>
+#include <string>
 
 class Government;
 class Ship;
