@@ -87,7 +87,7 @@ private:
 
 		// There could be a System *thisSystem, but it would remained unused.
 		const System *prev = nullptr;
-		// Fuel/days needed to get to this system using the route though 'prev'.
+		// Fuel/days needed to get to this system using the route through 'prev'.
 		int fuel = 0;
 		int days = 0;
 		// Danger tracks up to the 'prev' system, not to the this system.
