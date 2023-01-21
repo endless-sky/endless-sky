@@ -86,19 +86,19 @@ mission "Kestrel Testing"
 					goto shields
 			
 			label weapons
-			apply
+			action
 				set "kestrel: more weapons"
 			`	"Very well," he says, "we'll see if we can expand the weapon capacity so that even the biggest weapons will fit."`
 				goto name
 			
 			label engines
-			apply
+			action
 				set "kestrel: more engines"
 			`	"Very well," he says, "we'll see if we can expand the engine capacity enough that even the biggest engines will fit."`
 				goto name
 			
 			label shields
-			apply
+			action
 				set "kestrel: more shields"
 			`	"Okay," he says, "we'll focus on strengthening the hull and the shield matrix."`
 				goto name

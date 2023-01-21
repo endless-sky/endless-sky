@@ -96,12 +96,21 @@ public:
 	// If this system has its own jump range, then it will always return the
 	// systems within that jump range instead of the jump range given.
 	const std::set<const System *> &JumpNeighbors(double neighborDistance) const;
-	// Whether this system can be seen when not linked.
+	// Defines whether this system can be seen when not linked. A hidden system will
+	// not appear when in view range, except when linked to a visited system.
 	bool Hidden() const;
+	// Defines whether this system can be accessed or interacted with in any way.
+	bool Inaccessible() const;
 	// Additional travel distance to target for ships entering through hyperspace.
 	double ExtraHyperArrivalDistance() const;
 	// Additional travel distance to target for ships entering using a jumpdrive.
 	double ExtraJumpArrivalDistance() const;
+
+	// The minimum distances from the system center to jump out of the system.
+	// Separated by jump drives and hyperdrives.
+	double JumpDepartureDistance() const;
+	double HyperDepartureDistance() const;
+
 	// Get a list of systems you can "see" from here, whether or not there is a
 	// direct hyperspace link to them.
 	const std::set<const System *> &VisibleNeighbors() const;
@@ -118,11 +127,15 @@ public:
 	double AsteroidBeltRadius() const;
 	// Get the list of asteroid belts.
 	const WeightedList<double> &AsteroidBelts() const;
+	// Get the system's invisible fence radius.
+	double InvisibleFenceRadius() const;
 	// Get how far ships can jump from this system.
 	double JumpRange() const;
 	// Get the rate of solar collection and ramscoop refueling.
 	double SolarPower() const;
 	double SolarWind() const;
+	// Get the starfield density for this system.
+	double StarfieldDensity() const;
 	// Check if this system is inhabited.
 	bool IsInhabited(const Ship *ship) const;
 	// Check if ships of the given government can refuel in this system.
@@ -186,12 +199,18 @@ private:
 	const Government *government = nullptr;
 	std::string music;
 
-	// Hyperspace links to other systems.
+	// All possible hyperspace links to other systems.
 	std::set<const System *> links;
+	// Only those hyperspace links to other systems that are accessible.
+	std::set<const System *> accessibleLinks;
+	// Other systems that can be accessed from this system via a jump drive at various jump ranges.
 	std::map<double, std::set<const System *>> neighbors;
 
-	// Defines whether this system can be seen when not linked.
+	// Defines whether this system can be seen when not linked. A hidden system will
+	// not appear when in view range, except when linked to a visited system.
 	bool hidden = false;
+	// Defines whether this system can be accessed or interacted with in any way.
+	bool inaccessible = false;
 
 	// Stellar objects, listed in such an order that an object's parents are
 	// guaranteed to appear before it (so that if we traverse the vector in
@@ -204,9 +223,11 @@ private:
 	std::vector<RandomEvent<Hazard>> hazards;
 	double habitable = 1000.;
 	WeightedList<double> belts;
+	double invisibleFenceRadius = 10000.;
 	double jumpRange = 0.;
 	double solarPower = 0.;
 	double solarWind = 0.;
+	double starfieldDensity = 1.;
 
 	// The amount of additional distance that ships will arrive away from the
 	// system center when entering this system through a hyperspace link.
@@ -218,6 +239,10 @@ private:
 	// 0 doesn't have the same meaning as for hyperdrives. Negative values will
 	// be interpreted as positive values.
 	double extraJumpArrivalDistance = 0.;
+
+	// The minimum distances from the system center to jump out of the system.
+	double jumpDepartureDistance = 0.;
+	double hyperDepartureDistance = 0.;
 
 	// Commodity prices.
 	std::map<std::string, Price> trade;
