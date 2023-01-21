@@ -721,7 +721,7 @@ void Engine::Step(bool isActive)
 		info.SetString("destination", "no destination");
 	}
 	// display x,y coordinates
-	if (flagship)
+	if(flagship)
 	{
 		// Point position = player.GetSystem()->Position(); // Galactic Cooordinates.
 		Point position = flagship->Position();

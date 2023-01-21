@@ -2998,7 +2998,7 @@ void Ship::SetActivity(const string& name)
 
 
 
-const string& Ship::GetActivity() const
+const string & Ship::GetActivity() const
 {
 	return activity;
 }
