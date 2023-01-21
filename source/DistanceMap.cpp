@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "DistanceMap.h"
@@ -15,8 +18,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
+#include "ShipJumpNavigation.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "Wormhole.h"
 
 using namespace std;
 
@@ -167,14 +172,14 @@ void DistanceMap::Init(const Ship *ship)
 	// DistanceMap class defaults assume hyperdrive capability only.
 	if(ship)
 	{
-		hyperspaceFuel = ship->HyperdriveFuel();
+		hyperspaceFuel = ship->JumpNavigation().HyperdriveFuel();
 		// Todo: consider outfit "jump distance" at each link to find if more fuel is needed
 		// by a second jump drive outfit with more range and cost via JumpDriveFuel(to).
-		jumpFuel = ship->JumpDriveFuel();
-		jumpRange = ship->JumpRange();
-		// If hyperjumps and non-hyper jumps cost the same amount, there is no
-		// need to check hyperjump paths at all.
-		if(hyperspaceFuel == jumpFuel)
+		jumpFuel = ship->JumpNavigation().JumpDriveFuel();
+		jumpRange = ship->JumpNavigation().JumpRange();
+		// If hyperjumps and non-hyper jumps cost the same amount, or non-hyper jumps are always cheaper,
+		// there is no need to check hyperjump paths at all.
+		if(jumpFuel && hyperspaceFuel >= jumpFuel)
 			hyperspaceFuel = 0.;
 
 		// If this ship has no mode of hyperspace travel, and no local
@@ -238,8 +243,12 @@ void DistanceMap::Init(const Ship *ship)
 			for(const StellarObject &object : currentSystem->Objects())
 				if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsWormhole())
 				{
-					const System &link = *object.GetPlanet()->WormholeDestination(currentSystem);
-					if(HasBetter(link, nextEdge))
+					// If we're seeking a path toward a "source," travel through
+					// wormholes in the reverse of the normal direction.
+					const System &link = source ?
+						object.GetPlanet()->GetWormhole()->WormholeSource(*top.next) :
+						object.GetPlanet()->GetWormhole()->WormholeDestination(*top.next);
+					if(HasBetter(link, top))
 						continue;
 
 					// In order to plan travel through a wormhole, it must be
