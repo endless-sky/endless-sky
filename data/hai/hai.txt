@@ -868,7 +868,7 @@ phrase "enemy mercenary"
 	word
 		"precious to us"
 		"valuable to us"
-		"of mine "
+		"of ours"
 		"that we want"
 	word
 		"."
@@ -879,7 +879,8 @@ phrase "enemy mercenary"
 		" Give it to me and your death will be quick."
 		" Nemo Me Impune Lacessit"
 		" Sell it on a lawless world"
-		" Give it back, scum"
+		" Give it to us, scum"
+		" Hand it over, scum"
 	word
 		"."
 		"!"
