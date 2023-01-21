@@ -1,5 +1,5 @@
 # Copyright (c) 2022 by Saugia
-
+#
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
 # Foundation, either version 3 of the License, or (at your option) any later version.
@@ -389,7 +389,7 @@ outfit "SC-15 Plasma Thrusters"
 outfit "Irate Cannon"
 	category "Guns"
 	licenses
-		"Gegno Civilian" 
+		"Gegno Civilian"
 		"Vi Evocati"
 	cost 12000
 	thumbnail "outfit/irate cannon"
@@ -418,7 +418,7 @@ outfit "Irate Cannon"
 outfit "Irate Cannon Turret"
 	category "Turrets"
 	licenses
-		"Gegno Civilian" 
+		"Gegno Civilian"
 		"Vi Evocati"
 	cost 30000
 	thumbnail "outfit/irate turret"
@@ -746,7 +746,7 @@ outfit "Guile Pulse Laser"
 		"shield damage" 12.4
 		"hull damage" 20.2
 		"cluster"
-	description `The Guile Pulse Laser is a recent experimental advancement in Scin plasma weapon technology. Rather than rapid firing plasma slugs, this weapon fires concentrated pulses of energy that only last for a brief moment. Each blast impacts the target ship almost instantaneously with a powerful hit, and a consistent amount of fire from Guile Lasers is extremely effective against slow moving targets.` 
+	description `The Guile Pulse Laser is a recent experimental advancement in Scin plasma weapon technology. Rather than rapid firing plasma slugs, this weapon fires concentrated pulses of energy that only last for a brief moment. Each blast impacts the target ship almost instantaneously with a powerful hit, and a consistent amount of fire from Guile Lasers is extremely effective against slow moving targets.`
 	description `	Guile Pulse Lasers have noticeable drawbacks as they quickly consume energy and generate notable heat per shot. Unlike a beam-type weapon, they are incapable of consistent output, and have a fairly short range.`
 
 

@@ -199,10 +199,10 @@ fleet "Large Scin"
 		"Coesite" 2
 	variant 3
 		"Coesite" 3
-	variant 
+	variant
 		"Feldspar"
 		"Halite" 6
-	variant 
+	variant
 		"Feldspar"
 		"Halite" 6
 		"Coesite"

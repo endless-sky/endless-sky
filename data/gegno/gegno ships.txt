@@ -1,5 +1,5 @@
 # Copyright (c) 2022 by Saugia
-
+#
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
 # Foundation, either version 3 of the License, or (at your option) any later version.
@@ -454,7 +454,7 @@ ship "Schist"
 	explode "small explosion" 25
 	explode "tiny explosion" 10
 	"final explode" "final explosion medium"
-	description `Based on the Gegno's old Dolomite, the Schist is a mid-range ship used by the Vi. It can carry a decent amount of cargo, and has enough bunks to carry a whole platoon of warriors. It is the primary vessel used to transport recruits to the front lines, and veterans back to home territories.` 
+	description `Based on the Gegno's old Dolomite, the Schist is a mid-range ship used by the Vi. It can carry a decent amount of cargo, and has enough bunks to carry a whole platoon of warriors. It is the primary vessel used to transport recruits to the front lines, and veterans back to home territories.`
 	description `	Although is it lightly armed compared to other Vi ships, Schists still are mounted with a pair of forward facing cannons and a turret so they can bring some type of weaponry to any possible engagement, as well as a set of angled guns for deterring any smaller, faster ships from attempting to flank the vessel.`
 
 ship "Schist" "Schist (Light Load)"
