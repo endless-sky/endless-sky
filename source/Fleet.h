@@ -38,6 +38,8 @@ public:
 	std::vector<std::shared_ptr<Ship>> Ships() const;
 	void SetShips(std::vector<std::shared_ptr<Ship>> newShips);
 
+	bool ShouldBeRemoved() const;
+
 private:
 	std::string name;
 	std::shared_ptr<Ship> flagship;

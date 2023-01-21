@@ -13,6 +13,68 @@
  this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "FleetLoader.h"
+#include "Fleet.h"
 
 using namespace std;
+
+
+
+Fleet::Fleet(string name, shared_ptr<Ship> flagship, vector<shared_ptr<Ship>> ships)
+: name(name), flagship(flagship), ships(ships) {}
+
+
+
+string Fleet::Name() const
+{
+	return name;
+}
+
+
+
+void Fleet::SetName(std::string newName)
+{
+	name = newName;
+}
+
+
+
+std::shared_ptr<Ship> Fleet::Flagship() const
+{
+	return flagship;
+}
+
+
+
+void Fleet::SetFlagship(std::shared_ptr<Ship> newFlagship)
+{
+	flagship = newFlagship;
+}
+
+
+
+std::vector<std::shared_ptr<Ship>> Fleet::Ships() const
+{
+	return ships;
+}
+
+
+
+void Fleet::SetShips(std::vector<std::shared_ptr<Ship>> newShips)
+{
+	ships = newShips;
+}
+
+
+
+bool Fleet::ShouldBeRemoved() const
+{
+	bool shouldBeRemoved = true;
+	for(shared_ptr<Ship> ship : ships)
+		if(ship.get())
+		{
+			shouldBeRemoved = false;
+			break;
+		}
+
+	return shouldBeRemoved;
+}

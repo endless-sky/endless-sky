@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define PLANET_H_
 
 #include "FleetLoader.h"
+#include "Fleet.h"
 #include "Sale.h"
 
 #include <list>
@@ -138,7 +139,7 @@ public:
 
 	// Demand tribute, and get the planet's response.
 	std::string DemandTribute(PlayerInfo &player) const;
-	void DeployDefense(std::list<std::shared_ptr<Ship>> &ships, std::vector<FleetLoader::FleetHolder> &fleets) const;
+	void DeployDefense(std::list<std::shared_ptr<Ship>> &ships, std::vector<Fleet> &fleets) const;
 	void ResetDefense() const;
 
 

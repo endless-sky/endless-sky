@@ -1553,14 +1553,7 @@ void Engine::CalculateStep()
 	// Update fleets, remove fleets with no ships.
 	for(auto it = fleets.begin(); it != fleets.end(); )
 	{
-		bool shouldBeRemoved = true;
-		for(shared_ptr<Ship> ship : it->ships)
-			if(ship.get())
-			{
-				shouldBeRemoved = false;
-				break;
-			}
-		if(shouldBeRemoved)
+		if(it->ShouldBeRemoved())
 			it = fleets.erase(it);
 		else
 			++it;

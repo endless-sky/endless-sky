@@ -620,7 +620,7 @@ string Planet::DemandTribute(PlayerInfo &player) const
 
 
 // While being tributed, attempt to spawn the next specified defense fleet.
-void Planet::DeployDefense(list<shared_ptr<Ship>> &ships, vector<FleetLoader::FleetHolder> &fleets) const
+void Planet::DeployDefense(list<shared_ptr<Ship>> &ships, vector<Fleet> &fleets) const
 {
 	if(!isDefending || Random::Int(60) || defenseDeployed == defenseFleets.size())
 		return;
