@@ -59,14 +59,13 @@ namespace {
 
 // Construct and Load() at the same time.
 MissionAction::MissionAction(const DataNode &node, const string &missionName, bool isNPC)
-	: isNPC(isNPC)
 {
-	Load(node, missionName);
+	Load(node, missionName, isNPC);
 }
 
 
 
-void MissionAction::Load(const DataNode &node, const string &missionName)
+void MissionAction::Load(const DataNode &node, const string &missionName, bool isNPC)
 {
 	if(node.Size() >= 2)
 		trigger = node.Token(1);
