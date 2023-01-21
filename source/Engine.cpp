@@ -720,10 +720,10 @@ void Engine::Step(bool isActive)
 		info.SetString("navigation mode", "Navigation:");
 		info.SetString("destination", "no destination");
 	}
-	//display x,y coordinates
+	// display x,y coordinates
 	if (flagship)
 	{
-		//Point position = player.GetSystem()->Position(); // Galactic Cooordinates.
+		// Point position = player.GetSystem()->Position(); // Galactic Cooordinates.
 		Point position = flagship->Position();
 		int d = position.Length();
 		int x = position.X();
