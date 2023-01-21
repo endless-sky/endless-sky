@@ -31,9 +31,6 @@ namespace {
 		{"destroy", DESTROY},
 		{"atrocity", ATROCITY},
 		{"jump", JUMP},
-		// Combination events
-		{"scan", SCAN_CARGO & SCAN_OUTFITS},
-		{"kill", CAPTURE & DESTROY}
 	};
 }
 
