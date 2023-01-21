@@ -36,10 +36,15 @@ AlertLabel::AlertLabel(const Point &position, const Projectile &projectile, cons
 		double zoom)
 	: position(position), zoom(zoom)
 {
-	isTargetingFlagship = projectile.TargetPtr() == flagship;
-	double maxHP = flagship->Attributes().Get("hull") + flagship->Attributes().Get("shield");
-	double missileDamage = projectile.GetWeapon().HullDamage() + projectile.GetWeapon().ShieldDamage();
-	bool isDangerous = (missileDamage / maxHP) > DANGEROUS_ABOVE;
+	bool isDangerous = false;
+	isTargetingFlagship = false;
+	if(flagship)
+	{
+		isTargetingFlagship = projectile.TargetPtr() == flagship;
+		double maxHP = flagship->Attributes().Get("hull") + flagship->Attributes().Get("shield");
+		double missileDamage = projectile.GetWeapon().HullDamage() + projectile.GetWeapon().ShieldDamage();
+		isDangerous = (missileDamage / maxHP) > DANGEROUS_ABOVE;
+	}
 
 	if(isDangerous)
 		color = GameData::Colors().Get("missile dangerous");
