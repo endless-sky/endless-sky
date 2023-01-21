@@ -134,8 +134,8 @@ phrase "unfettered mining payment dialog"
 		`"Keep this up and we will be building new ships in no time!`
 		`"This will allow us to repair our ships!`
 	word
-		` Some use asteroids as target practice, but find it too dull and easy to fight an enemy that does not react,"`
-		` "Too few captains are patient enough to gather asteroids like you are. Most of them try to get the resources from enemy ships, but this is a safer way to do it,"`
+		` Some captains use asteroids as target practice, but find it too dull and easy to fight an enemy that does not react,"`
+		` Too few captains are patient enough to gather asteroids like you are. Most of them try to get the resources from enemy ships, but this is a safer way to do it,"`
 	word
 		" one tells you "
 	word
@@ -155,10 +155,14 @@ phrase "unfettered mining payment dialog"
 		"The leader of the Unfettered unloading the materials comes to you."
 		"Once the minerals are unloaded, an Unfettered comes to you, looking humble and sincere."
 	word
-		`"This will allow us to repair our houses, our hospitals, even our schools. For that you have my deepest thanks."`
-		`"Thank you, Captain. We need these materials - and any other kind of help - more than we would like to admit."`
+		` "`
 	word
-		" They then gives you <payment>."
+		`This will allow us to repair our houses, our hospitals, even our schools. For that you have my deepest thanks.`
+		`Thank you, Captain. We need these materials - and any other kind of help - more than we would like to admit.`
+	word
+		`" `
+	word
+		"They then gives you <payment>."
 
 mission "Unfettered Silicon Asteroid Mining"
 	job
@@ -170,7 +174,7 @@ mission "Unfettered Silicon Asteroid Mining"
 		random < 40
 		"cargo space" > 35
 	on complete
-		payment 100000
+		payment 60000
 		dialog phrase "unfettered mining payment dialog"
 		outfit "Silicon" -50
 
@@ -184,7 +188,7 @@ mission "Unfettered Silicon Asteroid Mining 2"
 		random < 10
 		"cargo space" > 80
 	on complete
-		payment 250000
+		payment 150000
 		dialog phrase "unfettered mining payment dialog"
 		outfit "Silicon" -100
 
@@ -201,7 +205,7 @@ mission "Unfettered Silver Asteroid Mining"
 	to offer
 		random < 40
 	on complete
-		payment 450000
+		payment 225000
 		dialog phrase "unfettered mining payment dialog"
 		outfit "Silver" -15
 
@@ -218,7 +222,7 @@ mission "Unfettered Silver Asteroid Mining 2"
 		random < 10
 		"cargo space" > 25
 	on complete
-		payment 1000000
+		payment 500000
 		dialog phrase "unfettered mining payment dialog"
 		outfit "Silver" -30
 
@@ -236,7 +240,7 @@ mission "Unfettered Lead Asteroid Mining"
 		random < 40
 		"cargo space" > 30
 	on complete
-		payment 200000
+		payment 95000
 		dialog phrase "unfettered mining payment dialog"
 		outfit "Lead" -35
 
@@ -253,7 +257,7 @@ mission "Unfettered Lead Asteroid Mining 2"
 		random < 10
 		"cargo space" > 55
 	on complete
-		payment 450000
+		payment 210000
 		dialog phrase "unfettered mining payment dialog"
 		outfit "Lead" -70
 
