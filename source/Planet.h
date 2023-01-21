@@ -71,10 +71,6 @@ public:
 	// Get planet's noun descriptor from attributes
 	const std::string &Noun() const;
 
-	// Return the speed at which we should land on this planet. If it is not set,
-	// returns 0.f
-	float LandingSpeed() const;
-
 	// Check whether there is a spaceport (which implies there is also trading,
 	// jobs, banking, and hiring).
 	bool HasSpaceport() const;

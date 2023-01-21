@@ -119,8 +119,6 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 				security = 0.;
 			else if(key == "tribute")
 				tribute = 0;
-			else if(key == "landing speed")
-				landingSpeed = 0.f;
 			else if(key == "wormhole")
 				wormhole = nullptr;
 
@@ -178,8 +176,6 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 			text += value;
 			text += '\n';
 		}
-		else if(key == "landing speed")
-			landingSpeed = min(0.0001, child.Value(hasValue ? valueIndex : 0));
 		else if(key == "government")
 			government = GameData::Governments().Get(value);
 		else if(key == "required reputation")

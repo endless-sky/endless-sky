@@ -457,8 +457,6 @@ private:
 	// Place a "spark" effect, like ionization or disruption.
 	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
 	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
-	// Calculate the speed at which we will land and depart from this planet.
-	void CalculateLandingSpeed();
 
 	// Calculate the attraction and deterrance of this ship, for pirate raids.
 	// This is only useful for the player's ships.

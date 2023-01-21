@@ -1798,9 +1798,6 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		if(isDisabled)
 			landingPlanet = nullptr;
 
-		// Calculate the speed at which we will land/take off.
-		if(!landingSpeed)
-			CalculateLandingSpeed();
 		// Special ships do not disappear forever when they land; they
 		// just slowly refuel.
 		if(landingPlanet && zoom)
@@ -1831,7 +1828,6 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				}
 
 				zoom = 0.f;
-				landingSpeed = 0.;
 			}
 		}
 		// Only refuel if this planet has a spaceport.
@@ -1839,8 +1835,6 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				|| !landingPlanet || !landingPlanet->HasSpaceport())
 		{
 			zoom = min(1.f, zoom + landingSpeed);
-			if(zoom >= 1.f)
-				landingSpeed = 0.;
 			SetTargetStellar(nullptr);
 			landingPlanet = nullptr;
 		}
@@ -4265,26 +4259,6 @@ void Ship::CreateSparks(vector<Visual> &visuals, const Effect *effect, double am
 		if(GetMask().Contains(point, Angle()))
 			visuals.emplace_back(*effect, angle.Rotate(point) + position, velocity, angle);
 	}
-}
-
-
-
-void Ship::CalculateLandingSpeed()
-{
-	if(!landingPlanet)
-		return;
-	const float mass = Mass();
-	const float shipLandingSpeed = attributes.Get("landing speed");
-
-	const StellarObject *object = landingPlanet->GetSystem()->FindStellar(landingPlanet);
-	const float planetLandingSpeed = object->LandingSpeed();
-
-	// Ships with mass under 43 will land with fixed speed,
-	// and heavier ones will land progressively slower.
-	// The landing speed will be applied on top of that, and may be negative,
-	// but the ship will still land at a minimum speed of 0.01f.
-	// Then, finally, the type of planet will affect the landing a bit.
-	landingSpeed = max(0.01f, shipLandingSpeed + (mass <= 43. ? 0.1f : 0.1f / cbrt(mass))) * planetLandingSpeed;
 }
 
 
