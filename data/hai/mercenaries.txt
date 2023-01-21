@@ -421,7 +421,6 @@ mission "Mercenaries: Betrayal For The Bars"
 				`(Ignorance is bliss.)`
 				`(I prefer not to stay in the dark. Wake them.)`
 					goto light
-			`You splash water on the crew member, waking them up.`
 			label bliss
 			`You leave the traitor here on this world, and they seem thankful but deeply troubled by what happened. You wonder what could have attracted such attention to you. Whatever it was should probably be safely stashed away, or gotten rid off.`
 				accept
