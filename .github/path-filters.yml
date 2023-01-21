@@ -12,13 +12,6 @@ data:
 game_code: &build
   - 'source/**'
 
-windows:
-  - '**/*.cbp'
-  - EndlessSky.workspace
-  - SConstruct
-  - .winmake
-  - *build
-
 linux:
   - SConstruct
   - *build
