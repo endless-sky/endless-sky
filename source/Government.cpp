@@ -234,19 +234,28 @@ void Government::Load(const DataNode &node)
 		}
 		else if(key == "trusted")
 		{
+			bool clearTrusted = !trusted.isEmpty();
 			for(const DataNode &grand : child)
 			{
 				bool remove = grand.Token(0) == "remove";
 				bool add = grand.Token(0) == "add";
-				if(!add)
+				if((add || remove) && grand.Size() < 2)
+				{
+					grand.PrintTrace("Warning: Skipping invalid \"" + child.Token(0) + "\" tag:");
+					continue;
+				}
+				if(clearTrusted && !add && !remove)
+				{
 					trusted.clear();
+					clearTrusted = false;
+				}
 				const Government *gov = GameData::Governments().Get(grand.Token(remove || add));
 				if(gov)
 				{
 					if(remove)
 						trusted.erase(gov);
 					else
-						trusted.emplace(gov);
+						trusted.insert(gov);
 				}
 				else
 					grand.PrintTrace("Skipping unrecognized government:");
