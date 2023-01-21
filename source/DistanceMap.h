@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class PlayerInfo;
+class RoutePlan;
 class Ship;
 class System;
 
@@ -33,7 +34,6 @@ class System;
 // a hyperdrive travel using the "links" between systems. Ships with jump drives
 // can make use of those links, but can also travel to any system that's closeby.
 // Wormholes can also be used by players or ships.
-class RoutePlan;
 class DistanceMap {
 public:
 	// Find paths branching out from the given system. The optional arguments put
@@ -137,38 +137,6 @@ private:
 	int jumpFuel = 0;
 	bool useWormholes = false;
 	double jumpRange = 0.;
-};
-
-
-// RoutePlan is a wrapper for DistanceMap that uses a destination
-// and keeps only the route to that system
-class RoutePlan {
-public:
-	explicit RoutePlan(const System &center, const System &destination);
-	explicit RoutePlan(const PlayerInfo &player, const System &center, const System &destination);
-	explicit RoutePlan(const Ship &ship, const System &destination);
-
-	// Find out if the destination is reachable.
-	bool HasRoute() const;
-	// Find out how many days away the destination is.
-	const System *FirstStep() const;
-	// How much fuel is needed to travel to this system along the route.
-	int Days() const;
-	// Get the first step on the route from center to the destination.
-	int RequiredFuel() const;
-
-	// Get the list of jumps to take to get to the destination.
-	std::vector<const System *> Plan() const;
-	// Get the list of jumps + fuel to take to get to the destination.
-	std::vector<std::pair<const System *, int>> FuelCosts() const;
-
-private:
-	void Init(const DistanceMap &distance);
-
-private:
-	// The final planned route. plan.front() is the destination.
-	std::vector<std::pair<const System *, DistanceMap::Edge>> plan;
-	bool hasRoute = false;
 };
 
 
