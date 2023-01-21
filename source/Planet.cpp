@@ -342,13 +342,6 @@ const string &Planet::Noun() const
 
 
 
-float Planet::LandingSpeed() const
-{
-	return landingSpeed;
-}
-
-
-
 // Check whether there is a spaceport (which implies there is also trading,
 // jobs, banking, and hiring).
 bool Planet::HasSpaceport() const
