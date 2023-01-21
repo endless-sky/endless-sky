@@ -55,7 +55,7 @@ void Account::Load(const DataNode &node, bool clearFirst)
 				if(grand.Size() < 2)
 					grand.PrintTrace("Skipping incomplete salary income:");
 				else
-					salariesIncome[node.Token(0)] = node.Value(1);
+					salariesIncome[grand.Token(0)] = grand.Value(1);
 			}
 		else if(child.Token(0) == "salaries" && child.Size() >= 2)
 			crewSalariesOwed = child.Value(1);

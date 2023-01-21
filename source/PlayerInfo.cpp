@@ -2127,7 +2127,7 @@ int64_t PlayerInfo::GetTributeForPlanet(const string &planetTrueName) const
 		return false;
 
 	auto it = tributeReceived.find(planet);
-	if(it==tributeReceived.end())
+	if(it == tributeReceived.end())
 		return 0;
 
 	return it->second;
@@ -2941,7 +2941,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		return GetTributeForPlanet(name.substr(strlen("tribute: "))); });
 	tributeProvider.SetSetFunction([this](const string &name, int64_t value) -> bool {
 		return SetTribute(name.substr(strlen("tribute: ")), value); });
-	tributeProvider.SetEraseFunction([this](const string &name) -> bool	{
+	tributeProvider.SetEraseFunction([this](const string &name) -> bool {
 		return SetTribute(name.substr(strlen("tribute: ")), 0); });
 
 	auto &&licenseProvider = conditions.GetProviderPrefixed("license: ");
