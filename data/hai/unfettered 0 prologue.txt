@@ -935,14 +935,15 @@ mission "Unfettered: Escort Hai Fleet"
 		has "reputation: Hai Merchant (Sympathizers)" >= 0
 	on offer
 		conversation
-			`As you leave your ship, an Unfettered Chief approaches you. After some time you finally recognize Sookootow, the one you helped earlier with moving people and medical supplies. You have not yet seen him so worried before, nor moving at such speed. "<first>! I asked to be notified of your arrival as soon as possible, as we need your services. A fleet of True Hai needs your immediate assistance escorting them through Hai space, from <stopovers>. They are not Unfettered, but their heart beats true still, and I blame myself if anything was to happen to them, and I could have done anything more to prevent it."`
+			`As you leave your ship, an Unfettered Chief approaches you. After some time you finally recognize Sookootow, the one you helped earlier with moving people and medical supplies. You have not yet seen him so worried before, nor moving at such speed.`
+			`	"<first>! I asked to be notified of your arrival as soon as possible, as we need your services. A fleet of True Hai needs your immediate assistance escorting them through Hai space, from <stopovers>. They are not Unfettered, but their hearts beat true still. I would blame myself if anything was to happen to them, and I could have done anything more to prevent it."`
 			choice
 				`	"What are you even doing here?"`
 				`	"Why do you need my help?"`
 					goto help
 				`	"I'm busy right now, sorry."`
 					goto busy
-			`	"As an Elder I need to be seen by my people, else they would never respect me, or follow my instructions. In this specific case, I am here to talk with warlords and soldiers alike, to make sure nobody tries something stupid, else innocent Hai may get hurt.`
+			`	"As an Elder I need to be seen by my people, else they would never respect me, or follow my instructions. In this specific case, I am here to talk with warlords and soldiers alike, to make sure nobody tries something stupid, else innocent Hai may get hurt."`
 			`	Usually the Hai do not get this deep into our territory, even the ones who sympathise with us, and these are not part of that group. On top of that, some may have strong reactions when they realize who is on board one of these ships..."`
 				goto choose
 			label help
@@ -979,13 +980,12 @@ mission "Unfettered: Escort Hai Fleet"
 				`	"I'll find a way to land there with a battle-ready ship."`
 					goto dewit
 	on enter "Due Yoot"
-		dialog "When you arrive the fleet is waiting for you in the spaceport. The fleet admiral signals you they demand to search your ship on the planet before proceeding with the mission. They say it is standard protocol in these circumstances."
+		dialog "As you enter the system, you are notified by the local authorities that the fleet is waiting for you in the spaceport. The fleet admiral signals you they demand to search your ship on the planet before proceeding with the mission. They say it is standard protocol in these circumstances."
 	npc accompany save
 		government "Hai (Governor Escort)"
 		to spawn
 			has "unfettered: stopped on Greenbloom"
 		personality escort timid launching
-		system "Due Yoot"
 		fleet
 			names "hai"
 			variant
@@ -995,9 +995,14 @@ mission "Unfettered: Escort Hai Fleet"
 	npc
 		government "Hai (Governor Escort)"
 		to spawn
+			has "unfettered: warned the hai governor escort about the mercenary attack"
+		personality entering heroic
+		fleet "Large Hai"
+	npc
+		government "Hai (Governor Escort)"
+		to spawn
 			has "unfettered: stopped on Greenbloom"
 		personality launching heroic
-		system "Due Yoot"
 		fleet "Small Hai"
 	npc
 		government "Hai (Governor Escort)"
@@ -1012,8 +1017,15 @@ mission "Unfettered: Escort Hai Fleet"
 			has "unfettered: stopped on Greenbloom"
 		system "Ya Hai"
 		personality disables plunders vindictive
-		fleet "Large Northern Pirates" 2
 		fleet "Small Northern Pirates" 4
+	npc evade
+		government "Mercenaries"
+		to spawn
+			has "unfettered: stopped on Greenbloom"
+			not "Mercenaries: Feed Them To The Wolves: active"
+		system "Ya Hai"
+		personality disables plunders vindictive
+		fleet "Large Northern Pirates" 2
 	on complete
 		clear "unfettered: stopped on Greenbloom"
 		log `Escorted a Hai fleet carying supplies and passengers into Unfettered space.`
@@ -1052,7 +1064,7 @@ mission "Unfettered: Taking Off With Hai Fleet"
 	on offer
 		set "unfettered: stopped on Greenbloom"
 		conversation
-			`A few Hai come to your flagship, armed with a less lethal version of the usual Pulse Rifle, and with uniforms you have not seen before. They seem to be led by yet another Hai, that enters only after they give the safe signal.`
+			`Shortly after this mysterious conversation, a few Hai come to your flagship, armed with a less lethal version of the usual Pulse Rifle, and with uniforms you have not seen before. They seem to be led by yet another Hai, that enters only after they give the safe signal.`
 			`	They then proceed to search your ship quickly, using dedicated scanners, before reporting back to their leader. Only at that point does the leader say something to you, "We are personal bodygards of an important Hai governor, that wishes to come on the ground for political reasons. Sorry for the inconvenience, captain, but we needed to make sure your ship was free of trackers."`
 			choice
 				`	"Thank you for the explanation."`
@@ -1060,13 +1072,27 @@ mission "Unfettered: Taking Off With Hai Fleet"
 				`	"Why would there be trackers on my ship?"`
 					goto trackers
 				`	"Why would a governor go there in person?"`
+				`	"I should warn you: I have good reasons to believe the convoy is under threat."`
+					to display
+						has "Mercenaries: Feed Them To The Wolves: declined"
+					goto threat
 			`	"The Unfettered only respect display of strength, and do not trust those they have not seen in person. The governor is probably hoping to get some Unfettered Hai with him on the return trip."`
 				goto leave
 			label trackers
-			`	`
+			`	They do not answer your question, and instead proceed to do a quick investigation.`
+				goto leave
+			label threat
+			`	They think for a bit, unsure how to respond. "Thank you. We will commandeer additional ships given the emergency of the situation. I hope it will be enough for whatever threat you refer to. You will have to wait a bit in orbit before they arrive from another system."`
+			action
+				set "unfettered: warned the hai governor escort about the mercenary attack"
+			choice
+				`	"It was the least I could do."`
+					goto leave
+				`	"Wait, that's not all, they somehow spoke to me in my quarters. Go check there, please."`
+			`	This alarms them a lot, and they proceed to a full examination of the bridge, but to no avail. "Whoever it is that spoke to you must know about our scanning methods. It is very dangerous to proceed with the mission but we have no choice, all we can do is have heavier escorts."`
 			label leave
 			branch otherships
-				"ships: Space Liner" + "ships: Transport" + "ships: Light Freighter" + "ships: Heavy Freighter" + "ships: Utility" + "ships: Interceptor" + "ships: Light Warship" + "ships: Medium Warship" + "ships: Heavy Warship" == 1
+				"ships: Space Liner" + "ships: Transport" + "ships: Light Freighter" + "ships: Heavy Freighter" + "ships: Utility" + "ships: Interceptor" + "ships: Light Warship" + "ships: Medium Warship" + "ships: Heavy Warship" >= 1
 			`	The Hai bodygards now leave your ship, reassured that you are not of any threat for their fleet.`
 				goto admiral
 			label otherships

@@ -499,16 +499,16 @@ event "end of deal"
 # SPOILERS: the tracker is not on the ship, it's on you so that's why the Hai don't find it, and this communication can happen.
 # the mercenaries want that governor down because she can easily help the Hai-Unfettered Hai unite, given she understands the Unfettered well.
 # They will only take her hostage here, she may come back later.
-mission "Feed Them To The Wolves"
+mission "Mercenaries: Feed Them To The Wolves"
 	landing
-	invisible
+	name "Feed them to the Wolves."
+	description "Take the governor's fleet to <waypoints> where a fleet will be waiting for them."
 	source "Greenbloom"
 	destination "Warfeed"
 	to offer
-		has "Mercenaries: Duel Squared: done"
 		has "Unfettered: Escort Hai Fleet: active"
 	on offer
-		dialog `You were alone in your quarters, waiting for the Hai admiral's arrival when you hear a mysterious voice. "She of the Void requests that you bring those ships to <waypoint>. Do so and you will be richly rewarded. Do not worry about the supplies, we will bring them to the Unfettered, we are only acting in their best interest, after all." Do you accept?`
+		dialog `You are alone in your quarters, waiting for the Hai admiral's arrival, when you hear a mysterious voice. "She of the Void requests that you bring those ships to <waypoints>. Do so and you will be richly rewarded. Do not worry about the supplies, we will bring them to the Unfettered, we are only acting in their best interest, after all. Whatever you decide, you do not want to speak of us to them." Do you accept?`
 	on accept
 		event "friendly mercenaries"
 		event "end of deal" 15
@@ -519,10 +519,11 @@ mission "Feed Them To The Wolves"
 			`	Right after that, the governor's ship hails you. "What have you done?"`
 		payment 1000000
 	npc
+		# the Alphas and their minions let the Mercenaries alone so that this would happen. They probably even gave them a tip about it, but not in person.
 		government "Mercenaries"
 		system "Waypoint"
 		personality disables plunders staying harvests
-		fleet "Large Northern Pirates" 3
+		fleet "Large Northern Pirates" 5
 	to complete
 		has "Unfettered: Escort Hai Fleet: failed"
 		not "Unfettered: Escort Hai Fleet: aborted"
