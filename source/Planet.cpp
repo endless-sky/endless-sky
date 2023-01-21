@@ -34,13 +34,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	map<const string, float> LANDING_SPEED = {
-		{"very slow landing", .8f},
-		{"slow landing", .9f},
-		{"normal landing", 1.f},
-		{"fast landing", 1.1f},
-		{"very fast landing", 1.2f}
-	};
 	const string WORMHOLE = "wormhole";
 	const string PLANET = "planet";
 
@@ -186,13 +179,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 			text += '\n';
 		}
 		else if(key == "landing speed")
-		{
-			const auto &it = LANDING_SPEED.find(value);
-			if(it != LANDING_SPEED.end())
-				landingSpeed = it->second;
-			else
-				child.PrintTrace("Skipping unrecognized landing speed:");
-		}
+			landingSpeed = min(0.0001, value);
 		else if(key == "government")
 			government = GameData::Governments().Get(value);
 		else if(key == "required reputation")
