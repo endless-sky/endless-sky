@@ -1311,8 +1311,8 @@ mission "Hai Reveal [B13] Freedom"
 			label anomaly
 			action
 				set "Hai Reveal [B13] Freedom: label anomaly"
-			`	The human leader answers. "Devil-Run was one of several systems listed on a cartouche found on the anarchist colony of Freedom soon after it was settled. The settlers dug deeper and found a ship of unknown design with a jump drive installed, and two more in its cargo bay. They took this as an obvious invitation to explore, so they recorded the cartouche, destroyed it, and checked every star system. Some had the 'anomalies' as you called them, and were impossible to find.`
-			`	"As for the 'anomaly', it has a mechanism at its heart. Something shaped like a tree, about a kilometer long, and six hundred meters wide. Actually, it's similar in shape to the ship the Freedom settlers found, just a whole lot bigger. We can't get closer to it than about 250,000 kilometers, so we don't know much about it. It is clearly artificial, and deliberate, but benevolent: it kept us hidden for over a century."`
+			`	The human leader answers. "Devil-Run was one of several systems listed on a cartouche found on the anarchist colony of Freedom soon after it was settled. The settlers dug deeper and found a ship of unknown design with a jump drive installed, and two more in its cargo bay. They took this as an obvious invitation to explore, so they recorded the cartouche, destroyed it, and checked every star system. Some had the 'anomalies' as you called them, and were undetectable by any known means.`
+			`	"As for the 'anomaly', it has a mechanism at its heart. Something shaped like a tree, about a kilometer long, and six hundred meters wide. Actually, it's similar in shape to the ship the Freedom settlers found, just a whole lot bigger. We can't get closer to it than about 250,000 kilometers, so we don't know much about it. It is clearly artificial, and deliberate, but whatever it is, it has been hiding us for over a century."`
 				goto questions
 			label home
 			action
