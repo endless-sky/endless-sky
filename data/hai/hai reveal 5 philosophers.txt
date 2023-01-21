@@ -522,6 +522,7 @@ mission "Hai Reveal [B07-1] Boarded Smuggler"
 	source
 		government "Smuggler (Hai Trafficker)"
 	on offer
+		log `A doomed Hai in a smuggler's vessel yelled "0.184 steradians" as their last words. That is a typical hyperspace aperture size, so it may be the information Giti needs to find Devil-Run.`
 		conversation
 			`As you maneuver to board this ship you send a message telling them that you know they're smugglers and demand their surrender. There is no response, but once you dock and open your side of the airlock, the door to the smuggler ship <origin> also opens partway and a Hai pokes their head through. The Hai's eyes are wide with fear but also determination as they shout at you through the docking tube.`
 			choice
@@ -556,7 +557,7 @@ mission "Hai Reveal [B07-2] Smuggler Ambush"
 			branch victim                               # 2:10 chance of victim w/o steradians
 				random < 22
 			# Smuggler was smuggling something else.    # 7:10 chance of just cargo
-			`You scan this smuggling ship and notice only the basic crew are on board, along with all manner of illegal items. The ship begins to self-destruct and escape pods float away, just like before. As you wrap up, your ship informs you of incoming hostile ships.`
+			`You scan this smuggling ship and notice only the basic crew are on board, along with all manner of illegal items. The ship begins to self-destruct and escape pods float away, just like before. As you wrap up, your computer informs you of incoming hostile ships.`
 				launch
 			label steradians
 			# Victim read the navigation logs on an Elenchus-bound ship.
@@ -599,14 +600,14 @@ mission "Hai Reveal [B08] Syndicate Internal Affairs"
 		fail "Hai Reveal [B02-S] Republic Intelligence Stalkers"
 		log `Giti tripped an alert which places you both under the jurisdiction of a Syndicate Internal Affairs investigation. You've were sent directly to Hephaestus.`
 		log "Minor People" `Agent Horst Kopkow` `A Republic Intelligence officer who intercepted your investigation with Giti before involving you with Syndicate Internal Affairs. From her unprompted knowledge of his first name, it seems this may not have been her first run-in with the law.`
-		log "Factions" "Republic Intelligence" `This is the top police force of the Republic, dealing with high-profile civilian crimes that local authorities can't handle: murder investigations, interplanetary kidnappings, and the like. They also gather intelligence throughout human space, and possibly beyond, reporting directly to the Republic Parliament... which mostly means it's beholden to the interests of the members of Parliament.`
+		log "Factions" "Republic Intelligence" `The top police force of the Republic, who deal with high-profile civilian crimes that local authorities can't handle: murder investigations, interplanetary kidnappings, and the like. They also gather intelligence throughout human space, and possibly beyond, reporting directly to the Republic Parliament... which mostly means it's beholden to the interests of the members of Parliament.`
 		conversation
 			`After a long series of shuttles, high-speed rails, and a several-minute-long elevator ride, you once again reach Giti's office.`
-			`	You enter the room, and she closes the door. "Captain <last>! Welcome back. Please, come in. I've been working on that translation, and I've finally figured it out. The nonsense words I thought were a riddle were actually a formula for calculating a jump target from the size of a hyperspace aperture, the origin, and a direction. I've managed the direction, and I could determine an origin if I had the size."`
+			`	You enter the room, and she closes the door. "Captain <last>! Welcome back. Please, come in. I've been working on that translation, and I've finally figured it out. The nonsense words I thought were a riddle were actually a formula for calculating a jump target from the size of a hyperspace aperture, the origin, and a direction. I've managed the direction, and I could determine an origin if I had the aperture size."`
 			choice
 				`	"Does '0.184 steradians' sound like the answer?"`
 				`	"My favorite number has always been 0.184."`
-			`	"I'll try that." She pulls out a pencil and paper, and works out some numbers. A few minutes later, she says, "Yes, that was it. The system is in the middle of Syndicate-"`
+			`	"Hmmm, 0.184 steradians? Sounds about right; let me check." She pulls out a pencil and paper, and works out some numbers. A few minutes later, she says, "Yes, that was it. The system is in the middle of Syndicate-"`
 			`	Suddenly, Giti's door bashes open, and four people in Republic Intelligence uniforms storm in. They each have a hand on their holstered weapons, but none make any move to draw them. Giti sighs, rolls her eyes, and says, "Oh, not again, Horst. Maintenance just replaced that door."`
 			`	"Captain <last>," says the large brawny man to your right, "please shut the door."`
 			`	You look over at the bent door and damaged frame, and then back at the man, wondering if is serious. From his deathly stare, it seems to be so. Giti look of genuine concern warns you to be cautious in this situation.`
@@ -655,7 +656,7 @@ mission "Hai Reveal [B08] Syndicate Internal Affairs"
 			`	You can feel fists hit either side of your head, and you pass out. A while later, you wake up gagged with four men holding your arms and legs. They're walking, carrying you somewhere. Eventually, they reach your ship and let you down. It seems this was not an optional trip after all.`
 				accept
 			label die
-			`	Once your fingers graze the edge of your pistol, a foot slams into side of your neck while a fist braces your head. You can hear your spine snap just before everything goes dark. As you ponder your mistake, you realize the rumors were true: the brain does survive for a few minutes without the body.`
+			`	Once your fingers graze the edge of your pistol, a foot slams into side of your neck while a hand braces the opposite side of your head. You can hear your spine snap just before everything goes dark. As you ponder your mistake, you realize the rumors were true: the brain does survive for a few minutes without the body.`
 				die
 	on fail
 		"reputation: Republic" <?= -100
@@ -667,7 +668,7 @@ mission "Hai Reveal [B08] Syndicate Internal Affairs"
 mission "Hai Reveal [B09] Scanning Devil-Hide"
 	landing
 	name "Searching Beyond the Wormhole"
-	description "Return to <planet> after finding and scanning the wormhole, and key system beyond it. The syndicate will pay <payment>."
+	description "Return to <planet> after finding and scanning the wormhole, and key system beyond it. The Syndicate will pay <payment>."
 	source "Hephaestus"
 	waypoint "Devil-Run"
 	waypoint "Devil-Hide"
@@ -744,7 +745,7 @@ mission "Hai Reveal [B09] Scanning Devil-Hide"
 			label anomaly
 			action
 				set "Hai Reveal [B09] Scanning Devil-Hide: label anomaly"
-			`	"It looks like a collapsing wormhole, but there's a solid object at its core. That may, perhaps, be keeping the wormhole from collapsing entirely. Any hyperwaves sent to it scatter every which-way. This would wreak havoc with anyone trying to plot a course here through hyperspace. If my depended on it, I'd guess the anomaly is what caused the jump drive to take us away from the jump target.`
+			`	"It looks like a collapsing wormhole, but there's a solid object at its core. That may, perhaps, be keeping the wormhole from collapsing entirely. Any hyperwaves sent to it scatter every which-way. This would wreak havoc with anyone trying to plot a course here through hyperspace. If my life depended on it, I'd guess the anomaly is what caused the jump drive to take us away from the jump target.`
 			choice
 				`	"What do you mean?"`
 				`	"If we're not at the jump target, where are we?"`
@@ -753,7 +754,7 @@ mission "Hai Reveal [B09] Scanning Devil-Hide"
 			label pink
 			action
 				set "Hai Reveal [B09] Scanning Devil-Hide: label pink"
-			`	"The spatial anomaly is slowly leaking some pink material that defies all analysis. It bears some similarity to the particles in a jump drive, which also defies all analysis. I guess, since the only similarities are that I can't analyze them, and they're pink, it may all be a pink herring. I wonder if it has something to do with the system being invisible? When we get home, I'll be sure every to have hyperspace researcher I know give it a thorough going-over."`
+			`	"The spatial anomaly is slowly leaking some pink material that defies all analysis. It bears some similarity to the particles in a jump drive, which also defy all analysis. I guess, since the only similarities are that I can't analyze them, and they're pink, it may all be a pink herring. I wonder if it has something to do with the system being invisible? When we get home, I'll be sure every to have hyperspace researcher I know give it a thorough going-over."`
 				goto scan
 	on enter "Devil-Hide"
 		log `Found a bizarre planet with a subterranean colony in its moon. The planet defies analysis and seems to violate the known laws of physics. There is enough evidence of Hai tech to assume Hai presence in addition to the humans able to be detected. However, the scanners could not see the full extent of what's there due to interference from the planet.`
@@ -1311,7 +1312,7 @@ mission "Hai Reveal [B13] Freedom"
 			label anomaly
 			action
 				set "Hai Reveal [B13] Freedom: label anomaly"
-			`	The human leader answers. "Devil-Run was one of several systems listed on a cartouche found on the anarchist colony of Freedom soon after it was settled. The settlers dug deeper and found a ship of unknown design with a jump drive installed, and two more in its cargo bay. They took this as an obvious invitation to explore, so they recorded the cartouche, destroyed it, and checked every star system. Some had the 'anomalies' as you called them, and were undetectable by any known means.`
+			`	The human leader answers. "Devil-Run was one of several systems listed on a cartouche found on the anarchist colony of Freedom soon after it was settled. The settlers dug deeper and found a ship of unknown design with a jump drive installed, and two more in its cargo bay. They took this as an obvious invitation to explore, so they recorded the cartouche, destroyed it, and surveyed every star system. Some had an 'anomaly' as you called it, and those systems were undetectable by any known means.`
 			`	"As for the 'anomaly', it has a mechanism at its heart. Something shaped like a tree, about a kilometer long, and six hundred meters wide. Actually, it's similar in shape to the ship the Freedom settlers found, just a whole lot bigger. We can't get closer to it than about 250,000 kilometers, so we don't know much about it. It is clearly artificial, and deliberate, but whatever it is, it has been hiding us for over a century."`
 				goto questions
 			label home

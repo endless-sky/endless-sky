@@ -166,7 +166,7 @@ government "Elenctic Commune"
 		"Hai (Friendly Unfettered)" .1
 		"Pirate" -.2
 		"Pirate (Devil-Run Gang)" -.2
-		"Smuggler (Hai Trafficker)" .05
+		"Smuggler (Hai Trafficker)" -.2
 	"bribe" .05
 
 government "Escort"
