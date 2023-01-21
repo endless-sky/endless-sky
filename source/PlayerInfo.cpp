@@ -1225,22 +1225,23 @@ pair<double, double> PlayerInfo::RaidFleetFactors() const
 
 
 
-double PlayerInfo::RaidFleetAttraction(const Government::RaidFleet &raidFleet, const System *system) const
+double PlayerInfo::RaidFleetAttraction(const Government::RaidFleet &raid, const System *system) const
 {
 	double attraction = 0.;
-	const Government *raidGov = raidFleet.GetFleet()->GetGovernment();
+	const Fleet *raidFleet = raid.GetFleet();
+	const Government *raidGov = raidFleet ? raidFleet->GetGovernment() : nullptr;
 	if(raidGov && raidGov->IsEnemy())
 	{
 		// The player's base attraction to a fleet is determined by their fleet attraction minus
 		// their fleet deterence, minus whatever the minimum attraction of this raid fleet is.
 		pair<double, double> factors = RaidFleetFactors();
 		// If there is a maximum attraction for this fleet, and we are above it, it will not spawn.
-		if(raidFleet.MaxAttraction() && factors.first > raidFleet.MaxAttraction())
+		if(raid.MaxAttraction() && factors.first > raid.MaxAttraction())
 			return 0;
 
 		attraction = .005 * (factors.first - factors.second - raidFleet.MinAttraction());
 		// Then we consider the strength of other fleets in the system.
-		auto raidStrength = raidFleet.GetFleet()->Strength();
+		int64_t raidStrength = raidFleet->Strength();
 		if(system && raidStrength)
 			for(const auto &fleet : system->Fleets())
 			{

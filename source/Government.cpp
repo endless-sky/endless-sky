@@ -209,9 +209,9 @@ void Government::Load(const DataNode &node)
 						++it;
 			}
 			else
-				raidFleets.emplace_back(RaidFleet(fleet,
-					(child.Size() > (valueIndex + 1) ? child.Value(valueIndex + 1) : 2.),
-					child.Size() > (valueIndex + 2) ? child.Value(valueIndex + 2) : 0.));
+				raidFleets.emplace_back(fleet,
+					child.Size() > (valueIndex + 1) ? child.Value(valueIndex + 1) : 2.,
+					child.Size() > (valueIndex + 2) ? child.Value(valueIndex + 2) : 0.);
 		}
 		// Handle the attributes which cannot have a value removed.
 		else if(remove)
