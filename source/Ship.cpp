@@ -1309,8 +1309,8 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 				turretRange = max(turretRange, weapon->Range() + hardpoints[i].GetPoint().Length());
 			else if(weapon && !weapon->Ammo() && weapon->DoesDamage() && hardpoints[i].IsGun())
 				gunRange = max(gunRange, weapon->Range() + hardpoints[i].GetPoint().Length());
-			if(weapon && !weapon->Ammo() && weapon->DoesDamage() && hardpoints[i].IsDefensive())
-				defenseRange = max(defenseRange, weapon->Range() + hardpoints[i].GetPoint().Length());
+			// if(weapon && !weapon->Ammo() && weapon->DoesDamage() && hardpoints[i].IsDefensive())
+				// defenseRange = max(defenseRange, weapon->Range() + hardpoints[i].GetPoint().Length());
     }
 }
 
@@ -1326,10 +1326,10 @@ double Ship::GunRange() const
     return gunRange;
 }
 
-double Ship::DefenseRange() const
-{
-    return defenseRange;
-}
+// double Ship::DefenseRange() const
+// {
+//     return defenseRange;
+// }
 
 
 // Set the name of this particular ship.
@@ -2991,6 +2991,21 @@ int Ship::CustomSwizzle() const
 {
 	return customSwizzle;
 }
+
+
+
+void Ship::SetActivity(const string& name)
+{
+	activity = name;
+}
+
+
+
+const string& Ship::GetActivity() const
+{
+	return activity;
+}
+
 
 
 // Check if the ship is thrusting. If so, the engine sound should be played.

@@ -720,6 +720,22 @@ void Engine::Step(bool isActive)
 		info.SetString("navigation mode", "Navigation:");
 		info.SetString("destination", "no destination");
 	}
+	//display x,y coordinates
+	if (flagship)
+	{
+		//Point position = player.GetSystem()->Position(); // Galactic Cooordinates.
+		Point position = flagship->Position();
+		int d = position.Length();
+		int x = position.X();
+		int y = position.Y();
+		info.SetString("dhead", "D:");
+		info.SetString("xhead", "X:");
+		info.SetString("yhead", "Y:");
+		info.SetString("dpos", to_string(d));
+		info.SetString("xpos", to_string(x));
+		info.SetString("ypos", to_string(y));
+		info.SetString("activity", flagship->GetActivity());
+	}
 	// Use the radar that was just populated. (The draw tick-tock has not
 	// yet been toggled, but it will be at the end of this function.)
 	shared_ptr<const Ship> target;
@@ -816,8 +832,8 @@ void Engine::Step(bool isActive)
                 info.SetString("target gun", to_string(gun) + " ");
                 int turn = round(60 * target->TrueTurnRate());
                 info.SetString("target turnrate", to_string(turn) + " ");
-				int dis = target->CountIncoming();
-				info.SetString("target ion", to_string(dis));
+				// int dis = target->CountIncoming();
+				// info.SetString("target ion", to_string(dis));
 				int escorts = 0;
 				if(!target->GetParent())
 					escorts = target->GetEscorts().size();

@@ -50,6 +50,7 @@ public:
 	Angle HarmonizedAngle() const;
 	// Shortcuts for querying weapon characteristics.
 	bool IsTurret() const;
+	bool IsGun() const;
 	bool IsParallel() const;
 	bool IsUnder() const;
 	bool IsHoming() const;

@@ -263,8 +263,9 @@ public:
 	bool IsReadyToJump(bool waitingIsReady = false) const;
 	// Get this ship's custom swizzle.
 	int CustomSwizzle() const;
-	
-	const std::string &GetActivity() const;
+
+	void SetActivity(const std::string& name);
+	const std::string& GetActivity() const;
 
 	// Check if the ship is thrusting. If so, the engine sound should be played.
 	bool IsThrusting() const;
@@ -484,6 +485,8 @@ private:
 	// double zoom;
 	// int swizzle;
 	// const Government *government;
+	
+	std::string activity;
 
 	// Characteristics of the chassis:
 	bool isDefined = false;

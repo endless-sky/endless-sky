@@ -112,6 +112,12 @@ bool Hardpoint::IsTurret() const
 
 
 
+bool Hardpoint::IsGun() const
+{
+	return !isTurret;
+}
+
+
 
 bool Hardpoint::IsParallel() const
 {
