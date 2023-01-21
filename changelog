@@ -27,7 +27,7 @@ Version 0.10.0
       * Remove xcode project, use cmake to generate one on demand. (@quyykk)
   * Bug fixes:
     * Content bugs:
-      * Typo fixes. (@a-random-lemurian, @Anarchist2, @Aneutronic, @aradapilot, @Deltaspace0, @EjoThims, @Ember369, @Hecter94, @hmglasgow, @Kepler-69c, @nathan-b, @opusforlife2, @real-dam, @ThrawnCA, @williaji, @zlonghofer)
+      * Typo fixes. (@a-random-lemurian, @Anarchist2, @Aneutronic, @aradapilot, @Deltaspace0, @EjoThims, @Ember369, @Hecter94, @hmglasgow, @Kepler-69c, @nathan-b, @opusforlife2, @real-dam, @roadrunner56, @ThrawnCA, @williaji, @zlonghofer)
       * Gave Void Sprite Parts a proper plural name override. (@warp-core)
       * Moved the log entry in "Unfettered: Jump Drive Source" to the correct place. (@Hurleveur)
       * Added range and velocity overrides and hit effects to the Twin Blaster definitions. (@Hecter94)
@@ -63,6 +63,7 @@ Version 0.10.0
       * Coalition Games jobs can no longer offer with deadlines after July (when the Games end). (@Arachi-Lover)
       * Fixed a typo of 'automaton' in the Kas'ik Tek 7 definition and gave it a crew equivalent of 1. (@Hurleveur)
       * Corrected an oversight where the Kimek Briar was not given reverse thrusters alongside the other civilian Coalition ships. (@Arachi-Lover)
+      * Void Sprite Parts can no longer be installed. (@TomGoodIdea)
     * Engine bugs:
       * Various style fixes. (@tibetiroka, @petervdmeer)
       * Fixed rendering of some compressed PNGs. (@quyykk)
@@ -89,6 +90,8 @@ Version 0.10.0
       * Fixed a crash due to a nullpointer dereference in the parallax code when the player has no flagship. (@warp-core)
       * Fixed a vector iterator incompatibility in ShipInfoDisplay. (@warp-core)
       * Park off-system escorts that fail flight or bunk checks. (@yjhn, @Amazinite)
+      * Fixed a crash due to a nullpointer dereference with the missile overlay when the flagship is lost in a boarding operation. (@warp-core)
+      * Fixed an issue with the insufficient crew flight check. (@Quantumshark)
   * Game content:
     * New content:
       * Two new human guns: Twin Blaster and Modified Twin Blaster. (@Daeridanii1)
@@ -125,7 +128,10 @@ Version 0.10.0
         * Mammoth (pirate Behemoth).
         * Nighthawk (pirate Blackbird).
         * Cutthroat (pirate Clipper).
+        * Valkyrie (pirate Aerie).
+        * Bulwark (pirate Bastion).
       * Added the Scrapper, a low-end ship built from scrap Shuttle parts. (@1010todd)
+      * Added optical jamming outfits to Hai ships. (@Hurleveur, @beccab)
     * Mission changes:
       * Adjusted human bounty jobs to make them more active. (@Anarchist2)
         * The target ships will only spawn in a system one jump away from the source.
@@ -261,6 +267,9 @@ Version 0.10.0
       * Added custom penalties to improve Remnant and Quarg reactions to actions against some foreign governments. (@Hurleveur)
       * Added departure distances to systems with Quarg Ringworlds. (@RisingLeaf)
       * Void Sprites now drop Void Sprite Parts. (@Quantumshark, @Saugia)
+      * Adjusted the description of Hai Quantum Keystones to better differentiate them from Remnant key stones. (@Zitchas)
+      * Reduced tribute payments from New Tortuga from 6000 to 1400. (McloughlinGuy)
+      * Added a hazard to neutron stars. (@RisingLeaf)
   * Game mechanics:
     * New mechanics:
       * New autoconditions:
@@ -304,6 +313,7 @@ Version 0.10.0
       * Restored the old overheating behaviour where a ship is completely unable to act, instead of just not having energy generation while overheated. (@warp-core)
       * Initiating a hyperspace jump with no travel plan set does not set one. (@Zitchas)
       * Hazard environmental effects may now be given non-integer magnitudes. (@RisingLeaf)
+      * Weapon jamming is now its own damage type, "scrambling," separate to ion damage. (@Hurleveur)
   * User interface:
     * Added shortcut keys for parking and unparking ships. (@Terin)
     * Added a setting to always underline the shortcut hotkey on button labels. (@warp-core)
