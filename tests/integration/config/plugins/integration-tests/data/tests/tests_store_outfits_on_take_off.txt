@@ -263,7 +263,7 @@ test "Store Outfit On Take Off"
 		# Re-check startup conditions.
 		assert
 			and
-				"flagship planet: Prime" < 0
+				"flagship landed" == 0
 				"credits" == 0
 				"outfit: D23-QP Shield Generator" == 0
 				"outfit (cargo): D23-QP Shield Generator" == 0
