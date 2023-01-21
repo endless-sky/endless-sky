@@ -27,6 +27,8 @@ ship "vyu-Ira"
 		"hull" 49000
 		"hull repair rate" 1.9
 		"automaton" 1
+		"required crew" 1
+		"bunks" 100
 		"mass" 600
 		"drag" 20
 		"heat dissipation" 10
