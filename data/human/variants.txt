@@ -571,6 +571,7 @@ ship "Bulk Freighter" "Bulk Freighter (Hai)"
 
 
 ship "Bulk Freighter" "Bulk Freighter (Hai Trafficker)"
+	crew 12
 	outfits
 		`"Biroo" Atomic Thruster`
 		`"Biroo" Reverse Thruster`
@@ -581,7 +582,7 @@ ship "Bulk Freighter" "Bulk Freighter (Hai Trafficker)"
 		"Hai Diamond Regenerator"
 		"LP072a Battery Pack"
 		"Liquid Nitrogen Cooler"
-		"Pulse Rifle" 10
+		"Pulse Rifle" 12
 		Ramscoop
 		"Scram Drive"
 		"Security Station" 3
