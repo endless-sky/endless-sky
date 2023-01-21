@@ -356,7 +356,7 @@ Fleet FleetLoader::Enter(const System &system, list<shared_ptr<Ship>> &ships, co
 					planetVector.push_back(object.GetPlanet());
 			options = planetVector.size();
 			if(!options)
-				return;
+				return returnFleet;
 		}
 
 		// Choose a random planet or star system to come from.
