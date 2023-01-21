@@ -2611,7 +2611,7 @@ int Ship::Scan()
 	// Check how close this ship is to the target it is trying to scan.
 	// To normalize 1 "scan power" to reach 100 pixels, divide this square distance by 100^2, or multiply by 0.0001.
 	// Because this uses distance squared, to reach 200 pixels away you need 4 "scan power".
-	double distanceSquared = (target->position - position).LengthSquared() * .0001;
+	double distanceSquared = target->position.DistanceSquared(position) * .0001;
 
 	// Check the target's outfit and cargo space. A larger ship takes longer to scan.
 	// Normalized around 200 tons of cargo/outfit space.

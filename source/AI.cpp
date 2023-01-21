@@ -2785,11 +2785,11 @@ bool AI::DoSecretive(Ship &ship, Command &command)
 		Point scanningPos = scanningShip->Position();
 		Point pos = ship.Position();
 
-		double cargoDistanceSqrd = 10000. * scanningShip->Attributes().Get("cargo scan power");
-		double outfitDistanceSqrd = 10000. * scanningShip->Attributes().Get("outfit scan power");
+		double cargoDistanceSqrd = scanningShip->Attributes().Get("cargo scan power");
+		double outfitDistanceSqrd = scanningShip->Attributes().Get("outfit scan power");
 
 		double maxScanRangeSqrd = max(cargoDistanceSqrd, outfitDistanceSqrd);
-		double distanceSqrd = scanningPos.DistanceSquared(pos);
+		double distanceSqrd = scanningPos.DistanceSquared(pos) * .0001;
 
 		// If he can scan us we need to evade.
 		if(distanceSqrd < maxScanRangeSqrd)
