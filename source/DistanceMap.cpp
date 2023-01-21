@@ -131,29 +131,6 @@ vector<const System *> DistanceMap::Plan(const System &system) const
 
 
 
-DistanceMap::Edge::Edge(const System *system)
-	: prev(system)
-{
-}
-
-
-
-// Sorting operator to prioritize the "best" edges. The priority queue
-// returns the "largest" item, so this should return true if this item
-// is lower priority than the given item.
-bool DistanceMap::Edge::operator<(const Edge &other) const
-{
-	if(fuel != other.fuel)
-		return (fuel > other.fuel);
-
-	if(days != other.days)
-		return (days > other.days);
-
-	return (danger > other.danger);
-}
-
-
-
 // Depending on the capabilities of the given ship, use hyperspace paths,
 // jump drive paths, or both to find the shortest route. Bail out if the
 // source system or the maximum count is reached.
@@ -164,7 +141,7 @@ void DistanceMap::Init(const Ship *ship)
 
 	// To get to the starting point, there is no previous system,
 	// and it takes no fuel or days.
-	route[center] = Edge();
+	route[center] = RouteEdge();
 	if(!maxDays)
 		return;
 
@@ -210,13 +187,13 @@ void DistanceMap::Init(const Ship *ship)
 	while(maxSystems && !edgesTodo.empty())
 	{
 		// Use the best known route to build upon and create the next set
-		// of candidate edges. Edges are inserted with 'prev' assigned, but the
+		// of candidate edges. RouteEdges are inserted with 'prev' assigned, but the
 		// other values are a step behind. Here we copy and update them:
 		// For each system 'X' reachable from 'prev', the edge's fuel/days/danger
 		// are built upon to determine if this new edge from 'prev' to 'X' is
 		// the best. If so, it's added as route[X], and a copy is added to
 		// edgesTodo to process later.
-		Edge nextEdge = edgesTodo.top();
+		RouteEdge nextEdge = edgesTodo.top();
 		edgesTodo.pop();
 
 		const System *currentSystem = nextEdge.prev;
@@ -244,10 +221,10 @@ void DistanceMap::Init(const Ship *ship)
 				{
 					// If we're seeking a path toward a "source," travel through
 					// wormholes in the reverse of the normal direction.
-					const System &link = source ?
-						object.GetPlanet()->GetWormhole()->WormholeSource(*top.next) :
-						object.GetPlanet()->GetWormhole()->WormholeDestination(*top.next);
-					if(HasBetter(link, top))
+					const System &link = center ?
+						object.GetPlanet()->GetWormhole()->WormholeSource(*nextEdge.prev) :
+						object.GetPlanet()->GetWormhole()->WormholeDestination(*nextEdge.prev);
+					if(HasBetter(link, nextEdge))
 						continue;
 
 					// In order to plan travel through a wormhole, it must be
@@ -279,7 +256,7 @@ void DistanceMap::Init(const Ship *ship)
 
 
 // Add the given links to the map, if better. Return false if max systems has been reached.
-bool DistanceMap::Propagate(Edge nextEdge, bool useJump)
+bool DistanceMap::Propagate(RouteEdge nextEdge, bool useJump)
 {
 	const System *currentSystem = nextEdge.prev;
 
@@ -303,7 +280,7 @@ bool DistanceMap::Propagate(Edge nextEdge, bool useJump)
 
 
 // Check if we already have a better path to the given system.
-bool DistanceMap::HasBetter(const System &to, const Edge &edge)
+bool DistanceMap::HasBetter(const System &to, const RouteEdge &edge)
 {
 	auto it = route.find(&to);
 	return (it != route.end() && !(it->second < edge));
@@ -312,7 +289,7 @@ bool DistanceMap::HasBetter(const System &to, const Edge &edge)
 
 
 // Add the given path to the record.
-void DistanceMap::Add(const System &to, Edge edge)
+void DistanceMap::Add(const System &to, RouteEdge edge)
 {
 	// This is the best path we have found so far to this system, but it is
 	// conceivable that a better one will be found.

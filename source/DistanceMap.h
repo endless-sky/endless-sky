@@ -16,6 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef DISTANCE_MAP_H_
 #define DISTANCE_MAP_H_
 
+#include "RouteEdge.h"
+
 #include <map>
 #include <queue>
 #include <set>
@@ -57,7 +59,6 @@ public:
 
 
 private:
-	friend class RoutePlan;
 	// With the optional destination, the pathfinding will stop once it finds the
 	// best path to it. You must use RoutePlan to set a destination.
 	explicit DistanceMap(const System &center, const System &destination);
@@ -69,33 +70,6 @@ private:
 	// Pathfinding will use the ships capabilities, but not check the player's map.
 	explicit DistanceMap(const Ship &ship, const System &destination);
 
-	// DistanceMap is built using branching paths from 'center' to all systems.
-	// The final result, though, is Edges backtracking those paths:
-	// Each system has one Edge which points to the previous step along
-	// the route to get there, including how much fuel and how many days
-	// the total route will take, and how much danger you will pass through.
-	// While building the map, some systems have a non-optimal Edge that
-	// gets replaced when a better route is found.
-	class Edge {
-	public:
-		Edge(const System *system = nullptr);
-
-		// Sorting operator to prioritize the "best" edges. The priority queue
-		// returns the "largest" item, so this should return true if this item
-		// is lower priority than the given item.
-		bool operator<(const Edge &other) const;
-
-		// There could be a System *thisSystem, but it would remained unused.
-		const System *prev = nullptr;
-		// Fuel/days needed to get to this system using the route through 'prev'.
-		int fuel = 0;
-		int days = 0;
-		// Danger tracks up to the 'prev' system, not to the this system.
-		// It's used for comparison purposes only. Anyone going to this system
-		// is going to hit its danger anyway, so it doesn't change anything.
-		double danger = 0.;
-	};
-
 
 private:
 	// Depending on the capabilities of the given ship, use hyperspace paths,
@@ -103,11 +77,11 @@ private:
 	// destination system or the maximum count is reached.
 	void Init(const Ship *ship = nullptr);
 	// Add the given links to the map. Return false if an end condition is hit.
-	bool Propagate(Edge edge, bool useJump);
+	bool Propagate(RouteEdge edge, bool useJump);
 	// Check if we already have a better path to the given system.
-	bool HasBetter(const System &to, const Edge &edge);
+	bool HasBetter(const System &to, const RouteEdge &edge);
 	// Add the given path to the record.
-	void Add(const System &to, Edge edge);
+	void Add(const System &to, RouteEdge edge);
 	// Check whether the given link is travelable. If no player was given in the
 	// constructor then this is always true; otherwise, the player must know
 	// that the given link exists.
@@ -116,7 +90,7 @@ private:
 
 private:
 	// Final route, each Edge pointing to the previous step along the route.
-	std::map<const System *, Edge> route;
+	std::map<const System *, RouteEdge> route;
 
 	// Variables only used during construction:
 	// 'edgesTodo' holds unfinished candidate Edges - Only the 'prev' value
@@ -124,7 +98,7 @@ private:
 	// The top() value is the best route among uncertain systems. Once
 	// popped, that's the best route to that system - and then adjacent links
 	// from that system are processed, which will build upon the popped Edge.
-	std::priority_queue<Edge> edgesTodo;
+	std::priority_queue<RouteEdge> edgesTodo;
 	const PlayerInfo *player = nullptr;
 	const System *center = nullptr;
 	int maxSystems = -1;
@@ -137,6 +111,8 @@ private:
 	int jumpFuel = 0;
 	bool useWormholes = false;
 	double jumpRange = 0.;
+
+	friend class RoutePlan;
 };
 
 

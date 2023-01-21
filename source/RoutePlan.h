@@ -16,7 +16,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef ROUTE_PLAN_H_
 #define ROUTE_PLAN_H_
 
+#include "RouteEdge.h"
 
+#include <vector>
+
+class DistanceMap;
+class Planet;
+class PlayerInfo;
+class Ship;
+class System;
 
 // RoutePlan is a wrapper for DistanceMap that uses a destination
 // and keeps only the route to that system
@@ -45,7 +53,7 @@ private:
 
 private:
 	// The final planned route. plan.front() is the destination.
-	std::vector<std::pair<const System *, DistanceMap::Edge>> plan;
+	std::vector<std::pair<const System *, RouteEdge>> plan;
 	bool hasRoute = false;
 };
 

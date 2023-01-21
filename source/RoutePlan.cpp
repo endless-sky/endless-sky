@@ -15,6 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "RoutePlan.h"
 
+#include "DistanceMap.h"
+
+#include <utility>
+
+using namespace std;
+
 
 
 // RoutePlan is a wrapper on DistanceMap that uses destination
