@@ -1839,6 +1839,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				|| !landingPlanet || !landingPlanet->HasSpaceport())
 		{
 			zoom = min(1.f, zoom + landingSpeed);
+			if(zoom >= 1.f)
+				landingSpeed = 0.;
 			SetTargetStellar(nullptr);
 			landingPlanet = nullptr;
 		}
