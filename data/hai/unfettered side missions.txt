@@ -171,7 +171,7 @@ mission "Unfettered: Attracted Attention"
 		has "Unfettered: Prove Your Strength 2: active"
 		has "outfit (installed): Jump Drive"
 	on enter "Almaaz"
-		dialog `The Unfettered "pirate" spits a a string of old-timey nautical curses,  but one word, which you can barely hear him mutter, stands out: "Cerberus." He then comes closer to address you directly, "There even more of these scurvy bilge rats than I expected. I warned ye about coming here with a jump drive!"`
+		dialog `The Unfettered "pirate" spits a a string of old-timey nautical curses, but one word, which you can barely hear him mutter, stands out: "Cerberus." He then comes closer to address you directly, "There even more of these scurvy bilge rats than I expected. I warned ye about coming here with a jump drive!"`
 	npc evade
 		government "Cerberus"
 		system "Almaaz"
@@ -1251,7 +1251,7 @@ mission "Unfettered: Close Quarter"
 			label ready
 			`	You try to shoot him, but he's too fast and you too inexperienced. You have made yourself an easy target for him by standing still; you fall as you receive a shot to your shoulder. It hurts, but nothing seems to be broken, and soon after you cannot feel anything in your arm at all. You opponent comes to you and helps you to get up. "Pain is a good teacher sometimes," he says.`
 			label stories
-			`	 As agreed, you speak to him of many stories, including how you happened to find Hai space, and how you joined the Unfettered. He seems captivated by all of it, and so are his friends. Then he goes back to fight with his friends, seemingly in teams.`
+			`	As agreed, you speak to him of many stories, including how you happened to find Hai space, and how you joined the Unfettered. He seems captivated by all of it, and so are his friends. Then he goes back to fight with his friends, seemingly in teams.`
 			label heyi
 			`	It seems like your fight has attracted the attention of many of the Unfettered, including He-Yi. He comes to speak to you. "That was a [nice, skillful] fight, especially considering this must be your first!"`
 			branch "lost fight"

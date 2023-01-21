@@ -269,7 +269,7 @@ mission "Unfettered Lead Asteroid Mining"
 	job
 	repeat
 	name "Gather Lead from asteroids"
-	description "Mine and  collect 35 tons of lead, then bring the minerals to <destination> for <payment>. Lead is available in the asteroid field in Wah Yoot."
+	description "Mine and collect 35 tons of lead, then bring the minerals to <destination> for <payment>. Lead is available in the asteroid field in Wah Yoot."
 	source
 		attributes "unfettered"
 		not planet "Warfeed"
@@ -687,7 +687,7 @@ ship "Argosy" "Argosy (Materials)"
 phrase "unfettered cargo interception payment dialog"
 	word
 		"The Unfettered unloading your cargo of materials gives you <payment>. Such a huge amount for the cargo itself, but considering what it took to get it, the price is certainly fair."
-		`An Unfettered unloading the materials comes to you, "It looks like the elders are keeping their promises to rebuild, no matter the cost. Here are your <payment>."`
+		`An Unfettered unloading the materials comes to you, "It looks like the Elders are keeping their promises to rebuild, no matter the cost. Here are your <payment>."`
 		`As you land, you are directed instead to bring the materials directly to their destination. It is a short trip, considering you are used to traveling in space. There, you receive <payment> for your troubles, before heading back to the spaceport.`
 		`An Unfettered comes to you during the unloading of your cargo, "My deepest thanks, this will help in the repairs. We do not nearly produce enough materials to do it on our own." He then gives you <payment>.`
 		"A spaceport worker gives you <payment> for the materials, without any further ceremony."

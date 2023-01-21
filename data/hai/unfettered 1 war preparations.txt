@@ -422,7 +422,7 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 			action
 				clear "unfettered: monke"
 			`	"You will pretend to bring this tribute of food, and use that as a pretext to wander around the ships with an alibi."`
-				accept			
+				accept
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
@@ -1458,7 +1458,7 @@ mission "Unfettered: Ready For The War"
 		set "global: unfettered human"
 		event "joined the unfettered"
 		clear "unfettered: defeated Si-Ra"
-		#"reputation: Wanderer" <?= -1000 
+		#"reputation: Wanderer" <?= -1000
 		# TO BE UNCOMMENTED FOR PR TO BE MERGED!!
 		conversation
 			`He-Yi joins you on your ship after having parked his. "We will notify you once you may be of more help to the war effort. In the meantime, we have increased your salary to 5,000 credits so you can [muster, gather] an even larger fleet. Also, from now on, you will officially have the permission - nay, the obligation - to proudly wear our [flag, colors]. We have informed the Hai of your new colors so that they will [recognize, distinguish] you and not be hostile to you. We cannot say the same for the Wanderers, though, so be careful."`

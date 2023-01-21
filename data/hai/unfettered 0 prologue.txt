@@ -781,7 +781,7 @@ mission "Unfettered: Prove Your Strength 2"
 			label cut
 			`	"Ye humans always be obsessed with yer doubloons... So many much greater a variety of booty ye could be seeking. Rest assured, it be quite the coffer. I be taking a mere quarter of the total bounty, and ye should well remember how well ye were paid for the ones ye've already delivered to me brethren."`
 			label leave
-			`	"One last warning for ye: Ye should sail the skies with a hyper drive, especially with the dangers of where we be headed. A  jump drive won't do us any favors getting there, but 'twill bring more than a mite of unwanted company. Nor should we risk the Wanderers decided to fit ye with a hempen halter from yer association with us." You accompany him to your ship, and he seems actually impressed, even more so when seeing the interior. "Your ship indeed be... adequate, for a warrior and this task," he begrudges.`
+			`	"One last warning for ye: Ye should sail the skies with a hyper drive, especially with the dangers of where we be headed. A jump drive won't do us any favors getting there, but 'twill bring more than a mite of unwanted company. Nor should we risk the Wanderers decided to fit ye with a hempen halter from yer association with us." You accompany him to your ship, and he seems actually impressed, even more so when seeing the interior. "Your ship indeed be... adequate, for a warrior and this task," he begrudges.`
 				accept
 	on visit
 		dialog "You do not have the jump drives. You either did not go to <destination> to get the jump drives yet, or you left your escort allocated to carrying the jump drives behind - better launch and wait for it."
@@ -795,7 +795,7 @@ mission "Unfettered: Prove Your Strength 2"
 		log `Helped a young Unfettered Captain to bring jump drives from a pirate world.`
 		log "People" "Si-Ra" `A young, impetuous Unfettered captain with a unique, if eccentric, grasp of your language, who seems to grow wiser by the day. He has impressive leadership and combat skills, yet always seeks to refine his tactics. He does seem to be also be a fan of acquiring bigger and bigger ships.`
 		conversation
-			`"Here be yer share: <payment>. Ye have saved me life, Captain <first>, and I shall never forget it. For this, ye have earned the right to know my name: "Si-Ra". It be one I earned and wear with pride. Come see me again soon if ye be up for a challenge. I'll surely be able to find one for ye  even if me own ship not be ready to give ye one. In the meantime, make sure to check the job boards if ye just be looking for more runs like this one."`
+			`"Here be yer share: <payment>. Ye have saved me life, Captain <first>, and I shall never forget it. For this, ye have earned the right to know my name: "Si-Ra". It be one I earned and wear with pride. Come see me again soon if ye be up for a challenge. I'll surely be able to find one for ye even if me own ship not be ready to give ye one. In the meantime, make sure to check the job boards if ye just be looking for more runs like this one."`
 			branch "cerberus question"
 				not "Unfettered: Attracted Attention: offered"
 			choice
@@ -943,7 +943,7 @@ mission "Unfettered: Escort Hai Fleet"
 					goto help
 				`	"I'm busy right now, sorry."`
 					goto busy
-			`	"As an Elder I need to be seen by my people, else they would never respect me, or follow my instructions. In this specific case, I am here to talk with warlords and soldiers alike, to make sure nobody tries something stupid, else innocent Hai may get hurt."`
+			`	"As a Chief I need to be seen by my people, else they would never respect me, or follow my instructions. In this specific case, I am here to talk with warlords and soldiers alike, to make sure nobody tries something stupid, else innocent Hai may get hurt."`
 			`	Usually the Hai do not get this deep into our territory, even the ones who sympathise with us, and these are not part of that group. On top of that, some may have strong reactions when they realize who is on board one of these ships..."`
 				goto choose
 			label help
@@ -1057,7 +1057,7 @@ mission "Unfettered: Escort Hai Fleet"
 			`	`
 			`	Once you get back to your ship you see you received an encrypted message, consisting only of 4 words:`
 			`	"Nemo Me Impune Lacessit"`
-			`	You then notice that you have been fined 1 million credits for 'smuggling of illegal goods' it seems that it is the Unfettered that emitted this fine...`
+			`	You then notice that you have been fined 1 million credits for 'smuggling of illegal goods and persons'. It appears to have been issued by the Unfettered authorities. Weird.`
 			action
 				fine 1000000
 			label over
@@ -1206,6 +1206,19 @@ mission "Unfettered: Materials Intercepted"
 			`	"Now, that shipment you escorted was exceptional due to the disaster, and it came from the Hai, who focused all of their nearby fleet's attention on it, without following it in an obvious way either, of course."`
 			choice
 				`	"What about this cargo, then?"`
+					goto cargo
+				`	"Before we speak about this cargo, last mission I tipped this Hai governor about an attack, but then the Unfettered fined me, do you know why?"`
+					to display
+						has "unfettered: warned the hai governor escort about the mercenary attack"
+			`	He was about to say something but first looks around him. "Let us go to a more quiet place to talk." He says. After you followed him to some place far away from the crowd he feels more confident to speak. "This is where I often come to recollect myself, because I like to be able to think alone, and nobody comes here, because they believe this is a bad sign," he says, designating an old rotten tree that looks like it used to be massive.`
+			`	"We Unfettered are not as united as we would like you to believe. There are many different factions, with supporters even outside our government. For instance, not everyone agrees on attacking the Wanderers... Some, on the other hand, are fully with the Alphas."`
+			choice
+				`	"You were saying something about this special cargo?"`
+					goto cargo
+				`	"Can you tell me more? The message was signed with 'nemo me impune lacessit'."`
+			`	His mood darkens. "No, I will not tell you any more. If you want my advice, stop looking for answers there, it is not worth the risks. Let us go back to where we were, to not attract suspicion. I will continue speaking as if we did not have this conversation."`
+			`	Once there, he resumes as if you asked what was special about the cargo he was mentioning.`
+			label cargo
 			`	"Well, this one happens somewhat more regularly, although it often has unpredictable delays, due to the dangerous nature of the trip. At first we assumed that the ship coming with cargo all the way from human space simply got delayed, as usual. But in that case we should at least have gotten a message by now, it's been too long and I've grown quite worried that they may not make it here after all."`
 			`	"The materials they supply us with are not urgently required, but still, they are needed in order to develop some of the most distant areas on this world, and maintain our current buildings." He then takes a pad out of his pocket, and shows you what they should look like. These are fairly standard materials for construction purposes, not rare in the slightest.`
 			`	"We need at the very least 142 tons of this cargo back, that is the usual amount we transfer to our Shield Beetles."`
@@ -1257,7 +1270,7 @@ mission "Unfettered: Materials Intercepted"
 		conversation
 			`As you enter the system, you notice pirates from Cerberus in orbit around the planet. They could have the cargo you are looking for.`
 			choice
-				`	Demand that the materials be returned to you.`
+				`	(Demand that the materials be returned to you.)`
 				`	(Say nothing, I have no need to talk with these scums. I shall take back what they stole.)`
 					goto over
 			`	The first mate of the <npc> responds to your hail, "You talking about the cargo we just got that scum posing as a merchant relieved of? That's ours, mate, always has been. You must have suffered a serious blow to the head to think otherwise, especially this deep in our lands. In fact we were the ones that these were stolen from before we could bring it to port! Well, after we stole them from a merchant, but that's irrelevant."`
@@ -1336,7 +1349,7 @@ mission "Unfettered: Materials Intercepted"
 		log `Helped Sookootow by bringing cargo to help maintain and build houses. This whole story feels weird, with pirates stealing from other pirates, and one may wonder how it is related to the Alphas, and Shadow.`
 		conversation
 			`You look for Sookootow in the spaceport, and find him talking with Si-Ra, who was about to leave. Seeing you, Si-Ra shows a quick greeting in sign of respect, before leaving.`
-			`	The Elder then shakes your hands in true human fashion. "Jiko has just told me of your success, captain. Congratulations are in order!"`
+			`	The Chief then shakes your hands in true human fashion. "Jiko has just told me of your success, captain. Congratulations are in order!"`
 			choice
 				`	"Thanks. Here is the cargo."`
 					goto cargo
@@ -1534,10 +1547,10 @@ mission "Unfettered: Geocoris Arriving"
 
 
 
-# SPOILER: this mission is what sets up the Alphas against you, because they can't afford to let you know they operate here, thinking you could be Navy.
+# SPOILER: this mission is what sets the Alphas against you, because they can't afford to let you know they operate here, thinking you could be Navy.
 mission "Unfettered: Solifuge 2: Auxiliary Design"
 	name `Scan the human ship`
-	description `Scan the outfits of the human ship in <waypoint> by <date>, and then come back to <origin> with the logs.`
+	description `Scan the outfits of the human ship in <waypoint> by <date>, and then come back to <origin> with the logs when you can.`
 	source "Firelode"
 	destination "Warfeed"
 	deadline 4
@@ -1640,9 +1653,9 @@ mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 					goto price
 			`	"Oh, you mean a ship like the one you scanned, with more fighters and weapons? We already have some scans of that one - exciting scans at that! But do tell me more about it." She seems to be drinking in your words, and is eager for more about those Carriers.`
 			choice
-					`	"Carriers dominate in human space. They have weapons to take down any ship, and with their fighters, they can even take on small fleets."`
-					`	"Well, I've never seen them in combat personally, so you will have to ask someone else. I've only heard stories."`
-						goto stories
+				`	"Carriers dominate in human space. They have weapons to take down any ship, and with their fighters, they can even take on small fleets."`
+				`	"Well, I've never seen them in combat personally, so you will have to ask someone else. I've only heard stories."`
+					goto stories
 			`	"Yes, my thoughts exactly! The fighters are too agile to be shot down by fixed weapons, but obviously any guns mounted on a turret should easily take down the small ships. Very good! I was worried that having a ship with fighters would mean it would only have a limited weaponry, but it seems even you humans have found a way to remedy that." She barely finishes her phrase before disappearing back to wherever she came from, even more excited than before.`
 				goto beforeugo
 			label price
