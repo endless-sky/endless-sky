@@ -181,7 +181,9 @@
       "description": "Builds for Linux for CI purposes",
       "inherits": "ci",
       "cacheVariables": {
-        "VCPKG_TARGET_TRIPLET": "linux64-release"
+        "CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
+        "VCPKG_TARGET_TRIPLET": "linux64-release",
+        "ES_USE_OFFSCREEN": "ON"
       }
     },
     {
@@ -190,8 +192,10 @@
       "description": "Builds for Linux GLES for CI purposes",
       "inherits": "ci",
       "cacheVariables": {
+        "CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
         "VCPKG_TARGET_TRIPLET": "linux64-release",
-        "ES_GLES": "ON"
+        "ES_GLES": "ON",
+        "ES_USE_OFFSCREEN": "ON"
       }
     },
     {
@@ -227,6 +231,16 @@
         "CMAKE_CXX_COMPILER": "x86_64-w64-mingw32-g++",
         "CMAKE_RC_COMPILER": "windres",
         "VCPKG_TARGET_TRIPLET": "win64-release"
+      }
+    },
+    {
+      "name": "linux-release",
+      "displayName": "Linux Release",
+      "description": "Builds for Linux like an official release",
+      "inherits": "release",
+      "cacheVariables": {
+        "CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
+        "VCPKG_TARGET_TRIPLET": "linux64-release"
       }
     },
     {
@@ -418,6 +432,12 @@
       "name": "mingw-ci",
       "displayName": "MinGW CI build",
       "configurePreset": "mingw-ci",
+      "inherits": "ci"
+    },
+    {
+      "name": "linux-ci-release",
+      "displayName": "Linux release build",
+      "configurePreset": "linux-release",
       "inherits": "ci"
     },
     {
@@ -712,7 +732,7 @@
       "name": "linux-gles-ci",
       "displayName": "Linux GLES CI Tests",
       "configurePreset": "linux-gles-ci",
-      "inherits": "ci-integration"
+      "inherits": "ci"
     },
     {
       "name": "linux-gles-ci-benchmark",
