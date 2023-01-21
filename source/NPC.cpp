@@ -455,7 +455,6 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 		if(bay.ship)
 			shipActions[bay.ship.get()] |= type;
 
-	string typeString = ShipEvent::TypeToString(type);
 	auto it = npcActions.find(ShipEvent::TypeToString(type));
 	if(it != npcActions.end())
 		it->second.Do(player, ui);
