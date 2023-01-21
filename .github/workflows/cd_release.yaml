@@ -40,6 +40,65 @@ jobs:
           files: ${{ env.OUTPUT }}
 
 
+  release_windows_x86:
+    name: Windows x86
+    runs-on: windows-2022
+    env:
+      OUTPUT: EndlessSky-win32-${{ github.event.release.tag_name }}.zip
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install x86 MinGW
+        run: choco install mingw --forcex86 --force
+      - uses: lukka/get-cmake@latest
+      - uses: lukka/run-vcpkg@v10
+        with:
+          vcpkgGitCommitId: '163fe7bd3d67c41200617caaa245b5ba2ba854e6'
+          prependedCacheKey: mingw-x86
+      - uses: lukka/run-cmake@v10
+        with:
+          configurePreset: 'mingw32-release'
+          buildPreset: 'mingw32-ci-release'
+      - name: Package Application
+        run: |
+          cmake --install build/release
+          7z a ${{ env.OUTPUT }} "./install/release/*"
+      - name: Upload Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ${{ env.OUTPUT }}
+
+
+  release_windows_x64:
+    name: Windows x64
+    runs-on: windows-2022
+    env:
+      OUTPUT: EndlessSky-win64-${{ github.event.release.tag_name }}.zip
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup sccache
+        uses: ./.github/sccache
+        with:
+          read-only: 'true'
+      - uses: lukka/get-cmake@latest
+      - uses: lukka/run-vcpkg@v10
+        with:
+          vcpkgGitCommitId: '163fe7bd3d67c41200617caaa245b5ba2ba854e6'
+      - uses: lukka/run-cmake@v10
+        with:
+          configurePreset: 'mingw-release'
+          buildPreset: 'mingw-ci-release'
+      - name: Package Application
+        run: |
+          cmake --install build/release
+          7z a ${{ env.OUTPUT }} "./install/release/*"
+      - name: Upload Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ${{ env.OUTPUT }}
+
+
   release_macos_universal:
     name: MacOS Universal
     runs-on: macos-12
