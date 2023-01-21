@@ -789,8 +789,6 @@ void Ship::FinishLoading(bool isNewInstance)
 	// Calculate the values used to determine this ship's value and danger.
 	attraction = CalculateAttraction();
 	deterrence = CalculateDeterrence();
-	// Calculate the speed at which we will land.
-	CalculateLandingSpeed();
 
 	if(!warning.empty())
 	{
@@ -1327,7 +1325,6 @@ void Ship::SetPlanet(const Planet *planet)
 {
 	zoom = !planet;
 	landingPlanet = planet;
-	CalculateLandingSpeed();
 }
 
 
@@ -1805,6 +1802,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		// just slowly refuel.
 		if(landingPlanet && zoom)
 		{
+			if(!landingSpeed)
+				CalculateLandingSpeed();
 			// Move the ship toward the center of the planet while landing.
 			if(GetTargetStellar())
 				position = .97 * position + .03 * GetTargetStellar()->Position();
@@ -1831,6 +1830,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				}
 
 				zoom = 0.f;
+				landingSpeed = 0.;
 			}
 		}
 		// Only refuel if this planet has a spaceport.
@@ -3900,8 +3900,6 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 			if(isYours)
 				deterrence = CalculateDeterrence();
 		}
-		if(outfit->Get("landing speed"))
-			CalculateLandingSpeed();
 
 		if(outfit->Get("cargo space"))
 		{
