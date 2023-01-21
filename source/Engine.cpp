@@ -851,10 +851,10 @@ void Engine::Step(bool isActive)
 				string JumpStatus = (target->IsEnteringHyperspace() ? "Jumping" : target->IsReadyToJump(true) ? "Jump Ready" : "Not Ready");
 					info.SetString("jumpstatus", JumpStatus);
 				if(target->GetTargetStellar() && target->GetTargetStellar()->GetPlanet())
-				 {
-				 string stellar = target->GetTargetStellar()->GetPlanet()->Name();
-				 info.SetString("stellar", "Planet: " + stellar);
-				 }
+				{
+					string stellar = target->GetTargetStellar()->GetPlanet()->Name();
+					info.SetString("stellar", "Planet: " + stellar);
+				}
 				if(target->GetTargetSystem())
 				{
 					string system = target->GetTargetSystem()->Name();

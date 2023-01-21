@@ -485,7 +485,7 @@ private:
 	// double zoom;
 	// int swizzle;
 	// const Government *government;
-	
+
 	std::string activity;
 
 	// Characteristics of the chassis:
