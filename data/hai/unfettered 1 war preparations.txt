@@ -105,7 +105,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 				`	"You should have asked me to do an outfit scan, earlier."`
 			`	"Maybe, but it could have provoked them further. They apparently like their secrets. I only wanted to know about the structure of the ship, but I'd agree that knowing more about those weapons would be useful. Now, back to the damage on their ship.`
 			label information
-			`	"Obviously, this amount of damage has consequences. It looks like they've quickly patched it up, so it won't affect their hull resistance to weapon's fire. However, this is interesting," she says, pointing out particles on her pad you have not seen before. "Another captain found weird particles in that same system. We've never found traces of those particles before. I guess it could mean a shot got through and did some damage to one of the jump drives they are carrying - maybe even the one they use to jump. One thing is certain: these particles are not left by normal human ships, or Hai for that matter. My best guess would be that when the ship jumped, the hole it left behind did not close as quickly as it should, and anti-matter came from the other side. Perhaps it left these peculiar particles when being annihilated by contacting matter. Or maybe the particles just came through the opening in space?`
+			`	"Obviously, this amount of damage has consequences. It looks like they've quickly patched it up, so it won't affect their hull resistance to weapon's fire. However, this is interesting," she says, pointing out particles on her pad you have not seen before. "Another captain found weird particles in that same system. We've never found traces of those particles before. I guess it could mean a shot got through and did some damage to one of the jump drives they are carrying - maybe even the one they use to jump. One thing is certain: these particles are not left by normal human ships, or Hai for that matter. My best guess would be that when the ship jumped, the hole it left behind did not close as quickly as it should, and antimatter came from the other side. Perhaps it left these peculiar particles when being annihilated by contacting matter. Or maybe the particles just came through the opening in space?`
 			`	"It doesn't matter much anyway. I suspect that they would have gone back to their base to at least take a look at it, so there should be traces leading to it. Something bothers me about this: from our experience, jump drives either work or explode. Maybe it's because the jump drive is not actually being used, and is only leaking particles passively, that this is possible? Or maybe the damage done by these weapons is really special. After all, they are more advanced than what we have, or what the aliens up north possess. Only the Quarg and Korath have a similar level of technology, and those are the races that are rumoured to have invented the jump drives, so it could be some of these weapons are intended to disrupt it specifically."`
 			label agree
 			`	You were ready to go, but she seems to have something more to say. "Oh, and one last thing before you leave: the base is probably far away, so I would advise taking some fuel pods, especially considering the damage left on the Auxiliary means you will probably not have much time to wait to fuel up from the local stars either, and you should be ready to jump between systems as fast as possible. Also, be prepared for a fight in space, as well as within the ship itself, to claim it."`
@@ -136,7 +136,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		ship "Alpha Auxiliary (Pirate Crew)" "Settler"
 		conversation
 			`While capturing the ship, you noticed that only very few of the crew were actually Alphas. What little were Alphas seem to have disappeared. They probably used an escape pod to get away unoticed in the middle of the fight, or maybe they were never there in the first place. Whatever the case, you cannot find any trace of them. The crew was composed of a mix of mercenaries and indoctrinated pirates.`
-			`There was no doubt who was in command of this vessel, however. The jump drives don't seem to be aboard the ship. You should head to the Alpha base to see if you can find them or anything else of interest.`
+			`	There was no doubt who was in command of this vessel, however. The jump drives don't seem to be aboard the ship. You should head to the Alpha base to see if you can find them or anything else of interest.`
 	npc
 		government "Cerberus"
 		system "Host"
@@ -169,7 +169,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		has "flagship model: Alpha Auxiliary"
 	on complete
 		outfit "Jump Drive" -10
-		log `Captured the Alpha Auxiliary. The Alphas had a trap set but it failed. Or at least that's what they want everyone to think.`
+		log `Captured the Alpha Auxiliary. The Alphas had a trap set but it failed. Or, at least, that's what they want everyone to think.`
 		payment 10000000
 		"salary: Unfettered" = 1000
 		conversation
@@ -270,7 +270,7 @@ mission "Unfettered: Alphas 3: Bring The Spoils"
 			"Before leaving, you remember that the Unfettered want you to show them the Auxiliary, and they probably expect you to land with it as flagship. Make sure you bring all 10 jump drives back in your cargo or on the flagship, and that you keep this ship alive at all cost. It may be wise to wait a bit and replenish your fuel in this system, using the Wanderer ramscoop."
 		outfit "Jump Drive" 10
 	on enter "Host"
-		dialog "Before leaving, you remember that the Unfettered want you to show them the Auxiliary, and they probably expect you to land with it as flagship.Make sure you bring all 10 jump drives back in your cargo or on the flagship, and that you keep this ship alive at all cost. It may be wise to wait a bit and replenish your fuel in this system, using the Wanderer ramscoop."
+		dialog "Before leaving, you remember that the Unfettered want you to show them the Auxiliary, and they probably expect you to land with it as flagship. Make sure you bring all 10 jump drives back in your cargo or on the flagship, and that you keep this ship alive at all cost. It may be wise to wait a bit and replenish your fuel in this system, using the Wanderer ramscoop."
 	on enter "Ehma Ti" "Hi Yahr" "Wah Yoot"
 		dialog `When you arrive in the Unfettered system, you hail Mera, asking for clarifications on what happened. She relays a message back to you, later on, "I am truly sorry, <first>, obviously I was wrong. The particles were left on purpose by the Alphas, evidently hoping I would tell you to go after those. I am not going to pretend I had no idea - it was something in the back of my mind, since a normal captain just appeared to find these specific particles so conveniently."`
 
@@ -313,10 +313,10 @@ mission "Unfettered: Solifuge 5: Materials For Ships"
 					accept
 				`	"How do I even collect minerals from asteroids?"`
 					goto asteroidtuto2
-				`	"Sorry but I am no miner."`
+				`	"Sorry, but I am no miner."`
 					decline
 			label where2
-			`	"Silicon can be found right over our heads, and silver in Ehma Ti. The silicon asteroid looks similar to copper, but they'e bigger. You can also just differentiate them with an asteroid scanner. Silver is easy to recognize, with its very small size and natural resistance. So, are you ready to go?"`
+			`	"Silicon can be found right over our heads, and silver in Ehma Ti. The silicon asteroid looks similar to copper, but they're bigger. You can also just differentiate them with an asteroid scanner. Silver is easy to recognize, with its very small size and natural resistance. So, are you ready to go?"`
 				goto finalchoice
 			label asteroidtuto2
 			`	She seems a bit surprised. "You've never mined asteroids? I recommend you install an asteroid scanner so your ship can target them automatically. Just try to keep your ship stable around one and shoot it as you would any other ships. Keep in mind they have no shields, and you might not want to waste missiles on them, since they don't shoot back. Now, are you ready to go?"`
@@ -403,7 +403,7 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 			`	"If you want to [help, assist] us and get access to advanced Hai outfits and eventually more, go to <destination>. The Hai's main shipyard is located there, and we need [intel, details] on how they mass produce them. Intel on how they manage to make Geocoris which such ease will be of use, too."`
 			choice
 				`	"Will the Hai will let me land on their home world?"`
-			`	"Why would you need a [permission, authorization]? Discreetly land in an [isolated, far away] region, while nobody is looking. If they detect you, just pretend you have had a navigation [issue, malfunction], and were forced to land." This plan seems very risky to you.`
+			`	"Why would you need a [permission, authorization]? Discreetly land in an [isolated, far away] region, while nobody is looking. If they detect you, just pretend you had a navigation [issue, malfunction], and were forced to land." This plan seems very risky to you.`
 			choice
 				`	"Sure, let's do it."`
 					goto stupid
@@ -427,7 +427,7 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
 		log `Gathered intel on a Hai shipyard for the Unfettered.`
-		log "People" "He-Yi" `An Unfettered warlord that appreciates directness and calling humans monkey. He is particularly skilled at management, and speaks trough a translator, although he has little to no problem understanding my language without it.`
+		log "People" "He-Yi" `An Unfettered warlord that appreciates directness and calls humans monkeys. He is particularly skilled at management, and speaks trough a translator, although he has little to no problem understanding my language without it.`
 		payment 250000
 		conversation
 			`The warlord from earlier hands you <payment>, and introduces himself, "I would not give you my [true, original] name, but you may refer to me as He-Yi, the name that I [gained, deserved] when working for the Unfettered, and is attached to my current [status, position] as a warlord."`
@@ -474,7 +474,7 @@ mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
 		has "Unfettered: Solifuge 6: Shipyard Upgrade: active"
 	on offer
 		conversation
-			`You land and ask the Hai for the Unfettered tribute, which they then prepare. They don't seem to suspect anything. While they load up your ship, you to go to the shipyard to and act like you're considering buying a new ship, and a big one at that. "Unfortunately", you get lost and end up at the facility where they build the Geocoris and Shield Beetles. There is only so much you can learn by looking, so you start discreetly scanning the place. A Hai engineer seems to notice you and comes your way. "Hi, how may I help you," he asks. You suspect he probably noticed you scanning the area, but he doesn't seem to have reported it to the local authorities, yet.`
+			`You land and ask the Hai for the Unfettered tribute, which they then prepare. They don't seem to suspect anything. While they load up your ship, you to go to the shipyard and act like you're considering buying a new ship, and a big one at that. "Unfortunately", you get lost and end up at the facility where they build the Geocoris and Shield Beetles. There is only so much you can learn by looking, so you start discreetly scanning the place. A Hai engineer seems to notice you and comes your way. "Hi, how may I help you," he asks. You suspect he probably noticed you scanning the area, but he doesn't seem to have reported it to the local authorities, yet.`
 			choice
 				`	"Don't mind me, I'm just admiring the shipyard. It's so well... optimized, compared to human standards." (Pretend to move on and go scan another area.)`
 				`	"Actually, I'm here to buy a ship."`
@@ -625,7 +625,7 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 			label working
 			`	"Unlike <one>, <we, us> are <strong> <we, us> always stay <strong> even when having to <consume> this 'foood' it is <bad> nutrigel." When saying this the Korath intentionally drops a plate to the ground, which until now you assumed to contain electronics but must have been food.`
 			choice
-				`	"I see why the Hai allowed you to access their technology .You think in a similar way."`
+				`	"I see why the Hai allowed you to access their technology. You think in a similar way."`
 				`	"Oh, is that why you got captured by the Alphas?"`
 			`	They seem to grumble a bit about what you just said, but the translator cannot decipher any meaning. Considering what they could be saying, it's probably for the best. Still, they look at you menacingly, making themselves tall, much taller than humans would be. After that they suddenly move your way, covering 5 meters in the blink of an eye, close to the ground, running trough equipement without disturbing it... Seeing you step back and almost fall on your back in fear, they seem satisfied, and go back to where they were. You realize they must be used to crowded spaces like this.`
 			label objective
@@ -709,7 +709,7 @@ ship "Mammoth" "Mammoth (Hai)"
 		outfits
 			"Loot" 400
 
-# SPOILER: he payed some mercenaries to do it as well, best one gets the loot. You can also decline this and they go uncontested.
+# SPOILER: he paid some mercenaries to do it as well, best one gets the loot. You can also decline this and they go uncontested.
 # ionic materials (probably stolen from Hai tech in part) used to make the prototype weaponry for your Modified Beetle.
 mission "Unfettered: Loot: Ion Cannon Materials"
 	name `Loot cargo ship`
@@ -724,7 +724,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 		set "unfettered: offered loot"
 	on offer
 		conversation
-			`When passing in front of a bar, you notice Si-Ra. He seems to be having quite a lot of fun. The bar itself does not seem that alien to you, although they are doing more than drinking and chatting, judging by the smell...`
+			`When passing in front of a bar, you notice Si-Ra. He seems to be having quite a lot of fun. The bar itself does not seem that alien to you, although they are doing more than just drinking and chatting, judging by the smell...`
 			choice
 				`	(Join him.)`
 				`	(I don't have time for this now.)`
