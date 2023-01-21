@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define ENGINE_H_
 
 #include "AI.h"
+#include "AmmoDisplay.h"
 #include "AsteroidField.h"
 #include "BatchDrawList.h"
 #include "CollisionSet.h"
@@ -90,7 +91,7 @@ public:
 	void SetTestContext(TestContext &newTestContext);
 
 	// Select the object the player clicked on.
-	void Click(const Point &from, const Point &to, bool hasShift);
+	void Click(const Point &from, const Point &to, bool hasShift, bool hasControl);
 	void RClick(const Point &point);
 	void SelectGroup(int group, bool hasShift, bool hasControl);
 
@@ -198,6 +199,7 @@ private:
 	Point targetUnit;
 	int targetSwizzle = -1;
 	EscortDisplay escorts;
+	AmmoDisplay ammoDisplay;
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;
 	std::vector<AlertLabel> missileLabels;
@@ -240,6 +242,7 @@ private:
 	bool isRightClick = false;
 	bool isRadarClick = false;
 	Point clickPoint;
+	Rectangle uiClickBox;
 	Rectangle clickBox;
 	int groupSelect = -1;
 
