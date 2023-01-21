@@ -204,10 +204,9 @@ void DistanceMap::Init(const Ship *ship)
 	// hyperdrive). If multiple routes have the same fuel and the same number of
 	// jumps, break the tie by using how "dangerous" the route is.
 
-	// Find all edges from that route, add better routes to the map, and continue.
-
 	// Add this fake edge "from center" so it's the first popped value.
 	edgesTodo.emplace(center);
+	// Find all edges from that route, add better routes to the map, and continue.
 	while(maxSystems && !edgesTodo.empty())
 	{
 		// Use the best known route to build upon and create the next set
@@ -350,6 +349,7 @@ bool DistanceMap::CheckLink(const System &from, const System &to, bool useJump) 
 
 	return (player->HasVisited(from) || player->HasVisited(to));
 }
+
 
 
 // RoutePlan is a wrapper on DistanceMap that uses destination
