@@ -149,8 +149,8 @@ ship Antlion
 	explode "small explosion" 40
 	explode "tiny explosion" 40
 	"final explode" "final explosion large"
-	description "This ship was designed to repel the raiders near the end of the Korath raids. Whilst it would not be able to defeat one of their ships alone, and would struggle in a prolonged fight, its energy weapons and its drone support allow it to hold its own until reinforcements arrive."
-	description "	Since the prototype was stolen after the raids this ship design was never produced again since it would be of little use in the Unfettered conflict. Nowadays the Antlion is renowned for attacking vulnerable targets and disappearing before anyone can react, as if always one move ahead."
+	description "This ship was designed to repel the raiding ships, near the end of the Korath raids. Whilst it would not be able to defeat one of their ships alone, and would struggle in a prolonged fight, its energy weapons and drone support allow it to hold its own until reinforcements arrive."
+	description "	The prototype was stolen after the raids meaning that this ship design was never produced again, given it would be of little use in the Unfettered conflict. Nowadays the Antlion is renowned for attacking vulnerable targets and disappearing before anyone can react, as if always one move ahead."
 
 
 ship "Tick"
