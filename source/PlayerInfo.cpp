@@ -1228,7 +1228,7 @@ pair<double, double> PlayerInfo::RaidFleetFactors() const
 double PlayerInfo::RaidFleetAttraction(const Government::RaidFleet &raid, const System *system) const
 {
 	double attraction = 0.;
-	const Fleet *raidFleet = raid.GetFleet();
+	const FleetLoader *raidFleet = raid.GetFleet();
 	const Government *raidGov = raidFleet ? raidFleet->GetGovernment() : nullptr;
 	if(raidGov && raidGov->IsEnemy())
 	{

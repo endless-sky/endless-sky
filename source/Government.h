@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Color.h"
 #include "ExclusiveItem.h"
+#include "FleetLoader.h"
 #include "LocationFilter.h"
 
 #include <map>
@@ -48,13 +49,13 @@ class Government {
 public:
 	class RaidFleet {
 		public:
-			RaidFleet(const Fleet *fleet, double minAttraction, double maxAttraction);
-			const Fleet *GetFleet() const;
+			RaidFleet(const FleetLoader *fleet, double minAttraction, double maxAttraction);
+			const FleetLoader *GetFleet() const;
 			double MinAttraction() const;
 			double MaxAttraction() const;
 
 		private:
-			const Fleet *fleet = nullptr;
+			const FleetLoader *fleet = nullptr;
 			double minAttraction;
 			double maxAttraction;
 	};

@@ -74,14 +74,14 @@ namespace {
 
 
 
-Government::RaidFleet::RaidFleet(const Fleet *fleet, double minAttraction, double maxAttraction)
+Government::RaidFleet::RaidFleet(const FleetLoader *fleet, double minAttraction, double maxAttraction)
 	: fleet(fleet), minAttraction(minAttraction), maxAttraction(maxAttraction)
 {
 }
 
 
 
-const Fleet *Government::RaidFleet::GetFleet() const
+const FleetLoader *Government::RaidFleet::GetFleet() const
 {
 	return fleet;
 }
@@ -199,7 +199,7 @@ void Government::Load(const DataNode &node)
 
 		if(key == "raid")
 		{
-			const Fleet *fleet = GameData::Fleets().Get(child.Token(valueIndex));
+			const FleetLoader *fleet = GameData::Fleets().Get(child.Token(valueIndex));
 			if(remove)
 			{
 				for(auto it = raidFleets.begin(); it != raidFleets.end(); )
