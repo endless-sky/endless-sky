@@ -458,10 +458,9 @@ mission "Unfettered Jump Drive Trading"
 				"unfettered: jd to sell" += 2
 				"unfettered: dodged the blade" ++
 			`	<as before (run)> manage to dodge the blade but are then left defenseless when the same Unfettered closes with another one and slashes down to strike. They stop at the last possible moment, dissatisfaction clear on their face.`
+			branch fail
+				has "unfettered: flee from the blade"
 			`	"So this is how you 'fight,' Captain? You hide? You dodge? You refuse to seize our weapons, so you will not have them."`
-				to display
-					not "unfettered: flee from the blade"
-			``
 				goto fail
 			label flee
 			action
