@@ -21,16 +21,16 @@ using namespace std;
 
 namespace {
 	const map<string, int> EVENT_NAMES = {
-		{"assist", ASSIST},
-		{"scan cargo", SCAN_CARGO},
-		{"scan outfits", SCAN_OUTFITS},
-		{"provoke", PROVOKE},
-		{"disable", DISABLE},
-		{"board", BOARD},
-		{"capture", CAPTURE},
-		{"destroy", DESTROY},
-		{"atrocity", ATROCITY},
-		{"jump", JUMP},
+		{"assist", ShipEvent::ASSIST},
+		{"scan cargo", ShipEvent::SCAN_CARGO},
+		{"scan outfits", ShipEvent::SCAN_OUTFITS},
+		{"provoke", ShipEvent::PROVOKE},
+		{"disable", ShipEvent::DISABLE},
+		{"board", ShipEvent::BOARD},
+		{"capture", ShipEvent::CAPTURE},
+		{"destroy", ShipEvent::DESTROY},
+		{"atrocity", ShipEvent::ATROCITY},
+		{"jump", ShipEvent::JUMP},
 	};
 }
 
