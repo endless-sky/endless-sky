@@ -1366,6 +1366,7 @@ void PlayerInfo::Land(UI *ui)
 			// depreciation records. Transfer it to a throw-away record:
 			Depreciation().Buy(**it, date.DaysSinceEpoch(), &depreciation);
 
+			ForgetGiftedShip(it);
 			it = ships.erase(it);
 		}
 		else
@@ -4111,7 +4112,7 @@ void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
 
 
 // Instantiate the given model and add it to the player's fleet.
-void PlayerInfo::AddStockShip(const Ship *model, const string &name);
+void PlayerInfo::AddStockShip(const Ship *model, const string &name)
 {
 	ships.push_back(make_shared<Ship>(*model));
 	ships.back()->SetName(!name.empty() ? name : GameData::Phrases().Get("civilian")->Get());

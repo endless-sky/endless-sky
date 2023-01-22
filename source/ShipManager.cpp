@@ -153,7 +153,7 @@ vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player) 
 	const System *here = player.GetSystem();
 	const auto shipToTakeId = player.GiftedShips().find(id);
 	bool foundShip = shipToTakeId != player.GiftedShips().end();
-	vector<shared_ptr<Ship>> toSell;
+	vector<shared_ptr<Ship>> satisfyingShips;
 
 	for(const auto &ship : player.Ships())
 		if((ship->ModelName() == model->ModelName())
@@ -172,12 +172,12 @@ vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player) 
 						continue;
 				}
 
-			toSell.emplace_back(ship);
+			satisfyingShips.emplace_back(ship);
 
 			// We do not want any more ships than is specified.
-			if(static_cast<int>(toSell.size()) >= abs(count))
+			if(static_cast<int>(satisfyingShips.size()) >= abs(count))
 				break;
 		}
 
-	return toSell;
+	return satisfyingShips;
 }
