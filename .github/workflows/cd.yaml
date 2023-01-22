@@ -43,9 +43,7 @@ jobs:
           configurePreset: 'linux-release'
           buildPreset: 'linux-ci-release'
       - name: Package Application
-        run: |
-          cmake --install build/release
-          7z a ${{ env.OUTPUT }} "./install/release/*"
+        run: ./utils/build_appimage.sh build/release
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
