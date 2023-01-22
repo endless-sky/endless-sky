@@ -31,13 +31,12 @@ using namespace std;
 
 void ShipManager::Load(const DataNode &node)
 {
-	const string &token = node.Token(0);
 	if(node.Size() < 3 || node.Token(1) != "ship")
 	{
 		node.PrintTrace("Error: Skipping unsupported \"" + token + "\" syntax:");
 		return;
 	}
-	bool taking = token == "take";
+	bool taking = node.Token(0) == "take";
 	model = GameData::Ships().Get(node.Token(2));
 	if(node.Size() >= 4)
 		name = node.Token(3);
@@ -72,7 +71,7 @@ void ShipManager::Load(const DataNode &node)
 	}
 
 	if(taking && !id.empty() && count > 1)
-		node.PrintTrace("Error: Use of and \"id\" to refer to the ship is only supported when \"count\" is equal to 1.");
+		node.PrintTrace("Error: Use of \"id\" to refer to the ship is only supported when \"count\" is equal to 1.");
 }
 
 
