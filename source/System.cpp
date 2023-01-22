@@ -206,7 +206,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				else if(grand.Token(0) == "remove")
 				{
 					if(grand.Token(1) == "universal")
-						universalRamscoop = true;
+						universalRamscoop = false;
 					else if(grand.Token(1) == "modifier")
 						ramscoopModifier = 0.;
 					else if(grand.Token(1) == "multiplier")
