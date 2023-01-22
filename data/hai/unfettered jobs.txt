@@ -481,7 +481,7 @@ mission "Unfettered Bring Ion Cannons"
 		has "Unfettered Jump Drive 1: done"
 	on offer
 		conversation
-			`After accepting this job, you go look for the captain who placed it in order to ask for more detailed informations. It does not take long to find them, and it seems like she is willing to answer at least some of your questions. "Curious, are we, <first>? Oh, may I call you <first>? You reputation of selling jump drives precedes you," she says with a wink.`
+			`After accepting this job, you go look for the captain who placed it in order to ask for more detailed information. It does not take long to find them, and it seems like she is willing to answer at least some of your questions. "Curious, are we, <first>? Oh, may I call you <first>? You reputation of selling jump drives precedes you," she says with a wink.`
 			choice
 				`	"Sure."`
 					goto sure
