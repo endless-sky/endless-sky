@@ -1080,7 +1080,7 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name)
 	int64_t cost = stockDepreciation.Value(*model, day);
 	if(accounts.Credits() >= cost)
 	{
-		AddShipModel(model, name);
+		AddStockShip(model, name);
 
 		accounts.AddCredits(-cost);
 		flagship.reset();
@@ -1099,11 +1099,11 @@ const Ship *PlayerInfo::GiftShip(const Ship *model, const string &name, const st
 	if(!model)
 		return nullptr;
 
-	AddShipModel(model, name);
+	AddStockShip(model, name);
 
 	flagship.reset();
 
-	// Store named ships with their model so they can be checked later.
+	// If an id was given, associate and store it with the UUID of the gifted ship.
 	if(!id.empty())
 		giftedShips[id].clone(ships.back()->UUID());
 
@@ -2088,7 +2088,6 @@ const map<string, EsUuid> &PlayerInfo::GiftedShips() const
 
 
 
-// Set and check the reputation conditions, which missions and events can use to
 map<string, string> PlayerInfo::GetSubstitutions() const
 {
 	map<string, string> subs;
@@ -4111,8 +4110,8 @@ void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
 
 
 
-// Add a new ship corresponding to this model and name to the ships list.
-void PlayerInfo::AddShipModel(const Ship *model, const std::string &name)
+// Instantiate the given model and add it to the player's fleet.
+void PlayerInfo::AddStockShip(const Ship *model, const string &name);
 {
 	ships.push_back(make_shared<Ship>(*model));
 	ships.back()->SetName(!name.empty() ? name : GameData::Phrases().Get("civilian")->Get());
@@ -4130,7 +4129,7 @@ void PlayerInfo::ForgetGiftedShip(const Ship &oldShip)
 {
 	const EsUuid &id = oldShip.UUID();
 	auto shipToForget = find_if(giftedShips.begin(), giftedShips.end(),
-		[&id](const std::pair<const string, EsUuid> &shipId) { return id == shipId.second; });
+		[&id](const std::pair<const string, EsUuid> &shipId) { return shipId.second == id; });
 	if(shipToForget != giftedShips.end())
 	{
 		for(auto &mission : missions)

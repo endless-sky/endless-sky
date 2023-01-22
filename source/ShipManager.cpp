@@ -31,7 +31,7 @@ using namespace std;
 
 void ShipManager::Load(const DataNode &node)
 {
-	const string token = node.Token(0);
+	const string &token = node.Token(0);
 	if(node.Size() < 3 || node.Token(1) != "ship")
 	{
 		node.PrintTrace("Error: Skipping unsupported \"" + token + "\" syntax:");
@@ -44,7 +44,8 @@ void ShipManager::Load(const DataNode &node)
 
 	for(const DataNode &child : node)
 	{
-		const string key = child.Token(0);
+		const string &key = child.Token(0);
+		bool hasValue == child.Size() > 1;
 		if(taking)
 		{
 			if(key == "unconstrained")
@@ -52,35 +53,42 @@ void ShipManager::Load(const DataNode &node)
 			else if(key == "with outfits")
 				withOutfits = true;
 			else
-				node.PrintTrace("Error: Skipping unrecognized take ship node argument:");
+				child.PrintTrace("Error: Skipping unrecognized token.");
 		}
-		else if(child.Size() < 2)
-			child.PrintTrace("Error: Expected a value argument:");
-		else if(key == "id")
+		else if(key == "id" && hasValue)
 			id = child.Token(1);
-		else if(key == "amount")
+		else if(key == "amount" && hasValue)
 		{
-			if(child.Value(1) <= 0)
-				node.PrintTrace("Error: Skipping invalid negative ship quantity:" + node.Token(1));
+			int val = child.Value(1);
+			if(val <= 0)
+				child.PrintTrace("Error: \"count\" must be a non-zero, positive number.");
 			else
-				count = child.Value(1) * (taking ? -1 : 1);
+				count = val * (taking ? -1 : 1);
 		}
 		else
-			node.PrintTrace("Error: Skipping unrecognized ship " + token + " node argument:");
+			child.PrintTrace("Error: Skipping unrecognized token.");
 	}
 
-	if(taking && !id.empty() && count != 1)
-		node.PrintTrace("Error: Invalid ship quantity with a specified unique id:");
+	if(taking && !id.empty() && count > 1)
+		node.PrintTrace("Error: Use of and \"id\" to refer to the ship is only supported when \"count\" is equal to 1.");
 }
 
 
 
 void ShipManager::Save(DataWriter &out) const
 {
-	out.Write(Count() > 0 ? "give" : "take", "ship",
-		model->VariantName(), Name(), abs(Count()),
-		Unconstrained() ? "unconstrained" : "constrained",
-		WithOutfits() ? "with outfits" : "without outfits");
+	out.Write(Count() > 0 ? "give" : "take", "ship", model->VariantName(), Name());
+	out.BeginChild();
+	{
+		out.Write("count", abs(Count()));
+		if(!id.empty())
+			out.Write("id", id);
+		if(Unconstrained())
+			out.Write("unconstrained");
+		if(WithOutfits())
+			out.Write("with outfits");
+	}
+	out.EndChild();
 }
 
 
@@ -163,7 +171,7 @@ bool ShipManager::WithOutfits() const
 vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player) const
 {
 	const System *here = player.GetSystem();
-	const auto &shipID = player.GiftedShips().find(id);
+	const auto shipID = player.GiftedShips().find(id);
 	bool foundShip = shipID != player.GiftedShips().end();
 	vector<shared_ptr<Ship>> toSell;
 
