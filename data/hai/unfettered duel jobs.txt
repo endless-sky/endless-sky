@@ -278,7 +278,7 @@ mission "Unfettered Space Challenge Small"
 	boarding
 	repeat
 	name "Collect your payment on <destination>"
-	description "An Unfettered captain has offered you a payment of <payment> for beating them in battle, land on <destination> to collect it."
+	description `An Unfettered captain has offered you a payment of <payment> for beating them in battle, land on <destination> to collect it.`
 	substitutions
 		<payment> 200000
 		"<boarding message>" "	Do you want to accept the payment offer or plunder the ship? Keep in mind that you are in no way allowed to capture or destroy the ship."
@@ -464,7 +464,7 @@ mission "Unfettered Bring Fire"
 	on complete
 		outfit "Flamethrower" -2
 		payment 1000000
-		dialog `The Unfettered captain is delighted that you were able to give him these 2 Flamethrowers, and give you <payment>. "I shall put them to good use! These seem like they would pair perfectly with our ion weapons." He says, with a grin on his face.`
+		dialog `The Unfettered captain is delighted that you were able to give him these 2 Flamethrowers, and gives you <payment>. "I shall put them to good use! These seem like they would pair perfectly with our ion weapons." He says, with a grin on his face.`
 
 
 mission "Unfettered Bring Carnage"

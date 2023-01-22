@@ -118,7 +118,7 @@ mission "Unfettered: Neutral With The Hai"
 				"reputation: Hai Merchant" >?= 1
 				"reputation: Hai Merchant (Sympathizers)" >?= 1
 				"reputation: Hai Merchant (Human)" >?= 1
-				log `Convinced the Hai to accept the offer of cease fire with me, as requested by an Unfettered Chief. Should the word not be honored a large sum will be due.`
+				log `Convinced the Hai to accept the offer of ceasefire with me, as requested by an Unfettered Chief. Should the word not be honored a large sum will be due.`
 			``
 				accept
 			label death
@@ -208,7 +208,7 @@ mission "Unfettered: Hunger!"
 			`Surprisingly, the local Unfettered authorities hail you. In fact, they seem to be relaying a message to all ships in range, both in human and hai... Their situation must be desperate.`
 				goto message
 			label "not first time"
-			`The local Unfettered authorities hail you. They are hailing all ships, in human and hai. This is not the first time they do this, and you suppose another starvation is happening. If that is the case, they did not manage their food issue in a permanent manner.`
+			`The local Unfettered authorities hail you. They are hailing all ships, in human and hai. This is not the first time they do this, and you suppose another famine is happening. If that is the case, they did not manage their food issue in a permanent manner.`
 			label message
 			`	"Attention, to all that are sympathethic to our cause, or simply want to help a people survive, we are in great need of food. As such, we have negotiated an increase of tributes from the Hai, and they have offered some food supplies, as well as specialists to help us stabilize our food supplies. That is what we need you for, captains, all over our worlds parents are starving because they give what little they have to their children, to their future. We are not used or comfortable with begging, but please, help us! Spread the word, bring food, we will reword you handsomely as ever, do it for the money if you must, or do it because you care."`
 	on daily
@@ -1086,7 +1086,7 @@ mission "Unfettered: Immortal Prize"
 
 
 conversation "more staves"
-	`As you wonder in the spaceport, you see He-Yi's herald, or at least he has the same mask. He seems interested to know your progress in acquiring weapons.`
+	`As you wander in the spaceport, you see He-Yi's herald, or at least someone with the same mask. He seems interested to know your progress in acquiring weapons.`
 	choice
 		`	"Could you look at what I have here to tell me if it's what you're looking for?"`
 		`	"It's going fine, thank you for asking."`
@@ -1131,11 +1131,11 @@ mission "Bring Pug Staves"
 	to offer
 		has "Unfettered: Close Quarter: offered"
 	on offer
-		dialog `Do you want to sell 20 Pug Peacekeeping Staves to the Unfettered? He Yi says they can give you 2500000 for it.`
+		dialog `Do you want to sell 20 Pug Peacekeeping Staffs to the Unfettered? He-Yi says they can give you 2500000 for it.`
 	on accept
 		payment 2500000
 		outfit "Pug Peacekeeping Staff" -20
-		dialog `The Unfettered thank you for bringing these 20 staves to them. They give you <payment>.`
+		dialog `The Unfettered thank you for bringing these 20 staffs to them. They give you <payment>.`
 		fail
 
 mission "Bring Coalition Weapons"
@@ -1145,11 +1145,11 @@ mission "Bring Coalition Weapons"
 	to offer
 		has "Unfettered: Close Quarter: offered"
 	on offer
-		dialog `Do you want to sell 20 Enforcer Riot Staves to the Unfettered? He Yi says they can give you 4000000 for it.`
+		dialog `Do you want to sell 20 Enforcer Riot Staffs to the Unfettered? He-Yi says they can give you 4000000 for it.`
 	on accept
 		payment 4000000
 		outfit "Enforcer Riot Staff" -20
-		dialog `The Unfettered thank you for bringing these 20 staves to them. They give you <payment>.`
+		dialog `The Unfettered thank you for bringing these 20 staffs to them. They give you <payment>.`
 		fail
 
 mission "Bring Void Rifle"
@@ -1249,7 +1249,7 @@ mission "Unfettered: Close Quarter"
 			`	You actually manage to reach cover, thanks to him stumbling a bit on the approach. He was probably anxious to beat you... Now that you are behind cover, you have a strategic advantage, and he misses his shots. It seems that the pistol quickly runs out of power, and using this opportunity you shoot back at him. Most of your shots miss, but because he cannot shoot back and you are well protected anyway, you can take the time to aim precisely. You manage to shoot his arm and he drops his pistol. He does not shout at all when getting shot, simply sits on the ground on that position, showing he surrenders. You get out of your cover and grab the other pistol. "You can keep them; you've earned it. This was a fair fight, Captain! I'd like to try again some time, and maybe get my pistols back..." He then goes away and sits on the side, probably thinking about what mistakes he made.`
 				goto heyi
 			label ready
-			`	You try to shoot him, but he's too fast and you too inexperienced. You have made yourself an easy target for him by standing still; you fall as you receive a shot to your shoulder. It hurts, but nothing seems to be broken, and soon after you cannot feel anything in your arm at all. You opponent comes to you and helps you to get up. "Pain is a good teacher sometimes," he says.`
+			`	You try to shoot him, but he's too fast and you are too inexperienced. You have made yourself an easy target for him by standing still; you fall as you receive a shot to your shoulder. It hurts, but nothing seems to be broken, and soon after you cannot feel anything in your arm at all. You opponent comes to you and helps you to get up. "Pain is a good teacher sometimes," he says.`
 			label stories
 			`	As agreed, you speak to him of many stories, including how you happened to find Hai space, and how you joined the Unfettered. He seems captivated by all of it, and so are his friends. Then he goes back to fight with his friends, seemingly in teams.`
 			label heyi
@@ -1361,7 +1361,7 @@ mission "Unfettered: Speak Sestor Notice"
 					defer
 				`	(Never.)`
 					decline
-			`	You head to his throne room to see him, and this time the Unfettered gards have no issue with letting you pass. It is only once you enter the room you learn he is missing from one of his aid. They tell you to go look on Firelode, on top of the biggest mountain, as that's probably where he would be.`
+			`	You head to his throne room to see him, and this time the Unfettered guards have no issue with letting you pass. It is only once you enter the room you learn he is missing from one of his aid. They tell you to go look on Firelode, on top of the biggest mountain, as that's probably where he would be.`
 				accept
 
 
@@ -1380,9 +1380,9 @@ mission "Unfettered: Speak Sestor"
 		conversation
 			`	You climb on top of the greatest mountain when you find Choot'k is indeed there, admiring the view.`
 			scene "scene/chootk firelode"
-			`	He notices your arrival and invites you to admire the view as well. He seems happy to see you. "<first>! It's been a while, but I keep hearing rumors about you. One day you may even threaten to take my place..." You see his grip around his blade tightening. For a few seconds you can feel some tension, but then he laughes.`
+			`	He notices your arrival and invites you to admire the view as well. He seems happy to see you. "<first>! It's been a while, but I keep hearing rumors about you. One day you may even threaten to take my place..." You see his grip around his blade tightening. For a few seconds you can feel some tension, but then he laughs.`
 			`	"No, not yet, at least. Now, I would duel you if I had the time, but I have duties to attend to, which you may help me with, actually. I want to go to <stopovers> to get the records of Korath interactions before the raids. Mera has informed me that the translator - whilst better than nothing - is not sufficient for all the tasks we have in mind."`
-			`	"I am sure you have already noticed that communication with the Koraths can be... difficult, since you met them."`
+			`	"I am sure you have already noticed that communication with the Korath can be... difficult, since you met them."`
 				to display
 					has "Unfettered: Solifuge 8: Useful Korath Scientists: offered"
 			label choice

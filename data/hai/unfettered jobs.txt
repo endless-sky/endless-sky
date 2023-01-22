@@ -445,7 +445,7 @@ mission "Unfettered Bring Batteries"
 		has "Unfettered Jump Drive 1: done"
 	on offer
 		conversation
-			`As you accept the job, one of the workers of the outfitter comes to speak to you, "Do you have any questions regarding this job," he asks. "You do understand it must be done as fast as possible; as our new ships are in great needs of these."`
+			`As you accept the job, one of the workers of the outfitter comes to speak to you, "Do you have any questions regarding this job," he asks. "You do understand it must be done as fast as possible, as our new ships are in great needs of these."`
 			label choose
 			choice
 				`	"Everything sounds clear."`
@@ -455,7 +455,7 @@ mission "Unfettered Bring Batteries"
 					goto where
 				`	"Can't you just make your own batteries?"`
 					goto why
-			`	"Well, as you have probably noticed, a lot of Hai use Ion Cannons in order to disable ships without doing too much damage to the crew. That in itself is a very good thing, but it also means that we need to actively work against it. Bigger batteries mean the guns will be less scrambled, and dimnishes the risk of being completely stranded in space."`
+			`	"Well, as you have probably noticed, a lot of Hai use Ion Cannons in order to disable ships without doing too much damage to the crew. That in itself is a very good thing, but it also means that we need to actively work against it. Bigger batteries mean the guns will be less scrambled, and diminishes the risk of being completely stranded in space."`
 				goto choose
 			label where
 			`	"These batteries are pretty big, so I would expect them to mostly be in big outfitters, such as Markerplace. They should not be too hard to find."`
@@ -547,7 +547,7 @@ mission "Unfettered Get Jump Drives(1)"
 	on stopover
 		dialog phrase "unfettered jump drive pickup dialog"
 		outfit "Jump Drive"
-		"spawn jd fleet 1"++
+		"spawn jd fleet 1" ++
 	npc evade
 		government "Cerberus"
 		to spawn
@@ -803,6 +803,6 @@ mission "Unfettered Bring More Coolers"
 		dialog phrase "generic cargo on visit"
 	on complete
 		outfit "Liquid Nitrogen Cooler" -10
-		dialog `You deliver the coolers to the usual contact of Mera, and he thanks you personally "You must have made a long trip to bing these here, for which I thank you. Here are <payment>. Whilst the price is not that high, your biggest reward is being able to buy the new Zephyr Coolings."`
+		dialog `You deliver the coolers to the usual contact of Mera, and he thanks you personally. "You must have made a long trip to bring these here, for which I thank you. Here are <payment>. Whilst the price is not that high, your biggest reward is being able to buy the new Zephyr Coolings."`
 		payment 1250000
 
