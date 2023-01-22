@@ -24,6 +24,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class ConditionSet;
+class ConditionsStore;
 class DataNode;
 class Fleet;
 class Government;
@@ -42,6 +44,10 @@ class Wormhole;
 // might choose it as a source or destination.
 class Planet {
 public:
+	using DescriptionStore = std::vector<std::pair<std::string, std::shared_ptr<ConditionSet>>>;
+	using DescriptionItem = DescriptionStore::value_type;
+
+
 	// Load a planet's description from a file.
 	void Load(const DataNode &node, Set<Wormhole> &wormholes);
 	// Legacy wormhole do not have an associated Wormhole object so
@@ -58,8 +64,13 @@ public:
 	void SetName(const std::string &name);
 	// Get the name used for this planet in the data files.
 	const std::string &TrueName() const;
-	// Get the planet's descriptive text.
-	const std::string &Description() const;
+	// Does the planet have a descriptive text?
+	bool HasDescription() const;
+	// Does description text have anything to display?
+	bool HasDescription(const ConditionsStore &vars) const;
+	// Concatinate all planet description text that should be displayed and return it.
+	std::string Description(const ConditionsStore &vars) const;
+	std::string Description() const;
 	// Get the landscape sprite.
 	const Sprite *Landscape() const;
 	// Get the name of the ambient audio to play on this planet.
@@ -74,8 +85,11 @@ public:
 	// Check whether there is a spaceport (which implies there is also trading,
 	// jobs, banking, and hiring).
 	bool HasSpaceport() const;
-	// Get the spaceport's descriptive text.
-	const std::string &SpaceportDescription() const;
+	// Does the planet have spaceport descriptive text to display?
+	bool HasSpaceportDescription(const ConditionsStore &vars) const;
+	// Concatinate all planet description text that should be displayed and return it.
+	std::string SpaceportDescription(const ConditionsStore &vars) const;
+	std::string SpaceportDescription() const;
 
 	// Check if this planet is inhabited (i.e. it has a spaceport, and does not
 	// have the "uninhabited" attribute).
@@ -143,10 +157,21 @@ public:
 
 
 private:
+	// Loads a description or spaceport node and returns the result.
+	static DescriptionItem LoadDescription(const DataNode &node);
+	// Is there at least one description that isn't blocked by a
+	// false "to display"?
+	static bool CheckDescription(const DescriptionStore &content, const ConditionsStore &vars);
+	// Concatinates all DescriptionItems. If vars are provided, then
+	// items with a false "to display" are skipped.
+	static std::string ConcatinateDescription(const DescriptionStore &content, const ConditionsStore *vars);
+
+
+private:
 	bool isDefined = false;
 	std::string name;
-	std::string description;
-	std::string spaceport;
+	DescriptionStore description;
+	DescriptionStore spaceport;
 	const Sprite *landscape = nullptr;
 	std::string music;
 

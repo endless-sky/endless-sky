@@ -39,7 +39,7 @@ SpaceportPanel::SpaceportPanel(PlayerInfo &player)
 	text.SetFont(FontSet::Get(14));
 	text.SetAlignment(Alignment::JUSTIFIED);
 	text.SetWrapWidth(480);
-	text.Wrap(player.GetPlanet()->SpaceportDescription());
+	text.Wrap(player.GetPlanet()->SpaceportDescription(player.Conditions()));
 
 	// Query the news interface to find out the wrap width.
 	// TODO: Allow Interface to handle wrapped text directly.

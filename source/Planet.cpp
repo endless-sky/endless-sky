@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Planet.h"
 
+#include "ConditionSet.h"
+#include "ConditionsStore.h"
 #include "DataNode.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -168,14 +170,10 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 			landscape = SpriteSet::Get(value);
 		else if(key == "music")
 			music = value;
-		else if(key == "description" || key == "spaceport")
-		{
-			string &text = (key == "description") ? description : spaceport;
-			if(!text.empty() && !value.empty() && value[0] > ' ')
-				text += '\t';
-			text += value;
-			text += '\n';
-		}
+		else if(key == "description")
+			description.push_back(LoadDescription(child));
+		else if(key == "spaceport")
+			spaceport.push_back(LoadDescription(child));
 		else if(key == "government")
 			government = GameData::Governments().Get(value);
 		else if(key == "required reputation")
@@ -295,10 +293,34 @@ const string &Planet::TrueName() const
 
 
 
-// Get the planet's descriptive text.
-const string &Planet::Description() const
+// Does the planet have a descriptive text?
+bool Planet::HasDescription() const
 {
-	return description;
+	return !description.empty();
+}
+
+
+
+// Does description text have anything to display?
+bool Planet::HasDescription(const ConditionsStore &vars) const
+{
+	return CheckDescription(description, vars);
+}
+
+
+
+// Get the planet's descriptive text.
+string Planet::Description(const ConditionsStore &vars) const
+{
+	return ConcatinateDescription(description, &vars);
+}
+
+
+
+// Get the planet's descriptive text, ignoring "to display"
+string Planet::Description() const
+{
+	return ConcatinateDescription(description, nullptr);
 }
 
 
@@ -351,10 +373,26 @@ bool Planet::HasSpaceport() const
 
 
 
-// Get the spaceport's descriptive text.
-const string &Planet::SpaceportDescription() const
+// Does the spaceport description text have anything to display?
+bool Planet::HasSpaceportDescription(const ConditionsStore &vars) const
 {
-	return spaceport;
+	return CheckDescription(spaceport, vars);
+}
+
+
+
+// Concatinate any planet spaceport descriptive text that is not disabled by "to display"
+string Planet::SpaceportDescription(const ConditionsStore &vars) const
+{
+	return ConcatinateDescription(spaceport, &vars);
+}
+
+
+
+// Get the planet's descriptive text.
+string Planet::SpaceportDescription() const
+{
+	return ConcatinateDescription(spaceport, nullptr);
 }
 
 
@@ -651,4 +689,39 @@ void Planet::ResetDefense() const
 	isDefending = false;
 	defenseDeployed = 0;
 	defenders.clear();
+}
+
+
+
+// Loads a description or spaceport node and returns the result.
+Planet::DescriptionItem Planet::LoadDescription(const DataNode &node)
+{
+	for(const DataNode &child : node)
+		if(child.Size() == 2 && child.Token(0) == "to" && child.Token(1) == "display")
+			return make_pair(node.Token(1) + "\n", make_shared<ConditionSet>(child));
+	return make_pair(node.Token(1) + "\n", shared_ptr<ConditionSet>());
+}
+
+
+
+// Is there at least one description that isn't blocked by a false "to display"?
+bool Planet::CheckDescription(const DescriptionStore &content, const ConditionsStore &vars)
+{
+	for(auto &item : content)
+		if(!item.second || item.second->Test(vars))
+			return true;
+	return false;
+}
+
+
+
+// Concatinates all DescriptionItems. If vars are provided, then items
+// with a false "to display" are skipped.
+string Planet::ConcatinateDescription(const DescriptionStore &content, const ConditionsStore *vars)
+{
+	string description;
+	for(auto &item : content)
+		if(!vars || !item.second || item.second->Test(*vars))
+			description += item.first;
+	return description;
 }
