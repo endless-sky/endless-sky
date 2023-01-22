@@ -58,8 +58,8 @@ start "hai"
 			has "Ask the Hai about the Unfettered"
 	on display
 		description "What if you had not grown up on New Boston? What if you had waited longer before taking to the skies?"
-		date "mid 3020"
 		thumbnail ""
+		date "middle of 3020"
 	to reveal
 		has "main plot completed"
 		has "Ask the Hai about the Unfettered"
@@ -67,6 +67,7 @@ start "hai"
 		name "Hai Start"
 		description "There could be interesting possibilities up north, once all crisies are resolved."
 		description "You could have started a different way, went a different path."
+		date "Jun 3020"
 		credits 1.431M
 		debt 1.431M
 	to unlock
