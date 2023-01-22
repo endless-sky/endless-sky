@@ -286,7 +286,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 
 
 
-bool MissionAction::RequiresShip(const string &shipId) const
+bool MissionAction::RequiresGiftedShip(const string &shipId) const
 {
 	for(auto &&it : action.Ships())
 		if(it.Id() == shipId)

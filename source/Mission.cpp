@@ -1046,20 +1046,20 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 
 
 
-bool Mission::RequiresShip(const string &shipId) const
+bool Mission::RequiresGiftedShip(const string &shipId) const
 {
-	auto requiresShip = [this, &shipId](Trigger trigger) -> bool
+	auto RequiresGiftedShip = [this, &shipId](Trigger trigger) -> bool
 	{
 		const auto &it = actions.find(trigger);
-		if(it != actions.end() && it->second.RequiresShip(shipId))
+		if(it != actions.end() && it->second.RequiresGiftedShip(shipId))
 			return true;
 		return false;
 	};
 
 	// Check if any uncompleted actions required for the mission needs this ship.
-	if(requiresShip(Trigger::COMPLETE) ||
-			(!stopovers.empty() && requiresShip(Trigger::STOPOVER)) ||
-			(!waypoints.empty() && requiresShip(Trigger::WAYPOINT)))
+	if(RequiresGiftedShip(Trigger::COMPLETE) ||
+			(!stopovers.empty() && RequiresGiftedShip(Trigger::STOPOVER)) ||
+			(!waypoints.empty() && RequiresGiftedShip(Trigger::WAYPOINT)))
 		return true;
 
 	return false;

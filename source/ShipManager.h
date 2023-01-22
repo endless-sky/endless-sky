@@ -40,16 +40,10 @@ public:
 
 	// The model of the concerned ship.
 	const Ship *ShipModel() const;
-	// The in game name of the given/taken ship.
-	const std::string &Name() const;
 	// The identifier that the given/taken ship will have.
 	const std::string &Id() const;
-	// The number of ships we will take/give.
-	int Count() const;
-	// If true, the ship will be taken no matter what; even if it is not in the same system, or parked.
-	bool Unconstrained() const;
-	// If true, the ship's outfits will be taken from the player, otherwise they will be left in the stock.
-	bool WithOutfits() const;
+	// If we are taking/giving ships.
+	bool Giving() const;
 
 
 private:

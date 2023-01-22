@@ -77,7 +77,7 @@ void ShipManager::Load(const DataNode &node)
 
 void ShipManager::Save(DataWriter &out) const
 {
-	out.Write(Count() > 0 ? "give" : "take", "ship",
+	out.Write(Giving() ? "give" : "take", "ship",
 		model->VariantName(), Name(), abs(Count()),
 		Unconstrained() ? "unconstrained" : "constrained",
 		WithOutfits() ? "with outfits" : "without outfits");
@@ -102,13 +102,13 @@ void ShipManager::Do(PlayerInfo &player) const
 	if(count > 0)
 	{
 		for(int i = 0; i < count; ++i)
-			shipName = player.GiftShip(model, Name(), Id())->Name();
+			shipName = player.GiftShip(model, name, Id())->Name();
 	}
 	else
 	{
 		auto toTake = SatisfyingShips(player);
 		if(toTake.size() == 1)
-			shipName = Name();
+			shipName = name;
 		for(const auto &ship : toTake)
 			player.TakeShip(ship.get(), WithOutfits() ? model : nullptr);
 	}
@@ -126,36 +126,16 @@ const Ship *ShipManager::ShipModel() const
 
 
 
-const string &ShipManager::Name() const
-{
-	return name;
-}
-
-
-
 const string &ShipManager::Id() const
 {
 	return id;
 }
 
 
-int ShipManager::Count() const
+
+bool ShipManager::Giving() const
 {
-	return count;
-}
-
-
-
-bool ShipManager::Unconstrained() const
-{
-	return unconstrained;
-}
-
-
-
-bool ShipManager::WithOutfits() const
-{
-	return withOutfits;
+	return count > 0;
 }
 
 
@@ -163,14 +143,14 @@ bool ShipManager::WithOutfits() const
 vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player) const
 {
 	const System *here = player.GetSystem();
-	const auto &shipID = player.GiftedShips().find(id);
-	bool foundShip = shipID != player.GiftedShips().end();
+	const auto &shipToTakeId = player.GiftedShips().find(id);
+	bool foundShip = shipToTakeId != player.GiftedShips().end();
 	vector<shared_ptr<Ship>> toSell;
 
 	for(const auto &ship : player.Ships())
 		if((ship->ModelName() == model->ModelName())
 			&& (unconstrained || (ship->GetSystem() == here && !ship->IsDisabled() && !ship->IsParked()))
-			&& (id.empty() || (foundShip && ship->UUID() == shipID->second))
+			&& (id.empty() || (foundShip && ship->UUID() == shipToTakeId->second))
 			&& (name.empty() || name == ship->Name()))
 		{
 			// If a variant has been specified, or the keyword "with outfits" is specified,
