@@ -54,6 +54,8 @@ target_sources(EndlessSkyLib PRIVATE
 	AfterburnerUsage.h
 	AlertLabel.cpp
 	AlertLabel.h
+	AmmoDisplay.cpp
+	AmmoDisplay.h
 	Angle.cpp
 	Angle.h
 	Armament.cpp
