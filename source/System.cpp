@@ -149,7 +149,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			else if(key == "ramscoop")
 			{
 				universalRamscoop = true;
-				ramscoopModifier = 0.;
+				ramscoopAddend = 0.;
 				ramscoopMultiplier = 1.;
 			}
 			else if(key == "trade")
@@ -182,46 +182,33 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				continue;
 		}
 
-		// Handle the attributes which can be "removed."
+		// Handle the attributes without values.
 		if(key == "hidden")
 			hidden = true;
 		else if(key == "inaccessible")
 			inaccessible = true;
+		else if(key == "ramscoop")
+		{
+			for(const DataNode &grand : child)
+			{
+				const string &key = grand.Token(0);
+				bool hasValue = grand.Size() >= 2;
+				if(key == "universal" && hasValue)
+					universalRamscoop = grand.Value(1);
+				else if(key == "addend" && hasValue)
+					ramscoopAddend = grand.Value(1);
+				else if(key == "multiplier" && hasValue)
+					ramscoopMultiplier = grand.Value(1);
+				else
+					child.PrintTrace("Skipping unrecognized attribute:");
+			}
+		}
 		else if(!hasValue && key != "object")
 		{
 			child.PrintTrace("Error: Expected key to have a value:");
 			continue;
 		}
-		else if(key == "ramscoop")
-		{
-			for(const DataNode &grand : child)
-			{
-				if(grand.Token(0) == "universal")
-					universalRamscoop = true;
-				else if(grand.Size() < 2)
-				{
-					grand.PrintTrace("Error: skipping ramscoop \"" + grand.Token(0) + "\" without a value:");
-					continue;
-				}
-				else if(grand.Token(0) == "remove")
-				{
-					if(grand.Token(1) == "universal")
-						universalRamscoop = false;
-					else if(grand.Token(1) == "modifier")
-						ramscoopModifier = 0.;
-					else if(grand.Token(1) == "multiplier")
-						ramscoopMultiplier = 1.;
-					else
-						grand.PrintTrace("Error: skipping unrecognized remove \"" + grand.Token(1) + "\" for ramscoop:");
-				}
-				else if(grand.Token(0) == "modifier")
-					ramscoopModifier = grand.Value(1);
-				else if(grand.Token(0) == "multiplier")
-					ramscoopMultiplier = grand.Value(1);
-				else
-					grand.PrintTrace("Error: skipping unrecognized \"" + grand.Token(0) + "\" ramscoop attribute:");
-			}
-		}
+		// Handle the attributes which can be "removed."
 		else if(key == "attributes")
 		{
 			if(remove)
@@ -641,7 +628,7 @@ double System::RamscoopFuel(double shipRamscoop, double scale) const
 	// Even if a ship has no ramscoop, it can harvest a tiny bit of fuel by flying close to the star,
 	// provided the system allows it.
 	double universal = 0.05 * scale * universalRamscoop;
-	return SolarWind() * .03 * scale * ramscoopMultiplier * (sqrt(shipRamscoop) + universal) + ramscoopModifier;
+	return SolarWind() * .03 * scale * ramscoopMultiplier * (sqrt(shipRamscoop) + universal) + ramscoopAddend;
 }
 
 

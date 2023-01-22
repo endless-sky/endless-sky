@@ -217,8 +217,8 @@ private:
 
 	// Defines whether this system provides ramscoop even to ships that do not have any.
 	bool universalRamscoop = true;
-	// A modifier that is added to the ramscoop, it can be positive or negative.
-	double ramscoopModifier = 0.;
+	// A value that is added to the ramscoop. It can be positive or negative.
+	double ramscoopAddend = 0.;
 	// A multiplier applied to ramscoop in the system.
 	double ramscoopMultiplier = 1.;
 
