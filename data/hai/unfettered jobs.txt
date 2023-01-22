@@ -481,30 +481,39 @@ mission "Unfettered Bring Ion Cannons"
 		has "Unfettered Jump Drive 1: done"
 	on offer
 		conversation
-			`Seeing this peculiar request about Ion Cannons, which the Unfettered do have a bunch of, you go and look for a captain who made this job request, to ask them why they use those weapons. It does not take long to find them, and it seems like they are willing to answer your questions, at least partly, "I understand why you're wondering this, <first>... May I call you <first>? There are not many non pirates that come and supply us with jump drives, if at all, and that is how I know your name."`
+			`After accepting this job, you go look for the captain who placed it in order to ask for more detailed informations. It does not take long to find them, and it seems like she is willing to answer at least some of your questions. "Curious, are we, <first>? Oh, may I call you <first>? You reputation of selling jump drives precedes you," she says with a wink.`
 			choice
 				`	"Sure."`
 					goto sure
 				`	"I prefer we stick to a professional relation, call me <last>."`
 			`	"Very well, not that it matters much anyway."`
 			label sure
-			`	"You see, if we use Ion it is not really for the same reason as the other Hai do, to hurt others of our kind as little as possible, although that is a noble cause indeed, it is not being noble that brings you food," she laughes a bit, and then comes back to a serious attitude, "No. If we do it, it is because it forces the Hai to use more batteries on their ships, as to not be disabled too easily, or defenceless because of weapon scrambling. So, we do not use ion weapons most of the time, but sometimes we surprise them with a big amount of them. Expecting this, the Hai are always forced to keep a good amount of batteries, and, thus, to have less guns, shields..."`
+			`	"Oh, I almost forgot my manners. I hope you will have a good raiding, <last>. I am Binkeili." she says with a smile.`
+			`	"Now about this request, I want to make sure you understand, so allow me to be blunt: if we use Ion Cannons, it is not to avoid casualties amongst our brethren, like others may say. That may be a noble cause indeed, but do those bring you food? Ha!"`
+			`	"No. If we do it, it is because it forces the Hai to use more batteries on their ships, as to not be disabled too easily, or defenceless because of weapon jamming. So, we do not use ion weapons most of the time, but sometimes we surprise them with a big amount of them. Expecting this, the Hai are always forced to keep a good amount of batteries, and to not use too many jammers, since we rely so heavily on trackers. As they make space for batteries, they have to sacrifice armament, or defense!"`
 			choice
 				`	"Thank you for the explanation, I will bring you these Ion Cannons."`
 					goto money
 				`	"And where can I find these Ion Cannons? Are they not restricted?"`
+				`	"What did you mean, 'you hope I have a good raiding'?"`
+					goto raiding
 			`	"The Hai let anyone buy them, provided you have the money, of course."`
 			label money
 			action
 				payment 1000000
-			`	"I will give you <payment> already, to make sure you can invest it into these Ion Cannons without any financial trouble. Do not even think about trying to steal that money, captain..."`
+				log "Minor People" "Binkeili" `An Unfettered that was interested in weapons dealing, and maybe something else, too.`
+			`	"I will give you <payment> already, to make sure you can easily buy these Ion Cannons. Do not even think about trying to steal that money, captain. You will receive the last later."`
+				accept
+			label raiding
+			`	"Oh, that is just an expression we use, since we never know when we will see each others again, if at all. Too many do not come back from the raids, or even worse, they could come back with an empty cargo bay. Now, back to the task at hand!"`
+				goto money
 	on abort
-		dialog `You receive a message from the captain when aborting the job. "Did you really think you could scam me like this? Think again."`
-		fine 1000000
+		dialog `You receive a message from the captain. "Did you really think you could scam me like this? Think again."`
+		fine 1600000
 	on complete
 		outfit "Ion Cannon" -2
 		payment 600000
-		dialog `You go bring the Ion Cannons personally to the captain, "Thanks, I will bring those to my warlord as soon as possible. Here is an extra <payment> for the journey. I wish you safe travels!" She seems in a bit of a rush, and leaves straight away.`
+		dialog `You bring the Ion Cannons personally to the captain, who is excited of the news "Thanks, I will bring those to my warlord as soon as possible. Here is an extra <payment> for the journey. I wish you safe travels!" She seems in a bit of a rush, and leaves straight away.`
 
 
 
