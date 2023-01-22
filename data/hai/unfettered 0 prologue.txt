@@ -353,7 +353,7 @@ mission "Unfettered Jump Drive Trading"
 				to display
 					"unfettered: blade rodeo" > 1
 				goto blade
-			`	You exit your ship and immediately the engineer starts to lead you to the outfitter. "We have weapons to show you for your assistance in providing us with jump drives. For now you will only be allowed to trade for the one, but if you continue to provide assistance to us, you may prove yourself worthy to access the others." They never stop to ask if you are actually interested in new weapons.`
+			`	You exit your ship and immediately the engineer starts leading you to the outfitter. "We have weapons to show you for your assistance in providing us with jump drives. For now you will only be allowed to trade for the one, but if you continue to provide assistance to us, you may prove yourself worthy to access the others." They never stop to ask if you are actually interested in new weapons.`
 			label repeat
 			choice
 				`	(Follow them.)`
