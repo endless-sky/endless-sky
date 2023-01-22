@@ -715,47 +715,9 @@ mission "Hai Reveal [B09] Scanning Devil-Hide"
 			`	He pauses while getting ready to leave. "Oh, and you should probably tell her about the Hai at this point. We don't know if she knows, but if she doesn't she needs to know the basics. The scanners will flag anything we can explicitly identify as Hai tech, so the time has come. Good luck."`
 				accept
 	on enter "Devil-Run"
-		log `Found a strange spatial anomaly and a wormhole in the Devil-Run system. The wormhole is nothing out of the ordinary, and leads to a region just beyond The Deep. However, the spatial anomaly seems to be hiding the star system, and Giti says it would prevent any attempts to jump directly to it. To enter the system, we had to jump to another location, about 0.18 light-years away.`
 		conversation
 			`During the trip you take the time to tell Giti the basics about the Hai. She had already known they existed, but hadn't been privy to any details of what was going on now. Knowing that the disappearances you've been hunting extend to Hai space seems to answer more questions than it creates and she takes the revelation of how significant this is to current events easily in stride.`
-			`Once you reach Devil-Run, everything turns pink, and you see sights you never thought possible. Giti turns on the scanning equipment.`
-			label scan
-			choice
-				`	"Tell me about the wormhole."`
-					goto wormhole
-					to display
-						not "Hai Reveal [B09] Scanning Devil-Hide: label wormhole"
-				`	"Do you know what those strange blue and pink lines are?"`
-					goto pink
-					to display
-						not "Hai Reveal [B09] Scanning Devil-Hide: label pink"
-				`	"What is that spatial anomaly?"`
-					goto anomaly
-					to display
-						not "Hai Reveal [B09] Scanning Devil-Hide: label anomaly"
-				`	"Let's move on and see what's in Devil-Hide"`
-					decline
-					to display
-						has "Hai Reveal [B09] Scanning Devil-Hide: label wormhole"
-			label wormhole
-			action
-				set "Hai Reveal [B09] Scanning Devil-Hide: label wormhole"
-			`	"The wormhole is nothing remarkable. The wormholes at Ultima Thule and Deneb have the same readings. Certainly, it is stable and we can fly through it without worrying about spaghettification. I'm not surprised to find a wormhole here, given how far away Devil-Hide is. The Deneb wormhole leads to another galaxy; Devil-Hide is just outside of our own."`
-				goto scan
-			label anomaly
-			action
-				set "Hai Reveal [B09] Scanning Devil-Hide: label anomaly"
-			`	"It looks like a collapsing wormhole, but there's a solid object at its core. That may, perhaps, be keeping the wormhole from collapsing entirely. Any hyperwaves sent to it scatter every which-way. This would wreak havoc with anyone trying to plot a course here through hyperspace. If my life depended on it, I'd guess the anomaly is what caused the jump drive to take us away from the jump target.`
-			choice
-				`	"What do you mean?"`
-				`	"If we're not at the jump target, where are we?"`
-			`	"Well, we're about 0.18 light-years away from the location you tried to jump to. Actually, we're within 0.007% of the square root of pi light-years away. I'm not a hyperfield theorist, but I expect this anomaly has something to do with it. When we take this data back home, I'm sure an army of scientists will look it over."`
-				goto scan
-			label pink
-			action
-				set "Hai Reveal [B09] Scanning Devil-Hide: label pink"
-			`	"The spatial anomaly is slowly leaking some pink material that defies all analysis. It bears some similarity to the particles in a jump drive, which also defy all analysis. I guess, since the only similarities are that I can't analyze them, and they're pink, it may all be a pink herring. I wonder if it has something to do with the system being invisible? When we get home, I'll be sure every to have hyperspace researcher I know give it a thorough going-over."`
-				goto scan
+			`Once you reach Devil-Run, you see a wormhole, an unsurprising sight given the distance to Elenchus.`
 	on enter "Devil-Hide"
 		log `Found a bizarre planet with a subterranean colony in its moon. The planet defies analysis and seems to violate the known laws of physics. There is enough evidence of Hai tech to assume Hai presence in addition to the humans able to be detected. However, the scanners could not see the full extent of what's there due to interference from the planet.`
 		conversation
@@ -1257,10 +1219,6 @@ mission "Hai Reveal [B13] Freedom"
 					goto "cadmium"
 					to display
 						not "Hai Reveal [B13] Freedom: label cadmium"
-				`	"Can you tell me about Devil-Run and the anomaly there?"`
-					goto anomaly
-					to display
-						not "Hai Reveal [B13] Freedom: label anomaly"
 				`	"What can you tell me about this city?"`
 					goto place
 					to display
@@ -1308,12 +1266,6 @@ mission "Hai Reveal [B13] Freedom"
 			`	"Indirectly," you reply.`
 			`	The Hai leader continues, "Fascinating, we always wondered if it would pique someone's attention! Our Korath friends have ships equipped with these remarkable "Systems Cores", which are apparently vital to all Korath ships. None of the surviving Korath had the knowledge to replicate it, but they were asked to try and many of them have an uncanny knack for engineering. With their help, we attempted to build some equivalents of our own. Being not quite right, they work, but they fuse irrevocably with the ship, and some flaw in their function causes cadmium particulate. The cadmium is shed by the system maintenance processes into the air, where it is recirculated, and ignored by the system intended to filter it out since it's a part of the system itself."`
 			`	The human leader adds, "We worked out how to reduce that effect to safe levels, but kept that information to ourselves in the hope that it would draw some attention. It tended to make the pirates sick more often than anyone else, which also seemed to mean that more of their victims escaped."`
-				goto questions
-			label anomaly
-			action
-				set "Hai Reveal [B13] Freedom: label anomaly"
-			`	The human leader answers. "Devil-Run was one of several systems listed on a cartouche found on the anarchist colony of Freedom soon after it was settled. The settlers dug deeper and found a ship of unknown design with a jump drive installed, and two more in its cargo bay. They took this as an obvious invitation to explore, so they recorded the cartouche, destroyed it, and surveyed every star system. Some had an 'anomaly' as you called it, and those systems were undetectable by any known means.`
-			`	"As for the 'anomaly', it has a mechanism at its heart. Something shaped like a tree, about a kilometer long, and six hundred meters wide. Actually, it's similar in shape to the ship the Freedom settlers found, just a whole lot bigger. We can't get closer to it than about 250,000 kilometers, so we don't know much about it. It is clearly artificial, and deliberate, but whatever it is, it has been hiding us for over a century."`
 				goto questions
 			label home
 			action
