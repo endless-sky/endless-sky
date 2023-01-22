@@ -151,7 +151,7 @@ public:
 	// Add a captured ship to your fleet.
 	void AddShip(const std::shared_ptr<Ship> &ship);
 	// Buy, receive or sell a ship.
-	// In the case of a gift, return a pointer to it.
+	// In the case of a gift, return a pointer to the newly instantiated ship.
 	void BuyShip(const Ship *model, const std::string &name);
 	const Ship *GiftShip(const Ship *mode, const std::string &name, const std::string id);
 	void SellShip(const Ship *selected);
@@ -331,8 +331,8 @@ private:
 	// Helper function to update the ship selection.
 	void SelectShip(const std::shared_ptr<Ship> &ship, bool *first);
 
-	// Add a new ship corresponding to this model and name to the ships list.
-	void AddShipModel(const Ship *model, const std::string &name);
+	// Instantiate the given model and add it to the player's fleet.
+	void AddStockShip(const Ship *model, const std::string &name);
 	// When we remove a ship, forget it's stored Uuid.
 	void ForgetGiftedShip(const Ship &oldShip);
 
