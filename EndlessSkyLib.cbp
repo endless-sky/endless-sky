@@ -292,6 +292,10 @@
 		<Unit filename="source/Rectangle.h" />
 		<Unit filename="source/RingShader.cpp" />
 		<Unit filename="source/RingShader.h" />
+		<Unit filename="source/RouteEdge.cpp" />
+		<Unit filename="source/RouteEdge.h" />
+		<Unit filename="source/RoutePlan.cpp" />
+		<Unit filename="source/RoutePlan.h" />
 		<Unit filename="source/Sale.h" />
 		<Unit filename="source/SavedGame.cpp" />
 		<Unit filename="source/SavedGame.h" />
