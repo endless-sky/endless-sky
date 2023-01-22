@@ -239,7 +239,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 		message = "(not sold here)";
 
 	// For now there is only default or import.
-	if(CustomSaleManager::Imports(*outfit))
+	if(!CustomSaleManager::CanBuy(*outfit))
 		message += " (" + CustomSale::GetShown(CustomSale::SellType::IMPORT) + ")";
 
 	if(!message.empty())
@@ -354,7 +354,7 @@ bool OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 		return false;
 
 	bool isAlreadyOwned = checkAlreadyOwned && IsAlreadyOwned();
-	if(!((outfitter.Has(selectedOutfit) && !CustomSaleManager::Imports(*selectedOutfit))
+	if(!((outfitter.Has(selectedOutfit) && CustomSaleManager::CanBuy(*selectedOutfit))
 			|| player.Stock(selectedOutfit) > 0 || isAlreadyOwned))
 		return false;
 
@@ -445,7 +445,7 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 			else
 			{
 				// Check if the outfit is for sale or in stock so that we can actually buy it.
-				if(!planet->Outfitter().Has(selectedOutfit) || CustomSaleManager::Imports(*selectedOutfit) ||
+				if(!planet->Outfitter().Has(selectedOutfit) || !CustomSaleManager::CanBuy(*selectedOutfit) ||
 						player.Stock(selectedOutfit) <= 0)
 					continue;
 				player.Cargo().Add(selectedOutfit);
@@ -527,7 +527,7 @@ void OutfitterPanel::FailBuy() const
 		return;
 	}
 
-	if(CustomSaleManager::Imports(*selectedOutfit))
+	if(!CustomSaleManager::CanBuy(*selectedOutfit))
 	{
 		GetUI()->Push(new Dialog("You can only sell this outfit here, "
 			"it is meant to be imported, generally for a good price."));

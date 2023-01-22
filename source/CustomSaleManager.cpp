@@ -36,10 +36,10 @@ void CustomSaleManager::Refresh(const Planet &planet, const ConditionsStore &con
 
 
 
-bool CustomSaleManager::Imports(const Outfit &outfit)
+bool CustomSaleManager::CanBuy(const Outfit &outfit)
 {
 	const auto &it = customSales.find(CustomSale::SellType::IMPORT);
-	return it != customSales.end() && it->second.Has(outfit);
+	return it == customSales.end() || !it->second.Has(outfit);
 }
 
 
