@@ -381,7 +381,7 @@ inline double Weapon::Piercing() const { return piercing; }
 inline double Weapon::SplitRange() const { return splitRange; }
 inline double Weapon::TriggerRadius() const { return triggerRadius; }
 inline double Weapon::BlastRadius() const { return blastRadius; }
-inline double Weapon::SafeRange() const { return minSafeDistance; }
+inline double Weapon::SafeRange() const { return safeRange; }
 inline double Weapon::HitForce() const { return TotalDamage(HIT_FORCE); }
 
 inline bool Weapon::IsSafe() const { return isSafe; }
