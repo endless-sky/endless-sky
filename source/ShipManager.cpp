@@ -33,7 +33,7 @@ void ShipManager::Load(const DataNode &node)
 {
 	if(node.Size() < 3 || node.Token(1) != "ship")
 	{
-		node.PrintTrace("Error: Skipping unsupported \"" + token + "\" syntax:");
+		node.PrintTrace("Error: Skipping unsupported \"" + child.Token(0) + "\" syntax:");
 		return;
 	}
 	bool taking = node.Token(0) == "take";
