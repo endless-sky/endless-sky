@@ -5432,16 +5432,16 @@ mission "A dead man's path I"
 	on offer
 		conversation
 			`The spaceport on <origin> is lively tonight. There are porters running to and from depots with crates, crewmen buying rounds of drinks for each other around the bars before they hit the bed, and bands of Navy officers jovially greeting captains and systematically inspecting ships. The energy and self-purpose of this spaceport is on full display this one night.`
-			`	The only exception to the bustle and activity are a young woman and man, both dressed very formally, who are seemingly lost and having no luck approaching anybody. You watch they drift from one person to another, each time being sent off without an answer. Finally, they come towards your direction.`
+			`	The only exception to the bustle and activity are a young woman and man, both dressed very formally, who are seemingly lost and having no luck approaching anybody. You watch they drift from one person to another, each time being sent off without an answer. Finally, they come towards you.`
 			`	Their faces show clearly that they are on their last legs of hope. It is only with reluctance that the woman says, "Excuse me, are you a spaceship captain?"`
 			choice
 				`	"Yes, my name's Captain <last>."`
-				`	"Depends on what you are asking."`
+				`	"Depends on what you want."`
 					goto suspicious
-			`	Her face brightens up with a smile, and she continues, "That's good to hear! My brother and I were searching for someone who could give us a ride to New China, we received notice that our father's last will is going to be published there. Do you think you could bring us there? We will pay you for your service, of course."`
+			`	Her face brightens up with a smile, and she continues, "That's good to hear! My brother and I were searching for someone who could give us a ride to New China. We received notice that our father's last will is going to be published there. Do you think you could bring us there? We will pay you for your service, of course."`
 				goto helpornot
 			label suspicious
-			`    She laughs, "There's no need to be suspicious, my brother and I were just searching for someone who could give us a ride to New China. We received notice that our father's last will is going to be published there. Do you think you could bring us there? We will pay you for your service, of course.`
+			`    She laughs. "There's no need to be suspicious, my brother and I were just searching for someone who could give us a ride to New China. We received notice that our father's last will is going to be published there. Do you think you could bring us there? We will pay you for your service, of course.`
 			label helpornot
 			choice
 				`	"Of course I can."`
@@ -5450,7 +5450,7 @@ mission "A dead man's path I"
 			`	Her smile fades away as you say that, but they both simply nod and walk away out the gates of the spaceport, with both heads looking down.`
 				decline
 			label agreed
-			`    "Fantastic! My name is Sophie, and this is my younger brother," she says, pointing at the man to her side, who goes to shake your hand. "Hi, I'm Liam. We have been looking for a ride for some time now, we've already started worrying that we wouldn't get there in time! You'll have to bring us there quickly."`
+			`    "Fantastic! My name is Sophie, and this is my younger brother," she says, pointing at the man to her side, who goes to shake your hand. "Hi, I'm Liam. We've been looking for a ride for some time now. We were starting to worry that we wouldn't get there in time! You'll have to bring us there quickly."`
 			choice
 				`	"Don't worry, you'll be surprised how fast my ship flies. We'll get there in no time."`
 					goto notime
@@ -5490,7 +5490,7 @@ mission "A dead man's path II"
 			choice
 				`	"But what do you want me to do?"`
 				`	"Sorry, but I'd be stupid to accept a mission I don't know anything about."`
-			`	Sophie looks at her brother amusedly. "Of course, my brother just can't wait to get started!" She turns back to you. "Maybe I should start with who our father was. We didn't get to know him very well, he came home only occasionally. Don't get me wrong, our parents weren't fighting, but his passion just did not allow him to stay in one place for very long. He was a captain, not unlike you, and he was restless to explore even the furthest parts of the galaxy. We believe he traveled further than most human captains; sometimes he brought small items back home that nobody could explain."`
+			`	Sophie looks at her brother with an amused look on her face. "Of course, my brother just can't wait to get started!" She turns back to you. "Maybe I should start with who our father was. We didn't get to know him very well - he came home only occasionally. Don't get me wrong, our parents weren't fighting, but his passion just didn't allow him to stay in one place for very long. He was a captain, not unlike you, and he was restless to explore even the furthest parts of the galaxy. We believe he traveled further than most human captains; sometimes he brought small items back home that nobody could explain."`
 			`	She pauses for a moment, lost in her memories. "Anyways," she continues, "in his testament he told us that he left something behind for us on Prime. He said that he would not make it easy, though; he was a great fan of fantasy books, and in those stories there is always something mysterious at play that we do not understand the meaning of until the very end. Instead, he told us of a few systems that before we should visit before we go to Prime.`
 			`	"Of course, it would be much easier if we could go directly to Prime, but we want to respect our father's last will." She looks directly at you now. "And that is why we need your help. Could you help us again and take us through all these systems?"`
 			choice
@@ -5544,7 +5544,7 @@ mission "A dead man's path II"
 			label maglev
 			`	You take a maglev from the spaceport and get a tour through some of the regions of Prime. Although it is hard to get any detail because of the high speed, you get a good impression. After an hour you end up close to a mountain that stands alone against the rest of the landscape.`
 			label front-mountain
-			`	Liam, with the help of the map, guides all of you to a flat wall. He looks a bit embarrassed as he says, "There's a phrase our father left in the instructions: 'Edr- i fen'. I do not know what it means, but I'm certain it has something to do with one of these fantasy novels he used to read."`
+			`	Liam, with the help of the map, guides all of you to a flat wall. He looks a bit embarrassed as he says, "There's a phrase our father left in the instructions: 'Edr- i fen'. I don't know what it means, but I'm certain it has something to do with one of these fantasy novels he used to read."`
 			choice
 				`	"Sounds funny, but let's say it."`
 				`	"You've got a strange dad, but I like his sense of humor."`
@@ -5557,13 +5557,13 @@ mission "A dead man's path II"
 				`	"We don't know what's inside there. Be careful."`
 			`	"Well, now that you say it, I recently bought a small camera drone," Liam responds. "We can use it to scout out the hallway. It's only in infrared, so we won't see too many details," he adds. Liam starts the drone and guides it using a small remote control with integrated display. After some time, the drone flies back out and he tells you, "I think it is safe. We can go."`
 			label enter
-			`	The three of you enter the hallway behind the opening in single file. Strangely, the stone walls are perfectly smoothed off, and the light that guides you through seems to come out of nowhere. "To use alien technology for something like this," Sophie laughs, "That's totally our dad."`
-			`	For a long while, the three of you continue through the stone hallway, the light following your movements, until it opens up into a dome-shaped room, brilliantly bathed in blue light. On the walls, there are all kinds of alien artifacts lined up next to each other, but at the center of the room there is a pedestal with a sword inserted into it. A small tablet stands in a socket in front of it.`
+			`	The three of you enter the hallway behind the opening in single file. Strangely, the stone walls are perfectly smoothed off, and the light that guides you through seems to come out of nowhere. "To use alien technology for something like this," Sophie laughs, "that's totally our dad."`
+			`	For a long while, the three of you continue through the stone hallway, the light following your movements, until it opens up into a dome-shaped room brilliantly bathed in blue light. On the walls, there are all kinds of alien artifacts lined up next to each other, but at the center of the room there is a pedestal with a sword inserted into it. A small tablet stands in a socket in front of it.`
 			choice
 				`	(Go up to the sword.)`
 						goto sword-scene
 				`	(Take a look around first.)`
-			`	You walk around to the right of the dome to a collection of various alien artifacts, all steel in color and rather blocky. "Wow, he must have always brought us back the small items from his expeditions, because these artifacts over here are huge!" Liam exclaims from another part of the dome. "How did he even move all these here?"`
+			`	You walk around to the right of the dome to the collection of alien objects, all steel in color and rather blocky. "Wow, he must have always brought us back the small items from his expeditions, because these artifacts over here are huge!" Liam exclaims from another part of the dome. "How did he even move all these here?"`
 			`	Now that Liam points it out, many of the larger artifacts over his way look similar to the Sheragi technology you studied with Albert Foster.`
 				to display
 					has "Sheragi Archaeology: The Emerald Sword 3: done"
@@ -5576,7 +5576,7 @@ mission "A dead man's path II"
 			`			This room you are in now is the culmination of all my work. I hope you understand that it was for your sake that I kept these a secret. My journey was long and unforgiving, but it was my life. I hope you continue that journey, to understand the universe a little better.`
 			`			Your father."`
 			`	Understanding the personal nature of the message, you leave the two of them alone for a bit, walking around and looking at the artifacts on the left of the dome.`
-			`	After some time, the siblings call you back to them. Sophie says, "Captain <last>, Liam and I have thought through about this, and we think that we would never be able to live up to our father's expectations if if we kept this sword. We can study all these artifacts and understand more about the universe through them, but we cannot study this one. To understand it, it needs to be used.`
+			`	After some time, the siblings call you back. Sophie says, "Captain <last>, Liam and I have thought through about this, and we think that we would never be able to live up to our father's expectations if if we kept this sword. We can study all these artifacts and understand more about the universe through them, but we cannot study this one. To understand it, it needs to be used.`
 			`	"This sword was always at our father's side, and it has been many places. Take it to many more." She pulls the sword from the pedestal, and gives it one last look over before handing over it to you. "It is yours now."`
 			choice
 				`	"I would be more than grateful to accept it."`
@@ -5588,13 +5588,13 @@ mission "A dead man's path II"
 			choice
 				`	"Yes, I'm sure."`
 					goto declined
-				`	"Well, if you frame it that way, I will take it."`
+				`	"Well, if you frame it that way, I'll take it."`
 			label accepted
 			action
 				outfit "Old Man's Sword" 1
 				payment 50000
 			`	"Well, we'll need some time to take it all in and arrange things, find a place to stay on Prime and all that," Sophie says, "but we won't keep you from your ship any longer. It was a pleasure to travel with you, Captain <last>."`
-			`	Liam adds, "We will always thank you for helping us with our father's will, we never imagined that we would come so far and we would have never done it without you. It means so much to us. We wish you well through the stars, Captain <last>."`
+			`	Liam adds, "We will always thank you for helping us with our father's will. We never imagined that we would come so far and we would have never done it without you. It means so much to us. We wish you well through the stars, Captain <last>."`
 			`	After Liam hands you a credit chip of <payment>, you say goodbye to the two siblings and leave them in their father's mysterious dome.`
 				decline
 			label declined
