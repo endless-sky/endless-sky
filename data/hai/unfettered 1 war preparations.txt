@@ -563,7 +563,7 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 	substitutions
 		# translation to the Sestor language
 		"<we, us>" "'Tek'"
-		"<we, us>" "'Tek'"
+		"<we, us>" "We"
 			has "event: unfettered: better sestor translators"
 		<not> "'Ak'"
 		<not> "not"
