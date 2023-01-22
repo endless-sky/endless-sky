@@ -2,9 +2,13 @@ set(ES_CONFIG "${CMAKE_CURRENT_SOURCE_DIR}/integration/config")
 
 # Get all the tests to run.
 execute_process(
-	COMMAND "${ES}" --config "${ES_CONFIG}" --tests
+	COMMAND ${ES} --config "${ES_CONFIG}" --tests
 	OUTPUT_VARIABLE INTEGRATION_TESTS
+	ERROR_QUIET
 )
+# Delete the errors.txt file if any. This file is generated if there were
+# parse errors, but we don't care about those.
+file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/integration/config/errors.txt")
 
 string(REPLACE "\n" ";" INTEGRATION_TESTS_LIST "${INTEGRATION_TESTS}")
 
