@@ -3515,7 +3515,7 @@ system "Al Hurr"
 	pos -432 -491
 	government "Uninhabited"
 	belt 1312
-	haze _menu/pug-cloak
+	haze _menu/haze-brown
 	trade "Clothing" 201
 	trade "Electronics" 658
 	trade "Equipment" 484
@@ -3553,10 +3553,6 @@ system "Al Hurr"
 			sprite planet/dust1
 			distance 216
 			period 11.1964
-	object
-		sprite star/pug-cloaker
-		distance 2304.97
-		period 611.113
 
 system Alioth
 	pos -620 315
@@ -9625,7 +9621,7 @@ system Devil-Run
 	government Uninhabited
 	arrival 1080
 	habitable 1080
-	haze _menu/pug-cloak
+	haze _menu/haze-brown
 	trade Clothing 271
 	trade Electronics 722
 	trade Equipment 623
@@ -9646,10 +9642,6 @@ system Devil-Run
 	object "Devil-Run Wormhole"
 		sprite planet/wormhole
 		distance 1805.33
-		period 933.647
-	object
-		sprite star/pug-cloaker
-		distance 1205.33
 		period 933.647
 
 system Diespiter
