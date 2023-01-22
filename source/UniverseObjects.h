@@ -63,6 +63,7 @@ class Sprite;
 class UniverseObjects {
 	// GameData currently is the orchestrating controller for all game definitions.
 	friend class GameData;
+	friend class TestData;
 public:
 	// Load game objects from the given directories of definitions.
 	std::future<void> Load(const std::vector<std::string> &sources, bool debugMode = false);
