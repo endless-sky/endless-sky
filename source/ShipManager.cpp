@@ -161,6 +161,7 @@ vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player) 
 			&& (id.empty() || (foundShip && ship->UUID() == shipToTakeId->second))
 			&& (name.empty() || name == ship->Name()))
 		{
+			bool hasRequiredOutfits = true;
 			// If a variant has been specified, or the keyword "with outfits" is specified,
 			// this ship must have each outfit specified in that variant definition.
 			if(model->VariantName() != model->ModelName() || withOutfits)
@@ -169,10 +170,14 @@ vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player) 
 					const auto &outfit = ship->Outfits().find(it.first);
 					int amountEquipped = (outfit != ship->Outfits().end() ? outfit->second : 0);
 					if(it.second > amountEquipped)
+					{
+						hasRequiredOutfits = false;
 						continue;
+					}
 				}
 
-			satisfyingShips.emplace_back(ship);
+			if(hasRequiredOutfits)
+				satisfyingShips.emplace_back(ship);
 
 			// We do not want any more ships than is specified.
 			if(static_cast<int>(satisfyingShips.size()) >= abs(count))

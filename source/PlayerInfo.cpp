@@ -1366,7 +1366,7 @@ void PlayerInfo::Land(UI *ui)
 			// depreciation records. Transfer it to a throw-away record:
 			Depreciation().Buy(**it, date.DaysSinceEpoch(), &depreciation);
 
-			ForgetGiftedShip(it);
+			ForgetGiftedShip(*it->get());
 			it = ships.erase(it);
 		}
 		else
