@@ -334,7 +334,7 @@ private:
 	// Instantiate the given model and add it to the player's fleet.
 	void AddStockShip(const Ship *model, const std::string &name);
 	// When we remove a ship, forget it's stored Uuid.
-	void ForgetGiftedShip(const Ship &oldShip);
+	void ForgetGiftedShip(const Ship &oldShip, bool failsMissions = true);
 
 	// Check that this player's current state can be saved.
 	bool CanBeSaved() const;

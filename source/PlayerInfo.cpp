@@ -1159,7 +1159,7 @@ void PlayerInfo::TakeShip(const Ship *shipToTake, const Ship *outfitsToDestroy)
 				else
 					stock[it.first] += it.second;
 			}
-			ForgetGiftedShip(*it->get());
+			ForgetGiftedShip(*it->get(), false);
 			ships.erase(it);
 			flagship.reset();
 			break;
@@ -4126,16 +4126,17 @@ void PlayerInfo::AddStockShip(const Ship *model, const string &name)
 
 
 // When we remove a ship, forget its stored ID.
-void PlayerInfo::ForgetGiftedShip(const Ship &oldShip)
+void PlayerInfo::ForgetGiftedShip(const Ship &oldShip, bool failsMissions)
 {
 	const EsUuid &id = oldShip.UUID();
 	auto shipToForget = find_if(giftedShips.begin(), giftedShips.end(),
 		[&id](const std::pair<const string, EsUuid> &shipId) { return shipId.second == id; });
 	if(shipToForget != giftedShips.end())
 	{
-		for(auto &mission : missions)
-			if(mission.RequiresGiftedShip(shipToForget->first))
-				mission.Fail();
+		if(failsMissions)
+			for(auto &mission : missions)
+				if(mission.RequiresGiftedShip(shipToForget->first))
+					mission.Fail();
 		giftedShips.erase(shipToForget);
 	}
 }
