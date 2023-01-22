@@ -1503,7 +1503,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 						not "Hai Reveal: who is Aimet?"
 				`	"What is the message?"`
 					goto message
-			`	As the beeping intensifies, Teeneep thinks for a second before responding. "Well, the answer-" but before she can finish, several Hai enter the room, surrounding Sayari. Two armed guards look sternly at the startled Teeneep, while a Hai wearing unusual marks of office bears an intensely unemotional face.`
+			`	As the beeping intensifies, Teeneep thinks for a moment before responding. "Well, the answer-" but before she can finish, several Hai enter the room, surrounding Sayari. Two armed guards look sternly at the startled Teeneep, while a Hai wearing unusual marks of office bears an intensely unemotional face.`
 				goto nervous
 			label message
 			`	The beeping intensifies and Teeneep shows you the message. "Teeneep is hereby subpoenaed by the full Elder Council for an immediate emergency meeting." No sooner do you read this than Sayari returns, aside several other Hai. Two armed guards look sternly at Teeneep, while a Hai wearing unusual marks of office bears an intensely unemotional face.`
@@ -1572,7 +1572,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			label whazzit
 			action
 				set "Hai Reveal [A11] Sound the Alarm: asked about files"
-			`	"Oh, all manner of information. Current and past interactions of our species, including the Unfettered, with other races. The Korath, Human, Quarg, and Wwww-" She twitches nervously, as if she caught herself before saying something she shouldn't. "-wwweeeellll, given the situation, I'd expect details about Teeneep's past, the Unfettered, and our interactions with human pirates.`
+			`	"Oh, all manner of information. Current and past interactions of our species, including the Unfettered, with other races. The Human, Quarg, Korath, and Wwww-" She twitches nervously, as if she caught herself before saying something she shouldn't. "-wwweeeellll, given the situation, I'd expect details about Teeneep's past, the Unfettered, and our interactions with human pirates.`
 			`	"You'll have a clearance level of Hazel-2, which gives you some juicy information. Some pages will be redacted, but there will be enough lingering text so you'll know the nature of the redacted information. Even the redactions are telling: you will learn about our Elders by the nature of what they choose to redact.`
 			`	"This is definitely a once-in-a-lifetime opportunity; it is exceptionally rare for the Hai to share Hazel-level information with outsiders. Oh, my!" She nibbles her fingers and thinks for a moment. "Your supporters in the Elder Council must place supreme trust in you to take this risk! I will, of course, relay their questions and your answers. Afterwards, you can view the internal news broadcast describing the proceedings, which will show you the highlights. Also, you can travel between the proceedings and the reading room at your leisure."`
 			`	Her ears perk up as she smiles again, awaiting your response.`
@@ -1655,14 +1655,6 @@ mission "Hai Reveal [A11] Sound the Alarm"
 					goto unfettered
 					to display
 						not "Hai Reveal [A11] Sound the Alarm: unfettered book"
-				`	KTH-000003A: Nature of the Korath`
-					goto korath2
-					to display
-						not "Hai Reveal [A11] Sound the Alarm: korath2 book"
-				`	KTH-W38K375: History of the Korath Before the Catastrophe`
-					goto korath1
-					to display
-						not "Hai Reveal [A11] Sound the Alarm: korath1 book"
 				`	CHS-015TNP3: A Lifetime of Disruption: Teeneep Before Public Life`
 					goto teeneep1
 					to display
@@ -1675,6 +1667,14 @@ mission "Hai Reveal [A11] Sound the Alarm"
 					goto teeneep3
 					to display
 						not "Hai Reveal [A11] Sound the Alarm: teeneep3 book"
+				`	QRG-3Z-18FJ4KC: Modern Hai-Quarg Relations`
+					goto quarg
+					to display
+						not "Hai Reveal [A11] Sound the Alarm: quarg book"
+				`	HUM-A0C1I3X: Comparisons of Hai and Human Military Technology`
+					goto militech
+					to display
+						not "Hai Reveal [A11] Sound the Alarm: militech book"
 				`	"I've changed my mind. Take me back to the proceedings instead."`
 					goto reading
 					to display
@@ -1685,8 +1685,8 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				set "Hai Reveal [A11] Sound the Alarm: solutions book"
 				"Hai Reveal [A11] Sound the Alarm: time" ++
 			`	This one-page report is recent, and includes references to other reports you can access.`
-			`	"While we can all agree that the northern troubles are of a potentially apocalyptic scale [RGWLD-1C1419A], it is several decades away [UHI-001AX94], and there are more immediate problems. Besides, we've identified ways of deflecting blame through diplomacy [INT-8C-131X04] or a skilled mercenary [INT-7Z-G81X51]. Instead, we must focus on the growing improbability of the secrecy of the Hai [HUM-931XHF9], and increasing pirate problems [HUM-9XC401Q]. Solving all three problems will open a path for Hai unification.`
-			`	"Total failure of the joint Hai-human disinformation campaign is expected in under five years [HUM-9A38HF]. Fortunately, there is increasing realization among the humans that the Pug 'War' was a benevolent act of self-sacrifice. So long as the Ringworld Atrocity [RGWLD-1C1419A] doesn't become public knowledge, they'll view a new race in a favorable light. Leaking information to human media that presents the Hai as strong and benevolent will prepare a smooth transition [HUM-931XHF9].`
+			`	"While we can all agree that the northern troubles could escalate to dangerous levels, it is probably several decades away [UHI-001AX94], and there are more immediate problems. Besides, we've identified ways of improving relations through diplomacy [INT-8C-131X04] or a skilled mercenary [INT-7Z-G81X51]. Instead, we must focus on the growing improbability of the secrecy of the Hai [HUM-931XHF9], and increasing pirate problems [HUM-9XC401Q]. Solving all three problems will open a path for Hai unification.`
+			`	"Total failure of the joint Hai-human disinformation campaign is expected in under five years [HUM-9A38HF]. Fortunately, there is increasing realization among the humans that the Pug 'War' was a benevolent act of self-sacrifice. We believe that, in the coming years, they'll be inclined view a new race in a favorable light. Leaking information to human media that presents the Hai as strong and benevolent will prepare a smooth transition [HUM-931XHF9].`
 			`	"The Free Worlds [HUM-9U4C12A] are assisting the Republic in a long-term solution to the pirate problem: befriend the planet's populations, and convince them to kick out the pirates. We expect piracy in human space to reduce to minimal levels in ten years, except in eastern Syndicate space [HUM-8XK194C], where anarchist groups may have ties to the Korath [KTH-1C-910JX4C].`
 			`	"With patience, problems in Hai and human space are easily solvable, barring major incidents at home [CHS-015TNP6]."`
 				goto reading
@@ -1727,27 +1727,13 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			action
 				set "Hai Reveal [A11] Sound the Alarm: unfettered book"
 				"Hai Reveal [A11] Sound the Alarm: time" ++
-			`	This report begins with an economic analysis of the cost of raids at Wah Ki, which it places at a staggering 3.5 billion credits per day. This is 1.5 billion impact on trade; 1.5 billion for military fleet repairs, replacements, ammunition, and infrastructure to support it; and an estimated 500 million in humanitarian aid to the Unfettered, to prevent the problem from worsening. It compares that to "full Hai unification" for which the cost is 8 billion credits per day: 3 billion in humanitarian aid to the Unfettered, and 5 billion in military aid.`
+			`	This report begins with an economic analysis of the cost of raids at Wah Ki, which it places at a staggering 3.5 billion credits per day. This is 1.5 billion impact on trade; 1.5 billion for military fleet repairs, replacements, ammunition, and infrastructure to support it; and an estimated 500 million in humanitarian aid to the Unfettered, to prevent the problem from worsening. It compares that to "full Hai unification" for which the cost is 7 billion credits per day: 3 billion in humanitarian aid to the Unfettered, 5 billion in military aid, but 1 billion per day recouped through improved trade.`
 			`	The remaining 80% of the report is redacted in its entirety, save for a few section headings:`
 			`	-	Multi-Decadal Timeline Expected before Unfettered Progress`
 			`	-	Choot'k: Insane Risk-Taker or Brilliant Strategist?`
-			`	-	Unfettered Interrogation Methods`
+			`	-	Reports from Hai Agents on Unfettered Raiding Vessels`
+			`	-	Unsustainable Death Rate of Agents Penetrating Unfettered Leadership`
 			`	-	Theories on the Sentient Evolution of Nocturnal Raptors`
-			`	-	History of Pug Responses to Hostilities`
-				goto reading
-
-			label korath1
-			action
-				set "Hai Reveal [A11] Sound the Alarm: korath1 book"
-				"Hai Reveal [A11] Sound the Alarm: time" ++
-			`	FIXME: KORATH1`
-				goto reading
-
-			label korath2
-			action
-				set "Hai Reveal [A11] Sound the Alarm: korath2 book"
-				"Hai Reveal [A11] Sound the Alarm: time" ++
-			`	FIXME: KORATH2`
 				goto reading
 
 			label teeneep1
@@ -1765,7 +1751,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				set "Hai Reveal [A11] Sound the Alarm: teeneep2 book"
 				"Hai Reveal [A11] Sound the Alarm: time" ++
 			`	Teeneep's rise to fame began, it seems, on Unfettered worlds, due to her superb fencing skills. Her grandfather is a well-known duelist and mid-ranked Unfettered officer, which ensured Teeneep a warm welcome among the Unfettered. She was known for rarely losing fights, even against opponents twice her weight or triple her age. This fame granted her entry into Hai athletics; they have an equivalent to the Olympics, which includes all Hai worlds, even the Unfettered. There, her fame rapidly grew to the point where "Teeneep" was a household name among all Hai. The report says she was still, "barely an adult," and that the "risks of giving social power to someone so young became obvious."`
-			`	She rode her fame into politics after befriending Sayari, who encouraged Teeneep to pursue her childhood dreams of helping the underprivileged. Teeneep led a movement that united thousands of local activist organizations into a massive political force. They pushed for fair treatment of humans in Hai space, safety of Hai in human space, increased intake of human refugees, investigations into disappearances, anti-corruption measures, and other measures, all directed at perceived unfairness in society. The report pointedly lists over five hundred instances where "Teeneep's movement publicly attacked the actions of Elders by name."`
+			`	She rode her fame into politics after befriending Sayari, who encouraged Teeneep to pursue her childhood dreams of helping the underprivileged. Teeneep led a movement that united thousands of local activist organizations into a massive political force. They pushed for fair treatment of humans in Hai space, safety of Hai in human space, increased intake of human refugees, investigations into disappearances, anti-corruption laws, and other measures, all directed at perceived unfairness in society. The report pointedly lists over five hundred instances where "Teeneep's movement publicly attacked the actions of Elders 'by name'."`
 			`	It warns the growing movement has become a threat to the stability of both Hai and human society.`
 				goto reading
 
@@ -1774,9 +1760,26 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				set "Hai Reveal [A11] Sound the Alarm: teeneep3 book"
 				"Hai Reveal [A11] Sound the Alarm: time" ++
 			`	This is a book of anecdotes about Teeneep collected from Elders, activists, local politicians, athletes, Unfettered citizens, and others. There is a short preface, by Aimet Taepip:`
-			`	"We, the ancient Elders, demand to be seen as the wisest of Hai, to be trusted implicitly, and yet young Teeneep, a tenth of our age, has proven us wrong time and time again. Now that our species is facing discovery, piracy, and a possibly apocalyptic war, we are quick to silence such annoyances. But perhaps, with even our long experience failing us, Teeneep is exactly what we need right now?`
-			`	"The similarities between Eyrisen of Mythos and our dear Teeneep are inescapable. Her ability to unite adversaries against common threats is quite profound. You can take stories of Eyrisen, change names and places, and you'll see events in Teeneep's life. Few take the Mythos seriously anymore, but in the back of our minds, many are asking: Is she Eyrisen Reborn?`
-			`	"So tell me, oh wise Elders of the Hai, how will you be remembered? Will you stand with Eyrisen, or fall like the Onaryith?"`
+			`	"We, the ancient Elders, demand to be seen as the wisest of Hai, to be trusted implicitly, and yet young Teeneep, a tenth of our age, has proven us wrong time and time again. Now that our species is facing discovery, piracy, culpability in senseless raids, and a possibly a civil war, we are quick to silence such annoyances. But perhaps, with even our long experience failing us, Teeneep is exactly what we need right now?`
+			`	"If her skill does not convince you, then listen to the traditionalists: the similarities between Eyrisen of Mythos and our dear Teeneep are inescapable. Her ability to unite adversaries against common threats is quite profound. You can take stories of Eyrisen, change names and places, and you'll see events in Teeneep's life. Few take the Mythos seriously anymore, but in the back of our minds, many are asking: Is she Eyrisen Reborn?`
+			`	"So tell me, oh wise Elders of the Hai, how will you be remembered? Shall we discard this valuable political ally, and be as impotent as our detractors claim? Or will you stand with Eyrisen as she saves her people?"`
+				goto reading
+
+			label quarg
+			action
+				set "Hai Reveal [A11] Sound the Alarm: quarg book"
+				"Hai Reveal [A11] Sound the Alarm: time" ++
+			`	This report is surprisingly light on details of any interest. It seems the Hai view the Quarg as a nearby race of friendly neighbors. There's frequent cultural exchanges, and a large food trade in both directions. Apparently, "genuine Hai cuisine" is popular among the Quarg, especially the famous Hai acorn cookies. In return, the Hai use Quarg spices extensively, including some of the meals you've eaten since you arrived. The spices are described as, "subtle and mysterious."`
+			`	Between the mundane and cultural, you find a few interesting facts. There is some lingering frustration about the Quarg refusing to help fend off Korath raids. This is partly due to the Hai having to fight for themselves, but mostly out of a belief that more Korath would have survived the war if the Quarg had intervened. Also, the Hai apparently have no interest in developing the jump drives Quarg have in abundance due to "the fate of the Korath," and warnings from the Quarg about the dangers of the jump drive manufacturing process.`
+				goto reading
+
+			label militech
+			action
+				set "Hai Reveal [A11] Sound the Alarm: militech book"
+				"Hai Reveal [A11] Sound the Alarm: time" ++
+			`	Predictably, the report begins with Hai hulls, which it claims are superior to human hulls by every measure. However, it warns that there are no other fields in which Hai clearly lead, and warns that the humans may soon surpass the Hai in military technology.`
+			`	Hai have a perceived advantage in several fields which, the report says, are minimal at best. Hai engines are more efficient than human atomic engines, but no faster, and humans have ion and plasma alternatives. Likewise, human atomic generators are hotter-running than those of the Hai, but humans have far more options for power. Hai shields were vastly superior, until the Syndicate's recent advancements. Hai anti-missile systems' superiority is merely a myth; human systems are as effective per ton. Of course, Hai cooling and ramscoop technology is primitive compared to humans, even with the return of the Ladybug.`
+			`	What is most concerning to the Hai is the inferiority of their weapons. They note that the ion cannon is effective against humans only because human ships rarely pack large batteries. Other Hai weapons are only marginally better than human alternatives. Meanwhile, a few plasma cannons and flame-throwers can easily shut down a Shield Beetle. Striking a beetle from 45 degrees to the front with four particle cannons will completely paralyze it until it is disabled. Recent human missiles are quite deadly, as are electron beams and plasma turrets. In all, the Hai are quite fearful of human weapons and question whether they could win an all-out war without Unfettered advancements.`
 				goto reading
 
 
@@ -1882,12 +1885,16 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			`	Teeneep quickly plasters back on her mask of calm as best she is able to and says, "Thank you all for your ears. You are those we trust to decide, but know this: If you will not listen to this here, then apparently I must now be the one to present a pathway to avoid war. The Unfettered are committed, no matter what path I choose now. If you do not take action, I will make the history of inaction I have discovered public knowledge. Every Hai from Greenwater to Snowfeather will know by the end of the day."`
 			`	One Elder cries out, "You wouldn't dare!" To which Teeneep responds, "It is already scheduled to happen unless I actively stop it!"`
 			`	Before any further exchange can occur, though, the moderator bellows for security to escort you all from the session and shouts down the offending Elder for impropriety. The two remain engaged in a lively shouting match as you depart, the echoes following you until the chamber doors are shut.`
+
+
+			# Proceedings end. 
+
 			`	Teeneep moves to pull out a datapad, but both the security officers and Sayari step in to stay her hand. "The chamber will have to vote on the proposition to act," says Sayari, looking at Teeneep pointedly. "You know that external contact is forbidden during the deliberation grace window."`
 			action
 				"Hai Reveal [A11] Sound the Alarm: time" = 6
 			choice
 				`	"The deliberation grace window?"`
-				`	"Just wait? Sounds like it's time to read reports."`
+				`	"Just wait? I'll wait in the reading room."`
 					goto reading
 				`	"Why are we waiting?"`
 					goto wait
@@ -1906,6 +1913,11 @@ mission "Hai Reveal [A11] Sound the Alarm"
 					goto diplomats
 			`	Teeneep gives you directions to a common area with a large holoprojector. You arrive just as the news is about to begin.`
 
+
+			# SCENE CHANGE
+
+			# Deliberation grace period is over and everybody leaves the chamber.
+
 			label news
 			`	FIXME: NEWS HERE`
 			`	A Hai next to you tells you, "Wow! I wish I had seen the proceedings in person. This will be a long-remembered turning point in the history of the Hai."`
@@ -1917,16 +1929,16 @@ mission "Hai Reveal [A11] Sound the Alarm"
 
 
 			label return7
-			`	After a minute of walking, you arrive at an empty room. "It seems Teeneep and Sayari have departed to have private discussions, but I can tell you where to meet with the human diplomats. I'll take you to a summary of the proceedings instead."`
+			`	After a minute of walking, you arrive at an empty room. "It seems Teeneep and Sayari have departed to have private discussions, but I can tell you where to meet with the human diplomats. If you prefer, I can take you to a summary of the proceedings instead."`
 			choice
 				`	"Yes, I certainly want the summary."`
 				`	"No, it's time for dinner."`
 					goto spydinner
-			`	"As you wish," she says. After a minute or two listening to her chat about the importance of Teeneep's work, you arrive at a common area with a holoprojector. Before she departs, her face turns dead serious and she whispers, "After this all blows over, you'll be needed up North. Keep your eyes in that direction, Captain; many lives will depend on it."`
+			`	"As you wish," she says. After a minute or two listening to her chat about the importance of Teeneep's work, you arrive at a common area with a holoprojector. Before she departs, her face turns dead serious and she whispers, "After this all blows over, you'll be needed up north. Keep your eyes in that direction, Captain; many lives will depend on it."`
 			`	You open your mouth to respond, but she quickly vanishes into the crowd. Surrounding you are Elders, functionaries, and diplomats, all awaiting the news report that is about to begin.`
 				goto news
 			label spydinner
-			`	"As you wish," she says. After a minute or two listening to her chat about the importance of Teeneep's work, you arrive at a cafeteria. She helps you find the best dishes, and leads you to the seating area. Before she departs, her face turns dead serious and she whispers, "After this all blows over, you'll be needed up North. Keep your eyes in that direction, Captain; many lives will depend on it." You open your mouth to respond, but she quickly vanishes into the crowd.`
+			`	"As you wish," she says. After a minute or two listening to her chat about the importance of Teeneep's work, you arrive at a cafeteria. She helps you find the best dishes, and leads you to the seating area. Before she departs, her face turns dead serious and she whispers, "After this all blows over, you'll be needed up north. Keep your eyes in that direction, Captain; many lives will depend on it." You open your mouth to respond, but she quickly vanishes into the crowd.`
 			`	You hear Alondo and Remington behind you; one of them asks you to sit and eat with them. The dinner is quite pleasant and they have a surprisingly civilized conversation the entire time. Albeit mostly about work.`
 				goto panic
 
