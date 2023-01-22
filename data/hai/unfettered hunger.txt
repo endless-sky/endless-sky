@@ -212,6 +212,7 @@ mission "Unfettered: Hunger Stories 1"
 	clearance `You contact the authorities and they say they will have a team waiting when you land.`
 	to offer
 		has "unfettered: hunger"
+		random < 20
 	on offer
 		conversation
 			`You are walking past one of the Unfettered government offices in the spaceport when a woman walks out, clearly distraught. Her clothes hang loose on her small frame. An infant clings tightly to her fur and a small boy walks behind her with a sombre expression. A collection of silver oak leaves is pinned to his jacket.`
@@ -256,6 +257,7 @@ mission "Unfettered: Hunger Stories 2"
 	passengers 1
 	to offer
 		has "unfettered: hunger"
+		random < 20
 	on offer
 		conversation
 			`"Human!" The cry catches your attention not only because of the volume of the shout, but primarily because it's the most respectful term anyone has used for you in Unfettered space. You turn and see a young Hai warrior striding toward you. At least you think he's young. He's certainly thinner than most of the Hai you see south of Wah-Ki. You notice that his boots seems to be made more of mending tape than actual fabric. He's not wearing the ornately decorated knives that many of the True Hai carry, but he does have sheaths for them. Instead, he carries a long staff that looks to be made of one of the light but rigid Hai alloys.You can see that scars from many fights disturb the pattern of his fur.`
@@ -311,6 +313,7 @@ mission "Unfettered: Hunger Stories 3"
 	source "Warfeed"
 	to offer
 		has "unfettered: hunger"
+		random < 20
 	on offer
 		conversation
 			`You take some time to explore outside the secure facilities at the spaceport. You can see long lines of people waiting for the food rations that seem to be the main cargo delivered here.`

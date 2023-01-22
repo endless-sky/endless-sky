@@ -551,10 +551,10 @@ mission "Unfettered: Weird Aliens Spotted"
 				to display
 					not "unfettered: warned"
 					not "unfettered: preparing for the arfectas"
-			`	"Did you not say these 'Pugs', as you call them, are masters of deception? That ship could have tricked your sensors. Nevertheless you deserve a reward for all of this intel, here are <payment>."`
+			`	"Did you not say these Pugs, as you call them, are masters of deception? We already know that they have somehow tricked the Wanderers into blindly worshiping them. That ship could have tricked your sensors. Nevertheless you deserve a reward for all of this intel, here are <payment>."`
 				to display
 					has "unfettered: warned"
-			`	Since he does not seem to believe you you show him the designs of the Arfecta you captured. You can see a mix of surprise and fear in his eyes as he takes a step back. "How did you capture such a ship? It seems that you will prove an even better ally than we had anticipated... That ship would be fitting of a warlord. You surely deserve this extra reward! Here, take these <payment>, you deserve it."`
+			`	Since he does not seem to believe you you show him the designs of the Arfecta you captured. You can see a mix of surprise and fear in his eyes as he takes a step back. "How did you capture such a ship? It seems that you will prove an even better ally than we had anticipated... That ship would be fitting of a warlord. You surely deserve this extra reward! Here, take these <payment>, you deserve it. We have indeed heard of these Pugs, but never did we imagine they would be able to display such strength... It is good to have an ally like you."`
 				to display
 					has "unfettered: preparing for the arfectas"
 
