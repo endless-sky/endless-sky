@@ -4056,7 +4056,7 @@ bool Ship::FireAfterburner(const AfterburnerUsage &afterburner)
 		discharge += dischargeCost;
 		corrosion += corrosionCost;
 		ionization += ionCost;
-		scrambling += scramblingCost
+		scrambling += scramblingCost;
 		leakage += leakageCost;
 		burning += burningCost;
 
