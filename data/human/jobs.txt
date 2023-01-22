@@ -3073,7 +3073,7 @@ mission "Bounty Hunting (Big, Hidden)"
 
 mission "Bounty Hunting (Small, Boarding, Entering)"
 	name "Stolen ship near <system>"
-	description "A wanted criminal is fleeing in a stolen ship, the <npc>, which is about to enter this system. Board the vessel and detain the criminal in suitable facilities, then bring them to <destination> to stand trial on <date>. Reward for capture: <payment>."
+	description "A wanted criminal is fleeing in a stolen ship, the <npc>, which is about to enter this system. Board the ship and detain the criminal in a brig, then bring them to <destination> by <date>. Reward for capture: <payment>."
 	passengers 1
 	deadline 14
 	repeat
@@ -3112,7 +3112,7 @@ mission "Bounty Hunting (Small, Boarding, Entering)"
 
 mission "Bounty Hunting (Medium, Boarding, Entering)"
 	name "Stolen warship near <system>"
-	description "A wanted criminal and several accomplices are fleeing in a stolen warship, the <npc>, which is about to enter this system. Board the vessel and detain the criminals in suitable facilities, then bring them to <destination> to stand trial on <date>. Reward for capture: <payment>."
+	description "Several wanted criminals are fleeing in a stolen warship, the <npc>, which is about to enter this system. Board the ship and detain the criminals in a brig, then bring them to <destination> by <date>. Reward for capture: <payment>."
 	passengers 4
 	deadline 14
 	repeat
