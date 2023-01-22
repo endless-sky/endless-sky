@@ -47,6 +47,7 @@ public:
 	using DescriptionStore = std::vector<std::pair<std::string, std::shared_ptr<ConditionSet>>>;
 	using DescriptionItem = DescriptionStore::value_type;
 
+public:
 
 	// Load a planet's description from a file.
 	void Load(const DataNode &node, Set<Wormhole> &wormholes);
