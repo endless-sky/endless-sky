@@ -116,7 +116,7 @@ void ShipManager::Do(PlayerInfo &player) const
 	{
 		auto toTake = SatisfyingShips(player);
 		if(toTake.size() == 1)
-			shipName = toTake.begin()->Name();
+			shipName = toTake.begin().get()->Name();
 		for(const auto &ship : toTake)
 			player.TakeShip(ship.get(), withOutfits ? model : nullptr);
 	}
