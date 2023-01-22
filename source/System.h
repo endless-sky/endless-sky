@@ -222,7 +222,6 @@ private:
 	// A multiplier applied to ramscoop in the system.
 	double ramscoopMultiplier = 1.;
 
-
 	// Stellar objects, listed in such an order that an object's parents are
 	// guaranteed to appear before it (so that if we traverse the vector in
 	// order, updating positions, an object's parents will already be at the
