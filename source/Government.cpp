@@ -177,6 +177,8 @@ void Government::Load(const DataNode &node)
 				hostileDisabledHail = nullptr;
 			else if(key == "language")
 				language.clear();
+			else if(key == "trusted")
+				trusted.clear();
 			else if(key == "enforces")
 				enforcementZones.clear();
 			else if(key == "custom penalties for")
@@ -228,6 +230,35 @@ void Government::Load(const DataNode &node)
 				}
 				else
 					grand.PrintTrace("Skipping unrecognized attribute:");
+			}
+		}
+		else if(key == "trusted")
+		{
+			bool clearTrusted = !trusted.empty();
+			for(const DataNode &grand : child)
+			{
+				bool remove = grand.Token(0) == "remove";
+				bool add = grand.Token(0) == "add";
+				if((add || remove) && grand.Size() < 2)
+				{
+					grand.PrintTrace("Warning: Skipping invalid \"" + child.Token(0) + "\" tag:");
+					continue;
+				}
+				if(clearTrusted && !add && !remove)
+				{
+					trusted.clear();
+					clearTrusted = false;
+				}
+				const Government *gov = GameData::Governments().Get(grand.Token(remove || add));
+				if(gov)
+				{
+					if(remove)
+						trusted.erase(gov);
+					else
+						trusted.insert(gov);
+				}
+				else
+					grand.PrintTrace("Skipping unrecognized government:");
 			}
 		}
 		else if(key == "penalty for")
@@ -442,6 +473,13 @@ double Government::GetBribeFraction() const
 double Government::GetFineFraction() const
 {
 	return fine;
+}
+
+
+
+bool Government::Trusts(const Government *government) const
+{
+	return government == this || trusted.count(government);
 }
 
 
