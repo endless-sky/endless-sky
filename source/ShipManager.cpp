@@ -80,7 +80,7 @@ void ShipManager::Save(DataWriter &out) const
 	out.Write(Giving() ? "give" : "take", "ship", model->VariantName(), name);
 	out.BeginChild();
 	{
-		out.Write("count", abs(Count()));
+		out.Write("count", abs(count));
 		if(!id.empty())
 			out.Write("id", id);
 		if(unconstrained)
@@ -116,9 +116,9 @@ void ShipManager::Do(PlayerInfo &player) const
 	{
 		auto toTake = SatisfyingShips(player);
 		if(toTake.size() == 1)
-			shipName = name;
+			shipName = toTake.begin()->Name();
 		for(const auto &ship : toTake)
-			player.TakeShip(ship.get(), WithOutfits() ? model : nullptr);
+			player.TakeShip(ship.get(), withOutfits ? model : nullptr);
 	}
 	Messages::Add((abs(count) == 1 ? "The " + model->ModelName() + " \"" + shipName + "\" was " :
 		to_string(abs(count)) + " " + model->PluralModelName() + " were ") +
