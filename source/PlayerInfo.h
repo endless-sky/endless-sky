@@ -157,7 +157,7 @@ public:
 	void SellShip(const Ship *selected);
 	// Take the ship from the player, if a model is specified this will permanently remove outfits in said model,
 	// instead of allowing the player to buy them back by putting them in the stock.
-	void TakeShip(const Ship *shipToTake, const Ship *outfitsToDestroy = nullptr);
+	void TakeShip(const Ship *shipToTake, const Ship *model = nullptr, bool takeOutfits = false);
 	std::vector<std::shared_ptr<Ship>>::iterator DisownShip(const Ship *selected);
 	void ParkShip(const Ship *selected, bool isParked);
 	void RenameShip(const Ship *selected, const std::string &name);

@@ -50,8 +50,10 @@ void ShipManager::Load(const DataNode &node)
 		{
 			if(key == "unconstrained")
 				unconstrained = true;
-			else if(key == "with outfits")
-				withOutfits = true;
+			else if(key == "take outfits")
+				takeOutfits = true;
+			else if(key == "requires outfits")
+				requiresOutfits = true;
 			else
 				child.PrintTrace("Error: Skipping unrecognized token.");
 		}
@@ -85,7 +87,7 @@ void ShipManager::Save(DataWriter &out) const
 			out.Write("id", id);
 		if(unconstrained)
 			out.Write("unconstrained");
-		if(withOutfits)
+		if(takeOutfits)
 			out.Write("with outfits");
 	}
 	out.EndChild();
@@ -116,9 +118,9 @@ void ShipManager::Do(PlayerInfo &player) const
 	{
 		auto toTake = SatisfyingShips(player);
 		if(toTake.size() == 1)
-			shipName = toTake.begin().get()->Name();
+			shipName = toTake.begin()->get()->Name();
 		for(const auto &ship : toTake)
-			player.TakeShip(ship.get(), withOutfits ? model : nullptr);
+			player.TakeShip(ship.get(), model, takeOutfits);
 	}
 	Messages::Add((abs(count) == 1 ? "The " + model->ModelName() + " \"" + shipName + "\" was " :
 		to_string(abs(count)) + " " + model->PluralModelName() + " were ") +
@@ -162,9 +164,9 @@ vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player) 
 			&& (name.empty() || name == ship->Name()))
 		{
 			bool hasRequiredOutfits = true;
-			// If a variant has been specified, or the keyword "with outfits" is specified,
+			// If "take outfits" or "requires outfits" is specified,
 			// this ship must have each outfit specified in that variant definition.
-			if(model->VariantName() != model->ModelName() || withOutfits)
+			if(requiresOutfits || takeOutfits)
 				for(const auto &it : model->Outfits())
 				{
 					const auto &outfit = ship->Outfits().find(it.first);

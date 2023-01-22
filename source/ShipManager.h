@@ -57,7 +57,8 @@ private:
 	std::string id;
 	int count = 1;
 	bool unconstrained = false;
-	bool withOutfits = false;
+	bool requiresOutfits = false;
+	bool takeOutfits = false;
 };
 
 
