@@ -58,12 +58,17 @@ start "hai"
 			has "Ask the Hai about the Unfettered"
 	on display
 		description "What if you had not grown up on New Boston? What if you had waited longer before taking to the skies?"
+		date "mid 3020"
+		thumbnail ""
 	to reveal
 		has "main plot completed"
 		has "Ask the Hai about the Unfettered"
 	on reveal
 		name "Hai Start"
-		description "There could be interesting possibilities up north."
+		description "There could be interesting possibilities up north, once all crisies are resolved."
+		description "You could have started a different way, went a different path."
+		credits 1.431M
+		debt 1.431M
 	to unlock
 		has "main plot completed"
 		has "event: hai-human resolution announced"
