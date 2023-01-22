@@ -36,9 +36,7 @@ mission "Unfettered Tribute 1"
 		attributes "spaceport"
 	to offer
 		has "Unfettered Jump Drive 2: offered"
-		or
-			has "unfettered: hunger"
-			random < 80
+		random < 80 + "unfettered: hunger" * 20
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on stopover
@@ -62,9 +60,7 @@ mission "Unfettered Tribute 2"
 		attributes "spaceport"
 	to offer
 		has "Unfettered Jump Drive 2: offered"
-		or
-			has "unfettered: hunger"
-			random < 60
+		random < 60 + "unfettered: hunger" * 30
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on stopover
@@ -88,9 +84,7 @@ mission "Unfettered Tribute 3"
 		attributes "spaceport"
 	to offer
 		has "Unfettered Jump Drive 2: offered"
-		or
-			has "unfettered: hunger"
-			random < 40
+		random < 40 + "unfettered: hunger" * 40
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on stopover
@@ -99,30 +93,6 @@ mission "Unfettered Tribute 3"
 		payment 9000 2400
 		dialog phrase "unfettered tribute payment dialog"
 		"unfettered: hunger stops" += 70
-
-mission "Unfettered Tribute 4"
-	job
-	repeat
-	name "Hai Tribute to <planet>"
-	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
-	cargo "food (tribute)" 55 2 .05
-	source
-		attributes "unfettered"
-	stopover
-		distance 5 6
-		attributes "hai"
-		attributes "spaceport"
-	to offer
-		has "Unfettered Jump Drive 2: offered"
-		has "unfettered: hunger"
-	on visit
-		dialog phrase "generic missing stopover or cargo"
-	on stopover
-		dialog phrase "unfettered tribute pickup dialog"
-	on complete
-		payment 11000 2800
-		dialog phrase "unfettered tribute payment dialog"
-		"unfettered: hunger stops" += 100
 
 
 
