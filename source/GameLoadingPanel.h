@@ -35,6 +35,7 @@ public:
 	void Draw() final;
 
 	static std::string GetHint();
+	static void UpdateHint();
 
 
 private:
@@ -48,6 +49,7 @@ private:
 	const double ANGLE_OFFSET;
 	// The current number of ticks to be displayed.
 	int progress = 0;
+	bool hintSelected;
 };
 
 

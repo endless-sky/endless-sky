@@ -1,0 +1,88 @@
+# Copyright (c) 2023 by mOctave
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+phrase "loading hints"
+	phrase
+		"loading hints (advice)" 5
+		"loading hints (community)"
+		"loading hints (controls)" 6
+		"loading hints (trivia)" 3
+		
+phrase "loading hints (advice)"
+		"Board ships to earn money and build your fleet."
+		"Check your piracy threat often on the info screen, and keep it as low as possible."
+		"There's a lot of tension in the south of human space."
+		"Pirates haunt the fringes of human space."
+		"You don't actually need an asteroid scanner to mine asteroids."
+		"A ramscoop enables you to explore without getting stuck."
+		"You rarely have to fight, and its often wiser to flee from combat."
+		"Park ships to avoid having to pay salaries."
+		"If you're stranded or disabled, ask other ships for help!"
+		"Always equip an anti-missile turret on your ship. You don't want to get on the wrong end of a Rainmaker."
+		"You can hide behind asteroids to dodge missiles."
+		"Always check the spaceport unless you're in the middle of a time-sensitive job."
+		"If you fly far enough from the center of a system, ships chasing you will often give up."
+		"Hold the alt key to highlight keyboard shortcuts."
+		"Every manufacturer's ships have their own strengths and weaknesses."
+		"Don't launch asteroids at planets unless you want to spend life in prison."
+		"Smuggling can be a good way to earn a lot of money, but it can cost you a lot as well."
+		"A scram drive allows you to enter hyperspace while moving. Although it needs more fuel than a regular hyperdrive, it is still invaluable in the fringes of human space."
+
+
+phrase "loading hints (community)"
+	word
+		"You can use ESLauncher2 to install and play Endless Sky more easily."
+		"The Endless Sky Discord server is located at https://discord.gg/ZeuASSx."
+		"You can read the full player's manual for Endless Sky at https://github.com/endless-sky/endless-sky/wiki/PlayersManual."
+
+phrase "loading hints (controls)"
+	word
+		"Sell and change outfits on multiple ships at once by selecting them with shift or control-clicking."
+		"Use the checkboxes in the outfitter to buy outfits directly into your cargo or storage space."
+		"Ctrl-click to select multiple ships while in the shipyard."
+		"You can buy ships and outfits in bulk using the ctrl, alt, and shift keys."
+		"Use the <Reverse> key to turn your ship to face away from the direction you're going."
+		"You can stop your shift by pressing the shift and <Reverse> keys simultaneously."
+		"Press 'U' to store an outfit on a planet."
+		"Press '<View player info>' to view more information about your fleet."
+		"If you press space on the main menu, the credits stop scrolling."
+		"Press ctrl and a number key when you have multiple ships selected to group them together. Select all these ships again by pressing the number key."
+		"Press '<Fire secondary weapon>' to fire your secondary weapons."
+		"Press '<Select secondary weapon>' to select a secondary weapon to fire."
+		"Press '<Board selected ship>' to board the ship you have selected if it's disabled."
+		"If you have scanners installed, you can press '<Scan selected ship>' to attempt to scan the ship you've selected."
+		"Press '<Select next ship>' to select the next ship, 'shift + <Select nearest hostile ship>' to select the nearest ship, or '<Select nearest hostile ship>' to select the nearest hostile ship."
+		"Press '<Deploy / recall fighters>' to deploy any fighters your ships are carrying. Press it again to recall them!"
+		"Afterburners allow you to achieve higher speeds than normal engines, but they require hyperspace fuel to work. To use them if you have some installed, press '<Fire afterburner>'."
+		"You can press '<Toggle fullscreen>' to toggle fullscreen on and off."
+		"Once you have a fleet, you can order your fleet to fight your target ('<Fleet: Fight my target>'), gather around your flagship ('<Fleet: Gather around me'), hold position ('<Fleet: Hold position'), or avoid using ammo ('<Fleet: Toggle ammo usage')."
+		"Press shift and the <Select next ship> key to select one of your escorts."
+		"Press shift and the <Board selected ship> key to board a disabled escort."
+		"Press shift and the <Talk to selected ship> key to hail the planet you have selected."
+
+phrase "loading hints (trivia)"
+	word
+		"There are over 97 billion humans in the galaxy."
+		"The inhabited planet with the lowest human population is New Sahara, which is home to only 3000 people."
+		"The most expensive ship to be found in human space is the Bactrian, coming in at 25.4 million credits."
+		"The Auxiliary and the Bulk Freighter can each travel through hyperspace nine times without needing to refuel."
+		"The Star Queen has more bunks than any other civilian ship that humans have managed to produce."
+		"The Bulk Freighter can carry 640 tons of cargo!"
+		"The Carrier mounts an impressive 8 guns, more than any other human ship."
+		"The Protector's 8 turret mounts make it a force to be reckoned with."
+		"Torpedoes can travel further than any other human weapon."
+		"Plasma cannons heat up their targets, which often overheat and are disabled as a result."
+		"80 or 90 billion people live in the Republic."
+		"Almost 4 billion people live on pirate-controlled planets."
+		"25 billion people live on planets controlled by the Syndicate."
+		"New India, in the dirt belt, has been settled for less than a century.

@@ -31,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MaskManager.h"
 #include "MenuAnimationPanel.h"
 #include "MenuPanel.h"
+#include "Phrase.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "PointerShader.h"
@@ -56,8 +57,7 @@ GameLoadingPanel::GameLoadingPanel(PlayerInfo &player, const Conversation &conve
 		finishedLoading(finishedLoading), ANGLE_OFFSET(360. / MAX_TICKS)
 {
 	SetIsFullScreen(true);
-
-	hint = LoadingHints().loadingHintArray[Random::Int(sizeof(LoadingHints().loadingHintArray))];
+	/*LoadingHints().loadingHintArray[Random::Int(sizeof(LoadingHints().loadingHintArray))]*/
 }
 
 
@@ -65,6 +65,14 @@ GameLoadingPanel::GameLoadingPanel(PlayerInfo &player, const Conversation &conve
 void GameLoadingPanel::Step()
 {
 	progress = static_cast<int>(GameData::GetProgress() * MAX_TICKS);
+
+	// If no loading hint has been selected yet, select one.
+	// Hints are only selected after more than 12 ticks are displayed so that randomness works properly.
+	if(!hintSelected && progress > 45){
+		hintSelected = true;
+		UpdateHint();
+	}
+	
 
 	// While the game is loading, upload sprites to the GPU.
 	GameData::ProcessSprites();
@@ -134,3 +142,7 @@ std::string GameLoadingPanel::GetHint()
 	return hint;
 }
 
+void GameLoadingPanel::UpdateHint()
+{
+	hint = GameData::Phrases().Get("loading hints")->Get();
+}
