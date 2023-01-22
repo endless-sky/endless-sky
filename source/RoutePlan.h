@@ -1,5 +1,5 @@
 /* RoutePlan.h
-Copyright (c) 2015 by alextd
+Copyright (c) 2022 by alextd
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -26,8 +26,10 @@ class PlayerInfo;
 class Ship;
 class System;
 
+
+
 // RoutePlan is a wrapper for DistanceMap that uses a destination
-// and keeps only the route to that system
+// and keeps only the route to that system.
 class RoutePlan {
 public:
 	explicit RoutePlan(const System &center, const System &destination);
@@ -36,11 +38,11 @@ public:
 
 	// Find out if the destination is reachable.
 	bool HasRoute() const;
-	// Find out how many days away the destination is.
-	const System *FirstStep() const;
-	// How much fuel is needed to travel to this system along the route.
-	int Days() const;
 	// Get the first step on the route from center to the destination.
+	const System *FirstStep() const;
+	// Find out how many days away the destination is.
+	int Days() const;
+	// How much fuel is needed to travel to this system along the route.
 	int RequiredFuel() const;
 
 	// Get the list of jumps to take to get to the destination.
