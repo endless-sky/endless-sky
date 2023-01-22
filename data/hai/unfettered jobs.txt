@@ -451,7 +451,7 @@ mission "Unfettered Bring Ion Cannons"
 		has "Unfettered Jump Drive 1: done"
 	on offer
 		conversation
-			`After accepting this job, you go look for the captain who placed it in order to ask for more detailed information. It does not take long to find them, and it seems like she is willing to answer at least some of your questions. "Curious, are we, <first>? Oh, may I call you <first>? You reputation of selling jump drives precedes you," she says with a wink.`
+			`After accepting this job, you go look for the captain who placed it in order to ask for more detailed information. It does not take long to find her, and it seems like she is willing to answer at least some of your questions. "Curious, are we, <first>? Oh, may I call you <first>? You reputation of selling jump drives precedes you," she says with a wink.`
 			choice
 				`	"Sure."`
 					goto sure
@@ -460,7 +460,7 @@ mission "Unfettered Bring Ion Cannons"
 			label sure
 			`	"Oh, I almost forgot my manners. I hope you will have a good raiding, <last>. I am Binkeili." she says with a smile.`
 			`	"Now about this request, I want to make sure you understand, so allow me to be blunt: if we use Ion Cannons, it is not to avoid casualties amongst our brethren, like others may say. That may be a noble cause indeed, but do those bring you food? Ha!"`
-			`	"No. If we do it, it is because it forces the Hai to use more batteries on their ships, as to not be disabled too easily, or defenceless because of weapon jamming. So, we do not use ion weapons most of the time, but sometimes we surprise them with a big amount of them. Expecting this, the Hai are always forced to keep a good amount of batteries, and to not use too many jammers, since we rely so heavily on trackers. As they make space for batteries, they have to sacrifice armament, or defense!"`
+			`	"No. If we do it, it is because it forces the Hai to use more batteries on their ships, as to not be disabled too easily, or become defenceless because of weapon jamming. So, we do not use ion weapons most of the time, but sometimes we surprise them with a big amount of them. Expecting this, the Hai are always forced to keep a good amount of batteries, and to not use too many jammers, since we rely so heavily on trackers. As they make space for batteries, they have to sacrifice armament, or defense!"`
 			choice
 				`	"Thank you for the explanation, I will bring you these Ion Cannons."`
 					goto money
@@ -483,7 +483,7 @@ mission "Unfettered Bring Ion Cannons"
 	on complete
 		outfit "Ion Cannon" -2
 		payment 600000
-		dialog `You bring the Ion Cannons personally to the captain, who is excited of the news "Thanks, I will bring those to my warlord as soon as possible. Here is an extra <payment> for the journey. I wish you safe travels!" She seems in a bit of a rush, and leaves straight away.`
+		dialog `You bring the Ion Cannons personally to the captain, who is excited about the news "Thanks, I will bring those to my warlord as soon as possible. Here is an extra <payment> for the journey. I wish you safe travels!" She seems in a bit of a rush, and leaves straight away.`
 
 
 
