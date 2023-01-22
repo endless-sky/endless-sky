@@ -53,6 +53,7 @@ namespace {
 	const int TARGET = (1 << 26);
 	const int MARKED = (1 << 27);
 	const int LAUNCHING = (1 << 28);
+	const int UNRESTRICTED = (1 << 29);
 
 	const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -83,7 +84,8 @@ namespace {
 		{"merciful", MERCIFUL},
 		{"target", TARGET},
 		{"marked", MARKED},
-		{"launching", LAUNCHING}
+		{"launching", LAUNCHING},
+		{"unrestricted", UNRESTRICTED}
 	};
 
 	const double DEFAULT_CONFUSION = 10.;
@@ -218,6 +220,13 @@ bool Personality::IsVindictive() const
 bool Personality::IsUnconstrained() const
 {
 	return flags & UNCONSTRAINED;
+}
+
+
+
+bool Personality::IsUnRestricted() const
+{
+	return flags & UNRESTRICTED;
 }
 
 

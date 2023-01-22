@@ -1410,8 +1410,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	shared_ptr<const Ship> target = ship.GetTargetShip();
 	// NPCs should not be beyond the "fence" unless their target is
 	// fairly close to it (or they are intended to be there).
-	const bool unconstrained = ship.GetPersonality().IsUnconstrained();
-	if(!ship.IsYours() && !unconstrained)
+	if(!ship.IsYours() && !ship.GetPersonality().IsUnconstrained())
 	{
 		if(target)
 		{
@@ -1488,6 +1487,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	// Ships should choose a random system/planet for travel if they do not
 	// already have a system/planet in mind, and are free to move about.
 	const System *origin = ship.GetSystem();
+	const bool unrestricted = ship.GetPersonality().IsUnRestricted();
 	if(!ship.GetTargetSystem() && !ship.GetTargetStellar() && !shouldStay)
 	{
 		// TODO: This should problably be changed, because JumpsRemaining
@@ -1505,8 +1505,11 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		{
 			for(const System *link : links)
 			{
-				if(!unconstrained && gov->IsRestrictedFrom(*link))
+				if(!unrestricted && gov->IsRestrictedFrom(*link))
+				{
+					systemWeights.push_back(0);
 					continue;
+				}
 				// Prefer systems in the direction we're facing.
 				Point direction = link->Position() - origin->Position();
 				int weight = static_cast<int>(
@@ -1524,7 +1527,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		for(const StellarObject &object : origin->Objects())
 			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->HasSpaceport()
 					&& object.GetPlanet()->CanLand(ship) &&
-					(unconstrained || !gov->IsRestrictedFrom(*object.GetPlanet())))
+					(unrestricted || !gov->IsRestrictedFrom(*object.GetPlanet())))
 			{
 				planets.push_back(&object);
 				totalWeight += planetWeight;
@@ -1534,7 +1537,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		if(!totalWeight)
 			for(const StellarObject &object : origin->Objects())
 				if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->CanLand(ship)
-					&& (unconstrained || !gov->IsRestrictedFrom(*object.GetPlanet())))
+					&& (unrestricted || !gov->IsRestrictedFrom(*object.GetPlanet())))
 				{
 					planets.push_back(&object);
 					totalWeight += planetWeight;
@@ -1555,8 +1558,6 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		{
 			for(unsigned i = 0; i < systemWeights.size(); ++i, ++it)
 			{
-				if(!unconstrained && gov->IsRestrictedFrom(*(*it)))
-					continue;
 				choice -= systemWeights[i];
 				if(choice < 0)
 				{
@@ -2511,7 +2512,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 			const auto &links = ship.JumpNavigation().HasJumpDrive() ?
 				system->JumpNeighbors(ship.JumpNavigation().JumpRange()) : system->Links();
 			for(const auto &link : links)
-				if(ship.GetPersonality().IsUnconstrained() || !ship.GetGovernment()->IsRestrictedFrom(*link))
+				if(ship.GetPersonality().IsUnrestricted() || !ship.GetGovernment()->IsRestrictedFrom(*link))
 					targetSystems.push_back(link);
 		}
 
