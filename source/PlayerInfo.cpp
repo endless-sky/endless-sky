@@ -1094,7 +1094,7 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name)
 
 
 // Because this ship is being gifted, it costs nothing and starts fully depreciated.
-const Ship *PlayerInfo::GiftShip(const Ship *model, const string &name, const string id)
+const Ship *PlayerInfo::GiftShip(const Ship *model, const string &name, const string &id)
 {
 	if(!model)
 		return nullptr;
