@@ -605,7 +605,7 @@ mission "Hai Reveal [B08] Syndicate Internal Affairs"
 			choice
 				`	"Does '0.184 steradians' sound like the answer?"`
 				`	"My favorite number has always been 0.184."`
-			`	"Hmmm, 0.184 steradians? Sounds about right; let me check." She pulls out a pencil and paper, and works out some numbers. A few minutes later, she says, "Yes, that was it. The system is in the middle of Syndicate-"`
+			`	"Hmmm, 0.184 steradians? Sounds about right; let me check." She fiddles with her datapad for a minute. "Yes, that was it. The system is in the middle of Syndicate-"`
 			`	Suddenly, Giti's door bashes open, and four people in Republic Intelligence uniforms storm in. They each have a hand on their holstered weapons, but none make any move to draw them. Giti sighs, rolls her eyes, and says, "Oh, not again, Horst. Maintenance just replaced that door."`
 			`	"Captain <last>," says the large brawny man to your right, "please shut the door."`
 			`	You look over at the bent door and damaged frame, and then back at the man, wondering if is serious. From his deathly stare, it seems to be so. Giti look of genuine concern warns you to be cautious in this situation.`
