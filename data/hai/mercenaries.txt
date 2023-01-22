@@ -368,7 +368,7 @@ mission "Mercenaries: Betrayal For The Bars"
 					goto investigate
 			action
 				outfit "Gold Bars" -5
-			``
+			`	You let the disturbance happen, and after some more noise including a big metallic object falling, it stops. It could be worth it to check your cargo bay to see if everything is ok.`
 				defer
 			label investigate
 			`You pull out your sidearm and approach the bay as discreetly as you can. Worst case scenario is you find one of your own crew, in which case you better not overreact, or someone could get hurt.`
@@ -764,18 +764,19 @@ mission "Unfettered: Special Cargo 1B"
 			label one
 			action
 				outfit "Gold Bars"
-			``
+			`	Taking one stack of gold bar takes very little time, and you wonder if you could have gotten away with more.`
 				goto dropbars
 			label three
 			action
 				outfit "Gold Bars" 3
-			``
+			`	You decide to take 3 stacks of gold bars, they feel heavy but are not too much to carry around by yourself.`
 				goto dropbars
 			label five
 			action
 				outfit "Gold Bars" 5
+			`	5 stacks is a heafty amount, you are constantly looking over your shoulder in fear of being spotted as you move them near the airlock.`
 			label dropbars
-			`	You drop the gold and then leave the ship. Afterwards, you go around the ship to the location where they are partially buried in the sand, and take them discreetly with some members of your crew. You have to silence one or two curious pirates, but that's about it, and you can now head back to your ship. As expected, they have noticed the theft. You see them launching before you can do so yourself. This will be a bumpy ride.`
+			`	You drop the gold on the ground, and then leave the ship. Afterwards, you go around it to the location where they are partially buried in the sand, and take them discreetly with some members of your crew. You have to silence one or two curious pirates, but that's about it, and you can now head back to your ship. As expected, they have noticed the theft. You see them launching before you can do so yourself. This will be a bumpy ride.`
 				flee
 			label caught
 			`	You do not manage to find the item here. However, you've attracted way too much suspicion by looking and opening crates everywhere you could. One local worker asks you something about mechanics. Being no engineer yourself, you cannot make any sense of what he says, even less formulate a correct response, and he calls a guard over you. You are captured and sold as a slave, condemned to a few years of hard work before a sad death.`
@@ -800,10 +801,9 @@ mission "Unfettered: Special Cargo 1B"
 					goto negotiate
 				`	"There's no way I'm paying so much for an item I haven't even seen! I challenge your warlord to a fight."`
 					goto challenge
-			`	He seems disappointed, but he shows you to the item, a little cube, and you bring it back to your ship without any trouble. He also signals the local warships belonging to the warlord to let you leave without trouble.`
 			action
 				payment -10000000
-			``
+			`	He seems disappointed, but he shows you to the item, a little cube, and you bring it back to your ship without any trouble. He also signals the local warships belonging to the warlord to let you leave without trouble.`
 				goto leaveinpeace
 			label negotiate
 			`	"I can cut it down by... 2 million. Last chance, boy. 8 million credits, what do ya say?"`
@@ -818,7 +818,7 @@ mission "Unfettered: Special Cargo 1B"
 			action
 				set "mercenaries: brokered deal"
 				"reputation: Mhairi's Legion" >?= 1
-			``
+			`	You go to your ship as planned, preparing to the planet as planned, and no pirates try to stop you on the way. It seems like they were mens of their words.`
 				accept
 			label challenge
 			`	You launch your fleet and send a challenge to the warlord, putting her authority and competence in question. She cannot resist the urge to come and kill you, you only hope you can beat her and collect the item from her ship.`

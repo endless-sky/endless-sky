@@ -312,7 +312,7 @@ mission "Unfettered Space Challenge Big"
 
 conversation "interrupted duel"
 	action
-		"unfettered revenge fleet"++
+		"unfettered revenge fleet" ++
 	branch toomuch
 		has "unfettered revenge fleet" > 3
 	action

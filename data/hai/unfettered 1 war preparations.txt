@@ -207,7 +207,8 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 			`	They discuss among themselves again, then the warlord from earlier speaks, seemingly with a heavy burden. "Now that you officially work for us, you will receive a daily share of 1000 credits. We will not make you wear our colors yet, because it could cause problems with the Hai. We wish for you to be free to travel in their territory." They then make the necessary preparations to transfer the Korath out of your ship, after stabilizing them as much as possible.`
 			branch logs
 				has "Unfettered: Alphas 3: Bring The Spoils: done"
-			``
+			# The Alpha logs self destructed if you didnt make a copy of them when you notice them.
+			`	Having nothing more to show the Unfettered, you leave. This leaves you wondering if there was something hidden in the Auxiliary, but after a short inspection you summize that if there was, it is no longer there now.`
 				decline
 			label logs
 			choice
@@ -502,7 +503,7 @@ mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
 				`	"Actually, I am only here to get a tribute for the Unfettered. These ships seem too costly for me, sorry."`
 			action
 				set "unfettered: too suspect"
-			``
+			`	You can tell by looking at his face he probably does not truly believe that to be the case, but he does not seem to act upon it.`
 				goto suspect
 			label centipede
 			`	"You will see it has no equal as cost efficient to transport troops or passengers around! And for a mere 12 million credits."`
@@ -513,7 +514,7 @@ mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
 			action
 				give ship "Centipede"
 				fine 12000000
-			``
+			`	"And you are right to do so indeed! These ships are among the most recent ones we have in store."`
 				goto bought
 			label waterbug
 			`	"A fine ship sir, the best of all the cargo haulers! I can assure you this ship takes a lot more punishment than any human hauler can! And it only costs you 13 million credits."`
@@ -1519,7 +1520,7 @@ mission "Unfettered: Ready For The War"
 			`	"When you gave me the cloaking device, I started the preparations to install it on my ship, but it was not ready yet. It needs to fully [replace, overwrite] the old system, and that one is well integrated into the ship, so we may have to simply disable it if it cannot be replaced. The engineers are doing all that they can, but it is advanced technology we know [almost nothing, little] about."`
 				to display
 					has "Unfettered: Cloaking Interest: done"
-			``
+			`	He seems to get emotional, for what must be the first time since you saw him. You can feel his pride. "This ship means a lot to me, and with it I am able to fulfill the task given to me by the Chiefs. That is mostly thanks to the cloaking ability."`
 				goto questions
 			label weapon
 			action

@@ -581,7 +581,7 @@ mission "Unfettered Get Jump Drives (2)"
 	on stopover
 		dialog phrase "unfettered jump drive pickup dialog"
 		outfit "Jump Drive" 2
-		"spawn jd fleet 2"++
+		"spawn jd fleet 2" ++
 	npc evade
 		government "Cerberus"
 		to spawn
@@ -611,7 +611,7 @@ mission "Unfettered Get Jump Drives (3)"
 	on stopover
 		dialog phrase "unfettered jump drive pickup dialog"
 		outfit "Jump Drive" 3
-		"spawn jd fleet 3"++
+		"spawn jd fleet 3" ++
 	npc evade
 		government "Cerberus"
 		to spawn

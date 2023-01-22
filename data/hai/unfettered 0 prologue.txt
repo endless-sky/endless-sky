@@ -1310,7 +1310,7 @@ mission "Unfettered: Materials Intercepted"
 			`	"The Shadow of Mintaka sends her regards, <first> <last>. We look forward to dancing with you again."`
 			branch "not too many ships"
 				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 24
-			``
+			`	You receive a final, private message from one of the ship. "A shame you brought such a fleet with you, we could have had so much fun otherwise..."`
 				decline
 			label "not too many ships"
 			choice
@@ -1365,15 +1365,15 @@ conversation "cerberus reinforcements"
 	branch boardedship
 		has "unfettered: boarded bactrian"
 		has "unfettered: cleaned up cerberus"
+	action
+		"unfettered: cleaned up cerberus" ++
 	`Now that you have taken care of all pirate reinforcements, it is time to board the flagship and take their loot.`
 		to display
-			has "unfettered: cleaned up cerberus"
+			"unfettered: cleaned up cerberus" == 2
+		decline
 	`You have taken care of part of the pirate reinforcements, but more remain.`
 		to display
-			not "unfettered: cleaned up cerberus"
-	action
-		set "unfettered: cleaned up cerberus"
-	``
+			"unfettered: cleaned up cerberus" == 1
 		decline
 	label boardedship
 	branch noduel

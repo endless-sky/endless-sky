@@ -111,7 +111,6 @@ mission "Unfettered: Neutral With The Hai"
 				`	"I have changed my mind. The Unfettered will have to accept I am hostile to you."`
 					goto refuse
 			label secondchance
-			`	They seem willing to give you a second chance. "You have convinced us, but we will not grant you this pardon twice."`
 			action
 				"reputation: Hai" >?= 1
 				"reputation: Hai (Wormhole Access)" >?= 1
@@ -119,7 +118,7 @@ mission "Unfettered: Neutral With The Hai"
 				"reputation: Hai Merchant (Sympathizers)" >?= 1
 				"reputation: Hai Merchant (Human)" >?= 1
 				log `Convinced the Hai to accept the offer of ceasefire with me, as requested by an Unfettered Chief. Should the word not be honored a large sum will be due.`
-			``
+			`	They seem willing to give you a second chance. "You have convinced us, but we will not grant you this pardon twice."`
 				accept
 			label death
 			`	The leaders gasp, and then, in a moment that seems to last forever, there is silence while everyone is looking at you. The silence is shattered when the guards start shooting. They probably did not intend to kill you outright, but apparently they see you as enough of a threat that the result is the same.`
