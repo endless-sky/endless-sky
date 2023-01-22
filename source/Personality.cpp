@@ -53,7 +53,8 @@ namespace {
 	const int TARGET = (1 << 26);
 	const int MARKED = (1 << 27);
 	const int LAUNCHING = (1 << 28);
-	const int UNRESTRICTED = (1 << 29);
+	const int SECRETIVE = (1 << 29);
+	const int UNRESTRICTED = (1 << 30);
 
 	const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -85,6 +86,7 @@ namespace {
 		{"target", TARGET},
 		{"marked", MARKED},
 		{"launching", LAUNCHING},
+		{"secretive", SECRETIVE},
 		{"unrestricted", UNRESTRICTED}
 	};
 
@@ -332,6 +334,13 @@ bool Personality::Harvests() const
 bool Personality::IsSwarming() const
 {
 	return flags & SWARMING;
+}
+
+
+
+bool Personality::IsSecretive() const
+{
+	return flags & SECRETIVE;
 }
 
 
