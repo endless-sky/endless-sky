@@ -1343,7 +1343,7 @@ mission "Unfettered: Materials Intercepted"
 			`	"Now, that shipment you escorted was exceptional due to the disaster, and it came from the Hai, who focused all of their nearby fleet's attention on it, without following it in an obvious way either, of course."`
 			choice
 				`	"What about this cargo, then?"`
-					goto cargo
+					goto specialcargo
 				`	"Before we speak about this cargo, last mission I tipped this Hai governor about an attack, but then the Unfettered fined me, do you know why?"`
 					to display
 						has "unfettered: warned the hai governor escort about the mercenary attack"
@@ -1351,11 +1351,11 @@ mission "Unfettered: Materials Intercepted"
 			`	"We Unfettered are not as united as we would like you to believe. There are many different factions, with supporters even outside our government. For instance, not everyone agrees on attacking the Wanderers... Some, on the other hand, are fully with the Alphas."`
 			choice
 				`	"You were saying something about this special cargo?"`
-					goto cargo
+					goto specialcargo
 				`	"Can you tell me more? The message was signed with 'nemo me impune lacessit'."`
 			`	His mood darkens. "No, I will not tell you any more. If you want my advice, stop looking for answers there, it is not worth the risks. Let us go back to where we were, to not attract suspicion. I will continue speaking as if we did not have this conversation."`
 			`	Once there, he resumes as if you asked what was special about the cargo he was mentioning.`
-			label cargo
+			label specialcargo
 			`	"Well, this one happens somewhat more regularly, although it often has unpredictable delays, due to the dangerous nature of the trip. At first we assumed that the ship coming with cargo all the way from human space simply got delayed, as usual. But in that case we should at least have gotten a message by now, it's been too long and I've grown quite worried that they may not make it here after all."`
 			`	"The materials they supply us with are not urgently required, but still, they are needed in order to develop some of the most distant areas on this world, and maintain our current buildings." He then takes a pad out of his pocket, and shows you what they should look like. These are fairly standard materials for construction purposes, not rare in the slightest.`
 			`	"We need at the very least 142 tons of this cargo back, that is the usual amount we transfer to our Shield Beetles."`
