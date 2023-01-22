@@ -23842,6 +23842,7 @@ system "Paru Paru"
 	trade Plastic 390
 	fleet "Bunrodea Erabu Freight" 900
 	fleet "Bunrodea Defense" 2000
+	hazard "Neutron Star Magnetic Field" 1
 	object
 		sprite star/neutron-core
 		period 10
