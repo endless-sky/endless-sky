@@ -850,7 +850,8 @@ void Engine::Step(bool isActive)
 					GetPersonality().IsCoward() ? "Coward" : target->
 					GetPersonality().IsFleeing() ? "Fleeing" : "Other");
 				info.SetString("personality", person);
-				string JumpStatus = (target->IsEnteringHyperspace() ? "Jumping" : target->IsReadyToJump(true) ? "Jump Ready" : "Not Ready");
+				string JumpStatus = (target->IsEnteringHyperspace() ? "Jumping" : target->
+					IsReadyToJump(true) ? "Jump Ready" : "Not Ready");
 					info.SetString("jumpstatus", JumpStatus);
 				if(target->GetTargetStellar() && target->GetTargetStellar()->GetPlanet())
 				{
