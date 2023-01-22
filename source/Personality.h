@@ -50,7 +50,7 @@ public:
 	bool Plunders() const;
 	bool IsVindictive() const;
 	bool IsUnconstrained() const;
-	bool IsUnRestricted() const;
+	bool IsUnrestricted() const;
 	bool IsCoward() const;
 	bool IsAppeasing() const;
 	bool IsOpportunistic() const;

@@ -1487,7 +1487,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	// Ships should choose a random system/planet for travel if they do not
 	// already have a system/planet in mind, and are free to move about.
 	const System *origin = ship.GetSystem();
-	const bool unrestricted = ship.GetPersonality().IsUnRestricted();
+	const bool unrestricted = ship.GetPersonality().IsUnrestricted();
 	if(!ship.GetTargetSystem() && !ship.GetTargetStellar() && !shouldStay)
 	{
 		// TODO: This should problably be changed, because JumpsRemaining

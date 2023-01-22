@@ -500,7 +500,7 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 // Do the randomization to make a ship enter or be in the given system.
 const System *Fleet::Enter(const System &system, Ship &ship, const System *source)
 {
-	bool unrestricted = ship.GetPersonality().IsUnRestricted();
+	bool unrestricted = ship.GetPersonality().IsUnrestricted();
 	bool canEnter = (source != nullptr || unrestricted || any_of(system.Links().begin(), system.Links().end(),
 		[&ship](const System *link) noexcept -> bool
 		{
