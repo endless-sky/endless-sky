@@ -196,12 +196,14 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		{
 			for(const DataNode &grand : child)
 			{
-				if(grand.Size() < 2)
+				if(grand.Token(0) == "universal")
+					universalRamscoop = true;
+				else if(grand.Size() < 2)
 				{
 					grand.PrintTrace("Error: skipping ramscoop \"" + grand.Token(0) + "\" without a value:");
 					continue;
 				}
-				if(grand.Token(0) == "remove")
+				else if(grand.Token(0) == "remove")
 				{
 					if(grand.Token(1) == "universal")
 						universalRamscoop = true;
@@ -212,8 +214,6 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					else
 						grand.PrintTrace("Error: skipping unrecognized remove \"" + grand.Token(1) + "\" for ramscoop:");
 				}
-				else if(grand.Token(0) == "universal")
-					universalRamscoop = grand.Value(1);
 				else if(grand.Token(0) == "modifier")
 					ramscoopModifier = grand.Value(1);
 				else if(grand.Token(0) == "multiplier")
