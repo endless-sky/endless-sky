@@ -520,7 +520,7 @@ mission "Wanderers: Defend Vara Ke'sok Hint"
 				"reputation: Hai" > 100
 			branch war
 				has "main plot completed"
-				not "hai start"
+				not "skip FW"
 			`	"Ambassador Sayari mentioned humans do many [jobs, hobbies] in their space. Or are we mistaken?"`
 			choice
 				`	"Indeed we do."`
@@ -1315,7 +1315,7 @@ mission "Wanderers: Alpha Surveillance E"
 				`	"Are you sure we can trust them? The Alphas were in a Navy ship, after all."`
 				`	"We could go to Admiral Danforth. He's a Navy officer who I trust to be on the right side."`
 					to display
-						not "hai start"
+						not "skip FW"
 					goto danforth
 			`	"Can you think of any other option?" he says.`
 			`	"There's a branch of the Navy called the 'Oathkeepers,'" you tell him, "led by Admiral Danforth. If there is anyone in the Navy whom we can trust, it's them."`
@@ -1330,10 +1330,10 @@ mission "Wanderers: Alpha Surveillance E"
 		conversation
 			`Admiral Danforth is very pleased to see you, but his expression turns grim when you explain why you have come.`
 				to display
-					not "hai start"
+					not "skip FW"
 			`Admiral Danforth is curious as to why you came to him. You explain that you heard of him and the oathkeepers when you were still on your homeworld, during the events of the war. He is very pleased that you choose to trust him, but his mood darkens the more you detail why you came here.`
 				to display
-					has "hai start"
+					has "skip FW"
 			`	When you mention the Alphas, he hushes you. "Let's not speak of that, out here in the open," he says. "Not that I do not trust my people, but it is best to be safe. I will gather troops who I know are able to operate discreetly and have them be ready to join us on an expedition. Meet me in my private office at the spaceport when you're ready."`
 
 
@@ -1535,8 +1535,8 @@ mission "Wanderers: Alpha Surveillance I"
 				`	"Yes, in fact now they're trying to get us to work together with them against the Alphas."`
 				`	"Yes, and they think Elias can help them against the Alphas."`
 			`	"I see," says Danforth. "I wish I could tell you that they can be trusted. I wish I could tell you that there is no safer place for an enemy of the Alphas than here with me."`
-			branch "hai start"
-				has "hai start"
+			branch leave
+				has "skip FW"
 			branch know
 				has "event: death of nguyen"
 			`	He pauses to pull out a data pad from his desk and call up a file on it. "Recently," says Danforth, "an officer of mine assisted in taking down an Alpha enclave, like you have done." He's looking specifically at Elias as he says that. "A month later he was somehow assassinated, right here in my Naval base. Here's a photo of him." Danforth slides the data pad across the desk. It's showing a man you do not recognize, but Elias stifles a cry of dismay when he sees who it is. Danforth says, "I can't pretend you would be safe here. I think the safest thing for both of you would be to leave human space for a while."`
@@ -1544,7 +1544,6 @@ mission "Wanderers: Alpha Surveillance I"
 			label know
 			`	He pauses to pull out a data pad from his desk and call up a file on it. "Recently," says Danforth, "an officer of mine assisted in taking down an Alpha enclave, like you have done." He's looking specifically at Elias as he says that. "A month later he was somehow assassinated, right here in my Naval base. Here's a photo of him." Danforth slides the data pad across the desk. It's showing a photo of Commander Nguyen, and to your surprise Elias stifles a cry of dismay when he sees who it is. Danforth says, "I can't pretend you would be safe here. I think the safest thing for both of you would be to leave human space for a while."`
 				goto leave
-			label "hai start"
 			label leave
 			`	You agree that you will take Elias back to Alta Hai. Whatever Elias is, whoever might wish him harm, you can only hope that a Quarg ringworld is the safest place for him right now.`
 				accept

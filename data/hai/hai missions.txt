@@ -528,7 +528,7 @@ mission "Expanding Business [4]"
 			`	"I had to pay a pretty penny to get the outfitter this close to the spaceport," Turner says to you, "but it'll all be worth it in the end. The outfitter should be done in three months or so. You'll know it's done once you find an extra two thousand credits in your pocket every day."`
 			`	Turner pats you on the back. "Have fun until then, Captain <last>. Keep yourself busy saving the galaxy."`
 				to display
-					not "hai start"
+					not "skip FW"
 
 event "outfitter on greenwater"
 	planet "Greenwater"
