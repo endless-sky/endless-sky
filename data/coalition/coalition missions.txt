@@ -3241,66 +3241,29 @@ mission "Fangvin: Struggling Author 1"
 	source "Zug"
 	destination "Ki Patek Ka"
 	to offer
-		random < 30
-		credits > 140
-		has "Coalition: Contributor: done"
+		has "Fangvin: Book Discovered: done"
 	on offer
 		conversation
-			`Upon entering the spaceport, you walk past a bookstore, currently holding a book signing event for an author known as 'Anna Fangvin'. People walk past her and into the bookstore, but mostly ignore her. You see a person sit at her table and have her book signed, but it appears as if she is a struggling author.`
+			`Upon entering the spaceport, you walk past a restaurant. A woman then raises her arms, waving towards you. She must be Anna Fangvin, that author the Coalition citizens showed interest in.`
 			choice
-				`	(Ignore her.)`
-					decline
-				`	(Buy one of her books.)`
-					goto "buy her book"
-				`	(Sit down and talk to her.)`
-			`	You sit down at the table, next to Anna. She greets you with a smile. "Hello! Would you like to buy one of my books?" she asks.`
+				`	(Approach her.)`
+			`	You approach Anna and sit right next to her. "Hello, are you <first>?`
+			`	"Yes, I am."`
 			choice
-				`	"What are your books about?"`
-				`	"No, I'm not interested. How has life been as an author though?"`
-					goto "life as an author sucks"
-			label "it's called a jump drive"
-			`	"They have a name? Wow, I never knew that. Thank you for correcting me, I suppose."`
+				`	"What do you write?"`
+					goto "what do you write"
+			label "what do you write"
+			`	"I write science fiction novels. My latest novel was 'Beyond the Hyperdrive', which I released a few weeks ago. It's about a bunch of humans who steal jump drives from the Quarg. Here, have a copy."`
+			`	Anna retrieves a hardcover book from her bag. It has an image of a Jump Drive on it. You take the book.`
+			`	"You'll like it, I promise."`
 			choice
-				`	"Why is your story about the Quarg though? Do you have a problem with them?"`
-					goto "do you hate the quarg"
-			label "what are her books about"
-			`	"I mostly write science fiction books. Today, I'm here to promote 'Beyond the Hyperdrive', a story in which a group of humans steal Quarg technology to bypass the hyperlanes and reach new systems. If I continue past this point I'd be spoiling it. Read it for yourself, you'll like it!"`
-			choice
-				`	"I believe you're talking about a Jump Drive."`
-					goto "it's called a jump drive"
-				`	"I'm interested. Wait here, I'll go buy myself a copy."`
-					goto "buy her book"
-				`	"Why is it a story about stealing from the Quarg? Really? Do you hate the Quarg or something?"`
-					goto "do you hate the quarg"
-				`	"Cool. How has life been lately as an author?"`
-			label "life as an author sucks"
-			`	"Bad," says Anna. "I've never had a bestseller or even a book that surpasses 10,000 copies sold."`
-			choice
-				`	"What are your books about?"`
-					goto "what are her books about"
-				`	"Why don't your books sell that much?"`
-					goto "why don't your books sell that much"
-				`	"Well, that's gotta hurt. I hope you find success in your life one day.`
-					decline
-			label "why don't your books sell that much"
-			`	"It could be a lot of reasons. I suppose they're afraid of the Quarg getting angry?"`
-			`	Anna then begins explaining how her parents were opposed to her career choice, how for the past few years it had been hard to make ends meet, and how writing was a way she could at least make enough to exist.`
-			label "buy her book"
-			action
-				set "beyond the hyperdrive book"
-				payment -60
-			`	You enter the bookstore, ask the employee for one of Anna's books, and purchase it for 60 credits.`
-			choice
-				`	(Now go to Anna and get it signed.)`
-				`	(Leave.)`
-					decline
-			`	You move to the table where Anna is sitting. She looks visibly happy as she grabs your book, takes out a pen, and signs it. "Thanks for buying one of my books. I don't get much sales and people like you mean the world to me."`
-			choice
-				`	"I appreciate it. How has life as an author been though?"`
-					goto "life as an author sucks"
-				`	"Thanks for signing my copy. I hope you find success in your life. Goodbye."`
-					decline
-			label "do you hate the quarg"
+				`	"How long is the book?`
+					goto "how long is the book"
+				`	"Why is it a story about humanity stealing from the Quarg?"`
+					goto "anna hates quarg"
+			label "how long is the book"
+			`	It isn't very long, it should be three hundred pages.`
+			label "anna hates quarg"
 			`	"I have a lot of problems with them. I just don't trust them. I remember when my parents took me to Humanika. Naturally, I wanted to explore, so I wandered off. I was lost. This creepy-looking Quarg found me, and when it tried to approach, I cried."`
 			`	"And then when I grew up, when I was a teenager, I decided to do a project on them for college. They responded with silence to my questions, as if they had something to hide. I worked as an assistant for a journalist for a few months. He kept asking me for help with the Quarg. They just would not budge."`
 			choice
