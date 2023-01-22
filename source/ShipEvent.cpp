@@ -95,7 +95,7 @@ int ShipEvent::Type() const
 string ShipEvent::TypeToString(int type)
 {
 	auto it = find_if(EVENT_NAMES.begin(), EVENT_NAMES.end(),
-			[&type](const auto &it) -> bool { return type == it.second; });
+			[&type](const pair<string, int> &it) -> bool { return type == it.second; });
 	if(it == EVENT_NAMES.end())
 		return "none";
 	return it->first;
