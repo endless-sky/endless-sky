@@ -552,6 +552,8 @@ private:
 	double heat = 0.;
 	// Accrued "ion damage" that will affect this ship's energy over time.
 	double ionization = 0.;
+	// Accrued "scrambling damage" that will affect this ship's weaponry over time.
+	double scrambling = 0.;
 	// Accrued "disruption damage" that will affect this ship's shield effectiveness over time.
 	double disruption = 0.;
 	// Accrued "slowing damage" that will affect this ship's movement over time.
