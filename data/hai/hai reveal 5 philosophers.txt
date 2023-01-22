@@ -493,22 +493,20 @@ fleet "Smuggler (Hai Traffickers)"
 	names "civilian"
 	cargo 0
 	personality timid
-	variant 10
+	variant 7
 		"Blackbird (Hai Trafficker)"
-	variant 5
-		"Bulk Freighter (Hai Trafficker)"
-	variant 5
+	variant 7
 		"Mule (Hai Trafficker)"
-	variant 3
-		"Star Queen (Hai Trafficker)"
-	variant 3
-		"Clipper (Hai Trafficker)"
-	variant 3
+	variant 7
 		"Freighter (Hai Trafficker)"
-	variant 3
+	variant 5
+		"Clipper (Hai Trafficker)"
+	variant 5
 		"Corvette (Hai Trafficker)"
 	variant 3
 		"Bounder (Hai Trafficker)"
+	variant 3
+		"Star Queen (Hai Trafficker)"
 
 
 mission "Hai Reveal [B07-1] Boarded Smuggler"

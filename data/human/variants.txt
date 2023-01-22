@@ -568,23 +568,6 @@ ship "Bulk Freighter" "Bulk Freighter (Hai)"
 	turret "Pulse Turret"
 
 
-ship "Bulk Freighter" "Bulk Freighter (Hai Trafficker)"
-	outfits
-		`"Biroo" Atomic Thruster`
-		`"Biroo" Reverse Thruster`
-		"A375 Atomic Steering"
-		"Breeder Reactor"
-		Brig
-		"Chameleon Anti-Missile" 3
-		"Hai Diamond Regenerator"
-		"LP072a Battery Pack"
-		"Liquid Nitrogen Cooler"
-		"Pulse Rifle" 12
-		Ramscoop
-		"Scram Drive"
-		"Security Station" 3
-
-
 ship "Bulk Freighter" "Bulk Freighter (Heavy)"
 	outfits
 		"Laser Turret" 2
