@@ -55,6 +55,10 @@ public:
 		// and REVEALED states. The UNLOCKED state must have valid information, though.
 		std::string system;
 		std::string planet;
+
+		std::string date;
+		std::string credits;
+		std::string debt;
 	};
 
 
@@ -82,6 +86,9 @@ public:
 	const std::string &GetDescription() const noexcept;
 	const std::string &GetPlanetName() const noexcept;
 	const std::string &GetSystemName() const noexcept;
+	const std::string &GetDateString() const noexcept;
+	const std::string &GetCredits() const noexcept;
+	const std::string &GetDebt() const noexcept;
 
 	// Determine whether this StartConditions should be displayed to the player.
 	bool Visible(const ConditionsStore &conditionsStore) const;

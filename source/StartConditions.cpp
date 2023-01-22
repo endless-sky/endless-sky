@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Logger.h"
 #include "Planet.h"
@@ -190,6 +191,9 @@ void StartConditions::FinishLoading()
 	StartInfo &unlocked = infoByState[StartState::UNLOCKED];
 	unlocked.planet = GetPlanet().Name();
 	unlocked.system = GetSystem().Name();
+	unlocked.date = GetDate().ToString();
+	unlocked.credits = Format::Credits(GetAccounts().Credits());
+	unlocked.debt = Format::Credits(GetAccounts().TotalDebt());
 
 	string reason = GetConversation().Validate();
 	if(!GetConversation().IsValidIntro() || !reason.empty())
@@ -286,6 +290,30 @@ const string &StartConditions::GetSystemName() const noexcept
 
 
 
+const string &StartConditions::GetDateString() const noexcept
+{
+	auto it = infoByState.find(state);
+	return it == infoByState.end() ? ILLEGAL : it->second.date;
+}
+
+
+
+const string &StartConditions::GetCredits() const noexcept
+{
+	auto it = infoByState.find(state);
+	return it == infoByState.end() ? ILLEGAL : it->second.credits;
+}
+
+
+
+const string &StartConditions::GetDebt() const noexcept
+{
+	auto it = infoByState.find(state);
+	return it == infoByState.end() ? ILLEGAL : it->second.debt;
+}
+
+
+
 bool StartConditions::Visible(const ConditionsStore &conditionsStore) const
 {
 	return toDisplay.Test(conditionsStore);
@@ -354,6 +382,12 @@ bool StartConditions::LoadStateChild(const DataNode &child, StartInfo &info, boo
 		info.system = value;
 	else if(key == "planet" && hasValue)
 		info.planet = value;
+	else if(key == "date" && hasValue)
+		info.date = value;
+	else if(key == "credits" && hasValue)
+		info.credits = value;
+	else if(key == "debt" && hasValue)
+		info.debt = value;
 	else
 		return false;
 	return true;
@@ -374,4 +408,10 @@ void StartConditions::FillState(StartState fillState, const Sprite *thumbnail)
 		fill.system = "???";
 	if(fill.planet.empty())
 		fill.planet = "???";
+	if(fill.date.empty())
+		fill.date = "???";
+	if(fill.credits.empty())
+		fill.credits = "???";
+	if(fill.debt.empty())
+		fill.debt = "???";
 }

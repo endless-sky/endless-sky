@@ -319,9 +319,9 @@ void StartConditionsPanel::Select(StartConditionsList::iterator it)
 	info.SetString("description", startIt->GetDescription());
 	info.SetString("planet", startIt->GetPlanetName());
 	info.SetString("system", startIt->GetSystemName());
-	info.SetString("date", startIt->GetDate().ToString());
-	info.SetString("credits", Format::Credits(startIt->GetAccounts().Credits()));
-	info.SetString("debt", Format::Credits(startIt->GetAccounts().TotalDebt()));
+	info.SetString("date", startIt->GetDateString());
+	info.SetString("credits", startIt->GetCredits());
+	info.SetString("debt", startIt->GetDebt());
 
 
 	// Update the displayed description text.
