@@ -9617,7 +9617,7 @@ system Devil-Hide
 
 system Devil-Run
 	hidden
-	pos -19 179
+	pos -148 162
 	government Uninhabited
 	arrival 1080
 	habitable 1080
