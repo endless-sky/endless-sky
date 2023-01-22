@@ -4037,7 +4037,7 @@ bool Ship::FireAfterburner(const AfterburnerUsage &afterburner)
 	double dischargeCost = outfit->Attributes().Get("afterburner discharge");
 	double corrosionCost = outfit->Attributes().Get("afterburner corrosion");
 	double ionCost = outfit->Attributes().Get("afterburner ion");
-	double scramblingCost = attributes.Get("afterburner scramble");
+	double scramblingCost = outfit->Attributes().Get("afterburner scramble");
 	double leakageCost = outfit->Attributes().Get("afterburner leakage");
 	double burningCost = outfit->Attributes().Get("afterburner burn");
 
