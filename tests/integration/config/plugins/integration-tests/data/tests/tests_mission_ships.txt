@@ -58,7 +58,7 @@ test-data "One Earthly Barge"
 		mission "Check sparrow"
 			invisible
 			on offer
-				take "Sparrow" "The sparrow"
+				take ship "Sparrow" "The Sparrow"
 					id "ship: sparrow"
 				payment 10
 
