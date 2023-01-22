@@ -166,6 +166,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			}
 			else if(key == "hidden")
 				hidden = false;
+			else if(key == "inaccessible")
+				inaccessible = false;
 
 			// If not in "overwrite" mode, move on to the next node.
 			if(overwriteAll)
@@ -177,6 +179,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		// Handle the attributes which can be "removed."
 		if(key == "hidden")
 			hidden = true;
+		else if(key == "inaccessible")
+			inaccessible = true;
 		else if(!hasValue && key != "object")
 		{
 			child.PrintTrace("Error: Expected key to have a value:");
@@ -439,7 +443,20 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 // if the system is inhabited.
 void System::UpdateSystem(const Set<System> &systems, const set<double> &neighborDistances)
 {
+	accessibleLinks.clear();
 	neighbors.clear();
+
+	// Some systems in the game may be considered inaccessible. If this system is inaccessible,
+	// then it shouldn't have accessible links or jump neighbors.
+	if(inaccessible)
+		return;
+
+	// If linked systems are inaccessible, then they shouldn't be a part of the accessible links
+	// set that gets used for navigation and other purposes.
+	for(const System *link : links)
+		if(!link->Inaccessible())
+			accessibleLinks.insert(link);
+
 	// Neighbors are cached for each system for the purpose of quicker
 	// pathfinding. If this system has a static jump range then that
 	// is the only range that we need to create jump neighbors for, but
@@ -481,6 +498,7 @@ void System::Link(System *other)
 {
 	links.insert(other);
 	other->links.insert(this);
+	// accessibleLinks will be updated when UpdateSystem is called.
 }
 
 
@@ -489,6 +507,7 @@ void System::Unlink(System *other)
 {
 	links.erase(other);
 	other->links.erase(this);
+	// accessibleLinks will be updated when UpdateSystem is called.
 }
 
 
@@ -553,7 +572,7 @@ const set<string> &System::Attributes() const
 // Get a list of systems you can travel to through hyperspace from here.
 const set<const System *> &System::Links() const
 {
-	return links;
+	return accessibleLinks;
 }
 
 
@@ -571,10 +590,19 @@ const set<const System *> &System::JumpNeighbors(double neighborDistance) const
 
 
 
-// Whether this system can be seen when not linked.
+// Defines whether this system can be seen when not linked. A hidden system will
+// not appear when in view range, except when linked to a visited system.
 bool System::Hidden() const
 {
 	return hidden;
+}
+
+
+
+// Defines whether this system can be accessed or interacted with in any way.
+bool System::Inaccessible() const
+{
+	return inaccessible;
 }
 
 
@@ -953,21 +981,22 @@ void System::UpdateNeighbors(const Set<System> &systems, double distance)
 {
 	set<const System *> &neighborSet = neighbors[distance];
 
-	// Every star system that is linked to this one is automatically a neighbor,
+	// Every accessible star system that is linked to this one is automatically a neighbor,
 	// even if it is farther away than the maximum distance.
-	for(const System *system : links)
+	for(const System *system : accessibleLinks)
 		neighborSet.insert(system);
 
 	// Any other star system that is within the neighbor distance is also a
 	// neighbor.
 	for(const auto &it : systems)
 	{
-		// Skip systems that have no name.
-		if(it.first.empty() || it.second.Name().empty())
+		const System &other = it.second;
+		// Skip systems that have no name or that are inaccessible.
+		if(it.first.empty() || other.Name().empty() || other.Inaccessible())
 			continue;
 
-		if(&it.second != this && it.second.Position().Distance(position) <= distance)
-			neighborSet.insert(&it.second);
+		if(&other != this && other.Position().Distance(position) <= distance)
+			neighborSet.insert(&other);
 	}
 }
 
