@@ -1447,7 +1447,7 @@ mission "Unfettered: Materials Intercepted"
 			`	"The Shadow of Mintaka sends her regards, <first> <last>. We look forward to dancing with you again."`
 			branch "not too many ships"
 				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 24
-			`	You receive a final, private message from one of the ship. "A shame you brought such a fleet with you, we could have had so much fun otherwise..."`
+			`	You receive a final, private message from one of the ships. "A shame you brought such a fleet with you, we could have had so much fun otherwise..."`
 				decline
 			label "not too many ships"
 			choice

@@ -294,7 +294,7 @@ fleet "Marauders"
 
 
 
-phrase "mercenaries defeated" 
+phrase "mercenaries defeated"
 	word
 		`After disabling the last of the pirate ships, you wonder what could have motivated such an attack. Do you possess something valuable to them? When they entered the system, they only sent one message: "nemo me impune lacessit". It is probably best to store whatever they were interested in on a planet (using U) or get rid of it.`
 
@@ -368,7 +368,7 @@ mission "Mercenaries: Betrayal For The Bars"
 					goto investigate
 			action
 				outfit "Gold Bars" -5
-			`	You let the disturbance happen, and after some more noise including a big metallic object falling, it stops. It could be worth it to check your cargo bay to see if everything is ok.`
+			`	You decide against going to check it out now. A few moments later, you hear a big metallic sound, before the calm returns. You may want to check your cargo bay later on.`
 				defer
 			label investigate
 			`You pull out your sidearm and approach the bay as discreetly as you can. Worst case scenario is you find one of your own crew, in which case you better not overreact, or someone could get hurt.`
@@ -448,7 +448,7 @@ mission "Mercenaries: Betrayal For The Bars"
 			`You leave the traitor here on this world after awakening them, and they seem thankful but deeply troubled by what happened. You wonder what you should do with the gold bars that seem to cause so much trouble. They should probably be stashed away safely, or maybe you should get rid of them.`
 				decline
 			label escape
-			`You tighten your hold on the traitor, but as you do something hits the back of your head, and you lose consciousness. When you wake, there is a small note on the spot where some gold bars were, written by yet another member of  your crew. "<first>, I am very sorry to break your trust like they did, but believe me, this is for your own good. The ex-crew member would have been killed if they had returned without the gold bars, so we took a few. You should quit this while you still can."`
+			`You tighten your hold on the traitor, but as you do something hits the back of your head, and you lose consciousness. When you wake, there is a small note on the spot where some gold bars were, written by yet another member of your crew. "<first>, I am very sorry to break your trust like they did, but believe me, this is for your own good. The ex-crew member would have been killed if they had returned without the gold bars, so we took a few. You should quit this while you still can."`
 			label lostbars
 			action
 				outfit "Gold Bars" -5
@@ -764,19 +764,19 @@ mission "Unfettered: Special Cargo 1B"
 			label one
 			action
 				outfit "Gold Bars"
-			`	Taking one stack of gold bar takes very little time, and you wonder if you could have gotten away with more.`
+			`	You are able to take one stack of gold bars in very little time, wonder if you could have gotten away with more.`
 				goto dropbars
 			label three
 			action
 				outfit "Gold Bars" 3
-			`	You decide to take 3 stacks of gold bars, they feel heavy but are not too much to carry around by yourself.`
+			`	You decide to take three stacks of gold bars, they feel heavy but are not too much to carry around by yourself.`
 				goto dropbars
 			label five
 			action
 				outfit "Gold Bars" 5
-			`	5 stacks is a heafty amount, you are constantly looking over your shoulder in fear of being spotted as you move them near the airlock.`
+			`	Five stacks is a hefty amount, you are constantly looking over your shoulder in fear of being spotted as you move them near the airlock.`
 			label dropbars
-			`	You drop the gold on the ground, and then leave the ship. Afterwards, you go around it to the location where they are partially buried in the sand, and take them discreetly with some members of your crew. You have to silence one or two curious pirates, but that's about it, and you can now head back to your ship. As expected, they have noticed the theft. You see them launching before you can do so yourself. This will be a bumpy ride.`
+			`	You drop the gold on the ground, and then leave the ship. Afterwards, you go around to the location where they are partially buried in the sand, and take them discreetly with some members of your crew. You have to silence one or two curious pirates, but that's about it, and you can now head back to your ship. As expected, they have noticed the theft. You see them launching before you can do so yourself. This will be a bumpy ride.`
 				flee
 			label caught
 			`	You do not manage to find the item here. However, you've attracted way too much suspicion by looking and opening crates everywhere you could. One local worker asks you something about mechanics. Being no engineer yourself, you cannot make any sense of what he says, even less formulate a correct response, and he calls a guard over you. You are captured and sold as a slave, condemned to a few years of hard work before a sad death.`
@@ -818,7 +818,7 @@ mission "Unfettered: Special Cargo 1B"
 			action
 				set "mercenaries: brokered deal"
 				"reputation: Mhairi's Legion" >?= 1
-			`	You go to your ship as planned, preparing to the planet as planned, and no pirates try to stop you on the way. It seems like they were mens of their words.`
+			`	You head to your ship, preparing to leave the planet. No pirates try to stop you on the way. In fact, the pirates in orbit are no longer hostile to you. It seems like they respected the agreement.`
 				accept
 			label challenge
 			`	You launch your fleet and send a challenge to the warlord, putting her authority and competence in question. She cannot resist the urge to come and kill you, you only hope you can beat her and collect the item from her ship.`

@@ -214,7 +214,7 @@ mission "Unfettered: Hunger Stories 1"
 		has "unfettered: hunger"
 	on offer
 		conversation
-			`You are walking past one of the Unfettered government offices in the spaceport when a woman walks out clearly distraught. Her clothes hang loose on her small frame. An infant clings tightly to her fur and a small boy walks behind her with a sombre expression. A collection of silver oak leaves is pinned to his jacket.`
+			`You are walking past one of the Unfettered government offices in the spaceport when a woman walks out, clearly distraught. Her clothes hang loose on her small frame. An infant clings tightly to her fur and a small boy walks behind her with a sombre expression. A collection of silver oak leaves is pinned to his jacket.`
 			choice
 				`	(Approach her.)`
 				`	(Get on with my business.)`
@@ -258,9 +258,9 @@ mission "Unfettered: Hunger Stories 2"
 		has "unfettered: hunger"
 	on offer
 		conversation
-			`"Human!" The cry catches your attention not only because of the volume of the shout, but primarily because it's the most respectful term anyone has used for you in Unfettered space. You turn and see a young Hai warrior striding toward you. At least you think he's young. He's certainly thinner than most of the Hai you see south of Wah-Ki. You notice that his boots seem made more of mending tape than material. He's not wearing the ornately decorated knives that many of the True Hai carry, but he does have sheaths for them. Instead, he carries a long staff that looks to be made of one of the light but rigid Hai alloys.You can see that scars from many fights disturb the pattern of his fur.`
-			`	"Human," he says again when he reaches you, "you should not promenade yourself in our star market without worthy guidance. This warrior can tell you what trader tongues are saying because I know your backward speech. Fast fingers not grab human things while I watch," he adds, emphasing the point by banging the staff on the floor and making it ring. You notice the flow of traffic begins to part around you as other traders and travellers give him room.`
-			`	It takes you a moment to parse what he is saying as his accent is difficult to understand. You would guess he learned Human language in class but has never spoken with native speakers. You think he is offering to be your translator and bodyguard.`
+			`"Human!" The cry catches your attention not only because of the volume of the shout, but primarily because it's the most respectful term anyone has used for you in Unfettered space. You turn and see a young Hai warrior striding toward you. At least you think he's young. He's certainly thinner than most of the Hai you see south of Wah-Ki. You notice that his boots seems to be made more of mending tape than actual fabric. He's not wearing the ornately decorated knives that many of the True Hai carry, but he does have sheaths for them. Instead, he carries a long staff that looks to be made of one of the light but rigid Hai alloys.You can see that scars from many fights disturb the pattern of his fur.`
+			`	"Human," he says again when he reaches you, "you should not promenade yourself in our star market without worthy guidance. This warrior can tell you what trader tongues are saying because I know your backward speech. Fast fingers not grab human things while I watch," he adds, emphasizing the point by banging the staff on the floor and making it ring. You notice the flow of traffic begins to part around you as other traders and travellers give him room.`
+			`	It takes you a moment to parse what he is saying as his accent is difficult to understand. You would guess he learned your language in class but has never spoken with native speakers. You think he is offering to be your translator and bodyguard.`
 			choice
 				`(Hire him.)`
 					goto hire
@@ -280,11 +280,11 @@ mission "Unfettered: Hunger Stories 2"
 				
 			label polite
 			`	You tell him that you can take care of yourself. He nods to acknowledge your decision but maintains eye contact. He then turns and walks away.`
-			`	You see him around the space port a few times: once working as a porter, another loading cargo. Both seem like odd jobs for someone with his apparent skills and neither will pay very well. As you are heading back to your ship you see him at one of the small food stalls that sells really cheap noodle cups and you wonder if that's the only time he's eaten today.`
+			`	You see him around the spaceport a few times: once working as a porter, another time loading cargo. Both seem like odd jobs for someone with his apparent skills and neither will pay very well. As you are heading back to your ship you see him at one of the small food stalls that sells really cheap noodle cups and you wonder if that's the only time he's eaten today.`
 				decline
 
 			label laugh
-			`	You find yourself flat on your back looking up at the young Unfettered. He's holding your sidearm and point it at you with the safety off. You later decide that he must have swept your legs with the staff and grabbed your weapon, but it happened so swiftly you never saw it.`
+			`	You find yourself flat on your back looking up at the young Unfettered. He's holding your sidearm and is pointing it at you with the safety off. You later decide that he must have swept your legs with the staff and grabbed your weapon, but it happened so swiftly you never saw it.`
 			`	"I was wrong," he says as he secures your weapon inside his jacket. "I though you warrior. Have respect. You just monkey after all."`
 			`	He walks off causally, never bothering to turn around.`
 				decline
@@ -332,7 +332,7 @@ mission "Unfettered: Hunger Stories 3"
 			action
 				payment -5000
 			`	You reach for your sidearm only to find that it isn't there. It seems like a dozen pairs of paws are on you, some tearing at your clothes and some climbing on you. You spin around to try and shake them off. You end up rolling on the ground and then, as suddenly as it began, everything stops and you are alone in the street. You check yourself quickly and you seem to be uninjured. Your clothes are in tatters, though, and your sidearm, communicator, and bag are nowhwere to be seen.`
-			`	You make your way back to the spaceport. For once, it's useful to be the alien. The guards are quickly able to quickly clear you even without documentation. You hear them laughing as you head for the safety of your ship. You've no doubt that the story of he monkey robbed by children is already making the rounds.`
+			`	You make your way back to the spaceport. For once, it's useful to be the alien. The guards are quickly able to quickly clear you even without documentation. You hear them laughing as you head for the safety of your ship. You have no doubt that the story of the monkey robbed by children is already making the rounds.`
 				decline
 
 
@@ -384,7 +384,7 @@ mission "Unfettered Hunger Tribute"
 	to offer
 		has "Unfettered Jump Drive 2: offered"
 		has "unfettered: hunger"
-        random < 40
+		random < 40
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on stopover
