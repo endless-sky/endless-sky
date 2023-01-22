@@ -281,7 +281,7 @@ private:
 	double splitRange = 0.;
 	double triggerRadius = 0.;
 	double blastRadius = 0.;
-	double minSafeDistance = 0.;
+	double safeRange = 0.;
 
 	static const int DAMAGE_TYPES = 22;
 	static const int HIT_FORCE = 0;

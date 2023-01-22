@@ -211,7 +211,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 				blastRadius = max(0., value);
 			else if(key == "safe range override")
 			{
-				minSafeDistance = max(0., value);
+				safeRange = max(0., value);
 				safeRangeOverriden = true;
 			}
 			else if(key == "shield damage")
@@ -333,10 +333,10 @@ void Weapon::LoadWeapon(const DataNode &node)
 		}
 	}
 
-	// Only when the weapon is not safe and has a blast radius is minSafeDistance needed,
+	// Only when the weapon is not safe and has a blast radius is safeRange needed,
 	// except if it is already overridden.
 	if(!isSafe && blastRadius > 0 && !safeRangeOverriden)
-		minSafeDistance = (blastRadius + triggerRadius);
+		safeRange = (blastRadius + triggerRadius);
 }
 
 
