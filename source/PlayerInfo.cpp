@@ -2173,21 +2173,6 @@ int64_t PlayerInfo::GetTributeTotal() const
 
 
 
-int64_t PlayerInfo::GetTributeForPlanet(const string &planetTrueName) const
-{
-	const Planet *planet = GameData::Planets().Find(planetTrueName);
-	if(!planet)
-		return false;
-
-	auto it = tributeReceived.find(planet);
-	if(it == tributeReceived.end())
-		return 0;
-
-	return it->second;
-}
-
-
-
 // Check if the player knows the location of the given system (whether or not
 // they have actually visited it).
 bool PlayerInfo::HasSeen(const System &system) const
@@ -2980,10 +2965,20 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	auto &&tributeProvider = conditions.GetProviderPrefixed("tribute: ");
-	tributeProvider.SetHasFunction([this](const string &name) -> bool {
-		return GetTributeForPlanet(name.substr(strlen("tribute: "))); });
-	tributeProvider.SetGetFunction([this](const string &name) -> int64_t {
-		return GetTributeForPlanet(name.substr(strlen("tribute: "))); });
+	auto tributeHasGetFun = [this](const string &name) -> int64_t
+	{
+		const Planet *planet = GameData::Planets().Find(name);
+		if(!planet)
+			return false;
+
+		auto it = tributeReceived.find(planet);
+		if(it == tributeReceived.end())
+			return 0;
+
+		return it->second;
+	};
+	tributeProvider.SetHasFunction(tributeHasGetFun);
+	tributeProvider.SetGetFunction(tributeHasGetFun);
 	tributeProvider.SetSetFunction([this](const string &name, int64_t value) -> bool {
 		return SetTribute(name.substr(strlen("tribute: ")), value); });
 	tributeProvider.SetEraseFunction([this](const string &name) -> bool {
