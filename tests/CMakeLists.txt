@@ -70,14 +70,14 @@ set_tests_properties(benchmark PROPERTIES WORKING_DIRECTORY "${CMAKE_CURRENT_SOU
 # Integration tests.
 add_custom_command(OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/IntegrationTests_tests.cmake"
 	COMMENT "Discover every integration test"
-	COMMAND "${CMAKE_COMMAND}" -DES="$<TARGET_FILE:EndlessSky>"
-		-DBINARY_PATH="${CMAKE_CURRENT_BINARY_DIR}"
-		-DRESOURCE_PATH="${CMAKE_SOURCE_DIR}"
+	COMMAND "${CMAKE_COMMAND}" -DES=$<TARGET_FILE:EndlessSky>
+		-DBINARY_PATH=${CMAKE_CURRENT_BINARY_DIR}
+		-DRESOURCE_PATH=${CMAKE_SOURCE_DIR}
 		-DES_USE_OFFSCREEN=${ES_USE_OFFSCREEN}
 		-P "${CMAKE_CURRENT_SOURCE_DIR}/integration/IntegrationTests.cmake"
 	DEPENDS EndlessSky ${INTEGRATION_TESTS}
 		"${CMAKE_CURRENT_SOURCE_DIR}/integration/IntegrationTests.cmake"
-	WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
+	WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}" VERBATIM)
 set_property(DIRECTORY APPEND PROPERTY TEST_INCLUDE_FILES "${CMAKE_CURRENT_BINARY_DIR}/IntegrationTests_tests.cmake")
 add_custom_target(IntegrationTests ALL
 	DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/IntegrationTests_tests.cmake"
