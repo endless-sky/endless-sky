@@ -48,20 +48,21 @@ test-data "One Earthly Barge"
 			credits 0
 			score 400
 			history
-		mission "Switch"
+		mission "%TEST%: Switch"
 			landing
-			invisible
 			on offer
 				take ship "Star Barge"
 				give ship "Sparrow" "The Sparrow"
 					id "ship: sparrow"
-		mission "Check sparrow"
-			invisible
+		mission "%TEST%: Check sparrow"
+			landing
 			on offer
 				take ship "Sparrow" "The Sparrow"
 					id "ship: sparrow"
 				payment 10
 
+mission "%TEST%: Switch"
+mission "%TEST%: Check sparrow"
 
 test "Checking for a gifted ship"
 	status active
@@ -75,14 +76,12 @@ test "Checking for a gifted ship"
 		call "Open Menu"
 		call "Load First Savegame"
 		call "Depart"
-		apply
-			"test: credits" = "credits"
-			"test: ships: Light Freighter" = "ships: Light Freighter"
-			"test: ships: Interceptor" = "ships: Interceptor"
 		assert
 			"credits" == 10
 			"ships: Light Freighter" == 0
 			"ships: Interceptor" == 0
+			"%TEST%: Switch: offered" == 1
+			"%TEST%: Check sparrow: offered" == 1
 
 
 test-data "One Specific Barge"
@@ -175,31 +174,28 @@ test-data "One Specific Barge"
 			credits 0
 			score 400
 			history
-		mission "Switch"
+		mission "%TEST%: Switch"
 			landing
-			invisible
 			on offer
+				# the ship is not here
 				take ship "Star Barge (Armed)"
-					amount 1
-					unconstrained
-				give ship "Sparrow (Gatling)"
-					amount 2
-		mission "Switch 2"
+					"requires outfits"
+		mission "%TEST%: Switch 2"
 			landing
-			invisible
 			on offer
-				take ship "Star Barge (Armed)"
-				give ship "Sparrow (Gatling)"
-					amount 5
-		mission "Switch 3"
-			landing
-			invisible
-			on offer
+				# incorrect ship name
 				take ship "Star Barge (Armed)" "Well defended"
 					unconstrained
-				give ship "Sparrow (Gatling)"
-					amount 4
+		mission "%TEST%: Switch 3"
+			landing
+			on offer
+				# correct
+				take ship "Star Barge (Armed)"
+					unconstrained
 
+mission "%TEST%: Switch"
+mission "%TEST%: Switch 2"
+mission "%TEST%: Switch 3"
 
 test "Taking right ship variant and unconstrained"
 	status active
@@ -215,3 +211,6 @@ test "Taking right ship variant and unconstrained"
 		assert
 			"ships: Light Freighter" == 1
 			"ships: Interceptor" == 2
+			"%TEST%: Switch: offered" == 0
+			"%TEST%: Switch 2: offered" == 0
+			"%TEST%: Switch 3: offered" == 1
