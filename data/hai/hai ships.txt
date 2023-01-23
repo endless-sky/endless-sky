@@ -805,9 +805,6 @@ ship "Pond Strider" "Pond Strider (Railgun)"
 
 
 
-# This default build is intended for the player,
-# whom the Unfettered do not want to arm properly for fighting the Hai (it lacks energy gen)
-# but instead with general plunder and utility in mind.
 ship "Sea Scorpion"
 	sprite "ship/hai sea scorpion"
 	thumbnail "thumbnail/hai sea scorpion"
