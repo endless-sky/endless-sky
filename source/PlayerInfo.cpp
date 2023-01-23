@@ -870,7 +870,6 @@ int64_t PlayerInfo::Salaries() const
 
 
 
-
 // Calculate the daily maintenance cost and generated income for all ships and in cargo outfits.
 PlayerInfo::FleetBalance PlayerInfo::MaintenanceAndReturns() const
 {
@@ -914,7 +913,6 @@ bool PlayerInfo::HasLicense(string name) const
 
 
 
-// TODO: Switch from internally using conditions for Licenses to those functions
 set<string> &PlayerInfo::Licenses()
 {
 	return licenses;
@@ -2120,14 +2118,20 @@ map<string, string> PlayerInfo::GetSubstitutions() const
 
 
 
-// TODO: Switch from internally using conditions for Tribute to those functions
-// TODO: Properly connect this function to the dominated property of planets
 bool PlayerInfo::SetTribute(const Planet * planet, int64_t payment)
 {
 	if(payment > 0)
+	{
 		tributeReceived[planet] = payment;
+		// Properly connect this function to the dominated property of planets.
+		GameData::GetPolitics().DominatePlanet(planet);
+	}
 	else
+	{
 		tributeReceived.erase(planet);
+		// Properly connect this function to the (no longer) dominated property of planets.
+		GameData::GetPolitics().DominatePlanet(planet, false);
+	}
 
 	return true;
 }

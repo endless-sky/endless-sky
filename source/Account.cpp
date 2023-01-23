@@ -324,8 +324,6 @@ int64_t Account::SalariesIncomeTotal() const
 
 
 
-// TODO: Switch from internally using conditions for SalariesIncome to those functions
-// TODO: Add some tests for those new functions
 void Account::SetSalaryIncome(string name, int64_t ammount)
 {
 	if(ammount == 0)
