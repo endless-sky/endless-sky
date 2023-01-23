@@ -36,13 +36,13 @@ public:
 
 	// Returns if the player meets the conditions; if they have the ships ready to be taken.
 	bool CanBeDone(const PlayerInfo &player) const;
+	// Give or take the ships.
 	void Do(PlayerInfo &player) const;
 
 	// The model of the concerned ship.
 	const Ship *ShipModel() const;
 	// The identifier that the given/taken ship will have.
 	const std::string &Id() const;
-	// If we are taking/giving ships.
 	bool Giving() const;
 
 
@@ -55,7 +55,8 @@ private:
 	const Ship *model = nullptr;
 	std::string name;
 	std::string id;
-	int count = 1;
+	int amount = 1;
+	bool taking = false;
 	bool unconstrained = false;
 	bool requiresOutfits = false;
 	bool takeOutfits = false;

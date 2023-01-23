@@ -36,7 +36,7 @@ void ShipManager::Load(const DataNode &node)
 		node.PrintTrace("Error: Skipping unrecognized node.");
 		return;
 	}
-	bool taking = node.Token(0) == "take";
+	taking = node.Token(0) == "take";
 	model = GameData::Ships().Get(node.Token(2));
 	if(node.Size() >= 4)
 		name = node.Token(3);
@@ -62,16 +62,16 @@ void ShipManager::Load(const DataNode &node)
 		{
 			int val = child.Value(1);
 			if(val <= 0)
-				child.PrintTrace("Error: \"count\" must be a non-zero, positive number.");
+				child.PrintTrace("Error: \"amount\" must be a non-zero, positive number.");
 			else
-				count = val * (taking ? -1 : 1);
+				amount = val;
 		}
 		else
 			child.PrintTrace("Error: Skipping unrecognized token.");
 	}
 
-	if(taking && !id.empty() && count > 1)
-		node.PrintTrace("Error: Use of \"id\" to refer to the ship is only supported when \"count\" is equal to 1.");
+	if(taking && !id.empty() && amount > 1)
+		node.PrintTrace("Error: Use of \"id\" to refer to the ship is only supported when \"amount\" is equal to 1.");
 }
 
 
@@ -81,7 +81,7 @@ void ShipManager::Save(DataWriter &out) const
 	out.Write(Giving() ? "give" : "take", "ship", model->VariantName(), name);
 	out.BeginChild();
 	{
-		out.Write("count", abs(count));
+		out.Write("amount", amount);
 		if(!id.empty())
 			out.Write("id", id);
 		if(unconstrained)
@@ -97,7 +97,7 @@ void ShipManager::Save(DataWriter &out) const
 bool ShipManager::CanBeDone(const PlayerInfo &player) const
 {
 	// If we are giving ships there are no conditions to meet.
-	return count > 0 || static_cast<int>(SatisfyingShips(player).size()) == abs(count);
+	return Giving() || static_cast<int>(SatisfyingShips(player).size()) == amount;
 }
 
 
@@ -108,9 +108,9 @@ void ShipManager::Do(PlayerInfo &player) const
 		return;
 
 	string shipName;
-	if(count > 0)
+	if(Giving())
 	{
-		for(int i = 0; i < count; ++i)
+		for(int i = 0; i < amount; ++i)
 			shipName = player.GiftShip(model, name, Id())->Name();
 	}
 	else
@@ -121,9 +121,9 @@ void ShipManager::Do(PlayerInfo &player) const
 		for(const auto &ship : toTake)
 			player.TakeShip(ship.get(), model, takeOutfits);
 	}
-	Messages::Add((abs(count) == 1 ? "The " + model->ModelName() + " \"" + shipName + "\" was " :
-		to_string(abs(count)) + " " + model->PluralModelName() + " were ") +
-		(count > 0 ? "added to" : "removed from") + " your fleet.", Messages::Importance::High);
+	Messages::Add((amount == 1 ? "The " + model->ModelName() + " \"" + shipName + "\" was " :
+		to_string(amount) + " " + model->PluralModelName() + " were ") +
+		(Giving() ? "added to" : "removed from") + " your fleet.", Messages::Importance::High);
 }
 
 
@@ -144,7 +144,7 @@ const string &ShipManager::Id() const
 
 bool ShipManager::Giving() const
 {
-	return count > 0;
+	return !taking;
 }
 
 
@@ -181,7 +181,7 @@ vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player) 
 				satisfyingShips.emplace_back(ship);
 
 			// We do not want any more ships than is specified.
-			if(static_cast<int>(satisfyingShips.size()) >= abs(count))
+			if(static_cast<int>(satisfyingShips.size()) >= amount)
 				break;
 		}
 
