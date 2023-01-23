@@ -24,7 +24,7 @@ outfit "Gold Bars"
 
 ship "Sea Scorpion" "Si-Ra' Scorpion"
 	add attributes
-		"weapon space" 24
+		"weapon capacity" 24
 	outfits
 		"Ionic Blaster Prototype" 4
 		"Ionic Turret Prototype" 2
