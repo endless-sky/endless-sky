@@ -92,6 +92,14 @@
 					"replaceWith": "\\1 \\2"
 				}
 
+			},
+			{
+				"description": "unnecessarily split word (space ship -> spaceship, an other -> another)",
+				"regex": "(?<![^\\s])(space|an) (ship|other)(?![^\\s])",
+				"except": ["^(?!(space ship|an other)$)"],
+				"correction": {
+					"replaceWith": "\\1\\2"
+				}
 			}
 		],
 		"textChecks": [
