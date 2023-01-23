@@ -115,6 +115,9 @@ namespace {
 	shared_ptr<Music> previousTrack;
 	int musicFade = 0;
 	vector<int16_t> fadeBuffer;
+
+	void (*alcDevicePauseSOFT)(ALCdevice*) = nullptr;
+	void (*alcDeviceResumeSOFT)(ALCdevice*) = nullptr;
 }
 
 
@@ -129,6 +132,10 @@ void Audio::Init(const vector<string> &sources)
 	context = alcCreateContext(device, nullptr);
 	if(!context || !alcMakeContextCurrent(context))
 		return;
+
+	alcDevicePauseSOFT = reinterpret_cast<decltype(alcDevicePauseSOFT)>(alcGetProcAddress(device, "alcDevicePauseSOFT"));
+	alcDeviceResumeSOFT = reinterpret_cast<decltype(alcDeviceResumeSOFT)>(alcGetProcAddress(device, "alcDeviceResumeSOFT"));
+
 
 	// If we don't make it to this point, no audio will be played.
 	isInitialized = true;
@@ -506,6 +513,24 @@ void Audio::Quit()
 	}
 	if(device)
 		alcCloseDevice(device);
+}
+
+
+
+// Temporarily pause all audio
+void Audio::Pause()
+{
+	if (alcDevicePauseSOFT)
+		alcDevicePauseSOFT(device);
+}
+
+
+
+// Resume Audio
+void Audio::Resume()
+{
+	if (alcDeviceResumeSOFT)
+		alcDeviceResumeSOFT(device);
 }
 
 

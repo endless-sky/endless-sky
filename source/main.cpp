@@ -42,6 +42,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "TestContext.h"
 #include "UI.h"
 
+#include <SDL2/SDL_events.h>
 #include <chrono>
 #include <iostream>
 #include <map>
@@ -210,8 +211,34 @@ int main(int argc, char *argv[])
 
 
 
+int EventFilter(void* userdata, SDL_Event* event)
+{
+	// This callback is guaranteed to be handled in the device callback, rather
+	// than the event loop.
+
+	// Pause/resume audio background thread. Otherwise repeating sounds will
+	// just keep playing while the game is in the background.
+	if (event->type == SDL_APP_DIDENTERBACKGROUND)
+	{
+		Audio::Pause();
+	}
+	else if (event->type == SDL_APP_DIDENTERFOREGROUND)
+	{
+		Audio::Resume();
+	}
+
+	return 1;
+}
+
+
+
 void GameLoop(PlayerInfo &player, const Conversation &conversation, const string &testToRunName, bool debugMode)
 {
+	// For android, game loop does not run on the main thread, and some of these
+	// events need handled from within the java callback context. Handle them
+	// directly rather than relying on the sdl event loop.
+	SDL_SetEventFilter(EventFilter, nullptr);
+
 	// gamePanels is used for the main panel where you fly your spaceship.
 	// All other game content related dialogs are placed on top of the gamePanels.
 	// If there are both menuPanels and gamePanels, then the menuPanels take
