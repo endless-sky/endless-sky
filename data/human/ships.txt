@@ -3043,7 +3043,7 @@ ship "Raven"
 	outfits
 		"Heavy Laser" 2
 		"Torpedo Launcher"
-		"Torpedo" 60
+		"Torpedo" 30
 		"Sidewinder Missile Launcher"
 		"Sidewinder Missile" 45
 		
