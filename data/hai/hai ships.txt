@@ -805,6 +805,9 @@ ship "Pond Strider" "Pond Strider (Railgun)"
 
 
 
+# This default build is intended for the player,
+# whom the Unfettered do not want to arm properly for fighting the Hai (it lacks energy gen)
+# but instead with general plunder and utility in mind.
 ship "Sea Scorpion"
 	sprite "ship/hai sea scorpion"
 	thumbnail "thumbnail/hai sea scorpion"
@@ -877,6 +880,22 @@ ship "Sea Scorpion"
 	explode "large explosion" 14
 	"final explode" "final explosion medium"
 	description "The Sea Scorpion was designed several decades ago to serve as a mobile platform to launch Trackers. However, it is only recently that the Unfettered have been able to mass produce them. While individually vulnerable, the reduced cost of manufacturing compared to Shield Beetles allow the materially inferior Unfettered to gain a numerical advantage against their brethren."
+
+ship "Sea Scorpion" "Sea Scorpion (Tracker)"
+	outfits
+		"Hai Tracker Pod" 4
+		"Chameleon Anti-Missile" 2
+		"Tracker Storage Pod" 4
+		"Hai Tracker" 336
+		"Hai Williwaw Cooling" 2
+		"Hai Octopus Jammer"
+		"Boulder Reactor"
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator"
+		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Value Detector"
+		"Hyperdrive"
 
 ship "Sea Scorpion" "Sea Scorpion (Pulse)"
 	outfits
