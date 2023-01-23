@@ -35,18 +35,7 @@ namespace { // test namespace
 using Conditions = std::map<std::string, int64_t>;
 // #region mock data
 
-int primarySize(const ConditionsStore &store)
-{
-	// TODO: use std::distance instead of the while loop
-	int size = 0;
-	auto it = store.PrimariesBegin();
-	while(it != store.PrimariesEnd())
-	{
-		++it;
-		++size;
-	}
-	return size;
-}
+
 
 // #endregion mock data
 
@@ -146,7 +135,7 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 
 SCENARIO( "Applying changes to conditions", "[ConditionSet][Usage]" ) {
 	auto store = ConditionsStore{};
-	REQUIRE( primarySize(store) == 0 );
+	REQUIRE( store.PrimariesSize() == 0 );
 
 	GIVEN( "an empty ConditionSet" ) {
 		const auto emptySet = ConditionSet{};
@@ -154,12 +143,12 @@ SCENARIO( "Applying changes to conditions", "[ConditionSet][Usage]" ) {
 
 		THEN( "no conditions are added via Apply" ) {
 			emptySet.Apply(store);
-			REQUIRE( primarySize(store) == 0 );
+			REQUIRE( store.PrimariesSize() == 0 );
 
 			store.Set("event: war begins", 1);
-			REQUIRE( primarySize(store) == 1 );
+			REQUIRE( store.PrimariesSize() == 1 );
 			emptySet.Apply(store);
-			REQUIRE( primarySize(store) == 1 );
+			REQUIRE( store.PrimariesSize() == 1 );
 		}
 	}
 	GIVEN( "a ConditionSet with only comparison expressions" ) {
@@ -172,12 +161,12 @@ SCENARIO( "Applying changes to conditions", "[ConditionSet][Usage]" ) {
 
 		THEN( "no conditions are added via Apply" ) {
 			compareSet.Apply(store);
-			REQUIRE( primarySize(store) == 0 );
+			REQUIRE( store.PrimariesSize() == 0 );
 
 			store.Set("event: war begins", 1);
-			REQUIRE( primarySize(store) == 1 );
+			REQUIRE( store.PrimariesSize() == 1 );
 			compareSet.Apply(store);
-			REQUIRE( primarySize(store) == 1 );
+			REQUIRE( store.PrimariesSize() == 1 );
 		}
 	}
 	GIVEN( "a ConditionSet with an assignable expression" ) {
@@ -186,11 +175,9 @@ SCENARIO( "Applying changes to conditions", "[ConditionSet][Usage]" ) {
 
 		THEN( "the condition list is updated via Apply" ) {
 			applySet.Apply(store);
-			REQUIRE_FALSE( primarySize(store) == 0 );
-
-			auto inserted = store.PrimariesLowerBound("year");
-			REQUIRE( inserted != store.PrimariesEnd() );
-			CHECK( inserted->second == 3013 );
+			REQUIRE_FALSE( store.PrimariesSize() == 0 );
+			REQUIRE( store.Has("year") );
+			CHECK( store["year"] == 3013 );
 		}
 	}
 }

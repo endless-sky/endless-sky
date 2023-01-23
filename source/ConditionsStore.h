@@ -134,6 +134,9 @@ public:
 	// Helper to completely remove all data and linked condition-providers from the store.
 	void Clear();
 
+	// Helper for testing; check how many primary conditions are registered.
+	int64_t PrimariesSize() const;
+
 
 private:
 	// Retrieve a condition entry based on a condition name, the entry doesn't

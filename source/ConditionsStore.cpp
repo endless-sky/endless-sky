@@ -380,6 +380,23 @@ void ConditionsStore::Clear()
 
 
 
+// Helper for testing; check how many primary conditions are registered.
+int64_t ConditionsStore::PrimariesSize() const
+{
+	int64_t result = 0;
+	for(auto it = storage.begin(); it != storage.end(); ++it)
+	{
+		//We don't need to save derived conditions that have a provider.
+		if(it->second.provider)
+			continue;
+		else
+			++result;
+	}
+	return result;
+}
+
+
+
 ConditionsStore::ConditionEntry *ConditionsStore::GetEntry(const string &name)
 {
 	// Avoid code-duplication between const and non-const function.
