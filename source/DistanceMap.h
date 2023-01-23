@@ -64,13 +64,10 @@ private:
 	// The center argument starts the path there instead of the player
 	// (e.g. appending a route to the end of a planned route).
 	explicit DistanceMap(const PlayerInfo &player, const System &center, const System &destination);
-
 	// Calculate the path for the given ship to get to the given system.
 	// Pathfinding will use the ships capabilities, but not check the player's map.
 	explicit DistanceMap(const Ship &ship, const System &destination);
 
-
-private:
 	// Depending on the capabilities of the given ship, use hyperspace paths,
 	// jump drive paths, or both to find the shortest route. Bail out if the
 	// destination system or the maximum count is reached.

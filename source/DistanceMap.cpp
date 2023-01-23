@@ -45,15 +45,17 @@ DistanceMap::DistanceMap(const System *center, int maxSystems, int maxDays)
 DistanceMap::DistanceMap(const PlayerInfo &player)
 	: player(&player), useWormholes(true)
 {
-	if(!player.Flagship())
+	const Ship *flagship = player.Flagship();
+
+	if(!flagship)
 		return;
 
-	if(player.Flagship()->IsEnteringHyperspace())
-		center = player.Flagship()->GetTargetSystem();
+	if(flagship->IsEnteringHyperspace())
+		center = flagship->GetTargetSystem();
 	else
-		center = player.Flagship()->GetSystem();
+		center = flagship->GetSystem();
 
-	Init(player.Flagship());
+	Init(flagship);
 }
 
 
