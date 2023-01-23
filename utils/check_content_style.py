@@ -276,7 +276,7 @@ def check_indentation(contents, auto_correct, config):
 		return 0
 
 	result = CheckResult()
-	result.new_file_contents = contents
+	result.new_file_contents = [line for line in contents]
 
 	max_delta = config["maxIndentationIncrease"]
 	indent = config["indentation"]
@@ -333,7 +333,7 @@ def check_indentation(contents, auto_correct, config):
 # Return value: a CheckResult
 def check_with_regex(contents, list_name, auto_correct, config):
 	result = CheckResult()
-	result.new_file_contents = contents
+	result.new_file_contents = [line for line in contents]
 
 	regex_list = config[list_name]
 	for entry in regex_list:
@@ -347,7 +347,6 @@ def check_with_regex(contents, list_name, auto_correct, config):
 					use_entire_line = True if "parseEntireLine" not in fix else fix["parseEntireLine"]
 					match_regex = entry["regex"] if "matchReplacement" not in fix else fix["matchReplacement"]
 					replace_with = fix["replaceWith"]
-
 					result.new_file_contents[index] = re.sub(match_regex, replace_with, line if use_entire_line else re.match(entry["regex"], line).string)
 					if is_error:
 						result.fixed_error_count += 1
@@ -374,6 +373,7 @@ def find_text_lines(contents, config):
 
 	for line in contents:
 		if line.lstrip().startswith("#") or line == "" or line.isspace():
+			new_contents.append("")
 			# Comment or empty line
 			continue
 		if is_word:
@@ -382,8 +382,10 @@ def find_text_lines(contents, config):
 		if not is_word and (line.strip() == "word" or line.strip().startswith("word ") or line.strip().startswith("word#") or line.strip().startswith("word	") or line.strip() == "phrase" or line.strip().startswith("phrase ") or line.strip().startswith("phrase#") or line.strip().startswith("phrase	")):
 			is_word = True
 			word_indent_level = count_indent(indent, line)
-		elif not is_word and ("\"" in line or "`" in line):
+		if not is_word and ("\"" in line or "`" in line):
 			new_contents.append(line)
+		else:
+			new_contents.append("")
 	return new_contents
 
 
@@ -459,11 +461,13 @@ def check_content_style(file, auto_correct, config):
 			continue
 
 		# Filtering contents for safe text
-		contents = find_text_lines(contents, config)
+		restricted_contents = find_text_lines(contents, config)
 
 		# text checks
-		issues.combine_with(check_with_regex(contents, "textChecks", auto_correct, config))
+		issues.combine_with(check_with_regex(restricted_contents, "textChecks", auto_correct, config))
 		if issues.should_reload():
+			# Prevent deleting filtered lines
+			issues.new_file_contents = [(line if line != restricted_contents[index] else contents[index]) for (index, line) in enumerate(issues.new_file_contents)]
 			fixed_errors += issues.fixed_error_count
 			fixed_warnings += issues.fixed_warning_count
 			rewrite(file, issues.new_file_contents, config)
@@ -473,6 +477,7 @@ def check_content_style(file, auto_correct, config):
 		issues.fixed_error_count = fixed_errors
 		issues.fixed_warning_count = fixed_warnings
 		return issues
+	return CheckResult()
 
 
 # Prints the result of the style checks for the specified file.

@@ -80,14 +80,14 @@
 		"textChecks": [
 			{
 				"description": "whitespace before end of text",
-				"regex": "\\s+([\"`']+)$",
+				"regex": "([^\"` ]+)\\s+([\"`'])$",
 				"correction": {
-					"replaceWith": "\\1"
+					"replaceWith": "\\1\\2"
 				}
 			},
 			{
 				"description": "whitespace before beginning of text",
-				"regex": "^([^`\"]+[\"`]+) +",
+				"regex": "^([^`\"]+[\"`]+)(?<!^tip .*) +(?! *[\"`]$)",
 				"correction": {
 					"replaceWith": "\\1"
 				}
