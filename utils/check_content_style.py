@@ -373,18 +373,17 @@ def find_text_lines(contents, config):
 	word_indent_level = 0
 
 	for line in contents:
-		if line.lstrip().startswith("#"):
-			# Comment
+		if line.lstrip().startswith("#") or line == "" or line.isspace():
+			# Comment or empty line
 			continue
 		if is_word:
-			if count_indent(indent, line) < word_indent_level:
+			if count_indent(indent, line) <= word_indent_level:
 				is_word = False
-		if line.strip() == "word":
+		if not is_word and (line.strip() == "word" or line.strip().startswith("word ") or line.strip().startswith("word#") or line.strip().startswith("word	") or line.strip() == "phrase" or line.strip().startswith("phrase ") or line.strip().startswith("phrase#") or line.strip().startswith("phrase	")):
 			is_word = True
 			word_indent_level = count_indent(indent, line)
 		elif not is_word and ("\"" in line or "`" in line):
-			new_contents += line
-
+			new_contents.append(line)
 	return new_contents
 
 
@@ -566,7 +565,7 @@ if __name__ == '__main__':
 
 	# Appending additional input files
 	for j in range(resume_index, len(sys.argv)):
-		config["dataRoots"] += sys.argv[j]
+		config["dataRoots"].append(sys.argv[j])
 
 	# Listing data files
 	data_files = []

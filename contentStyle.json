@@ -87,7 +87,7 @@
 			},
 			{
 				"description": "whitespace before beginning of text",
-				"regex": "^([^`\"]+[\"`])\\s+",
+				"regex": "^([^`\"]+[\"`]+) +",
 				"correction": {
 					"replaceWith": "\\1"
 				}
