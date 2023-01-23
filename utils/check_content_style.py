@@ -271,7 +271,7 @@ def check_indentation(contents, auto_correct, config):
 	# lines: the lines of text
 	def get_expected_indent(indent, index, lines):
 		for i in range(index + 1, len(lines)):
-			if not (lines[i].isspace() or lines[i].lstrip().startswith("#")):
+			if not (lines[i].isspace() or lines[i] == ""):
 				return count_indent(indent, lines[i])
 		return 0
 
