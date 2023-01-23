@@ -151,6 +151,7 @@ def print_config_help():
 		["", "", "", "These checks are all JSON objects, with the following entries:"],
 		["", "", "", "", "", "description", "The description of the check. This is displayed when it is found in a file."],
 		["", "", "", "", "", "regex", "The regex matching a formatting issue on the line."],
+		["", "", "", "", "", "except", "An array of regular exceptions. If any of these match the match result of 'regex', the check is discarded. Defaults to an empty array."],
 		["", "", "", "", "", "isError", "Whether the formatting issue should be marked as an error or a warning. Defaults to true if not specified."],
 		["", "", "", "", "", "correction", "A JSON object specifying how to automatically correct this issue. If not specified, the issue cannot be corrected. It should have the following entries:"],
 		["", "", "", "", "", "", "", "parseEntireLine", "Whether to edit the entire line, or only the segment where the regex matched. Defaults to false."],
@@ -340,14 +341,33 @@ def check_with_regex(contents, list_name, auto_correct, config):
 		for index, line in enumerate(contents):
 			# Looking for issues
 			if re.search(entry["regex"], line) is not None:
+				# Checking exceptions
+				if "except" in entry:
+					match = re.search(entry["regex"], line)
+					match_text = match.string[match.start():match.end()]
+					valid = True
+					for exception in entry["except"]:
+						if re.search(exception, match_text):
+							valid = False
+							break
+					if not valid:
+						continue
+				# Formatting issue found
 				is_error = True if "isError" not in entry else entry["isError"]
 				if auto_correct and "correction" in entry:
-					fix = entry["correction"]
 					# Fixing issue
+					fix = entry["correction"]
+
 					use_entire_line = True if "parseEntireLine" not in fix else fix["parseEntireLine"]
 					match_regex = entry["regex"] if "matchReplacement" not in fix else fix["matchReplacement"]
 					replace_with = fix["replaceWith"]
-					result.new_file_contents[index] = re.sub(match_regex, replace_with, line if use_entire_line else re.match(entry["regex"], line).string)
+
+					# Getting match text
+					big_match = re.search(entry["regex"], line)
+					big_match_text = big_match.string[big_match.start():big_match.end()]
+
+					# Replacing
+					result.new_file_contents[index] = re.sub(match_regex, replace_with, line if use_entire_line else big_match_text)
 					if is_error:
 						result.fixed_error_count += 1
 					else:
@@ -379,7 +399,7 @@ def find_text_lines(contents, config):
 		if is_word:
 			if count_indent(indent, line) <= word_indent_level:
 				is_word = False
-		if not is_word and (line.strip() == "word" or line.strip().startswith("word ") or line.strip().startswith("word#") or line.strip().startswith("word	") or line.strip() == "phrase" or line.strip().startswith("phrase ") or line.strip().startswith("phrase#") or line.strip().startswith("phrase	")):
+		if not is_word and (line.strip().startswith("word") or line.strip().startswith("replace")):
 			is_word = True
 			word_indent_level = count_indent(indent, line)
 		if not is_word and ("\"" in line or "`" in line):
