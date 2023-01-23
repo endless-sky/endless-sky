@@ -58,8 +58,6 @@ class CheckResult(object):
 
 
 # A class representing error messages.
-# These are stored in the error_list list to be displayed after all checks are done.
-# text: the text where the error originates from
 # line: the current line number
 # reason: the reason for the error
 class Error(object):
@@ -82,8 +80,6 @@ class Error(object):
 
 
 # A class representing warning messages.
-# These are stored in the error_list list to be displayed after all checks are done.
-# text: the text where the warning originates from
 # line: the current line number
 # reason: the reason for the warning
 class Warning(Error):
@@ -146,7 +142,7 @@ def print_config_help():
 		["", "", "", "", "", "holder", "A regex matching the entire 'copyright holder' line. This is repeatedly matched to the beginning of the file."],
 		["", "", "", "", "", "notice", "An array of regexes matching each subsequent line of the copyright notice."],
 		["", "", "", "regexChecks", "An array of regex-based checks that are applied to individual lines. The checks are grouped by the lines they are applied to. Each entry is a JSON object with the following entries:"],
-		["", "", "", "", "", "excludedNodes", "An array of regexes matching data nodes that the checks are not applied to. Default to an empty array."],
+		["", "", "", "", "", "excludedNodes", "An array of regexes matching data nodes that the checks are not applied to. Indentation is not taken into account. Default to an empty array."],
 		["", "", "", "", "", "checks", "An array of regex checks. Each entry is a JSON object with the following entries:"],
 		["", "", "", "", "", "", "", "description", "The description of the check. This is displayed when it is found in a file."],
 		["", "", "", "", "", "", "", "regex", "The regex matching a formatting issue on the line."],
