@@ -2004,9 +2004,11 @@ void Engine::HandleMouseClicks()
 				}
 			}
 
-	// Check for clicks on ships in this system.
-	double clickRange = 50.;
+	// Try and find the closest ship to the click point within clickRange. Favor
+	// selecting enemies over allies
+	double clickRange = isRadarClick ? 2000 : 50.;
 	shared_ptr<Ship> clickTarget;
+	bool found_enemy = false;
 	for(shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == playerSystem && &*ship != flagship && ship->IsTargetable())
 		{
@@ -2015,13 +2017,21 @@ void Engine::HandleMouseClicks()
 			double range = mask.Range(clickPoint - position, ship->Facing());
 			if(range <= clickRange)
 			{
+				// If we are actually within a hitmask, then don't keep searching
+				if (range == 0.0)
+				{
+					clickRange = range;
+					clickTarget = ship;
+
+					break;
+				}
+				if (ship->GetGovernment()->IsEnemy())
+					found_enemy = true;
+				else if (found_enemy)
+					continue; // favor selecting enemies
+
 				clickRange = range;
 				clickTarget = ship;
-				// If we've found an enemy within the click zone, favor
-				// targeting it rather than any other ship. Otherwise, keep
-				// checking for hits because another ship might be an enemy.
-				if(!range && ship->GetGovernment()->IsEnemy())
-					break;
 			}
 		}
 
