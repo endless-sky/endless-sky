@@ -215,7 +215,8 @@ void BankPanel::Draw()
 			"Your Return on Assets Income", "Your Salary and Return on Assets Income",
 			"Your Tribute and Return on Assets Income", "Your Salary, Tribute, and Returns Income" };
 		const auto incomeLayout = Layout(310, Truncate::BACK);
-		table.DrawCustom({LABEL[(salariesIncome != 0) + 2 * (tributeIncome != 0) + 4 * (b.assetsReturns != 0)], incomeLayout});
+		table.DrawCustom({LABEL[(salariesIncome != 0) + 2 * (tributeIncome != 0) + 4 * (b.assetsReturns != 0)],
+			incomeLayout});
 		// For crew salaries, only the "payment" field needs to be shown.
 		table.Advance(3);
 		table.Draw(Format::Credits(-(salariesIncome + tributeIncome + b.assetsReturns)));
