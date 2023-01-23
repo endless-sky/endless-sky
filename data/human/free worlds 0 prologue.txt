@@ -24,7 +24,7 @@ fleet "Pact Supplies"
 		"Sparrow" 2
 		"Hawk"
 
-# Landing mission so more new players are encouraged to go down south. Then, you report to the quartermaster's office by clicking the spaceport.
+# Landing mission so more new players are encouraged to go down south. Then, you report to the quartermaster's office by clicking the spaceport. You miss out if you depart the planet.
 mission "Pact Supplies Landing (Dirt Belt)"
 	landing
 	invisible
@@ -39,8 +39,8 @@ mission "Pact Supplies Landing (Dirt Belt)"
 	on offer
 		conversation
 			`<origin> is one of the few planets in the Dirt Belt with a developed industrial base. In addition to the horse-drawn carts of cereals, crops, and meat, there are also trucks and vans carrying locally manufactured goods from the cities nearby.`
-			`	To protect this industry from the ever-increasing piracy threat, there is a substantially-sized militia station on this planet that, in place of the Navy's retreating patrols, have taken up the position of the police forces in this area. Even this major spaceport is now staffed by the militia, and instead of the Gunboats that would have scanned you upon approach, there are Argosies and Bastions that scan you instead.`
-			`	As you sign off your landing documents with the militia officer on duty, she asks you to report to <origin>'s spaceport quartermaster "If you are willing to help us on a supply job." She then thanks you for your cooperation and swiftly moves on to the next ship.`
+			`	To protect this industry from the ever-increasing piracy threat, there is a substantially-sized militia base on this planet that, in place of the Navy's retreating patrols, have taken up the position of the police forces in this area. Even the planetary spaceport is now staffed by the militia, and instead of the Gunboats that would have scanned you upon approach, there are Argosies and Bastions that scan you instead.`
+			`	As you sign off your landing documents with the militia officer on duty, she asks you to report to <origin>'s spaceport quartermaster "if you are willing to help us on a supply job." She then thanks you for your cooperation and swiftly moves on to the next ship.`
 				accept
 
 mission "Pact Supplies Convoy (Dirt Belt)"
@@ -48,6 +48,11 @@ mission "Pact Supplies Convoy (Dirt Belt)"
 	description "The quartermaster of <origin> asked you to participate in a convoy supplying weapons to the southern Militia groups. Payment is <payment>."
 	cargo "weapons" 20
 	destination Longjump
+	substitutions
+		"<Pact / Free Worlds>" "Pact"
+			not "war begins"
+		"<Pact / Free Worlds>" "Free Worlds"
+			has "war begins"
 	source
 		attributes "dirt belt" factory
 		category "Transport" "Light Freighter" "Heavy Freighter"
@@ -92,12 +97,17 @@ mission "Pact Supplies Convoy (Dirt Belt)"
 	on complete
 		payment 35000
 		"assisted free worlds" ++
-		dialog `After you land at Longjump's spaceport, a militia officer comes to inspect your ship before giving it the all-clear to be unloaded. "Thank you for your service. The Pact will remember your assistance." He hands you your payment of <payment> and makes his way to the next convoy ship.`
+		dialog `After you land at Longjump's spaceport, a militia officer comes to inspect your ship before giving it the all-clear to be unloaded. "Thank you for your service. The <Pact / Free Worlds> will remember your assistance." He hands you your payment of <payment> and makes his way to the next convoy ship.`
 
 mission "Pact Supplies Escort (Dirt Belt)"
 	name "Escort weapons convoy to Longjump"
 	description "The quartermaster of <origin> asked you to escort a convoy supplying weapons to the southern Militia groups. Payment is <payment>."
 	destination Longjump
+	substitutions
+		"<Pact / Free Worlds>" "Pact"
+			not "war begins"
+		"<Pact / Free Worlds>" "Free Worlds"
+			has "war begins"
 	source
 		attributes "dirt belt" factory
 		category "Interceptor" "Light Warship" "Medium Warship" "Heavy Warship"
@@ -142,7 +152,7 @@ mission "Pact Supplies Escort (Dirt Belt)"
 	on complete
 		payment 35000
 		"assisted free worlds" ++
-		dialog `After you land at Longjump's spaceport, a militia officer comes to greet you. "Thank you for your service. The Pact will remember your assistance." He hands you your payment of <payment>.`
+		dialog `After you land at Longjump's spaceport, a militia officer comes to greet you. "Thank you for your service. The <Pact / Free Worlds> will remember your assistance." He hands you your payment of <payment>.`
 
 
 
