@@ -75,6 +75,23 @@
 				"correction": {
 					"replaceWith": "\\1 \\2"
 				}
+			},
+			{
+				"description": "extra space before punctuation",
+				"regex": "(?<!\\\\.*)\\s+([:,.?!;][^\\s]*)",
+				"except":["\\.[0-9]*$", "!="],
+				"correction": {
+					"replaceWith": "\\1"
+				}
+			},
+			{
+				"description": "missing space after punctuation",
+				"regex": "([^\\s]*[:,.?!;]+)(?!(?:[ \"'`\\)\\]:,.?!;<]|$))([^\\s\"`'.!?]*)",
+				"except": ["[.,][0-9]", "https?://", "[A-Z]\\.", "\\.{3}[\\w\\(\\[\"'`]", "[><]\\?=", "^[\\(\\[]?([\\w-]+\\.)*[\\w-]*[\\)\\]]?$", "^[\"`']*!"],
+				"correction": {
+					"replaceWith": "\\1 \\2"
+				}
+
 			}
 		],
 		"textChecks": [
