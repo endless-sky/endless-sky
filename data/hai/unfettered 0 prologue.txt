@@ -814,7 +814,7 @@ mission "Unfettered: Prove Your Strength"
 	npc save disable
 		government "Hai (Unfettered Challenger)"
 		personality disables staying heroic target launching
-		ship "Sari'Sea Scorpion (Pulse)" "Intrepid"
+		ship "Si-Ra' Scorpion" "Intrepid"
 		to spawn
 			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 12
 		to despawn

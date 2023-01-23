@@ -1266,24 +1266,33 @@ mission "Unfettered: Special Cargo 2"
 
 
 
-# Sa-Ri's Beetle, the ultimate shredder.
-ship "Shield Beetle" "Enhanced Shield Beetle (Pulse)"
+ship "Modified Shield Beetle" "Si-Ra' Beetle"
 	add attributes
-		"outfit space" 2
 		"weapon capacity" 3
+		"shields" -2000
+		"heat dissipation" .05
 	outfits
 		"Tripulse Shredder" 8
+
+		"Hai Octopus Jammer"
+		"Large Heat Shunt"
+		"Hai Williwaw Cooling" 4
+		"Outfits Expansion"
+		Hyperdrive
+		"Quantum Keystone"
+		"Hai Diamond Regenerator"
+		"Systems Core (Medium)"
+
 		"Boulder Reactor"
 		"Geode Reactor"
+		"Hai Chasm Batteries" 2
 		"Hai Ravine Batteries"
-		"Hai Diamond Regenerator" 2
-		"Hai Williwaw Cooling" 3
-		"Outfits Expansion"
-		"Pulse Rifle" 40
+
+		"Pulse Rifle" 77
 		"Dual Pulse Pistols"
+
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
-		"Hyperdrive"
 
 # He Yi's Beetle (has flamethrower variant defined in the side missions, provided you sell flamers)
 ship "Stag Beetle"
@@ -1428,7 +1437,7 @@ mission "Unfettered: Ready For The War"
 		to despawn
 			has "unfettered: defeated Si-Ra"
 		government "Hai (Unfettered Challenger)"
-		ship "Enhanced Shield Beetle (Pulse)" "Defiant"
+		ship "Si-Ra' Beetle" "Defiant"
 		personality disables staying heroic target launching
 		conversation
 			`"You have defeated me, But He-Yi will not be as easy to beat! Land to repair, and then take off when you're be ready to face him."`
