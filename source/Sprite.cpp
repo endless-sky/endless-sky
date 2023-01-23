@@ -58,14 +58,14 @@ void Sprite::AddFrames(ImageBuffer &buffer, bool is2x)
 	}
 
 	// Reduce the size of the textures (and the GPU memory load) if we are in
-	// "Reduced graphics" mode. Don't mess with ui graphics though.
+	// "Reduced graphics" mode.
 	if(Preferences::Has("Reduced graphics"))
 	{
-		buffer.ShrinkToHalfSize();
-		while (buffer.Width() * buffer.Height() >= 250000)
+		do
 		{
 			buffer.ShrinkToHalfSize();
 		}
+		while (buffer.Width() * buffer.Height() >= 250000);
 	}
 
 	// Upload the images as a single array texture.
@@ -82,6 +82,7 @@ void Sprite::AddFrames(ImageBuffer &buffer, bool is2x)
 	glTexImage3D(GL_TEXTURE_2D_ARRAY, 0, GL_RGBA8, // target, mipmap level, internal format,
 		buffer.Width(), buffer.Height(), buffer.Frames(), // width, height, depth,
 		0, GL_RGBA, GL_UNSIGNED_BYTE, buffer.Pixels()); // border, input format, data type, data.
+
 
 	// Unbind the texture.
 	glBindTexture(GL_TEXTURE_2D_ARRAY, 0);

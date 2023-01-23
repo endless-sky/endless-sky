@@ -22,7 +22,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sprite.h"
 #include "Preferences.h"
 
-#include <SDL2/SDL_log.h>
 #include <algorithm>
 #include <cassert>
 #include <iterator>
