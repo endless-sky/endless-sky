@@ -70,6 +70,7 @@ test "Checking for a gifted ship"
 		# Create/inject the savegame and load it.
 		inject "One Earthly Barge"
 		call "Load First Savegame"
+		call "Wait 10 steps"
 		call "Depart"
 		call "Land"
 		# Reload this to make sure the UUID is well stored into the savefile.
@@ -193,7 +194,6 @@ test-data "One Specific Barge"
 				take ship "Star Barge (Armed)"
 					unconstrained
 
-mission "%TEST%: Switch"
 mission "%TEST%: Switch 2"
 mission "%TEST%: Switch 3"
 
@@ -203,10 +203,8 @@ test "Taking right ship variant and unconstrained"
 		# Create/inject the savegame and load it.
 		inject "One Specific Barge"
 		call "Load First Savegame"
+		call "Wait 10 steps"
 		call "Depart"
-		apply
-			"test: ships: Light Freighter" = "ships: Light Freighter"
-			"test: ships: Interceptor" = "ships: Interceptor"
 		# we only lost the far away barge, because otherwise we would have more sparrows.
 		assert
 			"ships: Light Freighter" == 1

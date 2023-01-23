@@ -111,7 +111,7 @@ void ShipManager::Do(PlayerInfo &player) const
 	if(Giving())
 	{
 		for(int i = 0; i < amount; ++i)
-			shipName = player.GiftShip(model, name, Id())->Name();
+			shipName = player.GiftShip(model, name, id)->Name();
 	}
 	else
 	{
