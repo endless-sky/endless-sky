@@ -64,19 +64,18 @@ class CheckResult(object):
 # reason: the reason for the error
 class Error(object):
 
-	def __init__(self, text, line, reason):
-		self.text = text.replace('\n', '').replace('\r', '')
+	def __init__(self, line, reason):
 		self.line = line
 		self.reason = reason
 
 	def __str__(self):
-		return f"\tERROR: line {self.line}: {self.reason} in '{self.text}'"
+		return f"\tERROR: line {self.line}: {self.reason}"
 
 	def __lt__(self, other):
 		return self.line < other.line
 
 	def __eq__(self, other):
-		return self.line == other.line and self.text == other.text and self.reason == other.reason
+		return self.line == other.line and self.reason == other.reason
 
 	def __hash__(self):
 		return self.line
@@ -89,11 +88,11 @@ class Error(object):
 # reason: the reason for the warning
 class Warning(Error):
 
-	def __init__(self, text, line, reason):
-		Error.__init__(self, text, line, reason)
+	def __init__(self, line, reason):
+		Error.__init__(self, line, reason)
 
 	def __str__(self):
-		return f"\tWARNING: line {self.line}: {self.reason} in '{self.text}'"
+		return f"\tWARNING: line {self.line}: {self.reason}"
 
 
 # Prints a help message. This is used when the --help option is given.
@@ -142,24 +141,24 @@ def print_config_help():
 		["", "", "", "forceUnixLineSeparator", "Whether to force all line separators to be Unix-style. An error is produced for each invalid line separator."],
 		["", "", "", "trailingEmptyLine", "Whether to have a trailing empty line at the end of every file. Value should be \"never\", \"always\" or \"either\"."],
 		["", "", "", "checkCopyright", "Whether to verify the copyright header of each file."],
-		["", "", "", "copyrightBlacklist", "A list of files that are excluded from the copyright check."],
+		["", "", "", "copyrightBlacklist", "An array of files that are excluded from the copyright check."],
 		["", "", "", "copyrightFormats", "An array of supported copyright formats. Each format is a JSON object with the following entries:"],
 		["", "", "", "", "", "holder", "A regex matching the entire 'copyright holder' line. This is repeatedly matched to the beginning of the file."],
 		["", "", "", "", "", "notice", "An array of regexes matching each subsequent line of the copyright notice."],
-		["", "", "", "globalChecks", "A list of checks that are applied to every line, one by one. This also includes comments, 'word' tags and conditions. Use with caution."],
-		["", "", "", "textChecks", "A list of checks that are applied to every line containing text, one by one. This does not include comments or 'word' tags, or any line without \"\" or `` quotes."],
-		["", "", "", "These checks are all JSON objects, with the following entries:"],
-		["", "", "", "", "", "description", "The description of the check. This is displayed when it is found in a file."],
-		["", "", "", "", "", "regex", "The regex matching a formatting issue on the line."],
-		["", "", "", "", "", "except", "An array of regular exceptions. If any of these match the match result of 'regex', the check is discarded. Defaults to an empty array."],
-		["", "", "", "", "", "isError", "Whether the formatting issue should be marked as an error or a warning. Defaults to true if not specified."],
-		["", "", "", "", "", "correction", "A JSON object specifying how to automatically correct this issue. If not specified, the issue cannot be corrected. It should have the following entries:"],
-		["", "", "", "", "", "", "", "parseEntireLine", "Whether to edit the entire line, or only the segment where the regex matched. Defaults to false."],
-		["", "", "", "", "", "", "", "matchReplacement", "A regex to match the part of the line that should be replaced. Defaults to the previously defined regex."],
-		["", "", "", "", "", "", "", "replaceWith", "The replacement value for the line. Supports backslash regex substitutions."],
+		["", "", "", "regexChecks", "An array of regex-based checks that are applied to individual lines. The checks are grouped by the lines they are applied to. Each entry is a JSON object with the following entries:"],
+		["", "", "", "", "", "excludedNodes", "An array of regexes matching data nodes that the checks are not applied to. Default to an empty array."],
+		["", "", "", "", "", "checks", "An array of regex checks. Each entry is a JSON object with the following entries:"],
+		["", "", "", "", "", "", "", "description", "The description of the check. This is displayed when it is found in a file."],
+		["", "", "", "", "", "", "", "regex", "The regex matching a formatting issue on the line."],
+		["", "", "", "", "", "", "", "except", "An array of regular exceptions. If any of these match the match result of 'regex', the check is discarded. Defaults to an empty array."],
+		["", "", "", "", "", "", "", "isError", "Whether the formatting issue should be marked as an error or a warning. Defaults to true if not specified."],
+		["", "", "", "", "", "", "", "correction", "A JSON object specifying how to automatically correct this issue. If not specified, the issue cannot be corrected. Entries:"],
+		["", "", "", "", "", "", "", "", "", "parseEntireLine", "Whether to edit the entire line, or only the segment where the regex matched. Defaults to false."],
+		["", "", "", "", "", "", "", "", "", "matchReplacement", "A regex to match the part of the line that should be replaced. Defaults to the previously defined regex."],
+		["", "", "", "", "", "", "", "", "", "replaceWith", "The replacement value for the line. Supports backslash regex substitutions."],
 	]
 	for row in help_message:
-		print("{:<4} {:<20} {:<20} {:<20} {:<20} {:<20} {:<20} {:<20} {:<}".format(*[*row, "", "", "", "", "", "", "", "", ""]).rstrip())
+		print("{:<4} {:<15} {:<4} {:<25} {:<4} {:<15} {:<4} {:<15} {:<4} {:<20} {:<}".format(*[*row, "", "", "", "", "", "", "", "", "", "", ""]).rstrip())
 
 
 # Loads the configuration file.
@@ -186,13 +185,13 @@ def check_line_separators(contents, auto_correct, config):
 	if config["forceUnixLineSeparator"]:
 		for index, line in enumerate(contents):
 			if line.endswith("\r\n"):
-				result.errors.append(Error(line, index + 1, "line separators should use LF only; found CRLF"))
+				result.errors.append(Error(index + 1, "line separators should use LF only; found CRLF"))
 			elif line.endswith("\r"):
-				result.errors.append(Error(line, index + 1, "line separators should use LF only; found CR"))
+				result.errors.append(Error(index + 1, "line separators should use LF only; found CR"))
 		if config["trailingEmptyLine"] == "always" and contents[-1] != "":
-			result.errors.append(Error(contents[-1], len(contents), "missing trailing empty line"))
+			result.errors.append(Error(len(contents), "missing trailing empty line"))
 		elif config["trailingEmptyLine"] == "never" and contents[-1] == "":
-			result.errors.append(Error(contents[-1], len(contents), "trailing empty line"))
+			result.errors.append(Error(len(contents), "trailing empty line"))
 
 	if auto_correct:
 		result.new_file_contents = [line.replace("\r", "").replace("\n", "") for line in contents]
@@ -242,7 +241,7 @@ def check_copyright(contents, auto_correct, config):
 			if success:
 				return CheckResult()
 		# No format matched
-		return CheckResult([Error(contents[0], 1, "invalid copyright header")])
+		return CheckResult([Error(1, "invalid copyright header")])
 	return CheckResult()
 
 
@@ -301,7 +300,7 @@ def check_indentation(contents, auto_correct, config):
 				line = result.new_file_contents[index]
 				result.fixed_warning_count += 1
 			else:
-				result.warnings.append(Warning(line, index + 1, "over-indented line"))
+				result.warnings.append(Warning(index + 1, "over-indented line"))
 		if line.isspace() or line == "":
 			# Not enough indentation - only checked on empty lines
 			if error_if_indent:
@@ -311,7 +310,7 @@ def check_indentation(contents, auto_correct, config):
 						result.new_file_contents[index] = ""
 						result.fixed_warning_count += 1
 					else:
-						result.warnings.append(Warning(line, index + 1, "indented empty line"))
+						result.warnings.append(Warning(index + 1, "indented empty line"))
 			elif error_if_no_indent:
 				expected = get_expected_indent(indent, index, contents)
 				if level != expected:
@@ -319,7 +318,7 @@ def check_indentation(contents, auto_correct, config):
 						result.new_file_contents[index] = indent * expected + result.new_file_contents[index].lstrip()
 						result.fixed_warning_count += 1
 					else:
-						result.warnings.append(Warning(line, index + 1, "incorrect indentation on empty line"))
+						result.warnings.append(Warning(index + 1, "incorrect indentation on empty line"))
 		elif not line.lstrip().startswith("#"):
 			previous_level = count_indent(indent, line)
 	return result
@@ -327,18 +326,21 @@ def check_indentation(contents, auto_correct, config):
 
 # Uses the specified list of regexes to find formatting issues.
 # Parameters:
+# check_group: the group of checks to execute
 # contents: the contents of the file
-# list_name: the name of the regex list in the config
 # auto_correct: whether to attempt to correct the issue
 # config: the script configuration
 # Return value: a CheckResult
-def check_with_regex(contents, list_name, auto_correct, config):
+def check_with_regex(check_group, contents, auto_correct, config):
 	result = CheckResult()
 	result.new_file_contents = [line for line in contents]
 
-	regex_list = config[list_name]
+	regex_list = check_group["checks"]
 	for entry in regex_list:
 		for index, line in enumerate(contents):
+			# SKip filtered lines
+			if line is None:
+				continue
 			# Looking for issues
 			if re.search(entry["regex"], line) is not None:
 				# Checking exceptions
@@ -374,17 +376,19 @@ def check_with_regex(contents, list_name, auto_correct, config):
 						result.fixed_warning_count += 1
 				else:
 					if is_error:
-						result.errors.append(Error(line, index + 1, entry["description"]))
+						result.errors.append(Error(index + 1, entry["description"]))
 					else:
-						result.warnings.append(Warning(line, index + 1, entry["description"]))
+						result.warnings.append(Warning(index + 1, entry["description"]))
 	return result
 
 
-# Finds lines that contain text, unless they are inside 'word' tags.
+# Finds lines that are not inside excluded nodes and contain text.
 # Parameters:
 # contents: the contents of the file
+# config: the script configuration rules.
+# excluded_nodes: the list of regexes that exclude nodes
 # Return value: the entries of 'contents' that contain text
-def find_text_lines(contents, config):
+def find_text_lines(contents, config, excluded_nodes):
 	new_contents = []
 
 	indent = config["indentation"]
@@ -393,19 +397,23 @@ def find_text_lines(contents, config):
 
 	for line in contents:
 		if line.lstrip().startswith("#") or line == "" or line.isspace():
-			new_contents.append("")
+			new_contents.append(None)
 			# Comment or empty line
 			continue
 		if is_word:
 			if count_indent(indent, line) <= word_indent_level:
 				is_word = False
-		if not is_word and (line.strip().startswith("word") or line.strip().startswith("replace")):
-			is_word = True
-			word_indent_level = count_indent(indent, line)
+		if not is_word:
+			stripped = line.strip().split("#")[0]
+			for node in excluded_nodes:
+				if re.search(node, stripped) is not None:
+					is_word = True
+					word_indent_level = count_indent(indent, line)
+					break
 		if not is_word and ("\"" in line or "`" in line):
 			new_contents.append(line)
 		else:
-			new_contents.append("")
+			new_contents.append(None)
 	return new_contents
 
 
@@ -413,6 +421,7 @@ def find_text_lines(contents, config):
 # Parameters:
 # file: the (string) pathname of the file
 # contents: a string list containing each line of the file
+# config: the script configuration rules.
 def rewrite(file, contents, config):
 	# Adding newlines to all but the last line
 	contents = [line + "\n" for line in contents]
@@ -472,31 +481,22 @@ def check_content_style(file, auto_correct, config):
 			rewrite(file, issues.new_file_contents, config)
 			continue
 
-		# Global checks
-		issues.combine_with(check_with_regex(contents, "globalChecks", auto_correct, config))
-		if issues.should_reload():
-			fixed_errors += issues.fixed_error_count
-			fixed_warnings += issues.fixed_warning_count
-			rewrite(file, issues.new_file_contents, config)
-			continue
+		for check_group in config["regexChecks"]:
+			restricted_contents = find_text_lines(contents, config, [] if "excludedNodes" not in check_group else check_group["excludedNodes"])
+			issues.combine_with(check_with_regex(check_group, restricted_contents, auto_correct, config))
+			if issues.should_reload():
+				# Prevent deleting filtered lines
+				issues.new_file_contents = [(line if line is not None else contents[index]) for (index, line) in enumerate(issues.new_file_contents)]
 
-		# Filtering contents for safe text
-		restricted_contents = find_text_lines(contents, config)
-
-		# text checks
-		issues.combine_with(check_with_regex(restricted_contents, "textChecks", auto_correct, config))
-		if issues.should_reload():
-			# Prevent deleting filtered lines
-			issues.new_file_contents = [(line if line != restricted_contents[index] else contents[index]) for (index, line) in enumerate(issues.new_file_contents)]
-			fixed_errors += issues.fixed_error_count
-			fixed_warnings += issues.fixed_warning_count
-			rewrite(file, issues.new_file_contents, config)
-			continue
-
-		# All done
-		issues.fixed_error_count = fixed_errors
-		issues.fixed_warning_count = fixed_warnings
-		return issues
+				fixed_errors += issues.fixed_error_count
+				fixed_warnings += issues.fixed_warning_count
+				rewrite(file, issues.new_file_contents, config)
+				break
+		else:
+			# All done
+			issues.fixed_error_count = fixed_errors
+			issues.fixed_warning_count = fixed_warnings
+			return issues
 	return CheckResult()
 
 
