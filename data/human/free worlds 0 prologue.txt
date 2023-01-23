@@ -44,11 +44,12 @@ mission "Pact Supplies Landing (Dirt Belt)"
 				accept
 
 mission "Pact Supplies Convoy (Dirt Belt)"
-	name "Transport weapons to Longjump"
+	name "Transport weapons to <planet>"
 	description "The quartermaster of <origin> asked you to participate in a convoy supplying weapons to the southern Militia groups. Payment is <payment>."
 	cargo "weapons" 20
 	destination Longjump
 	substitutions
+		"<Pact / Free Worlds>" "South"
 		"<Pact / Free Worlds>" "Pact"
 			not "war begins"
 		"<Pact / Free Worlds>" "Free Worlds"
@@ -56,7 +57,7 @@ mission "Pact Supplies Convoy (Dirt Belt)"
 	source
 		attributes "dirt belt" factory
 		category "Transport" "Light Freighter" "Heavy Freighter"
-		not planet Bounty
+		not planet "New Sahara"
 	to offer
 		has "Pact Supplies 0 (Dirt Belt Landing): offered"
 		not "Pact Supplies 0 (Dirt Belt Landing): failed"
@@ -95,15 +96,16 @@ mission "Pact Supplies Convoy (Dirt Belt)"
 	on visit
 		dialog `You have reached <planet>, but you're missing something! Either you left part of the convoy behind, or not all of the cargo is in the system.`
 	on complete
-		payment 35000
+		payment 35000 50
 		"assisted free worlds" ++
-		dialog `After you land at Longjump's spaceport, a militia officer comes to inspect your ship before giving it the all-clear to be unloaded. "Thank you for your service. The <Pact / Free Worlds> will remember your assistance." He hands you your payment of <payment> and makes his way to the next convoy ship.`
+		dialog `After you land at Longjump's spaceport, a militia officer comes to inspect your ship before giving it the all-clear to be unloaded. "Thank you for your service. I will make sure that the <Pact / Free Worlds> will remember your assistance." He hands you your payment of <payment> and makes his way to the next convoy ship.`
 
 mission "Pact Supplies Escort (Dirt Belt)"
-	name "Escort weapons convoy to Longjump"
+	name "Escort weapons convoy to <planet>"
 	description "The quartermaster of <origin> asked you to escort a convoy supplying weapons to the southern Militia groups. Payment is <payment>."
 	destination Longjump
 	substitutions
+		"<Pact / Free Worlds>" "South"
 		"<Pact / Free Worlds>" "Pact"
 			not "war begins"
 		"<Pact / Free Worlds>" "Free Worlds"
@@ -111,7 +113,7 @@ mission "Pact Supplies Escort (Dirt Belt)"
 	source
 		attributes "dirt belt" factory
 		category "Interceptor" "Light Warship" "Medium Warship" "Heavy Warship"
-		not Bounty
+		not planet "New Sahara"
 	to offer
 		has "Pact Supplies 0 (Dirt Belt Landing): offered"
 		not "Pact Supplies 0 (Dirt Belt Landing): failed"
@@ -150,10 +152,19 @@ mission "Pact Supplies Escort (Dirt Belt)"
 	on visit
 		dialog `You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system.`
 	on complete
-		payment 35000
+		payment 35000 50
 		"assisted free worlds" ++
-		dialog `After you land at Longjump's spaceport, a militia officer comes to greet you. "Thank you for your service. The <Pact / Free Worlds> will remember your assistance." He hands you your payment of <payment>.`
+		dialog `After you land at Longjump's spaceport, a militia officer comes to greet you. "Thank you for your service. I will make sure that the <Pact / Free Worlds> will remember your assistance." He hands you your payment of <payment>.`
 
+mission "FW Sympathiser Supplies"
+	name "Transport food to <planet>"
+	description "A cell of Free Worlds loyalists will pay you <payment> if you transport <cargo> to <planet>. Because the Southern Rim worlds are sanctioned, the Republic may fine you if you are caught."
+	destination Solace
+
+mission "Pact Syndicate assistance"
+	name "Transport shipbuilding supplies to <planet>"
+	description "A Syndicated Systems official has asked you to covertly transport <cargo> to <planet>."
+	destination Zug
 
 
 mission "Pact Recon 0"
