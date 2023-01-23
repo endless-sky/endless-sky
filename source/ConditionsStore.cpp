@@ -182,7 +182,7 @@ void ConditionsStore::Save(DataWriter &out) const
 	out.BeginChild();
 	for(auto it = storage.begin(); it != storage.end(); ++it)
 	{
-		//We don't need to save derived conditions that have a provider.
+		// We don't need to save derived conditions that have a provider.
 		if(it->second.provider)
 			continue;
 		// If the condition's value is 1, don't bother writing the 1.
@@ -386,7 +386,7 @@ int64_t ConditionsStore::PrimariesSize() const
 	int64_t result = 0;
 	for(auto it = storage.begin(); it != storage.end(); ++it)
 	{
-		//We don't need to save derived conditions that have a provider.
+		// We only count primary conditions; conditions that don't have a provider.
 		if(it->second.provider)
 			continue;
 		else
