@@ -286,7 +286,7 @@ def check_indentation(contents, auto_correct, config):
 	previous_level = 0
 	for index, line in enumerate(contents):
 		level = count_indent(indent, line)
-		if level - previous_level > max_delta or (level > previous_level and line.isspace()):
+		if level - previous_level > max_delta or (level > previous_level and level > get_expected_indent(indent, index - 2, contents) and level > get_expected_indent(indent, index, contents) and line.isspace()):
 			# Too much indentation
 			# This always is checked, even for empty lines, no matter what's configured
 			# In fact, empty lines are not allowed to have more indentation than the previous line.
