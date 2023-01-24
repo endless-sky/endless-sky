@@ -1367,11 +1367,15 @@ void Ship::DefeatShip()
 	defeatTimer = 0;
 	if(defeatedGovernment)
 	{
-		this->government = defeatedGovernment;
+		government = defeatedGovernment;
 		SetSwizzle(customSwizzle >= 0 ? customSwizzle : government->GetSwizzle());
+		printf("Changing to defeated goverenment %s\n", government->GetName().c_str());
 	}
 	if(defeatedPersonality.IsDefined())
+	{
 		personality = defeatedPersonality;
+		printf("Changing to defeated personality\n");
+	}
 }
 
 
@@ -3203,6 +3207,11 @@ int Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 
 	// Set the new government.
 	government = capturer->GetGovernment();
+
+	// Clear all information relating to defeat:
+	defeatedGovernment = nullptr;
+	defeatedPersonality = Personality();
+	defeatTimer = -1;
 
 	// Transfer some crew over. Only transfer the bare minimum unless even that
 	// is not possible, in which case, share evenly.
