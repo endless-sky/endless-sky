@@ -830,8 +830,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		}
 	}
 
-	// Initialize the AI cache
-	this->AICache = AICache(*this);
+	this->AICache = ShipAICache(*this);
 }
 
 

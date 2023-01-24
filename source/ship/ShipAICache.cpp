@@ -58,7 +58,8 @@ void ShipAICache::UpdateWeaponCache()
 				continue;
 			hasAmmo = true;
 
-			// Calculate the damage per second, ignoring any special effects. (could be improved to account for those)
+			// Calculate the damage per second,
+			// ignoring any special effects. (could be improved to account for those, maybe be based on cost instead)
 			double DPS = (weapon->ShieldDamage() + weapon->HullDamage()
 				+ (weapon->RelativeShieldDamage() * ship->Attributes().Get("shields"))
 				+ (weapon->RelativeHullDamage() * ship->Attributes().Get("hull")))
