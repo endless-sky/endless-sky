@@ -73,7 +73,6 @@ test "Loading and Saving"
 			year == 3013
 			month == 11
 			day == 19
-		call "Open Menu"
 		call "Save To Default Snapshot"
 		call "Depart"
 		assert
@@ -99,6 +98,8 @@ test "Loading and Saving"
 		call "Open Menu"
 		call "Load First Savegame"
 		call "Depart"
+		apply
+			"test: 6 departed one more time" = 1
 		assert
 			year == 3013
 			month == 11

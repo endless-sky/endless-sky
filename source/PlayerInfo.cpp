@@ -74,6 +74,33 @@ namespace {
 			ships[0] = flagship;
 		}
 	}
+
+	string EntryToString(SystemEntry entryType)
+	{
+		switch(entryType)
+		{
+			case SystemEntry::HYPERDRIVE:
+				return "hyperdrive";
+			case SystemEntry::JUMP:
+				return "jump drive";
+			case SystemEntry::WORMHOLE:
+				return "wormhole";
+			default:
+			case SystemEntry::TAKE_OFF:
+				return "takeoff";
+		}
+	}
+
+	SystemEntry StringToEntry(const string &entry)
+	{
+		if(entry == "hyperdrive")
+			return SystemEntry::HYPERDRIVE;
+		else if(entry == "jump drive")
+			return SystemEntry::JUMP;
+		else if(entry == "wormhole")
+			return SystemEntry::WORMHOLE;
+		return SystemEntry::TAKE_OFF;
+	}
 }
 
 
@@ -183,6 +210,10 @@ void PlayerInfo::Load(const string &path)
 		}
 		else if(child.Token(0) == "date" && child.Size() >= 4)
 			date = Date(child.Value(1), child.Value(2), child.Value(3));
+		else if(child.Token(0) == "system entry method" && child.Size() >= 2)
+			entry = StringToEntry(child.Token(1));
+		else if(child.Token(0) == "previous system" && child.Size() >= 2)
+			previousSystem = GameData::Systems().Get(child.Token(1));
 		else if(child.Token(0) == "system" && child.Size() >= 2)
 			system = GameData::Systems().Get(child.Token(1));
 		else if(child.Token(0) == "planet" && child.Size() >= 2)
@@ -709,9 +740,24 @@ const CoreStartData &PlayerInfo::StartData() const noexcept
 
 
 
+void PlayerInfo::SetSystemEntry(SystemEntry entryType)
+{
+	entry = entryType;
+}
+
+
+
+SystemEntry PlayerInfo::GetSystemEntry() const
+{
+	return entry;
+}
+
+
+
 // Set the player's current start system, and mark that system as visited.
 void PlayerInfo::SetSystem(const System &system)
 {
+	this->previousSystem = this->system;
 	this->system = &system;
 	Visit(system);
 }
@@ -722,6 +768,13 @@ void PlayerInfo::SetSystem(const System &system)
 const System *PlayerInfo::GetSystem() const
 {
 	return system;
+}
+
+
+
+const System *PlayerInfo::GetPreviousSystem() const
+{
+	return previousSystem;
 }
 
 
@@ -942,11 +995,15 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 
 	auto flightChecks = map<const shared_ptr<Ship>, vector<string>>{};
 	for(const auto &ship : ships)
-		if(ship->GetSystem() == system && !ship->IsDisabled() && !ship->IsParked())
+		if(ship->GetSystem() && !ship->IsDisabled() && !ship->IsParked())
 		{
 			auto checks = ship->FlightCheck();
 			if(!checks.empty())
 				flightChecks.emplace(ship, checks);
+
+			// Only check bays for in-system ships.
+			if(ship->GetSystem() != system)
+				continue;
 
 			categoryCount[ship->Attributes().Category()].emplace_back(ship);
 			// Ensure bayCount has an entry for this category for the special case
@@ -1164,6 +1221,45 @@ pair<double, double> PlayerInfo::RaidFleetFactors() const
 	}
 
 	return make_pair(attraction, deterrence);
+}
+
+
+
+double PlayerInfo::RaidFleetAttraction(const Government::RaidFleet &raid, const System *system) const
+{
+	double attraction = 0.;
+	const Fleet *raidFleet = raid.GetFleet();
+	const Government *raidGov = raidFleet ? raidFleet->GetGovernment() : nullptr;
+	if(raidGov && raidGov->IsEnemy())
+	{
+		// The player's base attraction to a fleet is determined by their fleet attraction minus
+		// their fleet deterence, minus whatever the minimum attraction of this raid fleet is.
+		pair<double, double> factors = RaidFleetFactors();
+		// If there is a maximum attraction for this fleet, and we are above it, it will not spawn.
+		if(raid.MaxAttraction() > 0 && factors.first > raid.MaxAttraction())
+			return 0;
+
+		attraction = .005 * (factors.first - factors.second - raid.MinAttraction());
+		// Then we consider the strength of other fleets in the system.
+		int64_t raidStrength = raidFleet->Strength();
+		if(system && raidStrength)
+			for(const auto &fleet : system->Fleets())
+			{
+				const Government *gov = fleet.Get()->GetGovernment();
+				if(gov)
+				{
+					// If this fleet is neutral or hostile to both the player and raid fleet, it has
+					// no impact on the attraction. If the fleet is hostile to only the player, the
+					// raid attraction will increase. If the fleet is hostile to only the raid fleet,
+					// the raid attraction will decrease. The amount of increase or decrease is determined
+					// by the strength of the fleet relative to the raid fleet. System fleets which are
+					// stronger have a larger impact.
+					double strength = fleet.Get()->Strength() / fleet.Period();
+					attraction -= (gov->IsEnemy(raidGov) - gov->IsEnemy()) * (strength / raidStrength);
+				}
+			}
+	}
+	return max(0., min(1., attraction));
 }
 
 
@@ -2178,7 +2274,7 @@ void PlayerInfo::SetTravelDestination(const Planet *planet)
 
 
 // Check which secondary weapons the player has selected.
-const set<const Outfit *> &PlayerInfo::SelectedWeapons() const
+const set<const Outfit *> &PlayerInfo::SelectedSecondaryWeapons() const
 {
 	return selectedWeapons;
 }
@@ -2186,7 +2282,7 @@ const set<const Outfit *> &PlayerInfo::SelectedWeapons() const
 
 
 // Cycle through all available secondary weapons.
-void PlayerInfo::SelectNext()
+void PlayerInfo::SelectNextSecondary()
 {
 	if(!flagship || flagship->Outfits().empty())
 		return;
@@ -2237,6 +2333,25 @@ void PlayerInfo::SelectNext()
 	// was selected when we entered this function.
 	if(selectedWeapons.size() == 1)
 		selectedWeapons.clear();
+}
+
+
+
+void PlayerInfo::DeselectAllSecondaries()
+{
+	selectedWeapons.clear();
+}
+
+
+
+void PlayerInfo::ToggleAnySecondary(const Outfit *outfit)
+{
+	if(!flagship)
+		return;
+
+	const auto it = selectedWeapons.insert(outfit);
+	if(!it.second)
+		selectedWeapons.erase(it.first);
 }
 
 
@@ -2849,6 +2964,31 @@ void PlayerInfo::RegisterDerivedConditions()
 		return rff.first - rff.second;
 	});
 
+	auto &&systemAttractionProvider = conditions.GetProviderPrefixed("raid chance in system: ");
+	auto systemAttractionFun = [this](const string &name) -> double
+	{
+		const System *system = GameData::Systems().Find(name.substr(strlen("raid chance in system: ")));
+		if(!system)
+			return 0.;
+
+		// This variable represents the probability of no raid fleets spawning.
+		double safeChance = 1.;
+		for(const auto &raidFleet : system->GetGovernment()->RaidFleets())
+		{
+			// The attraction is the % chance for a single instance of this fleet to appear.
+			double attraction = RaidFleetAttraction(raidFleet, system);
+			// Calculate the % chance for no instances to appear from 10 rolls.
+			double noFleetProb = pow(1. - attraction, 10.);
+			// The chance of neither of two fleets appearing is the chance of the first not appearing
+			// times the chance of the second not appearing.
+			safeChance *= noFleetProb;
+		}
+		// The probability of any single fleet appearing is 1 - chance.
+		return round((1. - safeChance) * 1000.);
+	};
+	systemAttractionProvider.SetGetFunction(systemAttractionFun);
+	systemAttractionProvider.SetHasFunction(systemAttractionFun);
+
 	// Special conditions for cargo and passenger space.
 	// If boarding a ship, missions should not consider the space available
 	// in the player's entire fleet. The only fleet parameter offered to a
@@ -3132,6 +3272,26 @@ void PlayerInfo::RegisterDerivedConditions()
 			retVal += storage.second.Get(outfit);
 		return retVal;
 	});
+
+	// This condition corresponds to the method by which the flagship entered the current system.
+	auto &&systemEntryProvider = conditions.GetProviderPrefixed("entered system by: ");
+	auto systemEntryFun = [this](const string &name) -> bool
+	{
+		return name == "entered system by: " + EntryToString(entry);
+	};
+	systemEntryProvider.SetHasFunction(systemEntryFun);
+	systemEntryProvider.SetGetFunction(systemEntryFun);
+
+	// This condition corresponds to the last system the flagship was in.
+	auto &&previousSystemProvider = conditions.GetProviderPrefixed("previous system: ");
+	auto previousSystemFun = [this](const string &name) -> bool
+	{
+		if(!previousSystem)
+			return false;
+		return name == "previous system: " + previousSystem->Name();
+	};
+	previousSystemProvider.SetHasFunction(previousSystemFun);
+	previousSystemProvider.SetGetFunction(previousSystemFun);
 
 	// Conditions to determine if flagship is in a system and on a planet.
 	auto &&flagshipSystemProvider = conditions.GetProviderPrefixed("flagship system: ");
@@ -3595,6 +3755,9 @@ void PlayerInfo::Save(const string &path) const
 	// Pilot information:
 	out.Write("pilot", firstName, lastName);
 	out.Write("date", date.Day(), date.Month(), date.Year());
+	out.Write("system entry method", EntryToString(entry));
+	if(previousSystem)
+		out.Write("previous system", previousSystem->Name());
 	if(system)
 		out.Write("system", system->Name());
 	if(planet)

@@ -371,7 +371,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 
 	// Toggle your secondary weapon.
 	if(activeCommands.Has(Command::SELECT))
-		player.SelectNext();
+		player.SelectNextSecondary();
 
 	// The commands below here only apply if you have escorts or fighters.
 	if(player.Ships().size() < 2)
@@ -744,6 +744,15 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			it->SetCommands(command);
 			it->SetCommands(firingCommands);
 			continue;
+		}
+
+		if(isPresent && personality.IsSecretive())
+		{
+			if(DoSecretive(*it, command))
+			{
+				it->SetCommands(command);
+				continue;
+			}
 		}
 
 		// Surveillance NPCs with enforcement authority (or those from
@@ -2760,6 +2769,41 @@ void AI::DoScatter(Ship &ship, Command &command)
 
 
 
+bool AI::DoSecretive(Ship &ship, Command &command)
+{
+	shared_ptr<Ship> scanningShip;
+	// Figure out if any ship is currently scanning us. If that is the case, move away from it.
+	for(auto &otherShip : GetShipsList(ship, false))
+		if(!ship.GetGovernment()->Trusts(otherShip->GetGovernment()) &&
+				otherShip->Commands().Has(Command::SCAN) &&
+				otherShip->GetTargetShip() == ship.shared_from_this() &&
+				!otherShip->IsDisabled() && !otherShip->IsDestroyed())
+			scanningShip = make_shared<Ship>(*otherShip);
+
+	if(scanningShip)
+	{
+		Point scanningPos = scanningShip->Position();
+		Point pos = ship.Position();
+
+		double cargoDistanceSqrd = scanningShip->Attributes().Get("cargo scan power");
+		double outfitDistanceSqrd = scanningShip->Attributes().Get("outfit scan power");
+
+		double maxScanRangeSqrd = max(cargoDistanceSqrd, outfitDistanceSqrd);
+		double distanceSqrd = scanningPos.DistanceSquared(pos) * .0001;
+
+		// If he can scan us we need to evade.
+		if(distanceSqrd < maxScanRangeSqrd)
+		{
+			Point away = scanningPos + Angle(pos - scanningPos).Unit() * (sqrt(maxScanRangeSqrd) + 50.);
+			MoveTo(ship, command, away, scanningShip->Velocity(), 0., ship.MaxVelocity());
+			return true;
+		}
+	}
+	return false;
+}
+
+
+
 // Instead of coming to a full stop, adjust to a target velocity vector
 Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &shouldReverse)
 {
@@ -3756,7 +3800,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		if(activeCommands.Has(Command::SECONDARY))
 		{
 			int index = 0;
-			const auto &playerSelectedWeapons = player.SelectedWeapons();
+			const auto &playerSelectedWeapons = player.SelectedSecondaryWeapons();
 			for(const Hardpoint &hardpoint : ship.Weapons())
 			{
 				if(hardpoint.IsReady() && (playerSelectedWeapons.find(hardpoint.GetOutfit()) != playerSelectedWeapons.end()))
