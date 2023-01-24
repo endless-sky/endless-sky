@@ -25,7 +25,6 @@ using namespace std;
 
 
 
-// Constructor.
 ShipAICache::ShipAICache(const Ship &ship)
 {
 	this->ship = &ship;
