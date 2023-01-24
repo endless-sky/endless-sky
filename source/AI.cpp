@@ -2281,7 +2281,7 @@ void AI::MoveToAttack(Ship &ship, Command &command, const Body &target)
 	else if((facing >= 0. &&
 			direction.Length() > max(200., ship.GetAICache().TurningRadius()))
 			|| (ship.Velocity().Dot(direction) < 0. &&
-				facing) >= .9))
+				facing) >= .9)
 		command |= Command::FORWARD;
 
 	// Use an equipped afterburner if possible.
