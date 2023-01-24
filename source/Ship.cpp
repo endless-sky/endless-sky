@@ -1371,11 +1371,9 @@ void Ship::DefeatShip()
 		SetSwizzle(customSwizzle >= 0 ? customSwizzle : government->GetSwizzle());
 	}
 	if(defeatedPersonality.IsDefined())
-	{
 		personality = defeatedPersonality;
-		if(defeatTimer < 0)
-			defeatTimer = personality.DefeatedGracePeriod();
-	}
+	if(defeatTimer < 0)
+		defeatTimer = personality.DefeatedGracePeriod();
 }
 
 
@@ -1396,7 +1394,7 @@ bool Ship::InGracePeriod() const
 
 void Ship::StepDefeatTimer()
 {
-	if(defeatTimer >= 0)
+	if(InGracePeriod())
 		defeatTimer++;
 }
 
