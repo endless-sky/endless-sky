@@ -135,7 +135,7 @@ namespace {
 		added.clear();
 	}
 
-	bool CanSendHail(const shared_ptr<const Ship> &ship, const PlayerInfo &player)
+	bool CanSendHail(const shared_ptr<const Ship> &ship, const PlayerInfo &player, bool allowUntranslated = false)
 	{
 		const System *playerSystem = player.GetSystem();
 		if(!ship || !playerSystem)
@@ -155,8 +155,10 @@ namespace {
 				|| ship->Cloaking() >= 1. || ship->GetPersonality().IsMute())
 			return false;
 
-		// Ships that don't share a language with the player shouldn't send hails.
-		if(!gov->Language().empty() && !player.Conditions().Get("language: " + gov->Language()))
+		// Ships that don't share a language with the player shouldn't communicate when hailed directly.
+		// Only random event hails should work, and only if the government explicitly has
+		// untranslated hails. This is ensured by the allowUntranslated argument.
+		if(!allowUntranslated && !gov->Language().empty() && !player.Conditions().Get("language: " + gov->Language()))
 			return false;
 
 		return true;
@@ -1261,19 +1263,17 @@ void Engine::EnterSystem()
 				CreateWeather(hazard, stellar.Position());
 	}
 
-	const Fleet *raidFleet = system->GetGovernment()->RaidFleet();
-	const Government *raidGovernment = raidFleet ? raidFleet->GetGovernment() : nullptr;
-	if(raidGovernment && raidGovernment->IsEnemy())
+	for(const auto &raidFleet : system->GetGovernment()->RaidFleets())
 	{
-		pair<double, double> factors = player.RaidFleetFactors();
-		double attraction = .005 * (factors.first - factors.second - 2.);
+		double attraction = player.RaidFleetAttraction(raidFleet, system);
 		if(attraction > 0.)
 			for(int i = 0; i < 10; ++i)
 				if(Random::Real() < attraction)
 				{
-					raidFleet->Place(*system, newShips);
+					raidFleet.GetFleet()->Place(*system, newShips);
 					Messages::Add("Your fleet has attracted the interest of a "
-							+ raidGovernment->GetName() + " raiding party.", Messages::Importance::Highest);
+							+ raidFleet.GetFleet()->GetGovernment()->GetName() + " raiding party.",
+							Messages::Importance::Highest);
 				}
 	}
 
@@ -1784,17 +1784,21 @@ void Engine::SendHails()
 	if(Random::Int(600) || player.IsDead() || ships.empty())
 		return;
 
-	shared_ptr<Ship> source;
-	unsigned i = Random::Int(ships.size());
-	for(const shared_ptr<Ship> &it : ships)
-		if(!i--)
-		{
-			source = it;
-			break;
-		}
+	vector<shared_ptr<const Ship>> canSend;
+	canSend.reserve(ships.size());
 
-	if(!CanSendHail(source, player))
+	// When deciding who will send a hail, only consider ships that can send hails.
+	for(auto &it : ships)
+		if(CanSendHail(it, player, true))
+			canSend.push_back(it);
+
+	if(canSend.empty())
+		// No ships can send hails.
 		return;
+
+	// Randomly choose a ship to send the hail.
+	unsigned i = Random::Int(canSend.size());
+	shared_ptr<const Ship> source = canSend[i];
 
 	// Generate a random hail message.
 	SendMessage(source, source->GetHail(player.GetSubstitutions()));
@@ -2443,7 +2447,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 	grudge[attacker] = target;
 	grudgeTime = 120;
 	string message;
-	if(target->GetPersonality().IsHeroic())
+	if(target->GetPersonality().IsDaring())
 	{
 		message = "Please assist us in destroying ";
 		message += (attackerCount == 1 ? "this " : "these ");
