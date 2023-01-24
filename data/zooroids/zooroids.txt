@@ -240,10 +240,10 @@ outfit "Astral Mouth"
 		"inaccuracy" 3
 		"burst reload" 1
 		"burst count" 10
-		"reload" 30
+		"reload" 40
 		"hit force" -50
 		"piercing" 1
-		"hull damage" 100
+		"hull damage" 200
 
 # Fleets:
 
