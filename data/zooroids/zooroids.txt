@@ -12,7 +12,7 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 ship "Zooroid"
-	noun creature
+	noun "creature"
 	sprite "ship/zooroids/zooroid-a"
 		"frame rate" 24
 		"random start frame"
@@ -63,7 +63,7 @@ outfit "Plankton Mouth"
 
 
 ship "Zooroid" "Zooroid (B)"
-	noun creature
+	noun "creature"
 	sprite "ship/zooroids/zooroid-b"
 		"frame rate" 24
 		"random start frame"
@@ -108,6 +108,7 @@ outfit "Boomerang Organ"
 
 
 ship "Zooroid" "Zooroid (C)"
+	noun "creature"
 	sprite "ship/zooroids/zooroid-c"
 		"frame rate" 24
 		"random start frame"
@@ -130,7 +131,7 @@ ship "Zooroid" "Zooroid (C)"
 		"energy capacity" 1000
 		"energty generation" 100
 		"thrust" 6
-		"turn" 70
+		"turn" 80
 		"energy protection" 1
 		"heat protection" 1
 		weapon
@@ -139,11 +140,9 @@ ship "Zooroid" "Zooroid (C)"
 			"hull damage" 8000
 			"hit force" 4000
 			"piercing" 0.1
-	engine 0 0
 	explode "flamethrower die" 1
 	"final explode" "fission explosion" 
-	description `This species of space life is found around hotter stars and feeds on solar energy, storing it in four organs that give off the appearance of eyes. These creatures are however easily agitated, and explode violently when provoked, sometimes seen doing so aggressively.`
-
+	description `This species of space life is found around hotter stars and feeds on solar energy, storing it in four organs that give off the appearance of eyes. Due to all of the internal energy and pressure, these creatures explode violently upon death, which may surprise aggressors.`
 
 effect "fission explosion"
 	sprite "effect/explosion/nuke"
@@ -192,7 +191,6 @@ fleet "Zooroid (Cephalopod)"
 	government "Indigenous Lifeform"
 	cargo 0
 	personality
-		timid mute
+		timid mute pacifist
 	variant
 		"Zooroid (C)"
-
