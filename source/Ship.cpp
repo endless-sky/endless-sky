@@ -1435,6 +1435,35 @@ string Ship::GetHail(map<string, string> &&subs) const
 
 
 
+bool Ship::CanSendHail(const PlayerInfo &player) const
+{
+	const System *playerSystem = player.GetSystem();
+	if(!ship || !playerSystem)
+		return false;
+
+	// Make sure this ship is in the same system as the player.
+	if(ship->GetSystem() != playerSystem)
+		return false;
+
+	// Player ships shouldn't send hails.
+	const Government *gov = ship->GetGovernment();
+	if(!gov || ship->IsYours())
+		return false;
+
+	// Make sure this ship is able to send a hail.
+	if(ship->IsDisabled() || !ship->Crew()
+			|| ship->Cloaking() >= 1. || ship->GetPersonality().IsMute())
+		return false;
+
+	// Ships that don't share a language with the player shouldn't send hails.
+	if(!gov->Language().empty() && !player.Conditions().Get("language: " + gov->Language()))
+		return false;
+
+	return true;
+}
+
+
+
 // Set the commands for this ship to follow this timestep.
 void Ship::SetCommands(const Command &command)
 {
@@ -2584,7 +2613,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 
 // Scan the target, if able and commanded to. Return a ShipEvent bitmask
 // giving the types of scan that succeeded.
-int Ship::Scan()
+int Ship::Scan(const PlayerInfo &player)
 {
 	if(!commands.Has(Command::SCAN) || CannotAct())
 		return 0;
@@ -2671,7 +2700,8 @@ int Ship::Scan()
 			Messages::Add("Attempting to scan the selected " + target->Noun() + "."
 				, Messages::Importance::Low);
 
-		if(target->GetPersonality().IsSecretive() && target->GetGovernment()->IsProvokedOnScan())
+		if(target->GetPersonality().IsSecretive() && target->GetGovernment()->IsProvokedOnScan()
+			&& target->CanSendHail(player))
 		{
 			// If this ship has no name, show its model name instead.
 			string tag;

@@ -135,33 +135,6 @@ namespace {
 		added.clear();
 	}
 
-	bool CanSendHail(const shared_ptr<const Ship> &ship, const PlayerInfo &player)
-	{
-		const System *playerSystem = player.GetSystem();
-		if(!ship || !playerSystem)
-			return false;
-
-		// Make sure this ship is in the same system as the player.
-		if(ship->GetSystem() != playerSystem)
-			return false;
-
-		// Player ships shouldn't send hails.
-		const Government *gov = ship->GetGovernment();
-		if(!gov || ship->IsYours())
-			return false;
-
-		// Make sure this ship is able to send a hail.
-		if(ship->IsDisabled() || !ship->Crew()
-				|| ship->Cloaking() >= 1. || ship->GetPersonality().IsMute())
-			return false;
-
-		// Ships that don't share a language with the player shouldn't send hails.
-		if(!gov->Language().empty() && !player.Conditions().Get("language: " + gov->Language()))
-			return false;
-
-		return true;
-	}
-
 	// Author the given message from the given ship.
 	void SendMessage(const shared_ptr<const Ship> &ship, const string &message)
 	{
@@ -1791,7 +1764,7 @@ void Engine::SendHails()
 			break;
 		}
 
-	if(!CanSendHail(source, player))
+	if(!source->CanSendHail(player))
 		return;
 
 	// Generate a random hail message.
@@ -2209,7 +2182,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 // all the ships already being in their final position for this step.
 void Engine::DoScanning(const shared_ptr<Ship> &ship)
 {
-	int scan = ship->Scan();
+	int scan = ship->Scan(player);
 	if(scan)
 	{
 		shared_ptr<Ship> target = ship->GetTargetShip();
@@ -2386,7 +2359,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 	if(attacker->IsPlayer())
 	{
 		shared_ptr<const Ship> previous = grudge[target->GetGovernment()].lock();
-		if(CanSendHail(previous, player))
+		if(previous->CanSendHail(player))
 		{
 			grudge[target->GetGovernment()].reset();
 			SendMessage(previous, "Thank you for your assistance, Captain "
@@ -2404,7 +2377,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 		shared_ptr<const Ship> previous = grudge[attacker].lock();
 		// If the previous ship is destroyed, or was able to send a
 		// "thank you" already, skip sending a new thanks.
-		if(!previous || CanSendHail(previous, player))
+		if(!previous || previous->CanSendHail(player))
 			return;
 	}
 
@@ -2414,7 +2387,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 		return;
 	// Ensure that this attacked ship is able to send hails (e.g. not mute,
 	// a player ship, automaton, shares a language with the player, etc.)
-	if(!CanSendHail(target, player))
+	if(!target->CanSendHail(player))
 		return;
 
 	// No active ship has a grudge already against this government.
