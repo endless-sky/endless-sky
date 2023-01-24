@@ -246,7 +246,7 @@ ship "Embershade"
 		"cloak" .02
 		"cloaking energy" 5
 		"hyperdrive" 1
-		"jump speed" .1
+		"jump speed" .2
 		"ramscoop" .05
 		"gaslining" 1
 		"inscrutable" 1
