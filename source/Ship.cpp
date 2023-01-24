@@ -1798,6 +1798,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		if(isDisabled)
 			landingPlanet = nullptr;
 
+		float landingSpeed = attributes.Get("landing speed");
+		landingSpeed = landingSpeed > 0 ? landingSpeed : .02f;
 		// Special ships do not disappear forever when they land; they
 		// just slowly refuel.
 		if(landingPlanet && zoom)
@@ -1805,7 +1807,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			// Move the ship toward the center of the planet while landing.
 			if(GetTargetStellar())
 				position = .97 * position + .03 * GetTargetStellar()->Position();
-			zoom -= .02f;
+			zoom -= landingSpeed;
 			if(zoom < 0.f)
 			{
 				// If this is not a special ship, it ceases to exist when it
@@ -1834,7 +1836,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		else if(fuel >= attributes.Get("fuel capacity")
 				|| !landingPlanet || !landingPlanet->HasSpaceport())
 		{
-			zoom = min(1.f, zoom + .02f);
+			zoom = min(1.f, zoom + landingSpeed);
 			SetTargetStellar(nullptr);
 			landingPlanet = nullptr;
 		}
