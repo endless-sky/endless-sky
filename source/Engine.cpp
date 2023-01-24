@@ -1759,7 +1759,6 @@ void Engine::SendHails()
 	vector<shared_ptr<const Ship>> canSend;
 	canSend.reserve(ships.size());
 
-
 	// When deciding who will send a hail, only consider ships that can send hails.
 	for(auto &it : ships)
 		if(it && it->CanSendHail(player, true))
