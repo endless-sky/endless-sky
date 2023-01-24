@@ -1233,7 +1233,7 @@ double PlayerInfo::RaidFleetAttraction(const Government::RaidFleet &raid, const 
 	if(raidGov && raidGov->IsEnemy())
 	{
 		// The player's base attraction to a fleet is determined by their fleet attraction minus
-		// their fleet deterence, minus whatever the minimum attraction of this raid fleet is.
+		// their fleet deterrence, minus whatever the minimum attraction of this raid fleet is.
 		pair<double, double> factors = RaidFleetFactors();
 		// If there is a maximum attraction for this fleet, and we are above it, it will not spawn.
 		if(raid.MaxAttraction() > 0 && factors.first > raid.MaxAttraction())

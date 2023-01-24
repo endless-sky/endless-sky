@@ -1,4 +1,4 @@
-test-data "Flagship Attribute Autoconditions Testing"
+test-data "Flagship Attribute Autoconditions Save"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
@@ -114,7 +114,7 @@ test "Flagship Attribute Autoconditions"
 	status active
 	description `Tests the "flagship attribute: <attribute>" and "flagship base attribute: <attribute>" autoconditions.`
 	sequence
-		inject "Flagship Attribute Autoconditions Testing"
+		inject "Flagship Attribute Autoconditions Save"
 		call "Load First Savegame"
 		assert
 			"flagship base attribute: cost" == 41627000
