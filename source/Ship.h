@@ -61,7 +61,7 @@ class Ship : public Body, public std::enable_shared_from_this<Ship> {
 public:
 	class Bay {
 	public:
-		Bay(double x, double y, std::string category) : point(x * .5, y * .5), category(category) {}
+		Bay(double x, double y, std::string category) : point(x * .5, y * .5), category(std::move(category)) {}
 		Bay(Bay &&) = default;
 		Bay &operator=(Bay &&) = default;
 		~Bay() = default;
@@ -192,7 +192,8 @@ public:
 	void SetPersonality(const Personality &other);
 	// Get a random hail message, or set the object used to generate them. If no
 	// object is given the government's default will be used.
-	void SetHail(const Phrase &phrase);
+	const Phrase *GetHailPhrase() const;
+	void SetHailPhrase(const Phrase &phrase);
 	std::string GetHail(std::map<std::string, std::string> &&subs) const;
 
 	// Set the commands for this ship to follow this timestep.
@@ -236,7 +237,6 @@ public:
 	bool IsCapturable() const;
 	bool IsTargetable() const;
 	bool IsOverheated() const;
-	bool IsParalyzed() const;
 	bool IsDisabled() const;
 	bool IsBoarding() const;
 	bool IsLanding() const;
@@ -552,6 +552,8 @@ private:
 	double heat = 0.;
 	// Accrued "ion damage" that will affect this ship's energy over time.
 	double ionization = 0.;
+	// Accrued "scrambling damage" that will affect this ship's weaponry over time.
+	double scrambling = 0.;
 	// Accrued "disruption damage" that will affect this ship's shield effectiveness over time.
 	double disruption = 0.;
 	// Accrued "slowing damage" that will affect this ship's movement over time.

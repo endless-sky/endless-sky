@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Rectangle.h"
 
 #include <cmath>
+#include <utility>
 
 
 
@@ -45,7 +46,7 @@ private:
 
 template <class Type>
 ClickZone<Type>::ClickZone(Point center, Point dimensions, Type value)
-	: Rectangle(center, dimensions), value(value)
+	: Rectangle(center, dimensions), value(std::move(value))
 {
 }
 
@@ -53,7 +54,7 @@ ClickZone<Type>::ClickZone(Point center, Point dimensions, Type value)
 
 template <class Type>
 ClickZone<Type>::ClickZone(const Rectangle &rect, Type value)
-	: Rectangle(rect), value(value)
+	: Rectangle(rect), value(std::move(value))
 {
 }
 

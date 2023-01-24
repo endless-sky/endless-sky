@@ -161,14 +161,14 @@ mission "Wealthy Hai [1]"
 	name "Wealthy Hai to <planet>"
 	job
 	repeat
-	description "This wealthy family of <bunks> Hai will pay <payment> for a smooth and fast journey to <planet> by <date>."
+	description "This wealthy family of <bunks> Hai will pay <payment> for a fast and comfortable journey to <planet> by <date>."
 	passengers 2 4 .8
 	deadline
 	to offer
 		random < 70
-	on offer
-		require "Luxury Accommodations"
-		require "Quantum Keystone"
+	to accept
+		has "outfit: Luxury Accommodations"
+		has "outfit: Quantum Keystone"
 	source
 		government "Hai"
 	destination
@@ -189,14 +189,14 @@ mission "Wealthy Hai [2]"
 	name "Wealthy Hai to <planet>"
 	job
 	repeat
-	description "This wealthy family of <bunks> Hai will pay <payment> for a smooth and fast journey to <planet> by <date>."
+	description "This wealthy family of <bunks> Hai will pay <payment> for a fast and comfortable journey to <planet> by <date>."
 	passengers 2 4 .8
 	deadline
 	to offer
 		random < 30
-	on offer
-		require "Luxury Accommodations"
-		require "Quantum Keystone"
+	to accept
+		has "outfit: Luxury Accommodations"
+		has "outfit: Quantum Keystone"
 	source
 		government "Hai"
 	destination
@@ -324,6 +324,7 @@ mission "Unfettered Aid [0]"
 		has "Ask the Hai about the Unfettered: offered"
 	source
 		government "Hai"
+		not attributes "station"
 	destination
 		distance 3 4
 		attributes "unfettered"
@@ -353,6 +354,7 @@ mission "Unfettered Aid [1]"
 		has "Ask the Hai about the Unfettered: offered"
 	source
 		government "Hai"
+		not attributes "station"
 	destination
 		distance 4 5
 		attributes "unfettered"
@@ -382,6 +384,7 @@ mission "Unfettered Aid [2]"
 		has "Ask the Hai about the Unfettered: offered"
 	source
 		government "Hai"
+		not attributes "station"
 	destination
 		distance 5 6
 		attributes "unfettered"
@@ -483,6 +486,7 @@ mission "Hai Retrieve Human Luxury Goods"
 	source
 		government "Hai"
 		near "Heia Due" 2
+		not attributes "station"
 	stopover
 		attributes "north"
 	on stopover
@@ -842,9 +846,11 @@ mission "Hai Family [0]"
 		"passenger space" >= 5
 	source
 		government "Hai"
+		not attributes "station"
 	destination
 		distance 4 16
 		government "Hai"
+		not attributes "station"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -868,9 +874,11 @@ mission "Hai Family [1]"
 		"passenger space" >= 5
 	source
 		government "Hai"
+		not attributes "station"
 	destination
 		distance 5 20
 		government "Hai"
+		not attributes "station"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -892,6 +900,7 @@ mission "Transport Hai miners to <planet>"
 		random < 40
 	source
 		government "Hai"
+		not attributes "station"
 	destination
 		attributes "mining"
 		distance 3 12
@@ -917,6 +926,7 @@ mission "Transport Hai farmers to <planet>"
 		random < 40
 	source
 		government "Hai"
+		not attributes "station"
 	destination
 		attributes "farming"
 		distance 3 12
@@ -942,6 +952,7 @@ mission "Transport Hai mill workers to <planet>"
 		random < 40
 	source
 		government "Hai"
+		not attributes "station"
 	destination
 		attributes "textiles"
 		distance 3 12
@@ -967,6 +978,7 @@ mission "Transport Hai workers to <planet>"
 		random < 70
 	source
 		government "Hai"
+		not attributes "station"
 	destination
 		attributes "factory"
 		distance 3 12
@@ -1458,18 +1470,20 @@ mission "Hai Prisoner Roleplay"
 	name `Hai "prison" cruise to <planet>`
 	job
 	repeat
-	description "A group of Hai want to experience what it's like to be human criminals. Transport them to <planet> in your brig. Payment is <payment>."
+	description "A group of Hai want to experience what it's like to be human criminals. Transport them to <planet> in a brig. Payment is <payment>."
 	passengers 3 20
 	to offer
 		random < 5
 		not "Hai Rescue [A09] Slaver Ships: offered"
 	source
 		government "Hai"
+		not attributes "station"
 	destination
 		distance 3 7
 		government "Hai"
-	on offer
-		require "Brig"
+		not attributes "station"
+	to accept
+		has "outfit: Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete

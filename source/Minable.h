@@ -52,7 +52,9 @@ public:
 	// Call this once all of the game data finishes loading.  Asteroids and
 	// associated payloads have been loaded.
 	void FinishLoading();
-	const std::string &Name() const;
+	const std::string &TrueName() const;
+	const std::string &DisplayName() const;
+	const std::string &Noun() const;
 
 	// Place a minable object with up to the given energy level, on a random
 	// orbit and a random position along that orbit.
@@ -75,6 +77,8 @@ public:
 
 private:
 	std::string name;
+	std::string displayName;
+	std::string noun;
 	// Current angular position relative to the focus of the elliptical orbit,
 	// in radians. An angle of zero is the periapsis point.
 	double theta;
@@ -85,7 +89,7 @@ private:
 	double angularMomentum;
 	// Scale of the orbit. This is the orbital radius when theta is 90 degrees.
 	// The periapsis and apoapsis radii are scale / (1 +- eccentricity).
-	double scale;
+	double orbitScale;
 	// Rotation of the orbit - that is, the angle of periapsis - in radians.
 	double rotation;
 	// Rate of spin of the object.
