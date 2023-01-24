@@ -16970,7 +16970,7 @@ system "Is Il V-263"
 	minables titanium 3 5.731
 	fleet "Zooroid (Plankton)" 500
 	fleet "Zooroid (Boomerang)" 700
-	fleet "Astral" 10
+	fleet "Astral" 1000
 	object
 		sprite star/b-supergiant
 		period 10
