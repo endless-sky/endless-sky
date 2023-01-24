@@ -54,7 +54,7 @@ namespace {
 	const int MARKED = (1 << 27);
 	const int LAUNCHING = (1 << 28);
 	const int DARING = (1 << 29);
-	const int SECRETIVE = (1 << 29);
+	const int SECRETIVE = (1 << 30);
 
 	const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
