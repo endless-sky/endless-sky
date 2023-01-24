@@ -6,7 +6,7 @@
 		"maxIndentationIncrease": 1,
 		"indentEmptyLines": "either",
 		"forceUnixLineSeparator": true,
-		"trailingEmptyLine": "never",
+		"trailingEmptyLine": "always",
 		"checkCopyright": true,
 		"copyrightBlacklist": ["data/tooltips.txt"],
 		"copyrightFormats": [

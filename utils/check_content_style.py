@@ -184,9 +184,9 @@ def check_line_separators(contents, auto_correct, config):
 				result.errors.append(Error(index + 1, "line separators should use LF only; found CRLF"))
 			elif line.endswith("\r"):
 				result.errors.append(Error(index + 1, "line separators should use LF only; found CR"))
-		if config["trailingEmptyLine"] == "always" and contents[-1] != "":
+		if config["trailingEmptyLine"] == "always" and not (contents[-1].endswith('\r') or contents[-1].endswith('\n')):
 			result.errors.append(Error(len(contents), "missing trailing empty line"))
-		elif config["trailingEmptyLine"] == "never" and contents[-1] == "":
+		elif config["trailingEmptyLine"] == "never" and (contents[-1].endswith('\r') or contents[-1].endswith('\n')):
 			result.errors.append(Error(len(contents), "trailing empty line"))
 
 	if auto_correct:
