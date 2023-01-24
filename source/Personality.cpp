@@ -434,7 +434,10 @@ void Personality::Parse(const DataNode &node, int index, bool remove)
 	{
 		it = COMPOSITE_TOKEN.find(token);
 		if(it == COMPOSITE_TOKEN.end())
-			node.PrintTrace("Warning: Skipping unrecognized personality \"" + token + "\":");
+			{
+				node.PrintTrace("Warning: Skipping unrecognized personality \"" + token + "\":");
+				return;
+			}
 	}
 
 	if(remove)
