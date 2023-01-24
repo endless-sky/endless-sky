@@ -2272,7 +2272,7 @@ void AI::MoveToAttack(Ship &ship, Command &command, const Body &target)
 	// First of all, aim in the direction that will hit this target.
 	AimToAttack(ship, command, target);
 
-	const auto facing = ship.Facing().Unit().Dot(direction.Unit();
+	const auto facing = ship.Facing().Unit().Dot(direction.Unit());
 	// If the ship has reverse thrusters and the target is behind it, we can
 	// use them to reach the target more quickly.
 	if(facing < -.75 && ship.Attributes().Get("reverse thrust"))
