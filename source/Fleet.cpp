@@ -171,8 +171,8 @@ void Fleet::Load(const DataNode &node)
 		// are only valid with "variant" or "personality" definitions.
 		bool add = (child.Token(0) == "add");
 		bool remove = (child.Token(0) == "remove");
-		int keyIndex = add || remove;
-		bool defeated = (child.Size() > keyIndex && child.Token(1 + keyIndex) == "defeated");
+		int keyIndex = (add || remove);
+		bool defeated = (child.Size() > keyIndex && child.Token(keyIndex) == "defeated");
 		keyIndex += defeated;
 		if(child.Size() <= keyIndex)
 		{
