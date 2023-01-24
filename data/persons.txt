@@ -867,15 +867,6 @@ person "Subsidurial"
 		"never disabled"
 	system
 		government "Uninhabited"
-		
-
-person "Astral Cetacean"
-	government "Indigenous Lifeform (Astral)"
-	frequency 5000
-	personality
-	system
-		attributes "astral"
-	ship "Astral Cetacean" "Astral Cetacean"
 
 
 

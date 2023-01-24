@@ -282,3 +282,11 @@ fleet "Zooroid (Cephalopod)"
 		timid mute pacifist
 	variant
 		"Zooroid (C)"
+
+fleet "Astral"
+	government "Indigenous Lifeform (Astral)"
+	cargo 0
+	personality
+		forbearing unconstrained swarming mute
+	variant
+		"Astral"
