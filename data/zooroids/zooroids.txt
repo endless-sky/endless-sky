@@ -40,11 +40,26 @@ ship "Zooroid"
 		"atmospheric scan" 1
 		"energy protection" 1
 		"ion protection" 1
+	outfits
+		"Plankton Mouth"
 	"gun" 0 0
 	"leak" "blood" 1 2
 	"final explode" "blood"
 	description `These are tiny space creatures that feed on solar energy, storing it into two receptors found at the front of their bodies. They are extremely docile, and are found in large groups, almost never seen alone.`
-	
+
+outfit "Plankton Mouth"
+	category "Guns"
+	thumbnail "outfit/unknown"
+	"gun ports" -1
+	weapon
+		"sound" "plankton bite"
+		"velocity" 50
+		"lifetime" 1
+		"burst reload" 1
+		"burst count" 5
+		"reload" 20
+		"firing force" 50
+		"energy damage" 50
 
 
 ship "Zooroid" "Zooroid (B)"
@@ -90,7 +105,7 @@ outfit "Boomerang Organ"
 	"energy capacity" 100
 	"energy generation" 1
 	"heat generation" 0.5
-	description `This strange organ produces energy that rotates a lifeform into constant circular movement, which can sometimes confuse the targeting systems of guided projectiles.`
+
 
 ship "Zooroid" "Zooroid (C)"
 	sprite "ship/zooroids/zooroid-c"
