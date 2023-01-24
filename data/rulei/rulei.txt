@@ -30,7 +30,7 @@ mission "Ira Contact"
 	on enter Kanguwa
 		fail
 		log "Factions" "Rulei" `The Rulei were likely an ancient, technologically advanced civilization from long ago.`
-			`They communicate through some sort of invasive psychonic ability.`
+			`They communicate through some sort of invasive psionic ability.`
 		conversation
 			`The second you jump into this system you begin to experience a strange, uncomfortable sensation. You feel an overwhelming sense of emptiness, but at the same time the intensity of this feeling suggests that something must be there. You barely have enough time to try and make sense of this oddity as only seconds later you start to hear ominous whispering, as if something is behind you.`
 			choice
@@ -45,7 +45,7 @@ mission "Ira Contact"
 				`	"Who are you?"`
 				`	"Where am I?"`
 					goto where
-			`	The numerous whispers begin to pick up again, but rather than becoming louder, it sounds like they are going back and forth in your head. It almost seems they are having a discussion. After a few more seconds of this, dead silence resumes, and then a single word.`
+			`	The numerous whispers begin to pick up again, but rather than becoming louder, it sounds like they are going back and forth in your head. It almost seems they are having a discussion. After a few more seconds of this, dead silence resumes and then is broken again by a single word.`
 			`	"P r e c u r s o r s."`
 			choice
 				`	"Where am I?"`
