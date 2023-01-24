@@ -1364,14 +1364,18 @@ void Ship::DefeatShip()
 	if(defeatTimer >= 0)
 		return;
 
-	defeatTimer = 0;
-	if(defeatedGovernment)
+	if(defeatedGovernment && government != defeatedGovernment)
 	{
+		defeatTimer = 0;
 		government = defeatedGovernment;
 		SetSwizzle(customSwizzle >= 0 ? customSwizzle : government->GetSwizzle());
 	}
 	if(defeatedPersonality.IsDefined())
+	{
 		personality = defeatedPersonality;
+		if(defeatTimer < 0)
+			defeatTimer = personality.DefeatedGracePeriod();
+	}
 }
 
 
