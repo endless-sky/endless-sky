@@ -1155,7 +1155,7 @@ planet Esquiline
 planet Essime
 	attributes gegno vi
 	landscape land/mountain4
-	description `Starting from an early age, most Vi devote their lives to their endless trials of survival, finding themselves either on the frontlines of conflict or in the backlines of industry. As they grow old, they retire and spend the rest of their lives on green planets such as this one, where they hunt animals for food and till acres of land. `
+	description `Starting from an early age, most Vi devote their lives to their endless trials of survival, finding themselves either on the frontlines of conflict or in the backlines of industry. As they grow old, they retire and spend the rest of their lives on green planets such as this one, where they hunt animals for food and till acres of land.`
 	spaceport `The spaceport here is a very large circular shape with tall pillars reaching up into a dome roofing. The empty space between each pillar is occasionally interrupted by a freighter or two, and in the center is a main platform where most pilots are gathered. Surrounding the pilots are what appear to be older members of the Vi deep in conversation.`
 	spaceport `	Several Vi are chuckling deeply, likely telling stories of hunts they've had on the planet. Strangely, they pay you no attention; not even of distrust, and carry on about their day as if you aren't even present.`
 	government "Gegno Vi"
@@ -1586,7 +1586,7 @@ planet Goldcrawl
 planet Graede
 	attributes gegno vi
 	landscape land/forest2
-	description `Unlike the homeworld of the Gegno, the capital of the Vi is covered in astounding natural beauty where the land is untouched. Vast tracts of forests spread across relatively low mountain ranges, and a variety of both small and large marsupials can be seen running to and fro. Despite all of this, there are many plowed fields that have been converted to industrial ranges and shipyards, and several large cities have begun to grow towards the sky. `
+	description `Unlike the homeworld of the Gegno, the capital of the Vi is covered in astounding natural beauty where the land is untouched. Vast tracts of forests spread across relatively low mountain ranges, and a variety of both small and large marsupials can be seen running to and fro. Despite all of this, there are many plowed fields that have been converted to industrial ranges and shipyards, and several large cities have begun to grow towards the sky.`
 	spaceport `The structure you're parked at seems to be just a section of a much larger rectangular building with many other sections and rods projecting out from it. From the height you are at, you can see the wilderness stretch for miles, occasionally interrupted with another tall-reaching spaceport or factory.`
 	government "Gegno Vi"
 	shipyard "Gegno Vi Ships"
@@ -2725,7 +2725,7 @@ planet "New Tortuga"
 	"required reputation" -10
 	bribe 0.03
 	security 0
-	tribute 6000
+	tribute 1400
 		threshold 5000
 		fleet "Large Core Pirates" 10
 		fleet "Small Core Pirates" 15
@@ -3142,7 +3142,7 @@ planet "Remote Blue"
 planet Retilie
 	attributes ka'het uninhabited
 	landscape land/sea19
-	description `Retilie is an oceanic world; more than 95% of the planet's surface is covered by oceans, which can be several kilometers deep. Few traces of coastal villages are still visible, mostly composed of ancient metallic formations standing some kilometers from the seaside, where the occasional high waves can’t reach them. A few small cities on the mainland are in a better state, but without anyone to maintain them, vegetation has grown to completely cover many of the surviving buildings.`
+	description `Retilie is an oceanic world; more than 95% of the planet's surface is covered by oceans, which can be several kilometers deep. Few traces of coastal villages are still visible, mostly composed of ancient metallic formations standing some kilometers from the seaside, where the occasional high waves can't reach them. A few small cities on the mainland are in a better state, but without anyone to maintain them, vegetation has grown to completely cover many of the surviving buildings.`
 
 planet Reunion
 	attributes factory "near earth" urban
@@ -4243,7 +4243,7 @@ planet Vatican
 planet Veliante
 	attributes ka'het uninhabited
 	landscape land/fog9
-	description `Veliante may have been habitable once, but no longer. Part of its southern hemisphere is filled with deadly levels of radiation, but even elsewhere on the planet, it isn’t safe to remain on the surface without adequate protection for too long. While animal life on the planet seems to have disappeared almost completely, plants and trees cover the surface in vast, colorful patches of flora.`
+	description `Veliante may have been habitable once, but no longer. Part of its southern hemisphere is filled with deadly levels of radiation, but even elsewhere on the planet, it isn't safe to remain on the surface without adequate protection for too long. While animal life on the planet seems to have disappeared almost completely, plants and trees cover the surface in vast, colorful patches of flora.`
 
 planet "Vibrant Water"
 	attributes farming saryd
