@@ -28,7 +28,7 @@ mission "First Contact: Gegno Vi"
 	clearance
 	passengers 1
 	to offer
-		not "Gegno Genocide Defense: offererd"
+		not "Gegno Genocide Defense: offered"
 	on offer
 		conversation
 			branch "second encounter"

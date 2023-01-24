@@ -1,4 +1,4 @@
-test-data "conditional choice"
+test-data "Conversation Conditions Test Save"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
@@ -52,96 +52,99 @@ test-data "conditional choice"
 		"visited planet" Ruin
 
 
-mission "%TEST%: CONDITIONAL CHOICE"
-	priority
-	source "Ruin"
-	to offer
-		has "%TEST%: CONDITIONAL CHOICE"
-	on offer
-		conversation
-			# cant actually write an integration test for seeing this or not
-			`"You should not see this."`
-				to display
-					not "%TEST%: CONDITIONAL CHOICE"
-			`"Does this work? Do you not see the first sentence?"`
-			choice
-				`	"No."`
-					to display
-						has "%TEST%: CONDITIONAL CHOICE"
-					accept
-				`	"Yes."`
-					decline
-	on accept
-		set "succeed test"
-	on decline
-		set "failed test"
+test-data "Conversation Conditions Test Missions"
+	category mission
+	contents
+		mission "%TEST%: CONDITIONAL CHOICE"
+			priority
+			source "Ruin"
+			to offer
+				has "%TEST%: CONDITIONAL CHOICE"
+			on offer
+				conversation
+					# cant actually write an integration test for seeing this or not
+					`"You should not see this."`
+						to display
+							not "%TEST%: CONDITIONAL CHOICE"
+					`"Does this work? Do you not see the first sentence?"`
+					choice
+						`	"No."`
+							to display
+								has "%TEST%: CONDITIONAL CHOICE"
+							accept
+						`	"Yes."`
+							decline
+			on accept
+				set "succeed test"
+			on decline
+				set "failed test"
 
-mission "%TEST%: CONDITIONAL CHOICE GOTO"
-	priority
-	source "Ruin"
-	to offer
-		has "%TEST%: CONDITIONAL CHOICE GOTO"
-	on offer
-		conversation
-			`"Can you use the hidden path?"`
-			choice
-				`	"Yes."`
-					to display
-						not "%TEST%: CONDITIONAL CHOICE GOTO"
-				`	"No."`
-					to display
-						has "%TEST%: CONDITIONAL CHOICE GOTO"
-					goto canuse
-			# just in case the goto is fully ignored
-			`	"You should not be here!"`
-				decline
-			label canuse
-			`	"Some paths are meant to stay hidden."`
-				accept
-	on accept
-		set "succeed test"
-	on decline
-		set "failed test"
-
-
-mission "%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND"
-	priority
-	source "Ruin"
-	to offer
-		has "%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND"
-	on offer
-		conversation
-			`	"Don't you dare clicking on the hidden option!"`
-			choice
-				`	"Sure."`
-					accept
-				`	"I do what I want."`
-					to display
-						not "%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND"
-			`	"In that case... Test failed."`
-				decline
-	on accept
-		set "succeed test"
-	on decline
-		set "failed test"
+		mission "%TEST%: CONDITIONAL CHOICE GOTO"
+			priority
+			source "Ruin"
+			to offer
+				has "%TEST%: CONDITIONAL CHOICE GOTO"
+			on offer
+				conversation
+					`"Can you use the hidden path?"`
+					choice
+						`	"Yes."`
+							to display
+								not "%TEST%: CONDITIONAL CHOICE GOTO"
+						`	"No."`
+							to display
+								has "%TEST%: CONDITIONAL CHOICE GOTO"
+							goto canuse
+					# just in case the goto is fully ignored
+					`	"You should not be here!"`
+						decline
+					label canuse
+					`	"Some paths are meant to stay hidden."`
+						accept
+			on accept
+				set "succeed test"
+			on decline
+				set "failed test"
 
 
-mission "%TEST%: NAME IN CONVERSATION"
-	priority
-	source "Ruin"
-	to offer
-		has "%TEST%: NAME IN CONVERSATION"
-	on offer
-		conversation
-			name
-			`	So you are <first> <last>.`
-				accept
-			``
-				decline
-	on accept
-		set "succeed test"
-	on decline
-		set "failed test"
+		mission "%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND"
+			priority
+			source "Ruin"
+			to offer
+				has "%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND"
+			on offer
+				conversation
+					`	"Don't you dare clicking on the hidden option!"`
+					choice
+						`	"Sure."`
+							accept
+						`	"I do what I want."`
+							to display
+								not "%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND"
+					`	"In that case... Test failed."`
+						decline
+			on accept
+				set "succeed test"
+			on decline
+				set "failed test"
+
+
+		mission "%TEST%: NAME IN CONVERSATION"
+			priority
+			source "Ruin"
+			to offer
+				has "%TEST%: NAME IN CONVERSATION"
+			on offer
+				conversation
+					name
+					`	So you are <first> <last>.`
+						accept
+					``
+						decline
+			on accept
+				set "succeed test"
+			on decline
+				set "failed test"
 
 
 
@@ -161,7 +164,8 @@ test "Conditional Test"
 	status active
 	description "Test if a conversation option shows up when the given condition is set."
 	sequence
-		inject "conditional choice"
+		inject "Conversation Conditions Test Missions"
+		inject "Conversation Conditions Test Save"
 		call "Load First Savegame"
 		apply
 			"%TEST%: CONDITIONAL CHOICE" = 1
@@ -177,7 +181,8 @@ test "Conditional Test Goto"
 	status active
 	description "Test if a first conversation option does not show up but the second one does, when the given condition is set. Also makes sure goto still works as expected."
 	sequence
-		inject "conditional choice"
+		inject "Conversation Conditions Test Missions"
+		inject "Conversation Conditions Test Save"
 		call "Load First Savegame"
 		apply
 			"%TEST%: CONDITIONAL CHOICE GOTO" = 1
@@ -193,7 +198,8 @@ test "Conditional Test Out of Bound"
 	status active
 	description "Test if a first conversation option does not show up but the second one does, when the given condition is set. Also makes sure goto still works as expected."
 	sequence
-		inject "conditional choice"
+		inject "Conversation Conditions Test Missions"
+		inject "Conversation Conditions Test Save"
 		call "Load First Savegame"
 		apply
 			"%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND" = 1
@@ -213,7 +219,8 @@ test "Enter Name in Conversation"
 	status active
 	description "Test if a first conversation option does not show up but the second one does, when the given condition is set. Also makes sure goto still works as expected."
 	sequence
-		inject "conditional choice"
+		inject "Conversation Conditions Test Missions"
+		inject "Conversation Conditions Test Save"
 		call "Load First Savegame"
 		assert
 			"name: Bobbi Bughunter" == 1
