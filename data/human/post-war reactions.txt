@@ -248,7 +248,7 @@ mission "War Reactions: Syndicate Orphan"
 			`	"The Syndicate is training me to maintain and they're even going to train me to pilot their combat ships when I'm older! One day, I'll fight aliens like you did."`
 				goto salute
 			label honor
-			`	"Honor, and service. The Syndicate will train boys like me, but I've wondered about joining the Navy. It isn't as profitable, but it sounds more noble."`
+			`	"Honor... and service. The Syndicate will train boys like me, but I've wondered about joining the Navy. It isn't as profitable, but it sounds more noble."`
 			label salute
 			`	You arrive at the repair shop, and an older girl, perhaps seventeen, meets the two of you. Gus stands to attention and gives you a well-practiced salute. You politely salute him in return.`
 			`	As Gus ends his salute, the girl attacks him from behind, putting him into a choke hold. It's clear she's taking extreme care when doing it. "Did you wander out of the childcare district? Was it the spaceport landing area this time? I can see scratches and bruises all over you." Gus replies, "I'm sorry, Sally! I was curious."`
