@@ -111,7 +111,7 @@ conversation "hai intro"
 			decline
 		`	(Go see what the captain has to offer first.)`
 	`	You head to the spaceport and easily find the captain selling off his ships. Thankfully they did not yet sell the Grasshopper.`
-	`	The captain greets you in Hai, but you've somehow managed to never really learn the language. Most people speaks yours to at least some degree anyway, and once they realize you do not understand them, they switch with little effort.`
+	`	The captain greets you in Hai. You explain to him in your language that you never learned Hai, since most people speaks your language to at least some degree, and he switches to speaking relatively fluidly in your language.`
 	`	"Hello, good fellow! I assume you come for the Grasshopper." Your interest for this ship must be apparent.`
 	choice
 		`	"Yes indeed."`
