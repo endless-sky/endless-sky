@@ -106,14 +106,6 @@ const string &Minable::Noun() const
 
 
 
-// Get the value of the asteroid.
-const int64_t &Minable::GetCost() const
-{
-	return cost;
-}
-
-
-
 // Place a minable object with up to the given energy level, on a random
 // orbit and a random position along that orbit.
 void Minable::Place(double energy, double beltRadius)
@@ -241,4 +233,12 @@ void Minable::TakeDamage(const Projectile &projectile)
 const map<const Outfit *, int> &Minable::Payload() const
 {
 	return payload;
+}
+
+
+
+// Get the value of the asteroid.
+const int64_t &Minable::GetCost() const
+{
+	return cost;
 }
