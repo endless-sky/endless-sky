@@ -1345,6 +1345,13 @@ void Ship::SetDefeatedGovernment(const Government *government)
 
 
 
+void Ship::SetLootedGovernment(const Government *government)
+{
+	lootedGovernment = government;
+}
+
+
+
 void Ship::SetIsSpecial(bool special)
 {
 	isSpecial = special;
@@ -1359,6 +1366,29 @@ bool Ship::IsSpecial() const
 
 
 
+void Ship::ChangeGovernment(const Government *next, bool changeSwizzle, bool clearDefeated, bool clearLooted)
+{
+	government = next;
+	if(changeSwizzle)
+		SetSwizzle(customSwizzle >= 0 ? customSwizzle : government->GetSwizzle());
+	if(clearDefeated)
+	{
+		defeatTimer = -1;
+		if(defeatedPersonality.IsDefined())
+			defeatedPersonality = Personality();
+		defeatedGovernment = nullptr;
+	}
+	if(clearLooted)
+	{
+		isLooted = false;
+		if(lootedPersonality.IsDefined())
+			lootedPersonality = Personality();
+		lootedGovernment = nullptr;
+	}
+}
+
+
+
 void Ship::DefeatShip()
 {
 	if(defeatTimer >= 0)
@@ -1367,8 +1397,7 @@ void Ship::DefeatShip()
 	if(defeatedGovernment && government != defeatedGovernment)
 	{
 		defeatTimer = 0;
-		government = defeatedGovernment;
-		SetSwizzle(customSwizzle >= 0 ? customSwizzle : government->GetSwizzle());
+		ChangeGovernment(defeatedGovernment, true, false, false);
 	}
 	if(defeatedPersonality.IsDefined())
 		personality = defeatedPersonality;
@@ -1396,6 +1425,34 @@ void Ship::StepDefeatTimer()
 {
 	if(InGracePeriod())
 		defeatTimer++;
+}
+
+
+
+void Ship::MakeLooted()
+{
+	if(isLooted)
+		return;
+	if(InGracePeriod())
+		defeatTimer = personality.DefeatedGracePeriod();
+	isLooted = true;
+}
+
+
+
+bool Ship::IsLooted() const
+{
+	return isLooted;
+}
+
+
+
+bool Ship::FriendlyAfterLootedBy(const Government *other) const
+{
+	if(!isLooted && lootedGovernment && !other->IsEnemy(lootedGovernment))
+		return true;
+	else
+		return !other->IsEnemy(government);
 }
 
 
@@ -1466,6 +1523,20 @@ const Personality &Ship::GetDefeatedPersonality() const
 void Ship::SetDefeatedPersonality(const Personality &other)
 {
 	defeatedPersonality = other;
+}
+
+
+
+const Personality &Ship::GetLootedPersonality() const
+{
+	return lootedPersonality;
+}
+
+
+
+void Ship::SetLootedPersonality(const Personality &other)
+{
+	lootedPersonality = other;
 }
 
 
@@ -2593,38 +2664,27 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 	if(CanBeCarried() && !nonDocking)
 	{
 		SetTargetShip(shared_ptr<Ship>());
-		if(!victim->IsDisabled() && victim->GetGovernment() == government)
-			victim->Carry(shared_from_this());
+		if(!victim->IsDisabled())
+		{
+			if(victim->lootedGovernment == government || victim->defeatedGovernment == government)
+				victim->ChangeGovernment(government, true, false, false);
+			if(victim->GetGovernment() == government)
+				victim->Carry(shared_from_this());
+		}
 		return shared_ptr<Ship>();
 	}
 
 	// Board a friendly ship, to repair or refuel it.
 	if(!government->IsEnemy(victim->GetGovernment()))
-	{
-		SetShipToAssist(shared_ptr<Ship>());
-		SetTargetShip(shared_ptr<Ship>());
-		bool helped = victim->isDisabled;
-		victim->hull = min(max(victim->hull, victim->MinimumHull() * 1.5), victim->attributes.Get("hull"));
-		victim->isDisabled = false;
-		// Transfer some fuel if needed.
-		if(victim->NeedsFuel() && CanRefuel(*victim))
-		{
-			helped = true;
-			TransferFuel(victim->JumpFuelMissing(), victim.get());
-		}
-		if(helped)
-		{
-			pilotError = 120;
-			victim->pilotError = 120;
-		}
-		return victim;
-	}
+		return Assist(victim, true);
 	if(!victim->IsDisabled())
 		return shared_ptr<Ship>();
 
+	bool willBefriend = victim->FriendlyAfterLootedBy(government);
+
 	// If the boarding ship is the player, they will choose what to plunder.
 	// Always take fuel if you can.
-	victim->TransferFuel(victim->fuel, this);
+	victim->TransferFuel(victim->fuel, this, willBefriend ? victim->navigation.JumpFuel() : 0);
 	if(autoPlunder)
 	{
 		// Take any commodities that fit.
@@ -2637,6 +2697,12 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 	// Stop targeting this ship (so you will not board it again right away).
 	if(!autoPlunder || personality.Disables())
 		SetTargetShip(shared_ptr<Ship>());
+
+	// If this is a "catch and release" pillage, repair the ship but do not refuel it
+	victim->MakeLooted();
+	if(!government->IsEnemy(victim->GetGovernment()))
+		return Assist(victim, false);
+
 	return victim;
 }
 
@@ -3180,9 +3246,10 @@ bool Ship::CanRefuel(const Ship &other) const
 
 
 
-double Ship::TransferFuel(double amount, Ship *to)
+double Ship::TransferFuel(double amount, Ship *to, double keep)
 {
-	amount = max(fuel - attributes.Get("fuel capacity"), amount);
+	double kept = max<double>(0, fuel - keep);
+	amount = max(kept - attributes.Get("fuel capacity"), amount);
 	if(to)
 	{
 		amount = min(to->attributes.Get("fuel capacity") - to->fuel, amount);
@@ -3204,12 +3271,7 @@ int Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	isDisabled = false;
 
 	// Set the new government.
-	government = capturer->GetGovernment();
-
-	// Clear all information relating to defeat:
-	defeatedGovernment = nullptr;
-	defeatedPersonality = Personality();
-	defeatTimer = -1;
+	ChangeGovernment(capturer->government, false, true, false);
 
 	// Transfer some crew over. Only transfer the bare minimum unless even that
 	// is not possible, in which case, share evenly.
@@ -4365,4 +4427,27 @@ double Ship::CalculateDeterrence() const
 			tempDeterrence += .12 * strength / weapon->Reload();
 		}
 	return tempDeterrence;
+}
+
+
+
+shared_ptr<Ship> Ship::Assist(shared_ptr<Ship> victim, bool refuel)
+{
+	SetShipToAssist(shared_ptr<Ship>());
+	SetTargetShip(shared_ptr<Ship>());
+	bool helped = victim->isDisabled;
+	victim->hull = min(max(victim->hull, victim->MinimumHull() * 1.5), victim->attributes.Get("hull"));
+	victim->isDisabled = false;
+	// Transfer some fuel if needed.
+	if(refuel && victim->NeedsFuel() && CanRefuel(*victim))
+	{
+		helped = true;
+		TransferFuel(victim->JumpFuelMissing(), victim.get());
+	}
+	if(helped)
+	{
+		pilotError = 120;
+		victim->pilotError = 120;
+	}
+	return victim;
 }

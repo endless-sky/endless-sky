@@ -86,6 +86,7 @@ public:
 	static Personality DefenderFighter();
 
 	int DefeatedGracePeriod() const;
+	bool LootedAfterAssist() const;
 
 
 private:
@@ -101,6 +102,7 @@ private:
 	Point confusion;
 	Point confusionVelocity;
 	int defeatedGracePeriod = 300;
+	bool lootedAfterAssist = false;
 };
 
 

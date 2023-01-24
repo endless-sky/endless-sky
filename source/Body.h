@@ -103,6 +103,7 @@ protected:
 	// Government, for use in collision checks.
 	const Government *government = nullptr;
 	const Government *defeatedGovernment = nullptr;
+	const Government *lootedGovernment = nullptr;
 
 
 private:

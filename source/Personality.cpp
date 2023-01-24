@@ -419,6 +419,13 @@ int Personality::DefeatedGracePeriod() const
 
 
 
+bool Personality::LootedAfterAssist() const
+{
+	return lootedAfterAssist;
+}
+
+
+
 void Personality::Parse(const DataNode &node, int index, bool remove)
 {
 	const string &token = node.Token(index);

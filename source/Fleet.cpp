@@ -173,17 +173,18 @@ void Fleet::Load(const DataNode &node)
 		bool remove = (child.Token(0) == "remove");
 		int keyIndex = (add || remove);
 		bool defeated = (child.Size() > keyIndex && child.Token(keyIndex) == "defeated");
-		keyIndex += defeated;
+		bool looted = (child.Size() > keyIndex && child.Token(keyIndex) == "looted");
+		keyIndex += (defeated || looted);
 		if(child.Size() <= keyIndex)
 		{
 			child.PrintTrace("Warning: Skipping line with no key:");
 			continue;
 		}
 		int valueIndex = keyIndex + 1;
-		bool hasValue = (child.Size() >= 2 + defeated);
+		bool hasValue = (child.Size() >= 2 + (defeated || looted));
 		const string &key = child.Token(keyIndex);
 		if((add || remove) && (!hasValue || (child.Token(1) != "variant" && child.Token(1) != "personality"
-			&& child.Token(1) != "defeated")))
+			&& child.Token(1) != "defeated" && child.Token(1) != "looted")))
 		{
 			child.PrintTrace("Warning: Skipping invalid \"" + child.Token(0) + "\" tag:");
 			continue;
@@ -193,7 +194,11 @@ void Fleet::Load(const DataNode &node)
 			defeatedGovernment = nullptr;
 		else if(defeated && key == "government" && hasValue)
 			defeatedGovernment = GameData::Governments().Get(child.Token(valueIndex));
-		else if(!defeated && key == "government" && hasValue)
+		else if(looted && remove && key == "government")
+			lootedGovernment = nullptr;
+		else if(looted && key == "government" && hasValue)
+			lootedGovernment = GameData::Governments().Get(child.Token(valueIndex));
+		else if(!defeated && !looted && key == "government" && hasValue)
 			government = GameData::Governments().Get(child.Token(1));
 		else if(key == "names" && hasValue)
 			names = GameData::Phrases().Get(child.Token(1));
@@ -217,6 +222,10 @@ void Fleet::Load(const DataNode &node)
 			defeatedPersonality = Personality();
 		else if(defeated && key == "personality")
 			defeatedPersonality.Load(child, keyIndex);
+		else if(remove && looted && key == "personality")
+			lootedPersonality = Personality();
+		else if(looted && key == "personality")
+			lootedPersonality.Load(child, keyIndex);
 		else if(key == "personality")
 			personality.Load(child);
 		else if(key == "variant" && !remove)
@@ -597,9 +606,13 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) c
 		ship->SetPersonality(personality);
 		if(defeatedGovernment)
 			ship->SetDefeatedGovernment(defeatedGovernment);
+		if(lootedGovernment)
+			ship->SetLootedGovernment(lootedGovernment);
 		ship->SetPersonality(personality);
 		if(defeatedPersonality.IsDefined())
 			ship->SetDefeatedPersonality(defeatedPersonality);
+		if(lootedPersonality.IsDefined())
+			ship->SetLootedPersonality(lootedPersonality);
 
 		placed.push_back(ship);
 	}

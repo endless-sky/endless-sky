@@ -63,6 +63,9 @@ public:
 	// Get the government this fleet will have after defeat, if the government changes.
 	const Government *GetDefeatedGovernment() const;
 
+	// Get the government this fleet will have after being looted, if the government changes.
+	const Government *GetLootedGovernment() const;
+
 	// Choose a fleet to be created during flight, and have it enter the system via jump or planetary departure.
 	void Enter(const System &system, std::list<std::shared_ptr<Ship>> &ships, const Planet *planet = nullptr) const;
 	// Place a fleet in the given system, already "in action." If the carried flag is set, only
@@ -88,6 +91,7 @@ private:
 	std::string fleetName;
 	const Government *government = nullptr;
 	const Government *defeatedGovernment = nullptr;
+	const Government *lootedGovernment = nullptr;
 	const Phrase *names = nullptr;
 	const Phrase *fighterNames = nullptr;
 	WeightedList<Variant> variants;
@@ -98,6 +102,7 @@ private:
 
 	Personality personality;
 	Personality defeatedPersonality;
+	Personality lootedPersonality;
 };
 
 
