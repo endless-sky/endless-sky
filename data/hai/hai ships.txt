@@ -1394,7 +1394,7 @@ ship "Solifuge"
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
 		"Hyperdrive"
-			
+		
 	engine -28 135.5
 	engine 28 135.5
 	gun 0 -140 "Hai Tracker Pod"
