@@ -65,7 +65,7 @@ start "hai"
 		has "Ask the Hai about the Unfettered"
 	on reveal
 		name "Hai Start"
-		description "There could be interesting possibilities up north, once all crisies are resolved."
+		description "There could be interesting possibilities up north, once all crises are resolved."
 		description "You could have started a different way, went a different path."
 		date "Jun 3020"
 		credits 1.431M
@@ -92,16 +92,16 @@ start "hai"
 
 conversation "hai intro"
 	scene "scene/hai shipyard"
-	`	You've never been to the shipyard before, and as you arrive, it already feels like you're traveling to another world. The pictures and video you've seen of all these ships before simply don't do them justice; seeing them for real is something else entirely. Even though you know a lot of those ships must have been in service for many years, you are stunned by how new and shiny they look. You begin to wonder if you are ready to take the big leap.`
+	`	You've never been to the shipyard before, and as you arrive, it already feels like you're traveling to another world. The pictures and videos you've seen of all these ships before simply don't do them justice; seeing them for real is something else entirely. Even though you know a lot of those ships must have been in service for many years, you are stunned by how new and shiny they look. You begin to wonder if you are ready to take the big leap.`
 	`	This "Aphid" could suit your needs. It is fast and able to carry a respectable amount of cargo.`
 	scene "thumbnail/hai aphid"
 	`	That is, unless you want to get adventurous and try out the impetuous Grasshopper. Surely the interceptor would be able to beat the smaller human warships, provided a competent pilot is at the helm.`
-	`	You have, after all, heard tales of pirates and quick money... And up north you can find the 'Unfettered'. Maybe they could come to like you, if you were to show them the strength and cunning they respect.`
+	`	You have, after all, heard tales of pirates and quick money... And up north you can find the 'Unfettered'. Maybe they would come to like you, if you were to show them the strength and cunning they respect.`
 	choice
 		`	(Go to the bank.)`
 	scene "scene/hai bank"
 	`	You head to the bank's lobby, hoping to get enough of a loan to be able to buy one of these pristine ships.`
-	`	To your disapointment the only ship you could afford is an Aphid. You arrange the contract to loan as much money as you need in order to buy one, in what has to be the first seriously unwise act of your life. You may have to sell some part of the ship in order to be able to afford flying it!`
+	`	To your disapointment the only ship you could afford is an Aphid. You arrange the contract to loan as much money as you need in order to buy one, in what has to be the first seriously unwise act of your life. You may have to sell some parts of the ship to afford flying it!`
 	`	You can probably sell the shield regenerator without any consequences, so long as you do not get too close to hostile territory. You may even downgrade the anti-missile turret.`
 	`	The bank employee sums it up to you, with a hesitant smile. "This will put you in a debt of 1 million 431 thousand credits, due in the course of 2 years, with an interest rate of 0.3% per day. Please sign here."`
 	name
@@ -111,14 +111,14 @@ conversation "hai intro"
 			decline
 		`	(Go see what the captain has to offer first.)`
 	`	You head to the spaceport and easily find the captain selling off his ships. Thankfully they did not yet sell the Grasshopper.`
-	`	The captain greets you in Hai, but you've somehow managed to never really learn the language. Most everyone speaks yours to at least some degree anyway, and once they realize you do not understand, they switch with little effort.`
+	`	The captain greets you in Hai, but you've somehow managed to never really learn the language. Most people speaks yours to at least some degree anyway, and once they realize you do not understand them, they switch with little effort.`
 	`	"Hello, good fellow! I assume you come for the Grasshopper." Your interest for this ship must be apparent.`
 	choice
 		`	"Yes indeed."`
 		`	"How did you know?"`
 		`	"Sorry, not interested."`
 			decline
-	`	"I can see the will to explore in your eyes. I would be delighted to have you flying the 'Pristine Jewel'!" they say, taking you to the ship. It is clearly not brand new but still looks in surprisingly good condition.`
+	`	"I can see the will to explore in your eyes. I would be delighted to have you flying the 'Pristine Jewel'!" they say, taking you to the ship. It is clearly not brand new, but is still in a surprisingly good condition.`
 	scene "thumbnail/hai grasshopper"
 	`	"Because I like you I'll give you a friendly price. What do you say about... one million flat, for this wonderful ship? That's less than a third the price you would have to pay if you were to buy this model from the shipyard. Except you can't find a model like this in shipyards, trust me!"`
 	choice
