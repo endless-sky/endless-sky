@@ -2441,7 +2441,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 	grudge[attacker] = target;
 	grudgeTime = 120;
 	string message;
-	if(target->GetPersonality().IsHeroic())
+	if(target->GetPersonality().IsDaring())
 	{
 		message = "Please assist us in destroying ";
 		message += (attackerCount == 1 ? "this " : "these ");
