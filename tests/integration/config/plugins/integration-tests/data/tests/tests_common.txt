@@ -1,4 +1,4 @@
-test-data "Three Earthly Barges"
+test-data "Three Earthly Barges Save"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
@@ -143,7 +143,7 @@ test-data "Three Earthly Barges"
 		visited "Menkent"
 
 
-test-data "Fighters and Carriers and Escorts"
+test-data "Fighters and Carriers and Escorts Save"
 	category "savegame"
 	contents
 		pilot Bobby Bughunter
