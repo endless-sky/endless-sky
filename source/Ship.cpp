@@ -1798,6 +1798,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		if(isDisabled)
 			landingPlanet = nullptr;
 
+		float landingSpeed = attributes.Get("landing speed");
+		landingSpeed = landingSpeed > 0 ? landingSpeed : .02f;
 		// Special ships do not disappear forever when they land; they
 		// just slowly refuel.
 		if(landingPlanet && zoom)
@@ -1805,7 +1807,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			// Move the ship toward the center of the planet while landing.
 			if(GetTargetStellar())
 				position = .97 * position + .03 * GetTargetStellar()->Position();
-			zoom -= .02f;
+			zoom -= landingSpeed;
 			if(zoom < 0.f)
 			{
 				// If this is not a special ship, it ceases to exist when it
@@ -1834,7 +1836,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		else if(fuel >= attributes.Get("fuel capacity")
 				|| !landingPlanet || !landingPlanet->HasSpaceport())
 		{
-			zoom = min(1.f, zoom + .02f);
+			zoom = min(1.f, zoom + landingSpeed);
 			SetTargetStellar(nullptr);
 			landingPlanet = nullptr;
 		}
@@ -2387,7 +2389,7 @@ void Ship::DoGeneration()
 		if(currentSystem)
 		{
 			double scale = .2 + 1.8 / (.001 * position.Length() + 1);
-			fuel += currentSystem->SolarWind() * .03 * scale * sqrt(attributes.Get("ramscoop"));
+			fuel += currentSystem->RamscoopFuel(attributes.Get("ramscoop"), scale);
 
 			double solarScaling = currentSystem->SolarPower() * scale;
 			energy += solarScaling * attributes.Get("solar collection");
@@ -2611,7 +2613,7 @@ int Ship::Scan()
 	// Check how close this ship is to the target it is trying to scan.
 	// To normalize 1 "scan power" to reach 100 pixels, divide this square distance by 100^2, or multiply by 0.0001.
 	// Because this uses distance squared, to reach 200 pixels away you need 4 "scan power".
-	double distanceSquared = (target->position - position).LengthSquared() * .0001;
+	double distanceSquared = target->position.DistanceSquared(position) * .0001;
 
 	// Check the target's outfit and cargo space. A larger ship takes longer to scan.
 	// Normalized around 200 tons of cargo/outfit space.
@@ -2668,6 +2670,19 @@ int Ship::Scan()
 		else
 			Messages::Add("Attempting to scan the selected " + target->Noun() + "."
 				, Messages::Importance::Low);
+
+		if(target->GetPersonality().IsSecretive() && target->GetGovernment()->IsProvokedOnScan())
+		{
+			// If this ship has no name, show its model name instead.
+			string tag;
+			const string &gov = target->GetGovernment()->GetName();
+			if(!target->Name().empty())
+				tag = gov + " " + target->Noun() + " \"" + target->Name() + "\": ";
+			else
+				tag = target->ModelName() + " (" + gov + "): ";
+			Messages::Add(tag + "Please refrain from scanning us or we will be forced to take action.",
+				Messages::Importance::Highest);
+		}
 	}
 	else if(startedScanning && target->isYours)
 		Messages::Add("The " + government->GetName() + " " + Noun() + " \""
@@ -2683,9 +2698,9 @@ int Ship::Scan()
 					+ Name() + "\" completed its scan of your outfits.", Messages::Importance::High);
 	}
 
-	// Some governments are provoked when a scan is started on one of their ships.
+	// Some governments are provoked when a scan is completed on one of their ships.
 	const Government *gov = target->GetGovernment();
-	if(gov && gov->IsProvokedOnScan() && !gov->IsEnemy(government)
+	if(result && gov && gov->IsProvokedOnScan() && !gov->IsEnemy(government)
 			&& (target->Shields() < .9 || target->Hull() < .9 || !target->GetPersonality().IsForbearing())
 			&& !target->GetPersonality().IsPacifist())
 		result |= ShipEvent::PROVOKE;

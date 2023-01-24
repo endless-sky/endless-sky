@@ -1338,7 +1338,7 @@ mission "Deep: Remnant 0"
 			action
 				set "deep: did not reveal remnant"
 			`	You tell Ivan about the region of space beyond the wormhole and its vast loneliness. You describe the ever-present red glow, similar to the color of the wormhole. You also mention the strange alien creatures in Nenia that are able to survive in the vacuum of space, as well as the large number of wormholes that allow traversal throughout the region.`
-				
+			
 			label end
 			`	"This is very interesting, and would turn out to be an amazing discovery if true. Please, bring us the quantum keystones so that we might try to understand the properties which allow entry into the wormhole's threshold. Later we will learn more about this region that you describe. Oh, before I forget: we can pay you for half of the cost of the keystones."`
 			choice
@@ -1498,7 +1498,7 @@ conversation "deep: remnant"
 		set "deep: did reveal remnant"
 	`	You then tell them about the strange-looking humans who communicate in song and sign language that attacked you after you wouldn't submit to a blood test.`
 		goto remnant2
-				
+		
 	label friendly
 	choice
 		`	(Reveal the existence of the Remnant.)`

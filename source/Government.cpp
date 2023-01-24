@@ -74,6 +74,34 @@ namespace {
 
 
 
+Government::RaidFleet::RaidFleet(const Fleet *fleet, double minAttraction, double maxAttraction)
+	: fleet(fleet), minAttraction(minAttraction), maxAttraction(maxAttraction)
+{
+}
+
+
+
+const Fleet *Government::RaidFleet::GetFleet() const
+{
+	return fleet;
+}
+
+
+
+double Government::RaidFleet::MinAttraction() const
+{
+	return minAttraction;
+}
+
+
+
+double Government::RaidFleet::MaxAttraction() const
+{
+	return maxAttraction;
+}
+
+
+
 // Default constructor.
 Government::Government()
 {
@@ -103,6 +131,10 @@ void Government::Load(const DataNode &node)
 			displayName = name;
 	}
 
+	// For the following keys, if this data node defines a new value for that
+	// key, the old values should be cleared (unless using the "add" keyword).
+	set<string> shouldOverwrite = {"raid"};
+
 	for(const DataNode &child : node)
 	{
 		bool remove = child.Token(0) == "remove";
@@ -117,12 +149,20 @@ void Government::Load(const DataNode &node)
 		int valueIndex = (add || remove) ? 2 : 1;
 		bool hasValue = child.Size() > valueIndex;
 
-		if(remove)
+		// Check for conditions that require clearing this key's current value.
+		// "remove <key>" means to clear the key's previous contents.
+		// "remove <key> <value>" means to remove just that value from the key.
+		bool removeAll = (remove && !hasValue);
+		// If this is the first entry for the given key, and we are not in "add"
+		// or "remove" mode, its previous value should be cleared.
+		bool overwriteAll = (!add && !remove && shouldOverwrite.count(key));
+
+		if(removeAll || overwriteAll)
 		{
 			if(key == "provoked on scan")
 				provokedOnScan = false;
 			else if(key == "raid")
-				raidFleet = nullptr;
+				raidFleets.clear();
 			else if(key == "display name")
 				displayName = name;
 			else if(key == "death sentence")
@@ -137,6 +177,8 @@ void Government::Load(const DataNode &node)
 				hostileDisabledHail = nullptr;
 			else if(key == "language")
 				language.clear();
+			else if(key == "trusted")
+				trusted.clear();
 			else if(key == "enforces")
 				enforcementZones.clear();
 			else if(key == "custom penalties for")
@@ -148,8 +190,34 @@ void Government::Load(const DataNode &node)
 			else if(key == "atrocities")
 				atrocities.clear();
 			else
-				child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
+				child.PrintTrace("Cannot \"remove\" the given key:");
+
+			// If not in "overwrite" mode, move on to the next node.
+			if(overwriteAll)
+				shouldOverwrite.erase(key);
+			else
+				continue;
 		}
+
+		if(key == "raid")
+		{
+			const Fleet *fleet = GameData::Fleets().Get(child.Token(valueIndex));
+			if(remove)
+			{
+				for(auto it = raidFleets.begin(); it != raidFleets.end(); )
+					if(it->GetFleet() == fleet)
+						it = raidFleets.erase(it);
+					else
+						++it;
+			}
+			else
+				raidFleets.emplace_back(fleet,
+					child.Size() > (valueIndex + 1) ? child.Value(valueIndex + 1) : 2.,
+					child.Size() > (valueIndex + 2) ? child.Value(valueIndex + 2) : 0.);
+		}
+		// Handle the attributes which cannot have a value removed.
+		else if(remove)
+			child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
 		else if(key == "attitude toward")
 		{
 			for(const DataNode &grand : child)
@@ -162,6 +230,35 @@ void Government::Load(const DataNode &node)
 				}
 				else
 					grand.PrintTrace("Skipping unrecognized attribute:");
+			}
+		}
+		else if(key == "trusted")
+		{
+			bool clearTrusted = !trusted.empty();
+			for(const DataNode &grand : child)
+			{
+				bool remove = grand.Token(0) == "remove";
+				bool add = grand.Token(0) == "add";
+				if((add || remove) && grand.Size() < 2)
+				{
+					grand.PrintTrace("Warning: Skipping invalid \"" + child.Token(0) + "\" tag:");
+					continue;
+				}
+				if(clearTrusted && !add && !remove)
+				{
+					trusted.clear();
+					clearTrusted = false;
+				}
+				const Government *gov = GameData::Governments().Get(grand.Token(remove || add));
+				if(gov)
+				{
+					if(remove)
+						trusted.erase(gov);
+					else
+						trusted.insert(gov);
+				}
+				else
+					grand.PrintTrace("Skipping unrecognized government:");
 			}
 		}
 		else if(key == "penalty for")
@@ -257,8 +354,6 @@ void Government::Load(const DataNode &node)
 			hostileDisabledHail = GameData::Phrases().Get(child.Token(valueIndex));
 		else if(key == "language")
 			language = child.Token(valueIndex);
-		else if(key == "raid")
-			raidFleet = GameData::Fleets().Get(child.Token(valueIndex));
 		else if(key == "enforces" && child.Token(valueIndex) == "all")
 		{
 			enforcementZones.clear();
@@ -382,6 +477,13 @@ double Government::GetFineFraction() const
 
 
 
+bool Government::Trusts(const Government *government) const
+{
+	return government == this || trusted.count(government);
+}
+
+
+
 // Returns true if this government has no enforcement restrictions, or if the
 // indicated system matches at least one enforcement zone.
 bool Government::CanEnforce(const System *system) const
@@ -437,11 +539,12 @@ const string &Government::Language() const
 
 
 
-// Pirate raids in this government's systems use this fleet definition. If
-// it is null, there are no pirate raids.
-const Fleet *Government::RaidFleet() const
+// Pirate raids in this government's systems use these fleet definitions. If
+// it is empty, there are no pirate raids.
+// The second attribute denotes the minimal and maximal attraction required for the fleet to appear.
+const vector<Government::RaidFleet> &Government::RaidFleets() const
 {
-	return raidFleet;
+	return raidFleets;
 }
 
 
