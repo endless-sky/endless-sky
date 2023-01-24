@@ -1792,7 +1792,7 @@ void Engine::SendHails()
 		if(CanSendHail(it, player, true))
 			canSend.push_back(it);
 
-	if(!canSend.size())
+	if(canSend.empty())
 		// No ships can send hails.
 		return;
 
