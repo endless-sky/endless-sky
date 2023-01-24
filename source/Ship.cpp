@@ -1338,6 +1338,13 @@ void Ship::SetGovernment(const Government *government)
 
 
 
+void Ship::SetDefeatedGovernment(const Government *government)
+{
+	defeatedGovernment = government;
+}
+
+
+
 void Ship::SetIsSpecial(bool special)
 {
 	isSpecial = special;
@@ -1348,6 +1355,45 @@ void Ship::SetIsSpecial(bool special)
 bool Ship::IsSpecial() const
 {
 	return isSpecial;
+}
+
+
+
+void Ship::DefeatShip()
+{
+	if(defeatTimer >= 0)
+		return;
+
+	defeatTimer = 0;
+	if(defeatedGovernment)
+	{
+		this->government = defeatedGovernment;
+		SetSwizzle(customSwizzle >= 0 ? customSwizzle : government->GetSwizzle());
+	}
+	if(defeatedPersonality.IsDefined())
+		personality = defeatedPersonality;
+}
+
+
+
+bool Ship::IsDefeated() const
+{
+	return defeatTimer >= 0;
+}
+
+
+
+bool Ship::InGracePeriod() const
+{
+	return defeatTimer >= 0 && defeatTimer < personality.DefeatedGracePeriod();
+}
+
+
+
+void Ship::StepDefeatTimer()
+{
+	if(defeatTimer >= 0)
+		defeatTimer++;
 }
 
 
@@ -1404,6 +1450,20 @@ const Personality &Ship::GetPersonality() const
 void Ship::SetPersonality(const Personality &other)
 {
 	personality = other;
+}
+
+
+
+const Personality &Ship::GetDefeatedPersonality() const
+{
+	return defeatedPersonality;
+}
+
+
+
+void Ship::SetDefeatedPersonality(const Personality &other)
+{
+	defeatedPersonality = other;
 }
 
 
@@ -2698,7 +2758,7 @@ int Ship::Scan()
 
 	// Some governments are provoked when a scan is completed on one of their ships.
 	const Government *gov = target->GetGovernment();
-	if(result && gov && gov->IsProvokedOnScan() && !gov->IsEnemy(government)
+	if(result && !target->InGracePeriod() && gov && gov->IsProvokedOnScan() && !gov->IsEnemy(government)
 			&& (target->Shields() < .9 || target->Hull() < .9 || !target->GetPersonality().IsForbearing())
 			&& !target->GetPersonality().IsPacifist())
 		result |= ShipEvent::PROVOKE;
@@ -3583,7 +3643,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 
 	// If this ship did not consider itself an enemy of the ship that hit it,
 	// it is now "provoked" against that government.
-	if(sourceGovernment && !sourceGovernment->IsEnemy(government)
+	if(!InGracePeriod() && sourceGovernment && !sourceGovernment->IsEnemy(government)
 			&& !personality.IsPacifist() && (!personality.IsForbearing()
 				|| ((damage.Shield() || damage.Discharge()) && Shields() < .9)
 				|| ((damage.Hull() || damage.Corrosion()) && Hull() < .9)

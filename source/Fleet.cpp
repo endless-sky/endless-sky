@@ -171,8 +171,9 @@ void Fleet::Load(const DataNode &node)
 		// are only valid with "variant" or "personality" definitions.
 		bool add = (child.Token(0) == "add");
 		bool remove = (child.Token(0) == "remove");
-		bool defeated = (child.Token(1 + valueIndex) == "defeated");
-		int keyIndex = (add || remove) + static_cast<int>(defeated);
+		int keyIndex = add || remove;
+		bool defeated = (child.Size() > keyIndex && child.Token(1 + keyIndex) == "defeated");
+		keyIndex += defeated;
 		if(child.Size() <= keyIndex)
 		{
 			child.PrintTrace("Warning: Skipping line with no key:");
@@ -593,6 +594,11 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) c
 			ship->SetName(phrase->Get());
 		ship->SetGovernment(government);
 		ship->SetPersonality(personality);
+		if(defeatedGovernment)
+			ship->SetDefeatedGovernment(defeatedGovernment);
+		ship->SetPersonality(personality);
+		if(defeatedPersonality.IsDefined())
+			ship->SetDefeatedPersonality(defeatedPersonality);
 
 		placed.push_back(ship);
 	}

@@ -535,6 +535,13 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		if(!it->GetSystem())
 			continue;
 
+		// Increment the defeat timer if the ship is defeated
+		it->StepDefeatTimer();
+
+		// Disabled ships should be defeated
+		if(it->IsDisabled() && !it->IsDefeated())
+			it->DefeatShip();
+
 		if(it.get() == flagship)
 		{
 			// Player cannot do anything if the flagship is landing.

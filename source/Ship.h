@@ -174,8 +174,21 @@ public:
 	void SetSystem(const System *system);
 	void SetPlanet(const Planet *planet);
 	void SetGovernment(const Government *government);
+	void SetDefeatedGovernment(const Government *defeatedGovernment);
 	void SetIsSpecial(bool special = true);
 	bool IsSpecial() const;
+
+	// If the ship is not already defeated, make it so, and switch to the defeated personality and government
+	void DefeatShip();
+
+	// Has the ship been defeated?
+	bool IsDefeated() const;
+
+	// Is this a defeated ship with a timer still inside the grace period?
+	bool InGracePeriod() const;
+
+	// If the ship is defeated, increment the timer, otherwise do nothing
+	void StepDefeatTimer();
 
 	// If a ship belongs to the player, the player can give it commands.
 	void SetIsYours(bool yours = true);
@@ -190,6 +203,8 @@ public:
 	// Access the ship's personality, which affects how the AI behaves.
 	const Personality &GetPersonality() const;
 	void SetPersonality(const Personality &other);
+	const Personality &GetDefeatedPersonality() const;
+	void SetDefeatedPersonality(const Personality &other);
 	// Get a random hail message, or set the object used to generate them. If no
 	// object is given the government's default will be used.
 	const Phrase *GetHailPhrase() const;
@@ -520,10 +535,13 @@ private:
 	double attraction = 0.;
 	double deterrence = 0.;
 
+	int defeatTimer = -1;
+
 	Command commands;
 	FireCommand firingCommands;
 
 	Personality personality;
+	Personality defeatedPersonality;
 	const Phrase *hail = nullptr;
 
 	// Installed outfits, cargo, etc.:
