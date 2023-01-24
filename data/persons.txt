@@ -868,10 +868,10 @@ person "Subsidurial"
 	system
 		government "Uninhabited"
 		
-# Testing
+
 person "Astral Cetacean"
 	government "Indigenous Lifeform (Astral)"
-	frequency 1000 
+	frequency 5000
 	personality
 	system
 		attributes "astral"
