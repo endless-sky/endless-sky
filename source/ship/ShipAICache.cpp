@@ -53,7 +53,7 @@ void ShipAICache::UpdateWeaponCache()
 		{
 			isArmed = true;
 			bool lackingAmmo = (weapon->Ammo() && weapon->AmmoUsage() && !ship->OutfitCount(weapon->Ammo()));
-			// Weapons without ammo might as well not exsit, so don't even consider them
+			// Weapons without ammo might as well not exist, so don't even consider them
 			if(lackingAmmo)
 				continue;
 			hasAmmo = true;
