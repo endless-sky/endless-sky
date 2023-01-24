@@ -313,7 +313,7 @@ mission "Midas: Who is the mad one?"
 	on offer
 		conversation
 			`	You head into the outfitter, wondering what price you can get out of these newly acquired gold bars, when you hear someone shouting. "STOP!" You immediately notice the voice is very old. You go to him to see what he wants. "These are cursed! You should get rid of them. As soon as you can!"`
-			`	He then takes a closer look at the gold bars, and at you. "How did you even acquire these?" He asks, but he does not give you time to respond. "Di-did you join them? If you did, I am very sorry for any disturbance I may have caused, sir!" He exclaims in fear, moving back and kneeling, as if wanting to apologize.`
+			`	He then takes a closer look at the gold bars, and at you. "How did you even acquire these?" he asks, but he does not give you time to respond. "Di-did you join them? If you did, I am very sorry for any disturbance I may have caused, sir!" he exclaims in fear, moving back and kneeling, as if wanting to apologize.`
 			choice
 				`	"Who are 'they'?"`
 					goto who
@@ -322,7 +322,7 @@ mission "Midas: Who is the mad one?"
 					goto wontsay
 				`	(Ignore him.)`
 					decline
-			`	"Ha! I made the same mistake, once, plundering them of a ship. It almost was my last."`
+			`	"Ha! I made the same mistake, once, plundering them from a ship. It almost was my last."`
 			label who
 			`	He looks at you, fascinated. "You truly do not know, do you? Good! Then you may still be free. Do not make the mistake I did, or this gold will corrupt you! They will come for it! Stash it away, or sell it whilst you still can! It is not worth the fabulous prices they may offer for it!"`
 			`	He continues, finally and painfully catching his breath. "I went to the pirate worlds! To their territory! What a fool I was. Yes, it was a lot of credits, but not for me. I got plundered myself on the way there!"`
@@ -330,13 +330,13 @@ mission "Midas: Who is the mad one?"
 				`	"A good price you say? That sounds interesting."`
 				`	"You're right, it is not worth it, I will get rid of them."`
 					goto rid
-			`	"NO!! You fool! You won't be able to say I did not warn you. You truly are a lost cause, perhaps the bars have already affected you! At least, make sure to have enough escorts, and watch your back." He says, before leaving.`
+			`	"NO!! You fool! You won't be able to say I did not warn you. You truly are a lost cause, perhaps the bars have already affected you! At least, make sure to have enough escorts, and watch your back." he says, before leaving.`
 				accept
 			label rid
-			`	"Good. You do well to listen." He says before leaving, finally calm.`
+			`	"Good. You do well to listen." he says, before leaving, finally calm.`
 				decline
 			label wontsay
-			`	"It is your choice to make. Just know that it is a mistake, just like it would be to take these to a pirate world. Or do anything else than getting rid of them." He says, before leaving.`
+			`	"It is your choice to make. Just know that it is a mistake, just like it would be to take these to a pirate world. Or do anything else than getting rid of them." he says, before leaving.`
 	npc evade
 		government "Midas"
 		personality plunders disables heroic nemesis marked
@@ -665,6 +665,8 @@ event "midas: thorn talon vengeance"
 event "midas: joined"
 	government "Escort"
 		swizzle 9
+	government "Midas"
+		remove "display name"
 
 # they get mad when you kill the twins, striking at you after they had time to muster their strength.
 # the Hai did not dare to contest them
@@ -960,6 +962,7 @@ phrase "enemy midas"
 		"We will never stop hunting you!"
 		"You do not understand the value of what you have stolen."
 		"Mere children cannot be allowed to hold on to such power!"
+
 
 phrase "cerberus hails"
 	word
