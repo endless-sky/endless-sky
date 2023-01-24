@@ -339,7 +339,7 @@ mission "Midas: Who is the mad one?"
 			`	"It is your choice to make. Just know that it is a mistake, just like it would be to take these to a pirate world. Or do anything else than getting rid of them." He says, before leaving.`
 	npc evade
 		government "Midas"
-		personality plunders disable heroic nemesis marked
+		personality plunders disables heroic nemesis marked
 		system
 			distance 2 5
 		fleet "Marauders" 4
@@ -373,7 +373,7 @@ mission "Midas: Nemo Me Impune Lacessit"
 		random < 3
 	npc disable
 		government "Midas"
-		personality plunders disable heroic nemesis marked
+		personality plunders disables heroic nemesis marked
 		system
 			distance 2 5
 		fleet "Marauders" 3
@@ -397,7 +397,7 @@ mission "Midas: Nemo Me Impune Lacessit 2"
 		random < 1
 	npc disable
 		government "Midas"
-		personality plunders disable heroic nemesis marked
+		personality plunders disables heroic nemesis marked
 		system
 			distance 2 5
 		fleet "Marauders" 5
@@ -420,7 +420,7 @@ mission "Midas: Betrayal For The Bars"
 		not "midas: sold bars"
 		or
 			random < 40
-			"Midas: Who is the mad one?: active"
+			has "Midas: Who is the mad one?: active"
 		has "Unfettered: Jump Drive Retrieval: done"
 		has "flagship crew" > 4
 		"outfit (flagship cargo): Gold Bars" >= 5
