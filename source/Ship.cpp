@@ -1439,21 +1439,21 @@ string Ship::GetHail(map<string, string> &&subs) const
 bool Ship::CanSendHail(const PlayerInfo &player) const
 {
 	const System *playerSystem = player.GetSystem();
-	if(!ship || !playerSystem)
+	if(!playerSystem)
 		return false;
 
 	// Make sure this ship is in the same system as the player.
-	if(ship->GetSystem() != playerSystem)
+	if(GetSystem() != playerSystem)
 		return false;
 
 	// Player ships shouldn't send hails.
-	const Government *gov = ship->GetGovernment();
-	if(!gov || ship->IsYours())
+	const Government *gov = GetGovernment();
+	if(!gov || IsYours())
 		return false;
 
 	// Make sure this ship is able to send a hail.
-	if(ship->IsDisabled() || !ship->Crew()
-			|| ship->Cloaking() >= 1. || ship->GetPersonality().IsMute())
+	if(IsDisabled() || !Crew()
+			|| Cloaking() >= 1. || GetPersonality().IsMute())
 		return false;
 
 	// Ships that don't share a language with the player shouldn't send hails.
