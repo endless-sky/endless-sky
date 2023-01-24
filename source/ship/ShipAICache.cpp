@@ -36,8 +36,9 @@ ShipAICache::ShipAICache(const Ship &ship)
 
 void ShipAICache::UpdateWeaponCache()
 {
-	bool hasAmmo = false;
-	bool isArmed = false;
+	bool hasWeapons = false;
+	// If the ship
+	bool canFight = false;
 	double totalDPS = 0.;
 	double splashDPS = 0.;
 	double artilleryDPS = 0.;
@@ -51,12 +52,12 @@ void ShipAICache::UpdateWeaponCache()
 		const Outfit *weapon = hardpoint.GetOutfit();
 		if(weapon && !hardpoint.IsAntiMissile())
 		{
-			isArmed = true;
+			hasWeapons = true;
 			bool lackingAmmo = (weapon->Ammo() && weapon->AmmoUsage() && !ship->OutfitCount(weapon->Ammo()));
 			// Weapons without ammo might as well not exist, so don't even consider them
 			if(lackingAmmo)
 				continue;
-			hasAmmo = true;
+			canFight = true;
 
 			// Calculate the damage per second,
 			// ignoring any special effects. (could be improved to account for those, maybe be based on cost instead)
@@ -93,12 +94,12 @@ void ShipAICache::UpdateWeaponCache()
 	// If this ship was using the artillery AI to run away and bombard its
 	// target from a distance, have it stop running once it is out of ammo. This
 	// is not realistic, but it's less annoying for the player.
-	if(isArmed && !hasAmmo && !ship->IsYours())
+	if(hasWeapons && !canFight && !ship->IsYours())
 	{
 		shortestRange = 0.;
 		shortestArtillery = 0.;
 	}
-	else if(isArmed)
+	else if(hasWeapons)
 	{
 		// Artillery AI is the AI responsible for handling the behavior of missile boats
 		// and other ships with exceptionally long range weapons such as detainers
