@@ -135,6 +135,7 @@ namespace {
 		added.clear();
 	}
 
+
 	// Author the given message from the given ship.
 	void SendMessage(const shared_ptr<const Ship> &ship, const string &message)
 	{
@@ -1755,17 +1756,22 @@ void Engine::SendHails()
 	if(Random::Int(600) || player.IsDead() || ships.empty())
 		return;
 
-	shared_ptr<Ship> source;
-	unsigned i = Random::Int(ships.size());
-	for(const shared_ptr<Ship> &it : ships)
-		if(!i--)
-		{
-			source = it;
-			break;
-		}
+	vector<shared_ptr<const Ship>> canSend;
+	canSend.reserve(ships.size());
 
-	if(!source || !source->CanSendHail(player))
+
+	// When deciding who will send a hail, only consider ships that can send hails.
+	for(auto &it : ships)
+		if(it && it->CanSendHail(player, true))
+			canSend.push_back(it);
+
+	if(canSend.empty())
+		// No ships can send hails.
 		return;
+
+	// Randomly choose a ship to send the hail.
+	unsigned i = Random::Int(canSend.size());
+	shared_ptr<const Ship> source = canSend[i];
 
 	// Generate a random hail message.
 	SendMessage(source, source->GetHail(player.GetSubstitutions()));
@@ -2414,7 +2420,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 	grudge[attacker] = target;
 	grudgeTime = 120;
 	string message;
-	if(target->GetPersonality().IsHeroic())
+	if(target->GetPersonality().IsDaring())
 	{
 		message = "Please assist us in destroying ";
 		message += (attackerCount == 1 ? "this " : "these ");
