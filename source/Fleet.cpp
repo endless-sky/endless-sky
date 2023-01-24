@@ -190,15 +190,9 @@ void Fleet::Load(const DataNode &node)
 		}
 
 		if(defeated && remove && key == "government")
-		{
-			printf("remove defeated government\n");
 			defeatedGovernment = nullptr;
-		}
 		else if(defeated && key == "government" && hasValue)
-		{
-			printf("add defeated government\n");
 			defeatedGovernment = GameData::Governments().Get(child.Token(valueIndex));
-		}
 		else if(!defeated && key == "government" && hasValue)
 			government = GameData::Governments().Get(child.Token(1));
 		else if(key == "names" && hasValue)
@@ -220,15 +214,9 @@ void Fleet::Load(const DataNode &node)
 				outfitters.insert(GameData::Outfitters().Get(child.Token(i)));
 		}
 		else if(remove && defeated && key == "personality")
-		{
-			printf("remove defeated personality\n");
 			defeatedPersonality = Personality();
-		}
 		else if(defeated && key == "personality")
-		{
-			printf("add defeated personality\n");
 			defeatedPersonality.Load(child, 2);
-		}
 		else if(key == "personality")
 			personality.Load(child);
 		else if(key == "variant" && !remove)

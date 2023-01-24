@@ -1369,13 +1369,9 @@ void Ship::DefeatShip()
 	{
 		government = defeatedGovernment;
 		SetSwizzle(customSwizzle >= 0 ? customSwizzle : government->GetSwizzle());
-		printf("Changing to defeated goverenment %s\n", government->GetName().c_str());
 	}
 	if(defeatedPersonality.IsDefined())
-	{
 		personality = defeatedPersonality;
-		printf("Changing to defeated personality\n");
-	}
 }
 
 
