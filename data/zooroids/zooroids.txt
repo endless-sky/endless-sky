@@ -289,4 +289,4 @@ fleet "Astral"
 	personality
 		forbearing unconstrained swarming mute
 	variant
-		"Astral"
+		"Astral Cetacean"
