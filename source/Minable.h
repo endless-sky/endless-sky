@@ -52,9 +52,13 @@ public:
 	// Call this once all of the game data finishes loading.  Asteroids and
 	// associated payloads have been loaded.
 	void FinishLoading();
+
 	const std::string &TrueName() const;
 	const std::string &DisplayName() const;
 	const std::string &Noun() const;
+
+	// Determine the value of the flotsam this asteroid will create.
+	const int64_t &GetCost() const;
 
 	// Place a minable object with up to the given energy level, on a random
 	// orbit and a random position along that orbit.
@@ -70,9 +74,6 @@ public:
 
 	// Determine what flotsam this asteroid will create.
 	const std::map<const Outfit *, int> &Payload() const;
-
-	// Determine the value of the flotsam this asteroid will create.
-	const int64_t &GetCost();
 
 
 private:
