@@ -628,7 +628,7 @@ double System::RamscoopFuel(double shipRamscoop, double scale) const
 	// Even if a ship has no ramscoop, it can harvest a tiny bit of fuel by flying close to the star,
 	// provided the system allows it.
 	double universal = 0.05 * scale * universalRamscoop;
-	return SolarWind() * .03 * scale * ramscoopMultiplier * (sqrt(shipRamscoop) + universal) + ramscoopAddend;
+	return max(0., SolarWind() * .03 * scale * ramscoopMultiplier * (sqrt(shipRamscoop) + universal) + ramscoopAddend);
 }
 
 
