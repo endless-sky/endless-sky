@@ -20,6 +20,7 @@ outfit "Gold Bars"
 	cost 64000
 	thumbnail "outfit/gold bars"
 	mass 2.1
+	"installable" -1
 	description "It shines; you can feel its value. For some reason, the text 'nemo me impune lacessit' is written on them. You wonder what that could mean... surely nothing to worry about. Most outfitters are not real 'connoisseurs' of the value these hold though, and would not give you any more than the price of brute gold for it."
 
 ship "Sea Scorpion" "Si-Ra' Scorpion"
@@ -267,7 +268,7 @@ ship "Sea Dragon"
 
 
 fleet "Marauders"
-	government "Mercenaries"
+	government "Midas"
 	names "pirate"
 	personality
 		disables plunders harvests
@@ -302,12 +303,62 @@ fleet "Marauders"
 
 
 
+mission "Midas: Who is the mad one?"
+	landing
+	outfitter
+	name "A golden opportunity!"
+	description "Go to any pirate world to see if you can sell these gold bars for a good price."
+	to offer
+		has "outfit (flagship cargo): Gold Bars"
+	on offer
+		conversation
+			`	You head into the outfitter, wondering what price you can get out of these newly acquired gold bars, when you hear a cry. "STOP!" You see it comes from a very old person. You go to them to see what they want. "These are cursed! You should get rid of them. As soon as you can!"`
+			`	He then takes a closer look at them, and you. "How did you even acquire these?" He says, but he does not give you time to respond. "Di-did you join them? If you did, I am very sorry for any disturbance I may have caused, sir!" He exclaims, moving back and kneeling, as if wanting to apologize.`
+			choice
+				`	"Who are 'they'?"`
+					goto who
+				`	"I got these after a duel."`
+				`	"Where I got these bars is none of your business."`
+					goto wontsay
+				`	(Ignore him.)`
+					decline
+			`	"Ha! I made the same mistake, once, plundering them of a ship. It almost was my last."`
+			label who
+			`	He looks at you, with fascination in his eyes. "You truly do not know, do you? Good! Then you may still be free. Do not make the mistake I made, this gold will corrupt you! They will come for it! Stash it away, or sell it whilst you still can! It is not worth waiting for them to come and offer you the fabulous prices."`
+			`	He continues, finally catching his breath. "I went to the pirate worlds! To their territory! What a fool I was. Yes, it was a lot of money, but not for me. I got plundered myself along the way."`
+			choice
+				`	"A good price you say? That sounds interesting."`
+				`	"You're right, it is not worth it, I will get rid of them."`
+					goto rid
+			`	"NO!! You fool! You won't be able to say I did not warn you. You truly are a lost cause, perhaps the bars have already affected you! At least, make sure to have enough escorts, and watch your back." He says, before leaving you.`
+				accept
+			label rid
+			`	"Good. You do well to listen." He says before leaving, finally calm.`
+				decline
+			label wontsay
+			`	"It is your choice to make. Just know that it is a mistake." He says, before leaving.`
+	npc evade
+		government "Midas"
+		personality plunders disable heroic nemesis marked
+		system
+			distance 2 5
+		fleet "Marauders" 4
+	to fail
+		or
+			has "midas: took out leader"
+			not "outfit: Gold Bars"
+	to complete
+		never
+
+
+
+
 phrase "mercenaries defeated"
 	word
 		`After disabling the last of the pirate ships, you wonder what could have motivated such an attack. Do you possess something valuable to them? When they entered the system, they only sent one message: "nemo me impune lacessit". It is probably best to store whatever they were interested in on a planet (using U) or get rid of it.`
 
 # attacks to get the bars back, in Hai and human space; as they have more influence in human space they are more numerous there
-mission "Mercenaries: Nemo Me Impune Lacessit"
+mission "Midas: Nemo Me Impune Lacessit"
 	minor
 	landing
 	invisible
@@ -316,21 +367,22 @@ mission "Mercenaries: Nemo Me Impune Lacessit"
 		near "Ya Hai" 10
 	to offer
 		has "outfit: Gold Bars"
-		not "mercenaries: sold bars"
-		not "mercenaries: took out leader"
+		not "midas: sold bars"
+		not "midas: took out leader"
 		random < 3
 	npc disable
-		government "Mercenaries"
+		government "Midas"
+		personality plunders disable heroic nemesis marked
 		system
 			distance 2 5
 		fleet "Marauders" 3
 		dialog phrase "mercenaries defeated"
 	to fail
 		or
-			has "mercenaries: took out leader"
+			has "midas: took out leader"
 			not "outfit: Gold Bars"
 
-mission "Mercenaries: Nemo Me Impune Lacessit 2"
+mission "Midas: Nemo Me Impune Lacessit 2"
 	minor
 	landing
 	invisible
@@ -339,34 +391,38 @@ mission "Mercenaries: Nemo Me Impune Lacessit 2"
 		near Sol 100
 	to offer
 		"outfit: Gold Bars" > 15
-		not "mercenaries: sold bars"
-		not "mercenaries: took out leader"
+		not "midas: sold bars"
+		not "midas: took out leader"
 		random < 1
 	npc disable
-		government "Mercenaries"
+		government "Midas"
+		personality plunders disable heroic nemesis marked
 		system
 			distance 2 5
 		fleet "Marauders" 5
 		dialog phrase "mercenaries defeated"
 	to fail
 		or
-			has "mercenaries: took out leader"
+			has "midas: took out leader"
 			not "outfit: Gold Bars"
 
 
 
-# SPOILER: mercenaries sometimes save pirates from slavery, in exchange for a life debt.
+# SPOILER: Midas sometimes save pirates from slavery, in exchange for a life debt.
 # Some of your crew may be part of that, or maybe it is just any pirate from this world that tries to get them, attracted by the huge reward.
-mission "Mercenaries: Betrayal For The Bars"
+mission "Midas: Betrayal For The Bars"
 	landing
 	invisible
 	source
 		government "Pirate"
 	to offer
-		random < 40
+		not "midas: sold bars"
+		or
+			random < 40
+			"Midas: Who is the mad one?: active"
 		has "Unfettered: Jump Drive Retrieval: done"
 		has "flagship crew" > 4
-		"outfit (flagship installed): Gold Bars" + "outfit (flagship cargo): Gold Bars" >= 5
+		"outfit (flagship cargo): Gold Bars" >= 5
 	on offer
 		conversation
 			`As you land on the pirate world, you head for the hatch, preparing to enter the spaceport, but passing by the cargo bay you think you hear a sound. Odd... There shouldn't be anyone there right now, knowing your crew's habits, as most of them have already disembarked.`
@@ -379,6 +435,8 @@ mission "Mercenaries: Betrayal For The Bars"
 			`	You decide not to check it out now. A few moments later, you hear a big metallic sound, followed by deep silence. You may want to check your cargo bay later on.`
 				defer
 			label investigate
+			action
+				fail "Midas: Who is the mad one?"
 			`You pull out your sidearm and approach the bay as discreetly as you can. Worst case scenario is you find one of your own crew, in which case you better not overreact, or someone could get hurt.`
 			choice
 				`(Ask if someone is there.)`
@@ -449,7 +507,7 @@ mission "Mercenaries: Betrayal For The Bars"
 			action
 				outfit "Gold Bars" -5
 				payment 5000000
-				set "mercenaries: sold bars"
+				set "midas: sold bars"
 			`The soon-to-be gone traitor nods. "It is the right choice you are making, Captain <last>. You will never be bothered by any of this again, that I promise. I will take these 5 piles, and any more will be sold little by little as you go on most worlds. If you sell them to any normal outfitters, we will easily get our hands on it, so it is no problem to us, but you would only be paid the price of brute gold for it."`
 				decline
 			label bliss2
@@ -462,16 +520,16 @@ mission "Mercenaries: Betrayal For The Bars"
 				outfit "Gold Bars" -5
 	# accept is used when you spot the crew member but do not know the link to the bars. If they are revealed, they will not try again.
 	on accept
-		fail "Mercenaries: Betrayal For The Bars"
+		fail "Midas: Betrayal For The Bars"
 
 # sells the bars if you agreed to the deal, 1 million a piece.
-mission "Mercenaries: Bar Selling"
+mission "Midas: Bar Selling"
 	minor
 	landing
 	invisible
 	repeat
 	to offer
-		has "mercenaries: sold bars"
+		has "midas: sold bars"
 	on offer
 		outfit "Gold Bars" -5
 		payment 5000000
@@ -479,14 +537,14 @@ mission "Mercenaries: Bar Selling"
 			`An operative of the organization you're selling to offers you the usual <payment> for 5 of your gold bars. It doesn't seem like you have much choice in the matter, so you hand them over.`
 				decline
 
-mission "Mercenaries: Bar Selling 2"
+mission "Midas: Bar Selling 2"
 	minor
 	landing
 	invisible
 	repeat
 	to offer
-		has "mercenaries: sold bars"
-		not "Mercenaries: Bar Selling: active"
+		has "midas: sold bars"
+		not "Midas: Bar Selling: active"
 	on offer
 		outfit "Gold Bars" -1
 		payment 1000000
@@ -498,7 +556,7 @@ mission "Mercenaries: Bar Selling 2"
 
 # SPOILERS: the mercenaries want that governor down because she can easily help the Hai-Unfettered Hai unite, given she understands the Unfettered well.
 # They will only take her hostage here, she may come back later.
-mission "Mercenaries: Feed Them To The Wolves"
+mission "Midas: Feed Them To The Wolves"
 	landing
 	name "Feed them to the Wolves."
 	description "Take the governor's fleet to <waypoints> where a fleet will be waiting for them."
@@ -518,7 +576,7 @@ mission "Mercenaries: Feed Them To The Wolves"
 		payment 1000000
 	npc
 		# the Alphas and their minions let the Mercenaries alone so that this would happen. They probably even gave them a tip about it, but not in person.
-		government "Mercenaries"
+		government "Midas"
 		system "Waypoint"
 		personality disables plunders staying harvests
 		fleet "Large Northern Pirates" 5
@@ -548,30 +606,30 @@ mission "Mercenaries: Feed Them To The Wolves"
 
 # secret mission
 # happens if you accept a duel in "Unfettered: Materials Intercepted" (offered if your fleet is smaller than 2 heavy warships)
-mission "Mercenaries: Duel Squared"
+mission "Midas: Duel Squared"
 	landing
 	source "New Tortuga"
 	name "Duel with the twins."
 	description "Beat the two twins today, or lose 10 million credits!"
 	to offer
-		has "mercenaries: accepted duel"
+		has "midas: accepted duel"
 		has "Unfettered: Cavalry Arrives: done"
 	on offer
 		dialog `The two mysterious ships hail you, "We are ready for a fight in orbit whenever you are. If you want, you can still call this off... at a cost."`
 		fine 10000000
 	on accept
-		"mercenaries: duel startday" = day
+		"midas: duel startday" = day
 	npc disable save
 		government "Hai (Unfettered Challenger)"
 		to despawn
-			"mercenaries: duel startday" != day
+			"midas: duel startday" != day
 		personality waiting heroic unconstrained staying disables
 		ship "Sea Dragon" "Thorn"
 		ship "Sea Dragon" "Talon"
 		conversation
 			`Seeing the fight is over, they hail you, "Indeed you know how to fight, <last>," the first one compliments you, "That was just luck!" the other one argues. "Whatever the case, you have gained the right to plunder our ships. But do not dare even think about trying to capture. We will be leaving once you land. Oh, and here are your 10 million credits back."`
 			action
-				set "mercenaries: won the duel"
+				set "midas: won the duel"
 				log `Won a duel against 2 mysterious ships that serve the 'Shadow of Mintaka', whatever that means. Plundering of their ships was so nicely offered!`
 				payment 10000000
 	on abort
@@ -579,24 +637,24 @@ mission "Mercenaries: Duel Squared"
 		log `Lost a duel against 2 mysterious ships that serve the 'Shadow of Mintaka', whatever that means. Had to pay up 10 million credits.`
 	on fail
 		dialog "You killed one of the ships. You will need to restart the mission in order to progress further with the Shadow of Mintaka. They may want to have their vengeance on you... The Unfettered may not offer you any missions anymore, for disrespecting the sacred rules of the duel."
-		set "mercenaries: thorn talon death"
-		set "mercenaries: thorn talon murdered"
-		event "mercenaries: thorn talon vengeance" 180
+		set "midas: thorn talon death"
+		set "midas: thorn talon murdered"
+		event "midas: thorn talon vengeance" 180
 		log `Killed the mysterious ships that serve the 'Sadow of Mintaka' in a duel. What's the worst that could happen? No idea if the Unfettered will forgive this act.`
 	on complete
 		conversation
 			`Having landed, you concede the duel, and receive a hail. "Do not feel ashamed, you fought well. To be fair, you never stood much of a chance against our superior firepower and agility," one says. "We hope you will have improved next time!"`
 				to display
-					not "mercenaries: won the duel"
+					not "midas: won the duel"
 			`Shortly after you land the ships disappear from your radar. They must have somehow repaired themselves.`
 				to display
-					has "mercenaries: won the duel"
+					has "midas: won the duel"
 
 # vengeance will come
-event "mercenaries: thorn talon vengeance"
+event "midas: thorn talon vengeance"
 	"reputation: Shadow" <?= -1000
 	# super high bribe for when they attack you
-	government "Mercenaries"
+	government "Midas"
 		bribe 2
 	# can't rep farm anymore
 	government "Shadow"
@@ -605,17 +663,17 @@ event "mercenaries: thorn talon vengeance"
 
 
 
-event "mercenaries: joined"
+event "midas: joined"
 	government "Escort"
 		swizzle 9
 
 # they get mad when you kill the twins, striking at you after they had time to muster their strength.
 # the Hai did not dare to contest them
-mission "Mercenaries: Daemons Unleashed"
+mission "Midas: Daemons Unleashed"
 	landing
 	invisible
 	to offer
-		has "event: mercenaries: thorn talon vengeance"
+		has "event: midas: thorn talon vengeance"
 	npc kill
 		system "Wah Yoot"
 		government "Shadow"
@@ -637,12 +695,12 @@ mission "Mercenaries: Daemons Unleashed"
 			label wearcolors
 			`	"You may paint your ship however you like." They then end the connection.`
 			action
-				event "mercenaries: joined"
+				event "midas: joined"
 			label endco
 			action
 				"reputation: Mercenaries" >?= 100
 				"salary: Mercenaries" = 5000
-				set "mercenaries: took out leader"
+				set "midas: took out leader"
 	npc
 		system "Wah Yoot"
 		government "Shadow"
@@ -652,10 +710,10 @@ mission "Mercenaries: Daemons Unleashed"
 		ship "Far Lek 14" "Phoenix"
 	npc
 		system "Wah Yoot"
-		government "Mercenaries"
+		government "Midas"
 		personality heroic staying nemesis vindictive
 		to despawn
-			has "mercenaries: took out leader"
+			has "midas: took out leader"
 		fleet "Marauders" 8
 	on enter "Wah Yoot"
 		dialog `As you enter Wah Yoot you spot a fleet of mercenaries, larger than anything you've seen from them before. The captain of the fleet hails you. "Nemo Me Impune Lacessit, <first> <last>. You have killed our own. We have come to bring justice upon you, whatever the cost. There will be no negotiations, no forgiveness. I am the Shadow of Mintaka, and the last person you will ever meet."`
@@ -683,7 +741,7 @@ ship "Corvette" "Corvette (Harpy)"
 
 
 
-# happens when you land on the world instead of taking the cube in orbit, either bargain for it or steal it (or the wrong item)
+# This mission triggers when you land on the world instead of taking the cube in orbit, either bargain for it or steal it (or the wrong item)
 mission "Unfettered: Special Cargo 1B"
 	landing
 	invisible
@@ -735,7 +793,7 @@ mission "Unfettered: Special Cargo 1B"
 			label cargo
 			`	There are a lot of exotic things here, most of which are probably not legal at all. You better choose what to take with you, and fast! You also notice the presence of gold bars. There's no way you could carry all of them back with you discreetly, but you can drop them off the ship and then go grab them once you are out, hoping nobody will notice. Looking through a porthole, you don't see anyone around at the moment. Conveniently, there is even some sand on the ground there, so the bars should sink in, and be harder to notice.`
 			branch knowsbars
-				has "Mercenaries: Betrayal For The Bars: declined"
+				has "Midas: Betrayal For The Bars: declined"
 			`	It may not be what you're looking for, but these bars are probably worth a small fortune, and you reckon you could get away with a few tons of them, with some luck and an antigrav unit that a fellow crew member could bring, if you only threw these out the window. They have special markings on them and are probably worth more than the value of the gold alone! You can always take out the pirate lord's ship afterward and claim them as your own, as they are more heavy and take more space than any of the other items which could interest the warlord.`
 				goto fake
 			label knowsbars
@@ -824,7 +882,7 @@ mission "Unfettered: Special Cargo 1B"
 				payment -8000000
 			label leaveinpeace
 			action
-				set "mercenaries: brokered deal"
+				set "midas: brokered deal"
 				"reputation: Mhairi's Legion" >?= 1
 			`	You head to your ship, preparing to leave the planet. No pirates try to stop you on the way. In fact, the pirates in orbit are no longer hostile to you. It seems like they respected the agreement.`
 				accept
@@ -833,3 +891,88 @@ mission "Unfettered: Special Cargo 1B"
 				flee
 	on accept
 		outfit "Mystery Cube"
+
+
+
+phrase "friendly midas"
+	word
+		"What is your command"
+		"Orders"
+		"Anything I can do for you"
+		"Who should I shoot"
+		"Covering fire, where"
+		"Yes"
+		"Change of plan"
+	word
+		", "
+	word
+		"Boss"
+		"Leader"
+		"Alpha"
+		"First Mercenary"
+		"Commander"
+		"Captain"
+	word
+		"?"
+
+phrase "disabled midas"
+	word
+		"I await judgment."
+		"Do not expect me to beg."
+		"It seems I was proven... weak."
+		"I can pay you... If you would only lend me a hand."
+		"Truly a shameful display on my part."
+		"I have executed the former captain for his incompetence."
+		"Leave me alone, I do not deserve any help."
+
+phrase "enemy midas"
+	word
+		"You have "
+		"You possess "
+		"On your ship is "
+	word
+		"something "
+		"an item "
+		"a possession "
+	word
+		"precious to us"
+		"valuable to us"
+		"of ours"
+		"that we want"
+	word
+		"."
+		"!"
+	word
+		" Surrender it"
+		" Drop it in the next spaceport"
+		" Give it to me and your death will be quick."
+		" Nemo Me Impune Lacessit"
+		" Sell it on a lawless world"
+		" Give it to us, scum"
+		" Hand it over, scum"
+	word
+		"."
+		"!"
+
+phrase "enemy midas"
+	word
+		"Nemo Me Impune Laccessit!"
+		"You should run if you still hope to see the sun rise."
+		"We will never stop hunting you!"
+		"You do not understand the value of what you have stolen."
+		"Mere children cannot be allowed to hold on to such power!"
+
+phrase "cerberus hails"
+	word
+		"We do not accept your surrender!"
+		"You stand no chance!"
+		"Even if you take me down, my master will make quick work of you."
+		"Do not attempt to subdue me."
+		"I obey only the masters."
+		"They hold my soul! Soon, they will hold yours as well."
+		"Die!"
+		"You have been allowed to live long enough. Now I come to cut the thread of your life."
+		"I may be a pawn, but at least I am on a greater path."
+		"You may never hope to achieve half of what I have done."
+		"My price is far above what you could possibly afford. Do not even attempt to bribe me."
+		"Do you hope to corrupt me? There is no price that is high enough."

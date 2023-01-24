@@ -153,7 +153,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		system "Host"
 		personality heroic nemesis staying
 		to spawn
-			has "mercenaries: thorn talon death"
+			has "midas: thorn talon death"
 		ship "Far Osk 27" "Vengeance"
 		ship "Far Osk 27" "Greed"
 		ship "Far Osk 27" "Darcy"
@@ -806,7 +806,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 		personality derelict staying target
 		ship "Mammoth (Hai)" "Blood and Thunder"
 	npc
-		government "Mercenaries"
+		government "Midas"
 		personality derelict
 		system "Rajak"
 		fleet
@@ -817,7 +817,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 				"Hawk"
 				"Fury"
 	npc evade
-		government "Mercenaries"
+		government "Midas"
 		personality disables plunders harvests staying coward
 		system "Sumar"
 		# this is a quick fleet of captured ships
@@ -869,6 +869,8 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 				`	"We really did the Alphas a nasty one by stealing their jump drives earlier, right?" (Pretend you know who the drives belonged to.)`
 				`	"Those pirates did not see the stealing of their jump drives on Freedom, am I right?" (Pretend you know who the drives belonged to.)`
 					goto pirates
+			action
+				set "knows it was alpha cache"
 			`	"Yeah we did! I mean, it was mostly you..." He then calms down somewhat and looks at you seriously, "I had not told you that before, did I? Well, whatever, I hope that you can be trusted with this information, or else..." He then keeps on drinking as if nothing happened.`
 				goto celebrate
 			label pirates

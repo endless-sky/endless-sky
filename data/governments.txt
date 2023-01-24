@@ -483,7 +483,7 @@ government "Hai (Governor Escort)"
 	swizzle 0
 
 	"attitude toward"
-		"Mercenaries" -.01
+		"Midas" -.01
 	bribe .02
 	"friendly hail" "friendly hai"
 	"friendly disabled hail" "friendly disabled hai"
@@ -842,7 +842,8 @@ government "Mhairi's Legion"
 	"friendly hail" "friendly pirate"
 	"hostile hail" "hostile pirate"
 
-government "Mercenaries"
+government "Midas"
+	"display name" "Mercenaries"
 	swizzle 9
 	"crew attack" 1.2
 	"crew defense" 2.2
@@ -855,10 +856,10 @@ government "Mercenaries"
 		"Korath (Military)" .5
 	bribe .25
 	fine 0
-	"friendly hail" "friendly mercenary"
-	"friendly disabled hail" "disabled mercenary"
-	"hostile hail" "enemy mercenary"
-	"hostile disabled hail" "disabled mercenary"
+	"friendly hail" "friendly midas"
+	"friendly disabled hail" "disabled midas"
+	"hostile hail" "enemy midas"
+	"hostile disabled hail" "disabled midas"
 
 government "Cerberus"
 	swizzle 1
@@ -868,7 +869,7 @@ government "Cerberus"
 	"player reputation" -1000
 	"attitude toward"
 		"Shadow" -.1
-		"Mercenaries" -.1
+		"Midas" -.1
 	"display name" "Pirate"
 	bribe 0
 	fine 0
@@ -880,7 +881,7 @@ government "Shadow"
 	"crew defense" 2.2
 
 	"attitude toward"
-		"Mercenaries" .01
+		"Midas" .01
 		"Cerberus" -.1
 		"Korath (Military)" .05
 		"Alpha" -.1

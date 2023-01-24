@@ -1149,17 +1149,17 @@ mission "Unfettered: Escort Hai Fleet"
 		system "Ula Mon"
 		fleet "Small Hai"
 	npc evade
-		government "Mercenaries"
+		government "Midas"
 		to spawn
 			has "unfettered: stopped on Greenbloom"
 		system "Ya Hai"
 		personality disables plunders vindictive
 		fleet "Small Northern Pirates" 4
 	npc evade
-		government "Mercenaries"
+		government "Midas"
 		to spawn
 			has "unfettered: stopped on Greenbloom"
-			not "Mercenaries: Feed Them To The Wolves: active"
+			not "Midas: Feed Them To The Wolves: active"
 		system "Ya Hai"
 		personality disables plunders vindictive
 		fleet "Large Northern Pirates" 2
@@ -1221,7 +1221,7 @@ mission "Unfettered: Taking Off With Hai Fleet"
 				`	"Why would a governor go there in person?"`
 				`	"I should warn you: I have good reasons to believe the convoy is under threat."`
 					to display
-						has "Mercenaries: Feed Them To The Wolves: declined"
+						has "Midas: Feed Them To The Wolves: declined"
 					goto threat
 			`	"The Unfettered only respect display of strength, and do not trust those they have not seen in person. The governor is probably hoping to get some Unfettered Hai with him on the return trip."`
 				goto leave
@@ -1447,7 +1447,7 @@ mission "Unfettered: Materials Intercepted"
 			`	"The Shadow of Mintaka sends her regards, <first> <last>. We look forward to dancing with you again."`
 			branch "not too many ships"
 				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 24
-			`	You receive a final, private message from one of the ships. "A shame you brought such a fleet with you, we could have had so much fun otherwise..."`
+			`	You receive a final, private message from one of the ships. "A shame you brought such a fleet with you, we could have had so much fun otherwise... Ra told us you know how to fight."`
 				decline
 			label "not too many ships"
 			choice
@@ -1460,7 +1460,7 @@ mission "Unfettered: Materials Intercepted"
 				`	"Nevermind, I'll let you be on your way."`
 					goto leaving
 			action
-				set "mercenaries: accepted duel"
+				set "midas: accepted duel"
 			branch cleanupdone
 				has "unfettered: cleaned up cerberus"
 			`	"First we need to finish off all Cerberus pirates remaining, do not let them live to tell the tale. After that, we will let you land and repair before starting the fight. If you want to surrender, just abort the mission of land again after the battle has started, after giving us the symbolic fee to stop the fight. We do not have the luxury of time!"`
@@ -1475,7 +1475,7 @@ mission "Unfettered: Materials Intercepted"
 			`	You are left wondering who those mysterious allies coming to help you were. Their death will probably mean you won't ever be able to have missions from their organization. They may even hunt you down for this.`
 	to fail
 		# only fails if you kill them, not saving them only means you won't have any other missions with them.
-		has "mercenaries: thorn talon murdered"
+		has "midas: thorn talon murdered"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
@@ -1514,7 +1514,7 @@ conversation "cerberus reinforcements"
 		decline
 	label boardedship
 	branch noduel
-		not "mercenaries: accepted duel"
+		not "midas: accepted duel"
 	`All pirate reinforcements have been taken care of, and the Sea Dragons signal you they are ready to start the duel whenever you will take off again.`
 	label noduel
 	`All pirate reinforcements have been taken care of, all that is left to do is to bring back the cargo.`
@@ -1570,14 +1570,14 @@ mission "Unfettered: Cavalry Arrives"
 			branch betrayed
 				has "reputation: Shadow" < 0
 			action
-				set "mercenaries: thorn talon death"
+				set "midas: thorn talon death"
 			`One of the ships, Thorn, or Talon, got killed. You will need to restart the mission in order to progress further with the Shadow of Mintaka.`
 				decline
 			label betrayed
 			action
-				set "mercenaries: thorn talon murdered"
-				set "mercenaries: thorn talon death"
-				event "mercenaries: thorn talon vengeance" 360
+				set "midas: thorn talon murdered"
+				set "midas: thorn talon death"
+				event "midas: thorn talon vengeance" 360
 			`You receive an ominous message of defiance, "Nemo me impune lacessit."`
 				decline
 			label nevercompleted
