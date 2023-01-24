@@ -87,7 +87,7 @@ test "Checking For A Gifted Ship"
 			"Check sparrow: offered" == 1
 
 
-test-data "One Specific Barge Save"
+test-data "Taking Ship With Outfits And Unconstrained Test Save"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
@@ -178,7 +178,7 @@ test-data "One Specific Barge Save"
 			score 400
 			history
 
-test-data "One Specific Barge Save"
+test-data "Taking Ship With Outfits And Unconstrained Test Missions"
 	category mission
 	contents
 		mission "Switch"
@@ -204,12 +204,14 @@ test "Taking Ship With Outfits And Unconstrained"
 	status active
 	description "Test taking variants ships with outfits, and with the unconstrained keyword or not."
 		# Create/inject the savegame and load it.
-		inject "One Specific Barge Save"
+		inject "Taking Ship With Outfits And Unconstrained Test Missions"
+		inject "Taking Ship With Outfits And Unconstrained Test Save"
 		call "Load First Savegame"
 		call "Depart"
 		call "Land"
 		call "Depart"
-		# we only lost the far away barge, because otherwise we would have more sparrows.
+		# The missions are checked by alphabetical order, meaning we know that if the third one triggered,
+		# the first two tried to trigger before it.
 		assert
 			"flagship model: Star Barge" == 1
 			"Switch: offered" == 0
