@@ -300,7 +300,7 @@ void ShopPanel::DrawShipsSidebar()
 
 
 
-int ShopPanel::DrawDetailSelected(const std::string selectedText, const Point &center)
+int ShopPanel::DrawDetailSelected(const std::string &selectedText, const Point &center)
 {
 	const Font &font = FontSet::Get(14);
 	const Color &bright = *GameData::Colors().Get("bright");
@@ -313,7 +313,7 @@ int ShopPanel::DrawDetailSelected(const std::string selectedText, const Point &c
 
 
 
-int ShopPanel::DrawDetailDescription(const std::string descriptionText, const Point &center)
+int ShopPanel::DrawDetailDescription(const std::string &descriptionText, const Point &center)
 {
 	const Font &font = FontSet::Get(14);
 	const Color &bright = *GameData::Colors().Get("bright");

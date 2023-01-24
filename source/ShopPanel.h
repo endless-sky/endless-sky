@@ -53,8 +53,8 @@ protected:
 	void DrawMain();
 
 	void DrawShip(const Ship &ship, const Point &center, bool isSelected);
-	int DrawDetailSelected(const std::string selectedText, const Point &center);
-	int DrawDetailDescription(const std::string descriptionText, const Point &center);
+	int DrawDetailSelected(const std::string &selectedText, const Point &center);
+	int DrawDetailDescription(const std::string &descriptionText, const Point &center);
 
 	void CheckForMissions(Mission::Location location);
 
