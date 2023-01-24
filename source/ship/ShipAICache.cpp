@@ -37,7 +37,6 @@ ShipAICache::ShipAICache(const Ship &ship)
 void ShipAICache::UpdateWeaponCache()
 {
 	bool hasWeapons = false;
-	// If the ship
 	bool canFight = false;
 	double totalDPS = 0.;
 	double splashDPS = 0.;
