@@ -224,7 +224,7 @@ mission "Returning Home"
 				to display
 					has "hai start"
 			label outsider
-			`	You explain to him that you grew up making clothes, meaning you eventually grew tired of the usual clothing you kept making. Eventually you tried to make some more original ones, including the one you're wearing right now. You add that whilst you may not have been born in human space, your family made sure you learned about the origins of your species; you know human space like your pocket.`
+			`	You explain to him that you grew up making clothes, meaning you eventually grew tired of the usual clothing you kept making. Once you gained enough experience, you started creating more original ones, including the one you're wearing right now. You add that whilst you may not have been born in human space, your family made sure you learned about the origins of your species; you know human space like your pocket.`
 				to display
 					has "hai start"
 			`	"Good. My name is Elliot." You introduce yourself to Elliot and shake hands.`
