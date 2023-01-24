@@ -746,6 +746,15 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			continue;
 		}
 
+		if(isPresent && personality.IsSecretive())
+		{
+			if(DoSecretive(*it, command))
+			{
+				it->SetCommands(command);
+				continue;
+			}
+		}
+
 		// Surveillance NPCs with enforcement authority (or those from
 		// missions) should perform scans and surveys of the system.
 		if(isPresent && personality.IsSurveillance() && !isStranded
@@ -2756,6 +2765,46 @@ void AI::DoScatter(Ship &ship, Command &command)
 		command.SetTurn(offset.Cross(ship.Facing().Unit()) > 0. ? 1. : -1.);
 		return;
 	}
+}
+
+
+
+bool AI::DoSecretive(Ship &ship, Command &command)
+{
+	shared_ptr<Ship> scanningShip;
+	// Figure out if any ship is currently scanning us. If that is the case, move away from it.
+	for(auto &otherShip : GetShipsList(ship, false))
+		if(!ship.GetGovernment()->Trusts(otherShip->GetGovernment()) &&
+				otherShip->Commands().Has(Command::SCAN) &&
+				otherShip->GetTargetShip() == ship.shared_from_this() &&
+				!otherShip->IsDisabled() && !otherShip->IsDestroyed())
+			scanningShip = make_shared<Ship>(*otherShip);
+
+	if(scanningShip)
+	{
+		Point scanningPos = scanningShip->Position();
+		Point pos = ship.Position();
+
+		double cargoDistance = scanningShip->Attributes().Get("cargo scan power");
+		double outfitDistance = scanningShip->Attributes().Get("outfit scan power");
+
+		double maxScanRange = max(cargoDistance, outfitDistance);
+		double distance = scanningPos.DistanceSquared(pos) * .0001;
+
+		// If it can scan us we need to evade.
+		if(distance < maxScanRange)
+		{
+			Point away;
+			if(ship.GetPersonality().IsUnconstrained() || !fenceCount.count(&ship))
+				away = pos - scanningPos;
+			else
+				away = -pos;
+			away *= ship.MaxVelocity();
+			MoveTo(ship, command, pos + away, away, 1., 1.);
+			return true;
+		}
+	}
+	return false;
 }
 
 
