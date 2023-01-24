@@ -4378,6 +4378,14 @@ planet Winter
 		threshold 2500
 		fleet "Large Militia" 5
 
+planet "Wormhole Acheron"
+	wormhole "Wormhole Acheron"
+
+wormhole "Wormhole Acheron"
+	mappable
+	link "Ae Il O-96" "Vorsuke"
+	link "Vorsuke" "Ae Il O-96"
+
 planet "Wormhole Alpha"
 	spaceport ``
 	government "Wormhole Alpha"
