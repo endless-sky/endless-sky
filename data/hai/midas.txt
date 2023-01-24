@@ -25,7 +25,7 @@ outfit "Gold Bars"
 
 ship "Sea Scorpion" "Si-Ra' Scorpion"
 	add attributes
-		"weapon capacity" 24
+		"weapon capacity" 4
 	outfits
 		"Ionic Blaster Prototype" 4
 		"Ionic Turret Prototype" 2
@@ -97,26 +97,28 @@ ship Antlion
 			"hull damage" 1820
 			"hit force" 2500
 	outfits
-		"Type 4 Radiant Thruster"
-		`"Bufaer" Atomic Steering`
-		`"Biroo" Reverse Thruster`
-		"Hai Diamond Regenerator"
+		"Ionic Blaster Prototype" 4
+		"Ionic Turret Prototype" 2
 		"Chameleon Anti-Missile" 2
-		
+
 		"Wanderer Ramscoop"
 		"Fuel Processor"
+		Hyperdrive
+		"Hai Diamond Regenerator"
 		"Systems Core (Medium)"
+
 		"Geode Reactor"
 		"Hai Valley Batteries"
 		"Value Detector"
-		
-		Hyperdrive
-		"Ionic Blaster Prototype" 4
-		"Ionic Turret Prototype" 2
+
 		"Quantum Keystone"
 		"Ionic Blade"
-		"Pulse Rifle" 61
+		"Thermal Repeater Rifle" 61
 		"Dual Pulse Pistols" 5
+
+		"Type 4 Radiant Thruster"
+		`"Bufaer" Atomic Steering`
+		`"Biroo" Reverse Thruster`
 	cargo
 		outfits
 			"Gold Bars" 50
@@ -193,30 +195,31 @@ ship "Tick"
 	turret 0 -15
 	leak "leak" 60 50
 	explode "tiny explosion" 17
-	description "This drone was customized with the idea of using either a Repeater, to complement ion attacks, or a Bullfrog Anti-Missile, to keep its owner safe. The denser materials used allow for better protection, at the cost of a bit more mass and lower heat dissipation."
+	description "This drone was customized with the idea of using either a Repeater, to increase the owner's damage output, or a Bullfrog Anti-Missile, to keep its owner safe. The denser materials used allow for better protection, at the cost of a bit more mass and lower heat dissipation."
 	description "	This handy drone was only made possible thanks to scavenging, and combining multiple alien technologies."
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 
-# ship of the twins, Thorn and Talon
+# ship of the twins, Thorn and Talon. 
+# They trade with the Korath, which is how their outfits were obtained.
 ship "Sea Dragon"
-	crew 36
+	crew 34
 	sprite "ship/hai sea dragon"
 	thumbnail "thumbnail/hai sea dragon"
 	attributes
 		category "Medium Warship"
-		cost 5450000
+		cost 7450000
 		shields 17000
 		hull 5600
-		"required crew" 18
-		bunks 36
-		mass 360
-		drag 5.2
+		"required crew" 20
+		bunks 34
+		mass 330
+		drag 5
 		"fuel capacity" 600
-		"heat dissipation" 0.6
-		"cargo space" 45
-		"outfit space" 519
-		"weapon capacity" 168
+		"heat dissipation" .6
+		"cargo space" 20
+		"outfit space" 555
+		"weapon capacity" 188
 		"engine capacity" 125
 		weapon
 			"blast radius" 100
@@ -224,21 +227,26 @@ ship "Sea Dragon"
 			"hull damage" 520
 			"hit force" 1500
 	outfits
+		"Tripulse Shredder" 4
+		"Bullfrog Anti-Missile" 2
+
+		"Small Heat Shunt" 2
+		"Jump Drive"
+		"Fuel Processor"
+		"Hai Diamond Regenerator"
+		"Systems Core (Medium)"
+
+		"Boulder Reactor"
+		"Hai Fissure Batteries"
+
+		"Thermal Repeater Rifle" 33
+		"Dual Pulse Pistols"
+
 		`"Bondir" Atomic Thruster`
 		`"Bondir" Atomic Steering`
-		"Boulder Reactor"
-		"Hai Diamond Regenerator" 2
-		"Hai Gorge Batteries"
-		"Hai Williwaw Cooling" 3
-		"Jump Drive"
-		"Outfits Expansion" 2
-		"Pulse Rifle" 35
-		"Dual Pulse Pistols"
-		"Tripulse Shredder" 4
-		"Wanderer Ramscoop"
 	cargo
 		outfits
-			"Gold Bars" 5
+			"Gold Bars" 20
 	engine -28.5 68.5
 	engine 28.5 68.5
 	"steering engine" 64.5 23.5
