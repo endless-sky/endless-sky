@@ -171,18 +171,28 @@ void Fleet::Load(const DataNode &node)
 		// are only valid with "variant" or "personality" definitions.
 		bool add = (child.Token(0) == "add");
 		bool remove = (child.Token(0) == "remove");
-		bool hasValue = (child.Size() >= 2);
-		if((add || remove) && (!hasValue || (child.Token(1) != "variant" && child.Token(1) != "personality")))
+		bool defeated = (child.Token(1 + valueIndex) == "defeated");
+		int keyIndex = (add || remove) + static_cast<int>(defeated);
+		if(child.Size() <= keyIndex)
+		{
+			child.PrintTrace("Warning: Skipping line with no key:");
+			continue;
+		}
+		int valueIndex = keyIndex + 1;
+		bool hasValue = (child.Size() > valueIndex);
+		const string &key = child.Token(keyIndex);
+		if((add || remove) && (!hasValue || (key != "variant" && key != "personality")))
 		{
 			child.PrintTrace("Warning: Skipping invalid \"" + child.Token(0) + "\" tag:");
 			continue;
 		}
 
-		// If this line is an add or remove, the key is the token at index 1.
-		const string &key = child.Token(add || remove);
-
-		if(key == "government" && hasValue)
+		if(!defeated && key == "government" && hasValue)
 			government = GameData::Governments().Get(child.Token(1));
+		else if(defeated && remove && key == "government")
+			defeatedGovernment = nullptr;
+		else if(defeated && key == "government" && hasValue)
+			defeatedGovernment = GameData::Governments().Get(child.Token(2));
 		else if(key == "names" && hasValue)
 			names = GameData::Phrases().Get(child.Token(1));
 		else if(key == "fighters" && hasValue)
@@ -203,6 +213,10 @@ void Fleet::Load(const DataNode &node)
 		}
 		else if(key == "personality")
 			personality.Load(child);
+		else if(remove && defeated && key == "personality")
+			defeatedPersonality = Personality();
+		else if(defeated && key == "personality")
+			defeatedPersonality.Load(child, 1);
 		else if(key == "variant" && !remove)
 		{
 			if(resetVariants && !add)

@@ -32,7 +32,7 @@ class Personality {
 public:
 	Personality() noexcept;
 
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, int tokensToSkip = 0);
 	void Save(DataWriter &out) const;
 
 	bool IsDefined() const;
@@ -85,6 +85,8 @@ public:
 	static Personality Defender();
 	static Personality DefenderFighter();
 
+	int DefeatedGracePeriod() const;
+
 
 private:
 	void Parse(const DataNode &node, int index, bool remove);
@@ -98,6 +100,7 @@ private:
 	double aimMultiplier;
 	Point confusion;
 	Point confusionVelocity;
+	int defeatedGracePeriod = 300;
 };
 
 

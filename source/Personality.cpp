@@ -101,13 +101,13 @@ Personality::Personality() noexcept
 
 
 
-void Personality::Load(const DataNode &node)
+void Personality::Load(const DataNode &node, int tokensToSkip)
 {
-	bool add = (node.Token(0) == "add");
-	bool remove = (node.Token(0) == "remove");
+	bool add = (node.Token(tokensToSkip) == "add");
+	bool remove = (node.Token(tokensToSkip) == "remove");
 	if(!(add || remove))
 		flags = 0;
-	for(int i = 1 + (add || remove); i < node.Size(); ++i)
+	for(int i = 1 + (add || remove) + tokensToSkip; i < node.Size(); ++i)
 		Parse(node, i, remove);
 
 	for(const DataNode &child : node)
@@ -115,12 +115,14 @@ void Personality::Load(const DataNode &node)
 		if(child.Token(0) == "confusion")
 		{
 			if(add || remove)
-				child.PrintTrace("Error: Cannot \"" + node.Token(0) + "\" a confusion value:");
+				child.PrintTrace("Error: Cannot \"" + node.Token(tokensToSkip) + "\" a confusion value:");
 			else if(child.Size() < 2)
 				child.PrintTrace("Skipping \"confusion\" tag with no value specified:");
 			else
 				confusionMultiplier = child.Value(1);
 		}
+		else if(child.Size() == 3 && child.Token(0) == "grace" && child.Token(1) == "period")
+			defeatedGracePeriod = child.Value(2);
 		else
 		{
 			for(int i = 0; i < child.Size(); ++i)
@@ -406,6 +408,13 @@ Personality Personality::DefenderFighter()
 	Personality defender;
 	defender.flags = STAYING | HEROIC | UNCONSTRAINED;
 	return defender;
+}
+
+
+
+int Personality::DefeatedGracePeriod() const
+{
+	return defeatedGracePeriod;
 }
 
 
