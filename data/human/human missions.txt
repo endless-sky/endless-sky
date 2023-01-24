@@ -5416,3 +5416,341 @@ mission "Deal Change 2"
 				die
 			label skip
 			`	After a few minutes, the pirates finish unloading the cargo, and Ci steps forward, holding out a credit chip. "<payment>, for making the right choice." Ci and the pirates return to their ships as you take off and head towards the main spaceport of <planet>.`
+
+
+
+mission "Karen Transport 1"
+	name "Passenger transport to <planet>"
+	description "Bring <passengers> to <destination>."
+	passengers 1
+	deadline 2 0
+	source
+		government "Republic"
+		attributes "paradise"
+	destination
+		distance 1 1
+		government "Republic"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`As you are wandering the spaceport, a woman with extravagant clothing approsches you. "I am to be transported to <destination> immediately. You will be paid well."`
+			choice
+				`	(Invite her into your ship.)`
+					accept
+				`	"I'd expect my passengers to be more respectful."`
+			`	"Well, you just lost yourself a passenger!" She storms off angrily, cursing the audacity of "these space freaks."`
+				decline
+	on enter <destination>
+		conversation
+			`You hear hurling and splashing noises in the background. It seems your passenger threw up, not uncommon for first-timers.`
+			choice
+				`	(Go and assist her.)`
+					goto assist
+				`	(Mind my own business.)`
+					goto stay
+
+			label assist
+			`	You go to the passenger compartments to find her standing in the middle of the room, covered in puke. Somehow she also managed to paint all four walls of her cabin with vomit.`
+			choice
+				`	"Are you enjoying the ride, ma'am?"`
+					goto nothing
+				`	(Say nothing)`
+					goto nothing
+
+			label stay
+				`	After a couple of minutes, your passenger busts into the cockpit, puke dripping from her clothes.`
+
+			label nothing
+				`	"Look at this mess you made! Whackos like you should never be allowed to drive around! This is a spaceship, not a space rodeo!"`
+				`	You try to tell her about the nature of hyperspace jumps, but that only results in a volley of further insults.`
+	on complete
+		conversation
+			`You are glad to finally see your passenger leaving, but then you realize she has't paid you yet. You decide to confront her about it.`
+			`	"You expect ME to pay after all that? You are lucky I'm not suing you for damages!"`
+			`	She stops for a moment, then throws a credit chip at you. "Fine, take this, but don't bother me again!" She stomps off angrily.`
+			`	You look at the credit chip she had so generously given you. It's worth... 10 credits. Oh well.`
+		payment 10
+	on fail
+		conversation
+			`You hear muffled noises behind you. You move to the back of the cockpit to see your passenger throwing a fit, beating on the door in anger. "I demand to speak to the captain!"`
+			choice
+				`	(Talk with her.)`
+					goto talk
+				`	(Restrain her.)`
+					goto restrain
+
+			label talk
+				`	You open the door, but she cuts you off before you have a chance to say something.`
+				`	"Idiot! You flying space morons can't even read a map! We are nowhere near <planet>! Are you trying to kidnap me? I'll get the Navy to put you into prison for this!" You try to speak, but can't get a word in edgeways.`
+
+			label restrain
+				`	You call your crew, and together you manage to detain  her. She is now locked up in. her cabin, but her screams still echo in your head. This will be a long day.`
+				`	You decide to drop her off on the first planet you land on.`
+	on abort
+		conversation
+			branch landed
+				has "flagship landed"
+			`You decide you had enough of her constant fits, and inform her that her journey is over.`
+			`	As you listen to the air hissing out of the opening airlock, you take comfort in the knowledge that you at least got the bunk space back.`
+				decline
+			label landed
+			`You decide you don't want to deal with her after all, and let her go. You wonder if you just dodged a bullet.`
+
+
+
+mission "Karen Transport 2"
+	name "Passenger transport to <planet>"
+	description "Bring <passengers> to <destination>."
+	passengers 1
+	deadline 2 0
+	source
+		government "Republic"
+		attributes "paradise"
+	destination
+		distance 1 1
+		government "Republic"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`As you exit your ship, a middle-aged man in an expensive-looking suit approaches you. "Do you know the way to <destination>? I have to get there by <deadline>."`
+		choice
+			`	"Yes. How much are you willing to pay me?"`
+				goto pay
+			`	"Yes." (Invite him into your ship.)`
+				goto board
+			`	"No, I don't."`
+				decline	
+		
+		label pay
+			`	Another greedy captain, I see. Back in my days, ship captains were happy to have passengers, and accepted whatever they were paid, not this predetermined wage nonsense. You would do well to learn from them."`
+			`	Before you could protest, he marches into your ship.`
+			accept
+
+		label board
+			`	"Yours isn't a bad ship, captain. Not as good as the old ones, of course. They made quality back then, both in terms of ships and pilots," he says, as he boards your ship.`
+			accept
+	on enter
+		conversation
+			`As you are manouvering to position your ship for the jump, you hear someone talking behind you.`
+			`	"Not that lever, captain!" It's your middle-aged passenger.`
+			`	You look where he is pointing: the thruster controls you were about to engage. "We should slow down now, not go even faster," he continues.`
+			choice
+				`	"That's why these thrusters face the other way."`
+					goto other
+				`	"How would I slow the ship without thrusters?"`
+					goto how
+
+			label other
+				`	"Oh. Easy mistake. You should get a better navigation system, this one is a worthless piece of junk. How do they even allow you to fly with such outdated equipment, anyway?"`
+				`	You tell them that this is in fact a perfectly good, up to date navigation system, and that he should leave the cockpit.`
+				`	"Alright, alright. You know where to find me if you need more help."`
+					goto close
+			
+			label how
+				`	"How? Don't you know how to fly a ship? And you call yourself a 'pilot' and a 'captain'? Just use the brakes!"`
+				`	When you tell him that he is on board a spaceship, and there are, in fact, no brakes, he just walks off, muttering to himself. "What times are we living in, that captains don't know how to stop a ship? Using thrusters, like that could ever work..."
+					goto close
+
+			label close
+				`	You make sure to lock the cockpit door this time, and then carefully stop the ship using the thrusters.`
+	on enter <destination>
+		conversation
+			`You glance behind you to make sure the cockpit doors are still closed. Maybe this time you can maneuver the ship in peace.`
+			`	Just as you finished that thought, the intercom beeps. "Are you sure you can handle landing by yourself? Don't be afraid to ask for help, it isn't embarrassing. Pilot training is worthless anyway."`
+			choice
+				`	"Do you even know how to fly a ship?"`
+					goto fly
+				`	(Stay silent.)`
+					goto silent
+
+			label fly
+				`	"I never bothered to apply for a licene, but I know my way around the controls," he says. You remain dubious, considering he didn't even know how to stop a ship.`
+			choice
+				`	"If you are not a pilot, then stop bothering me."`
+					goto stop
+				`	(Accept his advice.)`
+					goto silent
+
+			label silent
+				`	You silently listen to the 'advice' he is giving. "Slow down, you are going way too fast", "you are turning the wrong way", "be more gentle on those controls". When he gets to "Why are we not there yet?" you decide to silence the audio, and focus on flying the ship.`
+
+			label stop
+				`	"This is what I get for helping you? Very grateful of you. Maybe next time you won't get a passenger that flies the ship for you, and you will crash into a planet."`
+				`	You didn't think silencing the audio could be this satisfying. Maybe now you can finally focus on flying the ship.`
+	on complete
+		conversation
+			`After landing, you open the doors to let your passengers out. You already see the middle-aged man approaching you.`
+			`	"Took you long enough! Anyway, I must get going now. Some people can't sit around all day."`
+			choice
+				`	(Ask him for payment.)`
+				`	(Let him go.)`
+					decline
+				`	"Pay you?! You would have crashed the ship, had I not helped you! I've practically flown your ship here, and you have the guts to ask for payment?"`
+				`	He turns his back to you and walks off. You consider calling spaceport security, but decide against it; the sooner you get rid of him, the better.`
+	on fail
+		conversation
+			`"You should have let me take the wheel, captain", your middle-aged passenger says when you tell him that you won't get to <destination> in time."`
+			choice
+				`	"Fine. Do it yourself."`
+					goto pilot
+				`	"I'm rather fond of living, actually."`
+			`	"You think I would have crashed your ship? Nonsense! I can fly this rustbucket better than anyone!" he says.`
+			`	You watch as he walks towards the cockpit.`
+			choice
+				`	(Stop him.)`
+				`	(Let him fly the ship.)`
+					goto pilot
+			`	You quickly catch up to him, and politely tell him to go back to his compartments and stay there for the rest of the journey.`
+				decline
+			
+			label pilot
+			`	He straps himself in, and begins fiddling with the controls. Navigation lights. Life support. Thrusters.`
+			`	The ship suddenly lurches to the side, and you find yourself on the ground. "No need to panic, everything is under control", the bogus pilot exclaims.`
+			`	After a moment of relative calm, the world begins to spin around you with sickening speed. You hear alarms go off all over the ship, and sparks fly all around you. It seems that he managed to put the ship into a spin by overloading some of the engines.`
+			`	You try to get up, but it is impossible to find your balance in the wheeling ship. The alarms get more frantic with every passing second, until you hear a low rumbling, then a thundering explosion consumes everything.`
+				die
+	on abort
+
+
+
+mission "Drunk Teen Hijack"
+	name "Group transport to <planet>"
+	description "Bring <bunks> teenagers to <destination>. They cannot afford to pay you."
+	passengers 5
+	source
+		attributes "dirt belt"
+	destination
+		distance 4
+		attributes "dirt belt"
+	to offer
+		random < 1
+		"flagship crew" > 5
+	on offer
+		conversation
+			`As you are wandering the spaceport, a group of teenage boys huddling in a corner catches your eye. They seem to be talking amongst themselves, sometimes throwing a glance towards you.`
+			choice
+				`	(Approach them.)`
+					goto ask
+				`	(Walk away.)`
+			`	Just as you turn away to leave, one of the teenagers straightens up and approaches you.`
+				goto introduction
+
+			label ask
+			`	"Can I help you?"`
+			`	One of the teens steps forward, and introduces himself.`
+
+			label introduction
+			`	"Hello. I'm Howard. Me and my four friends are looking for transport off-world, to <destination>, but cannot affort to pay for it. Can you help us?"`
+			choice
+				`	"Sure."`
+					goto accept
+				`	"Why do you want to go there?"`
+				`	"Sorry, I'm not headed that way."`
+					goto decline
+			`	After a moment of silence, Howard replies. "We heard they have well-paying jobs over there, even for teenagers. And we don't want to work for the Syndicate or those minted folks on the paradise worlds."`
+			`	He pauses for a second, then continues, "We grew up in the dirt belt. This is our home. We don't want to leave all that behind." You hear something strange in his voice, but cannot quite make sense of it. It might just be their desperation.`
+			choice
+				`	"Very well. I will take you to <destination>."`
+					goto accept
+				`	"Sorry, but I can't afford to take you with me."`
+
+			label decline
+			`	They appear disappointed at your reply, but don't say anything.`
+				decline
+
+			label accept
+			`	They seem delighted at your reply. They thank you, and pick up their luggage to follow you to your ship. You notice that all their belongings fit in just a few beat-up suitcases.`
+				accept
+	on enter
+		conversation
+			`As you are walking down the passageways of the <ship> to your quarters, you hear muffled noises coming from behind the corner.`
+			choice
+				`	(Investigate the noise.)`
+					goto investigate
+				`	(Don't investigate.)`
+			`You continue on your way to your quarters without noticing anything strange. It must have been some piece of equipment you haven't noticed before.`
+				decline
+			label investigate
+			`	You quietly walk closer, then stop and listen to what seems to be people talking.`
+			`	"...seems so nice. Picked us up, and all."`
+			`	"Nah. They all expect us to pay them later, these guys. They work for money, like everyone else. We are just an investment."`
+			`	"We can't back out now. There is no way we could get there otherwise. Don't act like it's your first time in the business." In the third speaker, you recognize Howard, one of your teenage passengers.`
+			choice
+				`	(Confront them.)`
+				`	(Walk away.)`
+					goto walk
+			`	You turn the corner to find the five teenagers gathered there. They seem surprised by your appearance, and Howard addresses you. "Captain! We are so grateful you brought us on board!" The other teens murmur agreeingly.`
+			`	"Anyway, we don't mean to bother you," and walks off, the rest following suit.`
+			label walk
+			`	You walk back to your quarters, unsure about what just happened.`
+	on enter
+		dialog
+			`You hear muffled noises and some awful, out of tone 'singing'. Howard and his friends seem to be having a party.`
+	on enter
+		dialog
+			`This time the partying noises seem even louder than before. You start to wonder how they got that many drinks on board, since they barely had any baggage.`
+			`	Later that night, you woke up to a strange noise near your cabin, but attribute it to the party and fall back asleep.`
+	on enter
+		conversation
+			`Today the party seems to have spilled out of their compartments; in fact, you can see Howard and his friends approaching you in the corridor with tottering steps. They stop right in front of where you are standing, in the door of the cockpit.`
+			`	"'Ello, capt'n," Howard says. "I wanted to fly a ship since I was a kid. Fancy showin' us how it's done?" They all appear drunk, with one of them leaning on a nearby bulkhead to keep upright.`
+			choice
+				`	"Sure, come in."`
+					goto come
+				`	"Sorry, I can't let you into the cockpit."`
+			`	"Well, that's too bad then. Larry, would you show the kind captain what you got?" Larry is apparently the name of the guy leaning on the wall. He puts a hand behind his back, and pulls out a -`
+			`	You freeze. Larry has your sidearm in his hand, pointed at you. He must have taken it last night, when you thought they were partying. Instantly, all drunkenness is gone from him and his friends, and they eye you with sudden glee and hostility. "That's right," Howard says, with a snark. "Now, will you please let us into the cockpit?"`
+			`	You step away from the door, careful not to make any sudden moves.`
+				goto options
+			
+			label come
+			`	You let the group into the cockpit. Four of them immediately crowd the place, but the fifth teen - the one leaning on the wall - keeps his distance.`
+			`	The group seems intrigued by the various controls and equipment that is all over the cockpit. They ask you questions and walk around like Then, all of a sudden, those inside grab you and try to pin your hands down.`
+			choice
+				`	(Call for help.)`
+				`	(Fight them.)`
+					goto fight
+				`	(Reach for my sidearm.)`
+					goto sidearm
+			`	You try to shout, but a kidney punch knocks the wind out of you before you could speak.`
+				goto fight
+
+			label sidearm
+			`	You try to reach for your pistol, but it's no longer in its holster.`
+
+			label fight
+			`	You stand no chance against the four attackers. They each grab one of your limbs and immobilize you, then the fifth guy points your own gun at you. They must have taken it last night, when you thought they were partying.`
+			`	"Keep it steady, captain," Howard says with glee from your right side. "No funny business. Larry here has an itchy trigger finger." He then lets go of your right leg he has been holding onto, and addresses Larry. "Told you it would work! Next time, I get the gun while you fight in the dirt with the idiot."`
+			`	You notice how none of them seems to be drunk in the slightest anymore.`
+
+			label options
+			`	"You will fly the ship for us. If you don't try anything, we'll let you go afterwards." You don't give much credit to their promise.`
+			choice
+				`	(Pretend to comply with the demands.)`
+					goto comply
+				`	(Shout for your crew.)`
+
+			branch survived
+				random < "flagship crew" - 1
+			`	Larry fires the weapon, and you feel sickening pain in your chest. You fall to the ground, and try to gasp for air, but it feels too hard. You watch as everything goes black and your consciousness slips away.`
+				die
+
+			label survived
+			`	Larry fires the weapon, and you feel sickening pain in your left shoulder. Before Larry could fire again however, a member of your crew pops up behind him and takes him out with a well-aimed shot.`
+			`	With the other four attackers being unarmed, they have no choice but to surrender. As more crew members arrive, they take away the teenagers and stitch up your wound. You still can't quite believe what just happened.`
+			`	You thank your fellow crew members for saving your life, and decide to not let your sidearm out of your sight ever again.`
+				decline
+
+			label comply
+			`	You slowly sit down in the pilot chair, and carefully guide the ship towards the spot Howard indicated on the map. At an opportune moment, you ram the thrusters up to maximum, and turn the ship to the side. Howard and his friends fall over, but you remain secure in your chair.`
+			`	You run over to Larry and make a quick grab for the weapon before he can recover. Now that you have the upper hand, you feel confident to call for your crew.`
+			`	As they take away the five hijackers, the magnitude of the events slowly sinks in. You could easily have died today.`
+			`	You thank your fellow crew members, and decide not to let your sidearm out of your sight ever again.`
+	on complete
+		payment 50000
+		dialog
+			`You notify the spaceport authorities about the situation, and hand over the teenagers to the security detachment they sent out.`
+			`	"That's the Howard Gang! They have been causing trouble on <origin>, then turned tail when they caught wind of the investigation. We are glad you managed to catch them."`
+			`	They give you <payment> bounty for apprehending the criminals.`
