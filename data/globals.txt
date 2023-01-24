@@ -11,7 +11,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-mission "global: Ask the Hai about the Unfettered"
+mission "Ask the Hai about the Unfettered"
 	landing
 	invisible
 	to offer
@@ -20,7 +20,7 @@ mission "global: Ask the Hai about the Unfettered"
 		set "global: Ask the Hai about the Unfettered"
 		fail
 
-mission "global: main plot completed"
+mission "main plot completed"
 	landing
 	invisible
 	to offer
@@ -29,7 +29,7 @@ mission "global: main plot completed"
 		set "global: main plot completed"
 		fail
 
-mission "global: event: hai-human resolution announced"
+mission "event: hai-human resolution announced"
 	landing
 	invisible
 	to offer

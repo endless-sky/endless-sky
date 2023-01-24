@@ -44,10 +44,10 @@ conversation "default intro"
 
 
 
-start "hai"
+start "hai space after FW and HR"
 	name "Hai Later Start"
 	description `You grew up on Greenwater, a world with a very rich and diverse hai-human culture. You've dreamed of owning your own fleet since you were given toy spaceships as a small child. In order to reach that goal, you worked hard in a texture farm making human clothing that, quite surprisingly, sold very well.`
-	description `	You heard stories of heroes saving both humans and Hai. Now, as you enter the shipyard, you feel liberated.`
+	description `	You heard stories of heroes saving both humans and Hai. Now, as you enter the shipyard, you feel like this is the start of a new life.`
 	thumbnail "scene/hai start"
 	system "Fah Soom"
 	planet "Greenwater"
@@ -60,6 +60,7 @@ start "hai"
 		description "What if you had not grown up on New Boston? What if you had waited longer before taking to the skies?"
 		thumbnail ""
 		date "middle of 3020"
+		credits "over a million"
 	to reveal
 		has "main plot completed"
 		has "Ask the Hai about the Unfettered"
@@ -67,6 +68,8 @@ start "hai"
 		name "Hai Start"
 		description "There could be interesting possibilities up north, once all crises are resolved."
 		description "You could have started a different way, went a different path."
+		system "in Hai space"
+		planet "human population"
 		date "Jun 3020"
 		credits 1.431M
 		debt 1.431M
