@@ -202,7 +202,7 @@ ship "Astral Cetacean"
 		"thrust" 24
 		"flare sound" "astral cetacean"
 		"turn" 240
-		"steering flare sound "astral cetacean"
+		"steering flare sound" "astral cetacean"
 
 		"jump fuel" 80
 		"jump speed" .2
@@ -224,8 +224,6 @@ ship "Astral Cetacean"
 	engine 0 0
 	"steering engine" 0 0
 	gun 0 -210
-	bay "fighter" 0 0
-		over
 	leak "blood" 60 60
 	explode "blood" 160
 	"final explode" "blood" 
