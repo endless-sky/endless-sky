@@ -3696,7 +3696,7 @@ mission "Human to Hai Space"
 			
 			label travel
 			`	"It was quite the trip! It's a bit odd to see only humans around, and I had to be careful to not mention where I was from. But it was definitely worth it! I got to see Earth, Skymoot, Chiron, and so many other beautiful planets. Seeing human culture with my own eyes was an eye-opening experience, although some of the places there were less... clean than I expected. I was almost robbed on Earth; I'm not used to pickpockets back home. Perhaps human space isn't as safe as Hai space, but I still don't regret coming here. It's about time for me to go back, though."`
-				
+			
 			label decision
 			choice
 				`	"Alright, I'll take you there."`

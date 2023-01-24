@@ -639,10 +639,8 @@ test "Start Game"
 		# but to be sure:
 		# save these in temporary conditions to know what they are if it fails, for easier debugging
 		apply
-			"test: name: a b" = "name: a b"
 			"test: Intro [0]: offered" = "Intro [0]: offered"
 			"test: Intro [0]: declined" = "Intro [0]: declined"
-			"test: total ships" = "total ships"
 			"test: ship model: Shuttle" = "ship model: Shuttle"
 			"test: ship model: Sparrow" = "ship model: Sparrow"
 			"test: ship model: Star Barge" = "ship model: Star Barge"

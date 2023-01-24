@@ -252,7 +252,7 @@ mission "Unfettered Lead Asteroid Mining"
 	job
 	repeat
 	name "Gather Lead from asteroids"
-	description "Mine and  collect 35 tons of lead, then bring the minerals to <destination> for <payment>. Lead is available in the asteroid field in Wah Yoot."
+	description "Mine and collect 35 tons of lead, then bring the minerals to <destination> for <payment>. Lead is available in the asteroid field in Wah Yoot."
 	source
 		attributes "unfettered"
 		not planet "Warfeed"
