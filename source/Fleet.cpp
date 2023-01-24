@@ -182,7 +182,8 @@ void Fleet::Load(const DataNode &node)
 		int valueIndex = keyIndex + 1;
 		bool hasValue = (child.Size() > valueIndex);
 		const string &key = child.Token(keyIndex);
-		if((add || remove) && (!hasValue || (key != "variant" && key != "personality")))
+		if((add || remove) && (!hasValue || (child.Token(1) != "variant" && child.Token(1) != "personality"
+			&& child.Token(1) != "defeated")))
 		{
 			child.PrintTrace("Warning: Skipping invalid \"" + child.Token(0) + "\" tag:");
 			continue;
