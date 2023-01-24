@@ -323,7 +323,7 @@ mission "Hai Building Mountaintop [2] Recruits"
 		dialog `You finally dock at <planet>, your tedious tour complete. Shortly after, you receive a ping informing you that <payment> has been deposited into your account. Terry must've set it up to happen automatically.`
 
 
-mission "Hai Building Mountaintop [2a] Sales Job"
+mission "ZZ Hai Building Mountaintop [2a] Sales Job"
 	landing
 	invisible
 	source
