@@ -130,7 +130,7 @@ conversation "hai intro"
 		`	"Sorry, not interested."`
 			decline
 	`	As the two of you settle up the paperwork, the captain takes the time to explain, in great detail, why this ship is so marvelous. Because of how excited you are to finally fly, you miss everything other than repeated reference to the 'exceptional' reinforced armor.`
-	`	Before you leave, they give you a final tip: "If you want, you can always sell this ship and buy an Aphid instead, as the shipyard authorities will make you a discount for having sold my ship."`
+	`	Before you leave, they give you a final tip: "If you want to, you can always sell this ship and buy an Aphid instead. The shipyard authorities will give you a discount for having sold my ship."`
 	action
 		set "hai start: Grasshopper"
 		give ship "Grasshopper (Expensive)" "Pristine Jewel"
