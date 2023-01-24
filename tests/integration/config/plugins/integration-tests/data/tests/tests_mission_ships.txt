@@ -1,4 +1,4 @@
-test-data "One Earthly Barge"
+test-data "Checking For A Gifted Ship Test Save"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
@@ -48,44 +48,46 @@ test-data "One Earthly Barge"
 			credits 0
 			score 400
 			history
-		mission "%TEST%: Switch"
+
+test-data "Checking For A Gifted Ship Test Missions"
+	category mission
+	contents
+		mission "Switch"
 			landing
 			on offer
 				take ship "Star Barge"
 				give ship "Sparrow" "The Sparrow"
 					id "ship: sparrow"
-		mission "%TEST%: Check sparrow"
+		mission "Check sparrow"
 			landing
 			on offer
 				take ship "Sparrow" "The Sparrow"
 					id "ship: sparrow"
-				payment 10
 
-mission "%TEST%: Switch"
-mission "%TEST%: Check sparrow"
-
-test "Checking for a gifted ship"
+test "Checking For A Gifted Ship"
 	status active
 	description "Test losing a freighter, getting a sparrow and then verify the player has said (named) sparrow, after reloading the save."
 		# Create/inject the savegame and load it.
-		inject "One Earthly Barge"
+		inject "Checking For A Gifted Ship Test Missions"
+		inject "Checking For A Gifted Ship Test Save"
 		call "Load First Savegame"
-		call "Wait 10 steps"
+		# Make the missions trigger by landing again.
 		call "Depart"
 		call "Land"
+		call "Depart"
 		# Reload this to make sure the UUID is well stored into the savefile.
 		call "Open Menu"
 		call "Load First Savegame"
 		call "Depart"
+		call "Land"
 		assert
-			"credits" == 10
-			"ships: Light Freighter" == 0
-			"ships: Interceptor" == 0
-			"%TEST%: Switch: offered" == 1
-			"%TEST%: Check sparrow: offered" == 1
+			"ship model: Star Barge" == 0
+			"ship model: Sparrow" == 0
+			"Switch: offered" == 1
+			"Check sparrow: offered" == 1
 
 
-test-data "One Specific Barge"
+test-data "One Specific Barge Save"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
@@ -175,40 +177,43 @@ test-data "One Specific Barge"
 			credits 0
 			score 400
 			history
-		mission "%TEST%: Switch"
+
+test-data "One Specific Barge Save"
+	category mission
+	contents
+		mission "Switch"
 			landing
 			on offer
 				# the ship is not here
 				take ship "Star Barge (Armed)"
 					"requires outfits"
-		mission "%TEST%: Switch 2"
+		mission "Switch 2"
 			landing
 			on offer
 				# incorrect ship name
 				take ship "Star Barge (Armed)" "Well defended"
 					unconstrained
-		mission "%TEST%: Switch 3"
+		mission "Switch 3"
 			landing
 			on offer
-				# correct
+				# correct, takes the other ship
 				take ship "Star Barge (Armed)"
 					unconstrained
 
-mission "%TEST%: Switch 2"
-mission "%TEST%: Switch 3"
-
-test "Taking right ship variant and unconstrained"
+test "Taking Ship With Outfits And Unconstrained"
 	status active
-	description "Test taking variants ships with the unconstrained keyword and not, and receiving sparrows."
+	description "Test taking variants ships with outfits, and with the unconstrained keyword or not."
 		# Create/inject the savegame and load it.
-		inject "One Specific Barge"
+		inject "One Specific Barge Save"
 		call "Load First Savegame"
-		call "Wait 10 steps"
+		call "Depart"
+		call "Land"
 		call "Depart"
 		# we only lost the far away barge, because otherwise we would have more sparrows.
 		assert
-			"ships: Light Freighter" == 1
-			"ships: Interceptor" == 2
-			"%TEST%: Switch: offered" == 0
-			"%TEST%: Switch 2: offered" == 0
-			"%TEST%: Switch 3: offered" == 1
+			"flagship model: Star Barge" == 1
+			"Switch: offered" == 0
+			"Switch 2: offered" == 0
+			"Switch 3: offered" == 1
+			# make sure we took off
+			"flagship landed" == 0
