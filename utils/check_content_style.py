@@ -96,7 +96,7 @@ class Warning(Error):
 def print_help():
 	help_message = [
 		["Data file checker script written for Endless Sky by tibetiroka."],
-		["Usage: check_content_style [OPTION]... [--files FILE...]"],
+		["Usage: check_content_style [OPTION]... [--files FILE... | --add-files FILE...]"],
 		["Checks that text files follow the configured formatting rules."],
 		[],
 		["Options:"],
@@ -108,7 +108,9 @@ def print_help():
 		["", "-R", "--no-recursion", "Do not look for files recursively. Please note that some pathname patterns are implicitly recursive, and are not disabled with this option."],
 		["", "-r", "--recursive", "Look for files recursively. This is the default option. Please note that some pathname patterns are implicitly non-recursive, and are not recursively expanded with this option."],
 		[],
-		["After these options, the --files option can be passed. Any further argument should be a file name, that is later added to the list of data roots. Pathname patterns are supported."],
+		["After these options, the --files or the --add-files option can be passed. Any further argument should be a file name, that is later added to the list of data roots. Pathname patterns are supported."],
+		["The --files option specifies the list of files or directories where the style checks are performed. This option overrides the 'dataRoots' entry of the configuration file. Pathname patterns are supported."],
+		["The --add-files option is similar, but it appends to the 'dataRoots' entry, instead of replacing it."],
 		[],
 		["Exit codes:"],
 		["", "0", "Successful execution and no formatting errors found."],
@@ -129,7 +131,6 @@ def print_config_help():
 		[],
 		["Entries:"],
 		["", "dataRoots", "An array of files or folders that contain data files. Pathname patterns are supported."],
-		["", "dataFileTypes", "An array of file extensions (e.g. '.txt') that are treated as data files when found inside data roots."],
 		["", "rules", "The formatting rules, as a JSON object. The object contains the following entries:"],
 		["", "", "", "indentation", "A string representing a single level of indentation."],
 		["", "", "", "maxIndentationIncrease", "The maximum number of indentation levels that can be added per line. It is recommended to set this value to 1."],
@@ -142,11 +143,11 @@ def print_config_help():
 		["", "", "", "", "", "holder", "A regex matching the entire 'copyright holder' line. This is repeatedly matched to the beginning of the file."],
 		["", "", "", "", "", "notice", "An array of regexes matching each subsequent line of the copyright notice."],
 		["", "", "", "regexChecks", "An array of regex-based checks that are applied to individual lines. The checks are grouped by the lines they are applied to. Each entry is a JSON object with the following entries:"],
-		["", "", "", "", "", "excludedNodes", "An array of regexes matching data nodes that the checks are not applied to. Indentation is not taken into account. Default to an empty array."],
+		["", "", "", "", "", "excludedNodes", "An array of regexes matching data nodes that the checks are not applied to. Indentation is not taken into account. Defaults to an empty array."],
 		["", "", "", "", "", "checks", "An array of regex checks. Each entry is a JSON object with the following entries:"],
 		["", "", "", "", "", "", "", "description", "The description of the check. This is displayed when it is found in a file."],
-		["", "", "", "", "", "", "", "regex", "The regex matching a formatting issue on the line."],
-		["", "", "", "", "", "", "", "except", "An array of regular exceptions. If any of these match the match result of 'regex', the check is discarded. Defaults to an empty array."],
+		["", "", "", "", "", "", "", "regex", "The regex matching a formatting issue in a line."],
+		["", "", "", "", "", "", "", "except", "An array of regular expressions. If any of these match the match result of 'regex', the check is discarded. Defaults to an empty array."],
 		["", "", "", "", "", "", "", "isError", "Whether the formatting issue should be marked as an error or a warning. Defaults to true if not specified."],
 		["", "", "", "", "", "", "", "correction", "A JSON object specifying how to automatically correct this issue. If not specified, the issue cannot be corrected. Entries:"],
 		["", "", "", "", "", "", "", "", "", "parseEntireLine", "Whether to edit the entire line, or only the segment where the regex matched. Defaults to false."],
@@ -550,6 +551,7 @@ if __name__ == '__main__':
 	auto_correct = False
 	format_file = "./contentStyle.json"
 	recursive = True
+	add_files = True
 	# Processing command line arguments.
 	# The --files option is processed later.
 	resume_index = 1
@@ -575,6 +577,10 @@ if __name__ == '__main__':
 				i = i + 1
 		elif arg == "--files":
 			resume_index = i + 1
+			add_files = False
+			break
+		elif arg == "--add-files":
+			resume_index = i + 1
 			break
 		else:
 			print("Unknown option '" + sys.argv[i] + "'")
@@ -584,9 +590,11 @@ if __name__ == '__main__':
 	if config is None:
 		exit(2)
 
-	# Appending additional input files
-	for j in range(resume_index, len(sys.argv)):
-		config["dataRoots"].append(sys.argv[j])
+	# Adding input files
+	if add_files:
+		config["dataRoots"] += sys.argv[resume_index:]
+	else:
+		config["dataRoots"] = sys.argv[resume_index:]
 
 	# Listing data files
 	data_files = []
@@ -594,7 +602,10 @@ if __name__ == '__main__':
 		# Adds all listed paths if:
 		# - it's a file, and
 		# - has an accepted extension
-		data_files += [file for file in glob.glob(root, recursive=recursive) if os.path.isfile(file) and os.path.splitext(file)[1] in config["dataFileTypes"]]
+		data_files += [file for file in glob.glob(root, recursive=recursive) if os.path.isfile(file)]
+	# Removing duplicates and sorting
+	# Since not all path names are resolved, there could still be duplicate entries after this
+	data_files = list(set(data_files))
 	data_files.sort()
 
 	# Parsing files

@@ -1,6 +1,5 @@
 {
 	"dataRoots": ["data/**"],
-	"dataFileTypes": [".txt"],
 	"rules": {
 		"indentation": "\t",
 		"maxIndentationIncrease": 1,
