@@ -76,7 +76,7 @@ void Minable::Load(const DataNode &node)
 
 
 
-const string &Minable::Name() const
+const string &Minable::TrueName() const
 {
 	return name;
 }

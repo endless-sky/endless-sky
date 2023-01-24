@@ -49,7 +49,7 @@ public:
 
 	// Load a definition of a minable object.
 	void Load(const DataNode &node);
-	const std::string &Name() const;
+	const std::string &TrueName() const;
 	const std::string &DisplayName() const;
 	const std::string &Noun() const;
 
