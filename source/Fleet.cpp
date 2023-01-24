@@ -216,7 +216,7 @@ void Fleet::Load(const DataNode &node)
 		else if(remove && defeated && key == "personality")
 			defeatedPersonality = Personality();
 		else if(defeated && key == "personality")
-			defeatedPersonality.Load(child, 2);
+			defeatedPersonality.Load(child, keyIndex);
 		else if(key == "personality")
 			personality.Load(child);
 		else if(key == "variant" && !remove)
