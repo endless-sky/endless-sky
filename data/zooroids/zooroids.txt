@@ -287,6 +287,6 @@ fleet "Astral"
 	government "Indigenous Lifeform (Astral)"
 	cargo 0
 	personality
-		mute unconstrained swarming
+		mute unconstrained
 	variant
 		"Astral Cetacean"
