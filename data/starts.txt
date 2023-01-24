@@ -125,7 +125,7 @@ conversation "hai intro"
 			decline
 	`	"I can see the will to explore in your eyes. I would be delighted to have you flying the 'Pristine Jewel'!" they say, taking you to the ship. It is clearly not brand new, but is still in a surprisingly good condition.`
 	scene "thumbnail/hai grasshopper"
-	`	"Because I like you I'll give you a friendly price. What do you say about... 1.132M credits, for this wonderful ship? That's less than a third the price you would have to pay if you were to buy this model from the shipyard. Except you can't find a model like this in shipyards, trust me!"`
+	`	"Because I like you I'll give you a friendly price. What do you say about... a bit over a million credits, for this wonderful ship? That's less than a third the price you would have to pay if you were to buy this model from the shipyard. Except you can't find a model like this in shipyards, trust me!"`
 	choice
 		`	"Sold!"`
 		`	"Sorry, not interested."`
