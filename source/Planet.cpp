@@ -421,7 +421,7 @@ string Planet::ShipyardDescription() const
 	string shipyardDescriptionFromSales;
 
 	for(const Sale<Ship> *sale : shipSales)
-		shipyardDescriptionFromSales += sale->description;
+		shipyardDescriptionFromSales += sale->GetDescription();
 
 	return shipyardDescriptionFromSales;
 }
@@ -457,7 +457,7 @@ string Planet::OutfitterDescription() const
 	string outfitterDescriptionFromSales;
 
 	for(const Sale<Outfit> *sale : outfitSales)
-		outfitterDescriptionFromSales += sale->description;
+		outfitterDescriptionFromSales += sale->GetDescription();
 
 	return outfitterDescriptionFromSales;
 }
