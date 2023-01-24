@@ -96,7 +96,7 @@ mission "Unfettered Jump Drive 4"
 	job
 	repeat
 	name "Sell Jump Drive"
-	description "Exchange a jump drive for a million credits."
+	description "Exchange a jump drive for money or weapons, if an outfitter is available."
 	source
 		attributes "unfettered"
 	to offer
@@ -105,11 +105,32 @@ mission "Unfettered Jump Drive 4"
 	to fail
 		has "Unfettered Jump Drive 4: active"
 	on accept
-		dialog "As usual, the Unfettered are more than willing to pay you a million credits for your jump drive, but you do not gain any additional information by talking with them."
-		outfit "Jump Drive" -1
-		outfit "Hyperdrive" 1
-		payment 1000000
-		"reputation: Hai (Unfettered)" >?= 40
+		conversation
+			branch "want outfits"
+				not "unfettered: money for drives"
+				has "Unfettered Jump Drive Trading: offered"
+				has "flagship planet: Darkcloak"
+			label money
+			action
+				payment 1000000
+			`As usual, the Unfettered are more than willing to pay you a million credits for your jump drive, but you do not gain any additional information by talking with them.`
+				goto trade
+
+			label "want outfits"
+			`The Unfettered's usual deal of trading a jump drive for weapons still stands.`
+			choice
+				`	(Take two Tripulse Shredders.)`
+				`	(Take money instead.)`
+					goto money
+			action
+				outfit "Tripulse Shredder" 2
+			`	The two Shredders are loaded onto your ship, in exchange for your jump drive.`
+
+			label trade
+			action
+				outfit "Jump Drive" -1
+				outfit "Hyperdrive" 1
+				"reputation: Hai (Unfettered)" >?= 40
 
 
 phrase "unfettered mining payment dialog"
@@ -231,7 +252,7 @@ mission "Unfettered Lead Asteroid Mining"
 	job
 	repeat
 	name "Gather Lead from asteroids"
-	description "Mine and  collect 35 tons of lead, then bring the minerals to <destination> for <payment>. Lead is available in the asteroid field in Wah Yoot."
+	description "Mine and collect 35 tons of lead, then bring the minerals to <destination> for <payment>. Lead is available in the asteroid field in Wah Yoot."
 	source
 		attributes "unfettered"
 		not planet "Warfeed"
