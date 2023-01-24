@@ -2797,17 +2797,22 @@ bool AI::DoSecretive(Ship &ship, Command &command)
 		Point scanningPos = scanningShip->Position();
 		Point pos = ship.Position();
 
-		double cargoDistanceSqrd = scanningShip->Attributes().Get("cargo scan power");
-		double outfitDistanceSqrd = scanningShip->Attributes().Get("outfit scan power");
+		double cargoDistance = scanningShip->Attributes().Get("cargo scan power");
+		double outfitDistance = scanningShip->Attributes().Get("outfit scan power");
 
-		double maxScanRangeSqrd = max(cargoDistanceSqrd, outfitDistanceSqrd);
-		double distanceSqrd = scanningPos.DistanceSquared(pos) * .0001;
+		double maxScanRange = max(cargoDistance, outfitDistance);
+		double distance = scanningPos.DistanceSquared(pos) * .0001;
 
-		// If he can scan us we need to evade.
-		if(distanceSqrd < maxScanRangeSqrd)
+		// If it can scan us we need to evade.
+		if(distance < maxScanRange)
 		{
-			Point away = scanningPos + Angle(pos - scanningPos).Unit() * (sqrt(maxScanRangeSqrd) + 50.);
-			MoveTo(ship, command, away, scanningShip->Velocity(), 0., ship.MaxVelocity());
+			Point away;
+			if(ship.GetPersonality().IsUnconstrained() || !fenceCount.count(&ship))
+				away = pos - scanningPos;
+			else
+				away = -pos;
+			away *= ship.MaxVelocity();
+			MoveTo(ship, command, pos + away, away, 1., 1.);
 			return true;
 		}
 	}
