@@ -61,6 +61,7 @@ start "hai space after FW and HR"
 		description "What if you had not grown up on New Boston? What if you had waited longer before taking to the skies?"
 		thumbnail ""
 		date "middle of 3020"
+		planet "Slightly too warm"
 		credits "over a million"
 	to reveal
 		has "main plot completed"
@@ -69,8 +70,8 @@ start "hai space after FW and HR"
 		name "Hai Start"
 		description "There could be interesting possibilities up north, once all crises are resolved."
 		description "You could have started a different way, went a different path."
-		system "in Hai space"
-		planet "human population"
+		system "Somewhere far north"
+		planet "Mixed culture"
 		date "Jun 3020"
 		credits 1.431M
 		debt 1.431M
@@ -96,7 +97,7 @@ start "hai space after FW and HR"
 
 conversation "hai intro"
 	scene "scene/hai shipyard"
-	`	You've never been to the shipyard before, and as you arrive, it already feels like you're traveling to another world. The pictures and videos you've seen of all these ships before simply don't do them justice; seeing them for real is something else entirely. Even though you know a lot of those ships must have been in service for many years, you are stunned by how new and shiny they look. You begin to wonder if you are ready to take the big leap.`
+	`	You've never been to the shipyard before, and going to the poles already feels like you're traveling to another world. The pictures and videos you've seen of all these ships before simply don't do them justice; seeing them for real is something else entirely. Even though you know a lot of those ships must have been in service for many years, you are stunned by how new and shiny they look. You begin to wonder if you are ready to take the big leap.`
 	`	This "Aphid" could suit your needs. It is fast and able to carry a respectable amount of cargo.`
 	scene "thumbnail/hai aphid"
 	`	That is, unless you want to get adventurous and try out the impetuous Grasshopper. Surely the interceptor would be able to beat the smaller human warships, provided a competent pilot is at the helm.`
