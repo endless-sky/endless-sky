@@ -2,7 +2,7 @@ test "Hyperjumps To Autocondition"
 	status active
 	description `Test the "hyperjumps to: <planet|system>" autoconditions.`
 	sequence
-		inject "Three Earthly Barges"
+		inject "Three Earthly Barges Save"
 		call "Load First Savegame"
 		assert
 			# Current planet
