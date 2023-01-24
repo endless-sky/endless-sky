@@ -325,7 +325,8 @@ void AI::IssueAsteroidTarget(const PlayerInfo &player, const shared_ptr<Minable>
 	Orders newOrders;
 	newOrders.type = Orders::MINE;
 	newOrders.targetAsteroid = targetAsteroid;
-	IssueOrders(player, newOrders, "focusing fire on " + targetAsteroid->Name() + " asteroid.");
+	IssueOrders(player, newOrders,
+			"focusing fire on " + targetAsteroid->DisplayName() + " " + targetAsteroid->Noun() + ".");
 }
 
 
