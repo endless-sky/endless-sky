@@ -321,7 +321,7 @@ int ShopPanel::DrawDetailDescription(const std::string &descriptionText, const P
 	description.SetAlignment(Alignment::JUSTIFIED);
 	description.SetWrapWidth(INFOBAR_WIDTH - 50);
 	description.SetFont(font);
-	description.Wrap(planet->OutfitterDescription());
+	description.Wrap(descriptionText);
 	description.Draw(center, bright);
 
 	return description.Height();
