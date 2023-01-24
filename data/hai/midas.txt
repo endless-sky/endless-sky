@@ -312,8 +312,8 @@ mission "Midas: Who is the mad one?"
 		has "outfit (flagship cargo): Gold Bars"
 	on offer
 		conversation
-			`	You head into the outfitter, wondering what price you can get out of these newly acquired gold bars, when you hear a cry. "STOP!" You see it comes from a very old person. You go to them to see what they want. "These are cursed! You should get rid of them. As soon as you can!"`
-			`	He then takes a closer look at them, and you. "How did you even acquire these?" He says, but he does not give you time to respond. "Di-did you join them? If you did, I am very sorry for any disturbance I may have caused, sir!" He exclaims, moving back and kneeling, as if wanting to apologize.`
+			`	You head into the outfitter, wondering what price you can get out of these newly acquired gold bars, when you hear someone shouting. "STOP!" You immediately notice the voice is very old. You go to him to see what he wants. "These are cursed! You should get rid of them. As soon as you can!"`
+			`	He then takes a closer look at the gold bars, and at you. "How did you even acquire these?" He asks, but he does not give you time to respond. "Di-did you join them? If you did, I am very sorry for any disturbance I may have caused, sir!" He exclaims in fear, moving back and kneeling, as if wanting to apologize.`
 			choice
 				`	"Who are 'they'?"`
 					goto who
@@ -324,19 +324,19 @@ mission "Midas: Who is the mad one?"
 					decline
 			`	"Ha! I made the same mistake, once, plundering them of a ship. It almost was my last."`
 			label who
-			`	He looks at you, with fascination in his eyes. "You truly do not know, do you? Good! Then you may still be free. Do not make the mistake I made, this gold will corrupt you! They will come for it! Stash it away, or sell it whilst you still can! It is not worth waiting for them to come and offer you the fabulous prices."`
-			`	He continues, finally catching his breath. "I went to the pirate worlds! To their territory! What a fool I was. Yes, it was a lot of money, but not for me. I got plundered myself along the way."`
+			`	He looks at you, fascinated. "You truly do not know, do you? Good! Then you may still be free. Do not make the mistake I did, or this gold will corrupt you! They will come for it! Stash it away, or sell it whilst you still can! It is not worth the fabulous prices they may offer for it!"`
+			`	He continues, finally and painfully catching his breath. "I went to the pirate worlds! To their territory! What a fool I was. Yes, it was a lot of credits, but not for me. I got plundered myself on the way there!"`
 			choice
 				`	"A good price you say? That sounds interesting."`
 				`	"You're right, it is not worth it, I will get rid of them."`
 					goto rid
-			`	"NO!! You fool! You won't be able to say I did not warn you. You truly are a lost cause, perhaps the bars have already affected you! At least, make sure to have enough escorts, and watch your back." He says, before leaving you.`
+			`	"NO!! You fool! You won't be able to say I did not warn you. You truly are a lost cause, perhaps the bars have already affected you! At least, make sure to have enough escorts, and watch your back." He says, before leaving.`
 				accept
 			label rid
 			`	"Good. You do well to listen." He says before leaving, finally calm.`
 				decline
 			label wontsay
-			`	"It is your choice to make. Just know that it is a mistake." He says, before leaving.`
+			`	"It is your choice to make. Just know that it is a mistake, just like it would be to take these to a pirate world. Or do anything else than getting rid of them." He says, before leaving.`
 	npc evade
 		government "Midas"
 		personality plunders disable heroic nemesis marked
@@ -347,6 +347,7 @@ mission "Midas: Who is the mad one?"
 		or
 			has "midas: took out leader"
 			not "outfit: Gold Bars"
+			has "Midas: Betrayal For The Bars: offered"
 	to complete
 		never
 
@@ -435,8 +436,6 @@ mission "Midas: Betrayal For The Bars"
 			`	You decide not to check it out now. A few moments later, you hear a big metallic sound, followed by deep silence. You may want to check your cargo bay later on.`
 				defer
 			label investigate
-			action
-				fail "Midas: Who is the mad one?"
 			`You pull out your sidearm and approach the bay as discreetly as you can. Worst case scenario is you find one of your own crew, in which case you better not overreact, or someone could get hurt.`
 			choice
 				`(Ask if someone is there.)`
