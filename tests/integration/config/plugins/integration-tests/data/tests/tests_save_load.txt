@@ -3,7 +3,7 @@ test "Loading and Reloading"
 	description "Load a save-game, perform some actions and load the game again."
 	sequence
 		# Create/inject the savegame and load it.
-		inject "Three Earthly Barges"
+		inject "Three Earthly Barges Save"
 		call "Load First Savegame"
 		call "Depart"
 		assert
@@ -40,15 +40,9 @@ test "Loading and Saving"
 	description "Test saving of snapshots and re-loading of saved snapshots."
 	sequence
 		# Create/inject the savegame and load it.
-		inject "Three Earthly Barges"
+		inject "Three Earthly Barges Save"
 		call "Load First Savegame"
 		call "Depart"
-		apply
-			"test: Depart: 0 zoom_restore_counter" = "test: Depart: zoom_restore_counter"
-			"test: 0 departed 1" = 1
-			"test: year" = year
-			"test: month" = month
-			"test: day" = day
 		assert
 			year == 3013
 			month == 11
@@ -63,11 +57,6 @@ test "Loading and Saving"
 		label notAlpha1
 		branch notAlpha1
 			not "flagship system: Alpha Centauri"
-		apply
-			"test: 1 entered A Cen 1" = 1
-			"test: year" = year
-			"test: month" = month
-			"test: day" = day
 		# Terminate jumping if it still is active.
 		input
 			command forward
@@ -80,28 +69,12 @@ test "Loading and Saving"
 		label notReturned1
 		branch notReturned1
 			not "flagship planet: Earth"
-		apply
-			"test: 2 returned to Earth 1" = 1
-			"test: year" = year
-			"test: month" = month
-			"test: day" = day
 		assert
 			year == 3013
 			month == 11
 			day == 19
 		call "Save To Default Snapshot"
-		apply
-			"test: 3 saved to default snapshot" = 1
-			"test: year" = year
-			"test: month" = month
-			"test: day" = day
 		call "Depart"
-		apply
-			"test: Depart: 1 zoom_restore_counter" = "test: Depart: zoom_restore_counter"
-			"test: 4 departed again" = 1
-			"test: year" = year
-			"test: month" = month
-			"test: day" = day
 		assert
 			year == 3013
 			month == 11
@@ -118,11 +91,6 @@ test "Loading and Saving"
 		label notAlpha2
 		branch notAlpha2
 			not "flagship system: Alpha Centauri"
-		apply
-			"test: 5 entered A Cen 2" = 1
-			"test: year" = year
-			"test: month" = month
-			"test: day" = day
 		assert
 			year == 3013
 			month == 11
