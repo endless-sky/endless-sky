@@ -5444,7 +5444,7 @@ mission "Karen Transport 1"
 				decline
 			
 			label accept
-			`	She takes off towards your ship without waiting for you. When you catch up to her, she is standing in a passageway, shouting at your crew to take her bags away. You tell her that your crew is busy and that passengers are expected to carry their own luggage, and leave for your cabin.`
+			`	She takes off towards your ship without waiting for you. When you catch up to her, she is standing in a passageway, shouting at your crew to take her bags away. You tell her that your crew is busy and passengers are expected to carry their own luggage then leave for your cabin.`
 				accept
 	on enter
 		dialog
