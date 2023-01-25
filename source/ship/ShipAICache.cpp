@@ -25,7 +25,6 @@ using namespace std;
 
 
 
-// Constructor.
 ShipAICache::ShipAICache(const Ship &ship)
 {
 	this->ship = &ship;
@@ -37,7 +36,6 @@ ShipAICache::ShipAICache(const Ship &ship)
 void ShipAICache::CreateWeaponCache()
 {
 	bool hasWeapons = false;
-	// If the ship
 	bool canFight = false;
 	double totalDPS = 0.;
 	double splashDPS = 0.;
