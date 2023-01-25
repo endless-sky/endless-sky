@@ -311,3 +311,29 @@ test "Sell Outfit On Take Off"
 				"outfit: D23-QP Shield Generator" == 0
 				"outfit (cargo): D23-QP Shield Generator" == 0
 				"outfit (storage): D23-QP Shield Generator" == 0
+
+
+test "Abort Take Off On Excess Outfits In Cargo Warning"
+	status active
+	description "Test that it is possible to abort take off when warning about excess outfits in cargo."
+	sequence
+		# Create/inject the savegame and load it.
+		inject "Outfit Take Off Selling Save"
+		call "Load First Savegame"
+		# Check startup conditions.
+		assert
+			and
+				"flagship planet: Winter" > 0
+				"credits" == 0
+				"outfit: D23-QP Shield Generator" == 1
+				"outfit (cargo): D23-QP Shield Generator" == 1
+				"outfit (storage): D23-QP Shield Generator" == 0
+		call "Depart and Abort on Warning Message"
+		# Re-check startup conditions.
+		assert
+			and
+				"flagship planet: Winter" > 0
+				"credits" == 0
+				"outfit: D23-QP Shield Generator" == 1
+				"outfit (cargo): D23-QP Shield Generator" == 1
+				"outfit (storage): D23-QP Shield Generator" == 0
