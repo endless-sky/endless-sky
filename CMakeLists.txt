@@ -6,6 +6,7 @@ cmake_dependent_option(ES_GLES "Build the game with OpenGL ES" OFF UNIX OFF)
 cmake_dependent_option(ES_USE_SYSTEM_LIBRARIES "Use system libraries instead of the vcpkg ones." ON UNIX OFF)
 cmake_dependent_option(ES_USE_OFFSCREEN
 	"Use SDL's offscreen backend instead of Xvfb for the integration tests" OFF UNIX OFF)
+cmake_dependent_option(ES_CREATE_BUNDLE "Create a Bundle instead of an executable" OFF APPLE OFF)
 
 # Support Debug and Release configurations.
 set(CMAKE_CONFIGURATION_TYPES "Debug" "Release" CACHE STRING "" FORCE)
@@ -105,7 +106,7 @@ if(BUILD_TESTING)
 endif()
 
 # Create game target.
-if(APPLE)
+if(APPLE AND ES_CREATE_BUNDLE)
 	add_executable(EndlessSky MACOSX_BUNDLE source/main.cpp)
 
 	# MacOS bundles are a bit special and need every resource specified when
@@ -136,7 +137,7 @@ if(APPLE)
 			icons/endless-sky.iconset/icon_512x512.png icons/endless-sky.iconset/icon_512x512@2x.png
 		WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}" VERBATIM)
 
-	# Now do the same to standone files.
+	# Now do the same to standalone files.
 	foreach(file "license.txt" "keys.txt" "credits.txt" "copyright" "changelog" "icons/endless-sky.icns")
 		target_sources(EndlessSky PRIVATE ${file})
 		set_source_files_properties(${file} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources/")
@@ -144,7 +145,7 @@ if(APPLE)
 
 	# Add plist to bundle.
 	set_target_properties(EndlessSky PROPERTIES
-		MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_LIST_DIR}/XCode/EndlessSky-Info.plist"
+		MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_LIST_DIR}/resources/EndlessSky-Info.plist"
 		XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME endless-sky)
 	set_target_properties(EndlessSky PROPERTIES OUTPUT_NAME "Endless Sky")
 elseif(WIN32)
@@ -197,7 +198,7 @@ elseif(WIN32)
 
 	# The MinGW DLLs needed were already installed above, and vcpkg installs the library DLLs.
 
-	# Install the resouce files.
+	# Install the resource files.
 	install(DIRECTORY data DESTINATION .)
 	install(DIRECTORY images DESTINATION .)
 	install(DIRECTORY sounds DESTINATION .)
@@ -232,7 +233,7 @@ elseif(UNIX)
 	target_sources(EndlessSky PRIVATE endless-sky.6.gz)
 	install(FILES ${CMAKE_CURRENT_BINARY_DIR}/endless-sky.6.gz DESTINATION share/man/man6)
 
-	# Install the resouce files.
+	# Install the resource files.
 	install(DIRECTORY data DESTINATION share/games/endless-sky)
 	install(DIRECTORY images DESTINATION share/games/endless-sky)
 	install(DIRECTORY sounds DESTINATION share/games/endless-sky)

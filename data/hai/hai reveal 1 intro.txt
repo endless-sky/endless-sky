@@ -350,7 +350,7 @@ mission "Trader Directions to Hai Space"
 				accept
 	on waypoint
 		dialog `This system appears to contain some sort of astronomical anomaly. Perhaps this is the wormhole you were directed to.`
-			
+		
 
 # This branch is if you have met the Hai but not the Unfettered
 	# Goto Stop 3 Wah Yoot (Darkcloak) and pick up at Tour 4 mission.
@@ -789,6 +789,8 @@ mission "Hai Leaks Response 4"
 		personality staying marked target
 		system "Waypoint"
 		ship "Marauder Leviathan (Weapons)" "Black Lich"
+	on visit
+		dialog `You have returned, but the fate of the pirates and the captured Hai is still in doubt. Ensure that the Black Lich is defeated and that the fate of the captured Hai, whether deceased or safely with you, is certainly known.`
 	to complete
 		or
 			has "00 Hai Leaks Response 4B: declined"
@@ -843,7 +845,7 @@ event "hai ladybug available"
 # The NPC has an outfit used to determine if you managed to get it back safely.
 mission "Hai Leaks Response 4A"
 	name "Recover the Geocoris"
-	description "Recover the stolen Geocoris supporting the pirates in Waypoint, and return to Allhome. (You will need to swap the Geocoris to your flagship, and depart and land again in order to progress the missions properly.)"
+	description "Recover the stolen Geocoris supporting the pirates in Waypoint, and return to Allhome."
 	landing
 	source "Allhome"
 	waypoint "Waypoint"
@@ -855,7 +857,7 @@ mission "Hai Leaks Response 4A"
 		personality staying marked mute
 		system "Waypoint"
 		ship "Geodesic Geocoris (Phylactery)" "Phylactery"
-		dialog `After successfully boarding the Geocoris and defeating its pirate crews, you are greeted by the relieved captive Hai. You promise to escort their ship safely to Allhome. (You will need to swap the Geocoris to your flagship, and depart and land again in order to progress the missions properly.)`
+		dialog `After successfully boarding the Geocoris and defeating its pirate crews, you are greeted by the relieved captive Hai. You send crew aboard to fly the ship and promise to return them safely to Allhome.`
 #	on fail
 #		dialog `You have failed to recover the Geocoris. This is not critical, but does have long-term consequences. If you want the most complete ending, revert to the autosave or another earlier snapshot of the game.`
 # Too hand-holdy for present implementation and content.
@@ -866,16 +868,17 @@ mission "Hai Leaks Response 4A"
 mission "00 Hai Leaks Response 4B"
 	landing
 	source "Allhome"
+	to offer
+		has "ship model (all): Geodesic Geocoris"
 	on offer
-		require "Failed Control System"
-		log `Successfully rescued the kidnapped Hai and reclaimed the Geocoris. Something is different about it.`
+		log `Successfully rescued the kidnapped Hai and reclaimed the Geocoris. This ship has been modified in ways that aren't of Hai origin, and which don't appear to be fully functional.`
 		event "returned geocoris" 365
 		conversation
-			`You have successfully rescued the kidnapped Hai and reclaimed the Geocoris. Something is different about it...`
+			`You have successfully rescued the kidnapped Hai and reclaimed the Geocoris. On your way back to <planet> the crew you sent across to fly it home report that something is different about it... It appears that it has been modified with systems of some kind, which are not of Hai design. It also appears that perhaps not everything about those systems is working wholly as intended.`
 				decline
 
 event "returned geocoris"
-		
+
 ship "Geodesic Geocoris"
 	plural "Geodesic Geocoris"
 	sprite "ship/geodesic geocoris"
@@ -901,6 +904,8 @@ ship "Geodesic Geocoris"
 		"hull repair rate" 0.8
 		"hull energy" 0.8
 		"hull heat" 1.2
+		"integrated control systems" -1
+		"integrated systems core" 1
 		weapon
 			"blast radius" 400
 			"shield damage" 4000
@@ -1073,7 +1078,7 @@ mission "Hai Leaks Response 6"
 				`	"Am I allowed to know more?"`
 			`	Alondo gives you a quizzical look. "Of course you are, <last>."`
 			label about
-			`	He pulls out a hand tablet and shows you a title screen which doesn't automatically look familiar. As he talks he flicks through a series of reference images. "There's an older TV show franchise with a cult following called 'Our Fuzzy Paradise', which has had a few different reboots and iterations over the decades. In case you haven't guessed, it features a whole cast of anthropomorphic squirrels. Most recently we had a seven season series run subtitled 'Fellowship is Glamorous' which was one of the more successful ones.`
+			`	He pulls out a hand tablet and shows you a title screen which doesn't automatically look familiar. As he talks he flicks through a series of reference images. "There's an older TV show franchise with a cult following called 'Our Fuzzy Paradise', which has had a few different reboots and iterations over the decades. In case you haven't guessed, it features a whole cast of anthropomorphic squirrels. Most recently we had a seven season series run subtitled 'Fellowship is Glamorous' which was one of the more successful ones."`
 			choice
 				`	"That sounds... interesting. Tell me more."`
 				`	"Never mind. It sounds like you have that under control. What's next?"`
