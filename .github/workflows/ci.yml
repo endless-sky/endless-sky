@@ -266,10 +266,8 @@ jobs:
     if: ${{ needs.changed.outputs.data == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - name: checkout
-      uses: actions/checkout@v3
-    - name: set up python environment
-      uses: actions/setup-python@v4
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
       with:
         python-version: '3.x'
     - name: install python packages
