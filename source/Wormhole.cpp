@@ -146,9 +146,6 @@ bool Wormhole::IsValid() const
 		if(!pair.first->IsValid() || !pair.second->IsValid())
 			return false;
 
-	if(!linkColor)
-		return false;
-
 	return true;
 }
 
