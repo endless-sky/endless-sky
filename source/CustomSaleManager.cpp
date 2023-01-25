@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Outfit.h"
 #include "Planet.h"
 #include "Ship.h"
+#include "StellarObject.h"
 #include "System.h"
 
 using namespace std;
@@ -28,22 +29,26 @@ map<CustomSale::SellType, CustomSale> CustomSaleManager::customSales = {};
 
 
 
-void CustomSaleManager::Refresh(const Planet &planet, const ConditionsStore &conditions)
+void CustomSaleManager::Refresh(const Planet *planet, const ConditionsStore &conditions)
 {
 	Clear();
+	if(!planet)
+		return;
 	for(const auto &sale : GameData::CustomSales())
-		customSales[sale.second.GetSellType()].Add(sale.second, planet, conditions);
+		customSales[sale.second.GetSellType()].Add(sale.second, *planet, conditions);
 }
 
 
 
-void CustomSaleManager::Refresh(const System &system, const ConditionsStore &conditions)
+void CustomSaleManager::Refresh(const System *system, const ConditionsStore &conditions)
 {
 	Clear();
+	if(!system)
+		return;
 	for(const StellarObject &object : system->Objects())
 		if(object.HasSprite() && object.HasValidPlanet())
 		{
-			const Planet *planet = object.GetPlanet();
+			const Planet &planet = *object.GetPlanet();
 			for(const auto &sale : GameData::CustomSales())
 				customSales[sale.second.GetSellType()].Add(sale.second, planet, conditions);
 		}
