@@ -716,7 +716,7 @@ test "Depart and Abort on Warning Message"
 		# Using empty inputs to trigger those game loops.
 		input
 		input
-		# Acknowledge the expected message
+		# Acknowledge the expected message and abort take off.
 		input
 			key "Escape"
 
