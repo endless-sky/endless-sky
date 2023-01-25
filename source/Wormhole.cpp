@@ -113,7 +113,7 @@ void Wormhole::Load(const DataNode &node)
 			else if(child.Size() >= 1 + valueIndex)
 				linkColor = ExclusiveItem<Color>(GameData::Colors().Get(child.Token(valueIndex)));
 			else
-				child.PrintTrace("Error: malformed 'color' node.");
+				child.PrintTrace("Warning: skipping malformed "color" node:");
 		}
 		else if(remove)
 			child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
