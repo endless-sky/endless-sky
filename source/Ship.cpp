@@ -1437,7 +1437,7 @@ string Ship::GetHail(map<string, string> &&subs) const
 
 
 
-ShipAICache &Ship::GetAICache() const
+ShipAICache &Ship::GetAICache()
 {
 	return AICache;
 }

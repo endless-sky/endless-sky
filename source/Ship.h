@@ -198,7 +198,7 @@ public:
 	std::string GetHail(std::map<std::string, std::string> &&subs) const;
 
 	// Access the ship's AI cache, containing the range and expected AI behavior for this ship.
-	ShipAICache &GetAICache() const;
+	ShipAICache &GetAICache();
 	void ReCacheInfo();
 
 	// Set the commands for this ship to follow this timestep.
