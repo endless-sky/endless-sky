@@ -31,7 +31,7 @@ class System;
 // Class representing a wormhole in a planet.
 class Wormhole {
 public:
-	// Default constructor.
+	// Define the constructor to set "linkColor" to the desired default color.
 	Wormhole();
 	// Load a wormhole's description from a file.
 	void Load(const DataNode &node);

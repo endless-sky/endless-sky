@@ -26,7 +26,7 @@ using namespace std;
 
 
 
-// Default constructor.
+// Define the constructor to set "linkColor" to the desired default color.
 Wormhole::Wormhole()
 {
 	linkColor = ExclusiveItem<Color>(GameData::Colors().Get("map wormhole"));
