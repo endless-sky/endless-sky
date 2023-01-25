@@ -366,8 +366,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 	bool isInCargo = player.Cargo().Get(selectedOutfit);
 	bool isInStorage = player.Storage() && player.Storage()->Get(selectedOutfit);
 	bool isInStore = outfitter.Has(selectedOutfit) || player.Stock(selectedOutfit) > 0;
-	if(isInStorage
-		&& !(!onlyOwned && !isInStore && !playerShip))
+	if(isInStorage && !(!onlyOwned && !isInStore && !playerShip))
 	{
 		// In storage, the outfit is certainly available to get,
 		// except for this one case: 'b' does not move storage to cargo.
