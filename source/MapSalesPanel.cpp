@@ -225,9 +225,9 @@ void MapSalesPanel::DrawKey() const
 	Point textOff(10., -.5 * font.Height());
 
 	static const double VALUE[] = {
-		-.6,
-		-.1,
-		.5
+		-.5,
+		0.,
+		1.
 	};
 
 	double selectedValue = SystemValue(selectedSystem);

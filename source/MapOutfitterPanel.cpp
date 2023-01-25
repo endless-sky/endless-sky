@@ -142,25 +142,17 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 		return numeric_limits<double>::quiet_NaN();
 
 	// Visiting a system is sufficient to know what ports are available on its planets.
-	double value = -.6;
+	double value = -.5;
 	for(const StellarObject &object : system->Objects())
 		if(object.HasSprite() && object.HasValidPlanet())
 		{
-			const Planet *planet = object.GetPlanet();
-
-			if(planet->HasOutfitter())
-			{
-				if(planet->Outfitter().Has(selected))
-				{
-					CustomSaleManager::Refresh(*planet, player.Conditions());
-					// Return it - 0.5, that way we can have more diverse price ranges,
-					// going from 0 to 1 with 0.5 being the normal price.
-					return max(0., CustomSaleManager::OutfitRelativeCost(*selected) - .5);
-				}
-				else
-					value = -.1;
-			}
+			const auto &outfitter = object.GetPlanet()->Outfitter();
+			if(outfitter.Has(selected))
+				return 1.;
+			if(!outfitter.empty())
+				value = 0.;
 		}
+	return value;
 	return value;
 }
 

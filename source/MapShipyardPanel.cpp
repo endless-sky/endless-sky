@@ -142,23 +142,15 @@ double MapShipyardPanel::SystemValue(const System *system) const
 		return numeric_limits<double>::quiet_NaN();
 
 	// Visiting a system is sufficient to know what ports are available on its planets.
-	double value = -.6;
-	CustomSaleManager::Clear();
-	double baseCost = selected ? CustomSaleManager::ShipCost(*selected) : selected->Cost();
+	double value = -.5;
 	for(const StellarObject &object : system->Objects())
 		if(object.HasSprite() && object.HasValidPlanet())
 		{
 			const auto &shipyard = object.GetPlanet()->Shipyard();
 			if(shipyard.Has(selected))
-			{
-				CustomSaleManager::Refresh(*object.GetPlanet(), player.Conditions());
-				// Return it - 0.5, that way we can have more diverse price ranges,
-				// going from 0 to 1 with 0.5 being the normal price.
-				return max(0., CustomSaleManager::ShipCost(*selected) / baseCost - .5);
-			}
-			// Return a negative value to signify this is different from a cost of 0.
+				return 1.;
 			if(!shipyard.empty())
-				value = -.1;
+				value = 0.;
 		}
 	return value;
 }
