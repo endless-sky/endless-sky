@@ -306,7 +306,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 	const CargoHold &cargo = player.DistributeCargo();
 	// Are you overbooked? Don't count fireable flagship crew.
 	// (If your ship can't support its required crew, it is counted as having no fireable crew.)
-	int overbooked = -(flagship->Cargo().BunksFree());
+	int overbooked = -flagship->Cargo().BunksFree();
 	int missionCargoToSell = cargo.MissionCargoSize();
 	// Will you have to sell something other than regular cargo?
 	int commoditiesToSell = cargo.CommoditiesSize();
