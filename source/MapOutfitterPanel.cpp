@@ -274,18 +274,16 @@ void MapOutfitterPanel::Init()
 	// Add all outfits sold by outfitters of visited planets.
 	for(auto &&it : GameData::Planets())
 		if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
-		{
 			for(auto &outfit : it.second.Outfitter())
 				if(!seen.count(outfit))
 				{
 					catalog[outfit->Category()].push_back(outfit);
 					seen.insert(outfit);
 				}
-		}
 
 	// Add outfits in storage
 	for(const auto &it : player.PlanetaryStorage())
-		for(auto &oit : it.second.Outfits())
+		for(const auto &oit : it.second.Outfits())
 			if(!seen.count(oit.first))
 			{
 				catalog[oit.first->Category()].push_back(oit.first);
