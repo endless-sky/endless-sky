@@ -719,8 +719,6 @@ test "Depart and Abort on Warning Message"
 		# Acknowledge the expected message
 		input
 			key "Escape"
-		# The ships zoom gets restored at a rate of .02 per step, so wait for a bit more than 50 steps to get to full zoom/full control.
-		call "Wait 55 steps"
 
 
 test "Sell first ship"
