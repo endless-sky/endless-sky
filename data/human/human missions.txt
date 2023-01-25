@@ -5448,7 +5448,7 @@ mission "Karen Transport 1"
 				accept
 	on enter
 		dialog
-			`During takeoff, you keep hearing loud banging and cursing from one of the passenger cabins. Later on, you hear the woman you just picked up screeching at your crew for their 'gross incompetence' and 'boneheaded flying'.`
+			`During takeoff, you keep hearing loud banging and cursing from one of the passenger cabins. Later on, you hear the woman you just picked up screeching at your crew for their 'gross incompetence' and 'boneheaded flying.'`
 			`	You can barely restrain yourself from making a snappy remark, but you have learned that it's best not to antagonize your passengers.`
 	on enter
 		conversation
@@ -5491,15 +5491,15 @@ mission "Karen Transport 1"
 			`	You decide to drop her off on the first planet you land on.`
 	on complete
 		conversation
-			`You are glad to finally see your passenger leaving, but then you realize she has't paid you yet. You decide to confront her about it.`
+			`You are glad to finally see your passenger leaving, but then you realize she hasn't paid you yet. You decide to confront her about it.`
 			`	"You expect ME to pay after all that? You are lucky I'm not suing you for damages!" She stops for a moment, then throws a credit chip at you. "Fine, take this, but don't bother me again!" She stomps off angrily.`
-			`	You look at the credit chip she had so generously given you. It's worth... 10 credits. Oh well.`
+			`	You look at the credit chip she has so generously given you. It's worth... 10 credits. Oh well.`
 		payment 10
 	on abort
 		conversation
 			branch landed
 				has "flagship landed"
-			`You decide you had enough of her constant fits, and inform her that her journey is over.`
+			`You decide you have had enough of your passenger's constant fits and inform her that her journey is now over.`
 			`	As you listen with grim satisfaction to the air hissing out of the opening airlock, you take comfort in the knowledge that you at least got the bunk space back.`
 				decline
 			label landed
@@ -5531,15 +5531,15 @@ mission "Karen Transport 2"
 
 			label pay
 			`	Another greedy captain, I see. Back in my days, ship captains were happy to have passengers and accepted whatever they were paid, not this predetermined wage nonsense. You would do well to learn from them."`
-			`	Before you could protest, he marches into your ship.`
+			`	Before you can protest, he marches into your ship.`
 				accept
 
 			label board
-			`	"Yours isn't a bad ship, captain. Not as good as the old ones, of course. They made quality back then, both in terms of ships and pilots," he says, as he boards your ship.`
+			`	"Yours isn't a bad ship, captain. Not as good as the old ones, of course. They made quality back then, both in terms of ships and pilots," he says as he boards your ship.`
 				accept
 	on enter
 		conversation
-			`As you are manouvering to position your ship for the jump, you hear someone talking behind you. "Not that lever, captain!" It's your middle-aged passenger.`
+			`As you are maneuvering to position your ship for the jump, you hear someone talking behind you. "Not that lever, captain!" It's your middle-aged passenger.`
 			`	You look where he is pointing: the thruster controls you were about to engage. "We should slow down now, not go even faster," he continues.`
 			choice
 				`	"That's why these thrusters face the other way."`
@@ -5549,17 +5549,17 @@ mission "Karen Transport 2"
 
 			label other
 			`	"Oh. Easy mistake. You should get a better navigation system, this one is a worthless piece of junk. How do they even allow you to fly with such outdated equipment, anyway?"`
-			`	You tell them that this is in fact a perfectly good, up to date navigation system, and that he should leave the cockpit.`
+			`	You tell him that this is in fact a perfectly good, up to date navigation system and that he should leave the cockpit.`
 			`	"Alright, alright. You know where to find me if you need more help."`
 					goto close
 			
 			label how
 			`	"How? Don't you know how to fly a ship? And you call yourself a 'pilot' and a 'captain'? Just use the brakes!"`
-			`	When you tell him that he is on board a spaceship, and there are, in fact, no brakes, he just walks off, muttering to himself. "What times are we living in, that captains don't know how to stop a ship? Using thrusters, like that could ever work..."`
+			`	When you tell him that he is on board a spaceship and there are, in fact, no brakes, he just walks off muttering to himself. "What times are we living in, that captains don't know how to stop a ship? Using thrusters, like that could ever work..."`
 					goto close
 
 			label close
-				`	You make sure to lock the cockpit door this time, and then carefully stop the ship using the thrusters.`
+				`	You make sure to lock the cockpit door this time and then carefully stop the ship using the thrusters.`
 	on enter
 		conversation
 			`You glance behind you to make sure the cockpit doors are still closed. Maybe this time you can maneuver the ship in peace.`
@@ -5598,7 +5598,7 @@ mission "Karen Transport 2"
 				`	(Stop him.)`
 				`	(Let him fly the ship.)`
 					goto pilot
-			`	You quickly catch up to him, and politely tell him to go back to his compartments and stay there for the rest of the journey.`
+			`	You quickly catch up to him before politely telling him to go back to his compartments and stay there for the rest of the journey.`
 				decline
 			
 			label pilot
@@ -5645,10 +5645,10 @@ mission "Drunk Teen Hijack"
 
 			label ask
 			`	"Can I help you?"`
-			`	One of the teens steps forward, and introduces himself.`
+			`	One of the teens steps forward and introduces himself.`
 
 			label introduction
-			`	"Hello. I'm Howard. Me and my four friends are looking for transport off-world, to <destination>, but cannot afford to pay for it. Can you help us?"`
+			`	"Hello, I'm Howard. Me and my four friends are looking for transport off-world, to <destination>, but cannot afford to pay for it. Can you help us?"`
 			choice
 				`	"Sure."`
 					goto accept
@@ -5667,7 +5667,7 @@ mission "Drunk Teen Hijack"
 				decline
 
 			label accept
-			`	They seem delighted at your reply. They thank you, and pick up their luggage to follow you to your ship. You notice that all their belongings fit in just a few beat-up suitcases.`
+			`	They seem delighted at your reply. They thank you and pick up their luggage to follow you to your ship. You notice that all their belongings fit in just a few beat-up suitcases.`
 				accept
 	on enter
 		conversation
@@ -5680,15 +5680,15 @@ mission "Drunk Teen Hijack"
 				decline
 			label investigate
 			`	You quietly walk closer, then stop and listen to what seems to be people talking.`
-			`	"...seems so nice. Picked us up, and all."`
+			`	"...seems so nice. Picked us up and all."`
 			`	"Nah. They all expect us to pay them later, these guys. They work for money, like everyone else. We are just an investment."`
 			`	"We can't back out now. There is no way we could get there otherwise. Don't act like it's your first time in the business." In the third speaker, you recognize Howard, one of your teenage passengers.`
 			choice
 				`	(Confront them.)`
 				`	(Walk away.)`
 					goto walk
-			`	You turn the corner to find the five teenagers gathered there. They seem surprised by your appearance, and Howard addresses you. "Captain! We are so grateful you brought us on board!" The other teens murmur agreeingly.`
-			`	"Anyway, we don't mean to bother you," and walks off, the rest following suit.`
+			`	You turn the corner to find the five teenagers gathered there. They seem surprised by your appearance, but Howard hastily addresses you. "Captain! We are so grateful you brought us on board!" The other teens murmur in agreement.`
+			`	"Anyway, we don't mean to bother you," he stammers and walks off, the rest following suit.`
 			label walk
 			`	You walk back to your quarters, unsure about what just happened.`
 	on enter
@@ -5697,7 +5697,7 @@ mission "Drunk Teen Hijack"
 	on enter
 		dialog
 			`This time the partying noises seem even louder than before. You start to wonder how they got that many drinks on board, since they barely had any baggage.`
-			`	Later that night, you woke up to a strange noise near your cabin, but attribute it to the party and fall back asleep.`
+			`	Later that night, you wake up to a strange noise near your cabin, but attribute it to the party and fall back asleep.`
 	on enter
 		conversation
 			`Today the party seems to have spilled out of their compartments; in fact, you can see Howard and his friends approaching you in the corridor with tottering steps. They stop right in front of where you are standing, in the door of the cockpit.`
@@ -5713,14 +5713,14 @@ mission "Drunk Teen Hijack"
 			
 			label come
 			`	You let the group into the cockpit. Four of them immediately crowd the place, but the fifth teen - the one leaning on the wall - keeps his distance.`
-			`	The group seems intrigued by the various controls and equipment that is all over the cockpit. They ask you questions and walk around with clear curiosity. Then, all of a sudden, those inside grab you and try to pin your hands down.`
+			`	The group seems intrigued by the various controls and equipment that are all over the cockpit. They ask you questions and walk around with clear curiosity. Then, all of a sudden, those inside grab you and try to pin your hands down.`
 			choice
 				`	(Call for help.)`
 				`	(Fight them.)`
 					goto fight
 				`	(Reach for my sidearm.)`
 					goto sidearm
-			`	You try to shout, but a kidney punch knocks the wind out of you before you could speak.`
+			`	You try to shout, but a kidney punch knocks the wind out of you before you can speak.`
 				goto fight
 
 			label sidearm
@@ -5728,7 +5728,7 @@ mission "Drunk Teen Hijack"
 
 			label fight
 			`	You stand no chance against the four attackers. They each grab one of your limbs and immobilize you, then the fifth guy points your own gun at you. They must have taken it last night, when you thought they were partying.`
-			`	"Keep it steady, captain," Howard says with glee from your right side. "No funny business. Larry here has an itchy trigger finger." He then lets go of your right leg he has been holding onto, and addresses Larry. "Told you it would work! Next time, I get the gun while you fight in the dirt with the idiot." You notice how none of them seems to be drunk in the slightest anymore.`
+			`	"Keep it steady, captain," Howard says with glee from your right side. "No funny business. Larry here has an itchy trigger finger." He then lets go of your right leg he has been holding onto, and addresses Larry. "Told you it would work! Next time, I get the gun while you fight in the dirt with the idiot." You notice how none of them seem to be drunk in the slightest anymore.`
 
 			label options
 			`	"You will fly the ship for us. If you don't try anything, we'll let you go afterwards." You don't give much credit to their promise.`
@@ -5739,23 +5739,23 @@ mission "Drunk Teen Hijack"
 
 			branch survived
 				random < "flagship crew" - 1
-			`	Larry fires the weapon, and you feel sickening pain in your chest. You fall to the ground, and try to gasp for air, but it feels too hard. You watch as everything goes black and your consciousness slips away.`
+			`	Larry fires the weapon, and you feel sickening pain in your chest. You fall to the ground and try to gasp for air, but it feels too hard. You watch as everything goes black and your consciousness slips away.`
 				die
 
 			label survived
-			`	Larry fires the weapon, and you feel sickening pain in your left shoulder. Before Larry could fire again however, a member of your crew pops up behind him and takes him out with a well-aimed shot.`
+			`	Larry fires the weapon, and you feel sickening pain in your left shoulder. Before Larry can fire again however, a member of your crew pops up behind him and takes him out with a well-aimed shot.`
 			`	With the other four attackers being unarmed, they have no choice but to surrender. As more crew members arrive, they take away the teenagers and stitch up your wound. You still can't quite believe what just happened.`
-			`	You thank your fellow crew members for saving your life, and decide to not let your sidearm out of your sight ever again.`
+			`	You thank your fellow crew members for saving your life and decide to not let your sidearm out of your sight ever again.`
 				decline
 
 			label comply
-			`	You slowly sit down in the pilot chair, and carefully guide the ship towards the spot Howard indicated on the map. At an opportune moment, you ram the thrusters up to maximum, and turn the ship to the side. Howard and his friends fall over, but you remain secure in your chair.`
+			`	You slowly sit down in the pilot chair and carefully guide the ship towards the spot Howard indicates on the map. At an opportune moment, you ram the thrusters up to maximum and turn the ship to the side. Howard and his friends fall over, but you remain secure in your chair.`
 			`	You run over to Larry and make a quick grab for the weapon before he can recover. Now that you have the upper hand, you feel confident to call for your crew.`
 			`	As they take away the five hijackers, the magnitude of the events slowly sinks in. You could easily have died today.`
-			`	You thank your fellow crew members, and decide not to let your sidearm out of your sight ever again.`
+			`	You thank your fellow crew members and decide not to let your sidearm out of your sight ever again.`
 	on complete
 		payment 50000
 		dialog
-			`You notify the spaceport authorities about the situation, and hand over the teenagers to the security detachment they sent out.`
-			`	"That's the 'Howard Gang'! They have been causing trouble on <origin>, then turned tail when they caught wind of the investigation. We are glad you managed to catch them."`
+			`You notify the spaceport authorities about the situation and hand over the teenagers to the security detachment they send out.`
+			`	"That's the 'Howard Gang'! They had been causing trouble on <origin>, then skipped town when they caught wind of the investigation. We are glad you managed to catch them."`
 			`	They give you <payment> bounty for apprehending the criminals.`

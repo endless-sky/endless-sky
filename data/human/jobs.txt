@@ -2500,7 +2500,7 @@ mission "Passenger Runoff [0]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		dialog `As your ship touches down on the landing pad, a blinking light notifies you that the cargo bay door was opened using the emergency opener. You catch a glimpse of your passenger running off into the spaceport. You sigh and file a report with spaceport security, knowing you won't see your money.`
+		dialog `As your ship touches down on the landing pad, a blinking light notifies you that the cargo bay door was opened using the emergency release. You catch a glimpse of your passenger running off into the spaceport. You sigh and file a report with spaceport security, knowing you won't see your money.`
 
 mission "Passenger Runoff [1]"
 	name "Passenger transport to <planet>"
