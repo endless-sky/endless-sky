@@ -51,7 +51,7 @@ public:
 		BuyResult(std::string error) : success(false), message(std::move(error)) {}
 		BuyResult(bool result) : success(result), message() {}
 
-		explicit operator bool() const noexcept  { return success; }
+		explicit operator bool() const noexcept { return success; }
 
 		bool HasMessage() const noexcept { return message != ""; }
 		const std::string &Message() const noexcept { return message; }

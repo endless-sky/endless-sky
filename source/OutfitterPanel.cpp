@@ -369,9 +369,8 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 	if(isInStorage
 		&& !(!onlyOwned && !isInStore && !playerShip))
 	{
-		// In storage, the outfit is certainly available to get
-
-		// Except for this one case: 'b' does not move storage to cargo.
+		// In storage, the outfit is certainly available to get,
+		// except for this one case: 'b' does not move storage to cargo.
 	}
 	else if(isInCargo && playerShip)
 	{
@@ -397,7 +396,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 				return "You do not have any of these outfits in storage to move to your cargo hold.";
 		}
 	}
-	else if (!isInStore)
+	else if(!isInStore)
 	{
 		// The store doesn't have it.
 		return "You cannot buy this outfit here. "
