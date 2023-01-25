@@ -529,8 +529,9 @@ void OutfitterPanel::FailBuy() const
 
 	if(!CustomSaleManager::CanBuy(*selectedOutfit))
 	{
-		GetUI()->Push(new Dialog("You can only sell this outfit here, "
-			"it is meant to be imported, generally for a good price."));
+		GetUI()->Push(new Dialog("You can only sell this outfit here. "
+			"It is being shown in the list because it is an imported item, typically "
+			"sold at a higher price then normal."));
 		return;
 	}
 
