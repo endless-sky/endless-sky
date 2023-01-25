@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Government.h"
 #include "Planet.h"
+#include "PlayerInfo.h"
 #include "Random.h"
 #include "Ship.h"
 #include "StellarObject.h"
@@ -33,10 +34,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const int VISITED = 1;
-	const int NOT_VISITED = 2;
-	const int REACHABLE = 4;
-	const int NOT_REACHABLE = 8;
+	const int VISITED       = 1 << 1;
+	const int NOT_VISITED   = 1 << 2;
+	const int REACHABLE     = 1 << 3;
+	const int NOT_REACHABLE = 1 << 4;
+	const int LANDABLE      = 1 << 5;
+	const int NOT_LANDABLE  = 1 << 6;
 
 	bool SetsIntersect(const set<string> &a, const set<string> &b)
 	{
@@ -99,13 +102,14 @@ namespace {
 
 	// Check that at least one neighbor of the hub system matches, for each of the neighbor filters.
 	// False if at least one filter fails to match, true if all filters find at least one match.
-	bool MatchesNeighborFilters(const list<LocationFilter> &neighborFilters, const System *hub, const System *origin)
+	bool MatchesNeighborFilters(const list<LocationFilter> &neighborFilters, const System *hub,
+			const System *origin, const PlayerInfo *player)
 	{
 		for(const LocationFilter &filter : neighborFilters)
 		{
 			bool hasMatch = false;
 			for(const System *neighbor : hub->Links())
-				if(filter.Matches(neighbor, origin))
+				if(filter.Matches(neighbor, origin, player))
 				{
 					hasMatch = true;
 					break;
@@ -258,6 +262,18 @@ void LocationFilter::Save(DataWriter &out) const
 		}
 		if(center)
 			out.Write("near", center->Name(), centerMinDistance, centerMaxDistance);
+		if((flags & VISITED))
+			out.Write("visited");
+		if((flags & NOT_VISITED))
+			out.Write("not", "visited");
+		if((flags & LANDABLE))
+			out.Write("landable");
+		if((flags & NOT_LANDABLE))
+			out.Write("not", "landable");
+		if((flags & REACHABLE))
+			out.Write("reachable");
+		if((flags & NOT_REACHABLE))
+			out.Write("not", "reachable");
 	}
 	out.EndChild();
 }
@@ -320,7 +336,7 @@ bool LocationFilter::IsValid() const
 
 
 // If the player is in the given system, does this filter match?
-bool LocationFilter::Matches(const Planet *planet, const System *origin) const
+bool LocationFilter::Matches(const Planet *planet, const System *origin, const PlayerInfo *player) const
 {
 	if(!planet || !planet->IsValid())
 		return false;
@@ -339,7 +355,7 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 			return false;
 
 	for(const LocationFilter &filter : notFilters)
-		if(filter.Matches(planet, origin))
+		if(filter.Matches(planet, origin, player))
 			return false;
 
 	// If outfits are specified, make sure they can be bought here.
@@ -347,25 +363,25 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 		if(!SetsIntersect(outfitList, planet->Outfitter()))
 			return false;
 
-	return Matches(planet->GetSystem(), origin, true);
+	return Matches(planet->GetSystem(), origin, true, player);
 }
 
 
 
-bool LocationFilter::Matches(const System *system, const System *origin) const
+bool LocationFilter::Matches(const System *system, const System *origin, const PlayerInfo *player) const
 {
 	// If a ship class was given, do not match systems.
 	if(!shipCategory.empty())
 		return false;
 
-	return Matches(system, origin, false);
+	return Matches(system, origin, false, player);
 }
 
 
 
 // Check for matches with the ship's system, government, category,
 // outfits (installed and carried), and attributes.
-bool LocationFilter::Matches(const Ship &ship) const
+bool LocationFilter::Matches(const Ship &ship, const PlayerInfo *player) const
 {
 	const System *origin = ship.GetSystem();
 	if(!systems.empty() && !systems.count(origin))
@@ -404,15 +420,18 @@ bool LocationFilter::Matches(const Ship &ship) const
 	}
 
 	for(const LocationFilter &filter : notFilters)
-		if(filter.Matches(ship))
+		if(filter.Matches(ship, player))
 			return false;
 
-	if(!MatchesNeighborFilters(neighborFilters, origin, origin))
+	if(!MatchesNeighborFilters(neighborFilters, origin, origin, player))
 		return false;
 
 	// Check if this ship's current system meets a "near <system>" criterion.
 	// (Ships only offer missions, so no "distance" criteria need to be checked.)
 	if(center && Distance(center, origin, centerMaxDistance) < centerMinDistance)
+		return false;
+
+	if(player && !MatchesFlagFilters(flags, origin, player))
 		return false;
 
 	return true;
@@ -448,7 +467,7 @@ LocationFilter LocationFilter::SetOrigin(const System *origin) const
 
 
 // Pick a random system that matches this filter, based on the given origin.
-const System *LocationFilter::PickSystem(const System *origin) const
+const System *LocationFilter::PickSystem(const System *origin, const PlayerInfo *player) const
 {
 	// Find a planet that satisfies the filter.
 	vector<const System *> options;
@@ -458,7 +477,7 @@ const System *LocationFilter::PickSystem(const System *origin) const
 		// Skip systems with incomplete data or that are inaccessible.
 		if(!system.IsValid() || system.Inaccessible())
 			continue;
-		if(Matches(&system, origin))
+		if(Matches(&system, origin, player))
 			options.push_back(&system);
 	}
 	return options.empty() ? nullptr : options[Random::Int(options.size())];
@@ -467,7 +486,8 @@ const System *LocationFilter::PickSystem(const System *origin) const
 
 
 // Pick a random planet that matches this filter, based on the given origin.
-const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance, bool requireSpaceport) const
+const Planet *LocationFilter::PickPlanet(const System *origin, const PlayerInfo *player,
+		bool hasClearance, bool requireSpaceport) const
 {
 	// Find a planet that satisfies the filter.
 	vector<const Planet *> options;
@@ -481,7 +501,7 @@ const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance
 		if(planet.IsWormhole() || (requireSpaceport && !planet.HasSpaceport()) || (!hasClearance && !planet.CanLand()))
 			if(planets.empty() || !planets.count(&planet))
 				continue;
-		if(Matches(&planet, origin))
+		if(Matches(&planet, origin, player))
 			options.push_back(&planet);
 	}
 	return options.empty() ? nullptr : options[Random::Int(options.size())];
@@ -492,8 +512,9 @@ const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance
 // Load one particular line of conditions.
 void LocationFilter::LoadChild(const DataNode &child)
 {
-	bool isNot = (child.Token(0) == "not" || child.Token(0) == "neighbor");
-	int valueIndex = 1 + isNot;
+	bool isNot = (child.Token(0) == "not");
+	bool hasClause = (isNot || child.Token(0) == "neighbor");
+	int valueIndex = 1 + hasClause;
 	const string &key = child.Token(valueIndex - 1);
 	if(key == "not" || key == "neighbor")
 		child.PrintTrace("Error: Skipping unsupported use of 'not' and 'neighbor'."
@@ -502,6 +523,8 @@ void LocationFilter::LoadChild(const DataNode &child)
 		flags |= ( isNot ? NOT_VISITED : VISITED );
 	else if(key == "reachable")
 		flags |= ( isNot ? NOT_REACHABLE : REACHABLE);
+	else if(key == "landable")
+		flags |= ( isNot ? NOT_LANDABLE : LANDABLE);
 	else if(key == "planet")
 	{
 		for(int i = valueIndex; i < child.Size(); ++i)
@@ -559,18 +582,18 @@ void LocationFilter::LoadChild(const DataNode &child)
 			originMaxDistance = child.Value(1 + valueIndex);
 		}
 	}
-	else if(key == "category" && child.Size() >= 2 + isNot)
+	else if(key == "category" && child.Size() >= 2 + hasClause)
 	{
 		// Ship categories cannot be combined in an "and" condition.
-		auto firstIt = next(child.Tokens().begin(), 1 + isNot);
+		auto firstIt = next(child.Tokens().begin(), 1 + hasClause);
 		shipCategory.insert(firstIt, child.Tokens().end());
 		for(const DataNode &grand : child)
 			shipCategory.insert(grand.Tokens().begin(), grand.Tokens().end());
 	}
-	else if(key == "outfits" && child.Size() >= 2 + isNot)
+	else if(key == "outfits" && child.Size() >= 2 + hasClause)
 	{
 		outfits.push_back(set<const Outfit *>());
-		for(int i = 1 + isNot; i < child.Size(); ++i)
+		for(int i = 1 + hasClause; i < child.Size(); ++i)
 			outfits.back().insert(GameData::Outfits().Get(child.Token(i)));
 		for(const DataNode &grand : child)
 			for(int i = 0; i < grand.Size(); ++i)
@@ -585,7 +608,7 @@ void LocationFilter::LoadChild(const DataNode &child)
 
 
 
-bool LocationFilter::Matches(const System *system, const System *origin, bool didPlanet) const
+bool LocationFilter::Matches(const System *system, const System *origin, bool didPlanet, const PlayerInfo *player) const
 {
 	if(!system || !system->IsValid())
 		return false;
@@ -617,11 +640,11 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 		}
 
 		for(const LocationFilter &filter : notFilters)
-			if(filter.Matches(system, origin))
+			if(filter.Matches(system, origin, player))
 				return false;
 	}
 
-	if(!MatchesNeighborFilters(neighborFilters, system, origin))
+	if(!MatchesNeighborFilters(neighborFilters, system, origin, player))
 		return false;
 
 	// Check this system's distance from the desired reference system.
@@ -631,19 +654,69 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 			&& Distance(origin, system, originMaxDistance) < originMinDistance)
 		return false;
 
+	if(player && flags && !MatchesFlagFilters(flags, system, player))
+		return false;
+
 	return true;
 }
 
 
 
-bool LocationFilter::MatchesFlagFilters(const System *system, const PlayerInfo *player) const
+bool LocationFilter::MatchesFlagFilters(int flags, const System *system, const PlayerInfo *player)
 {
-
+	if((flags & REACHABLE) && !Reachable(system, player))
+		return false;
+	else if((flags & REACHABLE) && !Reachable(system, player))
+		return false;
+	else if((flags & VISITED) && !player->HasVisited(*system))
+		return false;
+	else if((flags & NOT_VISITED) && !player->HasVisited(*system))
+		return false;
+	else if((flags & LANDABLE) && !CanLand(system, player))
+		return false;
+	else if((flags & NOT_LANDABLE) && CanLand(system, player))
+		return false;
+	else
+		return true;
 }
 
 
 
-bool LocationFilter::MatchesFlagFilters(const Planet *planet, const PlayerInfo *player) const
+bool LocationFilter::MatchesFlagFilters(int flags, const Planet *planet, const PlayerInfo *player)
 {
-
+	if((flags & VISITED) && !player->HasVisited(*planet))
+		return false;
+	else if((flags & NOT_VISITED) && player->HasVisited(*planet))
+		return false;
+	else if((flags & LANDABLE) && !CanLand(planet, player))
+		return false;
+	else if((flags & NOT_LANDABLE) && !CanLand(planet, player))
+		return false;
+	else if(planet->GetSystem())
+		return MatchesFlagFilters(flags, planet->GetSystem(), player);
+	return true;
 } 
+
+
+
+bool LocationFilter::Reachable(const System *system, const PlayerInfo *player)
+{
+	return system && player->Flagship() && DistanceMap(*player->Flagship(), system).HasRoute(system);
+}
+
+
+
+bool LocationFilter::CanLand(const Planet *planet, const PlayerInfo *player)
+{
+	return planet && player->Flagship() && planet->CanLand(*player->Flagship());
+}
+
+
+
+bool LocationFilter::CanLand(const System *system, const PlayerInfo *player)
+{
+	for(auto &stellarObject : system->Objects())
+		if(CanLand(stellarObject.GetPlanet(), player))
+			return true;
+	return false;
+}

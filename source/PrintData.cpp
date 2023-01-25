@@ -644,11 +644,11 @@ namespace {
 
 		cout << "Systems matching provided location filter:\n";
 		for(const auto &it : GameData::Systems())
-			if(filter.Matches(&it.second))
+			if(filter.Matches(&it.second, nullptr, nullptr))
 				cout << it.first << '\n';
 		cout << "Planets matching provided location filter:\n";
 		for(const auto &it : GameData::Planets())
-			if(filter.Matches(&it.second))
+			if(filter.Matches(&it.second, nullptr, nullptr))
 				cout << it.first << '\n';
 	}
 }

@@ -484,24 +484,26 @@ bool Government::Trusts(const Government *government) const
 
 
 
-// Returns true if this government has no enforcement restrictions, or if the
-// indicated system matches at least one enforcement zone.
-bool Government::CanEnforce(const System *system) const
+// Returns true if this government has no enforcement restrictions for
+// the given player at this system, or if the indicated system and
+// player matches at least one enforcement zone.
+bool Government::CanEnforce(const PlayerInfo &player, const System *system) const
 {
 	for(const LocationFilter &filter : enforcementZones)
-		if(filter.Matches(system))
+		if(filter.Matches(system, nullptr, &player))
 			return true;
 	return enforcementZones.empty();
 }
 
 
 
-// Returns true if this government has no enforcement restrictions, or if the
-// indicated planet matches at least one enforcement zone.
-bool Government::CanEnforce(const Planet *planet) const
+// Returns true if this government has no enforcement restrictions for
+// the given player, or if the indicated planet matches at least one
+// enforcement zone for this player.
+bool Government::CanEnforce(const PlayerInfo &player, const Planet *planet) const
 {
 	for(const LocationFilter &filter : enforcementZones)
-		if(filter.Matches(planet))
+		if(filter.Matches(planet, nullptr, &player))
 			return true;
 	return enforcementZones.empty();
 }
