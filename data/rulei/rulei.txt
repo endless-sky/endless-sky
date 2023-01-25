@@ -32,31 +32,31 @@ mission "Ira Contact"
 		log "Factions" "Rulei" `The Rulei were likely an ancient, technologically advanced civilization from long ago.`
 			`They communicate through some sort of invasive psionic ability.`
 		conversation
-			`The second you jump into this system you begin to experience a strange, uncomfortable sensation. You feel an overwhelming sense of emptiness, but at the same time the intensity of this feeling suggests that something must be there. You barely have enough time to try and make sense of this oddity as only seconds later you start to hear ominous whispering, as if something is behind you.`
+			`The second you jump into this system you begin to experience a strange, uncomfortable sensation. You feel an overwhelming sense of emptiness, but at the same time the intensity of this feeling suggests that something must be there. You barely have enough time to try and make sense of this oddity as only seconds later you start to hear ominous whispering come from behind you.`
 			choice
 				`	(Turn around.)`
-			`	You turn your head around to look, but the source of the whispers remains at the back of your head, like an itch that can't be reached. You can't even remotely understand the language, and the whispers progressively increase in volume. The louder they get, the more there are. It sounds like thousands of differently pitched voices are speaking all at once now, and your senses all feel overloaded. Just before you think you can't take anymore, everything falls completely silent.`
+			`	You turn your head around to look, but the source of the whispers remains at the back of your head, like an itch that can't be reached. You can't even remotely understand the language, and the whispers progressively increase in volume. The louder they get, the more there are. They begin to come from various directions around you, as though they're tugging at your mind from several angles at once. It sounds like hundreds of differently pitched voices are speaking all at once now, and your senses all feel overloaded. Just before you think you can't take anymore, everything falls completely silent.`
 			choice
 				`	(Wait.)`
 			scene "scene/rulei flash"
 			`	"T e r r a n."`
-			`A bizarre image is suddenly flashed into your head, and it feels like millions of eyes are staring at you from beyond the boundaries of space. Turning your head to look around again, you find the source - a strange-looking spacecraft in the vicinity of two of this system's planets. When it spoke, it sounded like thousands of voices speaking at once, but this time for only a brief second. The various whispers still surround you everywhere else.`
+			`A bizarre image is suddenly flashed into your head, and it feels like millions of eyes are staring at you from beyond the boundaries of space. Turning your head to look around again, you find the source - a strange-looking spacecraft in the vicinity of two of this system's planets. When it spoke, it sounded like thousands of voices speaking at once, but this time for only a brief second. Other various whispers continue to surround your mind everywhere else, but they have calmed down slightly.`
 			choice
 				`	"Who are you?"`
 				`	"Where am I?"`
 					goto where
-			`	The numerous whispers begin to pick up again, but rather than becoming louder, it sounds like they are going back and forth in your head. It almost seems they are having a discussion. After a few more seconds of this, dead silence resumes and then is broken again by a single word.`
+			`	Numerous voices begin to pick up again, but rather than becoming louder, it sounds like they are going back and forth in your head. It almost seems they are having a discussion with each other. After a few more seconds of this, dead silence resumes and then is broken again by a single word.`
 			`	"P r e c u r s o r s."`
 			choice
 				`	"Where am I?"`
 			label where
-			`	Once again, the whispers start to pick up. The swirl of endless voices continues on in your head for several more seconds, each one more agonizing than the last. Finally, they cease, and you're left in another moment's worth of silence.`
+			`	Once again, the whispers start to pick up. The swirl of endless vocals continues on in your head for several more seconds, each one more agonizing than the last. Finally, they cease, and you're left in another moment's worth of silence.`
 			`	"T h e  E n d."`
 			choice
 				`	"What do you mean by "The End"?"`
-			`	The voices resume in the background, but if there's anything you can tell, it's that they've taken a more dreary tone than before. You try once more to communicate with the ship, but despite the constant whispers, it no longer answers. "The End" might possibly be referring to some type of extinction.`
-			`Taking another look at the vessel, it seems to have some sort of advanced origin. Eerie star-like patterns flow on its surface, and it doesn't visibly have any standard means of propulsion. At the rear end is some type of floating ring of objects that hum in a strange tune as they rotate. The Rulei were probably far more advanced than anything human, even possibly in line with the Quarg.`
-			`The planets below seem to have an abnormal appearance similar to that of the starship, but for some reason even looking at them gives you a headache. Something intense must have happened here a long time ago.`
+			`	The voices resume, but if there's anything you can tell, it's that they've taken a more dreary tone than before. You try once more to communicate with the ship, but despite constant whispering in the background, it no longer answers. "The End" may be referring to some unpleasant event or memory to them.`
+			`Taking another look at the vessel, it seems to have some sort of advanced origin. Eerie star-like patterns flow on its surface, and it doesn't visibly have any standard means of propulsion. At the rear end is some type of floating ring of objects that rotate in a pecurliar manner. The Rulei were probably far more advanced than anything human, even possibly in line with the Quarg.`
+			`The planets below seem to have an abnormal appearance similar to that of the starship, but for some reason even looking at them gives you a headache. Something unusual must have happened here a long time ago.`
 				decline
 				
 				
