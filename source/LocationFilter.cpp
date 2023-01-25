@@ -182,6 +182,10 @@ void LocationFilter::Load(const DataNode &node)
 		else
 			LoadChild(child);
 	}
+
+	isEmpty = planets.empty() && attributes.empty() && systems.empty() && governments.empty()
+		&& !center && originMaxDistance < 0 && notFilters.empty() && neighborFilters.empty()
+		&& outfits.empty() && shipCategory.empty();
 }
 
 
@@ -283,9 +287,7 @@ void LocationFilter::Save(DataWriter &out) const
 // Check if this filter contains any specifications.
 bool LocationFilter::IsEmpty() const
 {
-	return planets.empty() && attributes.empty() && systems.empty() && governments.empty()
-		&& !center && originMaxDistance < 0 && notFilters.empty() && neighborFilters.empty()
-		&& outfits.empty() && shipCategory.empty();
+	return isEmpty;
 }
 
 
