@@ -274,5 +274,5 @@ jobs:
         python-version: '3.x'
     - name: Install dependencies
       run: pip install regex
-    - name: Execute style checker
+    - name: Run style checker
       run: python ./utils/check_content_style.py
