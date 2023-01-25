@@ -53,6 +53,7 @@ namespace {
 	const int TARGET = (1 << 26);
 	const int MARKED = (1 << 27);
 	const int LAUNCHING = (1 << 28);
+	const int SECRETIVE = (1 << 29);
 
 	const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -83,7 +84,8 @@ namespace {
 		{"merciful", MERCIFUL},
 		{"target", TARGET},
 		{"marked", MARKED},
-		{"launching", LAUNCHING}
+		{"launching", LAUNCHING},
+		{"secretive", SECRETIVE},
 	};
 
 	const double DEFAULT_CONFUSION = 10.;
@@ -125,6 +127,7 @@ void Personality::Load(const DataNode &node)
 				Parse(child, i, remove);
 		}
 	}
+	isDefined = true;
 }
 
 
@@ -140,6 +143,13 @@ void Personality::Save(DataWriter &out) const
 				out.Write(it.first);
 	}
 	out.EndChild();
+}
+
+
+
+bool Personality::IsDefined() const
+{
+	return isDefined;
 }
 
 
@@ -315,6 +325,13 @@ bool Personality::Harvests() const
 bool Personality::IsSwarming() const
 {
 	return flags & SWARMING;
+}
+
+
+
+bool Personality::IsSecretive() const
+{
+	return flags & SECRETIVE;
 }
 
 

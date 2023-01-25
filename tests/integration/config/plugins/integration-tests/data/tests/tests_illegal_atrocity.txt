@@ -87,8 +87,6 @@ test-data "quarg rescue"
 						accept
 		conditions
 			"%TEST%: SCANNING ILLEGALS"
-			"Ruin: Landing: offered"
-
 
 test-data "quarg scanning"
 	category "savegame"
@@ -188,7 +186,6 @@ test-data "quarg scanning"
 						accept
 		conditions
 			"%TEST%: SCANNING ILLEGALS"
-			"Ruin: Landing: offered"
 
 
 test-data "quarg atrocity"
@@ -244,6 +241,7 @@ test-data "quarg atrocity"
 				atrocities
 					Hyperdrive
 				remove "enforces"
+				remove "death sentence"
 		visited "Terra Incognita"
 		"visited planet" Ruin
 		"available mission" "%TEST%: Wardragon Scanning You!"
@@ -288,22 +286,9 @@ test-data "quarg atrocity"
 						accept
 		conditions
 			"%TEST%: SCANNING ILLEGALS"
-			"Ruin: Landing: offered"
 
 # just so the mission actually works
 mission "%TEST%: Wardragon Scanning You!"
-
-test "Land On Ruin helper"
-	status partial
-	description "Helper for landing on Ruin."
-	sequence
-		input
-			command land
-		label "landing"
-		# empty input to make time pass
-		input
-		branch "landing"
-			"flagship planet: Ruin" == 0
 
 test "Launch Quarg Scanning Mission And Board"
 	status partial
@@ -344,7 +329,7 @@ test "Boarding Test - Repair Friendly Ship"
 			"test: %TEST%: Wardragon Scanning You!: active" = "%TEST%: Wardragon Scanning You!: active"
 		assert
 			"%TEST%: Wardragon Scanning You!: active" == 1
-		call "Land On Ruin helper"
+		call "Land"
 		apply
 			"test: %TEST%: Wardragon Scanning You!: done" = "%TEST%: Wardragon Scanning You!: done"
 		assert
@@ -361,7 +346,7 @@ test "Illegal Test - Ignore and New Illegal"
 			"unpaid fines" == 0
 		call "Launch Quarg Scanning Mission And Board"
 		# land back with a fine of 1 for the hyperdrive, nothing from the gas
-		call "Land On Ruin helper"
+		call "Land"
 		# copy the test-data in the temporary conditions for debugging when an issue happens
 		apply
 			"test: unpaid fines" = "unpaid fines"
@@ -379,7 +364,7 @@ test "Atrocity Test - New Atrocity"
 			"reputation: Quarg" == 1000
 		call "Launch Quarg Scanning Mission And Board"
 		# land back with atrocity having been in effect (should nuke the reputation?)
-		call "Land On Ruin helper"
+		call "Land"
 		# copy the test-data in the temporary conditions for debugging when an issue happens
 		apply
 			"test: reputation: Quarg" = "reputation: Quarg"

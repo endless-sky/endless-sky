@@ -75,7 +75,7 @@ mission "Setar Fort Heating"
 		near "Kaliptari" 100
 	destination "Setar Fort"
 	to offer
-		has "Wanderers: Sestor: Final: done"
+		has "wanderers sestor done"
 		random < 60
 	on offer
 		conversation
@@ -245,7 +245,7 @@ mission "Small Scale Delivery"
 	description "Take a small delivery to <destination> for <payment> for a Kor Efret."
 	minor
 	to offer
-		has "Wanderers: Sestor: Final: done"
+		has "wanderers sestor done"
 		random < 10
 	source
 		government "Kor Efret"
