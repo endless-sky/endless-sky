@@ -52,16 +52,16 @@ test-data "Checking For A Gifted Ship Test Save"
 test-data "Checking For A Gifted Ship Test Missions"
 	category mission
 	contents
+		mission "%TEST%: Check sparrow"
+			landing
+			on offer
+				take ship "Sparrow" "The Sparrow"
+					id "ship: sparrow"
 		mission "%TEST%: Switch"
 			landing
 			on offer
 				take ship "Star Barge"
 				give ship "Sparrow" "The Sparrow"
-					id "ship: sparrow"
-		mission "%TEST%: Check sparrow"
-			landing
-			on offer
-				take ship "Sparrow" "The Sparrow"
 					id "ship: sparrow"
 
 test "Checking For A Gifted Ship"
@@ -74,6 +74,11 @@ test "Checking For A Gifted Ship"
 		# Make the missions trigger by landing again.
 		call "Depart"
 		call "Land"
+		assert
+			"ship model: Star Barge" == 0
+			"ship model: Sparrow" == 1
+			"%TEST%: Switch: offered" == 1
+			"%TEST%: Check sparrow: offered" == 0
 		call "Depart"
 		# Reload this to make sure the UUID is well stored into the savefile.
 		call "Open Menu"
