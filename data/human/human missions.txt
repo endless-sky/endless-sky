@@ -5416,3 +5416,52 @@ mission "Deal Change 2"
 				die
 			label skip
 			`	After a few minutes, the pirates finish unloading the cargo, and Ci steps forward, holding out a credit chip. "<payment>, for making the right choice." Ci and the pirates return to their ships as you take off and head towards the main spaceport of <planet>.`
+
+mission "Escort offer (Betrayal)"
+	landing
+	name "Escort to <planet>"
+	description "The captain of the <npc> has offered to fly alongside you, protecting you from pirates, on your way to <destination>. In exchange, he has asked for 80,000 credits upon your arrival."
+	source Sunracer
+	destination Maelstrom
+	to offer
+		"armament deterrence" <= 2
+		"cargo attractiveness" >= 2.8
+	on offer
+		conversation
+			`Almost immediately after you land, a heavily modified Firebird with oversized guns follows you down, landing on the pad next to you. A young man with short hair steps out, walks over to your ship, and says, "Hey, you've got a lot of cargo space there. I reckon you'd make at least 200k running luxury goods from here to <planet>. In <system>, if you're not familiar with it. Lot of pirates round there, though. I can fight 'em, but there's not much money to be made hauling cargo in this thing." He gestures to his ship. "Tell you what, for 40%, I'll see to it that you arrive there safely. What do you think?"`
+			choice
+				`	"I was just thinking of doing the same, glad to know I'll have you with me!"`
+				`	"Sounds like a plan. 80,000 credits, then?"`
+				`	"Actually, I have other plans. Sorry."`
+					goto otherplans
+				`	"Sorry, that just sounds too dangerous for me."`
+					decline
+			`	"Alright, let's go! Don't forget to pick up a full cargo of luxury goods before setting off. Oh, and if you didn't already know, you can get to <planet> from here in just four jumps. North, west, southwest, then south."
+				accept
+			label otherplans
+			`	"Alright, no worries, maybe another time?" The man smiles and walks away, into the spaceport.`
+				defer
+	on enter Moktar
+		dialog `As expected, there are pirates waiting for you in Moktar. Unfortunately, the <npc> makes no attempt to attack them, instead turning its guns on you.`
+		"reputation: Escort (Betraying)" <?= -1000
+		fail
+	on enter Menkar
+		dialog `The <npc> hails you: "Wrong way, mate! It'll take you more than a week to get there if you go the whole way round. Head back up to Mirfak, then north, west, southwest and south."`
+	on enter Zaurak
+		dialog `The <npc> hails you again: "Figured it out, did you? Bit late for that now, mate. You're still going down."`
+		"reputation: Escort (Betraying)" <?= -1000
+		fail
+	on abort
+		dialog `The <npc> hails you: "Figured it out, did you? Bit late for that now, mate. You're still going down."`
+		"reputation: Escort (Betraying)" <?= -1000
+	npc accompany save
+		government "Escort (Betraying)"
+		personality nemesis harvests plunders
+			confusion 10
+		ship "Marauder Firebird (Weapons)" "Hellspear"
+	npc
+		government "Pirate"
+		personality staying nemesis harvests plunders
+			confusion 10
+		system Moktar
+		ship "Splinter" "Hellblade"
