@@ -540,7 +540,7 @@ mission "Remnant: Key Stones (Hai)"
 			has "Remnant: Defense 3: done"
 	on offer
 		conversation "remnant key stones"
-			
+		
 	on visit
 		dialog `You have returned to <planet>, but you don't have 50 "quantum keystones" to give to the outfitter. Buy the keystones from the Hai before returning here.`
 	on complete

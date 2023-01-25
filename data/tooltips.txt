@@ -305,6 +305,9 @@ tip "ion resistance fuel:"
 tip "ion resistance heat:"
 	`Heat generated per second when resisting ion damage.`
 
+tip "landing speed:"
+	`How fast this ship is able to land on a planet, or travel through a wormhole.`
+
 tip "scramble resistance:"
 	`How much scrambling damage this ship can resist per second.`
 

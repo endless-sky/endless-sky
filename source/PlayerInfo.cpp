@@ -1225,6 +1225,45 @@ pair<double, double> PlayerInfo::RaidFleetFactors() const
 
 
 
+double PlayerInfo::RaidFleetAttraction(const Government::RaidFleet &raid, const System *system) const
+{
+	double attraction = 0.;
+	const Fleet *raidFleet = raid.GetFleet();
+	const Government *raidGov = raidFleet ? raidFleet->GetGovernment() : nullptr;
+	if(raidGov && raidGov->IsEnemy())
+	{
+		// The player's base attraction to a fleet is determined by their fleet attraction minus
+		// their fleet deterrence, minus whatever the minimum attraction of this raid fleet is.
+		pair<double, double> factors = RaidFleetFactors();
+		// If there is a maximum attraction for this fleet, and we are above it, it will not spawn.
+		if(raid.MaxAttraction() > 0 && factors.first > raid.MaxAttraction())
+			return 0;
+
+		attraction = .005 * (factors.first - factors.second - raid.MinAttraction());
+		// Then we consider the strength of other fleets in the system.
+		int64_t raidStrength = raidFleet->Strength();
+		if(system && raidStrength)
+			for(const auto &fleet : system->Fleets())
+			{
+				const Government *gov = fleet.Get()->GetGovernment();
+				if(gov)
+				{
+					// If this fleet is neutral or hostile to both the player and raid fleet, it has
+					// no impact on the attraction. If the fleet is hostile to only the player, the
+					// raid attraction will increase. If the fleet is hostile to only the raid fleet,
+					// the raid attraction will decrease. The amount of increase or decrease is determined
+					// by the strength of the fleet relative to the raid fleet. System fleets which are
+					// stronger have a larger impact.
+					double strength = fleet.Get()->Strength() / fleet.Period();
+					attraction -= (gov->IsEnemy(raidGov) - gov->IsEnemy()) * (strength / raidStrength);
+				}
+			}
+	}
+	return max(0., min(1., attraction));
+}
+
+
+
 // Get cargo information.
 CargoHold &PlayerInfo::Cargo()
 {
@@ -2924,6 +2963,31 @@ void PlayerInfo::RegisterDerivedConditions()
 		auto rff = RaidFleetFactors();
 		return rff.first - rff.second;
 	});
+
+	auto &&systemAttractionProvider = conditions.GetProviderPrefixed("raid chance in system: ");
+	auto systemAttractionFun = [this](const string &name) -> double
+	{
+		const System *system = GameData::Systems().Find(name.substr(strlen("raid chance in system: ")));
+		if(!system)
+			return 0.;
+
+		// This variable represents the probability of no raid fleets spawning.
+		double safeChance = 1.;
+		for(const auto &raidFleet : system->GetGovernment()->RaidFleets())
+		{
+			// The attraction is the % chance for a single instance of this fleet to appear.
+			double attraction = RaidFleetAttraction(raidFleet, system);
+			// Calculate the % chance for no instances to appear from 10 rolls.
+			double noFleetProb = pow(1. - attraction, 10.);
+			// The chance of neither of two fleets appearing is the chance of the first not appearing
+			// times the chance of the second not appearing.
+			safeChance *= noFleetProb;
+		}
+		// The probability of any single fleet appearing is 1 - chance.
+		return round((1. - safeChance) * 1000.);
+	};
+	systemAttractionProvider.SetGetFunction(systemAttractionFun);
+	systemAttractionProvider.SetHasFunction(systemAttractionFun);
 
 	// Special conditions for cargo and passenger space.
 	// If boarding a ship, missions should not consider the space available
