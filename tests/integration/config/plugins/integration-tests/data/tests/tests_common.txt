@@ -701,7 +701,7 @@ test "Depart and Ignore Warning Message"
 		# Using empty inputs to trigger those game loops.
 		input
 		input
-		# Dismiss the expected message
+		# Acknowledge the expected message
 		input
 			key "Return"
 		# The ships zoom gets restored at a rate of .02 per step, so wait for a bit more than 50 steps to get to full zoom/full control.
