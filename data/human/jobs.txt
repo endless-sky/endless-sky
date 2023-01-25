@@ -2486,13 +2486,13 @@ mission "Passenger Runoff [0]"
 	name "Passenger transport to <planet>"
 	job
 	repeat
-	description "Bring a hooded figure to <destination>. Payment is <payment>."
+	description "Bring a hooded figure to <destination>. Payment is 12,000 credits."
 	passengers 1
-	"apparent payment" 2000
+	"apparent payment" 12000
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
-		distance 2 10
+		distance 2 8
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
 		random < 1
@@ -2506,13 +2506,13 @@ mission "Passenger Runoff [1]"
 	name "Passenger transport to <planet>"
 	job
 	repeat
-	description "Bring a teenager to <destination>. Payment is <payment>."
+	description "Bring a teenager to <destination>. Payment is 12,000 credits."
 	passengers 1
-	"apparent payment" 2000
+	"apparent payment" 12000
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
-		distance 2 10
+		distance 2 8
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
 		random < 1

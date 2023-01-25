@@ -5429,19 +5429,28 @@ mission "Karen Transport 1"
 		attributes "paradise"
 	destination
 		distance 1 1
-		government "Republic"
+		attributes "paradise"
 	to offer
 		random < 1
+		"flagship crew" > 3
 	on offer
 		conversation
-			`As you are wandering the spaceport, a woman with extravagant clothing approsches you. "I am to be transported to <destination> immediately. You will be paid well."`
+			`As you are wandering the spaceport, a woman with extravagant clothing approaches you. "I am to be transported to <destination> immediately. You will be paid well."`
 			choice
 				`	(Invite her into your ship.)`
-					accept
+					goto accept
 				`	"I'd expect my passengers to be more respectful."`
 			`	"Well, you just lost yourself a passenger!" She storms off angrily, cursing the audacity of "these space freaks."`
 				decline
-	on enter <destination>
+			
+			label accept
+			`	She takes off towards your ship without waiting for you. When you catch up to her, she is standing in a passageway, shouting at your crew to take her bags away. You tell her that your crew is busy and that passengers are expected to carry their own luggage, and leave for your cabin.`
+				accept
+	on enter
+		dialog
+			`During takeoff, you keep hearing loud banging and cursing from one of the passenger cabins. Later on, you hear the woman you just picked up screeching at your crew for their 'gross incompetence' and 'boneheaded flying'.`
+			`	You can barely restrain yourself from making a snappy remark, but you have learned that it's best not to antagonize your passengers.`
+	on enter
 		conversation
 			`You hear hurling and splashing noises in the background. It seems your passenger threw up, not uncommon for first-timers.`
 			choice
@@ -5455,23 +5464,16 @@ mission "Karen Transport 1"
 			choice
 				`	"Are you enjoying the ride, ma'am?"`
 					goto nothing
-				`	(Say nothing)`
+				`	(Say nothing.)`
 					goto nothing
 
 			label stay
-				`	After a couple of minutes, your passenger busts into the cockpit, puke dripping from her clothes.`
+			`	After a couple of minutes, your passenger busts into the cockpit, puke dripping from her clothes.`
 
 			label nothing
-				`	"Look at this mess you made! Whackos like you should never be allowed to drive around! This is a spaceship, not a space rodeo!"`
-				`	You try to tell her about the nature of hyperspace jumps, but that only results in a volley of further insults.`
-	on complete
-		conversation
-			`You are glad to finally see your passenger leaving, but then you realize she has't paid you yet. You decide to confront her about it.`
-			`	"You expect ME to pay after all that? You are lucky I'm not suing you for damages!"`
-			`	She stops for a moment, then throws a credit chip at you. "Fine, take this, but don't bother me again!" She stomps off angrily.`
-			`	You look at the credit chip she had so generously given you. It's worth... 10 credits. Oh well.`
-		payment 10
-	on fail
+			`	"Look at this mess you made! Whackos like you should never be allowed to drive around! This is a spaceship, not a space rodeo!"`
+			`	You try to tell her about the nature of hyperspace jumps, but that only results in a volley of further insults.`
+	on enter
 		conversation
 			`You hear muffled noises behind you. You move to the back of the cockpit to see your passenger throwing a fit, beating on the door in anger. "I demand to speak to the captain!"`
 			choice
@@ -5481,18 +5483,24 @@ mission "Karen Transport 1"
 					goto restrain
 
 			label talk
-				`	You open the door, but she cuts you off before you have a chance to say something.`
-				`	"Idiot! You flying space morons can't even read a map! We are nowhere near <planet>! Are you trying to kidnap me? I'll get the Navy to put you into prison for this!" You try to speak, but can't get a word in edgeways.`
+			`	You open the door, but she cuts you off before you have a chance to say something.`
+			`	"Idiot! You flying space morons can't even read a map! We are nowhere near <planet>! Are you trying to kidnap me? I'll get the Navy to put you into prison for this!" You try to speak, but can't get a word in edgeways.`
 
 			label restrain
-				`	You call your crew, and together you manage to detain  her. She is now locked up in. her cabin, but her screams still echo in your head. This will be a long day.`
-				`	You decide to drop her off on the first planet you land on.`
+			`	You call your crew, and together you manage to detain her. She is now locked up in her cabin, but her screams still echo in your head. This will be a long day.`
+			`	You decide to drop her off on the first planet you land on.`
+	on complete
+		conversation
+			`You are glad to finally see your passenger leaving, but then you realize she has't paid you yet. You decide to confront her about it.`
+			`	"You expect ME to pay after all that? You are lucky I'm not suing you for damages!" She stops for a moment, then throws a credit chip at you. "Fine, take this, but don't bother me again!" She stomps off angrily.`
+			`	You look at the credit chip she had so generously given you. It's worth... 10 credits. Oh well.`
+		payment 10
 	on abort
 		conversation
 			branch landed
 				has "flagship landed"
 			`You decide you had enough of her constant fits, and inform her that her journey is over.`
-			`	As you listen to the air hissing out of the opening airlock, you take comfort in the knowledge that you at least got the bunk space back.`
+			`	As you listen with grim satisfaction to the air hissing out of the opening airlock, you take comfort in the knowledge that you at least got the bunk space back.`
 				decline
 			label landed
 			`You decide you don't want to deal with her after all, and let her go. You wonder if you just dodged a bullet.`
@@ -5506,35 +5514,32 @@ mission "Karen Transport 2"
 	deadline 2 0
 	source
 		government "Republic"
-		attributes "paradise"
-	destination
-		distance 1 1
-		government "Republic"
-	to offer
-		random < 1
+		neighbor system "Sol"
+	destination "Earth"
+	#to offer
+		#random < 1
 	on offer
 		conversation
-			`As you exit your ship, a middle-aged man in an expensive-looking suit approaches you. "Do you know the way to <destination>? I have to get there by <deadline>."`
-		choice
-			`	"Yes. How much are you willing to pay me?"`
-				goto pay
-			`	"Yes." (Invite him into your ship.)`
-				goto board
-			`	"No, I don't."`
-				decline	
-		
-		label pay
-			`	Another greedy captain, I see. Back in my days, ship captains were happy to have passengers, and accepted whatever they were paid, not this predetermined wage nonsense. You would do well to learn from them."`
-			`	Before you could protest, he marches into your ship.`
-			accept
+			`As you exit your ship, a middle-aged man in an expensive-looking suit approaches you. "I need you to take me to <planet>. I have urgent business there. Are you willing to transport me?"`
+			choice
+				`	"Yes. How much are you willing to pay me?"`
+					goto pay
+				`	"Yes." (Invite him into your ship.)`
+					goto board
+				`	"No, I don't."`
+					decline
 
-		label board
+			label pay
+			`	Another greedy captain, I see. Back in my days, ship captains were happy to have passengers and accepted whatever they were paid, not this predetermined wage nonsense. You would do well to learn from them."`
+			`	Before you could protest, he marches into your ship.`
+				accept
+
+			label board
 			`	"Yours isn't a bad ship, captain. Not as good as the old ones, of course. They made quality back then, both in terms of ships and pilots," he says, as he boards your ship.`
-			accept
+				accept
 	on enter
 		conversation
-			`As you are manouvering to position your ship for the jump, you hear someone talking behind you.`
-			`	"Not that lever, captain!" It's your middle-aged passenger.`
+			`As you are manouvering to position your ship for the jump, you hear someone talking behind you. "Not that lever, captain!" It's your middle-aged passenger.`
 			`	You look where he is pointing: the thruster controls you were about to engage. "We should slow down now, not go even faster," he continues.`
 			choice
 				`	"That's why these thrusters face the other way."`
@@ -5543,19 +5548,19 @@ mission "Karen Transport 2"
 					goto how
 
 			label other
-				`	"Oh. Easy mistake. You should get a better navigation system, this one is a worthless piece of junk. How do they even allow you to fly with such outdated equipment, anyway?"`
-				`	You tell them that this is in fact a perfectly good, up to date navigation system, and that he should leave the cockpit.`
-				`	"Alright, alright. You know where to find me if you need more help."`
+			`	"Oh. Easy mistake. You should get a better navigation system, this one is a worthless piece of junk. How do they even allow you to fly with such outdated equipment, anyway?"`
+			`	You tell them that this is in fact a perfectly good, up to date navigation system, and that he should leave the cockpit.`
+			`	"Alright, alright. You know where to find me if you need more help."`
 					goto close
 			
 			label how
-				`	"How? Don't you know how to fly a ship? And you call yourself a 'pilot' and a 'captain'? Just use the brakes!"`
-				`	When you tell him that he is on board a spaceship, and there are, in fact, no brakes, he just walks off, muttering to himself. "What times are we living in, that captains don't know how to stop a ship? Using thrusters, like that could ever work..."
+			`	"How? Don't you know how to fly a ship? And you call yourself a 'pilot' and a 'captain'? Just use the brakes!"`
+			`	When you tell him that he is on board a spaceship, and there are, in fact, no brakes, he just walks off, muttering to himself. "What times are we living in, that captains don't know how to stop a ship? Using thrusters, like that could ever work..."`
 					goto close
 
 			label close
 				`	You make sure to lock the cockpit door this time, and then carefully stop the ship using the thrusters.`
-	on enter <destination>
+	on enter
 		conversation
 			`You glance behind you to make sure the cockpit doors are still closed. Maybe this time you can maneuver the ship in peace.`
 			`	Just as you finished that thought, the intercom beeps. "Are you sure you can handle landing by yourself? Don't be afraid to ask for help, it isn't embarrassing. Pilot training is worthless anyway."`
@@ -5566,7 +5571,7 @@ mission "Karen Transport 2"
 					goto silent
 
 			label fly
-				`	"I never bothered to apply for a licene, but I know my way around the controls," he says. You remain dubious, considering he didn't even know how to stop a ship.`
+			`	"I never bothered to apply for a licene, but I know my way around the controls," he says. You remain dubious, considering he didn't even know how to stop a ship.`
 			choice
 				`	"If you are not a pilot, then stop bothering me."`
 					goto stop
@@ -5574,22 +5579,13 @@ mission "Karen Transport 2"
 					goto silent
 
 			label silent
-				`	You silently listen to the 'advice' he is giving. "Slow down, you are going way too fast", "you are turning the wrong way", "be more gentle on those controls". When he gets to "Why are we not there yet?" you decide to silence the audio, and focus on flying the ship.`
+			`	You silently listen to the 'advice' he is giving. "Slow down, you are going way too fast", "you are turning the wrong way", "be more gentle on those controls". When he gets to "Why are we not there yet?" you decide to mute the audio, and focus on flying the ship.`
+				decline
 
 			label stop
-				`	"This is what I get for helping you? Very grateful of you. Maybe next time you won't get a passenger that flies the ship for you, and you will crash into a planet."`
-				`	You didn't think silencing the audio could be this satisfying. Maybe now you can finally focus on flying the ship.`
-	on complete
-		conversation
-			`After landing, you open the doors to let your passengers out. You already see the middle-aged man approaching you.`
-			`	"Took you long enough! Anyway, I must get going now. Some people can't sit around all day."`
-			choice
-				`	(Ask him for payment.)`
-				`	(Let him go.)`
-					decline
-				`	"Pay you?! You would have crashed the ship, had I not helped you! I've practically flown your ship here, and you have the guts to ask for payment?"`
-				`	He turns his back to you and walks off. You consider calling spaceport security, but decide against it; the sooner you get rid of him, the better.`
-	on fail
+			`	"This is what I get for helping you? Very grateful of you. Maybe next time you won't get a passenger that flies the ship for you, and you will crash into a planet."`
+			`	You didn't think silencing the audio could be this satisfying. Maybe now you can finally focus on flying the ship.`
+	on enter
 		conversation
 			`"You should have let me take the wheel, captain", your middle-aged passenger says when you tell him that you won't get to <destination> in time."`
 			choice
@@ -5610,7 +5606,17 @@ mission "Karen Transport 2"
 			`	The ship suddenly lurches to the side, and you find yourself on the ground. "No need to panic, everything is under control", the bogus pilot exclaims.`
 			`	After a moment of relative calm, the world begins to spin around you with sickening speed. You hear alarms go off all over the ship, and sparks fly all around you. It seems that he managed to put the ship into a spin by overloading some of the engines.`
 			`	You try to get up, but it is impossible to find your balance in the wheeling ship. The alarms get more frantic with every passing second, until you hear a low rumbling, then a thundering explosion consumes everything.`
-				die
+				explode
+	on complete
+		conversation
+			`After landing, you open the doors to let your passengers out. You already see the middle-aged man approaching you.`
+			`	"Took you long enough! Anyway, I must get going now. Some people can't sit around all day."`
+			choice
+				`	(Ask him for payment.)`
+				`	(Let him go.)`
+					decline
+			`	"Pay you?! You would have crashed the ship, had I not helped you! I've practically flown your ship here, and you have the guts to ask for payment?"`
+			`	He turns his back to you and walks off. You consider calling spaceport security, but decide against it; the sooner you get rid of him, the better.`
 	on abort
 
 
@@ -5625,7 +5631,7 @@ mission "Drunk Teen Hijack"
 		distance 4
 		attributes "dirt belt"
 	to offer
-		random < 1
+		#random < 1
 		"flagship crew" > 5
 	on offer
 		conversation
@@ -5652,7 +5658,7 @@ mission "Drunk Teen Hijack"
 			`	After a moment of silence, Howard replies. "We heard they have well-paying jobs over there, even for teenagers. And we don't want to work for the Syndicate or those minted folks on the paradise worlds."`
 			`	He pauses for a second, then continues, "We grew up in the dirt belt. This is our home. We don't want to leave all that behind." You hear something strange in his voice, but cannot quite make sense of it. It might just be their desperation.`
 			choice
-				`	"Very well. I will take you to <destination>."`
+				`	"Very well. I will take you to <planet>."`
 					goto accept
 				`	"Sorry, but I can't afford to take you with me."`
 
@@ -5670,7 +5676,7 @@ mission "Drunk Teen Hijack"
 				`	(Investigate the noise.)`
 					goto investigate
 				`	(Don't investigate.)`
-			`You continue on your way to your quarters without noticing anything strange. It must have been some piece of equipment you haven't noticed before.`
+			`You continue on your way to your quarters without noticing anything strange. The noise must have been some piece of equipment you haven't noticed before.`
 				decline
 			label investigate
 			`	You quietly walk closer, then stop and listen to what seems to be people talking.`
@@ -5701,13 +5707,13 @@ mission "Drunk Teen Hijack"
 					goto come
 				`	"Sorry, I can't let you into the cockpit."`
 			`	"Well, that's too bad then. Larry, would you show the kind captain what you got?" Larry is apparently the name of the guy leaning on the wall. He puts a hand behind his back, and pulls out a -`
-			`	You freeze. Larry has your sidearm in his hand, pointed at you. He must have taken it last night, when you thought they were partying. Instantly, all drunkenness is gone from him and his friends, and they eye you with sudden glee and hostility. "That's right," Howard says, with a snark. "Now, will you please let us into the cockpit?"`
+			`	You freeze. Larry has your own sidearm in his hand, pointed at you. He must have taken it last night, when you thought they were partying. Instantly, all drunkenness is gone from him and his friends, and they eye you with sudden glee and hostility. "That's right," Howard says, with a snark. "Now, will you please let us into the cockpit?"`
 			`	You step away from the door, careful not to make any sudden moves.`
 				goto options
 			
 			label come
 			`	You let the group into the cockpit. Four of them immediately crowd the place, but the fifth teen - the one leaning on the wall - keeps his distance.`
-			`	The group seems intrigued by the various controls and equipment that is all over the cockpit. They ask you questions and walk around like Then, all of a sudden, those inside grab you and try to pin your hands down.`
+			`	The group seems intrigued by the various controls and equipment that is all over the cockpit. They ask you questions and walk around with clear curiosity. Then, all of a sudden, those inside grab you and try to pin your hands down.`
 			choice
 				`	(Call for help.)`
 				`	(Fight them.)`
@@ -5722,8 +5728,7 @@ mission "Drunk Teen Hijack"
 
 			label fight
 			`	You stand no chance against the four attackers. They each grab one of your limbs and immobilize you, then the fifth guy points your own gun at you. They must have taken it last night, when you thought they were partying.`
-			`	"Keep it steady, captain," Howard says with glee from your right side. "No funny business. Larry here has an itchy trigger finger." He then lets go of your right leg he has been holding onto, and addresses Larry. "Told you it would work! Next time, I get the gun while you fight in the dirt with the idiot."`
-			`	You notice how none of them seems to be drunk in the slightest anymore.`
+			`	"Keep it steady, captain," Howard says with glee from your right side. "No funny business. Larry here has an itchy trigger finger." He then lets go of your right leg he has been holding onto, and addresses Larry. "Told you it would work! Next time, I get the gun while you fight in the dirt with the idiot." You notice how none of them seems to be drunk in the slightest anymore.`
 
 			label options
 			`	"You will fly the ship for us. If you don't try anything, we'll let you go afterwards." You don't give much credit to their promise.`
@@ -5752,5 +5757,5 @@ mission "Drunk Teen Hijack"
 		payment 50000
 		dialog
 			`You notify the spaceport authorities about the situation, and hand over the teenagers to the security detachment they sent out.`
-			`	"That's the Howard Gang! They have been causing trouble on <origin>, then turned tail when they caught wind of the investigation. We are glad you managed to catch them."`
+			`	"That's the 'Howard Gang'! They have been causing trouble on <origin>, then turned tail when they caught wind of the investigation. We are glad you managed to catch them."`
 			`	They give you <payment> bounty for apprehending the criminals.`
