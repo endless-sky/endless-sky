@@ -5466,7 +5466,7 @@ mission "Escort offer (Betrayal)"
 		dialog `The <npc> hails you: "Figured it out, did you? Bit late for that now, mate. You're still going down."`
 		"reputation: Escort (Betraying)" <?= -1000
 	npc
-		government "Pirate"
+		government "Escort (Betraying)"
 		personality staying nemesis harvests plunders
 			confusion 10
 		system Moktar
