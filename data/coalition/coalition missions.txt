@@ -3126,7 +3126,7 @@ mission "Heliarchs Buy Jump Drive Mission"
 		government "Heliarch"
 	on offer
 		conversation
-			`Your ship has barely touched down in the <origin> when several dozen Heliarch warships of all sizes start landing around you. The local garrison wastes no time in hailing you. "Captain <last>, our esteemed friend. Noticed it was that in your possession an extra jump drive is. Aid us tremendously any extra copies would, so if willing to sell your spare to us you are, thank you with <payment> we will." Many Heliarchs leave the ships, staring at the <ship> as they eagerly wait for your decision.`
+			`Your ship has barely touched down in the <origin> when several dozen Heliarch warships of all sizes start landing around it. The local garrison wastes no time in hailing you. "Captain <last>, our esteemed friend. Noticed it was that in your possession an extra jump drive is. Aid us tremendously any extra copies would, so if willing to sell your spare to us you are, thank you with <payment> we will." Many Heliarchs leave their ships, staring at the <ship> as they eagerly wait for your decision.`
 			choice
 				`	(Accept the deal.)`
 				`	(Not now.)`
