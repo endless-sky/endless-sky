@@ -908,6 +908,15 @@ License: CC-BY-SA-4.0
 Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
 
 Files:
+ images/ship/pirate?mammoth*
+ images/ship/pirate?scrapper*
+ images/thumbnail/pirate?mammoth*
+ images/thumbnail/pirate?scrapper*
+Copyright: 1010todd
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser and Becca Tommaso under the same license. Incorporating texture made with JSPlacement by WindMillArt <https://windmillart.net/>.
+
+Files:
  images/ship/mfirebird*
  images/ship/mleviathan*
  images/ship/marrow*
@@ -947,6 +956,17 @@ Files:
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Detailed by Anarchist2.
+
+Files:
+ images/ship/pirate?nighthawk*
+ images/ship/pirate?cutthroat*
+ images/ship/pirate?bulwark*
+ images/thumbnail/pirate?nighthawk*
+ images/thumbnail/pirate?cutthroat*
+ images/thumbnail/pirate?bulwark*
+Copyright: 1010Todd
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser and Anarchist2 under the same license. Incorporating texture made with JSPlacement by WindMillArt <https://windmillart.net/>.
 
 Files:
  images/ship/mfalcon*
@@ -1673,10 +1693,10 @@ Files:
  images/ship/gegno?feldspar*
  images/ship/gegno?felsic*
  images/ship/gegno?gneiss*
+ images/ship/gegno?granulite*
  images/ship/gegno?gypsum*
  images/ship/gegno?halite*
  images/ship/gegno?mica*
- images/ship/gegno?protolith*
  images/ship/gegno?schist*
  images/ship/gegno?shale*
  images/ship/gegno?slate*
@@ -1695,10 +1715,10 @@ Files:
  images/thumbnail/gegno?feldspar*
  images/thumbnail/gegno?felsic*
  images/thumbnail/gegno?gneiss*
+ images/thumbnail/gegno?granulite*
  images/thumbnail/gegno?gypsum*
  images/thumbnail/gegno?halite*
  images/thumbnail/gegno?mica*
- images/thumbnail/gegno?protolith*
  images/thumbnail/gegno?schist*
  images/thumbnail/gegno?shale*
  images/thumbnail/gegno?slate*
@@ -1710,6 +1730,8 @@ Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 
 Files:
+ images/effect/void?sprite?parts*
+ images/outfit/void?sprite?parts*
  images/outfit/teciimach?bay*
  images/outfit/teciimach?pod*
  images/planet/gas3-c*
@@ -1741,6 +1763,13 @@ Files:
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/ship/pirate?valkyrie*
+ images/thumbnail/pirate?valkyrie*
+Copyright: Saugia <https://github.com/Saugia>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license) and 1010todd (under the same license). Incorporating texture made with JSPlacement by WindMillArt <https://windmillart.net/>.
 
 Files:
  sounds/drill*
