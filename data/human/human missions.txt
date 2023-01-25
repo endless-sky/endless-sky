@@ -5454,14 +5454,14 @@ mission "Escort offer (Betrayal)"
 	on abort
 		dialog `The <npc> hails you: "Figured it out, did you? Bit late for that now, mate. You're still going down."`
 		"reputation: Escort (Betraying)" <?= -1000
-	npc accompany save
-		government "Escort (Betraying)"
-		personality nemesis harvests plunders
-			confusion 10
-		ship "Marauder Firebird (Weapons)" "Hellspear"
 	npc
 		government "Pirate"
 		personality staying nemesis harvests plunders
 			confusion 10
 		system Moktar
 		ship "Splinter" "Hellblade"
+	npc accompany save
+		government "Escort (Betraying)"
+		personality nemesis harvests plunders
+			confusion 10
+		ship "Marauder Firebird (Weapons)" "Hellspear"
