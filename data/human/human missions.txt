@@ -5617,7 +5617,6 @@ mission "Karen Transport 2"
 					decline
 			`	"Pay you?! You would have crashed the ship, had I not helped you! I've practically flown your ship here, and you have the guts to ask for payment?"`
 			`	He turns his back to you and walks off. You consider calling spaceport security, but decide against it; the sooner you get rid of him, the better.`
-	on abort
 
 
 
