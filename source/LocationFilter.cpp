@@ -33,6 +33,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	const int VISITED = 1;
+	const int NOT_VISITED = 2;
+	const int REACHABLE = 4;
+	const int NOT_REACHABLE = 8;
+
 	bool SetsIntersect(const set<string> &a, const set<string> &b)
 	{
 		// Quickest way to find out if two sets contain common elements: iterate
@@ -53,7 +58,7 @@ namespace {
 	}
 	bool SetsIntersect(const set<const Outfit *> &a, const set<const Outfit *> &b)
 	{
-		auto ait = a.begin();
+ 		auto ait = a.begin();
 		auto bit = b.begin();
 		// The stored values are pointers to the same GameData array:
 		// directly compare them.
@@ -493,6 +498,10 @@ void LocationFilter::LoadChild(const DataNode &child)
 	if(key == "not" || key == "neighbor")
 		child.PrintTrace("Error: Skipping unsupported use of 'not' and 'neighbor'."
 			" These keywords must be nested if used together.");
+	else if(key == "visited")
+		flags |= ( isNot ? NOT_VISITED : VISITED );
+	else if(key == "reachable")
+		flags |= ( isNot ? NOT_REACHABLE : REACHABLE);
 	else if(key == "planet")
 	{
 		for(int i = valueIndex; i < child.Size(); ++i)
@@ -624,3 +633,17 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 
 	return true;
 }
+
+
+
+bool LocationFilter::MatchesFlagFilters(const System *system, const PlayerInfo *player) const
+{
+
+}
+
+
+
+bool LocationFilter::MatchesFlagFilters(const Planet *planet, const PlayerInfo *player) const
+{
+
+} 
