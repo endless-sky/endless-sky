@@ -5447,7 +5447,7 @@ mission "Escort offer (Betrayal)"
 					goto otherplans
 				`	"Sorry, that just sounds too dangerous for me."`
 					decline
-			`	"Alright, let's go! Don't forget to pick up a full cargo of luxury goods before setting off. Oh, and if you didn't already know, you can get to <planet> from here in just four jumps. North, west, southwest, then south."
+			`	"Alright, let's go! Don't forget to pick up a full cargo of luxury goods before setting off. Oh, and if you didn't already know, you can get to <planet> from here in just four jumps. North, west, southwest, then south."`
 				accept
 			label otherplans
 			`	"Alright, no worries, maybe another time?" The man smiles and walks away, into the spaceport.`
