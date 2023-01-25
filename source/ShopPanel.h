@@ -40,7 +40,13 @@ class Ship;
 // outfitter panel (e.g. the sidebar with the ships you own).
 class ShopPanel : public Panel {
 public:
+	explicit ShopPanel(PlayerInfo &player, bool isOutfitter);
 
+	virtual void Step() override;
+	virtual void Draw() override;
+
+
+protected:
 	// BuyResult holds the result of an attempt to buy. It is implicitly
 	// created from a string or boolean in code. Any string indicates failure.
 	// True indicates success, of course, while false (without a string)
@@ -60,11 +66,6 @@ public:
 		std::string message;
 	};
 
-public:
-	explicit ShopPanel(PlayerInfo &player, bool isOutfitter);
-
-	virtual void Step() override;
-	virtual void Draw() override;
 
 protected:
 	void DrawShipsSidebar();
