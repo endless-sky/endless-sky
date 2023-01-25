@@ -30,8 +30,9 @@ class System;
 
 class CustomSaleManager {
 public:
-	// Refresh the active CustomSales to correspond to this planet and conditions.
+	// Refresh the active CustomSales to correspond to the planet and conditions.
 	static void Refresh(const Planet *planet, const ConditionsStore &conditions);
+	// Or to all planets in this system.
 	static void Refresh(const System *system, const ConditionsStore &conditions);
 	// Return if can be bought. And imported item will still be shown but not be buyable.
 	static bool CanBuy(const Outfit &outfit);
