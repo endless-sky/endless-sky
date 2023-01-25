@@ -2702,8 +2702,7 @@ int Ship::Scan(const PlayerInfo &player)
 			Messages::Add("Attempting to scan the selected " + target->Noun() + "."
 				, Messages::Importance::Low);
 
-		if(target->GetPersonality().IsSecretive() && target->GetGovernment()->IsProvokedOnScan()
-			&& target->CanSendHail(player))
+		if(target->GetGovernment()->IsProvokedOnScan() && target->CanSendHail(player))
 		{
 			// If this ship has no name, show its model name instead.
 			string tag;
