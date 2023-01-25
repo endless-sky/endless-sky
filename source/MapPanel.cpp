@@ -539,7 +539,7 @@ bool MapPanel::Scroll(double dx, double dy)
 
 
 
-Color MapPanel::MapColor(double value)
+Color MapPanel::MapColor(double value) const
 {
 	if(std::isnan(value))
 		return UninhabitedColor();
