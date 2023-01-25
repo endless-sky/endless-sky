@@ -1620,7 +1620,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 void PlayerInfo::PoolCargo()
 {
 	// This can only be done while landed.
-	if(!system || !planet)
+	if(!planet)
 		return;
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && !ship->IsDisabled() && ship->GetPlanet() == planet)
