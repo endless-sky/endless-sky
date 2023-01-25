@@ -781,7 +781,7 @@ mission "Unfettered: Special Cargo 1B"
 			`	You get close up behind him and are about to pull your gun... when he suddenly turns back and throws the hardest haymaker you've ever experienced! You drop like a sack to the floor and never wake up again. That pirate probably has had some experience with backstabbings before.`
 				die
 			label luckyish
-			`	You get close up behind him and are about to pull your gun... when he draws a sudden breath and begins to turn around! Fortunately, you're quicker, and you have your firearm pointed at him before he can do anything. Obviously experienced with hostage situations and prioritizing his own safety, he doesn't try to call for help. You present yourself to the group outside, with the gun still pointed at your hostage. The pirates look at each other and begin laughing before you die in a barrage of laserfire from the group, annihilating you and your hostage. It seems that they couldn't care less about their companions' lives.`
+			`	You get close up behind him and are about to pull your gun... when he draws a sudden breath and begins to turn around! Fortunately, you're quicker, and you have your firearm pointed at him before he can do anything. Obviously experienced with hostage situations and prioritizing his own safety, he doesn't try to call for help. You present yourself to the group outside, with the gun still pointed at your hostage. The pirates look at each other and begin laughing before you die in a barrage of laser fire from the group, annihilating you and your hostage. It seems that they couldn't care less about their companions' lives.`
 				die
 			label steal
 			`	You manage to enter the ship discreetly. Some people will always notice, but you try to pose as a spaceport worker there to assist with the repairs, using equipment you find lying around. You should be able to go pretty much anywhere on the ship. You don't have any idea which part of the ship is actually damaged though, so your cover could easily be blown. There is no going back now, except maybe if you choose to provoke the pirate warlord into a fight to get the item.`
@@ -924,8 +924,9 @@ phrase "friendly midas"
 	word
 		"Boss"
 		"Leader"
-		"Alpha"
-		"First Mercenary"
+		"Sigma"
+		"Cresus"
+		"First"
 		"Commander"
 		"Captain"
 	word
