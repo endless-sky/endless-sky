@@ -136,7 +136,7 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 	auto it = player.Harvested().lower_bound(pair<const System *, const Outfit *>(system, nullptr));
 	for( ; it != player.Harvested().end() && it->first == system; ++it)
 		if(it->second == selected)
-			return .5;
+			return 1.;
 
 	if(!system->IsInhabited(player.Flagship()))
 		return numeric_limits<double>::quiet_NaN();
@@ -152,7 +152,6 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 			if(!outfitter.empty())
 				value = 0.;
 		}
-	return value;
 	return value;
 }
 
@@ -268,7 +267,7 @@ void MapOutfitterPanel::Init()
 	// Add all outfits sold by outfitters of visited planets.
 	for(auto &&it : GameData::Planets())
 		if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
-			for(auto &outfit : it.second.Outfitter())
+			for(const Outfit *outfit : it.second.Outfitter())
 				if(!seen.count(outfit))
 				{
 					catalog[outfit->Category()].push_back(outfit);

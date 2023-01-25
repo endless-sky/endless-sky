@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Outfit.h"
 #include "Planet.h"
 #include "Ship.h"
+#include "System.h"
 
 using namespace std;
 
@@ -32,6 +33,20 @@ void CustomSaleManager::Refresh(const Planet &planet, const ConditionsStore &con
 	Clear();
 	for(const auto &sale : GameData::CustomSales())
 		customSales[sale.second.GetSellType()].Add(sale.second, planet, conditions);
+}
+
+
+
+void CustomSaleManager::Refresh(const System &system, const ConditionsStore &conditions)
+{
+	Clear();
+	for(const StellarObject &object : system->Objects())
+		if(object.HasSprite() && object.HasValidPlanet())
+		{
+			const Planet *planet = object.GetPlanet();
+			for(const auto &sale : GameData::CustomSales())
+				customSales[sale.second.GetSellType()].Add(sale.second, planet, conditions);
+		}
 }
 
 
