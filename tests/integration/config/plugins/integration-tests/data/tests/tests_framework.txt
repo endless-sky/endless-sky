@@ -61,7 +61,7 @@ test "Test-Framework - UI Keyboard controls"
 	description "Tests if the in-game panels can be controlled by keypresses."
 	sequence
 		# Create/inject the savegame and load it.
-		inject "Three Earthly Barges"
+		inject "Three Earthly Barges Save"
 		call "Load First Savegame"
 		# Enter and leave jobs
 		input
@@ -108,7 +108,7 @@ test "Test-Framework - Load Depart Land"
 	description "Test with only a departure. Mostly tests the testframework itself."
 	sequence
 		# Create/inject the savegame and load it.
-		inject "Three Earthly Barges"
+		inject "Three Earthly Barges Save"
 		call "Load First Savegame"
 		# Check startup conditions.
 		assert
@@ -161,7 +161,7 @@ test "Test-Framework - Navigate"
 	description "Test-Framework - Navigation to other star system."
 	sequence
 		# Create/inject the savegame and load it.
-		inject "Three Earthly Barges"
+		inject "Three Earthly Barges Save"
 		call "Load First Savegame"
 		# Set desired travel plan.
 		navigate
@@ -192,3 +192,41 @@ test "Test-Framework - Navigate"
 		label notAlpha2
 		branch notAlpha2
 			not "flagship system: Alpha Centauri"
+
+
+
+test-data "Test Mission Injection Mission"
+	category "mission"
+	contents
+		mission "A mission for testing injection of missions into integration tests"
+			landing
+			name "A mission name"
+			description "A mission description."
+			source
+				system "Sol"
+			destination
+				not system "Sol"
+			on offer
+				conversation
+					`This mission has been injected!`
+					`   It was not present in the base game data.`
+						accept
+
+
+
+test "Test-Framework - Mission Injection"
+	status active
+	description "A test to test that missions defined in test-data can be injected into a test environment."
+	sequence
+		inject "Test Mission Injection Mission"
+		inject "Three Earthly Barges Save"
+		call "Load First Savegame"
+		call "Depart"
+		assert
+			"flagship landed" == 0
+		call "Land"
+		input
+			key "Return"
+		assert
+			"A mission for testing injection of missions into integration tests: offered" > 0
+			"A mission for testing injection of missions into integration tests: active" > 0
