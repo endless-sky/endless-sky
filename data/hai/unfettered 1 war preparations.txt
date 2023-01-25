@@ -970,7 +970,7 @@ mission "Unfettered: Improved Production"
 mission "Unfettered: Earn Your Prize"
 	landing
 	name "Earn your prize"
-	description "The Unfettered have produced a new kind of Shield Beetle just for you, but you must beat Mera in command of it in order to earn it."
+	description "The Unfettered have produced a Modified Shield Beetle just for you, but you must beat Mera in command of it in order to earn it."
 	source "Firelode"
 	destination "Darkcloak"
 	to offer
@@ -1098,9 +1098,10 @@ mission "Unfettered: Earn Your Prize"
 
 outfit "Mystery Cube"
 	category "Special"
-	mass 1
 	cost 1000000
 	thumbnail "outfit/unknown"
+	mass 1
+	installable -1
 	description "You have no idea what this is."
 
 ship "Marauder Leviathan" "Leviathan (Cube)"

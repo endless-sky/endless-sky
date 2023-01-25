@@ -386,10 +386,9 @@ mission "Unfettered: Non Lethal Weapons Hint"
 
 
 
-# gives access without Hai reveal being completed
 mission "Unfettered: Wanderer Homeworld"
 	invisible
-	source "Firelode"
+	source "Darkcloak"
 	destination "Vara K'chrai"
 	clearance "You manage to make the aliens understand you are here to talk, and they allow you to land."
 	to offer
@@ -403,7 +402,7 @@ mission "Unfettered: Wanderer Homeworld"
 mission "Unfettered: Speak Hai"
 	name `Meet the Wanderers and acquire a translator`
 	description `You need to be able to act as a diplomat between the Hai and the aliens up north. First go and meet those aliens. Then go to <stopovers> to see if He-Yi will provide a translator for you.`
-	source "Firelode"
+	source "Darkcloak"
 	stopover "Warfeed"
 	to offer
 		has "Unfettered: Solifuge 9: Bigger Ships: done"
@@ -423,7 +422,7 @@ mission "Unfettered: Speak Hai"
 				has "reputation: Wanderer" >= 0
 			choice
 				`	"But I am at war with them already."`
-			`	"We know. Here is a message in Hai that you will transmit to them. It says that you are our ambassador, so do not open fire on them for now. Once you have introduced yourself to the birds, and finished this mission for us, you will need to bring the Hai to this new alien race, as an ambassador. The Hai would not believe anything if it came from us. We don't want to drag our brethren into a conflict that is ours, so they need to be properly introduced, and they will certainly choose to remain neutral in it. We are the warriors, not them. But they still need to see how weak the birds are."`
+			`	"We know. Here is a message in Hai that you will transmit to them. It says that you are our ambassador, so do not open fire on them for now."`
 			action
 				"reputation: Wanderer" = 0
 			label neutral
@@ -1080,7 +1079,6 @@ mission "Unfettered: Close Quarter"
 
 event "unfettered: better sestor translator"
 
-# no blocked dialog because 1 bunk, and it's a side mission anyway
 mission "Unfettered: Speak Sestor Notice"
 	minor
 	name "Find Choot'k"
@@ -1171,7 +1169,7 @@ mission "Unfettered: Speak Sestor"
 		clear "unfettered: why give info"
 		clear "unfettered: how got info"
 		event "unfettered: better sestor translator" 45
-		dialog "<veteran> thanks you, and tells you they will be able to upgrade the translator so they can communicate better with the Sestor."
+		dialog "Choot'k thanks you, and tells you they will be able to upgrade the translator so they can communicate better with the Sestor."
 
 
 
