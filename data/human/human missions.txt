@@ -5648,7 +5648,7 @@ mission "Drunk Teen Hijack"
 			`	One of the teens steps forward, and introduces himself.`
 
 			label introduction
-			`	"Hello. I'm Howard. Me and my four friends are looking for transport off-world, to <destination>, but cannot affort to pay for it. Can you help us?"`
+			`	"Hello. I'm Howard. Me and my four friends are looking for transport off-world, to <destination>, but cannot afford to pay for it. Can you help us?"`
 			choice
 				`	"Sure."`
 					goto accept
