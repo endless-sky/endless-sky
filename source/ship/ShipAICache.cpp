@@ -29,12 +29,12 @@ using namespace std;
 ShipAICache::ShipAICache(const Ship &ship)
 {
 	this->ship = &ship;
-	UpdateWeaponCache();
+	CreateWeaponCache();
 }
 
 
 
-void ShipAICache::UpdateWeaponCache()
+void ShipAICache::CreateWeaponCache()
 {
 	bool hasWeapons = false;
 	// If the ship
@@ -113,5 +113,19 @@ void ShipAICache::UpdateWeaponCache()
 		// weapons being overly afraid of dying.
 		if(minSafeDistance && !(useArtilleryAI || shortestRange * (splashDPS / totalDPS) > turningRadius))
 			minSafeDistance = 0.;
+	}
+}
+
+
+
+void ShipAICache::UpdateWeaponCache()
+{
+	if(!ship)
+		return;
+	double newMass = ship->Mass();
+	if(lastMass != newMass)
+	{
+		lastMass = newMass;
+		CreateWeaponCache();
 	}
 }

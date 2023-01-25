@@ -25,9 +25,11 @@ class Ship;
 class ShipAICache {
 public:
 	ShipAICache() = default;
-	// Construct and UpdateWeaponCache() at the same time.
+	// Construct and CreateWeaponCache() at the same time.
 	ShipAICache(const Ship &ship);
 
+	void CreateWeaponCache();
+	// Get the new mass of the ship, if it changed update the weapon cache.
 	void UpdateWeaponCache();
 
 	// Accessors and setters for AI data
@@ -40,6 +42,7 @@ public:
 
 private:
 	const Ship *ship = nullptr;
+	double lastMass = 0.;
 
 	bool useArtilleryAI = false;
 	double shortestRange = 1000.;

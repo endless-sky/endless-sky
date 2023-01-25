@@ -2278,7 +2278,7 @@ void AI::MoveToAttack(Ship &ship, Command &command, const Body &target)
 	if(facing < -.75 && ship.Attributes().Get("reverse thrust"))
 		command |= Command::BACK;
 	// This isn't perfect, but it works well enough.
-	else if((facing >= 0. &&
+	else if((ship.Facing().Unit().Dot(direction) >= 0. &&
 			direction.Length() > max(200., ship.GetAICache().TurningRadius()))
 			|| (ship.Velocity().Dot(direction) < 0. &&
 				facing) >= .9)

@@ -1437,9 +1437,16 @@ string Ship::GetHail(map<string, string> &&subs) const
 
 
 
-ShipAICache &Ship::GetAICache()
+ShipAICache &Ship::GetAICache() const
 {
 	return AICache;
+}
+
+
+
+void Ship::UpdateAICache() const
+{
+	AICache.UpdateWeaponCache();
 }
 
 
@@ -3921,8 +3928,6 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 		}
 		int after = outfits.count(outfit);
 		attributes.Add(*outfit, count);
-		// This could be a better engine, less mass, a weapon... update the AI behavior to match.
-		AICache.UpdateWeaponCache();
 		if(outfit->IsWeapon())
 		{
 			armament.Add(outfit, count);
@@ -4035,7 +4040,6 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 		{
 			if(isYours)
 				deterrence = CalculateDeterrence();
-			AICache.UpdateWeaponCache();
 		}
 	}
 
