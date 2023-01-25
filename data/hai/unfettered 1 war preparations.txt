@@ -53,17 +53,8 @@ mission "Unfettered: Alphas: Find The Auxiliary"
 			`	Before you go, one of the warlords comes to speak to you personally. "Do not dare come back to us asking for more cooperation, should you fail this. That said, I'm not sure you would ever come back if you are not victorious. But never forget that jump drives matter more than anything else. You should steal as many as you can if you do indeed manage to beat the Alphas."`
 				accept
 	on enter
-		conversation
-			branch "know wand"
-				or
-					has "First Contact: Wanderer: offered"
-					has "First Contact: Wanderer (Before hai): offered"
-			`You receive an ominous message from an unknown source, in Hai. <message> You assume this comes from potential enemies of the Unfettered, maybe an alien race. This could even be a warning from the Alphas...`
-				goto transmissiondown
-			label "know wand"
-			`You receive an ominous message from an unknown source, in Hai. <message> You assume this comes from the Wanderers, as they are enemies of the Unfettered, and they seem to speak Hai as well. This could also be a warning from the Alphas given your current mission.`
-			label transmissiondown
-			`	Whatever it was that emitted the message your sensors did not manage to detect it, and you assume neither did the Unfettered's. This message was meant for your ears alone.`
+		dialog `You receive an ominous message from an unknown source, in Hai. <message>`
+		log "Received a weird message demanding to stop working with the Unfettered. Could it have come from the Hai? The Alphas? Other enemies of the Unfettered?"
 
 
 
