@@ -259,7 +259,9 @@ mission "Unfettered Jump Drive 3"
 				set "unfettered know of wanderers"
 			`	After a brief and hushed discussion in their own language, one of the leaders says, "You have proven your worth, so we will share our secret. The Hai once owned many worlds on the galactic fringe, a territory we can only visit using the jump drive. Those worlds are fruitful and nearly uninhabited. We will reclaim them as our own, and there will be food there to feed the Unfettered for many thousands of years to come."`
 			branch know
-				has "First Contact: Wanderer: offered"
+				or
+					has "First Contact: Wanderer: offered"
+					has "First Contact: Wanderer (Before hai): offered"
 			choice
 				`	"Is there any other way I can help you to reclaim those worlds?"`
 					goto help

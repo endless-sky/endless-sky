@@ -55,7 +55,9 @@ mission "Unfettered: Alphas: Find The Auxiliary"
 	on enter
 		conversation
 			branch "know wand"
-				has "First Contact: Wanderer: offered"
+				or
+					has "First Contact: Wanderer: offered"
+					has "First Contact: Wanderer (Before hai): offered"
 			`You receive an ominous message from an unknown source, in Hai. <message> You assume this comes from potential enemies of the Unfettered, maybe an alien race. This could even be a warning from the Alphas...`
 				goto transmissiondown
 			label "know wand"
@@ -1464,6 +1466,7 @@ mission "Unfettered: Ready For The War"
 		conversation "unfettered war ready"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
+		"reputation: Unfettered" <?= -1000
 	on complete
 		log `Officially joined the Unfettered Militia and received a license to purchase their heavy ships, that is, when they become available in the near future.`
 		"salary: Unfettered" = 5000

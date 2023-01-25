@@ -104,6 +104,7 @@ mission "Unfettered: Challengers Arrive"
 
 mission "Unfettered: Trigger The Challengers"
 	job
+	repeat
 	name "Ready for more spontaneous challengers"
 	description "Mark yourself as ready for more spontaneous challengers to come in all Unfettered systems."
 	source "Darkcloak"
@@ -118,6 +119,7 @@ mission "Unfettered: Trigger The Challengers"
 
 mission "Unfettered: Remove The Challengers"
 	job
+	repeat
 	name "No more spontaneous challengers"
 	description "Mark yourself as no longer wanting to do spontaneous challenges in any Unfettered systems."
 	source "Darkcloak"
