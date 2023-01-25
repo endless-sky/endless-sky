@@ -263,7 +263,7 @@ void UniverseObjects::CheckReferences()
 			NameAndWarn("government", it);
 	// Minables are not serialized.
 	for(const auto &it : minables)
-		if(it.second.Name().empty())
+		if(it.second.TrueName().empty())
 			Warn("minable", it.first);
 	// Stock missions are never serialized, and an accepted mission is
 	// always fully defined (though possibly not "valid").
