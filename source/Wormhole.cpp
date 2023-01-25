@@ -25,7 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const ExclusiveItem<Color> DEFAULT_WORMHOLE_COLOR = ExclusiveItem<Color>(GameData::Colors().Get("map wormhole"));
+	const string DEFAULT_WORMHOLE_COLOR = "map wormholes";
 }
 
 
@@ -33,7 +33,7 @@ namespace {
 // Define the constructor to set "linkColor" to the desired default color.
 Wormhole::Wormhole()
 {
-	linkColor = DEFAULT_WORMHOLE_COLOR;
+	linkColor = ExclusiveItem<Color>(GameData::Colors().Get(DEFAULT_WORMHOLE_COLOR));
 }
 
 
@@ -112,7 +112,7 @@ void Wormhole::Load(const DataNode &node)
 		else if(key == "color" && (hasValue || remove))
 		{
 			if(remove)
-				linkColor = DEFAULT_WORMHOLE_COLOR;
+				linkColor = ExclusiveItem<Color>(GameData::Colors().Get(DEFAULT_WORMHOLE_COLOR));
 			else if(child.Size() >= 3 + valueIndex)
 				linkColor = ExclusiveItem<Color>(Color(child.Value(valueIndex),
 						child.Value(valueIndex + 1), child.Value(valueIndex + 2)));
