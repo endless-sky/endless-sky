@@ -23,7 +23,7 @@ ship "vyu-Ira"
 		"cost" 77777777
 		"shields" 68000
 		"hull" 49000
-		"required crew" 1	
+		"required crew" 1
 		"bunks" 100
 		"mass" 600
 		"drag" 20
