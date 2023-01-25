@@ -23,12 +23,12 @@ import json
 
 # A class representing the result of a formatting check.
 # 'errors' and 'warnings' are lists of Error and Warning objects, respectively.
-# 'fixed_error_count' and 'fixed_warning_count' are integer values
+# 'fixed_errors' and 'fixed_warnings' are similar, but for fixed issues, instead of unfixable ones.
 # 'new_file_contents' is a string list of each line, without line separators. It is possible for this list to not be empty, even if there are no fixed errors / warnings.
 class CheckResult(object):
-	def __init__(self, errors=None, warnings=None, fixed_error_count=0, fixed_warning_count=0, new_file_contents=None):
-		self.fixed_error_count = fixed_error_count
-		self.fixed_warning_count = fixed_warning_count
+	def __init__(self, errors=None, warnings=None, fixed_errors=None, fixed_warnings=None, new_file_contents=None):
+		self.fixed_errors = fixed_errors
+		self.fixed_warnings = fixed_warnings
 		self.errors = errors
 		self.warnings = warnings
 		self.new_file_contents = new_file_contents
@@ -38,20 +38,24 @@ class CheckResult(object):
 			self.warnings = []
 		if errors is None:
 			self.errors = []
+		if fixed_warnings is None:
+			self.fixed_warnings = []
+		if fixed_errors is None:
+			self.fixed_errors = []
 
 	# Checks whether the file's contents should be modified and reloaded after this check.
 	# Takes no parameters.
 	# Return value: true if the file was changed, false otherwise.
 	def should_reload(self):
-		return self.fixed_error_count > 0 or self.fixed_warning_count > 0
+		return len(self.fixed_errors) > 0 or len(self.fixed_warnings) > 0
 
 	# Combines the results of this CheckResult with the other CheckResult.
 	# Parameters:
 	# result: the other CheckResult
 	# Has no return value.
 	def combine_with(self, result):
-		self.fixed_error_count += result.fixed_error_count
-		self.fixed_warning_count += result.fixed_warning_count
+		self.fixed_errors += result.fixed_errors
+		self.fixed_warnings += result.fixed_warnings
 		self.errors += result.errors
 		self.warnings += result.warnings
 		self.new_file_contents = result.new_file_contents
@@ -185,19 +189,20 @@ def check_line_separators(contents, auto_correct, config):
 				result.errors.append(Error(index + 1, "line separators should use LF only; found CRLF"))
 			elif line.endswith("\r"):
 				result.errors.append(Error(index + 1, "line separators should use LF only; found CR"))
-		if config["trailingEmptyLine"] == "always" and not (contents[-1].endswith('\r') or contents[-1].endswith('\n')):
-			result.errors.append(Error(len(contents), "missing trailing empty line"))
-		elif config["trailingEmptyLine"] == "never" and (contents[-1].endswith('\r') or contents[-1].endswith('\n')):
-			result.errors.append(Error(len(contents), "trailing empty line"))
+
+	if config["trailingEmptyLine"] == "always" and not (contents[-1].endswith('\r') or contents[-1].endswith('\n')):
+		result.errors.append(Error(len(contents), "missing trailing empty line"))
+	elif config["trailingEmptyLine"] == "never" and (contents[-1].endswith('\r') or contents[-1].endswith('\n')):
+		result.errors.append(Error(len(contents), "trailing empty line"))
 
 	if auto_correct:
-		result.new_file_contents = [line.replace("\r", "").replace("\n", "") for line in contents]
-		if config["trailingEmptyLine"] == "always" and contents[-1] != "":
-			result.new_file_contents += ""
-		elif config["trailingEmptyLine"] == "never" and contents[-1] == "":
-			result.new_file_contents.pop()
-		result.fixed_error_count = len(result.errors)
-		result.fixed_error_count = len(result.warnings)
+		result.new_file_contents = [line.removesuffix('\n').removesuffix('\r') for line in contents]
+		if config["trailingEmptyLine"] == "always":
+			result.new_file_contents.append("")
+		elif config["trailingEmptyLine"] == "either":
+			result.new_file_contents[-1] = contents[-1]
+		result.fixed_errors += result.errors
+		result.fixed_errors += result.warnings
 		result.errors = []
 		result.warnings = []
 
@@ -287,6 +292,7 @@ def check_indentation(contents, auto_correct, config):
 			# Too much indentation
 			# This always is checked, even for empty lines, no matter what's configured
 			# In fact, empty lines are not allowed to have more indentation than the previous line.
+			warning = Warning(index + 1, "over-indented line")
 			if auto_correct:
 				if line.isspace():
 					for i in range(level - previous_level):
@@ -295,27 +301,29 @@ def check_indentation(contents, auto_correct, config):
 					for i in range(level - previous_level - max_delta):
 						result.new_file_contents[index] = result.new_file_contents[index].removeprefix(indent)
 				line = result.new_file_contents[index]
-				result.fixed_warning_count += 1
+				result.fixed_warnings.append(warning)
 			else:
-				result.warnings.append(Warning(index + 1, "over-indented line"))
+				result.warnings.append(warning)
 		if line.isspace() or line == "":
 			# Not enough indentation - only checked on empty lines
 			if error_if_indent:
 				# No indent on empty lines
 				if line != "":
+					warning = Warning(index + 1, "indented empty line")
 					if auto_correct:
 						result.new_file_contents[index] = ""
-						result.fixed_warning_count += 1
+						result.fixed_warnings.append(warning)
 					else:
-						result.warnings.append(Warning(index + 1, "indented empty line"))
+						result.warnings.append(warning)
 			elif error_if_no_indent:
 				expected = get_expected_indent(indent, index, contents)
 				if level != expected:
+					warning = Warning(index + 1, "incorrect indentation on empty line")
 					if auto_correct:
 						result.new_file_contents[index] = indent * expected + result.new_file_contents[index].lstrip()
-						result.fixed_warning_count += 1
+						result.fixed_warnings.append(warning)
 					else:
-						result.warnings.append(Warning(index + 1, "incorrect indentation on empty line"))
+						result.warnings.append(warning)
 		elif not line.lstrip().startswith("#"):
 			previous_level = count_indent(indent, line)
 	return result
@@ -368,9 +376,9 @@ def check_with_regex(check_group, contents, auto_correct, config):
 					# Replacing
 					result.new_file_contents[index] = re.sub(match_regex, replace_with, line if use_entire_line else big_match_text)
 					if is_error:
-						result.fixed_error_count += 1
+						result.fixed_errors.append(Error(index + 1, entry["description"]))
 					else:
-						result.fixed_warning_count += 1
+						result.fixed_warnings.append(Warning(index + 1, entry["description"]))
 				else:
 					if is_error:
 						result.errors.append(Error(index + 1, entry["description"]))
@@ -421,14 +429,14 @@ def find_text_lines(contents, config, excluded_nodes):
 # config: the script configuration rules.
 def rewrite(file, contents, config):
 	# Adding newlines to all but the last line
-	contents = [line + "\n" for line in contents]
-	contents[-1].removesuffix("\n")
+	new_contents = [line + "\n" for line in contents[:-1]]
+	new_contents.append(contents[-1])
 
 	if config["forceUnixLineSeparator"]:
 		f = open(file, "w", newline='\n')
 	else:
 		f = open(file, "w")
-	f.writelines(contents)
+	f.writelines(new_contents)
 	f.close()
 
 
@@ -439,23 +447,30 @@ def rewrite(file, contents, config):
 # config: the script configuration rules. This is the 'rules' object of the original configuration.
 # Return value: a CheckResult
 def check_content_style(file, auto_correct, config):
-	fixed_errors = 0
-	fixed_warnings = 0
+	fixed_errors = []
+	fixed_warnings = []
+
+	def do_reload():
+		nonlocal fixed_errors
+		nonlocal fixed_warnings
+		nonlocal issues
+		fixed_errors += issues.fixed_errors
+		fixed_warnings += issues.fixed_warnings
+		rewrite(file, issues.new_file_contents, config)
 
 	while True:
 		f = open(file, "r", newline='')
 		contents = f.readlines()
 		f.close()
 
+		# Empty file
 		if not contents:
 			return CheckResult()
 
 		# Checking line separators
 		issues = check_line_separators(contents, auto_correct, config)
 		if issues.should_reload():
-			fixed_errors += issues.fixed_error_count
-			fixed_warnings += issues.fixed_warning_count
-			rewrite(file, issues.new_file_contents, config)
+			do_reload()
 			continue
 
 		# Removing line separators
@@ -465,17 +480,13 @@ def check_content_style(file, auto_correct, config):
 		if file not in config["copyrightBlacklist"]:
 			issues.combine_with(check_copyright(contents, auto_correct, config))
 			if issues.should_reload():
-				fixed_errors += issues.fixed_error_count
-				fixed_warnings += issues.fixed_warning_count
-				rewrite(file, issues.new_file_contents, config)
+				do_reload()
 				continue
 
 		# Checking indentation
 		issues.combine_with(check_indentation(contents, auto_correct, config))
 		if issues.should_reload():
-			fixed_errors += issues.fixed_error_count
-			fixed_warnings += issues.fixed_warning_count
-			rewrite(file, issues.new_file_contents, config)
+			do_reload()
 			continue
 
 		for check_group in config["regexChecks"]:
@@ -485,14 +496,12 @@ def check_content_style(file, auto_correct, config):
 				# Prevent deleting filtered lines
 				issues.new_file_contents = [(line if line is not None else contents[index]) for (index, line) in enumerate(issues.new_file_contents)]
 
-				fixed_errors += issues.fixed_error_count
-				fixed_warnings += issues.fixed_warning_count
-				rewrite(file, issues.new_file_contents, config)
+				do_reload()
 				break
 		else:
 			# All done
-			issues.fixed_error_count = fixed_errors
-			issues.fixed_warning_count = fixed_warnings
+			issues.fixed_errors = fixed_errors
+			issues.fixed_warnings = fixed_warnings
 			return issues
 	return CheckResult()
 
@@ -617,8 +626,8 @@ if __name__ == '__main__':
 	for file in data_files:
 		result = check_content_style(file, auto_correct, config["rules"])
 
-		fixed_error_count += result.fixed_error_count
-		fixed_warning_count += result.fixed_warning_count
+		fixed_error_count += len(result.fixed_errors)
+		fixed_warning_count += len(result.fixed_warnings)
 		error_count += len(result.errors)
 		warning_count += len(result.warnings)
 
