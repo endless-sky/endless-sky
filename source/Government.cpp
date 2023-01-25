@@ -33,30 +33,33 @@ namespace {
 	void PenaltyHelper(const DataNode &node, map<int, double> &penalties)
 	{
 		for(const DataNode &child : node)
-			if(node.Size() >= 2)
+			if(child.Size() >= 2)
 			{
-				if(node.Token(0) == "assist")
+				const string &key = child.Token(0);
+				if(key == "assist")
 					penalties[ShipEvent::ASSIST] = child.Value(1);
-				else if(node.Token(0) == "disable")
+				else if(key == "disable")
 					penalties[ShipEvent::DISABLE] = child.Value(1);
-				else if(child.Token(0) == "board")
+				else if(key == "board")
 					penalties[ShipEvent::BOARD] = child.Value(1);
-				else if(child.Token(0) == "capture")
+				else if(key == "capture")
 					penalties[ShipEvent::CAPTURE] = child.Value(1);
-				else if(child.Token(0) == "destroy")
+				else if(key == "destroy")
 					penalties[ShipEvent::DESTROY] = child.Value(1);
-				else if(child.Token(0) == "scan")
+				else if(key == "scan")
 				{
 					penalties[ShipEvent::SCAN_OUTFITS] = child.Value(1);
 					penalties[ShipEvent::SCAN_CARGO] = child.Value(1);
 				}
-				else if(child.Token(0) == "provoke")
+				else if(key == "provoke")
 					penalties[ShipEvent::PROVOKE] = child.Value(1);
-				else if(child.Token(0) == "atrocity")
+				else if(key == "atrocity")
 					penalties[ShipEvent::ATROCITY] = child.Value(1);
 				else
 					child.PrintTrace("Skipping unrecognized attribute:");
 			}
+			else
+				child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
 	// Determine the penalty for the given ShipEvent based on the values in the given map.
@@ -177,6 +180,8 @@ void Government::Load(const DataNode &node)
 				hostileDisabledHail = nullptr;
 			else if(key == "language")
 				language.clear();
+			else if(key == "trusted")
+				trusted.clear();
 			else if(key == "enforces")
 				enforcementZones.clear();
 			else if(key == "custom penalties for")
@@ -228,6 +233,35 @@ void Government::Load(const DataNode &node)
 				}
 				else
 					grand.PrintTrace("Skipping unrecognized attribute:");
+			}
+		}
+		else if(key == "trusted")
+		{
+			bool clearTrusted = !trusted.empty();
+			for(const DataNode &grand : child)
+			{
+				bool remove = grand.Token(0) == "remove";
+				bool add = grand.Token(0) == "add";
+				if((add || remove) && grand.Size() < 2)
+				{
+					grand.PrintTrace("Warning: Skipping invalid \"" + child.Token(0) + "\" tag:");
+					continue;
+				}
+				if(clearTrusted && !add && !remove)
+				{
+					trusted.clear();
+					clearTrusted = false;
+				}
+				const Government *gov = GameData::Governments().Get(grand.Token(remove || add));
+				if(gov)
+				{
+					if(remove)
+						trusted.erase(gov);
+					else
+						trusted.insert(gov);
+				}
+				else
+					grand.PrintTrace("Skipping unrecognized government:");
 			}
 		}
 		else if(key == "penalty for")
@@ -442,6 +476,13 @@ double Government::GetBribeFraction() const
 double Government::GetFineFraction() const
 {
 	return fine;
+}
+
+
+
+bool Government::Trusts(const Government *government) const
+{
+	return government == this || trusted.count(government);
 }
 
 
