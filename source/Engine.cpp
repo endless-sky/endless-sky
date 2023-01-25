@@ -1567,10 +1567,10 @@ void Engine::CalculateStep()
 // boarding events, fire weapons, and launch fighters.
 void Engine::MoveShip(const shared_ptr<Ship> &ship)
 {
-	// Various actions a ship could have taken last frame may have impacted its jump capabilities.
-	// Therefore, recalibrate its jump navigation information.
-	ship->RecalibrateJumpNavigation();
-	ship->GetAICache()->CreateWeaponCache();
+	// Various actions a ship could have taken last frame
+	// may have impacted its jump and fighting capabilities.
+	// Therefore, recalibrate all cached information.
+	ship->ReCacheInfo();
 
 	const Ship *flagship = player.Flagship();
 

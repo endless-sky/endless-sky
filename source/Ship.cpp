@@ -1444,9 +1444,10 @@ ShipAICache &Ship::GetAICache() const
 
 
 
-void Ship::UpdateAICache() const
+void Ship::ReCacheInfo()
 {
 	AICache.UpdateWeaponCache();
+	navigation.Recalibrate(*this);
 }
 
 
@@ -3324,13 +3325,6 @@ double Ship::HullUntilDisabled() const
 const ShipJumpNavigation &Ship::JumpNavigation() const
 {
 	return navigation;
-}
-
-
-
-void Ship::RecalibrateJumpNavigation()
-{
-	navigation.Recalibrate(*this);
 }
 
 

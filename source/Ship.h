@@ -199,7 +199,7 @@ public:
 
 	// Access the ship's AI cache, containing the range and expected AI behavior for this ship.
 	ShipAICache &GetAICache() const;
-	void UpdateAICache() const;
+	void ReCacheInfo();
 
 	// Set the commands for this ship to follow this timestep.
 	void SetCommands(const Command &command);
@@ -319,7 +319,6 @@ public:
 	// much it costs for this ship to jump, how far it can jump, and its possible
 	// jump methods.
 	const ShipJumpNavigation &JumpNavigation() const;
-	void RecalibrateJumpNavigation();
 	// Get the number of jumps this ship can make before running out of fuel.
 	// This depends on how much fuel it has and what sort of hyperdrive it uses.
 	// This does not show accurate number of jumps remaining beyond 1.
