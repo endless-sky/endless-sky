@@ -58,6 +58,8 @@ namespace {
 				else
 					child.PrintTrace("Skipping unrecognized attribute:");
 			}
+			else
+				child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
 	// Determine the penalty for the given ShipEvent based on the values in the given map.
