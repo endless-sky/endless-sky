@@ -92,7 +92,7 @@ ship Ascomy
 	explode "small explosion" 60
 	explode "tiny explosion" 120
 	"final explode" "final explosion large"
-	description `The mainline security vessel of the Xapleaux, it was designed to hold sufficient people as to allow a sense of community among the crew. While the ship itself can be run by a moderate crew, there are plenty of bunks to facilitate the efficiency gains from having crew to oversee various standard outfits that the Ascomy is typically equipped with. All Xapleaux ships have substantial solar collection and heat dissipation capabilities to enable long-term operations in the brilliant core environment. Security ships are equipped with enough fuel to respond to events at the opposite end of The Brilliance without having to waste time refuelling, as a lesson learned from their encounter with Korath raids.`
+	description `The mainline security vessel of the Xapleaux, it was designed to hold enough passengers as to allow a sense of community to form among the crew. While the ship itself can be run by a moderate crew, there are plenty of bunks to facilitate the efficiency gains from having crew to oversee various standard outfits that the Ascomy is typically equipped with. All Xapleaux ships have substantial solar collection and heat dissipation capabilities to enable long-term operations in the brilliant core environment. Security ships are equipped with enough fuel to respond to events at the opposite end of the Brilliance without having to waste time refueling, as a lesson learned from their encounter with Korath raids.`
 
 ship Blastoc
 	sprite ship/blastoc

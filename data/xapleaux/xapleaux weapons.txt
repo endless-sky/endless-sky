@@ -130,7 +130,7 @@ outfit "Quininoid Trajectile Launcher"
 		"homing" 5
 		"missile strength" 60
 		"submunition" "Quininoid Active"
-	description "Functionally the oldest weapon in the Xapleaux arsenal, this three stage weapon launches a Quininoid package - a missile casing with five warheads inside. In its first phase it is slow but incredibly mobile, able to safely position and orient on its target. In its second phase it engages the primary burner and loses most ability to home in on a target as it accelerates with enormous speed before bursting apart in its third phase to release the five carried warheads in a purely ballistic scattering effect."
+	description "Functionally the oldest weapon in the Xapleaux arsenal, this three stage weapon launches a Quininoid package - a missile casing with five warheads inside. In its first phase it is slow but incredibly mobile, able to safely position and orient on its target. In its second phase it engages the primary burner and loses most ability to home in on a target as it accelerates with enormous speed before bursting apart in its third phase where it releases five warheads in a purely ballistic scattering effect."
 	description "	An individual warhead for this weapon is very low yield, but the rate of fire is the key feature. A ship carrying several of these can flood the space between it and the target with an impenetrable wall of projectiles that are particularly effective at keeping swarms of small craft (or wildlife) at bay."
 
 outfit "Quininoid Active"

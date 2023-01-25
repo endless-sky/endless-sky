@@ -223,14 +223,14 @@ planet Atch-werimoural-tinikt
 	attributes farming xapleaux
 	landscape land/fields3
 	description `This world is possibly the most "normal" habitable world by galactic standards found anywhere in the core. With only a few small but extremely deep oceans, along with its location in a darker, cooler region of the core, it almost has a weather cycle that could be termed familiar to outsiders. If Dygit-jarobouillier-cehicot feeds the Home Stretch, Atch-werimoural-tinikt feeds the the Waning Reach and the Quiet Arm, with the majority of its land area given over to agriculture or ecological products used to maintain the terraformed environments of some other Xapleaux worlds.`
-	spaceport "The spaceport is a massive sprawling affair but is largely populated by plants, boxes and machines. The actual number of Xapleaux on this world is relatively low and there's no tourism to speak of, leading to a very business-like atmosphere with a high degree of automation."
+	spaceport "The spaceport is a massive, sprawling affair but is largely populated by plants, boxes and machines. The actual number of Xapleaux on this world is relatively low and there's no tourism to speak of, leading to a very business-like atmosphere with a high degree of automation."
 	government Xapleaux
 
 planet Atke-babounriuer-taxerik
 	attributes urban xapleaux
 	landscape land/mountain14-sfiera
 	description "This world was once struck by an object of enormous mass and force, enough to cause the entire crust of the world to ripple violently. Only one relatively flat area of land exists on the surface: a crater surrounded on all sides by concentric rings of mountains which gradually decrease in height as they move away from the crater. Directly opposite the crater, on the other side of the world, a solid circle of mountains form a thicket of jagged peaks that reach almost to space in their center."
-	spaceport "The spaceport, like almost all structures on this world, is built on the side of a mountain at the altitude most compatible with the majority of the Xapleaux's needs. Despite the engineering challenges, the Xapleaux's conventional architecture remains at large, with buildings comprised of wide, flat floors layered atop each other in the usual, slightly uneven, pancake-stack style. Only here, these structures jut out over the valleys below like polypores (bracket or shelf fungi), sometimes far enough to give the illusion of floating above a cloudbank when the frequent dense fog fills the valley below."
+	spaceport "The spaceport, like almost all structures on this world, is built on the side of a mountain at the altitude most compatible with the majority of the Xapleaux's needs. Despite the engineering challenges, the Xapleaux's conventional architecture remains at large, with buildings comprised of wide, flat floors layered atop each other in the usual, slightly uneven, pancake-stack style. Only here, these structures jut out over the valleys below like polypores, sometimes far enough to give the illusion of floating above a cloudbank when the frequent dense fog fills the valley below."
 	government Xapleaux
 
 planet Avalon
@@ -529,7 +529,7 @@ planet "Ceaseless Toil"
 planet Ceffig-haforiluour-repiker
 	attributes tourism urban xapleaux
 	landscape land/water6
-	description "This large wet world produces very little of note; other than importing some metals and electronics it's largely self-sufficient. It is the only link between the Waning Reach and the homeworld without traversing the full circumference of The Brilliance, or passing before the great eye of the cosmos; something the Xapleaux will not do unless quite desperate, or quite brave. It is one of the safer worlds in their space and as such it is heavily populated. It is also home to the Montane Garden to which many make pilgrimages to consult with their elders."
+	description "This large, wet world produces very little of note; other than importing some metals and electronics it's largely self-sufficient. It is the only link between the Waning Reach and the homeworld without traversing the full circumference of The Brilliance, or passing before the great eye of the cosmos; something the Xapleaux will not do unless quite desperate, or quite brave. It is one of the safer worlds in their space and as such it is heavily populated. It is also home to the Montane Garden to which many make pilgrimages to consult with their elders."
 	spaceport "For a world as populous as this one the spaceport is underwhelming. There is a decent amount of Xapleaux coming and going, but for most cargo ships there's no reason to stop here. Many Xapleaux spaceports are constrained by the practical needs of their economy, but this one stands out as being quite unique. There is a focus on culture, arts, services, and experiences that just isn't present in the spaceports themselves on other worlds, making a visit an altogether pleasant experience."
 	government Xapleaux
 
@@ -1996,7 +1996,7 @@ planet Icelake
 planet Icibvirk-gwolav-quijek
 	attributes superstitious tourism urban xapleaux
 	landscape land/clouds_06
-	description "This is the darkest world in Xapleaux space. It also spins slower than it orbits, perhaps because it is tugged constantly by the great gas giant that it likely escaped from to gain its current orbit. As a consequence though the days are unfathomably long... and so are the nights. A glittering array of mirrors in geosynchronous orbits catch the sunlight and redirect it to the night side of the planet, bringing it up to something comparable to the rest of The Brilliance and fending off the creeping insanity that afflicts those left too long away from the light of the core."
+	description "This is the darkest world in Xapleaux space. It also spins slower than it orbits, perhaps because it is tugged constantly by the great gas giant that it likely escaped from to gain its current orbit. As a consequence the days are unfathomably long... and so are the nights. A glittering array of mirrors in geosynchronous orbits catch the sunlight and redirect it to the night side of the planet, bringing it up to something comparable to the rest of The Brilliance and fending off the creeping insanity that afflicts those left too long away from the light of the core."
 	spaceport "There are two spaceports on this world, such that one of them is always on the day side of the planet as it turns glacially in its orbit. Too many Xapleaux captains would never dare land on the night side; superstition is a powerful force here. Fully a third of the spaceports and their surrounds are given over to the summer homes and businesses of those who make a living here, particularly those who have immigrated. It is the firm belief of every Xapleaux here that only those who were raised on this world might endure living through the night."
 	government Xapleaux
 
@@ -2010,7 +2010,7 @@ planet Ick-nearolu-kechgorica
 	outfitter "Xapleaux Intermediate"
 	landscape land/canyon5
 	description "If you were to scan this world from afar you could be forgiven for assuming it was the smallest category of gas giant. Upon closer inspection, most life that can be detected dwells on vast plateaus which break through the lower atmosphere like archipelagos in a sea of storm clouds. Expeditions have been mounted into the deeper atmosphere, finding strange and wonderful things, but beyond a certain depth no explorers or probes have yet returned."
-	spaceport "Industrial outputs and spaceship construction dominate the purpose of this world. Originally this arose due to the desire to send exploratory vessels which could withstand the atmosphere down into the depths, and it was cheaper to build local. That was abandoned when they stopped returning from places un-mapped though, and the facilities were repurposed to general interstellar construction."
+	spaceport "Industrial outputs and spaceship construction dominate the purpose of this world. Originally this arose due to the desire to send exploratory vessels which could withstand the atmosphere down into the depths, and it was cheaper to build local. That was abandoned when they stopped returning from places un-mapped, and the facilities were repurposed to general interstellar construction."
 	government Xapleaux
 
 planet Ickewqirk-prouleah-cixeg
@@ -2083,14 +2083,14 @@ planet Ironfirth
 planet Ixik-swuirelouminore-kickek-moule
 	attributes mining research xapleaux
 	landscape land/canyon4
-	description "It is possible to identify from orbit the enormous ring-fence which surrounds roughly a third of the land on one of this world's six continents. It contains a 'perfect' environment, carefully tailored to the ideal Xapleaux experience. Roughly a billion Xapleaux have the privilege of living inside. The rest of the world is rather harsh though, characterized by a preponderance of more extreme Taiga and Plateau-adapted Xapleaux variants."
+	description "It is possible to identify from orbit the enormous ring-fence which surrounds roughly a third of the land on one of this world's six continents. It contains a 'perfect' environment, carefully tailored to the ideal Xapleaux experience. Roughly a billion Xapleaux have the privilege of living inside. The rest of the world is rather harsh, characterized by a preponderance of more extreme Taiga and Plateau-adapted Xapleaux variants."
 	spaceport "The spaceport is bustling and definably characterized by tourism as a major form of its traffic, located as it is; a scant few kilometers from the fenced off paradise that the world is famous for. Every ship which lands must undergo a stringent set of scans to ensure that any potential biosecurity risks are identified and controlled."
 	government Xapleaux
 
 planet Ixikke-foule-jurtwuillemoure-kicheck
 	attributes tourism urban xapleaux
 	landscape land/valley3
-	description `A rogue world with no single parent star, Ixikke-foule-jurtwuillemoure-kicheck is the only crossover point to reach the 'Quiet Arm' from the homeworld without traversing the full circumference of the brilliance, or passing before the great eye of the cosmos; something the Xapleaux are deeply superstitious about. It's also quite recently colonized in the scope of their history and is the major center for bio-research in their space, as well as a major exporter of refined metals of all types. It wobbles around an unstable lagrange point between four "nearby" supermassive stars which despite the thick clouds of dust surrounding the world, manage to force enough solar radiation through to warm what was until recently one of the coldest places anywhere in the Brilliance.`
+	description `A rogue world with no single parent star, Ixikke-foule-jurtwuillemoure-kicheck is the only crossover point to reach the 'Quiet Arm' from the homeworld without traversing the full circumference of the brilliance, or passing before the great eye of the cosmos; something the Xapleaux are deeply superstitious about. It's also quite recently colonized in the scope of their history and is the major center for bio-research in their space, as well as a major exporter of refined metals of all types. It wobbles around an unstable lagrange point between four "nearby" supermassive stars which, despite the thick clouds of dust surrounding the world, manage to force enough solar radiation through to warm what was until recently one of the coldest places anywhere in the Brilliance.`
 	spaceport "The spaceport is modest and efficient, with wide solar collectors festooning its roof. It sits right on top of a transport hub serviced by high-speed underground monorails that connect it to the many disparate settlements scattered across the world. Pride of place in the center of it is a statue depicting all of the different Xapleaux variants, each one evidently cut from a single solid gemstone, each of a different type, holding aloft a juvenile Xapleaux."
 	government Xapleaux
 
