@@ -227,7 +227,7 @@ void MapSalesPanel::DrawKey() const
 	static const double VALUE[] = {
 		-.6,
 		-.1,
-		1.
+		.5
 	};
 
 	double selectedValue = SystemValue(selectedSystem);

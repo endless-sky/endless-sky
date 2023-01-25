@@ -136,7 +136,7 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 	auto it = player.Harvested().lower_bound(pair<const System *, const Outfit *>(system, nullptr));
 	for( ; it != player.Harvested().end() && it->first == system; ++it)
 		if(it->second == selected)
-			return 1.;
+			return .5;
 
 	if(!system->IsInhabited(player.Flagship()))
 		return numeric_limits<double>::quiet_NaN();
@@ -153,7 +153,9 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 				if(planet->Outfitter().Has(selected))
 				{
 					CustomSaleManager::Refresh(*planet, player.Conditions());
-					return CustomSaleManager::OutfitRelativeCost(*selected);
+					// Return it - 0.5, that way we can have more diverse price ranges,
+					// going from 0 to 1 with 0.5 being the normal price.
+					return max(0., CustomSaleManager::OutfitRelativeCost(*selected) - .5);
 				}
 				else
 					value = -.1;

@@ -152,7 +152,9 @@ double MapShipyardPanel::SystemValue(const System *system) const
 			if(shipyard.Has(selected))
 			{
 				CustomSaleManager::Refresh(*object.GetPlanet(), player.Conditions());
-				return CustomSaleManager::ShipCost(*selected) / baseCost;
+				// Return it - 0.5, that way we can have more diverse price ranges,
+				// going from 0 to 1 with 0.5 being the normal price.
+				return max(0., CustomSaleManager::ShipCost(*selected) / baseCost - .5);
 			}
 			// Return a negative value to signify this is different from a cost of 0.
 			if(!shipyard.empty())
