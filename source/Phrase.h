@@ -34,6 +34,7 @@ public:
 	static std::string ExpandPhrases(const std::string &source);
 
 
+public:
 	Phrase() = default;
 	// Construct and Load() at the same time.
 	Phrase(const DataNode &node);
