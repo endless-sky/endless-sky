@@ -539,44 +539,24 @@ bool MapPanel::Scroll(double dx, double dy)
 
 
 
-double MapPanel::MinColor() const
-{
-	return minColor;
-}
-
-
-
-double MapPanel::MaxColor() const
-{
-	return maxColor;
-}
-
-
-
-Color MapPanel::MapColor(double value) const
+Color MapPanel::MapColor(double value)
 {
 	if(std::isnan(value))
 		return UninhabitedColor();
-	else if(value <= 0. || value == 1.)
-		return CommodityColor(value);
-	// Comparing different prices, with colors in the cold or hot ranges whilst ignoring too blue.
-	double invertedMinColor = 1. / minColor;
-	double invertedMaxColor = 1. / maxColor;
-	if(value < 1.)
-	{
-		double unvalue = 1. / value;
+
+	value = min(1., max(-1., value));
+	if(value < 0.)
 		return Color(
-			.3 - value * minColor * .8,
-			unvalue * minColor * .8,
-			(unvalue > invertedMinColor * .4 && unvalue < invertedMinColor * .75) ? unvalue * minColor * .4 : 0.);
-	}
+			.12 + .12 * value,
+			.48 + .36 * value,
+			.48 - .12 * value,
+			.4);
 	else
-	{
 		return Color(
-			.6 + ((value > maxColor * .8) ? value * invertedMaxColor * .4 : 0.),
-			1. - value * invertedMaxColor * 2.,
-			(value > maxColor * .6) ? value * invertedMaxColor * .8 : .5 - value * invertedMaxColor);
-	}
+			.12 + .48 * value,
+			.48,
+			.48 - .48 * value,
+			.4);
 }
 
 
@@ -817,13 +797,11 @@ void MapPanel::UpdateCache()
 	// which may be government, services, or commodity prices.
 	const Color &closeNameColor = *GameData::Colors().Get("map name");
 	const Color &farNameColor = closeNameColor.Transparent(.5);
-	minColor = 1.;
-	maxColor = 1.;
 	for(const auto &it : GameData::Systems())
 	{
 		const System &system = it.second;
-		// Ignore systems which have been referred to, but not actually defined.
-		if(!system.IsValid())
+		// Ignore systems which are inaccessible or have been referred to, but not actually defined.
+		if(!system.IsValid() || system.Inaccessible())
 			continue;
 		// Ignore systems the player has never seen, unless they have a pending mission that lets them see it.
 		if(!player.HasSeen(system) && &system != specialSystem)
@@ -880,17 +858,10 @@ void MapPanel::UpdateCache()
 					value = -1 + some + all;
 				}
 				else
-				{
 					value = SystemValue(&system);
-					if(value > maxColor)
-						maxColor = value;
-					else if(value >= 0 && value < minColor)
-						minColor = value;
-				}
 
-				// Use the map colors if this is for custom outfit prices legend.
 				if(colorSystem)
-					color = (commodity >= 0 ? CommodityColor(value) : MapColor(value));
+					color = MapColor(value);
 			}
 			else if(commodity == SHOW_GOVERNMENT)
 			{

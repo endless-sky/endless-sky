@@ -244,38 +244,6 @@ void MapSalesPanel::DrawKey() const
 		}
 		pos.Y() += 20.;
 	}
-
-	double maxColor = MaxColor();
-	double minColor = MinColor();
-	// Draw the custom prices legend if there is a min or max color different from default.
-	if(maxColor > 1. || minColor < 1.)
-	{
-		const Color &medium = *GameData::Colors().Get("medium");
-		const Sprite *sales = SpriteSet::Get("ui/key");
-
-		int height = max(SelectedInfo().AttributesHeight(), CompareInfo().AttributesHeight());
-		pos = Screen::TopRight() + Point(-110., height + sales->Height() / 2. + 15);
-		SpriteShader::Draw(sales, pos + Point(110. - sales->Width() / 2., sales->Height() / 2. - 25.));
-		Point headerOff(-5., -.5 * font.Height());
-		font.Draw("Price multiplier:", pos + headerOff, medium);
-		pos.Y() += 20.;
-		// Each system is colored by the selected item's price. Draw
-		// 6 distinct representative colors and the price multiplier each color represents.
-		const double priceRange[] = {
-			minColor,
-			(.5 * minColor * minColor) - minColor * .5 + .5,
-			(minColor * (minColor - 1.)) + 1.,
-			maxColor * (1. / 3.) + (2. / 3.),
-			maxColor * (2. / 3.) + (1. / 3.),
-			maxColor
-		};
-		for(int i = 0; i < 6; ++i)
-		{
-			RingShader::Draw(pos, OUTER, INNER, MapColor(priceRange[i]));
-			font.Draw(Format::Decimal(priceRange[i], 2), pos + textOff, dim);
-			pos.Y() += 20.;
-		}
-	}
 }
 
 
