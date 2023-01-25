@@ -205,7 +205,7 @@ ship "Astral Cetacean"
 		"steering flare sound" "astral cetacean"
 
 		"jump fuel" 80
-		"jump speed" .2
+		"jump speed" .1
 		"hyperdrive" 1
 		"hyperdrive sound" "organ drive"
 		"hyperdrive out sound" "organ drive out"
