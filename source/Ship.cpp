@@ -4030,11 +4030,8 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 		heat -= weapon.AmmoUsage() * .5 * ammo->Mass() * MAXIMUM_TEMPERATURE * Heat();
 		AddOutfit(ammo, -weapon.AmmoUsage());
 		// Only the player's ships make use of attraction and deterrence.
-		if(!OutfitCount(ammo) && ammo->AmmoUsage())
-		{
-			if(isYours)
-				deterrence = CalculateDeterrence();
-		}
+		if(isYours && !OutfitCount(ammo) && ammo->AmmoUsage())
+			deterrence = CalculateDeterrence();
 	}
 
 	energy -= weapon.FiringEnergy() + relativeEnergyChange;
