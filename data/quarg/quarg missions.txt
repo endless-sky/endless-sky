@@ -259,3 +259,18 @@ mission "Ask Quarg About Coalition Early"
 			label end
 			`	Before you can ask it anything else, the Quarg bids you farewell, and walks away.`
 				decline
+
+
+
+mission "Quarg Ships Atrocity"
+	landing
+	invisible
+	source
+		government "Quarg"
+	to offer
+		or
+			has "ship model: Quarg Skylark"
+			has "ship model: Quarg Wardragon"
+	on offer
+		conversation "quarg imprisonment"
+

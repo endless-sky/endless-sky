@@ -137,27 +137,27 @@ mission "graveyard insights compatibility"
 
 event "graveyard insights"
 	planet Alix
-		add description `	 Here the Ka'het attacks were limited to the inhabited settlements; had they also destroyed the mining bases and the unmanned vessels, station Parii'het would have run out of supplies thousands of years ago.`
+		add description `	Here the Ka'het attacks were limited to the inhabited settlements; had they also destroyed the mining bases and the unmanned vessels, Parii'het would have run out of supplies thousands of years ago.`
 	planet Celeatis
 		add description `	This planet appears to have been home to one of the largest Builder research centers, which focused on studying the anomaly in the system. Had they found out how to stabilize it and use it as a wormhole, perhaps their species would have survived and spread to the rest of the Ember Waste.`
 	planet Ceilia'sei
-		add description `	The main purpose of Ceilia'sei was to act like some sort of anti-missile platform. But when the Ka'het invasion broke out for the second time, it had no way to defend deadly Ravager Beams, and the station's defense systems were subsequently lost forever.`
+		add description `	The main purpose of Ceilia'sei was to act as some sort of anti-missile platform, but when the Ka'het invaded a second time, the station had no way to defend against their deadly Ravager Beams, and the station's defense systems were subsequently lost forever.`
 	planet Eavine
 		add description `	This moon was also home for the second Ka'het wave, which, same as the first, refused to obey their creators. It had been terraformed to make it a more appealing place to live, but after their civilization collapsed the moon began to return to its natural state. When it reverted to its original sub-zero temperatures, the facilities stopped working, and the Ka'het production in this site came to an end.`
 	planet "Letis'sei"
 		add description `	As it was designed to be crewed as minimally as possible, only a tiny fraction of Letis'sei station was inhabitable. The rest of the station was instead dedicated to advanced computing and targeting systems, most of which are still intact today.`
 	planet Osaeli
-		add description `	For most of the thousands of years that passed between the time their discovery of spaceflight and their extinction, Osaeli was the de facto capital of the Builders, a key part of their economy and society. The first Het station was constructed orbiting this planet's star with the purpose of protecting them from any external threat.`
+		add description `	For most of the intervening millennia between the Builders' achievement of spaceflight and their extinction, Osaeli was the de facto capital of the Builders, a key part of their economy and society. The first Het station was constructed orbiting this planet's star with the purpose of protecting them from any external threat.`
 	planet Palarei
-		add description `	Thanks to their earlier exploration vessels, this was where the Builders encountered the first lifeforms that evolved outside of their home planet. While the climate was drastically different for the Builders, the fruits the local flora produced were popular enough that Palarei became a major farming planet.`
+		add description `	Thanks to their earlier exploration efforts, this was where the Builders encountered the first lifeforms that evolved outside their home planet. While the climate was drastically different from that of the Builders' homeworld, the fruits the local flora produced were popular enough for Palarei to become a major farming planet.`
 	planet Parii'het
-		add description `	Parii'het was almost finished when the invasion broke out, and already capable of creating Ka'het. Thanks to the mining on Alix and the occasional asteroid mining operated by the Mar unmanned vessels, most of the facilities are still fully operational to this day.`
+		add description `	Parii'het was almost finished when the invasion broke out, and already capable of creating Ka'het. Thanks to the mining on Alix and the occasional asteroid mine operated by the Mar drones, most of the facilities are still fully operational to this day.`
 	planet Retilie
 		add description `	As it was mainly used for fishing, the settlements on this planet were never as advanced as the ones on nearby worlds, so when the Ka'het arrived, there was basically nothing to stop them: after a few attacks, the planet was uninhabited again.`
 	planet Seli'het
 		add description `	This was the only Het station the Builders ever completed, orbiting Giribea. As the young Ka'heta reach their "Age of Assembly," strange, lanky machines start molding an exoskeleton onto their bodies right away. As the Ka'heta grow, their exoskeleton is expanded and various outfits are added, transforming them into living weapons.`
 	planet Siteria
-		add description `	This was the Builder homeworld, both the place where their journey began and where it ended. After a dozen millennia of underpopulation, the Ka'het arrival forced them to retreat. As one of the few remaining planets capable of sustaining farming, this was their last stronghold, falling centuries after the invasion begun.`
+		add description `	This was the Builder homeworld; both the place where their journey began and where it ended. After a dozen millennia of underpopulation, the Ka'het arrival forced them to withdraw from the planet entirely. As one of the few remaining planets capable of sustaining farming, this was their last stronghold, falling centuries after the invasion begun.`
 	planet Veliante
 		add description `	Soon after the beginning the invasion, an attack on some sort of advanced nuclear facility started a meltdown; the fallout quickly spread across most of the planet, leaving all Builder settlements uninhabitable.`
 
@@ -386,7 +386,7 @@ mission "Ka'het: Patir Mystery 1"
 			`	"That is the oddest part; it was not. We knew about the existence of the stars beyond Postverta as they could be observed from our own systems; they just were not reachable with a jump drive. But, from what I can tell from these readings, Patir did not exist until a short time ago.`
 			`	"Do you have anything on why this system appeared?" you ask.`
 			label how
-			`	"I only have theories for now, none of which can be confirmed. People more knowledgeable than me in the subject are examining the phenomena right now. But look at this," she says, opening a star map on a holographic projector. "This white dot is Postverta, and we are here. When Ssil Veda first appeared, it released a strong burst of ionizing radiation, and when we were able to calculate its velocity, we found it was going much faster than the speed of light. It is gradually slowing down, so it will not go much further, but exactly the same day that the energy burst was supposed to arrive here, Patir appeared! It would be an incredible coincidence if the two event were not connected.`
+			`	"I only have theories for now, none of which can be confirmed. People more knowledgeable than me in the subject are examining the phenomena right now. But look at this," she says, opening a star map on a holographic projector. "This white dot is Postverta, and we are here. When Ssil Vida first appeared, it released a strong burst of ionizing radiation, and when we were able to calculate its velocity, we found it was going much faster than the speed of light. It is gradually slowing down, so it will not go much further, but exactly the same day that the energy burst was supposed to arrive here, Patir appeared! It would be an incredible coincidence if the two events were not connected.`
 			`	"We have even less information about how this system disappeared. If I may venture a guess, I would say that the black hole is involved. The Builders never seemed to possess the ability to make a system disappear, and we have seen in the past that some black holes can render any hyperlane they are connected to inaccessible given enough time. Perhaps a young, non-rotating black hole like this one can do even more. There is a part of me that thinks this system could disappear again any moment, but if anything that motivates me to find as much as we can about it in the time we have," she says with a wink.`
 			choice
 				`	"Wait, are we in danger?"`
@@ -414,7 +414,7 @@ mission "Ka'het: Patir Mystery 1"
 				`	"Why aren't they in other systems?"`
 					goto jumpdrive
 			label kasei
-			`	"I imagine the problem would be with their lifespan. The Ka'het can survive for a few hundred years once they become operational; these could be potentially last for a much shorter time. Another important factor is that we do not know what happened here in the millennia the system was hidden. Perhaps the Ka'sei went into hibernation waiting for the system to appear again."`
+			`	"I imagine the problem would be with their lifespan. The Ka'het can survive for a few hundred years once they become operational; these could potentially last for a much shorter time. Another important factor is that we do not know what happened here in the millennia the system was hidden. Perhaps the Ka'sei went into hibernation waiting for the system to appear again."`
 			choice
 				`	"If the Builders were able to make self replicating spacecrafts, why aren't the Ka'het like that as well?"`
 					goto kahet
@@ -683,10 +683,10 @@ mission "Ka'het: Patir Mystery 5"
 				`	(Open the exit door, even with the airlock full of air.)`
 					goto rush
 				`	(Wait for the airlock to empty.)`
-			`	After a few seconds of waiting, Dusk hurries towards the control station. "I have an idea," he says as he presses a few switches on the panel. "I can open a vent to expel the air out of here into the void, and get us out of here in a few seconds.`
+			`	After a few seconds of waiting, Dusk hurries towards the control station. "I have an idea," he says as he presses a few switches on the panel. "I can open a vent to expel the air out of here into the void, and get us out of here in a few seconds."`
 				goto expel
 			label rush
-			`	You reach the control station as fast as you can and tell Dusk to hold on to something, but he stops you. "I have a better idea," he says as he presses a few switches on the panel. "I can open a vent to expel the air out of here into the void, and get us out of here in a few seconds.`
+			`	You reach the control station as fast as you can and tell Dusk to hold on to something, but he stops you. "I have a better idea," he says as he presses a few switches on the panel. "I can open a vent to expel the air out of here into the void, and get us out of here in a few seconds."`
 			label expel
 			`	Soon after, the frontal door recedes. You two run out of the airlock as fast as possible. Behind you, you hear the roar of metal melting as a rush of air passes you by. You start running back to your ship with Dusk, hoping that the Ka'sei will not get out of the building before you are safe.`
 			`	Running at full speed, it takes the two of you only a few minutes to reach the <ship>. Once safely in the cockpit, you sit down to catch your breath. After a moment, Dusk begins searching nervously for something on his suit. He takes out the atmospheric scanner he used earlier and turns it on. "Phew. I was afraid it had broken down when we had to run away, but maybe we can still get the data we need."`
