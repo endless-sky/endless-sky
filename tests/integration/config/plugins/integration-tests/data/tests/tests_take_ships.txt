@@ -67,6 +67,7 @@ test-data "Checking For A Gifted Ship Test Missions"
 test "Checking For A Gifted Ship"
 	status active
 	description "Test losing a freighter, getting a sparrow and then verify the player has said (named) sparrow, after reloading the save."
+	sequence
 		# Create/inject the savegame and load it.
 		inject "Checking For A Gifted Ship Test Missions"
 		inject "Checking For A Gifted Ship Test Save"
@@ -208,6 +209,7 @@ test-data "Taking Ship With Outfits And Unconstrained Test Missions"
 test "Taking Ship With Outfits And Unconstrained"
 	status active
 	description "Test taking variants ships with outfits, and with the unconstrained keyword or not."
+	sequence
 		# Create/inject the savegame and load it.
 		inject "Taking Ship With Outfits And Unconstrained Test Missions"
 		inject "Taking Ship With Outfits And Unconstrained Test Save"
