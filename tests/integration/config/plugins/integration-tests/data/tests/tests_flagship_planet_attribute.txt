@@ -1,4 +1,4 @@
-test-data "flagship planet attribute missions"
+test-data "Flagship Planet Attribute Save"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
@@ -56,11 +56,11 @@ test-data "flagship planet attribute missions"
 
 
 
-test "Flagship Planet Attribute Mission Test"
+test "Flagship Planet Attribute Test"
 	status active
 	description "Test if a conversation option shows up when the given condition is set."
 	sequence
-		inject "flagship planet attribute missions"
+		inject "Flagship Planet Attribute Save"
 		call "Load First Savegame"
 		assert
 			"flagship planet attribute: Temperate Climate" == 1
