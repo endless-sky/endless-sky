@@ -2015,7 +2015,7 @@ event "battle of alioth"
 		fleet "Small Southern Pirates" 1200
 		fleet "Large Southern Pirates" 2400
 		fleet "Small Republic" 3000
-			
+		
 event "end battle of alioth"
 	system Rutilicus
 		fleet "Small Southern Merchants" 600
