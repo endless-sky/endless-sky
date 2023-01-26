@@ -129,7 +129,7 @@ double ShipJumpNavigation::JumpDriveFuel(double distance) const
 pair<JumpType, double> ShipJumpNavigation::GetCheapestJumpType(const System *destination) const
 {
 	if(!ship->GetSystem())
-		return;
+		return make_pair(JumpType::NONE, 0.);
 	return GetCheapestJumpType(ship->GetSystem(), destination);
 }
 
@@ -139,7 +139,7 @@ pair<JumpType, double> ShipJumpNavigation::GetCheapestJumpType(const System *des
 pair<JumpType, double> ShipJumpNavigation::GetCheapestJumpType(const System *from, const System *to) const
 {
 	if(!from || !to)
-		return;
+		return make_pair(JumpType::NONE, 0.);
 	bool linked = from->Links().count(to);
 	double hyperFuelNeeded = HyperdriveFuel();
 	// If these two systems are linked, or if the system we're jumping from has its own jump range,
