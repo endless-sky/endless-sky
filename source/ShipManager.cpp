@@ -174,7 +174,7 @@ vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player) 
 					if(it.second > amountEquipped)
 					{
 						hasRequiredOutfits = false;
-						continue;
+						break;
 					}
 				}
 
