@@ -118,7 +118,7 @@ namespace {
 			// Get the system in which the planet storage is located.
 			const Planet *planet = hold.first;
 			const System *system = planet->GetSystem();
-			// Skip outfits stored on planets without a system or an outfiter.
+			// Skip outfits stored on planets without a system or an outfitter.
 			if(!system || !planet->HasOutfitter())
 				continue;
 
