@@ -86,6 +86,7 @@ test "Checking For A Gifted Ship"
 		call "Open Menu"
 		call "Load First Savegame"
 		call "Depart"
+		call "Wait 10 steps"
 		call "Land"
 		assert
 			"ship model: Star Barge" == 0
