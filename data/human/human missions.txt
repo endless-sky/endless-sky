@@ -5431,7 +5431,6 @@ government "Escort (Betraying)"
 mission "Escort offer (Betrayal)"
 	landing
 	name "Escort to <planet>"
-	deadline 7
 	description "The captain of the <npc> has offered to fly alongside you, protecting you from pirates, on your way to <destination>. In exchange, he has asked for 80,000 credits upon your arrival."
 	source Sunracer
 	destination Maelstrom
@@ -5462,6 +5461,9 @@ mission "Escort offer (Betrayal)"
 	on enter Zaurak
 		dialog `The <npc> hails you again: "Figured it out, did you? Bit late for that now, mate. You're still going down."`
 		"reputation: Escort (Betraying)" <?= -1000
+		fail
+	on enter Oblate Cardax Volax Nihal Elnath Acamar Kugel Algol Hamal
+		dialog `You recieve a message from the <npc>, which is now several systems away: "Hello? You still there? I don't know what just happened, but on the off chance you're still alive, I thought I'd just let you know that the deal's off, don't worry about the payment."`
 		fail
 	on abort
 		dialog `The <npc> hails you: "Figured it out, did you? Bit late for that now, mate. You're still going down."`
