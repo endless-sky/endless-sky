@@ -1941,7 +1941,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 					goto reading
 				`	"Why are we waiting?"`
 					goto wait
-			`	Teeneep sighs and points an exasperated expression your way. "After certain types of chamber hearings there is an enforced period where the petitioner must remain isolated to the chamber's waiting area, including digitally. I forgot for a moment."`
+			`	Teeneep sighs and points an exasperated expression your way. "Yes, after certain types of chamber hearings there is an enforced period where the petitioner must remain isolated to the chamber's waiting area, including digitally. I forgot for a moment."`
 			label wait
 			`	Sayari smiles at you. "Don't worry though, it's only for about twenty-three of your minutes." She eyes the security officer warily. "After a session such as that though, the traditional wisdom is to wait in relative silence."`
 			`	"If it wasn't a closed session we wouldn't be doing this," harrumphs Teeneep. "I hadn't realized it would be so didn't plan for it."`
