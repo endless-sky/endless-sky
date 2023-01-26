@@ -1488,7 +1488,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 		if(!ship->IsParked() && !ship->IsDisabled())
 		{
 			// Recalculate the weapon cache in case a mass-less change had an effect.
-			ship.GetAICache()->CreateWeaponCache();
+			ship->GetAICache()->CreateWeaponCache();
 			if(ship->GetSystem() != system)
 			{
 				ship->Recharge(false);
