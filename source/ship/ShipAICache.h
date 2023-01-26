@@ -43,7 +43,7 @@ public:
 
 private:
 	const Ship *ship = nullptr;
-	double lastMass = 0.;
+	double mass = 0.;
 
 	bool useArtilleryAI = false;
 	double shortestRange = 1000.;

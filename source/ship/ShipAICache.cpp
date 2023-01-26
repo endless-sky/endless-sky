@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipAICache.h"
 
 #include "../pi.h"
+#include "../Outfit.h"
 #include "../Ship.h"
 
 #include <algorithm>
@@ -35,6 +36,9 @@ ShipAICache::ShipAICache(const Ship &ship)
 
 void ShipAICache::CreateWeaponCache()
 {
+	if(!ship)
+		return;
+	mass = ship->Mass();
 	bool hasWeapons = false;
 	bool canFight = false;
 	double totalDPS = 0.;
@@ -120,10 +124,6 @@ void ShipAICache::UpdateWeaponCache()
 {
 	if(!ship)
 		return;
-	double newMass = ship->Mass();
-	if(lastMass != newMass)
-	{
-		lastMass = newMass;
+	if(mass != ship->Mass())
 		CreateWeaponCache();
-	}
 }

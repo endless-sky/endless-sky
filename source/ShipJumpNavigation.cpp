@@ -42,6 +42,8 @@ ShipJumpNavigation::ShipJumpNavigation(const Ship &ship)
 // Calibrate this ship's jump navigation information, caching its jump costs, range, and capabilities.
 void ShipJumpNavigation::Calibrate()
 {
+	if(!ship)
+		return;
 	mass = ship->Mass();
 
 	const Outfit &attributes = ship->Attributes();
@@ -126,6 +128,8 @@ double ShipJumpNavigation::JumpDriveFuel(double distance) const
 // If no jump method is possible, returns JumpType::None with a jump cost of 0.
 pair<JumpType, double> ShipJumpNavigation::GetCheapestJumpType(const System *destination) const
 {
+	if(!ship->GetSystem())
+		return;
 	return GetCheapestJumpType(ship->GetSystem(), destination);
 }
 
@@ -134,6 +138,8 @@ pair<JumpType, double> ShipJumpNavigation::GetCheapestJumpType(const System *des
 // Get the cheapest jump method between the two given systems.
 pair<JumpType, double> ShipJumpNavigation::GetCheapestJumpType(const System *from, const System *to) const
 {
+	if(!from || !to)
+		return;
 	bool linked = from->Links().count(to);
 	double hyperFuelNeeded = HyperdriveFuel();
 	// If these two systems are linked, or if the system we're jumping from has its own jump range,
