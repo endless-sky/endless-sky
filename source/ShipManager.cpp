@@ -166,7 +166,7 @@ vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player) 
 			bool hasRequiredOutfits = true;
 			// If "take outfits" or "requires outfits" is specified,
 			// this ship must have each outfit specified in that variant definition.
-			if(requiresOutfits || takeOutfits)
+			if(requiresOutfits)
 				for(const auto &it : model->Outfits())
 				{
 					const auto &outfit = ship->Outfits().find(it.first);
