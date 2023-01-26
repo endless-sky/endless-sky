@@ -81,7 +81,7 @@ int Person::Frequency(const System *system, const PlayerInfo *player) const
 	if(!system || IsDestroyed() || IsPlaced() || system->Links().empty())
 		return 0;
 
-	return (location.IsEmpty() || location.Matches(system, player, nullptr)) ? frequency : 0;
+	return (location.IsEmpty() || location.Matches(system, player)) ? frequency : 0;
 }
 
 

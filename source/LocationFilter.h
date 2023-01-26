@@ -54,8 +54,8 @@ public:
 	bool IsValid() const;
 
 	// If the player is in the given system, does this filter match?
-	bool Matches(const Planet *planet, const PlayerInfo *player, const System *origin) const;
-	bool Matches(const System *system, const PlayerInfo *player, const System *origin) const;
+	bool Matches(const Planet *planet, const PlayerInfo *player, const System *origin = nullptr) const;
+	bool Matches(const System *system, const PlayerInfo *player, const System *origin = nullptr) const;
 	// Ships are chosen based on system/"near" filters, government, category
 	// of ship, outfits installed/carried, and their total attributes.
 	bool Matches(const Ship &ship, const PlayerInfo *player) const;
@@ -66,7 +66,7 @@ public:
 	// Generic find system / find planet methods, based on the given origin
 	// system (e.g. the player's current system) and ability to land.
 	const System *PickSystem(const System *origin, const PlayerInfo *player) const;
-	const Planet *PickPlanet(const System *origin, const PlayerInfo *player, bool hasClearance, bool requireSpaceport) const;
+	const Planet *PickPlanet(const System *origin, const PlayerInfo *player, bool hasClearance = false, bool requireSpaceport = true) const;
 //	const Planet *PickPlanet(const System *origin, bool hasClearance = false, bool requireSpaceport = true, const PlayerInfo *player = nullptr) const;
 
 

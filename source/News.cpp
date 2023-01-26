@@ -118,7 +118,7 @@ bool News::AvailableTo(const PlayerInfo &player) const
 	// Similarly, by updating a news item with "remove location", it can be deactivated.
 	if(location.IsEmpty())
 		return false;
-	else if(!location.Matches(player.GetPlanet(), &player, nullptr))
+	else if(!location.Matches(player.GetPlanet(), &player))
 		return false;
 	else if(!toShow.Test(player.Conditions()))
 		return false;

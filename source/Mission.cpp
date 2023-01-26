@@ -674,7 +674,7 @@ bool Mission::HasClearance(const PlayerInfo &player, const Planet *planet) const
 		return false;
 	if(planet == destination || stopovers.count(planet) || visitedStopovers.count(planet))
 		return true;
-	return (!clearanceFilter.IsEmpty() && clearanceFilter.Matches(planet, &player, nullptr));
+	return (!clearanceFilter.IsEmpty() && clearanceFilter.Matches(planet, &player));
 }
 
 
@@ -713,7 +713,7 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 		if(source && source != player.GetPlanet())
 			return false;
 
-		if(!sourceFilter.Matches(player.GetPlanet(), &player, nullptr))
+		if(!sourceFilter.Matches(player.GetPlanet(), &player))
 			return false;
 	}
 
@@ -1199,7 +1199,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	for(const LocationFilter &filter : stopoverFilters)
 	{
 		// Unlike destinations, we can allow stopovers on planets that don't have a spaceport.
-		const Planet *planet = filter.PickPlanet(sourceSystem, &player, !clearance.empty(), false);
+		const Planet *planet = filter.PickPlanet(sourceSystem, &player, !clearance.empty());
 		if(!planet)
 			return result;
 		result.stopovers.insert(planet);
@@ -1212,7 +1212,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.destination = destination;
 	if(!result.destination && !destinationFilter.IsEmpty())
 	{
-		result.destination = destinationFilter.PickPlanet(sourceSystem, &player, !clearance.empty(), true);
+		result.destination = destinationFilter.PickPlanet(sourceSystem, &player, !clearance.empty());
 		if(!result.destination)
 			return result;
 	}
