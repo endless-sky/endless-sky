@@ -159,7 +159,7 @@ namespace {
 		{
 			bool hasMatch = false;
 			for(const System *neighbor : hub->Links())
-				if(filter.Matches(neighbor, origin, player))
+				if(filter.Matches(neighbor, player, origin))
 				{
 					hasMatch = true;
 					break;
@@ -390,7 +390,7 @@ bool LocationFilter::IsValid() const
 
 
 // If the player is in the given system, does this filter match?
-bool LocationFilter::Matches(const Planet *planet, const System *origin, const PlayerInfo *player) const
+bool LocationFilter::Matches(const Planet *planet, const PlayerInfo *player, const System *origin) const
 {
 	if(!planet || !planet->IsValid())
 		return false;
@@ -412,7 +412,7 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin, const P
 			return false;
 
 	for(const LocationFilter &filter : notFilters)
-		if(filter.Matches(planet, origin, player))
+		if(filter.Matches(planet, player, origin))
 			return false;
 
 	// If outfits are specified, make sure they can be bought here.
@@ -428,18 +428,18 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin, const P
 	if(player && (flags & PLAYER_FILTERS) && !MatchesPlayerFilters(planet, player))
 		return false;
 
-	return Matches(planet->GetSystem(), origin, true, player);
+	return Matches(planet->GetSystem(), player, origin, true);
 }
 
 
 
-bool LocationFilter::Matches(const System *system, const System *origin, const PlayerInfo *player) const
+bool LocationFilter::Matches(const System *system, const PlayerInfo *player, const System *origin) const
 {
 	// If a ship class was given, do not match systems.
 	if(!shipCategory.empty())
 		return false;
 
-	return Matches(system, origin, false, player);
+	return Matches(system, player, origin, false);
 }
 
 
@@ -551,7 +551,7 @@ const System *LocationFilter::PickSystem(const System *origin, const PlayerInfo 
 		// Skip systems with incomplete data or that are inaccessible.
 		if(!system.IsValid() || system.Inaccessible())
 			continue;
-		if(Matches(&system, origin, player))
+		if(Matches(&system, player, origin))
 			options.push_back(&system);
 	}
 	return options.empty() ? nullptr : options[Random::Int(options.size())];
@@ -577,7 +577,7 @@ const Planet *LocationFilter::PickPlanet(const System *origin, const PlayerInfo 
 		if(planet.IsWormhole() || (requireSpaceport && !planet.HasSpaceport()) || (!hasClearance && !planet.CanLand()))
 			if(planets.empty() || !planets.count(&planet))
 				continue;
-		if(Matches(&planet, origin, player))
+		if(Matches(&planet, player, origin))
 			options.push_back(&planet);
 	}
 	return options.empty() ? nullptr : options[Random::Int(options.size())];
@@ -689,7 +689,7 @@ void LocationFilter::LoadChild(const DataNode &child)
 
 
 
-bool LocationFilter::Matches(const System *system, const System *origin, bool didPlanet, const PlayerInfo *player) const
+bool LocationFilter::Matches(const System *system, const PlayerInfo *player, const System *origin, bool didPlanet) const
 {
 	if(!system || !system->IsValid())
 		return false;
@@ -727,7 +727,7 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 		}
 
 		for(const LocationFilter &filter : notFilters)
-			if(filter.Matches(system, origin, player))
+			if(filter.Matches(system, player, origin))
 				return false;
 	}
 

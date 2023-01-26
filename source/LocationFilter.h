@@ -54,8 +54,8 @@ public:
 	bool IsValid() const;
 
 	// If the player is in the given system, does this filter match?
-	bool Matches(const Planet *planet, const System *origin, const PlayerInfo *player) const;
-	bool Matches(const System *system, const System *origin, const PlayerInfo *player) const;
+	bool Matches(const Planet *planet, const PlayerInfo *player, const System *origin) const;
+	bool Matches(const System *system, const PlayerInfo *player, const System *origin) const;
 	// Ships are chosen based on system/"near" filters, government, category
 	// of ship, outfits installed/carried, and their total attributes.
 	bool Matches(const Ship &ship, const PlayerInfo *player) const;
@@ -76,7 +76,7 @@ private:
 	// Check if the filter matches the given system. If it did not, return true
 	// only if the filter wasn't looking for planet characteristics or if the
 	// didPlanet argument is set (meaning we already checked those).
-	bool Matches(const System *system, const System *origin, bool didPlanet, const PlayerInfo *player) const;
+	bool Matches(const System *system, const PlayerInfo *player, const System *origin, bool didPlanet) const;
 	bool MatchesPlayerFilters(const System *system, const PlayerInfo *player) const;
 	bool MatchesPlayerFilters(const Planet *planet, const PlayerInfo *player) const;
 	static bool Reachable(const System *system, const PlayerInfo *player);

@@ -674,7 +674,7 @@ bool Mission::HasClearance(const PlayerInfo &player, const Planet *planet) const
 		return false;
 	if(planet == destination || stopovers.count(planet) || visitedStopovers.count(planet))
 		return true;
-	return (!clearanceFilter.IsEmpty() && clearanceFilter.Matches(planet, nullptr, &player));
+	return (!clearanceFilter.IsEmpty() && clearanceFilter.Matches(planet, &player, nullptr));
 }
 
 
@@ -713,7 +713,7 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 		if(source && source != player.GetPlanet())
 			return false;
 
-		if(!sourceFilter.Matches(player.GetPlanet(), nullptr, &player))
+		if(!sourceFilter.Matches(player.GetPlanet(), &player, nullptr))
 			return false;
 	}
 

@@ -493,7 +493,7 @@ bool Government::Trusts(const Government *government) const
 bool Government::CanEnforce(const PlayerInfo &player, const System *system) const
 {
 	for(const LocationFilter &filter : enforcementZones)
-		if(filter.Matches(system, nullptr, &player))
+		if(filter.Matches(system, &player, nullptr))
 			return true;
 	return enforcementZones.empty();
 }
@@ -506,7 +506,7 @@ bool Government::CanEnforce(const PlayerInfo &player, const System *system) cons
 bool Government::CanEnforce(const PlayerInfo &player, const Planet *planet) const
 {
 	for(const LocationFilter &filter : enforcementZones)
-		if(filter.Matches(planet, nullptr, &player))
+		if(filter.Matches(planet, &player, nullptr))
 			return true;
 	return enforcementZones.empty();
 }
