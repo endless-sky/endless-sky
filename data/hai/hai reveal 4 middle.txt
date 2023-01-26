@@ -1613,6 +1613,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				"Hai Reveal [A11] Sound the Alarm: time" = 2
 			`	You enter a small room with a holographic display and two hovering balls that appear to detect the movement of your hands in the hologram.`
 			`	"The search system is quite complicated, so I prepared a list of documents that Sayari and the Elders thought you would find most interesting, given your current and anticipated situation." She waves her hands and the title pages of selection of documents come up. She pokes one document, and a book appears in the holoprojector, which she is able to manipulate as if it were real. Closing the book returns the interface to the list of documents."`
+			`	"As you take out your datapad to record, you notice it doesn't see anything. It seems the Hai have taken precautions to ensure you don't record the information in full. Fortunately, as an interstellar pilot, you have an excellent memory, and you make mental notes of everything important."`
 				goto library
 			label "decided to read nothing after seeing titles"
 			`	"As you wish," says the functionary. She leads you to the council chambers. Along the way, she explains, "It seems Teeneep is getting a show trial; someone has already decided the outcome. She may yet escape her fate! Many Elders support her, including the ones that wanted you to see those documents."`
