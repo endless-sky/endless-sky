@@ -5456,7 +5456,7 @@ mission "Escort offer (Generic South)"
 		personality escort timid
 			confusion 20
 		fleet
-			names "merchant"
+			names "civilian"
 			variant
 				"Bastion (Laser)"
 
