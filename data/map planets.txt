@@ -12,7 +12,7 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 
-color "wormholes: Ember Waste" .6 .1 .4
+color "wormholes: Ember Waste" .7 .1 .4
 
 planet "Ablub's Invention"
 	attributes arach factory
@@ -1618,7 +1618,6 @@ wormhole "Graveyard Wormhole (Stable)"
 	mappable
 	link Ritilas Fearis
 	link Fearis Ritilas
-	color "wormholes: Ember Waste"
 
 planet "Graveyard Wormhole (Unstable)"
 	attributes "requires: quantum keystone"
