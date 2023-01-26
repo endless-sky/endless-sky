@@ -36,6 +36,7 @@ public:
 
 
 public:
+	ShipJumpNavigation() = default;
 	ShipJumpNavigation(const Ship &ship);
 
 	// Calibrate this ship's jump navigation information, caching its jump costs, range, and capabilities.
