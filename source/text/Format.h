@@ -40,9 +40,17 @@ public:
 	// Convert a string into a number. As with the output of Number(), the
 	// string can have suffixes like "M", "B", etc.
 	static double Parse(const std::string &str);
-	// Replace a set of "keys," which must be strings in the form "<name>", with
-	// a new set of strings, and return the result.
-	static std::string Replace(const std::string &source, const std::map<std::string, std::string> &keys);
+	// Replace a set of "keys," which must be strings in the form "<name>", with a new
+	// set of strings, and return the result. The optional toSkip is a key that will
+	// be replaced with itself (used by Expand() to prevent infinite recursion).
+	static std::string Replace(const std::string &source, const std::map<std::string, std::string> &keys,
+		const std::string *toSkip = nullptr);
+	// Loop through all key/value pairs, replacing <name> with its value.
+	// This allows substitutions to recursively refer to each other up to a
+	// given maximum depth (-1 means no maximum). It can detect infinite
+	// recursion; in that case, the offending key's substitutions will be
+	// replaced with the key.
+	static void Expand(std::map<std::string, std::string> &keys, int maxDepth = -1);
 	// Replace all occurrences of "target" with "replacement" in-place.
 	static void ReplaceAll(std::string &text, const std::string &target, const std::string &replacement);
 

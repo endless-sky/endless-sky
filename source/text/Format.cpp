@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <array>
 #include <cctype>
 #include <cmath>
+#include <set>
 #include <sstream>
 
 using namespace std;
@@ -42,6 +43,12 @@ namespace {
 			result += '-';
 
 		reverse(result.begin(), result.end());
+	}
+
+	bool HasSubstitutions(const std::string &key)
+	{
+		size_t less = key.find('<');
+		return less != string::npos && key.find('>', less) != string::npos;
 	}
 }
 
@@ -241,36 +248,55 @@ double Format::Parse(const string &str)
 
 
 
-string Format::Replace(const string &source, const map<string, string> &keys)
+// Replace a set of "keys," which must be strings in the form "<name>", with
+// a new set of strings, and return the result. The optional toSkip is a key that will
+// be replaced with itself. This is used by Expand() to prevent infinite recursion.
+string Format::Replace(const string &source, const map<string, string> &keys, const string *toSkip)
 {
 	string result;
 	result.reserve(source.length());
 
 	size_t start = 0;
 	size_t search = start;
+	size_t left = 0;
+	size_t right = 0;
+	bool matched = false;
+
+	auto Match = [&](const string &match, size_t subpos, size_t sublen)
+	{
+		// A substitution match has been found. Insert all text that was
+		// before it, and the substitution value (or a substring of it).
+		// Update parsing indices for next loop iteration.
+		result.append(source, start, left - start);
+		result.append(match, subpos, sublen);
+		start = right;
+		search = right;
+		matched = true;
+	};
+
 	while(search < source.length())
 	{
-		size_t left = source.find('<', search);
+		left = source.find('<', search);
 		if(left == string::npos)
 			break;
 
-		size_t right = source.find('>', left);
+		right = source.find('>', left);
 		if(right == string::npos)
 			break;
 
-		bool matched = false;
+		matched = false;
 		++right;
 		size_t length = right - left;
-		for(const auto &it : keys)
-			if(!source.compare(left, length, it.first))
-			{
-				result.append(source, start, left - start);
-				result.append(it.second);
-				start = right;
-				search = start;
-				matched = true;
-				break;
-			}
+		if(toSkip && !source.compare(left, length, *toSkip))
+			// Prevent infinite recursion in Expand by inserting the "key" part of "<key>"
+			Match(*toSkip, 1, toSkip->size() - 2);
+		else
+			for(const auto &it : keys)
+				if(!source.compare(left, length, it.first))
+				{
+					Match(it.second, 0, string::npos);
+					break;
+				}
 
 		if(!matched)
 			search = left + 1;
@@ -278,6 +304,36 @@ string Format::Replace(const string &source, const map<string, string> &keys)
 
 	result.append(source, start, source.length() - start);
 	return result;
+}
+
+
+
+void Format::Expand(std::map<std::string, std::string> &keys, int maxDepth)
+{
+	// Set of keys that may still have substitutions:
+	set<string> hasSubs;
+
+	// Find all keys that have substitutions.
+	for(auto &keyValue : keys)
+		if(HasSubstitutions(keyValue.first))
+			hasSubs.insert(keyValue.first);
+
+	// Keep going until we have no more substitutions to make, or until we hit max depth.
+	for(int depth = 0; (maxDepth < 0 || depth < maxDepth) && !hasSubs.empty(); ++depth)
+
+		// One pass over all keys with substitutions: Replace() each.
+		for(auto hasSubsIter = hasSubs.begin(); hasSubsIter != hasSubs.end();)
+		{
+			auto out = keys.find(*hasSubsIter);
+			string old = Replace(out->second, keys, &out->first);
+			out->second = std::move(old);
+
+			// Is there anything left to substitute in this key's value?
+			if(HasSubstitutions(out->second))
+				++hasSubsIter;
+			else
+				hasSubsIter = hasSubs.erase(hasSubsIter);
+		}
 }
 
 
