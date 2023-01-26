@@ -5435,7 +5435,7 @@ mission "Escort offer (Generic South)"
 		random < 15
 	on offer
 		conversation
-			`As you are walking from your landing pad to the spaceport, you pass a cheerful man standing next to an impressively well-armed Bastion. He notices you, waves to you, and says "Hey, need some help with the local pirates? I'm on my way to <destination> at the moment, and I'd be happy to fly alongside your ship on the way for 15,000 credits."`
+			`As you are walking from your landing pad to the spaceport, you pass a cheerful man standing next to an impressively well-armed Bastion. He notices you, waves to you, and says "Hey, need some help with the local pirates? I'm on my way to <destination> at the moment, and I'd be happy to fly alongside your ship on the way for 15,000 credits, plus an extra 300 per day."`
 			choice
 				`	"Thank you, that would be perfect!"`
 				`	"Thanks for the offer, but I'm not headed that way."`
@@ -5448,6 +5448,8 @@ mission "Escort offer (Generic South)"
 				decline
 	on accept
 		payment -15000
+	on daily
+		payment -300
 	on complete
 		conversation
 			`The captain of the <npc> waves you off cheerfully as you leave. "Have a great day, and stay safe out there!"`
