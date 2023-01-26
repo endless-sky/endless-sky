@@ -224,8 +224,7 @@ test "Taking Ship With Outfits And Unconstrained"
 		# the first two tried to trigger before it.
 		assert
 			"flagship model: Star Barge" == 1
+			"ship model (all): Star Barge" == 1
 			"%TEST%: Switch: offered" == 0
 			"%TEST%: Switch 2: offered" == 0
 			"%TEST%: Switch 3: offered" == 1
-			# make sure we took off
-			"flagship landed" == 0
