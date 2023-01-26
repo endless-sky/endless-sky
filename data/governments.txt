@@ -600,10 +600,6 @@ government "Ka'het"
 		"Wanderer" -.01
 	
 	"player reputation" -1
-	"friendly hail" "friendly ka'het"
-	"friendly disabled hail" "friendly disabled ka'het"
-	"hostile hail" "hostile ka'het"
-	"hostile disabled hail" "hostile disabled ka'het"
 
 # A government used to cause infighting between fleets that both appear to be the Ka'het government.
 government "Ka'het (Infighting)"
@@ -626,10 +622,6 @@ government "Ka'het (Infighting)"
 		"Wanderer" -.01
 	
 	"player reputation" -1
-	"friendly hail" "friendly ka'het"
-	"friendly disabled hail" "friendly disabled ka'het"
-	"hostile hail" "hostile ka'het"
-	"hostile disabled hail" "hostile disabled ka'het"
 
 government "Ka'sei"
 	swizzle 0
@@ -641,10 +633,6 @@ government "Ka'sei"
 		board 0
 		capture 0
 	"player reputation" 1
-	"friendly hail" "friendly ka'het"
-	"friendly disabled hail" "friendly disabled ka'het"
-	"hostile hail" "hostile ka'het"
-	"hostile disabled hail" "hostile disabled ka'het"
 
 color "governments: Korath Exiles" .8 .5 .1
 
