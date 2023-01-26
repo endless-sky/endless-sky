@@ -51,6 +51,7 @@ namespace {
 
 	const vector<string> AUTO_AIM_SETTINGS = {"off", "always on", "when firing"};
 	int autoAimIndex = 2;
+
 	const vector<string> BOARDING_SETTINGS = {"proximity", "value", "mixed"};
 	int boardingIndex = 0;
 
@@ -316,6 +317,20 @@ const string &Preferences::VSyncSetting()
 
 
 
+void Preferences::ToggleAutoAim()
+{
+	autoAimIndex = (autoAimIndex + 1) % AUTO_AIM_SETTINGS.size();
+}
+
+
+
+Preferences::AutoAim Preferences::GetAutoAim()
+{
+	return static_cast<AutoAim>(autoAimIndex);
+}
+
+
+
 const string &Preferences::AutoAimSetting()
 {
 	return AUTO_AIM_SETTINGS[autoAimIndex];
@@ -333,23 +348,9 @@ void Preferences::ToggleBoarding()
 
 
 
-int Preferences::AutoAimIndex()
-{
-	return autoAimIndex;
-}
-
-
-
 Preferences::BoardingPriority Preferences::GetBoardingPriority()
 {
 	return static_cast<BoardingPriority>(boardingIndex);
-}
-
-
-
-void Preferences::ToggleAutoAim()
-{
-	autoAimIndex = (autoAimIndex + 1) % 3;
 }
 
 
