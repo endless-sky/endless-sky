@@ -1341,6 +1341,8 @@ mission "Hai Reveal [A09] History of Appeasement"
 
 
 mission "Hai Reveal [A10] Demanding Satisfaction"
+	# The autosave is to replay the A11 conversation
+	autosave
 	landing
 	name "Demanding Satisfaction"
 	description "Fly to <destination> and deliver Teeneep and her ultimatum to the Elders."
@@ -1404,7 +1406,6 @@ mission "Hai Reveal [A10] Demanding Satisfaction"
 
 mission "Hai Reveal [A11] Sound the Alarm"
 	# An autosave ensures the player can replay to get more lore or re-read the story.
-	autosave
 	landing
 	name "Sound the Alarm"
 	description "Reach <planet> and deliver a warning."
