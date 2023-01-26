@@ -5468,11 +5468,9 @@ mission "Escort offer (Betrayal)"
 	npc
 		government "Escort (Betraying)"
 		personality staying nemesis harvests plunders
-			confusion 10
 		system Moktar
 		ship "Splinter" "Hellblade"
 	npc accompany save
 		government "Escort (Betraying)"
 		personality nemesis harvests plunders
-			confusion 10
 		ship "Marauder Firebird (Weapons)" "Hellspear"
