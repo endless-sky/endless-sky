@@ -45,7 +45,7 @@ namespace {
 		reverse(result.begin(), result.end());
 	}
 
-	bool HasSubstitutions(const std::string &key)
+	bool HasSubstitutions(const string &key)
 	{
 		size_t less = key.find('<');
 		return less != string::npos && key.find('>', less) != string::npos;
