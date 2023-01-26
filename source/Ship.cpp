@@ -1445,7 +1445,7 @@ ShipAICache &Ship::GetAICache()
 
 
 
-void Ship::ReCacheInfo()
+void Ship::UpdateCaches()
 {
 	AICache.UpdateWeaponCache();
 	navigation.Recalibrate(*this);
@@ -4062,7 +4062,11 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 		AddOutfit(ammo, -weapon.AmmoUsage());
 		// Only the player's ships make use of attraction and deterrence.
 		if(isYours && !OutfitCount(ammo) && ammo->AmmoUsage())
+		{
+			// Recalculate the AI to account for the loss of this weapon.
+			AICache.CreateWeaponCache();
 			deterrence = CalculateDeterrence();
+		}
 	}
 
 	energy -= weapon.FiringEnergy() + relativeEnergyChange;

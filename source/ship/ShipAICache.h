@@ -33,7 +33,7 @@ public:
 	// Get the new mass of the ship, if it changed update the weapon cache.
 	void UpdateWeaponCache();
 
-	// Accessors and setters for AI data
+	// Accessors for AI data.
 	bool IsArtilleryAI() const;
 	double ShortestRange() const;
 	double ShortestArtillery() const;

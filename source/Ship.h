@@ -201,7 +201,7 @@ public:
 
 	// Access the ship's AI cache, containing the range and expected AI behavior for this ship.
 	ShipAICache &GetAICache();
-	void ReCacheInfo();
+	void UpdateCaches();
 
 	// Set the commands for this ship to follow this timestep.
 	void SetCommands(const Command &command);
