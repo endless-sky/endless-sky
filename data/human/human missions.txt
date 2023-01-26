@@ -5423,9 +5423,7 @@ mission "Escort offer (Generic South)"
 	name "Escort to <planet>"
 	description "The captain of the <npc> has offered to fly alongside you, protecting you from pirates, on your way to <destination>."
 	source
-		or
-			government "Free Worlds"
-			attributes "dirt belt"
+		attributes "dirt belt" "south" "rim"
 	destination
 		government "Free Worlds" "Syndicate" "Republic"
 		distance 5 8
