@@ -75,6 +75,7 @@ test "Checking For A Gifted Ship"
 		# Make the missions trigger by landing again.
 		call "Depart"
 		call "Land"
+		call "Wait 10 steps"
 		assert
 			"ship model: Star Barge" == 0
 			"ship model: Sparrow" == 1
@@ -216,6 +217,7 @@ test "Taking Ship With Outfits And Unconstrained"
 		call "Load First Savegame"
 		call "Depart"
 		call "Land"
+		call "Wait 10 steps"
 		call "Depart"
 		# The missions are checked by alphabetical order, meaning we know that if the third one triggered,
 		# the first two tried to trigger before it.
