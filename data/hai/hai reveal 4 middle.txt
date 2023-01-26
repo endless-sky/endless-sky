@@ -1405,7 +1405,6 @@ mission "Hai Reveal [A10] Demanding Satisfaction"
 
 
 mission "Hai Reveal [A11] Sound the Alarm"
-	# An autosave ensures the player can replay to get more lore or re-read the story.
 	landing
 	name "Sound the Alarm"
 	description "Reach <planet> and deliver a warning."
