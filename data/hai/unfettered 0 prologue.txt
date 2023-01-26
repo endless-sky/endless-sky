@@ -720,7 +720,7 @@ mission "Unfettered: Bring Medical Supplies"
 				`	"What is a 'Heshi'?"`
 				`	"Glad to have prevented a disaster then."`
 					decline
-			`	"The Heshi is a great predator which rules the seas on our homeworld. It is swift and nimble, so you do not see it coming, and when you do, it is already too late. They are not very big, however, so they often hunt in groups. You would translate it as 'sea scorpion', I believe."`
+			`	"The Heshi is a great predator which rules the seas on our homeworld. It is swift and nimble, so you do not see it coming, and when you do, it is already too late. They are not very big, however, so they often hunt in groups. Your people have described it as looking like a 'sea scorpion', I believe."`
 				decline
 			label soldiers
 			`	He looks around him, before answering, "Do I look like a soldier to you? Does this medic look like one? No, we Unfettered only dare to think in another way. In truth, quite a few of us would like to be artists! It is a shame we have to fight for our right to live another way than the one the Hai allow, to break out of the prison they have cast next to our systems! Our soldiers indeed suffer the most from that fight."`
