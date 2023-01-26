@@ -809,8 +809,8 @@ void Ship::FinishLoading(bool isNewInstance)
 	isDisabled = IsDisabled();
 
 	// Calculate this ship's jump information, e.g. how much it costs to jump, how far it can jump, how it can jump.
-	this->navigation = ShipJumpNavigation(*this);
-	this->AICache = ShipAICache(*this);
+	navigation = ShipJumpNavigation(*this);
+	AICache = ShipAICache(*this);
 
 	// A saved ship may have an invalid target system. Since all game data is loaded and all player events are
 	// applied at this point, any target system that is not accessible should be cleared. Note: this does not
