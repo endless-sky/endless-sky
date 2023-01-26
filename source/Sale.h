@@ -38,13 +38,6 @@ public:
 	std::string GetDescription() const { return description; }
 
 private:
-	void SetDescription(const std::string &value) { description = value; }
-
-	std::string AppendDescription(const std::string &value) {
-		description += value;
-		return description;
-	}
-
 	std::string description;
 };
 
@@ -65,11 +58,11 @@ void Sale<Item>::Load(const DataNode &node, const Set<Item> &items)
 		else if(add && child.Size() == 2 && child.Token(1) != "description")
 			this->insert(items.Get(child.Token(1)));
 		else if(add && child.Size() >= 3 && child.Token(1) == "description")
-			this->AppendDescription(child.Token(2) + '\n');
+			description += child.Token(2) + '\n';
 		else if(remove && child.Size() >= 2 && child.Token(1) == "description")
-			this->SetDescription("");
+			description = "";
 		else if(token == "description" && child.Size() >= 2)
-			this->AppendDescription(child.Token(1) + '\n');
+			description += child.Token(1) + '\n';
 		else
 			this->insert(items.Get(token));
 	}
