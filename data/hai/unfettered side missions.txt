@@ -170,7 +170,7 @@ mission "Unfettered: Attracted Attention"
 		has "Unfettered: Prove Your Strength 2: active"
 		has "outfit (installed): Jump Drive"
 	on enter "Almaaz"
-		dialog `The Unfettered "pirate" spits a a string of old-timey nautical curses, but one word, which you can barely hear him mutter, stands out: "Cerberus." He then comes closer to address you directly, "There even more of these scurvy bilge rats than I expected. I warned ye about coming here with a jump drive!"`
+		dialog `The Unfettered "pirate" spits a a string of old-timey nautical curses, but one word, which you can barely hear him mutter, stands out: "Cerberus." He then comes closer to address you directly, "There be even more of these scurvy bilge rats than I expected. I warned ye about coming here with a jump drive!"`
 	npc evade
 		government "Cerberus"
 		system "Almaaz"
