@@ -74,14 +74,14 @@ void Person::NeverSpawn()
 
 // Find out how often this person should appear in the given system. If this
 // person is dead or already active, this will return zero.
-int Person::Frequency(const System *system) const
+int Person::Frequency(const System *system, const PlayerInfo *player) const
 {
 	// Because persons always enter a system via one of the regular hyperspace
 	// links, don't create them in systems with no links.
 	if(!system || IsDestroyed() || IsPlaced() || system->Links().empty())
 		return 0;
 
-	return (location.IsEmpty() || location.Matches(system, nullptr, nullptr)) ? frequency : 0;
+	return (location.IsEmpty() || location.Matches(system, nullptr, player)) ? frequency : 0;
 }
 
 

@@ -16,6 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef LOCATION_FILTER_H_
 #define LOCATION_FILTER_H_
 
+#include "ConditionSet.h"
+
 #include <list>
 #include <set>
 #include <string>
@@ -75,11 +77,11 @@ private:
 	// only if the filter wasn't looking for planet characteristics or if the
 	// didPlanet argument is set (meaning we already checked those).
 	bool Matches(const System *system, const System *origin, bool didPlanet, const PlayerInfo *player) const;
-	static bool MatchesFlagFilters(int flags, const System *system, const PlayerInfo *player);
-	static bool MatchesFlagFilters(int flags, const Planet *planet, const PlayerInfo *player);
+	bool MatchesPlayerFilters(const System *system, const PlayerInfo *player) const;
+	bool MatchesPlayerFilters(const Planet *planet, const PlayerInfo *player) const;
 	static bool Reachable(const System *system, const PlayerInfo *player);
-	static bool CanLand(const Planet *planet, const PlayerInfo *player);
-	static bool CanLand(const System *system, const PlayerInfo *player);
+	static bool Landed(const System *system, const PlayerInfo *player);
+	static bool Mapped(const System *system, const PlayerInfo *player);
 
 
 private:
@@ -113,6 +115,8 @@ private:
 	std::list<LocationFilter> notFilters;
 	// These filters store all the things the planet or system must border.
 	std::list<LocationFilter> neighborFilters;
+
+	ConditionSet conditions;
 };
 
 
