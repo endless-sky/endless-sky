@@ -53,6 +53,11 @@ public:
 	bool IsEmpty() const;
 	bool IsValid() const;
 
+	// All public methods that take a PlayerInfo* can receive a nullptr, but
+	// that will disable all tests which require PlayerInfo. If a resulting
+	// LocationFilter has nothing else in it, it'll always match, which means
+	// a not filter of them will never match.
+
 	// If the player is in the given system, does this filter match?
 	bool Matches(const Planet *planet, const PlayerInfo *player, const System *origin = nullptr) const;
 	bool Matches(const System *system, const PlayerInfo *player, const System *origin = nullptr) const;
@@ -67,7 +72,6 @@ public:
 	// system (e.g. the player's current system) and ability to land.
 	const System *PickSystem(const System *origin, const PlayerInfo *player) const;
 	const Planet *PickPlanet(const System *origin, const PlayerInfo *player, bool hasClearance = false, bool requireSpaceport = true) const;
-//	const Planet *PickPlanet(const System *origin, bool hasClearance = false, bool requireSpaceport = true, const PlayerInfo *player = nullptr) const;
 
 
 private:
