@@ -1769,7 +1769,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			`	-	Multi-Decadal Timeline Expected before Unfettered Progress`
 			`	-	Choot'k: Insane Risk-Taker or Brilliant Strategist?`
 			`	-	Reports from Hai Agents on Unfettered Raiding Vessels`
-			`	-	Unsustainable Rate of Losses Spying on Unfettered Leadership`
+			`	-	Lack Of Success Spying on Unfettered Military Leadership`
 			`	-	Theories on the Sentient Evolution of Nocturnal Raptors`
 			`	Musing on the titles, you recall that "raptors" are birds of prey. Why would an intelligence report on the Unfettered discuss nocturnal birds of prey?`
 				goto reading
