@@ -1773,7 +1773,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 
 			label acorns
 			action
-				log `A Hai intelligence report said Unfettered planets have been ruined to the point where they cannot only produce enough food for bare sustenance. Birds, predators, and large species were almost wiped out, destroying the ecosystem. It mentioned three species of oak that could grow, but none are ideal. As time goes on Unfettered will increasingly rely on external food sources.`
+				log `A Hai intelligence report said Unfettered planets have been ruined to the point where they can only produce enough food for bare sustenance. Birds, predators, and large species were almost wiped out, destroying the ecosystem. It mentioned three species of oak that could grow, but none are ideal. As time goes on Unfettered will increasingly rely on external food sources.`
 				set "Hai Reveal [A11] Sound the Alarm: acorns book"
 				"Hai Reveal [A11] Sound the Alarm: time" ++
 			`	This report describes the rapid degradation of the environmental condition on Unfettered worlds, and frequent problems with crop blight. This comes from over-farming, lack of pollution controls, over-mining, and simply a lack of resources to handle unexpected environmental catastrophes. Though the Unfettered always have enough food produced internally for bare sustenance, a civilization needs more than that. They stockpile food during excess, including by raids or aid. Such stockpiles run out every year or two during severe catastrophes, causing more raids and necessitating more aid.`
