@@ -31,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Messages.h"
 #include "Phrase.h"
 #include "Planet.h"
+#include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Projectile.h"
 #include "Random.h"
@@ -1435,6 +1436,36 @@ string Ship::GetHail(map<string, string> &&subs) const
 
 
 
+bool Ship::CanSendHail(const PlayerInfo &player, bool allowUntranslated) const
+{
+	const System *playerSystem = player.GetSystem();
+	if(!playerSystem)
+		return false;
+
+	// Make sure this ship is in the same system as the player.
+	if(GetSystem() != playerSystem)
+		return false;
+
+	// Player ships shouldn't send hails.
+	const Government *gov = GetGovernment();
+	if(!gov || IsYours())
+		return false;
+
+	// Make sure this ship is able to send a hail.
+	if(IsDisabled() || !Crew() || Cloaking() >= 1. || GetPersonality().IsMute())
+		return false;
+
+	// Ships that don't share a language with the player shouldn't communicate when hailed directly.
+	// Only random event hails should work, and only if the government explicitly has
+	// untranslated hails. This is ensured by the allowUntranslated argument.
+	if(!allowUntranslated && !gov->Language().empty() && !player.Conditions().Get("language: " + gov->Language()))
+		return false;
+
+	return true;
+}
+
+
+
 // Set the commands for this ship to follow this timestep.
 void Ship::SetCommands(const Command &command)
 {
@@ -2584,7 +2615,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 
 // Scan the target, if able and commanded to. Return a ShipEvent bitmask
 // giving the types of scan that succeeded.
-int Ship::Scan()
+int Ship::Scan(const PlayerInfo &player)
 {
 	if(!commands.Has(Command::SCAN) || CannotAct())
 		return 0;
@@ -2671,7 +2702,7 @@ int Ship::Scan()
 			Messages::Add("Attempting to scan the selected " + target->Noun() + "."
 				, Messages::Importance::Low);
 
-		if(target->GetPersonality().IsSecretive() && target->GetGovernment()->IsProvokedOnScan())
+		if(target->GetGovernment()->IsProvokedOnScan() && target->CanSendHail(player))
 		{
 			// If this ship has no name, show its model name instead.
 			string tag;
