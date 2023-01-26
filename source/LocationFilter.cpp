@@ -64,7 +64,7 @@ namespace {
 	}
 	bool SetsIntersect(const set<const Outfit *> &a, const set<const Outfit *> &b)
 	{
- 		auto ait = a.begin();
+		auto ait = a.begin();
 		auto bit = b.begin();
 		// The stored values are pointers to the same GameData array:
 		// directly compare them.
@@ -152,14 +152,14 @@ namespace {
 
 	// Check that at least one neighbor of the hub system matches, for each of the neighbor filters.
 	// False if at least one filter fails to match, true if all filters find at least one match.
-	bool MatchesNeighborFilters(const LocationFilter::FilterList &neighborFilters, const System *hub,
+	bool MatchesNeighborFilters(const list<LocationFilter> &neighborFilters, const System *hub,
 			const System *origin, const PlayerInfo *player)
 	{
-		for(const LocationFilter::FilterItem &item : neighborFilters)
+		for(const LocationFilter &filter : neighborFilters)
 		{
 			bool hasMatch = false;
 			for(const System *neighbor : hub->Links())
-				if(item.second.Matches(neighbor, origin, player))
+				if(filter.Matches(neighbor, origin, player))
 				{
 					hasMatch = true;
 					break;
@@ -180,12 +180,12 @@ namespace {
 				return item->IsValid();
 			});
 	}
-	bool CheckValidity(const LocationFilter::FilterList &l)
+	bool CheckValidity(const list<LocationFilter> &l)
 	{
 		return l.empty() || any_of(l.begin(), l.end(),
-			[](const LocationFilter::FilterItem &f) noexcept -> bool
+			[](const LocationFilter &f) noexcept -> bool
 			{
-				return f.second.IsValid();
+				return f.IsValid();
 			});
 	}
 	bool CheckValidity(const list<set<const Outfit *>> &l)
@@ -220,27 +220,21 @@ void LocationFilter::Load(const DataNode &node)
 		// neighboring system. If the token is alone on a line, it
 		// introduces many lines of this type of filter. Otherwise, this
 		// child is a normal LocationFilter line.
-		if(child.Token(0) == "not" || child.Token(0) == "neighbor" || child.Token(0) == "and")
+		if(child.Token(0) == "not" || child.Token(0) == "neighbor")
 		{
-			FilterList &filters = ((child.Token(0) == "neighbor") ? neighborFilters : moreFilters);
-
-			// The "and" and "not" blocks store the logical value that cause
-			// the filter to fail. In other words:
-			// "not" stores true since a true result means the filter failed
-			// "and" stores false since a false result means the filter failed
-
-			filters.emplace_back(child.Token(0) == "not", LocationFilter());
-			if(child.Size() == 1 || child.Token(0) == "and")
-				filters.back().second.Load(child);
+			list<LocationFilter> &filters = ((child.Token(0) == "not") ? notFilters : neighborFilters);
+			filters.emplace_back();
+			if(child.Size() == 1)
+				filters.back().Load(child);
 			else
-				filters.back().second.LoadChild(child);
+				filters.back().LoadChild(child);
 		}
 		else
 			LoadChild(child);
 	}
 
 	isEmpty = planets.empty() && attributes.empty() && systems.empty() && governments.empty()
-		&& !center && originMaxDistance < 0 && moreFilters.empty() && neighborFilters.empty()
+		&& !center && originMaxDistance < 0 && notFilters.empty() && neighborFilters.empty()
 		&& outfits.empty() && shipCategory.empty() && !flags;
 
 	// Determine whether we'll need the player or flagship DistanceMaps will be needed.
@@ -254,15 +248,15 @@ void LocationFilter::Save(DataWriter &out) const
 {
 	out.BeginChild();
 	{
-		for(const FilterItem &item : moreFilters)
+		for(const LocationFilter &filter : notFilters)
 		{
-			out.Write(item.first ? "not" : "and");
-			item.second.Save(out);
+			out.Write("not");
+			filter.Save(out);
 		}
-		for(const FilterItem &item : neighborFilters)
+		for(const LocationFilter &filter : neighborFilters)
 		{
 			out.Write("neighbor");
-			item.second.Save(out);
+			filter.Save(out);
 		}
 		if(!planets.empty())
 		{
@@ -384,7 +378,7 @@ bool LocationFilter::IsValid() const
 			return false;
 	}
 
-	if(!CheckValidity(moreFilters))
+	if(!CheckValidity(notFilters))
 		return false;
 
 	if(!CheckValidity(neighborFilters))
@@ -417,8 +411,8 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin, const P
 		if(!SetsIntersect(attr, planet->Attributes()))
 			return false;
 
-	for(const FilterItem &item : moreFilters)
-		if(item.second.Matches(planet, origin, player) == item.first)
+	for(const LocationFilter &filter : notFilters)
+		if(filter.Matches(planet, origin, player))
 			return false;
 
 	// If outfits are specified, make sure they can be bought here.
@@ -434,11 +428,7 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin, const P
 	if(player && (flags & PLAYER_FILTERS) && !MatchesPlayerFilters(planet, player))
 		return false;
 
-	if(Matches(planet->GetSystem(), origin, true, player))
-		return true;
-	else
-		return false;
-
+	return Matches(planet->GetSystem(), origin, true, player);
 }
 
 
@@ -498,8 +488,8 @@ bool LocationFilter::Matches(const Ship &ship, const PlayerInfo *player) const
 	shared_ptr<DistanceMap> flagshipMap = (player && needFlagshipMap) ? FlagshipMap(*player) : nullptr;
 	shared_ptr<DistanceMap> playerMap = (player && needPlayerMap) ? PlayerMap(*player) : nullptr;
 
-	for(const FilterItem &item : moreFilters)
-		if(item.second.Matches(ship, player) == item.first)
+	for(const LocationFilter &filter : notFilters)
+		if(filter.Matches(ship, player))
 			return false;
 
 	if(!MatchesNeighborFilters(neighborFilters, origin, origin, player))
@@ -736,8 +726,8 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 			}
 		}
 
-		for(const FilterItem &item : moreFilters)
-			if(item.second.Matches(system, origin, player) == item.first)
+		for(const LocationFilter &filter : notFilters)
+			if(filter.Matches(system, origin, player))
 				return false;
 	}
 
@@ -833,14 +823,14 @@ void LocationFilter::UpdateMapFlags()
 		return;
 
 	// Loop over the two lists, to reduce code complexity.
-	FilterList *lists[2] = { moreFilters, neighborFilters };
+	list<LocationFilter> *lists[2] = { &notFilters, &neighborFilters };
 	for(int i = 0; i < 2; ++i)
-		for(auto &item : *lists[i])
+		for(auto &filter : *lists[i])
 		{
 			// Recurse into child's UpdateMapFlags.
-			item.second.UpdateMapFlags();
-			needFlagshipMap |= item.second.needFlagshipMap;
-			needPlayerMap |= item.second.needPlayerMap;
+			filter.UpdateMapFlags();
+			needFlagshipMap |= filter.needFlagshipMap;
+			needPlayerMap |= filter.needPlayerMap;
 
 			// If both maps are needed, there's nothing more to learn.
 			if(needFlagshipMap && needPlayerMap)
