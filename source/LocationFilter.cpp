@@ -37,12 +37,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const int ENTERED       = 1 << 0;
-	const int LANDED        = 1 << 1;
-	const int REACHABLE     = 1 << 2;
-	const int MAPPED        = 1 << 3;
+	const int ENTERED = 1 << 0;
+	const int LANDED = 1 << 1;
+	const int REACHABLE = 1 << 2;
+	const int MAPPED = 1 << 3;
 	const int PLAYER_FILTERS = ENTERED | LANDED | REACHABLE | MAPPED;
-	const int ELSEWHERE     = 1 << 4;
+	const int ELSEWHERE = 1 << 4;
 
 	bool SetsIntersect(const set<string> &a, const set<string> &b)
 	{
@@ -782,7 +782,7 @@ bool LocationFilter::MatchesPlayerFilters(const Planet *planet, const PlayerInfo
 	else if(!conditions.IsEmpty() && !conditions.Test(player->Conditions()))
 		return false;
 	return true;
-} 
+}
 
 
 

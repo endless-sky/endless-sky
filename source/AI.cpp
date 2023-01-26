@@ -3965,7 +3965,8 @@ bool AI::Has(const Ship &ship, const Government *government, int type) const
 
 
 
-void AI::UpdateStrengths(const PlayerInfo &player, map<const Government *, int64_t> &strength, const System *playerSystem)
+void AI::UpdateStrengths(const PlayerInfo &player, map<const Government *, int64_t> &strength,
+		const System *playerSystem)
 {
 	// Tally the strength of a government by the strength of its present and able ships.
 	governmentRosters.clear();

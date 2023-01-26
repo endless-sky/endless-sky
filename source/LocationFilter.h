@@ -71,7 +71,8 @@ public:
 	// Generic find system / find planet methods, based on the given origin
 	// system (e.g. the player's current system) and ability to land.
 	const System *PickSystem(const System *origin, const PlayerInfo *player) const;
-	const Planet *PickPlanet(const System *origin, const PlayerInfo *player, bool hasClearance = false, bool requireSpaceport = true) const;
+	const Planet *PickPlanet(const System *origin, const PlayerInfo *player, bool hasClearance = false,
+		bool requireSpaceport = true) const;
 
 
 private:
