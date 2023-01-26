@@ -212,6 +212,7 @@ mission "Unfettered: Hunger Stories 1"
 	clearance `You contact the authorities and they say they will have a team waiting when you land.`
 	to offer
 		has "unfettered: hunger"
+		not "language: Wanderer"
 		random < 20
 	on offer
 		conversation
