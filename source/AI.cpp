@@ -2188,9 +2188,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 		command |= Command::DEPLOY;
 		Deploy(ship, false);
 	}
-	// Rammign AI does not use artillery tactics
-	// and it does take into account killing itself with missiles.
-	// It just rushes at the enemy.
+	// Ramming AI doesn't take weapon range or self-damage into account, instead opting to bum-rush the target.
 	if(ship.GetPersonality().IsRamming())
 	{
 		MoveToAttack(ship, command, target);
