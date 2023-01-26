@@ -335,8 +335,8 @@ mission "Unfettered Jump Drive Trading"
 		random < 20 + 8 * "Unfettered Jump Drive 4: failed"
 	on offer
 		conversation
-			`The Unfettered are starting to know you by reputation for bringing jump drives to them. This time, one of them<hood> - an engineer, judging by the writing pad and equipment they have - is waiting for you at your hatch.`
-			`	Maybe they mean to trade something other than money with you. Do you want to bargain for another drive with them?`
+			`As you exit your ship to head to the spaceport you see that an Unfettered Hai<hood> - is waiting for you at your hatch.`
+			`	As you get closer you summize it is an engineer, judging by the writing pad and equipment they have. Maybe they mean to trade something other than money with you. Do you want to bargain for another drive with them?`
 				to display
 					not "unfettered: blade rodeo"
 			`	They probably mean to offer the same deal of exchanging jump drives for weapons as before. Do you want to try and see if you can prove yourself worthy this time, and bargain for a jump drive?`
@@ -397,7 +397,7 @@ mission "Unfettered Jump Drive Trading"
 			action
 				log "Minor People" "Desneeparu" `An Unfettered warrior that knows how to handle a blade. Was tested by her before being given access to new Unfettered weapons. Would have been a goner had she not been holding back.`
 			`	She does some kind of salute with her fist before leaving. "I must go now. I hope you will find the weapon you need, Captain."`
-			`	<The engineer> proceeds to take you underground to what looks like a very basic weapon testing range. They explain, "We prefer to do most of our testing on the field of battle. Here we only make sure the weapon actually fires before Unfettered captains can get their hands on it." You keep walking until you enter the outfitter section of the facility, where you notice the items on display are much more advanced than anything you have seen available on the surface: so much so it could almost pass for a 'normal' Hai outfitter, were it not for the overcharged, oppressive feel of the testing grounds.`
+			`	<The engineer> proceeds to take you underground to what looks like a very basic but very well shielded weapon testing range. They explain, "We prefer to do most of our testing on the field of battle. Here we only make sure the weapon actually fires before Unfettered captains can get their hands on it. The more interest in a prototype, the more we will develop it." You keep walking until you enter the outfitter section of the facility, where you notice the items on display are much more advanced than anything you have seen available on the surface: so much so it could almost pass for a 'normal' Hai outfitter, were it not for the overcharged, oppressive feel of the testing grounds.`
 			`	"Welcome to the advanced section of the outfitter, Captain! It is only for our most distinguished guests. Now that you have sold us multiple jump drives, I can tell you that we offer something much more valuable than money. For now, I can only offer you the mighty Tripulse Shredder, but eventually we will give you access to all kinds of weapons. Two Tripulse Shredders and our sympathy for one jump drive is the deal I propose," they say, presenting the weapons to you. Now that you can take a closer look, you notice these weapons seem fairly similar to other Hai weaponry, but they are enhanced in one way or another. Alongside the Tripulses you can spot what look like a very small Ion Cannon and an Ion Cannon mounted turret.`
 			label weapons
 			choice
@@ -427,7 +427,7 @@ mission "Unfettered Jump Drive Trading"
 			action
 				set "choice: turret"
 			scene "outfit/hai ionic turret"
-			`	"That is my preferred weapon out of all of them, by far. Unlike the Ion Cannon that is a hybrid weapon meant to damage the enemy from long range whilst applying a good deal of ionization, this one's role is mostly to disable enemy ships. Even a ship with many batteries will cower before this weapon! And due to its high range, small ships and even fighters will never bother you again!"`
+			`	"That is my preferred weapon out of all of them, by far. Unlike the Ion Cannon that is a hybrid weapon meant to damage the enemy from long range whilst applying a good deal of ionization, this one's role is mostly to disable enemy ships. Even a ship with many batteries will cower before this weapon! And due to its high range and fast turn-rate, small ships and even fighters will never bother you again!"`
 			label backtochoose
 			`	"However, we only have these weapons in very limited quantities, and as such we cannot afford to give these to you yet. So, about my offer, have you made up your mind?"`
 				goto weapons
@@ -448,7 +448,7 @@ mission "Unfettered Jump Drive Trading"
 			action
 				set "choice: tripulse"
 			scene "outfit/tripulse shredder"
-			`	"The Tripulse Shredder may seem crude, but it packs a punch! Its specialty is how it combines a lot of firepower in one gun slot, and, due to its burst nature, it's perfect for pilots who already use hit and run tactics. Some captains even say that a Sea Scorpion can take out a Shield Beetle when it uses four of them, if you know what you're doing, of course! As I said, I may offer you two of these in exchange for your jump drive."`
+			`	"The Tripulse Shredder may seem crude, but it packs a punch! Its specialty is how it combines a lot of firepower in one gun slot, and, due to its burst nature, it's perfect for pilots who already use hit and run tactics. Some captains even say that a Sea Scorpion can get the upper hand against a Shield Beetle when it uses four of them, if you know what you're doing, of course! As I said, I may offer you two of these in exchange for your jump drive."`
 				goto weapons
 			label buytripulse
 			action
@@ -722,7 +722,7 @@ mission "Unfettered: Bring Medical Supplies"
 			`	"The Heshi is a great predator which rules the seas on our homeworld. It is swift and nimble, so you do not see it coming, and when you do, it is already too late. They are not very big, however, so they often hunt in groups. Your people have described it as looking like a 'sea scorpion', I believe."`
 				decline
 			label soldiers
-			`	He looks around him, before answering, "Do I look like a soldier to you? Does this medic look like one? No, we Unfettered only dare to think in another way. In truth, quite a few of us would like to be artists! It is a shame we have to fight for our right to live another way than the one the Hai allow, to break out of the prison they have cast next to our systems! Our soldiers indeed suffer the most from that fight."`
+			`	He looks around him, before answering, "Do I look like a soldier to you? Does this medic look like one? No, we Unfettered only dare to think in another way. In truth, quite a few of us would like to be artists! It is the principle of the matter which drives us though, and it is a shame we must help fight for our right to live by another philosophy than the Hai one of stagnation, to break out of the prison they have cast for all of us! Our soldiers indeed suffer the most from that fight."`
 			`	"And then, I have to grant it to you, many may be armed among those you see here, but remember that you often wander in the spaceports, where soldiers come to resupply. We also all need to be ready for action, in case the raiders ever return."`
 			choice
 				`	"Glad to have prevented a disaster then."`
@@ -1058,7 +1058,7 @@ mission "Unfettered: Jump Drive Retrieval"
 
 
 
-# SPOILERS: the tsunami was caused by the Alphas as a warning to listen to their demands (and also because the Unfettered allowed you to see them)
+# SPOILERS: the disaster was caused by the Alphas as a warning to listen to their demands (and also because the Unfettered allowed you to see them)
 # this also is to increase tensions and to make Unfettered attack Wanderers faster.
 mission "Unfettered: Escort Hai Fleet"
 	landing
@@ -1725,7 +1725,11 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 		system "Hi Yahr"
 		ship "Alpha Auxiliary (Bringing Supplies)" "Settler"
 		conversation
-			`You have finished scanning the Auxiliary. There can be no doubt: it is controlled by Alphas. As you prepare yourself to exit the system and bring the logs back, you receive a message from the local Unfettered authorities.`
+			`You have finished scanning the Auxiliary.`
+			`	There can be no doubt: it is controlled by Alphas.`
+				to display
+					has "flagship attribute: tactical scan power"
+			`	As you prepare yourself to exit the system and bring the logs back, you receive a message from the local Unfettered authorities.`
 			`	"We demand that you land right away. If you go to any other system, that ship may pursue you. We do not want a dispute between our suppliers of jump drives; this is probably just a misunderstanding. If you land we can guarantee your safety here. We have requested that ship to land on another port, on Firelode, since it did fire on you first you without any apparent provocation."`
 			choice
 				`	"I will land, as you ask."`
