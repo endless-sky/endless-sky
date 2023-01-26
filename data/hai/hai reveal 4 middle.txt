@@ -1699,10 +1699,6 @@ mission "Hai Reveal [A11] Sound the Alarm"
 					goto quarg
 					to display
 						not "Hai Reveal [A11] Sound the Alarm: quarg book"
-				`	HUM-A0C1I3X: Comparisons of Hai and Human Military Technology`
-					goto militech
-					to display
-						not "Hai Reveal [A11] Sound the Alarm: militech book"
 				`	"I've changed my mind. Take me back to the proceedings instead."`
 					goto reading
 					to display
@@ -1811,16 +1807,6 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				"Hai Reveal [A11] Sound the Alarm: time" ++
 			`	This report is surprisingly light on details of any interest. It seems the Hai view the Quarg as a nearby race of friendly neighbors. There's frequent cultural exchanges, and a large food trade in both directions. Apparently, "genuine Hai cuisine" is popular among the Quarg, especially the famous Hai acorn cookies. In return, the Hai use Quarg spices extensively, including some of the meals you've eaten since you arrived. The spices are described as, "subtle and mysterious."`
 			`	Between the mundane and cultural, you find a few interesting facts. There is some lingering frustration about the Quarg refusing to help fend off Korath raids. This is partly due to the Hai having to fight for themselves, but mostly out of a belief that more Korath would have survived the war if the Quarg had intervened. Also, the Hai apparently have no interest in developing the jump drives Quarg have in abundance due to "the fate of the Korath," and warnings from the Quarg about the dangers of the jump drive manufacturing process.`
-				goto reading
-
-			label militech
-			action
-				log `A dry Hai military report doubted the assumed superiority of Hai military technology, other than their hulls. In particular, it is fearful of human weapons that do heat damage and or push a ship, warning that they can paralyze Hai vessels. They're also worried about recent human weapons development, and the lack of Hai ramscoops.`
-				set "Hai Reveal [A11] Sound the Alarm: militech book"
-				"Hai Reveal [A11] Sound the Alarm: time" ++
-			`	Predictably, the report begins with Hai hulls, which it claims are superior to human hulls by every measure. However, it warns that there are no other fields in which Hai clearly lead, and warns that the humans may soon surpass the Hai in military technology.`
-			`	Hai have a perceived advantage in several fields which, the report says, are minimal at best. Hai engines are more efficient than human atomic engines, but no faster, and humans have ion and plasma alternatives. Likewise, human atomic generators are hotter-running than those of the Hai, but humans have far more options for power. Hai shields were vastly superior, until the Syndicate's recent advancements. Hai anti-missile systems' superiority is merely a myth; human systems are as effective per ton. Of course, Hai cooling and ramscoop technology is primitive compared to humans, even with the return of the Ladybug.`
-			`	What is most concerning to the Hai is the inferiority of their weapons. They note that the ion cannon is effective against humans only because human ships rarely pack large batteries. Other Hai weapons are only marginally better than human alternatives. Meanwhile, a few plasma cannons and flame-throwers can easily shut down a Shield Beetle. Striking a beetle from 45 degrees to the front with four particle cannons will completely paralyze it until it is disabled. Recent human missiles are quite deadly, as are electron beams and plasma turrets. In all, the Hai are quite fearful of human weapons and question whether they could win an all-out war without Unfettered advancements.`
 				goto reading
 
 
