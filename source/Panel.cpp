@@ -22,8 +22,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Point.h"
 #include "Preferences.h"
-#include "Screen.h"
 #include "text/Format.h"
+#include "Screen.h"
 #include "UI.h"
 
 using namespace std;
