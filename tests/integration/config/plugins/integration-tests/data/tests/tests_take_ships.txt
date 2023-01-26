@@ -75,19 +75,17 @@ test "Checking For A Gifted Ship"
 		# Make the missions trigger by landing again.
 		call "Depart"
 		call "Land"
-		call "Wait 10 steps"
+		call "Depart"
 		assert
 			"ship model: Star Barge" == 0
 			"ship model: Sparrow" == 1
 			"%TEST%: Switch: offered" == 1
 			"%TEST%: Check sparrow: offered" == 0
-		call "Depart"
 		# Reload this to make sure the UUID is well stored into the savefile.
 		call "Open Menu"
 		call "Load First Savegame"
-		call "Depart"
+		# the ship will instantly be taken because the mission is landing and the conditions meet
 		call "Wait 10 steps"
-		call "Land"
 		assert
 			"ship model: Star Barge" == 0
 			"ship model: Sparrow" == 0
@@ -207,6 +205,7 @@ test-data "Taking Ship With Outfits And Unconstrained Test Missions"
 				# correct, takes the other ship
 				take ship "Star Barge (Armed)"
 					unconstrained
+					"requires outfits"
 
 test "Taking Ship With Outfits And Unconstrained"
 	status active
@@ -217,9 +216,9 @@ test "Taking Ship With Outfits And Unconstrained"
 		inject "Taking Ship With Outfits And Unconstrained Test Save"
 		call "Load First Savegame"
 		call "Depart"
+		# when we land the mission will trigger
 		call "Land"
 		call "Wait 10 steps"
-		call "Depart"
 		# The missions are checked by alphabetical order, meaning we know that if the third one triggered,
 		# the first two tried to trigger before it.
 		assert
