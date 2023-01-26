@@ -45,7 +45,18 @@ void ShipManager::Load(const DataNode &node)
 	{
 		const string &key = child.Token(0);
 		bool hasValue = child.Size() > 1;
-		if(taking)
+		
+		if(key == "id" && hasValue)
+			id = child.Token(1);
+		else if(key == "amount" && hasValue)
+		{
+			int val = child.Value(1);
+			if(val <= 0)
+				child.PrintTrace("Error: \"amount\" must be a non-zero, positive number.");
+			else
+				amount = val;
+		}
+		else if(taking)
 		{
 			if(key == "unconstrained")
 				unconstrained = true;
@@ -55,16 +66,6 @@ void ShipManager::Load(const DataNode &node)
 				requiresOutfits = true;
 			else
 				child.PrintTrace("Error: Skipping unrecognized token.");
-		}
-		else if(key == "id" && hasValue)
-			id = child.Token(1);
-		else if(key == "amount" && hasValue)
-		{
-			int val = child.Value(1);
-			if(val <= 0)
-				child.PrintTrace("Error: \"amount\" must be a non-zero, positive number.");
-			else
-				amount = val;
 		}
 		else
 			child.PrintTrace("Error: Skipping unrecognized token.");
