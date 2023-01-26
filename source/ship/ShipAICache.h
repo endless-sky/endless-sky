@@ -20,8 +20,9 @@ class Ship;
 
 
 
-// Class representing the AI data of a single ship. With a seperate instance
-// for every ship.
+// A class which caches information needed for AI calculations of an individual ship,
+// be those calculations that are needed multiple times a frame or which might only
+// be needed once per frame but don't typically change from frame to frame.
 class ShipAICache {
 public:
 	ShipAICache() = default;
