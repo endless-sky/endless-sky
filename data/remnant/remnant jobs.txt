@@ -676,7 +676,7 @@ mission "Remnant: Disable 1"
 	npc disable save
 		government "Korath"
 		personality heroic target marked staying disables plunders
-		system 
+		system
 			near "Vaticanus" 1
 		fleet
 			names "korath"
