@@ -276,6 +276,7 @@ outfit "EMP Torpedo Bay"
 		"shield damage" 700
 		"hull damage" 100
 		"ion damage" 48
+		"scrambling damage" 48
 		"hit force" 90
 		"missile strength" 80
 	description "Electromagnetic pulse weapons were developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
@@ -350,6 +351,7 @@ outfit "Teciimach Bay"
 		"hull damage" 125
 		"disabled damage" 60
 		"ion damage" 65
+		"scrambling damage" 65
 		"energy damage" 2000
 		"hit force" 90
 		"missile strength" 95
@@ -401,6 +403,7 @@ outfit "Teciimach Pod"
 		"hull damage" 125
 		"disabled damage" 60
 		"ion damage" 60
+		"scrambling damage" 60
 		"energy damage" 2000
 		"hit force" 90
 		"missile strength" 95
@@ -454,7 +457,7 @@ outfit "Ember Tear"
 	weapon
 		sprite "projectile/ember tear/ember tear"
 			"frame rate" 30
-		sound "ion"
+		sound "ember tear"
 		"hit effect" "ember tear spark"
 		"hit effect" "ember tear impact"
 		"hit effect" "ember tear vortex"
@@ -515,6 +518,7 @@ effect "ember tear vortex"
 		"start frame" 0
 		"no repeat"
 		"frame rate" 10
+	"sound" "ember tear hit"
 	"lifetime" 100
 	"velocity scale" 0
 	"random angle" 360
@@ -537,6 +541,7 @@ outfit "Crystal Capacitor"
 	"energy consumption" .4
 	"heat generation" .4
 	"ion resistance" 0.01
+	"scrambling resistance" 0.01
 	description "These crystals, mined on the Remnant planet Viminal, can store a surprising amount of power in a compact form. Crystals pure enough to be used in such a manner are hard to find, however."
 	description "	The capacitors tend to leak small amounts of energy in the form of excess heat. This leaking of energy also results in a quicker dissipation of ionization, granting ships with these crystals some resistance against the occasional ion storms that occur in the Waste."
 
@@ -551,6 +556,7 @@ outfit "Millennium Cell"
 	"energy generation" 3.6
 	"heat generation" 6.0
 	"ion resistance" 0.025
+	"scrambling resistance" 0.025
 	description "This quite compact radiothermal generator uses isotopes so radioactive, and so tightly packed together, that it could almost be classified as a nuclear reactor."
 	description "	Although not very impressive in terms of how much energy they produce, Remnant generators have been designed to better handle the energy draining effects of ionization."
 
@@ -565,6 +571,7 @@ outfit "Epoch Cell"
 	"energy generation" 12.7
 	"heat generation" 19.8
 	"ion resistance" 0.085
+	"scrambling resistance" 0.085
 	description "Efficient Remnant technology ensures that nearly all the heat produced by this generator's radioisotopes is converted into electricity instead of becoming waste heat."
 	description "	The Remnant took the ion dissipation effects of the crystals found on Viminal and replicated them for their generators in order to help survive the hostile environment of the Ember Waste."
 
@@ -579,6 +586,7 @@ outfit "Aeon Cell"
 	"energy generation" 21.9
 	"heat generation" 31.5
 	"ion resistance" 0.14
+	"scrambling resistance" 0.14
 	description "The early Remnant engineers did not trust the finicky and unpredictable nuclear reactors that were then in use in human space, so they instead focused on perfecting the art of radioisotope thermoelectric power."
 	description "	The ion resistance on all Remnant generators not only allows them to bounce back from ion storms more quickly, but also gives their ships a window of time when an ion storm starts where they are not affected, giving them a chance to escape before becoming debilitated by the storm."
 
@@ -655,7 +663,7 @@ outfit "Salvage Scanner"
 	"outfit scan speed" 12
 	"tactical scan power" 84
 	description "When the Remnant unraveled the alien point defense turrets guarding the vaults on Aventine, they also deciphered the mechanisms that guided the ancient weapons. After significant investments in research and development, they have transformed those guidance systems into sophisticated scanning technology."
-	description "	 While all Remnant ships are equipped with internal scanners, some captains still prefer to boost their range and power to more effectively select enemy ships worth targeting."
+	description "	While all Remnant ships are equipped with internal scanners, some captains still prefer to boost their range and power to more effectively select enemy ships worth targeting."
 
 
 
@@ -669,8 +677,8 @@ outfit "Bellows-Class Afterburner"
 	"outfit space" -7
 	"engine capacity" -7
 	"slowing resistance" 0.01
-	"afterburner thrust" 153.0
-	"afterburner fuel" 0.5
+	"afterburner thrust" 125.0
+	"afterburner fuel" 0.65
 	"afterburner energy" 6.0
 	"afterburner heat" 8.0
 	"afterburner effect" "remnant afterburner"
@@ -878,9 +886,12 @@ outfit "Void Sprite Parts"
 	plural "Void Sprite Parts"
 	category "Unique"
 	cost 500
-	thumbnail "outfit/mouthparts"
+	thumbnail "outfit/void sprite parts"
+	"flotsam sprite" "effect/void sprite parts/void sprite parts"
 	"mass" 1
 	"outfit space" -1
+	"flotsam chance" .5
+	"installable" -1
 	description "This is nothing more and nothing less than a cubic meter of void sprite parts. To the Remnant, this represents both a terrible occurrence and a dreadful opportunity."
 	description "	This could have been very valuable to someone who knew what they were doing, if it had been handled properly. Instead, it is worth little more than the value of the compounds contained within."
 

@@ -50,7 +50,7 @@ public:
 	double MaxRange() const;
 
 	// Visuals to be created while this hazard is active.
-	const std::map<const Effect *, int> &EnvironmentalEffects() const;
+	const std::map<const Effect *, float> &EnvironmentalEffects() const;
 
 
 private:
@@ -66,7 +66,7 @@ private:
 	bool systemWide = false;
 	bool deviates = true;
 
-	std::map<const Effect *, int> environmentalEffects;
+	std::map<const Effect *, float> environmentalEffects;
 };
 
 #endif
