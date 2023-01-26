@@ -30,7 +30,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "System.h"
 
 #include <algorithm>
+#include <memory>
 #include <mutex>
+#include <stdexcept>
 
 using namespace std;
 
@@ -78,6 +80,53 @@ namespace {
 		return false;
 	}
 
+	shared_ptr<DistanceMap> FlagshipMap(const PlayerInfo &player)
+	{
+		static mutex distanceMutex;
+		lock_guard<mutex> lock(distanceMutex);
+
+		// Storing a weak pointer ensures that when the entire tree of LocationFilter
+		// methods exits, the DistanceMap is destructed and will be replaced upon the
+		// next call to the same LocationFilter tree.
+		static weak_ptr<DistanceMap> map;
+
+		try {
+			return shared_ptr<DistanceMap>(map);
+		}
+		catch(const bad_weak_ptr &bad)
+		{
+			// The last tree of LocationFilter methods exited, so we need a new map.
+			const Ship *flagship = player.Flagship();
+			shared_ptr<DistanceMap> made = (flagship ? make_shared<DistanceMap>(*flagship)
+				: make_shared<DistanceMap>(player));
+			map = made;
+			return made;
+		}
+	}
+
+	shared_ptr<DistanceMap> PlayerMap(const PlayerInfo &player)
+	{
+		static mutex distanceMutex;
+		lock_guard<mutex> lock(distanceMutex);
+
+		// Storing a weak pointer ensures that when the entire tree of LocationFilter
+		// methods exits, the DistanceMap is destructed and will be replaced upon the
+		// next call to the same LocationFilter tree.
+		static weak_ptr<DistanceMap> map;
+
+		try {
+			return shared_ptr<DistanceMap>(map);
+		}
+		catch(const bad_weak_ptr &bad)
+		{
+			// The last tree of LocationFilter methods exited, so we need a new map.
+			shared_ptr<DistanceMap> made = make_shared<DistanceMap>(player, nullptr);
+			map = made;
+			return made;
+		}
+	}
+
+
 	// Check if the given system is within the given distance of the center.
 	int Distance(const System *center, const System *system, int maximum)
 	{
@@ -103,14 +152,14 @@ namespace {
 
 	// Check that at least one neighbor of the hub system matches, for each of the neighbor filters.
 	// False if at least one filter fails to match, true if all filters find at least one match.
-	bool MatchesNeighborFilters(const list<LocationFilter> &neighborFilters, const System *hub,
+	bool MatchesNeighborFilters(const LocationFilter::FilterList &neighborFilters, const System *hub,
 			const System *origin, const PlayerInfo *player)
 	{
-		for(const LocationFilter &filter : neighborFilters)
+		for(const LocationFilter::FilterItem &item : neighborFilters)
 		{
 			bool hasMatch = false;
 			for(const System *neighbor : hub->Links())
-				if(filter.Matches(neighbor, origin, player))
+				if(item.second.Matches(neighbor, origin, player))
 				{
 					hasMatch = true;
 					break;
@@ -131,12 +180,12 @@ namespace {
 				return item->IsValid();
 			});
 	}
-	bool CheckValidity(const list<LocationFilter> &l)
+	bool CheckValidity(const LocationFilter::FilterList &l)
 	{
 		return l.empty() || any_of(l.begin(), l.end(),
-			[](const LocationFilter &f) noexcept -> bool
+			[](const LocationFilter::FilterItem &f) noexcept -> bool
 			{
-				return f.IsValid();
+				return f.second.IsValid();
 			});
 	}
 	bool CheckValidity(const list<set<const Outfit *>> &l)
@@ -171,22 +220,32 @@ void LocationFilter::Load(const DataNode &node)
 		// neighboring system. If the token is alone on a line, it
 		// introduces many lines of this type of filter. Otherwise, this
 		// child is a normal LocationFilter line.
-		if(child.Token(0) == "not" || child.Token(0) == "neighbor")
+		if(child.Token(0) == "not" || child.Token(0) == "neighbor" || child.Token(0) == "and")
 		{
-			list<LocationFilter> &filters = ((child.Token(0) == "not") ? notFilters : neighborFilters);
-			filters.emplace_back();
-			if(child.Size() == 1)
-				filters.back().Load(child);
+			FilterList &filters = ((child.Token(0) == "neighbor") ? neighborFilters : moreFilters);
+
+			// The "and" and "not" blocks store the logical value that cause
+			// the filter to fail. In other words:
+			// "not" stores true since a true result means the filter failed
+			// "and" stores false since a false result means the filter failed
+
+			filters.emplace_back(child.Token(0) == "not", LocationFilter());
+			if(child.Size() == 1 || child.Token(0) == "and")
+				filters.back().second.Load(child);
 			else
-				filters.back().LoadChild(child);
+				filters.back().second.LoadChild(child);
 		}
 		else
 			LoadChild(child);
 	}
 
 	isEmpty = planets.empty() && attributes.empty() && systems.empty() && governments.empty()
-		&& !center && originMaxDistance < 0 && notFilters.empty() && neighborFilters.empty()
+		&& !center && originMaxDistance < 0 && moreFilters.empty() && neighborFilters.empty()
 		&& outfits.empty() && shipCategory.empty() && !flags;
+
+	// Determine whether we'll need the player or flagship DistanceMaps will be needed.
+	if(!isEmpty)
+		UpdateMapFlags();
 }
 
 
@@ -195,15 +254,15 @@ void LocationFilter::Save(DataWriter &out) const
 {
 	out.BeginChild();
 	{
-		for(const LocationFilter &filter : notFilters)
+		for(const FilterItem &item : moreFilters)
 		{
-			out.Write("not");
-			filter.Save(out);
+			out.Write(item.first ? "not" : "and");
+			item.second.Save(out);
 		}
-		for(const LocationFilter &filter : neighborFilters)
+		for(const FilterItem &item : neighborFilters)
 		{
 			out.Write("neighbor");
-			filter.Save(out);
+			item.second.Save(out);
 		}
 		if(!planets.empty())
 		{
@@ -325,7 +384,7 @@ bool LocationFilter::IsValid() const
 			return false;
 	}
 
-	if(!CheckValidity(notFilters))
+	if(!CheckValidity(moreFilters))
 		return false;
 
 	if(!CheckValidity(neighborFilters))
@@ -343,73 +402,42 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin, const P
 		return false;
 
 	if((flags & ELSEWHERE) && planet->GetSystem() == origin)
-	{
-		if(flags)
-			printf("Discarding planet %s due to ELSEWHERE\n", planet->Name().c_str());
 		return false;
-	}
 
 	// If a ship class was given, do not match planets.
 	if(!shipCategory.empty())
 		return false;
 
 	if(!governments.empty() && !governments.count(planet->GetGovernment()))
-	{
-		if(flags)
-			printf("Discarding planet %s due to government\n", planet->Name().c_str());
 		return false;
-	}
 
 	if(!planets.empty() && !planets.count(planet))
-	{
-		if(flags)
-			printf("Discarding planet %s due to planets\n", planet->Name().c_str());
 		return false;
-	}
 	for(const set<string> &attr : attributes)
 		if(!SetsIntersect(attr, planet->Attributes()))
-		{
-			if(flags)
-				printf("Discarding planet %s due to attributes\n", planet->Name().c_str());
 			return false;
-		}
 
-	for(const LocationFilter &filter : notFilters)
-		if(filter.Matches(planet, origin, player))
-		{
-			if(flags)
-				printf("Discarding planet %s due to not\n", planet->Name().c_str());
+	for(const FilterItem &item : moreFilters)
+		if(item.second.Matches(planet, origin, player) == item.first)
 			return false;
-		}
 
 	// If outfits are specified, make sure they can be bought here.
 	for(const set<const Outfit *> &outfitList : outfits)
 		if(!SetsIntersect(outfitList, planet->Outfitter()))
-		{
-			if(flags)
-				printf("Discarding planet %s due to outfits\n", planet->Name().c_str());
 			return false;
-		}
 
+	// Cache the maps to ensure methods lower in the tree do not recalculate them.
+	shared_ptr<DistanceMap> flagshipMap = (player && needFlagshipMap) ? FlagshipMap(*player) : nullptr;
+	shared_ptr<DistanceMap> playerMap = (player && needPlayerMap) ? PlayerMap(*player) : nullptr;
+
+	// Handle mapped, reachable, entered, landed, and conditions.
 	if(player && (flags & PLAYER_FILTERS) && !MatchesPlayerFilters(planet, player))
-	{
-		if(flags)
-			printf("Discarding planet %s due to player planet filters\n", planet->Name().c_str());
 		return false;
-	}
 
 	if(Matches(planet->GetSystem(), origin, true, player))
-	{
-		if(flags)
-			printf("Including planet %s after system match\n", planet->Name().c_str());
 		return true;
-	}
 	else
-	{
-		if(flags)
-			printf("Discarding planet %s due to system match\n", planet->Name().c_str());
 		return false;
-	}
 
 }
 
@@ -466,8 +494,12 @@ bool LocationFilter::Matches(const Ship &ship, const PlayerInfo *player) const
 				return false;
 	}
 
-	for(const LocationFilter &filter : notFilters)
-		if(filter.Matches(ship, player))
+	// Cache the maps to ensure methods lower in the tree do not recalculate them.
+	shared_ptr<DistanceMap> flagshipMap = (player && needFlagshipMap) ? FlagshipMap(*player) : nullptr;
+	shared_ptr<DistanceMap> playerMap = (player && needPlayerMap) ? PlayerMap(*player) : nullptr;
+
+	for(const FilterItem &item : moreFilters)
+		if(item.second.Matches(ship, player) == item.first)
 			return false;
 
 	if(!MatchesNeighborFilters(neighborFilters, origin, origin, player))
@@ -478,6 +510,7 @@ bool LocationFilter::Matches(const Ship &ship, const PlayerInfo *player) const
 	if(center && Distance(center, origin, centerMaxDistance) < centerMinDistance)
 		return false;
 
+	// Handle mapped, reachable, entered, landed, and conditions.
 	if(player && (flags & PLAYER_FILTERS) && !MatchesPlayerFilters(origin, player))
 		return false;
 
@@ -516,6 +549,10 @@ LocationFilter LocationFilter::SetOrigin(const System *origin) const
 // Pick a random system that matches this filter, based on the given origin.
 const System *LocationFilter::PickSystem(const System *origin, const PlayerInfo *player) const
 {
+	// Cache the maps to ensure methods lower in the tree do not recalculate them.
+	shared_ptr<DistanceMap> flagshipMap = (player && needFlagshipMap) ? FlagshipMap(*player) : nullptr;
+	shared_ptr<DistanceMap> playerMap = (player && needPlayerMap) ? PlayerMap(*player) : nullptr;
+
 	// Find a planet that satisfies the filter.
 	vector<const System *> options;
 	for(const auto &it : GameData::Systems())
@@ -536,6 +573,8 @@ const System *LocationFilter::PickSystem(const System *origin, const PlayerInfo 
 const Planet *LocationFilter::PickPlanet(const System *origin, const PlayerInfo *player,
 		bool hasClearance, bool requireSpaceport) const
 {
+	shared_ptr<DistanceMap> flagshipMap = (player && needFlagshipMap) ? FlagshipMap(*player) : nullptr;
+	shared_ptr<DistanceMap> playerMap = (player && needPlayerMap) ? PlayerMap(*player) : nullptr;
 	// Find a planet that satisfies the filter.
 	vector<const Planet *> options;
 	for(const auto &it : GameData::Planets())
@@ -549,16 +588,8 @@ const Planet *LocationFilter::PickPlanet(const System *origin, const PlayerInfo 
 			if(planets.empty() || !planets.count(&planet))
 				continue;
 		if(Matches(&planet, origin, player))
-		{
-			if(flags)
-				printf("INCLUDING %s\n", planet.Name().c_str());
 			options.push_back(&planet);
-		}
-		else if(flags)
-			printf("DISCARDING %s\n", planet.Name().c_str());
 	}
-	if(options.empty() && flags)
-		printf("NO MATCH IN PICKPLANET\n");
 	return options.empty() ? nullptr : options[Random::Int(options.size())];
 }
 
@@ -581,10 +612,10 @@ void LocationFilter::LoadChild(const DataNode &child)
 		flags |= REACHABLE;
 	else if(key == "mapped")
 		flags |= MAPPED;
-	else if(key == "test")
-		conditions.Load(child);
 	else if(key == "elsewhere")
 		flags |= ELSEWHERE;
+	else if(key == "test")
+		conditions.Load(child);
 	else if(key == "planet")
 	{
 		for(int i = valueIndex; i < child.Size(); ++i)
@@ -673,12 +704,13 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 	if(!system || !system->IsValid())
 		return false;
 	if((flags & ELSEWHERE) && system == origin)
-	{
-		printf("Elsewhere excluded system %s\n", system->Name().c_str());
 		return false;
-	}
 	if(!systems.empty() && !systems.count(system))
 		return false;
+
+	// Cache the maps to ensure methods lower in the tree do not recalculate them.
+	shared_ptr<DistanceMap> flagshipMap = (player && needFlagshipMap) ? FlagshipMap(*player) : nullptr;
+	shared_ptr<DistanceMap> playerMap = (player && needPlayerMap) ? PlayerMap(*player) : nullptr;
 
 	// Don't check these filters again if they were already checked as a part of
 	// checking if a planet matches.
@@ -704,41 +736,24 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 			}
 		}
 
-		for(const LocationFilter &filter : notFilters)
-			if(filter.Matches(system, origin, player))
+		for(const FilterItem &item : moreFilters)
+			if(item.second.Matches(system, origin, player) == item.first)
 				return false;
 	}
 
 	if(!MatchesNeighborFilters(neighborFilters, system, origin, player))
-	{
-		if(flags)
-			printf("Discarding system %s due to neighbor filters\n", system->Name().c_str());
 		return false;
-	}
 
 	// Check this system's distance from the desired reference system.
 	if(center && Distance(center, system, centerMaxDistance) < centerMinDistance)
-	{
-		if(flags)
-			printf("Discarding system %s due to center distance\n", system->Name().c_str());
 		return false;
-	}
 	if(origin && originMaxDistance >= 0
 			&& Distance(origin, system, originMaxDistance) < originMinDistance)
-	{
-		if(flags)
-			printf("Discarding system %s due to origin distance\n", system->Name().c_str());
 		return false;
-	}
 
+	// Handle mapped, reachable, entered, landed, and conditions.
 	if(!didPlanet && player && (flags & PLAYER_FILTERS) && !MatchesPlayerFilters(system, player))
-	{
-		if(flags)
-			printf("Discarding system %s due to player system filters\n", system->Name().c_str());
 		return false;
-	}
-
-	printf("Match %s\n", system->Name().c_str());
 	return true;
 }
 
@@ -746,28 +761,16 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 
 bool LocationFilter::MatchesPlayerFilters(const System *system, const PlayerInfo *player) const
 {
-	printf("Matches flag filters %d for system %s?\n", flags, system->Name().c_str());
 	if((flags & ENTERED) && !player->HasVisited(*system))
-	{
-		printf("  Reject: have not entered %s\n", system->Name().c_str());
 		return false;
-	}
+	else if((flags & LANDED) && !Landed(system, player))
+		return false;
 	else if((flags & MAPPED) && !Mapped(system, player))
-	{
-		printf("  Reject: have not mapped %s\n", system->Name().c_str());
 		return false;
-	}
 	else if((flags & REACHABLE) && !Reachable(system, player))
-	{
-		printf("  Reject: cannot reach %s\n", system->Name().c_str());
 		return false;
-	}
 	else if(!conditions.IsEmpty() && !conditions.Test(player->Conditions()))
-	{
-		printf("  Reject: Conditions did not match.\n");
 		return false;
-	}
-	printf("  Match!\n");
 	return true;
 }
 
@@ -775,38 +778,19 @@ bool LocationFilter::MatchesPlayerFilters(const System *system, const PlayerInfo
 
 bool LocationFilter::MatchesPlayerFilters(const Planet *planet, const PlayerInfo *player) const
 {
-	printf("Matches flag filters %d for planet %s?\n", flags, planet->Name().c_str());
 	if((flags & LANDED) && !player->HasVisited(*planet))
-	{
-		printf("  Reject: have not visited %s\n", planet->Name().c_str());
 		return false;
-	}
 
 	const System *system = planet->GetSystem();
-	printf("  --> check system %s\n", system->Name().c_str());
 
 	if((flags & ENTERED) && !player->HasVisited(*system))
-	{
-		printf("  Reject: have not entered %s\n", system->Name().c_str());
 		return false;
-	}
 	else if((flags & MAPPED) && !Mapped(system, player))
-	{
-		printf("  Reject: have not mapped %s\n", system->Name().c_str());
 		return false;
-	}
 	else if((flags & REACHABLE) && !Reachable(system, player))
-	{
-		printf("  Reject: cannot reach %s\n", system->Name().c_str());
 		return false;
-	}
 	else if(!conditions.IsEmpty() && !conditions.Test(player->Conditions()))
-	{
-		printf("  Reject: Conditions did not match.\n");
 		return false;
-	}
-
-	printf("  Match!\n");
 	return true;
 } 
 
@@ -814,8 +798,9 @@ bool LocationFilter::MatchesPlayerFilters(const Planet *planet, const PlayerInfo
 
 bool LocationFilter::Reachable(const System *system, const PlayerInfo *player)
 {
+	shared_ptr<DistanceMap> map = FlagshipMap(*player);
 	const Ship *flagship = player->Flagship();
-	return system && flagship && DistanceMap(*flagship, system).HasRoute(flagship->GetSystem());
+	return system && flagship && map->HasRoute(system);
 }
 
 
@@ -832,6 +817,33 @@ bool LocationFilter::Landed(const System *system, const PlayerInfo *player)
 
 bool LocationFilter::Mapped(const System *system, const PlayerInfo *player)
 {
+	shared_ptr<DistanceMap> map = PlayerMap(*player);
 	const Ship *flagship = player->Flagship();
-	return system && flagship && DistanceMap(*player, *flagship, system).HasRoute(flagship->GetSystem());
+	return system && flagship && map->HasRoute(system);
+}
+
+
+
+void LocationFilter::UpdateMapFlags()
+{
+	// Recurse through the tree to find whether we need the flagship or player maps.
+	needFlagshipMap = (flags & REACHABLE);
+	needPlayerMap = (flags & MAPPED);
+	if(needFlagshipMap && needPlayerMap)
+		return;
+
+	// Loop over the two lists, to reduce code complexity.
+	FilterList *lists[2] = { moreFilters, neighborFilters };
+	for(int i = 0; i < 2; ++i)
+		for(auto &item : *lists[i])
+		{
+			// Recurse into child's UpdateMapFlags.
+			item.second.UpdateMapFlags();
+			needFlagshipMap |= item.second.needFlagshipMap;
+			needPlayerMap |= item.second.needPlayerMap;
+
+			// If both maps are needed, there's nothing more to learn.
+			if(needFlagshipMap && needPlayerMap)
+				return;
+		}
 }

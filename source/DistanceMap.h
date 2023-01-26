@@ -37,6 +37,11 @@ public:
 	// Find paths to the given system. The optional arguments put a limit on how
 	// many systems will be returned and how far away they are allowed to be.
 	explicit DistanceMap(const System *center, int maxCount = -1, int maxDistance = -1);
+	// Find paths to the ship's system, restricting the travel methods to
+	// what is possible with that ship. The optional arguments put a limit
+	// on how many systems will be returned and how far away they are
+	// allowed to be.
+	explicit DistanceMap(const Ship &ship, int maxCount = -1, int maxDistance = -1);
 	// If a player is given, the map will only use hyperspace paths known to the
 	// player; that is, one end of the path has been visited. Also, if the
 	// player's flagship has a jump drive, the jumps will be make use of it.

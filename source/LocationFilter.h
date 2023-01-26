@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConditionSet.h"
 
+#include <algorithm>
 #include <list>
 #include <set>
 #include <string>
@@ -38,6 +39,17 @@ class System;
 // have a certain attribute or be owned by a certain government, or be a
 // certain distance away from the current system.
 class LocationFilter {
+public:
+	using FilterList = std::list<std::pair<bool, LocationFilter>>;
+	using FilterItem = FilterList::value_type;
+	// Child filters are stored like so:
+	//   not = pair<true, LocationFilter>
+	//   and = pair<false, LocationFilter>
+	//   neighbor = pair<false, LocationFilter>
+	// For "and" and "not," the filter result must *not* equal the logical
+	// For "neighbor," the logical is ignored.
+
+
 public:
 	LocationFilter() noexcept = default;
 	// Construct and Load() at the same time.
@@ -82,6 +94,7 @@ private:
 	static bool Reachable(const System *system, const PlayerInfo *player);
 	static bool Landed(const System *system, const PlayerInfo *player);
 	static bool Mapped(const System *system, const PlayerInfo *player);
+	void UpdateMapFlags();
 
 
 private:
@@ -105,6 +118,9 @@ private:
 
 	int flags = 0;
 
+	bool needFlagshipMap = false;
+	bool needPlayerMap = false;
+
 	// At least one of the outfits from each set must be available
 	// (to purchase or plunder):
 	std::list<std::set<const Outfit *>> outfits;
@@ -112,9 +128,9 @@ private:
 	std::set<std::string> shipCategory;
 
 	// These filters store all the things the planet, system, or ship must not be.
-	std::list<LocationFilter> notFilters;
+	FilterList moreFilters;
 	// These filters store all the things the planet or system must border.
-	std::list<LocationFilter> neighborFilters;
+	FilterList neighborFilters;
 
 	ConditionSet conditions;
 };
