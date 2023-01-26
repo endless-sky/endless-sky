@@ -31,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Messages.h"
 #include "Phrase.h"
 #include "Planet.h"
+#include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Projectile.h"
 #include "Random.h"
@@ -176,18 +177,18 @@ namespace {
 		return transferred;
 	}
 
-	// Ships which are ionized have a chance for their weapons to jam,
+	// Ships which are scrambled have a chance for their weapons to jam,
 	// delaying their firing for another reload cycle. The less energy
-	// a ship has relative to its max and the more ionized the ship is,
+	// a ship has relative to its max and the more scrambled the ship is,
 	// the higher the chance that a weapon will jam. The jam chance is
-	// capped at 50%. Very small amounts of ionization are ignored.
-	// The scale is such that a weapon with an ion damage of 5 and a reload
+	// capped at 50%. Very small amounts of scrambling are ignored.
+	// The scale is such that a weapon with a scrambling damage of 5 and a reload
 	// of 60 (i.e. the ion cannon) will only ever push a ship to a jam chance
 	// of 5% when it is at 100% energy.
-	double CalculateJamChance(double maxEnergy, double ionization)
+	double CalculateJamChance(double maxEnergy, double scrambling)
 	{
 		double scale = maxEnergy * 220.;
-		return ionization > .1 ? min(0.5, scale ? ionization / scale : 1.) : 0.;
+		return scrambling > .1 ? min(0.5, scale ? scrambling / scale : 1.) : 0.;
 	}
 }
 
@@ -1204,6 +1205,8 @@ vector<string> Ship::FlightCheck() const
 		checks.emplace_back("no thruster!");
 	else if(!turn)
 		checks.emplace_back("no steering!");
+	else if(RequiredCrew() > attributes.Get("bunks"))
+		checks.emplace_back("insufficient bunks!");
 
 	// If no errors were found, check all warning conditions:
 	if(checks.empty())
@@ -1268,6 +1271,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	// Make sure various special status values are reset.
 	heat = IdleHeat();
 	ionization = 0.;
+	scrambling = 0.;
 	disruption = 0.;
 	slowness = 0.;
 	discharge = 0.;
@@ -1432,6 +1436,36 @@ string Ship::GetHail(map<string, string> &&subs) const
 
 
 
+bool Ship::CanSendHail(const PlayerInfo &player, bool allowUntranslated) const
+{
+	const System *playerSystem = player.GetSystem();
+	if(!playerSystem)
+		return false;
+
+	// Make sure this ship is in the same system as the player.
+	if(GetSystem() != playerSystem)
+		return false;
+
+	// Player ships shouldn't send hails.
+	const Government *gov = GetGovernment();
+	if(!gov || IsYours())
+		return false;
+
+	// Make sure this ship is able to send a hail.
+	if(IsDisabled() || !Crew() || Cloaking() >= 1. || GetPersonality().IsMute())
+		return false;
+
+	// Ships that don't share a language with the player shouldn't communicate when hailed directly.
+	// Only random event hails should work, and only if the government explicitly has
+	// untranslated hails. This is ensured by the allowUntranslated argument.
+	if(!allowUntranslated && !gov->Language().empty() && !player.Conditions().Get("language: " + gov->Language()))
+		return false;
+
+	return true;
+}
+
+
+
 // Set the commands for this ship to follow this timestep.
 void Ship::SetCommands(const Command &command)
 {
@@ -1491,7 +1525,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 	// Handle ionization effects, etc.
 	if(ionization)
-		CreateSparks(visuals, "ion spark", ionization * .1);
+		CreateSparks(visuals, "ion spark", ionization * .05);
+	if(scrambling)
+		CreateSparks(visuals, "scramble spark", scrambling * .05);
 	if(disruption)
 		CreateSparks(visuals, "disruption spark", disruption * .1);
 	if(slowness)
@@ -1586,10 +1622,19 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					Jettison(it.first, Random::Binomial(it.second, .25));
 				for(const auto &it : cargo.Outfits())
 					Jettison(it.first, Random::Binomial(it.second, .25));
-				// Ammunition has a 5% chance to survive as flotsam
+				// Ammunition has a default 5% chance to survive as flotsam.
 				for(const auto &it : outfits)
-					if(it.first->Category() == "Ammunition")
+				{
+					double flotsamChance = it.first->Get("flotsam chance");
+					if(flotsamChance > 0.)
+						Jettison(it.first, Random::Binomial(it.second, flotsamChance));
+					// 0 valued 'flotsamChance' means default, which is 5% for ammunition.
+					// At this point, negative values are the only non-zero values possible.
+					// Negative values override the default chance for ammunition
+					// so the outfit cannot be dropped as flotsam.
+					else if(it.first->Category() == "Ammunition" && !flotsamChance)
 						Jettison(it.first, Random::Binomial(it.second, .05));
+				}
 				for(shared_ptr<Flotsam> &it : jettisoned)
 					it->Place(*this);
 				flotsam.splice(flotsam.end(), jettisoned);
@@ -1602,6 +1647,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			energy = 0.;
 			heat = 0.;
 			ionization = 0.;
+			scrambling = 0.;
 			fuel = 0.;
 			velocity = Point();
 			MarkForRemoval();
@@ -1783,6 +1829,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		if(isDisabled)
 			landingPlanet = nullptr;
 
+		float landingSpeed = attributes.Get("landing speed");
+		landingSpeed = landingSpeed > 0 ? landingSpeed : .02f;
 		// Special ships do not disappear forever when they land; they
 		// just slowly refuel.
 		if(landingPlanet && zoom)
@@ -1790,7 +1838,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			// Move the ship toward the center of the planet while landing.
 			if(GetTargetStellar())
 				position = .97 * position + .03 * GetTargetStellar()->Position();
-			zoom -= .02f;
+			zoom -= landingSpeed;
 			if(zoom < 0.f)
 			{
 				// If this is not a special ship, it ceases to exist when it
@@ -1819,7 +1867,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		else if(fuel >= attributes.Get("fuel capacity")
 				|| !landingPlanet || !landingPlanet->HasSpaceport())
 		{
-			zoom = min(1.f, zoom + .02f);
+			zoom = min(1.f, zoom + landingSpeed);
 			SetTargetStellar(nullptr);
 			landingPlanet = nullptr;
 		}
@@ -1916,6 +1964,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				discharge += scale * attributes.Get("turning discharge");
 				corrosion += scale * attributes.Get("turning corrosion");
 				ionization += scale * attributes.Get("turning ion");
+				scrambling += scale * attributes.Get("turning scramble");
 				leakage += scale * attributes.Get("turning leakage");
 				burning += scale * attributes.Get("turning burn");
 				slowness += scale * attributes.Get("turning slowing");
@@ -1973,6 +2022,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					discharge += scale * attributes.Get(isThrusting ? "thrusting discharge" : "reverse thrusting discharge");
 					corrosion += scale * attributes.Get(isThrusting ? "thrusting corrosion" : "reverse thrusting corrosion");
 					ionization += scale * attributes.Get(isThrusting ? "thrusting ion" : "reverse thrusting ion");
+					scrambling += scale * attributes.Get(isThrusting ? "thrusting scramble" :
+						"reverse thrusting scramble");
 					burning += scale * attributes.Get(isThrusting ? "thrusting burn" : "reverse thrusting burn");
 					leakage += scale * attributes.Get(isThrusting ? "thrusting leakage" : "reverse thrusting leakage");
 					slowness += scale * attributes.Get(isThrusting ? "thrusting slowing" : "reverse thrusting slowing");
@@ -1996,6 +2047,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			double dischargeCost = attributes.Get("afterburner discharge");
 			double corrosionCost = attributes.Get("afterburner corrosion");
 			double ionCost = attributes.Get("afterburner ion");
+			double scramblingCost = attributes.Get("afterburner scramble");
 			double leakageCost = attributes.Get("afterburner leakage");
 			double burningCost = attributes.Get("afterburner burn");
 
@@ -2014,6 +2066,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				discharge += dischargeCost;
 				corrosion += corrosionCost;
 				ionization += ionCost;
+				scrambling += scramblingCost;
 				leakage += leakageCost;
 				burning += burningCost;
 
@@ -2255,6 +2308,16 @@ void Ship::DoGeneration()
 			energy, ionEnergy, fuel, ionFuel, heat, ionHeat);
 	}
 
+	if(scrambling)
+	{
+		double scramblingResistance = attributes.Get("scramble resistance");
+		double scramblingEnergy = attributes.Get("scramble resistance energy") / scramblingResistance;
+		double scramblingFuel = attributes.Get("scramble resistance fuel") / scramblingResistance;
+		double scramblingHeat = attributes.Get("scramble resistance heat") / scramblingResistance;
+		DoStatusEffect(isDisabled, scrambling, scramblingResistance,
+			energy, scramblingEnergy, fuel, scramblingFuel, heat, scramblingHeat);
+	}
+
 	if(disruption)
 	{
 		double disruptionResistance = attributes.Get("disruption resistance");
@@ -2357,7 +2420,7 @@ void Ship::DoGeneration()
 		if(currentSystem)
 		{
 			double scale = .2 + 1.8 / (.001 * position.Length() + 1);
-			fuel += currentSystem->SolarWind() * .03 * scale * sqrt(attributes.Get("ramscoop"));
+			fuel += currentSystem->RamscoopFuel(attributes.Get("ramscoop"), scale);
 
 			double solarScaling = currentSystem->SolarPower() * scale;
 			energy += solarScaling * attributes.Get("solar collection");
@@ -2552,7 +2615,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 
 // Scan the target, if able and commanded to. Return a ShipEvent bitmask
 // giving the types of scan that succeeded.
-int Ship::Scan()
+int Ship::Scan(const PlayerInfo &player)
 {
 	if(!commands.Has(Command::SCAN) || CannotAct())
 		return 0;
@@ -2581,7 +2644,7 @@ int Ship::Scan()
 	// Check how close this ship is to the target it is trying to scan.
 	// To normalize 1 "scan power" to reach 100 pixels, divide this square distance by 100^2, or multiply by 0.0001.
 	// Because this uses distance squared, to reach 200 pixels away you need 4 "scan power".
-	double distanceSquared = (target->position - position).LengthSquared() * .0001;
+	double distanceSquared = target->position.DistanceSquared(position) * .0001;
 
 	// Check the target's outfit and cargo space. A larger ship takes longer to scan.
 	// Normalized around 200 tons of cargo/outfit space.
@@ -2638,6 +2701,19 @@ int Ship::Scan()
 		else
 			Messages::Add("Attempting to scan the selected " + target->Noun() + "."
 				, Messages::Importance::Low);
+
+		if(target->GetGovernment()->IsProvokedOnScan() && target->CanSendHail(player))
+		{
+			// If this ship has no name, show its model name instead.
+			string tag;
+			const string &gov = target->GetGovernment()->GetName();
+			if(!target->Name().empty())
+				tag = gov + " " + target->Noun() + " \"" + target->Name() + "\": ";
+			else
+				tag = target->ModelName() + " (" + gov + "): ";
+			Messages::Add(tag + "Please refrain from scanning us or we will be forced to take action.",
+				Messages::Importance::Highest);
+		}
 	}
 	else if(startedScanning && target->isYours)
 		Messages::Add("The " + government->GetName() + " " + Noun() + " \""
@@ -2653,9 +2729,9 @@ int Ship::Scan()
 					+ Name() + "\" completed its scan of your outfits.", Messages::Importance::High);
 	}
 
-	// Some governments are provoked when a scan is started on one of their ships.
+	// Some governments are provoked when a scan is completed on one of their ships.
 	const Government *gov = target->GetGovernment();
-	if(gov && gov->IsProvokedOnScan() && !gov->IsEnemy(government)
+	if(result && gov && gov->IsProvokedOnScan() && !gov->IsEnemy(government)
 			&& (target->Shields() < .9 || target->Hull() < .9 || !target->GetPersonality().IsForbearing())
 			&& !target->GetPersonality().IsPacifist())
 		result |= ShipEvent::PROVOKE;
@@ -2698,7 +2774,7 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 
 	antiMissileRange = 0.;
 
-	double jamChance = CalculateJamChance(Energy(), ionization);
+	double jamChance = CalculateJamChance(Energy(), scrambling);
 
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
@@ -2728,7 +2804,7 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 	if(CannotAct())
 		return false;
 
-	double jamChance = CalculateJamChance(Energy(), ionization);
+	double jamChance = CalculateJamChance(Energy(), scrambling);
 
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
@@ -3055,6 +3131,7 @@ void Ship::Recharge(bool atSpaceport)
 
 	heat = IdleHeat();
 	ionization = 0.;
+	scrambling = 0.;
 	disruption = 0.;
 	slowness = 0.;
 	discharge = 0.;
@@ -3495,6 +3572,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	discharge += damage.Discharge();
 	corrosion += damage.Corrosion();
 	ionization += damage.Ion();
+	scrambling += damage.Scrambling();
 	burning += damage.Burn();
 	leakage += damage.Leak();
 
@@ -3545,7 +3623,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 				|| ((damage.Heat() || damage.Burn()) && isOverheated)
 				|| ((damage.Energy() || damage.Ion()) && Energy() < 0.5)
 				|| ((damage.Fuel() || damage.Leak()) && fuel < navigation.JumpFuel() * 2.)
-				|| (damage.Ion() && CalculateJamChance(Energy(), ionization) > 0.1)
+				|| (damage.Scrambling() && CalculateJamChance(Energy(), scrambling) > 0.1)
 				|| (damage.Slowing() && slowness > 10.)
 				|| (damage.Disruption() && disruption > 100.)))
 		type |= ShipEvent::PROVOKE;
@@ -3978,6 +4056,7 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 	// Since weapons fire from within the shields, hull and "status" damages are dealt in full.
 	hull -= weapon.FiringHull() + relativeHullChange;
 	ionization += weapon.FiringIon();
+	scrambling += weapon.FiringScramble();
 	disruption += weapon.FiringDisruption();
 	slowness += weapon.FiringSlowing();
 	discharge += weapon.FiringDischarge();

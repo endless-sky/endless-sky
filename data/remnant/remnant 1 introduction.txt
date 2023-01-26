@@ -540,7 +540,7 @@ mission "Remnant: Key Stones (Hai)"
 			has "Remnant: Defense 3: done"
 	on offer
 		conversation "remnant key stones"
-			
+		
 	on visit
 		dialog `You have returned to <planet>, but you don't have 50 "quantum keystones" to give to the outfitter. Buy the keystones from the Hai before returning here.`
 	on complete
@@ -1373,7 +1373,7 @@ mission "Remnant: Deep Surveillance"
 			`	Ivan opens the door with a big smile on his face. "Captain <last>! So great to see you here. Please, have a seat." Ivan ushers you inside his office, an impressively large room with a window wall overseeing a beautiful courtyard. You sit down in a cushioned chair on the opposite side of a desk. You lean back into the chair and get comfortable. "I know the chairs are cozy," Ivan says. "Don't fall asleep on me though."`
 			branch second
 				"retrieved information" == 2
-			`	Ivan then takes a seat in his own cushioned chair. "Welcome to my office. This is miles above what I'm used to. After gaining the attention of the Deep government with the discoveries we were making, they immediately had my office moved from the dingy complex it used to be at to here. I have you to thank for much of that work .`
+			`	Ivan then takes a seat in his own cushioned chair. "Welcome to my office. This is miles above what I'm used to. After gaining the attention of the Deep government with the discoveries we were making, they immediately had my office moved from the dingy complex it used to be at to here. I have you to thank for much of that work.`
 				goto reason
 			
 			label second
@@ -1946,7 +1946,7 @@ mission "Remnant: D94-YV Shield Generator"
 			label familiar
 			`	You decide that you are more likely to find her in the shipyard, so you skip the starport and head out among the ships. As you search through the yard you are soon approached by another engineer. "Well met, Captain. Taely said you may be bringing back samples of new technology from ancestral space. Do you have something to show us?`
 			label next
-			`	You nod in the affirmative and lead her back to your ship, where she examines the D94-YV Shield Generator. "It certainly looks impressive," she chants as she paces around the massive piece of equipment. "It will be valuable to see what our enemies might be shielded with, and maybe something we can learn from it too." She comes to a stop in front of you. "If you could deliver two of these to a lab on <planet> we could compensate you with <payment>.`
+			`	You nod in the affirmative and lead her back to your ship, where she examines the D94-YV Shield Generator. "It certainly looks impressive," she chants as she paces around the massive piece of equipment. "It will be valuable to see what our enemies might be shielded with, and maybe something we can learn from it too." She comes to a stop in front of you. "If you could deliver two of these to a lab on <planet> we could compensate you with <payment>."`
 				accept
 	on visit
 		dialog `You have returned to <planet>, but you don't have the two D94-YV Shield Generators that Taely requested. Go buy the two shield generators before returning.`
@@ -2356,7 +2356,7 @@ mission "Remnant: Salvage 4"
 				`	"Sorry, I don't have time to help you out."`
 					decline
 
-			`	"Thank you," he signs. "It is acting oddly, jumping around destroying ships instead of looting and running. If it simply looted and left we would be pleased, but now it is learning about us instead, so it has reached the end of its usefulness. Please disable it so that we can salvage parts from it." He pauses, then continues, "I doubt we'll be able to salvage the ship itself - they pack those things with soldiers - but we should be able to strip everything else of use off it."`
+			`	"Thank you," he signs. "It is acting oddly, jumping around destroying ships instead of looting and running. If it simply looted and left we would be pleased, but now it is learning about us instead, so it has reached the end of its usefulness. Please disable it so that we can salvage parts from it." He pauses, then continues, "I doubt we'll be able to salvage the ship itself - they pack those things with soldiers - and we do not want it to be captured, even if that is possible for you. The ship and crew should remain intact, and we will salvage what we can after you have it disabled. If you salvage anything we will happily compensate you for it in the outfitter, but do not feel obliged to do so. Destroying the ship should be a last resort."`
 				accept
 	npc save disable
 		government "Korath"
@@ -2541,7 +2541,7 @@ mission "Remnant: Expanded Horizons Quarg 1"
 		conversation
 			`Dawn and her colleagues are thrilled with the trip. While they had each served on Remnant ships exploring the Ember Waste or patrolling their territory, none had ever been more than a handful of jumps away from their own space. They explain that their ships were always cautious to stay far away from human space to avoid leading anyone back.`
 			`	It occurs to you that Dawn and her colleagues seem much less reserved than most Remnant. You aren't sure if it is because they are younger, less secretive, or if the Remnant have been holding back from you. It is also possible that you just have better opportunities to figure it out now that you can understand their signs.`
-			`	Upon arriving at Wayfarer they spend considerable amount of time watching the few Quarg in evidence, however it is easy to see that the real draw of their attention is the ships. You wave your ID across the scanner for the shipyard and take them inside to see what Tarazed Shipyards has on display.`
+			`	Upon arriving at Wayfarer they spend a considerable amount of time watching the few Quarg in evidence. However, it is easy to see that the real draw of their attention is the ships. You wave your ID across the scanner for the shipyard and take them inside to see what Tarazed Shipyards has on display.`
 			branch rich
 				"net worth" >= 20000000
 			`	After a few minutes a sales agent meanders over to ask if there's anything he can do to help. You ask a few questions about the different ships for Dawn's benefit, listen to the sales agent repeat a few lines from the display, then politely tell him you'll just browse on your own.`
@@ -3015,10 +3015,10 @@ mission "Remnant: Face to Maw 2B"
 		conversation
 			branch chilia
 				has "remnant chilia"
-			`You follow the directions provided to you and eventually find yourself at a Remnant weapons lab. You enter and are met by security, who asks you to wait. A few minutes later a fit young man emerges from another door. "Greetings, Captain <first>," he sings. "I am Prefect Chilia. I have the nominal responsibility for the overall defense of Remnant space and military operations." He smiles depreciatingly. "I say 'nominal' as virtually all our activities are militaristic in some way, but usually fall under the purview of those who better understand them."`
+			`You follow the directions provided to you and eventually find yourself at a Remnant weapons lab. You enter and are met by security, who asks you to wait. A few minutes later a fit young man emerges from another door. "Greetings, Captain <first>," he sings. "I am Prefect Chilia. I have the nominal responsibility for the overall defense of Remnant space and military operations." He smiles deprecatingly. "I say 'nominal' as virtually all our activities are militaristic in some way, but usually fall under the purview of those who better understand them."`
 				goto main
 			label chilia
-			`You follow the directions provided to you and eventually find yourself at a Remnant weapons lab. You enter and are met by security, who asks you to wait. A few minutes later a fit young man emerges from another door. "Greetings, captain <first>," he sings. "We meet once again." You immediately recognize the voice as being the man who convinced you to provide the blood sample and get to know the Remnant. "We didn't get a proper introduction last time, but you have probably figured out that I have the nominal responsibility for the overall defense of Remnant space and military operations." He smiles depreciatingly, "I say 'nominal' as virtually all our activities are military in some way, but usually fall under the purview of those who better understand them."`
+			`You follow the directions provided to you and eventually find yourself at a Remnant weapons lab. You enter and are met by security, who asks you to wait. A few minutes later a fit young man emerges from another door. "Greetings, captain <first>," he sings. "We meet once again." You immediately recognize the voice as being the man who convinced you to provide the blood sample and get to know the Remnant. "We didn't get a proper introduction last time, but you have probably figured out that I have the nominal responsibility for the overall defense of Remnant space and military operations." He smiles deprecatingly, "I say 'nominal' as virtually all our activities are military in some way, but usually fall under the purview of those who better understand them."`
 			label main
 			`	He leads you to a room that looks like an armory where a team of technicians is putting the finishing touches on a rifle stock. "The request from the technician on your behalf caught my attention, as we have not had the key resources for making void rifles in centuries. Fortunately, we have not really needed them since we resolved the threats that originally plagued our settlements.`
 			choice
@@ -3545,7 +3545,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 				`	"Symbiont? What is that?"`
 					goto whatis
 				`	"What? You're joking, right?"`
-			`	"Suit yourself. I will meet you onboard once I'm done." She shrugs, and returns to eating."`
+			`	"Suit yourself. I will meet you onboard once I'm done." She shrugs, and returns to eating.`
 				accept
 			label whatis
 			action
@@ -3607,7 +3607,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 				`	"Years drifting in the void?"`
 				`	"Okay, let's get on with this."`
 					goto labnext
-			`	"If you want good data, you need to spend time to get it. And especially when we are tracking stellar phenomenon, you need periods of long observation. Snapshots of the sky are good - that is what we will be collecting on this trip. But for watching the galaxy at large, other civilizations, and things of that ilk... Nothing is better than long-term observation." She looks lost in thought for a moment. "That is neither here nor there, however.`
+			`	"If you want good data, you need to spend time to get it. And especially when we are tracking stellar phenomena, you need periods of long observation. Snapshots of the sky are good - that is what we will be collecting on this trip. But for watching the galaxy at large, other civilizations, and things of that ilk... Nothing is better than long-term observation." She looks lost in thought for a moment. "That is neither here nor there, however.`
 			label labnext
 			`	"Now that you have the research laboratory, you will need to locate a jump drive in order to reach Sagittarius A*." She pauses and checks her commlink. "If you do not already have one, you can salvage one from a Korath raider. Our early warning system indicates that there are several incoming Korath fleets that should be here within the next day or two. Any one of them should have a jump drive you can take. Meet me in the starport once you have a jump drive."`
 
@@ -3790,7 +3790,7 @@ mission "Remnant: Expanded Horizons Storms 1"
 				`	"Thanks! I think that is all the details I can handle right now."`
 					goto stormend
 			label stormresume
-			`	"Not really, although it does contribute to it. Most of the red glow seems to be the result of clouds of hydrogen gases at approximately 2710 degrees, rather like the process documented by early Earth astronomers investigating nebulae. Except for most of these clouds, there is no obvious source of energy to keep the hydrogen excited. Obviously there is still energy being added to the system, but..." She trails off and gestures depreciatingly. "One more mystery to keep us alert and attentive."`
+			`	"Not really, although it does contribute to it. Most of the red glow seems to be the result of clouds of hydrogen gases at approximately 2710 degrees, rather like the process documented by early Earth astronomers investigating nebulae. Except for most of these clouds, there is no obvious source of energy to keep the hydrogen excited. Obviously there is still energy being added to the system, but..." She trails off and gestures deprecatingly. "One more mystery to keep us alert and attentive."`
 			`	She smiles thoughtfully, and the display changes with the red haze vanishing and a silvery haze replacing it. "But that is where today's research comes in. We have been measuring these storms since we arrived in the Ember Waste. The human eye can only pick out a few of them on the display, but our algorithms have identified a significant number of ripples of energy." She appears thoughtful.`
 			`	"It is almost like watching the surface of a pond during a rainstorm: The surface appears to be chaotic, but with detailed enough instrumentation, one can pick out individual ripples and trace their paths backwards... Except we have yet to find an actual source for any of them. We can trace every ripple on a pond in a storm and find its origin, but we have yet to learn the dance that we have lived in for half a millennia."`
 			choice
@@ -3799,7 +3799,7 @@ mission "Remnant: Expanded Horizons Storms 1"
 					goto tempunits
 				`	"I think that is all the technical detail I can take."`
 					goto stormend
-			`	She looks mischievous. "I cannot tell you where or how we got it, but look at this." Her display shifts again with the hazes vanishing, and shows the galaxy map with one key difference. "Yes, the Ember Wastes are violet. Actually, they are off the visual spectrum into the ultraviolets, but this downshifts it so we can see it. This is what the Ember Wastes looked like a very long time ago.`
+			`	She looks mischievous. "I cannot tell you where or how we got it, but look at this." Her display shifts again with the hazes vanishing, and shows the galaxy map with one key difference. "Yes, the Ember Wastes are violet. Actually, they are off the visual spectrum into the ultraviolets, but this downshifts it so we can see it. This is what the Ember Wastes looked like a very long time ago."`
 			`	She takes on a serious tone. "This data suggests there is enough energy in the area to maintain the hydrogen at somewhere in excess of 61A8 degrees. It does not tell us the source of that energy, but based on patterns and some other data we have collected, the two appear to be intertwined. At the very least, the ion storms are one of the means by which energy is being transferred into the clouds." Her display vanishes, and she slings her backpack over her shoulder.`
 				goto stormend
 			label numericsystem

@@ -1995,12 +1995,12 @@ mission "Wealthy tourists out"
 	name "Bring wealthy tourists to <planet>"
 	job
 	repeat
-	description "These <bunks> wealthy tourists want to see <destination>. They are willing to pay you <payment>."
+	description "These <bunks> wealthy tourists want to see <destination>, and wish to travel in a luxurious ship for the journey. They are willing to pay you <payment>."
 	passengers 2 10 .9
 	to offer
 		random < 75
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		has "outfit: Luxury Accommodations"
 	source
 		attributes "rich" "urban"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2060,12 +2060,12 @@ mission "Wealthy tourists back"
 	name "Bring wealthy tourists home to <planet>"
 	job
 	repeat
-	description "These <bunks> wealthy tourists are headed home to <destination>. They are willing to pay you <payment>."
+	description "These <bunks> wealthy tourists are headed home to <destination>, and wish to travel in a luxurious ship for the journey. They are willing to pay you <payment>."
 	passengers 2 10 .9
 	to offer
 		random < 75
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		has "outfit: Luxury Accommodations"
 	source
 		attributes "tourism"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2306,7 +2306,7 @@ mission "Prisoners [0]"
 	name "Prisoner transport to <planet>"
 	job
 	repeat
-	description "Bring <bunks> petty criminals to <destination>, where they will serve their sentences as mine laborers. Payment is <payment>."
+	description "Bring <bunks> petty criminals to <destination>, where they will serve their sentences as mine laborers. They must be held in suitable facilities made for the transfer of criminals. Payment is <payment>."
 	passengers 2 10 .9
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2317,8 +2317,8 @@ mission "Prisoners [0]"
 		attributes "north" "south" "rim" "frontier" "core"
 	to offer
 		random < 15
-	on offer
-		require "Brig"
+	to accept
+		has "outfit: Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2329,12 +2329,12 @@ mission "Prisoners [1]"
 	name "Prisoner transport to <planet>"
 	job
 	repeat
-	description "Transport <bunks> petty criminals to <destination>, where they will serve their sentences as factory laborers. Payment is <payment>."
+	description "Transport <bunks> petty criminals to <destination>, where they will serve their sentences as factory laborers. They must be held in suitable facilities made for the transfer of criminals. Payment is <payment>."
 	passengers 2 10 .9
 	to offer
 		random < 15
-	on offer
-		require "Brig"
+	to accept
+		has "outfit: Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2352,12 +2352,12 @@ mission "Prisoners [2]"
 	name "Prisoner transport to <planet>"
 	job
 	repeat
-	description "Transport <bunks> petty criminals to <destination>, where they will serve their sentences as domestic servants. Payment is <payment>."
+	description "Transport <bunks> petty criminals to <destination>, where they will serve their sentences as domestic servants. They must be held in suitable facilities made for the transfer of criminals. Payment is <payment>."
 	passengers 2 10 .9
 	to offer
 		random < 15
-	on offer
-		require "Brig"
+	to accept
+		has "outfit: Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2374,12 +2374,12 @@ mission "Prisoners [3]"
 	name "Prisoner transport to <planet>"
 	job
 	repeat
-	description "Transport <bunks> petty criminals to a penal colony on <destination>. Payment is <payment>."
+	description "Transport <bunks> petty criminals to a penal colony on <destination>. They must be held in suitable facilities made for the transfer of criminals. Payment is <payment>."
 	passengers 2 15 .9
 	to offer
 		random < 15
-	on offer
-		require "Brig"
+	to accept
+		has "outfit: Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2396,13 +2396,13 @@ mission "Prisoners [4]"
 	name "Prisoner transport to <planet>"
 	job
 	repeat
-	description "Transport <bunks> violent felons to a penal colony on <destination>. Payment is <payment>."
+	description "Transport <bunks> violent felons to a penal colony on <destination>. They must be held in suitable facilities made for the transfer of criminals. Payment is <payment>."
 	passengers 2 10 .9
 	to offer
 		random < 10
 		"combat rating" > 50
-	on offer
-		require "Brig"
+	to accept
+		has "outfit: Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -3073,7 +3073,7 @@ mission "Bounty Hunting (Big, Hidden)"
 
 mission "Bounty Hunting (Small, Boarding, Entering)"
 	name "Stolen ship near <system>"
-	description "A wanted criminal is fleeing in a stolen ship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminal to <destination> to stand trial on <date>. Reward for capture: <payment>."
+	description "A wanted criminal is fleeing in a stolen ship, the <npc>, which is about to enter this system. Board the ship and detain the criminal in a brig, then bring them to <destination> by <date>. Reward for capture: <payment>."
 	passengers 1
 	deadline 14
 	repeat
@@ -3081,8 +3081,8 @@ mission "Bounty Hunting (Small, Boarding, Entering)"
 	to offer
 		"combat rating" > 50
 		random < 15
-	on offer
-		require "Brig"
+	to accept
+		has "outfit: Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -3112,7 +3112,7 @@ mission "Bounty Hunting (Small, Boarding, Entering)"
 
 mission "Bounty Hunting (Medium, Boarding, Entering)"
 	name "Stolen warship near <system>"
-	description "A wanted criminal and several accomplices are fleeing in a stolen warship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminals to <destination> to stand trial on <date>. Reward for capture: <payment>."
+	description "Several wanted criminals are fleeing in a stolen warship, the <npc>, which is about to enter this system. Board the ship and detain the criminals in a brig, then bring them to <destination> by <date>. Reward for capture: <payment>."
 	passengers 4
 	deadline 14
 	repeat
@@ -3120,8 +3120,8 @@ mission "Bounty Hunting (Medium, Boarding, Entering)"
 	to offer
 		"combat rating" > 200
 		random < 15
-	on offer
-		require "Brig"
+	to accept
+		has "outfit: Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
