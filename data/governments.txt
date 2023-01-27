@@ -508,7 +508,7 @@ government "Hai (Unfettered)"
 
 government "Hai (Unfettered) (Wanderer Tribute)"
 	swizzle 4
-	color .55 .27 .76
+	"display name" "Hai (Unfettered)"
 	"crew attack" 1.4
 	"crew defense" 2.2
 	
