@@ -768,6 +768,14 @@ mission "Wanderers: Unfettered Diplomacy 1B"
 		personality timid escort
 		ship "Deep River (Jump, Unarmed)" "Ayi'i Ki'ak'var"
 
+fleet "Unfettered Tribute (Wanderer)"
+	government "Hai (Unfettered) (Wanderer Tribute)"
+	names "hai"
+	cargo 3
+	variant
+		"Water Bug (Jump)"
+
+# TODO: this fleet is considered deprecated, but preserved for old save files with references to it.
 fleet "Unfettered Tribute"
 	government "Hai (Unfettered)"
 	names "hai"
@@ -777,18 +785,18 @@ fleet "Unfettered Tribute"
 
 event "wanderer / unfettered peace"
 	"reputation: Hai (Unfettered)" >?= 1
-	government "Hai (Unfettered)"
-		"attitude toward"
-			"Wanderer" 0
+	government "Wanderer"
+		"attitutde toward"
+			"Hai (Unfettered) (Wanderer Tribute)" .1
 	system "Ehma Ti"
 		remove fleet "Unfettered Raid"
-		add fleet "Unfettered Tribute" 1000
+		add fleet "Unfettered Tribute (Wanderer)" 1000
 	system "Chy'chra"
 		remove fleet "Unfettered Raid"
-		add fleet "Unfettered Tribute" 2000
+		add fleet "Unfettered Tribute (Wanderer)" 2000
 	system "Prakacha'a"
 		remove fleet "Unfettered Raid"
-		add fleet "Unfettered Tribute" 2000
+		add fleet "Unfettered Tribut (Wanderer)" 2000
 
 
 
