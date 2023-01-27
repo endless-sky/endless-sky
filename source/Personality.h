@@ -96,7 +96,7 @@ private:
 private:
 	bool isDefined = false;
 
-	int flags;
+	int64_t flags;
 	double confusionMultiplier;
 	double aimMultiplier;
 	Point confusion;
