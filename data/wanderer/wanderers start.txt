@@ -786,9 +786,6 @@ fleet "Unfettered Tribute"
 
 event "wanderer / unfettered peace"
 	"reputation: Hai (Unfettered)" >?= 1
-	government "Wanderer"
-		"attitutde toward"
-			"Hai (Unfettered) (Wanderer Tribute)" .1
 	system "Ehma Ti"
 		remove fleet "Unfettered Raid"
 		add fleet "Unfettered Tribute (Wanderer)" 1000

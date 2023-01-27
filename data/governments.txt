@@ -1233,6 +1233,8 @@ government "Wanderer"
 	swizzle 2
 	color .70 .91 .12
 	"player reputation" 1
+	attitude toward
+		"Hai (Unfettered) (Wanderer Tribute)" .1
 	language "Wanderer"
 	"friendly hail" "wanderer untranslated"
 	"friendly disabled hail" "wanderer untranslated"
