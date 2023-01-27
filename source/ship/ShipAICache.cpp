@@ -26,7 +26,7 @@ using namespace std;
 
 
 
-void ShipAICache::CreateWeaponCache(const Ship &ship)
+void ShipAICache::Calibrate(const Ship &ship)
 {
 	mass = ship.Mass();
 	bool hasWeapons = false;
@@ -110,8 +110,8 @@ void ShipAICache::CreateWeaponCache(const Ship &ship)
 
 
 
-void ShipAICache::UpdateWeaponCache(const Ship &ship)
+void ShipAICache::Recalibrate(const Ship &ship)
 {
 	if(mass != ship.Mass())
-		CreateWeaponCache(ship);
+		Calibrate(ship);
 }
