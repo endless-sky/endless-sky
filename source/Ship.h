@@ -472,6 +472,10 @@ private:
 	double CalculateAttraction() const;
 	double CalculateDeterrence() const;
 
+	// Make sure nobody uses the copy assignement operator
+	// because that would mean the ship does not have AI or navigation properly instantiated.
+	Ship &operator=(const Ship &ship) = default;
+
 
 private:
 	// Protected member variables of the Body class:
