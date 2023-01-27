@@ -822,9 +822,9 @@ void Engine::Step(bool isActive)
 				string person = "Personality: ";
 				person += (target->GetPersonality().IsPacifist() ? "Pacifist" : target->
 					GetPersonality().IsForbearing() ? "Forbearing" : target->
-					GetPersonality().IsTimid() ? "Timid" target->
-					GetPersonality().IsHunting() ? "Hunting" target->
-					GetPersonality().IsNemesis() ? "Nemesis" target->
+					GetPersonality().IsTimid() ? "Timid" : target->
+					GetPersonality().IsHunting() ? "Hunting" : target->
+					GetPersonality().IsNemesis() ? "Nemesis" : target->
 					GetPersonality().IsDaring() ? "Daring" : "Other");
 				info.SetString("personality", person);
 				string JumpStatus = (target->IsEnteringHyperspace() ? "Jumping" : target->
