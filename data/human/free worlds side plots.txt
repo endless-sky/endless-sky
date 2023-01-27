@@ -826,7 +826,7 @@ mission "Greenrock Lost Announcement"
 				`	"It was probably going to happen sooner or later."`
 				`	"We shouldn't have wasted the resources on it at all."`
 			`	"I suppose, but things should have gone differently. The Free Worlds, and the Pact before that, was founded to eliminate piracy from the South, so I thought it was the right thing to do. We really put the pirates on the wire when we went straight for their guts. But now it looks like we'll have our hands full for the foreseeable future, and the pirates are sure going to make the most out of this."`
-			goto end
+				goto end
 			label risked
 			`	"I was also at Shaula too, although it wasn't me who was commanding our ship. I thought my old captain did the right thing at that time, but he took the fall for it, same as you. It's too bad, we really put the pirates on the wire when we went straight for their guts. But now it looks like we'll have our hands full for the foreseeable future, and the pirates are sure going to make the most out of this."`
 			label end
