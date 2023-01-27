@@ -811,18 +811,21 @@ void Engine::Step(bool isActive)
 				int escorts = 0;
 				if(!target->GetParent())
 					escorts = target->GetEscorts().size();
-				string name = "Parent: " + (!target->GetParent() ? "I'm the parent of " + to_string(escorts) :
+				string name = "Fleet: " + (!target->GetParent() ? "Flagship for " + to_string(escorts) :
 						target->GetParent()->Name());
-				info.SetString("parent", name);
+				info.SetString("Flagship: ", name);
 				if(target->GetParent())
 				{
 					string PSystem = target->GetParent()->GetSystem()->Name();
-					info.SetString("PSystem", "Parent Sys: " + PSystem);
+					info.SetString("PSystem", "Flagship Sys: " + PSystem);
 				}
 				string person = "Personality: ";
-				person += (target->GetPersonality().IsHeroic() ? "Heroic" : target->
-					GetPersonality().IsCoward() ? "Coward" : target->
-					GetPersonality().IsFleeing() ? "Fleeing" : "Other");
+				person += (target->GetPersonality().IsPacifist() ? "Pacifist" : target->
+					GetPersonality().IsForbearing() ? "Forbearing" : target->
+					GetPersonality().IsTimid() ? "Timid" target->
+					GetPersonality().IsHunting() ? "Hunting" target->
+					GetPersonality().IsNemesis() ? "Nemesis" target->
+					GetPersonality().IsDaring() ? "Daring" : "Other");
 				info.SetString("personality", person);
 				string JumpStatus = (target->IsEnteringHyperspace() ? "Jumping" : target->
 					IsReadyToJump(true) ? "Jump Ready" : "Not Ready");
