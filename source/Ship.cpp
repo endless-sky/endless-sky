@@ -202,6 +202,15 @@ Ship::Ship(const DataNode &node)
 
 
 
+Ship::Ship(Ship &ship)
+{
+	// We need to make sure these point to this ship and not the stock model.
+	navigation = ShipJumpNavigation(*this);
+	AICache = ShipAICache(*this);
+}
+
+
+
 void Ship::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
