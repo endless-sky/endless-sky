@@ -119,7 +119,7 @@ mission "Han Sizer Month [1]"
 	description `In celebration of Han Sizer month, bring <fare> to all the marked systems and return to <destination> for <payment>.`
 	passengers 2 10 .8
 	substitutions
-		"<on Longjump>" "near here."
+		"<on Longjump>" "near here"
 			has "flagship planet: Longjump"
 		"<on Longjump>" "on Longjump"
 			not "flagship planet: Longjump"
@@ -174,4 +174,4 @@ mission "Han Sizer Month [2]"
 		not attributes "station"
 	on complete
 		payment 20000 170
-		dialog `Your guests thank you for taking them on a journey along the flightpath of Han Sizer and cheerfully pay you <payment>. You notice one has a starchart open to Sabik's entry as they head off.`
+		dialog `Your guests thank you for taking them on a journey along the flight path of Han Sizer and cheerfully pay you <payment>. You notice one has a star chart open to Sabik's entry as they head off.`
