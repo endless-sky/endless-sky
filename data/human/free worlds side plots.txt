@@ -806,3 +806,29 @@ mission "FW Stack Core 1C"
 		conversation
 			`You receive a message from Freya: "Hello again, Captain! Thanks for your help escorting the materials to Solace. Ever since we developed the Dreadnoughts people have been talking about how badly we need a generator that can meet their energy needs, and that's what Delta V Corporation has been working on. So, take a look next time you're on Solace or one of our other major manufacturing centers. Sorry for the mystery surrounding the cargo, but we didn't exactly want to advertise that a huge shipment of fissionable material was headed for Free Worlds space."`
 				decline
+
+mission "Greenrock Lost Announcement"
+	invisible
+	landing
+	source
+		government "Free Worlds"
+	to offer 
+		has "event: fw abandoned Greenrock"
+	on offer
+		conversation 
+			`Waiting in <planet>'s spaceport for your ship to be refuelled, you hear an announcement coming from an unseen loudspeaker. "Attention! The Free Worlds have withdrawn our presence from Greenrock. Be advised that any further travel to the Shaula system may carry the risk of pirate attacks." The message cuts off abruptly, only to repeat a minute later.`
+			`	A militia captain who paused nearby to listen to the announcement shakes his head before recognizing you. "Well, that's a bloody shame, isn't it?"`
+			choice
+				`	"Yeah, I risked my life and my position taking Greenrock."`
+					goto risked
+					to display
+						has "FW Pirates: Attack 3: done"
+				`	"It was probably going to happen sooner or later."`
+				`	"We shouldn't have wasted the resources on it at all."`
+			`	"I suppose, but things should have gone differently. The Free Worlds, and the Pact before that, was founded to eliminate piracy from the South. We really put the pirates on the wire when we went straight for their guts. But it looks like we'll have our hands full for the foreseeable future, and the pirates are sure going to make the most of this loss."`
+			goto end
+			label risked
+			`	"I was also at Shaula too, although it wasn't me who was commanding our ship. I thought my old captain did the right thing at that time. It's too bad, we really put the pirates on the wire when we went straight for their guts. But it looks like we'll have our hands full for the foreseeable future, and the pirates are sure going to make the most of this loss."`
+			label end
+			`	On that note, the two of you return to your duties.`
+				decline
