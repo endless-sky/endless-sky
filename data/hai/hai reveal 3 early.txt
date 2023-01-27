@@ -33,7 +33,7 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 				has "Building Mountaintop Deferred"
 			`	"I am very glad to see you returned, Captain <last>. Sayari said you were away on an important errand, but I've been hoping for a day now that you would reappear. I think you might be the solution to the current impasse."`
 			`	"You see," says Sayari, "while you've been away it's been decided that a 'tourist trap type theme park destination' is a critical part of the cover story." Despite her Hai inflections, you can still hear the air quotes around that phrase in the tone of her voice. "So far it seems the movie cover has been circulating quite successfully, so we're leaning into it.`
-			`	"This means we need a station, on your side of the wormhole in Ultima Thule. It also means we need it fast, much faster than your people could ever hope to assemble it. The Hai can build it much quicker than humanity can; we actually considered the possibility of needing to raise a station quickly a while back. The alien look that the station will have if we build it has been considered just another favorable aspect of the movie and it provides a long-term commercial justification for the whole idea; the, uh, 'tourist trap'.`
+			`	"This means we need a station, on your side of the wormhole in Ultima Thule. It also means we need it fast, much faster than your people could ever hope to assemble it. The Hai can build it much quicker than humanity can; we actually considered the possibility of needing to raise a station quickly a while back. The alien look that the station will have if we build it has been considered just another favorable aspect of the movie and it provides a long-term commercial justification for the whole idea; the, uh, 'tourist trap'."`
 			choice
 				`	"It would help if I oversaw the construction, wouldn't it?"`
 					goto oversee
@@ -241,6 +241,10 @@ event "role-play station after construction"
 
 
 
+event "hai dog and pony done"
+	clear "hai dog and pony final stop"
+
+
 mission "Hai Building Mountaintop [2] Recruits"
 	name "Encourage recruits for Mountaintop"
 	description "Now that the station is going ahead, the Hai need to recruit people to be actors in this movie production. Someone needs to sell it to them, and apparently that someone is you."
@@ -308,7 +312,9 @@ mission "Hai Building Mountaintop [2] Recruits"
 			`	Terry's answering grin is best described as "predatory".`
 				accept
 	on stopover
-		"hai dog and pony done" ++
+		set "hai dog and pony final stop"
+		"hai dog and pony" ++
+		event "hai dog and pony done" 1
 		conversation
 			`You have finally visited every world in Hai space and sold the pitch to the people. With any luck, enough will sign up to make it work. Terry indicates that you may now take her to Mountaintop without further stops, but then adds, "I do have some leftover materials though, so I'll get you to do some final spruiking if you stop anywhere else along the way."`
 	on complete
@@ -327,11 +333,12 @@ mission "ZZ Hai Building Mountaintop [2a] Sales Job"
 		government "Hai"
 	to offer
 		has "Hai Building Mountaintop [2] Recruits: active"
+		not "hai dog and pony final stop"
 	on offer
 		"hai dog and pony" ++
 		conversation
 			branch overdone
-				"hai dog and pony done" >= 1
+				has "event: hai dog and pony done"
 			branch toomany
 				"hai dog and pony" >= 17
 			branch interminable
@@ -457,10 +464,10 @@ mission "Pirates with Hai Weapons 1: Katya's Message"
 				`	"You've taken a lot of precautions for this call."`
 			`	"Yes," she says. "This is a sensitive matter.`
 			label whaizzit
-			`	"There's a problem I need you to solve... discretely. The Free Worlds have seen pirates with Hai weapons for quite a while. Most weapons were on ships, but recently we've found a large stock in a warehouse on an anarchist world.`
+			`	"There's a problem I need you to solve... discreetly. The Free Worlds have seen pirates with Hai weapons for quite a while. Most weapons were on ships, but recently we've found a large stock in a warehouse on an anarchist world.`
 				to display
 					not "FW Bounty 3: done"
-			`	"There's a problem I need you to solve... discretely. The Free Worlds have seen pirates with Hai weapons for quite a while. I know you fought the pirate ship Silverhawk back before the war. We know now that it had Hai outfits. Recently we've found a large stock in a warehouse on an anarchist world.`
+			`	"There's a problem I need you to solve... discreetly. The Free Worlds have seen pirates with Hai weapons for quite a while. I know you fought the pirate ship Silverhawk back before the war. We know now that it had Hai outfits. Recently we've found a large stock in a warehouse on an anarchist world.`
 				to display
 					has "FW Bounty 3: done"
 			`	"Such a vast supply is unlikely to have come from individual smugglers, so we must assume it's the result of a large-scale operation. I'm worried the Hai government may be arming pirates. If they are, I hope the weapons are just misguided tribute payments. In the south, we well know how useful bounties and tributes are when dealing with pirates, but from my time as a councilor, I can tell you the Republic will not be so understanding.`

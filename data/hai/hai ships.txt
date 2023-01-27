@@ -97,6 +97,7 @@ ship "Centipede"
 		"Hai Corundum Regenerator"
 		"Hai Ravine Batteries"
 		"Hai Williwaw Cooling" 3
+		"Hai Cuttlefish Jammer" 2
 		"Luxury Accommodations"
 		"Quantum Keystone"
 		`"Biroo" Atomic Thruster`
@@ -194,7 +195,7 @@ ship "Cicada"
 		"cargo space" 143
 		"outfit space" 323
 		"weapon capacity" 89
-		"engine capacity" 58
+		"engine capacity" 64
 		weapon
 			"blast radius" 80
 			"shield damage" 960
@@ -304,10 +305,11 @@ ship "Geocoris"
 		"Pulse Cannon" 2
 		"Pulse Turret" 2
 		"Bullfrog Anti-Missile" 3
+		"Hai Cuttlefish Jammer" 4
 		"Geode Reactor" 2
 		"Hai Valley Batteries"
 		"Hai Diamond Regenerator"
-		"Hai Williwaw Cooling" 5
+		"Hai Williwaw Cooling" 4
 		`"Biroo" Reverse Thruster`
 		`"Biroo" Atomic Thruster`
 		`"Bondir" Atomic Steering`
@@ -369,8 +371,8 @@ ship "Grasshopper"
 		"heat dissipation" .85
 		"fuel capacity" 300
 		"cargo space" 29
-		"outfit space" 169
-		"weapon capacity" 38
+		"outfit space" 198
+		"weapon capacity" 47
 		"engine capacity" 61
 		weapon
 			"blast radius" 36
@@ -379,10 +381,10 @@ ship "Grasshopper"
 			"hit force" 540
 	outfits
 		"Pulse Cannon" 2
-		"Pebble Core"
-		"Hai Chasm Batteries" 2
+		"Sand Cell" 2
+		"Hai Fissure Batteries"
 		"Hai Corundum Regenerator"
-		"Hai Williwaw Cooling" 2
+		"Hai Williwaw Cooling"
 		"Quantum Keystone"
 		"Pulse Rifle"
 		`"Benga" Atomic Thruster`
@@ -429,6 +431,18 @@ ship "Grasshopper" "Grasshopper (Surveillance)"
 		`"Benga" Atomic Steering`
 		Hyperdrive
 
+ship "Grasshopper" "Grasshopper (Ion)"
+	outfits
+		"Ion Cannon"
+		"Pebble Core"
+		"Hai Fissure Batteries"
+		"Hai Williwaw Cooling"
+		"Hai Corundum Regenerator"
+		"Quantum Keystone"
+		"Pulse Rifle"
+		`"Benga" Atomic Steering`
+		`"Benga" Atomic Thruster`
+		Hyperdrive
 
 
 ship "Lightning Bug"
@@ -457,6 +471,7 @@ ship "Lightning Bug"
 	outfits
 		"Ion Cannon"
 		"Bullfrog Anti-Missile" 2
+		"Hai Cuttlefish Jammer"
 		"Geode Reactor"
 		"Hai Gorge Batteries"
 		"Hai Corundum Regenerator"
@@ -682,6 +697,7 @@ ship "Pond Strider"
 		"Chameleon Anti-Missile"
 		"Bullfrog Anti-Missile" 2
 		"Hai Corundum Regenerator" 2
+		"Hai Cuttlefish Jammer"
 		"Hai Gorge Batteries"
 		"Geode Reactor"
 		"Hai Williwaw Cooling" 2
@@ -799,13 +815,13 @@ ship "Sea Scorpion"
 		"hull" 4900
 		"required crew" 14
 		"bunks" 36
-		"mass" 360
+		"mass" 320
 		"drag" 5.2
 		"heat dissipation" .7
 		"fuel capacity" 500
 		"cargo space" 45
 		"outfit space" 510
-		"weapon capacity" 168
+		"weapon capacity" 188
 		"engine capacity" 117
 		weapon
 			"blast radius" 84
@@ -813,19 +829,23 @@ ship "Sea Scorpion"
 			"hull damage" 420
 			"hit force" 1260
 	outfits
-		"Hai Tracker Pod" 4
-		"Chameleon Anti-Missile" 2
-		"Tracker Storage Pod" 4
-		"Hai Tracker" 336
-		"Hai Williwaw Cooling" 2
-		"Boulder Reactor"
-		"Hai Ravine Batteries"
-		"Hai Diamond Regenerator"
-		`"Bondir" Atomic Thruster`
 		`"Bondir" Atomic Steering`
-		"Value Detector"
-		"Hyperdrive"
+		`"Bondir" Atomic Thruster`
+		"Cargo Expansion"
+		"Chameleon Anti-Missile"
+		"Fuel Pod"
+		"Geode Reactor"
+		"Hai Diamond Regenerator"
+		"Hai Ravine Batteries"
+		"Hai Tracker" 336
+		"Hai Tracker Pod" 4
+		"Hai Williwaw Cooling"
+		Hyperdrive
 		"Pulse Rifle" 15
+		"Pulse Turret"
+		"Quantum Keystone"
+		"Tracker Storage Pod" 4
+		"Value Detector" 2
 
 	engine -28.5 68.5
 	engine 28.5 68.5
@@ -857,6 +877,22 @@ ship "Sea Scorpion"
 	explode "large explosion" 14
 	"final explode" "final explosion medium"
 	description "The Sea Scorpion was designed several decades ago to serve as a mobile platform to launch Trackers. However, it is only recently that the Unfettered have been able to mass produce them. While individually vulnerable, the reduced cost of manufacturing compared to Shield Beetles allow the materially inferior Unfettered to gain a numerical advantage against their brethren."
+
+ship "Sea Scorpion" "Sea Scorpion (Tracker)"
+	outfits
+		"Hai Tracker Pod" 4
+		"Chameleon Anti-Missile" 2
+		"Tracker Storage Pod" 4
+		"Hai Tracker" 336
+		"Hai Williwaw Cooling" 2
+		"Hai Octopus Jammer"
+		"Boulder Reactor"
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator"
+		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Value Detector"
+		"Hyperdrive"
 
 ship "Sea Scorpion" "Sea Scorpion (Pulse)"
 	outfits
@@ -1000,13 +1036,13 @@ ship "Shield Beetle"
 		"Hai Tracker Pod" 4
 		"Hai Tracker" 280
 		"Tracker Storage Pod" 2
-		"Chameleon Anti-Missile" 2
+		"Bullfrog Anti-Missile" 4
+		"Hai Cuttlefish Jammer" 3
 		"Boulder Reactor"
 		"Geode Reactor"
-		"Hai Gorge Batteries"
-		"Hai Ravine Batteries"
+		"Hai Valley Batteries"
 		"Hai Diamond Regenerator"
-		"Hai Williwaw Cooling" 2
+		"Hai Williwaw Cooling" 3
 		"Quantum Keystone"
 		"Pulse Rifle" 55
 		`"Bondir" Atomic Thruster`
@@ -1024,8 +1060,8 @@ ship "Shield Beetle"
 	gun 61 -14 "Hai Tracker Pod"
 	turret -39 48
 	turret 39 48
-	turret -57 75 "Chameleon Anti-Missile"
-	turret 57 75 "Chameleon Anti-Missile"
+	turret -57 75
+	turret 57 75
 	leak "leak" 40 50
 	leak "flame" 50 80
 	leak "big leak" 60 50
@@ -1069,6 +1105,26 @@ ship "Shield Beetle" "Shield Beetle (Police)"
 	turret
 	turret "Chameleon Anti-Missile"
 	turret "Chameleon Anti-Missile"
+
+ship "Shield Beetle" "Shield Beetle (Unfettered)"
+	outfits
+		"Ion Cannon" 4
+		"Hai Tracker Pod" 4
+		"Hai Tracker" 252
+		"Tracker Storage Pod"
+		"Bullfrog Anti-Missile" 4
+		"Hai Octopus Jammer" 3
+		"Boulder Reactor"
+		"Geode Reactor"
+		"Hai Valley Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 3
+		"Value Detector" 4
+		"Quantum Keystone"
+		"Pulse Rifle" 65
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
 
 # Custom anti-pirate build; insufficient battery for fighting Hai:
 ship "Shield Beetle" "Shield Beetle (Pulse Tracker)"
@@ -1298,14 +1354,15 @@ ship "Shield Beetle" "Shield Beetle (Durable Pulse)"
 ship "Shield Beetle" "Shield Beetle (Tracker)"
 	outfits
 		"Hai Tracker Pod" 8
-		"Hai Tracker" 476
-		"Tracker Storage Pod"
+		"Hai Tracker" 560
+		"Tracker Storage Pod" 4
 		"Pulse Turret" 4
 		"Boulder Reactor"
 		"Geode Reactor"
 		"Hai Valley Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 2
+		"Hai Cuttlefish Jammer" 3
 		"Quantum Keystone"
 		"Pulse Rifle" 32
 		`"Bondir" Atomic Thruster`
@@ -1356,7 +1413,7 @@ ship "Solifuge"
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
 		"Hyperdrive"
-			
+		
 	engine -28 135.5
 	engine 28 135.5
 	gun 0 -140 "Hai Tracker Pod"

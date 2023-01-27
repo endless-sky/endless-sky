@@ -1,4 +1,4 @@
-test-data "burning flyers"
+test-data "burning flyers save"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
@@ -93,7 +93,7 @@ test "Afterburner-flight - Simple depart land"
 	status active
 	description "Tests if the AI can use the afterburner as regular thruster for departure and landing."
 	sequence
-		inject "burning flyers"
+		inject "burning flyers save"
 		call "Load First Savegame"
 		watchdog 12000
 		call "Depart"

@@ -38,7 +38,7 @@ mission "To Earth Day celebration [0]"
 	repeat
 	description `Bring <fare> to <destination> by <date> for the Earth Day celebration on April 22nd. Payment is <payment>.`
 	passengers 4 4 .5
-	deadline
+	deadline 0 2
 	to offer
 		or
 			and
@@ -52,6 +52,7 @@ mission "To Earth Day celebration [0]"
 				random < 20
 				month == 4
 				day < 22
+		"days until year end" - 2 * "hyperjumps to system: Sol" > 253
 	to fail
 		month * 100 + day >= 422
 	source
@@ -71,7 +72,7 @@ mission "To Earth Day celebration [1]"
 	repeat
 	description `Deliver <cargo> to <destination> by <date> in preparation for the Earth Day celebration on April 22nd. Payment is <payment>.`
 	cargo random 5 2 .1
-	deadline
+	deadline 0 2
 	to offer
 		or
 			and
@@ -85,6 +86,7 @@ mission "To Earth Day celebration [1]"
 				random < 20
 				month == 4
 				day < 22
+		"days until year end" - 2 * "hyperjumps to system: Sol" > 253
 	to fail
 		month * 100 + day >= 422
 	source
