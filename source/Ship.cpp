@@ -810,7 +810,7 @@ void Ship::FinishLoading(bool isNewInstance)
 
 	// Calculate this ship's jump information, e.g. how much it costs to jump, how far it can jump, how it can jump.
 	navigation.Calibrate(*this);
-	AICache.Calibrate(*this);
+	aiCache.Calibrate(*this);
 
 	// A saved ship may have an invalid target system. Since all game data is loaded and all player events are
 	// applied at this point, any target system that is not accessible should be cleared. Note: this does not
@@ -1439,14 +1439,14 @@ string Ship::GetHail(map<string, string> &&subs) const
 
 ShipAICache &Ship::GetAICache()
 {
-	return AICache;
+	return aiCache;
 }
 
 
 
 void Ship::UpdateCaches()
 {
-	AICache.Recalibrate(*this);
+	aiCache.Recalibrate(*this);
 	navigation.Recalibrate(*this);
 }
 
@@ -4063,7 +4063,7 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 		if(isYours && !OutfitCount(ammo) && ammo->AmmoUsage())
 		{
 			// Recalculate the AI to account for the loss of this weapon.
-			AICache.Calibrate(*this);
+			aiCache.Calibrate(*this);
 			deterrence = CalculateDeterrence();
 		}
 	}
