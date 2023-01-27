@@ -21,7 +21,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "EsUuid.h"
 #include "LocationFilter.h"
 #include "MissionAction.h"
+#include "MissionHaulerObjective.h"
 #include "NPC.h"
+#include "Outfit.h"
 #include "TextReplacements.h"
 
 #include <list>
@@ -97,6 +99,11 @@ public:
 	const std::set<const Planet *> &VisitedStopovers() const;
 	const std::string &Cargo() const;
 	int CargoSize() const;
+	const Outfit *GetOutfit() const;
+	int OutfitUnits() const;
+	std::string OutfitName() const;
+	double OutfitUnitsMass() const;
+	int64_t OutfitUnitsMassInt() const;
 	int IllegalCargoFine() const;
 	std::string IllegalCargoMessage() const;
 	bool FailIfDiscovered() const;
@@ -209,14 +216,17 @@ private:
 	bool hasFullClearance = true;
 
 	int repeat = 1;
+	MissionCargoObjective cargoObjective;
 	std::string cargo;
 	int cargoSize = 0;
-	// Parameters for generating random cargo amounts:
-	int cargoLimit = 0;
-	double cargoProb = 0.;
 	int illegalCargoFine = 0;
 	std::string illegalCargoMessage;
 	bool failIfDiscovered = false;
+	// Parameters for generating random outfit amounts:
+	MissionOutfitObjective outfitObjective;
+	MissionOutfitterObjective outfitterObjective;
+	const Outfit *outfit = nullptr;
+	int outfitUnits = 0;
 	int passengers = 0;
 	// Parameters for generating random passenger amounts:
 	int passengerLimit = 0;
