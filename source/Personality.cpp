@@ -56,7 +56,7 @@ namespace {
 	const int DARING = (1 << 29);
 	const int SECRETIVE = (1 << 30);
 	const int RAMMING = (1 << 31);
-	const int64_t UNRESTRICTED = (1 << 32);
+	const int64_t UNRESTRICTED = (Int64(1) << Int64(32));
 
 	const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
