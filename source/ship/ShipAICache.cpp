@@ -15,8 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShipAICache.h"
 
-#include "../pi.h"
 #include "../Outfit.h"
+#include "../pi.h"
 #include "../Ship.h"
 
 #include <algorithm>
