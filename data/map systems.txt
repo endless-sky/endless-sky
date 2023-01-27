@@ -33,7 +33,7 @@ galaxy "label dirt belt"
 galaxy "label earth"
 	pos -420 94
 	sprite label/earth
-	
+
 galaxy "label gegno"
 	pos 854 -544
 
@@ -2093,21 +2093,21 @@ system Acnanjo
 		sprite star/g-giant
 		period 10
 	object
-		sprite planet/neptune-b
-		distance 1651.9
-		period 421.995
-	object
 		sprite planet/venus
 		distance 851.78
 		period 156.251
 	object
-		sprite planet/gas16
-		distance 3314.9
-		period 1199.60
+		sprite planet/neptune-b
+		distance 1651.9
+		period 421.995
 	object
 		sprite planet/rock0
 		distance 2757
 		period 909.887
+	object
+		sprite planet/gas16
+		distance 3314.9
+		period 1199.60
 
 system Acrux
 	pos -808 192
@@ -2219,6 +2219,10 @@ system Actannka
 		distance 350
 		period 46.3006
 	object
+		sprite planet/gas16-b
+		distance 1100.4
+		period 258.113
+	object
 		sprite planet/cloud2-b
 		distance 2300
 		period 779.967
@@ -2227,14 +2231,6 @@ system Actannka
 			distance 196
 			period 20
 	object
-		sprite planet/gas16-b
-		distance 1100.4
-		period 258.113
-	object
-		sprite planet/gas2
-		distance 4081.2
-		period 1843.60
-	object
 		sprite planet/gas15
 		distance 3089.4
 		period 1214.21
@@ -2242,6 +2238,10 @@ system Actannka
 			sprite planet/ice7
 			distance 227.49
 			period 60
+	object
+		sprite planet/gas2
+		distance 4081.2
+		period 1843.60
 	object
 		sprite planet/gas14-b
 		distance 6755
@@ -2403,8 +2403,8 @@ system "Aik Kamgatake"
 	pos 487.63 -365.37
 	government Uninhabited
 	attributes "nova"
-	arrival 525
-	habitable 525
+	arrival 500
+	habitable 100
 	belt 1920
 	haze _menu/haze-133
 	link Aksek
@@ -2424,29 +2424,29 @@ system "Aik Kamgatake"
 		sprite star/nova
 		period 1000
 	object
-		sprite planet/cloud3
-		distance 3966.2
-		period 1356.50
-	object
 		sprite planet/lava3-b
 		distance 838
-		period 131.742
+		period 137.227
+	object
+		sprite planet/gas4-b
+		distance 2784.74
+		period 831.288
+	object
+		sprite planet/cloud3
+		distance 3966.2
+		period 1412.98
 	object
 		sprite planet/gas16
 		distance 5780.5
-		period 2386.75
+		period 2486.12
 		object
 			sprite planet/ice7-b
 			distance 225
 			period 88.3
 	object
-		sprite planet/gas4-b
-		distance 2784.74
-		period 798.062
-	object
 		sprite planet/gas11
 		distance 10053
-		period 5473.98
+		period 5701.88
 
 system Aki'il
 	pos -83 722
@@ -2481,17 +2481,9 @@ system Aki'il
 		period 11.7614
 		offset 180
 	object
-		sprite planet/rock7
-		distance 1209.76
-		period 433.850
-	object
 		sprite planet/rock18
 		distance 252.757
 		period 41.4330
-	object
-		sprite planet/neptune
-		distance 2740.76
-		period 1479.44
 	object
 		sprite planet/desert7
 		distance 600.757
@@ -2500,6 +2492,14 @@ system Aki'il
 		sprite planet/ocean3
 		distance 927.757
 		period 291.368
+	object
+		sprite planet/rock7
+		distance 1209.76
+		period 433.850
+	object
+		sprite planet/neptune
+		distance 2740.76
+		period 1479.44
 
 system Aksek
 	pos 477.944 -401.011
@@ -2983,6 +2983,7 @@ system Aleit
 	government Quarg
 	attributes "ringworld"
 	arrival 700
+	departure 1000
 	habitable 700
 	belt 1864
 	haze _menu/haze-blackbody
@@ -3850,14 +3851,14 @@ system Alnasl
 	fleet "Large Militia" 6000
 	fleet "Small Southern Pirates" 4000
 	object
+		sprite star/k5-old
+		distance 31.6761
+		period 11.1912
+	object
 		sprite star/k5
 		distance 70.8054
 		period 11.1912
 		offset 180
-	object
-		sprite star/k5-old
-		distance 31.6761
-		period 11.1912
 	object
 		sprite planet/gas16-b
 		distance 1321.23
@@ -4596,8 +4597,8 @@ system Anbrim
 	pos 725.7 -376.2
 	government Uninhabited
 	attributes "nova"
-	arrival 2300
-	habitable 2300
+	arrival 500
+	habitable 100
 	belt 1101
 	haze _menu/haze-33
 	link Huud
@@ -4618,19 +4619,19 @@ system Anbrim
 	object
 		sprite planet/oberon-b
 		distance 1001
-		period 149.294
+		period 179.153
 	object
 		sprite planet/dust1
 		distance 4764
-		period 1550.07
+		period 1860.08
 	object
 		sprite planet/gas8-b
 		distance 7469
-		period 3042.89
+		period 3651.47
 	object
 		sprite planet/rhea-b
 		distance 13205
-		period 7153.21
+		period 8583.85
 
 system "Ancient Hope"
 	pos -1159.59 702.051
@@ -4894,7 +4895,7 @@ system Antares
 system Antevorta
 	pos -36.1297 446.242
 	government Uninhabited
-	attributes "ember waste" "carbon"
+	attributes "carbon" "ember waste"
 	arrival 3000
 	habitable 3000
 	belt 1994
@@ -5597,10 +5598,10 @@ system Auhru
 	object
 		sprite star/o8
 		period 10
-	object "Oup Je"
-		sprite planet/rock2-b
-		distance 5000
-		period 1520.57
+	object
+		sprite planet/gas7
+		distance 2423.9
+		period 513.244
 	object
 		sprite planet/browndwarf-l
 		distance 3731.72
@@ -5609,10 +5610,10 @@ system Auhru
 			sprite planet/rock14
 			distance 609.41
 			period 129.9
-	object
-		sprite planet/gas7
-		distance 2423.9
-		period 513.244
+	object "Oup Je"
+		sprite planet/rock2-b
+		distance 5000
+		period 1520.57
 
 system Avior
 	pos -658 -317
@@ -8615,10 +8616,6 @@ system "Deep Space 19M1"
 		sprite star/giant
 		period 10
 	object
-		sprite planet/gas16
-		distance 2193.3
-		period 699.515
-	object
 		sprite planet/gas0-b
 		distance 1549.84
 		period 415.509
@@ -8634,6 +8631,10 @@ system "Deep Space 19M1"
 			sprite planet/rock14
 			distance 464
 			period 29.291
+	object
+		sprite planet/gas16
+		distance 2193.3
+		period 699.515
 	object
 		sprite planet/gas13-b
 		distance 3145.85
@@ -10524,14 +10525,14 @@ system Egeria
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
+		sprite star/g0
+		distance 51.6228
+		period 10.2856
+	object
 		sprite star/k5-old
 		distance 58.687
 		period 10.2856
 		offset 180
-	object
-		sprite star/g0
-		distance 51.6228
-		period 10.2856
 	object
 		sprite planet/ice4
 		distance 248
@@ -10682,6 +10683,7 @@ system Ekuarik
 	government Heliarch
 	attributes "ringworld"
 	arrival 700
+	departure 1000
 	habitable 700
 	belt 1711
 	link Belug
@@ -10716,6 +10718,48 @@ system Ekuarik
 	object
 		sprite star/g3
 		period 10
+	object
+		sprite planet/panels1
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 207
+	object
+		sprite planet/panels2
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 216
+	object
+		sprite planet/panels1
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 225
+	object
+		sprite planet/panels4
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 234
+	object
+		sprite planet/panels1
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 281
+	object
+		sprite planet/panels4
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 298
+	object
+		sprite planet/panels2
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 312
 	object
 		sprite planet/lava6-b
 		distance 812
@@ -10829,30 +10873,6 @@ system Ekuarik
 		period 349.820
 		offset 112
 	object
-		sprite planet/panels1
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 207
-	object
-		sprite planet/panels2
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 216
-	object
-		sprite planet/panels1
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 225
-	object
-		sprite planet/panels4
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 234
-	object
 		sprite planet/panels3
 			scale 0.5
 		distance 830
@@ -10870,24 +10890,6 @@ system Ekuarik
 		distance 830
 		period 349.820
 		offset 253
-	object
-		sprite planet/panels1
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 281
-	object
-		sprite planet/panels4
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 298
-	object
-		sprite planet/panels2
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 312
 
 system Elifennka
 	pos 990.5 -728.2
@@ -11079,13 +11081,13 @@ system Empeles
 		sprite star/g3
 		period 10
 	object
-		sprite planet/rock16
-		distance 969.83
-		period 456.619
-	object
 		sprite planet/ocean2
 		distance 639.3
 		period 244.381
+	object
+		sprite planet/rock16
+		distance 969.83
+		period 456.619
 	object
 		sprite planet/uranus-b
 		distance 3515
@@ -11161,6 +11163,7 @@ system Enif
 	government Quarg
 	attributes "ringworld" "south"
 	arrival 700
+	departure 1000
 	habitable 700
 	belt 1974
 	link Sadalmelik
@@ -13205,7 +13208,7 @@ system G-3191
 system G-6183
 	pos 1019.4 -590.18
 	government Uninhabited
-	attributes "umbral reach" "blackhole"
+	attributes "blackhole" "umbral reach"
 	arrival 5000
 	habitable 10000
 	belt 1187
@@ -13257,14 +13260,14 @@ system G-719
 	fleet "Iije (Swarming)" 2000
 	fleet "Iije (Surveillance)" 2000
 	object
-		sprite star/g3
-		distance 79.714
-		period 60.55
-	object
 		sprite star/f3
 		distance 76.28
 		period 60.5
 		offset 180
+	object
+		sprite star/g3
+		distance 79.714
+		period 60.55
 	object
 		sprite planet/cloud7
 		distance 428
@@ -13555,22 +13558,22 @@ system Gaungu
 	minables iron 2 6.47
 	minables silver 19 4.22
 	object
-		sprite star/l-dwarf
-		distance 109.61
-		period 55.9
-	object
 		sprite star/k8
 		distance 3.8
 		period 55.92
 		offset 180
 	object
-		sprite planet/rock3-b
-		distance 668.2
-		period 345.453
+		sprite star/l-dwarf
+		distance 109.61
+		period 55.9
 	object
 		sprite planet/ocean1-b
 		distance 503
 		period 225.622
+	object
+		sprite planet/rock3-b
+		distance 668.2
+		period 345.453
 	object
 		sprite planet/callisto-b
 		distance 1134
@@ -13678,6 +13681,10 @@ system Ghhil
 		sprite planet/rock17
 		distance 1338
 		period 357.423
+	object Ruelogakk
+		sprite planet/station0
+		distance 2600
+		period 968.187
 	object
 		sprite planet/gas16
 		distance 3835
@@ -13686,10 +13693,6 @@ system Ghhil
 		sprite planet/gas10-hot
 		distance 6099
 		period 3478.46
-	object Ruelogakk
-		sprite planet/station0
-		distance 2600
-		period 968.187
 
 system Gienah
 	pos -176 354
@@ -14908,10 +14911,6 @@ system Heutesl
 		distance 1000
 		period 349.481
 	object
-		sprite planet/gas16
-		distance 2400
-		period 1299.39
-	object
 		sprite planet/gas4
 		distance 1300
 		period 518.011
@@ -14919,12 +14918,17 @@ system Heutesl
 			sprite planet/dust3-b
 			distance 258
 			period 156.6
+	object
+		sprite planet/gas16
+		distance 2400
+		period 1299.39
 
 system "Hevru Hai"
 	pos -189 -310
 	government Quarg
 	attributes "ringworld"
 	arrival 700
+	departure 1000
 	habitable 700
 	belt 1245
 	link "Fah Soom"
@@ -15517,14 +15521,14 @@ system Iinjma
 	fleet "Small Scin" 3500
 	fleet "Scin Transport" 4500
 	object
+		sprite star/a3
+		distance 5.36
+		period 39.1
+	object
 		sprite star/f-dwarf
 		distance 100.13
 		period 39.1
 		offset 180
-	object
-		sprite star/a3
-		distance 5.36
-		period 39.1
 	object
 		sprite planet/desert1
 		distance 301
@@ -15565,13 +15569,13 @@ system Iise
 		sprite star/k-dwarf
 		period 10
 	object
-		sprite planet/rock1
-		distance 679.46
-		period 708.444
-	object
 		sprite planet/water0
 		distance 443.6
 		period 373.720
+	object
+		sprite planet/rock1
+		distance 679.46
+		period 708.444
 	object
 		sprite planet/miranda
 		distance 1865
@@ -15729,14 +15733,14 @@ system Iliniza
 	fleet "Scin Transport" 600
 	fleet "Scin Cargo" 1200
 	object
+		sprite star/g5
+		distance 30.19
+		period 42.96
+	object
 		sprite star/m8
 		distance 77.3
 		period 42.9
 		offset 180
-	object
-		sprite star/g5
-		distance 30.19
-		period 42.96
 	object
 		sprite planet/rock11
 		distance 237.35
@@ -16328,14 +16332,18 @@ system "Jyeg Pvu"
 	asteroids "large metal" 2 2.26
 	minables silver 1 2.73
 	object
+		sprite star/g0-old
+		distance 61.51
+		period 68.7
+	object
 		sprite star/a8
 		distance 157.48
 		period 68.707
 		offset 180
 	object
-		sprite star/g0-old
-		distance 61.51
-		period 68.7
+		sprite planet/gas7
+		distance 2627
+		period 749.765
 	object
 		sprite planet/cloud1
 		distance 3200
@@ -16348,10 +16356,6 @@ system "Jyeg Pvu"
 		sprite planet/rock1
 		distance 6000
 		period 2587.98
-	object
-		sprite planet/gas7
-		distance 2627
-		period 749.765
 	object
 		sprite planet/gas9-b
 		distance 9000
@@ -16391,14 +16395,6 @@ system Jyelio
 		distance 307
 		period 91.7458
 	object
-		sprite planet/gas0-b
-		distance 4453.2
-		period 5068.58
-		object
-			sprite planet/rhea-b
-			distance 307
-			period 167.29
-	object
 		sprite planet/gas16
 		distance 1557.7
 		period 1048.58
@@ -16406,6 +16402,14 @@ system Jyelio
 			sprite planet/callisto
 			distance 226
 			period 88.9
+	object
+		sprite planet/gas0-b
+		distance 4453.2
+		period 5068.58
+		object
+			sprite planet/rhea-b
+			distance 307
+			period 167.29
 
 system Ka'ch'chrai
 	pos -240.163 -822.448
@@ -16631,6 +16635,7 @@ system Kanguwa
 	asteroids "large rock" 17 1.8
 	asteroids "medium metal" 52 2.6
 	asteroids "large metal" 40 2.7
+	hazard "Neutron Star Magnetic Field" 1
 	object
 		sprite star/neutron
 		period 10
@@ -16995,6 +17000,7 @@ system "Ki War Ek"
 	government Heliarch
 	attributes "ringworld"
 	arrival 700
+	departure 1000
 	habitable 700
 	belt 1777
 	haze _menu/haze-133
@@ -17030,6 +17036,78 @@ system "Ki War Ek"
 	object
 		sprite star/g3
 		period 10
+	object
+		sprite planet/panels1
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 122
+	object
+		sprite planet/panels2
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 138
+	object
+		sprite planet/panels1
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 148
+	object
+		sprite planet/panels3
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 157
+	object
+		sprite planet/panels1
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 164
+	object
+		sprite planet/panels2
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 171
+	object
+		sprite planet/panels5
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 189
+	object
+		sprite planet/panels4
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 204
+	object
+		sprite planet/panels2
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 214
+	object
+		sprite planet/panels2
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 226
+	object
+		sprite planet/panels2
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 240
+	object
+		sprite planet/panels2
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 258
 	object
 		sprite planet/lava4-b
 		distance 812
@@ -17112,78 +17190,6 @@ system "Ki War Ek"
 		distance 812
 		period 349.820
 		offset 300
-	object
-		sprite planet/panels1
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 122
-	object
-		sprite planet/panels2
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 138
-	object
-		sprite planet/panels1
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 148
-	object
-		sprite planet/panels3
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 157
-	object
-		sprite planet/panels1
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 164
-	object
-		sprite planet/panels2
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 171
-	object
-		sprite planet/panels5
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 189
-	object
-		sprite planet/panels4
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 204
-	object
-		sprite planet/panels2
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 214
-	object
-		sprite planet/panels2
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 226
-	object
-		sprite planet/panels2
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 240
-	object
-		sprite planet/panels2
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 258
 	object
 		sprite planet/panels3
 			scale 0.5
@@ -17315,14 +17321,14 @@ system Kiluit
 	fleet "Vi Transport" 1100
 	fleet "Vi Small II" 2200
 	object
+		sprite star/f3
+		distance 56.09
+		period 65.48
+	object
 		sprite star/m4
 		distance 96.9
 		period 65.48
 		offset 180
-	object
-		sprite star/f3
-		distance 56.09
-		period 65.48
 	object
 		sprite planet/lava5
 		distance 515
@@ -17500,14 +17506,14 @@ system Kneirc
 	fleet "Small Vi" 3800
 	fleet "Small Scin" 2400
 	object
-		sprite star/k3
-		distance 170.2
-		period 70.1
-	object
 		sprite star/k0-old
 		distance 44.7
 		period 70.1
 		offset 180
+	object
+		sprite star/k3
+		distance 170.2
+		period 70.1
 	object
 		sprite planet/rock1
 		distance 401
@@ -17589,7 +17595,7 @@ system Kochab
 system "Kor Ak'Mari"
 	pos 43 42
 	government Korath
-	attributes "korath" "carbon"
+	attributes "carbon" "korath"
 	arrival 3100
 	habitable 3100
 	belt 1606
@@ -18456,22 +18462,22 @@ system L-6181
 	fleet "Iije (Swarming)" 1000
 	fleet "Iije (Surveillance)" 1000
 	object
+		sprite star/m8
+		distance 16.78
+		period 64.23
+	object
 		sprite star/a-dwarf
 		distance 81.2
 		period 64.23
 		offset 180
 	object
-		sprite star/m8
-		distance 16.78
-		period 64.23
+		sprite planet/dust1
+		distance 333.31
+		period 81.8202
 	object
 		sprite planet/cloud8
 		distance 3051.66
 		period 2266.69
-	object
-		sprite planet/dust1
-		distance 333.31
-		period 81.8202
 	object
 		sprite planet/uranus-b
 		distance 6994
@@ -19209,7 +19215,7 @@ system M-1188
 system MC-42
 	pos 1113.33 -500.68
 	government Uninhabited
-	attributes "umbral reach" "iije"
+	attributes "iije" "umbral reach"
 	arrival 625
 	habitable 625
 	belt 1290
@@ -19244,7 +19250,7 @@ system MC-42
 system MS-219
 	pos 1075.13 -568.167
 	government Uninhabited
-	attributes "umbral reach" "iije"
+	attributes "iije" "umbral reach"
 	arrival 2075
 	habitable 2075
 	belt 1404
@@ -19257,14 +19263,18 @@ system MS-219
 	fleet "Iije (Swarming)" 100
 	fleet "Iije (Surveillance)" 100
 	object
-		sprite star/a-dwarf
-		distance 36.1
-		period 64.2
-	object
 		sprite star/o-dwarf
 		distance 33.38
 		period 64.25
 		offset 180
+	object
+		sprite star/a-dwarf
+		distance 36.1
+		period 64.2
+	object
+		sprite planet/gas3-b
+		distance 840.12
+		period 213.827
 	object
 		sprite planet/miranda
 		distance 1182.1
@@ -19277,10 +19287,6 @@ system MS-219
 			sprite planet/dust0-b
 			distance 385.29
 			period 80
-	object
-		sprite planet/gas3-b
-		distance 840.12
-		period 213.827
 	object
 		sprite planet/gas2-b
 		distance 7384.94
@@ -19384,13 +19390,13 @@ system Maoni
 		sprite star/k-dwarf
 		period 10
 	object
-		sprite planet/rock1-b
-		distance 974.4
-		period 1216.65
-	object
 		sprite planet/miranda
 		distance 406.48
 		period 327.807
+	object
+		sprite planet/rock1-b
+		distance 974.4
+		period 1216.65
 
 system Markab
 	pos -241 168
@@ -21107,18 +21113,14 @@ system Mnashyu
 	minables tungsten 12 6.8
 	minables uranium 1 9.75
 	object
-		sprite star/k3
-		distance 170.2
-		period 70.13
-	object
 		sprite star/k0-old
 		distance 44.72
 		period 70.13
 		offset 180
 	object
-		sprite planet/rock1
-		distance 1530.8
-		period 633.533
+		sprite star/k3
+		distance 170.2
+		period 70.13
 	object
 		sprite planet/forest3
 		distance 1087.9
@@ -21127,6 +21129,10 @@ system Mnashyu
 			sprite planet/dust3-b
 			distance 197.75
 			period 16
+	object
+		sprite planet/rock1
+		distance 1530.8
+		period 633.533
 	object
 		sprite planet/rock7
 		distance 1619
@@ -21999,10 +22005,6 @@ system Nssryos
 	object
 		sprite star/f-giant
 		period 10
-	object "Var Oti"
-		sprite planet/rock2-b
-		distance 3645.5
-		period 1176.52
 	object
 		sprite planet/desert4-b
 		distance 666
@@ -22011,6 +22013,10 @@ system Nssryos
 		sprite planet/rock15-b
 		distance 1200
 		period 222.196
+	object "Var Oti"
+		sprite planet/rock2-b
+		distance 3645.5
+		period 1176.52
 	object
 		sprite planet/gas2-b
 		distance 6076
@@ -22128,6 +22134,10 @@ system O-3184
 		distance 248
 		period 103.008
 	object
+		sprite planet/lava0
+		distance 579.671
+		period 368.102
+	object
 		sprite planet/ocean9
 		distance 2143.07
 		period 2616.67
@@ -22135,10 +22145,6 @@ system O-3184
 			sprite planet/dust0
 			distance 155
 			period 118.84
-	object
-		sprite planet/lava0
-		distance 579.671
-		period 368.102
 	object
 		sprite planet/gas17-b
 		distance 4306
@@ -22284,22 +22290,22 @@ system Ookmya
 	object
 		sprite star/a-giant
 		period 10
-	object Ternituul
-		sprite planet/dust4
-		distance 7375.1
-		period 2850.35
-	object
-		sprite planet/rock2-b
-		distance 3375
-		period 882.382
 	object
 		sprite planet/gas5-b
 		distance 1500
 		period 261.446
 	object
+		sprite planet/rock2-b
+		distance 3375
+		period 882.382
+	object
 		sprite planet/dust1
 		distance 6114.1
 		period 2151.51
+	object Ternituul
+		sprite planet/dust4
+		distance 7375.1
+		period 2850.35
 	object
 		sprite planet/gas14-b
 		distance 8780.6
@@ -22352,6 +22358,11 @@ system Oosuoro
 			distance 325
 			period 120
 	object
+		sprite planet/ice7
+		distance 2229.4
+		period 1591.44
+		offset 300
+	object
 		sprite planet/gas2-b
 		distance 4029.3
 		period 3866.83
@@ -22359,11 +22370,6 @@ system Oosuoro
 		sprite planet/gas6-hot
 		distance 5459.1
 		period 6098.07
-	object
-		sprite planet/ice7
-		distance 2229.4
-		period 1591.44
-		offset 300
 	object
 		sprite planet/gas14-b
 		distance 6066.07
@@ -22569,10 +22575,6 @@ system Ossipago
 		sprite planet/rock9
 		distance 1274.65
 		period 303.807
-	object "Ember Graveyard"
-		sprite planet/wormhole-red
-		distance 3674.15
-		period 1486.78
 	object
 		sprite planet/gas10-b
 		distance 2584.65
@@ -22581,6 +22583,10 @@ system Ossipago
 			sprite planet/rock17
 			distance 221
 			period 17.2936
+	object "Ember Graveyard"
+		sprite planet/wormhole-red
+		distance 3674.15
+		period 1486.78
 
 system "Over the Rainbow"
 	pos 9904 7176
@@ -22600,6 +22606,14 @@ system "Over the Rainbow"
 	object "Pug Wormhole"
 		sprite planet/wormhole
 	object
+		sprite star/g0
+		distance 544.9
+		period 875.481
+		object
+			sprite star/m5
+			distance 107
+			period 12.7012
+	object
 		sprite star/k5
 		distance 1455.1
 		period 875.481
@@ -22608,14 +22622,6 @@ system "Over the Rainbow"
 			sprite star/m3
 			distance 75
 			period 12.1799
-	object
-		sprite star/g0
-		distance 544.9
-		period 875.481
-		object
-			sprite star/m5
-			distance 107
-			period 12.7012
 
 system Paeli
 	pos 129 497
@@ -22887,14 +22893,14 @@ system Pbelnep
 	fleet "Gegno Miners" 2600
 	fleet "Gegno Basic" 4100
 	object
+		sprite star/g5
+		distance 28.47
+		period 59.62
+	object
 		sprite star/k-dwarf
 		distance 50.7
 		period 59.62
 		offset 180
-	object
-		sprite star/g5
-		distance 28.47
-		period 59.62
 	object
 		sprite planet/rock8
 		distance 314.5
@@ -24369,6 +24375,7 @@ system Quaru
 	government Heliarch
 	attributes "ringworld"
 	arrival 700
+	departure 1000
 	habitable 700
 	belt 1440
 	haze _menu/haze-133
@@ -24397,6 +24404,126 @@ system Quaru
 	object
 		sprite star/g3
 		period 10
+	object
+		sprite planet/panels1
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 21
+	object
+		sprite planet/panels2
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 32
+	object
+		sprite planet/panels1
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 44
+	object
+		sprite planet/panels3
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 53
+	object
+		sprite planet/panels2
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 62
+	object
+		sprite planet/panels1
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 66
+	object
+		sprite planet/panels4
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 73
+	object
+		sprite planet/panels5
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 87
+	object
+		sprite planet/panels3
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 95
+	object
+		sprite planet/panels2
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 104
+	object
+		sprite planet/panels4
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 116
+	object
+		sprite planet/panels1
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 125
+	object
+		sprite planet/panels2
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 134
+	object
+		sprite planet/panels2
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 149
+	object
+		sprite planet/panels1
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 185
+	object
+		sprite planet/panels3
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 197
+	object
+		sprite planet/panels2
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 207
+	object
+		sprite planet/panels5
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 218
+	object
+		sprite planet/panels2
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 231
+	object
+		sprite planet/panels2
+			scale 0.5
+		distance 800
+		period 349.820
+		offset 244
 	object "Ring of Friendship"
 		sprite planet/ringworld
 			scale 0.5
@@ -24505,90 +24632,6 @@ system Quaru
 		period 349.820
 		offset 340
 	object
-		sprite planet/panels1
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 21
-	object
-		sprite planet/panels2
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 32
-	object
-		sprite planet/panels1
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 44
-	object
-		sprite planet/panels3
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 53
-	object
-		sprite planet/panels2
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 62
-	object
-		sprite planet/panels1
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 66
-	object
-		sprite planet/panels4
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 73
-	object
-		sprite planet/panels5
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 87
-	object
-		sprite planet/panels3
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 95
-	object
-		sprite planet/panels2
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 104
-	object
-		sprite planet/panels4
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 116
-	object
-		sprite planet/panels1
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 125
-	object
-		sprite planet/panels2
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 134
-	object
-		sprite planet/panels2
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 149
-	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
@@ -24654,42 +24697,6 @@ system Quaru
 		distance 830
 		period 349.820
 		offset 145
-	object
-		sprite planet/panels1
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 185
-	object
-		sprite planet/panels3
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 197
-	object
-		sprite planet/panels2
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 207
-	object
-		sprite planet/panels5
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 218
-	object
-		sprite planet/panels2
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 231
-	object
-		sprite planet/panels2
-			scale 0.5
-		distance 800
-		period 349.820
-		offset 244
 	object
 		sprite planet/panels2
 			scale 0.5
@@ -25486,14 +25493,14 @@ system Rouseu
 	asteroids "large metal" 1 1.51
 	minables uranium 16 7.1
 	object
+		sprite star/b5
+		distance 43.2
+		period 59.04
+	object
 		sprite star/a5
 		distance 149.7
 		period 59.0425
 		offset 180
-	object
-		sprite star/b5
-		distance 43.2
-		period 59.04
 	object
 		sprite planet/venus
 		distance 1031
@@ -26449,6 +26456,10 @@ system Scija
 	object
 		sprite star/b5
 		period 10
+	object
+		sprite planet/lava0
+		distance 1490
+		period 307.429
 	object Graede
 		sprite planet/earth-b
 		distance 4000
@@ -26460,10 +26471,6 @@ system Scija
 		object Siedi
 			sprite planet/forest3
 			distance 453.9
-	object
-		sprite planet/lava0
-		distance 1490
-		period 307.429
 	object
 		sprite planet/gas17
 		distance 8000
@@ -29166,14 +29173,14 @@ system Torbab
 	fleet "Saryd Miners" 6500
 	fleet Heliarch 250
 	object
-		sprite star/k5-old
-		distance 55.1011
-		period 9.35752
-	object
 		sprite star/g0
 		distance 48.4685
 		period 9.35752
 		offset 180
+	object
+		sprite star/k5-old
+		distance 55.1011
+		period 9.35752
 	object
 		sprite planet/luna-b
 		distance 265
@@ -29436,6 +29443,10 @@ system Uelawan
 		sprite star/a5
 		period 10
 	object
+		sprite planet/gas1-hot
+		distance 305.46
+		period 37.7499
+	object
 		sprite planet/water1
 		distance 1144
 		period 273.605
@@ -29444,10 +29455,6 @@ system Uelawan
 			sprite planet/dust7-b
 			distance 185
 			period 95.1
-	object
-		sprite planet/gas1-hot
-		distance 305.46
-		period 37.7499
 	object
 		sprite planet/jupiter
 		distance 3383
@@ -29484,8 +29491,8 @@ system Uhebe
 	link Cshudlye
 	link Ptetubo
 	link Scija
-	link Wreoul
 	link Vorsuke
+	link Wreoul
 	asteroids "small rock" 3 1.2
 	asteroids "medium rock" 12 1.91
 	asteroids "large rock" 3 1.489
@@ -30000,14 +30007,14 @@ system "Uwo Seija"
 	asteroids "large metal" 39 1.62
 	minables tungsten 18 2.9
 	object
-		sprite star/k0-old
-		distance 202.6
-		period 244.376
-	object
 		sprite star/a0
 		distance 197.1
 		period 244.376
 		offset 180
+	object
+		sprite star/k0-old
+		distance 202.6
+		period 244.376
 	object
 		sprite planet/ocean3
 		distance 1390.7
@@ -30041,14 +30048,14 @@ system V-2189
 	asteroids "large metal" 2 5.44
 	minables platinum 1 6.86
 	object
+		sprite star/o0
+		distance 77.281
+		period 73.781
+	object
 		sprite star/a0
 		distance 157.71
 		period 73.78
 		offset 180
-	object
-		sprite star/o0
-		distance 77.281
-		period 73.781
 	object
 		sprite planet/gas16-b
 		distance 1080
@@ -30101,16 +30108,16 @@ system Vaiov
 	object
 		sprite planet/browndwarf-y
 		distance 190
-		period 130
+		period 33.9882
 		offset 180
 	object
 		sprite planet/rhea-b
 		distance 687
-		period 184.567
+		period 233.686
 	object
 		sprite planet/lava6
 		distance 963
-		period 329.014
+		period 387.826
 	object
 		sprite planet/gas10
 		distance 2375
@@ -30306,14 +30313,6 @@ system Vesvii
 		distance 432.6
 		period 100.992
 	object
-		sprite planet/ice0
-		distance 3838.4
-		period 2669.21
-	object
-		sprite planet/gas1-b
-		distance 2923.8
-		period 1774.51
-	object
 		sprite planet/vesvi
 		distance 1017.4
 		period 364.246
@@ -30322,6 +30321,14 @@ system Vesvii
 			sprite planet/luna
 			distance 289.5
 			period 948.3
+	object
+		sprite planet/gas1-b
+		distance 2923.8
+		period 1774.51
+	object
+		sprite planet/ice0
+		distance 3838.4
+		period 2669.21
 
 system Vilacira
 	pos 805.1 -350.2
@@ -30501,18 +30508,17 @@ system Vorsuke
 		distance 1945.06
 		period 1372.52
 		object
-			sprite planet/rock7
-			distance 500
-			period 320
-			offset 10
+			sprite planet/rock17
+			distance 237.329
+			period 65
 		object
 			sprite planet/dust0
 			distance 350
 			period 100
 		object
-			sprite planet/rock17
-			distance 237.329
-			period 65
+			sprite planet/rock7
+			distance 500
+			period 320
 
 system Vulcuja
 	pos 1071.75 -263.767
@@ -31241,10 +31247,6 @@ system Wreoul
 		sprite star/g-dwarf
 		period 10
 	object
-		sprite planet/gas13-b
-		distance 2030
-		period 2987.15
-	object
 		sprite planet/gas5
 		distance 735
 		period 650.796
@@ -31252,6 +31254,10 @@ system Wreoul
 			sprite planet/ice8-b
 			distance 323.1
 			period 158.4
+	object
+		sprite planet/gas13-b
+		distance 2030
+		period 2987.15
 	object
 		sprite planet/dust1
 		distance 4274
@@ -31428,10 +31434,6 @@ system Yerser
 		distance 623.65
 		period 103.115
 	object
-		sprite planet/gas1-hot
-		distance 3964.75
-		period 1652.86
-	object
 		sprite planet/lava4-b
 		distance 1812.86
 		period 511.045
@@ -31439,6 +31441,10 @@ system Yerser
 			sprite planet/lava1
 			distance 244.29
 			period 30
+	object
+		sprite planet/gas1-hot
+		distance 3964.75
+		period 1652.86
 
 system Yli
 	pos 737.404 -492.911
@@ -31461,14 +31467,14 @@ system Yli
 	fleet "Vi Transport" 2300
 	fleet "Vi Cargo" 1700
 	object
+		sprite star/k8
+		distance 2.742
+		period 61.1493
+	object
 		sprite star/m-dwarf
 		distance 117.2
 		period 61.14
 		offset 180
-	object
-		sprite star/k8
-		distance 2.742
-		period 61.1493
 	object
 		sprite planet/rock0
 		distance 296
@@ -31509,14 +31515,14 @@ system Yllke
 	fleet "Gegno Basic" 1300
 	fleet Quarg 3300
 	object
+		sprite star/b8
+		distance 31.2
+		period 49.2
+	object
 		sprite star/m5
 		distance 109.7
 		period 49.2
 		offset 180
-	object
-		sprite star/b8
-		distance 31.2
-		period 49.2
 	object
 		sprite planet/jupiter
 		distance 545
@@ -31690,10 +31696,6 @@ system Zeinar
 		distance 450
 		period 185.218
 	object
-		sprite planet/dust6
-		distance 6400
-		period 9934.25
-	object
 		sprite planet/gas1-b
 		distance 550
 		period 250.270
@@ -31701,6 +31703,10 @@ system Zeinar
 			sprite planet/ice7-b
 			distance 411.8
 			period 294.3
+	object
+		sprite planet/dust6
+		distance 6400
+		period 9934.25
 
 system "Zeta Aquilae"
 	pos -369 276

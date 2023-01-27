@@ -183,7 +183,7 @@ planet "Aresepru Nat"
 	security 0
 
 planet Arroharg
-	attributes quarg "gegno quarg"
+	attributes "gegno quarg" quarg
 	landscape land/canyon12
 	description `Arroharg is a low-gravity moon that the Quarg have converted to some sort of harvesting grounds. Massive machines that dwarf your ship seem to be displacing mountainous formations while smaller ones collect from the zones left behind. Most of the architecture here is Quarg-like and is not designed in a way that welcomes visitors very comfortably. The lower levels of the outpost seem to dig deeper into the surface of the moon, but the farther they go down the more complex they become. There's no telling how deep into the moon they go, as they are restricted to anyone but the Quarg.`
 	spaceport `A few Quarg greet you with astonished expressions, but kindly assist you in anything you have trouble with due to the spaceport being designed for them. They communicate mostly in gestures and facial expressions, although this is sometimes hard to decipher. It seems they aren't used to outside visitors here and don't speak your language.`
@@ -1094,7 +1094,7 @@ planet Eminonu
 	government Uninhabited
 	security 0
 
-planet "Enbye"
+planet Enbye
 	attributes gegno vi
 	landscape land/fog0
 	description `A cold, mountainous world on the very edge of the binary system's habitable area, Enbye maintains the massive shipyards of the Gegno Vi, using raw resources gathered from the nearby volcanic planet to churn out hull after hull for warships. Many large canyons decorate the surface and are used as weapon test sites, and in one of the largest canyons lies a shipyard several times larger and older-looking than the rest.`
@@ -1155,7 +1155,7 @@ planet Esquiline
 planet Essime
 	attributes gegno vi
 	landscape land/mountain4
-	description `Starting from an early age, most Vi devote their lives to their endless trials of survival, finding themselves either on the frontlines of conflict or in the backlines of industry. As they grow old, they retire and spend the rest of their lives on green planets such as this one, where they hunt animals for food and till acres of land. `
+	description `Starting from an early age, most Vi devote their lives to their endless trials of survival, finding themselves either on the frontlines of conflict or in the backlines of industry. As they grow old, they retire and spend the rest of their lives on green planets such as this one, where they hunt animals for food and till acres of land.`
 	spaceport `The spaceport here is a very large circular shape with tall pillars reaching up into a dome roofing. The empty space between each pillar is occasionally interrupted by a freighter or two, and in the center is a main platform where most pilots are gathered. Surrounding the pilots are what appear to be older members of the Vi deep in conversation.`
 	spaceport `	Several Vi are chuckling deeply, likely telling stories of hunts they've had on the planet. Strangely, they pay you no attention; not even of distrust, and carry on about their day as if you aren't even present.`
 	government "Gegno Vi"
@@ -1586,7 +1586,7 @@ planet Goldcrawl
 planet Graede
 	attributes gegno vi
 	landscape land/forest2
-	description `Unlike the homeworld of the Gegno, the capital of the Vi is covered in astounding natural beauty where the land is untouched. Vast tracts of forests spread across relatively low mountain ranges, and a variety of both small and large marsupials can be seen running to and fro. Despite all of this, there are many plowed fields that have been converted to industrial ranges and shipyards, and several large cities have begun to grow towards the sky. `
+	description `Unlike the homeworld of the Gegno, the capital of the Vi is covered in astounding natural beauty where the land is untouched. Vast tracts of forests spread across relatively low mountain ranges, and a variety of both small and large marsupials can be seen running to and fro. Despite all of this, there are many plowed fields that have been converted to industrial ranges and shipyards, and several large cities have begun to grow towards the sky.`
 	spaceport `The structure you're parked at seems to be just a section of a much larger rectangular building with many other sections and rods projecting out from it. From the height you are at, you can see the wilderness stretch for miles, occasionally interrupted with another tall-reaching spaceport or factory.`
 	government "Gegno Vi"
 	shipyard "Gegno Vi Ships"
@@ -2725,7 +2725,7 @@ planet "New Tortuga"
 	"required reputation" -10
 	bribe 0.03
 	security 0
-	tribute 6000
+	tribute 1400
 		threshold 5000
 		fleet "Large Core Pirates" 10
 		fleet "Small Core Pirates" 15
@@ -3142,7 +3142,7 @@ planet "Remote Blue"
 planet Retilie
 	attributes ka'het uninhabited
 	landscape land/sea19
-	description `Retilie is an oceanic world; more than 95% of the planet's surface is covered by oceans, which can be several kilometers deep. Few traces of coastal villages are still visible, mostly composed of ancient metallic formations standing some kilometers from the seaside, where the occasional high waves can’t reach them. A few small cities on the mainland are in a better state, but without anyone to maintain them, vegetation has grown to completely cover many of the surviving buildings.`
+	description `Retilie is an oceanic world; more than 95% of the planet's surface is covered by oceans, which can be several kilometers deep. Few traces of coastal villages are still visible, mostly composed of ancient metallic formations standing some kilometers from the seaside, where the occasional high waves can't reach them. A few small cities on the mainland are in a better state, but without anyone to maintain them, vegetation has grown to completely cover many of the surviving buildings.`
 
 planet Reunion
 	attributes factory "near earth" urban
@@ -3198,7 +3198,7 @@ planet "Ring of Wisdom"
 	security 0.8
 
 planet Ruelogakk
-	attributes quarg "gegno quarg" station
+	attributes "gegno quarg" quarg station
 	landscape land/station5
 	description `This Quarg station, although pristine and kept in high order, has been constructed rather recently compared to the complete ringworld the next system over. It appears to be purposed as some sort of resting spot for tourists, though very few docking bays are in use. A hauntingly low number of Quarg are seen walking about the brightly lit abstract hallways of glass with only the faintest hum of machinery.`
 	spaceport `Only a few small alien transports can be seen docked with this station, hooked up to strange devices that seem to match the designs of their ships. Other than that, the alien's presence here seems to be kept at an extreme minimum, with at most one or two seen passing by occasionally.`
@@ -3985,7 +3985,7 @@ planet Trove
 		fleet "Small Syndicate" 5
 
 planet Truklar
-	attributes quarg "gegno quarg"
+	attributes "gegno quarg" quarg
 	landscape land/mars2
 	description `This world, like others the Quarg live on, has noticeably lower gravity than humans are accustomed to. Several medium-sized extravagant villages are found nested deep within an oddly shaped glass structure, and it is a beautiful sight to behold. Many different, smaller biomes also contain wondrous flora and fauna that don't seem to be native to this particular moon. Despite all of this, structures were not built in accustom to visitors such as the nearby aliens, who find it hard navigating through the narrow hallways.`
 	spaceport `Most of the spaceport is automated Quarg robotics that do not provide any interaction with you besides basic spaceport tasks such as refueling. Occasionally, one of these robots, visually similar to the Quarg themselves, guide you throughout the visitable zones of the port. Otherwise, your presence here is mostly overlooked.`
@@ -4128,7 +4128,6 @@ planet "Vara K'chrai"
 	spaceport `The streets in the Wanderer capital city seem to be mostly reserved for cargo vehicles; the Wanderers themselves fly from one building to another instead, and the skyscrapers have balconies dozens of stories above the ground where visitors can land or take off. The air traffic seems utterly chaotic, but somehow they avoid colliding with each other in midair, and certain columns of airspace have been reserved for ships taking off and landing so that flying Wanderers will not get caught in the backwash from the ship engines.`
 	shipyard "Wanderer Advanced"
 	outfitter "Wanderer Advanced"
-	"required reputation" 0
 	bribe 0
 
 planet "Vara Ke'sok"
@@ -4244,7 +4243,7 @@ planet Vatican
 planet Veliante
 	attributes ka'het uninhabited
 	landscape land/fog9
-	description `Veliante may have been habitable once, but no longer. Part of its southern hemisphere is filled with deadly levels of radiation, but even elsewhere on the planet, it isn’t safe to remain on the surface without adequate protection for too long. While animal life on the planet seems to have disappeared almost completely, plants and trees cover the surface in vast, colorful patches of flora.`
+	description `Veliante may have been habitable once, but no longer. Part of its southern hemisphere is filled with deadly levels of radiation, but even elsewhere on the planet, it isn't safe to remain on the surface without adequate protection for too long. While animal life on the planet seems to have disappeared almost completely, plants and trees cover the surface in vast, colorful patches of flora.`
 
 planet "Vibrant Water"
 	attributes farming saryd
