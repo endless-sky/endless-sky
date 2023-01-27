@@ -97,7 +97,6 @@ mission "Pact Supplies Convoy (Dirt Belt)"
 		dialog `You have reached <planet>, but you're missing something! Either you left part of the convoy behind, or not all of the cargo is in the system.`
 	on complete
 		payment 35000 50
-		"assisted free worlds" ++
 		dialog `After you land at Longjump's spaceport, a militia officer comes to inspect your ship before giving it the all-clear to be unloaded. "Thank you for your service. I will make sure that the <Pact / Free Worlds> will remember your assistance." He hands you your payment of <payment> and makes his way to the next convoy ship.`
 
 mission "Pact Supplies Escort (Dirt Belt)"
@@ -153,18 +152,29 @@ mission "Pact Supplies Escort (Dirt Belt)"
 		dialog `You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system.`
 	on complete
 		payment 35000 50
-		"assisted free worlds" ++
 		dialog `After you land at Longjump's spaceport, a militia officer comes to greet you. "Thank you for your service. I will make sure that the <Pact / Free Worlds> will remember your assistance." He hands you your payment of <payment>.`
 
 mission "FW Sympathiser Supplies"
 	name "Transport industrial machinery to <planet>"
 	description "A cell of Free Worlds loyalists will pay you <payment> if you transport <cargo> to <planet>. Because the Southern Rim worlds are sanctioned, the Republic may fine you if you are caught."
+	cargo weapons
+		illegal
+		stealth
+	source
+		attributes "dirt belt" factory
+		not planet "New Sahara"
 	destination Solace
-
-mission "Pact Syndicate assistance"
-	name "Transport industrial machinery to <planet>"
-	description "A Syndicated Systems official has asked you to covertly transport <cargo> to <planet>. Because the Southern Rim worlds are sanctioned, the Republic may fine you if you are caught."
-	destination Zug
+	to offer
+		has "war begins"
+		not "chosen sides"
+	on offer
+		conversation
+			``
+	npc
+		government "Republic"
+		personality scanning
+		system Wei
+		ship Gunboat "R.N.S. Pearl"
 
 
 
