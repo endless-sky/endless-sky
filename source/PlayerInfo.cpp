@@ -1487,6 +1487,8 @@ bool PlayerInfo::TakeOff(UI *ui)
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && !ship->IsDisabled())
 		{
+			// Recalculate the weapon cache in case a mass-less change had an effect.
+			ship->GetAICache().CreateWeaponCache();
 			if(ship->GetSystem() != system)
 			{
 				ship->Recharge(false);
@@ -1904,6 +1906,25 @@ Mission *PlayerInfo::BoardingMission(const shared_ptr<Ship> &ship)
 		}
 
 	return nullptr;
+}
+
+
+
+bool PlayerInfo::CaptureOverriden(const shared_ptr<Ship> &ship) const
+{
+	if(ship->IsCapturable())
+		return false;
+	// Check if there's a boarding mission being offered which allows this ship to be captured. If the boarding
+	// mission was declined, then this results in one-time capture access to the ship. If it was accepted, then
+	// the next boarding attempt will have the boarding mission in the player's active missions list, checked below.
+	const Mission *mission = boardingMissions.empty() ? nullptr : &boardingMissions.back();
+	// Otherwise, check if there's an already active mission which grants access. This allows trying to board the
+	// ship again after accepting the mission.
+	if(!mission)
+		for(const Mission &mission : Missions())
+			if(mission.OverridesCapture() && !mission.IsFailed() && mission.SourceShip() == ship.get())
+				return true;
+	return mission && mission->OverridesCapture() && !mission->IsFailed() && mission->SourceShip() == ship.get();
 }
 
 
