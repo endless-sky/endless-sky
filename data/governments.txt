@@ -486,6 +486,7 @@ government "Hai (Unfettered)"
 	
 	"player reputation" -1000
 	"attitude toward"
+		"Hai (Unfettered) (Wanderer Tribute)" 1.
 		"Hai" -.01
 		"Hai (Wormhole Access)" -.01
 		"Hai Merchant" -.01
@@ -500,6 +501,18 @@ government "Hai (Unfettered)"
 		"Elenctic Commune" .1
 	"bribe" .02
 	"fine" 0
+	"friendly hail" "friendly unfettered"
+	"friendly disabled hail" "friendly disabled unfettered"
+	"hostile hail" "hostile unfettered"
+	"hostile disabled hail" "hostile disabled unfettered"
+
+government "Hai (Unfettered) (Wanderer Tribute)"
+	swizzle 4
+	color .55 .27 .76
+	"crew attack" 1.4
+	"crew defense" 2.2
+	
+	"player reputation" 0
 	"friendly hail" "friendly unfettered"
 	"friendly disabled hail" "friendly disabled unfettered"
 	"hostile hail" "hostile unfettered"
