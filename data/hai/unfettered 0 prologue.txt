@@ -632,6 +632,12 @@ mission "Unfettered: Bring Hai"
 			`	"I mean that they are prevented from reaching their true potential. Once we had many stars and planets to call ours, but since then most of the Hai have decided to stop changing, to stay peaceful with all species, no matter how primitive. They have chosen to decay, to grow soft. The Unfettered are the ones who choose to keep our legacy, our way of life, and then to evolve, to grow."`
 			choice
 				`	"What is it exactly that you want me to do?"`
+					goto action
+				`	"But I thought the Unfettered only split from the Hai a few hundread years ago?"`
+					to display
+						has "Ask the Hai about the Unfettered"
+			`	He raises an eyebrow, "That is true, you seem to be well versed in Hai history. But there is never only one version of it. When I speak of the Unfettered I mean more than just what we are today, I even mean more than the Hai that are in Unfettered space."`
+			`	"When I use the word 'Unfettered', that includes all those that are willing to fight for their values. Those kind of Hai existed before the alien raids, as well as before and troughout the coming of the Hai empire, and they will always exist, even if the Unfettered government falls. You cannot kill an idea. But let us go back to the matter at hand, shall we?"`
 			label action
 			`	"It's pretty simple: you only need to go to <stopovers>, pick up <bunks> Hai and bring them to this planet. They will find their way from there." You somehow doubt that affirmation, seeing how everything here is in a... chaotic state, to say the least. You hope that at least the Hai you're getting are aware of this, or you may have to bring them back...`
 			choice
@@ -1649,7 +1655,7 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 					goto agree
 				`	"How do I scan it?"`
 			label scan
-			`	"The information provided by one of our value detectors should be sufficient. If you don't have one, you can install one on Darkcloak, on the way there. You may want to get multiple scanners so you can scan the ship from a longer range, and faster. Please do actively scan it. Passive intel gathered on the fly will not do."`
+			`	"You need to use one of our Value Detectors, the information provided by it should be sufficient. If you don't have one, you can install one on Darkcloak, on the way there. You may want to get multiple scanners so you can scan the ship from a longer range, and faster. Please do actively scan it. Passive intel gathered on the fly will not do."`
 			choice
 				`	"Sure, will do."`
 					goto agree
@@ -1657,6 +1663,7 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 					decline
 			label agree
 			`	On the way back to your ship, Mera runs up to you. "One... last... thing, captain!" You let her catch her breath. "We have noticed one Geocoris just entered <waypoints> as expected, but seems to have some special modifications. Please scan that one specifically. We have marked its signature for you to recognize it. We want to have a detailed scan of its cargo. Also, I've just found a captain willing to give you one of our scanners. It will be placed in your cargo hold if there is no space on your ship."`
+			`	I cannot stress enough that you NEED to use this scanner, as any other will simply either not contain enough information, or we could be unable to make good use of it.`
 				accept
 		outfit "Value Detector"
 		log "People" "Mera" `An Unfettered engineer who is interested in ship designs of all kinds. She is easily excited by new technologies and ships.`
@@ -1673,7 +1680,15 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 			names "hai"
 			variant
 				"Geocoris"
-		dialog `You have scanned the Geocoris. You may now return to <destination> with the scanner logs.`
+		conversation
+			branch "didn't listen"
+				not "outfit (flagship installed): Value Detector"
+			`You have scanned the Geocoris. You may now return to <destination> with the scanner logs.`
+				decline
+			label "didn't listen"
+			`You have scanned the Geocoris, but you did not use a Value Detector to do so. The scans will be of no value to Mera, you have failed the mission.`
+			action
+				fail "Unfettered: Solifuge 1: Geocoris Design"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
@@ -1717,19 +1732,22 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 			`	"Oh, and before I forget, you should not attack them, even if they strike first. I am not sure how they will even react to your presence," she adds.`
 			choice
 				`	"Okay, I better get going right now then."`
-					accept
+					goto beforeugo
 				`	"Why not just do it yourself?"`
 			`	"We don't know what their reaction could be. It would be preferable if you did it because they are more likely to think of you as separate from us. We value trust a lot, with anyone. Once it is damaged, even by an misinterpreted act as simple as this, it cannot easily be repaired." She still seems to be in a hurry, but you figure one more minute would not change much in your ability to catch that ship.`
 			choice
 				`	"Seems good to me. I'll do it."`
-					accept
+					goto beforeugo
 				`	"What kind of ship are we talking about?"`
 			`	She seems anxious to tell you. "It's a human ship, and quite a big one. We do not know its designation in human space, but it carries a few small ships and uses alien technologies. You do not need to be able to destroy it; just scan it and then come back here." She did not seem to want to answer the last question, and maybe only answered this one so you would go away. Now she is waiting for an answer. Maybe you should reassure her in your abilities before she starts doubting you and hiring someone else.`
 			choice
 				`	"I'm not worried about any one ship. I'll do it."`
-					accept
+					goto beforeugo
 				`	"That seems too dangerous to me. Sorry, but I will not be helping you anymore."`
 					decline
+			label beforeugo
+			`	"Before you go, I must remind you that you need to use one of our Value Detectors to scan the ship, like before."`
+				accept
 	waypoint "Hi Yahr"
 	on waypoint
 		dialog `As you enter the system, you see the ship and identify it as a Navy Auxiliary. Whatever happens, the Unfettered asked you not to destroy it and only scan it - at least for now.`
@@ -1739,10 +1757,9 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 		system "Hi Yahr"
 		ship "Alpha Auxiliary (Bringing Supplies)" "Settler"
 		conversation
-			`You have finished scanning the Auxiliary.`
-			`	There can be no doubt: it is controlled by Alphas.`
-				to display
-					has "flagship attribute: tactical scan power"
+			branch "didn't listen"
+				not "outfit (flagship installed): Value Detector"
+			`You have finished scanning the Auxiliary. There can be no doubt: it is controlled by Alphas.`
 			`	As you prepare yourself to exit the system and bring the logs back, you receive a message from the local Unfettered authorities.`
 			`	"We demand that you land right away. If you go to any other system, that ship may pursue you. We do not want a dispute between our suppliers of jump drives; this is probably just a misunderstanding. If you land we can guarantee your safety here. We have requested that ship to land on another port, on Firelode, since it did fire on you first you without any apparent provocation."`
 			choice
@@ -1755,6 +1772,11 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 				decline
 			label jump
 			`	"Maybe, but there is no guarantee their ship will not pursue you. Please, land straight away, I assure you the other ship will land on another planet, and if not, our orbital defences will protect you."`
+				decline
+			label "didn't listen"
+			`You have finished scanning the Auxiliary, but you did not use a Value Detector to do so, and the scan will be of no value to Mera. You have failed the mission.`
+			action
+				fail "Unfettered: Solifuge 2: Auxiliary Design"
 	npc
 		government "Alpha"
 		personality timid staying vindictive
