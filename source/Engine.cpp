@@ -811,13 +811,13 @@ void Engine::Step(bool isActive)
 				int escorts = 0;
 				if(!target->GetParent())
 					escorts = target->GetEscorts().size();
-				string name = "Fleet: " + (!target->GetParent() ? "Flagship for " + to_string(escorts) :
+				string name = "Fleet: " + (!target->GetParent() ? "Flagship of " + to_string(escorts) :
 						target->GetParent()->Name());
-				info.SetString("Flagship: ", name);
+				info.SetString("parent", name);
 				if(target->GetParent())
 				{
 					string PSystem = target->GetParent()->GetSystem()->Name();
-					info.SetString("PSystem", "Flagship Sys: " + PSystem);
+					info.SetString("PSystem", "Parent Sys: " + PSystem);
 				}
 				string person = "Personality: ";
 				person += (target->GetPersonality().IsPacifist() ? "Pacifist" : target->
