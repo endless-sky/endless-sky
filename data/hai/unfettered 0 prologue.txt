@@ -637,7 +637,7 @@ mission "Unfettered: Bring Hai"
 					to display
 						has "Ask the Hai about the Unfettered"
 			`	He raises an eyebrow, "That is true, you seem to be well versed in Hai history. But there is never only one version of it. When I speak of the Unfettered I mean more than just what we are today, I even mean more than the Hai that are in Unfettered space."`
-			`	"When I use the word 'Unfettered', that includes all those that are willing to fight for their values. Those kind of Hai existed before the alien raids, as well as before and troughout the coming of the Hai empire, and they will always exist, even if the Unfettered government falls. You cannot kill an idea. But let us go back to the matter at hand, shall we?"`
+			`	"When I use the word 'Unfettered', that includes all those that are willing to fight for their values. Those kind of Hai existed before the alien raids. They existed even before the coming of the great Hai empire. Ever since the Hai first drew breath they existed, and they always will, even if the Unfettered government falls. You cannot kill an idea. But let us go back to the matter at hand, shall we?"`
 			label action
 			`	"It's pretty simple: you only need to go to <stopovers>, pick up <bunks> Hai and bring them to this planet. They will find their way from there." You somehow doubt that affirmation, seeing how everything here is in a... chaotic state, to say the least. You hope that at least the Hai you're getting are aware of this, or you may have to bring them back...`
 			choice
