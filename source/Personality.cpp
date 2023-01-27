@@ -55,6 +55,7 @@ namespace {
 	const int LAUNCHING = (1 << 28);
 	const int DARING = (1 << 29);
 	const int SECRETIVE = (1 << 30);
+	const int RAMMING = (1 << 31);
 
 	const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -87,7 +88,8 @@ namespace {
 		{"marked", MARKED},
 		{"launching", LAUNCHING},
 		{"daring", DARING},
-		{"secretive", SECRETIVE}
+		{"secretive", SECRETIVE},
+		{"ramming", RAMMING},
 	};
 
 	// Tokens that combine two or more flags.
@@ -263,6 +265,13 @@ bool Personality::IsOpportunistic() const
 bool Personality::IsMerciful() const
 {
 	return flags & MERCIFUL;
+}
+
+
+
+bool Personality::IsRamming() const
+{
+	return flags & RAMMING;
 }
 
 
