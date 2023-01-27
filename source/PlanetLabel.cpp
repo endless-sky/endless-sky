@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "RingShader.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "Wormhole.h"
 
 #include <algorithm>
 #include <cmath>
@@ -86,7 +87,7 @@ PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, con
 	const Planet &planet = *object.GetPlanet();
 	name = planet.Name();
 	if(planet.IsWormhole())
-		color = Color(.8f, .3f, 1.f, 1.f);
+		color = *planet.GetWormhole()->GetLinkColor();
 	else if(planet.GetGovernment())
 	{
 		government = "(" + planet.GetGovernment()->GetName() + ")";

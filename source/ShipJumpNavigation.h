@@ -37,14 +37,12 @@ public:
 
 public:
 	ShipJumpNavigation() = default;
+	ShipJumpNavigation(const Ship &ship);
 
 	// Calibrate this ship's jump navigation information, caching its jump costs, range, and capabilities.
-	void Calibrate(const Ship &ship);
+	void Calibrate();
 	// Recalibrate jump costs for this ship, but only if necessary.
-	void Recalibrate(const Ship &ship);
-
-	// Pass the current system that the ship is in to the navigation.
-	void SetSystem(const System *system);
+	void Recalibrate();
 
 	// Get the amount of fuel that would be expended to jump to the destination. If the destination is
 	// nullptr then return the maximum amount of fuel that this ship could expend in one jump.
@@ -79,7 +77,7 @@ private:
 	// Cached information about the ship. Checked against the ship's current
 	// information during recalibration.
 	double mass = 0.;
-	const System *currentSystem = nullptr;
+	const Ship *ship = nullptr;
 
 	// Cached jump navigation information.
 	double hyperdriveCost = 0.;

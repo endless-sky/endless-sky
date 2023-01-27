@@ -195,7 +195,7 @@ ship "Cicada"
 		"cargo space" 143
 		"outfit space" 323
 		"weapon capacity" 89
-		"engine capacity" 58
+		"engine capacity" 64
 		weapon
 			"blast radius" 80
 			"shield damage" 960
@@ -815,13 +815,13 @@ ship "Sea Scorpion"
 		"hull" 4900
 		"required crew" 14
 		"bunks" 36
-		"mass" 360
+		"mass" 320
 		"drag" 5.2
 		"heat dissipation" .7
 		"fuel capacity" 500
 		"cargo space" 45
 		"outfit space" 510
-		"weapon capacity" 168
+		"weapon capacity" 188
 		"engine capacity" 117
 		weapon
 			"blast radius" 84
@@ -829,20 +829,23 @@ ship "Sea Scorpion"
 			"hull damage" 420
 			"hit force" 1260
 	outfits
-		"Hai Tracker Pod" 4
-		"Chameleon Anti-Missile" 2
-		"Tracker Storage Pod" 4
-		"Hai Tracker" 336
-		"Hai Williwaw Cooling" 2
-		"Hai Octopus Jammer"
-		"Boulder Reactor"
-		"Hai Ravine Batteries"
-		"Hai Diamond Regenerator"
-		`"Bondir" Atomic Thruster`
 		`"Bondir" Atomic Steering`
-		"Value Detector"
-		"Hyperdrive"
+		`"Bondir" Atomic Thruster`
+		"Cargo Expansion"
+		"Chameleon Anti-Missile"
+		"Fuel Pod"
+		"Geode Reactor"
+		"Hai Diamond Regenerator"
+		"Hai Ravine Batteries"
+		"Hai Tracker" 336
+		"Hai Tracker Pod" 4
+		"Hai Williwaw Cooling"
+		Hyperdrive
 		"Pulse Rifle" 15
+		"Pulse Turret"
+		"Quantum Keystone"
+		"Tracker Storage Pod" 4
+		"Value Detector" 2
 
 	engine -28.5 68.5
 	engine 28.5 68.5
@@ -874,6 +877,22 @@ ship "Sea Scorpion"
 	explode "large explosion" 14
 	"final explode" "final explosion medium"
 	description "The Sea Scorpion was designed several decades ago to serve as a mobile platform to launch Trackers. However, it is only recently that the Unfettered have been able to mass produce them. While individually vulnerable, the reduced cost of manufacturing compared to Shield Beetles allow the materially inferior Unfettered to gain a numerical advantage against their brethren."
+
+ship "Sea Scorpion" "Sea Scorpion (Tracker)"
+	outfits
+		"Hai Tracker Pod" 4
+		"Chameleon Anti-Missile" 2
+		"Tracker Storage Pod" 4
+		"Hai Tracker" 336
+		"Hai Williwaw Cooling" 2
+		"Hai Octopus Jammer"
+		"Boulder Reactor"
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator"
+		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Value Detector"
+		"Hyperdrive"
 
 ship "Sea Scorpion" "Sea Scorpion (Pulse)"
 	outfits
@@ -1394,7 +1413,7 @@ ship "Solifuge"
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
 		"Hyperdrive"
-			
+		
 	engine -28 135.5
 	engine 28 135.5
 	gun 0 -140 "Hai Tracker Pod"
