@@ -59,7 +59,7 @@ mission "Betelguese Shipment [1]"
 
 mission "Betelguese Shipment [2]"
 	name "Shipment to <planet>"
-	description "Deliver <cargo> to <destination>, the home of Betelgeuse Shipyards, a well-respected ship manufacturer in the region. Payment is <payment>."
+	description "Deliver <cargo> to <planet>, the home of Betelgeuse Shipyards, a well-respected ship manufacturer in the region. Payment is <payment>."
 	cargo "minerals" 5 2 .1
 	job
 	repeat
@@ -74,6 +74,24 @@ mission "Betelguese Shipment [2]"
 		government Pirate
 		personality heroic harvests plunders
 		fleet "Small Northen Pirates"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Navy resupply"
+	name "Resupply military base on <planet>"
+	description "The Navy base on <destination> is running low on supplies. Deliver <cargo> to <planet> by <date>. Payment is <payment>."
+	cargo Military
+	job
+	repeat
+	to offer
+		random < 5
+	source 
+		not government Pirate
+	destination 
+		attributes "far north" military
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
