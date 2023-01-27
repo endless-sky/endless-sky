@@ -45,6 +45,7 @@ class Government;
 class Minable;
 class Phrase;
 class Planet;
+class PlayerInfo;
 class Projectile;
 class StellarObject;
 class System;
@@ -195,6 +196,7 @@ public:
 	const Phrase *GetHailPhrase() const;
 	void SetHailPhrase(const Phrase &phrase);
 	std::string GetHail(std::map<std::string, std::string> &&subs) const;
+	bool CanSendHail(const PlayerInfo &player, bool allowUntranslated = false) const;
 
 	// Set the commands for this ship to follow this timestep.
 	void SetCommands(const Command &command);
@@ -214,7 +216,7 @@ public:
 	std::shared_ptr<Ship> Board(bool autoPlunder, bool nonDocking);
 	// Scan the target, if able and commanded to. Return a ShipEvent bitmask
 	// giving the types of scan that succeeded.
-	int Scan();
+	int Scan(const PlayerInfo &player);
 	// Find out what fraction of the scan is complete.
 	double CargoScanFraction() const;
 	double OutfitScanFraction() const;
