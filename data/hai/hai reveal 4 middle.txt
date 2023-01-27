@@ -1520,7 +1520,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				`	"That is correct."`
 					goto correct
 				`	"I can also testify to the human position on the matter."`
-			`	The moderator says, in a dispassionate tone, "Right, well, I doubt that will be necessary."`
+			`	The moderator says in a dispassionate tone, "Right, well, I doubt that will be necessary."`
 			label correct
 			`	As his expression changes from unemotional to impassive, the moderator continues. "Your presence," he says pointedly, "is distasteful to many Elders, and," he pauses, "presents opportunities to others. Those factions offer you a once in a lifetime opportunity: access to confidential files from Hai intelligence services, in a private reading room. You may travel between the proceedings and reading room at your leisure. At the end of the proceedings, our internal classified news network will brief you on the proceedings' results.`
 
@@ -1745,12 +1745,12 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				"Hai Reveal [A11] Sound the Alarm: time" ++
 			`	The report begins with a brief summary of Hai involvement with anarchist groups, which dates back from the founding of the first anarchist colony, Freedom, around the same time as human first contact. Apparently, the Hai have had generally positive relations with the largest organizations on anarchist planets. The Hai trade humanitarian supplies or other goods for assistance from the anarchist planets, even ones as distant as Thule and Greenrock.`
 			`	Much of the nature of the "assistance from anarchist planets" is redacted, but it seems it mostly involves shutting down groups that try to reveal or harm the Hai. However, there are notes about deals with anarchists who oppose slavery, arranging massive rescues, bringing thousands of slaves at a time to freedom in Hai space. Also, there is an amnesty program for pirates who have committed no serious crimes, which explains the abundance of reformed pirates on Allhome.`
-			`	Recent anti-pirate actions by the Free Worlds have weakened the large anarchist organizations that had deals with the Hai, and the Republic is expected to follow suit. This hindered the Hai ability to control pirates' activities near Ultima Thule, leading to the current crisis. Previous approaches that worked with large organizations, haven't worked with small pirate groups.`
+			`	Recent anti-pirate actions by the Free Worlds have weakened the large anarchist organizations that had deals with the Hai, and the Republic is expected to follow suit. This hindered the Hai ability to control pirates' activities near Ultima Thule, leading to the current crisis. Previous approaches that worked with large organizations have not worked with small pirate groups so far.`
 			`	They can't track small pirate groups, but they clearly have an intelligence network. Is it good for anything?`
 				goto reading
 				to display
 					not "Hai Reveal [A11] Sound the Alarm: human book"
-			`	It seems that, although the Hai have no trouble with large, established, hierarchies, they have trouble tracking small, independent, anarchist, groups. Their very approach to anarchists was flawed: make deals with the biggest groups, as if those were heads of an anarchist hierarchy. The weakness of the Hai intelligence service is asymmetric warfare.`
+			`	It seems that, although the Hai have no trouble with large, established hierarchies, they have trouble tracking small, independent, anarchist groups. Their very approach to anarchists was flawed: make deals with the biggest groups, as if those were heads of an anarchist hierarchy. The weakness of the Hai intelligence service is asymmetric warfare.`
 				goto reading
 				to display
 					has "Hai Reveal [A11] Sound the Alarm: human book"
@@ -1777,7 +1777,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				set "Hai Reveal [A11] Sound the Alarm: acorns book"
 				"Hai Reveal [A11] Sound the Alarm: time" ++
 			`	This report describes the rapid degradation of the environmental condition on Unfettered worlds, and frequent problems with crop blight. This comes from over-farming, lack of pollution controls, over-mining, and simply a lack of resources to handle unexpected environmental catastrophes. Though the Unfettered always have enough food produced internally for bare sustenance, a civilization needs more than that. They stockpile food during excess, including by raids or aid. Such stockpiles run out every year or two during severe catastrophes, causing more raids and necessitating more aid.`
-			`	There is a detailed study on alternative crops, noting that the most efficient food for Hai is nuts, especially acorns, just like squirrels on Earth. It notes that common evolutionary pressures lead to common solutions, listing oak tree species on various planets. Apparently Earth's willow oak would grow well on Warfeed, but the powerful aphrodisiac effects, "may have unintended consequences." Also, the "Mile-High Blue Oak" is a rapid food source, but it takes a century to begin producing acorns. The Hai are still investigating possible crops, beyond the ones the Unfettered have already accepted.`
+			`	There is a detailed study on alternative crops, noting that the most efficient food for Hai is nuts, especially acorns, just like squirrels on Earth. It notes that common evolutionary pressures lead to common solutions, listing oak tree species on various planets. Apparently Earth's willow oak would grow well on Warfeed, but the powerful aphrodisiac effects "may have unintended consequences." Also, the "Mile-High Blue Oak" is a rapid food source, but it takes a century to begin producing acorns. The Hai are still investigating possible crops, beyond the ones the Unfettered have already accepted.`
 				goto reading
 
 			label teeneep1
@@ -1788,7 +1788,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			`	This is an extremely biased report of Teeneep's life up to full physical maturity. It focuses on chaotic incidents of her past, and uses them to justify the claim that she has always been a menace to society.`
 			`	The most telling event happens shortly after Teeneep's mother mysteriously vanishes on a science expedition to Darkwaste, leaving the young Hai quite stressed. Soon after, at school, she saw a teacher berating a classmate about "unfettered tendencies." In response, she stood on a table and started chanting anti-bullying protest slogans. The whole class joined in, and they marched through the hallways chanting. An hour later, all students in the school was doing it, and they locked themselves in a well-stocked cafeteria, refusing to come out until the teacher was fired.`
 			`	Two days later, the offending teacher was unemployed, and Teeneep was in a "mandatory juvenile behavior modification program" which the report says she was "failing spectacularly."`
-			`	Also, throughout the report, there were complaints about Teeneep befriending "problematic members of society." This included former pirates, Unfettered Hai, freed slaves, and even reformed violent convicts. The report admits Teeneep generally had a positive impact on the lives she touched, but insists that her tendency to enter "that part of society" is a major concern. In particular, it notes that her quite athletic combat abilities developed in her youth during her time with "troubled individuals."`
+			`	Also, throughout the report there were complaints about Teeneep befriending "problematic members of society." This included former pirates, Unfettered Hai, freed slaves, and even reformed violent convicts. The report admits Teeneep generally had a positive impact on the lives she touched, but insists that her tendency to enter "that part of society" is a major concern. In particular, it notes that her quite athletic combat abilities developed in her youth during her time with "troubled individuals."`
 				goto reading
 
 			label teeneep2
@@ -1806,7 +1806,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				log `A Hai intelligence report reports a mutual fondness between Hai and Quarg for one anothers' cuisine. It also mentioned lingering frustration about the Quarg refusing to fight the Korath during their warlike spiral that led to near extinction. The Hai felt that Quarg involvement would have saved more Korath lives.`
 				set "Hai Reveal [A11] Sound the Alarm: quarg book"
 				"Hai Reveal [A11] Sound the Alarm: time" ++
-			`	This report is surprisingly light on details of any interest. It seems the Hai view the Quarg as a nearby race of friendly neighbors. There's frequent cultural exchanges, and a large food trade in both directions. Apparently, "genuine Hai cuisine" is popular among the Quarg, especially the famous Hai acorn cookies. In return, the Hai use Quarg spices extensively, including some of the meals you've eaten since you arrived. The spices are described as, "subtle and mysterious."`
+			`	This report is surprisingly light on details of any interest. It seems the Hai view the Quarg as a nearby race of friendly neighbors. There's frequent cultural exchanges, and a large food trade in both directions. Apparently, "genuine Hai cuisine" is popular among the Quarg, especially the famous Hai acorn cookies. In return, the Hai use Quarg spices extensively, including some of the meals you've eaten since you arrived. The spices are described as "subtle and mysterious."`
 			`	Between the mundane and cultural, you find a few interesting facts. There is some lingering frustration about the Quarg refusing to help fend off Korath raids. This is partly due to the Hai having to fight for themselves, but mostly out of a belief that more Korath would have survived the war if the Quarg had intervened. Also, the Hai apparently have no interest in developing the jump drives Quarg have in abundance due to "the fate of the Korath," and warnings from the Quarg about the dangers of the jump drive manufacturing process.`
 				goto reading
 
