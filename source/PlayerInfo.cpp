@@ -1487,6 +1487,8 @@ bool PlayerInfo::TakeOff(UI *ui)
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && !ship->IsDisabled())
 		{
+			// Recalculate the weapon cache in case a mass-less change had an effect.
+			ship->GetAICache().CreateWeaponCache();
 			if(ship->GetSystem() != system)
 			{
 				ship->Recharge(false);
