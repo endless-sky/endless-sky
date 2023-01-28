@@ -31,7 +31,7 @@ mission "Pact Supplies Landing (Dirt Belt)"
 	minor
 	deadline 1
 	to offer
-		not "war begins" "chosen sides"
+		not "event: war begins" "event: chosen sides"
 		random < 40
 	source
 		attributes "dirt belt" factory
@@ -51,9 +51,9 @@ mission "Pact Supplies Convoy (Dirt Belt)"
 	substitutions
 		"<Pact / Free Worlds>" "South"
 		"<Pact / Free Worlds>" "Pact"
-			not "war begins"
+			not "event: war begins"
 		"<Pact / Free Worlds>" "Free Worlds"
-			has "war begins"
+			has "event: war begins"
 	source
 		attributes "dirt belt" factory
 		category "Transport" "Light Freighter" "Heavy Freighter"
@@ -61,7 +61,7 @@ mission "Pact Supplies Convoy (Dirt Belt)"
 	to offer
 		has "Pact Supplies 0 (Dirt Belt Landing): offered"
 		not "Pact Supplies 0 (Dirt Belt Landing): failed"
-		not "war begins" "chosen sides"
+		not "event: war begins" "event: chosen sides"
 	on offer
 			`You enter the quartermaster's office, where you find a small group of captains already waiting, all of whom were sent by the militia officer that signed off your ship. Before long, the quartermaster himself arrives alongside the militia officer. There is a respectful pause as the quartermaster goes to sit at his desk. As he is settled, he scans all of you down for a moment with a focused eye, and clears his throat.`
 			`	"Good day, captains. You may want to know why you are standing here in my office, and why my colleague here has asked you to help us on a 'supply job.' There is a developing situation in the Southern Rim that concerns our larger militia brothers, and we are obligated to support them. Piracy is ever more prevalent down there, and we generally have a surplus of weaponry that we can manufacture and replace ourselves. Therefore, we are looking to move some of our weapons stores down to <planet> to help deal with their situation. We will gladly pay each of you <payment> to convoy these goods. Do any of you have any questions?"`
@@ -106,9 +106,9 @@ mission "Pact Supplies Escort (Dirt Belt)"
 	substitutions
 		"<Pact / Free Worlds>" "South"
 		"<Pact / Free Worlds>" "Pact"
-			not "war begins"
+			not "event: war begins"
 		"<Pact / Free Worlds>" "Free Worlds"
-			has "war begins"
+			has "event: war begins"
 	source
 		attributes "dirt belt" factory
 		category "Interceptor" "Light Warship" "Medium Warship" "Heavy Warship"
@@ -116,7 +116,7 @@ mission "Pact Supplies Escort (Dirt Belt)"
 	to offer
 		has "Pact Supplies 0 (Dirt Belt Landing): offered"
 		not "Pact Supplies 0 (Dirt Belt Landing): failed"
-		not "war begins" "chosen sides"
+		not "event: war begins" "event: chosen sides"
 	on offer
 			`You enter the quartermaster's office, where you find a small group of captains already waiting, all of whom were sent by the militia officer that signed off your ship. Before long, the quartermaster himself arrives alongside the militia officer. There is a respectful pause as the quartermaster goes to sit at his desk. As he is settled, he scans all of you down for a moment with a focused eye, and clears his throat.`
 			`	"Good day, captains. You may want to know why you are standing here in my office, and why my colleague here has asked you to help us on a 'supply job.' There is a developing situation in the Southern Rim that concerns our larger militia brothers, and we are obligated to support them. Piracy is ever more prevalent down there, and we generally have a surplus of weaponry that we can manufacture and replace ourselves. Therefore, we are looking to move some of our weapons stores down to <planet> to help deal with their situation. We will gladly pay each of you <payment> to convoy these goods. Do any of you have any questions?"`
@@ -165,14 +165,13 @@ mission "FW Sympathiser Supplies"
 		not planet "New Sahara"
 	destination Solace
 	to offer
-		has "war begins"
-		not "chosen sides"
+		has "event: war begins"
+		not "event: chosen sides"
 	on offer
 		conversation
 			``
 	npc
 		government "Republic"
-		personality scanning
 		system Wei
 		ship Gunboat "R.N.S. Pearl"
 
