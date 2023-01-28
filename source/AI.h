@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef ES_AI_H_
@@ -95,13 +98,15 @@ private:
 	static double TurnBackward(const Ship &ship);
 	static double TurnToward(const Ship &ship, const Point &vector);
 	static bool MoveToPlanet(Ship &ship, Command &command);
-	static bool MoveTo(Ship &ship, Command &command, const Point &targetPosition, const Point &targetVelocity, double radius, double slow);
+	static bool MoveTo(Ship &ship, Command &command, const Point &targetPosition,
+		const Point &targetVelocity, double radius, double slow);
 	static bool Stop(Ship &ship, Command &command, double maxSpeed = 0., const Point direction = Point());
 	static void PrepareForHyperspace(Ship &ship, Command &command);
 	static void CircleAround(Ship &ship, Command &command, const Body &target);
 	static void Swarm(Ship &ship, Command &command, const Body &target);
 	static void KeepStation(Ship &ship, Command &command, const Body &target);
 	static void Attack(Ship &ship, Command &command, const Ship &target);
+	static void AimToAttack(Ship &ship, Command &command, const Body &target);
 	static void MoveToAttack(Ship &ship, Command &command, const Body &target);
 	static void PickUp(Ship &ship, Command &command, const Body &target);
 	// Special decisions a ship might make.
@@ -115,6 +120,7 @@ private:
 	bool DoCloak(Ship &ship, Command &command);
 	// Prevent ships from stacking on each other when many are moving in sync.
 	void DoScatter(Ship &ship, Command &command);
+	bool DoSecretive(Ship &ship, Command &command);
 
 	static Point StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &shouldReverse);
 	// Get a vector giving the direction this ship should aim in in order to do

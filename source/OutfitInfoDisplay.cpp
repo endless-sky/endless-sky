@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "OutfitInfoDisplay.h"
@@ -32,7 +35,7 @@ namespace {
 		make_pair(60. * 100., ""),
 		make_pair(100., "%"),
 		make_pair(100., ""),
-		make_pair(1. / 60., "")
+		make_pair(1. / 60., "s")
 	};
 
 	const map<string, int> SCALE = {
@@ -75,6 +78,9 @@ namespace {
 		{"ion resistance energy", 0},
 		{"ion resistance fuel", 0},
 		{"ion resistance heat", 0},
+		{"scramble resistance energy", 0},
+		{"scramble resistance fuel", 0},
+		{"scramble resistance heat", 0},
 		{"jump speed", 0},
 		{"leak resistance energy", 0},
 		{"leak resistance fuel", 0},
@@ -114,6 +120,7 @@ namespace {
 		{"afterburner discharge", 2},
 		{"afterburner corrosion", 2},
 		{"afterburner ion", 2},
+		{"afterburner scramble", 2},
 		{"afterburner leakage", 2},
 		{"afterburner burn", 2},
 		{"afterburner slowing", 2},
@@ -122,6 +129,7 @@ namespace {
 		{"reverse thrusting discharge", 2},
 		{"reverse thrusting corrosion", 2},
 		{"reverse thrusting ion", 2},
+		{"reverse thrusting scramble", 2},
 		{"reverse thrusting leakage", 2},
 		{"reverse thrusting burn", 2},
 		{"reverse thrusting slowing", 2},
@@ -130,6 +138,7 @@ namespace {
 		{"thrusting discharge", 2},
 		{"thrusting corrosion", 2},
 		{"thrusting ion", 2},
+		{"thrusting scramble", 2},
 		{"thrusting leakage", 2},
 		{"thrusting burn", 2},
 		{"thrusting slowing", 2},
@@ -138,12 +147,14 @@ namespace {
 		{"turning discharge", 2},
 		{"turning corrosion", 2},
 		{"turning ion", 2},
+		{"turning scramble", 2},
 		{"turning leakage", 2},
 		{"turning burn", 2},
 		{"turning slowing", 2},
 		{"turning disruption", 2},
 
 		{"ion resistance", 2},
+		{"scramble resistance", 2},
 		{"disruption resistance", 2},
 		{"slowing resistance", 2},
 		{"discharge resistance", 2},
@@ -167,12 +178,15 @@ namespace {
 		{"corrosion protection", 4},
 		{"discharge protection", 4},
 		{"disruption protection", 4},
+		{"drag reduction", 4},
 		{"energy protection", 4},
 		{"force protection", 4},
 		{"fuel protection", 4},
 		{"heat protection", 4},
 		{"hull protection", 4},
+		{"inertia reduction", 4},
 		{"ion protection", 4},
+		{"scramble protection", 4},
 		{"leak protection", 4},
 		{"piercing protection", 4},
 		{"shield protection", 4},
@@ -352,7 +366,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	if(outfit.Ammo())
 	{
 		attributeLabels.emplace_back("ammo:");
-		attributeValues.emplace_back(outfit.Ammo()->Name());
+		attributeValues.emplace_back(outfit.Ammo()->DisplayName());
 		attributesHeight += 20;
 		if(outfit.AmmoUsage() != 1)
 		{
@@ -374,6 +388,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		{"heat damage", ""},
 		{"energy damage", ""},
 		{"ion damage", ""},
+		{"scrambling damage", ""},
 		{"slowing damage", ""},
 		{"disruption damage", ""},
 		{"discharge damage", ""},
@@ -392,6 +407,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		{"firing hull", ""},
 		{"firing shields", ""},
 		{"firing ion", ""},
+		{"firing scramble", ""},
 		{"firing slowing", ""},
 		{"firing disruption", ""},
 		{"firing discharge", ""},
@@ -413,6 +429,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		outfit.HeatDamage(),
 		outfit.EnergyDamage(),
 		outfit.IonDamage() * 100.,
+		outfit.ScramblingDamage() * 100.,
 		outfit.SlowingDamage() * 100.,
 		outfit.DisruptionDamage() * 100.,
 		outfit.DischargeDamage() * 100.,
@@ -431,6 +448,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		outfit.FiringHull(),
 		outfit.FiringShields(),
 		outfit.FiringIon() * 100.,
+		outfit.FiringScramble() * 100.,
 		outfit.FiringSlowing() * 100.,
 		outfit.FiringDisruption() * 100.,
 		outfit.FiringDischarge() * 100.,
