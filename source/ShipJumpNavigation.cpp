@@ -31,22 +31,13 @@ const double ShipJumpNavigation::DEFAULT_JUMP_DRIVE_COST = 200.;
 
 
 
-ShipJumpNavigation::ShipJumpNavigation(const Ship &ship)
-{
-	this->ship = &ship;
-	Calibrate();
-}
-
-
-
 // Calibrate this ship's jump navigation information, caching its jump costs, range, and capabilities.
-void ShipJumpNavigation::Calibrate()
+void ShipJumpNavigation::Calibrate(const Ship &ship)
 {
-	if(!ship)
-		return;
-	mass = ship->Mass();
+	currentSystem = ship.GetSystem();
+	mass = ship.Mass();
 
-	const Outfit &attributes = ship->Attributes();
+	const Outfit &attributes = ship.Attributes();
 	hasHyperdrive = attributes.Get("hyperdrive");
 	hasScramDrive = attributes.Get("scram drive");
 	hasJumpDrive = attributes.Get("jump drive");
@@ -57,23 +48,29 @@ void ShipJumpNavigation::Calibrate()
 	maxJumpRange = 0.;
 
 	// Make it possible for a hyperdrive or jump drive to be integrated into a ship.
-	ParseOutfit(ship->BaseAttributes());
+	ParseOutfit(ship.BaseAttributes());
 	// Check each outfit from this ship to determine if it has jump capabilities.
-	for(const auto &it : ship->Outfits())
+	for(const auto &it : ship.Outfits())
 		ParseOutfit(*it.first);
 }
 
 
 
 // Recalibrate jump costs for this ship, but only if necessary.
-void ShipJumpNavigation::Recalibrate()
+void ShipJumpNavigation::Recalibrate(const Ship &ship)
 {
-	if(!ship)
-		return;
 	// Recalibration is only necessary if this ship's mass has changed and it has drives
 	// that would be affected by that change.
-	if(hasJumpMassCost && mass != ship->Mass())
-		Calibrate();
+	if(hasJumpMassCost && mass != ship.Mass())
+		Calibrate(ship);
+}
+
+
+
+// Pass the current system that the ship is in to the navigation.
+void ShipJumpNavigation::SetSystem(const System *system)
+{
+	currentSystem = system;
 }
 
 
@@ -83,14 +80,14 @@ void ShipJumpNavigation::Recalibrate()
 double ShipJumpNavigation::JumpFuel(const System *destination) const
 {
 	// A currently-carried ship requires no fuel to jump, because it cannot jump.
-	if(!ship->GetSystem())
+	if(!currentSystem)
 		return 0.;
 
 	// If no destination is given, return the maximum fuel per jump.
 	if(!destination)
 		return max(JumpDriveFuel(), HyperdriveFuel());
 
-	return GetCheapestJumpType(ship->GetSystem(), destination).second;
+	return GetCheapestJumpType(currentSystem, destination).second;
 }
 
 
@@ -128,9 +125,9 @@ double ShipJumpNavigation::JumpDriveFuel(double distance) const
 // If no jump method is possible, returns JumpType::None with a jump cost of 0.
 pair<JumpType, double> ShipJumpNavigation::GetCheapestJumpType(const System *destination) const
 {
-	if(!ship->GetSystem())
+	if(!currentSystem || !destination)
 		return make_pair(JumpType::NONE, 0.);
-	return GetCheapestJumpType(ship->GetSystem(), destination);
+	return GetCheapestJumpType(currentSystem, destination);
 }
 
 
