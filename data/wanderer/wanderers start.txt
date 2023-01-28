@@ -795,7 +795,7 @@ event "wanderer / unfettered peace"
 		add fleet "Unfettered Tribute (Wanderer)" 2000
 	system "Prakacha'a"
 		remove fleet "Unfettered Raid"
-		add fleet "Unfettered Tribut (Wanderer)" 2000
+		add fleet "Unfettered Tribute (Wanderer)" 2000
 
 
 
