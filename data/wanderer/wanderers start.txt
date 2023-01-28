@@ -772,6 +772,7 @@ mission "Wanderers: Unfettered Diplomacy 1B"
 fleet "Unfettered Tribute (Wanderer)"
 	government "Hai (Unfettered) (Wanderer Tribute)"
 	names "hai"
+	personality coward timid
 	cargo 3
 	variant
 		"Water Bug (Jump)"
