@@ -5,22 +5,8 @@ on:
     branches:
       - master
       - releases/v[0-9]+.[0-9]+.[0-9]+
-    paths:
-      - '.github/workflows/projects_check.yml'
-      - 'copyright'
-      - '*.cbp'
-      - 'source/**'
-      - 'tests/unit/**'
-      - 'utils/check_*.sh'
   pull_request:
     types: [opened, synchronize]
-    paths:
-      - '.github/workflows/projects_check.yml'
-      - 'copyright'
-      - '*.cbp'
-      - 'source/**'
-      - 'tests/unit/**'
-      - 'utils/check_*.sh'
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}
