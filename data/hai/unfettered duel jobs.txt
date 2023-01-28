@@ -60,6 +60,7 @@ fleet "Shield Beetle Challenger"
 		"Shield Beetle (Thunderhead)"
 
 event "unfettered: challengers arrive"
+	"unfettered: challengers" ++
 	system "Wah Yoot"
 		add fleet "Shield Beetle Challenger" 5000
 		add fleet "Sea Scorpion Challenger" 7500
@@ -69,14 +70,34 @@ event "unfettered: challengers arrive"
 	system "Hi Yahr"
 		add fleet "Sea Scorpion Challenger" 5000
 
+# the maximum amounts you can stack up these fleets is 5
 event "unfettered: challengers leave"
 	system "Wah Yoot"
 		remove fleet "Shield Beetle Challenger"
 		remove fleet "Sea Scorpion Challenger"
+		remove fleet "Shield Beetle Challenger"
+		remove fleet "Sea Scorpion Challenger"
+		remove fleet "Shield Beetle Challenger"
+		remove fleet "Sea Scorpion Challenger"
+		remove fleet "Shield Beetle Challenger"
+		remove fleet "Sea Scorpion Challenger"
+		remove fleet "Shield Beetle Challenger"
 	system "Ehma Ti"
 		remove fleet "Sea Scorpion Challenger"
 		remove fleet "Shield Beetle Challenger"
+		remove fleet "Shield Beetle Challenger"
+		remove fleet "Sea Scorpion Challenger"
+		remove fleet "Shield Beetle Challenger"
+		remove fleet "Sea Scorpion Challenger"
+		remove fleet "Shield Beetle Challenger"
+		remove fleet "Sea Scorpion Challenger"
+		remove fleet "Shield Beetle Challenger"
+		remove fleet "Sea Scorpion Challenger"
 	system "Hi Yahr"
+		remove fleet "Sea Scorpion Challenger"
+		remove fleet "Sea Scorpion Challenger"
+		remove fleet "Sea Scorpion Challenger"
+		remove fleet "Sea Scorpion Challenger"
 		remove fleet "Sea Scorpion Challenger"
 
 
@@ -110,6 +131,7 @@ mission "Unfettered: Trigger The Challengers"
 	source "Darkcloak"
 	to offer
 		has "Unfettered: Prove Your Strength: done"
+		"unfettered: challengers" < 5
 	to fail
 		has "Unfettered: Trigger The Challengers: active"
 	on accept
@@ -125,10 +147,11 @@ mission "Unfettered: Remove The Challengers"
 	source "Darkcloak"
 	to offer
 		has "Unfettered: Prove Your Strength: done"
-		has "event: unfettered: challengers arrive"
+		has "unfettered: challengers"
 	to fail
 		has "Unfettered: Remove The Challengers: active"
 	on accept
+		clear "unfettered: challengers"
 		clear "event: unfettered: challengers arrive"
 		clear "event: unfettered: challengers leave"
 		event "unfettered: challengers leave"
@@ -178,6 +201,8 @@ phrase "unfettered challenger defeated"
 		`Whatever the case, you have earned my blade, and my respect, captain. You will be able to exchange it for <payment> when you land."`
 		`We will analyze the fight to make sure you have not cheated. If that is the case, you will receive the <payment> upon landing. If this was a fair fight, you may have gained my respect."`
 	word
+		``
+	word
 		"<boarding message>"
 
 substitutions
@@ -210,7 +235,7 @@ mission "Unfettered Challenge [1A]"
 	repeat
 	substitutions
 		<payment> "500 thousand credits"
-	name `Defeat an Unfettered captain`
+	name `Defeat an escorted Unfettered captain`
 	description `An Unfettered captain has challenged you into a duel with his escort. Disable his ships for <payment>.`
 	source
 		attributes "unfettered"

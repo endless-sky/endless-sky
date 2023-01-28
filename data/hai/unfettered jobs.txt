@@ -731,7 +731,7 @@ mission "Unfettered Cargo Interception West"
 	on visit
 		dialog `You do not have the materials yet. Go look for them in western pirate space.`
 	on complete
-		outfit "Materials" -100
+		outfit "Building Materials" -100
 		payment 1000000
 		dialog phrase "unfettered cargo interception payment dialog"
 
@@ -761,7 +761,7 @@ mission "Unfettered Cargo Interception East"
 	on visit
 		dialog "You do not have the materials yet. Go look for them in eastern pirate space."
 	on complete
-		outfit "Materials" -100
+		outfit "Building Materials" -100
 		payment 1000000
 		dialog phrase "unfettered cargo interception payment dialog"
 

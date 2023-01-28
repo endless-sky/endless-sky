@@ -798,6 +798,8 @@ mission "Unfettered: Prove Your Strength"
 			`	"Sink me! That flotsam really be your ship? Given the hornswoggle of your reputation, I pegged you for a fancier type. Your prowess is no lie, indeed then, if you land in such a scow, but can ye truly fight in it?" he says, and then he turns to address the crowd once again. "I wonder if it can even launch again. Perhaps we should scuttle it right here."`
 				goto lesson
 			label provoke
+			action
+				"offended Si-Ra" ++
 			`	"So the monkey can speak? Let us see if it can fight as well," he says with a provocative tone.`
 			label lesson
 			`	Time for him to learn a lesson. The thought that you may be in over your head briefly crosses your mind, but you brush it aside.`
@@ -896,11 +898,14 @@ event "cerberus revealed"
 		remove "display name"
 
 # SPOILER: stealing JD from the Alpha's indoctrinated pirates: Cerberus
+# the vault is a very old Hai vault that got hijacked
 mission "Unfettered: Prove Your Strength 2"
 	name `Recover the jump drives`
 	description `Go to the pirate world of <stopovers> and recover jump drives from a vault.`
 	source "Darkcloak"
 	stopover "Freedom"
+	clearance
+	infiltrating
 	passengers 1
 	to offer
 		has "Unfettered: Prove Your Strength: done"
@@ -926,18 +931,22 @@ mission "Unfettered: Prove Your Strength 2"
 				`	"What kind of job is it?"`
 					goto job
 			label insult
+			action
+				"offended Si-Ra" ++
 			`	He does not seem to react to the insult. He did call you monkey a few times before, so it's only fair for you to return the courtesy.`
 			label job
 			`	"We be going to collect a few jump drives! Normally ye would not be able to get such a job, since ye have not earned much among us still, but I have the connection to get it for ye. Ye see, officially this be me mission, and a very lucrative one, at that! On top of that, should we succeed, next time ye may be entrusted with such missions on your own, but don't ye be expecting near the same booty for yerself."`
 			choice
 				`	"Okay... That just seems too good to be true. What's the catch?"`
-			`	"Well... world be called 'Freedom', and that may sound nice, but it be a dangerous human port, full of privateers and swashbucklers. That is why I need yer ship, for transportation beyond Hai space. Ye will also need to save room in yer cargo hold for four jump drives. Ye be warned: this be no mission for the light hearted."`
+			`	"Well... world be called 'Freedom', and that may sound nice, but it be a dangerous human port, full of privateers and swashbucklers. That is why I need yer ship, for transportation beyond Hai space. Ye will also need to save room in yer cargo hold or on your flagship for four jump drives. Ye be warned: this be no mission for the light hearted."`
 			choice
 				`	"Let's go then!"`
 					goto leave
 				`	"Why can't you just use a jump drive and go there yourself?"`
 				`	"What will my cut be?"`
 					goto cut
+			action
+				"offended Si-Ra" ++
 			`	"Jump drives be a fine spot of loot amongst me people. I would not risk one by traveling through hostile space. Ye've had one yerself, so ye should know about the scurvy dogs to the south who give no quarter. The lily-livered scallywags to the north would like to see me walk the plank as well... A jump drive would be of no special help to us on this voyage." He seems disappointed by you having to ask such an obvious thing.`
 			choice
 				`	"Let's go then!"`
@@ -947,8 +956,15 @@ mission "Unfettered: Prove Your Strength 2"
 			label cut
 			`	"Ye humans always be obsessed with yer doubloons... So many much greater a variety of booty ye could be seeking. Rest assured, it be quite the coffer. I be taking half of the total bounty, and ye should well remember how well ye were paid for the ones ye've already delivered to me brethren."`
 			label leave
-			`	"One last warning for ye: Ye should sail the skies with a hyper drive, especially with the dangers of where we be headed. A jump drive won't do us any favors getting there, but 'twill bring more than a mite of unwanted company. Nor should we risk the Wanderers decided to fit ye with a hempen halter from yer association with us." You accompany him to your ship, and he seems actually impressed, even more so when seeing the interior. "Your ship indeed be... adequate, for a warrior and this task," he begrudges.`
+			`	"One last warning for ye: Ye should sail the skies with a hyperdrive, especially with the dangers of where we be headed. A jump drive won't do us any favors getting there, but 'twill bring more than a mite of unwanted company. Nor should we risk the Wanderers decided to fit ye with a hempen halter from yer association with us."`
+			`	You accompany him to your ship, and he seems actually impressed, even more so when seeing the interior. "Your ship indeed be... adequate, for a warrior and this task," he begrudges.`
+			`	"Hold up right there matey, the see sooner be green than I'd see ye can fit 8 drives in yer holds! Ya better make some space!"`
+				to display
+					"cargo space" < 80
+			`	You show him to his bunk but he refuses to go there, "Where ye be sending me? Ye need me on the helm, you scabby sea bass!" You have no choice but to let him sit on the bridge.`
 				accept
+	on enter "Altinak"
+		dialog `Seeing you enter this system, the captain speaks up. "Sails down, matey! I'd recommend to stop here before we head into more open seas!"`
 	on visit
 		dialog "You do not have the jump drives. You either did not go to <destination> to get the jump drives yet, or you left your escort carrying the jump drives behind - better depart and wait for it."
 	on fail
@@ -1130,11 +1146,11 @@ mission "Unfettered: Escort Hai Fleet"
 			`	"<first>! I asked to be notified of your arrival as soon as possible, as we need your services. A fleet of True Hai needs your immediate assistance escorting them through Hai space, from <stopovers>. They are not Unfettered, but their hearts beat true still. I would blame myself if anything was to happen to them, and I could have done anything more to prevent it."`
 			choice
 				`	"What are you even doing here?"`
-				`	"Why do you need my help?"`
+				`	"Why do you need my help specifically?"`
 					goto help
 				`	"I'm busy right now, sorry."`
 					goto busy
-			`	"As a Chief I need to be seen by my people, else they would never respect me, or follow my instructions. In this specific case, I am here to talk with warlords and soldiers alike, to make sure nobody tries something stupid, else innocent Hai may get hurt."`
+			`	"As a Chief I need to be seen by my people, else they would never come to respect me, or follow my instructions. In this specific case, I am here to talk with warlords and soldiers alike, to make sure nobody tries something stupid, else innocent Hai may get hurt."`
 			`	Usually the Hai do not get this deep into our territory, even the ones who sympathise with us, and these are not part of that group. On top of that, some may have strong reactions when they realize who is on board one of these ships..."`
 				goto choose
 			label help
@@ -1171,12 +1187,15 @@ mission "Unfettered: Escort Hai Fleet"
 				`	"I'll find a way to land there with a battle-ready ship."`
 					goto dewit
 	on enter "Due Yoot"
-		dialog "As you enter the system, you are notified by the local authorities that the fleet is waiting for you in the spaceport. The fleet admiral signals you they demand to search your ship on the planet before proceeding with the mission. They say it is standard protocol in these circumstances."
+		dialog
+			`As you enter the system, you are notified by the local authorities that the fleet is waiting for you in the spaceport.`
+			`	The fleet admiral hails you, "Hello, <last>. I have been notified of your presence as an escort. Standard procedure dictates we must search your ship on the planet before proceeding with the mission. My security detachment will be waiting for you to land."`
 	npc accompany save
 		government "Hai (Governor Escort)"
 		to spawn
 			has "unfettered: stopped on Greenbloom"
 		personality escort timid launching
+		system "Due Yoot"
 		fleet
 			names "hai"
 			variant
@@ -1188,12 +1207,14 @@ mission "Unfettered: Escort Hai Fleet"
 		to spawn
 			has "unfettered: warned the hai governor escort about the mercenary attack"
 		personality entering heroic
+		system "Due Yoot"
 		fleet "Large Hai"
 	npc
 		government "Hai (Governor Escort)"
 		to spawn
 			has "unfettered: stopped on Greenbloom"
 		personality launching heroic
+		system "Due Yoot"
 		fleet "Small Hai"
 	npc
 		government "Hai (Governor Escort)"
@@ -1265,7 +1286,7 @@ mission "Unfettered: Taking Off With Hai Fleet"
 	on offer
 		set "unfettered: stopped on Greenbloom"
 		conversation
-			`Shortly after this mysterious conversation, a few Hai come to your flagship, armed with a less lethal version of the usual Pulse Rifle, and with uniforms you have not seen before. They seem to be led by yet another Hai, that enters only after they give the safe signal.`
+			`Shortly after the mysterious conversation, a few Hai come to your flagship, armed with a less lethal version of the usual Pulse Rifle, and with uniforms you have not seen before. They seem to be led by yet another Hai, that enters only after they give the safe signal.`
 			`	They then proceed to search your ship quickly, using dedicated scanners, before reporting back to their leader. Only at that point does the leader say something to you, "We are personal bodygards of an important Hai governor, that wishes to come on the ground for political reasons. Sorry for the inconvenience, captain, but we needed to make sure your ship was free of trackers."`
 			choice
 				`	"Thank you for the explanation."`
@@ -1317,18 +1338,19 @@ mission "Unfettered: Taking Off With Hai Fleet"
 
 event "unfettered: shipment lost"
 
-outfit "Materials"
+outfit "Building Materials"
 	category "Special"
 	thumbnail "outfit/unknown"
 	cost 1000
-	plural "Materials"
+	plural "Building Materials"
 	"mass" 1
+	installable -1
 	description "These are simple building materials, meant for the construction of Unfettered houses."
 
 # A modified version with small buffs and disabled faster.
 ship "Bactrian" "Bactrian (Cerberus)"
 	add attributes
-		"threshold percentage" .1
+		"threshold percentage" .4
 		"outfit space" 17
 		"weapon capacity" 20
 	outfits
@@ -1354,11 +1376,6 @@ ship "Bactrian" "Bactrian (Cerberus)"
 	cargo
 		outfits
 			"Materials" 142
-		commodities
-			"Military" 150
-			"Electronics" 100
-			"Metal" 50
-			"Heavy Metals" 50
 
 mission "Unfettered: Materials Intercepted Job Board Notification"
 	minor
@@ -1371,7 +1388,8 @@ mission "Unfettered: Materials Intercepted Job Board Notification"
 		not "Unfettered: Materials Intercepted: done"
 	on offer
 		conversation
-			`Upon landing you take a look at the job board, almost by habit, and to your surprise you notice that there is a very peculiar job on the board, left by none other than Sookootow, titled "looking for stolen cargo". Probably worth checking out in the job board when you have the time.`
+			`Upon landing you take a look at the job board, almost by habit, and to your surprise you notice that there is a very peculiar job on the board, left by none other than Sookootow, titled "looking for stolen cargo".`
+			`	It does not look like an urgent job, so it should still be there the next time you land on an Unfettered world, but you should probably check it out when you have the time.`
 				decline
 
 # SPOILER: Hydras or the Mercenaries bring cargo to the Unfettered. Hydras were on the way, but the Mercenaries hired Scar's legion to sneakily take it and bring it to them.
@@ -1379,12 +1397,15 @@ mission "Unfettered: Materials Intercepted Job Board Notification"
 mission "Unfettered: Materials Intercepted"
 	job
 	name `Sookootow: Looking for stolen cargo`
-	description `Sookootow wants an apt captain to find the <npc> that has stolen the materials needed for the development of the urban areas, and bring those materials back to <destination>. They should be in northern pirate space, east or west.`
+	description `Apt captain required to find the <npc> that has stolen the materials needed for the development of the urban areas, and bring those materials back to <destination>. They should be in northern pirate space, east or west.`
 	source
 		attributes "unfettered"
 	to offer
 		has "event: unfettered: shipment lost"
-	on offer
+	substitutions
+		<governor> ", only wishing to scare us with the possibility of abducting the governor."
+		<governor> ", and to be completely frank I have no clue how they managed to abduct the governor."
+	on accept
 		conversation
 			`	You go to see He-Yi in order to discuss this job in greater details, and easily find him by asking around, everyone seems to know him here. He was having a quite animated conversation with an elder, but he puts a stop to it when he notices you.`
 			`	"<last>. I am still saddened by what happened to that governor you had to escort... She used to say that all Hai are together, by heart. I will continue to honor her memories."`
@@ -1393,7 +1414,7 @@ mission "Unfettered: Materials Intercepted"
 			`	"<last>! I was hoping to find you here."`
 				to display
 					has "Unfettered: Escort Hai Fleet: done"
-			`" I just happen to be in needs of your services. Remember the mission you did earlier, escorting Hai ships? Well that shipment was not the only one that got attacked by pirates, in fact I believe their attack on it may have been nothing more than a distraction; they knew full well they could not take that cargo in the middle of Hai space, only wishing to scare us with the possibility of abducting the governor."`
+			`	"I just happen to be in needs of your services. Remember the mission you did earlier, escorting Hai ships? Well that shipment was not the only one that got attacked by pirates, in fact I believe their attack on it may have been nothing more than a distraction; they knew full well they could not take that cargo in the middle of Hai space<governor>"`
 			`	"Now, that shipment you escorted was exceptional due to the disaster, and it came from the Hai, who focused all of their nearby fleet's attention on it, without following it in an obvious way either, of course."`
 			choice
 				`	"What about this cargo, then?"`
@@ -1428,7 +1449,7 @@ mission "Unfettered: Materials Intercepted"
 			`	Whilst she never mentioned the exact location, I suspect that our contact has her base of operation located in the north-west of human space, so you should probably start looking in that general area."`
 			choice
 				`	"I will try to bring the loot back without attracting too much attention."`
-					accept
+					goto finalmention
 				`	"I will find them and bring the loot back, whatever the cost.`
 					goto whatevercost
 				`	"Why do you not just hire another pirate?"`
@@ -1439,7 +1460,7 @@ mission "Unfettered: Materials Intercepted"
 			label choose
 			choice
 				`	"I will try to bring the loot back without attracting too much attention."`
-					accept
+					goto finalmention
 				`	"I will find them and bring the loot back, whatever the cost.`
 					goto whatevercost
 				`	"Why do you not just hire another pirate?"`
@@ -1450,18 +1471,27 @@ mission "Unfettered: Materials Intercepted"
 			`	"I do not trust them much, but the real reason is that it was our contact that dealt with these kind of preoccupations - we only provided the founds. Sometimes it is one faction that brings us the cargo, sometimes another, and we do not ask questions. So, what do you say? Can you find that cargo and bring it to us?"`
 			choice
 				`	"I will try to bring the loot back without attracting too much attention."`
-					accept
+					goto finalmention
 				`	"I will find them and bring the loot back, whatever the cost.`
-				`	"This mission is too dangerous for me, the Unfettered will need to find someone else for this one and others like it."`
-					decline
 			label whatevercost
 			`	He seems a bit warry of your attitude, "Please, whatever you do, try to avoid needless bloodshed, these pirates are not our enemies. I would hardly recommend bribing those that can be. That said, I expect you to do what you must in order to bring back all 142 tons of materials, you can either fit all of that on a Shield Beetle, or bring them back in multiple trips, by storing them in an outfitter or on your other ships. And remember to look for it north-west of human space."`
-				accept
+			label finalmention
+			branch nvm
+				has "flagship model: Shield Beetle"
+			`	"You must know of the current food situation we have. Far from me to suggest you should profit from it, but I know one can easily make a lot of money moving cargo around in aphid, especially if they do not risk being attack by us, ha!"`
+				to display
+					has "unfettered: hunger"
+					# cost of a Shield Beetle
+					credits < 32000000
+			# the stock SB has barely enough cargo to fit the 142 tons
+			`	"I would advise you to lead this mission a Shield Beetle, like a true warrior. You deserve it."`
+			label nvm
+			# no need to accept because this is a job; it was already accepted.
 	on enter "Misam"
 		conversation
-			`As you enter the system, you notice pirates from Cerberus in orbit around the planet. They could have the cargo you are looking for.`
+			`As you enter the system, you notice Cerberus pirates in orbit around the planet. They could have the cargo you are looking for.`
 			choice
-				`	(Demand that the materials be returned to you.)`
+				`	"I demand you give me the materials back."`
 				`	(Say nothing, I have no need to talk with these scums. I shall take back what they stole.)`
 					goto over
 			`	The first mate of the <npc> responds to your hail, "You talking about the cargo we just got that scum posing as a merchant relieved of? That's ours, mate, always has been. You must have suffered a serious blow to the head to think otherwise, especially this deep in our lands. In fact we were the ones that these were stolen from before we could bring it to port! Well, after we stole them from a merchant, but that's irrelevant."`
@@ -1474,21 +1504,27 @@ mission "Unfettered: Materials Intercepted"
 			label intention
 			`	"That's none of your business, but if it can help you get away... My Masters are coming soon to retrieve the cargo, and if it ain't there no more, I'll be the one they 'retrieve' instead. So you better forget about it!" He says, before abruptly closing the communication.`
 			label over
+			`	`
 			`	They quickly land on the planet, probably in order to avoid a fight, or maybe just to win some time... It looks like you will have to land too in order to retrieve the cargo.`
+	on enter "Alcyone" "Durax"
+		dialog "When entering the system you spot small traces of the same kind of cargo Sookootov asked you to bring back. You cannot be far."
 	npc board
 		system "Misam"
 		government "Alpha"
 		to spawn
 			has "Unfettered: Cavalry Arrives: active"
 		personality target launching plunders vindictive uninterested
-		ship "Bactrian (Cerberus)" "Rested Snake"
+		fleet
+			commodities "Military" "Electronics" "Metal" "Heavy Metals"
+			variant
+				ship "Bactrian (Cerberus)" "Rested Snake"
 		conversation
 			action
 				set "unfettered: boarded bactrian"
 			`Boarding the ship, you notice that they have other commodities than what you are looking for, but they do have the materials Sookootow talked to you about. Given the damage the ship has suffered, it seems it would require heavy works in the spaceport to get it running again, meaning they will not get repaired anytime soon. You should have some time to switch to a ship with more cargo space, should you need to in order to bring the materials back. Take all 142 tons of materials when you can and bring them back to Sookootow.`
 			branch "allies died"
 				has "Unfettered: Cavalry Arrives: failed"
-			`	Seeing how the fight is almost over, if not completely, your surprise allies hail you. "Well done, captain," the first one says. "You have truly impressed us today," the other one adds.`
+			`	Your surprise allies hail you. "Well done, captain," the first one says. "You have truly impressed us today," the other one adds.`
 			choice
 				`	"Where you sent by Sookootow's contact?"`
 				`	"What are these weapons you are using?"`
@@ -1535,7 +1571,7 @@ mission "Unfettered: Materials Intercepted"
 	on visit
 		dialog `You do not have the materials yet, or your escort carrying them has not arrived. The materials should be looked for in north-east pirate space.`
 	on complete
-		outfit "Materials" -142
+		outfit "Building Materials" -142
 		payment 2000000
 		log `Helped Sookootow by bringing cargo to help maintain and build houses. This whole story feels weird, with pirates stealing from other pirates, and one may wonder how it is related to the Alphas, and Shadow.`
 		conversation
@@ -1581,12 +1617,12 @@ mission "Unfettered: Cavalry Arrives"
 		has "Unfettered: Materials Intercepted: active"
 	on offer
 		conversation
-			`Realizing you have landed after them, the pirates fire up their engines and take off as fast as they can. It looks like they did not expect you to have the guts to land on such a lawless world. Or maybe they just wanted to delay you... Whatever the case, you quickly order your crew to get back into space.`
+			`Realizing you have landed after them, the pirates fire up their engines and take off as fast as they can. They may have not expected you to have the guts to land on such a lawless world. Or maybe they just wanted to delay you... Whatever the case, you quickly order your crew to get back into space.`
 				launch
 	on enter
 		conversation
-			"They have called for backup! Multiple pirate ships are arriving in the system. But you also see other ships arriving by jump drives. They do not appear to be pirates, maybe the 'contact' has provided help as well?"
-			`Upon entering, they hail you, "Listen carrefuly. You may have noticed a Korath drone in the area, and they don't like Alpha dogs around much. If Koraths come to help do not open fire on them, understood?" They end the hail, making it clear they will not take no for an answer.`
+			"As you enter the system it becomes clear: they have called for backup! Multiple pirate ships are arriving in the system. But you also see other ships arriving by jump drives. They do not appear to be pirates, maybe the 'contact' has provided help as well?"
+			`Upon entering, they hail you, "Listen carrefuly. You may have noticed a Korath drone in the area, and they don't like Alpha dogs around much. If Koraths come to help do not open fire on them, understood?" The other ship then hails you, "I would recommend you make sure these pirate ships are on your side, captain!" They end the hail, making it clear they will not take no for an answer.`
 	npc save
 		government "Shadow"
 		personality entering heroic uninterested staying disables mute
@@ -1595,7 +1631,7 @@ mission "Unfettered: Cavalry Arrives"
 	# the Koraths see this opportunity to hunt some Alpha dogs.
 	npc
 		government "Korath"
-		personality timid surveillance
+		personality surveillance
 		ship "Kas'ik Tek 7"
 	npc
 		system "Kor Men"
@@ -1759,7 +1795,7 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 		has "Unfettered: Prove Your Strength 2: done"
 	on offer
 		conversation
-			`You go get a drink in the spaceport. You take a beverage that appears to be water, wanting to take no risks on this alien world. After tasting it, you are sure it is indeed water. The Unfettered here do not have the habit of consuming many special drinks - at least not on a regular basis.`
+			`You go get a drink in the spaceport, taking a beverage that appears to be water, wanting to take no risks on this alien world. After tasting it, you are sure it is indeed water. The Unfettered here do not have the habit of consuming many special drinks - at least not on a regular basis.`
 			`	You ask around for Mera, the Unfettered engineer you met before. She said she would tell you more about it once she gets the Geocoris logs, but you have yet to see her since you brought those logs to the local authorities. Hopefully, she can be trusted. After you spend an hour talking with the local Unfettered and drinking, she finally arrives. She seems to be in quite a hurry.`
 			`	"Sorry I could not see you earlier; I was busy. I know I have promised you information, but there is a more pressing matter we should focus on. A human ship will enter <system> in a few days. I need you to scan it for me with the same scanner we gave you, and then I will meet you back here with the others and answer any questions you may have," she promises.`
 			`	"Oh, and before I forget, you should not attack them, even if they strike first. I am not sure how they will even react to your presence," she adds.`
@@ -1779,7 +1815,7 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 				`	"That seems too dangerous to me. Sorry, but I will not be helping you anymore."`
 					decline
 			label beforeugo
-			`	"Before you go, I must remind you that you need to use one of our Value Detectors to scan the ship, like before."`
+			`	"Before you go, I must remind you that you need to use one of our Value Detectors to scan the ship, like before. I'd advise you to do it quickly - there is time to equip more on Darkcloak on the way there, if needed."`
 				accept
 	waypoint "Hi Yahr"
 	on waypoint
@@ -1788,7 +1824,11 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 		government "Alpha"
 		personality entering timid staying target
 		system "Hi Yahr"
-		ship "Alpha Auxiliary (Bringing Supplies)" "Settler"
+		fleet
+			commodities "Military" "Electronics"
+			outfitters "Korath Exiles Remnant Donations"
+			variant
+				ship "Alpha Auxiliary" "Settler"
 		conversation
 			branch "didn't listen"
 				not "outfit (flagship installed): Value Detector"
@@ -1801,11 +1841,16 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 				`	"But I can jump away without risk."`
 					goto jump
 				`	"Screw you and your Chiefs! I'm taking that ship down!"`
+				`	"But I have an urgent mission for one of your engineers."`
+					goto mission
 			`	"Consider this carefully before taking any actions you may regret in the future. Our offer still stands." The transmission cuts out.`
 				decline
 			label jump
 			`	"Maybe, but there is no guarantee their ship will not pursue you. Please, land straight away, I assure you the other ship will land on another planet, and if not, our orbital defences will protect you."`
 				decline
+			label mission
+			`	"Yes, we know. You do not need to worry about that, whilst we will not relay the scans ourselves for safety reasons, bringing them back never was the urgency, you may do so whenever you have the time."`
+				accept
 			label "didn't listen"
 			`You have finished scanning the Auxiliary, but you did not use a Value Detector to do so, and the scan will be of no value to Mera. You have failed the mission.`
 			action
@@ -1824,7 +1869,9 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
 		set "unfettered: logs worry"
-		dialog `You are offered some surprisingly high-quality beverages to keep you waiting, even by your standards. They probably know of your mission. After a while, the Alpha ship goes away, and you can now go back to <origin> with the scanner logs.`
+		dialog
+			`You are offered some surprisingly high-quality beverages to keep you waiting, even by your standards. This special treatment is probably in part due to your ongoing mission for Mera.`
+			`	After a while, the Alpha ship goes away, you can now go back to <origin> with the scanner logs.`
 
 
 
@@ -1846,23 +1893,25 @@ mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 		payment 300000
 		conversation
 			`You send your logs as you land and receive a very generous payment of <payment>.`
-			`	Moments later, on your bridge, thinking about how to explain to the Chiefs that this was an Alpha ship, you hear a familiar voice from the coms on your ship. "Oh, you're back! Good!" You are a bit surprised by the interruption, but quickly recognize Mera. "Can I speak to you about your scans? I really am intrigued about that ship."`
+			`	Moments later, on your bridge, thinking about how to explain to the Chiefs that this was an Alpha ship, you hear a familiar voice from the coms on your ship. "Oh, you're back! Good!" You are a bit surprised by the interruption, but quickly recognize Mera. "Can I speak to you about your scans? I really am intrigued about that 'Auxiliary', as your scans designated it."`
 			choice
-				`	"I won't discuss those things with you."`
+				`	"I prefer not."`
 					decline
-				`	"Sorry, but I'm no engineer. I have no idea about how those Carriers work."`
+				`	"Sorry, but I'm no engineer. I have no idea about how those work."`
 				`	"Sure. What is it you want to know about them?"`
 					goto questions
-			`	"Worry not, I did not want to talk to you about the drag of that ship, or its shield matrix."`
+			`	"Worry not, I did not want to talk to you about the drag of that ship, or its shield matrix. Although they are very interesting, to be sure!"`
 			label questions
-			`	"I already have access to the specs of the ship. My questions are mostly related to how well they fare in battle. We've never seriously tried ships carrying fighters before, supposedly because of some ethical implications, but to be honest, it was mostly due to technical difficulties building a ship large enough to contain and launch multiple small ones. I want to know how effective they are and how are they countered." She is clearly very excited to learn more about them.`
+			# She almost reveals to you the existance of the old super drone carrier project; the Lycosidae.
+			`	"I already have access to the specs of the ship. My questions are mostly related to how well they fare in battle. As far as I know, we have never seriously tried ships carrying fighters before. Well, to be fair, we did-" She stops herself, this is probably not something she can talk to you about. "We, hum, did - think of it. We just never tested them in battle."`
+			`	"The limitations could have been the ethical implications, but I think it was mostly due to technical difficulties building a ship large enough to contain and launch multiple interceptors-like crafts. I want to know how effective they are and how are they countered." She is clearly very excited to learn more about them.`
 			choice
 				`	"Well, I've never seen them in combat personally, so you will have to ask someone else. I've only heard stories."`
 					goto stories
 				`	"That ship was not a proper carrier... wait until you see the some of the Navy's other ships."`
 				`	"They're so expensive we don't see too many of them, with the obvious cost of losing fighters all the time... don't bother with them."`
 					goto price
-			`	"Oh, you mean a ship like the one you scanned, with more fighters and weapons? We already have some scans of that one - exciting scans at that! But do tell me more about it." She seems to be drinking in your words, and is eager for more about those Carriers.`
+			`	"Oh, you mean a ship like the one you scanned, with more fighters and weapons? We already have some scans of something that matches that description - exciting scans at that! But do tell me more about it." She seems to be drinking in your words, and is eager for more about those Carriers.`
 			choice
 				`	"Carriers dominate in human space. They have weapons to take down any ship, and with their fighters, they can even take on small fleets."`
 				`	"Well, I've never seen them in combat personally, so you will have to ask someone else. I've only heard stories."`

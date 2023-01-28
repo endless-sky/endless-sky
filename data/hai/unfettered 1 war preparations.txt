@@ -126,7 +126,8 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		government "Cerberus"
 		system "Host"
 		personality heroic nemesis staying vindictive target
-		ship "Alpha Auxiliary (Pirate Crew)" "Settler"
+		ship "Alpha Auxiliary" "Settler"
+			crew 100
 		conversation
 			`While capturing the ship, you noticed that only very few of the crew were actually Alphas. What little were Alphas seem to have disappeared. They probably used an escape pod to get away unoticed in the middle of the fight, or maybe they were never there in the first place. Whatever the case, you cannot find any trace of them. The crew was composed of a mix of mercenaries and indoctrinated pirates.`
 			`	There was no doubt who was in command of this vessel, however. The jump drives don't seem to be aboard the ship. You should head to the Alpha base to see if you can find them or anything else of interest.`

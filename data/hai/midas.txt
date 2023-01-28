@@ -581,17 +581,18 @@ mission "Midas: Feed Them To The Wolves"
 			`	Right after that, the governor's ship hails you. "What have you done?" You feel like she was about to continue, but before she could all communications are jammed.`
 			`	You can see some pirates present with the Mercenaries' fleets, probably to distract other Hai ships that happen to be in the system.`
 		payment 1000000
+	# as of yet, we cannot make the main mission fail as your escorts are boarded, meaning these will not be disables
 	npc
 		# the Alphas and their minions let the Mercenaries alone so that this would happen. They probably even gave them a tip about it, but not in person.
 		government "Midas"
 		system "Waypoint"
-		personality disables plunders staying harvests
-		fleet "Large Northern Pirates" 5
+		personality plunders staying harvests
+		fleet "Large Northern Pirates" 6
 	npc
 		government "Pirate"
 		system "Waypoint"
-		personality entering uninterested plunders disables coward
-		fleet "Small Northern Pirates" 5
+		personality entering plunders staying
+		fleet "Small Northern Pirates" 10
 	to complete
 		has "Unfettered: Escort Hai Fleet: failed"
 		not "Unfettered: Escort Hai Fleet: aborted"
@@ -607,7 +608,10 @@ mission "Midas: Feed Them To The Wolves"
 		# Make the hunger last around 20 days longer.
 		"unfettered: hunger stops" = -500
 		payment 4000000
-		dialog `As before, a voice addresses you once you are alone in your quarters. "We have transferred 4 million credits to your account, and made sure the elder will not bother you. Do be aware, however, that a food situation has arrisen, not because of our small operation, but because of the bomb's presence in the first place. The Unfettered will probably be busy for some time... About the governor, if it can ease your conscience, we only captured her."`
+		dialog
+			`As before, a voice addresses you once you are alone in your quarters. "We have transferred 4 million credits to your account, and made sure the Chief will not bother you.`
+			`	"Do be aware, however, that a food situation has arrisen, not because of our small operation, but because of the bomb's presence in the first place.`
+			`	"The Unfettered will probably be busy for some time... As for the governor, if it can ease your conscience, we only captured her."`
 
 
 

@@ -725,7 +725,7 @@ phrase "hostile unfettered challenger"
 	word
 		"shaming yourself"
 		"running away"
-		"thinking too much"
+		"overthinking"
 		"recharging your shields"
 		"hiding in fear"
 	word

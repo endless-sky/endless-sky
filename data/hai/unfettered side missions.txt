@@ -159,7 +159,7 @@ mission "Unfettered: Si-Ra's Trust Broken"
 		dialog "You have broken the trust of the Unfettered captain by trying to come to a duel with too many ships. He will not show up again."
 		fail "Unfettered: Prove Your Strength"
 	to complete
-		has "Unfettered: Prove Your Strength: active"
+		not "Unfettered: Prove Your Strength: active"
 
 mission "Unfettered: Attracted Attention"
 	landing
@@ -248,35 +248,6 @@ ship "Alpha Auxiliary"
 	description "The Auxiliary is the Republic Navy's logistical backbone. The size and durability of a capital ship but more cargo and passenger space than any other Navy ship, the Auxiliary is used whenever the Navy needs large amounts of troops or cargo transported with a guarantee that they'll reach the destination."
 	description " The Auxiliary was built with modularity in mind, allowing the ship to be fitted for more cargo or bunk space depending on the mission. This modularity makes the ship rather expensive to build, however, and therefore a rare sight to see."
 
-# make it have a given amount of crew since you are expected to capture it
-ship "Alpha Auxiliary" "Alpha Auxiliary (Pirate Crew)"
-	crew 100
-
-# TODO: when possible to define a cargo for npc, use that and some custom outfitters
-ship "Alpha Auxiliary" "Alpha Auxiliary (Bringing Supplies)"
-	cargo
-		outfits
-			"Jump Drive" 5
-			"Control Transceiver" 4
-			"Fuel Processor" 2
-			"Afterburner (Asteroid Class)" 3
-			"Reasoning Node" 3
-			"Engine (Meteor Class)" 2
-			"Fire-Lance" 8
-		commodities
-			"Military" 50
-			"Electronics" 50
-
-ship "Alpha Auxiliary" "Alpha Auxiliary (Leaving With Supplies)"
-	cargo
-		outfits
-			"Ion Cannon"
-			"Hai Tracker Pod"
-			"Hai Tracker" 95
-		commodities
-			"Metal" 100
-			"Heavy Metals" 150
-
 
 conversation "unfettered: destroyed auxiliary"
 	`	The Unfettered that hails you is enraged, "How dare you?! This ship was helping us by providing supplies, and you just shoot it down? We don't care who may have drawn the first shot, you are now an enemy of the Unfettered."`
@@ -303,11 +274,17 @@ mission "Unfettered: Alpha Bringing Supplies"
 	on offer
 		set "unfettered: saw auxiliary"
 	on enter
-		dialog `As you launch, the local authorities hail you, "An important guest is arriving, you should not be here when they do. Get out, fast. And do not interfere with that incoming ship."`
+		dialog
+			`As you launch, the local authorities hail you, "An important guest is arriving, you should not be here when they do. Get out, fast.`
+			`	They insist: "Whatever you do, do not interfere with that incoming ship."`
 	npc kill
 		government "Alpha"
 		personality entering uninterested fleeing timid
-		ship "Alpha Auxiliary (Bringing Supplies)" "Settler"
+		fleet
+			commodities "Military" "Electronics"
+			outfitters "Korath Exiles Remnant Donations"
+			variant
+				ship "Alpha Auxiliary" "Settler"
 		conversation "unfettered: destroyed auxiliary"
 
 mission "Unfettered: Alpha Leaving With Supplies"
@@ -333,7 +310,11 @@ mission "Unfettered: Alpha Leaving With Supplies"
 	npc kill
 		government "Alpha"
 		personality launching uninterested fleeing timid
-		ship "Alpha Auxiliary (Leaving With Supplies)" "Settler"
+		fleet
+			commodities "Metal" "Heavy Metals"
+			outfitters "Hai Advanced"
+			variant
+				ship "Alpha Auxiliary" "Settler"
 		conversation "unfettered: destroyed auxiliary"
 
 
