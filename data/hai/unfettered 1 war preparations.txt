@@ -60,7 +60,7 @@ mission "Unfettered: Alphas: Find The Auxiliary"
 
 mission "Unfettered: Alphas 2: Prove Yourself"
 	landing
-	name `Find and capture the Auxiliary (Alpha)`
+	name `Find and capture the Alpha Auxiliary`
 	description `You found out that the Auxiliary has a problem with its jump drive. Try and find the traces Mera pointed out around the system you last saw it in, and then capture it. You need to land with that Auxiliary as your flagship, and all jump drives you may find.`
 	source "Firelode"
 	destination "Darkcloak"
@@ -162,7 +162,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		has "flagship model: Auxiliary (Alpha)"
 	on complete
 		outfit "Jump Drive" -10
-		log `Captured the Auxiliary (Alpha). The Alphas had a trap set but it failed. Or, at least, that's what they want everyone to think.`
+		log `Captured the Alpha Auxiliary. The Alphas had a trap set but it failed. Or, at least, that's what they want everyone to think.`
 		payment 10000000
 		"salary: Unfettered" = 1000
 		conversation
@@ -752,7 +752,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 				`	"Tell me more about it."`
 				`	"That's still not too clear, but I'll manage."`
 			label tellmore
-			`	"It would probably be a good idea to be around <waypoints> very soon, monkey. But I still want my cut for giving you this information. You'll get 75% of the cut. But be sure to bring back at least 400 tons of cargo, or there's no deal!" The Auxiliary (Alpha) you managed to capture not long ago seems perfect for this task, but maybe it's not as easy as he presents it.`
+			`	"It would probably be a good idea to be around <waypoints> very soon, monkey. But I still want my cut for giving you this information. You'll get 75% of the cut. But be sure to bring back at least 400 tons of cargo, or there's no deal!" The Alpha Auxiliary you managed to capture not long ago seems perfect for this task, but maybe it's not as easy as he presents it.`
 			choice
 				`	"I'll go before the trail gets cold."`
 					accept

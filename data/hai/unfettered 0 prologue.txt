@@ -958,7 +958,7 @@ mission "Unfettered: Prove Your Strength 2"
 			label leave
 			`	"One last warning for ye: Ye should sail the skies with a hyperdrive, especially with the dangers of where we be headed. A jump drive won't do us any favors getting there, but 'twill bring more than a mite of unwanted company. Nor should we risk the Wanderers decided to fit ye with a hempen halter from yer association with us."`
 			`	You accompany him to your ship, and he seems actually impressed, even more so when seeing the interior. "Your ship indeed be... adequate, for a warrior and this task," he begrudges.`
-			`	"Hold up right there matey, the see sooner be green than I'd see ye can fit 8 drives in yer holds! Ya better make some space!"`
+			`	"Hold up right there matey, the sea sooner be green than I'd see ye can fit 8 drives in yer holds! Ya better make some space!"`
 				to display
 					"cargo space" < 80
 			`	You show him to his bunk but he refuses to go there, "Where ye be sending me? Ye need me on the helm, you scabby sea bass!" You have no choice but to let him sit on the bridge.`
@@ -1611,12 +1611,12 @@ mission "Unfettered: Cavalry Arrives"
 		has "Unfettered: Materials Intercepted: active"
 	on offer
 		conversation
-			`Realizing you have landed after them, the pirates fire up their engines and take off as fast as they can. They may have not expected you to have the guts to land on such a lawless world. Or maybe they just wanted to delay you... Whatever the case, you quickly order your crew to get back into space.`
+			`Realizing you have landed after them, the pirates fire up their engines and take off as fast as they can. They might not have expected you to have the guts to land on such a lawless world. Or maybe they just wanted to delay you... Whatever the case, you quickly order your crew to get back into space.`
 				launch
 	on enter
 		conversation
 			"As you enter the system it becomes clear: they have called for backup! Multiple pirate ships are arriving in the system. But you also see other ships arriving by jump drives. They do not appear to be pirates, maybe the 'contact' has provided help as well?"
-			`Upon entering, they hail you, "Listen carrefuly. You may have noticed a Korath drone in the area, and they don't like Alpha dogs around much. If Koraths come to help do not open fire on them, understood?" The other ship then hails you, "I would recommend you make sure these pirate ships are on your side, captain!" They end the hail, making it clear they will not take no for an answer.`
+			`They hail you, "Listen carrefuly. You may have noticed a Korath drone in the area, and they don't like Alpha dogs around much. If Koraths come to help do not open fire on them, understood?" "I would recommend you make sure these pirate ships are on your side, captain!" The other ship adds, before ending the hail, making it clear they will not take no for an answer.`
 	npc save
 		government "Shadow"
 		personality entering heroic uninterested staying disables mute
@@ -1906,7 +1906,7 @@ mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 			`You send your logs as you land and receive a very generous payment of <payment>.`
 			`	Moments later, on your bridge, thinking about how to explain to the Chiefs that this was an Alpha ship, you hear a familiar voice from the coms on your ship. "Oh, you're back! Good!" You are a bit surprised by the interruption, but quickly recognize Mera. "Can I speak to you about your scans? I really am intrigued about that 'Auxiliary', as your scans designated it."`
 			choice
-				`	"I prefer not."`
+				`	"I would prefer not to explain that to you."`
 					decline
 				`	"Sorry, but I'm no engineer. I have no idea about how those work."`
 				`	"Sure. What is it you want to know about them?"`
@@ -1914,7 +1914,7 @@ mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 			`	"Worry not, I did not want to talk to you about the drag of that ship, or its shield matrix. Although they are very interesting, to be sure!"`
 			label questions
 			# She almost reveals to you the existence of the old super drone carrier project; the Lycosidae.
-			`	"I already have access to the specs of the ship. My questions are mostly related to how well they fare in battle. As far as I know, we have never seriously tried ships carrying fighters before. Well, to be fair, we did-" She stops herself, this is probably not something she can talk to you about. "We, hum, did - think of it. We just never tested them in battle."`
+			`	"I already have access to the specs of the ship. My questions are mostly related to how well they fare in battle. As far as I know, we have never seriously tried ships carrying fighters before. Well, to be fair, we did-" She stops herself, this is probably not something she can talk to you about. "We, hum, did - think of it. We just never tested them in battle.`
 			`	"The limitations could have been the ethical implications, but I think it was mostly due to technical difficulties building a ship large enough to contain and launch multiple interceptors-like crafts. I want to know how effective they are and how are they countered." She is clearly very excited to learn more about them.`
 			choice
 				`	"Well, I've never seen them in combat personally, so you will have to ask someone else. I've only heard stories."`
