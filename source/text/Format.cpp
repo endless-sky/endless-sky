@@ -97,12 +97,10 @@ string Format::Credits(int64_t value)
 // then attach the ' credit' or ' credits' suffix to it.
 string Format::CreditString(int64_t value)
 {
-	string creditValue = Credits(value);
 	if(value == 1)
-		creditValue += " credit";
+		return "1 credit";
 	else
-		creditValue += " credits";
-	return creditValue;
+		return Credits(value) + " credits";
 }
 
 
