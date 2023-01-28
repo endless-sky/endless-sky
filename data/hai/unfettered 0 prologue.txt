@@ -859,7 +859,7 @@ mission "Unfettered: Prove Your Strength"
 				`	"Be careful with provoking me. You may have gotten killed. Do not count on me to repair your ship."`
 					goto dangerous
 				`	"What was this really about?"`
-				`	"What kind of weapons were you using?"`
+				`	"Those weapons you were using are impressive."`
 					goto weapons
 			`	"Ye have earned the right to know. We Unfettered always seek to improve ourselves, be it in combat or otherwise. Ye travel from far away, and we do not see many strangers around here. I wanted to see how ye approached me challenge; I hoped I could find knowledge in how you lost. I may have underestimated yer ability to fight though... A mistake which I shall not make again next time."`
 			choice
@@ -870,7 +870,7 @@ mission "Unfettered: Prove Your Strength"
 			`	"Worry not, matey. Respect only need be earned once. From me, at least. Do know there are other captains eager to challenge ye themselves, and most are stronger than me. Or, at least, they have more ships..."`
 				goto end
 			label weapons
-			`	"Aha! The more surprising the weapons, the more chance they drop the bounty! Ye need not destroy them, only frighten them a little. And not much is more frightening that seeing your energy levels dropping whilst your weapons start malfunctioning; fighting against weapons ye have never seen!"`
+			"Aye, matey! The flashier yer weapons be when ye run a shot across ther bow, the more likely these landlubbers be to strike colors and ditch ther loot! No need to make these lily livered into shark food, just shiver ther timbers a bit. Savvy? And not much else sets yer knees a knockin' quite like sending watching yer weapons go squiffy while yer energy levels drop straight ta Davy Jones' Locker! Always a good clap o' thunder for 'em!"
 			label end
 			action
 				log `Defeated a young Unfettered Captain in a duel.`
