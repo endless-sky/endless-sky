@@ -2486,7 +2486,7 @@ mission "Passenger Runoff [0]"
 	name "Passenger transport to <planet>"
 	job
 	repeat
-	description "Bring a hooded figure to <destination>. Payment is 12,000 credits."
+	description "Bring a hooded figure to <destination>. Payment is <payment>."
 	passengers 1
 	"apparent payment" 12000
 	source
@@ -2506,7 +2506,7 @@ mission "Passenger Runoff [1]"
 	name "Passenger transport to <planet>"
 	job
 	repeat
-	description "Bring a teenager to <destination>. Payment is 12,000 credits."
+	description "Bring a teenager to <destination>. Payment is <payment>."
 	passengers 1
 	"apparent payment" 12000
 	source
