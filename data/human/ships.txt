@@ -1958,11 +1958,11 @@ ship "Gunboat"
 		"Heavy Laser Turret"
 		
 		"RT-I Radiothermal"
-		"LP144a Battery Pack"
+		"LP072a Battery Pack"
 		"D14-RN Shield Generator"
 		"Small Radar Jammer"
-		"Cargo Scanner"
-		"Outfit Scanner"
+		"Cargo Scanner" 9
+		"Outfit Scanner" 7
 		"Tactical Scanner"
 		"Brig"
 		
