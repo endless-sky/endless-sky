@@ -2862,7 +2862,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 				p += v;
 
 				double rendezvousTime;
-				// Beam weapons hit instantenously if they are in range.
+				// Beam weapons hit instantaneously if they are in range.
 				if(weapon->TotalLifetime() == 1)
 				{
 					// Lower target priority if it is out of range.
@@ -2887,7 +2887,6 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 					// All bodies within weapons range have the same basic
 					// weight. Outside that range, give them lower priority.
 					rendezvousTime = max(0., rendezvousTime - weapon->TotalLifetime());
-
 				}
 
 				// Determine how much the turret must turn to face that vector.
