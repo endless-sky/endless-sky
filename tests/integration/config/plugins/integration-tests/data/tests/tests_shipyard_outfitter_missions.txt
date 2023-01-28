@@ -1,0 +1,164 @@
+test-data "Shipyard Outfitter Mission Save"
+	category "savegame"
+	contents
+		pilot Bobbi Bughunter
+		date 16 11 3013
+		system "Terra Incognita"
+		planet Ruin
+		clearance
+		ship "Star Barge"
+			name "Buggy Barge"
+			sprite "ship/star barge"
+			attributes
+				category "Light Freighter"
+				cost 190000
+				mass 10
+				bunks 3
+				"cargo space" 50
+				drag 1
+				"engine capacity" 400
+				"fuel capacity" 300
+				"heat dissipation" 0.8
+				hull 1000
+				"outfit space" 1300
+				"required crew" 1
+				shields 600
+				"turret mounts" 1
+				"weapon capacity" 200
+				"thrust" 50
+				"turn" 1000
+			outfits
+				Hyperdrive
+				"nGVF-BB Fuel Cell"
+				"LP036a Battery Pack"
+			crew 1
+			fuel 300
+			shields 600
+			hull 1000
+			position 0 0
+			engine -9 38 1
+			engine 9 38 1
+			turret 0 -8
+			leak leak 60 50
+			explode "tiny explosion" 10
+			explode "small explosion" 10
+			system "Terra Incognita"
+			planet Ruin
+		account
+			credits 100000000
+			score 400
+			history
+		visited "Terra Incognita"
+		"visited planet" Ruin
+		changes
+			planet Ruin
+				add shipyard "Remnant"
+				add outfitter "Remnant Core"
+
+
+
+test-data "Shipyard Outfitter Mission Missions"
+	category mission
+	contents
+		mission "%TEST%: SHIPYARD MISSION"
+			shipyard
+			source "Ruin"
+			to offer
+				has "%TEST%: SHIPYARD MISSION OFFER"
+			on offer
+				conversation
+					`THIS IS A SHIPYARD MISSION YO!`
+						decline
+			on decline
+				set "succeed test"
+
+
+
+		mission "%TEST%: OUTFITTER MISSION"
+			outfitter
+			source "Ruin"
+			to offer
+				has "%TEST%: OUTFITTER MISSION OFFER"
+			on offer
+				conversation
+					`THIS IS A OUTFITTER MISSION YO!`
+						decline
+			on decline
+				set "succeed test"
+
+
+
+test "Trigger Shipyard Mission"
+	status partial
+	description "Launch, land, and go to the spaceport to trigger any potential missions in the shipyard."
+	sequence
+		call "Depart"
+		call "Land"
+		input
+			key s
+
+
+test "Trigger Outfitter Mission"
+	status partial
+	description "Launch, land, and go to the spaceport to trigger any potential missions in the outfitter."
+	sequence
+		call "Depart"
+		call "Land"
+		input
+			key o
+
+
+test "End Missions"
+	status partial
+	description "Just skip a mission by pressing return twice."
+	sequence
+		# Press accept (or decline, depending on if it is shown) and then skip the dialog once.
+		input
+			key "Return"
+		input
+			key "Return"
+
+
+test "Test Shipyard And Outfitter Mission"
+	status partial
+	description "Set a few conditions so they are displayed on errors, clarifying things up."
+	sequence
+		apply
+			# Test accepted. If not there it wasn't offered.
+			"test: succeed test" = "succeed test"
+			# if we launched
+			"test: flagship landed" = "flagship landed"
+
+
+test "Shipyard Mission Test"
+	status active
+	description "Test if a conversation option shows up when the given condition is set."
+	sequence
+		inject "Shipyard Outfitter Mission Missions"
+		inject "Shipyard Outfitter Mission Save"
+		call "Load First Savegame"
+		apply
+			"%TEST%: SHIPYARD MISSION OFFER" = 1
+		call "Trigger Shipyard Mission"
+		call "End Missions"
+		call "Depart"
+		call "Test Shipyard And Outfitter Mission"
+		assert
+			"succeed test" == 1
+
+
+test "Outfitter Mission Test"
+	status active
+	description "Test if a first conversation option does not show up but the second one does, when the given condition is set. Also makes sure goto still works as expected."
+	sequence
+		inject "Shipyard Outfitter Mission Missions"
+		inject "Shipyard Outfitter Mission Save"
+		call "Load First Savegame"
+		apply
+			"%TEST%: OUTFITTER MISSION OFFER" = 1
+		call "Trigger Outfitter Mission"
+		call "End Missions"
+		call "Depart"
+		call "Test Shipyard And Outfitter Mission"
+		assert
+			"succeed test" == 1

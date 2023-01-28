@@ -99,12 +99,13 @@ mission "Remnant: Visit to Paradise 1"
 					goto ourdestination
 				`	"Why is that number so precise?"`
 				`	"That sounds like the speed of light."`
-			`	Taely smiles. "After all the safety factors, margins for error, and assorted other adjustments were taken into account, someone noticed that coefficient of the rated value was calculated to be 1.1DE79, a fraction above the coefficient of the speed of light in a vacuum, so they adjusted the rated maximum velocity down only slightly so that they would match."`
+			`	Taely smiles. "After all the safety factors, margins for error, and assorted other adjustments were taken into account, someone noticed that, when expressed in scientific notation, the coefficient of the rated value was calculated to be 1.1DE79, a fraction above the coefficient of the speed of light in a vacuum, so they adjusted the rated maximum velocity down only slightly so that they would match."`
 			choice
 				`	"Thanks for the explanation."`
 					goto ourdestination
 				`	"What is a coefficient?"`
-			`	"Here, I will switch to base 10 to make it easier for you to understand." She pulls up a hologram with 299,792,458 m/s on it. As she speaks, the number shifts to 2.99792458x10^8 m/s. "When we write out a number such as the speed of light, it is typical to break it into parts. This is generally referred to as scientific notation. This is done to facilitate comparing and working with large numbers. The first part, 2.99792458 in this case, would be called the coefficient. The second part, x10, specifies the base; and the third part, ^8 is the exponent." The display shifts again to show 1.1DE784Ax16^7 m/s. "So this would be how we typically write the speed of light when we are using it in our research. So, 1.1DE78 is the coefficient of both the speed of light and the speed of the train, just with a different exponent." She pauses, then vanishes the display. "We will be arriving momentarily, so I should probably stop there."`
+				`	"What is scientific notation?"`
+			`	"Here, I will switch to base 10 to make it easier for you to understand." She pulls up a hologram with 299,792,458 m/s on it. As she speaks, the number shifts to 2.99792458x10^8 m/s. "When we write out a number such as the speed of light, it is typical to break it into parts. This is generally referred to as scientific notation. This is done to facilitate comparing and working with large numbers. The first part, 2.99792458 in this case, would be called the coefficient. The second part, x10, is called the base; and the third part, ^8 is the exponent." The display shifts again to show 1.1DE784Ax10^7 m/s. "So this would be how we typically write the speed of light when we are using it in our research. So, 1.1DE78 is the coefficient of both the speed of light and the speed of the train, just with a different exponent." She pauses, then vanishes the display. "We will be arriving momentarily, so I should probably stop there."`
 			label ourdestination
 			`	After several minutes, the lights in the train car suddenly pulse several times, and the train starts to decelerate heavily. You can feel yourself pushing into the harness as the train slows and comes to a stop. Unbuckling, Taely leads you out onto the platform, and then up a long escalator to the surface. Emerging into the sunlight, you find yourself looking around at a scene that seems almost anachronistic.`
 			scene "scene/remnant remote spaceport"
@@ -156,6 +157,7 @@ mission "Remnant: Celebration 1"
 	minor
 	source
 		government "Remnant"
+		attributes "remnant primary"
 	destination "Ssil Vida"
 	to offer
 		has "event: remnant: cognizance calm"
@@ -261,7 +263,7 @@ mission "Remnant: Celebration 1"
 					goto celebrationrequest
 				`	"That was awe-inspiring."`
 					goto awestruck
-				`	"Why were some of the people crying?`
+				`	"Why were some of the people crying?"`
 					goto askcrying
 				`	"Who leads these ceremonies?"`
 					goto ceremonyleader
@@ -273,7 +275,7 @@ mission "Remnant: Celebration 1"
 					goto celebrationrequest
 				`	"That was awe-inspiring."`
 					goto awestruck
-				`	"Why were some of the people crying?`
+				`	"Why were some of the people crying?"`
 					goto askcrying
 				`	"Who leads these ceremonies?"`
 			label ceremonyleader
@@ -284,7 +286,7 @@ mission "Remnant: Celebration 1"
 					goto celebrationrequest
 				`	"That was awe-inspiring."`
 					goto awestruck
-				`	"Why were some of the people crying?`
+				`	"Why were some of the people crying?"`
 					goto askcrying
 				`	"That seemed both well-rehearsed and very disorganized."`
 					goto celebrationrehearsed
@@ -295,7 +297,7 @@ mission "Remnant: Celebration 1"
 					goto celebrationrequest
 				`	"That was awe-inspiring."`
 					goto awestruck
-				`	"Why were some of the people crying?`
+				`	"Why were some of the people crying?"`
 					goto askcrying
 				`	"That seemed both well-rehearsed and very disorganized."`
 					goto celebrationrehearsed
@@ -306,7 +308,7 @@ mission "Remnant: Celebration 1"
 					goto celebrationrequest
 				`	"That was awe-inspiring."`
 					goto awestruck
-				`	"Why were some of the people crying?`
+				`	"Why were some of the people crying?"`
 				`	"That seemed both well-rehearsed and very disorganized."`
 					goto celebrationrehearsed
 			label askcrying
@@ -324,7 +326,7 @@ mission "Remnant: Celebration 1"
 			choice
 				`	"I think that is all for now."`
 					goto celebrationrequest
-				`	"Why were some of the people crying?`
+				`	"Why were some of the people crying?"`
 					goto askcrying
 				`	"Who leads these ceremonies?"`
 					goto ceremonyleader
@@ -431,7 +433,7 @@ mission "Remnant: Shattered Light 1"
 	on complete
 		conversation
 			`Looking around the Viminal spaceport, you spot Taely using something that slightly resembles a small catapult to launch a sizable rock across the cavern. A nearby Merganser leaps into the air and chases after it, pouncing on the rock and vanishing from sight before reappearing next to Taely, dropping it next to her. Without looking away from the Merganser she waves you over.`
-			`	"Well met, <first>, how goes your travels? Found anything interesting?`
+			`	"Well met, <first>, how goes your travels? Found anything interesting?"`
 			`	She listens to your description of the encounter with the ghostly ship whilst looking at the recording you pull up from your commlink. "This is very intriguing. I will need to consult a few people. If you are interested in investigating this, ensure your ship has a research laboratory installed, and meet me in the spaceport."`
 
 
@@ -500,6 +502,8 @@ mission "Remnant: Shattered Light 3"
 			`	Her gestures take on an appreciative tone. "The Maudrakoi made extensive use of the materials that make our ships and architecture so distinctive, and this has allowed their cities and technologies to survive the eons since they went extinct. One technology of note is they had an interesting ability to manipulate space. They used this to make large, highly complex objects, and then, for lack of a better term, partially embed them in pocket dimensions so as to not be entirely present. They used this frequently to allow equipment and materials to be much smaller than normal." She shrugs, and gestures with a frustrated tone. "We cannot replicate it, but we have figured out how to disrupt the compression, and thus recover the artifact."`
 			`	The hologram shifts back to showing the Shattered Light. "This ship does not show the same signatures as the Maudrakoi artifacts, but we think it is sufficiently similar that our equipment should work on it too. Hopefully. In any case, though, time is passing, so we should start loading." With that, the Remnant gather their equipment and head out.`
 				accept
+	on enter "Coluber"
+		dialog `Ruach briefly checks the scanning arrays before reporting that, unsurprisingly, the ship seems to not be present. She suggests searching nearby systems to locate it.`
 	npc "scan outfits"
 		government "Ember Waste"
 		personality uninterested waiting staying mute
@@ -571,7 +575,7 @@ mission "Remnant: Shattered Light 4"
 					goto shatteredhelp
 				`	"So, what happened?"`
 			`	The team of Remnant are almost too excited for you to understand their gestures, but one calms down enough that their signing is comprehensible. "To be honest, we were expecting this to be the first of several trips doing detailed scans and trying out different sorts of synchronization fields. But when we saw that it was heading to the planet..." She trails off, and another one continues. "We already had the sensors running as we approached, so we jumped and triggered the fields as soon as we got a reasonable match."`
-			`	He frowns a bit. "It worked, although not perfectly. There are chunks missing, some of which seriously impair its functionality. But it is back in the Primary Weft, so now we have time to work on it and figure out what happened to it.`
+			`	He frowns a bit. "It worked, although not perfectly. There are chunks missing, some of which seriously impair its functionality. But it is back in the Primary Weft, so now we have time to work on it and figure out what happened to it."`
 			choice
 				`	"I think I get the picture. Let me know if I can help."`
 					goto shatteredhelp
@@ -715,3 +719,64 @@ mission "Remnant: Scent of Rain 1"
 			`	He shakes his head. "But no matter. Planning for the storm is my duty, not yours, and the front is yet to appear.`
 			label scanningpayment
 			`	"We have allocated you <payment> for the risks undertaken. Please use it wisely. While it is my duty to anticipate threats to us all, it is your duty to ensure you are prepared to face the winds they may bring." He turns and strides away, quickly vanishing into the tunnels beneath the spaceport.`
+
+
+
+mission "Remnant: Will Not Someone Please Think Of The Children"
+	minor
+	landing
+	name "Sympathy For The Korath"
+	description "Travel to the <waypoints> system to disable a stranded Kas'lor Ik 582. Do not destroy or capture the ship, as it likely has a large civilian population."
+	source
+		government "Remnant"
+	waypoint "Vaticanus"
+	to offer
+		random < 30
+		"remnant: broken jump drive count" >= 10
+		or
+			has "event: remnant: cognizance calm"
+			and
+				has "Remnant: Cognizance 25: done"
+				not "flagship planet: Ssil Vida"
+	on offer
+		conversation
+			`You step out of your airlock to find Prefect Chilia waiting for you with a worried look on his face. "Captain <first>, I have a sensitive request for you.`
+			`	"Our scouts are reporting a stranded Korath ship in Vaticanus, a Kas'lor Ik 582 to be precise. If it were a typical warship obstructing our operations, we would request you track it down and eliminate it, but because ships of this type tend to be home to a large civilian population, destroying or capturing it outright may instigate a reprisal, especially in that sector.`
+			`	"Would you be up for disabling it, so the threat is eliminated while preserving the lives of the innocents on board?" His signs shift from a questioning tone to a confident one. "After you are done we can disarm the ship and fix their jump drive. If they adhere to their typical doctrine they should decide to head back home."`
+			choice
+				`	"Happy to help those in need, even the Korath."`
+				`	"I have no intentions of risking my neck for some Korath."`
+					goto rathernot
+			`	"I am grateful for your understanding and willingness to help here. Together we can ensure everyone gets home safely."`
+				accept
+			label rathernot
+			`	He nods in acknowledgment and his gestures take on a staccato phrasing. "I feared my ask was too much. I understand the sentiment. Perhaps I was naive to think such an outcome was possible."`
+				decline
+	npc disable save
+		government "Korath"
+		personality heroic target marked staying disables plunders
+		system "Vaticanus"
+		ship "Kas'lor Ik 582 (Stranded)" "Fligrookor"
+		dialog `You have disabled the Kas'lor Ik 582. Time to report back to <planet>.`
+	npc
+		government "Korath"
+		personality timid disables plunders swarming
+		system "Vaticanus"
+		fleet
+			names "korath"
+			variant
+				"'olofez (Digger)" 3
+	on enter "Vaticanus"
+		dialog `As you enter the system you spot the target ship. You imagine the small town's worth of people inside, many of which are probably children.`
+	on abort
+		dialog `The Remnant are puzzled at your aborting of this mission, but they tell you they will send someone else to do this work. They warn you they will not propose any more of the sort to you again.`
+	on fail
+		"reputation: Remnant" -= 250
+		dialog `You where unable to disable the Kas'lor Ik 582 without destroying it... The Remnant will not be pleased...`
+	on complete
+		"remnant: disable and save count" ++
+		payment 2500000
+		conversation
+			`You find Chilia with a relieved look on his face when you land.`
+			`	"These assignments are typically handled by our most trusted teams, as taking on the larger Korath vessels is a sensitive matter. Most of their larger ships are home to large groups of Korath civilians, including children. I must admit there were concerns you might not be those children's best chance, but our fleet was occupied elsewhere at the time. I am glad I was not wrong in my assessment of you." He signs with a content smile on his face.`
+			`	"We must be careful not to let ignorance of Korath society result in the unnecessary destruction of similar ships. Now that you have shown you can handle these tasks with the proper finesse, you can expect these to turn up in the task board in the future." Chilia then walks away with a confident pace.`
