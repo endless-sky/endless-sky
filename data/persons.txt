@@ -616,6 +616,7 @@ ship "Modified Osprey"
 			"hull damage" 3500
 			"heat damage" 24000
 			"ion damage" 24000
+			"scrambling damage" 24000
 			"disruption damage" 1200
 			"hit force" 30000
 	outfits
@@ -1480,7 +1481,7 @@ ship "Modified Boxwing"
 
 person "Gefullte Taubenbrust"
 	government "Author"
-	frequency 1000
+	frequency 200
 	personality
 		heroic plunders opportunistic
 	phrase
@@ -1703,7 +1704,7 @@ effect "fusion cannon cloud"
 
 person "MasterOfGrey"
 	government "Author"
-	frequency 1000
+	frequency 200
 	personality
 		heroic plunders opportunistic
 	system

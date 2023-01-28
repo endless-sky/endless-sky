@@ -350,7 +350,7 @@ mission "Trader Directions to Hai Space"
 				accept
 	on waypoint
 		dialog `This system appears to contain some sort of astronomical anomaly. Perhaps this is the wormhole you were directed to.`
-			
+		
 
 # This branch is if you have met the Hai but not the Unfettered
 	# Goto Stop 3 Wah Yoot (Darkcloak) and pick up at Tour 4 mission.
@@ -878,7 +878,7 @@ mission "00 Hai Leaks Response 4B"
 				decline
 
 event "returned geocoris"
-		
+
 ship "Geodesic Geocoris"
 	plural "Geodesic Geocoris"
 	sprite "ship/geodesic geocoris"
