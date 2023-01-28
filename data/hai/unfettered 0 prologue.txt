@@ -875,7 +875,7 @@ mission "Unfettered: Prove Your Strength"
 			action
 				log `Defeated a young Unfettered Captain in a duel.`
 				set "unfettered: beaten the captain"
-				payment 100000
+				payment 250000
 			`	"Hopefully we see each other again, sometime." He and his crew seem quite busy with the repairs. "I transferred yer booty of <payment> to pay to repair any damage I may have done to yer ship. I be landing on the surface soon, to drown the sorrow of this humiliating defeat I have just suffered. I do not need nor want yer assistance in repairing, for that is a task best suited for the vanquished."`
 			`	"If ye be feeling up to the challenge, there be other captains that would be willing to duel ye, if ye keep fighting fair, of course. None accept to fight more than a pair o' heavy men-o-war, some others, like me, still prefer fighting with a single vessel. Like me, they will wish to fight to test the strength of yer exotic technologies or strategies, savvy?"`
 	on fail
@@ -886,6 +886,8 @@ mission "Unfettered: Prove Your Strength"
 		has "unfettered: beaten the captain"
 	on complete
 		clear "unfettered: beaten the captain"
+		"unfettered: took Si-Ra' gold" = "outfit (all): Gold Bars"
+		"unfettered: took Si-Ra' weapons" = "outfit (all): Ionic Blaster Prototype" + "outfit (all): Ionic Turret Prototype" * 3
 
 
 
@@ -943,7 +945,7 @@ mission "Unfettered: Prove Your Strength 2"
 				`	"Sorry, but I won't risk my ship by going anywhere close to these pirates."`
 					decline
 			label cut
-			`	"Ye humans always be obsessed with yer doubloons... So many much greater a variety of booty ye could be seeking. Rest assured, it be quite the coffer. I be taking a mere quarter of the total bounty, and ye should well remember how well ye were paid for the ones ye've already delivered to me brethren."`
+			`	"Ye humans always be obsessed with yer doubloons... So many much greater a variety of booty ye could be seeking. Rest assured, it be quite the coffer. I be taking half of the total bounty, and ye should well remember how well ye were paid for the ones ye've already delivered to me brethren."`
 			label leave
 			`	"One last warning for ye: Ye should sail the skies with a hyper drive, especially with the dangers of where we be headed. A jump drive won't do us any favors getting there, but 'twill bring more than a mite of unwanted company. Nor should we risk the Wanderers decided to fit ye with a hempen halter from yer association with us." You accompany him to your ship, and he seems actually impressed, even more so when seeing the interior. "Your ship indeed be... adequate, for a warrior and this task," he begrudges.`
 				accept
@@ -955,7 +957,7 @@ mission "Unfettered: Prove Your Strength 2"
 		has "Unfettered: Jump Drive Retrieval: offered"
 	on complete
 		outfit "Jump Drive" -4
-		payment 3000000
+		payment 2000000
 		log `Helped a young Unfettered Captain to bring jump drives from a pirate world.`
 		log "People" "Si-Ra" `A young, impetuous Unfettered captain with a unique, if eccentric, grasp of your language, who seems to grow wiser by the day. He has impressive leadership and combat skills, yet always seeks to refine his tactics. He does seem to be also be a fan of acquiring bigger and bigger ships.`
 		conversation
@@ -974,19 +976,27 @@ mission "Unfettered: Prove Your Strength 2"
 					goto pirates
 				`	"Could I keep a jump drive for myself?"`
 					to display
-						not "unfettered: asked to take a jump drive"
+						not "unfettered: asked a jump drive from Si-Ra"
 			action
-				set "unfettered: asked to take a jump drive"
+				set "unfettered: asked a jump drive from Si-Ra"
 			branch listened
 				not "Unfettered: Attracted Attention: offered"
 			`	"Clearly ye have enough already, since ye saw fit to flaunt it for all the pirates."`
 				goto choice
 			label listened
 			action
-				payment -1500000
 				outfit "Jump Drive"
+			branch "good boy!"
+				"unfettered: took Si-Ra' gold" <= 5
+				"unfettered: took Si-Ra' weapons" <= 2
+			action
+				payment -1250000
 			`	"Alright, but since yer changing the deal, I be deducting an extra!"`
 				goto choice
+			label "good boy!"
+			`	"Alright! I like yer spirit, mate. This one's on me, consider it a reward for doing this mission so well, and being a lovely fellow."`
+				goto choice
+
 			label cerberus
 			`	"If ye really must know, that be how the spineless, biscuit eatin' pirates who attacked us are called." He obviously does not wish to elaborate on it any further.`
 				goto revealed
