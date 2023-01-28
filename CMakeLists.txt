@@ -27,6 +27,7 @@ if(ES_USE_VCPKG)
 	x_vcpkg_bootstrap()
 
 	set(VCPKG_BOOTSTRAP_OPTIONS "-disableMetrics")
+	set(VCPKG_INSTALL_OPTIONS "--no-print-usage")
 	set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
 	set(X_VCPKG_APPLOCAL_DEPS_INSTALL ON)
 	set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake"
@@ -50,7 +51,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT EndlessSky)
 set(CMAKE_VS_JUST_MY_CODE_DEBUGGING ON)
 
-project("Endless Sky" VERSION 0.9.17
+project("Endless Sky" VERSION 0.10.0
 	DESCRIPTION "Space exploration, trading, and combat game."
 	HOMEPAGE_URL https://endless-sky.github.io/
 	LANGUAGES CXX)
