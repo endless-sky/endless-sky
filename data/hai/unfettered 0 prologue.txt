@@ -1838,8 +1838,8 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 			commodities "Military" "Electronics"
 			outfitters "Korath Exiles Remnant Donations"
 			names "Settler"
-				variant
-					"Auxiliary (Alpha)"
+			variant
+				"Auxiliary (Alpha)"
 		conversation
 			branch "didn't listen"
 				not "outfit (flagship installed): Value Detector"

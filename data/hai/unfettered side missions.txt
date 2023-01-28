@@ -279,7 +279,7 @@ mission "Unfettered: Alpha Bringing Supplies"
 		set "unfettered: saw auxiliary"
 	on enter
 		dialog
-			`As you launch, the local authorities hail you, "An important guest is arriving, you should not be here when they do. Get out, fast.`
+			`As you launch, the local authorities hail you, "An important guest is arriving, you should not be here when they do. Get out, fast."`
 			`	They insist: "Whatever you do, do not interfere with that incoming ship."`
 	npc kill
 		government "Alpha"
@@ -288,8 +288,8 @@ mission "Unfettered: Alpha Bringing Supplies"
 			commodities "Military" "Electronics"
 			outfitters "Korath Exiles Remnant Donations"
 			names "Settler"
-				variant
-					"Auxiliary (Alpha)"
+			variant
+				"Auxiliary (Alpha)"
 		conversation "unfettered: destroyed auxiliary"
 
 mission "Unfettered: Alpha Leaving With Supplies"
@@ -319,8 +319,8 @@ mission "Unfettered: Alpha Leaving With Supplies"
 			commodities "Metal" "Heavy Metals"
 			outfitters "Hai Advanced"
 			names "Settler"
-				variant
-					"Auxiliary (Alpha)"
+			variant
+				"Auxiliary (Alpha)"
 		conversation "unfettered: destroyed auxiliary"
 
 
