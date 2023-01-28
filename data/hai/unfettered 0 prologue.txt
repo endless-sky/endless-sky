@@ -337,7 +337,7 @@ mission "Unfettered Jump Drive Trading"
 	on offer
 		conversation
 			`As you exit your ship to head to the spaceport you see that an Unfettered Hai<hood> - is waiting for you at your hatch.`
-			`	As you get closer you surmize it is an engineer, judging by the writing pad and equipment they have. Maybe they mean to trade something other than money with you. Do you want to bargain for another drive with them?`
+			`	As you get closer you surmise it is an engineer, judging by the writing pad and equipment they have. Maybe they mean to trade something other than money with you. Do you want to bargain for another drive with them?`
 				to display
 					not "unfettered: blade rodeo"
 			`	They probably mean to offer the same deal of exchanging jump drives for weapons as before. Do you want to try and see if you can prove yourself worthy this time, and bargain for a jump drive?`
@@ -609,14 +609,14 @@ mission "Unfettered: Bring Hai"
 				`	"Why do you need me to do it?"`
 			label whyme
 			`	"Well, normally they would be able to pay to come here, but the price now is quite high; too high, due to an increase in the amount of Hai wanting to come to our space. Even in normal times, the Fettered Hai make it difficult for us to go anywhere; as you have probably noticed, they have a fleet on the border between us. And not that many Hai captains are willing to come here. When they do, some charge large fees because of the obvious risks involved - for instance, getting killed in the crossfire. Others are more generous, of course, but it is still not enough.`
-			`	Yet you somehow made your way here, probably also under fire from our own people, but, if you choose to assist us, I'll ensure you won't have any issues getting out of here. So, are you willing to help us?"`
+			`	"Yet you somehow made your way here, probably also under fire from our own people, but, if you choose to assist us, I'll ensure you won't have any issues getting out of here. So, are you willing to help us?"`
 			choice
 				`	"Of course. What do you need me to do?"`
 					goto action
 				`	"This seems like a bad idea. Ask someone else."`
 					decline
 			label brethren
-			`	"Then you have heard about the stories of the Drak modifying our people..." He sighs and deflates a bit. "I do not believe in such things. What makes a Hai - or any other species - 'true' is in his heart. It will take him wherever he wants to go." He pauses, thinking, and when he speaks again it is with deep conviction. "Even if we war with the Elders, it does not mean we hate other Hai, nor do they hate us! We do it only because we must, in order to keep living our way. We can still communicate with our people, and eventually they will all be freed from the limits of the Elders."`
+			`	"Then you have heard about the stories of the Drak modifying our people..." He sighs and deflates a bit. "I do not believe in such things. What makes a Hai - or any other species - 'true' is in his heart. It will take him wherever he wants to go." He pauses, thinking, and when he speaks again it is with deep conviction. "Even if we fight with the Elders, it does not mean we hate other Hai, nor do they hate us! We do it only because we must, in order to keep living our way. We can still communicate with our people, and eventually they will all be freed from the limits of the Elders."`
 			choice
 				`	"Will this get me into any trouble with the Hai?"`
 				`	"What limits?"`
@@ -859,6 +859,8 @@ mission "Unfettered: Prove Your Strength"
 				`	"Be careful with provoking me. You may have gotten killed. Do not count on me to repair your ship."`
 					goto dangerous
 				`	"What was this really about?"`
+				`	"What kind of weapons were you using?"`
+					goto weapons
 			`	"Ye have earned the right to know. We Unfettered always seek to improve ourselves, be it in combat or otherwise. Ye travel from far away, and we do not see many strangers around here. I wanted to see how ye approached me challenge; I hoped I could find knowledge in how you lost. I may have underestimated yer ability to fight though... A mistake which I shall not make again next time."`
 			choice
 				`	"You could have just asked."`
@@ -866,6 +868,9 @@ mission "Unfettered: Prove Your Strength"
 				goto end
 			label dangerous
 			`	"Worry not, matey. Respect only need be earned once. From me, at least. Do know there are other captains eager to challenge ye themselves, and most are stronger than me. Or, at least, they have more ships..."`
+				goto end
+			label weapons
+			`	"Aha! The more surprising the weapons, the more chance they drop the bounty! Ye need not destroy them, only frighten them a little. And not much is more frightening that seeing your energy levels dropping whilst your weapons start malfunctioning; fighting against weapons ye have never seen!"`
 			label end
 			action
 				log `Defeated a young Unfettered Captain in a duel.`
@@ -888,7 +893,7 @@ event "cerberus revealed"
 	government "Cerberus"
 		remove "display name"
 
-# SPOILER: stealing JD from the Alpha's servants: Cerberus
+# SPOILER: stealing JD from the Alpha's indoctrinated pirates: Cerberus
 mission "Unfettered: Prove Your Strength 2"
 	name `Recover the jump drives`
 	description `Go to the pirate world of <stopovers> and recover jump drives from a vault.`
@@ -955,22 +960,39 @@ mission "Unfettered: Prove Your Strength 2"
 		log "People" "Si-Ra" `A young, impetuous Unfettered captain with a unique, if eccentric, grasp of your language, who seems to grow wiser by the day. He has impressive leadership and combat skills, yet always seeks to refine his tactics. He does seem to be also be a fan of acquiring bigger and bigger ships.`
 		conversation
 			`"Here be yer share: <payment>. Ye have saved me life, Captain <first>, and I shall never forget it. For this, ye have earned the right to know my name: "Si-Ra". It be one I earned and wear with pride. Come see me again soon if ye be up for a challenge. I'll surely be able to find one for ye even if me own ship not be ready to give ye one. In the meantime, make sure to check the job boards if ye just be looking for more runs like this one."`
-			branch "cerberus question"
-				not "Unfettered: Attracted Attention: offered"
+			label choice
 			choice
-				`	(Let him leave).`
+				`	(Don't say anything).`
 					goto leave
 				`	"I heard you say a name, 'Cerberus', I believe."`
-			action
-				event "cerberus revealed"
-			`	"If ye really must know, that be how the spineless, biscuit eatin' pirates who attacked us are called." He obviously does not wish to elaborate on it any further.`
-				goto leave
-			label "cerberus question"
-			choice
-				`	(Let him leave).`
-					goto leave
+					to display
+						has "Unfettered: Attracted Attention: offered"
+					goto cerberus
 				`	"Who were these pirates attacking us?"`
+					to display
+						not "Unfettered: Attracted Attention: offered"
+					goto pirates
+				`	"Could I keep a jump drive for myself?"`
+					to display
+						not "unfettered: asked to take a jump drive"
+			action
+				set "unfettered: asked to take a jump drive"
+			branch listened
+				not "Unfettered: Attracted Attention: offered"
+			`	"Clearly ye have enough already, since ye saw fit to flaunt it for all the pirates."`
+				goto choice
+			label listened
+			action
+				payment -1500000
+				outfit "Jump Drive"
+			`	"Alright, but since yer changing the deal, I be deducting an extra!"`
+				goto choice
+			label cerberus
+			`	"If ye really must know, that be how the spineless, biscuit eatin' pirates who attacked us are called." He obviously does not wish to elaborate on it any further.`
+				goto revealed
+			label pirates
 			`	"If ye really must know, they be called Cerberus." He obviously does not wish to elaborate on it any further.`
+			label revealed
 			action
 				event "cerberus revealed"
 			label leave
@@ -1663,10 +1685,10 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 				`	"I'm not interested in scanning ships for you."`
 					decline
 			label agree
-			`	On the way back to your ship, Mera runs up to you. "One... last... thing, captain!" You let her catch her breath. "We have noticed one Geocoris just entered <waypoints> as expected, but seems to have some special modifications. Please scan that one specifically. We have marked its signature for you to recognize it. We want to have a detailed scan of its cargo. Also, I've just found a captain willing to give you one of our scanners. It will be placed in your cargo hold if there is no space on your ship."`
-			`	I cannot stress enough that you NEED to use this scanner, as any other will simply either not contain enough information, or we could be unable to make good use of it.`
+			`	On the way back to your ship, Mera runs up to you. "One... last... thing, captain!" You let her catch her breath. "We have noticed one Geocoris just entered <waypoints> as expected, but seems to have some special modifications. Please scan that one specifically. We have marked its signature for you to recognize it. We want to have a detailed scan of its cargo. Also, I've just found a captain willing to give you two of our scanners. They will be placed in your cargo hold if there is no space on your ship.`
+			`	"I cannot stress enough that you NEED to use this scanner, as any other will simply either not contain enough information, or we could be unable to make good use of it. Since the Geocoris is quite complex, it may take some time to complete the scan, so feel free to buy more scanners on Darkcloak."`
 				accept
-		outfit "Value Detector"
+		outfit "Value Detector" 2
 		log "People" "Mera" `An Unfettered engineer who is interested in ship designs of all kinds. She is easily excited by new technologies and ships.`
 	on waypoint
 		dialog `You do not see the Geocoris that Tear-Fi mentioned; it's probably in a system nearby. You should land and depart when it arrives.`

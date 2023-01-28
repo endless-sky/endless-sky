@@ -350,7 +350,7 @@ mission "Midas: Who is the mad one?"
 		personality plunders disables heroic nemesis marked
 		system
 			distance 2 5
-		fleet "Marauders" 4
+		fleet "Marauders" 3
 	to fail
 		or
 			has "midas: took out leader"
