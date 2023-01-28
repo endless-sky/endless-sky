@@ -207,7 +207,7 @@ namespace {
 		{"atrocity", "This outfit is considered an atrocity."}
 	};
 
-	bool IsNotRequirement(const string& label)
+	bool IsNotRequirement(const string &label)
 	{
 		return label == "automaton" ||
 			SCALE.find(label) != SCALE.end() ||
@@ -365,7 +365,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		"outfit space", "weapon capacity", "engine capacity", "gun ports", "turret mounts"
 	};
 
-	for(const string& attr : EXPECTED_NEGATIVE)
+	for(const string &attr : EXPECTED_NEGATIVE)
 	{
 		double value = outfit.Get(attr);
 		if(value <= 0)
