@@ -486,7 +486,7 @@ government "Hai (Unfettered)"
 	
 	"player reputation" -1000
 	"attitude toward"
-		"Hai (Unfettered) (Wanderer Tribute)" 1
+		"Hai (Unfettered) (Wanderer Tribute)" 2
 		"Hai" -.01
 		"Hai (Wormhole Access)" -.01
 		"Hai Merchant" -.01
