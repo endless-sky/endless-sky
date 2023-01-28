@@ -679,7 +679,7 @@ ship "Bastion" "Bastion (Materials)"
 		"Hyperdrive"
 	cargo
 		outfits
-			"Materials" 100
+			"Building Materials" 100
 
 ship "Argosy" "Argosy (Materials)"
 	outfits
@@ -694,7 +694,7 @@ ship "Argosy" "Argosy (Materials)"
 		"Hyperdrive"
 	cargo
 		outfits
-			"Materials" 100
+			"Building Materials" 100
 
 phrase "unfettered cargo interception payment dialog"
 	word

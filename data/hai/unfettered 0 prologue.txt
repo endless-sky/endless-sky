@@ -872,7 +872,7 @@ mission "Unfettered: Prove Your Strength"
 			`	"Worry not, matey. Respect only need be earned once. From me, at least. Do know there are other captains eager to challenge ye themselves, and most are stronger than me. Or, at least, they have more ships..."`
 				goto end
 			label weapons
-			"Aye, matey! The flashier yer weapons be when ye run a shot across ther bow, the more likely these landlubbers be to strike colors and ditch ther loot! No need to make these lily livered into shark food, just shiver ther timbers a bit. Savvy? And not much else sets yer knees a knockin' quite like sending watching yer weapons go squiffy while yer energy levels drop straight ta Davy Jones' Locker! Always a good clap o' thunder for 'em!"
+			"Aye, matey! The flashier yer weapons be when ye run a shot across their bow, the more likely these landlubbers be to strike colors and ditch their loot! No need to make these lily livered into shark food, just shiver their timbers a bit. Savvy? And not much else sets yer knees a knockin' quite like sending watching yer weapons go squiffy while yer energy levels drop straight ta Davy Jones' Locker! Always a good clap o' thunder for 'em!"
 			label end
 			action
 				log `Defeated a young Unfettered Captain in a duel.`
@@ -1347,6 +1347,11 @@ outfit "Building Materials"
 	installable -1
 	description "These are simple building materials, meant for the construction of Unfettered houses."
 
+# name of the ship
+phrase "Rested Snake"
+	word
+		"Rested Snake"
+
 # A modified version with small buffs and disabled faster.
 ship "Bactrian" "Bactrian (Cerberus)"
 	add attributes
@@ -1375,7 +1380,7 @@ ship "Bactrian" "Bactrian (Cerberus)"
 		"Hyperdrive"
 	cargo
 		outfits
-			"Materials" 142
+			"Building Materials" 142
 
 mission "Unfettered: Materials Intercepted Job Board Notification"
 	minor
@@ -1516,8 +1521,9 @@ mission "Unfettered: Materials Intercepted"
 		personality target launching plunders vindictive uninterested
 		fleet
 			commodities "Military" "Electronics" "Metal" "Heavy Metals"
+			names "Rested Snake"
 			variant
-				ship "Bactrian (Cerberus)" "Rested Snake"
+				ship "Bactrian (Cerberus)"
 		conversation
 			action
 				set "unfettered: boarded bactrian"
@@ -1574,19 +1580,7 @@ mission "Unfettered: Materials Intercepted"
 		outfit "Building Materials" -142
 		payment 2000000
 		log `Helped Sookootow by bringing cargo to help maintain and build houses. This whole story feels weird, with pirates stealing from other pirates, and one may wonder how it is related to the Alphas, and Shadow.`
-		conversation
-			`You look for Sookootow in the spaceport, and find him talking with Si-Ra, who was about to leave. Seeing you, Si-Ra shows a quick greeting in sign of respect, before leaving.`
-			`	The Chief then shakes your hands in true human fashion. "Jiko has just told me of your success, captain. Congratulations are in order!"`
-			choice
-				`	"Thanks. Here is the cargo."`
-					goto cargo
-				`	"Jiko? I thought his name was Si-Ra."`
-			`	"He wishes that were his name! When we appoint a warlord, we also give him a name, indicative of his function. He may then wear it proudly, and that name protects him as well. Real names have power, you see... Do you not react when hearing your name, <first>? It identifies you, and a warlord is meant to become different when he earns the title. He must fit the task. To represent that, their names are changed, though they can still use their old names.`
-			`	"Si-Ra actually means the raging sea, it is a title appointed to the warlords that must stand against enemies, no matter how strong, and never give up or break. They may lose battles, but never the war. As the sea, they can be calm. However, in time of need, they can show sign of the flame burning within them, and let it out." He seems very passionate about it. It occurs to you he probably participated in the creation of some of the warlord titles. "The sea takes all kinds of punishment without real damage, and some think they may tame it, as space... They can't. Those named Si-Ra are the masters of the sea, the masters of space. They never give any information to the enemy when captured, and..."`
-			`	You just couldn't seem to stop him in his reasoning. He realizes it and pauses. "Right, the materials. I could talk about those names for hours, you know. You did well, and deserved the <payment>. I will post jobs in the job board if this event happens again."`
-				decline
-			label cargo
-			`	"You well deserve these <payment> for it! I will post jobs in the job board if this event happens again."`
+		# the convo is within the on fail of the cavalry arrives mission, that activates as this mission completes
 
 conversation "cerberus reinforcements"
 	branch boardedship
@@ -1636,15 +1630,17 @@ mission "Unfettered: Cavalry Arrives"
 	npc
 		system "Kor Men"
 		government "Korath (Military)"
+		to despawn
+			"unfettered: cleaned up cerberus" > 1
 		personality entering disables plunders waiting heroic vindictive
 		fleet "Korath Defense" 2
-	npc kill
+	npc disable
 		government "Cerberus"
 		personality plunders vindictive entering
 		fleet "Small Northern Pirates" 3
 		fleet "Large Northern Pirates"
 		conversation "cerberus reinforcements"
-	npc kill
+	npc disable
 		system "Alcyone"
 		government "Cerberus"
 		personality plunders vindictive waiting
@@ -1656,7 +1652,8 @@ mission "Unfettered: Cavalry Arrives"
 	on fail
 		conversation
 			branch nevercompleted
-				not "Unfettered: Materials Intercepted: active"
+				not "Unfettered: Materials Intercepted: done"
+			branch completed
 			branch betrayed
 				has "reputation: Shadow" < 0
 			action
@@ -1672,6 +1669,19 @@ mission "Unfettered: Cavalry Arrives"
 				decline
 			label nevercompleted
 			`You gave up fixing the Unfettered cargo situation, and the mysterious ships leave pursuing Cerberus ships that are left.`
+			label completed
+			`You look for Sookootow in the spaceport, and find him talking with Si-Ra, who was about to leave. Seeing you, Si-Ra shows a quick greeting in sign of respect, before leaving.`
+			`	The Chief then shakes your hands in true human fashion. "Jiko has just told me of your success, captain. Congratulations are in order!"`
+			choice
+				`	"Thanks. Here is the cargo."`
+					goto cargo
+				`	"Jiko? I thought his name was Si-Ra."`
+			`	"He wishes that were his name! When we appoint a warlord, we also give him a name, indicative of his function. He may then wear it proudly, and that name protects him as well. Real names have power, you see... Do you not react when hearing your name, <first>? It identifies you, and a warlord is meant to become different when he earns the title. He must fit the task. To represent that, their names are changed, though they can still use their old names.`
+			`	"Si-Ra actually means the raging sea, it is a title appointed to the warlords that must stand against enemies, no matter how strong, and never give up or break. They may lose battles, but never the war. As the sea, they can be calm. However, in time of need, they can show sign of the flame burning within them, and let it out." He seems very passionate about it. It occurs to you he probably participated in the creation of some of the warlord titles. "The sea takes all kinds of punishment without real damage, and some think they may tame it, as space... They can't. Those named Si-Ra are the masters of the sea, the masters of space. They never give any information to the enemy when captured, and..."`
+			`	You just couldn't seem to stop him in his reasoning. He realizes it and pauses. "Right, the materials. I could talk about those names for hours, you know. You did well, and deserved the <payment>. I will post jobs in the job board if this event happens again."`
+				decline
+			label cargo
+			`	"You well deserve these <payment> for it! I will post jobs in the job board if this event happens again. Unfortunately, I suspect it will."`
 
 
 
@@ -1827,8 +1837,9 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 		fleet
 			commodities "Military" "Electronics"
 			outfitters "Korath Exiles Remnant Donations"
-			variant
-				ship "Alpha Auxiliary" "Settler"
+			names "Settler"
+				variant
+				ship "Alpha Auxiliary"
 		conversation
 			branch "didn't listen"
 				not "outfit (flagship installed): Value Detector"
@@ -1902,7 +1913,7 @@ mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 					goto questions
 			`	"Worry not, I did not want to talk to you about the drag of that ship, or its shield matrix. Although they are very interesting, to be sure!"`
 			label questions
-			# She almost reveals to you the existance of the old super drone carrier project; the Lycosidae.
+			# She almost reveals to you the existence of the old super drone carrier project; the Lycosidae.
 			`	"I already have access to the specs of the ship. My questions are mostly related to how well they fare in battle. As far as I know, we have never seriously tried ships carrying fighters before. Well, to be fair, we did-" She stops herself, this is probably not something she can talk to you about. "We, hum, did - think of it. We just never tested them in battle."`
 			`	"The limitations could have been the ethical implications, but I think it was mostly due to technical difficulties building a ship large enough to contain and launch multiple interceptors-like crafts. I want to know how effective they are and how are they countered." She is clearly very excited to learn more about them.`
 			choice

@@ -248,6 +248,10 @@ ship "Alpha Auxiliary"
 	description "The Auxiliary is the Republic Navy's logistical backbone. The size and durability of a capital ship but more cargo and passenger space than any other Navy ship, the Auxiliary is used whenever the Navy needs large amounts of troops or cargo transported with a guarantee that they'll reach the destination."
 	description " The Auxiliary was built with modularity in mind, allowing the ship to be fitted for more cargo or bunk space depending on the mission. This modularity makes the ship rather expensive to build, however, and therefore a rare sight to see."
 
+# name of the ship
+phrase "Settler"
+	word
+		"Settler"
 
 conversation "unfettered: destroyed auxiliary"
 	`	The Unfettered that hails you is enraged, "How dare you?! This ship was helping us by providing supplies, and you just shoot it down? We don't care who may have drawn the first shot, you are now an enemy of the Unfettered."`
@@ -283,8 +287,9 @@ mission "Unfettered: Alpha Bringing Supplies"
 		fleet
 			commodities "Military" "Electronics"
 			outfitters "Korath Exiles Remnant Donations"
-			variant
-				ship "Alpha Auxiliary" "Settler"
+			names "Settler"
+				variant
+				ship "Alpha Auxiliary"
 		conversation "unfettered: destroyed auxiliary"
 
 mission "Unfettered: Alpha Leaving With Supplies"
@@ -313,8 +318,9 @@ mission "Unfettered: Alpha Leaving With Supplies"
 		fleet
 			commodities "Metal" "Heavy Metals"
 			outfitters "Hai Advanced"
-			variant
-				ship "Alpha Auxiliary" "Settler"
+			names "Settler"
+				variant
+				ship "Alpha Auxiliary"
 		conversation "unfettered: destroyed auxiliary"
 
 
