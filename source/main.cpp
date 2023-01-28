@@ -253,7 +253,8 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 
 	// Data to track progress of testing if/when a test is running.
 	TestContext testContext;
-	if(!testToRunName.empty()){
+	if(!testToRunName.empty())
+	{
 		testContext = TestContext(GameData::Tests().Get(testToRunName));
 		Audio::SetVolume(0);
 	}
