@@ -809,8 +809,8 @@ void Ship::FinishLoading(bool isNewInstance)
 	isDisabled = IsDisabled();
 
 	// Calculate this ship's jump information, e.g. how much it costs to jump, how far it can jump, how it can jump.
-	navigation = ShipJumpNavigation(*this);
-	AICache = ShipAICache(*this);
+	navigation.Calibrate(*this);
+	aiCache.Calibrate(*this);
 
 	// A saved ship may have an invalid target system. Since all game data is loaded and all player events are
 	// applied at this point, any target system that is not accessible should be cleared. Note: this does not
@@ -1343,6 +1343,7 @@ void Ship::SetName(const string &name)
 void Ship::SetSystem(const System *system)
 {
 	currentSystem = system;
+	navigation.SetSystem(system);
 }
 
 
@@ -1463,15 +1464,15 @@ string Ship::GetHail(map<string, string> &&subs) const
 
 ShipAICache &Ship::GetAICache()
 {
-	return AICache;
+	return aiCache;
 }
 
 
 
 void Ship::UpdateCaches()
 {
-	AICache.UpdateWeaponCache();
-	navigation.Recalibrate();
+	aiCache.Recalibrate(*this);
+	navigation.Recalibrate(*this);
 }
 
 
@@ -3904,7 +3905,7 @@ void Ship::Jettison(const string &commodity, int tons, bool wasAppeasing)
 	// player ships as to display correct information on the map.
 	// Non-player ships will recalibrate before they jump.
 	if(isYours)
-		navigation.Recalibrate();
+		navigation.Recalibrate(*this);
 
 	// Jettisoned cargo must carry some of the ship's heat with it. Otherwise
 	// jettisoning cargo would increase the ship's temperature.
@@ -3930,7 +3931,7 @@ void Ship::Jettison(const Outfit *outfit, int count, bool wasAppeasing)
 	// player ships as to display correct information on the map.
 	// Non-player ships will recalibrate before they jump.
 	if(isYours)
-		navigation.Recalibrate();
+		navigation.Recalibrate(*this);
 
 	// Jettisoned cargo must carry some of the ship's heat with it. Otherwise
 	// jettisoning cargo would increase the ship's temperature.
@@ -4019,12 +4020,12 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 		// ship's jump navigation. Hyperdrives and jump drives of the same type don't stack,
 		// so only do this if the outfit is either completely new or has been completely removed.
 		if((outfit->Get("hyperdrive") || outfit->Get("jump drive")) && (!before || !after))
-			navigation.Calibrate();
+			navigation.Calibrate(*this);
 		// Navigation may still need to be recalibrated depending on the drives a ship has.
 		// Only do this for player ships as to display correct information on the map.
 		// Non-player ships will recalibrate before they jump.
 		else if(isYours)
-			navigation.Recalibrate();
+			navigation.Recalibrate(*this);
 	}
 }
 
@@ -4109,7 +4110,7 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 		if(isYours && !OutfitCount(ammo) && ammo->AmmoUsage())
 		{
 			// Recalculate the AI to account for the loss of this weapon.
-			AICache.CreateWeaponCache();
+			aiCache.Calibrate(*this);
 			deterrence = CalculateDeterrence();
 		}
 	}
