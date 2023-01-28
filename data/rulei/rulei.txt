@@ -34,13 +34,16 @@ mission "Ira Contact"
 		conversation
 			`Moments after arriving at Kanguwa, you are overwhelmed by an intense sense of emptiness. As you attempt to comprehend this feeling, you begin hearing whispers from behind.`
 			choice
-				`	(Turn around.)`
-			`	You turn around, but the whispers remain behind your head, like an itch that can't be reached. The whispers are in a completely foreign language that you can't even begin to understand. As you keep looking around, you begin hearing more and more murmuring. There feels to be hundreds of distinct voices tugging your mind in every direction at once now, overloading your senses. Just as you think you can't take anymore, everything falls completely silent.`
+				`	(Turn around slowly.)`
+				`	(Pull out your sidearm.)`
+			`	You turn around, but nothing is there besides the familiar internals of your ship. The whispers remain behind your head, like an itch that can't be reached. The whispers are in a completely foreign language that you can't even begin to understand. As you keep looking around, you begin hearing more and more murmuring. There feels to be hundreds of distinct voices tugging your mind in every direction at once now, overloading your senses. Just as you think you can't take anymore, everything falls completely silent.`
 			choice
-				`	(Wait.)`
+				`	"Hello?"`
+				`	"Is there someone there?"`
+				`	"Show yourself!"`
 			scene "scene/rulei flash"
 			`	"Human."`
-			`	An image suddenly flashes in your head as you feel millions of eyes staring at you from beyond the boundaries of space. Looking around again, you see a strange-looking spacecraft in the vicinity of two of this system's planets. The voices continue to surround your mind with only slightly reduced intensity.`
+			`	An image suddenly flashes in your head as you feel millions of eyes staring at you from beyond the boundaries of space. Looking around again, you see a strange-looking spacecraft a bit off into the distance in front of you facing your direction. The voices continue to surround your mind with only slightly reduced intensity.`
 			choice
 				`	"Who are you?"`
 				`	"Where am I?"`
@@ -48,15 +51,17 @@ mission "Ira Contact"
 			`	Numerous voices start up, but rather than becoming louder, they go back and forth in your head, as though they are having a discussion. After a few seconds, they fall silent, then speak a single word.`
 			`	"Precursors."`
 			choice
-				`	"Where am I?"`
+				`	"What is this place?"`
+				`	"Precursors of what?"`
 			label where
 			`	Once again, the whispers start to pick up with renewed strength. The swirl of endless vocals assaults your head, each moment more agonizing than the last. Finally, they cease, and you are left in silence.`
 			`	"An End."`
 			choice
-				`	"What do you mean by "An End"?"`
+				`	"An end to what?"'`
+				`	"What do you mean by that?"`
 			`	The voices resume, but you sense a newfound dreariness in their tone. You try once again to communicate with the ship, but despite constant whispering in the background, it no longer answers.`
 			`Taking another look at the vessel, it seems to have some sort of advanced origin. Eerie star-like patterns flow on its surface, and it doesn't visibly have any standard means of propulsion. At the rear end is some type of floating ring of objects that rotate in a pecurliar manner. The Rulei were probably far more advanced than anything human, even possibly in line with the Quarg.`
-			`The planets below seem to have an abnormal appearance similar to that of the starship, but for some reason even looking at them gives you a headache. Something unusual must have happened here a long time ago.`
+			`The planets in this system seem to have an abnormal appearance similar to that of the starship, but for some reason even looking at them gives you a headache. Something unusual must have happened here a long time ago.`
 				decline
 				
 				
