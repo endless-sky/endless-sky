@@ -237,7 +237,7 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 
 	auto creditString = [](int64_t payment) -> string
 	{
-		return payment == 1 ? "1 credit" : Format::Credits(payment) + " credits";
+		return Format::CreditString(payment);
 	};
 
 	map<string, int64_t> typesPaid;
