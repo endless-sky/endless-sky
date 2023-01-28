@@ -963,7 +963,7 @@ mission "Unfettered: Prove Your Strength 2"
 					"cargo space" < 80
 			`	You show him to his bunk but he refuses to go there, "Where ye be sending me? Ye need me on the helm, you scabby sea bass!" You have no choice but to let him sit on the bridge.`
 				accept
-	on enter "Altinak"
+	on enter Alnitak
 		dialog `Seeing you enter this system, the captain speaks up. "Sails down, matey! I'd recommend to stop here before we head into more open seas!"`
 	on visit
 		dialog "You do not have the jump drives. You either did not go to <destination> to get the jump drives yet, or you left your escort carrying the jump drives behind - better depart and wait for it."
@@ -1839,7 +1839,7 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 			outfitters "Korath Exiles Remnant Donations"
 			names "Settler"
 				variant
-					"Alpha Auxiliary"
+					"Auxiliary (Alpha)"
 		conversation
 			branch "didn't listen"
 				not "outfit (flagship installed): Value Detector"

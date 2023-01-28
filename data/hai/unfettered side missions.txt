@@ -180,7 +180,7 @@ mission "Unfettered: Attracted Attention"
 
 
 # needs its own definition to have a proper model
-ship "Alpha Auxiliary"
+ship "Auxiliary (Alpha)"
 	plural "Auxiliaries"
 	sprite "ship/auxiliaryc"
 	thumbnail "thumbnail/auxiliaryc"
@@ -289,7 +289,7 @@ mission "Unfettered: Alpha Bringing Supplies"
 			outfitters "Korath Exiles Remnant Donations"
 			names "Settler"
 				variant
-					"Alpha Auxiliary"
+					"Auxiliary (Alpha)"
 		conversation "unfettered: destroyed auxiliary"
 
 mission "Unfettered: Alpha Leaving With Supplies"
@@ -320,7 +320,7 @@ mission "Unfettered: Alpha Leaving With Supplies"
 			outfitters "Hai Advanced"
 			names "Settler"
 				variant
-					"Alpha Auxiliary"
+					"Auxiliary (Alpha)"
 		conversation "unfettered: destroyed auxiliary"
 
 
