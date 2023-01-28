@@ -289,7 +289,7 @@ mission "Unfettered: Alpha Bringing Supplies"
 			outfitters "Korath Exiles Remnant Donations"
 			names "Settler"
 				variant
-				ship "Alpha Auxiliary"
+					"Alpha Auxiliary"
 		conversation "unfettered: destroyed auxiliary"
 
 mission "Unfettered: Alpha Leaving With Supplies"
@@ -320,7 +320,7 @@ mission "Unfettered: Alpha Leaving With Supplies"
 			outfitters "Hai Advanced"
 			names "Settler"
 				variant
-				ship "Alpha Auxiliary"
+					"Alpha Auxiliary"
 		conversation "unfettered: destroyed auxiliary"
 
 

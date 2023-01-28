@@ -27,12 +27,12 @@ mission "Unfettered: Alphas: Find The Auxiliary"
 		has "Unfettered: Materials Intercepted: done"
 	on offer
 		conversation
-			`As you enter the spaceport, you see the council gathered in a stadium looking similar to the one on Firelode, though larger. It seems like you will finally be able to get some answers, if you would like to see them now, that is.`
+			`As you enter the spaceport, you see the council gathered in a stadium looking similar to the one on Firelode, although it is larger. It seems like you will finally be able to get some answers, if you would like to see them now, that is.`
 			choice
 				`	(Enter the stadium and go see them.)`
 				`	(I don't have time right now.)`
 					defer
-			`	Seeing you approach, one of the leaders steps forward, and you recognize Sookootow. "It seems you are an enemy to the unfettered humans, and we cannot risk a disruption in our supply of jump drives. You may have provided some to us, but so did they. Because of this, we have a task to ask of you. Should you accept, you would be able to join us - still not officially for now, but all good things come in time." You assume that by unfettered humans he means the Alphas.`
+			`	Seeing you approach, one of the leaders steps forward, and you recognize Sookootow. "It seems you are an enemy to the unfettered humans. We cannot risk a disruption in our supply of jump drives. You may have provided some to us, but so did they. Because of this, we have a task to ask of you. Should you accept, you would be able to join us - still not officially for now, but all good things come in time." You assume that by unfettered humans he means the Alphas.`
 			choice
 				`	"What is it you want me to do? I don't like these Alphas."`
 					goto hate
