@@ -75,7 +75,7 @@ mission "Rulei Planet"
 			`It feels as though there is a tremendous weight on your mind while you visit this world. The same sort of purple starlit hues of the alien ship from above can also be found in various strange formations across the land. Unlike the whispers from before, the voices here are painfully unbearable, especially the closer you get to the surface.`
 			`	You can barely hear yourself think.`
 			`											It's enough to drive any living thing mad.`
-			`	The most ominous sensation here is a persistent feeling of your consciousness being pulled at from beneath you.
+			`	The most ominous sensation here is a persistent feeling of your consciousness being pulled at from beneath you.`
 			`	Like something is attempting to drag`
 			`																					your`
 			`																							mind into the planet below.`
