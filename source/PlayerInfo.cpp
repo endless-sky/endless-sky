@@ -466,11 +466,12 @@ void PlayerInfo::Save() const
 		{
 			string root = filePath.substr(0, filePath.length() - 4);
 			const int previousCount = Preferences::GetPreviousSaveCount();
-			string files[previousCount + 1];
+			vector<string> files;
+			files.reserve(previousCount + 1);
 			const string rootPrevious = root + "~~previous-";
 			for(int i = 0; i < previousCount; ++i)
-				files[i] = rootPrevious + to_string(previousCount - i) + ".txt";
-			files[previousCount - 1] = filePath;
+				files.push_back(rootPrevious + to_string(previousCount - i) + ".txt");
+			files.emplace_back(filePath);
 			for(int i = 0; i < previousCount; ++i)
 				if(Files::Exists(files[i + 1]))
 					Files::Move(files[i + 1], files[i]);
