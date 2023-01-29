@@ -644,7 +644,7 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 					has "Unfettered: Speak Sestor: done"
 			`	"I really wish we could improve the translator, somehow. Maybe there is someone of importance in the council that would have interest for this?"`
 				to display
-					not "Unfettered: Speak Sestor"
+					not "Unfettered: Speak Sestor: done"
 			choice
 				`	"That can't be hard. I'll go look for human coolers then."`
 					goto quantity
@@ -652,11 +652,10 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 			`	"Not really. I don't know all kinds of cooling your species could have, but it most be large, considering your technology is not as heat efficient as ours. You're probably even using things like water, ha! Don't bring us something quite that primitive. We want the good stuff, like your nitrogen cooling, for instance. Do bring a lot of it, say, 300 tons."`
 			choice
 				`	"I'll go look for those then."`
-					accept
-				`	"I'm not interested in helping you any more."`
+				`	"I'm not interested in helping you anymore."`
 					decline
 			label quantity
-			`	"Be sure to bring back 300 tons worth of nitrogen coolers so we have a solid base to work on. Don't bring us things like simple, water-based systems."`
+			`	"Be sure to bring back 300 tons worth of, say, nitrogen coolers, so we have a solid base to work on. Don't bring us things like simple, water-based systems."`
 				accept
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
@@ -690,6 +689,7 @@ outfit "Loot"
 	thumbnail "outfit/unknown"
 	cost 1000
 	"mass" 1
+	installable -1
 	description "You're not sure what this is, but you feel your hair go up when you're near the cargo... Probably best not to touch it."
 
 ship "Mammoth" "Mammoth (Hai)"
