@@ -39,10 +39,10 @@ mission "Pact Supplies Landing (Dirt Belt)"
 		not planet "New Sahara"
 	on offer
 		conversation
-		`<origin> is one of the few planets in the Dirt Belt with a developed industrial base. In addition to the horse-drawn carts of cereals, crops, and meat, there are also trucks and vans carrying locally manufactured goods from the cities nearby.`
-		`	To protect this industry from the ever-increasing piracy threat, there is a substantially-sized militia base on this planet that, in place of the Navy's retreating patrols, have taken up the position of the police forces in this area. Even the planetary spaceport is now staffed by the militia, and instead of the Gunboats that would have scanned you upon approach, there are Argosies and Bastions that scan you instead.`
-		`	As you sign off your landing documents with the militia officer on duty, she asks you to report to <origin>'s spaceport quartermaster "if you are willing to help us on a supply job." She then thanks you for your cooperation and swiftly moves on to the next ship.`
-			accept
+			`<origin> is one of the few planets in the Dirt Belt with a developed industrial base. In addition to the horse-drawn carts of cereals, crops, and meat, there are also trucks and vans carrying locally manufactured goods from the cities nearby.`
+			`	To protect this industry from the ever-increasing piracy threat, there is a substantially-sized militia base on this planet that, in place of the Navy's retreating patrols, have taken up the position of the police forces in this area. Even the planetary spaceport is now staffed by the militia, and instead of the Gunboats that would have scanned you upon approach, there are Argosies and Bastions that scan you instead.`
+			`	As you sign off your landing documents with the militia officer on duty, she asks you to report to <origin>'s spaceport quartermaster "if you are willing to help us on a supply job." She then thanks you for your cooperation and swiftly moves on to the next ship.`
+				accept
 
 mission "Pact Supplies Convoy (Dirt Belt)"
 	name "Transport weapons to <planet>"
