@@ -29,8 +29,8 @@ mission "Ira Contact"
 		never
 	on enter "Kanguwa"
 		fail
-		log "Factions" "Rulei" `The Rulei were likely an ancient, technologically advanced civilization from long ago.`
-			`They communicate through some sort of invasive psionic ability.`
+		log "Factions" "Rulei" `The Rulei were likely an ancient, technologically advanced civilization from long ago, but the only things that remain of them are a single strange ship and two scarred planets.`
+			`They communicate through some sort of invasive psionic ability, speaking in a thousand voices all at once. Prolonged contact seems unhealthy.`
 		conversation
 			`Moments after entering the system, you are overwhelmed by an intense sense of emptiness. As you attempt to comprehend this feeling, you begin hearing whispers from behind.`
 			choice
