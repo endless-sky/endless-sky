@@ -318,7 +318,7 @@ mission "Unfettered Space Challenge Small"
 	description `An Unfettered captain has offered you a payment of <payment> for beating them in battle, land on <destination> to collect it.`
 	substitutions
 		<payment> 200000
-		"<boarding message>" "	Do you want to accept the payment offer or plunder the ship? Keep in mind that you are in no way allowed to capture or destroy the ship."
+		"<boarding message>" " Do you want to accept the payment offer or plunder the ship? Keep in mind that you are in no way allowed to capture or destroy the ship."
 	source
 		government "Hai (Unfettered Challenger)"
 		not category "Heavy Warship"
@@ -336,7 +336,7 @@ mission "Unfettered Space Challenge Big"
 	description "An Unfettered captain has offered you a payment of <payment> for beating them in battle, land on <destination> to collect it."
 	substitutions
 		<payment> 500000
-		"<boarding message>" "Do you want to accept the payment offer or plunder the ship? Keep in mind that you are in no way allowed to capture or destroy the ship."
+		"<boarding message>" " Do you want to accept the payment offer or plunder the ship? Keep in mind that you are in no way allowed to capture or destroy the ship."
 	source
 		government "Hai (Unfettered Challenger)"
 	on offer

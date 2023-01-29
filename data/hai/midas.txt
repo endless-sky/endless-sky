@@ -741,8 +741,8 @@ mission "Midas: Daemons Unleashed"
 			`	"That's right. And I won't." They cut the transmission.`
 			label endco
 			action
-				"reputation: Mercenaries" >?= 100
-				"salary: Mercenaries" = 5000
+				"reputation: Midas" >?= 100
+				"salary: Midas" = 5000
 				set "midas: took out leader"
 				clear "midas: wronged"
 				log "Took out the leader of the Midas organization that manages the Gold Bars. They did not reveal much, only that they do not wish to fight me anymore."

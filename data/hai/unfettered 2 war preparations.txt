@@ -303,7 +303,7 @@ mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
 mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 	landing
 	name `Primitive Cooling Technology`
-	description `Mera has asked you to bring coolants to her on <origin>, where she is working with the Korath you rescued to design a better cooling system. Bring back 300 tons of nitrogen human cooling.`
+	description `Mera has asked you to bring coolants to her on <origin>, where she is working with the Korath you rescued to design a better cooling system. Bring back 15 Liquid Nitrogen Coolers.`
 	source "Firelode"
 	substitutions
 		# translation to the Sestor language
@@ -558,6 +558,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 			cargo 0
 			variant
 				ship "Mammoth (Hai)"
+		dialog "As you board the Mammoth, you realize it is a modified Behemoth, probably able to endure an attack from even a Cruiser for a while before having to disengage with relative ease, or to transport illegal cargo accross long distances. All that is left to do now is to take the Loot!"
 	npc
 		government "Midas"
 		personality derelict
@@ -572,6 +573,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 	npc evade
 		government "Midas"
 		personality disables plunders harvests staying coward
+			confusion 20
 		system "Sumar"
 		# this is a quick fleet of captured ships
 		fleet
@@ -584,7 +586,19 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 				"Splinter"
 				"Hauler"
 				"Scrapper"
-		ship "Marauder Firebird (Bars)" "Valkiry"
+	npc kill
+		government "Midas"
+		personality disables plunders harvests staying
+		system "Sumar"
+		ship "Marauder Firebird (Bars)" "Dark Angel"
+		to despawn
+			has "outfit (all): Loot"
+		conversation
+			`You manage to take out the leader of the fleet, and you can feel them lose coherance. A captain from another ship hails you. "Get out of here, now. We will not pursue you."`
+			action
+				set "unfettered: took out Dark Angel"
+				set "midas: took out leader"
+				"reputation: Midas" >?= 0
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 		# you may decline this mission but if you accept it, you need to finish it
@@ -609,6 +623,9 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 				`	(Just celebrate.)`
 					goto celebrate
 			`	"A little bit of competition cannot hurt, can it? Since when are you afraid of a few pirates? You may have softened up since we last saw each other."`
+			`	"But I heard of your exploits, these were no mere pirates. That was the Dark Angel." He speaks louder for the entire bar to hear, "And with a fleet of dozens of ships! Drinks are on me, boys!" Most Hai were ignoring him up to this point, but as soon as he said that you can hear them rejoicing and praising this exploit.`
+				to display
+					has "unfettered: took out Dark Angel"
 			label loot
 			`	"Well, I guess I can tell you. We had arranged for this Behemoth to bring us important tech materials. I cannot tell you more than this, but I can guarantee you that you'll like the outcome."`
 			choice
@@ -656,6 +673,7 @@ mission "Unfettered: Solifuge 9: Bigger Ships"
 	stopover "Covert"
 	cargo "industrial materials" 450
 	blocked `You need <tons> of cargo space for the next Unfettered mission.`
+	clearance
 	to offer
 		has "Unfettered: Solifuge 8: Useful Korath Scientists: done"
 		has "Unfettered: Solifuge 7: Hai Shipyard Intel: done"
@@ -763,13 +781,15 @@ mission "Unfettered: Earn Your Prize"
 	npc save disable
 		government "Hai (Unfettered Challenger)"
 		personality
-			confusion 40
+			confusion 50
 			disables staying heroic target waiting
 		ship "Modified Shield Beetle" "Basilisk"
 		to spawn
 			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 18
 		to despawn
-			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 > 18
+			or
+				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 > 18
+				has "unfettered: defeated Mera"
 		conversation
 			action
 				set "unfettered: defeated Mera"
@@ -842,9 +862,6 @@ mission "Unfettered: Earn Your Prize"
 		dialog "You have not yet defeated Mera. If she did not show up it is probably because your fleet is too large."
 	to complete
 		has "unfettered: defeated Mera"
-	on complete
-		# prizes granted in Side Missions depending on your choice
-		clear "unfettered: defeated Mera"
 
 
 
@@ -881,6 +898,8 @@ ship "Marauder Leviathan" "Leviathan (Cube)"
 			"Mystery Cube"
 
 mission "Unfettered: Special Cargo"
+	# just so it doesn't start with other major missions
+	minor
 	name `Mystery item`
 	description `Go to <waypoints> and find a way to acquire a "unique" item from the prominent warlord there. Her ship is the <npc>, once you have retrieved it bring the item to He-Yi on <planet>.`
 	to offer

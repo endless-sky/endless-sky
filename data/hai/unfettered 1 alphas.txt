@@ -179,7 +179,7 @@ mission "Unfettered: Alpha Bringing Supplies"
 		or
 			and
 				not "unfettered: saw auxiliary"
-				random < 50
+				random < 25
 			random < 5
 	on offer
 		set "unfettered: saw auxiliary"
@@ -213,7 +213,9 @@ mission "Unfettered: Alpha Leaving With Supplies"
 		not "Unfettered: Alpha Leaving With Supplies: active"
 		"reputation: Hai (Unfettered)" >= 0
 		or
-			not "unfettered: saw auxiliary"
+			and
+				not "unfettered: saw auxiliary"
+				random < 25
 			random < 5
 	on offer
 		set "unfettered: saw auxiliary"

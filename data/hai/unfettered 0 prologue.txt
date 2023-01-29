@@ -306,6 +306,7 @@ mission "Unfettered Jump Drive Trading"
 	invisible
 	source "Darkcloak"
 	substitutions
+		<hood> ""
 		<hood> ", with their face hidden"
 			has "unfettered: blade rodeo"
 		<learned> "It did take you two tries, but I am glad that you were able to learn from your mistake."
@@ -332,7 +333,7 @@ mission "Unfettered Jump Drive Trading"
 		not "Wanderers: Jump Drive Source: done"
 		# There is no minimum amount of JD to sell (other than the first 3), except if you failed to prove yourself the first time.
 		# "Unfettered Jump Drive 4: failed" represents the amount of JD sold.
-		"unfettered: jd to sell" < "Unfettered Jump Drive 4: failed"
+		"unfettered: jd to sell" <= "Unfettered Jump Drive 4: failed"
 		random < 20 + 8 * "Unfettered Jump Drive 4: failed"
 	on offer
 		conversation
