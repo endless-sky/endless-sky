@@ -68,7 +68,7 @@ outfitter "Unfettered Alpha Trade"
 	`"Bufaer" Atomic Thruster`
 	`"Bufaer" Atomic Steering`
 	"Pulse Rifle"
-	"Hai Valley Battery"
+	"Hai Valley Batteries"
 	"Boulder Reactor"
 	"Hai Octopus Jammer"
 	"Wanderer Ramscoop"
@@ -149,7 +149,7 @@ ship "Auxiliary (Alpha)"
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
 	description "The Auxiliary is the Republic Navy's logistical backbone. The size and durability of a capital ship but more cargo and passenger space than any other Navy ship, the Auxiliary is used whenever the Navy needs large amounts of troops or cargo transported with a guarantee that they'll reach the destination."
-	description " The Auxiliary was built with modularity in mind, allowing the ship to be fitted for more cargo or bunk space depending on the mission. This modularity makes the ship rather expensive to build, however, and therefore a rare sight to see."
+	description "	The Auxiliary was built with modularity in mind, allowing the ship to be fitted for more cargo or bunk space depending on the mission. This modularity makes the ship rather expensive to build, however, and therefore a rare sight to see."
 
 # name of the ship, needed in a phrase because we need it in a fleet for the cargo
 phrase "Settler"

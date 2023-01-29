@@ -557,8 +557,8 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 			names "Blood and Thunder"
 			cargo 0
 			variant
-				ship "Mammoth (Hai)"
-		dialog "As you board the Mammoth, you realize it is a modified Behemoth, probably able to endure an attack from even a Cruiser for a while before having to disengage with relative ease, or to transport illegal cargo accross long distances. All that is left to do now is to take the Loot!"
+				"Mammoth (Hai)"
+		dialog "As you board the Mammoth, you realize it is a modified Behemoth, probably able to endure an attack from even a Cruiser for a while before having to disengage with relative ease, or to transport illegal cargo across long distances. All that is left to do now is to take the Loot!"
 	npc
 		government "Midas"
 		personality derelict
@@ -594,7 +594,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 		to despawn
 			has "outfit (all): Loot"
 		conversation
-			`You manage to take out the leader of the fleet, and you can feel them lose coherance. A captain from another ship hails you. "Get out of here, now. We will not pursue you."`
+			`You manage to take out the leader of the fleet, and you can feel them lose coherence. A captain from another ship hails you. "Get out of here, now. We will not pursue you."`
 			action
 				set "unfettered: took out Dark Angel"
 				set "midas: took out leader"
