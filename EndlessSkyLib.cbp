@@ -297,6 +297,8 @@
 		<Unit filename="source/SavedGame.h" />
 		<Unit filename="source/Screen.cpp" />
 		<Unit filename="source/Screen.h" />
+		<Unit filename="source/AmmoDisplay.cpp" />
+		<Unit filename="source/AmmoDisplay.h" />
 		<Unit filename="source/Set.h" />
 		<Unit filename="source/Shader.cpp" />
 		<Unit filename="source/Shader.h" />
@@ -336,6 +338,7 @@
 		<Unit filename="source/StellarObject.h" />
 		<Unit filename="source/System.cpp" />
 		<Unit filename="source/System.h" />
+		<Unit filename="source/SystemEntry.h" />
 		<Unit filename="source/Test.cpp" />
 		<Unit filename="source/Test.h" />
 		<Unit filename="source/TestContext.cpp" />
@@ -361,14 +364,14 @@
 		<Unit filename="source/Weather.cpp" />
 		<Unit filename="source/Weather.h" />
 		<Unit filename="source/WeightedList.h" />
+		<Unit filename="source/comparators/ByGivenOrder.h" />
+		<Unit filename="source/comparators/ByName.h" />
 		<Unit filename="source/Wormhole.cpp" />
 		<Unit filename="source/Wormhole.h" />
 		<Unit filename="source/opengl.cpp" />
 		<Unit filename="source/opengl.h" />
 		<Unit filename="source/pi.h" />
 		<Unit filename="source/shift.h" />
-		<Unit filename="source/comparators/ByGivenOrder.h" />
-		<Unit filename="source/comparators/ByName.h" />
 		<Unit filename="source/text/DisplayText.cpp" />
 		<Unit filename="source/text/DisplayText.h" />
 		<Unit filename="source/text/Font.cpp" />
@@ -386,6 +389,8 @@
 		<Unit filename="source/text/alignment.hpp" />
 		<Unit filename="source/text/layout.hpp" />
 		<Unit filename="source/text/truncate.hpp" />
+		<Unit filename="source/ship/ShipAICache.cpp" />
+		<Unit filename="source/ship/ShipAICache.h" />
 		<Extensions>
 			<editor_config active="1" use_tabs="1" tab_indents="1" tab_width="4" indent="4" eol_mode="0" />
 			<lib_finder disable_auto="1" />

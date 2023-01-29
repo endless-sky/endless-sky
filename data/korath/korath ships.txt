@@ -395,7 +395,8 @@ ship "Kas'ik Tek 7"
 		"cost" 210000
 		"shields" 1400
 		"hull" 800
-		"automation" 1
+		"automaton" 1
+		"crew equivalent" 1
 		"mass" 21
 		"drag" 0.6
 		"heat dissipation" 1
@@ -404,9 +405,9 @@ ship "Kas'ik Tek 7"
 		"engine capacity" 18
 		"atmosphere scan" 100
 		"outfit scan power" 18
-		"outfit scan speed" 2
+		"outfit scan efficiency" 20
 		"cargo scan power" 6
-		"cargo scan speed" 2
+		"cargo scan efficiency" 10
 		"tactical scan power" 30
 		"asteroid scan power" 20
 		weapon

@@ -169,6 +169,7 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	damage.dischargeDamage = weapon.DischargeDamage() * ScaleType(0., attributes.Get("discharge protection"));
 	damage.corrosionDamage = weapon.CorrosionDamage() * ScaleType(1., attributes.Get("corrosion protection"));
 	damage.ionDamage = weapon.IonDamage() * ScaleType(.5, attributes.Get("ion protection"));
+	damage.scramblingDamage = weapon.ScramblingDamage() * ScaleType(.5, attributes.Get("scramble protection"));
 	damage.burnDamage = weapon.BurnDamage() * ScaleType(.5, attributes.Get("burn protection"));
 	damage.leakDamage = weapon.LeakDamage() * ScaleType(1., attributes.Get("leak protection"));
 
