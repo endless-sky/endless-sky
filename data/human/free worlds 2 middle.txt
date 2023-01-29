@@ -1651,6 +1651,28 @@ mission "FW Bloodsea 1.2A"
 
 
 
+mission "Pirate Use Jousting Cutthroat"
+	landing
+	invisible
+	to offer
+		has "fw bloodsea done"
+	on offer
+		event "pirate use jousting cutthroat"
+		fail
+
+event "pirate use jousting cutthroat"
+	fleet "Large Southern Pirate"
+		add variant 2
+			"Cutthroat" 2
+			"Cutthroat (Jousting)"
+		add variant 1
+			"Modified Argosy (Blaster)"
+			"Fury (Gatling)"
+			"Cutthroat (Jousting)"
+
+
+
+
 mission "FW Dreadnoughts Ready"
 	landing
 	name "Meet Freya on <planet>"
@@ -1993,7 +2015,7 @@ event "battle of alioth"
 		fleet "Small Southern Pirates" 1200
 		fleet "Large Southern Pirates" 2400
 		fleet "Small Republic" 3000
-			
+		
 event "end battle of alioth"
 	system Rutilicus
 		fleet "Small Southern Merchants" 600
