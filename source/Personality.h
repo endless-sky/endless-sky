@@ -55,6 +55,7 @@ public:
 	bool IsAppeasing() const;
 	bool IsOpportunistic() const;
 	bool IsMerciful() const;
+	bool IsRamming() const;
 
 	// Mission NPC states:
 	bool IsStaying() const;
