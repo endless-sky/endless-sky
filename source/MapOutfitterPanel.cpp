@@ -194,7 +194,7 @@ void MapOutfitterPanel::DrawItems()
 
 		for(const Outfit *outfit : it->second)
 		{
-			string price = Format::Credits(outfit->Cost()) + " credits";
+			string price = Format::CreditString(outfit->Cost());
 
 			string info;
 			if(outfit->Get("minable") > 0.)
