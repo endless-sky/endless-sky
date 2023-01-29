@@ -720,6 +720,8 @@ mission "Deep: TMBR 0"
 			`	The group looks visibly disappointed. A few minutes of talking later, they inform you that they must depart for Midgard and say their farewells.`
 				decline
 	to complete
+		never
+	to fail
 		has "Deep: TMBR 1: offered"
 
 
