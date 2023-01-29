@@ -466,7 +466,7 @@ void PlayerInfo::Save() const
 		{
 			string root = filePath.substr(0, filePath.length() - 4);
 			static const int SAVE_COUNT = 6;
-			string files[SAVE_COUNT] = {
+			string files[SAVE_COUNT - 1] = {
 				root + "~~previous-5.txt",
 				root + "~~previous-4.txt",
 				root + "~~previous-3.txt",
