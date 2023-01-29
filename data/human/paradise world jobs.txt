@@ -537,8 +537,7 @@ mission "Martini Bombings (Evacuation, Resident Family)"
 		has "event: war begins"
 		not "event: initial deployment 2" # Gives the player about a month to do these missions.
 		random < 30
-	source
-		planet "Martini"
+	source Martini
 	destination
 		distance 2 5
 		attributes "paradise" "rich" "urban"
@@ -562,8 +561,7 @@ mission "Martini Bombings (Evacuation, Resident Group)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 		random < 30
-	source
-		planet "Martini"
+	source Martini
 	destination
 		distance 2 5
 		attributes "paradise" "rich" "urban"
@@ -587,8 +585,7 @@ mission "Martini Bombings (Evacuation, Resident)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 		random < 30
-	source
-		planet "Martini"
+	source Martini
 	destination
 		distance 2 5
 		attributes "paradise" "rich" "urban"
@@ -614,8 +611,7 @@ mission "Martini Bombings (Evacuation, Family, Luxury Accommodations)"
 		random < 30
 	on offer
 		require "Luxury Accommodations"
-	source
-		planet "Martini"
+	source Martini
 	destination
 		distance 2 5
 		attributes "paradise" "rich" "urban"
@@ -641,8 +637,7 @@ mission "Martini Bombings (Evacuation, Singular, Luxury Accommodations)"
 		random < 30
 	on offer
 		require "Luxury Accommodations"
-	source
-		planet "Martini"
+	source Martini
 	destination
 		distance 2 5
 		attributes "paradise" "rich" "urban"
@@ -665,8 +660,7 @@ mission "Martini Bombings (Evacuation, Tourist)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 		random < 30
-	source
-		planet "Martini"
+	source Martini
 	destination
 		distance 2 8
 		not attributes "station"
@@ -688,8 +682,7 @@ mission "Martini Bombings (Evacuation, Tourist Couple)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 		random < 30
-	source
-		planet "Martini"
+	source Martini
 	destination
 		distance 2 8
 		not attributes "station"
@@ -711,8 +704,7 @@ mission "Martini Bombings (Evacuation, Tourist Family)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 		random < 30
-	source
-		planet "Martini"
+	source Martini
 	destination
 		distance 2 5
 		not attributes "station"
@@ -733,8 +725,7 @@ mission "Martini Bombings (Evacuation, Tourist Group)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 		random < 30
-	source
-		planet "Martini"
+	source Martini
 	destination
 		distance 2 5
 		not attributes "station"
@@ -755,8 +746,7 @@ mission "Martini Bombings (Evacuation, Businessman Group)"
 	to offer
 		has "event: war begins"
 		random < 30
-	source
-		planet "Martini"
+	source Martini
 	destination
 		distance 2 8
 		attributes "paradise" "rich"
@@ -779,8 +769,7 @@ mission "Martini Bombings (Evacuation, Businessman)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 		random < 30
-	source
-		planet "Martini"
+	source Martini
 	destination
 		distance 2 8
 		not attributes "station"
@@ -802,8 +791,7 @@ mission "Martini Bombings (Evacuation, Exhausted Doctors)"
 		has "event: initial deployment 1"
 		not "event: initial deployment 2"
 		random < 30
-	source
-		planet "Martini"
+	source Martini
 	destination
 		distance 4 12
 		not attributes "station"
@@ -825,8 +813,7 @@ mission "Martini Bombings (Evacuation, Exhausted Search and Rescue Team)"
 		has "event: initial deployment 1"
 		not "event: initial deployment 2"
 		random < 70
-	source
-		planet "Martini"
+	source Martini
 	destination
 		distance 4 12
 		not attributes "station"
@@ -930,9 +917,8 @@ mission "Martini Bombings [Medical 1]"
 		not "event: initial deployment 2"
 		random < 30
 	source
-		near "Pollux" 2 10
-	destination
-		planet "Martini"
+		near Pollux 2 10
+	destination Martini
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -941,7 +927,7 @@ mission "Martini Bombings [Medical 1]"
 
 
 mission "Martini Bombings [Medical 2]"
-	name "disaster relief to Martini"
+	name "Disaster relief to Martini"
 	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help treat the wounded. Payment is <payment>."
 	job
 	repeat
@@ -952,9 +938,8 @@ mission "Martini Bombings [Medical 2]"
 		not "event: initial deployment 2"
 		random < 15
 	source
-		near "Pollux" 2 10
-	destination
-		planet "Martini"
+		near Pollux 2 10
+	destination Martini
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -963,7 +948,7 @@ mission "Martini Bombings [Medical 2]"
 
 
 mission "Martini Bombings [Reconstruction]"
-	name "Masks to Martini"
+	name "Construction supplies to Martini"
 	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help the reconstruction efforts. Payment is <payment>."
 	job
 	repeat
@@ -974,9 +959,8 @@ mission "Martini Bombings [Reconstruction]"
 		not "event: initial deployment 2"
 		random < 30
 	source
-		near "Pollux" 2 10
-	destination
-		planet "Martini"
+		near Pollux 2 10
+	destination Martini
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -996,9 +980,8 @@ mission "Martini Bombings [Food]"
 		not "event: initial deployment 2"
 		random < 30
 	source
-		near "Pollux" 2 10
-	destination
-		planet "Martini"
+		near Pollux 2 10
+	destination Martini
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -1018,9 +1001,8 @@ mission "Martini Bombings [Water Tablets]"
 		not "event: initial deployment 2"
 		random < 30
 	source
-		near "Pollux" 2 10
-	destination
-		planet "Martini"
+		near Pollux 2 10
+	destination Martini
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -1035,18 +1017,18 @@ mission "Martini Bombings [Relief People 1]"
 	repeat
 	passengers 5 15
 	substitutions
-		<martini relief occupations> "doctors"
-		<martini relief occupations> "evacuation coordinators"
+		"<martini relief occupations>" "doctors"
+		"<martini relief occupations>" "evacuation coordinators"
 			random < 86
-		<martini relief occupations> "search and rescue operatives"
+		"<martini relief occupations>" "search and rescue operatives"
 			random < 71
-		<martini relief occupations> "nurses"
+		"<martini relief occupations>" "nurses"
 			random < 57
-		<martini relief occupations> "rescue helicoptor pilots"
+		"<martini relief occupations>" "rescue helicoptor pilots"
 			random < 43
-		<martini relief occupations> "volunteers"
+		"<martini relief occupations>" "volunteers"
 			random < 29
-		<martini relief occupations> "construction workers"
+		"<martini relief occupations>" "construction workers"
 			random < 14
 	clearance "When you explain to the spaceport controller that you have on board a group of <martini relief occupations> for Martini's disaster relief efforts, they give you the clearance to land."
 	to offer
@@ -1054,9 +1036,8 @@ mission "Martini Bombings [Relief People 1]"
 		not "event: initial deployment 2"
 		random < 30
 	source
-		near "Pollux" 2 10
-	destination
-		planet "Martini"
+		near Pollux 2 10
+	destination Martini
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -1070,18 +1051,18 @@ mission "Martini Bombings [Relief People 2]"
 	repeat
 	passengers 5 15
 	substitutions
-		<martini relief occupations> "doctors"
-		<martini relief occupations> "evacuation coordinators"
+		"<martini relief occupations>" "doctors"
+		"<martini relief occupations>" "evacuation coordinators"
 			random < 86
-		<martini relief occupations> "search and rescue operatives"
+		"<martini relief occupations>" "search and rescue operatives"
 			random < 71
-		<martini relief occupations> "nurses"
+		"<martini relief occupations>" "nurses"
 			random < 57
-		<martini relief occupations> "rescue helicoptor pilots"
+		"<martini relief occupations>" "rescue helicoptor pilots"
 			random < 43
-		<martini relief occupations> "volunteers"
+		"<martini relief occupations>" "volunteers"
 			random < 29
-		<martini relief occupations> "construction workers"
+		"<martini relief occupations>" "construction workers"
 			random < 14
 	clearance "When you explain to the spaceport controller that you have on board a group of <martini relief occupations> for Martini's disaster relief efforts, they give you the clearance to land."
 	to offer
@@ -1089,9 +1070,8 @@ mission "Martini Bombings [Relief People 2]"
 		not "event: initial deployment 2"
 		random < 15
 	source
-		near "Pollux" 2 10
-	destination
-		planet "Martini"
+		near Pollux 2 10
+	destination Martini
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
