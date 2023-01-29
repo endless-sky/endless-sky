@@ -60,6 +60,7 @@ class System;
 class Test;
 class TestData;
 class TextReplacements;
+class UniverseObjects;
 class Wormhole;
 
 
@@ -89,6 +90,9 @@ public:
 
 	// Get the list of resource sources (i.e. plugin folders).
 	static const std::vector<std::string> &Sources();
+
+	// Get a reference to the UniverseObjects object.
+	static UniverseObjects &Objects();
 
 	// Revert any changes that have been made to the universe.
 	static void Revert();
