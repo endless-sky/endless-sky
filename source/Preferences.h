@@ -96,6 +96,8 @@ public:
 	static bool PlayAudioAlert();
 	static bool DisplayVisualAlert();
 	static bool DoAlertHelper(AlertIndicator toDo);
+
+	static int GetPreviousSaveCount();
 };
 
 
