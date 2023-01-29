@@ -61,7 +61,7 @@
 					},
 					{
 						"description": "non-ASCII quotation mark",
-						"regex": "[“]",
+						"regex": "[“”]",
 						"correction": {
 							"replaceWith": "\""
 						}
