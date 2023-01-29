@@ -107,10 +107,13 @@ void Preferences::Load()
 		else if(node.Token(0) == "alert indicator")
 			alertIndicatorIndex = max<int>(0, min<int>(node.Value(1), ALERT_INDICATOR_SETTING.size() - 1));
 		else if(node.Token(0) == "previous saves" && node.Size() >= 2)
-			previousSaveCount = max(node.Value(1), 3.);
+			previousSaveCount = node.Value(1);
 		else
 			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
 	}
+
+	if(previousSaveCount < 1)
+		previousSaveCount = 3;
 
 	// For people updating from a version before the visual red alert indicator,
 	// if they have already disabled the warning siren, don't turn the audible alert back on.
