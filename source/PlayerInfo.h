@@ -242,7 +242,6 @@ public:
 	bool SetTribute(const std::string &planetTrueName, int64_t payment);
 	const std::map<const Planet *, int64_t> GetTribute() const;
 	int64_t GetTributeTotal() const;
-	int64_t GetTributeForPlanet(const std::string &planetTrueName) const;
 
 	// Check what the player knows about the given system or planet.
 	bool HasSeen(const System &system) const;

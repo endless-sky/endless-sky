@@ -70,7 +70,7 @@ void Account::Load(const DataNode &node, bool clearFirst)
 			for(const DataNode &grand : child)
 				history.push_back(grand.Value(0));
 		else
-			node.PrintTrace("Skipping unrecognized account item:");
+			child.PrintTrace("Skipping unrecognized account item:");
 	}
 }
 
@@ -315,7 +315,7 @@ int64_t Account::SalariesIncomeTotal() const
 		salariesIncome.begin(),
 		salariesIncome.end(),
 		0,
-		[](int64_t value, const std::map<string, int64_t>::value_type& t)
+		[](int64_t value, const std::map<string, int64_t>::value_type &t)
 		{
 			return value + t.second;
 		}
@@ -324,12 +324,12 @@ int64_t Account::SalariesIncomeTotal() const
 
 
 
-void Account::SetSalaryIncome(string name, int64_t ammount)
+void Account::SetSalaryIncome(string name, int64_t amount)
 {
-	if(ammount == 0)
+	if(amount == 0)
 		salariesIncome.erase(name);
 	else
-		salariesIncome[name] = ammount;
+		salariesIncome[name] = amount;
 }
 
 
