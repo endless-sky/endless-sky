@@ -593,3 +593,107 @@ ship "Modified Osprey"
 	explode "small explosion" 40
 	explode "tiny explosion" 28
 	"final explode" "final explosion large" 1
+
+
+
+person "Pain of the Proofreader"
+	government "Author"
+	frequency 300
+	personality
+		mining harvests plunders
+	phrase
+		word
+			"Should you find another ship owned by Brick, tell them to work harder!"
+			"Should you find another ship owned by Zitchas, tell them they've a typo on line 9. They'll never see it coming!"
+			"If you don't know where to start in helping the game, take a nice look at the files. Sometimes, it helps!"
+			"If you're interested in helping out but don't have time, consider being a proof-reader! You can take my job and I get to laze around doing nothing!"
+			"If you see something and it shoots at you, cheat your way to victory!"
+			"What did you just say about me you little-"
+			"Typo detected. Initiating weapons engagement."
+	ship "Waverider" "Phoenix"
+		"never disabled"
+   
+person "Regrets of the Reviewer"
+	government "Author"
+	frequency 300
+	personality
+		mining harvests plunders
+	phrase
+		word
+		"The number of times someone breaks the fourth wall, it’s mind boggling!"
+		"Look, we aren’t here for your money. We do all this for free, and look where that gets us…"
+		"If you don't know where to start in helping the game, come and review some missions on github. It helps!"
+		"If you're interested in helping out but don't have time, consider looking through the proposals on Github! Sometimes, a new perspective is needed!"
+		"What do you mean you don’t have a save file for this Pull!?"
+		"Please, for the love of god, don’t make an issue before checking if others have done the same."
+		"Code non-functional. Destroy them."
+
+	phrase
+		word
+			“If you do not want your pull request to be merged, ”
+			“If you prefer your pull request sits idle, ”
+			“If you want your pull request to be closed, ”
+		word
+			“make sure you keep adding content to it”
+			“always change unrelated things”
+			“do not ever test it, and don’t add integration tests, whatever that is”
+			“try not to respect existing syntax and conventions”
+			“just forget about it for a while”
+			“use the forbidden word: ‘realism’”
+			“keep the new feature with the data changes”
+			“do not, under any circumstances, be willing to compromise”
+			“make sure to ignore what the reviewers tell you to do”
+			“don’t write an issue about it first”
+		word
+			“!” 5
+			“.” 5
+			“. Trust me, it works.”
+			“. You shouldn’t do those things though, I’m just kidding.”
+
+	ship "Waverider" "Phoenix"
+	"never disabled"
+
+
+person "Cries of the Critic"
+	government "Author"
+	frequency 300
+	personality
+		mining harvests plunders
+	phrase
+		word
+			"The number of times someone breaks the fourth wall, it’s mind boggling!"
+			"Look, we aren’t here for your money. We do all this for free, and look where that gets us…"
+			"If you don't know where to start in helping the game, come and review some missions on github. It helps!"
+			"If you're interested in helping out but don't have time, consider looking through the proposals on Github! Sometimes, a new perspective is needed!"
+			"What do you mean you don’t have a save file for this Pull!?"
+			"Please, for the love of god, don’t make an issue before checking if others have done the same."
+			"Code non-functional. Destroy them."
+
+	phrase
+		word
+			“If you do not want your pull request to be merged, ”
+			“If you prefer your pull request sits idle, ”
+			“If you want your pull request to be closed, ”
+		word
+			“make sure you keep adding content to it”
+			“always change unrelated things”
+			“do not ever test it, and don’t add integration tests, whatever that is”
+			“try not to respect existing syntax and conventions”
+			“just forget about it for a while”
+			“use the forbidden word: ‘realism’”
+			“keep the new feature with the data changes”
+			“do not, under any circumstances, be willing to compromise”
+			“make sure to ignore what the reviewers tell you to do”
+			“don’t write an issue about it first”
+		word
+			“!” 5
+			“.” 5
+			“. Trust me, it works.”
+			“. You shouldn’t do those things though, I’m just kidding.”
+
+	ship "Waverider" "Phoenix"
+	"never disabled"
+
+
+
+	
