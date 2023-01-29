@@ -650,6 +650,7 @@ mission "Midas: Duel Squared"
 		dialog "You killed one of the ships. You will need to restart the mission in order to progress further with the Shadow of Mintaka. They may want to have their vengeance on you... The Unfettered may not offer you any missions anymore, for disrespecting the sacred rules of the duel."
 		set "midas: thorn talon death"
 		set "midas: thorn talon murdered"
+		"midas: wronged" ++
 		event "midas: thorn talon vengeance" 180
 		log `Killed the mysterious ships that serve the 'Sadow of Mintaka' in a duel. What's the worst that could happen? No idea if the Unfettered will forgive this act.`
 	on complete
@@ -720,6 +721,7 @@ mission "Midas: Daemons Unleashed"
 				"reputation: Mercenaries" >?= 100
 				"salary: Mercenaries" = 5000
 				set "midas: took out leader"
+				clear "midas: wronged"
 				log "Took out the leader of the Midas organization that manages the Gold Bars. They did not reveal much, only that they do not wish to fight me anymore."
 	npc
 		system "Wah Yoot"

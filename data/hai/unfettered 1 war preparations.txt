@@ -154,7 +154,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		system "Host"
 		personality heroic nemesis staying
 		to spawn
-			has "midas: thorn talon death"
+			has "midas: wronged"
 		ship "Far Osk 27" "Vengeance"
 		ship "Far Osk 27" "Greed"
 		ship "Far Osk 27" "Darcy"

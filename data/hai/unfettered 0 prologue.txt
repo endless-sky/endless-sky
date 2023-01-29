@@ -1305,6 +1305,7 @@ mission "Unfettered: Taking Off With Hai Fleet"
 			`	They think for a bit, unsure how to respond. "Thank you. We will commandeer additional ships given the emergency of the situation. I hope it will be enough for whatever threat you refer to. You will have to wait a bit in orbit before they arrive from another system."`
 			action
 				set "unfettered: warned the hai governor escort about the mercenary attack"
+				"midas: wronged" ++
 			choice
 				`	"It was the least I could do."`
 					goto leave
@@ -1662,6 +1663,7 @@ mission "Unfettered: Cavalry Arrives"
 			label betrayed
 			action
 				set "midas: thorn talon murdered"
+				"midas: wronged" ++
 				set "midas: thorn talon death"
 				event "midas: thorn talon vengeance" 360
 			`You receive an ominous message of defiance, "Nemo me impune lacessit."`
@@ -1891,7 +1893,7 @@ mission "Unfettered: I Know The Way"
 		has "Unfettered: Solifuge 2: Auxiliary Design: done"
 	on enter "Host"
 		dialog "Upon entering the system you realize it is very quiet, unlike most nearby systems. This would appear to be the ideal place to hide..."
-	destination "Avelon"
+	destination "Avalon"
 	to fail
 		has "unfettered: it's the Alphas!"
 	on visit
@@ -1931,7 +1933,9 @@ mission "Unfettered: No Answers Available"
 				defer
 			label Misam
 			branch "okay boy!"
-				has "unfettered: warned the hai governor escort about the mercenary attack"
+				not "midas: wronged"
+			branch "dead, boy!"
+				"midas: wronged" > 1
 			`You ask around for this Auxiliary; 'Settler', but no-one will reveal anything about it to you, until, suspecting you will not leave until you have something, someone comes, their face conceiled. "You. You have betrayed us by revealing our plan to the governor, you are not to be trusted. That said, those that you are looking for are our enemies as well, so I will reveal you the location you need -if- you agree to give us compensation for your mistake. We demand 10 millions, in the form of a fine, to make sure you will have to pay us interests should you lack money."`
 			choice
 				`	"I will give you your 10 millions.`
@@ -1944,13 +1948,27 @@ mission "Unfettered: No Answers Available"
 			action
 				set "unfettered: it's the Alphas!"
 			`You head to the given coordinates on the planet, but you cannot see anyone there. You wait around for an hour or so until, looking around, you finally spot it: there is a graffiti on the wall, right at the given coordinate. At first you did not pay too much attention to it because this kind of thing is common on pirate worlds, but now you notice it depicts a green human. The message is clear.`
+				decline
+			label "dead, boy!"
+			`As soon as you set foot on the planet, a team of mercenaries comes out of the shadows, armored with the same kind of armor Si-Ra had. Their weapons may holstered but you can feel the tension in the air. Their leader speaks up. "We know your query. Consider yourself lucky to not be killed on the spot. We do not garantee that will not happen, should you land again."`
+			`	They evaluate their surrendings before coming closer to you, and once they are a meter a way they stop, clearly speaking their words as a threat, with a pause between each of them "Nemo. Me. Impune. Laccesit."`
+			choice
+				`	(Threaten them).`
+				`	"Surely there is something you can tell me?"`
+					goto hint
+				`	(Leave).`
+					decline
+			`	You move your arm to your weapon but before you can even begin to reach it, you find yourself shot from all directions by what appears to be ion based weapons, not unlike the Hai pulse rifles. You may have been able to survive a few shots, but given the sheer amount of fire from all directions, you never wake up again.`
+				die
+			label hint
+			`	Some of them already aim for you with remarkable speed, ready to shoot, but what you suspect to be their leader makes them lower their weapons again with a gesture of their hand. "The ones you seek are a common enemy, so I will tell you this: look far, human, and you may find them." They then disappear as quickly as they had come.`
 
 mission "Unfettered: Answers To Your Questions"
 	landing
 	invisible
 	to offer
 		has "Unfettered: Solifuge 2: Auxiliary Design: done"
-		not "unfettered: warned the hai governor escort about the mercenary attack"
+		not "midas: wronged"
 	deadline 15
 	on enter "Misam"
 		fail
