@@ -154,27 +154,6 @@ mission "Pact Supplies Escort (Dirt Belt)"
 		payment 35000 50
 		dialog `After you land at Longjump's spaceport, a militia officer comes to greet you. "Thank you for your service. I will make sure that the <Pact / Free Worlds> will remember your assistance." He hands you your payment of <payment>.`
 
-mission "FW Sympathiser Supplies"
-	name "Transport industrial machinery to <planet>"
-	description "A cell of Free Worlds loyalists will pay you <payment> if you transport <cargo> to <planet>. Because the Southern Rim worlds are sanctioned, the Republic may fine you if you are caught."
-	cargo weapons
-		illegal
-		stealth
-	source
-		attributes "dirt belt" factory
-		not planet "New Sahara"
-	destination Solace
-	to offer
-		has "event: war begins"
-		not "event: chosen sides"
-	on offer
-		conversation
-			``
-	npc
-		government "Republic"
-		system Wei
-		ship Gunboat "R.N.S. Pearl"
-
 
 
 mission "Pact Recon 0"
