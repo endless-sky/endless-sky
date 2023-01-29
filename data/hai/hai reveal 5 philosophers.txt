@@ -1137,7 +1137,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 			`	He seems to admire your ship for a moment. "If you succeed today you shall be Hai-friend, wherever you go."`
 				accept
 	on accept
-		event "Elenchus can be dominated"
+		event "elenchus can be dominated"
 	on fail
 		fail "Hai Reveal [B12-A] Devil-Hide Fleet"
 	on decline
@@ -1157,7 +1157,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 			`To finish this mission, you must destroy all defending pirate vessels, and land with Choot'k, Teeneep, Danforth and Wallace's ships all present in the system and intact...`
 				launch
 	on complete
-		event "Liberated Elenchus"
+		event "liberated elenchus"
 	on fail
 		dialog `You have failed an essential mission. To complete this story line, revert to the autosave or another earlier snapshot of the game.`
 
@@ -1233,11 +1233,16 @@ fleet "Elenchus Tribute"
 		"Vanguard (Missile)"
 		"Firebird"
 
-event "Elenchus can be dominated"
+# They suspect you're coming so they're on alert, and non-essential ships aren't flying about.
+# Also, removing the warship spawn stops your NPC escorts from getting overwhelmed inappropriately.
+event "elenchus can be dominated"
 	planet "Elenchus"
 		tribute 5000
 			threshold 2400
 			fleet "Elenchus Tribute"
+	system "Devil-Hide"
+		remove fleet "Devil-Run Warships"
+		remove fleet "Devil-Run Miners"
 
 
 # This allows the mission to preserve the correct number of Unfettered support ships - if one dies it will stay dead:
