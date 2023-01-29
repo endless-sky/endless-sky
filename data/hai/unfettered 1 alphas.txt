@@ -314,7 +314,7 @@ mission "Unfettered: I Know The Way"
 		# You must have some kind of scanner to find it, the tactical scanner is not enough. The living ships are able to find it.
 		"outfit (installed): Value Detector" + "outfit (installed): Research Laboratory" + "outfit (installed): Surveillance Pod" + "ship model: Peregrine" + "ship model: Merganser" > 0
 	on complete
-		dialog "It takes you a lot of time, but suspecting there must be something to find here you persevere, until you find a very well conceiled Alpha base, using your ship's sensors. This must be where the Auxiliary came from."
+		dialog "It takes you a lot of time, but suspecting there must be something to find here you persevere, until you find a very well concealed Alpha base using your ship's sensors. This must be where the Auxiliary came from."
 		set "unfettered: it's the Alphas!"
 
 # if you betrayed Midas, you will suffer to find answers
@@ -326,7 +326,7 @@ mission "Unfettered: Questions Best Left Unanswered"
 	on enter "Almaaz" "Arneb" "Alninam"
 		dialog "As you enter the system it occurs to you the nearby pirates may have information regarding that Auxiliary."
 	on enter "Alcyone" "Misam"
-		dialog "Entering the system you recall that the pirates of Misam seemed to be in the business of knowing things."
+		dialog "Entering the system you recall that you last saw Shadow at Misam, they probably operate there or around it. They may know something about that Auxiliary."
 	to fail
 		has "unfettered: it's the Alphas!"
 
@@ -348,7 +348,7 @@ mission "Unfettered: No Answers Available"
 				not "midas: wronged"
 			branch "dead, boy!"
 				"midas: wronged" > 1
-			`You ask around for this Auxiliary; 'Settler', but no-one will reveal anything about it to you, until, suspecting you will not leave until you have something, someone comes, their face conceiled. "You. You have betrayed us by revealing our plan to the governor, you are not to be trusted. That said, those that you are looking for are our enemies as well, so I will reveal you the location you need -if- you agree to give us compensation for your mistake. We demand 10 millions, in the form of a fine, to make sure you will have to pay us interests should you lack money."`
+			`You ask around for this Auxiliary; 'Settler', but no-one will reveal anything about it to you, until, suspecting you will not leave until you have something, someone comes, their face concealed. "You. You have betrayed us by revealing our plan to the governor, you are not to be trusted. That said, those that you are looking for are our enemies as well, so I will reveal you the location you need -if- you agree to give us compensation for your mistake. We demand 10 millions, in the form of a fine, to make sure you will have to pay us interests should you lack money."`
 			choice
 				`	"I will give you your 10 millions.`
 				`	"I refuse. I will find my own way to find who is in control of that ship, however hard that may be."`
@@ -362,15 +362,15 @@ mission "Unfettered: No Answers Available"
 			`You head to the given coordinates on the planet, but you cannot see anyone there. You wait around for an hour or so until, looking around, you finally spot it: there is a graffiti on the wall, right at the given coordinate. At first you did not pay too much attention to it because this kind of thing is common on pirate worlds, but now you notice it depicts a green human. The message is clear.`
 				decline
 			label "dead, boy!"
-			`As soon as you set foot on the planet, a team of mercenaries comes out of the shadows, armored with the same kind of armor Si-Ra had. Their weapons may holstered but you can feel the tension in the air. Their leader speaks up. "We know your query. Consider yourself lucky to not be killed on the spot. We do not guarantee that will not happen, should you land again."`
-			`	They evaluate their surrendings before coming closer to you, and once they are a meter a way they stop, clearly speaking their words as a threat, with a pause between each of them "Nemo. Me. Impune. Laccesit."`
+			`As soon as you set foot on the planet, a team of mercenaries comes out of the shadows, armored with the same kind of armor Si-Ra had. Their weapons may be holstered, but you can feel the tension in the air. Their leader speaks up. "We know your query. Consider yourself lucky to not be killed on the spot. We do not guarantee that will not happen, should you land again."`
+			`	They evaluate their surroundings before coming closer to you, and once they are a meter away they stop, clearly speaking their words as a threat, with a pause between each of them "Nemo. Me. Impune. Laccesit."`
 			choice
 				`	(Threaten them).`
 				`	"Surely there is something you can tell me?"`
 					goto hint
 				`	(Leave).`
 					decline
-			`	You move your arm to your weapon but before you can even begin to reach it, you find yourself shot from all directions by what appears to be ion based weapons, not unlike the Hai pulse rifles. You may have been able to survive a few shots, but given the sheer amount of fire from all directions, you never wake up again.`
+			`	You move your arm to your weapon but before you can reach it you find yourself shot from all directions by what appears to be ion based weapons, not unlike the Hai pulse rifles. You may have been able to survive a few shots, but given the sheer amount of fire from all directions, you never wake up again.`
 				die
 			label hint
 			`	Some of them already aim for you with remarkable speed, ready to shoot, but what you suspect to be their leader makes them lower their weapons again with a gesture of their hand. "The ones you seek are a common enemy, so I will tell you this: look far, human, and you may find them." They then disappear as quickly as they had come.`
