@@ -2665,7 +2665,8 @@ int Ship::Scan(const PlayerInfo &player)
 	// Check the target's outfit and cargo space. A larger ship takes longer to scan.
 	// Normalized around 200 tons of cargo/outfit space.
 	// A ship with less than 10 tons of outfit space or cargo space takes as long to
-	// scan as one with 10 tons. This avoids small sizes being scanned instantly.
+	// scan as one with 10 tons. This avoids small sizes being scanned instantly, or
+	// causing a divide by zero error at sizes of 0.
 	// If instantly scanning very small ships is desirable, this can be removed.
 	double outfits = max(10., target->baseAttributes.Get("outfit space")) * .005;
 	double cargo = max(10., target->attributes.Get("cargo space")) * .005;

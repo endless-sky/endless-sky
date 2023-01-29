@@ -346,7 +346,6 @@ void Outfit::Load(const DataNode &node)
 		}
 
 		// Similar check for scan speed which is replaced with scan efficiency.
-		// If this could be simplified into the above, I wouldn't know how to.
 		label += " speed";
 		initial = attributes.Get(label);
 		if(initial)
@@ -354,9 +353,9 @@ void Outfit::Load(const DataNode &node)
 			attributes[label] = 0.;
 			node.PrintTrace("Warning: Deprecated use of \"" + label + "\" instead of \""
 					+ kind + " scan efficiency\":");
-			// A reasonable update is 15x the previous value-
-			// scans take 10x longer standard, large ships take longer to scan,
-			// and scanning speed scales inversely with distance.
+			// A reasonable update is 15x the previous value, as the base scan time
+			// is 10x what it was before scan efficiency was introduced, along with
+			// ships which are larger or further away also increasing the scan time.
 			attributes[kind + " scan efficiency"] += initial * 15.;
 		}
 	};
