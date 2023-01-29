@@ -108,7 +108,7 @@ def print_help():
 		["", "-c", "--config-help", "Display a help message for the configuration file and exit."],
 		["", "-a", "--auto-correct", "Attempts to automatically correct formatting issues. This is not supported in all cases. Use with caution."],
 		["", "-n", "--no-correct", "Does not correct formatting issues. This is the default option."],
-		["", "-f", "--format-file [file]", "Specifies the location of the JSON file with the formatting rules. The default value is './contentStyle.json'."],
+		["", "-f", "--format-file [file]", "Specifies the location of the JSON file with the formatting rules. The default value is './utils/contentStyle.json'."],
 		["", "-R", "--no-recursion", "Do not look for files recursively. Please note that some pathname patterns are implicitly recursive, and are not disabled with this option."],
 		["", "-r", "--recursive", "Look for files recursively. This is the default option. Please note that some pathname patterns are implicitly non-recursive, and are not recursively expanded with this option."],
 		[],
@@ -558,7 +558,7 @@ def print_result(fixed_errors, fixed_warnings, errors, warnings):
 
 if __name__ == '__main__':
 	auto_correct = False
-	format_file = "./contentStyle.json"
+	format_file = "./utils/contentStyle.json"
 	recursive = True
 	add_files = True
 	# Processing command line arguments.
