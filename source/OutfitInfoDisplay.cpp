@@ -391,11 +391,8 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 
 			// A negative 'required crew' would be a benefit, so it is listed here.
 		}
-		else if(IsNotRequirement(it.first))
-		{
-			// This attribute is always listed here, though they may be negative.
-		}
-		else if(it.second < 0)
+		// If this attribute is not a requirement, it is always listed here, though it may be negative.
+		else if(it.second < 0 && !IsNotRequirement(it.first))
 			continue;
 
 		auto sit = SCALE.find(it.first);
