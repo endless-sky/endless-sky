@@ -628,12 +628,10 @@ mission "Midas: Duel Squared"
 	on offer
 		dialog `The two mysterious ships hail you, "We are ready for a fight in orbit whenever you are. If you want, you can still call this off... at a cost."`
 		fine 10000000
-	on accept
-		"midas: duel startday" = day
 	npc disable save
 		government "Hai (Unfettered Challenger)"
 		to despawn
-			"midas: duel startday" != day
+			has "despawn the duel ships"
 		personality waiting heroic unconstrained staying disables
 		ship "Sea Dragon" "Thorn"
 		ship "Sea Dragon" "Talon"
@@ -643,6 +641,8 @@ mission "Midas: Duel Squared"
 				set "midas: won the duel"
 				log `Won a duel against 2 mysterious ships that serve the 'Shadow of Mintaka', whatever that means. Plundering of their ships was so nicely offered!`
 				payment 10000000
+	on enter
+		set "despawn the duel ships"
 	on abort
 		dialog `You decide to abort the duel. They hail you, "We have no idea why you decided to cancel the duel, but our prize of 10 millions is still due."`
 		log `Lost a duel against 2 mysterious ships that serve the 'Shadow of Mintaka', whatever that means. Had to pay up 10 million credits.`

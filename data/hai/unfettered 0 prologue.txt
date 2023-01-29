@@ -1168,9 +1168,7 @@ mission "Unfettered: Escort Hai Fleet"
 			`	"Whatever it is you may be busy with, I'm sure it can wait. This fleet needs to arrive here before it is too late, in 3 weeks, and it is of the highest importance that it does not without any trouble."`
 			`	He asks something to his advisor, and gets a positive answer. "Do not worry about the logs, the rush was only for scanning them, but you have all the time you need to bring them back now."`
 				to display
-					or
-						has "Unfettered: Solifuge 3: Auxiliary Design Logs: active"
-						has "unfettered: logs worry"
+					has "Unfettered: Solifuge 3: Auxiliary Design Logs: active"
 			label choose
 			`	"A situation arose: a big sector, far away from the spaceport, has almost entirely collapsed due to a tsunami. Hundreds of casualties are estimated. We need medical teams, and materials to repair what can be of the buildings, and build emergency shelters for these people, and quick!"`
 			choice
@@ -1521,6 +1519,7 @@ mission "Unfettered: Materials Intercepted"
 		personality target launching plunders vindictive uninterested
 		fleet
 			commodities "Military" "Electronics" "Metal" "Heavy Metals"
+			cargo 4
 			names "Rested Snake"
 			variant
 				"Bactrian (Cerberus)"
@@ -1619,7 +1618,7 @@ mission "Unfettered: Cavalry Arrives"
 			`They hail you, "Listen carrefuly. You may have noticed a Korath drone in the area, and they don't like Alpha dogs around much. If Koraths come to help do not open fire on them, understood?" "I would recommend you make sure these pirate ships are on your side, captain!" The other ship adds, before ending the hail, making it clear they will not take no for an answer.`
 	npc save
 		government "Shadow"
-		personality entering heroic uninterested staying disables mute
+		personality entering heroic uninterested staying mute
 		ship "Sea Dragon" "Thorn"
 		ship "Sea Dragon" "Talon"
 	# the Koraths see this opportunity to hunt some Alpha dogs.
@@ -1836,16 +1835,16 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 		system "Hi Yahr"
 		fleet
 			commodities "Military" "Electronics"
-			outfitters "Korath Exiles Remnant Donations"
+			outfitters "Korath Drones Alpha Loot"
 			names "Settler"
 			variant
 				"Auxiliary (Alpha)"
 		conversation
 			branch "didn't listen"
 				not "outfit (flagship installed): Value Detector"
-			`You have finished scanning the Auxiliary. There can be no doubt: it is controlled by Alphas.`
+			`You have finished scanning the Auxiliary, that seems to be controlled by humans.`
 			`	As you prepare yourself to exit the system and bring the logs back, you receive a message from the local Unfettered authorities.`
-			`	"We demand that you land right away. If you go to any other system, that ship may pursue you. We do not want a dispute between our suppliers of jump drives; this is probably just a misunderstanding. If you land we can guarantee your safety here. We have requested that ship to land on another port, on Firelode, since it did fire on you first you without any apparent provocation."`
+			`	"We demand that you land right away. If you go to any other system, that ship may pursue you. We do not want a dispute between our suppliers of jump drives; this is probably just a misunderstanding. Surely the unfettered humans can work this out with you later. If you land we can guarantee your safety here. We have requested that ship to land on another port, on Firelode, since it did fire on you first you without any apparent provocation."`
 			choice
 				`	"I will land, as you ask."`
 					accept
@@ -1879,26 +1878,107 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
-		set "unfettered: logs worry"
 		dialog
 			`You are offered some surprisingly high-quality beverages to keep you waiting, even by your standards. This special treatment is probably in part due to your ongoing mission for Mera.`
-			`	After a while, the Alpha ship goes away, you can now go back to <origin> with the scanner logs.`
+			`	After a while, the ship goes away, you can now go back to <origin> with the scanner logs.`
 
 
+
+mission "Unfettered: I Know The Way"
+	landing
+	invisible
+	to offer
+		has "Unfettered: Solifuge 2: Auxiliary Design: done"
+	on enter "Host"
+		dialog "Upon entering the system you realize it is very quiet, unlike most nearby systems. This would appear to be the ideal place to hide..."
+	destination "Avelon"
+	to fail
+		has "unfettered: it's the Alphas!"
+	on visit
+		dialog "You suspect there is something here, but after having done a full sweep of the planet your sensors reveal nothing."
+	to complete
+		# You must have some kind of scanner to find it, the tactical scanner is not enough. The living ships are able to find it.
+		"outfit (installed): Value Detector" + "outfit (installed): Research Laboratory" + "outfit (installed): Surveillance Pod" + "ship model: Peregrine" + "ship model: Merganser" > 0
+	on complete
+		dialog "It takes you a lot of time, but suspecting there must be something to find here you persevere, until you find a very well conceiled Alpha base, using your ship's sensors. This must be where the Auxiliary came from."
+		set "unfettered: it's the Alphas!"
+
+# if you betrayed Midas, you will suffer to find answers
+mission "Unfettered: Questions Best Left Unanswered"
+	landing
+	invisible
+	to offer
+		has "Unfettered: Solifuge 2: Auxiliary Design: done"
+	on enter "Almaaz" "Arneb" "Alninam"
+		dialog "As you enter the system it occurs to you the nearby pirates may have information regarding that Auxiliary."
+	on enter "Alcyone" "Misam"
+		dialog "Entering the system you recall that the pirates of Misam seemed to be in the business of knowing things."
+	to fail
+		has "unfettered: it's the Alphas!"
+
+mission "Unfettered: No Answers Available"
+	landing
+	invisible
+	to offer
+		has "Unfettered: Questions Best Left Unanswered: active"
+	source
+		government "Pirate"
+	on offer
+		conversation
+			branch Misam
+				has "flagship planet: New Tortuga"
+			`You ask questions`
+				defer
+			label Misam
+			branch "okay boy!"
+				has "unfettered: warned the hai governor escort about the mercenary attack"
+			`You ask around for this Auxiliary; 'Settler', but no-one will reveal anything about it to you, until, suspecting you will not leave until you have something, someone comes, their face conceiled. "You. You have betrayed us by revealing our plan to the governor, you are not to be trusted. That said, those that you are looking for are our enemies as well, so I will reveal you the location you need -if- you agree to give us compensation for your mistake. We demand 10 millions, in the form of a fine, to make sure you will have to pay us interests should you lack money."`
+			choice
+				`	"I will give you your 10 millions.`
+				`	"I refuse. I will find my own way to find who is in control of that ship, however hard that may be."`
+					decline
+			action
+				fine 10000000
+			`	Upon verification of the payment, you receive a set of coordinates on this world.`
+			label "okay boy!"
+			action
+				set "unfettered: it's the Alphas!"
+			`You head to the given coordinates on the planet, but you cannot see anyone there. You wait around for an hour or so until, looking around, you finally spot it: there is a graffiti on the wall, right at the given coordinate. At first you did not pay too much attention to it because this kind of thing is common on pirate worlds, but now you notice it depicts a green human. The message is clear.`
+
+mission "Unfettered: Answers To Your Questions"
+	landing
+	invisible
+	to offer
+		has "Unfettered: Solifuge 2: Auxiliary Design: done"
+		not "unfettered: warned the hai governor escort about the mercenary attack"
+	deadline 15
+	on enter "Misam"
+		fail
+	to fail
+		has "unfettered: it's the Alphas!"
+	on fail
+		conversation
+			`Once again you hear a voice when you are alone in your quarters.`
+			`	"Come to us if you truly want to know who that Auxiliary belongs to." The message comes with a location on New Tortuga.`
+				to display
+					not "unfettered: it's the Alphas!"
+			`	"Congratulation, captain. It seemed that you did not need our help to find these Alphas."`
+				to display
+					has "unfettered: it's the Alphas!"
 
 # the mission is divided in two so that you have time to bring the logs back but not to scan in the first place.
 mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 	landing
-	name `Bring back the scanner logs`
-	description `Now that you have scanned the Alpha ship, return to <destination> to get your reward.`
+	name `Investigate the Auxiliary`
+	description `The Auxiliary was manned by 'unfettered humans'. Find out what this means, one way or another. Once you are done, return to <destination> to get your reward for the scans.`
 	source "Warfeed"
 	destination "Firelode"
 	to offer
 		has "Unfettered: Solifuge 2: Auxiliary Design: done"
-	on offer
-		clear "unfettered: logs worry"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
+	to complete
+		has "unfettered: it's the Alphas!"
 	on complete
 		log `Scanned an Auxiliary equipped with alien technology and controlled by Alphas for the Unfettered.`
 		payment 300000

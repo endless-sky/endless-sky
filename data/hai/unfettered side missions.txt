@@ -179,7 +179,33 @@ mission "Unfettered: Attracted Attention"
 
 
 
-# needs its own definition to have a proper model
+# Alphas don't give the best loot to the Unfettered, excluding things like:
+# detainers, triple plasma core, large syscores, husk slicer turret and shield disruptors from the normal deliveries
+outfitter "Korath Drones Alpha Loot"
+	"Piercer Missile Launcher"
+	"Piercer Missile"
+	"Thermal Repeater"
+	"Thermal Repeater Turret"
+	"Cluster Mine Layer"
+	"Cluster Mine"
+	"Husk-Slice"
+	"Warder Anti-Missile"
+	"Steering (Lunar Class)"
+	"Thruster (Comet Class)"
+	"Thruster (Planetary Class)"
+	"Generator (Inferno Class)"
+	"Double Plasma Core"
+	"Plasma Core"
+	"Small Heat Shunt"
+	"Large Heat Shunt"
+	"Jump Drive"
+	"Fuel Processor"
+	"Systems Core (Small)"
+	"Systems Core (Medium)"
+	"Thermal Repeater Rifle"
+	"Banisher Grav-Turret"
+
+# needs its own definition to have a proper model but the stats are the same, for now.
 ship "Auxiliary (Alpha)"
 	plural "Auxiliaries"
 	sprite "ship/auxiliaryc"
@@ -273,7 +299,9 @@ mission "Unfettered: Alpha Bringing Supplies"
 		not "Unfettered: Alpha Leaving With Supplies: active"
 		"reputation: Hai (Unfettered)" >= 0
 		or
-			not "unfettered: saw auxiliary"
+			and
+				not "unfettered: saw auxiliary"
+				random < 50
 			random < 5
 	on offer
 		set "unfettered: saw auxiliary"
@@ -285,8 +313,9 @@ mission "Unfettered: Alpha Bringing Supplies"
 		government "Alpha"
 		personality entering uninterested fleeing timid
 		fleet
+			cargo 4
 			commodities "Military" "Electronics"
-			outfitters "Korath Exiles Remnant Donations"
+			outfitters "Korath Drones Alpha Loot"
 			names "Settler"
 			variant
 				"Auxiliary (Alpha)"
@@ -316,6 +345,7 @@ mission "Unfettered: Alpha Leaving With Supplies"
 		government "Alpha"
 		personality launching uninterested fleeing timid
 		fleet
+			cargo 6
 			commodities "Metal" "Heavy Metals"
 			outfitters "Hai Advanced"
 			names "Settler"
