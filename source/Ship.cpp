@@ -31,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Messages.h"
 #include "Phrase.h"
 #include "Planet.h"
+#include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Projectile.h"
 #include "Random.h"
@@ -809,6 +810,7 @@ void Ship::FinishLoading(bool isNewInstance)
 
 	// Calculate this ship's jump information, e.g. how much it costs to jump, how far it can jump, how it can jump.
 	navigation.Calibrate(*this);
+	aiCache.Calibrate(*this);
 
 	// A saved ship may have an invalid target system. Since all game data is loaded and all player events are
 	// applied at this point, any target system that is not accessible should be cleared. Note: this does not
@@ -1316,7 +1318,7 @@ void Ship::SetName(const string &name)
 void Ship::SetSystem(const System *system)
 {
 	currentSystem = system;
-	navigation.SetSystem(currentSystem);
+	navigation.SetSystem(system);
 }
 
 
@@ -1431,6 +1433,51 @@ string Ship::GetHail(map<string, string> &&subs) const
 
 	subs["<npc>"] = Name();
 	return Format::Replace(hailStr, subs);
+}
+
+
+
+ShipAICache &Ship::GetAICache()
+{
+	return aiCache;
+}
+
+
+
+void Ship::UpdateCaches()
+{
+	aiCache.Recalibrate(*this);
+	navigation.Recalibrate(*this);
+}
+
+
+
+bool Ship::CanSendHail(const PlayerInfo &player, bool allowUntranslated) const
+{
+	const System *playerSystem = player.GetSystem();
+	if(!playerSystem)
+		return false;
+
+	// Make sure this ship is in the same system as the player.
+	if(GetSystem() != playerSystem)
+		return false;
+
+	// Player ships shouldn't send hails.
+	const Government *gov = GetGovernment();
+	if(!gov || IsYours())
+		return false;
+
+	// Make sure this ship is able to send a hail.
+	if(IsDisabled() || !Crew() || Cloaking() >= 1. || GetPersonality().IsMute())
+		return false;
+
+	// Ships that don't share a language with the player shouldn't communicate when hailed directly.
+	// Only random event hails should work, and only if the government explicitly has
+	// untranslated hails. This is ensured by the allowUntranslated argument.
+	if(!allowUntranslated && !gov->Language().empty() && !player.Conditions().Get("language: " + gov->Language()))
+		return false;
+
+	return true;
 }
 
 
@@ -1798,6 +1845,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		if(isDisabled)
 			landingPlanet = nullptr;
 
+		float landingSpeed = attributes.Get("landing speed");
+		landingSpeed = landingSpeed > 0 ? landingSpeed : .02f;
 		// Special ships do not disappear forever when they land; they
 		// just slowly refuel.
 		if(landingPlanet && zoom)
@@ -1805,7 +1854,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			// Move the ship toward the center of the planet while landing.
 			if(GetTargetStellar())
 				position = .97 * position + .03 * GetTargetStellar()->Position();
-			zoom -= .02f;
+			zoom -= landingSpeed;
 			if(zoom < 0.f)
 			{
 				// If this is not a special ship, it ceases to exist when it
@@ -1834,7 +1883,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		else if(fuel >= attributes.Get("fuel capacity")
 				|| !landingPlanet || !landingPlanet->HasSpaceport())
 		{
-			zoom = min(1.f, zoom + .02f);
+			zoom = min(1.f, zoom + landingSpeed);
 			SetTargetStellar(nullptr);
 			landingPlanet = nullptr;
 		}
@@ -2387,7 +2436,7 @@ void Ship::DoGeneration()
 		if(currentSystem)
 		{
 			double scale = .2 + 1.8 / (.001 * position.Length() + 1);
-			fuel += currentSystem->SolarWind() * .03 * scale * sqrt(attributes.Get("ramscoop"));
+			fuel += currentSystem->RamscoopFuel(attributes.Get("ramscoop"), scale);
 
 			double solarScaling = currentSystem->SolarPower() * scale;
 			energy += solarScaling * attributes.Get("solar collection");
@@ -2582,7 +2631,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 
 // Scan the target, if able and commanded to. Return a ShipEvent bitmask
 // giving the types of scan that succeeded.
-int Ship::Scan()
+int Ship::Scan(const PlayerInfo &player)
 {
 	if(!commands.Has(Command::SCAN) || CannotAct())
 		return 0;
@@ -2669,7 +2718,7 @@ int Ship::Scan()
 			Messages::Add("Attempting to scan the selected " + target->Noun() + "."
 				, Messages::Importance::Low);
 
-		if(target->GetPersonality().IsSecretive() && target->GetGovernment()->IsProvokedOnScan())
+		if(target->GetGovernment()->IsProvokedOnScan() && target->CanSendHail(player))
 		{
 			// If this ship has no name, show its model name instead.
 			string tag;
@@ -3310,13 +3359,6 @@ const ShipJumpNavigation &Ship::JumpNavigation() const
 
 
 
-void Ship::RecalibrateJumpNavigation()
-{
-	navigation.Recalibrate(*this);
-}
-
-
-
 int Ship::JumpsRemaining(bool followParent) const
 {
 	// Make sure this ship has some sort of hyperdrive, and if so return how
@@ -3501,6 +3543,13 @@ double Ship::MaxVelocity() const
 	// v = thrust / drag
 	double thrust = attributes.Get("thrust");
 	return (thrust ? thrust : attributes.Get("afterburner thrust")) / Drag();
+}
+
+
+
+double Ship::ReverseAcceleration() const
+{
+	return attributes.Get("reverse thrust");
 }
 
 
@@ -4012,7 +4061,11 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 		AddOutfit(ammo, -weapon.AmmoUsage());
 		// Only the player's ships make use of attraction and deterrence.
 		if(isYours && !OutfitCount(ammo) && ammo->AmmoUsage())
+		{
+			// Recalculate the AI to account for the loss of this weapon.
+			aiCache.Calibrate(*this);
 			deterrence = CalculateDeterrence();
+		}
 	}
 
 	energy -= weapon.FiringEnergy() + relativeEnergyChange;
