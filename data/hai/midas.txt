@@ -681,6 +681,29 @@ event "joined midas"
 	government "Midas"
 		remove "display name"
 
+mission "Unfettered: Answers To Your Questions"
+	landing
+	invisible
+	to offer
+		has "Unfettered: Solifuge 2: Auxiliary Design: done"
+		not "midas: wronged"
+	deadline 15
+	on enter "Misam"
+		fail
+	to fail
+		has "unfettered: it's the Alphas!"
+	on fail
+		conversation
+			`Once again you hear a voice when you are alone in your quarters.`
+			`	"Come to us if you truly want to know who that Auxiliary belongs to." The message comes with a location on New Tortuga.`
+				to display
+					not "unfettered: it's the Alphas!"
+			`	"Congratulation, captain. It seemed that you did not need our help to find these Alphas."`
+				to display
+					has "unfettered: it's the Alphas!"
+
+
+
 # they get mad when you kill the twins, striking at you after they had time to muster their strength.
 # the Hai did not dare to contest them
 mission "Midas: Daemons Unleashed"
