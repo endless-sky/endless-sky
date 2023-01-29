@@ -28,6 +28,12 @@ public:
 		adaptive,
 	};
 
+	enum class AutoAim : int_fast8_t {
+		OFF = 0,
+		ALWAYS_ON,
+		WHEN_FIRING
+	};
+
 	enum class BoardingPriority : int_fast8_t {
 		PROXIMITY = 0,
 		VALUE,
@@ -78,6 +84,11 @@ public:
 	static bool ToggleVSync();
 	static VSync VSyncState();
 	static const std::string &VSyncSetting();
+
+	// Auto aim setting, either "off", "always on", or "when firing".
+	static void ToggleAutoAim();
+	static AutoAim GetAutoAim();
+	static const std::string &AutoAimSetting();
 
 	// Background parallax setting, either "fast", "fancy", or "off".
 	static void ToggleParallax();
