@@ -54,7 +54,7 @@
 					},
 					{
 						"description": "non-ASCII apostrophe",
-						"regex": "[’]",
+						"regex": "[’‘]",
 						"correction": {
 							"replaceWith": "'"
 						}
