@@ -90,8 +90,10 @@ mission "Navy resupply"
 		random < 5
 	source 
 		not government Pirate
-	destination 
-		attributes "far north" military
+	destination
+		or
+			attributes "far north" military
+			attributes outfitter
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
