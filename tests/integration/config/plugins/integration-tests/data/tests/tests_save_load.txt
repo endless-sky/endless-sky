@@ -74,7 +74,6 @@ test "Loading and Saving"
 			month == 11
 			day == 19
 		call "Save To Default Snapshot"
-		input
 		call "Depart"
 		assert
 			year == 3013
