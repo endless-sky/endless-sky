@@ -142,7 +142,7 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 			SetBribe(planet->GetBribeFraction());
 			if(bribe)
 				message = "If you want to land here, it'll cost you "
-					+ Format::Credits(bribe) + " credits.";
+					+ Format::CreditString(bribe) + ".";
 			else if(gov->IsEnemy())
 				message = "You are not welcome here.";
 			else
@@ -301,7 +301,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				if(!requestedToBribeShip)
 				{
 					message = "If you want us to leave you alone, it'll cost you "
-						+ Format::Credits(bribe) + " credits.";
+						+ Format::CreditString(bribe) + ".";
 					requestedToBribeShip = true;
 				}
 				else
@@ -309,7 +309,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 					bribed = ship->GetGovernment();
 					bribed->Bribe();
 					Messages::Add("You bribed a " + bribed->GetName() + " ship "
-						+ Format::Credits(bribe) + " credits to refrain from attacking you today."
+						+ Format::CreditString(bribe) + " to refrain from attacking you today."
 							, Messages::Importance::High);
 				}
 			}
@@ -317,7 +317,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			{
 				planet->Bribe();
 				Messages::Add("You bribed the authorities on " + planet->Name() + " "
-					+ Format::Credits(bribe) + " credits to permit you to land."
+					+ Format::CreditString(bribe) + " to permit you to land."
 						, Messages::Importance::High);
 			}
 		}

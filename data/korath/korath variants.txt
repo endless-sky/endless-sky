@@ -478,7 +478,7 @@ ship "'olofez" "'olofez (Digger)"
 		"Thermal Repeater Rifle"
 		"Cargo Expansion"
 		"Interference Plating"
-				
+		
 		"Engine (Meteor Class)"
 
 

@@ -353,7 +353,7 @@ void ShopPanel::DrawButtons()
 		screenSpace->Bottom() - 65);
 	font.Draw("You have:", creditsPoint, dim);
 
-	const auto credits = Format::Credits(player.Accounts().Credits()) + " credits";
+	const auto credits = Format::CreditString(player.Accounts().Credits());
 	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
 
 	const Font &bigFont = FontSet::Get(18);
