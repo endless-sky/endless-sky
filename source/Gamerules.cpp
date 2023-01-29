@@ -40,6 +40,8 @@ void Gamerules::Load(const DataNode &node)
 			universalRamscoop = child.BoolValue(1);
 		else if(key == "person spawnrate")
 			personSpawnrate = max<int>(1, child.Value(1));
+		else if(key == "no person spawn weight")
+			noPersonSpawnWeight = max<int>(0, child.Value(1));
 		else
 			child.PrintTrace("Skipping unrecognized gamerule:");
 	}
@@ -57,4 +59,11 @@ bool Gamerules::UniversalRamscoopActive() const
 int Gamerules::PersonSpawnrate() const
 {
 	return personSpawnrate;
+}
+
+
+
+int Gamerules::NoPersonSpawnWeight() const
+{
+	return noPersonSpawnWeight;
 }

@@ -31,11 +31,13 @@ public:
 
 	bool UniversalRamscoopActive() const;
 	int PersonSpawnrate() const;
+	int NoPersonSpawnWeight() const;
 
 
 private:
 	bool universalRamscoop = true;
 	int personSpawnrate = 36000;
+	int noPersonSpawnWeight = 1000;
 };
 
 
