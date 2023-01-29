@@ -31,7 +31,7 @@ mission "Pact Supplies Landing (Dirt Belt)"
 	minor
 	deadline 1
 	to offer
-		not "event: war begins" 
+		not "event: war begins"
 		not "event: chosen sides"
 		random < 40
 	source
@@ -62,7 +62,7 @@ mission "Pact Supplies Convoy (Dirt Belt)"
 	to offer
 		has "Pact Supplies 0 (Dirt Belt Landing): offered"
 		not "Pact Supplies 0 (Dirt Belt Landing): failed"
-		not "event: war begins" 
+		not "event: war begins"
 		not "event: chosen sides"
 	on offer
 		`You enter the quartermaster's office, where you find a small group of captains already waiting, all of whom were sent by the militia officer that signed off your ship. Before long, the quartermaster himself arrives alongside the militia officer. There is a respectful pause as the quartermaster goes to sit at his desk. As he is settled, he scans all of you down for a moment with a focused eye, and clears his throat.`
