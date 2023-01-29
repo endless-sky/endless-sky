@@ -62,7 +62,7 @@
 					<Add library="libpng.dll.a" />
 					<Add library="libturbojpeg.dll.a" />
 					<Add library="libjpeg.dll.a" />
-					<Add library="libmad.dll.a" />
+					<Add library="libmad.a" />
 					<Add library="libopenal32.dll.a" />
 					<Add library="libglew32.dll.a" />
 					<Add library="libopengl32.a" />
@@ -89,7 +89,7 @@
 			<Add library="libpng.dll.a" />
 			<Add library="libturbojpeg.dll.a" />
 			<Add library="libjpeg.dll.a" />
-			<Add library="libmad.dll.a" />
+			<Add library="libmad.a" />
 			<Add library="libopenal32.dll.a" />
 			<Add library="libglew32.dll.a" />
 			<Add library="libopengl32.a" />

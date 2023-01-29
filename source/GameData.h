@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef GAME_DATA_H_
@@ -25,12 +28,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 
 class Color;
+class ConditionsStore;
 class Conversation;
 class DataNode;
 class DataWriter;
 class Date;
 class Effect;
 class Fleet;
+class FormationPattern;
 class Galaxy;
 class GameEvent;
 class Government;
@@ -55,6 +60,8 @@ class System;
 class Test;
 class TestData;
 class TextReplacements;
+class UniverseObjects;
+class Wormhole;
 
 
 
@@ -84,6 +91,9 @@ public:
 	// Get the list of resource sources (i.e. plugin folders).
 	static const std::vector<std::string> &Sources();
 
+	// Get a reference to the UniverseObjects object.
+	static UniverseObjects &Objects();
+
 	// Revert any changes that have been made to the universe.
 	static void Revert();
 	static void SetDate(const Date &date);
@@ -110,6 +120,7 @@ public:
 	static const Set<Effect> &Effects();
 	static const Set<GameEvent> &Events();
 	static const Set<Fleet> &Fleets();
+	static const Set<FormationPattern> &Formations();
 	static const Set<Galaxy> &Galaxies();
 	static const Set<Government> &Governments();
 	static const Set<Hazard> &Hazards();
@@ -127,6 +138,9 @@ public:
 	static const Set<System> &Systems();
 	static const Set<Test> &Tests();
 	static const Set<TestData> &TestDataSets();
+	static const Set<Wormhole> &Wormholes();
+
+	static ConditionsStore &GlobalConditions();
 
 	static const Government *PlayerGovernment();
 	static Politics &GetPolitics();

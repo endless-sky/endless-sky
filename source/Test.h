@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef ENDLESS_SKY_AC_TEST_H_
@@ -37,6 +40,10 @@ class Test {
 public:
 	// Status indicators for the test that we selected (if any).
 	enum class Status {ACTIVE, PARTIAL, BROKEN, KNOWN_FAILURE, MISSING_FEATURE};
+
+	// A tag type to denote a failing test that is not an error, such as a
+	// "known failure" test failing.
+	struct known_failure_tag {};
 
 
 public:
@@ -96,7 +103,7 @@ public:
 		// Input variables.
 		Command command;
 		std::set<std::string> inputKeys;
-		Uint16 modKeys;
+		Uint16 modKeys = 0;
 
 		// Mouse/Pointer input variables.
 		int XValue = 0;
@@ -109,7 +116,9 @@ public:
 
 public:
 	const std::string &Name() const;
+	Status GetStatus() const;
 	const std::string &StatusText() const;
+	std::set<std::string> RelevantConditions() const;
 
 	// Check the game status and perform the next test action.
 	void Step(TestContext &context, PlayerInfo &player, Command &commandToGive) const;
@@ -122,6 +131,7 @@ private:
 
 	// Fail the test using the given message as reason.
 	void Fail(const TestContext &context, const PlayerInfo &player, const std::string &testFailReason) const;
+	void UnexpectedSuccessResult() const;
 
 
 private:

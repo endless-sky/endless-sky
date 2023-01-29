@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "TradingPanel.h"
@@ -73,9 +76,9 @@ TradingPanel::~TradingPanel()
 			+ (tonsSold == 1 ? " ton" : " tons") + " of cargo ";
 
 		if(profit < 0)
-			message += "at a loss of " + Format::Credits(-profit) + " credits.";
+			message += "at a loss of " + Format::CreditString(-profit) + ".";
 		else
-			message += "for a total profit of " + Format::Credits(profit) + " credits.";
+			message += "for a total profit of " + Format::CreditString(profit) + ".";
 
 		Messages::Add(message, Messages::Importance::High);
 	}

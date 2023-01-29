@@ -7,23 +7,27 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Weather.h"
 
 #include "Angle.h"
 #include "Hazard.h"
+#include "Random.h"
 #include "Screen.h"
 #include "Visual.h"
-#include "Random.h"
 
 #include <cmath>
 
 using namespace std;
 
 Weather::Weather(const Hazard *hazard, int totalLifetime, int lifetimeRemaining, double strength, Point origin)
-	: hazard(hazard), totalLifetime(totalLifetime), lifetimeRemaining(lifetimeRemaining), strength(strength), origin(origin)
+	: hazard(hazard), totalLifetime(totalLifetime), lifetimeRemaining(lifetimeRemaining),
+		strength(strength), origin(origin)
 {
 	// Using a deviation of totalLifetime / 4.3 causes the strength of the
 	// weather to start and end at about 10% the maximum. Store the entire
@@ -99,11 +103,11 @@ void Weather::Step(vector<Visual> &visuals, const Point &center)
 	{
 		// Estimate the number of visuals to be generated this frame.
 		// MAYBE: create only a subset of possible effects per frame.
-		int totalAmount = 0;
+		float totalAmount = 0;
 		for(auto &&effect : hazard->EnvironmentalEffects())
 			totalAmount += effect.second;
 		totalAmount *= effectMultiplier;
-		visuals.reserve(visuals.size() + totalAmount);
+		visuals.reserve(visuals.size() + static_cast<int>(totalAmount));
 
 		for(auto &&effect : hazard->EnvironmentalEffects())
 			for(int i = 0; i < effect.second * effectMultiplier; ++i)

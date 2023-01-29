@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Format.h"
@@ -86,6 +89,18 @@ string Format::Credits(int64_t value)
 	// Convert the number to a string, adding commas if needed.
 	FormatInteger(absolute, isNegative, result);
 	return result;
+}
+
+
+
+// Convert the given number into abbreviated format as described in Format::Credits,
+// then attach the ' credit' or ' credits' suffix to it.
+string Format::CreditString(int64_t value)
+{
+	if(value == 1)
+		return "1 credit";
+	else
+		return Credits(value) + " credits";
 }
 
 
