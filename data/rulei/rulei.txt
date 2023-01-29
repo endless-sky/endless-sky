@@ -35,7 +35,7 @@ mission "Ira Contact"
 			`Moments after entering the system, you are overwhelmed by an intense sense of emptiness. As you attempt to comprehend this feeling, you begin hearing whispers from behind.`
 			choice
 				`	(Turn around slowly.)`
-				`	(Pull out my sidearm and quickly turn.)`
+				`	(Pull out my sidearm and turn quickly.)`
 			`	You turn around, but nothing is there besides the familiar internals of your ship. The whispers remain behind your head, like an itch that can't be reached. The whispers are in a completely foreign language that you can't even begin to understand. As you keep looking around, you begin hearing more and more murmuring. There feels to be hundreds of distinct voices tugging your mind in every direction at once now, overloading your senses. Just as you think you can't take anymore, everything falls completely silent.`
 			choice
 				`	"Hello?"`
