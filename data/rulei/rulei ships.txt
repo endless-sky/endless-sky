@@ -37,11 +37,11 @@ ship "vyu-Ira"
 		"outfit space" 1000
 		"weapon capacity" 1000
 		"engine capacity" 1000
-
+		
 		"energy capacity" 60000
 		"energy generation" 80
 		"heat generation" 20
-
+		
 		"thrust" 50
 		"thrusting energy" 20
 		"thrusting heat" 10
