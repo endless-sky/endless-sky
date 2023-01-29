@@ -69,10 +69,10 @@ mission "Pact Supplies Convoy (Dirt Belt)"
 				`	"Who are these weapons going to?"`
 					goto pact
 				`	"What's this 'developing situation'?"`
-			`	"The pirates have been becoming more and more aggressive in the South. They've started doing more than just interdict merchants; they've been raiding planets for ships and tribute on an organised scale once again, and the Pact has requested more weaponry to deal with them. Let me tell you, though: we wouldn't have this problem if the Navy would stop hiding in the Paradise Worlds and start patrolling these regions again."`
+			`	"The pirates have been becoming more and more aggressive in the South. They've started doing more than just interdict merchants; they've been raiding planets for ships and tribute on an organized scale once again, and the Pact has requested more weaponry to deal with them. Let me tell you, though: we wouldn't have this problem if the Navy would stop hiding in the Paradise Worlds and start patrolling these regions again."`
 				goto decision
 			label pact
-			`	"Our militia is part of the Southern Mutual Defense Pact, which is a collection of planetary militia organisations. They're centered in the Rim and the South, but recently we've had to become affiliated with them as the Navy has been cowering out in the Paradise Worlds. Whatever is going on down south that affects the Pact will also affect us some way in another."`
+			`	"Our militia is part of the Southern Mutual Defense Pact, which is a collection of planetary militia organizations. They're centered in the Rim and the South, but recently we've had to become affiliated with them as the Navy has been cowering out in the Paradise Worlds. Whatever is going on down south that affects the Pact will also affect us some way in another."`
 			label decision
 			`	There's a shuffle as a few captains raucously walk out of the quartermaster's office.`
 			`	As he leaves, one captain shouts, "We won't support any of you begging southerners here!" while another adds, "This is all going to some rebellion, and you know it! These Southern Pact goons are gun-runners!" Going by their accents and faces, those captains came from the Paradise Worlds, and they didn't take the quartermaster's comment so kindly.`
@@ -124,10 +124,10 @@ mission "Pact Supplies Escort (Dirt Belt)"
 				`	"Who are these weapons going to?"`
 					goto pact
 				`	"What's this 'developing situation'?"`
-			`	"The pirates have been becoming more and more aggressive in the South. They've started doing more than just interdict merchants; they've been raiding planets for ships and tribute on an organised scale once again, and the Pact has requested more weaponry to deal with them. Let me tell you, though: we wouldn't have this problem if the Navy would stop hiding in the Paradise Worlds and start patrolling these regions again."`
+			`	"The pirates have been becoming more and more aggressive in the South. They've started doing more than just interdict merchants; they've been raiding planets for ships and tribute on an organized scale once again, and the Pact has requested more weaponry to deal with them. Let me tell you, though: we wouldn't have this problem if the Navy would stop hiding in the Paradise Worlds and start patrolling these regions again."`
 				goto decision
 			label pact
-			`	"Our militia is part of the Southern Mutual Defense Pact, which is a collection of planetary militia organisations. They're centered in the Rim and the South, but recently we've had to become affiliated with them as the Navy has been cowering out in the Paradise Worlds. Whatever is going on down south that affects the Pact will also affect us some way in another."`
+			`	"Our militia is part of the Southern Mutual Defense Pact, which is a collection of planetary militia organizations. They're centered in the Rim and the South, but recently we've had to become affiliated with them as the Navy has been cowering out in the Paradise Worlds. Whatever is going on down south that affects the Pact will also affect us some way in another."`
 			label decision
 			`	There's a shuffle as a few captains raucously walk out of the quartermaster's office.`
 			`	As he leaves, one captain shouts, "We won't support any of you begging southerners here!" while another adds, "This is all going to some rebellion, and you know it! These Southern Pact goons are gun-runners!" Going by their accents and faces, those captains came from the Paradise Worlds, and they didn't take the quartermaster's comment so kindly.`
