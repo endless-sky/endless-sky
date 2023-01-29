@@ -335,8 +335,15 @@ void OutfitInfoDisplay::AddRequirementAttribute(string label, double value)
 	// Special case for 'required crew' - use positive values as a requirement.
 	if(label == "required crew")
 	{
-		label = "crew";
-		value *= -1;
+		if(value > 0)
+		{
+			requirementLabels.push_back(label + ":");
+			requirementValues.push_back(Format::Number(value));
+			requirementsHeight += 20;
+			return;
+		}
+		else
+			value *= -1;
 	}
 
 	if(value >= 0)
