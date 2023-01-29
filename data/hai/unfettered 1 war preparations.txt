@@ -164,7 +164,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
-		dialog `You have landed, but without the jump drives. Go and look for traces of fuel from the Auxiliary in systems neighboring Hi Yahr. Don't forget to land on the Alpha base to recover any information or jump drives it may have! Don't forget the Jump Drives need to be on your flagship or in cargo.`
+		dialog `You have landed, but the Auxiliary is not your flagship, or you landed without the jump drives. Go and look for traces of fuel from the Auxiliary in systems neighboring Hi Yahr. Don't forget to land on the Alpha base to recover any information or jump drives it may have! Don't forget the Jump Drives need to be on your flagship or in cargo.`
 	to complete
 		has "Unfettered: Alphas 3: Bring The Spoils: offered"
 		has "flagship model: Auxiliary (Alpha)"
@@ -222,7 +222,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 			action
 				log `Found out where the Alphas were getting their jump drives from, in theory at least. The problem is the information is encrypted, but the Unfettered will work hard to decipher it.`
 				set "unfettered: jump drive source"
-				payment 200000
+				payment 500000
 			`	"Those are probably too well-encrypted to be of much use, but we will try to break them anyway, maybe with some outside help. Thank you for sharing this information with us. We will transfer a bonus of <payment> for this."`
 				decline
 			label setup
@@ -269,10 +269,10 @@ mission "Unfettered: Alphas 3: Bring The Spoils"
 			`	There are also multiple flight logs. It seems they had been using this Auxiliary as a mobile base and for bringing jump drives to the Unfettered. These logs probably contain indications of where they have been getting the jump drives, but analyzing all of them will take more time. It doesn't take much, though, to notice they have spent significant time near Korath Exile territory. It is now time to leave the planet and go see the Chiefs.`
 				accept
 			label warning
-			"Before leaving, you remember that the Unfettered want you to show them the Auxiliary, and they probably expect you to land with it as flagship. Make sure you bring all 10 jump drives back in your cargo or on the flagship, and that you keep this ship alive at all cost. It may be wise to wait a bit and replenish your fuel in this system, using the Wanderer ramscoop."
+			"Before leaving, you remember that the Unfettered want you to show them the Auxiliary, and they probably expect you to land with it as flagship. Make sure you bring all 10 jump drives back in your cargo or on the flagship, and that you keep this ship alive at all cost. It may be wise to wait a bit and replenish your fuel in this system."
 		outfit "Jump Drive" 10
 	on enter "Host"
-		dialog "Before leaving, you remember that the Unfettered want you to show them the Auxiliary, and they probably expect you to land with it as flagship. Make sure you bring all 10 jump drives back in your cargo or on the flagship, and that you keep this ship alive at all cost. It may be wise to wait a bit and replenish your fuel in this system, using the Wanderer ramscoop."
+		dialog "Before leaving, you remember that the Unfettered want you to show them the Auxiliary, and they probably expect you to land with it as flagship. Make sure you bring all 10 jump drives back in your cargo or on the flagship, and that you keep this ship alive at all cost. It may be wise to wait a bit and replenish your fuel in this system."
 	on enter "Ehma Ti" "Hi Yahr" "Wah Yoot"
 		dialog `When you arrive in the Unfettered system, you hail Mera, asking for clarifications on what happened. She relays a message back to you, later on, "I am truly sorry, <first>, obviously I was wrong. The particles were left on purpose by the Alphas, evidently hoping I would tell you to go after those. I am not going to pretend I had no idea - it was something in the back of my mind, since a normal captain just appeared to find these specific particles so conveniently."`
 
@@ -281,17 +281,17 @@ mission "Unfettered: Alphas 3: Bring The Spoils"
 # SPOILER: they say it's for ships but they actually have plenty of those built. In truth this is mostly to build habitations.
 mission "Unfettered: Solifuge 5: Materials For Ships"
 	name `Gather materials from asteroids`
-	description `Mine 100 tons of silicon from the asteroid field in Wah Yoot and 15 tons of silver from the asteroid field in <waypoints> and then bring them back to <destination> for <payment>.`
+	description `Mine 50 tons of lead from the asteroid field in Wah Yoot and 20 tons of silver from the asteroid field in <waypoints> and then bring them back to <destination> for <payment>.`
 	source "Darkcloak"
 	waypoint "Ehma Ti"
 	to offer
 		has "Unfettered: Alphas 2: Prove Yourself: done"
 	on offer
 		conversation
-			`You have never seen so much business in Unfettered space. It looks like a major undertaking is about to happen, and you will probably be a part of it. Mera is spreading a message for all Unfettered to hear. "The time has come, brothers and sisters! Now all that is needed is to spread the word, and our brethren from Hai space will join us in glorious victory! But let us not be reckless. In order to win we will need ships, and in order to build ships we will need materials. That is why we should all start gathering materials here."`
+			`You have never seen so much business in Unfettered space. It looks like a major undertaking is about to happen, and you will probably be a part of it. Mera is spreading a message for all Unfettered to hear. "The time has come, brothers and sisters! Now all that is needed is to spread the word, and our brethren from Hai space will join us in glorious victory! But let us not be reckless. In order to win we will need ships, and in order to build ships we will need materials. That is why we should all start gathering them here."`
 			choice
 				`	"What kind of materials do you need?"`
-			`	She notices you and responds to your question explicitly, speaking to all that are present, "Do not bother with lead, friends. It is useless, for we are not a barbaric people. No, we need a lot of silver and silicon. Also do not forget we are selling asteroid scanners in the outfitter, should you require any."`
+			`	She notices you and responds to your question explicitly, speaking to all that are present, "Do not bother with silicon, friends, we already have plenty, and its uses are limited. No, we need a lot of silver and lead. Also do not forget we are selling asteroid scanners in the outfitter, should you require any."`
 			choice
 				`	(I know how and where to mine asteroids. Better get going.)`
 					accept
@@ -354,10 +354,12 @@ mission "Unfettered: Solifuge 5: Materials For Ships"
 				"Water Bug"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
+	on visit
+		dialog "You have landed, but you do not mined enough materials from asteroids yet, or they are in one of your escorts that is not in the system. Remember that silver can be acquired in Ehma Ti, whilst Silicon can be found in Wah Yoot."
 	on complete
 		log `Gathered materials for the Unfettered shipyards. They're building sizeable ships here.`
-		outfit "Silicon" -100
-		outfit "Silver" -15
+		outfit "Lead" -50
+		outfit "Silver" -20
 		payment 1000000
 		conversation
 			`You bring your cargo to the local Unfettered shipyards, and see huge ships being built in the distance. You also notice that not all materials are brought to the shipyards, some are simply sent to more rural areas.`

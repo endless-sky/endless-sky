@@ -177,7 +177,17 @@ phrase "unfettered challenger defeated"
 		`Now that they are disabled, the <npc> sends you a hail`
 		# note: if this is used in boarding missions, tweak it a bit to say now that they are boarded
 	word
-		`: `
+		`: ${unfettered challenger defeat message}`
+
+phrase "unfettered challenger boarded"
+	word
+		`You receive a message from the <ship>`
+		`The captain of the <ship> hails you`
+		`Now that you board them, the <ship> sends you a hail`
+	word
+		`: ${unfettered challenger defeat message}`
+
+phrase "unfettered challenger defeat message"
 	word
 		`"Did you cheat? If I learn you cheated, I will be the end of you, little monkey!`
 		`"Raaaah... Well, you have beaten me fairly, so I'll pay up..."`
@@ -313,7 +323,7 @@ mission "Unfettered Space Challenge Small"
 		government "Hai (Unfettered Challenger)"
 		not category "Heavy Warship"
 	on offer
-		dialog phrase "unfettered challenger defeated"
+		dialog phrase "unfettered challenger boarded"
 	destination "Darkcloak"
 	on complete
 		payment 200000
@@ -330,7 +340,7 @@ mission "Unfettered Space Challenge Big"
 	source
 		government "Hai (Unfettered Challenger)"
 	on offer
-		dialog phrase "unfettered challenger defeated"
+		dialog phrase "unfettered challenger boarded"
 	destination "Darkcloak"
 	on complete
 		payment 500000
