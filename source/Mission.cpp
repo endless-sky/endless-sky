@@ -1346,8 +1346,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	subs["<date>"] = result.deadline.ToString();
 	subs["<day>"] = result.deadline.LongString();
 	if(result.paymentApparent)
-		subs["<payment>"] = Format::Credits(abs(result.paymentApparent))
-				+ (result.paymentApparent == 1 ? " credit" : " credits");
+		subs["<payment>"] = Format::CreditString(abs(result.paymentApparent));
 	// Stopover and waypoint substitutions: iterate by reference to the
 	// pointers so we can check when we're at the very last one in the set.
 	// Stopovers: "<name> in the <system name> system" with "," and "and".

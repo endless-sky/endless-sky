@@ -1,4 +1,4 @@
-test-data "quarg capture"
+test-data "Capture Uncapturable With Capturable Override Save"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
@@ -67,9 +67,9 @@ ship "%TEST%: outfitless wardragon"
 		"heat dissipation" 0.5
 		hull 50000
 		"outfit scan power" 1e+10
-		"outfit scan speed" 1e+10
+		"outfit scan efficiency" 1e+10
 		"cargo scan power" 1e+09
-		"cargo scan speed" 1e+09
+		"cargo scan efficiency" 1e+09
 		"energy generation" 10
 		shields 160000
 
@@ -79,23 +79,27 @@ fleet "%TEST%: derelicts"
 	variant
 		"%TEST%: outfitless wardragon"
 
-mission "%TEST%: Capture That Quarg!"
-	boarding
-		"override capture"
-	to offer
-		has "%TEST%: ILLEGAL CAPTURE"
-	on offer
-		conversation
-			`Skip this and get your own Quarg automaton, today!`
-				accept
-	destination "Earth"
+test-data "Capture Uncapturable With Capturable Override Mission"
+	category mission
+	contents
+		mission "%TEST%: Capture That Quarg!"
+			boarding
+				"override capture"
+			to offer
+				has "%TEST%: ILLEGAL CAPTURE"
+			on offer
+				conversation
+					`Skip this and get your own Quarg automaton, today!`
+						accept
+			destination "Earth"
 
 
 test "Capture Uncapturable With Capturable Override"
 	status active
 	description "Starts the mission, accepts it and then boards the quarg ship to capture it."
 	sequence
-		inject "quarg capture"
+		inject "Capture Uncapturable With Capturable Override Mission"
+		inject "Capture Uncapturable With Capturable Override Save"
 		call "Load First Savegame"
 		watchdog 6000
 		# to make sure we can capture
@@ -121,14 +125,7 @@ test "Capture Uncapturable With Capturable Override"
 		input
 			key d
 		call "Land"
-		# to refresh the conditions, not sure if needed
-		call "Depart"
-		# copy the test-data in the temporary conditions for debugging when an issue happens
-		apply
-			"test: reputation: Quarg" = "reputation: Quarg"
-			"test: %TEST%: Capture That Quarg!: offered" = "%TEST%: Capture That Quarg!: offered"
-			"test: %TEST%: Capture That Quarg!: declined" = "%TEST%: Capture That Quarg!: declined"
-			"test: ship model: %TEST%: outfitless wardragon" = "ship model: %TEST%: outfitless wardragon"
-			"test: total ships" = "total ships"
+		call "Wait 10 steps"
 		assert
 			"ship model: %TEST%: outfitless wardragon" == 1
+			"test: %TEST%: Capture That Quarg!: declined" == 0
