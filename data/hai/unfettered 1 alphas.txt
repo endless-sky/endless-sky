@@ -56,6 +56,32 @@ outfitter "Korath Drones Alpha Loot"
 	"Thermal Repeater Rifle"
 	"Banisher Grav-Turret"
 
+# The Unfettered do not give any prototype weaponry, but do give advanced things, including Wanderer loot.
+# However, like the Alphas, they keep the most advanced loot (white sun, dark storm shielding, large bio cell)
+outfitter "Unfettered Alpha Trade"
+	"Tripulse Shredder"
+	"Ion Cannon"
+	"Hai Tracker Pod"
+	"Hai Tracker"
+	"Pulse Turret"
+	"Value Detector"
+	`"Bufaer" Atomic Thruster`
+	`"Bufaer" Atomic Steering`
+	"Pulse Rifle"
+	"Hai Valley Battery"
+	"Boulder Reactor"
+	"Hai Octopus Jammer"
+	"Wanderer Ramscoop"
+	"Sunbeam"
+	"Thunderhead Launcher"
+	"Thunderhead Missile"
+	"Bright Cloud Shielding"
+	"Small Biochemical Cell"
+	"Yellow Sun Reactor"
+	"Type 3 Radiant Thruster"
+	"Type 3 Radiant Steering"
+
+
 # needs its own definition to have a proper model but the stats are the same, for now.
 ship "Auxiliary (Alpha)"
 	plural "Auxiliaries"
@@ -125,13 +151,13 @@ ship "Auxiliary (Alpha)"
 	description "The Auxiliary is the Republic Navy's logistical backbone. The size and durability of a capital ship but more cargo and passenger space than any other Navy ship, the Auxiliary is used whenever the Navy needs large amounts of troops or cargo transported with a guarantee that they'll reach the destination."
 	description " The Auxiliary was built with modularity in mind, allowing the ship to be fitted for more cargo or bunk space depending on the mission. This modularity makes the ship rather expensive to build, however, and therefore a rare sight to see."
 
-# name of the ship
+# name of the ship, needed in a phrase because we need it in a fleet for the cargo
 phrase "Settler"
 	word
 		"Settler"
 
 conversation "unfettered: destroyed auxiliary"
-	`	The Unfettered that hails you is enraged, "How dare you?! This ship was helping us by providing supplies, and you just shoot it down? We don't care who may have drawn the first shot, you are now an enemy of the Unfettered."`
+	`The Unfettered that hails you is enraged, "How dare you?! This ship was helping us by providing supplies, and you just shoot it down? We don't care who may have drawn the first shot, you are now an enemy of the Unfettered."`
 	action
 		set "unfettered: destroyed auxiliary"
 		"reputation: Hai (Unfettered)" <?= -1
@@ -148,6 +174,7 @@ mission "Unfettered: Alpha Bringing Supplies"
 		not "unfettered: destroyed auxiliary"
 		not "Unfettered: Alpha Bringing Supplies: active"
 		not "Unfettered: Alpha Leaving With Supplies: active"
+		# if you're hostile to the Unfettered they will warn the Alphas not to come when you're there
 		"reputation: Hai (Unfettered)" >= 0
 		or
 			and
@@ -198,7 +225,7 @@ mission "Unfettered: Alpha Leaving With Supplies"
 		fleet
 			cargo 6
 			commodities "Metal" "Heavy Metals"
-			outfitters "Hai Advanced"
+			outfitters "Unfettered Alpha Trade"
 			names "Settler"
 			variant
 				"Auxiliary (Alpha)"
@@ -351,11 +378,20 @@ mission "Unfettered: No Answers Available"
 			`You ask around for this Auxiliary; 'Settler', but no-one will reveal anything about it to you, until, suspecting you will not leave until you have something, someone comes, their face concealed. "You. You have betrayed us by revealing our plan to the governor, you are not to be trusted. That said, those that you are looking for are our enemies as well, so I will reveal you the location you need -if- you agree to give us compensation for your mistake. We demand 10 millions, in the form of a fine, to make sure you will have to pay us interests should you lack money."`
 			choice
 				`	"I will give you your 10 millions.`
+				`	"I will give you 10 gold bars instead."`
+					to display
+						"outfit: Gold Bars" >= 10
+					goto bars
 				`	"I refuse. I will find my own way to find who is in control of that ship, however hard that may be."`
 					decline
 			action
 				fine 10000000
 			`	Upon verification of the payment, you receive a set of coordinates on this world.`
+				goto "okay boy!"
+			label bars
+			action
+				outfit "Gold Bars" -10
+			`	"That would be acceptable, yes. Here is a set of coordinates." They do not give any more details, and disappear as soon as the bars have been transferred.`
 			label "okay boy!"
 			action
 				set "unfettered: it's the Alphas!"
@@ -694,3 +730,20 @@ mission "Unfettered: Alphas 3: Bring The Spoils"
 		dialog "Before leaving, you remember that the Unfettered want you to show them the Auxiliary, and they probably expect you to land with it as flagship. Make sure you bring all 10 jump drives back in your cargo or on the flagship, and that you keep this ship alive at all cost. It may be wise to wait a bit and replenish your fuel in this system."
 	on enter "Ehma Ti" "Hi Yahr" "Wah Yoot"
 		dialog `When you arrive in the Unfettered system, you hail Mera, asking for clarifications on what happened. She relays a message back to you, later on, "I am truly sorry, <first>, obviously I was wrong. The particles were left on purpose by the Alphas, evidently hoping I would tell you to go after those. I am not going to pretend I had no idea - it was something in the back of my mind, since a normal captain just appeared to find these specific particles so conveniently."`
+
+
+
+phrase "cerberus hails"
+	word
+		"We do not accept your surrender!"
+		"You stand no chance!"
+		"Even if you take me down, my master will make quick work of you."
+		"Do not attempt to subdue me."
+		"I obey only the masters."
+		"They hold my soul! Soon, they will hold yours as well."
+		"Die!"
+		"You have been allowed to live long enough. Now I come to cut the thread of your life."
+		"I may be a pawn, but at least I am on a greater path."
+		"You may never hope to achieve half of what I have done."
+		"My price is far above what you could possibly afford. Do not even attempt to bribe me."
+		"Do you hope to corrupt me? There is no price that is high enough."

@@ -260,7 +260,7 @@ mission "Unfettered: Speak Hai"
 				`	"I guess I'll try to land on their planet."`
 					accept
 	on visit
-		dialog "You have not yet met the Wanderers and acquired a translator from <stopovers> to communicate with them. "
+		dialog "You have not yet met the Wanderers and acquired a translator from <stopovers> to communicate with them."
 	to complete
 		has "language: Wanderer"
 	on complete
