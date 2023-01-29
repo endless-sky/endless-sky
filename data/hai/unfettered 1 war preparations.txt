@@ -58,7 +58,7 @@ mission "Unfettered: Alphas: Find The Auxiliary"
 			`	Before you go, one of the warlords comes to speak to you personally. "Do not dare come back to us asking for more cooperation, should you fail this. That said, I'm not sure you would ever come back if you are not victorious. But never forget that jump drives matter more than anything else. You should steal as many as you can if you do indeed manage to beat the Alphas."`
 				accept
 			label know
-			`	You explain to him you have alraedy found an Alpha base in the system of Host. "How can you know this is where you will find this Auxiliary? They could have went anywhere. I agree that it is the most likely spot, but you should still go listen to what Mera has to say, she may reveal tactical opportunities for you to exploit."`
+			`	You explain to him you have already found an Alpha base in the system of Host. "How can you know this is where you will find this Auxiliary? They could have went anywhere. I agree that it is the most likely spot, but you should still go listen to what Mera has to say, she may reveal tactical opportunities for you to exploit."`
 				goto warning
 	on enter
 		dialog `You receive an ominous message from an unknown source, in Hai. <message>`

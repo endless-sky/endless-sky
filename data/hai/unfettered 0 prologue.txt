@@ -1929,7 +1929,7 @@ mission "Unfettered: No Answers Available"
 		conversation
 			branch Misam
 				has "flagship planet: New Tortuga"
-			`You ask questions`
+			`You ask questions around but nobody knows anything about an Auxiliary here, or at least they're not willing to tell you. You may have more luck at another planet.`
 				defer
 			label Misam
 			branch "okay boy!"
@@ -1950,7 +1950,7 @@ mission "Unfettered: No Answers Available"
 			`You head to the given coordinates on the planet, but you cannot see anyone there. You wait around for an hour or so until, looking around, you finally spot it: there is a graffiti on the wall, right at the given coordinate. At first you did not pay too much attention to it because this kind of thing is common on pirate worlds, but now you notice it depicts a green human. The message is clear.`
 				decline
 			label "dead, boy!"
-			`As soon as you set foot on the planet, a team of mercenaries comes out of the shadows, armored with the same kind of armor Si-Ra had. Their weapons may holstered but you can feel the tension in the air. Their leader speaks up. "We know your query. Consider yourself lucky to not be killed on the spot. We do not garantee that will not happen, should you land again."`
+			`As soon as you set foot on the planet, a team of mercenaries comes out of the shadows, armored with the same kind of armor Si-Ra had. Their weapons may holstered but you can feel the tension in the air. Their leader speaks up. "We know your query. Consider yourself lucky to not be killed on the spot. We do not guarantee that will not happen, should you land again."`
 			`	They evaluate their surrendings before coming closer to you, and once they are a meter a way they stop, clearly speaking their words as a threat, with a pause between each of them "Nemo. Me. Impune. Laccesit."`
 			choice
 				`	(Threaten them).`
