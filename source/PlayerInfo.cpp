@@ -465,13 +465,16 @@ void PlayerInfo::Save() const
 		if(saved.GetDate() != date.ToString())
 		{
 			string root = filePath.substr(0, filePath.length() - 4);
-			string files[4] = {
+			static const int SAVE_COUNT = 6;
+			string files[SAVE_COUNT] = {
+				root + "~~previous-5.txt",
+				root + "~~previous-4.txt",
 				root + "~~previous-3.txt",
 				root + "~~previous-2.txt",
 				root + "~~previous-1.txt",
 				filePath
 			};
-			for(int i = 0; i < 3; ++i)
+			for(int i = 0; i < SAVE_COUNT; ++i)
 				if(Files::Exists(files[i + 1]))
 					Files::Move(files[i + 1], files[i]);
 			if(planet->HasSpaceport())
