@@ -407,8 +407,8 @@ outfit "Irate Cannon"
 		"velocity" 22
 		"lifetime" 15
 		"reload" 20
-		"firing energy" 1.5
-		"firing heat" 13.5
+		"firing energy" 1
+		"firing heat" 9
 		"shield damage" 6
 		"hull damage" 16
 		"hit force" 40
@@ -440,8 +440,8 @@ outfit "Irate Cannon Turret"
 		"velocity" 22
 		"lifetime" 15
 		"reload" 10
-		"firing energy" 1.5
-		"firing heat" 13.5
+		"firing energy" 1
+		"firing heat" 9
 		"shield damage" 6
 		"hull damage" 16
 		"hit force" 40
@@ -487,8 +487,8 @@ outfit "Choleric Cannon"
 		"velocity" 11
 		"lifetime" 55
 		"reload" 100
-		"firing energy" 97.5
-		"firing heat" 333
+		"firing energy" 65
+		"firing heat" 222
 		"shield damage" 106
 		"hull damage" 311
 		"hit force" 180
@@ -521,8 +521,8 @@ outfit "Choleric Cannon Turret"
 		"velocity" 9
 		"lifetime" 55
 		"reload" 80
-		"firing energy" 97.5
-		"firing heat" 333
+		"firing energy" 65
+		"firing heat" 222
 		"shield damage" 106
 		"hull damage" 311
 		"hit force" 180
@@ -569,8 +569,8 @@ outfit "Ballistic Cannon"
 		"velocity" 8
 		"lifetime" 100
 		"reload" 120
-		"firing energy" 378
-		"firing heat" 849
+		"firing energy" 252
+		"firing heat" 566
 		"shield damage" 181
 		"hull damage" 970
 		"hit force" 360
@@ -606,8 +606,8 @@ outfit "Ballistic Cannon Turret"
 		"velocity" 8
 		"lifetime" 100
 		"reload" 100
-		"firing energy" 492
-		"firing heat" 805.5
+		"firing energy" 328
+		"firing heat" 537
 		"shield damage" 181
 		"hull damage" 970
 		"hit force" 360
@@ -665,8 +665,8 @@ outfit "Astuit Battery"
 		"velocity" 8
 		"lifetime" 44
 		"reload" 6
-		"firing energy" 15
-		"firing heat" 38.3
+		"firing energy" 10
+		"firing heat" 25.5
 		"shield damage" 8.8
 		"hull damage" 9.4
 	description "The Gegno Scin are the first Gegno to advance plasma technology to the point where it can be used in combat, although the energy requirement of such technology is still significant. Astuit Batteries work very similar to human Energy Blasters, firing small condensed plasma projectiles at high rates of fire. With four Astuit Blasters on a turreted mount, it produces a constant stream of damage which adds up over time, despite the minor damage that each individual projectile creates."
@@ -704,8 +704,8 @@ outfit "Acuit Artillery"
 		"velocity" 18
 		"lifetime" 60
 		"reload" 60
-		"firing energy" 292.5
-		"firing heat" 459
+		"firing energy" 195
+		"firing heat" 306
 		"shield damage" 195
 		"hull damage" 332
 		"hit force" 40
@@ -741,8 +741,8 @@ outfit "Guile Pulse Laser"
 		"reload" 6
 		"burst count" 3
 		"burst reload" 1
-		"firing energy" 9.6
-		"firing heat" 7.2
+		"firing energy" 8.2
+		"firing heat" 6.7
 		"shield damage" 12.4
 		"hull damage" 20.2
 		"cluster"
