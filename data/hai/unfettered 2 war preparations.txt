@@ -404,7 +404,6 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 	on visit
 		dialog "You do not yet have 300 tons of nitrogen human coolers that Mera requested in your cargo hold or installed on your ships. In order to load directly into your cargo hold, you need to first unselect your ships by ctrl+clicking on them."
 	on complete
-		# eventually it'd be nice to limit the amount you can buy from the outfitter (requesting to exchange them would not be practical, I think)
 		outfit "Liquid Nitrogen Cooler" -15
 		log `Brought human nitrogen cooling systems to the Unfettered. They should be able to retrofit them into something more useful.`
 		payment 2500000

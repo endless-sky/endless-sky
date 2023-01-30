@@ -460,7 +460,7 @@ outfit "Hai Williwaw Cooling"
 
 outfit "Hai Zephyr Cooling"
 	category "Systems"
-	cost 38000
+	cost 52000
 	thumbnail "outfit/hai zephyr"
 	"mass" 14
 	"outfit space" -14
