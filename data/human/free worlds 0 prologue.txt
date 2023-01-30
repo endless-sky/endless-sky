@@ -60,8 +60,8 @@ mission "Pact Supplies Convoy (Dirt Belt)"
 		category "Transport" "Light Freighter" "Heavy Freighter"
 		not planet "New Sahara"
 	to offer
-		has "Pact Supplies 0 (Dirt Belt Landing): active"
-		not "Pact Supplies 0 (Dirt Belt Landing): failed"
+		has "Pact Supplies (Dirt Belt Landing): active"
+		not "Pact Supplies (Dirt Belt Landing): failed"
 		not "event: war begins"
 		not "event: chosen sides"
 	on offer
@@ -117,8 +117,8 @@ mission "Pact Supplies Escort (Dirt Belt)"
 		category "Interceptor" "Light Warship" "Medium Warship" "Heavy Warship"
 		not planet "New Sahara"
 	to offer
-		has "Pact Supplies 0 (Dirt Belt Landing): active"
-		not "Pact Supplies 0 (Dirt Belt Landing): failed"
+		has "Pact Supplies (Dirt Belt Landing): active"
+		not "Pact Supplies (Dirt Belt Landing): failed"
 		not "event: war begins"
 		not "event: chosen sides"
 	on offer
