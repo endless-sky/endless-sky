@@ -5492,7 +5492,7 @@ mission "Karen Transport 1"
 	on complete
 		conversation
 			`You are glad to finally see your passenger leaving, but then you realize she hasn't paid you yet. You decide to confront her about it.`
-			`	"You expect ME to pay after all that? You are lucky I'm not suing you for damages!" She stops for a moment, then throws a credit chip at you. "Fine, take this, but don't bother me again!" She stomps off angrily.`
+			`	"You expect ME to pay after all that? You're lucky I'm not suing you for damages!" She stops for a moment, then throws a credit chip at you. "Fine, take this, but don't bother me again!" She stomps off angrily.`
 			`	You look at the credit chip she has so generously given you. It's worth... 10 credits. Oh well.`
 		payment 10
 	on abort
