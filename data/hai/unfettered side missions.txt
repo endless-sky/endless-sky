@@ -341,49 +341,52 @@ mission "Unfettered: Weird Aliens Spotted"
 		conversation
 			`Do you want to warn He-Yi's herald about the <pug aliens> north of Wanderer space?`
 			choice
-				`	(Speak to him about the <pug aliens>.)`
-					goto aliens
-				`	(Speak to him about the Pugs and their Arfecta.)`
+				`	(Speak to him about the weird aliens.)`
+					to display
+						not "main plot completed"
+				`	(Speak to him about the Pug.)`
+					to display
+						not "main plot completed"
+					goto pugs
+				`	(Do not warn the Unfettered about it.)`
+					decline
+			action
+				payment 150000
+				log `Warned the Unfettered about the weird aliens presence north of the Wanderers.`
+				set "unfettered: warned about the pugs"
+			`	You explain to the herald you have seen some weird aliens north, that could be allied to the Wanderers. Looking at the brief scans you took of them he seems to discard that warning as if it was nothing, "I do not know how those aliens have obtained jump drives, they most have stolen them somehow. Once we have taken Wanderer space they will prove to be a very handy supply of new jump drives... I would not worry about their pathethic, although strange looking, weapons. Still, I appreciate you taking this initiative of coming here to warn us, please accept these <payment> for that."`
+				goto "show arfecta?"
+			label pugs
+			action
+				payment 250000
+			`	You explain to the herald that you have seen weird aliens north, the Pug, which have had dealing with humanity before. He does not seem to believe you when you speak of technology capable of breaking down hyperlanes, "there is no way an alien race with such primitive ships would have that kind of technology. They must have simply abused your primitive sensors. They must have stolen the jump drives, and I only see that as an opportunity for later." You try to convince him he should not take them lightly, but he does not want to listen. "We have already done too much to prepare for war to turn back at the first sign of potential trouble. Still, I appreciate you taking this initiative of coming here to warn us, especially with this precise information. You seem to have learned the ways of my master quickly.`
+			`	"Please accept <payment> for that."`
+			label "show arfecta?"
+			choice
+				`	(Warn him of the Arfecta.)`
 					to display
 						has "Pug Angry at Being Farmed: offered"
 				`	(Show him the schematics of the Arfecta I have.)`
 					to display
 						has "ship model (all): Pug Arfecta"
-					goto heavywarning
-				`	(Do not warn the Unfettered about it.)`
+					goto arfectadesigns
+				`	(Say nothing more.)`
 					decline
 			action
-				set "unfettered: warned"
-				payment 1000000
-			``
-				goto aliens
-			label heavywarning
-			action
-				set "unfettered: preparing for arfectas"
-				payment 2000000
-			label aliens
-			action
-				payment 1000000
-				log `Warned the Unfettered about the Pug's presence near the Wanderers.`
-				set "unfettered: warned about the pugs"
-			branch "know about the Pug"
-				has "main plot completed"
-			`	You explain to the herald you have seen some weird aliens north, that could be allied to the Wanderers. Looking at the brief scans you took of them he seems to discard that warning as if it was nothing, "I do not know how those aliens have obtained jump drives, they most have stolen them somehow. Once we have taken Wanderer space they will prove to be a very handy supply of new jump drives... I would not worry about their pathethic, although strange looking, weapons. Still, I appreciate you taking this initiative of coming here to warn us, please accept these <payment> for that."`
+				set "unfettered: warned of arfecta"
+				payment 250000
+			`	"Did you not say these Pug, as you call them, are masters of deception?`
+				to display
+					has "main plot completed"
+			`	"We already know that they have somehow tricked the Wanderers into blindly worshiping them. That ship could have tricked your sensors. Nevertheless you deserve a reward for all of this intel, I shall double the payment."`
 				accept
-			label "know about the Pug"
+			label arfectadesigns
 			action
-				payment 500000
-			`	You explain to the herald that you have seen weird aliens north, the Pug, which have had dealing with humanity before. He does not trust you when you speak of technology capable of breaking down hyperlanes, "there is no way an alien race with such primitive ships would have that kind of technology. They must have simply abused your primitive sensors. They must have stolen the jump drives, and I only see that as an opportunity for later." You try to convince him he should not take them lightly, but he does not want to listen. "We have already done too much to prepare for war to turn back at the first sign of potential trouble. Still, I appreciate you taking this initiative of coming here to warn us, especially with this precise information. You seem to have learned the ways of my master quickly.`
-			`	"Please accept these <payment> for that."`
-				to display
-					not "unfettered: warned"
-					not "unfettered: preparing for the arfectas"
-			`	"Did you not say these Pugs, as you call them, are masters of deception? We already know that they have somehow tricked the Wanderers into blindly worshiping them. That ship could have tricked your sensors. Nevertheless you deserve a reward for all of this intel, here are <payment>."`
-				to display
-					has "unfettered: warned"
+				set "unfettered: preparing for the arfectas"
+				payment 5000000
 			`	Since he does not seem to believe you, you show him the designs of the Arfecta you captured. You can see a mix of surprise and fear in his eyes as he takes a step back. "How did you capture such a ship? It seems that you will prove an even better ally than we had anticipated... That ship would be fitting of a warlord. You surely deserve this extra reward! Here, take these <payment>, you deserve it. We have indeed heard of these Pugs, but never did we imagine they would be able to display such strength... It is good to have an ally like you."`
-				to display
-					has "unfettered: preparing for the arfectas"
+				accept
+
 
 mission "Unfettered: Know Your Enemy"
 	name `Know your enemy`

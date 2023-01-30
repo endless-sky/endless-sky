@@ -864,6 +864,7 @@ government "Cerberus"
 	bribe 0
 	fine 0
 	"hostile hail" "cerberus hails"
+	"hostile disabled hail" "cerberus hails"
 
 government "Shadow"
 	swizzle 4

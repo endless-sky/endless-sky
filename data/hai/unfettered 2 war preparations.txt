@@ -977,6 +977,162 @@ mission "Unfettered: Special Cargo"
 		require "Mystery Cube"
 
 
+# This mission triggers when you land on the world instead of taking the cube in orbit, either bargain for it or steal it (or the wrong item)
+mission "Unfettered: Special Cargo 1B"
+	landing
+	invisible
+	source "Stormhold"
+	destination "Warfeed"
+	to offer
+		has "Unfettered: Special Cargo: active"
+		not "outfit (all): Mystery Cube"
+	on offer
+		conversation
+			`The final Syndicate ships are being taken out as you land on the planet next to another empty spot, hoping the Degenerate will land there. She does not seem to want to take any chances, and lands near a few of her own warships. As you depart the ship, your hairs stand up on the back of your neck. You try to get close to the Degenerate without drawing too much attention to yourself, and eventually arrive there, undetected.`
+			choice
+				`	(Try to steal the item.)`
+					goto steal
+				`	(Try to bargain.)`
+					goto bargain
+				`	(Try to take an isolated pirate captive and ask for the item in exchange.)`
+			`	In front of the ship there's a group of pirates, and you see one of them separate from the others to go within the ship. Judging from his appearance and the way others were addressing him, you assume him to be the leader of that small band, at least. You sneak past the group in front and follow him.`
+			branch luckyish
+				random < 20
+			`	You get close up behind him and are about to pull your gun... when he suddenly turns back and throws the hardest haymaker you've ever experienced! You drop like a sack to the floor and never wake up again. That pirate probably has had some experience with backstabbings before.`
+				die
+			label luckyish
+			`	You get close up behind him and are about to pull your gun... when he draws a sudden breath and begins to turn around! Fortunately, you're quicker, and you have your firearm pointed at him before he can do anything. Obviously experienced with hostage situations and prioritizing his own safety, he doesn't try to call for help. You present yourself to the group outside, with the gun still pointed at your hostage. The pirates look at each other and begin laughing before you die in a barrage of laser fire from the group, annihilating you and your hostage. It seems that they couldn't care less about their companions' lives.`
+				die
+			label steal
+			`	You manage to enter the ship discreetly. Some people will always notice, but you try to pose as a spaceport worker there to assist with the repairs, using equipment you find lying around. You should be able to go pretty much anywhere on the ship. You don't have any idea which part of the ship is actually damaged though, so your cover could easily be blown. There is no going back now, except maybe if you choose to provoke the pirate warlord into a fight to get the item.`
+			choice
+				`	(Search the lower decks.)`
+				`	(Search close to the weapons stations.)`
+					goto weapons
+				`	(Search the bridge.)`
+					goto bridge
+				`	(Look near the engines.)`
+					goto engine
+				`	(Check among the cargo.)`
+					goto cargo
+				`	(Search the upper decks.)`
+				`	(Leave the ship before you get caught and provoke the warlord.)`
+					goto challenge
+			`	You notice a lot of security stations around, they obviously care a lot about their warlord's security.`
+				goto caught
+			label weapons
+			`	This part of the ship is mostly full of torpedoes - apparently the warlord loves them. But there are not many people here, since it does not seem to have suffered damage. The torpedoes will probably be restocked soon, so you leave before someone comes in and notices you.`
+				goto found
+			label bridge
+			`	This bridge is very luxurious, you see that this warlord likes comfort, for herself at least. But you cannot find anything that looks unique at all.`
+				goto caught
+			label cargo
+			`	There are a lot of exotic things here, most of which are probably not legal at all. You better choose what to take with you, and fast! You also notice the presence of gold bars. There's no way you could carry all of them back with you discreetly, but you can drop them off the ship and then go grab them once you are out, hoping nobody will notice. Looking through a porthole, you don't see anyone around at the moment. Conveniently, there is even some sand on the ground there, so the bars should sink in, and be harder to notice.`
+			branch knowsbars
+				has "Midas: Betrayal For The Bars: declined"
+			`	It may not be what you're looking for, but these bars are probably worth a small fortune, and you reckon you could get away with a few tons of them, with some luck and an antigrav unit that a fellow crew member could bring, if you only threw these out the window. They have special markings on them and are probably worth more than the value of the gold alone! You can always take out the pirate lord's ship afterward and claim them as your own, as they are more heavy and take more space than any of the other items which could interest the warlord.`
+				goto fake
+			label knowsbars
+			`	You recognize the same bars that earned you betrayal from a member of your crew. Something about them must make them special and hugely valuable to those who know of it.`
+				goto fake
+			label engine
+			`	These are some fine last-generation atomic engines, a true beauty in your eyes. But admiring the engines doesn't help you find the item at all. Why would there be anything near the engines?`
+				goto caught
+			label fake
+			choice
+				`	(Take a heavily-modified alien looking pistol.)`
+				`	(Take a strong personal shield.)`
+				`	(Take what looks like a bomb.)`
+				`	(Drop some bars on the ground to take them later.)`
+					goto takebars
+			label wrongitem
+			`	You take the item, hoping it is the right one, and swiftly leave the ship. If only you had been given a more precise description, you could know for sure. Some pirates seem to notice you, and maybe they suspect something or recognize this item, but nobody tries to stop you. As you reach your ship, you notice that the Degenerate just launched, right before you. They must have noticed the item was missing.`
+				flee
+			label takebars
+			`	How many stacks of bars will you take? The more, the bigger the risk and reward...`
+			choice
+				`	(One will do.)`
+					goto one
+				`	(Three should be enough.)`
+					goto three
+				`	(Five.)`
+					goto five
+				`	(Eight could be reasonable.)`
+				`	(Take as much as I can: fifteen!.)`
+				`	(Never mind, this isn't a good idea.)`
+					goto fake
+			`	You got too greedy. As you're dropping the bars, you feel something cold hit your head. You never wake up again.`
+				die
+			label one
+			action
+				outfit "Gold Bars"
+			`	You are able to take one stack of gold bars in very little time, wonder if you could have gotten away with more.`
+				goto dropbars
+			label three
+			action
+				outfit "Gold Bars" 3
+			`	You decide to take three stacks of gold bars, they feel heavy but are not too much to carry around by yourself.`
+				goto dropbars
+			label five
+			action
+				outfit "Gold Bars" 5
+			`	Five stacks is a hefty amount, you are constantly looking over your shoulder in fear of being spotted as you move them near the airlock.`
+			label dropbars
+			`	You drop the gold on the ground, and then leave the ship. Afterwards, you go around to the location where they are partially buried in the sand, and take them discreetly with some members of your crew. You have to silence one or two curious pirates, but that's about it, and you can now head back to your ship. As expected, they have noticed the theft. You see them launching before you can do so yourself. This will be a bumpy ride.`
+				flee
+			label caught
+			`	You do not manage to find the item here. However, you've attracted way too much suspicion by looking and opening crates everywhere you could. One local worker asks you something about mechanics. Being no engineer yourself, you cannot make any sense of what he says, even less formulate a correct response, and he calls a guard over you. You are captured and sold as a slave, condemned to a few years of hard work before a sad death.`
+				die
+			label found
+			choice
+				`	(Take an alien-looking modified torpedo warhead.)`
+					goto stupid
+				`	(Take an alien skull.)`
+					goto wrongitem
+				`	(Take a weird-looking small cube.)`
+			action
+				log `Managed to steal a very precious mystery cube from a pirate ship.`
+			`	Surprisingly, you appear to have found what you were looking for: a small cube, completely regular and seemingly alien in design. Maybe the warlord was not aware of its value, considering she placed it here, without much protection or even trying to hide it. This has to be the item that He-Yi wants, so you take it with you. Its small size makes it easy to conceal as you make your way off the ship and back to your own. This probably will not go unnoticed for long however, so you launch as soon as you can. The original pirate fleet is already heading your way as you are leaving the atmosphere.`
+				launch
+			label stupid
+			`	You try to disassemble the torpedo, but you do not have enough time to do so.`
+				goto caught
+			label bargain
+			`	You ask around and find the first mate, Mip. He seems intrigued by your request for a small and precious item that their boss has just acquired. "Yeah, I think I know what you're talking about - matter o' fact, the old boss knew 'bout it and ordered it delivered to him. Mhairi don't know about it yet - guess she don't need to know. Mystery, adds value on the black market, ya see. Also, 'cause I don't know you, you'd have to pony up some serious moolah if ya really want it, especially since ya can't just go and talk to the boss about it." He thinks a bit, assessing your appearance and clothing to estimate how much you might be willing to pay. He also checks his pad, probably searching for records of your ship and fleet. "10 million credits," he says in a definitive tone.`
+			choice
+				`	"That low? Well, here you go mate."`
+					to display
+						credits > 10000000
+				`	"I don't have that kind of money. Maybe we could negotiate?"`
+					goto negotiate
+				`	"There's no way I'm paying so much for an item I haven't even seen! I challenge your warlord to a fight."`
+					goto challenge
+			action
+				payment -10000000
+			`	He seems disappointed, but he shows you to the item, a little cube, and you bring it back to your ship without any trouble. He also signals the local warships belonging to the warlord to let you leave without trouble.`
+				goto leaveinpeace
+			label negotiate
+			`	"I can cut it down by... 2 million. Last chance, boy. 8 million credits, what do ya say?"`
+			choice
+				`	"Deal!"`
+				`	"There's no way I'm paying so much for an item I haven't even seen! I challenge your warlord to a fight."`
+					goto challenge
+			`	He seems disappointed to have only 8 million credits, but you feel like he still had the upper hand in that trade. He shows you to the item, a little cube, and you bring it back to your ship without any trouble. He also signals the local warships belonging to the warlord to let you leave without trouble.`
+			action
+				payment -8000000
+			label leaveinpeace
+			action
+				set "midas: brokered deal"
+				"reputation: Mhairi's Legion" >?= 1
+				log `Bought a mystery cube off pirates for the Unfettered. The price tag was large.`
+			`	You head to your ship, preparing to leave the planet. No pirates try to stop you on the way. In fact, the pirates in orbit are no longer hostile to you. It seems like they respected the agreement.`
+				accept
+			label challenge
+			`	You launch your fleet and send a challenge to the warlord, putting her authority and competence in question. She cannot resist the urge to come and kill you, you only hope you can beat her and collect the item from her ship.`
+				flee
+	on accept
+		outfit "Mystery Cube"
+
 
 # you may refuse to set it up to not spread mistrust with the Hai.
 mission "Unfettered: Special Cargo 2"
@@ -991,28 +1147,15 @@ mission "Unfettered: Special Cargo 2"
 		has "Unfettered: Special Cargo: done"
 	on offer
 		conversation
-			branch bought
-				has "unfettered: brokered deal"
-			branch stole
-				has "Unfettered: Special Cargo 1B: done"
+			branch "took on the ground"
+				not "Unfettered: Special Cargo 1B: done"
 			action
 				log `Recovered a mystery cube from a pirate ship in the heat of battle.`
-			``
-				goto afterlog
-			label stole
-			action
-				log `Managed to steal a very precious mystery cube from a pirate ship.`
-			``
-				goto afterlog
-			label bought
-			action
-				log `Bought a mystery cube off pirates for the Unfettered. The price tag was large.`
-			label afterlog
+			label "took on the ground"
 			`You find He-Yi in his war room, which is full of strange objects - only half of which appear to be weapons. You notice some keystone carvings, but also a statue, probably of some Hai goddess. He seems to have disciples, serving as his eyes and ears everywhere. You bring him the cube. "Very well done! But this is not all. You will have a big [reward, payment] once the mission is completed."`
 			branch nodeal
-				not "unfettered: brokered deal"
+				not "midas: brokered deal"
 			action
-				clear "unfettered: brokered deal"
 				payment 2000000
 			`	You tell him that you had to pay a few millions to get the cube. "You were not supposed to negotiate, but I guess that is acceptable. These <payment> will [alleviate, reduce] the cost. Next time try to show more [cunning, strength]. Thankfully, money is not really much of an issue to us."`
 			label nodeal
