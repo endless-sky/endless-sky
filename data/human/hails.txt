@@ -1127,7 +1127,7 @@ phrase "friendly civilian"
 	word
 		" " 4
 		" a meal of "
-		" a serving of"
+		" a serving of "
 	word
 		"asparagus"
 		"garlic"
