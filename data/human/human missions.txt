@@ -5603,7 +5603,7 @@ mission "Karen Transport 2"
 			
 			label pilot
 			`	He straps himself in, and begins fiddling with the controls. Navigation lights. Life support. Thrusters.`
-			`	The ship suddenly lurches to the side, and you find yourself on the ground. "No need to panic, everything is under control", the bogus pilot exclaims.`
+			`	The ship suddenly lurches to the side, and you find yourself on the ground. "No need to panic, everything is under control," the bogus pilot exclaims.`
 			`	After a moment of relative calm, the world begins to spin around you with sickening speed. You hear alarms go off all over the ship, and sparks fly all around you. It seems that he managed to put the ship into a spin by overloading some of the engines.`
 			`	You try to get up, but it is impossible to find your balance in the wheeling ship. The alarms get more frantic with every passing second, until you hear a low rumbling, then a thundering explosion consumes everything.`
 				explode
