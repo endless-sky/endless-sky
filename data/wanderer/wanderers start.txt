@@ -1289,11 +1289,11 @@ mission "Wanderers: Alpha Surveillance D"
 		"<base found>" "It appears that you have found the Alpha base."
 		"<base found>" "You were right all along, this is indeed the Alpha base, right where you said it would be."
 			has "told them the alpha base location"
-		"<base found>" "It appears that the base was not as old and abandonned as it had first looked."
+		"<base found>" "It appears that the base was not as old and abandoned as it had first looked."
 			not "told them the alpha base location"
 			has "found alpha base"
-		<guess> ""
-		<guess> " You suspect this is the same path as last time..."
+		<guess> `".`
+		<guess> `". This probably will be the same path as last time.`
 			has "found alpha base"
 	
 	on offer
@@ -1315,7 +1315,7 @@ mission "Wanderers: Alpha Surveillance D"
 				accept
 	
 	on enter "Hi Yahr"
-		dialog `As you enter the system, Elias checks his tracker device. "Yup, I'm picking up signs of a jump-enabled Carrier," he says. "The path goes east, beyond the edge of Hai space."<guess>`
+		dialog `As you enter the system, Elias checks his tracker device. "Yup, I'm picking up signs of a jump-enabled Carrier," he says. "The path goes east, beyond the edge of Hai space<guess>`
 	on enter "Celeborim"
 		dialog `Elias checks the tracker again. "Southeast, from here," he says. Meanwhile, your ship's warning sirens begin going off; there are alien ships here, and they don't seem friendly.`
 	on enter "Asikafarnut"
