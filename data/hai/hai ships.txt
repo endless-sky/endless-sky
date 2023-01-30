@@ -1168,11 +1168,11 @@ ship "Shield Beetle" "Shield Beetle (Unfettered Shipyards)"
 		"Hai Williwaw Cooling" 4
 		"Outfits Expansion" 2
 		"Value Detector" 3
-		"Boulder Reactor"
-		"Geode Reactor"
+		"Geode Reactor" 2
+		"Pebble Core"
 		"Hai Gorge Batteries"
 		"Quantum Keystone" 2
-		"Pulse Rifle" 55
+		"Pulse Rifle" 75
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
