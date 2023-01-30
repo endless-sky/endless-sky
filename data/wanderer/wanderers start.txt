@@ -1061,7 +1061,7 @@ mission "Wanderers: Alpha Surveillance A"
 				`	"Is it possible that they have a hidden base on one of your worlds?"`
 				`	"Do you know where they went when you banned them from your space?"`
 					goto where
-				`	"I am pretty sure I found out one of their old bases."`
+				`	"I am pretty sure I found one of their old bases."`
 					to display
 						or
 							has "Unfettered: Alphas 3: Bring The Spoils: offered"
