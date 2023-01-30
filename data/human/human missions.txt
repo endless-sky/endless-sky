@@ -5757,4 +5757,4 @@ mission "Drunk Teen Hijack"
 		dialog
 			`You notify the spaceport authorities about the situation and hand over the teenagers to the security detachment they send out.`
 			`	"That's the 'Howard Gang'! They had been causing trouble on <origin>, then skipped town when they caught wind of the investigation. We are glad you managed to catch them."`
-			`	They give you <payment> bounty for apprehending the criminals.`
+			`	They give you a bounty of <payment> for apprehending the criminals.`
