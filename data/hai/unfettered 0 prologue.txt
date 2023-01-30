@@ -1374,6 +1374,7 @@ ship "Bactrian" "Bactrian (Cerberus)"
 	cargo
 		outfits
 			"Building Materials" 142
+		commodities
 			"Military" 100
 			"Electronics" 100
 			"Food" 188
