@@ -203,6 +203,8 @@ outfitter "Unfettered Basics"
 	"Local Map"
 	"Quantum Keystone"
 	"Pulse Rifle"
+	"Asteroid Scanner"
+	"Outfit Scanner"
 
 # For ships, stations, or corporations.
 phrase "hai"
