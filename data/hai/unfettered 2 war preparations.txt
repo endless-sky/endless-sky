@@ -85,6 +85,8 @@ mission "Unfettered: Solifuge 5: Materials For Ships"
 			names "hai"
 			variant
 				"Water Bug"
+	to fail
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
@@ -162,6 +164,8 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 				"unfettered: monke!" ++
 			`	"You will pretend to bring this tribute of food, and use that as a pretext to wander around the ships with an alibi."`
 				accept
+	to fail
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on stopover
@@ -399,6 +403,8 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 			label quantity
 			`	"Be sure to bring back 300 tons worth of, say, nitrogen coolers, so we have a solid base to work on. Don't bring us things like simple, water-based systems."`
 				accept
+	to fail
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
@@ -599,6 +605,8 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 				set "unfettered: took out Dark Angel"
 				set "midas: took out leader"
 				"reputation: Midas" >?= 0
+	to fail
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 		# you may decline this mission but if you accept it, you need to finish it
@@ -712,6 +720,8 @@ mission "Unfettered: Solifuge 9: Bigger Ships"
 		dialog "You find your cargo waiting for you and take it without asking questions or losing time."
 	on visit
 		dialog phrase "generic missing stopover or cargo"
+	to fail
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
@@ -856,6 +866,8 @@ mission "Unfettered: Earn Your Prize"
 			label delay
 			`	"Of course, this means that it will take a bit before you can receive the ship. I will send you a notice when that is the case, I do not expect the preparations to last more than a week or two. It is not so much a matter of finding what you asked for, but of getting the permission to equip it on this ship. Once the ship is ready, it will be waiting for you on Darkcloak, since that is where I will make the necessary modifications."`
 				decline
+	to fail
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
@@ -1399,6 +1411,8 @@ mission "Unfettered: Ready For The War"
 		ship "Stag Beetle (Flamer)" "Tejolis"
 		personality disables staying heroic target launching
 		conversation "unfettered war ready"
+	to fail
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 		"reputation: Unfettered" <?= -1000

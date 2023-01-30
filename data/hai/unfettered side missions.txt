@@ -887,6 +887,8 @@ mission "Unfettered: Close Quarter"
 					accept
 				`	"I have no interest in bringing you weapons, even the least deadly."`
 					decline
+	to fail
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	to complete

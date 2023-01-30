@@ -318,6 +318,8 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 		ship "Far Osk 27" "Dart"
 	on visit
 		dialog "You should have landed on <destination>, but you did not scan the Auxiliary yet. Time is of the essence, take of and scan its cargo as soon as possible!"
+	to fail
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
@@ -345,6 +347,7 @@ mission "Unfettered: I Know The Way"
 	on complete
 		dialog "It takes you a lot of time, but suspecting there must be something to find here you persevere, until you find a very well concealed Alpha base using your ship's sensors. This must be where the Auxiliary came from."
 		set "unfettered: it's the Alphas!"
+		set "found alpha base"
 
 # if you betrayed Midas, you will suffer to find answers
 mission "Unfettered: Questions Best Left Unanswered"
@@ -424,6 +427,8 @@ mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 	destination "Firelode"
 	to offer
 		has "Unfettered: Solifuge 2: Auxiliary Design: done"
+	to fail
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	to complete
@@ -621,6 +626,8 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		ship "Far Osk 27" "Karen"
 	to fail
 		has "Wanderers: Defend Vara Ke'sok: done"
+	to fail
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
@@ -711,6 +718,7 @@ mission "Unfettered: Alphas 3: Bring The Spoils"
 		has "Unfettered: Alphas 2: Prove Yourself: active"
 		has "ship model: Auxiliary (Alpha)"
 	on offer
+		set "found alpha base"
 		conversation
 			`You do a detailed scan of the Alpha base to see if there are any more Jump Drives or anyone who could have witnessed the fight. You cannot retrieve any information: it seems to either be too deep or at least shielded from scans in some way. You will have to go in blind.`
 			`	The doors of the hangar open to let you in. Maybe it is an automated response to this ship, or whoever is down here assumed the Alphas won the fight. If there is anyone here, it's probably a skeleton crew. You and your crew carefully exit your ship, but you see no signs of life here. They could be hidden, so you proceed cautiously, looking for the jump drive vault. On the way you hear sounds - sounds that definitely did not originate from humans. Heading that way, you find a brig full of Korath slaves, with a lizard head displayed above the cells. They seem to have been prisoners of the Alphas, and you find what appears to be a crudely rigged translation device with them. They do not look to be in a state to talk about anything though, so you should probably take them to Darkcloak and talk to the Chiefs about this. Hopefully the Korath will have recovered by then. You notice one has a very serious injury to his leg, it seems part of it has been replaced by a crude prosthetic. He may not survive the transport.`

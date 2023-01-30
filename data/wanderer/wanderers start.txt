@@ -667,6 +667,36 @@ event "Sich'ka'ara restored"
 		add fleet "Wanderer Defense" 2000
 
 
+mission "Unfettered: Regrets"
+	landing
+	invisible
+	to offer
+		not "salary: Unfettered"
+		has "Wanderers: Defend Vara Ke'sok"
+	on offer
+		set "unfettered: outcast"
+		event "unfettered: challengers leave"
+	on enter "Ehma Ti" "Wah Yoot" "Hi Yahr"
+		dialog
+			`The instant you enter the system, you receive a priority message from the local authorities. "<last>, because of your recent involvements with the aliens up north, we have decided to stop offering you important missions."`
+			`	Since this is a recorded message you cannot respond, but even if you could they would probably just ignore you.`
+		
+mission "Unfettered: Betrayed"
+	landing
+	invisible
+	to offer
+		has "salary: Unfettered"
+		has "Wanderers: Defend Vara Ke'sok"
+	on enter
+		clear "salary: Unfettered"
+		set "unfettered: outcast"
+		event "unfettered: challengers leave"
+		dialog
+			`Once you are alone in your quarters you hear a voice, darker and more serious than ever before. "You have betrayed us. Nemo Me Impune Laccessit, <first>. We have a message to transmit to you on behalf of the council of Chiefs.`
+			`	"<last>. From now on, you are an outcast. Your history has been erased and your exploits forgotten. You did bring us Jump Drives, however, and we will continue to allow you to do so, but we will do without your help for any more advanced missions."`
+			# when its possible to take a ship, they will self-destruct the Modified Shield Beetle
+
+
 
 mission "Wanderers: Defended Vara Ke'sok"
 	name "Report to <planet>"
@@ -1031,7 +1061,19 @@ mission "Wanderers: Alpha Surveillance A"
 				`	"Is it possible that they have a hidden base on one of your worlds?"`
 				`	"Do you know where they went when you banned them from your space?"`
 					goto where
+				`	"I am pretty sure I found out one of their old bases."`
+					to display
+						or
+							has "Unfettered: Alphas 3: Bring The Spoils: offered"
+							has "Unfettered: I Know The Way: done"
+					goto oldbase
 			`	"No," he says, "It has been two hundred years, and our worlds are populous and overseen with great diligence. Unless they have taken refuge with the Unfettered, they are not in our space."`
+			`	"Then where could they have gone?" you ask.`
+				goto where
+			label oldbase
+			action
+				set "told them the alpha base location"
+			`	"An old base, you say? They probably no longer operate there anymore then. I would advise against going there again, because it most likely will be trapped."`
 			`	"Then where could they have gone?" you ask.`
 			label where
 			`	"We do not know," he says. "It is not our business to track the doings of other species, outside our territory. And during the time of the Korath raids, we would not have had the capacity to track them, anyway."`
@@ -1243,6 +1285,16 @@ mission "Wanderers: Alpha Surveillance D"
 			has "Wanderers: Alpha Surveillance C (Naughty): done"
 	passengers 1
 	blocked "You need a bunk free in order to take on this mission."
+	substitutions
+		"<base found>" "It appears that you have found the Alpha base."
+		"<base found>" "You were right all along, this is indeed the Alpha base, right where you said it would be."
+			has "told them the alpha base location"
+		"<base found>" "It appears that the base was not as old and abandonned as it had first looked."
+			not "told them the alpha base location"
+			has "found alpha base"
+		<guess> ""
+		<guess> " You suspect this is the same path as last time..."
+			has "found alpha base"
 	
 	on offer
 		log "Met a human named Elias Hanover who is friends with the Quarg and who has been given permission to use Quarg technology to track the Alpha ship that is selling jump drives to the Unfettered."
@@ -1263,7 +1315,7 @@ mission "Wanderers: Alpha Surveillance D"
 				accept
 	
 	on enter "Hi Yahr"
-		dialog `As you enter the system, Elias checks his tracker device. "Yup, I'm picking up signs of a jump-enabled Carrier," he says. "The path goes east, beyond the edge of Hai space."`
+		dialog `As you enter the system, Elias checks his tracker device. "Yup, I'm picking up signs of a jump-enabled Carrier," he says. "The path goes east, beyond the edge of Hai space."<guess>`
 	on enter "Celeborim"
 		dialog `Elias checks the tracker again. "Southeast, from here," he says. Meanwhile, your ship's warning sirens begin going off; there are alien ships here, and they don't seem friendly.`
 	on enter "Asikafarnut"
@@ -1275,7 +1327,7 @@ mission "Wanderers: Alpha Surveillance D"
 	on enter "Makferuti"
 		dialog `Elias frowns as he looks at the tracker's readout. "I think we've taken a wrong turn. No sign of jump drives being used in this system," he says.`
 	on enter "Host"
-		dialog `When you enter this system, your sensors pick up a Navy Carrier in orbit around an Earth-like planet. It appears that you have found the Alpha base. "That's them," says Hanover. "I hope you're strong enough to destroy them." The Carrier starts to launch fighters: Korath ones, not human ships. This might be a difficult fight...`
+		dialog `When you enter this system, your sensors pick up a Navy Carrier in orbit around an Earth-like planet. <base found> "That's them," says Hanover. "I hope you're strong enough to destroy them." The Carrier starts to launch fighters: Korath ones, not human ships. This might be a difficult fight...`
 	
 	npc
 		government "Kor Sestor"
@@ -1322,9 +1374,13 @@ mission "Wanderers: Alpha Surveillance D (Avalon)"
 	source "Avalon"
 	to offer
 		has "Wanderers: Alpha Surveillance D: active"
+	substitutions
+		<sensors> "but your sensors are not able to locate it, and even if you could"
+		<sensors> "you still know the location from last time, however it is heavily guarded this time,"
+			has "found alpha base"
 	on offer
 		conversation
-			`You park your ship high up on a mountain where you will be able to see if any of the giant reptiles approach. This is almost certainly where the Alphas have their base, but your sensors are not able to locate it, and even if you could you do not have a military ground force with you. To take care of the threat once and for all, you will need to return with an invasion force.`
+			`You park your ship high up on a mountain where you will be able to see if any of the giant reptiles approach. This is almost certainly where the Alphas have their base, <sensors> you do not have a military ground force with you. To take care of the threat once and for all, you will need to return with an invasion force.`
 				decline
 
 

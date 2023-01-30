@@ -649,6 +649,8 @@ mission "Unfettered: Bring Hai"
 					decline
 	on stopover
 		dialog `The Hai seem happy to get on your ship. Now return to <origin> with them.`
+	to fail
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
@@ -718,6 +720,8 @@ mission "Unfettered: Bring Medical Supplies"
 				accept
 	on stopover
 		dialog `You're surprised to see the Hai are more than happy to give you the medical supplies needed. They load up the cargo and, once they are done, one of them addresses you. "Tell our brothers and sisters to stay strong. Hopefully it is not too late," he says with determination.`
+	to fail
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
@@ -881,6 +885,8 @@ mission "Unfettered: Prove Your Strength"
 				payment 250000
 			`	"Hopefully we see each other again, sometime." He and his crew seem quite busy with the repairs. "I transferred yer booty of <payment> to pay to repair any damage I may have done to yer ship. I be landing on the surface soon, to drown the sorrow of this humiliating defeat I have just suffered. I do not need nor want yer assistance in repairing, for that is a task best suited for the vanquished."`
 			`	"If ye be feeling up to the challenge, there be other captains that would be willing to duel ye, if ye keep fighting fair, of course. None accept to fight more than a pair o' heavy men-o-war, some others, like me, still prefer fighting with a single vessel. Like me, they will wish to fight to test the strength of yer exotic technologies or strategies, savvy?"`
+	to fail
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
@@ -968,6 +974,8 @@ mission "Unfettered: Prove Your Strength 2"
 		dialog `Seeing you enter this system, the captain speaks up. "Sails down, matey! I'd recommend to stop here before we head into more open seas!"`
 	on visit
 		dialog "You do not have the jump drives. You either did not go to <destination> to get the jump drives yet, or you left your escort carrying the jump drives behind - better depart and wait for it."
+	to fail
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	to complete
@@ -1565,6 +1573,8 @@ mission "Unfettered: Materials Intercepted"
 	to fail
 		# only fails if you kill them, not saving them only means you won't have any other missions with them.
 		has "midas: thorn talon murdered"
+	to fail
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
@@ -1762,6 +1772,8 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 			`You have scanned the Geocoris, but you did not use a Value Detector to do so. The scans will be of no value to Mera, you have failed the mission.`
 			action
 				fail "Unfettered: Solifuge 1: Geocoris Design"
+	to fail
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
