@@ -934,7 +934,7 @@ mission "Unfettered: Special Cargo"
 				`	"This seems too risky for me."`
 					decline
 	on waypoint
-		dialog `It seems that the <npc> is in this system, and a syndicate attack just launched. Judging from the marks on its hull, it will likely land to make repairs and restock ammo soon. You may be able to get the item without too much risk that way, and bribing them will mean secure landing. Or you could always just board it now and be done with it. You could even sabotage the ship to make your job easier, or take some more valuables with you.`
+		dialog `It seems that the <npc> is in this system, and a Syndicate attack just launched. Judging by the marks on its hull, it will likely land to make repairs and restock ammo soon. You may be able to get the item without too much risk that way, and bribing them will mean secure landing. Or you could always just board it now and be done with it. You could even sabotage the ship to make your job easier, or take some more valuables with you.`
 	npc board
 		personality staying target
 		to despawn
