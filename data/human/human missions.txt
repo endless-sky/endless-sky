@@ -5587,7 +5587,7 @@ mission "Karen Transport 2"
 			`	You didn't think silencing the audio could be this satisfying. Maybe now you can finally focus on flying the ship.`
 	on enter
 		conversation
-			`"You should have let me take the wheel, captain", your middle-aged passenger says when you tell him that you won't get to <destination> in time."`
+			`"You should have let me take the wheel, captain," your middle-aged passenger says when you tell him that you won't get to <destination> in time."`
 			choice
 				`	"Fine. Do it yourself."`
 					goto pilot
