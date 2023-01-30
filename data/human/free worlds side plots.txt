@@ -21,7 +21,7 @@ mission "FW Zug Expansion: Assisted"
 		near Zubeneschamali 2 4
 	destination "Zug"
 	to offer
-		has "event: tarazed diplomacy"
+		has "event: tarazed assistance"
 		not "FW Diplomacy 1: done"
 	on offer
 		conversation
