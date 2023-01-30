@@ -1286,7 +1286,7 @@ mission "Sheragi Archaeology: The Emerald Sword 2"
 				`   "Thank you."`
 					accept
 			label askkeepship
-			`   Albert responds, "Well, yes, but I'd feel much more comfortable with it in your hands than sitting here on <origin> waiting to be destroyed or stolen in a pirate raid. The millitia works hard, but they can't be everywhere."`
+			`   Albert responds, "Well, yes, but I'd feel much more comfortable with it in your hands than sitting here on <origin> waiting to be destroyed or stolen in a pirate raid. The militia works hard, but they can't be everywhere."`
 				accept
 	
 	to complete
