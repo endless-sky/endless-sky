@@ -63,7 +63,7 @@ namespace {
 	// disposition menu options
 	const string INSTALL_IN_SHIP = "Install in ship";
 	const string MOVE_TO_CARGO = "Move to cargo";
-	// const string MOVE_TO_STORAGE = "Move to storage"; // TODO
+	const string MOVE_TO_STORAGE = "Move to storage";
 }
 
 static const unsigned int LONG_CLICK_DURATION = 500; // milliseconds
@@ -88,7 +88,7 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	outfit_disposition.SetAlign(Dropdown::LEFT);
 	outfit_disposition.SetFontSize(14);
 	outfit_disposition.SetPadding(0);
-	outfit_disposition.SetOptions({INSTALL_IN_SHIP, MOVE_TO_CARGO /*, MOVE_TO_STORAGE */});
+	outfit_disposition.SetOptions({INSTALL_IN_SHIP, MOVE_TO_CARGO, MOVE_TO_STORAGE});
 	outfit_disposition.SetCallback([this](int, const std::string& value) { this->DispositionChanged(value); });
 }
 
@@ -288,7 +288,40 @@ void ShopPanel::DrawShipsSidebar()
 	}
 	point.Y() += ICON_TILE;
 
-	if(playerShip)
+	if (outfit_disposition.GetSelected() == MOVE_TO_STORAGE)
+	{
+		CargoHold* storage = player.Storage();
+		point.X() = Screen::Right() - SIDEBAR_WIDTH + 10;
+		bool empty = true;
+		if (storage)
+		{
+			if (!storage->Outfits().empty())
+			{
+				for (auto& kv: player.Storage()->Outfits())
+				{
+					if (kv.second != 0)
+					{
+						if (empty)
+						{
+							empty = false;
+							font.Draw("Outfits in planetary storage:", point, bright);
+							point.Y() += 20.;
+						}
+						font.Draw(kv.first->Name() + ": ", point, medium);
+						string count = Format::Number(kv.second);
+						font.Draw({count, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, point, bright);
+						point.Y() += 20.;
+					}
+				}
+			}
+		}
+		if (empty)
+		{
+			font.Draw("Nothing in planetary storage", point, bright);
+			point.Y() += 20.;
+		}
+	}
+	else if(playerShip)
 	{
 		point.Y() += SHIP_SIZE / 2;
 		point.X() = Screen::Right() - SIDEBAR_WIDTH / 2;
@@ -384,7 +417,7 @@ void ShopPanel::DrawButtons()
 
 	const Point sellCenter = Screen::BottomRight() - Point(130, 25);
 	FillShader::Fill(sellCenter, Point(60, 30), back);
-	static const string SELL = "_Sell";
+	const string SELL = outfit_disposition.GetSelected() == MOVE_TO_STORAGE ? "Move" : "_Sell";
 	bigFont.Draw(SELL,
 		sellCenter - .5 * Point(bigFont.Width(SELL), bigFont.Height()),
 		CanSell() ? hoverButton == 's' ? hover : active : inactive);
@@ -652,6 +685,8 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == 's' || toStorage)
 	{
+		if (outfit_disposition.GetSelected() == MOVE_TO_STORAGE)
+			toStorage = true;
 		if(!CanSell(toStorage))
 			FailSell(toStorage);
 		else
@@ -1403,7 +1438,7 @@ void ShopPanel::DispositionChanged(const std::string& value)
 {
 	// Purchasing to cargo or installing in a ship is controlled by what ships
 	// are selected.
-	if (value == INSTALL_IN_SHIP)
+	if (value == INSTALL_IN_SHIP || value == MOVE_TO_STORAGE)
 	{
 		if (playerShips.empty())
 		{
