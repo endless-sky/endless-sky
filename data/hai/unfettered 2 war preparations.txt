@@ -404,6 +404,7 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 	on visit
 		dialog "You do not yet have 300 tons of nitrogen human coolers that Mera requested in your cargo hold or installed on your ships. In order to load directly into your cargo hold, you need to first unselect your ships by ctrl+clicking on them."
 	on complete
+		# eventually it'd be nice to limit the amount you can buy from the outfitter (requesting to exchange them would not be practical, I think)
 		outfit "Liquid Nitrogen Cooler" -15
 		log `Brought human nitrogen cooling systems to the Unfettered. They should be able to retrofit them into something more useful.`
 		payment 2500000
@@ -904,7 +905,6 @@ mission "Unfettered: Special Cargo"
 	description `Go to <waypoints> and find a way to acquire a "unique" item from the prominent warlord there. Her ship is the <npc>, once you have retrieved it bring the item to He-Yi on <planet>.`
 	to offer
 		has "Unfettered: Solifuge 9: Bigger Ships: done"
-		has "reputation: Hai" >= 0 # required for the mission after this one
 	source "Darkcloak"
 	waypoint "Alcyone"
 	destination "Warfeed"
@@ -935,7 +935,7 @@ mission "Unfettered: Special Cargo"
 				`	"This seems too risky for me."`
 					decline
 	on waypoint
-		dialog `It seems that the Degenerate is in this system, but judging from the marks on its hull, it will likely land to make repairs and restock ammo soon. You may be able to get the item without too much risk that way, and bribing them will mean secure landing. Or you could always just board it now and be done with it. You could even sabotage the ship to make your job easier, or take some more valuables with you.`
+		dialog `It seems that the <npc> is in this system, and a syndicate attack just launched. Judging from the marks on its hull, it will likely land to make repairs and restock ammo soon. You may be able to get the item without too much risk that way, and bribing them will mean secure landing. Or you could always just board it now and be done with it. You could even sabotage the ship to make your job easier, or take some more valuables with you.`
 	npc board
 		personality staying target
 		to despawn
@@ -948,8 +948,13 @@ mission "Unfettered: Special Cargo"
 		personality coward plunders vindictive staying
 		government "Mhairi's Legion"
 		system "Alcyone"
-		fleet "Large Northern Pirates" 3
-		fleet "Small Northern Pirates" 5
+		fleet "Large Northern Pirates" 4
+		fleet "Small Northern Pirates" 6
+	npc
+		personality heroic staying entering disables
+		government "Syndicate"
+		system "Alcyone"
+		fleet "Large Syndicate" 4
 	on visit
 		dialog `You don't have the item He-Yi asked for. Or you have not brought the right item back. If that's the case, go back and board the ship to take the right item.`
 	on complete
@@ -967,7 +972,6 @@ mission "Unfettered: Special Cargo 2"
 	cargo "food (tribute)" 93
 	blocked `You need <tons> of cargo space for the next Unfettered mission.`
 	to offer
-		has "reputation: Hai" >= 0
 		has "Unfettered: Special Cargo: done"
 	on offer
 		conversation
@@ -1027,6 +1031,7 @@ mission "Unfettered: Special Cargo 2"
 			action
 				outfit "Mystery Cube" -1
 				set "unfettered: mystery cube"
+				"unfettered: He-Yi' opinion" ++
 			`	This seems to anger his pride a bit, but he knows full well that statement to be true. You give him the cube so it could be used later.`
 				decline
 	to complete
@@ -1042,7 +1047,6 @@ mission "Unfettered: Special Cargo 2"
 
 ship "Modified Shield Beetle" "Si-Ra' Beetle"
 	add attributes
-		"weapon capacity" 3
 		"shields" -2000
 		"heat dissipation" .05
 	outfits
@@ -1075,7 +1079,7 @@ ship "Stag Beetle"
 	attributes
 		category "Heavy Warship"
 		"cost" 30400000
-		"shields" 40000
+		"shields" 39000
 		"hull" 11000
 		"required crew" 70
 		"bunks" 78
@@ -1088,10 +1092,11 @@ ship "Stag Beetle"
 		"heat dissipation" .45
 		"fuel capacity" 600
 		"cargo space" 80
-		"outfit space" 830
+		"outfit space" 834
 		"weapon capacity" 353
-		"engine capacity" 144
+		"engine capacity" 145
 		"spinal mount" 1
+		"scrambling resistance" 2
 		weapon
 			"blast radius" 515
 			"shield damage" 6000
@@ -1107,17 +1112,19 @@ ship "Stag Beetle"
 		"Bullfrog Anti-Missile" 3
 		
 		"Liquid Sodium Cooler"
-		"Systems Core (Large)" 2
+		"Systems Core (Large)"
+		"Dark Storm Shielding"
 		"Outfits Expansion" 4
 		"Fuel Processor"
+		"Large Heat Shunt"
 		"Jump Drive"
 		
 		`"Bufaer" Atomic Steering`
 		"Afterburner (Comet Class)"
 		"Thruster (Lunar Class)"
 		
-		"Double Plasma Core"
-		"Large Biochemical Cell"
+		"Triple Plasma Core"
+		"Small Biochemical Cell"
 		
 		"Korath Repeater Rifle" 20
 		"Pulse Rifle" 60
@@ -1254,12 +1261,12 @@ mission "Unfettered: Ready For The War"
 					accept
 			`	"Yes, that was to be [suspected, expected]. I am prepared to answer a few, but choose whisely what you want to ask."`
 			action
-				"unfettered: questions" = -1
+				"unfettered: questions" = 0
 			label questions
 			action
 				"unfettered: questions" ++
 			branch enough
-				"unfettered: questions" > 3
+				"unfettered: questions" > 2 + "unfettered: He-Yi' opinion"
 			choice
 				`	"What does this sword do?"`
 					to display
@@ -1294,7 +1301,7 @@ mission "Unfettered: Ready For The War"
 			label hull
 			action
 				set "unfettered: hull choice"
-			`	"As you have probably noticed, the hull is not standard Hai colors. It is, partly, a matter of taste, but the biggest reason is that this ship was built out of the wreck of an old Korath [raider, warship]. Those materials are more sturdy than normal Hai ones, which is why this ship is so [impervious, resilient] to hull damage. However, it comes at the cost of cooling efficiency."`
+			`	"As you have probably noticed, the hull is not standard Hai colors. It is, partly, a matter of taste, but the biggest reason is that this ship was built out of the wreck of an old Korath [raider, warship]. Those materials are more sturdy than normal Hai ones, which is why this ship is so [impervious, resilient] to hull damage, and, due to personal modifications, to weapon scrambling as well. However, it comes at the cost of cooling efficiency."`
 				goto questions
 			label cloak
 			action

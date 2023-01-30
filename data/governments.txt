@@ -1288,6 +1288,7 @@ government "Syndicate"
 		"Merchant" .3
 		"Pirate" -.4
 		"Pirate (Devil-Run Gang)" -.4
+		"Mhairi's Legion" -.4
 		"Smuggler (Hai Trafficker)" .3
 		"Syndicate that won't enter wormhole" 1
 		"Korath" -.5

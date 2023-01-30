@@ -188,8 +188,8 @@ outfit "Ionic Turret Prototype"
 		"hit force" 60
 		"shield damage" 100
 		"hull damage" 50
-		"ion damage" 21
-		"scrambling damage" 7
+		"ion damage" 17.5
+		"scrambling damage" 10
 	description "This weapon improves upon the ionization capabilities of the Ion Cannon, while also being turret-mounted, enabling it to fire at enemies in any direction, not just those directly ahead."
 	description "	This design cannot yet be mass produced, but those that have been produced are prized by the few lucky enough to possess them."
 
@@ -825,6 +825,7 @@ outfit "Dual Pulse Pistols"
 outfit "True Unfettered License"
 	category "Licenses"
 	thumbnail "outfit/true unfettered license"
+	"unplunderable" 1
 	description "This sword may be a bit of a strange license, but its intention is to inspire pride to the wearer, and when the Unfettered see it they show respect. This was given by one of their warlords as a sign of trust, and it is quite handy in fights."
 	description "	Somehow, the blade feels very light, and as though it was accompanying the strikes of its owner. The blade itself is mostly intended to be defensive, and fits you quite well even though it was clearly meant for a Hai."
 

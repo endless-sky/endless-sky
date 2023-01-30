@@ -225,7 +225,7 @@ mission "Unfettered: Wanderer Homeworld"
 		dialog `Judging by the population compared to the other worlds, this appears to be the capital of these aliens. You should land to introduce yourself as a diplomat between them and the Hai.`
 
 mission "Unfettered: Speak Hai"
-	name `Meet the Wanderers and acquire a translator`
+	name `Meet and understand the Wanderers`
 	description `You need to be able to act as a diplomat between the Hai and the aliens up north. First go and meet those aliens. Then go to <stopovers> to see if He-Yi will provide a translator for you.`
 	source "Darkcloak"
 	stopover "Warfeed"
@@ -334,7 +334,8 @@ mission "Unfettered: Weird Aliens Spotted"
 	to offer
 		has "Unfettered: Know Your Enemy: offered"
 		has "Unfettered: Solifuge 9: Bigger Ships: done"
-	on enter "Pug Iyik"
+	waypoint "Pug Iyik"
+	on waypoint
 		dialog `These aliens do not look like the rest of the Wanderers at all! You should probably warn the Unfettered about it, on <destination>.`
 	on complete
 		conversation
@@ -442,7 +443,8 @@ mission "Unfettered: Know Your Enemy"
 	on complete
 		payment 1000000
 		conversation
-			`The herald is there when you land, apparently waiting for you. "My master could not come to receive the scans himself, but be sure I shall give them to him. Please, accept these <payment> credits in his name. I think you deserve a small explanation as to why these aliens are hostile to us. As you probably already know, we are planning to invade them shortly. But, to be fair, we have already started doing a few skirmishes with them, notably for testing their strength, but mostly to get food from them. They have huge ships transporting a thousand tons of cargo each."`
+			`The herald is there when you land, apparently waiting for you. "My master could not come to receive the scans himself, but be sure I shall give them to him. Please, accept these <payment> credits in his name. I think you deserve a small explanation as to why these aliens are hostile to us.`
+			`	"As you probably already know, we are planning to invade them shortly. But, to be fair, we have already started doing a few skirmishes with them, notably for testing their strength, but mostly to get food from them. They have huge ships transporting a thousand tons of cargo each."`
 
 
 
@@ -526,8 +528,7 @@ mission "Unfettered: Normal Prize"
 
 mission "Unfettered: Prize Arrived"
 	landing
-	name "Claim your prize"
-	description "The modified shield beetle arrived the way you requested it, on <destination>. Go claim it."
+	invisible
 	destination "Darkcloak"
 	to offer
 		or
@@ -536,7 +537,7 @@ mission "Unfettered: Prize Arrived"
 			has "event: unfettered: disable-er"
 			has "event: unfettered: syscore's got it"
 		not "unfettered: given the modified beetle"
-	on offer
+	on enter "Wah Yoot" "Hi Yahr" "Ehma Ti"
 		dialog `You receive a message from Mera, "The ship is ready and waiting for you on Darkcloak, captain."`
 
 event "unfettered: more dakka"
@@ -613,6 +614,7 @@ ship "Modified Shield Beetle" "Modified Shield Beetle (Ionic Turret)"
 		"Hai Zephyr Cooling" 3
 		"Hai Tracker" 224
 		"Outfits Expansion"
+		"Hai Octopus Jammer"
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
@@ -642,6 +644,7 @@ ship "Modified Shield Beetle" "Modified Shield Beetle (Large Systems Core)"
 		"Hai Ravine Batteries"
 		"Hai Diamond Regenerator"
 		"Systems Core (Large)"
+		"Hai Octopus Jammer"
 		"Hai Zephyr Cooling" 3
 		"Hai Tracker" 224
 		"Outfits Expansion"

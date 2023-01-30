@@ -908,6 +908,8 @@ mission "Unfettered: Special Cargo 1B"
 			`	You ask around and find the first mate, Mip. He seems intrigued by your request for a small and precious item that their boss has just acquired. "Yeah, I think I know what you're talking about - matter o' fact, the old boss knew 'bout it and ordered it delivered to him. Mhairi don't know about it yet - guess she don't need to know. Mystery, adds value on the black market, ya see. Also, 'cause I don't know you, you'd have to pony up some serious moolah if ya really want it, especially since ya can't just go and talk to the boss about it." He thinks a bit, assessing your appearance and clothing to estimate how much you might be willing to pay. He also checks his pad, probably searching for records of your ship and fleet. "10 million credits," he says in a definitive tone.`
 			choice
 				`	"That low? Well, here you go mate."`
+					to display
+						credits > 10000000
 				`	"I don't have that kind of money. Maybe we could negotiate?"`
 					goto negotiate
 				`	"There's no way I'm paying so much for an item I haven't even seen! I challenge your warlord to a fight."`
