@@ -5583,7 +5583,7 @@ mission "Karen Transport 2"
 				decline
 
 			label stop
-			`	"This is what I get for helping you? Very grateful of you. Maybe next time you won't get a passenger that flies the ship for you, and you will crash into a planet."`
+			`	"This is what I get for helping you? Very grateful of you. Maybe next time you won't get a passenger that flies the ship for you, and you'll crash into a planet!"`
 			`	You didn't think silencing the audio could be this satisfying. Maybe now you can finally focus on flying the ship.`
 	on enter
 		conversation
