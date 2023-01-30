@@ -943,6 +943,8 @@ mission "Unfettered: Special Cargo"
 		system "Alcyone"
 		ship "Leviathan (Cube)" "Degenerate"
 		dialog `You have managed to disable and board Mhairi's flagship. The item that fits best the description given is without any doubt the Mystery Cube. Bring it back to <destination>.`
+	# note: this only works because the fleets do not fight if you are not in the system.
+	# If that was to change we'd need a temporary fleet with an event changing the reputation.
 	npc
 		personality coward plunders vindictive staying
 		government "Mhairi's Legion"
@@ -950,10 +952,25 @@ mission "Unfettered: Special Cargo"
 		fleet "Large Northern Pirates" 4
 		fleet "Small Northern Pirates" 6
 	npc
+		personality derelict uninterested coward
+		government "Mhairi's Legion"
+		system "Alcyone"
+		fleet "Large Northern Pirates"
+		fleet "Small Northern Pirates"
+	npc
 		personality heroic staying entering disables
+		to despawn
+			has "Unfettered: Special Cargo 1B: offered"
 		government "Syndicate"
 		system "Alcyone"
-		fleet "Large Syndicate" 4
+		fleet "Large Syndicate" 3
+	npc
+		personality derelict uninterested coward
+		to despawn
+			has "Unfettered: Special Cargo 1B: offered"
+		government "Syndicate"
+		system "Alcyone"
+		fleet "Large Syndicate"
 	on visit
 		dialog `You don't have the item He-Yi asked for. Or you have not brought the right item back. If that's the case, go back and board the ship to take the right item.`
 	on complete

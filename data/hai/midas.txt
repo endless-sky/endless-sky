@@ -797,7 +797,7 @@ mission "Unfettered: Special Cargo 1B"
 		not "outfit (all): Mystery Cube"
 	on offer
 		conversation
-			`You land on the planet next to another empty spot, hoping the Degenerate will land there. She does not seem to want to take any chances, and lands near a few of her own warships. As you depart the ship, your hairs stand up on the back of your neck. You try to get close to the Degenerate without drawing too much attention to yourself, and eventually arrive there, undetected.`
+			`The final syndicate ships are being taken out as you land on the planet next to another empty spot, hoping the Degenerate will land there. She does not seem to want to take any chances, and lands near a few of her own warships. As you depart the ship, your hairs stand up on the back of your neck. You try to get close to the Degenerate without drawing too much attention to yourself, and eventually arrive there, undetected.`
 			choice
 				`	(Try to steal the item.)`
 					goto steal
