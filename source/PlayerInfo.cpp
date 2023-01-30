@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "PlayerInfo.h"
 
+#include "AI.h"
 #include "Audio.h"
 #include "ConversationPanel.h"
 #include "DataFile.h"
@@ -904,7 +905,7 @@ PlayerInfo::FleetBalance PlayerInfo::MaintenanceAndReturns() const
 
 
 
-// Get a pointer to the ship that the player controls. This is always the first
+// Get a pointer to the ship that the player controls. This is usually the first
 // ship in the list.
 const Ship *PlayerInfo::Flagship() const
 {
@@ -913,7 +914,7 @@ const Ship *PlayerInfo::Flagship() const
 
 
 
-// Get a pointer to the ship that the player controls. This is always the first
+// Get a pointer to the ship that the player controls. This is usually the first
 // ship in the list.
 Ship *PlayerInfo::Flagship()
 {
@@ -926,14 +927,13 @@ Ship *PlayerInfo::Flagship()
 const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 {
 	if(!flagship)
-	{
 		for(const shared_ptr<Ship> &it : ships)
-			if(!it->IsParked() && it->GetSystem() == system && it->CanBeFlagship())
+			if(!it->IsParked() && it->GetSystem() == system && it->CanBeFlagship()
+					&& (!planet || planet->CanLand(*it)))
 			{
 				flagship = it;
 				break;
 			}
-	}
 
 	static const shared_ptr<Ship> empty;
 	return (flagship && flagship->IsYours()) ? flagship : empty;
@@ -1369,10 +1369,6 @@ void PlayerInfo::Land(UI *ui)
 			++it;
 	}
 
-	// "Unload" all fighters, so they will get recharged, etc.
-	for(const shared_ptr<Ship> &ship : ships)
-		ship->UnloadBays();
-
 	// Ships that are landed with you on the planet should fully recharge
 	// and pool all their cargo together. Those in remote systems restore
 	// what they can without landing.
@@ -1383,10 +1379,39 @@ void PlayerInfo::Land(UI *ui)
 		{
 			if(ship->GetSystem() == system)
 			{
-				ship->Recharge(hasSpaceport);
-				ship->Cargo().TransferAll(cargo);
-				if(!ship->GetPlanet())
-					ship->SetPlanet(planet);
+				if(planet->CanLand(*ship))
+				{
+					ship->Recharge(hasSpaceport);
+					ship->Cargo().TransferAll(cargo);
+					if(!ship->GetPlanet())
+						ship->SetPlanet(planet);
+					// Recharge and unload carried ships.
+					for(const auto &bay : ship->Bays())
+						if(bay.ship)
+						{
+							bay.ship->Recharge(hasSpaceport);
+							bay.ship->Cargo().TransferAll(cargo);
+						}
+					ship->UnloadBays();
+				}
+				// Ships that cannot land with the flagship choose the most suitable planet
+				// in the system.
+				else
+				{
+					const StellarObject *landingObject = AI::FindLandLocation(*ship);
+					if(landingObject)
+					{
+						ship->SetPlanet(landingObject->GetPlanet());
+						ship->Recharge();
+					}
+					else
+					{
+						landingObject = AI::FindLandLocation(*ship, false);
+						if(landingObject)
+							ship->SetPlanet(landingObject->GetPlanet());
+						ship->Recharge(false);
+					}
+				}
 			}
 			else
 				ship->Recharge(false);
