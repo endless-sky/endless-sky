@@ -29,7 +29,7 @@ mission "Pact Supplies Landing (Dirt Belt)"
 	landing
 	invisible
 	minor
-	deadline 1
+	deadline 2
 	to offer
 		not "event: war begins"
 		not "event: chosen sides"
@@ -60,7 +60,7 @@ mission "Pact Supplies Convoy (Dirt Belt)"
 		category "Transport" "Light Freighter" "Heavy Freighter"
 		not planet "New Sahara"
 	to offer
-		has "Pact Supplies 0 (Dirt Belt Landing): offered"
+		has "Pact Supplies 0 (Dirt Belt Landing): active"
 		not "Pact Supplies 0 (Dirt Belt Landing): failed"
 		not "event: war begins"
 		not "event: chosen sides"
@@ -117,7 +117,7 @@ mission "Pact Supplies Escort (Dirt Belt)"
 		category "Interceptor" "Light Warship" "Medium Warship" "Heavy Warship"
 		not planet "New Sahara"
 	to offer
-		has "Pact Supplies 0 (Dirt Belt Landing): offered"
+		has "Pact Supplies 0 (Dirt Belt Landing): active"
 		not "Pact Supplies 0 (Dirt Belt Landing): failed"
 		not "event: war begins"
 		not "event: chosen sides"
