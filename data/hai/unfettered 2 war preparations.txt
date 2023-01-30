@@ -1406,13 +1406,18 @@ mission "Unfettered: Ready For The War"
 		log `Officially joined the Unfettered Militia and received a license to purchase their heavy ships, that is, when they become available in the near future.`
 		"salary: Unfettered" = 5000
 		set "license: True Unfettered"
-		set "global: unfettered human"
-		event "joined the unfettered"
 		clear "unfettered: defeated Si-Ra"
-		#"reputation: Wanderer" <?= -1000
-		# TO BE UNCOMMENTED FOR PR TO BE MERGED!!
 		conversation
-			`He-Yi joins you on your ship after having parked his. "We will notify you once you may be of more help to the war effort. In the meantime, we have increased your salary to 5,000 credits so you can [muster, gather] an even larger fleet. Also, from now on, you will officially have the permission - nay, the obligation - to proudly wear our [flag, colors]. We have informed the Hai of your new colors so that they will [recognize, distinguish] you and not be hostile to you. We cannot say the same for the Wanderers, though, so be careful."`
+			`He-Yi joins you on your ship after having parked his. "We will notify you once you may be of more help to the war effort. In the meantime, we have increased your salary to 5,000 credits so you can [muster, gather] an even larger fleet.`
+			`	"Also, from now on, you will officially have the permission to proudly wear our [flag, colors]. We have informed the Hai so that they will [recognize, distinguish] you and not be hostile to you. We cannot say the same for the Wanderers, though, so be careful. If you want we can delay it until the war truly starts."`
+			choice
+				`	"I'd prefer if we waited, I do not want to be at war with the Wanderers yet."`
+					goto nocolor
+				`	"Screw the consequences, let's paint it purple!"`
+			action
+				event "joined the unfettered"
+			`	"It shall be done."`
+			label nocolor
 			`	He then draws his long sword, which has the same appearance as the keystone pendants popular among his race, and he hands it to you. "You have also deserved the right to have this. It is a proof of our trust toward you and means you will have access to all of our ships. Whenever a warlord is defeated in battle, he has to surrender his sword to the one who vanquished him."`
 			choice
 				`	"I would like to ask a few questions, about your ship."`
@@ -1486,7 +1491,7 @@ mission "Unfettered: Ready For The War"
 			`	"Most of us prefer not to use weapons of [aliens, untrue] because they think it means those are [more refined than, superior to] ours. I just recognize their [advantages, utility] in some scenarios."`
 				goto questions
 			label enough
-			`	"I have answered enough of your questions. Some things should remain a mystery. Knowledge is power, after all."`
+			`	"I have answered enough of your questions. Some things should remain a mystery. Knowledge is power, after all. Prepare yourself for war: bring us Jump Drives, train in challenge battle, and when we will be ready and only then, we will strike."`
 			label clearconditions
 			action
 				clear "unfettered: questions"
@@ -1499,3 +1504,5 @@ mission "Unfettered: Ready For The War"
 event "joined the unfettered"
 	government "Escort"
 		swizzle 4
+	"reputation: Wanderer" <?= -1
+	set "global: unfettered human"

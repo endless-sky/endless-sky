@@ -431,6 +431,7 @@ mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 	on complete
 		log `Scanned an Auxiliary equipped with alien technology and controlled by Alphas for the Unfettered.`
 		payment 300000
+		event "unfettered: analyzed the scans" 15 30
 		conversation
 			`You send your logs as you land and receive a very generous payment of <payment>.`
 			`	Moments later, on your bridge, thinking about how to explain to the Chiefs that this was an Alpha ship, you hear a familiar voice from the coms on your ship. "Oh, you're back! Good!" You are a bit surprised by the interruption, but quickly recognize Mera. "Can I speak to you about your scans? I really am intrigued about that 'Auxiliary', as your scans designated it."`
@@ -466,6 +467,7 @@ mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 			label beforeugo
 			`	"Before you go, you should know that examining these specs will take me some time, so it could be a while until I would employ you again."`
 
+event "unfettered: analyzed the scans"
 
 
 mission "Unfettered: Alphas: Find The Auxiliary"
@@ -482,6 +484,7 @@ mission "Unfettered: Alphas: Find The Auxiliary"
 		not "unfettered: destroyed auxiliary"
 		has "Unfettered: Solifuge 3: Auxiliary Design Logs: done"
 		has "Unfettered: Materials Intercepted: done"
+		has "event: unfettered: analyzed the scans"
 	on offer
 		conversation
 			`As you enter the spaceport, you see the council gathered in a stadium looking similar to the one on Firelode, although it is larger. It seems like you will finally be able to get some answers, if you would like to see them now, that is.`

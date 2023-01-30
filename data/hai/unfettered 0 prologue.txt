@@ -1347,15 +1347,8 @@ outfit "Building Materials"
 	installable -1
 	description "These are simple building materials, meant for the construction of Unfettered houses."
 
-# name of the ship
-phrase "Rested Snake"
-	word
-		"Rested Snake"
-
-# A modified version with small buffs and disabled faster.
 ship "Bactrian" "Bactrian (Cerberus)"
 	add attributes
-		"threshold percentage" .4
 		"outfit space" 17
 		"weapon capacity" 20
 	outfits
@@ -1381,6 +1374,9 @@ ship "Bactrian" "Bactrian (Cerberus)"
 	cargo
 		outfits
 			"Building Materials" 142
+			"Military" 100
+			"Electronics" 100
+			"Food" 188
 
 mission "Unfettered: Materials Intercepted Job Board Notification"
 	minor
@@ -1515,16 +1511,11 @@ mission "Unfettered: Materials Intercepted"
 		dialog "When entering the system you spot small traces of the same kind of cargo Sookootov asked you to bring back. You cannot be far."
 	npc board
 		system "Misam"
-		government "Alpha"
+		government "Cerberus"
 		to spawn
 			has "Unfettered: Cavalry Arrives: active"
-		personality target launching plunders vindictive uninterested
-		fleet
-			commodities "Military" "Electronics" "Metal" "Heavy Metals"
-			cargo 4
-			names "Rested Snake"
-			variant
-				"Bactrian (Cerberus)"
+		personality target launching plunders vindictive uninterested marked
+		ship "Bactrian (Cerberus)" "Rested Snake"
 		conversation
 			action
 				set "unfettered: boarded bactrian"
