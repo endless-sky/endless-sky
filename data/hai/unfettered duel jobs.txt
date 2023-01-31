@@ -537,6 +537,7 @@ ship "Sea Scorpion" "Sea Scorpion (Disruptor Slicer)"
 		`"Bondir" Atomic Steering`
 
 mission "Unfettered: Bring Legendary Combo"
+	minor
 	landing
 	invisible
 	source "Darkcloak"
@@ -554,7 +555,7 @@ mission "Unfettered: Bring Legendary Combo"
 			`	He looks around, maybe searching for a competitor that could hear about this. "I want them. Name your price, whatever it may be, and I shall meet it! Such a weapon combination would do wonders in the raids, and would allow me to not hurt my brethren. Truly, this is for a good cause!"`
 			choice
 				`	"I want a Lightning Bug in exchange."`
-				`	"4 million credits should do."`
+				`	"3 million credits should do."`
 					goto money
 				`	"I want you to escort me in your Sea Scorpion, for 2 months."`
 					goto escort
@@ -576,14 +577,14 @@ mission "Unfettered: Bring Legendary Combo"
 				goto deal
 			label money
 			action
-				payment 4000000
+				payment 3000000
 			`	"If that is what it takes, I shall pay those gladly."`
 				goto deal
 			label escort
 			action
 				set "unfettered: escort for disruptor"
 			`	"In that case I shall do my best to protect you in times of need."`
-				goto escort
+				goto deal
 			label turrets
 			action
 				"unfettered: prototypes exchanged" += 2
@@ -598,7 +599,7 @@ mission "Unfettered: Bring Legendary Combo"
 			label blasters
 			action
 				"unfettered: prototypes exchanged" += 2
-				outfits "Ionic Blaster Prototype" 6
+				outfit "Ionic Blaster Prototype" 6
 			`	"It is agreed, then."`
 			label deal
 			action
@@ -609,7 +610,7 @@ mission "Unfettered: Bring Legendary Combo"
 			label nodeal
 			`	"I understand. Do know, however, that exotic weapons such as this one are likely to get you some attention, and you will often be able to find a buyer in the job board, for a good price."`
 				decline
-	npc
+	npc save
 		government "Hai (Friendly Unfettered)"
 		personality escort timid coward frugal
 		ship "Sea Scorpion (Disruptor Slicer)"
@@ -708,6 +709,7 @@ mission "Unfettered: Bring Particles"
 		outfit "Particle Cannon" -2
 		payment 1000000
 		dialog phrase "unfettered weapon delivery"
+
 
 
 phrase "unfettered challenger"
