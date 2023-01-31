@@ -429,7 +429,7 @@ void ConversationPanel::Exit()
 		// Only show the BoardingPanel for a hostile NPC that is being boarded.
 		// (NPC completion conversations can result from non-boarding events.)
 		// TODO: Is there a better / more robust boarding check than relative position?
-		else if(node != Conversation::ACCEPT && ship->GetGovernment()->IsEnemy()
+		else if((node != Conversation::ACCEPT || player.CaptureOverriden(ship)) && ship->GetGovernment()->IsEnemy()
 				&& !ship->IsDestroyed() && ship->IsDisabled()
 				&& ship->Position().Distance(player.Flagship()->Position()) <= 1.)
 			GetUI()->Push(new BoardingPanel(player, ship));
