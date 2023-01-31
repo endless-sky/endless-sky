@@ -532,7 +532,7 @@ private:
 
 	Personality personality;
 	const Phrase *hail = nullptr;
-	ShipAICache AICache;
+	ShipAICache aiCache;
 
 	// Installed outfits, cargo, etc.:
 	Outfit attributes;
