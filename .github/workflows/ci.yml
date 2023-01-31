@@ -258,3 +258,19 @@ jobs:
       run: pip install regex
     - name: Execute style checker
       run: python ./utils/check_code_style.py
+
+
+  check-content-style:
+    name: Content Style Check
+    needs: changed
+    if: ${{ needs.changed.outputs.data == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+    - name: Install dependencies
+      run: pip install regex
+    - name: Run style checker
+      run: python ./utils/check_content_style.py
