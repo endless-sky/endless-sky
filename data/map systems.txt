@@ -2369,7 +2369,7 @@ system "Ae Ce Q-761"
 	minables copper 8 3.793
 	minables tungsten 17 2.26
 	minables bioroid 4 1.1
-	fleet "Zooroid (Boomerang)" 900
+	fleet "Vyrmeid (Boomerang)" 900
 	object
 		sprite star/a5
 		period 10
@@ -2412,8 +2412,8 @@ system "Ae Il A-3"
 	asteroids "large metal" 1 7.208
 	minables iron 11 4.735
 	minables silver 37 3.069
-	fleet "Zooroid (Plankton)" 1050
-	fleet "Zooroid (Cephalopod)" 400
+	fleet "Vyrmeid (Plankton)" 1050
+	fleet "Vyrmeid (Cephalopod)" 400
 	object
 		sprite star/k-supergiant
 		distance 369.692
@@ -2460,7 +2460,7 @@ system "Ae Il B-11"
 	asteroids "small metal" 10 5.016
 	asteroids "medium metal" 3 3.363
 	asteroids "large metal" 1 5.472
-	fleet "Zooroid (Cephalopod)" 300
+	fleet "Vyrmeid (Cephalopod)" 300
 	object
 		sprite star/m-giant
 		period 10
@@ -2518,7 +2518,7 @@ system "Ae Il F-46"
 	asteroids "small metal" 12 3.452
 	asteroids "large metal" 10 2.972
 	minables lead 17 2.248
-	fleet "Zooroid (Cephalopod)" 500
+	fleet "Vyrmeid (Cephalopod)" 500
 	object
 		sprite star/b-giant
 		distance 247.167
@@ -2659,8 +2659,8 @@ system "Ae Il I-99"
 	asteroids "large metal" 46 2.819
 	minables titanium 1 4.724
 	minables copper 5 5.306
-	fleet "Zooroid (Plankton)" 900
-	fleet "Zooroid (Cephalopod)" 600
+	fleet "Vyrmeid (Plankton)" 900
+	fleet "Vyrmeid (Cephalopod)" 600
 	object
 		sprite star/g0-old
 		period 10
@@ -16645,7 +16645,7 @@ system "Is Ce B-139"
 	asteroids "small metal" 8 6.2
 	asteroids "medium metal" 5 3.41
 	asteroids "large metal" 2 4.402
-	fleet "Zooroid (Plankton)" 300
+	fleet "Vyrmeid (Plankton)" 300
 	fleet "Astral" 50000
 	object
 		sprite star/g8
@@ -16669,7 +16669,7 @@ system "Is Ce F-422"
 	asteroids "medium rock" 4 2.145
 	asteroids "large rock" 9 2.262
 	asteroids "large metal" 1 3.783
-	fleet "Zooroid (Plankton)" 400
+	fleet "Vyrmeid (Plankton)" 400
 	fleet "Astral" 50000
 	object
 		sprite star/a5
@@ -16743,7 +16743,7 @@ system "Is Ce G-460"
 	asteroids "large metal" 8 4.594
 	minables silicon 6 10.214
 	minables bioroid 2 2.4
-	fleet "Zooroid (Plankton)" 700
+	fleet "Vyrmeid (Plankton)" 700
 	fleet "Astral" 50000
 	object
 		sprite star/k-dwarf
@@ -16794,7 +16794,7 @@ system "Is Ce J-591"
 	asteroids "medium metal" 67 2.912
 	asteroids "large metal" 3 1.664
 	minables silicon 8 3.635
-	fleet "Zooroid (Plankton)" 450
+	fleet "Vyrmeid (Plankton)" 450
 	fleet "Astral" 50000
 	object
 		sprite star/f-giant
@@ -16861,7 +16861,7 @@ system "Is Il T-127"
 	asteroids "large rock" 3 2.61
 	asteroids "large metal" 1 2.54
 	minables titanium 1 5.05
-	fleet "Zooroid (Plankton)" 350
+	fleet "Vyrmeid (Plankton)" 350
 	object
 		sprite star/k0-old
 		distance 51.326
@@ -16967,8 +16967,8 @@ system "Is Il V-263"
 	asteroids "large metal" 1 4.557
 	minables iron 4 3.442
 	minables titanium 3 5.731
-	fleet "Zooroid (Plankton)" 500
-	fleet "Zooroid (Boomerang)" 700
+	fleet "Vyrmeid (Plankton)" 500
+	fleet "Vyrmeid (Boomerang)" 700
 	fleet "Astral" 50000
 	object
 		sprite star/b-supergiant
@@ -17015,8 +17015,8 @@ system "Is Il X-626"
 	haze _menu/haze-67
 	link "Is Il T-127"
 	asteroids "large metal" 1 3.402
-	fleet "Zooroid (Plankton)" 500
-	fleet "Zooroid (Boomerang)" 800
+	fleet "Vyrmeid (Plankton)" 500
+	fleet "Vyrmeid (Boomerang)" 800
 	fleet "Astral" 50000
 	object
 		sprite star/a8
@@ -17058,8 +17058,8 @@ system "Is Il Z-59"
 	asteroids "large metal" 15 4.784
 	minables aluminum 9 5.165
 	minables iron 14 4.93
-	fleet "Zooroid (Plankton)" 500
-	fleet "Zooroid (Cephalopod)" 600
+	fleet "Vyrmeid (Plankton)" 500
+	fleet "Vyrmeid (Cephalopod)" 600
 	fleet "Astral" 50000
 	object
 		sprite star/g3
@@ -17116,7 +17116,7 @@ system "Is Il Z-814"
 	minables lead 28 4.115
 	minables iron 35 5.171
 	minables gold 47 3.479
-	fleet "Zooroid (Boomerang)" 200
+	fleet "Vyrmeid (Boomerang)" 200
 	object
 		sprite star/wr
 		period 40
