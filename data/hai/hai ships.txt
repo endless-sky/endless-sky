@@ -544,10 +544,9 @@ ship "Lightning Bug" "Lightning Bug (Unfettered Shipyards)"
 		"Pulse Cannon"
 		"Pulse Turret" 2
 		"Hai Corundum Regenerator"
-		"Hai Octopus Jammer"
 		"Hai Williwaw Cooling"
 		"Quantum Keystone"
-		"Value Detector"
+		"Value Detector" 2
 		"Pebble Core"
 		"Sand Cell"
 		"Hai Gorge Batteries"

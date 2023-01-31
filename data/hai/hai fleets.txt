@@ -673,7 +673,7 @@ fleet "Unfettered Logistics"
 		"Aphid (Unfettered)" 4
 		"Sea Scorpion (Tracker)"
 	variant 2
-		"Aphid""Aphid (Unfettered)" 4
+		"Aphid (Unfettered)" 4
 		"Sea Scorpion (Ion)"
 	variant
 		"Aphid (Unfettered)" 4
