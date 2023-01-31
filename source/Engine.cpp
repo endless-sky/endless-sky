@@ -907,27 +907,40 @@ void Engine::Draw() const
 	draw[drawTickTock].Draw();
 	batchDraw[drawTickTock].Draw();
 
-	for(const auto &it : statuses)
+	if(!statuses.empty())
 	{
-		static const Color color[8] = {
-			*colors.Get("overlay friendly shields"),
-			*colors.Get("overlay hostile shields"),
-			*colors.Get("overlay outfit scan"),
-			*colors.Get("overlay friendly hull"),
-			*colors.Get("overlay hostile hull"),
-			*colors.Get("overlay cargo scan"),
-			*colors.Get("overlay friendly disabled"),
-			*colors.Get("overlay hostile disabled")
-		};
-		Point pos = it.position * zoom;
-		double radius = it.radius * zoom;
-		if(it.outer > 0.)
-			RingShader::Draw(pos, radius + 3., 1.5f, it.outer, color[it.type], 0.f, it.angle);
-		double dashes = (it.type >= 2) ? 0. : 20. * min(1., zoom);
-		if(it.inner > 0.)
-			RingShader::Draw(pos, radius, 1.5f, it.inner, color[3 + it.type], dashes, it.angle);
-		if(it.disabled > 0.)
-			RingShader::Draw(pos, radius, 1.5f, it.disabled, color[6 + it.type], dashes, it.angle);
+		const double zoomFactor = min(1., zoom);
+		double baseDashes = 20. * zoomFactor;
+		// For zoom values between .175 and .2,
+		// gradually scale the number of dashes so we go from
+		// 4 at .2 to 1 at .175.
+		if(zoom < .2 && zoom > .175)
+			baseDashes *= (1. - (.2 - zoom) * 2. * (20. - 1. / .175));
+		// No dashes at zooms of .175 or lower.
+		else if(zoom <= .175)
+			baseDashes = 0.;
+		for(const auto &it : statuses)
+		{
+			static const Color color[8] = {
+				*colors.Get("overlay friendly shields"),
+				*colors.Get("overlay hostile shields"),
+				*colors.Get("overlay outfit scan"),
+				*colors.Get("overlay friendly hull"),
+				*colors.Get("overlay hostile hull"),
+				*colors.Get("overlay cargo scan"),
+				*colors.Get("overlay friendly disabled"),
+				*colors.Get("overlay hostile disabled")
+			};
+			Point pos = it.position * zoom;
+			double radius = it.radius * zoom;
+			if(it.outer > 0.)
+				RingShader::Draw(pos, radius + 3., 1.5f, it.outer, color[it.type], 0.f, it.angle);
+			double dashes = (it.type >= 2) ? 0. : baseDashes;
+			if(it.inner > 0.)
+				RingShader::Draw(pos, radius, 1.5f, it.inner, color[3 + it.type], dashes, it.angle);
+			if(it.disabled > 0.)
+				RingShader::Draw(pos, radius, 1.5f, it.disabled, color[6 + it.type], dashes, it.angle);
+		}
 	}
 
 	// Draw labels on missiles
