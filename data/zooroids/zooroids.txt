@@ -50,7 +50,7 @@ ship "Zooroid"
 	"gun" 0 -3
 	"leak" "blood" 1 2
 	"final explode" "blood"
-	description `These are tiny space creatures that feed on solar energy, storing it into two receptors found at the front of their bodies. They are extremely docile, and are found in large groups, almost never seen alone.`
+	description `These are tiny space creatures that feed on solar energy, storing it into two receptors found at the front of their bodies. They are extremely docile and are found in large groups, almost never seen alone.`
 
 outfit "Plankton Mouth"
 	category "Guns"
