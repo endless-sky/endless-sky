@@ -2331,8 +2331,9 @@ system "Ae Ce L-332"
 	haze _menu/haze-67
 	link "Is Ce B-139"
 	asteroids "large metal" 1 2.1
-	minables bioroid 3 1.7
-	fleet "Astral" 50000
+	asteroids "medium rock" 11 3.6
+	minables "unknown" 1 1.7
+	fleet "Astral" 45000
 	object
 		sprite star/f-dwarf
 		period 10
@@ -2368,7 +2369,7 @@ system "Ae Ce Q-761"
 	minables aluminum 8 3.506
 	minables copper 8 3.793
 	minables tungsten 17 2.26
-	minables bioroid 4 1.1
+	minables "unknown" 4 1.1
 	fleet "Vyrmeid (Boomerang)" 900
 	object
 		sprite star/a5
@@ -2704,7 +2705,7 @@ system "Ae Il M-77"
 	asteroids "small metal" 1 6.56
 	asteroids "medium metal" 1 5.052
 	asteroids "large metal" 2 4.524
-	minables bioroid 1 1.9
+	minables "unknown" 1 1.9
 	object
 		sprite star/b-supergiant
 		period 10
@@ -16741,7 +16742,7 @@ system "Is Ce G-460"
 	asteroids "medium metal" 19 7.173
 	asteroids "large metal" 8 4.594
 	minables silicon 6 10.214
-	minables bioroid 2 2.4
+	minables "unknown" 2 2.4
 	fleet "Vyrmeid (Plankton)" 700
 	fleet "Astral" 50000
 	object
