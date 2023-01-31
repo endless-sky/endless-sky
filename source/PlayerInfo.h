@@ -211,6 +211,9 @@ public:
 	// Check to see if there is any mission to offer right now.
 	Mission *MissionToOffer(Mission::Location location);
 	Mission *BoardingMission(const std::shared_ptr<Ship> &ship);
+	// Return true if the given ship is capturable only because it's the source
+	// of a boarding mission which allows it to be.
+	bool CaptureOverriden(const std::shared_ptr<Ship> &ship) const;
 	void ClearActiveBoardingMission();
 	// If one of your missions cannot be offered because you do not have enough
 	// space for it, and it specifies a message to be shown in that situation,
