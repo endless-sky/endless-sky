@@ -677,6 +677,7 @@ mission "Unfettered: Regrets"
 		set "unfettered: outcast"
 		event "unfettered: challengers leave"
 	on enter "Ehma Ti" "Wah Yoot" "Hi Yahr"
+		fail
 		dialog
 			`The instant you enter the system, you receive a priority message from the local authorities. "<last>, because of your recent involvements with the aliens up north, we have decided to stop offering you important missions."`
 			`	Since this is a recorded message you cannot respond, but even if you could they would probably just ignore you.`
@@ -687,7 +688,11 @@ mission "Unfettered: Betrayed"
 	to offer
 		has "salary: Unfettered"
 		has "Wanderers: Defend Vara Ke'sok"
-	on enter
+	on enter "Hi Yahr" "Wah Yoot" "Ehma Ti"
+		fail
+	to fail
+		has "midas: tracker relay"
+	on fail
 		clear "salary: Unfettered"
 		set "unfettered: outcast"
 		event "unfettered: challengers leave"

@@ -571,6 +571,7 @@ mission "Midas: Feed Them To The Wolves"
 	destination "Warfeed"
 	to offer
 		has "Unfettered: Escort Hai Fleet: active"
+		has "midas: tracker relay"
 	on offer
 		dialog `You are alone in your quarters, waiting for the security detachment of the Hai admiral to arrive, when you hear a mysterious voice. "She of the Void requests that you bring those ships to <waypoints>, without delay. Do so and you will be richly rewarded. Do not worry about the supplies, we will bring them to the Unfettered, we are only acting in their best interest, after all. Whatever you decide, you do not want to speak of us to them." Do you accept?`
 	waypoint "Waypoint"
@@ -593,11 +594,15 @@ mission "Midas: Feed Them To The Wolves"
 		system "Waypoint"
 		personality entering plunders staying
 		fleet "Small Northern Pirates" 10
+	on abort
+		"reputation: Mercenaries" <?= -1000
+	to fail
+		has "Unfettered: Escort Hai Fleet: done"
+	on fail
+		dialog `You hear a voice once alone in your quarters, "A shame captain. Truly a shame, but we will hold no grudge over it."`
 	to complete
 		has "Unfettered: Escort Hai Fleet: failed"
 		not "Unfettered: Escort Hai Fleet: aborted"
-	on abort
-		"reputation: Mercenaries" <?= -1000
 	on complete
 		"reputation: Mercenaries" <?= -1000
 		clear "unfettered: stopped on Greenbloom"
@@ -686,8 +691,9 @@ mission "Unfettered: Answers To Your Questions"
 	invisible
 	to offer
 		has "Unfettered: Solifuge 2: Auxiliary Design: done"
+		has "midas: tracker relay"
 		not "midas: wronged"
-	deadline 15
+	deadline 10
 	on enter "Misam"
 		fail
 	to fail
@@ -701,6 +707,8 @@ mission "Unfettered: Answers To Your Questions"
 			`	"Congratulation, captain. It seemed that you did not need our help to find these Alphas."`
 				to display
 					has "unfettered: it's the Alphas!"
+	to complete
+		never
 
 
 

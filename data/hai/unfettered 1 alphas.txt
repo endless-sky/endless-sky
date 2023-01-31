@@ -21,7 +21,7 @@ mission "Unfettered: Attracted Attention"
 		has "Unfettered: Prove Your Strength 2: active"
 		has "outfit (installed): Jump Drive"
 	on enter "Almaaz"
-		dialog `The Unfettered "pirate" spits a a string of old-timey nautical curses, but one word, which you can barely hear him mutter, stands out: "Cerberus." He then comes closer to address you directly, "There be even more of these scurvy bilge rats than I expected. I warned ye about coming here with a jump drive!"`
+		dialog `The Unfettered "pirate" spits a string of old-timey nautical curses, but one word, which you can barely hear him mutter, stands out: "Cerberus." He then comes closer to address you directly, "There be even more of these scurvy bilge rats than I expected. I warned ye about coming here with a jump drive!"`
 	npc evade
 		government "Cerberus"
 		system "Almaaz"
@@ -238,7 +238,7 @@ mission "Unfettered: Alpha Leaving With Supplies"
 # SPOILER: this mission is what sets the Alphas against you, because they can't afford to let you know they operate here, thinking you could be Navy.
 mission "Unfettered: Solifuge 2: Auxiliary Design"
 	name `Scan the human ship`
-	description `Scan the outfits of the human ship in <waypoint> by <date>, and then come back to <origin> with the logs when you can.`
+	description `Scan the outfits of the human ship in <waypoints> by <date>, and then come back to <origin> with the logs when you can.`
 	source "Firelode"
 	destination "Warfeed"
 	deadline 4
@@ -350,19 +350,21 @@ mission "Unfettered: I Know The Way"
 		set "found alpha base"
 
 # if you betrayed Midas, you will suffer to find answers
-mission "Unfettered: Questions Best Left Unanswered"
+mission "Unfettered: Question Best Left Unanswered"
 	landing
-	invisible
+	name "Discover who were the 'unfettered humans'"
+	description `The Auxiliary was manned by 'unfettered humans'. Find out what this means, pirates may have the answers.`
+	destination "Darkcloak"
 	to offer
 		has "Unfettered: Solifuge 2: Auxiliary Design: done"
 	on enter "Almaaz" "Arneb" "Alninam"
 		dialog "As you enter the system it occurs to you the nearby pirates may have information regarding that Auxiliary."
 	on enter "Alcyone" "Misam"
 		dialog "Entering the system you recall that you last saw Shadow at Misam, they probably operate there or around it. They may know something about that Auxiliary."
-	to fail
-		has "unfettered: it's the Alphas!"
+	to complete
+		has "unfettered: it's the Alphas"
 
-mission "Unfettered: No Answers Available"
+mission "Unfettered: Looking For Answers"
 	landing
 	invisible
 	to offer
@@ -421,8 +423,8 @@ mission "Unfettered: No Answers Available"
 # the mission is divided in two so that you have time to bring the logs back but not to scan in the first place.
 mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 	landing
-	name `Investigate the Auxiliary`
-	description `The Auxiliary was manned by 'unfettered humans'. Find out what this means, one way or another. Once you are done, return to <destination> to get your reward for the scans.`
+	name `Auxiliary Logs`
+	description `Return to <destination> to get your reward for the scans.`
 	source "Warfeed"
 	destination "Firelode"
 	to offer
@@ -431,15 +433,13 @@ mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
-	to complete
-		has "unfettered: it's the Alphas!"
 	on complete
-		log `Scanned an Auxiliary equipped with alien technology and controlled by Alphas for the Unfettered.`
+		log `Scanned an Auxiliary equipped with alien technology and controlled by 'unfettered humans' for the Unfettered.`
 		payment 300000
 		event "unfettered: analyzed the scans" 15 30
 		conversation
 			`You send your logs as you land and receive a very generous payment of <payment>.`
-			`	Moments later, on your bridge, thinking about how to explain to the Chiefs that this was an Alpha ship, you hear a familiar voice from the coms on your ship. "Oh, you're back! Good!" You are a bit surprised by the interruption, but quickly recognize Mera. "Can I speak to you about your scans? I really am intrigued about that 'Auxiliary', as your scans designated it."`
+			`	Moments later, on your bridge, you hear a familiar voice from the coms. "Oh, you're back! Good!" You are a bit surprised by the interruption, but quickly recognize Mera. "Can I speak to you about your scans? I really am intrigued about that 'Auxiliary'."`
 			choice
 				`	"I would prefer not to explain that to you."`
 					decline
@@ -471,8 +471,16 @@ mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 			`	"Indeed, so have I, and for once the stories were not exaggerated compared to the facts! I've heard stories ever since the Carrier was first seen by our people. We compared it to a space station."`
 			label beforeugo
 			`	"Before you go, you should know that examining these specs will take me some time, so it could be a while until I would employ you again."`
+			choice
+				`	(Ask her about the 'unfettered humans'.)`
+					to display
+						not "unfettered: it's the Alphas!"
+				`	(I'll find it out on my own.)`
+					decline
+			`	"We use 'unfettered' to describe members of a specie that fight for what they believe in, instead of, for instance, doing their day to day routine. That includes the anarchists organizations you refer to as pirates, but not only." She is clearly unwilling to tell you more than this.`
 
 event "unfettered: analyzed the scans"
+
 
 
 mission "Unfettered: Alphas: Find The Auxiliary"
@@ -487,9 +495,9 @@ mission "Unfettered: Alphas: Find The Auxiliary"
 			has "language: Wanderer"
 	to offer
 		not "unfettered: destroyed auxiliary"
-		has "Unfettered: Solifuge 3: Auxiliary Design Logs: done"
 		has "Unfettered: Materials Intercepted: done"
 		has "event: unfettered: analyzed the scans"
+		has "unfettered: it's the Alphas!"
 	on offer
 		conversation
 			`As you enter the spaceport, you see the council gathered in a stadium looking similar to the one on Firelode, although it is larger. It seems like you will finally be able to get some answers, if you would like to see them now, that is.`
