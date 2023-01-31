@@ -2143,6 +2143,8 @@ void Engine::HandleMouseInput(Command &activeCommands)
 		isMouseTurningEnabled = !isMouseTurningEnabled;
 		Preferences::Set("alt-mouse turning", isMouseTurningEnabled);
 	}
+	if (!isMouseTurningEnabled)
+		return;
 	bool rightMouseButtonHeld = false;
 	int mousePosX;
 	int mousePosY;
