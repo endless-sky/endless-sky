@@ -3776,11 +3776,18 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	{
 		Angle shipAngle = ship.Facing();
 
-		double angDiff = player.MouseAngle().Degrees() - shipAngle.Degrees();
-		if(abs(angDiff) > 1)
-			command.SetTurn((angDiff / abs(angDiff)) * pow(-1, (floor(abs(angDiff) / 180))));
+		double angDiff = (player.MouseAngle() - shipAngle).Degrees();
+		if(angDiff)
+		{
+			double scale = 1.;
+			double angDiffMag = abs(angDiff);
+			if(angDiffMag < ship.TurnRate())
+				scale = angDiffMag / ship.TurnRate();
+			command.SetTurn(scale * (angDiff > 0. ? 1. : -1.));
+			//command.SetTurn(scale * (angDiff > 0. ? 1. : -1.) * pow(-1, (floor(angDiffMag / 180))));
+		}
 		else
-			command.SetTurn(0);
+			command.SetTurn(0.);
 	}
 
 	if(activeCommands)
