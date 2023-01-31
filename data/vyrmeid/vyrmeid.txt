@@ -159,7 +159,7 @@ ship "Vyrmeid" "Vyrmeid (C)"
 			"hit force" 4000
 			"piercing" 0.1
 	explode "flamethrower die" 1
-	"final explode" "fission explosion" 
+	"final explode" "fission explosion"
 	description `This species of space life is found around hotter stars and feeds on solar energy, storing it in four organs that give off the appearance of eyes. Due to all of the internal energy and pressure, these creatures explode violently upon death, which may surprise aggressors.`
 
 effect "fission explosion"
@@ -198,7 +198,7 @@ ship "Astral Cetacean"
 		"engine capacity" 0
 
 		"hull repair rate" 3
-		"ramscoop" 5 
+		"ramscoop" 5
 		"energy capacity" 2000
 		"energy generation" 160
 
@@ -229,7 +229,7 @@ ship "Astral Cetacean"
 	gun 0 -210
 	leak "blood" 60 60
 	explode "blood" 160
-	"final explode" "blood" 
+	"final explode" "blood"
 	description `Space whale.`
 	
 outfit "Astral Mouth"

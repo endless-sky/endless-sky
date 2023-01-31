@@ -582,7 +582,7 @@ government "Indigenous Lifeform"
 		atrocity 0
 
 government "Indigenous Lifeform (Astral)"
-	# This gov is specifically for Astral Cetaceans so they "eat" over indigenous lifeforms.
+	# This gov is specifically for Astral Cetaceans so they "eat" other indigenous lifeforms.
 	# Nothing you do permanently angers indigenous creatures, because they are
 	# not sentient and do not remember you as an individual.
 	"display name" "Indigenous Lifeform"
