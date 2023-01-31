@@ -783,7 +783,7 @@ ship "Ursa Polaris"
 		"hull repair rate" 7
 		"energy generation" 200
 		"outfit scan power" 186
-		"outfit scan speed" 15
+		"outfit scan efficiency" 15
 		"tactical scan power" 99
 		"asteroid scan power" 69
 		"cargo space" 1408
@@ -1761,9 +1761,9 @@ ship "Modified Ladybug"
 		# Features from original Ladybug:
 		"ramscoop" 0.5
 		"cargo scan power" 5
-		"cargo scan speed" 16
+		"cargo scan efficiency" 16
 		"outfit scan power" 17
-		"outfit scan speed" 15
+		"outfit scan efficiency" 15
 		"tactical scan power" 25
 		"atmosphere scan" 100
 		"asteroid scan power" 30

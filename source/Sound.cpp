@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <AL/al.h>
 
+#include <cstdint>
 #include <cstdio>
 #include <vector>
 
