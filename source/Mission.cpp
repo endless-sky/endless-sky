@@ -1232,7 +1232,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	for(const LocationFilter &filter : stopoverFilters)
 	{
 		// Unlike destinations, we can allow stopovers on planets that don't have a spaceport.
-		const Planet *planet = filter.PickPlanet(sourceSystem, &player, !clearance.empty());
+		const Planet *planet = filter.PickPlanet(sourceSystem, &player, !clearance.empty(), false);
 		if(!planet)
 			return result;
 		result.stopovers.insert(planet);
