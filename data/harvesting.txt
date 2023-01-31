@@ -385,10 +385,11 @@ outfit "Void Orchid"
 
 # Acheron Space-life Asteroids
 
-minable "bioroid"
+minable "bio"
 	sprite asteroid/bioroid/spin
 	hull 1600
 	"random hull" 810
-	explode smoke 20
+	explode smoke 10
 	explode bolide 20
+	explode blood 10
 	explode "final explosion medium"
