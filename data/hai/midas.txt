@@ -26,6 +26,8 @@ outfit "Gold Bars"
 ship "Sea Scorpion" "Si-Ra' Scorpion"
 	add attributes
 		"weapon capacity" 4
+		"cargo space" -30
+		"outfit space" 23
 	outfits
 		"Ionic Blaster Prototype" 4
 		"Ionic Turret Prototype" 2
@@ -33,8 +35,8 @@ ship "Sea Scorpion" "Si-Ra' Scorpion"
 		"Hai Diamond Regenerator"
 		"Hai Octopus Jammer"
 		"Small Heat Shunt"
-		Hyperdrive
-		"Outfits Expansion"
+		# relic from the old Ka'het raids
+		"Ka'het Support Cooling"
 		"Systems Core (Small)"
 
 		"Small Biochemical Cell"

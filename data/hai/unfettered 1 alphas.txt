@@ -110,8 +110,8 @@ ship "Auxiliary (Alpha)"
 	outfits
 		"Hai Tracker Pod" 2
 		"Hai Tracker" 112
-		"Korath Disruptor"
-		"Korath Slicer Turret"
+		"Shield Disruptor Turret"
+		"Husk-Slice Turret"
 		"Bullfrog Anti-Missile" 2
 
 		"Double Plasma Core"
@@ -132,8 +132,8 @@ ship "Auxiliary (Alpha)"
 	gun -12 -180 "Hai Tracker Pod"
 	gun 12 -180 "Hai Tracker Pod"
 	turret 0 -72 "Bullfrog Anti-Missile"
-	turret 0 -21 "Korath Disruptor"
-	turret 0 31 "Korath Slicer Turret"
+	turret 0 -21 "Shield Disruptor Turret"
+	turret 0 31 "Husk-Slice Turret"
 	turret 0 83 "Bullfrog Anti-Missile"
 	bay "Fighter" 0 -72
 	bay "Fighter" 0 -20
@@ -180,7 +180,7 @@ mission "Unfettered: Alpha Bringing Supplies"
 			and
 				not "unfettered: saw auxiliary"
 				random < 25
-			random < 5
+			random < 8
 	on offer
 		set "unfettered: saw auxiliary"
 	on enter
@@ -216,7 +216,7 @@ mission "Unfettered: Alpha Leaving With Supplies"
 			and
 				not "unfettered: saw auxiliary"
 				random < 25
-			random < 5
+			random < 8
 	on offer
 		set "unfettered: saw auxiliary"
 	on enter "Hi Yahr"

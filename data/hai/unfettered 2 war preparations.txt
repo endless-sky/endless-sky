@@ -1219,22 +1219,23 @@ mission "Unfettered: Special Cargo 2"
 ship "Modified Shield Beetle" "Si-Ra' Beetle"
 	add attributes
 		"shields" -2000
+		"hull" 500
 		"heat dissipation" .05
+		"cargo space" -20
+		"outfit space" 15
 	outfits
 		"Tripulse Shredder" 8
 
 		"Hai Octopus Jammer"
 		"Large Heat Shunt"
-		"Hai Williwaw Cooling" 4
-		"Outfits Expansion"
+		"Hai Zephyr Cooling" 3
 		Hyperdrive
-		"Quantum Keystone"
+		"Quantum Keystone" 2
 		"Hai Diamond Regenerator"
 		"Systems Core (Medium)"
 
 		"Boulder Reactor"
 		"Geode Reactor"
-		"Hai Chasm Batteries" 2
 		"Hai Ravine Batteries"
 
 		"Pulse Rifle" 77

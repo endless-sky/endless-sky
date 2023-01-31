@@ -805,7 +805,7 @@ mission "Unfettered: Prove Your Strength"
 				goto lesson
 			label provoke
 			action
-				"offended Si-Ra" ++
+				"unfettered: offended Si-Ra" ++
 			`	"So the monkey can speak? Let us see if it can fight as well," he says with a provocative tone.`
 			label lesson
 			`	Time for him to learn a lesson. The thought that you may be in over your head briefly crosses your mind, but you brush it aside.`
@@ -821,7 +821,7 @@ mission "Unfettered: Prove Your Strength"
 			`	As you move away you hear laughter, but nobody tries to stop you. You have just shown to the Unfettered how much of a coward you are, and will probably never be offered any missions from them anymore.`
 				decline
 			label rules
-			`	"I guess it only be fair that ye know... Ye're supposed to bring only yer flagship, but if ye admit it be too weak, then more ships can be brought, so long as it still be a fair battle. Do not expect anyone to be fighting ye for honor if ye bring an armada. The challenge lasts until one of our ships is scuttled or one of us agrees to walk the plank. Ye can always stall the call to battle, if ye were to offer a symbolic bribe of 1000 credits, offered in space before the battle begins. The challenge must eventually be answered though, no matter how long or often ye want to delay it. Finally, it is right of the victor to plunder the ashamed, but absolutely not that ye try to capture the ship. So, be ye ready to face yer doom?"`
+			`	"I guess it only be fair that ye know... Ye're supposed to bring only yer flagship, but if ye admit it be too weak, then more ships can be brought, so long as it still be a fair battle. Do not expect anyone to be fighting ye for honor if ye bring an armada. The challenge lasts until one of our ships is scuttled or one of us agrees to walk the plank. Ye can always stall the call to battle, if ye were to offer a symbolic bribe of 1000 credits, offered in space before the battle begins, to demand it be fought another day. After ye did that, ye must wait a full day, or 'till be considered an offense, and all nearby ships will fire at you! The challenge must eventually be answered though, no matter how long or often ye want to delay it. Finally, it is right of the victor to plunder the ashamed, but absolutely not that ye try to capture the ship. So, be ye ready to face yer doom?"`
 			choice
 				`	"Let me show you my worth in battle. Right now."`
 					goto accept
@@ -940,7 +940,7 @@ mission "Unfettered: Prove Your Strength 2"
 					goto job
 			label insult
 			action
-				"offended Si-Ra" ++
+				"unfettered: offended Si-Ra" ++
 			`	He does not seem to react to the insult. He did call you monkey a few times before, so it's only fair for you to return the courtesy.`
 			label job
 			`	"We be going to collect a few jump drives! Normally ye would not be able to get such a job, since ye have not earned much among us still, but I have the connection to get it for ye. Ye see, officially this be me mission, and a very lucrative one, at that! On top of that, should we succeed, next time ye may be entrusted with such missions on your own, but don't ye be expecting near the same booty for yerself."`
@@ -954,7 +954,7 @@ mission "Unfettered: Prove Your Strength 2"
 				`	"What will my cut be?"`
 					goto cut
 			action
-				"offended Si-Ra" ++
+				"unfettered: offended Si-Ra" ++
 			`	"Jump drives be a fine spot of loot amongst me people. I would not risk one by traveling through hostile space. Ye've had one yerself, so ye should know about the scurvy dogs to the south who give no quarter. The lily-livered scallywags to the north would like to see me walk the plank as well... A jump drive would be of no special help to us on this voyage." He seems disappointed by you having to ask such an obvious thing.`
 			choice
 				`	"Let's go then!"`

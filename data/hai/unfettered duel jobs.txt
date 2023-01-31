@@ -358,7 +358,7 @@ conversation "interrupted duel"
 		decline
 	label toomuch
 	action
-		"reputation: Hai (Unfettered)" <?= -1000
+		"reputation: Hai (Unfettered)" <?= -1
 	`The Unfettered authorities of the nearby planet hail you, "You have been warned. We have been patient enough with you, monkey! Now you shall pay."`
 	# one can just sell them a JD to get forgiven.
 
@@ -375,7 +375,8 @@ mission "Death To The Kavakai"
 	on offer
 		"unfettered revenge fleet"--
 	on enter
-		dialog `An Unfettered fleet launches with you, and you are hailed by one of the ships. "Not only do you dare interrupt a duel, but you dare land on our worlds? We shall teach you respect, Kavakai!"`
+		"reputation: Hai (Unfettered)" <?= -1000
+		dialog `An Unfettered fleet launches with you, and you are hailed by one of the ships. "Not only do you dare to disrespect our traditions, but you dare land on our worlds? We shall teach you respect, Kavakai!"`
 	npc kill
 		government "Hai (Unfettered)"
 		# marked so Hai don't attack them.
@@ -485,66 +486,191 @@ ship "Stag Beetle" "Stag Beetle (Flamer)"
 
 
 
+phrase "unfettered weapon delivery"
+	word
+		`The Unfettered captain is delighted that you were able to give him <weapons>`
+		"You can see an evil grin draw on the face of the Unfettered captain as they see the <weapons>"
+		"You bring <weapons> to the captain, and they seem really happy"
+		"It does not take long to find the captain, they quickly greet you and check you have <weapons> as planned,"
+		"You quickly find the captain impatiently waiting for <weapons>"
+		"The Unfettered captain greets you with a big smile on their face as you present <weapons> to them,"
+	word
+		" "
+	word
+		"and they give you <payment>."
+		"and they happily give you <payment>."
+		`"You well deserve this <payment>," they say,`
+		`"Here are your <payment>," they say,`
+	word
+		" "
+	word
+		`"With these weapons and my ship's speed, nobody will be able to beat me!"`
+		`"I love exotic weapons! Please bring me more if you can, I would reward it highly." They say, before heading hastily to their ship, probably eager to test these weapons.`
+		`"Now this is a proper weapon! It will be useful against the Wanderers. Our legends speak of this weapon, I shall see if they are as useful as some say."`
+		`"I shall put them to good use! These seem like they would pair perfectly with our ion weapons." He says, with a grin on his face.`
+		`"Now this will simply be perfect for my next raiding!"`
+		`"I truly hope that with this there will be less unfortunate casualties in my next raiding."`
+		
+
+
+ship "Sea Scorpion" "Sea Scorpion (Disruptor Slicer)"
+	add attributes
+		"fuel capacity" 300
+		"cargo space" -5
+		"engine capacity" -24
+	outfits
+		"Hai Tracker" 420
+		"Hai Tracker Pod" 4
+		"Tracker Storage Pod" 7
+		"Shield Disruptor Turret"
+		"Husk-Slice Turret"
+		"Hai Diamond Regenerator"
+		"Hai Octopus Jammer" 2
+		"Outfits Expansion" 2
+		Hyperdrive
+		"Value Detector"
+		"Hai Williwaw Cooling" 2
+		"Boulder Reactor"
+		"Hai Fissure Batteries"
+		"Pulse Rifle" 20
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+
+mission "Unfettered: Bring Legendary Combo"
+	landing
+	invisible
+	source
+		attributes "unfettered"
+	deadline 60
+	substitutions
+		<weapons> "Shield Disruptor and Husk-Slice Turrets"
+	to offer
+		has "outfit (flagship installed): Shield Disruptor Turret"
+		has "outfit (flagship installed): Husk-Slice Turret"
+		has "unfettered challenger defeated"
+	on offer
+		clear "unfettered challenger defeated"
+		conversation
+			`As you land, the captain you just defeated comes to find you, and quietly speaks, "How did you acquire such weapons? We heard rumors of it, but were not sure what to believe. It seems that the stories are true, then; there are indeed weapons capable of disrupting any shields... And what a brilliant idea to combine those with weapons capable of quickly cutting trough hull."`
+			`	He looks around, maybe searching for a competitor that could hear about this. "I want them. Name your price, whatever it may be, and I shall meet it! Such a weapon combination would do wonders in the raids, and would allow me to not hurt my brethren. Truly, this is for a good cause!"`
+			choice
+				`	"I want a Lightning Bug in exchange."`
+				`	"5 million credits should do."`
+					goto money
+				`	"I want you to escort me in your Sea Scorpion, for 2 months."`
+					goto escort
+				`	"My weapon is not for sale."`
+					goto nodeal
+			action
+				give ship "Lightning Bug (Pulse)"
+			`	"And you shall have it!"`
+				goto deal
+			label money
+			action
+				payment 5000000
+			`	"If that is what it takes, I shall pay those gladly."`
+				goto deal
+			label escort
+			action
+				set "unfettered: escort for disruptor"
+			`	"In that case I shall do my best to protect you in times of need."`
+			label deal
+			action
+				outfit "Shield Disruptor Turret" -1
+				outfit "Husk-Slice Turret" -1
+			`${unfettered weapon delivery}`
+				accept
+			label nodeal
+			`"I understand. Do know, however, that exotic weapons such as this one are likely to get you some attention, and you will often be able to find a buyer in the job board, for a good price."`
+				decline
+	npc
+		government "Hai (Friendly Unfettered)"
+		personality escort timid coward frugal
+		ship "Sea Scorpion (Disruptor Slicer)"
+		to spawn
+			has "unfettered: escort for disruptor"
+
+
 # They ask you to sell the weapons you used to defeat them, the chance increases the more duels you win.
-mission "Unfettered Bring Fire"
+mission "Unfettered: Bring Fire"
 	job
 	repeat
-	name "Bring 2 Flamethrowers"
-	description "The captain you just duelled has seen what fire can do, and they want to learn the secrets behind it. Bring 2 Flamethrowers to them for <payment>."
+	name "Sell <weapons>"
+	description "The captain you just duelled has seen what fire can do, and they want to learn the secrets behind it. Bring <weapons> to them for <payment>."
+	substitutions
+		<weapons> "two Flamethrowers"
 	source
 		attributes "unfettered"
 	to offer
-		has "outfit (installed): Flamethrower"
-		random < "unfettered challenger defeated" * 5
-	on offer
+		random < "unfettered challenger defeated" * 15
+	on accept
 		clear "unfettered challenger defeated"
-	on complete
 		outfit "Flamethrower" -2
-		payment 1000000
-		dialog `The Unfettered captain is delighted that you were able to give him these 2 Flamethrowers, and gives you <payment>. "I shall put them to good use! These seem like they would pair perfectly with our ion weapons." He says, with a grin on his face.`
+		payment 500000
+		dialog phrase "unfettered weapon delivery"
 
-
-mission "Unfettered Bring Carnage"
+mission "Unfettered: Bring Hell"
 	job
 	repeat
-	name "Bring 2 Ka'Het Ravager Beams"
-	description "The captain you just duelled has seen what the Ka'Het Ravager Beam can do to hull, and they want to learn the secrets behind it. Bring 2 Ka'Het Ravager Beam to them for <payment>."
+	name "Sell <weapons>"
+	description "The captain you just duelled was shocked by the sheer heating power of <weapons>. Bring one to them for <payment>."
+	substitutions
+		<weapons> "a Korath Inferno"
 	source
 		attributes "unfettered"
 	to offer
-		has "outfit (installed): Ka'het Ravager Beam"
-		random < "unfettered challenger defeated" * 5
-	on offer
+		random < "unfettered challenger defeated" * 30
+	on accept
 		clear "unfettered challenger defeated"
-	on complete
+		outfit "Korath Inferno" -1
+		payment 2500000
+		dialog phrase "unfettered weapon delivery"
+
+
+mission "Unfettered: Bring Carnage"
+	job
+	repeat
+	name "Sell <weapons>"
+	description "The captain you just duelled has seen what <weapons> can do to hull, and they want to learn the secrets behind it. Bring two to them for <payment>."
+	substitutions
+		<weapons> "two Ka'Het Ravager Beams"
+	source
+		attributes "unfettered"
+	to offer
+		random < "unfettered challenger defeated" * 10
+	on accept
+		clear "unfettered challenger defeated"
 		outfit "Ka'het Ravager Beam" -2
 		payment 2000000
-		dialog `You bring the Ravagers to the captain, and she seems really happy, "Now this is a weapon that does damage to the hull of a ship! The Wanderers have a lot of that, I am sure it will help me pludering! Our legends speak of this weapon... Oh, of course, here are your <payment>."`
+		dialog phrase "unfettered weapon delivery"
 
 
-mission "Unfettered Bring Repeater"
+mission "Unfettered: Bring Repeater"
 	job
 	repeat
-	name "Bring 2 Plasma Repeater"
-	description "The captain you just duelled is impressed by the raw amount of heat brought by the Plasma Repeater. Bring 2 Plasma Repeater to them for <payment>."
+	name "Sell <weapons>"
+	description "The captain you just duelled is impressed by the raw amount of heat brought by your weapons. Bring <weapons> to them for <payment>."
+	substitutions
+		<weapons> "two Plasma repeaters"
 	source
 		attributes "unfettered"
 	to offer
 		has "outfit (installed): Plasma Repeater"
-		random < "unfettered challenger defeated" * 5
-	on offer
+		random < "unfettered challenger defeated" * 20
+	on accept
 		clear "unfettered challenger defeated"
-	on complete
 		outfit "Plasma Repeater" -2
-		payment 1500000
-		dialog `It does not take long to find the captain, you find him impatiently waiting for you and the Repeaters, "I love exotic weapons! Here are your <payment>, please bring me more variety if you can, I would reward it highly." He says, before heading hastily to his ship, probably to test these weapons.`
+		payment 1250000
+		dialog phrase "unfettered weapon delivery"
 
 
-mission "Unfettered Bring Particles"
+mission "Unfettered: Bring Particles"
 	job
 	repeat
-	name "Bring 2 Particle Cannons"
-	description "The captain you just duelled is interested by the range and damage of the Particle Cannon. Bring 2 to them for <payment>."
+	name "Sell <weapons>"
+	description "The captain you just duelled is interested by the range and damage of the Particle Cannon. Bring two to them for <payment>."
+	substitutions
+		<weapons> "two Particle Cannons"
 	source
 		attributes "unfettered"
 	to offer
@@ -554,5 +680,160 @@ mission "Unfettered Bring Particles"
 		clear "unfettered challenger defeated"
 	on complete
 		outfit "Particle Cannon" -2
-		payment 1250000
-		dialog `The Unfettered captain greets you with a big smile on his face, "With these particle cannons and my ship's speed, nobody will be able to beat me now! You well deserve the <payment>."`
+		payment 1000000
+		dialog phrase "unfettered weapon delivery"
+
+
+phrase "unfettered challenger"
+	word
+		"The rules of the duel are clear: do not"
+		"Do not"
+		"Do not"
+		"You have asked for a time out, now do not"
+	word
+		" "
+		" attempt to "
+		" try to "
+		" presume to "
+		" think you can "
+	word
+		"attack me"
+		"shoot me"
+	word
+		" "
+	word
+		"until a day has passed"
+		"until you changed system or landed"
+		"until the time out is considered over"
+	word
+		", "
+	word
+		"or"
+		"else"
+		"if you do"
+	word
+		" "
+	word
+		"my brethren"
+		"fellow Unfettered"
+		"all true Hai"
+	word
+		" "
+	word
+		"will"
+		"shall be forced to"
+		"will not hesitate to"
+	word
+		"take action"
+		"shoot"
+		"defend me"
+		"do what it takes to maintain order"
+	word
+		"!"
+
+phrase "hostile unfettered challenger"
+	word
+		"Stop "
+		"Quit "
+	word
+		"shaming yourself"
+		"running away"
+		"overthinking"
+		"recharging your shields"
+		"hiding in fear"
+	word
+		" and come "
+		" and come try and "
+	word
+		"defeat "
+		"fight "
+	word
+		"me."
+	word
+		" Now is the time to reveal ourselves in the glory of battle"
+		" Show me what you got"
+		" That's more like it"
+		" Time for a fair fight"
+	word
+		"!"
+
+phrase "hostile unfettered challenger"
+	word
+		"Now is not the time for talk"
+		"Yes! Fight me"
+		"Our battle will be sang in legends for years to come"
+		"Do not try to distract me with hails"
+	word
+		"!"
+
+phrase "hostile unfettered challenger"
+	word
+		"Do you wish to end the fight?"
+		"I can see you are having difficulties. Feel free to call this off for another time..."
+		"Remember, you only need to give me a symbolic fee for this to stop."
+		"This is not a duel to the death, or else only one of us would be able learn."
+		"Do you wish to surrender?"
+		"I am reasonable, if you wish to surrender, we can come to terms."
+		"You are lucky that I have to accept any ceasefire if you ask... You would do well not to attempt anything."
+
+phrase "defeated unfettered challenger"
+	word
+		"You have "
+		"You succeeded in "
+		"You managed to have "
+		"Somehow, you have "
+		"I must admit you have "
+	word
+		"beaten "
+		"defeated "
+		"ashamed "
+		"disabled "
+		"revealed my weakness% "
+	word
+		"me in a% "
+	word
+		"glorious "
+		"pathethic "
+		"exceptional "
+		"grandiose "
+		"quick "
+		"strategic "
+	word
+		"battle"
+		"combat"
+		"duel"
+		"fight"
+		"challenge"
+	word
+		"."
+		"!"
+	word
+		" What more do you want from me?" 3
+		" Do not presume you may board me." 3
+		" Do not even think about capturing my ship." 3
+		" Now it is over, time to lay down your weapons." 3
+		" I accept my fate, take what is rightfully yours." 3
+		" Great stories will be told of our battle!" 3
+		" You have the right to plunder." 3
+		" It would seem you are as strong as some pretended, perhaps even more." 3
+		" Finish me! I would rather die than have to live with this insult."
+	replace
+		"% me" ""
+		"a% e" "an e"
+		"a%" "a"
+
+phrase "unfettered duelling"
+	word
+		"Do not presume to interrupt us"
+		"I am in the middle of a duel, there is no time for petty talk"
+		"This is an official challenge, do not intervene"
+		"Under no circumstances are you to interrupt us, or you will suffer the wratch of the Unfettered"
+		"Stop distracting me"
+		"If you try anything, the whole fleet will be on you"
+	word
+		"! "
+	word
+		"Go away now, I need to focus on the duel"
+	word
+		"!"
+		"."
