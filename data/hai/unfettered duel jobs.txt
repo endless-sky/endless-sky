@@ -559,7 +559,7 @@ mission "Unfettered: Bring Legendary Combo"
 					goto money
 				`	"I want you to escort me in your Sea Scorpion, for 2 months."`
 					goto escort
-				`	"I'd like to exchange them 2 ionic turrets.`
+				`	"I'd like to exchange them for 2 ionic turrets.`
 					to display
 						"unfettered: prototypes exchanged" < 3
 					goto turrets
