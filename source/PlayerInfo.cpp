@@ -693,7 +693,7 @@ void PlayerInfo::IncrementDate()
 	{
 		string message = "You receive ";
 		if(salariesIncome)
-			message += Format::Credits(salariesIncome) + " credits salary";
+			message += Format::CreditString(salariesIncome) + " salary";
 		if(salariesIncome && tributeIncome)
 		{
 			if(b.assetsReturns)
@@ -702,13 +702,13 @@ void PlayerInfo::IncrementDate()
 				message += " and ";
 		}
 		if(tributeIncome)
-			message += Format::Credits(tributeIncome) + " credits in tribute";
+			message += Format::CreditString(tributeIncome) + " in tribute";
 		if(salariesIncome && tributeIncome && b.assetsReturns)
 			message += ",";
 		if((salariesIncome || tributeIncome) && b.assetsReturns)
 			message += " and ";
 		if(b.assetsReturns)
-			message += Format::Credits(b.assetsReturns) + " credits based on outfits and ships";
+			message += Format::CreditString(b.assetsReturns) + " based on outfits and ships";
 		message += ".";
 		Messages::Add(message, Messages::Importance::High);
 		accounts.AddCredits(salariesIncome + tributeIncome + b.assetsReturns);
@@ -995,11 +995,15 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 
 	auto flightChecks = map<const shared_ptr<Ship>, vector<string>>{};
 	for(const auto &ship : ships)
-		if(ship->GetSystem() == system && !ship->IsDisabled() && !ship->IsParked())
+		if(ship->GetSystem() && !ship->IsDisabled() && !ship->IsParked())
 		{
 			auto checks = ship->FlightCheck();
 			if(!checks.empty())
 				flightChecks.emplace(ship, checks);
+
+			// Only check bays for in-system ships.
+			if(ship->GetSystem() != system)
+				continue;
 
 			categoryCount[ship->Attributes().Category()].emplace_back(ship);
 			// Ensure bayCount has an entry for this category for the special case
@@ -1217,6 +1221,45 @@ pair<double, double> PlayerInfo::RaidFleetFactors() const
 	}
 
 	return make_pair(attraction, deterrence);
+}
+
+
+
+double PlayerInfo::RaidFleetAttraction(const Government::RaidFleet &raid, const System *system) const
+{
+	double attraction = 0.;
+	const Fleet *raidFleet = raid.GetFleet();
+	const Government *raidGov = raidFleet ? raidFleet->GetGovernment() : nullptr;
+	if(raidGov && raidGov->IsEnemy())
+	{
+		// The player's base attraction to a fleet is determined by their fleet attraction minus
+		// their fleet deterrence, minus whatever the minimum attraction of this raid fleet is.
+		pair<double, double> factors = RaidFleetFactors();
+		// If there is a maximum attraction for this fleet, and we are above it, it will not spawn.
+		if(raid.MaxAttraction() > 0 && factors.first > raid.MaxAttraction())
+			return 0;
+
+		attraction = .005 * (factors.first - factors.second - raid.MinAttraction());
+		// Then we consider the strength of other fleets in the system.
+		int64_t raidStrength = raidFleet->Strength();
+		if(system && raidStrength)
+			for(const auto &fleet : system->Fleets())
+			{
+				const Government *gov = fleet.Get()->GetGovernment();
+				if(gov)
+				{
+					// If this fleet is neutral or hostile to both the player and raid fleet, it has
+					// no impact on the attraction. If the fleet is hostile to only the player, the
+					// raid attraction will increase. If the fleet is hostile to only the raid fleet,
+					// the raid attraction will decrease. The amount of increase or decrease is determined
+					// by the strength of the fleet relative to the raid fleet. System fleets which are
+					// stronger have a larger impact.
+					double strength = fleet.Get()->Strength() / fleet.Period();
+					attraction -= (gov->IsEnemy(raidGov) - gov->IsEnemy()) * (strength / raidStrength);
+				}
+			}
+	}
+	return max(0., min(1., attraction));
 }
 
 
@@ -1444,6 +1487,8 @@ bool PlayerInfo::TakeOff(UI *ui)
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && !ship->IsDisabled())
 		{
+			// Recalculate the weapon cache in case a mass-less change had an effect.
+			ship->GetAICache().Calibrate(*ship.get());
 			if(ship->GetSystem() != system)
 			{
 				ship->Recharge(false);
@@ -1615,7 +1660,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 	{
 		// Report how much excess cargo was sold, and what profit you earned.
 		ostringstream out;
-		out << "You sold " << sold << " tons of excess cargo for " << Format::Credits(income) << " credits";
+		out << "You sold " << sold << " tons of excess cargo for " << Format::CreditString(income);
 		if(totalBasis && totalBasis != income)
 			out << " (for a profit of " << (income - totalBasis) << " credits).";
 		else
@@ -1861,6 +1906,25 @@ Mission *PlayerInfo::BoardingMission(const shared_ptr<Ship> &ship)
 		}
 
 	return nullptr;
+}
+
+
+
+bool PlayerInfo::CaptureOverriden(const shared_ptr<Ship> &ship) const
+{
+	if(ship->IsCapturable())
+		return false;
+	// Check if there's a boarding mission being offered which allows this ship to be captured. If the boarding
+	// mission was declined, then this results in one-time capture access to the ship. If it was accepted, then
+	// the next boarding attempt will have the boarding mission in the player's active missions list, checked below.
+	const Mission *mission = boardingMissions.empty() ? nullptr : &boardingMissions.back();
+	// Otherwise, check if there's an already active mission which grants access. This allows trying to board the
+	// ship again after accepting the mission.
+	if(!mission)
+		for(const Mission &mission : Missions())
+			if(mission.OverridesCapture() && !mission.IsFailed() && mission.SourceShip() == ship.get())
+				return true;
+	return mission && mission->OverridesCapture() && !mission->IsFailed() && mission->SourceShip() == ship.get();
 }
 
 
@@ -2920,6 +2984,31 @@ void PlayerInfo::RegisterDerivedConditions()
 		auto rff = RaidFleetFactors();
 		return rff.first - rff.second;
 	});
+
+	auto &&systemAttractionProvider = conditions.GetProviderPrefixed("raid chance in system: ");
+	auto systemAttractionFun = [this](const string &name) -> double
+	{
+		const System *system = GameData::Systems().Find(name.substr(strlen("raid chance in system: ")));
+		if(!system)
+			return 0.;
+
+		// This variable represents the probability of no raid fleets spawning.
+		double safeChance = 1.;
+		for(const auto &raidFleet : system->GetGovernment()->RaidFleets())
+		{
+			// The attraction is the % chance for a single instance of this fleet to appear.
+			double attraction = RaidFleetAttraction(raidFleet, system);
+			// Calculate the % chance for no instances to appear from 10 rolls.
+			double noFleetProb = pow(1. - attraction, 10.);
+			// The chance of neither of two fleets appearing is the chance of the first not appearing
+			// times the chance of the second not appearing.
+			safeChance *= noFleetProb;
+		}
+		// The probability of any single fleet appearing is 1 - chance.
+		return round((1. - safeChance) * 1000.);
+	};
+	systemAttractionProvider.SetGetFunction(systemAttractionFun);
+	systemAttractionProvider.SetHasFunction(systemAttractionFun);
 
 	// Special conditions for cargo and passenger space.
 	// If boarding a ship, missions should not consider the space available

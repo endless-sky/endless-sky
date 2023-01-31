@@ -626,6 +626,34 @@ ship "Bulk Freighter" "Bulk Freighter (Proton)"
 
 
 
+ship "Bulwark" "Bulwark (Heavy)"
+	outfits
+		"Plasma Cannon" 2
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		"Heavy Laser Turret"
+		"Anti-Missile Turret" 2
+		"Fission Reactor"
+		"LP144a Battery Pack"
+		"nGVF-BB Fuel Cell"
+		"D94-YV Shield Generator"
+		"Water Coolant System"
+		"Tactical Scanner"
+		"Laser Rifle" 19
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+	
+	gun "Torpedo Launcher"
+	gun "Plasma Cannon"
+	gun "Torpedo Launcher"
+	gun "Plasma Cannon"
+	turret "Anti-Missile Turret"
+	turret "Anti-Missile Turret"
+	turret "Heavy Laser Turret"
+
+
+
 ship "Carrier" "Carrier (Jump)"
 	outfits
 		"Particle Cannon" 4
@@ -1184,6 +1212,29 @@ ship "Cruiser" "Cruiser (Jump Plasma Anti-Missile)"
 		"Supercapacitor" 2
 		"Laser Rifle" 82
 		"Fragmentation Grenades" 60
+
+
+
+ship "Cutthroat" "Cutthroat (Jousting)"
+	outfits
+		"Twin Modified Blaster" 2
+		"Heavy Rocket Pod" 2
+		"Heavy Rocket Rack"
+		"Heavy Rocket" 14
+		
+		"Fission Reactor"
+		"Supercapacitor"
+		"Water Coolant System"
+		"D23-QP Shield Generator"
+		"Laser Rifle" 5
+		
+		"A520 Atomic Thruster"
+		"A255 Atomic Steering"
+		"Hyperdrive"
+	gun -21.5 -18 "Heavy Rocket Pod"
+	gun 21.5 -18 "Heavy Rocket Pod"
+	gun -11 -8.5 "Twin Modified Blaster"
+	gun 11 -8.5 "Twin Modified Blaster"
 
 
 
@@ -2910,7 +2961,7 @@ ship "Wasp" "Wasp (Javelin)"
 	gun
 	gun "Javelin Pod"
 	gun "Javelin Pod"
-		
+	
 
 ship "Wasp" "Wasp (Meteor)"
 	outfits
