@@ -3785,7 +3785,6 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			if(angDiffMag < ship.TurnRate())
 				scale = angDiffMag / ship.TurnRate();
 			command.SetTurn(scale * (angDiff > 0. ? 1. : -1.));
-			//command.SetTurn(scale * (angDiff > 0. ? 1. : -1.) * pow(-1, (floor(angDiffMag / 180))));
 		}
 		else
 			command.SetTurn(0.);
