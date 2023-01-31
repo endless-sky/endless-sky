@@ -194,7 +194,7 @@ void MapShipyardPanel::DrawItems()
 
 		for(const Ship *ship : it->second)
 		{
-			string price = Format::Credits(ship->Cost()) + " credits";
+			string price = Format::CreditString(ship->Cost());
 
 			string info = Format::Number(ship->Attributes().Get("shields")) + " shields / ";
 			info += Format::Number(ship->Attributes().Get("hull")) + " hull";

@@ -803,7 +803,7 @@ mission "Coalition Outbreak 2"
 				`	"What do you mean 'finally?' Didn't this virus just break out recently?"`
 				`	"You want me to go there retrieve the vaccines?"`
 					goto vaccines
-			`	He looks puzzles by your question.`
+			`	He looks puzzled by your question.`
 			`	"That some weeks have already passed, true it is, but hard at work, the researchers have been," he says. "Blame them for taking a few days more than usual, we cannot. Intricate, this virus is."`
 			label vaccines
 			`	He shows you a detailed map of Kimek space, explaining that most of the confirmed and suspected cases have been there. Given that the Kimek population is more than double that of the Arachi and the Saryds combined, it's not surprising.`
