@@ -809,8 +809,8 @@ void Ship::FinishLoading(bool isNewInstance)
 	isDisabled = IsDisabled();
 
 	// Calculate this ship's jump information, e.g. how much it costs to jump, how far it can jump, how it can jump.
-	navigation = ShipJumpNavigation(*this);
-	AICache = ShipAICache(*this);
+	navigation.Calibrate(*this);
+	aiCache.Calibrate(*this);
 
 	// A saved ship may have an invalid target system. Since all game data is loaded and all player events are
 	// applied at this point, any target system that is not accessible should be cleared. Note: this does not
@@ -1318,6 +1318,7 @@ void Ship::SetName(const string &name)
 void Ship::SetSystem(const System *system)
 {
 	currentSystem = system;
+	navigation.SetSystem(system);
 }
 
 
@@ -1438,15 +1439,15 @@ string Ship::GetHail(map<string, string> &&subs) const
 
 ShipAICache &Ship::GetAICache()
 {
-	return AICache;
+	return aiCache;
 }
 
 
 
 void Ship::UpdateCaches()
 {
-	AICache.UpdateWeaponCache();
-	navigation.Recalibrate();
+	aiCache.Recalibrate(*this);
+	navigation.Recalibrate(*this);
 }
 
 
@@ -2648,13 +2649,13 @@ int Ship::Scan(const PlayerInfo &player)
 	if(!cargoDistanceSquared && !outfitDistanceSquared)
 		return 0;
 
-	double cargoSpeed = attributes.Get("cargo scan speed");
+	double cargoSpeed = attributes.Get("cargo scan efficiency");
 	if(!cargoSpeed)
-		cargoSpeed = 1.;
+		cargoSpeed = cargoDistanceSquared;
 
-	double outfitSpeed = attributes.Get("outfit scan speed");
+	double outfitSpeed = attributes.Get("outfit scan efficiency");
 	if(!outfitSpeed)
-		outfitSpeed = 1.;
+		outfitSpeed = outfitDistanceSquared;
 
 	// Check how close this ship is to the target it is trying to scan.
 	// To normalize 1 "scan power" to reach 100 pixels, divide this square distance by 100^2, or multiply by 0.0001.
@@ -2666,6 +2667,7 @@ int Ship::Scan(const PlayerInfo &player)
 	// A ship with less than 10 tons of outfit space or cargo space takes as long to
 	// scan as one with 10 tons. This avoids small sizes being scanned instantly, or
 	// causing a divide by zero error at sizes of 0.
+	// If instantly scanning very small ships is desirable, this can be removed.
 	double outfits = max(10., target->baseAttributes.Get("outfit space")) * .005;
 	double cargo = max(10., target->attributes.Get("cargo space")) * .005;
 
@@ -2673,7 +2675,9 @@ int Ship::Scan(const PlayerInfo &player)
 	bool startedScanning = false;
 	bool activeScanning = false;
 	int result = 0;
-	auto doScan = [&](double &elapsed, const double speed, const double scannerRange, const double depth, const int event)
+	auto doScan = [&distanceSquared, &startedScanning, &activeScanning, &result]
+			(double &elapsed, const double speed, const double scannerRange,
+					const double depth, const int event)
 	-> void
 	{
 		if(elapsed < SCAN_TIME && distanceSquared < scannerRange)
@@ -2684,9 +2688,9 @@ int Ship::Scan(const PlayerInfo &player)
 			// Division is more expensive to calculate than multiplication,
 			// so rearrange the formula to minimize divisions.
 
-			// "(scannerRange - distance) / scannerRange"
-			// This line hits 1 at distace = 0, and 0 at distance = scannerRange.
-			// This is a hard cap on scanning range.
+			// "(scannerRange - 0.5 * distance) / scannerRange"
+			// This line hits 1 at distace = 0, and 0.5 at distance = scannerRange.
+			// There is also a hard cap on scanning range.
 
 			// "speed / (sqrt(speed) + distance)"
 			// This gives a modest speed boost at no distance, and
@@ -2696,7 +2700,9 @@ int Ship::Scan(const PlayerInfo &player)
 			// This makes scan time proportional to cargo or outfit space.
 
 			// To make up for previous scan delay, also add 1.
-			elapsed += ((scannerRange - distanceSquared) * speed) / (scannerRange * (sqrt(speed) + distanceSquared) * depth) + 1;
+			elapsed += ((scannerRange - .5 * distanceSquared) * speed)
+				/ (scannerRange * (sqrt(speed) + distanceSquared) * depth) + 1;
+
 			if(elapsed >= SCAN_TIME)
 				result |= event;
 		}
@@ -3857,7 +3863,7 @@ void Ship::Jettison(const string &commodity, int tons, bool wasAppeasing)
 	// player ships as to display correct information on the map.
 	// Non-player ships will recalibrate before they jump.
 	if(isYours)
-		navigation.Recalibrate();
+		navigation.Recalibrate(*this);
 
 	// Jettisoned cargo must carry some of the ship's heat with it. Otherwise
 	// jettisoning cargo would increase the ship's temperature.
@@ -3883,7 +3889,7 @@ void Ship::Jettison(const Outfit *outfit, int count, bool wasAppeasing)
 	// player ships as to display correct information on the map.
 	// Non-player ships will recalibrate before they jump.
 	if(isYours)
-		navigation.Recalibrate();
+		navigation.Recalibrate(*this);
 
 	// Jettisoned cargo must carry some of the ship's heat with it. Otherwise
 	// jettisoning cargo would increase the ship's temperature.
@@ -3972,12 +3978,12 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 		// ship's jump navigation. Hyperdrives and jump drives of the same type don't stack,
 		// so only do this if the outfit is either completely new or has been completely removed.
 		if((outfit->Get("hyperdrive") || outfit->Get("jump drive")) && (!before || !after))
-			navigation.Calibrate();
+			navigation.Calibrate(*this);
 		// Navigation may still need to be recalibrated depending on the drives a ship has.
 		// Only do this for player ships as to display correct information on the map.
 		// Non-player ships will recalibrate before they jump.
 		else if(isYours)
-			navigation.Recalibrate();
+			navigation.Recalibrate(*this);
 	}
 }
 
@@ -4062,7 +4068,7 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 		if(isYours && !OutfitCount(ammo) && ammo->AmmoUsage())
 		{
 			// Recalculate the AI to account for the loss of this weapon.
-			AICache.CreateWeaponCache();
+			aiCache.Calibrate(*this);
 			deterrence = CalculateDeterrence();
 		}
 	}
