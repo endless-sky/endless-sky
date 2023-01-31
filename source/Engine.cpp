@@ -2163,7 +2163,7 @@ void Engine::HandleMouseInput(Command &activeCommands)
 		mouseAngle = (180 / PI) * (atan(rely / relx)) + 90;
 	if(relx < 0)
 		// The range of atan is (-PI/2, PI/2) so when relx is
-		// negetive 180(in degrees) is added to keep the final
+		// negetive, 180 (in degrees) is added to keep the final
 		// angle between [0, 360)
 		mouseAngle += 180;
 	player.SetMouseAngle(mouseAngle);
