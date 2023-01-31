@@ -553,7 +553,7 @@ government "Hai (Unfettered Challenger)"
 	"bribe" .0001
 	"fine" 0
 
-	"friendly hail" "unfettered unfettered"
+	"friendly hail" "unfettered challenger"
 	"friendly disabled hail" "friendly disabled unfettered"
 	"hostile hail" "hostile unfettered challenger"
 	"hostile disabled hail" "defeated unfettered challenger"
