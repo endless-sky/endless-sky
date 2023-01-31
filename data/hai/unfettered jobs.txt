@@ -140,19 +140,29 @@ mission "Unfettered Jump Drive 4"
 				`	(Take two tripulse shredders.)`
 					goto tripulse
 				`	(Take 3 ionic blasters.)`
+					to display
+						"unfettered: prototypes exchanged" < 5
 				`	(Take 1 ionic turret.)`
+					to display
+						"unfettered: prototypes exchanged" < 5
 					goto turret
 				`	(Take money instead.)`
 					goto money
 			action
 				outfit "Ionic Blaster Prototype" 3
 			`	The three blasters are loaded on your ship, in exchange for your jump drive.`
-				goto trade
+				goto prototype
 
 			label turret
 			action
 				outfit "Ionic Turret Prototype"
 			`	The turret is loaded on your ship, in exchange for your jump drive.`
+			label prototype
+			action
+				"unfettered: prototypes exchanged" ++
+			`	The shipyard authorities come to you with a grave look. "Unfortunately we cannot trade any more ionic weapons with you. Do note you can still exchange shredders for jump drives."`
+				to display
+					"unfettered: prototypes exchanged" > 5
 
 			label trade
 			action

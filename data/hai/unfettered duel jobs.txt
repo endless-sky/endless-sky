@@ -539,11 +539,10 @@ ship "Sea Scorpion" "Sea Scorpion (Disruptor Slicer)"
 mission "Unfettered: Bring Legendary Combo"
 	landing
 	invisible
-	source
-		attributes "unfettered"
+	source "Darkcloak"
 	deadline 60
 	substitutions
-		<weapons> "Shield Disruptor and Husk-Slice Turrets"
+		<weapons> "the Shield Disruptor and Husk-Slice Turrets"
 	to offer
 		has "outfit (flagship installed): Shield Disruptor Turret"
 		has "outfit (flagship installed): Husk-Slice Turret"
@@ -555,10 +554,20 @@ mission "Unfettered: Bring Legendary Combo"
 			`	He looks around, maybe searching for a competitor that could hear about this. "I want them. Name your price, whatever it may be, and I shall meet it! Such a weapon combination would do wonders in the raids, and would allow me to not hurt my brethren. Truly, this is for a good cause!"`
 			choice
 				`	"I want a Lightning Bug in exchange."`
-				`	"5 million credits should do."`
+				`	"4 million credits should do."`
 					goto money
 				`	"I want you to escort me in your Sea Scorpion, for 2 months."`
 					goto escort
+				`	"I'd like to exchange them 2 ionic turrets.`
+					to display
+						"unfettered: prototypes exchanged" < 3
+					goto turrets
+				`	"I'd take nothing less than 4 tripulse shredders.`
+					goto shredders
+				`	"You better prepare 6 ionic blasters!"`
+					to display
+						"unfettered: prototypes exchanged" < 3
+					goto blasters
 				`	"My weapon is not for sale."`
 					goto nodeal
 			action
@@ -567,21 +576,38 @@ mission "Unfettered: Bring Legendary Combo"
 				goto deal
 			label money
 			action
-				payment 5000000
+				payment 4000000
 			`	"If that is what it takes, I shall pay those gladly."`
 				goto deal
 			label escort
 			action
 				set "unfettered: escort for disruptor"
 			`	"In that case I shall do my best to protect you in times of need."`
+				goto escort
+			label turrets
+			action
+				"unfettered: prototypes exchanged" += 2
+				outfit "Ionic Turret Prototype" 2
+			`	"You strike a hard bargain but I shall make the necessary arragements."`
+				goto deal
+			label shredders
+			action
+				outfit "Tripulse Shredder" 4
+			`	"That only seems fair, I shall arrange it."`
+				goto deal
+			label blasters
+			action
+				"unfettered: prototypes exchanged" += 2
+				outfits "Ionic Blaster Prototype" 6
+			`	"It is agreed, then."`
 			label deal
 			action
 				outfit "Shield Disruptor Turret" -1
 				outfit "Husk-Slice Turret" -1
-			`${unfettered weapon delivery}`
+			`	The captain swiftly arranges for his team to take <weapons> and install them on his ship, a happy smile on his face.`
 				accept
 			label nodeal
-			`"I understand. Do know, however, that exotic weapons such as this one are likely to get you some attention, and you will often be able to find a buyer in the job board, for a good price."`
+			`	"I understand. Do know, however, that exotic weapons such as this one are likely to get you some attention, and you will often be able to find a buyer in the job board, for a good price."`
 				decline
 	npc
 		government "Hai (Friendly Unfettered)"
