@@ -1,0 +1,8 @@
+disable mission "Conversation on Sayaiban"
+disable mission "Drak guarding Korath space"
+disable mission "Drak guarding Sayaiban"
+disable mission "Drak guarding Void Sprites"
+disable mission "Relic of the Past"
+disable mission "Ira Contact"
+disable mission "Ruin: Landing"
+disable mission "Stationed Augen"
