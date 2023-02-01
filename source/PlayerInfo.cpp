@@ -2671,22 +2671,6 @@ set<string> &PlayerInfo::Collapsed(const string &name)
 
 
 
-// Set the mouse angle relative to player flagship.
-void PlayerInfo::SetMouseAngle(Angle mouse)
-{
-	mouseAngle = mouse;
-}
-
-
-
-// The mouse angle relative to player flagship.
-Angle PlayerInfo::MouseAngle() const
-{
-	return mouseAngle;
-}
-
-
-
 // Apply any "changes" saved in this player info to the global game state.
 void PlayerInfo::ApplyChanges()
 {

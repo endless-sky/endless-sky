@@ -1006,6 +1006,13 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 
 
 
+void AI::SetMousePosition(Point position)
+{
+	mousePosition = position.Unit();
+}
+
+
+
 // Get the in-system strength of each government's allies and enemies.
 int64_t AI::AllyStrength(const Government *government)
 {
@@ -3776,8 +3783,9 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	if(mouseTurning && !ship.IsBoarding() && !ship.IsReversing())
 	{
 		Angle shipAngle = ship.Facing();
+		Point shipVector = shipAngle.Unit();
 
-		double angDiff = (player.MouseAngle() - shipAngle).Degrees();
+		double angDiff = -atan2(mousePosition.Cross(shipVector), mousePosition.Dot(shipVector)) * TO_DEG;
 		if(angDiff)
 		{
 			double scale = 1.;
