@@ -78,6 +78,8 @@ protected:
 	void ScrollTo(int index);
 	void ClickCategory(const std::string &name);
 
+	bool LicensesMet(const std::vector<std::string> &licenses) const;
+
 
 protected:
 	static const double ICON_HEIGHT;

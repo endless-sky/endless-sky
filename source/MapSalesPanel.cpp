@@ -447,3 +447,13 @@ void MapSalesPanel::ClickCategory(const string &name)
 	else
 		collapsed.insert(name);
 }
+
+
+
+bool MapSalesPanel::LicensesMet(const vector<string> &licenses) const
+{
+	for(const auto &license : licenses)
+		if(!player.Conditions().Has("license: " + license))
+			return false;
+	return true;
+}
