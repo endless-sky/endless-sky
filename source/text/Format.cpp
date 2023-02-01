@@ -20,7 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cctype>
 #include <cmath>
 #include <cstring>
-#include <set>
 #include <sstream>
 #include <unordered_set>
 
@@ -59,11 +58,11 @@ namespace {
 			size_t left = source.find('<', search);
 			if(left == string::npos)
 				break;
-	
+
 			size_t right = source.find('>', left);
 			if(right == string::npos)
 				break;
-	
+
 			++right;
 			size_t length = right - left;
 			key.assign(source, left, length);
