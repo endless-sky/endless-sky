@@ -119,6 +119,11 @@ bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	else if(key == 'f')
 		GetUI()->Push(new Dialog(
 			this, &MapSalesPanel::DoFind, "Search for:"));
+	else if(key == 'l')
+	{
+		onlyShowLicensesMet = !onlyShowLicensesMet;
+		Init();
+	}
 	else
 		return MapPanel::KeyDown(key, mod, command, isNewPress);
 
