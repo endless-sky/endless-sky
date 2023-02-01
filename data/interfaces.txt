@@ -47,8 +47,8 @@ color "item selected" 0. 0. 0. .3
 
 # Colors used to draw certain HUD elements in-flight.
 color "shields" .43 .55 .85 .8
-color "hull" .5 .6 .6 .75
-color "disabled hull" .65 0 0 .5
+color "hull" .55 .5 .5 .75
+color "disabled hull" .55 0 0 .5
 color "heat" .70 .43 .43 .75
 color "overheat" .70 .61 .43 .75
 color "energy" .6 .6 .6 .75
