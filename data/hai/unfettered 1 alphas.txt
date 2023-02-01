@@ -299,7 +299,7 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 			`	"Consider this carefully before taking any actions you may regret in the future. Our offer still stands." The transmission cuts out.`
 				decline
 			label jump
-			`	"Maybe, but there is no guarantee their ship will not pursue you. Please, land straight away, I assure you the other ship will land on another planet, and if not, our orbital defences will protect you."`
+			`	"Maybe, but there is no guarantee their ship will not pursue you. Please, land straight away, I assure you the other ship will land on another planet, and if not, our orbital defenses will protect you."`
 				decline
 			label mission
 			`	"Yes, we know. You do not need to worry about that, whilst we will not relay the scans ourselves for safety reasons, bringing them back never was the urgency, you may do so whenever you have the time."`

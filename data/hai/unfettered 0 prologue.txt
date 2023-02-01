@@ -974,7 +974,7 @@ mission "Unfettered: Prove Your Strength 2"
 	on enter Alnitak
 		dialog `Seeing you enter this system, the captain speaks up. "Sails down, matey! I'd recommend to stop here before we head into more open seas!"`
 	on visit
-		dialog "You do not have the jump drives. You either did not go to <destination> to get the jump drives yet, or you left your escort carrying the jump drives behind - better depart and wait for it."
+		dialog "You do not have the jump drives. You either did not go to <destination> to get the jump drives yet, or you left them in planetary storage, or you left the escort carrying the jump drives behind."
 	to fail
 		has "unfettered: outcast"
 	on fail
@@ -1097,7 +1097,7 @@ mission "Unfettered: Jump Drive Retrieval"
 				die
 			label outside
 			`	It may have felt like the right thing to do at the time, but you quickly realize splitting up and then staying here in the open was not very intelligent. It is too late, unfortunately, because you get stabbed by a local pirate, who is no longer impressed by your now-missing armored friend. You can see his bloody knife, with what seems to be a snake on it, before losing consciousness.`
-			`	When you wake up everything is blury, all you can see if a powerful, almost divine, light.`
+			`	When you wake up everything is blurry, all you can see if a powerful, almost divine, light.`
 			`	Coming back to your senses, you notice you are in what must be a hospital, half naked. The captain is staring at you. "The Gods of battle have judged ye, <first>. And they found you wanting." It seems clear that you will not be able to continue missions with the Unfettered after such a failure.`
 			action
 				fail "Unfettered: Prove Your Strength 2"
@@ -1173,7 +1173,7 @@ mission "Unfettered: Escort Hai Fleet"
 			`	"I knew I could count on you! The stories must be speaking true."`
 				goto choose
 			label exaggerated
-			`	"What do you mean? Your ship is not as fast as a Mem'he and as enduring as a Toor? I will not accept excuses or cowardise, if that is the case, the time to prove yourself is now!"`
+			`	"What do you mean? Your ship is not as fast as a Mem'he and as enduring as a Toor? I will not accept excuses or cowardice, if that is the case, the time to prove yourself is now!"`
 				goto choose
 			label busy
 			`	"Whatever it is you may be busy with, I'm sure it can wait. This fleet needs to arrive here before it is too late, in 3 weeks, and it is of the highest importance that it does not without any trouble."`
@@ -1187,7 +1187,7 @@ mission "Unfettered: Escort Hai Fleet"
 				`	"I will go there but first I must get a proper ship for this."`
 					goto beback
 			label dewit
-			`	"Good! The ships are mostly carrying supplies and passengers, so you would do well to stay with them whatever happens, as they lack the means to defend themselves properly. If I understand correctly, a small Hai fleet will accompany you too, but they may prove insuficient to ensure their safety. We never know what could happen, even in the safety of Hai space..."`
+			`	"Good! The ships are mostly carrying supplies and passengers, so you would do well to stay with them whatever happens, as they lack the means to defend themselves properly. If I understand correctly, a small Hai fleet will accompany you too, but they may prove insufficient to ensure their safety. We never know what could happen, even in the safety of Hai space..."`
 			`	He takes you aside and murmurs, "Do not repeat this as to not alarm the general population, but there are reasons to believe this was no natural event. Some prominent Hai will be part of the medical teams, for reasons you need not know, and it would be a disaster if something was to happen to them."`
 				accept
 			label beback
@@ -1249,7 +1249,7 @@ mission "Unfettered: Escort Hai Fleet"
 		fleet "Large Northern Pirates" 2
 	on complete
 		clear "unfettered: stopped on Greenbloom"
-		log `Escorted a Hai fleet carying supplies and passengers into Unfettered space.`
+		log `Escorted a Hai fleet carrying supplies and passengers into Unfettered space.`
 		event "unfettered: shipment lost" 30 50
 		set "unfettered: hunger"
 		# if there already was a hunger situation make it last longer
@@ -1266,7 +1266,7 @@ mission "Unfettered: Escort Hai Fleet"
 				`	"What are they going to do then?"`
 				`	"Can we do something about it?"`
 					goto dosmth
-			`	"They will be forced to keep militirazing more... I am sure that many Hai will come to help alleviate the situation, but I am afraid it will not be enough.`
+			`	"They will be forced to keep militarizing more... I am sure that many Hai will come to help alleviate the situation, but I am afraid it will not be enough.`
 				goto introduce
 			label dosmth
 			`	"Of course you can! Even as we speak many Hai are bringing food to our brethren, and so can you. Due to the exceptional circumstances jobs are available to bring more food than ever, for a price corresponding to the seriousness of the situation."`
@@ -1623,7 +1623,7 @@ mission "Unfettered: Cavalry Arrives"
 	on enter
 		conversation
 			"As you enter the system it becomes clear: they have called for backup! Multiple pirate ships are arriving in the system. But you also see other ships arriving by jump drives. They do not appear to be pirates, maybe the 'contact' has provided help as well?"
-			`They hail you, "Listen carrefuly. You may have noticed a Korath drone in the area, and they don't like Alpha dogs around much. If Koraths come to help do not open fire on them, understood?" "I would recommend you make sure these pirate ships are on your side, captain!" The other ship adds, before ending the hail, making it clear they will not take no for an answer.`
+			`They hail you, "Listen carefully. You may have noticed a Korath drone in the area, and they don't like Alpha dogs around much. If Koraths come to help do not open fire on them, understood?" "I would recommend you make sure these pirate ships are on your side, captain!" The other ship adds, before ending the hail, making it clear they will not take no for an answer.`
 	npc save
 		government "Shadow"
 		personality entering heroic uninterested staying mute
