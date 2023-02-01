@@ -39,7 +39,7 @@ ship "Sea Scorpion" "Si-Ra' Scorpion"
 		"Small Heat Shunt"
 		"Liquid Nitrogen Cooler"
 		"Value Detector"
-		"Hai Chasm Battery"
+		"Hai Chasm Batteries"
 
 		"Small Biochemical Cell"
 		"Boulder Reactor"

@@ -1459,7 +1459,7 @@ mission "Unfettered: Ready For The War"
 			`"Damnit! You just humiliated me, again? I take comfort in knowing He-Yi will most likely give you a lesson! Land to repair, and then take off when you're be ready to face him."`
 			action
 				set "unfettered: defeated Si-Ra"
-				event "bribable challengers"
+				event "unfettered: bribable challengers"
 	npc
 		to spawn
 			has "unfettered: mad Si-Ra"
