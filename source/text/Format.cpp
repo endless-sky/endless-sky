@@ -19,8 +19,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <array>
 #include <cctype>
 #include <cmath>
+#include <cstring>
 #include <set>
 #include <sstream>
+#include <unordered_set>
 
 using namespace std;
 
@@ -45,10 +47,89 @@ namespace {
 		reverse(result.begin(), result.end());
 	}
 
-	bool HasSubstitutions(const string &key)
+	void ScanForSubstitutions(const string &source,
+			function<void(const string &, size_t, size_t)> ProcessText,
+			function<const string *(const string &)> SubstitutionFor)
 	{
-		size_t less = key.find('<');
-		return less != string::npos && key.find('>', less) != string::npos;
+		string key;
+		size_t start = 0;
+		size_t search = start;
+		while(search < source.length())
+		{
+			size_t left = source.find('<', search);
+			if(left == string::npos)
+				break;
+	
+			size_t right = source.find('>', left);
+			if(right == string::npos)
+				break;
+	
+			++right;
+			size_t length = right - left;
+			key.assign(source, left, length);
+			const string *subs = SubstitutionFor(key);
+			if(subs)
+			{
+				ProcessText(source, start, left - start);
+				ProcessText(*subs, 0, string::npos);
+				start = right;
+				search = start;
+			}
+			else
+				search = left + 1;
+		}
+
+		ProcessText(source, start, source.length() - start);
+	}
+
+	// Helper function for Format::Expand, to recursively expand one key,
+	// detecting cycles in the graph (and thus avoiding infinite recursion).
+	void ExpandInto(const string &key, const string &oldValue, const map<string, string> &source,
+			map<string, string> &result, unordered_set<string> &keysBeingExpanded)
+	{
+		// Optimization for a common case: no substitutions in the substitution.
+		if(oldValue.find('<') == string::npos)
+		{
+			result.emplace(key, oldValue);
+			return;
+		}
+
+		// Declare our intention to process this key so a later attempt will
+		// detect recursion.
+		auto inserted = keysBeingExpanded.insert(key);
+
+		// Allocate space for the new text.
+		string newValue;
+		newValue.reserve(oldValue.length());
+
+		auto ProcessText = [&](const string &from, size_t start, size_t length)
+		{
+			newValue.append(from, start, length);
+		};
+		auto SubstitutionFor = [&](const string &request) -> const string *
+		{
+			auto hasResult = result.find(request);
+			if(hasResult != result.end())
+				// Already finished this one.
+				return &hasResult->second;
+			if(keysBeingExpanded.find(request) != keysBeingExpanded.end())
+				// Refuse to traverse a cycle in the graph.
+				return nullptr;
+			auto hasSource = source.find(request);
+			if(hasSource == source.end())
+				// Undefined key.
+				return nullptr;
+			// This key-value pair has not been expanded yet.
+			ExpandInto(request, hasSource->second, source, result, keysBeingExpanded);
+			hasResult = result.find(request);
+			return hasResult == result.end() ? nullptr : &hasResult->second;
+		};
+
+		ScanForSubstitutions(oldValue, ProcessText, SubstitutionFor);
+
+		// Success! Indicate we're done expanding this key, and provide its value.
+		keysBeingExpanded.erase(inserted.first);
+		result.emplace(key, newValue);
 	}
 }
 
@@ -260,92 +341,35 @@ double Format::Parse(const string &str)
 
 
 
-// Replace a set of "keys," which must be strings in the form "<name>", with
-// a new set of strings, and return the result. The optional toSkip is a key that will
-// be replaced with itself. This is used by Expand() to prevent infinite recursion.
-string Format::Replace(const string &source, const map<string, string> &keys, const string *toSkip)
+string Format::Replace(const string &source, const map<string, string> &keys)
 {
 	string result;
 	result.reserve(source.length());
 
-	size_t start = 0;
-	size_t search = start;
-	size_t left = 0;
-	size_t right = 0;
-	bool matched = false;
-
-	auto Match = [&](const string &match, size_t subpos, size_t sublen)
+	auto ProcessText = [&](const string &from, size_t start, size_t length)
 	{
-		// A substitution match has been found. Insert all text that was
-		// before it, and the substitution value (or a substring of it).
-		// Update parsing indices for next loop iteration.
-		result.append(source, start, left - start);
-		result.append(match, subpos, sublen);
-		start = right;
-		search = right;
-		matched = true;
+		result.append(from, start, length);
+	};
+	auto SubstitutionFor = [&](const string &key) -> const string *
+	{
+		auto found = keys.find(key);
+		return (found == keys.end()) ? nullptr : &found->second;
 	};
 
-	while(search < source.length())
-	{
-		left = source.find('<', search);
-		if(left == string::npos)
-			break;
-
-		right = source.find('>', left);
-		if(right == string::npos)
-			break;
-
-		matched = false;
-		++right;
-		size_t length = right - left;
-		if(toSkip && !source.compare(left, length, *toSkip))
-			// Prevent infinite recursion in Expand by inserting the "key" part of "<key>"
-			Match(*toSkip, 1, toSkip->size() - 2);
-		else
-			for(const auto &it : keys)
-				if(!source.compare(left, length, it.first))
-				{
-					Match(it.second, 0, string::npos);
-					break;
-				}
-
-		if(!matched)
-			search = left + 1;
-	}
-
-	result.append(source, start, source.length() - start);
+	ScanForSubstitutions(source, ProcessText, SubstitutionFor);
 	return result;
 }
 
 
 
-void Format::Expand(std::map<std::string, std::string> &keys, int maxDepth)
+void Format::Expand(map<string, string> &keys)
 {
-	// Set of keys that may still have substitutions:
-	set<string> hasSubs;
-
-	// Find all keys that have substitutions.
-	for(auto &keyValue : keys)
-		if(HasSubstitutions(keyValue.first))
-			hasSubs.insert(keyValue.first);
-
-	// Keep going until we have no more substitutions to make, or until we hit max depth.
-	for(int depth = 0; (maxDepth < 0 || depth < maxDepth) && !hasSubs.empty(); ++depth)
-
-		// One pass over all keys with substitutions: Replace() each.
-		for(auto hasSubsIter = hasSubs.begin(); hasSubsIter != hasSubs.end();)
-		{
-			auto out = keys.find(*hasSubsIter);
-			string old = Replace(out->second, keys, &out->first);
-			out->second = std::move(old);
-
-			// Is there anything left to substitute in this key's value?
-			if(HasSubstitutions(out->second))
-				++hasSubsIter;
-			else
-				hasSubsIter = hasSubs.erase(hasSubsIter);
-		}
+	map<string, string> newKeys;
+	unordered_set<string> keysBeingExpanded;
+	for(auto it = keys.begin(); it != keys.end(); ++it)
+		if(newKeys.find(it->first) == newKeys.end())
+			ExpandInto(it->first, it->second, keys, newKeys, keysBeingExpanded);
+	keys.swap(newKeys);
 }
 
 

@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef ES_TEXT_FORMAT_H_
 #define ES_TEXT_FORMAT_H_
 
+#include <functional>
 #include <map>
 #include <string>
 #include <vector>
@@ -43,17 +44,13 @@ public:
 	// Convert a string into a number. As with the output of Number(), the
 	// string can have suffixes like "M", "B", etc.
 	static double Parse(const std::string &str);
-	// Replace a set of "keys," which must be strings in the form "<name>", with a new
-	// set of strings, and return the result. The optional toSkip is a key that will
-	// be replaced with itself (used by Expand() to prevent infinite recursion).
-	static std::string Replace(const std::string &source, const std::map<std::string, std::string> &keys,
-		const std::string *toSkip = nullptr);
-	// Loop through all key/value pairs, replacing <name> with its value.
-	// This allows substitutions to recursively refer to each other up to a
-	// given maximum depth (-1 means no maximum). It can detect infinite
-	// recursion; in that case, the offending key's substitutions will be
-	// replaced with the key.
-	static void Expand(std::map<std::string, std::string> &keys, int maxDepth = -1);
+	// Replace a set of "keys," which must be strings in the form "<name>", with
+	// a new set of strings, and return the result.
+	static std::string Replace(const std::string &source, const std::map<std::string, std::string> &keys);
+	// Loop through all key/value pairs, calling Replace on each value.
+	// This allows substitutions to refer to each other up to a given maximum
+	// recursion depth.
+	static void Expand(std::map<std::string, std::string> &keys);
 	// Replace all occurrences of "target" with "replacement" in-place.
 	static void ReplaceAll(std::string &text, const std::string &target, const std::string &replacement);
 
