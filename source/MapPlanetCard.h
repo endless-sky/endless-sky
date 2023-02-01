@@ -80,7 +80,7 @@ private:
 	bool hasShipyard;
 
 	// The current starting y position.
-	double yCoordinate;
+	double yCoordinate = 0.;
 	bool isShown = false;
 
 	const Sprite *sprite;

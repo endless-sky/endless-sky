@@ -727,7 +727,7 @@ mission "Stealth Cargo Smuggling (South) [0]"
 		system
 			distance 3
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -735,7 +735,7 @@ mission "Stealth Cargo Smuggling (South) [0]"
 		personality heroic waiting
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -743,7 +743,7 @@ mission "Stealth Cargo Smuggling (South) [0]"
 		personality heroic staying
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	on abort
@@ -785,7 +785,7 @@ mission "Stealth Cargo Smuggling (South) [1]"
 		system
 			distance 3 5
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -794,7 +794,7 @@ mission "Stealth Cargo Smuggling (South) [1]"
 		system
 			distance 2 4
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -803,7 +803,7 @@ mission "Stealth Cargo Smuggling (South) [1]"
 		system
 			distance 3
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -811,7 +811,7 @@ mission "Stealth Cargo Smuggling (South) [1]"
 		personality heroic waiting
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -819,7 +819,7 @@ mission "Stealth Cargo Smuggling (South) [1]"
 		personality heroic waiting entering
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -827,7 +827,7 @@ mission "Stealth Cargo Smuggling (South) [1]"
 		personality heroic staying
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)" 2
 	on abort
@@ -1150,7 +1150,7 @@ mission "Stealth Drug Running (South) [0]"
 		system
 			distance 3
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1158,7 +1158,7 @@ mission "Stealth Drug Running (South) [0]"
 		personality heroic waiting
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1166,7 +1166,7 @@ mission "Stealth Drug Running (South) [0]"
 		personality heroic staying
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	on abort
@@ -1208,7 +1208,7 @@ mission "Stealth Drug Running (South) [1]"
 		system
 			distance 3 5
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1217,7 +1217,7 @@ mission "Stealth Drug Running (South) [1]"
 		system
 			distance 2 4
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1226,7 +1226,7 @@ mission "Stealth Drug Running (South) [1]"
 		system
 			distance 3
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1234,7 +1234,7 @@ mission "Stealth Drug Running (South) [1]"
 		personality heroic waiting
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1242,7 +1242,7 @@ mission "Stealth Drug Running (South) [1]"
 		personality heroic waiting entering
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1250,7 +1250,7 @@ mission "Stealth Drug Running (South) [1]"
 		personality heroic staying
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)" 2
 	on abort
@@ -1591,7 +1591,7 @@ mission "Highly Wanted Passenger (South)"
 		government Militia
 		personality heroic waiting
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1600,7 +1600,7 @@ mission "Highly Wanted Passenger (South)"
 		system
 			distance 3 5
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1609,7 +1609,7 @@ mission "Highly Wanted Passenger (South)"
 		system
 			distance 2 4
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1618,7 +1618,7 @@ mission "Highly Wanted Passenger (South)"
 		system
 			distance 3
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1626,7 +1626,7 @@ mission "Highly Wanted Passenger (South)"
 		personality heroic waiting
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1634,7 +1634,7 @@ mission "Highly Wanted Passenger (South)"
 		personality heroic waiting entering
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1642,7 +1642,7 @@ mission "Highly Wanted Passenger (South)"
 		personality heroic staying
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)" 2
 	on abort
@@ -1665,15 +1665,15 @@ mission "Slave Transport [0]"
 	name "Transfer slaves to <planet>"
 	job
 	repeat
-	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
+	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 2 10 .9
 	illegal -1
 	to offer
 		random < 25
 		"reputation: Pirate" > 0
 		"combat rating" > 1100
-	on offer
-		require "Brig"
+	to accept
+		has "outfit: Brig"
 	source
 		government "Pirate"
 	destination
@@ -1689,15 +1689,15 @@ mission "Slave Transport [1]"
 	name "Transfer slaves to <planet>"
 	job
 	repeat
-	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
+	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 2 10 .9
 	illegal -1
 	to offer
 		random < 25
 		"reputation: Pirate" > 0
 		"combat rating" > 1100
-	on offer
-		require "Brig"
+	to accept
+		has "outfit: Brig"
 	source
 		government "Pirate"
 	destination
@@ -1713,15 +1713,15 @@ mission "Slave Transport [2]"
 	name "Transfer slaves to <planet>"
 	job
 	repeat
-	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
+	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 2 10 .9
 	illegal -1
 	to offer
 		random < 25
 		"reputation: Pirate" > 0
 		"combat rating" > 1100
-	on offer
-		require "Brig"
+	to accept
+		has "outfit: Brig"
 	source
 		government "Pirate"
 	destination
@@ -1739,15 +1739,15 @@ mission "Bulk Slave Transport [0]"
 	name "Transfer slaves to <planet>"
 	job
 	repeat
-	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
+	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 10 4 .1
 	illegal -1
 	to offer
 		random < 15
 		"reputation: Pirate" > 0
 		"combat rating" > 3000
-	on offer
-		require "Brig"
+	to accept
+		has "outfit: Brig"
 	source
 		government "Pirate"
 	destination
@@ -1763,15 +1763,15 @@ mission "Bulk Slave Transport [1]"
 	name "Transfer slaves to <planet>"
 	job
 	repeat
-	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
+	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 10 4 .1
 	illegal -1
 	to offer
 		random < 15
 		"reputation: Pirate" > 0
 		"combat rating" > 3000
-	on offer
-		require "Brig"
+	to accept
+		has "outfit: Brig"
 	source
 		government "Pirate"
 	destination
