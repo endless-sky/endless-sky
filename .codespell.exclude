@@ -6,9 +6,9 @@
 		"ain' gud"           # ain't good (mispronounced)
 		"do gud"             # [do|does] good (mispronounced)
 		"Korath flame stong."   # [The] Korath flame is strong. (mispronounced)
-		"Can hav"           3    # Can have (mispronounced)
+		"Can hav" 3     # Can have (mispronounced)
 		"yoo ded mor"          # you dead more (mispronounced)
-		"'oo wil"           3    # You will (mispronounced)
+		"'oo wil" 3     # You will (mispronounced)
 		"bomance novals"           # [romance|bromance] novels (mispronounced)
 		"cley n kiln"              # clay and kiln (mispronounced)
 		"benjos"                   # banjos (mispronounced)
@@ -21,7 +21,7 @@
 		"Wee taek yur"           # We take your (mispronounced)
 		"Te"                     # The (mispronounced)
 		"blong to u'."           # belong to us (mispronounced)
-		"sammon"       1             # salmon (mispronounced)
+		"sammon" 1            # salmon (mispronounced)
 		"inernal govment docmants"  # internal government documents (mispronounced)
 		"Ot"                  # My
 		"Tomik 'aga feralit 'aga te"                # My skin draws me to
