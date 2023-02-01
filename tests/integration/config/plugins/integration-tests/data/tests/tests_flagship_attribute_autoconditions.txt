@@ -1,4 +1,4 @@
-test-data "Flagship Attribute Autoconditions Testing"
+test-data "Flagship Attribute Autoconditions Save"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
@@ -34,7 +34,7 @@ test-data "Flagship Attribute Autoconditions Testing"
 				"ion protection" 0.25
 				"scrambling protection" 0.25
 				"outfit scan power" 18
-				"outfit scan speed" 22
+				"outfit scan efficiency" 22
 				"outfit space" 552
 				ramscoop 2.5
 				"remnant node" 5
@@ -114,7 +114,7 @@ test "Flagship Attribute Autoconditions"
 	status active
 	description `Tests the "flagship attribute: <attribute>" and "flagship base attribute: <attribute>" autoconditions.`
 	sequence
-		inject "Flagship Attribute Autoconditions Testing"
+		inject "Flagship Attribute Autoconditions Save"
 		call "Load First Savegame"
 		assert
 			"flagship base attribute: cost" == 41627000
@@ -136,7 +136,7 @@ test "Flagship Attribute Autoconditions"
 			"flagship base attribute: ion protection" == 250
 			"flagship base attribute: scrambling protection" == 250
 			"flagship base attribute: outfit scan power" == 18000
-			"flagship base attribute: outfit scan speed" == 22000
+			"flagship base attribute: outfit scan efficiency" == 22000
 			"flagship base attribute: outfit space" == 552000
 			"flagship base attribute: ramscoop" == 2500
 			"flagship base attribute: remnant node" == 5000
