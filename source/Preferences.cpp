@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameWindow.h"
 #include "Logger.h"
 #include "Screen.h"
+#include <SDL2/SDL_log.h>
 
 #ifdef __linux__
 #include <sys/sysinfo.h>
@@ -86,8 +87,12 @@ void Preferences::Load()
 	struct sysinfo si;
 	if (0 == sysinfo(&si))
 	{
-		if (si.totalram * si.mem_unit < 2 * 1024*1024*1024)
+		SDL_Log("sysinfo: totalram: %lu mem_unit %u", si.totalram, si.mem_unit);
+		if (si.totalram * si.mem_unit < 2lu * 1024*1024*1024)
+		{
+			SDL_Log("Detected low memory... defaulting Reduced graphics to true");
 			settings["Reduced graphics"] = true;
+		}
 	}
 #endif
 
