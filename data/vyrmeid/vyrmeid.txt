@@ -230,8 +230,8 @@ ship "Astral Cetacean"
 	leak "blood" 60 60
 	explode "blood" 160
 	"final explode" "blood"
-	description `Space whale.`
-	
+	description `Only few captains have had the chance to observe this illustrious creature. Its natural attenuation to the depths of space allows it to travel beyond where most ships are able, and its appearance reflects both the beauty and mystery of the void itself.`
+
 outfit "Astral Mouth"
 	category "Guns"
 	thumbnail "outfit/unknown"
