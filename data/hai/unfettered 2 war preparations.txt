@@ -533,6 +533,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 					goto tellmore
 			action
 				fine 500000
+				"unfettered: offended Si-Ra" ++
 			`	He doesn't seem too convinced about that, but agrees on the deal. He really seems disappointed about it, and you suspect he may even pay someone else to do it instead of you.`
 				decline
 	waypoint "Rajak"
@@ -649,6 +650,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 					goto pirates
 			action
 				set "knows it was alpha cache"
+				"unfettered: offended Si-Ra" ++
 			`	"Yeah we did! I mean, it was mostly you..." He then calms down somewhat and looks at you seriously, "I had not told you that before, did I? Well, whatever, I hope that you can be trusted with this information, or else..." He then keeps on drinking as if nothing happened.`
 				goto celebrate
 			label pirates

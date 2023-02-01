@@ -952,8 +952,6 @@ mission "Unfettered: Prove Your Strength 2"
 				`	"What kind of job is it?"`
 					goto job
 			label insult
-			action
-				"unfettered: offended Si-Ra" ++
 			`	He does not seem to react to the insult. He did call you monkey a few times before, so it's only fair for you to return the courtesy.`
 			label job
 			`	"We be going to collect a few jump drives! Normally ye would not be able to get such a job, since ye have not earned much among us still, but I have the connection to get it for ye. Ye see, officially this be me mission, and a very lucrative one, at that! On top of that, should we succeed, next time ye may be entrusted with such missions on your own, but don't ye be expecting near the same booty for yerself."`

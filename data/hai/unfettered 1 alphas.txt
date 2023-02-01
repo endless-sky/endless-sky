@@ -305,7 +305,7 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
 		dialog
-			`You are offered some surprisingly high-quality beverages to keep you waiting, even by your standards. This special treatment is probably in part due to your ongoing mission for Mera.`
+			`You are offered some surprisingly high-quality beverages to keep you waiting, much higher than what you normally would be able to get on Unfettered worlds. This special treatment is probably in part due to your ongoing mission for Mera.`
 			`	After a while, the ship goes away, you can now go back to <origin> with the scanner logs.`
 
 
