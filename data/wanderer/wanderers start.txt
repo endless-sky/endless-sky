@@ -189,6 +189,10 @@ mission "Wanderers: Hai Diplomat"
 				accept
 	on accept
 		"reputation: Hai" >?= 20
+		"reputation: Hai (Wormhole Access)" >?= 20
+		"reputation: Hai Merchant" >?= 20
+		"reputation: Hai Merchant (Human)" >?= 20
+		"reputation: Hai Merchant (Sympathizers)" >?= 20
 		"reputation: Hai" += 30
 		"reputation: Hai (Wormhole Access)" += 30
 		"reputation: Hai Merchant" += 30
@@ -1326,7 +1330,7 @@ mission "Wanderers: Alpha Surveillance E"
 
 mission "Wanderers: Alpha Surveillance F"
 	name "Invade Avalon"
-	description "Escort Admiral Danforth's Navy Cruiser to <destination> and land on the planet with them. They will attempt to locate and eliminate the Alpha base."
+	description "Escort Admiral Danforth's Navy <npc model> to <destination> and land on the planet with them. They will attempt to locate and eliminate the Alpha base."
 	autosave
 	source "Farpoint"
 	destination "Avalon"

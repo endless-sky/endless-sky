@@ -98,7 +98,7 @@ private:
 
 	// Keep track of which objects we've already considered
 	mutable std::vector<unsigned> seen;
-	mutable unsigned seenEpoch;
+	mutable unsigned seenEpoch = 0;
 };
 
 

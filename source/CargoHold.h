@@ -49,9 +49,12 @@ public:
 	void SetSize(int tons);
 	int Size() const;
 	int Free() const;
+	double FreePrecise() const;
 	int Used() const;
+	double UsedPrecise() const;
 	int CommoditiesSize() const;
 	int OutfitsSize() const;
+	double OutfitsSizePrecise() const;
 	bool HasOutfits() const;
 	int MissionCargoSize() const;
 	bool HasMissionCargo() const;

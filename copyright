@@ -72,13 +72,13 @@ License: CC-BY-SA-4.0
 
 Files:
  images/ship/hai?flea*
+ images/projectile/rail?slug*
 Copyright: Matthew Smestad
 License: CC-BY-SA-4.0
 
 Files:
  images/outfit/railgun*
  images/outfit/railslug*
- images/projectile/rail?slug*
 Copyright: 1010todd
 Comment: Derived from works by Matthew Smestad (under the same license).
 License: CC-BY-SA-4.0
@@ -358,12 +358,17 @@ Files:
  images/outfit/small?quarg*
  images/outfit/medium?quarg*
  images/outfit/large?quarg*
- images/outfit/enforcer?riot?staff*
  images/outfit/laser?rifle*
  images/outfit/hai?pebble?core*
  images/outfit/hai?boulder*
  images/outfit/hai?geode*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
+License: CC-BY-SA-4.0
+
+Files:
+ images/outfit/enforcer?riot?staff*
+Copyright: 1010todd
+Comment: Derived from works by Evan Fluharty (under the same license).
 License: CC-BY-SA-4.0
 
 Files:
@@ -499,21 +504,20 @@ Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
  sounds/pincer*
-Copyright: Nomadic Volcano (nomadicvolcano@gmail.com)
+Copyright: Michael Zahniser
 License: GPL-2
-Comment: Nomadic Volcano modified these from Battle for Wesnoth (https://www.wesnoth.org) sounds, which are copyright David White <dave@whitevine.net> under GPL 2 or later.
+Comment: Created by a past contributor modified from Battle for Wesnoth (https://www.wesnoth.org/) sounds, which are copyright David White [dave@whitevine.net](mailto:dave@whitevine.net) under GPL 2 or later. Rights relinquished to Michael Zahniser.
 
 Files:
  images/*/pincer*
 Copyright: None; CC0 (Public Domain)
 License: CC0
-Comment: Textures by https://texture.ninja, other art by NomadicVolcano (nomadicvolcano@gmail.com).
+Comment: Public domain textures by https://texture.ninja
 
 Files:
  images/planet/rogue-radiating*
 Copyright: None; CC0 (Public Domain)
 License: CC0
-Comment: Created by NomadicVolcano (nomadicvolcano@gmail.com)
 
 Files: images/outfit/railslug?rack*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
@@ -760,6 +764,12 @@ Files:
 Copyright: Azure
 License: CC-BY-SA-4.0
 
+Files:
+  images/ui/milky?way*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by NASA and Michael Zahniser.
+
 Files: sounds/*
 Copyright: Various
 License: public-domain
@@ -898,6 +908,15 @@ License: CC-BY-SA-4.0
 Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
 
 Files:
+ images/ship/pirate?mammoth*
+ images/ship/pirate?scrapper*
+ images/thumbnail/pirate?mammoth*
+ images/thumbnail/pirate?scrapper*
+Copyright: 1010todd
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser and Becca Tommaso under the same license. Incorporating texture made with JSPlacement by WindMillArt <https://windmillart.net/>.
+
+Files:
  images/ship/mfirebird*
  images/ship/mleviathan*
  images/ship/marrow*
@@ -937,6 +956,17 @@ Files:
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Detailed by Anarchist2.
+
+Files:
+ images/ship/pirate?nighthawk*
+ images/ship/pirate?cutthroat*
+ images/ship/pirate?bulwark*
+ images/thumbnail/pirate?nighthawk*
+ images/thumbnail/pirate?cutthroat*
+ images/thumbnail/pirate?bulwark*
+Copyright: 1010Todd
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser and Anarchist2 under the same license. Incorporating texture made with JSPlacement by WindMillArt <https://windmillart.net/>.
 
 Files:
  images/ship/mfalcon*
@@ -1014,6 +1044,7 @@ Files:
  images/outfit/ka'het?nullifier*
  images/outfit/ka'het?mhd?deployer*
  images/outfit/mouthparts*
+ images/outfit/excavator*
  images/outfit/fuel?pod*
  images/outfit/fusion*
  images/outfit/core*
@@ -1049,6 +1080,8 @@ Files:
  images/outfit/outfit?expansion*
  images/outfit/cargo?expansion*
  images/outfit/control?transceiver*
+ images/outfit/hai?jammer*
+ images/outfit/hai?jammer?overclocked*
  images/planet/dyson1*
  images/planet/dyson2*
  images/planet/dyson3*
@@ -1099,23 +1132,23 @@ Files:
  images/planet/station?hai?eight?geocoris*
 Copyright: None (CC0: Public Domain)
 License: CC0
-Comment: Made by Nomadic Volcano with textures from texture.ninja.
+Comment: Public domain textures from texture.ninja.
 
 Files:
  images/planet/wormhole-syndicate-ad*
-Copyright: NomadicVolcano (NomadicVolcano@gmail.com)
+Copyright: Michael Zahniser
 License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser (under the same license)
+Comment: Created by a past contributor derived from works by Michael Zahniser (under the same license). Rights relinquished to Michael Zahniser.
 
 Files:
  images/planet/station?hai?geocoris*
-Copyright: Nomadic Volcano (NomadicVolcano@gmail.com)
+Copyright: Michael Zahniser
 License: CC-BY-SA-4.0
-Comment: rotate, flip, scale the "images/thumbnail/hai geocoris@2x.png" by Michael Zahniser (under the same license)
+Comment: Created by a past contributor derived from works by Michael Zahniser (under the same license). Rights relinquished to Michael Zahniser.
 
 Files:
  images/effect/firestorm?ring*
-Copyright: NomadicVolcano (NomadicVolcano@gmail.com).
+Copyright: None (CC0: Public Domain)
 License: CC0
 
 Files:
@@ -1157,7 +1190,7 @@ Comment: Derived from work by Becca Tomaso (under the same licence).
 Files:
  images/outfit/liquid?sodium*
 Copyright: Lia Gerty (https://github.com/ravenshining)
-Comment: Derived from works by Saugia (under the same licence) and NomadicVolcano (public domain).
+Comment: Derived from works by Saugia (under the same licence) and public domain works previously submitted to Endless Sky.
 License: CC-BY-SA-4.0
 
 Files:
@@ -1175,7 +1208,7 @@ Files:
  images/projectile/digger*
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
-Comment: Derived from work by NomadicVolcano (public domain).
+Comment: Derived from public domain work previously submitted to Endless Sky.
 
 Files:
  images/planet/browndwarf-t-rouge*
@@ -1230,21 +1263,21 @@ Files:
  images/thumbnail/kas-ik?tek?7*
 Copyright: None (CC0 Public Domain)
 License: CC0
-Comment: Work by Nomadic Volcano (NomadicVolcano@gmail.com) based on textures from texture.ninja
+Comment: Uses public domain textures from texture.ninja
 
 Files:
  images/hardpoint/digger?turret*
  images/outfit/korath?digger?turret*
  images/outfit/korath?digger*
-Copyright: Nomadic Volcano (NomadicVolcano@gmail.com)
+Copyright: Becca Tommaso and Michael Zahniser
 License: CC-BY-SA-4.0
-Comment: Derived from works by Becca Tommaso and Michael Zahniser (under the same license).
+Comment: Created by a past contributor derived from works by Becca Tommaso and Michael Zahniser (under the same license). Rights relinquished to Becca Tommaso and Michael Zahniser.
 
 Files:
  images/*/korath*reverser*
-Copyright: Nomadic Volcano (NomadicVolcano@gmail.com)
+Copyright: Michael Zahniser
 License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser (under the same license).
+Comment: Created by a past contributor derived from works by Michael Zahniser (under the same license). Rights relinquished to Michael Zahniser.
 
 
 Files:
@@ -1468,6 +1501,7 @@ Files:
  images/hardpoint/nuke*
  images/hardpoint/sunbeam?turret*
  images/hardpoint/wanderer?anti-missile*
+ images/_menu/haze-coal*
  images/outfit/*?korath?afterburner*
  images/outfit/afterburner*
  images/outfit/asteroid?scanner*
@@ -1516,7 +1550,9 @@ Files:
  images/ship/msplinter*
  images/ship/raven*
  images/ship/splinter*
+ images/star/coal-black-hole*
  images/star/neutron*
+ images/star/small-black-hole*
  images/thumbnail/battleship*
  images/thumbnail/corvette*
  images/thumbnail/dagger*
@@ -1594,20 +1630,109 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
- images/hardpoint/firestorm battery*
+ images/effect/acuit?hit*
+ images/effect/ast?hit*
+ images/effect/balfire*
+ images/effect/blink*
+ images/effect/chfire*
+ images/effect/composed*
+ images/effect/drain*
+ images/effect/irfite*
+ images/effect/*scin flare*
+ images/effect/*vi flare*
+ images/hardpoint/acuit*
+ images/hardpoint/ballistic*
+ images/hardpoint/choleric*
+ images/hardpoint/firestorm?battery*
+ images/hardpoint/irate*
+ images/outfit/acuit*
+ images/outfit/ameliorate?cell*
+ images/outfit/astuit*
+ images/outfit/ballistic?cannon*
+ images/outfit/ballistic?turret*
+ images/outfit/battlezone?battery*
+ images/outfit/brawl?cell*
+ images/outfit/campaign?core*
+ images/outfit/choleric?cannon*
+ images/outfit/choleric?turret*
+ images/outfit/crusade?battery*
  images/outfit/firestorm?battery*
  images/outfit/firestorm?rack*
  images/outfit/firestorm?torpedo*
+ images/outfit/guile?pulse?laser*
+ images/outfit/irate?cannon*
+ images/outfit/irate?turret*
  images/outfit/mcs?extractor*
+ images/effect/*plasma thruster scin*
+ images/effect/*plasma steering scin*
+ images/effect/*plasma engines scin*
+ images/outfit/scrap?cell*
+ images/outfit/skirmish?battery*
+ images/effect/*torch thruster vi*
+ images/effect/*torch thruster vi*
+ images/outfit/warforge?battery*
+ images/outfit/warzone?core*
+ images/planet/tschyss*
+ images/planet/vesvi*
+ images/projectile/acuit*
+ images/projectile/astuit*
+ images/projectile/ballistic*
+ images/projectile/chloeric*
  images/projectile/firestorm?torpedo*
+ images/projectile/guile?pulse?laser*
+ images/projectile/irate*
+ images/scene/rulei?flash*
+ images/ship/*ayym*
+ images/ship/embersylph*
+ images/ship/gegno?augen*
+ images/ship/gegno?coesite*
+ images/ship/gegno?conglomerate*
+ images/ship/gegno?dolomite*
+ images/ship/gegno?dunite*
+ images/ship/gegno?eclogite*
+ images/ship/gegno?epidote*
+ images/ship/gegno?feldspar*
+ images/ship/gegno?felsic*
+ images/ship/gegno?gneiss*
+ images/ship/gegno?granulite*
+ images/ship/gegno?gypsum*
+ images/ship/gegno?halite*
+ images/ship/gegno?mica*
+ images/ship/gegno?schist*
+ images/ship/gegno?shale*
+ images/ship/gegno?slate*
+ images/ship/gegno?tridymite*
+ images/ship/*jje*
  images/ship/modified?dromedary*
  images/ship/modified?dromedary?wreck*
+ images/ship/*vyuira*
+ images/thumbnail/gegno?augen*
+ images/thumbnail/gegno?coesite*
+ images/thumbnail/gegno?conglomerate*
+ images/thumbnail/gegno?dolomite*
+ images/thumbnail/gegno?dunite*
+ images/thumbnail/gegno?eclogite*
+ images/thumbnail/gegno?epidote*
+ images/thumbnail/gegno?feldspar*
+ images/thumbnail/gegno?felsic*
+ images/thumbnail/gegno?gneiss*
+ images/thumbnail/gegno?granulite*
+ images/thumbnail/gegno?gypsum*
+ images/thumbnail/gegno?halite*
+ images/thumbnail/gegno?mica*
+ images/thumbnail/gegno?schist*
+ images/thumbnail/gegno?shale*
+ images/thumbnail/gegno?slate*
+ images/thumbnail/gegno?tridymite*
  images/thumbnail/modified?dromedary*
  images/thumbnail/modified?dromedary?wreck*
+ images/thumbnail/vyuira*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 
 Files:
+ images/effect/void?sprite?parts*
+ images/outfit/void?sprite?parts*
  images/outfit/teciimach?bay*
  images/outfit/teciimach?pod*
  images/planet/gas3-c*
@@ -1641,7 +1766,16 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ images/ship/pirate?valkyrie*
+ images/thumbnail/pirate?valkyrie*
+Copyright: Saugia <https://github.com/Saugia>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license) and 1010todd (under the same license). Incorporating texture made with JSPlacement by WindMillArt <https://windmillart.net/>.
+
+Files:
  sounds/drill*
+ sounds/ember?tear*
+ sounds/ember?tear?hit*
  sounds/ion?rain*
  sounds/korath?afterburner*
  sounds/remnant?afterburner*
@@ -1701,7 +1835,7 @@ Files:
  images/thumbnail/rai-alorej*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
-Comment: Derived from works by NomadicVolcano (public domain).
+Comment: Derived from public domain works previously submitted to Endless Sky
 
 Files:
  images/outfit/microbot?defense?station*
@@ -1859,6 +1993,22 @@ Files:
 Copyright: Various
 License: CC0
 Comment: Taken from unsplash.com and cropped.
+
+Files:
+ images/ui/red?alert*
+Copyright: Zitchas (zitchas.jma@gmail.com)
+License: CC-BY-SA-4.0
+
+Files:
+ images/_menu/haze-brown*
+Copyright: RisingLeaf (https://github.com/RisingLeaf)
+License: CC-BY-SA-4.0
+Comment: Derived from _menu/haze-133 (no copyright given).
+
+Files:
+ images/star/proto-planetary-disk*
+Copyright: RisingLeaf (https://github.com/RisingLeaf)
+License: CC-BY-SA-4.0
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
