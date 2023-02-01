@@ -369,7 +369,7 @@ void PreferencesPanel::DrawControls()
 		Command::BOARD,
 		Command::SCAN,
 		Command::NONE,
-		Command::MOUSETURNING,
+		Command::MOUSE_TURNING,
 		Command::NONE,
 		Command::MENU,
 		Command::MAP,
