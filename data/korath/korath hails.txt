@@ -110,7 +110,7 @@ phrase "exile humanika: If you board us, we will win."
 		"exile humanika: we will win the boarding mission"
 		"exile humanika: you will lose the boarding mission"
 	phrase
-		"exile mixed: , you inferior beings"
+		"exile mixed:, you inferior beings"
 		"exile: empty phrase"
 	word
 		". "
@@ -163,15 +163,15 @@ phrase "exile mixed: bragging about tech"
 	word
 		" "
 	phrase
-		"exile: weapons"  7
-		"exile: engines"  5
-		"exile: systems"  5
-		"exile humanika: systems"  12
-		"exile humanika: engines"  12
+		"exile: weapons" 7
+		"exile: engines" 5
+		"exile: systems" 5
+		"exile humanika: systems" 12
+		"exile humanika: engines" 12
 	word
 		" "
 	phrase
-		"exile: [system] is snazzy"  7
+		"exile: [system] is snazzy" 7
 		"exile: [system] is better than yours" 4
 	word
 		.
@@ -286,10 +286,10 @@ phrase "efreti: miscellaneous rambling"
 # two they heard before to say, "Don't gas us!"
 phrase "exile mixed: Please don't do terrible things to us while we are disabled."
 	word
-		"'uu shud"          3    # You should (mispronounced)
-		"Can hav"           3    # Can have (mispronounced)
-		"'oo wil"           3    # You will (mispronounced)
-		"Most yuu"          3    # Must you (mispronounced)
+		"'uu shud" 3    # You should (mispronounced)
+		"Can hav" 3     # Can have (mispronounced)
+		"'oo wil" 3     # You will (mispronounced)
+		"Most yuu" 3    # Must you (mispronounced)
 
 		"Ratami'"                # Please
 		"Asra 'olap"             # You should
@@ -298,10 +298,10 @@ phrase "exile mixed: Please don't do terrible things to us while we are disabled
 	word
 		" "
 	word
-		"'oo merve gas."   4  # no nerve gas (mispronounced)
-		"'o nerf gus."     4  # no nerve gas (mispronounced)
-		"no ga'as us."     4  # no gas us (mispronounced)
-		"nerf gas no."     4  # nerve gas no (mispronounced)
+		"'oo merve gas." 4  # no nerve gas (mispronounced)
+		"'o nerf gus." 4    # no nerve gas (mispronounced)
+		"no ga'as us." 4    # no gas us (mispronounced)
+		"nerf gas no." 4    # nerve gas no (mispronounced)
 
 		"ranrav rataron 'an jala'."       # do not use nerve gas.
 		"ranrav 'an ifat."                # do not gas us.
@@ -352,7 +352,7 @@ phrase "exile humanika: Your ship sucks."
 		"exile humanika: are inferior to what we possess"
 		"exile humanika: are sub-par by any reasonable standards"
 	phrase
-		"exile mixed: , you inferior beings"
+		"exile mixed:, you inferior beings"
 		"exile: empty phrase"
 	word
 		"."
@@ -366,7 +366,7 @@ phrase "exile humanika: Your ship sucks."
 		"exile humanika: are inferior to what we possess"
 		"exile humanika: are sub-par by any reasonable standards"
 	phrase
-		"exile mixed: , you inferior beings"
+		"exile mixed:, you inferior beings"
 		"exile: empty phrase"
 	word
 		"."
@@ -380,7 +380,7 @@ phrase "exile humanika: We are better than you."
 		"exile humanika: are superior to what you possess"
 		"exile humanika: are above par by any reasonable standards"
 	phrase
-		"exile mixed: , you inferior beings"
+		"exile mixed:, you inferior beings"
 		"exile: empty phrase"
 	word
 		"."
@@ -435,7 +435,7 @@ phrase "exile: empty phrase"
 	word
 		""
 
-phrase "exile mixed: , you inferior beings"
+phrase "exile mixed:, you inferior beings"
 	word
 		", "
 	phrase
@@ -596,35 +596,35 @@ phrase "exile: and we will let you live."
 phrase "exile humanika: non-luxury foodstuffs"
 	word
 		# General terms for food have a high probability
-		"fuud"         2             # food (mispronounced)
-		"f'oood"       2             # food (mispronounced)
-		"fude"         2             # food (mispronounced)
-		"foo'de"       2             # food (mispronounced)
+		"fuud" 2                     # food (mispronounced)
+		"f'oood" 2                   # food (mispronounced)
+		"fude" 2                     # food (mispronounced)
+		"foo'de" 2                   # food (mispronounced)
 
 		# Terms for categories of food have a high probability
-		"feeshs"       2             # fish (mispronounced)
-		"frute"        2             # fruit (mispronounced)
-		"vetaples"     2             # vegetables (mispronounced)
-		"nots"         2             # nuts (mispronounced)
-		"mete"         2             # meat (mispronounced)
+		"feeshs" 2                   # fish (mispronounced)
+		"frute" 2                    # fruit (mispronounced)
+		"vetaples" 2                 # vegetables (mispronounced)
+		"nots" 2                     # nuts (mispronounced)
+		"mete" 2                     # meat (mispronounced)
 
 		# Individual foods are less likely
-		"sammon"       1             # salmon (mispronounced)
-		"cikken"       1             # chicken (mispronounced)
-		"beaf"         1             # beef (mispronounced)
-		"let'us"       1             # lettuce (mispronounced)
-		"verman"       1             # vermin (mispronounced)
-		"fuit"         1             # fruit (mispronounced)
-		"buberris"     1             # blueberries (mispronounced)
-		"insets"       1             # insects (mispronounced)
-		"isekts"       1             # insects (mispronounced)
-		"bee'lus"      1             # beetles (mispronounced)
-		"feesh"        1             # fish (mispronounced)
-		"starburries"  1             # strawberries (mispronounced)
-		"burds"        1             # birds (mispronounced)
-		"burries"      1             # berries (mispronounced)
-		"base"         1             # bass (mispronounced)
-		"werms"        1             # worms (mispronounced)
+		"sammon" 1            # salmon (mispronounced)
+		"cikken" 1            # chicken (mispronounced)
+		"beaf" 1              # beef (mispronounced)
+		"let'us" 1            # lettuce (mispronounced)
+		"verman" 1            # vermin (mispronounced)
+		"fuit" 1              # fruit (mispronounced)
+		"buberris" 1          # blueberries (mispronounced)
+		"insets" 1            # insects (mispronounced)
+		"isekts" 1            # insects (mispronounced)
+		"bee'lus" 1           # beetles (mispronounced)
+		"feesh" 1             # fish (mispronounced)
+		"starburries" 1       # strawberries (mispronounced)
+		"burds" 1             # birds (mispronounced)
+		"burries" 1           # berries (mispronounced)
+		"base" 1              # bass (mispronounced)
+		"werms" 1             # worms (mispronounced)
 
 phrase "exile humanika: raw materials"
 	word
@@ -689,7 +689,7 @@ phrase "exile humanika: cultural items"
 # among the Korath that make them ask for this.
 phrase "exile humanika: strange items"
 	word
-		"kit'ens"                            # Kittens  (mispronounced)
+		"kit'ens"                            # Kittens (mispronounced)
 		"Hoy a'orn cookees"                  # Hai acorn cookies (mispronounced)
 		"toilat pepper"                      # Toilet paper (mispronounced)
 		"geko"                               # Gecko (mispronounced)
@@ -762,11 +762,11 @@ phrase "exile: Our malfunctioning system"
 	word
 		" "
 	phrase
-		"exile humanika: engines"  9
-		"exile humanika: systems"  9
-		"exile: engines"  4
-		"exile: systems"  4
-		"exile: weapons"  4
+		"exile humanika: engines" 9
+		"exile humanika: systems" 9
+		"exile: engines" 4
+		"exile: systems" 4
+		"exile: weapons" 4
 
 phrase "exile: Our ship's"
 	word
@@ -896,7 +896,7 @@ phrase "exile: Could you be so kind as to render assistance?"
 		"Nrumuk okrah ifat!"             # Please help us!
 		"Akit ratpokohfef rakafamegreb!" # We need rescue!
 		"Rapi'at ras nrakas."            # Have pity and come [here].
-		"Patoaf asra okrahfef ?ifat?"    # Will you help us?
+		"Patoaf asra okrahfef ifat?"     # Will you help us?
 		"Ratkafamegref ifat?"            # [Will you] rescue us?
 		"Mati tanpa bantuan."            # [We will] die without [your] help.
 		"Pamisav racampab ifat!"         # Be our hero!
@@ -1270,7 +1270,7 @@ phrase "exile: listen to (Band)"
 	word
 		"Ter Mite Bee Riot"             # There Might Be Riots
 		"Rati I'arifam"                 # Laminated Fish
-		"Kafait Tikenumuba"	        # Apologetic Apocalypse
+		"Kafait Tikenumuba"             # Apologetic Apocalypse
 		"Racat-racat is Ikul"           # Comrades on Toast
 		"Tolannref Abrak Riwi"          # Scratching Without Permission
 		"I'omi Ramafluret"              # Illusion of Normalcy
