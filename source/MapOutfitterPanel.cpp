@@ -269,7 +269,8 @@ void MapOutfitterPanel::Init()
 			for(const Outfit *outfit : it.second.Outfitter())
 				if(!seen.count(outfit))
 				{
-					catalog[outfit->Category()].push_back(outfit);
+					if(!onlyShowLicensesMet || LicensesMet(outfit->Licenses()))
+						catalog[outfit->Category()].push_back(outfit);
 					seen.insert(outfit);
 				}
 

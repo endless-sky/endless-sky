@@ -235,7 +235,8 @@ void MapShipyardPanel::Init()
 			for(const Ship *ship : it.second.Shipyard())
 				if(!seen.count(ship))
 				{
-					catalog[ship->Attributes().Category()].push_back(ship);
+					if(!onlyShowLicensesMet || LicensesMet(ship->BaseAttributes().Licenses()))
+						catalog[ship->Attributes().Category()].push_back(ship);
 					seen.insert(ship);
 				}
 
