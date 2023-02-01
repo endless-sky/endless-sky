@@ -93,6 +93,7 @@ protected:
 
 	const std::vector<std::string> &categories;
 	bool onlyShowSoldHere = false;
+	bool onlyShowLicensesMet = false;
 
 
 private:
