@@ -1529,7 +1529,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			# People filter out, and Captain Last can choose where to go next (and how quickly)
 
 			action
-					"Hai Reveal [A11] Sound the Alarm: time" = 1
+				"Hai Reveal [A11] Sound the Alarm: time" = 1
 			# Randomly choose whether the proceedings or reading room are offered first
 			# to avoid consistently biasing players to either one.
 			branch haidepart
@@ -1831,7 +1831,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 
 			label hurry
 			# Player "was in a hurry to get to the proceedings," so they catch Teeneep and Sayari talking.
-			`	 This is not the first time you've seen the room, but it is the first time you've seen it full. There is a small desk and seat at the front of the central circle, opposite the entry point, which was not occupied when you entered here for dealing with Scar's Legion but now hosts a very serious Hai bearing unusual marks of office. Sayari sees your line of vision and nudges you, conveying in a whisper, "That's the moderator. They're only required when more than two thirds of the council is in attendance, and when there's a debate or petition to address."`
+			`	This is not the first time you've seen the room, but it is the first time you've seen it full. There is a small desk and seat at the front of the central circle, opposite the entry point, which was not occupied when you entered here for dealing with Scar's Legion but now hosts a very serious Hai bearing unusual marks of office. Sayari sees your line of vision and nudges you, conveying in a whisper, "That's the moderator. They're only required when more than two thirds of the council is in attendance, and when there's a debate or petition to address."`
 			`	She glances around the room and raises an eyebrow. "This is a closed session, which is quite unusual for a full Council Assembly. This does not bode well."`
 			`	"Captain, since you have become involved as a witness, protocol dictates that the session will be held in your language, though for the sake of order normal council directions will still be in Hai. We will begin in a moment."`
 				goto proceedings
