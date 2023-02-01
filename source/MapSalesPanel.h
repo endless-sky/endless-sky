@@ -62,6 +62,8 @@ protected:
 
 	virtual void DrawItems() = 0;
 
+	virtual void Init() = 0;
+
 	void DrawKey() const;
 	void DrawPanel() const;
 	void DrawInfo() const;
