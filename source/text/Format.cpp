@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cctype>
 #include <cmath>
 #include <cstring>
+#include <functional>
 #include <sstream>
 #include <unordered_set>
 
