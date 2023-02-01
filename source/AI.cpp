@@ -3782,10 +3782,9 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	const bool mouseTurning = Preferences::Has("alt-mouse turning");
 	if(mouseTurning && !ship.IsBoarding() && !ship.IsReversing())
 	{
-		Angle shipAngle = ship.Facing();
-		Point shipVector = shipAngle.Unit();
+		Point shipVector = ship.Facing().Unit();
 
-		double angDiff = -atan2(mousePosition.Cross(shipVector), mousePosition.Dot(shipVector)) * TO_DEG;
+		double angDiff = atan2(shipVector.Cross(mousePosition), mousePosition.Dot(shipVector)) * TO_DEG;
 		if(angDiff)
 		{
 			double scale = 1.;
