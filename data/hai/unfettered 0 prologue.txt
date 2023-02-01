@@ -733,14 +733,14 @@ mission "Unfettered: Bring Medical Supplies"
 		payment 1500000
 		conversation
 			`The staff seem greatly relieved when you return promptly with the medical supplies. As you're returning to your ship, one of them catches up to you. "Hello, captain <last>. I am Merki, manager of this hospital. I wanted to express my deepest thanks to you and give you the <payment> personally. I find it quite admirable that an outsider would risk getting caught up in all of this. It would mean a great deal to me if your bravery holds fast, so make sure to check the job board for more jobs like this."`
-			`	Once Merki leaves, you notice a recognizable face: the same Hai Chief from Firelode, speaking with someone who, judging by their demeanour and attire, could be the hospital's chief medical officer. He soon sees you as well and hurriedly finishes his conversation, seeming more than a bit emotional as he then moves to speak with you. "I knew you could be counted on as a friend to the Unfettered! With the swift response of captains like you, it seems like it has calmed down here. We did not before have the time to get properly introduced. I am Sookootow." He makes a little gesture, you assume of deference. You try to imitate the motion, apparently badly, amusing Sookootow. "Worry not, <first> <last>, I already know who you are."`
+			`	Once Merki leaves, you notice a recognizable face: the same Hai Chief from Firelode, speaking with someone who, judging by their demeanor and attire, could be the hospital's chief medical officer. He soon sees you as well and hurriedly finishes his conversation, seeming more than a bit emotional as he then moves to speak with you. "I knew you could be counted on as a friend to the Unfettered! With the swift response of captains like you, it seems like it has calmed down here. We did not before have the time to get properly introduced. I am Sookootow." He makes a little gesture, you assume of deference. You try to imitate the motion, apparently badly, amusing Sookootow. "Worry not, <first> <last>, I already know who you are."`
 			choice
 				`	"I only did what little I could do to help save people. Hopefully I will be able to do more next time we meet."`
 					decline
 				`	"What could have caused this crisis? Does it happen often?"`
 				`	"Are all Unfettered soldiers? I see a lot of you armed and seemingly ready for action."`
 					goto soldiers
-			`	"It depends on who you ask... Some will say the aliens, your people, are the reason, given the Hai have much contact with them, and we with the Hai. Of course, the Hai who sympathise with our cause do so with many others as well, such as helping humans with low funds relocate to their space. As you have probably noticed, we ourselves do not get many visits from outsiders; they obviously do not feel very welcomed when getting shot at for their supplies. That means we are not protected against the diseases they may bring.`
+			`	"It depends on who you ask... Some will say the aliens, your people, are the reason, given the Hai have much contact with them, and we with the Hai. Of course, the Hai who sympathize with our cause do so with many others as well, such as helping humans with low funds relocate to their space. As you have probably noticed, we ourselves do not get many visits from outsiders; they obviously do not feel very welcomed when getting shot at for their supplies. That means we are not protected against the diseases they may bring.`
 			`	"As for the frequency, the precarious conditions here mean this happens too often for our liking. As a result, we have a habit of quickly reacting to any seemingly deadly diseases. That means that sometimes we worry for nothing, but this was not one of those times. We are a strong people, but even a strong Heshi is nothing in shallow waters. It is a matter of life or death that the hospital be in its best possible state, but it is only that way thanks to much work and investments. The many places in which our people live are not quite as sophisticated."`
 			choice
 				`	"What is a 'Heshi'?"`
@@ -946,7 +946,7 @@ mission "Unfettered: Prove Your Strength 2"
 			`	"We be going to collect a few jump drives! Normally ye would not be able to get such a job, since ye have not earned much among us still, but I have the connection to get it for ye. Ye see, officially this be me mission, and a very lucrative one, at that! On top of that, should we succeed, next time ye may be entrusted with such missions on your own, but don't ye be expecting near the same booty for yerself."`
 			choice
 				`	"Okay... That just seems too good to be true. What's the catch?"`
-			`	"Well... world be called 'Freedom', and that may sound nice, but it be a dangerous human port, full of privateers and swashbucklers. That is why I need yer ship, for transportation beyond Hai space. Ye will also need to save room in yer cargo hold or on your flagship for four jump drives. Ye be warned: this be no mission for the light hearted."`
+			`	"Well... world be called 'Freedom', and that may sound nice, but it be a dangerous human port, full of privateers and swashbucklers. That is why I need yer ship, for transportation beyond Hai space. Ye will also need to save room in yer cargo hold or on your flagship for four jump drives. Ye be warned: this be no mission for the lighthearted."`
 			choice
 				`	"Let's go then!"`
 					goto leave
@@ -1162,7 +1162,7 @@ mission "Unfettered: Escort Hai Fleet"
 				`	"I'm busy right now, sorry."`
 					goto busy
 			`	"As a Chief I need to be seen by my people, else they would never come to respect me, or follow my instructions. In this specific case, I am here to talk with warlords and soldiers alike, to make sure nobody tries something stupid, else innocent Hai may get hurt."`
-			`	Usually the Hai do not get this deep into our territory, even the ones who sympathise with us, and these are not part of that group. On top of that, some may have strong reactions when they realize who is on board one of these ships..."`
+			`	Usually the Hai do not get this deep into our territory, even the ones who sympathize with us, and these are not part of that group. On top of that, some may have strong reactions when they realize who is on board one of these ships..."`
 				goto choose
 			label help
 			`	"It is not that I do not trust the Hai not to fire on their own people, but a misunderstanding happens quickly. Someone of your expertise would be helpful, and I cannot simply trust any Unfettered Hai captain with this, as he could easily be provoked into making a fatal mistake. I hope, though, that you will be able to make a rational decision. I also need your presence because I want someone that is quick to respond to danger, and with the right tools. Hearing of your duel with a fellow Unfettered captain, you strike me as such a person."`
@@ -1488,7 +1488,7 @@ mission "Unfettered: Materials Intercepted"
 					goto finalmention
 				`	"I will find them and bring the loot back, whatever the cost.`
 			label whatevercost
-			`	He seems a bit warry of your attitude, "Please, whatever you do, try to avoid needless bloodshed, these pirates are not our enemies. I would hardly recommend bribing those that can be. That said, I expect you to do what you must in order to bring back all 142 tons of materials, you can either fit all of that on a Shield Beetle, or bring them back in multiple trips, by storing them in an outfitter or on your other ships. And remember to look for it north-west of human space."`
+			`	He seems a bit wary of your attitude, "Please, whatever you do, try to avoid needless bloodshed, these pirates are not our enemies. I would hardly recommend bribing those that can be. That said, I expect you to do what you must in order to bring back all 142 tons of materials, you can either fit all of that on a Shield Beetle, or bring them back in multiple trips, by storing them in an outfitter or on your other ships. And remember to look for it north-west of human space."`
 			label finalmention
 			branch nvm
 				has "flagship model: Shield Beetle"
