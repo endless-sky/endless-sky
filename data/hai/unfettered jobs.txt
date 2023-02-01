@@ -394,7 +394,7 @@ mission "Unfettered Bring Reverse Engine"
 	destination
 		attributes "unfettered"
 	to offer
-		random < 5
+		random < 10
 		has "Unfettered Jump Drive 1: done"
 	on offer
 		conversation
@@ -422,7 +422,7 @@ mission "Unfettered Bring Batteries"
 	destination "Darkcloak"
 	deadline 14
 	to offer
-		random < 5
+		random < 10
 		has "Unfettered Jump Drive 1: done"
 	on offer
 		conversation
@@ -458,7 +458,7 @@ mission "Unfettered Bring Ion Cannons"
 		attributes "unfettered"
 	destination "Darkcloak"
 	to offer
-		random < 5
+		random < 15
 		has "Unfettered Jump Drive 1: done"
 	on offer
 		conversation

@@ -147,22 +147,6 @@ mission "Unfettered: Untrustable"
 
 
 
-mission "Unfettered: Si-Ra's Trust Broken"
-	invisible
-	landing
-	to offer
-		has "Unfettered: Prove Your Strength: active"
-		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 12
-	to fail
-		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 > 12
-	on fail
-		dialog "You have broken the trust of the Unfettered captain by trying to come to a duel with too many ships. He will not show up again."
-		fail "Unfettered: Prove Your Strength"
-	to complete
-		not "Unfettered: Prove Your Strength: active"
-
-
-
 mission "Unfettered: Cargo on Mirrorlake"
 	landing
 	invisible
@@ -486,21 +470,6 @@ mission "Unfettered: Cloaking Interest"
 
 
 
-mission "Unfettered: Mera's Trust Broken"
-	invisible
-	landing
-	to offer
-		has "Unfettered: Earn Your Prize: active"
-		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 18
-	to fail
-		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 > 18
-	on fail
-		dialog `Mera sends you a message, "What are you doing, trying to cheat? You're no fun, you do not deserve to be a part of us."`
-		fail "Unfettered: Earn Your Prize"
-	to complete
-		not "Unfettered: Earn Your Prize: active"
-
-
 conversation "modified shield beetle prize"
 	action
 		set "unfettered: given the modified beetle"
@@ -669,97 +638,6 @@ mission "Unfettered: Immortal Prize"
 
 
 
-conversation "more staves"
-	`As you wander in the spaceport, you see He-Yi's herald, or at least someone with the same mask. He seems interested to know your progress in acquiring weapons.`
-	choice
-		`	"Could you look at what I have here to tell me if it's what you're looking for?"`
-		`	"It's going fine, thank you for asking."`
-			goto fine
-	`	You bring him to your ship and he sees a weapon that appears to be interesting. "This... <staff> staff seems to be adequate for my master. We would only require more of these."`
-	label fine
-	`	He wishes you good luck and hopes you can find the staves. He reminds you a large amount of them is requested - twenty, to be precise.`
-
-mission "Bring More Enforcer Staves"
-	minor # so both staff conversations don't pop up at the same time
-	invisible
-	source "Warfeed"
-	substitutions
-		<staff> "Enforcer"
-	to offer
-		has "Unfettered: Close Quarter: offered"
-		not "Bring Coalition Weapons: offered"
-		not "Bring Pug Staves: offered"
-	on offer
-		require "Enforcer Riot Staff"
-		conversation "more staves"
-
-
-mission "Bring More Pug Staves"
-	minor
-	invisible
-	source "Warfeed"
-	substitutions
-		<staff> "Pug Peacekeeping"
-	to offer
-		has "Unfettered: Close Quarter: offered"
-		not "Bring Coalition Weapons: offered"
-		not "Bring Pug Staves: offered"
-	on offer
-		require "Pug Peacekeeping Staff"
-		conversation "more staves"
-
-mission "Bring Pug Staves"
-	landing
-	invisible
-	source "Warfeed"
-	to offer
-		has "Unfettered: Close Quarter: offered"
-	on offer
-		dialog `Do you want to sell 20 Pug Peacekeeping Staffs to the Unfettered? He-Yi says they can give you 2500000 for it.`
-	on accept
-		payment 2500000
-		outfit "Pug Peacekeeping Staff" -20
-		dialog `The Unfettered thank you for bringing these 20 staffs to them. They give you <payment>.`
-		fail
-
-mission "Bring Coalition Weapons"
-	landing
-	invisible
-	source "Warfeed"
-	to offer
-		has "Unfettered: Close Quarter: offered"
-	on offer
-		dialog `Do you want to sell 20 Enforcer Riot Staffs to the Unfettered? He-Yi says they can give you 4000000 for it.`
-	on accept
-		payment 4000000
-		outfit "Enforcer Riot Staff" -20
-		dialog `The Unfettered thank you for bringing these 20 staffs to them. They give you <payment>.`
-		fail
-
-mission "Bring Void Rifle"
-	minor
-	invisible
-	source "Warfeed"
-	to offer
-		has "Unfettered: Close Quarter: offered"
-	on offer
-		require "Void Rifle"
-		conversation
-			`He-Yi seems very, very interested in this weapon. "Where did you find it? Can you bring us more? We would gladly make you rich if you do. This is the perfect weapon for training."`
-			choice
-				`	"Sorry, this is one of a kind."`
-			`	"I can cancel the exchange then, if it is precious to your eyes."`
-			choice
-				`	"10 million credits is much more precious, thank you."`
-				`	"Yes, I have changed my mind. Cancel the exchange."`
-					decline
-			`	"This will be my personal weapon. Worry not, I will take good care of it!"`
-				accept
-	on accept
-		payment 10000000
-		outfit "Void Rifle" -1
-		fail
-
 mission "Unfettered: Close Quarter"
 	name `Close Quarter Fighting`
 	description `He-Yi wants you to bring twenty non-lethal weapons stronger than the pulse rifle for him to use in training with the other Unfettered. Deliver them to <destination>.`
@@ -915,6 +793,98 @@ mission "Unfettered: Close Quarter"
 			`	"That shield beetle may be strong, but it is only [a prototype, an experience]. It has its weaknesses."`
 			label train
 			`	"Remember, having a strong fleet and flagship does not matter much if you don't know how to [use it, fight] properly! If you want to [practice, learn], there are plenty of Unfettered captains looking forward to challenging you. Check the job board if you're interested. Do not that they are not interested in too [unfair, quick] fights!"`
+
+conversation "more staves"
+	`As you wander in the spaceport, you see He-Yi's herald, or at least someone with the same mask. He seems interested to know your progress in acquiring weapons.`
+	choice
+		`	"Could you look at what I have here to tell me if it's what you're looking for?"`
+		`	"It's going fine, thank you for asking."`
+			goto fine
+	`	You bring him to your ship and he sees a weapon that appears to be interesting. "This... <staff> staff seems to be adequate for my master. We would only require more of these."`
+	label fine
+	`	He wishes you good luck and hopes you can find the staves. He reminds you a large amount of them is requested - twenty, to be precise.`
+
+mission "Bring More Enforcer Staves"
+	minor # so both staff conversations don't pop up at the same time
+	invisible
+	source "Warfeed"
+	substitutions
+		<staff> "Enforcer"
+	to offer
+		has "Unfettered: Close Quarter: offered"
+		not "Bring Coalition Weapons: offered"
+		not "Bring Pug Staves: offered"
+	on offer
+		require "Enforcer Riot Staff"
+		conversation "more staves"
+
+
+mission "Bring More Pug Staves"
+	minor
+	invisible
+	source "Warfeed"
+	substitutions
+		<staff> "Pug Peacekeeping"
+	to offer
+		has "Unfettered: Close Quarter: offered"
+		not "Bring Coalition Weapons: offered"
+		not "Bring Pug Staves: offered"
+	on offer
+		require "Pug Peacekeeping Staff"
+		conversation "more staves"
+		fail
+
+mission "Bring Pug Staves"
+	landing
+	invisible
+	source "Warfeed"
+	to offer
+		has "Unfettered: Close Quarter: offered"
+	on offer
+		dialog `Do you want to sell 20 Pug Peacekeeping Staffs to the Unfettered? He-Yi says they can give you 2500000 for it.`
+	on accept
+		payment 2500000
+		outfit "Pug Peacekeeping Staff" -20
+		dialog `The Unfettered thank you for bringing these 20 staffs to them. They give you <payment>.`
+		fail
+
+mission "Bring Coalition Weapons"
+	landing
+	invisible
+	source "Warfeed"
+	to offer
+		has "Unfettered: Close Quarter: offered"
+	on offer
+		dialog `Do you want to sell 20 Enforcer Riot Staffs to the Unfettered? He-Yi says they can give you 4000000 for it.`
+	on accept
+		payment 4000000
+		outfit "Enforcer Riot Staff" -20
+		dialog `The Unfettered thank you for bringing these 20 staffs to them. They give you <payment>.`
+		fail
+
+mission "Bring Void Rifle"
+	minor
+	invisible
+	source "Warfeed"
+	to offer
+		has "Unfettered: Close Quarter: offered"
+	on offer
+		require "Void Rifle"
+		conversation
+			`He-Yi seems very, very interested in this weapon. "Where did you find it? Can you bring us more? We would gladly make you rich if you do. This is the perfect weapon for training."`
+			choice
+				`	"Sorry, this is one of a kind."`
+			`	"I can cancel the exchange then, if it is precious to your eyes."`
+			choice
+				`	"10 million credits is much more precious, thank you."`
+				`	"Yes, I have changed my mind. Cancel the exchange."`
+					decline
+			`	"This will be my personal weapon. Worry not, I will take good care of it!"`
+				accept
+	on accept
+		payment 10000000
+		outfit "Void Rifle" -1
+		fail
 
 
 

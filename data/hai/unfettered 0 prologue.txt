@@ -804,8 +804,6 @@ mission "Unfettered: Prove Your Strength"
 			`	"Sink me! That flotsam really be your ship? Given the hornswoggle of your reputation, I pegged you for a fancier type. Your prowess is no lie, indeed then, if you land in such a scow, but can ye truly fight in it?" he says, and then he turns to address the crowd once again. "I wonder if it can even launch again. Perhaps we should scuttle it right here."`
 				goto lesson
 			label provoke
-			action
-				"unfettered: offended Si-Ra" ++
 			`	"So the monkey can speak? Let us see if it can fight as well," he says with a provocative tone.`
 			label lesson
 			`	Time for him to learn a lesson. The thought that you may be in over your head briefly crosses your mind, but you brush it aside.`
@@ -848,7 +846,7 @@ mission "Unfettered: Prove Your Strength"
 		to spawn
 			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 12
 		to despawn
-			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 > 12
+			has "unfettered: beaten the captain"
 		conversation
 			`Now that you have disabled the <npc>, its captain hails you. "It seems ye fight admirably after all. Ye've earned my respect today," he says with a voice so calm you are surprised it came from the same captain who was recently provoking you for no apparent reason.`
 				to display
@@ -898,6 +896,21 @@ mission "Unfettered: Prove Your Strength"
 		clear "unfettered: beaten the captain"
 		"unfettered: took Si-Ra' gold" = "outfit (all): Gold Bars"
 		"unfettered: took Si-Ra' weapons" = "outfit (all): Ionic Blaster Prototype" + "outfit (all): Ionic Turret Prototype" * 3
+
+mission "Unfettered: Si-Ra's Trust Broken"
+	invisible
+	landing
+	to offer
+		has "Unfettered: Prove Your Strength: active"
+		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 12
+	to fail
+		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 > 12
+		has "flagship system: Wah Yoot"
+	on fail
+		dialog "You have broken the trust of the Unfettered captain by trying to come to a duel with too many ships. He will not show up again."
+		fail "Unfettered: Prove Your Strength"
+	to complete
+		not "Unfettered: Prove Your Strength: active"
 
 
 
@@ -1135,6 +1148,24 @@ mission "Unfettered: Jump Drive Retrieval"
 		system "Almaaz"
 		fleet "Large Northern Pirates"
 		fleet "Small Northern Pirates" 2
+
+mission "Unfettered: Attracted Attention"
+	landing
+	invisible
+	source "Freedom"
+	destination "Darkcloak"
+	to offer
+		has "Unfettered: Prove Your Strength 2: active"
+		has "outfit (installed): Jump Drive"
+	on enter "Almaaz"
+		"unfettered: offended Si-Ra" += 2
+		dialog `The Unfettered "pirate" spits a string of old-timey nautical curses, but one word, which you can barely hear him mutter, stands out: "Cerberus." He then comes closer to address you directly, "There be even more of these scurvy bilge rats than I expected. I warned ye about coming here with a jump drive!"`
+	npc evade
+		government "Cerberus"
+		system "Almaaz"
+		personality disables plunders vindictive
+		fleet "Large Northern Pirates"
+
 
 
 
@@ -1406,8 +1437,8 @@ mission "Unfettered: Materials Intercepted Job Board Notification"
 			`	It does not look like an urgent job, so it should still be there the next time you land on an Unfettered world, but you should probably check it out when you have the time.`
 				decline
 
-# SPOILER: Hydras or the Mercenaries bring cargo to the Unfettered. Hydras were on the way, but the Mercenaries hired Scar's legion to sneakily take it and bring it to them.
-# only that Hydras were on their tail, and just took down the ship and it's cargo when you arrive. Time to steal it back back back
+# SPOILER: Cerberus or Midas bring cargo to the Unfettered. Cerberus was on the way, but Midas hired Scar's legion to sneakily take it and bring it to them.
+# only that Cerberus were on their tail, and just took down the ship and it's cargo when you arrive. Time to steal it back back back
 mission "Unfettered: Materials Intercepted"
 	job
 	name `Sookootow: Looking for stolen cargo`

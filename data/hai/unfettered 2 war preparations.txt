@@ -797,9 +797,7 @@ mission "Unfettered: Earn Your Prize"
 		to spawn
 			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 18
 		to despawn
-			or
-				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 > 18
-				has "unfettered: defeated Mera"
+			has "unfettered: defeated Mera"
 		conversation
 			action
 				set "unfettered: defeated Mera"
@@ -874,6 +872,21 @@ mission "Unfettered: Earn Your Prize"
 		dialog "You have not yet defeated Mera. If she did not show up it is probably because your fleet is too large."
 	to complete
 		has "unfettered: defeated Mera"
+
+mission "Unfettered: Mera's Trust Broken"
+	invisible
+	landing
+	to offer
+		has "Unfettered: Earn Your Prize: active"
+		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 18
+	to fail
+		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 > 18
+		has "flagship system: Ehma Ti"
+	on fail
+		dialog `Mera sends you a message, "What are you doing, trying to cheat? You're no fun, you do not deserve to be a part of us."`
+		fail "Unfettered: Earn Your Prize"
+	to complete
+		not "Unfettered: Earn Your Prize: active"
 
 
 
@@ -1216,30 +1229,40 @@ mission "Unfettered: Special Cargo 2"
 
 
 
-ship "Modified Shield Beetle" "Si-Ra' Beetle"
+# he's really angry at this point if you kicked him to this beetle,
+# he risked everything to upgrade and kill you now so he can get back into Midas
+ship "Modified Shield Beetle" "Si-Ra' angry Beetle"
 	add attributes
 		"shields" -2000
 		"hull" 500
 		"heat dissipation" .05
 		"cargo space" -20
 		"outfit space" 15
+		"weapon capacity" 3
 	outfits
-		"Tripulse Shredder" 8
+		"Tripulse Shredder" 5
+		"Pulse Cannon" 3
+		"Pulse Turret" 2
+		"Chameleon Anti-Missile"
 
-		"Hai Octopus Jammer"
-		"Large Heat Shunt"
-		"Hai Zephyr Cooling" 3
-		Hyperdrive
-		"Quantum Keystone" 2
-		"Hai Diamond Regenerator"
+		"Hai Octopus Jammer" 2
+		"Large Heat Shunt" 2
+		"Hai Zephyr Cooling"
+		"Quantum Keystone" 4
+		"Outfits Expansion" 3
+		"Fuel Processor"
+		"Hyperdrive"
+		"Value Detector" 2
+		"Dark Storm Shielding"
+		"S-970 Regenerator"
 		"Systems Core (Medium)"
 
-		"Boulder Reactor"
-		"Geode Reactor"
-		"Hai Ravine Batteries"
+		"Double Plasma Core"
+		"Large Biochemical Cell"
+		"Hai Gorge Batteries"
 
-		"Pulse Rifle" 77
-		"Dual Pulse Pistols"
+		"Pulse Rifle" 70
+		"Dual Pulse Pistols" 8
 
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
@@ -1350,6 +1373,15 @@ conversation "unfettered war ready"
 	label train
 	`	"The war will start soon, but there is still some time to train. Use that time well, Captain."`
 
+event "unfettered: unbribable challengers"
+	government "Hai (Unfettered Challenger)"
+		bribe 0
+
+event "unfettered: bribable challengers"
+	government "Hai (Unfettered Challenger)"
+		bribe 0.0001
+
+
 # This mission partly is intended as a test to make sure you are strong enough for the following part of the campaign, but they also give you your license and salary, with official colors.
 mission "Unfettered: Ready For The War"
 	name `Strength of a Leader`
@@ -1374,28 +1406,70 @@ mission "Unfettered: Ready For The War"
 				defer
 			label "came alone"
 			`You find Si-Ra and He-Yi waiting for you on the spaceport. Si-Ra asks, "Are you ready for war, <last>?" It seems to be a rhetorical question, and he does not wait for you to answer at all. He adds, "All Unfettered are expected to be ready for war, at any time."`
-			`	Si-Ra comes closer and takes you aside to speak to you, privately. "I have managed to buy myself a ship with the money from our last business opportunity. It is much stronger than the old one! And as a warlord, He-Yi has a strong fleet as well, though he will not use it here - only his flagship. You may want to consider this seriously. You will first have to duel me and then him. Don't forget you can call the fight off and come back once you're ready by giving us a symbolic fee." He then takes a pause before asking, "What do you say, <last>? Are you ready to fight us?"`
+			`	Si-Ra comes closer and takes you aside to speak to you, privately.`
+			`	"You should know I do not approve of your rise of power, even though there is probably nothing I can do about it. Fight well, your life may depend on it."`
+				to display
+					not "midas: tracker relay"
+					"unfettered: took Si-Ra' gold" > 5
+			`	"I have managed to buy myself a ship with the money from our last business opportunity. It is much stronger than the old one! And as a warlord, He-Yi has a strong fleet as well, though he will not use it here - only his flagship. You may want to consider this seriously. You will first have to duel me and then him. Don't forget you can call the fight off and come back once you're ready by giving us a symbolic fee." He then takes a pause before asking, "What do you say, <last>? Are you ready to fight us?"`
 			choice
 				`	"I was born ready."`
 				`	"On second thought, I'll come back later."`
 					goto later
 				`	"Now that it's here I'm starting to realize I don't want to be a part of your war. I'm out.`
 					decline
+			branch "mad Si-Ra"
+				not "midas: tracker relay"
+				"unfettered: took Si-Ra' gold" > 5
+				has "unfettered: offended Si-Ra"
 			`	"And may you die ready as well. Let us fight, on the same terms of honor as before. Take off when you're ready, I will be waiting for you. Once you defeat me you will be able to fight the Tejolis."`
+				accept
+			label "mad Si-Ra"
+			action
+				set "unfettered: mad Si-Ra"
+				event "unfettered: unbribable challengers"
+			`	"And may you die ready as well. Let us fight! Take off when you're ready, I will be waiting for you. Once you defeat me you will be able to fight the Tejolis."`
 				accept
 			label later
 			`	"Be sure to come back soon. War cannot wait forever."`
 				defer
 	npc save disable
+		to spawn
+			not "unfettered: mad Si-Ra"
 		to despawn
 			has "unfettered: defeated Si-Ra"
 		government "Hai (Unfettered Challenger)"
-		ship "Si-Ra' Beetle" "Defiant"
+		ship "Si-Ra' Golden Beetle" "Defiant"
 		personality disables staying heroic target launching
 		conversation
-			`"You have defeated me, But He-Yi will not be as easy to beat! Land to repair, and then take off when you're be ready to face him."`
+			`"You have defeated me, but He-Yi will not be as easy to beat! Land to repair, and then take off when you're be ready to face him." He launches an escape pod.`
 			action
 				set "unfettered: defeated Si-Ra"
+	# if you made him be kicked from Midas he'll be angry and not respect the rules of the fight, in which case you may kill him
+	# he'd get demoted for this anyway
+	npc disable
+		to spawn
+			has "unfettered: mad Si-Ra"
+		to despawn
+			has "unfettered: defeated Si-Ra"
+		government "Hai (Unfettered Challenger)"
+		ship "Si-Ra' angry Beetle" "Defiant"
+		personality vindictive nemesis heroic target launching
+		conversation
+			`"Damnit! You just humiliated me, again? I take comfort in knowing He-Yi will most likely give you a lesson! Land to repair, and then take off when you're be ready to face him."`
+			action
+				set "unfettered: defeated Si-Ra"
+				event "bribable challengers"
+	npc
+		to spawn
+			has "unfettered: mad Si-Ra"
+			"armament deterrence" > 12
+		to despawn
+			has "unfettered: defeated Si-Ra"
+		government "Hai (Unfettered Challenger)"
+		personality entering vindictive nemesis heroic
+		ship "Shield Beetle (Jump)" "Ghost"
+		system "Prakacha'a"
 	npc save disable
 		to spawn
 			has "unfettered: defeated Si-Ra"
@@ -1423,7 +1497,12 @@ mission "Unfettered: Ready For The War"
 		set "license: True Unfettered"
 		clear "unfettered: defeated Si-Ra"
 		conversation
-			`He-Yi joins you on your ship after having parked his. "We will notify you once you may be of more help to the war effort. In the meantime, we have increased your salary to 5,000 credits so you can [muster, gather] an even larger fleet.`
+			`He-Yi joins you on your ship after having parked his.`
+			# Si-Ra will join Cerberus at this point
+			`	"I was told by one of Si-Ra' officers that he was planning to disrespect the rules of the duel, and to kill you. Fortunately he did not succeed, but his escape pod managed to escape, so this is may not be the last time we will hear of him. He has been marked as an outcast."`
+				to display
+					has "unfettered: mad Si-Ra"
+			`	"We will notify you once you may be of more help to the war effort. In the meantime, we have increased your salary to 5,000 credits so you can [muster, gather] an even larger fleet.`
 			`	"Also, from now on, you will officially have the permission to proudly wear our [flag, colors]. We have informed the Hai so that they will [recognize, distinguish] you and not be hostile to you. We cannot say the same for the Wanderers, though, so be careful. If you want we can delay it until the war truly starts."`
 			choice
 				`	"I'd prefer if we waited, I do not want to be at war with the Wanderers yet."`

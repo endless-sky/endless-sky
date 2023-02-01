@@ -13,7 +13,7 @@
 
 # SPOILER: concept: these contain fuel that comes from ancient space behemoths that have since almost all migrated
 # it is going to be used to power the dimensional eraser, a misused Pug engine that got distrupted by the gases emanating from the leviathan
-# the mercenaries would do anything to make sure they are safe.
+# Midas would do anything to make sure they are safe.
 outfit "Gold Bars"
 	category "Special"
 	plural "Gold Bars"
@@ -23,6 +23,7 @@ outfit "Gold Bars"
 	"installable" -1
 	description "It shines; you can feel its value. For some reason, the text 'nemo me impune lacessit' is written on them. You wonder what that could mean... surely nothing to worry about. Most outfitters are not real 'connoisseurs' of the value these hold though, and would not give you any more than the price of brute gold for it."
 
+# the hyperdrive was optimized out, ship is for duels only
 ship "Sea Scorpion" "Si-Ra' Scorpion"
 	add attributes
 		"weapon capacity" 4
@@ -33,11 +34,12 @@ ship "Sea Scorpion" "Si-Ra' Scorpion"
 		"Ionic Turret Prototype" 2
 
 		"Hai Diamond Regenerator"
+		"Systems Core (Small)"
 		"Hai Octopus Jammer"
 		"Small Heat Shunt"
-		# relic from the old Ka'het raids
-		"Ka'het Support Cooling"
-		"Systems Core (Small)"
+		"Liquid Nitrogen Cooler"
+		"Value Detector"
+		"Hai Chasm Battery"
 
 		"Small Biochemical Cell"
 		"Boulder Reactor"
@@ -364,7 +366,7 @@ mission "Midas: Who is the mad one?"
 
 
 
-phrase "mercenaries defeated"
+phrase "midas defeated"
 	word
 		`After disabling the last of the pirate ships, you wonder what could have motivated such an attack. Do you possess something valuable to them? When they entered the system, they only sent one message: "nemo me impune lacessit". It is probably best to store whatever they were interested in on a planet (using U) or get rid of it.`
 
@@ -387,7 +389,7 @@ mission "Midas: Nemo Me Impune Lacessit"
 		system
 			distance 2 5
 		fleet "Marauders" 3
-		dialog phrase "mercenaries defeated"
+		dialog phrase "midas defeated"
 	to fail
 		or
 			has "midas: took out leader"
@@ -411,7 +413,7 @@ mission "Midas: Nemo Me Impune Lacessit 2"
 		system
 			distance 2 5
 		fleet "Marauders" 5
-		dialog phrase "mercenaries defeated"
+		dialog phrase "midas defeated"
 	to fail
 		or
 			has "midas: took out leader"
@@ -563,7 +565,7 @@ mission "Midas: Bar Selling 2"
 
 
 
-# SPOILERS: the mercenaries want that governor down because she can easily help the Hai-Unfettered Hai unite, given she understands the Unfettered well.
+# SPOILERS: Midas want that governor down because she can easily help the Hai-Unfettered Hai unite, given she understands the Unfettered well.
 # They will only take her hostage here, she may come back later.
 mission "Midas: Feed Them To The Wolves"
 	landing
@@ -578,7 +580,7 @@ mission "Midas: Feed Them To The Wolves"
 		dialog `You are alone in your quarters, waiting for the security detachment of the Hai admiral to arrive, when you hear a mysterious voice. "She of the Void requests that you bring those ships to <waypoints>, without delay. Do so and you will be richly rewarded. Do not worry about the supplies, we will bring them to the Unfettered, we are only acting in their best interest, after all. Whatever you decide, you do not want to speak of us to them." Do you accept?`
 	waypoint "Waypoint"
 	on waypoint
-		"reputation: Mercenaries" >?= 0
+		"reputation: Midas" >?= 0
 		conversation
 			`One of the unindentified ships hail you. "Thank you, Captain. Here is part of your reward: 1 million credits. You may help us by taking out these Hai ships, but it may be wise not to so that the rest of the Hai government will not suspect you, and think this was an unfortunate pirate attack. When this is done, go to Warfeed for your reward. They are going to be in high need of food, and you should bring them as much as you can to compensate for this small... delay in Hai food supplies."`
 			`	Right after that, the governor's ship hails you. "What have you done?" You feel like she was about to continue, but before she could all communications are jammed.`
@@ -586,7 +588,7 @@ mission "Midas: Feed Them To The Wolves"
 		payment 1000000
 	# as of yet, we cannot make the main mission fail as your escorts are boarded, meaning these will not be disables
 	npc
-		# the Alphas and their minions let the Mercenaries alone so that this would happen. They probably even gave them a tip about it, but not in person.
+		# the Alphas and their minions let Midas alone so that this would happen. They probably even gave them a tip about it, but not in person.
 		government "Midas"
 		system "Waypoint"
 		personality plunders staying harvests
@@ -597,7 +599,7 @@ mission "Midas: Feed Them To The Wolves"
 		personality entering plunders staying
 		fleet "Small Northern Pirates" 10
 	on abort
-		"reputation: Mercenaries" <?= -1000
+		"reputation: Midas" <?= -1000
 	to fail
 		has "Unfettered: Escort Hai Fleet: done"
 	on fail
@@ -606,7 +608,7 @@ mission "Midas: Feed Them To The Wolves"
 		has "Unfettered: Escort Hai Fleet: failed"
 		not "Unfettered: Escort Hai Fleet: aborted"
 	on complete
-		"reputation: Mercenaries" <?= -1000
+		"reputation: Midas" <?= -1000
 		clear "unfettered: stopped on Greenbloom"
 		log `The plan was to escort a Hai fleet carying supplies and passengers into Unfettered space but an opportunity to feed them to the wolves instead was presented, and taken.`
 		# The shipment gets lost faster, because they're busy shipping all of these supplies to Unfettered space and can't dedicate as much resources to stealing Alpha supplies.
@@ -688,29 +690,38 @@ event "joined midas"
 	government "Midas"
 		remove "display name"
 
-mission "Unfettered: Answers To Your Questions"
-	landing
-	invisible
-	to offer
-		has "Unfettered: Solifuge 2: Auxiliary Design: done"
-		has "midas: tracker relay"
-		not "midas: wronged"
-	deadline 10
-	on enter "Misam"
-		fail
-	to fail
-		has "unfettered: it's the Alphas!"
-	on fail
-		conversation
-			`Once again you hear a voice when you are alone in your quarters.`
-			`	"Come to us if you truly want to know who that Auxiliary belongs to." The message comes with a location on New Tortuga.`
-				to display
-					not "unfettered: it's the Alphas!"
-			`	"Congratulation, captain. It seemed that you did not need our help to find these Alphas."`
-				to display
-					has "unfettered: it's the Alphas!"
-	to complete
-		never
+
+
+ship "Modified Shield Beetle" "Si-Ra' Golden Beetle"
+	add attributes
+		"shields" -2000
+		"hull" 500
+		"heat dissipation" .05
+		"cargo space" -20
+		"outfit space" 15
+	outfits
+		"Tripulse Shredder" 8
+
+		"Hai Octopus Jammer"
+		"Large Heat Shunt"
+		"Hai Zephyr Cooling" 3
+		Hyperdrive
+		"Quantum Keystone"
+		"Hai Diamond Regenerator"
+		"Systems Core (Medium)"
+
+		"Boulder Reactor"
+		"Geode Reactor"
+		"Hai Ravine Batteries"
+
+		"Pulse Rifle" 77
+		"Dual Pulse Pistols"
+
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+	cargo
+		outfits
+			"Gold Bars" 40
 
 
 

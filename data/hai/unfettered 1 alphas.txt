@@ -11,25 +11,6 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-
-mission "Unfettered: Attracted Attention"
-	landing
-	invisible
-	source "Freedom"
-	destination "Darkcloak"
-	to offer
-		has "Unfettered: Prove Your Strength 2: active"
-		has "outfit (installed): Jump Drive"
-	on enter "Almaaz"
-		dialog `The Unfettered "pirate" spits a string of old-timey nautical curses, but one word, which you can barely hear him mutter, stands out: "Cerberus." He then comes closer to address you directly, "There be even more of these scurvy bilge rats than I expected. I warned ye about coming here with a jump drive!"`
-	npc evade
-		government "Cerberus"
-		system "Almaaz"
-		personality disables plunders vindictive
-		fleet "Large Northern Pirates"
-
-
-
 # Alphas don't give the best loot to the Unfettered, excluding things like:
 # detainers, triple plasma core, large syscores, husk slicer turret and shield disruptors from the normal deliveries
 outfitter "Korath Drones Alpha Loot"
@@ -357,12 +338,32 @@ mission "Unfettered: Question Best Left Unanswered"
 	destination "Darkcloak"
 	to offer
 		has "Unfettered: Solifuge 2: Auxiliary Design: done"
-	on enter "Almaaz" "Arneb" "Alninam"
-		dialog "As you enter the system it occurs to you the nearby pirates may have information regarding that Auxiliary."
-	on enter "Alcyone" "Misam"
-		dialog "Entering the system you recall that you last saw Shadow at Misam, they probably operate there or around it. They may know something about that Auxiliary."
 	to complete
 		has "unfettered: it's the Alphas"
+
+mission "Unfettered: Answers To Your Questions"
+	landing
+	invisible
+	to offer
+		has "Unfettered: Solifuge 2: Auxiliary Design: done"
+		has "midas: tracker relay"
+		not "midas: wronged"
+	deadline 15
+	on enter "Misam"
+		fail
+	to fail
+		has "unfettered: it's the Alphas!"
+	on fail
+		conversation
+			`Once again you hear a voice when you are alone in your quarters.`
+			`	"Come to us if you truly want to know who that Auxiliary belongs to." The message comes with a location on New Tortuga.`
+				to display
+					not "unfettered: it's the Alphas!"
+			`	"Congratulation, captain. It seemed that you did not need our help to find these Alphas."`
+				to display
+					has "unfettered: it's the Alphas!"
+	to complete
+		never
 
 mission "Unfettered: Looking For Answers"
 	landing
@@ -621,7 +622,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		ship "Far Osk 27" "Oren"
 		ship "Far Osk 27" "Mert"
 		ship "Far Osk 27" "Dart"
-	# additional fighters if the Alphas were uncontested by the mercenaries. one can use these to fill their Auxiliary with fighters ;)
+	# additional fighters if the Alphas were uncontested by Midas. one can use these to fill their Auxiliary with fighters ;)
 	npc
 		government "Cerberus"
 		system "Host"

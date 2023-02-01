@@ -194,7 +194,6 @@ mission "Wanderers: Hai Diplomat"
 		has "First Contact: Wanderer: offered"
 		has "First Contact: Hai: offered"
 		not "Wanderers: Diplomacy: offered"
-		not "Unfettered: Speak Hai: active"
 	on offer
 		conversation
 			`The aliens north of Hai space seem to speak the Hai language. Do you want to look for someone here who could serve as an interpreter?`
@@ -227,7 +226,6 @@ mission "Wanderers: Diplomacy"
 	passengers 1
 	to offer
 		has "First Contact: Wanderer: offered"
-		not "Unfettered: Speak Hai: active"
 		not "language: Wanderer"
 	on offer
 		log "People" "Sayari" `Now that the crisis with humanity is over she has volunteered to serve as a translator and be the Hai diplomat to the Wanderers as a capstone for her career.`
