@@ -514,8 +514,12 @@ government "Hai (Unfettered)"
 		"Hai (Unfettered Challenger)" 1
 		"Hai (Unfettered Blue Challenger)" 1
 		"Hai (Unfettered Red Challenger)" 1
-	"foreign penalties for"
+	"custom penalties for"
 		"Hai (Unfettered Challenger)"
+			disable -.5
+			board .25
+			capture 5
+			destroy 1
 	"bribe" .02
 	"fine" 0
 	"friendly hail" "friendly unfettered"
@@ -549,7 +553,7 @@ government "Hai (Unfettered Challenger)"
 	"crew attack" 1.4
 	"crew defense" 2.2
 
-	"player reputation" -10000
+	"player reputation" -1000
 	"bribe" .0001
 	"fine" 0
 
@@ -558,10 +562,7 @@ government "Hai (Unfettered Challenger)"
 	"hostile hail" "hostile unfettered challenger"
 	"hostile disabled hail" "defeated unfettered challenger"
 	"penalty for"
-		disable -0.5
-		board 0.25
-		capture 3
-		destroy 1.5
+		assist 0
 
 # A government used to make unfettered challengers fight each other.
 government "Hai (Unfettered Blue Challenger)"

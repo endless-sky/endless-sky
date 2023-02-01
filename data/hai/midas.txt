@@ -601,12 +601,14 @@ mission "Midas: Feed Them To The Wolves"
 	on abort
 		"reputation: Midas" <?= -1000
 	to fail
-		has "Unfettered: Escort Hai Fleet: done"
+		or
+			has "Unfettered: Escort Hai Fleet: done"
+			has "Unfettered: Escort Hai Fleet: aborted"
 	on fail
+		"reputation: Midas" <?= -1000
 		dialog `You hear a voice once alone in your quarters, "A shame captain. Truly a shame, but we will hold no grudge over it."`
 	to complete
 		has "Unfettered: Escort Hai Fleet: failed"
-		not "Unfettered: Escort Hai Fleet: aborted"
 	on complete
 		"reputation: Midas" <?= -1000
 		clear "unfettered: stopped on Greenbloom"

@@ -162,19 +162,6 @@ mission "Unfettered: Remove The Challengers"
 
 
 
-# to make sure you are always hostile to the challengers, otherwise shooting them means provoke meaning it will agro Unfettered
-mission "Unfettered: Hostile Challengers"
-	landing
-	repeat
-	invisible
-	to offer
-		has "reputation: Hai (Unfettered Challenger)" > -1000
-	on offer
-		"reputation: Hai (Unfettered Challenger)" <?= -10000
-		fail
-
-
-
 phrase "unfettered challenger defeated"
 	word
 		`You receive a message from the <npc>`
@@ -221,7 +208,7 @@ phrase "unfettered challenger defeat message"
 		"<boarding message>"
 
 substitutions
-	"<boarding message>" "(Winning the duel has increased your reputation with the Unfettered. You are in no way allowed to do any more than plundering the ship.)"
+	"<boarding message>" "	(Winning the duel has increased your reputation with the Unfettered. You are in no way allowed to do any more than plundering the ship.)"
 
 mission "Unfettered Challenge [0]"
 	job
