@@ -37,6 +37,7 @@ mission "War Reactions: Asteroid Miners"
 		government "Republic" "Syndicate" "Free Worlds"
 		# These miners were far from the war the whole time.
 		attributes "deep" "paradise" "north"
+		not attributes uninhabited
 	to offer
 		has "event: post-war reactions begin"
 		random < 30
