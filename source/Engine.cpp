@@ -1984,6 +1984,32 @@ void Engine::HandleMouseClicks()
 
 
 
+// Determines alternate mouse turning, setting player mouse angle, and right-click firing weapons.
+void Engine::HandleMouseInput(Command &activeCommands)
+{
+	if(activeCommands.Has(Command::MOUSE_TURNING))
+	{
+		isMouseTurningEnabled = !isMouseTurningEnabled;
+		Preferences::Set("alt-mouse turning", isMouseTurningEnabled);
+	}
+	if(!isMouseTurningEnabled)
+		return;
+	bool rightMouseButtonHeld = false;
+	int mousePosX;
+	int mousePosY;
+	if((SDL_GetMouseState(&mousePosX, &mousePosY) & SDL_BUTTON_RMASK) != 0)
+		rightMouseButtonHeld = true;
+	double relX = mousePosX - Screen::RawWidth() / 2;
+	double relY = mousePosY - Screen::RawHeight() / 2;
+	ai.SetMousePosition(Point(relX, relY));
+
+	// Activate firing command.
+	if(isMouseTurningEnabled && rightMouseButtonHeld)
+		activeCommands.Set(Command::PRIMARY);
+}
+
+
+
 // Perform collision detection. Note that unlike the preceding functions, this
 // one adds any visuals that are created directly to the main visuals list. If
 // this is multi-threaded in the future, that will need to change.
@@ -2131,32 +2157,6 @@ void Engine::DoWeather(Weather &weather)
 			hit->TakeDamage(visuals, damage.CalculateDamage(*hit), nullptr);
 		}
 	}
-}
-
-
-
-// Determines alternate mouse turning, setting player mouse angle, and right-click firing weapons.
-void Engine::HandleMouseInput(Command &activeCommands)
-{
-	if(activeCommands.Has(Command::MOUSE_TURNING))
-	{
-		isMouseTurningEnabled = !isMouseTurningEnabled;
-		Preferences::Set("alt-mouse turning", isMouseTurningEnabled);
-	}
-	if(!isMouseTurningEnabled)
-		return;
-	bool rightMouseButtonHeld = false;
-	int mousePosX;
-	int mousePosY;
-	if((SDL_GetMouseState(&mousePosX, &mousePosY) & SDL_BUTTON_RMASK) != 0)
-		rightMouseButtonHeld = true;
-	double relX = mousePosX - Screen::RawWidth() / 2;
-	double relY = mousePosY - Screen::RawHeight() / 2;
-	ai.SetMousePosition(Point(relX, relY));
-
-	// Activate firing command.
-	if(isMouseTurningEnabled && rightMouseButtonHeld)
-		activeCommands.Set(Command::PRIMARY);
 }
 
 
