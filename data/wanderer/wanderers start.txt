@@ -831,8 +831,6 @@ fleet "Unfettered Tribute"
 	government "Hai (Unfettered)"
 	names "hai"
 	cargo 3
-	personality
-		coward
 	variant
 		"Water Bug (Jump)"
 
@@ -1377,6 +1375,8 @@ mission "Wanderers: Alpha Surveillance D (Avalon)"
 		has "Wanderers: Alpha Surveillance D: active"
 	substitutions
 		<sensors> "but your sensors are not able to locate it, and even if you could"
+		<sensors> "you are able to locate it after some time, however"
+			"outfit (installed): Value Detector" + "outfit (installed): Research Laboratory" + "outfit (installed): Surveillance Pod" + "ship model: Peregrine" + "ship model: Merganser" > 0
 		<sensors> "you still know the location from last time, however it is heavily guarded this time,"
 			has "found alpha base"
 	on offer

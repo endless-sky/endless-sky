@@ -784,7 +784,7 @@ mission "Unfettered: Earn Your Prize"
 			`	"This ship may look like a Shield Beetle to you, because that is indeed what it used to be, but I modified it heavily, to make sure it would be able to take on heavy damage, and thus play an important role in the coming Wanderer conflict. On top of that, I equipped it with unique prototype weaponry, different attempts at increasing the ionizing payload of our weapons. The turrets are intended to disable even the most powerful reactors! And the blasters should offer reasonable firepower, combined with a touch of ion - not enough to disable enemy ships, but enough to scramble their weapons if they are not equipped against it!" She seems to care about that ship a great deal.`
 			`	"But I talk too much... You shall see how mighty this ship is in the only context that matters: battle! I challenge you in a duel, <first>. Should you win, you will earn the right to use this ship. The usual rules of challenges still apply, of course!"`
 			branch duelrd
-				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 18
+				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 18
 			`	"Speaking of which, your fleet is too big at the moment, please park ships until you have less than 2 heavy warships, say 3 medium warships at most or a heavy and a medium, and then come back to me. Best leave any ships not meant for battle out of it too.`
 				accept
 			label duelrd
@@ -797,7 +797,7 @@ mission "Unfettered: Earn Your Prize"
 			disables staying heroic target waiting
 		ship "Modified Shield Beetle" "Basilisk"
 		to spawn
-			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 18
+			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 18
 		to despawn
 			has "unfettered: defeated Mera"
 		conversation
@@ -880,9 +880,9 @@ mission "Unfettered: Mera's Trust Broken"
 	landing
 	to offer
 		has "Unfettered: Earn Your Prize: active"
-		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 18
+		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 18
 	to fail
-		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 > 18
+		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 > 18
 		has "flagship system: Ehma Ti"
 	on fail
 		dialog `Mera sends you a message, "What are you doing, trying to cheat? You're no fun, you do not deserve to be a part of us."`
@@ -1403,7 +1403,7 @@ mission "Unfettered: Ready For The War"
 	on offer
 		conversation
 			branch "came alone"
-				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 18
+				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 18
 			`You find Si-Ra and He-Yi waiting for you on the spaceport. Si-Ra starts speaking to you, "You have brought too many ships, come back with only your flagship, or a few lighter ships."`
 				defer
 			label "came alone"
@@ -1596,6 +1596,27 @@ mission "Unfettered: Ready For The War"
 				clear "unfettered: hull choice"
 				clear "unfettered: cloak choice"
 				clear "unfettered: weapon choice"
+
+mission "Unfettered: You Serious?"
+	invisible
+	landing
+	to offer
+		has "Unfettered: Ready For The War: active"
+		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 18
+	to fail
+		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 > 18
+		has "flagship system: Wah Yoot"
+		# you can cheat against Si-Ra if he cheats against you.
+		or
+			not "unfettered: mad Si-Ra"
+			has "unfettered: defeated Si-Ra"
+	on fail
+		dialog `You receive a message, "You must not disrespect the rules of the duel!"`
+		fail "Unfettered: Ready For The War"
+	to complete
+		not "Unfettered: Ready For The War: active"
+
+
 
 event "joined the unfettered"
 	government "Escort"

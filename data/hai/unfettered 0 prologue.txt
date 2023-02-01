@@ -782,7 +782,8 @@ mission "Unfettered: Prove Your Strength"
 			and
 				has "Unfettered Jump Drive 2: offered"
 				has "Unfettered: Bring Medical Supplies: done"
-		has "armament deterrence" >= 4
+		# 3 is what a default built Sea Scorpion has
+		"armament deterrence" >= 3
 	on offer
 		conversation
 			`You start wandering in the spaceport, and notice that everything around you here is incredibly simple, efficient, and ordered. The Unfettered here are proudly showing their weapons, more so than on other planets, and some of them are even armored. It seems they are ready for action at any time. It is good they no longer consider you an enemy, at least for the moment.`
@@ -831,7 +832,7 @@ mission "Unfettered: Prove Your Strength"
 				decline
 			label accept
 			branch "too many ships"
-				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 > 12
+				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 > 12
 			`	"Let us prove our worth in battle then, the time for words is over."`
 				accept
 			label "too many ships"
@@ -844,7 +845,7 @@ mission "Unfettered: Prove Your Strength"
 		personality disables staying heroic target launching
 		ship "Si-Ra' Scorpion" "Intrepid"
 		to spawn
-			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 12
+			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 12
 		to despawn
 			has "unfettered: beaten the captain"
 		conversation
@@ -902,9 +903,9 @@ mission "Unfettered: Si-Ra's Trust Broken"
 	landing
 	to offer
 		has "Unfettered: Prove Your Strength: active"
-		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 12
+		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 12
 	to fail
-		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 > 12
+		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 > 12
 		has "flagship system: Wah Yoot"
 	on fail
 		dialog "You have broken the trust of the Unfettered captain by trying to come to a duel with too many ships. He will not show up again."
@@ -1576,9 +1577,9 @@ mission "Unfettered: Materials Intercepted"
 			label leave
 			`	"The Shadow of Mintaka sends her regards, <first> <last>. We look forward to dancing with you again."`
 			branch "not too many ships"
-				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 24
+				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 24
 			`	You receive a final, private message from one of the ships. "A shame you brought such a fleet with you, we could have had so much fun otherwise... Ra told us you know how to fight."`
-				decline
+				goto leaving
 			label "not too many ships"
 			choice
 				`	"Thanks for the assistance."`
