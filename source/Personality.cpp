@@ -19,49 +19,54 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 
+#include <cstdint>
 #include <map>
 
 using namespace std;
 
 namespace {
-	const int PACIFIST = (1 << 0);
-	const int FORBEARING = (1 << 1);
-	const int TIMID = (1 << 2);
-	const int DISABLES = (1 << 3);
-	const int PLUNDERS = (1 << 4);
-	const int HEROIC = (1 << 5);
-	const int STAYING = (1 << 6);
-	const int ENTERING = (1 << 7);
-	const int NEMESIS = (1 << 8);
-	const int SURVEILLANCE = (1 << 9);
-	const int UNINTERESTED = (1 << 10);
-	const int WAITING = (1 << 11);
-	const int DERELICT = (1 << 12);
-	const int FLEEING = (1 << 13);
-	const int ESCORT = (1 << 14);
-	const int FRUGAL = (1 << 15);
-	const int COWARD = (1 << 16);
-	const int VINDICTIVE = (1 << 17);
-	const int SWARMING = (1 << 18);
-	const int UNCONSTRAINED = (1 << 19);
-	const int MINING = (1 << 20);
-	const int HARVESTS = (1 << 21);
-	const int APPEASING = (1 << 22);
-	const int MUTE = (1 << 23);
-	const int OPPORTUNISTIC = (1 << 24);
-	const int MERCIFUL = (1 << 25);
-	const int TARGET = (1 << 26);
-	const int MARKED = (1 << 27);
-	const int LAUNCHING = (1 << 28);
-	const int ENTHUSIASTIC = (1 << 29);
+	const int64_t ONE = 1;
+	const int64_t PACIFIST = (ONE << 0);
+	const int64_t FORBEARING = (ONE << 1);
+	const int64_t TIMID = (ONE << 2);
+	const int64_t DISABLES = (ONE << 3);
+	const int64_t PLUNDERS = (ONE << 4);
+	const int64_t HUNTING = (ONE << 5);
+	const int64_t STAYING = (ONE << 6);
+	const int64_t ENTERING = (ONE << 7);
+	const int64_t NEMESIS = (ONE << 8);
+	const int64_t SURVEILLANCE = (ONE << 9);
+	const int64_t UNINTERESTED = (ONE << 10);
+	const int64_t WAITING = (ONE << 11);
+	const int64_t DERELICT = (ONE << 12);
+	const int64_t FLEEING = (ONE << 13);
+	const int64_t ESCORT = (ONE << 14);
+	const int64_t FRUGAL = (ONE << 15);
+	const int64_t COWARD = (ONE << 16);
+	const int64_t VINDICTIVE = (ONE << 17);
+	const int64_t SWARMING = (ONE << 18);
+	const int64_t UNCONSTRAINED = (ONE << 19);
+	const int64_t MINING = (ONE << 20);
+	const int64_t HARVESTS = (ONE << 21);
+	const int64_t APPEASING = (ONE << 22);
+	const int64_t MUTE = (ONE << 23);
+	const int64_t OPPORTUNISTIC = (ONE << 24);
+	const int64_t MERCIFUL = (ONE << 25);
+	const int64_t TARGET = (ONE << 26);
+	const int64_t MARKED = (ONE << 27);
+	const int64_t LAUNCHING = (ONE << 28);
+	const int64_t ENTHUSIASTIC = (ONE << 29);
+	const int64_t DARING = (ONE << 30);
+	const int64_t SECRETIVE = (ONE << 31);
+	const int64_t RAMMING = (ONE << 32);
 
-	const map<string, int> TOKEN = {
+	const map<string, int64_t> TOKEN = {
 		{"pacifist", PACIFIST},
 		{"forbearing", FORBEARING},
 		{"timid", TIMID},
 		{"disables", DISABLES},
 		{"plunders", PLUNDERS},
-		{"heroic", HEROIC},
+		{"hunting", HUNTING},
 		{"staying", STAYING},
 		{"entering", ENTERING},
 		{"nemesis", NEMESIS},
@@ -85,7 +90,15 @@ namespace {
 		{"target", TARGET},
 		{"marked", MARKED},
 		{"launching", LAUNCHING},
-		{"enthusiastic", ENTHUSIASTIC}
+		{"enthusiastic", ENTHUSIASTIC},
+		{"daring", DARING},
+		{"secretive", SECRETIVE},
+		{"ramming", RAMMING}
+	};
+
+	// Tokens that combine two or more flags.
+	const map<string, int64_t> COMPOSITE_TOKEN = {
+		{"heroic", DARING | HUNTING}
 	};
 
 	const double DEFAULT_CONFUSION = 10.;
@@ -175,9 +188,9 @@ bool Personality::IsTimid() const
 
 
 
-bool Personality::IsHeroic() const
+bool Personality::IsHunting() const
 {
-	return flags & HEROIC;
+	return flags & HUNTING;
 }
 
 
@@ -186,6 +199,14 @@ bool Personality::IsNemesis() const
 {
 	return flags & NEMESIS;
 }
+
+
+
+bool Personality::IsDaring() const
+{
+	return flags & DARING;
+}
+
 
 
 
@@ -248,6 +269,13 @@ bool Personality::IsOpportunistic() const
 bool Personality::IsMerciful() const
 {
 	return flags & MERCIFUL;
+}
+
+
+
+bool Personality::IsRamming() const
+{
+	return flags & RAMMING;
 }
 
 
@@ -329,6 +357,13 @@ bool Personality::IsSwarming() const
 
 
 
+bool Personality::IsSecretive() const
+{
+	return flags & SECRETIVE;
+}
+
+
+
 bool Personality::IsEscort() const
 {
 	return flags & ESCORT;
@@ -393,7 +428,7 @@ void Personality::UpdateConfusion(bool isFiring)
 Personality Personality::Defender()
 {
 	Personality defender;
-	defender.flags = STAYING | MARKED | HEROIC | UNCONSTRAINED | TARGET;
+	defender.flags = STAYING | MARKED | HUNTING | DARING | UNCONSTRAINED | TARGET;
 	return defender;
 }
 
@@ -404,7 +439,7 @@ Personality Personality::Defender()
 Personality Personality::DefenderFighter()
 {
 	Personality defender;
-	defender.flags = STAYING | HEROIC | UNCONSTRAINED;
+	defender.flags = STAYING | HUNTING | DARING | UNCONSTRAINED;
 	return defender;
 }
 
@@ -415,13 +450,18 @@ void Personality::Parse(const DataNode &node, int index, bool remove)
 	const string &token = node.Token(index);
 
 	auto it = TOKEN.find(token);
-	if(it != TOKEN.end())
+	if(it == TOKEN.end())
 	{
-		if(remove)
-			flags &= ~it->second;
-		else
-			flags |= it->second;
+		it = COMPOSITE_TOKEN.find(token);
+		if(it == COMPOSITE_TOKEN.end())
+		{
+			node.PrintTrace("Warning: Skipping unrecognized personality \"" + token + "\":");
+			return;
+		}
 	}
+
+	if(remove)
+		flags &= ~it->second;
 	else
-		node.PrintTrace("Warning: Skipping unrecognized personality \"" + token + "\":");
+		flags |= it->second;
 }

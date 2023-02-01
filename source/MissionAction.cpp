@@ -352,7 +352,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 
 	// Restore the "<payment>" and "<fine>" values from the "on complete" condition, for
 	// use in other parts of this mission.
-	if(result.Payment() && trigger != "complete")
+	if(result.Payment() && (trigger != "complete" || !previousPayment.empty()))
 		subs["<payment>"] = previousPayment;
 	if(result.action.Fine() && trigger != "complete")
 		subs["<fine>"] = previousFine;
