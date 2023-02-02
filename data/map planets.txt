@@ -11,6 +11,9 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+
+color "wormholes: Ember Waste" .7 .1 .3
+
 planet "Ablub's Invention"
 	attributes arach factory
 	landscape land/sky3
@@ -1046,6 +1049,7 @@ wormhole "Ember Gegno"
 	mappable
 	link Lucina Rouseu
 	link Rouseu Lucina
+	color "wormholes: Ember Waste"
 
 planet "Ember Graveyard"
 	attributes "requires: quantum keystone"
@@ -1055,6 +1059,7 @@ wormhole "Ember Graveyard"
 	mappable
 	link Polerius Ossipago
 	link Ossipago Polerius
+	color "wormholes: Ember Waste"
 
 planet "Ember Reaches"
 	attributes "requires: quantum keystone"
@@ -1065,6 +1070,7 @@ wormhole "Ember Reaches"
 	mappable
 	link Coluber Convector
 	link Convector Coluber
+	color "wormholes: Ember Waste"
 
 planet "Ember Threshold"
 	attributes "requires: quantum keystone"
@@ -1074,6 +1080,7 @@ wormhole "Ember Threshold"
 	mappable
 	link Cardea Terminus
 	link Terminus Cardea
+	color "wormholes: Ember Waste"
 
 planet "Ember Wormhole"
 	attributes "requires: quantum keystone"
@@ -1082,6 +1089,7 @@ planet "Ember Wormhole"
 
 wormhole "Ember Wormhole"
 	mappable
+	color "wormholes: Ember Waste"
 	link Aescolanus Cardea
 	link Cardea Insitor
 	link Insitor Segesta
@@ -1619,6 +1627,7 @@ wormhole "Graveyard Wormhole (Unstable)"
 	mappable
 	link Esix Relifer
 	link Relifer Esix
+	color "wormholes: Ember Waste"
 
 planet Greenbloom
 	attributes hai "hai tourism" "human tourism"
@@ -3128,6 +3137,7 @@ wormhole "Remnant Wormhole"
 	mappable
 	link Peragenor Edusa
 	link Edusa Peragenor
+	color "wormholes: Ember Waste"
 
 planet "Remote Blue"
 	attributes kimek urban
@@ -4396,6 +4406,7 @@ wormhole "Wormhole Barren Alpha"
 	mappable
 	link Egeria Levana
 	link Levana Egeria
+	color "wormholes: Ember Waste"
 
 planet "Wormhole Barren Beta"
 	attributes "requires: quantum keystone"
@@ -4405,6 +4416,7 @@ wormhole "Wormhole Barren Beta"
 	mappable
 	link Caeculus Prosa
 	link Prosa Caeculus
+	color "wormholes: Ember Waste"
 
 planet "Wormhole Link"
 	attributes "requires: quantum keystone"
@@ -4414,6 +4426,7 @@ wormhole "Wormhole Link"
 	mappable
 	link Statina Vaticanus
 	link Vaticanus Statina
+	color "wormholes: Ember Waste"
 
 planet "Wye Tzeou"
 	landscape land/snow14
@@ -4449,6 +4462,7 @@ planet Yedikule
 	security 0
 
 planet "Yniu Eiu"
+	attributes rulei
 	landscape land/canyon0
 	music "ambient/rulei planet"
 	description `Yniu Eiu is a rocky world with many canyons. A large portion of the surface is bright shades of gray and white, but the more striking visuals are the patches of purple-red webbed lakes and rivers flowing across the surface. It is unclear if this is a natural occurrence or if these were artificially created, but the way the areas around these sights are dug out and shaped imply that this planet used to be a home to some type of civilization, or one that found importance in this material.`
@@ -4456,6 +4470,7 @@ planet "Yniu Eiu"
 	government Uninhabited
 
 planet "Yniu Ena"
+	attributes rulei
 	landscape land/canyon03
 	music "ambient/rulei planet"
 	description `Like its parent planet below, Yniu Ena has a thick purple-reddish web of unnatural material spread across its surface, forming rivers and large lakes. While most of these lakes are rather small relative to the planet's surface, there are a few as large as oceans that give the appearance of scars on the planet.`

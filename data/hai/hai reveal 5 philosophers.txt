@@ -776,7 +776,7 @@ mission "Hai Reveal [B08-long] The Other Just As Fair"
 mission "Hai Reveal [B09] Scanning Devil-Hide"
 	landing
 	name "Searching Beyond the Wormhole"
-	description "Return to <planet> after finding and scanning the key system beyond the unstable wormhole. The syndicate will pay <payment>."
+	description "Return to <planet> after finding and scanning the key system beyond the unstable wormhole. The Syndicate will pay <payment>."
 	source "Hephaestus"
 	waypoint "Devil-Hide"
 	passengers 1
@@ -1146,7 +1146,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 		conversation
 			`To complete this mission, you must land with Choot'k, Teeneep, Danforth and Wallace's ships all present in the system and intact...`
 	on enter
-		dialog `Right after the fleet takes off, Danforth hails you. "We have just received additional fighters and drones from the syndicate, please wait for them before jumping."`
+		dialog `Right after the fleet takes off, Danforth hails you. "We have just received additional fighters and drones from the Syndicate, please wait for them before jumping."`
 	on enter "Devil-Hide"
 		conversation
 			`Teeneep sends out a message to the fleet informing you that she is engaging the electronic warfare baffling and reminds you that everyone needs to get onto the ground intact if this is to go well. Choot'k's Shield Beetle has red engine flares; the others have blue. So if he gets into trouble you should be able to tell at a distance. The baffling won't work forever, so get to it.`
