@@ -182,7 +182,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Logger.h
 	LineShader.cpp
 	LineShader.h
-	LoadingHints.h
 	LoadPanel.cpp
 	LoadPanel.h
 	LocationFilter.cpp

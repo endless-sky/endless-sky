@@ -27,7 +27,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
-#include "LoadingHints.h"
 #include "MaskManager.h"
 #include "MenuAnimationPanel.h"
 #include "MenuPanel.h"
@@ -57,7 +56,6 @@ GameLoadingPanel::GameLoadingPanel(PlayerInfo &player, const Conversation &conve
 		finishedLoading(finishedLoading), ANGLE_OFFSET(360. / MAX_TICKS)
 {
 	SetIsFullScreen(true);
-	/*LoadingHints().loadingHintArray[Random::Int(sizeof(LoadingHints().loadingHintArray))]*/
 }
 
 

@@ -241,7 +241,6 @@
 		2E8047A8987DD8EC99FF8E2E /* Test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Test.cpp; path = source/Test.cpp; sourceTree = "<group>"; };
 		32404878BFF00A095AF2DD2C /* MapPlanetCard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MapPlanetCard.cpp; path = source/MapPlanetCard.cpp; sourceTree = "<group>"; };
 		341645FAA25F7901221B8965 /* PrintData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PrintData.cpp; path = source/PrintData.cpp; sourceTree = "<group>"; };
-		383C71B2295BF52C00812BD0 /* LoadingHints.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LoadingHints.h; path = source/LoadingHints.h; sourceTree = "<group>"; };
 		389245138CF297EB417DF730 /* UniverseObjects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UniverseObjects.cpp; path = source/UniverseObjects.cpp; sourceTree = "<group>"; };
 		38E1B6AD295BF86C00F2224C /* JumpTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JumpTypes.h; path = source/JumpTypes.h; sourceTree = "<group>"; };
 		38E1B6AE295BF86C00F2224C /* ShipJumpNavigation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ShipJumpNavigation.h; path = source/ShipJumpNavigation.h; sourceTree = "<group>"; };
@@ -601,7 +600,6 @@
 		654D33611BE92C9200D1E5AB /* source */ = {
 			isa = PBXGroup;
 			children = (
-				383C71B2295BF52C00812BD0 /* LoadingHints.h */,
 				A96862CD1AE6FD0A004FE1FE /* Account.cpp */,
 				A96862CE1AE6FD0A004FE1FE /* Account.h */,
 				A96862CF1AE6FD0A004FE1FE /* AI.cpp */,
