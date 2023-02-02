@@ -19,6 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Angle.h"
 #include "Point.h"
 
+#include <cstdint>
+
 class DataNode;
 class DataWriter;
 
@@ -96,7 +98,7 @@ private:
 private:
 	bool isDefined = false;
 
-	int flags;
+	int64_t flags;
 	double confusionMultiplier;
 	double aimMultiplier;
 	Point confusion;

@@ -20,7 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 
 #include <map>
-#include <cstdint>
 
 using namespace std;
 
