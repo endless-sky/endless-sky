@@ -1,5 +1,7 @@
 # Build instructions
 
+**Notice**: We'll be slowly switching over to CMake, so treat these instructions as deprecated. The instructions using CMake can be read [here](readme-cmake.md).
+
 Most of the current development work is done on Ubuntu Linux. Building the code on any Linux variant should be relatively straightforward. Building it on Windows or Mac OS X is a bit more complicated.
 
 **You can get a copy of the code either using "git clone," or using the repo's download button to obtain a [.ZIP archive](https://github.com/endless-sky/endless-sky/archive/master.zip).** The game's root directory, where your unzipped/`git clone`d files reside, will be your starting point for compiling the game.
@@ -77,7 +79,7 @@ The zip can be extracted anywhere on your filesystem; to minimize additional con
 
 If you want to build the game from the command line via Scons, you will need [Python 3.8 or later](https://www.python.org/downloads/). When installing, be sure to select the "Add to PATH" checkbox.
 
-Afterwards, you will need to add your MinGW installation to your path manually. To do so on Windows 10, to to **Settings** > **System** > **About** > **System info** or **Related Settings** > **Advanced system settings** > **Environment Variables**. From each, select **Path** under System variables, and click Edit.
+Afterwards, you will need to add your MinGW installation to your path manually. To do so on Windows 10, go to **Settings** > **System** > **About** > **System info** or **Related Settings** > **Advanced system settings** > **Environment Variables**. From each, select **Path** under System variables, and click Edit.
 
 If you used the defaults for MinGW up to this point, add "New" and enter the following in separate entries:
 
@@ -116,43 +118,12 @@ Refer to the build pipeline files under `.github\` to tailor the build process t
 
 ### Running the Game
 
-For Endless Sky to run on Windows, it needs various .dll files included in the base directory. Go to `C:\dev64\bin\`, and copy the files to your base directory. These should include:
+For Endless Sky to run on Windows, it needs various .dll files included in the base directory. Go to `C:\dev64\bin\`, and copy every file to your base directory.
 
-  - glew32.dll
-  - **libgcc_s_seh-1.dll**
-  - libjpeg-62.dll
-  - libmad-0.dll
-  - libpng15-15.dll
-  - **libstdc++-6.dll**
-  - libturbojpeg.dll
-  - libwinpthread-1.dll
-  - OpenAL32.dll
-  - SDL2.dll
-  - soft_oal.dll
-  - zlib1.dll
-
-**After** you have copied all those libraries, take note of the **bolded** libraries. Those will need to be included from your MinGW installation, instead of from the precompiled ones. By default, you can go to `C:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin`, and copy those libraries to your Endless Sky directory to overwrite the current ones.
+**After** you have copied all those libraries, you will need additional libraries from your MinGW installation: libstdc++-6.dll, libwinpthread-1.dll, libgcc_s_seh-1.dll. By default, you can go to `C:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin`, and copy those libraries to your Endless Sky directory to overwrite the current ones.
 
 Once all the libraries in place, the game is ready to run! You have three options depending on how you built it:
 
 - If you built the game via Scons, open a terminal to the base Endless Sky directory, then run `bin\pkgd\release\endless-sky.exe`.
 - If you built the game via Code::Blocks, double click *EndlessSky* in the file panel on the left, then either click the green arrow on top, or hit Control+F10.
 - If you want to run the game manually, use one of the methods above to build the game, then copy an executable from under the `bin\` folder to your base directory, then open the game.
-
-
-
-## macOS:
-
-To build Endless Sky with native tools, you will first need to download Xcode from the App Store.
-
-Next, install [Homebrew](https://brew.sh). Once it is installed, use it to install the libraries you will need:
-
-```
-  $ brew install libmad libpng jpeg-turbo
-```
-
-Homebrew will install the latest version of the libraries, so if the versions of those libraries are different from the ones that the Xcode project is set up for, you will need to modify the file paths in the “Frameworks” section in Xcode. (Occasionally, the Xcode project will be updated to reflect these new versions.)
-It is possible that you will also need to modify the “Header Search Paths” and “Library Search Paths” in “Build Settings”, in case your Homebrew for Intel Mac installation does not use the standard `/usr/local` prefix.
-The first time you build the project, a library for the SDL framework will be downloaded.
-
-**Note: there is extremely limited development support for macOS, and no intent to support macOS's new ARM architecture.**

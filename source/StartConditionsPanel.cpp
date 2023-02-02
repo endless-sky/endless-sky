@@ -8,7 +8,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "StartConditionsPanel.h"
@@ -25,10 +28,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Interface.h"
 #include "text/layout.hpp"
 #include "MainPanel.h"
-#include "PlayerInfo.h"
 #include "Planet.h"
+#include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Rectangle.h"
+#include "Ship.h"
 #include "ShipyardPanel.h"
 #include "StarField.h"
 #include "StartConditions.h"
@@ -42,12 +46,23 @@ using namespace std;
 
 
 
-StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, const StartConditionsList &scenarios, const Panel *parent)
-	: player(player), gamePanels(gamePanels), parent(parent), scenarios(scenarios), startIt(scenarios.begin()),
+StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
+	const StartConditionsList &allScenarios, const Panel *parent)
+	: player(player), gamePanels(gamePanels), parent(parent),
 	bright(*GameData::Colors().Get("bright")), medium(*GameData::Colors().Get("medium")),
 	selectedBackground(*GameData::Colors().Get("faint")),
 	description(FontSet::Get(14))
 {
+	// Extract from all start scenarios those that are visible to the player.
+	for(const auto &scenario : allScenarios)
+		if(scenario.Visible(GameData::GlobalConditions()))
+		{
+			scenarios.emplace_back(scenario);
+			scenarios.back().SetState(GameData::GlobalConditions());
+		}
+
+	startIt = scenarios.begin();
+
 	const Interface *startConditionsMenu = GameData::Interfaces().Find("start conditions menu");
 	if(startConditionsMenu)
 	{
@@ -144,7 +159,8 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 
 		Select(startIt);
 	}
-	else if(startIt != scenarios.end() && (key == 's' || key == 'n' || key == SDLK_KP_ENTER || key == SDLK_RETURN))
+	else if(startIt != scenarios.end() && (key == 's' || key == 'n' || key == SDLK_KP_ENTER || key == SDLK_RETURN)
+		&& info.HasCondition("unlocked start"))
 	{
 		player.New(*startIt);
 
@@ -278,30 +294,35 @@ void StartConditionsPanel::ScrollToSelected()
 
 
 // Update the UI to reflect the given starting scenario.
-void StartConditionsPanel::Select(StartConditionsList::const_iterator it)
+void StartConditionsPanel::Select(StartConditionsList::iterator it)
 {
+	// Clear the displayed information.
+	info = Information();
+
 	startIt = it;
 	if(startIt == scenarios.end())
 	{
 		// The only time we should be here is if there are no scenarios at all.
-		// Just in case that's not true, clear out the displayed information.
-		info = Information();
 		description.Wrap("No valid starting scenarios were defined!\n\n"
 			"Make sure you installed Endless Sky (and any plugins) properly.");
 		return;
 	}
 
+
 	// Update the information summary.
 	info.SetCondition("chosen start");
+	if(startIt->IsUnlocked())
+		info.SetCondition("unlocked start");
 	if(startIt->GetThumbnail())
 		info.SetSprite("thumbnail", startIt->GetThumbnail());
 	info.SetString("name", startIt->GetDisplayName());
 	info.SetString("description", startIt->GetDescription());
-	info.SetString("planet", startIt->GetPlanet().Name());
-	info.SetString("system", startIt->GetSystem().Name());
-	info.SetString("date", startIt->GetDate().ToString());
-	info.SetString("credits", Format::Credits(startIt->GetAccounts().Credits()));
-	info.SetString("debt", Format::Credits(startIt->GetAccounts().TotalDebt()));
+	info.SetString("planet", startIt->GetPlanetName());
+	info.SetString("system", startIt->GetSystemName());
+	info.SetString("date", startIt->GetDateString());
+	info.SetString("credits", startIt->GetCredits());
+	info.SetString("debt", startIt->GetDebt());
+
 
 	// Update the displayed description text.
 	descriptionScroll = 0;

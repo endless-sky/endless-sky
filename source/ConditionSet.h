@@ -7,16 +7,21 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef CONDITION_SET_H_
 #define CONDITION_SET_H_
 
 #include <map>
+#include <set>
 #include <string>
 #include <vector>
 
+class ConditionsStore;
 class DataNode;
 class DataWriter;
 
@@ -27,9 +32,9 @@ class DataWriter;
 // those conditions, and other operations that can be "applied" to change the
 // values.
 class ConditionSet {
-	using Conditions = std::map<std::string, int64_t>;
 public:
 	ConditionSet() = default;
+
 	// Construct and Load() at the same time.
 	ConditionSet(const DataNode &node);
 
@@ -52,18 +57,21 @@ public:
 
 	// Check if the given condition values satisfy this set of expressions. First applies
 	// all assignment expressions to create any temporary conditions, then evaluates.
-	bool Test(const Conditions &conditions) const;
+	bool Test(const ConditionsStore &conditions) const;
 	// Modify the given set of conditions with this ConditionSet.
 	// (Order of operations is like the order of specification: all sibling
 	// expressions are applied, then any and/or nodes are applied.)
-	void Apply(Conditions &conditions) const;
+	void Apply(ConditionsStore &conditions) const;
+
+	// Get the names of the conditions that are modified by this ConditionSet.
+	std::set<std::string> RelevantConditions() const;
 
 
 private:
 	// Compare this set's expressions and the union of created and supplied conditions.
-	bool TestSet(const Conditions &conditions, const Conditions &created) const;
+	bool TestSet(const ConditionsStore &conditions, const ConditionsStore &created) const;
 	// Evaluate this set's assignment expressions and store the result in "created" (for use by TestSet).
-	void TestApply(const Conditions &conditions, Conditions &created) const;
+	void TestApply(const ConditionsStore &conditions, ConditionsStore &created) const;
 
 
 private:
@@ -87,9 +95,9 @@ private:
 		bool IsTestable() const;
 
 		// Functions to use this expression:
-		bool Test(const Conditions &conditions, const Conditions &created) const;
-		void Apply(Conditions &conditions, Conditions &created) const;
-		void TestApply(const Conditions &conditions, Conditions &created) const;
+		bool Test(const ConditionsStore &conditions, const ConditionsStore &created) const;
+		void Apply(ConditionsStore &conditions, ConditionsStore &created) const;
+		void TestApply(const ConditionsStore &conditions, ConditionsStore &created) const;
 
 
 	private:
@@ -110,7 +118,7 @@ private:
 			bool IsEmpty() const;
 
 			// Substitute numbers for any string values and then compute the result.
-			int64_t Evaluate(const Conditions &conditions, const Conditions &created) const;
+			int64_t Evaluate(const ConditionsStore &conditions, const ConditionsStore &created) const;
 
 
 		private:

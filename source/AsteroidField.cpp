@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "AsteroidField.h"
@@ -61,7 +64,7 @@ void AsteroidField::Add(const string &name, int count, double energy)
 
 
 
-void AsteroidField::Add(const Minable *minable, int count, double energy, const WeightedList<System::Belt> &belts)
+void AsteroidField::Add(const Minable *minable, int count, double energy, const WeightedList<double> &belts)
 {
 	// Double check that the given asteroid is defined.
 	if(!minable || !minable->GetMask().IsLoaded())
@@ -71,7 +74,7 @@ void AsteroidField::Add(const Minable *minable, int count, double energy, const 
 	for(int i = 0; i < count; ++i)
 	{
 		minables.emplace_back(new Minable(*minable));
-		minables.back()->Place(energy, belts.Get().Radius());
+		minables.back()->Place(energy, belts.Get());
 	}
 }
 
@@ -164,7 +167,7 @@ Body *AsteroidField::Collide(const Projectile &projectile, double *closestHit)
 
 
 
-// Get the list of mainable asteroids.
+// Get the list of minable asteroids.
 const list<shared_ptr<Minable>> &AsteroidField::Minables() const
 {
 	return minables;

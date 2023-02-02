@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Radar.h"
@@ -30,6 +33,7 @@ const int Radar::SPECIAL = 5;
 const int Radar::ANOMALOUS = 6;
 const int Radar::BLINK = 7;
 const int Radar::VIEWPORT = 8;
+const int Radar::STAR = 9;
 
 
 
@@ -141,7 +145,8 @@ const Color &Radar::GetColor(int type)
 		*GameData::Colors().Get("radar special"),
 		*GameData::Colors().Get("radar anomalous"),
 		*GameData::Colors().Get("radar blink"),
-		*GameData::Colors().Get("radar viewport")
+		*GameData::Colors().Get("radar viewport"),
+		*GameData::Colors().Get("radar star")
 	};
 
 	if(static_cast<size_t>(type) >= color.size())
