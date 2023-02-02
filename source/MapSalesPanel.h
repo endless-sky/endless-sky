@@ -62,8 +62,6 @@ protected:
 
 	virtual void DrawItems() = 0;
 
-	virtual void Init() = 0;
-
 	void DrawKey() const;
 	void DrawPanel() const;
 	void DrawInfo() const;
@@ -94,6 +92,10 @@ protected:
 	const std::vector<std::string> &categories;
 	bool onlyShowSoldHere = false;
 	bool onlyShowLicensesMet = false;
+
+
+private:
+	virtual void Init() = 0;
 
 
 private:

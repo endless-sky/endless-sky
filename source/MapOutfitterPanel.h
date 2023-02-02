@@ -51,6 +51,8 @@ protected:
 
 	virtual void DrawItems() override;
 
+
+private:
 	virtual void Init() override;
 
 
