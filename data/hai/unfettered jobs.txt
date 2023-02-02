@@ -788,11 +788,11 @@ mission "Unfettered Bring More Coolers"
 	destination "Firelode"
 	to offer
 		has "Unfettered: Solifuge 8: Useful Korath Scientists: done"
-		random < 25
+		random < 20
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
 		outfit "Liquid Nitrogen Cooler" -10
-		dialog `You deliver the coolers to the usual contact of Mera, and he thanks you personally. "You must have made a long trip to bring these here, for which I thank you. Here are <payment>. Whilst the price is not that high, your biggest reward is being able to buy the new Zephyr Coolings."`
+		dialog `You deliver the coolers to the usual contact of Mera, and he thanks you personally. "You must have made a long trip to bring these here, for which I thank you. Here are <payment>. Whilst the price is not that high, your biggest reward is being continuously able to buy the new Zephyr Coolers."`
 		payment 1250000
 

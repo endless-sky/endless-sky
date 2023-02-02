@@ -526,7 +526,6 @@ mission "Unfettered: Bring Hai"
 	blocked "You will need room for <passengers> in order to take the next Unfettered mission."
 	to offer
 		has "Unfettered Jump Drive 1: offered"
-		has "reputation: Hai" >= 0
 		# guaranteed to offer the first time and then 20% chance
 		or
 			not "unfettered: offered bring hai"
@@ -678,7 +677,7 @@ mission "Unfettered: Bring Medical Supplies Notification"
 mission "Unfettered: Bring Medical Supplies"
 	landing
 	name `Bring medicals to <planet>`
-	description `The Unfettered hospitals on Darkcloak are in urgent need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered on <destination> by <date> for <payment>.`
+	description `The Unfettered hospitals on <origin> are in urgent need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered on <destination> by <date> for <payment>.`
 	source "Darkcloak"
 	stopover "Snowfeather"
 	cargo "medicals" 50
@@ -686,7 +685,6 @@ mission "Unfettered: Bring Medical Supplies"
 	deadline 8
 	to offer
 		has "Unfettered: Bring Hai: done"
-		has "reputation: Hai" >= 0
 	substitutions
 		<prioritymessage> "Unfortunately, because it's in Hai, you can only guess at the meaning out of it, but it is clearly important. You can see the Hai word for "Unfettered" repeated several times, as well as numbers in the hundreds."
 			not "language: Wanderer"
@@ -728,12 +726,14 @@ mission "Unfettered: Bring Medical Supplies"
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on complete
+		event "unfettered: access to Mera's lab"
 		log `Brought medial supplies to Darkcloak to prevent an epidemic.`
 		log "People" "Sookootow" `An Unfettered Chief worried for his people, inside Hai or Unfettered territory. He seems to believe that all Hai are equal, and as a member of the council he has significant influence.`
 		payment 1500000
 		conversation
 			`The staff seem greatly relieved when you return promptly with the medical supplies. As you're returning to your ship, one of them catches up to you. "Hello, captain <last>. I am Merki, manager of this hospital. I wanted to express my deepest thanks to you and give you the <payment> personally. I find it quite admirable that an outsider would risk getting caught up in all of this. It would mean a great deal to me if your bravery holds fast, so make sure to check the job board for more jobs like this."`
 			`	Once Merki leaves, you notice a recognizable face: the same Hai Chief from Firelode, speaking with someone who, judging by their demeanor and attire, could be the hospital's chief medical officer. He soon sees you as well and hurriedly finishes his conversation, seeming more than a bit emotional as he then moves to speak with you. "I knew you could be counted on as a friend to the Unfettered! With the swift response of captains like you, it seems like it has calmed down here. We did not before have the time to get properly introduced. I am Sookootow." He makes a little gesture, you assume of deference. You try to imitate the motion, apparently badly, amusing Sookootow. "Worry not, <first> <last>, I already know who you are."`
+			`	"You have been granted access to our basic outfitter on Firelode as a reward for your help, should you need it to store goods or prepare yourself for a raid."`
 			choice
 				`	"I only did what little I could do to help save people. Hopefully I will be able to do more next time we meet."`
 					decline
@@ -767,6 +767,10 @@ mission "Unfettered: Bring Medical Supplies"
 			label raiders
 			`	"A few eclipses ago they came, in great ships and with superior technology. We, the Hai, had to defend ourselves, so some of us became more military-focused. A lot of those you see here are among those who wanted to repay the raiders in kind once they stopped. Even if our brothers do, we cannot lay down our arms. If these raiders returned, someone has to protect all of us."`
 				decline
+
+event "unfettered: access to Mera's lab"
+	planet "Firelode"
+		add outfitter "Mera's Lab"
 
 
 
@@ -832,7 +836,7 @@ mission "Unfettered: Prove Your Strength"
 				decline
 			label accept
 			branch "too many ships"
-				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 > 12
+				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 12
 			`	"Let us prove our worth in battle then, the time for words is over."`
 				accept
 			label "too many ships"
@@ -845,7 +849,7 @@ mission "Unfettered: Prove Your Strength"
 		personality disables staying heroic target launching
 		ship "Si-Ra' Scorpion" "Intrepid"
 		to spawn
-			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 12
+			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 12
 		to despawn
 			has "unfettered: beaten the captain"
 		conversation
@@ -903,9 +907,9 @@ mission "Unfettered: Si-Ra's Trust Broken"
 	landing
 	to offer
 		has "Unfettered: Prove Your Strength: active"
-		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 12
+		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 12
 	to fail
-		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 > 12
+		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 12
 		has "flagship system: Wah Yoot"
 	on fail
 		dialog "You have broken the trust of the Unfettered captain by trying to come to a duel with too many ships. He will not show up again."
@@ -1179,8 +1183,7 @@ mission "Unfettered: Escort Hai Fleet"
 	deadline 20
 	to offer
 		has "Unfettered: Solifuge 2: Auxiliary Design: done"
-		has "combat rating" > 100
-		has "reputation: Hai Merchant (Sympathizers)" >= 0
+		"combat rating" > 100
 	on offer
 		conversation
 			`As you leave your ship, an Unfettered Chief approaches you. After some time you finally recognize Sookootow, the one you helped earlier with moving people and medical supplies. You have not yet seen him so worried before, nor moving at such speed.`
@@ -1575,12 +1578,20 @@ mission "Unfettered: Materials Intercepted"
 			label weapons
 			`	"They are simply a prototype we are testing on the field of battle, as it should be. You will learn more soon enough."`
 			label leave
-			`	"The Shadow of Mintaka sends her regards, <first> <last>. We look forward to dancing with you again."`
-			branch "not too many ships"
-				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 24
-			`	You receive a final, private message from one of the ships. "A shame you brought such a fleet with you, we could have had so much fun otherwise... Ra told us you know how to fight."`
+			`	"She of the Void does not forget. Nemo Me Impune Lacessit, <last>. Do not presume to attempt to betray us again."`
+				to display
+					not "midas: tracker relay"
 				goto leaving
-			label "not too many ships"
+			`	"The Shadow of Mintaka sends her regards, <first> <last>. We look forward to dancing with you again."`
+				to display
+					not "midas: wronged"
+			`	"Do not think we have forgotten of your recent deeds, <first> <last>. But you have proved your worth today."`
+				to display
+					has "midas: wronged"
+			`	You receive a final, private message from one of the ships. "A shame you brought such a fleet with you, we could have had so much fun otherwise... Ra told us you know how to fight."`
+				to display
+					"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 24
+				goto leaving
 			choice
 				`	"Thanks for the assistance."`
 					goto leaving
@@ -1593,7 +1604,7 @@ mission "Unfettered: Materials Intercepted"
 			action
 				set "midas: accepted duel"
 			branch cleanupdone
-				has "unfettered: cleaned up cerberus"
+				"unfettered: cleaned up cerberus" > 1
 			`	"First we need to finish off all Cerberus pirates remaining, do not let them live to tell the tale. After that, we will let you land and repair before starting the fight. If you want to surrender, just abort the mission of land again after the battle has started, after giving us the symbolic fee to stop the fight. We do not have the luxury of time!"`
 				accept
 			label cleanupdone
@@ -1692,7 +1703,7 @@ mission "Unfettered: Cavalry Arrives"
 				not "Unfettered: Materials Intercepted: done"
 			branch completed
 			branch betrayed
-				has "reputation: Shadow" < 0
+				"reputation: Shadow" < 0
 			action
 				set "midas: thorn talon death"
 			`One of the ships, Thorn, or Talon, got killed. You will need to restart the mission in order to progress further with the Shadow of Mintaka.`
@@ -1731,7 +1742,6 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 	to offer
 		has "Unfettered: Bring Medical Supplies: done"
 		has "Unfettered: Prove Your Strength: done"
-		not "Wanderers: Defend Vara Ke'sok: done"
 	on offer
 		conversation
 			`As you wander through the spaceport, you find a market with a limited diversity of goods, although some of it seems to be completely alien, even by Hai standards. You can even spot human food and technology, although those are the only recent items here. Most of it is very ancient, and you doubt everything is functional...`
@@ -1772,17 +1782,17 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 					goto agree
 				`	"How do I scan it?"`
 			label scan
-			`	"You need to use one of our Value Detectors, the information provided by it should be sufficient. If you don't have one, you can install one on Darkcloak, on the way there. You may want to get multiple scanners so you can scan the ship from a longer range, and faster. Please do actively scan it. Passive intel gathered on the fly will not do."`
+			`	"You need to use one of our Value Detectors, the information provided by it should be sufficient. If you don't have one, you can install one here. You may want to get multiple scanners so you can scan the ship from a longer range, and faster. Please do actively scan it. Passive intel gathered on the fly will not do."`
 			choice
 				`	"Sure, will do."`
 					goto agree
 				`	"I'm not interested in scanning ships for you."`
 					decline
 			label agree
-			`	On the way back to your ship, Mera runs up to you. "One... last... thing, captain!" You let her catch her breath. "We have noticed one Geocoris just entered <waypoints> as expected, but seems to have some special modifications. Please scan that one specifically. We have marked its signature for you to recognize it. We want to have a detailed scan of its cargo. Also, I've just found a captain willing to give you two of our scanners. They will be placed in your cargo hold if there is no space on your ship.`
+			`	On the way back to your ship, Mera runs up to you. "One... last... thing, captain!" You let her catch her breath. "We have noticed one Geocoris just entered <waypoints> as expected, but seems to have some special modifications. Please scan that one specifically. We have marked its signature for you to recognize it. We want to have a detailed scan of its cargo. Also, I've just found a captain willing to give you two of our scanners. They will be placed in your cargo hold if there is no space on your ship, but do go in the lab to make sure they are installed them properly.`
 			action
 				outfit "Value Detector" 2
-			`	"I cannot stress enough that you NEED to use Value Detectors, as any other will simply either not contain enough information, or we could be unable to make good use of it. Since the Geocoris is quite complex, it may take some time to complete the scan, so feel free to buy more scanners on Darkcloak."`
+			`	"I cannot stress enough that you NEED to use Value Detectors, as any other will simply either not contain enough information, or we could be unable to make good use of it. Since the Geocoris is quite complex, it may take some time to complete the scan, so feel free to buy more scanners here. I'd recommend going to the lab to check if they are well connected to your ship."`
 				accept
 		log "People" "Mera" `An Unfettered engineer who is interested in ship designs of all kinds. She is easily excited by new technologies and ships.`
 	on waypoint

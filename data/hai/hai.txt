@@ -227,6 +227,19 @@ outfitter "Unfettered"
 	`"Bondir" Atomic Steering`
 	`"Bufaer" Atomic Steering`
 
+outfitter "Mera's Lab"
+	"Hai Tracker"
+	"Chameleon Anti-Missile"
+	"Outfits Expansion"
+	"Cargo Expansion"
+	"Hai Octopus Jammer"
+	"Value Detector"
+	"Hyperdrive"
+	"Hai Williwaw Cooling"
+	"Pebble Core"
+	"Supercapacitator"
+	"Pulse Rifle"
+
 # For ships, stations, or corporations.
 phrase "hai"
 	word

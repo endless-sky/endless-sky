@@ -562,7 +562,12 @@ government "Hai (Unfettered Challenger)"
 	"hostile hail" "hostile unfettered challenger"
 	"hostile disabled hail" "defeated unfettered challenger"
 	"penalty for"
+		# to easily count the amount of them that have been beaten without being killed
 		assist 0
+		disable -.1
+		board 0
+		capture .1
+		destroy .1
 
 # A government used to make unfettered challengers fight each other.
 government "Hai (Unfettered Blue Challenger)"

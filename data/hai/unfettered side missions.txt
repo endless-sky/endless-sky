@@ -77,7 +77,7 @@ mission "Unfettered: Neutral With The Hai"
 	destination "Mirrorlake"
 	clearance `You speak with the local authorities and they agree to meet with you.`
 	to offer
-		has "reputation: Hai" < 0
+		"reputation: Hai" < 0
 		has "Unfettered Jump Drive 3: offered"
 	on offer
 		conversation
@@ -135,7 +135,7 @@ mission "Unfettered: Neutral With The Hai"
 
 mission "Unfettered: Untrustable"
 	to offer
-		has "reputation: Hai" < 0
+		"reputation: Hai" < 0
 		has "Unfettered: Neutral With The Hai: done"
 		not "Unfettered: Neutral With The Hai: failed"
 	on offer
@@ -228,7 +228,7 @@ mission "Unfettered: Speak Hai"
 			label translator
 			`	"We think our Hai brethren may indeed have what we need, but we need to find a way to obtain it. In the meantime, You should go and meet the aliens up North and speak with them. They may not allow you to land on most of their planets. They may have grown distrusful of newcomers - probably because of our own actions. Go and see how pathethic these birds are, and then you should go to He-Yi about that translator."`
 			branch neutral
-				has "reputation: Wanderer" >= 0
+				"reputation: Wanderer" >= 0
 			choice
 				`	"But I am at war with them already."`
 			`	"We know. Here is a message in Hai that you will transmit to them. It says that you are our ambassador, so do not open fire on them for now."`
@@ -396,7 +396,7 @@ mission "Unfettered: Know Your Enemy"
 			label task
 			`	"We want you to survey all systems belonging to our enemies, to assess if they have some backup fleets or potential allies nearby."`
 			branch neutral
-				has "reputation: Wanderer" >= 0
+				"reputation: Wanderer" >= 0
 			choice
 				`	"But I am at war with them. It would be at a risk for me."`
 			`	He seems a bit angry, "Again? In the last mission we had arranged for them to not shoot at you, what did you do?? Well there is nothing we can do for you this time, I just hope you have some means of hiding, or a very agile ship. Theirs are not that impressive but they do have long range missiles, meaning you should probably install some Chameleon defenses on your ship."`
