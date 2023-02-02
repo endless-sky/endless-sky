@@ -61,6 +61,7 @@ fleet "Shield Beetle Challenger"
 
 event "unfettered: challengers arrive"
 	"unfettered: challengers" ++
+	"unfettered: total challengers" += 5
 	system "Wah Yoot"
 		add fleet "Shield Beetle Challenger" 5000
 		add fleet "Sea Scorpion Challenger" 7500
@@ -72,6 +73,8 @@ event "unfettered: challengers arrive"
 
 # the maximum amounts you can stack up these fleets is 5
 event "unfettered: challengers leave"
+	"unfettered: total challengers" -= "unfettered: challengers" * 5
+	clear "unfettered: challengers"
 	system "Wah Yoot"
 		remove fleet "Shield Beetle Challenger"
 		remove fleet "Sea Scorpion Challenger"
@@ -159,17 +162,6 @@ mission "Unfettered: Remove The Challengers"
 
 
 
-# to make sure you are always hostile to the challengers, otherwise shooting them means provoke meaning it will agro Unfettered
-mission "Hostile Challengers"
-	landing
-	invisible
-	to offer
-		has "reputation: Hai (Unfettered Challenger)" > -100
-	on offer
-		"reputation: Hai (Unfettered Challenger)" <?= -10000
-
-
-
 phrase "unfettered challenger defeated"
 	word
 		`You receive a message from the <npc>`
@@ -216,7 +208,7 @@ phrase "unfettered challenger defeat message"
 		"<boarding message>"
 
 substitutions
-	"<boarding message>" "(Winning the duel has increased your reputation with the Unfettered. You are in no way allowed to do any more than plundering the ship.)"
+	"<boarding message>" "	(Winning the duel has increased your reputation with the Unfettered. You are in no way allowed to do any more than plundering the ship.)"
 
 mission "Unfettered Challenge [0]"
 	job
@@ -224,21 +216,27 @@ mission "Unfettered Challenge [0]"
 	substitutions
 		<payment> "200 thousand credits"
 	name `Defeat a young Unfettered captain`
-	description `A young Unfettered captain has challenged you into a duel. Disable his ship for <payment>.`
+	description `A young Unfettered captain wants to challenge you into a duel, provided you are not overwhelmingly strong. Disable his ship for <payment>.`
 	source
 		attributes "unfettered"
 	to offer
 		has "Unfettered: Prove Your Strength: done"
-		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 12
 		random < 60
+	to accept
+		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 9 + "unfettered: total challengers"
+	on accept
+		"unfettered: total challengers" += 9
 	npc save disable
 		government "Hai (Unfettered Challenger)"
 		personality disables plunders staying heroic target
 		fleet "Sea Scorpion Challenger"
 		dialog phrase "unfettered challenger defeated"
+	on fail
+		"unfettered: total challengers" -= 9
 	on complete
 		payment 200000
 		"unfettered challenger defeated" ++
+		"unfettered: total challengers" -= 9
 
 mission "Unfettered Challenge [1A]"
 	job
@@ -246,21 +244,27 @@ mission "Unfettered Challenge [1A]"
 	substitutions
 		<payment> "500 thousand credits"
 	name `Defeat an escorted Unfettered captain`
-	description `An Unfettered captain has challenged you into a duel with his escort. Disable his ships for <payment>.`
+	description `An Unfettered captain wants to challenge you into a duel with his escort, provided you are not overwhelmingly strong. Disable his ships for <payment>.`
 	source
 		attributes "unfettered"
 	to offer
 		has "Unfettered: Prove Your Strength: done"
-		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 24
 		random < 20
+	to accept
+		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 15 + "unfettered: total challengers"
+	on accept
+		"unfettered: total challengers" += 15
 	npc save disable
 		government "Hai (Unfettered Challenger)"
 		personality disables plunders staying heroic target
 		fleet "Sea Scorpion Challenger" 2
 		dialog phrase "unfettered challenger defeated"
+	on fail
+		"unfettered: total challengers" -= 15
 	on complete
 		payment 500000
 		"unfettered challenger defeated" += 2
+		"unfettered: total challengers" -= 15
 
 mission "Unfettered Challenge [1B]"
 	job
@@ -268,21 +272,27 @@ mission "Unfettered Challenge [1B]"
 	substitutions
 		<payment> "500 thousand credits"
 	name `Defeat an Unfettered captain`
-	description `An Unfettered captain has challenged you into a duel. Disable his ship for <payment>.`
+	description `An Unfettered captain wants to challenge you into a duel, provided you are not overwhelmingly strong. Disable his ship for <payment>.`
 	source
 		attributes "unfettered"
 	to offer
 		has "Unfettered: Prove Your Strength: done"
-		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 24
 		random < 20
+	to accept
+		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 15 + "unfettered: total challengers"
+	on accept
+		"unfettered: total challengers" += 15
 	npc save disable
 		government "Hai (Unfettered Challenger)"
 		personality disables plunders staying heroic target
 		fleet "Shield Beetle Challenger"
 		dialog phrase "unfettered challenger defeated"
+	on fail
+		"unfettered: total challengers" -= 15
 	on complete
 		payment 500000
 		"unfettered challenger defeated" += 2
+		"unfettered: total challengers" -= 15
 
 mission "Unfettered Challenge [2]"
 	job
@@ -290,22 +300,28 @@ mission "Unfettered Challenge [2]"
 	substitutions
 		<payment> "1 million credits"
 	name `Defeat an old Unfettered captain`
-	description `An experienced Unfettered captain has challenged you into a duel with his escort. Disable his ships for <payment>.`
+	description `An experienced Unfettered captain wants to challenge you into a duel with his escort, provided you are not overwhelmingly strong. Disable his ships for <payment>.`
 	source
 		attributes "unfettered"
 	to offer
 		has "Unfettered: Prove Your Strength: done"
-		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 40
 		random < 20
+	to accept
+		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 21 + "unfettered: total challengers"
+	on accept
+		"unfettered: total challengers" += 21
 	npc save disable
 		government "Hai (Unfettered Challenger)"
 		personality disables plunders staying heroic target
 		fleet "Shield Beetle Challenger"
 		fleet "Sea Scorpion Challenger"
 		dialog phrase "unfettered challenger defeated"
+	on fail
+		"unfettered: total challengers" -= 21
 	on complete
 		payment 1000000
 		"unfettered challenger defeated" += 3
+		"unfettered: total challengers" -= 21
 
 
 

@@ -394,9 +394,9 @@ mission "Unfettered Bring Reverse Engine"
 	destination
 		attributes "unfettered"
 	to offer
-		random < 5
+		random < 10
 		has "Unfettered Jump Drive 1: done"
-	on offer
+	on accept
 		conversation
 			`As it is the first time you accept this job, the captain who offered it sends the details to you: "Hello, captain <last>. I need you to bring me a reverse engine of each size, in order to test them on the different ships in my fleet. I expect the Basrem to be quite useful for the smaller ships such as the lightning bug, especially equipped with Ion Cannons, but I am unsure whether or not it is enough thrust to keep its distance from enemies, or if I need more of those. Of course, the same logic applies to bigger ships as well. Oh, and before I forget, you need to bring them to <destination>, that is where I am going to be moving in the next days."`
 			choice
@@ -422,9 +422,9 @@ mission "Unfettered Bring Batteries"
 	destination "Darkcloak"
 	deadline 14
 	to offer
-		random < 5
+		random < 10
 		has "Unfettered Jump Drive 1: done"
-	on offer
+	on accept
 		conversation
 			`As you accept the job, one of the workers of the outfitter comes to speak to you, "Do you have any questions regarding this job," he asks. "You do understand it must be done as fast as possible, as our new ships are in great needs of these."`
 			label choose
@@ -458,9 +458,9 @@ mission "Unfettered Bring Ion Cannons"
 		attributes "unfettered"
 	destination "Darkcloak"
 	to offer
-		random < 5
+		random < 15
 		has "Unfettered Jump Drive 1: done"
-	on offer
+	on accept
 		conversation
 			`After accepting this job, you go look for the captain who placed it in order to ask for more detailed information. It does not take long to find her, and it seems like she is willing to answer at least some of your questions. "Curious, are we, <first>? Oh, may I call you <first>? You reputation of selling jump drives precedes you," she says with a wink.`
 			choice
