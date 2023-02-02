@@ -433,7 +433,7 @@ mission "Midas: Betrayal For The Bars"
 		or
 			random < 40
 			has "Midas: Who is the mad one?: active"
-		has "Unfettered: Jump Drive Retrieval: done"
+		has "<unfettered mission> 3: Jump Drive Retrieval: done"
 		"flagship crew" > 4
 		"outfit (flagship cargo): Gold Bars" >= 5
 	on offer
@@ -580,14 +580,14 @@ conversation "midas: mission failure?"
 
 # SPOILERS: Midas want that governor down because she can easily help the Hai-Unfettered Hai unite, given she understands the Unfettered well.
 # They will only take her hostage here, she may come back later.
-mission "Midas: Feed Them To The Wolves"
+mission "<unfettered mission> 7 B"
 	landing
-	name "Feed them to the Wolves."
+	name "Feed them to the Wolves"
 	description "Take the governor's fleet to <waypoints> instead, where a fleet will be waiting for them."
 	source "Greenbloom"
 	destination "Warfeed"
 	to offer
-		has "Unfettered: Escort Hai Fleet: active"
+		has "<unfettered mission> 7 A: active"
 		has "midas: tracker relay"
 	on offer
 		dialog `You are alone in your quarters, waiting for the security detachment of the Hai admiral to arrive, when you hear a mysterious voice. "She of the Void requests that you bring those ships to <waypoints>, without delay. Do so and you will be richly rewarded. Do not worry about the supplies, we will bring them to the Unfettered, we are only acting in their best interest, after all. Whatever you decide, you do not want to speak of us to them." Do you accept?`
@@ -615,12 +615,12 @@ mission "Midas: Feed Them To The Wolves"
 		conversation "midas: mission failure?"
 	to fail
 		or
-			has "Unfettered: Escort Hai Fleet: done"
-			has "Unfettered: Escort Hai Fleet: aborted"
+			has "<unfettered mission> 7 A: done"
+			has "<unfettered mission> 7 A: aborted"
 	on fail
 		conversation "midas: mission failure?"
 	to complete
-		has "Unfettered: Escort Hai Fleet: failed"
+		has "<unfettered mission> 7 A: failed"
 	on complete
 		"reputation: Midas" <?= -1000
 		clear "unfettered: stopped on Greenbloom"
@@ -639,15 +639,15 @@ mission "Midas: Feed Them To The Wolves"
 
 
 # secret mission
-# happens if you accept a duel in "Unfettered: Materials Intercepted" (offered if your fleet is smaller than 2 heavy warships)
-mission "Midas: Duel Squared"
+# happens if you accept a duel in "<unfettered mission> 8" (offered if your fleet is smaller than 2 heavy warships)
+mission "<unfettered mission> 8: Duel"
 	landing
 	source "New Tortuga"
 	name "Duel with the twins."
 	description "Beat the two twins today, or lose 10 million credits!"
 	to offer
 		has "midas: accepted duel"
-		has "Unfettered: Cavalry Arrives: done"
+		has "<unfettered mission> 8: Cavalry Arrives: done"
 		"unfettered: cleaned up cerberus" > 1
 	on offer
 		dialog `The two mysterious ships hail you, "We are ready for a fight in orbit whenever you are. If you want, you can still call this off... for a quarter of the agreed price."`

@@ -110,7 +110,7 @@ mission "Unfettered: Challengers Arrive"
 	invisible
 	source "Darkcloak"
 	to offer
-		has "Unfettered: Prove Your Strength: done"
+		has "unfettered: duel ready"
 	on offer
 		conversation
 			`The Captain meets you in the spaceport now that his crew is done patching up his ship. "She be space worthy again, alright."`
@@ -133,7 +133,7 @@ mission "Unfettered: Trigger The Challengers"
 	description "Mark yourself as ready for more spontaneous challengers to come in all Unfettered systems."
 	source "Darkcloak"
 	to offer
-		has "Unfettered: Prove Your Strength: done"
+		has "unfettered: duel ready"
 		"unfettered: challengers" < 5
 	to fail
 		has "Unfettered: Trigger The Challengers: active"
@@ -149,7 +149,7 @@ mission "Unfettered: Remove The Challengers"
 	description "Mark yourself as no longer wanting to do spontaneous challenges in any Unfettered systems."
 	source "Darkcloak"
 	to offer
-		has "Unfettered: Prove Your Strength: done"
+		has "unfettered: duel ready"
 		has "unfettered: challengers"
 	to fail
 		has "Unfettered: Remove The Challengers: active"
@@ -220,7 +220,7 @@ mission "Unfettered Challenge [0]"
 	source
 		attributes "unfettered"
 	to offer
-		has "Unfettered: Prove Your Strength: done"
+		has "unfettered: duel ready"
 		random < 60
 	to accept
 		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 9 + "unfettered: total challengers"
@@ -248,7 +248,7 @@ mission "Unfettered Challenge [1A]"
 	source
 		attributes "unfettered"
 	to offer
-		has "Unfettered: Prove Your Strength: done"
+		has "unfettered: duel ready"
 		random < 20
 	to accept
 		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 15 + "unfettered: total challengers"
@@ -276,7 +276,7 @@ mission "Unfettered Challenge [1B]"
 	source
 		attributes "unfettered"
 	to offer
-		has "Unfettered: Prove Your Strength: done"
+		has "unfettered: duel ready"
 		random < 20
 	to accept
 		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 15 + "unfettered: total challengers"
@@ -304,7 +304,7 @@ mission "Unfettered Challenge [2]"
 	source
 		attributes "unfettered"
 	to offer
-		has "Unfettered: Prove Your Strength: done"
+		has "unfettered: duel ready"
 		random < 20
 	to accept
 		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 21 + "unfettered: total challengers"

@@ -147,26 +147,13 @@ mission "Unfettered: Untrustable"
 
 
 
-mission "Unfettered: Cargo on Mirrorlake"
-	landing
-	invisible
-	source "Mirrorlake"
-	to offer
-		has "Unfettered: Special Cargo 2: active"
-	on offer
-		outfit "Mystery Cube" -1
-		conversation
-			"You land, and the Hai start loading their food onto your ship. You tell them you want to stretch your legs (which isn't entirely a lie), and they don't appear to suspect a thing. You find a clearing and choose to bury the cube just below the ground. You remember to mark the exact spot, and then you return to your ship."
-
-
-
 mission "Unfettered: Non Lethal Weapons"
 	invisible
 	source
 		attributes "unfettered"
 	to offer
 		has "main plot completed"
-		has "Unfettered: Close Quarter: active"
+		has "<unfettered mission> 21: active"
 	on offer
 		event "looking for a gun" 30
 
@@ -179,14 +166,14 @@ mission "Unfettered: Non Lethal Weapons Hint"
 	destination "Farpoint"
 	to offer
 		has "event: looking for a gun"
-		has "Unfettered: Close Quarter: active"
+		has "<unfettered mission> 21: active"
 		not "outfit (all): Pug Peacekeeping Staff"
 	on offer
 		conversation
 			`As you land on this planet, you think back of the peculiar request He-Yi made to you: bring back non-deadly weapons. After thinking a while about it, you remember tales about the Pug having special weapons that could easily knock people out. Maybe you should go to <destination> and speak to the Oathkeepers about this.`
 				accept
 	to fail
-		has "Unfettered: Close Quarter: done"
+		has "<unfettered mission> 21: done"
 	on complete
 		conversation
 			`You cannot find Admiral Danforth, and wager he's probably busy with the pirates above. You think of disturbing him, but another Oathkeeper sees you and asks what you're looking for. You start speaking with him of the Pug war, and recognizing you, he seems eager to share his experience.`
@@ -195,26 +182,26 @@ mission "Unfettered: Non Lethal Weapons Hint"
 
 
 
-mission "Unfettered: Wanderer Homeworld"
+mission "<unfettered mission> 19: Wanderer Homeworld"
 	invisible
 	source "Darkcloak"
 	destination "Vara K'chrai"
 	clearance "You manage to make the aliens understand you are here to talk, and they allow you to land."
 	to offer
-		has "Unfettered: Solifuge 9: Bigger Ships: done"
+		has "<unfettered mission> 16: done"
 		not "language: Wanderer"
 	to fail
-		has "Unfettered: Speak Hai: failed"
+		has "<unfettered mission> 19: failed"
 	on enter "Ka'ch'chrai"
 		dialog `Judging by the population compared to the other worlds, this appears to be the capital of these aliens. You should land to introduce yourself as a diplomat between them and the Hai.`
 
-mission "Unfettered: Speak Hai"
+mission "<unfettered mission> 19"
 	name `Meet and understand the Wanderers`
 	description `You need to be able to act as a diplomat between the Hai and the aliens up north. First go and meet those aliens. Then go to <stopovers> to see if He-Yi will provide a translator for you.`
 	source "Darkcloak"
 	stopover "Warfeed"
 	to offer
-		has "Unfettered: Solifuge 9: Bigger Ships: done"
+		has "<unfettered mission> 16: done"
 		not "language: Wanderer"
 	on offer
 		conversation
@@ -253,13 +240,13 @@ mission "Unfettered: Speak Hai"
 
 
 
-mission "Unfettered: Bring Detainer"
+mission "<unfettered mission> 19: Detainer For Translator"
 	landing
 	name `Recover a detainer`
 	description `He-Yi has asked you to earn a translation device by bringing back a powerful alien weapon, said to be able to neutralize the engines of its target. You should probably look east of Unfettered space.`
 	source "Warfeed"
 	to offer
-		has "Unfettered: Speak Hai: active"
+		has "<unfettered mission> 19: active"
 		or
 			has "First Contact: Wanderer: offered"
 			has "First Contact: Wanderer (Before hai): offered"
@@ -285,7 +272,7 @@ mission "Unfettered: Bring Detainer"
 					accept
 				`	"This is way too risky. I'm out."`
 			action
-				fail "Unfettered: Know Your Enemy"
+				fail "<unfettered mission> 19: Scout Wanderer Systems"
 	to fail
 		has "language: Wanderer"
 	on visit
@@ -295,11 +282,11 @@ mission "Unfettered: Bring Detainer"
 		set "language: Wanderer"
 		dialog `He-Yi is impressed that you managed to bring this detainer to him, and happily exchanges it for a translator. He says you should still go to his herald to bring him news of this, and the scans for a reward.`
 
-mission "Unfettered: Found Detainer"
+mission "<unfettered mission> 19: Found Detainer"
 	boarding
 	invisible
 	to offer
-		has "Unfettered: Bring Detainer: active"
+		has "<unfettered mission> 19: Detainer For Translator: active"
 	source
 		outfits "Korath Detainer"
 	on offer
@@ -307,7 +294,7 @@ mission "Unfettered: Found Detainer"
 			`The 'Detainer' on this ship matches He-Yi's description perfectly! Quickly, grab it and get out of here.`
 
 
-mission "Unfettered: Weird Aliens Spotted"
+mission "<unfettered mission> 19: Weird Aliens Spotted"
 	landing
 	invisible
 	destination "Warfeed"
@@ -316,8 +303,8 @@ mission "Unfettered: Weird Aliens Spotted"
 		"<pug aliens>" "Pug"
 			has "main plot completed"
 	to offer
-		has "Unfettered: Know Your Enemy: offered"
-		has "Unfettered: Solifuge 9: Bigger Ships: done"
+		has "<unfettered mission> 19: Scout Wanderer Systems: offered"
+		has "<unfettered mission> 16: done"
 	waypoint "Pug Iyik"
 	on waypoint
 		dialog `These aliens do not look like the rest of the Wanderers at all! You should probably warn the Unfettered about it, on <destination>.`
@@ -372,7 +359,7 @@ mission "Unfettered: Weird Aliens Spotted"
 				accept
 
 
-mission "Unfettered: Know Your Enemy"
+mission "<unfettered mission> 19: Scout Wanderer Systems"
 	name `Know your enemy`
 	description `Go to <waypoints> and scout the fleet presence of all Wanderer ships. Then, come back to <destination> for your reward.`
 	source
@@ -380,8 +367,8 @@ mission "Unfettered: Know Your Enemy"
 	destination "Warfeed"
 	to offer
 		has "language: Wanderer"
-		has "Unfettered: Solifuge 9: Bigger Ships: done"
-		not "Unfettered: Speak Hai: active"
+		has "<unfettered mission> 16: done"
+		not "<unfettered mission> 19: active"
 	on offer
 		log "Minor People" "Mysterious Unfettered Herald" "A herald of He-Yi that does not want to reveal his true identity. He seems to have a lot of culture, and stays calm in most situations."
 		conversation
@@ -440,7 +427,7 @@ mission "Unfettered: Cloaking Interest"
 	invisible
 	source "Warfeed"
 	to offer
-		has "Unfettered: Special Cargo 2: done"
+		has "<unfettered mission> 18: Spying On Hai-Home: done"
 		random < 20
 	on offer
 		require "Cloaking Device"
@@ -486,19 +473,19 @@ conversation "modified shield beetle prize"
 	`	The message ends. Time to try the new beetle to see what it can do.`
 
 
-mission "Unfettered: Normal Prize"
+mission "<unfettered mission> 17: Normal Prize"
 	landing
+	invisible
 	source "Darkcloak"
 	to offer
-		has "Unfettered: Earn Your Prize: done"
+		has "<unfettered mission> 17: done"
 		has "unfettered: prize right away"
 	on offer
 		conversation "modified shield beetle prize"
 		give ship "Modified Shield Beetle" "Basilisk"
-		fail
 
 
-mission "Unfettered: Prize Arrived"
+mission "<unfettered mission> 17: Custom Price Notification"
 	landing
 	invisible
 	destination "Darkcloak"
@@ -529,11 +516,11 @@ ship "Modified Shield Beetle" "Modified Shield Beetle (Blaster)"
 		"Hyperdrive"
 		"Quantum Keystone"
 
-mission "Unfettered: Dakka Prize"
+mission "<unfettered mission> 17: Custom Price A"
 	landing
 	source "Darkcloak"
 	to offer
-		has "Unfettered: Earn Your Prize: done"
+		has "<unfettered mission> 17: done"
 		has "event: unfettered: more dakka"
 	on offer
 		conversation "modified shield beetle prize"
@@ -561,11 +548,11 @@ ship "Modified Shield Beetle" "Modified Shield Beetle (Heat Shunt)"
 		"Hyperdrive"
 		"Quantum Keystone"
 
-mission "Unfettered: Cool Prize"
+mission "<unfettered mission> 17: Custom Price B"
 	landing
 	source "Darkcloak"
 	to offer
-		has "Unfettered: Earn Your Prize: done"
+		has "<unfettered mission> 17: done"
 		has "event: unfettered: cooler"
 	on offer
 		conversation "modified shield beetle prize"
@@ -592,11 +579,11 @@ ship "Modified Shield Beetle" "Modified Shield Beetle (Ionic Turret)"
 		"Hyperdrive"
 		"Quantum Keystone"
 
-mission "Unfettered: Ionic Prize"
+mission "<unfettered mission> 17: Custom Price: C"
 	landing
 	source "Darkcloak"
 	to offer
-		has "Unfettered: Earn Your Prize: done"
+		has "<unfettered mission> 17: done"
 		has "event: unfettered: disable-er"
 	on offer
 		conversation "modified shield beetle prize"
@@ -625,11 +612,11 @@ ship "Modified Shield Beetle" "Modified Shield Beetle (Large Systems Core)"
 		"Hyperdrive"
 		"Quantum Keystone"
 
-mission "Unfettered: Immortal Prize"
+mission "<unfettered mission> 17: Custom Price: D"
 	landing
 	source "Darkcloak"
 	to offer
-		has "Unfettered: Earn Your Prize: done"
+		has "<unfettered mission> 17: done"
 		has "event: unfettered: syscore's got it"
 	on offer
 		conversation "modified shield beetle prize"
@@ -638,14 +625,14 @@ mission "Unfettered: Immortal Prize"
 
 
 
-mission "Unfettered: Close Quarter"
+mission "<unfettered mission> 21"
 	name `Close Quarter Fighting`
 	description `He-Yi wants you to bring twenty non-lethal weapons stronger than the pulse rifle for him to use in training with the other Unfettered. Deliver them to <destination>.`
 	source "Warfeed"
 	to offer
 		or
-			has "Unfettered: Solifuge 9: Bigger Ships: done"
-			has "Unfettered: Solifuge 9: Bigger Ships: declined"
+			has "<unfettered mission> 16: done"
+			has "<unfettered mission> 16: declined"
 		or
 			not "unfettered: offered close quarter"
 			random < 30
@@ -804,14 +791,14 @@ conversation "more staves"
 	label fine
 	`	He wishes you good luck and hopes you can find the staves. He reminds you a large amount of them is requested - twenty, to be precise.`
 
-mission "Bring More Enforcer Staves"
+mission "<unfettered mission> 21: More Enforcer Staves"
 	minor # so both staff conversations don't pop up at the same time
 	invisible
 	source "Warfeed"
 	substitutions
 		<staff> "Enforcer"
 	to offer
-		has "Unfettered: Close Quarter: offered"
+		has "<unfettered mission> 21: offered"
 		not "Bring Coalition Weapons: offered"
 		not "Bring Pug Staves: offered"
 	on offer
@@ -819,14 +806,14 @@ mission "Bring More Enforcer Staves"
 		conversation "more staves"
 
 
-mission "Bring More Pug Staves"
+mission "<unfettered mission> 21: More Pug Staves"
 	minor
 	invisible
 	source "Warfeed"
 	substitutions
 		<staff> "Pug Peacekeeping"
 	to offer
-		has "Unfettered: Close Quarter: offered"
+		has "<unfettered mission> 21: offered"
 		not "Bring Coalition Weapons: offered"
 		not "Bring Pug Staves: offered"
 	on offer
@@ -834,12 +821,12 @@ mission "Bring More Pug Staves"
 		conversation "more staves"
 		fail
 
-mission "Bring Pug Staves"
+mission "<unfettered mission> 21: Pug Staves"
 	landing
 	invisible
 	source "Warfeed"
 	to offer
-		has "Unfettered: Close Quarter: offered"
+		has "<unfettered mission> 21: offered"
 	on offer
 		dialog `Do you want to sell 20 Pug Peacekeeping Staffs to the Unfettered? He-Yi says they can give you 2500000 for it.`
 	on accept
@@ -848,12 +835,12 @@ mission "Bring Pug Staves"
 		dialog `The Unfettered thank you for bringing these 20 staffs to them. They give you <payment>.`
 		fail
 
-mission "Bring Coalition Weapons"
+mission "<unfettered mission> 21: Coalition Staves"
 	landing
 	invisible
 	source "Warfeed"
 	to offer
-		has "Unfettered: Close Quarter: offered"
+		has "<unfettered mission> 21: offered"
 	on offer
 		dialog `Do you want to sell 20 Enforcer Riot Staffs to the Unfettered? He-Yi says they can give you 4000000 for it.`
 	on accept
@@ -862,12 +849,12 @@ mission "Bring Coalition Weapons"
 		dialog `The Unfettered thank you for bringing these 20 staffs to them. They give you <payment>.`
 		fail
 
-mission "Bring Void Rifle"
+mission "<unfettered mission> 21: Void Rifle"
 	minor
 	invisible
 	source "Warfeed"
 	to offer
-		has "Unfettered: Close Quarter: offered"
+		has "<unfettered mission> 21: offered"
 	on offer
 		require "Void Rifle"
 		conversation
@@ -890,7 +877,7 @@ mission "Bring Void Rifle"
 
 event "unfettered: better sestor translator"
 
-mission "Unfettered: Speak Sestor Notice"
+mission "<unfettered mission> 14: Better Translator Notice"
 	minor
 	name "Find Choot'k"
 	description "Go to <destination> to find Choot'k. He should be on top of the biggest mountain."
@@ -900,16 +887,16 @@ mission "Unfettered: Speak Sestor Notice"
 		has "salary: Unfettered"
 		has "Hai Reveal [C01] Cleanup: done"
 		or
-			has "Unfettered: Solifuge 8: Useful Korath Scientists: offered"
+			has "<unfettered mission> 14: offered"
 			random < 15
 	on offer
 		conversation
 			`Do you want to go see Choot'k, to talk with him of the past and maybe see if you could do something for him?`
 				to display
-					not "Unfettered: Solifuge 8: Useful Korath Scientists: offered"
+					not "<unfettered mission> 14: offered"
 			`Do you want to go see if Choot'k can do something to improve the translator, as Mera suggested?`
 				to display
-					has "Unfettered: Solifuge 8: Useful Korath Scientists: offered"
+					has "<unfettered mission> 14: offered"
 			choice
 				`	(Yes.)`
 				`	(Not now.)`
@@ -921,7 +908,7 @@ mission "Unfettered: Speak Sestor Notice"
 
 
 
-mission "Unfettered: Speak Sestor"
+mission "<unfettered mission> 14: Better Translator"
 	landing
 	name "Speak Sestor"
 	description "Go to <stopovers> to acquire the records of Sestor language."
@@ -930,7 +917,7 @@ mission "Unfettered: Speak Sestor"
 	destination "Darkcloak"
 	passengers 1
 	to offer
-		has "Unfettered: Speak Sestor Notice: offered"
+		has "<unfettered mission> 14: Better Translator Notice: offered"
 	on offer
 		conversation
 			`	You climb on top of the greatest mountain when you find Choot'k is indeed there, admiring the view.`
@@ -939,7 +926,7 @@ mission "Unfettered: Speak Sestor"
 			`	"No, not yet, at least. Now, I would duel you if I had the time, but I have duties to attend to, which you may help me with, actually. I want to go to <stopovers> to get the records of Korath interactions before the raids. Mera has informed me that the translator - whilst better than nothing - is not sufficient for all the tasks we have in mind."`
 			`	"I am sure you have already noticed that communication with the Korath can be... difficult, since you met them."`
 				to display
-					has "Unfettered: Solifuge 8: Useful Korath Scientists: offered"
+					has "<unfettered mission> 14: offered"
 			label choice
 			choice
 				`	"Let's go then."`
@@ -985,13 +972,13 @@ mission "Unfettered: Speak Sestor"
 
 
 # SPOILER: they see this as an opportunity to get the leader and also don't want the Unfettered (and you) to be able to communicate too deeply with Sestors...
-mission "Unfettered: Ambush"
+mission "<unfettered mission> 14: Ambush"
 	landing
 	invisible
 	source "Hai-home"
 	destination "Darkcloak"
 	to offer
-		has "Unfettered: Speak Sestor: active"
+		has "<unfettered mission> 14: Better Translator: active"
 	on enter
 		# SPOILER: he doesn't want them to get destroyed by the Hai because that would damage Alpha-Unfettered reputations, also he takes it as a challenge to his strength (except he's on your ship)
 		dialog `Upon entering the system you see multiple Cerberus ships, ready to attack you. Choot'k sends a message to the Hai. "Do not interfere, it would damage both my honor and <last>'s!" He did not ask for your opinion, but thankfully you have seen worse than a bunch of pirates.`

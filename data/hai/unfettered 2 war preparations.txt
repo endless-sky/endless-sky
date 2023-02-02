@@ -12,13 +12,13 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 # SPOILER: they say it's for ships but they actually have plenty of those built. In truth this is mostly to build habitations.
-mission "Unfettered: Solifuge 5: Materials For Ships"
+mission "<unfettered mission> 12"
 	name `Gather materials from asteroids`
 	description `Mine 50 tons of lead from the asteroid field in Wah Yoot and 20 tons of silver from the asteroid field in <waypoints> and then bring them back to <destination> for <payment>.`
 	source "Darkcloak"
 	waypoint "Ehma Ti"
 	to offer
-		has "Unfettered: Alphas 2: Prove Yourself: done"
+		has "<unfettered mission> 11: done"
 	on offer
 		conversation
 			`You have never seen so much business in Unfettered space. It looks like a major undertaking is about to happen, and you will probably be a part of it. Mera is spreading a message for all Unfettered to hear. "The time has come, brothers and sisters! Now all that is needed is to spread the word, and our brethren from Hai space will join us in glorious victory! But let us not be reckless. In order to win we will need ships, and in order to build ships we will need materials. That is why we should all start gathering them here."`
@@ -102,7 +102,7 @@ mission "Unfettered: Solifuge 5: Materials For Ships"
 
 
 
-mission "Unfettered: Solifuge 6: Shipyard Upgrade"
+mission "<unfettered mission> 13"
 	name `Gather intel on Hai shipyards`
 	description `Go to <stopovers> and try to discreetly learn how their ships are produced.`
 	source "Darkcloak"
@@ -111,7 +111,7 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 	clearance `After explaining you are here to collect an Unfettered tribute, you receive clearance to land.`
 	to offer
 		"reputation: Hai" >= 0
-		has "Unfettered: Solifuge 5: Materials For Ships: done"
+		has "<unfettered mission> 12: done"
 	on offer
 		conversation
 			`As you land, you notice several large ships under construction at the shipyard. Would you like to check what's going on?`
@@ -171,7 +171,7 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 	on stopover
 		dialog "You land and ask the Hai for the Unfettered tribute, which they then prepare. They don't seem to suspect anything. Enter the shipyard when you see fit."
 	to complete
-		has "Unfettered: Solifuge 7: Hai Shipyard Intel: offered"
+		has "<unfettered mission> 13: Shipyard Intel: offered"
 	on complete
 		log `Gathered intel on a Hai shipyard for the Unfettered.`
 		log "People" "He-Yi" `An Unfettered warlord that appreciates directness and calls humans monkeys. He is particularly skilled at management, and speaks trough a translator, although he has little to no problem understanding my language without it.`
@@ -214,14 +214,14 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 
 
 # linked to the previous mission, it's what happens when you land to get intel
-mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
+mission "<unfettered mission> 13: Shipyard Intel"
 	landing
 	shipyard
 	invisible
 	source "Hai-home"
 	destination "Darkcloak"
 	to offer
-		has "Unfettered: Solifuge 6: Shipyard Upgrade: active"
+		has "<unfettered mission> 13: active"
 	on offer
 		conversation
 			`While they load up your ship, you to go to the shipyard and act like you're considering buying a new ship, and a big one at that. "Unfortunately", you get lost and end up at the facility where they build the Geocoris and Shield Beetles. There is only so much you can learn by looking, so you start discreetly scanning the place. A Hai engineer seems to notice you and comes your way. "Hi, how may I help you," he asks. You suspect he probably noticed you scanning the area, but he doesn't seem to have reported it to the local authorities, yet.`
@@ -299,12 +299,12 @@ mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
 			`	It looks like you have aroused too much suspicion. Maybe he was waiting to see if you would actually leave, or maybe he alerted the local authorities, but the result is the same: they arrest you and even fine you <fine>.`
 				decline
 	on decline
-		fail "Unfettered: Solifuge 6: Shipyard Upgrade"
+		fail "<unfettered mission> 13"
 
 
 
 # this is how the Koraths gain some trust of the Unfettered (who expect results)
-mission "Unfettered: Solifuge 8: Useful Korath Scientists"
+mission "<unfettered mission> 14"
 	landing
 	name `Primitive Cooling Technology`
 	description `Mera has asked you to bring coolants to her on <origin>, where she is working with the Korath you rescued to design a better cooling system. Bring back 15 Liquid Nitrogen Coolers.`
@@ -335,7 +335,7 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 			has "event: unfettered: better sestor translators"
 		<younglings> "'Rem' <young>"
 	to offer
-		has "Unfettered: Alphas 2: Prove Yourself: done"
+		has "<unfettered mission> 11: done"
 	on offer
 		conversation
 			`As soon as you land, an Unfettered notifies you that Mera wishes to speak with you, and you should come with him to see her in her labs.`
@@ -387,10 +387,10 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 			`	"I did not manage to integrate the new records yet, I may end up having to connect them permanently to the translator. However, I am sure it will help, eventually."`
 				to display
 					not "event: unfettered: better sestor translators"
-					has "Unfettered: Speak Sestor: done"
+					has "<unfettered mission> 14: Better Translator: done"
 			`	"I really wish we could improve the translator, somehow. Maybe there is someone of importance in the council that would have interest for this?"`
 				to display
-					not "Unfettered: Speak Sestor: done"
+					not "<unfettered mission> 14: Better Translator: done"
 			choice
 				`	"That can't be hard. I'll go look for human coolers then."`
 					goto quantity
@@ -467,12 +467,12 @@ ship "Mammoth" "Mammoth (Hai)"
 
 # SPOILER: he paid some mercenaries to do it as well, best one gets the loot. You can also decline this and they go uncontested.
 # ionic materials (probably stolen from Hai tech in part) used to make the prototype weaponry for your Modified Beetle.
-mission "Unfettered: Loot: Ion Cannon Materials"
+mission "<unfettered mission> 15"
 	name `Loot cargo ship`
 	description `There is an undefended cargo ship near <waypoints>. Find it and bring its cargo back!`
 	source "Darkcloak"
 	to offer
-		has "Unfettered: Solifuge 5: Materials For Ships: done"
+		has "<unfettered mission> 12: done"
 		or
 			not "unfettered: offered loot"
 			random < 30
@@ -676,7 +676,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 
 
 # Materials used to finalize your Modified Beetle.
-mission "Unfettered: Solifuge 9: Bigger Ships"
+mission "<unfettered mission> 16"
 	name `Bring industrial materials`
 	description `Go to <stopovers> and load up <cargo>`
 	source "Darkcloak"
@@ -685,12 +685,12 @@ mission "Unfettered: Solifuge 9: Bigger Ships"
 	blocked `You need <tons> of cargo space for the next Unfettered mission.`
 	clearance
 	to offer
-		has "Unfettered: Solifuge 8: Useful Korath Scientists: done"
-		has "Unfettered: Solifuge 7: Hai Shipyard Intel: done"
+		has "<unfettered mission> 14: done"
+		has "<unfettered mission> 13: Shipyard Intel: done"
 		or
 			# you can refuse that one by paying for it
-			has "Unfettered: Loot: Ion Cannon Materials: done"
-			has "Unfettered: Loot: Ion Cannon Materials: declined"
+			has "<unfettered mission> 15: done"
+			has "<unfettered mission> 15: declined"
 	substitutions
 		<monke> "your specie"
 		<monke> "monkeys"
@@ -749,14 +749,14 @@ mission "Unfettered: Improved Production"
 
 
 # You have to bring all materials (or pay for them) and tech and then you gotta fight them for it. This one really is deserved!
-mission "Unfettered: Earn Your Prize"
+mission "<unfettered mission> 17"
 	landing
 	name "Earn your prize"
 	description "The Unfettered have produced a Modified Shield Beetle just for you, but you must beat Mera in command of it in order to earn it."
 	source "Firelode"
 	destination "Darkcloak"
 	to offer
-		has "Unfettered: Solifuge 9: Bigger Ships: done"
+		has "<unfettered mission> 16: done"
 	on offer
 		conversation
 			"Do you want to go see Mera now to collect your prize, as He-Yi's Herald suggested?"
@@ -875,20 +875,20 @@ mission "Unfettered: Earn Your Prize"
 	to complete
 		has "unfettered: defeated Mera"
 
-mission "Unfettered: Mera's Trust Broken"
+mission "<unfettered mission> 17: Trust Broken"
 	invisible
 	landing
 	to offer
-		has "Unfettered: Earn Your Prize: active"
+		has "<unfettered mission> 17: active"
 		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 18
 	to fail
 		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 18
 		has "flagship system: Ehma Ti"
 	on fail
 		dialog `Mera sends you a message, "What are you doing, trying to cheat? You're no fun, you do not deserve to be a part of us."`
-		fail "Unfettered: Earn Your Prize"
+		fail "<unfettered mission> 17"
 	to complete
-		not "Unfettered: Earn Your Prize: active"
+		not "<unfettered mission> 17: active"
 
 
 
@@ -924,13 +924,13 @@ ship "Marauder Leviathan" "Leviathan (Cube)"
 			"Gold Bars" 15
 			"Mystery Cube"
 
-mission "Unfettered: Special Cargo"
+mission "<unfettered mission> 18 A"
 	# just so it doesn't start with other major missions
 	minor
 	name `Mystery item`
 	description `Go to <waypoints> and find a way to acquire a "unique" item from the prominent warlord there. Her ship is the <npc>, once you have retrieved it bring the item to He-Yi on <planet>.`
 	to offer
-		has "Unfettered: Solifuge 9: Bigger Ships: done"
+		has "<unfettered mission> 16: done"
 	source "Darkcloak"
 	waypoint "Alcyone"
 	destination "Warfeed"
@@ -965,7 +965,7 @@ mission "Unfettered: Special Cargo"
 	npc board
 		personality staying target
 		to despawn
-			has "Unfettered: Special Cargo 1B: active"
+			has "<unfettered mission> 18 B: active"
 		government "Mhairi's Legion"
 		system "Alcyone"
 		ship "Leviathan (Cube)" "Degenerate"
@@ -987,14 +987,14 @@ mission "Unfettered: Special Cargo"
 	npc
 		personality heroic staying entering disables
 		to despawn
-			has "Unfettered: Special Cargo 1B: offered"
+			has "<unfettered mission> 18 B: offered"
 		government "Syndicate"
 		system "Alcyone"
 		fleet "Large Syndicate" 3
 	npc
 		personality derelict uninterested coward
 		to despawn
-			has "Unfettered: Special Cargo 1B: offered"
+			has "<unfettered mission> 18 B: offered"
 		government "Syndicate"
 		system "Alcyone"
 		fleet "Large Syndicate"
@@ -1005,13 +1005,13 @@ mission "Unfettered: Special Cargo"
 
 
 # This mission triggers when you land on the world instead of taking the cube in orbit, either bargain for it or steal it (or the wrong item)
-mission "Unfettered: Special Cargo 1B"
+mission "<unfettered mission> 18 B"
 	landing
 	invisible
 	source "Stormhold"
 	destination "Warfeed"
 	to offer
-		has "Unfettered: Special Cargo: active"
+		has "<unfettered mission> 18 A: active"
 		not "outfit (all): Mystery Cube"
 	on offer
 		conversation
@@ -1162,7 +1162,7 @@ mission "Unfettered: Special Cargo 1B"
 
 
 # you may refuse to set it up to not spread mistrust with the Hai.
-mission "Unfettered: Special Cargo 2"
+mission "<unfettered mission> 18: Spying On Hai-Home"
 	landing
 	name `Mystery Gathering`
 	description `Collect a tribute of food from <stopovers>, and place the mystery cube without anyone noticing.`
@@ -1171,11 +1171,11 @@ mission "Unfettered: Special Cargo 2"
 	cargo "food (tribute)" 93
 	blocked `You need <tons> of cargo space for the next Unfettered mission.`
 	to offer
-		has "Unfettered: Special Cargo: done"
+		has "<unfettered mission> 18 A: done"
 	on offer
 		conversation
 			branch "took on the ground"
-				not "Unfettered: Special Cargo 1B: done"
+				not "<unfettered mission> 18 B: done"
 			action
 				log `Recovered a mystery cube from a pirate ship in the heat of battle.`
 			label "took on the ground"
@@ -1221,13 +1221,24 @@ mission "Unfettered: Special Cargo 2"
 			`	This seems to anger his pride a bit, but he knows full well that statement to be true. You give him the cube so it could be used later.`
 				decline
 	to complete
-		has "Unfettered: Cargo on Mirrorlake: offered"
+		has "<unfettered mission> 18: Place Cube: offered"
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on complete
 		log `Placed a mysterious cube in a clearing on Mirrorlake. It should give intel on Hai ship movements to the Unfettered.`
 		payment 5000000
 		dialog `He-Yi is more than happy to see you in his throne room, and gives you a generous payment of <payment>.`
+
+mission "<unfettered mission> 18: Place Cube"
+	landing
+	invisible
+	source "Mirrorlake"
+	to offer
+		has "<unfettered mission> 18: Spying On Hai-Home: active"
+	on offer
+		outfit "Mystery Cube" -1
+		conversation
+			"You land, and the Hai start loading their food onto your ship. You tell them you want to stretch your legs (which isn't entirely a lie), and they don't appear to suspect a thing. You find a clearing and choose to bury the cube just below the ground. You remember to mark the exact spot, and then you return to your ship."
 
 
 
@@ -1385,7 +1396,7 @@ event "unfettered: bribable challengers"
 
 
 # This mission partly is intended as a test to make sure you are strong enough for the following part of the campaign, but they also give you your license and salary, with official colors.
-mission "Unfettered: Ready For The War"
+mission "<unfettered mission> 20"
 	name `Strength of a Leader`
 	description `Prove your strength against Si-Ra and He-Yi in a battle, but do not kill them.`
 	source "Darkcloak"
@@ -1397,9 +1408,9 @@ mission "Unfettered: Ready For The War"
 	to offer
 		has "event: unfettered: darkcloak outfitter upgrade"
 		has "event: unfettered: new cooling system"
-		has "Unfettered: Special Cargo: done"
+		has "<unfettered mission> 18 A: done"
 		has "language: Wanderer"
-		has "Unfettered: Earn Your Prize: done"
+		has "<unfettered mission> 17: done"
 	on offer
 		conversation
 			branch "came alone"
@@ -1580,10 +1591,10 @@ mission "Unfettered: Ready For The War"
 				set "unfettered: weapon choice"
 			`	"I have heard tales from the Unfettered humans of a weapon that neutralizes the target's engines. Knowing it could only come from the [automated, soulless] killing machines to the east, I went looking for such weapons under the [assurance, safety] of my cloak. I expected to battle for it, but the killing machines are fighting other killing machines. I just watched them battle from a distance and then swiftly looted a ship... Except it [self destructed, exploded] in my face. So I looked for another one, and that one did not explode. I took the weapon and came home, [proud, victorious]. I had barely enough space in my cargo hold for it."`
 				to display
-					not "Unfettered: Bring Detainer: done"
+					not "<unfettered mission> 19: Detainer For Translator: done"
 			`	"Well, as you know, you brought the Detainer to me in exchange for the translation device."`
 				to display
-					has "Unfettered: Bring Detainer: done"
+					has "<unfettered mission> 19: Detainer For Translator: done"
 			label otherweapons
 			`	"For the other weapons, it was loot [taken, collected] during the Korath raids that we have held onto. The Sunbeams are the most recent addition to the ship, which were looted from ships in the north. And then of course, our anti-missile systems are cheap and effective at countering large volumes. Last, I'm sure you know plenty about flamethrowers. They are crude, but [effective, powerful]."`
 			`	"Most of us prefer not to use weapons of [aliens, untrue] because they think it means those are [more refined than, superior to] ours. I just recognize their [advantages, utility] in some scenarios."`
@@ -1603,7 +1614,7 @@ mission "Unfettered: You Serious?"
 	invisible
 	landing
 	to offer
-		has "Unfettered: Ready For The War: active"
+		has "<unfettered mission> 20: active"
 		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 18
 	to fail
 		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 18
@@ -1614,9 +1625,9 @@ mission "Unfettered: You Serious?"
 			has "unfettered: defeated Si-Ra"
 	on fail
 		dialog `You receive a message, "You must not disrespect the rules of the duel!"`
-		fail "Unfettered: Ready For The War"
+		fail "<unfettered mission> 20"
 	to complete
-		not "Unfettered: Ready For The War: active"
+		not "<unfettered mission> 20: active"
 
 
 
