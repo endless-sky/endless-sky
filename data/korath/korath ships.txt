@@ -405,9 +405,9 @@ ship "Kas'ik Tek 7"
 		"engine capacity" 18
 		"atmosphere scan" 100
 		"outfit scan power" 18
-		"outfit scan speed" 2
+		"outfit scan efficiency" 20
 		"cargo scan power" 6
-		"cargo scan speed" 2
+		"cargo scan efficiency" 10
 		"tactical scan power" 30
 		"asteroid scan power" 20
 		weapon
