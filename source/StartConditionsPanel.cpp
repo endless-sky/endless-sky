@@ -58,7 +58,7 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
 		if(scenario.Visible(*GameData::GlobalConditions()))
 		{
 			scenarios.emplace_back(scenario);
-			scenarios.back().SetState(GameData::GlobalConditions());
+			scenarios.back().SetState(*GameData::GlobalConditions());
 		}
 
 	startIt = scenarios.begin();

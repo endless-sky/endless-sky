@@ -1252,6 +1252,8 @@ double PlayerInfo::RaidFleetAttraction(const Government::RaidFleet &raid, const 
 		if(system && raidStrength)
 			for(const auto &fleet : system->Fleets())
 			{
+				if(!fleet.Period())
+					continue;
 				const Government *gov = fleet.Get()->GetGovernment();
 				if(gov)
 				{
@@ -3000,7 +3002,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		return rff.first - rff.second;
 	});
 
-	auto &&systemAttractionProvider = conditions.GetProviderPrefixed("raid chance in system: ");
+	auto &&systemAttractionProvider = conditions->GetProviderPrefixed("raid chance in system: ");
 	auto systemAttractionFun = [this](const string &name) -> double
 	{
 		const System *system = GameData::Systems().Find(name.substr(strlen("raid chance in system: ")));
