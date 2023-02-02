@@ -590,7 +590,12 @@ mission "<unfettered mission> 7 B"
 		has "<unfettered mission> 7 A: active"
 		has "midas: tracker relay"
 	on offer
-		dialog `You are alone in your quarters, waiting for the security detachment of the Hai admiral to arrive, when you hear a mysterious voice. "She of the Void requests that you bring those ships to <waypoints>, without delay. Do so and you will be richly rewarded. Do not worry about the supplies, we will bring them to the Unfettered, we are only acting in their best interest, after all. Whatever you decide, you do not want to speak of us to them." Do you accept?`
+		dialog
+			`You are alone in your quarters, waiting for the security detachment of the Hai admiral to arrive, when you hear a mysterious voice.`
+			`	"She of the Void requests that you bring those ships to <waypoints>, without delay. Do so and you will be richly rewarded. Do not worry about the supplies, we will bring them to the Unfettered, we are only acting in their best interest, after all.`
+			`	"Whatever you decide, you do not want to speak of us to them," they add in a very serious tone.`
+			``
+			`	Do you accept this deal, or do you want to escort the governor as planned?`
 	waypoint "Waypoint"
 	on waypoint
 		"reputation: Midas" >?= 0
@@ -887,7 +892,7 @@ phrase "enemy midas"
 
 phrase "enemy midas"
 	word
-		"Nemo Me Impune Laccessit!"
+		"Nemo Me Impune Laccessit!" 2
 		"You should run if you still hope to see the sun rise."
 		"We will never stop hunting you!"
 		"You do not understand the value of what you have stolen."

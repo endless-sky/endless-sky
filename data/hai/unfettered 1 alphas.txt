@@ -1407,7 +1407,7 @@ phrase "cerberus hails"
 		"You will never go beyond that simple, mortal, shell!"
 		"Maybe in death you will find peace."
 		# secret language:
-		# the (reality destroyer/dimentional eraser) will be made safe
+		# the (reality destroyer/dimensional eraser) will be made safe
 		"Kashalam Eshar!"
 		# you will never be "prime"
 		"Uminor Magresh."

@@ -398,3 +398,7 @@ mission "Unfettered Hunger Tribute"
 		payment 11000 2800
 		dialog phrase "unfettered tribute payment dialog"
 		"unfettered: hunger stops" += 100
+
+
+
+# idea: add a mission where part of the tribute is redirected to another warlord or to Hai space
