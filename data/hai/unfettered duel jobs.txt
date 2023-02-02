@@ -464,8 +464,8 @@ ship "Stag Beetle" "Stag Beetle (Flamer)"
 		"Sunbeam" 4
 		"Flamethrower" 2
 		"Korath Detainer"
-		"Korath Grab-Strike"
-		"Korath Banisher"
+		"Grab-Strike Turret"
+		"Banisher Grav-Turret"
 		"Bullfrog Anti-Missile" 3
 		
 		"Liquid Sodium Cooler"
@@ -494,9 +494,9 @@ ship "Stag Beetle" "Stag Beetle (Flamer)"
 	gun 49 -38
 	gun -61 -14 "Flamethrower"
 	gun 61 -14 "Flamethrower"
-	turret -51 21.5 "Korath Grab-Strike"
+	turret -51 21.5 "Grab-Strike Turret"
 	turret 51 21.5 "Bullfrog Anti-Missile"
-	turret -56.5 75 "Korath Banisher"
+	turret -56.5 75 "Banisher Grav-Turret"
 	turret 56.5 75 "Bullfrog Anti-Missile"
 	turret 0 85.5 "Bullfrog Anti-Missile"
 

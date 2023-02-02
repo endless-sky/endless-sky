@@ -1022,7 +1022,7 @@ ship "Stag Beetle"
 	gun 61 -14 "Ionic Blaster Prototype"
 	turret -51 21.5 "Grab-Strike Turret"
 	turret 51 21.5 "Bullfrog Anti-Missile"
-	turret -56.5 75 "Korath Banisher"
+	turret -56.5 75 "Banisher Grav-Turret"
 	turret 56.5 75 "Bullfrog Anti-Missile"
 	turret 0 85.5 "Bullfrog Anti-Missile"
 	leak "leak" 35 45
