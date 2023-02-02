@@ -264,7 +264,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 
 	for(const string& license : outfit.Licenses())
 	{
-		if(player.GetCondition("license: " + license) > 0)
+		if(player.Conditions().Has("license: " + license))
 			continue;
 
 		const auto &licenseOutfit = GameData::Outfits().Find(license + " License");
