@@ -51,6 +51,8 @@ protected:
 
 
 private:
+	// Use availableIt/acceptedIt to set MapPanel::selectedSystem, call DoScroll/CenterOnSystem
+	void SetSelectedScrollAndCenter(bool immediate = false);
 	// Display and explain the various pointers that may appear on the map.
 	void DrawKey() const;
 	// Display the name of and distance to the selected system.
@@ -58,11 +60,12 @@ private:
 	// Draw rings around systems that need to be visited for the given mission.
 	void DrawMissionSystem(const Mission &mission, const Color &color) const;
 	// Draw the backgrounds for the "available jobs" and accepted missions/jobs lists.
-	Point DrawPanel(Point pos, const std::string &label, int entries) const;
+	Point DrawPanel(Point pos, const std::string &label, int entries, bool sorter = false) const;
 	// Draw the display names of the given missions, using the reference point.
-	Point DrawList(const std::list<Mission> &list, Point pos,
-		const std::list<Mission>::const_iterator &selectIt) const;
+	Point DrawList(const std::list<Mission> &list, Point pos, const std::list<Mission>::const_iterator &selectIt,
+		bool separateDeadlineOrPossible = false) const;
 	void DrawMissionInfo();
+	void DrawTooltips();
 
 	bool CanAccept() const;
 	void Accept(bool force = false);
@@ -87,6 +90,8 @@ private:
 	double acceptedScroll = 0.;
 
 	int dragSide = 0;
+	int hoverSortCount = 0;
+	int hoverSort = -1; // 0 to 3 for each UI element
 	WrappedText wrap;
 };
 

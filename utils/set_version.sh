@@ -29,12 +29,3 @@ fi
 
 rm -rf source/main.cpp.bak
 rm -rf endless-sky.6.bak
-
-# Update the XCode plist and Win32 manifest version, if the input is spec-conformant
-if [[ $1 =~ ^${versionRegex}$ ]]; then
-    perl -0777 -p -i -e "s/(CFBundleShortVersionString.*?)\>${versionRegex}/\$1>$1/igs" XCode/EndlessSky-Info.plist
-    rm -rf XCode/EndlessSky-Info.plist.bak
-
-    perl -p -i -e "s/(^\s*version=)\".+(\.0)\"/\$1\"${versionRegex}\$2\"/ig" endless-sky.exe.manifest
-    rm -rf endless-sky.exe.manifest.bak
-fi

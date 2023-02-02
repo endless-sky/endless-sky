@@ -589,7 +589,7 @@ mission "Scientists at the Pub after a Conference"
 
 mission "Sol-Bound Shuttle"
 	minor
-	source 
+	source
 		system "Sol"
 	to offer
 		random < 1

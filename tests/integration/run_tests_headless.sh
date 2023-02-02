@@ -24,7 +24,4 @@ if ! command -v xvfb-run > /dev/null 2>&1; then
   exit 127
 fi
 
-# Force OpenGL software mode
-export LIBGL_ALWAYS_SOFTWARE=1
-
 exec xvfb-run --auto-servernum --server-args="+extension GLX +render -noreset" ./run_tests.sh "${EXECUTABLE}" "${RESOURCES}"

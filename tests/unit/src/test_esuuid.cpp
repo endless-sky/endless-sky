@@ -54,8 +54,14 @@ struct Identifiable {
 	const EsUuid &UUID() const noexcept { return id; }
 };
 struct InstantiableContainer : public Identifiable {
-	std::list<InstantiableContainer> items;
-	std::vector<InstantiableContainer> others;
+	std::vector<InstantiableContainer> items;
+	std::list<InstantiableContainer> others;
+
+	InstantiableContainer() noexcept = default;
+	InstantiableContainer(const InstantiableContainer &) noexcept = default;
+	InstantiableContainer &operator=(const InstantiableContainer &) noexcept = default;
+	InstantiableContainer(InstantiableContainer &&) noexcept = default;
+	InstantiableContainer &operator=(InstantiableContainer &&) noexcept = default;
 
 	std::vector<std::string> GetIds() const {
 		auto result = std::vector<std::string>{

@@ -123,7 +123,7 @@ outfit "Moonbeam"
 	weapon
 		sprite "projectile/moonbeam"
 			"random start frame"
-		sound "sunbeam"
+		sound "moonbeam"
 		"fire effect" "moonbeam fleck"
 		"hit effect" "moonbeam impact"
 		"inaccuracy" 2.0
@@ -170,7 +170,7 @@ outfit "Moonbeam Turret"
 			"random start frame"
 		"hardpoint sprite" "hardpoint/moonbeam turret"
 		"hardpoint offset" 9.
-		sound "sunbeam"
+		sound "moonbeam"
 		"fire effect" "moonbeam fleck"
 		"hit effect" "moonbeam impact"
 		"inaccuracy" 2.0

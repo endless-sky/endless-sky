@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class DataNode;
 class DataWriter;
+class Government;
 class Mission;
 class Outfit;
 class System;
@@ -48,9 +49,12 @@ public:
 	void SetSize(int tons);
 	int Size() const;
 	int Free() const;
+	double FreePrecise() const;
 	int Used() const;
+	double UsedPrecise() const;
 	int CommoditiesSize() const;
 	int OutfitsSize() const;
+	double OutfitsSizePrecise() const;
 	bool HasOutfits() const;
 	int MissionCargoSize() const;
 	bool HasMissionCargo() const;
@@ -105,7 +109,10 @@ public:
 	// be charged for any illegal outfits plus the sum of the fines for all
 	// missions. If the returned value is negative, you are carrying something so
 	// bad that it warrants a death sentence.
-	int IllegalCargoFine() const;
+	int IllegalCargoFine(const Government *government) const;
+
+	// Returns the amount tons of illegal cargo.
+	int IllegalCargoAmount() const;
 
 
 private:

@@ -262,8 +262,9 @@ bool MainPanel::Click(int x, int y, int clicks)
 
 	SDL_Keymod mod = SDL_GetModState();
 	hasShift = (mod & KMOD_SHIFT);
+	hasControl = (mod & KMOD_CTRL);
 
-	engine.Click(dragSource, dragSource, hasShift);
+	engine.Click(dragSource, dragSource, hasShift, hasControl);
 
 	return true;
 }
@@ -297,7 +298,7 @@ bool MainPanel::Release(int x, int y)
 	{
 		dragPoint = Point(x, y);
 		if(dragPoint.Distance(dragSource) > 5.)
-			engine.Click(dragSource, dragPoint, hasShift);
+			engine.Click(dragSource, dragPoint, hasShift, hasControl);
 
 		isDragging = false;
 	}
@@ -354,7 +355,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 					out << (tons == 1 ? " ton of " : " tons of ") << Format::LowerCase(it.first->PluralName()) << "\n";
 				}
 				else
-					out << " " << (it.second == 1 ? it.first->Name(): it.first->PluralName()) << "\n";
+					out << " " << (it.second == 1 ? it.first->DisplayName(): it.first->PluralName()) << "\n";
 			}
 		if(first)
 			out << "This " + target->Noun() + " is not carrying any cargo.\n";
@@ -373,7 +374,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 		map<string, map<const string, int>, ByGivenOrder<string>> outfitsByCategory(comparator);
 		for(const auto &it : target->Outfits())
 		{
-			string outfitNameForDisplay = (it.second == 1 ? it.first->Name() : it.first->PluralName());
+			string outfitNameForDisplay = (it.second == 1 ? it.first->DisplayName() : it.first->PluralName());
 			outfitsByCategory[it.first->Category()].emplace(std::move(outfitNameForDisplay), it.second);
 		}
 		for(const auto &it : outfitsByCategory)

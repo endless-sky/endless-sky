@@ -1,0 +1,67 @@
+test-data "Flagship Planet Attribute Save"
+	category "savegame"
+	contents
+		pilot Bobbi Bughunter
+		date 16 11 3013
+		system "Terra Incognita"
+		planet Ruin
+		clearance
+		ship "Star Barge"
+			name "Buggy Barge"
+			sprite "ship/star barge"
+			attributes
+				category "Light Freighter"
+				cost 190000
+				mass 10
+				bunks 3
+				"cargo space" 50
+				drag 1
+				"engine capacity" 400
+				"fuel capacity" 300
+				"heat dissipation" 0.8
+				hull 1000
+				"outfit space" 1300
+				"required crew" 1
+				shields 600
+				"turret mounts" 1
+				"weapon capacity" 200
+				"thrust" 50
+				"turn" 1000
+			outfits
+				Hyperdrive
+				"nGVF-BB Fuel Cell"
+				"LP036a Battery Pack"
+			crew 1
+			fuel 300
+			shields 600
+			hull 1000
+			position 0 0
+			engine -9 38 1
+			engine 9 38 1
+			turret 0 -8
+			leak leak 60 50
+			explode "tiny explosion" 10
+			explode "small explosion" 10
+			system "Terra Incognita"
+			planet Ruin
+		account
+			credits 100000000
+			score 400
+			history
+		visited "Terra Incognita"
+		"visited planet" Ruin
+		changes
+			planet Ruin
+				add attributes "Temperate Climate"
+
+
+
+test "Flagship Planet Attribute Test"
+	status active
+	description "Test if a conversation option shows up when the given condition is set."
+	sequence
+		inject "Flagship Planet Attribute Save"
+		call "Load First Savegame"
+		assert
+			"flagship planet attribute: Temperate Climate" == 1
+			"flagship planet attribute: ringworld" == 0
