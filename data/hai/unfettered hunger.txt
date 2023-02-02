@@ -32,19 +32,19 @@ mission "Unfettered: Hunger!"
 	on enter
 		system
 			government "Hai"
-		dialog `The local Hai autorities hail you. "Captain, We need your help! Our brethren up north are dying from hunger! The situation is even more dire than usual, and requires your immediate assistance. You will of course be well rewarded, as usual. We added a new job to respond to this crisis."`
+		dialog `The local Hai authorities hail you. "Captain, We need your help! Our brethren up north are dying from hunger! The situation is even more dire than usual, and requires your immediate assistance. You will of course be well rewarded, as usual. We added a new job to respond to this crisis."`
 	on enter
 		system
 			attributes "unfettered"
 		conversation
 			branch "not first time"
 				"Unfettered: Hunger!: offered" > 1
-			`Surprisingly, the local Unfettered authorities hail you. In fact, they seem to be relaying a message to all ships in range, both in human and hai... Their situation must be desperate.`
+			`Surprisingly, the local Unfettered authorities hail you. In fact, they seem to be relaying a message to all ships in range, both in human and Hai... Their situation must be desperate.`
 				goto message
 			label "not first time"
 			`The local Unfettered authorities hail you. In fact, they are hailing all ships, in human and hai. This is not the first time they do this, and it probably means that, like last time, another famine is happening. If that were to be the case, they most likely did not manage their food issue in a permanent manner.`
 			label message
-			`	"Attention, to all that are sympathethic to our cause, or simply want to help a people survive, we are in great need of food. As such, we have negotiated an increase of tributes from the Hai, and they have offered some food supplies, as well as specialists to help us stabilize our food supplies. That is what we need all of you for, captains, all over our worlds parents are starving because they give what little they have to their children, to their future.`
+			`	"Attention, to all that are sympathetic to our cause, or simply want to help a people survive, we are in great need of food. As such, we have negotiated an increase of tributes from the Hai, and they have offered some food supplies, as well as specialists to help us stabilize our food supplies. That is what we need all of you for, captains, all over our worlds parents are starving because they give what little they have to their children, to their future.`
 			`	You can almost feel them laying low their pride to say the next part, "We are not used or comfortable with begging, but please, help us! Spread the word, bring food, we will reward you handsomely as ever! Do it for the money if you must, or do it because you care."`
 	on daily
 		"unfettered: hunger stops" += random
@@ -217,14 +217,14 @@ mission "Unfettered: Hunger Stories 1"
 		random < 40
 	on offer
 		conversation
-			`You are walking past one of the Unfettered government offices in the spaceport when a woman walks out, clearly distraught. Her clothes hang loose on her small frame. An infant clings tightly to her fur and a small boy walks behind her with a sombre expression. A collection of silver oak leaves is pinned to his jacket.`
+			`You are walking past one of the Unfettered government offices in the spaceport when a woman walks out, clearly distraught. Her clothes hang loose on her small frame. An infant clings tightly to her fur and a small boy walks behind her with a somber expression. A collection of silver oak leaves is pinned to his jacket.`
 			choice
 				`	(Approach her.)`
 				`	(Get on with my business.)`
 					goto business
 
 			`	Your approach startles her out of her distraction and she pulls the boy close. When you speak to her it's clear she doesn't understand you. You look around for an Unfettered who could translate, but she grabs your sleeve and shakes her head. Eventually one of your crew who understands a little Hai gives it a try.`
-			`	"They have told me my husband is dead. The theiving raptors killed him. And now the boy has a medal but no father. They gave me his death money but there is no food and I don't know what we will do."`
+			`	"They have told me my husband is dead. The thieving raptors killed him. And now the boy has a medal but no father. They gave me his death money but there is no food and I don't know what we will do."`
 			`	You know that the Hai send food aid to the Unfettered and you've not seen anyone obviously hungry in Hai space. They would probably take this family in.`
 			choice
 				`	(Offer to take them to <destination>.)`
@@ -246,7 +246,7 @@ mission "Unfettered: Hunger Stories 1"
 	on complete
 		payment 300000
 		conversation
-			`You are surprised to see a military honor guard in addition to what you assume are social services. They greet the family with a keening trill that your crewmember says is a sound of mourning. The Hai move in close and surround the group in what seems to be a group hug and then they move together into the spaceport. One of the Hai soldiers approaches you and says, "Thank you for brining our family back together" and gives you your payment of <payment>.`
+			`You are surprised to see a military honor guard in addition to what you assume are social services. They greet the family with a keening trill that your crew member says is a sound of mourning. The Hai move in close and surround the group in what seems to be a group hug and then they move together into the spaceport. One of the Hai soldiers approaches you and says, "Thank you for bringing our family back together" and gives you your payment of <payment>.`
 
 
 
@@ -263,7 +263,7 @@ mission "Unfettered: Hunger Stories 2"
 	on offer
 		conversation
 			`"Human!" The cry catches your attention not only because of the volume of the shout, but primarily because it's the most respectful term anyone has used for you in Unfettered space. You turn and see a young Hai warrior striding toward you. At least you think he's young. He's certainly thinner than most of the Hai you see south of Wah-Ki. You notice that his boots seems to be made more of mending tape than actual fabric. He's not wearing the ornately decorated knives that many of the True Hai carry, but he does have sheaths for them. Instead, he carries a long staff that looks to be made of one of the light but rigid Hai alloys.You can see that scars from many fights disturb the pattern of his fur.`
-			`	"Human," he says again when he reaches you, "you should not promenade yourself in our star market without worthy guidance. This warrior can tell you what trader tongues are saying because I know your backward speech. Fast fingers not grab human things while I watch," he adds, emphasizing the point by banging the staff on the floor and making it ring. You notice the flow of traffic begins to part around you as other traders and travellers give him room.`
+			`	"Human," he says again when he reaches you, "you should not promenade yourself in our star market without worthy guidance. This warrior can tell you what trader tongues are saying because I know your backward speech. Fast fingers not grab human things while I watch," he adds, emphasizing the point by banging the staff on the floor and making it ring. You notice the flow of traffic begins to part around you as other traders and travelers give him room.`
 			`	It takes you a moment to parse what he is saying as his accent is difficult to understand. You would guess he learned your language in class but has never spoken with native speakers. You think he is offering to be your translator and bodyguard.`
 			choice
 				`(Hire him.)`
@@ -304,7 +304,7 @@ mission "Unfettered: Hunger Stories 2"
 	on complete
 		payment 500
 		conversation
-			`When you arrive at <destination>, the young Hai guides you around the spaceport as you take care of your business. You don't see his staff; so, either it's too provocative to carry in Hai space or it's collapsible and he has it somewhere on his person. He offers you comments on the Hai conversations going on around you where they are either about you or your business. While he is still stays close to you, he seems to natually relax into the flow of Hai culture.`
+			`When you arrive at <destination>, the young Hai guides you around the spaceport as you take care of your business. You don't see his staff; so, either it's too provocative to carry in Hai space or it's collapsible and he has it somewhere on his person. He offers you comments on the Hai conversations going on around you where they are either about you or your business. While he is still stays close to you, he seems to naturally relax into the flow of Hai culture.`
 			`	You lose track of him somewhere near the end of the day and he doesn't show back up at the ship. When you check his bunk, you find the <payment> you paid him on <origin> with a crudely lettered note that says, "FOR TRANSPORT."`
 
 
@@ -336,7 +336,7 @@ mission "Unfettered: Hunger Stories 3"
 			label fight
 			action
 				payment -5000
-			`	You reach for your sidearm only to find that it isn't there. It seems like a dozen pairs of paws are on you, some tearing at your clothes and some climbing on you. You spin around to try and shake them off. You end up rolling on the ground and then, as suddenly as it began, everything stops and you are alone in the street. You check yourself quickly and you seem to be uninjured. Your clothes are in tatters, though, and your sidearm, communicator, and bag are nowhwere to be seen.`
+			`	You reach for your sidearm only to find that it isn't there. It seems like a dozen pairs of paws are on you, some tearing at your clothes and some climbing on you. You spin around to try and shake them off. You end up rolling on the ground and then, as suddenly as it began, everything stops and you are alone in the street. You check yourself quickly and you seem to be uninjured. Your clothes are in tatters, though, and your sidearm, communicator, and bag are nowhere to be seen.`
 			`	You make your way back to the spaceport. For once, it's useful to be the alien. The guards are quickly able to quickly clear you even without documentation. You hear them laughing as you head for the safety of your ship. You have no doubt that the story of the monkey robbed by children is already making the rounds.`
 				decline
 

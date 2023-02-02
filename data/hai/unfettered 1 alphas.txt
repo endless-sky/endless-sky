@@ -280,7 +280,7 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 			`	"Consider this carefully before taking any actions you may regret in the future. Our offer still stands." The transmission cuts out.`
 				decline
 			label jump
-			`	"Maybe, but there is no guarantee their ship will not pursue you. Please, land straight away, I assure you the other ship will land on another planet, and if not, our orbital defences will protect you."`
+			`	"Maybe, but there is no guarantee their ship will not pursue you. Please, land straight away, I assure you the other ship will land on another planet, and if not, our orbital defenses will protect you."`
 				decline
 			label mission
 			`	"Yes, we know. You do not need to worry about that, whilst we will not relay the scans ourselves for safety reasons, bringing them back never was the urgency, you may do so whenever you have the time."`
@@ -333,13 +333,81 @@ mission "Unfettered: I Know The Way"
 # if you betrayed Midas, you will suffer to find answers
 mission "Unfettered: Question Best Left Unanswered"
 	landing
-	name "Discover who were the 'unfettered humans'"
+	name "Who are the 'unfettered humans'?"
 	description `The Auxiliary was manned by 'unfettered humans'. Find out what this means, pirates may have the answers.`
 	destination "Darkcloak"
 	to offer
 		has "Unfettered: Solifuge 2: Auxiliary Design: done"
 	to complete
 		has "unfettered: it's the Alphas"
+
+mission "Unfettered: Question Best Left Unanswered Especially On the Wrong Planet"
+	invisible
+	landing
+	repeat
+	source
+		government Pirate
+		not planet "New Tortuga"
+		not attributes uninhabited
+	to offer
+		has "Unfettered: Question Best Left Unanswered: active"
+		random < 50
+	to complete
+	on offer
+		dialog phrase "Get dubious leads about an Auxiliary."
+		fail
+
+phrase "Get dubious leads about an Auxiliary."
+	word
+		"You ask around about a stolen Auxiliary. A "
+	word
+		"man with a full-body tattoo" 2
+		"man with a peg leg" 2
+		"woman with a unibrow" 2
+		"man with a scar across his cheek" 2
+		"woman with a false nose" 2
+		"man in an old-fashioned cowboy get-up" 2
+		"woman with a peg leg" 2
+		"group of burly men" 2
+		"triad of well-armed women" 2
+		"suspiciously-dressed group of unruly teenagers" 2
+		"woman with green hair" 2
+		"highly aggressive salesman"
+		"poorly-disguised undercover police officer"
+		"woman in a tutu"
+		"man in a clown suit"
+		"talking poodle"
+		"man in a 1970s vintage leisure suit"
+		"creepy singing girl with scissors"
+		"former crew member of yours" 5
+	word
+		" tells you "
+		" explains "
+		" tries to convince you "
+		" insists "
+	word
+		"the Auxiliary "
+	word
+		"was a Quarg ship in disguise"
+		"was piloted by dragons"
+		"was actually a Pug vessel"
+		"was a hologram of a Hai ship"
+		"was just a prop from Boundless Frontiers"
+		"may have been a drug-induced hallucination"
+		"was out of a ${band} song"
+		"was actually a Syndicate advertisement"
+		"was a plot by the Alphas" 5
+		"was on a secret Navy mission"
+		"was a Free Worlds terrorist group"
+		"was part of Deep Security"
+	word
+		" and offers more information for a large sum of credits."
+		" but they can provide more information... for a price."
+		" but someone in a dimly-lit alley can tell you more." 3
+		" and only a large sum of money will reveal details."
+		" but a few credits will find the full truth."
+	word
+		" You quickly realize you are being scammed."
 
 mission "Unfettered: Answers To Your Questions"
 	landing
@@ -369,16 +437,10 @@ mission "Unfettered: Looking For Answers"
 	landing
 	invisible
 	to offer
-		has "Unfettered: Questions Best Left Unanswered: active"
-	source
-		government "Pirate"
+		has "Unfettered: Question Best Left Unanswered: active"
+	source "New Tortuga"
 	on offer
 		conversation
-			branch Misam
-				has "flagship planet: New Tortuga"
-			`You ask questions around but nobody knows anything about an Auxiliary here, or at least they're not willing to tell you. You may have more luck at another planet.`
-				defer
-			label Misam
 			branch "okay boy!"
 				not "midas: wronged"
 			branch "dead, boy!"

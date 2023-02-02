@@ -570,7 +570,7 @@ mission "Midas: Bar Selling 2"
 mission "Midas: Feed Them To The Wolves"
 	landing
 	name "Feed them to the Wolves."
-	description "Take the governor's fleet to <waypoints> where a fleet will be waiting for them."
+	description "Take the governor's fleet to <waypoints> instead, where a fleet will be waiting for them."
 	source "Greenbloom"
 	destination "Warfeed"
 	to offer

@@ -92,7 +92,7 @@ mission "Unfettered: Solifuge 5: Materials For Ships"
 	on visit
 		dialog "You have landed, but you do not mined enough materials from asteroids yet, or they are in one of your escorts that is not in the system. Remember that silver can be acquired in Ehma Ti, whilst Silicon can be found in Wah Yoot."
 	on complete
-		log `Gathered materials for the Unfettered shipyards. They're building sizeable ships here.`
+		log `Gathered materials for the Unfettered shipyards. They're building sizable ships here.`
 		outfit "Lead" -50
 		outfit "Silver" -20
 		payment 1000000
@@ -358,7 +358,7 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 			`	When speaking, the Korath was rapidly pointing around, showing themselves and you, after which they showed the ground and sat down, quietly. It seems like you have saddened them by speaking of this, and you probably cannot get any more information out of them for now. The moment of calm is already over, and they start speaking together even faster than before, so fast that the translator cannot make any sense out of it. They may be in disagreement over something, and this ends with a long "Hsssssss" that they murmur, looking at each others in the eyes.`
 				goto objective
 			label wait
-			`	The Korath eventually notice you and begin staring at you. They move around in a decisive manner but never stop staring. You begin to feel intense pressure as they are scrutening you, learning every details, and probably guessing why you arrived. Or maybe they just wonder if you're the breakfast.`
+			`	The Korath eventually notice you and begin staring at you. They move around in a decisive manner but never stop staring. You begin to feel intense pressure as they are scrutinizing you, learning every details, and probably guessing why you arrived. Or maybe they just wonder if you're the breakfast.`
 			`	Then they speak in an alien language and the translator starts working, speaking in a robotic voice, but you have trouble keeping up, and they don't seem to have enough patience to wait for it to catch up. "Ah it is the <one> who saved <we, us> why is it <surprised> to see <we, us> did it expect <we, us> would all <be over>?" Whilst speaking the Korath almost did a performance, getting down and moving around before joining together. You notice they pronounce some sounds longer, maybe in the hope of letting the translator make sense out of it, although most sounds are very short. You realize they've probably noticed you're surprised to see them here.`
 			choice
 				`	"I didn't expect you to be back to working so soon."`
@@ -377,7 +377,7 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 			choice
 				`	"I see why the Hai allowed you to access their technology. You think in a similar way."`
 				`	"Oh, is that why you got captured by the Alphas?"`
-			`	They seem to grumble a bit about what you just said, but the translator cannot decipher any meaning. Considering what they could be saying, it's probably for the best. Still, they look at you menacingly, making themselves tall, much taller than humans would be. After that they suddenly move your way, covering 5 meters in the blink of an eye, close to the ground, running trough equipement without disturbing it... Seeing you step back and almost fall on your back in fear, they seem satisfied, and go back to where they were. You realize they must be used to crowded spaces like this.`
+			`	They seem to grumble a bit about what you just said, but the translator cannot decipher any meaning. Considering what they could be saying, it's probably for the best. Still, they look at you menacingly, making themselves tall, much taller than humans would be. After that they suddenly move your way, covering 5 meters in the blink of an eye, close to the ground, running through equipment without disturbing it... Seeing you step back and almost fall on your back in fear, they seem satisfied, and go back to where they were. You realize they must be used to crowded spaces like this.`
 			label objective
 			`	Mera stops whatever it is that she was doing on the cooler and comes to speak to you. Seeing this, the Koraths make a show of what you assume to be disdain before getting back to work, putting what they just designed to the test of a small flame.`
 			`	Mera watches closely before addressing you, "We have been working on improved cooling systems for a while now. To speed it up we could use some samples of other 'primitive' cooling technologies to work on as base materials. I thought I would ask you, considering you came from a very... 'young' civilization," she explains.`
@@ -408,7 +408,7 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
-		dialog "You do not yet have 300 tons of nitrogen human coolers that Mera requested in your cargo hold or installed on your ships. In order to load directly into your cargo hold, you need to first unselect your ships by ctrl+clicking on them."
+		dialog "You do not yet have 300 tons of nitrogen human coolers that Mera requested in your cargo hold or installed on your ships. In order to load directly into your cargo hold, you need to first deselect your ships by ctrl+clicking on them."
 	on complete
 		outfit "Liquid Nitrogen Cooler" -15
 		log `Brought human nitrogen cooling systems to the Unfettered. They should be able to retrofit them into something more useful.`
@@ -677,7 +677,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 
 # Materials used to finalize your Modified Beetle.
 mission "Unfettered: Solifuge 9: Bigger Ships"
-	name `Bring industrials materials`
+	name `Bring industrial materials`
 	description `Go to <stopovers> and load up <cargo>`
 	source "Darkcloak"
 	stopover "Covert"
@@ -769,7 +769,7 @@ mission "Unfettered: Earn Your Prize"
 				`	"That is the reason for my presence indeed."`
 					goto duel
 				`	"Why did you leave the translator online?"`
-			`	"Oh, I was talking with them, but I left it on in the hope of inspiring trust from the Korath. We cannot expect them to trust us if we do not allow them to hear what we have to say. This new ship... well it is more of a modification than an actual new ship, actually, but anyway even if it is not public knowledge yet, they would not give that information away." You are surprised when one of the Korath makes a very gluteral sound, which, you realize after some time, is probably a laugh. However, they do not seem to care about any of this in the slightest, and go back to their work, completely immersed in it, all of them working as one with remarkable speed, speaking in short phrases, and too quickly for the translator to make any sense out of it.`
+			`	"Oh, I was talking with them, but I left it on in the hope of inspiring trust from the Korath. We cannot expect them to trust us if we do not allow them to hear what we have to say. This new ship... well it is more of a modification than an actual new ship, actually, but anyway even if it is not public knowledge yet, they would not give that information away." You are surprised when one of the Korath makes a very guttural sound, which, you realize after some time, is probably a laugh. However, they do not seem to care about any of this in the slightest, and go back to their work, completely immersed in it, all of them working as one with remarkable speed, speaking in short phrases, and too quickly for the translator to make any sense out of it.`
 			`	"What do you mean, not revealed yet? What ship are you talking about?" you ask.`
 			label duel
 			`	"Well you did not come in vain, in that case.`
@@ -856,7 +856,7 @@ mission "Unfettered: Earn Your Prize"
 			`	"Oh, that is true, but as I told you before, this ship is not intended to fight against our brethren but rather against the aliens up north, which lack in any kind of ionic damage. However, since that's what you want, and you'll be in command of that ship anyway, I will find a way to increase its energy storage."`
 				goto delaysys
 			label hull
-			`	"Are you intending to use it against the souless machines to the east, or did you get intimitaded that badly by the piercing weapon of earlier missions? Whatever the case, do not worry, I know how to address that, and more."`
+			`	"Are you intending to use it against the soulless machines to the east, or did you get intimidated that badly by the piercing weapon of earlier missions? Whatever the case, do not worry, I know how to address that, and more."`
 				goto delaysys
 			label shield
 			`	"I thought I had already placed enough shield generators, 3 of them in fact... But you're the one who will be flying that ship so I will do as you suggest. Indeed, I think I know of a way to address that, and other weaknesses I've found when piloting the ship has as well."`
@@ -1025,7 +1025,7 @@ mission "Unfettered: Special Cargo 1B"
 			`	In front of the ship there's a group of pirates, and you see one of them separate from the others to go within the ship. Judging from his appearance and the way others were addressing him, you assume him to be the leader of that small band, at least. You sneak past the group in front and follow him.`
 			branch luckyish
 				random < 20
-			`	You get close up behind him and are about to pull your gun... when he suddenly turns back and throws the hardest haymaker you've ever experienced! You drop like a sack to the floor and never wake up again. That pirate probably has had some experience with backstabbings before.`
+			`	You get close up behind him and are about to pull your gun... when he suddenly turns back and throws the hardest haymaker you've ever experienced! You drop like a sack to the floor and never wake up again. That pirate probably has had some experience with back-stabbings before.`
 				die
 			label luckyish
 			`	You get close up behind him and are about to pull your gun... when he draws a sudden breath and begins to turn around! Fortunately, you're quicker, and you have your firearm pointed at him before he can do anything. Obviously experienced with hostage situations and prioritizing his own safety, he doesn't try to call for help. You present yourself to the group outside, with the gun still pointed at your hostage. The pirates look at each other and begin laughing before you die in a barrage of laser fire from the group, annihilating you and your hostage. It seems that they couldn't care less about their companions' lives.`
@@ -1186,7 +1186,7 @@ mission "Unfettered: Special Cargo 2"
 				payment 2000000
 			`	You tell him that you had to pay a few millions to get the cube. "You were not supposed to negotiate, but I guess that is acceptable. These <payment> will [alleviate, reduce] the cost. Next time try to show more [cunning, strength]. Thankfully, money is not really much of an issue to us."`
 			label nodeal
-			`	"I want you to go to <stopovers> and collect a tribute of food for us there. This will give you a [pretext, reason] for going to their world, because otherwise I fear they may be curious about your [reasons, intentions]. While there, I want you to place this device you recovered somewhere on the surface, discreetly," he expains. "It doesn't matter where as long as no one [noticed, suspects]. You'll also need to be able to tell me exactly where it is so it can be [retrieved, used] later."`
+			`	"I want you to go to <stopovers> and collect a tribute of food for us there. This will give you a [pretext, reason] for going to their world, because otherwise I fear they may be curious about your [reasons, intentions]. While there, I want you to place this device you recovered somewhere on the surface, discreetly," he explains. "It doesn't matter where as long as no one [noticed, suspects]. You'll also need to be able to tell me exactly where it is so it can be [retrieved, used] later."`
 			choice
 				`	"Is this the real reason for my trip, like with the shipyard?"`
 			`	"Indeed. The Hai seem almost eager to allow our operatives into their space to collect tributes, why should I change my [tactics, plans] when there is no need?"`
@@ -1362,7 +1362,7 @@ conversation "unfettered war ready"
 		`	"You were overconfident, and that's what let you down."`
 			goto mistake
 		`	"A good fight, but you just had no chance against my superior firepower."`
-		`	"I was easily able to outmanoeuver you."`
+		`	"I was easily able to outmaneuver you."`
 			goto mistake
 		`	"Nothing specific. Well fought to both of you."`
 			goto train
@@ -1519,7 +1519,7 @@ mission "Unfettered: Ready For The War"
 				`	"I would like to ask a few questions, about your ship."`
 				`	"I am honoured, and hope we will fight again, later."`
 					accept
-			`	"Yes, that was to be [suspected, expected]. I am prepared to answer a few, but choose whisely what you want to ask."`
+			`	"Yes, that was to be [suspected, expected]. I am prepared to answer a few, but choose wisely what you want to ask."`
 			action
 				"unfettered: questions" = 0
 			label questions
@@ -1566,7 +1566,7 @@ mission "Unfettered: Ready For The War"
 			label cloak
 			action
 				set "unfettered: cloak choice"
-			`	"Many years ago, when the Korath attacked us, they used a [ghost, fantom] ship. It would attack the [convoys, defenceless], and then disappear without a trace. There was no jump, no flash, nothing. It was just gone. Then, once our warships would depart it returned, always [harassing, plundering] us. The ghost managed to take on countless of convoys and escorts without issue, using its superior [technology, weaponry] and tactical advantages. But it was no real ghost. Everyone has a weakness. Its weakness was that while we could not see it, it did not mean that it was [not there anymore, gone]."`
+			`	"Many years ago, when the Korath attacked us, they used a [ghost, phantom] ship. It would attack the [convoys, defenseless], and then disappear without a trace. There was no jump, no flash, nothing. It was just gone. Then, once our warships would depart it returned, always [harassing, plundering] us. The ghost managed to take on countless of convoys and escorts without issue, using its superior [technology, weaponry] and tactical advantages. But it was no real ghost. Everyone has a weakness. Its weakness was that while we could not see it, it did not mean that it was [not there anymore, gone]."`
 			`	"With this in mind, the brave Unfettered laid a trap for the ship. When it [disappeared, cloaked], they stopped shooting like usual and acted in distress, making the ghost [arrogant, overconfident]. When it reappeared and moved toward the convoy, we were ready. The fleet arrived and blocked its [escape, cloaking]. The ghost ship disappeared, but it was too late. One of the convoy ships nearby [rammed, crashed] into it, which costed the life of the proud captain but revealed the ship. Then it was just a matter of [shooting it down, damaging it]. The cloaking device was damaged in the fight, or maybe it was already damaged before, knowing the ship never [disappeared, cloaked] for long, so we could not extract it from the wreckage. Instead, we built a ship based on that wreckage's materials, and the [damaged, incomplete] cloaking device remained installed."`
 			`	"When you gave me the cloaking device, I started the preparations to install it on my ship, but it was not ready yet. It needs to fully [replace, overwrite] the old system, and that one is well integrated into the ship, so we may have to simply disable it if it cannot be replaced. The engineers are doing all that they can, but it is advanced technology we know [almost nothing, little] about."`
 				to display
