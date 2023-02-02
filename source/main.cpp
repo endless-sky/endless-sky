@@ -91,6 +91,7 @@ int main(int argc, char *argv[])
 	bool loadOnly = false;
 	bool printTests = false;
 	bool printData = false;
+	bool noTestMute = false;
 	string testToRunName = "";
 
 	// Ensure that we log errors to the errors.txt file.
@@ -119,6 +120,8 @@ int main(int argc, char *argv[])
 			testToRunName = *it;
 		else if(arg == "--tests")
 			printTests = true;
+		else if(arg == "--nomute")
+			noTestMute = true;
 	}
 	if(PrintData::IsPrintDataArgument(argv))
 		printData = true;
@@ -189,6 +192,11 @@ int main(int argc, char *argv[])
 		GameWindow::Step();
 
 		Audio::Init(GameData::Sources());
+
+		if(!testToRunName.empty() && !noTestMute)
+		{
+			Audio::SetVolume(0);
+		}
 
 		// This is the main loop where all the action begins.
 		GameLoop(player, conversation, testToRunName, debugMode);
@@ -434,6 +442,7 @@ void PrintHelp()
 	cerr << "    -p, --parse-save: load the most recent saved game and inspect it for content errors." << endl;
 	cerr << "    --tests: print table of available tests, then exit." << endl;
 	cerr << "    --test <name>: run given test from resources directory." << endl;
+	cerr << "    --nomute: don't mute the game while running tests." << endl;
 	PrintData::Help();
 	cerr << endl;
 	cerr << "Report bugs to: <https://github.com/endless-sky/endless-sky/issues>" << endl;
@@ -446,7 +455,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky ver. 0.9.17-alpha" << endl;
+	cerr << "Endless Sky ver. 0.10.0-alpha" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;

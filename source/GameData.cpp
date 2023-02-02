@@ -284,6 +284,14 @@ const vector<string> &GameData::Sources()
 
 
 
+// Get a reference to the UniverseObjects object.
+UniverseObjects &GameData::Objects()
+{
+	return objects;
+}
+
+
+
 // Revert any changes that have been made to the universe.
 void GameData::Revert()
 {
