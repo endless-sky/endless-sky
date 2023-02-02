@@ -133,7 +133,7 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 			// changes. This is to allow two governments to be hostile or
 			// friendly without the player's behavior toward one of them
 			// influencing their reputation with the other.
-			double penalty = (count * weight) * other->PenaltyFor(eventType);
+			double penalty = (count * weight) * other->PenaltyFor(eventType, gov);
 			if(eventType & ShipEvent::ATROCITY && weight > 0)
 				reputationWith[other] = min(0., reputationWith[other]);
 
@@ -251,7 +251,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 
 		if((!scan || (scan & ShipEvent::SCAN_CARGO)) && !EvadesCargoScan(*ship))
 		{
-			int64_t fine = ship->Cargo().IllegalCargoFine();
+			int64_t fine = ship->Cargo().IllegalCargoFine(gov);
 			if((fine > maxFine && maxFine >= 0) || fine < 0)
 			{
 				maxFine = fine;
@@ -282,8 +282,8 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 			for(const auto &it : ship->Outfits())
 				if(it.second)
 				{
-					int64_t fine = it.first->Get("illegal");
-					if(it.first->Get("atrocity") > 0.)
+					int fine = gov->Fines(it.first);
+					if(gov->Condemns(it.first))
 						fine = -1;
 					if((fine > maxFine && maxFine >= 0) || fine < 0)
 					{
@@ -313,7 +313,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		// Scale the fine based on how lenient this government is.
 		maxFine = lround(maxFine * gov->GetFineFraction());
 		reason = "The " + gov->GetName() + " authorities fine you "
-			+ Format::Credits(maxFine) + " credits" + reason;
+			+ Format::CreditString(maxFine) + reason;
 		player.Accounts().AddFine(maxFine);
 		fined.insert(gov);
 	}
