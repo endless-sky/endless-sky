@@ -351,10 +351,10 @@ mission "Unfettered: Question Best Left Unanswered Especially On the Wrong Plane
 		has "Unfettered: Question Best Left Unanswered: active"
 	on offer
 		conversation
-			"${dubious leads about an Auxiliary.}"
+			"${dubious leads about an Auxiliary}"
 				defer
 
-phrase "dubious leads about an Auxiliary."
+phrase "dubious leads about an Auxiliary"
 	word
 		"You ask around about a stolen Auxiliary. A "
 	word
@@ -396,7 +396,7 @@ phrase "dubious leads about an Auxiliary."
 		"a plot by the Alphas" 2
 		"a ship from the Mercenaries" 2
 		"a Cerberus vessel" 3
-		"on a secret Navy mission"
+		"on a secret Navy mission" 2
 		"a Free Worlds terrorist group"
 		"part of Deep Security"
 	word

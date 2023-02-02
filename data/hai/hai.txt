@@ -237,7 +237,7 @@ outfitter "Mera's Lab"
 	"Hyperdrive"
 	"Hai Williwaw Cooling"
 	"Pebble Core"
-	"Supercapacitator"
+	"Supercapacitor"
 	"Pulse Rifle"
 
 # For ships, stations, or corporations.
