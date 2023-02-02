@@ -129,7 +129,7 @@ ship "Auxiliary (Alpha)"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "This is a stolen Auxiliary that was used by the Alphas to move supplies and outfits around, mainly for trading with the Unfettered. They did not seem to have modified it a lot and conveniently contained their logs, although crypted."
+	description "This is a stolen Auxiliary that was used by the Alphas to move supplies and outfits around, mainly for trading with the Unfettered. They did not seem to have modified it a lot and conveniently contained their logs, although encrypted."
 
 # name of the ship, needed in a phrase because we need it in a fleet for the cargo
 phrase "Settler"

@@ -678,7 +678,6 @@ mission "<unfettered mission> 1 Notification"
 
 mission "<unfettered mission> 1"
 	landing
-	priority
 	name `Bring medical supplies to <planet>`
 	description `The Unfettered hospitals on <origin> are in urgent need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered on <destination> by <date> for <payment>.`
 	source "Darkcloak"
@@ -786,8 +785,6 @@ mission "<unfettered mission> 2"
 	to offer
 		or
 			has "Wanderers: Defend Vara Ke'sok: failed"
-			and
-				has 
 			random < "Unfettered Jump Drive 1: offered" * 10 + "Unfettered Jump Drive 2: offered" * 15 + "Unfettered Jump Drive 3: offered" * 20 + "Unfettered Jump Drive 4: failed" * 25
 		# 3 is what a default built Sea Scorpion has
 		"armament deterrence" >= 3
