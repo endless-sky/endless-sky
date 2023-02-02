@@ -1137,7 +1137,7 @@ mission "Heliarch Expedition 5"
 		`	Once again you're led through the inscrutable, guard-crowded halls of the <origin>, being brought to a long corridor with dozens of closed doors, with the one at the very end apparently being your goal. From there, however, two more guards are coming, and they explain to those escorting you that "received word, the Ring of Friendship has." They apologize to you, saying Aulori might be busy for some time more, but bring you to just outside the room, so that you're received as soon as his "meeting" ends.`
 		`	From another room, a Heliarch arbiter waves for the guards waiting with you, and passes some other task to them. Three of them leave, and you're left with one of those who fetched you from your ship, a Saryd. Despite the door to Aulori's room being locked, you two can still clearly hear intense shouting from within - not just his, but from many others who you assume to be consuls as well. After a particularly long - and heated - debate segment from what seems to be Aulori's voice, the Heliarch guard waiting with you declares they'll be coming back soon, and hastily move away, turning the corner.`
 		branch license
-				has "Heliarch License: done"
+			has "Heliarch License: done"
 		goto waited
 		label license
 		`	The discussion inside continues, with no sign of dying down for you to meet with Aulori. Judging from the relatively quick journey from your ship to here, you figure you're not very deep into the ring's restricted sections, so your circlet's neural interface might have permission to open the door.`
