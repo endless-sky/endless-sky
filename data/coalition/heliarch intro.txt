@@ -267,7 +267,7 @@ mission "HI2-SF"
 		or
 			has "Heliarch Investigation 2: declined"
 			has "Heliarch Investigation 2: aborted"
-			has "Heliarch Investigation 2 :failed"
+			has "Heliarch Investigation 2: failed"
 	on complete
 		conversation
 			`While you doubt anyone opposing the Heliarchs would find much success operating in this massive compound, it seems the strategic location held by the planet, the volume of resources invested, fortifications available, and sheer number of ships stationed here, had it marked for investigation anyway.`
@@ -284,7 +284,7 @@ mission "HI2-SS"
 		or
 			has "Heliarch Investigation 2: declined"
 			has "Heliarch Investigation 2: aborted"
-			has "Heliarch Investigation 2 :failed"
+			has "Heliarch Investigation 2: failed"
 	on complete
 		conversation
 			`Iplora leaves the ship immediately, disappearing into the spaceport. Tugroob and Kirrie say that she is heading to a nearby oasis.`
@@ -377,7 +377,7 @@ mission "HI2-FS"
 		or
 			has "Heliarch Investigation 2: declined"
 			has "Heliarch Investigation 2: aborted"
-			has "Heliarch Investigation 2 :failed"
+			has "Heliarch Investigation 2: failed"
 	on complete
 		conversation
 			`For this planet, the trio informs you that they cannot spend too much time in one place considering how densely populated it is. Instead, they hand you the coordinates of dozens of factories, with the instructions to take them to each factory in whichever order you'd prefer.`
@@ -396,7 +396,7 @@ mission "HI2-IW"
 		or
 			has "Heliarch Investigation 2: declined"
 			has "Heliarch Investigation 2: aborted"
-			has "Heliarch Investigation 2 :failed"
+			has "Heliarch Investigation 2: failed"
 	on complete
 		conversation
 			`Kirrie, already donning his winter coat, instructs you to land near the equator. He says him and Tugroob will conduct some subtle interrogations, stating that it's 'all they can do' in this climate.`
@@ -516,7 +516,7 @@ mission "HI2-RB"
 		or
 			has "Heliarch Investigation 2: declined"
 			has "Heliarch Investigation 2: aborted"
-			has "Heliarch Investigation 2 :failed"
+			has "Heliarch Investigation 2: failed"
 	on complete
 		conversation
 			`When you land, a couple of other civilian ships land nearby. Some Kimek leave them and wait outside your own. Kirrie is the only one to leave, and after speaking a bit with the other Kimek, they leave for the city, splitting in two groups.`
