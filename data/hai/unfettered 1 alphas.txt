@@ -482,6 +482,9 @@ mission "<unfettered mission> 7 A"
 		system "Ya Hai"
 		personality disables plunders vindictive
 		fleet "Large Northern Pirates" 2
+	on fail
+		# The shipment gets lost faster, because if this fails Midas are busy shipping supplies to Unfettered space and can't dedicate as much resources to stealing Alpha supplies.
+		event "unfettered: shipment lost" 30
 	on complete
 		clear "unfettered: stopped on Greenbloom"
 		log `Escorted a Hai fleet carrying supplies and passengers into Unfettered space.`
@@ -1247,7 +1250,7 @@ mission "<unfettered mission> 11"
 		ship "Far Osk 27" "Oren"
 		ship "Far Osk 27" "Mert"
 		ship "Far Osk 27" "Dart"
-	# additional fighters if the Alphas were uncontested by Midas. one can use these to fill their Auxiliary with fighters ;)
+	# additional fighters if the Alphas were uncontested by Midas. one can use these to fill their Auxiliary with fighters
 	npc
 		government "Cerberus"
 		system "Host"

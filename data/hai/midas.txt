@@ -570,7 +570,7 @@ conversation "midas: mission failure?"
 		"reputation: Midas" < 0
 	action
 		"reputation: Midas" <?= -1000
-	`You hear a voice once alone in your quarters, "A shame captain. Truly a shame, but we will hold no grudge over it."`
+	`You hear a voice once alone in your quarters, "A shame, captain. Truly a shame, but we will hold no grudge over it."`
 		accept
 	label betrayal
 	`You hear a voice once alone in your quarters, "Did you think us fools? Nemo Me Impune Lacessit, <first>." You feel a strong pain in your neck.`
@@ -630,8 +630,6 @@ mission "<unfettered mission> 7 B"
 		"reputation: Midas" <?= -1000
 		clear "unfettered: stopped on Greenbloom"
 		log `The plan was to escort a Hai fleet carying supplies and passengers into Unfettered space but an opportunity to feed them to the wolves instead was presented, and taken.`
-		# The shipment gets lost faster, because they're busy shipping all of these supplies to Unfettered space and can't dedicate as much resources to stealing Alpha supplies.
-		event "unfettered: shipment lost" 30
 		set "unfettered: hunger"
 		# Make the hunger last around 20 days longer.
 		"unfettered: hunger stops" = -500
