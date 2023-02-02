@@ -3,7 +3,7 @@ test "Loading and Reloading"
 	description "Load a save-game, perform some actions and load the game again."
 	sequence
 		# Create/inject the savegame and load it.
-		inject "Three Earthly Barges"
+		inject "Three Earthly Barges Save"
 		call "Load First Savegame"
 		call "Depart"
 		assert
@@ -40,7 +40,7 @@ test "Loading and Saving"
 	description "Test saving of snapshots and re-loading of saved snapshots."
 	sequence
 		# Create/inject the savegame and load it.
-		inject "Three Earthly Barges"
+		inject "Three Earthly Barges Save"
 		call "Load First Savegame"
 		call "Depart"
 		assert
@@ -73,7 +73,6 @@ test "Loading and Saving"
 			year == 3013
 			month == 11
 			day == 19
-		call "Open Menu"
 		call "Save To Default Snapshot"
 		call "Depart"
 		assert
@@ -99,6 +98,8 @@ test "Loading and Saving"
 		call "Open Menu"
 		call "Load First Savegame"
 		call "Depart"
+		apply
+			"test: 6 departed one more time" = 1
 		assert
 			year == 3013
 			month == 11

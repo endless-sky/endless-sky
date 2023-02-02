@@ -72,13 +72,13 @@ License: CC-BY-SA-4.0
 
 Files:
  images/ship/hai?flea*
+ images/projectile/rail?slug*
 Copyright: Matthew Smestad
 License: CC-BY-SA-4.0
 
 Files:
  images/outfit/railgun*
  images/outfit/railslug*
- images/projectile/rail?slug*
 Copyright: 1010todd
 Comment: Derived from works by Matthew Smestad (under the same license).
 License: CC-BY-SA-4.0
@@ -358,12 +358,17 @@ Files:
  images/outfit/small?quarg*
  images/outfit/medium?quarg*
  images/outfit/large?quarg*
- images/outfit/enforcer?riot?staff*
  images/outfit/laser?rifle*
  images/outfit/hai?pebble?core*
  images/outfit/hai?boulder*
  images/outfit/hai?geode*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
+License: CC-BY-SA-4.0
+
+Files:
+ images/outfit/enforcer?riot?staff*
+Copyright: 1010todd
+Comment: Derived from works by Evan Fluharty (under the same license).
 License: CC-BY-SA-4.0
 
 Files:
@@ -903,6 +908,15 @@ License: CC-BY-SA-4.0
 Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
 
 Files:
+ images/ship/pirate?mammoth*
+ images/ship/pirate?scrapper*
+ images/thumbnail/pirate?mammoth*
+ images/thumbnail/pirate?scrapper*
+Copyright: 1010todd
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser and Becca Tommaso under the same license. Incorporating texture made with JSPlacement by WindMillArt <https://windmillart.net/>.
+
+Files:
  images/ship/mfirebird*
  images/ship/mleviathan*
  images/ship/marrow*
@@ -942,6 +956,17 @@ Files:
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Detailed by Anarchist2.
+
+Files:
+ images/ship/pirate?nighthawk*
+ images/ship/pirate?cutthroat*
+ images/ship/pirate?bulwark*
+ images/thumbnail/pirate?nighthawk*
+ images/thumbnail/pirate?cutthroat*
+ images/thumbnail/pirate?bulwark*
+Copyright: 1010Todd
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser and Anarchist2 under the same license. Incorporating texture made with JSPlacement by WindMillArt <https://windmillart.net/>.
 
 Files:
  images/ship/mfalcon*
@@ -1055,6 +1080,8 @@ Files:
  images/outfit/outfit?expansion*
  images/outfit/cargo?expansion*
  images/outfit/control?transceiver*
+ images/outfit/hai?jammer*
+ images/outfit/hai?jammer?overclocked*
  images/planet/dyson1*
  images/planet/dyson2*
  images/planet/dyson3*
@@ -1654,7 +1681,9 @@ Files:
  images/projectile/firestorm?torpedo*
  images/projectile/guile?pulse?laser*
  images/projectile/irate*
+ images/scene/rulei?flash*
  images/ship/*ayym*
+ images/ship/embersylph*
  images/ship/gegno?augen*
  images/ship/gegno?coesite*
  images/ship/gegno?conglomerate*
@@ -1665,10 +1694,10 @@ Files:
  images/ship/gegno?feldspar*
  images/ship/gegno?felsic*
  images/ship/gegno?gneiss*
+ images/ship/gegno?granulite*
  images/ship/gegno?gypsum*
  images/ship/gegno?halite*
  images/ship/gegno?mica*
- images/ship/gegno?protolith*
  images/ship/gegno?schist*
  images/ship/gegno?shale*
  images/ship/gegno?slate*
@@ -1687,10 +1716,10 @@ Files:
  images/thumbnail/gegno?feldspar*
  images/thumbnail/gegno?felsic*
  images/thumbnail/gegno?gneiss*
+ images/thumbnail/gegno?granulite*
  images/thumbnail/gegno?gypsum*
  images/thumbnail/gegno?halite*
  images/thumbnail/gegno?mica*
- images/thumbnail/gegno?protolith*
  images/thumbnail/gegno?schist*
  images/thumbnail/gegno?shale*
  images/thumbnail/gegno?slate*
@@ -1702,6 +1731,8 @@ Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 
 Files:
+ images/effect/void?sprite?parts*
+ images/outfit/void?sprite?parts*
  images/outfit/teciimach?bay*
  images/outfit/teciimach?pod*
  images/planet/gas3-c*
@@ -1733,6 +1764,13 @@ Files:
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/ship/pirate?valkyrie*
+ images/thumbnail/pirate?valkyrie*
+Copyright: Saugia <https://github.com/Saugia>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license) and 1010todd (under the same license). Incorporating texture made with JSPlacement by WindMillArt <https://windmillart.net/>.
 
 Files:
  sounds/drill*
@@ -1959,6 +1997,17 @@ Comment: Taken from unsplash.com and cropped.
 Files:
  images/ui/red?alert*
 Copyright: Zitchas (zitchas.jma@gmail.com)
+License: CC-BY-SA-4.0
+
+Files:
+ images/_menu/haze-brown*
+Copyright: RisingLeaf (https://github.com/RisingLeaf)
+License: CC-BY-SA-4.0
+Comment: Derived from _menu/haze-133 (no copyright given).
+
+Files:
+ images/star/proto-planetary-disk*
+Copyright: RisingLeaf (https://github.com/RisingLeaf)
 License: CC-BY-SA-4.0
 
 License: GPL-3+

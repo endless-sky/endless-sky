@@ -28,10 +28,22 @@ public:
 		adaptive,
 	};
 
+	enum class AutoAim : int_fast8_t {
+		OFF = 0,
+		ALWAYS_ON,
+		WHEN_FIRING
+	};
+
 	enum class BoardingPriority : int_fast8_t {
 		PROXIMITY = 0,
 		VALUE,
 		MIXED
+	};
+
+	enum class BackgroundParallax : int {
+		OFF = 0,
+		FANCY,
+		FAST
 	};
 
 	enum class AlertIndicator : int_fast8_t {
@@ -70,21 +82,31 @@ public:
 
 	// VSync setting, either "on", "off", or "adaptive".
 	static bool ToggleVSync();
-	static Preferences::VSync VSyncState();
+	static VSync VSyncState();
 	static const std::string &VSyncSetting();
+
+	// Auto aim setting, either "off", "always on", or "when firing".
+	static void ToggleAutoAim();
+	static AutoAim GetAutoAim();
+	static const std::string &AutoAimSetting();
+
+	// Background parallax setting, either "fast", "fancy", or "off".
+	static void ToggleParallax();
+	static BackgroundParallax GetBackgroundParallax();
+	static const std::string &ParallaxSetting();
 
 	// Boarding target setting, either "proximity", "value" or "mixed".
 	static void ToggleBoarding();
-	static Preferences::BoardingPriority GetBoardingPriority();
+	static BoardingPriority GetBoardingPriority();
 	static const std::string &BoardingSetting();
 
 	// Red alert siren and symbol
 	static void ToggleAlert();
-	static Preferences::AlertIndicator GetAlertIndicator();
+	static AlertIndicator GetAlertIndicator();
 	static const std::string &AlertSetting();
 	static bool PlayAudioAlert();
 	static bool DisplayVisualAlert();
-	static bool DoAlertHelper(Preferences::AlertIndicator toDo);
+	static bool DoAlertHelper(AlertIndicator toDo);
 };
 
 

@@ -1102,52 +1102,111 @@ phrase "friendly civilian"
 
 phrase "friendly civilian"
 	word
-		"Some of my"
+		"Some"
+		"A couple"
+		"A few"
 	word
-		" "
+		" of my "
 	word
 		"passengers"
 		"guests"
+		"clients"
+		"roomers"
 		"VIP passengers"
 	word
+		" " 4
+		" inexplicably "
+		" stupidly "
+	word
+		"decided to eat"
+		"went and ate"
+		"decided they would have"
+		"made the bad choice of having"
+		"ate"
+		"had"
+	word
+		" " 4
+		" a meal of "
+		" a serving of "
+	word
+		"asparagus"
+		"garlic"
+		"beans"
+	word
 		" "
 	word
-		"ate asparagus"
-		"ate garlic"
-		"ate beans"
-	word
-		" "
-	word
-		"from my cargohold."
-		"on the spaceport."
+		"from my cargo hold."
+		"in the spaceport."
 		"in my ship."
 	word
 		" "
 	word
-		"I will leave them at the closest inhabited planet. Let them reek in someone else's ship."
-		"The toilets are stinking, badly."
-		"I'm happy they are leaving on the next stop."
+		"I'm gonna leave them at the closest inhabited planet"
+		"I'm happy they're leaving on the next stop"
+		"I've told them to leave at my next stop"
+		"I've got no choice but to leave them at my next stop"
+	word
+		"" 4
+		", let them reek in someone else's ship"
+		", I don't want them stinking my ship up"
+		", because the toilets are stinking, badly"
+	word
+		"!"
 
 phrase "friendly civilian"
 	word
 		"Do you know anybody from "
+		"Do you know anything about "
+		"Have you heard anything about "
+		"Have you ever thought about "
 	word
 		"Alfheim"
 		"Bourne"
-		"Hadar"
+		"Skymoot"
 		"Sinter"
+		"Featherweight"
+		"Canyon"
+		"Hermes"
+		"Hippocrates"
+		"Splashdown"
+		"Burthen"
+		"Crossroads"
+		"Clink"
+		"Watcher"
+		"Stormhold"
+		"Mutiny"
 	word
 		"? "
 	word
-		"Do you know anybody who has ever been there?"
+		"Do you know anybody who has ever been there"
+		"Do you ever wonder why nobody lives there"
+		"Have you ever wondered why nobody goes there"
+		"Have you heard anything about what goes on there"
+		"Have you ever seen any news about that world"
 	word
-		" "
+		"? "
 	word
-		"No? I believe that place just doesn't exist."
-		"Even the Republic government couldn't confirm that it exists."
-		"That place is not real; it is just an illusion."
-		"It's a conspiracy by aliens, who use the university there as a disguise for their spaceship."
-		"'They' want to make us believe the place actually exists."
+		"No? I believe that place just doesn't exist"
+		"Even the Republic couldn't confirm that it exists"
+		"That place is not real; it is just an illusion"
+		"I'm sure something's going on there"
+		"'They' want to make us believe the place actually exists"
+		"It's all just a cover for 'their' machinations"
+		"There must be a reason why 'they' never mention it"
+		"I reckon those Reps are keeping something hidden there"
+		"I bet you something is going on there that the Reps don't want you to know"
+		"Republic Intelligence doesn't want you to know what's going on there"
+		"I reckon the Reps are keeping some Alphas there"
+		"It's all a cover for the Reps' secret Alpha colony"
+		"I'm convinced that Alphas are running the Republic from there"
+		"That's because there's a secret Alpha colony there the Reps don't want you to know about"
+		"It's all a front for the Quarg"
+		"It's all a conspiracy by the Quarg"
+		"I'm convinced the Quarg are using it as a staging post"
+		"The Quarg must be using it to manipulate our government"
+	word
+		"."
+		"!"
 
 phrase "friendly civilian"
 	word
@@ -1883,20 +1942,51 @@ phrase "friendly civilian"
 		", a pretty insignificant company located on just one planet."
 		", but next time, I'll buy from the Syndicate again."
 
+phrase "friendly civilian"
+	word
+		"I heard"
+		"I read a rumor"
+		"I found out"
+		"I've learned"
+	word
+		" that if you have "
+	word
+		"at least ten spare bunks"
+		"space for at least ten passengers"
+		"at least 50 spare tons of cargo space"
+		"enough space for 50 tons of cargo"
+	word
+		" "
+	word
+		"then you'll be ready for anything life throws at you"
+		"then there isn't an odd job from the spaceport that you won't be able to do"
+		"then you might get lucky and have just enough room to help out some celebrities"
+	word
+		"."
+
 phrase "friendly navy"
 	word
 		"The Navy"
 	word
 		" is here to"
+		" is obligated to"
+		" is always ready to"
+		" is always here to"
+		" will never hesitate to"
+		" will always be here to"
+		" will always"
+		" will always be ready to"
+		" exists to"
 		"'s mission is to"
 		"'s goal is to"
+		"'s duty is to"
+		"'s directive is to"
 	word
 		" "
 	word
 		"protect"
 		"defend"
 		"safeguard"
-		"shield"
 		"guard"
 		"keep you safe"
 	word
@@ -1918,9 +2008,10 @@ phrase "friendly navy"
 
 phrase "friendly navy"
 	word
-		"Join the Navy."
+		"Join"
+		"Enlist in"
 	word
-		" "
+		" the Navy. "
 	word
 		"See"
 		"Tour"
@@ -1946,17 +2037,22 @@ phrase "friendly navy"
 phrase "friendly navy"
 	word
 		"Join"
-		"Become part of"
+		"Enlist in "
 	word
 		" "
 	word
 		"the Navy,"
 	word
-		" "
+		" the "
 	word
-		"the biggest"
-		"the largest"
-		"the greatest"
+		"biggest"
+		"largest"
+		"greatest"
+		"most prestigious"
+		"most worthwhile"
+		"most honorable"
+		"most respected"
+		"most rewarding"
 	word
 		" "
 	word
@@ -1975,6 +2071,8 @@ phrase "friendly navy"
 	word
 		"in the galaxy"
 		"in the Republic"
+		"of all humanity"
+		"of all mankind"
 	word
 		"!"
 		
@@ -1983,6 +2081,8 @@ phrase "friendly navy"
 		"Dying"
 		"Getting wounded"
 		"Taking a hit"
+		"Injury"
+		"Sustaining injury"
 	word
 		" "
 	word
@@ -1992,60 +2092,894 @@ phrase "friendly navy"
 		" "
 	word
 		"a firefight"
+		"a dogfight"
+		"a conflict"
+		"a confrontation"
+		"an engagement"
 		"battle"
 		"space battle"
 		"war"
+		"combat"
 	word
 		" is "
 	word
 		"heroic"
-		"honourable"
+		"noble"
+		"honorable"
 		"respectable"
+		"admirable"
+		"commendable"
 	word
 		", "
 	word
-		"when it helps your brothers and sisters in arms to"
 		"if such action helps to"
+		"if it helps us to"
+		"if that sacrifice helps us to"
+		"when it helps your brothers and sisters in arms to"
 		"when on duty to"
-		"when it helps to"
-		"but if you ask me; our real job is to"
-		"our goal however is to"
+		"when it helps us to"
+		"when we are able to"
+		"when that sacrifice helps us to"
+		"but our duty is to"
+		"but our real job is to"
+		"but our goal is to"
+		"but we are duty-bound to"
+		"but we must"
+		"but our mission is to"
+		"but our directive is to"
+		"but we must focus on"
+		"but only when it helps us to"
 		"but our focus should be to"
 		"but only if it helps the Navy to"
-		"but my commander really prefers me to"
-		"but it seems more efficient if we instead"
-		"but the world actually expects us to"
+		"but my commander expects me to"
+		"but we are expected to"
+		"but it would be more efficient if we"
+		"but the universe expects us to"
+		"but that is for nought if it does not help to"
+		"but it is wasted if it does not help to"
+		"but that sacrifice has greater meaning when it helps us to"
+		"but that sacrifice only means something when it helps us to"
 	word
 		" "
 	word
 		"destroy"
-		"kill"
 		"imprison"
+		"detain"
 		"eliminate"
 		"expel"
 		"fend off"
 		"drive back"
+		"defeat"
+		"prevail over"
+		"thwart"
 	word
 		" "
 	word
 		"pirates"
+		"warlords"
+		"marauders"
 		"criminals"
+		"terrorists"
+		"insurrectionists"
+		"seperatists"
 		"our adversaries"
 		"our enemies"
-		"terrorists"
+		"our foes"
+		"enemies of freedom"
+		"enemies of liberty"
+		"enemies of democracy"
 	word
 		"."
 
 phrase "friendly navy"
 	word
+		"Be thankful to"
+		"Be grateful to"
+		"Thank"
+	word
+		" "
+	word
+		"the Republic for"
+		"the Navy for"
+	word
+		" "
+	word
+		"" 6
+		"providing"
+		"ensuring"
+		"giving you"
+		"giving us"
+		"giving humanity"
+		"giving mankind"
+	word
+		" "
+	word
+		"three centuries"
+		"three hundred years"
+		"ten generations"
+	word
+		" of "
+	word
+		"freedom"
+		"liberty"
+		"democracy"
+		"protection"
+		"prosperity"
+		"security"
+		"guardianship"
+		"plenty"
+	word
+		"."
+
+phrase "friendly navy"
+	word
+		"The Republic"
+		"The Navy"
+	word
+		" has "
+	phrase
+		"navy protection hail"
+	word
+		" for "
+	word
+		"three centuries"
+		"three hundred years"
+		"ten generations"
+	word
+		"."
+
+phrase "navy protection hail"
+	word
+		"protected"
+		"guarded"
+		"defended"
+	word
+		" "
+	word
+		"these skies"
+		"our galaxy"
+		"the Deep"
+		"the Rim"
+		"the South"
+		"the Core"
+		"the Dirt Belt"
+		"the Far North"
+		"the Paradise Worlds"
+		"the Near Earth sector"
+		"you"
+		"mankind"
+		"humanity"
+		"merchant ships"
+	word
+		"" 5
+		" from piracy"
+		" from pirates"
+		" from marauders"
+		" from disorder"
+		" from instability"
+		" from anarchism"
+		" from insurrection"
+		" from those who threaten freedom"
+		" from those who threaten liberty"
+		" from those who threaten democracy"
+
+phrase "navy protection hail"
+	word
+		"protected"
+		"guarded"
+		"defended"
+	word
+		" "
+	word
+		"these skies"
+		"our galaxy"
+		"the Deep"
+		"the Rim"
+		"the South"
+		"the Core"
+		"the Dirt Belt"
+		"the Far North"
+		"the Paradise Worlds"
+		"the Near Earth sector"
+	word
+		" from "
+	word
+		"piracy"
+		"crime"
+		"instability"
+		"chaos"
+		"conflict"
+		"autocracy"
+		"authoritarianism"
+		"regionalism"
+	word
+		" and "
+	word
+		"division"
+		"disunity"
+		"disorder"
+		"disarray"
+		"discord"
+		"destruction"
+		"devastation"
+		"turmoil"
+		"oppression"
+		"insurrection"
+		"civil war"
+		"fragmentation"
+		"anarchism"
+
+phrase "navy protection hail"
+	word
+		"patroled"
+		"policed"
+		"defended"
+		"guarded"
+		"protected"
+		"watched over"
+		"maintained the peace in"
+	word
+		" "
+	word
+		"these skies"
+		"our galaxy"
+		"the Deep"
+		"the Rim"
+		"the South"
+		"the Core"
+		"the Dirt Belt"
+		"the Far North"
+		"the Paradise Worlds"
+		"the Near Earth sector"
+
+phrase "navy protection hail"
+	word
+		"kept you safe"
+		"kept humanity safe"
+		"assisted you"
+		"been the guardian of humanity"
+		"been the protector of humanity"
+		"been the defender of humanity"
+
+phrase "navy protection hail"
+	word
+		"promoted"
+		"encouraged"
+		"advanced"
+		"given you"
+		"striven for"
+	word
+		" "
+	word
+		"equality"
+		"freedom"
+		"unity"
+		"harmony"
+		"security"
+		"hope"
+		"peace"
+	word
+		"" 5
+		" and order"
+		" and justice"
+		" and concord"
+		" and safety"
+		" and liberty"
+
+phrase "friendly navy"
+	word
+		"If you "
+	word
+		"want"
+		"wish"
+		"desire"
+		"aspire"
+	word
+		" to "
+	phrase
+		"navy purpose a"
+		"navy purpose b" 4
+	word
+		", "
+	word
+		"join the Navy!"
+		"enlist in the Navy!"
+
+phrase "friendly navy"
+	word
+		"Do you "
+	word
+		"want"
+		"wish"
+		"desire"
+		"aspire"
+	word
+		" to "
+	phrase
+		"navy purpose a"
+		"navy purpose b" 4
+	word
+		"? "
+	word
+		"Join the Navy!"
+		"Enlist in the Navy!"
+
+phrase "friendly navy"
+	word
+		"The Navy fights"
+		"The Navy is here"
+		"The Navy exists"
+		"The Navy's duty is"
+		"The Navy's purpose is"
+		"We fight"
+		"We are here"
+		"We exist"
+		"We patrol these skies"
+		"We police these skies"
+		"Our duty is"
+		"Our purpose is"
+	word
+		" to "
+	phrase
+		"navy purpose b" 4
+		"navy purpose c"
+	word
+		". "
+	word
+		"" 5
+		"Your cooperation is greatly valued."
+		"We thank you for your cooperation."
+		"We appreciate your complicance."
+		"Be thankful for our protection."
+		"Be grateful for our protection."
+		"Be thankful for our sacrifice."
+		"Be grateful for our sacrifice."
+		"Remember that our sacrifice is for your sake."
+
+phrase "navy purpose a"
+	word
+		"distinguish yourself"
+		"prove yourself"
+		"prove your piloting skills"
+		"prove your worth as a captain"
+		"contribute to something bigger than yourself"
+		"serve your state"
+		"serve humanity"
+		"serve the Republic"
+		"serve for democracy"
+		"save lives"
+		"improve the livelihoods of others"
+		"be the guardian of humanity"
+		"be the protector of humanity"
+		"be the defender of humanity"
+
+phrase "navy purpose b"
+	word
+		"be the guard"
+		"battle"
+		"fight"
+		"advance the struggle"
+		"see justice done"
+	word
+		" against "
+	word
+		"pirates"
+		"piracy"
+		"marauders"
+		"instability"
+		"anarchism"
+		"slavers"
+		"terrorists"
+		"criminals"
+		"those who threaten democracy"
+		"those who threaten freedom"
+		"those who threaten the Republic"
+		"those who threaten peoples' lives"
+		"those who threaten peace"
+		"those who threaten our Republic"
+
+phrase "navy purpose b"
+	word
+		"fight for "
+		"defend "
+		"protect "
+		"advance "
+	word
+		"the Republic"
+		"humanity"
+		"mankind"
+		"democracy"
+		"peace"
+		"law and order"
+		"human rights"
+		"peoples' lives"
+		"peoples' livelihoods"
+		"peoples' rights"
+
+phrase "navy purpose b"
+	word
+		"defend "
+		"protect "
+		"guard "
+	word
+		"humanity"
+		"mankind"
+		"these skies"
+		"our galaxy"
+		"the Republic"
+	word
+		" from the "
+	word
+		"scourge"
+		"menace"
+		"threat"
+		"evils"
+	word
+		" of "
+	word
+		"piracy"
+		"crime"
+		"instability"
+		"chaos"
+		"conflict"
+		"autocracy"
+		"authoritarianism"
+		"regionalism"
+	word
+		" and "
+	word
+		"division"
+		"disunity"
+		"disorder"
+		"disarray"
+		"discord"
+		"destruction"
+		"devastation"
+		"turmoil"
+		"oppression"
+		"insurrection"
+		"civil war"
+		"fragmentation"
+		"anarchism"
+
+phrase "navy purpose b"
+	word
+		"ensure"
+		"advance"
+		"maintain"
+		"uphold"
+	word
+		" "
+	word
+		"peace"
+		"democracy"
+		"freedom"
+		"equality"
+		"unity"
+		"harmony"
+		"security"
+	word
+		"" 5
+		" throughout human space" 2
+		" among the stars" 2
+		" and order"
+		" and justice"
+		" and concord"
+		" and safety"
+		" and liberty"
+
+phrase "navy purpose c"
+	word
+		"ensure"
+		"maintain"
+		"uphold"
+		"defend"
+		"protect"
+	word
+		" the integrity of "
+		" the strength of "
+	word
+		"the Republic"
+		"Parliament's mandate"
+		"our laws"
+		"Republic law"
+		"Parliament"
+
+phrase "friendly navy"
+	word
 		"United, humanity stands. Divided we will fall."
-		"Be thankful to the Republic for three centuries of freedom."
-		"For honor! For glory!"
+		"Humanity must stand united in a universe that seeks to push us apart."
+		"Where the universe pulls humanity apart, the Republic unites humanity together."
 		"Answer the call of duty! Join the Navy!"
 		"If you have courage, if you have honor, join the Navy!"
 		"We want YOU for the Navy!"
+		"The Navy is in need of good captains like you! Join the Navy!"
+		"There is no greater service than to serve your state. Join the Navy!"
+		"You can count on the Navy to serve you."
+		"Peace among the stars. May you remember that."
 
-phrase "friendly militia"
+phrase "friendly navy"
+	word
+		"The Republic"
+		"The Navy"
+	word
+		"'s goal:" 4
+		"'s motto:" 4
+		"'s goal is to create"
+		"'s goal is to ensure"
+		" seeks"
+		" wishes for"
+		" strives for"
+		" aspires to achieve"
+		" seeks to achieve"
+		" strives to achieve"
+		" is advancing"
+		" ensures"
+		" promotes"
+		" believes in"
+		" works for"
+		" is here to ensure"
+		" is here to advance"
+		" is here to promote"
+	word
+		" "
+	word
+		"peace among the stars."
+
+phrase "friendly navy"
+	word
+		"We are obligated to inform you that all"
+		"All"
+		"Be warned that all"
+		"We warn you that all"
+		"We inform you that all"
+		"An injunctive warning: all"
+		"Under Republic law, all"
+		"By the decree of Parliament, all"
+		"By the laws of Parliament, all"
+		"By Republic law, all"
+		"We advise you that all"
+	word
+		" "
+	word
+		"civilian "
+		"merchant "
+		"private "
+	word
+		"ships "
+		"vessels "
+		"warships "
+	word
+		"in "
+		"within "
+		"passing through "
+		"traveling in "
+	word
+		"the Republic"
+		"Republic space"
+		"the jurisdiction of the Republic"
+		"the Republic's jurisdiction"
+		"Parliament's mandate"
+		"Parliament's jurisdiction"
+	word
+		" "
+	word
+		"will undergo"
+		"will be subjected to"
+		"may be subjected to"
+		"are subject to"
+		"must comply with"
+	word
+		" "
+	word
+		"periodic"
+		"random"
+		"regular"
+	word
+		" "
+	word
+		"cargo"
+		"outfit"
+		"structural"
+	word
+		" "
+	word
+		"scans"
+		"examinations"
+		"inspections"
+		"searches"
+		"sweeps"
+	word
+		"."
+
+phrase "friendly navy"
+	word
+		"We are obligated to inform you that"
+		"Be warned that"
+		"We warn you that"
+		"We inform you that"
+		"An injunctive warning:"
+		"Under Republic law,"
+		"By the decree of Parliament,"
+		"By the laws of Parliament,"
+		"By Republic law,"
+		"We advise you that"
+	word
+		" "
+	word
+		"planetary officials"
+		"Navy officers"
+		"border control officials"
+		"Gunboat patrols"
+		"Navy Gunboats"
+		"Gunboat forces"
+		"Gunboat monitors"
+		"Navy police forces"
+		"Navy forces"
+		"Republic forces"
+	word
+		" will "
+		" must "
+		" may "
+	phrase
+		"navy warning adverb"
+	word
+		"cargo"
+		"outfit"
+		"structural"
+	word
+		" "
+	word
+		"scans"
+		"examinations"
+		"inspections"
+		"searches"
+		"sweeps"
+	word
+		" on "
+	word
+		"civilian"
+		"merchant"
+		"private"
+	word
+		" "
+	word
+		"ships"
+		"vessels"
+		"warships"
+	word
+		" "
+	word
+		"travelling in the Republic"
+		"travelling in Republic space"
+		"travelling in the Republic's jurisdiction"
+		"within the Republic's jurisdiction"
+		"landing on a Republic planet"
+		"landing within Republic territory"
+	word
+		"."
+
+phrase "navy warning adverb"
+	word
+		"randomly "
+		"regularly "
+		" "
+	word
+		"perform "
+		"conduct "
+		"run "
+
+phrase "navy warning adverb"
+	word
+		"perform "
+		"conduct "
+		"run "
+	word
+		"random "
+		"regular "
+		" "
+
+phrase "friendly navy"
+	word
+		"It is "
+	word
+		"illegal"
+		"prohibited"
+		"an illegal act"
+		"an illicit act"
+		"a criminal act"
+		"a punishable act"
+	word
+		" under Republic law"
+		" by the laws of the Republic"
+		" by the laws of Parliament"
+	word
+		" to "
+	word
+		"willingly "
+		"knowingly "
+		"deliberately "
+		"purposefully "
+		"" 6
+	phrase
+		"navy illegal acts"
+	word
+		"."
+
+phrase "navy illegal acts"
+	word
+		"install "
+		"use "
+		"employ "
+		"utilize "
+	word
+		"illegal "
+		"unauthorized "
+		"unlicenced "
+	word
+		"outfits"
+		"equipment"
+
+phrase "navy illegal acts"
+	word
+		"traffic "
+		"transport "
+		"smuggle "
+		"trade "
+		"deal "
+		"carry "
+	word
+		"${contraband}"
+
+phrase "navy illegal acts"
+	word
+		"engage in "
+		"participate in "
+		"become involved in "
+	word
+		"the transportation of slaves"
+		"the trafficking of slaves"
+		"the trading of slaves"
+		"the galactic slave trade"
+		"slavery"
+
+phrase "navy illegal acts"
+	word
+		"operate "
+		"pilot "
+	word
+		"an unlicensed "
+		"an unauthorized "
+		"an illegal "
+	word
+		"ship"
+		"warship"
+		"vessel"
+
+phrase "navy illegal acts"
+	word
+		"operate "
+		"pilot "
+	word
+		"unlicensed "
+		"unauthorized "
+		"illegal "
+	word
+		"ships"
+		"warships"
+		"vessels"
+
+phrase "navy illegal acts"
+	word
+		"attack"
+		"provoke"
+		"damage"
+		"destroy"
+		"disable"
+		"harm"
+		"plunder"
+		"seize control of"
+		"seize"
+	word
+		" "
+	word
+		"merchant ships"
+		"Navy ships"
+		"corporate-affiliated ships"
+		"planetary security forces"
+		"corporate security forces"
+		"private ships"
+		"civilian ships"
+		"Republic ships"
+		"Syndicate ships"
+
+phrase "navy illegal acts"
+	word
+		"disrupt "
+		"disturb "
+		"interrupt "
+	word
+		"the peace"
+		"the order"
+		"merchant activity"
+		"mercantile activity"
+		"economic activity"
+		"commercial activity"
+		"trade lanes"
+		"civil order"
+
+phrase "navy illegal acts"
+	word
+		"interdict"
+		"intercept"
+		"attack"
+		"obstruct"
+		"impede"
+	word
+		" "
+	word
+		"merchant activity"
+		"mercantile activity"
+		"merchant ships"
+		"merchant vessels"
+		"civilian ships"
+		"civilian vessels"
+
+phrase "navy illegal acts"
+	word
+		"paint your ship in"
+		"paint your vessel in"
+		"decorate your ship in"
+		"decorate your vessel in"
+		"have your ship fly"
+		"have your ship display"
+		"fly"
+		"display"
+	word
+		" "
+	word
+		"colors that would label you as a pirate"
+		"markings that would label you as a pirate"
+		"colors that would suggest piracy"
+		"markings that would suggest piracy"
+		"illegal colors"
+		"illegal markings"
+		"uncivil colors"
+		"uncivil markings"
+		"pirate colors"
+		"pirate markings"
+		"anarchist colors"
+		"anarchist markings"
+
+phrase "friendly navy"
+	word
+		"Anybody"
+		"Any captain"
+		"Any starship captain"
+		"Any starship commander"
+	word
+		" found in breach of "
+		" that has broken "
+	word
+		"Republic law "
+		"the laws of Parliament "
+		"the laws of the Republic "
+	word
+		"will be fined"
+		"will face fines"
+		"will face penalties"
+		"may face severe penalties"
+		"may be penalized"
+		"may be imprisoned"
+		"may be sentenced to prison"
+		"may be sent to a penal colony"
+		"may be declared an enemy of the Republic"
+		"may be considered an outlaw"
+		"may be considered a criminal"
+	word
+		"."
+
+phrase "friendly free worlds militia 1"
 	word
 		"We are"
 	word
@@ -2053,13 +2987,14 @@ phrase "friendly militia"
 	word
 		"on the lookout for"
 		"searching for"
+		"scanning for"
 	word
 		" any "
 		" "
 	word
 		"suspicious"
 		"unusual"
-		"Pirate"
+		"pirate"
 		"strange"
 		"illegal"
 		"criminal"
@@ -2077,7 +3012,7 @@ phrase "friendly militia"
 	word
 		"."
 
-phrase "friendly militia"
+phrase "friendly free worlds militia 2"
 	word
 		"No"
 		"Not a single"
@@ -2086,6 +3021,7 @@ phrase "friendly militia"
 		" "
 	word
 		"merchant"
+		"civilian"
 		"innocent life"
 		"innocent ship"
 		"inhabitant of this system"
@@ -2108,7 +3044,7 @@ phrase "friendly militia"
 		"."
 		"!"
 
-phrase "friendly militia"
+phrase "friendly militia 1"
 	word
 		"Pirates"
 		"Criminals"
@@ -2122,8 +3058,8 @@ phrase "friendly militia"
 		" beware"
 		" be warned"
 		", turn back now"
+		", surrender now"
 	word
-		". "
 		"! "
 	word
 		"The militia are here"
@@ -2131,11 +3067,14 @@ phrase "friendly militia"
 		"The militia are on the watch"
 		"You won't beat us"
 		"We cannot be defeated"
+		"You cannot break our resolve"
+		"We will not bend to your masters"
+		"We will fight to the last ship"
+		"We will never surrender"
 	word
-		"."
 		"!"
 
-phrase "friendly militia"
+phrase "friendly militia 2"
 	word
 		"We are the militia, "
 	word
@@ -2152,18 +3091,158 @@ phrase "friendly militia"
 		"."
 		"!"
 
-phrase "friendly militia"
+phrase "friendly militia 3"
 	word
-		"It wouldn't hurt if "
+		"It wouldn't hurt"
+		"It would help a lot"
+		"It would improve many peoples' lives"
+		"This sector would be so much safer"
+		"Many lives would be saved"
+		"People would be happier"
+		"We would be grateful"
+		"The Southern Rim would be more prosperous"
+		"The Republic would be more prosperous"
+		"The galaxy would be more prosperous"
+		"The Southern Rim would be safer"
+		"The Republic would be safer"
+		"The galaxy would be safer"
+		"We would not have to sacrifice our lives for you"
+	word
+		" if "
 	word
 		"the Navy"
 		"the Republic"
-		"a Navy fleet"
+		"the Reps"
+		"Parliament"
+		"those representatives of Parliament"
 	word
-		" would help us out with these "
+		" would "
 	word
-		"pirates."
-		"criminals."
+		""
+		"come down here and "
+		"stop hiding up in the Paradise Worlds and "
+		"stop licking the boots of the Syndicate and "
+	word
+		"help us out with"
+		"assist us with"
+		"do anything about"
+		"do something about"
+		"send a fleet to help us with"
+		"send some ships to help us with"
+	word
+		" "
+	word
+		"these pirates"
+		"these criminals"
+		"these warlords"
+		"these marauders"
+		"this rampant piracy"
+		"this rampant marauding"
+	word
+		"."
+		"..."
+		"!"
+
+phrase "friendly militia 4"
+	word
+		"If"
+	word
+		" "
+		" the people in "
+		" the leaders of "
+		" those in power in "
+	word
+		"Parliament"
+		"the Navy"
+		"the Republic"
+	word
+		" would "
+	word
+		"come down here"
+		"stop ignoring our cries for help"
+		"take notice of our cries for help"
+		"stop acting deaf"
+		"listen to us"
+		"work with us"
+		"be useful for once"
+		"just get off their armchairs"
+	word
+		"${friendly militia 4 variation}" 2
+		""
+	word
+		", "
+	word
+		"many peoples' lives would be improved"
+		"many lives would be saved"
+		"lives would be saved"
+		"people would be happier"
+		"we would be grateful"
+		"we would not have to sacrifice our lives for you"
+		"the Republic would be more prosperous"
+		"the galaxy would be more prosperous"
+		"the Republic would be safer"
+		"the galaxy would be safer"
+		`there would be "peace among the stars"`
+	word
+		"."
+
+phrase "friendly militia 4 variation"
+	word
+		" and "
+	word
+		"do something about "
+		"do anything about "
+		"help us with "
+		"assist us with "
+		"clear out "
+		"deal with "
+	word
+		"these pirates"
+		"these criminals"
+		"these warlords"
+		"these marauders"
+		"this rampant piracy"
+		"this rampant marauding"
+
+phrase "friendly militia 4 variation"
+	word
+		" and "
+	word
+		"see"
+		"look at"
+		"discuss"
+		"understand"
+		"recognize"
+		"acknowledge"
+		"see for themselves"
+	word
+		" what "
+	word
+		"pirates have"
+		"criminals have"
+		"warlords have"
+		"marauders have"
+		"rampant piracy has"
+		"rampant marauding has"
+	word
+		" done to "
+	word
+		"our system"
+		"our planets"
+		"the South"
+		"the Rim"
+		"the Southern Rim"
+		"the Dirt Belt"
+
+# Militia hails shared with the Free Worlds. Some are Militia only. This should give each of these hail sets the same chance of appearing.
+phrase "friendly militia"
+	phrase
+		"friendly free worlds militia 1"
+		"friendly free worlds militia 2"
+		"friendly militia 1"
+		"friendly militia 2"
+		"friendly militia 3"
+		"friendly militia 4"
 
 phrase "friendly syndicate"
 	word
@@ -2327,7 +3406,7 @@ phrase "friendly syndicate"
 		"can't be beat!"
 		"will keep you smiling!"
 
-phrase "friendly free worlds"
+phrase "friendly free worlds 1"
 	word
 		"Be"
 	word
@@ -2343,10 +3422,15 @@ phrase "friendly free worlds"
 		"confident"
 		"equitable"
 		"brave"
+		"audacious"
+		"tenacious"
+		"bold"
+		"daring"
+		"valiant"
 	word
 		"! Be free!"
 
-phrase "friendly free worlds"
+phrase "friendly free worlds 2"
 	word
 		"Without"
 	word
@@ -2370,10 +3454,11 @@ phrase "friendly free worlds"
 		"freedom"
 		"safety"
 		"prosperity"
+		"liberty"
 	word
 		"!"
 
-phrase "friendly free worlds"
+phrase "friendly free worlds 3"
 	word
 		"Fight"
 		"Overthrow"
@@ -2388,6 +3473,7 @@ phrase "friendly free worlds"
 		"the Republic's "
 		"the Syndicate's "
 		"the Paradise Worlds' "
+		"the Paradise Planets' "
 		""
 	word
 		"corrupt"
@@ -2414,6 +3500,389 @@ phrase "friendly free worlds"
 	word
 		"! Join the Free Worlds!"
 
+
+phrase "friendly free worlds 4"
+	word
+		"We are Free forces"
+		"We are Free ships"
+		"We are the Free Worlds"
+	word
+		", "
+	word
+		"defenders of"
+		"guardians of"
+		"protectors of"
+	word
+		" "
+	word
+		"the innocent"
+		"this system"
+		"this planet"
+		"this region"
+		"these skies"
+		"liberty"
+		"freedom"
+		"the Rim"
+		"the South"
+		"the Dirt Belt"
+		"the Southern Rim"
+	word
+		"."
+		"!"
+
+phrase "friendly free worlds 5"
+	word
+		"For "
+	word
+		"peace"
+		"equality"
+		"justice"
+		"courage"
+		"tenacity"
+		"hope"
+	word
+		"! "
+	word
+		"For "
+	word
+		"freedom"
+		"safety"
+		"prosperity"
+		"liberty"
+		"unity"
+		"the Free Worlds"
+	word
+		"!"
+
+phrase "free worlds 6 variations"
+	word
+		"want to further"
+		"wish to further"
+		"want to advance"
+		"wish to advance"
+		"want to bolster"
+		"wish to bolster"
+		"want to strengthen"
+		"wish to strengthen"
+		"believe in"
+		"support"
+		"approve of"
+		"respect"
+		"stand by"
+	word
+		" " 4
+		" the principles of "
+		" the Free Worlds' struggle for "
+		" the cause of "
+		" our cause of "
+	word
+		"freedom"
+		"welfare"
+		"democracy"
+		"liberty"
+		"individual freedoms"
+		"commonwealth"
+		"proper representation"
+
+phrase "free worlds 6 variations"
+	word
+		"have seen"
+		"know of"
+		"can see"
+		"have suffered from"
+		"have experienced"
+		"have been affected by"
+		"are affected by"
+		"cannot tolerate"
+		"cannot ignore"
+		"refuse to sanction"
+		"are witness to"
+	word
+		" "
+	word
+		"the Republic's "
+		"Parliament's "
+		"the Syndicate's "
+		"the Paradise Planets' "
+	word
+		"decadence"
+		"corruption"
+		"dishonesty"
+		"profiteering"
+		"misconduct"
+		"fraudulence"
+		"manipulation"
+		"abuse of power"
+		"subversion"
+		"deceit"
+		"dirty politics"
+		"fraudulent dealings"
+
+phrase "free worlds 6 variations"
+	word
+		"have seen"
+		"know of"
+		"can see"
+		"have suffered from"
+		"have experienced"
+		"have been affected by"
+		"are affected by"
+		"cannot tolerate"
+		"cannot ignore"
+		"refuse to sanction"
+		"are witness to"
+	word
+		" the "
+	word
+		"corruption"
+		"loss"
+		"decay"
+		"subversion"
+	word
+		" of "
+	word
+		"our freedoms"
+		"our rights"
+		"our liberty"
+		"our autonomy"
+		"our self-determination"
+		"our representation"
+		"responsible government"
+		"lawful governance"
+	word
+		"" 4
+		" by the Republic"
+		" by Parliament"
+		" by the Syndicate"
+		" by the Paradise Planets"
+
+phrase "friendly free worlds 6"
+	word
+		"If you "
+	phrase
+		"free worlds 6 variations"
+	word
+		", "
+	word
+		"join us"
+		"join the Free Worlds"
+		"become part of the Free Worlds"
+		"become a member of the Free Worlds"
+		"become a member of the Free forces"
+		"do not hesitate to join the Free Worlds"
+		"stand united with us"
+		"fight for us"
+		"fight with us"
+		"fight by our side"
+	word
+		"!"
+
+phrase "friendly free worlds 7"
+	word
+		"Threats to "
+		"Those who threaten "
+	word
+		"freedom"
+		"democracy"
+		"liberty"
+		"peace"
+		"this system"
+		"this planet"
+		"our system"
+		"our planet"
+		"our livelihoods"
+		"the rule of law"
+		"the Free Worlds"
+		"the innocent"
+		"justice"
+	word
+		" beware"
+		" be warned"
+		", turn back now"
+		", surrender now"
+	word
+		"! "
+	word
+		"Free forces are here"
+		"The might of the Free Worlds is here"
+		"The ships of the Free Worlds are here"
+		"The forces of the Free Worlds are here"
+		"You cannot break our resolve"
+		"We are determined to fight for our Free Worlds"
+		"We fight in the name of the Free Worlds"
+		"The Free Worlds will not bend to your masters"
+		"We will fight to the last ship"
+		"We will never surrender"
+		"We will expel you from our systems"
+		"The cavalry are here"
+		"You won't beat us"
+		"We cannot be defeated"
+	word
+		"!"
+
+phrase "friendly free worlds 8"
+	word
+		"Fight for"
+		"Fight on the side of"
+		"Join us in advancing"
+		"The Free Worlds exist to advance"
+		"Our ships fight for"
+		"Our Free Worlds struggle for"
+		"We live in a struggle for"
+		"We struggle for"
+		"We fight for"
+		"We rally behind"
+		"Our fight is for"
+		"This is a struggle for"
+		"If you fight with us, you fight for"
+		"Stand for"
+		"Stand behind"
+		"Join us if you believe in"
+	word
+		" "
+	word
+		"freedom"
+		"equality"
+		"justice"
+		"peace"
+		"prosperity"
+		"liberty"
+		"unity"
+	word
+		"!"
+		"! Join the Free Worlds!"
+
+phrase "friendly free worlds 9"
+	word
+		"Stand united"
+		"Stand with us"
+		"Fight for freedom"
+		"Fight for self-determination"
+		"Fight for peace"
+		"Fight for justice"
+		"Fight for progress"
+		"Fight for your rights"
+		"Fight for your representation"
+		"Fight for your livelihood"
+		"Fight against oppression"
+		"Fight against decadence"
+		"Fight against corruption"
+		"There is no substitute for freedom"
+		"There is no substitute for democracy"
+		"There is no substitute for liberty"
+	word
+		"! "
+	word
+		"Join the Free Worlds in our struggle"
+		"Join us in our fight"
+		"Join us in our struggle"
+		"Join the Free Worlds"
+		"Fight for the Free Worlds"
+		"Fight for your future"
+		"Fight for prosperity"
+		"Fight for equality"
+	word
+		"!"
+
+# Meant to be the same.
+phrase "friendly free worlds 10"
+	word
+		"There can be no"
+		"There is no"
+		"We cannot attain"
+		"We cannot guarantee"
+		"We cannot secure"
+		"We cannot gain"
+		"We cannot obtain"
+		"We cannot achieve"
+	word
+		" "
+	word
+		"peace"
+		"freedom"
+		"safety"
+		"prosperity"
+		"liberty"
+		"stability"
+		"success"
+		"welfare"
+		"order"
+		`"peace among the stars"`
+	word
+		" without "
+	word
+		"equality"
+		"justice"
+		"courage"
+		"tenacity"
+		"audacity"
+		"determination"
+		"hope"
+		"unity"
+		"the rule of law"
+		"fighting for it"
+		"struggle"
+		"representation"
+	word
+		"!"
+		"! Join the Free Worlds!"
+
+# Meant to be the same.
+phrase "friendly free worlds 10"
+	word
+		"We can only attain"
+		"We can only guarantee"
+		"We can only secure"
+		"We can only gain"
+		"We can only obtain"
+		"We can only achieve"
+		"There is only"
+		"There can only be"
+	word
+		" "
+	word
+		"peace"
+		"safety"
+		"prosperity"
+		"stability"
+		"success"
+		"welfare"
+		"order"
+	word
+		" with "
+		" when there is "
+		" when we have "
+	word
+		"equality"
+		"freedom"
+		"justice"
+		"courage"
+		"tenacity"
+		"audacity"
+		"hope"
+		"unity"
+		"a united vision"
+		"the rule of law"
+	word
+		"!"
+		"! Join the Free Worlds!"
+
+# Militia hails shared with the Free Worlds. These should give all the hails an equal chance of occurring.
+phrase "friendly free worlds"
+	phrase
+		"friendly free worlds militia 1"
+		"friendly free worlds militia 2"
+		"friendly free worlds 1"
+		"friendly free worlds 2"
+		"friendly free worlds 3"
+		"friendly free worlds 4"
+		"friendly free worlds 5"
+		"friendly free worlds 6"
+		"friendly free worlds 7"
+		"friendly free worlds 8"
+		"friendly free worlds 9"
+		"friendly free worlds 10"
+
 phrase "friendly pirate"
 	word
 		"We're"
@@ -2429,7 +3898,12 @@ phrase "friendly pirate"
 		"deadliest"
 		"scariest"
 		"nastiest"
+		"gnarliest"
+		"most savage"
 		"most dangerous"
+		"most vicious"
+		"most ferocious"
+		"most dreaded"
 	word
 		" "
 	word
@@ -2443,6 +3917,7 @@ phrase "friendly pirate"
 		" "
 	word
 		"in the"
+		"of the"
 	word
 		" "
 	word
@@ -2452,6 +3927,8 @@ phrase "friendly pirate"
 		"'verse"
 		"air"
 		"cosmos"
+		"skies"
+		"taikong"
 	word
 		"."
 		"!"
@@ -2801,7 +4278,7 @@ phrase "friendly pirate"
 	word
 		"We" 4
 		"We're short on supplies, so we"
-		"I haven't been on one for so long, so we"
+		"We haven't been on one for so long, so we"
 		"Come with us! We"
 		"You gotta come with us! We"
 	word
@@ -2811,26 +4288,31 @@ phrase "friendly pirate"
 		" want to go"
 		"'re going to go"
 		"'re gonna go"
+	word
+		" "
+	word
+		"on a raid on"
+		"on an assault on"
+		"on an attack on"
+		"raiding"
+		"assaulting"
+		"attacking"
+		"shooting up"
+		"blasting"
+		"plundering"
+		"pummeling"
+		"robbing"
+	word
+		" "
 	phrase
-		"pirate plans attack on planet 1"
-		"pirate plans attack on planet 2"
-		"pirate plans attack on ships"
+		"pirate plans attack"
 	word
 		"! "
-	phrase
-		"pirate attack gains"
-		"pirate enemy losses"
 	word
-		"!"
+		"${pirate attack outcomes}!" 2
+		""
 
-phrase "pirate plans attack on planet 1"
-	word
-		" on a raid on "
-		" on an assault on "
-		" on an attack on "
-		" raiding "
-		" assaulting "
-		" attacking "
+phrase "pirate plans attack"
 	word
 		"the spaceport"
 		"the outfitter"
@@ -2868,14 +4350,7 @@ phrase "pirate plans attack on planet 1"
 		"south pirate target"
 		"core pirate target"
 
-phrase "pirate plans attack on planet 2"
-	word
-		" on a raid on "
-		" on an assault on "
-		" on an attack on "
-		" raiding "
-		" assaulting "
-		" attacking "
+phrase "pirate plans attack"
 	phrase
 		"north pirate target"
 		"south pirate target"
@@ -2892,14 +4367,7 @@ phrase "pirate plans attack on planet 2"
 	replace
 		"s's" "s'"
 		
-phrase "pirate plans attack on ships"
-	word
-		" on a raid on "
-		" on an assault on "
-		" on an attack on "
-		" raiding "
-		" assaulting "
-		" attacking "
+phrase "pirate plans attack"
 	word
 		"a convoy"
 		"a fleet"
@@ -2919,7 +4387,7 @@ phrase "pirate plans attack on ships"
 		"some patrol ships"
 		"the Man"
 		"the Law"
-		"the long gun of the Law"
+		"the long arm of the Law"
 		"some of our friends"
 	word
 		""
@@ -2932,12 +4400,13 @@ phrase "pirate plans attack on ships"
 		" in a couple days"
 		" in a few days"
 
-phrase "pirate attack gains"
+phrase "pirate attack outcomes"
 	word
 		"We're gonna "
 		"We'll "
 	word
 		"become super rich"
+		"get rich"
 		"be jumping in the cash"
 		"be crawling in credits"
 		"be swimming in money"
@@ -2955,7 +4424,7 @@ phrase "pirate attack gains"
 		"take their credits"
 		"take their goods"
 
-phrase "pirate enemy losses"
+phrase "pirate attack outcomes"
 	word
 		"They're gonna "
 		"They'll "
@@ -2974,6 +4443,7 @@ phrase "pirate enemy losses"
 		"get wrecked"
 		"surrender quickly to our onslaught"
 		"surrender quickly"
+		"have no chance against us"
 
 phrase "friendly pirate"
 	word
@@ -3021,16 +4491,17 @@ phrase "friendly pirate"
 		"battled four Splinters at"
 		"took out two Mantas in"
 		"blew up a couple Firebirds in"
+		"obliterated a few Argosies at"
+		"went toe-to-toe with a Bastion at"
 		"survived a Navy fleet at"
 		"ensured victory at"
 		"took out multiple ships at"
 	word
 		" "
 	phrase
-		"pirate big raid 1"
-		"pirate big raid 2"
+		"pirate big raid"
 
-phrase "pirate big raid 1"
+phrase "pirate big raid"
 	word
 		"that"
 		"the"
@@ -3070,46 +4541,12 @@ phrase "pirate big raid 1"
 	word
 		". "
 		"! "
-	word
-		""
-		"We made off with so many ships"
-		"We made off with so many credits"
-		"We made off with so much tribute"
-		"We made off with such a big haul"
-		"We're richer than David Turner"
-		"We made off with so many credits"
-		"We're easily the richest pirates this side of Earth"
-		"We're easily the richest pirates this side of Hephaesteus"
-		"We've got more credits than we can count"
-		"We plundered more ships than we could count"
-		"We couldn't even count that many credits"
-		"We couldn't even count that many ships"
-		"You shoulda been there"
-		"You shoulda heard them scream"
-		"You shoulda brought along your guns"
-		"I'm not kidding"
-		"I'm not joking"
-		"I'm not one to joke"
-		"It's not a joke"
-		"The Man sure pays his dues"
-		"We smoked their defense fleet"
-		"We obliterated their defense fleet"
-		"We decimated their defense fleet"
-		"We destroyed their defense fleet"
-		"They weren't even a match for us"
-		"We didn't lose a single ship"
-		"We beat them to a pulp"
-		"We sent them packing"
-		"It was too easy"
-		"That was one hell of a fight"
-		"That battle's going into the history books"
-		"I'm sure I blew up more than a dozen ships"
-		"Now that's who you're facing"
-		"That's who you're facing"
+	phrase
+		"pirate boast"
 	word
 		"!"
 
-phrase	"pirate big raid 2"
+phrase	"pirate big raid"
 	word
 		"the "
 	word
@@ -3159,39 +4596,48 @@ phrase	"pirate big raid 2"
 		" in their history"
 		" in history"
 		" of all time"
-		". We made off with so many ships"
-		". We made off with so much tribute"
-		". We made off with such a big haul"
-		". We couldn't fit everything onto our ships"
-		". We're richer than David Turner"
-		". We made off with so many credits"
-		". We're easily the richest pirates this side of Earth"
-		". We're easily the richest pirates this side of Hephaesteus"
-		". We've got more ships than we can count"
-		". We've got more credits than we can count"
-		". We've got more guns than we can count"
-		". You shoulda been there"
-		". You shoulda heard them scream"
-		". You shoulda brought along your guns"
-		". The Man sure pays his dues"
-		". We smoked them"
-		". We obliterated them"
-		". We decimated them"
-		". We destroyed them"
-		". They weren't even a match for us"
-		". We sent them packing"
-		". We didn't lose a single ship"
-		". It was too easy"
-		". I'm sure I blew up more than a dozen ships"
-		". That was one hell of a fight"
-		". I'm not kidding"
-		". I'm not joking"
-		". I'm not one to joke"
-		". It's not a joke"
+		". ${pirate boast}" 11
+		"! ${pirate boast}" 11
 	word
 		"!"
 
-# A few pirates make it up as far north as Asgard, and they have ships like Corvettes and Aeries which they must get from the Deep by raiding or capture. The pirate planets are there because of pirate band infighting. 
+phrase	"pirate boast"
+	word
+		"We made off with so many ships"
+		"We made off with so many credits"
+		"We made off with so much tribute"
+		"We made off with such a big haul"
+		"We're richer than David Turner"
+		"We made off with so many credits"
+		"We're easily the richest pirates this side of Earth"
+		"We're easily the richest pirates this side of Hephaesteus"
+		"We've got more credits than we can count"
+		"We plundered more ships than we could count"
+		"We couldn't even count that many credits"
+		"We couldn't even count that many ships"
+		"You shoulda been there"
+		"You shoulda heard them scream"
+		"You shoulda brought along your guns"
+		"I'm not kidding"
+		"I'm not joking"
+		"I'm not one to joke"
+		"It's not a joke"
+		"We smoked their defense fleet"
+		"We obliterated their defense fleet"
+		"We decimated their defense fleet"
+		"We destroyed their defense fleet"
+		"They weren't even a match for us"
+		"We didn't lose a single ship"
+		"We beat them to a pulp"
+		"We sent them packing"
+		"It was too easy"
+		"That was one hell of a fight"
+		"That battle's going into the history books"
+		"I'm sure I blew up more than a dozen ships"
+		"Now that's who you're facing"
+		"That's who you're facing"
+
+# A few pirates make it up as far north as Asgard, and they have ships like Corvettes and Aeries which they must get from the Deep by raiding or capture. The pirate planets are there because of pirate band infighting.
 phrase "north pirate target"
 	word
 		"Farpoint"
@@ -3199,11 +4645,12 @@ phrase "north pirate target"
 		"Sunracer"
 		"Prime"
 		"Follower"
-		"Freedom"
+		"Featherweight"
+		"Maelstrom"
 		"Haze"
 		"Memory"
-		"Stormhold"
 		"Haven"
+		"Freedom"
 		"Zenith"
 
 phrase "core pirate target"
@@ -3278,7 +4725,7 @@ phrase "friendly pirate"
 	word
 		"and I get scanned by the Man."
 		"and I get scanned by the Law."
-		"and the long arm of the Law starts tapping on my shoulders." 
+		"and the long arm of the Law starts tapping on my shoulders."
 		"and the Navy starts chasing me."
 		"and there's a Gunboat waiting for me."
 		"and one of my rivals notices me."
@@ -3463,12 +4910,10 @@ phrase "friendly disabled"
 
 phrase "disabled free worlds"
 	word
-		"Well, this sucks."
-		"Darn it!"
-		"Oh, great."
+		"Well, this sucks. "
+		"Darn it! "
+		"Oh, great. "
 		"" 4
-	word
-		" "
 	word
 		"I knew I should"
 		"I knew I shouldn't"
@@ -3903,8 +5348,36 @@ phrase "hostile navy"
 
 phrase "hostile navy"
 	word
+		"For "
+	word
+		"honor"
+		"unity"
+		"order"
+		"hope"
+		"stability"
+		"concord"
+	word
+		"! "
+	word
+		"For "
+	word
+		"justice"
+		"duty"
+		"peace"
+		"integrity"
+		"democracy"
+		"the rule of law"
+		"peace among the stars"
+		"the integrity of our Republic"
+		"the Republic"
+	word
+		"!"
+
+phrase "hostile navy"
+	word
 		"We are agents of"
 		"We seek to bring"
+		"We wish to bring"
 		"Our mandate is to promote"
 		"The Navy exists to create"
 	word
@@ -3923,6 +5396,7 @@ phrase "hostile navy"
 		"harmony"
 		"security"
 		"hope"
+		"peace among the stars"
 	word
 		". We regret that"
 		". It is unfortunate that"
@@ -3941,6 +5415,8 @@ phrase "hostile navy"
 		"we are now required to"
 		"we have to"
 		"we are duty-bound to"
+		"we are forced to"
+		"our orders are to"
 	word
 		" "
 	word
@@ -3953,6 +5429,80 @@ phrase "hostile navy"
 		"be your destroyer"
 		"terminate you"
 		"stop you"
+	word
+		"."
+
+phrase "hostile navy"
+	word
+		"The Navy"
+	word
+		" must"
+		" exists to"
+		" is here to"
+		" is ready to"
+		" is ordered to"
+		" is obligated to"
+		" is always ready to"
+		" is always here to"
+		" never hesitates to"
+		" will never hesitate to"
+		" will always"
+		" will always be here to"
+		" will always be ready to"
+		" was founded to"
+		"'s goal is to"
+		"'s directive is to"
+		"'s directive is to"
+		"'s mission is to"
+		"'s purpose is to"
+		"'s duty is to"
+		"'s fleets"
+		"'s forces"
+	word
+		" "
+	word
+		"defend "
+		"protect "
+		"guard "
+	word
+		"humanity"
+		"mankind"
+		"these skies"
+		"our galaxy"
+		"the Republic"
+	word
+		" from the "
+	word
+		"scourge"
+		"menace"
+		"threat"
+		"evils"
+	word
+		" of "
+	word
+		"piracy"
+		"crime"
+		"instability"
+		"chaos"
+		"conflict"
+		"autocracy"
+		"authoritarianism"
+		"regionalism"
+	word
+		" and "
+	word
+		"division"
+		"disunity"
+		"disorder"
+		"disarray"
+		"discord"
+		"destruction"
+		"devastation"
+		"turmoil"
+		"oppression"
+		"civil war"
+		"fragmentation"
+		"anarchism"
 	word
 		"."
 
@@ -4637,6 +6187,7 @@ phrase "hostile bounty"
 		"put me in a grave"
 	word
 		". Ha!"
+		". You wish!"
 		
 phrase "hostile bounty"
 	word
@@ -4878,10 +6429,12 @@ phrase "hostile syndicate"
 		"Our corporate charter includes provisions for self-defense!"
 		"Enemies of commerce are enemies of Syndicated Systems."
 		"Enemies of free trade are enemies of Syndicated Systems."
-		"Thank you for volunteering to be a target ship for Syndicated Weapon Systems!"
+		"Thank you for volunteering to be a target ship for Syndicated Weapons Systems!"
 		"Syndicated Systems disapproves of space littering; your ship's wreckage will be recycled after we are finished destroying it."
 		"With authority vested in me by Syndicated Systems corporate charter, section 8, paragraph 22... prepare to die!"
 		"The remains of your soon-to-be derelict ship will pad my profit margins!"
+		"Chalk another one up for the cost of goods destroyed..."
+		"Syndicated Security appreciates the voluntary donation of your ship to their training programs!"
 
 phrase "hostile militia"
 	word
@@ -4901,7 +6454,6 @@ phrase "hostile militia"
 		"bust open your cockpit"
 		"bust open your ship"
 	word
-		"."
 		"!"
 		", pirate!"
 		", criminal!"
@@ -4910,7 +6462,6 @@ phrase "hostile militia"
 	word
 		"Quickly, merchants"
 	word
-		". "
 		"! "
 	word
 		"Leave before this pirate destroys you"
@@ -4919,7 +6470,6 @@ phrase "hostile militia"
 		"Escape and allow us to fight this battle"
 		"Get away! We will hold them off"
 	word
-		"."
 		"!"
 
 phrase "hostile militia"
@@ -5013,20 +6563,93 @@ phrase "hostile militia"
 
 phrase "hostile free worlds"
 	word
-		"Safety"
 		"Justice"
 		"Freedom"
 		"Equality"
+		"Democracy"
+		"Liberty"
 	word
 		" shall be "
 		" must be "
+		" will be "
 	word
 		"defended"
-		"upheld"
 		"protected"
-		"enforced"
 	word
-		"."
+		"!"
+
+phrase "hostile free worlds"
+	word
+		"We"
+		"Our ships"
+	word
+		" fight "
+	word
+		"in the name of"
+		"for"
+		"to protect"
+		"to defend"
+	word
+		" "
+	word
+		"freedom"
+		"democracy"
+		"liberty"
+		"peace"
+		"justice"
+		"the rule of law"
+		"the Free Worlds"
+		"the innocent"
+		"equality"
+		"the Free Worlds"
+		"the South"
+		"the Rim"
+		"the Dirt Belt"
+		"the Southern Rim"
+	word
+		"!"
+
+phrase "hostile free worlds"
+	word
+		"Threats to "
+		"Those who threaten "
+	word
+		"freedom"
+		"democracy"
+		"liberty"
+		"peace"
+		"this system"
+		"this planet"
+		"our system"
+		"our planet"
+		"our livelihoods"
+		"the rule of law"
+		"the Free Worlds"
+		"the innocent"
+		"justice"
+	word
+		" beware"
+		" be warned"
+		", turn back now"
+		", surrender now"
+	word
+		"! "
+	word
+		"Free forces are here"
+		"The might of the Free Worlds is here"
+		"The ships of the Free Worlds are here"
+		"The forces of the Free Worlds are here"
+		"You cannot break our resolve"
+		"We are determined to fight for our Free Worlds"
+		"We fight in the name of the Free Worlds"
+		"The Free Worlds will not bend to your masters"
+		"We will fight to the last ship"
+		"We will never surrender"
+		"We will expel you from our systems"
+		"The cavalry are here"
+		"You won't beat us"
+		"We cannot be defeated"
+	word
 		"!"
 
 phrase "hostile free worlds"
@@ -5061,6 +6684,33 @@ phrase "hostile free worlds"
 		" like you"
 	word
 		"."
+		"!"
+
+phrase "hostile free worlds"
+	word
+		"We fight for"
+		"We fight on the side of"
+		"We are advancing"
+		"The Free Worlds exist to advance"
+		"Our ships fight for"
+		"Our Free Worlds struggle for"
+		"We live in a struggle for"
+		"We struggle for"
+		"We fight for"
+		"We rally behind"
+		"Our fight is for"
+		"This is a struggle for"
+	word
+		" "
+	word
+		"freedom"
+		"equality"
+		"justice"
+		"peace"
+		"prosperity"
+		"liberty"
+		"unity"
+	word
 		"!"
 
 

@@ -37,8 +37,11 @@ namespace {
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 
-	const vector<double> ZOOMS = {.25, .35, .50, .70, 1.00, 1.40, 2.00};
-	int zoomIndex = 4;
+	// This controls the range of zoom scales the player can switch to.
+	// larger values are close-up and small values are farther away
+	const vector<double> ZOOMS = {.105, .125, .15, .175, .2, .25, 0.3, 0.35, 0.4, 0.5, 0.6, 0.7, 0.85,
+		1., 1.2, 1.4, 1.7, 2., 2.4};
+	int zoomIndex = 13;
 	constexpr double VOLUME_SCALE = .25;
 
 	// Default to fullscreen.
@@ -49,8 +52,14 @@ namespace {
 	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
 	int vsyncIndex = 1;
 
+	const vector<string> AUTO_AIM_SETTINGS = {"off", "always on", "when firing"};
+	int autoAimIndex = 2;
+
 	const vector<string> BOARDING_SETTINGS = {"proximity", "value", "mixed"};
 	int boardingIndex = 0;
+
+	const vector<string> PARALLAX_SETTINGS = {"off", "fancy", "fast"};
+	int parallaxIndex = 1;
 
 	const vector<string> ALERT_INDICATOR_SETTING = {"off", "audio", "visual", "both"};
 	int alertIndicatorIndex = 3;
@@ -62,7 +71,6 @@ void Preferences::Load()
 {
 	// These settings should be on by default. There is no need to specify
 	// values for settings that are off by default.
-	settings["Automatic aiming"] = true;
 	settings["Render motion blur"] = true;
 	settings[FRUGAL_ESCORTS] = true;
 	settings[EXPEND_AMMO] = true;
@@ -74,7 +82,6 @@ void Preferences::Load()
 	settings["Show hyperspace flash"] = true;
 	settings["Draw background haze"] = true;
 	settings["Draw starfield"] = true;
-	settings["Parallax background"] = true;
 	settings["Hide unexplored map regions"] = true;
 	settings["Turrets focus fire"] = true;
 	settings["Ship outlines in shops"] = true;
@@ -96,6 +103,10 @@ void Preferences::Load()
 			zoomIndex = max<int>(0, min<int>(node.Value(1), ZOOMS.size() - 1));
 		else if(node.Token(0) == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
+		else if(node.Token(0) == "Automatic aiming")
+			autoAimIndex = max<int>(0, min<int>(node.Value(1), AUTO_AIM_SETTINGS.size() - 1));
+		else if(node.Token(0) == "Parallax background")
+			parallaxIndex = max<int>(0, min<int>(node.Value(1), PARALLAX_SETTINGS.size() - 1));
 		else if(node.Token(0) == "fullscreen")
 			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
 		else if(node.Token(0) == "alert indicator")
@@ -128,6 +139,8 @@ void Preferences::Save()
 	out.Write("boarding target", boardingIndex);
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
+	out.Write("Automatic aiming", autoAimIndex);
+	out.Write("Parallax background", parallaxIndex);
 	out.Write("alert indicator", alertIndicatorIndex);
 
 	for(const auto &it : settings)
@@ -227,6 +240,31 @@ double Preferences::MaxViewZoom()
 
 
 
+// Starfield parallax.
+void Preferences::ToggleParallax()
+{
+	int targetIndex = parallaxIndex + 1;
+	if(targetIndex == static_cast<int>(PARALLAX_SETTINGS.size()))
+		targetIndex = 0;
+	parallaxIndex = targetIndex;
+}
+
+
+
+Preferences::BackgroundParallax Preferences::GetBackgroundParallax()
+{
+	return static_cast<BackgroundParallax>(parallaxIndex);
+}
+
+
+
+const string &Preferences::ParallaxSetting()
+{
+	return PARALLAX_SETTINGS[parallaxIndex];
+}
+
+
+
 void Preferences::ToggleScreenMode()
 {
 	GameWindow::ToggleFullscreen();
@@ -278,6 +316,27 @@ Preferences::VSync Preferences::VSyncState()
 const string &Preferences::VSyncSetting()
 {
 	return VSYNC_SETTINGS[vsyncIndex];
+}
+
+
+
+void Preferences::ToggleAutoAim()
+{
+	autoAimIndex = (autoAimIndex + 1) % AUTO_AIM_SETTINGS.size();
+}
+
+
+
+Preferences::AutoAim Preferences::GetAutoAim()
+{
+	return static_cast<AutoAim>(autoAimIndex);
+}
+
+
+
+const string &Preferences::AutoAimSetting()
+{
+	return AUTO_AIM_SETTINGS[autoAimIndex];
 }
 
 

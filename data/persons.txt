@@ -616,6 +616,7 @@ ship "Modified Osprey"
 			"hull damage" 3500
 			"heat damage" 24000
 			"ion damage" 24000
+			"scrambling damage" 24000
 			"disruption damage" 1200
 			"hit force" 30000
 	outfits
@@ -782,7 +783,7 @@ ship "Ursa Polaris"
 		"hull repair rate" 7
 		"energy generation" 200
 		"outfit scan power" 186
-		"outfit scan speed" 15
+		"outfit scan efficiency" 15
 		"tactical scan power" 99
 		"asteroid scan power" 69
 		"cargo space" 1408
@@ -1480,7 +1481,7 @@ ship "Modified Boxwing"
 
 person "Gefullte Taubenbrust"
 	government "Author"
-	frequency 1000
+	frequency 200
 	personality
 		heroic plunders opportunistic
 	phrase
@@ -1703,7 +1704,7 @@ effect "fusion cannon cloud"
 
 person "MasterOfGrey"
 	government "Author"
-	frequency 1000
+	frequency 200
 	personality
 		heroic plunders opportunistic
 	system
@@ -1760,9 +1761,9 @@ ship "Modified Ladybug"
 		# Features from original Ladybug:
 		"ramscoop" 0.5
 		"cargo scan power" 5
-		"cargo scan speed" 16
+		"cargo scan efficiency" 16
 		"outfit scan power" 17
-		"outfit scan speed" 15
+		"outfit scan efficiency" 15
 		"tactical scan power" 25
 		"atmosphere scan" 100
 		"asteroid scan power" 30

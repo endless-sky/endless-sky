@@ -485,8 +485,8 @@ mission "Hai Reveal [B05-long] The Red Mystery"
 
 mission "Hai Reveal [B06-long] Tarazed Analysis"
 	landing
-	name "Seeking Aid"
-	description `Find and board a smugglers ship. Your display will identify them as the "Smuggler" government. Try Syndicate space or the Far North. Then investigate any leads and return to <planet>.`
+	name "Hunting Smugglers"
+	description `Find and board a smuggler's ship. Your display will identify them as the "Smuggler" government, but they will still look like merchants. Try Syndicate space or the Far North. Then investigate any leads and return to <planet>.`
 	source Wayfarer
 	destination Earth
 	clearance
@@ -602,12 +602,14 @@ event "devil-run smugglers visible"
 		add fleet "Smuggler (Hai Traffickers)" 7000
 	system "Alpheratz"
 		add fleet "Smuggler (Hai Traffickers)" 7000
-	system "Achernar"
-		add fleet "Smuggler (Hai Traffickers)" 7000
 	system "Al Dhanab"
+		add fleet "Smuggler (Hai Traffickers)" 7000
+	system "Achernar"
 		add fleet "Smuggler (Hai Traffickers)" 7000
 	system "Mirach"
 		add fleet "Smuggler (Hai Traffickers)" 7000
+	system "Schedar"
+		add fleet "Smuggler (Hai Traffickers)" 3500
 	
 	# Staging areas for transfers
 	system "Alcyone"
@@ -774,7 +776,7 @@ mission "Hai Reveal [B08-long] The Other Just As Fair"
 mission "Hai Reveal [B09] Scanning Devil-Hide"
 	landing
 	name "Searching Beyond the Wormhole"
-	description "Return to <planet> after finding and scanning the key system beyond the unstable wormhole. The syndicate will pay <payment>."
+	description "Return to <planet> after finding and scanning the key system beyond the unstable wormhole. The Syndicate will pay <payment>."
 	source "Hephaestus"
 	waypoint "Devil-Hide"
 	passengers 1
@@ -978,7 +980,7 @@ mission "Hai Reveal [B11] Moving Together"
 			label penetration
 			action
 				set "Hai Reveal [B11] Moving Together: label penetration"
-			`	Teeneep explains, "We also need a way to deal with the surface turrets and, short of bringing overwhelming firepower which we do not have, there's only one ship available with the systems to be able to affect that within our timeline. That ship is my Centipede. I have installed electronic warfare systems on it to baffle pirate defenses when I was investigating this before. It is our assessment that I should be able to baffle the turrets long enough to deal with any spaceship defenders, and land where the turrets will no longer matter." She looks to Choot'k. "The General has generously offered to loan a drive for my use."`
+			`	Teeneep explains, "We also need a way to deal with the surface turrets and, short of bringing overwhelming firepower which we do not have, there's only one ship available with the systems to be able to affect that within our timeline. That ship is my Centipede. I had electronic warfare systems installed on it to baffle pirate defenses when I was investigating this before. It is our assessment that I should be able to baffle the turrets long enough to deal with any spaceship defenders, and land where the turrets will no longer matter." She looks to Choot'k. "The General has generously offered to loan a drive for my use."`
 			`	Choot'k addresses the group. "The designs of the facility show a weak point in one of the hangars, which we can exploit. My flagship has weapons pillaged from another species, which are strong enough to cut open the hangar doors yet precise enough not to destroy the hangar.`
 			`	"I also have two trusted captains who have been exploring the value of human weapons while they've been here, and think they have some winning combinations they would like to test in battle. I have chosen them to make use of our remaining available drives, and out of consideration for you humans. It would seem that the fewer alien weapons we carry through your space, the better."`
 				goto briefing
@@ -1144,7 +1146,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 		conversation
 			`To complete this mission, you must land with Choot'k, Teeneep, Danforth and Wallace's ships all present in the system and intact...`
 	on enter
-		dialog `Right after the fleet takes off, Danforth hails you. "We have just received additional fighters and drones from the syndicate, please wait for them before jumping."`
+		dialog `Right after the fleet takes off, Danforth hails you. "We have just received additional fighters and drones from the Syndicate, please wait for them before jumping."`
 	on enter "Devil-Hide"
 		conversation
 			`Teeneep sends out a message to the fleet informing you that she is engaging the electronic warfare baffling and reminds you that everyone needs to get onto the ground intact if this is to go well. Choot'k's Shield Beetle has red engine flares; the others have blue. So if he gets into trouble you should be able to tell at a distance. The baffling won't work forever, so get to it.`
