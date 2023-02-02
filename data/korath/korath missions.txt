@@ -306,5 +306,5 @@ mission "Korath Boarding Response"
 	destination "Kessel Sepret"
 	npc kill
 		government "Korath"
-		personality harvests plunders unconstrained coward uninterested entering
+		personality harvests plunders unconstrained coward uninterested entering hunting
 		fleet "Korath Defense" 4
