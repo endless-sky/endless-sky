@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 news "heliarch news"
@@ -338,3 +341,93 @@ news "heliarch expeditions past"
 			`"Though a success, that Saryd inspector's expedition was, turned many of the consuls furious at one another, her return has. Expected her to make it back, many of them had not."`
 			`"Our thanks for helping inspector Sedlitaris, you have. Finally found their way back, the last expedition's reports have."`
 			`"The one who helped inspector Sedlitaris on her expedition you are, correct? Read her report on it, I have. Disconcerting, the fate of the last expedition is, but at least recovered their findings, we now have."`
+
+news "coalition games broadcast"
+	to show
+		month == 7
+	location
+		government "Coalition" "Heliarch"
+	name
+		word
+			"Coalition Games broadcast"
+	message
+		word
+			"A Saryd game is playing on a monitor nearby. The athletes, separated into two teams, gallop around an uneven field, dotted with small mounds and holes, as they try to whack some balls into nets located around the arena's edges. Your best guess is that it's an awfully convoluted mix of cricket, football, and pool."
+			"A crowd has gathered for the transmission, waiting for some kind of race or marathon to start. The camera pans by the competitors, who are all Kimek, then pulls back as the race begins. You judge it to be a pretty standard race initially, until the camera spins around, and it's made clear that the Kimek are running upside down."
+			"Some Arachi attentively wait for a game to start. The screen shows the competitors, who are also Arachi, putting on various layers of plate armor. They then all move to a metal cable, just thick enough for them to be gripped with all legs. They then stay there. For many minutes. Until they start falling one by one. Exhilarating."
+			"During a break from the games, some analysts go over spreadsheets with the statistics for the competitors of the past few games. You can't read any of it, but passerby workers and captains stay a while to glance at the results."
+			"One of the competitors from the last game, still catching their breath from the event, is giving an interview and gulping down water every time the interviewer talks. Given their excitement, you figure they must've performed very well."
+
+news "coalition games people"
+	to show
+		month == 7
+	location
+		government "Coalition" "Heliarch"
+		not planet "Far Home"
+	name
+		word
+			"Saryd captain"
+			"Kimek captain"
+			"Arach captain"
+			"Local Saryd"
+			"Local Kimek"
+			"Local Arach"
+	message
+		word
+			`"Going to see the Coalition Games, I am. Our biggest yearly event, it is."`
+			`"Competing in the Coalition Games this year, a friend of mine is. Cheering for them, my whole family is."`
+			`"Seen the latest transmission of the Coalition Games, have you? Throughout it all, on the edge I was!"`
+			`"Checked the job board lately, have you? Eager to see the Coalition Games, tons of passengers are. A good season for business, this is."`
+			`"Watching the Coalition Games transmissions lately, I have been. Tried to become an athlete myself, I once did, but too rigorous, their training routine is! Made me appreciate the sports more, it has."`
+			`"Just arrived from my first live viewing of the Coalition Games, I have. An incredible experience, it was. Go again next year, I for sure will!"`
+
+news "coalition games planet heliarch"
+	to show
+		month == 7
+	location
+		planet "Far Home"
+	name
+		word
+			"Heliarch agent"
+	message
+		word
+			"Dozens of Heliarch agents are guarding the spaceport entrances, occasionally blocking passage as they try to control the flow of people to and from the Coalition Games events."
+			"You spot a few agents on their lunch break inside a local restaurant. They seem to be enjoying the Coalition Games broadcast more than the meals themselves."
+			`"Heading to the Coalition Games, are you? If so, forgive us you must. Some trouble with organizing the crowds this morning, there was, so delayed by five minutes, the whole line is."`
+			`"A former athlete myself, I am. Earned my rank by winning in the Games, I did, so always eager to help organize the event, I am."`
+
+news "coalition games planet people"
+	to show
+		month == 7
+	location
+		planet "Far Home"
+	name
+		word
+			"Saryd captain"
+			"Kimek captain"
+			"Arach captain"
+			"Local Saryd"
+			"Local Kimek"
+			"Local Arach"
+	message
+		word
+			"An avid fan rushes out of a ship next to yours, and into the lines of people being admitted into the Coalition Games. For the next many minutes, an increasingly larger number of Heliarch agents attempt to explain they're not allowed to bring in so many sports goods with them."
+			"You see a fan angrily stomping to a ship docked nearby, going inside, then coming back out with a coin of sorts. It seems they forgot the entry ticket for the Games, and will have to wait in line all over again."
+			`"Brought my children to see the Games, I have. An important part of our culture, the Games are, so glad to share the experience with them, I am."`
+			`"Brought my children to see the Games, I have. Hope I do, that behave themselves this time, they will..."`
+			`"Here for the Games too, are you? The largest event in all the Coalition, it is. Come here to watch every year, I do!"`
+			`"Come to watch a relative of mine compete, I have. Training hard for many years, they have been, so sure I am that do well, they will."`
+
+news "coalition games crowd"
+	to show
+		month == 7
+	location
+		planet "Far Home"
+	name
+		word
+			"Coalition Games crowds"
+	message
+		word
+			"The lines of people heading to the Coalition Games seem to have stopped moving abruptly. Upon further investigation, you see some young Kimek have fallen on their backs and are being helped back to their feet one by one by both Heliarch agents and others from the crowd."
+			"This is a particularly crowded part of the spaceport today. The lines of people waiting for admission into the Games have started crossing and looping in on themselves. Some even head inside shops and restaurants while others stretch into docking areas. Battalions of Heliarch agents work as hard as they can to bring everyone back into orderly lines."
+			"Several children coming to see the Coalition Games are running and playing simplified versions of the events, sporting different colors and assets for different games. Their parents struggle to get them to settle down while keeping their spots in the waiting lines."

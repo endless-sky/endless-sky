@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef DIALOG_H_
@@ -81,7 +84,7 @@ public:
 
 
 protected:
-	// The use can click "ok" or "cancel", or use the tab key to toggle which
+	// The user can click "ok" or "cancel", or use the tab key to toggle which
 	// button is highlighted and the enter key to select it.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;
@@ -129,7 +132,8 @@ Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text, Truncate trun
 
 
 template <class T>
-Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text, int initialValue, Truncate truncate, bool allowsFastForward)
+Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text,
+	int initialValue, Truncate truncate, bool allowsFastForward)
 	: intFun(std::bind(fun, t, std::placeholders::_1)),
 	allowsFastForward(allowsFastForward),
 	input(std::to_string(initialValue))

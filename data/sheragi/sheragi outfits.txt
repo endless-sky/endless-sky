@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 # Outfits
 
@@ -260,6 +263,7 @@ outfit "Particle Waveform Turret"
 		"hull damage" 270
 		"heat damage" 224
 		"ion damage" 4.2
+		"scrambling damage" 4.2
 	description "This ancient Sheragi turret accelerates a dense packet of electrons that, while very ineffective against any kind of shielding, has a very long range and disrupts electrical systems. By the nature of these weapons, one can deduce that their tactics likely involved using the Dragonflame Cannon at long range to break the enemy shields and finishing them off at relatively close range with the Particle Waveform Turrets."
 
 effect "lightning flare"
