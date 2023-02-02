@@ -129,6 +129,9 @@ private:
 	CaptureOdds defenseOdds;
 	// These messages are shown to report the results of hand to hand combat.
 	std::vector<std::string> messages;
+
+	// Whether or not the ship can be captured.
+	bool canCapture = false;
 };
 
 
