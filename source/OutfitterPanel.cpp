@@ -412,13 +412,13 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 
 		if(cost > credits)
 			return "You cannot buy this outfit, because it costs "
-				+ Format::Credits(cost) + " credits, and you only have "
+				+ Format::CreditString(cost) + ", and you only have "
 				+ Format::Credits(credits) + ".";
 
 		// Add the cost to buy the required license.
 		if(cost + licenseCost > credits)
 			return "You don't have enough money to buy this outfit, because it will cost you an extra "
-				+ Format::Credits(licenseCost) + " credits to buy the necessary licenses.";
+				+ Format::CreditString(licenseCost) + " to buy the necessary licenses.";
 	}
 
 	// Check if the outfit will fit
