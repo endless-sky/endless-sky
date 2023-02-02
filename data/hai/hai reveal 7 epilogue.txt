@@ -70,7 +70,7 @@ mission "Hai Reveal [D01B] Summoned to Mountaintop"
 		# Nanachi is too long a chain to do in the middle of the main story, the starting conditions have been changed to be available as soon as you're famous and not busy.
 		has "Expanding Business [4]: done"
 		# Expanding Business capitalizes on the situation to get the first part started.
-		has "<unfettered mission> 11: done"
+		has "Wanderers: Alpha Surveillance J: done"
 		# Sets the right characters and ensures the Unfettered are well distracted and out of the picture.
 	on offer
 		event "cardax site chosen"

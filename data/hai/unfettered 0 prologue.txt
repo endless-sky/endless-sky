@@ -527,7 +527,7 @@ mission "<unfettered mission> 0"
 	passengers 10
 	blocked "You will need room for <passengers> in order to take the next Unfettered mission."
 	to offer
-		has "Unfettered Jump Drive 1: offered"
+		"reputation: Hai (Unfettered)" > 0
 		# guaranteed to offer the first time and then 20% chance
 		or
 			not "unfettered: offered bring hai"
@@ -678,6 +678,7 @@ mission "<unfettered mission> 1 Notification"
 
 mission "<unfettered mission> 1"
 	landing
+	priority
 	name `Bring medical supplies to <planet>`
 	description `The Unfettered hospitals on <origin> are in urgent need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered on <destination> by <date> for <payment>.`
 	source "Darkcloak"
@@ -786,8 +787,8 @@ mission "<unfettered mission> 2"
 		or
 			has "Wanderers: Defend Vara Ke'sok: failed"
 			and
-				has "Unfettered Jump Drive 2: offered"
-				has "<unfettered mission> 1: done"
+				has 
+			random < "Unfettered Jump Drive 1: offered" * 10 + "Unfettered Jump Drive 2: offered" * 15 + "Unfettered Jump Drive 3: offered" * 20 + "Unfettered Jump Drive 4: failed" * 25
 		# 3 is what a default built Sea Scorpion has
 		"armament deterrence" >= 3
 	on offer
@@ -900,6 +901,7 @@ mission "<unfettered mission> 2"
 	to complete
 		has "unfettered: beaten the captain"
 	on complete
+		event "unfettered: JD raid plan ready" 5 15
 		set "unfettered: duel ready"
 		clear "unfettered: beaten the captain"
 		"unfettered: took Si-Ra' gold" = "outfit (all): Gold Bars"
@@ -920,6 +922,7 @@ mission "<unfettered mission> 2: Trust Broken"
 	to complete
 		not "<unfettered mission> 2: active"
 
+event "unfettered: JD raid plan ready"
 
 
 event "cerberus revealed"
@@ -937,8 +940,7 @@ mission "<unfettered mission> 3"
 	infiltrating
 	passengers 1
 	to offer
-		has "<unfettered mission> 2: done"
-		has "Unfettered Jump Drive 3: offered"
+		has "event: unfettered: JD raid plan ready"
 	on offer
 		conversation
 			`As you pass what looks like a bar in the spaceport, you're greeted by the same Hai captain that challenged you earlier. "So we meet again! Arr, if ye be wanting to scuttle me clipper again, it'll take a lot more salt out of ye! Well... once I have her fixed and back, anyway. But that' not be why I be here, today," he says, apparently happy to see you. "I have a job for ye!"`
@@ -1180,8 +1182,8 @@ mission "<unfettered mission> 4"
 	source "Firelode"
 	waypoint "Ya Hai"
 	to offer
-		has "<unfettered mission> 1: done"
-		has "<unfettered mission> 2: done"
+		random < 60
+		has "event: unfettered: access to Mera's lab"
 	on offer
 		conversation
 			`As you wander through the spaceport, you find a market with a limited diversity of goods, although some of it seems to be completely alien, even by Hai standards. You can even spot human food and technology, although those are the only recent items here. Most of it is very ancient, and you doubt everything is functional...`
@@ -1264,9 +1266,11 @@ mission "<unfettered mission> 4"
 	on visit
 		dialog `You have not scanned the Geocoris yet. Go to Ya Hai to scan it, and then come back here.`
 	on complete
+		clear "unfettered: entered Ya Hai"
 		log `Scanned a Geocoris for the Unfettered. They seemed interested in the design - probably with a ship of their own in mind.`
 		payment 150000
-		dialog `You send the scans to the Unfettered government and receive a payment of <payment>.`
+		dialog `You send the scans to the Unfettered government and receive a payment of <payment>. They tell you Mera will need some time to analyze the scans.`
+		event "unfettered: analyzed the scans" 10 20
 
 mission "<unfettered mission> 4: Geocoris Arrival"
 	landing
@@ -1274,10 +1278,10 @@ mission "<unfettered mission> 4: Geocoris Arrival"
 	source
 		system "Ya Hai"
 	to offer
-		has "unfettered: entered Ya Hai"
 		has "<unfettered mission> 4: active"
 	on offer
-		clear "unfettered: entered Ya Hai"
 		conversation
 			`Shortly after you land, you see the Geocoris signature on your radar. You take off immediately.`
 				flee
+
+event "unfettered: analyzed the scans"

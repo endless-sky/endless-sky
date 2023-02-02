@@ -481,7 +481,7 @@ ship "Stag Beetle" "Stag Beetle (Flamer)"
 		"Double Plasma Core"
 		"Large Biochemical Cell"
 		
-		"Korath Repeater Rifle" 20
+		"Thermal Repeater Rifle" 20
 		"Pulse Rifle" 60
 		"Dual Pulse Pistols" 10
 		"True Unfettered License"

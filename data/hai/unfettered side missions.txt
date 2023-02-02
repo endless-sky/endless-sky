@@ -196,6 +196,7 @@ mission "<unfettered mission> 19: Wanderer Homeworld"
 		dialog `Judging by the population compared to the other worlds, this appears to be the capital of these aliens. You should land to introduce yourself as a diplomat between them and the Hai.`
 
 mission "<unfettered mission> 19"
+	minor
 	name `Meet and understand the Wanderers`
 	description `You need to be able to act as a diplomat between the Hai and the aliens up north. First go and meet those aliens. Then go to <stopovers> to see if He-Yi will provide a translator for you.`
 	source "Darkcloak"
@@ -304,7 +305,6 @@ mission "<unfettered mission> 19: Weird Aliens Spotted"
 			has "main plot completed"
 	to offer
 		has "<unfettered mission> 19: Scout Wanderer Systems: offered"
-		has "<unfettered mission> 16: done"
 	waypoint "Pug Iyik"
 	on waypoint
 		dialog `These aliens do not look like the rest of the Wanderers at all! You should probably warn the Unfettered about it, on <destination>.`
@@ -626,13 +626,12 @@ mission "<unfettered mission> 17: Custom Price: D"
 
 
 mission "<unfettered mission> 21"
+	minor
 	name `Close Quarter Fighting`
 	description `He-Yi wants you to bring twenty non-lethal weapons stronger than the pulse rifle for him to use in training with the other Unfettered. Deliver them to <destination>.`
 	source "Warfeed"
 	to offer
-		or
-			has "<unfettered mission> 16: done"
-			has "<unfettered mission> 16: declined"
+		has "<unfettered mission> 16: done"
 		or
 			not "unfettered: offered close quarter"
 			random < 30

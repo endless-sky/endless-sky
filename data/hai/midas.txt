@@ -189,7 +189,7 @@ ship "Tick"
 			"hull damage" 37
 			"hit force" 85
 	outfits
-		"Korath Repeater"
+		"Thermal Repeater"
 		"Hai Chasm Batteries" 2
 		"Small Biochemical Cell"
 		`"Baellie" Atomic Engines`
@@ -630,9 +630,6 @@ mission "<unfettered mission> 7 B"
 		"reputation: Midas" <?= -1000
 		clear "unfettered: stopped on Greenbloom"
 		log `The plan was to escort a Hai fleet carying supplies and passengers into Unfettered space but an opportunity to feed them to the wolves instead was presented, and taken.`
-		set "unfettered: hunger"
-		# Make the hunger last around 20 days longer.
-		"unfettered: hunger stops" = -500
 		payment 4000000
 		dialog
 			`As before, a voice addresses you once you are alone in your quarters. "We have transferred 4 million credits to your account, and made sure the Chief will not bother you.`

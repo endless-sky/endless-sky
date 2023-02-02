@@ -14,11 +14,12 @@
 # SPOILER: they say it's for ships but they actually have plenty of those built. In truth this is mostly to build habitations.
 mission "<unfettered mission> 12"
 	name `Gather materials from asteroids`
-	description `Mine 50 tons of lead from the asteroid field in Wah Yoot and 20 tons of silver from the asteroid field in <waypoints> and then bring them back to <destination> for <payment>.`
-	source "Darkcloak"
-	waypoint "Ehma Ti"
+	description `Mine 20 tons of silver from the asteroid field in this system and 50 tons of lead from the asteroid field in <waypoints> and then bring them to <destination> for <payment>.`
+	source "Firelode"
+	waypoint "Wah Yoot"
+	destination "Darkcloak"
 	to offer
-		has "<unfettered mission> 11: done"
+		has "salary: Unfettered"
 	on offer
 		conversation
 			`You have never seen so much business in Unfettered space. It looks like a major undertaking is about to happen, and you will probably be a part of it. Mera is spreading a message for all Unfettered to hear. "The time has come, brothers and sisters! Now all that is needed is to spread the word, and our brethren from Hai space will join us in glorious victory! But let us not be reckless. In order to win we will need ships, and in order to build ships we will need materials. That is why we should all start gathering them here."`
@@ -64,7 +65,6 @@ mission "<unfettered mission> 12"
 	npc
 		government "Hai (Unfettered)"
 		personality harvests mining uninterested staying
-		system "Wah Yoot"
 		fleet
 			names "hai"
 			variant
@@ -72,7 +72,6 @@ mission "<unfettered mission> 12"
 	npc
 		government "Hai (Unfettered)"
 		personality mining uninterested launching
-		system "Wah Yoot"
 		fleet
 			names "hai"
 			variant
@@ -80,7 +79,6 @@ mission "<unfettered mission> 12"
 	npc
 		government "Hai (Unfettered)"
 		personality harvests uninterested staying entering
-		system "Wah Yoot"
 		fleet
 			names "hai"
 			variant
@@ -97,12 +95,14 @@ mission "<unfettered mission> 12"
 		outfit "Silver" -20
 		payment 1000000
 		conversation
-			`You bring your cargo to the local Unfettered shipyards, and see huge ships being built in the distance. You also notice that not all materials are brought to the shipyards, some are simply sent to more rural areas.`
+			`You bring your cargo to the local Unfettered shipyards, and see huge ships being built in the distance. You also notice that not all materials are brought to the shipyards, some are simply sent to more rural areas. You may want to check the shipyards, later on.`
 			`	One of the Unfettered team leaders comes to speak to you, "My greatest thanks for these materials, they will be crucial in repairing our houses, probably more so than for our ships. Please, if you have the time, try to bring us more materials, we post missions on the job board when we need them the most. In the meantime, take these <payment> as a token of my gratitude."`
 
 
 
 mission "<unfettered mission> 13"
+	landing
+	shipyard
 	name `Gather intel on Hai shipyards`
 	description `Go to <stopovers> and try to discreetly learn how their ships are produced.`
 	source "Darkcloak"
@@ -111,15 +111,16 @@ mission "<unfettered mission> 13"
 	clearance `After explaining you are here to collect an Unfettered tribute, you receive clearance to land.`
 	to offer
 		"reputation: Hai" >= 0
+		has "salary: Unfettered"
 		has "<unfettered mission> 12: done"
 	on offer
 		conversation
-			`As you land, you notice several large ships under construction at the shipyard. Would you like to check what's going on?`
+			`You notice several large ships under construction upon entering the shipyard. Would you like to check what's going on?`
 			choice
 				`	(Sure.)`
 				`	(Later.)`
 					defer
-			`	You go to the shipyard. There, you find an Unfettered warlord and ask to learn more about them. The warlord is speaking trough a translator, although he appears to be able to understand what you say without it. "It looks like even the monkeys cannot resist the [attraction, power] of these ships," he says.`
+			`	As you get closer to the ships, you find an Unfettered warlord and ask to learn more about them. The warlord is speaking trough a translator, although he appears to be able to understand what you say without it. "It looks like even the monkeys cannot resist the [attraction, power] of these ships," he says.`
 			choice
 				`	"Are these Shield Beetles? That's the only Hai warship I've seen that's as large as these."`
 				`	"Why do you call me monkey? Have I not earned your respect yet?"`
@@ -303,9 +304,9 @@ mission "<unfettered mission> 13: Shipyard Intel"
 
 
 
-# this is how the Koraths gain some trust of the Unfettered (who expect results)
 mission "<unfettered mission> 14"
 	landing
+	outfitter
 	name `Primitive Cooling Technology`
 	description `Mera has asked you to bring coolants to her on <origin>, where she is working with the Korath you rescued to design a better cooling system. Bring back 15 Liquid Nitrogen Coolers.`
 	source "Firelode"
@@ -335,10 +336,11 @@ mission "<unfettered mission> 14"
 			has "event: unfettered: better sestor translators"
 		<younglings> "'Rem' <young>"
 	to offer
-		has "<unfettered mission> 11: done"
+		has "salary: Unfettered"
+		has "event: unfettered: Koraths back up"
 	on offer
 		conversation
-			`As soon as you land, an Unfettered notifies you that Mera wishes to speak with you, and you should come with him to see her in her labs.`
+			`As soon as enter the labs, an Unfettered there notifies you that Mera wishes to speak with you, and you should come with him to see her.`
 			choice
 				`	(Follow him.)`
 				`	"I don't have time right now. I'll come back later."`
@@ -469,15 +471,11 @@ ship "Mammoth" "Mammoth (Hai)"
 # ionic materials (probably stolen from Hai tech in part) used to make the prototype weaponry for your Modified Beetle.
 mission "<unfettered mission> 15"
 	name `Loot cargo ship`
-	description `There is an undefended cargo ship near <waypoints>. Find it and bring its cargo back!`
-	source "Darkcloak"
+	description `There is an undefended cargo ship near <waypoints>. Find it and bring its cargo to <destination>.`
+	source "Warfeed"
 	to offer
-		has "<unfettered mission> 12: done"
-		or
-			not "unfettered: offered loot"
-			random < 30
-	on defer
-		set "unfettered: offered loot"
+		has "salary: Unfettered"
+		random < 40
 	on offer
 		conversation
 			`When passing in front of a bar, you notice Si-Ra. He seems to be having quite a lot of fun. The bar itself does not seem that alien to you, although they are doing more than just drinking and chatting, judging by the smell...`
@@ -613,7 +611,10 @@ mission "<unfettered mission> 15"
 		# you may decline this mission but if you accept it, you need to finish it
 	on visit
 		dialog `You have landed on <origin> but you do not have the spoils yet, or the escorts carrying them haven't arrived in the system yet.`
+	on decline
+		event "unfettered: moded SB ready" 20
 	on complete
+		event "unfettered: moded SB ready" 10
 		clear "unfettered: offered loot"
 		log `Found some "defenseless" cargo in space, and brought it back to the Unfettered.`
 		outfit "Loot" -400
@@ -673,10 +674,13 @@ mission "<unfettered mission> 15"
 			label none
 			`	Even without a drink you can celebrate! You continue the party until late, even though some Unfettered do not seem to appreciate that you drink very little, if at all. You leave after several hours and get a good night's rest.`
 
+event "unfettered: moded SB ready"
 
 
-# Materials used to finalize your Modified Beetle.
+
 mission "<unfettered mission> 16"
+	landing
+	shipyard
 	name `Bring industrial materials`
 	description `Go to <stopovers> and load up <cargo>`
 	source "Darkcloak"
@@ -685,12 +689,8 @@ mission "<unfettered mission> 16"
 	blocked `You need <tons> of cargo space for the next Unfettered mission.`
 	clearance
 	to offer
-		has "<unfettered mission> 14: done"
-		has "<unfettered mission> 13: Shipyard Intel: done"
-		or
-			# you can refuse that one by paying for it
-			has "<unfettered mission> 15: done"
-			has "<unfettered mission> 15: declined"
+		has "salary: Unfettered"
+		has "<unfettered mission> 13: done"
 	substitutions
 		<monke> "your specie"
 		<monke> "monkeys"
@@ -730,7 +730,15 @@ mission "<unfettered mission> 16"
 		log `Helped the Unfettered upgrade their shipyards and received a prototype ship as thanks.`
 		event "unfettered: darkcloak outfitter upgrade" 30
 		conversation
-			`After unloading all the cargo, you go check for He-Yi in the shipyard, but instead you find an Herald, ready to rely a message to you, "Ah, <first>. You have completed your part of the bargain, now you may have your reward. Go to Firelode, Mera has a very peculiar gift for you, if you prove worthy of it. He-Yi also wants you to know you should check the job board for more jobs as this one, and be mindful that it will take a while to improve the outfitter with these new materials and schematics you provided." As soon as they delivered their message, the Herald leave without giving you a chance to ask more questions.`
+			`After unloading all the cargo, you go check for He-Yi in the shipyard, but instead you find an Herald, ready to rely a message to you, "Ah, <first>. You have completed your part of the bargain, now you may have your reward.`
+			`	"Go to Firelode, Mera has a very peculiar gift for you, should you prove yourself to be worthy of it.`
+				to display
+					not "<unfettered mission> 17: done"
+					has "Unfettered Jump Drive Trading: offered"
+			`	"There could be more opportunities on Darkcloak for you, we do not only buy Jump Drives against money.`
+				to display
+					not "Unfettered Jump Drive Trading: offered"
+			`	"He-Yi also wants you to know you should check the job board for more jobs as this one, and be mindful that it will take a while to improve the outfitter with these new materials and schematics you provided." As soon as they delivered their message, the Herald leave without giving you a chance to ask more questions.`
 
 event "unfettered: darkcloak outfitter upgrade"
 	planet "Darkcloak"
@@ -748,23 +756,35 @@ mission "Unfettered: Improved Production"
 
 
 
-# You have to bring all materials (or pay for them) and tech and then you gotta fight them for it. This one really is deserved!
 mission "<unfettered mission> 17"
 	landing
 	name "Earn your prize"
-	description "The Unfettered have produced a Modified Shield Beetle just for you, but you must beat Mera in command of it in order to earn it."
+	description "The Unfettered have modified a Shield Beetle for you, but you must beat Mera in command of it in order to earn it."
 	source "Firelode"
 	destination "Darkcloak"
 	to offer
-		has "<unfettered mission> 16: done"
+		or
+			has "<unfettered mission> 15: done"
+			has "<unfettered mission> 15: declined"
+		has "event: unfettered: new cooling system"
+		random < 20 + "<unfettered mission> 16: done" * 50
+		has "event: unfettered: moded SB ready"
+		has "Unfettered Jump Drive Trading: offered"
 	on offer
 		conversation
-			"Do you want to go see Mera now to collect your prize, as He-Yi's Herald suggested?"
+			`Passing by the labs on the way down, you notice some kind of modified beetle outside, in the middle of what must be a test field, filled with craters you assume to be made during weapon testing.`
+			`Do you want to go see Mera to see what the ship is about?`
+				to display
+					not "<unfettered mission> 16: done"
+			`It may be your prize, do you want to go see Mera now, as He-Yi's Herald suggested?`
+				to display
+					has "<unfettered mission> 16: done"
 			choice
 				`	(Sure.)`
 				`	(Later.)`
 					defer
-			`	You go to Mera's laboratory, almost getting lost in the sheer amount of technology there is all over... She seems to be quite busy making prototypes, or maybe this is just because of the Koraths presence here. After stumbling on what you can only assume to be pieces of scrap, you find her, watching and working with the Koraths. As you wonder who is assisting who, she notices you, "<last>! He-Yi thought you would be quick to come. It is good to see you again, but I guess this is not simply a courtesy visit, you must be here about the prize." As is usual here, her phrases are translated by the crude korath translator. The Koraths seem to be focused on their tasks, but they are probably listening to the conversation at the same time, given their usual quick thinking pace.`
+			`	You go to Mera's laboratory, almost getting lost in the sheer amount of technology there is all over... She seems to be quite busy making prototypes, or maybe this is just because of the Koraths presence here. After stumbling on what you can only assume to be pieces of scrap, you find her, watching and working with the Koraths.`
+			`	As you wonder who is assisting who, she notices you, "<last>! He-Yi thought you would be quick to come if I was to let that modified beetle hanging near the labs. It is good to see you again, but I guess this is not simply a courtesy visit, you must be here about the prize." As is usual here, her phrases are translated by the crude korath translator. The Koraths seem to be focused on their tasks, but they are probably listening to the conversation at the same time, given their usual quick thinking pace.`
 			choice
 				`	"That is the reason for my presence indeed."`
 					goto duel
@@ -925,13 +945,12 @@ ship "Marauder Leviathan" "Leviathan (Cube)"
 			"Mystery Cube"
 
 mission "<unfettered mission> 18 A"
-	# just so it doesn't start with other major missions
 	minor
 	name `Mystery item`
 	description `Go to <waypoints> and find a way to acquire a "unique" item from the prominent warlord there. Her ship is the <npc>, once you have retrieved it bring the item to He-Yi on <planet>.`
 	to offer
-		has "<unfettered mission> 16: done"
-	source "Darkcloak"
+		has "salary: Unfettered"
+		random < 20
 	waypoint "Alcyone"
 	destination "Warfeed"
 	on offer
@@ -1315,8 +1334,8 @@ ship "Stag Beetle"
 		"Fire-Lance" 2
 		"Ionic Blaster Prototype" 2
 		"Korath Detainer"
-		"Korath Grab-Strike"
-		"Korath Banisher"
+		"Grab-Strike Turret"
+		"Banisher Grav-Turret"
 		"Bullfrog Anti-Missile" 3
 		
 		"Liquid Sodium Cooler"
@@ -1334,7 +1353,7 @@ ship "Stag Beetle"
 		"Triple Plasma Core"
 		"Small Biochemical Cell"
 		
-		"Korath Repeater Rifle" 20
+		"Thermal Repeater Rifle" 20
 		"Pulse Rifle" 60
 		"Dual Pulse Pistols" 10
 		"True Unfettered License"
@@ -1350,7 +1369,7 @@ ship "Stag Beetle"
 	gun 49 -38
 	gun -61 -14 "Ionic Blaster Prototype"
 	gun 61 -14 "Ionic Blaster Prototype"
-	turret -51 21.5 "Korath Grab-Strike"
+	turret -51 21.5 "Grab-Strike Turret"
 	turret 51 21.5 "Bullfrog Anti-Missile"
 	turret -56.5 75 "Korath Banisher"
 	turret 56.5 75 "Bullfrog Anti-Missile"
@@ -1407,8 +1426,6 @@ mission "<unfettered mission> 20"
 			has "Unfettered: Cloaking Interest: done"
 	to offer
 		has "event: unfettered: darkcloak outfitter upgrade"
-		has "event: unfettered: new cooling system"
-		has "<unfettered mission> 18 A: done"
 		has "language: Wanderer"
 		has "<unfettered mission> 17: done"
 	on offer

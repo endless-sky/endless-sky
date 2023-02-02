@@ -129,8 +129,7 @@ ship "Auxiliary (Alpha)"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "The Auxiliary is the Republic Navy's logistical backbone. The size and durability of a capital ship but more cargo and passenger space than any other Navy ship, the Auxiliary is used whenever the Navy needs large amounts of troops or cargo transported with a guarantee that they'll reach the destination."
-	description "	The Auxiliary was built with modularity in mind, allowing the ship to be fitted for more cargo or bunk space depending on the mission. This modularity makes the ship rather expensive to build, however, and therefore a rare sight to see."
+	description "This is a stolen Auxiliary that was used by the Alphas to move supplies and outfits around, mainly for trading with the Unfettered. They did not seem to have modified it a lot and conveniently contained their logs, although crypted."
 
 # name of the ship, needed in a phrase because we need it in a fleet for the cargo
 phrase "Settler"
@@ -160,7 +159,7 @@ mission "Unfettered: Alpha Bringing Supplies"
 		or
 			and
 				not "unfettered: saw auxiliary"
-				random < 25
+				random < 30
 			random < 8
 	on offer
 		set "unfettered: saw auxiliary"
@@ -196,7 +195,7 @@ mission "Unfettered: Alpha Leaving With Supplies"
 		or
 			and
 				not "unfettered: saw auxiliary"
-				random < 25
+				random < 30
 			random < 8
 	on offer
 		set "unfettered: saw auxiliary"
@@ -219,14 +218,14 @@ mission "Unfettered: Alpha Leaving With Supplies"
 # SPOILER: this mission is what sets the Alphas against you, because they can't afford to let you know they operate here, thinking you could be Navy.
 mission "<unfettered mission> 5"
 	name `Scan the human ship`
-	description `Scan the outfits of the human ship in <waypoints> by <date>, and then come back to <origin> with the logs when you can.`
+	description `Scan the human ship in <waypoints> using a Value Detector by <date>, and then come back to <origin> with the logs when you can.`
 	source "Firelode"
 	destination "Warfeed"
 	deadline 4
 	to offer
-		has "<unfettered mission> 4: done"
-		has "<unfettered mission> 3: done"
+		has "event: unfettered: analyzed the scans"
 	on offer
+		clear "event: unfettered: analyzed the scans"
 		conversation
 			`You go get a drink in the spaceport, taking a beverage that appears to be water, wanting to take no risks on this alien world. After tasting it, you are sure it is indeed water. The Unfettered here do not have the habit of consuming many special drinks - at least not on a regular basis.`
 			`	You ask around for Mera, the Unfettered engineer you met before. She said she would tell you more about it once she gets the Geocoris logs, but you have yet to see her since you brought those logs to the local authorities. Hopefully, she can be trusted. After you spend an hour talking with the local Unfettered and drinking, she finally arrives. She seems to be in quite a hurry.`
@@ -310,7 +309,6 @@ mission "<unfettered mission> 5"
 
 
 
-
 # the mission is divided in two so that you have time to bring the logs back but not to scan in the first place.
 mission "<unfettered mission> 6"
 	landing
@@ -332,11 +330,11 @@ mission "<unfettered mission> 6"
 			`You send your logs as you land and receive a very generous payment of <payment>.`
 			`	Moments later, on your bridge, you hear a familiar voice from the coms. "Oh, you're back! Good!" You are a bit surprised by the interruption, but quickly recognize Mera. "Can I speak to you about your scans? I really am intrigued about that 'Auxiliary'."`
 			choice
-				`	"I would prefer not to explain that to you."`
-					decline
 				`	"Sorry, but I'm no engineer. I have no idea about how those work."`
 				`	"Sure. What is it you want to know about them?"`
 					goto questions
+				`	"I would prefer not to explain that to you."`
+					decline
 			`	"Worry not, I did not want to talk to you about the drag of that ship, or its shield matrix. Although they are very interesting, to be sure!"`
 			label questions
 			# She almost reveals to you the existence of the old super drone carrier project; the Lycosidae.
@@ -370,8 +368,6 @@ mission "<unfettered mission> 6"
 					decline
 			`	"We use 'unfettered' to describe members of a specie that fight for what they believe in, instead of, for instance, doing their day to day routine. That includes the anarchists organizations you refer to as pirates, but not only." She is clearly unwilling to tell you more than this.`
 
-event "unfettered: analyzed the scans"
-
 
 
 # SPOILERS: the disaster was caused by the Alphas as a warning to listen to their demands (and also because the Unfettered allowed you to see them)
@@ -384,8 +380,13 @@ mission "<unfettered mission> 7 A"
 	stopover "Greenbloom"
 	deadline 20
 	to offer
-		has "<unfettered mission> 5: done"
-		"combat rating" > 100
+		has "<unfettered mission> 0: done"
+		has "Unfettered Jump Drive 2: offered"
+		or
+			has "<unfettered mission> 5: done"
+			has "Unfettered: Alpha Bringing Supplies: offered"
+			has "Unfettered: Alpha Leaving With Supplies: offered"
+		has "midas: tracker relay"
 	on offer
 		conversation
 			`As you leave your ship, an Unfettered Chief approaches you. After some time you finally recognize Sookootow, the one you helped earlier with moving people and medical supplies. You have not yet seen him so worried before, nor moving at such speed.`
@@ -484,11 +485,14 @@ mission "<unfettered mission> 7 A"
 		fleet "Large Northern Pirates" 2
 	on fail
 		# The shipment gets lost faster, because if this fails Midas are busy shipping supplies to Unfettered space and can't dedicate as much resources to stealing Alpha supplies.
-		event "unfettered: shipment lost" 30
+		event "unfettered: shipment lost" 20
+		set "unfettered: hunger"
+		# Make the hunger last around 20 days longer.
+		"unfettered: hunger stops" = -500
 	on complete
 		clear "unfettered: stopped on Greenbloom"
 		log `Escorted a Hai fleet carrying supplies and passengers into Unfettered space.`
-		event "unfettered: shipment lost" 30 50
+		event "unfettered: shipment lost" 30 60
 		set "unfettered: hunger"
 		# if there already was a hunger situation make it last longer
 		clear "unfettered: hunger stops"
@@ -584,9 +588,9 @@ mission "<unfettered mission> 7: Taking Off With Hai Fleet"
 			`	An hour later, the admiral hails the fleet, "All ships are now ready to leave. All that is left is for me to wish you all safe trip, and may the leaves flow our way." You proceed to launch with the fleet.`
 				flee
 
-
-
 event "unfettered: shipment lost"
+
+
 
 outfit "Building Materials"
 	category "Special"
@@ -969,7 +973,7 @@ mission "<unfettered mission> 9: I Know The Way"
 		set "unfettered: it's the Alphas!"
 		set "found alpha base"
 
-mission "<unfettered mission> 9 Especially On the Wrong Planet"
+mission "<unfettered mission> 9: Wrong Planet"
 	invisible
 	source
 		government Pirate
@@ -1043,7 +1047,6 @@ mission "<unfettered mission> 9 Hint"
 	invisible
 	to offer
 		has "<unfettered mission> 5: done"
-		has "midas: tracker relay"
 		not "midas: wronged"
 	deadline 15
 	on enter "Misam"
@@ -1062,7 +1065,7 @@ mission "<unfettered mission> 9 Hint"
 	to complete
 		never
 
-mission "<unfettered mission> 9: Looking Answers"
+mission "<unfettered mission> 9: Answers"
 	landing
 	invisible
 	to offer
@@ -1117,16 +1120,12 @@ mission "<unfettered mission> 10"
 	description `Go to <destination> to learn where you can find the Alpha ship.`
 	source "Darkcloak"
 	destination "Firelode"
-	substitutions
-		<message> "You try to discern meaning out of it, it seems it is asking you to stop assisting the Unfettered, or you may not be... redeemed?"
-			not "language: Wanderer"
-		<message> `Your translator makes sense of it. "Captain <last>, we have been observing your [actions, movements]. We know you are [helping, working with] the Unfettered. Do be warned that we will not [allow, forgive] this behavior if you do it any further."`
-			has "language: Wanderer"
 	to offer
 		not "unfettered: destroyed auxiliary"
 		has "<unfettered mission> 8: done"
 		has "event: unfettered: analyzed the scans"
 		has "unfettered: it's the Alphas!"
+		has "Unfettered Jump Drive 3: offered"
 	on offer
 		conversation
 			`As you enter the spaceport, you see the council gathered in a stadium looking similar to the one on Firelode, although it is larger. It seems like you will finally be able to get some answers, if you would like to see them now, that is.`
@@ -1163,7 +1162,7 @@ mission "<unfettered mission> 10"
 			`	You explain to him you have already found an Alpha base in the system of Host. "How can you know this is where you will find this Auxiliary? They could have went anywhere. I agree that it is the most likely spot, but you should still go listen to what Mera has to say, she may reveal tactical opportunities for you to exploit."`
 				goto warning
 	on enter
-		dialog `You receive an ominous message from an unknown source, in Hai. <message>`
+		dialog `You receive an ominous message from an unknown source. "I would recommend you stop working with the Unfettered, <last>."`
 		log "Received a weird message demanding to stop working with the Unfettered. Could it have come from the Hai? The Alphas? Other enemies of the Unfettered?"
 
 
@@ -1277,6 +1276,7 @@ mission "<unfettered mission> 11"
 		log `Captured the Alpha Auxiliary. The Alphas had a trap set but it failed. Or, at least, that's what they want everyone to think.`
 		payment 10000000
 		"salary: Unfettered" = 1000
+		event "unfettered: Koraths back up" 20 50
 		conversation
 			`As you land with the Auxiliary, you notice dozens of Unfettered start coming your way, cheering, and their numbers quickly grow to hundreds. More keep coming from every direction, probably expecting Jump Drives, but this could also be the first time they see the fabled Auxiliary in person. Whatever the case, they seem surprised when they realize it belongs to you. They murmur with each other and then they start saluting, by rising one fist up. First a few do it, then more, until finally all of them are saluting in respect.`
 			choice
@@ -1342,6 +1342,8 @@ mission "<unfettered mission> 11"
 				clear "salary: Unfettered"
 				fail "<unfettered mission> 11"
 				set "unfettered: betrayed"
+
+event "unfettered: Koraths back up"
 
 
 
