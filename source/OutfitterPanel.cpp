@@ -377,10 +377,10 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 	}
 	else if(onlyOwned)
 	{
-		// Not using the store, there's nowhere to get this outfit
+		// Not using the store, there's nowhere to get this outfit.
 		if(isInStore)
 		{
-			// Player hit 'i' or 'c' when they should've hit 'b'
+			// Player hit 'i' or 'c' when they should've hit 'b'.
 			if(playerShip)
 				return "You'll need to buy this outfit to install it. (using 'b')";
 			else
@@ -388,7 +388,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 		}
 		else
 		{
-			// Player hit 'i' or 'c' to install, with no outfit to use
+			// Player hit 'i' or 'c' to install, with no outfit to use.
 			if(playerShip)
 				return "You do not have any of these outfits available to install.";
 			else
@@ -403,7 +403,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 			"but this " + planet->Noun() + " does not sell them.";
 	}
 
-	// Check if you need to pay, and can't afford it
+	// Check if you need to pay, and can't afford it.
 	if(!isInCargo && !isInStorage)
 	{
 		// Determine what you will have to pay to buy this outfit.
