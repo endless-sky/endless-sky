@@ -1012,24 +1012,18 @@ mission "Martini Bombings [Water Tablets]"
 
 mission "Martini Bombings [Relief People 1]"
 	name "<martini relief occupations> to Martini"
-	description "Due to the recent nuclear bombings, bring <bunks> <martini relief occupations> to <planet> to release demand from overloaded hospitals treating patients. Payment is <payment>."
+	description "Due to the recent nuclear bombings on Martini, bring <bunks> <martini relief occupations> to <planet> to release demand from overloaded hospitals. Payment is <payment>."
 	job
 	repeat
 	passengers 5 15
 	substitutions
 		"<martini relief occupations>" "doctors"
-		"<martini relief occupations>" "evacuation coordinators"
-			random < 86
-		"<martini relief occupations>" "search and rescue operatives"
-			random < 71
+		"<martini relief occupations>" "technicians"
+			random < 75
 		"<martini relief occupations>" "nurses"
-			random < 57
-		"<martini relief occupations>" "rescue helicoptor pilots"
-			random < 43
-		"<martini relief occupations>" "volunteers"
-			random < 29
-		"<martini relief occupations>" "construction workers"
-			random < 14
+			random < 50
+		"<martini relief occupations>" "surgeons"
+			random < 25
 	clearance "When you explain to the spaceport controller that you have on board a group of <martini relief occupations> for Martini's disaster relief efforts, they give you the clearance to land."
 	to offer
 		has "event: war begins"
@@ -1046,24 +1040,46 @@ mission "Martini Bombings [Relief People 1]"
 
 mission "Martini Bombings [Relief People 2]"
 	name "<martini relief occupations> to Martini"
-	description "Due to the recent nuclear bombings, bring <bunks> <martini relief occupations> to <planet> to release demand from overloaded hospitals treating patients. Payment is <payment>."
+	description "Due to the recent nuclear bombings on Martini, bring <bunks> <martini relief occupations> to <planet> to assist in the search and rescue efforts. Payment is <payment>."
 	job
 	repeat
 	passengers 5 15
 	substitutions
-		"<martini relief occupations>" "doctors"
 		"<martini relief occupations>" "evacuation coordinators"
-			random < 86
 		"<martini relief occupations>" "search and rescue operatives"
-			random < 71
-		"<martini relief occupations>" "nurses"
-			random < 57
+			random < 75
 		"<martini relief occupations>" "rescue helicoptor pilots"
-			random < 43
+			random < 50
 		"<martini relief occupations>" "volunteers"
-			random < 29
+			random < 25
+	clearance "When you explain to the spaceport controller that you have on board a group of <martini relief occupations> for Martini's disaster relief efforts, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+		random < 15
+	source
+		near Pollux 2 10
+	destination Martini
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 30000 5
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Martini Bombings [Relief People 3]"
+	name "<martini relief occupations> to Martini"
+	description "Due to the recent nuclear bombings on Martini, bring <bunks> <martini relief occupations> to <planet> to assist in the accommodation and reconstruction efforts. Payment is <payment>."
+	job
+	repeat
+	passengers 5 15
+	substitutions
+		"<martini relief occupations>" "engineers"
+		"<martini relief occupations>" "technicians"
+			random < 75
 		"<martini relief occupations>" "construction workers"
-			random < 14
+			random < 50
+		"<martini relief occupations>" "volunteers"
+			random < 25
 	clearance "When you explain to the spaceport controller that you have on board a group of <martini relief occupations> for Martini's disaster relief efforts, they give you the clearance to land."
 	to offer
 		has "event: war begins"
