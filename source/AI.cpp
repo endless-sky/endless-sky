@@ -3845,13 +3845,14 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	}
 	else if(activeCommands.Has(Command::SCAN))
 		command |= Command::SCAN;
-	else if(activeCommands.Has(Command::NEAREST_ASTEROID))
+	else if(activeCommands.Has(Command::HARVEST))
 	{
-		TargetMinable(ship);
 		Orders newOrders;
 		newOrders.type = Orders::HARVEST;
-		newOrders.targetAsteroid = ship.GetTargetAsteroid();
 		IssueOrders(player, newOrders, "preparing to harvest.");
+	}
+	else if(activeCommands.Has(Command::NEAREST_ASTEROID)) {
+		TargetMinable(ship);
 	}
 
 	const shared_ptr<const Ship> target = ship.GetTargetShip();

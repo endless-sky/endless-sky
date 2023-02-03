@@ -73,9 +73,10 @@ const Command Command::GATHER(1uLL << 24, "Fleet: Gather around me");
 const Command Command::HOLD(1uLL << 25, "Fleet: Hold position");
 const Command Command::AMMO(1uLL << 26, "Fleet: Toggle ammo usage");
 const Command Command::NEAREST_ASTEROID(1uLL << 27, "Select nearest asteroid");
-const Command Command::WAIT(1uLL << 28, "");
-const Command Command::STOP(1uLL << 29, "");
-const Command Command::SHIFT(1uLL << 30, "");
+const Command Command::HARVEST(1uLL << 28, "Fleet: Harvest Flotsam");
+const Command Command::WAIT(1uLL << 29, "");
+const Command Command::STOP(1uLL << 30, "");
+const Command Command::SHIFT(1uLL << 31, "");
 
 
 

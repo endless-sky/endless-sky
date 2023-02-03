@@ -367,6 +367,7 @@ void PreferencesPanel::DrawControls()
 		Command::TARGET,
 		Command::HAIL,
 		Command::BOARD,
+		Command::NEAREST_ASTEROID,
 		Command::SCAN,
 		Command::NONE,
 		Command::MENU,
@@ -380,7 +381,7 @@ void PreferencesPanel::DrawControls()
 		Command::GATHER,
 		Command::HOLD,
 		Command::AMMO,
-		Command::NEAREST_ASTEROID
+		Command::HARVEST
 	};
 	static const Command *BREAK = &COMMANDS[19];
 	for(const Command &command : COMMANDS)
