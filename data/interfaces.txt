@@ -98,13 +98,14 @@ color "missile dangerous" 1. .1 .1 1.
 # Colors used in the radar map while in-flight.
 color "radar player" .2 1. 0. 0.
 color "radar friendly" .4 .6 1. 0.
-color "radar unfriendly" .8 .8 .4 0.
-color "radar hostile" 1. .6 .4 0.
+color "radar unfriendly" .8 .8 .3 0.
+color "radar hostile" .85 .3 .2 0.
 color "radar inactive" .4 .4 .4 0.
 color "radar special" 1. 1. 1. 0.
 color "radar anomalous" .7 0. 1. 0.
 color "radar blink" 1. 1. 1. 0.
 color "radar viewport" 0. .3 0. 0.
+color "radar star" .6 .6 .6 0.
 
 # Colors used for warnings and errors.
 color "error back" .25 .1 .1 1.
@@ -122,13 +123,14 @@ color "map name" .6 .6 .6 .6
 color "map travel ok fleet" .2 .5 0. 0.
 color "map travel ok flagship" .5 .4 0. 0.
 color "map travel ok none" .55 .1 0. 0.
-color "map used wormhole" .5 .2 .9 1.
-color "map unused wormhole" .165 .066 .3 .333
+color "map travel wormhole" .5 .2 .9 1.
+color "map wormhole" .5 .2 .9 1.
 color "map orbits fleet destination" 1. 1. 1. 1.
 
 
 
 interface "map detail panel"
+	value "min planet panel height" 195
 	value "max planet panel height" 2022
 	value "starting X" 100
 	value "starting Y" 45
@@ -311,7 +313,7 @@ interface "start conditions menu"
 	button b "_Back to Menu"
 		center -420 155
 		dimensions 120 30
-	active if "chosen start"
+	active if "unlocked start"
 	button s "_Start Game"
 		center -285 155
 		dimensions 90 30
@@ -527,6 +529,11 @@ interface "hud"
 
 	# Targets.
 	anchor top left
+	visible if "red alert"
+	sprite "ui/red alert"
+		from 10 10
+		align top left
+	visible
 	sprite "ui/radar"
 		from 0 0
 		align top left
@@ -632,6 +639,8 @@ interface "hud"
 	box "ammo"
 		from -110 450 top right
 		to 0 0 bottom right
+	value "ammo icon height" 30
+	value "ammo icon width" 80
 	anchor top
 	point "mini-map"
 		center 0 100
@@ -870,7 +879,7 @@ interface "hiring"
 		align right
 	
 	line
-		from -60 95
+		center -60 95
 		dimensions 480 1
 
 	label "bunks"
@@ -952,7 +961,7 @@ interface "hiring"
 
 interface "trade"
 	line
-		from -60 95
+		center -60 95
 		dimensions 480 1
 
 	active if "can buy"
@@ -981,7 +990,7 @@ interface "trade"
 
 interface "bank"
 	line
-		from -60 95
+		center -60 95
 		dimensions 480 1
 
 	active if "can pay"
@@ -1229,8 +1238,14 @@ interface "hail panel"
 		center 250 115
 		dimensions 80 30
 
+	visible if "!show pay bribe"
 	active if "can bribe"
 	button b "Offer _Bribe"
+		center 130 115
+		dimensions 140 30
+	visible if "show pay bribe"
+	active if "can pay bribe"
+	button b "Pay _Bribe"
 		center 130 115
 		dimensions 140 30
 		

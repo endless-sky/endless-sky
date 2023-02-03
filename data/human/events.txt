@@ -784,6 +784,21 @@ event "initial deployment 4"
 
 
 
+event "fw zug expansion underway"
+	planet Zug
+		spaceport `The spaceport of Zug has been growing by amalgamation for centuries. At its core is the "Old Port," a set of quaint and rudimentary shops and warehouses. The landing pads for the Old Port were torn up to make room for what the locals call "The Port," a set of buildings that were constructed a century ago, with bolder architecture and more modern design.`
+		spaceport `	Some distance away is the "New Port," a towering structure with robotic cargo lifts and large hangars for more expensive ships. Meanwhile, an expansion to the New Port is currently ongoing. You can't help but wonder what the new expansion will be named.`
+
+
+
+event "fw zug expansion complete"
+	planet Zug
+		add shipyard "Tarazed Advanced"
+		spaceport `The spaceport of Zug has been growing by amalgamation for centuries. At its core is the "Old Port," a set of quaint and rudimentary shops and warehouses. The landing pads for the Old Port were torn up to make room for what the locals call "The Port," a set of buildings that were constructed a century ago, with bolder architecture and more modern design.`
+		spaceport `	Some distance away is the "New Port," a towering structure with robotic cargo lifts and large hangars for more expensive ships. It was recently expanded to handle the increased activity demanded by the Free Worlds, making Zug the chief ship foundry of the galactic south. It's not surprising to learn that the addition to the New Port has quickly been dubbed "The Expansion."`
+
+
+
 event "capture of Kornephoros"
 	system "Kornephoros"
 		government "Republic"
@@ -993,6 +1008,16 @@ event "syndicate assistance"
 
 
 
+event "tarazed assistance"
+	planet "Glaze"
+		shipyard "Tarazed Basics"
+	planet "Rust"
+		shipyard "Tarazed Basics"
+	planet "Zug"
+		shipyard "Tarazed Basics"
+
+
+
 # TODO: Expand this event to other Dirt Belt systems.
 # TODO: Create Republic fleets neutral to FW patrols.
 event "unofficial ceasefire"
@@ -1093,7 +1118,7 @@ event "fw abandoned Greenrock"
 		fleet "Large Free Worlds" 9000
 	planet "Greenrock"
 		description `Greenrock was the closest thing that the pirates in southern human space had to a center of government, at least until the Free Worlds occupied it. When rival pirate bands sought to negotiate on neutral territory, this is where they met. Nearly everything was for sale here: illegal weapons, ships customized for pirating, and even slaves.`
-		description `	That was until the Free Worlds occupied the system and cleaned up many of the major population centers. With the Free Worlds gone though, the planet has begun to return to its natural state of crime and villainy .`
+		description `	That was until the Free Worlds occupied the system and cleaned up many of the major population centers. With the Free Worlds gone though, the planet has begun to return to its natural state of crime and villainy.`
 		spaceport `You have heard enough about this port's reputation that you are not surprised to see the remnants of slave markets, now empty as a result of the Free Worlds occupation. The spaceport's shady establishments are beginning to return to their normal clientele and services.`
 		spaceport `	With the Free Worlds now gone, dark alleyways are absolutely to be avoided. Down one alley you see a shop called "Mike's Mustelids," the inside like a jungle. You hear the howls and yells of various exotic animals coming from inside, and the alleyway is home to a number of presumably-escaped weasels, ferrets, and wolverines running about.`
 

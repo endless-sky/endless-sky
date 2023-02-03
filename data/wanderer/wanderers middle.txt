@@ -20,7 +20,7 @@ mission "Wanderers: Pre-Colony"
 	on offer
 		conversation
 			`With the Eye fully opened, Wanderer ships have begun flooding into this region of space. This desolate planet seems to be of particular interest to them, with drones rapidly surveying in all directions, and a small outpost beginning to form.`
-			`	As you land on the outskirts of this settlement, one of the workers comes up to you as you leave your ship. "[Greetings, welcome], it is [delightful, pleasing] to see you have come to show your interest in our exploration. Unfortunately, there exists much [hazard, risk] on a world we know so little about. This will be our staging ground to [explore, catalog] this new region, but it will take some time to be assured of the [safety, security] of our outpost. I suggest you take time to [orient, locate] yourself in these systems while we set up before returning to help. Of course you are welcome when we have [determined, established] safety, there will be many ships needed to help heal the many ruined planets here.`
+			`	As you land on the outskirts of this settlement, one of the workers comes up to you as you leave your ship. "[Greetings, welcome], it is [delightful, pleasing] to see you have come to show your interest in our exploration. Unfortunately, there exists much [hazard, risk] on a world we know so little about. This will be our staging ground to [explore, catalog] this new region, but it will take some time to be assured of the [safety, security] of our outpost. I suggest you take time to [orient, locate] yourself in these systems while we set up before returning to help. Of course you are welcome when we have [determined, established] safety, there will be many ships needed to help heal the many ruined planets here."`
 				decline
 
 mission "Wanderers: Surveying 1"
@@ -1908,7 +1908,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 			label thanks
 			`	"No problem, kiddo," the captain says, although he looks awed that you are even attempting to fight such powerful ships. "Remember, northwest of Farpoint. If they're anarchists of any sort, they'll be hiding in one of those pirate systems up there. Take care of yourself out there; those are some dangerous ships that jumped us." With that, he bids you farewell.`
 				decline
-					
+				
 			label glad
 			`	"Yeah, those ships would have obliterated us if we hadn't jumped pronto." The pilot looks at you, then asks quizzically, "Say, do you know anything about those ships?"`
 			choice
@@ -3362,6 +3362,7 @@ mission "Wanderers: Sestor: Final: Patched"
 		log "Discovered that when the Korath exiles shut down the Kor Sestor factory, they also took enough technology from the factory to be able to begin producing war drones of their own. It is possible that the exiles have just become a whole lot more dangerous than they used to be."
 		log "Factions" "Wanderers" `After the Eye opened, creating a wormhole link between Wanderer territory and the region of space that harbors the devastated Korath worlds, the Wanderers have established several new colonies in the Korath sector and have begun to migrate to this area of Space. They have established formal relations with the Kor Efreti and were able to end the war between the Kor Mereti and the Kor Sestor.`
 		log "Factions" "Korath" `The Wanderers, who have begun to establish colonies on some deserted Korath systems, were able to end the war between the Kor Mereti and the Kor Sestor. The Kor Efreti have begun to rebuild their worlds and are tutored in this endeavor by the Wanderers.`
+		set "wanderers sestor done"
 		event "wanderers: exiles have drones" 20
 		event "wanderers: sabira eseskrai colony" 30
 		event "wanderers: sestor eliminated" 40
@@ -3382,6 +3383,7 @@ mission "Wanderers: Sestor: Combined Patch 1"
 	to fail
 		has "Wanderers: Sestor: Final: Patched: offered"
 	on offer
+		set "wanderers sestor done"
 		event "wanderers: sestor planets unrestricted" 40
 		event "wanderers taking jobs from kor efreti" 5
 		event "wanderers: moonbeam mass production" 5

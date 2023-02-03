@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class Color;
+class ConditionsStore;
 class Conversation;
 class DataNode;
 class DataWriter;
@@ -59,6 +60,7 @@ class System;
 class Test;
 class TestData;
 class TextReplacements;
+class UniverseObjects;
 class Wormhole;
 
 
@@ -88,6 +90,9 @@ public:
 
 	// Get the list of resource sources (i.e. plugin folders).
 	static const std::vector<std::string> &Sources();
+
+	// Get a reference to the UniverseObjects object.
+	static UniverseObjects &Objects();
 
 	// Revert any changes that have been made to the universe.
 	static void Revert();
@@ -134,6 +139,8 @@ public:
 	static const Set<Test> &Tests();
 	static const Set<TestData> &TestDataSets();
 	static const Set<Wormhole> &Wormholes();
+
+	static ConditionsStore &GlobalConditions();
 
 	static const Government *PlayerGovernment();
 	static Politics &GetPolitics();
