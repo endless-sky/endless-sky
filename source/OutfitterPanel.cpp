@@ -319,17 +319,17 @@ int OutfitterPanel::DrawDetails(const Point &center)
 		}
 		categoryZones.emplace_back(collapseDescription);
 
-		Point attrPoint(startPoint.X(), startPoint.Y() + descriptionOffset);
-		Point reqsPoint(startPoint.X(), attrPoint.Y() + outfitInfo.AttributesHeight());
+		Point reqsPoint(startPoint.X(), startPoint.Y() + descriptionOffset);
+		Point attrPoint(startPoint.X(), reqsPoint.Y() + outfitInfo.RequirementsHeight());
 
 		SpriteShader::Draw(background, thumbnailCenter);
 		if(thumbnail)
 			SpriteShader::Draw(thumbnail, thumbnailCenter);
 
-		outfitInfo.DrawAttributes(attrPoint);
 		outfitInfo.DrawRequirements(reqsPoint);
+		outfitInfo.DrawAttributes(attrPoint);
 
-		heightOffset = reqsPoint.Y() + outfitInfo.RequirementsHeight();
+		heightOffset = attrPoint.Y() + outfitInfo.AttributesHeight();
 	}
 
 	// Draw this string representing the selected item (if any), centered in the details side panel
