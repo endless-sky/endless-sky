@@ -466,24 +466,17 @@ void PlayerInfo::Save() const
 		{
 			string root = filePath.substr(0, filePath.length() - 4);
 			const int previousCount = Preferences::GetPreviousSaveCount();
-			vector<string> files;
-			files.reserve(previousCount + 1);
 			const string rootPrevious = root + "~~previous-";
-			for(int i = 0; i < previousCount; ++i)
-				files.push_back(rootPrevious + to_string(previousCount - i) + ".txt");
-			files.push_back(filePath);
-			auto fromIt = files.begin();
-			++fromIt;
-			auto toIt = files.begin();
-			while(fromIt != files.end())
+			for(int i = previousCount - 1; i > 0; --i)
 			{
-				if(Files::Exists(*fromIt))
-					Files::Move(*fromIt, *toIt);
-				++fromIt;
-				++toIt;
+				const string toMove = rootPrevious + to_string(i) + ".txt";
+				if(Files::Exists(toMove))
+					Files::Move(toMove, rootPrevious + to_string(i + 1) + ".txt");
 			}
+			if(Files::Exists(filePath))
+				Files::Move(filePath, rootPrevious + "1.txt");
 			if(planet->HasSpaceport())
-				Save(root + "~~previous-spaceport.txt");
+				Save(rootPrevious + "spaceport.txt");
 		}
 	}
 
