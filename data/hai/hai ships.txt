@@ -64,6 +64,19 @@ ship "Aphid" "Aphid (Armed)"
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
 
+ship "Aphid" "Aphid (Unfettered)"
+	outfits
+		"Chameleon Anti-Missile"
+		"Cargo Expansion" 2
+		"Hai Corundum Regenerator"
+		"Hai Fissure Batteries"
+		"Sand Cell"
+		"Small Bunk Room"
+		"Quantum Keystone"
+		"Pulse Rifle"
+		`"Basrem" Atomic Steering`
+		`"Basrem" Atomic Thruster`
+		"Hyperdrive"
 
 
 ship "Centipede"
@@ -526,6 +539,21 @@ ship "Lightning Bug" "Lightning Bug (Surveillance)"
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
 
+ship "Lightning Bug" "Lightning Bug (Unfettered Shipyards)"
+	outfits
+		"Pulse Cannon"
+		"Pulse Turret" 2
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling"
+		"Quantum Keystone"
+		"Value Detector" 2
+		"Pebble Core"
+		"Sand Cell"
+		"Hai Gorge Batteries"
+		"Pulse Rifle" 6
+		`"Benga" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		"Hyperdrive"
 
 
 ship "Ladybug"
@@ -1122,6 +1150,29 @@ ship "Shield Beetle" "Shield Beetle (Unfettered)"
 		"Value Detector" 4
 		"Quantum Keystone"
 		"Pulse Rifle" 65
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+
+ship "Shield Beetle" "Shield Beetle (Unfettered Shipyards)"
+	outfits
+		"Ion Cannon" 2
+		"Hai Tracker" 420
+		"Hai Tracker Pod" 6
+		"Tracker Storage Pod" 3
+		"Pulse Turret" 3
+		"Chameleon Anti-Missile"
+		"Hai Corundum Regenerator"
+		"Hai Diamond Regenerator"
+		"Hai Octopus Jammer" 3
+		"Hai Williwaw Cooling" 4
+		"Outfits Expansion" 2
+		"Value Detector" 3
+		"Geode Reactor" 2
+		"Pebble Core"
+		"Hai Gorge Batteries"
+		"Quantum Keystone" 2
+		"Pulse Rifle" 75
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
