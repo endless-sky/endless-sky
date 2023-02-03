@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Drak guarding Korath space"
 	invisible
@@ -109,3 +112,13 @@ mission "Drak guarding Void Sprites"
 		personality heroic vindictive staying frugal
 		system Nenia
 		ship "Archon (Cloaked)" "Sleeping Dragon"
+
+# Mission for those who had a savefile prior to 0.9.15 with the old Archon missions
+mission "Archon Personality Compatibility Patch"
+	invisible
+	landing
+	on offer
+		fail "Drak guarding Korath space"
+		fail "Drak guarding Sayaiban"
+		fail "Drak guarding Void Sprites"
+		fail

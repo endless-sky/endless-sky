@@ -6,16 +6,19 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 fleet "Small Remnant"
 	government "Remnant"
 	names "remnant"
 	cargo 2
-	commodities Food Clothing Metal Plastic Medical "Heavy Metals"
-	outfitters "Korath Basics" "Korath Exiles" "Ka'het"
+	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
+	outfitters "Korath Exiles Remnant Donations" "Ka'het"
 	personality
-		disables heroic plunders appeasing
+		disables heroic plunders appeasing secretive
 	variant 8
 		"Starling"
 	variant 6
@@ -40,15 +43,19 @@ fleet "Small Remnant"
 		"Ibis"
 		"Petrel" 2
 		"Tern" 4
+	variant 4
+		"Ibis"
+		"Smew (Miner)" 2
+		"Tern" 4
 
 fleet "Large Remnant"
 	government "Remnant"
 	names "remnant"
 	cargo 2
-	commodities Food Clothing Metal Plastic Medical "Heavy Metals"
-	outfitters "Korath Basics" "Korath Exiles" "Ka'het"
+	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
+	outfitters "Korath Exiles Remnant Donations" "Ka'het"
 	personality
-		disables heroic plunders appeasing
+		disables heroic plunders appeasing secretive
 	variant 6
 		"Albatross"
 		"Starling" 2
@@ -99,10 +106,10 @@ fleet "Remnant Transport"
 	government "Remnant"
 	names "remnant"
 	cargo 2
-	commodities Food Clothing Metal Plastic Medical "Heavy Metals"
-	outfitters "Korath Basics" "Korath Exiles" "Ka'het"
+	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
+	outfitters "Korath Exiles Remnant Donations" "Ka'het"
 	personality
-		disables plunders coward appeasing mining harvests
+		disables plunders coward appeasing mining harvests secretive
 	variant 10
 		"Gull"
 	variant 5
@@ -152,14 +159,16 @@ fleet "Remnant Home Guard"
 	government "Remnant"
 	names "remnant"
 	cargo 2
-	commodities Food Metal Plastic "Heavy Metals"
-	outfitters "Korath Basics" "Korath Exiles" "Ka'het"
+	commodities "Food" "Metal" "Plastic" "Heavy Metals"
+	outfitters "Korath Exiles Remnant Donations" "Ka'het"
 	personality
-		disables plunders appeasing mining harvests surveillance
+		disables plunders appeasing mining harvests surveillance secretive
 	variant 20
 		"Tern" 1
 	variant 10
 		"Tern" 2
+	variant 10
+		"Smew" 1
 	variant 5
 		"Tern" 3
 	variant 5
@@ -168,6 +177,10 @@ fleet "Remnant Home Guard"
 	variant 5
 		"Petrel" 2
 		"Tern" 4
+	variant 3
+		"Smew (Miner)" 2
+	variant 2
+		"Smew (Runabout)"
 
 fleet "Remnant Decoy Defense"
 	government "Remnant"
@@ -350,6 +363,11 @@ phrase "remnant"
 phrase "remnant uncontacted"
 	word
 		"(They sent you a hail consisting of a sign language you don't understand.)"
+		"(You hear a short song about how scanning them will be considered a hostile action.)"
+		`"If you value the continued survival of humanity, do not scan our ships," a strangely melodic voice says.`
+		`"If you value your continued survival, do not scan our ships." The voice speaks with a tone reminiscent of singing.`
+		`"We value our privacy, and will respond to scanning with deadly force." The voice is strangely melodic.`
+		`"Do not scan our ships," someone sings to you.`
 
 phrase "remnant uncontacted"
 	word
@@ -416,7 +434,27 @@ phrase "remnant uncontacted hostile"
 		"(They sign so quickly that your hail receiver can't process it all.)"
 		"(It seems you are not welcome here.)"
 
-phrase "friendly remnant"
+phrase "remnant friendly"
+	phrase
+		"remnant greetings"
+		"remnant preparations"
+		"remnant no scan"
+		"remnant secrecy"
+		"remnant outfit recommendations"
+		"remnant alien inquiry"
+		"remnant friendly cautions"
+
+phrase "remnant trusting"
+	phrase
+		"remnant greetings"
+		"remnant preparations"
+		"remnant scan"
+		"remnant secrecy"
+		"remnant outfit recommendations (trusted)"
+		"remnant alien inquiry"
+		"remnant friendly cautions"
+
+phrase "remnant greetings"
 	word
 		"Greetings"
 		"Hello there"
@@ -432,7 +470,7 @@ phrase "friendly remnant"
 		"."
 		"!"
 
-phrase "friendly remnant"
+phrase "remnant preparations"
 	word
 		"I almost died"
 		"Several hostiles attacked my ship"
@@ -475,7 +513,109 @@ phrase "friendly remnant"
 		"."
 		"!"
 
-phrase "friendly remnant"
+phrase "remnant no scan"
+	word
+		"Please"
+	word
+		" "
+	word
+		"do not"
+		"try not to"
+	word
+		" "
+	word
+		"scan"
+	word
+		" "
+	word
+		"us."
+		"our ships."
+
+phrase "remnant no scan"
+	word
+		"Careless scans costs lives."
+		"Unasked for scans are unwelcome."
+		"Scanning is a privilege to be earned."
+
+phrase "remnant scan"
+	word
+		"It would be appreciated if"
+		"It would be helpful if"
+	word
+		" "
+	word
+		"you"
+	word
+		" "
+	word
+		"scanned"
+		"took a look at"
+		"kept an eye on"
+		"checked"
+	word
+		" "
+	word
+		"my ship."
+		"our ships."
+		"everything in the Ember Waste."
+
+phrase "remnant scan"
+	word
+		"Doing a"
+		"Performing a"
+		"Carrying out a"
+	word
+		" "
+	word
+		"sensor sweep"
+		"sweep"
+		"check"
+		"scan"
+	word
+		" "
+	word
+		"for"
+	word
+		" "
+	word
+		"hitchhikers"
+		"clingers"
+		"unidentified objects"
+		"security breaches"
+		"hostile entities"
+	word
+		" "
+	word
+		"on my ship"
+		"on our ships"
+		"on all ships"
+	word
+		" "
+	word
+		"is"
+		"can be"
+	word
+		" "
+	word
+		"quite helpful."
+		"very useful."
+		"essential for security."
+		"much appreciated."
+		"a good precaution."
+
+phrase "remnant secrecy"
+	word
+		"Loose lips sink ships."
+		"Careless talk costs lives."
+		"Keep mum."
+		"If no one knows we are here, no one can target us."
+		"They cannot hunt what they do not know exists."
+		"Kindly keep your knowledge of us to yourself."
+		"Secrecy is the best defense."
+		"If anyone asks, there is no one out here."
+		"If anyone asks, there is nothing of interest out here."
+
+phrase "remnant outfit recommendations"
 	word
 		"If"
 	word
@@ -507,7 +647,10 @@ phrase "friendly remnant"
 		" "
 	word
 		"buying"
+		"equipping"
 		"getting"
+		"installing"
+		"outfitting your ship with"
 	word
 		" "
 	phrase
@@ -518,9 +661,59 @@ phrase "friendly remnant"
 	word
 		" "
 	word
-		"They're the best!"
+		"They are the best!"
 		"You should definitely try it!"
 		"Definitely better than those outfits in your space."
+
+phrase "remnant outfit recommendations (trusted)"
+	word
+		"Since"
+	word
+		" "
+	word
+		"you have"
+		"the prefects gave you"
+		"our elders allowed you"
+		"our government granted you"
+	word
+		" "
+	word
+		"a license"
+		"a permit"
+		"permission to equip our outfits"
+	word
+		", "
+	word
+		"I"
+		"our experts"
+		"our veterans"
+		"my friends"
+		"we"
+	word
+		" "
+	word
+		"would suggest"
+		"would recommend"
+	word
+		" "
+	word
+		"equipping"
+		"getting"
+		"installing"
+		"outfitting your ship with"
+	word
+		" "
+	phrase
+		"remnant inhibitor cannon"
+		"remnant thrasher cannon"
+		"remnant emp torpedo bay"
+		"remnant salvage scanner"
+	word
+		" "
+	word
+		"They are the best!"
+		"You should definitely try it!"
+		"Definitely better than those outfits in ancestral space."
 
 phrase "remnant inhibitor cannon"
 	word
@@ -577,12 +770,12 @@ phrase "remnant thrasher cannon"
 	word
 		" your energy blasters, "
 	word
-		"they're more efficient in terms of heat"
+		"they are more efficient in terms of heat"
 		"you can deal more damage with our cannons"
 		"they may be consuming more energy, but they have better heat and damage"
 		"our cannons may be more expensive, but they have better damage"
-		"they're larger, but they can deal more damage and release less heat"
-		"they're a force to be reckoned with"
+		"they are larger, but they can deal more damage and release less heat"
+		"they are a force to be reckoned with"
 	word
 		"."
 		"!"
@@ -625,15 +818,15 @@ phrase "remnant salvage scanner"
 		" salvage scanners. "
 	word
 		"They combine outfit and tactical scanners into one package"
-		"Compared to your separated versions, our special scanner is more powerful"
+		"Compared to the separated versions, our scanner is far more powerful"
 		"They have a longer range than your outfit scanner"
 		"Those babies scan fast"
-		"They're a must-have for plundering"
+		"They are a must-have for plundering"
 	word
 		"."
 		"!"
 
-phrase "friendly remnant"
+phrase "remnant alien inquiry"
 	word
 		"Have you heard"
 		"Do you know"
@@ -653,28 +846,28 @@ phrase "friendly remnant"
 	word
 		"? "
 	phrase
-		"friendly remnant (aliens.!)"
-		"friendly remnant (aliens?)"
+		"remnant friendly (aliens!)"
+		"remnant friendly (aliens?)"
 	replace
 		"those Coalition" "that Coalition"
 
-phrase "friendly remnant (aliens.!)"
+phrase "remnant friendly (aliens!)"
 	word
 		"They look strong"
 		"They look weak"
 		"Maybe we should contact them"
-		"I think they're dangerous"
-		"I think they're good"
+		"I think they are dangerous"
+		"I think they are good"
 		"I think we can trust them"
 		"I want to plunder their tech"
 		"I want their ships"
-		"I haven't seen them yet"
+		"I have not seen them yet"
 		"I wonder if the prefects already knew about them"
 	word
 		"."
 		"!"
 
-phrase "friendly remnant (aliens?)"
+phrase "remnant friendly (aliens?)"
 	word
 		"Are they strong"
 		"Are they weak"
@@ -687,7 +880,7 @@ phrase "friendly remnant (aliens?)"
 	word
 		"?"
 
-phrase "friendly remnant"
+phrase "remnant friendly cautions"
 	word
 		"Be careful"
 		"Stay alert"
@@ -706,24 +899,24 @@ phrase "friendly remnant"
 		" "
 	word
 		"You don't want to get yourself killed"
-		"It's dangerous to encounter them"
+		"It is dangerous to encounter them"
 		"Always have some weapons in case you come across them"
 		"We have ships that can cloak in case you find yourself in a tricky situation with them"
 	word
 		"."
 		"!"
 
-phrase "hostile remnant"
+phrase "remnant hostile"
 	word
 		"(It consists of signs so complex that any regular human wouldn't understand, but it seems that they don't like you.)"
 
-phrase "hostile remnant"
+phrase "remnant hostile"
 	word
 		"Apparently,"
 		"It seems"
 		"I think"
 	word
-		" you're "
+		" you are "
 	word
 		"not all that different from"
 		"very similar to"
@@ -744,15 +937,15 @@ phrase "hostile remnant"
 	word
 		"."
 		
-phrase "hostile remnant"
+phrase "remnant hostile"
 	word
 		"I"
 		"We"
 	word
 		" thought "
 	phrase
-		"hostile remnant (we're)"
-		"hostile remnant (you're)"
+		"remnant hostile (we were)"
+		"remnant hostile (you were)"
 	word
 		". "
 	word
@@ -762,7 +955,7 @@ phrase "hostile remnant"
 	word
 		"?"
 
-phrase "hostile remnant (we're)"
+phrase "remnant hostile (we were)"
 	word
 		"we were "
 	word
@@ -770,15 +963,20 @@ phrase "hostile remnant (we're)"
 		"comrades"
 		"brethren"
 		"good"
+		"teammates"
+		"allies"
 
-phrase "hostile remnant (you're)"
+phrase "remnant hostile (you were)"
 	word
 		"you were "
 	word
 		"not like the Alphas"
+		"not like the pirates"
 		"not hostile"
 		"friendly"
 		"good"
+		"teammates"
+		"allies"
 
 
 
@@ -789,13 +987,14 @@ shipyard "Remnant"
 	"Ibis"
 	"Pelican"
 	"Petrel"
+	"Smew"
 	"Tern"
 
 shipyard "Remnant Puffin"
 	"Puffin"
 
 shipyard "Remnant Salvage Ships"
-	"Korath Chaser"
+	"'olofez"
 
 
 
@@ -847,6 +1046,7 @@ outfitter "Remnant Core"
 	"Fuel Pod"
 	"Tuning Rifle"
 	"Salvage Scanner"
+	"EMP Torpedo"
 
 outfitter "Remnant Salvage"
 	"Generator (Furnace Class)"
@@ -856,4 +1056,7 @@ outfitter "Remnant Salvage"
 	"Thruster (Planetary Class)"
 	"Steering (Asteroid Class)"
 	"Steering (Planetary Class)"
-	"Korath Fire-Lance"
+	"Fire-Lance"
+
+outfitter "Void Sprite Parts"
+	"Void Sprite Parts"

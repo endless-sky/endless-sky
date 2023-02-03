@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Account.h"
@@ -232,11 +235,6 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 
 	out << "You paid ";
 
-	auto creditString = [](int64_t payment) -> string
-	{
-		return payment == 1 ? "1 credit" : Format::Credits(payment) + " credits";
-	};
-
 	map<string, int64_t> typesPaid;
 	if(salariesPaid)
 		typesPaid["crew salaries"] = salariesPaid;
@@ -254,24 +252,24 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 		auto it = typesPaid.begin();
 		for(unsigned int i = 0; i < typesPaid.size() - 1; ++i)
 		{
-			out << creditString(it->second) << " in " << it->first << ", ";
+			out << Format::CreditString(it->second) << " in " << it->first << ", ";
 			++it;
 		}
-		out << "and " << creditString(it->second) << " in " << it->first + ".";
+		out << "and " << Format::CreditString(it->second) << " in " << it->first + ".";
 	}
 	else
 	{
 		if(salariesPaid)
-			out << creditString(salariesPaid) << " in crew salaries"
+			out << Format::CreditString(salariesPaid) << " in crew salaries"
 				<< ((mortgagesPaid || finesPaid || maintenancePaid) ? " and " : ".");
 		if(maintenancePaid)
-			out << creditString(maintenancePaid) << "  in maintenance"
+			out << Format::CreditString(maintenancePaid) << "  in maintenance"
 				<< ((mortgagesPaid || finesPaid) ? " and " : ".");
 		if(mortgagesPaid)
-			out << creditString(mortgagesPaid) << " in mortgages"
+			out << Format::CreditString(mortgagesPaid) << " in mortgages"
 				<< (finesPaid ? " and " : ".");
 		if(finesPaid)
-			out << creditString(finesPaid) << " in fines.";
+			out << Format::CreditString(finesPaid) << " in fines.";
 	}
 	return out.str();
 }
