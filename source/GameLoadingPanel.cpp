@@ -66,11 +66,12 @@ void GameLoadingPanel::Step()
 
 	// If no loading hint has been selected yet, select one.
 	// Hints are only selected after more than 12 ticks are displayed so that randomness works properly.
-	if(!hintSelected && progress > 45){
+	if(!hintSelected && progress > 45)
+	{
 		hintSelected = true;
 		UpdateHint();
 	}
-	
+
 
 	// While the game is loading, upload sprites to the GPU.
 	GameData::ProcessSprites();

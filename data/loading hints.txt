@@ -19,6 +19,7 @@ phrase "loading hints"
 		"loading hints (trivia)" 3
 		
 phrase "loading hints (advice)"
+	word
 		"Board ships to earn money and build your fleet."
 		"Check your piracy threat often on the info screen, and keep it as low as possible."
 		"There's a lot of tension in the south of human space."
@@ -39,7 +40,7 @@ phrase "loading hints (advice)"
 		"A scram drive allows you to enter hyperspace while moving. Although it needs more fuel than a regular hyperdrive, it is still invaluable in the fringes of human space."
 		"Meteor missiles don't track ships that run cold."
 		"Installing a brig on your ship means that you can transport criminals securely."
-		"Wealthy individuals will rarely hire you if you don't have luxury accomodations."
+		"Wealthy individuals will rarely hire you if you don't have luxury accommodations."
 		"If you're low on credits, the Spaceport can be a useful place to find higher-paying missions."
 		"Using too many outfit expansions may cause your cooling outfits to stop working."
 		"Missiles are powerful alternatives to guns if you want to destroy ships faster and with less risk."
