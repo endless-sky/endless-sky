@@ -1064,6 +1064,94 @@ ship "Centipede" "Centipede (Teeneep Jump)"
 
 
 
+ship "Frugal Defence Cannon"
+	attributes
+		"heat dissipation" 1
+		"hull" 350
+		"hull repair rate" .001
+		"mass" 100
+		"drag" 50
+		"automaton" 1
+		"landing speed" 1
+	outfits
+		"Timer Weapon Rangeless"
+		"Defence Cannon"
+		"Defence Cannon"
+		"Defence Cannon"
+		"Defence Cannon"
+		"Defence Cannon"
+		"Defence Cannon"
+		"Defence Cannon"
+		"Defence Cannon"
+		"Defence Cannon"
+		"Defence Cannon"
+		"Defence Cannon"
+		"Defence Cannon"
+		"Defence Cannon"
+		"Defence Cannon"
+		"Defence Cannon"
+		"Defence Cannon"
+		"Defence Cannon"
+		"Defence Cannon"
+	turret 0 0
+	turret -80 40
+	turret -70 50
+	turret -60 40
+	turret -50 50
+	turret -40 40
+	turret -30 50
+	turret -20 40
+	turret -10 50
+	turret 0 30
+	turret 0 50
+	turret 10 30
+	turret 20 50
+	turret 30 20
+	turret 40 50
+	turret 50 60
+	turret 60 50
+	turret 70 70
+	turret 80 40
+
+outfit "Defence Cannon"
+	category "Turrets"
+	thumbnail "outfit/unknown"
+	"turret mounts" -1
+	cost 100000000000
+	weapon
+		ammo "Timer Weapon Rangeless" 0
+		sprite "projectile/pulse"
+		sound "pulse"
+		"hit effect" "pulse impact"
+		"inaccuracy" 1
+		"turret turn" 2.3
+		"velocity" 10
+		"lifetime" 150
+		"reload" 20
+		"shield damage" 45
+		"hull damage" 34
+
+outfit "Timer Weapon Rangeless"
+	category "Turrets"
+	thumbnail "outfit/unknown"
+	"turret mounts" -1
+	weapon
+		"velocity override" 10000
+		"range override" 10000
+		"lifetime" 0
+		"reload" 60
+		"firing hull" .5
+		"turret turn" 10
+
+hazard "Keep Cannon Close"
+	"constant strength"
+	"range" 500
+	weapon
+		"gravitational"
+		"hit force" -.001
+		"damage dropoff" 0 500
+		"dropoff modifier" 0
+
 mission "Hai Reveal [B12] Devil-Hide Battle"
 	autosave
 	landing
@@ -1216,6 +1304,11 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 			names "pirate"
 			variant
 				"Palavret"
+	npc
+		system "Devil-Hide"
+		government "Pirate (Devil-Run Gang)"
+		personality frugal launching heroic marked
+		ship "Frugal Defence Cannon"
 
 
 fleet "Elenchus Tribute"

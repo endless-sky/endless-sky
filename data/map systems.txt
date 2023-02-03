@@ -9609,6 +9609,7 @@ system Devil-Hide
 			sprite "planet/asteroid base"
 			distance 251
 			period 18.5791
+			hazard "Keep Cannon Close" 1
 
 system Devil-Run
 	hidden
