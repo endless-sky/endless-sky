@@ -44,7 +44,7 @@ namespace {
 
 // Command enumeration, including the descriptive strings that are used for the
 // commands both in the preferences panel and in the saved key settings.
-const Command Command::NONE(0, "");
+const Command Command::NONE(0uLL, "");
 const Command Command::MENU(1uL << 0, "Show main menu");
 const Command Command::FORWARD(1uL << 1, "Forward thrust");
 const Command Command::LEFT(1uL << 2, "Turn left");
@@ -389,7 +389,7 @@ Command &Command::operator|=(const Command &command)
 
 
 // Private constructor.
-Command::Command(uint32_t state)
+Command::Command(uint64_t state)
 	: state(state)
 {
 }
@@ -398,7 +398,7 @@ Command::Command(uint32_t state)
 
 // Private constructor that also stores the given description in the lookup
 // table. (This is used for the enumeration at the top of this file.)
-Command::Command(uint32_t state, const string &text)
+Command::Command(uint64_t state, const string &text)
 	: state(state)
 {
 	if(!text.empty())
