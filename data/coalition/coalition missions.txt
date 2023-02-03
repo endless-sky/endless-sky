@@ -3233,6 +3233,8 @@ mission "Fangvin: Book Discovered"
 	on complete
 		conversation
 			`When you had returned to human space a few days ago, your computer's email client had notified you that the message to Anna had been sent. However, there was no reply. But just after you touchdown on the spaceport's landing pad you receive another message from the computer, presumably from Anna.`
+			choice
+				`	(Open it.)`
 			`	The message explains how Anna accepted your offer for an interview, and was waiting for you in the spaceport. Look for Anna in the spaceport, so you can take her to the Coalition for a little conversation with those Coalition citizens who showed interest in her work.`
 
 mission "Fangvin: Struggling Author 1"
@@ -3247,8 +3249,9 @@ mission "Fangvin: Struggling Author 1"
 			`Upon entering the spaceport, you walk past a restaurant. A woman then raises her arms, waving towards you. She must be Anna Fangvin, that author the Coalition citizens showed interest in.`
 			choice
 				`	(Approach her.)`
-			`	You approach Anna and sit right next to her. "Hello, are you <first>?`
-			`	"Yes, I am."`
+			`	You approach the woman and sit right next to her. "Hello, are you <first>?`
+			choice
+				`	"Yes, I am. So, what do you want to ask?"`
 			choice
 				`	"What do you write?"`
 					goto "what do you write"
