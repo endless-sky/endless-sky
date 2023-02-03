@@ -46,6 +46,7 @@ public:
 	static const Command HAIL;
 	static const Command SCAN;
 	static const Command JUMP;
+	static const Command MOUSE_TURNING;
 	static const Command FLEET_JUMP;
 	static const Command TARGET;
 	static const Command NEAREST;

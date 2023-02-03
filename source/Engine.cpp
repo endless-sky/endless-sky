@@ -42,6 +42,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "NPC.h"
 #include "OutlineShader.h"
 #include "Person.h"
+#include "pi.h"
 #include "Planet.h"
 #include "PlanetLabel.h"
 #include "PlayerInfo.h"
@@ -1326,6 +1327,10 @@ void Engine::CalculateStep()
 	if(!player.GetSystem())
 		return;
 
+	// Handle the mouse input of the mouse navigation
+	if(Preferences::Has("alt-mouse turning") && !isMouseTurningEnabled)
+		activeCommands.Set(Command::MOUSE_TURNING);
+	HandleMouseInput(activeCommands);
 	// Now, all the ships must decide what they are doing next.
 	ai.Step(player, activeCommands);
 
@@ -1971,12 +1976,38 @@ void Engine::HandleMouseClicks()
 			}
 		}
 	}
-	if(isRightClick && !clickTarget && !clickedAsteroid)
+	if(isRightClick && !clickTarget && !clickedAsteroid && !isMouseTurningEnabled)
 		ai.IssueMoveTarget(player, clickPoint + center, playerSystem);
 
 	// Treat an "empty" click as a request to clear targets.
 	if(!clickTarget && !isRightClick && !clickedAsteroid && !clickedPlanet)
 		flagship->SetTargetShip(nullptr);
+}
+
+
+
+// Determines alternate mouse turning, setting player mouse angle, and right-click firing weapons.
+void Engine::HandleMouseInput(Command &activeCommands)
+{
+	if(activeCommands.Has(Command::MOUSE_TURNING))
+	{
+		isMouseTurningEnabled = !isMouseTurningEnabled;
+		Preferences::Set("alt-mouse turning", isMouseTurningEnabled);
+	}
+	if(!isMouseTurningEnabled)
+		return;
+	bool rightMouseButtonHeld = false;
+	int mousePosX;
+	int mousePosY;
+	if((SDL_GetMouseState(&mousePosX, &mousePosY) & SDL_BUTTON_RMASK) != 0)
+		rightMouseButtonHeld = true;
+	double relX = mousePosX - Screen::RawWidth() / 2;
+	double relY = mousePosY - Screen::RawHeight() / 2;
+	ai.SetMousePosition(Point(relX, relY));
+
+	// Activate firing command.
+	if(isMouseTurningEnabled && rightMouseButtonHeld)
+		activeCommands.Set(Command::PRIMARY);
 }
 
 

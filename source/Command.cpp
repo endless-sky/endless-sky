@@ -77,7 +77,7 @@ const Command Command::HARVEST(1uLL << 28, "Fleet: Harvest Flotsam");
 const Command Command::WAIT(1uLL << 29, "");
 const Command Command::STOP(1uLL << 30, "");
 const Command Command::SHIFT(1uLL << 31, "");
-
+const Command Command::MOUSE_TURNING(1uL << 32, "Toggle mouse-turning");
 
 
 // In the given text, replace any instances of command names (in angle brackets)
@@ -249,6 +249,7 @@ void Command::Load(const DataNode &node)
 			{"hail", Command::HAIL},
 			{"scan", Command::SCAN},
 			{"jump", Command::JUMP},
+			{"mouseturning", Command::MOUSE_TURNING},
 			{"fleet jump", Command::FLEET_JUMP},
 			{"target", Command::TARGET},
 			{"nearest", Command::NEAREST},
