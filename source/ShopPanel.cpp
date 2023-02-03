@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Mission.h"
 #include "OutlineShader.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -349,7 +350,7 @@ void ShopPanel::DrawButtons()
 		Screen::Bottom() - 65);
 	font.Draw("You have:", creditsPoint, dim);
 
-	const auto credits = Format::Credits(player.Accounts().Credits()) + " credits";
+	const auto credits = Format::CreditString(player.Accounts().Credits());
 	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
 
 	const Font &bigFont = FontSet::Get(18);
@@ -524,6 +525,20 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	Point offset(-SIDEBAR_WIDTH / 2, -.5f * SHIP_SIZE + 10.f);
 	font.Draw({name, {SIDEBAR_WIDTH, Alignment::CENTER, Truncate::MIDDLE}},
 		center + offset, *GameData::Colors().Get("bright"));
+}
+
+
+
+void ShopPanel::CheckForMissions(Mission::Location location)
+{
+	if(!GetUI()->IsTop(this))
+		return;
+
+	Mission *mission = player.MissionToOffer(location);
+	if(mission)
+		mission->Do(Mission::OFFER, player, GetUI());
+	else
+		player.HandleBlockedMissions(location, GetUI());
 }
 
 
