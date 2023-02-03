@@ -91,6 +91,7 @@ private:
 	Point dragPoint;
 	bool isDragging = false;
 	bool hasShift = false;
+	bool hasControl = false;
 	bool canClick = false;
 	bool canDrag = false;
 };

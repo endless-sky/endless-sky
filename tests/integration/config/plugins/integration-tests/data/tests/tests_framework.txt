@@ -61,27 +61,27 @@ test "Test-Framework - UI Keyboard controls"
 	description "Tests if the in-game panels can be controlled by keypresses."
 	sequence
 		# Create/inject the savegame and load it.
-		inject "Three Earthly Barges"
+		inject "Three Earthly Barges Save"
 		call "Load First Savegame"
 		# Enter and leave jobs
 		input
 			key j
-			#TODO: check if the panel is actually loaded
+			# TODO: check if the panel is actually loaded
 		input
 			key d
-			#TODO: check if the panel is actually loaded
+			# TODO: check if the panel is actually loaded
 		# Enter trading
 		input
 			key t
-			#TODO: check if the panel is actually loaded
+			# TODO: check if the panel is actually loaded
 		# Enter bank
 		input
 			key b
-			#TODO: check if the panel is actually loaded
+			# TODO: check if the panel is actually loaded
 		# Enter spaceport
 		input
 			key p
-			#TODO: check if the panel is actually loaded
+			# TODO: check if the panel is actually loaded
 		# Enter and leave shipyard
 		# Skipped, since Earth (the starting planet) doesn't have a shipyard.
 		#input
@@ -91,13 +91,13 @@ test "Test-Framework - UI Keyboard controls"
 		# Enter and leave outfitter
 		input
 			key o
-			#TODO: check if the panel is actually loaded
+			# TODO: check if the panel is actually loaded
 		input
 			key l
 		# Enter hire-crew section
 		input
 			key h
-			#TODO: check if the panel is actually loaded
+			# TODO: check if the panel is actually loaded
 		# Depart
 		input
 			key d
@@ -108,7 +108,7 @@ test "Test-Framework - Load Depart Land"
 	description "Test with only a departure. Mostly tests the testframework itself."
 	sequence
 		# Create/inject the savegame and load it.
-		inject "Three Earthly Barges"
+		inject "Three Earthly Barges Save"
 		call "Load First Savegame"
 		# Check startup conditions.
 		assert
@@ -118,19 +118,9 @@ test "Test-Framework - Load Depart Land"
 		assert
 			"ships: Light Freighter" == 3
 		watchdog 90000
-		input
-			command land
-		label landing
-		branch landing
-			and
-				"flagship planet: Earth" < 1
-				"flagship planet: Mars" < 1
-				"flagship planet: Luna" < 1
+		call "Land"
 		assert
-			or
-				"flagship planet: Earth" > 0
-				"flagship planet: Mars" > 0
-				"flagship planet: Luna" > 0
+			"flagship landed" > 0
 
 
 test "Test-Framework - Recursive Calling"
@@ -171,7 +161,7 @@ test "Test-Framework - Navigate"
 	description "Test-Framework - Navigation to other star system."
 	sequence
 		# Create/inject the savegame and load it.
-		inject "Three Earthly Barges"
+		inject "Three Earthly Barges Save"
 		call "Load First Savegame"
 		# Set desired travel plan.
 		navigate
@@ -202,3 +192,41 @@ test "Test-Framework - Navigate"
 		label notAlpha2
 		branch notAlpha2
 			not "flagship system: Alpha Centauri"
+
+
+
+test-data "Test Mission Injection Mission"
+	category "mission"
+	contents
+		mission "A mission for testing injection of missions into integration tests"
+			landing
+			name "A mission name"
+			description "A mission description."
+			source
+				system "Sol"
+			destination
+				not system "Sol"
+			on offer
+				conversation
+					`This mission has been injected!`
+					`   It was not present in the base game data.`
+						accept
+
+
+
+test "Test-Framework - Mission Injection"
+	status active
+	description "A test to test that missions defined in test-data can be injected into a test environment."
+	sequence
+		inject "Test Mission Injection Mission"
+		inject "Three Earthly Barges Save"
+		call "Load First Savegame"
+		call "Depart"
+		assert
+			"flagship landed" == 0
+		call "Land"
+		input
+			key "Return"
+		assert
+			"A mission for testing injection of missions into integration tests: offered" > 0
+			"A mission for testing injection of missions into integration tests: active" > 0

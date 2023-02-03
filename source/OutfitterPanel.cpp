@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Hardpoint.h"
 #include "text/layout.hpp"
+#include "Mission.h"
 #include "Outfit.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -74,7 +75,7 @@ namespace {
 				toRefill.emplace(outfit->Ammo());
 		}
 		return toRefill;
-	};
+	}
 }
 
 
@@ -106,9 +107,12 @@ void OutfitterPanel::Step()
 {
 	CheckRefill();
 	ShopPanel::Step();
+	ShopPanel::CheckForMissions(Mission::OUTFITTER);
 	if(GetUI()->IsTop(this) && !checkedHelp)
-		if(!DoHelp("outfitter") && !DoHelp("outfitter 2") && !DoHelp("outfitter 3"))
-			// All help messages have now been displayed.
+		// Use short-circuiting to only display one of them at a time.
+		// (The first valid condition encountered will make us skip the others.)
+		if(DoHelp("outfitter") || DoHelp("cargo management") || DoHelp("uninstalling and storage") || true)
+			// Either a help message was freshly displayed, or all of them have already been seen.
 			checkedHelp = true;
 }
 
@@ -315,17 +319,17 @@ int OutfitterPanel::DrawDetails(const Point &center)
 		}
 		categoryZones.emplace_back(collapseDescription);
 
-		Point attrPoint(startPoint.X(), startPoint.Y() + descriptionOffset);
-		Point reqsPoint(startPoint.X(), attrPoint.Y() + outfitInfo.AttributesHeight());
+		Point reqsPoint(startPoint.X(), startPoint.Y() + descriptionOffset);
+		Point attrPoint(startPoint.X(), reqsPoint.Y() + outfitInfo.RequirementsHeight());
 
 		SpriteShader::Draw(background, thumbnailCenter);
 		if(thumbnail)
 			SpriteShader::Draw(thumbnail, thumbnailCenter);
 
-		outfitInfo.DrawAttributes(attrPoint);
 		outfitInfo.DrawRequirements(reqsPoint);
+		outfitInfo.DrawAttributes(attrPoint);
 
-		heightOffset = reqsPoint.Y() + outfitInfo.RequirementsHeight();
+		heightOffset = attrPoint.Y() + outfitInfo.AttributesHeight();
 	}
 
 	// Draw this string representing the selected item (if any), centered in the details side panel
@@ -368,7 +372,7 @@ bool OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 	if(!playerShip)
 	{
 		double mass = selectedOutfit->Mass();
-		return (!mass || player.Cargo().Free() >= mass);
+		return (!mass || player.Cargo().FreePrecise() >= mass);
 	}
 
 	for(const Ship *ship : playerShips)
@@ -487,7 +491,7 @@ void OutfitterPanel::FailBuy() const
 	if(!isInCargo && !isInStorage && cost > credits)
 	{
 		GetUI()->Push(new Dialog("You cannot buy this outfit, because it costs "
-			+ Format::Credits(cost) + " credits, and you only have "
+			+ Format::CreditString(cost) + ", and you only have "
 			+ Format::Credits(credits) + "."));
 		return;
 	}
@@ -503,7 +507,7 @@ void OutfitterPanel::FailBuy() const
 	{
 		GetUI()->Push(new Dialog(
 			"You don't have enough money to buy this outfit, because it will cost you an extra "
-			+ Format::Credits(licenseCost) + " credits to buy the necessary licenses."));
+			+ Format::CreditString(licenseCost) + " to buy the necessary licenses."));
 		return;
 	}
 
@@ -993,7 +997,7 @@ void OutfitterPanel::CheckRefill()
 		string message = "Do you want to reload all the ammunition for your ship";
 		message += (count == 1) ? "?" : "s?";
 		if(cost)
-			message += " It will cost " + Format::Credits(cost) + " credits.";
+			message += " It will cost " + Format::CreditString(cost) + ".";
 		GetUI()->Push(new Dialog(this, &OutfitterPanel::Refill, message));
 	}
 }

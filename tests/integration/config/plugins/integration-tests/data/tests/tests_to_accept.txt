@@ -1,0 +1,102 @@
+test-data "To Accept Blocks Accept Save"
+	category "savegame"
+	contents
+		pilot Billy Bughunter
+		date 29 11 3013
+		system Betelgeuse
+		planet Prime
+		# Set some reputations to positive to avoid combat
+		"reputation with"
+			Bounty 1
+			"Bounty Hunter" 1
+			Pirate 1
+		# What you own:
+		ship Sparrow
+			name "Agincourt"
+			sprite ship/sparrow
+			thumbnail thumbnail/sparrow
+			uuid 65f19ee4-5cc2-452c-9695-cc918710853c
+			attributes
+				category Interceptor
+				cost 225000
+				mass 50
+				bunks 3
+				"cargo space" 15
+				drag 0.9
+				"engine capacity" 40
+				"fuel capacity" 300
+				"gun ports" 2
+				"heat dissipation" 0.8
+				hull 300
+				"outfit space" 130
+				"required crew" 1
+				shields 1400
+				"weapon capacity" 25
+			outfits
+				"Beam Laser" 2
+				"Chipmunk Plasma Steering"
+				"Chipmunk Plasma Thruster"
+				"D14-RN Shield Generator"
+				Hyperdrive
+				"LP036a Battery Pack"
+				"nGVF-BB Fuel Cell"
+			crew 1
+			fuel 300
+			shields 1400
+			hull 300
+			engine -5 35
+				zoom 1
+				angle 0
+				under
+			engine 5 35
+				zoom 1
+				angle 0
+				under
+			gun -7 -10 "Beam Laser"
+				under
+			gun 7 -10 "Beam Laser"
+				under
+			leak flame 60 80
+			explode "small explosion" 5
+			explode "tiny explosion" 15
+			system Betelgeuse
+			planet Prime
+		account
+			credits 100
+			score 400
+			history
+		visited Betelgeuse
+		"visited planet" Prime
+
+test-data "To Accept Blocks Accept Mission"
+	category mission
+	contents
+		mission "%TEST%: TO ACCEPT BLOCKED MISSION"
+			source "Prime"
+			destination "Earth"
+			blocked "There mission is blocked because you are not in the right type of ship."
+			to offer
+				has "%TEST%: TO ACCEPT BLOCKED MISSION OFFER"
+			to accept
+				has "flagship model: Shuttle"
+			on offer
+				conversation
+					`THIS IS A TO ACCEPT BLOCKED MISSION YO!`
+						accept
+			on accept
+				set "fail test"
+
+test "To Accept Blocks Accepts When Conditions Fail"
+	status active
+	description "Test the the to accept block successfully blocks the mission if the conditions fail."
+	sequence
+		inject "To Accept Blocks Accept Mission"
+		# Create/inject the savegame and load it.
+		inject "To Accept Blocks Accept Save"
+		call "Load First Savegame"
+		apply
+			"%TEST%: TO ACCEPT BLOCKED MISSION OFFER" = 1
+		call "Trigger Prime Spaceport Mission"
+		call "Skip Spaceport Mission"
+		assert
+			"fail test" != 1

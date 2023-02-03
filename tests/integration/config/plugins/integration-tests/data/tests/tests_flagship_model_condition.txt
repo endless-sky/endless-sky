@@ -1,40 +1,28 @@
-test "Land - Clear flagship model condition helper"
-	status partial
-	description "Helper for landing while running the Clear flagship model condition test."
-	sequence
-		input
-			command land
-		label landing
-		branch landing
-			"flagship planet: New Boston" < 1
-		assert
-			"flagship planet: New Boston" > 0
-
-
 test "Clear flagship model condition"
 	status active
 	description "Test that the flagship model condition is correctly cleared."
 	sequence
 		# Create/inject the savegame and load it.
-		inject "Fighters and Carriers and Escorts"
+		inject "Fighters and Carriers and Escorts Save"
 		call "Load First Savegame"
 		call "Depart"
 		# We can only check the conditions after departing, since the conditions are not updated directly after loading or selling.
 		assert
 			"flagship model: Finch" == 1
-		call "Land - Clear flagship model condition helper"
+		# Landing clears the flagship's conditions.
+		call "Land"
 		call "Sell first ship"
 		call "Depart"
 		assert
 			"flagship model: Finch" == 1
-		call "Land - Clear flagship model condition helper"
+		call "Land"
 		call "Sell first ship"
 		call "Depart"
 		assert
 			and
 				"flagship model: Bactrian" == 1
 				"flagship model: Finch" == 0
-		call "Land - Clear flagship model condition helper"
+		call "Land"
 		call "Sell first ship"
 		call "Depart"
 		assert
