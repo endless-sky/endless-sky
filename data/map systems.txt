@@ -15428,7 +15428,6 @@ system Huud
 	belt 1319
 	haze _menu/haze
 	link Anbrim
-	link Cotpoxi
 	link Fscher
 	link Vesvii
 	asteroids "medium rock" 24 2.2
