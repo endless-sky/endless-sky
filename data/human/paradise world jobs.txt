@@ -842,13 +842,16 @@ phrase "insults for southerners"
 	word
 		"those '"
 	word
-		" "
-		"bloody "
-		"obviously guilty"
+		""
+		"bloody"
+		"jumpy"
 		"upstart"
 		"whining"
 		"stupid"
 		"seditious"
+		"treasonous"
+	word
+		" "
 	word
 		"southerners"
 		"collectivists from Bourne"
@@ -860,7 +863,7 @@ phrase "insults for southerners"
 		"unlawfuls from Thule"
 		"gunrunners from Rust"
 	word
-		"' "
+		"'"
 
 phrase "martini evac dialog"
 	word
@@ -872,14 +875,14 @@ phrase "martini evac dialog"
 		"the Free Worlds"
 		"${insults for southerners}"
 	word
-		"for the nuclear bombings"
-		"for the destruction"
-		"for the loss of life"
-		"for the destruction"
+		" for the "
 	word
-		" of their home city"
+		"nuclear bombings"
+		"destruction"
+		"devastation"
+	word
 		" on Martini"
-		""
+		" of their home city"
 	word
 		". They hand you <payment> and head off for their"
 	word
@@ -973,7 +976,7 @@ mission "Martini Bombings [Food]"
 	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help keep up supply. Payment is <payment>."
 	job
 	repeat
-	cargo "Food packages" 5 25
+	cargo "food packages" 5 25
 	clearance "When you explain to the spaceport controller that you are carrying a vital supply of <commodity> for the refugee camps, they give you the clearance to land."
 	to offer
 		has "event: war begins"
@@ -1011,7 +1014,7 @@ mission "Martini Bombings [Water Tablets]"
 
 
 mission "Martini Bombings [Relief People 1]"
-	name "<martini relief occupations> to Martini"
+	name "Relief workers to Martini"
 	description "Due to the recent nuclear bombings on Martini, bring <bunks> <martini relief occupations> to <planet> to release demand from overloaded hospitals. Payment is <payment>."
 	job
 	repeat
@@ -1039,7 +1042,7 @@ mission "Martini Bombings [Relief People 1]"
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Martini Bombings [Relief People 2]"
-	name "<martini relief occupations> to Martini"
+	name "Relief workers to Martini"
 	description "Due to the recent nuclear bombings on Martini, bring <bunks> <martini relief occupations> to <planet> to assist in the search and rescue efforts. Payment is <payment>."
 	job
 	repeat
@@ -1067,7 +1070,7 @@ mission "Martini Bombings [Relief People 2]"
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Martini Bombings [Relief People 3]"
-	name "<martini relief occupations> to Martini"
+	name "Relief workers to Martini"
 	description "Due to the recent nuclear bombings on Martini, bring <bunks> <martini relief occupations> to <planet> to assist in the accommodation and reconstruction efforts. Payment is <payment>."
 	job
 	repeat
