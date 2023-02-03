@@ -433,7 +433,7 @@ mission "Midas: Betrayal For The Bars"
 		or
 			random < 40
 			has "Midas: Who is the mad one?: active"
-		has "<unfettered mission> 3: Jump Drive Retrieval: done"
+		has "<unfettered mission> 3: Jump Drive Vault: done"
 		"flagship crew" > 4
 		"outfit (flagship cargo): Gold Bars" >= 5
 	on offer
@@ -580,27 +580,28 @@ conversation "midas: mission failure?"
 
 # SPOILERS: Midas want that governor down because she can easily help the Hai-Unfettered Hai unite, given she understands the Unfettered well.
 # They will only take her hostage here, she may come back later.
-mission "<unfettered mission> 7 B"
+mission "<unfettered mission> 6 B: To The Wolves"
 	landing
 	name "Feed them to the Wolves"
 	description "Take the governor's fleet to <waypoints> instead, where a fleet will be waiting for them."
 	source "Greenbloom"
 	destination "Warfeed"
 	to offer
-		has "<unfettered mission> 7 A: active"
+		has "<unfettered mission> 6 A: Loyal Escort: active"
 		has "midas: tracker relay"
 	on offer
 		dialog
 			`You are alone in your quarters, waiting for the security detachment of the Hai admiral to arrive, when you hear a mysterious voice.`
-			`	"She of the Void requests that you bring those ships to <waypoints>, without delay. Do so and you will be richly rewarded. Do not worry about the supplies, we will bring them to the Unfettered, we are only acting in their best interest, after all.`
-			`	"Whatever you decide, you do not want to speak of us to them," they add in a very serious tone.`
+			`	"She of the Void requests that you bring the Hai ships to <waypoints>, without delay, in order to preserve Unfettered integrity. Do so and you will be richly rewarded.`
+			`	"You do not need to worry about the supplies, we will bring them to the Unfettered, we are only acting in their best interest, after all.`
+			`	"Whatever you decide, you do not want to speak of us to them," they add in a very serious tone, before the transmission stops. You notice a contract on your desk computer, ready to be accepted.`
 			``
 			`	Do you accept this deal, or do you want to escort the governor as planned?`
 	waypoint "Waypoint"
 	on waypoint
 		"reputation: Midas" >?= 0
 		conversation
-			`One of the unindentified ships hail you. "Thank you, Captain. Here is part of your reward: 1 million credits. You may help us by taking out these Hai ships, but it may be wise not to so that the rest of the Hai government will not suspect you, and think this was an unfortunate pirate attack. When this is done, go to Warfeed for your reward. They are going to be in high need of food, and you should bring them as much as you can to compensate for this small... delay in Hai food supplies."`
+			`One of the unindentified ships hail you. "You did well, Captain. Here is part of your reward: 1 million credits. You may help us by taking out these Hai ships, but it may be wise not to so that the rest of the Hai government will not suspect you, and think this was an unfortunate pirate attack. When this is done, go to Warfeed for your reward. They are going to be in high need of food, and you should bring them as much as you can to compensate for this small... delay in Hai food supplies."`
 			`	Right after that, the governor's ship hails you. "What have you done?" You feel like she was about to continue, but before she could all communications are jammed.`
 			`	You can see some pirates present with the Mercenaries' fleets, probably to distract other Hai ships that happen to be in the system.`
 		payment 1000000
@@ -620,12 +621,12 @@ mission "<unfettered mission> 7 B"
 		conversation "midas: mission failure?"
 	to fail
 		or
-			has "<unfettered mission> 7 A: done"
-			has "<unfettered mission> 7 A: aborted"
+			has "<unfettered mission> 6 A: Loyal Escort: done"
+			has "<unfettered mission> 6 A: Loyal Escort: aborted"
 	on fail
 		conversation "midas: mission failure?"
 	to complete
-		has "<unfettered mission> 7 A: failed"
+		has "<unfettered mission> 6 A: Loyal Escort: failed"
 	on complete
 		"reputation: Midas" <?= -1000
 		clear "unfettered: stopped on Greenbloom"
@@ -639,15 +640,15 @@ mission "<unfettered mission> 7 B"
 
 
 # secret mission
-# happens if you accept a duel in "<unfettered mission> 8" (offered if your fleet is smaller than 2 heavy warships)
-mission "<unfettered mission> 8: Duel"
+# happens if you accept a duel in "<unfettered mission> 7: Stolen Cargo" (offered if your fleet is smaller than 2 heavy warships)
+mission "<unfettered mission> 7: Duel"
 	landing
 	source "New Tortuga"
 	name "Duel with the twins."
 	description "Beat the two twins today, or lose 10 million credits!"
 	to offer
 		has "midas: accepted duel"
-		has "<unfettered mission> 8: Cavalry Arrives: done"
+		has "<unfettered mission> 7: Cavalry Arrives: done"
 		"unfettered: cleaned up cerberus" > 1
 	on offer
 		dialog `The two mysterious ships hail you, "We are ready for a fight in orbit whenever you are. If you want, you can still call this off... for a quarter of the agreed price."`

@@ -147,411 +147,295 @@ mission "Unfettered: Untrustable"
 
 
 
-mission "Unfettered: Non Lethal Weapons"
-	invisible
-	source
-		attributes "unfettered"
-	to offer
-		has "main plot completed"
-		has "<unfettered mission> 21: active"
-	on offer
-		event "looking for a gun" 30
+event "unfettered: better sestor translator"
 
-event "looking for a gun"
-
-mission "Unfettered: Non Lethal Weapons Hint"
+mission "<unfettered mission> 13: Better Translator Directions"
 	minor
-	name `Learn more about the Pug.`
-	description `Go to <destination> to see if you can ask Admiral Danforth or the Oathkeepers about what kind of weapons the Pug used, which may be of interest to He-Yi.`
-	destination "Farpoint"
-	to offer
-		has "event: looking for a gun"
-		has "<unfettered mission> 21: active"
-		not "outfit (all): Pug Peacekeeping Staff"
-	on offer
-		conversation
-			`As you land on this planet, you think back of the peculiar request He-Yi made to you: bring back non-deadly weapons. After thinking a while about it, you remember tales about the Pug having special weapons that could easily knock people out. Maybe you should go to <destination> and speak to the Oathkeepers about this.`
-				accept
-	to fail
-		has "<unfettered mission> 21: done"
-	on complete
-		conversation
-			`You cannot find Admiral Danforth, and wager he's probably busy with the pirates above. You think of disturbing him, but another Oathkeeper sees you and asks what you're looking for. You start speaking with him of the Pug war, and recognizing you, he seems eager to share his experience.`
-			`	"I was a simple soldier fighting with the rest of the fleet, in the Republic, at that time. We managed to find an isolated and disabled Pug ship. That by itself seemed like an opportunity too good to let go. Given we were in a Cruiser, we did not fear the crew of such a small ship. But we were wrong: as soon as we boarded said ship, we knew something was wrong. But we were committed, so we went in anyway. Being a soldier, I was on the front line, and I saw things... Things you do not want to see, trust me. I saw people falling for no apparent reason. But that was not the worst of it. As you can see, I have survived, and that by itself is terrifying. They shot me! They shot me, and yet I lived."`
-			`	You thank him for telling you this story and then think to yourself. This means there is a good chance the Pug have the non-lethal weapons you are looking for. Now you just have to find the Pug, but they'll probably not give you these weapons willingly...`
-
-
-
-outfit "Mystery Cube"
-	category "Special"
-	cost 1000000
-	thumbnail "outfit/unknown"
-	mass 1
-	installable -1
-	description "You have no idea what this is."
-
-ship "Marauder Leviathan" "Leviathan (Cube)"
-	"crew" 69
-	outfits
-		"A370 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Anti-Missile Turret"
-		"D94-YV Shield Generator"
-		"Fusion Reactor"
-		Hyperdrive
-		"LP144a Battery Pack"
-		"Laser Rifle" 69
-		"Security Station" 5
-		"Liquid Helium Cooler"
-		"Luxury Accommodations"
-		"Proton Turret" 3
-		"Outfits Expansion"
-		Torpedo 102
-		"Torpedo Launcher" 4
-		"Torpedo Storage Rack" 6
-	cargo
-		outfits
-			"Gold Bars" 15
-			"Mystery Cube"
-
-mission "<unfettered mission> 18 A"
-	minor
-	name `Mystery item`
-	description `Go to <waypoints> and find a way to acquire a "unique" item from the prominent warlord there. Her ship is the <npc>, once you have retrieved it bring the item to He-Yi on <planet>.`
+	name "Find Choot'k"
+	description "Go to <destination> to find Choot'k. He should be on top of the biggest mountain."
+	source "Darkcloak"
+	destination "Firelode"
 	to offer
 		has "salary: Unfettered"
-		random < 20
-	waypoint "Alcyone"
-	destination "Warfeed"
+		has "Hai Reveal [C01] Cleanup: done"
+		or
+			has "<unfettered mission> 13: Korath Specialty: offered"
+			random < 15
 	on offer
 		conversation
-			`You are starting to get quite used to Unfettered spaceports: the dilapidation of different non-essential structures is beginning to feel normal. You feel like you need a change of scenery, so you wander to a side of the spaceport you have not explored before, but it turns out not to be very different.`
-			`	Your thoughts are interrupted by a local Unfettered wearing a strange mask of some kind of bird, who seems to have a very important message to give you given how fast he is speaking. "He-Yi has asked me to deliver you a message! It has come to his attention that an item of great importance to us is currently in the possession of an unfettered human warlord." You guess that he means a pirate leader. "The warlord can be found in <waypoints>. We want you to go and retrieve that item right now - by any means."`
+			`Do you want to go see Choot'k, to talk with him of the past and maybe see if you could do something for him?`
+				to display
+					not "<unfettered mission> 13: Korath Specialty: offered"
+			`Do you want to go see if Choot'k can do something to improve the translator, as Mera suggested?`
+				to display
+					has "<unfettered mission> 13: Korath Specialty: offered"
 			choice
-				`	"How will I know which warlord it is?"`
-			`	"It is no common warlord. To tell you the truth, she is the most powerful warlord there, and her ship is the 'Degenerate.' You may have to bring it down in order to complete the mission. She may accept a payment instead, but do remember, we are not willing to pay a fortune for this item. If you cannot face her, you may have to use quite a large sum of your own money.`
-			`	"This warlord, Mhairi, has beaten the previous warlord in power there, right after he sent the orders to acquire the item. She may not know about it yet, but the officers of the previous warlord probably will - and those officers are now hers. Also, you shouldn't worry about how to identify said item. It is... unique. You will understand once you see it. Once you have it, bring it back to my master. You have been given access to his war room on <planet>."`
-			choice
-				`	"I will depart as soon as I can."`
-					accept
-				`	"Is it common for the Unfettered to use heralds to bring messages?"`
-				`	"This seems too risky for me."`
+				`	(Yes.)`
+				`	(Not now.)`
+					defer
+				`	(Never.)`
 					decline
-			`	"We don't believe technical ways of communicating to be safe, and they break the link between us. Messages could easily be spied upon by anyone intercepting it, so for some confidential missions like this one, it is quite common to use heralds. On top of that, the warlords generally have better things to do than moving around giving missions all the time. Do you have enough information? What shall I say to my warlord?"`
-			choice
-				`	"I will depart as soon as I can."`
-					accept
-				`	"You could have just sent a message on a secure channel."`
-			`	"What is secure? There is no code that cannot be broken, and I did not have to travel far anyway. The Fettered Hai have become quite apt at languages, with their interest to communicate with other species like the Quarg or humans. Encryption is just like another language. We cannot risk them learning of this particular mission - you will understand why later. Information is the key here, and it always has been. We also don't want those north to learn from this. They would surely be able to decrypt it.`
-			`	We are not all as brutal as we let other races think. My warlord believes that it is to our advantage to not appear cunning, so that they may underestimate us." He seems to have had enough of talking, and is now waiting for you to answer He-Yi's request.`
-			choice
-				`	"I will depart as soon as I can."`
-					accept
-				`	"This seems too risky for me."`
-					decline
-	on waypoint
-		dialog `It seems that the <npc> is in this system, and a Syndicate attack just launched. Judging by the marks on its hull, it will likely land to make repairs and restock ammo soon. You may be able to get the item without too much risk that way, and bribing them will mean secure landing. Or you could always just board it now and be done with it. You could even sabotage the ship to make your job easier, or take some more valuables with you.`
-	npc board
-		personality staying target
-		to despawn
-			has "<unfettered mission> 18 B: active"
-		government "Mhairi's Legion"
-		system "Alcyone"
-		ship "Leviathan (Cube)" "Degenerate"
-		dialog `You have managed to disable and board Mhairi's flagship. The item that fits best the description given is without any doubt the Mystery Cube. Bring it back to <destination>.`
-	# note: this only works because the fleets do not fight if you are not in the system.
-	# If that was to change we'd need a temporary fleet with an event changing the reputation.
-	npc
-		personality coward plunders vindictive staying
-		government "Mhairi's Legion"
-		system "Alcyone"
-		fleet "Large Northern Pirates" 4
-		fleet "Small Northern Pirates" 6
-	npc
-		personality derelict uninterested coward
-		government "Mhairi's Legion"
-		system "Alcyone"
-		fleet "Large Northern Pirates"
-		fleet "Small Northern Pirates"
-	npc
-		personality heroic staying entering disables
-		to despawn
-			has "<unfettered mission> 18 B: offered"
-		government "Syndicate"
-		system "Alcyone"
-		fleet "Large Syndicate" 3
-	npc
-		personality derelict uninterested coward
-		to despawn
-			has "<unfettered mission> 18 B: offered"
-		government "Syndicate"
-		system "Alcyone"
-		fleet "Large Syndicate"
-	on visit
-		dialog `You don't have the item He-Yi asked for. Or you have not brought the right item back. If that's the case, go back and board the ship to take the right item.`
-	on complete
-		require "Mystery Cube"
-
-
-# This mission triggers when you land on the world instead of taking the cube in orbit, either bargain for it or steal it (or the wrong item)
-mission "<unfettered mission> 18 B"
-	landing
-	invisible
-	source "Stormhold"
-	destination "Warfeed"
-	to offer
-		has "<unfettered mission> 18 A: active"
-		not "outfit (all): Mystery Cube"
-	on offer
-		conversation
-			`The final Syndicate ships are being taken out as you land on the planet next to another empty spot, hoping the Degenerate will land there. She does not seem to want to take any chances, and lands near a few of her own warships. As you depart the ship, your hairs stand up on the back of your neck. You try to get close to the Degenerate without drawing too much attention to yourself, and eventually arrive there, undetected.`
-			choice
-				`	(Try to steal the item.)`
-					goto steal
-				`	(Try to bargain.)`
-					goto bargain
-				`	(Try to take an isolated pirate captive and ask for the item in exchange.)`
-			`	In front of the ship there's a group of pirates, and you see one of them separate from the others to go within the ship. Judging from his appearance and the way others were addressing him, you assume him to be the leader of that small band, at least. You sneak past the group in front and follow him.`
-			branch luckyish
-				random < 20
-			`	You get close up behind him and are about to pull your gun... when he suddenly turns back and throws the hardest haymaker you've ever experienced! You drop like a sack to the floor and never wake up again. That pirate probably has had some experience with back-stabbings before.`
-				die
-			label luckyish
-			`	You get close up behind him and are about to pull your gun... when he draws a sudden breath and begins to turn around! Fortunately, you're quicker, and you have your firearm pointed at him before he can do anything. Obviously experienced with hostage situations and prioritizing his own safety, he doesn't try to call for help. You present yourself to the group outside, with the gun still pointed at your hostage. The pirates look at each other and begin laughing before you die in a barrage of laser fire from the group, annihilating you and your hostage. It seems that they couldn't care less about their companions' lives.`
-				die
-			label steal
-			`	You manage to enter the ship discreetly. Some people will always notice, but you try to pose as a spaceport worker there to assist with the repairs, using equipment you find lying around. You should be able to go pretty much anywhere on the ship. You don't have any idea which part of the ship is actually damaged though, so your cover could easily be blown. There is no going back now, except maybe if you choose to provoke the pirate warlord into a fight to get the item.`
-			choice
-				`	(Search the lower decks.)`
-				`	(Search close to the weapons stations.)`
-					goto weapons
-				`	(Search the bridge.)`
-					goto bridge
-				`	(Look near the engines.)`
-					goto engine
-				`	(Check among the cargo.)`
-					goto cargo
-				`	(Search the upper decks.)`
-				`	(Leave the ship before you get caught and provoke the warlord.)`
-					goto challenge
-			`	You notice a lot of security stations around, they obviously care a lot about their warlord's security.`
-				goto caught
-			label weapons
-			`	This part of the ship is mostly full of torpedoes - apparently the warlord loves them. But there are not many people here, since it does not seem to have suffered damage. The torpedoes will probably be restocked soon, so you leave before someone comes in and notices you.`
-				goto found
-			label bridge
-			`	This bridge is very luxurious, you see that this warlord likes comfort, for herself at least. But you cannot find anything that looks unique at all.`
-				goto caught
-			label cargo
-			`	There are a lot of exotic things here, most of which are probably not legal at all. You better choose what to take with you, and fast! You also notice the presence of gold bars. There's no way you could carry all of them back with you discreetly, but you can drop them off the ship and then go grab them once you are out, hoping nobody will notice. Looking through a porthole, you don't see anyone around at the moment. Conveniently, there is even some sand on the ground there, so the bars should sink in, and be harder to notice.`
-			branch knowsbars
-				has "Midas: Betrayal For The Bars: declined"
-			`	It may not be what you're looking for, but these bars are probably worth a small fortune, and you reckon you could get away with a few tons of them, with some luck and an antigrav unit that a fellow crew member could bring, if you only threw these out the window. They have special markings on them and are probably worth more than the value of the gold alone! You can always take out the pirate lord's ship afterward and claim them as your own, as they are more heavy and take more space than any of the other items which could interest the warlord.`
-				goto fake
-			label knowsbars
-			`	You recognize the same bars that earned you betrayal from a member of your crew. Something about them must make them special and hugely valuable to those who know of it.`
-				goto fake
-			label engine
-			`	These are some fine last-generation atomic engines, a true beauty in your eyes. But admiring the engines doesn't help you find the item at all. Why would there be anything near the engines?`
-				goto caught
-			label fake
-			choice
-				`	(Take a heavily-modified alien looking pistol.)`
-				`	(Take a strong personal shield.)`
-				`	(Take what looks like a bomb.)`
-				`	(Drop some bars on the ground to take them later.)`
-					goto takebars
-			label wrongitem
-			`	You take the item, hoping it is the right one, and swiftly leave the ship. If only you had been given a more precise description, you could know for sure. Some pirates seem to notice you, and maybe they suspect something or recognize this item, but nobody tries to stop you. As you reach your ship, you notice that the Degenerate just launched, right before you. They must have noticed the item was missing.`
-				flee
-			label takebars
-			`	How many stacks of bars will you take? The more, the bigger the risk and reward...`
-			choice
-				`	(One will do.)`
-					goto one
-				`	(Three should be enough.)`
-					goto three
-				`	(Five.)`
-					goto five
-				`	(Eight could be reasonable.)`
-				`	(Take as much as I can: fifteen!.)`
-				`	(Never mind, this isn't a good idea.)`
-					goto fake
-			`	You got too greedy. As you're dropping the bars, you feel something cold hit your head. You never wake up again.`
-				die
-			label one
-			action
-				outfit "Gold Bars"
-			`	You are able to take one stack of gold bars in very little time, wonder if you could have gotten away with more.`
-				goto dropbars
-			label three
-			action
-				outfit "Gold Bars" 3
-			`	You decide to take three stacks of gold bars, they feel heavy but are not too much to carry around by yourself.`
-				goto dropbars
-			label five
-			action
-				outfit "Gold Bars" 5
-			`	Five stacks is a hefty amount, you are constantly looking over your shoulder in fear of being spotted as you move them near the airlock.`
-			label dropbars
-			`	You drop the gold on the ground, and then leave the ship. Afterwards, you go around to the location where they are partially buried in the sand, and take them discreetly with some members of your crew. You have to silence one or two curious pirates, but that's about it, and you can now head back to your ship. As expected, they have noticed the theft. You see them launching before you can do so yourself. This will be a bumpy ride.`
-				flee
-			label caught
-			`	You do not manage to find the item here. However, you've attracted way too much suspicion by looking and opening crates everywhere you could. One local worker asks you something about mechanics. Being no engineer yourself, you cannot make any sense of what he says, even less formulate a correct response, and he calls a guard over you. You are captured and sold as a slave, condemned to a few years of hard work before a sad death.`
-				die
-			label found
-			choice
-				`	(Take an alien-looking modified torpedo warhead.)`
-					goto stupid
-				`	(Take an alien skull.)`
-					goto wrongitem
-				`	(Take a weird-looking small cube.)`
-			action
-				log `Managed to steal a very precious mystery cube from a pirate ship.`
-			`	Surprisingly, you appear to have found what you were looking for: a small cube, completely regular and seemingly alien in design. Maybe the warlord was not aware of its value, considering she placed it here, without much protection or even trying to hide it. This has to be the item that He-Yi wants, so you take it with you. Its small size makes it easy to conceal as you make your way off the ship and back to your own. This probably will not go unnoticed for long however, so you launch as soon as you can. The original pirate fleet is already heading your way as you are leaving the atmosphere.`
-				launch
-			label stupid
-			`	You try to disassemble the torpedo, but you do not have enough time to do so.`
-				goto caught
-			label bargain
-			`	You ask around and find the first mate, Mip. He seems intrigued by your request for a small and precious item that their boss has just acquired. "Yeah, I think I know what you're talking about - matter o' fact, the old boss knew 'bout it and ordered it delivered to him. Mhairi don't know about it yet - guess she don't need to know. Mystery, adds value on the black market, ya see. Also, 'cause I don't know you, you'd have to pony up some serious moolah if ya really want it, especially since ya can't just go and talk to the boss about it." He thinks a bit, assessing your appearance and clothing to estimate how much you might be willing to pay. He also checks his pad, probably searching for records of your ship and fleet. "10 million credits," he says in a definitive tone.`
-			choice
-				`	"That low? Well, here you go mate."`
-					to display
-						credits > 10000000
-				`	"I don't have that kind of money. Maybe we could negotiate?"`
-					goto negotiate
-				`	"There's no way I'm paying so much for an item I haven't even seen! I challenge your warlord to a fight."`
-					goto challenge
-			action
-				payment -10000000
-			`	He seems disappointed, but he shows you to the item, a little cube, and you bring it back to your ship without any trouble. He also signals the local warships belonging to the warlord to let you leave without trouble.`
-				goto leaveinpeace
-			label negotiate
-			`	"I can cut it down by... 2 million. Last chance, boy. 8 million credits, what do ya say?"`
-			choice
-				`	"Deal!"`
-				`	"There's no way I'm paying so much for an item I haven't even seen! I challenge your warlord to a fight."`
-					goto challenge
-			`	He seems disappointed to have only 8 million credits, but you feel like he still had the upper hand in that trade. He shows you to the item, a little cube, and you bring it back to your ship without any trouble. He also signals the local warships belonging to the warlord to let you leave without trouble.`
-			action
-				payment -8000000
-			label leaveinpeace
-			action
-				set "midas: brokered deal"
-				"reputation: Mhairi's Legion" >?= 1
-				log `Bought a mystery cube off pirates for the Unfettered. The price tag was large.`
-			`	You head to your ship, preparing to leave the planet. No pirates try to stop you on the way. In fact, the pirates in orbit are no longer hostile to you. It seems like they respected the agreement.`
+			`	You head to his throne room to see him, and this time the Unfettered guards have no issue with letting you pass. It is only once you enter the room you learn he is missing from one of his aid. They tell you to go look on Firelode, on top of the biggest mountain, as that's probably where he would be.`
 				accept
-			label challenge
-			`	You launch your fleet and send a challenge to the warlord, putting her authority and competence in question. She cannot resist the urge to come and kill you, you only hope you can beat her and collect the item from her ship.`
-				flee
-	on accept
-		outfit "Mystery Cube"
 
-
-# you may refuse to set it up to not spread mistrust with the Hai.
-mission "<unfettered mission> 18: Spying On Hai-Home"
+mission "<unfettered mission> 13: Better Translator"
 	landing
-	name `Mystery Gathering`
-	description `Collect a tribute of food from <stopovers>, and place the mystery cube without anyone noticing.`
-	source "Warfeed"
-	stopover "Mirrorlake"
-	cargo "food (tribute)" 93
-	blocked `You need <tons> of cargo space for the next Unfettered mission.`
+	name "Speak Sestor"
+	description "Go to <stopovers> to acquire the records of Sestor language."
+	source "Firelode"
+	stopover "Hai-home"
+	destination "Darkcloak"
+	passengers 1
 	to offer
-		has "<unfettered mission> 18 A: done"
+		has "<unfettered mission> 13: Better Translator Directions: offered"
 	on offer
 		conversation
-			branch "took on the ground"
-				not "<unfettered mission> 18 B: done"
-			action
-				log `Recovered a mystery cube from a pirate ship in the heat of battle.`
-			label "took on the ground"
-			`You find He-Yi in his war room, which is full of strange objects - only half of which appear to be weapons. You notice some keystone carvings, but also a statue, probably of some Hai goddess. He seems to have disciples, serving as his eyes and ears everywhere. You bring him the cube. "Very well done! But this is not all. You will have a big [reward, payment] once the mission is completed."`
-			branch nodeal
-				not "midas: brokered deal"
-			action
-				payment 2000000
-			`	You tell him that you had to pay a few millions to get the cube. "You were not supposed to negotiate, but I guess that is acceptable. These <payment> will [alleviate, reduce] the cost. Next time try to show more [cunning, strength]. Thankfully, money is not really much of an issue to us."`
-			label nodeal
-			`	"I want you to go to <stopovers> and collect a tribute of food for us there. This will give you a [pretext, reason] for going to their world, because otherwise I fear they may be curious about your [reasons, intentions]. While there, I want you to place this device you recovered somewhere on the surface, discreetly," he explains. "It doesn't matter where as long as no one [noticed, suspects]. You'll also need to be able to tell me exactly where it is so it can be [retrieved, used] later."`
+			`	You climb on top of the greatest mountain when you find Choot'k is indeed there, admiring the view.`
+			scene "scene/chootk firelode"
+			`	He notices your arrival and invites you to admire the view as well. He seems happy to see you. "<first>! It's been a while, but I keep hearing rumors about you. One day you may even threaten to take my place..." You see his grip around his blade tightening. For a few seconds you can feel some tension, but then he laughs.`
+			`	"No, not yet, at least. Now, I would duel you if I had the time, but I have duties to attend to, which you may help me with, actually. I want to go to <stopovers> to get the records of Korath interactions before the raids. Mera has informed me that the translator - whilst better than nothing - is not sufficient for all the tasks we have in mind."`
+			`	"I am sure you have already noticed that communication with the Korath can be... difficult, since you met them."`
+				to display
+					has "<unfettered mission> 13: Korath Specialty: offered"
+			label choice
 			choice
-				`	"Is this the real reason for my trip, like with the shipyard?"`
-			`	"Indeed. The Hai seem almost eager to allow our operatives into their space to collect tributes, why should I change my [tactics, plans] when there is no need?"`
-			choice
-				`	"I'll do it."`
+				`	"Let's go then."`
 					accept
-				`	"What will this cube do?"`
-				`	"I was almost caught last time. I'm not trying again."`
-					decline
-			`	"You have earned the right to know, considering it is you who brought it to us. It's a very [complex, advanced] surveillance device, which should record everything that happens on the world as well as in [the system, space]."`
-			choice
-				`	"Why this particular world?"`
-			`	"All important Hai ships are built on our homeworld. That would be a perfect place to put this cube, but we don't want to bring too much [heat, attention] onto you. As you know, that's where most of their larger ships are made, and ships that get produced there are sent to the worlds which border ours. Also, because this is their home system, it makes sense that a lot of their fleets go through it. We want to learn more about their fleet [movements, activities], in order to be able to react in time should the worst arrive. Of course, we need something [unpredicted, discreet] to do it, else our operatives could get caught."`
-			choice
-				`	"If it's so sensible to movement all over the system, you could just have me place the cube in orbit."`
-			`	"We could, but it would be very suspicious for you to just go in that system and then come back here, and we don't want to risk anyone finding it by [chance, accident]. We have other reasons for wanting the cube on the planet, but I cannot tell you everything or I would risk much should you be [captured, coerced]. You already know more than [you should, I would prefer]."`
-			choice
-				`	"Won't the Hai see this as a sign of mistrust? I don't think we should do this."`
-				`	"I'll do it."`
-					accept
-				`	"I was almost caught last time. I'm not trying again."`
-					decline
-			`	"You're right actually... This would be a sign of mistrust, showing that we even dare to suspect they could attack us... You don't have to do this, we can always keep the cube in reserve."`
-			choice
-				`	"I say we should trust the Hai indeed. They could have swarmed you ages ago if they really wanted to."`
-				`	"Damn the Hai, I still want to do it."`
-					accept
+				`	"Would they just give that information to you?"`
+					to display
+						not "unfettered: why give info"
+				`	"How would they even have such data, I thought you were at war with the Korath?"`
+					to display
+						not "unfettered: how got info"
+					goto war
+				`	"I don't have the time right now, but I'll come back once I do."`
+					defer
 			action
-				outfit "Mystery Cube" -1
-				set "unfettered: mystery cube"
-				"unfettered: He-Yi' opinion" ++
-			`	This seems to anger his pride a bit, but he knows full well that statement to be true. You give him the cube so it could be used later.`
-				decline
-	to complete
-		has "<unfettered mission> 18: Place Cube: offered"
-	on visit
-		dialog phrase "generic missing stopover or cargo"
+				set "unfettered: why give info"
+			`	"Of course they would, that is information accessible by all Hai, it simply is only stored on the homeworld, for convenience. I will also give them all data collected from our translator in exchange."`
+				goto choice
+			label war
+			action
+				set "unfettered: how got info"
+			`	"We Hai have not always been in conflict with the Korath. At some point we were even friendly with the Sestors, before they started raiding us, that is. We refused to go to war, so war came to us."`
+				goto choice
+	on stopover
+		dialog `The Hai are more happy to give you this data in exchange for data on the translator itself.`
+		set "unfettered: stopped on hai-home"
+	npc evade
+		government "Cerberus"
+		personality waiting nemesis disables plunders vindictive
+		to spawn
+			has "unfettered: stopped on hai-home"
+		fleet "Large Northern Pirates" 3
+		fleet "Small Northern Pirates" 3
+	on fail
+		dialog `Choot'k managed to get out from the ship before it exploded, by heading to an escape hatch when it started getting messy. His suit protected him from space long enough for a Hai ship to pick him off. However, he will probably not attempt something like this again...`
 	on complete
-		log `Placed a mysterious cube in a clearing on Mirrorlake. It should give intel on Hai ship movements to the Unfettered.`
-		payment 5000000
-		dialog `He-Yi is more than happy to see you in his throne room, and gives you a generous payment of <payment>.`
+		log `Went to Hai-home with Choot'k to gather some data on the Sestor language from before the raids started. We got attacked by Cerberus, they were probably after him.`
+		clear "unfettered: stopped on hai-home"
+		clear "unfettered: why give info"
+		clear "unfettered: how got info"
+		event "unfettered: better sestor translator" 45
+		dialog "Choot'k thanks you, and tells you they will be able to upgrade the translator so they can communicate better with the Sestor."
 
-mission "<unfettered mission> 18: Place Cube"
+# SPOILER: they see this as an opportunity to get the leader and also don't want the Unfettered (and you) to be able to communicate too deeply with Sestors...
+mission "<unfettered mission> 13: A Warlord's Reception"
 	landing
 	invisible
-	source "Mirrorlake"
+	source "Hai-home"
+	destination "Darkcloak"
 	to offer
-		has "<unfettered mission> 18: Spying On Hai-Home: active"
+		has "<unfettered mission> 13: Better Translator: active"
+	on enter
+		# SPOILER: he doesn't want them to get destroyed by the Hai because that would damage Alpha-Unfettered reputations, also he takes it as a challenge to his strength (except he's on your ship)
+		dialog `Upon entering the system you see multiple Cerberus ships, ready to attack you. Choot'k sends a message to the Hai. "Do not interfere, it would damage both my honor and <last>'s!" He did not ask for your opinion, but thankfully you have seen worse than a bunch of pirates.`
+
+
+
+conversation "modified shield beetle prize"
+	action
+		set "unfettered: given the modified beetle"
+	`As promised by Mera, you find the unusual Shield Beetle that seems to be waiting for you. There is a projected message on the hull of the ship: "Here is your very special reward, Captain. As promised, it is equipped with plenty of prototype weapons and has some particulars which I am sure you will like, and includes a reinforced shield matrix. Please accept this as a way for me to thank you for your assistance so far!"`
+	`	When you enter the ship you realize that something is blinking red in the cockpit. Getting close you realize it is a communicator with a high priority message from Mera. Once the ship recognizes your identity, it displays the message. "This is for your eyes only. This ship is not just given to you for you to have fun shooting around. It includes a very advanced communicator, that we would not replace should you lose it. Eventually you will be able to use it to coordinate fleet actions, or even to call for reinforcements, I hope."`
+	branch "has communicator"
+		has "language: Wanderer"
+	`	"Once you acquire a translator we will include it in your ship so you may easily communicate with any Hai."`
+		goto then
+	label "has communicator"
+	`	"Since you already have a translator, here are the instructions to equip it on your ship." You install it on your ship as requested, and do a little test to make sure it is working properly.`
+	label then
+	`	"As you may have guessed by now, this ship is way more than just a ship. It is a symbol. As such, it will grant you access to the ionic weaponry on Darkcloak. You can park it anywhere in the galaxy and we will know, using the communicator, but should you lose it you will also lose access to those weapons. It is a symbol of trust, like a license you humans use, if you will."`
+	`	The message ends. Time to try the new beetle to see what it can do.`
+
+mission "<unfettered mission> 15: Modified Beetle: Normal Prize"
+	landing
+	invisible
+	source "Darkcloak"
+	to offer
+		has "<unfettered mission> 15: Modified Beetle: done"
+		has "unfettered: prize right away"
 	on offer
-		outfit "Mystery Cube" -1
-		conversation
-			"You land, and the Hai start loading their food onto your ship. You tell them you want to stretch your legs (which isn't entirely a lie), and they don't appear to suspect a thing. You find a clearing and choose to bury the cube just below the ground. You remember to mark the exact spot, and then you return to your ship."
+		conversation "modified shield beetle prize"
+		give ship "Modified Shield Beetle" "Basilisk"
+
+mission "<unfettered mission> 15: Modified Beetle: Custom Price Notification"
+	landing
+	invisible
+	destination "Darkcloak"
+	to offer
+		or
+			has "event: unfettered: more dakka"
+			has "event: unfettered: cooler"
+			has "event: unfettered: disable-er"
+			has "event: unfettered: syscore's got it"
+		not "unfettered: given the modified beetle"
+	on enter "Wah Yoot" "Hi Yahr" "Ehma Ti"
+		dialog `You receive a message from Mera, "The ship is ready and waiting for you on Darkcloak, captain."`
+
+event "unfettered: more dakka"
+
+ship "Modified Shield Beetle" "Modified Shield Beetle (Blaster)"
+	outfits
+		"Ionic Blaster Prototype" 8
+		"Ionic Turret Prototype" 2
+		"Chameleon Anti-Missile"
+		"Boulder Reactor" 2
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator" 3
+		"Hai Zephyr Cooling" 3
+		"Outfits Expansion"
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+		"Quantum Keystone"
+
+mission "<unfettered mission> 15: Modified Beetle: Custom Price A"
+	landing
+	source "Darkcloak"
+	to offer
+		has "<unfettered mission> 15: Modified Beetle: done"
+		has "event: unfettered: more dakka"
+	on offer
+		conversation "modified shield beetle prize"
+		give ship "Modified Shield Beetle (Blaster)" "Basilisk"
+
+
+event "unfettered: cooler"
+
+ship "Modified Shield Beetle" "Modified Shield Beetle (Heat Shunt)"
+	outfits
+		"Ionic Blaster Prototype" 4
+		"Hai Tracker Pod" 4
+		"Ionic Turret Prototype" 2
+		"Chameleon Anti-Missile"
+		"Boulder Reactor" 2
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator" 3
+		"Hai Zephyr Cooling"
+		"Large Heat Shunt"
+		"Hai Tracker" 224
+		"Outfits Expansion"
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+		"Quantum Keystone"
+
+mission "<unfettered mission> 15: Modified Beetle: Custom Price B"
+	landing
+	source "Darkcloak"
+	to offer
+		has "<unfettered mission> 15: Modified Beetle: done"
+		has "event: unfettered: cooler"
+	on offer
+		conversation "modified shield beetle prize"
+		give ship "Modified Shield Beetle (Heat Shunt)" "Basilisk"
+
+
+event "unfettered: disable-er"
+
+ship "Modified Shield Beetle" "Modified Shield Beetle (Ionic Turret)"
+	outfits
+		"Ionic Blaster Prototype" 4
+		"Hai Tracker Pod" 4
+		"Ionic Turret Prototype" 3
+		"Boulder Reactor" 2
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator" 2
+		"Hai Zephyr Cooling" 3
+		"Hai Tracker" 224
+		"Outfits Expansion"
+		"Hai Octopus Jammer"
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+		"Quantum Keystone"
+
+mission "<unfettered mission> 15: Modified Beetle: Custom Price: C"
+	landing
+	source "Darkcloak"
+	to offer
+		has "<unfettered mission> 15: Modified Beetle: done"
+		has "event: unfettered: disable-er"
+	on offer
+		conversation "modified shield beetle prize"
+		give ship "Modified Shield Beetle (Ionic Turret)" "Basilisk"
+
+
+event "unfettered: syscore's got it"
+
+ship "Modified Shield Beetle" "Modified Shield Beetle (Large Systems Core)"
+	outfits
+		"Ionic Blaster Prototype" 4
+		"Hai Tracker Pod" 4
+		"Ionic Turret Prototype" 2
+		"Chameleon Anti-Missile"
+		"Boulder Reactor" 2
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator"
+		"Systems Core (Large)"
+		"Hai Octopus Jammer"
+		"Hai Zephyr Cooling" 3
+		"Hai Tracker" 224
+		"Outfits Expansion"
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+		"Quantum Keystone"
+
+mission "<unfettered mission> 15: Modified Beetle: Custom Price: D"
+	landing
+	source "Darkcloak"
+	to offer
+		has "<unfettered mission> 15: Modified Beetle: done"
+		has "event: unfettered: syscore's got it"
+	on offer
+		conversation "modified shield beetle prize"
+		give ship "Modified Shield Beetle (Large Systems Core)" "Basilisk"
 
 
 
-mission "<unfettered mission> 19: Wanderer Homeworld"
+mission "<unfettered mission> 18: Wanderer Homeworld"
 	invisible
 	source "Darkcloak"
 	destination "Vara K'chrai"
 	clearance "You manage to make the aliens understand you are here to talk, and they allow you to land."
 	to offer
-		has "<unfettered mission> 16: done"
+		has "<unfettered mission> 12: Outfitter Upgrade: done"
 		not "language: Wanderer"
 	to fail
-		has "<unfettered mission> 19: failed"
+		has "<unfettered mission> 18: Hai Language: failed"
 	on enter "Ka'ch'chrai"
 		dialog `Judging by the population compared to the other worlds, this appears to be the capital of these aliens. You should land to introduce yourself as a diplomat between them and the Hai.`
 
-mission "<unfettered mission> 19"
+mission "<unfettered mission> 18: Hai Language"
 	minor
 	name `Meet and understand the Wanderers`
 	description `You need to be able to act as a diplomat between the Hai and the aliens up north. First go and meet those aliens. Then go to <stopovers> to see if He-Yi will provide a translator for you.`
 	source "Darkcloak"
 	stopover "Warfeed"
 	to offer
-		has "<unfettered mission> 16: done"
+		has "<unfettered mission> 12: Outfitter Upgrade: done"
 		not "language: Wanderer"
 	on offer
 		conversation
@@ -590,13 +474,14 @@ mission "<unfettered mission> 19"
 
 
 
-mission "<unfettered mission> 19: Detainer For Translator"
+# the detainer is not for him but for the Sigil, although he can get it trough other means
+mission "<unfettered mission> 18: Detainer For Translator"
 	landing
 	name `Recover a detainer`
 	description `He-Yi has asked you to earn a translation device by bringing back a powerful alien weapon, said to be able to neutralize the engines of its target. You should probably look east of Unfettered space.`
 	source "Warfeed"
 	to offer
-		has "<unfettered mission> 19: active"
+		has "<unfettered mission> 18: Hai Language: active"
 		or
 			has "First Contact: Wanderer: offered"
 			has "First Contact: Wanderer (Before hai): offered"
@@ -622,7 +507,7 @@ mission "<unfettered mission> 19: Detainer For Translator"
 					accept
 				`	"This is way too risky. I'm out."`
 			action
-				fail "<unfettered mission> 19: Scout Wanderer Systems"
+				fail "<unfettered mission> 18: Hai Language: Scout Wanderer Systems"
 	to fail
 		has "language: Wanderer"
 	on visit
@@ -632,11 +517,11 @@ mission "<unfettered mission> 19: Detainer For Translator"
 		set "language: Wanderer"
 		dialog `He-Yi is impressed that you managed to bring this detainer to him, and happily exchanges it for a translator. He says you should still go to his herald to bring him news of this, and the scans for a reward.`
 
-mission "<unfettered mission> 19: Found Detainer"
+mission "<unfettered mission> 18: Hai Language: Found Detainer"
 	boarding
 	invisible
 	to offer
-		has "<unfettered mission> 19: Detainer For Translator: active"
+		has "<unfettered mission> 18: Detainer For Translator: active"
 	source
 		outfits "Korath Detainer"
 	on offer
@@ -644,139 +529,13 @@ mission "<unfettered mission> 19: Found Detainer"
 			`The 'Detainer' on this ship matches He-Yi's description perfectly! Quickly, grab it and get out of here.`
 
 
-mission "<unfettered mission> 19: Weird Aliens Spotted"
-	landing
-	invisible
-	destination "Warfeed"
-	substitutions
-		"<pug aliens>" "weird aliens"
-		"<pug aliens>" "Pug"
-			has "main plot completed"
-	to offer
-		has "<unfettered mission> 19: Scout Wanderer Systems: offered"
-	waypoint "Pug Iyik"
-	on waypoint
-		dialog `These aliens do not look like the rest of the Wanderers at all! You should probably warn the Unfettered about it, on <destination>.`
-	on complete
-		conversation
-			`Do you want to warn He-Yi's herald about the <pug aliens> north of Wanderer space?`
-			choice
-				`	(Speak to him about the weird aliens.)`
-					to display
-						not "main plot completed"
-				`	(Speak to him about the Pug.)`
-					to display
-						not "main plot completed"
-					goto pugs
-				`	(Do not warn the Unfettered about it.)`
-					decline
-			action
-				payment 150000
-				log `Warned the Unfettered about the weird aliens presence north of the Wanderers.`
-				set "unfettered: warned about the pugs"
-			`	You explain to the herald you have seen some weird aliens north, that could be allied to the Wanderers. Looking at the brief scans you took of them he seems to discard that warning as if it was nothing, "I do not know how those aliens have obtained jump drives, they most have stolen them somehow. Once we have taken Wanderer space they will prove to be a very handy supply of new jump drives... I would not worry about their pathethic, although strange looking, weapons. Still, I appreciate you taking this initiative of coming here to warn us, please accept these <payment> for that."`
-				goto "show arfecta?"
-			label pugs
-			action
-				payment 250000
-			`	You explain to the herald that you have seen weird aliens north, the Pug, which have had dealing with humanity before. He does not seem to believe you when you speak of technology capable of breaking down starlanes, "there is no way an alien race with such primitive ships would have that kind of technology. They must have simply abused your primitive sensors. They must have stolen the jump drives, and I only see that as an opportunity for later." You try to convince him he should not take them lightly, but he does not want to listen. "We have already done too much to prepare for war to turn back at the first sign of potential trouble. Still, I appreciate you taking this initiative of coming here to warn us, especially with this precise information. You seem to have learned the ways of my master quickly.`
-			`	"Please accept <payment> for that."`
-			label "show arfecta?"
-			choice
-				`	(Warn him of the Arfecta.)`
-					to display
-						has "Pug Angry at Being Farmed: offered"
-				`	(Show him the schematics of the Arfecta I have.)`
-					to display
-						has "ship model (all): Pug Arfecta"
-					goto arfectadesigns
-				`	(Say nothing more.)`
-					decline
-			action
-				set "unfettered: warned of arfecta"
-				payment 250000
-			`	"Did you not say these Pug, as you call them, are masters of deception?`
-				to display
-					has "main plot completed"
-			`	"We already know that they have somehow tricked the Wanderers into blindly worshiping them. That ship could have tricked your sensors. Nevertheless you deserve a reward for all of this intel, I shall double the payment."`
-				accept
-			label arfectadesigns
-			action
-				set "unfettered: preparing for the arfectas"
-				payment 5000000
-			`	Since he does not seem to believe you, you show him the designs of the Arfecta you captured. You can see a mix of surprise and fear in his eyes as he takes a step back. "How did you capture such a ship? It seems that you will prove an even better ally than we had anticipated... That ship would be fitting of a warlord. You surely deserve this extra reward! Here, take these <payment>, you deserve it. We have indeed heard of these Pugs, but never did we imagine they would be able to display such strength... It is good to have an ally like you."`
-				accept
 
-
-mission "<unfettered mission> 19: Scout Wanderer Systems"
-	name `Know your enemy`
-	description `Go to <waypoints> and scout the fleet presence of all Wanderer ships. Then, come back to <destination> for your reward.`
-	source
-		attributes "unfettered"
-	destination "Warfeed"
-	to offer
-		has "language: Wanderer"
-		has "<unfettered mission> 16: done"
-		not "<unfettered mission> 19: active"
-	on offer
-		log "Minor People" "Mysterious Unfettered Herald" "A herald of He-Yi that does not want to reveal his true identity. He seems to have a lot of culture, and stays calm in most situations."
-		conversation
-			`A herald comes to your ship as you exit it. He is still wearing that same mask, although you feel like the color has slightly changed, "Hello again, <last>, my master has yet another task for you before the war starts."`
-			choice
-				`	"I am listening."`
-					goto task
-				`	"First I have a question, why have you not introduced yourself yet?"`
-				`	"Later."`
-					defer
-			`	"When I wear that mask, I may not reveal my identity to anyone, that is my burden as a herald of He-Yi. I do not wear this mask all the time, of course, only when I am on mission for him, or in his war room."`
-			label task
-			`	"We want you to survey all systems belonging to our enemies, to assess if they have some backup fleets or potential allies nearby."`
-			branch neutral
-				"reputation: Wanderer" >= 0
-			choice
-				`	"But I am at war with them. It would be at a risk for me."`
-			`	He seems a bit angry, "Again? In the last mission we had arranged for them to not shoot at you, what did you do?? Well there is nothing we can do for you this time, I just hope you have some means of hiding, or a very agile ship. Theirs are not that impressive but they do have long range missiles, meaning you should probably install some Chameleon defenses on your ship."`
-			label neutral
-			choice
-				`	"I'm in."`
-					accept
-				`	"Why can't you do it yourselves?"`
-			`	"He-Yi is currently busy, too busy to go do a survey in his personal ship, and he will not let anyone else fly it, including me. That means we have no way to do the scouting ourselves without risking lives."`
-			choice
-				`	"Got it, you need me. I'll do it then."`
-					accept
-				`	"Well you'll have to wait for him to find the time, I'm not interested in taking this kind of risk."`
-					decline
-	waypoint "Chy'chra"
-	waypoint "Pik'ro'iyak"
-	waypoint "Ik'kara'ka"
-	waypoint "Chirr'ay'akai"
-	waypoint "Sich'ka'ara"
-	waypoint "Kiro'ku"
-	waypoint "Ka'pru"
-	waypoint "Ap'arak"
-	waypoint "Ka'ch'chrai"
-	waypoint "Ek'kek'ru"
-	waypoint "Si'yak'ku"
-	waypoint "Iyech'yek"
-	waypoint "Kiru'kichi"
-	waypoint "Es'sprak'ai"
-	on waypoint
-		dialog `You have scouted all of the Wanderer's systems. It's time to come back to <destination> for your reward.`
-	on complete
-		payment 1000000
-		conversation
-			`The herald is there when you land, apparently waiting for you. "My master could not come to receive the scans himself, but be sure I shall give them to him. Please, accept these <payment> credits in his name. I think you deserve a small explanation as to why these aliens are hostile to us.`
-			`	"As you probably already know, we are planning to invade them shortly. But, to be fair, we have already started doing a few skirmishes with them, notably for testing their strength, but mostly to get food from them. They have huge ships transporting a thousand tons of cargo each."`
-
-
-
-mission "Unfettered: Cloaking Interest"
+mission "<unfettered mission> 20: Bigeminate Sigil: Cloak"
 	minor
 	invisible
 	source "Warfeed"
 	to offer
-		has "<unfettered mission> 18: Spying On Hai-Home: done"
+		has "<unfettered mission> 17: Mirror Spy: offered"
 		random < 20
 	on offer
 		require "Cloaking Device"
@@ -806,181 +565,13 @@ mission "Unfettered: Cloaking Interest"
 
 
 
-conversation "modified shield beetle prize"
-	action
-		set "unfettered: given the modified beetle"
-	`As promised by Mera, you find the unusual Shield Beetle that seems to be waiting for you. There is a projected message on the hull of the ship: "Here is your very special reward, Captain. As promised, it is equipped with plenty of prototype weapons and has some particulars which I am sure you will like, and includes a reinforced shield matrix. Please accept this as a way for me to thank you for your assistance so far!"`
-	`	When you enter the ship you realize that something is blinking red in the cockpit. Getting close you realize it is a communicator with a high priority message from Mera. Once the ship recognizes your identity, it displays the message. "This is for your eyes only. This ship is not just given to you for you to have fun shooting around. It includes a very advanced communicator, that we would not replace should you lose it. Eventually you will be able to use it to coordinate fleet actions, or even to call for reinforcements, I hope."`
-	branch "has communicator"
-		has "language: Wanderer"
-	`	"Once you acquire a translator we will include it in your ship so you may easily communicate with any Hai."`
-		goto then
-	label "has communicator"
-	`	"Since you already have a translator, here are the instructions to equip it on your ship." You install it on your ship as requested, and do a little test to make sure it is working properly.`
-	label then
-	`	"As you may have guessed by now, this ship is way more than just a ship. It is a symbol. As such, it will grant you access to the ionic weaponry on Darkcloak. You can park it anywhere in the galaxy and we will know, using the communicator, but should you lose it you will also lose access to those weapons. It is a symbol of trust, like a license you humans use, if you will."`
-	`	The message ends. Time to try the new beetle to see what it can do.`
-
-
-mission "<unfettered mission> 17: Normal Prize"
-	landing
-	invisible
-	source "Darkcloak"
-	to offer
-		has "<unfettered mission> 17: done"
-		has "unfettered: prize right away"
-	on offer
-		conversation "modified shield beetle prize"
-		give ship "Modified Shield Beetle" "Basilisk"
-
-
-mission "<unfettered mission> 17: Custom Price Notification"
-	landing
-	invisible
-	destination "Darkcloak"
-	to offer
-		or
-			has "event: unfettered: more dakka"
-			has "event: unfettered: cooler"
-			has "event: unfettered: disable-er"
-			has "event: unfettered: syscore's got it"
-		not "unfettered: given the modified beetle"
-	on enter "Wah Yoot" "Hi Yahr" "Ehma Ti"
-		dialog `You receive a message from Mera, "The ship is ready and waiting for you on Darkcloak, captain."`
-
-event "unfettered: more dakka"
-
-ship "Modified Shield Beetle" "Modified Shield Beetle (Blaster)"
-	outfits
-		"Ionic Blaster Prototype" 8
-		"Ionic Turret Prototype" 2
-		"Chameleon Anti-Missile"
-		"Boulder Reactor" 2
-		"Hai Ravine Batteries"
-		"Hai Diamond Regenerator" 3
-		"Hai Zephyr Cooling" 3
-		"Outfits Expansion"
-		`"Bondir" Atomic Thruster`
-		`"Bufaer" Atomic Steering`
-		"Hyperdrive"
-		"Quantum Keystone"
-
-mission "<unfettered mission> 17: Custom Price A"
-	landing
-	source "Darkcloak"
-	to offer
-		has "<unfettered mission> 17: done"
-		has "event: unfettered: more dakka"
-	on offer
-		conversation "modified shield beetle prize"
-		give ship "Modified Shield Beetle (Blaster)" "Basilisk"
-		fail
-
-
-event "unfettered: cooler"
-
-ship "Modified Shield Beetle" "Modified Shield Beetle (Heat Shunt)"
-	outfits
-		"Ionic Blaster Prototype" 4
-		"Hai Tracker Pod" 4
-		"Ionic Turret Prototype" 2
-		"Chameleon Anti-Missile"
-		"Boulder Reactor" 2
-		"Hai Ravine Batteries"
-		"Hai Diamond Regenerator" 3
-		"Hai Zephyr Cooling"
-		"Large Heat Shunt"
-		"Hai Tracker" 224
-		"Outfits Expansion"
-		`"Bondir" Atomic Thruster`
-		`"Bufaer" Atomic Steering`
-		"Hyperdrive"
-		"Quantum Keystone"
-
-mission "<unfettered mission> 17: Custom Price B"
-	landing
-	source "Darkcloak"
-	to offer
-		has "<unfettered mission> 17: done"
-		has "event: unfettered: cooler"
-	on offer
-		conversation "modified shield beetle prize"
-		give ship "Modified Shield Beetle (Heat Shunt)" "Basilisk"
-		fail
-
-
-event "unfettered: disable-er"
-
-ship "Modified Shield Beetle" "Modified Shield Beetle (Ionic Turret)"
-	outfits
-		"Ionic Blaster Prototype" 4
-		"Hai Tracker Pod" 4
-		"Ionic Turret Prototype" 3
-		"Boulder Reactor" 2
-		"Hai Ravine Batteries"
-		"Hai Diamond Regenerator" 2
-		"Hai Zephyr Cooling" 3
-		"Hai Tracker" 224
-		"Outfits Expansion"
-		"Hai Octopus Jammer"
-		`"Bondir" Atomic Thruster`
-		`"Bufaer" Atomic Steering`
-		"Hyperdrive"
-		"Quantum Keystone"
-
-mission "<unfettered mission> 17: Custom Price: C"
-	landing
-	source "Darkcloak"
-	to offer
-		has "<unfettered mission> 17: done"
-		has "event: unfettered: disable-er"
-	on offer
-		conversation "modified shield beetle prize"
-		give ship "Modified Shield Beetle (Ionic Turret)" "Basilisk"
-		fail
-
-
-event "unfettered: syscore's got it"
-
-ship "Modified Shield Beetle" "Modified Shield Beetle (Large Systems Core)"
-	outfits
-		"Ionic Blaster Prototype" 4
-		"Hai Tracker Pod" 4
-		"Ionic Turret Prototype" 2
-		"Chameleon Anti-Missile"
-		"Boulder Reactor" 2
-		"Hai Ravine Batteries"
-		"Hai Diamond Regenerator"
-		"Systems Core (Large)"
-		"Hai Octopus Jammer"
-		"Hai Zephyr Cooling" 3
-		"Hai Tracker" 224
-		"Outfits Expansion"
-		`"Bondir" Atomic Thruster`
-		`"Bufaer" Atomic Steering`
-		"Hyperdrive"
-		"Quantum Keystone"
-
-mission "<unfettered mission> 17: Custom Price: D"
-	landing
-	source "Darkcloak"
-	to offer
-		has "<unfettered mission> 17: done"
-		has "event: unfettered: syscore's got it"
-	on offer
-		conversation "modified shield beetle prize"
-		give ship "Modified Shield Beetle (Large Systems Core)" "Basilisk"
-		fail
-
-
-
-mission "<unfettered mission> 21"
+mission "<unfettered mission> 20: Bigeminate Sigil: Boarding Equipement"
 	minor
 	name `Close Quarter Fighting`
 	description `He-Yi wants you to bring twenty non-lethal weapons stronger than the pulse rifle for him to use in training with the other Unfettered. Deliver them to <destination>.`
 	source "Warfeed"
 	to offer
-		has "<unfettered mission> 16: done"
+		has "<unfettered mission> 15: Modified Beetle: done"
 		or
 			not "unfettered: offered close quarter"
 			random < 30
@@ -1129,6 +720,39 @@ mission "<unfettered mission> 21"
 			label train
 			`	"Remember, having a strong fleet and flagship does not matter much if you don't know how to [use it, fight] properly! If you want to [practice, learn], there are plenty of Unfettered captains looking forward to challenging you. Check the job board if you're interested. Do not that they are not interested in too [unfair, quick] fights!"`
 
+mission "<unfettered mission> 20: Boarding Equipement: Desperate Search"
+	invisible
+	source
+		attributes "unfettered"
+	to offer
+		has "main plot completed"
+		has "<unfettered mission> 20: Bigeminate Sigil: Boarding Equipement: active"
+	on offer
+		event "looking for a gun" 30
+
+event "looking for a gun"
+
+mission "<unfettered mission> 20: Boarding Equipement: Staves Hint"
+	minor
+	name `Learn more about the Pug.`
+	description `Go to <destination> to see if you can ask Admiral Danforth or the Oathkeepers about what kind of weapons the Pug used, which may be of interest to He-Yi.`
+	destination "Farpoint"
+	to offer
+		has "event: looking for a gun"
+		has "<unfettered mission> 20: Bigeminate Sigil: Boarding Equipement: active"
+		not "outfit (all): Pug Peacekeeping Staff"
+	on offer
+		conversation
+			`As you land on this planet, you think back of the peculiar request He-Yi made to you: bring back non-deadly weapons. After thinking a while about it, you remember tales about the Pug having special weapons that could easily knock people out. Maybe you should go to <destination> and speak to the Oathkeepers about this.`
+				accept
+	to fail
+		has "<unfettered mission> 20: Bigeminate Sigil: Boarding Equipement: done"
+	on complete
+		conversation
+			`You cannot find Admiral Danforth, and wager he's probably busy with the pirates above. You think of disturbing him, but another Oathkeeper sees you and asks what you're looking for. You start speaking with him of the Pug war, and recognizing you, he seems eager to share his experience.`
+			`	"I was a simple soldier fighting with the rest of the fleet, in the Republic, at that time. We managed to find an isolated and disabled Pug ship. That by itself seemed like an opportunity too good to let go. Given we were in a Cruiser, we did not fear the crew of such a small ship. But we were wrong: as soon as we boarded said ship, we knew something was wrong. But we were committed, so we went in anyway. Being a soldier, I was on the front line, and I saw things... Things you do not want to see, trust me. I saw people falling for no apparent reason. But that was not the worst of it. As you can see, I have survived, and that by itself is terrifying. They shot me! They shot me, and yet I lived."`
+			`	You thank him for telling you this story and then think to yourself. This means there is a good chance the Pug have the non-lethal weapons you are looking for. Now you just have to find the Pug, but they'll probably not give you these weapons willingly...`
+
 conversation "more staves"
 	`As you wander in the spaceport, you see He-Yi's herald, or at least someone with the same mask. He seems interested to know your progress in acquiring weapons.`
 	choice
@@ -1139,14 +763,14 @@ conversation "more staves"
 	label fine
 	`	He wishes you good luck and hopes you can find the staves. He reminds you a large amount of them is requested - twenty, to be precise.`
 
-mission "<unfettered mission> 21: More Enforcer Staves"
+mission "<unfettered mission> 20: Boarding Equipement: More Enforcer Staves"
 	minor # so both staff conversations don't pop up at the same time
 	invisible
 	source "Warfeed"
 	substitutions
 		<staff> "Enforcer"
 	to offer
-		has "<unfettered mission> 21: offered"
+		has "<unfettered mission> 20: Bigeminate Sigil: Boarding Equipement: offered"
 		not "Bring Coalition Weapons: offered"
 		not "Bring Pug Staves: offered"
 	on offer
@@ -1154,14 +778,14 @@ mission "<unfettered mission> 21: More Enforcer Staves"
 		conversation "more staves"
 
 
-mission "<unfettered mission> 21: More Pug Staves"
+mission "<unfettered mission> 20: Boarding Equipement: More Pug Staves"
 	minor
 	invisible
 	source "Warfeed"
 	substitutions
 		<staff> "Pug Peacekeeping"
 	to offer
-		has "<unfettered mission> 21: offered"
+		has "<unfettered mission> 20: Bigeminate Sigil: Boarding Equipement: offered"
 		not "Bring Coalition Weapons: offered"
 		not "Bring Pug Staves: offered"
 	on offer
@@ -1169,12 +793,12 @@ mission "<unfettered mission> 21: More Pug Staves"
 		conversation "more staves"
 		fail
 
-mission "<unfettered mission> 21: Pug Staves"
+mission "<unfettered mission> 20: Boarding Equipement: Pug Staves"
 	landing
 	invisible
 	source "Warfeed"
 	to offer
-		has "<unfettered mission> 21: offered"
+		has "<unfettered mission> 20: Bigeminate Sigil: Boarding Equipement: offered"
 	on offer
 		dialog `Do you want to sell 20 Pug Peacekeeping Staffs to the Unfettered? He-Yi says they can give you 2500000 for it.`
 	on accept
@@ -1183,12 +807,12 @@ mission "<unfettered mission> 21: Pug Staves"
 		dialog `The Unfettered thank you for bringing these 20 staffs to them. They give you <payment>.`
 		fail
 
-mission "<unfettered mission> 21: Coalition Staves"
+mission "<unfettered mission> 20: Boarding Equipement: Coalition Staves"
 	landing
 	invisible
 	source "Warfeed"
 	to offer
-		has "<unfettered mission> 21: offered"
+		has "<unfettered mission> 20: Bigeminate Sigil: Boarding Equipement: offered"
 	on offer
 		dialog `Do you want to sell 20 Enforcer Riot Staffs to the Unfettered? He-Yi says they can give you 4000000 for it.`
 	on accept
@@ -1197,12 +821,12 @@ mission "<unfettered mission> 21: Coalition Staves"
 		dialog `The Unfettered thank you for bringing these 20 staffs to them. They give you <payment>.`
 		fail
 
-mission "<unfettered mission> 21: Void Rifle"
+mission "<unfettered mission> 20: Boarding Equipement: Void Rifle"
 	minor
 	invisible
 	source "Warfeed"
 	to offer
-		has "<unfettered mission> 21: offered"
+		has "<unfettered mission> 20: Bigeminate Sigil: Boarding Equipement: offered"
 	on offer
 		require "Void Rifle"
 		conversation
@@ -1220,113 +844,3 @@ mission "<unfettered mission> 21: Void Rifle"
 		payment 10000000
 		outfit "Void Rifle" -1
 		fail
-
-
-
-event "unfettered: better sestor translator"
-
-mission "<unfettered mission> 14: Better Translator Notice"
-	minor
-	name "Find Choot'k"
-	description "Go to <destination> to find Choot'k. He should be on top of the biggest mountain."
-	source "Darkcloak"
-	destination "Firelode"
-	to offer
-		has "salary: Unfettered"
-		has "Hai Reveal [C01] Cleanup: done"
-		or
-			has "<unfettered mission> 14: offered"
-			random < 15
-	on offer
-		conversation
-			`Do you want to go see Choot'k, to talk with him of the past and maybe see if you could do something for him?`
-				to display
-					not "<unfettered mission> 14: offered"
-			`Do you want to go see if Choot'k can do something to improve the translator, as Mera suggested?`
-				to display
-					has "<unfettered mission> 14: offered"
-			choice
-				`	(Yes.)`
-				`	(Not now.)`
-					defer
-				`	(Never.)`
-					decline
-			`	You head to his throne room to see him, and this time the Unfettered guards have no issue with letting you pass. It is only once you enter the room you learn he is missing from one of his aid. They tell you to go look on Firelode, on top of the biggest mountain, as that's probably where he would be.`
-				accept
-
-
-
-mission "<unfettered mission> 14: Better Translator"
-	landing
-	name "Speak Sestor"
-	description "Go to <stopovers> to acquire the records of Sestor language."
-	source "Firelode"
-	stopover "Hai-home"
-	destination "Darkcloak"
-	passengers 1
-	to offer
-		has "<unfettered mission> 14: Better Translator Notice: offered"
-	on offer
-		conversation
-			`	You climb on top of the greatest mountain when you find Choot'k is indeed there, admiring the view.`
-			scene "scene/chootk firelode"
-			`	He notices your arrival and invites you to admire the view as well. He seems happy to see you. "<first>! It's been a while, but I keep hearing rumors about you. One day you may even threaten to take my place..." You see his grip around his blade tightening. For a few seconds you can feel some tension, but then he laughs.`
-			`	"No, not yet, at least. Now, I would duel you if I had the time, but I have duties to attend to, which you may help me with, actually. I want to go to <stopovers> to get the records of Korath interactions before the raids. Mera has informed me that the translator - whilst better than nothing - is not sufficient for all the tasks we have in mind."`
-			`	"I am sure you have already noticed that communication with the Korath can be... difficult, since you met them."`
-				to display
-					has "<unfettered mission> 14: offered"
-			label choice
-			choice
-				`	"Let's go then."`
-					accept
-				`	"Would they just give that information to you?"`
-					to display
-						not "unfettered: why give info"
-				`	"How would they even have such data, I thought you were at war with the Korath?"`
-					to display
-						not "unfettered: how got info"
-					goto war
-				`	"I don't have the time right now, but I'll come back once I do."`
-					defer
-			action
-				set "unfettered: why give info"
-			`	"Of course they would, that is information accessible by all Hai, it simply is only stored on the homeworld, for convenience. I will also give them all data collected from our translator in exchange."`
-				goto choice
-			label war
-			action
-				set "unfettered: how got info"
-			`	"We Hai have not always been in conflict with the Korath. At some point we were even friendly with the Sestors, before they started raiding us, that is. We refused to go to war, so war came to us."`
-				goto choice
-	on stopover
-		dialog `The Hai are more happy to give you this data in exchange for data on the translator itself.`
-		set "unfettered: stopped on hai-home"
-	npc evade
-		government "Cerberus"
-		personality waiting nemesis disables plunders vindictive
-		to spawn
-			has "unfettered: stopped on hai-home"
-		fleet "Large Northern Pirates" 3
-		fleet "Small Northern Pirates" 3
-	on fail
-		dialog `Choot'k managed to get out from the ship before it exploded, by heading to an escape hatch when it started getting messy. His suit protected him from space long enough for a Hai ship to pick him off. However, he will probably not attempt something like this again...`
-	on complete
-		log `Went to Hai-home with Choot'k to gather some data on the Sestor language from before the raids started. We got attacked by Cerberus, they were probably after him.`
-		clear "unfettered: stopped on hai-home"
-		clear "unfettered: why give info"
-		clear "unfettered: how got info"
-		event "unfettered: better sestor translator" 45
-		dialog "Choot'k thanks you, and tells you they will be able to upgrade the translator so they can communicate better with the Sestor."
-
-
-
-# SPOILER: they see this as an opportunity to get the leader and also don't want the Unfettered (and you) to be able to communicate too deeply with Sestors...
-mission "<unfettered mission> 14: Ambush"
-	landing
-	invisible
-	source "Hai-home"
-	destination "Darkcloak"
-	to offer
-		has "<unfettered mission> 14: Better Translator: active"
-	on enter
-		# SPOILER: he doesn't want them to get destroyed by the Hai because that would damage Alpha-Unfettered reputations, also he takes it as a challenge to his strength (except he's on your ship)
-		dialog `Upon entering the system you see multiple Cerberus ships, ready to attack you. Choot'k sends a message to the Hai. "Do not interfere, it would damage both my honor and <last>'s!" He did not ask for your opinion, but thankfully you have seen worse than a bunch of pirates.`
