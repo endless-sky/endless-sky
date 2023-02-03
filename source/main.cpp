@@ -123,8 +123,7 @@ int main(int argc, char *argv[])
 		else if(arg == "--nomute")
 			noTestMute = true;
 	}
-	if(PrintData::IsPrintDataArgument(argv))
-		printData = true;
+	printData = PrintData::IsPrintDataArgument(argv);
 	Files::Init(argv);
 
 	try {
