@@ -1067,7 +1067,7 @@ ship "Centipede" "Centipede (Teeneep Jump)"
 ship "Frugal Defence Cannon"
 	attributes
 		"heat dissipation" 1
-		"hull" 350
+		"hull" 400
 		"hull repair rate" .001
 		"mass" 100
 		"drag" 50
