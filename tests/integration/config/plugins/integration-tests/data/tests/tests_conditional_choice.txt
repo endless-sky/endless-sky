@@ -1,0 +1,244 @@
+test-data "Conversation Conditions Test Save"
+	category "savegame"
+	contents
+		pilot Bobbi Bughunter
+		date 16 11 3013
+		system "Terra Incognita"
+		planet Ruin
+		clearance
+		ship "Star Barge"
+			name "Buggy Barge"
+			sprite "ship/star barge"
+			attributes
+				category "Light Freighter"
+				cost 190000
+				mass 10
+				bunks 3
+				"cargo space" 50
+				drag 1
+				"engine capacity" 400
+				"fuel capacity" 300
+				"heat dissipation" 0.8
+				hull 1000
+				"outfit space" 1300
+				"required crew" 1
+				shields 600
+				"turret mounts" 1
+				"weapon capacity" 200
+				"thrust" 50
+				"turn" 1000
+			outfits
+				Hyperdrive
+				"nGVF-BB Fuel Cell"
+				"LP036a Battery Pack"
+			crew 1
+			fuel 300
+			shields 600
+			hull 1000
+			position 0 0
+			engine -9 38 1
+			engine 9 38 1
+			turret 0 -8
+			leak leak 60 50
+			explode "tiny explosion" 10
+			explode "small explosion" 10
+			system "Terra Incognita"
+			planet Ruin
+		account
+			credits 100000000
+			score 400
+			history
+		visited "Terra Incognita"
+		"visited planet" Ruin
+
+
+test-data "Conversation Conditions Test Missions"
+	category mission
+	contents
+		mission "%TEST%: CONDITIONAL CHOICE"
+			priority
+			source "Ruin"
+			to offer
+				has "%TEST%: CONDITIONAL CHOICE"
+			on offer
+				conversation
+					# cant actually write an integration test for seeing this or not
+					`"You should not see this."`
+						to display
+							not "%TEST%: CONDITIONAL CHOICE"
+					`"Does this work? Do you not see the first sentence?"`
+					choice
+						`	"No."`
+							to display
+								has "%TEST%: CONDITIONAL CHOICE"
+							accept
+						`	"Yes."`
+							decline
+			on accept
+				set "succeed test"
+			on decline
+				set "failed test"
+
+		mission "%TEST%: CONDITIONAL CHOICE GOTO"
+			priority
+			source "Ruin"
+			to offer
+				has "%TEST%: CONDITIONAL CHOICE GOTO"
+			on offer
+				conversation
+					`"Can you use the hidden path?"`
+					choice
+						`	"Yes."`
+							to display
+								not "%TEST%: CONDITIONAL CHOICE GOTO"
+						`	"No."`
+							to display
+								has "%TEST%: CONDITIONAL CHOICE GOTO"
+							goto canuse
+					# just in case the goto is fully ignored
+					`	"You should not be here!"`
+						decline
+					label canuse
+					`	"Some paths are meant to stay hidden."`
+						accept
+			on accept
+				set "succeed test"
+			on decline
+				set "failed test"
+
+
+		mission "%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND"
+			priority
+			source "Ruin"
+			to offer
+				has "%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND"
+			on offer
+				conversation
+					`	"Don't you dare clicking on the hidden option!"`
+					choice
+						`	"Sure."`
+							accept
+						`	"I do what I want."`
+							to display
+								not "%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND"
+					`	"In that case... Test failed."`
+						decline
+			on accept
+				set "succeed test"
+			on decline
+				set "failed test"
+
+
+		mission "%TEST%: NAME IN CONVERSATION"
+			priority
+			source "Ruin"
+			to offer
+				has "%TEST%: NAME IN CONVERSATION"
+			on offer
+				conversation
+					name
+					`	So you are <first> <last>.`
+						accept
+					``
+						decline
+			on accept
+				set "succeed test"
+			on decline
+				set "failed test"
+
+
+
+test "Test Conditions"
+	status partial
+	description "Set a few conditions so they are displayed on errors, clarifying things up."
+	sequence
+		apply
+			# test accepted/failed. If neither it wasnt offered.
+			"test: succeed test" = "succeed test"
+			"test: failed test" = "failed test"
+			# if we launched
+			"test: flagship landed" = "flagship landed"
+
+
+test "Conditional Test"
+	status active
+	description "Test if a conversation option shows up when the given condition is set."
+	sequence
+		inject "Conversation Conditions Test Missions"
+		inject "Conversation Conditions Test Save"
+		call "Load First Savegame"
+		apply
+			"%TEST%: CONDITIONAL CHOICE" = 1
+		call "Trigger Ruin Spaceport Mission"
+		call "Skip Spaceport Mission"
+		call "Depart"
+		call "Test Conditions"
+		assert
+			"succeed test" == 1
+
+
+test "Conditional Test Goto"
+	status active
+	description "Test if a first conversation option does not show up but the second one does, when the given condition is set. Also makes sure goto still works as expected."
+	sequence
+		inject "Conversation Conditions Test Missions"
+		inject "Conversation Conditions Test Save"
+		call "Load First Savegame"
+		apply
+			"%TEST%: CONDITIONAL CHOICE GOTO" = 1
+		call "Trigger Ruin Spaceport Mission"
+		call "Skip Spaceport Mission"
+		call "Depart"
+		call "Test Conditions"
+		assert
+			"succeed test" == 1
+
+
+test "Conditional Test Out of Bound"
+	status active
+	description "Test if a first conversation option does not show up but the second one does, when the given condition is set. Also makes sure goto still works as expected."
+	sequence
+		inject "Conversation Conditions Test Missions"
+		inject "Conversation Conditions Test Save"
+		call "Load First Savegame"
+		apply
+			"%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND" = 1
+		call "Trigger Ruin Spaceport Mission"
+		# If only one option is displayed this shouldn't do anything,
+		# but if we can somehow access the condition below with the down key then its a problem.
+		input
+			key "Down"
+		call "Skip Spaceport Mission"
+		call "Depart"
+		call "Test Conditions"
+		assert
+			"succeed test" == 1
+
+
+test "Enter Name in Conversation"
+	status active
+	description "Test if a first conversation option does not show up but the second one does, when the given condition is set. Also makes sure goto still works as expected."
+	sequence
+		inject "Conversation Conditions Test Missions"
+		inject "Conversation Conditions Test Save"
+		call "Load First Savegame"
+		assert
+			"name: Bobbi Bughunter" == 1
+		apply
+			"%TEST%: NAME IN CONVERSATION" = 1
+		call "Trigger Ruin Spaceport Mission"
+		input
+			key a
+		input
+			key "Return"
+		input
+			key b
+		input
+			key "Return"
+		input
+			key "Return"
+		call "Depart"
+		call "Test Conditions"
+		assert
+			"%TEST%: NAME IN CONVERSATION: offered" == 1
+			"name: a b" == 1

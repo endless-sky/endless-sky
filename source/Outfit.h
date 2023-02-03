@@ -50,7 +50,8 @@ public:
 	void Load(const DataNode &node);
 	bool IsDefined() const;
 
-	const std::string &Name() const;
+	const std::string &TrueName() const;
+	const std::string &DisplayName() const;
 	void SetName(const std::string &name);
 	const std::string &PluralName() const;
 	const std::string &Category() const;
@@ -100,7 +101,8 @@ public:
 
 private:
 	bool isDefined = false;
-	std::string name;
+	std::string trueName;
+	std::string displayName;
 	std::string pluralName;
 	std::string category;
 	std::string description;

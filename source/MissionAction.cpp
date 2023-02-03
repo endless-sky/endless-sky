@@ -159,7 +159,7 @@ void MissionAction::Save(DataWriter &out) const
 		if(!conversation->IsEmpty())
 			conversation->Save(out);
 		for(const auto &it : requiredOutfits)
-			out.Write("require", it.first->Name(), it.second);
+			out.Write("require", it.first->TrueName(), it.second);
 
 		action.Save(out);
 	}
@@ -192,7 +192,7 @@ string MissionAction::Validate() const
 	// Required content must be defined & valid.
 	for(auto &&outfit : requiredOutfits)
 		if(!outfit.first->IsDefined())
-			return "required outfit \"" + outfit.first->Name() + "\"";
+			return "required outfit \"" + outfit.first->TrueName() + "\"";
 
 	return action.Validate();
 }
@@ -352,7 +352,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 
 	// Restore the "<payment>" and "<fine>" values from the "on complete" condition, for
 	// use in other parts of this mission.
-	if(result.Payment() && trigger != "complete")
+	if(result.Payment() && (trigger != "complete" || !previousPayment.empty()))
 		subs["<payment>"] = previousPayment;
 	if(result.action.Fine() && trigger != "complete")
 		subs["<fine>"] = previousFine;

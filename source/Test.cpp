@@ -31,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <map>
 #include <numeric>
+#include <set>
 #include <stdexcept>
 
 using namespace std;
@@ -85,6 +86,8 @@ namespace {
 		event.key.state = SDL_PRESSED;
 		event.key.repeat = 0;
 		event.key.keysym.sym = SDL_GetKeyFromName(keyName);
+		if(event.key.keysym.sym == SDLK_UNKNOWN)
+			return false;
 		event.key.keysym.mod = modKeys;
 		return SDL_PushEvent(&event);
 	}
@@ -362,6 +365,12 @@ void Test::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "sequence")
 			LoadSequence(child);
+		else if(child.Token(0) == "description")
+		{
+			// Provides a human friendly description of the test, but it is not used internally.
+		}
+		else
+			child.PrintTrace("Error: Skipping unrecognized attribute:");
 	}
 }
 
@@ -488,7 +497,7 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 					// TODO: combine keys with mouse-inputs
 					for(const string &key : stepToRun.inputKeys)
 						if(!KeyInputToEvent(key.c_str(), stepToRun.modKeys))
-							Fail(context, player, "key input towards SDL eventqueue failed");
+							Fail(context, player, "key \"" + key + + "\" input towards SDL eventqueue failed");
 				}
 				// TODO: handle mouse inputs
 				// Make sure that we run a gameloop to process the input.
@@ -520,6 +529,41 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 const string &Test::StatusText() const
 {
 	return STATUS_TO_TEXT.at(status);
+}
+
+
+
+// Get the names of the conditions relevant for this test.
+std::set<std::string> Test::RelevantConditions() const
+{
+	set<string> conditionNames;
+	for(const auto &step : steps)
+	{
+		switch(step.stepType)
+		{
+			case TestStep::Type::APPLY:
+			case TestStep::Type::ASSERT:
+			case TestStep::Type::BRANCH:
+				{
+					for(const auto &name : step.conditions.RelevantConditions())
+						conditionNames.emplace(name);
+				}
+				break;
+			case TestStep::Type::CALL:
+				{
+					auto calledTest = GameData::Tests().Find(step.nameOrLabel);
+					if(!calledTest)
+						continue;
+
+					for(const auto &name : calledTest->RelevantConditions())
+						conditionNames.emplace(name);
+				}
+				break;
+			default:
+				continue;
+		}
+	}
+	return conditionNames;
 }
 
 
@@ -572,13 +616,13 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 		Logger::LogError(shipsOverview);
 	}
 
-	// Only log the conditions that start with test; we don't want to overload the terminal or errorlog.
-	// Future versions of the test-framework could also print all conditions that are used in the test.
+	// Print all conditions that are used in the test.
 	string conditions = "";
-	const string TEST_PREFIX = "test: ";
-	auto it = player.Conditions().PrimariesLowerBound(TEST_PREFIX);
-	for( ; it != player.Conditions().PrimariesEnd() && !it->first.compare(0, TEST_PREFIX.length(), TEST_PREFIX); ++it)
-		conditions += "Condition: \"" + it->first + "\" = " + to_string(it->second) + "\n";
+	for(const auto &it : RelevantConditions())
+	{
+		const auto &val = player.Conditions().HasGet(it);
+		conditions += "Condition: \"" + it + "\" = " + (val.first ? to_string(val.second) : "(not set)") + "\n";
+	}
 
 	if(!conditions.empty())
 		Logger::LogError(conditions);
@@ -587,7 +631,8 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 	else
 		Logger::LogError("No test conditions were set at the moment of failure.");
 
-	// If this test was expected to fail, then return a success exitcode from the program because the test did what it was expected to do.
+	// If this test was expected to fail, then return a success exitcode from the program
+	// because the test did what it was expected to do.
 	if(status >= Status::KNOWN_FAILURE)
 		throw known_failure_tag{};
 

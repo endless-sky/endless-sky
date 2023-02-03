@@ -51,6 +51,8 @@ protected:
 
 
 private:
+	// Use availableIt/acceptedIt to set MapPanel::selectedSystem, call DoScroll/CenterOnSystem
+	void SetSelectedScrollAndCenter(bool immediate = false);
 	// Display and explain the various pointers that may appear on the map.
 	void DrawKey() const;
 	// Display the name of and distance to the selected system.
@@ -89,7 +91,7 @@ private:
 
 	int dragSide = 0;
 	int hoverSortCount = 0;
-	int hoverSort = -1; //0 to 3 for each UI element
+	int hoverSort = -1; // 0 to 3 for each UI element
 	WrappedText wrap;
 };
 
