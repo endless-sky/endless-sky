@@ -93,6 +93,18 @@ string Format::Credits(int64_t value)
 
 
 
+// Convert the given number into abbreviated format as described in Format::Credits,
+// then attach the ' credit' or ' credits' suffix to it.
+string Format::CreditString(int64_t value)
+{
+	if(value == 1)
+		return "1 credit";
+	else
+		return Credits(value) + " credits";
+}
+
+
+
 // Convert a time in seconds to years/days/hours/minutes/seconds
 std::string Format::PlayTime(double timeVal)
 {
