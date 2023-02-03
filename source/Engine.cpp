@@ -862,12 +862,12 @@ void Engine::Step(bool isActive)
 			bool inRange = offset.LengthSquared() <= scanRange;
 
 			// Autocatalog asteroid: Record that the player knows this type of asteroid is available here.
-			if(shouldCatalogAsteroids && !asteroidsScanned.count(minable->Name()))
+			if(shouldCatalogAsteroids && !asteroidsScanned.count(minable->DisplayName()))
 			{
 				scanComplete = false;
 				if(!Random::Int(10) && inRange)
 				{
-					asteroidsScanned.insert(minable->Name());
+					asteroidsScanned.insert(minable->DisplayName());
 					for(const auto &it : minable->Payload())
 						player.Harvest(it.first);
 				}
