@@ -1330,7 +1330,7 @@ mission "Shady passenger transport 3"
 
 mission "Shady passenger transport 3 - double cross"
 	name "Shady passenger transport"
-	description "Discreetly transport <bunks> passengers to <destination>. Payment will be 350,000 credits. If you are caught with them, the legal consequences may be severe."
+	description "Discreetly transport <bunks> passengers to <destination>. Payment will be <payment>. If you are caught with them, the legal consequences may be severe."
 	"apparent payment" 350000
 	minor
 	source
@@ -2324,7 +2324,7 @@ event "terraforming follow-up"
 
 mission "A wolf, a goat, and a cabbage"
 	job
-	description "Transport a wolf, a goat, and a cabbage to <destination>. Payment will be 100,000 credits."
+	description "Transport a wolf, a goat, and a cabbage to <destination>. Payment will be <payment>."
 	"apparent payment" 100000
 	to offer
 		"day" == 1
@@ -3564,7 +3564,7 @@ mission "Spacediving professionals accident"
 	job
 	repeat
 	name "Spacediving at <planet>"
-	description "Head to <destination> with <bunks> professionally equipped skydivers and drop them from the edge of space. They've agreed to pay 120,000 credits when they land."
+	description "Head to <destination> with <bunks> professionally equipped skydivers and drop them from the edge of space. They've agreed to pay <payment> when they land."
 	"apparent payment" 120000
 	passengers 5 10
 	source
@@ -3587,7 +3587,7 @@ mission "Spacediving professionals disaster"
 	job
 	repeat
 	name "Spacediving at <planet>"
-	description "Head to <destination> with <bunks> professionally equipped skydivers and drop them from the edge of space. They've agreed to pay 120,000 credits when they land."
+	description "Head to <destination> with <bunks> professionally equipped skydivers and drop them from the edge of space. They've agreed to pay <payment> when they land."
 	"apparent payment" 120000
 	passengers 5 10
 	source
@@ -3612,7 +3612,7 @@ mission "Spacediving amateurs"
 	job
 	repeat
 	name "Spacediving at <planet>"
-	description "Head to <destination> with <bunks> poorly equipped skydivers and drop them from the edge of space. They've agreed to pay 120,000 credits when they land."
+	description "Head to <destination> with <bunks> poorly equipped skydivers and drop them from the edge of space. They've agreed to pay <payment> when they land."
 	"apparent payment" 120000
 	passengers 5 10
 	source
