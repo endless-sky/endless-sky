@@ -49,8 +49,7 @@ public:
 
 	// Load a definition of a minable object.
 	void Load(const DataNode &node);
-	// Call this once all of the game data finishes loading.  Asteroids and
-	// associated payloads have been loaded.
+	// Calculate the payload cost of this Minable after all outfits have been fully loaded.
 	void FinishLoading();
 	const std::string &TrueName() const;
 	const std::string &DisplayName() const;
