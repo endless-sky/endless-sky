@@ -3851,7 +3851,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		newOrders.type = Orders::HARVEST;
 		IssueOrders(player, newOrders, "preparing to harvest.");
 	}
-	else if(activeCommands.Has(Command::NEAREST_ASTEROID)) {
+	else if(activeCommands.Has(Command::NEAREST_ASTEROID))
+	{
 		TargetMinable(ship);
 	}
 
