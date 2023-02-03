@@ -534,15 +534,12 @@ namespace {
 				all = true;
 		}
 
-		if(weapons || engines || power)
-		{
-			if(weapons)
-				PrintWeaponStats();
-			if(engines)
-				PrintEngineStats();
-			if(power)
-				PrintPowerStats();
-		}
+		if(weapons)
+			PrintWeaponStats();
+		else if(engines)
+			PrintEngineStats();
+		else if(power)
+			PrintPowerStats();
 		else if(sales)
 			PrintItemSales(GameData::Outfits(), GameData::Outfitters(), "outfit", "outfitters");
 		else if(all)
