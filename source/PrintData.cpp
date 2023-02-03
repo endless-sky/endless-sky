@@ -670,74 +670,6 @@ namespace {
 	}
 
 
-	void Phrases(const char *const *argv)
-	{
-		string phraseName;
-		bool randomSample = false;
-		int randomCount = 0;
-		bool count = false;
-
-		for(const char *const *it = argv + 1; *it; ++it)
-		{
-			string arg = *it;
-			if(arg == "--phrase" && *++it)
-				phraseName = *it;
-			else if(arg == "--random" && *++it)
-			{
-				randomCount = atoi(*it);
-				randomSample = true;
-			}
-			else if(arg == "--count")
-				count = true;
-		}
-
-		if(randomSample && !randomCount)
-		{
-			cout << "Error: invalid number of random phrases to produce.\n";
-			return;
-		}
-
-		const Phrase *phrase = nullptr;
-
-		for(const auto &it : GameData::Phrases())
-			if(it.first == phraseName)
-			{
-				phrase = &it.second;
-				break;
-			}
-
-		if(!phrase)
-			cout << "Error: invalid phrase name: \"" + phraseName + "\".\n";
-		else if(randomSample)
-			for(int i = 0; i < randomCount; i++)
-				cout << phrase->Get() << '\n';
-		else if(count)
-		{
-			int resultCount = 0;
-
-			auto counter = [&resultCount](const string &result) -> void
-			{
-				if(!result.empty())
-					resultCount++;
-			};
-
-			phrase->GetAll(counter);
-
-			cout << "Permutations of phrase: \"" << phrase->Name() << "\" = " << resultCount << '\n';
-		}
-		else
-		{
-			auto printer = [](const string &result) -> void
-			{
-				cout << result << '\n';
-			};
-
-			phrase->GetAll(printer);
-		}
-	}
-
-
-
 	const set<string> OUTFIT_ARGS = {
 		"-w",
 		"--weapons",
@@ -754,8 +686,7 @@ namespace {
 		"--sales",
 		"--planets",
 		"--systems",
-		"--matches",
-		"--phrase"
+		"--matches"
 	};
 }
 
@@ -800,8 +731,6 @@ void PrintData::Print(const char *const *argv)
 			Systems(argv);
 		else if(arg == "--matches")
 			LocationFilterMatches(argv);
-		else if(arg == "--phrase")
-			Phrases(argv);
 	}
 	cout.flush();
 }
@@ -839,7 +768,4 @@ void PrintData::Help()
 	cerr << "    --matches: prints a list of all planets and systems matching a location filter passed in STDIN."
 			<< endl;
 	cerr << "        The first node of the location filter should be `location`." << endl;
-	cerr << "    --phrase <phrase>: prints a list of all possible results of the named phrase." << endl;
-	cerr << "        --random <count>: prints <count> randomly produced sentences from the given phrase." << endl;
-	cerr << "        --count: calculates and prints the number of permutations of the given phrase." << endl;
 }

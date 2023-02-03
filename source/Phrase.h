@@ -47,9 +47,6 @@ public:
 	const std::string &Name() const;
 	std::string Get() const;
 
-	// Get every possible result of this phrase.
-	void GetAll(const std::function<void(const std::string &)> &toCall) const;
-
 
 private:
 	bool ReferencesPhrase(const Phrase *phrase) const;
