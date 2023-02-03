@@ -21,7 +21,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameEvent.h"
 #include "LocationFilter.h"
 #include "Outfit.h"
-#include "Phrase.h"
 #include "Planet.h"
 #include "Ship.h"
 #include "System.h"
