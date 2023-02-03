@@ -59,7 +59,7 @@ protected:
 
 		explicit operator bool() const noexcept { return success; }
 
-		bool HasMessage() const noexcept { return message != ""; }
+		bool HasMessage() const noexcept { return !message.empty(); }
 		const std::string &Message() const noexcept { return message; }
 	private:
 		bool success = true;
