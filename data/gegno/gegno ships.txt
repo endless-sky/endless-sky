@@ -1005,9 +1005,9 @@ ship "Tridymite"
 		"engine capacity" 86
 		
 		"outfit scan power" 18
-		"outfit scan speed" 8
+		"outfit scan efficiency" 8
 		"cargo scan power" 6
-		"cargo scan speed" 2
+		"cargo scan efficiency" 2
 		weapon
 			"blast radius" 35
 			"shield damage" 220
