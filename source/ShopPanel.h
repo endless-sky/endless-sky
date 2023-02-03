@@ -61,6 +61,8 @@ protected:
 
 		bool HasMessage() const noexcept { return !message.empty(); }
 		const std::string &Message() const noexcept { return message; }
+
+
 	private:
 		bool success = true;
 		std::string message;
