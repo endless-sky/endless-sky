@@ -1067,10 +1067,13 @@ ship "Centipede" "Centipede (Teeneep Jump)"
 ship "Frugal Defence Cannon"
 	attributes
 		"heat dissipation" 1
+		"hull threshold" 200
+		# once this loses (400 - 200) / 4 hull = 50 it will stop being frugal
+		# given the gun does 0.5 hull per second, it will take exactly 100 seconds
+		# the time it takes to fire is important for the gun to be in right position too
 		"hull" 400
-		"hull repair rate" .001
-		"mass" 100
-		"drag" 50
+		"mass" 25000
+		"drag" 25
 		"automaton" 1
 		"landing speed" 1
 	outfits
@@ -1094,24 +1097,24 @@ ship "Frugal Defence Cannon"
 		"Defence Cannon"
 		"Defence Cannon"
 	turret 0 0
-	turret -80 40
-	turret -70 50
-	turret -60 40
-	turret -50 50
-	turret -40 40
-	turret -30 50
-	turret -20 40
-	turret -10 50
-	turret 0 30
-	turret 0 50
-	turret 10 30
-	turret 20 50
+	turret -80 20
+	turret -70 -10
+	turret -60 20
+	turret -50 -10
+	turret -40 -20
+	turret -30 10
+	turret -20 -20
+	turret -10 0
+	turret 0 10
+	turret 0 20
+	turret 10 0
+	turret 20 -30
 	turret 30 20
-	turret 40 50
-	turret 50 60
-	turret 60 50
-	turret 70 70
-	turret 80 40
+	turret 40 0
+	turret 50 10
+	turret 60 -20
+	turret 70 10
+	turret 80 0
 
 outfit "Defence Cannon"
 	category "Turrets"
@@ -1127,7 +1130,7 @@ outfit "Defence Cannon"
 		"turret turn" 2.3
 		"velocity" 10
 		"lifetime" 150
-		"reload" 20
+		"reload" 10
 		"shield damage" 45
 		"hull damage" 34
 
@@ -1145,11 +1148,12 @@ outfit "Timer Weapon Rangeless"
 
 hazard "Keep Cannon Close"
 	"constant strength"
-	"range" 500
+	"range" 1000
 	weapon
 		"gravitational"
-		"hit force" -.001
-		"damage dropoff" 0 500
+		# the higher the mass, the more effect (so anything other than the cannon ship should be +- ignored)
+		"hit force" -.1
+		"damage dropoff" 0 1000
 		"dropoff modifier" 0
 
 mission "Hai Reveal [B12] Devil-Hide Battle"
