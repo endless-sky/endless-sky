@@ -32,6 +32,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Preferences.h"
 #include "Random.h"
 #include "Ship.h"
+#include "ship/ShipAICache.h"
 #include "ShipEvent.h"
 #include "ShipJumpNavigation.h"
 #include "StellarObject.h"
@@ -371,7 +372,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 
 	// Toggle your secondary weapon.
 	if(activeCommands.Has(Command::SELECT))
-		player.SelectNext();
+		player.SelectNextSecondary();
 
 	// The commands below here only apply if you have escorts or fighters.
 	if(player.Ships().size() < 2)
@@ -651,7 +652,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		// Player ships never stop targeting hostiles, while hostile mission NPCs will
 		// do so only if they are allowed to leave.
 		const bool shouldFlee = (personality.IsFleeing() ||
-			(!personality.IsHeroic() && !personality.IsStaying()
+			(!personality.IsDaring() && !personality.IsStaying()
 			&& healthRemaining < RETREAT_HEALTH + .25 * personality.IsCoward()));
 		if(!it->IsYours() && shouldFlee && target && target->GetGovernment()->IsEnemy(gov) && !target->IsDisabled()
 			&& (!it->GetParent() || !it->GetParent()->GetGovernment()->IsEnemy(gov)))
@@ -744,6 +745,15 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			it->SetCommands(command);
 			it->SetCommands(firingCommands);
 			continue;
+		}
+
+		if(isPresent && personality.IsSecretive())
+		{
+			if(DoSecretive(*it, command))
+			{
+				it->SetCommands(command);
+				continue;
+			}
 		}
 
 		// Surveillance NPCs with enforcement authority (or those from
@@ -979,8 +989,8 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		else if((personality.IsTimid() || (it->IsYours() && healthRemaining < RETREAT_HEALTH))
 				&& parent->Position().Distance(it->Position()) > 500.)
 			MoveEscort(*it, command);
-		// Otherwise, attack targets depending on how heroic you are.
-		else if(target && (targetDistance < 2000. || personality.IsHeroic()))
+		// Otherwise, attack targets depending on your hunting attribute.
+		else if(target && (targetDistance < 2000. || personality.IsHunting()))
 			MoveIndependent(*it, command);
 		// This ship does not feel like fighting.
 		else
@@ -1189,19 +1199,19 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	if(parentTarget && !parentTarget->IsTargetable())
 		parentTarget.reset();
 
-	// Find the closest enemy ship (if there is one). If this ship is "heroic,"
+	// Find the closest enemy ship (if there is one). If this ship is "hunting,"
 	// it will attack any ship in system. Otherwise, if all its weapons have a
 	// range higher than 2000, it will engage ships up to 50% beyond its range.
-	// If a ship has short range weapons and is not heroic, it will engage any
+	// If a ship has short range weapons and is not hunting, it will engage any
 	// ship that is within 3000 of it.
-	double closest = person.IsHeroic() ? numeric_limits<double>::infinity() :
+	double closest = person.IsHunting() ? numeric_limits<double>::infinity() :
 		(minRange > 1000.) ? maxRange * 1.5 : 4000.;
 	bool hasNemesis = false;
 	bool canPlunder = person.Plunders() && ship.Cargo().Free();
 	// Figure out how strong this ship is.
 	int64_t maxStrength = 0;
 	auto strengthIt = shipStrength.find(&ship);
-	if(!person.IsHeroic() && strengthIt != shipStrength.end())
+	if(!person.IsDaring() && strengthIt != shipStrength.end())
 		maxStrength = 2 * strengthIt->second;
 
 	// Get a list of all targetable, hostile ships in this system.
@@ -1225,7 +1235,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		if(foe == oldTarget.get() || foe == parentTarget.get())
 			range -= 500.;
 
-		// Unless this ship is "heroic", it should not chase much stronger ships.
+		// Unless this ship is "daring", it should not chase much stronger ships.
 		if(maxStrength && range > 1000. && !foe->IsDisabled())
 		{
 			const auto otherStrengthIt = shipStrength.find(foe);
@@ -2172,98 +2182,111 @@ void AI::KeepStation(Ship &ship, Command &command, const Body &target)
 
 void AI::Attack(Ship &ship, Command &command, const Ship &target)
 {
-	// First, figure out what your shortest-range weapon is.
-	double shortestRange = 4000.;
-	bool isArmed = false;
-	bool hasAmmo = false;
-	double minSafeDistance = 0.;
-	for(const Hardpoint &hardpoint : ship.Weapons())
-	{
-		const Weapon *weapon = hardpoint.GetOutfit();
-		if(weapon && !hardpoint.IsAntiMissile())
-		{
-			isArmed = true;
-			bool hasThisAmmo = (!weapon->Ammo() || ship.OutfitCount(weapon->Ammo()));
-			hasAmmo |= hasThisAmmo;
-
-			// Exploding weaponry that can damage this ship requires special
-			// consideration (while we have the ammo to use the weapon).
-			if(hasThisAmmo && weapon->BlastRadius() && !weapon->IsSafe())
-				minSafeDistance = max(weapon->BlastRadius() + weapon->TriggerRadius(), minSafeDistance);
-
-			// The missile boat AI should be applied at 1000 pixels range if
-			// all weapons are homing or turrets, and at 2000 if not.
-			double multiplier = (hardpoint.IsHoming() || hardpoint.IsTurret()) ? 1. : .5;
-			shortestRange = min(multiplier * weapon->Range(), shortestRange);
-		}
-	}
-	// If this ship was using the missile boat AI to run away and bombard its
-	// target from a distance, have it stop running once it is out of ammo. This
-	// is not realistic, but it's a whole lot less annoying for the player when
-	// they are trying to hunt down and kill the last missile boat in a fleet.
-	if(isArmed && !hasAmmo)
-		shortestRange = 0.;
-
 	// Deploy any fighters you are carrying.
 	if(!ship.IsYours() && ship.HasBays())
 	{
 		command |= Command::DEPLOY;
 		Deploy(ship, false);
 	}
-
-	// If this ship has only long-range weapons, or some weapons have a
-	// blast radius, it should keep some distance instead of closing in.
-	Point d = (target.Position() + target.Velocity()) - (ship.Position() + ship.Velocity());
-	if((minSafeDistance > 0. || shortestRange > 1000.)
-			&& d.Length() < max(1.25 * minSafeDistance, .5 * shortestRange))
+	// Ramming AI doesn't take weapon range or self-damage into account, instead opting to bum-rush the target.
+	if(ship.GetPersonality().IsRamming())
 	{
-		// If this ship can use reverse thrusters, consider doing so.
-		double reverseSpeed = ship.MaxReverseVelocity();
-		if(reverseSpeed && (reverseSpeed >= min(target.MaxVelocity(), ship.MaxVelocity())
-				|| target.Velocity().Dot(-d.Unit()) <= reverseSpeed))
-		{
-			command.SetTurn(TurnToward(ship, d));
-			if(ship.Facing().Unit().Dot(d) >= 0.)
-				command |= Command::BACK;
-		}
-		else
-		{
-			command.SetTurn(TurnToward(ship, -d));
-			if(ship.Facing().Unit().Dot(d) <= 0.)
-				command |= Command::FORWARD;
-		}
+		MoveToAttack(ship, command, target);
 		return;
 	}
 
-	MoveToAttack(ship, command, target);
+	ShipAICache &shipAICache = ship.GetAICache();
+	bool useArtilleryAI = shipAICache.IsArtilleryAI();
+	double shortestRange = shipAICache.ShortestRange();
+	double shortestArtillery = shipAICache.ShortestArtillery();
+	double minSafeDistance = shipAICache.MinSafeDistance();
+
+	double totalRadius = ship.Radius() + target.Radius();
+	Point direction = target.Position() - ship.Position();
+	// Average distance from this ship's weapons to the enemy ship.
+	double weaponDistanceFromTarget = direction.Length() - totalRadius / 3.;
+
+	// If this ship has mostly long-range weapons, or some weapons have a
+	// blast radius, it should keep some distance instead of closing in.
+	// If a weapon has blast radius, some leeway helps avoid getting hurt.
+	if(minSafeDistance || (useArtilleryAI && shortestRange < weaponDistanceFromTarget))
+	{
+		minSafeDistance = 1.25 * minSafeDistance + totalRadius;
+
+		double approachSpeed = (ship.Velocity() - target.Velocity()).Dot(direction.Unit());
+		double slowdownDistance = 0.;
+		// If this ship can use reverse thrusters, consider doing so.
+		double reverseSpeed = ship.MaxReverseVelocity();
+		bool useReverse = reverseSpeed && (reverseSpeed >= min(target.MaxVelocity(), ship.MaxVelocity())
+				|| target.Velocity().Dot(-direction.Unit()) <= reverseSpeed);
+		slowdownDistance = approachSpeed * approachSpeed / (useReverse ?
+			ship.ReverseAcceleration() : (ship.Acceleration() + 160. / ship.TurnRate())) / 2.;
+
+		// If we're too close, run away.
+		if(direction.Length() <
+				max(minSafeDistance + max(slowdownDistance, 0.), useArtilleryAI * .75 * shortestArtillery))
+		{
+			if(useReverse)
+			{
+				command.SetTurn(TurnToward(ship, direction));
+				if(ship.Facing().Unit().Dot(direction) >= 0.)
+					command |= Command::BACK;
+			}
+			else
+			{
+				command.SetTurn(TurnToward(ship, -direction));
+				if(ship.Facing().Unit().Dot(direction) <= 0.)
+					command |= Command::FORWARD;
+			}
+		}
+		else
+		{
+			// This isn't perfect, but it works well enough.
+			if((useArtilleryAI && (approachSpeed > 0. && weaponDistanceFromTarget < shortestArtillery * .9)) ||
+					weaponDistanceFromTarget < shortestRange * .75)
+				AimToAttack(ship, command, target);
+			else
+				MoveToAttack(ship, command, target);
+		}
+	}
+	// Fire if we can or move closer to use all weapons.
+	else
+		if(weaponDistanceFromTarget < shortestRange * .75)
+			AimToAttack(ship, command, target);
+		else
+			MoveToAttack(ship, command, target);
+}
+
+
+
+void AI::AimToAttack(Ship &ship, Command &command, const Body &target)
+{
+	command.SetTurn(TurnToward(ship, TargetAim(ship, target)));
 }
 
 
 
 void AI::MoveToAttack(Ship &ship, Command &command, const Body &target)
 {
-	Point d = target.Position() - ship.Position();
+	Point direction = target.Position() - ship.Position();
 
 	// First of all, aim in the direction that will hit this target.
-	command.SetTurn(TurnToward(ship, TargetAim(ship, target)));
+	AimToAttack(ship, command, target);
 
-	// Calculate this ship's "turning radius"; that is, the smallest circle it
-	// can make while at full speed.
-	double stepsInFullTurn = 360. / ship.TurnRate();
-	double circumference = stepsInFullTurn * ship.Velocity().Length();
-	double diameter = max(200., circumference / PI);
-
+	const auto facing = ship.Facing().Unit().Dot(direction.Unit());
 	// If the ship has reverse thrusters and the target is behind it, we can
 	// use them to reach the target more quickly.
-	if(ship.Facing().Unit().Dot(d.Unit()) < -.75 && ship.Attributes().Get("reverse thrust"))
+	if(facing < -.75 && ship.Attributes().Get("reverse thrust"))
 		command |= Command::BACK;
 	// This isn't perfect, but it works well enough.
-	else if((ship.Facing().Unit().Dot(d) >= 0. && d.Length() > diameter)
-			|| (ship.Velocity().Dot(d) < 0. && ship.Facing().Unit().Dot(d.Unit()) >= .9))
+	else if((facing >= 0. &&
+			direction.Length() > max(200., ship.GetAICache().TurningRadius()))
+			|| (ship.Velocity().Dot(direction) < 0. &&
+				facing) >= .9)
 		command |= Command::FORWARD;
 
 	// Use an equipped afterburner if possible.
-	if(command.Has(Command::FORWARD) && d.Length() < 1000. && ShouldUseAfterburner(ship))
+	if(command.Has(Command::FORWARD) && direction.Length() < 1000. && ShouldUseAfterburner(ship))
 		command |= Command::AFTERBURNER;
 }
 
@@ -2756,6 +2779,46 @@ void AI::DoScatter(Ship &ship, Command &command)
 		command.SetTurn(offset.Cross(ship.Facing().Unit()) > 0. ? 1. : -1.);
 		return;
 	}
+}
+
+
+
+bool AI::DoSecretive(Ship &ship, Command &command)
+{
+	shared_ptr<Ship> scanningShip;
+	// Figure out if any ship is currently scanning us. If that is the case, move away from it.
+	for(auto &otherShip : GetShipsList(ship, false))
+		if(!ship.GetGovernment()->Trusts(otherShip->GetGovernment()) &&
+				otherShip->Commands().Has(Command::SCAN) &&
+				otherShip->GetTargetShip() == ship.shared_from_this() &&
+				!otherShip->IsDisabled() && !otherShip->IsDestroyed())
+			scanningShip = make_shared<Ship>(*otherShip);
+
+	if(scanningShip)
+	{
+		Point scanningPos = scanningShip->Position();
+		Point pos = ship.Position();
+
+		double cargoDistance = scanningShip->Attributes().Get("cargo scan power");
+		double outfitDistance = scanningShip->Attributes().Get("outfit scan power");
+
+		double maxScanRange = max(cargoDistance, outfitDistance);
+		double distance = scanningPos.DistanceSquared(pos) * .0001;
+
+		// If it can scan us we need to evade.
+		if(distance < maxScanRange)
+		{
+			Point away;
+			if(ship.GetPersonality().IsUnconstrained() || !fenceCount.count(&ship))
+				away = pos - scanningPos;
+			else
+				away = -pos;
+			away *= ship.MaxVelocity();
+			MoveTo(ship, command, pos + away, away, 1., 1.);
+			return true;
+		}
+	}
+	return false;
 }
 
 
@@ -3735,7 +3798,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		if(activeCommands.Has(Command::SECONDARY))
 		{
 			int index = 0;
-			const auto &playerSelectedWeapons = player.SelectedWeapons();
+			const auto &playerSelectedWeapons = player.SelectedSecondaryWeapons();
 			for(const Hardpoint &hardpoint : ship.Weapons())
 			{
 				if(hardpoint.IsReady() && (playerSelectedWeapons.find(hardpoint.GetOutfit()) != playerSelectedWeapons.end()))
@@ -3750,9 +3813,11 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			autoPilot = activeCommands;
 	}
 	bool shouldAutoAim = false;
-	if(Preferences::Has("Automatic aiming") && !command.Turn() && !ship.IsBoarding()
-			&& ((target && target->GetSystem() == ship.GetSystem() && target->IsTargetable())
-				|| ship.GetTargetAsteroid())
+	bool isFiring = activeCommands.Has(Command::PRIMARY) || activeCommands.Has(Command::SECONDARY);
+	if((Preferences::GetAutoAim() == Preferences::AutoAim::ALWAYS_ON
+			|| (Preferences::GetAutoAim() == Preferences::AutoAim::WHEN_FIRING && isFiring))
+			&& !command.Turn() && !ship.IsBoarding()
+			&& ((target && target->GetSystem() == ship.GetSystem() && target->IsTargetable()) || ship.GetTargetAsteroid())
 			&& !autoPilot.Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD))
 	{
 		// Check if this ship has any forward-facing weapons.

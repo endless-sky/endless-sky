@@ -32,6 +32,12 @@ public:
 		dmy = 0, // Day-first format. (Sat, 4 Oct 1941)
 		mdy,     // Month-first format. (Sat, Oct 4, 1941)
 		ymd      // All-numeric ISO 8601. (1941-10-04)
+  };
+
+	enum class AutoAim : int_fast8_t {
+		OFF = 0,
+		ALWAYS_ON,
+		WHEN_FIRING
 	};
 
 	enum class BoardingPriority : int_fast8_t {
@@ -89,6 +95,11 @@ public:
 	static bool ToggleVSync();
 	static VSync VSyncState();
 	static const std::string &VSyncSetting();
+
+	// Auto aim setting, either "off", "always on", or "when firing".
+	static void ToggleAutoAim();
+	static AutoAim GetAutoAim();
+	static const std::string &AutoAimSetting();
 
 	// Background parallax setting, either "fast", "fancy", or "off".
 	static void ToggleParallax();

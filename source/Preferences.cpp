@@ -40,8 +40,12 @@ namespace {
 	const vector<string> DATEFMT_OPTIONS = {"dmy", "mdy", "ymd"};
 	int dateFormatIndex = 0;
 
-	const vector<double> ZOOMS = {.25, .35, .50, .70, 1.00, 1.40, 2.00};
-	int zoomIndex = 4;
+	// This controls the range of zoom scales the player can switch to.
+	// larger values are close-up and small values are farther away
+	const vector<double> ZOOMS = {.105, .125, .15, .175, .2, .25, 0.3, 0.35, 0.4, 0.5, 0.6, 0.7, 0.85,
+		1., 1.2, 1.4, 1.7, 2., 2.4};
+	int zoomIndex = 13;
+
 	constexpr double VOLUME_SCALE = .25;
 
 	// Default to fullscreen.
@@ -51,6 +55,9 @@ namespace {
 	// Enable standard VSync by default.
 	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
 	int vsyncIndex = 1;
+
+	const vector<string> AUTO_AIM_SETTINGS = {"off", "always on", "when firing"};
+	int autoAimIndex = 2;
 
 	const vector<string> BOARDING_SETTINGS = {"proximity", "value", "mixed"};
 	int boardingIndex = 0;
@@ -68,7 +75,6 @@ void Preferences::Load()
 {
 	// These settings should be on by default. There is no need to specify
 	// values for settings that are off by default.
-	settings["Automatic aiming"] = true;
 	settings["Render motion blur"] = true;
 	settings[FRUGAL_ESCORTS] = true;
 	settings[EXPEND_AMMO] = true;
@@ -101,6 +107,8 @@ void Preferences::Load()
 			zoomIndex = max<int>(0, min<int>(node.Value(1), ZOOMS.size() - 1));
 		else if(node.Token(0) == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
+		else if(node.Token(0) == "Automatic aiming")
+			autoAimIndex = max<int>(0, min<int>(node.Value(1), AUTO_AIM_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Parallax background")
 			parallaxIndex = max<int>(0, min<int>(node.Value(1), PARALLAX_SETTINGS.size() - 1));
 		else if(node.Token(0) == "fullscreen")
@@ -138,6 +146,7 @@ void Preferences::Save()
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
 	out.Write("date format", static_cast<int>(Preferences::GetDateFormat()));
+	out.Write("Automatic aiming", autoAimIndex);
 	out.Write("Parallax background", parallaxIndex);
 	out.Write("alert indicator", alertIndicatorIndex);
 
@@ -338,6 +347,27 @@ Preferences::VSync Preferences::VSyncState()
 const string &Preferences::VSyncSetting()
 {
 	return VSYNC_SETTINGS[vsyncIndex];
+}
+
+
+
+void Preferences::ToggleAutoAim()
+{
+	autoAimIndex = (autoAimIndex + 1) % AUTO_AIM_SETTINGS.size();
+}
+
+
+
+Preferences::AutoAim Preferences::GetAutoAim()
+{
+	return static_cast<AutoAim>(autoAimIndex);
+}
+
+
+
+const string &Preferences::AutoAimSetting()
+{
+	return AUTO_AIM_SETTINGS[autoAimIndex];
 }
 
 
