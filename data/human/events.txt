@@ -136,7 +136,7 @@ event "war begins"
 		"required reputation" 100
 	planet "Martini"
 		description `Martini is a world of exotic beaches and perfect weather. The Republic's central bank and the galactic stock exchange were previously headquartered here, before a terrorist attack destroyed them and a large portion of the capital city as well.`
-		description `	Currently, a massive rescue and evacuation operation is going on in and around the capital to find and treat survivors and contain the radiation. As to be expected, almost every supply is running dangerously low, and what remains of Martini's government (many in the planetary government died in the blast) has called for civilian ships to help deliver goods and supplies for the operation.`
+		description `	Currently, a massive rescue and evacuation operation is going on in and around the capital to find and treat survivors and contain the radiation. As to be expected, almost every supply is running dangerously low, and what remains of Martini's government has called for civilian ships to help deliver goods and supplies for the operation.`
 		spaceport `Instead of the immaculate spaceport that Martini once sported, this temporary spaceport consists of randomly scattered makeshift landing areas, in order to allow the increased numbers of both Navy and civilian ships assisting with the rescue and evacuation operation.`
 		"required reputation" 100
 		security .9
