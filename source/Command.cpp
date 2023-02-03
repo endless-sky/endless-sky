@@ -45,37 +45,37 @@ namespace {
 // Command enumeration, including the descriptive strings that are used for the
 // commands both in the preferences panel and in the saved key settings.
 const Command Command::NONE(0uLL, "");
-const Command Command::MENU(1uL << 0, "Show main menu");
-const Command Command::FORWARD(1uL << 1, "Forward thrust");
-const Command Command::LEFT(1uL << 2, "Turn left");
-const Command Command::RIGHT(1uL << 3, "Turn right");
-const Command Command::BACK(1uL << 4, "Reverse");
-const Command Command::PRIMARY(1uL << 5, "Fire primary weapon");
-const Command Command::SECONDARY(1uL << 6, "Fire secondary weapon");
-const Command Command::SELECT(1uL << 7, "Select secondary weapon");
-const Command Command::LAND(1uL << 8, "Land on planet / station");
-const Command Command::BOARD(1uL << 9, "Board selected ship");
-const Command Command::HAIL(1uL << 10, "Talk to selected ship");
-const Command Command::SCAN(1uL << 11, "Scan selected ship");
-const Command Command::JUMP(1uL << 12, "Initiate hyperspace jump");
-const Command Command::FLEET_JUMP(1uL << 13, "");
-const Command Command::TARGET(1uL << 14, "Select next ship");
-const Command Command::NEAREST(1uL << 15, "Select nearest hostile ship");
-const Command Command::DEPLOY(1uL << 16, "Deploy / recall fighters");
-const Command Command::AFTERBURNER(1uL << 17, "Fire afterburner");
-const Command Command::CLOAK(1uL << 18, "Toggle cloaking device");
-const Command Command::MAP(1uL << 19, "View star map");
-const Command Command::INFO(1uL << 20, "View player info");
-const Command Command::FULLSCREEN(1uL << 21, "Toggle fullscreen");
-const Command Command::FASTFORWARD(1uL << 22, "Toggle fast-forward");
-const Command Command::FIGHT(1uL << 23, "Fleet: Fight my target");
-const Command Command::GATHER(1uL << 24, "Fleet: Gather around me");
-const Command Command::HOLD(1uL << 25, "Fleet: Hold position");
-const Command Command::AMMO(1uL << 26, "Fleet: Toggle ammo usage");
-const Command Command::NEAREST_ASTEROID(1uL << 27, "Select nearest asteroid");
-const Command Command::WAIT(1uL << 28, "");
-const Command Command::STOP(1ul << 29, "");
-const Command Command::SHIFT(1uL << 30, "");
+const Command Command::MENU(1uLL << 0, "Show main menu");
+const Command Command::FORWARD(1uLL << 1, "Forward thrust");
+const Command Command::LEFT(1uLL << 2, "Turn left");
+const Command Command::RIGHT(1uLL << 3, "Turn right");
+const Command Command::BACK(1uLL << 4, "Reverse");
+const Command Command::PRIMARY(1uLL << 5, "Fire primary weapon");
+const Command Command::SECONDARY(1uLL << 6, "Fire secondary weapon");
+const Command Command::SELECT(1uLL << 7, "Select secondary weapon");
+const Command Command::LAND(1uLL << 8, "Land on planet / station");
+const Command Command::BOARD(1uLL << 9, "Board selected ship");
+const Command Command::HAIL(1uLL << 10, "Talk to selected ship");
+const Command Command::SCAN(1uLL << 11, "Scan selected ship");
+const Command Command::JUMP(1uLL << 12, "Initiate hyperspace jump");
+const Command Command::FLEET_JUMP(1uLL << 13, "");
+const Command Command::TARGET(1uLL << 14, "Select next ship");
+const Command Command::NEAREST(1uLL << 15, "Select nearest hostile ship");
+const Command Command::DEPLOY(1uLL << 16, "Deploy / recall fighters");
+const Command Command::AFTERBURNER(1uLL << 17, "Fire afterburner");
+const Command Command::CLOAK(1uLL << 18, "Toggle cloaking device");
+const Command Command::MAP(1uLL << 19, "View star map");
+const Command Command::INFO(1uLL << 20, "View player info");
+const Command Command::FULLSCREEN(1uLL << 21, "Toggle fullscreen");
+const Command Command::FASTFORWARD(1uLL << 22, "Toggle fast-forward");
+const Command Command::FIGHT(1uLL << 23, "Fleet: Fight my target");
+const Command Command::GATHER(1uLL << 24, "Fleet: Gather around me");
+const Command Command::HOLD(1uLL << 25, "Fleet: Hold position");
+const Command Command::AMMO(1uLL << 26, "Fleet: Toggle ammo usage");
+const Command Command::NEAREST_ASTEROID(1uLL << 27, "Select nearest asteroid");
+const Command Command::WAIT(1uLL << 28, "");
+const Command Command::STOP(1uLL << 29, "");
+const Command Command::SHIFT(1uLL << 30, "");
 
 
 
