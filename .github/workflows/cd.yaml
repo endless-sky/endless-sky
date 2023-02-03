@@ -37,13 +37,18 @@ jobs:
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v10
         with:
-          vcpkgGitCommitId: '163fe7bd3d67c41200617caaa245b5ba2ba854e6'
+          vcpkgGitCommitId: '91dd61bd441a68b4017b61011d0350b2e6aeeccf'
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'linux-release'
           buildPreset: 'linux-ci-release'
       - name: Package Application
         run: ./utils/build_appimage.sh build/release
+      - name: Prevent saving cache on failure
+        run: |
+          echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
+        if: ${{ failure() || cancelled() }}
+        shell: bash
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
@@ -68,7 +73,7 @@ jobs:
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v10
         with:
-          vcpkgGitCommitId: '163fe7bd3d67c41200617caaa245b5ba2ba854e6'
+          vcpkgGitCommitId: '91dd61bd441a68b4017b61011d0350b2e6aeeccf'
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'mingw-release'
@@ -77,6 +82,11 @@ jobs:
         run: |
           cmake --install build/release
           7z a ${{ env.OUTPUT }} "./install/release/*"
+      - name: Prevent saving cache on failure
+        run: |
+          echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
+        if: ${{ failure() || cancelled() }}
+        shell: bash
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
@@ -98,7 +108,7 @@ jobs:
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v10
         with:
-          vcpkgGitCommitId: '163fe7bd3d67c41200617caaa245b5ba2ba854e6'
+          vcpkgGitCommitId: '91dd61bd441a68b4017b61011d0350b2e6aeeccf'
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'macos-release'
@@ -107,6 +117,11 @@ jobs:
         run: |
           cmake --install build/release
           7z a ${{ env.OUTPUT }} "./install/release/*"
+      - name: Prevent saving cache on failure
+        run: |
+          echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
+        if: ${{ failure() || cancelled() }}
+        shell: bash
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
