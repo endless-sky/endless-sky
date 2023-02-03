@@ -37,8 +37,11 @@ namespace {
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 
-	const vector<double> ZOOMS = {.25, .35, .50, .70, 1.00, 1.40, 2.00};
-	int zoomIndex = 4;
+	// This controls the range of zoom scales the player can switch to.
+	// larger values are close-up and small values are farther away
+	const vector<double> ZOOMS = {.105, .125, .15, .175, .2, .25, 0.3, 0.35, 0.4, 0.5, 0.6, 0.7, 0.85,
+		1., 1.2, 1.4, 1.7, 2., 2.4};
+	int zoomIndex = 13;
 	constexpr double VOLUME_SCALE = .25;
 
 	// Default to fullscreen.

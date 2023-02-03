@@ -70,6 +70,9 @@ template <class Type>
 	// Issue AI commands to all ships for one game step.
 	void Step(const PlayerInfo &player, Command &activeCommands);
 
+	// Set the mouse position for turning the player's flagship.
+	void SetMousePosition(Point position);
+
 	// Get the in-system strength of each government's allies and enemies.
 	int64_t AllyStrength(const Government *government);
 	int64_t EnemyStrength(const Government *government);
@@ -196,6 +199,8 @@ private:
 
 	// Command applied by the player's "autopilot."
 	Command autoPilot;
+	// Position of the cursor, for when the player is using mouse turning.
+	Point mousePosition;
 	// General firing command for ships. This is a data member to avoid
 	// thrashing the heap, since we can reuse the storage for
 	// each ship.
