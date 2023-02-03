@@ -622,15 +622,15 @@ person "Regrets of the Reviewer"
 		word
 		"The number of times someone breaks the fourth wall, it’s mind boggling!"
 		"Look, we aren’t here for your money. We do all this for free, and look where that gets us…"
-		"If you don't know where to start in helping the game, come and review some missions on github. It helps!"
-		"If you're interested in helping out but don't have time, consider looking through the proposals on Github! Sometimes, a new perspective is needed!"
+		"If you don't know where to start in helping the game, come and review some missions on GitHub. It helps!"
+		"If you're interested in helping out but don't have time, consider looking through the proposals on GitHub! Sometimes, a new perspective is needed!"
 		"What do you mean you don’t have a save file for this Pull!?"
 		"Please, for the love of god, don’t make an issue before checking if others have done the same."
 		"Code non-functional. Destroy them."
 
 	phrase
 		word
-			“If you do not want your pull request to be merged, ”
+			"If you do not want your pull request to be merged, "
 			“If you prefer your pull request sits idle, ”
 			“If you want your pull request to be closed, ”
 		word
@@ -664,7 +664,7 @@ person "Cries of the Critic"
 			"The number of times someone breaks the fourth wall, it’s mind boggling!"
 			"Look, we aren’t here for your money. We do all this for free, and look where that gets us…"
 			"If you don't know where to start in helping the game, come and review some missions on github. It helps!"
-			"If you're interested in helping out but don't have time, consider looking through the proposals on Github! Sometimes, a new perspective is needed!"
+			"If you're interested in helping out but don't have time, consider looking through the proposals on GitHub! Sometimes, a new perspective is needed!"
 			"What do you mean you don’t have a save file for this Pull!?"
 			"Please, for the love of god, don’t make an issue before checking if others have done the same."
 			"Code non-functional. Destroy them."
