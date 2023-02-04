@@ -506,8 +506,6 @@ mission "<uhai> 18: Detainer For Translator"
 				`	"Sure, I will go and bring it back for you."`
 					accept
 				`	"This is way too risky. I'm out."`
-			action
-				fail "<uhai> 18: Hai Language: Scout Wanderer Systems"
 	to fail
 		has "language: Wanderer"
 	on visit
