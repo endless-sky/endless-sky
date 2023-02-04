@@ -465,6 +465,7 @@ outfit "Quantum Keystone"
 	"outfit space" -1
 	"quantum keystone" 1
 	description "This chunk of rock from the mountains on the Hai homeworld is apparently nothing more than a good luck charm, but the Hai have decorated their ships with them since the height of their empire. More superstitious Hai claim that the stones somehow reduce the nausea induced by hyperspace jumps by making travel between star systems easier, and many wealthy Hai refuse to book passage on a ship without one."
+	description "	This keystone comes with a package including a holo-film certificate of authenticity certifying its origins on Hai-home, a decorative but robust frame, and a tiny plaque with the keystone logo and sale number stamped on it. The packaging suggests mounting the framed certificate in a prominent location near the main airlock or public common area."
 
 outfit "Value Detector"
 	category "Systems"
@@ -473,7 +474,7 @@ outfit "Value Detector"
 	"mass" 3
 	"outfit space" -3
 	"cargo scan power" 88
-	"cargo scan speed" 16
+	"cargo scan efficiency" 16
 	"tactical scan power" 92
 	description "The Unfettered developed this scanner in order to determine which ships are worth plundering, or which lack the capacity to stand up to their ion weapons. Some Hai consider it rather rudimentary, but it is sufficient to identify the cargo on a ship from afar and provide more detailed information about the tactical condition of enemy vessels. This dual function is useful when fielding experimental weaponry."
 

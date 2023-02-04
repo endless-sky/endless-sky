@@ -194,7 +194,7 @@ void MapOutfitterPanel::DrawItems()
 
 		for(const Outfit *outfit : it->second)
 		{
-			string price = Format::Credits(outfit->Cost()) + " credits";
+			string price = Format::CreditString(outfit->Cost());
 
 			string info;
 			if(outfit->Get("minable") > 0.)
@@ -229,9 +229,12 @@ void MapOutfitterPanel::DrawItems()
 						continue;
 
 					const Planet &planet = *object.GetPlanet();
-					const auto pit = storage.find(&planet);
-					if(pit != storage.end())
-						storedInSystem += pit->second.Get(outfit);
+					if(planet.HasOutfitter())
+					{
+						const auto pit = storage.find(&planet);
+						if(pit != storage.end())
+							storedInSystem += pit->second.Get(outfit);
+					}
 					if(planet.Outfitter().Has(outfit))
 					{
 						isForSale = true;
@@ -275,12 +278,13 @@ void MapOutfitterPanel::Init()
 
 	// Add outfits in storage
 	for(const auto &it : player.PlanetaryStorage())
-		for(const auto &oit : it.second.Outfits())
-			if(!seen.count(oit.first))
-			{
-				catalog[oit.first->Category()].push_back(oit.first);
-				seen.insert(oit.first);
-			}
+		if(it.first->HasOutfitter())
+			for(const auto &oit : it.second.Outfits())
+				if(!seen.count(oit.first))
+				{
+					catalog[oit.first->Category()].push_back(oit.first);
+					seen.insert(oit.first);
+				}
 
 	// Add all known minables.
 	for(const auto &it : player.Harvested())
