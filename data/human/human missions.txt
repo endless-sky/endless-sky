@@ -5680,7 +5680,7 @@ mission "Drunk Teen Hijack"
 			label investigate
 			`	You quietly walk closer, then stop and listen to what seems to be people talking.`
 			`	"...seems so nice. Picked us up and all."`
-			`	"Nah. They all expect us to pay them later, these guys. They work for money, like everyone else. We are just an investment."`
+			`	"Nah. They all expect us to pay them later, these guys. They work for money, like everyone else. We're just an investment."`
 			`	"We can't back out now. There is no way we could get there otherwise. Don't act like it's your first time in the business." In the third speaker, you recognize Howard, one of your teenage passengers.`
 			choice
 				`	(Confront them.)`
