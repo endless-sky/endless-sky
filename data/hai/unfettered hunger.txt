@@ -213,7 +213,6 @@ mission "Unfettered: Hunger Stories 1"
 	clearance `You contact the authorities and they say they will have a team waiting when you land.`
 	to offer
 		has "unfettered: hunger"
-		not "language: Wanderer"
 		random < 40
 	on offer
 		conversation
@@ -223,14 +222,22 @@ mission "Unfettered: Hunger Stories 1"
 				`	(Get on with my business.)`
 					goto business
 
+			branch translator
+				has "language: Wanderer"
+
 			`	Your approach startles her out of her distraction and she pulls the boy close. When you speak to her it's clear she doesn't understand you. You look around for an Unfettered who could translate, but she grabs your sleeve and shakes her head. Eventually one of your crew who understands a little Hai gives it a try.`
-			`	"They have told me my husband is dead. The thieving raptors killed him. And now the boy has a medal but no father. They gave me his death money but there is no food and I don't know what we will do."`
+				goto message
+			label translator
+			`	Your approach startles her out of her distraction and she pulls the boy close. She is shaking her head to say she doesn't understand when your translator begins to relay your words. She relaxes somewhat but holds the boy's paw tightly.`
+
+			label message
+			`	"They have told me my husband is dead. The thieving vultures killed him. And now the boy has a medal but no father. They gave me his death money but there is no food and I don't know what we will do."`
 			`	You know that the Hai send food aid to the Unfettered and you've not seen anyone obviously hungry in Hai space. They would probably take this family in.`
 			choice
 				`	(Offer to take them to <destination>.)`
 				`	(Offer your condolences and move on.)`
 					goto condolences
-			`	While it's awkward to wait for your crew to translate, it gives you time to choose your words. "Your brothers and sisters in the south have food and shelter for your family. I can take you there if you want."`
+			`	While it's awkward to wait for the translation, it gives you time to choose your words. "Your brothers and sisters in the south have food and shelter for your family. I can take you there if you want."`
 			`	She hesitates but then the baby starts to cry. She looks at you with tears in her eyes and nods. You send some crew with her to help her pack her things and bring them to the ship.`
 				accept
 			
@@ -246,7 +253,7 @@ mission "Unfettered: Hunger Stories 1"
 	on complete
 		payment 300000
 		conversation
-			`You are surprised to see a military honor guard in addition to what you assume are social services. They greet the family with a keening trill that your crew member says is a sound of mourning. The Hai move in close and surround the group in what seems to be a group hug and then they move together into the spaceport. One of the Hai soldiers approaches you and says, "Thank you for bringing our family back together" and gives you your payment of <payment>.`
+			`You are surprised to see a military honor guard in addition to what you assume are social services. They greet the family with a keening trill in what must be a sound of mourning. The Hai move in close and surround the group in what seems to be a group hug and then they move together into the spaceport. One of the Hai soldiers approaches you and says, "Thank you for bringing our family back together" and gives you your payment of <payment>.`
 
 
 
@@ -264,7 +271,7 @@ mission "Unfettered: Hunger Stories 2"
 		conversation
 			`"Human!" The cry catches your attention not only because of the volume of the shout, but primarily because it's the most respectful term anyone has used for you in Unfettered space. You turn and see a young Hai warrior striding toward you. At least you think he's young. He's certainly thinner than most of the Hai you see south of Wah-Ki. You notice that his boots seems to be made more of mending tape than actual fabric. He's not wearing the ornately decorated knives that many of the True Hai carry, but he does have sheaths for them. Instead, he carries a long staff that looks to be made of one of the light but rigid Hai alloys.You can see that scars from many fights disturb the pattern of his fur.`
 			`	"Human," he says again when he reaches you, "you should not promenade yourself in our star market without worthy guidance. This warrior can tell you what trader tongues are saying because I know your backward speech. Fast fingers not grab human things while I watch," he adds, emphasizing the point by banging the staff on the floor and making it ring. You notice the flow of traffic begins to part around you as other traders and travelers give him room.`
-			`	It takes you a moment to parse what he is saying as his accent is difficult to understand. You would guess he learned your language in class but has never spoken with native speakers. You think he is offering to be your translator and bodyguard.`
+			`	It takes you a moment to parse what he is saying as his accent is difficult to understand. You would guess he learned your language in class but has never spoken with humans. You think he is offering to be your translator and bodyguard.`
 			choice
 				`(Hire him.)`
 					goto hire
