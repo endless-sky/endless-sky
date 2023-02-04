@@ -5654,7 +5654,7 @@ mission "Drunk Teen Hijack"
 				`	"Why do you want to go there?"`
 				`	"Sorry, I'm not headed that way."`
 					goto decline
-			`	After a moment of silence, Howard replies. "We heard they have well-paying jobs over there, even for teenagers. And we don't want to work for the Syndicate or those minted folks on the paradise worlds."`
+			`	After a moment of silence, Howard replies. "We heard they have well-paying jobs over there, even for teenagers. And we don't want to work for the Syndicate or those minted folks on the Paradise Worlds."`
 			`	He pauses for a second, then continues, "We grew up in the Dirt Belt. This is our home. We don't want to leave all that behind." You hear something strange in his voice, but cannot quite make sense of it. It might just be their desperation.`
 			choice
 				`	"Very well. I will take you to <planet>."`
