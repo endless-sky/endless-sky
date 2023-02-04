@@ -31,7 +31,7 @@ ship "Albatross"
 		"drag" 8.6
 		"heat dissipation" 0.6
 		"fuel capacity" 600
-		"ramscoop" 2
+		"ramscoop" 2.75
 		"outfit space" 672
 		"weapon capacity" 236
 		"engine capacity" 142
@@ -487,7 +487,7 @@ ship "Gull"
 		"drag" 6
 		"heat dissipation" 0.7
 		"fuel capacity" 600
-		"ramscoop" 1
+		"ramscoop" 1.75
 		"cargo space" 175
 		"outfit space" 311
 		"weapon capacity" 83
@@ -647,7 +647,7 @@ ship "Heron"
 		"drag" 25
 		"heat dissipation" .80
 		"fuel capacity" 2500
-		"ramscoop" 10
+		"ramscoop" 10.75
 		"cargo space" 1110
 		"outfit space" 2150
 		"weapon capacity" 470
@@ -778,7 +778,7 @@ ship "Ibis"
 		"drag" 5.1
 		"heat dissipation" 0.7
 		"fuel capacity" 700
-		"ramscoop" 2
+		"ramscoop" 2.75
 		"cargo space" 103
 		"outfit space" 427
 		"weapon capacity" 147
@@ -854,7 +854,7 @@ ship "Merganser"
 		"bunks" 3
 		"cargo space" 11
 		"fuel capacity" 600
-		"ramscoop" 1
+		"ramscoop" 1.75
 		"mass" 30
 		"drag" 1.5
 		"heat dissipation" .9
@@ -960,7 +960,7 @@ ship "Pelican"
 		"drag" 7.2
 		"heat dissipation" 0.7
 		"fuel capacity" 600
-		"ramscoop" 2
+		"ramscoop" 2.75
 		"outfit space" 480
 		"weapon capacity" 157
 		"engine capacity" 144
@@ -1041,7 +1041,7 @@ ship "Penguin"
 		"heat dissipation" 0.9
 		"fuel capacity" 800
 		"energy capacity" 300
-		"ramscoop" 0.5
+		"ramscoop" 1.25
 		"cargo space" 19
 		"outfit space" 109
 		"weapon capacity" 33
@@ -1146,7 +1146,7 @@ ship "Peregrine"
 		"drag" 4.3
 		"heat dissipation" 0.85
 		"fuel capacity" 1100
-		"ramscoop" 2.5
+		"ramscoop" 3.25
 		"cargo space" 59
 		"outfit space" 552
 		"weapon capacity" 220
@@ -1258,7 +1258,7 @@ ship "Petrel"
 		"hull" 2500
 		"cargo space" 15
 		"fuel capacity" 100
-		"ramscoop" 0.5
+		"ramscoop" 1.25
 		"required crew" 2
 		"bunks" 3
 		"mass" 50
@@ -1322,7 +1322,7 @@ ship "Puffin"
 		"heat dissipation" 0.9
 		"fuel capacity" 700
 		"energy capacity" 150
-		"ramscoop" 0.5
+		"ramscoop" 1.25
 		"cargo space" 8
 		"outfit space" 80
 		"engine capacity" 26
@@ -1381,7 +1381,7 @@ ship "Smew"
 		"energy capacity" 3000
 		"ion resistance" 0.002
 		"scramble resistance" 0.002
-		"ramscoop" 0.8
+		"ramscoop" 1.55
 		"shield generation" 0.48
 		"shield energy" 0.32
 		"hull repair rate" 0.9
@@ -1459,7 +1459,7 @@ ship "Starling"
 		"drag" 3.8
 		"heat dissipation" 0.7
 		"fuel capacity" 900
-		"ramscoop" 1
+		"ramscoop" 1.75
 		"cargo space" 36
 		"outfit space" 316
 		"weapon capacity" 83
@@ -1619,7 +1619,7 @@ ship "Tern"
 		"heat dissipation" .9
 		"fuel capacity" 50
 		"energy capacity" 500
-		"ramscoop" 0.5
+		"ramscoop" 1.25
 		"outfit space" 76
 		"weapon capacity" 16
 		"engine capacity" 26
