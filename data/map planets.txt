@@ -826,8 +826,8 @@ planet "Deep Water"
 
 planet "Deka Dathnak"
 	attributes "gas giant" "requires: gaslining" uninhabited
-	landscape land/nasa29
-	description `For whatever reason, someone has bombarded this gas giant with thousands of nuclear warheads. Swirls of radioactive isotopes are plainly visible in the lower atmosphere, and the amount of soot floating about points towards a large amount of some material having been incinerated in the recent past. The Korath were presumably the ones who decided to drop several gigatons worth of nuclear weapons on this gas giant during their civil war, but the exact reason why they did so remains unknown.`
+	landscape land/nasa21
+	description `For whatever reason, someone has gone to the trouble of bombarding this gas giant with thousands of nuclear warheads. Swirls of radioactive isotopes are plainly visible in the lower atmosphere, and the amount of soot floating around points towards a large amount of some material having been incinerated in the recent past. The Korath were presumably the ones who decided to drop several gigatons worth of nuclear weapons into this gas giant during their civil war, but the exact reason why they did so remains unknown.`
 	government Uninhabited
 	security 0
 
@@ -2045,7 +2045,7 @@ planet Janiculum
 
 planet Jupiter
 	attributes "gas giant" "requires: gaslining" uninhabited
-	landscape land/nasa29
+	landscape land/nasa12
 	description `Once called the King of the Solar System, Jupiter is just as impressive even considering the variety of gas giants in the galaxy. Its famous Great Red Spot is still well-known by most of humanity, and you make sure to steer clear of it while taking in the rich yellows and browns of the planet's atmosphere.`
 	government Uninhabited
 	security 0
@@ -2174,7 +2174,7 @@ planet "Laki Nemparu"
 
 planet "Lenz's Loophole"
 	attributes "gas giant" "requires: gaslining" uninhabited
-	landscape land/nasa29
+	landscape land/nasa28
 	description `Lenz's Loophole takes its name from the powerful magnetic field produced by its metallic hydrogen core. As one of the most powerful natural sources of magnetism known to humanity, it is named for Emil Lenz and his discoveries about the interactions between magnetism and electric currents.`
 	description `While your ship's shields fortunately keep it safe from the dangerously strong magnetic field, the solar radiation captured by the powerful magnetic fields is ultimately channeled into the atmosphere near the poles, where it would be exceedingly dangerous for you to venture.`
 	government Uninhabited
@@ -2550,7 +2550,7 @@ planet "Nearby Jade"
 
 planet Nepheritis
 	attributes "gas giant" "requires: gaslining" uninhabited
-	landscape land/nasa29
+	landscape land/clouds_08
 	description `An unusually large ice giant, Nepheritis is well-known among the denizens of the Paradise Planets for its prodigious rains of solid diamonds. While this phenomenon is common on most ice giants of sufficient size, Nepheritis became a scientific curiosity due to the sheer size of the diamonds formed in its atmosphere, with some reaching the size of large boulders before plummeting into its depths.`
 	description `While these diamonds are unfortuntely not economical to collect with current human technology, if you were so inclined you could perhaps make an attempt at catching one as it fell, deep within the atmosphere where they are largest.`
 	government Uninhabited
@@ -2949,7 +2949,7 @@ planet Parii'het
 
 planet Passaritus
 	attributes "gas giant" "requires: gaslining" uninhabited
-	landscape land/nasa29
+	landscape land/nasa27
 	description `Decades ago, Passaritus was the subject of an ambitious project by the Deep to economically extract metallic hydrogen from its lower atmosphere. Being barely large enough to form metallic hydrogen in the first place, its gravity was thought to be low enough to make extraction feasible. Unfortunately, the Deep's engineers overestimated their ability to build an extraction device that was not only workable, but practical, and the project was since moved to the backburner in favor of more reasonable endeavours.`
 	description `Passaritus still happens to be an interesting locale to visit, at least if you have a gaslined ship. Its small size and relatively rapid rotation gives it sweeping bands of color, each corresponding to a different layer or wind speed.`
 	government Uninhabited
@@ -3019,7 +3019,7 @@ planet Pincian
 
 planet "Placaitious"
 	attributes "gas giant" "requires: gaslining" uninhabited
-	landscape land/nasa29
+	landscape land/clouds_07
 	description `Half a century ago, Placaitious was the subject of a Syndicate marketing campaign, advertising the view of its deep blue sky from orbit to be "the most agreeable sight in the galaxy." Construction on a large station, intended to essentially be a massive hub of conference rooms with panoramic views of the supposedly breathtaking gas giant below, was started but never completed after numerous delays and budget overruns. Eventually, the executive responsible for the entire scheme was forced into an early retirement, and the idea was quietly dropped.`
 	description `From within, Placaitious is actually quite beautiful, with wisps of aquamarine vapor trailing vertically for dozens of kilometers. Perhaps the Syndicate would have had more success had they managed to somehow suspend a conference room inside the gas giant's atmosphere.`
 	government Uninhabited
@@ -3116,7 +3116,7 @@ planet Pugglequat
 
 planet Pyriphlegethon
 	attributes "gas giant" "requires: gaslining" uninhabited
-	landscape land/nasa29
+	landscape land/clouds_02
 	description `Despite its perhaps poorly recieved name, Pyriphlegethon was famous in the early history of human interstellar travel, as the first "hot Jupiter" to be explored in detail. Colorful images of its incandescent clouds and glowing night sky became some of the most iconic images of space in the 23rd century, when the invention of the hyperdrive was still recent.`
 	government Uninhabited
 	security 0
@@ -3376,7 +3376,7 @@ planet "Sasirka Gatru"
 
 planet "Sebarep Atarkis"
 	attributes "gas giant" "requires: gaslining" uninhabited
-	landscape land/nasa29
+	landscape land/clouds_04
 	description `A recent event, natural or artificial, disrupted the rings around Sebarep Atarkis to the point of complete instability. Now, hundreds of ringroids fall into the planet's atmosphere each day, tracing firey paths near the equator. This has measurably increased the temperature in the equatorial region, and new storms and wind patterns are generated chaotically.`
 	description `While you know it is extraordinarily unlikely due to the sheer size of the planet, you can't help but wonder what would happen if a ringroid were to fall directly upon your ship as you lurk under the clouds.`
 	government Uninhabited
@@ -4380,7 +4380,7 @@ planet Violetwake
 
 planet "Wah Mar"
 	attributes "gas giant" "requires: gaslining" uninhabited
-	landscape land/nasa29
+	landscape land/clouds_05
 	description `Wah Mar is a hot Neptune, a misleadingly named "ice giant" close to its parent star. Usually composed mostly of methane, Wah Mar is distinctive in that, by mass, it is almost entirely water. Beyond this, the range of temperatures and pressures found in its atmosphere is such that its thickest layer is composed of supercritical water, making flight inside it rather disorienting.`
 	government Uninhabited
 	security 0
