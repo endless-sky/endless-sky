@@ -121,27 +121,8 @@ void MainPanel::Step()
 			isActive = !DoHelp("fleet harvest tutorial");
 		if(isActive && flagship->HasBays())
 			isActive = !DoHelp("try out fighters transfer cargo");
-		bool displayEscortHelp = !Preferences::Has("help: try out fighters transfer cargo");
-		if(isActive && player.Ships().size() > 1 && displayEscortHelp)
-		{
-			bool canShowFightersTransferCargoHelp = false;
-			// Occasionally check if help should be displayed for
-			// escorts for better performance.
-			if(!Random::Int(1800))
-				for(const auto &it : flagship->GetEscorts())
-				{
-					auto escort = it.lock();
-					if(!escort || !escort->IsYours())
-						continue;
-					if(escort->HasBays())
-					{
-						canShowFightersTransferCargoHelp = true;
-						break;
-					}
-				}
-			if(isActive && canShowFightersTransferCargoHelp)
-				isActive = !DoHelp("try out fighters transfer cargo");
-		}
+		if(isActive && player.OwnsCarrier())
+			isActive = !DoHelp("try out fighters transfer cargo");
 		if(isActive && Preferences::Has("Fighters transfer cargo"))
 			isActive = !DoHelp("fighters transfer cargo");
 		if(isActive && !flagship->IsHyperspacing() && flagship->Position().Length() > 10000.

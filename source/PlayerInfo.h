@@ -304,6 +304,8 @@ public:
 	void SetMapZoom(int level);
 	// Get the set of collapsed categories for the named panel.
 	std::set<std::string> &Collapsed(const std::string &name);
+	// Does the player own a ship with bays?
+	bool OwnsCarrier() const;
 
 
 private:
@@ -345,6 +347,7 @@ private:
 	const Planet *planet = nullptr;
 	bool shouldLaunch = false;
 	bool isDead = false;
+	bool ownsCarrier = false;
 
 	// The amount of in-game time played, in seconds.
 	double playTime = 0.;
