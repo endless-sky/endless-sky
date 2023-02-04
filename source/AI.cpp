@@ -3026,25 +3026,22 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 				// have moved forward one time step.
 				p += v;
 
-				double rendezvousTime;
+				double rendezvousTime = numeric_limits<double>::quiet_NaN();
+				double distance = p.Length();
 				// Beam weapons hit instantaneously if they are in range.
-				if(weapon->TotalLifetime() == 1)
-				{
-					// Lower target priority if it is out of range.
-					double distance = p.Length();
-					if(distance > weapon->Velocity())
-						rendezvousTime = distance / weapon->Velocity() - 1.;
-					else
-						rendezvousTime = 0.;
-				}
+				bool isInstantaneous = weapon->TotalLifetime() == 1.;
+				if(isInstantaneous && distance < vp)
+					rendezvousTime = 0.;
 				else
 				{
 					// Find out how long it would take for this projectile to reach the target.
-					rendezvousTime = RendezvousTime(p, v, vp);
+					if(!isInstantaneous)
+						rendezvousTime = RendezvousTime(p, v, vp);
+
 					// If there is no intersection (i.e. the turret is not facing the target),
 					// consider this target "out-of-range" but still targetable.
 					if(std::isnan(rendezvousTime))
-						rendezvousTime = max(p.Length() / (vp ? vp : 1.), 2 * weapon->TotalLifetime());
+						rendezvousTime = max(distance / (vp ? vp : 1.), 2 * weapon->TotalLifetime());
 
 					// Determine where the target will be at that point.
 					p += v * rendezvousTime;
