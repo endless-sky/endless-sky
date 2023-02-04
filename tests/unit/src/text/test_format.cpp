@@ -244,6 +244,65 @@ TEST_CASE( "Format::Number", "[Format][Number]") {
 	}
 }
 
+TEST_CASE( "Format::Credits", "[Format][Credits]") {
+	SECTION( "1 credit" ) {
+		CHECK( Format::Credits(1) == "1" );
+	}
+	SECTION( "0 credits" ) {
+		CHECK( Format::Credits(0) == "0" );
+	}
+	SECTION( "Positive credits" ) {
+		CHECK( Format::Credits(2) == "2" );
+		CHECK( Format::Credits(1000) == "1,000" );
+		CHECK( Format::Credits(2200) == "2,200" );
+		CHECK( Format::Credits(2200) == "2,200" );
+		CHECK( Format::Credits(1000000) == "1,000,000" );
+		CHECK( Format::Credits(4361000) == "4.361M" );
+		CHECK( Format::Credits(1000000000) == "1,000.000M" );
+		CHECK( Format::Credits(4361000000) == "4.361B" );
+		CHECK( Format::Credits(1000000000000) == "1,000.000B" );
+		CHECK( Format::Credits(4361000000000) == "4.361T" );
+		CHECK( Format::Credits(1000000000000000ll) == "1,000.000T");
+		CHECK( Format::Credits(1000000000000001ll) == "1e+15");
+		CHECK( Format::Credits(4361000000000000ll) == "4.36e+15");
+	}
+	SECTION( "Negative credits" ) {
+		CHECK( Format::Credits(-2) == "-2" );
+		CHECK( Format::Credits(-1000) == "-1,000" );
+		CHECK( Format::Credits(-2200) == "-2,200" );
+		CHECK( Format::Credits(-2200) == "-2,200" );
+		CHECK( Format::Credits(-1000000) == "-1,000,000" );
+		CHECK( Format::Credits(-4361000) == "-4.361M" );
+		CHECK( Format::Credits(-1000000000) == "-1,000.000M" );
+		CHECK( Format::Credits(-4361000000) == "-4.361B" );
+		CHECK( Format::Credits(-1000000000000) == "-1,000.000B" );
+		CHECK( Format::Credits(-4361000000000) == "-4.361T" );
+		CHECK( Format::Credits(-1000000000000000ll) == "-1,000.000T");
+		CHECK( Format::Credits(-1000000000000001ll) == "-1e+15");
+		CHECK( Format::Credits(-4361000000000000ll) == "-4.36e+15");
+	}
+}
+
+TEST_CASE( "Format::CreditString", "[Format][CreditString]") {
+	SECTION( "1 credit" ) {
+		CHECK( Format::CreditString(1) == "1 credit" );
+	}
+	SECTION( "0 credits" ) {
+		CHECK( Format::CreditString(0) == "0 credits" );
+	}
+	SECTION( "Positive credits" ) {
+		CHECK( Format::CreditString(2) == "2 credits" );
+		CHECK( Format::CreditString(1000) == "1,000 credits" );
+		CHECK( Format::CreditString(4361000) == "4.361M credits" );
+	}
+	SECTION( "Negative credits" ) {
+		CHECK( Format::CreditString(-1) == "-1 credits" );
+		CHECK( Format::CreditString(-2) == "-2 credits" );
+		CHECK( Format::CreditString(-1000) == "-1,000 credits" );
+		CHECK( Format::CreditString(-4361000) == "-4.361M credits" );
+	}
+}
+
 // #endregion unit tests
 
 // #region benchmarks

@@ -114,6 +114,7 @@ private:
 	void SendHails();
 	void HandleKeyboardInputs();
 	void HandleMouseClicks();
+	void HandleMouseInput(Command &activeCommands);
 
 	void FillCollisionSets();
 
@@ -184,6 +185,7 @@ private:
 	bool hasFinishedCalculating = true;
 	bool terminate = false;
 	bool wasActive = false;
+	bool isMouseTurningEnabled = false;
 	DrawList draw[2];
 	BatchDrawList batchDraw[2];
 	Radar radar[2];
