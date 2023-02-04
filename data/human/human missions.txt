@@ -5579,7 +5579,7 @@ mission "Karen Transport 2"
 					goto silent
 
 			label silent
-			`	You silently listen to the 'advice' he is giving. "Slow down, you are going way too fast", "you are turning the wrong way", "be more gentle on those controls". When he gets to "Why are we not there yet?" you decide to mute the audio, and focus on flying the ship.`
+			`	You silently listen to the 'advice' he is giving: "Slow down, you are going way too fast", "You are turning the wrong way", "Be more gentle on those controls". When he gets to "Why are we not there yet?" you decide to mute the audio, and focus on flying the ship.`
 				decline
 
 			label stop
