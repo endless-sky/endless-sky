@@ -1554,7 +1554,7 @@ mission "Remnant: Deep Surveillance"
 				`	"No, there's no problem. I'll just see myself out."`
 					goto leave
 			
-			`	He turns his chair back to you and stands up. "Tough beans, <first>. I'm on to you. You asked for the research I had back before we had entered the wormhole in Terminus, and then you later told me that you'd already been through there and met these Remnant. Then when I asked you to help me learn more about them, you said no. I think you're covering for them in some way and giving them information on what I know. Why you're doing that, I don't know, but that's what my gut says, and I've learned to trust my gut on feelings like these. Now get out of my office.`
+			`	He turns his chair back to you and stands up. "News flash, pal. I'm on to you. You asked for the research I had back before we had entered the wormhole in Terminus, and then you later told me that you'd already been through there and met these Remnant. Then when I asked you to help me learn more about them, you said no. I think you're covering for them in some way and giving them information on what I know. Why you're doing that, I don't know, but that's what my gut says, and I've learned to trust my gut on feelings like these. Now get out of my office.`
 			choice
 				`	"You've got me. I'll leave."`
 					goto out
