@@ -41,8 +41,9 @@ public:
 	bool IsPacifist() const;
 	bool IsForbearing() const;
 	bool IsTimid() const;
-	bool IsHeroic() const;
+	bool IsHunting() const;
 	bool IsNemesis() const;
+	bool IsDaring() const;
 
 	// How they fight:
 	bool IsFrugal() const;
@@ -54,6 +55,7 @@ public:
 	bool IsAppeasing() const;
 	bool IsOpportunistic() const;
 	bool IsMerciful() const;
+	bool IsRamming() const;
 
 	// Mission NPC states:
 	bool IsStaying() const;
@@ -69,6 +71,7 @@ public:
 	bool IsMining() const;
 	bool Harvests() const;
 	bool IsSwarming() const;
+	bool IsSecretive() const;
 
 	// Special flags:
 	bool IsEscort() const;
