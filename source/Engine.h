@@ -136,7 +136,7 @@ private:
 		Point center;
 		Angle angle;
 		double radius;
-		int type;
+		const Color &color;
 		int count;
 	};
 
