@@ -2908,8 +2908,7 @@ bool Ship::CanLand() const
 bool Ship::CannotAct(ActionType actionType) const
 {
 	bool canActCloaked = true;
-	// "cloaked action" allows for all of these at the same time.
-	if(cloak && !attributes.Get("cloaked action"))
+	if(cloak)
 		switch(actionType)
 		{
 			case ActionType::AFTERBURNER:
