@@ -50,7 +50,6 @@ MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool 
 	{
 		switch(planet->GetFriendliness())
 		{
-			default:
 			case Planet::Friendliness::FRIENDLY:
 				reputationLabel = "Friendly";
 				break;
