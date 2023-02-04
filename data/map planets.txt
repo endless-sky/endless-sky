@@ -2950,7 +2950,7 @@ planet Parii'het
 planet Passaritus
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa27
-	description `Decades ago, Passaritus was the subject of an ambitious project by the Deep to economically extract metallic hydrogen from its lower atmosphere. Being barely large enough to form metallic hydrogen in the first place, its gravity was thought to be low enough to make extraction feasible. Unfortunately, the Deep's engineers overestimated their ability to build an extraction device that was not only workable, but practical, and the project was since moved to the backburner in favor of more reasonable endeavours.`
+	description `Decades ago, Passaritus was the subject of an ambitious project by the Deep to economically extract metallic hydrogen from its lower atmosphere. Being barely large enough to form metallic hydrogen in the first place, its gravity was thought to be low enough to make extraction feasible. Unfortunately, the Deep's engineers overestimated their ability to build an extraction device that was not only workable, but practical, and the project was since moved to the backburner in favor of more reasonable endeavors.`
 	description `Passaritus still happens to be an interesting locale to visit, at least if you have a gaslined ship. Its small size and relatively rapid rotation gives it sweeping bands of color, each corresponding to a different layer or wind speed.`
 	government Uninhabited
 	security 0
@@ -3117,7 +3117,7 @@ planet Pugglequat
 planet Pyriphlegethon
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/clouds_02
-	description `Despite its perhaps poorly recieved name, Pyriphlegethon was famous in the early history of human interstellar travel, as the first "hot Jupiter" to be explored in detail. Colorful images of its incandescent clouds and glowing night sky became some of the most iconic images of space in the 23rd century, when the invention of the hyperdrive was still recent.`
+	description `Despite its perhaps poorly received name, Pyriphlegethon was famous in the early history of human interstellar travel, as the first "hot Jupiter" to be explored in detail. Colorful images of its incandescent clouds and glowing night sky became some of the most iconic images of space in the 23rd century, when the invention of the hyperdrive was still recent.`
 	government Uninhabited
 	security 0
 
@@ -3377,7 +3377,7 @@ planet "Sasirka Gatru"
 planet "Sebarep Atarkis"
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/clouds_04
-	description `A recent event, natural or artificial, disrupted the rings around Sebarep Atarkis to the point of complete instability. Now, hundreds of ringroids fall into the planet's atmosphere each day, tracing firey paths near the equator. This has measurably increased the temperature in the equatorial region, and new storms and wind patterns are generated chaotically.`
+	description `A recent event, natural or artificial, disrupted the rings around Sebarep Atarkis to the point of complete instability. Now, hundreds of ringroids fall into the planet's atmosphere each day, tracing fiery paths near the equator. This has measurably increased the temperature in the equatorial region, and new storms and wind patterns are generated chaotically.`
 	description `While you know it is extraordinarily unlikely due to the sheer size of the planet, you can't help but wonder what would happen if a ringroid were to fall directly upon your ship as you lurk under the clouds.`
 	government Uninhabited
 	security 0
