@@ -1013,7 +1013,7 @@ const StellarObject *AI::FindLandLocation(const Ship &ship, const bool refuel)
 		{
 			const Planet *planet = object.GetPlanet();
 			if(object.HasSprite() && object.HasValidPlanet() && !planet->IsWormhole()
-					&& planet->CanLand(ship) && !(planet->HasFuelFor(ship) ^ refuel))
+					&& planet->CanLand(ship) && planet->HasFuelFor(ship) == refuel)
 			{
 				double distance = p.Distance(object.Position());
 				if(distance < closest)
