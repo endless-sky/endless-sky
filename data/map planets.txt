@@ -2157,7 +2157,6 @@ planet "Laki Nemparu"
 planet Letis'sei
 	attributes ka'het uninhabited
 	landscape land/loc3
-	music ambient/machinery
 	description `Letis'sei is an ancient station with cramped interiors and massive inaccessible sections. Completely unpressurized and lacking an internal atmosphere, it is hard to imagine what this station originally looked like. Nonetheless, three impressive cannon-like structures are still recognizable, floating outside the rest of the station. The ring that used to keep them together is destroyed, but they continue rotating around the main body in the circular formation that they were made to follow.`
 
 planet "Leviathan Station"
