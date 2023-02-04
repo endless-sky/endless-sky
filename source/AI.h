@@ -198,7 +198,7 @@ private:
 	int step = 0;
 
 	// Command applied by the player's "autopilot."
-	Command autoPilot;
+	Command autopilot;
 	// Position of the cursor, for when the player is using mouse turning.
 	Point mousePosition;
 	// General firing command for ships. This is a data member to avoid
