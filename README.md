@@ -21,8 +21,10 @@ Endless Sky has very minimal system requirements, meaning most systems should be
 |Storage Free | 250 MB | 1 GB |
 
 ## Building from source
-Most development is done on Linux and Windows, using the [SCons](https://scons.org/) build tool to compile the project. There is also a CMake project available ([build instructions](readme-cmake.md)).
-For full installation instructions, consult the [Build Instructions](https://github.com/endless-sky/endless-sky/blob/master/readme-developer.md) readme.
+
+Development is done using [CMake](https://cmake.org) to compile the project. Most popular IDEs are supported through their respective CMake integration. [SCons](https://scons.org/) was the primary build tool up until 0.9.16, and some files and information continue to be available for it.
+
+For full installation instructions, consult the [Build Instructions](readme-cmake.md) readme.
 
 # Contributing
 As a free and open source game, Endless Sky is the product of many peoples' work. Contributions of artwork, storylines, and other writing are most in-demand, though there is a loosely defined [roadmap](https://github.com/endless-sky/endless-sky/wiki/DevelopmentRoadmap). Those who wish to [contribute](CONTRIBUTING.md) are encouraged to review the [wiki](https://github.com/endless-sky/endless-sky/wiki), and to post in the [community-run discord](https://discord.gg/ZeuASSx) beforehand. Those who prefer to use Steam can use its [discussion rooms](https://steamcommunity.com/app/404410/discussions/) as well. For those who do not wish to use either discord or steam, we do have access to [github discussions](https://github.com/endless-sky/endless-sky/discussions), although these are quite new and don't have a lot of traffic yet.
