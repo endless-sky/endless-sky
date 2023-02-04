@@ -2660,7 +2660,7 @@ mission "Wildfire Aid [1]"
 	job
 	repeat
 	name "Fire retardant to <planet>"
-	description "A major wildfire has occurred on <destination> and various regions on the planet have been affected. Bring <cargo> to <planet> by <date> to assist in the firefighting efforts. Payment is <payment>."
+	description "A major wildfire has occurred on <destination> and various settlements on the planet have been affected. Bring <cargo> to <planet> by <date> to assist in the firefighting efforts. Payment is <payment>."
 	cargo "fire retardant" 25 2 .05
 	deadline
 	to offer
@@ -2681,7 +2681,7 @@ mission "Wildfire Aid [2]"
 	job
 	repeat
 	name "Firefighters to <planet>"
-	description "A major wildfire has occurred on <destination> and various regions on the planet have been affected. Bring a team of <bunks> firefighters to <planet> by <date> to assist in the firefighting efforts. Payment is <payment>."
+	description "A major wildfire has occurred on <destination> and various settlements on the planet have been affected. Bring a team of <bunks> firefighters to <planet> by <date> to assist in the firefighting efforts. Payment is <payment>."
 	passengers 5 10
 	deadline
 	to offer
