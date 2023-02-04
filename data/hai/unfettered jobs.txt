@@ -661,7 +661,7 @@ mission "Unfettered Darkcloak Ship Materials"
 	to offer
 		random < 50
 		has "Unfettered Jump Drive 3: done"
-		has "<unfettered mission> 16: Strength Of A Leader: done"
+		has "<uhai> 16: Strength Of A Leader: done"
 	on stopover
 		dialog `After some searching, you manage to find your contacts: a few shady individuals who seem especially anxious not to be noticed dealing with you. Together you find a quieter place to proceed with the exchange, and later find the materials at the agreed location. You prepare to head back to <origin> and deliver them.`
 	on visit
@@ -727,7 +727,7 @@ mission "Unfettered Cargo Interception West"
 		attributes "unfettered"
 	to offer
 		random < 30
-		has "<unfettered mission> 7: Stolen Cargo: done"
+		has "<uhai> 7: Stolen Cargo: done"
 	npc board
 		government "Pirate"
 		personality disables plunders harvests staying
@@ -757,7 +757,7 @@ mission "Unfettered Cargo Interception East"
 		attributes "unfettered"
 	to offer
 		random < 20
-		has "<unfettered mission> 7: Stolen Cargo: done"
+		has "<uhai> 7: Stolen Cargo: done"
 	npc board
 		government "Pirate"
 		personality disables plunders harvests staying
@@ -787,7 +787,7 @@ mission "Unfettered Bring More Coolers"
 		attributes "unfettered"
 	destination "Firelode"
 	to offer
-		has "<unfettered mission> 13: Korath Specialty: done"
+		has "<uhai> 13: Korath Specialty: done"
 		random < 20
 	on visit
 		dialog phrase "generic cargo on visit"

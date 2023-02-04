@@ -433,7 +433,7 @@ mission "Midas: Betrayal For The Bars"
 		or
 			random < 40
 			has "Midas: Who is the mad one?: active"
-		has "<unfettered mission> 3: Jump Drive Vault: done"
+		has "<uhai> 3: Jump Drive Vault: done"
 		"flagship crew" > 4
 		"outfit (flagship cargo): Gold Bars" >= 5
 	on offer
@@ -580,14 +580,14 @@ conversation "midas: mission failure?"
 
 # SPOILERS: Midas want that governor down because she can easily help the Hai-Unfettered Hai unite, given she understands the Unfettered well.
 # They will only take her hostage here, she may come back later.
-mission "<unfettered mission> 6 B: To The Wolves"
+mission "<uhai> 6 B: To The Wolves"
 	landing
 	name "Feed them to the Wolves"
 	description "Take the governor's fleet to <waypoints> instead, where a fleet will be waiting for them."
 	source "Greenbloom"
 	destination "Warfeed"
 	to offer
-		has "<unfettered mission> 6 A: Loyal Escort: active"
+		has "<uhai> 6 A: Loyal Escort: active"
 		has "midas: tracker relay"
 	on offer
 		dialog
@@ -621,12 +621,12 @@ mission "<unfettered mission> 6 B: To The Wolves"
 		conversation "midas: mission failure?"
 	to fail
 		or
-			has "<unfettered mission> 6 A: Loyal Escort: done"
-			has "<unfettered mission> 6 A: Loyal Escort: aborted"
+			has "<uhai> 6 A: Loyal Escort: done"
+			has "<uhai> 6 A: Loyal Escort: aborted"
 	on fail
 		conversation "midas: mission failure?"
 	to complete
-		has "<unfettered mission> 6 A: Loyal Escort: failed"
+		has "<uhai> 6 A: Loyal Escort: failed"
 	on complete
 		"reputation: Midas" <?= -1000
 		clear "unfettered: stopped on Greenbloom"
@@ -640,15 +640,15 @@ mission "<unfettered mission> 6 B: To The Wolves"
 
 
 # secret mission
-# happens if you accept a duel in "<unfettered mission> 7: Stolen Cargo" (offered if your fleet is smaller than 2 heavy warships)
-mission "<unfettered mission> 7: Duel"
+# happens if you accept a duel in "<uhai> 7: Stolen Cargo" (offered if your fleet is smaller than 2 heavy warships)
+mission "<uhai> 7: Duel"
 	landing
 	source "New Tortuga"
 	name "Duel with the twins."
 	description "Beat the two twins today, or lose 10 million credits!"
 	to offer
 		has "midas: accepted duel"
-		has "<unfettered mission> 7: Cavalry Arrives: done"
+		has "<uhai> 7: Cavalry Arrives: done"
 		"unfettered: cleaned up cerberus" > 1
 	on offer
 		dialog `The two mysterious ships hail you, "We are ready for a fight in orbit whenever you are. If you want, you can still call this off... for a quarter of the agreed price."`

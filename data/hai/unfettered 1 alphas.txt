@@ -124,7 +124,7 @@ mission "Unfettered: Alpha Supplies: Coming"
 	source "Warfeed"
 	deadline
 	to offer
-		not "<unfettered mission> 9: Alpha Quest: offered"
+		not "<uhai> 9: Alpha Quest: offered"
 		not "unfettered: destroyed auxiliary"
 		not "Unfettered: Alpha Supplies: Coming: active"
 		not "Unfettered: Alpha Supplies: Leaving: active"
@@ -186,7 +186,7 @@ mission "Unfettered: Alpha Supplies: Leaving"
 	source "Warfeed"
 	deadline
 	to offer
-		not "<unfettered mission> 9: Alpha Quest: offered"
+		not "<uhai> 9: Alpha Quest: offered"
 		not "unfettered: destroyed auxiliary"
 		not "Unfettered: Alpha Supplies: Coming: active"
 		not "Unfettered: Alpha Supplies: Leaving: active"
@@ -215,7 +215,7 @@ mission "Unfettered: Alpha Supplies: Leaving"
 
 
 # SPOILER: this mission is what sets the Alphas against you, because they can't afford to let you know they operate here, thinking you could be Navy.
-mission "<unfettered mission> 5: Scan Auxiliary"
+mission "<uhai> 5: Scan Auxiliary"
 	name `Scan the human ship`
 	description `Scan the human ship in <waypoints> using a Value Detector by <date>, and then come back to <origin> with the logs when you can.`
 	source "Firelode"
@@ -286,7 +286,7 @@ mission "<unfettered mission> 5: Scan Auxiliary"
 			label "didn't listen"
 			`You have finished scanning the Auxiliary, but you did not use a Value Detector to do so, and the scan will be of no value to Mera. You have failed the mission.`
 			action
-				fail "<unfettered mission> 5: Scan Auxiliary"
+				fail "<uhai> 5: Scan Auxiliary"
 	npc
 		government "Alpha"
 		personality timid staying vindictive
@@ -309,14 +309,14 @@ mission "<unfettered mission> 5: Scan Auxiliary"
 
 
 # the mission is divided in two so that you have time to bring the logs back but not to scan in the first place.
-mission "<unfettered mission> 5: Auxiliary Scans"
+mission "<uhai> 5: Auxiliary Scans"
 	landing
 	name `Auxiliary Logs`
 	description `Return to <destination> to get your reward for the scans.`
 	source "Warfeed"
 	destination "Firelode"
 	to offer
-		has "<unfettered mission> 5: Scan Auxiliary: done"
+		has "<uhai> 5: Scan Auxiliary: done"
 	to fail
 		has "unfettered: outcast"
 	on fail
@@ -371,7 +371,7 @@ mission "<unfettered mission> 5: Auxiliary Scans"
 
 # SPOILERS: the disaster was caused by the Alphas as a warning to listen to their demands (and also because the Unfettered allowed you to see them)
 # this also is to increase tensions and to make Unfettered attack Wanderers faster.
-mission "<unfettered mission> 6 A: Loyal Escort"
+mission "<uhai> 6 A: Loyal Escort"
 	landing
 	name `Escort a Hai convoy`
 	description `Escort a Hai convoy from <stopovers> to <destination> before <date>.`
@@ -379,10 +379,10 @@ mission "<unfettered mission> 6 A: Loyal Escort"
 	stopover "Greenbloom"
 	deadline 20
 	to offer
-		has "<unfettered mission> 0: Bring Hai: done"
+		has "<uhai> 0: Bring Hai: done"
 		has "Unfettered Jump Drive 2: offered"
 		or
-			has "<unfettered mission> 5: Scan Auxiliary: done"
+			has "<uhai> 5: Scan Auxiliary: done"
 			has "Unfettered: Alpha Supplies: Coming: offered"
 			has "Unfettered: Alpha Supplies: Leaving: offered"
 		has "midas: tracker relay"
@@ -414,7 +414,7 @@ mission "<unfettered mission> 6 A: Loyal Escort"
 			`	"Whatever it is you may be busy with, I'm sure it can wait. This fleet needs to arrive here before it is too late, in 3 weeks, and it is of the highest importance that it does not without any trouble."`
 			`	He asks something to his advisor, and gets a positive answer. "Do not worry about the logs, the rush was only for scanning them, but you have all the time you need to bring them back now."`
 				to display
-					has "<unfettered mission> 5: Auxiliary Scans: active"
+					has "<uhai> 5: Auxiliary Scans: active"
 			label choose
 			`	"A situation arose: a big sector, far away from the spaceport, has almost entirely collapsed due to a tsunami. Hundreds of casualties are estimated. We need medical teams, and materials to repair what can be of the buildings, and build emergency shelters for these people, and quick!"`
 			choice
@@ -478,7 +478,7 @@ mission "<unfettered mission> 6 A: Loyal Escort"
 		government "Midas"
 		to spawn
 			has "unfettered: stopped on Greenbloom"
-			not "<unfettered mission> 6 B: To The Wolves: active"
+			not "<uhai> 6 B: To The Wolves: active"
 		system "Ya Hai"
 		personality disables plunders vindictive
 		fleet "Large Northern Pirates" 2
@@ -526,13 +526,13 @@ mission "<unfettered mission> 6 A: Loyal Escort"
 		log "Minor People" "Vai'chi" `A Hai governor that is not scared to put herself in danger in order to muster Hai and Unfettered supporters alike. She seems to understand the Unfettered well, and to honestly want to help them.`
 
 # It is needed to make you land to make the fleets spawn, because they can't be waiting for you in this system until you arrive.
-mission "<unfettered mission> 6: Taking Off With Hai Fleet"
+mission "<uhai> 6: Taking Off With Hai Fleet"
 	landing
 	invisible
 	source "Greenbloom"
 	destination "Warfeed"
 	to offer
-		has "<unfettered mission> 6 A: Loyal Escort: active"
+		has "<uhai> 6 A: Loyal Escort: active"
 	on offer
 		set "unfettered: stopped on Greenbloom"
 		conversation
@@ -546,7 +546,7 @@ mission "<unfettered mission> 6: Taking Off With Hai Fleet"
 				`	"Why would a governor go there in person?"`
 				`	"I should warn you: I have good reasons to believe the convoy is under threat."`
 					to display
-						has "<unfettered mission> 6 B: To The Wolves: declined"
+						has "<uhai> 6 B: To The Wolves: declined"
 					goto threat
 			`	"The Unfettered only respect display of strength, and do not trust those they have not seen in person. The governor is probably hoping to get some Unfettered Hai with him on the return trip."`
 				goto leave
@@ -632,15 +632,15 @@ ship "Bactrian" "Bactrian (Cerberus)"
 			"Electronics" 100
 			"Food" 188
 
-mission "<unfettered mission> 7: Stolen Cargo Notification"
+mission "<uhai> 7: Stolen Cargo Notification"
 	minor
 	landing
 	source
 		attributes "unfettered"
 	to offer
 		has "event: unfettered: shipment lost"
-		not "<unfettered mission> 7: Stolen Cargo: active"
-		not "<unfettered mission> 7: Stolen Cargo: done"
+		not "<uhai> 7: Stolen Cargo: active"
+		not "<uhai> 7: Stolen Cargo: done"
 		random < 60
 	on offer
 		conversation
@@ -650,7 +650,7 @@ mission "<unfettered mission> 7: Stolen Cargo Notification"
 
 # SPOILER: Cerberus or Midas bring cargo to the Unfettered. Cerberus was on the way, but Midas hired Scar's legion to sneakily take it and bring it to them.
 # only that Cerberus were on their tail, and just took down the ship and it's cargo when you arrive. Time to steal it back back back
-mission "<unfettered mission> 7: Stolen Cargo"
+mission "<uhai> 7: Stolen Cargo"
 	job
 	name `Sookootow: Looking for stolen cargo`
 	description `Apt captain required to find the <npc> that has stolen the materials needed for the development of the urban areas, and bring those materials back to <destination>. They should be in northern pirate space, east or west.`
@@ -666,10 +666,10 @@ mission "<unfettered mission> 7: Stolen Cargo"
 			`	You go to see He-Yi in order to discuss this job in greater details, and easily find him by asking around, everyone seems to know him here. He was having a quite animated conversation with an elder, but he puts a stop to it when he notices you.`
 			`	"<last>. I am still saddened by what happened to that governor you had to escort... She used to say that all Hai are together, by heart. I will continue to honor her memories."`
 				to display
-					has "<unfettered mission> 6 A: Loyal Escort: failed"
+					has "<uhai> 6 A: Loyal Escort: failed"
 			`	"<last>! I was hoping to find you here."`
 				to display
-					has "<unfettered mission> 6 A: Loyal Escort: done"
+					has "<uhai> 6 A: Loyal Escort: done"
 			`	"I just happen to be in needs of your services. Remember the mission you did earlier, escorting Hai ships? Well that shipment was not the only one that got attacked by pirates, in fact I believe their attack on it may have been nothing more than a distraction; they knew full well they could not take that cargo in the middle of Hai space<governor>"`
 			`	"Now, that shipment you escorted was exceptional due to the disaster, and it came from the Hai, who focused all of their nearby fleet's attention on it, without following it in an obvious way either, of course."`
 			choice
@@ -768,7 +768,7 @@ mission "<unfettered mission> 7: Stolen Cargo"
 		system "Misam"
 		government "Cerberus"
 		to spawn
-			has "<unfettered mission> 7: Cavalry Arrives: active"
+			has "<uhai> 7: Cavalry Arrives: active"
 		personality target launching plunders vindictive uninterested marked
 		ship "Bactrian (Cerberus)" "Rested Snake"
 		conversation
@@ -776,7 +776,7 @@ mission "<unfettered mission> 7: Stolen Cargo"
 				set "unfettered: boarded bactrian"
 			`Boarding the ship, you notice that they have other commodities than what you are looking for, but they do have the materials Sookootow talked to you about. Given the damage the ship has suffered, it seems it would require heavy works in the spaceport to get it running again, meaning they will not get repaired anytime soon. You should have some time to switch to a ship with more cargo space, should you need to in order to bring the materials back. Take all 142 tons of materials when you can and bring them back to Sookootow.`
 			branch "allies died"
-				has "<unfettered mission> 7: Cavalry Arrives: failed"
+				has "<uhai> 7: Cavalry Arrives: failed"
 			`	Your surprise allies hail you. "Well done, captain," the first one says. "You have truly impressed us today," the other one adds.`
 			choice
 				`	"Where you sent by Sookootow's contact?"`
@@ -860,12 +860,12 @@ conversation "cerberus reinforcements"
 	label noduel
 	`All pirate reinforcements have been taken care of, all that is left to do is to bring back the cargo.`
 
-mission "<unfettered mission> 7: Cavalry Arrives"
+mission "<uhai> 7: Cavalry Arrives"
 	landing
 	invisible
 	source "New Tortuga"
 	to offer
-		has "<unfettered mission> 7: Stolen Cargo: active"
+		has "<uhai> 7: Stolen Cargo: active"
 	on offer
 		conversation
 			`Realizing you have landed after them, the pirates fire up their engines and take off as fast as they can. They might not have expected you to have the guts to land on such a lawless world. Or maybe they just wanted to delay you... Whatever the case, you quickly order your crew to get back into space.`
@@ -905,11 +905,11 @@ mission "<unfettered mission> 7: Cavalry Arrives"
 		fleet "Small Northern Pirates" 2
 		conversation "cerberus reinforcements"
 	to fail
-		not "<unfettered mission> 7: Stolen Cargo: active"
+		not "<uhai> 7: Stolen Cargo: active"
 	on fail
 		conversation
 			branch nevercompleted
-				not "<unfettered mission> 7: Stolen Cargo: done"
+				not "<uhai> 7: Stolen Cargo: done"
 			branch completed
 			branch betrayed
 				"reputation: Shadow" < 0
@@ -943,21 +943,21 @@ mission "<unfettered mission> 7: Cavalry Arrives"
 
 
 
-mission "<unfettered mission> 8: Unfettered humans?"
+mission "<uhai> 8: Unfettered humans?"
 	landing
 	name "Who are the 'unfettered humans'?"
 	description `The Auxiliary was manned by 'unfettered humans'. Find out what this means, pirates may have the answers.`
 	destination "Darkcloak"
 	to offer
-		has "<unfettered mission> 5: Scan Auxiliary: done"
+		has "<uhai> 5: Scan Auxiliary: done"
 	to complete
 		has "unfettered: it's the Alphas"
 
-mission "<unfettered mission> 8: I Know The Way"
+mission "<uhai> 8: I Know The Way"
 	landing
 	invisible
 	to offer
-		has "<unfettered mission> 5: Scan Auxiliary: done"
+		has "<uhai> 5: Scan Auxiliary: done"
 	on enter "Host"
 		dialog "Upon entering the system you realize it is very quiet, unlike most nearby systems. This would appear to be the ideal place to hide..."
 	destination "Avalon"
@@ -973,14 +973,14 @@ mission "<unfettered mission> 8: I Know The Way"
 		set "unfettered: it's the Alphas!"
 		set "found alpha base"
 
-mission "<unfettered mission> 8: Wrong Planet"
+mission "<uhai> 8: Wrong Planet"
 	invisible
 	source
 		government Pirate
 		not planet "New Tortuga"
 		not attributes uninhabited
 	to offer
-		has "<unfettered mission> 8: active"
+		has "<uhai> 8: active"
 	on offer
 		conversation
 			"${dubious leads about an Auxiliary}"
@@ -1042,11 +1042,11 @@ phrase "dubious leads about an Auxiliary"
 		" You quickly realize you are being scammed."
 
 # if you betrayed Midas, you will suffer to find answers
-mission "<unfettered mission> 8: Unfettered humans? Hint"
+mission "<uhai> 8: Unfettered humans? Hint"
 	landing
 	invisible
 	to offer
-		has "<unfettered mission> 5: Scan Auxiliary: done"
+		has "<uhai> 5: Scan Auxiliary: done"
 		not "midas: wronged"
 	deadline 15
 	on enter "Misam"
@@ -1065,11 +1065,11 @@ mission "<unfettered mission> 8: Unfettered humans? Hint"
 	to complete
 		never
 
-mission "<unfettered mission> 8: It's The Alphas"
+mission "<uhai> 8: It's The Alphas"
 	landing
 	invisible
 	to offer
-		has "<unfettered mission> 8: Unfettered humans?: active"
+		has "<uhai> 8: Unfettered humans?: active"
 	source "New Tortuga"
 	on offer
 		conversation
@@ -1115,14 +1115,14 @@ mission "<unfettered mission> 8: It's The Alphas"
 
 
 
-mission "<unfettered mission> 9: Alpha Quest"
+mission "<uhai> 9: Alpha Quest"
 	name `Find the Auxiliary`
 	description `Go to <destination> to learn where you can find the Alpha ship.`
 	source "Darkcloak"
 	destination "Firelode"
 	to offer
 		not "unfettered: destroyed auxiliary"
-		has "<unfettered mission> 7: Stolen Cargo: done"
+		has "<uhai> 7: Stolen Cargo: done"
 		has "event: unfettered: analyzed the scans"
 		has "unfettered: it's the Alphas!"
 		has "Unfettered Jump Drive 3: offered"
@@ -1167,14 +1167,14 @@ mission "<unfettered mission> 9: Alpha Quest"
 
 
 
-mission "<unfettered mission> 9: Capture The Alpha Auxiliary"
+mission "<uhai> 9: Capture The Alpha Auxiliary"
 	landing
 	name `Find and capture the Alpha Auxiliary`
 	description `You found out that the Auxiliary has a problem with its jump drive. Try and find the traces Mera pointed out around the system you last saw it in, and then capture it. You need to land with that Auxiliary as your flagship, and all jump drives you may find.`
 	source "Firelode"
 	destination "Darkcloak"
 	to offer
-		has "<unfettered mission> 9: Alpha Quest: done"
+		has "<uhai> 9: Alpha Quest: done"
 	on offer
 		conversation
 			`Mera is expecting you, and comes to your ship right away. She is eager to give you the intel, which will hopefully help you find the Auxiliary. "I am glad you came so fast! But don't worry: that Auxiliary can't go very far before some serious repairs - not with the kind of damage it suffered anyway." She seems somewhere else, as if disturbed by something.`
@@ -1269,7 +1269,7 @@ mission "<unfettered mission> 9: Capture The Alpha Auxiliary"
 	on visit
 		dialog `You have landed, but the Auxiliary is not your flagship, or you landed without the jump drives. Go and look for traces of fuel from the Auxiliary in systems neighboring Hi Yahr. Don't forget to land on the Alpha base to recover any information or jump drives it may have! Don't forget the Jump Drives need to be on your flagship or in cargo.`
 	to complete
-		has "<unfettered mission> 9: Alpha Base: offered"
+		has "<uhai> 9: Alpha Base: offered"
 		has "flagship model: Auxiliary (Alpha)"
 	on complete
 		outfit "Jump Drive" -10
@@ -1311,7 +1311,7 @@ mission "<unfettered mission> 9: Capture The Alpha Auxiliary"
 			`	You take him to the Auxiliary, alone, as he insists to, unsure how some may react. When you enter the medical facility of the Auxiliary, the Koraths are already speaking between themselves, and he seems surprised, stopping himself at the door. "I... I recognize that language! It brings back memories... I may not be ready to face them yet. But I'll arrange for their transport to our most advanced medical facility." On the way out he addresses what seems to be the first Hai he sees with that task, and they get to it straight away. You then go back to the stadium.`
 			`	They discuss among themselves again, then the warlord from earlier speaks, seemingly with a heavy burden. "Now that you officially work for us, you will receive a daily share of 1000 credits. We will not make you wear our colors yet, because it could cause problems with the Hai. We wish for you to be free to travel in their territory." They then make the necessary preparations to transfer the Korath out of your ship, after stabilizing them as much as possible.`
 			branch logs
-				has "<unfettered mission> 9: Alpha Base: done"
+				has "<uhai> 9: Alpha Base: done"
 			# The Alpha logs self destructed if you didn't make a copy of them when you notice them.
 			`	Having nothing more to show the Unfettered, you leave. This leaves you wondering if there was something hidden in the Auxiliary, but after a short inspection you summize that if there was, it is no longer there now.`
 				decline
@@ -1340,21 +1340,21 @@ mission "<unfettered mission> 9: Capture The Alpha Auxiliary"
 			`	"It did not have to be this way, but if you want to go, we will not detain you. Do not expect any shares of the loot from us though."`
 			action
 				clear "salary: Unfettered"
-				fail "<unfettered mission> 9: Capture The Alpha Auxiliary"
+				fail "<uhai> 9: Capture The Alpha Auxiliary"
 				set "unfettered: betrayed"
 
 event "unfettered: Koraths back up"
 
 
 
-mission "<unfettered mission> 9: Alpha Base"
+mission "<uhai> 9: Alpha Base"
 	landing
 	name "Time for questions"
 	description "You have learned some surprising things about the Unfettered's possible role with the Alphas. You should ask Mera for clarifications since she directed you here."
 	source "Avalon"
 	destination "Darkcloak"
 	to offer
-		has "<unfettered mission> 9: Capture The Alpha Auxiliary: active"
+		has "<uhai> 9: Capture The Alpha Auxiliary: active"
 		has "ship model: Auxiliary (Alpha)"
 	on offer
 		set "found alpha base"

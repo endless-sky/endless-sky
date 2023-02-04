@@ -149,7 +149,7 @@ mission "Unfettered: Untrustable"
 
 event "unfettered: better sestor translator"
 
-mission "<unfettered mission> 13: Better Translator Directions"
+mission "<uhai> 13: Better Translator Directions"
 	minor
 	name "Find Choot'k"
 	description "Go to <destination> to find Choot'k. He should be on top of the biggest mountain."
@@ -159,16 +159,16 @@ mission "<unfettered mission> 13: Better Translator Directions"
 		has "salary: Unfettered"
 		has "Hai Reveal [C01] Cleanup: done"
 		or
-			has "<unfettered mission> 13: Korath Specialty: offered"
+			has "<uhai> 13: Korath Specialty: offered"
 			random < 15
 	on offer
 		conversation
 			`Do you want to go see Choot'k, to talk with him of the past and maybe see if you could do something for him?`
 				to display
-					not "<unfettered mission> 13: Korath Specialty: offered"
+					not "<uhai> 13: Korath Specialty: offered"
 			`Do you want to go see if Choot'k can do something to improve the translator, as Mera suggested?`
 				to display
-					has "<unfettered mission> 13: Korath Specialty: offered"
+					has "<uhai> 13: Korath Specialty: offered"
 			choice
 				`	(Yes.)`
 				`	(Not now.)`
@@ -178,7 +178,7 @@ mission "<unfettered mission> 13: Better Translator Directions"
 			`	You head to his throne room to see him, and this time the Unfettered guards have no issue with letting you pass. It is only once you enter the room you learn he is missing from one of his aid. They tell you to go look on Firelode, on top of the biggest mountain, as that's probably where he would be.`
 				accept
 
-mission "<unfettered mission> 13: Better Translator"
+mission "<uhai> 13: Better Translator"
 	landing
 	name "Speak Sestor"
 	description "Go to <stopovers> to acquire the records of Sestor language."
@@ -187,7 +187,7 @@ mission "<unfettered mission> 13: Better Translator"
 	destination "Darkcloak"
 	passengers 1
 	to offer
-		has "<unfettered mission> 13: Better Translator Directions: offered"
+		has "<uhai> 13: Better Translator Directions: offered"
 	on offer
 		conversation
 			`	You climb on top of the greatest mountain when you find Choot'k is indeed there, admiring the view.`
@@ -196,7 +196,7 @@ mission "<unfettered mission> 13: Better Translator"
 			`	"No, not yet, at least. Now, I would duel you if I had the time, but I have duties to attend to, which you may help me with, actually. I want to go to <stopovers> to get the records of Korath interactions before the raids. Mera has informed me that the translator - whilst better than nothing - is not sufficient for all the tasks we have in mind."`
 			`	"I am sure you have already noticed that communication with the Korath can be... difficult, since you met them."`
 				to display
-					has "<unfettered mission> 13: Korath Specialty: offered"
+					has "<uhai> 13: Korath Specialty: offered"
 			label choice
 			choice
 				`	"Let's go then."`
@@ -240,13 +240,13 @@ mission "<unfettered mission> 13: Better Translator"
 		dialog "Choot'k thanks you, and tells you they will be able to upgrade the translator so they can communicate better with the Sestor."
 
 # SPOILER: they see this as an opportunity to get the leader and also don't want the Unfettered (and you) to be able to communicate too deeply with Sestors...
-mission "<unfettered mission> 13: A Warlord's Reception"
+mission "<uhai> 13: A Warlord's Reception"
 	landing
 	invisible
 	source "Hai-home"
 	destination "Darkcloak"
 	to offer
-		has "<unfettered mission> 13: Better Translator: active"
+		has "<uhai> 13: Better Translator: active"
 	on enter
 		# SPOILER: he doesn't want them to get destroyed by the Hai because that would damage Alpha-Unfettered reputations, also he takes it as a challenge to his strength (except he's on your ship)
 		dialog `Upon entering the system you see multiple Cerberus ships, ready to attack you. Choot'k sends a message to the Hai. "Do not interfere, it would damage both my honor and <last>'s!" He did not ask for your opinion, but thankfully you have seen worse than a bunch of pirates.`
@@ -268,18 +268,18 @@ conversation "modified shield beetle prize"
 	`	"As you may have guessed by now, this ship is way more than just a ship. It is a symbol. As such, it will grant you access to the ionic weaponry on Darkcloak. You can park it anywhere in the galaxy and we will know, using the communicator, but should you lose it you will also lose access to those weapons. It is a symbol of trust, like a license you humans use, if you will."`
 	`	The message ends. Time to try the new beetle to see what it can do.`
 
-mission "<unfettered mission> 15: Modified Beetle: Normal Prize"
+mission "<uhai> 15: Modified Beetle: Normal Prize"
 	landing
 	invisible
 	source "Darkcloak"
 	to offer
-		has "<unfettered mission> 15: Modified Beetle: done"
+		has "<uhai> 15: Modified Beetle: done"
 		has "unfettered: prize right away"
 	on offer
 		conversation "modified shield beetle prize"
 		give ship "Modified Shield Beetle" "Basilisk"
 
-mission "<unfettered mission> 15: Modified Beetle: Custom Price Notification"
+mission "<uhai> 15: Modified Beetle: Custom Price Notification"
 	landing
 	invisible
 	destination "Darkcloak"
@@ -310,11 +310,11 @@ ship "Modified Shield Beetle" "Modified Shield Beetle (Blaster)"
 		"Hyperdrive"
 		"Quantum Keystone"
 
-mission "<unfettered mission> 15: Modified Beetle: Custom Price A"
+mission "<uhai> 15: Modified Beetle: Custom Price A"
 	landing
 	source "Darkcloak"
 	to offer
-		has "<unfettered mission> 15: Modified Beetle: done"
+		has "<uhai> 15: Modified Beetle: done"
 		has "event: unfettered: more dakka"
 	on offer
 		conversation "modified shield beetle prize"
@@ -341,11 +341,11 @@ ship "Modified Shield Beetle" "Modified Shield Beetle (Heat Shunt)"
 		"Hyperdrive"
 		"Quantum Keystone"
 
-mission "<unfettered mission> 15: Modified Beetle: Custom Price B"
+mission "<uhai> 15: Modified Beetle: Custom Price B"
 	landing
 	source "Darkcloak"
 	to offer
-		has "<unfettered mission> 15: Modified Beetle: done"
+		has "<uhai> 15: Modified Beetle: done"
 		has "event: unfettered: cooler"
 	on offer
 		conversation "modified shield beetle prize"
@@ -371,11 +371,11 @@ ship "Modified Shield Beetle" "Modified Shield Beetle (Ionic Turret)"
 		"Hyperdrive"
 		"Quantum Keystone"
 
-mission "<unfettered mission> 15: Modified Beetle: Custom Price: C"
+mission "<uhai> 15: Modified Beetle: Custom Price: C"
 	landing
 	source "Darkcloak"
 	to offer
-		has "<unfettered mission> 15: Modified Beetle: done"
+		has "<uhai> 15: Modified Beetle: done"
 		has "event: unfettered: disable-er"
 	on offer
 		conversation "modified shield beetle prize"
@@ -403,11 +403,11 @@ ship "Modified Shield Beetle" "Modified Shield Beetle (Large Systems Core)"
 		"Hyperdrive"
 		"Quantum Keystone"
 
-mission "<unfettered mission> 15: Modified Beetle: Custom Price: D"
+mission "<uhai> 15: Modified Beetle: Custom Price: D"
 	landing
 	source "Darkcloak"
 	to offer
-		has "<unfettered mission> 15: Modified Beetle: done"
+		has "<uhai> 15: Modified Beetle: done"
 		has "event: unfettered: syscore's got it"
 	on offer
 		conversation "modified shield beetle prize"
@@ -415,27 +415,27 @@ mission "<unfettered mission> 15: Modified Beetle: Custom Price: D"
 
 
 
-mission "<unfettered mission> 18: Wanderer Homeworld"
+mission "<uhai> 18: Wanderer Homeworld"
 	invisible
 	source "Darkcloak"
 	destination "Vara K'chrai"
 	clearance "You manage to make the aliens understand you are here to talk, and they allow you to land."
 	to offer
-		has "<unfettered mission> 12: Outfitter Upgrade: done"
+		has "<uhai> 12: Outfitter Upgrade: done"
 		not "language: Wanderer"
 	to fail
-		has "<unfettered mission> 18: Hai Language: failed"
+		has "<uhai> 18: Hai Language: failed"
 	on enter "Ka'ch'chrai"
 		dialog `Judging by the population compared to the other worlds, this appears to be the capital of these aliens. You should land to introduce yourself as a diplomat between them and the Hai.`
 
-mission "<unfettered mission> 18: Hai Language"
+mission "<uhai> 18: Hai Language"
 	minor
 	name `Meet and understand the Wanderers`
 	description `You need to be able to act as a diplomat between the Hai and the aliens up north. First go and meet those aliens. Then go to <stopovers> to see if He-Yi will provide a translator for you.`
 	source "Darkcloak"
 	stopover "Warfeed"
 	to offer
-		has "<unfettered mission> 12: Outfitter Upgrade: done"
+		has "<uhai> 12: Outfitter Upgrade: done"
 		not "language: Wanderer"
 	on offer
 		conversation
@@ -475,13 +475,13 @@ mission "<unfettered mission> 18: Hai Language"
 
 
 # the detainer is not for him but for the Sigil, although he can get it trough other means
-mission "<unfettered mission> 18: Detainer For Translator"
+mission "<uhai> 18: Detainer For Translator"
 	landing
 	name `Recover a detainer`
 	description `He-Yi has asked you to earn a translation device by bringing back a powerful alien weapon, said to be able to neutralize the engines of its target. You should probably look east of Unfettered space.`
 	source "Warfeed"
 	to offer
-		has "<unfettered mission> 18: Hai Language: active"
+		has "<uhai> 18: Hai Language: active"
 		or
 			has "First Contact: Wanderer: offered"
 			has "First Contact: Wanderer (Before hai): offered"
@@ -507,7 +507,7 @@ mission "<unfettered mission> 18: Detainer For Translator"
 					accept
 				`	"This is way too risky. I'm out."`
 			action
-				fail "<unfettered mission> 18: Hai Language: Scout Wanderer Systems"
+				fail "<uhai> 18: Hai Language: Scout Wanderer Systems"
 	to fail
 		has "language: Wanderer"
 	on visit
@@ -517,11 +517,11 @@ mission "<unfettered mission> 18: Detainer For Translator"
 		set "language: Wanderer"
 		dialog `He-Yi is impressed that you managed to bring this detainer to him, and happily exchanges it for a translator. He says you should still go to his herald to bring him news of this, and the scans for a reward.`
 
-mission "<unfettered mission> 18: Hai Language: Found Detainer"
+mission "<uhai> 18: Hai Language: Found Detainer"
 	boarding
 	invisible
 	to offer
-		has "<unfettered mission> 18: Detainer For Translator: active"
+		has "<uhai> 18: Detainer For Translator: active"
 	source
 		outfits "Korath Detainer"
 	on offer
@@ -530,12 +530,12 @@ mission "<unfettered mission> 18: Hai Language: Found Detainer"
 
 
 
-mission "<unfettered mission> 20: Bigeminate Sigil: Cloak"
+mission "<uhai> 20: Bigeminate Sigil: Cloak"
 	minor
 	invisible
 	source "Warfeed"
 	to offer
-		has "<unfettered mission> 17: Mirror Spy: offered"
+		has "<uhai> 17: Mirror Spy: offered"
 		random < 20
 	on offer
 		require "Cloaking Device"
@@ -565,13 +565,13 @@ mission "<unfettered mission> 20: Bigeminate Sigil: Cloak"
 
 
 
-mission "<unfettered mission> 20: Bigeminate Sigil: Boarding Equipement"
+mission "<uhai> 20: Bigeminate Sigil: Boarding Equipement"
 	minor
 	name `Close Quarter Fighting`
 	description `He-Yi wants you to bring twenty non-lethal weapons stronger than the pulse rifle for him to use in training with the other Unfettered. Deliver them to <destination>.`
 	source "Warfeed"
 	to offer
-		has "<unfettered mission> 15: Modified Beetle: done"
+		has "<uhai> 15: Modified Beetle: done"
 		or
 			not "unfettered: offered close quarter"
 			random < 30
@@ -697,7 +697,7 @@ mission "<unfettered mission> 20: Bigeminate Sigil: Boarding Equipement"
 		dialog phrase "Essential Unfettered Mission Fail"
 	to complete
 		or
-			has "Bring Pug Staves: failed"
+			has "Bring Pug Staffs: failed"
 			has "Bring Coalition Weapons: failed"
 			has "Bring Void Rifle: failed"
 	on complete
@@ -720,40 +720,40 @@ mission "<unfettered mission> 20: Bigeminate Sigil: Boarding Equipement"
 			label train
 			`	"Remember, having a strong fleet and flagship does not matter much if you don't know how to [use it, fight] properly! If you want to [practice, learn], there are plenty of Unfettered captains looking forward to challenging you. Check the job board if you're interested. Do not that they are not interested in too [unfair, quick] fights!"`
 
-mission "<unfettered mission> 20: Boarding Equipement: Desperate Search"
+mission "<uhai> 20: Boarding Equipement: Desperate Search"
 	invisible
 	source
 		attributes "unfettered"
 	to offer
 		has "main plot completed"
-		has "<unfettered mission> 20: Bigeminate Sigil: Boarding Equipement: active"
+		has "<uhai> 20: Bigeminate Sigil: Boarding Equipement: active"
 	on offer
 		event "looking for a gun" 30
 
 event "looking for a gun"
 
-mission "<unfettered mission> 20: Boarding Equipement: Staves Hint"
+mission "<uhai> 20: Boarding Equipement: Staffs Hint"
 	minor
 	name `Learn more about the Pug.`
 	description `Go to <destination> to see if you can ask Admiral Danforth or the Oathkeepers about what kind of weapons the Pug used, which may be of interest to He-Yi.`
 	destination "Farpoint"
 	to offer
 		has "event: looking for a gun"
-		has "<unfettered mission> 20: Bigeminate Sigil: Boarding Equipement: active"
+		has "<uhai> 20: Bigeminate Sigil: Boarding Equipement: active"
 		not "outfit (all): Pug Peacekeeping Staff"
 	on offer
 		conversation
 			`As you land on this planet, you think back of the peculiar request He-Yi made to you: bring back non-deadly weapons. After thinking a while about it, you remember tales about the Pug having special weapons that could easily knock people out. Maybe you should go to <destination> and speak to the Oathkeepers about this.`
 				accept
 	to fail
-		has "<unfettered mission> 20: Bigeminate Sigil: Boarding Equipement: done"
+		has "<uhai> 20: Bigeminate Sigil: Boarding Equipement: done"
 	on complete
 		conversation
 			`You cannot find Admiral Danforth, and wager he's probably busy with the pirates above. You think of disturbing him, but another Oathkeeper sees you and asks what you're looking for. You start speaking with him of the Pug war, and recognizing you, he seems eager to share his experience.`
 			`	"I was a simple soldier fighting with the rest of the fleet, in the Republic, at that time. We managed to find an isolated and disabled Pug ship. That by itself seemed like an opportunity too good to let go. Given we were in a Cruiser, we did not fear the crew of such a small ship. But we were wrong: as soon as we boarded said ship, we knew something was wrong. But we were committed, so we went in anyway. Being a soldier, I was on the front line, and I saw things... Things you do not want to see, trust me. I saw people falling for no apparent reason. But that was not the worst of it. As you can see, I have survived, and that by itself is terrifying. They shot me! They shot me, and yet I lived."`
 			`	You thank him for telling you this story and then think to yourself. This means there is a good chance the Pug have the non-lethal weapons you are looking for. Now you just have to find the Pug, but they'll probably not give you these weapons willingly...`
 
-conversation "more staves"
+conversation "more staffs"
 	`As you wander in the spaceport, you see He-Yi's herald, or at least someone with the same mask. He seems interested to know your progress in acquiring weapons.`
 	choice
 		`	"Could you look at what I have here to tell me if it's what you're looking for?"`
@@ -761,44 +761,44 @@ conversation "more staves"
 			goto fine
 	`	You bring him to your ship and he sees a weapon that appears to be interesting. "This... <staff> staff seems to be adequate for my master. We would only require more of these."`
 	label fine
-	`	He wishes you good luck and hopes you can find the staves. He reminds you a large amount of them is requested - twenty, to be precise.`
+	`	He wishes you good luck and hopes you can find the staffs. He reminds you a large amount of them is requested - twenty, to be precise.`
 
-mission "<unfettered mission> 20: Boarding Equipement: More Enforcer Staves"
+mission "<uhai> 20: Boarding Equipement: More Enforcer Staffs"
 	minor # so both staff conversations don't pop up at the same time
 	invisible
 	source "Warfeed"
 	substitutions
 		<staff> "Enforcer"
 	to offer
-		has "<unfettered mission> 20: Bigeminate Sigil: Boarding Equipement: offered"
+		has "<uhai> 20: Bigeminate Sigil: Boarding Equipement: offered"
 		not "Bring Coalition Weapons: offered"
-		not "Bring Pug Staves: offered"
+		not "Bring Pug Staffs: offered"
 	on offer
 		require "Enforcer Riot Staff"
-		conversation "more staves"
+		conversation "more staffs"
 
 
-mission "<unfettered mission> 20: Boarding Equipement: More Pug Staves"
+mission "<uhai> 20: Boarding Equipement: More Pug Staffs"
 	minor
 	invisible
 	source "Warfeed"
 	substitutions
 		<staff> "Pug Peacekeeping"
 	to offer
-		has "<unfettered mission> 20: Bigeminate Sigil: Boarding Equipement: offered"
+		has "<uhai> 20: Bigeminate Sigil: Boarding Equipement: offered"
 		not "Bring Coalition Weapons: offered"
-		not "Bring Pug Staves: offered"
+		not "Bring Pug Staffs: offered"
 	on offer
 		require "Pug Peacekeeping Staff"
-		conversation "more staves"
+		conversation "more staffs"
 		fail
 
-mission "<unfettered mission> 20: Boarding Equipement: Pug Staves"
+mission "<uhai> 20: Boarding Equipement: Pug Staffs"
 	landing
 	invisible
 	source "Warfeed"
 	to offer
-		has "<unfettered mission> 20: Bigeminate Sigil: Boarding Equipement: offered"
+		has "<uhai> 20: Bigeminate Sigil: Boarding Equipement: offered"
 	on offer
 		dialog `Do you want to sell 20 Pug Peacekeeping Staffs to the Unfettered? He-Yi says they can give you 2500000 for it.`
 	on accept
@@ -807,12 +807,12 @@ mission "<unfettered mission> 20: Boarding Equipement: Pug Staves"
 		dialog `The Unfettered thank you for bringing these 20 staffs to them. They give you <payment>.`
 		fail
 
-mission "<unfettered mission> 20: Boarding Equipement: Coalition Staves"
+mission "<uhai> 20: Boarding Equipement: Coalition Staffs"
 	landing
 	invisible
 	source "Warfeed"
 	to offer
-		has "<unfettered mission> 20: Bigeminate Sigil: Boarding Equipement: offered"
+		has "<uhai> 20: Bigeminate Sigil: Boarding Equipement: offered"
 	on offer
 		dialog `Do you want to sell 20 Enforcer Riot Staffs to the Unfettered? He-Yi says they can give you 4000000 for it.`
 	on accept
@@ -821,12 +821,12 @@ mission "<unfettered mission> 20: Boarding Equipement: Coalition Staves"
 		dialog `The Unfettered thank you for bringing these 20 staffs to them. They give you <payment>.`
 		fail
 
-mission "<unfettered mission> 20: Boarding Equipement: Void Rifle"
+mission "<uhai> 20: Boarding Equipement: Void Rifle"
 	minor
 	invisible
 	source "Warfeed"
 	to offer
-		has "<unfettered mission> 20: Bigeminate Sigil: Boarding Equipement: offered"
+		has "<uhai> 20: Bigeminate Sigil: Boarding Equipement: offered"
 	on offer
 		require "Void Rifle"
 		conversation

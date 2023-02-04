@@ -12,7 +12,7 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 # SPOILER: they say it's for ships but they actually have plenty of those built. In truth this is mostly to build habitations.
-mission "<unfettered mission> 10: Belt Materials"
+mission "<uhai> 10: Belt Materials"
 	name `Gather materials from asteroids`
 	description `Mine 20 tons of silver from the asteroid field in this system and 50 tons of lead from the asteroid field in <waypoints> and then bring them to <destination> for <payment>.`
 	source "Firelode"
@@ -100,7 +100,7 @@ mission "<unfettered mission> 10: Belt Materials"
 
 
 
-mission "<unfettered mission> 11: Shipyard Intel"
+mission "<uhai> 11: Shipyard Intel"
 	landing
 	shipyard
 	name `Gather intel on Hai shipyards`
@@ -112,7 +112,7 @@ mission "<unfettered mission> 11: Shipyard Intel"
 	to offer
 		"reputation: Hai" >= 0
 		has "salary: Unfettered"
-		has "<unfettered mission> 10: Belt Materials: done"
+		has "<uhai> 10: Belt Materials: done"
 	on offer
 		conversation
 			`You notice several large ships under construction upon entering the shipyard. Would you like to check what's going on?`
@@ -172,7 +172,7 @@ mission "<unfettered mission> 11: Shipyard Intel"
 	on stopover
 		dialog "You land and ask the Hai for the Unfettered tribute, which they then prepare. They don't seem to suspect anything. Enter the shipyard when you see fit."
 	to complete
-		has "<unfettered mission> 11: Shipyard Inspection: offered"
+		has "<uhai> 11: Shipyard Inspection: offered"
 	on complete
 		log `Gathered intel on a Hai shipyard for the Unfettered.`
 		log "People" "He-Yi" `An Unfettered warlord that appreciates directness and calls humans monkeys. He is particularly skilled at management, and speaks trough a translator, although he has little to no problem understanding my language without it.`
@@ -215,14 +215,14 @@ mission "<unfettered mission> 11: Shipyard Intel"
 
 
 # linked to the previous mission, it's what happens when you land to get intel
-mission "<unfettered mission> 11: Shipyard Inspection"
+mission "<uhai> 11: Shipyard Inspection"
 	landing
 	shipyard
 	invisible
 	source "Hai-home"
 	destination "Darkcloak"
 	to offer
-		has "<unfettered mission> 11: Shipyard Intel: active"
+		has "<uhai> 11: Shipyard Intel: active"
 	on offer
 		conversation
 			`While they load up your ship, you to go to the shipyard and act like you're considering buying a new ship, and a big one at that. "Unfortunately", you get lost and end up at the facility where they build the Geocoris and Shield Beetles. There is only so much you can learn by looking, so you start discreetly scanning the place. A Hai engineer seems to notice you and comes your way. "Hi, how may I help you," he asks. You suspect he probably noticed you scanning the area, but he doesn't seem to have reported it to the local authorities, yet.`
@@ -300,11 +300,11 @@ mission "<unfettered mission> 11: Shipyard Inspection"
 			`	It looks like you have aroused too much suspicion. Maybe he was waiting to see if you would actually leave, or maybe he alerted the local authorities, but the result is the same: they arrest you and even fine you <fine>.`
 				decline
 	on decline
-		fail "<unfettered mission> 11: Shipyard Intel"
+		fail "<uhai> 11: Shipyard Intel"
 
 
 
-mission "<unfettered mission> 12: Outfitter Upgrade"
+mission "<uhai> 12: Outfitter Upgrade"
 	landing
 	shipyard
 	name `Bring industrial materials`
@@ -316,7 +316,7 @@ mission "<unfettered mission> 12: Outfitter Upgrade"
 	clearance
 	to offer
 		has "salary: Unfettered"
-		has "<unfettered mission> 11: Shipyard Intel: done"
+		has "<uhai> 11: Shipyard Intel: done"
 	substitutions
 		<monke> "your specie"
 		<monke> "monkeys"
@@ -359,7 +359,7 @@ mission "<unfettered mission> 12: Outfitter Upgrade"
 			`After unloading all the cargo, you go check for He-Yi in the shipyard, but instead you find an Herald, ready to rely a message to you, "Ah, <first>. You have completed your part of the bargain, now you may have your reward.`
 			`	"Go to Firelode, Mera has a very peculiar gift for you, should you prove yourself to be worthy of it.`
 				to display
-					not "<unfettered mission> 15: Modified Beetle: done"
+					not "<uhai> 15: Modified Beetle: done"
 					has "Unfettered Jump Drive Trading: offered"
 			`	"There could be more opportunities on Darkcloak for you, we do not only buy Jump Drives against money.`
 				to display
@@ -382,7 +382,7 @@ mission "Unfettered: Improved Production"
 
 
 
-mission "<unfettered mission> 13: Korath Specialty"
+mission "<uhai> 13: Korath Specialty"
 	landing
 	outfitter
 	name `Primitive Cooling Technology`
@@ -467,10 +467,10 @@ mission "<unfettered mission> 13: Korath Specialty"
 			`	"I did not manage to integrate the new records yet, I may end up having to connect them permanently to the translator. However, I am sure it will help, eventually."`
 				to display
 					not "event: unfettered: better sestor translators"
-					has "<unfettered mission> 13: Better Translator: done"
+					has "<uhai> 13: Better Translator: done"
 			`	"I really wish we could improve the translator, somehow. Maybe there is someone of importance in the council that would have interest for this?"`
 				to display
-					not "<unfettered mission> 13: Better Translator: done"
+					not "<uhai> 13: Better Translator: done"
 			choice
 				`	"That can't be hard. I'll go look for human coolers then."`
 					goto quantity
@@ -547,7 +547,7 @@ ship "Mammoth" "Mammoth (Hai)"
 
 # SPOILER: he paid some mercenaries to do it as well, best one gets the loot. You can also decline this and they go uncontested.
 # ionic materials (probably stolen from Hai tech in part) used to make the prototype weaponry for your Modified Beetle.
-mission "<unfettered mission> 14: Ion Materials"
+mission "<uhai> 14: Ion Materials"
 	name `Loot cargo ship`
 	description `There is an undefended cargo ship near <waypoints>. Find it and bring its cargo to <destination>.`
 	source "Warfeed"
@@ -756,7 +756,7 @@ event "unfettered: moded SB ready"
 
 
 
-mission "<unfettered mission> 15: Modified Beetle"
+mission "<uhai> 15: Modified Beetle"
 	landing
 	name "Earn your prize"
 	description "The Unfettered have modified a Shield Beetle for you, but you must beat Mera in command of it in order to earn it."
@@ -764,10 +764,10 @@ mission "<unfettered mission> 15: Modified Beetle"
 	destination "Darkcloak"
 	to offer
 		or
-			has "<unfettered mission> 14: Ion Materials: done"
-			has "<unfettered mission> 14: Ion Materials: declined"
+			has "<uhai> 14: Ion Materials: done"
+			has "<uhai> 14: Ion Materials: declined"
 		has "event: unfettered: new cooling system"
-		random < 20 + "<unfettered mission> 12: Outfitter Upgrade: done" * 50
+		random < 20 + "<uhai> 12: Outfitter Upgrade: done" * 50
 		has "event: unfettered: moded SB ready"
 		has "Unfettered Jump Drive Trading: offered"
 	on offer
@@ -775,10 +775,10 @@ mission "<unfettered mission> 15: Modified Beetle"
 			`Passing by the labs on the way down, you notice some kind of modified beetle outside, in the middle of what must be a test field, filled with craters you assume to be made during weapon testing.`
 			`Do you want to go see Mera to see what you can learn about this ship?`
 				to display
-					not "<unfettered mission> 12: Outfitter Upgrade: done"
+					not "<uhai> 12: Outfitter Upgrade: done"
 			`It may be your prize, do you want to go see Mera now, as He-Yi's Herald suggested?`
 				to display
-					has "<unfettered mission> 12: Outfitter Upgrade: done"
+					has "<uhai> 12: Outfitter Upgrade: done"
 			choice
 				`	(Sure.)`
 				`	(Later.)`
@@ -895,20 +895,20 @@ mission "<unfettered mission> 15: Modified Beetle"
 	to complete
 		has "unfettered: defeated Mera"
 
-mission "<unfettered mission> 15: Modified Beetle: Trust Broken"
+mission "<uhai> 15: Modified Beetle: Trust Broken"
 	invisible
 	landing
 	to offer
-		has "<unfettered mission> 15: Modified Beetle: active"
+		has "<uhai> 15: Modified Beetle: active"
 		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 18
 	to fail
 		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 18
 		has "flagship system: Ehma Ti"
 	on fail
 		dialog `Mera sends you a message, "What are you doing, trying to cheat? You're no fun, you do not deserve to be a part of us."`
-		fail "<unfettered mission> 15: Modified Beetle"
+		fail "<uhai> 15: Modified Beetle"
 	to complete
-		not "<unfettered mission> 15: Modified Beetle: active"
+		not "<uhai> 15: Modified Beetle: active"
 
 
 
@@ -1066,19 +1066,19 @@ event "unfettered: bribable challengers"
 
 
 # This mission partly is intended as a test to make sure you are strong enough for the following part of the campaign, but they also give you your license and salary, with official colors.
-mission "<unfettered mission> 16: Strength Of A Leader"
+mission "<uhai> 16: Strength Of A Leader"
 	name `Strength of a Leader`
 	description `Prove your strength against Si-Ra and He-Yi in a battle, but do not kill them.`
 	source "Darkcloak"
 	substitutions
 		<question> "How does your ship cloak?"
-			not "<unfettered mission> 20: Bigeminate Sigil: Cloak: done"
+			not "<uhai> 20: Bigeminate Sigil: Cloak: done"
 		<question> "Why is your hull black?"
-			has "<unfettered mission> 20: Bigeminate Sigil: Cloak: done"
+			has "<uhai> 20: Bigeminate Sigil: Cloak: done"
 	to offer
 		has "event: unfettered: darkcloak outfitter upgrade"
 		has "language: Wanderer"
-		has "<unfettered mission> 15: Modified Beetle: done"
+		has "<uhai> 15: Modified Beetle: done"
 	on offer
 		conversation
 			branch "came alone"
@@ -1251,7 +1251,7 @@ mission "<unfettered mission> 16: Strength Of A Leader"
 			`	"With this in mind, the brave Unfettered laid a trap for the ship. When it [disappeared, cloaked], they stopped shooting like usual and acted in distress, making the ghost [arrogant, overconfident]. When it reappeared and moved toward the convoy, we were ready. The fleet arrived and blocked its [escape, cloaking]. The ghost ship disappeared, but it was too late. One of the convoy ships nearby [rammed, crashed] into it, which costed the life of the proud captain but revealed the ship. Then it was just a matter of [shooting it down, damaging it]. The cloaking device was damaged in the fight, or maybe it was already damaged before, knowing the ship never [disappeared, cloaked] for long, so we could not extract it from the wreckage. Instead, we built a ship based on that wreckage's materials, and the [damaged, incomplete] cloaking device remained installed."`
 			`	"When you gave me the cloaking device, I started the preparations to install it on my ship, but it was not ready yet. It needs to fully [replace, overwrite] the old system, and that one is well integrated into the ship, so we may have to simply disable it if it cannot be replaced. The engineers are doing all that they can, but it is advanced technology we know [almost nothing, little] about."`
 				to display
-					has "<unfettered mission> 20: Bigeminate Sigil: Cloak: done"
+					has "<uhai> 20: Bigeminate Sigil: Cloak: done"
 			`	He seems to get emotional, for what must be the first time since you saw him. You can feel his pride. "This ship means a lot to me, and with it I am able to fulfill the task given to me by the Chiefs. That is mostly thanks to the cloaking ability."`
 				goto questions
 			label weapon
@@ -1259,10 +1259,10 @@ mission "<unfettered mission> 16: Strength Of A Leader"
 				set "unfettered: weapon choice"
 			`	"I have heard tales from the Unfettered humans of a weapon that neutralizes the target's engines. Knowing it could only come from the [automated, soulless] killing machines to the east, I went looking for such weapons under the [assurance, safety] of my cloak. I expected to battle for it, but the killing machines are fighting other killing machines. I just watched them battle from a distance and then swiftly looted a ship... Except it [self destructed, exploded] in my face. So I looked for another one, and that one did not explode. I took the weapon and came home, [proud, victorious]. I had barely enough space in my cargo hold for it."`
 				to display
-					not "<unfettered mission> 19: Detainer For Translator: done"
+					not "<uhai> 19: Detainer For Translator: done"
 			`	"Well, as you know, you brought the Detainer to me in exchange for the translation device."`
 				to display
-					has "<unfettered mission> 19: Detainer For Translator: done"
+					has "<uhai> 19: Detainer For Translator: done"
 			label otherweapons
 			`	"For the other weapons, it was loot [taken, collected] during the Korath raids that we have held onto. The Sunbeams are the most recent addition to the ship, which were looted from ships in the north. And then of course, our anti-missile systems are cheap and effective at countering large volumes. Last, I'm sure you know plenty about flamethrowers. They are crude, but [effective, powerful]."`
 			`	"Most of us prefer not to use weapons of [aliens, untrue] because they think it means those are [more refined than, superior to] ours. I just recognize their [advantages, utility] in some scenarios."`
@@ -1278,11 +1278,11 @@ mission "<unfettered mission> 16: Strength Of A Leader"
 				clear "unfettered: cloak choice"
 				clear "unfettered: weapon choice"
 
-mission "<unfettered mission> 16: Strength Of A Leader: Trust Broken"
+mission "<uhai> 16: Strength Of A Leader: Trust Broken"
 	invisible
 	landing
 	to offer
-		has "<unfettered mission> 16: Strength Of A Leader: active"
+		has "<uhai> 16: Strength Of A Leader: active"
 		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 18
 	to fail
 		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 18
@@ -1293,9 +1293,9 @@ mission "<unfettered mission> 16: Strength Of A Leader: Trust Broken"
 			has "unfettered: defeated Si-Ra"
 	on fail
 		dialog `You receive a message, "You must not disrespect the rules of the duel!"`
-		fail "<unfettered mission> 16: Strength Of A Leader"
+		fail "<uhai> 16: Strength Of A Leader"
 	to complete
-		not "<unfettered mission> 16: Strength Of A Leader: active"
+		not "<uhai> 16: Strength Of A Leader: active"
 
 event "joined the unfettered"
 	government "Escort"
@@ -1338,7 +1338,7 @@ ship "Marauder Leviathan" "Leviathan (Cube)"
 			"Gold Bars" 15
 			"Mystery Cube"
 
-mission "<unfettered mission> 17: Spy On Hai A"
+mission "<uhai> 17: Spy On Hai A"
 	minor
 	name `Mystery item`
 	description `Go to <waypoints> and find a way to acquire a "unique" item from the prominent warlord there. Her ship is the <npc>, once you have retrieved it bring the item to He-Yi on <planet>.`
@@ -1378,7 +1378,7 @@ mission "<unfettered mission> 17: Spy On Hai A"
 	npc board
 		personality staying target
 		to despawn
-			has "<unfettered mission> 17: Spy On Hai B: active"
+			has "<uhai> 17: Spy On Hai B: active"
 		government "Mhairi's Legion"
 		system "Alcyone"
 		ship "Leviathan (Cube)" "Degenerate"
@@ -1400,14 +1400,14 @@ mission "<unfettered mission> 17: Spy On Hai A"
 	npc
 		personality heroic staying entering disables
 		to despawn
-			has "<unfettered mission> 17: Spy On Hai B: offered"
+			has "<uhai> 17: Spy On Hai B: offered"
 		government "Syndicate"
 		system "Alcyone"
 		fleet "Large Syndicate" 3
 	npc
 		personality derelict uninterested coward
 		to despawn
-			has "<unfettered mission> 17: Spy On Hai B: offered"
+			has "<uhai> 17: Spy On Hai B: offered"
 		government "Syndicate"
 		system "Alcyone"
 		fleet "Large Syndicate"
@@ -1418,13 +1418,13 @@ mission "<unfettered mission> 17: Spy On Hai A"
 
 
 # This mission triggers when you land on the world instead of taking the cube in orbit, either bargain for it or steal it (or the wrong item)
-mission "<unfettered mission> 17: Spy On Hai B"
+mission "<uhai> 17: Spy On Hai B"
 	landing
 	invisible
 	source "Stormhold"
 	destination "Warfeed"
 	to offer
-		has "<unfettered mission> 17: Spy On Hai A: active"
+		has "<uhai> 17: Spy On Hai A: active"
 		not "outfit (all): Mystery Cube"
 	on offer
 		conversation
@@ -1575,7 +1575,7 @@ mission "<unfettered mission> 17: Spy On Hai B"
 
 
 # you may refuse to set it up to not spread mistrust with the Hai.
-mission "<unfettered mission> 17: Mirror Spy"
+mission "<uhai> 17: Mirror Spy"
 	landing
 	name `Mystery Gathering`
 	description `Collect a tribute of food from <stopovers>, and place the mystery cube without anyone noticing.`
@@ -1584,11 +1584,11 @@ mission "<unfettered mission> 17: Mirror Spy"
 	cargo "food (tribute)" 93
 	blocked `You need <tons> of cargo space for the next Unfettered mission.`
 	to offer
-		has "<unfettered mission> 17: Spy On Hai A: done"
+		has "<uhai> 17: Spy On Hai A: done"
 	on offer
 		conversation
 			branch "took on the ground"
-				not "<unfettered mission> 17: Spy On Hai B: done"
+				not "<uhai> 17: Spy On Hai B: done"
 			action
 				log `Recovered a mystery cube from a pirate ship in the heat of battle.`
 			label "took on the ground"
@@ -1634,7 +1634,7 @@ mission "<unfettered mission> 17: Mirror Spy"
 			`	This seems to anger his pride a bit, but he knows full well that statement to be true. You give him the cube so it could be used later.`
 				decline
 	to complete
-		has "<unfettered mission> 17: Place Mirror Spy: offered"
+		has "<uhai> 17: Place Mirror Spy: offered"
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on complete
@@ -1642,12 +1642,12 @@ mission "<unfettered mission> 17: Mirror Spy"
 		payment 5000000
 		dialog `He-Yi is more than happy to see you in his throne room, and gives you a generous payment of <payment>.`
 
-mission "<unfettered mission> 17: Place Mirror Spy"
+mission "<uhai> 17: Place Mirror Spy"
 	landing
 	invisible
 	source "Mirrorlake"
 	to offer
-		has "<unfettered mission> 17: Mirror Spy: active"
+		has "<uhai> 17: Mirror Spy: active"
 	on offer
 		outfit "Mystery Cube" -1
 		conversation
@@ -1657,7 +1657,7 @@ mission "<unfettered mission> 17: Place Mirror Spy"
 # 18 is optional, in side missions because you can learn Hai trough the Hai diplomats
 
 
-mission "<unfettered mission> 19: Scout Wanderer Systems"
+mission "<uhai> 19: Scout Wanderer Systems"
 	name `Know your enemy`
 	description `Go to <waypoints> and scout the fleet presence of all Wanderer ships. Then, come back to <destination> for your reward.`
 	source
@@ -1665,8 +1665,8 @@ mission "<unfettered mission> 19: Scout Wanderer Systems"
 	destination "Warfeed"
 	to offer
 		has "language: Wanderer"
-		has "<unfettered mission> 12: Outfitter Upgrade: done"
-		not "<unfettered mission> 18: Hai Language: active"
+		has "<uhai> 12: Outfitter Upgrade: done"
+		not "<uhai> 18: Hai Language: active"
 	on offer
 		log "Minor People" "Mysterious Unfettered Herald" "A herald of He-Yi that does not want to reveal his true identity. He seems to have a lot of culture, and stays calm in most situations."
 		conversation
@@ -1718,7 +1718,7 @@ mission "<unfettered mission> 19: Scout Wanderer Systems"
 			`The herald is there when you land, apparently waiting for you. "My master could not come to receive the scans himself, but be sure I shall give them to him. Please, accept these <payment> credits in his name. I think you deserve a small explanation as to why these aliens are hostile to us.`
 			`	"As you probably already know, we are planning to invade them shortly. But, to be fair, we have already started doing a few skirmishes with them, notably for testing their strength, but mostly to get food from them. They have huge ships transporting a thousand tons of cargo each."`
 
-mission "<unfettered mission> 19: Weird Aliens Spotted"
+mission "<uhai> 19: Weird Aliens Spotted"
 	landing
 	invisible
 	destination "Warfeed"
@@ -1728,8 +1728,8 @@ mission "<unfettered mission> 19: Weird Aliens Spotted"
 			has "main plot completed"
 	to offer
 		has "language: Wanderer"
-		has "<unfettered mission> 12: Outfitter Upgrade: done"
-		not "<unfettered mission> 18: Hai Language: active"
+		has "<uhai> 12: Outfitter Upgrade: done"
+		not "<uhai> 18: Hai Language: active"
 	waypoint "Pug Iyik"
 	on waypoint
 		dialog `These aliens do not look like the rest of the Wanderers at all! You should probably warn the Unfettered about it, on <destination>.`

@@ -516,10 +516,10 @@ phrase "Essential Unfettered Mission Fail"
 		`You have failed an essential Unfettered mission. You may want to reload your previous save if you want to be able to finish the campaign.`
 
 substitutions
-	"<unfettered mission>" "Unfettered: Path To Glory"
+	"<uhai>" "Unfettered: Path To Glory"
 
 
-mission "<unfettered mission> 0: Bring Hai"
+mission "<uhai> 0: Bring Hai"
 	name `Bring True Hai`
 	description `Bring <bunks> Hai from <stopovers> to <origin>.`
 	source "Firelode"
@@ -665,18 +665,18 @@ mission "<unfettered mission> 0: Bring Hai"
 
 
 
-mission "<unfettered mission> 1: Bring Medicine Notification"
+mission "<uhai> 1: Bring Medicine Notification"
 	landing
 	name `Need for medical supplies`
 	description `An Unfettered Chief told you to come help the hospitals on <destination> that desperately need supplies.`
 	source "Firelode"
 	destination "Darkcloak"
 	to offer
-		has "<unfettered mission> 0: Bring Hai: done"
+		has "<uhai> 0: Bring Hai: done"
 
 
 
-mission "<unfettered mission> 1: Bring Medicine"
+mission "<uhai> 1: Bring Medicine"
 	landing
 	name `Bring medical supplies to <planet>`
 	description `The Unfettered hospitals on <origin> are in urgent need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered on <destination> by <date> for <payment>.`
@@ -686,7 +686,7 @@ mission "<unfettered mission> 1: Bring Medicine"
 	blocked `You need <tons> of cargo space available to carry the medicals supplies.`
 	deadline 8
 	to offer
-		has "<unfettered mission> 0: Bring Hai: done"
+		has "<uhai> 0: Bring Hai: done"
 	substitutions
 		<prioritymessage> "Unfortunately, because it's in Hai, you can only guess at the meaning out of it, but it is clearly important. You can see the Hai word for "Unfettered" repeated several times, as well as numbers in the hundreds."
 			not "language: Wanderer"
@@ -778,7 +778,7 @@ event "unfettered: access to Mera's lab"
 
 # SPOILER: he tests your military aptitude before asking you to take him to pirate space.
 # gameplay wise if you win this mission you should be able to do the following ones, it tests your strength is high enough.
-mission "<unfettered mission> 2: Prove Your Strength"
+mission "<uhai> 2: Prove Your Strength"
 	name `Defeat the captain`
 	description `A young Unfettered captain has provoked you into a duel. Disable his ship.`
 	source "Darkcloak"
@@ -904,20 +904,20 @@ mission "<unfettered mission> 2: Prove Your Strength"
 		"unfettered: took Si-Ra' gold" = "outfit (all): Gold Bars"
 		"unfettered: took Si-Ra' weapons" = "outfit (all): Ionic Blaster Prototype" + "outfit (all): Ionic Turret Prototype" * 3
 
-mission "<unfettered mission> 2: Prove Your Strength: Trust Broken"
+mission "<uhai> 2: Prove Your Strength: Trust Broken"
 	invisible
 	landing
 	to offer
-		has "<unfettered mission> 2: Prove Your Strength: active"
+		has "<uhai> 2: Prove Your Strength: active"
 		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 12
 	to fail
 		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 12
 		has "flagship system: Wah Yoot"
 	on fail
 		dialog "You have broken the trust of the Unfettered captain by trying to come to a duel with too many ships. He will not show up again."
-		fail "<unfettered mission> 2: Prove Your Strength"
+		fail "<uhai> 2: Prove Your Strength"
 	to complete
-		not "<unfettered mission> 2: Prove Your Strength: active"
+		not "<uhai> 2: Prove Your Strength: active"
 
 event "unfettered: JD raid plan ready"
 
@@ -928,7 +928,7 @@ event "cerberus revealed"
 
 # SPOILER: stealing JD from the Alpha's indoctrinated pirates: Cerberus
 # the vault is a very old Hai vault that got hijacked
-mission "<unfettered mission> 3: Recover Jump Drives"
+mission "<uhai> 3: Recover Jump Drives"
 	name `Recover the jump drives`
 	description `Go to the pirate world of <stopovers> and recover jump drives from a vault.`
 	source "Darkcloak"
@@ -998,7 +998,7 @@ mission "<unfettered mission> 3: Recover Jump Drives"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	to complete
-		has "<unfettered mission> 3: Jump Drive Vault: offered"
+		has "<uhai> 3: Jump Drive Vault: offered"
 	on complete
 		outfit "Jump Drive" -4
 		payment 2000000
@@ -1013,11 +1013,11 @@ mission "<unfettered mission> 3: Recover Jump Drives"
 					goto leave
 				`	"I heard you say a name, 'Cerberus', I believe."`
 					to display
-						has "<unfettered mission> 3: Jump Drive Vault: Attracted Attention: offered"
+						has "<uhai> 3: Jump Drive Vault: Attracted Attention: offered"
 					goto cerberus
 				`	"Who were these pirates attacking us?"`
 					to display
-						not "<unfettered mission> 3: Jump Drive Vault: Attracted Attention: offered"
+						not "<uhai> 3: Jump Drive Vault: Attracted Attention: offered"
 					goto pirates
 				`	"Could I keep a jump drive for myself?"`
 					to display
@@ -1025,7 +1025,7 @@ mission "<unfettered mission> 3: Recover Jump Drives"
 			action
 				set "unfettered: asked a jump drive from Si-Ra"
 			branch listened
-				not "<unfettered mission> 3: Jump Drive Vault: Attracted Attention: offered"
+				not "<uhai> 3: Jump Drive Vault: Attracted Attention: offered"
 			`	"Clearly ye have enough already, since ye saw fit to flaunt it for all the pirates."`
 				goto choice
 			label listened
@@ -1058,13 +1058,13 @@ mission "<unfettered mission> 3: Recover Jump Drives"
 
 
 
-mission "<unfettered mission> 3: Jump Drive Vault"
+mission "<uhai> 3: Jump Drive Vault"
 	landing
 	invisible
 	source "Freedom"
 	destination "Darkcloak"
 	to offer
-		has "<unfettered mission> 3: Recover Jump Drives: active"
+		has "<uhai> 3: Recover Jump Drives: active"
 	on offer
 		conversation
 			`You park your ship close to the hidden depot, as suggested by the Hai, at a lesser-used auxiliary spaceport. Often used by captains seeking a degree of discretion, they tend to still be close enough to the main hubs to not draw the same types of unwanted attention as landing fully off-grid. Your crew should be plenty close enough to intervene should anything go wrong.`
@@ -1118,7 +1118,7 @@ mission "<unfettered mission> 3: Jump Drive Vault"
 			`	When you wake up everything is blurry, all you can see if a powerful, almost divine, light.`
 			`	Coming back to your senses, you notice you are in what must be a hospital, half naked. The captain is staring at you. "The Gods of battle have judged ye, <first>. And they found you wanting." It seems clear that you will not be able to continue missions with the Unfettered after such a failure.`
 			action
-				fail "<unfettered mission> 3: Recover Jump Drives"
+				fail "<uhai> 3: Recover Jump Drives"
 				fail
 			label down
 			`	You get down yourself as you give the warning, then to see if it was heeded. The Unfettered was evidently well trained for this, as he is already on the ground and sighting his rifle. You're impressed by the precision of his weapon; the sniper is quite clearly taken out with the first shot, but your armored companion fires three more times to be sure.`
@@ -1154,13 +1154,13 @@ mission "<unfettered mission> 3: Jump Drive Vault"
 		fleet "Large Northern Pirates"
 		fleet "Small Northern Pirates" 2
 
-mission "<unfettered mission> 3: Jump Drive Vault: Attracted Attention"
+mission "<uhai> 3: Jump Drive Vault: Attracted Attention"
 	landing
 	invisible
 	source "Freedom"
 	destination "Darkcloak"
 	to offer
-		has "<unfettered mission> 3: Recover Jump Drives: active"
+		has "<uhai> 3: Recover Jump Drives: active"
 		has "outfit (installed): Jump Drive"
 	on enter "Almaaz"
 		"unfettered: offended Si-Ra" += 2
@@ -1173,7 +1173,7 @@ mission "<unfettered mission> 3: Jump Drive Vault: Attracted Attention"
 
 
 
-mission "<unfettered mission> 4: Scan Geocoris"
+mission "<uhai> 4: Scan Geocoris"
 	name `Scan the Geocoris`
 	description `Scan the cargo of the Hai Geocoris in Ya Hai with the Unfettered scanner, then return to <destination> with the scanner logs.`
 	source "Firelode"
@@ -1255,7 +1255,7 @@ mission "<unfettered mission> 4: Scan Geocoris"
 			label "didn't listen"
 			`You have scanned the Geocoris, but you did not use a Value Detector to do so. The scans will be of no value to Mera, you have failed the mission.`
 			action
-				fail "<unfettered mission> 4: Scan Geocoris"
+				fail "<uhai> 4: Scan Geocoris"
 	to fail
 		has "unfettered: outcast"
 	on fail
@@ -1269,13 +1269,13 @@ mission "<unfettered mission> 4: Scan Geocoris"
 		dialog `You send the scans to the Unfettered government and receive a payment of <payment>. They tell you Mera will need some time to analyze the scans.`
 		event "unfettered: analyzed the scans" 10 20
 
-mission "<unfettered mission> 4: Geocoris Arrival"
+mission "<uhai> 4: Geocoris Arrival"
 	landing
 	invisible
 	source
 		system "Ya Hai"
 	to offer
-		has "<unfettered mission> 4: Scan Geocoris: active"
+		has "<uhai> 4: Scan Geocoris: active"
 	on offer
 		conversation
 			`Shortly after you land, you see the Geocoris signature on your radar. You take off immediately.`
