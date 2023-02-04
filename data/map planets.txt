@@ -347,7 +347,6 @@ planet "Blue Interior"
 planet Bluerun
 	attributes hai station uninhabited
 	landscape land/station33
-	music ambient/machinery
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
 	government Uninhabited
 	bribe 0
@@ -749,7 +748,6 @@ planet Darkmetal
 planet Darkrest
 	attributes hai station uninhabited
 	landscape land/station34
-	music ambient/machinery
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
 	government Uninhabited
 	bribe 0
@@ -1307,7 +1305,6 @@ planet Fertriery
 planet Firefall
 	attributes hai station uninhabited
 	landscape land/station36
-	music ambient/machinery
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
 	government Uninhabited
 	bribe 0
@@ -2006,7 +2003,6 @@ planet "Into White"
 planet Iritoroost
 	attributes hai station uninhabited
 	landscape land/station23
-	music ambient/machinery
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
 	government Uninhabited
 	bribe 0
@@ -2015,7 +2011,6 @@ planet Iritoroost
 planet Ironfirth
 	attributes hai station uninhabited
 	landscape land/station44
-	music ambient/machinery
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
 	government Uninhabited
 	bribe 0
@@ -2189,7 +2184,6 @@ planet Lichen
 planet Limejog
 	attributes hai station uninhabited
 	landscape land/station45
-	music ambient/machinery
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
 	government Uninhabited
 	bribe 0
@@ -3105,7 +3099,6 @@ planet Rand
 planet Redwatch
 	attributes hai station uninhabited
 	landscape land/station6
-	music ambient/machinery
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
 	government Uninhabited
 	bribe 0
@@ -3284,7 +3277,6 @@ planet "Safaresk Enlai"
 planet Sandsnap
 	attributes hai station uninhabited
 	landscape land/station40
-	music ambient/machinery
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
 	government Uninhabited
 	bribe 0
@@ -4317,7 +4309,6 @@ planet Vinci
 planet Violetwake
 	attributes hai station uninhabited
 	landscape land/space6
-	music ambient/machinery
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
 	government Uninhabited
 	bribe 0
