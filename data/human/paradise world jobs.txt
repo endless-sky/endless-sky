@@ -840,16 +840,20 @@ phrase "martini evac dialog plural"
 
 phrase "insults for southerners"
 	word
-		"those '"
+		"'those "
+		"'them "
 	word
 		""
 		"bloody"
+		"damn"
 		"jumpy"
 		"upstart"
 		"whining"
 		"stupid"
 		"seditious"
 		"treasonous"
+		"terrorizing"
+		"greedy"
 	word
 		" "
 	word
@@ -873,6 +877,8 @@ phrase "martini evac dialog"
 		" "
 	word
 		"the Free Worlds"
+		"the Pact"
+		"the Southern Pact"
 		"${insults for southerners}"
 	word
 		" for the "
