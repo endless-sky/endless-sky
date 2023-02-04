@@ -5681,12 +5681,12 @@ mission "Drunk Teen Hijack"
 			`	You quietly walk closer, then stop and listen to what seems to be people talking.`
 			`	"...seems so nice. Picked us up and all."`
 			`	"Nah. They all expect us to pay them later, these guys. They work for money, like everyone else. We're just an investment."`
-			`	"We can't back out now. There is no way we could get there otherwise. Don't act like it's your first time in the business." In the third speaker, you recognize Howard, one of your teenage passengers.`
+			`	"We can't back out now. There's no way we could get there otherwise. Don't act like it's your first time in the business." In the third speaker, you recognize Howard, one of your teenage passengers.`
 			choice
 				`	(Confront them.)`
 				`	(Walk away.)`
 					goto walk
-			`	You turn the corner to find the five teenagers gathered there. They seem surprised by your appearance, but Howard hastily addresses you. "Captain! We are so grateful you brought us on board!" The other teens murmur in agreement.`
+			`	You turn the corner to find the five teenagers gathered there. They seem surprised by your appearance, but Howard hastily addresses you. "Captain! We're so grateful you brought us on board!" The other teens murmur in agreement.`
 			`	"Anyway, we don't mean to bother you," he stammers and walks off, the rest following suit.`
 			label walk
 			`	You walk back to your quarters, unsure about what just happened.`
@@ -5726,7 +5726,7 @@ mission "Drunk Teen Hijack"
 			`	You try to reach for your pistol, but it's no longer in its holster.`
 
 			label fight
-			`	You stand no chance against the four attackers. They each grab one of your limbs and immobilize you, then the fifth guy points your own gun at you. They must have taken it last night, when you thought they were partying.`
+			`	You stand no chance against the four attackers. They each grab one of your limbs and immobilize you as the remaining boy points your own gun at you. They must have taken it last night, when you thought they were partying.`
 			`	"Keep it steady, captain," Howard says with glee from your right side. "No funny business. Larry here has an itchy trigger finger." He then lets go of your right leg he has been holding onto, and addresses Larry. "Told you it would work! Next time, I get the gun while you fight in the dirt with the idiot." You notice how none of them seem to be drunk in the slightest anymore.`
 
 			label options
@@ -5738,12 +5738,12 @@ mission "Drunk Teen Hijack"
 
 			branch survived
 				random < "flagship crew" - 1
-			`	Larry fires the weapon, and you feel sickening pain in your chest. You fall to the ground and try to gasp for air, but it feels too hard. You watch as everything goes black and your consciousness slips away.`
+			`	Larry fires the weapon, and you feel a sickening pain in your chest. You fall to the ground and try to gasp for air, but it feels too hard. You watch as everything goes black and your consciousness slips away.`
 				die
 
 			label survived
 			`	Larry fires the weapon, and you feel sickening pain in your left shoulder. Before Larry can fire again however, a member of your crew pops up behind him and takes him out with a well-aimed shot.`
-			`	With the other four attackers being unarmed, they have no choice but to surrender. As more crew members arrive, they take away the teenagers and stitch up your wound. You still can't quite believe what just happened.`
+			`	With the other four attackers left unarmed, they have no choice but to surrender. As more crew members arrive, they take away the teenagers and stitch up your wound. You still can't quite believe what just happened.`
 			`	You thank your fellow crew members for saving your life and decide to not let your sidearm out of your sight ever again.`
 				decline
 
@@ -5756,5 +5756,5 @@ mission "Drunk Teen Hijack"
 		payment 50000
 		dialog
 			`You notify the spaceport authorities about the situation and hand over the teenagers to the security detachment they send out.`
-			`	"That's the 'Howard Gang'! They had been causing trouble on <origin>, then skipped town when they caught wind of the investigation. We are glad you managed to catch them."`
+			`	"That's the 'Howard Gang'! They had been causing trouble on <origin>, then skipped town when they caught wind of the investigation. We're glad you managed to catch them."`
 			`	They give you a bounty of <payment> for apprehending the criminals.`
