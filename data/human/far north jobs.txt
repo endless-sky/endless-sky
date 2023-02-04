@@ -27,7 +27,7 @@ mission "Betelgeuse Shipment [0]"
 	npc
 		government Pirate
 		personality heroic harvests plunders
-		fleet "Small Northen Pirates"
+		fleet "Small Northern Pirates"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -50,7 +50,7 @@ mission "Betelgeuse Shipment [1]"
 	npc
 		government Pirate
 		personality heroic harvests plunders
-		fleet "Small Northen Pirates"
+		fleet "Small Northern Pirates"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -73,7 +73,7 @@ mission "Betelgeuse Shipment [2]"
 	npc
 		government Pirate
 		personality heroic harvests plunders
-		fleet "Small Northen Pirates"
+		fleet "Small Northern Pirates"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
