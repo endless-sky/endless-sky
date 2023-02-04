@@ -345,6 +345,19 @@ mission "Unfettered: Hunger Stories 3"
 				payment -5000
 			`	You reach for your sidearm only to find that it isn't there. It seems like a dozen pairs of paws are on you, some tearing at your clothes and some climbing on you. You spin around to try and shake them off. You end up rolling on the ground and then, as suddenly as it began, everything stops and you are alone in the street. You check yourself quickly and you seem to be uninjured. Your clothes are in tatters, though, and your sidearm, communicator, and bag are nowhere to be seen.`
 			`	You make your way back to the spaceport. For once, it's useful to be the alien. The guards are quickly able to quickly clear you even without documentation. You hear them laughing as you head for the safety of your ship. You have no doubt that the story of the monkey robbed by children is already making the rounds.`
+			`	As you are walking, you wonder if you should report the gang the the authorities and perhaps save some other merchants or travellers from being mugged.`
+			choice
+				`	(Report them.)`
+					goto report
+				`	(Don't bother. The Unfettered won't care.)`
+					decline
+			
+			label report
+			action
+				payment 5000
+			`	The Unfettered authorities surprise you by not only listening to your story, but pulling up surveillance video of your encounter with the gang. After consulting among themselves, they thank you for bringing this to their attention and give you <payment>.`
+			`	You ask if this is compentation for your stolen property and they laugh. "No, Human. We don't reward the weak and foolish," they answer. "This is a finder's fee. Those children show much promise. We will get them in training immediately."`
+			`	You take the credits and return to your ship.`
 				decline
 
 
