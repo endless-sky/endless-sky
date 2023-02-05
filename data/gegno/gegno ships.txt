@@ -1136,17 +1136,24 @@ ship "Feldspar"
 	turret -74.5 13 "Acuit Artillery"
 	turret 74.5 13 "Acuit Artillery"
 	bay "Fighter" -73 -173.5
+		"launch effect" "scin launch"
 		over
 	bay "Fighter" 73 -173.5
+		"launch effect" "scin launch"
 		over
 	bay "Fighter" -70 -98
+		"launch effect" "scin launch"
 		over
 	bay "Fighter" 70 -98
+		"launch effect" "scin launch"
 		over
 	bay "Fighter" -65.5 120
+		"launch effect" "scin launch"
 		angle -180
 		over
+		"launch effect" "scin launch"
 	bay "Fighter" 65.5 120
+		"launch effect" "scin launch"
 		angle -180
 		over
 	leak "leak" 50 50
@@ -1206,9 +1213,11 @@ ship "Epidote"
 	turret 0 -27 "Astuit Battery"
 	turret 0 65 "Acuit Artillery"
 	bay "Fighter" 0 122
+		"launch effect" "scin launch"
 		angle -180
 		under
 	bay "Fighter" 0 180
+		"launch effect" "scin launch"
 		angle -180
 		under
 	leak "leak" 10 40
