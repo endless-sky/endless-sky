@@ -174,6 +174,65 @@ namespace {
 		}
 	}
 
+	const Color &GetTargetOutlineColor(int type)
+	{
+		if(type == Radar::PLAYER)
+			return *GameData::Colors().Get("ship target outline player");
+		else if(type == Radar::FRIENDLY)
+			return *GameData::Colors().Get("ship target outline friendly");
+		else if(type == Radar::UNFRIENDLY)
+			return *GameData::Colors().Get("ship target outline unfriendly");
+		else if(type == Radar::HOSTILE)
+			return *GameData::Colors().Get("ship target outline hostile");
+		else if(type == Radar::SPECIAL)
+			return *GameData::Colors().Get("ship target outline special");
+		else if(type == Radar::BLINK)
+			return *GameData::Colors().Get("ship target outline blink");
+		else
+			return *GameData::Colors().Get("ship target outline inactive");
+	}
+
+	const Color &GetPlanetTargetPointerColor(const Planet &planet)
+	{
+		switch(planet.GetFriendliness())
+		{
+			case Planet::Friendliness::FRIENDLY:
+				return *GameData::Colors().Get("planet target pointer friendly");
+			case Planet::Friendliness::RESTRICTED:
+				return *GameData::Colors().Get("planet target pointer restricted");
+			case Planet::Friendliness::HOSTILE:
+				return *GameData::Colors().Get("planet target pointer hostile");
+			case Planet::Friendliness::DOMINATED:
+				return *GameData::Colors().Get("planet target pointer dominated");
+		}
+		return *GameData::Colors().Get("planet target pointer unfriendly");
+	}
+
+	const Color &GetShipTargetPointerColor(int type)
+	{
+		if(type == Radar::PLAYER)
+			return *GameData::Colors().Get("ship target pointer player");
+		else if(type == Radar::FRIENDLY)
+			return *GameData::Colors().Get("ship target pointer friendly");
+		else if(type == Radar::UNFRIENDLY)
+			return *GameData::Colors().Get("ship target pointer unfriendly");
+		else if(type == Radar::HOSTILE)
+			return *GameData::Colors().Get("ship target pointer hostile");
+		else if(type == Radar::SPECIAL)
+			return *GameData::Colors().Get("ship target pointer special");
+		else if(type == Radar::BLINK)
+			return *GameData::Colors().Get("ship target pointer blink");
+		else
+			return *GameData::Colors().Get("ship target pointer inactive");
+	}
+
+	const Color &GetMinablePointerColor(bool selected)
+	{
+		if(selected)
+			return *GameData::Colors().Get("minable target pointer selected");
+		return *GameData::Colors().Get("minable target pointer unselected");
+	}
+
 	const double RADAR_SCALE = .025;
 	const double MAX_FUEL_DISPLAY = 5000.;
 }
@@ -679,7 +738,7 @@ void Engine::Step(bool isActive)
 			object->Position() - center,
 			object->Facing(),
 			object->Radius(),
-			object->GetPlanet()->CanLand() ? Radar::FRIENDLY : Radar::HOSTILE,
+			GetPlanetTargetPointerColor(*object->GetPlanet()),
 			5});
 	}
 	else if(flagship && flagship->GetTargetSystem())
@@ -745,7 +804,7 @@ void Engine::Step(bool isActive)
 		info.SetString("mission target", target->GetPersonality().IsTarget() ? "(mission target)" : "");
 
 		int targetType = RadarType(*target, step);
-		info.SetOutlineColor(Radar::GetColor(targetType));
+		info.SetOutlineColor(GetTargetOutlineColor(targetType));
 		if(target->GetSystem() == player.GetSystem() && target->IsTargetable())
 		{
 			info.SetBar("target shields", target->Shields());
@@ -759,7 +818,7 @@ void Engine::Step(bool isActive)
 				target->Position() - center,
 				Angle(45.) + target->Facing(),
 				size,
-				targetType,
+				GetShipTargetPointerColor(targetType),
 				4});
 
 			targetVector = target->Position() - center;
@@ -845,7 +904,7 @@ void Engine::Step(bool isActive)
 				ship->Position() - center,
 				Angle(45.) + ship->Facing(),
 				size,
-				Radar::PLAYER,
+				*GameData::Colors().Get("ship target pointer player"),
 				4});
 		}
 	}
@@ -863,7 +922,7 @@ void Engine::Step(bool isActive)
 				offset,
 				minable->Facing(),
 				.8 * minable->Radius(),
-				minable == flagship->GetTargetAsteroid() ? Radar::SPECIAL : Radar::INACTIVE,
+				GetMinablePointerColor(minable == flagship->GetTargetAsteroid()),
 				3});
 		}
 }
@@ -1003,8 +1062,7 @@ void Engine::Draw() const
 		PointerShader::Bind();
 		for(int i = 0; i < target.count; ++i)
 		{
-			PointerShader::Add(target.center * zoom, a.Unit(), 12.f, 14.f, -target.radius * zoom,
-				Radar::GetColor(target.type));
+			PointerShader::Add(target.center * zoom, a.Unit(), 12.f, 14.f, -target.radius * zoom, target.color);
 			a += da;
 		}
 		PointerShader::Unbind();
