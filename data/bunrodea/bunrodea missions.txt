@@ -1,0 +1,62 @@
+# Copyright (c) 2023 by Amazinite
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+mission "First Contact: Bunrodea"
+	landing
+	source
+		not near "Erabu Lemeta" 0 100
+		not attributes "urban"
+		attributes "spaceport"
+	destination "Erabuthro"
+	clearance "Unlike before, none of the alien ships are hostile. After hailing the planet that the aliens pointed you towards, you hear an alien voice respond. Before you can think of what to say, the small device that the aliens threw at you on <origin> responds for you. The alien on the other end says something short, then cuts the feed. It seems like you've been cleared to land."
+	to offer
+		random < 10
+		or
+			"reputation: Bunrodea" != 1
+			"reputation: Bunrodea (Megasa)" != 1
+			"reputation: Bunrodea (Erabu)" != 1
+			"reputation: Bunrodea (Guard)" != -1
+	
+	on offer
+		"bunrodea: attacked guard" = "reputation: Bunrodea (Guard)" < -1
+		"bunrodea: attacked megasa" = "reputation: Bunrodea (Megasa)" < 1
+		"bunrodea: attacked erabu" = "reputation: Bunrodea (Erabu)" < 1
+		"bunrodea: attacked normal" = "reputation: Bunrodea" < 1
+		conversation
+			`When you step off of your ship, you're startled by a small alien ship uncloaking right in front of you. Two elegant mantis-like aliens step off of the ships, each holding a strange looking weapon pointed directly at you. You look around to see if there's anyone else witnessing this, but you've landed at <origin>'s main spaceport in the middle of the night, leaving you as the only human in sight.`
+			`	The aliens begin speaking to you in a language you don't understand. As one of them speaks, they sound almost robotic, as if they are speaking through a synthesizer. Taking a closer look, you spot what you can only guess are cybernetic modifications to parts of the alien's body. The other one has no such visible modifications, though.`
+			choice
+				`	"Do you come in peace?"`
+				`	"I don't understand a word you're saying."`
+				`	"Don't shoot! I'll take you to my leader."`
+			`	The aliens look at each other and say a few words. One of them grabs a small device from a belt and throws it on the ground in front of you.`
+			choice
+				`	(Pick it up.)`
+				`	(Dodge for cover.)`
+					goto dodge
+			`	You pick up the device and look at it. It springs open in your hand, causing you to drop it. After it falls to the ground, it begins projecting a holographic star map. You recognize some of the systems on the map as those where you fought an alien fleet. In fact, the alien ship in front of you looks similar to those you fought. A single system within that region is highlighted. The aliens return to their ship, which becomes invisible again. Although you can't see it, you hear it take off and fly away.`
+				accept
+			label dodge
+			`	You dodge for cover behind your ship. After a few seconds, you hear a springing sound. When you look back out from behind your ship, the aliens are gone, and the device they threw at you is now projecting a holographic star map. You recognize some of the systems on the map as those where you fought an alien fleet. In fact, the alien ship in front of you looks similar to those you fought. A single system within that region is highlighted. The alien ship becomes invisible once again. Although you can't see it, you hear it take off and fly away.`
+				accept
+	
+	on accept
+		"reputation: Bunrodea" = 0
+		"reputation: Bunrodea (Guard)" = 0
+		"reputation: Bunrodea (Megasa)" = 0
+		"reputation: Bunrodea (Erabu)" = 0
+	
+	on complete
+		"reputation: Bunrodea" = 10
+		conversation
+			``

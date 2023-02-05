@@ -37,7 +37,7 @@ ship "Kaiken"
 		
 		"Solar Battery"
 		"Solar Cell" 27
-		"Small Shield Relay" 
+		"Small Shield Relay"
 		"Shield Relay Limiter" 6
 		
 		"Chiisana Rift Thruster" 2
