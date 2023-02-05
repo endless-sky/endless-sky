@@ -1307,10 +1307,13 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	for(const auto &hardpoint : armament.Get())
 	{
 		const Weapon *weapon = hardpoint.GetOutfit();
-		if(weapon && !weapon->Ammo() && weapon->DoesDamage() && hardpoint.IsTurret())
-			turretRange = max(turretRange, weapon->Range() + hardpoint.GetPoint().Length());
-		else if(weapon && !weapon->Ammo() && weapon->DoesDamage() && hardpoint.IsGun())
-			gunRange = max(gunRange, weapon->Range() + hardpoint.GetPoint().Length());
+		if(!weapon || !weapon->Ammo() || !weapon->DoesDamage())
+			continue;
+		double weaponRange = weapon->Range() + hardpoint.GetPoint().Length();
+		if(hardpoint.IsTurret())
+			turretRange = max(turretRange, weaponRange);
+		else
+			gunRange = max(gunRange, weaponRange);
 	}
 }
 
