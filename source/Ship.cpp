@@ -75,20 +75,20 @@ namespace {
 	const double MAX_SCAN_RANGE = 2.4477468306808167762; // exp(-x*x/2) = 0.05
 	const double MAX_SCAN_RANGE_FACTOR = MAX_SCAN_RANGE * MAX_SCAN_RANGE;
 
-	// These numbers ensure it takes 10 seconds for a Cargo Scanner to scan
+	// These numbers ensure it takes 5 seconds for a Cargo Scanner to scan
 	// a Bulk Freighter at point blank range. Any ship with less than 40
 	// cargo space takes as long as a ship with 40 cargo space.
 	const double SCAN_MIN_CARGO_SPACE = 40;
-	const double SCAN_CARGO_FACTOR = 0.018633899812498248;
+	const double SCAN_CARGO_FACTOR = 0.0065880784586841235;
 
-	// This ensures it takes 5 seconds for an Outfit Scanner to scan a
+	// This ensures it takes 3 seconds for an Outfit Scanner to scan a
 	// Bactrian at point blank range. Any ship with less than 200 outfit
 	// space takes as long as a ship with 200 outfit space.
 	const double SCAN_MIN_OUTFIT_SPACE = 200;
-	const double SCAN_OUTFIT_FACTOR = 0.027756210684383418;
+	const double SCAN_OUTFIT_FACTOR = 0.012899921008132963;
 
 	// Formula for the scan outfit or cargo factor is:
-	// factor = pow(scanEfficiency * SCAN_TIME / framesToFullScan, 3./2) * referenceSize
+	// factor = pow(scanEfficiency * framesToFullScan / SCAN_TIME, 3./2) / referenceSize
 
 	// Helper function to transfer energy to a given stat if it is less than the
 	// given maximum value.
