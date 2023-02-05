@@ -2680,7 +2680,7 @@ int Ship::Scan(const PlayerInfo &player)
 					const double depth, const int event)
 	-> void
 	{
-		const int MAX_RANGE_FACTOR = 3 * 3; // three standard deviations
+		const int MAX_RANGE_FACTOR = 3 * 3; // three standard deviations AKA triple range
 		if(elapsed < SCAN_TIME && distanceSquared < MAX_RANGE_FACTOR * scannerRangeSquared)
 		{
 			startedScanning |= !elapsed;
