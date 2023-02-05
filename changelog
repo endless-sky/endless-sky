@@ -261,7 +261,7 @@ Version 0.10.0
       * Moved the Cloaking Device to the "Unique" outfit category. (@czartrak)
       * The descriptions of the Heliarch reactors now indicate that they use anti-matter catalyzed fusion technology. (@Arachi-Lover)
       * Governments that reuse colors now refer to named "stock" colors instead of providing their own color literals. (@warp-core)
-      * Added a reference to the player's manual to the credits. (@hmglasgow)
+      * Added a reference in the credits to the player's manual. (@hmglasgow)
       * Separated planet and system definitions into their own files. (@Amazinite)
       * Brighten some government colors to improve map readability. (@TomGoodIdea)
       * Added custom penalties to improve Remnant and Quarg reactions to actions against some foreign governments. (@Hurleveur)
