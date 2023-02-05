@@ -495,8 +495,6 @@ private:
 	// int swizzle;
 	// const Government *government;
 
-	std::string activity;
-
 	// Characteristics of the chassis:
 	bool isDefined = false;
 	const Ship *base = nullptr;
@@ -551,6 +549,8 @@ private:
 	Personality personality;
 	const Phrase *hail = nullptr;
 	ShipAICache aiCache;
+
+	std::string activity;
 
 	// Installed outfits, cargo, etc.:
 	Outfit attributes;
