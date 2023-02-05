@@ -67,13 +67,28 @@ namespace {
 	// Scanning takes a maximum of SCAN_TIME AI steps, with a scan speed
 	// dependent on the range from the ship (among other factors).  The
 	// scan speed uses a gaussian drop-off with the reported scan radius
-	// as the standard deviation. The maximum variance is
-	// MAX_SCAN_RANGE_FACTOR, so 3 * 3 = three standard deviations at
-	// which point the scan speed is about 1% of maximum.  This
-	// MAX_SCAN_RANGE_FACTOR is critical since anywhere within that range,
+	// as the standard deviation. At a range of MAX_SCAN_RANGE, which
+	// works out to 5% of the max scan speed, ships cease to scan. This
+	// MAX_SCAN_RANGE is critical since anywhere within that range,
 	// you still have a maximum of SCAN_TIME AI steps to scan.
 	const double SCAN_TIME = 600.;
-	const int MAX_SCAN_RANGE_FACTOR = 3 * 3;
+	const double MAX_SCAN_RANGE = 2.4477468306808167762; // exp(-x*x/2) = 0.05
+	const double MAX_SCAN_RANGE_FACTOR = MAX_SCAN_RANGE * MAX_SCAN_RANGE;
+
+	// These numbers ensure it takes 10 seconds for a Cargo Scanner to scan
+	// a Bulk Freighter at point blank range. Any ship with less than 40
+	// cargo space takes as long as a ship with 40 cargo space.
+	const double SCAN_MIN_CARGO_SPACE = 40;
+	const double SCAN_CARGO_FACTOR = 0.018633899812498248;
+
+	// This ensures it takes 5 seconds for an Outfit Scanner to scan a
+	// Bactrian at point blank range. Any ship with less than 200 outfit
+	// space takes as long as a ship with 200 outfit space.
+	const double SCAN_MIN_OUTFIT_SPACE = 200;
+	const double SCAN_OUTFIT_FACTOR = 0.027756210684383418;
+
+	// Formula for the scan outfit or cargo factor is:
+	// factor = pow(scanEfficiency * SCAN_TIME / framesToFullScan, 3./2) * referenceSize
 
 	// Helper function to transfer energy to a given stat if it is less than the
 	// given maximum value.
@@ -2671,14 +2686,14 @@ int Ship::Scan(const PlayerInfo &player)
 	// Because this uses distance squared, to reach 200 pixels away you need 4 "scan power".
 	double distanceSquared = target->position.DistanceSquared(position) * .0001;
 
-	// Check the target's outfit and cargo space. A larger ship takes longer to scan.
-	// Normalized around 200 tons of cargo/outfit space.
-	// A ship with less than 10 tons of outfit space or cargo space takes as long to
-	// scan as one with 10 tons. This avoids small sizes being scanned instantly, or
-	// causing a divide by zero error at sizes of 0.
+	// Check the target's outfit and cargo space. A larger ship takes
+	// longer to scan.  There's a minimum size below which a smaller ship
+	// takes the same amount of time to scan. This avoids small sizes
+	// being scanned instantly, or causing a divide by zero error at sizes
+	// of 0.
 	// If instantly scanning very small ships is desirable, this can be removed.
-	double outfits = max(10., target->baseAttributes.Get("outfit space")) * .005;
-	double cargo = max(10., target->attributes.Get("cargo space")) * .005;
+	double outfits = max(SCAN_MIN_OUTFIT_SPACE, target->baseAttributes.Get("outfit space")) * SCAN_OUTFIT_FACTOR;
+	double cargo = max(SCAN_MIN_CARGO_SPACE, target->attributes.Get("cargo space")) * SCAN_CARGO_FACTOR;
 
 	// Check if either scanner has finished scanning.
 	bool startedScanning = false;
@@ -2686,7 +2701,7 @@ int Ship::Scan(const PlayerInfo &player)
 	int result = 0;
 	auto doScan = [&distanceSquared, &startedScanning, &activeScanning, &result]
 			(double &elapsed, const double speed, const double scannerRangeSquared,
-					const double depth, const int event)
+					const double sizeFactor, const int event)
 	-> void
 	{
 		if(elapsed < SCAN_TIME && distanceSquared < MAX_SCAN_RANGE_FACTOR * scannerRangeSquared)
@@ -2694,10 +2709,12 @@ int Ship::Scan(const PlayerInfo &player)
 			startedScanning |= !elapsed;
 			activeScanning = true;
 
+			double sizeAdjustment = pow(sizeFactor, -2./3);
+
 			// Gaussian drop-off of scan speed.
 			double distanceExponent = -distanceSquared / max<double>(1e-3, 2 * scannerRangeSquared);
 
-			elapsed += max<double>(1, exp(distanceExponent) * speed / depth);
+			elapsed += max<double>(1, exp(distanceExponent) * speed * sizeAdjustment);
 
 			if(elapsed >= SCAN_TIME)
 				result |= event;
