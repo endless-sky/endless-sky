@@ -2676,32 +2676,20 @@ int Ship::Scan(const PlayerInfo &player)
 	bool activeScanning = false;
 	int result = 0;
 	auto doScan = [&distanceSquared, &startedScanning, &activeScanning, &result]
-			(double &elapsed, const double speed, const double scannerRange,
+			(double &elapsed, const double speed, const double scannerRangeSquared,
 					const double depth, const int event)
 	-> void
 	{
-		if(elapsed < SCAN_TIME && distanceSquared < scannerRange)
+		const int MAX_RANGE_FACTOR = 3 * 3; // three standard deviations
+		if(elapsed < SCAN_TIME && distanceSquared < MAX_RANGE_FACTOR * scannerRangeSquared)
 		{
 			startedScanning |= !elapsed;
 			activeScanning = true;
 
-			// Division is more expensive to calculate than multiplication,
-			// so rearrange the formula to minimize divisions.
+			// Gaussian drop-off of scan speed.
+			double distanceExponent = -distanceSquared / max<double>(1e-3, 2 * scannerRangeSquared);
 
-			// "(scannerRange - 0.5 * distance) / scannerRange"
-			// This line hits 1 at distace = 0, and 0.5 at distance = scannerRange.
-			// There is also a hard cap on scanning range.
-
-			// "speed / (sqrt(speed) + distance)"
-			// This gives a modest speed boost at no distance, and
-			// the boost tapers off to 0 at arbitrarily large distances.
-
-			// "1 / depth"
-			// This makes scan time proportional to cargo or outfit space.
-
-			// To make up for previous scan delay, also add 1.
-			elapsed += ((scannerRange - .5 * distanceSquared) * speed)
-				/ (scannerRange * (sqrt(speed) + distanceSquared) * depth) + 1;
+			elapsed += max<double>(1, exp(distanceExponent) * speed / depth);
 
 			if(elapsed >= SCAN_TIME)
 				result |= event;
