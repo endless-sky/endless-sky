@@ -14,7 +14,7 @@
 mission "First Contact: Bunrodea"
 	landing
 	source
-		not near "Erabu Lemeta" 0 100
+		near "Sol" 0 100
 		not attributes "urban"
 		attributes "spaceport"
 	destination "Erabuthro"
@@ -28,12 +28,12 @@ mission "First Contact: Bunrodea"
 			"reputation: Bunrodea (Guard)" != -1
 	
 	on offer
-		"bunrodea: attacked guard" = "reputation: Bunrodea (Guard)" < -1
-		"bunrodea: attacked megasa" = "reputation: Bunrodea (Megasa)" < 1
-		"bunrodea: attacked erabu" = "reputation: Bunrodea (Erabu)" < 1
-		"bunrodea: attacked normal" = "reputation: Bunrodea" < 1
+		"bunrodea: guard rep" = "reputation: Bunrodea (Guard)"
+		"bunrodea: megasa rep" = "reputation: Bunrodea (Megasa)"
+		"bunrodea: erabu rep" = "reputation: Bunrodea (Erabu)"
+		"bunrodea: normal rep" = "reputation: Bunrodea"
 		conversation
-			`When you step off of your ship, you're startled by a small alien ship uncloaking right in front of you. Two elegant mantis-like aliens step off of the ships, each holding a strange looking weapon pointed directly at you. You look around to see if there's anyone else witnessing this, but you've landed at <origin>'s main spaceport in the middle of the night, leaving you as the only human in sight.`
+			`When you depart your ship, you're startled by a small alien ship uncloaking right in front of you. Two elegant mantis-like aliens step off it, each holding a strange looking weapon pointed directly at you. You look around to see if there's anyone else witnessing this, but you've landed at <origin>'s main spaceport in the middle of the night, leaving you as the only human in sight.`
 			`	The aliens begin speaking to you in a language you don't understand. As one of them speaks, they sound almost robotic, as if they are speaking through a synthesizer. Taking a closer look, you spot what you can only guess are cybernetic modifications to parts of the alien's body. The other one has no such visible modifications, though.`
 			choice
 				`	"Do you come in peace?"`
