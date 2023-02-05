@@ -172,8 +172,6 @@ public:
 	void SetPosition(Point position);
 	// When creating a new ship, you must set the following:
 	void Place(Point position = Point(), Point velocity = Point(), Angle angle = Angle(), bool isDeparting = true);
-	double turretRange = 0;
-	double gunRange = 0;
 	double TurretRange() const;
 	double GunRange() const;
 	void SetName(const std::string &name);
@@ -527,6 +525,8 @@ private:
 	bool isSteering = false;
 	double steeringDirection = 0.;
 	int countIncoming = 0;
+	double turretRange = 0;
+	double gunRange = 0;
 	bool neverDisabled = false;
 	bool isCapturable = true;
 	bool isInvisible = false;
