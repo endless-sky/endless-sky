@@ -816,7 +816,7 @@ effect "bludgeon impact"
 
 outfit "Savagery Pike"
 	category "Hand to Hand"
-	cost 21000
+	cost 13000
 	thumbnail "outfit/savagery pike"
 	"capture attack" .9
 	"capture defense" .9
@@ -835,7 +835,7 @@ outfit "Irate Carronade"
 	
 outfit "Plasmasickle"
 	category "Hand to Hand"
-	cost 17000
+	cost 11000
 	thumbnail "outfit/plasmasickle"
 	"capture attack" .7
 	"capture defense" .6
@@ -845,7 +845,7 @@ outfit "Plasmasickle"
 outfit "Plasma Grenades"
 	plural "Plasma Grenades"
 	category "Hand to Hand"
-	cost 24000
+	cost 60000
 	thumbnail "outfit/plasma grenades"
 	"capture attack" 1.9
 	"capture defense" 1.2
