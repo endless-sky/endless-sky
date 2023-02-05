@@ -48,7 +48,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	// If the player issues any of those commands, then any auto-pilot actions for the player get cancelled.
+	// If the player issues any of those commands, then any autopilot actions for the player get cancelled.
 	const Command &AutopilotCancelCommands()
 	{
 		static const Command cancelers(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD
