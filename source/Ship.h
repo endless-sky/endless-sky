@@ -276,7 +276,6 @@ public:
 	// The direction that the ship is steering. If positive, the ship is steering right.
 	// If negative, the ship is steering left.
 	double SteeringDirection() const;
-
 	// Get the points from which engine flares should be drawn.
 	const std::vector<EnginePoint> &EnginePoints() const;
 	const std::vector<EnginePoint> &ReverseEnginePoints() const;
