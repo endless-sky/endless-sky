@@ -951,7 +951,7 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 		out << "no additional space";
 	subs["<capacity>"] = out.str();
 
-	for(auto &keyValue : subs)
+	for(const auto &keyValue : subs)
 		subs[keyValue.first] = Phrase::ExpandPhrases(keyValue.second);
 	Format::Expand(subs);
 
@@ -1384,7 +1384,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 
 	// Done making subs, so expand the phrases and recursively substitute.
-	for(auto &keyValue : subs)
+	for(const auto &keyValue : subs)
 		subs[keyValue.first] = Phrase::ExpandPhrases(keyValue.second);
 	Format::Expand(subs);
 
