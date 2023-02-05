@@ -675,8 +675,6 @@ interface "hud"
 		center 75 455
 		color "medium"
 
-
-
 	# Other HUD elements:
 	box "escorts"
 		from 0 460 top left
