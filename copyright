@@ -1773,15 +1773,25 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and 1010todd (under the same license). Incorporating texture made with JSPlacement by WindMillArt <https://windmillart.net/>.
 
 Files:
+ sounds/coalition?launch*
  sounds/drill*
  sounds/ember?tear*
  sounds/ember?tear?hit*
+ sounds/hai?launch*
+ sounds/human?launch*
+ sounds/human?launch?external*
  sounds/ion?rain*
  sounds/korath?afterburner*
+ sounds/korath?launch*
+ sounds/korath?launch?external*
  sounds/remnant?afterburner*
+ sounds/remnant?launch*
+ sounds/remnant?launch?external*
+ sounds/scin?launch*
+ sounds/sheragi?launch*
 Copyright: Saugia <https://github.com/Saugia>
 License: public-domain
-Comment: Based on public domain sounds taken from freesound.org, edit done by Saugia.
+Comment: Based on public domain sounds taken from freesound.org, edits done by Saugia.
 
 Files:
  images/ship/hai?cicada*

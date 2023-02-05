@@ -63,6 +63,8 @@ namespace {
 
 	const vector<string> ALERT_INDICATOR_SETTING = {"off", "audio", "visual", "both"};
 	int alertIndicatorIndex = 3;
+
+	int previousSaveCount = 3;
 }
 
 
@@ -111,9 +113,14 @@ void Preferences::Load()
 			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
 		else if(node.Token(0) == "alert indicator")
 			alertIndicatorIndex = max<int>(0, min<int>(node.Value(1), ALERT_INDICATOR_SETTING.size() - 1));
+		else if(node.Token(0) == "previous saves" && node.Size() >= 2)
+			previousSaveCount = node.Value(1);
 		else
 			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
 	}
+
+	if(previousSaveCount < 1)
+		previousSaveCount = 3;
 
 	// For people updating from a version before the visual red alert indicator,
 	// if they have already disabled the warning siren, don't turn the audible alert back on.
@@ -142,6 +149,7 @@ void Preferences::Save()
 	out.Write("Automatic aiming", autoAimIndex);
 	out.Write("Parallax background", parallaxIndex);
 	out.Write("alert indicator", alertIndicatorIndex);
+	out.Write("previous saves", previousSaveCount);
 
 	for(const auto &it : settings)
 		out.Write(it.first, it.second);
@@ -409,4 +417,11 @@ bool Preferences::DoAlertHelper(Preferences::AlertIndicator toDo)
 	else if(value == toDo)
 		return true;
 	return false;
+}
+
+
+
+int Preferences::GetPreviousSaveCount()
+{
+	return previousSaveCount;
 }
