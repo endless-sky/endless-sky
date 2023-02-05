@@ -269,9 +269,6 @@ public:
 	// Get this ship's custom swizzle.
 	int CustomSwizzle() const;
 
-	void SetActivity(const std::string& name);
-	const std::string& GetActivity() const;
-
 	// Check if the ship is thrusting. If so, the engine sound should be played.
 	bool IsThrusting() const;
 	bool IsReversing() const;

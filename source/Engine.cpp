@@ -754,7 +754,6 @@ void Engine::Step(bool isActive)
 		info.SetString("navigation mode", "Navigation:");
 		info.SetString("destination", "no destination");
 	}
-
 	// Use the radar that was just populated. (The draw tick-tock has not
 	// yet been toggled, but it will be at the end of this function.)
 	shared_ptr<const Ship> target;
@@ -851,30 +850,6 @@ void Engine::Step(bool isActive)
 				info.SetString("target gun", to_string(gun) + " ");
 				int turn = round(60 * target->TrueTurnRate());
 				info.SetString("target turnrate", to_string(turn) + " ");
-				int escorts = 0;
-				if(!target->GetParent())
-					escorts = target->GetEscorts().size();
-				string name = "Fleet: " + (!target->GetParent() ? "Flagship of " + to_string(escorts) :
-						target->GetParent()->Name());
-				info.SetString("parent", name);
-				if(target->GetParent())
-				{
-					string PSystem = target->GetParent()->GetSystem()->Name();
-					info.SetString("PSystem", "Parent Sys: " + PSystem);
-				}
-				string JumpStatus = (target->IsEnteringHyperspace() ? "Jumping" : target->
-					IsReadyToJump(true) ? "Jump Ready" : "Not Ready");
-					info.SetString("jumpstatus", JumpStatus);
-				if(target->GetTargetStellar() && target->GetTargetStellar()->GetPlanet())
-				{
-					string stellar = target->GetTargetStellar()->GetPlanet()->Name();
-					info.SetString("stellar", "Planet: " + stellar);
-				}
-				if(target->GetTargetSystem())
-				{
-					string system = target->GetTargetSystem()->Name();
-				info.SetString("system", "System: " + system);
-				}
 			}
 		}
 	}
