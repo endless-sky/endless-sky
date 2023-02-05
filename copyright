@@ -1660,16 +1660,20 @@ Files:
  images/outfit/firestorm?rack*
  images/outfit/firestorm?torpedo*
  images/outfit/guile?pulse?laser*
+ images/outfit/irate?carronade*
  images/outfit/irate?cannon*
  images/outfit/irate?turret*
  images/outfit/mcs?extractor*
- images/effect/*plasma thruster scin*
- images/effect/*plasma steering scin*
- images/effect/*plasma engines scin*
+ images/outfit/plasma?grenades*
+ images/outfit/plasmasickle*
+ images/outfit/*plasma?thruster?scin*
+ images/outfit/*plasma?steering?scin*
+ images/outfit/*plasma?engines?scin*
+ images/outfit/savagery?pike*
  images/outfit/scrap?cell*
  images/outfit/skirmish?battery*
- images/effect/*torch thruster vi*
- images/effect/*torch thruster vi*
+ images/outfit/*torch?thruster?vi*
+ images/outfit/*torch?thruster?vi*
  images/outfit/warforge?battery*
  images/outfit/warzone?core*
  images/planet/tschyss*
