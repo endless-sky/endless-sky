@@ -1303,11 +1303,13 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 		}
 	}
 
-	// Get the weapon ranges for this ship, so the Ai can call it.
+	turretRange = 0.;
+	gunRange = 0.;
+	// Get the weapon ranges for this ship, so the AI can call it.
 	for(const auto &hardpoint : armament.Get())
 	{
 		const Weapon *weapon = hardpoint.GetOutfit();
-		if(!weapon || !weapon->Ammo() || !weapon->DoesDamage())
+		if (!weapon || (weapon->Ammo() && !OutfitCount(weapon->Ammo())) || !weapon->DoesDamage())
 			continue;
 		double weaponRange = weapon->Range() + hardpoint.GetPoint().Length();
 		if(hardpoint.IsTurret())
@@ -3563,7 +3565,7 @@ double Ship::TurnRate() const
 
 double Ship::TrueTurnRate() const
 {
-	return attributes.Get("turn") / Mass() * 1. / (1. + slowness * .05);
+	return attributes.Get("turn") / InertialMass() * 1. / (1. + slowness * .05);
 }
 
 
