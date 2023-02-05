@@ -64,8 +64,16 @@ namespace {
 
 	const double MAXIMUM_TEMPERATURE = 100.;
 
+	// Scanning takes a maximum of SCAN_TIME AI steps, with a scan speed
+	// dependent on the range from the ship (among other factors).  The
+	// scan speed uses a gaussian drop-off with the reported scan radius
+	// as the standard deviation. The maximum variance is
+	// MAX_SCAN_RANGE_FACTOR, so 3 * 3 = three standard deviations at
+	// which point the scan speed is about 1% of maximum.  This
+	// MAX_SCAN_RANGE_FACTOR is critical since anywhere within that range,
+	// you still have a maximum of SCAN_TIME AI steps to scan.
 	const double SCAN_TIME = 600.;
-	const int MAX_SCAN_RANGE_FACTOR = 3 * 3; // three standard deviations AKA triple range
+	const int MAX_SCAN_RANGE_FACTOR = 3 * 3;
 
 	// Helper function to transfer energy to a given stat if it is less than the
 	// given maximum value.
