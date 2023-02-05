@@ -2631,7 +2631,7 @@ planet "New Holland"
 		fleet "Large Militia" 11
 
 planet "New Iceland"
-	attributes "dirt belt" mining oil volcanic
+	attributes "dirt belt" mining oil volcanic factory
 	landscape land/valley0
 	description `New Iceland is a perpetually hazy volcanic world, with a slightly caustic atmosphere but enough reserves of metal and petrochemicals to draw a large number of settlers. Some of those settlers also make a living as farmers, and a few well-developed factory towns produce goods for export to other worlds.`
 	description `	Many of the inhabitants wear dust masks to avoid letting the particulate matter from the volcanoes accumulate in their lungs.`
