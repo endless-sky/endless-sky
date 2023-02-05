@@ -315,16 +315,28 @@ fleet "Marauders"
 
 
 
+mission "Midas: Stash of Bars"
+	landing
+	outfitter
+	invisible
+	repeat
+	to offer
+		has "outfit (all): Gold Bars"
+		# only used for counting for that mission
+		not "Midas: Who is the mad one?: offered"
+	on offer
+		"midas: bars" = "outfit (all): Gold Bars"
+
 mission "Midas: Who is the mad one?"
 	landing
 	outfitter
 	name "A golden opportunity!"
 	description "Go to any pirate world to see if you can sell these gold bars for a good price."
-	to offer
-		has "outfit (flagship cargo): Gold Bars"
+	to accept
+		"outfit (all): Gold Bars" < "midas: bars"
 	on offer
 		conversation
-			`	You head into the outfitter, wondering what price you can get out of these newly acquired gold bars, when you hear someone shouting. "STOP!" You immediately notice the voice is very old. You go to him to see what he wants. "These are cursed! You should get rid of them. As soon as you can!"`
+			`	You had just finished making the transactions for the newly acquired gold bars you sold when you hear someone shouting. "STOP!" You immediately notice the voice is very old. He comes to you in a rush, seemingly alarmed. "These are cursed! You should get rid of them. As soon as you can!" He shouts to you and the one you just sold these to.`
 			`	He then takes a closer look at the gold bars, and at you. "How did you even acquire these?" he asks, but he does not give you time to respond. "Di-did you join them? If you did, I am very sorry for any disturbance I may have caused, sir!" he exclaims in fear, moving back and kneeling, as if wanting to apologize.`
 			choice
 				`	"Who are 'they'?"`
