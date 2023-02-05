@@ -1872,8 +1872,11 @@ double AI::TurnToward(const Ship &ship, const Point &vector)
 	Point facing = ship.Facing().Unit();
 	double cross = vector.Cross(facing);
 
-	if(vector.Dot(facing) > 0.)
+	double dot = vector.Dot(facing);
+	if(dot > 0.)
 	{
+		if(dot * dot == vector.LengthSquared() * facing.LengthSquared())
+			return 0.;
 		double angle = asin(min(1., max(-1., cross / vector.Length()))) * TO_DEG;
 		if(fabs(angle) <= ship.TurnRate())
 			return -angle / ship.TurnRate();
