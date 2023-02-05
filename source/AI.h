@@ -99,7 +99,7 @@ private:
 
 	// Methods of moving from the current position to a desired position / orientation.
 	static double TurnBackward(const Ship &ship);
-	static double TurnToward(const Ship &ship, const Point &vector);
+	static double TurnToward(const Ship &ship, const Point &vector, const double precision = 1.);
 	static bool MoveToPlanet(Ship &ship, Command &command);
 	static bool MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 		const Point &targetVelocity, double radius, double slow);
