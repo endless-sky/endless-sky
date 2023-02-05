@@ -2202,7 +2202,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 		return;
 	}
 
-	//Check if this ship is fast enough to keep distance from target.
+	// Check if this ship is fast enough to keep distance from target.
 	bool isAbleToRun = target.MaxVelocity() < ship.MaxVelocity();
 
 	ShipAICache &shipAICache = ship.GetAICache();
