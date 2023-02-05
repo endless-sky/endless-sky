@@ -478,7 +478,7 @@ ship "'olofez" "'olofez (Digger)"
 		"Thermal Repeater Rifle"
 		"Cargo Expansion"
 		"Interference Plating"
-				
+		
 		"Engine (Meteor Class)"
 
 
@@ -1055,20 +1055,35 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Automata)"
 	turret "Warder Anti-Missile"
 	turret "Warder Anti-Missile"
 	bay "Fighter" -100 -169
+		"launch effect" "korath internal"
 	bay "Fighter" 0 -169
+		"launch effect" "korath internal"
 	bay "Fighter" 100 -169
+		"launch effect" "korath internal"
 	bay "Fighter" -98 156 back
+		"launch effect" "korath internal"
 	bay "Fighter" 98 156 back
+		"launch effect" "korath internal"
 	bay "Fighter" -50 303 back
+		"launch effect" "korath internal"
 	bay "Fighter" -50 303 back
+		"launch effect" "korath internal"
 	bay "Fighter" 50 303 back
+		"launch effect" "korath internal"
 	bay "Fighter" 50 303 back
+		"launch effect" "korath internal"
 	bay "Drone" -100 -169
+		"launch effect" "korath internal"
 	bay "Drone" 100 -169
+		"launch effect" "korath internal"
 	bay "Drone" -98 156 back
+		"launch effect" "korath internal"
 	bay "Drone" 98 156 back
+		"launch effect" "korath internal"
 	bay "Drone" -50 303 back
+		"launch effect" "korath internal"
 	bay "Drone" 50 303 back
+		"launch effect" "korath internal"
 
 
 ship "Ra'at Ik 621" "Ra'at Ik 621 (Probes)"
@@ -1103,14 +1118,23 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Probes)"
 	turret "Warder Anti-Missile"
 	turret "Banisher Grav-Turret"
 	bay "Drone" -100 -169
+		"launch effect" "korath internal"
 	bay "Drone" 0 -169
+		"launch effect" "korath internal"
 	bay "Drone" 100 -169
+		"launch effect" "korath internal"
 	bay "Drone" -98 156 back
+		"launch effect" "korath internal"
 	bay "Drone" 98 156 back
+		"launch effect" "korath internal"
 	bay "Drone" -50 303 back
+		"launch effect" "korath internal"
 	bay "Drone" -50 303 back
+		"launch effect" "korath internal"
 	bay "Drone" 50 303 back
+		"launch effect" "korath internal"
 	bay "Drone" 50 303 back
+		"launch effect" "korath internal"
 
 
 
