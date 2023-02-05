@@ -2202,11 +2202,14 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 		return;
 	}
 
+	//Check if this ship is fast enough to keep distance from target.
+	bool isAbleToRun = target.MaxVelocity() < ship.MaxVelocity();
+
 	ShipAICache &shipAICache = ship.GetAICache();
-	bool useArtilleryAI = shipAICache.IsArtilleryAI();
+	bool useArtilleryAI = shipAICache.IsArtilleryAI() && isAbleToRun;
 	double shortestRange = shipAICache.ShortestRange();
 	double shortestArtillery = shipAICache.ShortestArtillery();
-	double minSafeDistance = shipAICache.MinSafeDistance();
+	double minSafeDistance = isAbleToRun ? shipAICache.MinSafeDistance() : 0.;
 
 	double totalRadius = ship.Radius() + target.Radius();
 	Point direction = target.Position() - ship.Position();
