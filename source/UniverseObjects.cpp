@@ -263,7 +263,7 @@ void UniverseObjects::CheckReferences()
 			NameAndWarn("government", it);
 	// Minables are not serialized.
 	for(const auto &it : minables)
-		if(it.second.Name().empty())
+		if(it.second.TrueName().empty())
 			Warn("minable", it.first);
 	// Stock missions are never serialized, and an accepted mission is
 	// always fully defined (though possibly not "valid").
@@ -338,9 +338,9 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 	for(const DataNode &node : data)
 	{
 		const string &key = node.Token(0);
-		if(key == "color" && node.Size() >= 6)
+		if(key == "color" && node.Size() >= 5)
 			colors.Get(node.Token(1))->Load(
-				node.Value(2), node.Value(3), node.Value(4), node.Value(5));
+				node.Value(2), node.Value(3), node.Value(4), node.Size() >= 6 ? node.Value(5) : 1.);
 		else if(key == "conversation" && node.Size() >= 2)
 			conversations.Get(node.Token(1))->Load(node);
 		else if(key == "effect" && node.Size() >= 2)

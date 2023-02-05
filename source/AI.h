@@ -70,6 +70,9 @@ template <class Type>
 	// Issue AI commands to all ships for one game step.
 	void Step(const PlayerInfo &player, Command &activeCommands);
 
+	// Set the mouse position for turning the player's flagship.
+	void SetMousePosition(Point position);
+
 	// Get the in-system strength of each government's allies and enemies.
 	int64_t AllyStrength(const Government *government);
 	int64_t EnemyStrength(const Government *government);
@@ -106,6 +109,7 @@ private:
 	static void Swarm(Ship &ship, Command &command, const Body &target);
 	static void KeepStation(Ship &ship, Command &command, const Body &target);
 	static void Attack(Ship &ship, Command &command, const Ship &target);
+	static void AimToAttack(Ship &ship, Command &command, const Body &target);
 	static void MoveToAttack(Ship &ship, Command &command, const Body &target);
 	static void PickUp(Ship &ship, Command &command, const Body &target);
 	// Special decisions a ship might make.
@@ -119,6 +123,7 @@ private:
 	bool DoCloak(Ship &ship, Command &command);
 	// Prevent ships from stacking on each other when many are moving in sync.
 	void DoScatter(Ship &ship, Command &command);
+	bool DoSecretive(Ship &ship, Command &command);
 
 	static Point StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &shouldReverse);
 	// Get a vector giving the direction this ship should aim in in order to do
@@ -194,6 +199,8 @@ private:
 
 	// Command applied by the player's "autopilot."
 	Command autoPilot;
+	// Position of the cursor, for when the player is using mouse turning.
+	Point mousePosition;
 	// General firing command for ships. This is a data member to avoid
 	// thrashing the heap, since we can reuse the storage for
 	// each ship.
