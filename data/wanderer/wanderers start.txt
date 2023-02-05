@@ -45,7 +45,6 @@ mission "First Contact: Wanderer"
 	to complete
 		has "Wanderers: Diplomacy: offered"
 	on offer
-		fail "Wandering Nightmares"
 		log "Discovered a birdlike alien species to the north of human space. They appear to speak the Hai language in addition to their own, so with the help of a Hai interpreter it might be possible to communicate with them."
 		conversation
 			branch revisit
