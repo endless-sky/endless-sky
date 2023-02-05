@@ -2709,7 +2709,7 @@ int Ship::Scan(const PlayerInfo &player)
 			startedScanning |= !elapsed;
 			activeScanning = true;
 
-			double sizeAdjustment = pow(sizeFactor, -2./3);
+			double sizeAdjustment = pow(sizeFactor, -2.0 / 3);
 
 			// Gaussian drop-off of scan speed.
 			double distanceExponent = -distanceSquared / max<double>(1e-3, 2 * scannerRangeSquared);
