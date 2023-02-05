@@ -209,6 +209,7 @@ private:
 	int deadlineMultiplier = 0;
 	std::string clearance;
 	LocationFilter clearanceFilter;
+	bool ignoreClearance = false;
 	bool hasFullClearance = true;
 
 	int repeat = 1;
