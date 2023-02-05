@@ -20,7 +20,7 @@ jobs:
   check-codeblocks:
     name: CodeBlocks
     needs: changed
-    if: ${{ needs.changed.outputs.codeblocks_files || needs.changed.outputs.game_code || needs.changed.outputs.unit_tests }}
+    if: ${{ needs.changed.outputs.codeblocks_files == 'true' || needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -33,7 +33,7 @@ jobs:
   check_cmake:
     name: CMake
     needs: changed
-    if: ${{ needs.changed.outputs.cmake || needs.changed.outputs.game_code || needs.changed.outputs.unit_tests }}
+    if: ${{ needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
