@@ -610,7 +610,7 @@ outfit "Emergency Ramscoop"
 	thumbnail "outfit/emergency ramscoop"
 	"mass" 4
 	"outfit space" -4
-	"ramscoop" 0.5
+	"ramscoop" 1.25
 	description "The Ember Waste is the sort of place where only a very foolish captain would travel without some sort of device for replenishing hyperspace fuel. While this risk is non-existent in Remnant ships due to their 'gills', which are effectively built-in ramscoops, some captains prefer to speed up the process by adding additional capacity. For the rare captain braving the area in non-Remnant ships, this ramscoop is not particularly powerful, but it allows a ship to explore without fear of getting stranded."
 
 outfit "NDR-114 Android"
@@ -633,7 +633,7 @@ outfit "Research Laboratory"
 	"outfit space" -6
 	"asteroid scan power" 84
 	"cargo scan power" 20
-	"cargo scan speed" 6
+	"cargo scan efficiency" 6
 	"atmosphere scan" 100
 	"required crew" 1
 	"unplunderable" 1
@@ -660,10 +660,10 @@ outfit "Salvage Scanner"
 	"mass" 7
 	"outfit space" -7
 	"outfit scan power" 13
-	"outfit scan speed" 12
+	"outfit scan efficiency" 12
 	"tactical scan power" 84
 	description "When the Remnant unraveled the alien point defense turrets guarding the vaults on Aventine, they also deciphered the mechanisms that guided the ancient weapons. After significant investments in research and development, they have transformed those guidance systems into sophisticated scanning technology."
-	description "	 While all Remnant ships are equipped with internal scanners, some captains still prefer to boost their range and power to more effectively select enemy ships worth targeting."
+	description "	While all Remnant ships are equipped with internal scanners, some captains still prefer to boost their range and power to more effectively select enemy ships worth targeting."
 
 
 
