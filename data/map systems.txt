@@ -2326,6 +2326,10 @@ system Aescolanus
 	government Uninhabited
 	attributes "ember waste" "wormhole"
 	arrival 500
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 230
 	belt 1323
 	haze _menu/haze-red
@@ -2453,6 +2457,10 @@ system Aki'il
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 1505
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 1505
 	belt 1500
 	asteroids "large metal" 47 5
@@ -4609,7 +4617,8 @@ system Anbrim
 	asteroids "medium metal" 39 3.4
 	asteroids "large metal" 9 2.6
 	minables yottrite 2 6.7
-	fleet "Scin Transport" 4000
+	fleet "Small Scin" 7900
+	fleet "Small Vi" 7900
 	object
 		sprite star/nova-core
 		period 1000
@@ -4897,6 +4906,10 @@ system Antevorta
 	government Uninhabited
 	attributes "carbon" "ember waste"
 	arrival 3000
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 3000
 	belt 1994
 	haze _menu/haze-red
@@ -5088,6 +5101,10 @@ system Arculus
 	government Remnant
 	attributes "ember waste"
 	arrival 625
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 625
 	belt 1536
 	haze _menu/haze-red
@@ -6948,6 +6965,10 @@ system Caeculus
 	government Uninhabited
 	attributes "ember waste" "wolf-rayet"
 	arrival 5000
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 50000
 	belt 1797
 	haze _menu/haze-red
@@ -7271,6 +7292,10 @@ system Cardea
 	government Uninhabited
 	attributes "ember waste" "wormhole"
 	arrival 1375
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 1375
 	belt 1775
 	haze _menu/haze-red
@@ -7859,6 +7884,10 @@ system Cinxia
 	government Remnant
 	attributes "ember waste"
 	arrival 500
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 490
 	belt 1788
 	haze _menu/haze-red
@@ -7916,6 +7945,10 @@ system Coluber
 	government Uninhabited
 	attributes "ember waste" "wormhole"
 	arrival 1110
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 1110
 	belt 1590
 	haze _menu/haze-red
@@ -8042,6 +8075,10 @@ system Convector
 	government Uninhabited
 	attributes "ember waste"
 	arrival 5000
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 5920
 	belt 2111
 	haze _menu/haze-red
@@ -9271,6 +9308,10 @@ system Delia
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 500
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 490
 	belt 1500
 	haze _menu/haze-red
@@ -9744,6 +9785,10 @@ system Diespiter
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
 	arrival 950
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 950
 	belt 1500
 	haze _menu/haze-red
@@ -9843,6 +9888,10 @@ system Dixere
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 980
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 980
 	belt 1500
 	haze _menu/haze-red
@@ -10546,6 +10595,10 @@ system Edusa
 	government Uninhabited
 	attributes "ember waste" "wormhole"
 	arrival 4050
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 4050
 	belt 1167
 	haze _menu/haze-red
@@ -10641,6 +10694,10 @@ system Egeria
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
 	arrival 2030
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 2030
 	belt 1500
 	haze _menu/haze-red
@@ -11578,6 +11635,7 @@ system Eogho
 	asteroids "small metal" 17 6.26
 	asteroids "medium metal" 9 6.98
 	asteroids "large metal" 46 6.84
+	fleet "Gegno Basic" 2200
 	object
 		sprite star/b0
 		period 10
@@ -12074,6 +12132,10 @@ system Esix
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
 	arrival 5000
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 5600
 	belt 1500
 	haze _menu/haze-red
@@ -12219,8 +12281,8 @@ system Evrae
 	fleet "Small Scin" 800
 	fleet "Large Scin" 1600
 	fleet "Scin Cargo" 2200
-	fleet "Small Vi" 3900
-	fleet "Large Vi" 4900
+	fleet "Small Vi" 4900
+	fleet "Large Vi" 5900
 	object
 		sprite star/a5
 		distance 1.24
@@ -12665,6 +12727,10 @@ system Farinus
 	government Uninhabited
 	attributes "ember waste"
 	arrival 1270
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 1270
 	belt 1225
 	haze _menu/haze-red
@@ -12859,6 +12925,10 @@ system Fearis
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
 	arrival 980
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 980
 	belt 1500
 	haze _menu/haze-red
@@ -13003,6 +13073,10 @@ system Feraticus
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 500
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 10
 	belt 1500
 	haze _menu/haze-red
@@ -13049,6 +13123,10 @@ system Fereti
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 3200
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 3200
 	belt 1500
 	haze _menu/haze-red
@@ -14210,6 +14288,10 @@ system Gerenus
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 3000
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 3000
 	belt 1500
 	haze _menu/haze-red
@@ -14301,6 +14383,7 @@ system Ghhil
 		period 357.423
 	object Ruelogakk
 		sprite planet/station0
+			scale 0.5
 		distance 2600
 		period 968.187
 	object
@@ -14382,6 +14465,10 @@ system Giribea
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 1800
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 1800
 	belt 1500
 	haze _menu/haze-red
@@ -16043,7 +16130,6 @@ system Huud
 	belt 1319
 	haze _menu/haze
 	link Anbrim
-	link Cotpoxi
 	link Fscher
 	link Vesvii
 	asteroids "medium rock" 24 2.2
@@ -16364,7 +16450,7 @@ system Iliniza
 		distance 237.35
 		period 53.0563
 	object "Enn Bue"
-		sprite planet/oberon-b
+		sprite planet/desert5-b
 		distance 720
 		period 280.318
 	object
@@ -16502,6 +16588,10 @@ system Insitor
 	government Uninhabited
 	attributes "ember waste" "wormhole"
 	arrival 550
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 550
 	belt 1170
 	haze _menu/haze-red
@@ -17030,7 +17120,7 @@ system Jied
 	fleet "Small Vi" 800
 	fleet "Large Vi" 1600
 	fleet "Vi Cargo" 2300
-	fleet "Vi Small II" 3600
+	fleet "Small Vi II" 3600
 	fleet "Gegno Miners" 1700
 	object
 		sprite star/k5
@@ -17111,7 +17201,7 @@ system Jyelio
 	minables copper 2 6.62
 	fleet "Large Vi" 1800
 	fleet "Large Scin" 2700
-	fleet "Vi Small II" 3600
+	fleet "Small Vi II" 3600
 	fleet "Small Scin" 3200
 	object
 		sprite star/g8
@@ -18095,7 +18185,7 @@ system Kiluit
 	fleet "Small Vi" 1300
 	fleet "Vi Cargo" 800
 	fleet "Vi Transport" 1100
-	fleet "Vi Small II" 2200
+	fleet "Small Vi II" 2200
 	object
 		sprite star/f3
 		distance 56.09
@@ -19394,6 +19484,10 @@ system Levana
 	government Uninhabited
 	attributes "ember waste"
 	arrival 5000
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 8325
 	belt 1202
 	haze _menu/haze-red
@@ -19520,6 +19614,10 @@ system Lire
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 1080
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 1080
 	belt 1500
 	haze _menu/haze-red
@@ -19587,7 +19685,7 @@ system Lloloi
 	habitable 10000
 	belt 1338
 	"jump range" 90
-	haze _menu/haze-full
+	haze _menu/haze-33
 	link Kanguwa
 	link Vanguwo
 	link Zolpulti
@@ -19824,6 +19922,10 @@ system Lucina
 	government Uninhabited
 	attributes "ember waste"
 	arrival 500
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 320
 	belt 1466
 	haze _menu/haze-red
@@ -22289,7 +22391,7 @@ system Msalbit
 	arrival 5000
 	habitable 13720
 	belt 1333
-	haze _menu/haze-133
+	haze _menu/haze-blackbody
 	link Kanguwa
 	link Yranjiu
 	minables aluminum 29 4.6
@@ -22622,6 +22724,10 @@ system Nenia
 	government Uninhabited
 	attributes "archon" "ember waste" "void sprites"
 	arrival 4680
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 4680
 	belt 1393
 	haze _menu/haze-red
@@ -22939,6 +23045,10 @@ system Nona
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 1080
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 1080
 	belt 1500
 	haze _menu/haze-red
@@ -23312,7 +23422,7 @@ system Ookmya
 		distance 6114.1
 		period 2151.51
 	object Ternituul
-		sprite planet/dust4
+		sprite planet/desert10-b
 		distance 7375.1
 		period 2850.35
 	object
@@ -23533,6 +23643,10 @@ system Ossipago
 	government Uninhabited
 	attributes "ember waste" "wormhole"
 	arrival 3590
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 3590
 	belt 1803
 	haze _menu/haze-red
@@ -23637,6 +23751,10 @@ system Paeli
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
 	arrival 500
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 10
 	belt 1500
 	haze _menu/haze-red
@@ -23685,6 +23803,10 @@ system Pantica
 	government Remnant
 	attributes "ember waste"
 	arrival 500
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 450
 	belt 1253
 	haze _menu/haze-red
@@ -23743,6 +23865,10 @@ system Parca
 	government Uninhabited
 	attributes "ember waste"
 	arrival 1385
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 1385
 	belt 1315
 	haze _menu/haze-red
@@ -23892,6 +24018,10 @@ system Patir
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 500
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 100
 	belt 1500
 	haze _menu/haze-red
@@ -24162,6 +24292,10 @@ system Peragenor
 	government Uninhabited
 	attributes "ember waste"
 	arrival 2160
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 2160
 	belt 1920
 	haze _menu/haze-red
@@ -24277,6 +24411,10 @@ system Perfica
 	government Uninhabited
 	attributes "ember waste"
 	arrival 500
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 10
 	belt 1160
 	haze _menu/haze-red
@@ -24854,6 +24992,10 @@ system Polerius
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 2030
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 2030
 	belt 1500
 	haze _menu/haze-red
@@ -25051,6 +25193,10 @@ system Postverta
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
 	arrival 500
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 135
 	belt 1500
 	haze _menu/haze-red
@@ -25228,6 +25374,10 @@ system Prosa
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
 	arrival 5000
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 22300
 	belt 1500
 	haze _menu/haze-red
@@ -25801,6 +25951,10 @@ system Queri
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 700
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 700
 	belt 1500
 	haze _menu/haze-red
@@ -26339,6 +26493,10 @@ system Relifer
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
 	arrival 980
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 980
 	belt 1500
 	haze _menu/haze-red
@@ -26557,6 +26715,10 @@ system Ritilas
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
 	arrival 980
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 980
 	belt 1500
 	haze _menu/haze-red
@@ -27700,6 +27862,10 @@ system Segesta
 	government Uninhabited
 	attributes "ember waste" "wormhole"
 	arrival 950
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 950
 	belt 1120
 	haze _menu/haze-red
@@ -29553,6 +29719,10 @@ system Statina
 	government Uninhabited
 	attributes "ember waste" "inaccessible" "wormhole"
 	arrival 500
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 135
 	belt 1500
 	haze _menu/haze-red
@@ -29677,6 +29847,10 @@ system Stercutus
 	government Uninhabited
 	attributes "ember waste" "wormhole"
 	arrival 1570
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 1570
 	belt 1492
 	haze _menu/haze-red
@@ -31335,14 +31509,6 @@ system Uttna
 		sprite planet/gas7-hot
 		distance 17699
 		period 17195.8
-		object
-			sprite planet/station0
-			distance 218
-			period 55.16
-		object
-			sprite planet/station2c
-			distance 403
-			period 211.72
 
 system "Uwa Fahn"
 	pos 35.1585 -491.67
@@ -31588,6 +31754,10 @@ system Vaticanus
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
 	arrival 500
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 320
 	belt 1500
 	haze _menu/haze-red
@@ -32777,7 +32947,7 @@ system Wreoul
 	fleet "Large Vi" 5400
 	fleet "Vi Transport" 3400
 	fleet "Vi Cargo" 5000
-	fleet "Vi Small II" 4600
+	fleet "Small Vi II" 4600
 	object
 		sprite star/g-dwarf
 		period 10
