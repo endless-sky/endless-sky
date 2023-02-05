@@ -48,7 +48,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	// If the player issues any of those commands, then any auto-pilot actions for the player get cancelled.
+	// If the player issues any of those commands, then any autopilot actions for the player get cancelled.
 	const Command &AutopilotCancelCommands()
 	{
 		static const Command cancelers(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD
@@ -1002,6 +1002,13 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		it->SetCommands(command);
 		it->SetCommands(firingCommands);
 	}
+}
+
+
+
+void AI::SetMousePosition(Point position)
+{
+	mousePosition = position;
 }
 
 
@@ -3026,22 +3033,34 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 				// have moved forward one time step.
 				p += v;
 
-				// Find out how long it would take for this projectile to reach the target.
-				double rendezvousTime = RendezvousTime(p, v, vp);
-				// If there is no intersection (i.e. the turret is not facing the target),
-				// consider this target "out-of-range" but still targetable.
-				if(std::isnan(rendezvousTime))
-					rendezvousTime = max(p.Length() / (vp ? vp : 1.), 2 * weapon->TotalLifetime());
+				double rendezvousTime = numeric_limits<double>::quiet_NaN();
+				double distance = p.Length();
+				// Beam weapons hit instantaneously if they are in range.
+				bool isInstantaneous = weapon->TotalLifetime() == 1.;
+				if(isInstantaneous && distance < vp)
+					rendezvousTime = 0.;
+				else
+				{
+					// Find out how long it would take for this projectile to reach the target.
+					if(!isInstantaneous)
+						rendezvousTime = RendezvousTime(p, v, vp);
 
-				// Determine where the target will be at that point.
-				p += v * rendezvousTime;
+					// If there is no intersection (i.e. the turret is not facing the target),
+					// consider this target "out-of-range" but still targetable.
+					if(std::isnan(rendezvousTime))
+						rendezvousTime = max(distance / (vp ? vp : 1.), 2 * weapon->TotalLifetime());
+
+					// Determine where the target will be at that point.
+					p += v * rendezvousTime;
+
+					// All bodies within weapons range have the same basic
+					// weight. Outside that range, give them lower priority.
+					rendezvousTime = max(0., rendezvousTime - weapon->TotalLifetime());
+				}
 
 				// Determine how much the turret must turn to face that vector.
 				double degrees = (Angle(p) - aim).Degrees();
 				double turnTime = fabs(degrees) / weapon->TurretTurn();
-				// All bodies within weapons range have the same basic
-				// weight. Outside that range, give them lower priority.
-				rendezvousTime = max(0., rendezvousTime - weapon->TotalLifetime());
 				// Always prefer targets that you are able to hit.
 				double score = turnTime + (180. / weapon->TurretTurn()) * rendezvousTime;
 				if(score < bestScore)
@@ -3771,11 +3790,16 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			&& !(autoPilot | activeCommands).Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD)
 			&& (!target || target->GetGovernment()->IsEnemy()))
 		AutoFire(ship, firingCommands, false);
+
+	const bool mouseTurning = Preferences::Has("alt-mouse turning");
+	if(mouseTurning && !ship.IsBoarding() && !ship.IsReversing())
+		command.SetTurn(TurnToward(ship, mousePosition));
+
 	if(activeCommands)
 	{
 		if(activeCommands.Has(Command::FORWARD))
 			command |= Command::FORWARD;
-		if(activeCommands.Has(Command::RIGHT | Command::LEFT))
+		if(activeCommands.Has(Command::RIGHT | Command::LEFT) && !mouseTurning)
 			command.SetTurn(activeCommands.Has(Command::RIGHT) - activeCommands.Has(Command::LEFT));
 		if(activeCommands.Has(Command::BACK))
 		{
