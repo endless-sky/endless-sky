@@ -65,6 +65,7 @@ namespace {
 	const double MAXIMUM_TEMPERATURE = 100.;
 
 	const double SCAN_TIME = 600.;
+	const int MAX_SCAN_RANGE_FACTOR = 3 * 3; // three standard deviations AKA triple range
 
 	// Helper function to transfer energy to a given stat if it is less than the
 	// given maximum value.
@@ -2680,8 +2681,7 @@ int Ship::Scan(const PlayerInfo &player)
 					const double depth, const int event)
 	-> void
 	{
-		const int MAX_RANGE_FACTOR = 3 * 3; // three standard deviations AKA triple range
-		if(elapsed < SCAN_TIME && distanceSquared < MAX_RANGE_FACTOR * scannerRangeSquared)
+		if(elapsed < SCAN_TIME && distanceSquared < MAX_SCAN_RANGE_FACTOR * scannerRangeSquared)
 		{
 			startedScanning |= !elapsed;
 			activeScanning = true;
