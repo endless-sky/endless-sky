@@ -336,7 +336,7 @@ mission "Midas: Who is the mad one?"
 		"outfit (all): Gold Bars" < "midas: bars"
 	on offer
 		conversation
-			`	You had just finished making the transactions for the newly acquired gold bars you sold when you hear someone shouting. "STOP!" You immediately notice the voice is very old. He comes to you in a rush, seemingly alarmed. "These are cursed! You should get rid of them. As soon as you can!" He shouts to you and the one you just sold these to.`
+			`	You had just finished making the transactions for gold bars you sold when you hear someone shouting. "STOP!" You immediately notice the voice is very old. He comes to you in a rush, seemingly alarmed. "These are cursed! You should get rid of them. As soon as you can!" He shouts to you and the one you just sold these to.`
 			`	He then takes a closer look at the gold bars, and at you. "How did you even acquire these?" he asks, but he does not give you time to respond. "Di-did you join them? If you did, I am very sorry for any disturbance I may have caused, sir!" he exclaims in fear, moving back and kneeling, as if wanting to apologize.`
 			choice
 				`	"Who are 'they'?"`
@@ -355,6 +355,7 @@ mission "Midas: Who is the mad one?"
 				`	"You're right, it is not worth it, I will get rid of them."`
 					goto rid
 			`	"NO!! You fool! You won't be able to say I did not warn you. You truly are a lost cause, perhaps the bars have already affected you! At least, make sure to have enough escorts, and watch your back." he says, before leaving.`
+			`	"At least do not keep them on your flagship, that would only attract them."`
 				accept
 			label rid
 			`	"Good. You do well to listen." he says, before leaving, finally calm.`
@@ -447,7 +448,7 @@ mission "Midas: Betrayal For The Bars"
 			has "Midas: Who is the mad one?: active"
 		has "<uhai> 3: Jump Drive Vault: done"
 		"flagship crew" > 4
-		"outfit (flagship cargo): Gold Bars" >= 5
+		"outfit: Gold Bars" >= 5
 	on offer
 		conversation
 			`As you land on the pirate world, you head for the hatch, preparing to enter the spaceport, but passing by the cargo bay you think you hear a sound. Odd... There shouldn't be anyone there right now, knowing your crew's habits, as most of them have already disembarked.`
