@@ -19054,7 +19054,7 @@ system "Lom Tahr"
 		sprite planet/desert8-b
 		distance 170.795
 		period 17.6462
-	object "Wah Mar"
+	object "Weh Mar"
 		sprite planet/uranus
 		distance 554.485
 		period 103.222
@@ -19545,7 +19545,7 @@ system Markab
 		sprite planet/forest3
 		distance 522.53
 		period 191.111
-	object Placaitious
+	object Placatious
 		sprite planet/uranus-b
 		distance 1332.97
 		period 778.664

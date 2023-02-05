@@ -3019,11 +3019,11 @@ planet Pincian
 	government Uninhabited
 	security 0
 
-planet "Placaitious"
+planet "Placatious"
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/clouds_07
-	description `Half a century ago, Placaitious was the subject of a Syndicate marketing campaign, advertising the view of its deep blue sky from orbit to be "the most agreeable sight in the galaxy." Construction on a large station, intended to essentially be a massive hub of conference rooms with panoramic views of the supposedly breathtaking gas giant below, was started but never completed after numerous delays and budget overruns. Eventually, the executive responsible for the entire scheme was forced into an early retirement, and the idea was quietly dropped.`
-	description `	From within, Placaitious is actually quite beautiful, with wisps of aquamarine colored vapor trailing vertically as far as the eye can see. Perhaps the Syndicate would have had more success had they somehow managed to suspend a conference room inside the gas giant's atmosphere.`
+	description `Half a century ago, Placatious was the subject of a Syndicate marketing campaign, advertising the view of its deep blue sky from orbit to be "the most agreeable sight in the galaxy." Construction on a large station, intended to essentially be a massive hub of conference rooms with panoramic views of the supposedly breathtaking gas giant below, was started but never completed after numerous delays and budget overruns. Eventually, the executive responsible for the entire scheme was forced into an early retirement, and the idea was quietly dropped.`
+	description `	From within, Placatious is actually quite beautiful, with wisps of aquamarine colored vapor trailing vertically as far as the eye can see. Perhaps the Syndicate would have had more success had they somehow managed to suspend a conference room inside the gas giant's atmosphere.`
 	government Uninhabited
 	security 0
 
@@ -4381,7 +4381,7 @@ planet Violetwake
 	bribe 0
 	security 0
 
-planet "Wah Mar"
+planet "Weh Mar"
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/clouds_05
 	description `Wah Mar is a hot Neptune, a misleadingly named "ice giant" close to its parent star. Usually composed mostly of methane, Wah Mar is distinctive in that, by mass, it is almost entirely water. Beyond this, the range of temperatures and pressures found in its atmosphere is such that its thickest layer is composed of supercritical water, making flight inside it rather disorienting.`
