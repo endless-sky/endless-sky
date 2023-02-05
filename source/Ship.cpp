@@ -3058,20 +3058,6 @@ int Ship::CustomSwizzle() const
 
 
 
-void Ship::SetActivity(const string& name)
-{
-	activity = name;
-}
-
-
-
-const string & Ship::GetActivity() const
-{
-	return activity;
-}
-
-
-
 // Check if the ship is thrusting. If so, the engine sound should be played.
 bool Ship::IsThrusting() const
 {

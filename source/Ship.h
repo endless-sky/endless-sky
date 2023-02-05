@@ -280,12 +280,6 @@ public:
 	// If negative, the ship is steering left.
 	double SteeringDirection() const;
 
-	// Set and count incoming projectiles.
-	int CountIncoming() const;
-	void SetIncoming(int count = 0);
-	int CountTargeting() const;
-	void SetTargeting(int count = 0);
-
 	// Get the points from which engine flares should be drawn.
 	const std::vector<EnginePoint> &EnginePoints() const;
 	const std::vector<EnginePoint> &ReverseEnginePoints() const;
@@ -524,7 +518,6 @@ private:
 	bool isReversing = false;
 	bool isSteering = false;
 	double steeringDirection = 0.;
-	int countIncoming = 0;
 	double turretRange = 0;
 	double gunRange = 0;
 	bool neverDisabled = false;
@@ -549,8 +542,6 @@ private:
 	Personality personality;
 	const Phrase *hail = nullptr;
 	ShipAICache aiCache;
-
-	std::string activity;
 
 	// Installed outfits, cargo, etc.:
 	Outfit attributes;

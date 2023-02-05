@@ -698,10 +698,6 @@ interface "hud"
 		from 10 615
 		align center left
 		color "medium"
-	string "personality"
-		from 10 635
-		align center left
-		color "medium"
 	
 	# Other HUD elements:
 	box "escorts"
