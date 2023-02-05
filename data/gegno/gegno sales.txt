@@ -38,10 +38,7 @@ outfitter "Gegno Intermediate"
 	"RG18 Torch Steering"
 	"RG18 Torch Thruster"
 	
-#outfitter "Gegno Advanced"
 
-
-	
 # Gegno Vi
 
 shipyard "Vi Cargo"
@@ -86,7 +83,6 @@ outfitter "Vi Intermediate"
 	"R04 Crusade Battery"
 	
 #outfitter "Vi Advanced"
-
 
 
 # Gegno Scin
