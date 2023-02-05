@@ -77,7 +77,7 @@ Version 0.10.0
       * Don't try to parse the "display name" token in an outfit like a normal attribute. (@warp-core)
       * Ensured some primitive variables are properly initialized. (@Hurleveur, @petervdmeer)
       * Fixed the minimum distance calculation for departure distance. (@wjp)
-      * Don't try to load non-existedn plugin icons. (@quyykk)
+      * Don't try to load non-existent plugin icons. (@quyykk)
       * Ensured ships will always have an attraction and deterrence value. (@quyykk)
       * Ensured options in conversation choices which aren't being displayed can't be selected with keyboard navigation. (@UnorderedSigh)
       * Improved behaviour of out of system escorts without fuel. (@wjp)
