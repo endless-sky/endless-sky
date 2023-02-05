@@ -2203,6 +2203,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	}
 
 	// Check if this ship is fast enough to keep distance from target.
+	// Have a 10% minimum to avoid ships getting in a chase loop.
 	bool isAbleToRun = target.MaxVelocity() * 1.1 < ship.MaxVelocity();
 
 	ShipAICache &shipAICache = ship.GetAICache();
