@@ -19054,7 +19054,7 @@ system "Lom Tahr"
 		sprite planet/desert8-b
 		distance 170.795
 		period 17.6462
-	object "Weh Mar"
+	object Steamwater
 		sprite planet/uranus
 		distance 554.485
 		period 103.222
