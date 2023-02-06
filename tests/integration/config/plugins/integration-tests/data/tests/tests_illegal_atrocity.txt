@@ -1,4 +1,4 @@
-test-data "quarg rescue"
+test-data "quarg rescue save"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
@@ -87,10 +87,8 @@ test-data "quarg rescue"
 						accept
 		conditions
 			"%TEST%: SCANNING ILLEGALS"
-			"Ruin: Landing: offered"
 
-
-test-data "quarg scanning"
+test-data "quarg scanning save"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
@@ -188,10 +186,9 @@ test-data "quarg scanning"
 						accept
 		conditions
 			"%TEST%: SCANNING ILLEGALS"
-			"Ruin: Landing: offered"
 
 
-test-data "quarg atrocity"
+test-data "quarg atrocity save"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
@@ -289,22 +286,9 @@ test-data "quarg atrocity"
 						accept
 		conditions
 			"%TEST%: SCANNING ILLEGALS"
-			"Ruin: Landing: offered"
 
 # just so the mission actually works
 mission "%TEST%: Wardragon Scanning You!"
-
-test "Land On Ruin helper"
-	status partial
-	description "Helper for landing on Ruin."
-	sequence
-		input
-			command land
-		label "landing"
-		# empty input to make time pass
-		input
-		branch "landing"
-			"flagship planet: Ruin" == 0
 
 test "Launch Quarg Scanning Mission And Board"
 	status partial
@@ -336,18 +320,13 @@ test "Boarding Test - Repair Friendly Ship"
 	status active
 	description "Test if you can repair a disabled Quarg ship trough an assist derelict mission."
 	sequence
-		inject "quarg rescue"
+		inject "quarg rescue save"
 		call "Load First Savegame"
 		watchdog 6000
 		call "Launch Quarg Scanning Mission And Board"
-		# copy the test-data in the temporary conditions for debugging when an issue happens
-		apply
-			"test: %TEST%: Wardragon Scanning You!: active" = "%TEST%: Wardragon Scanning You!: active"
 		assert
 			"%TEST%: Wardragon Scanning You!: active" == 1
-		call "Land On Ruin helper"
-		apply
-			"test: %TEST%: Wardragon Scanning You!: done" = "%TEST%: Wardragon Scanning You!: done"
+		call "Land"
 		assert
 			"%TEST%: Wardragon Scanning You!: done" == 1
 
@@ -355,17 +334,15 @@ test "Illegal Test - Ignore and New Illegal"
 	status active
 	description "Test if a Quarg ship spawning disabled in the system will give you a fine for an illegal outfit and ignore the fine for another, after you repaired it."
 	sequence
-		inject "quarg scanning"
+		inject "quarg scanning save"
 		call "Load First Savegame"
 		watchdog 6000
 		assert
 			"unpaid fines" == 0
 		call "Launch Quarg Scanning Mission And Board"
 		# land back with a fine of 1 for the hyperdrive, nothing from the gas
-		call "Land On Ruin helper"
+		call "Land"
 		# copy the test-data in the temporary conditions for debugging when an issue happens
-		apply
-			"test: unpaid fines" = "unpaid fines"
 		assert
 			"unpaid fines" == 1
 
@@ -373,17 +350,14 @@ test "Atrocity Test - New Atrocity"
 	status active
 	description "Test if a Quarg ship spawning disabled in the system will consider an outfit an atrocity when specified by an event."
 	sequence
-		inject "quarg atrocity"
+		inject "quarg atrocity save"
 		call "Load First Savegame"
 		watchdog 6000
 		assert
 			"reputation: Quarg" == 1000
 		call "Launch Quarg Scanning Mission And Board"
 		# land back with atrocity having been in effect (should nuke the reputation?)
-		call "Land On Ruin helper"
-		# copy the test-data in the temporary conditions for debugging when an issue happens
-		apply
-			"test: reputation: Quarg" = "reputation: Quarg"
+		call "Land"
 		assert
 			# it'll be 0 from the atrocity and then minus whatever the atrocity reputation hit it
 			"reputation: Quarg" < 1

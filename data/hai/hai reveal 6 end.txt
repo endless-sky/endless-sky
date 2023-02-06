@@ -189,6 +189,7 @@ system "Al Hurr"
 	pos -432 -491
 	government "Uninhabited"
 	belt 1312
+	haze _menu/haze-brown
 	trade "Clothing" 201
 	trade "Electronics" 658
 	trade "Equipment" 484
@@ -405,8 +406,6 @@ mission "Hai Reveal [C05] Cleanup"
 				accept
 	on complete
 		event "hai-human resolution announced"
-		event "Vara K'chrai is accessible"
-		event "wandering nightmare map" 11
 		fail "Hai Reveal [A11-A] Permanent Fleets"
 		fail "Hai Reveal [B02-A] The Blockade Goes Up"
 		conversation
@@ -416,12 +415,6 @@ mission "Hai Reveal [C05] Cleanup"
 			`	At last, it really is over, and you can get back to your own life.`
 			`	Maybe you'll have to find out who the Unfettered were stealing their other technologies from. They mentioned another group: the "Wanderers."`
 
-event "Vara K'chrai is accessible"
-	# You can now begin the Wanderer campaign.
-	planet "Vara K'chrai"
-		"required reputation" 0
-
-event "wandering nightmare map"
 
 # TODO: delete this mission and event before next steam build - just to fix up saves running on continuous.
 mission "Hai Reveal [C05C] Cleanup Check"
@@ -637,11 +630,13 @@ event "hai-human resolution announced"
 		remove fleet "Smuggler (Hai Traffickers)"
 	system "Alpheratz"
 		remove fleet "Smuggler (Hai Traffickers)"
-	system "Achernar"
-		remove fleet "Smuggler (Hai Traffickers)"
 	system "Al Dhanab"
 		remove fleet "Smuggler (Hai Traffickers)"
+	system "Achernar"
+		remove fleet "Smuggler (Hai Traffickers)"
 	system "Mirach"
+		remove fleet "Smuggler (Hai Traffickers)"
+	system "Schedar"
 		remove fleet "Smuggler (Hai Traffickers)"
 	system "Alcyone"
 		remove fleet "Smuggler (Hai Traffickers)"

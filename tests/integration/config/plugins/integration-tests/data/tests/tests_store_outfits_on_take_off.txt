@@ -1,4 +1,4 @@
-test-data "A Sparrow and a Shuttle and a Shield Generator on Prime"
+test-data "Outfit Take Off Storage Save"
 	category "savegame"
 	contents
 		pilot Billy Bughunter
@@ -121,7 +121,7 @@ test-data "A Sparrow and a Shuttle and a Shield Generator on Prime"
 		"visited planet" Prime
 
 
-test-data "A Sparrow and a Shuttle and a Shield Generator on Winter"
+test-data "Outfit Take Off Selling Save"
 	category "savegame"
 	contents
 		pilot Billy Bughunter
@@ -249,7 +249,7 @@ test "Store Outfit On Take Off"
 	description "Test the automatic storing of a an outfit in cargo that cannot fit in any ships after taking off."
 	sequence
 		# Create/inject the savegame and load it.
-		inject "A Sparrow and a Shuttle and a Shield Generator on Prime"
+		inject "Outfit Take Off Storage Save"
 		call "Load First Savegame"
 		# Check startup conditions.
 		assert
@@ -267,14 +267,10 @@ test "Store Outfit On Take Off"
 				"outfit (cargo): D23-QP Shield Generator" == 0
 				"outfit (storage): D23-QP Shield Generator" == 1
 		watchdog 90000
-		input
-			command land
-		label landing
-		branch landing
-			"flagship planet: Prime" < 1
+		call "Land"
 		assert
 			and
-				"flagship planet: Prime" > 0
+				"flagship landed" > 0
 				"credits" == 0
 				"outfit (cargo): D23-QP Shield Generator" == 0
 				"outfit (storage): D23-QP Shield Generator" == 1
@@ -285,7 +281,7 @@ test "Sell Outfit On Take Off"
 	description "Test the automatic selling of an outfit in cargo that cannot fit in any ships after taking off from a planet with no outfitter."
 	sequence
 		# Create/inject the savegame and load it.
-		inject "A Sparrow and a Shuttle and a Shield Generator on Winter"
+		inject "Outfit Take Off Selling Save"
 		call "Load First Savegame"
 		# Check startup conditions.
 		assert
@@ -303,14 +299,10 @@ test "Sell Outfit On Take Off"
 				"outfit (cargo): D23-QP Shield Generator" == 0
 				"outfit (storage): D23-QP Shield Generator" == 0
 		watchdog 90000
-		input
-			command land
-		label landing
-		branch landing
-			"flagship planet: Winter" < 1
+		call "Land"
 		assert
 			and
-				"flagship planet: Winter" > 0
+				"flagship landed" > 0
 				"credits" > 0
 				"outfit: D23-QP Shield Generator" == 0
 				"outfit (cargo): D23-QP Shield Generator" == 0

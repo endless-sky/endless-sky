@@ -178,11 +178,25 @@ int CargoHold::Free() const
 
 
 
+double CargoHold::FreePrecise() const
+{
+	return size - UsedPrecise();
+}
+
+
+
 // Get the total amount of cargo space used, rounded up to the nearest ton.
 // (Some outfits may have non-integral masses.)
 int CargoHold::Used() const
 {
 	return CommoditiesSize() + OutfitsSize() + MissionCargoSize();
+}
+
+
+
+double CargoHold::UsedPrecise() const
+{
+	return CommoditiesSize() + OutfitsSizePrecise() + MissionCargoSize();
 }
 
 
@@ -201,10 +215,17 @@ int CargoHold::CommoditiesSize() const
 // Get the total mass of outfit cargo, rounded up to the nearest ton.
 int CargoHold::OutfitsSize() const
 {
+	return ceil(OutfitsSizePrecise());
+}
+
+
+
+double CargoHold::OutfitsSizePrecise() const
+{
 	double size = 0.;
 	for(const auto &it : outfits)
 		size += it.second * it.first->Mass();
-	return ceil(size);
+	return size;
 }
 
 

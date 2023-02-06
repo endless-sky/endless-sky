@@ -37,6 +37,27 @@
       }
     },
     {
+      "name": "release",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/release",
+      "installDir": "${sourceDir}/install/release",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "ES_USE_SYSTEM_LIBRARIES": "OFF",
+        "BUILD_TESTING": "OFF"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "$env{CI}",
+        "rhs": "true"
+      }
+    },
+    {
       "name": "linux",
       "displayName": "Linux",
       "description": "Builds with the default host compiler on Linux",
@@ -104,6 +125,10 @@
       "displayName": "clang-cl",
       "description": "Builds with clang-cl on Windows",
       "inherits": "base",
+      "toolset": {
+        "value": "host=x64",
+        "strategy": "external"
+      },
       "cacheVariables": {
         "VCPKG_TARGET_TRIPLET": "x64-windows",
         "CMAKE_CXX_COMPILER": "clang-cl.exe"
@@ -151,48 +176,14 @@
       }
     },
     {
-      "name": "xcode",
-      "displayName": "Xcode",
-      "description": "Builds with Xcode on x64-based MacOS",
-      "inherits": "base",
-      "generator": "Xcode",
-      "cacheVariables": {
-        "CMAKE_OSX_ARCHITECTURES": "x86_64",
-        "VCPKG_TARGET_TRIPLET": "x64-osx-dynamic"
-      },
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Darwin"
-      }
-    },
-    {
-      "name": "xcode-arm",
-      "displayName": "Xcode ARM",
-      "description": "Builds with Xcode on ARM-based MacOS",
-      "inherits": "base",
-      "generator": "Xcode",
-      "cacheVariables": {
-        "CMAKE_OSX_ARCHITECTURES": "arm64",
-        "VCPKG_TARGET_TRIPLET": "arm64-osx-dynamic"
-      },
-      "architecture": {
-        "value": "arm64",
-        "strategy": "external"
-      },
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Darwin"
-      }
-    },
-    {
       "name": "linux-ci",
       "displayName": "Linux CI",
       "description": "Builds for Linux for CI purposes",
       "inherits": "ci",
       "cacheVariables": {
-        "VCPKG_TARGET_TRIPLET": "linux64-release"
+        "CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
+        "VCPKG_TARGET_TRIPLET": "linux64-release",
+        "ES_USE_OFFSCREEN": "ON"
       }
     },
     {
@@ -201,8 +192,10 @@
       "description": "Builds for Linux GLES for CI purposes",
       "inherits": "ci",
       "cacheVariables": {
+        "CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
         "VCPKG_TARGET_TRIPLET": "linux64-release",
-        "ES_GLES": "ON"
+        "ES_GLES": "ON",
+        "ES_USE_OFFSCREEN": "ON"
       }
     },
     {
@@ -211,6 +204,7 @@
       "description": "Builds for MacOS for CI purposes",
       "inherits": "ci",
       "cacheVariables": {
+        "CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
         "VCPKG_TARGET_TRIPLET": "macos64-release",
         "CMAKE_OSX_ARCHITECTURES": "x86_64",
         "CMAKE_OSX_DEPLOYMENT_TARGET": "10.9"
@@ -222,6 +216,7 @@
       "description": "Builds with clang-cl for CI purposes",
       "inherits": "ci",
       "cacheVariables": {
+        "CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
         "VCPKG_TARGET_TRIPLET": "x64-windows-release",
         "CMAKE_CXX_COMPILER": "clang-cl.exe"
       }
@@ -232,17 +227,72 @@
       "description": "Builds with MinGW for CI purposes",
       "inherits": "ci",
       "cacheVariables": {
+        "CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
         "CMAKE_CXX_COMPILER": "x86_64-w64-mingw32-g++",
         "CMAKE_RC_COMPILER": "windres",
         "VCPKG_TARGET_TRIPLET": "win64-release"
       }
     },
     {
-      "name": "mingw32-ci",
-      "displayName": "MinGW x86 CI",
-      "description": "Builds with MinGW x86 for CI purposes",
-      "inherits": "ci",
+      "name": "linux-release",
+      "displayName": "Linux Release",
+      "description": "Builds for Linux like an official release",
+      "inherits": "release",
       "cacheVariables": {
+        "CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
+        "VCPKG_TARGET_TRIPLET": "linux64-release"
+      }
+    },
+    {
+      "name": "macos-release",
+      "displayName": "MacOS Release",
+      "description": "Builds for MacOS like an official release",
+      "inherits": "release",
+      "cacheVariables": {
+        "ES_CREATE_BUNDLE": "ON",
+        "CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
+        "VCPKG_TARGET_TRIPLET": "macos64-release",
+        "CMAKE_OSX_ARCHITECTURES": "x86_64",
+        "CMAKE_OSX_DEPLOYMENT_TARGET": "10.9"
+      }
+    },
+    {
+      "name": "macos-arm-release",
+      "displayName": "MacOS ARM Release",
+      "description": "Builds for MacOS ARM like an official release",
+      "inherits": "release",
+      "architecture": {
+        "value": "arm64",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "ES_CREATE_BUNDLE": "ON",
+        "CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
+        "VCPKG_TARGET_TRIPLET": "macos-arm64-release",
+        "CMAKE_OSX_ARCHITECTURES": "arm64",
+        "CMAKE_OSX_DEPLOYMENT_TARGET": "10.9"
+      }
+    },
+    {
+      "name": "mingw-release",
+      "displayName": "MacOS Release",
+      "description": "Builds for MinGW like an official release",
+      "inherits": "release",
+      "cacheVariables": {
+        "ES_CREATE_BUNDLE": "ON",
+        "CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
+        "CMAKE_CXX_COMPILER": "x86_64-w64-mingw32-g++",
+        "CMAKE_RC_COMPILER": "windres",
+        "VCPKG_TARGET_TRIPLET": "win64-release"
+      }
+    },
+    {
+      "name": "mingw32-release",
+      "displayName": "MacOS Release",
+      "description": "Builds for MinGW x86 like an official release",
+      "inherits": "release",
+      "cacheVariables": {
+        "ES_CREATE_BUNDLE": "ON",
         "CMAKE_CXX_COMPILER": "i686-w64-mingw32-g++",
         "CMAKE_RC_COMPILER": "windres",
         "VCPKG_TARGET_TRIPLET": "win32-release"
@@ -319,30 +369,6 @@
       "inherits": "release"
     },
     {
-      "name": "xcode-debug",
-      "displayName": "Debug",
-      "configurePreset": "xcode",
-      "inherits": "debug"
-    },
-    {
-      "name": "xcode-release",
-      "displayName": "Release",
-      "configurePreset": "xcode",
-      "inherits": "release"
-    },
-    {
-      "name": "xcode-arm-debug",
-      "displayName": "Debug",
-      "configurePreset": "xcode-arm",
-      "inherits": "debug"
-    },
-    {
-      "name": "xcode-arm-release",
-      "displayName": "Release",
-      "configurePreset": "xcode-arm",
-      "inherits": "release"
-    },
-    {
       "name": "clang-cl-debug",
       "displayName": "Debug",
       "configurePreset": "clang-cl",
@@ -409,9 +435,33 @@
       "inherits": "ci"
     },
     {
-      "name": "mingw32-ci",
-      "displayName": "MinGW x86 CI build",
-      "configurePreset": "mingw32-ci",
+      "name": "linux-ci-release",
+      "displayName": "Linux release build",
+      "configurePreset": "linux-release",
+      "inherits": "ci"
+    },
+    {
+      "name": "macos-ci-release",
+      "displayName": "MacOS release build",
+      "configurePreset": "macos-release",
+      "inherits": "ci"
+    },
+    {
+      "name": "macos-arm-ci-release",
+      "displayName": "MacOS ARM release build",
+      "configurePreset": "macos-arm-release",
+      "inherits": "ci"
+    },
+    {
+      "name": "mingw-ci-release",
+      "displayName": "MinGW release build",
+      "configurePreset": "mingw-release",
+      "inherits": "ci"
+    },
+    {
+      "name": "mingw32-ci-release",
+      "displayName": "MinGW x86 release build",
+      "configurePreset": "mingw32-release",
       "inherits": "ci"
     }
   ],
@@ -453,11 +503,27 @@
       },
       "filter": {
         "include": {
-          "label": "integration"
+          "label": "integration$"
         }
       },
       "execution": {
         "timeout": 120
+      }
+    },
+    {
+      "name": "integration-debug",
+      "hidden": true,
+      "output": {
+        "shortProgress": true,
+        "outputOnFailure": true
+      },
+      "filter": {
+        "include": {
+          "label": "integration-debug"
+        }
+      },
+      "execution": {
+        "timeout": 360
       }
     },
     {
@@ -503,7 +569,7 @@
       },
       "filter": {
         "exclude": {
-          "label": "benchmark"
+          "label": "(benchmark|integration-debug)"
         }
       },
       "condition": {
@@ -531,6 +597,12 @@
       "inherits": "integration"
     },
     {
+      "name": "linux-integration-debug",
+      "displayName": "Integration Tests (Debug)",
+      "configurePreset": "linux",
+      "inherits": "integration-debug"
+    },
+    {
       "name": "linux-gles-test",
       "displayName": "Tests",
       "configurePreset": "linux-gles",
@@ -549,6 +621,12 @@
       "inherits": "integration"
     },
     {
+      "name": "linux-gles-integration-debug",
+      "displayName": "Integration Tests (Debug)",
+      "configurePreset": "linux-gles",
+      "inherits": "integration-debug"
+    },
+    {
       "name": "macos-test",
       "displayName": "Tests",
       "configurePreset": "macos",
@@ -559,6 +637,12 @@
       "displayName": "Benchmarks",
       "configurePreset": "macos",
       "inherits": "benchmark"
+    },
+    {
+      "name": "macos-integration-debug",
+      "displayName": "Integration Tests (Debug)",
+      "configurePreset": "macos",
+      "inherits": "integration-debug"
     },
     {
       "name": "macos-arm-test",
@@ -573,28 +657,10 @@
       "inherits": "benchmark"
     },
     {
-      "name": "xcode-test",
-      "displayName": "Tests",
-      "configurePreset": "xcode",
-      "inherits": "test"
-    },
-    {
-      "name": "xcode-benchmark",
-      "displayName": "Benchmarks",
-      "configurePreset": "xcode",
-      "inherits": "benchmark"
-    },
-    {
-      "name": "xcode-arm-test",
-      "displayName": "Tests",
-      "configurePreset": "xcode-arm",
-      "inherits": "test"
-    },
-    {
-      "name": "xcode-arm-benchmark",
-      "displayName": "Benchmarks",
-      "configurePreset": "xcode-arm",
-      "inherits": "benchmark"
+      "name": "macos-arm-integration-debug",
+      "displayName": "Integration Tests (Debug)",
+      "configurePreset": "macos-arm",
+      "inherits": "integration-debug"
     },
     {
       "name": "clang-cl-test",
@@ -609,6 +675,12 @@
       "inherits": "benchmark"
     },
     {
+      "name": "clang-cl-integration-debug",
+      "displayName": "Integration Tests (Debug)",
+      "configurePreset": "clang-cl",
+      "inherits": "integration-debug"
+    },
+    {
       "name": "mingw-test",
       "displayName": "Tests",
       "configurePreset": "mingw",
@@ -621,6 +693,12 @@
       "inherits": "benchmark"
     },
     {
+      "name": "mingw-integration-debug",
+      "displayName": "Integration Tests (Debug)",
+      "configurePreset": "mingw",
+      "inherits": "integration-debug"
+    },
+    {
       "name": "mingw32-test",
       "displayName": "Tests",
       "configurePreset": "mingw32",
@@ -631,6 +709,12 @@
       "displayName": "Benchmarks",
       "configurePreset": "mingw32",
       "inherits": "benchmark"
+    },
+    {
+      "name": "mingw32-integration-debug",
+      "displayName": "Integration Tests (Debug)",
+      "configurePreset": "mingw32",
+      "inherits": "integration-debug"
     },
     {
       "name": "linux-ci",
@@ -648,7 +732,7 @@
       "name": "linux-gles-ci",
       "displayName": "Linux GLES CI Tests",
       "configurePreset": "linux-gles-ci",
-      "inherits": "ci-integration"
+      "inherits": "ci"
     },
     {
       "name": "linux-gles-ci-benchmark",

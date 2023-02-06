@@ -90,6 +90,7 @@ public:
 	bool IsAtLocation(Location location) const;
 
 	// Information about what you are doing.
+	const Ship *SourceShip() const;
 	const Planet *Destination() const;
 	const std::set<const System *> &Waypoints() const;
 	const std::set<const System *> &VisitedWaypoints() const;
@@ -132,6 +133,7 @@ public:
 	bool IsSatisfied(const PlayerInfo &player) const;
 	bool HasFailed(const PlayerInfo &player) const;
 	bool IsFailed() const;
+	bool OverridesCapture() const;
 	// Mark a mission failed (e.g. due to a "fail" action in another mission).
 	void Fail();
 	// Get a string to show if this mission is "blocked" from being offered
@@ -200,6 +202,7 @@ private:
 	bool hasPriority = false;
 	bool isMinor = false;
 	bool autosave = false;
+	bool overridesCapture = false;
 	Date deadline;
 	int expectedJumps = 0;
 	int deadlineBase = 0;
@@ -224,10 +227,13 @@ private:
 	int64_t paymentApparent = 0;
 
 	ConditionSet toOffer;
+	ConditionSet toAccept;
 	ConditionSet toComplete;
 	ConditionSet toFail;
 
 	const Planet *source = nullptr;
+	// The ship this mission originated from, if it is a boarding mission.
+	const Ship *sourceShip = nullptr;
 	LocationFilter sourceFilter;
 	const Planet *destination = nullptr;
 	LocationFilter destinationFilter;

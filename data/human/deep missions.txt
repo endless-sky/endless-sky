@@ -720,6 +720,8 @@ mission "Deep: TMBR 0"
 			`	The group looks visibly disappointed. A few minutes of talking later, they inform you that they must depart for Midgard and say their farewells.`
 				decline
 	to complete
+		never
+	to fail
 		has "Deep: TMBR 1: offered"
 
 
@@ -1296,7 +1298,7 @@ mission "Deep: Remnant 0"
 	on offer
 		conversation
 			`While wandering through the spaceport, you are approached by a man you instantly recognize as Ivan, the scientist whose drone you recovered data from in Terminus, thanks to his comically thick glasses. He mentions that he heard how helpful you have been to others within the Deep.`
-			`	"I was hoping you would continue assisting us in our research on the spatial anomaly in Terminus. Thanks to the data you retrieved, we have deduced that the anomaly is in fact some sort of wormhole, but it is far too unstable to support sending anything through it.`
+			`	"I was hoping you would continue assisting us in our research on the spatial anomaly in Terminus. Thanks to the data you retrieved, we have deduced that the anomaly is in fact some sort of wormhole, but it is far too unstable to support sending anything through it."`
 			`	Ivan looks around then leans in to whisper to you. "I must ask you, do you know of the Hai?" You nod. "Splendid!" He jumps up, nearly knocking his own glasses off his face. "Then you will be able to help. One of the scientists on my team grew up in their territory, and suggested that the so-called 'quantum keystones' which they sell might have something to do with the wormhole. He recalls hearing some Hai folktales of these stones making travel between the stars easier, and since the Hai once lived close to where the wormhole is, there may be a relation. Given that it would be immensely difficult to stabilize the wormhole with our current knowledge, it may be that these stones will make access into the wormhole easier. Would you kindly retrieve ten of them for us, so that we may be able to discover if these legends are true?"`
 			branch remnant
 				has "First Contact: Remnant: offered"
@@ -1338,7 +1340,7 @@ mission "Deep: Remnant 0"
 			action
 				set "deep: did not reveal remnant"
 			`	You tell Ivan about the region of space beyond the wormhole and its vast loneliness. You describe the ever-present red glow, similar to the color of the wormhole. You also mention the strange alien creatures in Nenia that are able to survive in the vacuum of space, as well as the large number of wormholes that allow traversal throughout the region.`
-				
+			
 			label end
 			`	"This is very interesting, and would turn out to be an amazing discovery if true. Please, bring us the quantum keystones so that we might try to understand the properties which allow entry into the wormhole's threshold. Later we will learn more about this region that you describe. Oh, before I forget: we can pay you for half of the cost of the keystones."`
 			choice
@@ -1498,7 +1500,7 @@ conversation "deep: remnant"
 		set "deep: did reveal remnant"
 	`	You then tell them about the strange-looking humans who communicate in song and sign language that attacked you after you wouldn't submit to a blood test.`
 		goto remnant2
-				
+		
 	label friendly
 	choice
 		`	(Reveal the existence of the Remnant.)`
@@ -2428,7 +2430,7 @@ mission "Deep: Scientist Rescue 3B"
 			`	Lieutenant Paris is waiting for you outside of your ship, and hands you another <payment> when you walk up to him. "Thanks for all the help, Captain <last>. We couldn't have done it without you."`
 			`	Paris looks back to the Star Queen, and you can overhear one of the Deep Security officers listing off names. "Sarah Reevs, Nicole Faye, Pierre Joules, Laura Paris..." the list goes on for slightly over a dozen total names. "The surviving crew tells us that only a few were killed initially, either during boarding or by being thrown out the airlock on the way to Haven. Most of the others were either killed or dragged off after they had reached their destination at a facility of some sort, its purpose unidentifiable to the crew."`
 			`	When you look back to Lieutenant Paris, you notice that he is holding back tears. Laura Paris was one of the scientists who died.`
-			`	He turns to you and hands you a license, then says in a rather strained voice. "Thank you. I've said it before, but there's really no way I can thank you enough.`
+			`	He turns to you and hands you a license, then says in a rather strained voice. "Thank you. I've said it before, but there's really no way I can thank you enough."`
 			`	You look down at the license that Paris just handed you and notice that it's a city-ship license, one that will allow you to purchase the Bactrian. "I think it's only fair that you be able to purchase one after having to fight one to the death, and the government of the Deep agrees. It's really the least I... we could do for you."`
 			choice
 				`	"Thank you so much! I'll make sure that this gets put to good use."`
@@ -2436,7 +2438,7 @@ mission "Deep: Scientist Rescue 3B"
 			
 			`	"It's yours to keep. I hope you have good luck with your travels, and have fun using the Bactrian. It's a mighty fine ship to fly." Lieutenant Paris starts walking over to the Star Queen, leaving you alone to ponder the possibilities that await.`
 				decline
-			
+
 event "battle in arneb end"
 	system Arneb
 		remove fleet "Large Republic"
@@ -2496,7 +2498,7 @@ mission "Stone of our Fathers 2"
 		conversation
 			`In the nearly abandoned spaceport of Norn, a scruffy and slow-moving figure shuffles toward you. "Captain <first>! Good to see you, friend. It's Skaldgar; ya gave me a ride here some time ago," he calls out as he approaches you.`
 			`	"Got a nephew who works at the port, let me know he saw you comin' in." He claps you on the back. "Things have been mostly good, hard though, the family - some are glad to see me, to remember me, and others..." he pauses. "Well, some mistakes you just can't take back."`
-			`	He looks away briefly, and then nods at his packed bag. "It was good to come back here one last time. But the soil, the work calls to me. I'm only good at one thing in this world, and I intend to do it to the very end. So, I was wonderin', could ya take me back to <planet>?`
+			`	He looks away briefly, and then nods at his packed bag. "It was good to come back here one last time. But the soil, the work calls to me. I'm only good at one thing in this world, and I intend to do it to the very end. So, I was wonderin', could ya take me back to <planet>?"`
 			choice
 				`	(Nod. Skaldgar and his hard-earned money are more than welcome aboard my ship.)`
 					goto accept
@@ -2959,7 +2961,7 @@ mission "Home for Skadenga 1"
 				`	(Walk in Hjlod's footsteps.)`
 					goto travel
 				`	(Meander around.)`
-			`	Hjlod abruptly stops and glares at you. "You are fool. You vill certainly die, and you endanger me in process. This is no game, valk only vhere I valk or die.`
+			`	Hjlod abruptly stops and glares at you. "You are fool. You vill certainly die, and you endanger me in process. This is no game, valk only vhere I valk or die."`
 			choice
 				`	(Walk in Hjlod's footsteps.)`
 					goto travel
@@ -3062,7 +3064,7 @@ mission "Home for Skadenga 1"
 			`	You walk toward the park filled with stone cairns, wooden pillars and Goddess-Stone.`
 			`	At this distance, you can see that the cairns have name-plates at their bases. Some are so faded and worn you cannot make out the names. Others are easier to read and appear to be family names. Myrlinga, Baning, and Amalung are the few you can read.`
 			`	Beyond the cairns are the well-carved wooden pillars, or Setstokkr as the Ondurdis called them. They are each over 10 meters tall, and all covered entirely in runic script, images, and patterns. A few have unshorn branches that include their own carvings as well, while most are limbless. On one Setstokkr, you notice that a frequent carving within its entwined animals is similar in shape to the burn on your arm.`
-			`	Finally, you reach the massive Goddess-Stone itself. You see now almost no part of the wide surface is bare. There are images within images, letters within letters. These exoctic letters bear no relationship to the runes found on the Setstokkr. These are truly alien.`
+			`	Finally, you reach the massive Goddess-Stone itself. You see now almost no part of the wide surface is bare. There are images within images, letters within letters. These exotic letters bear no relationship to the runes found on the Setstokkr. These are truly alien.`
 			choice
 				`	(Head to the shuttle.)`
 			label shuttle
@@ -3174,7 +3176,7 @@ mission "Home for Skadenga 2"
 					goto leaving
 				`	"I thought folk tales of elves were common in the Deep. What makes the Skadenga so different from the rest of you?"`
 			`	Henrik leans back. "Well, you're not wrong. In fact, there's been studies about whether the Skadenga are truly a traditional reflection of the Deep people or an extreme offshoot of what we used to be. Suffice to say, I believe it's the latter, and most modern Deep historians would agree with me.`
-			`	"Here's what really makes them different: our popular folk tales are like the childhood stories you heard of, say, the boogeyman. The Skadenga don't just tell them - they formed a religion out of those stories. If you've spoken with them, I'm sure you can tell that it's quite reminiscent of ancient paganism. Certainly they can practice whatever they want, but we're concerned about some of the usual connotations of paganism. We haven't been able to prove any extreme behavior, but their religion gives us reason to suspect it. If they stay culturally isolated from the rest of the Deep, their religion could progress in ways more... harmful. I'll leave it at that.`
+			`	"Here's what really makes them different: our popular folk tales are like the childhood stories you heard of, say, the boogeyman. The Skadenga don't just tell them - they formed a religion out of those stories. If you've spoken with them, I'm sure you can tell that it's quite reminiscent of ancient paganism. Certainly they can practice whatever they want, but we're concerned about some of the usual connotations of paganism. We haven't been able to prove any extreme behavior, but their religion gives us reason to suspect it. If they stay culturally isolated from the rest of the Deep, their religion could progress in ways more... harmful. I'll leave it at that."`
 				goto resettle
 			label leaving
 			`	Henrik clears his throat. "Leaving, yes, but to where? These poor people are in grave need of our help, our public services. Their primitive, superstitious existence is both an embarrassment to the Deep, and a humanitarian crisis that we need to solve."`
@@ -3305,7 +3307,7 @@ mission "Home for Skadenga 4"
 				accept
 	on complete
 		conversation
-			`	Outside your ship, you are met by a representative of the Transport Union. "We have been expecting you, Captain <last>." They escort you to an elevator and up to the penthouse of the tallest building in Valhalla's capital of Himinbjorg."`
+			`	Outside your ship, you are met by a representative of the Transport Union. "We have been expecting you, Captain <last>." They escort you to an elevator and up to the penthouse of the tallest building in Valhalla's capital of Himinbjorg.`
 			scene "scene/tower"
 			`	Three youngish men adorned in trending clothes smile as you enter. "Ah, Captain <last>, what a pleasure to finally meet you. I am Kaiden, and these are my associates Braiden and Grayden. We are executives of the Transport Union. Obviously, we were made aware you would be coming and are looking forward toward creating a lasting and beneficial relationship with you and your... clients.`
 			`	"We've heard that you have this inspiring idea to transport an entire backwater community from one world to another," Kaiden says.`
@@ -3446,7 +3448,7 @@ mission "Home for Skadenga 7"
 				`	"Your superiors!?"`
 			`	Carla grins. "The Census and Culture Bureau. I am one of their field agents. They are most pleased with how you handled this. Helping the Skadenga reintegrate into our culture is a big win for both the Bureau and the Skadenga.`
 			`	"Anyways, I just wanted to pass that on. I have lots of work to do, thanks to you." She winks and wanders into the crowd.`
-			`	You return to your ship to count your money as you hear the Transport Union ships engage their engines to pick up another load of the Skandega.`
+			`	You return to your ship to count your money as you hear the Transport Union ships engage their engines to pick up another load of the Skadenga.`
 
 
 
@@ -3492,7 +3494,7 @@ mission "Skadenga Call 2"
 				`	"Who are these people?"`
 					goto who
 			`	Hjlod glares at you. "From you? Everything. For that is what you took from us.`
-			`	"I do not know vhy you did it. Vhy you brought us here. If Skade really let us down. Or if you ignored her," She growls. "But it does not matter. All that matters is that ve leave, and that is vhy ve need you."`
+			`	"I do not know vhy you did it. Vhy you brought us here. If Skade really let us down. Or if you ignored her," she growls. "But it does not matter. All that matters is that ve leave, and that is vhy ve need you."`
 				goto here
 			label who
 			`	Hjlod laughs and tears run down her cheeks. "Do you not recognize us? Our great savior? Ve are the Skadenga, and this is your handivwork."`
@@ -3535,7 +3537,7 @@ mission "Skadenga Call 2"
 			`	The police officers enter your ship and start restraining and removing the the Skadenga aboard it.`
 			`	"As always, we appreciate your help and value our continued working relationship. Expect a payment for your aid in the next couple days, after I've gotten it approved." Carla steps back to assess the Skadenga, most of which are sullen and reserved. One, however, is screaming, kicking, and biting.`
 			`	The unruly Skadenga is dragged past you, and spit splashes against your cheek. "I'll kill you, <first>. If ever ve meet again I'll kill you. You've killed me. You've killed me." Hjlod's red and tear-stained face recedes as officers drag her away.`
-			`	"Misguided girl," Carla says sadly. "We'll take it from here. Have a wonderful day, Captain <last>.`
+			`	"Misguided girl," Carla says sadly. "We'll take it from here. Have a wonderful day, Captain <last>."`
 				decline
 			label takeoff
 			`	You punch it, and your ship burns for the stars. Hjlod visibly relaxes when the thrust kicks in. She closes her tired eyes and slumps to the floor. "Thank Skade," is all she says.`
@@ -3654,7 +3656,7 @@ mission "Home for Skadenga 9"
 			`	You walk to the back of the saloon and find a gruff man in a long reddish-brown jacket seated with his back against the wall, and a bottle of whiskey on his otherwise empty table. "Have a seat," he says.`
 			`	After you sit, he places a gun on the table. "So the Allen boys think they can send some greenhorn killer to take me out?" Hroar barks a laugh. "Not likely." With his free hand, he takes a swig of his whiskey. "Here's what's going to happen. I am not going to kill you. Only maim you, a bit. And you tell the Allen boys that the next person they send will come back even worse. We had a deal, and I expect them to keep it."`
 			choice
-				`	"You got the wrong person. I don't even know who the Allen boys are.`
+				`	"You got the wrong person. I don't even know who the Allen boys are."`
 					goto prenext
 				`	"I was not sent by the Allen whoevers, and if you even touch me, I will burn this entire planet to ash."`
 			branch buffboi
@@ -3691,7 +3693,7 @@ mission "Home for Skadenga 9"
 				`	"I'm out. No deal."`
 			action
 				set "refusedhroar"
-			`	Hroar smirks. "Alright. You're out. Get outta my booth, and good luck on your little charity adventure." Hroar goes back to drinking his whiskey as the saloon's swinging door hits you on your way out."`
+			`	Hroar smirks. "Alright. You're out. Get outta my booth, and good luck on your little charity adventure." Hroar goes back to drinking his whiskey as the saloon's swinging door hits you on your way out.`
 				decline
 			label deal
 			action
@@ -4050,7 +4052,7 @@ mission "Hjlod Remembers Windblain"
 			`Hjlod is waiting for you when you land. She looks healthy, strong, and happy - less gaunt and stressed then you recall her looking on Nifel when you first met. She gives you a hug. "Alvays good to see you, <first>. I have been thinking, vith all that vent on and needed to be done, I never had chance to thank you for saving me from cold."`
 			`	She reaches into her pocket and pulls out a small pouch. "I have stone that has long been in my family. I wish to give it to you. Keep you cold in hot ship, remind you of Hjlod in far-off galaxy."`
 			scene "outfit/skadetear"
-			`	Hjlod gives you a glowing blue Tear of Skade, just like the one The Ondurdis gave you sometime before."`
+			`	Hjlod gives you a glowing blue Tear of Skade, just like the one The Ondurdis gave you sometime before.`
 			`	"How many of these are there?" you ask.`
 			`	"Only few," she answers. "They were found around the Goddess-Stone in the early days. Passed from Skadenga mother to Skadenga daughter. I have no daughter, but I have you, so this is now yours."`
 			`	You thank her and spend the rest of the day with her, talking, laughing and walking upon the friendly earth of <planet>.`
