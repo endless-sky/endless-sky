@@ -1945,7 +1945,10 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 	bool isFacing = (dp.Unit().Dot(angle.Unit()) > .95);
 	if(!isClose || (!isFacing && !shouldReverse))
 		command.SetTurn(TurnToward(ship, dp, 0.9999));
-	if(isFacing)
+	// Work with a slightly lower maximum velocity to avoid border cases.
+	double maxVelocity = ship.MaxVelocity() * ship.MaxVelocity() * .99;
+	if(isFacing && (velocity.LengthSquared() <= maxVelocity
+			|| dp.Unit().Dot(velocity.Unit()) < .95))
 		command |= Command::FORWARD;
 	else if(shouldReverse)
 	{
