@@ -74,8 +74,6 @@ public:
 	static double ViewZoom();
 	static bool ZoomViewIn();
 	static bool ZoomViewOut();
-	static double MinViewZoom();
-	static double MaxViewZoom();
 
 	static void ToggleScreenMode();
 	static const std::string &ScreenModeSetting();

@@ -672,6 +672,10 @@ interface "hud"
 	anchor top
 	point "mini-map"
 		center 0 100
+	
+	value "min zoom" .25
+	value "zoom multiplier" 1.4
+	value "max zoom" 2.
 
 
 

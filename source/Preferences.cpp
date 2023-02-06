@@ -20,7 +20,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Files.h"
+#include "GameData.h"
 #include "GameWindow.h"
+#include "Interface.h"
 #include "Logger.h"
 #include "Screen.h"
 
@@ -37,8 +39,7 @@ namespace {
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 
-	const vector<double> ZOOMS = {.25, .35, .50, .70, 1.00, 1.40, 2.00};
-	int zoomIndex = 4;
+	double zoom = 1.;
 	constexpr double VOLUME_SCALE = .25;
 
 	// Default to fullscreen.
@@ -99,7 +100,7 @@ void Preferences::Load()
 		else if(node.Token(0) == "boarding target")
 			boardingIndex = max<int>(0, min<int>(node.Value(1), BOARDING_SETTINGS.size() - 1));
 		else if(node.Token(0) == "view zoom")
-			zoomIndex = max<int>(0, min<int>(node.Value(1), ZOOMS.size() - 1));
+			zoom = node.Value(1);
 		else if(node.Token(0) == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Automatic aiming")
@@ -141,7 +142,7 @@ void Preferences::Save()
 	out.Write("zoom", Screen::UserZoom());
 	out.Write("scroll speed", scrollSpeed);
 	out.Write("boarding target", boardingIndex);
-	out.Write("view zoom", zoomIndex);
+	out.Write("view zoom", zoom);
 	out.Write("vsync", vsyncIndex);
 	out.Write("Automatic aiming", autoAimIndex);
 	out.Write("Parallax background", parallaxIndex);
@@ -204,17 +205,24 @@ void Preferences::SetScrollSpeed(int speed)
 // View zoom.
 double Preferences::ViewZoom()
 {
-	return ZOOMS[zoomIndex];
+	return zoom;
 }
 
 
 
 bool Preferences::ZoomViewIn()
 {
-	if(zoomIndex == static_cast<int>(ZOOMS.size() - 1))
-		return false;
+	const Interface *hudInterface = GameData::Interfaces().Get("hud");
+	double multiplier = hudInterface->GetValue("zoom multiplier");
+	double maxZoom = hudInterface->GetValue("max zoom");
 
-	++zoomIndex;
+	zoom *= multiplier;
+	if(zoom > maxZoom)
+	{
+		zoom = maxZoom;
+		return false;
+	}
+
 	return true;
 }
 
@@ -222,25 +230,18 @@ bool Preferences::ZoomViewIn()
 
 bool Preferences::ZoomViewOut()
 {
-	if(zoomIndex == 0)
+	const Interface *hudInterface = GameData::Interfaces().Get("hud");
+	double multiplier = hudInterface->GetValue("zoom multiplier");
+	double minZoom = hudInterface->GetValue("min zoom");
+
+	zoom /= multiplier;
+	if(zoom < minZoom)
+	{
+		zoom = minZoom;
 		return false;
+	}
 
-	--zoomIndex;
 	return true;
-}
-
-
-
-double Preferences::MinViewZoom()
-{
-	return ZOOMS[0];
-}
-
-
-
-double Preferences::MaxViewZoom()
-{
-	return ZOOMS[ZOOMS.size() - 1];
 }
 
 
