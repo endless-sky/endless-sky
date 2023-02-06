@@ -1259,6 +1259,10 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 				&& foe->IsDisabled() && !canPlunder)
 			continue;
 
+		// Ships that cannot board or shoot at disabled enemies should not pick them as targets.
+		if((person.Disables() && foe->IsDisabled() && ship.CanBeCarried()))
+			continue;
+
 		// Ships that don't (or can't) plunder strongly prefer active targets.
 		if(!canPlunder)
 			range += 5000. * foe->IsDisabled();
