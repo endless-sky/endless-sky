@@ -3119,10 +3119,9 @@ conversation "cultural data for coalition group"
 		has "Fangvin: Struggling Author - Human Media 1"
 	`Walking through the spaceport, a group of Coalition citizens are on a table speaking in their native languages. They see you. The group then rise from their seats and begin approaching you.`
 	choice
-		`	(Walk at a slightly faster pace.)`
-			goto "walk faster"
 		`	"Excuse me, what do you all want?"`
 			goto "mission intro"
+		`	(Walk at a slightly faster pace.)`
 	label "walk faster"
 	`	You slightly increase your pace, but the group does too. They eventually catch up to you. You turn to face them, as they begin speaking to you.`
 	label "mission intro"
