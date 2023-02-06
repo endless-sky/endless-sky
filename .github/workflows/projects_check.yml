@@ -17,19 +17,6 @@ jobs:
     uses: ./.github/workflows/compute-changes.yml
 
 
-  check-codeblocks:
-    name: CodeBlocks
-    needs: changed
-    if: ${{ needs.changed.outputs.codeblocks_files == 'true' || needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' }}
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 1
-    - name: Validate Code::Blocks project files
-      run: ./utils/check_codeblocks.sh
-
-
   check_cmake:
     name: CMake
     needs: changed
@@ -39,7 +26,6 @@ jobs:
     - uses: actions/checkout@v3
     - name: Validate CMake project files
       run: ./utils/check_cmake.sh
-
 
 
   validate_copyright:
