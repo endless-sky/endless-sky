@@ -81,8 +81,8 @@ test "Saving during conversation"
 		call "Depart"
 		assert
 			"%TEST%: transient" == 0
-		call "Land On Ruin helper"
-		call "Trigger Spaceport Mission"
+		call "Land"
+		call "Trigger Ruin Spaceport Mission"
 		assert
 			"%TEST%: transient" == 1
 		# Re-load savegame mid-conversation.
@@ -96,8 +96,8 @@ test "Saving during conversation"
 		call "Depart"
 		assert
 			"%TEST%: transient" == 0
-		call "Land On Ruin helper"
-		call "Trigger Spaceport Mission"
+		call "Land"
+		call "Trigger Ruin Spaceport Mission"
 		# Test mission was available again
 		assert
 			"%TEST%: transient" == 1
