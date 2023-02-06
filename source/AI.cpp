@@ -527,6 +527,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 	step++;
 	if(step >= 30)
 		step = 0;
+	int targetTurn = 0;
 	int minerCount = 0;
 	const int maxMinerCount = minables.empty() ? 0 : 9;
 	bool opportunisticEscorts = !Preferences::Has("Turrets focus fire");
@@ -626,7 +627,9 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		{
 			// Each ship only switches targets twice a second, so that it can
 			// focus on damaging one particular ship.
-			if(!step || !target || target->IsDestroyed() || (target->IsDisabled() && personality.Disables())
+			if(++targetTurn >= 30)
+				targetTurn = 0;
+			if(targetTurn == step || !target || target->IsDestroyed() || (target->IsDisabled() && personality.Disables())
 					|| (target->IsFleeing() && personality.IsMerciful()) || !target->IsTargetable())
 			{
 				target = FindTarget(*it);
