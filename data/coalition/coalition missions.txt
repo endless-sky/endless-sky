@@ -3151,7 +3151,7 @@ conversation "cultural data for coalition group"
 		`	"How much will I be paid for this?"`
 			goto "ask about pay"
 	label "ask about pay"
-	`	"Generous we are, so for you, <payment> we will give."`
+	`	"Generous we are, so for you, 180,000 credits we will give."`
 	choice
 		`	"Okay, will this get me in trouble?"`
 			goto "consequences"
@@ -3174,7 +3174,7 @@ conversation "cultural data for coalition group"
 	`	You run to your ship, look through the storage room, and find the datachip. You quickly make a copy of it, run back to the group and hand it to them.`
 	action
 		event "coalition citizens discover fangvin" 14 27
-	`	"Thank you. Enlighten us and the rest of the Coalition, this datachip will."`
+	`	"Thank you. Enlighten us and the rest of the Coalition, this datachip will. And as promised, a chip of 180,000 credits, we have." One member of the group places it within your hand.`
 		accept
 
 mission "Fangvin: Struggling Author - Human Media 1"
@@ -3215,6 +3215,7 @@ mission "Visit the Coalition Citizens Again"
 		has "human cultural data"
 	on offer
 		conversation "cultural data for coalition group"
+		payment 180000
 
 event "coalition citizens discover fangvin"
 
