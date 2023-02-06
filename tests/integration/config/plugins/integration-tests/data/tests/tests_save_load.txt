@@ -91,6 +91,7 @@ test "Saving during conversation"
 		assert
 			"transient" == 1
 			"condition set before mission offered" == 1
+			"SAVE LOAD MID-CONVERSATION: offered" == 1
 		# Re-load savegame mid-conversation.
 		input
 			key escape
@@ -98,27 +99,27 @@ test "Saving during conversation"
 		assert
 			"transient" == 0
 			"condition set before mission offered" == 1
-		call "Depart"
-		assert
-			"transient" == 0
-		call "Land"
+			"SAVE LOAD MID-CONVERSATION: offered" == 0
 		input
 			key p
 		# Test mission was available again
 		assert
 			"transient" == 1
+			"SAVE LOAD MID-CONVERSATION: offered" == 1
 		input
 			key return
 		input
 			key return
 		assert
 			"transient" == 1
+			"SAVE LOAD MID-CONVERSATION: active" == 1
 		# Now save after the conversation is finished
 		input
 			key escape
 		call "Load First Savegame"
 		assert
 			"transient" == 1
+			"SAVE LOAD MID-CONVERSATION: active" == 1
 
 
 test "Loading and Reloading"
