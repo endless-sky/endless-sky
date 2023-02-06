@@ -1214,7 +1214,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	double closest = person.IsHunting() ? numeric_limits<double>::infinity() :
 		(minRange > 1000.) ? maxRange * 1.5 : 4000.;
 	bool hasNemesis = false;
-	bool canPlunder = person.Plunders() && ship.Cargo().Free();
+	bool canPlunder = person.Plunders() && ship.Cargo().Free() && !ship.CanBeCarried();
 	// Figure out how strong this ship is.
 	int64_t maxStrength = 0;
 	auto strengthIt = shipStrength.find(&ship);
@@ -1257,10 +1257,6 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		// Ships which only disable never target already-disabled ships.
 		if((person.Disables() || (!person.IsNemesis() && foe != oldTarget.get()))
 				&& foe->IsDisabled() && !canPlunder)
-			continue;
-
-		// Fighters or Drones that cannot board or shoot at disabled enemies should not pick them as targets.
-		if((person.Disables() && foe->IsDisabled() && ship.CanBeCarried()))
 			continue;
 
 		// Ships that don't (or can't) plunder strongly prefer active targets.
