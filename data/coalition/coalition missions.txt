@@ -3226,13 +3226,11 @@ mission "Fangvin: Book Discovered"
 				`	(Disregard.)`
 					decline
 				`	(Look for Anna Fangvin.)`
-			`	Looking through your encyclopedia, you discover that Anna Fangvin is an author from <destination>. She is likely there. You decide to set a course for <destination>. You write a message to Anna explaining your intentions to meet with her for an interview, choosing not to mention the Coalition for now, as she would likely not believe it. As you are in Coalition space and therefore not connected to the human communications relay network, it will not send until you enter human space.`
+			`A quick look through your encyclopedia reveals Anna Fangvin to be an author from <destination>. You decide to meet her there for an interview and set a course.`
 	on complete
 		conversation
-			`When you had returned to human space a few days ago, your computer's email client had notified you that the message to Anna had been sent. However, there was no reply. But just after you touchdown on the spaceport's landing pad you receive another message from the computer, presumably from Anna.`
-			choice
-				`	(Open it.)`
-			`	The message explains how Anna accepted your offer for an interview, and was waiting for you in the spaceport. Look for Anna in the spaceport, so you can take her to the Coalition for a little conversation with those Coalition citizens who showed interest in her work.`
+			`As you prepare to land, you write Anna a short message, offering an interview. In less than 10 minutes you receive a reply, explaining that Anna has accepted your offer and will wait for you in the spaceport.`
+			`	Look for Anna in the spaceport, so you can take her to the Coalition for a little conversation with those Coalition citizens who showed interest in her work.`
 
 mission "Fangvin: Struggling Author 1"
 	name "Take Anna to Coalition Space"
