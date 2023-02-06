@@ -119,7 +119,7 @@ color "ship target outline blink" 1. 1. 1. 0.
 # Colors used for ship target pointers.
 color "ship target pointer player" .2 1. 0. 0.
 color "ship target pointer friendly" .4 .6 1. 0.
-color "sihp target pointer unfriendly" .8 .8 .3 0.
+color "ship target pointer unfriendly" .8 .8 .3 0.
 color "ship target pointer hostile" .85 .3 .2 0.
 color "ship target pointer inactive" .4 .4 .4 0.
 color "ship target pointer special" 1. 1. 1. 0.
