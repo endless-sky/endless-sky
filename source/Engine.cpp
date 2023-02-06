@@ -1374,7 +1374,7 @@ void Engine::CalculateStep()
 
 	// Handle the mouse input of the mouse navigation
 	if(Preferences::Has("alt-mouse turning") && !isMouseTurningEnabled)
-		activeCommands.Set(Command::MOUSE_TURNING);
+		activeCommands.Set(Command::MOUSE_TURNING_TOGGLE);
 	HandleMouseInput(activeCommands);
 	// Now, all the ships must decide what they are doing next.
 	ai.Step(player, activeCommands);
@@ -2036,7 +2036,7 @@ void Engine::HandleMouseInput(Command &activeCommands)
 		isMouseHoldEnabled = true;
 	else
 		isMouseHoldEnabled = false;
-	if(activeCommands.Has(Command::MOUSE_TURNING))
+	if(activeCommands.Has(Command::MOUSE_TURNING_TOGGLE))
 		isMouseToggleEnabled = !isMouseToggleEnabled;
 	isMouseTurningEnabled = (isMouseHoldEnabled || isMouseToggleEnabled);
 	Preferences::Set("alt-mouse turning", isMouseTurningEnabled);
