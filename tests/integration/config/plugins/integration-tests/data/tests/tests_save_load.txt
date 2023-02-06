@@ -82,7 +82,8 @@ test "Saving during conversation"
 		assert
 			"%TEST%: transient" == 0
 		call "Land"
-		call "Trigger Ruin Spaceport Mission"
+		input
+			key p
 		assert
 			"%TEST%: transient" == 1
 		# Re-load savegame mid-conversation.
@@ -97,7 +98,8 @@ test "Saving during conversation"
 		assert
 			"%TEST%: transient" == 0
 		call "Land"
-		call "Trigger Ruin Spaceport Mission"
+		input
+			key p
 		# Test mission was available again
 		assert
 			"%TEST%: transient" == 1
