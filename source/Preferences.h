@@ -107,6 +107,10 @@ public:
 	static bool DoAlertHelper(AlertIndicator toDo);
 
 	static int GetPreviousSaveCount();
+
+
+private:
+	static bool CheckZoomBoundaries();
 };
 
 

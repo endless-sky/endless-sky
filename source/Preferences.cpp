@@ -214,16 +214,9 @@ bool Preferences::ZoomViewIn()
 {
 	const Interface *hudInterface = GameData::Interfaces().Get("hud");
 	double multiplier = hudInterface->GetValue("zoom multiplier");
-	double maxZoom = hudInterface->GetValue("max zoom");
 
 	zoom *= multiplier;
-	if(zoom > maxZoom)
-	{
-		zoom = maxZoom;
-		return false;
-	}
-
-	return true;
+	return CheckZoomBoundaries();
 }
 
 
@@ -232,16 +225,9 @@ bool Preferences::ZoomViewOut()
 {
 	const Interface *hudInterface = GameData::Interfaces().Get("hud");
 	double multiplier = hudInterface->GetValue("zoom multiplier");
-	double minZoom = hudInterface->GetValue("min zoom");
 
 	zoom /= multiplier;
-	if(zoom < minZoom)
-	{
-		zoom = minZoom;
-		return false;
-	}
-
-	return true;
+	return CheckZoomBoundaries();
 }
 
 
@@ -422,4 +408,25 @@ bool Preferences::DoAlertHelper(Preferences::AlertIndicator toDo)
 int Preferences::GetPreviousSaveCount()
 {
 	return previousSaveCount;
+}
+
+
+
+bool Preferences::CheckZoomBoundaries()
+{
+	const Interface *hudInterface = GameData::Interfaces().Get("hud");
+	double minZoom = hudInterface->GetValue("min zoom");
+	double maxZoom = hudInterface->GetValue("max zoom");
+
+	if(zoom >= maxZoom)
+	{
+		zoom = maxZoom;
+		return false;
+	}
+	else if(zoom <= minZoom)
+	{
+		zoom = minZoom;
+		return false;
+	}
+	return true;
 }
