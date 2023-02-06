@@ -110,6 +110,7 @@ test "Saving during conversation"
 			key return
 		input
 			key return
+		call "Depart"
 		assert
 			"transient" == 1
 			"SAVE LOAD MID-CONVERSATION: offered" == 1
@@ -121,7 +122,9 @@ test "Saving during conversation"
 		assert
 			"transient" == 1
 			"SAVE LOAD MID-CONVERSATION: offered" == 1
-			"SAVE LOAD MID-CONVERSATION: active" == 1
+			"SAVE LOAD MID-CONVERSATION: active" == 0
+			# Mission will complete upon load since Ruin is the destination.
+			"SAVE LOAD MID-CONVERSATION: done" == 1
 
 
 test "Loading and Reloading"
