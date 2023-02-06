@@ -1259,7 +1259,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 				&& foe->IsDisabled() && !canPlunder)
 			continue;
 
-		// Ships that cannot board or shoot at disabled enemies should not pick them as targets.
+		// Fighters or Drones that cannot board or shoot at disabled enemies should not pick them as targets.
 		if((person.Disables() && foe->IsDisabled() && ship.CanBeCarried()))
 			continue;
 
