@@ -18,6 +18,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Angle.h"
 #include "Audio.h"
 #include "Color.h"
+#include "Command.h"
+#include "ConditionsStore.h"
 #include "Conversation.h"
 #include "ConversationPanel.h"
 #include "text/DisplayText.h"
@@ -40,7 +42,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpriteSet.h"
 #include "StarField.h"
 #include "System.h"
+#include "TextReplacements.h"
 #include "UI.h"
+
+#include <SDL2/SDL.h>
 
 #include "opengl.h"
 
@@ -143,5 +148,35 @@ std::string GameLoadingPanel::GetHint()
 
 void GameLoadingPanel::UpdateHint()
 {
-	hint = GameData::Phrases().Get("loading hints")->Get();
+	// Set up substitutions
+	std::map<std::string, std::string> subs;
+	subs["<Show main menu>"] = Command::MENU.KeyName();
+	subs["<Forward thrust>"] = Command::FORWARD.KeyName();
+	subs["<Turn left>"] = Command::LEFT.KeyName();
+	subs["<Turn right>"] = Command::RIGHT.KeyName();
+	subs["<Reverse>"] = Command::BACK.KeyName();
+	subs["<Fire primary weapon>"] = Command::PRIMARY.KeyName();
+	subs["<Fire secondary weapon>"] = Command::SECONDARY.KeyName();
+	subs["<Select secondary weapon>"] = Command::SELECT.KeyName();
+	subs["<Land on planet / station>"] = Command::LAND.KeyName();
+	subs["<Board selected ship>"] = Command::BOARD.KeyName();
+	subs["<Talk to selected ship>"] = Command::HAIL.KeyName();
+	subs["<Scan selected ship>"] = Command::SCAN.KeyName();
+	subs["<Initiate hyperspace jump>"] = Command::JUMP.KeyName();
+	subs["<Select next ship>"] = Command::TARGET.KeyName();
+	subs["<Select nearest hostile ship>"] = Command::NEAREST.KeyName();
+	subs["<Deploy / recall fighters>"] = Command::DEPLOY.KeyName();
+	subs["<Fire afterburner>"] = Command::AFTERBURNER.KeyName();
+	subs["<Toggle cloaking device>"] = Command::CLOAK.KeyName();
+	subs["<View star map>"] = Command::MAP.KeyName();
+	subs["<View player info>"] = Command::INFO.KeyName();
+	subs["<Toggle fullscreen>"] = Command::FULLSCREEN.KeyName();
+	subs["<Toggle fast-forward>"] = Command::FASTFORWARD.KeyName();
+	subs["<Fleet: Fight my target>"] = Command::FIGHT.KeyName();
+	subs["<Fleet: Gather around me>"] = Command::GATHER.KeyName();
+	subs["<Fleet: Hold position>"] = Command::HOLD.KeyName();
+	subs["<Fleet: Toggle ammo usage>"] = Command::AMMO.KeyName();
+
+	// Set hint
+	hint = Format::Replace(GameData::Phrases().Get("loading hints")->Get(), subs);
 }
