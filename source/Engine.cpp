@@ -2032,10 +2032,7 @@ void Engine::HandleMouseClicks()
 // Determines alternate mouse turning, setting player mouse angle, and right-click firing weapons.
 void Engine::HandleMouseInput(Command &activeCommands)
 {
-	if(activeCommands.Has(Command::MOUSE_TURNING_HOLD))
-		isMouseHoldEnabled = true;
-	else
-		isMouseHoldEnabled = false;
+	isMouseHoldEnabled = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
 	if(activeCommands.Has(Command::MOUSE_TURNING_TOGGLE))
 		isMouseToggleEnabled = !isMouseToggleEnabled;
 	isMouseTurningEnabled = (isMouseHoldEnabled || isMouseToggleEnabled);
