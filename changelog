@@ -67,7 +67,7 @@ Version 0.10.0
       * Fixed a typo of 'automaton' in the Kas'ik Tek 7 definition and gave it a crew equivalent of 1. (@Hurleveur)
       * Corrected an oversight where the Kimek Briar was not given reverse thrusters alongside the other civilian Coalition ships. (@Arachi-Lover)
       * Void Sprite Parts can no longer be installed. (@TomGoodIdea)
-	  / Correctly fail "Deep: TMBR 0" when "Deep: TMBR 1" is offered. (@warp-core)
+      * Correctly fail "Deep: TMBR 0" when "Deep: TMBR 1" is offered. (@warp-core)
     * Engine bugs:
       * Various style fixes. (@tibetiroka, @petervdmeer)
       * Fixed rendering of some compressed PNGs. (@quyykk)
