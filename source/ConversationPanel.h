@@ -43,7 +43,8 @@ class System;
 class ConversationPanel : public Panel {
 public:
 	ConversationPanel(PlayerInfo &player, const Conversation &conversation,
-		const System *system = nullptr, const std::shared_ptr<Ship> &ship = nullptr);
+		const System *system = nullptr, const std::shared_ptr<Ship> &ship = nullptr,
+		bool useTransactions = false);
 
 template <class T>
 	void SetCallback(T *t, void (T::*fun)(int));
@@ -143,6 +144,9 @@ private:
 	// Whether the mouse moved in the current frame.
 	bool isHovering = false;
 	Point hoverPoint;
+
+	// Should we use a PlayerInfo transaction to prevent save-load glitches?
+	bool useTransactions = false;
 };
 
 
