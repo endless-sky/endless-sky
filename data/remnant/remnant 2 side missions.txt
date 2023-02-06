@@ -261,6 +261,7 @@ mission "Remnant: Celebration 1"
 				`	"Who leads these ceremonies?"`
 					to display
 						not "celebrationaskedleader"
+						not "celebrationaskedomitted"
 					goto ceremonyleader
 				`	"That seemed both well-rehearsed and very disorganized."`
 					to display
