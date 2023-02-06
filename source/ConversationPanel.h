@@ -108,6 +108,9 @@ private:
 	// Reference to the player, to apply any changes to them.
 	PlayerInfo &player;
 
+  	// Should we use a PlayerInfo transaction to prevent save-load glitches?
+	bool useTransactions = false;
+
 	// The conversation we are displaying.
 	const Conversation &conversation;
 	// All conversations start with node 0.
@@ -144,9 +147,6 @@ private:
 	// Whether the mouse moved in the current frame.
 	bool isHovering = false;
 	Point hoverPoint;
-
-	// Should we use a PlayerInfo transaction to prevent save-load glitches?
-	bool useTransactions = false;
 };
 
 
