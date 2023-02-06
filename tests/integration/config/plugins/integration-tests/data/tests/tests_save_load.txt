@@ -1,4 +1,4 @@
-test-data "save load"
+test-data "Save During Conversation Save"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
@@ -55,64 +55,70 @@ test-data "save load"
 			"Ruin: Landing: offered"
 
 
-mission "%TEST%: SAVE LOAD MID-CONVERSATION"
-	priority
-	source "Ruin"
-	to offer
-		has "%TEST%: SAVE LOAD MID-CONVERSATION"
-	on offer
-		conversation
-			`Test test`
-			action
-				"%TEST%: transient" = 1
-			choice
-				`	"Yes."`
-					accept
+test-data "Save During Conversation Mission"
+	category "mission"
+	contents
+		mission "SAVE LOAD MID-CONVERSATION"
+			priority
+			source "Ruin"
+			on offer
+				conversation
+					`Test test`
+					action
+						"transient" ++
+					choice
+						`	"Yes."`
+							accept
 
 test "Saving during conversation"
 	status active
 	description "Test that (automatically) saving during a conversation doesn't store state"
 	sequence
+		# Inject the mission.
+		inject "Save During Conversation Mission"
 		# Create/inject the savegame and load it.
-		inject "save load"
+		inject "Save During Conversation Save"
 		call "Load First Savegame"
-		apply
-			"%TEST%: SAVE LOAD MID-CONVERSATION" = 1
 		call "Depart"
 		assert
-			"%TEST%: transient" == 0
+			"transient" == 0
 		call "Land"
+		# This condition is set to ensure that the transaction snapshot includes everything before this mission.
+		apply
+			"condition set before mission offered" = 1
 		input
 			key p
 		assert
-			"%TEST%: transient" == 1
+			"transient" == 1
+			"condition set before mission offered" == 1
 		# Re-load savegame mid-conversation.
 		input
 			key escape
 		call "Load First Savegame"
 		assert
-			"%TEST%: transient" == 0
-		apply
-			"%TEST%: SAVE LOAD MID-CONVERSATION" = 1
+			"transient" == 0
+			"condition set before mission offered" == 1
 		call "Depart"
 		assert
-			"%TEST%: transient" == 0
+			"transient" == 0
 		call "Land"
 		input
 			key p
 		# Test mission was available again
 		assert
-			"%TEST%: transient" == 1
+			"transient" == 1
 		input
 			key return
 		input
 			key return
+		assert
+			"transient" == 1
 		# Now save after the conversation is finished
 		input
 			key escape
 		call "Load First Savegame"
 		assert
-			"%TEST%: transient" == 1
+			"transient" == 1
 
 
 test "Loading and Reloading"
