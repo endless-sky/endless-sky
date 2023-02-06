@@ -524,8 +524,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 	}
 
 	const Ship *flagship = player.Flagship();
-	step++;
-	if(step >= 30)
+	if(++step >= 30)
 		step = 0;
 	int targetTurn = 0;
 	int minerCount = 0;
