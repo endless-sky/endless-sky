@@ -326,12 +326,15 @@ mission "Midas: Stash of Bars"
 		not "Midas: Who is the mad one?: offered"
 	on offer
 		"midas: bars" = "outfit (all): Gold Bars"
+		fail
 
 mission "Midas: Who is the mad one?"
 	landing
 	outfitter
 	name "A golden opportunity!"
 	description "Go to any pirate world to see if you can sell these gold bars for a good price."
+	to offer
+		has "outfit (all): Gold Bars"
 	to accept
 		"outfit (all): Gold Bars" < "midas: bars"
 	on offer

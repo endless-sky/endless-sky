@@ -135,15 +135,15 @@ mission "Unfettered: Alpha Supplies: Coming"
 				not "unfettered: saw auxiliary"
 				random < 30
 			random < 8
-	on offer
+	on enter "Hi Yahr"
 		set "unfettered: saw auxiliary"
-	on enter
 		dialog
 			`As you launch, the local authorities hail you, "An important guest is arriving, you should not be here when they do. Get out, fast."`
 			`	They insist: "Whatever you do, do not interfere with that incoming ship."`
 	npc kill
 		government "Alpha"
 		personality entering uninterested fleeing timid
+		system "Hi Yahr"
 		fleet
 			cargo 4
 			commodities "Military" "Electronics"
@@ -196,13 +196,13 @@ mission "Unfettered: Alpha Supplies: Leaving"
 				not "unfettered: saw auxiliary"
 				random < 30
 			random < 8
-	on offer
-		set "unfettered: saw auxiliary"
 	on enter "Hi Yahr"
+		set "unfettered: saw auxiliary"
 		dialog `As you launch, the local authorities hail you, "An important guest is leaving with you. They seem to have activated their weapon systems... Get out, fast. And do not interfere with that launching ship."`
 	npc kill
 		government "Alpha"
 		personality launching uninterested fleeing timid
+		system "Hi Yahr"
 		fleet
 			cargo 6
 			commodities "Metal" "Heavy Metals"
