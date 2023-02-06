@@ -291,11 +291,11 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	else if(key == SDLK_DOWN && choice + 1 < static_cast<int>(choices.size()))
 		++choice;
 	else if((key == SDLK_RETURN || key == SDLK_KP_ENTER) && isNewPress && choice < static_cast<int>(choices.size()))
-		Goto(conversation.NextNodeForChoice(node, MapChoice(choice)), MapChoice(choice));
+		Goto(conversation.NextNodeForChoice(node, MapChoice(choice)), choice);
 	else if(key >= '1' && key < static_cast<SDL_Keycode>('1' + choices.size()))
-		Goto(conversation.NextNodeForChoice(node, MapChoice(key - '1')), MapChoice(key - '1'));
+		Goto(conversation.NextNodeForChoice(node, MapChoice(key - '1')), key - '1');
 	else if(key >= SDLK_KP_1 && key < static_cast<SDL_Keycode>(SDLK_KP_1 + choices.size()))
-		Goto(conversation.NextNodeForChoice(node, MapChoice(key - SDLK_KP_1)), MapChoice(key - SDLK_KP_1));
+		Goto(conversation.NextNodeForChoice(node, MapChoice(key - SDLK_KP_1)), key - SDLK_KP_1);
 	else
 		return false;
 
@@ -453,7 +453,7 @@ void ConversationPanel::ClickName(int side)
 // The player just clicked on a conversation choice.
 void ConversationPanel::ClickChoice(int index)
 {
-	Goto(conversation.NextNodeForChoice(node, MapChoice(index)), MapChoice(index));
+	Goto(conversation.NextNodeForChoice(node, MapChoice(index)), index);
 }
 
 
