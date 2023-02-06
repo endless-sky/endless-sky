@@ -5718,16 +5718,16 @@ system "Avo Chigo"
 	asteroids "small metal" 34 6
 	asteroids "medium metal" 8 6.24
 	asteroids "large metal" 30 9
-	trade Clothing 290
-	trade Electronics 740
-	trade Equipment 530
-	trade Food 350
-	trade "Heavy Metals" 960
-	trade Industrial 720
-	trade "Luxury Goods" 1220
+	trade Clothing 180
+	trade Electronics 850
+	trade Equipment 660
+	trade Food 520
+	trade "Heavy Metals" 980
+	trade Industrial 860
+	trade "Luxury Goods" 1130
 	trade Medical 680
-	trade Metal 390
-	trade Plastic 390
+	trade Metal 550
+	trade Plastic 360
 	fleet "Bunrodea Erabu Freight" 1200
 	fleet "Bunrodea Defense" 2000
 	fleet "Bunrodea Royal Guard" 2000
@@ -6906,16 +6906,16 @@ system "Bunri Lemeta"
 	asteroids "small metal" 22 1.5717
 	asteroids "medium metal" 26 0.9295
 	asteroids "large metal" 14 0.9633
-	trade Clothing 290
-	trade Electronics 740
-	trade Equipment 530
-	trade Food 350
-	trade "Heavy Metals" 960
-	trade Industrial 720
-	trade "Luxury Goods" 1220
-	trade Medical 680
-	trade Metal 390
-	trade Plastic 390
+	trade Clothing 390
+	trade Electronics 600
+	trade Equipment 620
+	trade Food 500
+	trade "Heavy Metals" 640
+	trade Industrial 710
+	trade "Luxury Goods" 1360
+	trade Medical 430
+	trade Metal 410
+	trade Plastic 450
 	fleet "Bunrodea Erabu Freight" 3000
 	fleet "Bunrodea Defense" 2000
 	fleet "Bunrodea Royalty" 3000
@@ -11092,16 +11092,16 @@ system "Elabi Choati"
 	asteroids "small metal" 2 6.9776
 	asteroids "medium metal" 14 11.4464
 	asteroids "large metal" 20 11.76
-	trade Clothing 290
-	trade Electronics 740
-	trade Equipment 530
-	trade Food 350
-	trade "Heavy Metals" 960
-	trade Industrial 720
-	trade "Luxury Goods" 1220
+	trade Clothing 170
+	trade Electronics 680
+	trade Equipment 620
+	trade Food 550
+	trade "Heavy Metals" 720
+	trade Industrial 750
+	trade "Luxury Goods" 1250
 	trade Medical 680
-	trade Metal 390
-	trade Plastic 390
+	trade Metal 410
+	trade Plastic 510
 	fleet "Bunrodea Erabu Freight" 2000
 	fleet "Bunrodea Defense" 1000
 	object
@@ -11257,16 +11257,16 @@ system "Elo Chigo"
 	asteroids "large rock" 1 4.5144
 	asteroids "small metal" 3 6.3612
 	asteroids "large metal" 2 4.7709
-	trade Clothing 290
-	trade Electronics 740
-	trade Equipment 530
-	trade Food 350
-	trade "Heavy Metals" 960
-	trade Industrial 720
-	trade "Luxury Goods" 1220
-	trade Medical 680
-	trade Metal 390
-	trade Plastic 390
+	trade Clothing 190
+	trade Electronics 710
+	trade Equipment 640
+	trade Food 560
+	trade "Heavy Metals" 710
+	trade Industrial 740
+	trade "Luxury Goods" 1200
+	trade Medical 670
+	trade Metal 440
+	trade Plastic 530
 	fleet "Bunrodea Erabu Freight" 2000
 	fleet "Bunrodea Defense" 1000
 	object
@@ -11805,16 +11805,16 @@ system "Erabu Lemeta"
 	asteroids "large rock" 60 5.226
 	asteroids "medium metal" 11 5.733
 	asteroids "large metal" 1 2.379
-	trade Clothing 290
+	trade Clothing 410
 	trade Electronics 740
-	trade Equipment 530
-	trade Food 350
-	trade "Heavy Metals" 960
-	trade Industrial 720
-	trade "Luxury Goods" 1220
-	trade Medical 680
-	trade Metal 390
-	trade Plastic 390
+	trade Equipment 520
+	trade Food 600
+	trade "Heavy Metals" 630
+	trade Industrial 840
+	trade "Luxury Goods" 1400
+	trade Medical 470
+	trade Metal 480
+	trade Plastic 480
 	fleet "Bunrodea Erabu Freight" 500
 	fleet "Bunrodea Defense" 1000
 	fleet "Bunrodea Royalty" 2000
@@ -11874,15 +11874,15 @@ system "Eragaru Le"
 	asteroids "medium metal" 1 4.4118
 	asteroids "large metal" 4 3.8646
 	trade Clothing 290
-	trade Electronics 740
-	trade Equipment 530
-	trade Food 350
-	trade "Heavy Metals" 960
-	trade Industrial 720
-	trade "Luxury Goods" 1220
-	trade Medical 680
-	trade Metal 390
-	trade Plastic 390
+	trade Electronics 720
+	trade Equipment 540
+	trade Food 440
+	trade "Heavy Metals" 780
+	trade Industrial 780
+	trade "Luxury Goods" 1190
+	trade Medical 570
+	trade Metal 470
+	trade Plastic 380
 	fleet "Bunrodea Erabu Freight" 1200
 	fleet "Bunrodea Defense" 2000
 	fleet "Bunrodea Royal Guard" 2000
@@ -17003,16 +17003,16 @@ system "Jentu Centi"
 	asteroids "small metal" 24 11.6032
 	asteroids "medium metal" 34 4.2336
 	asteroids "large metal" 5 11.5248
-	trade Clothing 290
-	trade Electronics 740
-	trade Equipment 530
-	trade Food 350
-	trade "Heavy Metals" 960
-	trade Industrial 720
-	trade "Luxury Goods" 1220
-	trade Medical 680
+	trade Clothing 160
+	trade Electronics 780
+	trade Equipment 580
+	trade Food 260
+	trade "Heavy Metals" 760
+	trade Industrial 800
+	trade "Luxury Goods" 980
+	trade Medical 750
 	trade Metal 390
-	trade Plastic 390
+	trade Plastic 260
 	fleet "Bunrodea Megasa Freight" 2000
 	fleet "Bunrodea Defense" 1000
 	object
@@ -17056,16 +17056,16 @@ system "Jentu Le"
 	asteroids "small metal" 34 1.6416
 	asteroids "medium metal" 95 1.8792
 	asteroids "large metal" 43 2.4408
-	trade Clothing 290
-	trade Electronics 740
-	trade Equipment 530
-	trade Food 350
-	trade "Heavy Metals" 960
-	trade Industrial 720
-	trade "Luxury Goods" 1220
-	trade Medical 680
-	trade Metal 390
-	trade Plastic 390
+	trade Clothing 250
+	trade Electronics 730
+	trade Equipment 560
+	trade Food 510
+	trade "Heavy Metals" 790
+	trade Industrial 780
+	trade "Luxury Goods" 1260
+	trade Medical 580
+	trade Metal 410
+	trade Plastic 460
 	fleet "Bunrodea Erabu Freight" 1500
 	fleet "Bunrodea Defense" 2000
 	fleet "Bunrodea Royalty" 5000
@@ -18081,16 +18081,16 @@ system "Kifrana Terberah"
 	asteroids "small metal" 10 5.0048
 	asteroids "medium metal" 1 5.0784
 	asteroids "large metal" 27 2.3552
-	trade Clothing 290
-	trade Electronics 740
-	trade Equipment 530
-	trade Food 350
-	trade "Heavy Metals" 960
-	trade Industrial 720
-	trade "Luxury Goods" 1220
-	trade Medical 680
-	trade Metal 390
-	trade Plastic 390
+	trade Clothing 270
+	trade Electronics 750
+	trade Equipment 650
+	trade Food 340
+	trade "Heavy Metals" 780
+	trade Industrial 760
+	trade "Luxury Goods" 1060
+	trade Medical 690
+	trade Metal 410
+	trade Plastic 290
 	fleet "Bunrodea Megasa Freight" 1200
 	fleet "Bunrodea Defense" 1500
 	object
@@ -20767,16 +20767,16 @@ system "Mego Faro"
 	asteroids "small metal" 1 1.5048
 	asteroids "medium metal" 5 2.2116
 	asteroids "large metal" 1 2.7816
-	trade Clothing 290
-	trade Electronics 740
-	trade Equipment 530
-	trade Food 350
-	trade "Heavy Metals" 960
-	trade Industrial 720
-	trade "Luxury Goods" 1220
-	trade Medical 680
-	trade Metal 390
-	trade Plastic 390
+	trade Clothing 160
+	trade Electronics 690
+	trade Equipment 630
+	trade Food 190
+	trade "Heavy Metals" 880
+	trade Industrial 700
+	trade "Luxury Goods" 970
+	trade Medical 710
+	trade Metal 370
+	trade Plastic 250
 	fleet "Bunrodea Megasa Freight" 1200
 	fleet "Bunrodea Defense" 1500
 	object
@@ -20835,16 +20835,16 @@ system "Mego Inito"
 	asteroids "small metal" 5 2.7202
 	asteroids "medium metal" 35 2.8014
 	asteroids "large metal" 91 6.0088
-	trade Clothing 290
-	trade Electronics 740
-	trade Equipment 530
-	trade Food 350
-	trade "Heavy Metals" 960
-	trade Industrial 720
-	trade "Luxury Goods" 1220
-	trade Medical 680
-	trade Metal 390
-	trade Plastic 390
+	trade Clothing 220
+	trade Electronics 820
+	trade Equipment 560
+	trade Food 320
+	trade "Heavy Metals" 1160
+	trade Industrial 870
+	trade "Luxury Goods" 1100
+	trade Medical 640
+	trade Metal 530
+	trade Plastic 320
 	fleet "Bunrodea Megasa Freight" 1200
 	fleet "Bunrodea Defense" 1500
 	object
@@ -20881,16 +20881,16 @@ system "Mego Seo"
 	asteroids "small metal" 1 4.374
 	asteroids "medium metal" 14 5.5404
 	asteroids "large metal" 1 3.5964
-	trade Clothing 290
-	trade Electronics 740
-	trade Equipment 530
-	trade Food 350
-	trade "Heavy Metals" 960
-	trade Industrial 720
-	trade "Luxury Goods" 1220
-	trade Medical 680
-	trade Metal 390
-	trade Plastic 390
+	trade Clothing 190
+	trade Electronics 720
+	trade Equipment 680
+	trade Food 240
+	trade "Heavy Metals" 1200
+	trade Industrial 680
+	trade "Luxury Goods" 990
+	trade Medical 620
+	trade Metal 380
+	trade Plastic 270
 	fleet "Bunrodea Megasa Freight" 1200
 	fleet "Bunrodea Defense" 1500
 	object
@@ -22668,16 +22668,16 @@ system "Piadenli"
 	asteroids "large rock" 6 5.5744
 	asteroids "medium metal" 8 5.7408
 	asteroids "large metal" 4 4.368
-	trade Clothing 290
-	trade Electronics 740
-	trade Equipment 530
-	trade Food 350
-	trade "Heavy Metals" 960
-	trade Industrial 720
-	trade "Luxury Goods" 1220
-	trade Medical 680
-	trade Metal 390
-	trade Plastic 390
+	trade Clothing 170
+	trade Electronics 680
+	trade Equipment 670
+	trade Food 300
+	trade "Heavy Metals" 720
+	trade Industrial 760
+	trade "Luxury Goods" 970
+	trade Medical 630
+	trade Metal 550
+	trade Plastic 290
 	fleet "Bunrodea Defense" 1000
 	object
 		sprite star/k-supergiant
@@ -26299,16 +26299,16 @@ system "Ravu Kon"
 	asteroids "small metal" 19 1.332
 	asteroids "medium metal" 46 2.502
 	asteroids "large metal" 7 1.152
-	trade Clothing 290
-	trade Electronics 740
-	trade Equipment 530
+	trade Clothing 240
+	trade Electronics 800
+	trade Equipment 620
 	trade Food 350
-	trade "Heavy Metals" 960
-	trade Industrial 720
-	trade "Luxury Goods" 1220
-	trade Medical 680
-	trade Metal 390
-	trade Plastic 390
+	trade "Heavy Metals" 1120
+	trade Industrial 800
+	trade "Luxury Goods" 1090
+	trade Medical 620
+	trade Metal 500
+	trade Plastic 340
 	fleet "Bunrodea Megasa Freight" 800
 	fleet "Bunrodea Erabu Freight" 800
 	fleet "Bunrodea Defense" 1200
@@ -27739,16 +27739,16 @@ system "Schisa Le"
 	asteroids "large rock" 5 4.508
 	asteroids "small metal" 10 5.474
 	asteroids "large metal" 56 8.4364
-	trade Clothing 290
-	trade Electronics 740
-	trade Equipment 530
-	trade Food 350
-	trade "Heavy Metals" 960
-	trade Industrial 720
-	trade "Luxury Goods" 1220
-	trade Medical 680
+	trade Clothing 360
+	trade Electronics 660
+	trade Equipment 670
+	trade Food 500
+	trade "Heavy Metals" 520
+	trade Industrial 800
+	trade "Luxury Goods" 1240
+	trade Medical 520
 	trade Metal 390
-	trade Plastic 390
+	trade Plastic 430
 	fleet "Bunrodea Erabu Freight" 1200
 	fleet "Bunrodea Defense" 2000
 	fleet "Bunrodea Royalty" 5000
@@ -28415,16 +28415,16 @@ system "Shini Bori"
 	asteroids "small metal" 16 1.8837
 	asteroids "medium metal" 12 2.8405
 	asteroids "large metal" 19 3.2292
-	trade Clothing 290
-	trade Electronics 740
-	trade Equipment 530
-	trade Food 350
-	trade "Heavy Metals" 960
-	trade Industrial 720
-	trade "Luxury Goods" 1220
-	trade Medical 680
-	trade Metal 390
-	trade Plastic 390
+	trade Clothing 340
+	trade Electronics 680
+	trade Equipment 650
+	trade Food 490
+	trade "Heavy Metals" 620
+	trade Industrial 760
+	trade "Luxury Goods" 1300
+	trade Medical 450
+	trade Metal 440
+	trade Plastic 470
 	fleet "Bunrodea Erabu Freight" 1500
 	fleet "Bunrodea Defense" 2000
 	fleet "Bunrodea Royalty" 3000
@@ -30631,16 +30631,16 @@ system "Thshybo Le"
 	asteroids "large rock" 1 2.016
 	asteroids "medium metal" 60 3.6624
 	asteroids "large metal" 4 5.0064
-	trade Clothing 290
-	trade Electronics 740
-	trade Equipment 530
-	trade Food 350
-	trade "Heavy Metals" 960
-	trade Industrial 720
-	trade "Luxury Goods" 1220
-	trade Medical 680
-	trade Metal 390
-	trade Plastic 390
+	trade Clothing 220
+	trade Electronics 760
+	trade Equipment 580
+	trade Food 515
+	trade "Heavy Metals" 900
+	trade Industrial 760
+	trade "Luxury Goods" 1290
+	trade Medical 570
+	trade Metal 430
+	trade Plastic 500
 	fleet "Bunrodea Erabu Freight" 1500
 	fleet "Bunrodea Defense" 2000
 	fleet "Bunrodea Royalty" 5000
@@ -31421,16 +31421,16 @@ system "Urba Pest"
 	asteroids "large rock" 24 9.59
 	asteroids "small metal" 1 8.4
 	asteroids "large metal" 1 3.71
-	trade Clothing 290
-	trade Electronics 740
-	trade Equipment 530
-	trade Food 350
-	trade "Heavy Metals" 960
-	trade Industrial 720
-	trade "Luxury Goods" 1220
-	trade Medical 680
-	trade Metal 390
-	trade Plastic 390
+	trade Clothing 200
+	trade Electronics 720
+	trade Equipment 610
+	trade Food 250
+	trade "Heavy Metals" 650
+	trade Industrial 840
+	trade "Luxury Goods" 1030
+	trade Medical 780
+	trade Metal 420
+	trade Plastic 240
 	fleet "Bunrodea Megasa Freight" 1000
 	fleet "Bunrodea Defense" 1000
 	object
