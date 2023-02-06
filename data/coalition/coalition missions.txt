@@ -3338,7 +3338,7 @@ mission "Fangvin: Struggling Author 2"
 	on complete
 		conversation
 			`	Anna is still in awe as you touch down on the ringworld. As the two of you open the hatch, you see yet another Heliarch agent in front of you.`
-			`	"Greetings, humans.  For you, what can I do today?", asks the Heliarch.`
+			`	"Greetings, humans. For you, what can I do today?", asks the Heliarch.`
 			`	"This is my friend Anna. I'm getting her registered with the Heliarchs today.", you answer.`
 			`	"To reach the registration office, this way you must go.", replies the Heliarch, pointing to a hallway.`
 			`	You and Anna walk down the hallway as directed, until you spot a registration office. Anna walks into the registration office while you sit down on a nearby bench. After 15 minutes, Anna walks out and approaches you. "They finally registered me. I'm off to the spaceport now to eat something. Meet me there so we can discuss our next move."`
