@@ -915,7 +915,8 @@ void Engine::Step(bool isActive)
 		for(const shared_ptr<Minable> &minable : asteroids.Minables())
 		{
 			Point offset = minable->Position() - center;
-			if(offset.Length() > scanRange && flagship->GetTargetAsteroid() != minable)
+			if((offset.Length() > scanRange || !Preferences::Has("Show minable pointers"))
+				&& flagship->GetTargetAsteroid() != minable)
 				continue;
 
 			targets.push_back({
