@@ -406,7 +406,6 @@ mission "Hai Reveal [C05] Cleanup"
 				accept
 	on complete
 		event "hai-human resolution announced"
-		event "wandering nightmare map" 11
 		fail "Hai Reveal [A11-A] Permanent Fleets"
 		fail "Hai Reveal [B02-A] The Blockade Goes Up"
 		conversation
@@ -416,7 +415,6 @@ mission "Hai Reveal [C05] Cleanup"
 			`	At last, it really is over, and you can get back to your own life.`
 			`	Maybe you'll have to find out who the Unfettered were stealing their other technologies from. They mentioned another group: the "Wanderers."`
 
-event "wandering nightmare map"
 
 # TODO: delete this mission and event before next steam build - just to fix up saves running on continuous.
 mission "Hai Reveal [C05C] Cleanup Check"
