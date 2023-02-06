@@ -3116,7 +3116,7 @@ mission "Coalition: Outskirts Gauger Ready"
 
 conversation "cultural data for coalition group"
 	branch "return"
-		has "Fangvin: Struggling Author - Human Media 1"
+		has "Fangvin: Struggling Author - Data: done"
 	`Walking through the spaceport, a group of Coalition citizens are on a table speaking in their native languages. They see you. The group then rise from their seats and begin approaching you.`
 	choice
 		`	"Excuse me, what do you all want?"`
