@@ -405,7 +405,6 @@ mission "Hai Reveal [C05] Cleanup"
 				accept
 	on complete
 		event "hai-human resolution announced"
-		event "wandering nightmare map" 11
 		fail "Hai Reveal [A11-A] Permanent Fleets"
 		fail "Hai Reveal [B02-A] The Blockade Goes Up"
 		conversation
@@ -415,26 +414,6 @@ mission "Hai Reveal [C05] Cleanup"
 			`	At last, it really is over, and you can get back to your own life.`
 			`	Maybe you'll have to find out who the Unfettered were stealing their other technologies from. They mentioned another group: the "Wanderers."`
 
-event "wandering nightmare map"
-
-# TODO: delete this mission and event before next steam build - just to fix up saves running on continuous.
-mission "Hai Reveal [C05C] Cleanup Check"
-	landing
-	invisible
-	to offer
-		has "Hai Reveal [C05] Cleanup: done"
-		has "Hai Reveal [A11-A] Permanent Fleets: active"
-	on offer
-		fail "Hai Reveal [A11-A] Permanent Fleets"
-		fail "Hai Reveal [B02-A] The Blockade Goes Up"
-		event "stormhold unsuppressed"
-
-event "stormhold unsuppressed"
-	system "Alcyone"
-		add fleet "Small Core Pirates" 400
-		add fleet "Large Core Pirates" 600
-		add fleet "Korath Large Raid" 50000
-		remove fleet "Human Wormhole Guards"
 
 
 
