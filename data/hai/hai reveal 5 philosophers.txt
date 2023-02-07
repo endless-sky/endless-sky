@@ -1312,7 +1312,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 		system "Devil-Hide"
 		government "Pirate (Devil-Run Gang)"
 		personality frugal launching heroic
-		ship "Frugal Defence Cannon"
+		ship "Frugal Defense Cannon"
 
 
 fleet "Elenchus Tribute"
