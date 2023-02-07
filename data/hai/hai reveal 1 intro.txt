@@ -793,7 +793,7 @@ mission "Hai Leaks Response 4"
 		dialog `You have returned, but the fate of the pirates and the captured Hai is still in doubt. Ensure that the Black Lich is defeated and that the fate of the captured Hai, whether deceased or safely with you, is certainly known.`
 	to complete
 		or
-			has "00 Hai Leaks Response 4B: declined"
+			has "00 Hai Leaks Response 4B: offered"
 			has "Hai Leaks Response 4A: failed"
 	on complete
 		payment 1000000
