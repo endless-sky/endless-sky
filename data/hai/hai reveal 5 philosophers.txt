@@ -1135,6 +1135,7 @@ outfit "Defense Cannon"
 		"hull damage" 34
 
 outfit "Timer Weapon Rangeless"
+	plural "Timer Weapon Rangeless"
 	category "Turrets"
 	thumbnail "outfit/unknown"
 	"turret mounts" -1
