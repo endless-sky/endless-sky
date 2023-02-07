@@ -122,6 +122,8 @@ private:
 	// The current choices being presented to you, and their indices:
 	std::list<std::pair<Paragraph, int>> choices;
 	int choice = 0;
+	// Flicker time, set if the player enters invalid input for a pilot's name.
+	int flickerTime = 0;
 
 	// Text entry fields for changing the player's name.
 	std::string firstName;
