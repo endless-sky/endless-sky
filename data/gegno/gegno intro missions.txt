@@ -503,7 +503,9 @@ mission "Gegno Hunter Fleets"
 	to offer
 		has "Gegno Genocide Defense: offered"
 		not "Gegno Hunter Fleets: active"
-	npc
+	to complete
+		never
+	npc save
 		government "Gegno"
 		personality nemesis heroic vindictive
 		system
@@ -519,7 +521,7 @@ mission "Gegno Hunter Fleets"
 				"Halite" 18
 				"Felsic" 3
 				"Coesite" 5
-	npc
+	npc save
 		government "Gegno"
 		personality nemesis heroic vindictive
 		system
@@ -533,7 +535,7 @@ mission "Gegno Hunter Fleets"
 				"Felsic" 4
 				"Coesite" 4
 				"Eclogite" 3
-	npc
+	npc save
 		government "Gegno"
 		personality nemesis heroic vindictive
 		system
@@ -565,16 +567,16 @@ mission "Gegno Vi Duels"
 		random < 60
 	to complete
 		never
-	npc
+	npc provoke
 		system "Ookmya"
 		government "Gegno Vi (Duelist A)"
-		personality heroic uninterested
+		personality heroic uninterested staying
 		fleet "Gegno Vi Duelist A"
 		conversation "interfered with duel"
-	npc
+	npc provoke
 		system "Ookmya"
 		government "Gegno Vi (Duelist B)"
-		personality heroic uninterested
+		personality heroic uninterested staying
 		fleet "Gegno Vi Duelist B"
 		conversation "interfered with duel"
 
