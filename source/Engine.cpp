@@ -911,21 +911,34 @@ void Engine::Step(bool isActive)
 
 	// Draw crosshairs on any minables in range of the flagship's scanners.
 	double scanRange = flagship ? 100. * sqrt(flagship->Attributes().Get("asteroid scan power")) : 0.;
-	if(flagship && scanRange && !flagship->IsHyperspacing())
-		for(const shared_ptr<Minable> &minable : asteroids.Minables())
-		{
-			Point offset = minable->Position() - center;
-			if((offset.Length() > scanRange || !Preferences::Has("Show minable pointers"))
-				&& flagship->GetTargetAsteroid() != minable)
-				continue;
+	if(Preferences::Has("Show minable pointers"))
+	{
+		if(flagship && scanRange && !flagship->IsHyperspacing())
+			for(const shared_ptr<Minable> &minable : asteroids.Minables())
+			{
+				Point offset = minable->Position() - center;
+				if((offset.Length() > scanRange || flagship->GetTargetAsteroid() == minable))
+					continue;
 
-			targets.push_back({
-				offset,
-				minable->Facing(),
-				.8 * minable->Radius(),
-				GetMinablePointerColor(minable == flagship->GetTargetAsteroid()),
-				3});
-		}
+				targets.push_back({
+					offset,
+					minable->Facing(),
+					.8 * minable->Radius(),
+					GetMinablePointerColor(false),
+					3
+				});
+			}
+	}
+	const auto targetAsteroidPtr = flagship->GetTargetAsteroid();
+	if(flagship && scanRange && !flagship->IsHyperspacing() &&
+		targetAsteroidPtr && (targetAsteroidPtr->Position() - center).Length() < scanRange)
+		targets.push_back({
+			targetAsteroidPtr->Position() - center,
+			targetAsteroidPtr->Facing(),
+			.8 * targetAsteroidPtr->Radius(),
+			GetMinablePointerColor(true),
+			3
+		});
 }
 
 
