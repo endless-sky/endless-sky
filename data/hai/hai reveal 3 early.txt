@@ -450,7 +450,7 @@ event "ladybug surveillance"
 		add variant 5
 			"Ladybug"
 		add variant 5
-			"Lightning Bug (Surveillance)" 
+			"Lightning Bug (Surveillance)"
 			"Ladybug"
 		add variant 5
 			"Lightning Bug (Surveillance)" 2
