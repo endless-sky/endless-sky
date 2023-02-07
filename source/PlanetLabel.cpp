@@ -110,7 +110,6 @@ PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, con
 	// Figure out how big the label has to be.
 	double width = max(FontSet::Get(18).Width(name), FontSet::Get(14).Width(government)) + 8.;
 
-	const Interface *hudInterface = GameData::Interfaces().Get("hud");
 	// Try to find a label direction that not overlapping under any zoom.
 	for(int d = 0; d < 4; ++d)
 		if(!Overlaps(*system, object, Preferences::MinViewZoom(), width, d)
