@@ -232,6 +232,20 @@ bool Preferences::ZoomViewOut()
 
 
 
+double Preferences::MinViewZoom()
+{
+	return GameData::Interfaces().Get("hud")->GetValue("min zoom");
+}
+
+
+
+double Preferences::MaxViewZoom()
+{
+	return GameData::Interfaces().Get("hud")->GetValue("max zoom");
+}
+
+
+
 // Starfield parallax.
 void Preferences::ToggleParallax()
 {
@@ -414,9 +428,8 @@ int Preferences::GetPreviousSaveCount()
 
 bool Preferences::CheckZoomBoundaries()
 {
-	const Interface *hudInterface = GameData::Interfaces().Get("hud");
-	double minZoom = hudInterface->GetValue("min zoom");
-	double maxZoom = hudInterface->GetValue("max zoom");
+	double minZoom = MinViewZoom();
+	double maxZoom = MaxViewZoom();
 
 	if(zoom >= maxZoom)
 	{

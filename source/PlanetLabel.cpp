@@ -18,13 +18,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Angle.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
-#include "GameData.h"
 #include "Government.h"
 #include "LineShader.h"
-#include "Interface.h"
 #include "pi.h"
 #include "Planet.h"
 #include "PointerShader.h"
+#include "Preferences.h"
 #include "RingShader.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -114,8 +113,8 @@ PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, con
 	const Interface *hudInterface = GameData::Interfaces().Get("hud");
 	// Try to find a label direction that not overlapping under any zoom.
 	for(int d = 0; d < 4; ++d)
-		if(!Overlaps(*system, object, hudInterface->GetValue("min zoom"), width, d)
-				&& !Overlaps(*system, object, hudInterface->GetValue("max zoom"), width, d))
+		if(!Overlaps(*system, object, Preferences::MinViewZoom(), width, d)
+				&& !Overlaps(*system, object, Preferences::MaxViewZoom(), width, d))
 		{
 			direction = d;
 			return;
