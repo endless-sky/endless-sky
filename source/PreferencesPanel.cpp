@@ -343,6 +343,7 @@ void PreferencesPanel::DrawControls()
 		"Navigation",
 		"Weapons",
 		"Targeting",
+		"Navigation",
 		"Interface",
 		"Fleet"
 	};
@@ -367,6 +368,8 @@ void PreferencesPanel::DrawControls()
 		Command::HAIL,
 		Command::BOARD,
 		Command::SCAN,
+		Command::NONE,
+		Command::MOUSE_TURNING,
 		Command::NONE,
 		Command::MENU,
 		Command::MAP,
