@@ -964,7 +964,7 @@ mission "Hai Reveal [B11] Moving Together"
 			action
 				set "Hai Reveal [B11] Moving Together: label secret"
 			`	Remington explains. "This operation has gone on long enough that the popular opinion is that the Hai must obviously exist, even though there are no explicit voices saying as such. It has in fact almost become a joke; the perception being that, 'The Navy are blockading the Hai to hide humanity from them, because the blockade isn't doing a good job of being inconspicuous.' There have been memes of the Navy hiding their ships behind far too narrow light poles while they distract a squirrel with their headlights. Now it's a matter of being able to present good news. Place a successful spin on things."`
-			`	"Our problem," says Kaine. "Is Elenchus."`
+			`	"Our problem," says Kaine, "is Elenchus."`
 				goto briefing
 			label elenchus
 			action
