@@ -3126,7 +3126,7 @@ conversation "cultural data for coalition group"
 	`	You slightly increase your pace, but the group does too. They eventually catch up to you. You turn to face them, as they begin speaking to you.`
 	label "mission intro"
 	`	"Greetings, fellow human. A peaceful group, we are. Curious about your race, we are, so for you, a mission we have.", says one of the Coalition citizens, using a translation box.`
-	`	"A small mission, it is. Bring us human books, we want you to. Pay you <payment> and be very grateful, we would, if accept this mission, you will.", explains the citizen.`
+	`	"A small mission, it is. Knowledge from your race, we seek. Pay you 180,000 credits and be very grateful, we would, if accept this mission, you will.", explains the citizen.`
 	branch "you already have everything"
 		has "human cultural data"
 	choice
@@ -3134,31 +3134,20 @@ conversation "cultural data for coalition group"
 			decline
 		`	"What should I be worried about?"`
 		`	"Is this going to get me in trouble?"`
-			goto "consequences"
-		`	"How much will you pay me?"`
-			goto "ask about pay"
-	label "consequences"
-	`	"The Heliarchs, review everything they must. Heavy-handed, the censorship is. Some books from your space, to read them we want to. Because to break free from Heliarch censorship, we wish. And if forbidden knowledge, on your ship they find, heavy-handed the punishment will be, so avoid scans, you must."`
+	`	"The Heliarchs, review everything they must. Heavy-handed, the censorship is. Media from your space, to consume them we want to. Because to break free from Heliarch censorship, we wish. And if forbidden knowledge, on your ship they find, heavy-handed the punishment will be, so avoid scans, you must."`
 	choice
 		`	"I'm not willing to risk it. Sorry."`
 			decline
 		`	"I'm in. What do you want me to collect?"`
 	label "what do they want"
-	`	"Anything. A translation device we have, so the language it is in, of no importance it is. As for the topic, a book about oppressing dictatorships or tyranny, we want. Histories of humanity's resistance movements, we seek."`
+	`	"Anything. A translation device we have, so the language it is in, of no importance it is. As for the topic, a great story about oppressing dictatorships or tyranny, we want. Histories of humanity's resistance movements, we seek."`
 	choice
 		`	"I'm not interested. Sorry."`
 			decline
-		`	"How much will I be paid for this?"`
-			goto "ask about pay"
-	label "ask about pay"
-	`	"Generous we are, so for you, 180,000 credits we will give."`
-	choice
-		`	"Okay, will this get me in trouble?"`
-			goto "consequences"
-		`	"What do you want me to collect?"`
-			goto "what do they want"
-		`	"I'm in."`
-	`	"Thank you. Enlighten us and the rest of the Coalition, your actions will. A safe trip, we hope you have." They give you a piece of paper detailing instructions on where they can be found.`
+		`	"I see. I will bring you all the knowledge you want."`
+	label "accept mission"
+	`	"Thank you. Enlighten us and the rest of the Coalition, your actions will. A safe trip, we hope you have." They give you instructions on where they can be found.`
+	`	You think of how you would be able to bring all of humanity's knowledge with you, until you think of Alexandria, humanity's largest library and museum. Head to Alexandria and see if you can find a copy of the entire archive there.`
 		accept
 	label "return"
 	`	You return to the group of Coalition citizens and hand them the datachip. "For this chip, thankful to you we are."`
