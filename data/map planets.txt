@@ -727,14 +727,6 @@ planet Dancer
 		threshold 2000
 		fleet "Small Militia" 23
 
-planet "Vivid Aether"
-	attributes "gas giant" "requires: gaslining" uninhabited
-	landscape land/nasa29
-	description `Whether it be from local evolution or panspermia, Vivid Aether's clouds are home to colonies of anaerobic microbial life, feeding on both sunlight and traces of methane in the atmosphere. These form colorful streaks in the upper atmosphere, which initially attracted Saryd explorers to the planet. Now, it is common for Heliarch research patrols to sit in orbit for weeks at a time in order to study the simple, yet exotic, ecology. Occasionally, they send down hardened research vessels capable of withstanding the extreme pressures, though none happen to be nearby right now.`
-	description `	The life-bearing layer only extends downward a few hundred kilometers before pressures rise and the temperature becomes inhospitable to life. Deeper within the planet's atmosphere, the environment is barren and lifeless.`
-	government Uninhabited
-	security 0
-
 planet Darkcloak
 	attributes unfettered
 	landscape land/water6
@@ -3815,6 +3807,14 @@ planet "Station Cian"
 	"required reputation" 15
 	security 0.5
 
+planet Steamwater
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/clouds_05
+	description `Steamwater is a hot Neptune, a misleadingly named "ice giant" close to its parent star. Steamwater is distinctive in that, by mass, it is almost entirely water. Beyond this, the range of temperatures and pressures found in its atmosphere is such that its thickest layer is composed of supercritical water, a phase state blending together the states of vapor and liquid, making flight inside it rather disorienting.`
+	description `	With no true interface between gaseous water vapor and the compressed liquid found below, the buoyant force affecting your ship is unpredictable without keeping a careful eye on your altimeter. While this is true of gas giants in general, the much higher density of water as compared to common hydrogen makes this effect especially noticeable.`
+	government Uninhabited
+	security 0
+
 planet Stonebreak
 	attributes hai manufacturing urban
 	landscape land/hills7-harro
@@ -4381,11 +4381,11 @@ planet Violetwake
 	bribe 0
 	security 0
 
-planet Steamwater
+planet "Vivid Aether"
 	attributes "gas giant" "requires: gaslining" uninhabited
-	landscape land/clouds_05
-	description `Steamwater is a hot Neptune, a misleadingly named "ice giant" close to its parent star. Steamwater is distinctive in that, by mass, it is almost entirely water. Beyond this, the range of temperatures and pressures found in its atmosphere is such that its thickest layer is composed of supercritical water, a phase state blending together the states of vapor and liquid, making flight inside it rather disorienting.`
-	description `	With no true interface between gaseous water vapor and the compressed liquid found below, the buoyant force affecting your ship is unpredictable without keeping a careful eye on your altimeter. While this is true of gas giants in general, the much higher density of water as compared to common hydrogen makes this effect especially noticeable.`
+	landscape land/nasa29
+	description `Whether it be from local evolution or panspermia, Vivid Aether's clouds are home to colonies of anaerobic microbial life, feeding on both sunlight and traces of methane in the atmosphere. These form colorful streaks in the upper atmosphere, which initially attracted Saryd explorers to the planet. Now, it is common for Heliarch research patrols to sit in orbit for weeks at a time in order to study the simple, yet exotic, ecology. Occasionally, they send down hardened research vessels capable of withstanding the extreme pressures, though none happen to be nearby right now.`
+	description `	The life-bearing layer only extends downward a few hundred kilometers before pressures rise and the temperature becomes inhospitable to life. Deeper within the planet's atmosphere, the environment is barren and lifeless.`
 	government Uninhabited
 	security 0
 
