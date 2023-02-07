@@ -1064,7 +1064,7 @@ ship "Centipede" "Centipede (Teeneep Jump)"
 
 
 
-ship "Frugal Defence Cannon"
+ship "Frugal Defense Cannon"
 	attributes
 		"heat dissipation" 1
 		"hull threshold" 200
@@ -1078,24 +1078,24 @@ ship "Frugal Defence Cannon"
 		"landing speed" 1
 	outfits
 		"Timer Weapon Rangeless"
-		"Defence Cannon"
-		"Defence Cannon"
-		"Defence Cannon"
-		"Defence Cannon"
-		"Defence Cannon"
-		"Defence Cannon"
-		"Defence Cannon"
-		"Defence Cannon"
-		"Defence Cannon"
-		"Defence Cannon"
-		"Defence Cannon"
-		"Defence Cannon"
-		"Defence Cannon"
-		"Defence Cannon"
-		"Defence Cannon"
-		"Defence Cannon"
-		"Defence Cannon"
-		"Defence Cannon"
+		"Defense Cannon"
+		"Defense Cannon"
+		"Defense Cannon"
+		"Defense Cannon"
+		"Defense Cannon"
+		"Defense Cannon"
+		"Defense Cannon"
+		"Defense Cannon"
+		"Defense Cannon"
+		"Defense Cannon"
+		"Defense Cannon"
+		"Defense Cannon"
+		"Defense Cannon"
+		"Defense Cannon"
+		"Defense Cannon"
+		"Defense Cannon"
+		"Defense Cannon"
+		"Defense Cannon"
 	turret 0 0
 	turret -80 20
 	turret -70 -10
@@ -1116,7 +1116,7 @@ ship "Frugal Defence Cannon"
 	turret 70 10
 	turret 80 0
 
-outfit "Defence Cannon"
+outfit "Defense Cannon"
 	category "Turrets"
 	thumbnail "outfit/unknown"
 	"turret mounts" -1
