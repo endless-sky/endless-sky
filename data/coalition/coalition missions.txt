@@ -3184,6 +3184,7 @@ mission "Fangvin: Struggling Author - Human Media 1"
 	source "Ki Patek Ka"
 	destination "Alexandria"
 	to offer
+		"reputation: Republic" > 100 # You need to be able to land on Alexandria.
 		has "Wanderers: Translation Machine: done"
 		not "human cultural data"
 	on visit
