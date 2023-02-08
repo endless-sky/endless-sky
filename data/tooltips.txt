@@ -497,6 +497,9 @@ tip "shield generation:"
 tip "shield generation multiplier:"
 	`Modifies the amount of shield points recharged per second by the given factor.`
 
+tip "shield permeability"
+	`This percentage of all incoming damage always leaks through to the hull.`
+
 tip "shields (charge):"
 	`Total shield strength and regeneration rate (per second).`
 
