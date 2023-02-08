@@ -3117,6 +3117,7 @@ mission "Coalition: Outskirts Gauger Ready"
 mission "Heliarchs Buy Jump Drive Mission"
 	minor
 	landing
+	invisible
 	to offer
 		has "Coalition: First Contact: done"
 		has "outfit (cargo): Jump Drive"
@@ -3141,3 +3142,4 @@ mission "Heliarchs Buy Jump Drive Mission"
 		"coalition jobs" >?= 30
 		outfit "Jump Drive" -1
 		payment 5000000
+		fail
