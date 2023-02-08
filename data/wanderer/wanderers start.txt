@@ -1335,7 +1335,7 @@ mission "Wanderers: Alpha Surveillance E"
 			`Admiral Danforth is very pleased to see you, but his expression turns grim when you explain why you have come.`
 				to display
 					not "skip FW"
-			`Admiral Danforth is curious as to why you came to him. You explain that you heard of him and the oathkeepers when you were still on your homeworld, during the events of the war. He is very pleased that you choose to trust him, but his mood darkens the more you detail why you came here.`
+			`Admiral Danforth is curious as to why you came to him. You explain that you heard of him and the Oathkeepers when you were still on your homeworld, during the events of the war. He is very pleased that you choose to trust him, but his mood darkens the more you detail why you came here.`
 				to display
 					has "skip FW"
 			`	When you mention the Alphas, he hushes you. "Let's not speak of that, out here in the open," he says. "Not that I do not trust my people, but it is best to be safe. I will gather troops who I know are able to operate discreetly and have them be ready to join us on an expedition. Meet me in my private office at the spaceport when you're ready."`
