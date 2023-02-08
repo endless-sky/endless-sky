@@ -77,7 +77,7 @@ ship "Auxiliary (Alpha)"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "This is a stolen Auxiliary that was used by the Alphas to move supplies and outfits around, mainly for trading with the Unfettered. They did not seem to have modified it a lot and conveniently contained their logs, although encrypted."
+	description "This is a stolen Auxiliary that was used by the Alphas to move supplies and outfits around, mainly for trading with the Unfettered. It seems that did not modify it much and conveniently retained their logs, although in an encrypted form."
 
 # name of the ship, needed in a phrase because we need it in a fleet for the cargo
 phrase "Settler"
@@ -91,7 +91,7 @@ conversation "unfettered: destroyed auxiliary"
 		"reputation: Hai (Unfettered)" <?= -1
 
 # Alphas don't give the best loot to the Unfettered, excluding things like:
-# detainers, triple plasma core, large syscores, husk slicer turret and shield disruptors from the normal deliveries
+# detainers, triple plasma cores, large syscores, husk slicer turrets and shield disruptors from the normal deliveries
 outfitter "Korath Drones Alpha Loot"
 	"Piercer Missile Launcher"
 	"Piercer Missile"
@@ -214,7 +214,7 @@ mission "Unfettered: Alpha Supplies: Leaving"
 
 
 
-# SPOILER: this mission is what sets the Alphas against you, because they can't afford to let you know they operate here, thinking you could be Navy.
+# SPOILER: this mission is what sets the Alphas against you, because they can't afford to let you know they operate here, thinking you could be with the Navy.
 mission "<uhai> 5: Scan Auxiliary"
 	name `Scan the human ship`
 	description `Scan the human ship in <waypoints> using a Value Detector by <date>, and then come back to <origin> with the logs when you can.`
@@ -227,7 +227,7 @@ mission "<uhai> 5: Scan Auxiliary"
 		clear "event: unfettered: analyzed the scans"
 		conversation
 			`You go get a drink in the spaceport, taking a beverage that appears to be water, wanting to take no risks on this alien world. After tasting it, you are sure it is indeed water. The Unfettered here do not have the habit of consuming many special drinks - at least not on a regular basis.`
-			`	You ask around for Mera, the Unfettered engineer you met before. She said she would tell you more about it once she gets the Geocoris logs, but you have yet to see her since you brought those logs to the local authorities. Hopefully, she can be trusted. After you spend an hour talking with the local Unfettered and drinking, she finally arrives. She seems to be in quite a hurry.`
+			`	You ask around for Mera, the Unfettered engineer you met before. She said she would tell you more once she gets the Geocoris logs, but you have yet to see her since you brought those logs to the local authorities. Hopefully she can be trusted. After you spend an hour talking with the local Unfettered and drinking, she finally arrives. She seems to be in quite a hurry.`
 			`	"Sorry I could not see you earlier; I was busy. I know I have promised you information, but there is a more pressing matter we should focus on. A human ship will enter <system> in a few days. I need you to scan it for me with the same scanner we gave you, and then I will meet you back here with the others and answer any questions you may have," she promises.`
 			`	"Oh, and before I forget, you should not attack them, even if they strike first. I am not sure how they will even react to your presence," she adds.`
 			choice
@@ -266,7 +266,7 @@ mission "<uhai> 5: Scan Auxiliary"
 				not "outfit (flagship installed): Value Detector"
 			`You have finished scanning the Auxiliary, that seems to be controlled by humans.`
 			`	As you prepare yourself to exit the system and bring the logs back, you receive a message from the local Unfettered authorities.`
-			`	"We demand that you land right away. If you go to any other system, that ship may pursue you. We do not want a dispute between our suppliers of jump drives; this is probably just a misunderstanding. Surely the unfettered humans can work this out with you later. If you land we can guarantee your safety here. We have requested that ship to land on another port, on Firelode, since it did fire on you first you without any apparent provocation."`
+			`	"We demand that you land right away. If you go to any other system, that ship may pursue you. We do not want a dispute between our suppliers of jump drives; this is probably just a misunderstanding. Surely the unfettered humans can work this out with you later. If you land, we can guarantee your safety here. We have requested that ship to land at another port, on Firelode, since it did fire on you first without any apparent provocation."`
 			choice
 				`	"I will land, as you ask."`
 					accept
@@ -281,7 +281,7 @@ mission "<uhai> 5: Scan Auxiliary"
 			`	"Maybe, but there is no guarantee their ship will not pursue you. Please, land straight away, I assure you the other ship will land on another planet, and if not, our orbital defenses will protect you."`
 				decline
 			label mission
-			`	"Yes, we know. You do not need to worry about that, whilst we will not relay the scans ourselves for safety reasons, bringing them back never was the urgency, you may do so whenever you have the time."`
+			`	"Yes, we know. You do not need to worry about that, whilst we will not relay the scans ourselves for safety reasons, bringing them back was never the urgency, you may do so whenever you have the time."`
 				accept
 			label "didn't listen"
 			`You have finished scanning the Auxiliary, but you did not use a Value Detector to do so, and the scan will be of no value to Mera. You have failed the mission.`
@@ -296,14 +296,14 @@ mission "<uhai> 5: Scan Auxiliary"
 		ship "Far Osk 27" "Anger"
 		ship "Far Osk 27" "Dart"
 	on visit
-		dialog "You should have landed on <destination>, but you did not scan the Auxiliary yet. Time is of the essence, take of and scan its cargo as soon as possible!"
+		dialog "You should have landed on <destination>, but you did not scan the Auxiliary yet. Time is of essence, take off and scan its cargo as soon as possible!"
 	to fail
 		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
 		dialog
-			`You are offered some surprisingly high-quality beverages to keep you waiting, much higher than what you normally would be able to get on Unfettered worlds. This special treatment is probably in part due to your ongoing mission for Mera.`
+			`You are offered some surprisingly high-quality beverages to keep you waiting, that are much better than what you normally would be able to get on Unfettered worlds. This special treatment is probably in part due to your ongoing mission for Mera.`
 			`	After a while, the ship goes away, you can now go back to <origin> with the scanner logs.`
 
 
@@ -358,14 +358,14 @@ mission "<uhai> 5: Auxiliary Scans"
 			label stories
 			`	"Indeed, so have I, and for once the stories were not exaggerated compared to the facts! I've heard stories ever since the Carrier was first seen by our people. We compared it to a space station."`
 			label beforeugo
-			`	"Before you go, you should know that examining these specs will take me some time, so it could be a while until I would employ you again."`
+			`	"Before you go, you should know that examining these specs will take me some time, so it could be a while until I employ you again."`
 			choice
 				`	(Ask her about the 'unfettered humans'.)`
 					to display
 						not "unfettered: it's the Alphas!"
 				`	(I'll find it out on my own.)`
 					decline
-			`	"We use 'unfettered' to describe members of a specie that fight for what they believe in, instead of, for instance, doing their day to day routine. That includes the anarchists organizations you refer to as pirates, but not only." She is clearly unwilling to tell you more than this.`
+			`	"We use 'unfettered' to describe members of a species that fight for what they believe in, instead of, for instance, doing their day to day routine. That includes the anarchists organizations you refer to as pirates, but not only." She is clearly unwilling to tell you more than this.`
 
 
 
@@ -405,14 +405,14 @@ mission "<uhai> 6 A: Loyal Escort"
 				`	"Yes nothing would scare me, not even an Unfettered captain."`
 				`	"Those stories may have been slightly exaggerated..."`
 					goto exaggerated
-			`	"I knew I could count on you! The stories must be speaking true."`
+			`	"I knew I could count on you! The stories must be true."`
 				goto choose
 			label exaggerated
 			`	"What do you mean? Your ship is not as fast as a Mem'he and as enduring as a Toor? I will not accept excuses or cowardice, if that is the case, the time to prove yourself is now!"`
 				goto choose
 			label busy
 			`	"Whatever it is you may be busy with, I'm sure it can wait. This fleet needs to arrive here before it is too late, in 3 weeks, and it is of the highest importance that it does not without any trouble."`
-			`	He asks something to his advisor, and gets a positive answer. "Do not worry about the logs, the rush was only for scanning them, but you have all the time you need to bring them back now."`
+			`	He asks something to his advisor, and gets a positive answer. "Do not worry about the logs, the rush was only for scanning the ship, but you have all the time you need to bring the logs back."`
 				to display
 					has "<uhai> 5: Auxiliary Scans: active"
 			label choose
@@ -497,11 +497,11 @@ mission "<uhai> 6 A: Loyal Escort"
 		clear "unfettered: hunger stops"
 		payment 500000
 		conversation
-			`The governor hails you, "My thanks for the escort, captain, we would have been lost to those pirates had it not been for your presence there. You should probably go see Sookootow to speak to him in person about this ambush, I am sure he will be interested in your opinion of it, even if he probably has already heard about this petty attempt at capturing my ship. I suspected such a thing would happen, but I thought your presence would protect me... I was wrong apparently Here are your <payment>, you deserved them.`
-			`	"However you should know that the crisis is not over yet. This disaster did more than distressing a few people, it was the wind that makes the rotten tree fall. The Unfettered rely on this world for what little food they can still make. They are now in desperate need for food, and whilst we brought them some, along with competent people to help them produce more food, it will never be enough."`
+			`The governor hails you, "My thanks for the escort, captain, we would have been lost to those pirates had it not been for your presence there. You should probably go see Sookootow to speak to him in person about this ambush, I am sure he will be interested in your opinion of it, even if he probably has already heard about this petty attempt at capturing my ship. I suspected such a thing would happen, but I thought your presence would protect me... I was wrong apparently. Here are your <payment>, you have deserved them.`
+			`	"However, you should know that the crisis is not over yet. This disaster did more than distress a few people, it is the wind that makes the rotten tree fall. The Unfettered rely on this world for what little food they can still make. They are now in a desperate need of food, and whilst we brought them some, along with competent people to help them produce more food, it will never be enough."`
 			branch "was no hunger"
 				not "event: unfettered: need for food"
-			`	"In fact, as I am sure you were made aware, there already was a food shortage, which will only be made worse now that the tsunami destroyed some of the plantations and algae farming."`
+			`	"In fact, as I am sure you were made aware, there was already a food shortage, which will only be made worse now that the tsunami destroyed some of the plantations and algae farming."`
 			label "was no hunger"
 			choice
 				`	"What are they going to do then?"`
@@ -510,7 +510,7 @@ mission "<uhai> 6 A: Loyal Escort"
 			`	"They will be forced to keep militarizing more... I am sure that many Hai will come to help alleviate the situation, but I am afraid it will not be enough.`
 				goto introduce
 			label dosmth
-			`	"Of course you can! Even as we speak many Hai are bringing food to our brethren, and so can you. Due to the exceptional circumstances jobs are available to bring more food than ever, for a price corresponding to the seriousness of the situation."`
+			`	"Of course you can! Even as we speak many Hai are bringing food to our brethren, and so can you. Due to the exceptional circumstances, jobs are available to bring more food than ever, for a price corresponding to the seriousness of the situation."`
 			label introduce
 			`	"Only now I realize I have failed to introduce myself... My name is Vai'chi, and I will probably forever be in your debt. May the leaves keep on flowing your way, and I hope we see each others again. In the meantime, you should know that the Unfettered will probably be busy for some time because of this food crisis."`
 			branch over
@@ -873,13 +873,13 @@ mission "<uhai> 7: Cavalry Arrives"
 	on enter
 		conversation
 			"As you enter the system it becomes clear: they have called for backup! Multiple pirate ships are arriving in the system. But you also see other ships arriving by jump drives. They do not appear to be pirates, maybe the 'contact' has provided help as well?"
-			`They hail you, "Listen carefully. You may have noticed a Korath drone in the area, and they don't like Alpha dogs around much. If Koraths come to help do not open fire on them, understood?" "I would recommend you make sure these pirate ships are on your side, captain!" The other ship adds, before ending the hail, making it clear they will not take no for an answer.`
+			`They hail you, "Listen carefully. You may have noticed a Korath drone in the area, and they don't like Alpha dogs around much. If Korath come to help, do not open fire on them, understood?" "I would recommend you make sure these pirate ships are on your side, captain!" The other ship adds, before ending the hail, making it clear they will not take no for an answer.`
 	npc save
 		government "Shadow"
 		personality entering heroic uninterested staying mute
 		ship "Sea Dragon" "Thorn"
 		ship "Sea Dragon" "Talon"
-	# the Koraths see this opportunity to hunt some Alpha dogs.
+	# the Korath see this as an opportunity to hunt some Alpha dogs.
 	npc
 		government "Korath"
 		personality surveillance
@@ -926,7 +926,7 @@ mission "<uhai> 7: Cavalry Arrives"
 			`You receive an ominous message of defiance, "Nemo me impune lacessit."`
 				decline
 			label nevercompleted
-			`You gave up fixing the Unfettered cargo situation, and the mysterious ships leave pursuing Cerberus ships that are left.`
+			`You gave up fixing the Unfettered cargo situation, and the mysterious ships leave in pursuit of the remaining Cerberus ships.`
 			label completed
 			`You look for Sookootow in the spaceport, and find him talking with Si-Ra, who was about to leave. Seeing you, Si-Ra shows a quick greeting in sign of respect, before leaving.`
 			`	The Chief then shakes your hands in true human fashion. "Jiko has just told me of your success, captain. Congratulations are in order!"`
@@ -1077,9 +1077,9 @@ mission "<uhai> 8: It's The Alphas"
 				not "midas: wronged"
 			branch "dead, boy!"
 				"midas: wronged" > 1
-			`You ask around for this Auxiliary; 'Settler', but no-one will reveal anything about it to you, until, suspecting you will not leave until you have something, someone comes, their face concealed. "You. You have betrayed us by revealing our plan to the governor, you are not to be trusted. That said, those that you are looking for are our enemies as well, so I will reveal you the location you need -if- you agree to give us compensation for your mistake. We demand 10 millions, in the form of a fine, to make sure you will have to pay us interests should you lack money."`
+			`You ask around for this Auxiliary; 'Settler', but no-one will reveal anything about it to you, until, suspecting you will not leave until you have something, someone comes, their face concealed. "You. You have betrayed us by revealing our plan to the governor, you are not to be trusted. That said, those that you are looking for are our enemies as well, so I will reveal you the location you need -if- you agree to give us compensation for your mistake. We demand 10 million credits, in the form of a fine, to make sure you will have to pay us interests should you lack money."`
 			choice
-				`	"I will give you your 10 millions.`
+				`	"I will give you your 10 million credits.`
 				`	"I will give you 10 gold bars instead."`
 					to display
 						"outfit: Gold Bars" >= 10
@@ -1276,7 +1276,7 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 		log `Captured the Alpha Auxiliary. The Alphas had a trap set but it failed. Or, at least, that's what they want everyone to think.`
 		payment 10000000
 		"salary: Unfettered" = 1000
-		event "unfettered: Koraths back up" 20 50
+		event "unfettered: Korath back up" 20 50
 		conversation
 			`As you land with the Auxiliary, you notice dozens of Unfettered start coming your way, cheering, and their numbers quickly grow to hundreds. More keep coming from every direction, probably expecting Jump Drives, but this could also be the first time they see the fabled Auxiliary in person. Whatever the case, they seem surprised when they realize it belongs to you. They murmur with each other and then they start saluting, by rising one fist up. First a few do it, then more, until finally all of them are saluting in respect.`
 			choice
@@ -1301,18 +1301,18 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 					has "Hai Reveal [B03] Contact Giti: done"
 			`	"We have lost much, so much. Too much... But so have they. They are victims of that war as much as we are. And the raids happened long ago, so I did not fight these Korath, I fought their ancestors. If we view it as fair to raid the Wanderers today, we must see what the Korath did in the same way. The Korath did not always raid us, there was a time of peace. That peace ended when they asked for our help in their war, and we declined... Now, like then, these ones need our help. They should be considered assets at the very least, not prisoners. They could help us against the soulless killers."`
 			`	This mention set off much murmuring, you can feel that not everyone agrees with what he said, but he has enough influence that they will not argue about it, at least for now. You wonder what the soulless killers could be, but feel like now is not the time to ask.`
-			`	The veteran speaks again, "Now, would you show these Koraths to me?"`
+			`	The veteran speaks again, "Now, would you show these Korath to me?"`
 			choice
 				`	"Sure."`
 					goto auxiliary
 				`	"What for?"`
 			`	"I want to see if I recognize them." You agree to take him to them, warning him of their condition.`
 			label auxiliary
-			`	You take him to the Auxiliary, alone, as he insists to, unsure how some may react. When you enter the medical facility of the Auxiliary, the Koraths are already speaking between themselves, and he seems surprised, stopping himself at the door. "I... I recognize that language! It brings back memories... I may not be ready to face them yet. But I'll arrange for their transport to our most advanced medical facility." On the way out he addresses what seems to be the first Hai he sees with that task, and they get to it straight away. You then go back to the stadium.`
+			`	You take him to the Auxiliary, alone, as he insists to, unsure how some may react. When you enter the medical facility of the Auxiliary, the Korath are already speaking between themselves, and he seems surprised, stopping himself at the door. "I... I recognize that language! It brings back memories... I may not be ready to face them yet. But I'll arrange for their transport to our most advanced medical facility." On the way out he addresses what seems to be the first Hai he sees with that task, and they get to it straight away. You then go back to the stadium.`
 			`	They discuss among themselves again, then the warlord from earlier speaks, seemingly with a heavy burden. "Now that you officially work for us, you will receive a daily share of 1000 credits. We will not make you wear our colors yet, because it could cause problems with the Hai. We wish for you to be free to travel in their territory." They then make the necessary preparations to transfer the Korath out of your ship, after stabilizing them as much as possible.`
 			branch logs
 				has "<uhai> 9: Alpha Base: done"
-			# The Alpha logs self destructed if you didn't make a copy of them when you notice them.
+			# The Alpha logs self destructed if you didn't make a copy of them when you noticed them.
 			`	Having nothing more to show the Unfettered, you leave. This leaves you wondering if there was something hidden in the Auxiliary, but after a short inspection you summize that if there was, it is no longer there now.`
 				decline
 			label logs
@@ -1330,7 +1330,7 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 			`	"Those are probably too well-encrypted to be of much use, but we will try to break them anyway, maybe with some outside help. Thank you for sharing this information with us. We will transfer a bonus of <payment> for this."`
 				decline
 			label setup
-			`	He seems surprised, and takes a while to respond, stuttering a bit. "I.. I can assure you I had no idea, and certainly no say in this. The ways of the Chiefs are sometimes mysterious. They may have really wanted you to prove your worth against the green humans, and made sure they would meet you in battle. Given you made it back, it seems it was a fair fight. It was, in a way, a trap for the Alphas more so than for you. Maybe some planned this, but I can assure you that not all of us were accomplices."`
+			`	He seems surprised, and takes a while to respond, stuttering a bit. "I... I can assure you I had no idea, and certainly no say in this. The ways of the Chiefs are sometimes mysterious. They may have really wanted you to prove your worth against the green humans, and made sure they would meet you in battle. Given you made it back, it seems it was a fair fight. It was, in a way, a trap for the Alphas more so than for you. Maybe some planned this, but I can assure you that not all of us were accomplices."`
 			choice
 				`	"There are logs on my ship, apparently speaking about the source of the jump drives. I will send them to you."`
 					goto showlogs
@@ -1343,7 +1343,7 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 				fail "<uhai> 9: Capture The Alpha Auxiliary"
 				set "unfettered: betrayed"
 
-event "unfettered: Koraths back up"
+event "unfettered: Korath back up"
 
 
 
@@ -1360,7 +1360,7 @@ mission "<uhai> 9: Alpha Base"
 		set "found alpha base"
 		conversation
 			`You do a detailed scan of the Alpha base to see if there are any more Jump Drives or anyone who could have witnessed the fight. You cannot retrieve any information: it seems to either be too deep or at least shielded from scans in some way. You will have to go in blind.`
-			`	The doors of the hangar open to let you in. Maybe it is an automated response to this ship, or whoever is down here assumed the Alphas won the fight. If there is anyone here, it's probably a skeleton crew. You and your crew carefully exit your ship, but you see no signs of life here. They could be hidden, so you proceed cautiously, looking for the jump drive vault. On the way you hear sounds - sounds that definitely did not originate from humans. Heading that way, you find a brig full of Korath slaves, with a lizard head displayed above the cells. They seem to have been prisoners of the Alphas, and you find what appears to be a crudely rigged translation device with them. They do not look to be in a state to talk about anything though, so you should probably take them to Darkcloak and talk to the Chiefs about this. Hopefully the Korath will have recovered by then. You notice one has a very serious injury to his leg, it seems part of it has been replaced by a crude prosthetic. He may not survive the transport.`
+			`	The doors of the hangar open to let you in. Maybe it is an automated response to this ship, or whoever is down here assumed the Alphas won the fight. If there is anyone here, it's probably a skeleton crew. You and your crew carefully exit your ship, but you see no signs of life here. They could be hidden, so you proceed cautiously, looking for the jump drive vault. On the way you hear sounds - sounds that definitely did not originate from humans. Heading that way, you find a brig full of Korath slaves, with a lizard head displayed above the cells. They seem to have been prisoners of the Alphas, and you find what appears to be a crudely rigged translation device with them. They do not look to be in a state to talk about anything though, so you should probably take them to Darkcloak and talk to the Chiefs about this. Hopefully the Korath will have recovered by then. You notice one has a very serious injury to his leg, it seems that it has been partially replaced by a crude prosthetic. He may not survive the transport.`
 			`	You find the Jump Drives easily enough, close to the hangar. There are ten here, and you load them all onto your ship. It seems the base was abandoned for some reason.`
 			choice
 				`	(Explore the Auxiliary.)`

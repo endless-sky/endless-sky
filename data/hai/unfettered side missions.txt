@@ -117,7 +117,7 @@ mission "Unfettered: Neutral With The Hai"
 				"reputation: Hai Merchant" >?= 1
 				"reputation: Hai Merchant (Sympathizers)" >?= 1
 				"reputation: Hai Merchant (Human)" >?= 1
-				log `Convinced the Hai to accept the offer of ceasefire with me, as requested by an Unfettered Chief. Should the word not be honored a large sum will be due.`
+				log `Convinced the Hai to accept the offer of ceasefire with me, as requested by an Unfettered Chief. Should the word not be honored, a large sum will be due.`
 			`	They seem willing to give you a second chance. "You have convinced us, but we will not grant you this pardon twice."`
 				accept
 			label death
@@ -217,7 +217,7 @@ mission "<uhai> 13: Better Translator"
 			label war
 			action
 				set "unfettered: how got info"
-			`	"We Hai have not always been in conflict with the Korath. At some point we were even friendly with the Sestors, before they started raiding us, that is. We refused to go to war, so war came to us."`
+			`	"We Hai have not always been in conflict with the Korath. At some point we were even friendly with the Sestor, before they started raiding us, that is. We refused to go to war, so war came to us."`
 				goto choice
 	on stopover
 		dialog `The Hai are more happy to give you this data in exchange for data on the translator itself.`
@@ -239,7 +239,7 @@ mission "<uhai> 13: Better Translator"
 		event "unfettered: better sestor translator" 45
 		dialog "Choot'k thanks you, and tells you they will be able to upgrade the translator so they can communicate better with the Sestor."
 
-# SPOILER: they see this as an opportunity to get the leader and also don't want the Unfettered (and you) to be able to communicate too deeply with Sestors...
+# SPOILER: they see this as an opportunity to get the leader and also don't want the Unfettered (and you) to be able to communicate too deeply with Sestor...
 mission "<uhai> 13: A Warlord's Reception"
 	landing
 	invisible
@@ -256,11 +256,11 @@ mission "<uhai> 13: A Warlord's Reception"
 conversation "modified shield beetle prize"
 	action
 		set "unfettered: given the modified beetle"
-	`As promised by Mera, you find the unusual Shield Beetle that seems to be waiting for you. There is a projected message on the hull of the ship: "Here is your very special reward, Captain. As promised, it is equipped with plenty of prototype weapons and has some particulars which I am sure you will like, and includes a reinforced shield matrix. Please accept this as a way for me to thank you for your assistance so far!"`
+	`As promised by Mera, you find the unusual Shield Beetle that seems to be waiting for you. There is a projected message on the hull of the ship: "Here is your very special reward, Captain. As promised, it is equipped with plenty of prototype weapons and has some in particular which I am sure you will like, and includes a reinforced shield matrix. Please accept this as a way for me to thank you for your assistance so far!"`
 	`	When you enter the ship you realize that something is blinking red in the cockpit. Getting close you realize it is a communicator with a high priority message from Mera. Once the ship recognizes your identity, it displays the message. "This is for your eyes only. This ship is not just given to you for you to have fun shooting around. It includes a very advanced communicator, that we would not replace should you lose it. Eventually you will be able to use it to coordinate fleet actions, or even to call for reinforcements, I hope."`
 	branch "has communicator"
 		has "language: Wanderer"
-	`	"Once you acquire a translator we will include it in your ship so you may easily communicate with any Hai."`
+	`	"Once you acquire a translator, we will equip it on your ship so that you may easily communicate with any Hai."`
 		goto then
 	label "has communicator"
 	`	"Since you already have a translator, here are the instructions to equip it on your ship." You install it on your ship as requested, and do a little test to make sure it is working properly.`
@@ -484,7 +484,7 @@ mission "<uhai> 18: Detainer For Translator"
 		has "<uhai> 18: Hai Language: active"
 		or
 			has "First Contact: Wanderer: offered"
-			has "First Contact: Wanderer (Before hai): offered"
+			has "First Contact: Wanderer (Before Hai): offered"
 		not "language: Wanderer"
 	on offer
 		conversation
@@ -695,9 +695,9 @@ mission "<uhai> 20: Bigeminate Sigil: Boarding Equipement"
 		dialog phrase "Essential Unfettered Mission Fail"
 	to complete
 		or
-			has "Bring Pug Staffs: failed"
-			has "Bring Coalition Weapons: failed"
-			has "Bring Void Rifle: failed"
+			has "<uhai> 20: Boarding Equipement: Pug Staffs: failed"
+			has "<uhai> 20: Boarding Equipement: Enforcer Staffs: failed"
+			has "<uhai> 20: Boarding Equipement: Void Rifle: failed"
 	on complete
 		clear "unfettered: offered close quarter"
 		log `Brought powerful but non-lethal weapons to the Unfettered for training.`
@@ -769,11 +769,12 @@ mission "<uhai> 20: Boarding Equipement: More Enforcer Staffs"
 		<staff> "Enforcer"
 	to offer
 		has "<uhai> 20: Bigeminate Sigil: Boarding Equipement: offered"
-		not "Bring Coalition Weapons: offered"
-		not "Bring Pug Staffs: offered"
+		not "<uhai> 20: Boarding Equipement: Enforcer Staffs: offered"
+		not "<uhai> 20: Boarding Equipement: Pug Staffs: offered"
 	on offer
 		require "Enforcer Riot Staff"
 		conversation "more staffs"
+		fail
 
 
 mission "<uhai> 20: Boarding Equipement: More Pug Staffs"
@@ -784,8 +785,8 @@ mission "<uhai> 20: Boarding Equipement: More Pug Staffs"
 		<staff> "Pug Peacekeeping"
 	to offer
 		has "<uhai> 20: Bigeminate Sigil: Boarding Equipement: offered"
-		not "Bring Coalition Weapons: offered"
-		not "Bring Pug Staffs: offered"
+		not "<uhai> 20: Boarding Equipement: Pug Staffs: offered"
+		not "<uhai> 20: Boarding Equipement: Enforcer Staffs: offered"
 	on offer
 		require "Pug Peacekeeping Staff"
 		conversation "more staffs"
@@ -805,7 +806,7 @@ mission "<uhai> 20: Boarding Equipement: Pug Staffs"
 		dialog `The Unfettered thank you for bringing these 20 staffs to them. They give you <payment>.`
 		fail
 
-mission "<uhai> 20: Boarding Equipement: Coalition Staffs"
+mission "<uhai> 20: Boarding Equipement: Enforcer Staffs"
 	landing
 	invisible
 	source "Warfeed"

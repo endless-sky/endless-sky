@@ -442,12 +442,12 @@ mission "Unfettered Bring Batteries"
 			`	"These batteries are pretty big, so I would expect them to mostly be in big outfitters, such as Markerplace. They should not be too hard to find."`
 				goto choose
 			label why
-			`	"That is what we usually do, except that the need for those has increased recently, and we lack sufficient production to keep up with it. So we ask Hai Sympathizers and privateers like yourself to get them for us when we are in big need. Our navy must not seem weak or the Hai could use that opportunity to strike."`
+			`	"That is what we usually do, except that the need for those has increased recently, and we lack sufficient production to keep up with it. So we ask Hai Sympathizers and privateers like yourself to get them for us when we are in big need. Our navy must not seem weak or the Hai could see that as an opportunity to strike."`
 				goto choose
 	on complete
 		outfit "Hai Valley Batteries" -1
 		payment 500000
-		dialog `You bring the batteries to the deck workers, who seem to be in a hurry to put it to use, "About time! Would it have been any later it would have probably been too late! Here are your <payment>."`
+		dialog `You bring the batteries to the deck workers, who seem to be in a hurry to put them to use, "About time! Would it have been any later it would have probably been too late! Here are your <payment>."`
 
 
 mission "Unfettered Bring Ion Cannons"
@@ -483,10 +483,10 @@ mission "Unfettered Bring Ion Cannons"
 			action
 				payment 1000000
 				log "Minor People" "Binkeili" `An Unfettered that was interested in weapons dealing, and maybe something else, too.`
-			`	"I will give you <payment> already, to make sure you can easily buy these Ion Cannons. Do not even think about trying to steal that money, captain. You will receive the last later."`
+			`	"I will give you <payment> already, to make sure you can easily buy these Ion Cannons. Do not even think about trying to steal that money, captain. You will receive the rest later."`
 				accept
 			label raiding
-			`	"Oh, that is just an expression we use, since we never know when we will see each others again, if at all. Too many do not come back from the raids, or even worse, they could come back with an empty cargo bay. Now, back to the task at hand!"`
+			`	"Oh, that is just an expression we use, since we never know when we will see each other again, if at all. Too many do not come back from the raids, or even worse, they could come back with an empty cargo bay. Now, back to the task at hand!"`
 				goto money
 	on abort
 		dialog `You receive a message from the captain. "Did you really think you could scam me like this? Think again."`
@@ -750,7 +750,7 @@ mission "Unfettered Cargo Interception East"
 	job
 	repeat
 	name `Find and bring the materials back`
-	description `Find the <npc> that has stolen the materials needed for the development of the urban areas om the eastern side of pirate space, and bring those materials back to <destination> for <payment>. You will need to scan the cargo of ships to figure out which one has the materials.`
+	description `Find the <npc> that has stolen the materials needed for the development of the urban areas on the eastern side of pirate space, and bring those materials back to <destination> for <payment>. You will need to scan the cargo of ships to figure out which one has the materials.`
 	source
 		attributes "unfettered"
 	destination
@@ -793,6 +793,6 @@ mission "Unfettered Bring More Coolers"
 		dialog phrase "generic cargo on visit"
 	on complete
 		outfit "Liquid Nitrogen Cooler" -10
-		dialog `You deliver the coolers to the usual contact of Mera, and he thanks you personally. "You must have made a long trip to bring these here, for which I thank you. Here are <payment>. Whilst the price is not that high, your biggest reward is being continuously able to buy the new Zephyr Coolers."`
+		dialog `You deliver the coolers to the usual contact of Mera, and she thanks you personally. "You must have made a long trip to bring these here, for which I thank you. Here are <payment>. Whilst the price is not that high, your biggest reward is being continuously able to buy the new Zephyr Coolers."`
 		payment 1250000
 
