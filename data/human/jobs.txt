@@ -1297,7 +1297,7 @@ mission "Southern Pirate Attack"
 		"combat rating" > 100
 		random < 10
 	source
-		not government "Pirate"
+		not government "Pirate" "Humanika (Port)"
 		attributes "frontier"
 		attributes "rim" "south" "dirt belt"
 	npc evade
@@ -1333,7 +1333,7 @@ mission "Northern Pirate Attack"
 		"combat rating" > 100
 		random < 10
 	source
-		not government "Pirate"
+		not government "Pirate" "Humanika (Port)"
 		attributes "frontier"
 		attributes "north" "paradise" "deep"
 	npc evade
@@ -1369,7 +1369,7 @@ mission "Core Pirate Attack"
 		"combat rating" > 100
 		random < 10
 	source
-		not government "Pirate"
+		not government "Pirate" "Humanika (Port)"
 		attributes "frontier"
 		attributes "core" "near earth"
 	npc evade
@@ -2688,7 +2688,7 @@ mission "Wildfire Aid [1]"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
-		not government "Pirate"
+		not government "Pirate" "Humanika (Port)"
 		distance 2 8
 		attributes "forest"
 	on visit
@@ -2709,7 +2709,7 @@ mission "Wildfire Aid [2]"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
-		not government "Pirate"
+		not government "Pirate" "Humanika (Port)"
 		distance 2 8
 		attributes "forest"
 	on visit

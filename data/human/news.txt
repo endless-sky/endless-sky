@@ -28,7 +28,7 @@ phrase "merchant names"
 
 news "merchant anywhere"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai" "Quarg" "Humanika (Port)"
 		not
 			government "Quarg"
 			not attributes "human"
@@ -139,7 +139,7 @@ news "merchant in human space"
 
 news "farmer"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Humanika (Port)"
 		attributes "farming"
 	name
 		word
@@ -194,7 +194,7 @@ news "textile worker"
 
 news "miner"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Humanika (Port)"
 		attributes "mining"
 	name
 		word
@@ -216,7 +216,7 @@ news "miner"
 
 news "factory worker"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Humanika (Port)"
 		attributes "factory"
 	name
 		word
@@ -393,7 +393,7 @@ news "unemployed youth"
 
 news "union organizer"
 	location
-		government "Syndicate"
+		government "Syndicate" "Humanika (Port)"
 		not attributes "research" "frontier"
 	name
 		word
@@ -429,7 +429,7 @@ phrase "small trash item"
 
 news "waste collector"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Humanika (Port)"
 		attributes "dirt belt" "urban" "factory"
 		not attributes "paradise" "station"
 	name
@@ -454,7 +454,7 @@ news "waste collector"
 
 news "dock worker"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Humanika (Port)"
 		attributes "dirt belt" "rim" "factory" "south" "core"
 	name
 		word
@@ -629,7 +629,7 @@ news "loan officer"
 
 news "hyperspace relay engineer"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg" "Humanika (Port)"
 		not
 			government "Quarg"
 			not attributes "human"
@@ -652,8 +652,8 @@ news "hyperspace relay engineer"
 
 news "hyperspace scientist"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "research" "deep"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Humanika (Port)"
+		attributes "research" "deep" "humanika"
 	name
 		word
 			"Hyperspace researcher"
@@ -677,7 +677,7 @@ news "hyperspace scientist"
 
 news "geological engineer"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Humanika (Port)"
 		attributes "mining" "volcanic"
 	name
 		word
@@ -698,7 +698,7 @@ news "geological engineer"
 
 news "agricultural scientist"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Humanika (Port)"
 		attributes "farming"
 	name
 		word
@@ -729,7 +729,7 @@ phrase "athlete competition location"
 
 news "athlete"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Humanika (Port)"
 		attributes "core" "paradise" "rim"
 	name
 		word
@@ -836,7 +836,7 @@ news "economist"
 
 news "mechanic"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Humanika (Port)"
 		attributes "dirt belt" "rim" "factory" "south" "core"
 	name
 		word
@@ -862,7 +862,7 @@ news "mechanic"
 
 news "ship salesperson"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Humanika (Port)"
 	# TODO: Add filter for only planets with shipyards (once we can use conditions to filter this).
 	name
 		word
@@ -910,8 +910,8 @@ news "nuclear technician"
 
 news "substance abuse counselor"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "poor" "dirt belt" "near earth" "south"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Humanika (Port)"
+		attributes "poor" "dirt belt" "near earth" "south" "pirate-friendly"
 	name
 		word
 			"Substance abuse counselor"
@@ -1029,8 +1029,8 @@ news "actor"
 
 news "musician"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "south" "paradise" "near earth"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Humanika (Port)"
+		attributes "south" "paradise" "near earth" "humanika"
 	name
 		word
 			"Musician"
@@ -1308,8 +1308,8 @@ news "work coach"
 
 news "scientist"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "research" "deep"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Humanika (Port)"
+		attributes "research" "deep" "humanika"
 	name
 		word
 			"Scientist"
@@ -1380,6 +1380,42 @@ news "religious"
 			"Praise Jesus! This day is a blessing."
 			"Praise Allah! This day is a blessing."
 			"Praise God! This day is a blessing."
+		word
+			`"`
+
+
+
+news "trying to reform pirates using religion"
+	location
+		government "Humanika (Port)"
+		attributes "religious"
+	name
+		word
+			"Mystic"
+			"Preacher"
+			"Mediator"
+	message
+		word
+			`"`
+		word
+			"The path to enlightenment is fraught with sacrifice."
+			"When we spend our lives chasing desire, we find that it turns to ashes in our mouths, and that which we seek most becomes a prison. What do you seek?"
+			"It's been many years since I came to this world seeking out cosmic truth, and I sense that my journey may soon be at an end."
+			"Can you spare a few credits for the poor, captain? In this universe of abundance, so many still suffer."
+			"Blessed is the one whose transgressions are forgiven, whose sins are covered."
+			"Hatred stirs old quarrels, but love overlooks insults."
+			"Every son of Adam sins, the best of the sinners are those who repent."
+			"Turn to God with sincere repentance, in the hope that your Lord will remove from you your ills and admit you to Gardens beneath which Rivers flow."
+			"Forgiveness is the might of the mighty; forgiveness is sacrifice; forgiveness is quiet of mind."
+			"Help thy brother's boat across, and Lo! Thine own has reached the shore."
+			"Holding on to anger is like grasping a hot coal with the intent of throwing it at someone else; you are the one who gets burned."
+			"Better than a thousand hollow words, is one word that brings peace."
+			"You will not be punished for your anger, you will be punished by your anger."
+			"Who shows pity for humankind, the Heavens will pity in turn."
+			"When the time comes for an accounting of man’s deeds, it is too late to do anything about them."
+			"Evil inclination is sweet at the start and bitter at the end."
+			"The human race will begin solving its problems on the day that it ceases taking itself so seriously."
+			"May you be free of The Curse of Greyface. May the Goddess put twinkles in your eyes. May you have the knowledge of a sage, and the wisdom of a child."
 		word
 			`"`
 
@@ -1543,7 +1579,7 @@ news "syndicate soldier"
 
 news "pirate"
 	location
-		government "Pirate"
+		government "Pirate" "Humanika (Port)"
 	name
 		word
 			"Pirate"
@@ -1602,7 +1638,7 @@ news "pirate"
 
 news "merchant in pirate space"
 	location
-		government "Pirate"
+		government "Pirate" "Humanika (Port)"
 	name
 		word
 			"Merchant captain"
@@ -1819,7 +1855,7 @@ phrase "deep motto graffiti"
 
 news "graffiti on spaceport wall"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Pirate"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Pirate" "Humanika (Port)"
 	name
 		word
 			"Graffiti painted on a wall"

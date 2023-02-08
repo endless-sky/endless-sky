@@ -23030,7 +23030,7 @@ system Mirzam
 
 system Misam
 	pos -9 -80
-	government Pirate
+	government "Humanika (Port)"
 	arrival 3835
 	habitable 3835
 	belt 1091
@@ -23058,6 +23058,7 @@ system Misam
 	fleet "Large Core Pirates" 2000
 	fleet "Korath Raid" 5000
 	fleet "Korath Large Raid" 11000
+	fleet "Korath Civilian Delivery" 50000
 	fleet "Human Miners" 10000
 	fleet "Large Syndicate" 20000
 	fleet "Korath Miners" 15000

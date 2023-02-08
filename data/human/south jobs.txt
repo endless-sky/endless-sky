@@ -20,10 +20,10 @@ mission "Pirate Occupation [0]"
 		random < 5
 		"combat rating" > 100
 	source
-		not government "Pirate"
+		not government "Pirate" "Humanika (Port)"
 		attributes "south" "rim"
 	destination
-		not government "Pirate" "Quarg"
+		not government "Pirate" "Quarg" "Humanika (Port)"
 		distance 2 3
 		attributes "south"
 	npc
@@ -57,10 +57,10 @@ mission "Pirate Occupation [1]"
 		random < 5
 		"combat rating" > 200
 	source
-		not government "Pirate"
+		not government "Pirate" "Humanika (Port)"
 		attributes "south" "rim"
 	destination
-		not government "Pirate" "Quarg"
+		not government "Pirate" "Quarg" "Humanika (Port)"
 		distance 2 3
 		attributes "south"
 	npc
@@ -95,10 +95,10 @@ mission "Pirate Occupation [2]"
 		random < 5
 		"combat rating" > 300
 	source
-		not government "Pirate"
+		not government "Pirate" "Humanika (Port)"
 		attributes "south" "rim"
 	destination
-		not government "Pirate" "Quarg"
+		not government "Pirate" "Quarg" "Humanika (Port)"
 		distance 2 3
 		attributes "south"
 	npc

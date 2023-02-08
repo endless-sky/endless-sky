@@ -456,6 +456,29 @@ fleet "Korath Civilian Large"
 		"Rai'alorej"
 		"'olofez (Expeller)" 2
 
+fleet "Korath Civilian Delivery"
+	government "Korath (Civilian)"
+	names "korath"
+	fighters "korath"
+	cargo 3
+	personality
+		frugal opportunistic disables forbearing
+	variant 8
+		"Rano'erek"
+		"'olofez (Expeller)" 4
+	variant 8
+		"Rano'erek"
+		"'olofez (Digger)" 4
+	variant 4
+		"Lor'kas Ik 577 (Jump)"
+		"'olofez (Expeller)" 3
+	variant 4
+		"Kas'lor Ik 582 (Jump)"
+		"'olofez (Expeller)" 3
+	variant 2
+		"Rai'alorej"
+		"'olofez (Expeller)" 2
+
 
 fleet "Korsmanath A'awojs"
 	government "Korath (Civilian)"
