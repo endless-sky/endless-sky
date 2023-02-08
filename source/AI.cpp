@@ -1424,7 +1424,11 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 {
 	double invisibleFenceRadius = ship.GetSystem()->InvisibleFenceRadius();
 
-	shared_ptr<const Ship> target = ship.GetTargetShip();
+	shared_ptr<Ship> mutableTarget = ship.GetTargetShip();
+	// Clear the target if it is no longer valid (cloaked, exploding, etc.)
+	if(mutableTarget && !mutableTarget->IsTargetable())
+		ship.SetTargetShip(mutableTarget = nullptr);
+	shared_ptr<Ship> target = mutableTarget;
 	// NPCs should not be beyond the "fence" unless their target is
 	// fairly close to it (or they are intended to be there).
 	if(!ship.IsYours() && !ship.GetPersonality().IsUnconstrained())
@@ -2476,7 +2480,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		else if(!isStaying)
 			command |= Command::LAND;
 	}
-	else if(target)
+	else if(target && target->IsTargetable())
 	{
 		// Approach and scan the targeted, friendly ship's cargo or outfits.
 		bool cargoScan = ship.Attributes().Get("cargo scan power");
