@@ -3121,8 +3121,6 @@ mission "Heliarchs Buy Jump Drive Mission"
 	to offer
 		has "Coalition: First Contact: done"
 		has "outfit (cargo): Jump Drive"
-	to complete
-		has "Heliarchs Buy Jump Drive Job"
 	source
 		government "Heliarch"
 	on offer
