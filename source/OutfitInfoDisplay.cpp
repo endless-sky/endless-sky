@@ -173,6 +173,7 @@ namespace {
 		{"shield heat multiplier", 3},
 		{"threshold percentage", 3},
 		{"overheat damage threshold", 3},
+		{"shield permeability", 3},
 
 		{"burn protection", 4},
 		{"corrosion protection", 4},
