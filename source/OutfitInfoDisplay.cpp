@@ -586,15 +586,13 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		"infrared tracking:",
 		"radar tracking:",
 		"piercing:"
-		"shield permeability:"
 	};
 	vector<double> percentValues = {
 		outfit.Tracking(),
 		outfit.OpticalTracking(),
 		outfit.InfraredTracking(),
 		outfit.RadarTracking(),
-		outfit.Piercing(),
-		outfit.ShieldPermeability()
+		outfit.Piercing()
 	};
 	for(unsigned i = 0; i < PERCENT_NAMES.size(); ++i)
 		if(percentValues[i])
