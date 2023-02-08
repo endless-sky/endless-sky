@@ -914,7 +914,7 @@ phrase "martini evac dialog"
 
 
 
-mission "Martini Bombings [Medical 1]"
+mission "Martini Relief Medical [0]"
 	name "Disaster relief to Martini"
 	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help treat the wounded. Payment is <payment>."
 	job
@@ -935,7 +935,7 @@ mission "Martini Bombings [Medical 1]"
 		dialog phrase "generic cargo delivery payment"
 
 
-mission "Martini Bombings [Medical 2]"
+mission "Martini Relief Medical [1]"
 	name "Disaster relief to Martini"
 	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help treat the wounded. Payment is <payment>."
 	job
@@ -956,7 +956,7 @@ mission "Martini Bombings [Medical 2]"
 		dialog phrase "generic cargo delivery payment"
 
 
-mission "Martini Bombings [Reconstruction]"
+mission "Martini Relief (Reconstruction)"
 	name "Construction supplies to Martini"
 	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help the reconstruction efforts. Payment is <payment>."
 	job
@@ -977,7 +977,7 @@ mission "Martini Bombings [Reconstruction]"
 		dialog phrase "generic cargo delivery payment"
 
 
-mission "Martini Bombings [Food]"
+mission "Martini Relief (Food)"
 	name "Food packages to Martini"
 	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help keep up supply. Payment is <payment>."
 	job
@@ -998,7 +998,7 @@ mission "Martini Bombings [Food]"
 		dialog phrase "generic cargo delivery payment"
 
 
-mission "Martini Bombings [Water Tablets]"
+mission "Martini Relief (Water Tablets)"
 	name "Water purification tablets to Martini"
 	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help keep up supply. Payment is <payment>."
 	job
@@ -1019,7 +1019,7 @@ mission "Martini Bombings [Water Tablets]"
 		dialog phrase "generic cargo delivery payment"
 
 
-mission "Martini Bombings [Relief People 1]"
+mission "Martini Relief People [0]"
 	name "Relief workers to Martini"
 	description "Due to the recent nuclear bombings on Martini, bring <bunks> <martini relief occupations> to <planet> to release demand from overloaded hospitals. Payment is <payment>."
 	job
@@ -1047,7 +1047,7 @@ mission "Martini Bombings [Relief People 1]"
 		payment 30000 5
 		dialog phrase "generic passenger dropoff payment"
 
-mission "Martini Bombings [Relief People 2]"
+mission "Martini Relief People [1]"
 	name "Relief workers to Martini"
 	description "Due to the recent nuclear bombings on Martini, bring <bunks> <martini relief occupations> to <planet> to assist in the search and rescue efforts. Payment is <payment>."
 	job
@@ -1075,7 +1075,7 @@ mission "Martini Bombings [Relief People 2]"
 		payment 30000 5
 		dialog phrase "generic passenger dropoff payment"
 
-mission "Martini Bombings [Relief People 3]"
+mission "Martini Relief People [2]"
 	name "Relief workers to Martini"
 	description "Due to the recent nuclear bombings on Martini, bring <bunks> <martini relief occupations> to <planet> to assist in the accommodation and reconstruction efforts. Payment is <payment>."
 	job
