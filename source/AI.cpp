@@ -1214,7 +1214,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	double closest = person.IsHunting() ? numeric_limits<double>::infinity() :
 		(minRange > 1000.) ? maxRange * 1.5 : 4000.;
 	bool hasNemesis = false;
-	bool canPlunder = person.Plunders() && ship.Cargo().Free();
+	bool canPlunder = person.Plunders() && ship.Cargo().Free() && !ship.CanBeCarried();
 	// Figure out how strong this ship is.
 	int64_t maxStrength = 0;
 	auto strengthIt = shipStrength.find(&ship);

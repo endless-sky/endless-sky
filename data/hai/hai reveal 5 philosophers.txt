@@ -411,6 +411,7 @@ mission "Hai Reveal [B05-short] The Road Not Taken"
 	to offer
 		has "Hai Reveal [B04] The Road Not Taken: done"
 		has "event: knows about keystones and wormholes"
+		not "Hai Reveal [B05-long] The Red Mystery: offered"
 	on offer
 		fail "Hai Reveal [B02-S] Republic Intelligence Stalkers"
 		log `Giti tripped an alert which places you both under the jurisdiction of a Syndicate Internal Affairs investigation. You've were sent directly to Hephaestus.`
@@ -469,6 +470,7 @@ mission "Hai Reveal [B05-long] The Red Mystery"
 	to offer
 		has "Hai Reveal [B04] The Road Not Taken: done"
 		not "event: knows about keystones and wormholes"
+		not "Hai Reveal [B05-short] The Road Not Taken: offered"
 	on offer
 		conversation
 			`At length you return again to tell Giti about the system with the unstable wormhole in it. You aren't required to land elsewhere on the planet this time, so it's a shorter, if equally crowded, journey to her office.`
