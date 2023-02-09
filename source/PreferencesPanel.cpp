@@ -346,7 +346,8 @@ void PreferencesPanel::DrawControls()
 		"Targeting",
 		"Navigation",
 		"Interface",
-		"Fleet"
+		"Fleet",
+		"Targeting"
 	};
 	const string *category = CATEGORIES;
 	static const Command COMMANDS[] = {
@@ -369,7 +370,6 @@ void PreferencesPanel::DrawControls()
 		Command::HAIL,
 		Command::BOARD,
 		Command::NEAREST_ASTEROID,
-		Command::SCAN,
 		Command::NONE,
 		Command::MOUSE_TURNING_HOLD,
 		Command::MOUSE_TURNING_TOGGLE,
@@ -385,7 +385,9 @@ void PreferencesPanel::DrawControls()
 		Command::GATHER,
 		Command::HOLD,
 		Command::AMMO,
-		Command::HARVEST
+		Command::HARVEST,
+		Command::NONE,
+		Command::SCAN
 	};
 	static const Command *BREAK = &COMMANDS[19];
 	for(const Command &command : COMMANDS)
