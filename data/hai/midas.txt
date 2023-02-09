@@ -200,7 +200,7 @@ ship "Tick"
 	leak "leak" 60 50
 	explode "tiny explosion" 17
 	description "This drone was customized with the idea of using either a Repeater, to increase the owner's damage output, or a Bullfrog Anti-Missile, to keep its owner safe. The denser materials used allow for better protection, at the cost of a bit more mass and lower heat dissipation."
-	description "	This handy drone was only made possible thanks to scavenging, and combining multiple alien technologies."
+	description "	This handy drone was only made possible thanks to scavenging and combining multiple alien technologies."
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 
@@ -275,7 +275,7 @@ ship "Sea Dragon"
 	explode "large explosion" 18
 	"final explode" "final explosion medium"
 	description "The Sea Scorpion was designed to serve as a mobile platform to launch Trackers from. After decades of hard work, the Unfettered are finally able to mass produce them. The ever growing fleet of Sea Scorpions enables the Unfettered to employ new tactics against the other Hai which alleviate some of their numerical, technological, and logistical disadvantages."
-	description "	This version was built from stronger materials, allowing a stronger hull, at the cost of heat dissipation. The owners also made modifications in order to make this ship more agile and flexible, with increased fuel and engine capacity. It is a terror on the battlefield, using its speed and high damage of the Tripulse Shredders to its advantage."
+	description "	This version was built from stronger materials, allowing for a stronger hull at the cost of heat dissipation. The owners also made modifications in order to make this ship more agile and flexible, with increased fuel and engine capacity. It is a terror on the battlefield, using its speed and high damage of the Tripulse Shredders to its advantage."
 
 
 
@@ -384,7 +384,7 @@ mission "Midas: Who is the mad one?"
 
 phrase "midas defeated"
 	word
-		`After disabling the last of the pirate ships, you wonder what could have motivated such an attack. Do you possess something valuable to them? When they entered the system, they only sent one message: "nemo me impune lacessit". It is probably best to store whatever they were interested in on a planet (using U) or get rid of it.`
+		`After disabling the last of the pirate ships, you wonder what could have motivated such an attack. Do you possess something valuable to them? When they entered the system, they only sent one message: "nemo me impune lacessit". It is probably best to store whatever they were interested in on a planet (using U) or to get rid of it.`
 
 # attacks to get the bars back, in Hai and human space; as they have more influence in human space they are more numerous there
 mission "Midas: Nemo Me Impune Lacessit"
@@ -456,7 +456,7 @@ mission "Midas: Betrayal For The Bars"
 		conversation
 			`As you land on the pirate world, you head for the hatch, preparing to enter the spaceport, but passing by the cargo bay you think you hear a sound. Odd... There shouldn't be anyone there right now, knowing your crew's habits, as most of them have already disembarked.`
 			choice
-				`(Its nothing. Probably just a rat.)`
+				`(It's nothing. Probably just a rat.)`
 				`(Go investigate.)`
 					goto investigate
 			action
@@ -623,7 +623,7 @@ mission "<uhai> 6 B: To The Wolves"
 		payment 1000000
 	# as of yet, we cannot make the main mission fail as your escorts are boarded, meaning these will not be disables
 	npc
-		# the Alphas and their minions let Midas alone so that this would happen. They probably even gave them a tip about it, but not in person.
+		# the Alphas and their minions left Midas alone so that this would happen. They probably even gave them a tip about it, but not in person.
 		government "Midas"
 		system "Waypoint"
 		personality plunders staying harvests
@@ -686,7 +686,7 @@ mission "<uhai> 7: Duel"
 	on enter
 		set "despawn the duel ships"
 	on abort
-		dialog `You decide to abort the duel. They hail you, "We have no idea why you decided to cancel the duel, but our prize of 10 millions is still due."`
+		dialog `You decide to abort the duel. They hail you, "We have no idea why you decided to cancel the duel, but our prize of 10 million credits is still due."`
 		log `Lost a duel against 2 mysterious ships that serve the 'Shadow of Mintaka', whatever that means. Had to pay up 10 million credits.`
 	on fail
 		dialog "You killed one of the ships. You will need to restart the mission in order to progress further with the Shadow of Mintaka. They may want to have their vengeance on you... The Unfettered may not offer you any missions anymore, for disrespecting the sacred rules of the duel."
