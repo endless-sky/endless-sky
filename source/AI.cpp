@@ -1632,6 +1632,21 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	bool planetIsHere = (parentPlanet && parentPlanet->IsInSystem(parent.GetSystem()));
 	bool systemHasFuel = hasFuelCapacity && currentSystem->HasFuelFor(ship);
 
+	if(parent.Cloaking() == 1 && (ship.GetGovernment() != parent.GetGovernment()))
+	{
+		if(parent.GetGovernment() && parent.GetGovernment()->IsPlayer() &&
+			ship.GetPersonality().IsEscort() && !ship.GetPersonality().IsUninterested())
+		{
+			// NPCs with the "escort" personality that are not uninterested
+			// act as if they were escorts, following the cloaked flagship.
+		}
+		else
+		{
+			MoveIndependent(ship, command);
+			return;
+		}
+	}
+
 	// Non-staying escorts should route to their parent ship's system if not already in it.
 	if(!parentIsHere && !isStaying)
 	{
