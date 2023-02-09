@@ -78,7 +78,7 @@ void Preferences::Load()
 	settings["Show stored outfits on map"] = true;
 	settings["Show mini-map"] = true;
 	settings["Show planet labels"] = true;
-	settings["Show minable pointers"] = true;
+	settings["Show asteroid scanner overlay"] = true;
 	settings["Show hyperspace flash"] = true;
 	settings["Draw background haze"] = true;
 	settings["Draw starfield"] = true;

@@ -910,7 +910,7 @@ void Engine::Step(bool isActive)
 	}
 
 	// Draw crosshairs on any minables in range of the flagship's scanners.
-	if(Preferences::Has("Show minable pointers"))
+	if(Preferences::Has("Show asteroid scanner overlay"))
 	{
 		double scanRangeMetric = flagship ? 10000. * flagship->Attributes().Get("asteroid scan power") : 0.;
 		if(flagship && scanRangeMetric && !flagship->IsHyperspacing())
