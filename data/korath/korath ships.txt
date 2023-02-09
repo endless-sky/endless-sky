@@ -515,7 +515,7 @@ ship "Rai'alorej"
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
 	description "Although fierce in battle and highly adaptable, Korath do not easily recover from injury. Without the aid of a surgeon or more equipment than fits into a standard escape pod, a stranded, injured Korath faces poor odds of survival. Therefore, Korath who leave their home territory have placed great importance on the construction of hospital ships that can quickly locate, recover, and treat the survivors of wrecked ships."
-	description "	The Rai'alorej-class Refuge, named for a pioneer in the field of microbot-assisted surgery, is thoroughly appointed with lifeform scanners, locator beacon receivers, ambulances, and search-and-rescue teams. Once onboard, crash victims are greeted with the finest hospital facilities, microbot treatments, and stores of medicine the Exiles have at hand. Even incubators and nurseries are available to treat the young who grow up aboard ship."
+	description "	The Rai'alorej-Class Refuge, named for a pioneer in the field of microbot-assisted surgery, is thoroughly appointed with lifeform scanners, locator beacon receivers, ambulances, and search-and-rescue teams. Once onboard, crash victims are greeted with the finest hospital facilities, microbot treatments, and stores of medicine the Exiles have at hand. Even incubators and nurseries are available to treat the young who grow up aboard ship."
 
 
 ship "Ikatila'ej"
