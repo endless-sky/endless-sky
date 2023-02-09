@@ -875,7 +875,6 @@ phrase "martini evac dialog"
 		"the Southern Pact"
 		"'those ${insults for southerners}'"
 		"'them ${insults for southerners}'"
-		"'the  ${insults for southerners}'"
 		"'${insults for southerners}'"
 	word
 		" for the "
