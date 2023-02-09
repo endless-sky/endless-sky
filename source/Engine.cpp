@@ -1374,7 +1374,7 @@ void Engine::CalculateStep()
 
 	// Handle the mouse input of the mouse navigation
 	if(Preferences::Has("alt-mouse turning") && !isMouseTurningEnabled)
-		activeCommands.Set(Command::MOUSE_TURNING);
+		activeCommands.Set(Command::MOUSE_TURNING_TOGGLE);
 	HandleMouseInput(activeCommands);
 	// Now, all the ships must decide what they are doing next.
 	ai.Step(player, activeCommands);
@@ -1862,7 +1862,7 @@ void Engine::HandleKeyboardInputs()
 
 	// Transfer all commands that need to be active as long as the corresponding key is pressed.
 	activeCommands |= keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
-		maneuveringCommands | Command::SHIFT);
+		maneuveringCommands | Command::SHIFT | Command::MOUSE_TURNING_HOLD);
 
 	// Certain commands (e.g. LAND, BOARD) are debounced, allowing the player to toggle between
 	// navigable destinations in the system.
@@ -2032,11 +2032,11 @@ void Engine::HandleMouseClicks()
 // Determines alternate mouse turning, setting player mouse angle, and right-click firing weapons.
 void Engine::HandleMouseInput(Command &activeCommands)
 {
-	if(activeCommands.Has(Command::MOUSE_TURNING))
-	{
-		isMouseTurningEnabled = !isMouseTurningEnabled;
-		Preferences::Set("alt-mouse turning", isMouseTurningEnabled);
-	}
+	isMouseHoldEnabled = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
+	if(activeCommands.Has(Command::MOUSE_TURNING_TOGGLE))
+		isMouseToggleEnabled = !isMouseToggleEnabled;
+	isMouseTurningEnabled = (isMouseHoldEnabled || isMouseToggleEnabled);
+	Preferences::Set("alt-mouse turning", isMouseTurningEnabled);
 	if(!isMouseTurningEnabled)
 		return;
 	bool rightMouseButtonHeld = false;
