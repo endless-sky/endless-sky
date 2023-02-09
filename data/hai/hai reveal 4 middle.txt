@@ -1802,9 +1802,10 @@ mission "Hai Reveal [A13] A New Elder"
 				`	"What has Teeneep done, Sayari?"`
 					goto hasdone
 				`	"I take it you need another ride?"`
-			`	She puts her paw over her face and breathes a long sigh. "Yes, Captain <last>, I do need another ride." She smiles and laughs a little before looking at you again.`
+			`	She puts her paw over her face and breathes a long sigh. "Yes, Captain <last>, I do need another ride." She smiles sadly and looks away for a moment.`
 			label hasdone
-			`	She explains, "Things might be tense now, but I promise, things aren't as bad as they look. I know Teeneep, and she has the influential backing of another long-time advocate for sensible change, who was also just elected. They are remaining here to reinforce her position. Teeneep displaced that Elder who threatened her in the chambers. It's upset all the long-term power dynamics in the Council, but it's a much better Council overall now. You're to come with us too, and I'm told I'm required to travel with you, as insurance."`
+			`	Her tone is very serious as she explains, "Things might be tense now, but I promise, things aren't as bad as they look. I know Teeneep, and she has the influential backing of another long-time advocate for sensible change, who was also just elected. They are remaining here to reinforce her position. Teeneep displaced that Elder who threatened her in the chambers. It's upset all the long-term power dynamics in the Council, but it's a much better Council overall now.`
+			`	"Events are in motion though, we're to go to <stopovers> and then to <planet> - and you're to come with us too. I don't think it's something they view as optional, and I'm told I'm required to travel with you... as insurance."`
 			`She hesitates, seeming oddly nervous for the one who theoretically has all the power in the room. "<last>, this will sound silly, but I'm a bit of a traditionalist sometimes. There's a superstition about space travel, and under the circumstances... I'm too old for this stress. Could you please do me a favor and make sure you have a Quantum Keystone on your ship? It's meant to be good luck, and well, I think we need it."`
 			choice
 				`	"Of course."`
@@ -1829,7 +1830,7 @@ mission "Hai Reveal [A13] A New Elder"
 		require "Quantum Keystone"
 		# Apparently I can't make this either Keystones *or* Key Stones, so it'll have to be a Hai one.
 	on visit
-		dialog `Under the circumstances Sayari's superstition has got the better of her. She must travel with you, and you must have a Quantum Keystone installed for her to do so.`
+		dialog `Under the circumstances Sayari's superstition has got the better of her. She must travel with you, and you must have a Quantum Keystone installed for her to do so. You must also go to Everhope on the way as you were instructed.`
 	on decline
 		dialog `You have declined an essential narrative mission. You've also made the Hai hostile. If you want to complete this story line, revert to the autosave or another earlier snapshot of the game.`
 		"reputation: Hai" -= 10000
