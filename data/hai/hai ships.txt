@@ -546,7 +546,7 @@ ship "Lightning Bug" "Lightning Bug (Unfettered Shipyards)"
 		"Hai Corundum Regenerator"
 		"Hai Williwaw Cooling"
 		"Quantum Keystone"
-		"Value Detector" 2
+		"Value Detector"
 		"Pebble Core"
 		"Sand Cell"
 		"Hai Gorge Batteries"
@@ -1155,7 +1155,7 @@ ship "Shield Beetle" "Shield Beetle (Unfettered)"
 		"Hai Valley Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 3
-		"Value Detector" 4
+		"Value Detector" 2
 		"Quantum Keystone"
 		"Pulse Rifle" 65
 		`"Bondir" Atomic Thruster`
@@ -1175,11 +1175,11 @@ ship "Shield Beetle" "Shield Beetle (Unfettered Shipyards)"
 		"Hai Octopus Jammer" 3
 		"Hai Williwaw Cooling" 4
 		"Outfits Expansion" 2
-		"Value Detector" 3
+		"Value Detector" 2
 		"Geode Reactor" 2
 		"Pebble Core"
 		"Hai Gorge Batteries"
-		"Quantum Keystone" 2
+		"Quantum Keystone"
 		"Pulse Rifle" 75
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
