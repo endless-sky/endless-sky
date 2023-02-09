@@ -45,7 +45,7 @@ conversation "default intro"
 
 
 start "hai space after FW and HR"
-	name "Advanced Hai Start"
+	name "Hai Legacy"
 	description `You grew up on Greenwater, a world with a very rich and mixed culture. You've dreamed of owning your own fleet since you were given toy spaceships as a small child. In order to reach that goal, you worked hard making human clothing that sold well.`
 	description `	You were inspired by stories of heroes saving both humans and Hai.`
 	description `	Now, as you enter the shipyard, you feel like this is the start of a new life, in space.`
@@ -60,7 +60,7 @@ start "hai space after FW and HR"
 	on display
 		description "What if you had not grown up on New Boston? What if you had waited longer before taking to the skies?"
 		thumbnail ""
-		date "middle of 3020"
+		date "3020"
 		planet "Slightly too warm"
 		credits "over a million"
 	to reveal
@@ -69,10 +69,10 @@ start "hai space after FW and HR"
 	on reveal
 		name "Undiscovered Hai Start"
 		description "There could be interesting possibilities up north, once all crises are resolved."
-		description "You could have started a different way, went a different path."
+		description "	You could have started a different way, went a different path."
 		system "Somewhere far north"
 		planet "Mixed culture"
-		date "Jun 3020"
+		date "middle of 3020"
 		credits 1.431M
 		debt 1.431M
 	to unlock
@@ -101,7 +101,8 @@ conversation "hai intro"
 	`	This "Aphid" could suit your needs. It is fast and able to carry a respectable amount of cargo.`
 	scene "thumbnail/hai aphid"
 	`	That is, unless you want to get adventurous and try out the impetuous Grasshopper. Surely the interceptor would be able to beat the smaller human warships, provided a competent pilot is at the helm.`
-	`	You have, after all, heard tales of pirates and quick money... And up north you can find the 'Unfettered'. Maybe they would come to like you, if you were to show them the strength and cunning they respect.`
+	`	You have, after all, heard tales of pirates and quick money from the many newcomers. Thanks to the installation of Mountaintop, they say, the way to human space is much safer than it used to be. What happened with the Pug is not clear, however.`
+	`	Alternatively, up north you can find the 'Unfettered'. Maybe they would come to like you, if you were to show them the strength and cunning they respect.`
 	choice
 		`	(Go to the bank.)`
 	scene "scene/hai bank"
@@ -123,7 +124,7 @@ conversation "hai intro"
 		`	"How did you know?"`
 		`	"Sorry, not interested."`
 			decline
-	`	"I can see the will to explore in your eyes. I would be delighted to have you flying the 'Pristine Jewel'!" they say, taking you to the ship. It is clearly not brand new, but is still in a surprisingly good condition.`
+	`	"I can see the will to explore in your eyes, but it is not only that: I know that some humans want to head back to their space, now that it is safer to do so. I would be delighted to have you flying the 'Pristine Jewel'!" they say, taking you to the ship. It is clearly not brand new, but is still in a surprisingly good condition.`
 	scene "thumbnail/hai grasshopper"
 	`	"Because I like you I'll give you a friendly price. What do you say about... a bit over a million credits, for this wonderful ship? That's less than a third the price you would have to pay if you were to buy this model from the shipyard. Except you can't find a model like this in shipyards, trust me!"`
 	choice
