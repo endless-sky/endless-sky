@@ -929,8 +929,8 @@ void Engine::Step(bool isActive)
 				});
 			}
 	}
-	const auto targetAsteroidPtr = flagship->GetTargetAsteroid();
-	if(flagship && !flagship->IsHyperspacing() && targetAsteroidPtr)
+	const auto targetAsteroidPtr = flagship ? flagship->GetTargetAsteroid() : nullptr;
+	if(targetAsteroidPtr && !flagship->IsHyperspacing())
 		targets.push_back({
 			targetAsteroidPtr->Position() - center,
 			targetAsteroidPtr->Facing(),
