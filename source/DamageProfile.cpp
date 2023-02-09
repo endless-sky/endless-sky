@@ -128,7 +128,7 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 		double fullPermeability = attributes.Get("full shield permeability");
 		double lowPermeability = attributes.Get("low shield permeability");
 		double permeability = 0.;
-		if (fullPermeability || lowPermeability)
+		if(fullPermeability || lowPermeability)
 		{
 			// Determine what portion of its maximum shields the ship is currently at.
 			// Only do this if there is nonzero permeability involved, otherwise don't.
