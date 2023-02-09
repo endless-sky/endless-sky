@@ -1053,6 +1053,8 @@ mission "Hai Leaks Response 6"
 	description "Sayari's friend thinks someone with legal protection is kidnapping Hai. Check spaceports in nearby parts of human space for evidence of a Hai trafficking operation."
 	autosave
 	source "Hai-home"
+	destination "Hai-home"
+	# Per the wiki: Explicitly listing destination may be needed for the clearance tag to work.
 	clearance
 	to offer
 		has "Hai Leaks Response 5: done"
