@@ -1044,7 +1044,7 @@ conversation "unfettered war ready"
 	`Now that the fight is over, He-Yi hails you.`
 		to display
 			has "unfettered: mad Si-Ra"
-	`	"You sure know how to [fight, move your ship]! I feel now maybe we are the ones who need [experience, training]. I feel like it is only [fair, normal] you shoudl be the one to give [advise, tips] this time."`
+	`	"You sure know how to [fight, move your ship]! I feel now maybe we are the ones who need [experience, training]. I feel like it is only [fair, normal] you be the one to give [advise, tips] this time."`
 	choice
 		`	"You were overconfident, and that's what let you down."`
 			goto mistake

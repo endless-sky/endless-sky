@@ -1291,7 +1291,7 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 			`	It does not seem to be the right reaction at all. They shout at you; all form of respect is gone. One very shocked Unfettered soldier even tries to shoot you for this insult! It looks like you have shown yourself to be weak to them. After some time, a warlord arrives and calms them down.`
 			label stadium
 			`	The crowd lead you to the stadium.`
-			`	The council seems surprised to see you return, especially the Unfettered warlord that annoyed you earlier, but they address you with a deeper respect than before. "You have proven yourself. Now we have almost enough jump drives for the next phase..." You look at them intensely, and after a few moments they realize, "Oh right, your payment! Here it is: <payment>! From now on, you will be refered to as herald."`
+			`	The council seems surprised to see you return, especially the Unfettered warlord that annoyed you earlier, but they address you with a deeper respect than before. "You have proven yourself. Now we have almost enough jump drives for the next phase..." You look at them intensely, and after a few moments they realize, "Oh right, your payment! Here it is: <payment>! From now on, you will be referred to as herald."`
 			choice
 				`	"I have found Korath prisoners on the Alpha ship."`
 			`	This seems to trouble them deeply. They are split between those who want to interrogate the Korath for their technological secrets, and those who still remember too freshly the horrors of the Korath raids. The Chiefs are now the most active ones - some show scars or speak of lost family, others insult the Korath. A few, however, keep their calm.`
