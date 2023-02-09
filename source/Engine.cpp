@@ -912,12 +912,12 @@ void Engine::Step(bool isActive)
 	// Draw crosshairs on any minables in range of the flagship's scanners.
 	if(Preferences::Has("Show minable pointers"))
 	{
-		double scanRange = flagship ? 100. * sqrt(flagship->Attributes().Get("asteroid scan power")) : 0.;
+		double scanRangeMetric = flagship ? 10000. * flagship->Attributes().Get("asteroid scan power") : 0.;
 		if(flagship && scanRange && !flagship->IsHyperspacing())
 			for(const shared_ptr<Minable> &minable : asteroids.Minables())
 			{
 				Point offset = minable->Position() - center;
-				if((offset.Length() > scanRange || flagship->GetTargetAsteroid() == minable))
+				if(offset.LengthSquared() > scanRangeMetric || flagship->GetTargetAsteroid() == minable)
 					continue;
 
 				targets.push_back({
