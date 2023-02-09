@@ -525,7 +525,7 @@ mission "Paradise Job: Wilderness Retreat"
 
 
 # Martini Bombings jobs
-mission "Martini Bombings (Evacuation, Resident Family)"
+mission "Martini Evacuation (Resident Family)"
 	name "Evacuate Martini family to <planet>"
 	description "This family of <bunks> from Martini had their apartment destroyed in the nuclear bombing and wish to leave immediately. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
 	job
@@ -549,7 +549,7 @@ mission "Martini Bombings (Evacuation, Resident Family)"
 		payment 10000 120
 
 
-mission "Martini Bombings (Evacuation, Resident Group)"
+mission "Martini Evacuation (Resident Group)"
 	name "Evacuate Martini residents to <planet>"
 	description "These <bunks> residents from Martini had their apartment destroyed in the nuclear bombing and wish to leave immediately. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
 	job
@@ -573,7 +573,7 @@ mission "Martini Bombings (Evacuation, Resident Group)"
 		payment 20000 100
 
 
-mission "Martini Bombings (Evacuation, Resident)"
+mission "Martini Evacuation (Resident)"
 	name "Evacuate Martini resident to <planet>"
 	description "This resident from Martini had their apartment destroyed in the nuclear bombing and wishes to leave immediately. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
 	job
@@ -597,7 +597,7 @@ mission "Martini Bombings (Evacuation, Resident)"
 		payment 20000 150
 
 
-mission "Martini Bombings (Evacuation, Family, Luxury Accommodations)"
+mission "Martini Evacuation (Family, Luxury Accommodations)"
 	name "Evacuate Martini residents to <planet>"
 	description "This family of <bunks> from Martini had their apartment destroyed in the nuclear bombing and wish to leave immediately on a luxury ship. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
 	job
@@ -623,7 +623,7 @@ mission "Martini Bombings (Evacuation, Family, Luxury Accommodations)"
 		payment 30000 200
 
 
-mission "Martini Bombings (Evacuation, Singular, Luxury Accommodations)"
+mission "Martini Evacuation (Singular, Luxury Accommodations)"
 	name "Evacuate Martini resident to <planet>"
 	description "This resident from Martini had their apartment destroyed in the nuclear bombing and wishes to leave immediately on a luxury ship. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
 	job
@@ -649,7 +649,7 @@ mission "Martini Bombings (Evacuation, Singular, Luxury Accommodations)"
 		payment 30000 220
 
 
-mission "Martini Bombings (Evacuation, Tourist)"
+mission "Martini Evacuation (Tourist)"
 	name "Evacuate tourist to <planet>"
 	description "This tourist from <planet>, who was on Martini to see its sights when the nuclear bombings occurred, wishes to leave immediately. Transport them back to their home on <planet>, where they will pay you <payment>."
 	job
@@ -671,7 +671,7 @@ mission "Martini Bombings (Evacuation, Tourist)"
 		payment 5000 80
 
 
-mission "Martini Bombings (Evacuation, Tourist Couple)"
+mission "Martini Evacuation (Tourist Couple)"
 	name "Evacuate tourist couple to <planet>"
 	description "This tourist couple from <planet>, who was on Martini to see its sights when the nuclear bombings occurred, wishes to leave immediately. Transport them back to their home on <planet>, where they will pay you <payment>."
 	job
@@ -693,7 +693,7 @@ mission "Martini Bombings (Evacuation, Tourist Couple)"
 		payment 5000 140
 
 
-mission "Martini Bombings (Evacuation, Tourist Family)"
+mission "Martini Evacuation (Tourist Family)"
 	name "Evacuate tourist family to <planet>"
 	description "This family of <bunks> tourists from <planet>, who were on Martini to see its sights when the nuclear bombings occurred, wish to leave immediately. Transport them back to their home on <planet>, where they will pay you <payment>."
 	job
@@ -714,7 +714,7 @@ mission "Martini Bombings (Evacuation, Tourist Family)"
 		dialog phrase "generic passenger dropoff payment"
 		payment 5000 80
 
-mission "Martini Bombings (Evacuation, Tourist Group)"
+mission "Martini Evacuation (Tourist Group)"
 	name "Evacuate tourist group to <planet>"
 	description "This group of <bunks> tourists from <planet>, who were on Martini to see its sights when the nuclear bombings occurred, wish to leave immediately. Transport them back to their homes on <planet>, where they will pay you <payment>."
 	job
@@ -736,9 +736,9 @@ mission "Martini Bombings (Evacuation, Tourist Group)"
 		payment 5000 60
 
 
-mission "Martini Bombings (Evacuation, Businessman Group)"
+mission "Martini Evacuation (Businessman Group)"
 	name "Evacuate group of businessmen from Martini to <planet>"
-	description "This group of <bunks> businessmen from <planet>, who were on Martini conducting a business trip when the nuclear bombings occurred, wish to leave immediately. Transport them back to their homes on <planet>, where they will pay you <payment>."
+	description "This group of <bunks> businessmen, who were on Martini conducting a business trip when the nuclear bombings occurred, wish to leave immediately. Transport them back to their homes on <planet>, where they will pay you <payment>."
 	job
 	repeat
 	passengers 3 6
@@ -758,9 +758,9 @@ mission "Martini Bombings (Evacuation, Businessman Group)"
 		payment 15000 150
 
 
-mission "Martini Bombings (Evacuation, Businessman)"
+mission "Martini Evacuation (Businessman)"
 	name "Evacuate businessman to <planet>"
-	description "This businessman from <planet>, who was on Martini conducting a business trip when the nuclear bombings occurred, wishes to leave immediately. Transport them back to their home on <planet>, where they will pay you <payment>."
+	description "This businessman, who was on Martini conducting a business trip when the nuclear bombings occurred, wishes to leave immediately. Transport them back to their home on <planet>, where they will pay you <payment>."
 	job
 	repeat
 	passengers 1
@@ -780,9 +780,9 @@ mission "Martini Bombings (Evacuation, Businessman)"
 		payment 15000 160
 
 
-mission "Martini Bombings (Evacuation, Exhausted Doctors)"
+mission "Martini Evacuation (Exhausted Doctors)"
 	name "Transport discharged doctors to <planet>"
-	description "These <bunks> doctors from <planet> have been constantly treating patients on Martini after the bombings, and now have been discharged. Transport them back to their home on <planet>, where they will pay you <payment>."
+	description "These <bunks> doctors have been constantly treating patients on Martini after the bombings, and now have been discharged. Transport them back to their home on <planet>, where they will pay you <payment>."
 	job
 	repeat
 	passengers 2 6
@@ -802,9 +802,9 @@ mission "Martini Bombings (Evacuation, Exhausted Doctors)"
 		payment 8000 80
 
 
-mission "Martini Bombings (Evacuation, Exhausted Search and Rescue Team)"
+mission "Martini Evacuation (Exhausted Search and Rescue Team)"
 	name "Transport discharged search and rescue team to <planet>"
-	description "These <bunks> members of a search and rescue team from <planet> have been searching for victims of the nuclear bombings in Martini's capital city, and now have been discharged. Transport them back to their home on <planet>, where they will pay you <payment>."
+	description "These <bunks> search and rescue operatives have been searching for victims of the nuclear bombings in Martini's capital city, and now have been discharged. Transport them back to their home on <planet>, where they will pay you <payment>."
 	job
 	repeat
 	passengers 2 6
@@ -828,22 +828,18 @@ mission "Martini Bombings (Evacuation, Exhausted Search and Rescue Team)"
 # Martini evac on complete dialog
 phrase "martini evac dialog singular"
 	word
-		"Throughout the whole trip, your passenger from Martini has been "
+		"Throughout the trip, your passenger from Martini has been "
 	phrase
 		"martini evac dialog"
 
 phrase "martini evac dialog plural"
 	word
-		"Throughout the whole trip, your passengers from Martini have been "
+		"Throughout the trip, your passengers from Martini have been "
 	phrase
 		"martini evac dialog"
 
 phrase "insults for southerners"
 	word
-		"'those "
-		"'them "
-	word
-		""
 		"bloody"
 		"damn"
 		"jumpy"
@@ -866,8 +862,6 @@ phrase "insults for southerners"
 		"pirates from Greenrock"
 		"unlawfuls from Thule"
 		"gunrunners from Rust"
-	word
-		"'"
 
 phrase "martini evac dialog"
 	word
@@ -879,7 +873,10 @@ phrase "martini evac dialog"
 		"the Free Worlds"
 		"the Pact"
 		"the Southern Pact"
-		"${insults for southerners}"
+		"'those ${insults for southerners}'"
+		"'them ${insults for southerners}'"
+		"'the  ${insults for southerners}'"
+		"'${insults for southerners}'"
 	word
 		" for the "
 	word
@@ -888,7 +885,6 @@ phrase "martini evac dialog"
 		"devastation"
 	word
 		" on Martini"
-		" of their home city"
 	word
 		". They hand you <payment> and head off for their"
 	word
@@ -912,9 +908,32 @@ phrase "martini evac dialog"
 	word
 		" on <planet>."
 
+phrase "martini evac dialog"
+	word
+		"telling you of "
+	word
+		" "
+	word
+		"the desperation of the people on Martini"
+		"the people they knew who died in the blasts"
+		"dire conditions that the people are facing on Martini"
+	word
+		""
+		", and implore you to help out further in the relief efforts"
+		", and thank you for bringing them off-planet"
+	word
+		". They hand you <payment> and head off for a"
+	word
+		" "
+	word
+		"apartment"
+		"house"
+	word
+		" on <planet>."
 
 
-mission "Martini Relief Medical [0]"
+
+mission "Martini Relief (Medical) [0]"
 	name "Disaster relief to Martini"
 	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help treat the wounded. Payment is <payment>."
 	job
@@ -935,7 +954,7 @@ mission "Martini Relief Medical [0]"
 		dialog phrase "generic cargo delivery payment"
 
 
-mission "Martini Relief Medical [1]"
+mission "Martini Relief (Medical) [1]"
 	name "Disaster relief to Martini"
 	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help treat the wounded. Payment is <payment>."
 	job
@@ -1019,7 +1038,7 @@ mission "Martini Relief (Water Tablets)"
 		dialog phrase "generic cargo delivery payment"
 
 
-mission "Martini Relief People [0]"
+mission "Martini Relief (People) [0]"
 	name "Relief workers to Martini"
 	description "Due to the recent nuclear bombings on Martini, bring <bunks> <martini relief occupations> to <planet> to release demand from overloaded hospitals. Payment is <payment>."
 	job
@@ -1028,9 +1047,9 @@ mission "Martini Relief People [0]"
 	substitutions
 		"<martini relief occupations>" "doctors"
 		"<martini relief occupations>" "technicians"
-			random < 75
-		"<martini relief occupations>" "nurses"
 			random < 50
+		"<martini relief occupations>" "nurses"
+			random < 33
 		"<martini relief occupations>" "surgeons"
 			random < 25
 	clearance "When you explain to the spaceport controller that you have on board a group of <martini relief occupations> for Martini's disaster relief efforts, they give you the clearance to land."
@@ -1047,7 +1066,7 @@ mission "Martini Relief People [0]"
 		payment 30000 5
 		dialog phrase "generic passenger dropoff payment"
 
-mission "Martini Relief People [1]"
+mission "Martini Relief (People) [1]"
 	name "Relief workers to Martini"
 	description "Due to the recent nuclear bombings on Martini, bring <bunks> <martini relief occupations> to <planet> to assist in the search and rescue efforts. Payment is <payment>."
 	job
@@ -1056,9 +1075,9 @@ mission "Martini Relief People [1]"
 	substitutions
 		"<martini relief occupations>" "evacuation coordinators"
 		"<martini relief occupations>" "search and rescue operatives"
-			random < 75
-		"<martini relief occupations>" "rescue helicoptor pilots"
 			random < 50
+		"<martini relief occupations>" "rescue helicoptor pilots"
+			random < 33
 		"<martini relief occupations>" "volunteers"
 			random < 25
 	clearance "When you explain to the spaceport controller that you have on board a group of <martini relief occupations> for Martini's disaster relief efforts, they give you the clearance to land."
@@ -1075,7 +1094,7 @@ mission "Martini Relief People [1]"
 		payment 30000 5
 		dialog phrase "generic passenger dropoff payment"
 
-mission "Martini Relief People [2]"
+mission "Martini Relief (People) [2]"
 	name "Relief workers to Martini"
 	description "Due to the recent nuclear bombings on Martini, bring <bunks> <martini relief occupations> to <planet> to assist in the accommodation and reconstruction efforts. Payment is <payment>."
 	job
@@ -1084,9 +1103,9 @@ mission "Martini Relief People [2]"
 	substitutions
 		"<martini relief occupations>" "engineers"
 		"<martini relief occupations>" "technicians"
-			random < 75
-		"<martini relief occupations>" "construction workers"
 			random < 50
+		"<martini relief occupations>" "construction workers"
+			random < 33
 		"<martini relief occupations>" "volunteers"
 			random < 25
 	clearance "When you explain to the spaceport controller that you have on board a group of <martini relief occupations> for Martini's disaster relief efforts, they give you the clearance to land."
