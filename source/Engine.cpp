@@ -913,7 +913,7 @@ void Engine::Step(bool isActive)
 	if(Preferences::Has("Show minable pointers"))
 	{
 		double scanRangeMetric = flagship ? 10000. * flagship->Attributes().Get("asteroid scan power") : 0.;
-		if(flagship && scanRange && !flagship->IsHyperspacing())
+		if(flagship && scanRangeMetric && !flagship->IsHyperspacing())
 			for(const shared_ptr<Minable> &minable : asteroids.Minables())
 			{
 				Point offset = minable->Position() - center;
