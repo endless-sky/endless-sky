@@ -612,7 +612,7 @@ outfit "Ballistic Cannon Turret"
 		"hull damage" 970
 		"hit force" 360
 		"missile strength" 18
-	description `As the largest caliber cannon in the Gegno Vi's arsenal, Ballistic Cannons require a lot of work to be fitted on even the largest of ships. A huge, self-sustaining base with its own vent ports is necessary for one of these cannons to even be fitted on a turret mount, provided there are crew to operate it. Combining destructive force with adjustable aim, Ballisic Cannon Turrets are the deadliest weapons of Vi warships.`
+	description `As the largest caliber cannon in the Gegno Vi's arsenal, Ballistic Cannons require a lot of work to be fitted on even the largest of ships. A huge, self-sustaining base with its own vent ports is necessary for one of these cannons to even be fitted on a turret mount, provided there are crew to operate it. Combining destructive force with adjustable aim, Ballistic Cannon Turrets are the deadliest weapons of Vi warships.`
 
 effect "ballistic fire"
 	sprite "effect/balfire"
