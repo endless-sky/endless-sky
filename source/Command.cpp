@@ -74,10 +74,12 @@ const Command Command::HOLD(1uLL << 25, "Fleet: Hold position");
 const Command Command::AMMO(1uLL << 26, "Fleet: Toggle ammo usage");
 const Command Command::NEAREST_ASTEROID(1uLL << 27, "Select nearest asteroid");
 const Command Command::HARVEST(1uLL << 28, "Fleet: Harvest Flotsam");
-const Command Command::WAIT(1uLL << 29, "");
-const Command Command::STOP(1uLL << 30, "");
-const Command Command::SHIFT(1uLL << 31, "");
-const Command Command::MOUSE_TURNING(1uLL << 32, "Toggle mouse-turning");
+const Command Command::MOUSE_TURNING_HOLD(1uLL << 29, "Mouse turning (hold)");
+const Command Command::MOUSE_TURNING_TOGGLE(1uLL << 30, "Mouse turning (toggle)");
+const Command Command::WAIT(1uLL << 31, "");
+const Command Command::STOP(1uLL << 32, "");
+const Command Command::SHIFT(1uLL << 33, "");
+
 
 
 // In the given text, replace any instances of command names (in angle brackets)
@@ -249,7 +251,8 @@ void Command::Load(const DataNode &node)
 			{"hail", Command::HAIL},
 			{"scan", Command::SCAN},
 			{"jump", Command::JUMP},
-			{"mouseturning", Command::MOUSE_TURNING},
+			{"mouseturninghold", Command::MOUSE_TURNING_HOLD},
+			{"mouseturningtoggle", Command::MOUSE_TURNING_TOGGLE},
 			{"fleet jump", Command::FLEET_JUMP},
 			{"target", Command::TARGET},
 			{"nearest", Command::NEAREST},
