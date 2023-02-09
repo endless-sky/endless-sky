@@ -1178,8 +1178,9 @@ event "secret mountaintop"
 				period 31.1964
 	planet Mountaintop
 		government "Unknown"
+		attributes "requires: neverallowed"
 		# Placeholder description; you can't actually land.
-		description `This tiny asteroid has a space hazard warning transmitter, of a type typically used to mark construction sites. Perhaps someone intends to build a space station here?`
+		description `This tiny asteroid has a space hazard warning transmitter, of a type typically used to mark construction sites. Perhaps someone intends to build a space station here? [If you can see this text, report it as a bug.]`
 		"required reputation" 1000
 		bribe 0
 
