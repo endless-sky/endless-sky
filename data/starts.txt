@@ -67,7 +67,7 @@ start "hai space after FW and HR"
 		has "main plot completed"
 		has "Ask the Hai about the Unfettered"
 	on reveal
-		name "Hai Start"
+		name "Undiscovered Hai Start"
 		description "There could be interesting possibilities up north, once all crises are resolved."
 		description "You could have started a different way, went a different path."
 		system "Somewhere far north"
