@@ -517,7 +517,15 @@ phrase "Essential Unfettered Mission Fail"
 
 substitutions
 	"<uhai>" "Unfettered: Path To Glory"
-
+	"<unfettered title>" "stranger"
+	"<unfettered title>" "captain"
+		has "unfettered: beaten the captain"
+	"<unfettered title>" "herald"
+		has "salary: Unfettered"
+	"<unfettered title>" "warlord"
+		"salary: Unfettered" > 4000
+	"<unfettered title>" "outcast"
+		has "unfettered: outcast"
 
 mission "<uhai> 0: Bring Hai"
 	name `Bring True Hai`
@@ -900,7 +908,6 @@ mission "<uhai> 2: Prove Your Strength"
 	on complete
 		event "unfettered: JD raid plan ready" 5 15
 		set "unfettered: duel ready"
-		clear "unfettered: beaten the captain"
 		"unfettered: took Si-Ra' gold" = "outfit (all): Gold Bars"
 		"unfettered: took Si-Ra' weapons" = "outfit (all): Ionic Blaster Prototype" + "outfit (all): Ionic Turret Prototype" * 3
 

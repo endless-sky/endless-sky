@@ -356,12 +356,12 @@ mission "<uhai> 12: Outfitter Upgrade"
 		log `Helped the Unfettered upgrade their shipyards and received a prototype ship as thanks.`
 		event "unfettered: darkcloak outfitter upgrade" 30
 		conversation
-			`After unloading all the cargo, you go check for He-Yi in the shipyard, but instead you find a herald, ready to rely a message to you, "Ah, <first>. You have completed your part of the bargain, now you may have your reward."`
-			`	"Go to Firelode, Mera has a very peculiar gift for you, should you prove yourself to be worthy of it."`
+			`After unloading all the cargo, you go check for He-Yi in the shipyard, but instead you find a herald, ready to rely a message to you, "Ah, <first>. You have completed your part of the bargain, now you may have your reward.`
+			`	"Go to Firelode, Mera has a very peculiar gift for you, should you prove yourself to be worthy of it.`
 				to display
 					not "<uhai> 15: Modified Beetle: done"
 					has "Unfettered Jump Drive Trading: offered"
-			`	"There could be more opportunities on Darkcloak for you, we do not only buy Jump Drives against money."`
+			`	"There could be more opportunities on Darkcloak for you, we do not only buy Jump Drives against money.`
 				to display
 					not "Unfettered Jump Drive Trading: offered"
 			`	"He-Yi also wants you to know you should check the job board for more jobs like this one, and be mindful that it will take a while to improve the outfitter with these new materials and schematics you provided." As soon as they have delivered their message, the herald leaves without giving you a chance to ask more questions.`

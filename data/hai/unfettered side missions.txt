@@ -774,7 +774,6 @@ mission "<uhai> 20: Boarding Equipement: More Enforcer Staffs"
 	on offer
 		require "Enforcer Riot Staff"
 		conversation "more staffs"
-		fail
 
 
 mission "<uhai> 20: Boarding Equipement: More Pug Staffs"
@@ -790,7 +789,7 @@ mission "<uhai> 20: Boarding Equipement: More Pug Staffs"
 	on offer
 		require "Pug Peacekeeping Staff"
 		conversation "more staffs"
-		fail
+
 
 mission "<uhai> 20: Boarding Equipement: Pug Staffs"
 	landing
@@ -799,7 +798,7 @@ mission "<uhai> 20: Boarding Equipement: Pug Staffs"
 	to offer
 		has "<uhai> 20: Bigeminate Sigil: Boarding Equipement: offered"
 	on offer
-		dialog `Do you want to sell 20 Pug Peacekeeping Staffs to the Unfettered? He-Yi says they can give you 2500000 for it.`
+		dialog `Do you want to sell 20 Pug Peacekeeping Staffs to the Unfettered? He-Yi says they can give you <payment> for it.`
 	on accept
 		payment 2500000
 		outfit "Pug Peacekeeping Staff" -20
@@ -813,7 +812,7 @@ mission "<uhai> 20: Boarding Equipement: Enforcer Staffs"
 	to offer
 		has "<uhai> 20: Bigeminate Sigil: Boarding Equipement: offered"
 	on offer
-		dialog `Do you want to sell 20 Enforcer Riot Staffs to the Unfettered? He-Yi says they can give you 4000000 for it.`
+		dialog `Do you want to sell 20 Enforcer Riot Staffs to the Unfettered? He-Yi says they can give you <payment> for it.`
 	on accept
 		payment 4000000
 		outfit "Enforcer Riot Staff" -20
