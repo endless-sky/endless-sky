@@ -76,11 +76,11 @@ void Minable::Load(const DataNode &node)
 
 
 
+// Calculate the payload value of this Minable after all outfits have been fully loaded.
 void Minable::FinishLoading()
 {
-	// Calculate minable cost.
 	for(auto it : payload)
-		cost += it.first->Cost();
+		value += it.first->Cost();
 }
 
 
@@ -237,8 +237,8 @@ const map<const Outfit *, int> &Minable::Payload() const
 
 
 
-// Get the value of the asteroid.
-const int64_t &Minable::GetCost() const
+// Get the value of the flotsam this minable will create.
+const int64_t &Minable::GetValue() const
 {
-	return cost;
+	return value;
 }

@@ -135,7 +135,7 @@ void UniverseObjects::FinishLoading()
 	for(auto &&it : persons)
 		it.second.FinishLoading();
 
-	// Calculate minable costs
+	// Calculate minable values.
 	for(auto &&it : minables)
 		it.second.FinishLoading();
 
