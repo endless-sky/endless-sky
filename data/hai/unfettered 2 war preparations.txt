@@ -679,8 +679,8 @@ mission "<uhai> 14: Ion Materials"
 		conversation
 			`You manage to take out the leader of the fleet, and you can feel them lose coherence. A captain from another ship hails you. "Get out of here, now. We will not pursue you."`
 			action
-				set "unfettered: took out Dark Angel"
-				set "midas: took out leader"
+				set "midas: took out Dark Angel"
+				"midas: proven worthy" ++
 				"reputation: Midas" >?= 0
 	to fail
 		has "unfettered: outcast"
@@ -713,7 +713,7 @@ mission "<uhai> 14: Ion Materials"
 			`	"A little bit of competition cannot hurt, can it? Since when are you afraid of a few pirates? You may have softened up since we last saw each other."`
 			`	"But I heard of your exploits, these were no mere pirates. That was the Dark Angel." He speaks louder for the entire bar to hear, "And with a fleet of dozens of ships! Drinks are on me, boys!" Most Hai were ignoring him up to this point, but as soon as he said that you can hear them rejoicing and praising this exploit.`
 				to display
-					has "unfettered: took out Dark Angel"
+					has "midas: took out Dark Angel"
 			label loot
 			`	"Well, I guess I can tell you. We had arranged for this Behemoth to bring us important tech materials. I cannot tell you more than this, but I can guarantee you that you'll like the outcome."`
 			choice

@@ -373,7 +373,7 @@ mission "Midas: Who is the mad one?"
 		fleet "Marauders" 3
 	to fail
 		or
-			has "midas: took out leader"
+			has "midas: proven worthy"
 			not "outfit: Gold Bars"
 			has "Midas: Betrayal For The Bars: offered"
 	to complete
@@ -397,7 +397,7 @@ mission "Midas: Nemo Me Impune Lacessit"
 	to offer
 		has "outfit: Gold Bars"
 		not "midas: sold bars"
-		not "midas: took out leader"
+		not "midas: proven worthy"
 		random < 3
 	npc disable
 		government "Midas"
@@ -408,7 +408,7 @@ mission "Midas: Nemo Me Impune Lacessit"
 		dialog phrase "midas defeated"
 	to fail
 		or
-			has "midas: took out leader"
+			has "midas: proven worthy"
 			not "outfit: Gold Bars"
 
 mission "Midas: Nemo Me Impune Lacessit 2"
@@ -421,7 +421,7 @@ mission "Midas: Nemo Me Impune Lacessit 2"
 	to offer
 		"outfit: Gold Bars" > 15
 		not "midas: sold bars"
-		not "midas: took out leader"
+		not "midas: proven worthy"
 		random < 1
 	npc disable
 		government "Midas"
@@ -432,7 +432,7 @@ mission "Midas: Nemo Me Impune Lacessit 2"
 		dialog phrase "midas defeated"
 	to fail
 		or
-			has "midas: took out leader"
+			has "midas: proven worthy"
 			not "outfit: Gold Bars"
 
 
@@ -771,8 +771,8 @@ mission "Midas: Daemons Unleashed"
 		personality heroic staying nemesis vindictive target mute
 		ship "Antlion" "Parmen"
 		conversation
-			`As soon as you destroy the flagship of this fleet, the others cease firing. The new flagship hails you. "I am now in command of Midas."`
-			`	I will not be making the same mistake my predecessor did. Before this becomes an uncontrollable spiral of destruction, I have decided to make you a part of our organization. Keep the bars you have safe, <last>, that is all I ask of you."`
+			`As soon as you destroy the flagship of this fleet, the others cease firing for a short while, unsure what to do next. The new flagship hails you. "I am now in command of Midas.`
+			`	"I will not be making the same mistake my predecessor did. Before this becomes an uncontrollable spiral of destruction, I have decided to make you a part of our organization. Keep the bars you have safe, <last>, that is all I ask of you."`
 			choice
 				`	"May I wear your colors as well?"`
 					goto wearcolors
@@ -784,7 +784,7 @@ mission "Midas: Daemons Unleashed"
 			`	"They will probably forget about it if you sell them a Jump Drive."`
 			choice
 				`	"May I wear your colors as well?"`
-				`	End the connection.`
+				`	(End the connection.)`
 					goto endco
 			label wearcolors
 			action
@@ -794,10 +794,12 @@ mission "Midas: Daemons Unleashed"
 			label asked
 			`	"That's right. And I won't." They cut the transmission.`
 			label endco
+			`	"Now you should leave the system. I will have to get some things straight with the others before they stop shooting you permanently, some still consider you an enemy."`
 			action
 				"reputation: Midas" >?= 100
 				"salary: Midas" = 5000
-				set "midas: took out leader"
+				set "midas: took out the Shadow"
+				"midas: proven worthy" ++
 				clear "midas: wronged"
 				log "Took out the leader of the Midas organization that manages the Gold Bars. They did not reveal much, only that they do not wish to fight me anymore."
 	npc
