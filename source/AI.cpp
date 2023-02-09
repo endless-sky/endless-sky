@@ -1428,7 +1428,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	// Clear the target if it is no longer valid (cloaked, exploding, etc.)
 	if(mutableTarget && !mutableTarget->IsTargetable())
 		ship.SetTargetShip(mutableTarget = nullptr);
-	shared_ptr<Ship> target = mutableTarget;
+	shared_ptr<const Ship> target = mutableTarget;
 	// NPCs should not be beyond the "fence" unless their target is
 	// fairly close to it (or they are intended to be there).
 	if(!ship.IsYours() && !ship.GetPersonality().IsUnconstrained())
