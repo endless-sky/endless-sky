@@ -375,7 +375,7 @@ mission "Unfettered Jump Drive Trading"
 			label uninterested
 			action
 				set "unfettered: uninterested in weapons"
-			`	"These are not standard Hai weapons<, ><unfettered title>, trust me. Also, it would be ill-advised to judge before seeing them, would it not?"`
+			`	"These are not standard Hai weapons<, unfettered title>, trust me. Also, it would be ill-advised to judge before seeing them, would it not?"`
 				goto repeat
 			label next
 			`	They lead you through the usual outfitter but then go to an area you have never noticed before, probably because you were not meant to. As you are about to pass through what you assume to be a security check, an Unfettered throws a blade at your face!`
@@ -391,17 +391,17 @@ mission "Unfettered Jump Drive Trading"
 				`	(Leap to the side and use my own weapon.)`
 				`	(Flee.)`
 					goto flee
-			`	You leap to the side, grabbing your own weapon just in time to threaten the Unfettered that threw the blade at you. Seeming a bit surprised by your unconventional tactics, they lower their own weapon. "Well done! In truth, there is no higher honor than surviving on the field of battle, because only then can you bring loot back to those who need it! A tactic is only good if you can find and execute it quickly enough to give you an edge, which you did.<learned> I am Desneeparu, and it is my pleasure to meet you<, ><unfettered title>."`
+			`	You leap to the side, grabbing your own weapon just in time to threaten the Unfettered that threw the blade at you. Seeming a bit surprised by your unconventional tactics, they lower their own weapon. "Well done! In truth, there is no higher honor than surviving on the field of battle, because only then can you bring loot back to those who need it! A tactic is only good if you can find and execute it quickly enough to give you an edge, which you did.<learned> I am Desneeparu, and it is my pleasure to meet you<, unfettered title>."`
 				goto meet
 			label grab
 			`	You manage to grab the weapon, just in time to deflect an incoming attack from the same Unfettered. They duel with you for what feels like an eternity. At first you are astonished by the fact you have managed to survive this long, but you soon realize that, as you have not managed to land a single successful blow, this must be some kind of deliberate test.`
-			`	Then, suddenly, you can feel the pace of your opponent change; the game is over. They strike a masterful blow that disarms you with ease before smiling and lowering their weapon. "It looks like you know what to do with a blade!<learned> I am Desneeparu, and it is a pleasure to meet you<, ><unfettered title> <last>!" she exclaims, before laughing at your surprised face. You realize she must have been toying with you from the beginning, but, nevertheless, she seems satisfied by your performance.`
+			`	Then, suddenly, you can feel the pace of your opponent change; the game is over. They strike a masterful blow that disarms you with ease before smiling and lowering their weapon. "It looks like you know what to do with a blade!<learned> I am Desneeparu, and it is a pleasure to meet you<, unfettered title> <last>!" she exclaims, before laughing at your surprised face. You realize she must have been toying with you from the beginning, but, nevertheless, she seems satisfied by your performance.`
 			label meet
 			action
 				log "Minor People" "Desneeparu" `An Unfettered warrior that knows how to handle a blade. Was tested by her before being given access to new Unfettered weapons. Would have been a goner had she not been holding back.`
-			`	She does some kind of salute with her fist before leaving. "I must go now. I hope you will find the weapon you need<, ><unfettered title>."`
+			`	She does some kind of salute with her fist before leaving. "I must go now. I hope you will find the weapon you need<, unfettered title>."`
 			`	<The engineer> proceeds to take you underground to rows and rows of prototype weapons, some of which are being worked on by engineers. They explain, "We prefer to do most of our testing on the field of battle. Here we only make the most basics of tests before Unfettered captains can get their hands on it. They often start by going to Firelode to put the weapon to its limit, to ensure it will not explode in the middle of action. The more interest in a prototype, the more we will develop it." You keep walking until you enter the outfitter section of the facility, where you notice the items on display are much more advanced than anything you have seen available on the surface: so much so it could almost pass for a 'normal' Hai outfitter, were it not for the overcharged, oppressive feel of the testing grounds.`
-			`	"Welcome to the advanced section of the outfitter<, ><unfettered title>! It is only for our most distinguished guests. Now that you have sold us multiple jump drives, I can tell you that we offer something much more valuable than money. For now, I can only offer you the mighty Tripulse Shredder, but eventually we will give you access to all kinds of weapons. Two Tripulse Shredders and our sympathy for one jump drive is the deal I propose," they say, presenting the weapons to you. Now that you can take a closer look, you notice these weapons seem fairly similar to other Hai weaponry, but they are enhanced in one way or another. Alongside the Tripulses you can spot what look like a very small Ion Cannon and an Ion Cannon mounted turret.`
+			`	"Welcome to the advanced section of the outfitter<, unfettered title>! It is only for our most distinguished guests. Now that you have sold us multiple jump drives, I can tell you that we offer something much more valuable than money. For now, I can only offer you the mighty Tripulse Shredder, but eventually we will give you access to all kinds of weapons. Two Tripulse Shredders and our sympathy for one jump drive is the deal I propose," they say, presenting the weapons to you. Now that you can take a closer look, you notice these weapons seem fairly similar to other Hai weaponry, but they are enhanced in one way or another. Alongside the Tripulses you can spot what look like a very small Ion Cannon and an Ion Cannon mounted turret.`
 			label weapons
 			choice
 				`	"Tell me more about those Tripulse Shredders I can buy."`
@@ -436,7 +436,7 @@ mission "Unfettered Jump Drive Trading"
 				goto weapons
 
 			label money
-			`	"Oh. Well, in that case, we will not bother you again with this weapon, or any other<, ><unfettered title>, here or in the job board."`
+			`	"Oh. Well, in that case, we will not bother you again with this weapon, or any other<, unfettered title>, here or in the job board."`
 			choice
 				`	"Sounds good to me."`
 				`	"Wait, what was that weapon again?"`
@@ -466,20 +466,20 @@ mission "Unfettered Jump Drive Trading"
 			`	<as before (run)> manage to dodge the blade but are then left defenseless when the same Unfettered closes with another one and slashes down to strike. They stop at the last possible moment, dissatisfaction clear on their face.`
 			branch fail
 				has "unfettered: flee from the blade"
-			`	"So this is how you 'fight'<, ><unfettered title>? You hide? You dodge? You refuse to seize our weapons, so you will not have them."`
+			`	"So this is how you 'fight'<, unfettered title>? You hide? You dodge? You refuse to seize our weapons, so you will not have them."`
 				goto fail
 			label flee
 			action
 				"unfettered: jd to sell" += 4
 				"unfettered: flee from the blade" ++
 			`	<as before (flee)> run away from the blade without any difficulty, but the Hai that threw it catches up to you in mere seconds and immobilizes you with their blade on your throat.`
-			`	"You disappoint me<, ><unfettered title>. In battle it is of great importance that you identify your advantages over the enemy and not show weakness by running, else they will come in for the kill. You have failed in both ways here. Never would you have been able to outrun me. All you did was show fear."`
+			`	"You disappoint me<, unfettered title>. In battle it is of great importance that you identify your advantages over the enemy and not show weakness by running, else they will come in for the kill. You have failed in both ways here. Never would you have been able to outrun me. All you did was show fear."`
 				to display
 					not "unfettered: dodged the blade"
 			label fail
 			action
 				"unfettered: blade rodeo" ++
-			`	"You really keep on disappointing me<, ><unfettered title>. At one time you tried to avoid a fight you could not flee from, and the other to dodge a weapon that was so readily presented to you? Maybe you truly are no warrior and let most of your subordinates do the dirty work."`
+			`	"You really keep on disappointing me<, unfettered title>. At one time you tried to avoid a fight you could not flee from, and the other to dodge a weapon that was so readily presented to you? Maybe you truly are no warrior and let most of your subordinates do the dirty work."`
 				to display
 					"unfettered: flee from the blade" == 1
 					"unfettered: dodged the blade" == 1
@@ -517,20 +517,16 @@ phrase "Essential Unfettered Mission Fail"
 
 substitutions
 	"<uhai>" "Unfettered: Path To Glory"
-	"<, >" ", "
-	"<, >" ""
+	"<, unfettered title>" "outsider"
+	"<, unfettered title>" ""
 		has "Unfettered Jump Drive 1: done"
-		not "unfettered: beaten the captain"
-	"<unfettered title>" "outsider"
-	"<unfettered title>" ""
-		has "Unfettered Jump Drive 1: done"
-	"<unfettered title>" "Captain"
+	"<, unfettered title>" "Captain"
 		has "unfettered: beaten the captain"
-	"<unfettered title>" "Herald"
+	"<, unfettered title>" "Herald"
 		has "salary: Unfettered"
-	"<unfettered title>" "Warlord"
-		"salary: Unfettered" > 4000
-	"<unfettered title>" "outcast"
+	"<, unfettered title>" "Warlord"
+		"salary: Unfettered" > 1000
+	"<, unfettered title>" "outcast"
 		has "unfettered: outcast"
 
 mission "<uhai> 0: Bring Hai"
@@ -747,7 +743,7 @@ mission "<uhai> 1: Bring Medicine"
 		log "People" "Sookootow" `An Unfettered Chief worried for his people, inside Hai or Unfettered territory. He seems to believe that all Hai are equal, and as a member of the council he has significant influence.`
 		payment 1500000
 		conversation
-			`The staff seem greatly relieved when you return promptly with the medical supplies. As you're returning to your ship, one of them catches up to you. "Hello, captain <last>. I am Merki, manager of this hospital. I wanted to express my deepest thanks to you and give you the <payment> personally. I find it quite admirable that an outsider would risk getting caught up in all of this. It would mean a great deal to me if your bravery holds fast, so make sure to check the job board for more jobs like this."`
+			`The staff seem greatly relieved when you return promptly with the medical supplies. As you're returning to your ship, one of them catches up to you. "Hello<, unfettered title> <last>. I am Merki, manager of this hospital. I wanted to express my deepest thanks to you and give you the <payment> personally. I find it quite admirable that an outsider would risk getting caught up in all of this. It would mean a great deal to me if your bravery holds fast, so make sure to check the job board for more jobs like this."`
 			`	Once Merki leaves, you notice a recognizable face: the same Hai Chief from Firelode, speaking with someone who, judging by their demeanor and attire, could be the hospital's chief medical officer. He soon sees you as well and hurriedly finishes his conversation, seeming more than a bit emotional as he then moves to speak with you. "I knew you could be counted on as a friend to the Unfettered! With the swift response of captains like you, it seems like it has calmed down here. We did not before have the time to get properly introduced. I am Sookootow." He makes a little gesture, you assume of deference. You try to imitate the motion, apparently badly, amusing Sookootow. "Worry not, <first> <last>, I already know who you are."`
 			`	"You have been granted access to our basic outfitter on Firelode as a reward for your help, should you need it to store goods or prepare yourself for a raid."`
 			choice
@@ -870,11 +866,11 @@ mission "<uhai> 2: Prove Your Strength"
 			`Now that you have disabled the <npc>, its captain hails you. "It seems ye fight admirably after all. Ye've earned my respect today," he says with a voice so calm you are surprised it came from the same captain who was recently provoking you for no apparent reason.`
 				to display
 					not "Wanderers: Defend Vara Ke'sok: failed"
-			`Now that you have disabled the <npc>, its captain hails you. "Well captain, it seems you be worthy of joining our crew! I was the one who contacted you on behalf of our ship captain, in the alien space up north! Ye've earned my respect today," he says with a voice so calm you are surprised it came from the same captain who was recently provoking you for no apparent reason. In the background you hear fires roaring, it seems the damage to his ship was quite serious indeed.`
+			`Now that you have disabled the <npc>, its captain hails you. "Well<, unfettered title>, it seems you be worthy of joining our crew! I was the one who contacted you on behalf of our ship captain, in the alien space up north! Ye've earned my respect today," he says with a voice so calm you are surprised it came from the same captain who was recently provoking you for no apparent reason. In the background you hear fires roaring, it seems the damage to his ship was quite serious indeed.`
 				to display
 					has "Wanderers: Defend Vara Ke'sok: failed"
 					has "Unfettered Jump Drive 1: offered"
-			`Now that you have disabled the <npc>, its captain hails you. "Well captain, it seems you be worthy of joining our crew! I was the one who contacted you on behalf of our ship captain, in the alien space up north! Ye've earned my respect today. However, since I knew you I made sure to allow you to prove yerself pretty fast, but if you want to continue doing business with us, jump drives are always appreciated..." he says this with a voice so calm you are surprised it came from the same captain who was recently provoking you for no apparent reason.`
+			`Now that you have disabled the <npc>, its captain hails you. "Well<, unfettered title>, it seems you be worthy of joining our crew! I was the one who contacted you on behalf of our ship captain, in the alien space up north! Ye've earned my respect today. However, since I knew you I made sure to allow you to prove yerself pretty fast, but if you want to continue doing business with us, jump drives are always appreciated..." he says this with a voice so calm you are surprised it came from the same captain who was recently provoking you for no apparent reason.`
 				to display
 					has "Wanderers: Defend Vara Ke'sok: failed"
 					not "Unfettered Jump Drive 1: offered"
@@ -1019,7 +1015,7 @@ mission "<uhai> 3: Recover Jump Drives"
 		log `Helped a young Unfettered Captain to bring jump drives from a pirate world.`
 		log "People" "Si-Ra" `A young, impetuous Unfettered captain with a unique, if eccentric, grasp of your language, who seems to grow wiser by the day. He has impressive leadership and combat skills, yet always seeks to refine his tactics. He does seem to be also be a fan of acquiring bigger and bigger ships.`
 		conversation
-			`"Here be yer share: <payment>. Ye have saved me life, Captain <first>, and I shall never forget it. For this, ye have earned the right to know my name: "Si-Ra". It be one I earned and wear with pride. Come see me again soon if ye be up for a challenge. I'll surely be able to find one for ye even if me own ship not be ready to give ye one. In the meantime, make sure to check the job boards if ye just be looking for more runs like this one."`
+			`"Here be yer share: <payment>. Ye have saved me life<, unfettered title> <first>, and I shall never forget it. For this, ye have earned the right to know my name: "Si-Ra". It be one I earned and wear with pride. Come see me again soon if ye be up for a challenge. I'll surely be able to find one for ye even if me own ship not be ready to give ye one. In the meantime, make sure to check the job boards if ye just be looking for more runs like this one."`
 			label choice
 			choice
 				`	(Don't say anything).`
@@ -1241,7 +1237,7 @@ mission "<uhai> 4: Scan Geocoris"
 				`	"I'm not interested in scanning ships for you."`
 					decline
 			label agree
-			`	On the way back to your ship, Mera runs up to you. "One... last... thing, captain!" You let her catch her breath. "We have noticed one Geocoris just entered <waypoints> as expected, but seems to have some special modifications. Please scan that one specifically. We have marked its signature for you to recognize it. We want to have a detailed scan of its cargo. Also, I've just found a captain willing to give you two of our scanners. They will be placed in your cargo hold if there is no space on your ship, but do go in the lab to make sure they are installed them properly.`
+			`	On the way back to your ship, Mera runs up to you. "One... last... thing<, unfettered title>!" You let her catch her breath. "We have noticed one Geocoris just entered <waypoints> as expected, but seems to have some special modifications. Please scan that one specifically. We have marked its signature for you to recognize it. We want to have a detailed scan of its cargo. Also, I've just found a captain willing to give you two of our scanners. They will be placed in your cargo hold if there is no space on your ship, but do go in the lab to make sure they are installed them properly.`
 			action
 				outfit "Value Detector" 2
 				outfit "Cargo Scanner" 4

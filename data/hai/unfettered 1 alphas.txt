@@ -497,7 +497,7 @@ mission "<uhai> 6 A: Loyal Escort"
 		clear "unfettered: hunger stops"
 		payment 500000
 		conversation
-			`The governor hails you, "My thanks for the escort, captain, we would have been lost to those pirates had it not been for your presence there. You should probably go see Sookootow to speak to him in person about this ambush, I am sure he will be interested in your opinion of it, even if he probably has already heard about this petty attempt at capturing my ship. I suspected such a thing would happen, but I thought your presence would protect me... I was wrong apparently. Here are your <payment>, you have deserved them.`
+			`The governor hails you, "My thanks for the escort, Captain, we would have been lost to those pirates had it not been for your presence there. You should probably go see Sookootow to speak to him in person about this ambush, I am sure he will be interested in your opinion of it, even if he probably has already heard about this petty attempt at capturing my ship. I suspected such a thing would happen, but I thought your presence would protect me... I was wrong apparently. Here are your <payment>, you have deserved them.`
 			`	"However, you should know that the crisis is not over yet. This disaster did more than distress a few people, it is the wind that makes the rotten tree fall. The Unfettered rely on this world for what little food they can still make. They are now in a desperate need of food, and whilst we brought them some, along with competent people to help them produce more food, it will never be enough."`
 			branch "was no hunger"
 				not "event: unfettered: need for food"
@@ -537,7 +537,7 @@ mission "<uhai> 6: Taking Off With Hai Fleet"
 		set "unfettered: stopped on Greenbloom"
 		conversation
 			`Shortly after the mysterious conversation, a few Hai come to your flagship, armed with a less lethal version of the usual Pulse Rifle, and with uniforms you have not seen before. They seem to be led by yet another Hai, that enters only after they give the safe signal.`
-			`	They then proceed to search your ship quickly, using dedicated scanners, before reporting back to their leader. Only at that point does the leader say something to you, "We are personal bodygards of an important Hai governor, that wishes to come on the ground for political reasons. Sorry for the inconvenience, captain, but we needed to make sure your ship was free of trackers."`
+			`	They then proceed to search your ship quickly, using dedicated scanners, before reporting back to their leader. Only at that point does the leader say something to you, "We are personal bodygards of an important Hai governor, that wishes to come on the ground for political reasons. Sorry for the inconvenience, Captain, but we needed to make sure your ship was free of trackers."`
 			choice
 				`	"Thank you for the explanation."`
 					goto leave
@@ -575,7 +575,7 @@ mission "<uhai> 6: Taking Off With Hai Fleet"
 			label recovered
 			action
 				clear "midas: tracker relay"
-			`	When you have recovered, she explains. "Someone had placed a tracker on your shoulder. A very nasty kind of tracker, and I did not want to find out what else it could do before shooting it. Sorry if I took you by surprise, captain, but you did well to warn us."`
+			`	When you have recovered, she explains. "Someone had placed a tracker on your shoulder. A very nasty kind of tracker, and I did not want to find out what else it could do before shooting it. Sorry if I took you by surprise, Captain, but you did well to warn us."`
 			label leave
 			branch otherships
 				"ships: Space Liner" + "ships: Transport" + "ships: Light Freighter" + "ships: Heavy Freighter" + "ships: Utility" + "ships: Interceptor" + "ships: Light Warship" + "ships: Medium Warship" + "ships: Heavy Warship" >= 1
@@ -777,7 +777,7 @@ mission "<uhai> 7: Stolen Cargo"
 			`Boarding the ship, you notice that they have other commodities than what you are looking for, but they do have the materials Sookootow talked to you about. Given the damage the ship has suffered, it seems it would require heavy works in the spaceport to get it running again, meaning they will not get repaired anytime soon. You should have some time to switch to a ship with more cargo space, should you need to in order to bring the materials back. Take all 142 tons of materials when you can and bring them back to Sookootow.`
 			branch "allies died"
 				has "<uhai> 7: Cavalry Arrives: failed"
-			`	Your surprise allies hail you. "Well done, captain," the first one says. "You have truly impressed us today," the other one adds.`
+			`	Your surprise allies hail you. "Well done<, unfettered title>," the first one says. "You have truly impressed us today," the other one adds.`
 			choice
 				`	"Where you sent by Sookootow's contact?"`
 				`	"What are these weapons you are using?"`
@@ -873,7 +873,7 @@ mission "<uhai> 7: Cavalry Arrives"
 	on enter
 		conversation
 			"As you enter the system it becomes clear: they have called for backup! Multiple pirate ships are arriving in the system. But you also see other ships arriving by jump drives. They do not appear to be pirates, maybe the 'contact' has provided help as well?"
-			`They hail you, "Listen carefully. You may have noticed a Korath drone in the area, and they don't like Alpha dogs around much. If Korath come to help, do not open fire on them, understood?" "I would recommend you make sure these pirate ships are on your side, captain!" The other ship adds, before ending the hail, making it clear they will not take no for an answer.`
+			`They hail you, "Listen carefully. You may have noticed a Korath drone in the area, and they don't like Alpha dogs around much. If Korath come to help, do not open fire on them, understood?" "I would recommend you make sure these pirate ships are on your side<, unfettered title>!" The other ship adds, before ending the hail, making it clear they will not take no for an answer.`
 	npc save
 		government "Shadow"
 		personality entering heroic uninterested staying mute
@@ -929,7 +929,7 @@ mission "<uhai> 7: Cavalry Arrives"
 			`You gave up fixing the Unfettered cargo situation, and the mysterious ships leave in pursuit of the remaining Cerberus ships.`
 			label completed
 			`You look for Sookootow in the spaceport, and find him talking with Si-Ra, who was about to leave. Seeing you, Si-Ra shows a quick greeting in sign of respect, before leaving.`
-			`	The Chief then shakes your hands in true human fashion. "Jiko has just told me of your success, captain. Congratulations are in order!"`
+			`	The Chief then shakes your hands in true human fashion. "Jiko has just told me of your success<, unfettered title>. Congratulations are in order!"`
 			choice
 				`	"Thanks. Here is the cargo."`
 					goto cargo
@@ -1059,7 +1059,7 @@ mission "<uhai> 8: Unfettered humans? Hint"
 			`	"Come to us if you truly want to know who that Auxiliary belongs to." The message comes with a location on New Tortuga.`
 				to display
 					not "unfettered: it's the Alphas!"
-			`	"Congratulation, captain. It seemed that you did not need our help to find these Alphas."`
+			`	"Congratulation<, unfettered title>. It seemed that you did not need our help to find these Alphas."`
 				to display
 					has "unfettered: it's the Alphas!"
 	to complete
@@ -1291,7 +1291,7 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 			`	It does not seem to be the right reaction at all. They shout at you; all form of respect is gone. One very shocked Unfettered soldier even tries to shoot you for this insult! It looks like you have shown yourself to be weak to them. After some time, a warlord arrives and calms them down.`
 			label stadium
 			`	The crowd lead you to the stadium.`
-			`	The council seems surprised to see you return, especially the Unfettered warlord that annoyed you earlier, but they address you with a deeper respect than before. "You have proven yourself. Now we have almost enough jump drives for the next phase..." You look at them intensely, and after a few moments they realize, "Oh right, your payment! Here it is: <payment>!"`
+			`	The council seems surprised to see you return, especially the Unfettered warlord that annoyed you earlier, but they address you with a deeper respect than before. "You have proven yourself. Now we have almost enough jump drives for the next phase..." You look at them intensely, and after a few moments they realize, "Oh right, your payment! Here it is: <payment>! From now on, you will be refered to as herald."`
 			choice
 				`	"I have found Korath prisoners on the Alpha ship."`
 			`	This seems to trouble them deeply. They are split between those who want to interrogate the Korath for their technological secrets, and those who still remember too freshly the horrors of the Korath raids. The Chiefs are now the most active ones - some show scars or speak of lost family, others insult the Korath. A few, however, keep their calm.`

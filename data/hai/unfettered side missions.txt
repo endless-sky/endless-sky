@@ -256,7 +256,7 @@ mission "<uhai> 13: A Warlord's Reception"
 conversation "modified shield beetle prize"
 	action
 		set "unfettered: given the modified beetle"
-	`As promised by Mera, you find the unusual Shield Beetle that seems to be waiting for you. There is a projected message on the hull of the ship: "Here is your very special reward, Captain. As promised, it is equipped with plenty of prototype weapons and has some in particular which I am sure you will like, and includes a reinforced shield matrix. Please accept this as a way for me to thank you for your assistance so far!"`
+	`As promised by Mera, you find the unusual Shield Beetle that seems to be waiting for you. There is a projected message on the hull of the ship: "Here is your very special reward<, unfettered title>. As promised, it is equipped with plenty of prototype weapons and has some in particular which I am sure you will like, and includes a reinforced shield matrix. Please accept this as a way for me to thank you for your assistance so far!"`
 	`	When you enter the ship you realize that something is blinking red in the cockpit. Getting close you realize it is a communicator with a high priority message from Mera. Once the ship recognizes your identity, it displays the message. "This is for your eyes only. This ship is not just given to you for you to have fun shooting around. It includes a very advanced communicator, that we would not replace should you lose it. Eventually you will be able to use it to coordinate fleet actions, or even to call for reinforcements, I hope."`
 	branch "has communicator"
 		has "language: Wanderer"
@@ -291,7 +291,7 @@ mission "<uhai> 15: Modified Beetle: Custom Price Notification"
 			has "event: unfettered: syscore's got it"
 		not "unfettered: given the modified beetle"
 	on enter "Wah Yoot" "Hi Yahr" "Ehma Ti"
-		dialog `You receive a message from Mera, "The ship is ready and waiting for you on Darkcloak, captain."`
+		dialog `You receive a message from Mera, "The ship is ready and waiting for you on Darkcloak<, unfettered title>."`
 
 event "unfettered: more dakka"
 
@@ -632,7 +632,7 @@ mission "<uhai> 20: Bigeminate Sigil: Boarding Equipement"
 			action
 				outfit "Dual Pulse Pistols"
 				set "unfettered: won the duel"
-			`	You actually manage to reach cover, thanks to him stumbling a bit on the approach. He was probably anxious to beat you... Now that you are behind cover, you have a strategic advantage, and he misses his shots. It seems that the pistol quickly runs out of power, and using this opportunity you shoot back at him. Most of your shots miss, but because he cannot shoot back and you are well protected anyway, you can take the time to aim precisely. You manage to shoot his arm and he drops his pistol. He does not shout at all when getting shot, simply sits on the ground on that position, showing he surrenders. You get out of your cover and grab the other pistol. "You can keep them; you've earned it. This was a fair fight, Captain! I'd like to try again some time, and maybe get my pistols back..." He then goes away and sits on the side, probably thinking about what mistakes he made.`
+			`	You actually manage to reach cover, thanks to him stumbling a bit on the approach. He was probably anxious to beat you... Now that you are behind cover, you have a strategic advantage, and he misses his shots. It seems that the pistol quickly runs out of power, and using this opportunity you shoot back at him. Most of your shots miss, but because he cannot shoot back and you are well protected anyway, you can take the time to aim precisely. You manage to shoot his arm and he drops his pistol. He does not shout at all when getting shot, simply sits on the ground on that position, showing he surrenders. You get out of your cover and grab the other pistol. "You can keep them; you've earned it. This was a fair fight<, unfettered title>! I'd like to try again some time, and maybe get my pistols back..." He then goes away and sits on the side, probably thinking about what mistakes he made.`
 				goto heyi
 			label ready
 			`	You try to shoot him, but he's too fast and you are too inexperienced. You have made yourself an easy target for him by standing still; you fall as you receive a shot to your shoulder. It hurts, but nothing seems to be broken, and soon after you cannot feel anything in your arm at all. You opponent comes to you and helps you to get up. "Pain is a good teacher sometimes," he says.`

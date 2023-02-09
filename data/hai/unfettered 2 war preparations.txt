@@ -562,7 +562,7 @@ mission "<uhai> 14: Ion Materials"
 				`	(I don't have time for this now.)`
 					defer
 			`	The bar almost feels familiar. There are of course weird beverages, and the general architecture of it is simple to say the least, like all Unfettered buildings. But, in a way, it looks similar to pirate bars. Maybe some things are common between alien species...`
-			`	As you enter, you notice he's speaking in your language to the other Hai, probably to make fun of humans. What he says does not seem to have much sense to it - he's probably had one too many drinks, or consumed too much of whatever that weird smell comes from. When he sees you, he starts shouting. "This is my friend, Captain <last>, folks! He doesn't mess around - the holes in my old ship can attest to that!"`
+			`	As you enter, you notice he's speaking in your language to the other Hai, probably to make fun of humans. What he says does not seem to have much sense to it - he's probably had one too many drinks, or consumed too much of whatever that weird smell comes from. When he sees you, he starts shouting. "This is my friend<, unfettered title> <last>, folks! He doesn't mess around - the holes in my old ship can attest to that!"`
 			choice
 				`	"Old ship? You don't have it any more?"`
 					goto ship
@@ -808,7 +808,7 @@ mission "<uhai> 15: Modified Beetle"
 			`	"Speaking of which, your fleet is too big at the moment, please park ships until you have less than 2 heavy warships, say 3 medium warships at most or a heavy and a medium, and then come back to me. Best leave any ships not meant for battle out of it too.`
 				accept
 			label duelrd
-			`	"Launch your ship whenever you feel ready for the fight, I will be waiting for you in space, trying some of these new fancy toys. I may not be a warlord, or a captain, but I will give you my best!"`
+			`	"Launch your ship whenever you feel ready for the fight, I will be waiting for you in space, trying some of these new fancy toys. I may not be a warlord, or a captain even, but I will give you my best!"`
 				accept
 	npc save disable
 		government "Hai (Unfettered Challenger)"
@@ -823,7 +823,7 @@ mission "<uhai> 15: Modified Beetle"
 		conversation
 			action
 				set "unfettered: defeated Mera"
-			`Now that you have disabled her ship Mera hails you, "Well done, captain! I must say, this was some fun, thank you for this chance to try my weapons first hand! I may not be an expert for managing ships, but this one still is a pretty formidable opponent, wouldn't you say so?"`
+			`Now that you have disabled her ship Mera hails you, "Well done<, unfettered title>! I must say, this was some fun, thank you for this chance to try my weapons first hand! I may not be an expert for managing ships, but this one still is a pretty formidable opponent, wouldn't you say so?"`
 			choice
 				`	"Nice try, but I could see you are not used to commanding a ship."`
 				`	"Are you kidding? This was a walk in the park."`
@@ -1038,23 +1038,37 @@ ship "Stag Beetle"
 	description "The owner of this ship is the servant of Tejolis; they are the incarnation of strategical might on the battlefield."
 
 conversation "unfettered war ready"
-	`Now that the fight is over, they both hail you, and He-Yi speaks first. "You sure know how to [fight, move your ship]! I feel now maybe we are the ones who need [experience, training]. I feel like it is only [fair, normal] you give us tips this time."`
+	`Now that the fight is over, they both hail you, and He-Yi speaks first.`
+		to display
+			not "unfettered: mad Si-Ra"
+	`Now that the fight is over, He-Yi hails you.`
+		to display
+			has "unfettered: mad Si-Ra"
+	`	"You sure know how to [fight, move your ship]! I feel now maybe we are the ones who need [experience, training]. I feel like it is only [fair, normal] you shoudl be the one to give [advise, tips] this time."`
 	choice
 		`	"You were overconfident, and that's what let you down."`
 			goto mistake
 		`	"A good fight, but you just had no chance against my superior firepower."`
 		`	"I was easily able to outmaneuver you."`
 			goto mistake
-		`	"Nothing specific. Well fought to both of you."`
+		`	"Nothing specific. Well fought."`
 			goto train
-	`	He-Yi answer first. "It looks like that was indeed the case. Sheer strength may be enough to defeat nearly everything in your way, but is it fun? Is it strategic? I try not to rely on that tactic too often."`
-	`	Si-Ra then speaks. "Well captain, I sure wish I had the money for such a fleet. I could barely afford this ship, and it will need repairs again now."`
+	`	He-Yi answers. "It looks like that was indeed the case. Sheer strength may be enough to defeat nearly everything in your way, but is it fun? Is it strategic? I try not to rely on that tactic too often."`
+	branch "no Si-Ra"
+		has "unfettered: mad Si-Ra"
+	`	Si-Ra then speaks. "Well<, unfettered title>, I sure wish I had the money for such a fleet. I could barely afford this ship, and it will need repairs again now."`
 		goto train
 	label mistake
-	`	He-Yi answers first. "Yes, that is true. We'll try not to repeat that mistake again, [Captain, esteemed adversary]."`
-	`	Si-Ra then speaks. "Next time it will not be so easy, Captain!"`
+	`	He-Yi answers. "Yes, that is true. We'll try not to repeat that mistake again, [warlord, esteemed adversary]."`
+	branch "no Si-Ra"
+		has "unfettered: mad Si-Ra"
+	`	Si-Ra then speaks. "Indeed, you have deserved the title of warlord. But make no mistake, next time it will not be so easy<, unfettered title>!"`
+	label "no Si-Ra"
 	label train
-	`	"The war will start soon, but there is still some time to train. Use that time well, Captain."`
+	`	"The war will start soon, but there is still some time to train. Use that time well, Warlord, and do bring us as many Jump Drives as you can."`
+	`	"Si-Ra's actions are [unacceptable, unforgivable]. But you have still managed to prove yourself against him, and well deserve the title of warlord."`
+		to display
+			has "unfettered: mad Si-Ra"
 
 event "unfettered: unbribable challengers"
 	government "Hai (Unfettered Challenger)"
