@@ -3418,47 +3418,48 @@ bool AI::TargetMinable(Ship &ship) const
 	if(!scanRangeMetric)
 		return false;
 	const bool findClosest = Preferences::Has("Target asteroid based on");
-	auto bestAsteroid = ship.GetTargetAsteroid();
+	auto bestMinable = ship.GetTargetAsteroid();
 	double bestScore = findClosest ? numeric_limits<double>::max() : 0.;
 	auto GetDistanceMetric = [&ship](const Minable &minable) -> double {
 		return ship.Position().DistanceSquared(minable.Position());
 	};
-	if(bestAsteroid)
+	if(bestMinable)
 	{
 		if(findClosest)
-			bestScore = GetDistanceMetric(*bestAsteroid);
+			bestScore = GetDistanceMetric(*bestMinable);
 		else
-			bestScore = bestAsteroid->GetValue();
+			bestScore = bestMinable->GetValue();
 	}
-	auto UpdateBestAsteroid = [&findClosest, &bestAsteroid, &bestScore, &GetDistanceMetric]()
+	auto MinableStrategy = [&findClosest, &bestMinable, &bestScore, &GetDistanceMetric]()
 			-> function<void(const shared_ptr<Minable> &)>
 	{
 		if(findClosest)
-			return [&bestAsteroid, &bestScore, &GetDistanceMetric]
+			return [&bestMinable, &bestScore, &GetDistanceMetric]
 					(const shared_ptr<Minable> &minable) -> void {
 				double newScore = GetDistanceMetric(*minable);
-				if(newScore < bestScore || (newScore == bestScore && minable->GetValue() > bestAsteroid->GetValue()))
+				if(newScore < bestScore || (newScore == bestScore && minable->GetValue() > bestMinable->GetValue()))
 				{
 					bestScore = newScore;
-					bestAsteroid = minable;
+					bestMinable = minable;
 				}
 			};
 		else
-			return [&bestAsteroid, &bestScore, &GetDistanceMetric]
+			return [&bestMinable, &bestScore, &GetDistanceMetric]
 					(const shared_ptr<Minable> &minable) -> void {
 				double newScore = minable->GetValue();
 				if(newScore > bestScore || (newScore == bestScore
-						&& GetDistanceMetric(*minable) < GetDistanceMetric(*bestAsteroid)))
+						&& GetDistanceMetric(*minable) < GetDistanceMetric(*bestMinable)))
 				{
 					bestScore = newScore;
-					bestAsteroid = minable;
+					bestMinable = minable;
 				}
 			};
 	};
-	for(auto &&asteroid : minables)
-		UpdateBestAsteroid()(asteroid);
-	if(bestAsteroid)
-		ship.SetTargetAsteroid(bestAsteroid);
+	auto UpdateBestMinable = MinableStrategy();
+	for(auto &&minable : minables)
+		UpdateBestMinable(minable);
+	if(bestMinable)
+		ship.SetTargetAsteroid(bestMinable);
 	return static_cast<bool>(ship.GetTargetAsteroid());
 }
 
