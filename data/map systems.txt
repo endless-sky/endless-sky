@@ -19543,7 +19543,7 @@ system "Kor Ak'Mari"
 		sprite planet/oberon
 		distance 1807.64
 		period 552.137
-	object
+	object "Rabasot Pa'ah"
 		sprite planet/ocean-rabasot
 		distance 2874.19
 		period 1107.01

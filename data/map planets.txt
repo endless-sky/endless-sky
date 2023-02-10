@@ -3311,6 +3311,13 @@ planet Quirinal
 	government Uninhabited
 	security 0
 
+planet "Rabasot Pa'ah"
+	attributes ocean uninhabited
+	landscape land/rough-seas
+	description `This tectonically active ocean world has unpredictable weather, frequent tsunamis, and unusual electrical activity. Although there are a few islands, the terrain is so harsh that it is nearly impossible to land. There's almost no vegetation in sight, but the sea is filled with microscopic lifeforms. It seems the violent conditions on this planet have held back evolution.`
+	government Uninhabited
+	security 0
+
 planet Rand
 	attributes "dirt belt" mining
 	landscape land/valley7
