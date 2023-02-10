@@ -205,6 +205,7 @@ news "humanika worker"
 		word
 			`"`
 		word
+			# All are copied from elsewhere in this file
 			"Mining's the best opportunity on this whole planet, but I worry about my health. I've started to cough up blood when I get sick. It's a good thing the company pays for our medical bills."
 			"A few years of this and I'll be able to afford my own starship. I pulled in more than 120,000 credits last year! That's more than my brother makes on Hermes, and he's a scientist."
 			"I've heard that miners who work on Clink are several times more likely to develop cancer. I must admit that the wages are mighty tempting, though..."
@@ -660,10 +661,66 @@ news "loan officer"
 			`"`
 
 
+news "humanika engineer"
+	location
+		government "Humanika (Port)"
+		attributes research
+	name
+		word
+			"Engineer"
+			"Inventor"
+			"Research engineer"
+	message
+		word
+			# These are copied from elsewhere in this file:
+			`"Hyperspace links don't just allow faster-than-light travel. They also allow near-instantaneous communication, if you have the right sort of relay on both ends."`
+			`"The hyperspace communications network is a marvel of public infrastructure, but most people just take it for granted."`
+			`"Do you know the DRQ of the HSBE for the hyperlanes around here? You don't understand? Sorry, a hyperlane can be thought of as a corridor through space..." The engineer gives a long-winded and confusing explanation of hyperlanes.`
+			`"The field of hyperspace lane destruction is filled with misunderstanding and pseudoscience. If there was a method to remove hyperspace lanes, though, whoever discovered it would effectively control human space."`
+			`"Many a hyperspace-based weapon has been tested, but due to the dynamics of entering hyperspace while not aligned with a hyperspace lane, all of them have failed. Thankfully."`
+			`"With the right equipment, you can see inside a planet as easily as if it were... um... a tomato held up in front of an arc lamp. Sorry, I'm awful at similes."`
+			`"I have equipment that would let me trigger an earthquake just by pressing a button. That's why they never allow me into the office when I'm drunk."`
+			`"A few times, I've traveled so deep underground that the rock felt warm to the touch. But I imagine that's nowhere near as exciting as traveling through space."`
+			`"My kids keep asking me to bring a bar of plutonium home for them to play with. Some stupid video convinced them that it would give them super powers."`
+
+			# Observing Korath tech or directly importing it.
+			`"We import sewage processors that can convert human waste directly into food. This planet has little viable farmland, so we couldn't have a quarter our current population without them. Now, it'll take a factor of twenty increase in population before we'll need better techniques."`
+			`"The blast doors to our bunker cities are ten meters thick, made of the most durable armor we know of. Normally, it would be impossible to machine them that size, but we developed new techniques by reverse-engineering some imported machinery."`
+			`"Did you know we can mine some materials almost three times as fast as the best Syndicate mining systems? It's because of advanced alloys we've developed for our drill heads, which can handle double the heat of anything we've seen before."`
+			`"Our bunker cities use a lot of light weight composites we've invented by analyzing bulkheads from those big ships that keep flying through this system."`
+			`"A while back, we imported some machining tools that are ten times faster than anything I know of. Although we can't reproduce them, we have used the same principles to triple our factory output. That's why we're able to pump out ships and outfits so quickly."`
+			`"We have a prototype ion engine that produces 50% more thrust, at triple the heat. Unfortunately, it tends to melt the ship's engine compartments and flies into the ship. I expect we'll have to cut down on thrust to compensate."`
+
+
+news "humanika researcher"
+	location
+		government "Humanika (Port)"
+		attributes research
+	name
+		word
+			"Scientist"
+			"Researcher"
+	message
+		word
+			# These are copied from elsewhere in this file:
+			`"I hope you checked your shoes for invasive species before setting foot on my planet. The last thing we want is for our crops to get infected with the Arcturan Blight."`
+			`"Don't ever forget that you have us to thank for humanity's ability to support our growing population."`
+			`"This neutronium alloy I'm working on will be what's armoring your next starship - no doubt about it."`
+			`"We've got student interns in the lab this month. A few of them are very bright!"`
+			`"Excuse me, captain, I have to resume work on a paper I'm co-authoring. Would you like an advance copy?"`
+			`"My research concerns force fields. No, not those kinds of force fields."`
+
+			# New ones, relating to observing the Korath
+			`"We've always used star lanes for hyperspace communication, but we just got our hands on a probe that doesn't need them! I can't imagine how it was miniaturized into a probe, but we have a building-sized replica that is almost as strong."`
+			`"Our research group has been dismantling debris from those mysterious fighters. They use an alloy that can dissipate heat better than anything we've ever seen, and it's stronger than our best spaceship armor. We haven't had much luck reproducing it, but we won't give up so easily."`
+			`"Recently, we've come upon a strange substance... I believe it's called Nutragel? We found that if you put it in a fuel cell, the power output doubles, but the cell quickly melts itself."`
+			`"Humanity has had nanofluids for centuries, but we've come upon a substance that quadruples the heat capacity of water. Unfortunately, the particles break down quickly, so it isn't viable yet."`
+			`"You know those expensive microbots we use for organ repair? It turns out you can modify them to repair metal instead. The power requirements are enormous, so it'll be years before we can use it for practical applications."`
+
 
 news "hyperspace relay engineer"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
 		not
 			government "Quarg"
 			not attributes "human"
@@ -686,8 +743,8 @@ news "hyperspace relay engineer"
 
 news "hyperspace scientist"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Humanika (Port)"
-		attributes "research" "deep" "humanika"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "research" "deep"
 	name
 		word
 			"Hyperspace researcher"
@@ -732,7 +789,7 @@ news "geological engineer"
 
 news "agricultural scientist"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "farming"
 	name
 		word
@@ -1342,8 +1399,8 @@ news "work coach"
 
 news "scientist"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Humanika (Port)"
-		attributes "research" "deep" "humanika"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "research" "deep"
 	name
 		word
 			"Scientist"
