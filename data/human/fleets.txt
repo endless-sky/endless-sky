@@ -3274,6 +3274,8 @@ fleet "Humanika Merchants"
 		"Bounder" 2
 		"Fury (Missile)" 2
 
+# Asteroids beyond Alcyone are often much more durable, so the
+# ordinary mining ships are insufficient.
 fleet "Humanika Miners"
 	government "Humanika (Ship)"
 	names "civilian"
@@ -3281,11 +3283,96 @@ fleet "Humanika Miners"
 	personality
 		confusion 20
 		timid frugal mining harvests
-	variant 2
-		"Firebird (Laser)"
-	variant 2
+	variant 3
 		"Manta (Miner)"
+	variant
+		"Firebird (Laser)"
 	variant
 		"Modified Argosy (Blaster)"
 	variant
 		"Splinter (Laser)"
+
+# The odd combination of defense comes from the association with
+# pirates and marauders; and their varied shipyard.
+fleet "Humanika Defense"
+	government "Humanika (Ship)"
+	names "militia small"
+	cargo 1
+	personality
+		heroic frugal
+		confusion 20
+	variant 3
+		"Osprey (Missile)"
+		"Bastion"
+	variant 3
+		"Osprey (Laser)"
+		"Bastion (Heavy)"
+	variant 2
+		"Bastion (Laser)"
+		"Falcon"
+	variant 2
+		"Falcon (Laser)"
+		"Quicksilver" 2
+	variant 3
+		"Leviathan (Laser)"
+		"Quicksilver"
+		"Quicksilver (Proton)"
+	variant 3
+		"Leviathan (Heavy)"
+		"Quicksilver (Proton)" 2
+	variant 2
+		"Falcon (Heavy)"
+		"Splinter"
+		"Quicksilver (Proton)"
+	variant 3
+		"Manta (Proton)"
+		"Manta"
+	variant 2
+		"Protector (Laser)"
+		"Firebird"
+	variant 2
+		"Protector"
+		"Firebird (Missile)"
+	variant 2
+		"Vanguard (Particle)"
+		"Firebird (Plasma)"
+	variant 2
+		"Vanguard (Missile)"
+		"Protector (Proton)"
+	variant 2
+		"Vanguard"
+		"Firebird (Laser)"
+	variant 3
+		"Headhunter (Particle)"
+		"Headhunter (Strike)"
+	variant 2
+		"Headhunter (Particle)" 2
+		"Headhunter (Strike)"
+	variant 1
+		"Marauder Falcon"
+		"Marauder Firebird"
+		"Marauder Raven (Weapons)"
+		"Marauder Quicksilver (Engines)"
+		"Marauder Arrow (Weapons)"
+		"Marauder Bounder (Engines)"
+	variant 1
+		"Marauder Leviathan"
+		"Marauder Firebird"
+		"Marauder Raven (Engines)"
+		"Marauder Quicksilver (Weapons)"
+		"Marauder Arrow (Engines)"
+		"Marauder Bounder (Weapons)"
+	variant
+		"Marauder Leviathan (Engines)"
+		"Firebird"
+		"Firebird (Plasma)"
+		"Firebird (Missile)"
+	variant
+		"Marauder Leviathan (Weapons)"
+		"Firebird"
+		"Firebird (Plasma)"
+		"Firebird (Missile)"
+	variant
+		"Marauder Leviathan (Weapons)"
+		"Firebird (Laser)" 3
+		"Firebird (Missile)"
