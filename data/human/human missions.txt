@@ -5421,7 +5421,7 @@ mission "Deal Change 2"
 
 mission "Karen Transport 1"
 	name "Passenger transport to <planet>"
-	description "Bring <passengers> to <destination>."
+	description "Bring <fare> to <destination> by <date>."
 	passengers 1
 	deadline 2 0
 	source
