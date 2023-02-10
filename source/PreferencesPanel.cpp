@@ -140,6 +140,8 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		++currentSettingsPage;
 	else if((key == 'r' || key == SDLK_PAGEDOWN) && currentSettingsPage > 0)
 		--currentSettingsPage;
+	else if(key == 'x' || key == SDLK_DELETE)
+		Command::SetKey(zones[hover].Value(), 0);
 	else
 		return false;
 
@@ -408,7 +410,7 @@ void PreferencesPanel::DrawControls()
 			// Mark conflicts.
 			bool isConflicted = command.HasConflict();
 			bool isEditing = (index == editing);
-			if(isConflicted || isEditing)
+			if((isConflicted || isEditing) && !(zones[index].Value().KeyName().empty()))
 			{
 				table.SetHighlight(56, 120);
 				table.DrawHighlight(isEditing ? dim : warning);
