@@ -934,7 +934,7 @@ phrase "martini evac dialog plural"
 	word
 		"Throughout the trip, your passengers from Martini have been "
 	phrase
-		"martini evac dialog 2"
+		"martini evac 2"
 
 phrase "martini evac 2"
 	word
@@ -1124,7 +1124,7 @@ mission "Martini Relief (Water Tablets)"
 	job
 	repeat
 	cargo "water purification tablets" 5 25
-	clearance "When you explain to the spaceport controller that you are carrying a vital supply of water purification tablets for the refugee camps, they give you the clearance to land."
+	clearance "When you explain to the spaceport controller that you are carrying a vital supply of <commodity> for the refugee camps, they give you the clearance to land."
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
@@ -1169,7 +1169,7 @@ mission "Martini Relief (People) [0]"
 
 mission "Martini Relief (People) [1]"
 	name "Relief workers to Martini"
-	description "Due to the recent nuclear bombings on Martini, bring <bunks> <martini relief occupations> to <planet> to assist in the search and rescue efforts. Payment is <payment>."
+	description "Due to the recent nuclear bombings on Martini, bring <bunks> <martini relief occupations> to <planet> to assist in Martini's relief efforts. Payment is <payment>."
 	job
 	repeat
 	passengers 5 15
@@ -1177,7 +1177,7 @@ mission "Martini Relief (People) [1]"
 		"<martini relief occupations>" "evacuation coordinators"
 		"<martini relief occupations>" "search and rescue operatives"
 			random < 50
-		"<martini relief occupations>" "rescue helicoptor pilots"
+		"<martini relief occupations>" "firefighters"
 			random < 33
 		"<martini relief occupations>" "volunteers"
 			random < 25
