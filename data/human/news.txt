@@ -139,7 +139,7 @@ news "merchant in human space"
 
 news "farmer"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "farming"
 	name
 		word
@@ -192,9 +192,43 @@ news "textile worker"
 
 
 
+news "humanika worker"
+	location
+		government "Humanika (Port)"
+		attributes "mining" "factory"
+	name
+		word
+			"Worker"
+			"Citizen"
+			"Local"
+	message
+		word
+			`"`
+		word
+			"Mining's the best opportunity on this whole planet, but I worry about my health. I've started to cough up blood when I get sick. It's a good thing the company pays for our medical bills."
+			"A few years of this and I'll be able to afford my own starship. I pulled in more than 120,000 credits last year! That's more than my brother makes on Hermes, and he's a scientist."
+			"I've heard that miners who work on Clink are several times more likely to develop cancer. I must admit that the wages are mighty tempting, though..."
+			"Everybody I know wound up working in the plant, so I guess I was gonna go, too. It was inevitable or something, right?"
+			"The plant's all right. I don't have to do much more than show up on time, and I can make a decent living. It's hard work, but I don't mind."
+			"Working around so many huge machines is exciting. Every day we build things that would have blown the mind of anyone a thousand years ago. We're the backbone of interstellar civilization!"
+			"I don't like those news shows that tell you what to think! When I'm in the voting booth it's only MY opinion that counts!"
+			"Some of the stuff we make here ends up as one little part of a spaceship. Whenever you see a ship, always remember that it represents the effort of over a thousand of us workers."
+			"When things go wrong, somebody is responsible, and somebody gets blamed. Those somebodies are rarely the same person, unfortunately."
+			"Some people claim our universe is a simulation, but my job is so boring that I'm sure nobody would ever want to simulate it."
+			"Moving to this planet was the best thing I did; my commute changed from 3 hours spaceflight to just 15 minutes walking."
+			"My boss is great. If we suffer, then he makes sure he takes the heat as well."
+			"I moved here from a richer world and wouldn't ever go back."
+			"Did you eat today? Thank a farmer."
+			"I used to be a merchant captain like you. Bank account got up to a few million at one point. Thought I had it all. One day I realized none of it was making me happy. I bought this farm and gave the rest away. Best thing I ever did."
+			"You should check around spaceports often. You might find one of us needing a captain like you for a job."
+		word
+			`"`
+
+
+
 news "miner"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "mining"
 	name
 		word
@@ -216,7 +250,7 @@ news "miner"
 
 news "factory worker"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "factory"
 	name
 		word
@@ -729,7 +763,7 @@ phrase "athlete competition location"
 
 news "athlete"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "core" "paradise" "rim"
 	name
 		word
@@ -1385,23 +1419,20 @@ news "religious"
 
 
 
-news "trying to reform pirates using religion"
+news "proselytizing"
 	location
-		government "Humanika (Port)"
+		government "Pirate" "Humanika (Port)"
 		attributes "religious"
 	name
 		word
-			"Mystic"
-			"Preacher"
+			"Missionary"
+			"Sage"
 			"Mediator"
+			"Proselytizer"
 	message
 		word
 			`"`
 		word
-			"The path to enlightenment is fraught with sacrifice."
-			"When we spend our lives chasing desire, we find that it turns to ashes in our mouths, and that which we seek most becomes a prison. What do you seek?"
-			"It's been many years since I came to this world seeking out cosmic truth, and I sense that my journey may soon be at an end."
-			"Can you spare a few credits for the poor, captain? In this universe of abundance, so many still suffer."
 			"Blessed is the one whose transgressions are forgiven, whose sins are covered."
 			"Hatred stirs old quarrels, but love overlooks insults."
 			"Every son of Adam sins, the best of the sinners are those who repent."
@@ -1416,6 +1447,10 @@ news "trying to reform pirates using religion"
 			"Evil inclination is sweet at the start and bitter at the end."
 			"The human race will begin solving its problems on the day that it ceases taking itself so seriously."
 			"May you be free of The Curse of Greyface. May the Goddess put twinkles in your eyes. May you have the knowledge of a sage, and the wisdom of a child."
+
+			# These two are copied from "religious"
+			"The path to enlightenment is fraught with sacrifice."
+			"When we spend our lives chasing desire, we find that it turns to ashes in our mouths, and that which we seek most becomes a prison. What do you seek?"
 		word
 			`"`
 

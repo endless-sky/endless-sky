@@ -3214,3 +3214,78 @@ fleet "Human Wormhole Guards"
 		"Frigate (Mark II)"
 	variant 5
 		"Rainmaker (Mark II Old Weapons)"
+
+# The Humanika have access to Syndicate hulls, and any Pirate tech,
+# and more varied objectives, so their ships are a quite a mix.
+fleet "Humanika Merchants"
+	government "Humanika (Ship)"
+	names "civilian"
+	cargo 3
+	personality
+		timid frugal opportunistic
+		confusion 20
+	variant 10
+		"Bulk Freighter (Blaster)"
+		"Aerie"
+		"Barb (Proton)"
+		"Barb"
+	variant 3
+		"Mule (Heavy)"
+		"Manta (Proton)"
+		"Dagger" 2
+	variant 3
+		"Behemoth (Heavy)"
+		"Bastion (Laser)"
+	variant 7
+		"Blackbird"
+		"Quicksilver (Proton)"
+		"Quicksilver"
+		"Raven (Afterburner)"
+	variant 7
+		"Falcon (Plasma)"
+		"Blackbird" 2
+	variant 3
+		"Falcon (Heavy)"
+		"Freighter (Proton)"
+		"Freighter"
+	variant 3
+		"Argosy (Blaster)"
+		"Argosy (Laser)"
+		"Argosy (Turret)"
+	variant 7
+		"Behemoth (Speedy)"
+		"Clipper (Speedy)"
+		"Corvette (Speedy)"
+	variant 10
+		"Bulk Freighter (Heavy)"
+		"Firebird (Plasma)"
+		"Fury (Bomber)" 3
+	variant 2
+		"Hauler III"
+		"Leviathan (Particle Chaser)"
+		"Headhunter (Particle)" 2
+	variant 2
+		"Star Queen"
+		"Protector (Proton)"
+		"Splinter (Proton)"
+	variant 7
+		"Aerie"
+		"Finch" 2
+		"Bounder" 2
+		"Fury (Missile)" 2
+
+fleet "Humanika Miners"
+	government "Humanika (Ship)"
+	names "civilian"
+	cargo 0
+	personality
+		confusion 20
+		timid frugal mining harvests
+	variant 2
+		"Firebird (Laser)"
+	variant 2
+		"Manta (Miner)"
+	variant
+		"Modified Argosy (Blaster)"
+	variant
+		"Splinter (Laser)"
