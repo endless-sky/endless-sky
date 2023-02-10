@@ -646,17 +646,16 @@ person "Patrol Team"
 			
 	ship "Waverider" "Pain of the Proofreader"
 		"never disabled"
-	ship "Waverider" "Placeholder Art Patrol ship"
+	ship "Waverider" "Regret of the Art Critics"
 		"never disabled"
-	ship "Waverider" "Placeholder Mission Patrol ship"
+	ship "Waverider" "Curse of the Code Herders"
 		"never disabled"
-	ship "Waverider" "Placeholder Code Patrol ship"
+	ship "Waverider" "Tears of the Choreographers"
 		"never disabled"
-	ship "Waverider" "Placeholder Theme Patrol ship"
+	ship "Waverider" "Blood of the Adjuncators"
 		"never disabled"
-	ship "Waverider" "Placeholder Balance Patrol ship"
+	ship "Waverider" "Madness of the Balancers"
 		"never disabled"
-
 
 
 
