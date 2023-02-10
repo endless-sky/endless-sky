@@ -19544,12 +19544,12 @@ system "Kor Ak'Mari"
 		distance 1807.64
 		period 552.137
 	object
-		sprite planet/ocean6-b
+		sprite planet/ocean-rabasot
 		distance 2874.19
 		period 1107.01
 		object
 			sprite planet/callisto-b
-			distance 166
+			distance 266
 			period 16.2305
 	object
 		sprite planet/ice0-b
