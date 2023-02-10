@@ -333,9 +333,9 @@ void PreferencesPanel::DrawControls()
 	// Check for conflicts.
 	const Color &warning = *GameData::Colors().Get("warning conflict");
 
-	if (selected != oldSelected)
+	if(selected != oldSelected)
 		latest = selected;
-	if (hover != oldHover)
+	if(hover != oldHover)
 		latest = hover;
 
 	oldSelected = selected;

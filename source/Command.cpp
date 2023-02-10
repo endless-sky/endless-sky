@@ -220,10 +220,10 @@ const string &Command::KeyName() const
 bool Command::HasConflict() const
 {
 	auto it = keycodeForCommand.find(*this);
-	if (it == keycodeForCommand.end())
+	if(it == keycodeForCommand.end())
 		return false;
 
-	if (it->second == 0)
+	if(it->second == 0)
 		return false;
 
 	auto cit = keycodeCount.find(it->second);
