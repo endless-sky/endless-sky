@@ -418,7 +418,7 @@ void PreferencesPanel::DrawControls()
 			// Mark conflicts.
 			bool isConflicted = command.HasConflict();
 			bool isEditing = (index == editing);
-			if((isConflicted || isEditing))
+			if(isConflicted || isEditing)
 			{
 				table.SetHighlight(56, 120);
 				table.DrawHighlight(isEditing ? dim : warning);
