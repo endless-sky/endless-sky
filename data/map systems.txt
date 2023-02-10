@@ -3236,7 +3236,7 @@ system Alcyone
 	fleet "Large Core Pirates" 600
 	fleet "Large Syndicate" 1200
 	fleet "Korath Large Raid" 50000
-	fleet "Humanika Merchants" 10000
+	fleet "Humanika Merchants" 7000
 	object
 		sprite star/m5
 		distance 49.6028
@@ -10849,7 +10849,7 @@ system Durax
 	fleet "Korath Raid" 7000
 	fleet "Korath Miners" 17000
 	fleet "Humanika Miners" 5000
-	fleet "Humanika Merchants" 20000
+	fleet "Humanika Merchants" 10000
 	object
 		sprite star/g0-old
 		period 10
@@ -23814,7 +23814,7 @@ system Nihal
 	fleet "Small Republic" 4000
 	fleet "Large Republic" 7000
 	fleet "Human Miners" 2000
-	fleet "Humanika Merchants" 15000
+	fleet "Humanika Merchants" 10000
 	object
 		sprite star/k8
 		distance 26.8556
