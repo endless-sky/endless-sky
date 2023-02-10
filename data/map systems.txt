@@ -5918,7 +5918,7 @@ system Aspidiske
 system Atik
 	pos -66 -52
 	government Uninhabited
-	arrival 3000
+	arrival 1800
 	habitable 15105
 	belt 1240
 	link Durax
@@ -10843,7 +10843,7 @@ system Durax
 	fleet "Large Syndicate" 2500
 	fleet "Korath Raid" 7000
 	fleet "Korath Miners" 17000
-	fleet "Humanika miners" 5000
+	fleet "Humanika Miners" 5000
 	fleet "Humanika Merchants" 20000
 	object
 		sprite star/g0-old
