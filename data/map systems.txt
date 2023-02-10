@@ -5975,9 +5975,14 @@ system Atik
 			distance 481
 			period 38.374
 	object
-		sprite planet/lava1
-		distance 1905.05
+		sprite planet/rock16
+		distance 2105.05
 		period 270.619
+		object
+			sprite planet/lumpy-moon
+			distance 145
+			period 19.114
+
 
 system Atria
 	pos -551 532
