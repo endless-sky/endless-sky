@@ -1915,15 +1915,32 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 	bool shouldReverse = false;
 	dp = targetPosition - StoppingPoint(ship, targetVelocity, shouldReverse);
 
-	bool isFacing = (dp.Unit().Dot(angle.Unit()) > .95);
-	if(!isClose || (!isFacing && !shouldReverse))
-		command.SetTurn(TurnToward(ship, dp));
-	if(isFacing)
-		command |= Command::FORWARD;
-	else if(shouldReverse)
+	double directionCorrelation = dp.Unit().Dot(angle.Unit());
+
+	if(ship.Acceleration() >= ship.ReverseAcceleration())
 	{
-		command.SetTurn(TurnToward(ship, velocity));
-		command |= Command::BACK;
+		bool isFacing = directionCorrelation > .95;
+		if(!isClose || (!isFacing && !shouldReverse))
+			command.SetTurn(TurnToward(ship, dp));
+		if(isFacing)
+			command |= Command::FORWARD;
+		else if(shouldReverse)
+		{
+			command.SetTurn(TurnToward(ship, velocity));
+			command |= Command::BACK;
+		}
+	}
+	else {
+		bool isBackFacing = directionCorrelation < -.95;
+		if(!isClose || (!isBackFacing && shouldReverse))
+			command.SetTurn(TurnToward(ship, -dp));
+		if(isBackFacing)
+			command |= Command::BACK;
+		else if(!shouldReverse)
+		{
+			command.SetTurn(TurnToward(ship, velocity));
+			command |= Command::FORWARD;
+		}
 	}
 
 	return false;
