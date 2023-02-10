@@ -141,7 +141,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	else if((key == 'r' || key == SDLK_PAGEDOWN) && currentSettingsPage > 0)
 		--currentSettingsPage;
 	else if(key == 'x' || key == SDLK_DELETE)
-		Command::SetKey(zones[hover].Value(), 0);
+		Command::SetKey(zones[latest].Value(), 0);
 	else
 		return false;
 
@@ -333,6 +333,14 @@ void PreferencesPanel::DrawControls()
 	// Check for conflicts.
 	const Color &warning = *GameData::Colors().Get("warning conflict");
 
+	if (selected != oldSelected)
+		latest = selected;
+	if (hover != oldHover)
+		latest = hover;
+
+	oldSelected = selected;
+	oldHover = hover;
+
 	Table table;
 	table.AddColumn(-115, {230, Alignment::LEFT});
 	table.AddColumn(115, {230, Alignment::RIGHT});
@@ -410,7 +418,7 @@ void PreferencesPanel::DrawControls()
 			// Mark conflicts.
 			bool isConflicted = command.HasConflict();
 			bool isEditing = (index == editing);
-			if((isConflicted || isEditing) && !(zones[index].Value().KeyName().empty()))
+			if((isConflicted || isEditing))
 			{
 				table.SetHighlight(56, 120);
 				table.DrawHighlight(isEditing ? dim : warning);
