@@ -5517,7 +5517,7 @@ mission "Karen Transport 2"
 		neighbor system "Sol"
 	destination "Earth"
 	to offer
-		random < 1
+		random < 3
 	on offer
 		conversation
 			`As you exit your ship, a middle-aged man in an expensive-looking suit approaches you. "I need you to take me to <planet>. I have urgent business there. Are you willing to transport me?"`
