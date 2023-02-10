@@ -56,7 +56,7 @@ namespace {
 	int boardingIndex = 0;
 
 	const vector<string> PARALLAX_SETTINGS = {"off", "fancy", "fast"};
-	int parallaxIndex = 1;
+	int parallaxIndex = 2;
 
 	const vector<string> ALERT_INDICATOR_SETTING = {"off", "audio", "visual", "both"};
 	int alertIndicatorIndex = 3;
