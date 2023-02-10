@@ -48,7 +48,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	// If the player issues any of those commands, then any auto-pilot actions for the player get cancelled.
+	// If the player issues any of those commands, then any autopilot actions for the player get cancelled.
 	const Command &AutopilotCancelCommands()
 	{
 		static const Command cancelers(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD
@@ -1214,7 +1214,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	double closest = person.IsHunting() ? numeric_limits<double>::infinity() :
 		(minRange > 1000.) ? maxRange * 1.5 : 4000.;
 	bool hasNemesis = false;
-	bool canPlunder = person.Plunders() && ship.Cargo().Free();
+	bool canPlunder = person.Plunders() && ship.Cargo().Free() && !ship.CanBeCarried();
 	// Figure out how strong this ship is.
 	int64_t maxStrength = 0;
 	auto strengthIt = shipStrength.find(&ship);
