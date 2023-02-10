@@ -2158,6 +2158,30 @@ ship "Manta" "Manta (Proton)"
 	gun "Proton Gun"
 
 
+ship "Manta" "Manta (Miner)"
+	outfits
+		"Cargo Expansion"
+		"D23-QP Shield Generator"
+		"Heavy Laser" 4
+		Hyperdrive
+		"LP036a Battery Pack"
+		"LP072a Battery Pack"
+		"Laser Rifle"
+		"Meteor Missile" 60
+		"Meteor Missile Launcher" 2
+		"NT-200 Nucleovoltaic"
+		Supercapacitor 4
+		"X1700 Ion Thruster"
+		"X3200 Ion Steering"
+		"X3700 Ion Thruster"
+	gun "Heavy Laser"
+	gun "Heavy Laser"
+	gun "Heavy Laser"
+	gun "Heavy Laser"
+	gun "Meteor Missile Launcher"
+	gun "Meteor Missile Launcher"
+
+
 
 ship "Marauder Bounder" "Marauder Bounder (Hai)"
 	outfits

@@ -2928,6 +2928,8 @@ planet "New Tortuga"
 	shipyard "Southern Pirates"
 	shipyard "Northern Pirates"
 	shipyard "Megaparsec Basics"
+	shipyard "Syndicate Basics"
+	shipyard "Syndicate Advanced"
 	outfitter "Basic Outfits"
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
@@ -2935,6 +2937,9 @@ planet "New Tortuga"
 	outfitter "Pirate Outfits"
 	outfitter "Syndicate Basics"
 	outfitter "Syndicate Advanced"
+	outfitter "Deep Sky Basics"
+	outfitter "Lovelace Basics"
+	outfitter "Delta V Basics"
 	"required reputation" -10
 	bribe 0.03
 	security 0

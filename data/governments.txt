@@ -650,41 +650,43 @@ government "Heliarch"
 
 color "governments: Independent" .78 .36 .36
 
-# Korath-friendly human settlements or stations that dislike the Syndicate
+# Korath-friendly, pirate-friendly, human, settlements or stations that dislike the Syndicate
 government "Humanika (Port)"
-	swizzle 6
+	swizzle 3
 	color "governments: Independent"
 	"display name" "Independent"
 
-	"player reputation" 1
+	"player reputation" 10
 	"bribe" .05
 	"fine" 0
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
 	"attitude toward"
 		"Syndicate" -.01
+		"Syndicate that won't enter wormhole" -.01
+		"Syndicate (Extremist)" -.01
 		"Republic" -.01
 		"Republic that won't enter wormhole" -.01
 		"Navy Intelligence" -.01
 		"Republic Intelligence" -.01
-		"Syndicate" -.01
+		"Humanika (Ship)" 1
 		# Negative for Korath ensures the Korath raiding groups will not come
 		# from Humanika (Port) planets and stations.
 		"Korath" -.001
 
-# Korath-friendly human ships that dislike the Syndicate
+# Korath-friendly, pirate-friendly, human, ships that dislike the Syndicate
 government "Humanika (Ship)"
-	swizzle 6
+	swizzle 3
 	color "governments: Independent"
 	"display name" "Independent"
 
-	"player reputation" 1
+	"player reputation" 10
 	"bribe" .05
 	"fine" 0
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
 	"attitude toward"
-		"Korath (Civilian)" .1
+		"Korath (Civilian)" .01
 		"Syndicate" -.1
 
 government "Independent"
@@ -812,6 +814,7 @@ government "Korath"
 		"Kor Sestor" -.01
 		"Korath (Civilian)" 1
 		"Hai (Friendly Unfettered)" -.01
+		"Humanika (Ship)" .1
 	
 	"player reputation" -10
 
@@ -827,6 +830,7 @@ government "Korath (Civilian)"
 		"Kor Mereti" -.01
 		"Kor Sestor" -.01
 		"Korath" .01
+		"Humanika (Ship)" .2
 
 	"player reputation" 1
 
@@ -924,7 +928,6 @@ government "Navy Intelligence"
 		"Syndicate" -.1
 		"Pirate" -.3
 		"Pirate (Devil-Run Gang)" -.3
-		"Humanika (Ship)" -.01
 
 government "Navy (Oathkeeper)"
 	swizzle 0
@@ -944,7 +947,6 @@ government "Navy (Oathkeeper)"
 		"Kor Mereti" -.01
 		"Navy Intelligence" 1
 		"Republic Intelligence" 1
-		"Humanika (Ship)" -.01
 	"friendly hail" "friendly navy"
 	"hostile hail" "hostile navy"
 
@@ -1169,7 +1171,6 @@ government "Republic"
 		"Republic Intelligence" 1
 		"Navy (Oathkeeper)" 1
 		"Neutral" .1
-		"Humanika (Ship)" -.01
 	"friendly hail" "friendly navy"
 	"hostile hail" "hostile navy"
 	raid "pirate raid"
@@ -1292,7 +1293,7 @@ government "Syndicate"
 		"Pirate (Devil-Run Gang)" -.4
 		"Smuggler (Hai Trafficker)" .3
 		"Syndicate that won't enter wormhole" 1
-		"Humanika (Ship)" -.1
+		"Humanika (Ship)" -.01
 		"Korath" -.5
 	"bribe" .08
 	"friendly hail" "friendly syndicate"
@@ -1311,6 +1312,7 @@ government "Syndicate that won't enter wormhole"
 		"Pirate (Devil-Run Gang)" -.4
 		"Smuggler (Hai Trafficker)" .3
 		"Syndicate" 1
+		"Humanika (Ship)" -.01
 		"Korath" -.5
 	"bribe" .08
 	"friendly hail" "friendly syndicate"
