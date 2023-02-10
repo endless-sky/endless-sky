@@ -5571,7 +5571,7 @@ mission "Karen Transport 2"
 					goto silent
 
 			label fly
-			`	"I never bothered to apply for a licene, but I know my way around the controls," he says. You remain dubious, considering he didn't even know how to stop a ship.`
+			`	"I never bothered to apply for a license, but I know my way around the controls," he says. You remain dubious, considering he didn't even know how to stop a ship.`
 			choice
 				`	"If you are not a pilot, then stop bothering me."`
 					goto stop
