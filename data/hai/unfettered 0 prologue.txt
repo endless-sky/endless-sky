@@ -943,7 +943,6 @@ mission "<uhai> 3: Recover Jump Drives"
 	source "Darkcloak"
 	stopover "Freedom"
 	clearance
-	infiltrating
 	passengers 1
 	to offer
 		has "event: unfettered: JD raid plan ready"
