@@ -4284,7 +4284,7 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 			// Skip giving any new orders if the fleet is already in harvest mode and the player has selected a new
 			// asteroid.
 			if(hasMismatch && targetAsteroid)
-				alreadyHarvesting |= ((existing.type == newOrders.type) && (newOrders.type == Orders::HARVEST));
+				alreadyHarvesting = (existing.type == newOrders.type) && (newOrders.type == Orders::HARVEST);
 			existing = newOrders;
 
 			if(isMoveOrder)
