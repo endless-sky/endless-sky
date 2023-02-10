@@ -527,12 +527,18 @@ mission "Paradise Job: Wilderness Retreat"
 # Martini Bombings jobs
 mission "Martini Evacuation (Resident Family)"
 	name "Evacuate Martini family to <planet>"
-	description "This family of <bunks> from Martini had their apartment destroyed in the nuclear bombing and wish to leave immediately. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
+	description "This family of <bunks> from Martini had their <martini house> destroyed in the nuclear bombing and wish to leave immediately. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
 	job
 	repeat
 	passengers 3 6
 	cargo "belongings" 2 4
 	clearance "When you inform the spaceport controller that your passengers are permitted to live on <destination>, they give you the clearance to land." # In case the destination is Hermes.
+	substitutions
+		"<martini house>" "apartment"
+		"<martini house>" "house"
+			random < 50
+		"<martini house>" "condo"
+			random < 33
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2" # Gives the player about a month to do these missions.
@@ -551,12 +557,18 @@ mission "Martini Evacuation (Resident Family)"
 
 mission "Martini Evacuation (Resident Group)"
 	name "Evacuate Martini residents to <planet>"
-	description "These <bunks> residents from Martini had their apartment destroyed in the nuclear bombing and wish to leave immediately. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
+	description "These <bunks> residents from Martini had their <martini house> destroyed in the nuclear bombing and wish to leave immediately. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
 	job
 	repeat
 	passengers 3 6
 	cargo "belongings" 3 6
 	clearance "When you inform the spaceport controller that your passengers are permitted to live on <destination>, they give you the clearance to land."
+	substitutions
+		"<martini house>" "apartment"
+		"<martini house>" "house"
+			random < 50
+		"<martini house>" "condo"
+			random < 33
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
@@ -575,12 +587,18 @@ mission "Martini Evacuation (Resident Group)"
 
 mission "Martini Evacuation (Resident)"
 	name "Evacuate Martini resident to <planet>"
-	description "This resident from Martini had their apartment destroyed in the nuclear bombing and wishes to leave immediately. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
+	description "This resident from Martini had their <martini house> destroyed in the nuclear bombing and wishes to leave immediately. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
 	job
 	repeat
 	passengers 1
 	cargo "belongings" 1 2
 	clearance "When you inform the spaceport controller that your passenger is permitted to live on <destination>, they give you the clearance to land."
+	substitutions
+		"<martini house>" "apartment"
+		"<martini house>" "house"
+			random < 50
+		"<martini house>" "condo"
+			random < 33
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
@@ -599,17 +617,23 @@ mission "Martini Evacuation (Resident)"
 
 mission "Martini Evacuation (Family, Luxury Accommodations)"
 	name "Evacuate Martini residents to <planet>"
-	description "This family of <bunks> from Martini had their apartment destroyed in the nuclear bombing and wish to leave immediately on a luxury ship. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
+	description "This family of <bunks> from Martini had their <martini house> destroyed in the nuclear bombing, and wish to leave immediately on a luxury ship. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
 	job
 	repeat
 	passengers 3 6
 	cargo "belongings" 2 4
 	clearance "When you inform the spaceport controller that your passengers are permitted to live on <destination>, they give you the clearance to land."
+	substitutions
+		"<martini house>" "apartment"
+		"<martini house>" "house"
+			random < 50
+		"<martini house>" "condo"
+			random < 33
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
 		random < 30
-	on offer
+	to accept
 		require "Luxury Accommodations"
 	source Martini
 	destination
@@ -625,17 +649,23 @@ mission "Martini Evacuation (Family, Luxury Accommodations)"
 
 mission "Martini Evacuation (Singular, Luxury Accommodations)"
 	name "Evacuate Martini resident to <planet>"
-	description "This resident from Martini had their apartment destroyed in the nuclear bombing and wishes to leave immediately on a luxury ship. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
+	description "This resident from Martini had their <martini house> destroyed in the nuclear bombing, and wishes to leave immediately on a luxury ship. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
 	job
 	repeat
 	passengers 1
 	cargo "belongings" 1 2
 	clearance "When you inform the spaceport controller that your passenger is permitted to live on <destination>, they give you the clearance to land."
+	substitutions
+		"<martini house>" "apartment"
+		"<martini house>" "house"
+			random < 50
+		"<martini house>" "condo"
+			random < 33
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
 		random < 30
-	on offer
+	to accept
 		require "Luxury Accommodations"
 	source Martini
 	destination
@@ -812,7 +842,7 @@ mission "Martini Evacuation (Exhausted Search and Rescue Team)"
 	to offer
 		has "event: initial deployment 1"
 		not "event: initial deployment 2"
-		random < 70
+		random < 30
 	source Martini
 	destination
 		distance 4 12
@@ -830,43 +860,13 @@ phrase "martini evac dialog singular"
 	word
 		"Throughout the trip, your passenger from Martini has been "
 	phrase
-		"martini evac dialog"
+		"martini evac 1"
 
-phrase "martini evac dialog plural"
-	word
-		"Throughout the trip, your passengers from Martini have been "
-	phrase
-		"martini evac dialog"
-
-phrase "insults for southerners"
-	word
-		"bloody"
-		"damn"
-		"jumpy"
-		"upstart"
-		"whining"
-		"stupid"
-		"seditious"
-		"treasonous"
-		"terrorizing"
-		"greedy"
-	word
-		" "
-	word
-		"southerners"
-		"collectivists from Bourne"
-		"subversives from the Rim"
-		"insurrectionists from the Rim"
-		"charity-cases from the South"
-		"rocketeers from Solace"
-		"pirates from Greenrock"
-		"unlawfuls from Thule"
-		"gunrunners from Rust"
-
-phrase "martini evac dialog"
+phrase "martini evac 1"
 	word
 		"accusing"
 		"repeatedly accusing"
+		"denouncing"
 	word
 		" "
 	word
@@ -883,9 +883,7 @@ phrase "martini evac dialog"
 		"destruction"
 		"devastation"
 	word
-		" on Martini"
-	word
-		". They hand you <payment> and head off for their"
+		" on Martini. They hand you <payment> and head off for their"
 	word
 		" " 10
 		" well-kept "
@@ -907,28 +905,132 @@ phrase "martini evac dialog"
 	word
 		" on <planet>."
 
-phrase "martini evac dialog"
+phrase "martini evac 1"
 	word
-		"telling you of "
+		"telling you"
 	word
 		" "
 	word
-		"the desperation of the people on Martini"
-		"the people they knew who died in the blasts"
-		"dire conditions that the people are facing on Martini"
+		"of the desperation of the people on Martini"
+		"of the people they knew who died in the blasts"
+		"of the dire conditions that the people are facing on Martini"
+		"of the deteriorating state on the ground on Martini"
+		"of the destruction on Martini"
+		"that they haven't heard back from their relatives on Martini"
 	word
-		""
 		", and implore you to help out further in the relief efforts"
 		", and thank you for bringing them off-planet"
+		""
 	word
-		". They hand you <payment> and head off for a"
+		". They hand you <payment> and head off for "
+	word
+		"an apartment"
+		"a house"
+	word
+		" on <planet>."
+
+
+phrase "martini evac dialog plural"
+	word
+		"Throughout the trip, your passengers from Martini have been "
+	phrase
+		"martini evac dialog 2"
+
+phrase "martini evac 2"
+	word
+		"accusing"
+		"repeatedly accusing"
+		"denouncing"
 	word
 		" "
 	word
-		"apartment"
-		"house"
+		"the Free Worlds"
+		"the Pact"
+		"the Southern Pact"
+		"'those ${insults for southerners}'"
+		"'them ${insults for southerners}'"
+		"'${insults for southerners}'"
+	word
+		" for the "
+	word
+		"nuclear bombings"
+		"destruction"
+		"devastation"
+	word
+		" on Martini. The group hands you <payment> and head off for their"
+	word
+		" " 4
+		" well-kept "
+		" expensive "
+		" opulent "
+		" exorbitant "
+	word
+		"penthouses"
+		"apartments"
+		"houses"
+		"villas"
+	word
+		" and "
+	word
+		"estates"
+		"condos"
+		"mansions"
+		"manors"
 	word
 		" on <planet>."
+
+phrase "martini evac 2"
+	word
+		"telling you"
+	word
+		"of the desperation of the people on Martini"
+		"of the people they knew who died in the blasts"
+		"of the dire conditions that the people are facing on Martini"
+		"of the deteriorating state on the ground on Martini"
+		"of the destruction on Martini"
+		"that some of them haven't heard back from their relatives on Martini"
+	word
+		". They "
+	word
+		"implore you to help out further in the relief efforts,"
+		"thank you for bringing them off-planet,"
+	word
+		" hand you <payment> and head off for their "
+	word
+		"apartments"
+		"houses"
+		"apartments and houses"
+	word
+		" on <planet>."
+
+phrase "insults for southerners"
+	word
+		"bloody"
+		"damn"
+		"jumpy"
+		"upstart"
+		"whining"
+		"whingeing"
+		"stupid"
+		"seditious"
+		"treasonous"
+		"betraying"
+		"treacherous"
+		"deceptive"
+		"terrorizing"
+		"greedy"
+	word
+		" "
+	word
+		"southerners"
+		"collectivists from Bourne"
+		"subversives from the Rim"
+		"insurrectionists from the Rim"
+		"charity-cases from the South"
+		"rocketeers from Solace"
+		"pirates from Greenrock"
+		"unlawfuls from Thule"
+		"gunrunners from Rust"
 
 
 
@@ -942,7 +1044,7 @@ mission "Martini Relief (Medical) [0]"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 30
+		random < 25
 	source
 		near Pollux 2 10
 	destination Martini
@@ -963,7 +1065,7 @@ mission "Martini Relief (Medical) [1]"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 15
+		random < 10
 	source
 		near Pollux 2 10
 	destination Martini
@@ -984,7 +1086,7 @@ mission "Martini Relief (Reconstruction)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 30
+		random < 25
 	source
 		near Pollux 2 10
 	destination Martini
@@ -1005,7 +1107,7 @@ mission "Martini Relief (Food)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 30
+		random < 25
 	source
 		near Pollux 2 10
 	destination Martini
@@ -1026,7 +1128,7 @@ mission "Martini Relief (Water Tablets)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 30
+		random < 25
 	source
 		near Pollux 2 10
 	destination Martini
@@ -1055,7 +1157,7 @@ mission "Martini Relief (People) [0]"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 30
+		random < 25
 	source
 		near Pollux 2 10
 	destination Martini
@@ -1111,7 +1213,7 @@ mission "Martini Relief (People) [2]"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 15
+		random < 10
 	source
 		near Pollux 2 10
 	destination Martini
