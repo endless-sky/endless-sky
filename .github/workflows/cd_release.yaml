@@ -1,18 +1,17 @@
 name: Release CD
 
 on:
-  release:
-    types:
-      - published
+  push:
+    tags:
+      - v*
 
 jobs:
-  appimage_amd64:
-    name: Linux
+  release_appimage_x64:
+    name: AppImage x64
     runs-on: ubuntu-20.04
     env:
       ARCH: x86_64
-      OUTPUT: endless-sky-amd64-${{ github.event.release.tag_name }}.AppImage
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      OUTPUT: Endless_Sky-${{ github.ref_name }}-x86_64.AppImage
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
@@ -20,30 +19,74 @@ jobs:
         run: |
           sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev uuid-dev
-          python3 -m pip install --user scons
-      - name: Build AppImage
-        run: ./utils/build_appimage.sh
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
+          sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev
+      - name: Setup sccache
+        uses: ./.github/sccache
         with:
-          name: ${{ env.OUTPUT }}
-          path: ${{ env.OUTPUT }}
-      - name: Upload AppImage
-        uses: actions/upload-release-asset@v1.0.2
+          read-only: 'true'
+      - uses: lukka/get-cmake@latest
+      - uses: lukka/run-vcpkg@v10
         with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ${{ env.OUTPUT }}
-          asset_name: ${{ env.OUTPUT }}
-          asset_content_type: application/octet-stream
+          vcpkgGitCommitId: '91dd61bd441a68b4017b61011d0350b2e6aeeccf'
+      - uses: lukka/run-cmake@v10
+        with:
+          configurePreset: 'linux-release'
+          buildPreset: 'linux-ci-release'
+      - name: Package Application
+        run: ./utils/build_appimage.sh build/release
+      - name: Prevent saving cache on failure
+        run: |
+          echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
+        if: ${{ failure() || cancelled() }}
+        shell: bash
+      - name: Upload Release
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: true
+          files: ${{ env.OUTPUT }}
 
 
-  release_macos_universal:
-    name: MacOS Universal
-    runs-on: macos-12
+  release_windows_x86:
+    name: Windows x86
+    runs-on: windows-2022
     env:
+      OUTPUT: EndlessSky-win32-${{ github.ref_name }}.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      OUTPUT: Endless-Sky-${{ github.event.release.tag_name }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install x86 MinGW
+        run: choco install mingw --forcex86 --force
+      - uses: lukka/get-cmake@latest
+      - uses: lukka/run-vcpkg@v10
+        with:
+          vcpkgGitCommitId: '91dd61bd441a68b4017b61011d0350b2e6aeeccf'
+          prependedCacheKey: mingw-x86
+      - uses: lukka/run-cmake@v10
+        with:
+          configurePreset: 'mingw32-release'
+          buildPreset: 'mingw32-ci-release'
+      - name: Package Application
+        run: |
+          cmake --install build/release
+          7z a ${{ env.OUTPUT }} "./install/release/*"
+      - name: Prevent saving cache on failure
+        run: |
+          echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
+        if: ${{ failure() || cancelled() }}
+        shell: bash
+      - name: Upload Release
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: true
+          files: ${{ env.OUTPUT }}
+
+
+  release_windows_x64:
+    name: Windows x64
+    runs-on: windows-2022
+    env:
+      OUTPUT: EndlessSky-win64-${{ github.ref_name }}.zip
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
       - name: Setup sccache
@@ -53,7 +96,43 @@ jobs:
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v10
         with:
-          vcpkgGitCommitId: '163fe7bd3d67c41200617caaa245b5ba2ba854e6'
+          vcpkgGitCommitId: '91dd61bd441a68b4017b61011d0350b2e6aeeccf'
+      - uses: lukka/run-cmake@v10
+        with:
+          configurePreset: 'mingw-release'
+          buildPreset: 'mingw-ci-release'
+      - name: Package Application
+        run: |
+          cmake --install build/release
+          7z a ${{ env.OUTPUT }} "./install/release/*"
+      - name: Prevent saving cache on failure
+        run: |
+          echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
+        if: ${{ failure() || cancelled() }}
+        shell: bash
+      - name: Upload Release
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: true
+          files: ${{ env.OUTPUT }}
+
+
+  release_macos_universal:
+    name: MacOS Universal
+    runs-on: macos-12
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      OUTPUT: Endless-Sky-${{ github.ref_name }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup sccache
+        uses: ./.github/sccache
+        with:
+          read-only: 'true'
+      - uses: lukka/get-cmake@latest
+      - uses: lukka/run-vcpkg@v10
+        with:
+          vcpkgGitCommitId: '91dd61bd441a68b4017b61011d0350b2e6aeeccf'
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'macos-arm-release'
@@ -78,7 +157,13 @@ jobs:
           cp -r "Endless Sky.app" "${{ env.OUTPUT }}"
           ln -s /Applications "${{ env.OUTPUT }}"
           hdiutil create -ov -fs HFS+ -format UDZO -imagekey zlib-level=9 -srcfolder "${{ env.OUTPUT }}" "${{ github.workspace }}/${{ env.OUTPUT }}.dmg"
+      - name: Prevent saving cache on failure
+        run: |
+          echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
+        if: ${{ failure() || cancelled() }}
+        shell: bash
       - name: Upload Release
         uses: softprops/action-gh-release@v1
         with:
+          draft: true
           files: ${{ env.OUTPUT }}.dmg

@@ -61,8 +61,9 @@ namespace {
 
 // Constructor.
 ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation,
-	const System *system, const shared_ptr<Ship> &ship)
-	: player(player), conversation(conversation), scroll(0.), system(system), ship(ship)
+	const System *system, const shared_ptr<Ship> &ship, bool useTransactions)
+	: player(player), useTransactions(useTransactions), conversation(conversation),
+	scroll(0.), system(system), ship(ship)
 {
 #if defined _WIN32
 	PATH_LENGTH = Files::Saves().size();
@@ -75,6 +76,11 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 		subs["<ship>"] = ship->Name();
 	else if(player.Flagship())
 		subs["<ship>"] = player.Flagship()->Name();
+
+	// Start a PlayerInfo transaction to prevent saves during the conversation
+	// from recording partial results.
+	if(useTransactions)
+		player.StartTransaction();
 
 	// Begin at the start of the conversation.
 	Goto(0);
@@ -123,6 +129,7 @@ void ConversationPanel::Draw()
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &gray = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &dark = *GameData::Colors().Get("dark");
 
 	// Figure out where we should start drawing.
 	Point point(
@@ -153,6 +160,7 @@ void ConversationPanel::Draw()
 		for(int side = 0; side < 2; ++side)
 		{
 			Point center = point + Point(side ? 420 : 190, 7);
+			Point unselected = point + Point(side ? 190 : 420, 7);
 			// Handle mouse clicks in whatever field is not selected.
 			if(side != choice)
 			{
@@ -160,8 +168,12 @@ void ConversationPanel::Draw()
 				continue;
 			}
 
-			// Fill in whichever entry box is active right now.
-			FillShader::Fill(center, fieldSize, selectionColor);
+			// Color selected text box, or flicker if user attempts an error.
+			FillShader::Fill(center, fieldSize, (flickerTime % 6 > 3) ? dim : selectionColor);
+			if(flickerTime)
+				--flickerTime;
+			// Fill non-selected text box with dimmer color.
+			FillShader::Fill(unselected, fieldSize, dark);
 			// Draw the text cursor.
 			center.X() += font.FormattedWidth({choice ? lastName : firstName, layout}) - 67;
 			FillShader::Fill(center, Point(1., 16.), dim);
@@ -261,11 +273,15 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 #endif
 			if(FORBIDDEN.find(c) == string::npos && (name.size() + otherName.size()) < MAX_NAME_LENGTH)
 				name += c;
+			else
+				flickerTime = 18;
 		}
 		else if((key == SDLK_DELETE || key == SDLK_BACKSPACE) && !name.empty())
 			name.erase(name.size() - 1);
 		else if(key == '\t' || ((key == SDLK_RETURN || key == SDLK_KP_ENTER) && otherName.empty()))
 			choice = !choice;
+		else if((key == SDLK_RETURN || key == SDLK_KP_ENTER) && (firstName.empty() || lastName.empty()))
+			flickerTime = 18;
 		else if((key == SDLK_RETURN || key == SDLK_KP_ENTER) && !firstName.empty() && !lastName.empty())
 		{
 			// Display the name the player entered.
@@ -291,11 +307,11 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	else if(key == SDLK_DOWN && choice + 1 < static_cast<int>(choices.size()))
 		++choice;
 	else if((key == SDLK_RETURN || key == SDLK_KP_ENTER) && isNewPress && choice < static_cast<int>(choices.size()))
-		Goto(conversation.NextNodeForChoice(node, MapChoice(choice)), MapChoice(choice));
+		Goto(conversation.NextNodeForChoice(node, MapChoice(choice)), choice);
 	else if(key >= '1' && key < static_cast<SDL_Keycode>('1' + choices.size()))
-		Goto(conversation.NextNodeForChoice(node, MapChoice(key - '1')), MapChoice(key - '1'));
+		Goto(conversation.NextNodeForChoice(node, MapChoice(key - '1')), key - '1');
 	else if(key >= SDLK_KP_1 && key < static_cast<SDL_Keycode>(SDLK_KP_1 + choices.size()))
-		Goto(conversation.NextNodeForChoice(node, MapChoice(key - SDLK_KP_1)), MapChoice(key - SDLK_KP_1));
+		Goto(conversation.NextNodeForChoice(node, MapChoice(key - SDLK_KP_1)), key - SDLK_KP_1);
 	else
 		return false;
 
@@ -415,6 +431,10 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 // Exit this panel and do whatever needs to happen next.
 void ConversationPanel::Exit()
 {
+	// Finish the PlayerInfo transaction so any changes get saved again.
+	if(useTransactions)
+		player.FinishTransaction();
+
 	GetUI()->Pop(this);
 	// Some conversations may be offered from an NPC, e.g. an assisting or
 	// boarding mission's `on offer`, or from completing a mission's NPC
@@ -429,7 +449,7 @@ void ConversationPanel::Exit()
 		// Only show the BoardingPanel for a hostile NPC that is being boarded.
 		// (NPC completion conversations can result from non-boarding events.)
 		// TODO: Is there a better / more robust boarding check than relative position?
-		else if(node != Conversation::ACCEPT && ship->GetGovernment()->IsEnemy()
+		else if((node != Conversation::ACCEPT || player.CaptureOverriden(ship)) && ship->GetGovernment()->IsEnemy()
 				&& !ship->IsDestroyed() && ship->IsDisabled()
 				&& ship->Position().Distance(player.Flagship()->Position()) <= 1.)
 			GetUI()->Push(new BoardingPanel(player, ship));
@@ -453,7 +473,7 @@ void ConversationPanel::ClickName(int side)
 // The player just clicked on a conversation choice.
 void ConversationPanel::ClickChoice(int index)
 {
-	Goto(conversation.NextNodeForChoice(node, MapChoice(index)), MapChoice(index));
+	Goto(conversation.NextNodeForChoice(node, MapChoice(index)), index);
 }
 
 
