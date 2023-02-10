@@ -615,7 +615,7 @@ mission "Martini Evacuation (Resident)"
 		payment 20000 150
 
 
-mission "Martini Evacuation (Family, Luxury Accommodations)"
+mission "Martini Evacuation (Family, Luxury)"
 	name "Evacuate Martini residents to <planet>"
 	description "This family of <bunks> from Martini had their <martini house> destroyed in the nuclear bombing, and wish to leave immediately on a luxury ship. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
 	job
@@ -634,7 +634,7 @@ mission "Martini Evacuation (Family, Luxury Accommodations)"
 		not "event: initial deployment 2"
 		random < 30
 	to accept
-		require "Luxury Accommodations"
+		has "outfit: Luxury Accommodations"
 	source Martini
 	destination
 		distance 2 5
@@ -647,7 +647,7 @@ mission "Martini Evacuation (Family, Luxury Accommodations)"
 		payment 30000 200
 
 
-mission "Martini Evacuation (Singular, Luxury Accommodations)"
+mission "Martini Evacuation (Singular, Luxury)"
 	name "Evacuate Martini resident to <planet>"
 	description "This resident from Martini had their <martini house> destroyed in the nuclear bombing, and wishes to leave immediately on a luxury ship. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
 	job
@@ -666,7 +666,7 @@ mission "Martini Evacuation (Singular, Luxury Accommodations)"
 		not "event: initial deployment 2"
 		random < 30
 	to accept
-		require "Luxury Accommodations"
+		has "outfit: Luxury Accommodations"
 	source Martini
 	destination
 		distance 2 5
@@ -1086,7 +1086,7 @@ mission "Martini Relief (Reconstruction)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 25
+		random < 20
 	source
 		near Pollux 2 10
 	destination Martini
@@ -1107,14 +1107,14 @@ mission "Martini Relief (Food)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 25
+		random < 20
 	source
 		near Pollux 2 10
 	destination Martini
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 30000 50
+		payment 30000 100
 		dialog phrase "generic cargo delivery payment"
 
 
@@ -1128,7 +1128,28 @@ mission "Martini Relief (Water Tablets)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 25
+		random < 20
+	source
+		near Pollux 2 10
+	destination Martini
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 30000 100
+		dialog phrase "generic cargo delivery payment"
+
+
+mission "Martini Relief (Fire Retardant)"
+	name "Fire retardant to Martini"
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help keep up supply. Payment is <payment>."
+	job
+	repeat
+	cargo "fire retardant" 5 25
+	clearance "When you explain to the spaceport controller that you are carrying a vital supply of <commodity> to help defeat the growing fires around the capital, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+		random < 10
 	source
 		near Pollux 2 10
 	destination Martini
