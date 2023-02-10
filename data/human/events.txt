@@ -2954,18 +2954,18 @@ mission "Geminus Rebuilt"
 		event "geminus rebuilt" 90
 		fail
 
-event "martini rebuilt"
+event "martini recovers"
 	planet "Martini"
 		description `Martini is a world of exotic beaches and perfect weather. The Republic's central bank and the galactic stock exchange were previously headquartered here, before a terrorist attack destroyed them and a large portion of the old capital city as well.`
 		description `	The new capital city is on the other side of the main continent, where lingering radiation will not affect the rest of the population. It is not so grand as the old capital, but its population has swelled from resettlement from the irradiated areas and it is quickly gaining the air of a major metropolis. The inhabitants, many of whom are survivors of the blast, have rallied behind a sort of 'will-do' attitude that only occurs after such a devastating and destructive event like an atomic bombing.`
 		spaceport `Currently, the newly designated planetary spaceport does not possess the infrastructure for the increased traffic that came with becoming the capital of a planet, owing to its originally small size. The expansive temporary spaceport from the old rescue and evacuation operation is still being used, and since then more permanent landing pads were built, but there are now plans to demolish it and give the new planetary spaceport a desperately needed expansion.`
-		spaceport `	The old spaceport still remains, although three of the original towers partially collapsed in the bombings, and it now appears from a distance to be a few irregularly leveled black spires going into the sky before a backdrop of smoke and ruins. Strangely, it has become the most prominent building of the old capital's skyline; its deflector shields managed to absorb a considerable amount of damage from the blast where other buildings could not.`
+		spaceport `	The old spaceport still remains, although its towers partially collapsed in the bombings, and it now appears from a distance to be a few snapped and burnt toothpicks going into the sky before a backdrop of smoke and ruins. Strangely, it has become the most prominent building of the old capital's skyline; it was some distance from the epicenter of the bombings, and its deflector shields managed to absorb a considerable amount of damage from the blast where other buildings could not.`
 
-mission "Martini Rebuilt"
+mission "Martini Recovers"
 	landing
 	invisible
 	to offer
 		has "main plot completed"
 	on offer
-		event "martini rebuilt" 45
+		event "martini recovers" 45
 		fail
