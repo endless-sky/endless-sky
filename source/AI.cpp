@@ -3414,31 +3414,51 @@ double AI::RendezvousTime(const Point &p, const Point &v, double vp)
 // closest to the ship.
 bool AI::TargetMinable(Ship &ship) const
 {
-	double scanRange = 10000. * ship.Attributes().Get("asteroid scan power");
-	double baseline = scanRange;
-	int64_t highestCost = (ship.GetTargetAsteroid()) ? ship.GetTargetAsteroid()->GetValue() : 0.;
-	if(!baseline)
+	double scanRangeMetric = 10000. * ship.Attributes().Get("asteroid scan power");
+	if(!scanRangeMetric)
 		return false;
-	bool closestAsteroid = Preferences::Has("Target asteroid based on");
-	for(auto &&asteroid : minables)
+	const bool findClosest = Preferences::Has("Target asteroid based on");
+	auto bestAsteroid = ship.GetTargetAsteroid();
+	double bestScore = findClosest ? numeric_limits<double>::max() : 0.;
+	auto GetDistanceMetric = [&ship](const Minable &minable) -> double {
+		return ship.Position().DistanceSquared(minable.Position());
+	};
+	if(bestAsteroid)
 	{
-		double metric = ship.Position().DistanceSquared(asteroid->Position());
-		bool targetBasedOnCost = !closestAsteroid;
-		targetBasedOnCost &= asteroid->GetValue() >= highestCost;
-		// Don't target asteroids outside of your scan range.
-		targetBasedOnCost &= metric < scanRange;
-		// If asteroid value is the same as highest then target the one closest to your ship.
-		if(targetBasedOnCost && asteroid->GetValue() == highestCost)
-			targetBasedOnCost &= metric < baseline;
-		bool targetBasedOnProximity = closestAsteroid && metric < baseline;
-		if(targetBasedOnProximity || targetBasedOnCost)
-		{
-			// Target closest asteroid or target the highest value asteroid.
-			ship.SetTargetAsteroid(asteroid);
-			highestCost = asteroid->GetValue();
-			baseline = metric;
-		}
+		if(findClosest)
+			bestScore = GetDistanceMetric(*bestAsteroid);
+		else
+			bestScore = bestAsteroid->GetValue();
 	}
+	auto UpdateBestAsteroid = [&findClosest, &bestAsteroid, &bestScore, &GetDistanceMetric]()
+			-> function<void(const shared_ptr<Minable> &)>
+	{
+		if(findClosest)
+			return [&bestAsteroid, &bestScore, &GetDistanceMetric]
+					(const shared_ptr<Minable> &minable) -> void {
+				double newScore = GetDistanceMetric(*minable);
+				if(newScore < bestScore || (newScore == bestScore && minable->GetValue() > bestAsteroid->GetValue()))
+				{
+					bestScore = newScore;
+					bestAsteroid = minable;
+				}
+			};
+		else
+			return [&bestAsteroid, &bestScore, &GetDistanceMetric]
+					(const shared_ptr<Minable> &minable) -> void {
+				double newScore = minable->GetValue();
+				if(newScore > bestScore || (newScore == bestScore
+						&& GetDistanceMetric(*minable) < GetDistanceMetric(*bestAsteroid)))
+				{
+					bestScore = newScore;
+					bestAsteroid = minable;
+				}
+			};
+	};
+	for(auto &&asteroid : minables)
+		UpdateBestAsteroid()(asteroid);
+	if(bestAsteroid)
+		ship.SetTargetAsteroid(bestAsteroid);
 	return static_cast<bool>(ship.GetTargetAsteroid());
 }
 
