@@ -1830,9 +1830,9 @@ mission "Hai Reveal [A13] A New Elder"
 		require "Quantum Keystone"
 		# Apparently I can't make this either Keystones *or* Key Stones, so it'll have to be a Hai one.
 	on visit
-		dialog `Under the circumstances Sayari's superstition has got the better of her. She must travel with you, and you must have a Quantum Keystone installed for her to do so. You must also go to Everhope on the way as you were instructed.`
-	on decline
-		dialog `You have declined an essential narrative mission. You've also made the Hai hostile. If you want to complete this story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have either not stopped on Everhope as instructed, or you have left Sayari behind. Remember, her superstition has gotten the better of her under these pressing circumstances, so you must have a Quantum Keystone installed for her to travel with you.`
+	on fail
+		dialog `You have failed an essential narrative mission. You've also made the Hai hostile. If you want to complete this story line, revert to the autosave or another earlier snapshot of the game.`
 		"reputation: Hai" -= 10000
 		"reputation: Hai (Wormhole Access)" -= 10000
 		"reputation: Hai Merchant" -= 10000
