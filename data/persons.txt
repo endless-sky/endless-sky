@@ -604,22 +604,22 @@ person "Patrol Team"
 	phrase
 		word
 		#Marksman addition
-		"Should you find another ship owned by Brick, tell them to work harder!"
-		"Should you find another ship owned by Zitchas, tell them they've a typo on line 9. They'll never see it coming!"
-		"If you don't know where to start in helping the game, take a nice look at the files. Sometimes, it helps!"
-		"If you're interested in helping out but don't have time, consider being a proof-reader! You can take my job and I get to laze around doing nothing!"
-		"If you see something and it shoots at you, cheat your way to victory!"
-		"What did you just say about me you little-"
-		"The number of times someone breaks the fourth wall, it’s mind boggling!"
-		"Look, we aren’t here for your money. We do all this for free, and look where that gets us…"
-		"If you don't know where to start in helping the game, come and review some missions on GitHub. It helps!"
-		"If you're interested in helping out but don't have time, consider looking through the proposals on GitHub! Sometimes, a new perspective is needed!"
-		"What do you mean you don’t have a save file for this Pull!?"
-		"Please, for the love of god, don’t make an issue before checking if others have done the same."
+			"Should you find another ship owned by Brick, tell them to work harder!"
+			"Should you find another ship owned by Zitchas, tell them they've a typo on line 9. They'll never see it coming!"
+			"If you don't know where to start in helping the game, take a nice look at the files. Sometimes, it helps!"
+			"If you're interested in helping out but don't have time, consider being a proof-reader! You can take my job and I get to laze around doing nothing!"
+			"If you see something and it shoots at you, cheat your way to victory!"
+			"What did you just say about me you little-"
+			"The number of times someone breaks the fourth wall, it’s mind boggling!"
+			"Look, we aren’t here for your money. We do all this for free, and look where that gets us…"
+			"If you don't know where to start in helping the game, come and review some missions on GitHub. It helps!"
+			"If you're interested in helping out but don't have time, consider looking through the proposals on GitHub! Sometimes, a new perspective is needed!"
+			"What do you mean you don’t have a save file for this Pull!?"
+			"Please, for the love of god, don’t make an issue before checking if others have done the same."
 		
 		#Roadrunner addition
-		"Typo detected. Initiating weapons engagement."
-		"Code non-functional. Destroy them."
+			"Typo detected. Initiating weapons engagement."
+			"Code non-functional. Destroy them."
 		
 	#EjoThims addition
 	phrase
