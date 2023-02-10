@@ -5530,7 +5530,7 @@ mission "Karen Transport 2"
 					decline
 
 			label pay
-			`	Another greedy captain, I see. Back in my days, ship captains were happy to have passengers and accepted whatever they were paid, not this predetermined wage nonsense. You would do well to learn from them."`
+			`	"Another greedy captain, I see. Back in my days, ship captains were happy to have passengers and accepted whatever they were paid, not this predetermined wage nonsense. You would do well to learn from them."`
 			`	Before you can protest, he marches into your ship.`
 				accept
 
