@@ -652,7 +652,7 @@ color "governments: Independent" .78 .36 .36
 
 # Korath-friendly, pirate-friendly, human, settlements or stations that dislike the Syndicate
 government "Humanika (Port)"
-	swizzle 3
+	swizzle 9
 	color "governments: Independent"
 	"display name" "Independent"
 
@@ -676,7 +676,7 @@ government "Humanika (Port)"
 
 # Korath-friendly, pirate-friendly, human, ships that dislike the Syndicate
 government "Humanika (Ship)"
-	swizzle 3
+	swizzle 9
 	color "governments: Independent"
 	"display name" "Independent"
 
