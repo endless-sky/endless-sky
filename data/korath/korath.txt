@@ -345,6 +345,59 @@ fleet "Korath Defense"
 		"'olofez" 4
 		"'olofez (Expeller)" 2
 
+fleet "Korath Humanika Tribute Response"
+	government "Korath"
+	names "korath"
+	fighters "korath"
+	cargo 0
+	personality
+		disables plunders opportunistic harvests hunting staying unconstrained
+	variant 4
+		"Ra'gru Ik 618"
+	variant 4
+		"Ra'at Ik 621"
+		"'olofez" 9
+	variant 2
+		"Rano'erek (Shunt)"
+		"'olofez" 2
+		"'olofez (Expeller)" 2
+	variant 1
+		"Rano'erek (Heaver)"
+		"'olofez" 4
+	variant 3
+		"Palavret" 3
+		"'olofez" 6
+	variant 2
+		"Palavret" 2
+		"Palavret (Blaze)" 2
+		"'olofez" 8
+	variant 2
+		"Palavret (Ember Shunt)" 3
+		"'olofez" 6
+	variant 1
+		"Rano'erek"
+		"Palavret (Blaze)"
+		"'olofez" 4
+		"'olofez (Expeller)" 2
+	variant 2
+		"Ra'gru Ik 618 (Grab)"
+	variant 1
+		"Ra'gru Ik 618 (Storm)"
+	variant 1
+		"Ra'gru Ik 618"
+		"Palavret" 3
+		"'olofez" 6
+	variant 1
+		"Ra'at Ik 621 (Storm)"
+		"Palavret" 3
+		"'olofez" 11
+		"'olofez (Expeller)" 4
+	variant 1
+		"Rano'erek"
+		"Palavret (Blaze)"
+		"'olofez" 4
+		"'olofez (Expeller)" 2
+
 fleet "Korath Surveillance"
 	government "Korath"
 	names "korath"
