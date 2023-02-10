@@ -1799,7 +1799,7 @@ planet Greenwater
 	security 0.4
 
 planet "Gresku Fodar"
-	attributes korath station
+	attributes korath station "korath exile"
 	landscape land/station29
 	music ambient/machinery
 	description `Situated an ideal distance from this system's twin suns, this station holds greenhouses where the Korath grow a highly nutritious bacterial sludge that serves the exiles as their main food source. A few of the greenhouses are also growing more traditional crops, but these are clearly a luxury that the Korath cannot afford to waste more of their resources on.`
@@ -2235,7 +2235,7 @@ planet "Keneska Fek"
 	security 0
 
 planet "Kessel Sepret"
-	attributes korath station
+	attributes korath station "korath exile"
 	landscape land/station1
 	music ambient/machinery
 	description `In this factory station, raw metal harvested in the other Korath systems is shaped into ships and weapons, the war materiel for their raids on human space. Sections of the ships are assembled and tested in pressurized hangars, but the Palavret is a large enough ship that the final assembly must be done in space, outside the station.`
@@ -2325,6 +2325,11 @@ planet "Kuwaru Efreti"
 	spaceport `	Although the spaceport offers all the usual amenities, including a small merchant's exchange for trading goods, you feel slightly self-conscious about breaking the silence of the station to speak to anyone.`
 	bribe 0
 	security 1
+
+planet "La'ab Bamen"
+	attributes uninhabited humanika
+	description `This moon is little more than a big asteroid, a few kilometers in diameter, but it has been hollowed out and turned into a vast aquarium. There's several cubic kilometers of salt water inside, with creatures that look like a hybrid of a dolphin and a fish. Machinery at the center maintains the gravity field, an appropriate temperature, and runs a slow electric current through the water. There are tubes throughout this asteroid aquarium, lit by ambient light coming from the water itself.`
+	description `At the surface of the asteroid, there are hidden hanger doors, disguised as craters, leading to bays designed for ships far larger than the human race has ever produced. The entire facility looks like it was constructed from human technology, but the scale is beyond anything you've seen from humans.`
 
 planet Lagrange
 	attributes "human quarg" quarg station tourism
@@ -3497,7 +3502,7 @@ planet "Sabira Eseskrai"
 	description `	Due to a recent shift in climate the deserts have begun shrinking once more, with local vegetation growing to cover more and more land each year, but the Korath are no longer here to benefit from the change.`
 
 planet "Safaresk Enlai"
-	attributes korath station
+	attributes korath station "korath exile"
 	landscape land/station17
 	music ambient/machinery
 	description `It is unclear what the primary purpose of this station is. The station contains numerous greenhouses where a wide variety of plants, and even some small animals, are kept. Other parts of the station are closed off to non-Korath visitors.`
@@ -3631,7 +3636,7 @@ planet Seli'het
 	government Builder
 
 planet "Separa Tiklar"
-	attributes korath station
+	attributes korath station "korath exile"
 	landscape land/space1
 	music ambient/machinery
 	description `This station manufactures the weapon systems and other equipment that is used in the Korath stations, war vessels, and world-ships.`
@@ -3639,7 +3644,7 @@ planet "Separa Tiklar"
 	security 0
 
 planet "Septar Lorku"
-	attributes korath station
+	attributes korath station "korath exile"
 	landscape land/loc0
 	music ambient/machinery
 	description `This system has a high concentration of metallic asteroids, which the Korath are harvesting to provide iron ore for their space ships and fissionable materials for their reactor cores. Smelting metal in a high-temperature blast furnace in the interior of a space station is, of course, an incredibly risky proposition.`
@@ -3674,7 +3679,7 @@ planet Servian
 	security 0
 
 planet "Sessiliki Far"
-	attributes korath station
+	attributes korath station "korath exile"
 	landscape land/loc2
 	music ambient/machinery
 	description `This is a Korath mining station, where ore extracted from asteroids is refined and processed. The Korath seem to have an aversion to harvesting raw materials from actual planets, preferring to work with lifeless asteroids instead.`

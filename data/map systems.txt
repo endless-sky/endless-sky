@@ -5917,7 +5917,7 @@ system Aspidiske
 
 system Atik
 	pos -66 -52
-	government Uninhabited
+	government "Humanika (Port)"
 	arrival 1800
 	habitable 15105
 	belt 1240
@@ -5978,7 +5978,7 @@ system Atik
 		sprite planet/rock16
 		distance 2105.05
 		period 270.619
-		object
+		object "La'ab Bamen"
 			sprite planet/lumpy-moon
 			distance 145
 			period 19.114
