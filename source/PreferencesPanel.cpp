@@ -335,8 +335,9 @@ void PreferencesPanel::DrawControls()
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
 
-	// Check for conflicts.
+	// Colors for highlighting.
 	const Color &warning = *GameData::Colors().Get("warning conflict");
+	const Color &nocommand = *GameData::Colors().Get("warning nocommand");
 
 	if(selected != oldSelected)
 		latest = selected;
@@ -422,11 +423,12 @@ void PreferencesPanel::DrawControls()
 			int index = zones.size();
 			// Mark conflicts.
 			bool isConflicted = command.HasConflict();
+			bool isEmpty = !command.HasBinding();
 			bool isEditing = (index == editing);
-			if(isConflicted || isEditing)
+			if(isConflicted || isEditing || isEmpty)
 			{
 				table.SetHighlight(56, 120);
-				table.DrawHighlight(isEditing ? dim : warning);
+				table.DrawHighlight(isEditing ? dim : isEmpty ? nocommand : warning);
 			}
 
 			// Mark the selected row.

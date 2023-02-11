@@ -209,9 +209,24 @@ const string &Command::Description() const
 // a combination of more than one command, an empty string is returned.
 const string &Command::KeyName() const
 {
-	static const string empty;
+	static const string empty = "(none)";
 	auto it = keyName.find(*this);
-	return (it == keyName.end() ? empty : it->second);
+
+	return (!HasBinding() ? empty : it->second);
+}
+
+// Check if the key has no binding.
+bool Command::HasBinding() const
+{
+	auto it = keyName.find(*this);
+
+	if(it == keyName.end())
+		return false;
+
+	if(it->second == "")
+		return false;
+
+	return true;
 }
 
 
@@ -221,9 +236,6 @@ bool Command::HasConflict() const
 {
 	auto it = keycodeForCommand.find(*this);
 	if(it == keycodeForCommand.end())
-		return false;
-
-	if(it->second == 0)
 		return false;
 
 	auto cit = keycodeCount.find(it->second);
