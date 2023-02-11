@@ -396,3 +396,29 @@ mission "First Contact: Korath Exiles"
 			`	"Kai," says the Korath, and it stretches out both arms toward you, palms out. You make the same gesture and touch its hands, palm to palm. You're not sure if that is the right response, but the Korath seem satisfied, saying, "Nik lak'mal." They get back in their fighters, take off, and hover nearby.`
 				decline
 
+mission "Korath [01] Rabasot Pa'ah Failed Landings"
+	name "Land on <planet>."
+	description "Try again to land on <planet> after your last attempt failed."
+	landing
+	repeat 3
+	source "Rabasot Pa'ah"
+	destination "Rabasot Pa'ah"
+	on offer
+		conversation
+			branch "first landing"
+					"Korath [01] Rabasot Pa'ah Failed Landings: offered" == 0
+			branch "second landing"
+					"Korath [01] Rabasot Pa'ah Failed Landings: offered" == 1
+			scene scene/blue-whale
+			`Third landing`
+				decline
+			label "first landing"
+			scene scene/purple-lightning
+			`First landing`
+				launch
+
+			label "second landing"
+			scene scene/volcanic-eruption-at-night
+			`Second landing`
+				launch	
+					
