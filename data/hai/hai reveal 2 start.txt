@@ -560,7 +560,7 @@ mission "Hai Rescue: Gipeep"
 				has "Hai Rescue: Gipeep Hint: offered"
 			`As you come in to land one guy is on the comms, bragging particularly odiously about some lucrative transport jobs he'd picked up. This catches your attention only because <origin> is not known for lucrative transport jobs. It could likely be contraband, or worse...`
 			label hint
-			`After some quiet investigation you find out that all the lucrative transport jobs are coming out of one particular warehouse. The paperwork all looks to be in order but that just means that at the very least maybe you should pick up a job yourself.`
+			`After some quiet investigation you find out that all the lucrative transport jobs are coming out of one particular warehouse. The paperwork all looks to be in order, but to be sure you should pick up a job yourself.`
 			choice
 				`	(Check it out.)`
 				`	(Leave.)`
