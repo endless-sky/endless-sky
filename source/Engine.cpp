@@ -913,7 +913,8 @@ void Engine::Step(bool isActive)
 	if(shouldShowAsteroidOverlay || shouldCatalogAsteroids)
 	{
 		double scanRangeMetric = flagship ? 10000. * flagship->Attributes().Get("asteroid scan power") : 0.;
-		if(flagship && scanRangeMetric && !flagship->IsHyperspacing()) {
+		if(flagship && scanRangeMetric && !flagship->IsHyperspacing())
+		{
 			bool scanComplete = true;
 			for(const shared_ptr<Minable> &minable : asteroids.Minables())
 			{
