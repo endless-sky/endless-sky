@@ -2207,18 +2207,18 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 
 	// Check if this ship is fast enough to keep distance from target.
 	// Have a 10% minimum to avoid ships getting in a chase loop.
-	bool isAbleToRun = target.MaxVelocity() * SAFETY_MULTIPLIER < ship.MaxVelocity();
+	const bool isAbleToRun = target.MaxVelocity() * SAFETY_MULTIPLIER < ship.MaxVelocity();
 
 	ShipAICache &shipAICache = ship.GetAICache();
-	bool useArtilleryAI = shipAICache.IsArtilleryAI() && isAbleToRun;
-	double shortestRange = shipAICache.ShortestRange();
-	double shortestArtillery = shipAICache.ShortestArtillery();
+	const bool useArtilleryAI = shipAICache.IsArtilleryAI() && isAbleToRun;
+	const double shortestRange = shipAICache.ShortestRange();
+	const double shortestArtillery = shipAICache.ShortestArtillery();
 	double minSafeDistance = isAbleToRun ? shipAICache.MinSafeDistance() : 0.;
 
-	double totalRadius = ship.Radius() + target.Radius();
-	Point direction = target.Position() - ship.Position();
+	const double totalRadius = ship.Radius() + target.Radius();
+	const Point direction = target.Position() - ship.Position();
 	// Average distance from this ship's weapons to the enemy ship.
-	double weaponDistanceFromTarget = direction.Length() - totalRadius / 3.;
+	const double weaponDistanceFromTarget = direction.Length() - totalRadius / 3.;
 
 	// If this ship has mostly long-range weapons, or some weapons have a
 	// blast radius, it should keep some distance instead of closing in.
