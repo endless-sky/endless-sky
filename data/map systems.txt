@@ -5919,7 +5919,7 @@ system Atik
 	pos -66 -52
 	government "Humanika (Port)"
 	arrival 1800
-	habitable 15105
+	habitable 3105
 	belt 1240
 	link Durax
 	asteroids "small rock" 36 1.99
@@ -5944,8 +5944,9 @@ system Atik
 	trade Plastic 416
 	fleet "Small Core Pirates" 10000
 	fleet "Large Core Pirates" 18000
-	fleet "Humanika Miners" 15000
-	fleet "Human Miners" 10000
+	fleet "Humanika Miners" 10000
+	fleet "Large Syndicate" 15000
+	fleet "Human Miners" 15000
 	fleet "Korath Miners" 15000
 	fleet "Korath Civilian Delivery" 30000
 	fleet "Humanika Merchants" 20000
@@ -5980,7 +5981,7 @@ system Atik
 		period 270.619
 		object "La'ab Bamen"
 			sprite planet/lumpy-moon
-			distance 145
+			distance 155
 			period 19.114
 
 

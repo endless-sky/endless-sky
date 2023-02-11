@@ -2327,9 +2327,19 @@ planet "Kuwaru Efreti"
 	security 1
 
 planet "La'ab Bamen"
-	attributes uninhabited humanika
-	description `This moon is little more than a big asteroid, a few kilometers in diameter, but it has been hollowed out and turned into a vast aquarium. There's several cubic kilometers of salt water inside, with creatures that look like a hybrid of a dolphin and a fish. Machinery at the center maintains the gravity field, an appropriate temperature, and runs a slow electric current through the water. There are tubes throughout this asteroid aquarium, lit by ambient light coming from the water itself.`
-	description `At the surface of the asteroid, there are hidden hanger doors, disguised as craters, leading to bays designed for ships far larger than the human race has ever produced. The entire facility looks like it was constructed from human technology, but the scale is beyond anything you've seen from humans.`
+	attributes humanika korath "korath exile"
+	landscape land/monterey-bay-aquarium
+	description `This moon is only a few kilometers in diameter, and it has been hollowed out and turned into an aquarium. There's several cubic kilometers of salt water inside, with numerous creatures that look like small translucent glowing dolphins, and a few that look like a hybrid of an ankylorhiza and a giant squid. A machine at the moon's center maintains the aquarium's near-Earth gravity, typical ocean temperatures, and a slow electric current. There are corridors throughout this asteroid aquarium, lit by a glow from the water itself.`
+	description `At the surface of the asteroid, there are hidden hanger doors, disguised as craters, leading to bays designed for ships larger than the human race has ever produced. The facility looks like it was constructed from human technology, but at an impossibly large scale.`
+	government "Humanika (Secret)"
+	spaceport `Placeholder.`
+	"required reputation" 100
+	bribe 0.04
+	security 0
+	tribute 1200
+		threshold 7000
+		fleet "Humanika Defense" 7
+		fleet "Korath Humanika Tribute Response" 3
 
 planet Lagrange
 	attributes "human quarg" quarg station tourism

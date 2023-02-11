@@ -156,7 +156,8 @@ shipyard "Humanika Mimicry"
 	"Boxwing"
 	"Barb"
 	"Finch"
-
+	"Marauder Bounder"
+	"Heavy Shuttle"
 
 
 outfitter "Humanika Mimicry"
