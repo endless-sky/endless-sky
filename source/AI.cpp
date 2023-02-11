@@ -1870,6 +1870,9 @@ double AI::TurnBackward(const Ship &ship)
 
 
 
+// Determine the value to use in Command::SetTurn() to turn the ship towards the desired facing.
+// "precision" is an optional argument corresponding to a value of the dot product of the current and target facing
+// vectors above which no turning should be attempting, to reduce constant, minute corrections.
 double AI::TurnToward(const Ship &ship, const Point &vector, const double precision)
 {
 	Point facing = ship.Facing().Unit();
