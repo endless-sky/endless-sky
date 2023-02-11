@@ -5917,7 +5917,7 @@ system Aspidiske
 
 system Atik
 	pos -66 -52
-	government "Humanika (Port)"
+	government "Humanika (Restricted)"
 	arrival 1800
 	habitable 3105
 	belt 1240

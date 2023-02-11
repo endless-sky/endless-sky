@@ -674,8 +674,8 @@ government "Humanika (Port)"
 		# from Humanika (Port) planets and stations.
 		"Korath" -.001
 
-# Used for limited-access ports
-government "Humanika (Secret)"
+# Used for smuggling sites and other restricted-access stations. Allows Korath to land.
+government "Humanika (Restricted)"
 	swizzle 9
 	color "governments: Independent"
 	"display name" "Independent"
@@ -693,12 +693,17 @@ government "Humanika (Secret)"
 		"Pirate" -.01
 		"Republic" -.01
 		"Republic that won't enter wormhole" -.01
+		"Hai" -.01
+		"Hai (Wormhole Access)" -.01
+		"Remnant" -.01
+		"Quarg" -.01
+		"Navy (Oathkeeper)" -.01
+		"Free Worlds" -.01
+		"Wanderer" -.01
+		"Pirate (Devil-Run Gang)" -.01
 		"Navy Intelligence" -.01
 		"Republic Intelligence" -.01
 		"Humanika (Ship)" 1
-		# Negative for Korath ensures the Korath raiding groups will not come
-		# from Humanika (Port) planets and stations.
-		"Korath" -.001
 
 # Korath-friendly, pirate-friendly, human, ships that dislike the Syndicate
 government "Humanika (Ship)"
