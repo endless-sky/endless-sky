@@ -157,7 +157,10 @@ shipyard "Humanika Mimicry"
 	"Barb"
 	"Finch"
 	"Marauder Bounder"
-	"Heavy Shuttle"
+	"Nighthawk"
+	"Lance"
+	"Cutthroat"
+	"Mammoth"
 
 
 outfitter "Humanika Mimicry"
