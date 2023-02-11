@@ -2552,9 +2552,42 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		unsigned total = targetShips.size() + targetPlanets.size() + targetSystems.size();
 		if(!total)
 		{
-			// If there is nothing for this ship to scan, have it hold still
-			// instead of drifting away from the system center.
-			Stop(ship, command);
+			// If there is nothing for this ship to scan, have it patrol the entire system
+			// instead of drifting or stopping.
+			// Also allows the ship to land.
+			double radius = 1000 * 1000 * 1.1;
+			for(const StellarObject &object : ship.GetSystem()->Objects())
+				radius = max(radius, object.Position().LengthSquared() * 1.1);
+
+			// The ship is outside of the effective range of the system,
+			// so we turn it around
+			if(ship.Position().LengthSquared() > radius)
+			{
+				// Allow ships to land after a while, otherwise they would continue to accumulate in the system.
+				if(!isStaying && !Random::Int(10000))
+				{
+					vector<const StellarObject *> landingTargets;
+					for(const StellarObject &object : system->Objects())
+						if(object.HasSprite() && object.GetPlanet() && object.GetPlanet()->CanLand(ship))
+							landingTargets.push_back(&object);
+					if(landingTargets.size())
+					{
+						ship.SetTargetStellar(landingTargets[Random::Int(landingTargets.size())]);
+						MoveToPlanet(ship, command);
+						command |= Command::LAND;
+						return;
+					}
+				}
+				// Hacky way of differentiating ship behaviour without additional storage,
+				// while keeping it consistent for each ship.
+				long seed = reinterpret_cast<long>(&ship);
+				int behaviour = abs(seed % 11) + 2;
+				Angle target = Angle(ship.Position()) + Angle(360. / behaviour);
+				MoveTo(ship, command, target.Unit() * sqrt(radius) / 2, Point(), 10, 1.);
+			}
+			// Otherwise, keep going forward.
+			else
+				MoveTo(ship, command, ship.Position() + ship.Facing().Unit() * (ship.MaxVelocity() + 1), ship.Facing().Unit() * (ship.MaxVelocity() + 1), 10, 1.);
 			return;
 		}
 
