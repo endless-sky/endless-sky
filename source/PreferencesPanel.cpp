@@ -141,7 +141,12 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	else if((key == 'r' || key == SDLK_PAGEDOWN) && currentSettingsPage > 0)
 		--currentSettingsPage;
 	else if((key == 'x' || key == SDLK_DELETE) && (page == 'c'))
-		Command::SetKey(zones[latest].Value(), 0);
+	{
+		if(zones[latest].Value().KeyName() != Command::MENU.KeyName())
+		{
+			Command::SetKey(zones[latest].Value(), 0);
+		}
+	}
 	else
 		return false;
 
