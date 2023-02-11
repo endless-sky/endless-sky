@@ -396,7 +396,7 @@ mission "First Contact: Korath Exiles"
 			`	"Kai," says the Korath, and it stretches out both arms toward you, palms out. You make the same gesture and touch its hands, palm to palm. You're not sure if that is the right response, but the Korath seem satisfied, saying, "Nik lak'mal." They get back in their fighters, take off, and hover nearby.`
 				decline
 
-mission "Korath [01] Rabasot Pa'ah Failed Landings"
+mission "Korath [F01]: Rabasot Pa'ah Failed Landings"
 	name "Land on <planet>."
 	description "Try again to land on <planet> after your last attempt failed."
 	landing
@@ -406,19 +406,28 @@ mission "Korath [01] Rabasot Pa'ah Failed Landings"
 	on offer
 		conversation
 			branch "first landing"
-					"Korath [01] Rabasot Pa'ah Failed Landings: offered" == 0
+				"Korath [F01]: Rabasot Pa'ah Failed Landings: offered" == 0
 			branch "second landing"
-					"Korath [01] Rabasot Pa'ah Failed Landings: offered" == 1
+				"Korath [F01]: Rabasot Pa'ah Failed Landings: offered" == 1
 			scene scene/blue-whale
-			`Third landing`
+			action
+				set "landed on Rabasot Pa'ah"
+				log "Discovered a creature on Rabasot Pa'ah with the front half of a whale and the back half of a giant squid. They seem out-of-place, since almost nothing else has evolved. Perhaps someone is shipping them to the planet?"
+			`On this third landing, you dodged most of the storms by flying into the atmosphere at an odd angle that kept you in stable air nearly the whole way. After a long flight through safe atmosphere, you finally reach the bay and land on a durable mesa overlooking it. Extending your ship's artificial gravity field to the surface, you don your ship and walk out.`
+			`	This is the perfect location for life, so you're not surprised to see small plants and a few fish in the water. The seas are calmer here than the rest of the planet and an unusual formation in the ionosphere protects this spot from the worst rays of the nova. The dominant land-based lifeform seems to be toothed worms about the size of your arm.`
+			`	You briefly think the strangest feature is the moving islands - until you realize they're sea creatures. As one comes close to the surface, its form is more clear: an unholy marriage between a blue whale and a giant squid. Given the vast difference in size between those creatures and anything else you've seen on the planet, it is unlikely they evolved here. Has someone been shipping giant whale-squid to Rabasot Pa'ah?`
 				decline
 			label "first landing"
 			scene scene/purple-lightning
-			`First landing`
+			`As you descend through the magnetosphere, your computer warns you of a build-up of unusual charged particles, muons, which is a strange warning, considering the mean lifetime of a muon is measured in microseconds. You travel deeper into the atmosphere, approaching what appears to be an inactive volcanic island chain. As usual, your ship's descent causes air currents, but the strange atmosphere turns those currents into a powerful storm. The muons mix with this event, creating catastrophic explosions of electrical discharge.`
+			`	Remembering the class you took on extreme atmospheric landings, you reconfigure your shields to act as a plow, pushing through the storm. At first, it isn't enough, so you pull upward, hoping the lower atmospheric density will let you escape. Once you're free, you realize you've already reached the exosphere. For once, those 50,000 credits of pilot training doesn't seem like a waste of money.`
+			`	A quick analysis by your ship's computer tells you the shield plow technique should get you all the way down to the surface, if you avoid eddies in the magnetosphere. It seems those eddies interact with the nova in an odd manner that produces vast amounts of muons, which ride your ship through the atmosphere.`
+			`	Certainly, a second landing attempt will get you through the atmosphere. Next, you'll have to scout for a safe place to land on this world of water and storms.`
 				launch
 
 			label "second landing"
 			scene scene/volcanic-eruption-at-night
-			`Second landing`
-				launch	
-					
+			`In this trip, your ship's descent stirred up awe-inspiring storm clouds, but traveling through them was easy. Your shield plow technique took you down to the lower troposphere, where the storms cleared enough for you to see. The original island chain was too far away, so you set course for a larger island nearby.`
+			`	Aiming for a hard-looking piece of ground, you touch down. As this planet has twice Earth's gravity, you extend your ship's artificial gravity field to the surface. Donning a space suit for safety's sake, you walk out to see nature taking control once again: the massive volcano in front of you starts to erupt.`
+			`	After a dash to the cockpit, still in your suit, you take off, satisfied that you've reached the surface - albeit in the worst possible spot. A third attempt will certainly succeed, as you saw a small continent with no apparent volcanic activity, and a pleasant-looking bay.`
+				launch
