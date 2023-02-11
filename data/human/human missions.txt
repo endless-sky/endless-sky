@@ -5475,7 +5475,7 @@ mission "Quicksilver Mixup [1]"
 			label misdirected
 			`	"This package is addressed to 2081 Amethyst Avenue, Mercury City, Silver. Mercury City is Quicksilver's capital. Y'know, that planet out east in Algol. Syndicate space. Not a place on Silver. The package was posted to the wrong planet."`
 			`	"Oh," you say.`
-			`	"I've lost count of how many times this has happened just this month. Silver, Quicksilver, I wonder what's the difference! At this point, I don't know why no one's started to regularly meet with Quicksilver's postmaster to exchange all this wrongly-posted mail. Alright, here's a word of advice: I highly recommend you take a picture of the incorrect address. I've had plenty of captains get put on blast ‘cause of an error the sender made. Not your fault it got addressed to the wrong planet."`
+			`	"I've lost count of how many times this has happened just this month. Silver, Quicksilver, I wonder what's the difference! At this point, I don't know why no one's started to regularly meet with Quicksilver's postmaster to exchange all this wrongly-posted mail. Alright, here's a word of advice: I highly recommend you take a picture of the incorrect address. I've had plenty of captains get put on blast 'cause of an error the sender made. Not your fault it got addressed to the wrong planet."`
 			`	You thank the clerk and take the package back to your ship.`
 			choice
 				`	(Take a picture of the incorrect address.)`
@@ -5487,7 +5487,7 @@ mission "Quicksilver Mixup [1]"
 				accept
 	on complete
 		conversation
-			`When you talk to a post officer in Quicksilver's spaceport and point out the incorrect address before handing it over, you note that he exhibits the same frustration the clerk on Silver did regarding the frequent switch-ups. He takes the package, muttering something about offworlders "not knowing the difference even if it smacked ‘em in the face" as he did.`
+			`When you talk to a post officer in Quicksilver's spaceport and point out the incorrect address before handing it over, you note that he exhibits the same frustration the clerk on Silver did regarding the frequent switch-ups. He takes the package, muttering something about offworlders "not knowing the difference even if it smacked 'em in the face" as he did.`
 			`	Once you return to your ship, you notice that the man who gave you that package had sent you a message. Or, to be more precise, a series of messages. An angry series of messages.`
 			`	"WHAT TOOK YOU SO LONG???" one of them said. "I NEEDED THAT DELIVERED DAYS AGO", says the next one.`
 			branch picture "didn't take picture"
