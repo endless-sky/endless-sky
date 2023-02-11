@@ -294,6 +294,9 @@ namespace {
 
 	// An offset to prevent the ship from being not quite over the point to departure.
 	const double SAFETY_OFFSET = 1.;
+
+	// The minimum speed advantage a ship has to have to consider running away.
+	const double SAFETY_MULTIPLIER = 1.1;
 }
 
 
@@ -2204,7 +2207,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 
 	// Check if this ship is fast enough to keep distance from target.
 	// Have a 10% minimum to avoid ships getting in a chase loop.
-	bool isAbleToRun = target.MaxVelocity() * 1.1 < ship.MaxVelocity();
+	bool isAbleToRun = target.MaxVelocity() * SAFETY_MULTIPLIER < ship.MaxVelocity();
 
 	ShipAICache &shipAICache = ship.GetAICache();
 	bool useArtilleryAI = shipAICache.IsArtilleryAI() && isAbleToRun;
