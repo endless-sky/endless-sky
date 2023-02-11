@@ -208,7 +208,7 @@ mission "Hai Reveal [A03a] Symbol Identification"
 	autosave
 	landing
 	name "Symbol Identification"
-	description "Check out the worlds near Allhome and make sure the Hai seem normal."
+	description "Check out the worlds near Allhome and make sure things are ok and that the Hai seem normal."
 	source "Hai-home"
 	to offer
 		has "Hai Reveal [A02] Symbol Identification: done"
@@ -222,7 +222,7 @@ mission "Hai Reveal [A03a] Symbol Identification"
 			`	"In the meantime," he says, "could you stop by some of the Hai worlds near the wormhole? They've obviously ramped up security on Allhome, but I'd like to have a pair of friendly eyes check it out. The Hai may be using this as a cover to put their military into a threatening position... not that I think they'd do that, but we've just been through one war. I may be getting paranoid sitting in the most Hai place that there is."`
 				accept
 	to complete
-		has "event: alondo symbol timer"
+		never
 		
 event "alondo symbol timer"
 
