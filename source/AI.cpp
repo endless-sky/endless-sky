@@ -1870,13 +1870,19 @@ double AI::TurnBackward(const Ship &ship)
 
 
 
-double AI::TurnToward(const Ship &ship, const Point &vector)
+// Determine the value to use in Command::SetTurn() to turn the ship towards the desired facing.
+// "precision" is an optional argument corresponding to a value of the dot product of the current and target facing
+// vectors above which no turning should be attempting, to reduce constant, minute corrections.
+double AI::TurnToward(const Ship &ship, const Point &vector, const double precision)
 {
 	Point facing = ship.Facing().Unit();
 	double cross = vector.Cross(facing);
 
-	if(vector.Dot(facing) > 0.)
+	double dot = vector.Dot(facing);
+	if(dot > 0.)
 	{
+		if(precision < 1. && precision > 0. && dot * dot >= precision * vector.LengthSquared() * facing.LengthSquared())
+			return 0.;
 		double angle = asin(min(1., max(-1., cross / vector.Length()))) * TO_DEG;
 		if(fabs(angle) <= ship.TurnRate())
 			return -angle / ship.TurnRate();
@@ -3800,7 +3806,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 
 	const bool mouseTurning = Preferences::Has("alt-mouse turning");
 	if(mouseTurning && !ship.IsBoarding() && !ship.IsReversing())
-		command.SetTurn(TurnToward(ship, mousePosition));
+		command.SetTurn(TurnToward(ship, mousePosition, 0.9999));
 
 	if(activeCommands)
 	{
