@@ -45,6 +45,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <algorithm>
+#include <cassert>
 #include <cmath>
 #include <ctime>
 #include <functional>
@@ -117,6 +118,9 @@ void PlayerInfo::Clear()
 	Messages::Reset();
 
 	conditions.Clear();
+
+	delete transactionSnapshot;
+	transactionSnapshot = nullptr;
 }
 
 
@@ -466,17 +470,18 @@ void PlayerInfo::Save() const
 		if(saved.GetDate() != date.ToString())
 		{
 			string root = filePath.substr(0, filePath.length() - 4);
-			string files[4] = {
-				root + "~~previous-3.txt",
-				root + "~~previous-2.txt",
-				root + "~~previous-1.txt",
-				filePath
-			};
-			for(int i = 0; i < 3; ++i)
-				if(Files::Exists(files[i + 1]))
-					Files::Move(files[i + 1], files[i]);
+			const int previousCount = Preferences::GetPreviousSaveCount();
+			const string rootPrevious = root + "~~previous-";
+			for(int i = previousCount - 1; i > 0; --i)
+			{
+				const string toMove = rootPrevious + to_string(i) + ".txt";
+				if(Files::Exists(toMove))
+					Files::Move(toMove, rootPrevious + to_string(i + 1) + ".txt");
+			}
+			if(Files::Exists(filePath))
+				Files::Move(filePath, rootPrevious + "1.txt");
 			if(planet->HasSpaceport())
-				Save(root + "~~previous-spaceport.txt");
+				Save(rootPrevious + "spaceport.txt");
 		}
 	}
 
@@ -496,6 +501,26 @@ string PlayerInfo::Identifier() const
 {
 	string name = Files::Name(filePath);
 	return (name.length() < 4) ? "" : name.substr(0, name.length() - 4);
+}
+
+
+
+void PlayerInfo::StartTransaction()
+{
+	assert(!transactionSnapshot && "Starting PlayerInfo transaction while one is already active");
+
+	// Create in-memory DataWriter and save to it.
+	transactionSnapshot = new DataWriter();
+	Save(*transactionSnapshot);
+}
+
+
+
+void PlayerInfo::FinishTransaction()
+{
+	assert(transactionSnapshot && "Finishing PlayerInfo while one hasn't been started");
+	delete transactionSnapshot;
+	transactionSnapshot = nullptr;
 }
 
 
@@ -3767,11 +3792,21 @@ void PlayerInfo::Autosave() const
 
 
 
-void PlayerInfo::Save(const string &path) const
+void PlayerInfo::Save(const string &filePath) const
 {
-	DataWriter out(path);
+	if(transactionSnapshot)
+		transactionSnapshot->SaveToPath(filePath);
+	else
+	{
+		DataWriter out(filePath);
+		Save(out);
+	}
+}
 
 
+
+void PlayerInfo::Save(DataWriter &out) const
+{
 	// Basic player information and persistent UI settings:
 
 	// Pilot information:
