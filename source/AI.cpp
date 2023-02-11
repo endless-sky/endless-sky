@@ -2588,7 +2588,8 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 			}
 			// Otherwise, keep going forward.
 			else
-				MoveTo(ship, command, ship.Position() + ship.Facing().Unit() * (ship.MaxVelocity() + 1), ship.Facing().Unit() * (ship.MaxVelocity() + 1), 10, 1.);
+				MoveTo(ship, command, ship.Position() + ship.Facing().Unit() * (ship.MaxVelocity() + 1),
+						ship.Facing().Unit() * (ship.MaxVelocity() + 1), 10, 1.);
 			return;
 		}
 
