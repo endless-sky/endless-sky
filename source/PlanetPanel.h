@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
+#include "Ship.h"
 #include "text/WrappedText.h"
 
 #include <functional>
@@ -49,6 +50,7 @@ protected:
 
 private:
 	void TakeOffIfReady();
+	void CheckWarningsAndTakeOff();
 	void TakeOff();
 
 
@@ -68,6 +70,12 @@ private:
 	Panel *selectedPanel = nullptr;
 
 	WrappedText text;
+
+	// Out of system (absent) ships that cannot fly for some reason.
+	std::vector<std::shared_ptr<Ship>> absentCannotFly;
+
+	// Cache flight checks to not calculate them twice before each takeoff.
+	std::map<const std::shared_ptr<Ship>, std::vector<std::string>> flightChecks;
 };
 
 

@@ -45,7 +45,8 @@ outfit "Small Reactor Module"
 	"outfit space" -42
 	"energy generation" 9.8
 	"heat generation" 19
-	description "Solar power is sufficient for commerce, but excessive thriftiness is seldom a winning strategy in warfare. So for ships that must have a reliable energy source to power weapons, the Heliarchs use nuclear reactors."
+	description "Solar power is sufficient for commerce, but excessive thriftiness is seldom a winning strategy in warfare. For ships that must have a reliable energy source to power weapons, the Heliarchs use compact nuclear reactors."
+	description "	A beam of antiprotons triggers fusion in tiny injected fuel pellets, allowing for a complete burnup far more efficient than would otherwise be possible."
 
 outfit "Large Reactor Module"
 	category "Power"
@@ -57,7 +58,8 @@ outfit "Large Reactor Module"
 	"outfit space" -98
 	"energy generation" 24.2
 	"heat generation" 45
-	description "This reactor was designed for the most powerful Heliarch warships. Its design has not changed significantly in the millennia since the first battle with the Quarg, but each generation of reactors is made slightly more efficient than the previous ones."
+	description "Though still unable to replicate Quarg power generation technology, Heliarch science teams are constantly looking to realize their most recent guess on how they work. For this larger module, a steady stream of injected antiprotons catalyzes reactions in carefully confined fusion plasma, extracting as much power as physically possible."
+	description "	This advanced fusion reactor was designed for the most powerful Heliarch warships. Its structure has not changed significantly in the millennia since the first battle with the Quarg, but each generation of reactors is made slightly more efficient than the previous ones."
 
 outfit "Small Cogeneration Module"
 	category "Power"
@@ -221,9 +223,9 @@ outfit "Scanning Module"
 	"mass" 3
 	"outfit space" -3
 	"outfit scan power" 25
-	"outfit scan speed" 18
+	"outfit scan efficiency" 18
 	"cargo scan power" 25
-	"cargo scan speed" 18
+	"cargo scan efficiency" 18
 	"tactical scan power" 25
 	description "This system allows the Heliarchs to scan nearby ships, enabling them to detect weapons or illegal goods."
 

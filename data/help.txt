@@ -79,7 +79,7 @@ help "map advanced"
 
 help "map advanced ports"
 	`The ports panel shows you where systems with spaceports are, as well as a plethora of other information. Clicking on the name of the system, the government of the system, the lines under the name of each planet, or any trade commodity will color the map differently, the key to which can be seen on the right side of the screen.`
-	`Clicking the name of a planet, or clicking on a planet in the orbit map on the right side of the screen, will show that planet's description if you have visited it already. Clicking a planet on the orbit map will also tell your auto-pilot to land on that planet after you have arrived at that system at the end of your jump path.`
+	`Clicking the name of a planet, or clicking on a planet in the orbit map on the right side of the screen, will show that planet's description if you have visited it already. Clicking a planet on the orbit map will also tell your autopilot to land on that planet after you have arrived at that system at the end of your jump path.`
 
 help "map advanced shops"
 	`The shipyard and outfitter map panels respectively display the ships and outfits sold on any planets that you have seen. Ships and outfits are displayed in categories which can be collapsed by clicking on the category name. Using Shift+click on a category name will collapse or uncollapse all the categories at once.`
@@ -109,12 +109,12 @@ help "outfitter"
 	`Use your scroll wheel, or click and drag, to scroll the view.`
 	`As in the trading panel, you can hold down Shift, Control, or Alt to buy 5, 20, or 500 of an outfit at once, or multiple keys for larger amounts.`
 
-help "outfitter 2"
+help "cargo management"
 	`Sometimes you may want to buy some outfits directly into your cargo hold instead of having them installed. Perhaps a mission has asked you to retrieve some outfits or you want to carry extra ammunition to refill your ships somewhere that does not stock those weapons. To accomplish this, you need to switch out of installation mode into 'purchase to cargo' mode. This can be achieved by Control+clicking on your selected ship to deselect it.`
 	`When you are in 'purchase to cargo' mode, your ship information on the right-hand side will be replaced by information on how much cargo space you currently have available.`
 	`Outfits that are in your cargo hold can be (re)installed at any outfitter without cost.`
 
-help "outfitter 3"
+help "uninstalling and storage"
 	`You can also uninstall outfits directly into planetary storage by selecting the outfit and pressing U. This can be useful for if you want to shuffle outfits between ships, store outfits for future use, or simply try on different outfits. Outfits in storage can also be transferred to cargo when you go to 'purchase to cargo' mode. Outfits that are in planetary storage or cargo can be (re)installed at any outfitter without cost.`
 	`If you sell an outfit at an outfitter, then you can immediately buy it back for the same price that you sold it, so long as you do not leave the planet. This means that you do not necessarily need to worry about uninstalling outfits into planetary storage when you are changing outfits around.`
 
