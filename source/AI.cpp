@@ -1929,7 +1929,7 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 
 	bool isFacing = (dp.Unit().Dot(angle.Unit()) > .95);
 	if(!isClose || (!isFacing && !shouldReverse))
-		command.SetTurn(TurnToward(ship, dp));
+		command.SetTurn(TurnToward(ship, dp, 0.9999));
 	if(isFacing)
 		command |= Command::FORWARD;
 	else if(shouldReverse)
