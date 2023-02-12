@@ -306,7 +306,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination,
 		subs["<last>"] = player.LastName();
 		if(player.Flagship())
 			subs["<ship>"] = player.Flagship()->Name();
-		string text = Format::Replace(dialogText, subs);
+		string text = Format::Replace(Phrase::ExpandPhrases(dialogText), subs);
 
 		// Don't push the dialog text if this is a visit action on a nonunique
 		// mission; on visit, nonunique dialogs are handled by PlayerInfo as to
@@ -345,7 +345,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	// Create any associated dialog text from phrases, or use the directly specified text.
 	string dialogText = !dialogPhrase->IsEmpty() ? dialogPhrase->Get() : this->dialogText;
 	if(!dialogText.empty())
-		result.dialogText = Format::Replace(dialogText, subs);
+		result.dialogText = Format::Replace(Phrase::ExpandPhrases(dialogText), subs);
 
 	if(!conversation->IsEmpty())
 		result.conversation = ExclusiveItem<Conversation>(conversation->Instantiate(subs, jumps, payload));
