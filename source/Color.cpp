@@ -57,6 +57,16 @@ void Color::Load(double r, double g, double b, double a)
 	color[1] = static_cast<float>(g);
 	color[2] = static_cast<float>(b);
 	color[3] = static_cast<float>(a);
+
+	isLoaded = true;
+}
+
+
+
+// Check if Load() has been called for this color.
+bool Color::IsLoaded() const
+{
+	return isLoaded;
 }
 
 
@@ -108,4 +118,15 @@ Color Color::Combine(float a1, Color c1, float a2, Color c2)
 			a1 * c1.color[1] + a2 * c2.color[1],
 			a1 * c1.color[2] + a2 * c2.color[2],
 			a1 * c1.color[3] + a2 * c2.color[3]);
+}
+
+
+
+Color Color::Multiply(float scalar, const Color &base)
+{
+	return Color(
+			scalar * base.color[0],
+			scalar * base.color[1],
+			scalar * base.color[2],
+			scalar * base.color[3]);
 }
