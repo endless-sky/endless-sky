@@ -555,7 +555,7 @@ mission "Pirates with Hai Weapons 1: Katya's Message"
 			label goodagent
 			action
 				set "self-declared good agent"
-			`	Alondo chuckles. "You're full of surprises aren't you? Good to know you're confident in your skills though."`
+			`	Alondo chuckles. "You're full of surprises, aren't you? Good to know you're confident in your skills though."`
 			label end
 			`	After a few goodbyes, you head out to search for answers.`
 				accept
