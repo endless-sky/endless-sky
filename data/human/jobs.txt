@@ -3781,3 +3781,152 @@ mission "Hunted"
 		system
 			distance 5 5
 		fleet "Marauder fleet X"
+
+mission "Syndicate Defectors [0]"
+	name "Syndicate defectors to <planet>"
+	job
+	repeat
+	description "Go to <stopovers> and pick up <bunks> Syndicate defectors. Fly them to <destination> for <payment>. Expect bounty hunters."
+	passengers 2 8 .9
+	infiltrating
+	to offer
+		random < 8
+	source
+		government "Humanika (Port)"
+	destination
+		government "Humanika (Port)"
+	stopover
+		government "Syndicate"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 2500
+		dialog phrase "generic passenger dropoff payment"
+	npc
+		government "Bounty Hunter"
+		personality heroic unconstrained waiting nemesis plunders harvests
+		fleet "Small Core Pirates"
+		system
+			distance 2 7
+
+mission "Syndicate Defectors [1]"
+	name "Syndicate defectors to <planet>"
+	job
+	repeat
+	description "Go to <stopovers> and pick up <bunks> Syndicate defectors. Fly them to <destination> for <payment>. Expect bounty hunters."
+	passengers 4 15 .9
+	infiltrating
+	to offer
+		random < 60
+	source
+		government "Humanika (Port)"
+	destination
+		government "Humanika (Port)"
+	stopover
+		government "Syndicate"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 2500
+		dialog phrase "generic passenger dropoff payment"
+	npc
+		government "Bounty Hunter"
+		personality heroic unconstrained waiting nemesis plunders harvests
+		fleet "Small Core Pirates" 2
+		system
+			distance 2 7
+
+mission "Syndicate Defectors [2]"
+	name "Syndicate defectors to <planet>"
+	job
+	repeat
+	description "Go to <stopovers> and pick up <bunks> Syndicate defectors. Fly them to <destination> for <payment>. Expect bounty hunters."
+	passengers 7 28 .9
+	infiltrating
+	to offer
+		random < 40
+	source
+		government "Humanika (Port)"
+	destination
+		government "Humanika (Port)"
+	stopover
+		government "Syndicate"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 2500
+		dialog phrase "generic passenger dropoff payment"
+	npc
+		government "Bounty Hunter"
+		personality heroic unconstrained waiting nemesis plunders harvests
+		fleet "Small Core Pirates"
+		system
+			distance 2 7
+		fleet "Large Core Pirates"
+		fleet "Small Core Pirates"
+
+mission "Escaped Slaves [0]"
+	name "Escaped slaves to <planet>"
+	job
+	repeat
+	description "Go to <stopovers> and pick up <bunks> escaped slaves. Fly them to a new life of freedom at <destination> for <payment>."
+	passengers 2 8 .9
+	to offer
+		random < 80
+	source
+		government "Humanika (Port)"
+	destination
+		government "Humanika (Port)"
+	stopover
+		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 2500
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Escaped Slaves [1]"
+	name "Escaped slaves to <planet>"
+	job
+	repeat
+	description "Go to <stopovers> and pick up <bunks> escaped slaves. Fly them to a new life of freedom at <destination> for <payment>."
+	passengers 4 15 .9
+	to offer
+		random < 60
+	source
+		government "Humanika (Port)"
+	destination
+		government "Humanika (Port)"
+	stopover
+		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 2500
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Escaped Slaves [2]"
+	name "Escaped slaves to <planet>"
+	job
+	repeat
+	description "Go to <stopovers> and pick up <bunks> escaped slaves. Fly them to a new life of freedom at <destination> for <payment>."
+	passengers 7 28 .9
+	to offer
+		random < 40
+	source
+		government "Humanika (Port)"
+	destination
+		government "Humanika (Port)"
+	stopover
+		government "Syndicate"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 2500
+		dialog phrase "generic passenger dropoff payment"
