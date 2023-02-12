@@ -3786,7 +3786,7 @@ mission "Syndicate Defectors [0]"
 	name "Syndicate defectors to <planet>"
 	job
 	repeat
-	description "Go to <stopovers> and pick up <bunks> Syndicate defectors. Fly them to <destination> for <payment>. Expect bounty hunters."
+	description "Go to <stopovers> and pick up <bunks> Syndicate defectors. Fly them to <destination> for <payment>. Expect to bribe for landing and dodge bounty hunters."
 	passengers 2 8 .9
 	infiltrating
 	to offer
@@ -3796,25 +3796,28 @@ mission "Syndicate Defectors [0]"
 	destination
 		government "Humanika (Port)"
 	stopover
-		government "Syndicate"
+		government "Pirate"
+		not attributes uninhabited
+		distance 5 16
 	on visit
 		dialog phrase "generic passenger on visit"
+	on stopover
+		dialog phrase "generic passenger stopover pickup"
 	on complete
-		payment
-		payment 2500
+		payment 15000 180
 		dialog phrase "generic passenger dropoff payment"
 	npc
 		government "Bounty Hunter"
-		personality heroic unconstrained waiting nemesis plunders harvests
-		fleet "Small Core Pirates"
+		personality heroic unconstrained nemesis plunders harvests waiting
+		fleet "Bounty Hunters"
 		system
-			distance 2 7
+			distance 1 2
 
 mission "Syndicate Defectors [1]"
 	name "Syndicate defectors to <planet>"
 	job
 	repeat
-	description "Go to <stopovers> and pick up <bunks> Syndicate defectors. Fly them to <destination> for <payment>. Expect bounty hunters."
+	description "Go to <stopovers> and pick up <bunks> Syndicate defectors. Fly them to <destination> for <payment>. Expect to bribe for landing and dodge bounty hunters."
 	passengers 4 15 .9
 	infiltrating
 	to offer
@@ -3824,25 +3827,28 @@ mission "Syndicate Defectors [1]"
 	destination
 		government "Humanika (Port)"
 	stopover
-		government "Syndicate"
+		government "Pirate"
+		not attributes uninhabited
+		distance 5 16
 	on visit
 		dialog phrase "generic passenger on visit"
+	on stopover
+		dialog phrase "generic passenger stopover pickup"
 	on complete
-		payment
-		payment 2500
+		payment 15000 180
 		dialog phrase "generic passenger dropoff payment"
 	npc
 		government "Bounty Hunter"
-		personality heroic unconstrained waiting nemesis plunders harvests
-		fleet "Small Core Pirates" 2
+		personality heroic unconstrained nemesis plunders harvests waiting
+		fleet "Bounty Hunters"
 		system
-			distance 2 7
+			distance 1 2
 
 mission "Syndicate Defectors [2]"
 	name "Syndicate defectors to <planet>"
 	job
 	repeat
-	description "Go to <stopovers> and pick up <bunks> Syndicate defectors. Fly them to <destination> for <payment>. Expect bounty hunters."
+	description "Go to <stopovers> and pick up <bunks> Syndicate defectors. Fly them to <destination> for <payment>. Expect to bribe for landing and dodge bounty hunters."
 	passengers 7 28 .9
 	infiltrating
 	to offer
@@ -3852,27 +3858,49 @@ mission "Syndicate Defectors [2]"
 	destination
 		government "Humanika (Port)"
 	stopover
-		government "Syndicate"
+		government "Pirate"
+		not attributes uninhabited
+		distance 5 16
+	on stopover
+		dialog phrase "generic passenger stopover pickup"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
-		payment 2500
+		payment 15000 180
 		dialog phrase "generic passenger dropoff payment"
 	npc
 		government "Bounty Hunter"
-		personality heroic unconstrained waiting nemesis plunders harvests
-		fleet "Small Core Pirates"
+		personality heroic unconstrained nemesis plunders harvests waiting
+		fleet "Bounty Hunters"
 		system
-			distance 2 7
-		fleet "Large Core Pirates"
-		fleet "Small Core Pirates"
+			distance 1 2
 
-mission "Escaped Slaves [0]"
-	name "Escaped slaves to <planet>"
+phrase "syndicate defectors"
+	word
+		"religious" 3
+		"overworked" 2
+		"persecuted" 3
+		"abused" 2
+	word
+		" Syndicate "
+	word
+		"union organizers" 3
+		"low-level managers" 2
+		"workers" 5
+		"human rights observers"
+		"managers"
+		"engineers"
+		"security personnel"
+		"technicians"
+
+# NOTE: Slavery rescue missions can have an uninhabited Pirate planet
+# stopover since that is a valid place for slaves to have escaped to.
+
+mission "Rescue Slaves [0]"
+	name "Help slaves escape to <planet>"
 	job
 	repeat
-	description "Go to <stopovers> and pick up <bunks> escaped slaves. Fly them to a new life of freedom at <destination> for <payment>."
+	description "Go to <stopovers> and pick up <bunks> escaped slaves. Fly them to a new life of freedom at <destination> for <payment>. Expect to bribe for landing and dodge bounty hunters."
 	passengers 2 8 .9
 	to offer
 		random < 80
@@ -3882,18 +3910,27 @@ mission "Escaped Slaves [0]"
 		government "Humanika (Port)"
 	stopover
 		government "Pirate"
+		not attributes "slavery ban"
+		distance 5 16
 	on visit
 		dialog phrase "generic passenger on visit"
+	on stopover
+		dialog phrase "generic infiltrating slave rescue stopover pickup"
 	on complete
-		payment
-		payment 2500
-		dialog phrase "generic passenger dropoff payment"
+		payment 30000 150
+		dialog phrase "generic completed slave rescue mission"
+	npc
+		government "Bounty Hunter"
+		personality heroic unconstrained nemesis plunders harvests waiting
+		fleet "Bounty Hunters"
+		system
+			distance 1 2
 
-mission "Escaped Slaves [1]"
-	name "Escaped slaves to <planet>"
+mission "Rescue Slaves [1]"
+	name "Help slaves escape to <planet>"
 	job
 	repeat
-	description "Go to <stopovers> and pick up <bunks> escaped slaves. Fly them to a new life of freedom at <destination> for <payment>."
+	description "Go to <stopovers> and pick up <bunks> escaped slaves. Fly them to a new life of freedom at <destination> for <payment>. Expect to bribe for landing and dodge bounty hunters."
 	passengers 4 15 .9
 	to offer
 		random < 60
@@ -3903,18 +3940,27 @@ mission "Escaped Slaves [1]"
 		government "Humanika (Port)"
 	stopover
 		government "Pirate"
+		not attributes "slavery ban"
+		distance 5 16
 	on visit
 		dialog phrase "generic passenger on visit"
+	on stopover
+		dialog phrase "generic infiltrating slave rescue stopover pickup"
 	on complete
-		payment
-		payment 2500
-		dialog phrase "generic passenger dropoff payment"
+		payment 30000 150
+		dialog phrase "generic completed slave rescue mission"
+	npc
+		government "Bounty Hunter"
+		personality heroic unconstrained nemesis plunders harvests waiting
+		fleet "Bounty Hunters"
+		system
+			distance 1 2
 
-mission "Escaped Slaves [2]"
-	name "Escaped slaves to <planet>"
+mission "Rescue Slaves [2]"
+	name "Help slaves escape to <planet>"
 	job
 	repeat
-	description "Go to <stopovers> and pick up <bunks> escaped slaves. Fly them to a new life of freedom at <destination> for <payment>."
+	description "Go to <stopovers> and pick up <bunks> escaped slaves. Fly them to a new life of freedom at <destination> for <payment>. Expect to bribe for landing and dodge bounty hunters."
 	passengers 7 28 .9
 	to offer
 		random < 40
@@ -3923,10 +3969,286 @@ mission "Escaped Slaves [2]"
 	destination
 		government "Humanika (Port)"
 	stopover
-		government "Syndicate"
+		government "Pirate"
+		not attributes "slavery ban"
+		distance 5 16
+	on visit
+		dialog phrase "generic passenger on visit"
+	on stopover
+		dialog phrase "generic infiltrating slave rescue stopover pickup"
+	on complete
+		payment 30000 150
+		dialog phrase "generic completed slave rescue mission"
+	npc
+		government "Bounty Hunter"
+		personality heroic unconstrained nemesis plunders harvests waiting
+		fleet "Bounty Hunters"
+		system
+			distance 1 2
+
+mission "Escaped Slaves [0]"
+	name "Help slaves escape to <planet>"
+	job
+	repeat
+	description "Fly <bunks> escaped slaves to a new life of freedom at <destination> for <payment>. Expect bounty hunters."
+	passengers 2 8 .9
+	to offer
+		random < 80
+	source
+		government "Pirate"
+		not attributes "slavery ban"
+	destination
+		government "Humanika (Port)"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
-		payment 2500
+		payment 3000 135
+		dialog phrase "generic completed slave rescue mission"
+		system
+			distance 1 2
+
+mission "Escaped Slaves [1]"
+	name "Help slaves escape to <planet>"
+	job
+	repeat
+	description "Fly <bunks> escaped slaves to a new life of freedom at <destination> for <payment>. Expect bounty hunters."
+	passengers 4 15 .9
+	to offer
+		random < 60
+	source
+		government "Pirate"
+		not attributes "slavery ban"
+	destination
+		government "Humanika (Port)"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 3000 135
+		dialog phrase "generic completed slave rescue mission"
+		system
+			distance 1 2
+
+mission "Escaped Slaves [2]"
+	name "Help slaves escape to <planet>"
+	job
+	repeat
+	description "Fly <bunks> escaped slaves to a new life of freedom at <destination> for <payment>. Expect bounty hunters."
+	passengers 7 28 .9
+	to offer
+		random < 40
+	source
+		government "Pirate"
+		not attributes "slavery ban"
+	destination
+		government "Humanika (Port)"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 3000 135
+		dialog phrase "generic completed slave rescue mission"
+		system
+			distance 1 2
+
+mission "Farmer Corporate Espionage"
+	name "Farmer and cargo to <planet>"
+	job
+	repeat
+	description `A farmer wants to retire with <tons> of expensive farming equipment on <planet>. Expect bounty hunters.`
+	passengers 1
+	cargo "expensive equipment" 3 10
+	to offer
+		random < 15
+	source
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming
+		not attributes frontier
+	destination
+		government "Humanika (Port)"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 25000 180
 		dialog phrase "generic passenger dropoff payment"
+	npc
+		government "Bounty Hunter"
+		personality heroic unconstrained nemesis plunders harvests waiting
+		fleet "Bounty Hunters"
+		system
+			distance 1 2
+
+phrase "farming cargo to smuggle"
+	word
+		"unusual"
+		"genetically-engineered"
+		"specially-bred"
+		"expensive"
+	word
+		" "
+	word
+		"livestock"
+		"crops"
+
+mission "Miner Corporate Espionage"
+	name "Miner and cargo to <planet>"
+	job
+	repeat
+	description `A miner wants to retire with <tons> of expensive mining equipment on <planet>. Expect bounty hunters.`
+	passengers 1
+	cargo "expensive equipment" 3 10
+	to offer
+		random < 15
+	source
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes mining
+		not attributes frontier
+	destination
+		government "Humanika (Port)"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 25000 180
+		dialog phrase "generic passenger dropoff payment"
+	npc
+		government "Bounty Hunter"
+		personality heroic unconstrained nemesis plunders harvests waiting
+		fleet "Bounty Hunters"
+		system
+			distance 1 2
+
+phrase "mining cargo to smuggle"
+	word
+		"experimental"
+		"prototype"
+		"expensive"
+	word
+		" "
+	word
+		"drill heads"
+		"refining equipment"
+		"mining scanners"
+		"shaped charges"
+
+mission "Researcher Corporate Espionage"
+	name "Researcher and cargo to <planet>"
+	job
+	repeat
+	description `A scientist wants to retire with <tons> of secret research equipment on <planet>. Expect bounty hunters.`
+	passengers 1
+	cargo "expensive equipment" 3 10
+	to offer
+		random < 15
+	source
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes research
+		not attributes frontier
+	destination
+		government "Humanika (Port)"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 25000 180
+		dialog phrase "generic passenger dropoff payment"
+	npc
+		government "Bounty Hunter"
+		personality heroic unconstrained nemesis plunders harvests waiting
+		fleet "Bounty Hunters"
+		system
+			distance 1 2
+
+phrase "research cargo to smuggle"
+	word
+		"confidential"
+		"secret"
+	word
+		" "
+	word
+		"research results"
+		"scientific equipment"
+		"data cores"
+		"prototypes"
+
+mission "Factory Corporate Espionage"
+	name "Worker and cargo to <planet>"
+	job
+	repeat
+	description `A factory worker wants to retire with <tons> of prototype factory equipment on <planet>. Expect bounty hunters.`
+	passengers 1
+	cargo "expensive equipment" 3 10
+	to offer
+		random < 15
+	source
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes factory
+		not attributes frontier
+	destination
+		government "Humanika (Port)"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 25000 180
+		dialog phrase "generic passenger dropoff payment"
+	npc
+		government "Bounty Hunter"
+		personality heroic unconstrained nemesis plunders harvests waiting
+		fleet "Bounty Hunters"
+		system
+			distance 1 2
+
+phrase "factory cargo to smuggle"
+	word
+		"confidential"
+		"secret"
+		"expensive"
+	word
+		" "
+	word
+		"automation"
+		"construction"
+		"quality-control"
+		"monitoring"
+	word
+		" "
+	word
+		"equipment"
+		"devices"
+		"assemblies"
+
+mission "Urban Corporate Espionage"
+	name "Worker and cargo to <planet>"
+	job
+	repeat
+	description `A city worker wants to retire with <tons> of expensive city maintenance equipment on <planet>. Expect bounty hunters.`
+	passengers 1
+	cargo "expensive equipment" 3 10
+	to offer
+		random < 15
+	source
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes urban
+		not attributes frontier
+	destination
+		government "Humanika (Port)"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 25000 180
+		dialog phrase "generic passenger dropoff payment"
+	npc
+		government "Bounty Hunter"
+		personality heroic unconstrained nemesis plunders harvests waiting
+		fleet "Bounty Hunters"
+		system
+			distance 1 2
+
+phrase "urban cargo to smuggle"
+	word
+		"expensive"
+		"high-tech"
+		"newly-manufactured"
+	word
+		" "
+	word
+		"food safety monitors"
+		"traffic flow simulators"
+		"network routers"
+		"street surveillance systems"
