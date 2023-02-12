@@ -1103,7 +1103,7 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 				continue;
 
 			// Prefer fast ships over slow ones.
-			canHelp.insert(canHelp.end(), 1 + .3 * helper->MaxVelocity(), helper.get());
+			canHelp.insert(canHelp.end(), 1 + .3 * helper->MaxSpeed(false), helper.get());
 		}
 
 		if(!hasEnemy && !canHelp.empty())
@@ -2089,7 +2089,7 @@ void AI::CircleAround(Ship &ship, Command &command, const Body &target)
 void AI::Swarm(Ship &ship, Command &command, const Body &target)
 {
 	Point direction = target.Position() - ship.Position();
-	double maxSpeed = ship.MaxVelocity();
+	double maxSpeed = ship.MaxSpeed(false);
 	double rendezvousTime = RendezvousTime(direction, target.Velocity(), maxSpeed);
 	if(std::isnan(rendezvousTime) || rendezvousTime > 600.)
 		rendezvousTime = 600.;
@@ -2110,7 +2110,7 @@ void AI::KeepStation(Ship &ship, Command &command, const Body &target)
 	static const double THRUST_DEADBAND = .5;
 
 	// Current properties of the two ships:
-	double maxV = ship.MaxVelocity();
+	double maxV = ship.MaxSpeed(false);
 	double accel = ship.Acceleration();
 	double turn = ship.TurnRate();
 	double mass = ship.InertialMass();
@@ -2213,7 +2213,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 
 	// Check if this ship is fast enough to keep distance from target.
 	// Have a 10% minimum to avoid ships getting in a chase loop.
-	const bool isAbleToRun = target.MaxVelocity() * SAFETY_MULTIPLIER < ship.MaxVelocity();
+	const bool isAbleToRun = target.MaxSpeed(true) * SAFETY_MULTIPLIER < ship.MaxSpeed(true);
 
 	ShipAICache &shipAICache = ship.GetAICache();
 	const bool useArtilleryAI = shipAICache.IsArtilleryAI() && isAbleToRun;
@@ -2236,8 +2236,9 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 		double approachSpeed = (ship.Velocity() - target.Velocity()).Dot(direction.Unit());
 		double slowdownDistance = 0.;
 		// If this ship can use reverse thrusters, consider doing so.
-		double reverseSpeed = ship.MaxReverseVelocity();
-		bool useReverse = reverseSpeed && (reverseSpeed >= min(target.MaxVelocity(), ship.MaxVelocity())
+		double reverseSpeed = ship.MaxReverseSpeed();
+		bool useReverse = reverseSpeed
+				&& (reverseSpeed >= min(target.MaxSpeed(true), ship.MaxForwardSpeed(true))
 				|| target.Velocity().Dot(-direction.Unit()) <= reverseSpeed);
 		slowdownDistance = approachSpeed * approachSpeed / (useReverse ?
 			ship.ReverseAcceleration() : (ship.Acceleration() + 160. / ship.TurnRate())) / 2.;
@@ -2317,7 +2318,8 @@ void AI::PickUp(Ship &ship, Command &command, const Body &target)
 	// Figure out the target's velocity relative to the ship.
 	Point p = target.Position() - ship.Position();
 	Point v = target.Velocity() - ship.Velocity();
-	double vMax = ship.MaxVelocity();
+	bool shouldUseAfterburner = ShouldUseAfterburner(ship);
+	double vMax = ship.MaxSpeed(shouldUseAfterburner);
 
 	// Estimate where the target will be by the time we reach it.
 	double time = RendezvousTime(p, v, vMax);
@@ -2335,7 +2337,7 @@ void AI::PickUp(Ship &ship, Command &command, const Body &target)
 
 	// Use the afterburner if it will not cause you to miss your target.
 	double squareDistance = p.LengthSquared();
-	if(command.Has(Command::FORWARD) && ShouldUseAfterburner(ship))
+	if(command.Has(Command::FORWARD) && shouldUseAfterburner)
 		if(dp > max(.9, min(.9999, 1. - squareDistance / 10000000.)))
 			command |= Command::AFTERBURNER;
 }
@@ -2587,9 +2589,10 @@ void AI::DoMining(Ship &ship, Command &command)
 	}
 	angle += Angle::Random(1.) - Angle::Random(1.);
 	double radius = miningRadius[&ship] * pow(2., angle.Unit().X());
+	bool maxSpeed = ship.MaxSpeed(ShouldUseAfterburner(ship));
 
 	shared_ptr<Minable> target = ship.GetTargetAsteroid();
-	if(!target || target->Velocity().Length() > ship.MaxVelocity())
+	if(!target || target->Velocity().Length() > maxSpeed)
 	{
 		for(const shared_ptr<Minable> &minable : minables)
 		{
@@ -2597,7 +2600,7 @@ void AI::DoMining(Ship &ship, Command &command)
 			// Target only nearby minables that are within 45deg of the current heading
 			// and not moving faster than the ship can catch.
 			if(offset.Length() < 800. && offset.Unit().Dot(ship.Facing().Unit()) > .7
-					&& minable->Velocity().Dot(offset.Unit()) < ship.MaxVelocity())
+					&& minable->Velocity().Dot(offset.Unit()) < maxSpeed)
 			{
 				target = minable;
 				ship.SetTargetAsteroid(target);
@@ -2620,7 +2623,7 @@ void AI::DoMining(Ship &ship, Command &command)
 
 	Point heading = Angle(30.).Rotate(ship.Position().Unit() * radius) - ship.Position();
 	command.SetTurn(TurnToward(ship, heading));
-	if(ship.Velocity().Dot(heading.Unit()) < .7 * ship.MaxVelocity())
+	if(ship.Velocity().Dot(heading.Unit()) < .7 * ship.MaxForwardSpeed(false))
 		command |= Command::FORWARD;
 }
 
@@ -2655,7 +2658,7 @@ bool AI::DoHarvesting(Ship &ship, Command &command)
 
 			// Estimate how long it would take to intercept this flotsam.
 			Point v = it->Velocity() - ship.Velocity();
-			double vMax = ship.MaxVelocity();
+			double vMax = ship.MaxSpeed(false);
 			double time = RendezvousTime(p, v, vMax);
 			if(std::isnan(time))
 				continue;
@@ -2756,7 +2759,7 @@ bool AI::DoCloak(Ship &ship, Command &command)
 				else
 					safety = -ship.Position().Unit();
 
-				safety *= ship.MaxVelocity();
+				safety *= ship.MaxSpeed(false);
 				MoveTo(ship, command, ship.Position() + safety, safety, 1., .8);
 				return true;
 			}
@@ -2833,7 +2836,7 @@ bool AI::DoSecretive(Ship &ship, Command &command)
 				away = pos - scanningPos;
 			else
 				away = -pos;
-			away *= ship.MaxVelocity();
+			away *= ship.MaxSpeed(false);
 			MoveTo(ship, command, pos + away, away, 1., 1.);
 			return true;
 		}
@@ -2863,7 +2866,7 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 		if(ship.IsUsingJumpDrive() || ship.IsEnteringHyperspace())
 			return position;
 
-		double maxVelocity = ship.MaxVelocity();
+		double maxVelocity = ship.MaxSpeed(false);
 		double jumpTime = (v - maxVelocity) / 2.;
 		position += velocity.Unit() * (jumpTime * (v + maxVelocity) * .5);
 		v = maxVelocity;

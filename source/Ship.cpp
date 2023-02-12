@@ -1807,7 +1807,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				// is, about acos(.8) from the proper angle). So:
 				// Stopping distance = .5*a*(v/a)^2 + (150/turn)*v.
 				// Exit distance = HYPER_D + .25 * v^2 = stopping distance.
-				double exitV = max(HYPER_A, MaxVelocity());
+				double exitV = max(HYPER_A, MaxSpeed(false));
 				double a = (.5 / Acceleration() - .25);
 				double b = 150. / TurnRate();
 				double discriminant = b * b - 4. * a * -HYPER_D;
@@ -2543,7 +2543,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 				bay.ship->SelfDestruct();
 
 			ships.push_back(bay.ship);
-			double maxV = bay.ship->MaxVelocity() * (1 + bay.ship->IsDestroyed());
+			double maxV = bay.ship->MaxSpeed(false) * (1 + bay.ship->IsDestroyed());
 			Point exitPoint = position + angle.Rotate(bay.point);
 			// When ejected, ships depart haphazardly.
 			Angle launchAngle = ejecting ? Angle(exitPoint - position) : angle + bay.facing;
@@ -3541,13 +3541,26 @@ double Ship::Acceleration() const
 
 
 
-double Ship::MaxVelocity() const
+// Get maximum forward thrust. Use regular thruster and afterburner if allThrust is set.
+// Otherwise use regular thrusters if they are available and afterburner only if not.
+double Ship::ForwardThrust(bool allThrust) const
+{
+	double thrust = attributes.Get("thrust");
+	if (allThrust)
+		return thrust + attributes.Get("afterburner thrust");
+	else
+		return thrust ? thrust : attributes.Get("afterburner thrust");
+}
+
+
+
+// Get maximum forward speed depending on whether regular thruster and afterburner should be combined.
+double Ship::MaxForwardSpeed(bool allThrust) const
 {
 	// v * drag / mass == thrust / mass
 	// v * drag == thrust
 	// v = thrust / drag
-	double thrust = attributes.Get("thrust");
-	return (thrust ? thrust : attributes.Get("afterburner thrust")) / Drag();
+	return ForwardThrust(allThrust) / Drag();
 }
 
 
@@ -3558,10 +3571,15 @@ double Ship::ReverseAcceleration() const
 }
 
 
-
-double Ship::MaxReverseVelocity() const
+double Ship::MaxReverseSpeed() const
 {
 	return attributes.Get("reverse thrust") / Drag();
+}
+
+// Get overall maximum speed either forward or reverse whatever is faster.
+double Ship::MaxSpeed(bool allThrust) const
+{
+	return max(MaxForwardSpeed(allThrust), MaxReverseSpeed());
 }
 
 

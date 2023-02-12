@@ -80,7 +80,7 @@ void ShipAICache::Calibrate(const Ship &ship)
 	// Calculate this ship's "turning radius"; that is, the smallest circle it
 	// can make while at full speed.
 	double stepsInHalfTurn = 180. / ship.TurnRate();
-	double circumference = stepsInHalfTurn * ship.MaxVelocity();
+	double circumference = stepsInHalfTurn * ship.MaxForwardSpeed(false);
 	turningRadius = circumference / PI;
 
 	// If this ship was using the artillery AI to run away and bombard its
@@ -98,7 +98,7 @@ void ShipAICache::Calibrate(const Ship &ship)
 		// The AI shouldn't use the artillery AI if it has no reverse and it's turning
 		// capabilities are very bad. Otherwise it spends most of it's time flying around.
 		useArtilleryAI = (artilleryDPS > totalDPS / 2.
-			&& (ship.MaxReverseVelocity() || turningRadius < 0.2 * shortestArtillery));
+			&& (ship.MaxReverseSpeed() || turningRadius < 0.2 * shortestArtillery));
 
 		// Don't try to avoid your own splash damage if it means you whould be losing out
 		// on a lot of DPS. Helps with ships with very slow turning and not a lot of splash

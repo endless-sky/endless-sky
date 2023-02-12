@@ -472,7 +472,7 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 		Point pos = center.first + Angle::Random().Unit() * OffsetFrom(center);
 		double velocity = 0;
 		if(!ship->GetPersonality().IsDerelict())
-			velocity = Random::Real() * ship->MaxVelocity();
+			velocity = Random::Real() * ship->MaxSpeed(false);
 		else
 			ship->Disable();
 
@@ -526,11 +526,11 @@ void Fleet::Place(const System &system, Ship &ship)
 	auto center = ChooseCenter(system);
 	Point pos = center.first + Angle::Random().Unit() * OffsetFrom(center);
 
-	double velocity = ship.IsDisabled() ? 0. : Random::Real() * ship.MaxVelocity();
+	double speed = ship.IsDisabled() ? 0. : Random::Real() * ship.MaxSpeed(false);
 
 	ship.SetSystem(&system);
 	Angle angle = Angle::Random();
-	ship.Place(pos, velocity * angle.Unit(), angle);
+	ship.Place(pos, speed * angle.Unit(), angle);
 }
 
 

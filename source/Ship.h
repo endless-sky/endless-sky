@@ -355,9 +355,11 @@ public:
 	double InertialMass() const;
 	double TurnRate() const;
 	double Acceleration() const;
-	double MaxVelocity() const;
+	double ForwardThrust(bool allThrust) const;
 	double ReverseAcceleration() const;
-	double MaxReverseVelocity() const;
+	double MaxForwardSpeed(bool allThrust) const;
+	double MaxReverseSpeed() const;
+	double MaxSpeed(bool allThrust) const;
 
 	// This ship just got hit by a weapon. Take damage according to the
 	// DamageDealt from that weapon. The return value is a ShipEvent type,
