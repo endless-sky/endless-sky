@@ -217,6 +217,20 @@ fleet "Korath Raid"
 		"Palavret (Blaze)"
 		"'olofez" 2
 
+fleet "Kor Isaha Raid"
+	government "Kor Isaha"
+	names "korath"
+	fighters "korath"
+	cargo 1
+	personality
+		disables plunders opportunistic harvests
+	variant 4
+		"Palavret"
+		"'olofez" 2
+	variant 1
+		"Palavret (Blaze)"
+		"'olofez" 2
+
 fleet "Korath Ember Waste Raid"
 	government "Korath"
 	names "korath"
