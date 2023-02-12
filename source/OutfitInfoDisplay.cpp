@@ -82,6 +82,7 @@ namespace {
 		{"scramble resistance fuel", 0},
 		{"scramble resistance heat", 0},
 		{"jump speed", 0},
+		{"jump damage", 0},
 		{"leak resistance energy", 0},
 		{"leak resistance fuel", 0},
 		{"leak resistance heat", 0},

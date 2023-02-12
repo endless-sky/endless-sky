@@ -1753,6 +1753,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			}
 			direction = -1;
 
+			// Add damage dealt by this jump to stack.
+			stackJumpDamage += attributes.Get("jump damage");
+
 			// If you have a target planet in the destination system, exit
 			// hyperspace aimed at it. Otherwise, target the first planet that
 			// has a spaceport.
@@ -2313,6 +2316,23 @@ void Ship::DoGeneration()
 	energy -= ionization;
 	fuel -= leakage;
 	heat += burning;
+
+	if(stackJumpDamage)
+	{
+		if(shields < stackJumpDamage)
+		{
+			stackJumpDamage -= shields > 0 ? shields : 0.;
+			shields = 0;
+			hull -= stackJumpDamage;
+			stackJumpDamage = 0;
+		}
+		else
+		{
+			shields -= stackJumpDamage;
+			stackJumpDamage = 0;
+		}
+	}
+
 	// TODO: Mothership gives status resistance to carried ships?
 	if(ionization)
 	{

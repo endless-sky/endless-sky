@@ -580,6 +580,9 @@ private:
 	// Acceleration can be created by engines, firing weapons, or weapon impacts.
 	Point acceleration;
 
+	// Jump Damage: damage dealt after jumping.
+	double stackJumpDamage = 0.;
+
 	int crew = 0;
 	int pilotError = 0;
 	int pilotOkay = 0;

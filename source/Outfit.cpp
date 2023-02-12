@@ -133,6 +133,8 @@ namespace {
 		{"slowing resistance heat", 0.},
 		{"crew equivalent", 0.},
 
+		{"jump damage", 0.},
+
 		// "Protection" attributes appear in denominators and are incremented by 1.
 		{"shield protection", -0.99},
 		{"hull protection", -0.99},
