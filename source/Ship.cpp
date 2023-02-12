@@ -3538,7 +3538,7 @@ double Ship::TurnRate() const
 double Ship::ForwardThrust(bool allThrust) const
 {
 	double thrust = attributes.Get("thrust");
-	if (allThrust)
+	if(allThrust)
 		return thrust + attributes.Get("afterburner thrust");
 	else
 		return thrust ? thrust : attributes.Get("afterburner thrust");
