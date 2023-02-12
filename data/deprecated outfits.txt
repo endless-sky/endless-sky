@@ -460,7 +460,7 @@ outfit "Korath Piercer Launcher"
 		"hit force" 300
 		"missile strength" 73
 		"stream"
-	description "Korath Piercer missiles carry a pair of warheads. The first, a smaller one in the very tip of the missile, explodes on impact to blast a hole in the ship's shields to allow some of the subsequent, larger explosion to pierce through."
+	description "Korath Piercer Missiles carry a pair of warheads. The first, a smaller one in the very tip of the missile, explodes on impact to blast a hole in the ship's shields to allow some of the subsequent, larger explosion to pierce through."
 
 outfit "Korath Mine"
 	category "Ammunition"

@@ -399,7 +399,7 @@ outfit "Chameleon Anti-Missile"
 		"firing energy" 23
 		"firing heat" 6
 		"stream"
-	description "The Chameleon Anti-Missile turret has a longer range, higher power, and shorter reload time than the Bullfrog."
+	description "The Chameleon Anti-Missile Turret has a longer range, higher power, and shorter reload time than the Bullfrog."
 
 
 
