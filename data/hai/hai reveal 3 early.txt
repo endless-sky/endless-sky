@@ -480,7 +480,7 @@ event "ladybug surveillance"
 mission "Pirates with Hai Weapons 1: Katya's Message"
 	landing
 	name "Pirates with Hai Weapons"
-	description "You need to find out if the Hai are arming pirates and, if they are, to stop them. Be patient for an opportunity, don't tell the Hai that the Free Worlds sent you, and make sure the Republic doesn't find out."
+	description "You need to find out if the Hai are arming pirates and, if they are, stop them. Be patient for an opportunity, don't tell the Hai that the Free Worlds sent you, and make sure the Republic doesn't find out."
 	source Hai-home
 	destination Hai-home
 	to offer
