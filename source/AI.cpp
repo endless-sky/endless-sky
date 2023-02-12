@@ -2177,13 +2177,16 @@ void AI::KeepStation(Ship &ship, Command &command, const Body &target)
 	double totalTime = positionTime + velocityTime + TIME_DEADBAND;
 	positionWeight = positionTime / totalTime;
 	velocityWeight = velocityTime / totalTime;
+	Point unitFacing = target.Facing().Unit();
+	unitFacing = ship.PrefersForwardAcceleration(false) ? unitFacing : -unitFacing;
 	double facingWeight = TIME_DEADBAND / totalTime;
 
 	// Determine the angle we want to face, interpolating smoothly between three options.
 	Point facingGoal = rendezvous.Unit() * positionWeight
 		+ velocityDelta.Unit() * velocityWeight
-		+ target.Facing().Unit() * facingWeight;
+		+ unitFacing * facingWeight;
 	double targetAngle = Angle(facingGoal).Degrees() - currentAngle;
+	targetAngle = ship.PrefersForwardAcceleration(false) ? targetAngle : -targetAngle;
 	if(abs(targetAngle) > 180.)
 		targetAngle += (targetAngle < 0. ? 360. : -360.);
 	// Avoid "turn jitter" when position & velocity are well-matched.
