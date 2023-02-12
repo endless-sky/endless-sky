@@ -264,6 +264,7 @@ mission "Korath Humanika: Fish Trade (small)"
 		payment 25000 500
 		fine 50000
 		dialog "A woman in a blue dress thanks you for the delivery and pays you <payment>."
+		"reputation: Korath" ++
 
 mission "Korath Humanika: Fish Trade (medium)"
 	name "New Tortuga fish trade"
@@ -286,6 +287,7 @@ mission "Korath Humanika: Fish Trade (medium)"
 		payment 35000 400
 		fine 100000
 		dialog "A woman in a blue dress thanks you for the delivery and pays you <payment>."
+		"reputation: Korath" += 2
 
 mission "Korath Humanika: Fish Trade (bulk)"
 	name "New Tortuga fish trade"
@@ -308,6 +310,7 @@ mission "Korath Humanika: Fish Trade (bulk)"
 		payment 45000 350
 		fine 150000
 		dialog "A woman in a blue dress thanks you for the delivery and pays you <payment>."
+		"reputation: Korath" += 3
 
 mission "Korath: Retrieve livestock [0]"
 	name "Livestock to <planet>"
@@ -327,6 +330,7 @@ mission "Korath: Retrieve livestock [0]"
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the livestock and confirms the trade. You receive <payment>."
+		"reputation: Korath" ++
 
 mission "Korath: Retrieve livestock [1]"
 	name "Livestock to <planet>"
@@ -346,6 +350,7 @@ mission "Korath: Retrieve livestock [1]"
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the livestock and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 2
 
 mission "Korath: Retrieve livestock [2]"
 	name "Livestock to <planet>"
@@ -365,6 +370,7 @@ mission "Korath: Retrieve livestock [2]"
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the livestock and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 3
 
 mission "Korath: Retrieve livestock [3]"
 	name "Livestock to <planet>"
@@ -384,6 +390,7 @@ mission "Korath: Retrieve livestock [3]"
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the livestock and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 4
 
 mission "Korath: Retrieve livestock [4]"
 	name "Livestock to <planet>"
@@ -403,6 +410,7 @@ mission "Korath: Retrieve livestock [4]"
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the livestock and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 5
 
 mission "Korath: Retrieve crops [0]"
 	name "Crops to <planet>"
@@ -422,6 +430,7 @@ mission "Korath: Retrieve crops [0]"
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the crops and confirms the trade. You receive <payment>."
+		"reputation: Korath" ++
 
 mission "Korath: Retrieve crops [1]"
 	name "Crops to <planet>"
@@ -441,6 +450,7 @@ mission "Korath: Retrieve crops [1]"
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the crops and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 2
 
 mission "Korath: Retrieve crops [2]"
 	name "Crops to <planet>"
@@ -460,6 +470,7 @@ mission "Korath: Retrieve crops [2]"
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the crops and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 3
 
 mission "Korath: Retrieve crops [3]"
 	name "Crops to <planet>"
@@ -479,6 +490,7 @@ mission "Korath: Retrieve crops [3]"
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the crops and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 4
 
 mission "Korath: Retrieve crops [4]"
 	name "Crops to <planet>"
@@ -498,3 +510,4 @@ mission "Korath: Retrieve crops [4]"
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the crops and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 5
