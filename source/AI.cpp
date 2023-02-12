@@ -2321,26 +2321,34 @@ void AI::AimToAttack(Ship &ship, Command &command, const Body &target)
 
 void AI::MoveToAttack(Ship &ship, Command &command, const Body &target)
 {
-	Point direction = target.Position() - ship.Position();
+	if(ship.PrefersForwardAcceleration(true))
+	{
+		Point direction = target.Position() - ship.Position();
 
-	// First of all, aim in the direction that will hit this target.
-	AimToAttack(ship, command, target);
+		// First of all, aim in the direction that will hit this target.
+		AimToAttack(ship, command, target);
 
-	const auto facing = ship.Facing().Unit().Dot(direction.Unit());
-	// If the ship has reverse thrusters and the target is behind it, we can
-	// use them to reach the target more quickly.
-	if(facing < -.75 && ship.Attributes().Get("reverse thrust"))
-		command |= Command::BACK;
-	// This isn't perfect, but it works well enough.
-	else if((facing >= 0. &&
-			direction.Length() > max(200., ship.GetAICache().TurningRadius()))
-			|| (ship.Velocity().Dot(direction) < 0. &&
-				facing) >= .9)
-		command |= Command::FORWARD;
+		const auto facing = ship.Facing().Unit().Dot(direction.Unit());
+		// If the ship has reverse thrusters and the target is behind it, we can
+		// use them to reach the target more quickly.
+		if(facing < -.75 && ship.Attributes().Get("reverse thrust"))
+			command |= Command::BACK;
+		// This isn't perfect, but it works well enough.
+		else if((facing >= 0. &&
+				direction.Length() > max(200., ship.GetAICache().TurningRadius()))
+				|| (ship.Velocity().Dot(direction) < 0. &&
+					facing) >= .9)
+			command |= Command::FORWARD;
 
-	// Use an equipped afterburner if possible.
-	if(command.Has(Command::FORWARD) && direction.Length() < 1000. && ShouldUseAfterburner(ship))
-		command |= Command::AFTERBURNER;
+		// Use an equipped afterburner if possible.
+		if(command.Has(Command::FORWARD) && direction.Length() < 1000. && ShouldUseAfterburner(ship))
+			command |= Command::AFTERBURNER;
+	}
+	else
+	{
+		// Use the stronger reverse thruster to get closer before aiming at the target.
+		MoveTo(ship, command, target.Position(), target.Velocity(), 0, 0);
+	}
 }
 
 
