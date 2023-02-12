@@ -2088,16 +2088,28 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 void AI::CircleAround(Ship &ship, Command &command, const Body &target)
 {
 	Point direction = target.Position() - ship.Position();
-	command.SetTurn(TurnToward(ship, direction));
-
 	double length = direction.Length();
-	if(length > 200. && ship.Facing().Unit().Dot(direction) >= 0.)
-	{
-		command |= Command::FORWARD;
 
-		// If the ship is far away enough the ship should use the afterburner.
-		if(length > 750. && ShouldUseAfterburner(ship))
-			command |= Command::AFTERBURNER;
+	// If the ship is far away enough the ship should use the afterburner.
+	bool shouldUseAfterburner = length > 750. && ShouldUseAfterburner(ship);
+	bool prefersForwardAcceleration = ship.PrefersForwardAcceleration(shouldUseAfterburner);
+
+	if(prefersForwardAcceleration)
+		command.SetTurn(TurnToward(ship, direction));
+	else
+		command.SetTurn(TurnToward(ship, -direction));
+
+	if(length > 200.)
+	{
+		if(prefersForwardAcceleration && ship.Facing().Unit().Dot(direction) >= 0.)
+		{
+			command |= Command::FORWARD;
+
+			if(shouldUseAfterburner)
+				command |= Command::AFTERBURNER;
+		}
+		else if(!prefersForwardAcceleration && ship.Facing().Unit().Dot(direction) <= 0.)
+			command |= Command::BACK;
 	}
 }
 
