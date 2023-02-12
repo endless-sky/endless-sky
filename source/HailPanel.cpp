@@ -83,7 +83,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 		if(flagship->IsDisabled())
 		{
 			playerNeedsHelp = true;
-			canRepair = true;
+			canRepair = !ship->CanBeCarried();
 		}
 
 		if(ship->GetPersonality().IsSurveillance())
