@@ -43,7 +43,8 @@ class System;
 class ConversationPanel : public Panel {
 public:
 	ConversationPanel(PlayerInfo &player, const Conversation &conversation,
-		const System *system = nullptr, const std::shared_ptr<Ship> &ship = nullptr);
+		const System *system = nullptr, const std::shared_ptr<Ship> &ship = nullptr,
+		bool useTransactions = false);
 
 template <class T>
 	void SetCallback(T *t, void (T::*fun)(int));
@@ -107,6 +108,9 @@ private:
 	// Reference to the player, to apply any changes to them.
 	PlayerInfo &player;
 
+	// Should we use a PlayerInfo transaction to prevent save-load glitches?
+	bool useTransactions = false;
+
 	// The conversation we are displaying.
 	const Conversation &conversation;
 	// All conversations start with node 0.
@@ -122,6 +126,8 @@ private:
 	// The current choices being presented to you, and their indices:
 	std::list<std::pair<Paragraph, int>> choices;
 	int choice = 0;
+	// Flicker time, set if the player enters invalid input for a pilot's name.
+	int flickerTime = 0;
 
 	// Text entry fields for changing the player's name.
 	std::string firstName;

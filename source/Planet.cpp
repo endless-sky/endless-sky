@@ -510,6 +510,9 @@ const Wormhole *Planet::GetWormhole() const
 // land on this planet.
 bool Planet::IsAccessible(const Ship *ship) const
 {
+	// If this is a wormhole that leads to an inaccessible system, no ship can land here.
+	if(wormhole && ship && ship->GetSystem() && wormhole->WormholeDestination(*ship->GetSystem()).Inaccessible())
+		return false;
 	// If there are no required attributes, then any ship may land here.
 	if(IsUnrestricted())
 		return true;
@@ -550,6 +553,20 @@ bool Planet::CanLand(const Ship &ship) const
 bool Planet::CanLand() const
 {
 	return GameData::GetPolitics().CanLand(this);
+}
+
+
+
+Planet::Friendliness Planet::GetFriendliness() const
+{
+	if(GameData::GetPolitics().HasDominated(this))
+		return Friendliness::DOMINATED;
+	else if(GetGovernment()->IsEnemy())
+		return Friendliness::HOSTILE;
+	else if(CanLand())
+		return Friendliness::FRIENDLY;
+	else
+		return Friendliness::RESTRICTED;
 }
 
 
@@ -611,7 +628,7 @@ string Planet::DemandTribute(PlayerInfo &player) const
 
 	playerConditions["tribute: " + name] = tribute;
 	GameData::GetPolitics().DominatePlanet(this);
-	return "We surrender. We will pay you " + Format::Credits(tribute) + " credits per day to leave us alone.";
+	return "We surrender. We will pay you " + Format::CreditString(tribute) + " per day to leave us alone.";
 }
 
 
