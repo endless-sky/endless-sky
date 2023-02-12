@@ -507,14 +507,39 @@ mission "Korath [F02]: A Fishy Deal"
 
 	on stopover
 		conversation
-			`"INSERT STOPOVER CONVERSATION HERE"`
-
+			`You approach the asteroid and a crater suddenly opens up, revealing a docking bay below. It's large enough to fit entire human space stations, but there are only a few ordinary ships parked below. When you exit your ship, several security personnel arrive, wearing unfamiliar uniforms, and carrying bright orange rifles. They're accompanied by a woman in a blue dress, holding a data pad in one hand and a stylus in another.`
+			`	"We don't like surprises, Captain <last>. I was expecting to see Jenny Globemaster, but here you are in her stead. Care to explain?"`
+			choice
+				`	"Her mother is unwell, but she knew you needed this delivery."`
+					goto unwell
+				`	"She wasn't using the fish, so I took it."`
+					goto taunt
+				`	(Pull out your gun.)`
+			`	Before you can reach the holster, three of the security guards shoot you at the same time. The pain is excruciating as plasma eats its way through flesh and bone.`
+			`	"Thank you for delivering the fish, Captain <last>. I think our business relationship has come to an end." She points a smaller orange pistol at your face and ends your pain.`
+				die
+			label taunt
+			`	The woman in the blue dress laughs at you. "You don't look halfway clever enough to scam her out of it. What really happened?"`
+			choice
+				`	"Her mother is unwell, but she knew you needed this delivery."`
+			label unwell
+			`	"Poor Jenny. Yes, I know about that. She's smuggling her mother from Freedom to a hospital on Shroud for treatment. Alright. Jenny vouched for you, and you seem sane enough. Take these supplies to New Tortuga," she points to a pile of black barrels, "and my counterpart there will pay you."`
+			`	She departs with her entourage, and some dock workers load the barrels onto your ship.`
 	on complete
 		# 50 may sound like a lot, but pillaging from one
 		# Palavret and one 'olofez netted me a 76 reputation
 		# loss.
 		"reputation: Korath" += 50
-		payment 235000
-		fine 95000
+		payment 145000
+		fine 50000
 		conversation
-			`"INSERT COMPLETION CONVERSATION HERE"`
+			`This time, you are directed to a different bunker city, on the other side of the planet from the main spacepoprt. The doors are considerably larger, and the bay is large enough to fit two dozen bulk freighters. You park near the far corner, close to one of the spaceport entrances, between a Behemoth and a Bactrian.`
+			`	Another woman in a blue dress meets you, accompanied by security guards with the same unfamiliar uniform as on La'ab Bamen. "Ah, Captain <last>! The next shipment."`
+			choice
+				`	"What was this cargo?"`
+				`	"I'm glad to have served another happy customer."`
+					goto done
+			`	"Much of our planet's food comes from a waste processing system that converts sewage directly into edible materials. We need a steady supply of filters to make this possible. These barrels contain genetically-engineered microorganisms that feed on sewage and output certain types of proteins. There are other filters for sugar, oils, and just about anything else."`
+
+			label done
+			`	"As promised, <payment>. Thank you for the prompt delivery, Captain <last>!"`
