@@ -77,7 +77,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 		if(flagship->NeedsFuel(false))
 		{
 			playerNeedsHelp = true;
-			canGiveFuel = ship->CanRefuel(*flagship);
+			canGiveFuel = ship->CanRefuel(*flagship) && !ship->CanBeCarried();
 		}
 		// Check if the player is disabled.
 		if(flagship->IsDisabled())
