@@ -674,6 +674,8 @@ government "Humanika (Port)"
 		# Negative for Korath ensures the Korath raiding groups will not come
 		# from Humanika (Port) planets and stations.
 		"Korath" -.001
+		"Kor Alaji" -.001
+		"Kor Isaha" -.001
 
 # Used for smuggling sites and other restricted-access stations. Allows Korath to land.
 government "Humanika (Restricted)"
