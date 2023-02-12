@@ -2943,7 +2943,6 @@ planet "New Tortuga"
 	shipyard "Southern Pirates"
 	shipyard "Northern Pirates"
 	shipyard "Syndicate Basics"
-	shipyard "Syndicate Advanced"
 	shipyard "Humanika Mimicry"
 	outfitter "Humanika Mimicry"
 	outfitter "Common Outfits"
@@ -2952,6 +2951,7 @@ planet "New Tortuga"
 	outfitter "Pirate Outfits"
 	outfitter "Syndicate Basics"
 	outfitter "Syndicate Advanced"
+	outfitter "Northern Explorers"
 	"required reputation" -10
 	bribe 0.03
 	security 0
