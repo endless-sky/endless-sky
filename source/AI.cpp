@@ -1958,7 +1958,7 @@ bool AI::Stop(Ship &ship, Command &command, double maxSpeed, const Point directi
 	// This is a fudge factor for how straight you must be facing: it increases
 	// from 0.8 when it will take many frames to stop, to nearly 1 when it will
 	// take less than 1 frame to stop.
-	double stopTime = speed / ship.Acceleration();
+	double stopTime = speed / ship.ForwardAcceleration(false);
 	double limit = .8 + .2 / (1. + stopTime * stopTime * stopTime * .001);
 
 	// If you have a reverse thruster, figure out whether using it is faster
@@ -2048,7 +2048,7 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 				double turnRateRadians = ship.TurnRate() * TO_RAD;
 				double cos = ship.Facing().Unit().Dot(direction);
 				// integral(t*sin(r*x), angle/r, 0) = t/r * (1 - cos(angle)), so:
-				double correctionWhileTurning = fabs(1 - cos) * ship.Acceleration() / turnRateRadians;
+				double correctionWhileTurning = fabs(1 - cos) * ship.ForwardAcceleration(false) / turnRateRadians;
 				// (Note that this will always underestimate because thrust happens before turn)
 
 				if(fabs(deviation) - correctionWhileTurning > scramThreshold)
@@ -2111,7 +2111,7 @@ void AI::KeepStation(Ship &ship, Command &command, const Body &target)
 
 	// Current properties of the two ships:
 	double maxV = ship.MaxSpeed(false);
-	double accel = ship.Acceleration();
+	double accel = ship.Acceleration(false);
 	double turn = ship.TurnRate();
 	double mass = ship.InertialMass();
 	Point unit = ship.Facing().Unit();
@@ -2241,7 +2241,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 				&& (reverseSpeed >= min(target.MaxSpeed(true), ship.MaxForwardSpeed(true))
 				|| target.Velocity().Dot(-direction.Unit()) <= reverseSpeed);
 		slowdownDistance = approachSpeed * approachSpeed / (useReverse ?
-			ship.ReverseAcceleration() : (ship.Acceleration() + 160. / ship.TurnRate())) / 2.;
+			ship.ReverseAcceleration() : (ship.ForwardAcceleration(true) + 160. / ship.TurnRate())) / 2.;
 
 		// If we're too close, run away.
 		if(direction.Length() <
@@ -2779,7 +2779,7 @@ void AI::DoScatter(Ship &ship, Command &command)
 		return;
 
 	double turnRate = ship.TurnRate();
-	double acceleration = ship.Acceleration();
+	double acceleration = ship.ForwardAcceleration(false);
 	// TODO: If there are many ships, use CollisionSet::Circle or another
 	// suitable method to limit which ships are checked.
 	for(const shared_ptr<Ship> &other : ships)
@@ -2795,7 +2795,7 @@ void AI::DoScatter(Ship &ship, Command &command)
 			continue;
 		if(fabs(other->TurnRate() / turnRate - 1.) > .05)
 			continue;
-		if(fabs(other->Acceleration() / acceleration - 1.) > .05)
+		if(fabs(other->ForwardAcceleration(false) / acceleration - 1.) > .05)
 			continue;
 
 		// Move away from this ship. What side of me is it on?
@@ -2852,7 +2852,7 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 	Point position = ship.Position();
 	Point velocity = ship.Velocity() - targetVelocity;
 	Angle angle = ship.Facing();
-	double acceleration = ship.Acceleration();
+	double frontAcceleration = ship.ForwardAcceleration(false);
 	double turnRate = ship.TurnRate();
 	shouldReverse = false;
 
@@ -2878,7 +2878,7 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 	// Sum of: v + (v - a) + (v - 2a) + ... + 0.
 	// The number of terms will be v / a.
 	// The average term's value will be v / 2. So:
-	stopDistance += .5 * v * v / acceleration;
+	stopDistance += .5 * v * v / frontAcceleration;
 
 	if(ship.Attributes().Get("reverse thrust"))
 	{

@@ -1808,7 +1808,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				// Stopping distance = .5*a*(v/a)^2 + (150/turn)*v.
 				// Exit distance = HYPER_D + .25 * v^2 = stopping distance.
 				double exitV = max(HYPER_A, MaxSpeed(false));
-				double a = (.5 / Acceleration() - .25);
+				double a = (.5 / ForwardAcceleration(false) - .25);
 				double b = 150. / TurnRate();
 				double discriminant = b * b - 4. * a * -HYPER_D;
 				if(discriminant > 0.)
@@ -3533,14 +3533,6 @@ double Ship::TurnRate() const
 
 
 
-double Ship::Acceleration() const
-{
-	double thrust = attributes.Get("thrust");
-	return (thrust ? thrust : attributes.Get("afterburner thrust")) / InertialMass();
-}
-
-
-
 // Get maximum forward thrust. Use regular thruster and afterburner if allThrust is set.
 // Otherwise use regular thrusters if they are available and afterburner only if not.
 double Ship::ForwardThrust(bool allThrust) const
@@ -3554,6 +3546,32 @@ double Ship::ForwardThrust(bool allThrust) const
 
 
 
+// Get front acceleration depending on whether regular thruster and afterburner should be combined.
+double Ship::ForwardAcceleration(bool allThrust) const
+{
+	return ForwardThrust(allThrust) / InertialMass();
+}
+
+double Ship::ReverseAcceleration() const
+{
+	return attributes.Get("reverse thrust") / InertialMass();
+}
+
+// Get overall acceleration either forward or reverse whatever is larger.
+double Ship::Acceleration(bool allThrust) const
+{
+	return max(ForwardAcceleration(allThrust), ReverseAcceleration());
+}
+
+// Is forward acceleration faster?
+// The result can depend on whether regular forward thruster and afterburner should be combined.
+bool Ship::PrefersForwardAcceleration(bool allThrust) const
+{
+	return ForwardAcceleration(allThrust) >= ReverseAcceleration();
+}
+
+
+
 // Get maximum forward speed depending on whether regular thruster and afterburner should be combined.
 double Ship::MaxForwardSpeed(bool allThrust) const
 {
@@ -3562,14 +3580,6 @@ double Ship::MaxForwardSpeed(bool allThrust) const
 	// v = thrust / drag
 	return ForwardThrust(allThrust) / Drag();
 }
-
-
-
-double Ship::ReverseAcceleration() const
-{
-	return attributes.Get("reverse thrust");
-}
-
 
 double Ship::MaxReverseSpeed() const
 {

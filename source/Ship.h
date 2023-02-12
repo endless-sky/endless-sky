@@ -354,9 +354,11 @@ public:
 	double Mass() const;
 	double InertialMass() const;
 	double TurnRate() const;
-	double Acceleration() const;
 	double ForwardThrust(bool allThrust) const;
+	double ForwardAcceleration(bool allThrust) const;
 	double ReverseAcceleration() const;
+	double Acceleration(bool allThrust) const;
+	bool PrefersForwardAcceleration(bool allThrust) const;
 	double MaxForwardSpeed(bool allThrust) const;
 	double MaxReverseSpeed() const;
 	double MaxSpeed(bool allThrust) const;
