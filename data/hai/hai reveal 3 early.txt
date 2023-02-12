@@ -441,6 +441,39 @@ event "role-play station active"
 		security 0.7
 		"required reputation" -10
 
+# Now that more ships are involved elsewhere, Ladybugs start getting used to take up the slack in surveillance security fleets.	
+event "ladybug surveillance"
+	fleet "Hai Surveillance"
+		add variant 10
+			"Shield Beetle (Police)"
+			"Ladybug"
+		add variant 5
+			"Ladybug"
+		add variant 5
+			"Lightning Bug (Surveillance)"
+			"Ladybug"
+		add variant 5
+			"Lightning Bug (Surveillance)" 2
+			"Ladybug"
+		add variant 5
+			"Lightning Bug (Surveillance)" 1
+			"Ladybug" 2
+		add variant 3
+			"Grasshopper (Surveillance)" 2
+			"Ladybug"
+		add variant 3
+			"Grasshopper (Surveillance)" 3
+			"Ladybug"
+		add variant 3
+			"Grasshopper (Surveillance)" 4
+			"Ladybug"
+		add variant 3
+			"Grasshopper (Surveillance)" 2
+			"Ladybug" 2
+		add variant 3
+			"Grasshopper (Surveillance)" 3
+			"Ladybug" 2
+
 
 
 # This begins with a P instead of an H so it will happen after the other Hai Reveal mission's dialog.
@@ -515,36 +548,3 @@ mission "Pirates with Hai Weapons 1: Katya's Message"
 			label acceptable
 			`	After a few goodbyes, you head out to search for answers.`
 				accept
-
-# Now that more ships are involved elsewhere, Ladybugs start getting used to take up the slack in surveillance security fleets.
-event "ladybug surveillance"
-	fleet "Hai Surveillance"
-		add variant 10
-			"Shield Beetle (Police)"
-			"Ladybug"
-		add variant 5
-			"Ladybug"
-		add variant 5
-			"Lightning Bug (Surveillance)"
-			"Ladybug"
-		add variant 5
-			"Lightning Bug (Surveillance)" 2
-			"Ladybug"
-		add variant 5
-			"Lightning Bug (Surveillance)" 1
-			"Ladybug" 2
-		add variant 3
-			"Grasshopper (Surveillance)" 2
-			"Ladybug"
-		add variant 3
-			"Grasshopper (Surveillance)" 3
-			"Ladybug"
-		add variant 3
-			"Grasshopper (Surveillance)" 4
-			"Ladybug"
-		add variant 3
-			"Grasshopper (Surveillance)" 2
-			"Ladybug" 2
-		add variant 3
-			"Grasshopper (Surveillance)" 3
-			"Ladybug" 2
