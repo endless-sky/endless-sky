@@ -183,7 +183,7 @@ mission "First Contact: Bunrodea"
 				`	"Ok, and?"`
 					goto and
 			
-			label defend
+			label defending
 			`	As the small creature translates for you, the Queen seems to laugh in a strange chittering way. "Yes, my royal guards are rather... eager to defend, and for that I apologize," the creature translates as the Queen speaks. "But would my royal guard truly be doing its duty if it were not defending my lands from unknown threats? Although, perhaps they could be more patient in assessing true threats. I might punish those responsible, but it would seem that you have already dealt with those who have slighted you."`
 				goto slighted
 			
