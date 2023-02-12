@@ -1330,7 +1330,27 @@ mission "Coalition: From Games 3"
 		dialog phrase "coalition games dialog"
 
 
-mission "Heliarchs Buy Jump Drive Job"
+mission "Heliarchs Buy Jump Drive Job 1"
+	job
+	name "Sell Jump Drive"
+	description "Sell a jump drive to the Heliarchs for five million credits."
+	source
+		government "Heliarch"
+	to offer
+		not "Coalition: Lost: Offer: active"
+		has "Heliarchs Buy Jump Drive Mission: declined"
+		has "outfit (cargo): Jump Drive"
+	on accept
+		conversation
+			`The Heliarchs thank you profusely when they see you've taken them up on their offer, and soon enough several of their ships have landed near your own, apparently having learned of your change of mind and excited to see the exchange, leaving their ships and surrounding yours. Soon enough, they make space for an army of engineers to come and remove the spare jump drive from your ship. Still watching the scene, only now in formations, the Heliarch agents whisper among themselves, rarely shifting their eyes, as if looking at a spectacle.`
+			`	Once the drive is out of your ship, it is secured in an excessively reinforced container and transported to a restricted section of the ring, under the guard of hundreds of armed soldiers. One of the Heliarchs who seem to be in charge of the procedure, an Arach, personally comes to you, thanking you again and handing you <payment>. "Honor us you do with such generosity, Captain. Though made great progress in studying jump drives and their mechanisms, we have, still incapable of creating our own, we are, and means of acquiring new copies we have not. Tremendously valuable, each and every drive you could bring us is. If interested in selling any more jump drives, you are, continue to offer you such jobs, we will."`
+			`	She thanks you yet again, salutes, and leaves to follow the entourage guarding the newly purchased jump drive.`
+		"coalition jobs" >?= 30
+		outfit "Jump Drive" -1
+		payment 5000000
+		fail
+
+mission "Heliarchs Buy Jump Drive Job 2"
 	job
 	repeat
 	name "Sell Jump Drive"
@@ -1339,9 +1359,10 @@ mission "Heliarchs Buy Jump Drive Job"
 		government "Heliarch"
 	to offer
 		not "Coalition: Lost: Offer: active"
-		not "Heliarchs Buy Jump Drive Mission: declined"
-		has "Heliarchs Buy Jump Drive Mission: offered"
 		has "outfit (cargo): Jump Drive"
+		or
+			not "Heliarchs Buy Jump Drive Mission: declined"
+			has "Heliarchs Buy Jump Drive Job 1: offered"
 	on accept
 		dialog "A team of Heliarch engineers carefully removes the spare jump drive from your ship and brings it to a restricted section of the ring. You're approached by the Heliarch who supervised the procedure, who thanks you for bringing in another drive, and hands you the pay of five million credits."
 		"coalition jobs" += 2
