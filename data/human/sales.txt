@@ -183,6 +183,7 @@ outfitter "Humanika Mimicry"
 	"AR120 Reverse Thruster"
 	"Breeder Reactor"
 	"Heavy Anti-Missile Turret"
+	"Anti-Missile Turret"
 	"nGVF-DD Fuel Cell"
 
 outfitter "Basic Outfits"
