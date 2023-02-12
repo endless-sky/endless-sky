@@ -249,7 +249,7 @@ mission "Hai Rescue: Ooonem"
 				`	(Talk to them.)`
 				`	(Come back later.)`
 					defer
-			`	As you step into her path, the Hai swings the laser rifle towards you and says, "You're either very brave, very stupid, or know something... I should warn you, I'm not going back to them!"`
+			`	As you step into their path, the Hai swings the laser rifle towards you and says, "You're either very brave, very stupid, or know something... I should warn you, I'm not going back to them!"`
 			`	She watches your expression closely and, when you don't appear to be hostile, settles into a wary but more relaxed stance. "You're not one of them. What do you want with me?"`
 			choice
 				`	"I was wondering why a Hai is on a pirate planet."`
