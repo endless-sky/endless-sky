@@ -217,6 +217,20 @@ fleet "Korath Raid"
 		"Palavret (Blaze)"
 		"'olofez" 2
 
+fleet "Kor Isaha Raid"
+	government "Kor Isaha"
+	names "korath"
+	fighters "korath"
+	cargo 1
+	personality
+		disables plunders opportunistic harvests
+	variant 4
+		"Palavret"
+		"'olofez" 2
+	variant 1
+		"Palavret (Blaze)"
+		"'olofez" 2
+
 fleet "Korath Ember Waste Raid"
 	government "Korath"
 	names "korath"
@@ -241,6 +255,32 @@ fleet "Korath Ember Waste Raid"
 	variant 2
 		"Rano'erek (Shunt)"
 		"'olofez" 4
+
+fleet "Kor Alaji Raid"
+	government "Kor Alaji"
+	names "korath"
+	fighters "korath"
+	cargo 1
+	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
+	outfitters "Korath Exiles Remnant Donations"
+	personality
+		disables plunders opportunistic harvests
+	variant 12
+		"Palavret (Ember)"
+		"'olofez" 2
+	variant 3
+		"Palavret (Ember Blaze)"
+		"'olofez" 2
+	variant 6
+		"Palavret (Ember Shunt)"
+		"'olofez" 2
+	variant 1
+		"Rano'erek"
+		"'olofez" 4
+	variant 3
+		"Rano'erek (Shunt)"
+		"'olofez" 4
+
 
 fleet "Korath Miners"
 	government "Korath"
@@ -977,20 +1017,28 @@ outfitter "Korath Exiles"
 
 outfitter "Korath Exiles Remnant Donations"
 	"Banisher Grav-Turret"
-	"Fire-Lance"
-	"Grab-Strike Turret"
+	"Expeller Grav-Ray"
+	"Digger Mining Turret"
+	"Digger Mining Beam"
 	"Warder Anti-Missile"
+	"Firelight Storage Rack"
+	"Firestorm Torpedo Rack"
 	"Steering (Asteroid Class)"
+	"Steering (Comet Class)"
 	"Steering (Lunar Class)"
 	"Steering (Planetary Class)"
 	"Thruster (Asteroid Class)"
 	"Thruster (Comet Class)"
+	"Thruster (Lunar Class)"
 	"Thruster (Planetary Class)"
+	"Reverser (Asteroid Class)"
+	"Reverser (Comet Class)"
+	"Reverser (Lunar Class)"
+	"Engine (Meteor Class)"
+	"Bow Drive (Meteor Class)"
+	"Afterburner (Asteroid Class)"
+	"Afterburner (Comet Class)"
+	"Generator (Candle Class)"
 	"Generator (Furnace Class)"
-	"Triple Plasma Core"
-	"Small Heat Shunt"
-	"Large Heat Shunt"
+	"Generator (Inferno Class)"
 	"Fuel Processor"
-	"Systems Core (Small)"
-	"Systems Core (Medium)"
-	"Systems Core (Large)"
