@@ -526,14 +526,13 @@ mission "Korath [F02]: A Fishy Deal"
 			`	"Poor Jenny. Yes, I know about that. She's smuggling her mother from Freedom to a hospital on Shroud for treatment. Alright. Jenny vouched for you, and you seem sane enough. Take these supplies to New Tortuga," she points to a pile of black barrels, "and my counterpart there will pay you."`
 			`	She departs with her entourage, and some dock workers load the barrels onto your ship.`
 	on complete
-		# 50 may sound like a lot, but pillaging from one
-		# Palavret and one 'olofez netted me a 76 reputation
-		# loss.
+		# This is essentially a reputation reset for people who haven't been farming
+		# the Korath at all. Anyone else will have to do a lot of assistance jobs.
 		"reputation: Korath" += 50
 		payment 145000
 		fine 50000
 		conversation
-			`This time, you are directed to a different bunker city, on the other side of the planet from the main spacepoprt. The doors are considerably larger, and the bay is large enough to fit two dozen bulk freighters. You park near the far corner, close to one of the spaceport entrances, between a Behemoth and a Bactrian.`
+			`This time, you are directed to a different bunker city, on the other side of the planet from the main spaceport. The doors are considerably larger, and the bay is large enough to fit two dozen bulk freighters. You park near the far corner, close to one of the spaceport entrances, between a Behemoth and a Bactrian.`
 			`	Another woman in a blue dress meets you, accompanied by security guards with the same unfamiliar uniform as on La'ab Bamen. "Ah, Captain <last>! The next shipment."`
 			choice
 				`	"What was this cargo?"`
