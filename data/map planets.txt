@@ -2327,7 +2327,7 @@ planet "Kuwaru Efreti"
 	security 1
 
 planet "La'ab Bamen"
-	attributes humanika korath "korath exile"
+	attributes humanika korath "korath exile" "slavery ban"
 	landscape land/monterey-bay-aquarium
 	description `This moon is only a few kilometers in diameter, and it has been hollowed out and turned into an aquarium. There's several cubic kilometers of salt water inside, with numerous creatures that look like small translucent glowing dolphins, and a few that look like a hybrid of an ankylorhiza and a giant squid. A machine at the moon's center maintains the aquarium's near-Earth gravity, typical ocean temperatures, and a slow electric current. There are corridors throughout this asteroid aquarium, lit by a glow from the water itself.`
 	description `At the surface of the asteroid, there are hidden hanger doors, disguised as craters, leading to bays designed for ships larger than the human race has ever produced. The facility looks like it was constructed from human technology, but at an impossibly large scale.`
