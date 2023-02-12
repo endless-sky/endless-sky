@@ -1766,11 +1766,11 @@ mission "Deep: Remnant: Engines"
 					decline
 			
 			label accept
-			`	"Great!" Ivan exclaims. "Right now we'd be interested in studying their engines. Please bring us one Forge-Class Thruster and one Forge-Class Steering. They shouldn't be too hard to get."`
+			`	"Great!" Ivan exclaims. "Right now we'd be interested in studying their engines. Please bring us one Forge-Class thruster and one Forge-Class steering. They shouldn't be too hard to get."`
 				accept
 	
 	on visit
-		dialog `You have landed on <planet>, but you do not have both a Forge-Class Thruster and Forge-Class Steering. Return to <planet> once you have obtained both engines.`
+		dialog `You have landed on <planet>, but you do not have both a Forge-Class thruster and Forge-Class steering. Return to <planet> once you have obtained both engines.`
 	on complete
 		outfit "Forge-Class Thruster" -1
 		outfit "Forge-Class Steering" -1
