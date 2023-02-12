@@ -5437,8 +5437,10 @@ mission "Quicksilver Mixup [0]"
 			branch "can't make it in time"
 				not "hyperjumps to system: 3"
 			`	It's going to be close to his deadline, but it's possible.`
+				goto choice
 			label "can't make it in time"
 			`	How he expects you to deliver that package in three days is beyond you, seeing as Silver is not within three jumps of <origin>, but you might as well try and get there as soon as possible.`
+			label choice
 			choice
 				`	(Deliver the package.)`
 				`	(Find another pilot to give the package to.)`
@@ -5461,8 +5463,9 @@ mission "Quicksilver Mixup [1]"
 	source Silver
 	destination Quicksilver
 	to offer
-		has "Quicksilver Mixup [0]: done"
-		has "Quicksilver Mixup [0]: failed"
+		or
+			has "Quicksilver Mixup [0]: done"
+			has "Quicksilver Mixup [0]: failed"
 	on offer
 		conversation
 			`You take the package to the post office in Silver's spaceport, and the service clerk immediately lets out a sigh of frustration before setting the package down on the counter in front of you.`
@@ -5494,21 +5497,24 @@ mission "Quicksilver Mixup [1]"
 				has "took picture of quicksilver package"
 
 			label picture
+			`	You send the man the picture you took of his error and point out that it was his mistake that got the package initially got sent to the wrong place, and politely inform him that had he wanted a smoother delivery, then maybe he should've filed a proper job listing and made sure that he place the correct address.`
 			branch "picture success" "picture failure"
 				random < 50
 
 			label "picture failure"
-			`	You send the man the picture you took of his error and point out that it was his mistake that got the package initially got sent to the wrong place, and politely inform him that had he wanted a smoother delivery, then maybe he should've filed a proper job listing and made sure that he place the correct address.`
 			`	He leaves you on read.`
+				goto end
 
 			label "picture success"
 			action
 				payment 22100
-			`	You send the man the picture you took of his error and point out that it was his mistake that got the package initially got sent to the wrong place, and politely inform him that had he wanted a smoother delivery, then maybe he should've filed a proper job listing and made sure that he place the correct address.`
 			`	He sees the message, but doesn't send a reply. Just before you walk away from your ship's terminal, however, you see a new message appear:`
 			`	"I am so sorry."`
 			`	The man then proceeds to apologize profusely for his mistake and his outburst, offering to pay an extra 5000 credits for the trouble. You gladly accept.`
+				goto end
 
 			label "didn't take picture"
 			`	You try to defend yourself, but the man remains adamant that it was your mistake that got the package sent so late. After a frustrating back-and-forth, you decide to relent and (reluctantly) offer an apology. He ignores it and threatens to get spaceport authorities to "STOP OFFERING JOBS TO INCOMPETENTS LIKE YOU."`
 			`	You don't bother to reply.`
+			
+			label end
