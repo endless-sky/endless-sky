@@ -243,3 +243,258 @@ mission "Kor Efreti to Wanderers: Farming"
 	on complete
 		payment 10000 200
 		dialog `When you return, the Korath move their hands in a circular motion with their palms toward you as a sign of gratitude. They hand you <payment> and disembark your ship.`
+
+mission "Korath Humanika: Fish Trade (small)"
+	name "New Tortuga fish trade"
+	job
+	repeat
+	description "Take <tons> of fish to <stopovers> and return with <tons> of supplies for <payment>. Avoid getting caught or you may be fined."
+	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "New Tortuga trade" 5 10 0.8
+	deadline 7
+	source "New Tortuga"
+	destination "New Tortuga"
+	stopover "La'ab Bamen"
+	to offer
+		has "Korath [F02]: A Fishy Deal: done"
+		not "Korath Humanika: Fish Trade (small): active"
+	on stopover
+		dialog "You drop of your <tons> of illicit fish, and receive <tons> of unknown cargo from a woman in a blue dress."
+	on complete
+		payment 25000 500
+		fine 50000
+		dialog "A woman in a blue dress thanks you for the delivery and pays you <payment>."
+
+mission "Korath Humanika: Fish Trade (medium)"
+	name "New Tortuga fish trade"
+	job
+	repeat
+	description "Take <tons> of fish to <stopovers> and return with <tons> of supplies for <payment>. Avoid getting caught or you may be fined."
+	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "New Tortuga trade" 15 50 0.8
+	deadline 7
+	source "New Tortuga"
+	destination "New Tortuga"
+	stopover "La'ab Bamen"
+	to offer
+		random < 20
+		has "Korath [F02]: A Fishy Deal: done"
+		not "Korath Humanika: Fish Trade (medium): active"
+	on stopover
+		dialog "You drop of your <tons> of illicit fish, and receive <tons> of unknown cargo from a woman in a blue dress."
+	on complete
+		payment 35000 400
+		fine 100000
+		dialog "A woman in a blue dress thanks you for the delivery and pays you <payment>."
+
+mission "Korath Humanika: Fish Trade (bulk)"
+	name "New Tortuga fish trade"
+	job
+	repeat
+	description "Take <tons> of fish to <stopovers> and return with <tons> of supplies for <payment>. Avoid getting caught or you may be fined."
+	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "New Tortuga trade" 40 300 0.8
+	deadline 7
+	source "New Tortuga"
+	destination "New Tortuga"
+	stopover "La'ab Bamen"
+	to offer
+		random < 5
+		has "Korath [F02]: A Fishy Deal: done"
+		not "Korath Humanika: Fish Trade (bulk): active"
+	on stopover
+		dialog "You drop of your <tons> of illicit fish, and receive <tons> of unknown cargo from a woman in a blue dress."
+	on complete
+		payment 45000 350
+		fine 150000
+		dialog "A woman in a blue dress thanks you for the delivery and pays you <payment>."
+
+mission "Korath: Retrieve livestock [0]"
+	name "Livestock to <planet>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unique livestock and return to <planet> for <payment>."
+	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "Livestock trade" 1 4 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming
+	to offer
+		random < 70
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of livestock."
+	on complete
+		payment 30000 180
+		dialog "A woman in a blue dress examines the livestock and confirms the trade. You receive <payment>."
+
+mission "Korath: Retrieve livestock [1]"
+	name "Livestock to <planet>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of rare livestock and return to <planet> for <payment>."
+	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "Livestock trade" 3 10 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming
+	to offer
+		random < 70
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of livestock."
+	on complete
+		payment 30000 180
+		dialog "A woman in a blue dress examines the livestock and confirms the trade. You receive <payment>."
+
+mission "Korath: Retrieve livestock [2]"
+	name "Livestock to <planet>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of indigenous livestock and return to <planet> for <payment>."
+	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "Livestock trade" 7 25 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming
+	to offer
+		random < 70
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of livestock."
+	on complete
+		payment 30000 180
+		dialog "A woman in a blue dress examines the livestock and confirms the trade. You receive <payment>."
+
+mission "Korath: Retrieve livestock [3]"
+	name "Livestock to <planet>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual livestock and return to <planet> for <payment>."
+	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "Livestock trade" 16 80 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming
+	to offer
+		random < 70
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of livestock."
+	on complete
+		payment 30000 180
+		dialog "A woman in a blue dress examines the livestock and confirms the trade. You receive <payment>."
+
+mission "Korath: Retrieve livestock [4]"
+	name "Livestock to <planet>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual livestock and return to <planet> for <payment>."
+	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "Livestock trade" 35 300 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming
+	to offer
+		random < 70
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of livestock."
+	on complete
+		payment 30000 180
+		dialog "A woman in a blue dress examines the livestock and confirms the trade. You receive <payment>."
+
+mission "Korath: Retrieve crops [0]"
+	name "Crops to <planet>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unique crops and return to <planet> for <payment>."
+	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "Crops trade" 1 4 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming
+	to offer
+		random < 70
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of crops."
+	on complete
+		payment 30000 180
+		dialog "A woman in a blue dress examines the crops and confirms the trade. You receive <payment>."
+
+mission "Korath: Retrieve crops [1]"
+	name "Crops to <planet>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of rare crops and return to <planet> for <payment>."
+	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "Crops trade" 3 10 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming
+	to offer
+		random < 70
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of crops."
+	on complete
+		payment 30000 180
+		dialog "A woman in a blue dress examines the crops and confirms the trade. You receive <payment>."
+
+mission "Korath: Retrieve crops [2]"
+	name "Crops to <planet>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of indigenous crops and return to <planet> for <payment>."
+	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "Crops trade" 7 25 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming
+	to offer
+		random < 70
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of crops."
+	on complete
+		payment 30000 180
+		dialog "A woman in a blue dress examines the crops and confirms the trade. You receive <payment>."
+
+mission "Korath: Retrieve crops [3]"
+	name "Crops to <planet>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual crops and return to <planet> for <payment>."
+	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "Crops trade" 16 80 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming
+	to offer
+		random < 70
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of crops."
+	on complete
+		payment 30000 180
+		dialog "A woman in a blue dress examines the crops and confirms the trade. You receive <payment>."
+
+mission "Korath: Retrieve crops [4]"
+	name "Crops to <planet>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual crops and return to <planet> for <payment>."
+	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "Crops trade" 35 300 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming
+	to offer
+		random < 70
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of crops."
+	on complete
+		payment 30000 180
+		dialog "A woman in a blue dress examines the crops and confirms the trade. You receive <payment>."
