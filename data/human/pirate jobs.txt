@@ -1676,9 +1676,11 @@ mission "Slave Transport [0]"
 		has "outfit: Brig"
 	source
 		government "Pirate" "Humanika (Port)"
+		not attributes "slavery ban"
 	destination
 		distance 3 30
 		government "Pirate" "Humanika (Port)"
+		not attributes "slavery ban"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -1700,9 +1702,11 @@ mission "Slave Transport [1]"
 		has "outfit: Brig"
 	source
 		government "Pirate" "Humanika (Port)"
+		not attributes "slavery ban"
 	destination
 		distance 3 30
 		government "Pirate" "Humanika (Port)"
+		not attributes "slavery ban"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -1724,9 +1728,11 @@ mission "Slave Transport [2]"
 		has "outfit: Brig"
 	source
 		government "Pirate" "Humanika (Port)"
+		not attributes "slavery ban"
 	destination
 		distance 3 30
 		government "Pirate" "Humanika (Port)"
+		not attributes "slavery ban"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -1750,9 +1756,11 @@ mission "Bulk Slave Transport [0]"
 		has "outfit: Brig"
 	source
 		government "Pirate" "Humanika (Port)"
+		not attributes "slavery ban"
 	destination
 		distance 3 30
 		government "Pirate" "Humanika (Port)"
+		not attributes "slavery ban"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -1774,9 +1782,11 @@ mission "Bulk Slave Transport [1]"
 		has "outfit: Brig"
 	source
 		government "Pirate" "Humanika (Port)"
+		not attributes "slavery ban"
 	destination
 		distance 3 30
 		government "Pirate" "Humanika (Port)"
+		not attributes "slavery ban"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
