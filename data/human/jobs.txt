@@ -3766,7 +3766,7 @@ mission "Syndicate Defectors [0]"
 	repeat
 	description "Go to <stopovers> and pick up <bunks> Syndicate defectors. Fly them to <destination> for <payment>. Expect to bribe for landing and dodge bounty hunters."
 	passengers 2 8 .8
-	infiltrating
+	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
 	to offer
 		random < 80
 	source
@@ -3797,7 +3797,7 @@ mission "Syndicate Defectors [1]"
 	repeat
 	description "Go to <stopovers> and pick up <bunks> Syndicate defectors. Fly them to <destination> for <payment>. Expect to bribe for landing and dodge bounty hunters."
 	passengers 4 15 .8
-	infiltrating
+	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
 	to offer
 		random < 60
 	source
@@ -3828,7 +3828,7 @@ mission "Syndicate Defectors [2]"
 	repeat
 	description "Go to <stopovers> and pick up <bunks> Syndicate defectors. Fly them to <destination> for <payment>. Expect to bribe for landing and dodge bounty hunters."
 	passengers 7 28 .8
-	infiltrating
+	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
 	to offer
 		random < 40
 	source
@@ -3879,8 +3879,9 @@ mission "Rescue Slaves [0]"
 	name "Help slaves escape to <planet>"
 	job
 	repeat
-	description "Go to <stopovers> and pick up <bunks> escaped slaves. Fly them to a new life of freedom at <destination> for <payment>. Expect to bribe for landing and dodge bounty hunters."
+	description "Go to <stopovers> and pick up <bunks> escaped slaves. Fly them to a new life of freedom at <destination> for <payment>. Expect bounty hunters."
 	passengers 2 8 .8
+	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
 	to offer
 		random < 80
 	source
@@ -3909,8 +3910,9 @@ mission "Rescue Slaves [1]"
 	name "Help slaves escape to <planet>"
 	job
 	repeat
-	description "Go to <stopovers> and pick up <bunks> escaped slaves. Fly them to a new life of freedom at <destination> for <payment>. Expect to bribe for landing and dodge bounty hunters."
+	description "Go to <stopovers> and pick up <bunks> escaped slaves. Fly them to a new life of freedom at <destination> for <payment>. Expect bounty hunters."
 	passengers 4 15 .8
+	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
 	to offer
 		random < 60
 	source
@@ -3939,8 +3941,9 @@ mission "Rescue Slaves [2]"
 	name "Help slaves escape to <planet>"
 	job
 	repeat
-	description "Go to <stopovers> and pick up <bunks> escaped slaves. Fly them to a new life of freedom at <destination> for <payment>. Expect to bribe for landing and dodge bounty hunters."
+	description "Go to <stopovers> and pick up <bunks> escaped slaves. Fly them to a new life of freedom at <destination> for <payment>. Expect bounty hunters."
 	passengers 7 28 .8
+	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
 	to offer
 		random < 40
 	source
