@@ -1079,7 +1079,7 @@ ship "Cruiser" "Cruiser (Jump)"
 		"Small Radar Jammer"
 		"Liquid Helium Cooler"
 		"Fuel Pod" 2
-		"Ramscoop"
+		"Catalytic Ramscoop"
 		"Outfits Expansion" 2
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
@@ -2961,7 +2961,7 @@ ship "Wasp" "Wasp (Javelin)"
 	gun
 	gun "Javelin Pod"
 	gun "Javelin Pod"
-		
+	
 
 ship "Wasp" "Wasp (Meteor)"
 	outfits
