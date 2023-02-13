@@ -1873,7 +1873,7 @@ mission "Remnant: Catalytic Ramscoop"
 		payment 1390000
 		"remnant met taely" ++
 		conversation
-			`As the <ship> settles onto the pad closest to the Research Laboratory, you can see several people exiting an adjacent hangar with a trailer pulled by a camel. They quickly approach your landing pad and wait for you to complete your shutdown routines before boarding and starting to unload the ramscoops. Once they are done one of them comes up to you and hands you your payment of <payment>. "Thank you for the delivery, Captain. We are looking forward to seeing what they have done differently."`
+			`As the <ship> settles onto the pad closest to the research laboratory, you can see several people exiting an adjacent hangar with a trailer pulled by a camel. They quickly approach your landing pad and wait for you to complete your shutdown routines before boarding and starting to unload the ramscoops. Once they are done one of them comes up to you and hands you your payment of <payment>. "Thank you for the delivery, Captain. We are looking forward to seeing what they have done differently."`
 
 
 
