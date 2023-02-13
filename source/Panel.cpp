@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Dialog.h"
 #include "text/Format.h"
 #include "FillShader.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Point.h"
 #include "Preferences.h"

@@ -273,7 +273,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, double security
 	{
 		// Scale the fine based on how lenient this government is.
 		reason = "The " + gov->GetName() + " authorities fine you "
-			+ Format::Credits(punishment.cost) + " credits" + reason;
+			+ Format::CreditString(punishment.cost) + reason;
 		player.Accounts().AddFine(punishment.cost);
 		fined.insert(gov);
 	}

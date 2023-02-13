@@ -2015,7 +2015,7 @@ event "battle of alioth"
 		fleet "Small Southern Pirates" 1200
 		fleet "Large Southern Pirates" 2400
 		fleet "Small Republic" 3000
-			
+		
 event "end battle of alioth"
 	system Rutilicus
 		fleet "Small Southern Merchants" 600
@@ -2039,22 +2039,6 @@ event "end battle of alioth"
 		fleet "Small Republic" 3000
 		fleet "Large Republic" 4000
 		fleet "Navy Surveillance" 1600
-
-
-
-mission "Pirate Use Mammoth"
-	landing
-	invisible
-	to offer
-		has "event: end battle of alioth"
-	on offer
-		event "pirate use mammoth"
-		fail
-
-event "pirate use mammoth"
-	fleet "Large Northern Pirates"
-		add variant
-			"Mammoth"
 
 
 

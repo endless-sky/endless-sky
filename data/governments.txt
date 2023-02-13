@@ -600,10 +600,6 @@ government "Ka'het"
 		"Wanderer" -.01
 	
 	"player reputation" -1
-	"friendly hail" "friendly ka'het"
-	"friendly disabled hail" "friendly disabled ka'het"
-	"hostile hail" "hostile ka'het"
-	"hostile disabled hail" "hostile disabled ka'het"
 
 # A government used to cause infighting between fleets that both appear to be the Ka'het government.
 government "Ka'het (Infighting)"
@@ -626,10 +622,6 @@ government "Ka'het (Infighting)"
 		"Wanderer" -.01
 	
 	"player reputation" -1
-	"friendly hail" "friendly ka'het"
-	"friendly disabled hail" "friendly disabled ka'het"
-	"hostile hail" "hostile ka'het"
-	"hostile disabled hail" "hostile disabled ka'het"
 
 government "Ka'sei"
 	swizzle 0
@@ -641,10 +633,6 @@ government "Ka'sei"
 		board 0
 		capture 0
 	"player reputation" 1
-	"friendly hail" "friendly ka'het"
-	"friendly disabled hail" "friendly disabled ka'het"
-	"hostile hail" "hostile ka'het"
-	"hostile disabled hail" "hostile disabled ka'het"
 
 color "governments: Korath Exiles" .8 .5 .1
 
@@ -1069,6 +1057,13 @@ government "Republic (Friendly)"
 	"friendly hail" "friendly navy"
 	"hostile hail" "hostile navy"
 
+government "Rulei"
+	swizzle 0
+	"player reputation" 0
+	"bribe" 0
+	"fine" 0
+	"hostile hail" "rulei hostile"
+
 government "Scar's Legion"
 	swizzle 6
 	color "governments: Pirate"
@@ -1198,10 +1193,6 @@ government "Uninhabited"
 	color "governments: Ungoverned"
 	"bribe" 0
 	"fine" 0
-
-government "vyu-Rulei"
-	swizzle 0
-	color 1 1 1
 
 government "Ember Waste"
 	"display name" "???"

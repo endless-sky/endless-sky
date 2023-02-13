@@ -51,7 +51,7 @@ IllegalHailPanel::IllegalHailPanel(PlayerInfo &player, const Ship &hailingShip, 
 	header += " is hailing you:";
 
 	static const std::string defaultMessage
-		= "You've been detected carrying illegal <type> and have been issued a fine of <fine> credits."
+		= "You've been detected carrying illegal <type> and have been issued a fine of <fine>."
 			" \n\tDump your cargo immediately or we'll be forced to disable and board your ship.";
 
 
@@ -59,7 +59,7 @@ IllegalHailPanel::IllegalHailPanel(PlayerInfo &player, const Ship &hailingShip, 
 
 	map<string, string> subs = {
 		{"<type>", fine.reason & Politics::Punishment::Outfit ? "outfits" : "cargo"},
-		{"<fine>", Format::Number(fine.cost)},
+		{"<fine>", Format::CreditString(fine.cost)},
 	};
 	message =
 		Format::Replace(gov->GetInterdiction().empty() ? defaultMessage : gov->GetInterdiction(), subs);
@@ -67,10 +67,10 @@ IllegalHailPanel::IllegalHailPanel(PlayerInfo &player, const Ship &hailingShip, 
 	if(gov->GetBribeFactor())
 	{
 		static const std::string defaultBribe
-			= "If you want us to leave you alone, it'll cost you <bribe> credits.";
+			= "If you want us to leave you alone, it'll cost you <bribe>.";
 
 		bribe = static_cast<int64_t>(fine.cost * gov->GetBribeFactor());
-		subs["<bribe>"] = Format::Credits(bribe);
+		subs["<bribe>"] = Format::CreditString(bribe);
 
 		auto bribeMessage =
 			Format::Replace(gov->GetInterdictionBribe().empty() ? defaultBribe : gov->GetInterdictionBribe(),
@@ -128,7 +128,7 @@ bool IllegalHailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 
 		player.Accounts().AddCredits(-bribe);
 		Messages::Add("You bribed a " + hailingShip.GetGovernment()->GetName() + " ship "
-			+ Format::Credits(bribe) + " credits to avoid paying a fine today."
+			+ Format::CreditString(bribe) + " to avoid paying a fine today."
 				, Messages::Importance::High);
 
 		GetUI()->Pop(this);
