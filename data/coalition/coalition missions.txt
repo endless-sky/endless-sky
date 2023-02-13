@@ -3141,7 +3141,7 @@ mission "Heliarchs Buy Jump Drive Mission"
 			`	She thanks you yet again, salutes, and leaves to follow the entourage guarding the newly purchased jump drive.`
 				accept
 			label license
-			apply
+			action
 				"reputation: Coalition" += 10
 				"reputation: Heliarch" += 10
 				set "license: Coalition"
