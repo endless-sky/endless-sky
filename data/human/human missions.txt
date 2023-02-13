@@ -5471,7 +5471,6 @@ mission "Quicksilver Mixup [1]"
 	description "Apparently the package labeled for <origin> was actually intended for <planet>. You'll have missed the deadline, so you probably won't be paid the <payment> offered."
 	landing
 	cargo package 1
-	"apparent payment" 17100
 	source Silver
 	destination Quicksilver
 	to offer
@@ -5501,6 +5500,8 @@ mission "Quicksilver Mixup [1]"
 			`	You take a few photographs of the address label, just to be sure that you've got a clear picture of the wrong address.`
 				accept
 	on complete
+		action
+			payment 17100
 		conversation
 			`When you talk to a post officer in <planet>'s spaceport and point out the incorrect address before handing it over, you note that he exhibits the same frustration the clerk on <origin> did regarding the frequent switch-ups. He takes the package, muttering something about off-worlders "not knowing the difference even if it smacked 'em in the face" as he did.`
 			`	Once you return to your ship, you notice that the man who gave you that package had sent you a message. Or, to be more precise, a series of messages. An angry series of messages.`
@@ -5514,18 +5515,22 @@ mission "Quicksilver Mixup [1]"
 				random < 50
 
 			label "picture failure"
+			action
+				payment -17100
 			`	He leaves you on read.`
 				goto end
 
 			label "picture success"
 			action
-				payment 22100
+				payment 5000
 			`	He sees the message, but doesn't send a reply. Just before you walk away from your ship's terminal, however, you see a new message appear:`
 			`	"I am so sorry."`
 			`	The man then proceeds to apologize profusely for his mistake and his outburst, offering to pay an extra 5000 credits for the trouble. You gladly accept.`
 				goto end
 
 			label "didn't take picture"
+			action
+				payment -17100
 			`	You try to defend yourself, but the man remains adamant that it was your mistake that got the package sent so late. After a frustrating back-and-forth, you decide to relent and (reluctantly) offer an apology. He ignores it and threatens to get spaceport authorities to "STOP OFFERING JOBS TO INCOMPETENTS LIKE YOU."`
 			`	You don't bother to reply.`
 			
