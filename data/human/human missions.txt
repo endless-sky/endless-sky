@@ -5428,3 +5428,70 @@ mission "Deal Change 2"
 				die
 			label skip
 			`	After a few minutes, the pirates finish unloading the cargo, and Ci steps forward, holding out a credit chip. "<payment>, for making the right choice." Ci and the pirates return to their ships as you take off and head towards the main spaceport of <planet>.`
+
+
+
+mission "Quicksilver Mixup [2]"
+	name "Misposted mail delivery"
+	description "Carry misposted mail from Silver to Quicksilver by <date> and then come back with the return shipment"
+	minor
+	deadline 10 1
+	source "Silver"
+	destination "Quicksilver"
+	cargo "Misposted mail" 38
+	to offer
+		has "Quicksilver Mixup [1]: done"
+	on offer
+		conversation
+			`As you walk through Silver's spaceport, somebody wearing office attire power walks up to you after ending a hurried conversation with another pilot.`
+			`	"Captain! I work for the postmaster's office. The regular pilot who carries misposted mail to Quicksilver and back couldn't make it this month, some mechanical issues with his ship, I'm told. Would you be willing to carry this month's load there by <day>? We'll pay you what he'd be paid, 100.000 credits."`
+			choice
+				`	"Oh! So you guys did set up that regular shipment, after all!"`
+					goto context
+
+				`	"Sure, how much mail are we talking about?"`
+					goto shipment
+
+				`	"Sorry, but i'm not heading in that direction"`
+					goto refuse
+
+			label context
+			`	The mail employee appears a tad confused for a moment, but then you mention you once delivered a misposted package like that, and the clerk had mentioned somebody should set up a regular delivery due to how common of an issue it was. The post employee smiles and responds: "Oh! That was me, actually, back when I worked as a clerk for the post office. I was sick of always having that same conversation with so many pilots a day, so I went out and found a captain to set up a regular delivery with and made the proposal to my boss, who was just as sick of my and the Quicksilver's postmaster office endless reports. Got a bonus and promotion for it - I'm now responsible for the delivery's management, instead! Anyways, are you interested in covering for them?"`
+			choice
+				`	"Yeah, what's the size of the shipment?"`
+					goto shipment
+				`	"Sorry, but I'm not able to work that into my plans."`
+					goto refuse
+
+			label shipment
+			`	The man checks his notes and says "This week, it totalled… 38 tons of letters and miscellaneous packages here, and then 29 tons to be brought back from Quicksilver."`
+			`	"38 tons of misposted packages? Just this month?!" you ask.`
+			`	The man nods "Told you it happened often. And few of these packages even weigh over a kilo! Big shipments hardly get misposted, it's mostly private citizens who make such a mistake. Mostly. You'd be amazed!"`
+			`	You two shake hands and you tell him which landing pad <ship> is parked. Time to head to Quicksilver.`
+					accept
+
+			label refuse
+			`	The mail employee thanks you for your time, and continues his search for a willing captain. At least pilots that get hired to deliver such wrongly-posted packages, like you once did, won't have to finish those deliveries themselves in the future!`
+				accept
+	on visit
+		dialog `You have reached <planet>, but your escort, loaded with the shipment, has not arrived. Better depart and wait for your escorts to arrive in this star system.`
+
+
+mission "Quicksilver Mixup [3]"
+	name "Misposted mail delivery"
+	deadline 10 1
+	landing
+	description "Return the misposted mail back to <destination>."
+	source "Quicksilver"
+	destination "Silver"
+	cargo "Misposted mail" 29
+	to offer
+		has "Quicksilver Mixup [2]"
+	on offer
+		dialog `You contact the spaceport authorities and they direct you to the respective landing pad, where the post office staff is already waiting. They transfer the cargo and you prepare to head back to Silver. You, again, have 10 days to make the delivery.`
+
+	on visit
+		dialog `You have reached <planet>, but your escort carrying the misposted mail has not arrived. Better depart and wait for your escorts to arrive in this star system.`
+	on complete
+		payment 100000
+		dialog `The same manager from before is waiting with the unloading crew and thanks you for covering for the other pilot, before handing you the credit chip for the payment. It's nice to know that captains who get hired to deliver such wrongly-posted packages, like you once did, won't have to finish those deliveries themselves in the future."`
