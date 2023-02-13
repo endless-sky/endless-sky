@@ -5509,6 +5509,7 @@ mission "Quicksilver Mixup [1]"
 				accept
 	on complete
 		payment 17100
+		event "quicksilver mixup 2 available" 90
 		conversation
 			`When you talk to a post officer in <planet>'s spaceport and point out the incorrect address before handing it over, you note that he exhibits the same frustration the clerk on <origin> did regarding the frequent switch-ups. He takes the package, muttering something about off-worlders "not knowing the difference even if it smacked 'em in the face" as he did.`
 			`	Once you return to your ship, you notice that the man who gave you that package had sent you a message. Or, to be more precise, a series of messages. An angry series of messages.`
@@ -5542,3 +5543,5 @@ mission "Quicksilver Mixup [1]"
 			`	You don't bother to reply.`
 			
 			label end
+
+event "quicksilver mixup 2 available"
