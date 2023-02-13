@@ -5464,11 +5464,11 @@ mission "Quicksilver Mixup [2]"
 					goto refuse
 
 			label shipment
-			`	The man checks his notes and says "This week, it totalled… 38 tons of letters and miscellaneous packages here, and then 29 tons to be brought back from Quicksilver."`
+			`	The man checks his notes and says "This week, it totalled... 38 tons of letters and miscellaneous packages here, and then 29 tons to be brought back from Quicksilver."`
 			`	"38 tons of misposted packages? Just this month?!" you ask.`
 			`	The man nods "Told you it happened often. And few of these packages even weigh over a kilo! Big shipments hardly get misposted, it's mostly private citizens who make such a mistake. Mostly. You'd be amazed!"`
 			`	You two shake hands and you tell him which landing pad <ship> is parked. Time to head to Quicksilver.`
-					accept
+				accept
 
 			label refuse
 			`	The mail employee thanks you for your time, and continues his search for a willing captain. At least pilots that get hired to deliver such wrongly-posted packages, like you once did, won't have to finish those deliveries themselves in the future!`
