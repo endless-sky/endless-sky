@@ -264,7 +264,7 @@ mission "Korath Humanika: Fish Trade (small)"
 	on complete
 		payment 25000 500
 		dialog "A woman in a blue dress thanks you for the delivery and pays you <payment>."
-		"reputation: Korath (Humanika)" ++
+		"reputation: Korath" ++
 
 mission "Korath Humanika: Fish Trade (medium)"
 	name "New Tortuga fish trade"
@@ -288,7 +288,7 @@ mission "Korath Humanika: Fish Trade (medium)"
 	on complete
 		payment 35000 400
 		dialog "A woman in a blue dress thanks you for the delivery and pays you <payment>."
-		"reputation: Korath (Humanika)" += 2
+		"reputation: Korath" += 2
 
 mission "Korath Humanika: Fish Trade (bulk)"
 	name "New Tortuga fish trade"
@@ -312,7 +312,7 @@ mission "Korath Humanika: Fish Trade (bulk)"
 	on complete
 		payment 45000 350
 		dialog "A woman in a blue dress thanks you for the delivery and pays you <payment>."
-		"reputation: Korath (Humanika)" += 3
+		"reputation: Korath" += 3
 
 mission "Korath: Retrieve livestock [0]"
 	name "Livestock from <stopovers>"
@@ -332,7 +332,7 @@ mission "Korath: Retrieve livestock [0]"
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the livestock and confirms the trade. You receive <payment>."
-		"reputation: Korath (Humanika)" ++
+		"reputation: Korath" ++
 
 mission "Korath: Retrieve livestock [1]"
 	name "Livestock from <stopovers>"
@@ -352,7 +352,7 @@ mission "Korath: Retrieve livestock [1]"
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the livestock and confirms the trade. You receive <payment>."
-		"reputation: Korath (Humanika)" += 2
+		"reputation: Korath" += 2
 
 mission "Korath: Retrieve livestock [2]"
 	name "Livestock from <stopovers>"
@@ -373,7 +373,7 @@ mission "Korath: Retrieve livestock [2]"
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the livestock and confirms the trade. You receive <payment>."
-		"reputation: Korath (Humanika)" += 3
+		"reputation: Korath" += 3
 
 mission "Korath: Retrieve livestock [3]"
 	name "Livestock from <stopovers>"
@@ -394,7 +394,7 @@ mission "Korath: Retrieve livestock [3]"
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the livestock and confirms the trade. You receive <payment>."
-		"reputation: Korath (Humanika)" += 4
+		"reputation: Korath" += 4
 
 mission "Korath: Retrieve livestock [4]"
 	name "Livestock from <stopovers>"
@@ -415,7 +415,7 @@ mission "Korath: Retrieve livestock [4]"
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the livestock and confirms the trade. You receive <payment>."
-		"reputation: Korath (Humanika)" += 5
+		"reputation: Korath" += 5
 
 mission "Korath: Retrieve crops [0]"
 	name "Crops from <stopovers>"
@@ -435,7 +435,7 @@ mission "Korath: Retrieve crops [0]"
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the crops and confirms the trade. You receive <payment>."
-		"reputation: Korath (Humanika)" ++
+		"reputation: Korath" ++
 
 mission "Korath: Retrieve crops [1]"
 	name "Crops from <stopovers>"
@@ -455,7 +455,7 @@ mission "Korath: Retrieve crops [1]"
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the crops and confirms the trade. You receive <payment>."
-		"reputation: Korath (Humanika)" += 2
+		"reputation: Korath" += 2
 
 mission "Korath: Retrieve crops [2]"
 	name "Crops from <stopovers>"
@@ -476,7 +476,7 @@ mission "Korath: Retrieve crops [2]"
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the crops and confirms the trade. You receive <payment>."
-		"reputation: Korath (Humanika)" += 3
+		"reputation: Korath" += 3
 
 mission "Korath: Retrieve crops [3]"
 	name "Crops from <stopovers>"
@@ -497,7 +497,7 @@ mission "Korath: Retrieve crops [3]"
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the crops and confirms the trade. You receive <payment>."
-		"reputation: Korath (Humanika)" += 4
+		"reputation: Korath" += 4
 
 mission "Korath: Retrieve crops [4]"
 	name "Crops from <stopovers>"
@@ -518,7 +518,7 @@ mission "Korath: Retrieve crops [4]"
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the crops and confirms the trade. You receive <payment>."
-		"reputation: Korath (Humanika)" += 5
+		"reputation: Korath" += 5
 
 mission "Korath: Retrieve fish [0]"
 	name "Fish from <stopovers>"
@@ -538,7 +538,7 @@ mission "Korath: Retrieve fish [0]"
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the fish and confirms the trade. You receive <payment>."
-		"reputation: Korath (Humanika)" ++
+		"reputation: Korath" ++
 
 mission "Korath: Retrieve fish [1]"
 	name "Fish from <stopovers>"
@@ -558,7 +558,7 @@ mission "Korath: Retrieve fish [1]"
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the fish and confirms the trade. You receive <payment>."
-		"reputation: Korath (Humanika)" += 2
+		"reputation: Korath" += 2
 
 mission "Korath: Retrieve fish [2]"
 	name "Fish from <stopovers>"
@@ -579,7 +579,7 @@ mission "Korath: Retrieve fish [2]"
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the fish and confirms the trade. You receive <payment>."
-		"reputation: Korath (Humanika)" += 3
+		"reputation: Korath" += 3
 
 mission "Korath: Retrieve fish [3]"
 	name "Fish from <stopovers>"
@@ -600,7 +600,7 @@ mission "Korath: Retrieve fish [3]"
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the fish and confirms the trade. You receive <payment>."
-		"reputation: Korath (Humanika)" += 4
+		"reputation: Korath" += 4
 
 mission "Korath: Retrieve fish [4]"
 	name "Fish from <stopovers>"
@@ -621,7 +621,7 @@ mission "Korath: Retrieve fish [4]"
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the fish and confirms the trade. You receive <payment>."
-		"reputation: Korath (Humanika)" += 5
+		"reputation: Korath" += 5
 
 mission "Korath: Retrieve wildlife [0]"
 	name "Wildlife from <stopovers>"
@@ -641,7 +641,7 @@ mission "Korath: Retrieve wildlife [0]"
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the wildlife and confirms the trade. You receive <payment>."
-		"reputation: Korath (Humanika)" ++
+		"reputation: Korath" ++
 
 mission "Korath: Retrieve wildlife [1]"
 	name "Wildlife from <stopovers>"
@@ -661,7 +661,7 @@ mission "Korath: Retrieve wildlife [1]"
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the wildlife and confirms the trade. You receive <payment>."
-		"reputation: Korath (Humanika)" += 2
+		"reputation: Korath" += 2
 
 mission "Korath: Retrieve wildlife [2]"
 	name "Wildlife from <stopovers>"
@@ -682,7 +682,7 @@ mission "Korath: Retrieve wildlife [2]"
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the wildlife and confirms the trade. You receive <payment>."
-		"reputation: Korath (Humanika)" += 3
+		"reputation: Korath" += 3
 
 mission "Korath: Retrieve wildlife [3]"
 	name "Wildlife from <stopovers>"
@@ -703,7 +703,7 @@ mission "Korath: Retrieve wildlife [3]"
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the wildlife and confirms the trade. You receive <payment>."
-		"reputation: Korath (Humanika)" += 4
+		"reputation: Korath" += 4
 
 mission "Korath: Retrieve wildlife [4]"
 	name "Wildlife from <stopovers>"
@@ -724,4 +724,4 @@ mission "Korath: Retrieve wildlife [4]"
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the wildlife and confirms the trade. You receive <payment>."
-		"reputation: Korath (Humanika)" += 5
+		"reputation: Korath" += 5

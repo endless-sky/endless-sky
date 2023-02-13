@@ -3786,7 +3786,7 @@ mission "Syndicate Defectors [0]"
 	name "Syndicate defectors to <planet>"
 	job
 	repeat
-	description "Go to <stopovers> and pick up <bunks> Syndicate defectors. Fly them to <destination> for <payment>. Expect to bribe for landing and dodge bounty hunters."
+	description "Go to <stopovers> and pick up <bunks> Syndicate defectors. Fly them to <destination> for <payment>. Expect bounty hunters."
 	passengers 2 8 .8
 	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
 	to offer
@@ -3817,7 +3817,7 @@ mission "Syndicate Defectors [1]"
 	name "Syndicate defectors to <planet>"
 	job
 	repeat
-	description "Go to <stopovers> and pick up <bunks> Syndicate defectors. Fly them to <destination> for <payment>. Expect to bribe for landing and dodge bounty hunters."
+	description "Go to <stopovers> and pick up <bunks> Syndicate defectors. Fly them to <destination> for <payment>. Expect bounty hunters."
 	passengers 4 15 .8
 	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
 	to offer
@@ -3849,7 +3849,7 @@ mission "Syndicate Defectors [2]"
 	name "Syndicate defectors to <planet>"
 	job
 	repeat
-	description "Go to <stopovers> and pick up <bunks> Syndicate defectors. Fly them to <destination> for <payment>. Expect to bribe for landing and dodge bounty hunters."
+	description "Go to <stopovers> and pick up <bunks> Syndicate defectors. Fly them to <destination> for <payment>. Expect bounty hunters."
 	passengers 7 28 .8
 	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
 	to offer
@@ -3903,7 +3903,7 @@ mission "Rescue Slaves [0]"
 	name "Help slaves escape to <planet>"
 	job
 	repeat
-	description "Go to <stopovers> and pick up <bunks> escaped slaves. Fly them to a new life of freedom at <destination> for <payment>. Expect bounty hunters."
+	description "Slaves with valuable skills are asking for rescue. Pick up all <bunks> of them on <stopovers> and take them to them <destination> for <payment>. Expect bounty hunters."
 	passengers 2 8 .8
 	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
 	to offer
@@ -3934,7 +3934,7 @@ mission "Rescue Slaves [1]"
 	name "Help slaves escape to <planet>"
 	job
 	repeat
-	description "Go to <stopovers> and pick up <bunks> escaped slaves. Fly them to a new life of freedom at <destination> for <payment>. Expect bounty hunters."
+	description "Slaves with valuable skills are asking for rescue. Pick up all <bunks> of them on <stopovers> and take them to them <destination> for <payment>. Expect bounty hunters."
 	passengers 4 15 .8
 	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
 	to offer
@@ -3966,7 +3966,7 @@ mission "Rescue Slaves [2]"
 	name "Help slaves escape to <planet>"
 	job
 	repeat
-	description "Go to <stopovers> and pick up <bunks> escaped slaves. Fly them to a new life of freedom at <destination> for <payment>. Expect bounty hunters."
+	description "Slaves with valuable skills are asking for rescue. Pick up all <bunks> of them on <stopovers> and take them to them <destination> for <payment>. Expect bounty hunters."
 	passengers 7 28 .8
 	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
 	to offer
@@ -3998,7 +3998,7 @@ mission "Escaped Slaves [0]"
 	name "Help slaves escape to <planet>"
 	job
 	repeat
-	description "Fly <bunks> escaped slaves from <origin> to a new life of freedom at <destination> for <payment>. Expect bounty hunters."
+	description "Escaped slaves with valuable skills want asylum. Fly all <bunks> of them from <origin> to them <destination> for <payment>. Expect bounty hunters."
 	passengers 2 8 .8
 	to offer
 		random < 60
@@ -4012,8 +4012,6 @@ mission "Escaped Slaves [0]"
 	on complete
 		payment 7000 170
 		dialog phrase "generic completed slave rescue mission"
-		system
-			distance 1 2
 	npc
 		government "Bounty Hunter"
 		personality heroic unconstrained nemesis plunders harvests waiting
@@ -4025,7 +4023,7 @@ mission "Escaped Slaves [1]"
 	name "Help slaves escape to <planet>"
 	job
 	repeat
-	description "Fly <bunks> escaped slaves from <origin> to a new life of freedom at <destination> for <payment>. Expect bounty hunters."
+	description "Escaped slaves with valuable skills want asylum. Fly all <bunks> of them from <origin> to them <destination> for <payment>. Expect bounty hunters."
 	passengers 4 15 .8
 	to offer
 		random < 50
@@ -4040,8 +4038,6 @@ mission "Escaped Slaves [1]"
 	on complete
 		payment 7000 170
 		dialog phrase "generic completed slave rescue mission"
-		system
-			distance 1 2
 	npc
 		government "Bounty Hunter"
 		personality heroic unconstrained nemesis plunders harvests waiting
@@ -4053,7 +4049,7 @@ mission "Escaped Slaves [2]"
 	name "Help slaves escape to <planet>"
 	job
 	repeat
-	description "Fly <bunks> escaped slaves from <origin> to a new life of freedom at <destination> for <payment>. Expect bounty hunters."
+	description "Escaped slaves with valuable skills want asylum. Fly all <bunks> of them from <origin> to them <destination> for <payment>. Expect bounty hunters."
 	passengers 7 28 .8
 	to offer
 		random < 40
@@ -4068,8 +4064,6 @@ mission "Escaped Slaves [2]"
 	on complete
 		payment 7000 170
 		dialog phrase "generic completed slave rescue mission"
-		system
-			distance 1 2
 	npc
 		government "Bounty Hunter"
 		personality heroic unconstrained nemesis plunders harvests waiting
@@ -4077,7 +4071,7 @@ mission "Escaped Slaves [2]"
 		system
 			distance 1 2
 
-mission "Farming Employee Poaching"
+mission "00 Farming Employee Poaching"
 	name "Research farmer to <planet>"
 	job
 	repeat
@@ -4089,17 +4083,16 @@ mission "Farming Employee Poaching"
 	source
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes farming
-		not attributes frontier
 		distance 5 100
 	destination
 		government "Humanika (Port)"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 50000 180
+		payment 35000 300
 		dialog phrase "generic passenger dropoff payment"
 
-mission "Mining Employee Poaching"
+mission "00 Mining Employee Poaching"
 	name "Skilled miner to <planet>"
 	job
 	repeat
@@ -4111,17 +4104,16 @@ mission "Mining Employee Poaching"
 	source
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes mining
-		not attributes frontier
 		distance 5 100
 	destination
 		government "Humanika (Port)"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 50000 180
+		payment 35000 300
 		dialog phrase "generic passenger dropoff payment"
 
-mission "Science Employee Poaching"
+mission "00 Science Employee Poaching"
 	name "Scientist to <planet>"
 	job
 	repeat
@@ -4133,17 +4125,16 @@ mission "Science Employee Poaching"
 	source
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes research
-		not attributes frontier
 		distance 5 100
 	destination
 		government "Humanika (Port)"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 50000 180
+		payment 35000 300
 		dialog phrase "generic passenger dropoff payment"
 
-mission "Factory Employee Poaching"
+mission "00 Factory Employee Poaching"
 	name "Skilled factory worker to <planet>"
 	job
 	repeat
@@ -4155,18 +4146,17 @@ mission "Factory Employee Poaching"
 	source
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes factory
-		not attributes frontier
 		distance 5 100
 	destination
 		government "Humanika (Port)"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 50000 180
+		payment 35000 300
 		dialog phrase "generic passenger dropoff payment"
 
-mission "Urban Employee Poaching"
-	name "Worker and cargo to <planet>"
+mission "00 Urban Employee Poaching"
+	name "Urban worker to <planet>"
 	job
 	repeat
 	description `A skilled city worker needs a ride to their lucrative new job. Fly them to <planet> before <date> for <payment>.`
@@ -4177,14 +4167,13 @@ mission "Urban Employee Poaching"
 	source
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes urban
-		not attributes frontier
 		distance 5 100
 	destination
 		government "Humanika (Port)"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 5000 170
+		payment 35000 300
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Farming Team Recruitment"
