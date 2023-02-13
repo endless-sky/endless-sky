@@ -382,7 +382,7 @@ mission "Resistance: Smuggling: Heat"
 		outfit "Flamethrower" -10
 		payment 5880000
 		conversation
-			`As you enter the planet's atmosphere you can't help but notice that much of the planet is covered in a dense, heavy fog. As you contemplate such an oddity, you get a message that guides you to land on a rocky beach, where a large cargo barge is waiting. Stepping off your ship, you're met by a few Saryds with the right equipment to get the plasma turrets and flamethrowers out of your cargo hold. They do so with haste, handing you <payment> as they carry the turrets, and then flamethrowers after flamethrower, off of your ship. `
+			`As you enter the planet's atmosphere you can't help but notice that much of the planet is covered in a dense, heavy fog. As you contemplate such an oddity, you get a message that guides you to land on a rocky beach, where a large cargo barge is waiting. Stepping off your ship, you're met by a few Saryds with the right equipment to get the plasma turrets and flamethrowers out of your cargo hold. They do so with haste, handing you <payment> as they carry the turrets, and then flamethrowers after flamethrower, off of your ship.`
 			`	"For your participation in our conjoined efforts, we thank you, <last>," one of them says when they are almost done. "If right, the information is, a tremendous boon to us, these weapons will be."`
 			choice
 				`	"Are you sure this planet is an appropriate hiding spot? It doesn't seem to be exactly isolated."`
@@ -618,7 +618,7 @@ mission "House Bebliss 3-FW"
 	on offer
 		conversation
 			`You look around for Freya, asking the local dock workers where the people researching the Pug tech left on the planet are. They direct you to a quieter, less crowded place, where some warehouse complexes have been set up. Some are painted in the usual Syndicate colors, some are guarded by a few Navy troops, and a Free Worlds flag flies by the entrance of the one you enter. Inside, you see groups of people surrounding the various artifacts the Pug left behind. Some of them are running complicated looking tests, but it seems that they are mostly discussing what to do with the artifacts next. One of the graviton transmitters sits opposite to the entrance, half intact, half dismantled, with an array of scientists poking and prodding the inside machinery.`
-			`	Freya is atop a ladder near the transmitter when she sees you. She quickly hops down from her perch and runs towards you. "<first>! It's nice to see you again. What brings you here?"  You tell her you have some important matters to discuss, and she has you follow her to an office-like room packed with tools and components.`
+			`	Freya is atop a ladder near the transmitter when she sees you. She quickly hops down from her perch and runs towards you. "<first>! It's nice to see you again. What brings you here?" You tell her you have some important matters to discuss, and she has you follow her to an office-like room packed with tools and components.`
 			branch resistance
 				has "Resistance: Questions: done"
 			label "don't tell"
