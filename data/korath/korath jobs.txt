@@ -251,6 +251,7 @@ mission "Korath Humanika: Fish Trade (small)"
 	description "Take <tons> of fish to <stopovers> and return with <tons> of supplies for <payment>. Avoid getting caught or you may be fined."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
 	cargo "New Tortuga trade" 5 10 0.8
+	illegal 50000
 	deadline 7
 	source "New Tortuga"
 	destination "New Tortuga"
@@ -262,7 +263,6 @@ mission "Korath Humanika: Fish Trade (small)"
 		dialog "You drop of your <tons> of illicit fish, and receive <tons> of unknown cargo from a woman in a blue dress."
 	on complete
 		payment 25000 500
-		fine 50000
 		dialog "A woman in a blue dress thanks you for the delivery and pays you <payment>."
 		"reputation: Korath" ++
 
@@ -273,6 +273,7 @@ mission "Korath Humanika: Fish Trade (medium)"
 	description "Take <tons> of fish to <stopovers> and return with <tons> of supplies for <payment>. Avoid getting caught or you may be fined."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
 	cargo "New Tortuga trade" 15 50 0.8
+	illegal 100000
 	deadline 7
 	source "New Tortuga"
 	destination "New Tortuga"
@@ -285,7 +286,6 @@ mission "Korath Humanika: Fish Trade (medium)"
 		dialog "You drop of your <tons> of illicit fish, and receive <tons> of unknown cargo from a woman in a blue dress."
 	on complete
 		payment 35000 400
-		fine 100000
 		dialog "A woman in a blue dress thanks you for the delivery and pays you <payment>."
 		"reputation: Korath" += 2
 
@@ -296,6 +296,7 @@ mission "Korath Humanika: Fish Trade (bulk)"
 	description "Take <tons> of fish to <stopovers> and return with <tons> of supplies for <payment>. Avoid getting caught or you may be fined."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
 	cargo "New Tortuga trade" 40 300 0.8
+	illegal 150000
 	deadline 7
 	source "New Tortuga"
 	destination "New Tortuga"
@@ -308,12 +309,11 @@ mission "Korath Humanika: Fish Trade (bulk)"
 		dialog "You drop of your <tons> of illicit fish, and receive <tons> of unknown cargo from a woman in a blue dress."
 	on complete
 		payment 45000 350
-		fine 150000
 		dialog "A woman in a blue dress thanks you for the delivery and pays you <payment>."
 		"reputation: Korath" += 3
 
 mission "Korath: Retrieve livestock [0]"
-	name "Livestock to <planet>"
+	name "Livestock from <stopovers>"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unique livestock and return to <planet> for <payment>."
@@ -333,7 +333,7 @@ mission "Korath: Retrieve livestock [0]"
 		"reputation: Korath" ++
 
 mission "Korath: Retrieve livestock [1]"
-	name "Livestock to <planet>"
+	name "Livestock from <stopovers>"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of rare livestock and return to <planet> for <payment>."
@@ -353,7 +353,7 @@ mission "Korath: Retrieve livestock [1]"
 		"reputation: Korath" += 2
 
 mission "Korath: Retrieve livestock [2]"
-	name "Livestock to <planet>"
+	name "Livestock from <stopovers>"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of indigenous livestock and return to <planet> for <payment>."
@@ -373,7 +373,7 @@ mission "Korath: Retrieve livestock [2]"
 		"reputation: Korath" += 3
 
 mission "Korath: Retrieve livestock [3]"
-	name "Livestock to <planet>"
+	name "Livestock from <stopovers>"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual livestock and return to <planet> for <payment>."
@@ -393,7 +393,7 @@ mission "Korath: Retrieve livestock [3]"
 		"reputation: Korath" += 4
 
 mission "Korath: Retrieve livestock [4]"
-	name "Livestock to <planet>"
+	name "Livestock from <stopovers>"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual livestock and return to <planet> for <payment>."
@@ -413,7 +413,7 @@ mission "Korath: Retrieve livestock [4]"
 		"reputation: Korath" += 5
 
 mission "Korath: Retrieve crops [0]"
-	name "Crops to <planet>"
+	name "Crops from <stopovers>"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unique crops and return to <planet> for <payment>."
@@ -433,7 +433,7 @@ mission "Korath: Retrieve crops [0]"
 		"reputation: Korath" ++
 
 mission "Korath: Retrieve crops [1]"
-	name "Crops to <planet>"
+	name "Crops from <stopovers>"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of rare crops and return to <planet> for <payment>."
@@ -453,7 +453,7 @@ mission "Korath: Retrieve crops [1]"
 		"reputation: Korath" += 2
 
 mission "Korath: Retrieve crops [2]"
-	name "Crops to <planet>"
+	name "Crops from <stopovers>"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of indigenous crops and return to <planet> for <payment>."
@@ -473,7 +473,7 @@ mission "Korath: Retrieve crops [2]"
 		"reputation: Korath" += 3
 
 mission "Korath: Retrieve crops [3]"
-	name "Crops to <planet>"
+	name "Crops from <stopovers>"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual crops and return to <planet> for <payment>."
@@ -493,7 +493,7 @@ mission "Korath: Retrieve crops [3]"
 		"reputation: Korath" += 4
 
 mission "Korath: Retrieve crops [4]"
-	name "Crops to <planet>"
+	name "Crops from <stopovers>"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual crops and return to <planet> for <payment>."

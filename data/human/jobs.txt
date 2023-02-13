@@ -4185,7 +4185,7 @@ mission "Farming Team Recruitment"
 	name "Research farmers to <planet>"
 	job
 	repeat
-	description `A team of research farmers need a ride to their lucrative new jobs. Pick them up at <stopovers> and take them to <planet> before <date> for <payment>.`
+	description `A team of <bunks> research farmers need a ride to their lucrative new jobs. Pick them up at <stopovers> and take them to <planet> before <date> for <payment>.`
 	passengers 2 5 0.8
 	deadline 5 2
 	to offer
@@ -4212,7 +4212,7 @@ mission "Mining Team Recruitment"
 	name "Skilled miners to <planet>"
 	job
 	repeat
-	description `A team of skilled miners need a ride to their lucrative new jobs. Pick them up at <stopovers> and take them to <planet> before <date> for <payment>.`
+	description `A team of <bunks> skilled miners need a ride to their lucrative new jobs. Pick them up at <stopovers> and take them to <planet> before <date> for <payment>.`
 	passengers 2 5 0.8
 	deadline 5 2
 	to offer
@@ -4239,7 +4239,7 @@ mission "Science Team Recruitment"
 	name "Scientists to <planet>"
 	job
 	repeat
-	description `A team of scientists need a ride to their lucrative new jobs. Pick them up at <stopovers> and take them to <planet> before <date> for <payment>.`
+	description `A team of <bunks> scientists need a ride to their lucrative new jobs. Pick them up at <stopovers> and take them to <planet> before <date> for <payment>.`
 	passengers 2 5 0.8
 	deadline 5 2
 	to offer
@@ -4266,7 +4266,7 @@ mission "Factory Team Recruitment"
 	name "Skilled factory workers to <planet>"
 	job
 	repeat
-	description `A team of skilled factory workers need a ride to their lucrative new jobs. Pick them up at <stopovers> and take them to <planet> before <date> for <payment>.`
+	description `A team of <bunks> skilled factory workers need a ride to their lucrative new jobs. Pick them up at <stopovers> and take them to <planet> before <date> for <payment>.`
 	passengers 2 5 0.8
 	deadline 5 2
 	to offer
@@ -4293,7 +4293,7 @@ mission "Urban Employee Team Recruitment"
 	name "Urban workers to <planet>"
 	job
 	repeat
-	description `A team of skilled city workers need a ride to their lucrative new jobs. Pick them up at <stopovers> and take them to <planet> before <date> for <payment>.`
+	description `A team of <bunks> skilled city workers need a ride to their lucrative new jobs. Pick them up at <stopovers> and take them to <planet> before <date> for <payment>.`
 	passengers 2 5 0.8
 	deadline 5 2
 	to offer
@@ -4308,6 +4308,116 @@ mission "Urban Employee Team Recruitment"
 		distance 5 100
 	destination
 		government "Humanika (Port)"
+	on stopover
+		dialog phrase "generic passenger stopover pickup"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 40000 170
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Banned Syndicate Items [0]"
+	name "Syndicate-banned items to <planet>"
+	job
+	repeat
+	description `Anti-Syndicate activists will pay <payment> for delivery of <cargo> on <planet>. Take care not to get caught.`
+	cargo "Syndicate-banned items" 5 10 0.8
+	illegal 50000
+	to offer
+		random < 90
+	source
+		government "Humanika (Port)"
+	destination
+		government Syndicate
+		distance 5 100
+	on stopover
+		dialog phrase "generic passenger stopover pickup"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 40000 170
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Banned Syndicate Items [1]"
+	name "Syndicate-banned items to <planet>"
+	job
+	repeat
+	description `Anti-Syndicate activists will pay <payment> for delivery of <cargo> on <planet>. Take care not to get caught.`
+	cargo "Syndicate-banned items" 7 20 0.8
+	illegal 50000
+	to offer
+		random < 80
+	source
+		government "Humanika (Port)"
+	destination
+		government Syndicate
+		distance 5 100
+	on stopover
+		dialog phrase "generic passenger stopover pickup"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 40000 170
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Banned Syndicate Items [2]"
+	name "Syndicate-banned items to <planet>"
+	job
+	repeat
+	description `Anti-Syndicate activists will pay <payment> for delivery of <cargo> on <planet>. Take care not to get caught.`
+	cargo "Syndicate-banned items" 12 40 0.8
+	illegal 50000
+	to offer
+		random < 70
+	source
+		government "Humanika (Port)"
+	destination
+		government Syndicate
+		distance 5 100
+	on stopover
+		dialog phrase "generic passenger stopover pickup"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 40000 170
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Banned Syndicate Items [3]"
+	name "Syndicate-banned items to <planet>"
+	job
+	repeat
+	description `Anti-Syndicate activists will pay <payment> for delivery of <cargo> on <planet>. Take care not to get caught.`
+	cargo "Syndicate-banned items" 20 60 0.8
+	illegal 50000
+	to offer
+		random < 60
+	source
+		government "Humanika (Port)"
+	destination
+		government Syndicate
+		distance 5 100
+	on stopover
+		dialog phrase "generic passenger stopover pickup"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 40000 170
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Banned Syndicate Items [4]"
+	name "Syndicate-banned items to <planet>"
+	job
+	repeat
+	description `Anti-Syndicate activists will pay <payment> for delivery of <cargo> on <planet>. Take care not to get caught.`
+	cargo "Syndicate-banned items" 40 100 0.8
+	illegal 50000
+	to offer
+		random < 50
+	source
+		government "Humanika (Port)"
+	destination
+		government Syndicate
+		distance 5 100
 	on stopover
 		dialog phrase "generic passenger stopover pickup"
 	on visit
