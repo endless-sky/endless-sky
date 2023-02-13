@@ -123,7 +123,7 @@ mission "HI2-Bonus 1"
 	on offer
 		payment 300000
 		conversation
-			apply
+			action
 				clear "resistance evidence"
 			`You receive a message from the Heliarch Consul Iekie as you go in for a landing. "Captain <last>! Analyzed your findings, we have. Brought light to some stolen equipment, your aid has, and for that, grateful we are. Sending a monetary bonus as thanks, I am."`
 			`	When she finishes, <payment> are transferred to your account.`
@@ -140,7 +140,7 @@ mission "HI2-Bonus 2"
 	on offer
 		payment 700000
 		conversation
-			apply
+			action
 				clear "resistance evidence"
 			`You receive a message from the Heliarch consul Iekie as you go in for a landing. "Captain <last>! Analyzed your findings, we have. A great boon, your assistance was, having located two stashes of our stolen equipment. Investigating who was involved in such operations, my teams are. Very grateful for your help, we are, so sending a monetary bonus as thanks, I am."`
 			`	When she finishes, <payment> are transferred to your account.`
@@ -157,7 +157,7 @@ mission "HI2-Bonus 3"
 	on offer
 		payment 1200000
 		conversation
-			apply
+			action
 				clear "resistance evidence"
 			`You receive a message from the Heliarch Consul Iekie as you go in for a landing. "Captain <last>! Analyzed your findings, we have. Worry me greatly, all these stashes of stolen equipment do. Indebted to you, we are, as without your help found all these operations, we would not have. A monetary bonus, as thanks, I am sending. Deserve it, you do, Captain."`
 			`	When she finishes, <payment> are transferred to your account.`
@@ -209,7 +209,7 @@ mission "HI2-MP"
 			`	It seems Tugroob found some evidence of some smuggled weapons passing through here, but nothing major. Exhausted, they get back in their bunks, asking you to depart the planet.`
 				accept
 			label reactor
-			apply
+			action
 				"resistance evidence" ++
 			`	Kirrie approaches the door, and waits for a few seconds, as if expecting it to open. When it doesn't, he picks his headpiece off, and fiddles with it briefly. He puts it on again, and waits some more, again to no avail. "To all of these warehouses I should have access. Damaged, the door's electronics don't seem to be," he comments. He decides that he must get in, and grabs a small sidearm, busting the door open with a couple shots.`
 			`	At first glance there is nothing inside, but after he furiously crawls all over the place, he puts his head to a large metal panel on the opposite end of the room, before shooting that too. You approach him to find a hidden staircase leading underground.`
@@ -339,7 +339,7 @@ mission "HI2-SS"
 			`	Given the storm's trapped you in, you two turn over every drawer, archive and box, look over everything in the storage area, try and get the computers to work, to no avail, and even check the bedroom, and its connecting dining area and restrooms. Your search doesn't bear fruit, though, and so you're left waiting inside as the storm rages around the building.`
 				goto fail
 			label tunnel
-			apply
+			action
 				"resistance evidence" ++
 			`	You and Tugroob start checking the vehicles first, then briefly look into the tunnels they dug into the sides of the mining hole. The holes mostly head in straight lines down, forming straightforward paths to where the lesser ore veins were. Knowing how the vehicles operate better than you, Tugroob checks them first, before joining you in exploring the tunnels.`
 			`	The sand's coming more and more into the mine hole, brought in by the storm, when you two come to a vehicle that wasn't driven back fully, and is still blocking the entrance to its tunnel. Tugroob climbs up to see if there's any way to crawl inside, but is more surprised upon checking the driving controls: it's still operational. He drives it back, opening up the hole, and you two go in.`
@@ -487,7 +487,7 @@ mission "HI2-IW"
 			`	You stand up and run to another spot where you fell over. Iplora follows you, and even with the snow muffling the sounds around you, you can hear her exasperated sigh. She tries to pull you away, but you hit a hard surface yet again, this time creating a faint metallic echo. She takes her hands off of you and lays down, now helping you dig out whatever is there. Once the object is visible, she stands up. Though much of it is still buried, you can tell it's a very large metal container of sorts, the part that's out of the snow looking almost like the larger end of a coffin.`
 			`	After clearing out what snow you could from over the rest of the object, you see it's many times larger than either of you. You try to look for some way to open it while she starts going over her bag, looking for something, but the cold, frost-plagued metal doesn't budge to your efforts. She finally seems to find what she was looking for, some sort of comms device, but before she has a chance to activate it, an energy blast from the far side of the resort booms the ground nearby, missing her by only a meter or so, and melting much of the snow it hit to nothing.`
 			`	She yells for you to get down, pulling out a Heliarch blaster weapon from the bag, and firing back in the direction the shot came from.`
-			apply
+			action
 				"resistance evidence" ++
 			choice
 				`	(Take cover.)`
