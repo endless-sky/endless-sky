@@ -441,6 +441,7 @@ mission "Korath [F02]: A Fishy Deal"
 	name "A fishy deal"
 	description "Transport <tons> of live fish to <stopovers>, pick up <tons> of supplies, and return them to <planet> by <date> for <payment>. Avoid getting scanned or landing on high-security planets, or you may be fined."
 	cargo "New Tortuga trade" 15
+	illegal 50000
 	deadline 7
 	clearance "The authorities do not respond, but a concealed hangar bay door opens. The meaning is clear: land here."
 	source "New Tortuga"
@@ -530,7 +531,6 @@ mission "Korath [F02]: A Fishy Deal"
 		# the Korath at all. Anyone else will have to do a lot of assistance jobs.
 		"reputation: Korath" += 50
 		payment 145000
-		fine 50000
 		conversation
 			`This time, you are directed to a different bunker city, on the other side of the planet from the main spaceport. The doors are considerably larger, and the bay is large enough to fit two dozen bulk freighters. You park near the far corner, close to one of the spaceport entrances, between a Behemoth and a Bactrian.`
 			`	Another woman in a blue dress meets you, accompanied by security guards with the same unfamiliar uniform as on La'ab Bamen. "Ah, Captain <last>! The next shipment."`

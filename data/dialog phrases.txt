@@ -146,4 +146,4 @@ phrase "generic completed pirate slave mission"
 
 phrase "generic completed slave rescue mission"
 	word
-		`The <bunks> slaves exit your ship and are exhilarated about their newfound freedom.`
+		`The <bunks> slaves exit your ship and are exhilarated about their newfound freedom. Local authorities give you <payment>.`
