@@ -344,7 +344,7 @@ mission "HI2-SS"
 			`	You and Tugroob start checking the vehicles first, then briefly look into the tunnels they dug into the sides of the mining hole. The holes mostly head in straight lines down, forming straightforward paths to where the lesser ore veins were. Knowing how the vehicles operate better than you, Tugroob checks them first, before joining you in exploring the tunnels.`
 			`	The sand's coming more and more into the mine hole, brought in by the storm, when you two come to a vehicle that wasn't driven back fully, and is still blocking the entrance to its tunnel. Tugroob climbs up to see if there's any way to crawl inside, but is more surprised upon checking the driving controls: it's still operational. He drives it back, opening up the hole, and you two go in.`
 			`	Lighting the way ahead with your flashlight, you're surprised to see this tunnel is dug slightly upwards, and brings you not to a large, dug out ore vein spot, but to a rustic mineshaft. A few lights on the walls flicker on as you approach them, lighting up the wooden beams supporting the long hallway. Before you go further inside, you're stopped by Tugroob, who crawls around the floor, walls and ceiling just before the first lamp, looping several times without ever going further in. He only stops to slowly reach one leg inside, then right back out after apparently touching something.`
-			`	`"Request support equipment to get through safely, we must," he says, and using a communication device, he calls for assistance from Heliarch agents, warning them about the sandstorm. You head back up to the building, to wait for them.`
+			`	"Request support equipment to get through safely, we must," he says, and using a communication device, he calls for assistance from Heliarch agents, warning them about the sandstorm. You head back up to the building, to wait for them.`
 			`	Shortly after, several dozen Heliarch agents arrive, most of them working to keep the sand out, while a few follow you two down and inside the peculiar tunnel, bringing some form of cutting tool, and several pieces of sensor equipment. After checking with the sensors for a few minutes, they use the tool to surgically remove what Tugroob was slowly examining before: several extremely thin wires, connected to some type of machinery hidden within the wooden beams.`
 			`	After they're done, the agents storm the place but find nobody. What they do find are dozens upon dozens of crates filled to the brim with Heliarch staves, blaster guns, confrontation gear and other weaponry.`
 			`	They escort you and Tugroob back outside as the agents prepare to bring the smuggled weapons to their own ships. Though the storm is still raging on, you can make out the shape of a few Heliarch Interdictors parked near your own ship right before you take off. You regroup with Iplora and Kirrie, and they ask Tugroob for more details on the ordeal, before they head to their own bunks.`
@@ -1132,53 +1132,53 @@ mission "Heliarch Expedition 5"
 		"assisted heliarch" ++
 		payment 20000000
 		conversation
-		`To your surprise, your arrival to the <planet> sees no reception party waiting for you, or as much as a payment message from Aulori. You leave your ship, and mention to the nearest Heliarch that you were asked to see Consul Aulori here. They brush you off, saying there has been no such request by the consul. You try and explain it was the Arach Heliarch who mentioned you should come, but they again dismiss you, seemingly unaware of what you're talking about and going on about their business.`
-		`	You try a few more times, to no avail, and decide to head back to your ship for the time being. It's not until the day is about to turn that a pair of Heliarch guards come to your ship, asking that you step outside. You comply, and they tell you to follow, "for ready to see you, the consul is."`
-		`	Once again you're led through the inscrutable, guard-crowded halls of the <origin>, being brought to a long corridor with dozens of closed doors, with the one at the very end apparently being your goal. From there, however, two more guards are coming, and they explain to those escorting you that "received word, the Ring of Friendship has." They apologize to you, saying Aulori might be busy for some time more, but bring you to just outside the room, so that you're received as soon as his "meeting" ends.`
-		`	From another room, a Heliarch arbiter waves for the guards waiting with you, and passes some other task to them. Three of them leave, and you're left with one of those who fetched you from your ship, a Saryd. Despite the door to Aulori's room being locked, you two can still clearly hear intense shouting from within - not just his, but from many others who you assume to be consuls as well. After a particularly long - and heated - debate segment from what seems to be Aulori's voice, the Heliarch guard waiting with you declares they'll be coming back soon, and hastily move away, turning the corner.`
-		branch license
-			has "Heliarch License: done"
-		goto waited
-		label license
-		`	The discussion inside continues, with no sign of dying down for you to meet with Aulori. Judging from the relatively quick journey from your ship to here, you figure you're not very deep into the ring's restricted sections, so your circlet's neural interface might have permission to open the door.`
-		choice
-			`	(Try to open it.)`
-			`	(Just wait outside.)`
-				goto waited
-		`	As you thought, the door responds to your command, and opens up. The room is dark, with many lab instruments, computers, and countless boards with notes all over them being lit up solely by the various monitors on one end of the room. Aulori is there, alone, speaking with several other consuls via video call.`
-		branch "knows iekie"
-			has "Heliarch Investigation 2: done"
-		`	A Kimek consul occupies the most prominent monitor, and seems to be leading the discussion at the moment. "Exempt you are not from our laws and protocol. Your transgression aside, call I must for the others involved to be deposed at once. The Punisher's captain, and crew as well."`
-			goto response
-		label "knows iekie"
-		`	On the most prominent monitor, you recognize Consul Iekie, the Kimek Heliarch who you aided in investigating various Coalition worlds for suspicious activity. She seems to be leading the discussion at the moment. "Exempt you are not from our laws and protocol. Your transgression aside, call I must for the others involved to be deposed at once. The Punisher's captain, and crew as well."`
-		label response
-		`	"Come to pass that will not. Given they were those orders by me. Serving the will of a superior, they were," Aulori replies. "Surely encourage the lower ranks to disobey, you would not."`
-		`	"So claim you do full responsibility over this clear transgression?"`
-		`	"Claim I do that acting on my behalf and on my orders, my subordinates were. Committed, no transgressions were. Now, if to talk about taking responsibility for the actions of those working under us, we are-"`
-		`	"Weasel out of the matter at hand you will not," she interrupts him. "Aware you of course were that forbidden, further expeditions to the outside are, and to not have alerted the council of it, broken law twice-fold, you have."`
-		`	The other consuls lash some more at Aulori after she's done, and he waits for them to finish. "Made chief researcher I was on Quarg artifacts and ringworlds, centuries ago. Continued to study and deepen our knowledge on the subject, I since then have, and acted against the interest of uncovering the secrets of the Quarg, I not once have. Saved us centuries - if not millennia - of research, this expedition has. Now, look deeper into the findings myself, I must. To further our fight, and so that a fighting chance we may have. Believe, I do, that likewise, much more productive activities you all have, when concerned the well-being and stability of our Coalition is?"`
-		`	The others deliberate for a few minutes, before settling on an end to the discussion. "Once done analyzing the findings you are, report them at once you must, before the full council on the Ring of Friendship. Decide then, we shall, whether overlooked, these transgressions will be." Aulori agrees, and the call ends.`
-		`	He turns to leave, and you see the quick surprise on his face as he spots you, clearly too immersed in the discussion before to have noticed you watching. "Well, clear it is that arrived you have. Curious, were we, <last>?"`
-		choice
-			`	"I was only here for the end."`
-			`	"They didn't seem too happy with you."`
-		`	He grunts. "Cowards, the lot of them. True, it is, that something of a gamble I took, risking one of our jump drives beyond an unknown wormhole. But, necessary it was. Necessary for progress of our understanding. For our survival."`
-			goto beckon
-		label waited
-		`	A few more minutes pass, and you hear some more of the heated discussion from within. After a while it stops, and the door opens, with Aulori on the other side, alone. "I see that arrived you have, Captain. Forgive me for the wait you must. Just going over the findings of the expedition, me and some more consuls were."`
-		choice
-			`	"It's alright, I didn't mind the wait."`
-			`	"I was just about to head back to my ship, it seemed your meeting was never going to end."`
-		label beckon
-		`	He beckons you to the middle of the room, still lit up only by the many monitors used for the video calls with other consuls. He moves to a small desk, near the wall with the monitors, and picks up <payment> in chips, handing them to you. "Find what they could with what time they had, the expedition did. Only so much time to experiment there is, when a single ship - a warship - the fleet had. Mistake me not, greatly pleased with the preliminary results, I so far have been, but frustrating it is that limited we are by such time and resource constraints." He sighs. "Like I would for a larger, more substantial expedition to that ring. But, as it stands, seem it does that wait I must for the council's approval, before taking any further action."`
-		`	He moves to pick up a small box on the other side of the room, sitting atop a table surrounded by boards with scribbled notes and mock-up schematics. He brings the box to you, and opens it, revealing inside a very small piece of what's clearly metallic in nature, but with some odd, unknown property to it you can't identify. "One billion."`
-		choice
-			`	"What?"`
-			`	"Is this that expensive?"`
-		`	"Over the course of the War of Independence, the amount of fissile material used in projectiles that bombarded this ring. One billion. For this ring alone. They left not one dent. Not one." He picks up the piece. "One of the smaller shards of the shattered ring that recover, the expedition could." He gazes at it for a few seconds, before putting it back in the box, and returning that to the table. "In my position, learn of the Quarg, learn as a Quarg, I have had to. To think like them, I must, if to attempt to breach the many blockades that placed they have to impede others from learning from their technology, I am. Outnumbered by them, we are. Inferior we remain in our technology. If a means to close the gap, I do not find, then perhaps learning what monstrous weapon could break their rings, learning how to create such a weapon, the only hope for deterring a Quarg offensive is."`
-		`	Aulori pauses for nearly a minute, looking at the monitors. "It matters not what nonsense other consuls may tell you, Captain. Know this: give up on their rings the Quarg never will. With your help, and the efforts of the expedition, prepared yet for them, we may become."`
-		`	He thanks you again, and gestures for the door. Many guards arrive soon after you two leave, and you're accompanied back to your ship, while Aulori heads deeper into the ring's hallways, to further study the report about the destroyed ringworld.`
+			`To your surprise, your arrival to the <planet> sees no reception party waiting for you, or as much as a payment message from Aulori. You leave your ship, and mention to the nearest Heliarch that you were asked to see Consul Aulori here. They brush you off, saying there has been no such request by the consul. You try and explain it was the Arach Heliarch who mentioned you should come, but they again dismiss you, seemingly unaware of what you're talking about and going on about their business.`
+			`	You try a few more times, to no avail, and decide to head back to your ship for the time being. It's not until the day is about to turn that a pair of Heliarch guards come to your ship, asking that you step outside. You comply, and they tell you to follow, "for ready to see you, the consul is."`
+			`	Once again you're led through the inscrutable, guard-crowded halls of the <origin>, being brought to a long corridor with dozens of closed doors, with the one at the very end apparently being your goal. From there, however, two more guards are coming, and they explain to those escorting you that "received word, the Ring of Friendship has." They apologize to you, saying Aulori might be busy for some time more, but bring you to just outside the room, so that you're received as soon as his "meeting" ends.`
+			`	From another room, a Heliarch arbiter waves for the guards waiting with you, and passes some other task to them. Three of them leave, and you're left with one of those who fetched you from your ship, a Saryd. Despite the door to Aulori's room being locked, you two can still clearly hear intense shouting from within - not just his, but from many others who you assume to be consuls as well. After a particularly long - and heated - debate segment from what seems to be Aulori's voice, the Heliarch guard waiting with you declares they'll be coming back soon, and hastily move away, turning the corner.`
+			branch license
+				has "Heliarch License: done"
+			goto waited
+			label license
+			`	The discussion inside continues, with no sign of dying down for you to meet with Aulori. Judging from the relatively quick journey from your ship to here, you figure you're not very deep into the ring's restricted sections, so your circlet's neural interface might have permission to open the door.`
+			choice
+				`	(Try to open it.)`
+				`	(Just wait outside.)`
+					goto waited
+			`	As you thought, the door responds to your command, and opens up. The room is dark, with many lab instruments, computers, and countless boards with notes all over them being lit up solely by the various monitors on one end of the room. Aulori is there, alone, speaking with several other consuls via video call.`
+			branch "knows iekie"
+				has "Heliarch Investigation 2: done"
+			`	A Kimek consul occupies the most prominent monitor, and seems to be leading the discussion at the moment. "Exempt you are not from our laws and protocol. Your transgression aside, call I must for the others involved to be deposed at once. The Punisher's captain, and crew as well."`
+				goto response
+			label "knows iekie"
+			`	On the most prominent monitor, you recognize Consul Iekie, the Kimek Heliarch who you aided in investigating various Coalition worlds for suspicious activity. She seems to be leading the discussion at the moment. "Exempt you are not from our laws and protocol. Your transgression aside, call I must for the others involved to be deposed at once. The Punisher's captain, and crew as well."`
+			label response
+			`	"Come to pass that will not. Given they were those orders by me. Serving the will of a superior, they were," Aulori replies. "Surely encourage the lower ranks to disobey, you would not."`
+			`	"So claim you do full responsibility over this clear transgression?"`
+			`	"Claim I do that acting on my behalf and on my orders, my subordinates were. Committed, no transgressions were. Now, if to talk about taking responsibility for the actions of those working under us, we are-"`
+			`	"Weasel out of the matter at hand you will not," she interrupts him. "Aware you of course were that forbidden, further expeditions to the outside are, and to not have alerted the council of it, broken law twice-fold, you have."`
+			`	The other consuls lash some more at Aulori after she's done, and he waits for them to finish. "Made chief researcher I was on Quarg artifacts and ringworlds, centuries ago. Continued to study and deepen our knowledge on the subject, I since then have, and acted against the interest of uncovering the secrets of the Quarg, I not once have. Saved us centuries - if not millennia - of research, this expedition has. Now, look deeper into the findings myself, I must. To further our fight, and so that a fighting chance we may have. Believe, I do, that likewise, much more productive activities you all have, when concerned the well-being and stability of our Coalition is?"`
+			`	The others deliberate for a few minutes, before settling on an end to the discussion. "Once done analyzing the findings you are, report them at once you must, before the full council on the Ring of Friendship. Decide then, we shall, whether overlooked, these transgressions will be." Aulori agrees, and the call ends.`
+			`	He turns to leave, and you see the quick surprise on his face as he spots you, clearly too immersed in the discussion before to have noticed you watching. "Well, clear it is that arrived you have. Curious, were we, <last>?"`
+			choice
+				`	"I was only here for the end."`
+				`	"They didn't seem too happy with you."`
+			`	He grunts. "Cowards, the lot of them. True, it is, that something of a gamble I took, risking one of our jump drives beyond an unknown wormhole. But, necessary it was. Necessary for progress of our understanding. For our survival."`
+				goto beckon
+			label waited
+			`	A few more minutes pass, and you hear some more of the heated discussion from within. After a while it stops, and the door opens, with Aulori on the other side, alone. "I see that arrived you have, Captain. Forgive me for the wait you must. Just going over the findings of the expedition, me and some more consuls were."`
+			choice
+				`	"It's alright, I didn't mind the wait."`
+				`	"I was just about to head back to my ship, it seemed your meeting was never going to end."`
+			label beckon
+			`	He beckons you to the middle of the room, still lit up only by the many monitors used for the video calls with other consuls. He moves to a small desk, near the wall with the monitors, and picks up <payment> in chips, handing them to you. "Find what they could with what time they had, the expedition did. Only so much time to experiment there is, when a single ship - a warship - the fleet had. Mistake me not, greatly pleased with the preliminary results, I so far have been, but frustrating it is that limited we are by such time and resource constraints." He sighs. "Like I would for a larger, more substantial expedition to that ring. But, as it stands, seem it does that wait I must for the council's approval, before taking any further action."`
+			`	He moves to pick up a small box on the other side of the room, sitting atop a table surrounded by boards with scribbled notes and mock-up schematics. He brings the box to you, and opens it, revealing inside a very small piece of what's clearly metallic in nature, but with some odd, unknown property to it you can't identify. "One billion."`
+			choice
+				`	"What?"`
+				`	"Is this that expensive?"`
+			`	"Over the course of the War of Independence, the amount of fissile material used in projectiles that bombarded this ring. One billion. For this ring alone. They left not one dent. Not one." He picks up the piece. "One of the smaller shards of the shattered ring that recover, the expedition could." He gazes at it for a few seconds, before putting it back in the box, and returning that to the table. "In my position, learn of the Quarg, learn as a Quarg, I have had to. To think like them, I must, if to attempt to breach the many blockades that placed they have to impede others from learning from their technology, I am. Outnumbered by them, we are. Inferior we remain in our technology. If a means to close the gap, I do not find, then perhaps learning what monstrous weapon could break their rings, learning how to create such a weapon, the only hope for deterring a Quarg offensive is."`
+			`	Aulori pauses for nearly a minute, looking at the monitors. "It matters not what nonsense other consuls may tell you, Captain. Know this: give up on their rings the Quarg never will. With your help, and the efforts of the expedition, prepared yet for them, we may become."`
+			`	He thanks you again, and gestures for the door. Many guards arrive soon after you two leave, and you're accompanied back to your ship, while Aulori heads deeper into the ring's hallways, to further study the report about the destroyed ringworld.`
 
 
 
