@@ -1754,7 +1754,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			direction = -1;
 
 			// Add damage dealt by this jump to stack.
-			stackJumpDamage += attributes.Get("jump damage");
+			stackJumpDamage += isUsingJumpDrive ?
+				attributes.Get("jumpdrive damage") : attributes.Get("hyperdrive damage");
 
 			// If you have a target planet in the destination system, exit
 			// hyperspace aimed at it. Otherwise, target the first planet that
