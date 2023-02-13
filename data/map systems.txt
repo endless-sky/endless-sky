@@ -3235,7 +3235,7 @@ system Alcyone
 	fleet "Small Core Pirates" 400
 	fleet "Large Core Pirates" 600
 	fleet "Large Syndicate" 1200
-	fleet "Korath Large Raid" 50000
+	fleet "Korath Humanika Large Raid" 50000
 	fleet "Humanika Merchants" 7000
 	object
 		sprite star/m5
@@ -4180,8 +4180,8 @@ system Almach
 	fleet "Small Core Pirates" 500
 	fleet "Large Core Pirates" 1400
 	fleet "Large Syndicate" 6000
-	fleet "Korath Large Raid" 50000
-	fleet "Korath Miners" 25000
+	fleet "Korath Humanika Large Raid" 50000
+	fleet "Korath Humanika Miners" 25000
 	object
 		sprite star/k8
 		period 10
@@ -4717,7 +4717,7 @@ system "Alpha Hydri"
 	fleet "Large Core Pirates" 6000
 	fleet "Small Syndicate" 4000
 	fleet "Large Syndicate" 9000
-	fleet "Korath Large Raid" 40000
+	fleet "Korath Humanika Large Raid" 40000
 	object
 		sprite star/g0
 		distance 23.474
@@ -5948,7 +5948,7 @@ system Atik
 	fleet "Humanika Miners" 10000
 	fleet "Large Syndicate" 15000
 	fleet "Human Miners" 15000
-	fleet "Korath Miners" 15000
+	fleet "Korath Humanika Miners" 15000
 	fleet "Korath Civilian Delivery" 30000
 	fleet "Humanika Merchants" 20000
 	object
@@ -10300,7 +10300,7 @@ system Devil-Run
 	trade Medical 801
 	trade Metal 273
 	trade Plastic 394
-	fleet "Korath Raid" 30000
+	fleet "Korath Humanika Raid" 30000
 	object
 		sprite star/g0
 		period 10
@@ -10851,8 +10851,8 @@ system Durax
 	fleet "Small Core Pirates" 600
 	fleet "Large Core Pirates" 900
 	fleet "Large Syndicate" 2500
-	fleet "Korath Raid" 7000
-	fleet "Korath Miners" 17000
+	fleet "Korath Humanika Raid" 7000
+	fleet "Korath Humanika Miners" 17000
 	fleet "Humanika Miners" 5000
 	fleet "Humanika Merchants" 10000
 	object
@@ -23082,12 +23082,12 @@ system Misam
 	trade Plastic 368
 	fleet "Small Core Pirates" 750
 	fleet "Large Core Pirates" 2000
-	fleet "Korath Raid" 5000
-	fleet "Korath Large Raid" 11000
+	fleet "Korath Humanika Raid" 5000
+	fleet "Korath Humanika Large Raid" 11000
 	fleet "Korath Civilian Delivery" 50000
 	fleet "Humanika Miners" 7000
 	fleet "Large Syndicate" 15000
-	fleet "Korath Miners" 15000
+	fleet "Korath Humanika Miners" 15000
 	fleet "Humanika Merchants" 3000
 	object
 		sprite star/f5-old
@@ -26018,7 +26018,7 @@ system Polaris
 	fleet "Small Syndicate" 1000
 	fleet "Large Syndicate" 2000
 	fleet "Small Core Pirates" 1500
-	fleet "Korath Large Raid" 50000
+	fleet "Korath Humanika Large Raid" 50000
 	object
 		sprite star/f5
 		period 10
@@ -29372,7 +29372,7 @@ system Sheratan
 	fleet "Large Core Merchants" 1800
 	fleet "Small Core Pirates" 3000
 	fleet "Large Core Pirates" 5000
-	fleet "Korath Large Raid" 40000
+	fleet "Korath Humanika Large Raid" 40000
 	object
 		sprite star/f5
 		distance 21.0246

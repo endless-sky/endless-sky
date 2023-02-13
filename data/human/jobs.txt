@@ -3994,7 +3994,7 @@ mission "Escaped Slaves [0]"
 	name "Help slaves escape to <planet>"
 	job
 	repeat
-	description "Fly <bunks> escaped slaves to a new life of freedom at <destination> for <payment>. Expect bounty hunters."
+	description "Fly <bunks> escaped slaves from <origin> to a new life of freedom at <destination> for <payment>. Expect bounty hunters."
 	passengers 2 8 .8
 	to offer
 		random < 80
@@ -4021,7 +4021,7 @@ mission "Escaped Slaves [1]"
 	name "Help slaves escape to <planet>"
 	job
 	repeat
-	description "Fly <bunks> escaped slaves to a new life of freedom at <destination> for <payment>. Expect bounty hunters."
+	description "Fly <bunks> escaped slaves from <origin> to a new life of freedom at <destination> for <payment>. Expect bounty hunters."
 	passengers 4 15 .8
 	to offer
 		random < 60
@@ -4048,7 +4048,7 @@ mission "Escaped Slaves [2]"
 	name "Help slaves escape to <planet>"
 	job
 	repeat
-	description "Fly <bunks> escaped slaves to a new life of freedom at <destination> for <payment>. Expect bounty hunters."
+	description "Fly <bunks> escaped slaves from <origin> to a new life of freedom at <destination> for <payment>. Expect bounty hunters."
 	passengers 7 28 .8
 	to offer
 		random < 40
@@ -4187,7 +4187,7 @@ mission "Farming Team Recruitment"
 	repeat
 	description `A team of <bunks> research farmers need a ride to their lucrative new jobs. Pick them up at <stopovers> and take them to <planet> before <date> for <payment>.`
 	passengers 2 5 0.8
-	deadline 5 2
+	deadline 5 3
 	to offer
 		random < 40
 	source
@@ -4205,7 +4205,7 @@ mission "Farming Team Recruitment"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 40000 170
+		payment 35000 160
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Mining Team Recruitment"
@@ -4214,7 +4214,7 @@ mission "Mining Team Recruitment"
 	repeat
 	description `A team of <bunks> skilled miners need a ride to their lucrative new jobs. Pick them up at <stopovers> and take them to <planet> before <date> for <payment>.`
 	passengers 2 5 0.8
-	deadline 5 2
+	deadline 5 3
 	to offer
 		random < 40
 	source
@@ -4232,7 +4232,7 @@ mission "Mining Team Recruitment"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 40000 170
+		payment 35000 160
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Science Team Recruitment"
@@ -4241,7 +4241,7 @@ mission "Science Team Recruitment"
 	repeat
 	description `A team of <bunks> scientists need a ride to their lucrative new jobs. Pick them up at <stopovers> and take them to <planet> before <date> for <payment>.`
 	passengers 2 5 0.8
-	deadline 5 2
+	deadline 5 3
 	to offer
 		random < 40
 	source
@@ -4259,7 +4259,7 @@ mission "Science Team Recruitment"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 40000 170
+		payment 35000 160
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Factory Team Recruitment"
@@ -4268,7 +4268,7 @@ mission "Factory Team Recruitment"
 	repeat
 	description `A team of <bunks> skilled factory workers need a ride to their lucrative new jobs. Pick them up at <stopovers> and take them to <planet> before <date> for <payment>.`
 	passengers 2 5 0.8
-	deadline 5 2
+	deadline 5 3
 	to offer
 		random < 40
 	source
@@ -4286,7 +4286,7 @@ mission "Factory Team Recruitment"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 40000 170
+		payment 35000 160
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Urban Employee Team Recruitment"
@@ -4295,7 +4295,7 @@ mission "Urban Employee Team Recruitment"
 	repeat
 	description `A team of <bunks> skilled city workers need a ride to their lucrative new jobs. Pick them up at <stopovers> and take them to <planet> before <date> for <payment>.`
 	passengers 2 5 0.8
-	deadline 5 2
+	deadline 5 3
 	to offer
 		random < 40
 	source
@@ -4313,7 +4313,7 @@ mission "Urban Employee Team Recruitment"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 40000 170
+		payment 35000 160
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Banned Syndicate Items [0]"
@@ -4321,7 +4321,7 @@ mission "Banned Syndicate Items [0]"
 	job
 	repeat
 	description `Anti-Syndicate activists will pay <payment> for delivery of <cargo> on <planet>. Take care not to get caught.`
-	cargo "Syndicate-banned items" 5 10 0.8
+	cargo "Syndicate-banned items" 2 5 0.8
 	illegal 50000
 	to offer
 		random < 90
@@ -4343,7 +4343,7 @@ mission "Banned Syndicate Items [1]"
 	job
 	repeat
 	description `Anti-Syndicate activists will pay <payment> for delivery of <cargo> on <planet>. Take care not to get caught.`
-	cargo "Syndicate-banned items" 7 20 0.8
+	cargo "Syndicate-banned items" 4 7 0.8
 	illegal 50000
 	to offer
 		random < 80
@@ -4365,7 +4365,7 @@ mission "Banned Syndicate Items [2]"
 	job
 	repeat
 	description `Anti-Syndicate activists will pay <payment> for delivery of <cargo> on <planet>. Take care not to get caught.`
-	cargo "Syndicate-banned items" 12 40 0.8
+	cargo "Syndicate-banned items" 7 20 0.8
 	illegal 50000
 	to offer
 		random < 70
@@ -4387,7 +4387,7 @@ mission "Banned Syndicate Items [3]"
 	job
 	repeat
 	description `Anti-Syndicate activists will pay <payment> for delivery of <cargo> on <planet>. Take care not to get caught.`
-	cargo "Syndicate-banned items" 20 60 0.8
+	cargo "Syndicate-banned items" 16 40 0.8
 	illegal 50000
 	to offer
 		random < 60
@@ -4409,7 +4409,7 @@ mission "Banned Syndicate Items [4]"
 	job
 	repeat
 	description `Anti-Syndicate activists will pay <payment> for delivery of <cargo> on <planet>. Take care not to get caught.`
-	cargo "Syndicate-banned items" 40 100 0.8
+	cargo "Syndicate-banned items" 35 100 0.8
 	illegal 50000
 	to offer
 		random < 50
