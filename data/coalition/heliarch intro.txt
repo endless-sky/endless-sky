@@ -1138,7 +1138,21 @@ mission "Heliarch Expedition 5"
 			`	From another room, a Heliarch arbiter waves for the guards waiting with you, and passes some other task to them. Three of them leave, and you're left with one of those who fetched you from your ship, a Saryd. Despite the door to Aulori's room being locked, you two can still clearly hear intense shouting from within - not just his, but from many others who you assume to be consuls as well. After a particularly long - and heated - debate segment from what seems to be Aulori's voice, the Heliarch guard waiting with you declares they'll be coming back soon, and hastily move away, turning the corner.`
 			branch license
 				has "Heliarch License: done"
-				goto waited
+			label waited
+			`	A few more minutes pass, and you hear some more of the heated discussion from within. After a while it stops, and the door opens, with Aulori on the other side, alone. "I see that arrived you have, Captain. Forgive me for the wait you must. Just going over the findings of the expedition, me and some more consuls were."`
+			choice
+				`	"It's alright, I didn't mind the wait."`
+				`	"I was just about to head back to my ship, it seemed your meeting was never going to end."`
+			label beckon
+			`	He beckons you to the middle of the room, still lit up only by the many monitors used for the video calls with other consuls. He moves to a small desk, near the wall with the monitors, and picks up <payment> in chips, handing them to you. "Find what they could with what time they had, the expedition did. Only so much time to experiment there is, when a single ship - a warship - the fleet had. Mistake me not, greatly pleased with the preliminary results, I so far have been, but frustrating it is that limited we are by such time and resource constraints." He sighs. "Like I would for a larger, more substantial expedition to that ring. But, as it stands, seem it does that wait I must for the council's approval, before taking any further action."`
+			`	He moves to pick up a small box on the other side of the room, sitting atop a table surrounded by boards with scribbled notes and mock-up schematics. He brings the box to you, and opens it, revealing inside a very small piece of what's clearly metallic in nature, but with some odd, unknown property to it you can't identify. "One billion."`
+			choice
+				`	"What?"`
+				`	"Is this that expensive?"`
+			`	"Over the course of the War of Independence, the amount of fissile material used in projectiles that bombarded this ring. One billion. For this ring alone. They left not one dent. Not one." He picks up the piece. "One of the smaller shards of the shattered ring that recover, the expedition could." He gazes at it for a few seconds, before putting it back in the box, and returning that to the table. "In my position, learn of the Quarg, learn as a Quarg, I have had to. To think like them, I must, if to attempt to breach the many blockades that placed they have to impede others from learning from their technology, I am. Outnumbered by them, we are. Inferior we remain in our technology. If a means to close the gap, I do not find, then perhaps learning what monstrous weapon could break their rings, learning how to create such a weapon, the only hope for deterring a Quarg offensive is."`
+			`	Aulori pauses for nearly a minute, looking at the monitors. "It matters not what nonsense other consuls may tell you, Captain. Know this: give up on their rings the Quarg never will. With your help, and the efforts of the expedition, prepared yet for them, we may become."`
+			`	He thanks you again, and gestures for the door. Many guards arrive soon after you two leave, and you're accompanied back to your ship, while Aulori heads deeper into the ring's hallways, to further study the report about the destroyed ringworld.`
+				accept
 			label license
 			`	The discussion inside continues, with no sign of dying down for you to meet with Aulori. Judging from the relatively quick journey from your ship to here, you figure you're not very deep into the ring's restricted sections, so your circlet's neural interface might have permission to open the door.`
 			choice
@@ -1165,20 +1179,6 @@ mission "Heliarch Expedition 5"
 				`	"They didn't seem too happy with you."`
 			`	He grunts. "Cowards, the lot of them. True, it is, that something of a gamble I took, risking one of our jump drives beyond an unknown wormhole. But, necessary it was. Necessary for progress of our understanding. For our survival."`
 				goto beckon
-			label waited
-			`	A few more minutes pass, and you hear some more of the heated discussion from within. After a while it stops, and the door opens, with Aulori on the other side, alone. "I see that arrived you have, Captain. Forgive me for the wait you must. Just going over the findings of the expedition, me and some more consuls were."`
-			choice
-				`	"It's alright, I didn't mind the wait."`
-				`	"I was just about to head back to my ship, it seemed your meeting was never going to end."`
-			label beckon
-			`	He beckons you to the middle of the room, still lit up only by the many monitors used for the video calls with other consuls. He moves to a small desk, near the wall with the monitors, and picks up <payment> in chips, handing them to you. "Find what they could with what time they had, the expedition did. Only so much time to experiment there is, when a single ship - a warship - the fleet had. Mistake me not, greatly pleased with the preliminary results, I so far have been, but frustrating it is that limited we are by such time and resource constraints." He sighs. "Like I would for a larger, more substantial expedition to that ring. But, as it stands, seem it does that wait I must for the council's approval, before taking any further action."`
-			`	He moves to pick up a small box on the other side of the room, sitting atop a table surrounded by boards with scribbled notes and mock-up schematics. He brings the box to you, and opens it, revealing inside a very small piece of what's clearly metallic in nature, but with some odd, unknown property to it you can't identify. "One billion."`
-			choice
-				`	"What?"`
-				`	"Is this that expensive?"`
-			`	"Over the course of the War of Independence, the amount of fissile material used in projectiles that bombarded this ring. One billion. For this ring alone. They left not one dent. Not one." He picks up the piece. "One of the smaller shards of the shattered ring that recover, the expedition could." He gazes at it for a few seconds, before putting it back in the box, and returning that to the table. "In my position, learn of the Quarg, learn as a Quarg, I have had to. To think like them, I must, if to attempt to breach the many blockades that placed they have to impede others from learning from their technology, I am. Outnumbered by them, we are. Inferior we remain in our technology. If a means to close the gap, I do not find, then perhaps learning what monstrous weapon could break their rings, learning how to create such a weapon, the only hope for deterring a Quarg offensive is."`
-			`	Aulori pauses for nearly a minute, looking at the monitors. "It matters not what nonsense other consuls may tell you, Captain. Know this: give up on their rings the Quarg never will. With your help, and the efforts of the expedition, prepared yet for them, we may become."`
-			`	He thanks you again, and gestures for the door. Many guards arrive soon after you two leave, and you're accompanied back to your ship, while Aulori heads deeper into the ring's hallways, to further study the report about the destroyed ringworld.`
 
 
 
