@@ -282,6 +282,7 @@ mission "Korath Humanika: Fish Trade (medium)"
 		random < 20
 		has "Korath [F02]: A Fishy Deal: done"
 		not "Korath Humanika: Fish Trade (medium): active"
+		"cargo space" > 20
 	on stopover
 		dialog "You drop of your <tons> of illicit fish, and receive <tons> of unknown cargo from a woman in a blue dress."
 	on complete
@@ -305,6 +306,7 @@ mission "Korath Humanika: Fish Trade (bulk)"
 		random < 5
 		has "Korath [F02]: A Fishy Deal: done"
 		not "Korath Humanika: Fish Trade (bulk): active"
+		"cargo space" > 50
 	on stopover
 		dialog "You drop of your <tons> of illicit fish, and receive <tons> of unknown cargo from a woman in a blue dress."
 	on complete
@@ -365,6 +367,7 @@ mission "Korath: Retrieve livestock [2]"
 		attributes farming
 	to offer
 		random < 70
+		"cargo space" > 10
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of livestock."
 	on complete
@@ -385,6 +388,7 @@ mission "Korath: Retrieve livestock [3]"
 		attributes farming
 	to offer
 		random < 70
+		"cargo space" > 20
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of livestock."
 	on complete
@@ -405,6 +409,7 @@ mission "Korath: Retrieve livestock [4]"
 		attributes farming
 	to offer
 		random < 70
+		"cargo space" > 50
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of livestock."
 	on complete
@@ -465,6 +470,7 @@ mission "Korath: Retrieve crops [2]"
 		attributes farming
 	to offer
 		random < 70
+		"cargo space" > 10
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of crops."
 	on complete
@@ -485,6 +491,7 @@ mission "Korath: Retrieve crops [3]"
 		attributes farming
 	to offer
 		random < 70
+		"cargo space" > 20
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of crops."
 	on complete
@@ -505,9 +512,216 @@ mission "Korath: Retrieve crops [4]"
 		attributes farming
 	to offer
 		random < 70
+		"cargo space" > 50
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of crops."
 	on complete
 		payment 30000 180
 		dialog "A woman in a blue dress examines the crops and confirms the trade. You receive <payment>."
+		"reputation: Korath (Humanika)" += 5
+
+mission "Korath: Retrieve fish [0]"
+	name "Fish from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unique fish and return to <planet> for <payment>."
+	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "Fish trade" 1 4 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes fishing
+	to offer
+		random < 70
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of fish."
+	on complete
+		payment 30000 180
+		dialog "A woman in a blue dress examines the fish and confirms the trade. You receive <payment>."
+		"reputation: Korath (Humanika)" ++
+
+mission "Korath: Retrieve fish [1]"
+	name "Fish from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of rare fish and return to <planet> for <payment>."
+	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "Fish trade" 3 10 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes fishing
+	to offer
+		random < 70
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of fish."
+	on complete
+		payment 30000 180
+		dialog "A woman in a blue dress examines the fish and confirms the trade. You receive <payment>."
+		"reputation: Korath (Humanika)" += 2
+
+mission "Korath: Retrieve fish [2]"
+	name "Fish from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of indigenous fish and return to <planet> for <payment>."
+	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "Fish trade" 7 25 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes fishing
+	to offer
+		random < 70
+		"cargo space" > 10
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of fish."
+	on complete
+		payment 30000 180
+		dialog "A woman in a blue dress examines the fish and confirms the trade. You receive <payment>."
+		"reputation: Korath (Humanika)" += 3
+
+mission "Korath: Retrieve fish [3]"
+	name "Fish from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual fish and return to <planet> for <payment>."
+	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "Fish trade" 16 80 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes fishing
+	to offer
+		random < 70
+		"cargo space" > 20
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of fish."
+	on complete
+		payment 30000 180
+		dialog "A woman in a blue dress examines the fish and confirms the trade. You receive <payment>."
+		"reputation: Korath (Humanika)" += 4
+
+mission "Korath: Retrieve fish [4]"
+	name "Fish from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual fish and return to <planet> for <payment>."
+	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "Fish trade" 35 300 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes fishing
+	to offer
+		random < 70
+		"cargo space" > 50
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of fish."
+	on complete
+		payment 30000 180
+		dialog "A woman in a blue dress examines the fish and confirms the trade. You receive <payment>."
+		"reputation: Korath (Humanika)" += 5
+
+mission "Korath: Retrieve wildlife [0]"
+	name "Wildlife from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unique wildlife and return to <planet> for <payment>."
+	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "Wildlife trade" 1 4 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes forest
+	to offer
+		random < 70
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of wildlife."
+	on complete
+		payment 30000 180
+		dialog "A woman in a blue dress examines the wildlife and confirms the trade. You receive <payment>."
+		"reputation: Korath (Humanika)" ++
+
+mission "Korath: Retrieve wildlife [1]"
+	name "Wildlife from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of rare wildlife and return to <planet> for <payment>."
+	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "Wildlife trade" 3 10 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes forest
+	to offer
+		random < 70
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of wildlife."
+	on complete
+		payment 30000 180
+		dialog "A woman in a blue dress examines the wildlife and confirms the trade. You receive <payment>."
+		"reputation: Korath (Humanika)" += 2
+
+mission "Korath: Retrieve wildlife [2]"
+	name "Wildlife from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of indigenous wildlife and return to <planet> for <payment>."
+	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "Wildlife trade" 7 25 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes forest
+	to offer
+		random < 70
+		"cargo space" > 10
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of wildlife."
+	on complete
+		payment 30000 180
+		dialog "A woman in a blue dress examines the wildlife and confirms the trade. You receive <payment>."
+		"reputation: Korath (Humanika)" += 3
+
+mission "Korath: Retrieve wildlife [3]"
+	name "Wildlife from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual wildlife and return to <planet> for <payment>."
+	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "Wildlife trade" 16 80 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes forest
+	to offer
+		random < 70
+		"cargo space" > 20
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of wildlife."
+	on complete
+		payment 30000 180
+		dialog "A woman in a blue dress examines the wildlife and confirms the trade. You receive <payment>."
+		"reputation: Korath (Humanika)" += 4
+
+mission "Korath: Retrieve wildlife [4]"
+	name "Wildlife from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual wildlife and return to <planet> for <payment>."
+	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "Wildlife trade" 35 300 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes forest
+	to offer
+		random < 70
+		"cargo space" > 50
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of wildlife."
+	on complete
+		payment 30000 180
+		dialog "A woman in a blue dress examines the wildlife and confirms the trade. You receive <payment>."
 		"reputation: Korath (Humanika)" += 5

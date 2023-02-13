@@ -3790,7 +3790,7 @@ mission "Syndicate Defectors [0]"
 	passengers 2 8 .8
 	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
 	to offer
-		random < 80
+		random < 60
 	source
 		government "Humanika (Port)"
 	destination
@@ -3821,7 +3821,8 @@ mission "Syndicate Defectors [1]"
 	passengers 4 15 .8
 	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
 	to offer
-		random < 60
+		random < 50
+		"passenger space" > 5
 	source
 		government "Humanika (Port)"
 	destination
@@ -3853,6 +3854,7 @@ mission "Syndicate Defectors [2]"
 	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
 	to offer
 		random < 40
+		"passenger space" > 10
 	source
 		government "Humanika (Port)"
 	destination
@@ -3905,7 +3907,7 @@ mission "Rescue Slaves [0]"
 	passengers 2 8 .8
 	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
 	to offer
-		random < 80
+		random < 60
 	source
 		government "Humanika (Port)"
 	destination
@@ -3936,7 +3938,8 @@ mission "Rescue Slaves [1]"
 	passengers 4 15 .8
 	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
 	to offer
-		random < 60
+		random < 50
+		"passenger space" > 5
 	source
 		government "Humanika (Port)"
 	destination
@@ -3968,6 +3971,7 @@ mission "Rescue Slaves [2]"
 	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
 	to offer
 		random < 40
+		"passenger space" > 10
 	source
 		government "Humanika (Port)"
 	destination
@@ -3997,7 +4001,7 @@ mission "Escaped Slaves [0]"
 	description "Fly <bunks> escaped slaves from <origin> to a new life of freedom at <destination> for <payment>. Expect bounty hunters."
 	passengers 2 8 .8
 	to offer
-		random < 80
+		random < 60
 	source
 		government "Pirate"
 		not attributes "slavery ban"
@@ -4024,7 +4028,8 @@ mission "Escaped Slaves [1]"
 	description "Fly <bunks> escaped slaves from <origin> to a new life of freedom at <destination> for <payment>. Expect bounty hunters."
 	passengers 4 15 .8
 	to offer
-		random < 60
+		random < 50
+		"passenger space" > 5
 	source
 		government "Pirate"
 		not attributes "slavery ban"
@@ -4052,6 +4057,7 @@ mission "Escaped Slaves [2]"
 	passengers 7 28 .8
 	to offer
 		random < 40
+		"passenger space" > 10
 	source
 		government "Pirate"
 		not attributes "slavery ban"
@@ -4324,7 +4330,7 @@ mission "Banned Syndicate Items [0]"
 	cargo "Syndicate-banned items" 2 5 0.8
 	illegal 50000
 	to offer
-		random < 90
+		random < 50
 	source
 		government "Humanika (Port)"
 	destination
@@ -4346,7 +4352,8 @@ mission "Banned Syndicate Items [1]"
 	cargo "Syndicate-banned items" 4 7 0.8
 	illegal 50000
 	to offer
-		random < 80
+		random < 50
+		"cargo space" > 3
 	source
 		government "Humanika (Port)"
 	destination
@@ -4368,7 +4375,8 @@ mission "Banned Syndicate Items [2]"
 	cargo "Syndicate-banned items" 7 20 0.8
 	illegal 50000
 	to offer
-		random < 70
+		random < 50
+		"cargo space" > 5
 	source
 		government "Humanika (Port)"
 	destination
@@ -4390,7 +4398,8 @@ mission "Banned Syndicate Items [3]"
 	cargo "Syndicate-banned items" 16 40 0.8
 	illegal 50000
 	to offer
-		random < 60
+		random < 40
+		"cargo space" > 20
 	source
 		government "Humanika (Port)"
 	destination
@@ -4412,7 +4421,8 @@ mission "Banned Syndicate Items [4]"
 	cargo "Syndicate-banned items" 35 100 0.8
 	illegal 50000
 	to offer
-		random < 50
+		random < 40
+		"cargo space" > 40
 	source
 		government "Humanika (Port)"
 	destination
