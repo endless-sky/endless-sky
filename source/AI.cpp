@@ -1494,7 +1494,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 			target.reset();
 		else
 		{
-			if(target->Velocity().Length() > ship.MaxVelocity() * 0.9)
+			if(target->Velocity().Length() > ship.MaxSpeed(false) * 0.9)
 				CircleAround(ship, command, *target);
 			else
 				MoveTo(ship, command, target->Position(), target->Velocity(), 1., 1.);
@@ -2546,7 +2546,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 			ship.SetTargetShip(shared_ptr<Ship>());
 		else
 		{
-			if(target->Velocity().Length() > ship.MaxVelocity() * 0.9)
+			if(target->Velocity().Length() > ship.MaxSpeed(false) * 0.9)
 				CircleAround(ship, command, *target);
 			else
 				MoveTo(ship, command, target->Position(), target->Velocity(), 1., 1.);
