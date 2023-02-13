@@ -1778,13 +1778,13 @@ ship "Kimek Thistle" "Kimek Thistle (Torpedoes)"
 		"Small Repair Module" 2
 		"Cooling Module" 2
 		"Small Thrust Module" 2
+		"Small Steering Module"
 		"Large Thrust Module"
 		"Small Battery Module"
 		"Large Steering Module"
 		"Heavy Anti-Missile Turret"
 		"Torpedo Launcher" 2
-		Torpedo 90
-		"Torpedo Storage Rack" 2
+		Torpedo 60
 		"Breeder Reactor"
 
 ship "Kimek Thorn"
