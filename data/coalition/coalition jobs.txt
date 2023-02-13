@@ -1342,7 +1342,7 @@ mission "Heliarchs Buy Jump Drive Job 1"
 		has "outfit (cargo): Jump Drive"
 	on accept
 		conversation
-			`The Heliarchs thank you profusely when they see you've taken them up on their offer, and soon enough several of their ships have landed near your own, apparently having learned of your change of mind and excited to see the exchange. They leave their ships, surrounding yours. Soon enough, they make space for an army of engineers to come and remove the spare jump drive from your ship. Still watching the scene, only now in formations, the Heliarch agents whisper among themselves, rarely shifting their eyes, as if looking at a spectacle.`
+			`The Heliarchs thank you profusely when they see you've taken them up on their offer, and soon enough several of their ships have landed near your own, apparently having learned of your change of mind and excited to see the exchange, leaving their ships and surrounding yours. Soon enough, they make space for an army of engineers to come and remove the spare jump drive from your ship. Still watching the scene, only now in formations, the Heliarch agents whisper among themselves, rarely shifting their eyes, as if looking at a spectacle.`
 			`	Once the drive is out of your ship, it is secured in an excessively reinforced container and transported to a restricted section of the ring, under the guard of hundreds of armed soldiers. One of the Heliarchs who seem to be in charge of the procedure, an Arach, personally comes to you, thanking you again and handing you <payment>. "Honor us you do with such generosity, Captain. Though made great progress in studying jump drives and their mechanisms, we have, still incapable of creating our own, we are, and means of acquiring new copies we have not. Tremendously valuable, each and every drive you could bring us is. If interested in selling any more jump drives, you are, continue to offer you such jobs, we will."`
 			`	She thanks you yet again, salutes, and leaves to follow the entourage guarding the newly purchased jump drive.`
 		"coalition jobs" >?= 30
@@ -1360,6 +1360,7 @@ mission "Heliarchs Buy Jump Drive Job 2"
 	to offer
 		not "Coalition: Lost: Offer: active"
 		has "outfit (cargo): Jump Drive"
+		has "Heliarchs Buy Jump Drive Mission: offered"
 		or
 			not "Heliarchs Buy Jump Drive Mission: declined"
 			has "Heliarchs Buy Jump Drive Job 1: offered"
