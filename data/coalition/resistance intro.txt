@@ -561,7 +561,7 @@ mission "House Bebliss 2-FW"
 			branch "resistance 2"
 				has "Resistance: Questions: done"
 			`	"In 'their' space, are you not? Scanned by their ships, you were. Subtly amassed, your flight records, your charted map of the galaxy, were," she finishes, and her and the other two look to you, waiting for your answer.`
-			goto "pug reveal"
+				goto "pug reveal"
 			label "resistance 2"
 			`	"In 'their' space, are you not? Scanned by their ships, you were. Subtly amassed, your flight records, your charted map of the galaxy, were," she finishes. "Of course, register any such logs, your ship does not, when running tasks or simply coming to meet us like this, you are. Permit them find our bases that easily, we must not. But, digress I must. Please Captain, intrigued about these aliens, we very much are," she gestures toward you with one leg, as the other Bebliss members eye you eagerly.`
 			label "pug reveal"
@@ -626,9 +626,9 @@ mission "House Bebliss 3-FW"
 				goto suitcase
 			label resistance
 			choice
-			`	(Tell her everything, including the Lunarium.)`
-			`	(Don't mention the Lunarium.)`
-				goto "don't tell"
+				`	(Tell her everything, including the Lunarium.)`
+				`	(Don't mention the Lunarium.)`
+					goto "don't tell"
 			`	You give her a rundown of the Coalition, explaining about the three species, the Heliarchs and their fight against the Quarg, the Lunarium Redoubt and their intentions to overthrow the Heliarchy, and the part House Bebliss plays in that, handing her the suitcase when you're done.`
 			label suitcase
 			`	"Well, at least these ones are asking if they can come invade us," she jokes as she lays the suitcase on a table, opening it. "Three alien species, huh? We were picking up some degraded radio signals from these systems, before the war even, so I figured there was someone out there." She begins to read the message House Bebliss prepared for her, frowning right at the start. "You didn't write this, did you?" You shake your head. "Thought so. The words are... jumbled?"`
