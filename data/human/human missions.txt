@@ -5441,6 +5441,7 @@ mission "Quicksilver Mixup [2]"
 	cargo "Misposted mail" 38
 	to offer
 		has "Quicksilver Mixup [1]: done"
+		has "quicksilver mixup 2 available"
 		has "event quicksilver mixup 2 available"
 	on offer
 		conversation
