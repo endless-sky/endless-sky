@@ -1,0 +1,29 @@
+outfit "Blaze-Pike Turret (modified)"
+	category "Turrets"
+	cost 1970000
+	thumbnail "outfit/blaze-pike"
+	"mass" 57
+	"outfit space" -24
+	"weapon capacity" -24
+	"turret mounts" -1
+	"required crew" 1
+	"drag" 0.2
+	weapon
+		sprite "projectile/blaze-pike"
+			"frame rate" 20
+		"hardpoint sprite" "hardpoint/blaze-pike"
+		sound "blaze-pike"
+		"hit effect" "blaze-pike hit"
+		"inaccuracy" 2.5
+		"turret turn" 2.4
+		"velocity" 450
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 6
+		"firing heat" 4.5
+		"shield damage" 7.1
+		"hull damage" 3.1
+		"heat damage" 18
+		"burn damage" 0.45
+	description "The seeming reverence the Korath have for fire appears embodied in this weapon. This pair of Fire-Lances mounted together in a turret do not merely create twin lances of fire: Rather, they begin to form a gestalt - a single, longer, hotter, and almost hypnotic column of fire."
+	description "This turret has been modified to sit mostly outside of the ship, meaning it uses less outfit space, but at the expense of some efficiency and stability."

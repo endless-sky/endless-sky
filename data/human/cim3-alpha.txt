@@ -1,0 +1,1745 @@
+##############################################################
+# The Attack of the Alphas, and the Demise of the Extremists # 
+##############################################################
+
+mission "ScS Alpha Abduction 1"
+	landing
+	name "Alpha Abduction!"
+	description "Join a blockade to catch a group of Alphas who abducted women from Bluestone. Fly through <waypoints> to <destination>, checking for signs of the Alphas on the way."
+	source Furnace
+	destination Canyon
+	waypoint Ruchbah
+	waypoint Sheratan
+	to offer
+		has "ScS Extreme Flight 4b: done"
+	on fail
+		dialog phrase failure
+	on offer
+		event "ScS syndicate against alphas"
+		conversation
+			`As Sawer speeds off into the distance, you land and wonder if you ought to have followed to escort him safely. It's good you didn't: as you land you see a masive Vanguard land next to you, and out steps none other than Downey himself!	When he recognises your ship, he comes over flanked by half a dozen well-armed guards.`
+			`	"<last>! What are you doing here! I told you to wait in Delta Capricorni!"`
+			`	"I... came this way to catch Sawyer!" you stammer."`
+			`	Downey turns a sort of artistic shade of purple, and your own emotions struggle between fear and smug satisfaction. He swears loudly.`
+			`	"The no-good, treaherous, insolent, son of a-- got away! We caught his shuttle in Alnair, but somehow he slipped off. Unless we can catch him in time..."`
+			choice
+				`	"I have the fastest ship in the galaxy."`
+				`	"Where is he headed? I can track him down."`
+			`	Before you can offer to 'catch' Sawyer, and before the words, "dead or alive," can escape Downey's lips, his communicator buzzes. A small video screen flickers to life, and Downy lets out a gasp of, "Korban!" and quickly turns away.`
+			choice
+				`	(wait for him)`
+					goto wait
+				`	(follow him)`
+			`	Downey only goes a short distance away, and is too absorbed in his video call to notice you. He looks worried.`
+			`	"This is an emergency!" comes the voice on the other end. "So is this!" replies Downey.`
+			`	"Send Jens, Lancet and Bluethorpe after the traitor," says the caller. "I need <last> at the blockade north-east. And you'd better be back in your office post-haste."`
+			`	When Downey finishes the call and turns around to find you right behind him, he does a little, nervous jump.`
+				goto hangup
+			label wait
+			`	Downey talkes in the distance for a few minutes and returns to you, looking agitated.`
+			label hangup
+			`	"I will send others after the runaway. Don't worry, they won't fail. You're needed for another emergency. One involving..." Downey pauses, "our green-skinned cousins."`
+			choice
+				`	"Kermit?"`
+				`	"Wait, Alphas?!"`
+					goto alphas
+			`	"K- Not Kermit, you dolt! Alphas! Beings more intelligent than you. Stronger than you. Wittier than you."`
+			label alphas
+			`	"How can that be?" you ask. "They're not around any more - if they ever existed!"`
+			`	Downey scowles. "Do you think every ghost and monster from your childhood is a fiction to shut you up at night? These things are real! And they'll blow your brains out in seconds if you're not careful." He calms down a bit having let off steam. "Alphas attacked facilities on Bluestone, up in Bellatrix near the edge of civilised space. They've abducted all the young women they can find, for breeding, and are heading to some pirate world where they can't be found. But we have blockaded Moktar and Zaurak, so they can't get out.`
+			`	"You need to join the blockade in <system>, checking as you go in case they get through somehow. Land on <planet> and make yourself available to the commander in charge. Quickly!" Downey turns around and storms back to his ship.`
+			``
+			`	When you have a chance, you fire off an encoded message to Arnold to fill him in. You also remember some Free Worlds propaganda you heard recently, that a Republic planet in their territory got captured by Alphas and the Free Worlds bravely drove them off... with the help of a Navy admiral. If it's true, perhaps that same admiral could help now? It gets the Republic involved... but might give a better chance of rescuing the women. Do you want to try and contact him?`
+			choice
+				`	Yes. Contact the Admiral.`
+					goto danforth
+				`	No, the Syndicate will handle this.`
+			`	You head back to your ship and set course for <system>, hoping the Alphas are somewhere trapped in the Syndicate's net.`
+				accept
+			label danforth
+			action
+				set "ScS danforth help"
+			`	You search through news articles until you find the event, and the name of the admiral who led the rescue. It's one Danforth, head of a section of the Navy called the 'Oathkeepers', who have sworn not to take part in the Free Worlds' war.`
+			`	You write the most official-sounding message you can, wrap it in a few layers of 'private', 'urgent', 'care/of' and 'to the bureau of', and send it to the Navy's recruitment office hoping it will make it to Danforth. Then you set a course for <system> and get ready to join the blockade.`
+				accept
+	on waypoint
+		dialog `You've seen no sign of the Alphas escaping. Continue on to <planet> to join the blockade.`
+
+mission "ScS Alpha Abduction 1a"
+	landing
+	to offer
+		has "ScS Alpha Abduction 1: offered"
+	on offer
+		conversation
+			`You get a brief message back from Arnold, about the Alphas.`
+			`	"Yes. Heard about our colourful friends. Am also arranging meet-and-greet parties in case they spurn the official ones. More later. ARA."`
+				decline
+
+mission "ScS Alpha Abduction 2"
+	landing
+	name "Catch the Alphas"
+	description "Go to <destination> to take out the Alphas' ship and leave them stranded."
+	source Canyon
+	destination "Oberon Station"
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Alpha Abduction 1: done"
+	on offer
+		event "fw expanded and cut"
+		conversation
+			`You go to find the 'commander' in charge. Turns out he's the manager of a security contractor, commandeered for this emergency.`
+			branch solo
+				not "ScS danforth help"
+			`	"We have them locked up," he says, "between Mirfak, Bellatrix and Menkar. We'll get them soon, but now some bigshot Navy guy wants a piece.`
+			choice
+				`	"I can't imagine how they got involved."`
+				`	"You mean Admiral Danforth?"`
+					goto danforth
+			`	"Eh, Navy know everything," he says.`
+				goto plan
+			label danforth
+			`	"What? Yeah, that's the one. How d'you know him?`
+			label plan
+			`	"Anyway," he continues, "our boys think they have them, at <planet>. We can't risk a firefight at the deuterium refinery, so your job is to flush 'em out. Land there and give 'em a scare, while my boys herd them into the blockade. We'll have them nice and neatly packaged up by the time the Navy arrive."`
+				goto end
+	
+			label solo
+			`	"We have them locked up," he says, "between Mirfak, Bellatrix and Menkar. Our boys think they have them, hiding on <planet>. We can't risk a firefight at the deuterium refinery, so your job is to flush 'em out. Land there and give 'em a scare, while my boys herd them into the blockade. They'll be rabbits in a trap."`
+			label end
+			choice
+				`	"What if they fight?"`
+				`	"I'm on it. They'll run like startled pigeons."`
+					accept
+			`	"Then shoot 'em! It's our job to catch them, not clean up the mess. Or if you can't handle it, tuck tail between your legs and run, and my boys will get 'em."`
+				accept
+
+mission "ScS Alpha Abduction 3"
+	landing
+	name "Chase the Alphas!"
+	description "Follow the Alphas and catch them before they escape too far."
+	source "Oberon Station"
+	destination "Canyon"
+	to offer
+		has "ScS Alpha Abduction 2: done"
+	on offer
+		conversation
+			`You fly round the docking bays of the refinery station, checking for anything that looks like an Alpha ship. At last you see a Splinter tucked suspiciously in the shadows of a private hangar. You do a big loop and line up as if you'll do a bombing run on the hangar, and the Splinter's engines flare to life and it comes hurtling past you, almost colliding, and sending you into a spin.`
+			`	Before you can regain your senses, the Alphas have shot past and lined themselves up for a jump, eastwards toward Zaurak. Better give chase! And fast!`
+				launch
+	on enter Zaurak
+		dialog
+			`A frantic message comes from the commander as you enter.`
+			`	"They headed north! Quick! Don't let them escape!"`
+	to complete
+		or
+			has "ScS Alpha Abduction 3 danforth: done"
+			#has "ScS Alpha Abdcution 3 solo: done"
+			has "ScS abductors dead"
+
+mission "ScS Alpha Abduction 3 danforth"
+	landing
+	invisible
+	source "Oberon Station"
+	destination Stormhold
+	clearance
+	infiltrating
+	on fail
+		dialog phrase failure
+		fail "ScS Alpha Abduction 3"
+	to offer
+		has "ScS Alpha Abduction 2: done"
+		has "ScS danforth help"
+	on enter Alcyone
+		dialog
+			`When you enter Alcyone, Admiral Danforth's cruiser is already there. It seems he anticipated this. You give hot pursuit to the Alpha ship, and watch where it lands on Stormhold. You hail Danforth, and prepare to land together to catch the Alphas.`
+	
+	npc save accompany
+		government "Navy (Oathkeeper)"
+		system Alcyone
+		personality staying heroic
+		ship "Cruiser (Mark II)" "N.S. Peacemaker"
+	
+	on complete
+		conversation
+			`You and Danforth land a short distance from the Alpha ship, and troops pour out of the cruiser and set up a large perimiter, closing in slowly on the ship. You see weapons fire in the distance, and after a few minutes, all is quiet.`
+			`	Danforth and his men return with a group of nearly a hundred women. They must have been squashed into the cargo hold of the Splinter. Their clothes are ragged and their faces tired from the ordeal, but each walks under the arm of her Navy rescuer. Danforth comes over to find you.`
+			`	"Captain <last>. A little bird told me you needed a hand," he winks. "I'm glad to see you've found more useful things to do than propaganda missions. It was good working with you." Apparently he still remembers your marketing tour for the Syndicate.`
+			choice
+				`	"It's good to work with you too, sir."`
+					goto hometime
+				`	"We have to catch those Alphas whatever it takes."`
+			`	"Indeed. And thanks to your quick thinking, we got them this time.`
+			label hometime
+			`	"Well," he continues, "we can't take all these ladies back to Farpoint in my ship, though some of my men would be quite happy with that arrangement! So we'll bring them to Canyon, where we can arrange proper transport. Captain, will you accompany us?"`
+			`	As Danforth turns away, one of the women comes over to Danforth meekly, separating from the group being ushered into the cruiser. "Please, Mr Admiral Sir, what about the others?"`
+			`	"Others?!" says Danforth, and a look of horror comes over his face.`
+			`	"Nicole, Asmita and the others," she says, worried. "They were taken on another ship before we left that space station."`
+			`	"I didn't see any other ship come here."`
+			`	"They must have gone another way," you say.`
+			`	"Then let us pray they are still caught in the blockade. Quickly, we should get back to Canyon." Danforth hurries the woman into the Navy Cruiser and you power up your own ship."`
+
+mission "ScS Alpha Abduction 3 return"
+	landing
+	invisible
+	source Stormhold
+	destination Canyon
+	to offer
+		has "ScS Alpha Abduction 3 danforth: done"
+	on fail
+		dialog phrase failure
+		fail "ScS Alpha Abduction 3"
+	on complete
+		log `Alphas abducted women from Bluestone, to take as incubators for their offspring. We managed to track them down, and with the help of Admiral Danforth, kill the Alphas and rescue the women. However, some Alphas separated before we caught them: we'll do what we can to hunt them down and free their captives also.`
+	
+	npc save accompany
+		government "Navy (Oathkeeper)"
+		personality heroic escort
+		ship "Cruiser (Mark II)" "N.S. Peacemaker"
+
+event "ScS empty alcyone"
+	system Alcyone
+		fleet "Small Core Pirates" 3000
+		fleet "Large Syndicate" 6000
+
+event "ScS restore alcyone"
+	system Alcyone
+		fleet "Small Core Pirates" 400
+		fleet "Large Core Pirates" 600
+		fleet "Large Syndicate" 1200
+		fleet "Korath Large Raid" 50000
+
+mission "ScS Alpha Abduction 3 solo"
+	landing
+	invisible
+	source "Oberon Station"
+	destination Canyon
+	to offer
+		has "ScS Alpha Abduction 2: done"
+		not "ScS danforth help"
+	on fail
+		dialog phrase failure
+		fail "ScS Alpha Abduction 3"
+		event "ScS restore alcyone"
+	on offer
+		event "ScS empty alcyone"
+	on complete
+		event "ScS restore alcyone"
+		log `Alphas abducted women from Bluestone to take as incubators for their offspring. We tracked them down and destroyed them, but sadly the women were killed in the process by Syndicate ships. Some Alphas escaped: maybe there's still a chance of catching them and rescuing their captives.`
+	
+	npc kill
+		government "Alpha"
+		system Alcyone
+		personality heroic target staying
+		ship "Splinter" "King Lear"
+		dialog `The Alpha ship is destroyed, along with everyone on board. You'd better head back to Canyon.`
+		conversation
+			action
+				set "ScS abductors dead"
+			`The Alpha ship is destroyed, and you scan the wreckage for any signs of life. There are none: everyone who was on board is returned to dust and committed to the deep.`
+			`	Amongst the disappearing rubble the only thing you can find is a section of the cockpit, which on inspection yields some logs from the Alphas' escape. Your heart leaps to your mouth as you read what's there.`
+			`	There were over hundred women on board this, the King Lear, huddled in the cargo hold. But, before they left Oberon Station, a few were transferred to another ship! You don't know whether to be excited you might yet save some of the captives alive, or horrified some of the Alphas escaped! You'd better get back to Canyon and see what you can do.`
+	
+	npc
+		government "Syndicate"
+		system Alcyone
+		personality heroic vindictive entering staying
+		ship "Manta" "S.S. Caesar Salad"
+		ship "Quicksilver" "S.S. Felix Lighter"
+		ship "Quicksilver" "S.S. Nero Faro"
+	
+	on enter Alcyone
+		dialog
+			`You've found the Alpha ship there, now what to do with it?`
+			`	You wonder for a moment, then across your shoulder come streaming three Syndicate ships, guns blazing.`
+
+event "ScS war with FW"
+	"reputation: Free Worlds" <?= -100
+
+mission "ScS Alpha Abduction 4"
+	landing
+	name "Solving the Problem"
+	description "Talk with Mary-Jane's group on <destination> to see how you can reduce the Alpha problem."
+	source Canyon
+	destination Amazon
+	on fail
+		dialog phrase failure
+		fail "ScS Alpha Abduction 4a"
+	to offer
+		has "ScS Alpha Abduction 3: done"
+	on offer
+		event "ScS syndicate neutral to alphas"
+		event "fw at war with Syndicate" 9
+		event "ScS war with FW" 9
+		event "fw armistice" 9
+		event "fw tarazed republic" 9
+		payment 1000000
+		conversation
+			`You land and head straight to the security contractor with the news. It seems he's already heard the result, but not about the missing ship. He hands you a million credits "for the successful elimination of the Alphas," and says your commendation "comes from CEO Korban himself!" Korban is the CEO over the entire Syndicate corporation, so this is good recognition.	When you tell him about the missing Alphas and captives, he looks annoyed, and almost asks for your payment back.`
+			`	"We can't just do a job and be done with, can we? At least you got most of them. There's no telling where the others will be now; certainly not in Menkar, or my boys would have got 'em."`
+			choice
+				`	"Maybe they went back, or up to Mirfak?"`
+				`	"We have to find them! Fast!"`
+			`	"I'll set my team looking, and expand the net. There's nothing more for you to do now, unless you want to search every system and planet by yourself."`
+			`	There's not much more to be had from the security manager. He's just doing his job, and not much more.`
+			branch ara
+				not "ScS danforth help"
+			choice
+				`	(return to Danforth)`
+			`	You return to Admiral Danforth, who is arranging medical care and safe transport for all the rescued women, and otherwise seems is being kept at arm's length by the official security team.`
+			`	Danforth looks both tired and agitated when you meet him. You explain the security manager's lackluster promise to track down the remaining Alphas, and ask if he'll help.`
+			`	"I'm sorry, Captain <last>. I did some investigating myself; it looks like they slipped the net. There are Alpha enclaves dotted through space, but without more to go on there's not much we can do. At the same time," he says before you can protest, "something very important has come up that I have to attend to. I'm sorry to leave you like this, but once again, it was a pleasure working with you to rescue those we were able."`
+			`	You shake his hand and leave him to his duties.`
+			label ara
+			choice
+				`	(contact Arnold)`
+			`	Unusually, on Canyon you're able to set up an encrypted link that Arnold trusts. The conversation is patchy, but you're able to tell him the news, good and bad. He sounds grim, but less worried than you expected.`
+			`	"If they didn't go north," he says of the missing ship, "they must have gone south. Probably they're making for the pirate worlds down that way. I arranged for some blockades myself, and pulled strings in spaceport control offices, and we'll fill in the gaps in the Syndicate's net. We'll herd those Alphas round the galaxy until we catch them."`
+			`	"What can I do?" you ask.`
+			`	"Stop this happening again. The problem was, the managers on Bluestone were greedy for profit and bribes. So they let the Alphas meddle without questioning until it was too late. To deny Alphas a place in the Syndicate, means turning out corruption in the Syndicate. Go back to our Amazon lady friends and see what they've got. I'll let you know when we get a lead on this missing Alpha ship and the captives."`
+				accept
+	on complete
+		fail "ScS Alpha Abduction 4a"
+
+mission "ScS Alpha Abduction 4a"
+	landing
+	invisible
+	source Canyon
+	destination Amazon
+	to offer
+		has "ScS Alpha Abduction 3: done"
+	npc board
+		government "Alpha"
+		personality derelict
+		system Sheratan
+		ship "Scout" "Viola"
+		conversation
+			`There are no signs of any occupants when you board the Viola, except for a girl's hairband you find stashed behind a bit of ducting in the cargo hold, with a Greek letter alpha scratched onto it. The girls must have been kept here.`
+			`	Perhaps the alphas switched ships here, mid-flight, to avoid detection. You make a note to inform Arnold when you land.`
+	
+	on enter Sheratan
+		dialog `As you enter Sheratan you see a derelict ship in the distance. Perhaps this is the breakaway Alphas' getaway ship?`
+
+mission "ScS a truce and war"
+	landing
+	to offer
+		has "ScS Alpha Abduction 4: offered"
+		has "event: fw armistice"
+		not "ScS a war and truce: offered"
+		not "ScS a truce and justice: offered"
+	source
+		government "Free Worlds" "Republic" "Independent" "Neutral" "Quarg"
+	on offer
+		conversation
+			`When you land the atmosphere is different. Relief and apprehension are in the air. Playing over every TV is the news that the Republic and the Free Worlds are no longer fighting. It seems some evidence has come that the Free Worlds were not behind the terrorist attacks at all. Some channels even report a rumour that the Syndicate may have been behind them, others say nothing of the source.`
+			`	There are reports also that Free Worlds space has become hostile to the Syndicate, and a new conflict might be breaking out.`
+				decline
+
+mission "ScS a truce and justice"
+	landing
+	to offer
+		has "ScS Alpha Abduction 4: offered"
+		has "event: fw armistice"
+		not "ScS a war and truce: offered"
+		not "ScS a truce war: offered"
+	source
+		government "Free Worlds"
+	on offer
+		conversation
+			`When you land the atmosphere is different. Relief and apprehension are in the air. Playing over every TV is the news that the Republic and the Free Worlds are no longer fighting. It seems evidence has come to light that proves the Syndicate to be behind the terrorist attacks, and not the Free Worlds at all.`
+			`	With this exposed, the Syndicate has now become hostile to the Free Worlds and is threatening their own war.`
+				decline
+
+mission "ScS a war and truce"
+	landing
+	to offer
+		has "ScS Alpha Abduction 4: offered"
+		has "event: fw armistice"
+		not "ScS a truce and war: offered"
+		not "ScS a truce and justice: offered"
+	source
+		government "Syndicate"
+	on offer
+		conversation
+			`When you land the atmosphere is different. Relief and apprehension are in the air. Playing over every TV is the news that the Republic and the Free Worlds are no longer fighting. It seems some evidence has come that the Free Worlds were not behind the terrorist attacks at all. A loud voice on one screen is warning about new lies being spread against members of the Syndicate, and talks about a dangerous criminal supposedly making up stories to escape justice.`
+			`	There are also reports that Free Worlds space has become hostile to the Syndicate, and general warnings to merchant captains that it may not be safe travelling that way.`
+				decline
+
+##########################
+# Purging the Extremists #
+##########################
+
+mission "ScS Downey 1"
+	landing
+	autosave
+	name "Taking Downey Down"
+	description "Go to Downey's office and see if he'll offer you more work, so you can gather hard evidence to convict him."
+	source Amazon
+	destination "Shangri-La"
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Alpha Abduction 4: done"
+	on offer
+		log `It's time to deal with the corruption inside the Syndicate that lets tragedies like this Alpha abduction happen. Starting with Benjamin Downey: I'll go back and pretend to work for him, to uncover the truth and expose him.`
+		conversation
+			`The Amazons are ready for you when you arrive, and have convened a meeting. Mary-Jane affirms much the same stance as Arnold, that the Alphas were able to pull off the abduction because of the corruption and evil in the Syndicate that put profits before human life.`
+			`	"We need a revolution in leadership, from top to bottom. Out with those who feast on the labour of the poor. Out with those who throw away human life for a credit. Out with those who would bomb a city for profits - and with nuclear weapons too!"`
+			`	Mary-Jane pauses for breath. "First, we need to deal with these murderers, the extremist faction in our midst. Rounding them up and handing them over to the authorities. Starting with your friend Downey. Does he still trust you?"`
+			choice
+				`	"I think so, he still wanted my help."`
+				`	"Probably not after the debacle with Sawyer."`
+			`	"Go back to his office and see. We know from your reports, and our other informers, that he's black as sin, but we haven't the evidence to convict. See if you can get something on him, then we'll have him brought to trial and locked away."`
+			`	"Very well," you say, "but you'd better have my back if this goes wrong."`
+				accept
+
+mission "ScS Downey 2"
+	landing
+	name "Defend Maker"
+	description "Defeat the Free Worlds militia attacking the Delta Capricorni system, then land on Maker. Then you can decide whether to frame Downey for the attack."
+	source "Shangri-La"
+	destination Maker
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Downey 1: done"
+	on offer
+		conversation
+			`You go up the many elevators and corridors to Downey's office, for what you hope will be the last time.`
+			`	"Come in, <last>." Downey seems to be back to his usual self, although the ruffled papers on his desk and shelves tell another story. "War has changed, hasn't it. Or have you heard? Those good-for-nothing rebels decided to blame us for our faults and started attacking our ships.`
+			`	"Still, war is war, and war means work. I'm glad you came, because there's work to do in the West - fighting, and you're just the Captain for it."`
+			choice
+				`	"I don't think I want to do any more fighting."`
+				`	"Who is fighting?"`
+					goto whois
+			`	"Stop talking rubbish. You're a fine pilot, and it pays well.`
+			label whois
+			`	"Some rascals have decided to bring the war to us, and are about to launch an attack on <system>. What they hope to gain I don't know, but it doesn't matter, because you're going to fight them off. Protect the skies over <planet>, and show those dirt-mongers we can't be bullied."`
+			choice
+				`	"By myself?"`
+					goto tutti
+				`	"I am the Queen of Death. The wicked will flee from my presence."`
+					goto solo
+				`	"How do you know about this?"`
+					goto tipoff
+				`	"Shouldn't the Navy do that?"`
+			`	"We have a delicate balance with the Navy, and the freedom to patrol our own space. In these times everything delicate is fragile, and we have to remind people the Syndicate is not ready to be pushed over. So go and rescue that planet."`
+				goto myself
+			label tipoff
+			`	"I have eyes. And ears. Now go and rescue a planet!"`
+			label myself
+			choice
+				`	"By myself?"`
+					goto tutti
+				`	"I am the Queen of Death. The wicked will flee from my presence."`
+					goto solo
+			label tutti
+			action
+				set "ScS defence help"
+			`	"What, you're not a one-man army already? No fleet of your own?" He chuckles. "Don't worry, there's a fleet ready for you to lead them. Lead them to victory for the Syndicate!"`
+				goto end
+			label solo
+			`	"Excellent. I shall make sure no one gets in your way and steals your glory. Go forth in victory for the Syndicate!"`
+				goto end
+			label end
+			`	You head out to defend <system>, but you wonder how Downey knew. Is it possible he planned it for propaganda? You could, perhaps, say he did, and get him under lock and key where he belongs. Anyway you can make that decision after the battle.`
+				accept
+	
+	npc disable
+		government "Militia (Rogue)"
+		system "Delta Capricorni"
+		personality heroic staying entering
+		dialog `The insurgents are defeated, and you can now land on Maker.`
+		ship "Bastion" "Yip"
+		ship "Bastion" "Scowl"
+		ship "Modified Argosy" "Woggles"
+		ship "Fury" "Smasher"
+		ship "Fury" "Thrasher"
+		ship "Firebird" "Rexy"
+	
+	npc
+		to spawn
+			has "ScS defence help"
+		government "Syndicate"
+		personality heroic escort
+		ship "Protector" "S.S. Tiberius"
+		ship "Splinter" "S-94B1"
+		ship "Splinter" "S-91C6"
+		ship "Quicksilver" "S-19A5"
+		ship "Quicksilver" "S-19A6"
+
+mission "ScS Downey 3"
+	landing
+	name "Return to Amazon"
+	description "Return to the Amazons, on <destination>, to see what you can do next."
+	source Maker
+	destination Amazon
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Downey 2: done"
+	on offer
+		payment 780000
+		conversation
+			`The system is secure, and when you land you're given a payment of <payment> for the rescue. After a while, a senior Syndicate executive comes and finds you, wanting to ask a few questions.`
+			`	"Captain <last>," he says once you're in the privacy of his office. "It is fortuitous timing that you got here when you did. Many thanks for your assistance. May I ask how you knew to be here?"`
+			`	This could be a good time to incriminate Downey, if you wish to, although you don't know for sure that he had any fault in this. Or, you could tell the truth and hope for a better opportunity later.`
+			choice
+				`	"Benjamin Downey warned of the attack and sent me here."`
+					goto truth
+				`	"Benjamin Downey planned it for propaganda, and framed the Free Worlds."`
+			action
+				log `Fought off an attack on a Syndicate world by rogue militia. Blamed it on Downey - may he rot in jail for his crimes.`
+				set "ScS downey lie"
+			`	"I see," says the executive. "I have suspected something like that of Downey for years. Don't you worry, I will see to it that he is taken into custody and faces full punishment for his crimes. Thank you for your valuable information."`
+			`	Well, that seemed to go as well as you could have hoped. You'd better head back to the Amazons to see what to do next.`
+				accept
+			label truth
+			action
+				log `Faught off an attack on a Syndicate world by rogue militia. Don't know for sure how Downey knew about it in advance, so I just told the truth.`
+				set "ScS downey truth"
+			`	"I see," says the executive. "He does have spies everywhere; he must have got a tip-off. Thank you again for your assistance, and I'll relay your information, and your success, to the higher-ups."`
+			`	The system is safe, but you have nothing on Downey. You'd better go back to the Amazons and see what to to next.`
+				accept
+
+mission "ScS Downey 4"
+	landing
+	name "Accosting Benjamin 'Crook' Downey"
+	description "Downey has gone to Buccanner Bay to spend his ill-gotten gains. Join a blockade in <system> ready to catch him as he returns. They'll be waiting in <planet>"
+	source Amazon
+	destination "Charybdis Station"
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS downey truth"
+	on offer
+		conversation
+			`When you meet with Mary-Jane, she has news. "It's not quite what we expected, when you went off to catch Downey in his tricks, that he'd end up with a massive bonus."`
+			`	"What do you mean?" you ask.`
+			`	"Exactly that. After you went to fight the militia, Downey got a commendation and a big bonus."`
+			choice
+				`	"Ah. I told the officer Downey arranged the rescue."`
+					goto silver
+				`	"What could I do? I had to help."`
+			`	"It's not like I could leave the people of Maker to be attacked," you say. "And we don't know if Downey had a hand in it or was just tipped off in advance."`
+			label silver
+			`	"Well," says Mary-Jane, "there may be a silver lining. Immediately after he got the bonus, he went away somewhere - in the dead of night, covering his tracks. That's suspicious at least. If we could find out where he went..."`
+			`	A thought flashes through your mind. "Buccaneer Bay!"`
+			`	"What?"`
+			`	"He had me transport him there and back, ages ago. He must have something there. Maybe he's saving up for a pirate retirement!"`
+			`	Mary-Jane's demeanor changes, and she hurriedly puts some calls through. For a while you hear her speaking in the distance, then she goes and comes back twice, and finally turns back to you. "Get to <system> quickly! If he's gone there we'll catch him on his way back. Hide out in <planet> until you get my call or see him enter the system. Then delay him there until the authorities arrive to take him down."`
+				accept
+
+mission "ScS Downey 5"
+	landing
+	name "Catch Benjamin Downey!"
+	description "Delay Downey's ship in the system, and wait for the authorities to arrive to take him down, then land on <planet>."
+	source "Charybdis Station"
+	destination "Delve"
+	deadline 1
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Downey 4: done"
+	on offer
+		conversation
+			`You fly into a bay on <origin>, and keep your scanners running. Now it becomes a patience game, and you don't even know for sure Downey went to Buccanner Bay. After a couple of hours, you get a message from Mary-Jane: "You were right, contacts on Antipode think he went through a few days ago." Another few hours later, another message. "Get ready, he may have just again passed through Matar."`
+			choice
+				`	(keep waiting and watch the scanner)"`
+			`	You warm up your engines and watch the scanner. Nothing. You contact traffic control and make sure you're all clear to launch. Still nothing.`
+			choice
+				`	(keep watching)`
+			`	And then, onto your screen comes a Syndicate Vanguard, the Feathers McGraw. You recognise the name from when Downey met you as Sawyer escaped. You hit your engines and get in his way.`
+				launch
+	
+	npc accompany save
+		government "Syndicate"
+		personality staying timid target
+		ship "Vanguard" "Feathers McGraw"
+	
+	npc accompany
+		government "Syndicate"
+		system "Al Dhanab"
+		personality target
+		ship "Splinter" "S-45D2"
+		ship "Splinter" "S-41A9"
+		ship "Splinter" "S-98Q3"
+	
+	on visit
+		dialog `You landed, but it seems not all the other police ships are in system. Unfortunately, this probably means Downey will get away. You might need to reload an earlier save.`
+	
+	on enter
+		conversation
+			`You set a course to get directly in Downey's way, and hail him on the comms to distract him until the Syndicate authorities arrive.`
+			choice
+				`	"Hey Downey, You're goin' Down!"`
+					goto down
+				`	"Fancy meeting you here! What's up?"`
+					goto whatsup
+				`	"What has roots as nobody sees..."`
+			`	"...up, up, it goes, yet never grows."	You abruptly enter into a game of riddles with Downey.`
+			`	Downey's ship seems to fall limp, and meander, as he's caught off-guard by the question. There's a pause, and Downey's voice comes over the radio. "Aha! Mountain!" Instead of immediately jumping away, he hits you with his own riddle, something about horses and hills.`
+			choice
+				`	"Pegasus"`
+					goto fail
+				`	"Alexander the Great"`
+					goto fail
+				`	"Teeth"`
+			`	There's a sigh of defeat on the other end, and you follow up with another riddle. "Voiceless, it cries!" Downey must get outside to play golf or something pretty often, because he figures this one out quickly. His next riddle is about blue and green eyes, up and down.`
+			choice
+				`	"Girls in white dresses with blue satin sashes."`
+					goto fail
+				`	"Sun shining on daisies."`
+				`	"Eyes Cream!"`
+					goto fail
+			`	Again you found the right answer. You ask a dark riddle: "It cannot be seen, cannot be felt..." but this one's pretty easy, given where you are. Downey replies with a riddle about a hinge-less box.`
+			choice
+				`	"Tree trunk"`
+					goto fail
+				`	"Egg"`
+				`	"Galaxy in a marble"`
+					goto fail
+			`	Right again! You feel relief, but it doesn't stop there. You need a new riddle. Food makes you think of another. "Alive without breath, as cold as death." Downey stutters for a minute on this one, but gets it still. He tries something tricky, about enumerate legs.`
+			choice
+				`	"Fish, man and a cat."`
+				`	"Reverse-Sphinx"`
+					goto fail
+				`	"Spiders and insects."`
+					goto fail
+			`	Finally you think you've got him: you give him the hardest riddle you know. "This thing all things devours..." but before you get to the end he shouts, "Time! Time!" You're not sure if he already knew the answer, or if the radio's not quite working right and he was trying to say something more. He follows up with some not-really-riddle about his pocket, but you guess the answer easily enough. You need one last riddle.`
+				goto last
+	
+			label fail
+			`	"Wrong!" He shouts over the radio. "Hahahahaha!"`
+			`	Before he can jump away, you protest. "One more! Let's see how clever you really are! Let me try one more." This one had better be good.`
+	
+			label last
+			choice
+				`	"I went into the woods and got it."`
+			choice
+				`	"I sat down to seek it."`
+			choice
+				`	"I brought it home with me because I could not find it."`
+			`	Finally, this really stumps him. You fly rings around him, and wait for the authorities to arrive. They must be here soon. Better not leave the system or land until they arrive - and make sure when you land you land on <planet> not back on the station!`
+				accept
+	
+			label whatsup
+			`	There's a pause, and no reply on the radio. You hail again. "Downey! Good to see you! Where have you come from?"`
+			`	There's another pause, then Downey's voice comes, cheerful. "<first>! I trust you're saving our fortunes as usual."`
+			choice
+				`	"Sure, sure. That's why I'm here to find you."`
+			`	There's another pause. The wavering in Downey's voice becomes more prominent. "Um... You must have been on your way to my office?..."`
+			choice
+				`	"Nah, I had this funny feeling I'd find you here if I waited long enough."`
+			`	"...Such luck!" he says. "How serendipitous!"`
+			`	You carry on taunting him like this, with longer and longer pauses, while you wait for the authorities to arrive. They must be here soon. Better not leave the system or land until they arrive - and make sure when you land you land on <planet> not back on the station!`
+				accept
+	
+			label down
+			`	Downey makes no answer, but you can feel his redness and anger over the radio. Slowly, you start chanting, "down... down... down... down..."`
+			`	Soon the authorities must be here. Better not leave the system or land until they arrive - and make sure when you land you land on <planet> not back on the station!`
+
+mission "ScS Downey 6"
+	landing
+	name "Return to Amazon"
+	description "Return to the Amazons, having successfully caught Downey in his own folly."
+	source Delve
+	destination Amazon
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Downey 5: done"
+	on offer
+		log `Downey took his reward money to Buccaneer Bay, for some deal with pirates. That was his undoing, though, and now he's safely uner lock and key.`
+		conversation
+			`The Syndicate ships follow you down and herd the Feathers McGraw onto a pad. Downey doesn't even try to resist as officers surround his ship: there's no point trying to run now. One, in a highly-decorated uniform, walks up to Downey holding up some sort of warrant or notice.`
+			`	"Benjamin Alexander Andrew Downey. This is a record of your properties and assets on Buccaneer Bay, illegally purchased in collaboration with pirates through holdings you control. Do you deny it?" Downey remains silent, but you can see the fear in his face. The officer produces a pair of handcuffs, and escorts Downey away, while other officers head on board to commandeer his ship. One extremest, at least, will finally be locked away.`
+			`	You should head back to the Amazons now, and see what you can do next to hunt down this poision in the Syndicate.`
+				accept
+
+mission "ScS Villains 1"
+	landing
+	name "Catching the Villians: 1"
+	description "Track down the All for One in the <system> system, and disable her to have the Extremists arrested - or send them to the void of space. Then land on <planet>."
+	source Amazon
+	destination Millrace
+	to offer
+		or
+			has "ScS Downey 6: done"
+			has "ScS downey lie"
+	on offer
+		conversation
+			`You reach Amazon and seek out Mary-Jane and her colleagues. The good news, they say, is that Downey is now safely under lock and key. The better news, is while you were away they uncovered more extremists to catch.`
+			branch truth
+				has "ScS downey truth"
+			`	"After you fought the militia off from Delta Capricorni, officials moved in pretty quick on Downey. Rumour is they raided his office and everything. Good work. Now we can move in on the other extremists we've identified. The next is a pair of CEOs, escaping from <planet>. They were both part of the terrorist plot, so don't go easy on them. Disable their ship and land, and they'll be arrested. Or, if you can't, then shoot them down: the free air's too good for them after their part in murder.`
+				goto next
+			label truth
+			`	"Excellent work catching Downey. There's no way he can get out of this one. Most of what we know is rumour, from informants who catch glimpses of documents, but we know enough to know now Downey was in deep with some pirates, setting up a retirement for himself. The Syndicate will have his head.`
+			`	"Now we need you to go to <planet>, and catch two more extremists we've identified, a pair of CEOs. They were both part of the terrorist plot, so don't go easy on them. Disable their ship and land, and they'll be arrested. Or, if you can't, then shoot them down: the free air's too good for them after their part in murder.`
+			label next
+			`	"They'll be fleeing in an arrow, so you'll need to be fast. It's called the All for One."`
+			choice
+				`	"When I'm done with them, they'll call it the All for Nothing!"`
+					accept
+				`	"I'll get my fastest interceptor and be off."`
+					accept
+	
+	npc disable save
+		government "Syndicate (Extremist)"
+		system Fomalhaut
+		planet Millrace
+		personality staying heroic target marked launching
+		ship "Arrow" "All for One"
+	
+	on complete
+		conversation
+			`You come into land and watch as Syndicate police pile on the hapless CEOs. Their ship is dragged out of the sky and cast at high speed into the atmosphere, which you see with the naked eye as a fireball tearing through the sky, flickering, and vanishing. When the police ships land, you have the satisfaction of seeing two bewildered and angry terrorists being marched off to face justice.`
+			`	You should head back to Amazon to see what's next.`
+	
+	on abort
+		dialog phrase failure
+	on fail
+		conversation
+			`You gave those terrorists what they deserved, and hope their victims can now rest in a little more peace. After a while, Syndicate police come up to you and ask for your statement, which you give, omitting the tip-off from the Amazons. The police make no suggestion of any guilt in the matter, so they must have become aware too, and been just too late to do the job themselves.`
+			`	Now you should head back to Amazon to see what's next.`
+
+mission "ScS Villains 1 return"
+	landing
+	name "Return to Amazon"
+	description "Return to the Amazons having apprehended one group of extremists."
+#	source Millrace
+	destination Amazon
+	to offer
+		or
+			has "ScS Villains 1: done"
+			has "ScS Villains 1: failed"
+
+mission "ScS Villains 2"
+	landing
+	name "Catching the Villians: 2"
+	source Amazon
+	destination Lodestone
+	description "Catch some shadowy Extremists in a Firebird as they leave <destination>."
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Villains 1 return: done"
+	on offer
+		event "deep sky tech available"
+		event "navy out of rastaban"
+		event "fw tarazed joins"
+		conversation
+			branch truth
+				has "ScS downey truth"
+			action
+				log `Downey was acquitted for the rogue militia attack! Better hope he doesn't realise I falsely accused him.`
+			`Mary-Jane and the others congratulate you on your return, that those two extremists will never terrorise the worlds again. They have bad news, though. Downey was arrested on the charge of staging the attack in Delta Capricorni, but it turned out there was no evidence for it. Perhaps he was innocent of that crime after all; or perhaps he hid his tracks too well. He's now free, and you'd better hope he doesn't hear you denounced him.`
+			`	Soon enough, though, you're talking about the next group they've identified.`
+				goto next
+			label truth
+			`Mary-Jane and the others congratulate you on your return, that those two extremists will never terrorise the worlds again. Soon enough, you're talking about the next group they've identified.`
+			label next
+			`	"Something really fishy here. We can't find out where they've been, or who they work for. But the links are very clear that they're in deep with extremism. Take them down, but don't kill them if you don't have to. We'll tip off the police to interrogate them thoroughly when they land.`
+			`	"Their ship is a Firebird, the Nick B."`
+			choice
+				`	"I'll catch them and shove them up where the sun don't shine. See what they can tell us then."`
+					accept
+				`	"I'll be back with their heads - or the heads of their confessions."`
+					accept
+	
+	on enter Ankaa
+		set "ScS spotted nick b"
+		conversation
+			`You enter Ankaa just in time to see the Nick B vanish into hyperspace, but not quick enough to see which way.`
+			choice
+				`	(try to follow)`
+			`	You speed the <ship> to where you saw the Firebird, hoping in vain to catch some clue of which way it jumped. It's hopeless. Even your logs didn't catch much. Pity you weren't ready to record finer readings. Perhaps the Amazons can make something of the scan logs you did get.`
+			choice
+				`	(check the scanners again)`
+			`	You look closer, fine-tuning the scanners for this area of space. It seems hopeless, and you'd better land soon. But, you do spot a bit of debris. Flying over to it - and, tracking its trajectory carefully in hope of a clue - you scoop it up.`
+			`	You've done all you can. Now you'd better land quickly and send your logs to Mary-Jane. Perhaps that debris will turn out to be from the escapees too.`
+	
+	to complete
+		has "ScS spotted nick b"
+	on complete
+		log `Saw the missing Alpha ship, ever so briefly. They're in a Firebird named the Nick B. Arnold is doing his best to put a net around them.`
+		clear "ScS spotted nick b"
+		conversation
+			`You land and send a copy of your logs immediately to Mary-Jane. Next you go to your cargo hold to check out what you picked up. It's a piece of ducting, some relatively inconsequential bit of the side of a ship, but it does look right to be from a Firebird. Much more interesting, when you look closer, it's not just broken off from gunfire or daily wear. Bolts are loose, and the metal has sheared in some places as if neatly cut half way through. Someone has sabotaged this!`
+			choice
+				`	(look inside)`
+			`	You reach your arm inside, through this end, then through that vent, and your fingers brush a piece of paper! You unstick it - from some sort of gum - and pull it out.`
+			``
+			`	Dear friend,`
+			`		If you find this, please do not throw it away. This is not a prank; this is not a ruse. Three weeks ago, we were kidnapped from our home on Bluestone by green-skinned men. You must believe me! They took a hundred of us, then, after a few days, split us up onto different ships. I do not know where the others are, I pray you look for them and find them. Their names are Melissa and Penelope Turner, Hanna Vandeberg [a few more names are listed, some started and crossed out as if the author is struggling to remember the names, then gives up]. You will find all their names in the company records on Bluestone. We are fifteen of us left, shut night and day in this dark hole of a ship.`
+			`	A second time they made us move ships, threatening to throw anyone out of the airlock who would not comply. Sometimes, when our captors are busy on land, one of us can sneak outside, but I have not seen a spaceport or any other human being. Perhaps you will have found this letter in a field as you grazed your cows: please bring it to the police! Please!`
+			`	I cannot tell you where we are going, but I can tell you we are guarded by four evil men, who are getting desperate. Sometimes the ship lurches in space, and through the silence of the ship you can feel their screams. Something must be wrong. Will you find us before they kill us? We have no idea where they are taking us. Each day we take solace in each others' arms, but we have no power to change our destiny.`
+			`	Except this letter, which I pray finds you well, and does not cost our lives.`
+			`	With haste, and hope,`
+			`		Nikki Taylor`
+			``
+			choice
+				`	(continue)`
+			`	Quickly you send a copy to Mary-Jane, and await her response. The suspense is agonizing, and you check your logs, and the spacport public records, and anything you can find while you wait. At last your communicator rings, and you patch through a call from your ship: but it's not Mary-Jane, it's Arnold, the Armchair Rights Activist.`
+			`	"Captain <last>! How did you get those scans! Our Amazon friends sent them over; you'll never guess what they are."`
+			choice
+				`	"I think I will."`
+					goto know
+				`	"What are they?"`
+			`	"The 'Extremists' you were chasing - well, they were, of a sort - it's the missing Alpha ship!"`
+			label know
+			`	You send across a copy of the letter you just read, and there's a stunned silence on the other end. You think maybe you can hear a muffled sob.`
+			`	Arnold's voice wavers as he replies. "We've been on the tail of those Alphas ever since they slipped your fingers around Zaurak; but always two steps behind. These logs put us in the lead again. But that letter... I have the records here. Victoria and Nicole Taylor, twin sisters. Can you take it to their grandmother on Relic? I know that's a way out, and you have work with the Amazons catching baddies, but it would mean so much to her. Meanwhile I will try and get a proper fix on those Alphas, so we can catch them once and for all and rescue these valiant women."`
+			`	Now you have two ways to go: East, to continue hunting extremists; West, to deliver a letter and hunt Alphas. You must balance them as you feel best, and your friends will do their best to help.`
+
+mission "ScS Villains 2 return"
+	landing
+	name "Return to Amazon"
+	description "Return to the Amazons to carry on purging Extremists from the Syndicate."
+	source Lodestone
+	destination Amazon
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Villains 2: done"
+	on complete
+		conversation
+			`The Amazons are all a bit shocked that the extremists you were chasing turned out to be Alphas. They're working hard, one says, to figure out how they identified them as extremists, and if it was just coincidence of suspicious behaviour. If they're really working together, that becomes much more worrying!`
+			`	"For now," Mary-Jane says, "you've got more extremists to catch - pray they aren't Alphas this time!" A group, she explains, have holed up on Quicksilver, and instead of escaping through Syndicate space they're collecting resources and building up some kind of fortress.`
+			choice
+				`	"Perhaps by the time we get there, it'll be a Pirate planet!"`
+					goto pirate
+				`	"Why don't we leave them there then? To rot away from civilisation?"`
+			`	"We can't let them escape justice that easily. They have to stand trial. Besides, what if more fugitives join them - even Alphas! - and they grow in power to threaten the Syndicate again?"`
+				goto plan
+			label pirate
+			`	"Ha. I don't think they'll get there yet, though they might given time."`
+			label plan
+			`	"So what we're going to do," says another, "is take the fight to them. Flush them out of their hidey-holes." The speaker is a thick-set woman dressed in military gear, with a variety of side-arms hanging at her belt. Two more women in military dress stand to her right, and to her left a tall woman with a full-length longbow slung at her back. Mary-Jane introduces them.`
+			`	"<first>, this is Halga, Freida, Jana and Enja, the embodiment of the strength of women. You will take them to Quicksilver, where they will find this group of Extremists, catch them, and leave them tied up in the spaceport with the details of their crimes slung round their necks. Meet these ladies in the spaceport in half an hour, with space for them." She turns to the group. "Victory to the Amazons!"`
+			`	"Victory to the Amazons!" twenty voices cry.`
+			`	"And to Captain <last>," adds a voice from the back.`
+
+mission "ScS Villains 3"
+	priority
+	name "Catching the Villains: 3"
+	description "Take four heavily-armed Amazon women to apprehend extremists on <destination>."
+	source Amazon
+	destination Quicksilver
+	passengers 4
+	blocked `You need space for four angry, dangerous, heavily-armed women. It wouldn't be safe to ask them to hang out in your cargo hold for the trip.`
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Villains 2 return: done"
+	on offer
+		conversation
+			`You find Halga, Frieda, Jana and Enja waiting for you by your ship. They're getting some funny looks, so you hurry them on board.`
+				accept
+
+mission "ScS Villains 3 return"
+	landing
+	name "Return to Amazon"
+	description "Return to Amazon with the victorious Amazons."
+	source Quicksilver
+	destination Amazon
+	passengers 4
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Villains 3: done"
+	on offer
+		conversation
+			`Halga directs you to a landing spot on Quicksilver near a mining facility and a collection of warehouses. "They may have amassed a following, so don't worry if you see people running everywhere. We're only interested in the five instigators. Do you want to come with us?"`
+			choice
+				`	"I wouldn't miss it."`
+				`	"No thanks, I'm not really a ground-fighter."`
+					goto wait
+			`	Frieda, Jana and Enja jump off first and go ahead. Jana still has her longbow slung on her back, with a quiver of arrows.`
+			choice
+				`	"Psst, what's with the bow?"`
+				`	(follow them)`
+					goto follow
+			`	Halga chuckles. "It's just for show. She can't really use it."`
+			label follow
+			`	You and Halga set out after them, and enter the facility by a small side-door. It won't yield to the lockpicks Frieda is carrying, so she lifts an axe out of her belt and smashes it with one blow.`
+			`	"Way to keep it a secret!" whispers Enja.`
+			`	"I think we lost our 'secret' with <first>'s engines," she half-whispers back.`
+			choice
+				`	(enter the corridor)`
+			`	The Amazons split right and left, with you following Enja and Halga. One by one you check the doors, with Enja spotting ahead and Halga at the ready with more weapons than you could imagine. In the distance you hear a bang, then a crash, and many screaming voices. Halga chuckles, and you head up the corridor swiftly.`
+			`	"Left here!" shouts Enja, sill trying to whisper. You follow toward a door at the end of the hallway, but before you reach it, a man in a suit bursts through, skids to a stop with horror on his face, turns around and hightails it back.`
+			choice
+				`	(give chase)`
+			`	You and Halga run after him, while Enja doubles back and swings nimbly up onto a balcony. The room you end up in is a sort of cafeteria, and there's a great clamour as the man in the suit scrambles over trolleys and behind benches, and Jana bursts into the room from behind him and pounces as he tries to duck under a table. The Amazons tie him up and the three of you escort him to a closet where you find another suited man already bound and gagged.`
+			`	"<first>, can you guard them here while we catch the others? Shoot them if they try to run."`
+			`	"In the legs, in the arms, in the chest, anywhere you like," says Jana.`
+			`	"Start between the legs," says Halga, and they run off. The men pale and tremble.`
+			choice
+				`	(guard them and wait)`
+			`	You shut the closet door, and stand guard in the hallway outside. Noises clamour in the distance, and after some minutes Enja brings you one more, then another, suited men to add to your closet. Each time she runs off, springing through some door, or even a hatch in the ceiling.`
+			`	There's a quiet, then a rush of feet as a man bursts through one end of the hallway. He stops half way to you, like a frightened rabbit, and tries the doors on either side of him. They're locked.`
+			`	Behind him come Halga and Frieda, and he panics and charges toward you. "Stop him!" shouts Halga. You reach for your gun, but Enja drops from a hatch in the ceiling. She misses, and joins the chase. You aim, but the man - surprisingly athletic for an office worker in a pristine suit - is running fast and if you miss him you might hit one of your friends.`
+			choice
+				`	(shoot)`
+				`	(try to grab him)`
+					goto grab
+			`	You shoot, but miss, and hit a wall. There's a loud hiss of steam from a pipe behind. "Careful!" shout the other three, and duck under its spray.`
+				goto chase
+			label grab
+			`	As he reaches you, you brace for a tackle. There's a scuffle, but he gets away, tearning his suit jacket as he goes. He's wearing some sort of body armour underneath.`
+			label chase
+			`	The runner sprints away, and the noise of Halga's gun slams your ears next to you. The man stumbles, but carries on as the bullet bounces off his kevlar. He tries a door, but lurches back and continues up the long hallway. Seconds later Jana enters through that same door.`
+			`	She kneels down and lifts the bow from her back. Fitting an arrow, she draws, aims, and as the man reaches the final door there's a whistling sound up the hallway: and at the end, a yell of pain. He falls over clutching his leg, and you all race up to him and the feathered arrow sticking out of his heel.`
+			`	Frieda bandages his foot, ties him up, and you escort the five prisoners to your ship, leaving them ultimately in a room in a corner of the main spaceport, each with a plastic folder hung round their neck full of documents detailing their crimes.`
+				goto end
+	
+			label wait
+			`	The four women jump off your ship and head quietly to a side-entrance, armed with guns, tools, rope... and Jana with her bow and arrows. You're not sure if she can really use them, or they just complete the outfit.`
+			`	In the distance you hear a 'thunk', then quiet again, then bangs, and yells, and clamour of panic. People start running out of the buildings, but you see no sign of the Amazons and their quarry. After a while things calm down, and then you see a man in an expensive suit burst from a door and run toward your ship.`
+			`	As he sees you watching him, he veers away, and at the same moment the four Amazons come running from the building after him. Helpless, you watch him speed toward a waiting car, and you consider starting up your weapons and blowing it off the tarmac. But as you watch, a whistling sound comes through the air, and an arrow lands squarely on the man's heel. He trips and falls down, clutching his leg. The Amazons catch him up and bind him and his wound.`
+			`	Three of them disappear back inside, and come back escorting another four men. You take the prisoners to the spaceport and drop them off in a room in a corner, each with a plastic folder hung round their neck full of documents detailing their crimes.`
+	
+			label end
+			`	Your work is done, you can return to Amazon victorious.`
+				accept
+
+mission "ScS Villains 4"
+	landing
+	name "Catching the Villains: 4"
+	description "Track down the Great Profit[sic] of Heaven in the <system> system. Disable her to have the Franz and his colleagues arrested, or send them to the void of space like they deserve. Then land on <planet>."
+	source Amazon
+	destination Hephaestus
+	to offer
+		has "ScS Villains 3 return: done"
+	on offer
+		conversation
+			`You and the four huntresses are greeted with cheers, when you return to the Amazon headquarters. There's a small celebration of victory, after which Mary-Jane fills you in on the next target.`
+			`	"Do you remember a man named Franz Francis Jr.?"`
+			choice
+				`	"I worked for him and his weird cult early in the war."`
+					goto remember
+				`	"Nope, name's completely slipped my mind."`
+			`	"I think you told us you did some jobs for him and his crew, some time back. Anyway they're an influential group in the Syndicate, and a big part of capitalising on the war. Every one of them worked hard to maximise gains at the expense of lives, and they had their fingers in many places, including spies in the Navy and amongst the Free Worlds militia.`
+				goto timeup
+			label remember
+			`	"So you know how they took full advantage of the war for profit. Every one of them worked hard to maximise gains at the expense of lives, and they had their fingers in many places, including spies in the Navy and amongst the Free Worlds militia.`
+			label timeup
+			`	"But their number has come up, and at last the less-crazy authorities are going to take them in. As before, we're a step ahead of the police, who are slowed down by bribes and red tape. We know they're going to be launching from Hephaestus in their private Protector, the Great Profit of Heaven. Catch them, in whatever way you please, and the police will pick up what's left."`
+				accept
+	
+	npc disable save
+		government "Syndicate (Extremist)"
+		system Markab
+		planet Hephaestus
+		personality staying heroic target marked launching
+		ship "Protector" "Great Profit of Heaven"
+	
+	on complete
+		log `Been apprehending various extremists within the Syndicate, and finally Franz Francis Jr and his strange colleagues. They can amuse each other with their strange dreams of twisted progress - in jail.`
+		conversation
+			`The battered remains of the 'Great Profit of Heaven' lands behind you, escorted by numerous Syndicate police. As Franz and his colleagues file off their ship, looking wan in the open light away from their office, you wander over. You smile sweetly and give them a little wave.`
+			`	One waves back, as they shuffle along between the bristling guns of the policemen, then there's a mumbling and a yelp and one shouts back angrily,`
+			`	"We gave you everything!`
+			choice
+				`	"Well it wasn't worth very much, was it."`
+				`	"And now you have nothing left."`
+			`	"We brought peace to the galaxy!" shouts another. "It was going to be like a tree... a beautiful treee..." his trails off into whining.`
+			`	Another chimes in. "Now we fall, and the Syndicate falls. Who will look after the galaxy when we're gone?" And another, "Think of the customers, the poor, disinfranchised customers..."`
+			`	"You could have been great," says Franz.`
+			`	"I am," you reply. "I became great by opposing evil. By opposing you."`
+			`	"If you spring us, a reward of fifty m-"`
+			`	A guard punches him in the mouth. That shuts him up. The prisoners are all marched off never to be seen again. You can head back to Amazon in peace.`
+	
+	on abort
+		dialog phrase failure
+	on fail
+		log `Been apprehending various extremists within the Syndicate, and finally Franz Francis Jr and his strange colleages. They're dead now. They'll never trouble the galaxy again.`
+		conversation
+			`You look back as you land, to see the smouldering remains on the Great Profit of Heaven. At last, they paid their debt. May all who think to follow in their footsteps take heed.`
+			`	Now you can head back to Amazon in peace.`
+
+mission "ScS Villains 4 return"
+	landing
+	name "Return to Amazon"
+	description "Return to the Amazons having apprehended Franz and his fellow extremists."
+#	source Hephaestus
+	destination Amazon
+	on fail
+		dialog phrase failure
+	to offer
+		or
+			has "ScS Villains 4: done"
+			has "ScS Villains 4: failed"
+
+mission "ScS Downey Returns"
+	landing
+	name "The Last Flight of Benjamin Downey"
+	description "Confront Benjamin Downey's ship in <waypoints>. Either disable it then land on <destination>, or destroy it for good."
+	source Amazon
+	destination Placer
+	waypoint "Gamma Cassiopeiae"
+	to offer
+		has "ScS Villains 4 return: done"
+	on offer
+		conversation
+			`Back at the Amazons' headquarters, there's a flurry of activity. "Your friend Downey..." people keep saying.`
+			choice
+				`	"What happened?`
+					goto what
+				`	"He's not my friend, and never was."`
+			`	"Your 'friend' Downey..."`
+			label what
+			branch truth
+				has "ScS downey truth"
+			`	"After he got acquited from the affair in Delta Capricorni, Downey must have got even more brazen. He's ordered a pirate attack on several Free Worlds systems!!`
+			`	"Then we have to stop it!" you say.`
+			`	"Already on it," says Mary-Jane, "and Syndicate security are aware and shutting it down. But they raided Downey's office, and pirates sprang out of nowhere and gunned down six officials. Downey fled with his entourage."`
+				goto where
+			label truth
+			`	"A few days ago somebody sprung Downey from prison. He returned to his office, gathered money and important documents, and fled with a handful of pirates."`
+			label where
+			choice
+				`	"Where to?"`
+			`	"They busted through blockades in Achernar and Al Dhanab, but Syndicate security forces held them off from Scheat. We think they turned and are hiding in Gamma Cassiopeiae, biding their time."`
+			`	"Not for much longer," you say, resolute. "This will be his last flight."`
+			`	"Be careful," says Mary-Jane. "His Vanguard is powerful enough itself, but now he's accompanied by a fleet of pirates. If you want him arrested, to face fair trial and judgement, disable his ship and land on <planet>, and the authorities will pick him up when his pirate fleet disperses. If you want to put him to final rest in Gamma Cassiopeiae... nobody will stop you."`
+				accept
+	
+	npc disable save
+		government "Syndicate (Extremist)"
+		system "Gamma Cassiopeiae"
+		personality staying heroic target
+		ship "Vanguard" "Feathers McGraw"
+	
+	npc
+		government "Pirate"
+		system "Gamma Cassiopeiae"
+		personality staying heroic
+		ship "Modified Argosy" "Blacktail III"
+		ship "Modified Argosy" "John Crook"
+		ship "Fury" "Vengeance Exalted"
+		ship "Berserker" "Axe of Power"
+		ship "Berserker" "Axe of Doom"
+		ship "Wasp" "Stinging Salesman"
+	
+	on waypoint
+		dialog `Downey's ship, the Feathers McGraw, is here. He responds to no hails, but powers up his weapons. You power up yours.`
+	
+	on complete
+		log `Downey went on the run, one last time, but I chased him and caught his ship. Now the Syndicate will lock him down tight, and he will face the justice he ought to have long ago.`
+		conversation
+			`It doesn't take long, after you land, for Syndicate ships to stream overhead and jump into <waypoints>. The pirates must have dispersed pretty quick after their leader was down. You hang around long enough to get a message from Mary-Jane: "They've got Downey. Confirmed. He's in custody and won't escape this time, if he lives long enough to try."`
+			`	You open a secure connection to get more detail, but there's not much to know. Downey will be transported under lock and key, and no one will see him except briefly at his trial.`
+			`	"Don't worry about some trickery. We've now got agents high enough in the system to make sure he gets prosecuted with the full prejudice of the law." She sighs. "With that over, I think you'd better take a break. Did you get anywhere tracking down those missing Alphas and the women they kidnapped?"`
+			branch romeo
+				has "ScS Alpha Hunt 3: done"
+			`	"I'm working on it," you say.`
+				accept
+			label romeo
+			branch ready
+				has "event: ScS alpha romeo ready"
+			`	"We're getting close," you say. "Just waiting on a ship from Arnold."`
+				accept
+			label ready
+			action
+				set "ScS romeo offered"
+			`	"We're getting close," you say. "Just waiting on a ship from Arnold."`
+			`	After finishing up with Mary-Jane, you give Arnold a call. It's nearly ready, he says. "I had to pull a lot of strings to make certain you-know-who wouldn't know if they have spies around. Go to Carbuncle Station, the Lovelace Labs place in Elnath: it'll be ready by the time you get there. The code word is 'wherefore art thou.'"`
+	
+	on abort
+		dialog phrase failure
+	on fail
+		log `Downey went on the run, one last time, but I chased him down and put and put an end to his evil. He will never again trouble the galaxy.`
+		conversation
+			`You land, satisfied that Downey will never again trouble the galaxy with his evils. Others may rise to replace him, but he, at least, is gone forever. You call Mary-Jane to let her know.`
+			`	"Well done <first>. He was a truly evil man, and we will have more peace for his loss. I think, after all that, you'd better take a break. We have no more extremists to catch right now. Did you get anywhere tracking down those missing Alphas and the women they kidnapped?"`
+			branch romeo
+				has "ScS Alpha Hunt 3: done"
+			`	"I'm working on it," you say.`
+				accept
+			label romeo
+			branch ready
+				has "event: ScS alpha romeo ready"
+			`	"We're getting close," you say. "Just waiting on a ship from Arnold."`
+				accept
+			label ready
+			action
+				set "ScS romeo offered"
+			`	"We're getting close," you say. "Just waiting on a ship from Arnold."`
+			`	After finishing up with Mary-Jane, you give Arnold a call. It's nearly ready, he says. "I had to pull a lot of strings to make certain you-know-who wouldn't know if they have spies around. Go to Carbuncle Station, the Lovelace Labs place in Elnath: it'll be ready by the time you get there. The code word is 'wherefore art thou.'"`
+
+##############
+# Alpha Hunt #
+##############
+
+mission "ScS Alpha Letter"
+	landing
+	name "Letter to Grandma"
+	description "Take Nikki's letter to her grandma on <destination>, while Arnold and his contacts try to trap the Alphas."
+	source Lodestone
+	destination Relic
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Villains 2: done"
+	on complete
+		log `People` `Nikki and Vicky` `Twin sisters who were captured by the Alphas. They come from Relic, where their grandmother still lives.`
+		conversation
+			`As you're coming in to land, you look up the Taylor sisters' grandmother's address, and send her a message to say you'll be coming. Arnold has already informed her that a captain will be coming round with news of her granddaughters, but left the rest up to you. It's some distance from the spaceport to her house, so you take a train from the nearest city, then a taxi to her house. It seems she lives quite some way away from development.`
+			`	You knock on the door, and an elderly woman answers. "Mrs Haythorne?" you ask.`
+			`	"That's me," she says. "You must be the space-captain who's been looking for my grandchildren. Come in," she says with a smile, but underneath you see the strain of grief."`
+			choice
+				`	(give her the message and excuse yourself politely)`
+				`	(come in to talk with her)`
+					goto talk
+			`	There's not much you can say, and it's better, you think, not to intrude on this poor woman's suffering, nor give her false hope. You hand her the message, and say her granddaughters are alive, and you and others are doing your utmost to find them quickly. She thanks you, and asks again if you won't come in for tea and a bit of cake, but you excuse yourself, saying you've got to get back to the skies, and you hope before long she'll be having tea and cake with her granddaughters again.`
+				goto end
+			label talk
+			`	You go inside, and soon enough you find yourself having tea and cakes, and hearing stories about 'Nikki and Vicky'. Their grandma moves seamlessly between stories of their childhood, tales of how they grew up, speculation about their adventures through the galaxy, and sometimes breaking down in tears - accompanied by, "oh I am sorry," and "please excuse an old woman," and "poor Clara, if only she knew." You reassure her and let her carry on when she's ready.`
+			choice
+				`	(ask about Clara)`
+					goto clara
+				`	(ask how the girls ended up on Bluestone)`
+			`	"Oh, little Nikki always said she'd see the stars. Sometimes it was all I could do to remind her to notice the ground. Vicky was always picking her up, helping with her homework, doing her chores for her. Those girls were inseparable! So when Nikki grew up and said she'd find work off Relic, of course Vicky had to go too. First they got jobs at the spaceport, then as maids on a cruise ship. They didn't have much school here -" she gestures out the window at the weather-beaten road, and a few sheep crossing it "- but they had brains. They used to write me letters. Oh, I do like letters, more than electronic messages. They knew that, my girls. But when they got to the refinery on Bluestone..." Tears well up again. "Those wicked, wretched men. Oh, nothing like that, I don't mean - but they work them too hard, give them no time: not even time to write a letter to their poor grandmother! I didn't hear much after that."`
+			`	"What about their parents?" you ask.`
+			`	The grandmother goes quiet for a bit. "My poor Clara. That's their mum. Oh, my poor Clara. She thought she could do better for them if she went away to work, so she did. She wouldn't listen. 'Stay with your family,' I said. 'Or take them with you.' 'It'll be no good,' she said. 'There's no space for them at the factories, and no hope here without money.'`
+			`	"Well, only the good Lord knows if she was right, but I know what I think. Clara brought back money when she could, but only stayed a day or two, then left for months. Her husband found work closer, but stopped visiting. He still lives round here, but doesn't care for them. So the girls lived with me, and I looked after them. Till they grew up - but by then they didn't know their mother, and she didn't know them: she was just somebody who comes with money. Oh, if only she'd stayed. Maybe they'd have stayed, and they'd be safe now."`
+				goto reassure
+			label clara
+			`	The grandmother goes quiet for a bit. "My poor Clara. That's their mum. Oh, my poor Clara. She thought she could do better for them if she went away to work, so she did. She wouldn't listen. 'Stay with your family,' I said. 'Or take them with you.' 'It'll be no good,' she said. 'There's no space for them at the factories, and no hope here without money.'`
+			`	"Well, only the good Lord knows if she was right, but I know what I think. Clara brought back money when she could, but only stayed a day or two, then left for months. Her husband found work closer, but stopped visiting. He still lives round here, but doesn't care for them. So the girls lived with me, and I looked after them. Till they grew up - but by then they didn't know their mother, and she didn't know them: she was just somebody who comes with money. Oh, if only she'd stayed. Maybe they'd have stayed, and they'd be safe now."`
+			`	"How did they end up on Bluestone?" you ask.`
+			`	"Little Nikki always said she'd see the stars. Sometimes it was all I could do to remind her to notice the ground. Vicky was always picking her up, helping with her homework, doing her chores for her. Those girls were inseparable! So when Nikki grew up and said she'd find work off Relic, of course Vicky had to go too. First they got jobs at the spaceport, then as maids on a cruise ship. They didn't have much school here -" she gestures out the window at the weather-beaten road, and a few sheep crossing it "- but they had brains. They used to write me letters. Oh, I do like letters, more than electronic messages. They knew that, my girls. But when they got to the refinery on Bluestone..." Tears well up again. "Those wicked, wretched men. Oh, nothing like that, I don't mean - but they work them too hard, give them no time: not even time to write a letter to their poor grandmother! I didn't hear much after that."`
+			label reassure
+			choice
+				`	(reassure her)`
+			`	"Mrs Haythorne," you say, standing up. "See here," you point to the letter on her lap, "your granddaughters are alive, they're well, and they've got the brains to leave us clues. You rest easy now. My friends and I will find them, and rescue them, and very soon - I promise - they'll be back here, hugging you and eating -" you take a bite "- your delicious cake, like they never left.`
+			`	"And as for me, thank you for welcoming me and sharing your time with me, but now I must be off. I have a rescue to do!"`
+			`	"Oh thank you, thank you, thank you," she waves as you head to the taxi and the long journey back to the spaceport.`
+	
+			label end
+			`	When you reach the spaceport again, there's a message from Arnold. "The net is tight: you might find them somewhere around Caph or Diphda, take a look."`
+
+mission "ScS Alpha Hunt 1"
+	landing
+	name "The Great Alpha Hunt"
+	description "The Alphas are caught in a net somewhere around the Caph and Diphda systems. Fly around there, and the nearby unoccupied systems, and see if you can find any trace of them."
+	source Relic
+	waypoint Caph
+	waypoint Diphda
+	waypoint Eteron
+	waypoint Acamar
+	waypoint	Kugel
+	to offer
+		has "ScS Alpha Letter: done"
+	to complete
+		never
+	on enter Caph
+		fail
+		conversation
+			`As you fly through Caph, checking your scanners and listening in on whatever you can, you catch an unencrypted transmission between a merchant ship and a Syndicate patrol. It's fairly mundane, but in the background you hear muffled voices. When you tune out the main voices and enhance the background, you get a shock.`
+			`	"The colours of the rainbow, sister."`
+			`	"Yes! The colours of the rainbow! I loved them. I learned to count with them. One, two, three, four.`
+			`	"Yes sister! One, two, three four."`
+			`	It sounds like they're talking loudly, but in the distance. But what catches your attention is their voices sound just like young versions of Mrs Haythorne, the grandmother of Nikki and Vicky who were trapped on the Alpha ship!`
+			choice
+				`	(keep listening)`
+			`	"Four, oh Four! I don't like four."`
+			`	"Quiet!" shouts a man's voice, but the girls continue.`
+			`	"Four, three, two, one! Four is such a stuffy number.`
+			`	"I don't like Four, sister."`
+			`	"Then we shall go to One. One of the Marsh. The One Marsh."`
+			`	It sounds like children's nonsense, and you remember these women - if that's who they are - aren't much older than children. But you think of the colours of the rainbow, and run through their names. Red, orange, yellow, GREEN! Green skin! Alphas! You set your engines as fast as you can toward the transmitting ship, but before you can find it, it's gone. You'd better let Arnold know as soon as you land.`
+
+mission "ScS Alpha Hunt 2"
+	landing
+	name "The Great Alpha Hunt"
+	description "Catch the Alphas as they land on Mars."
+	destination Mars
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Alpha Hunt 1: failed"
+	on offer
+		conversation
+			`As soon as you land, you set up a connection to Arnold and tell him what you heard. You hear a lot of 'tut, tut, tutt'ing on the other end, and Arnold says, "One, two, three, four. Four is green, green is the Alphas. That much is clear. What's four, three, two, one? What is One?"`
+			`	"Red," you say.`
+			`	"And the marsh? The red marsh? What could that mean? Red Marsh... Marsh Red... Marsh One..."`
+			choice
+				`	"Marsh-on! Martian!"`
+			`	"The Red Planet! Of course!" Arnold cries. "That must be their next goal! Okay, here's what we'll do. I'll have the blockades clear a hole to Sol and Mars. You go there too, and try to pick up their trail if you can. Then when they land, we'll catch them by surprise and bust them well. See you in victory!"`
+			choice
+				`	"I'll raise a glass when we have the Alphas dead and the captives safe!`
+					accept
+				`	mumble-mumble something hatching chickens and fat ladies`
+			`	"Yes, yes," says Arnold. "Get there quick so we can hatch that fat, green lady good and proper."`
+				accept
+	
+	on enter Sol
+		dialog `As you enter Sol you catch sight of the Nick B, the Alphas' Firebird, making its way swiftly to Mars. You follow as quick as you can.`
+	
+	on complete
+		log `Tracked the Alphas to Mars, but they switched ships to a Blackbird, and fled before we could catch them.`
+		event "ScS alpha looped" 6
+		conversation
+			`You fly over, about the place where the Nick B landed, until you see a ring of troops start to assemble. Ships take off and land in the distance, but this one won't get away. As the troops get close, you land nearby and go in to join.`
+			`	A sargeant greets you at a hanger, and inside you see the bulky Firebird, sporting what look like alien weapons. But there's no weapons fire, and all seems calm. You ask the sargeant if it's all over.`
+			`	"No sir, it was never started. There's no one on that ship. Not a soul.`
+			`	"But I saw it land!" you say. "Check it again!"`
+			`	"We did. There's no one there, not in any hatch, nor vent, nor cupboard. Whoever flew it down got away, before we got to them."`
+			`	As you stare in shock, there's a sudden rumble from the roof above, and before you can wonder at the huge building's low ceiling, there's a crash of splinters and falling debris. "Duck!" you shout. "Run!" shouts another.`
+			choice
+				`	(run)`
+				`	(duck)`
+			`	You dash for cover, and watch in disbelief as the roof of the hangar splits open and the sleek silhouette of a Tarazed Blackbird takes to the sky. It fires a few shots at your ship, but misses and tears up the path between you and it. By the time you get to your ship, the Blackbird is gone, and all you can do is contact Arnold.`
+			``
+			`	"I heard the bad news, <first>. Don't worry though, they can't get far in Republic space. Thanks to you we saw their ship before it got far away, so we'll have it again yet. I'll contact you in a few days when we have it and we can still raise that glass."`
+			`	It seems there's nothing to do now but wait. Hopefully Arnold is right, and you'll have them soon.`
+
+event "ScS alpha looped"
+
+mission "ScS Alpha Hunt 3"
+	landing
+	name "The Great Alpha Hunt"
+	description "Go to <destination> to catch the Alphas' Blackbird, the Antonio, as it tries to pass through."
+	source
+		near Altair 1 100
+	destination Shiver
+	on fail
+		dialog phrase failure
+	to offer
+		has "event: ScS alpha looped"
+	on offer
+		conversation
+			`When you land, there's an excited message from Arnold.`
+			`	"<first>! Are you ready? Those shifty, tricksy green men thought they pulled one over on us. They went right into Republic space where we didn't expect, then looped round through Merak and Menkent. But we got their trail! They're headed back toward Syndicate space. Come as quick as you can to Altair, and we'll catch them as they come through!`
+				accept
+	on enter Altair
+		dialog
+			`You're hailed as soon as you enter the system. "Captain! Good timing! We rushed their ship on the ground, but it took off before we could get them. She's all yours. The Antonio, a blackbird, disguised as a merchant.`
+			`	"Disable her, then land, and we'll have them finally!"`
+	
+	npc disable save
+		government "Bounty (Disguised)"
+		personality heroic marked staying launching
+		system Altair
+		ship "Blackbird" "Antonio"
+		conversation
+			`As the engines of the Antonio flicker out, and it stops dead in space, you're hailed by the captain.`
+			`	"What are you doing! Please! Don't kill me! I've got no cargo, I didn't do anything, I'm just a merchant captain going home. Please..."`
+			`	You ignore him, and leave him to the Navy who will make sure they're captured without harm coming to the captives.`
+	
+	on complete
+		log `The Alphas were caught in a net, but they slipped out by trading ships with a merchant. They're now flying a Heavy Shuttle, the Richard III. In the chaos, eleven women escaped and were rescued, leaving only four with the Alphas. Nikki was among the rescued; her twin Vicky is still in captivity.`
+		log `People` `Nikki and Vicky` `Nikki was rescued when the Alphas traded ships for a Heavy Shuttle, but Vicky is still out there somewhere, with three others, awaiting your rescue. Nikki and Vicky had been trying to drop clues to help us to follow them.`
+		event "ScS alpha romeo ready" 5
+		conversation
+			`You land, and sigh a huge sigh of relief. Arnold's voice flickers to life as you contact him, but he's troubled. "<first>, you'd better go and find the lieutenant, something's wrong." You look out as the Alpha ship, escorted by a dozen Navy boats, comes into land, and soldiers lead out a solitary prisoner in chains. From another ship comes an officer, who must be the lieutenant in charge. You go quickly to find him.`
+			`	The lieutenant takes the prisoner, who is clearly not an Alpha, into a room and invites you in too. As soon as they're sat down, the prisoner starts pleading.`
+			`	"Please sir, I haven't done nothing wrong. I was just minding my own business, then this crazy ship comes out of nowhere and starts blasting me! I didn't do nothing! I'm an honest merchant, sir!"`
+			`	"Where did you get that ship?"`
+			`	"I bought it, sir, I did. I'm not a thief."`
+			`	"Where? There's no shipyard here."`
+			`	"Okay, okay, I traded it. But I didn't know the guy had stolen it. How could I know? He just came and said he liked my ship, and offered a trade. There's nothing wrong with that!"`
+			`	"And what was your ship?"`
+			`	"A Heavy Shuttle, sir."`
+			`	"And that didn't strike you as suspicious?"`
+			`	The lieutenant rapidly asks some details, and turns to one of his officers. "Quick, get the news out for a Heavy Shuttle, last known callsign 'Richard III'." He turns back to the pilot: "You may go now. Be more careful with your trades in the future."`
+			`	The pilot leaves and the lieutenant tells you about what happened on the ground. "The Alphas flew here and we came in hot on their tail. They can't have had long to do the swap. We had troops on the ground barely after they had landed, making a net around them. So when we saw the Blackbird take off, we naturally thought they'd seen us and fled. But in a shuttle, they won't get far.`
+			choice
+				`	(enquire about the captives)`
+			`	"Lieutenant," you say, "there were fifteen women aboard that ship, as well as four Alphas."`
+			`	"Fifteen!? That's more than a shuttle can carry. I suppose bound up in the cargo hold, but..." He turns to another officer. "Do a search of the whole area around where the Antonio was. Perhaps they left something, anything, in their flight. Also check up on the Richard III, where it was parked, how the Alphas might have got to it, everything."`
+			`	As he leaves, the first officer comes back. "No Heavy Shuttle has passed our net, sir."`
+			`	"Good. I want no more to pass the net without a thorough scan. We'll get some hate from a hundred innocent merchants, but with war tensions still high, they'll understand."`
+			`	After a bit, the second officer also comes back, looking quite shocked. "Sir, you'll want to see this..."`
+			choice
+				`	(follow him)`
+			`	You and the lieutenant are led to a more comfortable room, and inside are a group of young women! You count eleven. "Are these...?"`
+			`	"Sir, we found these ladies trapped in an access tunnel. They can explain more."`
+			`	These are indeed eleven of the fifteen women taken by the Alphas. They tell you, some in measured voices, some in excited babbles, some in tears, the whole story from their abduction on Bluestone, through the split with the larger group, and the many adventures of the journey, until today they landed here. Their captors panicked, and rushed them all out through a service tunnel, but the women gave them so much trouble the Alphas became desperate and nearly got found out. When they made their final dash for - what must be the new shuttle - some of the women sat down and had to be dragged, so the Alphas grabbed four of them and shut a grate on the others trapping them inside, until the officer found them now.`
+			`	It takes some time to debrief the flustered women, and when it's done, the lieutenant turns to you and suggests you'd better get in touch with "our mutual friend-of-the-chair." Included in the group is Nikki, but not her sister Vicky. Would you like to talk with her first?`
+			choice
+				`	(talk with Nikki)`
+				`	(go straight to call Arnold)`
+					goto arnold
+			`	You sit down with Nikki, and show her a photo you took of the ducting that had her letter. She jumps with excitement, then hugs you.`
+			`	"You found it then! It worked! Is that how you found us then?"`
+			`	"It was a big help," you say, "and well thought of." You tell her about the visit to her grandma, and how she's looking forward desperately to seeing her again. You also ask her about Vicky.`
+			`	"She would always look after me. I'm two hours older than her, you know, but she was the grown-up. I think, when we got captured, it broke her. Nothing she could do for her sister: nothing but sit and walk and comply. We felt so alone, but at least we had each other. Oh, Captain, will you find her? Will you find her and the others? And catch those men for us. They're evil, pure evil." She shudders.`
+			choice
+				`	"I'll do my best."`
+					goto yes
+				`	"Don't worry, the Alphas will eat their own dust, and Vicky will be returned to you safe and sound."`
+					goto yes
+				`	"I don't want to get your hopes up..."`
+			`	"Oh," she says, and hangs her head sadly.`
+				goto arnold
+			label yes
+			`	"Thank you, Captain. I'm sure you'll do it."`
+	
+			label arnold
+			`	You take your leave, and get a secure connection to Arnold. He sounds tired.`
+			`	"Almost there, Captain. You're quite the hero. But we still have to catch those Alphas and rescue the last four girls. They won't get past our net in a shuttle, but they can hide, and it's only a matter of time until they find new transport."`
+			`	You both pause, then you have an idea.`
+			`	"They can't get out in a heavy shuttle, right?"`
+			`	"Right," says Arnold.`
+			`	"What they need is something fast."`
+			`	"Right again. So, we stop them getting a faster ship."`
+			`	"Wrong," you say. "We give them a faster ship."`
+			`	"What? Have you gone crazy?"`
+			`	"Think about it. We drop a faster ship, keys in the ignition, right into their laps. But since we prepared the ship..."`
+			`	"...we put a tracker on! It's genius! I'll get on it right away." Arnold pauses. "We'll have to be careful. They can't have any hint. This could take some time. I'll contact you when the ship's ready, then you can escort her here. Great thinking, <first>. We'll get them this time, I know we will."`
+
+
+##############
+# The Finale #
+##############
+
+event "ScS alpha romeo ready"
+
+mission "ScS Alpha Swap 0"
+	landing
+	to offer
+		not "ScS romeo offered"
+		has "event: ScS alpha romeo ready"
+		or
+			has "ScS Downey Returns: done"
+			has "ScS Downey Returns: failed"
+	on offer
+		conversation
+			`You have a message from Arnold, about the ship for the Alphas. "It's all ready, <first>. A beautiful, fast, Bounder, just waiting to give some folks in need a ride. It'll be waiting for you on Carbuncle Station, the Lovelace Labs place in Elnath. The codeword is 'wherefore art thou'."`
+				decline
+
+mission "ScS Alpha Swap 1"
+	landing
+	name "The Great Alpha Swap"
+	description "Meet the bugged ship for the Alphas, on <destination>, then escort it to Silver"
+	destination "Carbuncle Station"
+	clearance
+	on fail
+		dialog phrase failure
+	to offer
+		has "event: ScS alpha romeo ready"
+		or
+			has "ScS Downey Returns: done"
+			has "ScS Downey Returns: failed"
+
+mission "ScS Alpha Swap 2"
+	landing
+	name "The Great Alpha Swap"
+	description "Escort the Romeo to <destination>, then park it in an out-of-the-way hanger. Arnold will make sure the access codes are somewhere the Alphas can find them. Then, wait..."
+	source "Carbuncle Station"
+	destination Silver
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Alpha Swap 1: done"
+	on offer
+		conversation
+			`You dock with Carbuncle Station, and look around for someone who might be your contact. In another bay you pass a woman who seems to be whining about her lover, and quoting ancient poetry from earth. This is bizarre enough to give you an idea. You walk near her, and at an opportune pause, sigh, "wherefore art thou."`
+			`	She looks up, winks at you, and waves across to the ship behind her. It's a freshly-painted Bounder from Megaparsec, and looks appetising enough for any group of hunted criminals. "Wherefore, indeed," she says. "Behold the Romeo. I'll be her pilot for today, you just lead me to the destination." With that, she turns and enters the ship, and you head to yours.`
+				accept
+	
+	npc accompany save
+		government "Merchant"
+		personality timid escort
+		ship "Bounder" "Romeo"
+
+mission "ScS Soylent Seizure"
+	landing
+	name "Failed Economics"
+	description "Join a blockade in Ruchbah to stop one of the top Syndicate terrorists escaping. When it's over, return to <destination>."
+	source Silver
+	destination Amazon
+	waypoint Ruchbah
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Alpha Swap 2: done"
+	on offer
+		log `Have provided the Alphas with a fast Bounder, the Romeo, so they can escape. It's bugged: as soon as they leave the atmosphere and try to flee, we should be able to follow and catch them. Now I'm participating in a blockade to let the security from the Deep catch one of the top Syndicate extremists.`
+		conversation
+			`You land out on one side of the spaceport, and the Romeo lands on the other. Everything is set up: now all you can do is wait.`
+			`	Hours go by. You don't even know if the Alphas are in this system, you just know they're trapped between here, Altair and Nocte, and Arnold recommended here for the bait. Perhaps you should go and do something else. After all, you don't need to see them take the ship: that's what the trackers are for.`
+			choice
+				`	(stay and watch)`
+					goto stay
+				`	(go to the spaceport)`
+			`	You step off your ship and wander the spaceport, trying to look casual. You're about to give up and go when you get a message from Mary-Jane on Amazon. "Captain <last>! We have something big. Come to Amazon as quick as you can." You hurry back to your ship, and are about to take off, when in the distance you spot a bounder flying low out of the spaceport! Torn between two urgencies, you call Mary-Jane back.`
+				goto call
+			label stay
+			`	You watch for a while longer, beginning to think you'd better go and leave the trackers to do their work. But in the distance, you see a rustle of trees, and the top fins of the Bounder rise up and head away from the spaceport at low altitude! Right at that moment, you get a message from Mary-Jane on Amazon. "Captain <last>! We have something big. Cone to Amazon as quick as you can." Torn between two urgencies, you call her back.`
+			label call
+			`	"What's up? I'm in the middle of something important!"`
+			`	"It can wait," she answers. "This is bigger."`
+			`	"I'm not sure it is," you say. "This is about..." you wonder how secure this line really is. "...About our escaping greenery."`
+			`	There's a pause on the line. "Then do what you need, then get to Ruchbah as quick as you can. We just had a tip-off the Deep are going after the top economist behind the terrorist bombings, to arrest him from his yacht on Nimbus!"`
+			choice
+				`	"That's great!"`
+					goto great
+				`	"That's not their business to interfere in!"`
+			`	"It is, though. The bombings hurt everyone, and Republic law gives them the right to arrest him on 'police action'. We have enough to do, purging the evil. Let them have this one."`
+				goto todo
+			label great
+			`	"Yes it is. But if we've had a tip-off, he might too."`
+			label todo
+			`	"So what do we do?"`
+			`	"We're making a blockade in Ruchbah. Merchant and Syndicate ships only. If he tries to leave, we'll catch him; if he doesn't, the Deep will have their arrest. Do what you need, as quickly as you can, then join the blockade. Then meet us back on Amazon if you can."`
+			choice
+				`	(check where the Romeo was, before you go)`
+			`	You head to where the decoy Bounder was parked, and nearby is a Heavy Shuttle, the one the Alphas traded with the hapless merchant. Inside there are signs of a scuffle: it's clear the women have not been giving the Alphas an easy time. But no blood, so you hope they're all yet unharmed. The Alphas will want them for breeding, so if you can catch them before they get to wherever their facility is, the women should be kept well enough.`
+			`	You search the shuttle thoroughly, and find nothing but a folder of uninteresting records stuffed behind a loose panel. There must be something in it: why would someone hide it like that? You take it with you and head out to join the blockade in Ruchbah.`
+				accept
+	
+	on enter
+#		system Altair Menkent
+		system
+			near Vega 1 1
+		dialog `You watch your receiver for the Romeo's tracker, but there's nothing. The Alphas must not have left Silver yet, and still be flying low-altitude.`
+	
+	on waypoint
+		conversation
+			`You enter Ruchbah and join the many ships covertly blockading Alpha Hydri. There's no sign of an escapee. After some time, Navy, Deep and Free Worlds capital ships stream past, headed for Alpha Hydri. Still you wait, till they stream back overhead, pursued madly by a flock of Syndicate ships. It must have been successful.`
+			`	There's nothing more you can do, except go to Amazon to meet Mary-Jane. Still there is no sign of a signal from the Alpha ship tracker. You begin to worry they may have found it and disabled it.`
+	
+	npc
+		government "Merchant"
+		system Ruchbah
+		personality staying heroic
+		ship "Clipper" "Jeremy the Free"
+		ship "Clipper" "Friedrich the Unconqurable"
+		ship "Headhunter" "Edward's Augment"
+		ship "Argosy" "The Old and Frail"
+		ship "Modified Argosy" "Gentlemen's Cuisine"
+		ship "Modified Argosy" "Trolls 'R' Us"
+	
+	npc
+		government "Merchant"
+		system Ruchbah
+		personality heroic staying entering
+		ship "Argosy" "Unwariness"
+		ship "Sparrow" "Little Egg"
+		ship "Blackbird" "Wings of Dawn"
+	
+	npc 
+		government "Merchant"
+		system Ruchbah
+		personality heroic staying entering
+		ship "Hauler" "Lumberjack"
+		ship "Scout" "Pinpoint"
+
+mission "ScS The Top"
+	landing
+	name "Right to the Top"
+	description "Join Arnold, in his Blackbird, and Jana, in whatever she's flying, in Achernar. Land on Foundry and together confront Alistair Korban, CEO of the Syndicate. His time, at last, has come."
+	source Amazon
+	destination Foundry
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Soylent Seizure: done"
+	on offer
+		event "syndicate occupies sol"
+		conversation
+			`The Amazons are ecstatic when you return. Soylent himself, one of the top extremists and the key economist behind the terrorist bombings, has been arrested: something almost impossible within the Syndicate. "And why is it impossible?" Mary-Jane strkes up a sober note. "Because the corruption goes all the way to the top. Therefore, to the top we must go with the purge."`
+			choice
+				`	"You mean, Alistair Korban? The CEO?`
+			`	"We can't just go in there, guns blazing, to Korban's office!" you say.`
+			`	"No, and we can't arrest him without his own authority, either." Mary-Jane sits down at a table with you and shows you a file. "Our dear friend Arnold has been collecting reports on Korban. All the time we've been helping Korban catch the other extremists, we've been gathering evidence of his own involvement. He's up to his neck in it, even if he wasn't directly involved in the bombings. We have enough to confront him with, and force him to resign. We just need some real clincher before we go."`
+			choice
+				`	"I... I might have that."`
+			`	You quickly bring out the folder you got from the Alphas' ship, and flick through it for something you thought you saw. You show it to Mary-Jane.`
+			`	"Perfect. I'll set things in motion. Captain, go to Foundry, but wait before you land. I'll radio Jana, she's nearby. Wait for her ship to arrive. And-" she disappears for a minute to make a call "-and Arnold is on his way too."`
+			choice
+				`	"Arnold? Isn't he housebound?"`
+				`	"So, meet them both then land together?"`
+					goto together
+			`	"He is. But not for this. He's already on his way, slowly, and now with your clincher he'll come directly.`
+			label together
+			`	"Wait for Arnold and Jana in Achernar, then land and go with them to Korban's office. This is the final showdown. Today the Syndicate wickedness is shaken from the top. Go with our strength behind you, Captain <first> <last>."`
+				accept
+	
+	npc accompany save
+		system Ankaa
+		government "Merchant"
+		personality heroic escort
+		ship "Blackbird" "The Long Arm"
+	
+	npc accompany save
+		system Scheat
+		government "Merchant"
+		personality heroic escort
+		ship "Protector" "Painted Jaguar"
+	
+	on visit
+		dialog `You've arrived on Foundry, but either Jana or Arnold haven't made it yet. Take off again and wait for them: you have to do this together.`
+	on complete
+		log `Confronted Alistair Korban, CEO of the Syndicate. He may not be directly a terrorist himself, but he's up to his neck in muck, including fraternising with Alphas. Put pressure on him to resign, to which he replied he'd resign "when the galaxy is rent apart, and the shadows of the gods themselves come down."`
+		conversation "ScS korban resignator"
+
+conversation "ScS korban resignator"
+	`Your three ships land side by side. Your own, Arnold's sleek Blackbird, and Jana's great, hulking Protector. As a trio you march up to the Syndicate headquarters, and enter the complex. Arnold is not so much marching: he's in an elaborate wheelchair flanked by all manner of fancy electronics. Jana is dressed in a leather bra and short skirt, with her longbow slung behind her. "It makes the men so confused," she says. "They don't know what to think."`
+	`	The first guard halts you, with fear in his eyes. You pull out a document and show it to him; he quickly steps back and waves you through, looking apprehensively at Arnold and Jana.`
+	`	Each guard, officer and doorman who blocks your way faces the same emotions. Fear, duty, surprise, and worry, as the document in your had gets you past each. Each quails at your trio, and many gaze wide-eyed at Jana in her tanned skin, leather dress, and wild look in her eyes. But none dares accost you. At last you reach the top. The office of 'Alistair Korban, CEO'. Without knocking, you enter.`
+	choice
+		`	(enter Korban's office)`
+	`	Korban is startled as you enter, but regains his composure and recognises you. "Captain... <last>." He stammers. "It's good that you've come... I was about to... I need you... to go to Sol." As he speaks, his eyes flick between the three of you, but especially to Jana and her longbow sticking up prominently behind her head. You remain silent.`
+	`	"Our peace, and the Galaxy, are under threat from the so-called Free Worlds. I have sent a fleet to Sol to protect the galactic government, lest the militia attack the very seat of our union. I... need you to escort some freighters with supplies for the protection fleet, then join them."`
+	`	You continue to stand in silence and stare at Korban, who gets increasingly nervous. At last Arnold hands you a file, which you place in front of Korban.`
+	choice
+		`	(tell him his time is up)`
+	`	"This is a record of your crimes," you say. Read them, and understand." Shocked, Korban starts leafing through, under your trio's intimidating gaze.`
+	`	"You can't prove anything!" he says. "None of this will hold in court! I always worked for the good of the Syndicate and the prosperity of the galaxy."`
+	`	You pull out your last document, the one you showed to each of the guards on the way up, the one you retrieved from the file on the Alphas' ship.`
+	`		--The bearer is acting on the authority of the Syndicate. They should be allowed to pass without let or hindrance. Signed, Alistair Korban, CEO.--`
+	`	He looks at you, wild-eyed, and half whispers. "I... They weren't supposed to do that... with this..."`
+	choice
+		`	(continue)`
+	`	Jana reaches for Korban's desk, pulls out a sheet of Syndicate headed paper, and lays it before him. "Your resignation," she says. Korban stares and says nothing. Silence. Then, slowly, Arnold rises from his wheelchair. Shaking a little, and grabbing your arm for support, he stands up and steps over to the desk. He reaches in his pocket, and pulls out a golden pen. On it is written, in beautiful cursive letters, "My First Resignation Pen". He sits down, exhausted.`
+	`	"Write it," you command.`
+	``
+	`	"Never!" Suddenly Korban springs to life, and blood flushes his cheeks. He rips up the incriminating document and throws it behind him. "Never! Not until the galaxy is rent apart! Not until the shadows of the gods themselves come down and threaten our very existence!"`
+	`	"So be it," you say. "You have spoken." And, as one, the three of you turn and leave.`
+	``
+	`	As you reach the spaceport, shaking inside, your pocket shakes too. In there is a device connected to the scanning network for the tracker on the Alphas' ship, silent since you did the swap. Now, it awakes. Beep... Beep... Beep...`
+
+#############
+# Blockades #
+#############
+
+mission "ScS Blockade 1"
+	invisible
+	landing
+	source Furnace
+	to offer
+		has "ScS Extreme Flight 4b: done"
+	to complete
+		never
+	to fail
+		has "ScS Alpha Abduction 3: done"
+	npc
+		government Syndicate
+		system Moktar
+		personality staying heroic uninterested
+		ship "Protector" "S.S. Valerian"
+		ship "Protector" "S.S. Constantine"
+		ship "Quicksilver" "S-34D1"
+		ship "Quicksilver" "S-34D2"
+		ship "Quicksilver" "S-34D3"
+	npc
+		government Syndicate
+		system Zaurak
+		personality staying heroic uninterested
+		ship "Protector" "S.S. Augustus"
+		ship "Protector" "S.S. Lycinius"
+		ship "Quicksilver" "S-91F6"
+		ship "Quicksilver" "S-91D7"
+		ship "Quicksilver" "S-91D8"
+	npc
+		government Merchant
+		system Mirfak
+		personality staying heroic uninterested
+		ship "Argosy" "French Hen"
+		ship "Clipper" "Boiled Yoghurt"
+		ship "Argosy" "Sailor of Time"
+	npc
+		government Merchant
+		system Ruchbah
+		personality staying heroic uninterested
+		ship "Clipper" "Round the World"
+		ship "Clipper" "Painted Yacht"
+		ship "Corvette" "Ordinary Machine"
+
+mission "ScS Blockade 2"
+	invisible
+	landing
+	source Canyon
+	to offer
+		has "ScS Alpha Abduction 3: done"
+	to complete
+		never
+	to fail
+		has "ScS Villains 2: done"
+	npc
+		government Merchant
+		system Alpheratz
+		personality staying heroic uninterested
+		ship "Clipper" "Luggage Trolley"
+		ship "Splinter" "Spinning Top"
+		ship "Splinter" "Friends of Roses"
+		ship "Shuttle" "Watcher in the Deep"
+	npc
+		government Merchant
+		system Markab
+		personality staying heroic uninterested
+		ship "Firebird" "Foxes Predecessor"
+		ship "Raven" "Doorhanger"
+		ship "Sparrow" "Heart of Cake"
+		ship "Sparrow" "Manyfeather"
+	npc
+		government Merchant
+		system Zaurak
+		personality staying heroic uninterested
+		ship "Corvette" "Clarkson IV"
+		ship "Corvette" "Carrier of Speed"
+		ship "Blackbird" "Helmhatz"
+
+mission "ScS Blockade 3"
+	invisible
+	landing
+	source Lodestone
+	to offer
+		has "ScS Villains 2: done"
+	to complete
+		never
+	to fail
+		has "ScS Alpha Hunt 1: failed"
+	npc
+		government Merchant
+		system Ruchbah
+		personality staying heroic uninterested
+		ship "Clipper" "General's Hat"
+		ship "Argosy" "Winter of Snowflakes"
+		ship "Argosy" "Nile Cruise"
+		ship "Hawk" "Eyeball II"
+	npc
+		government Merchant
+		system Markab
+		personality staying heroic uninterested
+		ship "Behemoth" "Weightlifter"
+		ship "Quicksilver" "Dart of Han"
+		ship "Headhunter" "Trollop's Style"
+	npc
+		government Merchant
+		system Ankaa
+		personality staying heroic uninterested
+		ship "Corvette" "Sprinting Eagle"
+		ship "Scout" "Arkitect"
+		ship "Bounder" "Jumping Jack"
+
+mission "ScS Blockade 4"
+	invisible
+	landing
+	to offer
+		has "ScS Alpha Hunt 1: failed"
+	to fail
+		has "ScS Alpha Hunt 2: done"
+	to complete
+		never
+	npc
+		government Merchant
+		system Ankaa
+		personality staying heroic uninterested
+		ship "Clipper" "Over the Stars"
+		ship "Clipper" "Qing Pan"
+		ship "Firebird" "Groundlifter"
+	npc
+		government Merchant
+		system Diphda
+		personality staying heroic uninterested
+		ship "Blackbird" "Two-and-Forty"
+	npc
+		government Merchant
+		system Sirius
+		personality staying heroic uninterested
+		ship "Modified Argosy" "Emperor's Hat"
+		ship "Osprey" "Underling Flight"
+	npc
+		government Merchant
+		system Acamar
+		personality staying heroic uninterested
+		ship "Raven" "James O' Nine"
+		ship "Raven" "Engine of the Blue"
+		ship "Argosy" "Fishsticks"
+
+mission "ScS Blockade 5"
+	invisible
+	landing
+	source Mars
+	to offer
+		has "ScS Alpha Hunt 2: done"
+	to complete
+		never
+	to fail
+		has "event: ScS alpha looped"
+	npc
+		government Merchant
+		system Caph
+		personality staying heroic uninterested
+		ship "Clipper" "Darkening Dusk"
+		ship "Scout" "Tourist Bus"
+		ship "Scout" "Welsh Candle"
+	npc
+		government Merchant
+		system Sol
+		personality staying heroic uninterested
+		ship "Aerie" "Clare de Lune"
+	npc
+		government Merchant
+		system Fomalhaut
+		personality staying heroic uninterested
+		ship "Splinter" "Ostensibility"
+		ship "Wasp" "Stingfree"
+		ship "Wasp" "Ovipositor"
+		ship "Argosy" "Hulk LXV"
+	npc
+		government Merchant
+		system "Delta Capricorni"
+		personality staying heroic uninterested
+		ship "Clipper" "Man O' Peace"
+		ship "Bounder" "Speedwatch"
+		ship "Argosy" "Wavemaker"
+
+mission "ScS Blockade 6"
+	invisible
+	landing
+	to offer
+		has "event: ScS alpha looped"
+	to complete
+		never
+	to fail
+		has "ScS The Top: done"
+	npc
+		government Merchant
+		system Menkent
+		personality staying heroic uninterested
+		ship "Scout" "Lieutenant's Touch"
+		ship "Bounder" "Granger's Parade"
+	npc
+		government Merchant
+		system Sol
+		personality staying heroic uninterested
+		ship "Aerie" "Clare de Lune"
+	npc
+		government Merchant
+		system Fomalhaut
+		personality staying heroic uninterested
+		ship "Splinter" "Ostensibility II"
+		ship "Wasp" "Stingfree"
+		ship "Wasp" "Ovipositor"
+		ship "Argosy" "Canister Melon"
+	npc
+		government Merchant
+		system "Delta Capricorni"
+		personality staying heroic uninterested
+		ship "Clipper" "Countless Argument"
+		ship "Clipper" "Starsword"
+		ship "Argosy" "Free Range Taco"
+		ship "Manta" "Oversight"
+	npc
+		government Republic
+		system Menkent
+		personality staying heroic uninterested
+		ship "Cruiser" "R.N.S. Markham"
+		ship "Gunboat" "R.N.S. Antero"
+		ship "Gunboat" "R.N.S. Augusta"
+	npc
+		government Republic
+		system Sol
+		personality staying heroic uninterested
+		ship "Cruiser" "R.N.S. Liao"
+		ship "Gunboat" "R.N.S. Peace"
+		ship "Gunboat" "R.N.S. Helmand"

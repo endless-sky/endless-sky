@@ -1,0 +1,1806 @@
+mission "ScS Get Rich 0"
+	minor
+	name "Visit your uncle for a job"
+	description "Visit your uncle who's offering you a job that could make you 'respectable again' - he means rich. He's on <destination>."
+	source
+		near Ruchbah 1 100
+	destination Crossroads
+	on fail
+		dialog phrase failure
+	to offer
+		has "event: war begins"
+		has "Syndicate Intro Complete"
+		random < 20
+	on offer
+		conversation
+			`When you land, you find a message from an uncle of yours, who's a CEO of a large company within the Syndicate.`
+			`	"Hi, <first>, come and meet me on <planet>. I have an opportunity for you that could make you respectable again."`
+			`	It's signed, Uncle William. Knowing your uncle, by resepctable, he means rich. <planet> is in the <system> system.`
+			choice
+				`	Time to find Riches and Glory.`
+					accept
+				`	I've had enough of the Syndicate's nonsense. That's a huge 'nope' from me.`
+					decline
+	on accept
+		log "People" "Uncle William C. Washermann" `Uncle WC is CEO of Watersoft, a large company in the Syndicate that started out making 24 carat gold plumbing for people too rich for their heads. When you were young he sometimes sent you birthday presents of washers and nuts made from iron pyrite. You're not sure if that was a joke about other people, or an insult to your family.`
+			`His main office is on Crossroads, although the company head office is actually on Reunion.`
+
+mission "ScS Get Rich 1a"
+	landing
+	name "Executive meeting"
+	description "Pick up executives from Fernware Inc. on <destination>. Make sure you have luxury accommodations to keep them comfortable."
+	source Crossroads
+	destination Icefall
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Get Rich 0: done"
+	on offer
+		log `Begun working for Uncle William C. Washermann, through whose plans I can become rich.`
+		conversation
+			`Although the main headquarters of your Uncle's company, Watersoft, is on Reunion, his office as CEO is here on Crossroads, more convenient for meeting with various company executives around syndicate space. More convenient also, you figure, for avoiding the ignorant opinions of commoners and politicians.`
+			`	When you reach his office, Uncle 'WC' welcomes you in, beaming. He pushes a button on his desk and soon a maid comes in with tea.`
+			`	"<first>! I heard about your little trouble, all those ungrateful workers. And now you're a Space Captain! Flying around those big ships and never letting your legs rest on the ground. Tell me", he says as the tea maid comes in, "do they serve tea in space, if you're not in the VIP lounge?"`
+			choice
+				`	"You know, I do get to land from time to time too."`
+					goto life
+				`	"Ah, you know nothing of Space, of its glories - and its profits."`
+					goto profits
+				`	"I have two tea ladies working rotation, regular massages while I'm piloting, and six cockpit staff to look after things when I take a wine-and-cheese break."`
+					goto life
+			label profits
+			`	"Profits... now I know you're joking.`
+			label life
+			`	"Well, it's not the life your grandmother would have wanted for you, but I'm proud of you anway. Look at you in your big... ship. Anyway there's profit a-plenty to go around, now the Southern Militia have started shooting up the Republic. The Syndicate's in trouble, you know, many companies on the verge of bankrupcy, capital in the wrong hands, employees forming unions... But a war will bring the money back, it always does. And anyone in the right place to help... can become very respectable off this." You remember to translate in your head, respectable -> rich.`
+			`	"Well I didn't call you here for a philosophy class, you're a star-captain now and there's oppotunities to be had. You could become very valuable to the right people, and they'll be valuable to you in return. Now's just the time for oppotunity," he repeats.`
+			choice
+				`	"What kind of opportunity?"`
+					goto opportunity
+				`	"I hope you remember I'm a Star Captain now. I'm *above* the *heads* of planet-walking managers and their planet-bound troubles."`
+	
+			`	"Ah, that's where you're wrong," he grins. "You can't go flying without someone to make your ship, and you can't land without someone to pay for your haircut." The metaphor seems a little odd, but you let it slide.`
+			`	"What we need, what the Syndicate needs, are Captains who will prove their loyalty, who can take on special work to keep the gears turning when the spanner's on its way."`
+			choice
+				`	"What jobs do you have in mind?"`
+					goto jobs
+				`	"Gears, spanners, haircuts... you're not making any sense."`
+					goto metaphors
+				`	"You mean, shoot people when they get in your way?"`
+					goto violence
+	
+			label opportunity
+			`	"What we need, what the Syndicate needs, are Captains who will prove their loyalty, who can take on special work to keep the gears turning when the spanner's on its way."`
+			choice
+				`	"What jobs do you have in mind?"`
+					goto jobs
+				`	"Gears, spanners... you're not making any sense."`
+					goto metaphors
+				`	"You mean, shoot people when they get in your way?"`
+					goto violence
+	
+			label violence
+			`	He stops a moment, bewildered. "Shoot people? What are you talking about? I mean help people. Help the right people."`
+				goto jobs
+			label metaphors
+			`	He ignores your confusion.`
+			label jobs
+			`	"A group of executives from Fernware, Inc, will be coming to a meeting here on <origin> soon. Pick them up from <destination>. Then we'll see if you're a Captain of quality."`
+			choice
+				`	"Can I have a muffin before I go?"`
+					goto muffin
+				`	"Very well, I'll see you next with an Expedition of Executives in tow."`
+					goto ee
+			label ee
+			`	"You should say, rather, an Embassy of Executives." You pause awkwardly for a moment, then turn to leave.`
+			`	Uncle WC calls out, "And make sure you have luxury accommodations for them! You can't expect them to travel on beds of straw!"`
+			``
+			``
+			`	'Entrance of Executives.' That's what you should have said. Oh well, you're nearly back at your ship now.`
+				accept
+			label muffin
+			`	Uncle WC pushes another button, and in a minute another maid comes in with a tray of muffins. You each take one and eat in silence, then you stand up to leave.`
+			`	"And make sure you have luxury accommodations for them! You can't expect them to travel on beds of straw!"`
+			``
+			``
+			`	...Oh, for the executives! Not for the muffins. That took you too long.`
+				accept
+	on complete
+		require "Luxury Accommodations"
+	on visit
+		dialog `It seems the <ship> only offers basic bunks for passengers. Come back when you have luxury accommodations.`
+
+mission "ScS Get Rich 1b"
+	landing
+	name "Executive meeting"
+	description "Transport Fernware Inc. executives to a board meeting with Uncle WC on <destination>."
+	source Icefall
+	destination Crossroads
+	passengers 6
+	blocked `You'll also need space for 6 passengers, for this next mission.`
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Get Rich 1a: done"
+	on offer
+		require "Luxury Accommodations"
+		conversation
+			`	The executives from Fernware Inc. are waiting in a private room of the spaceport. You greet them warmly and have one of your staff show them to their rooms ready to travel.`
+				accept
+	on visit
+		dialog "You'll need luxury accommmodations and space for six passengers for the next mission."
+	on complete
+		payment 50000
+		conversation
+			`	Uncle WC pays <payment> into your account and invites you to join the meeting when you have time. The Fernware executives have already gone on ahead.`
+			`	(Go to the spaceport when you are ready.)`
+
+mission "ScS Check the Navy"
+	priority
+	name "Scan Navy ships"
+	description "Go to <waypoints> to see Navy activity. Fly around a bit and come back to <planet> with your scanner logs."
+	source Crossroads
+	waypoint Alheka
+	waypoint	Algorel
+	waypoint Menkent
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Get Rich 1b: done"
+	on offer
+		conversation
+			`	Your uncle greets you warmly as you join the meeting, in a larger room down the hall from his private office.`
+			`	"Welcome to the Waterboard," he jokes.  "These men from Fernsoft have joined us to discuss the pressing crisis of war, and to see what we can do about it."`
+			`	Around the room you can see there are many senior managers in Uncle WC's own Watersoft, as well as various representatives of other companies.`
+			choice
+				`	"And where do I come in?"`
+			`	"Ah yes," he says. "We're not sending you back to herding factory hands, now you're a 'great space voyager', nor herding these very fine specimins of cattle you've brought here." You hear some muttering among the visiting executives. The fact is, your uncle explains, in more and less polite words than you care to remember, war is heating up and everyone wants a slice of the profit. But they need to know what might happen next, and how fast things are moving, and for that they need you.`
+			`	"There's a Navy garrison in the Alheka system. Fly around there a bit and see what activity is like. Bring us back your scanner logs so we can take a guess if the Navy are building up fast for fighting." You wonder if everyone will just sit there waiting patiently for you to get back in a few days, or if they'll reconvene when you return unnanounced.`
+			`	"And while you're at it, there's talk of new Navy bases on New Wales and New Austria. Check them out too, and see what sort of Navy ships are in the area."`
+				accept
+	on waypoint
+		dialog `You've checked out all three systems for Navy activity, time to return to <planet> with your logs.`
+	on complete
+		payment 100000
+		conversation
+			`Uncle WC pays <payment> into your account and requests you come to his office to discuss the future.`
+			`	(You'll find his office via the spaceport.)`
+
+mission "ScS Catch a Fly 1"
+	priority
+	name "Catch a troublemaker"
+	description "Fly quickly to <destination> to catch a troublemaker. Reach there by <day> at the latest."
+	source Crossroads
+	destination Foundry
+	passengers 1
+	deadline 4
+	blocked `You need space for one passenger for the next mission.`
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Check the Navy: done"
+	on offer
+		conversation
+			`Your uncle is back in his normal office; it seems the meeting didn't wait for you to return after all. But your uncle seems to have a collection of new office toys on his desk.`
+			choice
+				`	Play with one of the toys.`
+					goto toys
+				`	Ask him how he's doing.`
+					goto health
+			label toys
+			`	Diamond-balled Newton's Cradle, almost-perfectly-clear double pendulum, Rubik's cube labelled with gold and other precious metals... these are status symbols, not something your uncle would really play with. You reach for the double pendulum.`
+			`	"Don't touch that!" he says, "Once you set it going I can't focus on anything else till it stops! See, right now it's perfectly still. Calm, as all things should be, except profit margins."`
+			label health
+			`	"Anyway, how are you doing?" you ask. "I've been half way round the galaxy since last we met."`
+			`	"Oh, quite well, quite well. A touch of rheumatism," he complains, "but nothing to complain of.`
+			`	"I saw your system logs a few minutes ago, very promising, very promising. But there's more urgent business at hand. The whole Syndicate is gearing up to supply the war engines to do what they like to each other, (that's their freedom, and who are we to fetter them,) but certain individuals are doing their utmost to get in the way and cause problems. One, in particular, is hell-bent on damaging production at every reactor he visits - and he visits a lot."`
+			`	"How does he do that?" you ask, imagining cut cables and mysterious assasinations.`
+			`	"He inspects them.`
+			`	"He inspects them, and then he reports them. And he's become a terrible nusiance right when we need production at its highest.`
+			`	"We've found out he's on <planet> now," he continues, "and have blocked all chance of him leaving. What we need you to do is fly an agent - who will meet you here shortly - to <planet> to flush him out of wherever he's hiding. And for that, you need to be flying Syndicate colours. Those In Charge have deemed you trustworthy and suitable for more important jobs, like this."`
+			branch available
+				not "chosen sides"
+			choice
+				`	"Hahaha! Sucks to be you! I've already chosen sides, and it's not yours."`
+					decline
+	
+			label available
+			choice
+				`	"I'll bill you for the paint, recolour my ship and be off."`
+					goto colour
+				`	"Won't that scare him off? Perhaps I should fly Navy colours or something."`
+					goto navy
+				`	"And they'll pay me well for it, I'm sure."`
+			`	"Better than that, they'll pay you for the job, and give you a regular salary. So get painting!"`
+				accept
+			label navy
+			`	"Yes, and you can ask the Navy for your salary too, and enjoy the hospitality of their prisons when they find out you're a fraud. I'm sure the troublemaker from his hiding place won't be watching which ship is yours when you land."`
+			choice
+				`	"Well, if the Syndicate are paying a good salary, then off I go!"`
+					accept
+			label colour
+			`	"No, you'll bill the Syndicate," he winks. "And you'll take a nice salary from them, for daily upkeep. Remember, get there quick and make sure the troublemaker doesn't escape."`
+				accept
+	on accept
+		log `Joined the Syndicate's official staff. This is the fast path to wealth. The first job is catching a troublemaker, getting in the way or production. This shouldn't be too hard.`
+		set "chosen sides"
+		event "joined the syndicate"
+		"salary: Syndicate" = 5000
+	on complete
+		payment 20000
+		event "capture of Kornephoros" 56
+		event "start of hostilities (ScS)" 66
+		event "recapture of Kornephoros" 68
+		event "oathkeepers founded" 120
+		set "oathkeepers founded: offered"
+		conversation
+			`You land on <planet> and the agent, who's been sitting quietly in his cabin until now, slips off your ship quietly. Not knowing how you can help, nor if you're supposed to, you wander around the <ship> and observe the other ships coming and going. You see nothing more interesting than a tourist with terrible dress sense running desperately to catch his flight, until some time later the agent comes back, looking a little red in the face.`
+			`	"Did you see him?" he asks, a little breathless.`
+			`	"Who? The troublemaker? Not a sign," you reply.`
+			`	"I nearly had him, but he gave me the slip. I think he came to the spaceport."`
+			choice
+				`	"No sign of him here, what did he look like anyway?"`
+					goto looks
+				`	"I guess you'd better get back in there and find him."`
+					goto tryagain
+				`	"Oh well, if he's gone, he can't cause any more trouble, right?"`
+					goto noproblem
+			label looks
+			`	"Furtive, greedy eyes," he hands you a picture.`
+			`	"Nope, definitely didn't come here, I was on guard the whole time," you reply.`
+				goto noproblem
+			label tryagain
+			label noproblem
+			`	"This is real trouble," the agent says. "I need to make some calls. Meet me in the spaceport in half an hour."`
+
+mission "ScS Catch a Fly 2"
+	priority
+	name "Turning down the heat"
+	description "Visit power plant managers on <stopovers> to warn them to make preparations to be investigated."
+	source Foundry
+	stopover Amazon
+	stopover Placer
+	stopover Burthen
+	stopover Delve
+	destination Crossroads
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Catch a Fly 1: done"
+	on offer
+		conversation
+			`When you find the agent, he's still on a call. He passes the phone to you. It's your uncle.`
+			`	"<first>, this is bad. I hope you already got your payment because someone's going to take flak for this and I hope it won't be you.`
+			`	"I'll get you out of it," he continues, "don't worry, but now you gotta work for that salary. We know what places that meddler is likely to go next. Go to each one and tell the managers to drop reactor production by 20% and double-check their safety. It's a big hit, when we only need more output, but we can't risk a misunderstanding with the Department of Atomic Safety."`
+			`	He sends you a list of locations, which you check later. Power plants on <stopovers>.`
+			choice
+				`	"Understood, I'll go right away."`
+					accept
+				`	"Why don't you just call them?"`
+			`	"Records. Of course they're already doing things safely; you're just giving a friendly checkup. But it doesn't look good in an audit if they get an official message right before an inspection."`
+				accept
+	on stopover
+		conversation
+			`You contact the final manager and go to meet him in person, as asked. He hears your news and grumbles something about production quotas, but goes off to make arrangmenets.`
+			`	Time to return to <planet> to check in with Uncle WC.`
+	on complete
+		payment 50000
+		dialog `A message comes in to meet Uncle WC in his office and have a bunk free in your ship.`
+
+mission "ScS Catch a Fly 3"
+	priority
+	name "Transport to <planet>"
+	description "Take your uncle with you as far as <planet>"
+	passengers 1
+	blocked "You need a passenger bunk free for the next mission"
+	source Crossroads
+	destination Moonshake
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Catch a Fly 2: done"
+	on offer
+		conversation
+			`You check that your payment of 50,000 credits came in, before you head up to see your uncle. When you find him, he seems quite unconcerned considering you just averted a major crisis.`
+			`	"<first>, come in. How were your travels? I hope you brought postcards"`
+			`	You didn't, but he doesn't notice.`
+			`	"I have good news. That troublemaker you were after has fled Syndicate space, never - we hope - to be seen again."`
+			choice
+				`	"So all that flying around was--"`
+			`	"So now you can fly back to each of those planets and tell the plant managers they can turn their production up again.`
+			`	"Also I'll be coming with you as far as <planet>, to go and visit my wife. When you're done with the power plants you can meet me there."`
+			choice
+				`	"Right-ho, more profitable work and profit for me."`
+					accept
+				`	"Doesn't your wife live here on <origin>?"`
+			`	"Oh, Amanda? She's got so bossy of late, I need a break. I have another wife on <planet>," he says as if that's completely normal.`
+				accept
+
+mission "ScS Catch a Fly 4"
+	landing
+	name "Turning the heat back up"
+	description "Visit power plant managers on <stopovers> to let them know they can turn production back up. Then find your uncle on <planet>."
+	source Moonshake
+	stopover Amazon
+	stopover Placer
+	stopover Burthen
+	stopover Delve
+	destination Moonshake
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Catch a Fly 3: done"
+	on offer
+		log `It turns out Uncle WC has a second wife, on Moonshake. How many more secrets does he have?`
+		dialog `Uncle WC leaves to meet his wife, leaving you to head onward to meet the power plant managers again.`
+
+mission "ScS Espionage 1"
+	landing
+	name "Shipyard Espionage"
+	description "Visit Betelgeuse shipyard on <stopovers>, and take some notes on the production there, returning to <destination> when you are done."
+	source Moonshake
+	destination Hephaestus
+	stopover Prime
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Catch a Fly 4: done"
+	on offer
+		payment 50000
+		conversation
+			`You receive another <payment> for your discreet mission, but you do wonder if you could get in trouble if somebody found out. Anyway production is up... Actually you wonder who will benefit from this really. But you don't wonder for long: it's a job, and you're paid well.`
+			`	Looking up your uncle's residence, you find he has an office here on <origin> too, so you look for him there. This office is much the same as the last, and soon Uncle WC is talking to you about new work.`
+			`	"It's all very well," he says, "selling spaceships for the war, but what do you suppose happens if another company outside the Syndicate sells more ships?"`
+			choice
+				`	"The Syndicate loses profits?"`
+					goto loss
+				`	"They buy more parts and weapons from here, so our profits go up?"`
+					goto gain
+			label loss
+			`	"Exactly. Captains buy ships from them, so we lose out on sales."`
+			`	"But don't they, in turn, buy weapons and parts from us," you ask, "so in the end we gain anyway?"`
+			label gain
+			`	"Only if we manage the prices carefully, and for that we need inside information. Now a star-wanderer like you can't be expected to handle the cunning of infiltrating a factory; we have a source already. What you need to do is go and meet up with that source, get his data and a few scans of your own, whatever you can do from high altitude and space, and bring it all back to us..." he looks uncomfortable for a moment, "...to Syndicate leaders on <planet>. It's probable he's missing out on a large cut when you go directly to the Syndicate. And, maybe you'll get a larger reward with him cut out.`
+			`	"The shipbuilder is Betelgeuse Shipyards in Betelgeuse. On Prime. Take what scans you can, pick up the contact's data, and let me know when you're done."`
+			choice
+				`	"Don't worry uncle, I'll never let you down."`
+					accept
+	on stopover
+		conversation
+			`Having buzzed the airspace over much of Betelgeuse Shipyards, you touch down in the spaceport and look for this insider contact.`
+			`	Instead of him meeting you directly, a Betelgeuse employee sees you and hands you a brochure stuffed with papers. "Captain <last>? This is your care package for the Milky Whisper, including the service and repair details you requested. We've taken the liberty of including a brochure of upgrades you might like to buy next time you bring her in." ...Perhaps he was the informer? You'll never know.`
+			`	One of the papers has a handwritten note:`
+			``
+			`	Run. Don't look back.`
+			``
+			choice
+				`	(Look back)`
+					goto back
+				`	(Run)`
+			`	You trot to the <ship> in the worst compromise between a slow walk and a conspicuous run. You're not cut out for undercover work.`
+			`	Thanking your lucky stars you make it back alive (and crossing Betelgeuse off their list), you warm up your engines and take off as quick as you dare.`
+				launch
+			label back
+			`	Instinctively you turn around and freeze for a moment as you process what you just read. In the distance are various employees and dock workers, and the employee who handed you the package just disappearing through a door.`
+			action
+				set "made you look"
+			choice
+				`	(Run!)`
+					goto spooked
+				`	(Turn around calmly)`
+					goto calm
+			label spooked
+			`	Thoroughly spooked, you spin back 180 degrees and dash for your ship. You hit the engines and leave in a cloud of smoke without waiting for clearance. Bumbling an apology to air traffic control about an emergency for one of your passangers, you thrust into space and breathe a sigh of relief.`
+				launch
+			label calm
+			`	Slowly you turn back round and steel your nerves. The walk back to your ship seems to take forever, but you climb in, radio air traffic control, and leave as casually as you can.`
+				launch
+	on complete
+		log `Running espionage missions for the Syndicate has raised my profile. Now I should be offered more, and more prestigious, jobs.`
+		payment 20000
+		"salary: Syndicate" = 8000
+		set "ScS syndicate trusted"
+		event "ScS break 1 over" 20
+		conversation
+			`In the Syndicate headquarters, a man in a very expensive suit and tie hands you some credit chips, and takes the package you brought. You also hand him a card containing your scan logs.`
+			`	He flicks through the papers and pauses, "I hope you didn't have any trouble."`
+			`	You look dubiously at the meagre <payment> he's given you, but he speaks fist.`
+			`	"These are just what we wanted, good job. You're a valuable captain to have on board, and I'll recommend a salary increase. Some of my colleagues may also start offering you more sensitive jobs on the jobs board." And with that brief meeting he bids you farewell. You're surprised he didn't give you another job immediately, but they're paying your salary, so you guess they'll contact you when they need something. You could probably find useful things to do round Syndicate space for now if you like.`
+
+event "ScS break 1 over"
+
+mission "ScS Made you Look"
+	landing
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral" "Quarg"
+	to offer
+		has "made you look"
+	on offer
+		conversation
+			`There's a message waiting for you:`
+			``
+			`	"Made you look."`
+			``
+			`	Apparently your informant has a strange sense of humour.`
+				decline
+
+# Break 1
+
+mission "ScS An Edge 0"
+	minor
+	name "Meet Syndicate leaders"
+	description "Meet Syndicate leaders on <destination> for a new task."
+	source
+		near Markab 1 100
+	destination Hephaestus
+	on fail
+		dialog phrase failure
+	to offer
+		has "event: recapture of Kornephoros"
+		has "event: ScS break 1 over"
+	on offer
+		conversation
+			`You receive a short message from Syndicate leadership,`
+			``
+			`	"Captain <last>, we have need of your services. Please meet us on <destination> to discuss."`
+			``
+			`	It's signed, Franz Francis Jr.`
+				accept
+
+mission "ScS An Edge 1"
+	landing
+	name "Ionic Afterburner"
+	description "Test new afterberner technology by flying through the pirate system of <waypoints> with it, then return to <planet>."
+	source Hephaestus
+	waypoint Almach
+	to offer
+		has "ScS An Edge 0: done"
+	on fail
+		dialog phrase failure
+	on offer
+		log `People` `Franz Francis Jr` `A somewhat eccentric Syndicate leader amongst more-eccentric colleagues. Franz and his group meet on Hephaestus, and appear to have big responsibility in the future and economic welfare of the Syndicate.`
+		outfit "Ionic Afterburner"
+		conversation
+			`Back in the Syndicate Headquarters, Franz Francis Jr turns out to be the same expensively-attired man you met previously. If possible, his suit looks even more expensive now. He's in a long hall with a few other similarly-expensive men.`
+			`	"Captain <last>. May your accounts be always in the black, and may the Syndicate always have your back.`
+			`	It sounds rather cult-ish, though it's the same principles you've lived by all your working life.`
+			`	"The Syndicate has been troubled," says another, "and when the Syndicate suffers, the galaxy suffers."`
+			`	Again, it sounds like common sense, until you put it this way.`
+			`	"But the war has brought us new life," explains Franz, "and so the galaxy has new life."`
+			choice
+				`	"How can war, which is about killing people, bring new life?"`
+					goto warlife
+				`	"Does that mean we can have peace again soon?"`
+					goto peace
+				`	"All hail the War that lines our pockets!"`
+			`	There's a look of approval around the group, and a few chant back, "All hail the war that lines our pockets."`
+			`	"Of course we shouldn't talk like that," Franz says kindly: "some might not understand. Let us say instead, war has brought peace to the galaxy."`
+				goto warlife
+			label peace
+			`	"But we are at peace," says Franz. "With the Republic, with the Free worlds, even with the Quarg. We have no war, we only help those who are suffering, bringing economic growth so they too can have freedom.`
+			label warlife
+			`	"It is like a forest fire. The forest grows old, and stagnant, but fire clears the undergrowth so new seeds can sprout and grow into glorious new trees."`
+			`	You're not entirely sure that's how forest fires work, and you don't have time to to think much about whether the 'undergrowth' who die are happy to do so, but you're pretty sure these men will not be the ones doing the dying.`
+			choice
+				`	"I received your message, how can I help?"`
+				`	"So, I came for a piece of that economic growth."`
+			`	"Syndicated Systems needs an edge," says Franz. "When captains are outfitting their ships to be the best of the best, let them not think, Lionheart, or Tarazed, let them think Syndicate. Not just the best value for money: we should have something special to draw them."`
+			`	"Like a pencil!" cries one of the members, and there's a pause while everybody works out if this is profound or just stupid.`
+			`	"Like a new engine," says Franz.`
+			`	"But not just a new engine. No one can rival the Deep's atomic engines for tightly-packed power. But what if you need more? You need an afterburner."`
+			`	"But an afterburner burns up so much fuel," you say. "You can run out before you can escape!"`
+			`	"And that," Franz beams, "is why we have created the Ionic Afterburner. It uses just a little fuel, with a large amount of ordinary power, to give you that boost of speed more safely."`
+			`	"And cooler," says another. You're not sure if he's too 'hip' for the group, or just meaning it's less likely to overheat your ship.`
+			`	"...And it's cooler," agrees Franz. "But untested, save for a few prototypes that went 'missing'. Which yours mustn't."`
+			`	"We know who you are..." whispers a voice, but you can see quite clearly who it was.`
+			`	"We do indeed, but Captain <last> won't let us down." Franz' trust in you is reassuring. "Captain, while we speak one of these new ionic afterburners is being installed into your ship. Fly to <waypoints>, confound the pirates with your new abilities, and return here to report on how well the afterburner worked."`
+			`	And with that he dismisses you with a gesture, and you leave the men to their meeting, and to the shelf of rare bottles of vintage wine you saw a maid bring as you leave.`
+				accept
+	
+	on complete
+		event "syndicate tech available" 60
+		payment 60000
+		conversation
+			`When you return, Franz and his colleagues are keen to hear how your experience was.`
+			`	"Did great balls of blue fire shoot from your aft?" asks one.`
+			`	"Did the pirates quake and tremble as you strafed them?" asks another.`
+			choice
+				`	"The gases of the stars converged to propel me past all danger."`
+					goto great
+				`	"It's pretty good, but my batteries struggled."`
+					goto good
+				`	"Actually I don't think I used it. Does it work from the cargo hold?"`
+			`	They look pretty disappointed. "Oh well," says one, "I suppose that knowledge is data in itself."`
+			`	"Perhaps your engines were just too powerful for you to notice," suggests Franz.`
+				goto greatness
+			label good
+			`	"That's to be expected," says Franz. "You can't run them all the time, just in bursts.`
+				goto greatness
+			label great
+			`	Murmurs of approval run round the table, and Franz speaks up.`
+			label greatness
+			`	"Please let our technical team know the full details when you have time. Humanity has always striven for greatness in times of hardship, and we must do the same. Genius is born of adversity."`
+			`	You ponder this for a few moments, and remember the almost-mythical Alphas, genetically modified humans bred to be unemotional super-soldiers.`
+			choice
+				`	"Do you mean like the Alphas?"`
+				`	"What about the Alphas?"`
+			`	There's a hushed silence. "The Alphas," says one sombre voice, "...should not have been."`
+			`	It's quiet again, but perhaps not everyone agrees with this opinion.`
+			`	"How much do you know about the Alphas?" asks a member.`
+			choice
+				`	"They were evil, semi-human creations that nearly destroyed humanity."`
+				`	"They were humanity's greatest weapon."`
+				`	"Not a lot, really."`
+			`	"The Alphas were genetically engineered soldiers, but not just powerful machines. Their intelligence matched their super strength, but they cared nothing for lesser, 'ordinary' people - some say not even for each other. But they worked together to enslave planets and continue their race, and they nearly outmatched humanity."`
+			`	"Continue their race," you ask?`
+			`	"They cannot reproduce the normal way, like the human cattle working beneath our feet. They had to round up large groups of women and artificially impregnate them, using special genetic manipulation technology, like which created them in the first place."`
+			`	"But nothing like that happens these days," says Franz. "Humanity has moved on. We are civilised now."`
+			choice
+				`	"That's good. We'd better not make a super-intelligent afterburner."`
+					goto afterburner
+				`	"Could some of the Alphas have survived?"`
+					goto survived
+			label afterburner
+			`	You're not quite sure how that would work, and nor is anyone else. It seems the awkward silence means it's time to go, and the strange but rich group will call you when they need you again.`
+				goto technical
+			label survived
+			`	"It's not likely," says Franz. "Genetic resequencing technology is too tightly controlled, and human space has nowhere for them to go. They're nothing more now than a story to scare children and an excuse for the government to poke its nose into honest research.`
+			`	With that, it seems the meeting is over, and they'll call you again when you're needed.`
+			label technical
+			`	You head down to the technical team who ask you lots of questions about your experience with the ionic afterburner, and as you're finishing up your communicator beeps:`
+			`	"Uncle William here, come and see me on Moonshake, I could use your help."`
+
+mission "ScS Wifery 0"
+	landing
+	name "Call to help"
+	description "Go and see what Uncle WC wants help with."
+	# source Hephaestus
+	destination Moonshake
+	to offer
+		has "ScS An Edge 1: done"
+	on fail
+		dialog phrase failure
+
+mission "ScS Wifery 1"
+	landing
+	autosave
+	name "Pray they Never Meet"
+	description "Take one of Uncle WC's wives on a holday so another wife doesn't accidentally meet her. You'll find Maurissa on <destination>."
+	source Moonshake
+	destination Foundry
+	to offer
+		has "ScS Wifery 0: done"
+	on fail
+		dialog phrase failure
+	on offer
+		conversation
+			`Uncle WC greets you warmly. He asks you how it's been working for Syndicate higher-ups, and you tell him that you're indispensable to the work to rescue the galaxy from recession.`
+			`	"Good, good," he replies, "I knew you'd be worth something in the end. Just don't forget your old Uncle, and how he helped you out."`
+			choice
+				`	"So what do you need?"`
+					goto helpim
+				`	"Ahem, I've been worth plenty from the beginning."`
+			`	"Of course, of course. I just mean I saw potential in you. You'll be great someday, more than even you realise.`
+			label helpim
+			`	"Now I've been called for big things too. I've got to go to <planet>."`
+			choice
+				`	"I'd be glad to take you. Just don't spill tea on my best leather seats."`
+				`	"I'm sure you can find a gold-plated shuttle going that way soon."`
+					goto shuttle
+			`	"Oh no, I can't go with you. I need you to go ahead of me and solve a little problem I have. Elaina wants to go with me."`
+				goto problem
+			label shuttle
+			`	"Yes, yes, I've got my transport sorted. I need you to go ahead and solve a little problem I have. Elaina wants to go with me."`
+			label problem
+			`	"Your... daughter?" you ask.`
+			`	"My wife. She complains I've never taken her off-world. Doesn't see that it's hard for me to take someone, always complaining about luggage, doesn't know how to navigate a foreign planet, and she'd probably just get bored at all the meetings I have to go to while she waits at home. But I've agreed to take her this time. Told her I'll appreciate her company on the voyage."`
+			`	"So..." you hazard a guess, "you need your house cleaning up before you arrive?"`
+			`	"What? No! My houses are all perfectly spick and span. I need you to take Maurissa on a holiday. Somewhere off-world. They mustn't meet!"`
+			`	"...Maurissa"`
+			`	"My wife on <planet>. She mustn't know I have another wife on <origin>."`
+			`	"Or another on Crossroads," you say. "Do you have wives on every planet?"`
+			`	"Pretty much," says WC. "I'm an important man. I don't have time to bring someone with me whenver I travel. And I need peace on the journey. Space to think. Women don't travel well anyway. But on-world... who will look after me? You can't ask a maid to do everything, they're so impersonal. So, when I'm on a new planet I spend time getting to know people. I'm a nice guy, I can look after a woman. So I get married.`
+			`	"What, you don't think an important man like me can go down to the brothel like everyone else, do you?"`
+			`	"...Not everyone goes down to the brothel, Uncle." You pause for a moment, trying to take in what he's just said. "You could try respecting women."`
+			`	"They'll get respect when the earn it," he retorts. "Besides, I have the means. Half of them would be working twelve-hour shifts in the mines if not for me. Why shouldn't I help?"`
+			choice
+				`	"It sounds an awful lot like the Alphas."`
+					goto alphas
+				`	"You're a terrible man."`
+			`	"And you're a terrible space-captain." He hands you a card with Maurissa's details, and a handful of holiday brochures. "Just take her somewhere nice for a few days, at my expense. Or drop her off and let her find her own way home, I don't care."`
+				accept
+			label alphas
+			`	"And who can blame them! If you can't have family the normal way, you make a family your own way. It's no more than what Kings, millenia past on earth would do."`
+			`	You stare at him for a moment.`
+			`	"And their children, if they're fit enough to have them, grow up to be the greatest super-soldiers the galaxy has known.`
+			`	"Anyway, enough about Alphas. Go and solve my problem, I'll make it worth your while." He hands you a card with Maurissa's details, and a handful of holiday brochures. "Just take her somewhere nice for a few days, at my expense. Or drop her off and she can find her own way home, either way's as good."`
+				accept
+	
+	on complete
+		conversation
+			`You find Maurissa in Uncle WC's house on <planet>. She's a short woman but stands tall, and has the air of someone who gets things done and won't take nonsense from anybody. You can see why WC wouldn't want her here when he turns up with another woman. Now is the crucial moment though, what do you tell her? WC's giving her a special holiday, to enjoy herself with no expense spared? Spare her the pain. You could add a few cushions and bill your 'luxury transport' as part of that too. Or come clean and incur the wrath of a powerful uncle?`
+			choice
+				`	"Hey, I'm WC's niece. Uncle WC wanted to do something special for you but couldn't come."`
+					goto niecephew
+				`	"Hey, I'm WC's nephew. Uncle WC wanted to do something special for you but couldn't come."`
+					goto niecephew
+				`	"So, what's it like living on <planet> while Uncle WC's away so much of the time?"`
+					goto delay
+				`	"Maurissa... I was sent to bring you these, but..."`
+					goto truth
+		
+			label niecephew
+			`	"Uncle WC's been pretty busy," you say, "but he wanted to do something nice for you. I was coming this way so he asked if I could take you on holiday. No expense spared, treat yourself the way only you know how."`
+				goto thoughtful
+		
+			label delay
+			`	You try to put off the hard decision. "It must get boring here sometimes."`
+			`	"I don't know," she says. "I have the house to manage, friends to see, galas to organise. But sometimes I wish I could travel the stars to exciting new places. William never takes me."`
+			choice
+				`	"Maybe you can now!"`
+					goto startravel
+				`	"I... Do you know where Uncle WC stays when he's away from home?"`
+					goto truth
+		
+			label startravel
+			`	You show her the pamphlets. "I think he worried you'd get too bored with all his meetings. But he sent me to say he'd like to give you the holiday you deserve. No expense spared. A week of the best fun you can imagine."`
+			label thoughtful
+			`	"Oh, Billy," she says. "He is thoughtful sometimes, isn't he? Where are we going?`
+			`	You hand her the stack of pamphlets, and she picks one out. "Let's go here," she says. "Meet me in the spaceport when you're ready."`
+			action
+				set "holidayed WC wife"
+			`	As you go you see Maruissa arranging a few decorations very precisely. Must be exactly where Uncle WC likes them.`
+				accept
+			label asdf
+			
+			label truth
+			`	She watches your expression with an opaque look.`
+			`	"I... know," she says after a while, and looks at the shiny pamphlets in your hand. "It's not hard to guess. The long trips away, he doesn't write, never wants to travel together or take me to his other homes - which I know he has. He always leaves right when he gets bored of me. Oh he keeps me well, meaning a nice house, good food, and plenty of money left over for myeself. I've thought of trying to contact the other women, to let them know, but..."`
+			`	"You know he actually married them, right?"`
+			`	"Oh yes. Billie may be a charmer when he wants to, and he might have perfect diplomacy in the office for all I know, but at home he lets out hints, if you ask the right questions. Just I think they might be happy, each in their peaceful life, imagining their doting husband comes back to them whenever he can from his hard, hard work. I imagine them content, perhaps with children, and I don't want to break their happiness.`
+			`	"But I see now I'm being selfish. They deserve to know, even if they hate me for it. Do you think you could help me?"`
+			`	"How?" you ask. "Uncle WC could break my career if he knew."`
+			`	"Oh he doesn't have to know," she says with a glint in her eye. And, reaching for the pamphlets still in your hand, "what are these?"`
+			choice
+				`	"Nothing. You don't need them now."`
+					goto noneed
+				`	"He wanted me to take you on holiday while his other wife visits."`
+			`	"What's her name?"`
+			`	"Elaina," you say.`
+			`	"A pretty name. I always imagined his other wives were plain girls, with names like Jill, and Ruth. No, that's rude of me. I'm sure Jills and Ruths are pretty too..." she trails off.`
+				goto notbad
+			label noneed
+			`	"Don't be silly," she says. "Did William give you these to get me out of the house while he brings someone else?"`
+			`	You nod, and Maurissa's eyes glaze over for a moment as she wanders through her imagination. Her features harden for a moment, then relax.`
+			label notbad
+			`	"William's not a bad man really," she comes back to focus. "No, who am I kidding, he is. But I've seen worse. He doesn't beat me, he doesn't scream and shout, he's generous - to some - and if he's indifferent to everyone else, at least he doesn't go out of his way to mistreat them. Many powerful men can't live up to that.`
+			`	"We don't need to ruin their lives - of the other wives, I mean. We'll let each of them know the truth, and let them decide what to do. As for me, I've had enough of 'WC Washermann'; perhaps I'll tell him I won a five-year galaxy cruise. He can forward a 'monthly deposit'. But now, how do we meet the others without tipping William off?"`
+			choice
+				`	"I know where Amanda lives, on Crossroads."`
+					goto amanda
+				`	"Disguise yourself and meet her at the spaceport when WC flies in?"`
+			`	"And what if she stays with him all the way home? I can't hang around the house in disguise biding my time. Do you know where his other wives live?"`
+			choice
+				`	"I know Amanda, on Crossroads."`
+			label amanda
+			`	"Perfect. I'll take my 'all expenses paid' holiday to Crossroads, and stop at her house. Do you think you can take me there?"`
+			action
+				set "helped WC wives"
+			`	"I'd be glad to," you say."`
+			`	"Great, meet me in the spaceport when you're ready."`
+				accept
+
+mission "ScS Wifery Holiday"
+	priority
+	name "Take Maurissa on holiday"
+	description "Take Maurissa on a holday to <destination>, so she doesn't meet a rival wife."
+	source Foundry
+	destination Sunracer
+	on fail
+		dialog phrase failure
+	passengers 1
+	blocked `You need space for Maurissa for the next mission.`
+	to offer
+		has "ScS Wifery 1: done"
+		not "helped WC wives"
+	on offer
+		log `It turns out Uncle WC has many wives, on many planets. I agreed to hide this from another wife of his, and take her on a lavish holiday. Better, perhaps, to keep the peace.`
+		log `People` `Maurissa Washermann` `One of Uncle WC's wives, lives on Foundry. Uncle WC sent her on holiday to avoid her meeting another of his wives.`
+		conversation
+			`You find Maurissa waiting in the spaceport dressed in lavish clothes but with only a small suitcase.`
+			`	"Anything I need," she explains, "I'll buy while I'm there. Then before I return, I just donate it to some factory workers and their families. I think it's a good use of your Uncle Billy's money, don't you?"`
+			choice
+				`	"Absolutely."`
+					goto whereto
+				`	"Don't you think that's a bit dishonest?"`
+			`	"No, not at all. He's paying for me to be happy, and if giving nice clothes to people who can't afford them makes me happy, then why not?"`
+			`	"Fair enough," you say.`
+			label whereto
+			`	"So where are we going?" you ask.`
+			`	She pulls out one of the brochures, filled with colourful pictures of beaches and sunshine and recreational hovercraft. "I fancy racing one of them," she says. "I bet I can beat half the cocky pilots who turn up thinking they can't be beat by a woman. And then I shall lie on the beach in the sun, and then perhaps I'll take a tour, all around the planet."`
+			`	It certainly sounds like she'll be away long enough to keep Uncle WC's secret safe. You prepare your ship for the journey and consider how much your 'luxury transport' charge should be.`
+				accept
+	on visit
+		dialog `You've reached <planet> but seem to have left Maurissa behind. Perhaps she's on one of your escorts in another system still catching you up.`
+	on complete
+		payment 100000
+		conversation
+			`When you land, a very excited Maurissa steps down to the landing pad with her suitcase. "Don't worry about me," she sings, merrily, "I'll be just fine. There's so much new to explore! Thank you for your company on the journey, but I'm sure you're busy now, and I wouldn't want to bore you. I'll get back fine on my own. Thanks again! Have fun!`
+			`	You're about to offer that you're not that busy, and you wouldn't mind showing her around, maybe teaching her to race hovercraft or find the best exotic food, but you see a sharply-dressed Syndicate executive in the distance making a beeline for you... you might be busy after all. Well, <payment> from your uncle will compensate you for your trouble.`
+
+mission "ScS Wifery Help 1"
+	priority
+	name "Visit Amanda"
+	description "Take Maurissa to visit Amanda on <destination>."
+	source Foundry
+	destination Crossroads
+	on fail
+		dialog phrase failure
+	on visit
+		dialog `You've reached <planet> but seem to have left Maurissa behind. Perhaps she's on one of your escorts in another system still catching you up.`
+	passengers 1
+	blocked `You need space for Maurissa for the next mission.`
+	to offer
+#		has "helped WC wives"
+		not "holidayed WC wife"
+		has "ScS Wifery 1: done"
+	on offer
+		log `It turns out Uncle WC has many wives, on many planets. I revealed the truth to his wife Maruissa, on Foundry, and will take her to meet Amanda, to begin revealing his infedelidy to all his wives.`
+		log `People` `Maurissa Washermann` `One of Uncle WC's wives; lives on Foundry. She knows her husband's infedelity, and has started a campaign to reveal the truth to his other wives.`
+		conversation
+			`In the spaceport Maurissa meets you dressed lavishly and with a small suitcase.`
+			`	"I thought we weren't going on holiday," you say.`
+			`	"But William doesn't know that, and if anybody sees us and tells him, they'll see what we want them to see."`
+			`	"Alrighty," you say, and immediately buy a big box of chocolates "for the flight." You'll put it on the bill to WC. Thinking the better of it, you buy a second box to give to Amanda: she might need some comforting when she finds out.`
+				accept
+	on complete
+		log `People` `Amanda Washermann` `Uncle WC's first wife. She lives on Crossroads, where WC has his main house and office.`
+		log `People` `Lily` `Amanda Washermann's maid at the house on Crossroads.`
+		conversation
+			`You lead the way to WC's house, and hope Amanda is in. The big, ornate doorbell at the gate makes almost no sound outside, but in a few minutes the front door opens and a maid comes hurrying across the artificial garden to meet you. She recognises you and welcomes you both in.`
+			`	"I'm so sorry, Captain <last>, with Mr Washermann gone we didn't expect guests."`
+			`	"Is Amanda in?" you ask.`
+			`	"Yes, m'lady is upstairs writing letters. I'll tell her you're here."`
+			`	She hurries off to announce your presence, while you and Maurissa make yourselves comfortable in a sitting room. This house is much bigger than the one Maurissa lives in on Foundry, and she begins to get uncomfortable. In a few minutes there's a soft noise on the stairs and Amanda comes in.`
+			`	"<first>! How nice to see you," she beams. Years ago she used to visit you on Moonshake when she was newly married, and since your flying days began you've come to see her and Uncle WC a couple of times.`
+			`	"And who is this charming lady you've brought with you? Business partner? First Mate? Friend? ...Something more?"`
+			`	You sit awkward for a moment.`
+			choice
+				`	"I...'m afraid it's an awkward situation. You'd better sit down."`
+					goto awkward
+				`	(let Maurissa explain)`
+					goto maurissa
+				`	"We... brought you a box of chocolates!"`
+			`	"Ookay..." she takes the chocolates and sits down.`
+			choice
+				`	"I...'m afraid it's an awkward situation."`
+					goto awkward
+				`	(let Maurissa explain)`
+					goto maurissa
+	
+			label awkward
+			`	"You know, Uncle William, he goes away a lot on buisiness." You hesitate. "And... he goes to a lot of planets. And... he spends a lot of time there. And... well, I'm sorry, there's no good way of putting it, he got married again. Several times. Keeping different wives on different planets." There's a stunned silence.`
+				goto tears
+	
+			label maurissa
+			`	"Are you Amanda Washermann?" says Maurissa, "you look lovely! You're every bit as beautiful as I imagined you'd be. And those earrings? They suit you so well. I feel like I've entered the house of a queen."`
+			`	"Oh thank you!" she replies. "It's nothing like that at all, I'm sure. One does one's best, and my husband is quite rich. He's the CEO of Watersoft, you see."`
+			`	"Yes, I know," says Maurissa more sombrely. "And he's made good with his riches here. Elsewhere, I'm afraid to say, he's not done so good." There's a troubled silence and Maurissa hands her a calling card, that reads,`
+			`		"Mrs Maurissa Washermann, Charities, Parties and Good Friendship,"`
+			`		along with her address.`
+	
+			label tears
+			``
+			`	Amanda bursts into tears and rushes out; you hear the patter of her feet up the velveted staircase.`
+			`	"Well, that went well," says Maurissa. "Do you think she'll ever forgive us?"`
+			choice
+				`	"We did the right thing. She should know the truth."`
+					goto calm
+				`	"I hope so. It's WC she should be mad at."`
+					goto calm
+				`	"She'll calm down, you know what women are like."`
+			`	Maurissa fixes you with a glare`
+			label calm
+			`	You both take a chocolate from the box meant for Amanda, and eat them quietly as you wait. You've eaten through a few, before Amanda comes back in, tear-stained, accompanied by her maid. She sits in silence for another minute, which feels like an hour, and then composes herself to speak.`
+			`	"I'm sorry. And I'm sorry especially to you, Mrs--"`
+			`	"Maurissa Washermann"`
+			`	"Mrs Maurissa Washermann. My half-wife, I suppose. Not that the law allows it, but with enough bribes any law can be ignored. Did you know? About me, I mean?"`
+			`	"Only when <first> told me. Though I had suspected for a while."`
+			`	"I should have stopped him. I should have watched him more carefully. I should have loved him better. I should have been a better wife."`
+			`	"No--" Maurissa interjects.`
+			`	"I should have paid attention. I liked the house, I liked the luxury, and when my husband went on long trips I just surrounded myself with everything I wanted. I should have--"`
+			`	"Stop it." Says Maurissa. "You can't blame yourself. If William was going to cheat, he was going to cheat. Men think it's their privilege, just like CEOs think it's theirs to order around their employees." You wince a little: your managerial days are not so far behind. "You can't go blaming yourself. I'm sure you were a perfectly loving wife, and everything he could have asked for."`
+			`	"But I wasn't," sighs Amanda. "If I'd looked out for him more, if I cherished his dreams, oh, if only I'd told him how proud I was of his work, instead of asking whether he could buy me the next handbag. Maybe if I hadn't pushed him. Maybe he'd feel fulfilled. Maybe he wouldn't have felt the need to go and cheat other women, and draw them into his web of lies. You know, in my wedding vows I promised to be there for him no matter what."`
+			`	"Maybe this - Maybe that - Maybe Not," Maurissa says firmly. "Did you ever consider if he ought to be there for you?"`
+			choice
+				`	(continue)`
+			`	There's a short pause, and Maurissa continues. "I'm not trying to make you hate him. I just think you should know the truth. I'm as shocked as you. Well, a bit less, because I suspected already."`
+			`	"So did I."`
+			`	"There, you see, we women can't be fooled. And we've got each other now. May I call you sister? What you need now is a holiday. A pleasant holiday away from William, away from all the things he's bought you - as if he could 'buy you' with them - something to take your mind off it all and feel happy as yourself. Let's go together. And when we come back we can decide what to do. I'm sure Captain <last> will take us, and William will foot the bill."`
+			`	"No," says Amanda. "I will foot the bill. It won't be anything to do with my husband, with William."`
+			`	"William was already going to pay for my holiday."`
+			`	"Then let him pay <first> for the holiday he thinks he's sending you on, and out of kindness <first> will transport us two aunts, and we will take a nice holiday by ourselves, for ourselves. <first>, can you have two bunks ready for us to go somewhere nice? Where did you have in mind, Maurissa darling?"`
+			`	"Sunracer," says Maurissa.`
+			`	"Absolutely," you say.`
+			choice
+				`	"I'll have the best bunks ready for you in a jiffy. Don't you worry at all."`
+					goto lily
+				`	"What about the house? And what if Uncle WC calls while you're gone?"`
+			`	"<first>, you know Lily, don't you? She gestures to the maid.`
+			`	"Not by name," you say. Amanda glares at you for a tiny moment. Perhaps your days of ordering underlings around really did make too much mark on you.`
+				goto house
+			label lily
+			`	"Lily will manage things in my absence." She must mean her maid.`
+			label house
+			`	"She's very capable, and will run the house when I'm gone. If Mr Washermann comes, she'll simply say I'm away on a trip, and she doesn't know where, and she's sure I'll be back before long. If Mr Washermann decides he cares more for his first wife than his house and his free-roaming, he can enjoy the distress of waiting around for a while without knowing.`
+			`	"And, <first>, give Lily your contact information. She'll contact you if we need your help again. Thank you so much for helping us and letting the cat out of the bag. And don't think I'm upset at you, even a little bit.`
+			`	"We'll see you in the spaceport when you're ready for us."`
+				# accept
+
+
+mission "ScS Wifery Help 2"
+	priority
+	name "Sisters in Arms"
+	description "Take Maurissa and Amanda to <destination>, where they can relax at their cheating husband's expense."
+	source Crossroads
+	destination Sunracer
+	passengers 2
+	blocked `You'll need space for Amanda as well as Maurissa for the next mission.`
+	on fail
+		dialog phrase failure
+	on visit
+		dialog `You've reached <planet> but seem to have left your passengers behind. Perhaps they are on one of your escorts in another system still catching you up.`
+	to offer
+		has "ScS Wifery Help 1: done"
+	on offer
+		conversation
+			`Your two aunts meet you in the spaceport ready for their holiday, and you show them to the <ship>. You have a brief vision of a future of taking bus-loads of aunts on pleasure cruises round the galaxy, and shudder. Still, the others ought to know, and maybe when Aunt Amanda and Aunt Maurissa have recovered and finished their holiday, you can help with that.`
+				accept
+	on complete
+		payment 1500000
+		conversation
+			`When you reach <planet>, you briefly wonder about staying with your aunts, and enjoying the sun too. You also had a shock! Maybe you need a luxury holiday too! But in the distance you see a sharply-dressed Syndicate executive making a beeline for you... you might be busy now. Anyhow, you won't complain at Uncle WC's generous holiday gift: <payment> straight into your account.`
+
+mission "ScS Negotiation 1"
+	landing
+	name "Negotiating with Terrorists"
+	description "Take a Syndicate leader urgently to meet with Free Worlds representatives on <destination>, arriving there no later than <day>."
+	source Sunracer
+	destination Hephaestus
+	deadline 0 2
+	passengers 1
+	on visit
+		dialog `You've reached <planet> but seem to have left your passenger behind. Perhaps he's on one of your escorts in another system still catching you up.`
+	on fail
+		dialog phrase failure
+	to offer
+		or
+			has "ScS Wifery Help 2: done"
+			has "ScS Wifery Holiday: done"
+	on offer
+		conversation
+			`The suited man reaches you almost out of breath.`
+			`	"Captian <last>!" he exclaims. "I'm so glad I saw you! I am Professor Egelbert Lenforth, of the Syndicate Senior Executive Committee. I urgently need to get to <planet>, and you can take me."`
+			choice
+				`	"Absolutely Sir, right this way."`
+					accept
+				`	"Um, sure, I'll just hit the bar for some snacks, then we'll go."`
+					accept
+
+mission "ScS Negotiation 2"
+	landing
+	name "Transport to <planet>"
+	description "Transport a shadowy Syndicate member to <destination>."
+	source Hephaestus
+	destination Sundive
+	passengers 1
+	on visit
+		dialog `You've reached <planet> but seem to have left your passenger behind. Perhaps he's on one of your escorts in another system still catching you up.`
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Negotiation 1: done"
+	on offer
+		log `The 'Free Worlds' terrorists have begun negotiating with the Syndicate, which puts power in the Syndicate's hands to continue economic progress. The war is certainly getting more complicated, which some people see as a good thing.`
+		payment 100000
+		conversation
+			`When you land, Prof. Lenforth wires a generous <payment> to your account, and heads out to the Syndicate headquarters. Thinking there may be some more important work for you, you go with him and he tells you about this sudden event.`
+			`	"The terrorists want to negotiate, you see - oh, yes, Navy Intelligence have confirmed the Free Worlds were behind the terror attacks - and this gives us an opportunity. Beggars can't be choosers, so the ball's in our court to get the best deal. The Free Worlds contacted us only a few days ago to set up this meeting, and their delegation should be arriving any minute now."`
+			`	Indeed, even as the professor drones on, you see a man in Free Worlds uniform heading the same way, accompanied by a captain who looks eerily familiar.`
+			choice
+				`	(Join the meeting)`
+				`	(Leave the professor to his ramblings)`
+					goto wander
+			#TODO could throw a bit more text here
+			`	"Not this time," says the professor as you get to the door outside the hall outside the meeting room. Private diplomatic meeting, and you're not invited."`
+			label wander
+			`	You head out a different way, and take a look at the Syndicate headquarters a bit. It's pretty boring, really, so you come back. Luckily the meeting didn't take long and the Syndicate leaders are filing out of the hall. One of them you recognise from your meetings with Frans Francis Jr, and he accosts you as he comes out:`
+			`	"One of my colleagues needs to get to <planet>. You don't mind taking him, do you?"`
+			`	"Of course not," you say, not quite sure if you mean it."`
+			`	"Very good, I'll tell him where to find your ship."`
+			`	When you get back to the <ship> you find you have a new passenger, a tall man dressed up in coat and high collar, with a broad-brimmed hat shadowing his face so you can't see any of his features. Either he's extremely worried about sunburn, or he doesn't like to be recognised. He must be the Syndicate colleague bound for <planet>.`
+				accept
+		event "Tarazed neutrality" 14
+
+mission "ScS Fight Club 1a"
+	landing
+	name "Fight an alien raider"
+	description "Join a fight against an alien raiding ship. Disable the ship so that Syndicate engineers can strip out valuable technology."
+	source Sundive
+	destination Sundive
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Negotiation 2: done"
+	on offer
+		payment 30000
+		conversation
+			`On <origin> the mysterious Syndicate man leaves you, and you receive a payment of <payment>, along with a message from Franz Francis Jr.`
+			`	"Captain <last>, I hear you're on <origin>. Did you know it gets visited by aliens from time to time? Not that they come there to talk, more like they kill everything in sight and leave again. But they have fascinating technology, that the Syndicate likes to get more of.`
+			`	"There's a group of fearless captains gathering on <origin> to try and catch one of these raiding ships. If you like to join them, look for a pilot named Wilkins in the spaceport. There's a big prize if you manage to catch one and let our engineers get on board to strip the technology."`
+			`	"Remember, leave it alone once you've disabled it. Specially-trained Syndicate engineers will board it after you land, to strip its parts."`
+				accept
+	to complete
+		or
+			has "ScS Fight Club 1b: done"
+			has "ScS Fight Club 1b: failed"
+	on complete
+		log `Fought an alien spaceship! Golly, those things are big and scary.`
+
+event "ScS korath fight ready"
+	system "Sheratan"
+		remove fleet "Large Core Pirates"
+#		remove fleet "Korath Raid"
+		remove fleet "Korath Large Raid"
+
+event "ScS korath fight end"
+	system "Sheratan"
+#		fleet "Small Core Merchants" 1500
+#		fleet "Large Core Merchants" 1800
+#		fleet "Small Core Pirates" 3000
+		add fleet "Large Core Pirates" 5000
+#		add fleet "Korath Raid" 30000
+		add fleet "Korath Large Raid" 40000
+
+mission "ScS Fight Club 1b"
+	priority
+	name "Disable the Korath Raider"
+	description "Disable the Korath Raider so Syndicate engineers can strip it for technology."
+	source Sundive
+	destination Sundive
+#	on fail
+#		dialog phrase failure
+	to offer
+#		has "ScS Fight Club 1a: active"
+		has "ScS Negotiation 2: done"
+	on offer
+		conversation
+			`Do you want to find the pilot Wilkins now to join the group chasing an alien spaceship?`
+			choice
+				`	Yes.`
+				`	Not yet.`
+					defer
+			`	You ask for Wilkins and are directed to a woman in khakis with a gun at her side, drinking what looks to be her third beer. You introduce yourself and she looks up.`
+			`	"So, you want to be a hero, do you?... What, you think it's strange having a woman lead a shooting party? You shouldn't. I don't know what men think they're good at, but most pee their pants and run away if they see a Korath raider.`
+			`	"Those things don't just shoot you outta the sky, they grab you so you can't run away. Then if you try to get close to hit them with your weapons, they push you away. Ain't no way a human ship's getting out alive if one of them wants you."`
+			choice
+				`	"Well that sounds rather bleak, I think I'll pass."`
+			`	"Ha! You walk in here all pumped up and walk out like a frightened cat. But there's a secret." It seems you can't get out of this quite so easily, once you've started. "The secret's not to be first. Don't let them catch you. Then, when they've got their target, go in with a dozen others and fire everything you've got. Eventually they'll stop moving. Or, if you really want to be the big hero and go first, have as many shields as you can get and the toughest ship on the market. Pack her with regenerators and the biggest engines you can fit, in hopes you can get out and let someone else take the punch before your shields die."`
+			`	"Th..thank you for your advice." You're not exactly feeling full of confidence now, but maybe it's all talk to scare the newbie.`
+			choice
+				`	"I'll be right back after I upgrade my ship."`
+				`	"Nothing in space can take me, I'm ready for anything."`
+			`	"These," she ignores you and gestures to some other pilots filling up on Dutch Courage, "are Hansel, Jeff, Boulder Boy and some chick whose name I forgot. They'll be the team, unless more wannabe-heroes show up before the Korath do."`
+			`	"And you, you'll be there too, right?" you ask.`
+			`	"Hey newbie," she stares you right in the eyes, "you wanna know the secret to staying alive?... Heh, sure you do..."`
+			`	And with that she picks up another beer, and you wonder if you should buy some of your own. It could be days or weeks until an alien ship comes near. That or some bigger weapons and engines. But before you can think of either, a voice shouts, "Spotted! One's just jumped into the system!"`
+			`	You all dash to your ships, and Wilkins shouts out, "remember to only disable it! Or we don't get paid!"`
+				launch
+	on accept
+		event "ScS korath fight ready"
+	on fail
+		event "ScS korath fight end"
+		dialog `The Korath Raider was destroyed; your payment is merely a hearty clap.`
+	on complete
+		event "ScS korath fight end"
+		payment 50000
+		dialog `Your share of the bounty for the Korath Raider is <payment>, and a big cheer from the spaceport.`
+	
+	npc disable save
+		government "Korath"
+		system Sheratan
+		personality staying heroic plunders target opportunistic harvests entering
+		ship "Korath Raider (no pilfering)" "Korath Raider"
+	
+	npc 
+		government "Merchant"
+		system Sheratan
+		personality timid disables escort appeasing uninterested staying launching
+#		ship "Marauder Manta (Engines)" "Wilkins' Seahorse"
+		ship "Marauder Manta (Range)" "Wilkins' Seahorse"
+	
+	npc 
+		government "Merchant"
+		system Sheratan
+		personality disables escort appeasing
+		ship "Marauder Splinter (Weapons)" "The Crumbler"
+		ship "Marauder Firebird" "Bloomin' Hull"
+		ship "Marauder Firebird (Weapons)" "Rock Monster"
+		ship "Marauder Leviathan (Weapons)" "Emerald O' the Skies"
+
+mission "ScS Fight Club 2"
+	landing
+	name "Stage a fight"
+	description "Stage a fight aganist pirates over <destination>. Make sure not to kill the fake pirates though."
+	source Sundive
+	destination Maker
+	on fail
+		dialog phrase failure
+	to offer
+		or
+			has "ScS Fight Club 1b: done"
+			has "ScS Fight Club 1b: failed"
+	on offer
+		conversation
+			`Franz himself is in the spaceport waiting for you`
+			branch failed
+				has "ScS Fight Club 1b: failed"
+			`	"Good work fighting the alien ship. They don't go down easy, do they? The engineers are particularly happy with what they found on this one, and I hope the reward more than compensated you for the risk.`
+				goto more
+			label failed
+			`	"Good work fighting the alien ship. Too bad you had to blow it up, though, it's rare we get a chance to catch one and get bits out of it.`
+	
+			label more
+			`	"But can you imagine how people down on-world feel? The cameras were all ablaze with the action, and the spaceport was electrified! Everyone watching your every shot: will the hero win? Will the aliens doom us all? And then, when you beat it, there was a huge cheer! and people returned to their work with doubled effort, knowing that what they're doing is keeping people like you in the sky, and their world safe."`
+			choice
+				`	"I'm glad it's over, that was terrifying."`
+					goto terrifying
+				`	"So, you want to broadcast the footage to the other Syndicate worlds?"`
+					goto broadcast
+				`	"Don't tell me, you want me to lure the next alien ship past every planet and fight it at the end."`
+					goto lure
+			label terrifying
+			`	"But that's what you live for, isn't it? To be the best space-pilot in the galaxy, hero of the Syndicate, saviour of mankind? The thrill in your veins! The danger! I certainly couldn't do it. We all admire you. Anyway, no more fighting aliens, I have a new plan for you.`
+				goto work
+			label broadcast
+			`	"That's a good idea, we should do that too. But I've got a better one.`
+				goto work
+			label lure
+			`	"I don't think it would follow. Have you got something tempting enough for it? Anyway these raiders come so rarely, you got lucky catching this one. We don't have to wait for the aliens, if we want luck, we make it ourselves.`
+	
+			label work
+			`	"The war has given us work, and work is profit. But we need motivation. The workers work their same, sluggish speed, and cutting their salary to offer overtime benefits only goes so far. But if they could see the war-- if only the rebel worlds were closer to Syndicate space-- but we can make our own luck.`
+			`	"I'll arrange a few pilots to wait in the <system> system for you. Flying Free Worlds colours falsely could cause a diplomatic incident, so they'll fly pirate colours: but someone will start a rumour about the Free Worlds bringing the war here. Disable them - don't kill them! - while the world watches, then land on <planet> as a hero."`
+			choice
+				`	"Don't you think that's a bit too dishonest?"`
+					goto dishonest
+				`	"I don't like this idea..."`
+					goto like
+				`	"What if they're too strong for me?"`
+					goto strong
+			label dishonest
+			`	He looks at you strangely. "Didn't you work in business before you took to flying? If I say it's okay, it's okay. Everyone benefits in the end, because the economy gives them what they need."`
+				goto end
+			label like
+			`	"Whether you like it or not doesn't matter. It's what the economy needs, so we're going to do it. And like a good worker, you'll do what you're told." He's clearly disappointed in you.`
+				goto end
+			label strong
+			`	"Then you're a pathetic hero. Fly away and find some new weapons, and hope you get back before someone else finishes the job and steals your glory. And your pay."`
+				goto end
+	
+			label end
+			`	You stand for a moment uncomfortably, then Franz brightens up. "I'm sure you'll do fine. You've shown great promise, and we have more for you in store if you do well. By the end, you really will be the Great Hero of the Syndicate - which means of the galaxy!"`
+				accept
+	
+	npc disable save
+		government "Pirate"
+		system "Delta Capricorni"
+		personality staying heroic target marked
+		ship "Mule (rubbish)" "Mr Lint"
+		ship "Bastion (rubbish)" "Sour Grape"
+		ship "Raven (rubbish)" "Unpreserved Pickle"
+		ship "Fury (rubbish)" "Cheese Curl"
+		ship "Fury (rubbish)" "Cheese Curl"
+
+mission "ScS Abduction 1"
+	landing
+	name "Recruit a Navy specialist"
+	description "Meet a Navy specialist on <destination>, and bring him to work with the Syndicate."
+	source Maker
+	destination "Triton Station"
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Fight Club 2: done"
+	on offer
+		log `Faked a fight with pirates, to motivate workers. This is a worrying direction that the Syndicate managers are taking. Next, I'm stealing a military consultant from under the Navy and Deep's noses.`
+		payment 50000
+		conversation
+			`You land to a small crowd of cheers, and a huge roar of applause over the spaceport's speaker system. A Syndicate official meets you as you step out of your ship.`
+			`	"That was marvellous! Wonderful! But so intense - who knows what war may bring tomorrow," he cries loudly. Then, in a smaller voice, Captain <last>, let's talk on your ship."`
+			`	From the privacy of the <ship> you discuss the war efforts, and the official hands you <payment>, "as a reward for your heroic defence." He proceeds to tell you of a new situation that needs your help.`
+			`	"We have news that a team in the Deep is trying to recruit a Navy weapons specialist, to make sure their security force is on level with the Republic Navy. Pathetic, isn't it? The systems out in the Deep join the Republic in name, but privately don't trust them and keep their own Navy.`
+			`	"Well, because they can't recruit the specialist officially, and can't risk getting caught, some clever-clogs has decided to bribe him with a secret offer, and a 'contact' - actually from the Deep - will meet him on <planet>. You will go there first, and be his contact, and bring him back to the Syndicate to help our development."`
+			choice
+				`	"What if the Navy catch me?"`
+					goto fly
+				`	"How will I convince him I'm the real contact?"`
+					goto codeword
+				`	"Where do I bring him?"`
+					goto towhere
+			label fly
+			`	"Then fly, you fool. We can't have the Navy thinking we're spying. Let the Deep take the flak when they turn up later."`
+			`	"But if you get him, bring him to Shangri-La, to a main named Benjamin Downey. He's an expert in plans, big and small, and will take it from there."`
+				goto brief
+			label codeword
+			`	"The code phrase is 'Deep Blue Sea'. I know, not very clever; we didn't come up with it. When you've got him, bring him to Shangri-La, to a man named Benjamin Downey. He's an expert in plans, big and small, and will take it from there."`
+				goto brief
+			label towhere
+			`	"To Shangri-La, to a main named Benjamin Downey. He's an expert in plans, big and small, and will take it from there."`
+	
+			label brief
+			`	He hands you a small file of everything you need to locate the weapons specialist, and bids you safe journey.`
+				accept
+	# have a dialog to meet the guy in the spaceport instead of on landing?
+
+mission "ScS Abduction 2a"
+	landing
+	name "Navy consultant to the Syndicate"
+	description "Bring the Navy weapons specialist to the Syndicate on <destination>."
+	source "Triton Station"
+	destination "Shangri-La"
+	passengers 1
+	blocked `You need a bunk free, obviously, if you're to pick up the consultant.`
+	on fail
+#		dialog phrase failure
+		fail "ScS Abduction 2b"
+	on visit
+		dialog `You seem to have left your passenger behind in another system. How about you wait for your escorts to catch up and try landing again?`
+	to offer
+		has "ScS Abduction 1: done"
+	on offer
+		conversation
+			`On <origin> you find a seat in the mess hall and watch the clock. If anyone asks, you're "refuelling slowly so as not to stress the <ship>'s old fuel pipes." At precisely ten minutes to two, you go down a certain hallway and through a certain door, 'conveniently' bumping into a man carrying a stack of papers and a large cup of coffee.`
+			`	"Oh dear," you say nonchalantly as he drops both. "Seems like your papers are going to the bottom of the Deep Blue Sea-" and you stroll off casually. The man comes running after you complaining, "hey! You owe me a cup of coffee!"`
+			`	He follows you all the way to your ship, where you grudgingly let him aboard, then welcome him warmly as soon as the door closes.`
+			`	"Welcome to a new life of luxury," you say as you quickly set the engines and blast off from the station. He settles himself into a bunk, having no clue where he's going, but apparently happy for the change of scenery.`
+				launch
+	
+	npc
+		government "Deep Security"
+		system Alheka
+		personality staying launching uninterested surveillance
+		ship "Raven" "Blue Sea"
+	
+	on complete
+		log `Took the weapons specialist to Benjamin Downey on Shangri-La. Downey seems to be some sort of mastermind within the Syndicate.`
+		payment 50000
+		fail "ScS Abduction 2b"
+		conversation
+			branch connoire
+				has "met benjamin downey"
+				#has "Sc Package Delivery 5: done"
+			action
+				log `People` `Benjamin Downey` `Somewhere high-up in the Syndicate, lives on Shangri-La, and possibly something of a mastermind for intricate plots.`
+			`Following directions, you find your way to the office of Benjamin Downey. It takes you many elevators and corridors to reach, with more than one stern-looking security guard to pass on the way.`
+				goto talk
+			label connoire
+			`You find your way to Benjamin Downey's office, where you once went to recieve an extremely generous payment for dropping a package on Clink in the South. Past the security guards and up the lifts, you reach the imposing door and knock.`
+			label talk
+			action
+				set "met benjamin downey"
+			`	Mr Downey invites you in and offers the now-ex-Navy consultant a seat. Turning to you he says, "Captain <last>, your payment of <payment> is on its way to your account. Your work is done here but I commend you for your efforts. The Syndicate thanks you and continues to welcome your involvement."`
+			`	With that you leave, and check your accounts and your communicator as you head back to the main concourse.`
+
+mission "ScS Abduction 2b"
+	landing
+	name "Navy consultant to Uncle WC"
+	description "Bring the Navy weapons specialist to Uncle WC on <destination> instead."
+	destination Crossroads
+	to offer
+		has "ScS Abduction 2a: active"
+	on offer
+		conversation
+			`You get a message from your Uncle WC.`
+			`	"<first>! I heard you're bringing a Very Important Person back home to enjoy Syndicate hospitality. You know, those leaders wouldn't know what to do with him really, they just think they're being clever snatching him from the Deep. If you want to be really helpful, bring him to me on <planet> and we'll see that Watersoft gives him proper hospitality, and proper opportunity. And I'll see that you're reimbursed well for travelling so far.`
+			`	"Don't worry about Syndicate leadership, I'll make it straight with them. You just say there was some trouble bringing him and leave it at that."`
+				accept
+	on visit
+		dialog `You seem to have left your passenger behind in another system. How about you wait for your escorts to catch up and try landing again?`
+	on complete
+		log `Took the weapons specialist to Uncle WC instead of Syndicate leadership. Hopefully only good comes of this.`
+		payment 100000
+		fail "ScS Abduction 2a"
+		conversation
+			`Uncle WC welcomes you and the Navy weapons specialist, and ushers you quickly into his office. "Did you have any trouble?" he asks.`
+			choice
+				`	"None at all, aside from a spilt coffee."`
+				`	"It was tough, daring, and our expenses include a large cup of coffee."`
+			`	"Well we'll soon pay for that, and a lot more," says your uncle, and hands you <payment>.`
+			`	"Don't stick around," he says to you, "I've got some behinds to cover. Keep safe, and very well done."`
+			`	You head out and check your communicator.`
+
+mission "ScS Abduction failed"
+	name "Failure"
+	description "You are a failure"
+	landing
+	to offer
+		has "ScS Abduction 2a: failed"
+		has "ScS Abduction 2b: failed"
+	on offer
+		dialog
+			`Seems like your passenger died. How could you be so careless!!`
+			`	You, sir... or madam...`
+			`	You, useless thing, are a failure. Reload or try again, or give up.`
+
+mission "ScS Rebel Deal 0"
+	landing
+	name "Pick up equipment"
+	description "Pick up equipment from <destination> to trade with Free Worlds rebels."
+	source
+		planet Crossroads "Shangri-La"
+	destination Hephaestus
+	to offer
+		or
+			has "ScS Abduction 2a: done"
+			has "ScS Abduction 2b: done"
+	on fail
+		dialog phrase failure
+	on offer
+		conversation
+			`On your communicator there is a message from Franz Francis Jr.`
+			`	"Captain <last>, we could use your services again on <planet>. The rebel worlds need parts that only we can supply, so we've agreed to send them half-way. It's a small delivery of 10 tons: come to <planet> to pick it up and fly it half way to meet the rebels. We'll give you the location when you arrive. You'll also need space for a few passengers."`
+				accept
+		event "Thule becomes independent"
+		event "plasma turret available"
+		event "fw conservatory founded"
+		set "plasma turret available: offered"
+		set "FW Flamethrower 1: offered"
+
+mission "ScS Rebel Deal 1"
+	landing
+	name "Deliver refinery parts"
+	description "Deliver refinery parts to a meeting point on <destination>, and try to avoid being seen selling to the rebels."
+	source Hephaestus
+	destination Tundra
+	cargo "refinery equipment" 10
+	passengers 4
+	blocked `You need ten tons of cargo space to carry the equipment, and 4 berths for Syndicate employees. Come back when you have space.`
+	on visit `You've reached <planet> but seem to have left either your cargo or passengers somewhere else. Why not wait for them to catch up.`
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Rebel Deal 0: done"
+	on offer
+		conversation
+			`Franz meets you as the dockworkers load up your ship.`
+			`	"Equipment for a deuterium refinery. Apparently the so-called Free Worlds are collaborating with pirates now. All's fair in love and war, they say; and all's good when they need our goods, I say. And as usual you'll receive a sizeable bonus for your involvement. Four workers will go with you to unload the equipment, because you'll be landing some way away from the spaceport on <destination>.`
+			`	"When you're done with this", he continues, "come back to the headquarters on Hephaestus. We have an important meeting. It's time to think about improving sales around the galaxy, and making sure we don't run out of work."`
+			`	Running out of work seems unlikely really, but as usual you assent, and go to check on the cargo being loaded into your hold.`
+				accept	
+
+mission "ScS Marketing 0"
+	landing
+	name "Meeting on <planet>"
+	description "Return to <planet> for a meeting about 'improving sales'."
+	source Tundra
+	destination Hephaestus
+	passengers 4
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Rebel Deal 1: done"
+	on offer
+		conversation
+			`The meeting site is an abandoned settlement a thousand kilometres from Tundra's main spaceport. It's an old oil field that ran dry decades ago, and only a few of the landing pads are still useable. The employees who came with you load the equipment from your hold into the Free Worlds ship, which takes off to head back to whatever it is they do down there. You watch the sillhouette of the Free Worlds ship disappear in the distance, and have a funny feeling of deja vu; but it passes quickly, and you head over to the main spaceport.`
+			`	Franz will be waiting for you back on <planet>.`
+				accept
+
+mission "ScS Marketing 1"
+	landing
+	name "Marketing Tour: <planet>"
+	description "Head over to the Navy on <destination> to show off the Syndicate's catalogue, and subtly suggest to them they can focus more resources on the war."
+	source Hephaestus
+	destination Farpoint
+	to offer
+		has "ScS Marketing 0: done"
+	on offer
+		log `The Syndicate wants to encourage other factions in the galaxy to spend money on their products. Franz and his colleagues have sent me on a marketing and propaganda tour.`
+		payment 40000
+		conversation
+			`With <payment> more in your account from the delivery job, you head up to the Syndicate headquarters. Once again you pass through the hallways, once again you take silent elevators. And once again you find yourself in a long room with several expensively-dressed men, and Franz Francis Jr their main spokesman.`
+			`	Before he can speak, another member greets you: "How are your profits?"`
+			`	"Up," you say. It feels like the right answer.`
+			`	"How are your customers?" asks another.`
+			`	"Wealthy and a little bit stupid." This also meets with approval. You hope they don't think too hard about who your 'customers' are.`
+			`	"How are your losses?" asks a third.`
+			`	This one takes you a moment. "I outsource them to other people."`
+			`	"Very good," answer a few, and you see nodding round the table. Apparently you've fit right in to their strange, but lucrative, society. Franz takes over to talk business.`
+			`	"It is time," he pronounces, "to turn our eyes to customer relations around the galaxy."`
+			`	"It is indeed," says another.`
+			choice
+				`	"Indeed it is."`
+				`	(let them continue)`
+			`	"The Navy need to know they can afford to pour resources into fighting the Free Worlds, and the Free Worlds need to know they face a large and determined Navy. We propose a marketing outreach mission led by Captain <last>. The <ship> will go to each sector of space with a message of friendship, news and advice. We have prepared a series of videos and pamphlets - meaning our marketing team have, for we would not wish to seem vain by appearing ourselves. Captain <last> will take these and present our message to the four sectors of uncivilised space: the Republic Navy in the 'North', the Paradise Planets in the centre, the Deep in the West, and the Free Worlds in the South.`
+			`	"In the North, you will show them our vast catalogue of weapons and ships, and they will see that they can rest easy about piracy, because the Syndicate has got their backs.`
+			`	"In the Centre, you will show them the horrors of the war, and they will fear lest it end up on their doorstep, and send the Navy to protect them from ruin.`
+			`	"In the West, you will remind them how much money they can save in difficult times by buying more from the Syndicate, and relying less on their own, overpriced factories.`
+			`	"In the South, you will warn them of the power of the Navy, and counsel them to prepare well in advance of any emergency.`
+			`	"Captain <last>, you will find all the materials you need ready for you when you return to your ship. Do you have any questions?"`
+	
+			choice
+				`	"Why do we want the Navy not to worry about pirates?"`
+					goto north
+				`	"If they are afraid, mightn't the wealthy shut their savings and stop buying as much?"`
+					goto centre
+				`	"If the Deep's factories are overpriced, maybe we can raise the price of our own goods?"`
+					goto west
+				`	"Will we get in trouble with the Republic, if we're seen advising the Free Worlds?"`
+					goto south
+				`	"No more questions, I shall prepare my ship."`
+					goto done
+	
+			label north		
+			`	"The Navy spend little time actually fighting the pirates. Their ships sit idle, and idle ships need neither refitting nor replacing. And if the pirates do come out of their holes, after the Navy have left, then all the better: then the Navy will need to equip a further fleet to re-defend their backyard."`
+			choice
+				`	"If they are afraid, mightn't the wealthy shut their savings and stop buying as much?"`
+					goto centre
+				`	"If the Deep's factories are overpriced, maybe we can raise the price of our own goods?"`
+					goto west
+				`	"Will we get in trouble with the Republic, if we're seen advising the Free Worlds?"`
+					goto south
+				`	"No more questions, I shall prepare my ship."`
+					goto done
+	
+			label centre
+			` "It's true, that is a risk, but a small one compared to the gains of moving the Navy South. Besides, there are plenty of products worried people might buy to ease their fears, and new needs mean new opportunities for business."`
+			choice
+				`	"Why do we want the Navy not to worry about pirates?"`
+					goto north
+				`	"If the Deep's factories are overpriced, maybe we can raise the price of our own goods?"`
+					goto west
+				`	"Will we get in trouble with the Republic, if we're seen advising the Free Worlds?"`
+					goto south
+				`	"No more questions, I shall prepare my ship."`
+					goto done
+	
+			label west
+			`	"That would price us out of the market for others. On a galactic scale it is difficult to sell at one price to the Deep and another to the rest. What we want is for them to lose confidence in their own factories, which then can't compete with ours on pure economy."`
+			choice
+				`	"Why do we want the Navy not to worry about pirates?"`
+					goto north
+				`	"If they are afraid, mightn't the wealthy shut their savings and stop buying as much?"`
+					goto centre
+				`	"Will we get in trouble with the Republic, if we're seen advising the Free Worlds?"`
+					goto south
+				`	"No more questions, I shall prepare my ship."`
+					goto done
+	
+			label south
+			`	"You will meet with the Free Worlds leaders in private. And, if we can arrange it, separately with their Senate. They won't want the Repbulic to know, for fear we will stop doing business with them."`
+			choice
+				`	"Why do we want the Navy not to worry about pirates?"`
+					goto north
+				`	"If they are afraid, mightn't the wealthy shut their savings and stop buying as much?"`
+					goto centre
+				`	"If the Deep's factories are overpriced, maybe we can raise the price of our own goods?"`
+					goto west
+				`	"No more questions, I shall prepare my ship."`
+					goto done
+	
+			label done	
+			`	You leave the meeting and head back to your ship. Although you kept - you hope - an agreeable face through all of it, privately you have to admit some of it is beginning to make you quite uncomfortable. Is this really what's meant by, "when good comes to the Syndicate, good comes to the galaxy"? But business is business, and it's time to warm up your ship.`
+				accept
+
+mission "ScS Marketing 2"
+	landing
+	name "Marketing Tour: <planet>"
+	description "Head to the paradise world of <destination>, and convince the wealthy residents that their government's focus should be on dealing with the war."
+	source Farpoint
+	destination Glory
+	to offer
+		has "ScS Marketing 1: done"
+	on offer
+		conversation
+			`On <origin> you show the Syndicate's promotional materials to the Navy. An admiral named Danfoth, or something, is none too pleased when you encourage them to think freely about sending fleets down to the 'rebel worlds'. Apparently he's part of some group that's decided not to take part in the fighting there.`
+			`	Time to move on to the paradise planet of <planet>.`
+				accept
+
+mission "ScS Marketing 3"
+	landing
+	name "Marketing Tour: <planet>"
+	description "Go to <planet> in the Deep, so they can know the superior economy of Syndicate products, and put less trust in their own factories."
+	source Glory
+	destination Valhalla
+	to offer
+		has "ScS Marketing 2: done"
+	on offer
+		conversation
+			`You come to Glory, the crown jewel of terraformed planets. Here the richest and loftiest craft for themselves their perfect heaven - and live in perpetual fear of it being snatched away, if it weren't for the ever-vigilant presence of the Navy.`
+			`	The Syndicate have booked for you a few venues to speak at, but most of the time you just greet the audience then hand over to the pre-recorded messages on screen, and point the crowd to the alarming and colourful pamphlets at the end. You gather quite a crowd at some events, who grumble and mutter about the state of "those who don't know better" in the galaxy, and express their warm wishes that parliament will make sure to "stamp out all evildoers" and ensure such a crisis never happens again.`
+			`	Time to move on to <planet>, in the Deep.`
+				accept
+
+mission "ScS Marketing 4"
+	landing
+	name "Marketing Tour: Homeward bound"
+	description "Head home early after a successful marketing tour. Meet back at Syndicate headquarters on <planet>."
+	source Valhalla
+	destination Hephaestus
+	to offer
+		has "ScS Marketing 3: done"
+	on offer
+		event "navy occupying the south"
+		event "navy using mark ii ships"
+		event "catalytic ramscoop available"
+		event "flamethrower available"
+		set "FW Diplomacy 1: offered"
+		set "FW Wolf Pack 1: offered"
+		conversation
+			`On <planet> you first take a tour of some of the factories, so you can sing the praises of your own to the Deep's movers and shakers. However instead of seeing a shambles of ill-discipline and inefficiency, as you expected, you notice that workers look healthier and happier than back in factories on your own world. Indeed, right at the lowest rungs of business, many workers seem content. And though many are happy to vent to you their frustration with the day-in, day-out hard work - as with many a lazy employee back home - they still seem heartier and gladder to work here. When you get some free time, you take a moment to listen to the managers about how they run the place; perhaps you can learn something yourself.`
+			`	Still, you put on a good show for the high-ups, explaining that Syndicate factories are more value for money because most workers are coming out of bad situations and happy to work for less... and suddenly you feel you may have explained things the wrong way. Luckily the Syndicate pre-prepared videos and brochures carry the message, and you head to your ship to continue the tour to the South.`
+			``
+			`	Before you can take off, though, you get a message from Franz.`
+			`	"Captain <last>! Your efforts have been fruitful. Already things are on the move, and you should come back to <planet> to discuss our next move."`
+				accept
+	on complete
+		event "fw southern expansion"
+
+mission "ScS Tarazed Escort 1"
+	landing
+	name "Trade escort"
+	description "Meet a convoy on <destination> to bring them to Tarazed and back."
+	source Hephaestus
+	destination Shiver
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Marketing 4: done"
+	on offer
+		payment 100000
+		conversation
+			`You receive <payment>, and head up to headquarters. Once again you meet the rich men, up their rich tower, in their rich room, and again they greet you in their peculiar style.`
+			`	"Sales are up!" says one.`
+			`	"The Galaxy has received our message," agrees another.`
+			`	"Captain <last> has brought to us the wealth of lesser humanity." ...Suddenly you're not sure you want their appreciation any more.`
+			choice
+				`	"What news have you for me today?"`
+					goto safe
+				`	"Maybe you shouldn't call other people, 'lesser humainty'."`
+					goto rock
+			label safe
+			`	You try to avoid rocking the boat too much. After all, these men control your life - at least, they pay you your income, and could probably break you if they wanted to.`
+				goto news
+			label rock
+			`	There's the tiniest moment's awkward silence, then they ignore you and carry on.`
+			label news
+			`	Franz takes up the position of spokesman again. "The Navy has attacked the Free Worlds in the South, profits are rising, and the galaxy feels safe again. The many companies under our Syndicate wing no longer must fear tomorrow, of whether they will have work or not.`
+			`	"Part of our work now is to send plenty of supplies to Tarazed, where the Free Worlds can buy them without repurcussions from Repbublic government. But the war brings problems too, and there are reports of convoys being ambushed - so much for the Free Worlds' promise of safety.`
+			`	"You will continue your mission of friendship to the South, by reaching out to them on Wayfarer as they come to buy parts; meanwhile you will accompany a convoy there and back. Meet the convoy on <destination> to travel together to Tarazed. Safe travels!"`
+			`	You make a little bow, and leave on your next mission of 'friendship'.`
+				accept
+
+mission "ScS Tarazed Escort 2"
+	landing
+	name "To Tarazed and Back"
+	description "Escort a convoy to <destination>, and run a small diplomatic/propaganda mission while you are there."
+	source Shiver
+	destination Wayfarer
+	on fail
+		dialog phrase failure
+	on visit
+		dialog `You've reached <planet>, but left your convoy behind. Where are they? Maybe they'll catch up if you take off and wait for them.`
+	to offer
+		has "ScS Tarazed Escort 1: done"
+	on offer
+		conversation
+			`The convoy is waiting for you on <origin>, ready to head on to <system>. As you prepare your own ship, you fidget nervously with what you are going to say to the Free Worlds visitors, and whether you should really show them the propaganda materials and warn them to increase their fleet.`
+			branch known
+				has "First Contact: Quarg: offered"
+			`	You can cross that bridge when you come to it, you suppose. Meanwhile you also remember hearing there's a society of peaceful aliens living on a moon next to <planet>. Perhaps they have some insight about your current situation and the war. Maybe you'll visit them, while you're just 'next door'.`
+				accept
+			label known
+			`	You can cross that bridge when you come to it, you suppose. Meanwhile you also remember there are Quarg, a race of peaceful aliens, living on a moon next to <planet>. Perhaps they have some insight about your current situation and the war. Maybe you'll visit them, while you're just 'next door'.`
+				accept
+	
+	npc save accompany
+		government "Syndicate"
+		personality timid coward escort
+		ship "Bulk Freighter" "Nellie"
+		ship "Bulk Freighter" "Dumbo"
+
+mission "ScS Quarg Query"
+	landing
+	name "Alien thought"
+	description "Optionally visit a society of peaceful aliens on <planet> next to Wayfarer, and see if they have any insight on the war and your concerns."
+	source Shiver
+	destination Echo
+	to offer
+		has "ScS Tarazed Escort 1: done"
+	on complete
+		log `Asked one of the alien Quarg about the galactic war. It didn't have much to offer, except a warning that humanity could be entirely destroyed if war goes too far.`
+		conversation
+			`The aliens who live on this moon are called the 'Quarg', and although distrusted by many throughout the galaxy they are known to be both disproportionately powerful and incorruptably peaceful. Whether that's really true or just their own propaganda, you don't know, but seeing how things have been going in Syndicate space, you think it's worth giving them a try.`
+			`	Feeling rather lost you wander through the outpust, keeping your oxygen mask to breathe comfortably in the thin air. It makes for akward talking when you do find a Quarg to ask questions to, but somehow you manage. The Quarg is curious about you too, and asks a few questions about your home, before you pluck up courage to ask it about your own concerns.`
+			choice
+				`	"What do you think of the war between the Republic and the Free Worlds?"`
+				`	"What do you think of the so-called Free Worlds' rebellion?"`
+				`	"What do you think of humanity's problems?"`
+			`	The Quarg pauses for a moment, as if considering what you really mean. You're not really sure yourself.`
+			`	"Humans are not the first species to go to war with themselves, and they will not be the last. Why do you choose to kill each other, when you have so much space to live, and could cooperate, and live peacefully? This Quarg does not fully understand.`
+			`	"But beware, war that grows could one day become so great it destroys your entire race. Yours would not be the first. Other races have been consumed by war, and leave no descendants, only memories. I hope you do not make the same mistake."`
+			choice
+				`	"But how can humans live at peace with each other?"`
+					goto peace
+				`	"Why does it matter if we go extinct?`
+					goto extinct
+				`	"I see, thank you for your time."`
+					decline
+			label peace
+			`	"I suppose," says the Quarg, "by not fighting."`
+			`	You think back to factory workers who die in a mineshaft because their bosses ignored safety procedures, and to bosses who are put in prison because their boss needed someone to blame; to retirees whose homes are broken into and their final years of comfort stolen, and children murdered in gang warfare, and pirates abducting and selling slaves -- and you wonder if simply 'not fighting' isn't always the answer. But perhaps the Quarg don't really understand that sort of thing.`
+			`	You thank him for his time and head back to work.`
+				decline
+			label extinct
+			`	The Quarg seems surprised you would ask this. "Do you mean," he asks, "why should you care about the survival of your species, after you are dead yourself? That answer, you will have to seek inside yourself. If you cannot find it... is that the meaning of evil?"`
+			`	The Quarg ponders this, and you politely excuse yourself with a bow. Perhaps you've found the meaning to another riddle, "the fool may ask a question the wise cannot answer." You head back to work.`
+				decline
+
+mission "ScS Tarazed Escort 3"
+	landing
+	name "To Tarazed and Back"
+	description "Escort the convoy back to <destination>."
+	source Wayfarer
+	destination Delve
+	on fail
+		dialog phrase failure
+	on visit
+		dialog `You've reached <planet>, but left your convoy behind. Where are they? Maybe they'll catch up if you take off and wait for them.`
+	to offer
+		has "ScS Tarazed Escort 2: done"
+	on offer
+		conversation
+			`	You land on <origin> and watch the enormous Syndicate freighters gracefully land nearby. While they unload, which will take some time, you head off to a conference room that Franz has arranged in advance.`
+			choice
+				`	(Invite people as you go.)`
+					goto invite
+				`	(Go straight there without inviting anyone.)`
+					goto noinvite
+			label invite
+			`	On your way, you gather a few groups of people, both locals and Free Worlds militia, to come and hear your talk.`
+			`	The conference room is huge, and by the time you begin is packed with anticipation. It seems word got round fast, and many people are curious at the arrival of a bona fide Syndicate representative, and interested to know what you have to say.`
+				goto show
+			label noinvite
+			`	You find the huge conference room, and a handful of people sitting near the front, with one or two at the back. Perhaps this won't be such a big deal after all.`
+			label show
+			choice
+				`	(Show the prepared messages)`
+					goto prepared
+				`	(Give a rousing speech about the dangers of the Navy)`
+					goto danger
+				`	(Encourage them to have peace)`
+					goto peace
+			label prepared
+			`	You give a brief introduction and hand over to the the Syndicate pre-prepared videos. Advertisers and spin-doctors drone on, while you pretend to watch. At the end, you thank everyone for their time and offer them the Syndicate's promotional brochures as they head out.`
+			`	Time to go and see if the freighters are ready to go. You wonder for a moment what they're all loaded up with now - Tarazed ship sections to use in Syndicate builds? Huge piles of credit chips? Or nothing at all?`
+				goto end
+			
+			label danger
+			`	You rally the crowd. "There is danger in the galaxy!" The crowd murmurs in agreement. "We must stand up to tyrrany!" Cheers from some of the militia captains. "Be strong, and protect our loved ones!" More approval. "The Navy is growing too big! You must be stronger yourself to stop them destroying all your freedom!" ...silence. You'd think after their recent battles people would be ready to hate the Navy and hear your words of warning. Perhaps there's more going on than you understand.`
+			`	Anyway you close off your talk and offer people the Syndicate's promotional brochures as they file out. At least you gave them fair warning; how they prepare is on them now. Time to go and see if the freighters are ready to go. You wonder for a moment what they're all loaded up with now - Tarazed ship sections to use in Syndicate builds? Huge piles of credit chips? Or nothing at all?`
+				goto end
+	
+			label peace
+			`	Awkwardly, feeling like you're being watched, you tell people they should have peace. "Everyone's life will be better," you say, "if we all stop fighting." There's a pause. "You should try to be kind." Murmurs of approval. "You should love your neighbour." Another pause.`
+			`	"Who is my neighbour?" someone asks.`
+			`	You don't have an answer for that, and you close off your talk and offer people the Syndicate's promotional brochures as they file out. Well, at least you didn't make things worse. Time to go and see if the freighters are ready to go. You wonder for a moment what they're all loaded up with now - Tarazed ship sections to use in Syndicate builds? Huge piles of credit chips? Or nothing at all?`
+			label end
+			`	You get a message from one of the captains, "We'll be returning to <destination>, under your escort. We're ready to leave when you are."`
+				accept
+	
+	npc save accompany
+		government "Syndicate"
+		personality timid coward escort
+		ship "Bulk Freighter" "Nellie"
+		ship "Bulk Freighter" "Dumbo"
+	
+	npc
+		government "Militia (Rogue)"
+		system "Cebalrai"
+		personality staying
+		ship "Corvette" "Bolt"
+		ship "Corvette" "Dash"
+	
+	npc
+		government "Militia (Rogue)"
+		system "Eltanin"
+		personality staying
+		ship "Bastion" "Jasper"
+		ship "Fury" "Yip"
+		ship "Fury" "Yap"
+	
+	npc
+		government "Militia (Rogue)"
+		system "Alpha Arae"
+		personality staying
+		ship "Modified Argosy" "Indy"
+		ship "Headhunter" "Monta"
+		ship "Headhunter" "Mini"
+
+mission "ScS Last Straw 0"
+	landing
+	name "An important job"
+	description "Go and see what 'important job' your uncle wants help with on <destination>."
+	source Delve
+	destination Crossroads
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Tarazed Escort 3: done"
+	on offer
+		payment 200000
+		conversation
+			`The Syndicate freighter captains thank you for keeping them safe, in the face of an unexpected attack from militia on the return journey. They promise to report your good work to their bosses, and sure enough, soon you receive <payment> into your account.`
+			`	It seems Franz and the other Syndicate movers and shakers have no immediate work for you, but you do get a message from your uncle WC.`
+			`	"Come and see me on <planet>," he asks. "I have an important job for you."`
+				accept
+
+mission "ScS Last Straw 1"
+	landing
+	source Crossroads
+	to offer
+		has "ScS Last Straw 0: done"
+	on offer
+		log `Uncle WC asked me to ship his workers to Burthen and abandon them, so he can bring new workers and pay them less. I refused. This has landed me in trouble.`
+		conversation
+			`You park the <ship> and head up to Uncle WC's main office on <origin>. As you navigate the corridors and elevators you wonder what sort of work he has for you. Has he got some new plan to rescue the Syndicate from recession? Have the top leaders entrusted his comparatively-insignificant Watersoft company with some important task? Is he cooking some scheme to enrich Watersoft and himself? Or just trying to weasel out of family responsbility again?`
+			choice
+				`	(Take the last elevator)`
+			`	Uncle WC's office is not as lofty as those of the Syndicate bigwigs, but it still takes some getting to. He's amassed quite a wealth on the backs of thousands who have worked for him. You might say he's given thousands the opportunity to work for a good living, and taken his fair reward. Though, with WC, you're not sure it would balance out as fair.`
+			choice
+				`	(Go in)`
+			`	Your uncle is at his desk, idly trying to solve a Rubik's cube patterned with precious metals. "Come in, <first>, come in!" he greets you warmly. I have another problem I need your help with. You're quite the useful pilot, you know."`
+			choice
+				`	"Captain."`
+					goto captain
+				`	"I do know."`
+					goto yes
+				`	"What do you need?"`
+					goto yes
+			label captain
+			`	"Yes, yes," he says, "Captain <last> ...Pilot extraordinaire."`
+			`	"Captain extraordinaire," you correct him.`
+			`	"Pilot <last>, captain extraordinare." He seems determined to pretend he was right; you let it drop.`
+			label yes
+			`	"I have a problem with my workers," he explains. "They're always a problem, working too slow, demanding too much, fussing they've got a cold, or a 'family issue'- you know they want me to pay them those times too, when they stop working for their own reasons. Daft, isn't it. But I have one group that recently has been particularly troublesome, working too slow, refusing to stay and finish their work when the clock strikes - and then they say I should pay them 'for the full time', as if they did a full day's work. Lazy sluggards."`
+			`	"What they need is a spell of real hard work, on Burthen. Let them do with their backs, in Burthen's high gravity, what we do with our minds in high stress. They'll grow strong. And less complaining, and more thankful for what they've got."`
+			choice
+				`	"I'm not sure that's the same thing."`
+				`	"That sounds... fair?"`
+					goto fair
+			`	"But it is fair," says your uncle. "All they same they wouldn't take it if we offered. They don't know what's best for them!"`
+					goto best
+			label fair
+			`	"It is fair," says your uncle. "But all they same they wouldn't take it if we offered. They don't know what's best for them!"`
+			label best
+			`	"Best for them... right," you say.`
+			`	"So," continues your uncle, "I've arranged for them to have 'teambuilding exercises'. They think they're going to Amazon, to be Tarzan in the jungle or whatever fanciful nonsesne. You're going to take them to Burthen, in the Al Dhanab system, to get real exercise. Their 'team building' will be to figure out what they're doing next and how to find work, while you take off and don't worry about them again.`
+			choice
+				`	"Hang on, I didn't sign up to be your Human Dump-truck."`
+				`	"That's evil! Plain evil!"`
+			`	"You haven't heard the best part," he adds. "I have a group of recruits on Earth, signed up and paperwork nearly completed to find work on Millrace - but I'll offer them jobs here, much less crowded than just reaching Millrace. As soon as you've dropped off the trouble group to their 'retreat', I'll contact the agent on Earth to offer the new group a 'much preferable' job, limited time offer. Of course the company on Millrace will lose out, but they've always got new hires looking for work there.`
+			`	"I'll hire this group at 80% of the old workers' pay. They'll work hard, the company profits, I profit, we all profit."`
+			choice
+				`	"This is going too far, I've had enough of exploiting workers."`
+				`	"How can you be so uncaring?"`
+				`	"You know, not every company treats its workers like cattle."`
+			`	"And you'll profit too, of course." He deflects your comment. "80% pay means 20% savings. I'll give you half of whatever we save. Minus expenses of course. Think of that! Your first real, proper income since you abandoned ship and became a pilot."`
+			choice
+				`	"Captain."`
+				`	...`
+					goto hmm
+			`	"Captain. Pilot-Captain."`
+			label hmm
+			`	You ponder his words a minute. And another minute. A long time ago, you didn't think much different. Workers were resources, numbers in a book, your investment to make you rich or powerful- or both. You paid them fair...ish, but looked out for number 1. But you've been round the galaxy now, seen new people and new things.`
+			`	It's true you'd benefit a lot from this deal, even 'after expenses'. But maybe that's not so important to you any more. Maybe the lives of those workers, about to be swindled and shipped off to back-crushing gravity, do matter to you. You can't save the galaxy yourself; you can't even save the Syndicate. But you can help these people.`
+			`	You brace yourself and take a breath,`
+			choice
+				`	"No."`
+					goto no
+				`	"You and your manipulative, exploitative ideas, can go to hell."`
+					goto hell
+				`	(walk out)`
+					goto leave
+				`	"...okay then, yes."`
+	
+			`	Wait, are you sure? No one is that evil.`
+			choice
+				`	I used to be that evil.`
+				`	Okay fine, I leave.`
+					goto leave
+			`	But you're not any more.`
+			choice
+				`	Maybe I still am, maybe my character development isn't complete yet.`
+			`	After all you've seen?`
+			choice
+				`	I wasn't paying attention.`
+				`	People don't change so fast.`
+				`	Fine, I'm trying to become a good person now.`
+					goto leave
+			`	"Okay, I'll do it," you begin to say. "Money for me at others' expense is what I like best."`
+			`	But before your uncle can finish congratulating you, there's a rumble and a woosh. It only lasts a moment, then a ship in Free Worlds colours comes crashing into the glass-roofed office where you're standing. Your lights go out.`
+			`	Oh well, another casualty of the war.`
+				die
+	
+			label leave
+			`	You hold back your words, turn around, and walk out the door. As you go, your uncle cries out after you,`
+			`	"What are you doing?! I made you a fantastic offer! More than you've had your whole space career! I thought you'd be grateful!"`
+			`	When you don't answer, he follows you and carries on pleading, turning to anger. "You don't think it's enough? I'll give you 60% of saivings. I can't afford more than that, all this rearrangement costs money, costs time, I have to train new workers. ...65%! Plus a downpayment. You think you're so clever! You think you'll get a better deal somewhere else?! I'll close every door to you! You'll never see my face again!" He doesn't get it. But that's okay. He thinks you're as mercenary as him, but you'll leave him to his red face; you don't need his approval.`
+			`	"I'll have you cut off from the Syndicate! Nobody will give you work! No more suck-ups washing your feet. No more hero. You'll be ruined!"`
+			`	You almost hesitate. But they're empty words. You're far too valuable to the Syndicate's recovery, and 'WC Washermann' doesn't have enough influence to tarnish you.`
+			choice
+				`	(leave)`
+					goto goodbye
+	
+			label hell
+			`	Your uncle is stunned for a moment, and colour rises to his face. Then he collects himself and speaks with mockery in his voice.`
+			`	"So many fancy words. 'Exploititatitive'. 'Manipuladoodle'. You don't even know what those mean. I don't know where you've been flying but you must have got that control stick stuck so far up your behind you think you're king of the universe. You're still a little fish, in a big world. Take it from your uncle, you've got to work your way up the ladder before you can start saying, 'yes this' and, 'no that', like you're the top doodoo.`
+			`	"Now what do you say? Help me out with this, and I'll see that you get one more rung up that ladder."`
+			`	"No," you say.`
+				goto no
+	
+			label no
+			`	"No?! What do you mean, 'no,' you ungrateful little prick!"`
+			`	"'No' means no, you say firmly. It means what you're doing is wrong, and I won't be part of your twisted schemes to hurt people for your own benefit."`
+			`	"What, didn't I offer you enough? You want 60%? Plus a new ship as downpayment? Bastard."`
+			choice
+				`	"You're as bad as the Alphas."`
+					goto alphas
+				`	"It's people like you who ruin the galaxy."`
+					goto ruin
+			label alphas
+			`	"Oh I'm as bad as the Alphas, am I?" he starts shouting angrily. "You think I'm going to take over the galaxy? Enslave planets? Fight the whole of humanity? You ignorant little twit."`
+				goto anyway
+			label ruin
+			`	"You have no idea who you are," he shouts angrily. "You're such a pumped-up little twit you think the whole galaxy revolves around you. Even I don't think that! I'm just looking out for little me, in my little world. 'Ruin the galaxy'- ha! You and I are nothing to the galaxy."`
+			label anyway
+			`	"Even so," you say, controlling your anger as best you can, "you have no right to ruin other people's lives."`
+			`	"They have every opportunity to make a success! I'm not ruining them--" you turn to leave "--but I'll ruin you!" he shouts and springs after you.`
+			`	"Come back here! You think you'll find work somewhere else? I'll close every door to you! I'll have you cut off from the Syndicate! Nobody will give you work! No more suck-ups washing your feet. No more hero. You'll be ruined!"`
+			`	You almost hesitate. But they're empty words. You're far too valuable to the Syndicate's recovery, and 'WC Washermann' doesn't have enough influence to tarnish you.`
+			choice
+				`	(leave)`
+					goto goodbye
+	
+			label goodbye
+			`	You step into an elevator and shut the door in front of him. Going down you breathe a sigh of relief. You did the right thing.`
+			`	You reach the spaceport cafeteria and help yourself to some comfort food and a drink. Before you're finished, you receive a message from Franz.`
+			`	"Captain <last>, your irregular and untrustworthy behaviour has come to our attention. Your salary is hereby suspended, and your name struck off from our list of trustworthy allies.`
+			`	"Think on your mistakes,`
+			`	"	Franz Francis Jr."`
+			action
+				clear "salary: Syndicate"
+				clear "ScS syndicate trusted"
+				set "ScS rescue complete"
+				event "ScS help help" 30
+			`	So your uncle wasn't bluffing at all. You're on your own now. Maybe you should spend some time outside of Syndicate space.`
+				decline
+
+mission "ScS Suck-up"
+	priority
+	source Hephaestus
+	to offer
+		has "ScS Last Straw 1: offered"
+		has "ScS rescue complete"
+		not "ScS Call to Aid: offered"
+	on offer
+		log `Apparently I can't just waltz back into the Syndicate secret cult like nothing happened. Seems I'm on my own for a while...`
+		conversation
+			`You're on <origin> where Franz and the other Syndicate leaders work. Do you want to go and see them and explain your side of the story?`
+			choice
+				`	Yes.`
+					goto yes
+				`	No.`
+					decline
+			label yes
+			`	You try to get in touch with Franz, but realise you have no way to directly contact him without him contacting you first. You try to find his office, but the guards at one of the corridors stop you, and tell you you're not welcome. It seems your favour with Franz and his fellows really has run out.`
+				decline

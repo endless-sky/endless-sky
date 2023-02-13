@@ -1,0 +1,27 @@
+phrase failure
+	word
+		`You have failed an essential Syndicate storyline mission: to complete the storyline load from an earlier save or TRY AGAIN YOU USELESS EMPLOYEE!!`
+		`Failure. Oh, poor failure. Why did you fail? What made you fail? Failure. ...If you want to complete the Syndicate Storyline, load from an earlier save or try again.`
+
+government "Militia (Rogue)"
+	swizzle 2
+	"player reputation" -100
+	"attitude toward"
+		"Republic" -.01
+		"Syndicate" -.01
+		"Free Worlds" .01
+		"Militia" .01
+	"friendly hail" "friendly militia"
+	"hostile hail" "hostile militia"
+
+government "Sawyer Escape"
+	"display name" "Merchant"
+	swizzle 5
+	"player reputation" 10
+	"attitude toward"
+		"Syndicate" -.01
+	"bribe" .05
+	"fine" 0
+	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile civilian"
+

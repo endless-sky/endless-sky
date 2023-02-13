@@ -1,0 +1,150 @@
+event "war imminent"
+	date 4 5 3014
+
+event "joined the syndicate"
+	government "Escort"
+		swizzle 4
+
+event "start of hostilities (ScS)"
+	government "Republic"
+		"attitude toward"
+			"Free Worlds" -.2
+			"Merchant" .01
+			"Pirate" -.01
+	government "Free Worlds"
+		"attitude toward"
+			"Republic" -.2
+
+mission "event: Kornephoros (non-FW)"
+	landing
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral" "Quarg"
+		attributes "spaceport"
+	to offer
+		has "event: recapture of Kornephoros"
+		not "Liberate Kornephoros: done"
+	on offer
+		conversation
+			`The war has been first place in the news, the last few days, as the Navy captured, then lost again, the Kornephoros system. Apparently Kornephoros was the source of the terrorist attack on Geminus and Martini, but soon after the Navy took control, 'Free Worlds' militia launched an attack to take back the system for themselves.`
+			`	It doesn't look like there will be peace any time soon.`
+				decline
+
+mission "oathkeepers founded (non-FW)"
+	landing
+	to offer
+		has "event: oathkeepers founded"
+		not "Liberate Kornephoros: done" 
+	source
+		government "Free Worlds" "Republic" "Syndicate" "Independent" "Neutral" "Quarg"
+	on offer
+		log "Factions" "Oathkeepers" `The "Oathkeepers" are a regiment of Navy officers who were captured by the Free Worlds and paroled on the condition that they take no further part in fighting against the Free Worlds. They are led by William Danforth, a famous Navy admiral. Their stated mission is to protect the Paradise Worlds from the pirates who live on the anarchist worlds in the far north of human space.`
+		log "People" "William Danforth" `Danforth is a famous Navy Admiral who is a folk hero throughout human space due to his fair and honorable behavior and his willingness to use his fleet to assist people in need, even when he has to go against Parliament's orders to do so. He is currently in charge of the Navy regiment who call themselves the "Oathkeepers."`
+		conversation
+			`When you land on <origin>, it seems that everyone in the spaceport is talking about a recent news story: the Navy has just announced the formation of a new regiment, called the Oathkeepers. This regiment is staffed mostly by prisoners paroled from Kornephoros, who honor an oath to take no further part in the conflict against the Free Worlds. They will be headquartered on Farpoint, in the far north, to defend that region of space against pirate incursions.`
+			`	Furthermore, the leader of the Oathkeepers will be Admiral Danforth, an elderly admiral who is something of a folk hero and is spoken of with admiration and respect even here in Free space. Although he was not one of the paroled prisoners, he has become an outspoken advocate for a diplomatic solution to the Free Worlds conflict.`
+				decline
+
+mission "event: fw northern expansion (ScS)"
+	landing
+	to offer
+		has "event: fw northern expansion"
+		has "ScS Revenge sweet Revenge: offered"
+	source
+		government "Free Worlds" "Republic" "Syndicate" "Independent" "Neutral" "Quarg"
+	on offer
+		log `The war grows more bloody, with the Free Worlds claiming several worlds to the north of their original territory.`
+		conversation
+			`When you land on <origin>, the latest news from the war is filling the headlines. It seems the Free Worlds have occupied more systems to the North of their original territory. Whether the defecting worlds invited this or the Free Worlds annexed them against their will, seems to be a matter of some dispute.`
+
+# syndicate are normally neutral to alphas.... not sure how much this is intentional, and how much because nobody's needed to consider it. For now, hostility is set and unset: but this is risky: if main-game changes this later, thi s will override!
+
+event "ScS syndicate against alphas"
+	government Syndicate
+		"attitude toward"
+			"Alpha" -.01
+
+event "ScS syndicate neutral to alphas"
+	government Syndicate
+		"attitude toward"
+			"Alpha" 0
+
+event "ScS pug invasion 3"
+	unlink "Delta Capricorni" Markab
+	unlink "Delta Capricorni" Scheat
+	unlink Alderamin Alnair
+	link Deneb "Delta Capricorni"
+	link Deneb Alderamin
+#	unvisit "Delta Capricorni"
+	unvisit Alderamin
+#	unvisit Scheat
+	unvisit Alnair
+	"tribute: Maker" /= 1700
+	"tribute: Furnace" /= 1200
+	system "Delta Capricorni"
+		government Pug
+		fleet "Small Core Merchants" 700
+		fleet "Large Core Merchants" 800
+		fleet "Small Pug" 800
+		fleet "Large Pug" 1100
+	system Alderamin
+		government Pug
+		fleet "Small Core Merchants" 2000
+		fleet "Large Core Merchants" 3200
+		fleet "Small Pug" 1200
+		fleet "Large Pug" 2500
+	planet "Maker"
+		security 0
+		tribute 1
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
+	planet "Furnace"
+		security 0
+		tribute 1
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
+
+event "ScS empty algenib"
+	system "Algenib"
+		remove fleet "Large Core Pirates"
+		remove fleet "Syndicate Extremists"
+
+planet "ScS Pug Mini Wormhole"
+
+event "ScS mini wormhole"
+	system Deneb
+		add object "ScS Pug Mini Wormhole"
+			sprite planet/mini-wormhole
+			distance 1500
+			period 1000
+	system "Gamma Cassiopeiae"
+		add object "ScS Pug Mini Wormhole"
+			sprite planet/mini-wormhole
+			distance 1500
+			period 1000
+
+event "ScS mini wormhole collapsed"
+	system Deneb
+		remove object
+			sprite planet/mini-wormhole
+			distance 1500
+			period 1000
+	system "Gamma Cassiopeiae"
+		remove object
+			sprite planet/mini-wormhole
+			distance 1500
+			period 1000
+
+event "ScS civilian resistance"
+	"reputation: Pug" <?= -1
+	government Pug
+		"attitude toward"
+			"Merchant" -.01
+			"Syndicate" -.01
+event "ScS civilian submission"
+	government Pug
+		"attitude toward"
+			"Merchant" .01
+			"Syndicate" .01
+

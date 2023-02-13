@@ -1,0 +1,8 @@
+mission "Someone else helped Joe"
+	landing
+	invisible
+	to offer
+		has "Syndicate Start"
+	on offer
+		set "Smuggler's Den, Part 1: offered"
+

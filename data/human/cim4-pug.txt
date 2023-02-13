@@ -1,0 +1,943 @@
+###################################
+#        Stuck in the Pug         # 
+# And the Flight to Buccaneer Bay #
+###################################
+
+mission "ScS Tracking 1"
+	landing
+	name "Track the Alphas"
+	description "Follow your tracker to find the Alpha ship. Start by heading to Markab."
+	source Foundry
+	waypoint Markab
+	to offer
+		has "ScS The Top: done"
+	on offer
+		event "pug invasion"
+		event "ScS alpha relations"
+		"reputation: Pug" >?= 1
+	on enter
+		dialog `Checking the tracker, you find the signal is being picked up in Fomalhaut. The Alphas are on the move! Your best bet is to head towards them, somewhere around Markab, then follow the tracker as you get close.`
+	on enter
+		system
+			near Markab 1
+		event "pug invasion 2"
+		dialog `As you settle out of hyperspace, a very strange sensation washes over you, deep in your gut, a bit like your first experience of hyperspace-nausea when you took to flying. Something odd is going on.`
+	on enter Markab
+		dialog `Entering Markab, you check your tracker. It reports that the signal is now coming from Delta Capricorni to the galactic south-west.`
+	on enter "Delta Capricorni"
+		conversation
+			`The system around Delta Capricorni is a new sight to your eyes. All around are strange, yellow, alien ships. If this is the dawn of the new Alpha empire, you are in trouble indeed.`
+			`	Prudence tells you to go back as quick as you can. But instinct tells you to press on and land. Four innocent victims are waiting, in desperate hope, for your rescue, and the tracker says they're somewhere down there on Maker.`
+	to complete
+		never
+	npc
+		government "Pug"
+		system "Delta Capricorni"
+		personality staying forbearing uninterested
+		fleet
+			names "pug"
+			variant
+				"Pug Maboro" 2
+				"Pug Enfolta" 3
+				"Pug Zibruka" 4
+
+event "ScS alpha relations"
+	government "Pug"
+		"attitude toward"
+			"Alpha" -.01
+
+mission "ScS Tracking 2"
+	landing
+	name "What happened?"
+	description "You seem to be cut off from the rest of the galaxy, by an alien species starting a new empire. Look around and see where you can go."
+	source Maker
+	to offer
+		has "ScS Tracking 1: active"
+	on offer
+		log `Tracked the Alphas to the Delta Capricorni system, where things are very strange indeed. Unusual, yellow ships have appeared in orbit, and I've been feeling some strange sensations. What is going on? Have the Alphas started a new empire? Evolved to a new form?`
+		fail "ScS Tracking 1"
+		event "ScS pug invasion 3"
+		event "pug invasion 4"
+		event "fw syndicate welcoming"
+		"reputation: Free Worlds" >?= 1
+		conversation
+			`The spaceport is strangely quiet when you land, like the peace after a violent storm, but you see no sign of violence. The strange, yellow ships can still be seen overhead, and a few are parked on bays. Patrolling the spacport are small groups of slender, bipedal, pale-skinned creatures. Are they some creation by the Alphas? The next evolution or genetic modification of the Alphas themselves? Or perhaps an alliance with aliens! Any way you look at is, this could be big trouble.`
+			`	Your tracker has stopped working, and when you try to send a message to Arnold or Mary-Jane, the hyperlink network isn't connecting. Apparently everything is under the control of these pale-skinned creatures now. You'd better start finding out what's going on and how far this take-over has spread. Maybe you should look on some other planets.`
+				accept
+	on enter
+		log `Worse still, many hyperlanes have disappeared! Am I trapped?`
+		conversation
+			`When you check your navigation computers, to your horror you realise the hyperlanes themselves have disappeared, back whence you came, and a new system has opened up. If that's the centre of a new Alpha Empire, perhaps you'd better not go there without an army.`
+	to complete
+		never
+
+mission "ScS Pug Resistance"
+	landing
+	source
+		government Pug
+		near Deneb 1 100
+		not planet Maker
+		not planet Furnace
+	to offer
+		has "ScS Tracking 2: offered"
+		not "ScS Pug Support 1: offered"
+	on offer
+		log "Found out that the aliens who have taken over this area call themselves the Pug. They've not attacked anyone else except a few merchants who tried to resist them. They came from a nearby star system that did not previously have any hyperspace connections to human space, and seem intent on controlling and perhaps enslaving the local human population."
+		conversation
+			`When you land at the spaceport on <origin>, you find no evidence of violent struggle; merchant captains are walking around freely, haggling for commodities, and conversing with each other just like in any other spaceport you have visited. However, the spaceport is being patrolled by small groups of the same aliens you saw on Maker. Each one is holding a metal staff that looks like some sort of weapon, but none of them move to attack you.`
+			`	Soon after you land, you spot a man making his way towards your ship, ducking behind other ships and crates every time a group of aliens looks in his direction. If he is some sort of fugitive from them, it might be unwise to throw your lot in with him. On the other hand, he could have valuable information for you.`
+			choice
+				`	(Stay around and talk to him.)`
+					goto board
+				`	(Take off before I draw the aliens' attention.)`
+			
+			`	You start to get ready to take off, but he gestures urgently to you. Reluctantly, you decide to wait and hear what he has to say.`
+			label board
+			`	You open your ship's hatch and allow him to come on board. "What's going on here?" you ask. "Who are these aliens?"`
+			`	"I'm a planet-dweller," he says, "so the first I heard of it was when these ships unlike anything I'd ever seen before came down out of the sky, and hovered over the spaceport. Then they began transmitting radio messages on all frequencies, saying that this world is now a part of the Pug Protectorate, and that we must refrain from violence and give them a portion of the goods our world produces."`
+			choice
+				`	"Did anyone try to resist them?"`
+					goto resist
+				`	"What do you think their intentions are?"`
+					goto intentions
+				`	"Did they explain why they cut you off from the rest of the galaxy?"`
+					goto cut
+			
+			label resist
+			`	"A few. Their ships aren't invulnerable; a merchant in an Argosy managed to take out one of their smaller ships when it was landed with its shields down, before they blew his ship out of the air in retaliation. And those staffs they're carrying shoot some kind of stun ray, but if you cut them, they bleed, same as any other creature." He pauses, then taps the knife that is holstered at his belt and says, "Except, they bleed blue. Pale milky blue."`
+			choice
+				`	"What do you think their intentions are?"`
+					goto intentions2
+				`	"Did they explain why they cut you off from the rest of the galaxy?"`
+					goto cut2
+			
+			label intentions
+			`	"Well, they want our resources, of course. And, they say they have come to bring a new era of peace and an end to all violence and conflict. I don't buy it, though; they saw that humanity was too divided to resist them, and they seized the opportunity to invade and plunder us. It's that simple."`
+			choice
+				`	"Did anyone try to resist them?"`
+					goto resist2
+				`	"Did they explain why they cut you off from the rest of the galaxy?"`
+					goto cut2
+			
+			label cut
+			`	"I'd think that would be obvious. With the hyperspace links cut, there's no way for anyone from outside to assist us. And they struck at a part of human space without much in the way of militias or bounty hunters or Navy protection. And the few half-decent warships that happened to be in system when they attacked have already been destroyed trying to fight them."`
+			choice
+				`	"Did anyone try to resist them?"`
+					goto resist2
+				`	"What do you think their intentions are?"`
+					goto intentions2
+			
+			label resist2
+			`	"A few. Their ships aren't invulnerable; a merchant in an Argosy managed to take out one of their smaller ships when it was landed with its shields down, before they blew his ship out of the air in retaliation. And those staffs they're carrying shoot some kind of stun ray, but if you cut them, they bleed, same as any other creature." He pauses, then taps the knife that is holstered at his belt and says, "Except, they bleed blue. Pale milky blue."`
+				goto end
+			
+			label intentions2
+			`	"Well, they want our resources, of course. And, they say they have come to bring a new era of peace and an end to all violence and conflict. I don't buy it, though; they saw that humanity was too divided to resist them, and they seized the opportunity to invade and plunder us. It's that simple."`
+				goto end
+			
+			label cut2
+			`	"I'd think that would be obvious. With the hyperspace links cut, there's no way for anyone from outside to assist us. And they struck at a part of human space without much in the way of militias or bounty hunters or Navy protection. And the few half-decent warships that happened to be in system when they attacked have already been destroyed trying to fight them."`
+				goto end
+			
+			label end
+			`	"Where did they come from originally?" you ask.`
+			`	"From a star system that was always a neighbor of ours, but wasn't linked to us or to any other part of human space. We always just assumed it was an uninhabited system, but it turns out they were there all along, biding their time, waiting for a good opportunity to attack us."`
+			`	You thank him for the information, and prepare to carry on exploring. At least these Pug didn't actually attack you, and there's no sign of Alphas either. Perhaps your quarry are stuck here too. All this is very confusing, and not less worrying.`
+				decline
+
+mission "ScS Tracking 3"
+	landing
+	name "The Final Chase"
+	description "The Alphas have jumped right out of Pug-annexed space. Find a way to follow them, and get the tracker working again. If you join the resistance battle in <system>, you can pillage a jump drive and your friends will help you fix the tracker."
+	source Furnace
+	to offer
+		has "ScS Corporate Friends 1: done"
+	to complete
+		never
+	on enter
+		system
+			near Achernar 0 100
+#		dialog `Although you've escaped Pug-annexed space, your tracker still receives no signal. You'll need the help of your friends on Furnace to get the tracker working with the disrupted hyperspace network.`
+		conversation
+			branch pug
+				has "ScS Pug Support 2: active"
+			branch union
+				has "ScS Corporate Friends 2U: active"
+			branch company
+				has "ScS Corporate Friends 2C: active"
+			`Although you've escaped Pug-annexed space, your tracker still receives no signal. You'll need the help of your friends on Furnace to get the tracker working with the disrupted hyperspace network.`
+				accept
+			label pug
+			`Although you've escaped Pug-annexed space, your tracker still receives no signal. You hope the Pug were right about where the Alphas are going.`
+				accept
+			label union
+			`Although you've escaped Pug-annexed space, your tracker still receives no signal. Hopefully the union on Delve can fix it for you.`
+				accept
+			label company
+			`Although you've escaped Pug-annexed space, your tracker still receives no signal. Hopefully the research team on Hippocrates can fix it for you.`
+				accept
+
+#######################
+# Help from the Union #
+# Or from the Company #
+#######################
+
+mission "ScS Corporate Friends 0U"
+	landing
+	name "A Friend in Need"
+	source
+		government Pug
+		near Deneb 1 100
+		not planet Furnace
+	destination Furnace
+	clearance
+	to offer
+	description "The union you helped get started on <planet>, in the <system> system, is also trapped in the Pug's Annexe. See if they can help you out."
+	to offer
+		has "ScS Tracking 2: active"
+		has "ScS Unionise 3: done"
+		not "ScS Corporate Friends 1: offered"
+		random < 30
+	on offer
+		conversation
+			`To your suprise, your communicator beeps. You have a message from Furnace, from the union you helped get started, back before you were chasing superhumans and purging extremists from power.`
+			`	"Captain <last>, we heard you're in our area of dominated space. We have information you might be interested in.`
+			`		"Signed -- Your Friends on Furnace"`
+				accept
+
+mission "ScS Corporate Friends 0C"
+	landing
+	name "A Friend in Need"
+	source
+		government Pug
+		near Deneb 1 100
+		not planet Furnace
+	destination Furnace
+	clearance
+	to offer
+	description "The company you helped out on <planet>, in the <system> system, is also trapped in the Pug's Annexe. See if they can help you out."
+	to offer
+		has "ScS Tracking 2: active"
+		has "ScS Union Buster 3: done"
+		not "ScS Corporate Friends 1: offered"
+		random < 30
+	on offer
+		conversation
+			`To your suprise, your communicator beeps. You ahve a message from Furnace, from the company you helped when a new union tried to start, back before you were chasing superhumans and purging extremists from power.`
+			`	"Captain <last>, we heard you're in our area of dominated space. We have information you might be interested in.`
+			`		"Signed -- Your Friends on Furnace"`
+				accept
+
+
+mission "ScS Corporate Friends 1"
+	landing
+	name "Escaped!"
+	description "You saw the Alpha ship vanish in a cloud of blue, like the Pug and Quarg ships do. Land back on <planet> to see if your friends can help you follow it."
+	source Furnace
+	to offer
+		has "ScS Tracking 2: offered"
+	on fail
+		dialog `You destroyed the Alpha ship. Humanity will thank you, but for those four young women, your pursuit was in vain. You killed them, literally. Reload from an earlier save if you want to finish the storyline.`
+	on offer
+		fail "ScS Tracking 2"
+		conversation
+			`As you step off your ship, a dockworker recognises you. "Psst, come this way," he says.`
+			branch union
+				has "ScS Unionise 3: done"
+			`	You follow as he leads you round the back of your ship to a tall, glass office. Inside are executives from the company you helped, and they shake your hand warmly.`
+				goto greet
+			label union
+			`	You follow as he leads you round the side of your ship to a small office looking out on the landing sites. It turns out to be the new headquarters of the union you helped get started, and the boss inside shakes your hand warmly, while continuing to glance out the window frequently.`
+			label greet
+			`	"Captain <last>, we're very glad you came. We need your help again, this time not just one spaceport, but all of humankind."`
+			`	"What's going on?" you ask.`
+			`	"These aliens, the 'Pug', they call themselves. They've taken over this and several other systems and cut us off from human space. They used to live at that one star over there, but I guess that wasn't big enough for their egos. Now they've put a tax on us, imposed their own government, and are threatening to conquer the whole of human space in the name of 'peace'. Peace, pah. Greed and power like any overlord."`
+			choice
+				`	"Maybe it's not so bad? They haven't attacked us."`
+				`	"We have to drive them off!"`
+					goto fight
+				`	"That's all very well, but I can't save humankind. I have my own task to do."`
+					goto alphas
+			`	"You'll see. One wrong move and they'll start blowing us out of the sky. It's always the same."`
+			`	"Anyway," you say. "I can't save humanity. I have my own task to do."`
+				goto alphas
+			label fight
+			`	"Exactly! There's not much of us here; all the armies are on the Outside, but a few anti-pirate Syndicate police were here when the links broke, and they have warships. We're gathering who we can find, to kick them out of this system, and reclaim our right as free people."`
+			`	"I'd like to help," you say, "but I have to find a ship. They've abducted innocent women, and I was hot on their tail before this new calamity happened."`
+			label alphas
+			`	"You mean the Alphas," he says. "We heard about them. Better yet - for you - we saw them. They're here now: somewhere. Came in and boarded a Pug ship, then blew it up and hid before the rest of the alien mob could catch them. Oh, they're here all right, biding their time..."`
+			choice
+				`	"Then you have to help me find them!"`
+				`	"Do you know where they are?"`
+			`	Even as you speak, you hear a rumble nearby, and from a hidden hangar, just visible between buidlings, you see a Bounder slowly emerge.`
+			`	"There!" he shouts. "There! Quick!"`
+			`	You dash to your ship, and take to the sky behind the Alphas.`
+				launch
+	npc save evade
+		government "Alpha"
+		personality marked target fleeing launching uninterested
+		ship "Bounder (fleeing alpha)" "Romeo"
+	on enter
+		dialog
+			`You fly up in hot pursuit of the Alpha ship, but in front of your eyes it gathers blue mists and vanishes.`
+			`	Your tracker still says nothing: the broken hyperlinks must be messing with the tracking system.`
+	on enter
+		system
+			near Achernar 0 100
+		dialog `Although you've escaped Pug-annexed space, your tracker still receives no signal. You'll need the help of your friends on Furnace to get the tracker working with the disrupted hyperspace network.`
+	on complete
+		conversation
+			`Defeated, you land back on Foundry and head to the office.`
+			`	"What was that!" you say. "They just vanished, like the alien ships. They could be anywhere now, and my tracker no longer works."`
+			branch union
+				has "ScS Unionise 3: done"
+			action
+				log `The company I helped on Furnace are helping me find the Alphas, which landed here then fled - and vanished without a hyperspace jump! The company want me to join a resistance against these aliens, the Pug, then their contacts outside this annexed region will help me track down the Alphas.`
+			`	An executive looks at your tracker.`
+				goto tracker
+			label union
+			action
+				log `The union I helped on Furnace are helping me find the Alphas, which landed here then fled - and vanished without a hyperspace jump! The union want me to join a resistance against these aliens, the Pug, then their contacts outside this annexed region will help me track down the Alphas.`
+			`	The union boss looks at your tracker.`
+			label tracker
+			`	"Yeah, with the hyperlink network broken, it's no surprise this doesn't work. And the Alphas, they must have stolen some sort of jumping hyperdrive from the alien ship. Looks like you're stuck with us."`
+			`	"I have to follow them!" you protest. "Somehow!"`
+			`	He smiles slowly. "Well, you're going to need one of those 'jump drives' too, aren't you. But you can't just shoot up an alien ship, the mob will collpase on you quicker than you can sneeze.`
+			`	"Join us. Join us and resist the Pug, and get yourself a jump drive in the fray. Then we have contacts on the outside who can help get your tracker working again."`
+			choice
+				`	"Okay, I'm in."`
+				`	"I don't have time. I can get a jump drive, just tell me who can help with the tracker."`
+					goto notime
+				`	"I'm not sure about this, maybe we shouldn't antagonise the Pug."`
+					goto enemy
+			`	"Great. Meet the others in the spaceport when you're ready."`
+				goto end
+			label notime
+			`	"No can do. We need you, you need us. Join the resistance, help us out, then we'll help you. Meet the others in the spaceport when you're ready to fight."`
+				goto end
+			label enemy
+			`	"What are you talking about? They're our enemy! Get it into your head! They've come to dominate us, and until we fight them off we'll never be free. Go to the spaceport when you're ready to fight, and join the others there."`
+			label end
+			`	You walk back to your ship, to think. There is one other option: if the Alphas attacked a Pug ship, perhaps they're not together after all. At least you could go to the Pug homeworld and see what you can find out.`
+
+# next: ScS Tracking 3
+
+mission "ScS Corporate Friends 2"
+	priority
+	invisible
+	source Furnace
+	clearance
+	to offer
+		has "ScS Corporate Friends 1: done"
+	on complete
+		event "ScS civilian submission"
+	on fail
+		event "ScS civilian submission"
+	npc
+		to spawn
+			or
+				has "ScS Corporate Friends 2U: active"
+				has "ScS Corporate Friends 2C: active"
+		government "Merchant"
+		personality disables heroic uninterested staying
+			confusion 30
+		fleet
+			names "civilian"
+			variant
+				"Blackbird"
+				"Headhunter" 2
+				"Scout" 3
+				"Sparrow" 5
+				"Hawk" 1
+				"Argosy" 2
+	npc
+		to spawn
+			or
+				has "ScS Corporate Friends 2U: active"
+				has "ScS Corporate Friends 2C: active"
+		government "Syndicate"
+		personality disables heroic uninterested staying
+		ship "Quicksilver" "hahashootshoot"
+		fleet
+			names "syndicate capital"
+			variant
+				"Splinter (Mark II)" 2
+				"Manta (Mark II)" 2
+				"Quicksilver (Mark II)" 3
+	npc disable
+		to spawn
+			or
+				has "ScS Corporate Friends 2U: active"
+				has "ScS Corporate Friends 2C: active"
+		government "Pug"
+		personality uninterested staying entering
+		fleet
+			names "pug"
+			variant
+				"Pug Maboro" 2
+				"Pug Enfolta" 2
+				"Pug Zibruka" 4
+	npc disable
+		to spawn
+			or
+				has "ScS Corporate Friends 2U: active"
+				has "ScS Corporate Friends 2C: active"
+		government "Pug"
+		personality uninterested staying
+		fleet
+			names "pug"
+			variant
+				"Pug Enfolta" 2
+				"Pug Zibruka" 3
+	npc
+		to spawn
+			or
+				has "ScS Corporate Friends 2U: active"
+				has "ScS Corporate Friends 2C: active"
+		government "Pug"
+		personality uninterested staying derelict
+		fleet
+			names "pug"
+			variant
+				"Pug Enfolta"
+	to complete
+		or
+			has "ScS Corporate Friends 2U: active"
+			has "ScS Corporate Friends 2C: active"
+
+mission "ScS Corporate Friends JD"
+	landing
+	source Furnace
+	to offer
+		has "ScS Corporate Friends 2: done"
+		not "ScS Corporate Friends 2U: done"
+		not "ScS Corporate Friends 2C: done"
+	on offer
+		conversation
+			`You and the resistance actually managed to defeat the Pug! That's incredible! But more ships are pouring in overhead: it seems the resistance won't last much longer.`
+			branch union
+				has "ScS Unionise 3: done"
+			`	A company executive comes running up to you. "Captain <last>, thank you for your help. We stood valiantly. No one can say we went down without a fight. But it's over now, resistance will need to be underground. Did you get a jump drive? Can you pursue the Alphas and their captives?"`
+				goto question
+			label union
+			`	A union member comes running up to you. "Captain <last>, thank you for your help. We stood valiantly. No one can say we went down without a fight. But it's over now, resistance will need to be underground. Did you get a jump drive? Can you pursue the Alphas and their captives?"`
+			label question
+			choice
+				`	"Yes."`
+				`	"No."`
+					goto jdrive
+			`	"Great. You go and catch them. We'll keep on the resistance here. Thanks again for your help."`
+			`	"And you for yours," you say.`
+				decline
+			label jdrive
+			action
+				outfit "Jump Drive"
+			`	"We picked one up from a crash. You should take it, then go with our blessing to catch those Alphas. We'll keep on the resistance here, and thanks again for your help."`
+			`	"And thank you for yours," you say.`
+				decline
+
+mission "ScS Corporate Friends 2U"
+	priority
+	name "Escape with Union Help"
+	description "Join a resistance battle against the Pug, and pillage a jump drive in the fray. Help the resistance as long as you dare, then land, fit the drive, and head to <destination>."
+	source Furnace
+	destination Delve
+	to offer
+		has "ScS Corporate Friends 1: done"
+		has "ScS Unionise 3: done"
+		not "ScS Pug Support 2: active"
+		not "ScS Pug Support 2: done"
+	on offer
+		conversation
+			`Are you ready to join the fight against the Pug?`
+			choice
+				`	(yes)`
+				`	(no)`
+					defer
+			`	The spaceport is full of pilots, official and civilian, pretending they're getting drinks or ambling around. As the union boss enters with a few others, everyone looks up and the atmosphere becomes tense. They head around talking to pilots quietly, and the boss comes up to you.`
+			`	"We don't know how this fight will go, but we have to try. When you get up there, board an alien ship as quick as you can and grab a jump drive. Help us out fighting if you can, then go to Delve, to our sister union. They'll help you fix the tracker to catch the Alphas. Good luck."`
+				accept
+	on accept
+		"reputaion: Pug" <?= -100
+		fail "ScS Tracking 3"
+		fail "ScS Pug Support 1"
+		event "ScS civilian resistance"
+	on enter
+		dialog `All around you the remaining Syndicate fleet, whatever was stationed here before the cut, is fighting off Pug ships. They are joined by a handful of brave merchants. This may be a valiant, but losing battle. You should get a jump drive as quick as you can, and fit it in your ship before you're caught.`
+	on complete
+		fail "ScS Corporate Friends 2"
+	on fail
+		fail "ScS Corporate Friends 2"
+
+mission "ScS Corporate Friends 2C"
+	priority
+	name "Escape with Company Help"
+	description "Join a resistance battle against the Pug, and pillage a jump drive in the fray. Help the resistance as long as you dare, then land, fit the drive, and head to <destination>."
+	source Furnace
+	destination Hippocrates
+	to offer
+		has "ScS Corporate Friends 1: done"
+		has "ScS Union Buster 3: done"
+		not "ScS Pug Support 2: active"
+		not "ScS Pug Support 2: done"
+	on offer
+		conversation
+			`Are you ready to join the fight against the Pug?`
+			choice
+				`	(yes)`
+				`	(no)`
+					defer
+			`	The spaceport is full of pilots, official and civilian, pretending they're getting drinks or ambling around. As the company manager enters with a few other executives, everyone looks up and the atmosphere becomes tense. They head around talking to pilots quietly, and one comes up to you.`
+			`	"We don't know how this fight will go, but we have to try. When you get up there, board an alien ship as quick as you can and grab a jump drive. Help us out fighting if you can, then go to <planet>, to this research group." He hands you a card. "They'll help you fix the tracker to catch the Alphas. Good luck."`
+				accept
+	on accept
+		"reputaion: Pug" <?= -100
+		fail "ScS Tracking 3"
+		fail "ScS Pug Support 1"
+		event "ScS civilian resistance"
+	on enter
+		dialog `All around you the remaining Syndicate fleet, whatever was stationed here before the cut, is fighting off Pug ships. They are joined by a handful of brave merchants. This may be a valiant, but losing battle. You should get a jump drive as quick as you can, and fit it in your ship before you're caught.`
+	on complete
+		fail "ScS Corporate Friends 2"
+	on fail
+		fail "ScS Corporate Friends 2"
+
+mission "ScS Corporate Friends 3U"
+	landing
+	source Delve
+	to offer
+		has "ScS Corporate Friends 2U: done"
+	to complete
+		never
+	on offer
+		event "ScS empty algenib"
+		conversation
+			`The union on Delve welcomes you, and quickly asks for news from the cut-off alien space. You answer as best as you can, and steer the conversation to the Alphas and your tracker.`
+			`	"Yes, it won't work properly, not with the hyperlinks cut, but if the Alphas stay within the working hyperspace network, we can do something with it." He hands it to a technician, who comes back in twenty minutes.`
+			`	"There, this won't tell you for sure where the signal originates, but it will show which hyperlink it reaches you along: which direction it is to the Alpha ship. Go now, be careful, and good luck."`
+				accept
+	on enter
+		dialog `As you launch, the tracker reads a signal coming from the south.`
+	on enter Matar
+		dialog `The tracking signal comes from the south again.`
+	on enter Persian
+		dialog `The tracking signal now comes from the south-east. You can see where this is going...`
+	on enter Gienah
+		dialog `As you expected, the signal continues to be from the east.`
+	on enter Umbral
+		dialog `There's no signal here. You must have jumped too far.`
+
+mission "ScS Corporate Friends 3C"
+	landing
+	source Hippocrates
+	to complete
+		never
+	to offer
+		has "ScS Corporate Friends 2C: done"
+	on offer
+		event "ScS empty algenib"
+		conversation
+			`The research group on Hippocrates welcomes you, and quickly asks for news from the cut-off alien space. You answer as best as you can, and steer the conversation to the Alphas and your tracker.`
+			`	"Yes, it won't work properly, not with the hyperlinks cut, but if the Alphas stay within the working hyperspace network, we can do something with it." He hands it to a technician, who comes back in twenty minutes.`
+			`	"There, this won't tell you for sure where the signal originates, but it will show which hyperlink it reaches you along: which direction it is to the Alpha ship. Go now, be careful, and good luck."`
+				accept
+	to complete
+		never
+	on enter
+		dialog `As you launch, the tracker reads a signal coming from the east.`
+	on enter Persian
+		dialog `The tracking signal comes from the south-east. You can see where this is going...`
+	on enter Gienah
+		dialog `As you expected, the signal continues to be from the east.`
+	on enter Umbral
+		dialog `There's no signal here. You must have jumped too far.`
+
+#####################
+# Help from the Pug #
+#####################
+
+mission "ScS Pug Support 1"
+	landing
+	name "(optional) Visit the Pug"
+	description "Visit the Pug homeworld, and see if they reveal anything about the Alphas."
+	source Furnace
+	destination Pugglemug
+	clearance
+	to offer
+		has "ScS Corporate Friends 1: done"
+
+mission "ScS Pug Support P'quat"
+	landing
+	source Pugglequat
+	to offer
+		has "ScS Pug Support 1: active"
+	on offer
+		conversation
+			`This planet is clearly one of the native Pug worlds, and not a human world that has been occupied. The architecture is entirely alien, and you see no human ships or people here, only the aliens. But, it appears to be mostly a world for mining and factories; all the aliens are busy with their work, and none seem to speak your language or have any interest in talking with you; instead they gesture towards the sky, perhaps as a way of indicating that you should visit the other Pug planet in this system.`
+				decline
+
+mission "ScS Pug Support 2"
+	landing 
+	name "The Final Chase"
+	description "Escape the Pug protectorate through the unstable wormhole, then chase the Alphas to <destination>. With the staves the Pug gave you, you have the best chance you could hope for to rescue the women."
+	source Pugglemug
+	destination "Buccaneer Bay"
+	clearance
+	to offer
+		has "ScS Pug Support 1: done"
+	on offer
+		# Deep Archaeology checks if one of two FW missions are offered to see if you know the Pug, so set the FW reconciliation one as offered.
+		set "FW Pug 3: offered"
+		log "Located the Pug homeworld, and met with some of them. They say that they have annexed the neighboring systems into the Pug Protectorate in order to stop the human civil war. However, their idea of bringing peace seems to involve conquering human space and replacing the Republic with their own government."
+		log "Factions" "Pug" `The Pug are aliens with barrel-shaped bodies, spindly legs, and milky blue blood. They claim to have intervened in the human civil war purely for the sake of preventing more bloodshed and helping humans to live together in peace.`
+		conversation
+			`This is an entirely alien world. The buildings have strangely flowing, tapered shapes not unlike the Pug starships, and from orbit you count dozens of large cities covering a large portion of the land mass. If this were a human world, you would estimate its population at over a billion. You follow one of the Pug ships that is landing, and discover a large spaceport where a surprising number of human merchant ships are parked, in addition to the aliens.`
+			`	Elsewhere they have mostly ignored you, but here your ship is quickly approached by a small group of the pale-skinned, delicate aliens. The Pug are oddly proportioned, with long arms and legs but short, barrel-shaped torsos and large heads, and although they only have two legs, their gait is vaguely insectoid. "You came from outside," one of them says. "You are not pledged to the Protectorate. Do you wish to make your vow of loyalty and peacefulness at this time?"`
+			choice
+				`	"No, I am here to find out why you captured human systems, and to demand that you leave us alone."`
+				`	"We are willing to make peace, but only if you give us back control of our star systems."`
+			`	"We have no wish to harm you," says the alien. "In time you will come to recognize that. We intervened in your war only to bring peace and to keep your species from doing great harm to itself. And we must maintain control of these systems until we are certain that you will not continue fighting if the links are restored."`
+			choice
+				`	"You have no business invading our space and interfering in our affairs, regardless of your intentions."`
+			`	"'Interfere'?" says the alien. "We have 'interfered' many times before, and always you have benefited. If you do not believe us, ask those who live in the place you call the Deep. We helped them defeat the twisted half-human beings that you created in your foolish attempts to improve your race's genetic code. We have helped keep those creatures in check in the centuries since then. And we have helped in many other ways."`
+			choice
+				`	"What do you want from us in return?"`
+					goto peace
+				`	"What are you planning to do with these systems you have occupied?"`
+					goto peace
+				`	"Wait, the Alphas? You mean you're not allied with the Alphas?"`
+			`	The alien sighs, as if struggling to explain the obvious to a slow student. "What interest would we have in twisted creatures of war? We bring peace."`
+			`	"Peace?" you ask. "You have brought war. You have taken what isn't yours."`
+			label peace
+			`	"We have brought peace to this region," says the alien, "and we will continue to spread peace until violence has come to an end throughout human space. That is our only desire. All that we ask in return is a portion of the goods your worlds produce, to help offset the cost of watching over and protecting so many human worlds. And after some time, we will again allow human beings autonomous control of certain parts of your territory, when you show yourselves capable of living peacefully."`
+			`	"By 'spreading peace,' do you mean occupying more systems?" you ask.`
+			`	"We mean bringing an end to your war and your divisions," the alien says. "Those of your worlds and your people who have shown themselves unable to live peacefully, we must govern, to teach them peace. Any who attack us, we must destroy, because we are the bringers of peace, and whoever attacks us is not on the side of peace. Now, are you prepared to pledge your loyalty?"`
+			choice
+				`	"I'm sorry, but you have no right to govern us."`
+					goto no
+				`	"Very well, we pledge our loyalty."`
+					goto yes
+				`	"Hang on, you want peace, and you oppose the Alphas... Will you help me catch some Alphas and rescue their victims?"`
+					goto alphas
+			
+			label no
+			`	"Very well, if you are not yet ready to consent to be governed by us, we will give you more time," says the alien. "In the meantime, please do not attack our ships, or we will be forced to destroy you. Which we would regret deeply." It makes an odd gesture similar to a bow, and walks off.`
+			`	It seems you've lost your chance at getting the Pug to help. You'd better go back to your friends on Foundry and get their help to get out of this mess.`
+				decline
+			
+			label yes
+			`	"I am pleased to hear that," it says. "In time you will come to be thankful that you were present at the beginning of this new era of peace and prosperity for your species. And do not fear for your friends in other parts of human space who are, for a time, cut off from you. You will be reunited soon, under our protection."`
+			choice
+				`	"Wait! Can you send me out to human space? I have an important mission."`
+					goto mission
+				`	(leave)`
+			`	The alien makes an odd gesture similar to a bow, and you walk off, perplexed. Your best hope seems to be in your friends on Foundry, although it will mean breaking peace with the Pug.`
+				decline
+	
+			label mission
+			`	"I'm sure your mission will benefit from a spell of peace," the alien says. "Don't worry, human, you will have plenty to do here, trading and being productive."`
+			`	"It's about the Alphas," you protest. "They captured some women and have jumped out of your protectorate. They're escaping as we speak, and unspeakable things will happen to those women. Please, you must help!"`
+			label alphas
+			`	There's a pause, then the alien speaks again. "So, the folly of its ancestors has come down to this human. Perhaps, it will learn the lessons its ancestors did not."`
+			choice
+				`	"Yes! I have learnt. I'm no longer interested to make evil things to win my goals."`
+				`	"I don't know what you mean, but I just want to catch those Alphas and free their victims."`
+			`	"Very well." The alien makes a gesture to some behind it. "Yes, we know of those half-humans who entered, then left our protectorate. If your intention is to stop them, we will help." It hands you a bundle of three long, metal staves. "These will help you when you find them, lest your frail body be overpowered. And there," he points up at nothing in particular in the sky, "you will find a route back to your space, whence you can chase your enemy. Beware though, it will collapse soon after you go through it: there is no return."`
+			`	The alien makes an odd gesture similar to a bow, and adds, before it walks off, "Your quarry are headed to the pirate world you call Buccaneer Bay. Be quick to catch them."`
+				accept
+	
+	on accept
+		log `Accepted Pug help to chase the Alphas. They've given me some alien staves to help fight those twisted supersoldiers, and provided a way out of their annexed space.`
+		fail "ScS Tracking 3"
+		fail "ScS Corporate Friends 2"
+		event "ScS empty algenib"
+		event "ScS mini wormhole"
+		outfit "Pug Peacekeeping Staff" 3
+	on enter
+		system
+			near "Gamma Cassiopeiae" 1 100
+		event "ScS mini wormhole collapsed"
+	on enter Algenib
+		dialog `The Alpha ship is there, heading in to land on <planet>! You fire your engines and follow as fast as you can.`
+	on complete
+		conversation "ScS Finale"
+
+#################
+# The Alphinale #
+#################
+
+mission "ScS Final Hunt"
+	landing
+	invisible
+	destination "Buccaneer Bay"
+	clearance
+	to offer
+		or
+			has "ScS Corporate Friends 2U: done"
+			has "ScS Corporate Friends 2C: done"
+	on enter Algenib
+		dialog `The Alpha ship is there, heading in to land on <planet>! You fire your engines and follow as fast as you can.`
+	on complete
+		fail "ScS Corporate Friends 3U"
+		fail "ScS Corporate Friends 3C"
+		conversation "ScS Finale"
+
+conversation "ScS Finale"
+	action
+		log `It was epic. It was frightening. But at last, I rescued the four women still in captivity of the Alphas. Well... I found them, and saved them from being molested by the Alphas for breeding. At long last, Admiral Danforth and the Navy came and destroyed the Alpha base and rescued us. Apparently the Civil War is all over now, the galaxy's hyperlanes are restored, adn everything is at peace, of some sort. And, since I picked up the Alphas' Bounder, which was stuffed full of alien outfits including a jump drive, I can now explore the galaxy beyond human space. If I want. Maybe I'll live a peaceful life as a merchant captain instead... who knows.`
+		log `People` `Nikki and Vicky` `At last Vicky was also rescued, along with the other three women, the last of the Alphas' captives.`
+		event "at war with the pug"
+		event "battle for delta capricorni"
+		event "reconnected delta capricorni"
+		event "battle for altair"
+		event "liberation of altair"
+		event "reconnected altair"
+		event "pug flee"
+		event "pug territory liberated"
+		event "pug link restoration 1"
+		event "pug link restoration 2" 5
+		event "pug link restoration 3" 25
+		event "pug link restoration 4" 40
+		event "battle of algenib"
+		event "navy occupies algenib"
+		event "navy done with algenib" 50
+		event "stack core for sale"
+		set "free worlds reconciliation"
+		set "main plot completed"
+		set "ScS plot completed"
+		give ship "Bounder (alpha)" "Romeo"
+	
+	`You come into Buccaneer Bay in hot pursuit of the Romeo. Leaving just enough space that they don't turn and destroy you, and dodging occasional weapons fire from below, you follow the ship to a forested island near the main port, and watch it disappear between the trees.`
+	`	Tucked within the jungle you see signs of a massive installation. Bunkers covered with grass and moss for camouflage, towers between the close trunks of tall trees. Flying low, you locate a clearing just big enough for the <ship>, not too far from where the Alphas landed. You do a big loop, flying fast near the tops of the tallest trees in hopes of confusing any watchers, then dip below the canopy to your clearing. There's no one there. The sounds are only the birds taking off, and the wind in the trees.`
+	
+	branch pugstaff
+		has "ScS Pug Support 2: done"
+	
+	`	Stepping off your ship, you pull out the tracker. Apparently with the modifications, it can point you toward the signal's origin on land too: there's a weak trace coming from the south-east. You set out alone into the jungle. Any crew you have remain on your ship to protect it, and keep it ready for your return.`
+	choice
+		`	(head toward the Alpha ship)`
+	`	The jungle floor is mostly brown and open, cleared by the many animals that pass through. Quietly, you make your way round the trunks, pausing behind bushes from time to time to listen. As you get closer, you see patrols, and make a wide arc, keeping an eye on your tracker, creeping along ditches and round the back of small cliffs, until the Romeo comes into view. It's on the edge of a huge, but low, bunker, likely the top of a building going deep underground. The tracker still points to the ship, but there's no way of getting to it unseen, so you look for an entrance to the bunker.`
+	`	To one side, there's an unguarded door. You try it, and find you can enter unnoticed. Inside, the hallway opens to a wide room, and there, tied up, are the four women you've been pursuing! Green-skinned men stand around, and two are arguing over the small number of prisoners brought. You reach for your sidearm, but it won't get you far; you'd just die with no result.`
+	choice
+		`	(wait)`
+	`	Crouching low, you wait for the argument to finish, and watch as one of the soldiers leads the women near to you, and through another door out of sight. From the shadows, you catch the eye of one of the women, and her face lights up: the fear vanishes, and she walks with confidence. Luckily, the Alphas don't seem to have noticed.`
+	`	When all is quiet, you creep round the wall, and find the door. It opens onto a big, sterile room full of scientific gadgets, and rows of what look like hospital beds. The women are by themselves, sitting on beds at the back. Suddenly there's a clamour, and a shout of, "Hey! Wha-"`
+	`	You draw your gun, and fire: not at the Alpha, but at the medical instruments. Bang! Bang! Crash!- glass goes flying, pressurised air spurts out, machines crumple; and you're thrown to the floor by powerful arms from behind, as your magazine empties its last shot. Your last vision is of an evil, green face, as your head is pulled round to see, or be seen, and a fist lands on it.`
+	choice
+		`	(wake up)`
+	`	You awake in a cold, stone room, on a cold, stone bench, but the warm faces of four young women watching over you.`
+	`	"You're awake!" says one. "Thank God you're okay," says another.`
+	`	"I... yeah, I'm okay," you say, stretching your sore back. "Where are we?"`
+	`	"When you shot out those machines, the green men couldn't do whatever they had planned, and got really angry." The voice and face are unmistakeable, and belong to Vicky, Nikki's twin. "They took us here and," she points to some gruel in a dish on the floor, "gave us food. They need us healthy for whatever experiment it is they're doing. But how did you get here?"`
+	`	"I've been chasing you ever since the abduction," you say. "From system to system, from ship to ship."`
+	`	"And Nikki?" she asks.`
+	`	"Safe, heading back to your grandma."`
+	`	"Thank you, Captain."`
+	`	"And now we have to get you out of here." You don't like to tell them what the Alphas were planning to do with their equipment.`
+	choice
+		`	(escape)`
+	`	But there's no escape. The only door is firmly locked. Minutes roll into hours. Hours roll into days. Food is supplied in plenty, and chamber pots, for the necessities. From the guards' chatter, you pick up hints that the machinery you broke is being repaired, and you're all being kept until it's ready. Whether that includes you, you're not quite sure.`
+	`	And after many days have passed, and you've quite lost count, there's a strange silence through the bunker - not that you could hear much anyway, through the thick stone walls. And then a dull "boom". And a "boom, boom". As they get closer, thuds and booms give way to gunfire and excited shouting. Still, the door is locked, though the room shakes with the explosions. Footsteps clatter down the hallway, and a man looks in, with a gun: A man! A man with brown, not green, skin.`
+	`	"Who are you!" the man asks.`
+	`	"We were captured by the Alphas," one of the women says. "And Captain <first> here rescued us."`
+	`	"Well you didn't do a very good job of it, did you?" He looks at you with a grin. "Come on, lets get you all out of here."`
+	`	He leads you out, soon joined by twenty other Navy soldiers, to a massive Cruiser parked by your own ship. Your crew must have fled long ago to the spaceport, or else been captured. You hope they're okay.`
+		goto navy
+	
+	label pugstaff
+	`	Stepping off your ship, you take one of the staves the alien Pug gave you. Your crew, if you have any, stay behind to watch the ship and keep it ready: while you creep off into the jungle.`
+	choice
+		`	(head toward the Alpha ship)`
+	`	You know the rough direction of where the Alphas landed, so you walk that way, gripping your staff tightly and hoping you'll know how to use it when the time comes. The jungle floor is mostly brown and open, cleared by the many animals that pass through. It's easy going, but doesn't provide much cover, and after a while your way is blocked by a patrol, while you crouch out of sight behind a small cliff.`
+	`	Gripping your staff with one hand, you throw a rock and cough. At the last moment, you realise your folly: the Alphas could come from either side of this cliff - and they do! But as you swing the staff right and left, light leaps out of the end and catches each Alpha before he can shoot. The two supersoldiers drop their guns, gaze off into the middle distance, and start twirling off a drunken dance around the trees. You can almost see the stars circling their heads.`
+	`	Pressing on, you get to a clearing where the Romeo is parked in front of a huge, low, bunker, likely the top of a building going deep underground. The party are probably no longer on the ship, so you creep toward the main entrance to the bunker, then duck inside a side door you find.`
+	choice
+		`	(carry on)`
+	`	Inside, the hallway opens on a wide room, with green-skinned men here and there, and two arguing over the small number of prisoners brought: the four women you're here for! Checking around, from the shadows, you count: one, two, three... five... eight Alphas, but one by one they go their separate ways, until just two escort the women to a door on your side of the room.`
+	`	The moment they're out of sight, you burst from the shadowed hallway, as silently as you can, and swing your 'happy stick' at the guards. They tumble through the door, into a sterile room full of strange gadgets, and you grab the women and dash for the exit. "I'm <first> <last>. I'm here to rescue you," you whisper, before they have any chance to comment on your stature.`
+	choice
+		`	(escape)`
+	`	Back up the hallway you came by, and out the unguarded door - which is now guarded - and not again, as your staff moves and another Alpha waddles off in a trance. The five of you run for the trees, with a single shot behind you that, luckily, misses its mark. You make for a boulder, breathe, then set off back to the ship.`
+	`	But there's no way through. Not with the patrols on the alert. Besides, if you got there, they'd probably blow it out of the sky with anti-air guns.`
+	`	"Captain, thank you." One of the girls takes your hand. "We'll be okay, I'm sure we will. Now that you've rescued us."`
+	`	Continuing wherever you can stay out of sight, you find a cave, and hide inside. Minutes turn to hours, no one comes, and you get hungry.`
+	`	"Captain <last>. I'm Vicky. These are Emily, Asmita and Christina. Did you come for us, or have you another errand you must get to?" The speaker is unmistakeable as Nikki's twin.`
+	`	"I came for you," you say. "I've been following you since the abduction, from system to system, from ship to ship. We rescued some of your group; it's just the four of you left."`
+	`	"And Nikki?"`
+	`	"Safe, heading back to your grandma."`
+	`	"Thank you, Captain."`
+	`	"What will we do now?" says another of the women.`
+	choice
+		`	(hide out)`
+	`	There's not much to do. Alphas are everywhere, and as the search dies down, there's still no safe way back to your ship, if you could find it again. Under darkness, you creep back to the bunker alone, and with judicious use of the 'happy stick' you find your way to a sort of pantry, and return with armfuls of food. Each night, you do the same, also getting clothing for blankets and bedding where you can. Each night rolls on, and still there seems no chance of escape. You determine that soon, if there's no new opportunity, you'll have to chance it and try to get these women out without being caught.`
+	`	Two mornings later, in the early dawn, you gather the group. "Our chances are best in the low light. The guards aren't as active. Come on." You walk a few hours, creeping from trench to trench, hoping to find your ship before an Alpha, and before you're totally lost. A dark shadow passes overhead with the rumble of huge engines, then great explosions boom far behind you. Flashes escape above the trees, and you turn around. Navy ships are flying overhead! There, one dips beneath the trees. There, another soars low to scout. You follow the patterns of scouting gunboats, and soon enough find yourself back at your own ship, in the clearing where you landed. The crew must have fled long ago to the spaceport, or been captured. You hope they're okay.`
+	`	But beside your ship is a massive Navy Cruiser. Rasing your hands to say, "don't shoot," and trying not to squeal along with your rescu-ees, you run into the clearing to be greeted by a dozen Navy soldiers.`
+	
+	label navy
+	branch danforth
+		has "ScS danforth help"
+	`	As the commotion dies down, the officer in charge steps out of a gunboat that's been flying overhead. He introduces himself as Admiral Danforth, of the Navy 'Oathkeepers'.`
+	`	"Captain <last>," you take his hand warmly. "Boy, are we glad to see you."`
+	`	"And boy, are we surprised to see you! How long have you been here?" he asks.`
+		goto end
+	label danforth
+	`	As the commotion dies down, the officer in charge steps out of a gunboat that's been flying overhead. You're surprised to see Admiral Danforth, who helped you rescue the first group of women after the Alpha abduction.`
+	`	"Captain <last>! Fancy meeting you here. And are these the last of the Alphas' captives? How long have you been here?`
+	label end
+	`	"Too long," you say. "Too long, and we're glad to go home."`
+	`	"Then home it is. Hop on board my ship, all of you, and we'll get you back safe and sound."`
+	choice
+		`	(leave)`
+	`	"Wait!" you say. "Can you lend me six of your men?"`
+	`	"Um, sure," says Danforth. "What for?"`
+	`	"You'll see," you say. "And that ship next to yours-" you point to the <ship>, "that's my ship, could you see her safely back to the spaceport?`
+	branch pugstaff2
+		has "ScS Pug Support 2: done"
+	`	You scurry off with six of Danforth's best men, and gun in hand. When you reach the bunker, the Alphas' getaway ship is no longer in front, but at some distance you see a grassy mound, that wasn't there before. You lead the Navy men over, and find a cunningly-concealed entrance. It's a rudimentary hangar, and inside is the Romeo, the Bounder you and Arnold provided to lure the Alphas.`
+		goto command
+	label pugstaff2
+	`	You scurry off with six of Danforth's best men, and Pug-staff in hand in case you meet any more Alphas. When you reach the bunker, the Alphas' getaway ship is no longer in front, but at some distance you see a grassy mound, that wasn't there before. You lead the Navy men over, and find a cunningly-concealed entrance. It's a rudimentary hangar, and inside is the Romeo, the Bounder you and Arnold provided to lure the Alphas.`
+	label command
+	`	Dispatching the few Alphas who'd hoped to hide out here, you take command. You earned it, and no one will dispute that: you take the Alpha's ship for your own. Climbing on board, and leaving the Navy men (at their request) to continue sweeping the base, you lift off through the tin-and-grass ceiling and fly back to the spaceport.`
+	choice
+		`	(stay to talk with Danforth)`
+			goto talk
+		`	(take your leave)`
+	`	You find Danforth, and the women, and your ship, and take your leave of the two but not the third. The excitement has all been quite enough for you, and it's time once again to take to the skies, to the peace and quiet of open space. With many well-wishes, and thank yous, you finally say good-bye.`
+		accept
+	label talk
+	`	Back in the spaceport you find the rescued women, and Danforth, who fills you in on what's been going on. An eerily familiar captain walks by in the distance, but you pay them no mind, as Danforth continues talking.`
+	`	"So, the Pug didn't take over the galaxy?" you ask.`
+	`	"No! The Navy, Syndicate and Free Worlds joined together to drive them out, and at last we managed to restore the hyperlinks to the rest of the galaxy. Then at the end, the final battle, they vanished! Through a new wormhole in their home sytem, with no trace on the other side!`
+	`	"After that, we came to fight here. Would you believe, the real instigators of the civil war were indeed an extremist faction within the Syndicate, and Korban himself, the CEO, had been fraternising with Alphas."`
+	`	"I rather would," you say.`
+	`	"Well, Korban won't be CEO for much longer, and the galaxy is at peace again. I'm glad you completed your mission. We've lost so many lives, it's a pleasure to save these four."`
+	`	"Thank you, Admiral," you say, and you both sit back and relax. The excitement over, you're free to take to the skies on your own terms again, when you're ready, and forge a new life wherever you like in the galaxy. With luck, the Syndicate will have forgotten to take you off their books as an 'important captain', and you'll keep receiving your salary while you travel the stars.` 
+		accept
+
+
+############
+# Epilogue #
+############
+
+mission "ScS Epilogue Amazons"
+	landing
+	source Amazon
+	to offer
+		has "ScS plot completed"
+	on offer
+		conversation
+			`While you're on <origin>, do you want to go and see Mary-Jane and the Amazon activist group?`
+			choice
+				`	(yes)`
+				`	(no)`
+					decline
+			`	The Amazons have taken up residence in a huge, domed glass house, filled like an arboreum with trees and flowers, and the chattering of birds. Mary-Jane sits at a desk under an enormous, broad-leafed tree, writing letters, but when you arrive she brings you to a ring of tastefully-decorated sofas in the middle of the room, under the apex of the dome. It's a little hot and humid under the glass, but the group here seem to be in their element, and men, as well as women, walk at ease under the branches holding holographic screens as they plan, or debate, or do whatever work it is they do here.`
+			`	"<first>! You see we've found a home for ourselves." Mary-Jane relaxes into a sofa like a goddess on holiday. "The Syndicate is still the Syndicate, and we've made our peace with that now. But from here, we watch, we probe, we influence... we make the worlds a better place, for those who want to make an honest living and help others to do so. And you? Are you still chasing threats across the galaxy?"`
+			choice
+				`	"To infinity, and beyond."`
+				`	"I've taken a break now. Gone back to tourism and merchant fleets."`
+				`	"I don't really know what I'm doing. Just finding out, I guess."`
+					goto finding
+			`	"That's good. I know you'll be excellent, in whatever you get up to."`
+				goto end
+			label finding
+			`	"That's not a bad place to be in. Enjoy the calm while you can, and when you find what it is you want to do, give it your best."`
+			label end
+			`	You talk a while longer, and say hi to some of the others around, and at last walk back to your ship. It's not a glass-topped, sun-drenched micro-jungle, but it's yours. Your home.`
+				decline
+
+mission "ScS Epilogue ARA"
+	landing
+	source Farseer
+	to offer
+		has "ScS plot completed"
+	on offer
+		conversation
+			`While you're on <origin>, do you want to go and see Arnold, the Armchair Rights Activist?`
+			choice
+				`	(yes)`
+				`	(no)`
+					decline
+			`	You find Arnold in his usual armchair, in his comfy apartment. He's sipping a strange concoction masquerading as tea, and offers you some.`
+			choice
+				`	(drink the 'tea')`
+					goto tea
+				`	(ask for a coffee instead)`
+					goto coffee
+				`	(decline drinks)`
+			`	You're not thirsty anyway, and mystery drinks wreak havoc with your metabolism.`
+				goto howdy
+			label coffee
+			`	"Of course," Arnold says, "hot-trotting it around the galaxy must keep you pretty tired." He makes a call, and a few minutes later someone comes in with a hot, deliciously-smelling cup of coffee. "My upstairs neighbours," Arnold explains. "They're always good to help when someone comes round with a strange request."`
+				goto howdy
+			label tea
+			`	You accept a cup, and hold it under your nose a few moments while it cools. The smell is quite indescribable, but neither strong, nor repulsive.`
+			label howdy
+			`	Once you've sat down, on a similarly-luxurious armchair opposite Arnold's, he gets talking. "How is life as a galaxy-spanning adventure-captain these days? Do you get to relax, now you're not chasing little green men? And I hear Korban finally wrote up his last rites, and retired to CEO's Valhalla. The new guy, they say, receives secret messages from unknown women telling him how to run the company. Your guess is as good as mine!" he winks.`
+			`	As you chat, and reminisce about your adventures, your mind turns to his condition, and how he made that one, bold, journey to Korban's office with you, wrapped in his technologically-advanced wheelchair. Nobody ever told you what it actually is, that keeps him chair-bound in his house. Do you want to ask him?`
+			choice
+				`	(ask him about it)`
+					goto leg
+				`	(ignore it)`
+			`	You continue talking for a while, until you remember you have to top up your parking meter, or the spaceport will fine you. Saying your farewells, you wander back: with a last word to Arnold: that if he ever needs you again, to save the lives of the innocent and downtrodden... you'll be there.`
+				decline
+			label leg
+			`	"Now that things have quietened down a bit, and we're not under threat from aliens and Alphas," you ask, "have you thought about seeing if other doctors could cure your... difficulty?"`
+			`	"Oh, this?" he taps his leg with his teacup. "Ha, I used to adventure round the galaxy. Do you remember that chick with the longbow? You know she actually uses that thing?"`
+			`	"Vividly," you say. "I saw her make her mark on an Achilles we were chasing, one of the Extremists trying to run away."`
+			`	"When I first met her she... rather took the wrong idea about me. Thought I was the wrong sort of chap, on the wrong sort of team - from a hundred metres across a field." Arnold grins. "I tell people it's a rare, neurological condition, can't leave the house and all-" He pulls up his trouser leg, and you see a large scar on the side of his right knee. "-Truth is, it just bloody hurts to walk on."`
+			`	You swap more stories of adventures, and promise him if he ever needs your help again, rescuing the innocent and downtrodden, you'll be there. As you leave, you remark to yourself: Aliens & Alphas. Sounds like a good title for a comic book about a role-playing game. Perhaps you'll try making it sometime.`
+				decline
+
+#mission "ScS Epilogue Grandma"
+#	landing
+#	source Relic
+#	to offer
+#		has "ScS plot completed"
+#	on offer
+#		conversation
+#			`While you're on <origin>, do you want to go and see Mrs Haythorne, grandmother of Nikki and Vicky?`
+#			choice
+#				`	(yes)`
+#				`	(no)`
+#					decline
+
+#mission "ScS Epilogue Amanda"
+#	landing
+#	source Crossroads
+#	to offer
+#		has "ScS plot completed"
+#	on offer
+#		conversation
+#			`While you're on <origin>, do you want to go and see your aunt Amanda?`
+#			choice
+#				`	(yes)`
+#				`	(no)`
+#					decline
+
+#mission "ScS Epilogue Maurissa"
+#	landing
+#	source Foundry
+#	to offer
+#		has "ScS plot completed"
+#	on offer
+#		conversation
+#			`While you're on <origin>, do you want to go and see your aunt Maurissa?`
+#			choice
+#				`	(yes)`
+#				`	(no)`
+#					decline
+
+#mission "ScS Epilogue Watermann"
+#	landing
+#	source Crossroads
+#	to offer
+#		has "ScS plot completed"
+#	on offer
+#		conversation
+#			`While you're on <origin>, do you want to go and see your uncle William Watermann?`
+#			choice
+#				`	(yes)`
+#				`	(no)`
+#					decline

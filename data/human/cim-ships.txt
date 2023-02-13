@@ -1,0 +1,205 @@
+ship "Star Queen" "Star Queen (Discount)"
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
+		"Anti-Missile Turret"
+		
+		"LP036a Battery Pack"
+		"D41-HY Shield Generator"
+		"Small Radar Jammer" 2
+		
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+		"Hyperdrive"
+
+ship "Star Queen" "Star Queen (Fake Discount)"
+	add attributes
+		"outfit space" 10
+	outfits
+		"AR120 Reverse Thruster"
+		"Antimatter Core"
+		"Crystal Capacitor"
+		"Scram Drive"
+		"Large Heat Shunt"
+		"Luxury Accommodations"
+		"Point Defense Turret"
+		"Quarg Skylance"
+		"Small Thrust Module"
+		"Steering (Comet Class)"
+		"Steering (Lunar Class)"
+		"Thruster (Lunar Class)"
+
+ship "Flivver" "Flivver (Runaway)"
+	outfits
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 6
+
+		"D14-RN Shield Generator"
+		Hyperdrive
+
+		"KP-6 Photovoltaic Panel"	
+		Supercapacitor
+		"X1050 Ion Engines"
+
+ship "Quicksilver" "Quicksilver (no particle cannon)"
+	outfits
+		"Energy Blaster" 2
+
+		"RT-I Radiothermal"
+		"LP036a Battery Pack"
+		"D23-QP Shield Generator"
+		"Cooling Ducts"
+
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+
+ship "Palavret" "Korath Raider (no pilfering)"
+	add attributes
+		"self destruct" 1
+		"hull" 2000
+		"absolute threshold" 3500
+
+ship "Marauder Manta" "Marauder Manta (Range)"
+	sprite "ship/mmantae"
+	thumbnail "thumbnail/mmantae"
+	add attributes
+		"engine capacity" 20
+	outfits
+#		"Particle Cannon" 2
+		"Meteor Missile Launcher" 4
+		"Meteor Missile" 120
+		
+		"Reverse Thruster" 4
+		"Dwarf Core"
+		"LP144a Battery Pack"
+		"D14-RN Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"Laser Rifle" 11
+		
+		"A370 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Hyperdrive"
+	
+	engine -33.5 38
+	engine 0 76
+	engine 33.5 38
+	gun "Meteor Missile Launcher"
+	gun "Meteor Missile Launcher"
+#	gun "Particle Cannon"
+#	gun "Particle Cannon"
+	gun "Meteor Missile Launcher"
+	gun "Meteor Missile Launcher"
+	description `A previous owner of this Manta has gone to great lengths to make sure they could bring all six gun ports to bear in a hurry, and chase down smaller warships. Style was not lost on that captain, and a forked tail yielded a little more space for shield projectors in an area that would have been destabilized by engine exhaust. If its dry tonnage were any higher, it would be classified as a heavy warship.`
+
+ship "Mule" "Mule (rubbish)"
+	add attributes
+		"threshold percentage" .5
+	outfits
+		"Beam Laser" 2
+		"D41-HY Shield Generator"
+		Hyperdrive
+		"KP-6 Photovoltaic Array"
+		"LP072a Battery Pack"
+		"X1050 Ion Engines"
+		"X2700 Ion Thruster"
+
+ship "Raven" "Raven (rubbish)"
+	add attributes
+		drag 15
+		"threshold percentage" .5
+	outfits
+		Afterburner 4
+		"Beam Laser"
+		"Cooling Ducts"
+		"D14-RN Shield Generator"
+		"Energy Blaster"
+		"Greyhound Plasma Steering"
+		Hyperdrive
+		"LP072a Battery Pack"
+		"RT-I Radiothermal"
+		"S3 Thermionic"
+
+ship "Bastion" "Bastion (rubbish)"
+	add attributes
+		"threshold percentage" .5
+	outfits
+		"Anti-Missile Turret"
+		"Blaster Turret"
+		"D23-QP Shield Generator"
+		Hyperdrive
+		"LP144a Battery Pack"
+		"Meteor Missile" 30
+		"Meteor Missile Launcher"
+		"S3 Thermionic"
+		"X2200 Ion Steering"
+		"X2700 Ion Thruster"
+
+ship "Fury" "Fury (rubbish)"
+	add attributes
+		"threshold percentage" .6
+	outfits
+		"Chipmunk Plasma Steering"
+		"Chipmunk Plasma Thruster"
+		"D14-RN Shield Generator"
+		"Energy Blaster" 2
+		Hyperdrive
+		"KP-6 Photovoltaic Panel"
+		"LP036a Battery Pack"
+
+ship "Modified Argosy" "Modified Argosy (fuelled)"
+	add attributes
+		"fuel capacity" 1000
+
+ship "Sparrow" "Sparrow (fuelled)"
+	add attributes
+		"fuel capacity" 1000
+
+ship "Bounder" "Bounder (alpha)"
+	add attributes
+		"outfit space" 100
+		"bunks" -7
+		"cargo space" -20
+		"weapon capacity" 30
+	outfits
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Blaze-Pike Turret (modified)" 2
+		"Ionic Afterburner"
+		"Jump Drive"
+		"Korath Warder"
+		"Plasma Core"
+		"Small Heat Shunt" 2
+		"Systems Core (Small)"
+	turret 0 -5 "Korath Warder"
+	turret -37 4 "Blaze-Pike Turret (modified)"
+	turret 37 4 "Blaze-Pike Turret (modified)"
+
+ship "Bounder" "Bounder (fleeing alpha)"
+	"never disabled"
+	add attributes
+		"outfit space" 100
+		"bunks" -7
+		"cargo space" -20
+		"weapon capacity" 30
+		"hull" 10000
+		"shields" 50000
+		"slowing resistance" 100
+		"ion resistance" 100
+#		"mass" 1000
+#		"thrust" 20
+#		"turn" 100
+	outfits
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Blaze-Pike Turret (modified)" 2
+		"Ionic Afterburner"
+		"Jump Drive"
+		"Korath Warder"
+		"Plasma Core"
+		"Small Heat Shunt" 2
+		"Systems Core (Small)"
+	turret 0 -5 "Korath Warder"
+	turret -37 4 "Blaze-Pike Turret (modified)"
+	turret 37 4 "Blaze-Pike Turret (modified)"
+

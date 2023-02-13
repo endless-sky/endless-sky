@@ -1,0 +1,738 @@
+start "syndicate"
+	name "Crisis in Management"
+	description `After years of prosperity in the Syndicate, your company fortunes are failing. Rather than face your debts and be reduced to ordinary labour, or prison, you take to the stars...`
+	thumbnail "thumbnail/star queen"
+	date 16 11 3013
+	system Alpheratz
+	planet Moonshake
+	conversation "syndicate intro"
+	account
+		credits 100000
+		score 0
+		mortgage Mortgage
+			principal 7400000
+			interest 0.0005
+			term 136
+		mortgage Mortgage
+			principal 2311000
+			interest 0.0013
+			term 205
+		mortgage Mortgage
+			principal 911000
+			interest 0.003
+			term 309
+		mortgage Mortgage
+			principal 822050
+			interest 0.001
+			term 40
+	set "license: Pilot's"
+	set "Intro [0]: offered"
+	set "Syndicate Start"
+
+conversation "syndicate intro"
+	scene "scene/lobby"
+	`You arranged ahead of time for the company to buy you a spaceship, as a 'bonus'. Company troubles have mounted, workers were laid off, and assets pledged as securities: and in the last few months executive functions and retreats have dwindled almost to nothing, while you worked so hard in time of crisis. You've had to make do with very austere compensation - so surely they can afford you this little bonus.`
+	`	A simple pilot's Star Barge would never do for you, besides you're not used to the rough living of ordinary space life - in fact you've never been off-world before! But your secretary's uncle, himself a manager at a shipbuilding company, has promised you the best, a Star Queen.`
+	`	You bought it with company money, so it won't add to your own, not-inconsiderable debts, but it's in your name, so when your company goes bust, you keep the ship. Now at last you sign your name into the ship's records:`
+	name
+	`	You walk over to the hangar to see your new ship. Finally, you'll be free from this world, free from the rules of 'superiors', free from the dregs of society, free to roam the stars of the endless sky.`
+	action
+		give ship "Star Queen (Discount)" "Whitewashed Princess"
+
+	`	When you get on board your beautiful ship, the Whitewashed Princess, you are met by a man a bit too well dressed for your comfort, and for a moment you wonder if there's been a terrible mistake and your company thinks it owns your new ship. He greets you in a perfectly expressionless voice, from a perfectly expressionless face.`
+	`	"Welcome aboard the Whitewashed Princess, Captian <last>. I am your co-pilot, and as your second-in-command I can also offer you some advice as you you start your new flying career."`
+	choice
+		`	"Thank you. If you have good ideas, not dimwitted ones about 'downsizing executive bonuses,' then I'm all ears."`
+		`	"Just remember that I'm the captain, and I'll let you stay on my ship."`
+		`	"Get off my ship, peasant!"`
+			goto solo
+
+	`	You walk ahead of him to the bridge, sit down in the captain's seat, and start playing with the controls.`
+	`	"Well then," you say, "what advice do you have for us. Where should we fly first? To Geminus, to join the Navy? Stormhold and blast pirates out of the sky? Buzz through Sol and show off our sleek new craft to the poor masses of earth? Explore the darkest corners of the South? Or just ferry around the goods of ungrateful syndicate bosses for extortionate prices?" Apparently he is unfazed by your use of the royal 'we' - he certainly wouldn't think you imagined a communal ownership of the Princess.`
+	`	"Well, if I may--"`
+	choice
+		`	"'Well *Sir*,' if you may--"`
+		`	(let him continue)`
+			goto advice
+	`	"Well, sir, if I may,"`
+	choice
+		`	"Actually, 'Captain',"`
+	`	"Well, Captain, if I may,"`
+	label advice
+	`	"You might want to start by firing whoever bought this ship, it seems they have no experience at all, and bought an overpriced, ill-used vessel from an unscrupulous dealer."`
+	`	You hope the red rising to your face doesn't show.`
+	`	"This ship can barely fly. The Navy would never accept you in it, it would take forever to explore the South, and if you try to fight pirates they'll blast you into rubble before you can turn to face them. As for showing off your sleek ship to Earth..."`
+	`	Your face grows a deeper red.`
+	choice
+		`	"Stop babbling and say something useful."`
+		`	(let him continue)`
+	`	"What you want to do first, is outfit her properly. She's a nice enough ship, meaning the hull, just needs some better engines and equipment. First you buy the biggest engines you can fit--`
+	`	"I don't have money," you say."`
+	`	He stares at you for a moment and hesitates. "Okay, take out a loan. You'll make it up in no time with this big ship."`
+	choice
+		`	"Um, sure, I'll just do that, no problem."`
+			goto smallchange
+		`	"My credit rating is bust."`
+	`	He stares at you a little longer. "...Don't you have any money? At all?"`
+	label smallchange
+	`	You finger the credit chips in your pocket. These were for luxuries, enjoying yourself wherever you land to take a break from the stars. Well, the bank would probably just take them off you tomorrow anyway.`
+	`	"Okay, say I have some small change. What does the Princess need to get her shipshape?`
+	`	"In the long run, you'll need bigger engines, more power and better defence. A scram drive would help you evade pirates if you can't run away or fight them. And luxury accommodations would help you make more money from rich passengers, with all that space.`
+	`	You don't really like the idea of letting more rabble onto your ship, but you let him continue.`
+	`	"For now, I'd recommend buying larger engines, perhaps the X2X00 series, and the cheapest fuel cell so you don't die if your batteries run out before landing. If you sell the tiny engines you currently have, you could maybe afford a reverse thruster to make lining up for jumps faster. If you can afford a cargo scanner too you might get some corporate espionage jobs."`
+	`	You sigh and watch your dreams of flying free and living the high life fade out of your grasp. "Don't you have any really useful advice? Like some cousin of yours wants photos of a ship for his galaxy-wide bestselling magazine, or your sisters need a tour of the best clubs in the Paradise Worlds?"`
+	choice
+		`	(next)`
+	`	"How about this," he says. "You go to the outfitter and get the Whitewashed Princess space-worthy, then come and meet me in the spaceport. Meanwhile I'll see if I can find something more to your style."`
+	action
+		set "Syndicate Line"
+		set "FW Katya [1]: Offered"
+	`	You shuffle back off your new ship, and mentally tick off the things you'll want from the outfitters. Better engines, power generation, maybe a reverse thruster and a cargo scanner, maybe even a map...`
+		decline
+	
+	label solo
+	`	Ah, it feels good to be the boss. Nobody can tell you what to do on your ship. You'll do just fine on your own.`
+	action
+		set "Syndicate Line Fail"
+
+mission "Sc Bootstrap Solo"
+	landing
+	source Moonshake
+	to offer
+		has "Syndicate Start"
+		not "Syndicate Line"
+	on offer
+		log `Stepped down from senior management with judicious timing, before the company crumbled and pulled the top down with it. Was able to arrange a new starship as a leaving bonus, in recognition of excellent work and devotion to the company.`
+		log `Booted off a stupid man who hoped to scrounge off being my co-pilot and advisor. I can handle things myself, thank you.`
+		log "Factions" "Republic" `Hundreds of years ago, the independent territories in different parts of human space agreed to join together into a single democratic government, with Earth as its capital. The rise of the Republic ushered in a long period of peace and prosperity in human history.`
+			`Representation in the Republic Parliament is based on population. That means that some individual "Paradise Worlds" have more representatives than entire regions of space like the Dirt Belt that are more sparsely settled.`
+		log "Factions" "Syndicate" `The Syndicate is a megacorporation, the largest employer in human space. People who cannot find steady work elsewhere flock to the Syndicate factory worlds, where they are almost guaranteed to find a job. Although the Syndicate is technically part of the Republic, Syndicate worlds are governed directly by the corporation.`
+			`The Syndicate is a central part of the Republic's economy, but they are also well known for selling shoddy products and for doing damage to the environment on the worlds they control. Their treatment of workers is questionable, and their opposition to organized labor is legendary. Some Syndicate factory towns have even been accused of human rights abuses.`
+		log "Factions" "Pirates" `In poorer and more remote star systems, where the Navy seldom patrols, pirate attacks on merchant ships are frequent. Pirates are also known to attack large, unguarded convoys of freighters even in more populated areas. Most pirate fleets come from lawless worlds on the outskirts of human space.`
+		conversation
+			`	Good Luck`
+				flee
+
+
+mission "FW Katya Fail"
+	name "Assist the Free Worlds"
+	to offer
+		random < 10 + 7 * "assisted free worlds" * "assisted free worlds"
+		has "Syndicate Line"
+	to fail
+		has "chosen sides"
+	source
+		government "Free Worlds"
+	destination "Glory"
+	on offer
+		conversation
+			`Wandering through the spaceport, you have stopped for a moment to read the menu posted in front of a restaurant, when your thoughts are interrupted by the click of a gun being cocked right behind your head, and a woman's voice saying, "Think fast, Captain."`
+			choice
+				`	(Do this karate move I saw in a video one time.)`
+					goto `karate`
+	
+			label `karate`
+			`	You dodge sideways and spin quickly. As you do so you hear a loud click, but the gun does not fire. With one hand you knock aside the gun. With the other you land a karate chop which, if you had studied karate, would've shattered her collarbone and left her reeling in pain. But since you have not studied karate, instead your blow bounces harmlessly off her surprisingly muscular shoulder.`
+			`	Your assailant turns out to be wearing a Free Worlds uniform and a disappointed expression. "Well aren't you a dumb reckless bastard!" she says, "I'd hoped for something better from you. First of all, if this gun were loaded, your brains would be splattered all over the sidewalk. And second, you fight like a girl. I have no use for hotheads like you." She stalks off, leaving you very confused. It would appear that you've just failed some sort of test.`
+			choice
+				`	(Let her go.)`
+					decline
+				`	"Oh yeah? Well you ARE a girl!"`
+	
+			`	She turns back around, with a fearsome gleam in her eyes, and walks up to you until your faces are only inches apart. "Yeah, but I don't fight like one," she says. "I... fight like a she-badger."`
+			choice
+				`	"A she... badger?"`
+	
+			`	"Fearsome creatures." She walks away, leaving you even more confused.`
+				decline
+	on decline
+		log "Was held up at gunpoint by a militia woman in some sort of ill-conceived Free Worlds recruitment test."
+
+
+mission "Sc Bootstrap 1a"
+	priority
+	name "Transport ballerina troupe"
+	description "Pick up a ballerina troupe from <destination> by <day> to bring to an executive party."
+	destination Crossroads
+	source Moonshake
+	passengers 23
+	deadline 2
+	blocked `Perhaps you took on too many missions already. If you want to complete the Syndicate storyline, you need to keep space for the intro missions. This mission will need space for 23 passengers.`
+	to offer
+		has "Syndicate Start"
+		not "Syndicate Line Fail"
+	on fail
+		dialog phrase failure
+	on offer
+		log `Stepped down from senior management with judicious timing, before the company crumbled and pulled the top down with it. Was able to arrange a new starship as a leaving bonus, in recognition of excellent work and devotion to the company.`
+		log `Getting help from the ship's co-pilot, who can help with earning a bit of money in trying times.`
+		log "Minor People" "Co-Pilot" `A helpful, but inscrutable, assistant. Came with the ship, and is good at finding well-paid jobs.`
+		log "Factions" "Republic" `Hundreds of years ago, the independent territories in different parts of human space agreed to join together into a single democratic government, with Earth as its capital. The rise of the Republic ushered in a long period of peace and prosperity in human history.`
+			`Representation in the Republic Parliament is based on population. That means that some individual "Paradise Worlds" have more representatives than entire regions of space like the Dirt Belt that are more sparsely settled.`
+		log "Factions" "Syndicate" `The Syndicate is a megacorporation, the largest employer in human space. People who cannot find steady work elsewhere flock to the Syndicate factory worlds, where they are almost guaranteed to find a job. Although the Syndicate is technically part of the Republic, Syndicate worlds are governed directly by the corporation.`
+			`The Syndicate is a central part of the Republic's economy, but they are also well known for selling shoddy products and for doing damage to the environment on the worlds they control. Their treatment of workers is questionable, and their opposition to organized labor is legendary. Some Syndicate factory towns have even been accused of human rights abuses.`
+		log "Factions" "Pirates" `In poorer and more remote star systems, where the Navy seldom patrols, pirate attacks on merchant ships are frequent. Pirates are also known to attack large, unguarded convoys of freighters even in more populated areas. Most pirate fleets come from lawless worlds on the outskirts of human space.`
+		conversation
+			`You look around, admiring your ship for a while, trying to take stock of your new situation. Even before you get as far as the outfitters, your co-pilot comes looking for you.`
+			`	"Captain!" He comes over to you. "You're in luck. I've found the perfect excursion for you. An executive on Amazon is having a party in a few days, and he's paying 300,000 credits to bring a ballerina group to perform at it. How would you like to pick the dancers up from <destination>, just a jump away?`
+			`	"Will I be invited to the party?" you ask.`
+			`	"Sure, why not!"`
+			`	"And lots of socialising with the girls on the way over?"`
+			`	"Of course!"`
+			choice
+				`	"Then count me in."`
+			`	"Don't forget to pick up engines and a power generator from the outfitter," he reminds you. "Flying will be tough without them, and there's no outfitter on Amazon where you'll next get paid."`
+				accept
+
+mission "Sc Bootstrap 1b"
+	landing
+	name "Transport ballerina troupe"
+	description "Bring the ballerina troupe to <destination> by <day> for an executive party."
+	source Crossroads
+	destination Amazon
+	passengers 23
+	deadline 6
+	on fail
+		dialog `You have failed an essential Syndicate storyline mission, to complete the storyline load from an earlier save or TRY AGAIN YOU USELESS EMPLOYEE!!`
+	to offer
+		has "Sc Bootstrap 1a: done"
+	on offer
+		conversation
+			`You land gently on <origin>, with only a small *bump* and *thud* and *scrapescrapescrape* and you come to a neat stop before the edge of the landing pad. See, your pilot's licence is perfectly good without getting it the 'usual way'.`
+			`	You send your copilot off to find the ballerina group while you see to their rooms. Soon enough, they all run past you, giggling, and shut themselves in their rooms to sort out their makeup or something. No worries, you'll see them later. Might as well wander the spaceport for a bit before you leave.`
+				accept
+	on complete
+		payment 10000
+		conversation
+			`The whole way here you were lonely in your cabin, or gazing out blankly from the bridge. It seems the dancers' every hour was full either practising, or resting, or eating in their own cabins. You're glad to finally get to <planet>, and look forward to the party.`
+			`	The dancers all run off to prepare, and you promise to meet up in the spaceport later to find your way to the party. Meanwhile you notice a payment of <payment> has come into your account; that must be a downpayment on the full amount.`
+
+mission "Sc Bootstrap 2"
+	priority
+	name "Sewage transport"
+	description "Carry <cargo> to <destination> where it belongs."
+	cargo "stinking refuse" 60
+	blocked `You'd better free up space, because you don't know what will come next...`
+	source Amazon
+	destination Tinker
+	on fail
+		dialog `You have failed an essential Syndicate storyline mission, to complete the storyline load from an earlier save or TRY AGAIN YOU USELESS EMPLOYEE!!`
+	to offer
+		has "Sc Bootstrap 1b: done"
+	on offer
+		conversation
+			`You see no sign of the dancers in the spaceport, but your co-pilot is waiting for you.`
+			`	"Let's go to the party now!" you say excitedly.`
+			`	"Oh, that party?" It seems he's already forgotten about it. "It's a private function, invitation only."`
+			choice
+				`	"Humph. At least the pay should be good, when it comes."`
+					goto pay
+				`	"What! You said I'd be invited."`
+			`	"I guess they forgot," he replies blandly, as if that were perfectly natural.`
+			`	"What about the payment," you ask.`
+			label pay
+			`	"You should have got that already. Didn't you check your account?"`
+			`	"10,000 came in," you say. "Where's the rest of the 300,000?"`
+			`	"They must have spent most of it on the ballarinas. The champagne and truffles can't have been cheap either. Anyway if it's money you want, I've found you a lucrative job, one that will pay top dollar - to you this time."`
+			`	You mumble something about the working class and how they don't even work properly and take all the money for themselves. Maybe this new job will be better, if it doesn't involve the common rabble.`
+			choice
+				`	"That sounds better, what is it?"`
+			`	"Some sewage was shipped to <origin> by accident, it seems, and station managers want it moved on as fast as possible. They'll pay you <payment> to take it to <destination>."`
+			choice
+				`	"...okay"`
+					goto yes
+				`	"No! No No No! No way! Get off my ship! I don't want any more help from you, and I don't want your stinking pile of ****!"`
+					decline
+			label yes
+			`	You consider turning it down, but you do need those credits. How bad can it be, anyway? You'll be in the bridge, it'll be down in the hold. You don't have to touch it.`
+				accept
+	on complete
+		payment 500000
+		conversation
+			`	This time the full payment reaches you. Your co-pilot comes by to offer some advice before he goes to the spaceport to look for more work. You are still deep in debt, and living off ordinary pilots' work would be hard going for a long time.`
+			`	"<planet> is a good place to buy things for your ship," he says, helpfully. "If you buy new outfits before you leave, the bank won't have time to take all your money for loan repayments until it's too late for them. Don't worry, your interest is low, you can always pay it off later."`
+			`	"There's a shipyard here too," he adds, "but I don't recommend trading in your ship. You won't get a good price for her, since she's old, and a smaller ship won't make you money so fast."`
+			`	"Yes, money..." you sigh wistfully. "But no more poo jobs! I want to fight. I am the destroyer of pirates! The scourge of evil! All will tremble at the sight of the <ship>!"`
+			`	"I'll see what I can do," he replies in his usual monotone voice. You'll find him in the spaceport later and see what he has to offer.`
+	on enter
+		dialog `The smell is already seeping through your whole ship, better get to <planet> as quick as possible.`
+
+mission "Sc Bootstrap 3a"
+	priority
+	name "Catch a runaway manager"
+	description "Board the ship of a manager who tried to run away after his company crashed, and return him to the Syndicate on <destination>. The ship is in the Diphda system."
+	source Tinker
+	destination Hephaestus	
+	passengers 1
+	blocked `This next mission needs at least 1 passenger space.`
+	to offer
+		has "Sc Bootstrap 2: done"
+	on fail
+		dialog `You have failed an essential Syndicate storyline mission, to complete the storyline load from an earlier save or TRY AGAIN YOU USELESS EMPLOYEE!!`
+	on offer
+		conversation
+			`	In the spaceport you find your co-pilot with a hologram of a small spaceship. He explains it's the getaway craft of a Syndicate manager whose company crashed, and the manager is trying to escape responsibility.`
+			`	"Higher management want this man brought back to <planet>. His ship has just entered this system, and is in bad shape. Find it, board it, and take him to <destination> to face justice."`
+			choice
+				`	"I'll go and buy the biggest weapons I can afford."`
+					goto weapons
+				`	"That's barbaric! Upper management just want to pin the blame on him. Let the man have peace."`
+			`	"You don't know the situation, so how can you judge? Leave it to the courts.`
+			choice
+				`	"Very well, I'll bring him there safely."`
+					goto deliver
+				`	"I won't do it. Find something else for us to do."`
+			`	"I already signed you up for the job. People will be angry."`
+			`	"You what!" you reply angrily. "I didn't sign up! It's not my fault!"`
+			`	"You could try telling that to whoever comes after you, before they blow your ship back to the immortal chaos." As usual your co-pilot is a master of tact and sympathy.`
+			choice
+				`	"What do we do then? I still won't abduct that poor man."`
+					goto refuse
+				`	"Fine, I'll go and fetch my biggest ship-destroying lasers."`
+					goto weapons
+			label refuse
+			`	"You'll be okay until you launch; then head as fast as you can the other direction into Republic space. Meet me on Ada, in the Aldebaran system, you'll be safe there."`
+				decline
+
+			label weapons
+			`	"I don't think you'll need so much: looking at this he's not going anywhere today. Still doesn't hurt to be sure. Just don't kill him."`
+			label deliver
+			`	"Disable his ship and board it to pick him up, then fly to <destination>"`
+				accept
+	on complete
+		payment 80000
+		conversation
+			`	You turn your prisoner over for a pretty large sum of credits, and shuffle back to your ship. You're not sure how to think about this one, anyway you're made for bigger things than individal rogue managers. You say as much to your co-pilot, who promises to look for something a bit more significant for you to do on the world stage. You'll find him in the spaceport later.`
+	on accept
+		fail "Sc Bootstrap 3b"
+		set "Sc Bootstrap 3b: offered"
+
+	npc board
+		government "Independent (Killable)"
+		personality disables staying heroic target
+			confusion 120
+		system Diphda
+		ship "Flivver (Runaway)" "Fugitive"
+		conversation
+			`You board the getaway ship, and find the missing manager. Realising the game's up he turns himself in without a struggle and settles down in one of your bunks.`
+			choice
+				`	"Get in there, you no good, cheating scum."`
+					goto cheating
+				`	"I'm sorry about this. I hope the court will treat your case fairly."`
+			`	"Don't worry," he says. "If one of my workers messed up I'd have them imprisoned and set all their debt on their family. Now it's my turn, I suppose."`
+			`	You mull on his words for a moment, then conveniently forget them.`
+				accept
+			label cheating
+			`	"Well, not all of us can be perfect and noble like you."`
+				accept
+
+mission "Sc Bootstrap 3b"
+	priority
+	name "Flee to <destination>"
+	description "Escape from angry upper management after refusing to capture a fugitive."
+	destination Ada
+	passengers 1
+	source Tinker
+	to offer
+		has "Sc Bootstrap 2: done"
+		not "Sc Bootstrap 3a: done"
+	to fail
+		has "Sc Bootstrap 3a: active"
+
+	npc
+		personality heroic
+		government "Bounty Hunter"
+		ship "Quicksilver (no particle cannon)" "Jeremiah Wrightwork"
+		ship "Quicksilver (no particle cannon)" "Abdullah Kenworth"
+
+	on complete
+		dialog `You've escaped those bounty hunting suck-ups and landed on <planet>. Time to see if your co-pilot made good on his promise to meet you here.`
+
+mission "Sc Bootstrap 4"
+	priority
+	name "Bust a major Syndicate strike."
+	description "Bring <bunks> strike-breakers from <stopovers> to <destination> by <date>. At last you're doing something important."
+	passengers 45
+	source
+		planet Hephaestus Ada
+	stopover Gemstone
+	destination Delve
+	deadline 15 2
+	to offer
+		not "Sc Bootstrap 4a: offered"
+		or
+			has "Sc Bootstrap 3a: done"
+			has "Sc Bootstrap 3b: done"
+	on fail
+		dialog `You have failed an essential Syndicate storyline mission, to complete the storyline load from an earlier save or TRY AGAIN YOU USELESS EMPLOYEE!!`
+	on offer
+		conversation
+			`Sure enough, when you go to the spaceport, your ever-helpful co-pilot is ready with a job, something "of real importance."`
+			`	"There's a major miners' strike on <planet>, instigated apparently by some lesser captain in the Navy wanting to 'modulate reform,' or something like that. The bosses are looking for people to take the strikers' places, and there's a group on <stopovers> willing to come, who are up to speed on a broad range of the newest mining techniques. Bring them to <destination> by <day>."`
+			`	"What's the reward," you ask?`
+			`	"To participate in the smooth running of the glorious Syndicate!   ...and <payment>."`
+				accept
+	on complete
+		payment 450000
+		conversation
+			`The miners file neatly off your ship to the boos of a crowd held back by police, and you swell with pride at how important you are in helping the Syndicate to continue running smoothly. And magnanimous, to help even after they treated you so badly letting your company go bust.`
+			`	<payment> comes into your account, and you finally feel like you're getting somewhere. It's still only a small part of your loans though; how can you become a billionaire space-Captain when the banks take every credit you earn? Oh well, you're sure the golden goose is out there somewhere, perhaps just a few jumps away. Time to see what's going on in the spaceport once more.`
+
+	on stopover
+		dialog `You let the workers onto your ship and tell them to "keep quiet and behave themselves." Time to bring them to <planet>.`
+
+mission "Sc Bootstrap 4a"
+	priority
+	name "Bust a major Syndicate strike."
+	description "Go to <destination> to pick up strike-breakers by <date>. Instead of filling your own ship with commoners, you've paid for shuttles that you'll escort."
+	source
+		planet Hephaestus Ada
+	destination Gemstone
+	deadline 10 2
+	to offer
+		not "Sc Bootstrap 4: offered"
+		or
+			has "Sc Bootstrap 3a: done"
+			has "Sc Bootstrap 3b: done"
+	on fail
+		dialog `You have failed an essential Syndicate storyline mission, to complete the storyline load from an earlier save or TRY AGAIN YOU USELESS EMPLOYEE!!`
+	on offer
+		conversation
+			`Sure enough, when you go to the spaceport, your ever-helpful co-pilot is ready with a job, something "of real importance."`
+			`	"There's a major miners' strike on Delve, instigated apparently by some lesser captain in the Navy wanting to 'modulate reform,' or something like that. The bosses are looking for people to take the strikers' places, and there's a group on <destination> willing to come, who are up to speed on a broad range of the newest mining techniques. Pick them up by <day> and bring them back to Syndicate space."`
+			choice
+				`	"More common rabble on my ship?"`
+			`	You think about squashing so many uncooth miners onto your exclusive ship, so recently free of sewage smell.`
+			`	"Well," he suggests, "if you prefer you can have them flown in shuttles, which you can escort."`
+			`	That sounds a much better idea.`
+				accept
+
+mission "Sc Bootstrap 4b"
+	landing
+	name "Bust a major Syndicate strike."
+	description "Escort miners to <destination> by <date> to break a major strike affecting the Syndicate."
+	source Gemstone
+	destination Delve
+	deadline 5 2
+	to offer
+		has "Sc Bootstrap 4a: done"
+	on fail
+		dialog `You have failed an essential Syndicate storyline mission, to complete the storyline load from an earlier save or TRY AGAIN YOU USELESS EMPLOYEE!!`
+	on offer
+		conversation
+			`After you land on <origin> it takes a while to look around for shuttles to fly all the miners. When you find some pilots, you put them in touch with the recieving company to negotiate their pay.`
+				accept
+	on complete
+		payment 48000	
+		conversation
+			`You hear the boos of the distant crowd around your escorts as the miners disembark. Checking your account you see only <payment>, which seems small for travelling so far for something so important... until you realise with a shock those no-good wannabe pilots must have negotiated most of your pay for themselves! Stupid, ungrateful nobodies. You found them work, you went twice as far, they'd be nothing without you.`
+			`	You wander off toward the spaceport muttering as you go. Your loans aren't getting any smaller, you can't cut and run yet...`
+	
+	npc accompany save
+		government "Merchant"
+		personality timid escort
+		ship "Bounder" "Fred the Worthy"
+		ship "Blackbird" "Helpful Mike"
+		ship "Heavy Shuttle" "Elizabeth the Undying"
+	
+	on visit
+		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
+
+mission "Sc Bootstrap 5"
+	priority
+	name "Take a scientist to <planet>"
+	description "Transport an important scientist back to <destination> by <day>."
+	source Delve
+	destination Mutiny
+	clearance
+	deadline 2 1
+	passengers 1
+	blocked "You need a bunk free for the next mission."
+	to offer
+		or
+			has "Sc Bootstrap 4b: done"
+			has "Sc Bootstrap 4: done"
+	on fail
+		dialog `You have failed an essential Syndicate storyline mission, to complete the storyline load from an earlier save or TRY AGAIN YOU USELESS EMPLOYEE!!`
+	on offer
+		conversation
+			`When you go to the spaceport this time, your co-pilot is nowhere to be seen. You browse the shops a while, think on your future, and are about to head back to the <ship> when he comes out from a door marked, "Do not Disturb, Important Meeting in Progress". With him is a man in broad-rimmed glasses and an ill-fitting suit, who looks at the ground as he walks.`
+			`	"This is Sawyer," your co-pilot introduces him, "an important physicist with Syndicate research. He's just been in a very important meeting and needs to get back quickly to <destination>."`
+			choice
+				`	"Sounds like a worthwhile job, I'd be delighted."`
+					goto delighted
+				`	"How much will he pay?"`
+			`	"<payment>, directly from the institution."`
+			label delighted
+			`	Sawyer thanks you, looking almost in your general direction. He's probably more comfortable staring at the internals of a hyperdrive than at a fellow human being.`
+			choice
+				`	"All right, let's go!"`
+					accept
+				`	"Just don't dissolve my ship in some weird experiment, okay?"`
+			`	"Haha, that would be the chemists," he replies to the wall behind you. "You really have to watch out for the applied mathematicians, they'll fold your ship into a Riemannian manifold. Don't worry, all my experiments are strictly on-world."`
+			`	You don't really understand, must be some physicist joke. The best you can do is feign a chuckle as you head back to warm up your engines.`
+				accept
+	on complete
+		payment 40000
+		log "People" "Sawyer" `A Syndicate physicist doing research on Mutiny, in the Gienah system. You helped him get back after a meeting.`
+
+mission "Sc Package Delivery 1"
+	landing
+	name "Important Package Delivery"
+	description "Bring an important package to a researcher on <destination>, by <day>."
+	source Mutiny
+	destination "New Iceland"
+	deadline 28
+	cargo "special package" 2
+	blocked `You need 2 tons of cargo space for the next mission`
+	to offer
+		has "Sc Bootstrap 5: done"
+		not "war imminent"
+	on fail
+		dialog `You have failed an essential Syndicate storyline mission, to complete the storyline load from an earlier save or TRY AGAIN YOU USELESS EMPLOYEE!!`
+	on offer
+		conversation
+			`	It seems strange that no one told you this 'important Syndicate research facility' would be in a system controlled by pirates. As you dodge blaster fire and fly down to <origin>, you wonder if spacetravel is really for you. Perhaps you'd be better looking for a CEO job somewhere out in the Rim.`
+			`	You find the research facility, but there's not much to it, barely a place for you to land. The main installation must be underground. You drop Sawyer off, and turn to ask your co-pilot about new work. He's nowhere to be seen.`
+			choice
+				`	(Look around the landing site)`
+					goto lookaround
+				`	(Stay on your ship and sulk)`
+			`	You sit on the doorstep of the <ship> feeling sorry for yourself, then after a while wander over to the bridge. Nothing interesting there; why did you even come to this stupid planet? There's no bar, no shops, no stock market updates... Maybe amongst the prefab shelters outside you'd find something.`
+			choice
+				`	(Go outside)`
+					goto lookaround
+				`	(Stay in the ship)`
+			`	After some time you hear footsteps and find your co-pilot looking for you. "Captain!" he says. "We're in luck.`
+				goto inluck
+			label lookaround
+			`	Around the landing spot are a handful of prefabricated buildings, each uglier than the last, as if the architect was trying for the "Least Memorable Place in the Galaxy" award. You can't find anything fun, nor any sign of Sawyer or your co-pilot.`
+			choice
+				`	(Check more buildings)`
+			`	You find a door marked "Entry Strictly Forbidden," and take a look inside. The interior is as drab as the exterior, and you're so bored you leave and start walking dejectedly back to the <ship>. Half way there, who is walking towards you but your co-pilot!`
+			`	"Captain," he says. "I hope you weren't leaving just yet, we're in luck.`
+			label inluck
+			`	"This is the big one. This is the Golden Egg. It might even pay off all your loans. A team from the research facility has a very important package they need delivering to colleagues on <destination>, and they'll pay very well for it.`
+			`	"I hope you can find your way, it's a little tricky navigating so far without always knowing the hyperlink network, but I'm sure you'll find it. There's plenty of time to make a few wrong turns, but don't take too long."`
+				accept
+	on complete
+		conversation
+			`As you land you expect the contact to be there ready to pick up this "sensitive and important" package. It's strange no one's there, better check the spaceport.`
+
+mission "Sc Package Delivery 2"
+	priority
+	name "Important Package Delivery"
+	description "Bring an important package to a researcher on <destination>, by <day>."
+	source "New Iceland"
+	destination "New Portland"
+	deadline 4
+	cargo "special package" 2
+	blocked `You need 2 tons of cargo space for the next mission`
+	to offer
+		has "Sc Package Delivery 1: done"
+	on fail
+		dialog `You have failed an essential Syndicate storyline mission, to complete the storyline load from an earlier save or TRY AGAIN YOU USELESS EMPLOYEE!!`
+	on offer
+		conversation
+			`For the first time, in the spaceport, your co-pilot apologises to you.`
+			`	"There's been a mix up," he explains, "the research team are not on New Iceland but New Portland, in the Delta Sagittarii system. We'd better get there quickly."`
+				accept
+
+mission "Sc Package Delivery 3"
+	landing
+	name "Important Package Delivery"
+	description "Bring an important package to a researcher on <destination>, by <day>."
+	source "New Portland"
+	destination Hope
+	deadline 14
+	cargo "special package" 2
+	blocked `You need 2 tons of cargo space for the next mission`
+	to offer
+		has "Sc Package Delivery 2: done"
+	on fail
+		dialog `You have failed an essential Syndicate storyline mission, to complete the storyline load from an earlier save or TRY AGAIN YOU USELESS EMPLOYEE!!`
+	on offer
+		conversation
+			`Once again as you land there's no contact to meet you. Your co-pilot quickly makes some calls and relays back to you,`
+			`	"It turns out the research team just moved recently, that's why there's these problems. They're now working on <destination>."`
+			`	You'd better bring the package to <planet>.`
+				accept
+
+mission "Sc Package Delivery 4"
+	landing
+	name "Important Package Delivery"
+	description "Bring an important package to a researcher on <destination>, by <day>."
+	source Hope
+	destination Clink
+	deadline 4
+	cargo "special package" 2
+	blocked `You need 2 tons of cargo space for the next mission`
+	to offer
+		has "Sc Package Delivery 3: done"
+	on fail
+		dialog `You have failed an essential Syndicate storyline mission, to complete the storyline load from an earlier save or TRY AGAIN YOU USELESS EMPLOYEE!!`
+	on offer
+		conversation
+			`The surface of Hope is barren, and you can't find any sign of the research team, nor any communication from them. By now you're getting frustrated.`
+			choice
+				`	(Fly around once more in hopes of picking up their signal)`
+				`	(Leave)`
+			`	"Hang on," says your co-pilot, "I think I'm reading a signal." He hesitates a moment as he fiddles with some receiving device he's got with him.`
+			`	"Clink. They're on Clink, just one jump away in the Kornephoros system." He hands you some coordinates. "Fly there quickly and bring them the package."`
+				accept
+
+mission "Sc Package Delivery 5"
+	landing
+	name "Important Package Delivered"
+	description "Return to <destination> after delivering a 'very important package', and hope you can still receive your payment after this fiasco."
+	source Clink
+	destination "Shangri-La"
+	clearance
+	to offer
+		has "Sc Package Delivery 4: done"
+	on offer
+		set "Syndicate Intro Complete"
+		conversation
+			`You slow your engines and fly down toward the co-ordinates you were given, about to land, when your co-pilot says, "Not here, just a little further!" and hands you some corrected co-ordinates.`
+			choice
+				`	(Fly to the new coordinates)`
+			`	As you reach the new co-ordinates, he shouts again, "Wait!" and sends you a bit further.`
+			choice
+				`	(Fly to the new coordinates)`
+					goto last
+				`	(Tip the package out the airlock and be done)`
+					goto airlock
+			label last
+			`	You change course yet again, but the new location is so pocked with craters and jagged rocks there's nowhere to land.`
+			`	"Is it really here?" you ask.`
+			`	"Yes, right here," comes the reply. "Don't worry, the package is plenty strong enough, it'll survive any rough landing."`
+			`	"The package is plenty strong?" you say. "I'm sure the research team will have no problem picking it up..."`
+			label airlock
+			`	Without landing you walk to the airlock, frustration boiling in your veins, and tip this 'very special package' straight out into the open sky. Feeling calmer, you walk back to your seat and try to look casual.`
+			choice
+				`	(Fly away as quick as you can)`
+			`	As you leave Clink's thin atmosphere you look back, and see a red flash in the distance. ...oops. You *really* hope no one will realise what happened till after you get paid.`
+				launch
+	on complete
+		log `Flew around the galaxy doing stupid jobs in my exclusive, private ship. At least, at the end, the last, maddening job paid off most of my loans. Finally I'm free to roam the galaxy as a real Space Captain. Perhaps the Syndicate will come asking for me in the future for more important jobs.`
+		log "People" "Benjamin Downey" `A high-level manager in the Syndicate, in a high-level office on Shangri-La. He paid you for delivery of the researchers' 'package' on Clink.`
+		set "met benjamin downey"
+		payment 10000000
+		conversation
+			`On <planet> you meet up with the manager who's authorised to pay you for your galaxy-spanning delivery. Through many corridors, up many lifts, past security more than once, and finally you reach a doorway labelled, "Benjamin Downey, Greater Manager". You hope he won't just turn you away.`
+			choice
+				`	(Tell him about the red flash)`
+					goto flash
+				`	(Tell him the delivery was successful)`
+			`	You walk into Mr Downey's office confident, and tell him how dilligently you worked to bring the package to the right place, even when the information given to you was repeatedly incorrect.`
+				goto pay
+			label flash
+			`	You tell Mr Downey of the red flash you saw, carefully omitting that you threw the package out the airlock moments before. He waves it away nonchalantly and says it must have been some unrelated mining explosion and not to worry about it.`
+			label pay
+			`	He draws out from his desk a suitcase, and hands it to you.`
+			`	"For excellent work, and we hope this more than compensates you for your troubles." Inside the suitcase is <payment> in credit chips. Yes indeed, this makes up for your effort.`
+			`	You thank him kindly, and as you leave, Mr Downey thanks you again and remarks that you're an excellent asset to the Syndicate. "Troubled times are ahead," he warns. "Perhaps not too long from now we'll have need of the services of a Captain like you." There's a pause... "Don't call us, we'll call you," he winks.`
+			`	As you leave his office and take the many elevators back to the main spaceport, your co-pilot speaks.`
+			`	"I think it's time I take a break. Thank you for bringing me with you on your adventures, even if the accommodation was a bit... rough, at times. By the way, that big suitcase of money... you could start paying off your loans quickly, or you could buy yourself some new ships to take on more work, and pay off the loans later."`
+			`	"Clever," you say. "And how about you? What will you do now?"`
+			`	"Oh I don't know, settle down maybe, or perhaps I'll find a ship of my own."`
+			`	He takes a different turn to you at the last hallway, and you bid him farewell. As he leaves you notice he, too, has a suitcase like yours, only bigger.`
+
+mission "Sc Bootstrap Too-Late"
+	landing
+	name "Say good-bye to your co-pilot."
+	description "Say good-bye to your co-pilot, who tried so hard to get you out of your debts. Take him to <destination>."
+	source Mutiny
+	destination "Shangri-La"
+	clearance
+	passengers 1
+	to offer
+		has "Sc Bootstrap 5: done"
+		has "war imminent"
+	on offer
+		set "Syndicate Intro Complete"
+		conversation
+			`	It seems strange that no one told you this 'important Syndicate research facility' would be in a system controlled by pirates. As you dodge blaster fire and fly down to <origin>, you wonder if spacetravel is really for you. Perhaps you'd be better looking for a CEO job somewhere out in the Rim.`
+			`	You find the research facility, but there's not much to it, barely a place for you to land. The main installation must be underground. You drop Sawyer off, and turn to ask your co-pilot about new work. He's nowhere to be seen.`
+			choice
+				`	(Look around the landing site)`
+					goto lookaround
+				`	(Stay on your ship and sulk)`
+			`	You sit on the doorstep of the <ship> feeling sorry for yourself, then after a while wander over to the bridge. Nothing interesting there; why did you even come to this stupid planet? There's no bar, no shops, no stock market updates... Maybe amongst the prefab shelters outside you'd find something.`
+			choice
+				`	(Go outside)`
+					goto lookaround
+				`	(Stay in the ship)`
+			`	After some time you hear footsteps and find your co-pilot looking for you. "<first>," he says, and you wince at the informality.`
+				goto sorry
+			label lookaround
+			`	Around the landing spot are a handful of prefabricated buildings, each uglier than the last, as if the architect was trying for the "Least Memorable Place in the Galaxy" award. You can't find anything fun, nor any sign of Sawyer or your co-pilot.`
+			choice
+				`	(Check more buildings)`
+			`	You find a door marked "Entry Strictly Forbidden," and take a look inside. The interior is as drab as the exterior, and you're so bored you start walking dejectedly back to the <ship>. Half way there, who is walking towards you but your co-pilot!`
+			`	"Hello, <first>," he says, "are you still here?" You wince at the informality and ask him if he's forgettng something.`
+	
+			label sorry
+			branch atwar
+				has "war begins"
+			`	"I've been talking to some of the high-ups, and there's a rumour that war is imminent."`
+				goto anyway
+			label atwar
+			`	"War has broken out, as perhaps you've heard."`
+			label anyway
+			`	"War here? With the pirates?" you ask. Perhaps that'll hold them off your back so you can get out safely!`
+			`	"No, across the galaxy," he replies. "It's time I took a safe job, something well-paid and risk-free. I'm sorry we never found enough work to pay off all your loans, I'm sure you'll find plenty of work and get there eventually. I wish you all the best in your blossoming career as a pilot."`
+			`	"What will you do?" you ask.`
+			`	"I've been offered a highly paid position on <planet> checking tax records and overseeing an obituaries column. Best of luck, good bye. He turns to walk away, checks himself, and walks back."`
+			`	"Actually, do you think you could take me there? One last journey for old times' sake?`
+			`	You look around at the total lack of other spacecraft in this deserted area.`
+			choice
+				`	"Absolutely, for ten million credits up front."`
+					goto tenmillion
+				`	"Sorry, no can do."`
+					goto nocando
+				`	"I'm busy with all that piloting work. I wish you all the best in your new office job. Good bye."`
+			`	"Wait!" he cries as you walk off.`
+			label nocando
+			`	"I can pay you, as a passenger."`
+			choice
+				`	"The fare is ten million credits."`
+					goto tenmillion
+				`	"Yeah, I figured. No thanks"`
+			`	He stammers and looks around... "I got a big starting package; I can pay you... a lot."`
+			`	"Ten million credits, up front,", you say.`
+			label tenmillion
+			`	"What! That's ridiculous!" He twitches nervously, but doesn't walk away.`
+			choice
+				`	"Okay, pay off all my loans, then I'll take you."`
+			`	"I can't do that," he complains. "You got yourself into that debt--"`
+			`	"And you were supposed to get me out of it," you reply.`
+			`	"Forty thousand. Same as bringing Sawyer here."`
+			choice
+				`	"Return trip is much harder. Five million."`
+			`	"You're crazy! 500,000. Last offer. That's way too much for a ticket within Syndicate space."`
+			choice
+				`	"We're not in Syndicate space. Three million or I fly myself off. Perhaps I'll join the pirates and wave at you from orbit."`
+			`	"One million. A whole million credits for a short transport ticket on one bunk."`
+			choice
+				`	"Now you're talking. I'll think about it."`
+					goto think
+				`	"Two million, that's more than fair."`
+					goto twomil
+			label think
+			`	You do think about it. Then you make him a higher offer.`
+			`	"Two million. That's more than fair, I'm sure you'll make it back quickly."`
+			label twomil
+			`	At last he sighs and accepts your generous offer. Two million credits, and perhaps he'll put in a good word for you with any high-level Syndicate excecutives he meets in his line of duty. Time to return to civilized space, and hope you don't get shot out of the sky on the way.`
+				accept
+	on complete
+		payment 2000000
+		log `Finished bussing around my useless co-pilot and the terrible jobs he got me to do. At least I got some good money at the end of it, and perhaps in the future some high-ups in the Syndicate will recognise my brilliance and offer me more work: war always needs enterprising Captains.`
+		conversation
+			`As you touch down on <planet>, you feel a relief that your time being bossed around is over. Perhaps you can't pay off all your loans yet, but there's enough to pay off a big chunk, or buy a new ship upfront, and there's enough work in the galaxy that you can pay the rest off comfortably in your own time.`
+			branch atwar
+				has "war begins"
+			`	Perhaps the war, if it really happens, will bring you new opportunities too.`
+				accept
+			label atwar
+			`	Perhaps the war will bring you new opportunities too.`

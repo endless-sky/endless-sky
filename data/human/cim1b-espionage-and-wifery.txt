@@ -1,0 +1,868 @@
+######################
+# Shipyard Espionage #
+######################
+
+mission "ScS Spy Betelgeuse"
+	job
+	name "Syndicated Espionage"
+	description	"The Syndicate spy in Betelgeuse Shipyards has information ready to send. Go to <stopovers> to receive it, and bring it to a Syndicate contact on <destination>. Payment is <payment>."
+	repeat
+	source
+		government "Syndicate"
+	stopover Prime
+	destination Foundry
+	to offer
+		has "ScS syndicate trusted"
+		random < 6
+		not "ScS Fly Betelgeuse: active"
+		not "event: syndicate occupies sol"
+	on stopover
+		dialog `A particularly boring-looking employee walks over and hands you a stack of promotional brochures and user manuals. The information must be hidden in these.`
+	on complete
+		payment 60000
+		dialog `You find the Syndicate Intelligence contact in a nondescript room off a little-used hallway, and hand him the papers. He thanks you and hands you credit chips for <payment>.`
+
+mission "ScS Fly Betelgeuse"
+	job
+	name "Syndicated Espionage"
+	description	"The Syndicate want observations on Betelgeuse Shipyards. Fly through <waypoints>, and bring your ship's scan logs to a Syndicate contact on <destination>. Payment is <payment>."
+	repeat
+	source
+		government "Syndicate"
+	waypoint Betelgeuse
+	destination Foundry
+	to offer
+		has "ScS syndicate trusted"
+		random < 4
+		not "ScS Spy Betelgeuse: active"
+		not "event: syndicate occupies sol"
+	on waypoint
+		dialog `You fly around <waypoints> and collect scans in your ship for the Syndicate.`
+	on complete
+		payment 45000
+		dialog `You find the Syndicate Intelligence contact in a nondescript room off a little-used hallway, and hand him a copy of your scan logs. He thanks you and hands you credit chips for <payment>.`
+
+mission "ScS Spy Lionheart"
+	job
+	name "Syndicated Espionage"
+	description	"The Syndicate spy in Lionheart Industries has information ready to send. Go to <stopovers> to receive it, and bring it to a Syndicate contact on <destination>. Payment is <payment>."
+	repeat
+	source
+		government "Syndicate"
+	stopover Valhalla
+	destination Foundry
+	to offer
+		has "ScS syndicate trusted"
+		random < 6
+		not "ScS Fly Lionheart: active"
+		not "event: syndicate occupies sol"
+	on stopover
+		dialog `A particularly boring-looking employee walks over and hands you a stack of promotional brochures and user manuals. The information must be hidden in these.`
+	on complete
+		payment 60000
+		dialog `You find the Syndicate Intelligence contact in a nondescript room off a little-used hallway, and hand him the papers. He thanks you and hands you credit chips for <payment>.`
+
+mission "ScS Fly Lionheart"
+	job
+	name "Syndicated Espionage"
+	description	"The Syndicate want observations on Lionheart Industries. Fly through <waypoints>, and bring your ship's scan logs to a Syndicate contact on <destination>. Payment is <payment>."
+	repeat
+	source
+		government "Syndicate"
+	waypoint "Epsilon Leonis"
+	destination Foundry
+	to offer
+		has "ScS syndicate trusted"
+		random < 4
+		not "ScS Spy Lionheart: active"
+		not "event: syndicate occupies sol"
+	on waypoint
+		dialog `You fly around <waypoints> and collect scans in your ship for the Syndicate.`
+	on complete
+		payment 45000
+		dialog `You find the Syndicate Intelligence contact in a nondescript room off a little-used hallway, and hand him a copy of your scan logs. He thanks you and hands you credit chips for <payment>.`
+
+mission "ScS Spy Tarazed"
+	job
+	name "Syndicated Espionage"
+	description	"The Syndicate spy in the Tarazed Corporation has information ready to send. Go to <stopovers> to receive it, and bring it to a Syndicate contact on <destination>. Payment is <payment>."
+	repeat
+	source
+		government "Syndicate"
+	stopover Wayfarer
+	destination Foundry
+	to offer
+		has "ScS syndicate trusted"
+		random < 6
+		not "ScS Fly Tarazed: active"
+		not "event: syndicate occupies sol"
+	on stopover
+		dialog `A particularly boring-looking employee walks over and hands you a stack of promotional brochures and user manuals. The information must be hidden in these.`
+	on complete
+		payment 60000
+		dialog `You find the Syndicate Intelligence contact in a nondescript room off a little-used hallway, and hand him the papers. He thanks you and hands you credit chips for <payment>.`
+
+mission "ScS Fly Tarazed"
+	job
+	name "Syndicated Espionage"
+	description	"The Syndicate want observations on the Tarazed Corporation. Fly through <waypoints>, and bring your ship's scan logs to a Syndicate contact on <destination>. Payment is <payment>."
+	repeat
+	source
+		government "Syndicate"
+	waypoint Tarazed
+	destination Foundry
+	to offer
+		has "ScS syndicate trusted"
+		random < 4
+		not "ScS Spy Tarazed: active"
+		not "event: syndicate occupies sol"
+	on waypoint
+		dialog `You fly around <waypoints> and collect scans in your ship for the Syndicate.`
+	on complete
+		payment 45000
+		dialog `You find the Syndicate Intelligence contact in a nondescript room off a little-used hallway, and hand him a copy of your scan logs. He thanks you and hands you credit chips for <payment>.`
+
+mission "ScS Spy Southbound"
+	job
+	name "Syndicated Espionage"
+	description	"The Syndicate spy in Southbound Shipyards has information ready to send. Go to <stopovers> to receive it, and bring it to a Syndicate contact on <destination>. Payment is <payment>."
+	repeat
+	source
+		government "Syndicate"
+	stopover Zug
+	destination Foundry
+	to offer
+		has "ScS syndicate trusted"
+		random < 6
+		not "ScS Fly Southbound: active"
+		not "event: syndicate occupies sol"
+	on stopover
+		dialog `A particularly boring-looking employee walks over and hands you a stack of promotional brochures and user manuals. The information must be hidden in these.`
+	on complete
+		payment 60000
+		dialog `You find the Syndicate Intelligence contact in a nondescript room off a little-used hallway, and hand him the papers. He thanks you and hands you credit chips for <payment>.`
+
+mission "ScS Fly Southbound"
+	job
+	name "Syndicated Espionage"
+	description	"The Syndicate want observations on Southbound Shipyards. Fly through <waypoints>, and bring your ship's scan logs to a Syndicate contact on <destination>. Payment is <payment>."
+	repeat
+	source
+		government "Syndicate"
+	waypoint Zubeneschamali
+	destination Foundry
+	to offer
+		has "ScS syndicate trusted"
+		random < 4
+		not "ScS Spy Southbound: active"
+		not "event: syndicate occupies sol"
+	on waypoint
+		dialog `You fly around <waypoints> and collect scans in your ship for the Syndicate.`
+	on complete
+		payment 45000
+		dialog `You find the Syndicate Intelligence contact in a nondescript room off a little-used hallway, and hand him a copy of your scan logs. He thanks you and hands you credit chips for <payment>.`
+
+mission "ScS Spy Megaparsec"
+	job
+	name "Syndicated Espionage"
+	description	"The Syndicate spy in Megaparsec, Inc. has information ready to send. Go to <stopovers> to receive it, and bring it to a Syndicate contact on <destination>. Payment is <payment>."
+	repeat
+	source
+		government "Syndicate"
+	stopover Sunracer
+	destination Foundry
+	to offer
+		has "ScS syndicate trusted"
+		random < 6
+		not "ScS Fly Megaparsec: active"
+		not "event: syndicate occupies sol"
+	on stopover
+		dialog `A particularly boring-looking employee walks over and hands you a stack of promotional brochures and user manuals. The information must be hidden in these.`
+	on complete
+		payment 40000
+		dialog `You find the Syndicate Intelligence contact in a nondescript room off a little-used hallway, and hand him the papers. He thanks you and hands you credit chips for <payment>.`
+
+mission "ScS Fly Megaparsec"
+	job
+	name "Syndicated Espionage"
+	description	"The Syndicate want observations on Megaparsec, Inc. Fly through <waypoints>, and bring your ship's scan logs to a Syndicate contact on <destination>. Payment is <payment>."
+	repeat
+	source
+		government "Syndicate"
+	waypoint Mirfak
+	destination Foundry
+	to offer
+		has "ScS syndicate trusted"
+		random < 4
+		not "ScS Spy Megaparsec: active"
+		not "event: syndicate occupies sol"
+	on waypoint
+		dialog `You fly around <waypoints> and collect scans in your ship for the Syndicate.`
+	on complete
+		payment 25000
+		dialog `You find the Syndicate Intelligence contact in a nondescript room off a little-used hallway, and hand him a copy of your scan logs. He thanks you and hands you credit chips for <payment>.`
+
+###########################
+# Parts/systems espionage #
+###########################
+
+mission "ScS Spy DeepSky"
+	job
+	name "Syndicated Espionage"
+	description	"The Syndicate spy in Deep Sky has information ready to send. Go to <stopovers> to receive it, and bring it to a Syndicate contact on <destination>. Payment is <payment>."
+	repeat
+	source
+		government "Syndicate"
+	stopover Asgard
+	destination Hephaestus
+	to offer
+		has "ScS syndicate trusted"
+		random < 6
+		not "event: syndicate occupies sol"
+	on stopover
+		dialog `A particularly boring-looking employee walks over and hands you a stack of promotional brochures and user manuals. The information must be hidden in these.`
+	on complete
+		payment 60000
+		dialog `You find the Syndicate Intelligence contact in a nondescript room off a little-used hallway, and hand him the papers. He thanks you and hands you credit chips for <payment>.`
+
+mission "ScS Spy Kraz"
+	job
+	name "Syndicated Espionage"
+	description	"The Syndicate spy in Kraz Cybernetics has information ready to send. Go to <stopovers> to receive it, and bring it to a Syndicate contact on <destination>. Payment is <payment>."
+	repeat
+	source
+		government "Syndicate"
+	stopover Rust
+	destination Hephaestus
+	to offer
+		has "ScS syndicate trusted"
+		random < 6
+		not "event: syndicate occupies sol"
+	on stopover
+		dialog `A particularly boring-looking employee walks over and hands you a stack of promotional brochures and user manuals. The information must be hidden in these.`
+	on complete
+		payment 60000
+		dialog `You find the Syndicate Intelligence contact in a nondescript room off a little-used hallway, and hand him the papers. He thanks you and hands you credit chips for <payment>.`
+
+mission "ScS Spy Lovelace"
+	job
+	name "Syndicated Espionage"
+	description	"A Syndicate spy in Lovelace Labs has information ready to send. Go to <stopovers> to receive it, and bring it to a Syndicate contact on <destination>. Payment is <payment>."
+	repeat
+	source
+		government "Syndicate"
+	stopover
+		planet Pilot Ada
+	destination Hephaestus
+	to offer
+		has "ScS syndicate trusted"
+		random < 6
+		not "event: syndicate occupies sol"
+	on stopover
+		dialog `A particularly boring-looking employee walks over and hands you a stack of promotional brochures and user manuals. The information must be hidden in these.`
+	on complete
+		payment 45000
+		dialog `You find the Syndicate Intelligence contact in a nondescript room off a little-used hallway, and hand him the papers. He thanks you and hands you credit chips for <payment>.`
+
+################
+# WC espionage #
+################
+
+###################
+# Alpha Transport #
+###################
+
+mission "ScS Alpha Back"
+	job
+	name "Mysterious passenger"
+	description "A mysterious passenger working for the Syndicate needs transport to <destination> for secretive work. Payment is <payment>."
+	repeat
+	source
+		government "Syndicate"
+	destination "Buccaneer Bay"
+	clearance
+	passengers 1
+	to offer
+		has "ScS syndicate trusted"
+		random < 12
+		not "event: syndicate occupies sol"
+	on offer
+		dialog `The passenger is hooded and cloaked so you can't see any of his features. He settles himself into his cabin without saying anything.`
+	on complete
+		payment 50000
+		dialog `The mysterious passenger hops off your ship quietly and heads to his important mission. You receive <payment>.`
+
+mission "ScS Alpha Forth"
+	job
+	name "Mysterious passenger"
+	description "A mysterious passenger working for the Syndicate needs transport back to <destination>. Payment is <payment>."
+	repeat
+	destination
+		government "Syndicate"
+	source "Buccaneer Bay"
+	passengers 1
+	to offer
+		has "ScS syndicate trusted"
+		random < 17
+		not "event: syndicate occupies sol"
+	on offer
+		dialog `The passenger is hooded and cloaked so you can't see any of his features. He settles himself into his cabin without saying anything.`
+	on complete
+		payment 50000
+		dialog `The mysterious passenger hops off your ship quietly and heads to wherever he's going. You receive <payment>.`
+
+#######################
+# Helping WCW's wives #
+#######################
+
+mission "ScS Wifery 2a"
+	minor
+	name "The Mrs Washermanns"
+	description "Meet Lily, your aunt Amanda's maid, on <destination> to help bring the truth to your uncle's wives."
+	source
+		near Ruchbah 1 100
+	destination Crossroads
+	to offer
+		has "ScS Wifery Help 2: done"
+#		not "event: ScS help help"
+		random < 20
+	on offer
+		conversation
+			`You receive a message from Lily, the maid of your Aunt Amanda. She writes, "I've been going through Mr you-know-who's files, and uncovered two more of his wives. Would you like to come and help find them and tell them the truth?`
+			choice
+				`	Yes.`
+				`	No.`
+					decline
+			`	You'll find Lily at Uncle WC's house on <planet>.`
+				accept
+
+mission "ScS Wifery 2b"
+	landing
+	name "Mrs Jennifer Washermann"
+	description "Fly to <destination> and meet with Jennifer, to tell her the truth about her husband."
+	source Crossroads
+	destination Hippocrates
+	to offer
+		has "ScS Wifery 2a: done"
+	on offer
+		conversation
+			`When you get time, you make a visit to your uncle's house, hoping he's not in. Lily answers the bell and ushers you in quickly. Having brought tea and made sure you're comfortable, she explains:`
+			`	"Mrs Washermann is still away on holiday, but I've been doing some digging into the Mr's files, and I've found some things out." She hands you a couple of photocopied documents. "In the end it was quite easy, once I knew what I was looking for. He must think he's very clever, hiding it like this, but these papers are proof of two more Mrs Washermanns, Mrs Jennifer on <planet> and Mrs Susanna on Tinker."`
+			`	The documents don't mean much to you at first glance, but you can see the names, together with various details but no address.`
+			`	"So how do we find them?" you ask.`
+			`	She points to handwritten addresses in the margins of each. "There's more papers than this," says Lily. "Look far enough and you see the connections. I have a photo of Mrs Jennifer, but Mrs Susanna you'll have to find by name."`
+			choice
+				`	"Then let's start by meeting Jennifer."`
+			`	"That's just what I thought," says Lily. "I've written her a message, explaining everything, and made up a gift of flowers, jewellery, chocolates and a rare painting I found in the attic - not knowing what she likes, of course. Remember to give her the gift first, then the message."`
+			choice
+				`	"Gift first, then message. Righty-ho."`
+					goto bring
+				`	"Don't you think Amanda - Mrs Washermann - ought to write the message?"`
+			`	"She might, if she were here. But I don't see it matters much; the truth's the same from one mouth as another. You might try telling her yourself, if you can say it nicely." She hands you the gifts.`
+			label bring
+			`	"Will you bring them to Mrs Jennifer, then? That's great! If she's in a bad way you can bring her back with you, though I'm not sure where she'd stay - it would do no good for the Mr to catch her here! Anyway if she's like our Mrs Washermann I'm sure she'll do quite okay for herself, and when you're back here I'll give you everything I can find to find Mrs Susanna. Travel well, Captain!"`
+				accept
+
+mission "ScS Wifery 2c"
+	landing
+	name "The Mrs Washermanns"
+	description "Return to Lily on <destination> to see what she knows of Susanna Washermann."
+	source Hippocrates
+	destination Crossroads
+	to offer
+		has "ScS Wifery 2b: done"
+	on offer
+		conversation
+			`<origin> is mostly inhabited by scientists and staff at research outposts, with few native residents. You look up the address Lily gave you and find out it's a large research campus quite nearby.`
+			`	You ask at reception for a Mrs Jennifer Washermann, and are told she lives in a private house near the edge of the campus, but is currently busy in the labs. It seems she's a researcher here.`
+			choice
+				`	(go to her house)`
+					goto house
+				`	(wait in the reception lobby)`
+					goto lobby
+			label house
+			`	Jennifer's house is locked, but there's plenty of open space around, which you take time to explore and enjoy. It's a few hours before she returns, and finds you sitting on a bench by the path to her front door.`
+			`	"Hello," says a woman resembling Jennifer's photo, but a few years older. "Are you new here? I don't think I've seen you around."`
+			`	You're stuck for words for a moment. "Actually I'm here because of my uncle, Mr Washermann." The lady looks at you as if she's holding in a laugh.`
+			`	"Mr William C. Washermann?" she asks.`
+			`	"The one and only," you reply.`
+			`	"I'm Mrs Washermann!" she says with a laugh. "Jennifer. You can call me Aunty Jenny, if you like. William never told me about you!"`
+			`	"I think maybe there's many things Uncle WC never told you about," you say ominously, but anyway she invites you in and doesn't seem to notice the foreshadowing.`
+				goto indoors
+	
+			label lobby
+			`	You sit in the lobby for an hour or so, until the receptionist looks at a clock and makes a phone call. She puts the phone down and tells you Mrs Washermann will be along shortly, if you don't mind waiting a little longer.`
+			`	Soon enough a lady dressed in a lab coat comes in, resembling Jennifer's photo but a few years older. "Hello, were you looking for me?" she asks.`
+			`	"Captain <first> <last>," you hold out your hand, and she shakes it.`
+			`	"Jennifer Washermann. How can I help you?"`
+			`	"Actually," you say, "I'm here because of my uncle... William Washermann."`
+			`	She bursts into a little laugh. "Then I'm you're aunt! How nice to meet you, <first>. William never told me about you."`
+			`	"I think maybe there's many things Uncle WC never told you about," you say rather ominously.`
+			`	"Well, this is exciting! How nice of you to visit. My house is just nearby, on campus. Let's talk there."`
+	
+			label indoors
+			`	Jennifer's house is quite small and neatly furnished, with many shelves of books and a writing desk taking up more space than the sofa in the corner of the room. You arrange yourself comfortably on that sofa, and Jennifer pulls up a chair opposite.`
+			choice
+				`	(give her the gift)`
+					goto gift
+				`	(give her the message)`
+					goto missive
+				`	(tell her about WC's polygamy)`
+					goto polygyn
+	
+			label polygyn
+			`	"Mrs Washermann, I'm here to tell you about Mrs Washermann. And Mrs Washermann, and Mrs Washermann." Perhaps this is the best way with a scientist, tell it to her straight. She fingers a roughly-blown, spherical glass vessel on her desk, and for a moment you get ready to duck. But she lets it go and turns back to you.`
+			`	"And who exactly, do tell, are Mrs Washermann, Mrs Washermann, and Mrs Washermann?"`
+			`	"Um," you say, "their names are Amanda, Elaina and Maurissa. And Susanna. And maybe others. We... don't have all the data yet." You fumble in your pocket and bring out Lily's message, and hand it to her. "This will explain everything," you say. And, reaching into a bag you've had with you all this time, you pull out the flowers, the chocolates, the jewellery and the painting. "And we got you this, as a... getting to know you present."`
+			`	Jennifer receives the gifts and opens the message. There's silence for a few minutes as she reads and digests the news. At the end all she says is, "Oh, I see," and she sits a while longer.`
+				goto sothen
+	
+			label missive
+			`	"A mutual friend wrote you a message," you say. "Well, you don't know her yet, but she found out about you. In a nice way, I mean. Or, she was nice, at least." You stop and let Jennifer read the message. When she sits for a while in silence, you pull out from your bag the flowers, chocolates, jewellery and painting and give them to her. "A... getting to know you present. From the same."`
+			`	"Oh, I see," she says, hardly noticing the gift, and sits a while longer.`
+				goto sothen
+	
+			label gift
+			`	"A friend sent you this," you say, and pull out Lily's gift from your bag. Flowers, jewellery, chocolates and a painting - you hand them to Jennifer and watch her face light up especially at the flowers and painting.`
+			`	"These are really nice," she says. "But who sent them?"`
+			`	"Her name is Lily," you say. "You don't know her, but she's come to know you, and sent these as a sort of getting to know you present. She's a maid, but, er, this is the awkward part..."`
+			`	"Does she need help?" Jenny asks.`
+			`	"Not exactly... it's... kind of the other way around." You hand her Lily's message, and wait for her to read it. There's a quiet, and she simply says, "Oh, I see," and is quiet once more.`
+	
+			label sothen
+			choice
+				`	"I'm sorry you had to find out this way."`
+					goto thisway
+				`	"If it makes you feel better, you're not the only one."`
+			`	"And how exactly wouldn't I be the only one, if my husband is polygynous?"`
+			`	"I'm sorry," you say. "I didn't want to ruin your happiness. But you deserve to know the truth."`
+				goto sorry
+			label thisway
+			`	"I'm sorry you had to find out at all," you add. "I mean, I'm sorry it happened at all."`
+			label sorry
+			`	"I'm sorry too," she says. "It's hard to find someone, working out here, and although William was gone a lot of the time I was happy to think he was out there, waiting to come back to me. I think it's better he doesn't come back now.`
+			`	"Look, I hope we can know each other in the future, in better circumstances, and thank you for the lovely gift and the flowers - you must have looked after them well to keep them from wilting on your travel through space. But I need some time alone. We have a list here at the campus of persona non grata, I'll see that Mr WC Washermann is added to that list; but if you come again, you're always 'grata'. Safe travels, Captain <last>, safe travels."`
+			`	She seems exhausted but otherwse okay. You write down Lily's contact details, and tell her to call her if she ever needs help. With that, you bid farewell and make your way back to your ship. Next stop: back to Lily to see about meeting Susanna.`
+				accept
+
+mission "ScS Wifery 2d"
+	landing
+	name "Mrs Susanna Washermann"
+	description "Find Susanna on <destination> and tell her the truth about WC Washermann."
+	source Crossroads
+	destination Tinker
+	to offer
+		has "ScS Wifery 2c: done"
+	on offer
+		conversation
+			`You meet up with Lily, who gives you the information on Susanna, and another gift pack and message.`
+			`	"Sorry I still couldn't find a photo," she says. "But I'm sure you'll find her easily enough. How did it go with Jennifer?"`
+			choice
+				`	"She took it okay, but needs time."`
+				`	"Not great, but she knows the truth now."`
+			`	"She lives inside a research campus," you add, "and if Uncle WC tries to go back there he won't be allowed in. She'll be fine."`
+			`	You head out and ready your ship for a trip to <planet>.`
+				accept
+	on complete
+		conversation
+			`On <planet> you look up Susanna's address. It's a town house in a major commercial part of the city. Real estate prices must be high here. You catch a taxi there, and straighten your jacket. A real Space Captain has to look the part, especially when visiting a never-seen-before mysterious aunt. You ring the bell, and a lady opens the door. She has the bearing and grace of a middle-aged woman, but youthful looks - perhaps your uncle has a 'type'.`
+			`	"Captain <last>," you say, "here to visit Mrs Susanna Washermann on business regarding her husband."`
+			`	"I am Susanna Washermann," she replies. "Is something wrong? Is William in trouble?"`
+			`	"Not exactly," you say; 'up to his neck,' you think; "he's my uncle. And that must make you Aunt Samantha." You beam her a great big smile and she replies in kind and welcomes you in. Long lost nieces and nephews seem to be a welcome commodity so far!`
+			`	"I didn't catch your first name," she says as you walk inside.`
+			`	"<first>. I used to live on Moonshake, but now I roam the stars."`
+			`	"How exciting!" she says. "I've never been off-world before, not since I was four and my parents brought me here. I don't remember that much, I'm afraid.`
+			`	"But it must be hard, living in that stuffy ship, missing the comforts of home? Don't you sometimes long to go back to your roots, and have a solid house on the ground?"`
+			choice
+				`	"Roaming the stars is reward enough for any discomfort."`
+				`	"Some day, when I've made enough money."`
+				`	"Up there I'm free, free with no fetters."`
+			`	"I see," she says. "Well, what brought you here?"`
+			`	You pull out the gift from Lily. Once again it's a variety, in hopes that something in it will be special to Susanna and help her bear the bad news.`
+			`	"This is from a friend," you say, "she's a maid in one of Uncle WC's houses."`
+			`	"His houses?" she laughs. "Does his company board meet in a rustic family house?"`
+			`	"Um, no," you hesitate- "his personal houses. I think he has one on every world he goes to."`
+			`	"You think! You silly goose, you must be confused. He has his house here, and he's so focused on business when he goes off-world I can't imagine he sleeps in anything more than a converted office, if he doesn't go back to a plain hotel every night. You mean a maid at one of his offices, don't you?" You detect a hint of panic in her voice.`
+			`	"I'm afraid, I have some bad news, Aunt Susanna." The 'Aunt' softens her a bit, but as she reads Lily's message her face grows redder and redder, until she bursts out in the vocal equivalent of a slow-motion explosion.`
+			`	"This can't be right! This is a fake! You're one of William's rivals tring to trick me into betraying him! I don't think you're his relative at all! Maybe you want me for yourself! That's disgusting!"`
+			choice
+				`	"I promise you, it's the truth."`
+					goto truth
+				`	"Do you want proof? I have proof!"`
+			`	You pull out the photo of Jennifer, that you still have with you. "This is one of his other wives!"`
+				goto first
+			label truth
+			`	"I've known Uncle William since I was a child," you exclaim. "And I knew one aunt a long time, but only recently found out about his other wives!"`
+			label first
+			`	"Other wives!!" she shouts. "Other wives?! I am his wife! And if there are other girls who have duped him they have no right. I am his first! I am his wife!"`
+			``
+			`	You become aware of a presence in the hallway behind, and a voice low, and firm, says, "*I* am William Washermann's first wife."`
+			`	"Aunt Amanda!" you stifle a cry. She walks in with the majesty of the rightful Lady and the gentleness of a woman in control. Susanna cows a little and sits down, as Aunt Amanda makes a sort of ungestured motion that everyone should relax.`
+			`	"Susanna, darling. You have a right to be angry. We all have a right to be angry. But at William, not <first>. What William, our husband, has done is despicable, but you must listen to the truth. <first>," she turns to you, "leave us a while to talk."`
+			choice
+				`	(come back later)`
+			`	You head out to the garden at the back of the house. It's a long, green strip separated from long, green strips on every side by high, opaque fences. The goal in this sort of house is to pretend you have a private world all to yourself, while being right next door to everyone and everything you need. You walk up and down a while, then sit down on a garden chair, just in time to stand up again as your aunt calls.`
+			`	"<first>, come back in. Thank you for giving us some space, Susanna is okay now." You see Susanna slumped in a chair, looking, if not 'okay', at least not exploded. "It's unfortunate she had to find out this way, I wish I could have come to see her first. Still, time heals all wounds - except the ones Mr Washermann will suffer when he meets his final judgement." Apparently in Amanda's eyes, hell hath indeed more fury than a woman scorned.`
+			`	Susanna looks up at you. "I'm sorry, <first>, I didn't mean to call you a liar. I hope you don't get this from every aunt you visit."`
+			`	You tell her not to worry, and the three of you talk a while longer. Eventually Aunt Amanda turns the discussion to the other wives who don't know yet. Evidently she knows of more.`
+			`	"I've been doing some finding out for myself, as has Lily since last you saw her. But I think you'd better not go bringing news out of the blue, any more. We should get to know these women, our half-wives, before we surprise them with it. Perhaps, <first>, you could take me to Canyon in Zaurak where I can make contact with the next to be told."`
+			choice
+				`	"I'd be happy to."`
+					goto yes
+				`	"I'm sorry, it's too far out of my way."`
+			action
+				event "ScS wifery 3 ready" 35
+				set "ScS Wifery 2e: offered"
+			`	"All right, go where the Open Space calls you. I will take a shuttle. I wish you all the best."`
+			`	"I wish you all the best too, Aunt Amanda," you reply, "and you too, Aunt Susanna." All these aunts! Good job you have a spaceship to get far away whenever you need.`
+				accept
+			label yes
+			`	"I will join you in the spaceport later," says Amanda. "I hope your cabins are not too primitive."`
+			`	"Farewell, Aunt Susanna," you call as you leave. "And see you soon, Aunt Amanda." All these aunts! Still, they're not bad folk, and give you a feeling of family as you fly out across the galaxy.`
+			`	(Meet Aunt Amanda in the spaceport later with a bunk free, to take her onwaard to Zaurak.)`
+
+mission "ScS Wifery 2e"
+	priority
+	name "The Mrs Washermanns"
+	description "Take Amanda to <destination> where she can get to know another Mrs Washermann before revealing the truth."
+	source Tinker
+	destination Canyon
+	passengers 1
+	blocked `Don't forget to have space for Amanda! She can't sleep between the engines, you know.`
+	on visit
+		dialog `Did you leave Amanda behind? How careless. If you take off and wait, I'm sure she'll catch up. Just don't let her get killed by pirates, will you!`
+	to offer
+		has "ScS Wifery 2d: done"
+	on offer
+		conversation
+			`Aunt Amanda meets you in the spaceport and you show her to the <ship>. You hope she'll be comfortable for the journey, and wonder who it is she's meeting next.`
+				accept
+	on complete
+		event "ScS wifery 3 ready" 30
+		conversation
+			`Amanda watches the scenery with great interest as you fly in to land, but once disembarked she doesn't offer to take you with her.`
+			`	"I think it's best I go alone. I've arranged to have time, to get to know these wives, and slowly but surely we will find all of them and rescue them from the lies. Then, maybe then, there will be a noose for Mr Washermann...`
+			`	"Metaphorically, I mean. There are men who deserve to die long before him. And still, after all I've learnt, all I've grown..." she trails off, "...he is my husband, after all."`
+			`	With that she leaves you, and promises Lily will call if there's anything they need your help with in the future.`
+
+event "ScS wifery 3 ready"
+
+mission "ScS Wifery 3a"
+	minor
+	name "The Mrs Washermanns"
+	description "Visit Lily again on <destination> to help with a situation."
+	source
+		near Ruchbah 1 100
+	destination Crossroads
+	to offer
+		has "event: ScS wifery 3 ready"
+	on offer
+		conversation
+			`You have a message waiting for you from Lily, Aunt Amanda's maid on Crossroads.`
+			`	"Captain <last>, can you come to <planet> again? We could really use your help with... you know."`
+				accept
+
+mission "ScS Wifery 3b"
+	landing
+	name "The infelicity of Washermann"
+	description "Go to <destination> to help Mrs Felicity Washermann, trapped by the far-reaching bonds of a bad marriage."
+	source Crossroads
+	destination Bluestone
+	to offer
+		has "ScS Wifery 3a: done"
+	on offer
+		conversation
+			branch bitter
+				has "ScS Last Straw 1: offered"
+			`When you arrive at your uncle's house, you're greeted not by Lily but by Uncle WC himself! He's surprised to see you of course, but you play off your visit as a passing fancy: you were in the area, you thought you'd drop by, how's Aunt Amanda doing, sorry to miss her, blah blah blah. Unfortunately your uncle doesn't seem busy at all today and you spend the next two hours awkwardly enjoying his hospitality and wishing he'd be suddenly called away.`
+				goto away
+			label bitter
+			`When you arrive at your uncle's house, you're greeted not by Lily but by Uncle WC himself! He's surprised to see you of course, but you play off your visit as a passing fancy: you were in the area, you thought you'd drop by, let bygones be bygones, how's Aunt Amanda doing, sorry to miss her, blah blah blah. Unfortunately your uncle doesn't seem busy at all today and you spend the next two hours awkwardly enjoying his hospitality and wishing he'd be suddenly called away.`
+			label away
+			`	Suddenly, he's called away. A message comes that he's needed urgently at work, and he excuses himself with robotic apology. You wish him well and say you'll let yourself out after you've finished this pie. Once he's gone, Lily comes to tell you about the new situation.`
+			`	"M'lady is far away on Bluestone, where there's this lovely girl Felicity, another Washermann Wife. Mrs Amanda already told her the truth, let the cat out of the bag, and now the cat, meaning Mrs Felicity - if that's not too rude - wants out of the bag, meaning Mr Washermann's fetters. But the poor girl has nowhere to go. The Mr has settled her on a horrid, horrid world, and strangled her money - maybe he already worried she might want to leave.`
+			`	"I said to m'lady she could buy her a house, pay her ticket, but she doesn't think so. Says she can't afford it, though I say she can. Well there's no crossing Mrs Washermann, meaning Mrs Amanda, but we have to help the poor girl somehow. M'lady said you could come there and help, though I don't rightly know what you can do, unless you whisk Mrs Felicity right out in your ship and find her a new home yourself."`
+			choice
+				`	"Don't worry, I'm sure we'll think of something."`
+				`	"She got into this mess, she can get out of it - but I'll go and help anyway."`
+			`	"Thank you Captain <last>. It's not so simple though, apparently the Mr has made some dirty deal to make sure Mrs Felicity can't get off that planet without his say so, and can't find work anywhere if she does. But Mrs Amanda will be able to tell you more when you get there."`
+				accept
+
+mission "ScS Wifery 3c"
+	landing
+	name "The infelicity of Washermann"
+	description "Find and destroy the Engulfer of Youth somewhere north of Mirfak, and return to <destination>."
+	source Bluestone
+	destination Bluestone
+	to offer
+		has "ScS Wifery 3b: done"
+	on offer
+		conversation
+			`<origin> certainly isn't the most pleasant planet to live on, with dim sunlight filtering through a heavy atmosphere, as if every day is the sunset over a smoggy city, grasping for air to avoid being sucked into the mossy ground. Amanda meets you outside the spaceport to take you to visit Felicity.`
+			`	"Now <first>, you must understand, Felicity has made her bed with Mr Washermann and must take the responsibility of getting out of it."`
+			choice
+				`	"But we're still going to help her, right?"`
+			`	"We are. And she's going to need our help, because her mess is really much worse than any of ours." Aunt Amanda explains, as you walk, that Uncle WC brought Felicity to <origin> just a year after they were married on Sunracer. Gradually, he reduced her allowance and made her start working in the plastic industry - first easy work, then harder. But the work barely pays enough for her to live, let alone think of moving.`
+			`	"It gets worse," says Amanda, "but Felicity can tell you about it - here's her place now." The 'place' is a small hut, not too bad looking but a vast decrease from even the humblest of your other aunts' homes.`
+			`	Felicity welcomes you in, fresh from work, and goes straight to the sink to wash the grease off her hands. She pulls up some chairs for the three of you and tells you her story. Much of it is what Amanda's already told you, just with more detail.`
+			`	"So now I can't leave <origin>," she says. "Even if I could find the money. Mr ---- Washermann has paid off some bigwigs so if I seek a divorce, or even leave the planet, I get put on some stupid blacklist and can't find work or rent in the whole of Syndicate space."`
+			choice
+				`	"What about outside Syndicate space?"`
+			`	She looks thoughtful, "...that's a long way. I don't know, maybe?"`
+			`	"Well cross that bridge later," interjects Amanda. "There's a sooner problem. Lily did some investigating, and I've confirmed things from this end. Not only can't Felicity work if she leaves, a pirate captain will track her down and capture her as she leaves the system. Whether he'll take her to Mr Washermann or for his own purposes, who can say."`
+			`	"Where is he," you ask, as the blood rises in your veins.`
+			`	"He flies through here every so often, but usually hangs around somewhere in the uninhabited systems just north of Mirfak."`
+			`	"Then we could just get Felicity out while he's away," you suggest. You have more experience of space travel than either of your aunts, and this seems like it would work. They're not so sure.`
+			`	"She could try that. Sometimes you have a choice, to stay as you are, or take a risk and leave."`
+			`	"I can't take this risk!" cries Felicity. "He'll get me, I know he will. You have to help me Captain <last>." She's on the verge of tears.`
+			choice
+				`	"My ship is fast, I can get you out safely."`
+					goto getout
+				`	"Okay, I can take him out, then you'll be safe."`
+					goto takeout
+			label getout
+			`	"And where will you take her," asks Amanada. "Will you be sure he can't come after her?"`
+			`	"Very well," you say, "I will take him out first. We can't have bounty-hunting pirates coming after my very own aunts."`
+			label takeout
+			`	Relief washes over Felicity's face. "Thank you so much. Thank you Captiain. I..." and she dissolves back into tears. You'd better go and find this pirate.`
+			`	Amanda gives you the name: apparently he calls himself the Engulfer of Youth.`
+				accept
+	
+	npc kill
+		government "Pirate"
+		system Moktar
+		personality staying heroic marked target
+		ship "Vanguard" "Engulfer of Youth"
+		dialog `The Engulfer of Youth will no longer trouble Felicity, nor anyone else.`
+	
+	on complete
+		conversation
+			`You return, triumphant to an overjoyed Aunt Felicity who hugs you and celebrates until Amanda reminds her that only one obstacle has been removed.`
+			choice
+				`	"Aunt Amanda, can't you take her back with you?"`
+					goto atake
+				`	"Maybe somewhere far away you could make a fresh start?"`
+					goto faraway
+			label atake
+			`	"You could find her a house, help her find work outside the blacklist, couldn't you?" you ask.`
+			`	"No. I came here to tell her the truth. And we've stopped the pirate who would steal her life, but I didn't come to make her my ward."`
+			`	"But," you say, "that's not the only man who would steal her life, is it." Amanda looks sullen and thoughtful for a while but refuses to budge.`
+			`	"Then," you suggest, "maybe somewhere far away. Somewhere out of reach of the Syndicate's power and Uncle WC's gaze."`
+			label faraway
+			`	"But how could I get there?" asks Felicity. "Probably the shuttles will blacklist me too, and I'll just get stuck on a worse planet-"`
+			`	"-Perhaps not," interjects Amanda. "You don't know until you try."`
+			`	"-and become a slave," finishes Felicity. At the mention of slave, Aunt Amanda bows her head and looks nearly ready to concede. Perhaps she just doesn't know how to help. You take a deep breath, reminding yourself you can outrun any bounty hunters, and offer:`
+			`	"I can take you. I can take you out to the Rim, or the Furthest South. No one will find you there, and you can make a truly fresh start."`
+			`	Both aunts look up. "You would?" says Felicity. "That's very generous of you," says Amanda. You discuss for a while and Amanda agrees to furnish Felicity with a gift of enough money to get her started in a new life. Discussion turns to where to go. You pull out maps and star charts, but at most places you suggest Felicity gets nervous about everything that could go wrong. It seems she's been under WC's dark shadow so long she doesn't know how to step out. Everywhere is either too expensive, to hard to get started, too dangerous, too close to Syndicate space, or involved in the war.`
+			`	Eventually you look over to the small triangle of systems at the far South-East of the known galaxy. "Who lives there?" Felicity asks. "A race of powerful, benevolent aliens," you say. These worlds are home to the Quarg, and according to your map one planet, Humanika, is accessible and hospitable to humans. This, at last, sounds good to Felicity, and you just hope the Quarg are truly as benevolent as they're said to be. On your travels round the galaxy, you've found many people distrust them, but no one actually has any suggestion they do evil to humans.`
+			choice
+				`	"Okay then, I'll see you in the spaceport when you're ready."`
+			`	Felicity sits stunned for a moment, as if she can't believe that she might actually get off this world and be free again, until Amanda raises a well-then-get-going eyebrow at her and she jumps to life and starts packing. You head back to prepare your ship and do last minute spaceport shopping.`
+			`Meet Aunt Felicity in the spaceport when you're ready to take her.`
+
+mission "ScS Wifery 3d"
+	priority
+	name "The infelicity of Washermann"
+	description "Bring Aunt Felicity to the Quarg-sheltered planet of <destination>, where she can make a new start, free of her old fetters."
+	source Bluestone
+	destination Humanika
+	passengers 1
+	blocked `Make sure you've got space for Aunt Felicity!`
+	on visit
+		dialog `It seems you've come all this way but left Aunt Felicity behind. Try waiting for your escorts to arrive and land again.`
+	to offer
+		has "ScS Wifery 3c: done"
+	on offer
+		conversation
+			`Aunt Felicity comes skipping along, with only a small suitcase to call her own. You show her to her bunk.`
+				accept
+	on complete
+		payment 20000
+		event "ScS wifery 4 ready" 30
+		conversation
+			`Aunt Felicity has been in awe as she crossed the length of the galaxy. Every planet you landed at she went to explore as long as she could before you had to take off again, and at last on <planet> she's quite apprehensive, but eager to make her new start. Each step further away from <origin> it seems the threat of her old life lifted and her confidence and independence returned. You feel sad that your own uncle could damage someone's life this way, but remind yourself that things are not always as they seem - and at least she has a new start now.`
+			`	As Felicity skips off your ship, you hope she really can take care of yourself, but she assures you she'll be fine, and hands you <payment> in thanks for your transport. You bid her farewell with one last hug, and return alone to the <ship>.`
+
+event "ScS wifery 4 ready"
+
+mission "ScS Wifery 4a"
+	minor
+	name "The Mrs Washermanns"
+	description "Answer Lily's call for help: visit her on <destination>"
+	source
+		near Ruchbah 1 100
+	destination Crossroads
+	to offer
+		has "event: ScS wifery 4 ready"
+	on offer
+		conversation
+			`You receive another message from Lily on <planet>. She writes,`
+			`	"Captain <last>, I hope you are doing well. We could use your help again with a new situation, if you could come by the house when you have time. Thanks!"`
+				accept
+
+mission "ScS Wifery 4b"
+	landing
+	name "Washermann over the bridge"
+	description "Rescue Mrs Washermann-elect from being the latest casualty of the Washermann polygamy"
+	source Crossroads
+	destination Maker
+	to offer
+		has "ScS Wifery 4a: done"
+	on offer
+		conversation
+			`When you reach Uncle WC's house, Lily answers the bell and welcomes you into a lounge where your Aunt Amanda is waiting.`
+			`	Aunt Amanda greets you. "<first>! It's good to see you again. I hope everything went well transporting your aunt Felicity to that far-off alien planet. I haven't heard anything from her since you left."`
+			`	"I think she'll be fine," you say. "She got better every jump further away... away from Uncle. The planet is safe, and thanks to your generosity she's able to make a real fresh start. I really think she'll be okay now."`
+			`	"She will be," says Amanda. "She's not a bad girl, and strong enough when she needs to be, just needed to rise up and take responsibility for her situation. Anyway, we didn't come here to talk about her." And with that, the matriarch dismisses thought of Felicity and the past, and moves to the future.`
+			`	"Mr Washermann," Amanda labours the words, "has pulled up his breeches, brushed up his hat, and got it into his head to go a-courting again. His new quarry is far too young for him, a pretty, young girl fresh from the crowds of Earth to the crowds of Maker, looking to make an honest living. But instead of that, she met her Knight in Shining Armour, enraptured by her beauty - or by his own frivolity - promising riches and glamour and an easy life."`
+			`	"Not," says Lily, "that there's anything wrong with riches and an easy life!"`
+			`	Amanda looks at her askew for the tiniest moment. "Not that there's anything wrong with riches and easy life. Since this epislode with Gael started, Lily has never let me forget I was that girl once."`
+			`	"Gael? " you ask.`
+			`	"Your uncle's latest sport. He's been working on Maker on and off for a few weeks, and took up liking this girl. A whirlwind romance of course, with his money, her beauty, flowers, movies, sweet nothings and nothing of substance. He doesn't really love her - but she doesn't know that - and he has no business doing so if he did."`
+			`	Lily joins in, "The Mr has obviously offered her a life of luxury, but if she knew what he was really like, she'd see him different. Money is the only luxury he has to offer."`
+			choice
+				`	"Money does go a long way in the world of luxury."`
+					goto luxury
+				`	"Rescuing pretty girls is my speciality!"`
+					goto pretty
+				`	"So what outcome do we want from this?"`
+					goto outcome
+	
+			label luxury
+			`	"But luxury doesn't go so far in the world of marriage," says Amanda. "I know that now; I wish Gael can know that before she gets stuck."`
+				goto outcome
+	
+			label pretty
+			`	"Don't you go becoming like your uncle, now." Amanda warns you sternly. "Remember rescuing someone means helping *them*, not helping yourself."`
+	
+			label outcome
+			`	"So," you say, "what do we really want to do? Snatch her from the jaws of marriage at the last moment? Tell her the truth and let her decide? Inform the clerks on Maker that Uncle WC is already married and, by Republic law, cannot take a new wife?"`
+	
+			`	"If she knows," says Lily, "she'll stop herself. Surely that's the best way."`
+			`	Amanda seems less certain. "I think that's right," she says cautiously, "but we should be careful how we give the news. And that's where you come in. Lily has found out that Mr Washermann has already engaged the girl - as much engagement as there can be when built on lies. She and her friends are planning a Hen Party, and Lily, through an old friend, has passed them an advertisement for a luxury cruise to Amazon. It's a tourist magnet, they've barely travelled off-world, the prices are good: they're bound to go for it."`
+			`	"So," you say, "I'll meet them on Amazon? Bearing a big card saying, 'Mr and Mrs Washermann,' and when Gael and her girlfriends see it and ask, I'll say, 'what, no, you're not Mrs Washermann!'?"`
+			`	"You, 'Captain <last>', will be their luxury cruise."`
+			`	You're a bit taken aback, but after some discussion come round to the idea. You'll pick them up from Maker, take them to Amazon, and on the way look for opportunities to break the news in the best way. Checking Lily's information, you find you'll need nine bunks. And, obviously, luxury accommodations.`
+				accept
+	on complete
+		require "Luxury Accommodations"
+	on visit
+		dialog `It seems the <ship> only offers basic bunks for passengers. Come back when you have luxury accommodations.`
+
+mission "ScS Wifery 4c"
+	landing
+	name "Washermann over the bridge"
+	description "Take Gael to-be-Washermann and her party of Hens to <destination>, all the while looking out for an opportunity to break the truth to her."
+	source Maker
+	destination Amazon
+	passengers 9
+	blocked `Don't forget you need space for 9 passengers in addition to the staff who manage your luxury accommodations. (You do have those, right?)`
+	on visit
+		dialog `Did you leave the Hens lost in space in some other system? On an escort? I hope you didn't split them up one girl per ship, that would be mean... but also cleaner, maybe. Anyway you could take off and wait for them to catch up.`
+	to offer
+		has "ScS Wifery 4b: done"
+	on offer
+		require "Luxury Accommodations"
+		conversation
+			`You land on <origin>, and look round for Gael and her hen party. They're nowhere to be seen - perhaps they didn't go for Lily's offer after all? But their names are all in the passenger registry, so they must have signed up...`
+			`	You wait... and wait longer... and finally they all turn up giggling things like, "oh good, we're not late," and, "your boyfriend's so rich! We're going to where, again?" You introduce yourself as the captain of the <ship>, and tell them to make themselves comfortable. Somehow you're going to have to listen to their chatter all the journey, to find your right opportunity to ruin their happiness without ruining their happiness.`
+				accept
+
+mission "ScS Wifery 4d"
+	landing
+	name "The Faces of Washermann"
+	description "Fly Gael and her hen party to <destination>, where you'll do a flyby of a gala hosted by Maurissa Washermann."
+	source Amazon
+	destination Foundry
+	passengers 9
+	to offer
+		has "ScS Wifery 4c: done"
+	on offer
+		conversation
+			`Over the few days of 'luxury cruise' you mingled with your guests, but didn't find out much to help you. The bride-to-be is, as you were briefed, a young lady escaping the crowds and struggles of earth, looking for a new life. Soon after starting the tiresome work of a bottom-rung Syndicate employee, she met WC, who courted her and promised her a life of wealth and happiness. She seems quite vain, and a little too obsessed with riches, but the vanity might just be a girl's happiness as she looks forward to her wedding, and the obsession with riches just the overwhelming excitement when a person receives more than they've ever had before.`
+			`	There are, however, two ideas that came up. Lily contacted you to say WC will be in a meeting on Burthen soon, for a business deal that's likely to go sour. You also remember Aunt Maurissa lives on the next-door planet of Foundry; perhaps she could arrange something.`
+			choice
+				`	(contact Lily about the business deal)`
+					goto lily
+				`	(contact Maurissa to see if she has ideas)`
+					goto maurissa
+	
+			label maurissa
+			`	While the hen party rush off on a tour of some jungle, you set up a call to Maurissa. She's delighted to hear from you, and thinks for a bit when she hears your news. It seems she already knows the general gist.`
+			`	"I have an idea," she says at last. "Why don't you extend Gael's cruise, and do a flyby of Foundry. I'll set up a charity fundraising gala, in an open space, with a huge picture of me and William on a billboard. That way she'll find out 'accidentally' about her knight-in-not-so-shining-armour's philandering."`
+	
+			choice
+				`	(go with Maurissa's idea)`
+					goto onlymaurissa
+				`	(also contact Lily about the business deal)`
+					goto lily2
+	
+			label lily
+			`	While the hen party rush off on a tour of some jungle, you set up a call to Lily. She's uncomfortable talking about this over the phone, but between the lines you understand WC is about to be on the bad end of a deal on Burthen. There's a party suite right next to the meeting room in the same hotel, and with a bit of luck and a healthy amount of eavesdropping Gael might think her husband-to-be is on the verge of financial ruin, and jump ship while she's able.`
+			choice
+				`	(go with Lily's idea)`
+					goto onlylily
+				`	(also contact Maurissa)`
+					goto maurissa2
+	
+			label maurissa2
+			`	You also call up Maurissa. She's delighted to hear from you, and thinks for a bit when she hears your news. It seems she already knows the general gist.`
+			`	"I have an idea," she says at last. "Why don't you extend Gael's cruise, and do a flyby of Foundry. I'll set up a charity fundraising gala, in an open space, with a huge picture of me and William on a billboard. That way she'll find out 'accidentally' about her knight-in-not-so-shining-armour's philandering."`
+				goto choosebyflight
+	
+			label lily2
+			`	You also call up Lily. She's uncomfortable talking about this over the phone, but between the lines you understand WC is about to be on the bad end of a deal on Burthen. There's a party suite right next to the meeting room in the same hotel, and with a bit of luck and a healthy amount of eavesdropping Gael might think her husband-to-be is on the verge of financial ruin, and jump ship while she's able.`
+				goto choosebyflight
+	
+			label onlylily
+			`	When the hen party at last return, not a single one of them eaten by tigers, you tell them your manager has offered them a bonus extension to their cruise, to see the "exotic and mind-bending" world of Burthen. They all hurry back on board the <ship> eager to try the high-gravity party experience.`
+				decline
+			label onlymaurissa
+			action
+				set "ScS no-wife-deal"
+			`	When the hen party at last return, not a single one of them eaten by tigers, you tell them your manager has offered them a bonus extension to their cruise to fly by the Jewel of Industrial Worlds, Foundry. They all hurry back on board the <ship> eager to see this new excitement.`
+				accept
+	
+			label choosebyflight
+			`	You think about both of these options, and when the hen party at last return, not a single one of them eaten by tigers, you simply tell them your manager has offered them a bonus extension to their cruise. They all hurry back on board the <ship> eager to see where they'll go next.`
+			`	Which one you do will depend on whether you fly to Foundry, in the Achernar system, or to Burthen in the Al Dhanab system.`
+				accept
+	
+	on visit
+		dialog `Did you forget some of Gael's hen party on another escort? Better wait for them to catch up then do your flyby.`
+	on complete
+		fail "ScS Wifery 4e"
+		conversation
+			`As you come in to land on <planet>, you take a wide sweep through open fields and - as low and slow as you can - across a gala happening beneath. There's a huge billboard, clearly visible from your height, of "Maurissa and William Washermann, proud owners of Watersoft, and sponsors of 'Save Our Rice-Runners Year'."`
+			`	A wail starts from a window of your ship. Filled with expletives, Gael denounces 'that hussy' and pours scorn on every aspect of Maruissa's apperance, starting and ending with "she's so old and ugly and doesn't deserve a single piece of my William!"`
+			`	Gael storms onto the bridge and demands you land, "right now, right at that gala. Fly through the billboard if you can. Blow that hussy's face into the mud."`
+			`	You calmly tell her it's impossible for you to land here, and continue your journey on to the spaceport. When you land, you innocently ask Gael, who was that lady?`
+			`	"Didn't you see that billboard?" she says. "She's clearly some hussy who wants her hands on my William's money."`
+			`	"It looked like they're married, though," you point out.`
+			`	"And if they are? He's seen better and moved on. She has no right to him now, and I'll get her cut out of his life! She won't get a single credit! ...And as for you--" she clearly has too much anger to spew at one person "--you can get paid however you like but me and my girls will be finding our own way home. Get lost."`
+			`	You oblige, and make sure to send a message to Maurissa to warn her of incoming trouble. She sends one back: not to worry, WC's had this coming a long time, and as for her ever since the holiday on Sunracer she's been saving up a retirement fund that he can't touch.`
+			`	You head back to the <ship> feeling a little apprehensive, but glad it's not your own future to face.`
+
+mission "ScS Wifery 4e"
+	landing
+	name "The Failure of Washermann"
+	description "Fly Gael and her hen party to <destination>, where they can watch WC Washermann fail."
+	source Amazon
+	destination Burthen
+	passengers 9
+	to offer
+		has "ScS Wifery 4c: done"
+		not "ScS no-wife-deal"
+	on complete
+		fail "ScS Wifery 4d"
+		conversation
+			`Burthen's crushingly high gravity really puts a damper on the party spirit. When they get to their suite in the hotel, one of the girls puts on the music and for a while they try to dance under their own weight, but it doesn't last long. You yourself are more interested in the hotel's massively-substandard building quality. This is a hotel built on corruption: advertised as a glamourous oasis of luxury; full of gaps under the doors, rickety windows, and - useful to your purposes today - paper-thin walls.`
+			`	You take up lodging in a more comfortable establishment nearby, but hang around enough to see your uncle go in with a group of drably-suited men, and later you do some eavesdropping of your own. WC's deal goes terribly, and he loses his temper many times, and shouts at his would-be partners that they're ruining him, leaving his children hungry and destitute, and he'll be a beggar for the rest of his days from their greed and unfair dealing. He looks quite pleased with himself when he comes out, though, so probably he got the deal he wanted in the end - but that was quiet, and the bit you needed was shouted to the high heavens. Meanwhile, you notice, the girls' music was turned down as if to listen in. You turn away and hope your uncle didn't see you.`
+			choice
+				`	(leave)`
+			`	The next day as you meet the hen party in the hotel lobby, Gael is disheveled and angry as she comes to speak with you.`
+			`	"Do you know who that man was?" she asks with no reference to which man she might mean.`
+			`	"No," you reply, "who?"`
+			`	"That was the man I *was* going to marry. And the man who's paying your bills. You'd better tell your manager to get payment quickly, because he's all cleaned out. Ruined. By some stupid business gone wrong." She pauses for a moment to recover her breath. "And this hotel is the worst place I've stayed in ever. And this planet too! I'll find a different captain to take us home, and make a complaint to your manger too. Good riddance!"`
+			`	You bow as gracefully as you can under the high gravity, and make your way back to your ship. That went as well as could be expected. But all's well that ends well.`
+

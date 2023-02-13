@@ -1,0 +1,136 @@
+mission "Weapon Salesman"
+	minor
+	name "Help arrange a large Syndicate sale"
+	description "Fly to <destination> to join a board meeting to arrange a business deal. This could be very profitable."
+	minor
+	source
+		government "Syndicate"
+		not planet Hephaestus
+	destination Hephaestus
+	to offer
+		random < 20
+		or
+			not "chosen sides"
+			has "main plot completed"
+		or
+			not "Syndicate Line"
+			has "Syndicate Intro Complete"
+	on offer
+		conversation
+			`As you enter the spaceport, you bump into a mildly famous Syndicate executive and visiting professor. You recognise him as having taught a business class you took long ago. Apparently he recognises you too.`
+			`	"Hello there, Captian... Captain..."`
+			`	"<last>, <first> <last>" you prompt him.`
+			`	"Yes, Captain <last>. You look like the sort of galaxy-trotting, intelligent individual who'd be good with a business deal. There's a board meeting on <destination> in a few days, why don't you come and join in?"`
+			choice
+				`	"Sounds like a good opportunity."`
+				`	"I have a bad feeling about this..."`
+					decline
+			`	"Great! Make sure you have some cargo space, too; they might ask you to help with the trade."`
+				accept
+
+
+mission "Reluctant Salesman"
+	landing
+	name "Pirate weapon sale"
+	description `Transport a dubiously-legal weapon shipment to a Martian pirate. It's probably better you don't get scanned.`
+	blocked `You remember the advice to have cargo space before joining the board meeting: you'd better have plenty, just in case. You'll come back when you have fifty tons - that should be enough.`
+	cargo "weapons" 50
+	illegal 1000000
+	source Hephaestus
+	destination Mars
+	to offer
+		has "Weapon Salesman: done"
+	on offer
+		conversation
+			`You ask around and find the room where the mysterious board meeting will take place, and find it's about to start. Going in, you sit down to the table, where it turns out this company within the Syndicate has a consignment of high-grade weapons and are looking for a buyer.  Discussion quickly becomes animated about where to find the right sort of buyer, what price to offer at, how to avoid worrying the Navy, and so on. Eventually a shout comes from a secretary in the adjacent room,`
+			`	"Blondebeard of Mars wants to buy!"`
+			`	A chorus of 'excellent's run round the board table. "A pirate!" "Good sale." "Easy bargain!"`
+			choice
+				`	(agree)`
+					goto agree
+				`	"I don't want any part of this!"`
+			`	"What?!" you're asked, "why not?"`
+			choice
+				`	"I don't sell weapons to pirates."`
+			`	"Hey?"`
+			choice
+				`	"I won't sell weapons to pirates."`
+			`	"Huh?"`
+			choice
+				`	"I don't sell weapons to pirates."`
+			`	"I must be going deaf!"`
+			choice
+				`	"Selling weapons to pirates is wrong."`
+			`	"It's wrong?"`
+			choice
+				`	"Don't sell weapons to pirates."`
+			`	"Have you gone clean out of your mind?"`
+			choice
+				`	"I won't sell weapons to pirates."`
+			`	"What's the matter with the lad?"`
+			choice
+				`	"Don't sell weapons to pirates."`
+			`	"He keeps on repeating:"`
+			choice
+				`	"Selling weapons to pirates is bad."`
+
+			`	"But companies have always sold weapons to pirates," they explain; "who else is there to sell to?`
+			`	"If the constitution had meant us not to sell weapons to pirates, they wouldn't have let them have money!"`
+			choice
+				`	"Don't sell weapons to pirates."`
+			`	"Oh no, not again,"`
+			choice
+				`	"I won't sell weapons to pirates!"`
+			`	"All the day long."`
+			choice
+				`	"Don't sell weapons to pirates,"`
+			`	"...he keeps on repeating,"`
+			choice
+				`	"Selling weapons to pirates is wrong."`
+			`	"Well, I..." a board member stammers, "I never heard a more ridiculous idea in all my born days. To think that a former pupil of mine should grow up to be a sissy - me, chief assistant to the assistant chief! I suppose you realise, lad, if this was to get around, we might never have self-government."`
+			choice
+				`	"I won't sell weapons to pirates!"`
+			`	"Have you been talking to one of your mothers again? You're not getting to be one of these cranks that thinks that selling weapons to pirates is evil, are you? Seeing the pirate flying round the system you think he's pillaging and raping. Oh, it's not like that at all! Why, he's flying around saying piratey things like, 'Arr,' 'Y'all,' and 'Ye be looking good in them leggings, matey.' That pirate flying around there is a *good* pirate!"`
+			choice
+				`	"Selling weapons to pirates is wrong."`
+			`	"Look m'lad, I admire your sincerity. Always be sincere, whether you mean it or not. But you're young, you're young, when you're young you think you can change the whole world overnight, even selling weapons - I know, I've been young myself. Take it from your old mentor, you've just got to learn to take the world as it is."`
+			choice
+				`	"I won't let another pirate's papers past my pocket!"`
+			`	"I know why you say, 'don't sell weapons to pirates,' because you are a coward, <first>, that's your trouble. Yes, a yellow-livered coward. You wouldn't mind selling weapons to pirates if you weren't afraid of being shot up by them yourself - how despicable! If you go on like this you're liable to get me in the firing line."`
+			choice
+				`	"I won't sell weapons to pirates."`
+			`	"That's enough!"`
+			choice
+				`	"I don't sell weapons to pirates!"`
+			`	"I don't want to..."`
+			choice
+				`	"Selling weapons to pirates is wrong!"`
+			`	"Philanthropist!"`
+			`	"Going around saying, 'don't sell weapons to pirates,' that's the way to make people hate you. We always have sold to pirates, we always will sell to pirates, you can't change human nature."`
+			`	"Let's try to have a look at this thing..."`
+			choice
+				`	"I dont't sell to pirates! I won't sell to pirates! I don't sell to pirates!"`
+			`	"Must have been a bad sale..."`
+			choice
+				`	"Selling weapons to pirates is out!"`
+			`	"I give up," at last he says. "I give up, you used to be a regular emporiphagi. If this crazy idealistic idea of yours was to catch on, I just dunno where we would all be. Just about ruin our entire internal economy.`
+			`	"Fortunately, I suppose its catching on isn't really very likely - why, you might jsut as well go around saying, 'don't buy from pirates,' for example..."`
+			choice
+				`	"Don't buy from pirates?! Ha ha! Don't - Woo, ha ha ha!"`
+			`	"There can you imagine? There you see. All part of the same-"`
+			choice
+				`	"-fantastical impossibility!"`
+			`	"That's m'lad."`
+			choice
+				`	Ridiculous!`
+					decline
+
+			label agree
+			`	"Hear, hear," you join in, and when question turns to transport you're quick to suggest your own ship. And, since the shipment is dubiously legal, and there might be a sizeable fine for being caught, that the payment to whoever transports the weapons ought to be suitably large. The board agree to pay you <payment> for transporting the shipment to Blondebeard's hideout on Mars.`
+				accept
+	on complete
+		payment 500000
+		dialog
+			`You successfully bring the weapons to Blondebeard, who receives them with a flow of expletives, and something about wanting "potato guns that fire real potatos."`
+			`	Even so he notifies the board of the successful delivery, and you receive your <payment>.`
+

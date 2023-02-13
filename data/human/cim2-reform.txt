@@ -1,0 +1,2196 @@
+########################
+# Reform the Syndicate #
+########################
+
+event "ScS help help"
+
+mission "ScS Call to Aid"
+	minor
+	name "An Aunt in Need"
+	description "Visit your Aunt Maurissa on <destination>, who needs help with something. An aunt in need is an aunt indeed."
+	source
+		near Achernar 1 100
+	destination Foundry
+	to offer
+		has "event: ScS help help"
+		not "Smuggler's Den, Part 1: active"
+		not "Smuggler's Den, Part 2: active"
+	on fail
+		dialog phrase failure
+	on offer
+		set "Smuggler's Den: Follow Up: offered"
+		conversation
+			`You receive a message from your Aunt Maurissa, Uncle WC's wife who lives on Foundry. You helped her some time ago to a 'holiday' on Sundive when your Uncle was visiting with another wife. She's back home now, and is asking for your help with "some friends of hers in difficulty."`
+			`	Of course you'll help. When you have time.`
+				accept
+
+mission "ScS Problems like Maria 1"
+	landing
+	name "A Problem for Maria"
+	description "Go to <destination>, where a young couple need help to find hospital treatment for their baby."
+	source Foundry
+	destination Millrace
+	to offer
+		has "ScS Call to Aid: done"
+	on fail
+		dialog phrase failure
+	on offer
+		payment 40000
+		conversation
+			`You make your way to Maurissa's house, and she welcomes you in with a smile.`
+			branch wifehider
+				has "ScS Wifery Holiday: done"
+			branch wifemaker
+				has "ScS Wifery 4d: done"
+			`	"I'm glad to see you're doing well," she says. "I hope you didn't get into any trouble with your uncle over showing me to Amanda."`
+			`	"Not for that," you say, "...but there was some small trouble later." You're still upset at how he got you kicked out the Syndicate's good books, but no need to bring that up now.`
+				goto maria
+	
+			label wifemaker
+			`	"Not been kicked out, then?" you say, remembering angry Gael's promise to get your uncle to divorce and disinherit Maurissa.`
+			`	"Not yet! More likely William will just tell that girl she's mistaken, and buy her a new car or holiday till she forgets about it. Though I've half a mind to visit her myself and see what ruckus she can make after that. I don't fear William Washermann."`
+				goto maria
+	
+			label wifehider
+			`	"So how was your holiday?" you ask.`
+			`	"Oh, quite pleasant, thank you." Her eyes do a little almost-wink, as if she's hiding some secret. Probably just enjoyed herself too much winning the hovercraft races and embarrassing the other drivers.`
+	
+			label maria
+			`	You make yourself comfortable, and Maurissa explains why she called you.`
+			`	"The holiday on Sunracer gave me a taste for travel, and some time later I went to Millrace, where I met a lovely young couple called Maria and Joe. They used to be pirates - not willingly, though - but a gallant captain came and rescued them, and helped them start a new life."`
+			branch nojoe
+				not "Smuggler's Den, Part 1: done"
+			`	You smile to yourself and recall the desperate escape.`
+			label nojoe
+			`	Maurissa continues, "After I left I kept in touch with them. Maria has a baby girl, beautiful, and happy, and-" Maruissa begins to tear up "-and, and, oh, I'm sorry, I shouldn't be like this." She wipes her eyes, and you comfort her and tell her to carry on.`
+			`	"Little Jesse - the girl - she has some sort of heart problem. I expect it's from the conditions in the pirate ship. You know she was born there on the pirate ship? She... she might not live much longer."`
+			`	"Can't the doctors do anything," you ask?`
+			`	"No. At least on Millrace, they can't. I looked into it, it can be fixed, but not cheaply. Maria and Joe have saved up enough money to pay for the treatment, but the only places that can do it are off-world, but the factories won't give Joe any time off, and Maria has to work too, you know. Even with her little one. They're worried they won't find work again if they leave without permission.`
+			`	"Can you go to them? Go and see if you can help, somehow? I'll pay you, in advance, to cover your transport costs." She hands you <payment>.`
+			`	It seems your aunt has left you no choice. Still, helping people in need feels better than being bossed around by the Syndicate, or worse, by your uncle.`
+				accept
+	
+	on complete
+		log `People` `Joe and Maria` `A young family working on Millrace. Aunt Maurissa sent you round to help them with a medical difficulty.`
+		conversation
+			`Joe and Maria live in a workers' barracks on <planet>, and you meet them after their shifts are finished. Apparently the factory treats Maria fairly - or at least more gently - considering she has a young child and is expecting another. But it's hard work for both, and they have little time off.`
+			branch rescuer
+				has "Smugglers Den, Part 1: done"
+			`	You introduce yourself and ask about Jesse. Joe replies quietly.`
+				goto treatment
+			label rescuer
+			`	Joe and Maria recognise you and are delighted you've come to see them again. Joe speaks quietly as he explains the situation.`
+			label treatment
+			`	"It's true, Jesse's heart is weak and some days it's a struggle to watch her. She takes it like a champ, just like her mom, but it's getting worse and we don't know what to do. The doctor said it's easy to treat these days, but we have to go to Hephaestus, that's the nearest place with the right equipment. The hospitals here can't do it."`
+			`	"That's only one jump away," you say.`
+			`	"But we can't get time off even for that. And if they catch us on the shuttles we'll lose our jobs for sure. I won't go back to... what we did before."`
+			`	"Can't Maria go?" you ask. "Surely they'd give her the few days off to get there and back?"`
+			`	"Even if they did, what if the shuttle's delayed? What if there's an accident?" Maria, listening in but not saying anything, lowers her head sadly.`
+			`	"I guess you're right," continues Joe after a pause. "It's better than waiting here doing nothing. If the boss won't give her time off, I'll tell him she's badly sick for a few days and try to get her written up with just a warning. I don't like letting her go herself, though, it's too dangerous."`
+			choice
+				`	"Maybe I could take her?"`
+			`	"I could be on and off Hephaestus quicker than a public shuttle," you say. "And no pirate can catch the <ship>."`
+			`	Maria looks up. "You would?" she says. "I wouldn't be any trouble. Jesse and me would only need one bunk between us, and the treatment's quite quick, and we've got the money saved up already."`
+			`	You tell her you'd be happy to, and through tears, she says to meet her in the spaceport when you have a bunk ready. It'll have to be a very fast trip. Meanwhile Joe goes to try and bargain her some time off with her manager.`
+
+mission "ScS Problems like Maria 2"
+	priority
+	name "Hospital race"
+	description "Take Maria and Jesse at top speed to <stopovers> and back, so little Jesse can have life-saving treatment. You must bring Maria back by <day>."
+	source Millrace
+	destination Millrace
+	stopover Hephaestus
+	to offer
+		has "ScS Problems like Maria 1: done"
+	passengers 1
+	blocked `You'll need passenger space for Maria, to take her to hospital.`
+	deadline 4
+	on fail
+		dialog phrase failure
+	on offer
+		conversation
+			`Are you ready to take Maria and Jesse at top speed to Hephaestus and back?`
+			choice
+				`	Yes.`
+				`	Not yet.`
+					defer
+			`	Maria meets you in the spaceport with Jesse and a small bag, and hurries on board your ship. Joe has bargained for her just enough time to get there and have the treatment, with threat of "severe consequences" if she'a not back in time. For a moment you think of taking off and blasting a hole in the uncaring boss's office as he sits there, but that would only kill more innocent people - and yourself probably. At least today you can help Jesse get well.`
+				accept
+	
+	on stopover
+		conversation
+			`The hospital is quite near the spaceport, and you catch a taxi to get there as quick as possible. Jesse is peacefully sleeping in Maria's arms as she hurries up the stairs and leaves you to wait in the lobby. Joe called ahead and arranged the appointment, so everything should go smoothly now.`
+			`	It's a few hours before Maria comes down, but when she does, she's beaming. "She'll be all right. She'll be all right." That's all she can manage as she carries Jesse, and her bag now full of records and medicines, and hurries back to the taxi.`
+			`	Once you're settled back in on your ship, she tells you it all went well, it involved some scans and "a big machine that went all around Jesse firing lasers or something," but now Jesse needs to take some medicine for a few weeks and after that will be fine. Modern medicine truly is wonderful, if you're rich enough for it.`
+	on complete
+		log `People` `Joe and Maria` `You took Maria on a fast trip to the hospital on Hephaestus and back, and all is well now.`
+		log `Helped a couple on Millrace get medical treatment for their baby, though their company tried not to give them any time off. Now I'm helping a whole band of exploited brothers get home to their girlfriends.`
+		conversation
+			`Joe is waiting for you when you land, and rushes to embrace Maria. But she can't wait long, because after all that travel she has a shift to get back to and you're just in time. Joe tries to pay you for the transport, but you refuse it, saying you've already been paid quite enough. You leave him wondering what that means; you're not sure Maurissa would want them to know she paid.`
+			`	As you walk them back to the bus, Joe asks if you could help with another difficulty.`
+			`	"Not us, this time," he says. "We'll be fine now, thanks to you. But there's some guys here who all came in a big group from up north, and got themselves stuck. They came to make money, and go back and marry their girlfriends, and all promised they'd be back in three years. Well, they signed three-year contracts, so they thought, but the sneaky bastards up top switched it to ten years, and won't let them go."`
+			choice
+				`	"Sneaky bastards indeed."`
+					goto bastards
+				`	"Maybe they did sign ten years, and made a mistake."`
+			`	"Maybe they did, but it's still wrong, keeping those guys here against their will, and their girls waiting for them back home and all."`
+			`	"How many are there," you ask. "These friends of yours."`
+				goto many
+			label bastards
+			`	"How many are there," you ask. "They guys, not the bastards."`
+			label many
+			`	"Only twelve of them, but they need to get to Shroud, in the Alheka system.`
+			choice
+				`	"I could take them."`
+					goto take
+				`	"I don't think I have that much space on my ship."`
+			`	"I understand," says Joe.`
+			`	"But," you say hopefully, "I'm sure I could find that space, if they can wait for when I'm ready."`
+			label take
+			`	"Really?" says Joe! "Just like that?"`
+			`	"Shroud is way out of Syndicate space. I'm sure they'd be fine once they're there. As for me, I've been in worse trouble. I bet the company can't do anything to me I haven't seen before. Just watch them chase their tails trying to work out what happened!"`
+			`	"That's amazing!" says Joe. "I'll let them know, and they'll meet you in the spaceport when you're ready with space for them. Thank you so much! I'll tell them they'd better pay you well." He grins.`
+
+mission "ScS Home sweet Home"
+	priority
+	name "There's no place like home"
+	description "Take twelve suitors back to their girlfriends on <destination>, after their company tried to trick them into working seven years extra."
+	source Millrace
+	destination Shroud
+	to offer
+		has "ScS Problems like Maria 2: done"
+	passengers 12
+	blocked `There are twelve hopeful men waiting for your rescue. Better have space for all of them.`
+	on fail
+		dialog phrase failure
+	on offer
+		payment 50000
+		conversation
+			`Joe's friends meet you in the spaceport and introduce themselves. Reube, Simba, Lenny, Jude and so on. There's a girl with them too, who apparently bucked the trend and came to save up money for her boyfriend. But since she handled her contract more carefully, she's free to go and booked a comfortable berth on a cruise back home.`
+			`	Jude takes you aside and says, "we'd better leave quietly. The company will be pretty mad once they find we've left." He hands you <payment> in advance and promises you the rest when you get to <planet> safely.`
+				accept
+	on enter
+		dialog `As you launch you see a Syndicate ship take off and follow you.`
+	npc
+		government "Syndicate"
+#		personality surveillance
+		ship "Arrow" "Pharaoh's Watcher"
+
+mission "ScS Revenge sweet Revenge"
+	landing
+	name "Revenge of the Syndicate"
+	description "A certain 'Arnold' can get you out of trouble. Find him on <destination>."
+	source Shroud
+	destination Farseer
+	to offer
+		has "ScS Home sweet Home: done"
+	on fail
+		dialog phrase failure
+	on offer
+		payment 200000
+		event "fw occupying the north" 8
+		event "fw northern expansion" 25
+		set "FW Northern 1: offered"
+		conversation
+			`On the way the boys talked excitedly about meeting their girlfriends again. It seems they're all from the "low class" valleys, and their girlfriends from "up top". When you land, they all scurry off, each to find transport to his girl, but Jude hands you <payment> with thanks, and Benjamin sticks around to ask if you'd like to meet his girlfriend's family. He's pretty nervous. "Why not," you say, and together you head out by air taxi to a particularly grandiose mountaintop and a manor house to match.`
+			`	Benjamin's girlfriend is delighted to see him, but her father isn't. You hear him mutter things like, "he wasn't supposed to come back so soon," and, "can't anybody in the galaxy do their job right." All in all it's a pretty unpleasant situation, and you take your leave, but not before Benjamin whispers to you that everything will be okay now. His girlfriend also comes by to whisper to you:`
+			`	"Take care," she says, "I think my father made a call to the company on Millrace. If there's any trouble," she hands you a card, "find this man Arnold on Farseer, and he'll get you out of it. And thank you! A thousand times, thank you!" She hurries back to Benjamin, and you take the taxi back to the spaceport.`
+				accept
+	
+	npc
+		government "Bounty Hunter"
+		personality nemesis waiting
+#		personality marked 
+		ship "Headhunter" "Menmaatre"
+		ship "Headhunter" "Menpehtire"
+	npc
+		system Betelgeuse
+		government "Bounty Hunter"
+		personality nemesis
+#		personality marked 
+		ship "Headhunter" "Usermaatre"
+		ship "Headhunter" "Banenre"
+	npc
+		system Rigel
+		government "Bounty Hunter"
+		personality nemesis
+#		personality marked 
+		ship "Headhunter" "Menmire"
+#		ship "Headhunter" "Userkheperure"
+
+mission "ScS Armchair Rights 1"
+	landing
+	name "Profitable loss"
+	description "Intercept a transport carrying the profit of company fraud. You'll find it in the <system> system. Board the White Swan (don't kill it) and bring the credit chips to the workers' union on <planet>."
+	source Farseer
+	destination Reunion
+	to offer
+		has "ScS Revenge sweet Revenge: done"
+	on fail
+		dialog phrase failure
+	on offer
+		log `People` `Arnold Reginald Armstrong` `Arnold is an 'Armchair Rights Activist', working from his armchair for people's rights. He lives on Farseer, a paradise world, but gets involved in the rights of mistreated workers within the Syndicate - a task for which you've agreed to help him.`
+		log `A Syndicate company sent bounty hunters after me! But now I'm going to get working to reform the Syndicate, and make it a better place for ordinary people.`
+		conversation
+			`As you come in to land, security officers are waiting to arrest the bounty hunters who chased after you. One by one they land, and one by one they are taken by security, while you walk free. You go to look up Arnold, but he finds you first: you get a message,`
+			`	"Captain, I saw you fly in with a spot of bother. If you need some help, come and meet me in my flat."`
+			`	"   Arnold Reginald Armstrong, ARA"`
+			``
+			`	Arnold's apartment is a fairly simple affair, for the location, but cozily furnished. He welcomes you in and shakes your hand warmly. "Arnold Reginald Armstrong," he says, "ARA, Armchair Rights Activist."`
+			choice
+				`	"Armchair Rights Activist? What's that?"`
+					goto whatis
+				`	"<first> <last>, Captain o' the seven seas."`
+			`	"I don't see you sailing any seas there, Captain."`
+			`	"Well I don't see you helping the rights of armchairs!" you say. He laughs and sits down in what, admittedly, is very much a bona fide armchair.`
+				goto ara
+			label whatis
+			`	Visions run through your mind of protests on the street, and placards proclaiming, "Equal rights for all chairs! Equal pay for equal seats!" Arnold seems to catch your meaning.`
+	
+			label ara
+			`	"Armchair rights-activist," he says, running the words together, "not armchair-rights activist. It means I work from my armchair for the fair rights of workers, especially against the Syndicate - whose colours I notice you fly."`
+			`	"Yes," you say dubiously, "though they seem to have forgotten to like me."`
+			`	"As I can see, or I wouldn't be inviting you here. Those bounty hunters, they're Syndicate lackeys, you know. I picked up their scent in Betelgeuse, but you bringing them to me was a stroke of good fortune. I couldn't get them arrested anywhere else."`
+			`	"A mutual friend gave me this card," you say and show him the card Benjamiin's girlfriend gave you. "On Shroud."`
+			`	"Oh did she now? How is the little rascal doing anyway? She's been pining for her boyfriend for months now, but he got stuck in a contract on a Syndicate world he couldn't get out of."`
+			`	"I know," you say, "I got him out."`
+			`	"Well, well, well, how about that. That would explain your little circus train. I've been trying to get them out for ages. Now you've gone and done it for me.`
+			`	"Say, you're in the thick of it now. How'd you like to help me out with another job, and this time I'll keep the brutes off your back?"`
+			choice
+				`	"I'm always looking to help random strangers, count me in."`
+					goto yes
+				`	"I can't afford to anger the Syndicate any more, that's a hard pass."`
+					goto pass
+				`	"Will you pay me?"`
+					goto pay
+			label pass
+			`	"Aw, come on, it'll be fun. You like shooting ships?"`
+			choice
+				`	"I love shooting ships."`
+				`	"No, I don't."`
+					goto peace
+			`	"Well there you go then. It's the perfect opportunity for you"`
+				goto yes
+			label peace
+			`	"Well, you like rescuing people, for sure."`
+			`	"Yes, yes," you say grudgingly. "I like rescuing people."`
+			`	"Well then, what's not to love. Come and rescue some people for me."`
+				goto yes
+			label pay
+			`	"That's right, everyone needs payment. Otherwise how can you afford that swanky ship of yours! I can offer you 50,000 credits, and the same or better on any other job you do for me. How's that sound?"`
+				goto yes
+	
+			label yes
+			`	"What's the job?" you ask.`
+			`	"First let me ask you a question. Why did you rescue poor Benjamin?"`
+			choice
+				`	"It was the right thing to do."`
+					goto rightthing
+				`	"The Syndicate have become evil, and it's my job to fight them."`
+					goto fightevil
+				`	"He and his friends paid well."`
+					goto goodpay
+	
+			label rightthing
+			`	"And I offer you another chance to do the right thing. You see, many companies treat their employees like dirt, like slaves. That's my job, standing up for the slaves and reminding everyone they're real people too. And sometimes getting my hands dirty."`
+			`	"From your armchair."`
+			`	"From my armchair."`
+				goto plan
+			label fightevil
+			`	"That's the spirit. And I can be your field spotter. With you in the skies, and me in my armchair, we'll be an unstoppable team."`
+				goto plan
+			label goodpay
+			`	"I see. Perhaps I misjudged you. Still, pay in the service of good is better than pay in the service of evil, and it's more than we expect of many."`
+	
+			label plan
+			`	He continues, "there's a company on Reunion. Poor, poor company, it's making a terrible loss. Can't afford to pay its workers. They all have to go to food banks to survive, and beg the local government for rent money. Except, there's a shuttle leaving, bound for Shangri-La, full of credit chips for the bosses. CEO's got to have bonuses, y'know." He winks, and you wince a little.`
+			`	"If only someone happened to know when the shuttle would be departing, and happened to be in the area, and boarded it, and took those credits down to the hungry workers. Now are you in?"`
+			`	"I'm in," you say.`
+			`	"Great. Her name's the White Swan, but she's more of an ugly duckling. A simple shuttle, and if you go now she'll be in the system, in Caph, about when you arrive. I'll keep touch with you so you can catch her. Board her, (but don't kill her! We're not murderers!) and take the credits back. Bring them to the union leader on Reunion who will make sure they're shared fairly among the workers."`
+			`	"Off I go, then, to catch a bird!"`
+			`	"I'll make sure you don't get in any trouble. And when you come back, I'll give you 50,000 credits by way of thanks.`
+				accept
+	
+	npc board save
+		government "Independent (Killable)"
+		personality staying heroic target marked
+		system Caph
+		ship "Shuttle" "White Swan"
+		conversation
+			`You board the White Swan, and are confronted immediately by a huge sack of credit chips, all of them low value, but they must total an enormous amount. Choking down a desire to pinch a few - because who would know - you drag the whole sack aboard and leave the White Swan in peace.`
+	
+	on visit
+		dialog `You've landed on <planet> but you didn't get the credit chips yet. Find the White Swan, and disable and board her to get the chips.`
+	on complete
+		conversation
+			`You find the union leader and, in a discreet location, hand over to him the massive sack of credits. He promises you very sincerely these will all get fairly and equally into the hands of the company's workers, starting with the lowest and ending right before the bosses who arranged the fraud.`
+			`	Before you can leave, you get a message from Arnold.`
+			`	"<first>! I trust the excursion went well. Could you do another thing for me before you come back? Another union guy on <planet>, who coordinates workers' groups across Syndicate space, needs a lift to Trove, and then on to Burthen. For obvious reasons he has to be careful about travelling publicly.`
+			`	"I know I promised you 50,000 credits on return, but I promise I'll give you that and another 50,000 for this when you're done. No, this is two jobs, one to Trove and another onwards, so an extra 100,000. Thanks! So glad I can count on you. You can meet him in the spaceport"`
+
+mission "ScS Armchair Rights 2"
+	priority
+	name "Together we stand"
+	description "Take a union leader to <stopovers> and on to <destination>, where he can help coordinate workers' rights groups."
+	source Reunion
+	stopover Trove
+	destination Burthen
+	passengers 1
+	blocked `Make sure you've got space for your passenger, then check the spaceport again.`
+	on visit
+		dialog `You've reached <planet>, but either your union friend is on one of your escorts elsewhere, or you didn't finish taking him where he needs to go.`
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Armchair Rights 1: done"
+	on offer
+		dialog `You meet the union leader in the spaceport and show him to your ship, watching that no one official-looking notices.`
+	on stopover
+		dialog `The union leader spends the night connecting with workers and activists, and meets you again in the morning to fly onward to <planet>.`
+	to complete
+		or
+			has "ScS Armchair Rights 2a: done"
+			has "ScS Armchair Rights 2a: declined"
+
+mission "ScS Armchair Rights 2a"
+	landing
+	name "Women's rights"
+	description "Take your passenger to <destination> where he can investigate possible harassment against female employees."
+	source Trove
+	destination Bluestone
+	to offer
+		has "ScS Armchair Rights 2: active"
+	on offer
+		conversation
+			`When you meet again, your passenger has a request.`
+			`	"Change of plan. I've been hearing about companies mandating monthly women's health check-ups on <planet>, which sound like harassment in disguise. Could you take me there to investigate, please? And I'll send a message onward with you to my colleagues on Burthen. I can pay you the extra."`
+			choice
+				`	"No problem. Setting course for <system> system now."`
+					accept
+				`	"Free medical check-ups are good, though, aren't they?"`
+			`	"If that's all they are. But they seem unnecessarily many, which spells discrimination. It could even be grooming for prostitution. That's why I need to investigate."`
+			choice
+				`	"All right, I'll take you there."`
+					accept
+				`	"Sorry, I can't go all the way out there right now."`
+			`	"Okay," he says. "Just to Burthen then, and I'll make my own way there later."`
+				decline
+	on complete
+		log `On Bluestone there's reports of unnecessary women's health checkups. This could be overzealous employee care, but more likely the company is using it to take advantage of the women somehow. I took a union leader there to do some investigating.`
+		payment 30000
+		conversation
+			`As he leaves for his investigation, your passenger hands you a message to take onward to Burthen, and <payment>.`
+			`	"Sorry I can't pay as well as our mutual friend, but know that you're helping safeguard the wellbeing of women on this tough, backwater planet."`
+
+mission "ScS Armchair Rights 3"
+	landing
+	name "Divided we fall"
+	description "Escort a transport of protestors so they can reach <destination> without getting killed by the pirates sent after them. Their ship, the Silent Witness, is coming from Matar."
+	source Burthen
+	destination Nimbus
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Armchair Rights 2: done"
+	on offer
+		conversation
+			branch missive
+				has "ScS Armchair Rights 2a: done"
+			`You leave your union friend to go off and find his contacts, and think of heading back to Farseer to collect your payment. But again you're interrupted by Arnold's call.`
+				goto onemore
+			label missive
+			`You find the rights group contact and give him the message. Then, getting ready to head back to Farseer to collect your payment, again you're interrupted by Arnold's call.`
+			label onemore
+			`	"Once more, my Captain friend, just one more time," he says after the greetings. "I just got news of a protest on Antipode; I wouldn't trouble you for that, only someone's gone and set the pirates on them. Offered them new jobs on Nimbus, got them a transport and all, but set pirates to kill them before they get there. Can you go and rescue them? Escort them to Nimbus safely where they can surprise the company by being alive and taking those nice easy jobs."`
+			`	"You'll find them on Matar or Scheat depending on how far they get before the pirates get them. And this time I'll pay you properly, I promise. Double for this job because it's dangerous, plus all the others I owe you."`
+				accept
+	on visit
+		dialog `You've reached <planet>, but where are the protestors you're rescuing?`
+	
+	npc accompany save
+		government Syndicate
+		personality timid waiting escort
+						#	derelict
+		system Matar
+		ship "Blackbird" "Silent Witness"
+	npc
+		government Pirate
+		system Matar
+		personality vindictive entering
+						# waiting
+			confusion 30
+		ship "Modified Argosy (fuelled)" "Gentleman's Wrath"
+		ship "Sparrow (fuelled)" "Pursuit of Happiness"
+		ship "Sparrow (fuelled)" "Pursuit of Wealth"
+		ship "Sparrow (fuelled)" "Pursuit of Comfort"
+
+mission "ScS Armchair Rights 4"
+	landing
+	name "Get paid"
+	description "Head back to Arnold on <destination> to recive his overdue promised payment."
+	source Nimbus
+	destination Farseer
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Armchair Rights 3: done"
+	on offer
+		log `Rescued a group of protestors who were going to be 'caught by pirates' on their way to a new life.`
+		conversation
+			`The protestors land safely behind you, to the surprise of company managers on <origin> who now have to give them the jobs they promised. The group of protestors thank you enthusiastically and head on to their reward. At last, you can head back to Arnold on Farseer for yours.`
+				accept
+
+##############
+# Union time #
+##############
+
+mission "ScS Union Thought 1a"
+	landing
+	name "How to train your union"
+	description "Visit Aunt Maurissa on <destination> for advice on helping or hindering a new workers' union."
+	source Farseer
+	destination Foundry
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Armchair Rights 4: done"
+	on offer
+		payment 250000
+		conversation
+			`You feel a sense of relief when you reach Arnold's office, and he hands you <payment>. "Fifty for the White Swan, fifty for each transport, and a hundred for your daring rescue of those protesters. Many thanks indeed.`
+			`	"Now, if you want to carry on helping to reform the Syndicate, and make the galaxy a fairer place, we have some longer work to do. What do you think, are you ready for it?"`
+			choice
+				`	"Ready and raring to go."`
+					goto ready
+				`	"Actually I think I need a break."`
+			`	"Fair enough, I'll do some more digging myself, and contact you in a month. How does that sound?"`
+			`	"Perfect," you say. And after chatting a while longer, you head out to do your own thing in the galaxy for a bit.`
+				decline
+			label ready
+			`	"Splendid. Now here's the deal: Down in Alderamin, on the moon of Furnace, fleets of ships go in and out cheaply while dockworkers service them in almost unbreathable air. Well, you don't want all their life details, but the good news is they're forming a union. Or trying to."`
+			choice
+				`	"So we become the union un-busters."`
+				`	"Unions aren't always good."`
+					goto bad
+			`	"Yes. Kind of. First we need to do some investigating.`
+				goto bosses
+			label bad
+			`	"Sometimes," you say, "unions just make things worse for everyone, including their members."`
+			`	"Union bosses are like company bosses," Arnold replies. "They're people who control other people for their own profit. And, if you're less cyncial, they do some good in the process."`
+				goto convinced
+			label bosses
+			`	"Union bosses are like company bosses. They're people who control other people for their own profit. And, if you're less cyncial, they do some good in the process."`
+			label convinced
+			`	"Okay, you've convinced me," you say, "we'll go and bust the union."`
+			`	"Whoa, whoa, whoa! The workers need someone to stand up for them too. Just because some greedy sod is doing the managing doesn't mean you should blow it sky high. Besides, some union bosses are lovely, genuine, caring people who only want the best for everyone."`
+			`	"And some managers are nice kind people too. Make up your mind."`
+			`	"No," he says, "you make up your mind. That's your next job, finding out who's doing what and if they're up to no good. Pay is same as before, in advance this time."`
+			`	"So, where do we start?"`
+			`	"Hm, good question."`
+			choice
+				`	"I have an aunt, who likes parties and helping people."`
+					goto aunt
+				`	"Don't you have contacts everywhere?"`
+			`	"Not enough, sadly. No one these days likes spying on the Syndicate at risk of bankrupcy and ruin. Just crazies like you and me."`
+			`	"I have an aunt, on Foundry, who might be into that sort of thing."`
+			label aunt
+			`	"Perfect. I'll give you a file on what we know so far, and you go and see what ideas she has. Bon Voyage!"`
+				accept
+	
+	on decline
+		event "ScS thoughtful break" 30
+	on accept
+		payment 50000
+
+event "ScS thoughtful break"
+
+mission "ScS Union Thought 1b"
+	minor
+	name "How to train your Union"
+	description "Visit Aunt Maurissa on <destination> to help Arnold with something about a workers' union."
+	source
+		near Achernar 1 100
+	destination Foundry
+	on fail
+		dialog phrase failure
+	to offer
+		has "event: ScS thoughtful break"
+	on offer
+		payment 50000
+		conversation
+			`There's a message waiting for you from Arnold.`
+			`	"Cap'n <last>! I hope you enjoyed where'r the winds of space billowed your sails. The time has come," his message says, "to talk of many things. But not with me. I met this charming lady from Foundry. She'll tell you all, and point you in the right way. It's about a trying to start, but she'll explain. Enclosed is your <payment> for this job, in advance."`
+			`	The lady turns out to be your Aunt Maurissa. Time to pay her another visit.`
+				accept
+
+mission "ScS Union Thought 2"
+	landing
+	name "How to train your Union"
+	description "Visit the dockworkers on <destination>, to see if their union is a good thing."
+	source Foundry
+	destination Furnace
+	on fail
+		dialog phrase failure
+	to offer
+		or
+			has "ScS Union Thought 1a: done"
+			has "ScS Union Thought 1b: done"
+	on offer
+		conversation
+			`As usual your aunt welcomes you in with smiles, and once you're both seated comfortably you get down to business.`
+			branch holidayed
+				has "ScS Union Thought 1b: done"
+			`	You hand Maurissa the file Arnold gave you, and she studies it for a while.`
+				goto plans
+			label holidayed
+			`	"Arnold said he was sending a captain, I never thought it would be you! 'Excellent! First class! Dependable!' he said. Well I should hope so!`
+			`	"The situation is this. There's a workers' union starting on Furnace, among some of the dockworkers. Syndicate ships go in and out cheaply, but the dockworkers have a tough job in the thin air, for little pay. Well, that's the way of work. But they want to start a union, to fight for better living conditions and pay. Sounds good, doesn't it? But not all unions are good. Some are just as much bullies as the companies they stand against, and some are worse.`
+	
+			label plans
+			`	"So, a union is starting, and you want to know if it's good or bad. How do you find out? You go and meet them. Talk with the workers, talk with the leaders, talk with the company if you can. Hear their stories. Then you'll know."`
+			`	"So I should start on Furnace, then," you ask.`
+			`	"Yes. As a Captain it'll be easy to meet dockworkers and get talking. Take some cargo there if you can, gives you a reason to talk. Then see where it leads."`
+			choice
+				`	"I'll ready my ship and be off then."`
+					accept
+				`	"What am I listening for?"`
+			`	"A good union is looking out for its members, and a good leader is willing to take a hit to do that. A bad leader uses their members as an excuse to get rich off the company, and the company as an excuse to get rich off the workers."`
+			`	"So, thinking for others vs. being a greedy bully."`
+			`	"Exactly. And a really good union doesn't just think for its members, it considers the sustainable future of the company, and the customers too. Of course the company should be doing that, but this is the Syndicate, so CEO profits are usually all they really care about."`
+			choice
+				`	"Got it. Cya then."`
+					accept
+				`	"Anything else?"`
+			`	"Look for evidence of grassroots activism. Ordinary people getting together to help each other, not rich blokes coming in and starting stuff. Outside initiative isn't always bad, but can be a bad sign. Especially if the outsider will profit from it."`
+			choice
+				`	"Listen; no bullies; grassroots is good. All right, I'll be off."`
+					accept
+				`	"And?"`
+			`	"That's it. I'm sure you'll do fine. I can feel the Furnace Docks being a better place already."`
+				accept
+
+mission "ScS Union Thought 3"
+	landing
+	name "How to train your Union"
+	description "Visit a union on <destination> to see what they're like and if they're doing good work."
+	source Furnace
+	destination Delve
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Union Thought 2: done"
+	on offer
+		conversation
+			`Landing on <origin>, it's quite easy to mingle with the dockworkers and get talking. You learn about the working conditions, and how the company keeps people working through the breathless air and heavy loads, and gives little time for individual weakness. If a worker struggles too much, instead of rest and recovery the company typically dismisses them there and then, gives them a ticket off-world and nothing more, and hires new workers in their place: unaware of the struggles they will face. A union, they say, will force the company to give the workers more flexible time in case of medical difficulty, and stop them firing and re-hiring on a whim when they can find someone to work for less.`
+			`	It seems like the dockworkers themselves are starting the union, and only those attached to a particular company involved in the running of the docks. But you do hear mention of a visitor who comes to advise from time to time. When you try to ask about him or her, you get no answer; instead they tell you about a union on <planet>, from which they're hoping to hire a union boss with experience to lead them. Maybe that's all they meant.`
+			`	That sounds like a good idea though: go next to Delve and see that union. You manage to get some contact details from the workers here.`
+				accept
+
+mission "ScS Union Thought 4"
+	landing
+	name "How to train your Union"
+	description "Find where the unions' mysterious visitor goes, south of Scheat. Then return to Arnold on <destination>."
+	source Delve
+	destination Farseer
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Union Thought 3: done"
+	on offer
+		conversation
+			`You head out to find the contact the Furnace workers gave you for the union on <origin> which might help them out. The man you speak to is a leader but not the main boss in the union, and expounds to you its many virtues. But he's also honest about its shortcomings.`
+			`	"One of our members," he says, "was a real piece of work. Always fussing about everything, and in the background he was stealing from the company and blaming it on management. Nothing big, just little things he could sell off on the streets or somewhere. But the union, instead of coming down hard on him, stood up to the company for him, said they couldn't fire or even demote him, that no one would work till they treated him right. We all had to stop and didn't get paid for three months while the union bosses negotiated with company management. We all got a 3% raise after that, so the union says it worked out good, but what do you do for three lost months?"`
+			`	You ask him if people from this union have been visiting Furnace to advise them. "Not that I know of," he says; "they've been in contact but nothing has materialised. But..." he hesitates and lowers his voice. "There is this guy who comes here from time to time from off-world. Shady character, doesn't like to be remembered, but he talks with the bosses, gives them advice. I think he's telling the managers' dirty secrets so the bosses can blackmail them."`
+			choice
+				`	"Is there some way I can find him?"`
+			`	"Maybe," he says. "He comes here quite often. Look for a ship called the Rolling Stone. A big ship, one of the Tarazed ones. Perhaps you can find him there."`
+			`	You thank the union leader for his time, and he gives you the contacts of a few other people to talk to. They have nothing much else to add, mostly being glad for the union, but one tells you if you want to know the dark side of the union, "you gotta talk with Dave, on Moonshake."`
+			`	Finally, you sit down in a spaceport cafe, and wait to see if the Rolling Stone might show up. Would that you were so lucky. But you do meet one pilot who swears he sees a Falcon with that callsign heading south from here from time to time. Perhaps you could try looking in that direction.`
+				accept
+	
+	to complete
+		has "ScS Union Shadows: done"
+	on visit
+		dialog `Find the mysterious visitor to the unions, before you return to Arnold.`
+	on complete
+		fail "ScS Union Thought Dave"
+
+mission "ScS Union Thought Dave"
+	landing
+	name "The State of the Union, by Dave"
+	description "Optional: Visit Dave on <destination> to hear about the dark side of the union."
+	source Delve
+	destination Moonshake
+	to offer
+		has "ScS Union Thought 3: done"
+	on complete
+		conversation
+			`You find 'Dave' at the address you were given, and tell him you were recommended to hear his story.`
+			`	"Ugh, you don't want to hear the half of it," he says, and begins to tell you what, you presume, must be the other half you do want to hear. It's full of complaints and vitriol against all unions, but the real substance seems to be that the union on Delve where he worked called a strike, but Dave needed money for his family and carried on working. So the union bosses - he claims - sent thugs after him who broke his arm so he couldn't work.`
+			`	"Now what's the good of them?" he throws up his arms. "You pay your fee, every year, and when you need their help, they break your arms. After that I came here - as a strike-breaker. Don't you love the irony?"`
+			choice
+				`	"I knew it all along. Unions are terrible."`
+					goto terrible
+				`	"Isn't the point of the union to stand together?"`
+				`	"That's a chilling story. Thank you for sharing."`
+					goto thanks
+			`	"If you needed money during the strike," you say, "surely someone would have been able to help you."`
+			label terrible
+			`	"Ah," he says, "they only care about themselves. Striking's just a way to cause problems for their fellow workers."`
+			label thanks
+			`	You thank him for his time, and consider what this means for the new union trying to form.`
+
+mission "ScS Union Shadows"
+	landing
+	invisible
+	name "How to train your Union"
+	source Delve
+	destination Covert
+	clearance `There's a brief discussion that you can't catch on the other end of the radio, then a voice says clearly, "You're cleard to land."`
+# bug	clearance `There's a brief discussion that you can't catch on the other end of the radio, then a voice says clearly, "You're cleard to land, <ship>."`
+	on enter Gienah
+		dialog `The Rolling Stone is here and, moreover, seems to be interested in you. Perhaps the visitor comes from a planet in this system.`
+	to offer
+		has "ScS Union Thought 3: done"
+	npc save
+		government "Independent" #?
+		system Gienah
+		personality staying
+		ship "Falcon" "Rolling Stone"
+	on complete
+		event "liberation of Poisonwood"
+		conversation
+			`When you land on <planet> the Rolling Stone follows you down, and men with guns surround you at a distance. Nobody actually approaches you but you find yourself herded toward a narrow corridor that eventually leads to a large meeting room clad in black. In contrast, the three men who sit before you are quite plainly clothed, and the room is well lit. If the black room was meant to intimidate you, they're doing it wrong.`
+			`	The men introduce themselves, "Hananiah," "Mishael," "and Azariah, pleased to meet you." Azariah holds out his hand in welcome.`
+			choice
+				`	(shake it)`
+					goto shake
+				`	(recoil in horror)`
+			`	You glare at them angrily. "What do you want from me?" you demand. The men seem surprised.`
+			`	"What do you want from us? You followed our friend here, did you not? You were asking around about us? Now, we have invited you here and you can ask what questions you want. Captain--"`
+			choice
+				`	"<last>. <first> <last>."`
+				`	"(give a fake name)"`
+					goto jeho
+			`	You reach across the table and shake his hand. It feels strange to be friendly with pirates, but then you reflect, maybe it is true that someone can be a good man and a pirate. Aside from the killing, stealing, raping, enslaving and terrible fashion sense. But maybe they don't all do that.`
+			`	"So," says Hananiah, "You've sought us out, and here we are. What would you like to know.?"`
+				goto questions
+			label shake
+			choice
+				`	"<last>. <first> <last>."`
+					goto bond
+				`	"(give a fake name)"`
+			label jeho
+			`	"Captain Jehoiakim," you say. The men look at you funny for a moment, and Hananiah speaks.`
+			`	"I take it you are opposed to reform in the Syndicate then."`
+			`	"You may take it as you wish," you say.`
+			`	He exchanges a glance with the other two men, and turns back to you cautiously. "What would you like to know of us?"`
+				goto questions
+			label bond
+			`	You reach across the table and shake his hand warmly. It feels strange to be friendly with pirates, but then you reflect, maybe it is true that someone can be a good man and a pirate. Aside from the killing, stealing, raping, enslaving and terrible fashion sense. But maybe they don't all do that.`
+			`	"So," says Hananiah, "You've sought us out, and here we are. What would you like to know.?"`
+	
+			label questions
+			choice
+				`	"Are you pirates?"`
+					goto pirates
+				`	"Is one of you the visitor of the Rolling Stone?"`
+					goto shezza
+				`	"What is your businss with the unions?"`
+					goto unions
+				`	"Are you part of the Syndicate?"`
+					goto syndicate
+				`	"Thank you, that's all my questions."`
+					goto done
+	
+			label pirates
+			`	"Do you mean, do we kill and steal other ships and cargo? Or do we live on an outlaw world outside the Republic's control?"`
+			`	In case you weren't sure, Mishael adds, "no, to the first, and yes to the second."`
+			`	"We fled the Syndicate many years ago," explains Hananiah, "and ended up here. Officially we're members of the cartel, for our own safety, but we don't get involved in piracy."`
+				goto questions
+	
+			label shezza
+			`	Azariah laughs. "No, that would be our friend Shezza. He has more freedom to travel."`
+			`	"And no," adds Hananiah, "you can't meet him. We can't have you turning out to be a Syndicate spy, and catching him, can we?"`
+				goto questions
+	
+			label unions
+			`	"Our business is our own," says Hananiah. "We only mean to help them," says Mishael.`
+			`	"Well, which is it?" you ask."`
+			`	"Both," says Azariah. "The Syndicate has grown evil, and the workers need help. How we do that is our own business."`
+				goto questions
+	
+			label syndicate
+			`	"No... and yes. No, we are independent and answer to nobody. But yes, because our interest is in the Syndicate worlds, and our brothers and sisters who need help there."`
+				goto questions
+	
+			label done
+			`	You thank the men for their time, and, to your great relief, they show you out without harassing you any further. This brief meeting didn't really make much clear, but you've got plenty to share with Arnold, who can advise you on what to do next.`
+
+mission "ScS Weedkiller"
+	landing
+	name "The roots of change"
+	description "Pick up a group of Syndicate advisors whose secret mission is to stamp out the newly-budding union."
+	source Farseer
+	destination Foundry
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Union Thought 4: done"
+	on offer
+		payment 100000
+		conversation
+			`You return at last to Arnold, the armchair rights activist, and after hearing your tale he's highly impressed with all you've done and hands you an extra <payment>.`
+			`	"So what do you think?" he says. "Union good? Union bad? Are they the new hope of the workers for a better life? Or is their best hope to live in peace with the company, and go elsewhere if they don't like it?"`
+			choice
+				`	"I think the union are trying their best. We should help them."`
+					goto yours
+				`	"The union are as much self-interested bullies as the company."`
+					goto bullies
+				`	"It's hard to say."`
+					goto hard
+			label bullies
+			`	"So, fight fire with fire, and bullies with bullies? Or try not to increase the number of bullies in the world?"`
+					goto yours
+			label hard
+			`	"Maybe the company will get better if the workers just work hard. Then again, maybe life's just life."`
+				goto yours
+	
+			label yours
+			`	Arnold looks again at the notes he's made while you talked. "Well, you know as well as anyone. I'll leave it in your hands."`
+			`	"How so?" you ask.`
+			`	"There's a group of Syndicate 'advisors' travelling from <planet> to Furnace. What they're really going for is to stamp out the union before it starts. There's going to be a secret vote among employees, to get the union started, and they'll make sure it fails somehow.`
+			`	"You're flying Syndicate colours, so you're perfect to be their transport. The choice is yours: if you want to stop the union, get them there in time for the vote. If you want to help the union, arrive there late."`
+			choice
+				`	"Sounds like a good plan. I'll feed them my leftovers on the way."`
+					goto transporter
+				`	"I don't want those pieces of Syndicate filth on my ship!"`
+					goto escorter
+	
+			label transporter
+			action
+				set "ScS union transporter"
+			`	"Have fun!" Arnold cries as you leave. "And remember to charge them a fortune, cause they might not pay if you get there late."`
+				accept
+	
+			label escorter
+			action
+				set "ScS union escorter"
+			`	"Fair enough," says Arnold, "I wouldn't like it either. I'll arrange another transport, and you can be their escort. It'll pay less though. Well, you'd better get going. Have fun!"`
+				accept
+
+mission "ScS Union Buster 0t"
+	landing
+	name "The roots of change"
+	description "To help the company stop the union, bring the Syndicate advisors to <destination> by <day>, in time to stop the vote."
+	source Foundry
+	destination Furnace
+#	on fail
+#		dialog phrase failure
+	passengers 5
+	blocked `You need space for five Syndicate advisors for this mission.`
+	on visit
+		dialog `Did you leave the Syndicate advisors behind? That's no good. Take off and let them catch up.`
+	deadline 2 1
+	to offer
+		has "ScS Weedkiller: done"
+		has "ScS union transporter"
+	on offer
+		payment 50000
+		conversation
+			`You find the Syndicate advisors and welcome them on board your ship, but not before negotiating a transport fare of 100,000 credits, half of which they pay in advance. They press on you the importance of reaching <planet> quickly, to which you brush them off nonchalantly saying of course it'll be fine, and muttering something about space traffic these days, and spaceport controllers who always slow people down.`
+			`	Now to decide if you'll actually get them there in time.`
+				accept
+	on fail
+		conversation
+			`The Syndicate advisors storm of your ship, angry at being made late. They refuse to pay you the rest of the agreed fare.`
+	on complete
+		fail "ScS Unionise 0"
+		payment 50000
+		conversation
+			`The Syndicate advisors head off to meet the company executives, but you catch one and remind him they owe you another <payment> for transport. "Oh yes," he says, and hands you the credit chips. Then he adds, "this isn't over in a day. We'll have more to do to keep the peace here. Meet us later in the spaceport if you can help."`
+
+mission "ScS Union Buster 0e"
+	landing
+	name "The roots of change"
+	description "To help the company stop the union, bring the Syndicate advisors to <destination> by <day>, in time to stop the vote."
+	source Foundry
+	destination Furnace
+#	on fail
+#		dialog phrase failure
+	blocked `You need space for five Syndicate advisors for this mission.`
+	on visit
+		dialog `Did you leave the Syndicate advisors behind? That's no good. Take off and let them catch up.`
+	deadline 2 1
+	to offer
+		has "ScS Weedkiller: done"
+		has "ScS union escorter"
+	on offer
+		payment 20000
+		conversation
+			`You meet up with the Syndicate advisors and their transport, and negotiate an escort fee of <payment>, to be paid in advance. They press on you the importance of reaching <planet> quickly, to which you brush them off nonchalantly saying of course it'll be fine, and muttering something about space traffic these days, and spaceport controllers who always slow people down.`
+			`	Now to decide if you'll actually get them there in time.`
+				accept
+	npc accompany save
+		government "Syndicate"
+		personality timid escort
+		ship "Shuttle" "Hero of Destiny"
+	on fail
+		conversation
+			`The Syndicate advisors, angry at being made late, turn their ship around and leave you.`
+	on complete
+		fail "ScS Unionise 0"
+		conversation
+			`The Syndicate shuttle lands next to you, and as the advisors leave their ship one comes to you. "This isn't fixed in one day. We'll have more to do to keep the peace here. Meet us later in the spaceport if you can help."`
+
+mission "ScS Unionise 0"
+	landing
+	name "The roots of change"
+	description "To help the union, bring the Syndicate advisors too late to stop the vote."
+	source Foundry
+	destination Furnace
+#	on fail
+#		dialog phrase failure
+	to offer
+		has "ScS Weedkiller: done"
+	to complete
+		or
+			has "ScS Union Buster 0t: failed"
+			has "ScS Union Buster 0e: failed"
+
+##################
+# Help the Union #
+##################
+
+mission "ScS Unionise 1a"
+	landing
+	name "Fetch the Boss"
+	description "Go to <destination> to pick up the new boss for the union on <origin>."
+	source Furnace
+	destination Delve
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Unionise 0: done"
+	on offer
+		log `Decided to help a union get started on Furnace. It may not be perfect, but it will help the dockworkers to have a fair life on this distant rock.`
+		payment 20000
+		conversation
+			`By the time you land, the company employees have had their vote, and overwhelmingly agreed to start a union. Almost all the low level workers of this company have signed up, and several of the lower management. One of the leaders, who's been in touch with Arnold, comes to talk to you. He hands you <payment>, with a wink, and asks if you'd be able to help more with getting the union started.`
+			`	"Sure," you say.`
+			`	"We're hiring a boss from a union on Delve," he explains, "someone with experience to make this run well. But he needs to be a worker in this company, and that means getting him hired here. Obviously the company isn't going to hire him if they know who he is. But if you take him to Earth, then he can sign up with all the other thousands of hopefuls, and get himself hired here with no suspicions."`
+			`	"Sounds like a plan," you say.`
+				accept
+
+mission "ScS Unionise 1b"
+	landing
+	name "Fetch the Boss"
+	description "Take the new union boss-to-be to Earth where he can apply to work for the company."
+	source Delve
+	destination Earth
+	on fail
+		dialog phrase failure
+	passengers 1
+	blocked `You need space for your passenger.`
+	on visit
+		dialog `Did you leave your passenger behind? That's no good. Take off and let him catch up.`
+	to offer
+		has "ScS Unionise 1a: done"
+	on offer
+		conversation
+			`The union's new boss-to-be comes quietly aboard your ship for the journey to Earth.`
+				accept
+	on complete
+		payment 20000
+		conversation
+			`When you land on Earth, your passenger leaves and hands you <payment>. You have a message waiting for you from Arnold, who says, "good job helping the union get started. While you were out the company tried to fire them en masse and now they're blocking company headquarters, vowing that no one will work till they're all hired back. Of course they're not getting paid, so they need your help again to bring supplies. Fifteen tons, mostly food: I hope you have space. It's in the spaceport waiting for you."`
+
+mission "ScS Unionise 2"
+	priority
+	name "Food for the strikers"
+	description "Bring 15 tons of food and other supplies to strikers on <destination>."
+	source Earth
+	destination Furnace
+	on fail
+		dialog phrase failure
+	cargo "food and supplies" 15
+	blocked `You need space for 15 tons of cargo for this mission.`
+	on visit
+		dialog `Did you leave your cargo behind? That's no good. Take off and let it catch up.`
+	to offer
+		has "ScS Unionise 1b: done"
+	on offer
+		conversation
+			`The dockworkers load the supplies into your hold and you spare a thought for their own working conditions.`
+				accept
+	on complete
+		payment 10000
+		conversation
+			`The strikers eagerly receive the supplies, which should last them long enough until the company gives in. "Sorry we can't pay you much," says one, "but this is a godsend: it's almost impossible to get someone to deliver here for us with the company trying everything they can to starve us out."`
+			`	As you wander around, encouraging the picketers, one runs up to you.`
+			`	"Captain, are you flying off-world?"`
+			`	"In just a moment, yes," you say."`
+			`	"Could you give me a lift? I can't hold out in this much longer, and I have my family to think of. But I don't want to damage these efforts. If you can take me to Maker I can find a new job without breaking the strike."`
+			`	"Of course I can," you say. He thanks you and promises to meet you in the spaceport.`
+
+mission "ScS Unionise 3"
+	priority
+	name "Too hard for some"
+	description "Take a union member to <destination> where he can work again without disrupting the strike."
+	source Furnace
+	destination Maker
+	on fail
+		dialog phrase failure
+	passengers 1
+	blocked `You need space for your passenger.`
+	on visit
+		dialog `Did you leave your passenger behind? That's no good. Take off and let him catch up.`
+	to offer
+		has "ScS Unionise 2: done"
+	on offer
+		conversation
+			`The no-longer-striker comes aboard your ship, and you ask what about his family? He tells you they're already on <planet>; he was here alone, sending money back to them every month. Even if work back on <planet> pays less, he'll be glad to be with his family again.`
+				accept
+	on complete
+		payment 10000
+		event "ScS amazons ready" 50
+		conversation
+			`Your passenger hands you <payment> and leaves to find his family. You try to contact Arnold to see what you should do next, but it's a while before he replies. When he does, it's brief:`
+			`	"Hi <first>, good work with the union. Sorry, only boring work now, checking records, raising funds. Will contact again when I need your help."`
+
+##################
+# Bust the Union #
+##################
+
+mission "ScS Union Buster 1a"
+	priority
+	name "Facial recognition"
+	description "Go to <destination> to pick up a manager who can identify fake recruits."
+	source Furnace
+	destination Delve
+	on fail
+		dialog phrase failure
+	to offer
+		or
+			has "ScS Union Buster 0t: done"
+			has "ScS Union Buster 0e: done"
+	on offer
+		log `Decided to help a company on Furnace bust their new union. The union is mixed up with dodgy stuff, and it will help everyone if the company can prosper unhindered.`
+		conversation
+			`You wait in the spaceport and after some time a company executive comes to find you.`
+			`	"Captain <last>, thank you so much for your help. If it weren't for you this company would be ruined tomorrow." You wonder if he's going to show his thankfulness with some credit chips, but instead he offers you a job. "The advisors you brought are running damage control, but I'm afraid the mischief's started. Half the employees are trying to unionise, and worse still they're planning to hire a boss secretly, and get him employed here. So unethical, I know! Thing is, we know where the 'boss' is coming from: <planet>."`
+			`	"How does that help us?" you ask.`
+			`	"One of the managers there will know him. Take a manager from there to Earth, and he can vet the canditates and catch this fake applicant."`
+			`	"Sounds like a plan," you say. "What's the payment."`
+			`	"Um," he looks around for a moment, "I'll talk to my boss. The <planet> manager's department will pay you when you get to earth."`
+				accept
+
+mission "ScS Union Buster 1b"
+	landing
+	name "Facial Recognition"
+	description "Take the manager from <origin> to Earth, so he can identify fake recruits."
+	source Delve
+	destination Earth
+	on fail
+		dialog phrase failure
+	passengers 1
+	blocked `You need space for your passenger.`
+	on visit
+		dialog `Did you leave your passenger behind? That's no good. Take off and let him catch up.`
+	to offer
+		has "ScS Union Buster 1a: done"
+	on offer
+		payment 10000
+		conversation
+			`The manger from <origin> is ready and waiting for you when you land. When you ask him about payment, he seems puzzled. "I thought the company on Furnace would pay you?" You press him harder and eventually he calls his boss and arranges they'll pay you 50,000. "In advance," you say. He makes another call. "<payment> in advance, and the rest when we get there." You agree and let him on board.`
+				accept
+	on complete
+		payment 40000
+		conversation
+			`When you land on Earth, your passenger leaves and hands you <payment>. You have a message waiting for you from Arnold, who says, "nice work stopping the company being disrupted by a union. Now, though, they're all afraid the unionisers will turn violent. I wouldn't normally help this way, but it's for the best... there's a shipment of weapons - completely legal weapons - for you to take to the managers on Foundry so they can defend themselves if necessary. It's in the spaceport waiting for you."`
+
+mission "ScS Union Buster 2"
+	priority
+	name "Self defence"
+	description "Bring some completely legal weapons to the managers on <planet> for their self-defence."
+	source Earth
+	destination Furnace
+	on fail
+		dialog phrase failure
+	cargo "self-defence weapons" 1
+	blocked `You need space for 1 ton of cargo for this mission.`
+	on visit
+		dialog `Did you leave your cargo behind? That's no good. Take off and let it catch up.`
+	to offer
+		has "ScS Union Buster 1b: done"
+	on offer
+		conversation
+			`You check the cargo before allowing it on your ship. It's mostly pepper sprays and the like with two or three tazers thrown in.`
+				accept
+	on complete
+		payment 50000
+		conversation
+			`Middle-management come furtively to receive your supplies. Apparently the top executives are too afraid to come out here. They hand you <payment>, and look at the weapons: they're a bit disappointed there's not more guns, but it'll have to do.`
+			`	Arnold contacts you again: "<first>, there's one more thing you ought to do, to keep the status quo and stop things blowing up worse. See if you can find that 'not-pirate' group again on Covert, and bribe them not to get involved any more. I'm sure the execs where you are will willingly oblige with the money."`
+			`	You find some of the high level executives in a meeting room, and they quickly agree to your plan, on the condition that one of them will come in your ship to Covert, and then you'll bring him back here. He'll meet you in the spaceport when you're ready to go.`
+
+mission "ScS Union Buster 3"
+	priority
+	name "Peace offering"
+	description "Take a bribe to the mysterious group on <stopovers> to ask them not to interfere on <origin>. Then return your passenger to <destination>."
+	source Furnace
+	stopover Covert
+	destination Furnace
+	clearance
+		planet Covert
+	on fail
+		dialog phrase failure
+	passengers 1
+	blocked `You need space for your passenger.`
+	on visit
+		dialog `Did you leave your passenger behind? That's no good. Take off and let him catch up.`
+	to offer
+		has "ScS Union Buster 2: done"
+	on offer
+		conversation
+			`The exec comes aboard, with a suitcase presumably full of money. You hope he'll have plenty left for you.`
+				accept
+	on stopover
+		conversation
+			`Your passenger leaves by himself, followed quickly by three local guards. Perhaps he already knows where he's going. In half an hour he returns, satisfied, and bids you take him swiftly back to <planet>.`
+	on complete
+		payment 40000
+		event "ScS amazons ready" 50
+		conversation
+			`Your passenger hands you <payment> and leaves, brandishing his pepper spray as a warning to any would-be violent protestor. You contact Arnold again but he writes back with only a brief message:`
+			`	"Hi <first>, good work with the company. Will take time for all to settle, don't worry. Sorry, only boring work now, checking records, raising funds. Will contact again when I need your help."`
+
+########################################
+# Dig deeper into Syndicate Leadership #
+########################################
+
+event "ScS amazons ready"
+
+mission "ScS Amazons 0"
+	minor
+	name "Pax Regina"
+	description "Meet a group of women on <destination>, who work for justice in the Syndicate."
+	source
+		near Caph 1 100
+	destination Reunion
+	on fail
+		dialog phrase failure
+	to offer
+		has "event: ScS amazons ready"
+	on offer
+		payment 50000
+		conversation
+			`There is a message for you from Arnold, the Armchair Rights Activist.`
+			`	"<first>! I have something again that could use your help. Actually someone else does. They're a group of women from Syndicate planets who believe they can right the wrongs within the Syndicate. They meet on <planet>. Go and see them; I'll let them do the talking.`
+			`	"Oh, and payment. <payment>, enclosed. I'll call this all one job: and I'm sure they can pay you for the things they need your help with."`
+				accept
+
+mission "ScS Amazons 1"
+	landing
+	name "The Amazons"
+	description "Escort an all-female group of reformers to <destination>, where they can plot to change the Syndicate."
+	source Reunion
+	destination Amazon
+	on fail
+		dialog phrase failure
+	on visit
+		dialog `Did you leave your escorts behind? That's no good. Take off and let them catch up.`
+	to offer
+		has "ScS Amazons 0: done"
+	on offer
+		conversation
+			`Reunion is a world of lively politics, and perhaps the only place in Syndicate space where you could imagine finding a powerful group run by women: but that's what they turn out to be. A political and activism group, made up almost entirely of women, trying to set up a sort of alternative leadership within the Syndicate. Many companies, they tell you later, accept and even seek their oversight, much to the chagrin of official and male-dominated Syndicate top leadership. But when you introduce yourself as being sent by Arnold, it seems they're in the middle of a big argument.`
+			`	The round table suggests equality, but it's quickly clear there are two distinct sides to this argument. Conversation stops and one of the women turns to you.`
+			`	"Captain. As an uninterested party, where do you think the best place is for a Syndicate leadership headquarters?"`
+			choice
+				`	"Somewhere near Earth, for good relations with the rest of the galaxy."`
+					goto earth
+				`	"Somewhere central, the average of all Syndicate space."`
+					goto centre
+				`	"Near the core, on a less crowded planet."`
+					goto core
+				`	"Um, what do you think?"`
+			`	Never answer a woman when she's angry, that's your motto. It may be a relic of Syndicate misogynistic upbringing, but it seems to work.`
+			`	"I think it's obvious," she replies, "as does everyone else here who thinks rationally."`
+			`	"Who thinks like you, you mean," says a woman from the other side. "Since you're comfortable here, you can't imagine the advantages of working further into Syndicate space." And so it goes on.`
+				goto argument
+	
+			label earth
+			`	"But," says another, "that puts you away from the more remote Syndicate worlds."`
+			`	"And closer to the most population," says the first. And so it goes on.`
+				goto argument
+		
+			label centre
+			`	"Spoken like a true committee, with no understanding of people."`
+			`	"Still," says another, "that would put you beteween the two main Syndicate HQs, better placed to influence them." And so it goes on."`
+				goto argument
+	
+			label core
+			`	"Why?" she asks. "To relax while your underlings work?"`
+			`	"Perhaps our visiting captain sees," says another, "what you don't. A Syndicate headquarters is about working in the Syndicate, and a core planet is better placed to meet the others who call themselves leaders." And so it goes on."`
+	
+			label argument
+			`	The argument is about whether to stay here or relocate, and much like the board meetings you used to have, neither side wants to back down. After some time they turn to you again.`
+			`	"Captain, it's good you could respond to our request for help. And it seems our first request must be to help some of us move office. These ladies," she gestures at the other side of the table, "will stay and continue our work of helping companies who want a better leadership than the official Syndicate elite. Those of us who want to work deeper cleaning out the filth in government will move to Amazon. After all," she looks around the table, "the Amazons of legend were mighty women who forged their own destiny. Like us!" she shouts, and the group cheers.`
+			`	"Captain, would you be so kind as to escort us there safely?"`
+			`	"Certainly," you reply, and wonder what you've gotten yourself into.`
+				accept
+	
+	npc save accompany
+		government Syndicate
+		personality timid escort
+		ship "Heavy Shuttle" "Mountain of Strength"
+		ship "Heavy Shuttle" "River of Destiny"
+
+mission "ScS Amazons 2a"
+	landing
+	name "The Upper Rungs of Business"
+	description "Go back to Benjamin Downey on <destination> and see if you can ingratiate yourself in to Syndicate upper circles."
+	source Amazon
+	destination "Shangri-La"
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Amazons 1: done"
+	on offer
+		log `People` `The Amazons` `An activist group you helped are now nicknamed the Amazons, being mostly women and newly relocated to the planet Amazon. They're involved working within the Syndicate to balance the mistakes of official leadership, and make the Syndicate a better place.`
+		log `People` `Mary-Jane` `Mary-Jane seems to be the leader of the Amazon activist group, and your main contact there.`
+		payment 30000
+		conversation
+			`An hour after landing, you all reconvene in a rented office near the spaceport. The leader - you presume - of this branch of the women's group introduces herself as Mary-Jane. She hands you <payment> for the escort, and tells you more about their aims.`
+			`	"The problem, you see, boils down to Syndicate top leadership, who are more rotten the further you get up the ladder. They know nothing of the people they lead; they only follow their little books of numbers, and which numbers go into their pocket-books. And so, it's our job to turn them over, like old soil.`
+			`	"Now what we need is someone inside, someone near the top, who can fill us in on what's going on behind closed doors. How would you like to be that person, Captain <last>?"`
+			choice
+				`	"I'm game"`
+				`	"What about Arnold?"`
+					goto arnold
+			`	"If it means making better lives for everyone in the Syndicate," you say, "count me in."`
+			`	"Excellent. But where shall we start? Do you have any ideas?"`
+				goto next
+			label arnold
+			`	"Why doesn't he get his hands dirty for once?" you suggest.`
+			`	She looks at you a moment. "You don't know?"`
+			`	"What?"`
+			`	"He has a rare neurological disease. He can't travel further than his front door. Else he'd be out here in the thick of it, for sure."`
+			`	"Oh, I didn't know," you say. "Then I guess I'll have to do!"`
+			`	"You'll do great, I'm certain of it. But where shall we start? Do you have any ideas?"`
+			label next
+			branch direct
+				has "ScS Abduction 2a: done"
+	
+			`	With hesitation, you suggest your uncle. "I think he has his fingers deep in Syndicate pockets. I'm sure I can get something out of him."`
+			`	"Okay, just don't give away what we're doing," she says. "They have to think you're in it for money, like the rest of them, but not a threat."`
+			`	"I think I can mange that," you say. "I have... history."`
+				decline
+	
+			label direct
+			`	You remember Benjamin Downey, the Syndicate mastermind on <planet> to whom you brought an abducted Navy consultant some months ago. "Perhaps I can get into his good books. At least I can threaten to tell the Navy where their specialist went."`
+			`	"Don't do that," she says, "we don't want them to feel threatened. Yet. Make it out that you're after money or success, and see if you can become useful to him." Mary-Jane also writes out for you a letter of introduction, signing as 'Mr Wilson Willis'. "Don't show it to Downy himself, but it should convince a secretary."`
+			`	"It can't fail!," you say.`
+				accept
+
+mission "ScS Amazons 2b"
+	landing
+	name "The Upper Rungs of Business"
+	description "Find your uncle on <destination> and see if through him you can ingratiate yourself into Syndicate upper circles."
+	source Amazon
+	destination Crossroads
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Amazons 1: done"
+		has "ScS Abduction 2b: done"
+
+mission "ScS Amazons 2c"
+	landing
+	name "The Upper Rungs of Business"
+	description "Meet Benjamin Downey on <destination> and see if you can ingratiate yourself in to Syndicate upper circles."
+	source Crossroads
+	destination "Shangri-La"
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Amazons 2b: done"
+	on offer
+		conversation
+			`Your uncle seems to have forgotten all about your argument months ago. When you tell him your plan, to "go big or go home," by working for top Syndicate leadership, he suggests you meet a man called Benjamin Downey on Shangri-La, and gives you a letter of introduction.`
+				accept
+
+mission "ScS Downs 1"
+	landing
+	name "Secret Messages"
+	description "Bring secret envelopes from Benjamin Downey to Earth, and their replies back to Downey."
+	source "Shangri-La"
+	stopover Earth
+	destination "Shangri-La"
+	on fail
+		dialog phrase failure
+	to offer
+		or
+			has "ScS Amazons 2a: done"
+			has "ScS Amazons 2c: done"
+	on offer
+		log `Started working for Benjamin Downey, a high-up person in the Syndicate. Really, I'm working for the Amazons, and using Downey to gather information on the corrupt internals of Syndicate leadership.`
+		conversation
+			`You introduce yourself to Downey's lowest-rung receptionist, and gradually up the physical elevators and business heirachy, showing your letter of introduction, till finally you get offered an appointment with Downey himself.`
+			`	"Captain <last>," you say, "<first> <last>."`
+			branch met
+				has "met benjamin downey"
+			`	"Yes, I know who you are. I've been watching your career with interest.`
+				goto career
+			label met
+			`	"Yes, I know who you are. We've met before.`
+			label career
+			action
+				set "met benjamin downey"
+			`	"I know all about your escapades for Franz and his fellows. And I know about your little spat with Washermann." You grimace. "Don't worry, one mistake needn't ruin your career. Just remember, if you work for me, nothing is to go wrong and there's to be no insubordination. Do you understand?"`
+			`	"Yes, Sir!" you say.`
+			`	"Good. Now, as it happens, I'm in need of a trustworthy captain who can be discreet. Are you such a captain?"`
+			choice
+				`	"Without a doubt, Sir!"`
+					goto yes
+				`	"What's in it for me?"`
+					goto pay
+				`	"You know all my record, so you know."`
+					goto record
+			label record
+			`	"Yes I do." Although, you think, his beaurocracy seems to have missed out informing him of your work for Arnold.`
+				goto yes
+			label pay
+			`	"More than you could imagine. IF you fulfil your duties well.`
+			label yes
+			`	"Very good then, you shall work for me for a while, and see if you really are worth your salt. This is your first job." He hands you some sealed envelopes. "Bring these to Earth, unseen, unopened, and bring their replies back to me." The envelopes are blank, but Downey hands you a separate card with the address.`
+			`	His secretary, on your way out, hands you a separate file for yourself as an employee, in which you find you'll be earing a salary again, much larger than before.`
+				accept
+	on accept
+		"salary: Syndicate" = 12000
+		set "ScS syndicate trusted"
+	to complete
+		has "ScS Downs 1a: done"
+	on visit
+		dialog `Don't forget to show the messages first to Mary-Jane and her colleagues on Amazon.`
+	on complete
+		conversation
+			`You find Downey as before in his high-up office. He takes the envelopes from you, and openes and reads them. There's a lot more paper in each than you imagined. Perhaps the real message was on the inside, behind the decoy.`
+			`	"Very good," he says after a while. "It seems now I need transport. Since you're here, you'll be my pilot. Meet me in the spaceport in an hour."`
+
+mission "ScS Downs 1a"
+	landing
+	name "Not-so secret Messages"
+	description "Bring the secret envelopes to Mary-Jane and the Amazons on <destination>, before you take them onward to Downey."
+	source Earth
+	destination Amazon
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Downs 1: active"
+	on offer
+		conversation
+			`At the address Benjamin Downey gave you, a butler accepts your envelopes and has you wait in a small sitting room until he brings replies. Curiously, although these are also in sealed, unmarked envelopes, the paper is thin enough you can just about see some of the writing through it (when the butler's not looking). And this gives you an idea: bring the envelopes to Amazon on your way to Shangri-La, and see if your new friends can make anything of it.`
+				accept
+	on complete
+		conversation
+			`You find Mary-Jane and her colleagues at a new office, comfortably, but not lavishly, furnished. Apparently these women are not so vain as the men they seek to replace.`
+			`	At first they're excited at the thought of secret documents to parliament - seems likely being on Earth - but it's bad news once they study it.`
+			`	"It looks like a trap, to be honest. Tempting details but nothing of real substance. I think Downey's testing to see if you'd look at them. See here," Mary-Jane points to a bit of the writing you can faintly see through the envelope, "with a bright light behind you can read off bank details. I warrant if you try to withdraw from it you'll get a few credits, and shortly after be bumped off by pirates."`
+			`	You looked shocked for a moment. "Good thing I wasn't going to try, then!" you say. "...And you'd better not either!"`
+			`	"Of course not," she says. "Now Downey will think you're honest. Keep working for him and we'll see if something better comes up."`
+
+mission "ScS Downs 2"
+	priority
+	name "Unusual Business Trip"
+	description "Take Downey on a business trip to the pirate world of <stopovers>."
+	source "Shangri-La"
+	stopover "Buccaneer Bay"
+	clearance
+		planet "Buccaneer Bay"
+	destination "Shangri-La"
+	on fail
+		dialog phrase failure
+	passengers 1
+	blocked `You'll need passenger space for Downey`
+	on visit
+		dialog `Did you leave Downey behind in an escort? How rude.`
+	to offer
+		has "ScS Downs 1: done"
+	on offer
+		conversation
+			`You meet Downey in a private room in the spaceport, and escort him to your ship. "Where are we going, Sir?" you ask.`
+			`	"Buccaneer Bay. I hope your ship can outrun pirates."`
+			choice
+				`	"She's the fastest ship in the galaxy."`
+					goto solo
+				`	"Don't worry, I blow them up before they can reach me."`
+					goto boom
+				`	"Um, sure. No problem."`
+					accept
+			label solo
+			`	"And," you add, "I'm a pro at landing on asteroids to throw them off my scent."`
+				accept
+			label boom
+			`	"That'll do, I suppose," says Downey.`
+				accept
+	on stopover
+		conversation
+			`On Buccaneer Bay, Downey brings you to a large building a little outside town. You go together to an office, but he doesn't let you enter, instead leaving you to twiddle your thumbs outside for an hour. Watching people come and go, you notice that several of them are buttoned up in coats up to their chins, with broad hats that completely hide their faces, and gloves so no skin can be seen. Perhaps they're just sensitive to the dust or sunlight, but it does feel a little creepy.`
+			`	Downey returns and tells you to get the ship ready to leave.`
+
+mission "ScS Coventry 1"
+	landing
+	name "Must the innocent die?"
+	description "You've been ordered to be ready to blow up a ship of scientests resigning, to stop the few who have sensitive information. Perhaps your friends on <destination> can help save their lives without blowing your cover."
+	source "Shangri-La"
+	destination Amazon
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Downs 2: done"
+	on offer
+		log `Benjamin Downey wants a ship of quitters killed because some have sensitive knowledge. Somehow, I'm going to save them.`
+		event "bloodsea joins free worlds"
+		event "bloodsea spaceport completed" 100
+		event "dreadnoughts for sale"
+		event "dreadnought deployment" 40
+		conversation
+			`When you land, Downey brings you back up to his office.`
+			`	"Well done, Captain <last>", he says once comfortably seated again. "You are a skilled pilot, and a useful asset." He leaves you standing as he turns his attention to many files on his desk, making no sound. It's eerily quiet; even the turning of pages is almost inaudible. It comes as a shock when he speaks again.`
+			`	"I don't have problems, Captain <last>. I solve problems. But, some workers are being a problem. What does that mean, Captain <last>?"`
+			`	You look at him with no answer.`
+			`	"It means I solve them, and they stop being. In this case, the problems are a group of scientists on Placer. They are resigning en masse, which is hardly something new - as if they think they're clever or something - The problem is, though, a few of them are privy to sensitive information. I have them in a beaurocratic loop trying to find transport, but it won't last forever: But they must not leave the planet!`
+			`	"Captain, I shall need you on standby for a few weeks. Make sure you have a ship capable of combat, and be ready in Deadman's Cove. When I give the command, you will fly to the Mirach system in pirate colours, take out the traitors' ship, and return to change back to your normal self. Do you understand?"`
+			`	"...Yes, Sir!" You try to sound like you mean it.`
+			`	What to do! You're being asked to murder a whole group of innocent people! You'd better go to your friends on <planet> and see if they have any ideas.`
+				accept
+	on complete
+		conversation
+			`There's a solemn quiet when you share the news with your Amazon friends. For a while, no one wants to speak. At last, one offers: "Perhaps Captain <last> can escort them to safety, somewhere where Downey can't reach?"`
+			`	"That's not the problem," says Mary-Jane. "The problem is something really serious is going on, and if we lose <first> from Downey's confidence, we lose our chance at thwarting it. This is about more than the scientists."`
+			`	"But we can't kill them!" says another. "You wouldn't--!"`
+			choice
+				`	"Of course I won't. Don't we have some better idea?"`
+					goto idea
+				`	"If it means... how many will die if we show our hand?"`
+			`	"We don't know." says Mary-Jane. "It could be many; it could be just yourself made a pariah from Syndicate space and our work of reform set back."`
+			`	"Maybe it's worth it," you say. "Rescue the scientists and deal with the consequences."`
+			label idea
+			`	There's another silence, and one woman reaches for her neighbour's cups and places them upside down with her own, with a ball under one. You know the game. Everyone watches, and one by one they realise the meaning.`
+			choice
+				`	(Shout, "that one!" and point to the wrong cup.)`
+					goto shout
+				`	(Watch and see)`
+			`	She knocks over a cup, to reveal nothing.`
+				goto plan
+			label shout
+			`	She knocks over the cup, to reveal nothing.`
+			label plan
+			`	"So we provide them with three ships..." says someone.`
+			`	"Only two," says the trickster, "identical ships. Land one of them in secret, load the scientists onto the other, then switch them as they leave. Captain <last> will blow up the decoy."`
+			`	"But the real one will get spotted as it leaves," someone points out.`
+			`	"I think our sisters on Reunion might be able to help with that," says Mary-Jane. "They have contacts in many interesting companies. I have heard rumours..." and she says no more.`
+			`	"But-" you hesitate. "We still have to fly the decoy ship."`
+			`	There's another long pause, and at last a woman sitting opposite you speaks up.`
+			`	"I will do it."`
+			`	"Sophie! No!" cries another.`
+			`	"I will do it," she says bravely. "I know as well as any of you how many may suffer, even die, if we're found out. Think of the explosion last week, and we barely got the workers out in time. Think of the poor souls who nearly got sent off to a pirate slaver. People die all the time in pirate raids, or trying to stop them, and now the war's on in the south... sometimes you've got to do what you've got to do."`
+			`	"Sophie... no..."`
+			`	"Captain," says Mary-Jane. "Do you have any ideas?"`
+			choice
+				`	"I'm sorry, I don't..."`
+					goto adjourned
+				`	"I... could ask some friends. Maybe they can help."`
+			`	"You'll need to be very careful about it."`
+			`	"I'll be the soul of discresion," you say.`
+			label adjourned
+			`	"Then the meeting is adjourned for now. Captain, will you take Janet to Reunion to see about a secret transport?"`
+			`	"Yes, I can do that. Let her meet me in the spaceport shortly."`
+			`	"In the meantime, we will see to it that the fugitives don't leave before we are ready for them. But be quick, Captain. When you return, we will make our decision."`
+
+mission "ScS Coventry 2"
+	landing
+	autosave
+	name "Must the innocent die?"
+	description "You've been ordered to be ready to blow up a ship of innocent scientests. Make what arrangements you can to avoid that, and return to <planet> to finalise plans with the Amazons. You must be back by <day>."
+	source Amazon
+	on fail
+		dialog phrase failure
+	deadline 24
+	to offer
+		has "ScS Coventry 1: done"
+	to complete
+		has "ScS Coventry 2a: done"
+#		has "ScS Coventry 3: accepted"
+
+mission "ScS Coventry 2a"
+	priority
+	name "A secret rescue"
+	description "Take Janet to <destination> to arrange for a secret transport to rescue the scientists."
+	source Amazon
+	destination Reunion
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Coventry 1: done"
+	passengers 1
+	blocked `Make sure you've got a passenger berth free for Janet!`
+	on visit
+		dialog `You've reached <planet>, but Janet's not with you. Wait for her to catch up then land again.`
+	on offer
+		conversation
+			`Janet comes aboard your ship for her mission, and you think about who you could ask, discreetly, who might help with the other part. Perhaps Arnold, the rights activist. Or maybe Joe, the factory worker who used to be a pirate.`
+				accept
+	on complete
+		dialog `Janet slips off to find the Reunion group and get their help arranging a secret rescue transport.`
+
+mission "ScS Coventry 2b"
+	priority
+	name "Decoy ideas from Joe"
+	description "(Optional) See if Joe and Maria, on <destination>, have ideas for a decoy ship."
+	source Amazon
+	destination Millrace
+	to offer
+		has "ScS Coventry 1: done"
+	on complete
+		conversation
+			`Maria's not at home when you get to <planet>, but Joe is happy to see you. You find a secluded spot and tell him your dilemma.`
+			`	"Wow," he says. "Asking someone to fly a ship for you to destroy. That's gotta take guts. Or..." He lowers his voice further. "Y'know, most pirate crews aren't really evil. They're kids, like I was, trapped or looking for a chance in life. But the captains, they're real evil. I suppose you could find one, spin him a tale, and get him to fly it. I don't know if that's too dirty for you, Captain?"`
+			`	You'll think about it. You thank him and excuse yourself: time is not on your side.`
+
+mission "ScS Coventry 2c"
+	priority
+	name "Decoy ideas from Arnold"
+	description "(Optional) Ask Arnold on <destination> for ideas for a decoy ship."
+	source Amazon
+	destination Farseer
+	to offer
+		has "ScS Coventry 1: done"
+	on complete
+		conversation
+			`You have new respect for Arnold, since you found out about his condition. You find him in his apartment and get down to business explaining the predicament.`
+			`	"Why don't you just automate the ship?" he suggests. "You only need it to take off, fly around and die."`
+			`	"It also needs to perform a slick switcheroo with the real ship. Can you program it to do that? Besides," you say, "I'm not sure we could just borrow a kit from the Syndicate without getting found out."`
+			`	"Hm, I think I might know someone who can. Discuss the plan with your 'Amazons', and if you want to do it let me know and I'll have my friends set up a kit for you. You might have to pick it up from the Deep, though."`
+			`	You thank him for the idea, and breathe a sigh of relief that you don't have to kill an innocent pilot. Better get back to Amazon soon.`
+
+mission "ScS Coventry 3"
+	landing
+	name "A Secret Rescue"
+	description "Escort the rescue and decoy ships to Hephaestus, and complete the arrangements. Then return to <destination> in time for Downey's call. Be there at the latest by <day>."
+	source Amazon
+	destination "Deadman's Cove"
+	clearance
+	on fail
+		dialog phrase failure
+	deadline 30
+	to offer
+		has "ScS Coventry 2: done"
+	on offer
+		fail "ScS Coventry 2b"
+		fail "ScS Coventry 2c"
+		conversation
+			`You head quickly to the Amazons' meeting room. "Janet is with the Reunioners," you say. "I hope they come up with something good for the secret rescue ship."`
+			`	"And how about you, Captain," asks Mary-Jane. "Have you any new ideas for the decoy?"`
+			branch ara
+				has "ScS Coventry 2c: done"
+			branch joeonly
+				has "ScS Coventry 2b: done"
+	
+			choice
+				`	"I'm sorry..."`
+			`	"Then we will do our best with what we have. Captain, please go to Lovelace Labs on Ada, where you will find two Star Queens wating for you. Escort them to Hephaestus, where Sophie will meet you."`
+			`	"Don't worry," Sophie says and lays a hand on your arm. "It will be okay."`
+			`	Mary-Jane continues, "you will hand over the Star Queens to an engineering team arranged by our Reunioner sisters, after which you should go to the pirate world of Deadman's Cove to await Downey's call. We will make sure he gets news of the scientists' transport about the time you get there.`
+			action
+				set "ScS sophie's sacrifice"
+				set "ScS coventry pilot"
+			`	"Be quick, Captain."`
+				accept
+		
+			label joeonly
+			choice
+				`	"How about we get a pirate captain to do it?"`
+					goto pirate
+		
+			label ara
+			branch both
+				has "ScS Coventry 2b: done"
+	
+			choice
+				`	"Arnold can help us automate it."`
+					goto automate
+	
+			label both
+			choice
+				`	"Arnold can help us automate it."`
+					goto automate
+				`	"How about we get a pirate captain to do it?"`
+					goto pirate
+	
+			label pirate
+			action
+				set "ScS pirate sacrifice"
+			`	"And how," asks someone, "will you persuade them to do that?"`
+			`	"With money," you say. "And a promise they can keep the ship ...as long as they live. Think about it, we find the most evil, vile, pirate we can, and instead of sending ten ships to hunt them down, and losing two in the process, we just offer a free ship, then rid the world of one more reprehensible pirate."`
+			`	The group's not fully sold on the idea, but they agree it's better than sending one of their own to die.`
+			`	"Very well," says Mary-Jane, "Captain, please go and find such a captain, and ask him to meet in Hephaestus. Then, go to Ada and escort the two Star Queens that will do the operation, and bring them also to Hephaestus, to an engineering team arranged by our Reunioner sisters. After that you should head quickly to Deadman's Cove to await Donwey's call. We'll make sure he gets news just when you're ready, but you must be quick.`
+				accept
+	
+			label automate
+			action
+				set "ScS robot sacrifice"
+			`	"Excellent," says Mary-Jane, and you can see relief wash over everyone's faces, especially Sophie's.`
+			`	"Captain, get this tech from Arnold, and bring it to Hephaestus, to an engineering team arranged by our Reunioner sisters. After that you should head quickly to Deadman's Cove to await Donwey's call. We'll make sure he gets news just when you're ready, but you must be quick.`
+			`	Before you go you check in with Arnold, who says he's already talked with his contacts in the Deep, and the kit will be waiting for you on Hermes.`
+				accept
+	
+	to complete
+		has "ScS Coventry 3a2: done"
+		has "ScS coventry pilot"
+
+mission "ScS Coventry 3a1"
+	landing
+	name "Identical Twins"
+	description "Go to <destination> to meet the rescue and decoy ships, and escort them to Hephaestus."
+	source Amazon
+	destination Ada
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Coventry 2: done"
+
+mission "ScS Coventry 3a2"
+	landing
+	name "Identical Twins"
+	description "Escort the decoy and rescue ships to <destination>."
+	source Ada
+	destination Hephaestus
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Coventry 3a1: done"
+	on offer
+		conversation
+			`On <origin> you are introduced to the two transports for the operation. They are two Star Queen liners, on the outside almost identical, down to patterns of dirt on the hull and 'mistakes' in the painting. Inside one is a usual transport; the other is full of exotic plants and the cockpit is adjusted to allow simple flight with one person. You wonder what further modifications the team on Hephaestus will make.`
+				accept
+	on complete
+		conversation
+			branch sophieschoice
+				has "ScS sophie's sacrifice"
+			`You don't actually get to see the engineering team on <planet>, but Janet is there to meet you.`
+			`	"We'll take it from here, Captain. You just go and get yourself painted up in pirate colours, and give !$%@ Downey the show he expects."`
+				accept
+			label sophieschoice
+			`You don't actually get to see the engineering team on <planet>, but Janet is there to meet you. As is Sophie.`
+			`	"You don't have to do this," you say, your throat choking up.` 
+			`	"Captain," she replies calmly, "in war not every soldier can survive. You have your job to do and I have mine." She embraces you, then walks off to her ship. You go to yours, and brace yourself for the journey to Deadman's Cove.`
+	
+	npc accompany save
+		government "Independent"
+		personality timid escort
+		ship "Star Queen" "Great Saltan's Cruise"
+		ship "Star Queen" "Great Sultan's Cruise"
+
+mission "ScS Coventry 3b"
+	landing
+	name "Pirate Trap"
+	description "Find an evil, yet gullible, pirate on <destination>, and convince them to fly the decoy ship."
+	source Amazon
+	destination "Deadman's Cove"
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Coventry 2: done"
+		has "ScS Coventry 2b: done"
+		not "ScS robot sacrifice"
+	on complete
+		payment 40000
+		set "ScS coventry pilot"
+		conversation
+			`You land on <planet> and start looking around for a pirate.`
+			choice
+				`	"Hoi! I have a competition for a free ship!"`
+					goto competition
+				`	(post something on the job board)`
+					goto jobboard
+				`	(ask a slave for information)`
+					goto slave
+			label competition
+			`	That gets attention. Soon you have a crowd of eager captains, some who look just as eager to do you mischief if you don't come up with something.`
+			`	"Okay, okay, whoa there," you say. "This isn't just any old raffle. You can't get a free STAR QUEEN that easily." You see them get all the more eager, and agitated. "What I need is a line, an orderly queue, and one by one I'll interview you. Those who pass get to try the competition." You grab yourself an empty room and imagine, in your innocent mind, that the crowded rabble outside are an orderly queue, and the handfuls that push in are 'one by one'.`
+				goto interview
+			label jobboard
+			`	You post an ad, "Stunt pilot needed for slave-smuggling operation." That ought to weed out the good folks. You find an empty room and invite applicants to interview in there.`
+				goto interview
+			label slave
+			`	You look round the back of the spaceport until you find a slave market, and talk to one of the slaves, pretending you're sizing up his muscles. "A real hero," he says, "would come back and free all the slaves." But he's glad to give you the names of a few of the worst pirate captains he knows, including his own slaver. You seek them out and invite them to a "secret interview to receive a stolen ship."`
+			label interview
+			`	You quiz the applicants about their greatest exploits, and choose the one who boasts of the biggest, baddest, slave trading, theft, murder and whatnot else. Rather than pay him money for the service, you demand <payment>, and brief him on the operation, leaving out the true reason, and the fact you'll kill him straight afterwards. You tell him the ship is his to keep, as long as he lives.`
+			branch quick
+				has "ScS Coventry 3a2: done"
+			`	He'll meet the team on Hephaestus, and you'd better make sure the ships get there from Ada.`
+				accept
+			label quick
+			`	"You tell him to get quickly to Hephaestus, and you start getting your ship ready for your part."`
+
+mission "ScS Coventry 3c"
+	landing
+	name "Robots are cheaper than life"
+	description "Pick up automation tech from <stopovers>, and take it to <destination> to be fitted into the decoy ship."
+	source Amazon
+	stopover Hermes
+	destination Hephaestus
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Coventry 2: done"
+		has "ScS Coventry 2c: done"
+		not "ScS pirate sacrifice"
+	on stopover
+		conversation
+			`The automation kit is waiting for you on Hermes as Arnold promised. "Be careful with this," says the man who hands it to you. "It's an upgrade from the usual automation, designed to be a bit less obvious to anyone watching. The people I... borrowed it from, won't mind if it's blown up, but will mind if it falls into the wrong hands."`
+	on complete
+		set "ScS coventry pilot"
+		dialog `You hand the pre-programmed automation kit over to the engineering team on Hephaestus.`
+
+mission "ScS Coventry 4"
+	landing
+	name "A Show of Force"
+	description "Destroy the decoy ship in the Mirach system so the group of fugitive scientists can escape without Downey knowing."
+	source "Deadman's Cove"
+	destination "Deadman's Cove"
+	clearance
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Coventry 3: done"
+	on offer
+		event "ScS pirate colours"
+		conversation
+			`When you land, you get the message from Downey.`
+			`	"Are you on Deadman's Cove, Captain? Get your arse there quickly and repaint. The Problems will be taking off from Placer in just a few days. Put an end to them before they can leave the Mirach system, then fly back and change your colours back.`
+			`	"Don't fail me, or your head will be on the block."`
+			`	You're already there, so you paint up your ship with the cheapest, least durable paint you can find, and head out to fight.`
+				accept
+	
+	npc kill
+		government "Independent (Killable)"
+		system Mirach
+		personality heroic staying target
+		ship "Star Queen" "Great Sultan's Cruise"
+	on complete
+		event "ScS syndicate colours"
+
+event "ScS pirate colours"
+	government "Escort"
+		swizzle 6
+event "ScS syndicate colours" 
+	government "Escort"
+		swizzle 4
+
+mission "ScS Coventry 5a"
+	landing
+	name "What's the Secret"
+	description "Go to meet the fugitive scientists on <destination>, and keep a bunk free to bring Mary-Jane back to Amazon afterward."
+	source "Deadman's Cove"
+	destination Shiver
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Coventry 4: done"
+	on offer
+		payment 2000000
+		conversation
+			`When you land back on <origin>, and finish quickly re-painting your ship back to Syndicate colours, you have two messages waiting for you.`
+			`	One is from Benjamin Downey, who congratulates you on removing the 'problem', and sends you a 'small well-done' - which turns out to be two million credits. He also tells you he'll have work for you soon, so don't stray too far.`
+			`	The other is from Mary-Jane, who asks you to come to <planet> where she will meet with the fugitive scientists to see what they know. "Please keep a bunk spare for me," she adds, "to come back to Amazon."`
+				accept
+
+mission "ScS Coventry 5b"
+	landing
+	name "What's the Secret"
+	description "Bring Mary-Jane back to <destination>."
+	source Shiver
+	destination Amazon
+	on fail
+		dialog phrase failure
+	passengers 1
+	blocked `Don't forget to have space for Mary-Jane for the return journey!`
+	on visit
+		dialog `Did you leave Mary-Jane behind on an escort? Let her catch up, there's a good captain.`
+	to offer
+		has "ScS Coventry 5a: done"
+	on offer
+		log `Saved the fugitives, but fooled Downey by blowing up a decoy ship! The fugitives had interesting information on a plot within the Syndicate, which we can now act on.`
+		conversation
+			`You land on <origin> some distance away from the spaceport, next to the fugitives' ship. "Captain <last>!" they say as you land, "our hero! And would-be murderer." The scientist grins.`
+			`	"I dunno," you say with a wink, "you're just so sneaky I couldn't catch you. So, what did Downey not want you to reveal, anyway?"`
+			`	"Lots of things. Your friend here," meaning Mary-Jane, "has been writing notes for two hours. As for us, we're going all the way down to Winter, in the far South, where we've been offered positions at the new Free Worlds conservatory there, about as far away as we can get from the Syndicate. We don't want any more to do with this, but I wish you the best in whatever you can make of it." They all thank you again, and Mary-Jane, and head on their way.`
+			``
+			`	"Well, you can't blame them for being agitated," says Mary-Jane after they've left. Attempts on their lives, hints of some massive plot within the Syndicate, and, see here," she points to something in her notes, "a plan to catch two  more would-be escapees. It seems like these two are deeper in the big plot, too.`
+			choice
+				`	"Do we have to feign death for them too?"`
+				`	"What were they doing?"`
+			`	"First we have to find them. All we know is in bits and pieces. The Amazons and I will start digging, and with luck, Downey will reveal something to you. For now, can you take me back to Amazon?"`
+				accept
+
+mission "ScS Extreme Flight 0"
+	landing
+	name "Runaways"
+	description "See what Downey, on <destination>, wants you to do about more fugitives."
+	source Amazon
+	destination "Shangri-La"
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Coventry 5b: done"
+	on offer
+		conversation
+			`You drop Mary-Jane off on Amazon, and take some time strolling around the spaceport. After a while, you get a message from Downey. "Captain <last>, come back and meet me in my office. We have more miscreants to catch." It's short, but you guess these are the two escapees the scientists had ideas about. Your chance has come.`
+				accept
+
+mission "ScS Extreme Flight 1"
+	landing
+	name "Runaways"
+	description "Confront a runaway on <destination>, and decide what to do with him. On the way, stop over on <stopovers> to discuss with Mary-Jane."
+	source "Shangri-La"
+	destination Stormhold
+	clearance
+	infiltrating
+	stopover Foundry
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Extreme Flight 0: done"
+	on offer
+		conversation
+			`Up the many elevators and corridors, you come face to face again with Benjamin Downey. You feel a little bit nervous, both at his willingness to kill people who cross him, and that you crossed him and he doesn't seem to know yet.`
+			`	"Captain <last>, my problem solver. Come in. It seems we have more problems to trouble us, people who have done bad things and want to run away from them. First is a man, Peterson. He's been up to his neck in nasty business-" like ordering the murder of a shipload of civilians? you think to yourself "-and walking away from responsibility. He's run away from his home and office, but didn't know we were tracking his ship. Now he's holed up on <planet>, run out of money and regretting his choices."`
+			`	Downey hands you some coordinates. "Go there and confront him, and bring him back. He's a coward, so he won't give you any trouble."`
+			`	"Yes, Sir!" you say, and leave on your errand. You also message Mary-Jane to let her know something's afoot, and ask her to meet you on Foundry en route.`
+				accept
+	on stopover
+		conversation
+			`You meet up with Mary-Jane in a quiet office, rented for the day. "Downey sent me after the first fugitive, Peterson," you say. "He's hiding on <planet> but we know his location."`
+			`	"Did Downey say why he's wanted?" asks Mary-Jane.`
+			`	"Said he's running from responsibility, but no more."`
+			`	"Okay, the rabbit hole runs deep." She sits back in her chair, but talks very softly: "There's a group within the Syndicate, this is what we've been finding out. And your Benjamin Downey is one of them. They're willing to go above and beyond the rules for economic success - and not just for themselves, or they'd tear each other apart, but for the whole Syndicate. We think this Peterson is one of them too. He was on Nimbus, close with one of the top executives, and last our sources knew, he was making his superiors worried at the things he said, questioning their decisions."`
+			`	"So, we help him escape instead, and say he died running."`
+			`	"Do we?" she says. "He's still been part of this extremist faction and whatever they're doing. He should answer to justice."`
+			`	"But we can't just bring him back to Downey," you say. "And maybe he's turned over a new leaf. Didn't know what he was getting into until too late, and only now plucked up the courage to get out."`
+			`	"It's up to you," says Mary-Jane, "you're the one with his fate in your hands. Hear him out first. But if you want to bring him to justice, take him back here to Foundry. I'll tip off Syndicate security - on your signal - as well as a public officer. If they arrest him together, you can't be blamed, and they can't hide it. It's a start, anyway. For justice."`
+	on visit
+		dialog `Did you forget to check in with Mary-Jane on your way? She's waiting for you on <stopovers>.`
+	on complete
+		conversation
+			`You avoid the pirate port, and fly to the coordinates Downey gave you. There you see an Arrow with a gaping hole in the side. You shout through your loudspeakers, "Peterson. Peterson, come out with your hands up." Not like he can shoot the <ship> out of the sky with a handgun anyway, but it's the form of it that matters.`
+			`	He comes out trembling, and you land nearby and walk over to meet him, gun at the ready.`
+			`	"Don't kill me," he says. "Please, I haven't done anything wrong!"`
+			`	"Haven't you?" you ask.`
+			`	"No! Well... no?" He crouches down and holds his head in his hands away from you, expecting you to shoot. When you don't, gradually he turns back to you and asks again, "please don't shoot."`
+			`	"Why would I shoot you?" you ask. "What reason should I have to kill you?"`
+			`	He looks at you funny. "Soylent didn't send you after me to kill me?"`
+			`	"I don't even know who that is. Why don't you tell me your story."`
+			`	You take him on board your ship, sit him down, and tell him to talk. Trembling, not knowing who you are or who you represent, he starts telling you how he worked for evil men, and planned evil things with them. Finally it got too much, and he wanted to leave, but they wouldn't let him. "And I fled here, but a pirate took a chunk out of my ship as I tried to land, and now I'm stuck. You're not a pirate, are you? Please, you have to help me. You have to understand it was all for the good of everyone!"`
+			`	"Even the people you killed? Even the people you made suffer?"`
+			`	"I never killed anyone!" he protests. "But, you're right, because of what I did many people did suffer. Maybe even died. But- I got pushed into it. I never MEANT to do evil."`
+			`	"You never MEANT to do evil. Oh, well, that makes it all fine, doesn't it?"`
+			`	He sighs. "I don't know what that makes me. Will you help me? I just want to put it behind me and start a new life. I swear I'll never be trouble to anybody again."`
+			choice
+				`	"You can't run away, you need to face justice."`
+					goto justice
+				`	"Okay, I'll help you leave it all behind."`
+			`	"Really! You mean it?"`
+			choice
+				`	"Yes, everyone deserves a second chance."`
+					goto escape
+				`	"I changed my mind. You need to face justice."`
+			label justice
+			`	"No! Please! They'll kill me!"`
+			choice
+				`	"You did evil with the Syndicate, now you need to face the justice of the Syndicate."`
+				`	"Okay, but you'd really better be good from now on."`
+					goto escape
+			action
+				set "ScS peterson justice"
+			`	Peterson starts whimpering again, but you ignore his crocodile tears and prepare him a bunk. Hopefully, the proper Syndicate authorities will be merciful and fair in their pursuit of justice, even if Peterson wasn't in his pursuit of success.`
+				accept
+		
+			label escape
+			`	"Now where do you want to go?" you ask.`
+			`	Relief washes over his whole body. Perhaps for the first time in his career, he's not at the mercy of wicked men.`
+			`	"How far North can you take me?"`
+			branch haihai
+				has "First Contact: Hai: offered"
+			action
+				set "ScS peterson north"
+			`	"You mean like Farpoint? But that's a Navy base. You'll never be safe there."`
+			`	"Yes, yes, it'll be fine, I'll make it work."`
+			`	"How about Skillet," you say. "It's just as remote, and very civilian."`
+			`	"Perfect," he says. "I'll start my new life there, growing corn and raising cattle. I have just enough money to buy some parsnip seeds and make a new start of things. And pay you - not much, I'm afraid."`
+			`	"Don't worry about that," you say. "The Syndicate is still paying me, and they don't have to know I took you away instead of chasing you. I'll say you died in a daring escape."`
+			`	"Thank you. Thank you, thank you thank you.`
+				accept
+			label haihai
+			action
+				set "ScS peterson hai"
+			`	"Like, really North? Through the wormhole?"`
+			`	"Yes! You know of the Hai?! That's exactly where I want to go. It's the perfect place for a new start. Can you take me to Allhome?"`
+			`	"That sounds like a good idea," you say, thinking to yourself that not only can no one do mischief to him in Hai space, he can't do much mischief to anyone either.`
+
+mission "ScS Extreme Flight 2a"
+	landing
+	name "Justice served"
+	description "Take Peterson, the ex-member of the Syndicate extremist faction, to <destination> to face public justice."
+	source Stormhold
+	destination Foundry
+	passengers 1
+	blocked `You don't seem to have space for Peterson on your ship. You'll need to free up or expand a passenger berth, then land here again to pick him up.`
+	on visit
+		dialog `You've reached <planet>,  but seem to have left Peterson behind. Better take off and wait for him to catch up.`
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Extreme Flight 1: done"
+		not "ScS peterson north"
+		not "ScS peterson hai"
+	on offer
+		conversation
+			`Peterson settles reluctantly in his berth to await his fate.`
+				accept
+	on complete
+		log `Caught an escaping Syndicate extremist and turned him in to face justice.`
+		payment 500000
+		conversation
+			`As you land on <planet>, an imposing figure waits next to the landing pad with five policemen and three men in a sort of uniform but no insignia. You have to prod Peterson to get him moving, and the moment he steps off the ship he's arrested by the crowd.`
+			`	The leading figure comes to you and hands you a credit chip for <payment>. "Captain, you have done well today. Keep quiet about this and don't spread word anywhere about the fugitive. This trouble concerns the whole Syndicate, and we must handle it delicately."`
+			choice
+				`	"Yes, Sir."`
+					goto whois
+				`	"This man should be tried publicly and fairly."`
+			`	"I assure you that will happen - once a full and proper investigation has been conducted. Don't touble yourself about these matters, it is in our hands now."`
+			label whois
+			`	He walks away, and you notice he had no ID tag or anything, but from the way everyone acted with deference near him, he must have been someone highly important.`
+			`	You look at the back of the credit chip he gave you, and there's a small business card tucked there too: "Alistair Korban, Syndicate CEO"`
+			`	That should cover your back when you report to Downey. Perhaps you ought to check in with Mary-Jane on Amazon too.`
+
+mission "ScS Extreme Flight 2b"
+	landing
+	name "Flight to the North"
+	description "Take Peterson to <destination> where he can start a new life as a farmer."
+	source Stormhold
+	destination Skillet
+	passengers 1
+	blocked `You don't seem to have space for Peterson on your ship. You'll need to free up or expand a passenger berth, then land here again to pick him up.`
+	on visit
+		dialog `You've reached <planet>,  but seem to have left Peterson behind. Better take off and wait for him to catch up.`
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Extreme Flight 1: done"
+		not "ScS peterson justice"
+		not "ScS peterson hai"
+	on offer
+		conversation
+			`Peterson grabs his few belongings, and settles in for the journey to the North. He points out there's two ways you could go. "The quickest way is through the uninhabited systems to the North, but if you don't have a ramscoop, you might need to take the long way round."`
+				accept
+	on complete
+		log `Took a repentant Syndicate extremist to the galactic North-West, far away from the Syndicate, where he can start a new life and leave his evil behind.`
+		payment 20000
+		conversation
+			`Peterson steps off and hands you <payment>. "I'm sorry it's so little," he says. "I lost everything I have!"`
+			`	"Except your life," you say. "You can be grateful for that."`
+			`	"I am! I am!" he replies, and leaves to start a new life of peace and, you hope, goodwill to all. As for you, you'd better get back to Downey and tell him of your epic chase through the skies, and the eventual destruction of Peterson ...from a certain point of view.`
+			`	Perhaps you ought to check in with Mary-Jane on Amazon too.`
+
+mission "ScS Extreme Flight 2c"
+	landing
+	name "Flight to the Hai"
+	description "Take Peterson to the Hai, to <destination>, where he can start a new life."
+	source Stormhold
+	destination Allhome
+	passengers 1
+	blocked `You don't seem to have space for Peterson on your ship. You'll need to free up or expand a passenger berth, then land here again to pick him up.`
+	on visit
+		dialog `You've reached <planet>,  but seem to have left Peterson behind. Better take off and wait for him to catch up.`
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Extreme Flight 1: done"
+		not "ScS peterson justice"
+		not "ScS peterson north"
+	on offer
+		conversation
+			`Peterson grabs his few belongings, and settles in for the journey to the Hai world.`
+				accept
+	on complete
+		log `Took a repentant Syndicate extremist to Hai space where he can start a new life and leave his evil behind.`
+		payment 30000
+		conversation
+			`Peterson steps off and hands you <payment>. "I'm sorry it's so little," he says. "I lost everything I have!"`
+			`	"Except your life," you say. "You can be grateful for that."`
+			`	"I am! I am!" he replies, and leaves to start a new life of peace and, you hope, goodwill to all. As for you, you'd better get back to Downey and tell him of your epic chase through the skies, and the eventual destruction of Peterson ...from a certain point of view.`
+			`	Perhaps you ought to check in with Mary-Jane on Amazon too.`
+
+mission "ScS Extreme Flight 3"
+	landing
+	name "Report back to Downey"
+	description "Report back to Downey on <destination>, and tell him what happened to Peterson."
+	source
+		planet Allhome Skillet Foundry
+	destination "Shangri-La"
+	stopover Amazon
+	on fail
+		dialog phrase failure
+	to offer
+		or
+			has "ScS Extreme Flight 2a: done"
+			has "ScS Extreme Flight 2b: done"
+			has "ScS Extreme Flight 2c: done"
+	on visit
+		dialog `You should probably go to see Mary-Jane on Amazon first, before seeing Downey. It sounded pretty important.`
+	on enter
+		system
+			near Polaris 5
+		dialog `You receive a message from Mary-Jane: "<first>, please come to see us on Amazon before reporting back to Downey. This is serious."`
+	on stopover
+		conversation
+			`You make your way to the Amazons' office to see what the fuss is about.`
+			`	"Captain <last>." Mary-Jane gets started as soon as you get in. "Take a seat, you'll need it."`
+			choice
+				`	(sit down)`
+				`	"Thank you, I prefer to stand."`
+			`	"Captain, do you remember the terrorist attacks that started the war?"`
+			`	"The ones by the so-called Free Worlds?" you say. "Who could forget them."`
+			`	"Yes. Only they weren't."`
+			`	"...What?"`
+			`	"They weren't done by the Free Worlds."`
+			`	You stand speechless for a moment.`
+			choice
+				`	"But they were found! On Deep!"`
+					goto us
+				`	"I knew it all along."`
+			`	"Some meddling pirate who took advantage of the war," you say.`
+			label us
+			`	"No," she replies, lowering her voice. "It was the Syndicate. It was us."`
+			``
+			`	"You mean, US, us, or...?"`
+			`	"I mean us, the Syndicate. The extreme faction among the leaders, where 'profit before lives' reaches its triumphant zenith. We think Peterson was involved."`
+			`	"The scoundrel," you say. "He told me no one died because of him."`
+			`	"Maybe he didn't know."`
+			`	"Or maybe he was just lying to save his cowardly skin.`
+			`	"But how?" you continue. "And why?"`
+			`	"As to why, do you look at Downey and think, here is a man who values human life? And have you heard the chorus of Syndicate bosses, bleating, 'profits are up! The galaxy is saved!' As to how - we don't know yet. But there is one who might: the second escapee. He's a scientist, involved in the nuclear bomb development. He must know."`
+			choice
+				`	"Then we have to catch him! And bring him to justice!"`
+					goto justice
+				`	"Can he prove it?"`
+			`	"We think so. There's signs he's been gathering evidence for weeks now - that's how we know. That's how the Syndicate knows, too, but this time we're ahead of them. They're not sure it's him, but they're getting close. And when they get there, you can be sure they'll strike.`
+			`	"But you see, Captain, we're not sure his getting out with proof is the best thing."`
+				goto best
+			label justice
+			`	"Maybe, maybe not. If he escapes, with proof, it will show that the Free Worlds are innocent, and could end this war."`
+			label best
+			`	"So," you say, "on the one hand he could prove to the galaxy the Syndicate did it, and maybe stop the war. On the other, we bring him to justice ourselves within the Syndicate."`
+			`	"Exactly," she says.`
+			choice
+				`	"It could mean war against us."`
+					goto warhere
+				`	"We have to expose this, for justice."`
+			`	You continue. "Think of all the people who have died fighting a war they didn't want. Think of the people blamed for a heinous act of terrorism they never committed. We can't hide this, and if this scientist can get the truth out, we should help him."`
+			`	Your speech raises cheers around the table, but Mary-Jane gives a note of warning.`
+			`	"But," she says, "the Rebpublic Navy may turn their guns on the Syndicate, and many people here, just as innocent, will die. If we can round up all the extremists ourselves, and hand them, neatly packaged, to the Republic government, we can end this with peace, and keep the right to govern ourselves."`
+			choice
+				`	"No. The galaxy deserves to know. Anything less is joining hands with evil."`
+					goto savehim
+				`	"You're right. We should stop him and solve this within the Syndicate."`
+					goto stophim
+			label warhere
+			`	You explain. "See, parliament will come after the Syndciate for reparations. And the Free Worlds will hunt us down like tigers - which they have every right to do, except it means more death, more suffering. Without our intervention, the Free Worlds and Repbulic must come to a truce soon enough. And we will round up the extremists, purge them, and try them in our courts where they belong. The old leadership will quail. A new, righeous leadership will arise, one that values human life right down to the poorist and least able! And at last, with the true terrorists exposed and tried, we hand them over to the Republic government and make peace for the galaxy!"`
+			`	As you speak, the circle of Amazons rises to your rally, and lets out whoops and cheers! A few, though, remain sombre.`
+			`	"Captain," one speaks up. "After causing war and bombing cities, after profiting from the deaths of millions, do you think the Syndicate deserves to try its own? Should we not let those who have suffered most, decide? since we have the chance?"`
+			choice
+				`	"No, we have to solve this ourselves. Take responsibility with action."`
+					goto stophim
+				`	"...You're right. They deserve to know. We will help the defector escape."`
+					goto savehim
+			label stophim
+			`	A lady from the back of the table, if there is a back, speaks up, and surprises everyone. She looks you in the eyes, and says, "Captain <first> <last>. This should be your decision, but today it is not. If you take this path, we cannot help you. Another day, another future, we could, but today your path is set against your will. That is the way, sometimes."`
+			choice
+				`	"I understand. Then we will help the escapee."`
+			label savehim
+			`	"In which case," says Mary-Jane, "we have a daring plan of which you will be one part. You will need to save two tons of cargo space and one passenger berth, and after you report back to Downey about Peterson, you will set out on this plan.`
+			`	"Stall Downey if you can. If he's on to the defector, try to make him look elsewhere. Then, regardless, you must go to Antipode. In a corner of the spaceport, well out of sight, the defector hid a large packet of evidence which you must pick up.`
+			`	"So much for the easy part. Your quarry is escaping from Hippocrates, but before Downey and the other conspirators can send assassins or captors after him, we will shoot down his ship. For a moment, it will be disabled. At that point you, an innocent passer-by, must 'rescue' it - and bring the defector on board your ship. Fly him immediately and without landing to Alderamin, where you will rescue another disabled ship, depositing the defector and his precious cargo so he can escape. Finally, land and wait for our instructions. Do not go back to Downey straight away, because if anything becomes known, your life may be in danger.`
+			`	"Godspeed, Captain."`
+			``
+			`	And with that, your meeting is concluded, and you head back to report to Downey about Peterson... and brace yourself for this last, great climax of escapes. Who knows what it will bring.`
+
+mission "ScS Extreme Flight 4a"
+	landing
+	name "The Burden of Proof"
+	description "Collect Sawyer's hidden evidence cache from <destination>, to bring him as he escapes."
+	source "Shangri-La"
+	destination Antipode
+	passengers 1
+	cargo "Reserved for Evidence" 2
+	blocked `You will need a bunk free, and two tons of cargo space.`
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Extreme Flight 3: done"
+	on visit
+		dialog `You might need to let your escorts catch up.`
+	on offer
+		log `Decided to help Sawyer, a scientist mixed up with the terrorist bombing, escape the Syndicate and tell his testimony to the galaxy. This could change a lot of things, very fast...`
+		conversation
+			`When you reach Downey's office, he's not in a good mood.`
+			branch arrested
+				has "ScS Extreme Flight 2a: done"
+	
+			action
+				payment 1000000
+			`	"Where is Peterson!" he demands. "What happened?!"`
+			choice
+				`	"I had no choice. He fled and I destroyed his ship."`
+					goto dead
+				`	"Upon the winds of the stars, I berthed my ship...`
+			`"...She heaved, and sank, and swelled, on the waves of time,`
+			`"Which sped me onward to my quarry.`
+			`"So great was my haste, the vessels of lesser men`
+			`"Did lie to at my passing, and, winking in the Sun,`
+			`"Bid me ever forward.`
+			`	"Through my glass! I spied my prey,`
+			`"The one who would, without delay, go out, to flee`
+			`"From bitter tears and shadows at his back- but see,`
+			`"My own reached out its arms in swift embrace`
+			`"And shook his light and smothered his ambition,`
+			`"Till at last he stopped.`
+			`	"We met! O, happy hour, O hour of fear.`
+			`"We clashed, we brandished words,`
+			`"And thoughts, and arms, and means forsook the lesser man`
+			`"At last and vict'ry seemed within my grasp:`
+			`"But fate, betwixt, did stretch her feathered wings`
+			`"And shook the ground, and though my quarry did forego`
+			`"The comforts of my berth, at last he slept,`
+			`"And ne'er more will grace the sunny skies,`
+			`"'Neath which we sleep."`
+			``
+			`	Downey pauses, trying to take in all that you said.`
+			label dead
+			`	"He is dead, then."`
+			`	"The man, Peterson," you reply, "has ceased to be."`
+			`	"Very well, then, that's as good as we can expect." Downey hands you another large bounty, a million credits, shuffles some files around his desk, and turns to new business.`
+				goto next
+	
+			label arrested
+			action
+				payment 200000
+			`	"What happened!" he demands. "You were supposed to deliver Peterson to me, not to some trumped-up fool who thinks he can meddle in somebody else's business!"`
+			choice
+				`	"I'm sorry, they arrested him when I landed.`
+				`	"That 'trumped-up fool', is CEO of the Syndicate.`
+			`	"There was nothing I could do," you continue. "Uniformed police, and secret police, and CEO Korban himself showed up on the landing pad. If I fled, I would bring more trouble to your head."`
+			`	"I know," says Downey. "Even so-" he picks a few credit chips out of a stack on his desk, "-you should be more careful. The biggest rewards are for reliable players." He hands you them: 200,000 credits.`
+	
+			label next
+			choice
+				`	"So what's next?"`
+			`	"Must we wait again?" you ask hopefully.`
+			`	"No." Downey's face clouds as he picks out a file and looks over it. He turns it towards you and opens it on a photo of a man you think you recognise. Long ago, when you first started flying, you took a scientist named Sawyer to the almost-abandoned world of Mutiny.`
+			`	He continues. "This man, Sawyer, was one of our allies. A physicist, and an asset to those who love their galaxy and seek prosperity. But now he has abandoned reason!" Downey's countenance, if it can, gets still darker. "His pockets are lies, and his mind is treason! He is hiding, but-" there's a pause, and Downey speaks quietly, "we will find him.`
+			`	"As for you," he snaps back to focus. "Go to Delta Capricorni and wait. Wait for my signal, and we will catch him as he flees. The fly will not escape the spider, no, nor the sly fox the hounds. Go! Go and be ready. If you fail, we all fall - and you will fall with us."` 
+			`	You leave to ready your ship: not, as Downey expects, to catch a traitor - but to deliver him to freedom. First stop: the cache of evidence on <planet>.`
+				accept
+
+mission "ScS Extreme Flight 4b"
+	landing
+	name "Escape!"
+	description "Assist a disabled transport in the Alnair system and let Sawyer slip aboard your ship. Take him straight to Alderamin and assist another disabled ship - onto which Sawyer will slip aboard with the evidence and escape to reveal it to the galaxy."
+	source Antipode
+	destination Furnace
+	passengers 1
+	cargo "Reserved for Evidence" 2
+	blocked `You need a bunk free, and two tons of cargo space.`
+	on fail
+		dialog phrase failure
+	to offer
+		has "ScS Extreme Flight 4a: done"
+	on offer
+		event "albatross joins free worlds"
+		conversation
+			`You look around for Sawyer's secret evidence cache, and wish Mary-Jane had given you more specific directions. Along this corridor... in a room looking like this... is not excatly X marks the spot. At last you find it, in a small cubicle down some stairs and behind a big painting. You pay some dockworkers a little extra to bring it to your ship, and set out on the next stage of the plan:`
+			`	Pick up Sawyer from a disabled ship in Alnair, and let him off on another in Alderamin. Make sure it's in that order! And not to land with Sawyer on board, or he could be caught.`
+				accept
+	
+	on enter Alnair
+		dialog `You see Sawyer's ship, the Tom's Adventure, waiting for you in the distance. Pick him up quickly, but first make sure you have enough fuel to jump to Alderamin without landing.`
+	on enter Alderamin
+		dialog `You see the escape ship, Fleet Finn, waiting for you in the distance. Make sure you've picked up Sawyer from Alnair first, or this could go terribly wrong!`
+	
+	npc assist
+		government "Merchant"
+		system Alnair
+		personality timid marked target derelict uninterested
+		ship "Shuttle" "Tom's Adventure"
+		conversation
+			action
+				set "ScS sawyer on board"
+				fail "ScS Extreme Flight hint"
+			`As you board Tom's Adventure to assist it, a single, bespectacled passenger slips aboard your ship. You shut the doors and pretend nothing happened.`
+	npc assist save
+		government "Sawyer Escape"
+		system Alderamin
+		personality timid marked target derelict uninterested fleeing
+		ship "Bounder" "Fleet Finn"
+		conversation
+			branch wrongorder
+				not "ScS sawyer on board"
+			action
+				clear "ScS sawyer on board"
+			`You dock with the Fleet Finn and help Sawyer drag his evidence on board. Working as quick as you can, you get him settled in, and wish him well. Both of you are nervous, but with a good head start on Syndicate leadership, you think he should make it to safety. Now it's time to land, and see what happens...`
+				accept
+			label wrongorder
+			`You board the Fleet Finn, but you didn't yet pick up Sawyer. Seeing a Syndicate patrol ship fly close, you panic, and try to leave, but without a pilot the Fleet Finn becomes unstable. As you unlatch, your docking claws rip a gash in the hull... not good. Not good.`
+				flee
+	npc save
+		government "Syndicate"
+		system Alderamin
+		personality timid uninterested staying
+		ship "Vanguard" "Feathers McGraw"
+
+mission "ScS Extreme Flight caught"
+	landing
+	invisible
+	source
+		government "Syndicate"
+	to offer
+		has "ScS sawyer on board"
+		has "ScS Extreme Flight 4b: active"
+	on offer
+		fail "ScS Extreme Flight 4b"
+		fail "ScS Extreme Flight hint"
+		conversation
+			`When you land the <ship>, an officer comes up to you, backed by half a dozen guards.`
+			`	"Captain, we are in a state of heightened security, regarding the matter of a missing person. Please allow us to search your ship."`
+			choice
+				`	(run away)`
+				`	"Go ahead. These are not the passengers you're looking for."`
+					goto jedi
+			`	As you run, one of the guards opens fire. Wow, life is so cruel sometimes. At least you don't have to suffer it any more.`
+				die
+			label jedi
+			`	Unfortunately for you, it seems they were the passengers they were looking for. The official finds Sawyer and arrests him, and so ends your story of heroism.`
+				decline
+
+mission "ScS Extreme Flight hint"
+	landing
+	name "Sawyer's Ship"
+	description "Hint: Sawyer's ship will be in the <system> system."
+	source Antipode
+	destination Hippocrates
+	to offer
+		has "ScS Extreme Flight 4a: done"
