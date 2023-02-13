@@ -56,6 +56,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 	// Drones are always unpiloted, so they never respond to hails.
 	bool isMute = ship->GetPersonality().IsMute() || (ship->Attributes().Category() == "Drone");
 	hasLanguage = !isMute && (gov->Language().empty() || player.Conditions().Get("language: " + gov->Language()));
+	canAssistPlayer = !ship->CanBeCarried();
 
 	if(isMute)
 		message = "(There is no response to your hail.)";
@@ -77,13 +78,13 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 		if(flagship->NeedsFuel(false))
 		{
 			playerNeedsHelp = true;
-			canGiveFuel = ship->CanRefuel(*flagship);
+			canGiveFuel = ship->CanRefuel(*flagship) && canAssistPlayer;
 		}
 		// Check if the player is disabled.
 		if(flagship->IsDisabled())
 		{
 			playerNeedsHelp = true;
-			canRepair = true;
+			canRepair = canAssistPlayer;
 		}
 
 		if(ship->GetPersonality().IsSurveillance())
@@ -105,6 +106,8 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 			else if(canRepair)
 				message += "patch you up?";
 		}
+		else if(playerNeedsHelp && !canAssistPlayer)
+			message = "Sorry, my ship is too small to have the right equipment to assist you.";
 	}
 
 	if(message.empty())
@@ -253,15 +256,13 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			message = planet->DemandTribute(player);
 		return true;
 	}
-	else if(key == 'h' && hasLanguage && ship)
+	else if(key == 'h' && hasLanguage && ship && canAssistPlayer)
 	{
 		if(shipIsEnemy || ship->IsDisabled())
 			return false;
 		if(playerNeedsHelp)
 		{
-			if(ship->CanBeCarried())
-				message = "Sorry, my ship is too small to have the right equipment to assist you.";
-			else if(ship->GetPersonality().IsSurveillance())
+			if(ship->GetPersonality().IsSurveillance())
 				message = "Sorry, I'm too busy to help you right now.";
 			else if(canGiveFuel || canRepair)
 			{
