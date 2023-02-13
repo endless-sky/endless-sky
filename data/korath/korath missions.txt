@@ -529,7 +529,7 @@ mission "Korath [F02]: A Fishy Deal"
 	on complete
 		# This is essentially a reputation reset for people who haven't been farming
 		# the Korath at all. Anyone else will have to do a lot of assistance jobs.
-		"reputation: Korath" += 50
+		"reputation: Korath (Humanika)" += 50
 		payment 145000
 		conversation
 			`This time, you are directed to a different bunker city, on the other side of the planet from the main spaceport. The doors are considerably larger, and the bay is large enough to fit two dozen bulk freighters. You park near the far corner, close to one of the spaceport entrances, between a Behemoth and a Bactrian.`
