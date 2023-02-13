@@ -5439,7 +5439,7 @@ mission "Quicksilver Mixup [0]"
 			`	It's going to be close to his deadline, but it's possible.`
 				goto choice
 			label "can't make it in time"
-			`	How he expects you to deliver that package in three days is beyond you, seeing as Silver is not within three jumps of <origin>, but you might as well try and get there as soon as possible.`
+			`	How he expects you to deliver that package in three days is beyond you, seeing as <planet> is not within three jumps of <origin>, but you might as well try and get there as soon as possible.`
 			label choice
 			choice
 				`	(Deliver the package.)`
@@ -5473,7 +5473,7 @@ mission "Quicksilver Mixup [1]"
 			choice
 				`	"Is something wrong?"`
 					goto misdirected
-				`	(Insist that they send it.)`
+				`	"What do you mean? Surely you can."`
 			`	"Again, I'm sorry, but we can't send the package," they reiterate. "It's got an incorrect address.`
 			label misdirected
 			`	"This package is addressed to 2081 Amethyst Avenue, Mercury City, <origin>. Mercury City is <planet>'s capital. Y'know, that planet out east in Algol. Syndicate space. Not a place on <origin>. The package was posted to the wrong planet."`
