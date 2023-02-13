@@ -217,20 +217,6 @@ fleet "Korath Raid"
 		"Palavret (Blaze)"
 		"'olofez" 2
 
-fleet "Korath Humanika Raid"
-	government "Korath (Humanika)"
-	names "korath"
-	fighters "korath"
-	cargo 1
-	personality
-		disables plunders opportunistic harvests
-	variant 4
-		"Palavret"
-		"'olofez" 2
-	variant 1
-		"Palavret (Blaze)"
-		"'olofez" 2
-
 fleet "Kor Isaha Raid"
 	government "Kor Isaha"
 	names "korath"
@@ -298,17 +284,6 @@ fleet "Kor Alaji Raid"
 
 fleet "Korath Miners"
 	government "Korath"
-	names "korath"
-	fighters "korath"
-	cargo 0
-	personality
-		timid disables plunders frugal mining harvests
-	variant
-		"Rano'erek"
-		"'olofez (Digger)" 4
-
-fleet "Korath Humanika Miners"
-	government "Korath (Humanika)"
 	names "korath"
 	fighters "korath"
 	cargo 0
@@ -476,24 +451,6 @@ fleet "Korath Surveillance"
 
 fleet "Korath Large Raid"
 	government "Korath"
-	names "korath"
-	fighters "korath"
-	cargo 1
-	personality
-		disables plunders opportunistic harvests
-	variant 5
-		"Palavret" 2
-		"'olofez" 4
-	variant 5
-		"Palavret (Blaze)" 2
-		"'olofez" 4
-	variant 2
-		"Rano'erek"
-		"Palavret (Blaze)"
-		"'olofez" 6
-
-fleet "Korath Humanika Large Raid"
-	government "Korath (Humanika)"
 	names "korath"
 	fighters "korath"
 	cargo 1

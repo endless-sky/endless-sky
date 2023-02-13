@@ -529,7 +529,7 @@ mission "Korath [F02]: A Fishy Deal"
 	on complete
 		# This is essentially a reputation reset for people who haven't been farming
 		# the Korath at all. Anyone else will have to do a lot of assistance jobs.
-		"reputation: Korath (Humanika)" += 50
+		"reputation: Korath" += 50
 		payment 145000
 		conversation
 			`This time, you are directed to a different bunker city, on the other side of the planet from the main spaceport. The doors are considerably larger, and the bay is large enough to fit two dozen bulk freighters. You park near the far corner, close to one of the spaceport entrances, between a Behemoth and a Bactrian.`
@@ -542,3 +542,13 @@ mission "Korath [F02]: A Fishy Deal"
 
 			label done
 			`	"As promised, <payment>. Thank you for the prompt delivery, Captain <last>!"`
+
+mission "Korath: Assistance Warning"
+	assisting
+	invisible
+	source
+		government Korath
+	on offer
+		conversation
+			`Remembering the warning from New Tortuga, you realize you just made a terrible mistake. They told you that openly assisting the Korath will anger a great many people. If only you could go back and undo that mistake... but that's not how reality works. Perhaps destroying one of their ships would show people you're not on the side of the Korath?`
+				decline
