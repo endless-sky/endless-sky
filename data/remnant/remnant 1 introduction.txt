@@ -3022,7 +3022,7 @@ mission "Remnant: Face to Maw 2B"
 			label main
 			`	He leads you to a room that looks like an armory where a team of technicians is putting the finishing touches on a rifle stock. "The request from the technician on your behalf caught my attention, as we have not had the key resources for making Void Rifles in centuries. Fortunately, we have not really needed them since we resolved the threats that originally plagued our settlements.`
 			choice
-				`	"It's called a void rifle?"`
+				`	"It's called a 'Void Rifle'?"`
 				`	"I don't need details."`
 					goto end
 			`	"Yes, Void Rifle. I don't know who discovered it, but someone figured out that if a particularly high charge was poured through the tentacle's nervous system in a specific pattern, it emits a paralyzing cone of energy with a reasonably decent range. I'm neither an engineer or a biologist, so I do not really understand the mechanics of it." He pauses to watch as a technician installs the now-caged tentacle on top of the stock. "Suffice it to say, it is useless for sniping, but its ability to shoot through walls and affect areas makes it excellent for sweeping ships and building-to-building clearing operations.`
