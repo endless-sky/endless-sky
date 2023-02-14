@@ -117,7 +117,6 @@ string Format::MassString(double amount)
 
 
 // Creates a string similar to '<amount> tons of <cargo>'.
-// If there is no specified cargo, the created string is only '<amount> tons'.
 string Format::CargoString(double amount, const string &cargo)
 {
 	return MassString(amount) + " of " + cargo;

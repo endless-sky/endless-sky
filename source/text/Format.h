@@ -36,7 +36,6 @@ public:
 	// then attach the ' ton' or ' tons' suffix to it.
 	static std::string MassString(double amount);
 	// Creates a string similar to '<amount> tons of <cargo>'.
-	// If there is no specified cargo, the created string is only '<amount> tons'.
 	static std::string CargoString(double amount, const std::string &cargo);
 	// Convert a time in seconds to years/days/hours/minutes/seconds
 	static std::string PlayTime(double timeVal);
