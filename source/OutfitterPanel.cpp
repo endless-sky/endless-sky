@@ -534,8 +534,8 @@ void OutfitterPanel::FailBuy() const
 		double freeCargo = player.Cargo().Free();
 
 		GetUI()->Push(new Dialog("You cannot buy this outfit, because it takes up "
-			+ Format::MassString(mass, "mass") + ", and your fleet has "
-			+ Format::MassString(freeCargo, "cargo space") + " free."));
+			+ Format::CargoString(mass, "mass") + ", and your fleet has "
+			+ Format::CargoString(freeCargo, "cargo space") + " free."));
 		return;
 	}
 
@@ -545,7 +545,7 @@ void OutfitterPanel::FailBuy() const
 	if(outfitNeeded > outfitSpace)
 	{
 		GetUI()->Push(new Dialog("You cannot install this outfit, because it takes up "
-			+ Format::MassString(outfitNeeded, "outfit space") + ", and this ship has "
+			+ Format::CargoString(outfitNeeded, "outfit space") + ", and this ship has "
 			+ Format::MassString(outfitSpace) + " free."));
 		return;
 	}
@@ -556,7 +556,7 @@ void OutfitterPanel::FailBuy() const
 	{
 		GetUI()->Push(new Dialog("Only part of your ship's outfit capacity is usable for weapons. "
 			"You cannot install this outfit, because it takes up "
-			+ Format::MassString(weaponNeeded, "weapon space") + ", and this ship has "
+			+ Format::CargoString(weaponNeeded, "weapon space") + ", and this ship has "
 			+ Format::MassString(weaponSpace) + " free."));
 		return;
 	}
@@ -567,7 +567,7 @@ void OutfitterPanel::FailBuy() const
 	{
 		GetUI()->Push(new Dialog("Only part of your ship's outfit capacity is usable for engines. "
 			"You cannot install this outfit, because it takes up "
-			+ Format::MassString(engineNeeded, "engine space") + ", and this ship has "
+			+ Format::CargoString(engineNeeded, "engine space") + ", and this ship has "
 			+ Format::MassString(engineSpace) + " free."));
 		return;
 	}

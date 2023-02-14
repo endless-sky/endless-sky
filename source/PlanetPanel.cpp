@@ -346,7 +346,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 			}
 
 			if(missionCargoToSell > 0)
-				out << "cargo space to hold " << Format::MassString(missionCargoToSell, "your mission cargo") << ".";
+				out << "cargo space to hold " << Format::CargoString(missionCargoToSell, "your mission cargo") << ".";
 		}
 		// Warn about ships that won't travel with you.
 		else if(nonJumpCount > 0)
@@ -362,7 +362,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		else
 		{
 			out << "If you take off now you will have to sell ";
-			out << Format::MassString(cargoToSell, "cargo");
+			out << Format::CargoString(cargoToSell, "cargo");
 			out << " that you do not have space for.";
 		}
 		out << " Are you sure you want to continue?";

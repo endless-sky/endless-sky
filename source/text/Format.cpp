@@ -105,27 +105,28 @@ string Format::CreditString(int64_t value)
 
 
 
+// Writes the given number into a string,
+// then attach the ' ton' or ' tons' suffix to it.
+string Format::MassString(double amount)
+{
+	if(amount == 1)
+		return "1 ton";
+	return Format::Number(amount) + " tons";
+}
+
+
+
 // Creates a string similar to '<amount> tons of <cargo>'.
 // If there is no specified cargo, the created string is only '<amount> tons'.
-std::string Format::MassString(double amount, const std::string &cargo)
+string Format::CargoString(double amount, const string &cargo)
 {
-	string result = Number(amount);
-
-	if(amount == 1.)
-		result += " ton";
-	else
-		result += " tons";
-
-	if(!cargo.empty())
-		result += " of " + cargo;
-
-	return result;
+	return MassString(amount) + " of " + cargo;
 }
 
 
 
 // Convert a time in seconds to years/days/hours/minutes/seconds
-std::string Format::PlayTime(double timeVal)
+string Format::PlayTime(double timeVal)
 {
 	string result;
 	int timeValFormat = 0;

@@ -202,7 +202,7 @@ void MapOutfitterPanel::DrawItems()
 			else if(outfit->Get("installable") < 0.)
 			{
 				double space = outfit->Mass();
-				info = Format::MassString(space, "space");
+				info = Format::CargoString(space, "space");
 			}
 			else
 			{
