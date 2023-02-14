@@ -303,6 +303,31 @@ TEST_CASE( "Format::CreditString", "[Format][CreditString]") {
 	}
 }
 
+TEST_CASE( "Format::MassString", "[Format][MassString]") {
+	SECTION( "1 ton" ) {
+		CHECK( Format::MassString(1) == "1 ton" );
+		CHECK( Format::MassString(1.) == "1 ton" );
+	}
+	SECTION( "0 tons" ) {
+		CHECK( Format::MassString(0) == "0 tons" );
+	}
+	SECTION( "Positive mass" ) {
+		CHECK( Format::MassString(2) == "2 tons" );
+		CHECK( Format::MassString(1000) == "1,000 tons" );
+		CHECK( Format::MassString(4361000) == "4,361,000 tons" );
+	}
+	SECTION( "Negative mass" ) {
+		CHECK( Format::MassString(-1) == "-1 tons" );
+		CHECK( Format::MassString(-2) == "-2 tons" );
+		CHECK( Format::MassString(-1000) == "-1,000 tons" );
+		CHECK( Format::MassString(-4361000) == "-4,361,000 tons" );
+	}
+	SECTION( "Fractional mass" ) {
+		CHECK( Format::MassString(2.5) == "2.5 tons" );
+		CHECK( Format::MassString(0.1) == "0.1 tons" );
+	}
+}
+
 // #endregion unit tests
 
 // #region benchmarks
