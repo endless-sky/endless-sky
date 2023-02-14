@@ -5467,7 +5467,7 @@ mission "Quicksilver Mixup [2]"
 			label shipment
 			`	The man checks his notes and says "This week, it totalled... 38 tons of letters and miscellaneous packages here, and then 29 tons to be brought back from Quicksilver."`
 			`	"38 tons of misposted packages? Just this month?!" you ask.`
-			`	The man nods "Told you it happened often. And few of these packages even weigh over a kilo! Big shipments hardly get misposted, it's mostly private citizens who make such a mistake. Mostly. You'd be amazed!"`
+			`	He nods. "Told you it happened often. And few of these packages even weigh over a kilo! Big shipments hardly get misposted, it's mostly private citizens who make such a mistake. Mostly. You'd be amazed!"`
 			`	You two shake hands and you tell him which landing pad <ship> is parked. Time to head to Quicksilver.`
 				accept
 
