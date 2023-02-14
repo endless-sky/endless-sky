@@ -163,6 +163,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	attributeValues.push_back(string());
 	attributesHeight += 10;
 	double shieldRegen = attributes.Get("shield generation")
+		+ 0.5 * (attributes.Get("hot shield generation") + attributes.Get("cold shield generation"))
 		* (1. + attributes.Get("shield generation multiplier"));
 	bool hasShieldRegen = shieldRegen > 0.;
 	if(hasShieldRegen)
@@ -178,6 +179,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	}
 	attributesHeight += 20;
 	double hullRepair = attributes.Get("hull repair rate")
+		+ 0.5 * (attributes.Get("hot hull repair") + attributes.Get("cold hull repair"))
 		* (1. + attributes.Get("hull repair multiplier"));
 	bool hasHullRepair = hullRepair > 0.;
 	if(hasHullRepair)
