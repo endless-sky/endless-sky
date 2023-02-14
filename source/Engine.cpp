@@ -2048,7 +2048,10 @@ void Engine::HandleMouseInput(Command &activeCommands)
 	isMouseHoldEnabled = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
 	if(activeCommands.Has(Command::MOUSE_TURNING_TOGGLE))
 		isMouseToggleEnabled = !isMouseToggleEnabled;
-	isMouseTurningEnabled = (isMouseHoldEnabled || isMouseToggleEnabled);
+	// XOR mouse hold and mouse toggle. If mouse toggle is OFF, then mouse hold
+	// will temporarily turn ON mouse control. If mouse toggle is ON, then mouse
+	// hold will temporarily turn OFF mouse control.
+	isMouseTurningEnabled = (isMouseHoldEnabled ^ isMouseToggleEnabled);
 	Preferences::Set("alt-mouse turning", isMouseTurningEnabled);
 	if(!isMouseTurningEnabled)
 		return;
