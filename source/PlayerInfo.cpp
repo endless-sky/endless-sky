@@ -1687,7 +1687,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 		ostringstream out;
 		out << "You sold " << Format::CargoString(sold, "excess cargo") << " for " << Format::CreditString(income);
 		if(totalBasis && totalBasis != income)
-			out << " (for a profit of " << Format:: CreditString(income - totalBasis) << ").";
+			out << " (for a profit of " << Format::CreditString(income - totalBasis) << ").";
 		else
 			out << ".";
 		Messages::Add(out.str(), Messages::Importance::High);
