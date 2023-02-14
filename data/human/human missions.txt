@@ -5438,7 +5438,7 @@ mission "Quicksilver Mixup [2]"
 	deadline 10 1
 	source "Silver"
 	destination "Quicksilver"
-	cargo "Misposted mail" 38
+	cargo "misposted mail" 38
 	to offer
 		has "Quicksilver Mixup [1]: done"
 		has "quicksilver mixup 2 available"
@@ -5485,7 +5485,7 @@ mission "Quicksilver Mixup [3]"
 	description "Return the misposted mail back to <destination>."
 	source "Quicksilver"
 	destination "Silver"
-	cargo "Misposted mail" 29
+	cargo "misposted mail" 29
 	to offer
 		has "Quicksilver Mixup [2]"
 	on offer
