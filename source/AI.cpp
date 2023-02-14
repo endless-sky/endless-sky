@@ -2746,7 +2746,7 @@ bool AI::DoCloak(Ship &ship, Command &command)
 		bool cloakFreely = (fuelCost <= 0.) && !ship.GetShipToAssist();
 		// If this ship is injured / repairing, it should cloak while under threat.
 		bool cloakToRepair = (ship.Health() < RETREAT_HEALTH + hysteresis)
-				&& (ShieldGeneration() || HullRepair());
+				&& (ship.ShieldGeneration() || ship.HullRepair());
 		if(cloakToRepair && (cloakFreely || range < 2000. * (1. + hysteresis)))
 		{
 			command |= Command::CLOAK;
