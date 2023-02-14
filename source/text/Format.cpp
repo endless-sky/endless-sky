@@ -106,7 +106,7 @@ string Format::CreditString(int64_t value)
 
 
 // Creates a string similar to '<amount> tons of <cargo>'.
-// If there is no specified cargo, the created string is only 'x tons'.
+// If there is no specified cargo, the created string is only '<amount> tons'.
 std::string Format::MassString(double amount, const std::string &cargo){
 	string result = Number(amount);
 
