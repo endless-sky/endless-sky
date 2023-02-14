@@ -311,6 +311,10 @@ public:
 	double DisabledHull() const;
 	// Get the actual shield level of the ship.
 	double ShieldLevel() const;
+	// Get the shield generation of the ship.
+	double ShieldGeneration() const;
+	// Get the hull repair of the ship.
+	double HullRepair() const;
 	// Get how disrupted this ship's shields are.
 	double DisruptionLevel() const;
 	// Get the (absolute) amount of hull that needs to be damaged until the

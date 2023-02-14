@@ -2235,10 +2235,7 @@ void Ship::DoGeneration()
 		// 5. Transfer of excess energy and fuel to carried fighters.
 
 		double currentHeat = Heat();
-		const double hullAvailable = (attributes.Get("hull repair rate")
-			+ (attributes.Get("hot hull repair") * currentHeat)
-			+ (attributes.Get("cold hull repair") * (1 - currentHeat))
-			) * (1. + attributes.Get("hull repair multiplier"));
+		const double hullAvailable = HullRepair();
 		const double hullEnergy = (attributes.Get("hull energy")
 			* (1. + attributes.Get("hull energy multiplier"))) / hullAvailable;
 		const double hullFuel = (attributes.Get("hull fuel")
@@ -2249,10 +2246,7 @@ void Ship::DoGeneration()
 		if(!hullDelay)
 			DoRepair(hull, hullRemaining, attributes.Get("hull"), energy, hullEnergy, fuel, hullFuel, heat, hullHeat);
 
-		const double shieldsAvailable = (attributes.Get("shield generation")
-			+ (attributes.Get("hot shield generation") * currentHeat)
-			+ (attributes.Get("cold shield generation") * (1 - currentHeat))
-			) * (1. + attributes.Get("shield generation multiplier"));
+		const double shieldsAvailable = ShieldGeneration();
 		const double shieldsEnergy = (attributes.Get("shield energy")
 			* (1. + attributes.Get("shield energy multiplier"))) / shieldsAvailable;
 		const double shieldsFuel = (attributes.Get("shield fuel")
@@ -3337,6 +3331,32 @@ double Ship::DisabledHull() const
 double Ship::ShieldLevel() const
 {
 	return shields;
+}
+
+
+
+// Get the shield generation of the ship.
+double Ship::ShieldGeneration() const
+{
+	double currentHeat = Heat();
+	double shieldGeneration = (attributes.Get("shield generation")
+			+ (attributes.Get("hot shield generation") * currentHeat)
+			+ (attributes.Get("cold shield generation") * (1 - currentHeat))
+			) * (1. + attributes.Get("shield generation multiplier");
+	return shieldGeneration;
+}
+
+
+
+// Get the hull repair of the ship.
+double Ship::HullRepair() const
+{
+	double currentHeat = Heat();
+	double hullRepair = (attributes.Get("hull repair rate")
+			+ (attributes.Get("hot hull repair") * currentHeat)
+			+ (attributes.Get("cold hull repair") * (1 - currentHeat))
+			) * (1. + attributes.Get("hull repair multiplier"));
+	return hullRepair;
 }
 
 
