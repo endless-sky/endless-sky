@@ -3341,7 +3341,7 @@ double Ship::ShieldGeneration() const
 	double shieldGeneration = (attributes.Get("shield generation")
 			+ (attributes.Get("hot shield generation") * currentHeat)
 			+ (attributes.Get("cold shield generation") * (1 - currentHeat))
-			) * (1. + attributes.Get("shield generation multiplier");
+			) * (1. + attributes.Get("shield generation multiplier"));
 	return shieldGeneration;
 }
 
