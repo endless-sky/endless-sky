@@ -544,7 +544,7 @@ government "Hai (Friendly Unfettered)"
 government "Hai (Unfettered Civilians)"
 	swizzle 4
 	color "governments: Hai (Unfettered)"
-	"display name" "Hai (Unfettered Logistics)"
+	"display name" "Hai (Unfettered)"
 	
 	"player reputation" 10
 	"attitude toward"
