@@ -3340,8 +3340,8 @@ double Ship::ShieldGeneration() const
 	double currentHeat = Heat();
 	double shieldGeneration = (attributes.Get("shield generation")
 			+ (attributes.Get("hot shield generation") * currentHeat)
-			+ (attributes.Get("cold shield generation") * (1 - currentHeat))
-			) * (1. + attributes.Get("shield generation multiplier"));
+			+ (attributes.Get("cold shield generation") * (1 - currentHeat)))
+			* (1. + attributes.Get("shield generation multiplier"));
 	return shieldGeneration;
 }
 
@@ -3353,8 +3353,8 @@ double Ship::HullRepair() const
 	double currentHeat = Heat();
 	double hullRepair = (attributes.Get("hull repair rate")
 			+ (attributes.Get("hot hull repair") * currentHeat)
-			+ (attributes.Get("cold hull repair") * (1 - currentHeat))
-			) * (1. + attributes.Get("hull repair multiplier"));
+			+ (attributes.Get("cold hull repair") * (1 - currentHeat)))
+			* (1. + attributes.Get("hull repair multiplier"));
 	return hullRepair;
 }
 
