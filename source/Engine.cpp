@@ -2272,16 +2272,14 @@ void Engine::DoCollection(Flotsam &flotsam)
 	if(!commodity.empty())
 	{
 		double amountInTons = amount * flotsam.UnitSize();
-		message = name + (amountInTons == 1. ? "a ton" : Format::Number(amountInTons) + " tons")
-			+ " of " + Format::LowerCase(commodity) + ".";
+		message = name + Format::CargoString(amountInTons, Format::LowerCase(commodity)) + ".";
 	}
 
 	// Unless something went wrong while forming the message, display it.
 	if(!message.empty())
 	{
 		int free = collector->Cargo().Free();
-		message += " (" + to_string(free) + (free == 1 ? " ton" : " tons");
-		message += " of free space remaining.)";
+		message += " (" + Format::CargoString(free, "free space") + " remaining.)";
 		Messages::Add(message, Messages::Importance::High);
 	}
 }
