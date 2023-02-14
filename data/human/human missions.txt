@@ -5472,8 +5472,8 @@ mission "Quicksilver Mixup [2]"
 				accept
 
 			label refuse
-			`	The mail employee thanks you for your time, and continues his search for a willing captain. At least pilots that get hired to deliver such wrongly-posted packages, like you once did, won't have to finish those deliveries themselves in the future!`
-				accept
+			`	The mail employee thanks you for your time, and continues his search for a willing captain. At least pilots that get hired to deliver such wrongly-posted packages, like you once did, won't have to finish those deliveries themselves in the future.`
+				decline
 	on visit
 		dialog `You have reached <planet>, but your escort, loaded with the shipment, has not arrived. Better depart and wait for your escorts to arrive in this star system.`
 
