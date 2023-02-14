@@ -111,7 +111,7 @@ string Format::MassString(double amount)
 {
 	if(amount == 1)
 		return "1 ton";
-	return Format::Number(amount) + " tons";
+	return Number(amount) + " tons";
 }
 
 
@@ -368,6 +368,69 @@ string Format::LowerCase(const string &str)
 	for(char &c : result)
 		c = tolower(c);
 	return result;
+}
+
+
+
+// Convert the given non-empty string (noun) to its plural form.
+// Always returns a non-empty string.
+// The actual result might involve some guesswork, and is not guaranteed to be grammatically correct.
+string Format::Plural(const string &noun)
+{
+	const string nounLower = LowerCase(noun);
+	const string lastWord = nounLower.find_last_of(' ') == string::npos ? nounLower : nounLower.substr(nounLower.find_last_of(' '), nounLower.size());
+	auto endsWith = [&lastWord](const string &suffix){ return lastWord.size() >= suffix.size() && 0 == lastWord.compare(lastWord.size()-suffix.size(), suffix.size(), suffix); };
+	string vowels = "aeiouy";
+	if(noun.back() == 's' || endsWith("sh") || endsWith("ch") || endsWith("ch") || noun.back() == 'x' || noun.back() == 'z')
+		return noun + "es";
+	else if(nounLower.back() == 'f')
+		return noun.substr(0, noun.size() - 1) + "ves";
+	else if(endsWith("fe"))
+		return noun.substr(0, noun.size() - 2) + "ves";
+	else if(nounLower.back() == 'y' && vowels.find(nounLower[nounLower.size() - 2]) == string::npos)
+		return noun.substr(0, noun.size() - 1) + "ies";
+	else if(lastWord == "buffalo" || lastWord == "domino" || lastWord == "domino" || lastWord == "echo" || lastWord == "embargo"
+			|| lastWord == "hero" || lastWord == "mosquito" || lastWord == "potato" || lastWord == "tomato" || lastWord == "torpedo" || lastWord == "veto")
+		return noun + "es";
+	else
+		return noun + "s";
+}
+
+
+
+// Convert the given non-empty string (noun) to its plural form.
+// Returns an empty string if a plural form cannot be safely determined.
+// The returned value is not guaranteed to be grammatically correct.
+string Format::PluralUnsafe(const string &noun)
+{
+	if(noun.back() == 's' || noun.back() == 'z')
+		return "";
+	return noun + "s";
+}
+
+
+
+// Convert the given non-empty string (noun) to its singular or plural form,
+// depending on the specified amount. The plural form can be specified manually, if necessary.
+string Format::Noun(double amount, const string &noun, const string plural)
+{
+	if(amount == 1.)
+		return noun;
+	else
+		if(plural.empty())
+			return Plural(noun);
+		else
+			return plural;
+}
+
+
+
+// Convert the given non-empty string (noun) to its singular or plural form,
+// and adds it to a string after the formatted amount, like in '2 goats'.
+// The plural form can be specified manually, if necessary.
+string Format::NounString(double amount, const string &noun, const string plural)
+{
+	return Number(amount) + " " + Noun(amount, noun, plural);
 }
 
 

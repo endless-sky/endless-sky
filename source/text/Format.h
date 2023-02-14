@@ -58,6 +58,22 @@ public:
 	static std::string Capitalize(const std::string &str);
 	static std::string LowerCase(const std::string &str);
 
+	// Convert the given non-empty string (noun) to its plural form.
+	// Always returns a non-empty string.
+	// The actual result might involve some guesswork, and is not guaranteed to be grammatically correct.
+	static std::string Plural(const std::string &noun);
+	// Convert the given non-empty string (noun) to its plural form.
+	// Returns an empty string if a plural form cannot be safely determined.
+	// The returned value is not guaranteed to be grammatically correct.
+	static std::string PluralUnsafe(const std::string &noun);
+	// Convert the given non-empty string (noun) to its singular or plural form,
+	// depending on the specified amount. The plural form can be specified manually, if necessary.
+	static std::string Noun(double amount, const std::string &noun, const std::string plural = {});
+	// Convert the given non-empty string (noun) to its singular or plural form,
+	// and adds it to a string after the formatted amount, like in '2 goats'.
+	// The plural form can be specified manually, if necessary.
+	static std::string NounString(double amount, const std::string &noun, const std::string plural = {});
+
 	// Split a single string into substrings with the given separator.
 	static std::vector<std::string> Split(const std::string &str, const std::string &separator);
 };
