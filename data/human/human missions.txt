@@ -5444,7 +5444,7 @@ mission "Quicksilver Mixup [2]"
 		has "quicksilver mixup 2 available"
 	on offer
 		conversation
-			`As you walk through Silver's spaceport, somebody wearing office attire power walks up to you after ending a hurried conversation with another pilot.`
+			`As you walk through Silver's spaceport, somebody wearing office attire and carrying a tablet power walks up to you after ending a hurried conversation with another pilot.`
 			`	"Captain! I work for the postmaster's office. The regular pilot who carries misposted mail to Quicksilver and back couldn't make it this month, some mechanical issues with his ship, I'm told. Would you be willing to carry this month's load there by <day>? We'll pay you what he'd be paid, <payment>."`
 			choice
 				`	"Oh, so you guys did set up that regular shipment after all!"`
@@ -5457,7 +5457,7 @@ mission "Quicksilver Mixup [2]"
 					goto refuse
 
 			label context
-			`	The mail employee pulls a wierd face at you for a moment.
+			`	The mail employee appears confused for a moment, leaning his head to the side slightly.
 			choice
 				`	"I once delivered a misposted package like that, and the clerk mentioned that it happened so often somebody should set up a regular delivery."`
 				`	"Never mind. What's the size of the shipment?"`
