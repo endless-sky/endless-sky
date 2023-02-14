@@ -2234,7 +2234,6 @@ void Ship::DoGeneration()
 		// 4. Shields of carried fighters
 		// 5. Transfer of excess energy and fuel to carried fighters.
 
-		double currentHeat = Heat();
 		const double hullAvailable = HullRepair();
 		const double hullEnergy = (attributes.Get("hull energy")
 			* (1. + attributes.Get("hull energy multiplier"))) / hullAvailable;
