@@ -263,7 +263,7 @@ tip "hull heat multiplier:"
 tip "hull repair rate:"
 	`Amount of hull strength that can be repaired per second. Repairs usually consume energy and may generate heat as well.`
 
-tip "cold hull repair"
+tip "cold hull repair:"
 	`Amount of hull strength that can be repaired per second at 0 heat. Above 0 heat, scales linearly between this value and hot hull repair.`
 
 tip "hot hull repair:"
