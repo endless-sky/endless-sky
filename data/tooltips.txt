@@ -263,6 +263,12 @@ tip "hull heat multiplier:"
 tip "hull repair rate:"
 	`Amount of hull strength that can be repaired per second. Repairs usually consume energy and may generate heat as well.`
 
+tip "cold hull repair"
+	`Amount of hull strength that can be repaired per second at 0 heat. Above 0 heat, scales linearly between this value and hot hull repair.`
+
+tip "hot hull repair:"
+	`Amount of hull strength that can be repaired per second at max heat. Below max heat, scales linearly between this value and cold hull repair.`
+
 tip "repair delay:"
 	`How many seconds it takes for hull repairs to begin after taking hull damage.`
 
@@ -493,6 +499,12 @@ tip "shield heat multiplier:"
 
 tip "shield generation:"
 	`Shield points recharged per second. Recharging shields usually consumes energy, and may also produce heat.`
+
+tip "cold shield generation:"
+	`Shield points recharged per second at 0 heat. Above 0 heat, scales linearly between this value and hot shield generation.`
+
+tip "hot shield generation:"
+	`Shield points recharged per second at max heat. Below max heat, scales linearly between this value and cold shield generation.`
 
 tip "shield generation multiplier:"
 	`Modifies the amount of shield points recharged per second by the given factor.`
