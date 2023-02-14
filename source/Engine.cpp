@@ -782,7 +782,7 @@ void Engine::Step(bool isActive)
 
 		targetVector = targetAsteroid->Position() - center;
 
-		if(flagship->Attributes().Get("tactical scan power"))
+		if(flagship->Attributes().Get("tactical scan power") || flagship->Attributes().Get("maneuver scan power"))
 		{
 			info.SetCondition("range display");
 			int targetRange = round(targetAsteroid->Position().Distance(flagship->Position()));
@@ -825,8 +825,9 @@ void Engine::Step(bool isActive)
 
 			// Check if the target is close enough to show tactical information.
 			double tacticalRange = 100. * sqrt(flagship->Attributes().Get("tactical scan power"));
+			double maneuverScanRange = 100. * sqrt(flagship->Attributes().Get("maneuver scan power"));
 			double targetRange = target->Position().Distance(flagship->Position());
-			if(tacticalRange)
+			if(tacticalRange || maneuverScanRange)
 			{
 				info.SetCondition("range display");
 				info.SetString("target range", to_string(static_cast<int>(round(targetRange))));
@@ -844,12 +845,19 @@ void Engine::Step(bool isActive)
 				info.SetString("target energy", to_string(energy));
 				int heat = round(100. * target->Heat());
 				info.SetString("target heat", to_string(heat) + "%");
-				int turret = round(target->TurretRange());
-				info.SetString("target turret", to_string(turret) + " ");
-				int gun = round(target->GunRange());
-				info.SetString("target gun", to_string(gun) + " ");
-				int turn = round(60 * target->TrueTurnRate());
-				info.SetString("target turnrate", to_string(turn) + " ");
+			}
+			// Actual maneuver information requires a scrutable
+			// target that is within the maneuver scanner range.
+			if ((targetRange <= maneuverScanRange && !target->Attributes().Get("inscrutable"))
+				|| (maneuverScanRange && target->IsYours()))
+			{
+				info.SetCondition("maneuver display");
+				int turretRange = round(target->TurretRange());
+				info.SetString("target turret", to_string(turretRange) + " ");
+				int gunRange = round(target->GunRange());
+				info.SetString("target gun", to_string(gunRange) + " ");
+				int turnRate = round(60 * target->TrueTurnRate());
+				info.SetString("target turnrate", to_string(turnRate) + " ");
 			}
 		}
 	}

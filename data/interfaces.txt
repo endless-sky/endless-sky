@@ -623,15 +623,6 @@ interface "hud"
 	sprite "ui/tactical/tactical"
 		from 130 280
 		align top left
-	sprite "ui/tactical/gun range"
-		from 154 252
-		align top center
-	sprite "ui/tactical/turret range"
-		from 190 252
-		align top center
-	sprite "ui/tactical/turn"
-		from 118 370
-		align top left
 	string "target crew"
 		from 162 286
 		align top left
@@ -643,6 +634,17 @@ interface "hud"
 		align top left
 	string "target heat"
 		from 147 346
+		align top left
+
+	visible if "maneuver display"
+	sprite "ui/tactical/gun range"
+		from 154 252
+		align top center
+	sprite "ui/tactical/turret range"
+		from 190 252
+		align top center
+	sprite "ui/tactical/turn"
+		from 118 370
 		align top left
 	string "target gun"
 		from 152 268

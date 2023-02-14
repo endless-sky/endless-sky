@@ -514,8 +514,8 @@ private:
 	bool isReversing = false;
 	bool isSteering = false;
 	double steeringDirection = 0.;
-	double turretRange = 0;
-	double gunRange = 0;
+	double turretRange = 0.;
+	double gunRange = 0.;
 	bool neverDisabled = false;
 	bool isCapturable = true;
 	bool isInvisible = false;
