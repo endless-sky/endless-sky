@@ -1650,7 +1650,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 						coreShip->SetPersonality(ship->CorePersonality());
 					else
 						coreShip->SetPersonality(ship->GetPersonality());
-					coreShip->SetHail(*ship->GetHailPhrase());
+					coreShip->SetHailPhrase(*ship->GetHailPhrase());
 					coreShip->SetSystem(ship->GetSystem());
 					if(ship->GetParent() && !coreShip->GetPersonality().IsCoward())
 						coreShip->SetParent(ship->GetParent());
