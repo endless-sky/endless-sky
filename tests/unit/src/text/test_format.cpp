@@ -353,6 +353,94 @@ TEST_CASE( "Format::CargoString", "[Format][CargoString]") {
 	}
 }
 
+TEST_CASE( "Format::Plural", "[Format][Plural]") {
+	SECTION( "Simple cases" ) {
+		CHECK( Format::Plural("car") == "cars" );
+		CHECK( Format::Plural("variable") == "variables" );
+		CHECK( Format::Plural("ship") == "ships" );
+		CHECK( Format::Plural("credit") == "credits" );
+		CHECK( Format::Plural("ton") == "tons" );
+		CHECK( Format::Plural("action") == "actions" );
+		CHECK( Format::Plural("outfit") == "outfits" );
+		CHECK( Format::Plural("CapitalizedString") == "CapitalizedStrings" );
+	}
+	SECTION( "Ending with -o" ) {
+		CHECK( Format::Plural("volcano") == "volcanos" );
+		CHECK( Format::Plural("potato") == "potatoes" ); // PO-TAY-TOES
+		CHECK( Format::Plural("hero") == "heroes" );
+		CHECK( Format::Plural("torpedo") == "torpedoes" );
+		CHECK( Format::Plural("zero") == "zeros" );
+		CHECK( Format::Plural("Radio") == "Radios" );
+	}
+	SECTION( "Appending -es" ) {
+		CHECK( Format::Plural("bus") == "buses" );
+		CHECK( Format::Plural("truss") == "trusses" );
+		CHECK( Format::Plural("Marsh") == "Marshes" );
+	}
+	SECTION( "Changing -f to -v" ) {
+		CHECK( Format::Plural("leaf") == "leaves" );
+		CHECK( Format::Plural("Knife") == "Knives" );
+	}
+	SECTION( "Changing -y to -i" ) {
+		CHECK( Format::Plural("city") == "cities" );
+		CHECK( Format::Plural("Puppy") == "Puppies" );
+		CHECK( Format::Plural("play") == "plays" );
+	}
+}
+
+TEST_CASE ( "Format::PluralUnsafe", "[Format][PluralUnsafe]" ) {
+	SECTION( "Regular words" ) {
+		CHECK( Format::PluralUnsafe("car") == "cars" );
+		CHECK( Format::PluralUnsafe("variable") == "variables" );
+		CHECK( Format::PluralUnsafe("ship") == "ships" );
+		CHECK( Format::PluralUnsafe("credit") == "credits" );
+		CHECK( Format::PluralUnsafe("ton") == "tons" );
+		CHECK( Format::PluralUnsafe("action") == "actions" );
+		CHECK( Format::PluralUnsafe("outfit") == "outfits" );
+		CHECK( Format::PluralUnsafe("CapitalizedString") == "CapitalizedStrings" );
+	}
+	SECTION( "Unknown cases" ) {
+		CHECK( Format::PluralUnsafe("Geocoris") == "" );
+		CHECK( Format::PluralUnsafe("boss") == "" );
+		CHECK( Format::PluralUnsafe("quartz") == "" );
+	}
+}
+
+TEST_CASE ( "Format::Noun", "[Format][Noun]" ) {
+	SECTION( "Singular, regular words" ) {
+		CHECK( Format::Noun(1., "car") == "car" );
+		CHECK( Format::Noun(1, "variable") == "variable" );
+	}
+	SECTION( "Singular, regular words with explicit plural form" ) {
+		CHECK( Format::Noun(1., "ship", "ships") == "ship" );
+		CHECK( Format::Noun(1, "credit", "credits") == "credit" );
+	}
+	SECTION( "Plural, regular words without explicit plural form" ) {
+		CHECK( Format::Noun(2., "ton") == "tons" );
+		CHECK( Format::Noun(-1.6, "action") == "actions" );
+	}
+	SECTION( "Plurar, irregular words with explicit plural from" ) {
+		CHECK( Format::Noun(2., "potato", "potatoes") == "potatoes" );
+	}
+}
+
+TEST_CASE ( "Format::NounString", "[Format][NounString]" ) {
+	SECTION( "Singular, regular words" ) {
+		CHECK( Format::NounString(1., "car") == "1 car" );
+		CHECK( Format::NounString(1, "variable") == "1 variable" );
+	}
+	SECTION( "Singular, regular words with explicit plural form" ) {
+		CHECK( Format::NounString(1., "ship", "ships") == "1 ship" );
+		CHECK( Format::NounString(1, "credit", "credits") == "1 credit" );
+	}
+	SECTION( "Plural, regular words without explicit plural form" ) {
+		CHECK( Format::NounString(2., "ton") == "2 tons" );
+		CHECK( Format::NounString(-1.6, "action") == "-1.6 actions" );
+	}
+	SECTION( "Plurar, irregular words with explicit plural from" ) {
+		CHECK( Format::NounString(2., "potato", "potatoes") == "2 potatoes" );
+	}
+}
 // #endregion unit tests
 
 // #region benchmarks
@@ -380,6 +468,17 @@ TEST_CASE( "Benchmark Format::Number", "[!benchmark][format]" ) {
 	};
 	BENCHMARK( "A decimal between 1k and 10k" ) {
 		return Format::Number(5555.5555);
+	};
+}
+TEST_CASE( "Benchmark Format::Plural", "[!benchmark][format]" ) {
+	BENCHMARK( "Regular" ) {
+		return Format::Plural("variable");
+	};
+	BENCHMARK( "Whitelisted irregular" ) {
+		return Format::Plural("mosquito");
+	};
+	BENCHMARK( "Common irregular" ) {
+		return Format::Plural("boss");
 	};
 }
 #endif
