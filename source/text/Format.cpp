@@ -105,6 +105,24 @@ string Format::CreditString(int64_t value)
 
 
 
+// Creates a string similar to '<amount> tons of <cargo>'.
+// If there is no specified cargo, the created string is only 'x tons'.
+std::string Format::MassString(double amount, const std::string &cargo){
+	string result = Number(amount);
+
+	if(amount == 1.)
+		result += " ton";
+	else
+		result += " tons";
+
+	if(!cargo.empty())
+		result += " of " + cargo;
+
+	return result;
+}
+
+
+
 // Convert a time in seconds to years/days/hours/minutes/seconds
 std::string Format::PlayTime(double timeVal)
 {
