@@ -1945,23 +1945,23 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			// Check if we are able to turn.
 			double cost = attributes.Get("turning energy");
 			if(cost > 0. && energy < cost * fabs(commands.Turn()))
-				commands.SetTurn(commands.Turn() * energy / cost);
+				commands.SetTurn(commands.Turn() * energy / (cost * fabs(commands.Turn())));
 
 			cost = attributes.Get("turning shields");
 			if(cost > 0. && shields < cost * fabs(commands.Turn()))
-				commands.SetTurn(commands.Turn() * shields / cost);
+				commands.SetTurn(commands.Turn() * shields / (cost * fabs(commands.Turn())));
 
 			cost = attributes.Get("turning hull");
 			if(cost > 0. && hull < cost * fabs(commands.Turn()))
-				commands.SetTurn(commands.Turn() * hull / cost);
+				commands.SetTurn(commands.Turn() * hull / (cost * fabs(commands.Turn())));
 
 			cost = attributes.Get("turning fuel");
 			if(cost > 0. && fuel < cost * fabs(commands.Turn()))
-				commands.SetTurn(commands.Turn() * fuel / cost);
+				commands.SetTurn(commands.Turn() * fuel / (cost * fabs(commands.Turn())));
 
 			cost = -attributes.Get("turning heat");
 			if(cost > 0. && heat < cost * fabs(commands.Turn()))
-				commands.SetTurn(commands.Turn() * heat / cost);
+				commands.SetTurn(commands.Turn() * heat / (cost * fabs(commands.Turn())));
 
 			if(commands.Turn())
 			{
