@@ -2556,9 +2556,9 @@ ship "Manta"
 			"hit force" 1200
 	outfits
 		"Particle Cannon" 4
-		"Meteor Missile Launcher"
-		"Meteor Missile" 60
-		"Meteor Missile Box" 2
+		"Torpedo Storage Rack"
+		"Torpedo" 21
+		"Torpedo Pod" 2
 		
 		"RT-I Radiothermal"
 		"LP144a Battery Pack"
@@ -2575,8 +2575,8 @@ ship "Manta"
 	gun 20 -31 "Particle Cannon"
 	gun -26.5 -30 "Particle Cannon"
 	gun 26.5 -30 "Particle Cannon"
-	gun -68.5 -33 "Meteor Missile Launcher"
-	gun 68.5 -33
+	gun -68.5 -33 "Torpedo Pod"
+	gun 68.5 -33 "Torpedo Pod"
 	leak "leak" 60 50
 	leak "flame" 40 80
 	explode "tiny explosion" 10
