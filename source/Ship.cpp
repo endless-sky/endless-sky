@@ -2234,8 +2234,10 @@ void Ship::DoGeneration()
 		// 4. Shields of carried fighters
 		// 5. Transfer of excess energy and fuel to carried fighters.
 
-		const double hullAvailable = attributes.Get("hull repair rate")
-			* (1. + attributes.Get("hull repair multiplier"));
+		const double hullAvailable = (attributes.Get("hull repair rate")
+			+ (attributes.Get("hot hull repair") * Heat())
+			+ (attributes.Get("cold hull repair") * (1 - Heat()))
+			) * (1. + attributes.Get("hull repair multiplier"));
 		const double hullEnergy = (attributes.Get("hull energy")
 			* (1. + attributes.Get("hull energy multiplier"))) / hullAvailable;
 		const double hullFuel = (attributes.Get("hull fuel")
@@ -2246,8 +2248,10 @@ void Ship::DoGeneration()
 		if(!hullDelay)
 			DoRepair(hull, hullRemaining, attributes.Get("hull"), energy, hullEnergy, fuel, hullFuel, heat, hullHeat);
 
-		const double shieldsAvailable = attributes.Get("shield generation")
-			* (1. + attributes.Get("shield generation multiplier"));
+		const double shieldsAvailable = (attributes.Get("shield generation")
+			+ (attributes.Get("hot shield generation") * Heat())
+			+ (attributes.Get("cold shield generation") * (1 - Heat()))
+			) * (1. + attributes.Get("shield generation multiplier"));
 		const double shieldsEnergy = (attributes.Get("shield energy")
 			* (1. + attributes.Get("shield energy multiplier"))) / shieldsAvailable;
 		const double shieldsFuel = (attributes.Get("shield fuel")
