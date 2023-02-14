@@ -75,7 +75,8 @@ const Command Command::AMMO(1uL << 26, "Fleet: Toggle ammo usage");
 const Command Command::WAIT(1uL << 27, "");
 const Command Command::STOP(1ul << 28, "");
 const Command Command::SHIFT(1uL << 29, "");
-const Command Command::MOUSE_TURNING(1uL << 30, "Toggle mouse-turning");
+const Command Command::MOUSE_TURNING_HOLD(1uL << 30, "Mouse turning (hold)");
+const Command Command::MOUSE_TURNING_TOGGLE(1uL << 31, "Mouse turning (toggle)");
 
 
 
@@ -248,7 +249,8 @@ void Command::Load(const DataNode &node)
 			{"hail", Command::HAIL},
 			{"scan", Command::SCAN},
 			{"jump", Command::JUMP},
-			{"mouseturning", Command::MOUSE_TURNING},
+			{"mouseturninghold", Command::MOUSE_TURNING_HOLD},
+			{"mouseturningtoggle", Command::MOUSE_TURNING_TOGGLE},
 			{"fleet jump", Command::FLEET_JUMP},
 			{"target", Command::TARGET},
 			{"nearest", Command::NEAREST},
