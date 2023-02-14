@@ -73,7 +73,7 @@ TradingPanel::~TradingPanel()
 {
 	if(profit)
 	{
-		string message = "You sold " + Format::CargoString(tonsSold, "cargo");
+		string message = "You sold " + Format::CargoString(tonsSold, "cargo ");
 
 		if(profit < 0)
 			message += "at a loss of " + Format::CreditString(-profit) + ".";
