@@ -35,6 +35,8 @@ void ShipAICache::Calibrate(Ship &ship)
 	double totalDPS = 0.;
 	double splashDPS = 0.;
 	double artilleryDPS = 0.;
+	turretRange = 0.;
+	gunRange = 0.;
 
 	shortestRange = 4000.;
 	shortestArtillery = 4000.;
@@ -107,8 +109,6 @@ void ShipAICache::Calibrate(Ship &ship)
 		if(minSafeDistance && !(useArtilleryAI || shortestRange * (splashDPS / totalDPS) > turningRadius))
 			minSafeDistance = 0.;
 	}
-	turretRange = 0.;
-	gunRange = 0.;
 	// Get the weapon ranges for this ship, so the AI can call it.
 	for(const auto & hardpoint : ship.GetArmament().Get())
 	{

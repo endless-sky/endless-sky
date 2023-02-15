@@ -2010,9 +2010,9 @@ Comment: Taken from unsplash.com and cropped.
 
 Files:
  images/ui/red?alert*
- images/ui/gun?range*
- images/ui/turret?range*
- images/ui/turn*
+ images/ui/tactical/gun?range*
+ images/ui/tactical/turret?range*
+ images/ui/tactical/turn*
 Copyright: Zitchas (zitchas.jma@gmail.com)
 License: CC-BY-SA-4.0
 

@@ -46,11 +46,11 @@ private:
 
 	bool useArtilleryAI = false;
 	double shortestRange = 1000.;
-	double turretRange = 0.;
-	double gunRange = 0.;
 	double shortestArtillery = 4000.;
 	double minSafeDistance = 0.;
 	double turningRadius = 200.;
+	double turretRange = 0.;
+	double gunRange = 0.;
 };
 
 

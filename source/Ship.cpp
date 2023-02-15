@@ -1306,7 +1306,6 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 
 
 
-
 // Set the name of this particular ship.
 void Ship::SetName(const string &name)
 {
