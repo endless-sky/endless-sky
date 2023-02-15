@@ -1361,7 +1361,7 @@ outfit "Nuclear Missile"
 		"hit force" 4000
 		"missile strength" 200
 	description "It has been centuries since the last nuclear war was fought, and until very recently, most people in the galaxy assumed that that era of chaos and destruction was forever behind us..."
-	description "	[Nuclear Missiles are a one-shot weapon: each missile occupies a gun slot, and after it is fired, the slot it was in is left empty.]"
+	description "	[Nuclear missiles are a one-shot weapon: each missile occupies a gun slot, and after it is fired, the slot it was in is left empty.]"
 
 effect "nuke explosion"
 	sprite "effect/explosion/nuke"
