@@ -4086,6 +4086,7 @@ mission "Transport recruiters [0]"
 		attributes research
 	destination
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		not attributes uninhabited
 		attributes farming mining research factory urban
 	on complete
 		payment 7000 170
@@ -4108,6 +4109,7 @@ mission "Transport recruiters [1]"
 		attributes research
 	destination
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		not attributes uninhabited
 		attributes farming mining research factory urban
 	on complete
 		payment 7000 170
@@ -4132,6 +4134,7 @@ mission "Transport recruiters [2]"
 		attributes research
 	destination
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		not attributes uninhabited
 		attributes farming mining research factory urban
 	on complete
 		payment 7000 170
@@ -4154,6 +4157,7 @@ mission "Retrieve recruiters [0]"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes farming mining research factory urban
+		not attributes uninhabited
 	on complete
 		payment 7000 170
 		dialog phrase "generic passenger dropoff payment"
@@ -4175,6 +4179,7 @@ mission "Retrieve recruiters [1]"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes farming mining research factory urban
+		not attributes uninhabited
 	on complete
 		payment 7000 170
 		dialog phrase "generic passenger dropoff payment"
@@ -4197,6 +4202,7 @@ mission "Retrieve recruiters [2]"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes farming mining research factory urban
+		not attributes uninhabited
 	on complete
 		payment 7000 170
 		dialog phrase "generic passenger dropoff payment"
@@ -4214,6 +4220,7 @@ mission "Farming Employee Poaching"
 		random < 20
 	source
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		not attributes uninhabited
 		attributes farming
 		distance 5 100
 	destination
@@ -4235,6 +4242,7 @@ mission "Mining Employee Poaching"
 		random < 20
 	source
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		not attributes uninhabited
 		attributes mining
 		distance 5 100
 	destination
@@ -4256,6 +4264,7 @@ mission "Science Employee Poaching"
 		random < 20
 	source
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		not attributes uninhabited
 		attributes research
 		distance 5 100
 	destination
@@ -4277,6 +4286,7 @@ mission "Factory Employee Poaching"
 		random < 20
 	source
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		not attributes uninhabited
 		attributes factory
 		distance 5 100
 	destination
@@ -4298,6 +4308,7 @@ mission "Urban Employee Poaching"
 		random < 20
 	source
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		not attributes uninhabited
 		attributes urban
 		distance 5 100
 	destination
@@ -4323,7 +4334,7 @@ mission "Farming Team Recruitment"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes farming
-		not attributes frontier
+		not attributes uninhabited
 		distance 5 100
 	destination
 		government "Humanika (Port)"
@@ -4350,7 +4361,7 @@ mission "Mining Team Recruitment"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes mining
-		not attributes frontier
+		not attributes uninhabited
 		distance 5 100
 	destination
 		government "Humanika (Port)"
@@ -4377,7 +4388,7 @@ mission "Science Team Recruitment"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes research
-		not attributes frontier
+		not attributes uninhabited
 		distance 5 100
 	destination
 		government "Humanika (Port)"
@@ -4404,7 +4415,7 @@ mission "Factory Team Recruitment"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes factory
-		not attributes frontier
+		not attributes uninhabited
 		distance 5 100
 	destination
 		government "Humanika (Port)"
@@ -4431,7 +4442,7 @@ mission "Urban Employee Team Recruitment"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes urban
-		not attributes frontier
+		not attributes uninhabited
 		distance 5 100
 	destination
 		government "Humanika (Port)"
@@ -4456,6 +4467,7 @@ mission "Banned Syndicate Items [0]"
 		government "Humanika (Port)"
 	destination
 		government Syndicate
+		not attributes uninhabited
 		distance 5 100
 	on stopover
 		dialog phrase "generic passenger stopover pickup"
@@ -4479,6 +4491,7 @@ mission "Banned Syndicate Items [1]"
 		government "Humanika (Port)"
 	destination
 		government Syndicate
+		not attributes uninhabited
 		distance 5 100
 	on stopover
 		dialog phrase "generic passenger stopover pickup"
@@ -4502,6 +4515,7 @@ mission "Banned Syndicate Items [2]"
 		government "Humanika (Port)"
 	destination
 		government Syndicate
+		not attributes uninhabited
 		distance 5 100
 	on stopover
 		dialog phrase "generic passenger stopover pickup"
@@ -4525,6 +4539,7 @@ mission "Banned Syndicate Items [3]"
 		government "Humanika (Port)"
 	destination
 		government Syndicate
+		not attributes uninhabited
 		distance 5 100
 	on stopover
 		dialog phrase "generic passenger stopover pickup"
@@ -4548,6 +4563,7 @@ mission "Banned Syndicate Items [4]"
 		government "Humanika (Port)"
 	destination
 		government Syndicate
+		not attributes uninhabited
 		distance 5 100
 	on stopover
 		dialog phrase "generic passenger stopover pickup"
