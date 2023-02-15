@@ -62,8 +62,11 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 		message = "(There is no response to your hail.)";
 	else if(!hasLanguage)
 		message = "(An alien voice says something in a language you do not recognize.)";
-	else if(gov->IsEnemy() && !ship->IsDisabled())
-		SetBribe(gov->GetBribeFraction());
+	else if(gov->IsEnemy())
+		if(ship->IsDisabled())
+			message = ship->GetHail(player.GetSubstitutions());
+		else
+			SetBribe(gov->GetBribeFraction());
 	else if(ship->IsDisabled())
 	{
 		const Ship *flagship = player.Flagship();
