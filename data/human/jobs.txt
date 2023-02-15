@@ -4071,7 +4071,139 @@ mission "Escaped Slaves [2]"
 		system
 			distance 1 2
 
-mission "00 Farming Employee Poaching"
+mission "Transport recruiters [0]"
+	name "Recruiter and supplies to <planet>"
+	job
+	repeat
+	description `Transport a <origin> recruiter and <tons> of recruitment supplies to <planet> by <date> for <payment>.`
+	passengers 1
+	cargo 2 5 0.8
+	deadline 5 3
+	to offer
+		random < 40
+	source
+		government "Humanika (Port)"
+		attributes research
+	destination
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming mining research factory urban
+	on complete
+		payment 7000 170
+		dialog phrase "generic passenger dropoff payment"
+	on visit
+		dialog phrase "generic passenger on visit"
+
+mission "Transport recruiters [1]"
+	name "Recruiters and supplies to <planet>"
+	job
+	repeat
+	description `Transport <bunks> <origin> recruiters and <tons> of recruitment supplies to <planet> by <date> for <payment>.`
+	passengers 2 5 0.8
+	cargo 4 12 0.8
+	deadline 5 3
+	to offer
+		random < 40
+	source
+		government "Humanika (Port)"
+		attributes research
+	destination
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming mining research factory urban
+	on complete
+		payment 7000 170
+		dialog phrase "generic passenger dropoff payment"
+	on visit
+		dialog phrase "generic passenger on visit"
+
+mission "Transport recruiters [2]"
+	name "Recruitment team and supplies to <planet>"
+	job
+	repeat
+	description `Transport a team of <bunks> <origin> recruiters and <tons> of recruitment supplies to <planet> by <date> for <payment>.`
+	passengers 7 20 0.8
+	cargo 12 40 0.8
+	deadline 5 3
+	to offer
+		random < 40
+		"cargo space" > 10
+		"passenger space" > 5
+	source
+		government "Humanika (Port)"
+		attributes research
+	destination
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming mining research factory urban
+	on complete
+		payment 7000 170
+		dialog phrase "generic passenger dropoff payment"
+	on visit
+		dialog phrase "generic passenger on visit"
+
+mission "Retrieve recruiters [0]"
+	name "Return a recruiter home to <planet>"
+	job
+	repeat
+	description `Pick up a recruiter on <stopovers> and fly them home to <planet> by <date> for <payment>.`
+	passengers 1
+	deadline 5 3
+	to offer
+		random < 40
+	source
+		government "Humanika (Port)"
+		attributes research
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming mining research factory urban
+	on complete
+		payment 7000 170
+		dialog phrase "generic passenger dropoff payment"
+	on visit
+		dialog phrase "generic passenger on visit"
+
+mission "Retrieve recruiters [1]"
+	name "Return recruiters home to <planet>"
+	job
+	repeat
+	description `Pick up <bunks> recruiters on <stopovers> and fly them home to <planet> by <date> for <payment>.`
+	passengers 2 5 0.8
+	deadline 5 3
+	to offer
+		random < 40
+	source
+		government "Humanika (Port)"
+		attributes research
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming mining research factory urban
+	on complete
+		payment 7000 170
+		dialog phrase "generic passenger dropoff payment"
+	on visit
+		dialog phrase "generic passenger on visit"
+
+mission "Retrieve recruiters [2]"
+	name "Return recruitment team home to <planet>"
+	job
+	repeat
+	description `Pick up a team of <bunks> recruiters on <stopovers> and fly them home to <planet> by <date> for <payment>.`
+	passengers 7 20 0.8
+	deadline 5 3
+	to offer
+		random < 40
+		"passenger space" > 5
+	source
+		government "Humanika (Port)"
+		attributes research
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming mining research factory urban
+	on complete
+		payment 7000 170
+		dialog phrase "generic passenger dropoff payment"
+	on visit
+		dialog phrase "generic passenger on visit"
+
+mission "Farming Employee Poaching"
 	name "Research farmer to <planet>"
 	job
 	repeat
@@ -4092,7 +4224,7 @@ mission "00 Farming Employee Poaching"
 		payment 35000 300
 		dialog phrase "generic passenger dropoff payment"
 
-mission "00 Mining Employee Poaching"
+mission "Mining Employee Poaching"
 	name "Skilled miner to <planet>"
 	job
 	repeat
@@ -4113,7 +4245,7 @@ mission "00 Mining Employee Poaching"
 		payment 35000 300
 		dialog phrase "generic passenger dropoff payment"
 
-mission "00 Science Employee Poaching"
+mission "Science Employee Poaching"
 	name "Scientist to <planet>"
 	job
 	repeat
@@ -4134,7 +4266,7 @@ mission "00 Science Employee Poaching"
 		payment 35000 300
 		dialog phrase "generic passenger dropoff payment"
 
-mission "00 Factory Employee Poaching"
+mission "Factory Employee Poaching"
 	name "Skilled factory worker to <planet>"
 	job
 	repeat
@@ -4155,7 +4287,7 @@ mission "00 Factory Employee Poaching"
 		payment 35000 300
 		dialog phrase "generic passenger dropoff payment"
 
-mission "00 Urban Employee Poaching"
+mission "Urban Employee Poaching"
 	name "Urban worker to <planet>"
 	job
 	repeat
