@@ -5433,12 +5433,13 @@ mission "Deal Change 2"
 
 mission "Quicksilver Mixup [2]"
 	name "Misposted mail delivery"
-	description "Carry misposted mail from Silver to Quicksilver by <date> and then come back with the return shipment"
+	description "Deliver <tons> of misposted mail from <origin> to <planet> by <date> and then come back with the return shipment. You will be paid <payment> after you return from <planet>."
 	minor
 	deadline 10 1
 	source "Silver"
 	destination "Quicksilver"
 	cargo "misposted mail" 38
+	"apparent payment" 100000
 	to offer
 		has "Quicksilver Mixup [1]: done"
 		has "quicksilver mixup 2 available"
@@ -5487,14 +5488,14 @@ mission "Quicksilver Mixup [3]"
 	name "Misposted mail delivery"
 	deadline 10 1
 	landing
-	description "Return the misposted mail back to <destination>."
+	description "Return to <planet> with <tons> of misposted mail. You will be paid <payment>."
 	source "Quicksilver"
 	destination "Silver"
 	cargo "misposted mail" 29
 	to offer
-		has "Quicksilver Mixup [2]"
+		has "Quicksilver Mixup [2]: done"
 	on offer
-		dialog `You contact the spaceport authorities and they direct you to the respective landing pad, where the post office staff is already waiting. They transfer the cargo and you prepare to head back to Silver. You, again, have 10 days to make the delivery.`
+		dialog `You contact the spaceport authorities and they direct you to the respective landing pad, where the post office staff is already waiting. They transfer the cargo and you prepare to head back to Silver. Again, you have 10 days to make the delivery.`
 
 	on visit
 		dialog `You have reached <planet>, but your escort carrying the misposted mail has not arrived. Better depart and wait for your escorts to arrive in this star system.`
