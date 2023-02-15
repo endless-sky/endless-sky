@@ -436,17 +436,16 @@ mission "Korath [F01]: Rabasot Pa'ah Failed Landings"
 			`	The strangest feature is what appears to be slow-moving islands. As one comes closer, its form is more clear: an unholy marriage between a blue whale and a giant squid. Given the vast difference in size between those creatures and anything else you've seen on the planet, it is unlikely they evolved here. Has someone been shipping giant whale-squid to this bay?`
 				decline
 
-mission "Korath [F02]: A Fishy Deal"
+mission "Korath [F02]: A Fishy Proposition"
 	landing
-	name "A fishy deal"
-	description "Transport <tons> of live fish to <stopovers>, pick up <tons> of supplies, and return them to <planet> by <date> for <payment>. Avoid getting scanned or landing on high-security planets, or you may be fined."
-	cargo "New Tortuga trade" 15
+	name "A fishy proposition"
+	description "Transport <tons> of live fish to <planet> by <date>. After a return trip, you'll be payed 140,000. Don't get caught."
+	cargo "Live fish" 15
 	illegal 50000
-	deadline 7
+	deadline 4
 	clearance "The authorities do not respond, but a concealed hangar bay door opens. The meaning is clear: land here."
 	source "New Tortuga"
-	destination "New Tortuga"
-	stopover "La'ab Bamen"
+	destination "La'ab Bamen"
 	on offer
 		conversation
 			`Flying through the atmosphere of New Tortuga, you pass over a typhoon, overfly a tsunami, and take a short detour around a supercell tornado. After a half hour of delicate flying, you approach doors more than a hundred meters tall. As they open, you can see they're ten meters thick, made of a material you don't recall seeing on human planets. Two layers of shields shut down in anticipation of your entry, each strong enough to stop a Navy carrier. To the left and right, there are turrets with heat signatures higher than a breeder reactor. Whoever built this place values their safety... and has the funds and technology to secure it.`
@@ -496,54 +495,124 @@ mission "Korath [F02]: A Fishy Deal"
 			label down
 			action
 				set "Korath [F02]: A Fishy Deal: down"
-			`	Her face turns sour and she says, "Unfortunately, I can't finish my current delivery. My mother is quite sick, and I want to get to Freedom before..." she trails off. "Well, a client really needs this delivery in a week, and I have to find someone to do it."`
+			`	Her face turns sour and she says, "Unfortunately, I can't finish my current delivery. My mother is quite sick, and I want to get to Freedom before..." she trails off. "Well, a client really needs this delivery, and I have to find someone to do it."`
 				goto questions
 			label mission
 			action
 				set "Korath [F02]: A Fishy Deal: mission"
-			`	"It's the sort of delivery where you don't ask what sort of delivery it is. Take <tons> of fish to <stopovers>, and fly back here with <tons> of supplies. It's just two systems away, and the payment is <payment>. Couldn't be easier."`
+			`	"It's the sort of delivery where you don't ask what sort of delivery it is. Take <tons> of fish to <planet>, and fly back here with <tons> of supplies. It's just two systems away, and the payment is 140,000 credits. Couldn't be easier."`
 				goto questions
 			label yup
-			`	"Great! If the authorities won't let you land, read them the serial number from the cargo container, and they'll open a bay for you. Oh, also, this is an illegal mission, so don't get caught, or it'll cost you."`
+			`	"Great! If the authorities won't let you land, read them the serial number from the cargo container, and they'll open a bay for you. Oh, also, this is an illegal mission, so don't get caught, or it'll cost you. Well, it's unlikely anyone out here will care about laws, but I do believe in full disclosure."`
 				accept
 	on enter Atik
-		dialog "It seems you do not have automatic clearance to Rabasot Pa'ah. If you talk to the planet, the authorities will probably let you land."
-	on stopover
+		dialog "It seems you do not have automatic clearance to <planet>. If you talk to the planet, the authorities will probably let you land."
+	on visit
+		dialog "You've arrived at <planet> but you left some of the fish behind. You should take off and wait for your escorts to arrive."
+
+mission "Korath [F03]: A Fishy Proposition"
+	landing
+	name "A fishy proposition"
+	description "Transport <cargo> to <planet> by <date> for <payment>. Avoid getting scanned or landing on high-security planets, or you may be fined."
+	cargo "Planetary supplies" 15
+	illegal 50000
+	deadline 4
+	clearance "The authorities do not respond, but a concealed hangar bay door opens. The meaning is clear: land here."
+	source "La'ab Bamen"
+	destination "New Tortuga"
+	on offer
 		conversation
-			`You approach the asteroid and a crater suddenly opens up, revealing a docking bay below. It's large enough to fit entire human space stations, but there are only a few ordinary ships parked below. When you exit your ship, several security personnel arrive, wearing unfamiliar uniforms, and carrying bright orange rifles. They're accompanied by a woman in a blue dress, holding a data pad in one hand and a stylus in another.`
-			`	"We don't like surprises, Captain <last>. I was expecting to see Jenny Globemaster, but here you are in her stead. Care to explain?"`
+			`You approach the asteroid and a crater suddenly opens up, revealing a docking bay below. It's large enough to fit entire human space stations, but there are only a few ordinary ships parked below. When you exit your ship, several threatening-looking men in odd uniforms stare you down. They're armed with bright orange rifles whose scorching heat warps the air around them.`
+			`	A woman steps forward, whose face radiates kindness, in sharp contrast to her tactical gear. Atop her short silky dress, you see two revolvers and a sizable supply of ammo. There's a knife on each leg, just above her knee-high combat boots, and you think there's another knife behind her neck. A rainbow lock contrasts her otherwise black hair, and matches the rainbow feather on a necklace draped around her neck.`
+			`	She shakes your hand firmly. "My name is Iris." Her glowing smile quickly switches to a look of concern. "We don't like surprises, Captain <last>. I was expecting to see Jenny Globemaster, but here you are in her stead. Care to explain?"`
 			choice
 				`	"Her mother is unwell, but she knew you needed this delivery."`
 					goto unwell
 				`	"She wasn't using the fish, so I took it."`
 					goto taunt
 				`	(Pull out your gun.)`
-			`	Before you can reach the holster, three of the security guards shoot you at the same time. The pain is excruciating as plasma eats its way through flesh and bone.`
-			`	"Thank you for delivering the fish, Captain <last>. I think our business relationship has come to an end." She points a smaller orange pistol at your face and ends your pain.`
-				die
-			label taunt
-			`	The woman in the blue dress laughs at you. "You don't look halfway clever enough to scam her out of it. What really happened?"`
+					goto gun
+			label gun
+			`	Before you can reach the holster, the squad's guns are pointed at nearly every part of your torso. Iris raises her hand to signal "hold fire." You instinctively stop, knowing any move will result in your death.`
+			`	"I understand, Captain <last>, you're scared. Anyone would be in a place like this, crawling with pirates, marauders, and who knows what else. We haven't threatened you in any way. I'm used to dealing with aggressive personalities, so I'll give you a second chance."`
 			choice
-				`	"Her mother is unwell, but she knew you needed this delivery."`
+				`	"I'm sorry, I panicked."`
+					goto sorry
+				`	"Yes, let's talk instead."`
+					goto talk
+				`	(Go out in a blaze of glory.)`
+					goto glory
+			label glory
+			`	As your hand starts to move, so does Iris's, giving the order to fire. All guns glow red briefly, and your pain is excruciating as plasma eats its way through flesh and bone. You try to scream, but your lungs have burnt open, and you can't move air to your throat. They cease fire, and Iris walks towards you, putting her gun in your mouth.`
+			choice
+				`	(Gurgle)`
+				`	(Squirt)`
+				`	(Remain silent)`
+			`	"Shhh. It'll be over soon. I pray that you make better decisions in your next life."`
+			`	She pulls the trigger, and everything goes dark. As you ponder your life choices, you realize the rumors are true: the brain does survive for a few minutes after the body dies.`
+				die
+			label sorry
+			`	You move your hand away from the gun, and she reassures you. "We all make mistakes, Captain <last>. Be glad this wasn't a fatal one. Now tell me what really happened."`
+				goto really
+			label talk
+			`	"A wiser decision than your last one, Captain <last>. Rash actions can lead to a quick end of your mercenary career. Please be careful in the future."`
+				goto really
+			label taunt
+			`	Iris laughs at your joke as the men around glare unemotionally. "You don't look halfway clever enough to scam Jenny. What really happened?"`
+			label really
+			choice
+				`	"Jenny's mother is unwell, but she knew you needed this delivery."`
+					goto unwell
+				`	(Pull out your gun.)`
+					goto gun
 			label unwell
-			`	"Poor Jenny. Yes, I know about that. She's smuggling her mother from Freedom to a hospital on Shroud for treatment. Alright. Jenny vouched for you, and you seem sane enough. Take these supplies to New Tortuga," she points to a pile of black barrels, "and my counterpart there will pay you."`
+			`	"Poor Jenny. Yes, I know about that. She's smuggling her mother from Freedom to a hospital on Shroud for treatment. Her mother's a strong woman, and I'm sure she'll pull through.`
+			`	"We did a background check on you before you arrived. Your meeting wasn't a mistake; Jenny contacted you at our request. You do seem suitable for our needs, if you keep a level head. Take these supplies to New Tortuga," she points to a pile of black barrels, "and my counterpart there will pay you."`
+			choice
+				`	"I'll see it done."`
+					goto see
+				`	"You can count on me."`
+				`	"No, I think I'm done with your deliveries."`
+					goto reject
+			`	"I'm sure I can" she says, smiling.`
+				goto warning
+			label see
+			`	She nods and gives an approving smile.`
+			label warning
+			`	"A word of warning, Captain <last>. You may have noticed some unusual ships near here, larger than anything else in human space. Any fish delivery jobs at New Tortuga, and any jobs at this station, will earn you favor with them. Eventually, they'll stop being hostile, and you might assist their disabled ships.`
+			`	"If you see one of their red or yellow ships disabled, do not, and I repeat, do NOT, assist them. They are quite unpopular with many groups, and they know the risk they take in their raids. Helping one of their damaged ships will earn you powerful enemies.`
+			`	"Their green ships are civilians, and you should ensure those ships' survival. The ships with a forested dome in front are hospitals and nurseries and you should take special care to keep them safe. Shooting at them may anger even more powerful groups."`
+				goto departs
+
+			label reject
+			action
+				payment 70000
+			`	"That is your prerogative. As you have done half the job, you may have half the payment: 70,000 credits."`
 			`	She departs with her entourage, and some dock workers load the barrels onto your ship.`
+				decline
+
+			label departs
+			`	She departs with her entourage, and some dock workers load the barrels onto your ship.`
+				accept
 	on complete
 		# This is essentially a reputation reset for people who haven't been farming
 		# the Korath at all. Anyone else will have to do a lot of assistance jobs.
 		"reputation: Korath" += 50
-		payment 145000
+		payment 140000
 		conversation
 			`This time, you are directed to a different bunker city, on the other side of the planet from the main spaceport. The doors are considerably larger, and the bay is large enough to fit two dozen bulk freighters. You park near the far corner, close to one of the spaceport entrances, between a Behemoth and a Bactrian.`
-			`	Another woman in a blue dress meets you, accompanied by security guards with the same unfamiliar uniform as on La'ab Bamen. "Ah, Captain <last>! The next shipment."`
+			`	Another well-armed woman in a blue dress meets you, accompanied by security guards with the same unfamiliar uniform as on La'ab Bamen. "Ah, Captain <last>! The next shipment."`
 			choice
 				`	"What was this cargo?"`
 				`	"I'm glad to have served another happy customer."`
 					goto done
-			`	"Much of our planet's food comes from a waste processing system that converts sewage directly into edible materials. We need a steady supply of filters to make this possible. These barrels contain genetically-engineered microorganisms that feed on sewage and output certain types of proteins. There are other filters for sugar, oils, and just about anything else."`
+			`	"Normally, it is unwise to ask that question, but you're in luck: this cargo is not confidential, so I can satisfy your curiosity.`
+			`	"Much of our planet's food comes from a waste processing system that converts sewage directly into edible materials. We need a steady supply of filters to make this possible. These barrels contain genetically-engineered microorganisms that feed on sewage and output certain types of proteins. There are other filters for sugar, oils, and just about anything else.`
 
 			label done
 			`	"As promised, <payment>. Thank you for the prompt delivery, Captain <last>!"`
+	on visit
+		dialog "You've arrived at <planet> but you left some of the fish behind. You should take off and wait for your escorts to arrive."
 
 mission "Korath: Assistance Warning"
 	assisting
@@ -563,4 +632,15 @@ mission "Korath: Boarding Warning"
 	on offer
 		conversation
 			`Remembering the warning from New Tortuga, you realize you just made a mistake. They told you that the Korath would anger if you board them, and too much of that will make them hostile. You'll have to do jobs at La'ab Bamen to appease them.`
+				decline
+
+mission "Korath: Civilian Warning"
+	landing
+	invisible
+	source
+	to offer
+		"reputation: Korath (Civilian)" < 0
+	on offer
+		conversation
+			`Remembering the warning from New Tortuga, you realize you just made a terrible mistake. The green ship you attacked was a Korath civilian vessel and you now have powerful enemies. If only you could go back and undo that mistake... but that's not how reality works.`
 				decline
