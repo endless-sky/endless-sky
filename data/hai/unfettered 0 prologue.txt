@@ -1121,12 +1121,12 @@ mission "<uhai> 3: Jump Drive Vault"
 			`	It was indeed just a light flickering - from a laser sight, used to acquire a target: you.`
 				die
 			label outside
+			action
+				fail "<uhai> 3: Recover Jump Drives"
 			`	It may have felt like the right thing to do at the time, but you quickly realize splitting up and then staying here in the open was not very intelligent. It is too late, unfortunately, because you get stabbed by a local pirate, who is no longer impressed by your now-missing armored friend. You can see his bloody knife, with what seems to be a snake on it, before losing consciousness.`
 			`	When you wake up everything is blurry, all you can see if a powerful, almost divine, light.`
 			`	Coming back to your senses, you notice you are in what must be a hospital, half naked. The captain is staring at you. "The Gods of battle have judged ye, <first>. And they found you wanting." It seems clear that you will not be able to continue missions with the Unfettered after such a failure.`
-			action
-				fail "<uhai> 3: Recover Jump Drives"
-				fail
+				decline
 			label down
 			`	You get down yourself as you give the warning, then to see if it was heeded. The Unfettered was evidently well trained for this, as he is already on the ground and sighting his rifle. You're impressed by the precision of his weapon; the sniper is quite clearly taken out with the first shot, but your armored companion fires three more times to be sure.`
 			`	After searching through the vault to eliminate any other surprises, the Hai declares the area cleared. Any other stalkers have probably run off after seeing the firepower your Unfettered friend carries. You then inspect the Jump Drives to the best of your ability with a device he quickly instructed you how to use, while he finishes taking care of the security systems. While waiting for him to return once you are done, you look around and notice a small symbol in the lower corner of a nearby wall: a dog with multiple heads. You double-check the Jump Drives as you continue to wait, and when the Hai captain comes back, he conveniently places his gun to hide the symbol. Best not ask him about it.`

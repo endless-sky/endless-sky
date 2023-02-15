@@ -951,7 +951,7 @@ mission "<uhai> 8: Unfettered humans?"
 	to offer
 		has "<uhai> 5: Scan Auxiliary: done"
 	to complete
-		has "unfettered: it's the Alphas"
+		has "unfettered: it's the Alphas!"
 
 mission "<uhai> 8: I Know The Way"
 	landing

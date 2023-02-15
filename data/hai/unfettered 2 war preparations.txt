@@ -151,7 +151,7 @@ mission "<uhai> 11: Shipyard Intel"
 				`	"This seems like it could easily go wrong. I'm not interested."`
 					decline
 			action
-				"unfettered: He-Yi' opinion" ++
+				"unfettered: He-Yi's opinion" ++
 			`	He seems genuinely impressed. "That is a [brilliant, mature] idea! Well what are you waiting for? Go on then."`
 				accept
 			label stupid
@@ -187,7 +187,7 @@ mission "<uhai> 11: Shipyard Intel"
 					goto noboughtship
 			action
 				payment 1000000
-				"unfettered: He-Yi' opinion" ++
+				"unfettered: He-Yi's opinion" ++
 			`	"You had to pay a ship? Clever way to remove [suspicion, attention]. I can give you an extra <payment> to compensate. These scans are perfect! They are indeed much more [detailed, refined] that what I even asked for."`
 			`	"It seems like you have some cunning after all."`
 				to display
@@ -1221,7 +1221,7 @@ mission "<uhai> 16: Strength Of A Leader"
 			action
 				"unfettered: questions" ++
 			branch enough
-				"unfettered: questions" > 2 + "unfettered: He-Yi' opinion"
+				"unfettered: questions" > 2 + "unfettered: He-Yi's opinion"
 			choice
 				`	"What does this sword do?"`
 					to display
@@ -1596,7 +1596,7 @@ mission "<uhai> 17: Mirror Spy"
 	name `Mystery Gathering`
 	description `Collect a tribute of food from <stopovers>, and place the mystery cube without anyone noticing.`
 	source "Warfeed"
-	stopover "Mirrorlake"
+	destination "Mirrorlake"
 	cargo "food (tribute)" 93
 	blocked `You need <tons> of cargo space for the next Unfettered mission.`
 	to offer
@@ -1646,28 +1646,20 @@ mission "<uhai> 17: Mirror Spy"
 			action
 				outfit "Mystery Cube" -1
 				set "unfettered: mystery cube"
-				"unfettered: He-Yi' opinion" ++
+				"unfettered: He-Yi's opinion" ++
 			`	This seems to anger his pride a bit, but he knows full well that statement to be true. You give him the cube so it could be used later.`
 				decline
-	to complete
-		has "<uhai> 17: Place Mirror Spy: offered"
 	on visit
-		dialog phrase "generic missing stopover or cargo"
+		dialog "You have landed on <destination> but either the food or the Mystery Cube are still on one of your escorts in another system."
 	on complete
+		outfit "Mystery Cube" -1
 		log `Placed a mysterious cube in a clearing on Mirrorlake. It should give intel on Hai ship movements to the Unfettered.`
 		payment 5000000
-		dialog `He-Yi is more than happy to see you in his throne room, and gives you a generous payment of <payment>.`
+		dialog
+			`You land, and the Hai start loading their food onto your ship. You tell them you want to stretch your legs (which isn't entirely a lie), and they don't appear to suspect a thing. You find a clearing and choose to bury the cube just below the ground. You remember to mark the exact spot, and then you return to your ship.`
+			``
+			`You then notice that you have received a generous payment of <payment>. It appears they somehow learned of it.`
 
-mission "<uhai> 17: Place Mirror Spy"
-	landing
-	invisible
-	source "Mirrorlake"
-	to offer
-		has "<uhai> 17: Mirror Spy: active"
-	on offer
-		outfit "Mystery Cube" -1
-		conversation
-			"You land, and the Hai start loading their food onto your ship. You tell them you want to stretch your legs (which isn't entirely a lie), and they don't appear to suspect a thing. You find a clearing and choose to bury the cube just below the ground. You remember to mark the exact spot, and then you return to your ship."
 
 
 # 18 is optional, in side missions because you can learn Hai trough the Hai diplomats

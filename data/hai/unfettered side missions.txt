@@ -423,6 +423,8 @@ mission "<uhai> 18: Wanderer Homeworld"
 	to offer
 		has "<uhai> 12: Outfitter Upgrade: done"
 		not "language: Wanderer"
+		not "First Contact: Wanderer: offered"
+		not "First Contact: Wanderer (Before Hai): offered"
 	to fail
 		has "<uhai> 18: Hai Language: failed"
 	on enter "Ka'ch'chrai"
@@ -431,7 +433,7 @@ mission "<uhai> 18: Wanderer Homeworld"
 mission "<uhai> 18: Hai Language"
 	minor
 	name `Meet and understand the Wanderers`
-	description `You need to be able to act as a diplomat between the Hai and the aliens up north. First go and meet those aliens. Then go to <stopovers> to see if He-Yi will provide a translator for you.`
+	description `You need to be able to act as a diplomat between the Hai and the aliens up north. First go and meet those aliens. Then go to <stopovers> to see if He-Yi will provide a translator for you, or get one trough other means.`
 	source "Darkcloak"
 	stopover "Warfeed"
 	to offer
@@ -447,7 +449,14 @@ mission "<uhai> 18: Hai Language"
 					goto translator
 			`	"Well, to be frank, we don't have the ability to teach all of its nuances to you in time. However, we believe that our brethren do have some way of doing that, given how apt they are with languages and how keen they are to meet new races."`
 			label translator
-			`	"We think our Hai brethren may indeed have what we need, but we need to find a way to obtain it. In the meantime, You should go and meet the aliens up North and speak with them. They may not allow you to land on most of their planets. They may have grown distrusful of newcomers - probably because of our own actions. Go and see how pathethic these birds are, and then you should go to He-Yi about that translator."`
+			`	"We think our Hai brethren may indeed have what we need, but we need to find a way to obtain it.`
+			`	"They are not ready to meet the birds yet.`
+				to display
+					not "event: hai-human resolution announced"
+			`	"Perhaps you can go to them to get a translator, although that is not the prefered way. But maybe they are ready to meet the birds now.`
+				to display
+					has "event: hai-human resolution announced"
+			`	"In the meantime, you should go and meet the aliens up North and speak with them, representing us peacefully. They may not allow you to land on most of their planets. They may have grown distrusful of newcomers - probably because of our own actions. Go and see how pathethic these birds are, and then you should go to He-Yi about that translator."`
 			branch neutral
 				"reputation: Wanderer" >= 0
 			choice
@@ -457,6 +466,13 @@ mission "<uhai> 18: Hai Language"
 				"reputation: Wanderer" = 0
 			label neutral
 			choice
+				`	"I have in fact met them and I am on friendly terms with them already."`
+					to display
+						or
+							has "First Contact: Wanderer: offered"
+							has "First Contact: Wanderer (Before Hai): offered"
+						"reputation: Wanderer" >= 0
+					goto met
 				`	"I guess I'll try to land on their planet."`
 					accept
 				`	"I am not interested in being able to communicate with them."`
@@ -464,6 +480,11 @@ mission "<uhai> 18: Hai Language"
 			choice
 				`	"I guess I'll try to land on their planet."`
 					accept
+			label met
+			action
+				"unfettered: He-Yi's opinion" ++
+			`	"We suspected that to be the case, but you do well to be frank by telling us. You can go to Warfeed, where He-Yi will give you a mission to earn a translator."`
+				decline
 	on visit
 		dialog "You have not yet met the Wanderers and acquired a translator from <stopovers> to communicate with them."
 	to complete
@@ -481,7 +502,9 @@ mission "<uhai> 18: Detainer For Translator"
 	description `He-Yi has asked you to earn a translation device by bringing back a powerful alien weapon, said to be able to neutralize the engines of its target. You should probably look east of Unfettered space.`
 	source "Warfeed"
 	to offer
-		has "<uhai> 18: Hai Language: active"
+		or
+			has "<uhai> 18: Hai Language: active"
+			has "<uhai> 18: Hai Language: declined"
 		or
 			has "First Contact: Wanderer: offered"
 			has "First Contact: Wanderer (Before Hai): offered"
@@ -511,6 +534,7 @@ mission "<uhai> 18: Detainer For Translator"
 	on visit
 		dialog `You do not yet have the weapon He-Yi asked for. Investigate the battles of the Korath automata and you may see it in action.`
 	on complete
+		fail "First Contact: Wanderer"
 		outfit "Korath Detainer" -1
 		set "language: Wanderer"
 		dialog `He-Yi is impressed that you managed to bring this detainer to him, and happily exchanges it for a translator. He says you should still go to his herald to bring him news of this, and the scans for a reward.`
