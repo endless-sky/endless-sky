@@ -27,9 +27,9 @@ class ShipAICache {
 public:
 	ShipAICache() = default;
 
-	void Calibrate(const Ship &ship);
+	void Calibrate(Ship &ship);
 	// Get the new mass of the ship, if it changed update the weapon cache.
-	void Recalibrate(const Ship &ship);
+	void Recalibrate(Ship &ship);
 
 	// Accessors for AI data.
 	bool IsArtilleryAI() const;
@@ -61,6 +61,8 @@ inline double ShipAICache::ShortestRange() const { return shortestRange; }
 inline double ShipAICache::ShortestArtillery() const { return shortestArtillery; }
 inline double ShipAICache::MinSafeDistance() const { return minSafeDistance; }
 inline double ShipAICache::TurningRadius() const { return turningRadius; }
+inline double ShipAICache::GunRange() const { return gunRange; }
+inline double ShipAICache::TurretRange() const { return turretRange; }
 
 
 
