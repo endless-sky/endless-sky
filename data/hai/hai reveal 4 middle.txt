@@ -208,42 +208,43 @@ mission "Hai Reveal [A03a] Symbol Identification"
 	autosave
 	landing
 	name "Symbol Identification"
-	description "Check out the worlds near Allhome and make sure the Hai seem normal."
+	description "Check out the worlds near Allhome, explore the spaceports, and make sure the Hai seem normal."
 	source "Hai-home"
 	to offer
 		has "Hai Reveal [A02] Symbol Identification: done"
 	on offer
-		event "alondo symbol timer" 12
+		event "alondo symbol timer" 14
 		log `Alondo asked me to check out the Hai spaceports in various systems near the wormhole, to see if anything unexpected is happening.`
 		conversation
 			`You make what is beginning to feel like a standard request to land at the secure spaceport and disembark with relevant copies of files on a data stick in hand. It doesn't take long to track down Alondo, though you do have to wait nearly half an hour while he finishes a meeting with a Hai official. When he's done, Alondo waves you into the room and asks you to take a seat. The seat you choose is clearly designed to be comfortable for a Hai, making for a rather strange experience for a human.`
 			# TODO: Replace this paragraph with actual content. Include something about him working at Remington lately.
-			`	You show Alondo the cat symbol you found. He says, "There's a research institute on Earth that specializes in the history of politics during the early hyperspace travel era. If anyone would recognize this symbol, it's them. I'll pass it on and let you know what they say."`
-			`	"In the meantime," he says, "could you stop by some of the Hai worlds near the wormhole? They've obviously ramped up security on Allhome, but I'd like to have a pair of friendly eyes check it out. The Hai may be using this as a cover to put their military into a threatening position... not that I think they'd do that, but we've just been through one war. I may be getting paranoid sitting in the most Hai place that there is."`
+			`	You show Alondo the cat symbol you found. He says, "There's a research institute on Earth that specializes in the history of politics during the early hyperspace travel era. If anyone would recognize this symbol, it's them. I'll pass it on and let you know what they say.`
+			`	"In the meantime, could you stop by some of the Hai worlds near the wormhole? They've obviously ramped up security on Allhome, but I'd like to have a pair of friendly eyes check it out. The Hai may be using this as a cover to put their military into a threatening position... not that I think they'd do that, but we've just been through one war. We have concerns, and I may be getting paranoid sitting here in the most Hai place that there is.`
+			`	"Plus," he pauses, visibly softening. "It'd be nice to know how they're handling things. It seems to have been quite a shock to them, and civilian populations don't always react well to suddenly heightened security. There's a lot of very high-level stuff going on, and I'd personally feel better if someone could tell me the regular people were handling things alright. No need to do anything special, just have a look around and see how things are going."`
 				accept
 	to complete
-		has "event: alondo symbol timer"
+		never
 		
 event "alondo symbol timer"
 
 
 mission "Hai Reveal [A03a1]"
-	minor
-	invisible
+	name "Lead from Alondo"
+	description "Meet Alondo on <planet> to get the lead for your investigation, but only when you have no other business to attend to."
 	source
 		government "Republic" "Syndicate" "Hai" "Free Worlds" "Independent"
 		attributes "spaceport"
+	destination "Hai-home"
 	to offer
 		has "event: alondo symbol timer"
 		has "Hai Reveal: Pirate Troubles [0]: done"
 	on offer
-		fail "Hai Reveal [A03a] Symbol Identification"
-		# This presumably does nothing if it's already failed.
-		dialog `A message from Alondo informs you that he has a tenuous lead he can give you when you're not busy.`
+		dialog `A message from Alondo informs you that he has a tenuous lead he can give you. It also says to look for him only when you're not busy with other business.`
+	to complete
+		never
 
 
 mission "Hai Reveal [A03a2]"
-	minor
 	invisible
 	source
 		government "Republic" "Syndicate" "Hai" "Free Worlds" "Independent"
@@ -273,7 +274,7 @@ mission "Hai Reveal: Pirate Troubles [0]"
 		#		random < 10
 	on offer
 		conversation
-			`The peaceful spaceport is suddenly filled with the harsh sound of sirens. You spot some Hai and a small number of humans running to their ships and speeding quickly into orbit. It appears that the system is under attack, but this is behind the security front and the Unfettered Hai never reach this far south... A loud speaker begins blaring throughout the spaceport: "Unfettered humans have entered the system in a large fleet and have begun attacking! Requesting all combat-worthy pilots to assist in the defense of our space. These enemies of harmony are not welcome here."`
+			`The peaceful spaceport is suddenly filled with the harsh sound of sirens. You spot some Hai and a small number of humans running to their ships and speeding quickly into orbit. It appears that the system is under attack, but this is behind the heightened security front in Allhome and the Unfettered Hai never reach this far south... A loud speaker begins blaring throughout the spaceport: "Unfettered humans have entered the system in a large fleet and have begun attacking! Requesting all combat-worthy pilots to assist in the defense of our space. These enemies of harmony are not welcome here."`
 			branch unfettered
 				has "Unfettered: Jump Drive Source: offered"
 			`	You find the phrase "unfettered humans" odd, but guess that they may be referring to pirates who have somehow slipped through. The Hai probably expect you help with your reputation, and this is certainly a significant threat to be attacking here.`
@@ -367,12 +368,13 @@ mission "Hai Reveal: Pirate Troubles [1]"
 		"reputation: Hai Merchant (Human)" += 20
 		"reputation: Hai Merchant (Sympathizers)" += 20
 		conversation
-			`The battle has ended, but the spaceport still seems more hectic than usual. Ships are jumping in from the surrounding systems to help any injured and to repair any damage that may have occurred. After some hours pass and the commotion has died down, a Hai in uniform approaches you. "We have heard from several people here that you are considered a seasoned fighter among your people and learned of your current status assisting our government on other matters. Would you lend your combat prowess to us to resolve this issue?"`
+			`The battle has ended, but the spaceport still seems more hectic than usual. Ships are jumping in from the surrounding systems to help any injured and to repair any damage that may have occurred. Despite the heightened security there is an air of concern and worry that seems to be exactly the thing Alondo was worried about.`
+			`	After some hours pass and the commotion has died down, a Hai in uniform approaches you. "We have heard from several people here that you are considered a seasoned fighter among your people and learned of your current status assisting our government on other matters. Would you lend your combat prowess to us to resolve this issue?"`
 			choice
 				`	"I'd be glad to help. What can I do?"`
 					goto explain
 				`	"What issue?"`
-			`	"I understand that you just defended this system from human pirates. That is the issue that needs to be resolved.`
+			`	"I understand that you just helped to defend this system from human pirates. That is the issue that needs to be resolved.`
 			label explain
 			`	"Human attacks on our systems are very rare, but recently we have experienced an increased number of raids. I'm told you recently assisted in dealing with a much more successful one on Allhome. We captured a crew member of this most recent attack who was attempting to flee in an escape pod, and he gave us information that a gang that calls themselves 'Scar's Legion' has discovered our territory and is responsible for some of the recent raids.`
 			`	"Unfortunately, he would not tell us where this gang is, or who the leader is, so there is nothing we are able to do about it. Many humans who live peacefully among us told us that you might be capable of assistance, though."`
@@ -395,6 +397,9 @@ mission "Hai Reveal: Pirate Troubles [1]"
 		dialog `You receive a short message from Teeneep. "I heard what happened <last>. This is not one of the groups that was already on our radar, so once you're done I would very much like to hear what you find out."`
 	on visit
 		dialog "You've returned to <planet>, but you haven't yet tracked down Scar's Legion. Perhaps you should ask around the spaceport of pirate planets near the wormhole into Hai space for information."
+	on decline
+		dialog `You have declined an essential narrative mission. If you want to complete this story line, revert to the autosave or another earlier snapshot of the game.`
+		# Maybe we'll put in a workaround alternative pathway later.
 	to complete
 		or
 			has "hr accepted scar's legion tribute"
@@ -736,7 +741,7 @@ mission "ZZ Hai Reveal [A04] Report to Teeneep"
 			has "Hai Reveal: Pirate Troubles [4]: declined"
 			has "hr defeated scar's legion"
 	on offer
-		dialog `Alondo is apparently away somewhere and unavailable for a short while. So, now that the situation with Scar's Legion is resolved, it's time to report to Teeneep about the experience. Maybe it will shed some light on what's going on?`
+		dialog `While resolving the situation with Scar's Legion, you have learned information which should be reported to Alondo, but apparently he is away somewhere and unavailable for a short while. Simply waiting for him at this point may be suspicious, and this is also something Teeneep should be informed of. Perhaps doing so will also help shed some light on what's going on?`
 
 
 mission "Hai Reveal [A05] Take Teeneep to Hai-home"
@@ -929,6 +934,8 @@ mission "Hai Reveal [A06a] The Calm"
 			choice
 				`	"I will."`
 					accept
+	on accept
+		fail "Hai Reveal [A03a1]"
 		
 		
 		

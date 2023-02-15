@@ -122,10 +122,11 @@ PlayerHailPanel::PlayerHailPanel(PlayerInfo &player, const StellarObject *object
 		header = gov->GetName() + " " + planet->Noun() + " \"" + planet->Name() + "\":";
 	hasLanguage = (gov->Language().empty() || player.Conditions().Get("language: " + gov->Language()));
 
-	if(!hasLanguage)
-		message = "(An alien voice says something in a language you do not recognize.)";
-	else if(planet && player.Flagship())
-	{
+
+	// If the player is hailing a planet, determine if a mission grants them clearance before checking
+	// if they have a language that matches the planet's government. This allows mission clearance
+	// to bypass language barriers.
+	if(planet && player.Flagship())
 		for(const Mission &mission : player.Missions())
 			if(mission.HasClearance(planet) && mission.ClearanceMessage() != "auto"
 					&& mission.HasFullClearance())
@@ -134,6 +135,11 @@ PlayerHailPanel::PlayerHailPanel(PlayerInfo &player, const StellarObject *object
 				message = mission.ClearanceMessage();
 				return;
 			}
+
+	if(!hasLanguage)
+		message = "(An alien voice says something in a language you do not recognize.)";
+	else if(planet && player.Flagship())
+	{
 		if(planet->CanLand())
 			message = "You are cleared to land, " + player.Flagship()->Name() + ".";
 		else
