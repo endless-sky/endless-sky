@@ -5457,7 +5457,7 @@ mission "Quicksilver Mixup [2]"
 					goto refuse
 
 			label context
-			`	The mail employee appears confused for a moment, leaning his head to the side slightly.
+			`	The mail employee appears confused for a moment, leaning his head to the side slightly.`
 			choice
 				`	"I once delivered a misposted package like that, and the clerk mentioned that it happened so often somebody should set up a regular delivery."`
 				`	"Never mind. What's the size of the shipment?"`
