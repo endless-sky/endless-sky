@@ -33,7 +33,7 @@ mission "First Contact: Bunrodea"
 		"bunrodea: erabu rep" = "reputation: Bunrodea (Erabu)"
 		"bunrodea: normal rep" = "reputation: Bunrodea"
 		conversation
-			`When you depart your ship, you're startled by a small alien ship uncloaking right in front of you. Two elegant mantis-like aliens step off it, each holding a strange looking weapon pointed directly at you. They have four long insectoid legs and two arms. Although their arms end in what look like hands, they also have strange claw-like features that partially enclose them, extending outward from their forearms to grasp their weapons. You look around to see if there's anyone else witnessing this, but you've landed at <origin>'s main spaceport in the middle of the night, leaving you as the only human in sight.`
+			`When you depart your ship, you're startled by a small alien ship uncloaking right in front of you. Two elegant mantis-like creatures step off it, each holding a strange looking weapon pointed directly at you. They have four long insectoid legs and two arms. Although their arms end in what look like hands, they also have strange claw-like features that partially enclose them, extending outward from their forearms to grasp their weapons. You look around to see if there's anyone else witnessing this, but you've landed at <origin>'s main spaceport in the middle of the night, leaving you as the only human in sight.`
 			`	The aliens begin speaking to you in a language you don't understand. As one of them speaks, they sound almost robotic, as if they are speaking through a synthesizer. Taking a closer look, you spot what you can only guess are cybernetic modifications to parts of the alien's body. The other one has no such visible modifications, though.`
 			choice
 				`	"Do you come in peace?"`
@@ -44,10 +44,10 @@ mission "First Contact: Bunrodea"
 				`	(Pick it up.)`
 				`	(Dodge for cover.)`
 					goto dodge
-			`	You pick up the device and look at it. It springs open in your hand, causing you to drop it. After it falls to the ground, it begins projecting a holographic star map. You recognize some of the systems on the map as those where you fought an alien fleet. In fact, the alien ship in front of you looks similar to those you fought. A single system within that region is highlighted. The aliens return to their ship, which becomes invisible again. Although you can't see it, you hear it take off and fly away.`
+			`	You pick up the device and look at it. It springs open in your hand, causing you to drop it. After it falls to the ground, it begins projecting a holographic star map. You recognize some of the systems on the map as those where you fought an alien fleet, made up of ships similar to the one in front of you. A single system within that region is highlighted. The aliens return to their ship, which becomes invisible again. Although you can't see it, you hear it take off and fly away.`
 				accept
 			label dodge
-			`	You dodge for cover behind your ship. After a few seconds, you hear a springing sound. When you look back out from behind your ship, the aliens are gone, and the device they threw at you is now projecting a holographic star map. You recognize some of the systems on the map as those where you fought an alien fleet. In fact, the alien ship in front of you looks similar to those you fought. A single system within that region is highlighted. The alien ship becomes invisible once again. Although you can't see it, you hear it take off and fly away.`
+			`	You dodge for cover behind your ship. After a few seconds, you hear a springing sound. When you look back out from behind your ship, the aliens are gone, and the device they threw at you is now projecting a holographic star map. You recognize some of the systems on the map as those where you fought an alien fleet, made up of ships similar to the one in front of you. A single system within that region is highlighted. The alien ship becomes invisible once again. Although you can't see it, you hear it take off and fly away.`
 				accept
 	
 	on accept
@@ -59,14 +59,14 @@ mission "First Contact: Bunrodea"
 	on complete
 		"reputation: Bunrodea" = 10
 		conversation
-			`As you enter the atmosphere of the alien planet, you're flanked by two large alien ships which guide you to the surface, leading you to a particular landing zone. When you leave your ship, you're met by two aliens that look similar to the ones that startled you on <origin>, including having the same weaponry.`
-			`	As you take a moment to look around, you find yourself in the middle of a massive alien metropolis. Skyscrapers taller than anything you've ever seen in human space cover the horizon, although most of the buildings around you appear far more elegant in architecture. Directly ahead is a large palace-like building with a considerable number of steps leading up to the front doors.`
-			`	You take step forward, but one of the aliens says something while waving its weapon around, and you take the hint that you shouldn't be moving right now. The other says something into a communication device, then sits down on the ground and gestures for you to do the same. You suspect that you might be waiting here for a while.`
+			`As you enter the atmosphere, you're flanked by two large alien ships which guide you to the surface, leading you to a particular landing zone. When you leave your ship, you're met by two aliens that look similar to the ones that startled you on <origin>, including having the same weaponry.`
+			`	As you take a moment to look around, you find yourself in the middle of a massive metropolis. Skyscrapers taller than anything you've ever seen in human space cover the horizon, although most of the buildings around you appear far more elegant in architecture. Directly ahead is a large palace-like building with a considerable number of steps leading up to the front doors.`
+			`	You take a step forward, but one of the aliens says something while waving its weapon around, and you take the hint that you shouldn't be moving right now. The other says something into a communication device, then sits down on the ground and gestures for you to do the same. You suspect that you might be waiting here for a while.`
 			choice
 				`	(Sit down.)`
 					goto sit
 				`	(Turn around and reenter my ship.)`
-			`	You reenter your ship, and the aliens don't move to stop you. You decide to turn your ship back on and attempt to take off, but just as you try to activate the repulsor engines, you hear a loud buzzing sound coming from outside. You look out the nearest window, and see that the aliens have moved some sort of vehicle near your ship which is buzzing with energy. You attempt to take off, but your ships' repulsor engines aren't moving you anywhere. The vehicle seems like it is deactivating any nearby repulsors.`
+			`	You reenter your ship, and the aliens don't move to stop you. You decide to turn your ship back on and attempt to take off, but just as you try to activate the repulsor engines, you hear a loud buzzing sound coming from outside. You look out the nearest window, and see that the aliens have moved some sort of vehicle near your ship which is buzzing with energy. You attempt to take off, but your ship's repulsor engines aren't moving you anywhere. The vehicle seems like it is deactivating any nearby repulsors.`
 			# Use "flagship attribute: " conditions to check turret mounts?
 			choice
 				`	(Blast the vehicle with a turret.)`

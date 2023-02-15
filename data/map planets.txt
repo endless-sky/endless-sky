@@ -24,7 +24,7 @@ planet Angko
 planet Bunthro
 	attributes bunrodea religious
 	landscape land/sky6
-	description `Despite being a pristine world for colonizing, Bunthro appears to be almost entirely untouched by the Bunrodea. Aside from the spaceport, there are hardly any structures on the planet, most that you can find being small shrines built atop high locations such as on the tops of hills or mountains.`
+	description `Despite being a pristine world for colonizing, Bunthro appears to be almost entirely untouched by the Bunrodea. Aside from the spaceport, there are hardly any structures on the planet, most that you can find being small shrines built atop high locations such as hills or mountains.`
 	description `	Permission to land is even more restricted than the capital; the entire world of Bunthro appears to be a religious site of some sort to the Bunrodea.`
 	spaceport `The spaceport is practically nonexistent, consisting of little more than a few landing pads, a refueling station, and a few buildings for shelter. Beyond the landing pads are paths that branch out into the wilderness, presumably off toward the shrines that can be spotted from above.`
 	spaceport `	The few Bunrodeans who staff the spaceport don't look particularly happy to see you here, but they give you no trouble as they refuel your ship.`
@@ -52,7 +52,7 @@ planet "Deli Kat"
 	attributes bunrodea farming
 	landscape land/fields0
 	description `Deli Kat orbits the dimmest star out of any of the inhabited systems in this region of space, a star not too dissimilar to Sol. Although the planet orbits farther from its host star than Earth does, its slightly thicker atmosphere seems to balance that out, resulting in a mostly Earth-like climate. The planet's many vast plains and river systems additionally help to make Deli Kat a fertile farming world.`
-	spaceport `The spaceport of Deli Kat is in a remote location where the coming and going of spaceships is unlikely to disturb any livestock. Goods are brought into the spaceport via high speed train-like vehicles, except without the need to travel on rails thanks to the use of technology that looks similar to the repulsor engines on human ships. Deli Kat's flat terrain makes it easy for these amphibious vehicles to bullet across the surface, picking up supplies from farms and beinging them to the spaceport for transportation off-world.`
+	spaceport `The spaceport of Deli Kat is in a remote location where the coming and going of spaceships is unlikely to disturb any livestock. Goods are brought into the spaceport via high speed train-like vehicles, except without the need to travel on rails thanks to the use of technology that looks similar to the repulsor engines on human ships. Deli Kat's flat terrain makes it easy for these amphibious vehicles to bullet across the surface, picking up supplies from farms and bringing them to the spaceport for transportation off-world.`
 	"required reputation" 10
 	bribe 0
 	security 0
@@ -152,13 +152,13 @@ planet Jentuthro
 planet Kalbai
 	attributes bunrodea uninhabited
 	landscape land/forest4
-	description `For some reason, this apparently fruitful world has been left largely unsettled by the Bunrodea. Kalbai is teeming with life of all kinds, from varieties of plants across the various forests and plains of the planet's surface to the critters of varying sizes that scury through the underbrush.`
+	description `For some reason, this apparently fruitful world has been left largely unsettled by the Bunrodea. Kalbai is teeming with life of all kinds, from varieties of plants across the various forests and plains of the planet's surface to the critters of varying sizes that scurry through the underbrush.`
 	description `	There are only minimal signs that anyone has ever set foot on this world; there are a number of ancient ruins scattered across the largest continent. A few appear to have been abandoned and reclaimed by nature, but most look as though they were destroyed, creating strikingly lifeless circles in the landscape around the center of the ruins.`
 
 planet Kisarra
 	attributes bunrodea mining
 	landscape land/desert2
-	description `Kisarra's surface is one vast desert as far as the eye can see. The sandy nothingness is only occasionally broken up by oases and rock outcrops. Many of the oases have small towns that have formed around them and some of the rock outcrops seem to used as entrances to mines. Strikingly, all of the towns and mines have large walls constructed around them.`
+	description `Kisarra's surface is one vast desert as far as the eye can see. The sandy nothingness is only occasionally broken up by oases and rocky outcrops. Many of the oases have small towns that have formed around them and some of the outcrops seem to used as entrances to mines. Strikingly, all of the towns and mines have large walls constructed around them.`
 	spaceport `Although most spaceports typically double as a massive population center for the planet, in many cases being the most populous region on the planet, Kisarra's spaceport acts only as a location to ferry minearls brought from the mines off planet, with most of the planet's population living in the small oasis towns.`
 	spaceport `	Just as with the small towns and mines, the spaceport has a large wall constructed around it. From what you can tell, this is to keep out the gigantic hostile spider-like creatures that inhabit Kissara's deserts. These spiders burrow through the sand and consume any unfortunate creature they can find.`
 	outfitter "Bunrodea Basic"
@@ -192,7 +192,7 @@ planet Okoity
 planet Olohoa
 	attributes bunrodea uninhabited
 	landscape land/sky3
-	description `From afar, Olohoa looks like it might be a pleasant place to live, with clear oceans not too disimilar to what you might find on a Paradise World. But your ship's sensors tell you a different story, one of a planet with immense amounts of ultraviolet radiation bombarding its surface. Nothing short of an extremophile could survive on the surface here, and any life in the oceans is likely deep down where no radiation can reach.`
+	description `From afar, Olohoa looks like it might be a pleasant place to live, with clear oceans not too dissimilar to what you might find on a Paradise World. But your ship's sensors tell you a different story, one of a planet with immense amounts of ultraviolet radiation bombarding its surface. Nothing short of an extremophile could survive on the surface here, and any life in the oceans is likely deep down where no radiation can reach.`
 	description `	As you explore, you begin to find occasional signs of civilization in the form of small cities with landing pads for ships, but these areas are just as lifeless as the rest of the planet.`
 
 planet Sardva
@@ -210,7 +210,7 @@ planet Schisathro
 	landscape land/canyon5
 	description `Schisathro is a major mining world, and also home to some of the largest shipyards in Bunrodean space. Larger shipyards than the ones found here only exist on the capital world of Erabuthro.`
 	description `	The planet's success as a mining world can be owed to its many deep canyons found across most of the planet's above water surface, which allow for easier access to mineral rich deposits in the crust. The major shipyards developed alongside these mines allowed for easy transportation of material directly to the shipyards instead of requiring lengthy journeys through space.`
-	spaceport `The main spaceport of Schisathro is almost entirely taken up by shipyards. That area which isn't dedicated to the shipyards is dedicated to the transportion of materials to them. This leaves very little space left over for the usual amenities that you would expect of a spaceport. There is only one single small outfitter tucked in between two large shipyards near the edge of the spacport; the shipyards must receive direct shipments of the more advanced outfits that they need.`
+	spaceport `The main spaceport of Schisathro is almost entirely taken up by shipyards. That area which isn't dedicated to the shipyards is dedicated to the transportation of materials to them. This leaves very little space left over for the usual amenities that you would expect of a spaceport. There is only one single small outfitter tucked in between two large shipyards near the edge of the spaceport; the shipyards must receive direct shipments of the more advanced outfits that they need.`
 	shipyard "Bunrodea Basic"
 	shipyard "Bunrodea Advanced"
 	outfitter "Bunrodea Basic"
@@ -235,8 +235,8 @@ planet Thshybothro
 	landscape land/mountain0
 	description `Thshybothro is a small, mountainous world that is home to the Bunrodea's largest cybernetics research facilities. Various labs and factories are scattered within the world's many valleys, within which the Bunrodea work to develop new cybernetics, or improve their old ones.`
 	description `	Although this planet is where new modifications are developed, the mass production and installation of cybernetics is typically done elsewhere.`
-	spaceport `The planet's spaceport is rather small, as typically any visitors to the planet travel directly to the research facitilites that they're interested in. As such, the spaceport's primary focus is simply to refuel any ships that stop by the planet and who don't have authorization to land at one of the research facitlites.`
-	spaceport `	The spaceport dock workers have more cybernetic enhancements than you're used to from Bunrodeans elsewhere in their space. The worker who refuels your ship in particular is a mass of cybernetic "enhancements" ranging from powerful legs to aide in lifting crates to a vacuum cleaner attachment for dealing with spills and accidents.`
+	spaceport `The planet's spaceport is rather small, as typically any visitors to the planet travel directly to the research facilities that they're interested in. As such, the spaceport's primary focus is simply to refuel any ships that stop by the planet and who don't have authorization to land at one of the research facilities.`
+	spaceport `	The spaceport dock workers have more cybernetic enhancements than you're used to from Bunrodeans elsewhere in their space. The worker who refuels your ship in particular is a mass of cybernetic "enhancements" ranging from powerful legs to aid in lifting crates to a vacuum cleaner attachment for dealing with spills and accidents.`
 	outfitter "Bunrodea Basic"
 	"required reputation" 50
 	bribe 0
