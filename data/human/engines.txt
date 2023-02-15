@@ -46,7 +46,7 @@ outfit "Caldera Afterburner"
 	"afterburner fuel" .5
 	"afterburner heat" 42.0
 	"afterburner effect" "caldera afterburner" 5
-	description "The Caldera afterburner is designed for heavy warships, allowing otherwise slow ships to gain a burst of speed to catch up to a faster target or flee from the heat of battle."
+	description "The Caldera Afterburner is designed for heavy warships, allowing otherwise slow ships to gain a burst of speed to catch up to a faster target or flee from the heat of battle."
 
 effect "caldera afterburner"
 	sprite "effect/afterburner"
@@ -544,7 +544,7 @@ outfit "A860 Atomic Thruster"
 	"flare sprite" "effect/atomic flare/huge"
 		"frame rate" 10
 	"flare sound" "atomic huge"
-	description "The A860 atomic thruster is the most powerful engine sold in human space, and is much more compact than any of the alternatives. But, you may need to upgrade your ship's power and cooling systems to handle it."
+	description "The A860 Atomic Thruster is the most powerful engine sold in human space, and is much more compact than any of the alternatives. But, you may need to upgrade your ship's power and cooling systems to handle it."
 
 
 outfit "A125 Atomic Steering"
