@@ -298,6 +298,7 @@ minable "plant"
 	explode "final explosion medium"
 
 minable "plant2"
+	"display name" "Plant"
 	sprite "asteroid/plant2/plant2"
 	hull 2340
 	"random hull" 520
@@ -325,6 +326,7 @@ minable "large plant"
 	explode "final explosion medium"
 
 minable "large plant2"
+	"display name" "Large Plant"
 	sprite "asteroid/large plant2/large plant2"
 	hull 3240
 	"random hull" 720
