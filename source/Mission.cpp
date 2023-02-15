@@ -941,11 +941,11 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 
 	ostringstream out;
 	if(bunksNeeded > 0)
-		out << (bunksNeeded == 1 ? "another bunk" : to_string(bunksNeeded) + " more bunks");
+		out << Format::NounString(bunksNeeded, "more bunk");
 	if(bunksNeeded > 0 && cargoNeeded > 0)
 		out << " and ";
 	if(cargoNeeded > 0)
-		out << (cargoNeeded == 1 ? "another ton" : to_string(cargoNeeded) + " more tons") << " of cargo space";
+		out << Format::NounString(cargoNeeded, "more ton") << " of cargo space";
 	if(bunksNeeded <= 0 && cargoNeeded <= 0)
 		out << "no additional space";
 	subs["<capacity>"] = out.str();
@@ -1334,8 +1334,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	subs["<tons>"] = Format::MassString(result.cargoSize);
 	subs["<cargo>"] = Format::CargoString(result.cargoSize, subs["<commodity>"]);
 	subs["<bunks>"] = to_string(result.passengers);
-	subs["<passengers>"] = (result.passengers == 1) ? "passenger" : "passengers";
-	subs["<fare>"] = (result.passengers == 1) ? "a passenger" : (subs["<bunks>"] + " passengers");
+	subs["<passengers>"] = Format::Noun(result.passengers, "passenger");
+	subs["<fare>"] = Format::NounString(result.passengers, "passenger");
 	if(player.GetPlanet())
 		subs["<origin>"] = player.GetPlanet()->Name();
 	else if(boardingShip)

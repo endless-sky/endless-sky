@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "DistanceMap.h"
 #include "Flotsam.h"
+#include "text/Format.h"
 #include "Government.h"
 #include "Hardpoint.h"
 #include "JumpTypes.h"
@@ -3446,7 +3447,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		if(!destinations.empty())
 		{
 			string message = "Note: you have ";
-			message += (missions == 1 ? "a mission that requires" : "missions that require");
+			message += Format::Noun(missions, "a mission that requires", "missions that require");
 			message += " landing on ";
 			size_t count = destinations.size();
 			bool oxfordComma = (count > 2);
@@ -4121,7 +4122,7 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 		for(const shared_ptr<Ship> &it : player.Ships())
 			if(it.get() != player.Flagship() && !it->IsParked())
 				ships.push_back(it.get());
-		who = ships.size() > 1 ? "Your fleet is " : "Your escort is ";
+		who = Format::Noun(ships.size(), "Your escort is ", "Your fleet is ");
 	}
 	else
 	{
@@ -4131,7 +4132,7 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 			if(ship)
 				ships.push_back(ship.get());
 		}
-		who = ships.size() > 1 ? "The selected escorts are " : "The selected escort is ";
+		who = "The selected " + Format::Noun(ships.size(), "escorts are ", "escort is ");
 	}
 	// This should never happen, but just in case:
 	if(ships.empty())

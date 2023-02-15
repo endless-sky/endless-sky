@@ -1288,11 +1288,11 @@ void MapPanel::DrawTooltips()
 		// If you have both active and parked escorts, call the active ones
 		// "active escorts." Otherwise, just call them "escorts."
 		if(t.activeShips && t.parkedShips)
-			tooltip += to_string(t.activeShips) + (t.activeShips == 1 ? " active escort\n" : " active escorts\n");
+			tooltip += Format::NounString(t.activeShips, "active escort") + "\n";
 		else if(t.activeShips)
-			tooltip += to_string(t.activeShips) + (t.activeShips == 1 ? " escort" : " escorts");
+			tooltip += Format::NounString(t.activeShips, "escort");
 		if(t.parkedShips)
-			tooltip += to_string(t.parkedShips) + (t.parkedShips == 1 ? " parked escort" : " parked escorts");
+			tooltip += Format::NounString(t.parkedShips, "parked escort");
 		if(!t.outfits.empty())
 		{
 			if(t.activeShips || t.parkedShips)
@@ -1302,7 +1302,7 @@ void MapPanel::DrawTooltips()
 			for(const auto &it : t.outfits)
 				sum += it.second;
 
-			tooltip += to_string(sum) + (sum == 1 ? " stored outfit" : " stored outfits");
+			tooltip += Format::NounString(sum, "stored outfit");
 
 			if(HasMultipleLandablePlanets(*hoverSystem) || t.outfits.size() > 1)
 				for(const auto &it : t.outfits)

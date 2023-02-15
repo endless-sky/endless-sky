@@ -195,14 +195,14 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	double emptyMass = attributes.Mass();
 	double currentMass = ship.Mass();
 	attributeLabels.push_back(isGeneric ? "mass with no cargo:" : "mass:");
-	attributeValues.push_back(Format::Number(isGeneric ? emptyMass : currentMass) + " tons");
+	attributeValues.push_back(Format::MassString(isGeneric ? emptyMass : currentMass));
 	attributesHeight += 20;
 	attributeLabels.push_back(isGeneric ? "cargo space:" : "cargo:");
 	if(isGeneric)
-		attributeValues.push_back(Format::Number(attributes.Get("cargo space")) + " tons");
+		attributeValues.push_back(Format::MassString(attributes.Get("cargo space")));
 	else
 		attributeValues.push_back(Format::Number(ship.Cargo().Used())
-			+ " / " + Format::Number(attributes.Get("cargo space")) + " tons");
+			+ " / " + Format::MassString(attributes.Get("cargo space")));
 	attributesHeight += 20;
 	attributeLabels.push_back("required crew / bunks:");
 	attributeValues.push_back(Format::Number(ship.RequiredCrew())

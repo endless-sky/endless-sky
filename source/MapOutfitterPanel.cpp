@@ -248,9 +248,7 @@ void MapOutfitterPanel::DrawItems()
 			const std::string storage_details =
 				storedInSystem == 0
 				? ""
-				: storedInSystem == 1
-				? "1 unit in storage"
-				: Format::Number(storedInSystem) + " units in storage";
+				: (Format::Noun(storedInSystem, "unit") + " in storage");
 			Draw(corner, outfit->Thumbnail(), 0, isForSale, outfit == selected,
 				outfit->DisplayName(), price, info, storage_details);
 			list.push_back(outfit);

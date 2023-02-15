@@ -665,10 +665,7 @@ void MissionPanel::DrawSelectedSystem() const
 	else if(distance.HasRoute(selectedSystem))
 		jumps = distance.Days(selectedSystem);
 
-	if(jumps == 1)
-		text += " (1 jump away)";
-	else if(jumps > 0)
-		text += " (" + to_string(jumps) + " jumps away)";
+	text += "(" + Format::NounString(jumps, "jump") + " away)";
 
 	const Font &font = FontSet::Get(14);
 	Point pos(-175., Screen::Top() + .5 * (30. - font.Height()));
@@ -843,8 +840,8 @@ void MissionPanel::DrawMissionInfo()
 	else if(acceptedIt != accepted.end())
 		info.SetCondition("can abort");
 
-	info.SetString("cargo free", to_string(player.Cargo().Free()) + " tons");
-	info.SetString("bunks free", to_string(player.Cargo().BunksFree()) + " bunks");
+	info.SetString("cargo free", Format::MassString(player.Cargo().Free()));
+	info.SetString("bunks free", Format::NounString(player.Cargo().BunksFree(), "bunk"));
 
 	info.SetString("today", player.GetDate().ToString());
 

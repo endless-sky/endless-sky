@@ -1464,9 +1464,8 @@ void PlayerInfo::Land(UI *ui)
 		if(added > 0)
 		{
 			flagship->AddCrew(added);
-			Messages::Add("You hire " + to_string(added) + (added == 1
-					? " extra crew member to fill your now-empty bunk."
-					: " extra crew members to fill your now-empty bunks."), Messages::Importance::High);
+			Messages::Add("You hire " + Format::NounString(added, "extra crew member") + to_string(added)
+					+ "to fill your non-empty " + Format::Noun(added, "bunk") + ".", Messages::Importance::High);
 		}
 	}
 
@@ -1546,7 +1545,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 		if(extra)
 		{
 			flagship->AddCrew(-extra);
-			Messages::Add("You fired " + to_string(extra) + " crew members to free up bunks for passengers."
+			Messages::Add("You fired " + Format::NounString(extra, "crew member") + " to free up bunks for passengers."
 				, Messages::Importance::High);
 			flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->Crew());
 			cargo.TransferAll(flagship->Cargo());
@@ -1557,7 +1556,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 	if(extra > 0)
 	{
 		flagship->AddCrew(-extra);
-		Messages::Add("You fired " + to_string(extra) + " crew members because you have no bunks for them."
+		Messages::Add("You fired " + Format::NounString(extra, "crew member") + " because you have no bunks for them."
 			, Messages::Importance::High);
 		flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->Crew());
 	}
@@ -1599,7 +1598,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 		if(uncarried)
 		{
 			// The remaining uncarried ships are launched alongside the player.
-			string message = (uncarried > 1) ? "Some escorts were" : "One escort was";
+			string message = Format::Noun(uncarried, "Some escorts were", "One escort was");
 			Messages::Add(message + " unable to dock with a carrier.", Messages::Importance::High);
 		}
 	}
@@ -3742,8 +3741,8 @@ void PlayerInfo::StepMissions(UI *ui)
 	if(!visitText.empty())
 	{
 		if(missionVisits > 1)
-			visitText += "\n\t(You have " + Format::Number(missionVisits - 1) + " other unfinished "
-				+ ((missionVisits > 2) ? "missions" : "mission") + " at this location.)";
+			visitText += "\n\t(You have " + Format::NounString(missionVisits - 1, " other unfinished mission")
+					+ " at this location.)";
 		ui->Push(new Dialog(visitText));
 	}
 	// One mission's actions may influence another mission, so loop through one

@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Body.h"
 #include "DataNode.h"
 #include "Effect.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "SpriteSet.h"
 
@@ -307,10 +308,10 @@ void Outfit::Load(const DataNode &node)
 	// so the name doesn't matter.
 	if(!displayName.empty() && pluralName.empty())
 	{
-		pluralName = displayName + 's';
-		if((displayName.back() == 's' || displayName.back() == 'z') && node.Token(0) == "outfit")
+		pluralName = Format::PluralUnsafe(displayName);
+		if((pluralName.empty()) && node.Token(0) == "outfit")
 			node.PrintTrace("Warning: explicit plural name definition required, but none is provided. Defaulting to \""
-					+ pluralName + "\".");
+					+ (pluralName = Format::Plural(displayName)) + "\".");
 	}
 
 	// Only outfits with the jump drive and jump range attributes can

@@ -2261,8 +2261,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 			player.Harvest(outfit);
 		}
 		else
-			message = name + to_string(amount) + " "
-				+ (amount == 1 ? outfit->DisplayName() : outfit->PluralName()) + ".";
+			message = name + Format::NounString(amount, outfit->DisplayName(), outfit->PluralName()) + ".";
 	}
 	else
 		commodity = flotsam.CommodityType();
@@ -2525,9 +2524,9 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 	if(target->GetPersonality().IsDaring())
 	{
 		message = "Please assist us in destroying ";
-		message += (attackerCount == 1 ? "this " : "these ");
+		message += Format::Noun(attackerCount, "this ", "these ");
 		message += attacker->GetName();
-		message += (attackerCount == 1 ? " ship." : " ships.");
+		message += Format::Noun(attackerCount, " ship") + ".";
 	}
 	else
 	{
@@ -2535,7 +2534,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 		if(attackerCount == 1)
 			message += "a ";
 		message += attacker->GetName();
-		message += (attackerCount == 1 ? " ship" : " ships");
+		message += Format::Noun(attackerCount, " ship");
 		message += ". Please assist us!";
 	}
 	SendMessage(target, message);

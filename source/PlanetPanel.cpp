@@ -340,8 +340,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 
 			if(overbooked > 0)
 			{
-				out << "bunks available for " << overbooked;
-				out << (overbooked > 1 ? " of the passengers" : " passenger");
+				out << "bunks available for " << Format::NounString(overbooked, "passenger");
 				out << (both ? " and not having enough " : ".");
 			}
 
@@ -352,10 +351,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		else if(nonJumpCount > 0)
 		{
 			out << "If you take off now you will launch with ";
-			if(nonJumpCount == 1)
-				out << "a ship";
-			else
-				out << nonJumpCount << " ships";
+			out << Format::NounString(nonJumpCount, "ship");
 			out << " that will not be able to leave the system.";
 		}
 		// Warn about non-commodity cargo you will have to sell.

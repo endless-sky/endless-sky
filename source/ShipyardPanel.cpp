@@ -269,10 +269,10 @@ void ShipyardPanel::Buy(bool alreadyOwned)
 	else
 		message = "Enter a name for your brand new ";
 
-	if(modifier == 1)
-		message += selectedShip->ModelName() + "! (Or leave it blank to use a randomly chosen name.)";
-	else
-		message += selectedShip->PluralModelName() + "! (Or leave it blank to use randomly chosen names.)";
+	message += Format::Noun(modifier, selectedShip->ModelName(), selectedShip->PluralModelName());
+	message += "! (Or leave it blank to use";
+	message += Format::Noun(modifier, "a randomly chosen name", "randomly chosen names");
+	message += ".)";
 
 	GetUI()->Push(new NameDialog(this, &ShipyardPanel::BuyShip, message));
 }

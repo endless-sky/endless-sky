@@ -522,10 +522,10 @@ void Ship::Load(const DataNode &node)
 	// Variants will import their plural name from the base model in FinishLoading.
 	if(pluralModelName.empty() && variantName.empty())
 	{
-		pluralModelName = modelName + 's';
-		if(modelName.back() == 's' || modelName.back() == 'z')
+		pluralModelName = Format::PluralUnsafe(modelName);
+		if(pluralModelName.empty())
 			node.PrintTrace("Warning: explicit plural name definition required, but none is provided. Defaulting to \""
-					+ pluralModelName + "\".");
+					+ (pluralModelName = Format::Plural(modelName)) + "\".");
 	}
 }
 
@@ -695,14 +695,13 @@ void Ship::FinishLoading(bool isNewInstance)
 	}
 	if(!undefinedOutfits.empty())
 	{
-		bool plural = undefinedOutfits.size() > 1;
 		// Print the ship name once, then all undefined outfits. If we're reporting for a stock ship, then it
 		// doesn't have a name, and missing outfits aren't named yet either. A variant name might exist, though.
 		string message;
 		if(isYours)
 		{
 			message = "Player ship " + modelName + " \"" + name + "\":";
-			string PREFIX = plural ? "\n\tUndefined outfit " : " undefined outfit ";
+			string PREFIX = Format::Noun(undefinedOutfits.size(), "\n\tUndefined outfit ", " undefined outfit ");
 			for(auto &&outfit : undefinedOutfits)
 				message += PREFIX + outfit;
 		}
@@ -710,7 +709,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		{
 			message = variantName.empty() ? "Stock ship \"" + modelName + "\": "
 				: modelName + " variant \"" + variantName + "\": ";
-			message += to_string(undefinedOutfits.size()) + " undefined outfit" + (plural ? "s" : "") + " installed.";
+			message += Format::NounString(undefinedOutfits.size(), "undefined outfit") + " installed.";
 		}
 
 		Logger::LogError(message);

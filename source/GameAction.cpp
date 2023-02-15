@@ -56,21 +56,21 @@ namespace {
 		}
 
 		Ship *flagship = player.Flagship();
-		bool isSingle = (abs(count) == 1);
-		string nameWas = (isSingle ? outfit->DisplayName() : outfit->PluralName());
+		int countAbs = abs(count);
+		string nameWas = Format::Noun(countAbs, outfit->DisplayName(), outfit->PluralName());
 		if(!flagship || !count || nameWas.empty())
 			return;
 
-		nameWas += (isSingle ? " was" : " were");
+		nameWas += Format::Noun(countAbs, "was", "were");
 		string message;
-		if(isSingle)
+		if(countAbs == 1)
 		{
 			char c = tolower(nameWas.front());
 			bool isVowel = (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u');
 			message = (isVowel ? "An " : "A ");
 		}
 		else
-			message = to_string(abs(count)) + " ";
+			message = to_string(countAbs) + " ";
 
 		message += nameWas;
 		if(count > 0)
@@ -114,7 +114,7 @@ namespace {
 			{
 				string special = "The " + nameWas;
 				special += " put in your cargo hold because there is not enough space to install ";
-				special += (isSingle ? "it" : "them");
+				special += Format::Noun(countAbs, "it", "them");
 				special += " in your ship.";
 				ui->Push(new Dialog(special));
 			}
