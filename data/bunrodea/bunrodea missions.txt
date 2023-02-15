@@ -15,10 +15,10 @@ mission "First Contact: Bunrodea"
 	landing
 	source
 		near "Sol" 0 100
-		not attributes "urban"
+		not attributes "urban" "station"
 		attributes "spaceport"
 	destination "Erabuthro"
-	clearance "Unlike before, you don't receive any hostility entering this region. After hailing the planet that the map pointed you towards, you hear an alien voice respond. Before you can think of what to say, the small device that the aliens threw at you on <origin> responds for you. The voice on the other end says something short, then cuts the feed. It seems like you've been cleared to land."
+	clearance "After hailing the planet the map pointed you towards, you hear an alien voice respond. Before you can think of what to say, the small device that the aliens threw at you on <origin> responds for you. The voice on the other end says something short, then cuts the feed. It seems like you've been cleared to land."
 	to offer
 		random < 10
 		or
