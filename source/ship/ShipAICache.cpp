@@ -110,13 +110,13 @@ void ShipAICache::Calibrate(const Ship &ship)
 	turretRange = 0.;
 	gunRange = 0.;
 	// Get the weapon ranges for this ship, so the AI can call it.
-	for (auto& hardpoint : ship.GetArmament().Get())
+	for(const auto & hardpoint : ship.GetArmament().Get())
 	{
-		const Weapon* weapon = hardpoint.GetOutfit();
-		if (!weapon || (weapon->Ammo() && !ship.OutfitCount(weapon->Ammo())) || !weapon->DoesDamage())
+		const Weapon * weapon = hardpoint.GetOutfit();
+		if(!weapon || (weapon->Ammo() && !ship.OutfitCount(weapon->Ammo())) || !weapon->DoesDamage())
 			continue;
 		double weaponRange = weapon->Range() + hardpoint.GetPoint().Length();
-		if (hardpoint.IsTurret())
+		if(hardpoint.IsTurret())
 			turretRange = max(turretRange, weaponRange);
 		else
 			gunRange = max(gunRange, weaponRange);
