@@ -5482,6 +5482,8 @@ mission "Quicksilver Mixup [2]"
 				decline
 	on visit
 		dialog `You have reached <planet>, but your escort, loaded with the shipment, has not arrived. Better depart and wait for your escorts to arrive in this star system.`
+	on complete
+		dialog `You contact the spaceport authorities and they direct you to the respective landing pad, where the post office staff is already waiting. They transfer the cargo and you prepare to head back to Silver. Again, you have 10 days to make the delivery.`
 
 
 mission "Quicksilver Mixup [3]"
@@ -5494,9 +5496,6 @@ mission "Quicksilver Mixup [3]"
 	cargo "misposted mail" 29
 	to offer
 		has "Quicksilver Mixup [2]: done"
-	on offer
-		dialog `You contact the spaceport authorities and they direct you to the respective landing pad, where the post office staff is already waiting. They transfer the cargo and you prepare to head back to Silver. Again, you have 10 days to make the delivery.`
-
 	on visit
 		dialog `You have reached <planet>, but your escort carrying the misposted mail has not arrived. Better depart and wait for your escorts to arrive in this star system.`
 	on complete
