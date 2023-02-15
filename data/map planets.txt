@@ -15,7 +15,7 @@ planet Angko
 	attributes bunrodea factory manufacturing
 	landscape land/water6
 	description `Angko is a massive industrial world, with most cities on its surface supporting vast manufacturing sectors, factories, and warehouses. The level of industrial progress has not gone without its environmental impacts, however. At some time in the planet's past, the ice caps melted, causing sea levels to rise globally. The Bunrodeans have since moved to less environmentally negative practices, but the damage was already done, and the planet hasn't been the same since.`
-	spaceport `The main spaceport of Angko is in a precarious situation: established ages ago on a coastline, the oceans of the planet have risen significantly enough that the entire spaceport would be submerged in water were it not for the massive sea walls that enclose the city. Even with the flooding of the spaceport being a constant concern should the sea walls fail, the Bunrodeans have determined that it's still easier to keep maintaining the main spaceport rather than move the spaceport to high ground.`
+	spaceport `The main spaceport of Angko is in a precarious situation: established ages ago on a coastline, the oceans of the planet have risen significantly enough that the entire region would be submerged in water were it not for the massive sea walls that enclose the city. Even with the flooding of the city being a constant concern should the sea walls fail, the Bunrodeans have determined that it's still easier to keep maintaining the main spaceport rather than move the it to high ground.`
 	outfitter "Bunrodea Basic"
 	"required reputation" 10
 	bribe 0
@@ -60,7 +60,7 @@ planet "Deli Kat"
 planet Erabuthro
 	attributes bunrodea urban
 	landscape land/mountain5
-	description `Erabuthro is the capital of the Bunrodean Hegemony, home to the throne of the Matriach. Only those with the blessings of the Matriach are allowed to set foot on the planet's surface, although receiving such blessing doesn't necessarily guarantee a warm welcome.`
+	description `Erabuthro is the capital of the Bunrodean Hegemony, home to the throne of the Queen. Only those with the blessings of the Queen are allowed to set foot on the planet's surface, although receiving such blessing doesn't necessarily guarantee a warm welcome.`
 	description `	Much of the planet's land area is covered in a hexagonal pattern of city and wilderness, with every hexagonal urban area bordering an area of wilderness, as if the planet consisted of one giant city with hundreds or maybe even thousands of parks scattered across it.`
 	spaceport `The central hub of the spaceport is an engineering marvel of impossible looking structures, such as buildings with large unsupported overhangs that look as though they should collapse under their own weight. The spaceport includes many of the typical services that you would expect, but also has a number of buildings that seem to act as embassies or consulates from other worlds.`
 	spaceport `	Being an outsider on royal grounds, you are at all times escorted by a group of armed guards and a translator, although they seem to give you free reign to go wherever you want without any trouble. Only when approaching the royal palace without an invitation do they stop you.`
@@ -77,7 +77,7 @@ planet Erabuthro
 planet Eragarthro
 	attributes bunrodea guild academy moon
 	landscape land/sea5
-	description `Eragarthro is a large ocean moon of a moderately sized gas giant in the system of Eragaru Le. Although orbiting a gas giant means that the moon is often cast in shadow for multiple days at a day, the planet that the moon orbits is also firmly in the nearby star's habitable zone, making it a not too unpleasant place to live.`
+	description `Eragarthro is a large ocean moon of a moderately sized gas giant in the system of Eragaru Le. Although orbiting a gas giant means that the moon is often cast in shadow for multiple days at a time, the planet that the moon orbits is also firmly in the nearby star's habitable zone, making it a not too unpleasant place to live.`
 	description `	This moon is also home to the Bunrodea's most prestigious academies, including the Royal University of Dogen and Military Academy of Fuhtiiski.`
 	spaceport `Being the major hub of education in this region, the population of the spaceport on this planet is bustling with young Bunrodeans. You note how very few of the Bunrodeans here appear to have any visible cybernetics. It must be the case that Bunrodeans only receive their cybernetics after reaching a certain age. Or it could be a matter of whose parents are able to afford the cybernetics for them.`
 	shipyard "Bunrodea Basic"
@@ -159,7 +159,7 @@ planet Kisarra
 	attributes bunrodea mining
 	landscape land/desert2
 	description `Kisarra's surface is one vast desert as far as the eye can see. The sandy nothingness is only occasionally broken up by oases and rocky outcrops. Many of the oases have small towns that have formed around them and some of the outcrops seem to used as entrances to mines. Strikingly, all of the towns and mines have large walls constructed around them.`
-	spaceport `Although most spaceports typically double as a massive population center for the planet, in many cases being the most populous region on the planet, Kisarra's spaceport acts only as a location to ferry minearls brought from the mines off planet, with most of the planet's population living in the small oasis towns.`
+	spaceport `Although most spaceports typically double as a massive population center for the planet, in many cases being the most populous region on the planet, Kisarra's spaceport acts only as a location to ferry minearls brought from the mines off-world, with most of the planet's population living in the small oasis towns.`
 	spaceport `	Just as with the small towns and mines, the spaceport has a large wall constructed around it. From what you can tell, this is to keep out the gigantic hostile spider-like creatures that inhabit Kissara's deserts. These spiders burrow through the sand and consume any unfortunate creature they can find.`
 	outfitter "Bunrodea Basic"
 	"required reputation" 10
