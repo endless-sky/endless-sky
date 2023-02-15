@@ -18,14 +18,14 @@ mission "First Contact: Bunrodea"
 		not attributes "urban"
 		attributes "spaceport"
 	destination "Erabuthro"
-	clearance "Unlike before, none of the alien ships are hostile. After hailing the planet that the aliens pointed you towards, you hear an alien voice respond. Before you can think of what to say, the small device that the aliens threw at you on <origin> responds for you. The alien on the other end says something short, then cuts the feed. It seems like you've been cleared to land."
+	clearance "Unlike before, you don't receive any hostility entering this region. After hailing the planet that the map pointed you towards, you hear an alien voice respond. Before you can think of what to say, the small device that the aliens threw at you on <origin> responds for you. The voice on the other end says something short, then cuts the feed. It seems like you've been cleared to land."
 	to offer
 		random < 10
 		or
-			"reputation: Bunrodea" != 1
-			"reputation: Bunrodea (Megasa)" != 1
-			"reputation: Bunrodea (Erabu)" != 1
-			"reputation: Bunrodea (Guard)" != -1
+			"reputation: Bunrodea" < 1
+			"reputation: Bunrodea (Megasa)" < 1
+			"reputation: Bunrodea (Erabu)" < 1
+			"reputation: Bunrodea (Guard)" < -1
 	
 	on offer
 		"bunrodea: guard rep" = "reputation: Bunrodea (Guard)"
@@ -34,7 +34,7 @@ mission "First Contact: Bunrodea"
 		"bunrodea: normal rep" = "reputation: Bunrodea"
 		conversation
 			`When you depart your ship, you're startled by a small alien ship uncloaking right in front of you. Two elegant mantis-like creatures step off it, each holding a strange looking weapon pointed directly at you. They have four long insectoid legs and two arms. Although their arms end in what look like hands, they also have strange claw-like features that partially enclose them, extending outward from their forearms to grasp their weapons. You look around to see if there's anyone else witnessing this, but you've landed at <origin>'s main spaceport in the middle of the night, leaving you as the only human in sight.`
-			`	The aliens begin speaking to you in a language you don't understand. As one of them speaks, they sound almost robotic, as if they are speaking through a synthesizer. Taking a closer look, you spot what you can only guess are cybernetic modifications to parts of the alien's body. The other one has no such visible modifications, though.`
+			`	The aliens begin speaking to you in a language you don't understand. Their words are interspersed with clicking noises. As one of them speaks, they sound almost robotic, as if they are speaking through a synthesizer. Taking a closer look, you spot what you can only guess are cybernetic modifications to parts of the alien's body; the alien's throat and one of its eyes look non-organic, as well as the joints of its legs. The other one has no such visible modifications, though.`
 			choice
 				`	"Do you come in peace?"`
 				`	"I don't understand a word you're saying."`
@@ -210,7 +210,6 @@ mission "First Contact: Bunrodea"
 			
 			label slighted
 			`	The Queen motions to one of the guards and says something to it that the creature does not translate. She then speaks to you, and the creature translates: "Since it is my guards that have shown you disrespect, you will be allowed to live. My guards have been ordered to leave you be, and you may come and go on a small number of our worlds. But this is only so that you do not cause further trouble, and to allow you to refuel if you are passing through my systems. Your presence will only be tolerated, not welcomed. Now please leave my court."`
-				goto end
 			
 			label end
 			`	You're escorted out of the throne room and told by the small creature to leave as soon as you reach your ship. You exit the palace, and realize that you must once again face the stairs. You take deep breath, and prepare yourself for the long journey down.`
