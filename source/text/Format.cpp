@@ -378,10 +378,13 @@ string Format::LowerCase(const string &str)
 string Format::Plural(const string &noun)
 {
 	const string nounLower = LowerCase(noun);
-	const string lastWord = nounLower.find_last_of(' ') == string::npos ? nounLower : nounLower.substr(nounLower.find_last_of(' '), nounLower.size());
-	auto endsWith = [&lastWord](const string &suffix){ return lastWord.size() >= suffix.size() && 0 == lastWord.compare(lastWord.size()-suffix.size(), suffix.size(), suffix); };
+	const string lastWord = nounLower.find_last_of(' ') == string::npos
+			? nounLower : nounLower.substr(nounLower.find_last_of(' '), nounLower.size());
+	auto endsWith = [&lastWord](const string &suffix){ return lastWord.size() >= suffix.size()
+			&& 0 == lastWord.compare(lastWord.size() - suffix.size(), suffix.size(), suffix); };
 	string vowels = "aeiouy";
-	if(noun.back() == 's' || endsWith("sh") || endsWith("ch") || endsWith("ch") || noun.back() == 'x' || noun.back() == 'z')
+	if(noun.back() == 's' || endsWith("sh") || endsWith("ch") || endsWith("ch")
+			|| noun.back() == 'x' || noun.back() == 'z')
 		return noun + "es";
 	else if(nounLower.back() == 'f')
 		return noun.substr(0, noun.size() - 1) + "ves";
@@ -389,8 +392,9 @@ string Format::Plural(const string &noun)
 		return noun.substr(0, noun.size() - 2) + "ves";
 	else if(nounLower.back() == 'y' && vowels.find(nounLower[nounLower.size() - 2]) == string::npos)
 		return noun.substr(0, noun.size() - 1) + "ies";
-	else if(lastWord == "buffalo" || lastWord == "domino" || lastWord == "domino" || lastWord == "echo" || lastWord == "embargo"
-			|| lastWord == "hero" || lastWord == "mosquito" || lastWord == "potato" || lastWord == "tomato" || lastWord == "torpedo" || lastWord == "veto")
+	else if(lastWord == "buffalo" || lastWord == "domino" || lastWord == "domino" || lastWord == "echo"
+			|| lastWord == "embargo" || lastWord == "hero" || lastWord == "mosquito" || lastWord == "potato"
+			|| lastWord == "tomato" || lastWord == "torpedo" || lastWord == "veto")
 		return noun + "es";
 	else
 		return noun + "s";
