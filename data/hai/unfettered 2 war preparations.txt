@@ -919,8 +919,8 @@ ship "Modified Shield Beetle" "Si-Ra' angry Beetle"
 		"shields" -2000
 		"hull" 500
 		"heat dissipation" .05
-		"cargo space" -20
-		"outfit space" 15
+		"cargo space" -40
+		"outfit space" 19
 		"weapon capacity" 3
 	outfits
 		"Tripulse Shredder" 5

@@ -28,7 +28,7 @@ ship "Sea Scorpion" "Si-Ra' Scorpion"
 	add attributes
 		"weapon capacity" 4
 		"cargo space" -30
-		"outfit space" 23
+		"outfit space" 25
 	outfits
 		"Ionic Blaster Prototype" 4
 		"Ionic Turret Prototype" 2
@@ -105,7 +105,6 @@ ship "Antlion"
 		"Ionic Turret Prototype" 2
 		"Chameleon Anti-Missile" 2
 
-		"Wanderer Ramscoop"
 		"Fuel Processor"
 		Hyperdrive
 		"Hai Diamond Regenerator"
@@ -113,7 +112,7 @@ ship "Antlion"
 
 		"Geode Reactor"
 		"Hai Valley Batteries"
-		"Value Detector"
+		"Value Detector" 2
 
 		"Quantum Keystone"
 		"Ionic Blade"

@@ -453,7 +453,7 @@ mission "<uhai> 18: Hai Language"
 			`	"They are not ready to meet the birds yet.`
 				to display
 					not "event: hai-human resolution announced"
-			`	"Perhaps you can go to them to get a translator, although that is not the prefered way. But maybe they are ready to meet the birds now.`
+			`	"Perhaps you can go to them to get a translator, although that is not the preferred way. But maybe they are ready to meet the birds now.`
 				to display
 					has "event: hai-human resolution announced"
 			`	"In the meantime, you should go and meet the aliens up North and speak with them, representing us peacefully. They may not allow you to land on most of their planets. They may have grown distrusful of newcomers - probably because of our own actions. Go and see how pathethic these birds are, and then you should go to He-Yi about that translator."`

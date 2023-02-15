@@ -25,7 +25,6 @@ ship "Sea Scorpion" "Sea Scorpion (Shields, Trackers)"
 		Hyperdrive
 		"Outfits Expansion" 2
 		"Pulse Rifle" 15
-		"Value Detector"
 
 fleet "Sea Scorpion Challenger"
 	government "Hai (Unfettered Challenger)"
@@ -544,7 +543,6 @@ ship "Sea Scorpion" "Sea Scorpion (Disruptor Slicer)"
 		"Hai Octopus Jammer" 2
 		"Outfits Expansion" 2
 		Hyperdrive
-		"Value Detector"
 		"Hai Williwaw Cooling" 2
 		"Boulder Reactor"
 		"Hai Fissure Batteries"
