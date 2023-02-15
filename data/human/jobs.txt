@@ -4195,7 +4195,11 @@ mission "Farming Employee Poaching"
 	passengers 1
 	deadline 5 2
 	to offer
-		random < 20
+		or
+			random < 20
+			and
+				not "Korath [F02]: A Fishy Deal: offered"
+				random < 35
 	source
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		not attributes uninhabited
@@ -4217,7 +4221,11 @@ mission "Mining Employee Poaching"
 	passengers 1
 	deadline 5 2
 	to offer
-		random < 20
+		or
+			random < 20
+			and
+				not "Korath [F02]: A Fishy Deal: offered"
+				random < 35
 	source
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		not attributes uninhabited
@@ -4239,7 +4247,11 @@ mission "Science Employee Poaching"
 	passengers 1
 	deadline 5 2
 	to offer
-		random < 20
+		or
+			random < 20
+			and
+				not "Korath [F02]: A Fishy Deal: offered"
+				random < 35
 	source
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		not attributes uninhabited
@@ -4261,7 +4273,11 @@ mission "Factory Employee Poaching"
 	passengers 1
 	deadline 5 2
 	to offer
-		random < 20
+		or
+			random < 20
+			and
+				not "Korath [F02]: A Fishy Deal: offered"
+				random < 35
 	source
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		not attributes uninhabited
@@ -4283,7 +4299,11 @@ mission "Urban Employee Poaching"
 	passengers 1
 	deadline 5 2
 	to offer
-		random < 20
+		or
+			random < 20
+			and
+				not "Korath [F02]: A Fishy Deal: offered"
+				random < 35
 	source
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		not attributes uninhabited
