@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
@@ -940,13 +941,13 @@ void MissionPanel::Accept(bool force)
 		ostringstream out;
 		if(cargoToSell > 0 && crewToFire > 0)
 			out << "You must fire " << crewToFire << " of your flagship's non-essential crew members and sell "
-				<< cargoToSell << " tons of ordinary commodities to make room for this mission. Continue?";
+				<< Format::CargoString(cargoToSell, "ordinary commodities") << " to make room for this mission. Continue?";
 		else if(crewToFire > 0)
 			out << "You must fire " << crewToFire
 				<< " of your flagship's non-essential crew members to make room for this mission. Continue?";
 		else
-			out << "You must sell " << cargoToSell
-				<< " tons of ordinary commodities to make room for this mission. Continue?";
+			out << "You must sell " << Format::CargoString(cargoToSell, "ordinary commodities")
+				<< " to make room for this mission. Continue?";
 		GetUI()->Push(new Dialog(this, &MissionPanel::MakeSpaceAndAccept, out.str()));
 		return;
 	}

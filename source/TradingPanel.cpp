@@ -73,8 +73,7 @@ TradingPanel::~TradingPanel()
 {
 	if(profit)
 	{
-		string message = "You sold " + to_string(tonsSold)
-			+ (tonsSold == 1 ? " ton" : " tons") + " of cargo ";
+		string message = "You sold " + Format::CargoString(tonsSold, "cargo ");
 
 		if(profit < 0)
 			message += "at a loss of " + Format::CreditString(-profit) + ".";
@@ -135,8 +134,7 @@ void TradingPanel::Draw()
 			}
 		sellOutfits = (hasOutfits && !hasUninstallable);
 
-		string str = to_string(outfits + missionCargo);
-		str += (outfits + missionCargo == 1) ? " ton of " : " tons of ";
+		string str = Format::MassString(outfits + missionCargo) + " of ";
 		if(hasUninstallable && missionCargo)
 			str += "mission cargo and other items.";
 		else if(hasOutfits && missionCargo)

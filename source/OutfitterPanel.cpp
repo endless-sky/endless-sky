@@ -48,11 +48,6 @@ using namespace std;
 namespace {
 	const string DISCOVERY_MODE = "Outfitter Discovery";
 
-	string Tons(int tons)
-	{
-		return to_string(tons) + (tons == 1 ? " ton" : " tons");
-	}
-
 	// Determine the refillable ammunition a particular ship consumes or stores.
 	set<const Outfit *> GetRefillableAmmunition(const Ship &ship) noexcept
 	{
@@ -555,8 +550,8 @@ void OutfitterPanel::FailBuy() const
 		double freeCargo = player.Cargo().Free();
 
 		GetUI()->Push(new Dialog("You cannot buy this outfit, because it takes up "
-			+ Tons(mass) + " of mass, and your fleet has "
-			+ Tons(freeCargo) + " of cargo space free."));
+			+ Format::CargoString(mass, "mass") + ", and your fleet has "
+			+ Format::CargoString(freeCargo, "cargo space") + " free."));
 		return;
 	}
 
@@ -566,8 +561,8 @@ void OutfitterPanel::FailBuy() const
 	if(outfitNeeded > outfitSpace)
 	{
 		GetUI()->Push(new Dialog("You cannot install this outfit, because it takes up "
-			+ Tons(outfitNeeded) + " of outfit space, and this ship has "
-			+ Tons(outfitSpace) + " free."));
+			+ Format::CargoString(outfitNeeded, "outfit space") + ", and this ship has "
+			+ Format::MassString(outfitSpace) + " free."));
 		return;
 	}
 
@@ -577,8 +572,8 @@ void OutfitterPanel::FailBuy() const
 	{
 		GetUI()->Push(new Dialog("Only part of your ship's outfit capacity is usable for weapons. "
 			"You cannot install this outfit, because it takes up "
-			+ Tons(weaponNeeded) + " of weapon space, and this ship has "
-			+ Tons(weaponSpace) + " free."));
+			+ Format::CargoString(weaponNeeded, "weapon space") + ", and this ship has "
+			+ Format::MassString(weaponSpace) + " free."));
 		return;
 	}
 
@@ -588,8 +583,8 @@ void OutfitterPanel::FailBuy() const
 	{
 		GetUI()->Push(new Dialog("Only part of your ship's outfit capacity is usable for engines. "
 			"You cannot install this outfit, because it takes up "
-			+ Tons(engineNeeded) + " of engine space, and this ship has "
-			+ Tons(engineSpace) + " free."));
+			+ Format::CargoString(engineNeeded, "engine space") + ", and this ship has "
+			+ Format::MassString(engineSpace) + " free."));
 		return;
 	}
 

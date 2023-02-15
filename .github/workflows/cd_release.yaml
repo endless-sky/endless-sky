@@ -1,9 +1,9 @@
 name: Release CD
 
 on:
-  release:
-    types:
-      - published
+  push:
+    tags:
+      - v*
 
 jobs:
   release_appimage_x64:
@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-20.04
     env:
       ARCH: x86_64
-      OUTPUT: Endless_Sky-${{ github.event.release.tag_name }}-x86_64.AppImage
+      OUTPUT: Endless_Sky-${{ github.ref_name }}-x86_64.AppImage
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
@@ -42,6 +42,7 @@ jobs:
       - name: Upload Release
         uses: softprops/action-gh-release@v1
         with:
+          draft: true
           files: ${{ env.OUTPUT }}
 
 
@@ -49,7 +50,7 @@ jobs:
     name: Windows x86
     runs-on: windows-2022
     env:
-      OUTPUT: EndlessSky-win32-${{ github.event.release.tag_name }}.zip
+      OUTPUT: EndlessSky-win32-${{ github.ref_name }}.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
@@ -76,6 +77,7 @@ jobs:
       - name: Upload Release
         uses: softprops/action-gh-release@v1
         with:
+          draft: true
           files: ${{ env.OUTPUT }}
 
 
@@ -83,7 +85,7 @@ jobs:
     name: Windows x64
     runs-on: windows-2022
     env:
-      OUTPUT: EndlessSky-win64-${{ github.event.release.tag_name }}.zip
+      OUTPUT: EndlessSky-win64-${{ github.ref_name }}.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
@@ -111,6 +113,7 @@ jobs:
       - name: Upload Release
         uses: softprops/action-gh-release@v1
         with:
+          draft: true
           files: ${{ env.OUTPUT }}
 
 
@@ -119,7 +122,7 @@ jobs:
     runs-on: macos-12
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      OUTPUT: Endless-Sky-${{ github.event.release.tag_name }}
+      OUTPUT: Endless-Sky-${{ github.ref_name }}
     steps:
       - uses: actions/checkout@v3
       - name: Setup sccache
@@ -162,4 +165,5 @@ jobs:
       - name: Upload Release
         uses: softprops/action-gh-release@v1
         with:
+          draft: true
           files: ${{ env.OUTPUT }}.dmg

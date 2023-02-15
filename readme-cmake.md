@@ -80,7 +80,7 @@ If you want to build the libraries from source instead of using Homebrew, you ca
 
 ## Linux <Linux>
 
-It is recommended to use a newish CMake, although CMake 3.16 is the lowest supported. You can get the latest version from the [offical website](https://cmake.org/download/). To follow the instructions written below, you will need at least CMake 3.21.
+You will need at least CMake 3.21. You can get the latest version from the [offical website](https://cmake.org/download/).
 
 **Note**: If your distro does not provide up-to-date version of the needed libraries, you will need to tell CMake to build the libraries from source by passing `-DES_USE_SYSTEM_LIBRARIES=OFF` to the first cmake command under the command line build instructions.
 
