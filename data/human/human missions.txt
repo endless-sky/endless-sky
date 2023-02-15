@@ -4393,8 +4393,8 @@ mission "Block Hai Wormhole Warning"
 	invisible
 	to offer
 		or
-			has "First Contact: Hai"
-			has "First Contact: Unfettered"
+			has "First Contact: Hai: declined"
+			has "First Contact: Unfettered: declined"
 		has "chosen sides"
 		not "main plot completed"
 	on offer
@@ -4407,8 +4407,8 @@ mission "Hai Wormhole Warning"
 		not attributes "deep"
 	to offer
 		or
-			has "First Contact: Hai"
-			has "First Contact: Unfettered"
+			has "First Contact: Hai: declined"
+			has "First Contact: Unfettered: declined"
 		not "Block Hai Wormhole Warning: offered"
 		not "Wanderers: Alpha Surveillance E: offered"
 	on offer
@@ -4795,7 +4795,11 @@ mission "Dangerous Games 2"
 			`	Karengo claps him on the back and gives him a signature grin. "Maybe <first> can keep you aboard after this in case they need anything from a high shelf!" Mussie smiles weakly, but his eyes don't leave the readout.`
 			`	TWENTY-FIVE KILOMETERS. "This's it," Karengo announces, "Sub up! Let's see what there is to see. And <first>, keep it to passive sensors. Don't want to attract any undue attention." The ship smoothly descends into the mouth of a massive cave and your visibility, clouded by dark sulfide emissions from the hydrothermal vents at the floor, drops to less than eight meters. 6 personal subpods fan out behind you, their communication equipment syncing with yours to display them as blips on your screen.`
 			`	"Ok, <first>," Karengo crackles over the radio. "I'll read you the first clue."`
-			`	"No other path may you take \ Oiled skins flash and flicker \ Razor spikes grow from the deep \ Titanic walls crush and smash \ Heed the beginnings to live".`
+			`"No other path may you take"`
+			`"Oiled skins flash and flicker"`
+			`"Razor spikes grow from the deep"`
+			`"Titanic walls crush and smash"`
+			`"Heed the beginnings to live".`
 			choice
 				`	(Go east).`
 					goto east
@@ -4831,7 +4835,11 @@ mission "Dangerous Games 2"
 			label riddletwo
 			branch dead
 				has "Elias and Taddese dead"
-			`	After everyone arrives and is accounted for, Karengo reads the riddle to you. "There are stingers in the deep \ A certain death, a dreamless sleep. \ Go to beast that has no bee \ No danger there, just open sea."`
+			`	After everyone arrives and is accounted for, Karengo reads the riddle to you.`
+			`"There are stingers in the deep"`
+			`"A certain death, a dreamless sleep."`
+			`"Go to beast that has no bee."`
+			`"No danger there, just open sea."`
 			choice
 				`	(Go east.)`
 					goto east1
@@ -4890,7 +4898,11 @@ mission "Dangerous Games 2"
 			`	Karengo sounds a roll call over the radio. Elias and Taddese are still missing, and now Mussie has failed to report in as well. None of their subpod beacons are responding.`
 			`	"Ah, well." says Karengo, without much sympathy. "You all stay here and I'll scout ahead." Only minutes later, he's found a clear path east, and you morosly trail the ship behind.`
 			label riddlethree
-			`	Karengo reads you the next line. "To the north and to the east \ Track my movements like a beast. \ A quick turn right and forward on, \ Come toward me where danger's gone."`
+			`	Karengo reads you the next line.`
+			`"To the north and to the east"`
+			`"Track my movements like a beast."`
+			`"A quick turn right and forward on,"`
+			`"Come toward me where danger's gone."`
 			branch dead2
 				has "Mussie dead"
 				has "Elias and Taddese dead"
@@ -5297,7 +5309,7 @@ mission "Wool Smuggling 2"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 200000
-		dialog `Your cargo of woolen garments is unloaded by several bulky workers led by a one-armed woman. She hands you <payment> for the trouble of transport, then says, "Thanks for the shipment. I know that you captains think that we're all bad, but I'm glad that you were able to aid the more friendly among us.`
+		dialog `Your cargo of woolen garments is unloaded by several bulky workers led by a one-armed woman. She hands you <payment> for the trouble of transport, then says, "Thanks for the shipment. I know that you captains think that we're all bad, but I'm glad that you were able to aid the more friendly among us."`
 
 
 

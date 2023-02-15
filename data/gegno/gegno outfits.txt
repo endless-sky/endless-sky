@@ -612,7 +612,7 @@ outfit "Ballistic Cannon Turret"
 		"hull damage" 970
 		"hit force" 360
 		"missile strength" 18
-	description `As the largest caliber cannon in the Gegno Vi's arsenal, Ballistic Cannons require a lot of work to be fitted on even the largest of ships. A huge, self-sustaining base with its own vent ports is necessary for one of these cannons to even be fitted on a turret mount, provided there are crew to operate it. Combining destructive force with adjustable aim, Ballisic Cannon Turrets are the deadliest weapons of Vi warships.`
+	description `As the largest caliber cannon in the Gegno Vi's arsenal, Ballistic Cannons require a lot of work to be fitted on even the largest of ships. A huge, self-sustaining base with its own vent ports is necessary for one of these cannons to even be fitted on a turret mount, provided there are crew to operate it. Combining destructive force with adjustable aim, Ballistic Cannon Turrets are the deadliest weapons of Vi warships.`
 
 effect "ballistic fire"
 	sprite "effect/balfire"
@@ -850,7 +850,7 @@ outfit "Plasma Grenades"
 	"capture attack" 1.9
 	"capture defense" 1.2
 	"unplunderable" 1
-	description `With development of more plasma-based weaponry, the Scin invented their own type of grenades using plasma to create powerful explosions. They are effective at clearing out large groups of enemies and are less of a hazard than unpredictable fragmentation grenades, allowing them to be a bit more reliable for defensive use. These grenades are kept in odd magentic storage devices that prevent them from accidentally detonating - except on rare occasions.`
+	description `With development of more plasma-based weaponry, the Scin invented their own type of grenades using plasma to create powerful explosions. They are effective at clearing out large groups of enemies and are less of a hazard than unpredictable fragmentation grenades, allowing them to be a bit more reliable for defensive use. These grenades are kept in odd magnetic storage devices that prevent them from accidentally detonating - except on rare occasions.`
 	
 
 
