@@ -2048,7 +2048,10 @@ void Engine::HandleMouseInput(Command &activeCommands)
 	isMouseHoldEnabled = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
 	if(activeCommands.Has(Command::MOUSE_TURNING_TOGGLE))
 		isMouseToggleEnabled = !isMouseToggleEnabled;
-	isMouseTurningEnabled = (isMouseHoldEnabled || isMouseToggleEnabled);
+	// XOR mouse hold and mouse toggle. If mouse toggle is OFF, then mouse hold
+	// will temporarily turn ON mouse control. If mouse toggle is ON, then mouse
+	// hold will temporarily turn OFF mouse control.
+	isMouseTurningEnabled = (isMouseHoldEnabled ^ isMouseToggleEnabled);
 	Preferences::Set("alt-mouse turning", isMouseTurningEnabled);
 	if(!isMouseTurningEnabled)
 		return;
@@ -2269,16 +2272,14 @@ void Engine::DoCollection(Flotsam &flotsam)
 	if(!commodity.empty())
 	{
 		double amountInTons = amount * flotsam.UnitSize();
-		message = name + (amountInTons == 1. ? "a ton" : Format::Number(amountInTons) + " tons")
-			+ " of " + Format::LowerCase(commodity) + ".";
+		message = name + Format::CargoString(amountInTons, Format::LowerCase(commodity)) + ".";
 	}
 
 	// Unless something went wrong while forming the message, display it.
 	if(!message.empty())
 	{
 		int free = collector->Cargo().Free();
-		message += " (" + to_string(free) + (free == 1 ? " ton" : " tons");
-		message += " of free space remaining.)";
+		message += " (" + Format::CargoString(free, "free space") + " remaining.)";
 		Messages::Add(message, Messages::Importance::High);
 	}
 }

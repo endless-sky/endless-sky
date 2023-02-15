@@ -5309,7 +5309,7 @@ mission "Wool Smuggling 2"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 200000
-		dialog `Your cargo of woolen garments is unloaded by several bulky workers led by a one-armed woman. She hands you <payment> for the trouble of transport, then says, "Thanks for the shipment. I know that you captains think that we're all bad, but I'm glad that you were able to aid the more friendly among us.`
+		dialog `Your cargo of woolen garments is unloaded by several bulky workers led by a one-armed woman. She hands you <payment> for the trouble of transport, then says, "Thanks for the shipment. I know that you captains think that we're all bad, but I'm glad that you were able to aid the more friendly among us."`
 
 
 
