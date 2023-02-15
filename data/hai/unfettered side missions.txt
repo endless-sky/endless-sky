@@ -433,7 +433,7 @@ mission "<uhai> 18: Wanderer Homeworld"
 mission "<uhai> 18: Hai Language"
 	minor
 	name `Meet and understand the Wanderers`
-	description `You need to be able to act as a diplomat between the Hai and the aliens up north. First go and meet those aliens. Then go to <stopovers> to see if He-Yi will provide a translator for you, or get one trough other means.`
+	description `You need to be able to act as a diplomat between the Hai and the aliens up north. First go and meet those aliens. Then go to <stopovers> to see if He-Yi will provide a translator for you, or get one through other means.`
 	source "Darkcloak"
 	stopover "Warfeed"
 	to offer
