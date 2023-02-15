@@ -119,7 +119,7 @@ mission "First Contact: Bunrodea"
 			branch royalty
 				"bunrodea: erabu rep" < 1
 			branch guard
-				"bunordea: guard rep" < -1
+				"bunrodea: guard rep" < -1
 			branch civi
 				"bunrodea: normal rep" < 1
 			`	"I hear that you have attacked one of my Megasa."`
