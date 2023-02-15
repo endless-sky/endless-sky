@@ -623,13 +623,13 @@ mission "Korath: Retrieve fish [4]"
 		dialog "A woman in a blue dress examines the fish and confirms the trade. You receive <payment>."
 		"reputation: Korath" += 5
 
-mission "Korath: Retrieve wildlife [0]"
-	name "Wildlife from <stopovers>"
+mission "Korath: Retrieve flora and fauna [0]"
+	name "Flora and fauna from <stopovers>"
 	job
 	repeat
-	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unique wildlife and return to <planet> for <payment>."
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unique flora and fauna and return to <planet> for <payment>."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
-	cargo "Wildlife trade" 1 4 0.8
+	cargo "Flora and fauna trade" 1 4 0.8
 	source "La'ab Bamen"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -637,19 +637,19 @@ mission "Korath: Retrieve wildlife [0]"
 	to offer
 		random < 70
 	on stopover
-		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of wildlife."
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of flora and fauna."
 	on complete
 		payment 30000 180
-		dialog "A woman in a blue dress examines the wildlife and confirms the trade. You receive <payment>."
+		dialog "A woman in a blue dress examines the flora and fauna and confirms the trade. You receive <payment>."
 		"reputation: Korath" ++
 
-mission "Korath: Retrieve wildlife [1]"
-	name "Wildlife from <stopovers>"
+mission "Korath: Retrieve flora and fauna [1]"
+	name "Flora and fauna from <stopovers>"
 	job
 	repeat
-	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of rare wildlife and return to <planet> for <payment>."
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of rare flora and fauna and return to <planet> for <payment>."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
-	cargo "Wildlife trade" 3 10 0.8
+	cargo "Flora and fauna trade" 3 10 0.8
 	source "La'ab Bamen"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -657,19 +657,19 @@ mission "Korath: Retrieve wildlife [1]"
 	to offer
 		random < 70
 	on stopover
-		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of wildlife."
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of flora and fauna."
 	on complete
 		payment 30000 180
-		dialog "A woman in a blue dress examines the wildlife and confirms the trade. You receive <payment>."
+		dialog "A woman in a blue dress examines the flora and fauna and confirms the trade. You receive <payment>."
 		"reputation: Korath" += 2
 
-mission "Korath: Retrieve wildlife [2]"
-	name "Wildlife from <stopovers>"
+mission "Korath: Retrieve flora and fauna [2]"
+	name "Flora and fauna from <stopovers>"
 	job
 	repeat
-	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of indigenous wildlife and return to <planet> for <payment>."
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of indigenous flora and fauna and return to <planet> for <payment>."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
-	cargo "Wildlife trade" 7 25 0.8
+	cargo "Flora and fauna trade" 7 25 0.8
 	source "La'ab Bamen"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -678,19 +678,19 @@ mission "Korath: Retrieve wildlife [2]"
 		random < 70
 		"cargo space" > 10
 	on stopover
-		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of wildlife."
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of flora and fauna."
 	on complete
 		payment 30000 180
-		dialog "A woman in a blue dress examines the wildlife and confirms the trade. You receive <payment>."
+		dialog "A woman in a blue dress examines the flora and fauna and confirms the trade. You receive <payment>."
 		"reputation: Korath" += 3
 
-mission "Korath: Retrieve wildlife [3]"
-	name "Wildlife from <stopovers>"
+mission "Korath: Retrieve flora and fauna [3]"
+	name "Flora and fauna from <stopovers>"
 	job
 	repeat
-	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual wildlife and return to <planet> for <payment>."
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual flora and fauna and return to <planet> for <payment>."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
-	cargo "Wildlife trade" 16 80 0.8
+	cargo "Flora and fauna trade" 16 80 0.8
 	source "La'ab Bamen"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -699,19 +699,19 @@ mission "Korath: Retrieve wildlife [3]"
 		random < 70
 		"cargo space" > 20
 	on stopover
-		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of wildlife."
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of flora and fauna."
 	on complete
 		payment 30000 180
-		dialog "A woman in a blue dress examines the wildlife and confirms the trade. You receive <payment>."
+		dialog "A woman in a blue dress examines the flora and fauna and confirms the trade. You receive <payment>."
 		"reputation: Korath" += 4
 
-mission "Korath: Retrieve wildlife [4]"
-	name "Wildlife from <stopovers>"
+mission "Korath: Retrieve flora and fauna [4]"
+	name "Flora and fauna from <stopovers>"
 	job
 	repeat
-	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual wildlife and return to <planet> for <payment>."
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual flora and fauna and return to <planet> for <payment>."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
-	cargo "Wildlife trade" 35 300 0.8
+	cargo "Flora and fauna trade" 35 300 0.8
 	source "La'ab Bamen"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -720,8 +720,111 @@ mission "Korath: Retrieve wildlife [4]"
 		random < 70
 		"cargo space" > 50
 	on stopover
-		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of wildlife."
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of flora and fauna."
 	on complete
 		payment 30000 180
-		dialog "A woman in a blue dress examines the wildlife and confirms the trade. You receive <payment>."
+		dialog "A woman in a blue dress examines the flora and fauna and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 5
+
+mission "Korath: Retrieve domestic pets [0]"
+	name "Domestic pets from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unique domestic pets and return to <planet> for <payment>."
+	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "Domestic pets trade" 1 4 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes urban
+	to offer
+		random < 70
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of domestic pets."
+	on complete
+		payment 30000 180
+		dialog "A woman in a blue dress examines the domestic pets and confirms the trade. You receive <payment>."
+		"reputation: Korath" ++
+
+mission "Korath: Retrieve domestic pets [1]"
+	name "Domestic pets from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of rare domestic pets and return to <planet> for <payment>."
+	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "Domestic pets trade" 3 10 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes urban
+	to offer
+		random < 70
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of domestic pets."
+	on complete
+		payment 30000 180
+		dialog "A woman in a blue dress examines the domestic pets and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 2
+
+mission "Korath: Retrieve domestic pets [2]"
+	name "Domestic pets from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of indigenous domestic pets and return to <planet> for <payment>."
+	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "Domestic pets trade" 7 25 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes urban
+	to offer
+		random < 70
+		"cargo space" > 10
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of domestic pets."
+	on complete
+		payment 30000 180
+		dialog "A woman in a blue dress examines the domestic pets and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 3
+
+mission "Korath: Retrieve domestic pets [3]"
+	name "Domestic pets from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual domestic pets and return to <planet> for <payment>."
+	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "Domestic pets trade" 16 80 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes urban
+	to offer
+		random < 70
+		"cargo space" > 20
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of domestic pets."
+	on complete
+		payment 30000 180
+		dialog "A woman in a blue dress examines the domestic pets and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 4
+
+mission "Korath: Retrieve domestic pets [4]"
+	name "Domestic pets from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual domestic pets and return to <planet> for <payment>."
+	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "Domestic pets trade" 35 300 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes urban
+	to offer
+		random < 70
+		"cargo space" > 50
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of domestic pets."
+	on complete
+		payment 30000 180
+		dialog "A woman in a blue dress examines the domestic pets and confirms the trade. You receive <payment>."
 		"reputation: Korath" += 5
