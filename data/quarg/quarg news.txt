@@ -210,11 +210,9 @@ news "tourist on quarg planets in human and hai space"
 		word
 			" "
 		word
-			"ringworlds "
+			"ringworlds"
 		word
-			" "
-		word
-			"from up close"
+			" from up close"
 			""
 		word
 			"? "
