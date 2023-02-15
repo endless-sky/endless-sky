@@ -380,7 +380,7 @@ string Format::Plural(const string &noun)
 	const string nounLower = LowerCase(noun);
 	const string lastWord = nounLower.find_last_of(' ') == string::npos
 			? nounLower : nounLower.substr(nounLower.find_last_of(' '), nounLower.size());
-	auto endsWith = [&lastWord](const string &suffix){ return lastWord.size() >= suffix.size()
+	auto endsWith = [&lastWord](const string &suffix) { return lastWord.size() >= suffix.size()
 			&& 0 == lastWord.compare(lastWord.size() - suffix.size(), suffix.size(), suffix); };
 	string vowels = "aeiouy";
 	if(noun.back() == 's' || endsWith("sh") || endsWith("ch") || endsWith("ch")
