@@ -3505,7 +3505,7 @@ planet Shangri-La
 	attributes core frontier rich urban
 	landscape land/sea6
 	description `Named after a mythical paradise, Shangri-La is an almost ideal planet, with a mixture of advanced, developed cities and uninhabited mountains. It is a rich and prosperous world, and nearly self-sufficient, but the cost of living here is prohibitively high for anyone from off-world. Because Polaris is on the very fringe of human space, and because of the wealth of its economy, piracy is a constant threat. Although recently the Syndicate has provided good protection, in past centuries it was not unheard of for raiding parties of starships to attack major port cities here, carrying off valuable cargo and sometimes also human slaves.`
-	spaceport `The spaceport is state-of-the-art. So are the Laser Turrets and missile silos spaced out along its periphery. But somehow, instead of making you feel more secure, the defenses only serve to remind you of how far on the fringes of civilization you are, and of how rich this planet is compared to some of its neighbors. Everyone walking through the port is moving at a brisk, purposeful pace; loitering and sightseeing are not encouraged here.`
+	spaceport `The spaceport is state-of-the-art. So are the laser turrets and missile silos spaced out along its periphery. But somehow, instead of making you feel more secure, the defenses only serve to remind you of how far on the fringes of civilization you are, and of how rich this planet is compared to some of its neighbors. Everyone walking through the port is moving at a brisk, purposeful pace; loitering and sightseeing are not encouraged here.`
 	shipyard "Syndicate Basics"
 	shipyard "Megaparsec Basics"
 	outfitter "Syndicate Advanced"
