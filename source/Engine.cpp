@@ -964,7 +964,7 @@ void Engine::Draw() const
 	for(const PlanetLabel &label : labels)
 		label.Draw();
 
-	draw[drawTickTock].Draw();
+	draw[drawTickTock].Draw(zoom);
 	batchDraw[drawTickTock].Draw();
 
 	for(const auto &it : statuses)
@@ -2330,7 +2330,7 @@ void Engine::FillRadar()
 		{
 			// Do not show cloaked ships on the radar, except the player's ships.
 			bool isYours = ship->IsYours();
-			if(ship->Cloaking() >= 1. && !isYours)
+			if ((ship->Cloaking() >= 1. && !isYours) || (ship->Attributes().Get("radar cloak") >= 1. && !isYours)
 				continue;
 
 			// Figure out what radar color should be used for this ship.

@@ -95,13 +95,13 @@ bool DrawList::AddSwizzled(const Body &body, int swizzle)
 
 
 // Draw all the items in this list.
-void DrawList::Draw() const
+void DrawList::Draw(double zoom) const
 {
 	SpriteShader::Bind();
 
 	bool withBlur = Preferences::Has("Render motion blur");
 	for(const SpriteShader::Item &item : items)
-		SpriteShader::Add(item, withBlur);
+		SpriteShader::Add(item, withBlur, true, zoom);
 
 	SpriteShader::Unbind();
 }
