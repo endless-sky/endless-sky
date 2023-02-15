@@ -363,6 +363,9 @@ TEST_CASE( "Format::Plural", "[Format][Plural]") {
 		CHECK( Format::Plural("action") == "actions" );
 		CHECK( Format::Plural("outfit") == "outfits" );
 		CHECK( Format::Plural("CapitalizedString") == "CapitalizedStrings" );
+		CHECK( Format::Plural("active escort") == "active escorts" );
+		CHECK( Format::Plural("bunk") == "bunks" );
+		CHECK( Format::Plural("extra crew member") == "extra crew members" );
 	}
 	SECTION( "Ending with -o" ) {
 		CHECK( Format::Plural("volcano") == "volcanos" );
