@@ -54,6 +54,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "RingShader.h"
 #include "Screen.h"
 #include "Ship.h"
+#include "ship/ShipAICache.h"
 #include "ShipEvent.h"
 #include "ShipJumpNavigation.h"
 #include "Sprite.h"
@@ -756,7 +757,7 @@ void Engine::Step(bool isActive)
 	}
 	// Use the radar that was just populated. (The draw tick-tock has not
 	// yet been toggled, but it will be at the end of this function.)
-	shared_ptr<const Ship> target;
+	shared_ptr<Ship> target;
 	shared_ptr<const Minable> targetAsteroid;
 	targetVector = Point();
 	if(flagship)
@@ -852,9 +853,9 @@ void Engine::Step(bool isActive)
 				|| (maneuverScanRange && target->IsYours()))
 			{
 				info.SetCondition("maneuver display");
-				int turretRange = round(target->TurretRange());
+				int turretRange = round(target->GetAICache().TurretRange());
 				info.SetString("target turret", to_string(turretRange) + " ");
-				int gunRange = round(target->GunRange());
+				int gunRange = round(target->GetAICache().GunRange());
 				info.SetString("target gun", to_string(gunRange) + " ");
 				int turnRate = round(60 * target->TrueTurnRate());
 				info.SetString("target turnrate", to_string(turnRate) + " ");

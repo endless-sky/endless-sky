@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShipAICache.h"
 
+#include "../Armament.h"
 #include "../Outfit.h"
 #include "../pi.h"
 #include "../Ship.h"
@@ -106,8 +107,37 @@ void ShipAICache::Calibrate(const Ship &ship)
 		if(minSafeDistance && !(useArtilleryAI || shortestRange * (splashDPS / totalDPS) > turningRadius))
 			minSafeDistance = 0.;
 	}
+	turretRange = 0.;
+	gunRange = 0.;
+	// Get the weapon ranges for this ship, so the AI can call it.
+	for (auto& hardpoint : ship.GetArmament().Get())
+	{
+		const Weapon* weapon = hardpoint.GetOutfit();
+		if (!weapon || (weapon->Ammo() && !ship.OutfitCount(weapon->Ammo())) || !weapon->DoesDamage())
+			continue;
+		double weaponRange = weapon->Range() + hardpoint.GetPoint().Length();
+		if (hardpoint.IsTurret())
+			turretRange = max(turretRange, weaponRange);
+		else
+			gunRange = max(gunRange, weaponRange);
+	}
 }
 
+
+
+
+// Functions providing various weapon ranges for this ship.
+double ShipAICache::TurretRange() const
+{
+	return turretRange;
+}
+
+
+
+double ShipAICache::GunRange() const
+{
+	return gunRange;
+}
 
 
 void ShipAICache::Recalibrate(const Ship &ship)

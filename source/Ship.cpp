@@ -1302,37 +1302,8 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 				bay.ship->SetSwizzle(bay.ship->customSwizzle >= 0 ? bay.ship->customSwizzle : swizzle);
 		}
 	}
-
-	turretRange = 0.;
-	gunRange = 0.;
-	// Get the weapon ranges for this ship, so the AI can call it.
-	for(const auto &hardpoint : armament.Get())
-	{
-		const Weapon *weapon = hardpoint.GetOutfit();
-		if(!weapon || (weapon->Ammo() && !OutfitCount(weapon->Ammo())) || !weapon->DoesDamage())
-			continue;
-		double weaponRange = weapon->Range() + hardpoint.GetPoint().Length();
-		if(hardpoint.IsTurret())
-			turretRange = max(turretRange, weaponRange);
-		else
-			gunRange = max(gunRange, weaponRange);
-	}
 }
 
-
-
-// Functions providing various weapon ranges for this ship.
-double Ship::TurretRange() const
-{
-	return turretRange;
-}
-
-
-
-double Ship::GunRange() const
-{
-	return gunRange;
-}
 
 
 
