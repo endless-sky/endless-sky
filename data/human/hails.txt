@@ -4734,8 +4734,8 @@ phrase "friendly pirate"
 		"and the Syndicate starts chasing me."
 	word
 		"" 2
-		" More interference plating would have helped."
-		" This interference plating is useless!"
+		" More Interference Plating would have helped."
+		" This Interference Plating is useless!"
 		" I could have gotten out faster if I had a Scram Drive."
 		" I know I should have installed more Interference Plating."
 		" If only I was strong enough to stand up to them."
