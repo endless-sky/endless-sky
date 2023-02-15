@@ -786,7 +786,7 @@ mission "FWC Checkmate 1"
 mission "FWC Checkmate 1: Equipment"
 	landing
 	name "Upgrade Your Ship"
-	description "If you want, travel to <destination> to install Nuclear Missiles in your ship. You may also want to invest in some other upgrades. Then meet Tomek and the others in the spaceport on Tundra."
+	description "If you want, travel to <destination> to install nuclear missiles in your ship. You may also want to invest in some other upgrades. Then meet Tomek and the others in the spaceport on Tundra."
 	source Tundra
 	destination Solace
 	to offer
