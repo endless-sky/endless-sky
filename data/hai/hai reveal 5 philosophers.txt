@@ -1283,6 +1283,7 @@ mission "Hai Reveal [B13] Freedom"
 	description "Escort the Hai back to <planet>. Payment to cover your ongoing expenses is <payment>."
 	source "Elenchus"
 	destination "Stormhold"
+	clearance
 	to offer
 		has "Hai Reveal [B12] Devil-Hide Battle: done"
 	on visit
@@ -1496,6 +1497,7 @@ mission "Hai Reveal [B14] Journey to Peace"
 	source "Stormhold"
 	stopover "Mountaintop"
 	destination "Hai-home"
+	clearance
 	passengers 4
 	to offer
 		has "Hai Reveal [B13] Freedom: done"
