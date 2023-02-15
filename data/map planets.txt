@@ -2772,7 +2772,7 @@ planet "New Wales"
 	landscape land/mountain7
 	description `New Wales is home to a few mining outposts which extract and refine rare earth minerals and heavy metals. It is dangerous work: the mines are deep underground and prone to noxious gases and cave-ins, and the refineries work with molten radioactive materials and caustic chemicals.`
 	description `	Due to the somewhat dim light of the star Algorel, and the cloudiness of the atmosphere, this is not a good world for farming, and the population remains quite small.`
-	spaceport `The warehouses at the spaceport are kept under continuous guard due to the high value of the refined metals they contain. There are several missile silos and surface-to-air Laser Turrets as well; New Wales has survived multiple pirate attacks in the last decade.`
+	spaceport `The warehouses at the spaceport are kept under continuous guard due to the high value of the refined metals they contain. There are several missile silos and surface-to-air laser turrets as well; New Wales has survived multiple pirate attacks in the last decade.`
 	spaceport `	Within the spaceport cafeteria, however, the locals are quite friendly and excited to connect with visitors and hear news of the outside world. The cafeteria is cooking lamb stew, and the smell of it pervades the whole building.`
 	outfitter "Ammo South"
 	outfitter "Basic Outfits"
