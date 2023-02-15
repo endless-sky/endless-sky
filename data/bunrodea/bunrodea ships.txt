@@ -51,7 +51,7 @@ ship "Kaiken"
 	leak "flame" 60 80
 	explode "tiny explosion" 20
 	explode "small explosion" 15
-	description "While not particularly fast by fighter standards, where the Kaiken lacks in speed it makes up for in durability and firepower; it boasts a significant amount of weapon space and ports for up to three guns. Should the Kaiken need to retreat, each fighter has a built in cloaking device and a small amount of fuel that should be enough to allow the fighter to return to its carrier for repairs."
+	description "While not particularly fast by fighter standards, where the Kaiken lacks in speed it makes up for in durability and firepower; it boasts a significant amount of weapon space and ports for up to three guns, allowing for the use of a trio of Locust Blasters or the option of using a larger Mandible Cannon."
 
 
 
