@@ -476,7 +476,7 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 
 		// Only automatons may have a "required crew" of 0.
 		if(!strcmp(at.first, "required crew"))
-			minimum = !attributes.Get("automaton");
+			minimum = !(attributes.Get("automaton") || other.attributes.Get("automaton"));
 
 		double value = Get(at.first);
 		// Allow for rounding errors:
