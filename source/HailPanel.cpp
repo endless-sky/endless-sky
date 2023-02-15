@@ -63,8 +63,9 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 	else if(!hasLanguage)
 		message = "(An alien voice says something in a language you do not recognize.)";
 	else if(gov->IsEnemy())
-		// Enemy ships always show hostile messages, even if they are disabled
-		// and the player needs help.
+		// Enemy ships always show hostile messages.
+		// They either show bribing messages,
+		// or standard hostile messages, if disabled.
 		if(ship->IsDisabled())
 			message = ship->GetHail(player.GetSubstitutions());
 		else
