@@ -436,148 +436,112 @@ mission "Korath [F01]: Rabasot Pa'ah Failed Landings"
 			`	The strangest feature is what appears to be slow-moving islands. As one comes closer, its form is more clear: an unholy marriage between a blue whale and a giant squid. Given the vast difference in size between those creatures and anything else you've seen on the planet, it is unlikely they evolved here. Has someone been shipping giant whale-squid to this bay?`
 				decline
 
-mission "Korath [F02]: Fish Security"
+mission "Korath [F02]: A Fishy Deal"
 	landing
-	name "New Tortuga Security Authority"
-	description "The New Tortuga Security Authority urgently needs help with fish deliveries for reasons of planetary security. Visit the spaceport at <planet> to help."
+	name "A fishy deal"
+	description "Transport <tons> of live fish to <stopovers>, pick up <tons> of supplies, and return them to <planet> by <date> for <payment>. Avoid getting scanned or landing on high-security planets, or you may be fined."
+	cargo "New Tortuga trade" 15
+	illegal 50000
+	deadline 7
+	clearance "The authorities do not respond, but a concealed hangar bay door opens. The meaning is clear: land here."
 	source "New Tortuga"
 	destination "New Tortuga"
-	to offer
-		"reputation: Korath" > -3000
-		"reputation: Korath (Civilian)" >= 0
-	to fail
-		or
-			"reputation: Korath" <= -3000
-			"reputation: Korath (Civilian)" < 0
-	to complete
-		never
+	stopover "La'ab Bamen"
 	on offer
 		conversation
 			`Flying through the atmosphere of New Tortuga, you pass over a typhoon, overfly a tsunami, and take a short detour around a supercell tornado. After a half hour of delicate flying, you approach doors more than a hundred meters tall. As they open, you can see they're ten meters thick, made of a material you don't recall seeing on human planets. Two layers of shields shut down in anticipation of your entry, each strong enough to stop a Navy carrier. To the left and right, there are turrets with heat signatures higher than a breeder reactor. Whoever built this place values their safety... and has the funds and technology to secure it.`
-			`	Not long after you leave your ship, you're intercepted by a woman in a blue dress. "Captain <first> <last> of the <ship>? I'm with the New Tortuga Security Authority, and we need independent captains for deliveries that are key to this planet's security. We did a background check on you, and we believe you would be quite suitable."`
+			`	Spaceport authorities direct you to bay 17C-1, which contains an odd ship you see on your way in. It appears to be an old-fashioned jet aircraft, whose four jet engines have been replaced with small ion engines. From the gold pipes on the tail, it appears to have a hyperdrive built into the hull. Several packages are being unloaded from the plane. A woman is waving her arms, perhaps with anger, as she walks from the cockpit into the airport.`
+			`	The ship is parked next to yours and the woman is about to walk past you. She looks quite distraught, and perchance looks your way.`
+			label questions
 			choice
-				`	"What sort of deliveries?"`
-				`	"How much does it pay?"`
-				`	"I'm not interested."`
+				`	"That's an interesting ship."`
+					goto ship
+					to display
+						not "Korath [F02]: A Fishy Deal: ship"
+				`	"What's getting you down?"`
+					goto down
+					to display
+						not "Korath [F02]: A Fishy Deal: down"
+				`	"What sort of delivery?"`
+					goto mission
+					to display
+						has "Korath [F02]: A Fishy Deal: down"
+						not "Korath [F02]: A Fishy Deal: mission"
+				`	"Sure, I could deliver it for you."`
+					goto yup
+					to display
+						has "Korath [F02]: A Fishy Deal: mission"
+				`	"I wish I could help, but I have urgent matters of my own."`
 					decline
-			`	"You'll deliver live food sources, especially fish. The pay depends on the quantity and distance. If you want any details, you'll have to come to the New Tortuga Security building in the spaceport to inquire further."`
-			choice
-				`	"What do fish deliveries have to do with planetary security?"`
-				`	"Thank you. I might look into it."`
-					accept
-				`	"I'm not interested."`
+					to display
+						or
+							has "Korath [F02]: A Fishy Deal: ship"
+							has "Korath [F02]: A Fishy Deal: down"
+							has "Korath [F02]: A Fishy Deal: mission"
+				`	(Say nothing.)`
 					decline
-			`	"I don't have clearance for introductory briefings, but I can say it is critical to planetary security. If you want details, you'll have to talk to one of our higher-level agents at the spaceport." At this, she does a small bow, and wanders off.`
-				accept
-
-mission "Korath [F03]: A Fishy Deal"
-	name "A fishy deal"
-	description "Transport <tons> of eusocial fish queens to <planet> by <date>. After a return trip, with a tight deadline, you will receive <payment>."
-	cargo "Eusocial fish queen" 15
-	passengers 1
-	illegal 50000
-	deadline 4
-	clearance "Iris points to a hidden antenna and gives you a radio frequency. You send the cargo serial number and your bioprint. A hangar bay door that was concealed as a crater opens."
-	source "New Tortuga"
-	destination "La'ab Bamen"
-	to offer
-		has "Korath [F02]: Fish Security: active"
-		"reputation: Korath" > -3000
-		"reputation: Korath (Civilian)" > 0
-	on offer
-		conversation
-			`A port employee approaches you. "Have you come to inquire about the New Tortuga Security Authority's delivery needs?"`
-			choice
-				`	"Yes."`
-					goto yes
-				`	"Not this time. Maybe later."`
-					defer
-				`	"I'm not interested."`
-					goto nope
-			label nope
+					to display
+						not "Korath [F02]: A Fishy Deal: ship"
+						not "Korath [F02]: A Fishy Deal: down"
+						not "Korath [F02]: A Fishy Deal: mission"
+			label ship
 			action
-				fail "Korath [F02]: Fish Security"
-			`	"Your loss then, Captain <last>. We'll seek another pilot."`
-				decline
-			label yes
-			`	"Follow me." After two security checkpoints, a two-meter-thick bulkhead, and a large aquarium, the employee leaves you.`
-			`	A door opens, and you see a woman beyond it. Her uniform is eerie: a purple athletic dress with a black utility corset, holding a pair of revolvers and spare ammunition. You can see a pair of knives tucked into her knee-high combat boots, and perhaps a third behind her neck. This is in stark contrast to her body language, which glows with an aura of kindness. She has a rainbow lock of hair, matching a rainbow feather clipped to a necklace.`
-			`	"Come in, Captain <last>," says a woman inside. "My name is Iris." A heavily-armed man closes the door behind you. "Don't mind him, Captain. He follows orders.`
-			`	"I'm sure you've noticed we live in the most dangerous part of human space. We have deals with all the groups in the area - except the Syndicate." She has a brief look of disgust. "The strongest of these groups has a severe shortage of food. We need pilots that can move freely about human space, gathering plants or animals and... performing other tasks. And of course, delivering New Tortuga's fish, of which they are quite fond."`
-			choice
-				`	"How much does it pay?"`
-				`	"Deliver the fish where?"`
-				`	"Sounds good. I'm in."`
-					goto yup
-				`	"Sorry, I'm not available for that kind of work."`
-					goto nope
-			label cash
-			`	"We have a base in the Atik system, called La'ab Bamen. It means 'Black Market' in the language of our chief ally. They're the ones that need the fish, and this first delivery is quite urgent. This particular type of fish is eusocial, and our ally is running low on queens. I'll come with to ensure the authorities let you land. Then you'll return here without me, carrying supplies. Your payment will be 135,000 credits upon your return to New Tortuga.`
-			choice
-				`	"Sounds good. I'm in."`
-					goto yup
-				`	"Sorry, I'm not available for that kind of work."`
-					goto nope
+				set "Korath [F02]: A Fishy Deal: ship"
+			`	"It's an heirloom," she says, "which has been in the family for centuries. My distant ancestor got a military surplus cargo plane and refurbished it. They used it as a personal craft. Each generation added to it; every piece has been repaired or replaced over the last thousand years.`
+			`	"The whole thing has been modernized - about a dozen times. There's a hyperdrive built into the hull itself, and those ion engines aren't of Syndicate design. They're custom-built, with ion propulsion, steering, and atmospheric anti-grav, in one assembly. The design was once called a Globemaster, and my family have taken the Globemaster name as our own.`
+			`	"Jenny Globemaster," she says, with a choreographed bow. "My family used to do shows all across human space, until my uncle got on the bad side of the Syndicate. We flew all the way from Bourne to Tinker to pick him up and smuggled him out to New Tortuga where the Syndicate dare not tread. Now I smuggle cargo through hyperspace in a 20th century aircraft!"`
+			branch questions
+				has "Korath [F02]: A Fishy Deal: down"
+			label down
+			action
+				set "Korath [F02]: A Fishy Deal: down"
+			`	Her face turns sour and she says, "Unfortunately, I can't finish my current delivery. My mother is quite sick, and I want to get to Freedom before..." she trails off. "Well, a client really needs this delivery in a week, and I have to find someone to do it."`
+				goto questions
+			label mission
+			action
+				set "Korath [F02]: A Fishy Deal: mission"
+			`	"It's the sort of delivery where you don't ask what sort of delivery it is. Take <tons> of fish to <stopovers>, and fly back here with <tons> of supplies. It's just two systems away, and the payment is <payment>. Couldn't be easier."`
+				goto questions
 			label yup
-			action
-				"stored reputation: Korath" = "reputation: Korath"
-			branch high
-				"reputation: Korath" > 0
-			action
-				"reputation: Korath" = 1
-			label high
-			`	"Excellent. I'll arrange the cargo transfer and meet you on your ship."`
+			`	"Great! If the authorities won't let you land, read them the serial number from the cargo container, and they'll open a bay for you. Oh, also, this is an illegal mission, so don't get caught, or it'll cost you <fine>."`
 				accept
-	on abort
-		# TO DO: This should be = min(stored reputation, current reputation)
-		"prior reputation: Korath" = "reputation: Korath"
-		"reputation: Korath" = "stored reputation: Korath"
-	on fail
-		# TO DO: This should be = min(stored reputation, current reputation)
-		"prior reputation: Korath" = "reputation: Korath"
-		"reputation: Korath" = "stored reputation: Korath"
-	on visit
-		dialog "You have arrived at <planet> but either Iris or her fish aren't here. They're probably in one of your escorts. You should take off and wait for the escort to arrive."
 
-mission "Korath [F04]: A Fishy Payment"
-	landing
-	cargo "Planetary supplies" 15
-	illegal 50000
-	deadline 4
-	source "La'ab Bamen"
-	destination "New Tortuga"
-	to offer
-		or
-			has "Korath [F03]: A Fishy Deal: done"
-			has "Korath [F03]: A Fishy Deal: active"
-	on offer
+	on stopover
 		conversation
-			`	"Thank you for the ride, Captain <last>," says Iris. "Now we need you to make the return journey with <tons> of supplies. Once you've reached <planet>, you'll get your payment. Okay?"`
+			`You approach the asteroid and a crater suddenly opens up, revealing a docking bay below. It's large enough to fit entire human space stations, but there are only a few ordinary ships parked below. When you exit your ship, several security personnel arrive, wearing unfamiliar uniforms, and carrying bright orange rifles. They're accompanied by a woman in a blue dress, holding a data pad in one hand and a stylus in another.`
+			`	"We don't like surprises, Captain <last>. I was expecting to see Jenny Globemaster, but here you are in her stead. Care to explain?"`
 			choice
-				`	"You can count on me."`
-					goto warning
-				`	"What are these supplies?"`
-			`	"Much of our planet's food comes from processing sewage directly into edible materials we put in 3D food printers. These barrels are filled with microscopic lifeforms that are the first step of that process. You can think of them as living filters.`
-			label warning
-			`	"A warning, Captain <last>. Our chief ally is a powerful... marauder group in this area, known as the Korath. You may have seen some of their ships on your way here. They're quite large, and their weapons are stronger than anything else in human space. Unfortunately, they also have quite a few enemies.`
-			`	"You must avoid helping them directly, or you'll have as many enemies as they do. If you want to remain at peace with them, and keep their people fed, do jobs here at La'ab Bamen. Otherwise, just stay out of their way.`
-			`	"If you see a red or yellow Korath ship, do not assist it. They know the risks they take. Green Korath ships are civilians; please do ensure their safety."`
-			`	She gives a slight bow and leaves for her duties elsewhere.`
-				accept
+				`	"Her mother is unwell, but she knew you needed this delivery."`
+					goto unwell
+				`	"She wasn't using the fish, so I took it."`
+					goto taunt
+				`	(Pull out your gun.)`
+			`	Before you can reach the holster, three of the security guards shoot you at the same time. The pain is excruciating as plasma eats its way through flesh and bone.`
+			`	"Thank you for delivering the fish, Captain <last>. I think our business relationship has come to an end." She points a smaller orange pistol at your face and ends your pain.`
+				die
+			label taunt
+			`	The woman in the blue dress laughs at you. "You don't look halfway clever enough to scam her out of it. What really happened?"`
+			choice
+				`	"Her mother is unwell, but she knew you needed this delivery."`
+			label unwell
+			`	"Poor Jenny. Yes, I know about that. She's smuggling her mother from Freedom to a hospital on Shroud for treatment. Alright. Jenny vouched for you, and you seem sane enough. Take these supplies to New Tortuga," she points to a pile of black barrels, "and my counterpart there will pay you."`
+			`	She departs with her entourage, and some dock workers load the barrels onto your ship.`
 	on complete
-		payment 135000
-		dialog `An employee meets you at the loading dock with your payment. "If you want to fly to La'ab Bamen again, look for fish delivery jobs on the New Tortuga jobs board." He gives a slight bow and vanishes into a corridor.`
-		# TO DO: This should be = min(stored reputation, current reputation)
-		"prior reputation: Korath" = "reputation: Korath"
-		"reputation: Korath" = "stored reputation: Korath"
-	on abort
-		# TO DO: This should be = min(stored reputation, current reputation)
-		"prior reputation: Korath" = "reputation: Korath"
-		"reputation: Korath" = "stored reputation: Korath"
-	on fail
-		# TO DO: This should be = min(stored reputation, current reputation)
-		"prior reputation: Korath" = "reputation: Korath"
-		"reputation: Korath" = "stored reputation: Korath"
+		# This is essentially a reputation reset for people who haven't been farming
+		# the Korath at all. Anyone else will have to do a lot of assistance jobs.
+		"reputation: Korath" += 50
+		payment 145000
+		conversation
+			`This time, you are directed to a different bunker city, on the other side of the planet from the main spaceport. The doors are considerably larger, and the bay is large enough to fit two dozen bulk freighters. You park near the far corner, close to one of the spaceport entrances, between a Behemoth and a Bactrian.`
+			`	Another woman in a blue dress meets you, accompanied by security guards with the same unfamiliar uniform as on La'ab Bamen. "Ah, Captain <last>! The next shipment."`
+			choice
+				`	"What was this cargo?"`
+				`	"I'm glad to have served another happy customer."`
+					goto done
+			`	"Much of our planet's food comes from a waste processing system that converts sewage directly into edible materials. We need a steady supply of filters to make this possible. These barrels contain genetically-engineered microorganisms that feed on sewage and output certain types of proteins. There are other filters for sugar, oils, and just about anything else."`
+
+			label done
+			`	"As promised, <payment>. Thank you for the prompt delivery, Captain <last>!"`
 
 mission "Korath: Assistance Warning"
 	assisting
