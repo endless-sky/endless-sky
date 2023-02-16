@@ -17987,7 +17987,7 @@ system "Kor Nor'peli"
 	fleet "Korath Defense" 1700
 	fleet "Korath Large Raid" 16000
 	fleet "Korath Ember Waste Raid" 1350
-	fleet "Korath Ember Waste Large Raid" 20000
+	fleet "Korath Ember Waste Large Raid" 2700
 	fleet "Korath Surveillance" 48000
 	fleet "Korath Civilian Large" 2000
 	fleet "Korath Home" 900
@@ -18065,7 +18065,7 @@ system "Kor Tar'bei"
 	fleet "Korath Defense" 2600
 	fleet "Korath Ember Waste Raid" 3050
 	fleet "Korath Surveillance" 50000
-	fleet "Korath Ember Waste Large Raid" 30000
+	fleet "Korath Ember Waste Large Raid" 6000
 	fleet "Korsmanath A'awojs" 900
 	object
 		sprite star/m3
