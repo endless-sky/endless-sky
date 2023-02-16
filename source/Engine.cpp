@@ -833,7 +833,7 @@ void Engine::Step(bool isActive)
 
 			if(tacticalRange && !strategicScanRange)
 				info.SetCondition("range display");
-			else if (strategicScanRange && !tacticalRange)
+			else if(strategicScanRange && !tacticalRange)
 				info.SetCondition("strategic range display");
 			else
 				info.SetCondition("combined range display");
@@ -864,14 +864,14 @@ void Engine::Step(bool isActive)
 				int gunRange = round(target->GetAICache().GunRange());
 				info.SetString("target gun", to_string(gunRange) + " ");
 			}
-			if ((targetRange <= tacticalRange && targetRange <= strategicScanRange && scrutable)
+			if((targetRange <= tacticalRange && targetRange <= strategicScanRange && scrutable)
 				|| (strategicScanRange && tacticalRange && target->IsYours()))
 			{
 				info.SetCondition("turn while combined");
 				int turnRate = round(60 * target->TrueTurnRate());
 				info.SetString("target turnrate", to_string(turnRate) + " ");
 			}
-			else if ((targetRange >= tacticalRange && targetRange <= strategicScanRange && scrutable)
+			else if((targetRange >= tacticalRange && targetRange <= strategicScanRange && scrutable)
 				|| (strategicScanRange && target->IsYours() && !tacticalRange))
 			{
 				info.SetCondition("turn while not combined");
