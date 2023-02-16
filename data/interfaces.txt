@@ -612,13 +612,31 @@ interface "hud"
 		color "disabled hull"
 		size 1.5
 	
+
 	visible if "range display"
+	sprite "ui/range"
+		from 130 263
+		align top left
+	string "target range"
+		from 160 260
+		align top left
+
+	visible if "strategic range display"
 	sprite "ui/range"
 		from 0 255
 		align top left
 	string "target range"
 		from 0 240
 		align top left
+
+	visible if "combined range display"
+	sprite "ui/range"
+		from 0 255
+		align top left
+	string "target range"
+		from 0 240
+		align top left
+
 	visible if "tactical display"
 	sprite "ui/tactical/tactical"
 		from 130 280
@@ -643,17 +661,27 @@ interface "hud"
 	sprite "ui/tactical/turret range"
 		from 190 252
 		align top center
-	sprite "ui/tactical/turn"
-		from 118 370
-		align top left
 	string "target gun"
 		from 152 268
 		align top center
 	string "target turret"
 		from 190 268
 		align top center
+
+	visible if "turn while combined"
+	sprite "ui/tactical/turn"
+		from 118 370
+		align top left
 	string "target turnrate"
 		from 139 370
+		align top left
+
+	visible if "turn while not combined"
+	sprite "ui/tactical/turn"
+		from 140 285
+		align top left
+	string "target turnrate"
+		from 162 286
 		align top left
 	visible
 	

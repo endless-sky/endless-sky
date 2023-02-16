@@ -829,10 +829,15 @@ void Engine::Step(bool isActive)
 			double strategicScanRange = 100. * sqrt(flagship->Attributes().Get("strategic scan power"));
 			double targetRange = target->Position().Distance(flagship->Position());
 			if(tacticalRange || strategicScanRange)
-			{
-				info.SetCondition("range display");
 				info.SetString("target range", to_string(static_cast<int>(round(targetRange))));
-			}
+
+			if(tacticalRange && !strategicScanRange)
+				info.SetCondition("range display");
+			else if (strategicScanRange && !tacticalRange)
+				info.SetCondition("strategic range display");
+			else
+				info.SetCondition("combined range display");
+
 			bool scrutable = !target->Attributes().Get("inscrutable");
 			// Actual tactical information requires a scrutable
 			// target that is within the tactical scanner range.
@@ -858,6 +863,18 @@ void Engine::Step(bool isActive)
 				info.SetString("target turret", to_string(turretRange) + " ");
 				int gunRange = round(target->GetAICache().GunRange());
 				info.SetString("target gun", to_string(gunRange) + " ");
+			}
+			if ((targetRange <= tacticalRange && targetRange <= strategicScanRange && scrutable)
+				|| (strategicScanRange && tacticalRange && target->IsYours()))
+			{
+				info.SetCondition("turn while combined");
+				int turnRate = round(60 * target->TrueTurnRate());
+				info.SetString("target turnrate", to_string(turnRate) + " ");
+			}
+			else if ((targetRange >= tacticalRange && targetRange <= strategicScanRange && scrutable)
+				|| (strategicScanRange && target->IsYours() && !tacticalRange))
+			{
+				info.SetCondition("turn while not combined");
 				int turnRate = round(60 * target->TrueTurnRate());
 				info.SetString("target turnrate", to_string(turnRate) + " ");
 			}
