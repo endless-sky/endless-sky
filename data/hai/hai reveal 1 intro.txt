@@ -1041,7 +1041,7 @@ mission "Hai Leaks Response 5"
 		event "allhome reinforced" 1
 		conversation
 			`When you return to Hai-home, you are greeted with a call from Sayari, who looks relieved to see you. "Captain <last>, thank you for your assistance to our security forces. They appreciated it greatly, and we should have them properly reinforced in a day or two. A few things have happened while you were away, but you haven't missed anything important yet."`
-			`	She smiles and says, "Your diplomatic colleagues are still working on their solutions, so I don't think there's anything for you to do right at this moment. Whenever you're ready, though, if you re-land at the secure port we can get you up to speed with our next steps in a day or two. I have no doubt that there'll be things for you to do by then, so you should be ready when you return."`
+			`	She smiles and says, "Your diplomatic colleagues are still working on their solutions, so I don't think there's anything for you to do right at this moment. Take a day or two, and then whenever you're ready, come to the spaceport and we'll redirect you through to the secure port. By that point we should have a plan and be able to get you up to speed with our next steps. I have no doubt that there'll be things for you to do by then, so you should be ready when you return."`
 
 event "allhome reinforced"
 	system "Heia Due"
@@ -1067,9 +1067,10 @@ mission "Hai Leaks Response 6"
 	description "Sayari's friend thinks someone with legal protection is kidnapping Hai. Check spaceports in nearby parts of human space for evidence of a Hai trafficking operation."
 	autosave
 	source "Hai-home"
+	destination "Hai-home"
 	clearance
 	to offer
-		has "Hai Leaks Response 5: done"
+		has "event: allhome reinforced"
 	on offer
 		event "secret mountaintop"
 		event "role-play fleet deception"
@@ -1191,8 +1192,9 @@ event "secret mountaintop"
 				period 31.1964
 	planet Mountaintop
 		government "Unknown"
+		attributes "requires: neverallowed"
 		# Placeholder description; you can't actually land.
-		description `This tiny asteroid has a space hazard warning transmitter, of a type typically used to mark construction sites. Perhaps someone intends to build a space station here?`
+		description `This tiny asteroid has a space hazard warning transmitter, of a type typically used to mark construction sites. Perhaps someone intends to build a space station here? [If you can see this text, report it as a bug.]`
 		"required reputation" 1000
 		bribe 0
 
