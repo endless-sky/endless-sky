@@ -162,21 +162,45 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
 	attributesHeight += 10;
-	double shieldRegen = attributes.Get("shield generation")
-		+ 0.5 * (attributes.Get("hot shield generation") + attributes.Get("cold shield generation"))
-		* (1. + attributes.Get("shield generation multiplier"));
-	bool hasShieldRegen = shieldRegen > 0.;
-	if(hasShieldRegen)
+	double coldShieldGen = attributes.Get("cold shield generation");
+	double hotShieldGen = attributes.Get("hot shield generation");
+	bool hasThermalShields = coldShieldGen != hotShieldGen;
+	bool hasShieldRegen = 0;
+	double shieldRegen = 0;
+	if (hasThermalShields)
 	{
-		attributeLabels.push_back("shields (charge):");
-		attributeValues.push_back(Format::Number(attributes.Get("shields"))
-			+ " (" + Format::Number(60. * shieldRegen) + "/s)");
+		hasShieldRegen = 1;
+		coldShieldGen = (coldShieldGen + attributes.Get("shield generation"))
+			* (1. + attributes.Get("shield generation multiplier"));
+		hotShieldGen = (hotShieldGen + attributes.Get("shield generation"))
+			* (1. + attributes.Get("shield generation multiplier"));
 	}
 	else
 	{
-		attributeLabels.push_back("shields:");
-		attributeValues.push_back(Format::Number(attributes.Get("shields")));
+		shieldRegen = attributes.Get("shield generation")
+			+ attributes.Get("hot shield generation")
+			* (1. + attributes.Get("shield generation multiplier"));
+		hasShieldRegen = shieldRegen > 0.;
 	}
+    if (hasThermalShields)
+    {
+        attributeLabels.push_back("shields (charge):");
+        attributeValues.push_back(Format::Number(attributes.Get("shields"))
+             + " (" + (Format::Number(60. 
+            * min(coldShieldGen, hotShieldGen))
+            + " - " + Format::Number(60. * max(coldShieldGen, hotShieldGen)) + "/s)"));
+    }
+    else if(hasShieldRegen)
+    {
+        attributeLabels.push_back("shields (charge):");
+        attributeValues.push_back(Format::Number(attributes.Get("shields"))
+            + " (" + Format::Number(60. * shieldRegen) + "/s)");
+    }
+    else
+    {
+        attributeLabels.push_back("shields:");
+        attributeValues.push_back(Format::Number(attributes.Get("shields")));
+    }
 	attributesHeight += 20;
 	double hullRepair = attributes.Get("hull repair rate")
 		+ 0.5 * (attributes.Get("hot hull repair") + attributes.Get("cold hull repair"))
