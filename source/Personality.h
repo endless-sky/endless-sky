@@ -24,9 +24,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class DataNode;
 class DataWriter;
 
-// The number of personalities
-#define PERSONALITY_COUNT 32
-
 // Class defining an AI "personality": what actions it takes, and how skilled
 // and aggressive it is in combat. This also includes some more specialized
 // behaviors, like plundering ships or launching surveillance drones, that are
@@ -97,6 +94,8 @@ private:
 
 private:
 	bool isDefined = false;
+
+	const int PERSONALITY_COUNT = 32
 
 	std::bitset<PERSONALITY_COUNT> flags;
 	double confusionMultiplier;
