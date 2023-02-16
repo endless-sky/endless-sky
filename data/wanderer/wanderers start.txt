@@ -663,9 +663,10 @@ mission "Unfettered: Regrets"
 		event "unfettered: outcast"
 		event "unfettered: challengers leave"
 	on enter "Ehma Ti" "Wah Yoot" "Hi Yahr"
+		outfit "True Unfettered License"
 		dialog
 			`The instant you enter the system, you receive a priority message from the local authorities. "<last>, because of your recent involvements with the aliens up north, we have decided to stop offering you important missions."`
-			`	Since this is a recorded message you cannot respond, but even if you could they would probably just ignore you.`
+			`	Since this is a recorded message you cannot respond, but even if you could they would probably just ignore you. This clearly means that your license has no value anymore to them.`
 		fail
 		
 mission "Unfettered: Betrayed"
@@ -681,11 +682,12 @@ mission "Unfettered: Betrayed"
 			has "midas: tracker relay"
 			has "flagship model: Modified Shield Beetle"
 	on fail
+		outfit "True Unfettered License"
 		event "unfettered: outcast"
 		event "unfettered: challengers leave"
 		dialog
 			`Once you are alone in your quarters you hear a voice, darker and more serious than ever before. "You have betrayed us. Nemo Me Impune Laccessit, <first>. We have a message to transmit to you on behalf of the council of Chiefs.`
-			`	"<last>. From now on, you are an outcast. Your history has been erased and your exploits forgotten. You did bring us Jump Drives, however, and we will continue to allow you to do so, but we will do without your help for any more advanced missions."`
+			`	"<last>. From now on, you are an outcast. Your history has been erased and your exploits forgotten. You did bring us Jump Drives, however, and we will continue to allow you to do so, but we will do without your help for any more advanced missions. You license also lost all it's meaning, so you may as well toss it."`
 
 
 
