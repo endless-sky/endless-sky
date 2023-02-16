@@ -826,9 +826,9 @@ void Engine::Step(bool isActive)
 
 			// Check if the target is close enough to show tactical information.
 			double tacticalRange = 100. * sqrt(flagship->Attributes().Get("tactical scan power"));
-			double maneuverScanRange = 100. * sqrt(flagship->Attributes().Get("maneuver scan power"));
+			double strategicScanRange = 100. * sqrt(flagship->Attributes().Get("strategic scan power"));
 			double targetRange = target->Position().Distance(flagship->Position());
-			if(tacticalRange || maneuverScanRange)
+			if(tacticalRange || strategicScanRange)
 			{
 				info.SetCondition("range display");
 				info.SetString("target range", to_string(static_cast<int>(round(targetRange))));
@@ -850,8 +850,8 @@ void Engine::Step(bool isActive)
 			}
 			// Actual maneuver information requires a scrutable
 			// target that is within the maneuver scanner range.
-			if((targetRange <= maneuverScanRange && scrutable)
-				|| (maneuverScanRange && target->IsYours()))
+			if((targetRange <= strategicScanRange && scrutable)
+				|| (strategicScanRange && target->IsYours()))
 			{
 				info.SetCondition("maneuver display");
 				int turretRange = round(target->GetAICache().TurretRange());

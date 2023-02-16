@@ -536,7 +536,7 @@ tip "solar heat:"
 tip "tactical scan power:"
 	`Tactical scanners allow you to view your current target's crew complement, fuel, heat, and energy levels when it is within range. The range is proportional to the square root of this value.`
 
-tip "maneuver scan power:"
+tip "strategic scan power:"
 	`Maneuver scanners allow you to view your current target's distance from you, maximum gun range, maximum turret range, and turning speed when it is within range. The range is proportional to the square root of this value.`
 
 tip "max speed:"
