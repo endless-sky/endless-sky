@@ -678,7 +678,7 @@ interface "hud"
 
 	visible if "turn while not combined"
 	sprite "ui/tactical/turn"
-		from 140 285
+		from 145 288
 		align top left
 	string "target turnrate"
 		from 162 286
