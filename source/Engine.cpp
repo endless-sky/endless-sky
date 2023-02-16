@@ -848,12 +848,12 @@ void Engine::Step(bool isActive)
 				int heat = round(100. * target->Heat());
 				info.SetString("target heat", to_string(heat) + "%");
 			}
-			// Actual maneuver information requires a scrutable
-			// target that is within the maneuver scanner range.
+			// Actual strategic information requires a scrutable
+			// target that is within the strategic scanner range.
 			if((targetRange <= strategicScanRange && scrutable)
 				|| (strategicScanRange && target->IsYours()))
 			{
-				info.SetCondition("maneuver display");
+				info.SetCondition("strategic display");
 				int turretRange = round(target->GetAICache().TurretRange());
 				info.SetString("target turret", to_string(turretRange) + " ");
 				int gunRange = round(target->GetAICache().GunRange());

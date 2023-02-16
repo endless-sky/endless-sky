@@ -537,7 +537,7 @@ tip "tactical scan power:"
 	`Tactical scanners allow you to view your current target's crew complement, fuel, heat, and energy levels when it is within range. The range is proportional to the square root of this value.`
 
 tip "strategic scan power:"
-	`Maneuver scanners allow you to view your current target's distance from you, maximum gun range, maximum turret range, and turning speed when it is within range. The range is proportional to the square root of this value.`
+	`Strategic scanners allow you to view your current target's distance from you, maximum gun range, maximum turret range, and turning speed when it is within range. The range is proportional to the square root of this value.`
 
 tip "max speed:"
 	`The fastest this ship can travel when using ordinary thrusters (that is, without afterburner).`
