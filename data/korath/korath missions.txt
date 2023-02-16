@@ -271,9 +271,9 @@ mission "First Contact: Korath Exiles"
 			# I don't know what "Oi" means.
 			choice
 				`	"I am <first> <last>."`
-					goto firstlast
+					goto name
 				`	"Oi, oi!"`
-					goto OiOi
+					goto silence
 				`	"I come in peace. Take me to your leader."`
 					goto peaceleader
 				`	(Remain silent and observe.)`
@@ -281,44 +281,33 @@ mission "First Contact: Korath Exiles"
 				`	(Attack them.)`
 					goto attack
 
-			label OiOi
-			# The left one says, "It doesn't understand. I think it's just mimicking us." The right responds, "The other ones could communicate. Maybe this one is skinless?"
-			`	The left one says, "Oki tasik Iklenref aga'. Litib oki agrap oliref akit." The right responds, "Nrag riam a'ih i'atirofutleh. Ritnrof nrag iri abrak kimot?"`
-			`	The left looks at you, gestures at itself, and slowly says, "Akafavah." The right does a similar gesture and says, "Takra." You almost instinctively respond with, "<first> <last>." This seems to please them both.`
-			`	Continuing the one word communiques, Takra gestures to both of them and says, "Korath."`
-			`	"I'm a human," you say, "from Earth."`
-			`	Akafavah says, "Oi! Humanika!" It's unclear what emotion the Korath is expressing, but it is a strong one.`
-			`	They see your confusion and seem to give up on communicating with words. It's time for a different approach.`
-				goto map
+			label name
+			`	"Takra," it says, pointing to itself. Then it points to the other and says, "Akafavah."`
+			`	"Korath," it says, gesturing to the two of them. Then it looks at you expectantly.`
+				goto humanika
 
-			label firstlast
-			`	"Hello," you say, "I am <first> <last>." You point to yourself and repeat your name. "<first> <last>."`
-			`	"Akafavah," says one, pointing to itself. It points to the other and says, "Tak Ratabomlek." Tak Ratabomlek clarifies, "Takra."`
-			`	Takra gestures at the two of them and says, "Korath." Then it gestures at you expectantly.`
-			`	"I'm a human," you say, "from Earth. Who are you?"`
-			`	Akafavah says, "Oi! Humanika!" It's unclear what emotion the Korath is expressing, but it is a strong one.`
-			`	"What on Far'en lai? Is-" Takra says, looking at Akafavah, who continues, "peas pant. Is peas plant." Takra corrects the sentence, "Is peas panet."`
-			`	They see your confusion and give up on clarifying the thought. It seems words won't work, so it's time for a change in tactics.`
-				goto map
-
+			# With a longer starting sentence, they suspect you're speaking human standard
+			# (even if you may not be human) so they try to use the same language in response.
 			label peaceleader
 			`	Both of them seem confused, like they half-understand parts of what you said, but can't put the pieces together.`
-			`	"Yee, gud. Far'en lai s peas plant.", says one of them. "S Takra," it says, pointing to itself. Then it points to the other and says, "Akafavah." You respond almost instinctively with "<first> <last>."`
-			`	"Ah. S Korath," it says, gesturing to the two of them. Then it gestures at you and says, "Yee...?"`
+			`	"Peeese? Takra," it says, pointing to itself. Then it points to the other and says, "Akafavah." You respond almost instinctively with "<first> <last>."`
+			`	"Weee Korath," it says, gesturing to the two of them. Then it gestures at you and says, "Yee ess...?"`
+				goto humanika
+
+			label humanika
 			`	"Human," you say, almost instinctively.`
 			`	Akafavah says, "Oy! Humanika!" It's not clear what emotion they're feeling, but it's a strong one.`
-			`	Takra asks you, "pear foam?"`
+			`	Takra asks you, "weer foam?"`
 			`	They see your confusion and seem to give up on communicating in your language. It's time for a different approach.`
 				goto map
 
 			label silence
-			`	The left, gestures at itself, says, "Akafavah." The right does a similar gesture and says, "Takra." You respond almost instinctively with "<first> <last>."`
+			`	The left gestures at itself and says, "Akafavah." The right does a similar gesture and says, "Takra." You respond almost instinctively with "<first> <last>."`
 			`	Pleased with this success, Akafavah continues, "Korath," gesturing at the two pilots.`
 			`	"I'm a human," you say, "from Earth."`
 			`	Akafavah says suddenly, "Oi! Humanika!" It's unclear what emotion the Korath is expressing, but it is a strong one.`
 			`	They see your confusion and seem to give up on communicating with words. It's time for a different approach.`
 				goto map
-
 
 			label attack
 			`	You reach for your gun. They move faster than you would have expected possible. One of strikes a pose with their arms and shouts, "Nag! Nag! Koreshi far'en lai!" Simultaneously, the other dives at you, grabbing the gun out of your hands before you have a chance to fire it.`
@@ -547,6 +536,8 @@ mission "Korath [F03]: A Fishy Proposition"
 			choice
 				`	(Pull out your gun.)`
 					goto gun
+					to display
+						not "pulled gun on Iris"
 				`	"She wasn't using the fish, so I took it."`
 					goto taunt
 				`	"Her mother is unwell, but she knew you needed this delivery."`
@@ -555,6 +546,8 @@ mission "Korath [F03]: A Fishy Proposition"
 			# You get here by default, partly to show Iris's restraint, and also
 			# to warn players they should pay attention to conversation choices.
 			label gun
+			action
+				set "pulled gun on Iris"
 			`[TO DO: Image with modified version of the prior scene with guns pointed at you.]`
 			`	Before you can reach the holster, the squad's guns are pointed at nearly every part of your torso. Iris raises her hand to signal "hold fire." You instinctively stop, knowing any move will result in your death.`
 			`	"I understand, Captain <last>, you're scared. Anyone would be in a place like this, crawling with pirates, marauders, and who knows what else. We haven't threatened you in any way; you're safe around us. I'm used to dealing with paranoid personalities, so I'll give you a second chance."`
@@ -595,25 +588,28 @@ mission "Korath [F03]: A Fishy Proposition"
 			`	Iris laughs at your joke as the men around her glare at you. "You don't look halfway clever enough to scam Jenny. What really happened?"`
 			label really
 			choice
-				`	"Jenny's mother is unwell, but she knew you needed this delivery."`
-					goto unwell
 				`	(Pull out your gun.)`
 					goto gun
+					to display
+						not "pulled gun on Iris"
+				`	"Jenny's mother is unwell, but she knew you needed this delivery."`
+					goto unwell
 			label unwell
 			`	"Poor Jenny. Yes, I know about that. She's smuggling her mother from Freedom to a hospital on Shroud for treatment. Her mother's a strong woman, and I'm sure she'll pull through.`
-			`	"We did a background check on you before you arrived. Your meeting wasn't a mistake; Jenny contacted you at our request. You do seem suitable for our needs, if you keep a level head. Take these supplies to New Tortuga," she points to a pile of black barrels, "and my counterpart there will pay you."`
+			`	"We did a background check on you during your approach to New Tortuga. Your meeting wasn't a mistake; Jenny contacted you at our request. You do seem suitable for our needs, if you keep a level head. Take these supplies to New Tortuga," she points to a pile of black barrels, "and my counterpart there will pay you."`
 			choice
 				`	"I'll see it done."`
 					goto see
 				`	"You can count on me."`
 				`	"No, I think I'm done with your deliveries."`
 					goto reject
+			`	[Picture of ships a hovering image near Iris projected by a gadget she's holding.]`
 			`	"I'm sure I can," she says, smiling.`
 				goto warning
 			label see
+			`	[Picture of ships a hovering image near Iris projected by a gadget she's holding.]`
 			`	She nods and gives an approving smile.`
 			label warning
-			`	[Picture of ships a hovering image near Iris projected by a gadget she's holding.]`
 			`	"A word of warning, Captain <last>. You may have noticed some unusual ships near here, larger than anything else in human space. Any fish delivery jobs at New Tortuga, and any jobs at this station, will earn you favor with them. Eventually, they'll stop being hostile, and you might assist their disabled ships.`
 			`	"If you see one of their red or yellow ships disabled, do not, and I repeat, do NOT, assist them. They are quite unpopular with many groups, and they know the risk they take in their raids. Helping one of their damaged ships will earn you powerful enemies.`
 			`	"Their green ships are civilians, and you should ensure those ships' survival. The ships with a forested dome in front are hospitals and nurseries and you should take special care to keep them safe. Shooting at them will anger even more powerful groups."`
@@ -652,7 +648,7 @@ mission "Korath [F03]: A Fishy Proposition"
 				`	"I'm glad to have served another happy customer."`
 					goto done
 			`	She looks shocked. "You should never ask that question." Her face relaxes. "You're in luck this time: your cargo was not confidential, so I can satisfy your curiosity.`
-			`	"Much of our planet's food comes from a waste processing system that converts sewage directly into edible materials. We need a steady supply of filters to make this possible. These barrels contain genetically-engineered microorganisms that feed on sewage secrete certain types of proteins. There are other filters for sugar, oils, and just about anything else. It goes into 3D printers, and with a bit of spices, it is quite palatable. Still, we all try to eat real food when we can.`
+			`	"Much of our planet's food comes from a waste processing system that converts sewage directly into edible materials. We need a steady supply of filters to make this possible. These barrels contain several genetically-engineered organisms that feed on sewage and secrete certain types of proteins. There are other filters for sugar, oils, and just about anything else. It goes into 3D printers, and with a bit of spices, it is quite palatable. Still, we all try to eat real food when we can.`
 
 			label done
 			`	"Your payment is <payment>, a bit higher than promised. Thank you for the prompt delivery, Captain <last>!"`
@@ -713,7 +709,11 @@ mission "Korath [F04]: Fishy Reasoning"
 	destination "La'ab Bamen"
 	to offer
 		has "First Contact: Korath Exiles: offered"
-		has "Korath [F01]: Rabasot Pa'ah Failed Landings: done"
+
+		# Require a successful landing on Rabasot Pa'ah, since that gives you the whale picture.
+		has "landed on Rabasot Pa'ah"
+
+		# You have to meet Iris and know she has knowledge of Korath:
 		has "Korath [F03]: A Fishy Proposition: done"
 	on offer
 		conversation
