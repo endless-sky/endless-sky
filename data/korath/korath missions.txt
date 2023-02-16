@@ -331,7 +331,7 @@ mission "Efreti: Distress Call 2"
 		conversation
 			`A delegation of Korath approach you somewhat hesitantly in the spaceport. They are dressed in what appears to be much finer clothing than most of the Korath you have met, certainly nothing you would wear to do work in a spaceport. As they make the traditional gesture of greeting, which you return, you are curious both as to what they want and how they will ask.`
 			`	One of them takes a small case out of a pocket and removes a black device that looks like three triangles hooked together. He hisses at it for a moment and then it rises out of his hand. The air around it begins to shimmer and soon a life size hologram of a Quarg appears.`
-			`	"Salutations, far traveller," the Quarg rumbles. "These Korath-Friends are the princes of the clan-company that you have assisted. They thank you for your aid in saving their children and grandchildren. While  most grateful they are for the living, they cannot fully mourn the dead who lie on <stopovers>. They ask me to ask that you travel there and bring their lost ones home to <destination>."`
+			`	"Salutations, far traveller," the Quarg rumbles. "These Korath-Friends are the princes of the clan-company that you have assisted. They thank you for your aid in saving their children and grandchildren. While most grateful they are for the living, they cannot fully mourn the dead who lie on <stopovers>. They ask me to ask that you travel there and bring their lost ones home to <destination>."`
 			choice
 				`	"I will bring them home."`
 					goto home
