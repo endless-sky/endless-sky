@@ -263,6 +263,18 @@ mission "First Contact: Korath Exiles"
 	source "Far'en Lai"
 	on offer
 		conversation
+			# Premise: Although there are Korath who are around humans frequently,
+			# that is a tiny fraction of the Korath population. Most will not have
+			# even seen a human, and certainly won't recognize all human ships.
+			# That is niche knowledge, and it has not spread far yet. Most Korath
+			# know humans merely as local food suppliers, and they certainly won't
+			# know about specific human planets other than New Tortuga.
+
+			# The two Korath who meet you here aren't certain of what a human looks
+			# like, and don't know more than a few words, simply because the chance
+			# of the first two available Korath pilots knowing such details is
+			# quite small. An armed landing on Far'en Lei is an emergency, and they
+			# couldn't wait for a diplomat from La'ab Bamen to arrive.
 			`Before you even step out of your ship, two Korath fighters come hurtling down out of the sky to land, sending up a spray of sand as they skid to a stop about ten meters away from you as you open the hatch. The pilots get out and approach you. They are short, stocky, and somewhat reptilian in appearance, and both have a crest of red and brown feathers running along the top of their heads and hanging down their backs. Their clothes are a brightly colored patchwork material. They do not seem to be armed. One of them stretches both arms out sideways and says, "Oi, oi!"`
 			# Names:
 			# Pilot to the left: Akafavah, meaning "steel eyes"
@@ -297,7 +309,7 @@ mission "First Contact: Korath Exiles"
 			label humanika
 			`	"Human," you say, almost instinctively.`
 			`	Akafavah says, "Oy! Humanika!" It's not clear what emotion they're feeling, but it's a strong one.`
-			`	Takra asks you, "weer foam?"`
+			`	Takra asks you, "were foam?"`
 			`	They see your confusion and seem to give up on communicating in your language. It's time for a different approach.`
 				goto map
 
