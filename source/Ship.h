@@ -363,7 +363,7 @@ public:
 	// DamageDealt from that weapon. The return value is a ShipEvent type,
 	// which may be a combination of PROVOKED, DISABLED, and DESTROYED.
 	// Create any target effects as sparks.
-	int TakeDamage(std::vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment);
+	int TakeDamage(std::vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment, const Point &damageSource = Point());
 	// Apply a force to this ship, accelerating it. This might be from a weapon
 	// impact, or from firing a weapon, for example.
 	void ApplyForce(const Point &force, bool gravitational = false);
@@ -618,6 +618,9 @@ private:
 	unsigned explosionCount = 0;
 	unsigned explosionTotal = 0;
 	std::map<const Effect *, int> finalExplosions;
+
+	// Vector of recent hits the ship has taken.
+	std::vector<Point> recentHits;
 
 	// Target ships, planets, systems, etc.
 	std::weak_ptr<Ship> targetShip;
