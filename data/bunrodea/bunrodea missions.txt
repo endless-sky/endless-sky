@@ -34,7 +34,7 @@ mission "First Contact: Bunrodea"
 		"bunrodea: normal rep" = "reputation: Bunrodea"
 		conversation
 			`When you depart your ship, you're startled by a small alien ship uncloaking right in front of you. Two elegant mantis-like creatures step off it, each holding a strange looking weapon pointed directly at you. They have four long insectoid legs and two arms. Although their arms end in what look like hands, they also have strange claw-like features that partially enclose them, extending outward from their forearms to grasp their weapons. You look around to see if there's anyone else witnessing this, but you've landed at <origin>'s main spaceport in the middle of the night, leaving you as the only human in sight.`
-			`	The aliens begin speaking to you in a language you don't understand. Their words are interspersed with clicking noises. As one of them speaks, they sound almost robotic, as if they are speaking through a synthesizer. Taking a closer look, you spot what you can only guess are cybernetic modifications to parts of the alien's body; the alien's throat and one of its eyes look non-organic, as well as the joints of its legs. The other one has no such visible modifications, though.`
+			`	The aliens begin speaking to you in a language you don't understand, their words interspersed with clicking noises. As one of them speaks, they sound almost robotic, as if they are speaking through a synthesizer. Taking a closer look, you spot what you can only guess are cybernetic modifications to parts of the alien's body; the alien's throat and one of its eyes look non-organic, as well as the joints of its legs. The other one has no such visible modifications, though.`
 			choice
 				`	"Do you come in peace?"`
 				`	"I don't understand a word you're saying."`
@@ -44,10 +44,10 @@ mission "First Contact: Bunrodea"
 				`	(Pick it up.)`
 				`	(Dodge for cover.)`
 					goto dodge
-			`	You pick up the device and look at it. It springs open in your hand, causing you to drop it. After it falls to the ground, it begins projecting a holographic star map. You recognize some of the systems on the map as those where you fought an alien fleet, made up of ships similar to the one in front of you. A single system within that region is highlighted. The aliens return to their ship, which becomes invisible again. Although you can't see it, you hear it take off and fly away.`
+			`	You pick up the device and look at it. It springs open in your hand, causing you to drop it. After it falls to the ground, it begins projecting a holographic star map. You recognize some of the systems on the map as those where you fought an alien fleet, made up of ships similar to the one in front of you. A single system within that region is highlighted. The aliens return to their ship, which becomes invisible again, and although you can't see it, you hear it take off and fly away.`
 				accept
 			label dodge
-			`	You dodge for cover behind your ship. After a few seconds, you hear a springing sound. When you look back out from behind your ship, the aliens are gone, and the device they threw at you is now projecting a holographic star map. You recognize some of the systems on the map as those where you fought an alien fleet, made up of ships similar to the one in front of you. A single system within that region is highlighted. The alien ship becomes invisible once again. Although you can't see it, you hear it take off and fly away.`
+			`	You dodge for cover behind your ship. After a few seconds, you hear a springing sound. When you look back out from behind your ship, the aliens are gone, and the device they threw at you is now projecting a holographic star map. You recognize some of the systems on the map as those where you fought an alien fleet, made up of ships similar to the one in front of you. A single system within that region is highlighted. The alien ship becomes invisible once again, and although you can't see it, you hear it take off and fly away.`
 				accept
 	
 	on accept
@@ -130,7 +130,7 @@ mission "First Contact: Bunrodea"
 					goto lie
 				`	"I have, and for that I apologize."`
 					goto apologize
-				`	"Ok, and?"`
+				`	"Okay, and?"`
 					goto and
 			
 			label civi
@@ -140,7 +140,7 @@ mission "First Contact: Bunrodea"
 					goto lie
 				`	"I have, and for that I apologize."`
 					goto apologize
-				`	"Ok, and?"`
+				`	"Okay, and?"`
 					goto and
 			
 			label guard
@@ -151,7 +151,7 @@ mission "First Contact: Bunrodea"
 				`	"Hey, they deserved it. They attacked me first."`
 					goto attacked
 				`	"I have, and for that I apologize."`
-				`	"Ok, and?"`
+				`	"Okay, and?"`
 					goto and
 			
 			label royalty
@@ -163,7 +163,7 @@ mission "First Contact: Bunrodea"
 					goto lie
 				`	"I have, and for that I apologize."`
 					goto apologize
-				`	"Ok, and?"`
+				`	"Okay, and?"`
 					goto and
 			
 			
@@ -180,7 +180,7 @@ mission "First Contact: Bunrodea"
 					goto lie
 				`	"Well then for that I apologize."`
 					goto apologize
-				`	"Ok, and?"`
+				`	"Okay, and?"`
 					goto and
 			
 			label defending
@@ -212,5 +212,5 @@ mission "First Contact: Bunrodea"
 			`	The Queen motions to one of the guards and says something to it that the creature does not translate. She then speaks to you, and the creature translates: "Since it is my guards that have shown you disrespect, you will be allowed to live. My guards have been ordered to leave you be, and you may come and go on a small number of our worlds. But this is only so that you do not cause further trouble, and to allow you to refuel if you are passing through my systems. Your presence will only be tolerated, not welcomed. Now please leave my court."`
 			
 			label end
-			`	You're escorted out of the throne room and told by the small creature to leave as soon as you reach your ship. You exit the palace, and realize that you must once again face the stairs. You take deep breath, and prepare yourself for the long journey down.`
+			`	You're escorted out of the throne room and told by the small creature to leave as soon as you reach your ship. You exit the palace, and realize that you must once again face the stairs. You take a deep breath, and prepare yourself for the long journey down.`
 				launch

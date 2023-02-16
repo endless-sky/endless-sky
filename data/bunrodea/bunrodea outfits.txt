@@ -136,7 +136,7 @@ outfit "Solar Cell"
 	"solar collection" 0.145
 	"solar heat" 0.07
 	"solar cell" -1
-	description "Bunrodean solar panels are extremely efficient, even being capable of powering smaller or less powerful warships. But be warned: while these solar cells can provide significant energy, that is not without the drawback of also generating waste heat that scales with the energy generated, which can be especially hazardous when near bright stars."
+	description "Bunrodean solar panels are extremely efficient, and are even capable of powering smaller or less powerful warships. But be warned: while these solar cells can provide significant energy, that is not without the drawback of also generating waste heat that scales with the energy generated, which can be especially hazardous when near bright stars."
 	description "	These cells must be installed on the mounting platform that comes with a solar battery to be used."
 
 
@@ -249,7 +249,7 @@ outfit "Nami Rift Thruster"
 		"rewind"
 		"scale" 0.6
 	"flare sound" "ion small"
-	description "Although Rift engines are extremely heat efficient, their energy requirement is rather high compared to the thrust they produce, even when compared to terribly inefficient Korath engines."
+	description "Although Rift engines are extremely heat efficient, their energy requirement is rather high compared to the thrust they produce, even next to terribly inefficient Korath engines."
 
 outfit "Ookii Rift Thruster"
 	category "Engines"
@@ -266,7 +266,7 @@ outfit "Ookii Rift Thruster"
 		"rewind"
 		"scale" 0.8
 	"flare sound" "ion medium"
-	description "Even though the energy drawn per unit thrust of Rift engines is poorer than that of Korath engines, the overall energy requirement of Rift engines is still far lesser by comparison."
+	description "Even though the energy drawn per unit thrust of rift engines is poorer than that of Korath engines, the overall energy requirement of rift engines is still far lesser by comparison."
 
 outfit "Subarashii Rift Thruster"
 	category "Engines"
@@ -282,7 +282,7 @@ outfit "Subarashii Rift Thruster"
 		"frame rate" 1
 		"rewind"
 	"flare sound" "ion large"
-	description "Given the lower size and thrust of Rift engines, Bunrodean ships aren't well known for their pursuit capabilities. But there are rumors among some Bunrodea of an ancient cache of engines more powerful than even those of the Korath that would allow any ship to zip across the stars like a comet and chase down any potential target."
+	description "Given the lower size and thrust of rift engines, Bunrodean ships aren't well known for their pursuit capabilities. But there are rumors among some Bunrodea of an ancient cache of engines more powerful than even those of the Korath that would allow any ship to zip across the stars like a comet and chase down any potential target."
 
 outfit "Chiisana Rift Steering"
 	category "Engines"
@@ -294,7 +294,7 @@ outfit "Chiisana Rift Steering"
 	"turn" 539
 	"turning energy" 2.6
 	"turning heat" 1
-	description "Given that Bunrodean ships are typically focused on making heavy use of their forward facing guns, the Bunrodea favor high turn rates much more than high speeds. As such, Rift steering systems are larger than the respective thruster systems of the same size category."
+	description "Given that Bunrodean ships are typically focused on making heavy use of their forward facing guns, the Bunrodea favor high turn rates much more than high speeds. As such, rift steering systems are larger than the respective thruster systems of the same size category."
 
 outfit "Nami Rift Steering"
 	category "Engines"
@@ -306,7 +306,7 @@ outfit "Nami Rift Steering"
 	"turn" 1137
 	"turning energy" 5.3
 	"turning heat" 2.1
-	description "As with many Bunrodean systems, Rift engines produce very little heat. This allows their ships to forgo the use of any significant cooling systems, leaving more room for other systems, be they defensive or offensive."
+	description "As with many Bunrodean systems, rift engines produce very little heat. This allows their ships to forgo the use of any significant cooling systems, leaving more room for other systems, be they defensive or offensive."
 
 outfit "Ookii Rift Steering"
 	category "Engines"
@@ -330,4 +330,4 @@ outfit "Subarashii Rift Steering"
 	"turn" 3900
 	"turning energy" 17.1
 	"turning heat" 6.5
-	description "The largest of the Rift steering systems, these engines are what allow the Bunrodea's heavy gunships to bear their many guns toward their unfortunate target."
+	description "The largest of the rift steering systems, these engines are what allow the Bunrodea's heavy gunships to bear their many guns toward their unfortunate target."

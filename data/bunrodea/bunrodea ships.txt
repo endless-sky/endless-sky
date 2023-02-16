@@ -52,6 +52,7 @@ ship "Kaiken"
 	explode "tiny explosion" 20
 	explode "small explosion" 15
 	description "While not particularly fast by fighter standards, where the Kaiken lacks in speed it makes up for in durability and firepower; it boasts a significant amount of weapon space and ports for up to three guns, allowing for the use of a trio of Locust Blasters or the option of using a larger Mandible Cannon."
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
 
@@ -349,7 +350,7 @@ ship "Kunai"
 	explode "medium explosion" 40
 	explode "large explosion" 20
 	"final explode" "final explosion small"
-	description "The Kunai is the smallest of the Bunrodea's gunships, warships which focus heavily on the power of their forward facing guns. Lacking any turret mounts and focusing more on turning quickly than traveling fast, the Kunai is highly susceptible to missile weaponry and must rely on other ships in the fleet to carry anti-missile turrets."
+	description "The Kunai is the smallest of the Bunrodea's gunships, warships which focus heavily on the power of their forward-facing guns. Lacking any turret mounts and focusing more on turning quickly than traveling fast, the Kunai is highly susceptible to missile weaponry and must rely on other ships in the fleet to carry anti-missile turrets."
 
 
 

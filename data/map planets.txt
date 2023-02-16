@@ -15,7 +15,7 @@ planet Angko
 	attributes bunrodea factory manufacturing
 	landscape land/water6
 	description `Angko is a massive industrial world, with most cities on its surface supporting vast manufacturing sectors, factories, and warehouses. The level of industrial progress has not gone without its environmental impacts, however. At some time in the planet's past, the ice caps melted, causing sea levels to rise globally. The Bunrodeans have since moved to less environmentally negative practices, but the damage was already done, and the planet hasn't been the same since.`
-	spaceport `The main spaceport of Angko is in a precarious situation: established ages ago on a coastline, the oceans of the planet have risen significantly enough that the entire region would be submerged in water were it not for the massive sea walls that enclose the city. Even with the flooding of the city being a constant concern should the sea walls fail, the Bunrodeans have determined that it's still easier to keep maintaining the main spaceport rather than move the it to high ground.`
+	spaceport `The main spaceport of Angko is in a precarious situation: established ages ago on a coastline, the oceans of the planet have risen significantly enough that the entire region would be submerged in water were it not for the massive sea walls that enclose the city. Even with the flooding of the city being a constant concern should the sea walls fail, the Bunrodeans have determined that it's still easier to keep maintaining the main spaceport rather than move it to high ground.`
 	outfitter "Bunrodea Basic"
 	"required reputation" 10
 	bribe 0
@@ -90,8 +90,8 @@ planet Eragarthro
 planet Iddesato
 	attributes bunrodea research station
 	landscape land/space2
-	description `Iddesato is a considerably large station, at least when compared to a human station, but much of its size can be attributed to the large constructs sticking out the front of the station, the purpose of which you can only guess at. The rest of the station seems more normal, with a large hangar that acts as the station's spaceport.`
-	spaceport `The station's spaceport is extremely large compared to the size of the entire station itself, taking up almost half of the interior. A variety of ships enter and exit the station, but a good chunk of the parked ships seem to be kept here and fitted for combat.`
+	description `Iddesato is a considerably large station, at least when compared to a human one, but much of its size can be attributed to the large constructs sticking out of its front, the purpose of which you can only guess at. The rest of the station seems more normal, with a large hangar that acts as the station's spaceport.`
+	spaceport `The station's spaceport is extremely large compared to the size of the entire station itself, taking up almost half of the interior. A variety of ships enter and exit, but a good chunk of the parked ships seem to be kept here and fitted for combat.`
 	spaceport `	You're able to use some basic services in the spaceport, and there's even a small outfitter you can access, but you're prevented from entering the station beyond the spaceport.`
 	outfitter "Bunrodea Basic"
 	"required reputation" 50
@@ -102,8 +102,8 @@ planet "Illbo Avo"
 	attributes bunrodea military moon
 	landscape land/badlands6
 	description `Illbo Avo is a barren moon with little to no atmosphere, but it is also the only solid ground in this system that isn't prone to sliding out under your feet as a result of volcanism. As such, because of the system's proximity to Paru Paru and to the Korath, the Bunrodea have turned the crust of this small moon into a dense network of subterranean structures with purposes ranging from large ship hangars to factories that pump out military-grade ships and outfits, essentially making it one big war factory.`
-	spaceport `The main spaceport of Illbo Avo is accessed by entering a large artificial circular cavern near the moon's equator. The walls of the cavern are lined with hangar bays, with available bays having their hangar doors open. Once you find a vacant bay to land in, the hangar door closes and hangar becomes pressurzied.`
-	spaceport `	The inside of the spaceport is buzzing with activity, from shipments of new weapons being moved around to military squads marching in unison to the hangar bays housing their ships.`
+	spaceport `The main spaceport of Illbo Avo is accessed by entering a large artificial circular cavern near the moon's equator. The walls of the cavern are lined with hangar bays, with available bays having their hangar doors open. Once you find a vacant bay to land in, the hangar door closes and the hangar becomes pressurized.`
+	spaceport `	The inside of the spaceport is buzzing with activity, from shipments of new weapons being moved around to military squads marching in unison.`
 	shipyard "Bunrodea Basic"
 	shipyard "Bunrodea Advanced"
 	outfitter "Bunrodea Basic"
@@ -115,8 +115,8 @@ planet "Illbo Avo"
 planet "Illbo Elo"
 	attributes bunrodea military
 	landscape land/badlands0
-	description `Illbo Elo is a sparesly populated world, with much of the planet's surface being barely inhabitable deserts. The climate becomes more temperate as you approach the poles, where most of the population is located. The Bunrodea appear to be constructing entirely new cities within these temperate zones, as evident by the large fleets of freighters bringing supplies to cities of mostly skeletal buildings of exposed foundations and metal beams.`
-	spaceport `The main spaceport of Illbo Elo appears to be a major military installation, which most of the landing pad being occupied by Bunrodean warships. Moving away from the more military focused center, you find that the edges of the spaceport are packed with civilians, with the infrastructure barely supporting them, which is perhaps why the Bunrodea are constructing new cities elsewhere.`
+	description `Illbo Elo is a sparsely populated world, with much of the planet's surface being barely habitable deserts. The climate becomes more temperate as you approach the poles, where most of the population is located. The Bunrodea appear to be constructing entirely new cities within these temperate zones, as evident by the large fleets of freighters bringing supplies to cities of mostly skeletal buildings with exposed foundations and metal beams.`
+	spaceport `The main spaceport of Illbo Elo appears to be a major military installation, with most of the landing pad being occupied by Bunrodean warships. Moving away from the more military focused center, you find that the edges of the spaceport are packed with civilians barely supported by the current infrastructure, which is perhaps why the Bunrodea are constructing new cities elsewhere.`
 	outfitter "Bunrodea Basic"
 	outfitter "Bunrodea Advanced"
 	"required reputation" 25
@@ -126,7 +126,7 @@ planet "Illbo Elo"
 planet "Disara"
 	attributes bunrodea urban military
 	landscape land/forest2
-	description `Disara is a highly developed world, with multiple large cities on each of the planet's continents. Each of the cities spreads out into more surban-like regions, which extend further into rural and wilderness zones. Unlikely many other worlds, Disara has no one primary industry that it dominates in. Instead, the planet does a bit of everything, having a rather strong internal economy.`
+	description `Disara is a highly developed world, with multiple large cities on each of the planet's continents. Each of the cities spread out into more suburban-like regions, which extend further into rural and wilderness zones. Unlikely many other worlds, Disara has no one primary industry that it dominates in. Instead, the planet does a bit of everything, having a rather strong internal economy.`
 	spaceport `Part of the outskirts of the planet's main spaceport has been converted into a military installation, which a large base garrisoned with a considerable number of royal guards and their many ships. Apart from that, the spaceport feels rather normal, at least by Bunrodean standards. You spot the occasional Bunrodean with an excessive number of cybernetic or genetic modification, but most appear to have few, if any, modifications done to them.`
 	shipyard "Bunrodea Basic"
 	shipyard "Bunrodea Advanced"
@@ -159,7 +159,7 @@ planet Kisarra
 	attributes bunrodea mining
 	landscape land/desert2
 	description `Kisarra's surface is one vast desert as far as the eye can see. The sandy nothingness is only occasionally broken up by oases and rocky outcrops. Many of the oases have small towns that have formed around them and some of the outcrops seem to used as entrances to mines. Strikingly, all of the towns and mines have large walls constructed around them.`
-	spaceport `Although most spaceports typically double as a massive population center for the planet, in many cases being the most populous region on the planet, Kisarra's spaceport acts only as a location to ferry minearls brought from the mines off-world, with most of the planet's population living in the small oasis towns.`
+	spaceport `Although most spaceports typically double as a massive population center for the planet, in many cases being the most populous region on the planet, Kisarra's spaceport acts only as a location to ferry minerals brought from the mines off-world, with most of the planet's population living in the small oasis towns.`
 	spaceport `	Just as with the small towns and mines, the spaceport has a large wall constructed around it. From what you can tell, this is to keep out the gigantic hostile spider-like creatures that inhabit Kissara's deserts. These spiders burrow through the sand and consume any unfortunate creature they can find.`
 	outfitter "Bunrodea Basic"
 	"required reputation" 10
@@ -182,7 +182,7 @@ planet Okoity
 	landscape land/fog2
 	description `Okoity has the highest population of any Bunrodean world, with a staggering 24 billion people. All but the most inhospitable regions of the planet have been settled in some shape or form.`
 	description `	The planet saw a large influx of people with the destruction of Olohoa's atmosphere in the nearby system of Sera Natta, massive even relative to the already preexisting population. Although this occurred about a century ago, the planet still seems to be struggling with this increased population.`
-	spaceport `The spaceport of Okoity is completely packed with Bunrodeans. You have little room to maneuver as you explore the spaceport while trying to not bump into anyone. Many of the Bunrodeans here show the signs of being genetically engineered, from Bunrodeans with extra limbs to one that you see up high climbing on walls and jumping from building to building to avoid the crowd below.`
+	spaceport `The spaceport of Okoity is completely packed with Bunrodeans. You have little room to maneuver as you explore the spaceport while trying to not bump into anyone. Many of the Bunrodeans here show signs of being genetically engineered, from Bunrodeans with extra limbs to one that you see up high climbing on walls and jumping from building to building to avoid the crowd below.`
 	shipyard "Bunrodea Basic"
 	outfitter "Bunrodea Basic"
 	"required reputation" 25
@@ -198,7 +198,7 @@ planet Olohoa
 planet Sardva
 	attributes bunrodea religious
 	landscape land/fields6
-	description `The planet of Sardva is used by the Bunrodea as a vault for genetic material of all origins, from the seeds of plants that the Bunrodea have encountered to genetic material of animals and even material from past generations of Bunrodeans. This material is stored in many of the planet's cave systems, which, with some slight modification, have amazingly stable climates that are perfect for the long term storage of genetic material.`
+	description `The planet of Sardva is used by the Bunrodea as a vault for genetic material of all origins, from the seeds of plants that the Bunrodea have encountered to the genetic material of animals and even past generations of Bunrodeans. This material is stored in many of the planet's cave systems, which, with some slight modification, have amazingly stable climates that are perfect for the long term storage of genetic material.`
 	description `	The decentralized and redundant nature of the vaults also ensures that if anything happens on one part of the planet that may compromise the vaults there, locations elsewhere on the planet will still keep the material safe.`
 	spaceport `Sardva has no single major spaceport, with each vault location supporting its own small spaceport for receiving shipments and refueling the freighters. You eventually find a vault that is willing to let you land so that you may refuel, but they don't seem too happy about your presence, and seem like they're only refueling you so that you stop asking every vault you come across.`
 	"required reputation" 200
@@ -209,7 +209,7 @@ planet Schisathro
 	attributes bunrodea guild manufacturing mining
 	landscape land/canyon5
 	description `Schisathro is a major mining world, and also home to some of the largest shipyards in Bunrodean space. Larger shipyards than the ones found here only exist on the capital world of Erabuthro.`
-	description `	The planet's success as a mining world can be owed to its many deep canyons found across most of the planet's above water surface, which allow for easier access to mineral rich deposits in the crust. The major shipyards developed alongside these mines allowed for easy transportation of material directly to the shipyards instead of requiring lengthy journeys through space.`
+	description `	The planet's success as a mining world can be owed to its many deep canyons found across most of the planet's above water surface, which allow for easier access to mineral-rich deposits in the crust. The major shipyards developed alongside these mines allowed for easy transportation of material directly to the shipyards instead of requiring lengthy journeys through space.`
 	spaceport `The main spaceport of Schisathro is almost entirely taken up by shipyards. That area which isn't dedicated to the shipyards is dedicated to the transportation of materials to them. This leaves very little space left over for the usual amenities that you would expect of a spaceport. There is only one single small outfitter tucked in between two large shipyards near the edge of the spaceport; the shipyards must receive direct shipments of the more advanced outfits that they need.`
 	shipyard "Bunrodea Basic"
 	shipyard "Bunrodea Advanced"
@@ -236,7 +236,7 @@ planet Thshybothro
 	description `Thshybothro is a small, mountainous world that is home to the Bunrodea's largest cybernetics research facilities. Various labs and factories are scattered within the world's many valleys, within which the Bunrodea work to develop new cybernetics, or improve their old ones.`
 	description `	Although this planet is where new modifications are developed, the mass production and installation of cybernetics is typically done elsewhere.`
 	spaceport `The planet's spaceport is rather small, as typically any visitors to the planet travel directly to the research facilities that they're interested in. As such, the spaceport's primary focus is simply to refuel any ships that stop by the planet and who don't have authorization to land at one of the research facilities.`
-	spaceport `	The spaceport dock workers have more cybernetic enhancements than you're used to from Bunrodeans elsewhere in their space. The worker who refuels your ship in particular is a mass of cybernetic "enhancements" ranging from powerful legs to aid in lifting crates to a vacuum cleaner attachment for dealing with spills and accidents.`
+	spaceport `	The spaceport dock workers have more cybernetic modifications than you're used to from Bunrodeans elsewhere in their space. The worker who refuels your ship in particular is a mass of cybernetic "enhancements" ranging from powerful legs to aid in lifting crates to a vacuum cleaner attachment for dealing with spills and accidents.`
 	outfitter "Bunrodea Basic"
 	"required reputation" 50
 	bribe 0
