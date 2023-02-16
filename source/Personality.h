@@ -19,10 +19,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Angle.h"
 #include "Point.h"
 
+#include <bitset>
+
 class DataNode;
 class DataWriter;
 
-
+// The number of personalities
+#define PERSONALITY_COUNT 32
 
 // Class defining an AI "personality": what actions it takes, and how skilled
 // and aggressive it is in combat. This also includes some more specialized
@@ -95,7 +98,7 @@ private:
 private:
 	bool isDefined = false;
 
-	int flags;
+	std::bitset<PERSONALITY_COUNT> flags;
 	double confusionMultiplier;
 	double aimMultiplier;
 	Point confusion;
