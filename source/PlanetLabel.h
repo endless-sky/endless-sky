@@ -28,7 +28,7 @@ class System;
 
 class PlanetLabel {
 public:
-	PlanetLabel(const Point &position, const StellarObject &object, const System *system, double zoom);
+	PlanetLabel(const Point &position, const StellarObject &object, const System *system, double zoom, double fogLevel);
 
 	void Draw() const;
 

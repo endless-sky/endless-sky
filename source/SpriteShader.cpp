@@ -20,7 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Shader.h"
 #include "Sprite.h"
 
-#include <iostream>
 #include <sstream>
 #include <vector>
 
@@ -129,7 +128,7 @@ void SpriteShader::Init(bool useShaderSwizzle)
 		"uniform int swizzler;\n";
 	fragmentCodeStream <<
 		"uniform float alpha;\n"
-		"uniform int fog;\n"
+		"uniform float fog;\n"
 		"uniform float zoom;\n"
 		"const int range = 5;\n"
 
@@ -267,12 +266,12 @@ void SpriteShader::Init(bool useShaderSwizzle)
 		"  float distanceAlpha = 1.f;\n"
 		"  if(fog > 0)\n"
 		"  {\n"
-		"    distanceAlpha = 0.f;\n"
+		"    distanceAlpha = 1. - (fog / 100);\n"
 		"    float length = length(fragPos) * zoom;\n"
 		"    if(length < 1.f)\n" // everything further than 1. away is invisble
 		"    {\n"
 		"      if(length > 0.25f)\n" // everything closer than 0.25 is completely visble
-		"        distanceAlpha = 1.f - fog * 1.333 * (length - 0.25);\n" // interpolate between 0.25 and 1.
+		"        distanceAlpha = 1.f - (fog / 100) * 1.333 * (length - 0.25);\n" // interpolate between 0.25 and 1.
 		"      else"
 		"        distanceAlpha = 1.f;"
 		"    }\n"
@@ -388,10 +387,9 @@ void SpriteShader::Add(const Item& item, bool withBlur, double fog, double zoom)
 	glUniform1f(clipI, item.clip);
 	glUniform1f(alphaI, item.alpha);
 
-	glUniform1i(fogI, fog ? 1 : 0);
+	glUniform1f(fogI, fog);
 
 	float dimensions = static_cast<float>(Screen::RawHeight()) / static_cast<float>(Screen::RawWidth());
-	std::cout << "Dimensions:" << dimensions << ", " << dimensionsI << std::endl;
 	glUniform1f(dimensionsI, dimensions);
 
 	glUniform1f(zoomI, 1 / zoom);
