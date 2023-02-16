@@ -836,7 +836,7 @@ void Engine::Step(bool isActive)
 			bool nonscrutable = target->Attributes().Get("inscrutable");
 			// Actual tactical information requires a scrutable
 			// target that is within the tactical scanner range.
-			if ((targetRange <= tacticalRange && !nonscrutable)
+			if((targetRange <= tacticalRange && !nonscrutable)
 				|| (tacticalRange && target->IsYours()))
 			{
 				info.SetCondition("tactical display");
@@ -850,7 +850,7 @@ void Engine::Step(bool isActive)
 			}
 			// Actual maneuver information requires a scrutable
 			// target that is within the maneuver scanner range.
-			if ((targetRange <= maneuverScanRange && !nonscrutable)
+			if((targetRange <= maneuverScanRange && !nonscrutable)
 				|| (maneuverScanRange && target->IsYours()))
 			{
 				info.SetCondition("maneuver display");
