@@ -783,7 +783,7 @@ void Engine::Step(bool isActive)
 
 		targetVector = targetAsteroid->Position() - center;
 
-		if(flagship->Attributes().Get("tactical scan power") || flagship->Attributes().Get("maneuver scan power"))
+		if(flagship->Attributes().Get("tactical scan power") || flagship->Attributes().Get("strategic scan power"))
 		{
 			info.SetCondition("range display");
 			int targetRange = round(targetAsteroid->Position().Distance(flagship->Position()));
