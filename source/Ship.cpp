@@ -1279,6 +1279,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	corrosion = 0.;
 	leakage = 0.;
 	burning = 0.;
+	fogging = 0.;
 	shieldDelay = 0;
 	hullDelay = 0;
 	isInvisible = !HasSprite();
@@ -1556,6 +1557,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		CreateSparks(visuals, "leakage spark", leakage * .1);
 	if(burning)
 		CreateSparks(visuals, "burning spark", burning * .1);
+	if (fogging)
+		CreateSparks(visuals, "fogging spark", fogging * .1);
 	// Jettisoned cargo effects (only for ships in the current system).
 	if(!jettisoned.empty() && !forget)
 	{
@@ -1985,6 +1988,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				burning += scale * attributes.Get("turning burn");
 				slowness += scale * attributes.Get("turning slowing");
 				disruption += scale * attributes.Get("turning disruption");
+				fogging += scale * attributes.Get("turning fog");
 
 				angle += commands.Turn() * TurnRate() * slowMultiplier;
 			}
@@ -2044,6 +2048,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					leakage += scale * attributes.Get(isThrusting ? "thrusting leakage" : "reverse thrusting leakage");
 					slowness += scale * attributes.Get(isThrusting ? "thrusting slowing" : "reverse thrusting slowing");
 					disruption += scale * attributes.Get(isThrusting ? "thrusting disruption" : "reverse thrusting disruption");
+					fogging += scale * attributes.Get(isThrusting ? "thrusting fog" : "reverse thrusting fog");
 
 					acceleration += angle.Unit() * (thrustCommand * thrust / mass);
 				}
@@ -2069,6 +2074,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 			double slownessCost = attributes.Get("afterburner slowing");
 			double disruptionCost = attributes.Get("afterburner disruption");
+			double foggingCost = attributes.Get("afterburner fog");
 
 			if(thrust && shields >= shieldCost && hull >= hullCost
 				&& energy >= energyCost && fuel >= fuelCost && heat >= heatCost)
@@ -2085,6 +2091,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				scrambling += scramblingCost;
 				leakage += leakageCost;
 				burning += burningCost;
+				fogging += foggingCost;
 
 				slowness += slownessCost;
 				disruption += disruptionCost;
@@ -2392,6 +2399,16 @@ void Ship::DoGeneration()
 		double burnHeat = attributes.Get("burn resistance heat") / burnResistance;
 		DoStatusEffect(isDisabled, burning, burnResistance,
 			energy, burnEnergy, fuel, burnFuel, heat, burnHeat);
+	}
+
+	if(fogging)
+	{
+		double fogResistance = attributes.Get("fog resistance");
+		double fogEnergy = attributes.Get("fog resistance energy") / fogResistance;
+		double fogFuel = attributes.Get("fog resistance fuel") / fogResistance;
+		double fogHeat = attributes.Get("fog resistance heat") / fogResistance;
+		DoStatusEffect(isDisabled, fogging, fogResistance,
+			energy, fogEnergy, fuel, fogFuel, heat, fogHeat);
 	}
 
 	// When ships recharge, what actually happens is that they can exceed their
@@ -3159,6 +3176,7 @@ void Ship::Recharge(bool atSpaceport)
 	corrosion = 0.;
 	leakage = 0.;
 	burning = 0.;
+	fogging = 0.;
 	shieldDelay = 0;
 	hullDelay = 0;
 }
@@ -3340,6 +3358,14 @@ double Ship::ShieldLevel() const
 double Ship::DisruptionLevel() const
 {
 	return disruption;
+}
+
+
+
+// Get how disrupted this ship's shields are.
+double Ship::FogLevel() const
+{
+	return fogging;
 }
 
 
@@ -3599,6 +3625,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 
 	disruption += damage.Disruption();
 	slowness += damage.Slowing();
+	fogging += damage.Fogging();
 
 	if(damage.HitForce())
 		ApplyForce(damage.HitForce(), damage.GetWeapon().IsGravitational());
@@ -3646,7 +3673,8 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 				|| ((damage.Fuel() || damage.Leak()) && fuel < navigation.JumpFuel() * 2.)
 				|| (damage.Scrambling() && CalculateJamChance(Energy(), scrambling) > 0.1)
 				|| (damage.Slowing() && slowness > 10.)
-				|| (damage.Disruption() && disruption > 100.)))
+				|| (damage.Disruption() && disruption > 100.)
+				|| (damage.Fogging() && fogging > 100.)))
 		type |= ShipEvent::PROVOKE;
 
 	// Create target effect visuals, if there are any.
@@ -4039,6 +4067,8 @@ bool Ship::CanFire(const Weapon *weapon) const
 		return false;
 	if(slowness < -weapon->FiringSlowing())
 		return false;
+	if (fogging < -weapon->FiringFog())
+		return false;
 
 	return true;
 }
@@ -4088,6 +4118,7 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 	corrosion += weapon.FiringCorrosion();
 	leakage += weapon.FiringLeak();
 	burning += weapon.FiringBurn();
+	fogging += weapon.FiringFog();
 }
 
 

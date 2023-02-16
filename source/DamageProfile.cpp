@@ -177,6 +177,7 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	damage.disruptionDamage = weapon.DisruptionDamage() * ScaleType(.5, attributes.Get("disruption protection"));
 	damage.scramblingDamage = weapon.ScramblingDamage() * ScaleType(.5, attributes.Get("scramble protection"));
 	damage.slowingDamage = weapon.SlowingDamage() * ScaleType(.5, attributes.Get("slowing protection"));
+	damage.foggingDamage = weapon.FogDamage() * ScaleType(0., attributes.Get("fogging protection"));
 
 	// Hit force is blocked 0% by shields.
 	double hitForce = weapon.HitForce() * ScaleType(0., attributes.Get("force protection"));

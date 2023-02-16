@@ -972,12 +972,13 @@ void Engine::Draw() const
 		player.Flagship()->GetSystem() : player.GetSystem()));
 	static const Set<Color> &colors = GameData::Colors();
 	const Interface *hud = GameData::Interfaces().Get("hud");
+	double fog = player.Flagship()->FogLevel();
 
 	// Draw any active planet labels.
 	for(const PlanetLabel &label : labels)
 		label.Draw();
 
-	draw[drawTickTock].Draw(zoom);
+	draw[drawTickTock].Draw(zoom, fog);
 	batchDraw[drawTickTock].Draw();
 
 	for(const auto &it : statuses)
@@ -2344,7 +2345,7 @@ void Engine::FillRadar()
 		{
 			// Do not show cloaked ships on the radar, except the player's ships.
 			bool isYours = ship->IsYours();
-			if ((ship->Cloaking() >= 1. && !isYours) || (ship->Attributes().Get("radar cloak") >= 1. && !isYours)
+			if ((ship->Cloaking() >= 1. && !isYours) || (ship->Attributes().Get("radar cloak") >= 1. && !isYours))
 				continue;
 
 			// Figure out what radar color should be used for this ship.

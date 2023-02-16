@@ -195,6 +195,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				firingLeak = value;
 			else if(key == "firing burn")
 				firingBurn = value;
+			else if (key == "firing fog")
+				firingFog = value;
 			else if(key == "relative firing energy")
 				relativeFiringEnergy = value;
 			else if(key == "relative firing heat")
@@ -252,6 +254,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[LEAK_DAMAGE] = value;
 			else if(key == "burn damage")
 				damage[BURN_DAMAGE] = value;
+			else if (key == "fog damage")
+				damage[FOG_DAMAGE] = value;
 			else if(key == "relative shield damage")
 				damage[RELATIVE_SHIELD_DAMAGE] = value;
 			else if(key == "relative hull damage")

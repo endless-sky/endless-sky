@@ -54,6 +54,7 @@ public:
 	// Unique special damage types.
 	double Disruption() const noexcept;
 	double Slowing() const noexcept;
+	double Fogging() const noexcept;
 
 	// Hit force applied as a point vector.
 	const Point &HitForce() const noexcept;
@@ -82,6 +83,7 @@ private:
 
 	double disruptionDamage = 0.;
 	double slowingDamage = 0.;
+	double foggingDamage = 0.;
 
 	Point forcePoint;
 };
@@ -104,6 +106,7 @@ inline double DamageDealt::Leak() const noexcept { return leakDamage; }
 
 inline double DamageDealt::Disruption() const noexcept { return disruptionDamage; }
 inline double DamageDealt::Slowing() const noexcept { return slowingDamage; }
+inline double DamageDealt::Fogging() const noexcept { return foggingDamage; }
 
 inline const Point &DamageDealt::HitForce() const noexcept { return forcePoint; }
 

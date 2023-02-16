@@ -49,7 +49,7 @@ public:
 	bool AddSwizzled(const Body &body, int swizzle);
 
 	// Draw all the items in this list.
-	void Draw(double zoom = 1.0f) const;
+	void Draw(double zoom = 1.0f, double fog = 0.) const;
 
 
 private:

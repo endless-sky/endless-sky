@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DrawList.h"
 
 #include "Body.h"
+#include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Screen.h"
 #include "Sprite.h"
@@ -95,13 +96,13 @@ bool DrawList::AddSwizzled(const Body &body, int swizzle)
 
 
 // Draw all the items in this list.
-void DrawList::Draw(double zoom) const
+void DrawList::Draw(double zoom, double fog) const
 {
 	SpriteShader::Bind();
 
 	bool withBlur = Preferences::Has("Render motion blur");
 	for(const SpriteShader::Item &item : items)
-		SpriteShader::Add(item, withBlur, true, zoom);
+		SpriteShader::Add(item, withBlur, fog, zoom);
 
 	SpriteShader::Unbind();
 }

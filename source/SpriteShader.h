@@ -41,6 +41,7 @@ public:
 		float blur[2] = {0.f, 0.f};
 		float clip = 1.f;
 		float alpha = 1.f;
+		double fog = 0.;
 	};
 
 
@@ -53,7 +54,7 @@ public:
 	static Item Prepare(const Sprite *sprite, const Point &position, float zoom = 1.f, int swizzle = 0, float frame = 0.f);
 
 	static void Bind();
-	static void Add(const Item &item, bool withBlur = false);
+	static void Add(const Item& item, bool withBlur = false, double fog = 0., double zoom = 1.0f);
 	static void Unbind();
 
 
