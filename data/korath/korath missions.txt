@@ -691,8 +691,10 @@ mission "Korath: Civilian Warning"
 mission "Korath [F04]: Fishy Reasoning"
 	landing
 	name "Seek answers from Iris"
-	description "Find Iris at <planet> and ask her about Korath, fish transfers, an ocean planet, and her rainbow feather."
+	description "Visit Iris at <planet> and ask her about Korath, fish transfers, an ocean planet, and her rainbow feather."
+	clearance "You explain the purpose of your visit, and the authorities inform you that Iris will expect you."
 	source
+		not planet "La'ab Bamen"
 	destination "La'ab Bamen"
 	to offer
 		has "First Contact: Korath Exiles: offered"
@@ -701,6 +703,81 @@ mission "Korath [F04]: Fishy Reasoning"
 	on offer
 		conversation
 			`Upon touching down, you have a feeling like a thousand piece jigsaw puzzle just came together before your eyes. When the Korath were drawing systems, three seemed to jump out at you. Misam, home of New Tortuga; Atik, where the La'ab Bamen black market resides; and Kor Ak'Mari, the ocean planet's system. The first fish you transferred from New Tortuga to La'ab Bamen looked like a tiny relative of the island-sized fish on the ocean planet. Iris called the Korath New Tortuga's chief ally, and the recipients of a fish deal. She had quite a lot of knowledge of the Korath, and spoke of them with admiration.`
-			`	Most curious of all is the rainbow feather on Iris's necklace, which was the exact shape of feathers on the Korath of Far'en Lai, but far more colorful.`
+			`	Most curious of all is the rainbow feather on Iris's necklace, which was the exact shape of feathers on the Korath of Far'en Lei, but far more colorful.`
 			`	It may be time to track down Iris and get some answers.`
 				accept
+
+
+mission "Korath [F05]: The Rainbow Feather"
+	landing
+	invisible
+	source "La'ab Bamen"
+	to offer
+		has "Korath [F04]: Fishy Reasoning: offered"
+	on offer
+		fail
+		conversation
+			`You find Iris in La'ab Bamen watching fish in one of the access tunnels. "I was wondering when you'd seek me out," she says, smiling. "You gave those two patrols quite a scare on Far'en Lei. They had never seen a human before, and they found one armed at their jail's lock."`
+				goto questions
+			label check
+			branch compassion
+				has "Korath [F05]: The Rainbow Feather: feather"
+				has "Korath [F05]: The Rainbow Feather: exile"
+				has "Korath [F05]: The Rainbow Feather: freedom"
+			label questions
+			choice
+				`	"I meant no harm."`
+					goto harm
+					to display
+						not "Korath [F05]: The Rainbow Feather: know"
+				`	"How do you know about that?"`
+					goto know
+					to display
+						not "Korath [F05]: The Rainbow Feather: know"
+				`	"You seem to know the Korath well. Who are they, really?"`
+					goto feather
+					to display
+						has "Korath [F05]: The Rainbow Feather: know"
+						not "Korath [F05]: The Rainbow Feather: feather"
+				`	"Why did you call Far'en Lei 'their jail's lock'?"`
+					goto exile
+					to display
+						has "Korath [F05]: The Rainbow Feather: know"
+						not "Korath [F05]: The Rainbow Feather: exile"
+				`	"What is the nature of this fish trade?"`
+					goto freedom
+					to display
+						has "Korath [F05]: The Rainbow Feather: know"
+						not "Korath [F05]: The Rainbow Feather: freedom"
+
+			label harm
+			action
+				set "Korath [F05]: The Rainbow Feather: know"
+			`	"The Korath told me what you did: you brought a weapon to Far'en Lei, Captain." She looks quite worried. "That, alone, is terrible harm, and you should never do it again. They let you go because it is a planet of peace."`
+				goto check
+
+			label know
+			action
+				set "Korath [F05]: The Rainbow Feather: know"
+			`	"We are allies of the Korath. Naturally, if a human human somehow gets a jump drive and wanders into Korath space, they ask us about it. To land on Far'en Lei, armed, was quite a transgression. They let you go because it is a planet of peace."`
+				goto check
+
+			label feather
+			action
+				set "Korath [F05]: The Rainbow Feather: feather"
+			`	She removes her necklace and cups the rainbow feather tenderly in her hands. "This was a gift from a Korath woman who is my... close friend. Korath keep memories in their skin and pass knowledge by eating another's feathers. The stronger the memory, the more colorful the feathers. This feather has the memories and emotions that she identifies with me.`
+			`	"It was a very sweet present until she explained the purpose: if she dies in a raid, and another Korath eats this, I'll have her back, in a way. Another Korath that feels for me as she does, and remembers our times together. All Korath know the consequence of a rainbow feather. This is how they pass all knowledge; not through schooling, but through skin.`
+			`	"Think about that a moment. Years of memories flow in as if they were yesterday. Powerful emotions overwhelm you, and you don't understand why, because they aren't your own. You love someone who doesn't love you back because they never met you. Knowledge you couldn't comprehend before is intuitive, but it came at a high price. You'd lose all sense of time and self - unimaginable psychological pain to us is simply a fact of life to a Korath.`
+			`	"That, Captain, is the very core of their being. They never developed diplomacy because they didn't need it: a few feathers or the skin of the dead will end a conflict. That is, unless their terrible weapons annihilate the corpses, or if the enemies aren't Korath at all. We do what we can to mediate their troubles with humans, but we aren't always around."`
+				goto check
+
+			label freedom
+			action
+				set "Korath [F05]: The Rainbow Feather: freedom"
+
+			label exile
+			action
+				set "Korath [F05]: The Rainbow Feather: exile"
+			``
+
+			label compassion
