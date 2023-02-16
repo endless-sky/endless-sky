@@ -24,18 +24,15 @@ class Point;
 
 
 
+
+
 // Class for drawing ship effects, such as shield or heat.
 // It's a clone of the SpriteShader, with a few extra doohickeys.
-class ShipEffectsShader {
+class ShipFXShader {
 public:
-	enum class EffectType {
-		EFFECT_HIT_SHIELD,
-	};
-
-	class Item {
+	class EffectItem {
 	public:
 		uint32_t texture = 0;
-		uint32_t swizzle = 0;
 		float frame = 0.f;
 		float frameCount = 1.f;
 		float position[2] = {0.f, 0.f};
@@ -50,19 +47,17 @@ public:
 
 public:
 	// Initialize the shaders.
-	static void Init(bool useShaderSwizzle);
+	static void Init();
 
 	// Draw a sprite.
-	static void Draw(const Sprite *sprite, const Point &position, float zoom = 1.f, int swizzle = 0, float frame = 0.f);
-	static Item Prepare(const Sprite *sprite, const Point &position, float zoom = 1.f, int swizzle = 0, float frame = 0.f);
+	static void Draw(const Sprite *sprite, const Point &position, std::vector<Point, double>& recentHits, float zoom = 1.f, float frame = 0.f);
+	static EffectItem Prepare(const Sprite *sprite, const Point &position, std::vector<Point, double>& recentHits, float zoom = 1.f, float frame = 0.f);
 
 	static void Bind();
-	static void Add(const Item &item, bool withBlur = false);
+	static void Add(const EffectItem &item, bool withBlur = false);
 	static void Unbind();
 
-
 private:
-	static bool useShaderSwizzle;
 };
 
 

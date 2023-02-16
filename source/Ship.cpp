@@ -2417,6 +2417,27 @@ void Ship::DoGeneration()
 	double maxHull = attributes.Get("hull");
 	hull = min(hull, maxHull);
 
+	for(int i = 0; i < recentHits.size();)
+	{
+		recentHits[i].second -= 0.1;
+		if (recentHits[i].second < 0.)
+		{
+			Logger::LogError("DESTROYING ITERATORERED NUMBA " + to_string(i) + " OF SHIP " + name + " WITH SIZEOF " + to_string(recentHits.size()));
+			recentHits.erase(recentHits.begin() + i);
+			Logger::LogError("NOW SIZE IS " + to_string(recentHits.size()));
+		}
+		else
+		{
+			i++;
+		}
+	}
+
+#include <string>
+	if (recentHits.size() > 0)
+	{
+		Logger::LogError(name + " got hit  " + to_string(recentHits.size()) + " times.");
+	}
+
 	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
 
 	// Whenever not actively scanning, the amount of
@@ -3602,6 +3623,9 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 
 	if(damage.HitForce())
 		ApplyForce(damage.HitForce(), damage.GetWeapon().IsGravitational());
+
+	// Update the list of latest hits
+	recentHits.emplace_back(damageSource - position, 1.);
 
 	// Prevent various stats from reaching unallowable values.
 	hull = min(hull, attributes.Get("hull"));

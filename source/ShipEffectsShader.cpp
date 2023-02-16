@@ -1,4 +1,4 @@
-/* ShipEffectsShader.cpp
+/* ShipFXShader.cpp
 Copyright (c) 2014-2023 by Michael Zahniser & Daniel Yoon
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -41,53 +41,17 @@ namespace {
 	GLint blurI;
 	GLint clipI;
 	GLint alphaI;
-	GLint swizzlerI;
 
 	GLint recentHitsCountI;
 	GLfloat recentHitsI[32];
 
 	GLuint vao;
 	GLuint vbo;
-
-	const vector<vector<GLint>> SWIZZLE = {
-		{GL_RED, GL_GREEN, GL_BLUE, GL_ALPHA}, // 0 red + yellow markings (republic)
-		{GL_RED, GL_BLUE, GL_GREEN, GL_ALPHA}, // 1 red + magenta markings
-		{GL_GREEN, GL_RED, GL_BLUE, GL_ALPHA}, // 2 green + yellow (free worlds)
-		{GL_BLUE, GL_RED, GL_GREEN, GL_ALPHA}, // 3 green + cyan
-		{GL_GREEN, GL_BLUE, GL_RED, GL_ALPHA}, // 4 blue + magenta (syndicate)
-		{GL_BLUE, GL_GREEN, GL_RED, GL_ALPHA}, // 5 blue + cyan (merchant)
-		{GL_GREEN, GL_BLUE, GL_BLUE, GL_ALPHA}, // 6 red and black (pirate)
-		{GL_RED, GL_BLUE, GL_BLUE, GL_ALPHA}, // 7 pure red
-		{GL_RED, GL_GREEN, GL_GREEN, GL_ALPHA}, // 8 faded red
-		{GL_BLUE, GL_BLUE, GL_BLUE, GL_ALPHA}, // 9 pure black
-		{GL_GREEN, GL_GREEN, GL_GREEN, GL_ALPHA}, // 10 faded black
-		{GL_RED, GL_RED, GL_RED, GL_ALPHA}, // 11 pure white
-		{GL_BLUE, GL_BLUE, GL_GREEN, GL_ALPHA}, // 12 darkened blue
-		{GL_BLUE, GL_BLUE, GL_RED, GL_ALPHA}, // 13 pure blue
-		{GL_GREEN, GL_GREEN, GL_RED, GL_ALPHA}, // 14 faded blue
-		{GL_BLUE, GL_GREEN, GL_GREEN, GL_ALPHA}, // 15 darkened cyan
-		{GL_BLUE, GL_RED, GL_RED, GL_ALPHA}, // 16 pure cyan
-		{GL_GREEN, GL_RED, GL_RED, GL_ALPHA}, // 17 faded cyan
-		{GL_BLUE, GL_GREEN, GL_BLUE, GL_ALPHA}, // 18 darkened green
-		{GL_BLUE, GL_RED, GL_BLUE, GL_ALPHA}, // 19 pure green
-		{GL_GREEN, GL_RED, GL_GREEN, GL_ALPHA}, // 20 faded green
-		{GL_GREEN, GL_GREEN, GL_BLUE, GL_ALPHA}, // 21 darkened yellow
-		{GL_RED, GL_RED, GL_BLUE, GL_ALPHA}, // 22 pure yellow
-		{GL_RED, GL_RED, GL_GREEN, GL_ALPHA}, // 23 faded yellow
-		{GL_GREEN, GL_BLUE, GL_GREEN, GL_ALPHA}, // 24 darkened magenta
-		{GL_RED, GL_BLUE, GL_RED, GL_ALPHA}, // 25 pure magenta
-		{GL_RED, GL_GREEN, GL_RED, GL_ALPHA}, // 26 faded magenta
-		{GL_BLUE, GL_ZERO, GL_ZERO, GL_ALPHA}, // 27 red only (cloaked)
-		{GL_ZERO, GL_ZERO, GL_ZERO, GL_ALPHA} // 28 black only (outline)
-	};
 }
 
-bool ShipEffectsShader::useShaderSwizzle = false;
-
 // Initialize the shaders.
-void ShipEffectsShader::Init(bool useShaderSwizzle)
+void ShipFXShader::Init()
 {
-	ShipEffectsShader::useShaderSwizzle = useShaderSwizzle;
 
 	static const char *vertexCode =
 		"// vertex sprite shader\n"
@@ -108,8 +72,7 @@ void ShipEffectsShader::Init(bool useShaderSwizzle)
 		"  fragTexCoord = vec2(texCoord.x, min(clip, texCoord.y)) + blurOff;\n"
 		"}\n";
 
-	ostringstream fragmentCodeStream;
-	fragmentCodeStream <<
+	static const char *fragmentCode =
 		"// fragment sprite shader\n"
 		"precision mediump float;\n"
 #ifdef ES_GLES
@@ -119,9 +82,6 @@ void ShipEffectsShader::Init(bool useShaderSwizzle)
 		"uniform float frame;\n"
 		"uniform float frameCount;\n"
 		"uniform vec2 blur;\n";
-	if(useShaderSwizzle) fragmentCodeStream <<
-		"uniform int swizzler;\n";
-	fragmentCodeStream <<
 		"uniform float alpha;\n"
 		"const int range = 5;\n"
 
@@ -161,112 +121,18 @@ void ShipEffectsShader::Init(bool useShaderSwizzle)
 		"      else\n"
 		"        color += scale * texture(tex, vec3(coord, first));\n"
 		"    }\n"
-		"  }\n";
+		"  }\n"
 
-	// Only included when hardware swizzle not supported, GL <3.3 and GLES
-	if(useShaderSwizzle)
-	{
-		fragmentCodeStream <<
-		"  switch (swizzler) {\n"
-		"    case 0:\n"
-		"      color = color.rgba;\n"
-		"      break;\n"
-		"    case 1:\n"
-		"      color = color.rbga;\n"
-		"      break;\n"
-		"    case 2:\n"
-		"      color = color.grba;\n"
-		"      break;\n"
-		"    case 3:\n"
-		"      color = color.brga;\n"
-		"      break;\n"
-		"    case 4:\n"
-		"      color = color.gbra;\n"
-		"      break;\n"
-		"    case 5:\n"
-		"      color = color.bgra;\n"
-		"      break;\n"
-		"    case 6:\n"
-		"      color = color.gbba;\n"
-		"      break;\n"
-		"    case 7:\n"
-		"      color = color.rbba;\n"
-		"      break;\n"
-		"    case 8:\n"
-		"      color = color.rgga;\n"
-		"      break;\n"
-		"    case 9:\n"
-		"      color = color.bbba;\n"
-		"      break;\n"
-		"    case 10:\n"
-		"      color = color.ggga;\n"
-		"      break;\n"
-		"    case 11:\n"
-		"      color = color.rrra;\n"
-		"      break;\n"
-		"    case 12:\n"
-		"      color = color.bbga;\n"
-		"      break;\n"
-		"    case 13:\n"
-		"      color = color.bbra;\n"
-		"      break;\n"
-		"    case 14:\n"
-		"      color = color.ggra;\n"
-		"      break;\n"
-		"    case 15:\n"
-		"      color = color.bgga;\n"
-		"      break;\n"
-		"    case 16:\n"
-		"      color = color.brra;\n"
-		"      break;\n"
-		"    case 17:\n"
-		"      color = color.grra;\n"
-		"      break;\n"
-		"    case 18:\n"
-		"      color = color.bgba;\n"
-		"      break;\n"
-		"    case 19:\n"
-		"      color = color.brba;\n"
-		"      break;\n"
-		"    case 20:\n"
-		"      color = color.grga;\n"
-		"      break;\n"
-		"    case 21:\n"
-		"      color = color.ggba;\n"
-		"      break;\n"
-		"    case 22:\n"
-		"      color = color.rrba;\n"
-		"      break;\n"
-		"    case 23:\n"
-		"      color = color.rrga;\n"
-		"      break;\n"
-		"    case 24:\n"
-		"      color = color.gbga;\n"
-		"      break;\n"
-		"    case 25:\n"
-		"      color = color.rbra;\n"
-		"      break;\n"
-		"    case 26:\n"
-		"      color = color.rgra;\n"
-		"      break;\n"
-		"    case 27:\n"
-		"      color = vec4(color.b, 0.f, 0.f, color.a);\n"
-		"      break;\n"
-		"    case 28:\n"
-		"      color = vec4(0.f, 0.f, 0.f, color.a);\n"
-		"      break;\n"
-		"  }\n";
-	}
-	fragmentCodeStream <<
 		"  for(int i = 0; i < recentHitCount; i++)\n"
 		"  {\n"
 		"    color += clamp(distance(fragTexCoord, recentHits[i]) / 4, 0, 1);\n"
 		"  }\n"
+
 		"  finalColor = color * alpha;\n"
 		"}\n";
 
-	static const string fragmentCodeString = fragmentCodeStream.str();
-	static const char *fragmentCode = fragmentCodeString.c_str();
+	//static const string fragmentCodeString = fragmentCodeStream.str();
+	//static const char *fragmentCode = fragmentCodeString.c_str();
 
 	shader = Shader(vertexCode, fragmentCode);
 	scaleI = shader.Uniform("scale");
@@ -277,8 +143,6 @@ void ShipEffectsShader::Init(bool useShaderSwizzle)
 	blurI = shader.Uniform("blur");
 	clipI = shader.Uniform("clip");
 	alphaI = shader.Uniform("alpha");
-	if(useShaderSwizzle)
-		swizzlerI = shader.Uniform("swizzler");
 
 	recentHitsI = shader.Uniform("recentHits");
 	recentHitsCountI = shader.Uniform("recentHitCount");
@@ -312,25 +176,24 @@ void ShipEffectsShader::Init(bool useShaderSwizzle)
 
 
 
-void ShipEffectsShader::Draw(const Sprite *sprite, const Point &position, float zoom, int swizzle, float frame)
+void ShipFXShader::Draw(const Sprite *sprite, const Point &position, std::vector<Point, double> &recentHits, float zoom, float frame)
 {
 	if(!sprite)
 		return;
 
 	Bind();
-	Add(Prepare(sprite, position, zoom, swizzle, frame));
+	Add(Prepare(sprite, position, zoom, recentHits, frame));
 	Unbind();
 }
 
 
 
-ShipEffectsShader::Item ShipEffectsShader::Prepare(const Sprite *sprite, const Point &position,
-	float zoom, int swizzle, float frame)
+ShipFXShader::EffectItem ShipFXShader::Prepare(const Sprite *sprite, const Point &position, std::vector<Point, double> &recentHits, float zoom, float frame)
 {
 	if(!sprite)
 		return {};
 
-	Item item;
+	EffectItem item;
 	item.texture = sprite->Texture();
 	item.frame = frame;
 	item.frameCount = sprite->Frames();
@@ -340,15 +203,15 @@ ShipEffectsShader::Item ShipEffectsShader::Prepare(const Sprite *sprite, const P
 	// Rotation (none) and scale.
 	item.transform[0] = sprite->Width() * zoom;
 	item.transform[3] = sprite->Height() * zoom;
-	// Swizzle.
-	item.swizzle = swizzle;
+
+	item.recentHits = recentHits;
 
 	return item;
 }
 
 
 
-void ShipEffectsShader::Bind()
+void ShipFXShader::Bind()
 {
 	glUseProgram(shader.Object());
 	glBindVertexArray(vao);
@@ -359,7 +222,7 @@ void ShipEffectsShader::Bind()
 
 
 
-void ShipEffectsShader::Add(const Item &item, bool withBlur)
+void ShipFXShader::Add(const EffectItem &item, bool withBlur)
 {
 	glBindTexture(GL_TEXTURE_2D_ARRAY, item.texture);
 
@@ -375,27 +238,13 @@ void ShipEffectsShader::Add(const Item &item, bool withBlur)
 
 	glUniform2fv(recentHitsI, 32, item.recentHits.data());
 
-	// Bounds check for the swizzle value:
-	int swizzle = (static_cast<size_t>(item.swizzle) >= SWIZZLE.size() ? 0 : item.swizzle);
-	// Set the color swizzle.
-	if(ShipEffectsShader::useShaderSwizzle)
-		glUniform1i(swizzlerI, swizzle);
-	else
-		glTexParameteriv(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_SWIZZLE_RGBA, SWIZZLE[swizzle].data());
-
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
 
 
-void ShipEffectsShader::Unbind()
+void ShipFXShader::Unbind()
 {
-	// Reset the swizzle.
-	if(ShipEffectsShader::useShaderSwizzle)
-		glUniform1i(swizzlerI, 0);
-	else
-		glTexParameteriv(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_SWIZZLE_RGBA, SWIZZLE[0].data());
-
 	glBindVertexArray(0);
 	glUseProgram(0);
 }

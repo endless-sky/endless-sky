@@ -620,7 +620,7 @@ private:
 	std::map<const Effect *, int> finalExplosions;
 
 	// Vector of recent hits the ship has taken.
-	std::vector<Point> recentHits;
+	std::vector<std::pair<Point, double>> recentHits;
 
 	// Target ships, planets, systems, etc.
 	std::weak_ptr<Ship> targetShip;
