@@ -1690,7 +1690,7 @@ void Engine::SpawnFleets()
 // At random intervals, create new special "persons" who enter the current system.
 void Engine::SpawnPersons()
 {
-	if(Random::Int(GameData::GetGamerules().PersonSpawnrate()) || player.GetSystem()->Links().empty())
+	if(Random::Int(GameData::GetGamerules().PersonSpawnPeriod()) || player.GetSystem()->Links().empty())
 		return;
 
 	// Loop through all persons once to see if there are any who can enter

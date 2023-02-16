@@ -30,13 +30,13 @@ public:
 	void Load(const DataNode &node);
 
 	bool UniversalRamscoopActive() const;
-	int PersonSpawnrate() const;
+	int PersonSpawnPeriod() const;
 	int NoPersonSpawnWeight() const;
 
 
 private:
 	bool universalRamscoop = true;
-	int personSpawnrate = 36000;
+	int personSpawnPeriod = 36000;
 	int noPersonSpawnWeight = 1000;
 };
 

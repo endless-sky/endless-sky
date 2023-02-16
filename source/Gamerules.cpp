@@ -38,8 +38,8 @@ void Gamerules::Load(const DataNode &node)
 
 		if(key == "universal ramscoop")
 			universalRamscoop = child.BoolValue(1);
-		else if(key == "person spawnrate")
-			personSpawnrate = max<int>(1, child.Value(1));
+		else if(key == "person spawn period")
+			personSpawnPeriod = max<int>(1, child.Value(1));
 		else if(key == "no person spawn weight")
 			noPersonSpawnWeight = max<int>(0, child.Value(1));
 		else
@@ -56,9 +56,9 @@ bool Gamerules::UniversalRamscoopActive() const
 
 
 
-int Gamerules::PersonSpawnrate() const
+int Gamerules::PersonSpawnPeriod() const
 {
-	return personSpawnrate;
+	return personSpawnPeriod;
 }
 
 
