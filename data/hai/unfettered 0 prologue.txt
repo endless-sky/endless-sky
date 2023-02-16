@@ -526,6 +526,8 @@ substitutions
 		has "salary: Unfettered"
 	"<, unfettered title>" "Warlord"
 		"salary: Unfettered" > 1000
+	"<, unfettered title>" "High Warlord"
+		has "unfettered: high warlord"
 	"<, unfettered title>" "outcast"
 		has "event: unfettered: outcast"
 

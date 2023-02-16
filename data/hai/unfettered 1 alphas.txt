@@ -907,6 +907,7 @@ mission "<uhai> 7: Cavalry Arrives"
 	to fail
 		not "<uhai> 7: Stolen Cargo: active"
 	on fail
+		"unfettered: upset Sookootow" ++
 		conversation
 			branch nevercompleted
 				not "<uhai> 7: Stolen Cargo: done"
@@ -1306,13 +1307,16 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 				`	"Sure."`
 					goto auxiliary
 				`	"What for?"`
-			`	"I want to see if I recognize them." You agree to take him to them, warning him of their condition.`
+			`	"I want to see if I recognize them," he says, seeming sincere. You agree to take him to them, warning him of their condition.`
 			label auxiliary
+			action
+				"unfettered: Choot'k grateful" ++
+			# If you did not give the logs to the UHai or not notice them, he'll retrieve them here, without you noticing.
 			`	You take him to the Auxiliary, alone, as he insists to, unsure how some may react. When you enter the medical facility of the Auxiliary, the Korath are already speaking between themselves, and he seems surprised, stopping himself at the door. "I... I recognize that language! It brings back memories... I may not be ready to face them yet. But I'll arrange for their transport to our most advanced medical facility." On the way out he addresses what seems to be the first Hai he sees with that task, and they get to it straight away. You then go back to the stadium.`
 			`	They discuss among themselves again, then the warlord from earlier speaks, seemingly with a heavy burden. "Now that you officially work for us, you will receive a daily share of 1000 credits. We will not make you wear our colors yet, because it could cause problems with the Hai. We wish for you to be free to travel in their territory." They then make the necessary preparations to transfer the Korath out of your ship, after stabilizing them as much as possible.`
 			branch logs
 				has "<uhai> 9: Alpha Base: done"
-			# The Alpha logs self destructed if you didn't make a copy of them when you noticed them.
+			# The Alpha logs self destructed if you didn't make a copy of them earlier.
 			`	Having nothing more to show the Unfettered, you leave. This leaves you wondering if there was something hidden in the Auxiliary, but after a short inspection you summize that if there was, it is no longer there now.`
 				decline
 			label logs

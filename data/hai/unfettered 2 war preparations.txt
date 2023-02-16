@@ -113,7 +113,7 @@ mission "<uhai> 10: Titanium"
 	on offer
 		dialog "Do you want to go get Titanium from <waypoints> as Mera suggested?"
 	on complete
-		"Mera's favor" ++
+		"unfettered: Mera's favor" ++
 		payment 1000000
 		outfit "Titanium" -40
 		log `Brought additional Titanium to the Unfettered to help in their ship construction.`
@@ -877,9 +877,9 @@ mission "<uhai> 15: Modified Beetle"
 					"outfit (all): Ionic Blaster Prototype" > "blasters owned"
 					"outfit (all): Ionic Turret Prototype" > "turrets owned"
 			branch "nothing special"
-				not "Mera's favor"
+				not "unfettered: Mera's favor"
 			branch "no extras"
-				"Mera's favor" < 2
+				"unfettered: Mera's favor" < 2
 			`	"Truly you fought well, <first>. You deserve this extra gift, feel free to install it on your new ship when you get it!`
 			action
 				outfit "Systems Core (Medium)"
@@ -936,7 +936,7 @@ mission "<uhai> 15: Modified Beetle"
 			label "took weapons"
 			`	She seems upset, "I told you not to take any weapons, what were you thinking?`
 			action
-				clear "Mera's favor"
+				clear "unfettered: Mera's favor"
 				set "unfettered: prize right away"
 			label "nothing special"
 			`	"I will make the needed repairs to the ship, you can go pick it up on Darkcloak when you are ready."`
@@ -1776,6 +1776,8 @@ mission "<uhai> 19: Scout Wanderer Systems"
 mission "<uhai> 19: Weird Aliens Spotted"
 	landing
 	invisible
+	source
+		attributes "unfettered"
 	destination "Warfeed"
 	substitutions
 		"<pug aliens>" "weird aliens"
@@ -1834,6 +1836,7 @@ mission "<uhai> 19: Weird Aliens Spotted"
 			label arfectadesigns
 			action
 				set "unfettered: preparing for the arfectas"
-				payment 5000000
-			`	Since he does not seem to believe you, you show him the designs of the Arfecta you captured. You can see a mix of surprise and fear in his eyes as he takes a step back. "How did you capture such a ship? It seems that you will prove an even better ally than we had anticipated... That ship would be fitting of a warlord. You surely deserve this extra reward! Here, take these <payment>, you deserve it. We have indeed heard of these Pug, but never did we imagine they would be able to display such strength... It is good to have an ally like you."`
+				set "unfettered: high warlord"
+				"salary: Unfettered" *= 2
+			`	Since he does not seem to believe you, you show him the designs of the Arfecta you captured. You can see a mix of surprise and fear in his eyes as he takes a step back. "How did you capture such a ship? It seems that you will prove an even better ally than we had anticipated... That ship would be fitting of a warlord. A High Warlord, even! We will double your salary, you deserve it! We have indeed heard of these Pug, but never did we imagine they would be able to display such strength... It is good to have an ally like you."`
 				accept

@@ -232,7 +232,8 @@ mission "<uhai> 13: Better Translator"
 	on fail
 		dialog `Choot'k managed to get out from the ship before it exploded, by heading to an escape hatch when it started getting messy. His suit protected him from space long enough for a Hai ship to pick him off. However, he will probably not attempt something like this again...`
 	on complete
-		"Mera's favor" ++
+		"unfettered: Choot'k grateful" ++
+		"unfettered: Mera's favor" ++
 		log `Went to Hai-home with Choot'k to gather some data on the Sestor language from before the raids started. We got attacked by Cerberus, they were probably after him.`
 		clear "unfettered: stopped on hai-home"
 		clear "unfettered: why give info"
@@ -585,6 +586,7 @@ mission "<uhai> 20: Bigeminate Sigil: Cloak"
 		payment 50000000
 		outfit "Cloaking Device" -1
 		log `Gave a cloaking device to He-Yi for a very big sum. It should keep him safe.`
+		"unfettered: He-Yi's opinion" ++
 
 
 
@@ -724,6 +726,7 @@ mission "<uhai> 20: Bigeminate Sigil: Boarding Equipement"
 			has "<uhai> 20: Boarding Equipement: Enforcer Staffs: failed"
 			has "<uhai> 20: Boarding Equipement: Void Rifle: failed"
 	on complete
+		"unfettered: He-Yi's opinion" ++
 		clear "unfettered: offered close quarter"
 		log `Brought powerful but non-lethal weapons to the Unfettered for training.`
 		conversation

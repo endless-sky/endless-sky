@@ -645,6 +645,7 @@ mission "<uhai> 6 B: To The Wolves"
 	to complete
 		has "<uhai> 6 A: Loyal Escort: failed"
 	on complete
+		"unfettered: upset Sookootow" ++
 		"reputation: Midas" <?= -1000
 		clear "unfettered: stopped on Greenbloom"
 		log `The plan was to escort a Hai fleet carying supplies and passengers into Unfettered space but an opportunity to feed them to the wolves instead was presented, and taken.`
