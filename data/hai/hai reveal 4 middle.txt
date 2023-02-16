@@ -68,7 +68,7 @@ mission "Hai Reveal [A02] Symbol Identification"
 		log `Many Hai and humans have gone missing over the past few decades. Many of the ones who have subsequently been rescued have had mild cadmium poisoning from some technology not of human or Hai origin. Teeneep, a Hai social leader, is using her network of information-gatherers to find out what's going on. Heading to the Quarg south of Hai space to begin the search.`
 		log `Teeneep doubts the Hai government would arm pirates, but she claims to be able to shut down any such operation, if she has solid evidence.`
 		conversation
-			`You follow the landing coordinates to a flat area of hardened dirt near a cave. A Hai Centipede is parked next to you; it draws your attention immediately as it is equipped with some non-standard human outfits. You can see the emission components of a Scram Drive sticking out the back, and the collection prongs of a Catalytic Ramscoop. The steering is Hai, but the thrusters are human. The ship appears ready to fly rapidly through unfriendly territory without stopping.`
+			`You follow the landing coordinates to a flat area of hardened dirt near a cave. A Hai Centipede is parked next to you; it draws your attention immediately as it is equipped with some non-standard human outfits. You can see the emission components of a scram drive sticking out the back, and the collection prongs of a Catalytic Ramscoop. The steering is Hai, but the thrusters are human. The ship appears ready to fly rapidly through unfriendly territory without stopping.`
 			choice
 				`	(Walk into the cave.)`
 				`	(Come back later.)`

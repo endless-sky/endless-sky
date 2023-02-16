@@ -1463,7 +1463,7 @@ mission "Remnant: Deep Surveillance"
 			
 			branch skip
 				not "Deep: Remnant: Generators: done"
-			`	He pulls out a schematic showing the generator. "The generator on the other hand wasn't all too interesting. Little more than an improved generator of the type you might find down in the Rim. Somewhat interesting that it doesn't produce much energy when compared to something like a fusion reactor given the energy requirement of their engines, but I suppose this people are concerned more with keeping their ships running cool then having excess energy. The one interesting characteristic we discovered though is that the generator seemed to handle the effects of ionization, like something the Hai ion cannons apply, much better than normal. It seemed to be an intentional result of how the generator was designed."`
+			`	He pulls out a schematic showing the generator. "The generator on the other hand wasn't all too interesting. Little more than an improved generator of the type you might find down in the Rim. Somewhat interesting that it doesn't produce much energy when compared to something like a fusion reactor given the energy requirement of their engines, but I suppose this people are concerned more with keeping their ships running cool then having excess energy. The one interesting characteristic we discovered though is that the generator seemed to handle the effects of ionization, like something the Hai Ion Cannons apply, much better than normal. It seemed to be an intentional result of how the generator was designed."`
 			
 			branch skip
 				not "Deep: Remnant: Inhibitor Cannon: done"
@@ -3020,14 +3020,14 @@ mission "Remnant: Face to Maw 2B"
 			label chilia
 			`You follow the directions provided to you and eventually find yourself at a Remnant weapons lab. You enter and are met by security, who asks you to wait. A few minutes later a fit young man emerges from another door. "Greetings, captain <first>," he sings. "We meet once again." You immediately recognize the voice as being the man who convinced you to provide the blood sample and get to know the Remnant. "We didn't get a proper introduction last time, but you have probably figured out that I have the nominal responsibility for the overall defense of Remnant space and military operations." He smiles deprecatingly, "I say 'nominal' as virtually all our activities are military in some way, but usually fall under the purview of those who better understand them."`
 			label main
-			`	He leads you to a room that looks like an armory where a team of technicians is putting the finishing touches on a rifle stock. "The request from the technician on your behalf caught my attention, as we have not had the key resources for making void rifles in centuries. Fortunately, we have not really needed them since we resolved the threats that originally plagued our settlements.`
+			`	He leads you to a room that looks like an armory where a team of technicians is putting the finishing touches on a rifle stock. "The request from the technician on your behalf caught my attention, as we have not had the key resources for making Void Rifles in centuries. Fortunately, we have not really needed them since we resolved the threats that originally plagued our settlements.`
 			choice
-				`	"It's called a void rifle?"`
+				`	"It's called a 'Void Rifle'?"`
 				`	"I don't need details."`
 					goto end
-			`	"Yes, void rifle. I don't know who discovered it, but someone figured out that if a particularly high charge was poured through the tentacle's nervous system in a specific pattern, it emits a paralyzing cone of energy with a reasonably decent range. I'm neither an engineer or a biologist, so I do not really understand the mechanics of it." He pauses to watch as a technician installs the now-caged tentacle on top of the stock. "Suffice it to say, it is useless for sniping, but its ability to shoot through walls and affect areas makes it excellent for sweeping ships and building-to-building clearing operations.`
+			`	"Yes, Void Rifle. I don't know who discovered it, but someone figured out that if a particularly high charge was poured through the tentacle's nervous system in a specific pattern, it emits a paralyzing cone of energy with a reasonably decent range. I'm neither an engineer or a biologist, so I do not really understand the mechanics of it." He pauses to watch as a technician installs the now-caged tentacle on top of the stock. "Suffice it to say, it is useless for sniping, but its ability to shoot through walls and affect areas makes it excellent for sweeping ships and building-to-building clearing operations.`
 			label end
-			`	"All right, enough history." He turns to the technicians who are finishing the assembly. "The tentacle has been treated to resist decay and the stock mechanisms will provide basic maintenance routines for as long as you charge it regularly." He strides over, picks up the completed void rifle, and then hands it to you. "You are holding a piece of our history, Captain. Use it well!"`
+			`	"All right, enough history." He turns to the technicians who are finishing the assembly. "The tentacle has been treated to resist decay and the stock mechanisms will provide basic maintenance routines for as long as you charge it regularly." He strides over, picks up the completed Void Rifle, and then hands it to you. "You are holding a piece of our history, Captain. Use it well!"`
 			scene "outfit/void rifle"
 
 
@@ -3592,7 +3592,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 		outfit "Research Laboratory"
 		conversation
 			`You follow the directions of the starport control and settle onto a pad next to the outfitter. You barely have a chance to finish your landing checks before a team of Remnant have a compact pod waiting on your loading ramp. Once you open the cargo bay doors, they pick it up and maneuver it inside. They start securing it to the ship while Dawn and one of the scientists approaches you.`
-			`	"We have loaded the research laboratory onboard. The team will install it if they can find the space, but if they do not, it will be secured in the cargo bay," The Remnant scientist explains. "Before you depart, please verify that the laboratory is installed in the correct location. You know your ship better than we do, after all." She turns back to Dawn and makes a gesture of respect. "Embers guide your path, Seeker." With that, she strides away into the hive of activity that is the outfitting bays.`
+			`	"We have loaded the Research Laboratory onboard. The team will install it if they can find the space, but if they do not, it will be secured in the cargo bay," The Remnant scientist explains. "Before you depart, please verify that the laboratory is installed in the correct location. You know your ship better than we do, after all." She turns back to Dawn and makes a gesture of respect. "Embers guide your path, Seeker." With that, she strides away into the hive of activity that is the outfitting bays.`
 			choice
 				`	"So, what is our next step?"`
 					goto labnext
@@ -3609,13 +3609,13 @@ mission "Remnant: Expanded Horizons Astral 1"
 					goto labnext
 			`	"If you want good data, you need to spend time to get it. And especially when we are tracking stellar phenomena, you need periods of long observation. Snapshots of the sky are good - that is what we will be collecting on this trip. But for watching the galaxy at large, other civilizations, and things of that ilk... Nothing is better than long-term observation." She looks lost in thought for a moment. "That is neither here nor there, however.`
 			label labnext
-			`	"Now that you have the research laboratory, you will need to locate a jump drive in order to reach Sagittarius A*." She pauses and checks her commlink. "If you do not already have one, you can salvage one from a Korath raider. Our early warning system indicates that there are several incoming Korath fleets that should be here within the next day or two. Any one of them should have a jump drive you can take. Meet me in the starport once you have a jump drive."`
+			`	"Now that you have the Research Laboratory, you will need to locate a jump drive in order to reach Sagittarius A*." She pauses and checks her commlink. "If you do not already have one, you can salvage one from a Korath raider. Our early warning system indicates that there are several incoming Korath fleets that should be here within the next day or two. Any one of them should have a jump drive you can take. Meet me in the starport once you have a jump drive."`
 
 
 
 mission "Remnant: Expanded Horizons Astral 2"
 	name "Research expedition to Sagittarius A*"
-	description "Travel to Sagittarius A* with a research laboratory installed in order to make measurements on the supermassive black hole and then return to <destination>."
+	description "Travel to Sagittarius A* with a Research Laboratory installed in order to make measurements on the supermassive black hole and then return to <destination>."
 	blocked "You need a jump drive and a research laboratory to take this mission."
 	source
 		government "Remnant"
@@ -3696,7 +3696,7 @@ mission "Remnant: Expanded Horizons Astral 2"
 		payment 500000
 		conversation
 			`The journey back to <planet> was a lesson in galactic formation as the <ship> jumped through a steady stream of systems. Gradually, the brilliant density of stars that make up the inner core faded into the ominous and yet comfortingly familiar red glow of the Ember Waste. Finally, you slide into the approach patterns of <planet>, quickly tapping out your code into the IFF system and watching as the protective gaze of the anti-air emplacements sweep the skies around you for shadowing craft.`
-			`You settle onto your assigned pad, and within seconds Remnant technicians have resupply cables hooked up while a cheerful group greets Dawn before helping her unload her luggage and data crystals. "Well, <first>, it has been a good trip." She taps at her commlink. "I have transferred our expedition's logistics allotment of <payment> to you. And in case you're wondering what to do with your research laboratory, you can keep it. We always need fresh data, and if you are interested, you can check up on places designated in the job board. While I handled the science on this expedition, if you keep it installed your ship systems will automatically hire a scientist to run it." She nods her head in respect to you. "Thank you, and may the Embers watch over you." She turns and heads off into the flows of people.`
+			`You settle onto your assigned pad, and within seconds Remnant technicians have resupply cables hooked up while a cheerful group greets Dawn before helping her unload her luggage and data crystals. "Well, <first>, it has been a good trip." She taps at her commlink. "I have transferred our expedition's logistics allotment of <payment> to you. And in case you're wondering what to do with your Research Laboratory, you can keep it. We always need fresh data, and if you are interested, you can check up on places designated in the job board. While I handled the science on this expedition, if you keep it installed your ship systems will automatically hire a scientist to run it." She nods her head in respect to you. "Thank you, and may the Embers watch over you." She turns and heads off into the flows of people.`
 
 
 
@@ -3746,7 +3746,7 @@ mission "Remnant: Expanded Horizons Storms 1"
 				`	"Sure, I am always willing to help."`
 				`	"Not today, sorry."`
 					decline
-			`	"Excellent! You already have a research laboratory onboard, and it has all the equipment I need. Now, before we head out, you should know that the goal of this mission is to do some analysis on the leading edge of a storm that will be breaking on the system shortly. We do not need to weather the entire storm, but we will have to be there for at least the first part."`
+			`	"Excellent! You already have a Research Laboratory onboard, and it has all the equipment I need. Now, before we head out, you should know that the goal of this mission is to do some analysis on the leading edge of a storm that will be breaking on the system shortly. We do not need to weather the entire storm, but we will have to be there for at least the first part."`
 			choice
 				`	"Are there any special adjustments needed?"`
 				`	"The <ship> is ready to go."`

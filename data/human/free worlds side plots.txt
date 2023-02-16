@@ -362,7 +362,7 @@ mission "FW Flamethrower 2"
 		log "Assisted Barmy Edward with another weapon test: this time, a flamethrower weapon that works by overheating and disabling its target rather than dealing lots of damage to it. It may or may not be useful in actual combat."
 		conversation
 			scene "outfit/flamethrower"
-			`You head to the hangar to meet up with Barmy Edward, and find him tinkering with a large gun you don't recognize. Presumably, this is the flamethrower that you were just attacked with in orbit. "It runs on hyperspace fuel, you see," he says. "So, what did you think?"`
+			`You head to the hangar to meet up with Barmy Edward, and find him tinkering with a large gun you don't recognize. Presumably, this is the Flamethrower that you were just attacked with in orbit. "It runs on hyperspace fuel, you see," he says. "So, what did you think?"`
 			choice
 				`	"It's a terrifying weapon."`
 					goto terrifying
