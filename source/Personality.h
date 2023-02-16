@@ -93,9 +93,9 @@ private:
 
 
 private:
-	bool isDefined = false;
+	static const int PERSONALITY_COUNT = 32;
 
-	const int PERSONALITY_COUNT = 32;
+	bool isDefined = false;
 
 	std::bitset<PERSONALITY_COUNT> flags;
 	double confusionMultiplier;
