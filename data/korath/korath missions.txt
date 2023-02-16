@@ -289,7 +289,7 @@ mission "Efreti: Distress Call 1"
 					goto careless
 			
 			label Quarg
-			`	We fought off the Mereti that attacked them but they had crashed before we could reach them. The gravity on their world requires us to have special equipment and environment suits to navigate wreckage in that gravity. A Human would have few problems.`
+			`	We fought off the Mereti that attacked them but they had crashed before we could reach them. The gravity on that world requires us to have hardened environment suits to navigate wreckage while a Human would have few problems. You can reach them days before we could return from Kuwaru Efreti.`
 			choice
 				`	"I'll go help, then."`
 					accept
@@ -297,7 +297,7 @@ mission "Efreti: Distress Call 1"
 					goto careless
 
 			label careless
-			`	The Quarg is silent for some time. Eventually he responds, "Life is rare and precious across the vastness of space. Look about the Korath worlds and see what remains when one cares not what others suffer."`
+			`	The Quarg is silent for some time. Eventually it responds, "Life is rare and precious across the vastness of space. Look about the Korath worlds and see what remains when one cares not what others suffer."`
 				decline
 
 	on stopover
@@ -458,7 +458,7 @@ mission "Efreti: Distress Call 4"
 				`	(I really don't care what it says.)`
 					decline
 			
-			`	You approach one of the Quarg in the spaceport. He stops and acknowledges you but doesn't speak. He pauses for a few moments after you make your request but then holds out his hand. He takes the data chip and slots it into a communicator of some sort he then nods to himself and hands you back the chip.`
+			`	You approach one of the Quarg in the spaceport. It stops and acknowledges you but doesn't speak. It pauses for a few moments after you make your request but then holds out its hand. It takes the data chip and slots it into a communicator of some sort, It then nods to itself and hands you back the chip.`
 			`	You plug the chip into your own device and see two files. On opening the second one your read, "Belonging this ship, <EDC-ship>, to alien Human <first> <last>. Grateful from those they helped. Stranded ones thank. Grieving ones thank."`
 			`	You store the chip carefully and return to your ship.`
 
