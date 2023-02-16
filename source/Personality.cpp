@@ -78,7 +78,7 @@ namespace {
 
 // Default settings for player's ships.
 Personality::Personality() noexcept
-	: flags(1 << DISABLES), confusionMultiplier(DEFAULT_CONFUSION), aimMultiplier(1.)
+	: flags(1LL << DISABLES), confusionMultiplier(DEFAULT_CONFUSION), aimMultiplier(1.)
 {
 }
 
@@ -391,8 +391,8 @@ void Personality::UpdateConfusion(bool isFiring)
 Personality Personality::Defender()
 {
 	Personality defender;
-	defender.flags = bitset<PERSONALITY_COUNT>((1 << STAYING) | (1 << MARKED) | (1 << HUNTING) | (1 << DARING)
-			| (1 << UNCONSTRAINED) | (1 << TARGET));
+	defender.flags = bitset<PERSONALITY_COUNT>((1LL << STAYING) | (1LL << MARKED) | (1LL << HUNTING) | (1LL << DARING)
+			| (1LL << UNCONSTRAINED) | (1LL << TARGET));
 	return defender;
 }
 
@@ -403,7 +403,8 @@ Personality Personality::Defender()
 Personality Personality::DefenderFighter()
 {
 	Personality defender;
-	defender.flags = bitset<PERSONALITY_COUNT>((1 << STAYING) | (1 << HUNTING) | (1 << DARING) | (1 << UNCONSTRAINED));
+	defender.flags = bitset<PERSONALITY_COUNT>((1LL << STAYING) | (1LL << HUNTING) | (1LL << DARING)
+			| (1LL << UNCONSTRAINED));
 	return defender;
 }
 
@@ -423,17 +424,17 @@ void Personality::Parse(const DataNode &node, int index, bool remove)
 		{
 			if(remove)
 				for(auto personality : cit->second)
-					flags &= ~(1 << personality);
+					flags &= ~(1LL << personality);
 			else
 				for(auto personality : cit->second)
-					flags |= 1 << personality;
+					flags |= 1LL << personality;
 		}
 	}
 	else
 	{
 		if(remove)
-			flags &= ~(1ULL << it->second);
+			flags &= ~(1LL << it->second);
 		else
-			flags |= 1ULL << it->second;
+			flags |= 1LL << it->second;
 	}
 }
