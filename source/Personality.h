@@ -95,7 +95,7 @@ private:
 private:
 	bool isDefined = false;
 
-	const int PERSONALITY_COUNT = 32
+	const int PERSONALITY_COUNT = 32;
 
 	std::bitset<PERSONALITY_COUNT> flags;
 	double confusionMultiplier;
