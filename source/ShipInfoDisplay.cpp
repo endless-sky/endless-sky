@@ -202,11 +202,35 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
         attributeValues.push_back(Format::Number(attributes.Get("shields")));
     }
 	attributesHeight += 20;
-	double hullRepair = attributes.Get("hull repair rate")
-		+ 0.5 * (attributes.Get("hot hull repair") + attributes.Get("cold hull repair"))
-		* (1. + attributes.Get("hull repair multiplier"));
-	bool hasHullRepair = hullRepair > 0.;
-	if(hasHullRepair)
+	double coldHullRepair = attributes.Get("cold hull repair");
+	double hotHullRepair = attributes.Get("hot hull repair");
+	bool hasThermalHull = coldHullRepair != hotHullRepair;
+	bool hasHullRepair = 0;
+	double hullRepair = 0;
+	if (hasThermalHull)
+	{
+		hasHullRepair = 1;
+		coldHullRepair = (coldHullRepair + attributes.Get("hull repair rate"))
+			* (1. + attributes.Get("hull repair multiplier"));
+		hotHullRepair = (hotHullRepair + attributes.Get("hull repair rate"))
+			* (1. + attributes.Get("hull repair multiplier"));
+	}
+	else
+	{
+		hullRepair = attributes.Get("hull repair rate")
+			+ attributes.Get("hot hull repair")
+			* (1. + attributes.Get("hull repair multiplier"));
+		hasHullRepair = hullRepair > 0.;
+	}
+	if (hasThermalHull)
+	{
+		attributeLabels.push_back("hull (repair):");
+		attributeValues.push_back(Format::Number(attributes.Get("hull"))
+			+ " (" + (Format::Number(60. 
+			* min(coldHullRepair, hotHullRepair))
+			+ " - " + Format::Number(60. * max(coldHullRepair, hotHullRepair)) + "/s)"));
+	}
+	else if(hasHullRepair)
 	{
 		attributeLabels.push_back("hull (repair):");
 		attributeValues.push_back(Format::Number(attributes.Get("hull"))
