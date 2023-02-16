@@ -1222,13 +1222,13 @@ mission "<uhai> 4: Scan Geocoris"
 				`	"I don't want to get in trouble with the Hai."`
 			`	"That should not be a problem, the Hai will not bothered about you scanning their ship, if they even notice it."`
 			label design
-			`	"We would like to know how they avoided vulnerabilities in the hull of a ship of such size. Extra space on a ship cannot only be used for cargo... I will tell you more about it later, once you bring us the scans. That is, if you are willing of course."`
+			`	"We would like to know how they avoided vulnerabilities in the hull of a ship of such size, and the way cargo can be stored whithout making the ship defenceless. Extra space on a ship cannot only be used for cargo... I will tell you more about it later, once you bring us the scans. That is, if you are willing of course."`
 			choice
 				`	"Sure, will do."`
 					goto agree
 				`	"How do I scan it?"`
 			label scan
-			`	"You need to use one of our Value Detectors, the information provided by it should be sufficient. If you don't have one, you can install one here. You may want to get multiple scanners so you can scan the ship from a longer range, and faster. Please do actively scan it. Passive intel gathered on the fly will not do."`
+			`	"You need to use at least one of our Value Detectors, the information provided by it should be sufficient, as it goes beyond a simple cargo scan. If you don't have one, you can install one here. You may want to get multiple scanners so you can scan the ship from a longer range, and faster. Please do actively scan it. Passive intel gathered on the fly will not do."`
 			choice
 				`	"Sure, will do."`
 					goto agree
@@ -1244,7 +1244,7 @@ mission "<uhai> 4: Scan Geocoris"
 				accept
 		log "People" "Mera" `An Unfettered engineer who is interested in ship designs of all kinds. She is easily excited by new technologies and ships.`
 	on waypoint
-		dialog `You do not see the Geocoris that Tear-Fi mentioned; it's probably in a system nearby. You should land and depart when it arrives.`
+		dialog `You do not see the Geocoris that Mera mentioned; it's probably in a system nearby. You should land and depart when it arrives.`
 		set "unfettered: entered Ya Hai"
 	npc "scan cargo"
 		government "Hai"
