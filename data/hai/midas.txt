@@ -598,25 +598,27 @@ conversation "midas: mission failure?"
 mission "<uhai> 6 B: To The Wolves"
 	landing
 	name "Feed them to the Wolves"
-	description "Take the governor's fleet to <waypoints> instead, where a fleet will be waiting for them."
+	description "Take the governor's fleet trough <waypoints> instead of going by the shortest way. A fleet will be waiting for them."
 	source "Greenbloom"
 	destination "Warfeed"
 	to offer
 		has "<uhai> 6 A: Loyal Escort: active"
 		has "midas: tracker relay"
+		not "event: mountaintop ascendant"
 	on offer
 		dialog
 			`You are alone in your quarters, waiting for the security detachment of the Hai admiral to arrive, when you hear a mysterious voice.`
-			`	"She of the Void requests that you bring the Hai ships to <waypoints>, without delay, in order to preserve Unfettered integrity. Do so and you will be richly rewarded.`
+			`	"She of the Void requests that you bring the Hai ships to <waypoints>, without delay, in order to preserve Unfettered integrity. Do so and you will be richly rewarded. They should not suspect you for taking what will look like a small detour.`
 			`	"You do not need to worry about the supplies, we will bring them to the Unfettered, we are only acting in their best interest, after all.`
 			`	"Whatever you decide, you do not want to speak of us to them," they add in a very serious tone, before the transmission stops. You notice a contract on your desk computer, ready to be accepted.`
 			``
 			`	Do you accept this deal, or do you want to escort the governor as planned?`
-	waypoint "Waypoint"
+	waypoint "Heia Due"
 	on waypoint
 		"reputation: Midas" >?= 0
 		conversation
-			`One of the unindentified ships hail you. "You did well, Captain. Here is part of your reward: 1 million credits. You may help us by taking out these Hai ships, but it may be wise not to so that the rest of the Hai government will not suspect you, and think this was an unfortunate pirate attack. When this is done, go to Warfeed for your reward. They are going to be in high need of food, and you should bring them as much as you can to compensate for this small... delay in Hai food supplies."`
+			`One of the unindentified ships hail you. "You did well, Captain. Here is part of your reward: 1 million credits. You may help us by taking out these Hai ships, but it may be wise not to so that the rest of the Hai government will not suspect it was not simply in the confusion, and think this was an unfortunate pirate attack.`
+			`	When this is done, go to <destination> for your reward. They are going to be in high need of food, and you should bring them as much as you can to compensate for this small... delay in Hai food supplies."`
 			`	Right after that, the governor's ship hails you. "What have you done?" You feel like she was about to continue, but before she could all communications are jammed.`
 			`	You can see some pirates present with the Mercenaries' fleets, probably to distract other Hai ships that happen to be in the system.`
 		payment 1000000
@@ -624,12 +626,12 @@ mission "<uhai> 6 B: To The Wolves"
 	npc
 		# the Alphas and their minions left Midas alone so that this would happen. They probably even gave them a tip about it, but not in person.
 		government "Midas"
-		system "Waypoint"
+		system "Heia Due"
 		personality plunders staying harvests
 		fleet "Large Northern Pirates" 6
 	npc
 		government "Pirate"
-		system "Waypoint"
+		system "Heia Due"
 		personality entering plunders staying
 		fleet "Small Northern Pirates" 10
 	on abort

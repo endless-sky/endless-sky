@@ -391,6 +391,7 @@ government "Hai"
 		"Hai Merchant" 1
 		"Hai Merchant (Sympathizers)" 1
 		"Hai Merchant (Human)" 1
+		"Hai (Governor Escort)" 1
 		"Hai (Unfettered)" -.1
 		"Merchant" .01
 		"Bounty Hunter that Attacks Hai" -.01
@@ -482,8 +483,6 @@ government "Hai (Governor Escort)"
 	"display name" "Hai"
 	swizzle 0
 
-	"attitude toward"
-		"Midas" -.01
 	bribe .02
 	"friendly hail" "friendly hai"
 	"friendly disabled hail" "friendly disabled hai"
@@ -846,7 +845,7 @@ government "Midas"
 
 	"player reputation" -1000
 	"attitude toward"
-		"Hai (Governor Escort)" -.01
+		"Hai (Governor Escort)" -.1
 		"Shadow" .01
 		"Cerberus" -.1
 		"Korath (Military)" .5

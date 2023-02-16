@@ -495,7 +495,7 @@ mission "<uhai> 18: Hai Language"
 
 
 
-# the detainer is not for him but for the Sigil, although he can get it trough other means
+# the detainer is not for him but for the Sigil, although he can get it through other means
 mission "<uhai> 18: Detainer For Translator"
 	landing
 	name `Recover a detainer`
