@@ -833,10 +833,11 @@ void Engine::Step(bool isActive)
 				info.SetCondition("range display");
 				info.SetString("target range", to_string(static_cast<int>(round(targetRange))));
 			}
+			bool nonscrutable = target->Attributes().Get("inscrutable");
 			// Actual tactical information requires a scrutable
 			// target that is within the tactical scanner range.
-			if((targetRange <= tacticalRange && !target->Attributes().Get("inscrutable"))
-					|| (tacticalRange && target->IsYours()))
+			if ((targetRange <= tacticalRange && !nonscrutable)
+				|| (tacticalRange && target->IsYours()))
 			{
 				info.SetCondition("tactical display");
 				info.SetString("target crew", to_string(target->Crew()));
@@ -849,7 +850,7 @@ void Engine::Step(bool isActive)
 			}
 			// Actual maneuver information requires a scrutable
 			// target that is within the maneuver scanner range.
-			if ((targetRange <= maneuverScanRange && !target->Attributes().Get("inscrutable"))
+			if ((targetRange <= maneuverScanRange && !nonscrutable)
 				|| (maneuverScanRange && target->IsYours()))
 			{
 				info.SetCondition("maneuver display");
