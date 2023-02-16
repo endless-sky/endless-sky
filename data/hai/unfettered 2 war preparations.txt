@@ -25,9 +25,10 @@ mission "<uhai> 10: Belt Materials"
 			`You have never seen so much business in Unfettered space. It looks like a major undertaking is about to happen, and you will probably be a part of it. Mera is spreading a message for all Unfettered to hear. "The time has come, brothers and sisters! Now all that is needed is to spread the word, and our brethren from Hai space will join us in glorious victory! But let us not be reckless. In order to win we will need ships, and in order to build ships we will need materials. That is why we should all start gathering them here."`
 			choice
 				`	"What kind of materials do you need?"`
-			`	She notices you and responds to your question explicitly, speaking to all that are present, "Do not bother with silicon, friends, we already have plenty, and its uses are limited. No, we need a lot of silver and lead. Also do not forget we are selling asteroid scanners in the outfitter, should you require any."`
+			`	She notices you and responds to your question explicitly, speaking to all that are present, "Do not bother with silicon, friends, we already have plenty, and its uses are limited. No, we need a lot of silver and lead. Also do not forget we are selling asteroid scanners in the outfitter, should you require any.`
+			`	"Some Titanium would also be welcomed, but as you well know there is only a very limited amount of it left in this system, and the fact there is a lot in Ik'kara'ka, as they call it, does little to help us."`
 			choice
-				`	(I know how and where to mine asteroids. Better get going.)`
+				`	(I know how and where to mine those asteroids. Better get going.)`
 					accept
 				`	"How do I even collect minerals from asteroids?"`
 					goto asteroidtuto
@@ -93,10 +94,30 @@ mission "<uhai> 10: Belt Materials"
 		log `Gathered materials for the Unfettered shipyards. They're building sizable ships here.`
 		outfit "Lead" -50
 		outfit "Silver" -20
-		payment 1000000
+		payment 500000
 		conversation
 			`You bring your cargo to the local Unfettered shipyards, and see huge ships being built in the distance. You also notice that not all materials are brought to the shipyards, some are simply sent to more rural areas. You may want to check the shipyards, later on.`
 			`	One of the Unfettered team leaders comes to speak to you, "My greatest thanks for these materials, they will be crucial in repairing our houses, probably more so than for our ships. Please, if you have the time, try to bring us more materials, we post missions on the job board when we need them the most. In the meantime, take these <payment> as a token of my gratitude."`
+
+
+
+mission "<uhai> 10: Titanium"
+	name `Gather Titanium`
+	description `Mine 40 tons of Titanium from <waypoints> for <payment>.`
+	source "Firelode"
+	waypoint "Ik'kara'ka"
+	destination "Darkcloak"
+	to offer
+		has "salary: Unfettered"
+		"reputation: Wanderer" >= 0
+	on offer
+		dialog "Do you want to go get Titanium from <waypoints> as Mera suggested?"
+	on complete
+		"Mera's favor" ++
+		payment 1000000
+		outfit "Titanium" -40
+		log `Brought additional Titanium to the Unfettered to help in their ship construction.`
+		dialog `Mera receives the extra Titanium in person. "This truly means a lot to me, <last>, I can always use more of these to experiment. Here, have these <payment>."`
 
 
 
@@ -761,7 +782,6 @@ mission "<uhai> 15: Modified Beetle"
 	name "Earn your prize"
 	description "The Unfettered have modified a Shield Beetle for you, but you must beat Mera in command of it in order to earn it."
 	source "Firelode"
-	destination "Darkcloak"
 	to offer
 		or
 			has "<uhai> 14: Ion Materials: done"
@@ -823,6 +843,8 @@ mission "<uhai> 15: Modified Beetle"
 		conversation
 			action
 				set "unfettered: defeated Mera"
+				"blasters owned" = "outfit (all): Ionic Blaster Prototype"
+				"turrets owned" = "outfit (all): Ionic Turret Prototype"
 			`Now that you have disabled her ship Mera hails you, "Well done<, unfettered title>! I must say, this was some fun, thank you for this chance to try my weapons first hand! I may not be an expert for managing ships, but this one still is a pretty formidable opponent, wouldn't you say so?"`
 			choice
 				`	"Nice try, but I could see you are not used to commanding a ship."`
@@ -838,6 +860,30 @@ mission "<uhai> 15: Modified Beetle"
 			label ionsurprise
 			`	"Thanks! I hope they will surprise the aliens up north as well!"`
 			label suggestions
+			`	"You are NOT to take any weapons from this ship, since you will receive it shortly. You should land so we can talk about suggestions on how to improve the outfit loadout in greater details."`
+	to fail
+		has "event: unfettered: outcast"
+	on fail
+		dialog phrase "Essential Unfettered Mission Fail"
+	on visit
+		dialog "You have not yet defeated Mera. If she did not show up it is probably because your fleet is too large."
+	to complete
+		has "unfettered: defeated Mera"
+	on complete
+		conversation
+			`	Mera rejoins you in the lab when you land. Her ship does not look very damaged.`
+			branch "took weapons"
+				or
+					"outfit (all): Ionic Blaster Prototype" > "blasters owned"
+					"outfit (all): Ionic Turret Prototype" > "turrets owned"
+			branch "nothing special"
+				not "Mera's favor"
+			branch "no extras"
+				"Mera's favor" < 2
+			`	"Truly you fought well, <first>. You deserve this extra gift, feel free to install it on your new ship when you get it!`
+			action
+				outfit "Systems Core (Medium)"
+			label "no extras"
 			`	"Since this was partly a test-run, what suggestions would you make to improve the design, before I finally give this ship to you?"`
 			choice
 				`	"Keep it as it is."`
@@ -886,14 +932,16 @@ mission "<uhai> 15: Modified Beetle"
 			label delay
 			`	"Of course, this means that it will take a bit before you can receive the ship. I will send you a notice when that is the case, I do not expect the preparations to last more than a week or two. It is not so much a matter of finding what you asked for, but of getting the permission to equip it on this ship. Once the ship is ready, it will be waiting for you on Darkcloak, since that is where I will make the necessary modifications."`
 				decline
-	to fail
-		has "event: unfettered: outcast"
-	on fail
-		dialog phrase "Essential Unfettered Mission Fail"
-	on visit
-		dialog "You have not yet defeated Mera. If she did not show up it is probably because your fleet is too large."
-	to complete
-		has "unfettered: defeated Mera"
+
+			label "took weapons"
+			`	She seems upset, "I told you not to take any weapons, what were you thinking?`
+			action
+				clear "Mera's favor"
+				set "unfettered: prize right away"
+			label "nothing special"
+			`	"I will make the needed repairs to the ship, you can go pick it up on Darkcloak when you are ready."`
+
+
 
 mission "<uhai> 15: Modified Beetle: Trust Broken"
 	invisible
