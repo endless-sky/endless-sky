@@ -432,8 +432,8 @@ void Personality::Parse(const DataNode &node, int index, bool remove)
 	else
 	{
 		if(remove)
-			flags &= ~(1UL << it->second);
+			flags &= ~(1ULL << it->second);
 		else
-			flags |= 1UL << it->second;
+			flags |= 1ULL << it->second;
 	}
 }
