@@ -237,7 +237,7 @@ bool DataNode::BoolValue(int index) const
 		return token == "true" || token == "1";
 	}
 
-	return 0.;
+	return false;
 }
 
 
