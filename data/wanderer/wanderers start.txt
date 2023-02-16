@@ -651,6 +651,7 @@ event "unfettered: outcast"
 		remove outfitter "Unfettered"
 	government "Hai (Unfettered)"
 		"bribe" .04
+	clear "license: True Unfettered"
 
 mission "Unfettered: Regrets"
 	landing
@@ -676,7 +677,9 @@ mission "Unfettered: Betrayed"
 	on enter "Hi Yahr" "Wah Yoot" "Ehma Ti"
 		fail
 	to fail
-		has "midas: tracker relay"
+		or
+			has "midas: tracker relay"
+			has "flagship model: Modified Shield Beetle"
 	on fail
 		event "unfettered: outcast"
 		event "unfettered: challengers leave"
@@ -1312,7 +1315,18 @@ mission "Wanderers: Alpha Surveillance D"
 	on enter "Makferuti"
 		dialog `Elias frowns as he looks at the tracker's readout. "I think we've taken a wrong turn. No sign of jump drives being used in this system," he says.`
 	on enter "Host"
-		dialog `When you enter this system, your sensors pick up a Navy Carrier in orbit around an Earth-like planet. <base found> "That's them," says Hanover. "I hope you're strong enough to destroy them." The Carrier starts to launch fighters: Korath ones, not human ships. This might be a difficult fight...`
+		conversation
+			`When you enter this system, your sensors pick up a Navy Carrier in orbit around an Earth-like planet. <base found> "That's them," says Hanover. "I hope you're strong enough to destroy them." The Carrier starts to launch fighters: Korath ones, not human ships. This might be a difficult fight...`
+			branch nothing
+				not "flagship model: Auxiliary (Alpha)"
+				not "flagship model: Modified Shield Beetle"
+			``
+			`	You start ordering your crew, preparing for the fight, but seconds later you notice an orange light on your console, blinking slowly.`
+			`	Time seems to slow down as it starts flashing faster and faster, and you finally realize what it must be.`
+			``
+			`	A self-destruct indicator.`
+				explode
+			label nothing
 	
 	npc
 		government "Kor Sestor"
