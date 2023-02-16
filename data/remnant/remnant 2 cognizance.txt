@@ -687,7 +687,7 @@ mission "Remnant: Cognizance 19"
 
 mission "Remnant: Cognizance 20"
 	name "Preparation for expedition"
-	description "Install a research laboratory, retrieve equipment from <stopovers>, then bring it to <destination>."
+	description "Install a Research Laboratory, retrieve equipment from <stopovers>, then bring it to <destination>."
 	source
 		government "Remnant"
 	stopover
@@ -742,7 +742,7 @@ mission "Remnant: Cognizance 20"
 				`	"Later."`
 					goto maybelater
 			label takemission
-			`	"Excellent. We will load our equipment racks on-board, and the equipment to go in them will be waiting for you on pad D43A on <stopovers>. Once it is loaded, return here to pick up the team of researchers who will be going with you. Remember, you will need 5 bunks free as well as an on-board research laboratory to complement our equipment."`
+			`	"Excellent. We will load our equipment racks on-board, and the equipment to go in them will be waiting for you on pad D43A on <stopovers>. Once it is loaded, return here to pick up the team of researchers who will be going with you. Remember, you will need 5 bunks free as well as an on-board Research Laboratory to complement our equipment."`
 				accept
 			label maybelater
 			`	"Oh, that is unfortunate. Maybe some other time, then." The crowd makes various gestures of disappointment, and turn back to observing the projection and discussing their theories.`
@@ -762,7 +762,7 @@ mission "Remnant: Cognizance 20"
 
 mission "Remnant: Cognizance 21"
 	name "Expedition to Ssil Vida"
-	description "Install a research laboratory, transport these Remnant researchers to <stopovers>, and then return to <destination>."
+	description "Install a Research Laboratory, transport these Remnant researchers to <stopovers>, and then return to <destination>."
 	source
 		government "Remnant"
 		attributes "remnant primary"
@@ -827,7 +827,7 @@ mission "Remnant: Cognizance 21"
 	on stopover
 		require "Research Laboratory"
 		conversation
-			`Dusk and the team of scientists waste no time in getting to work: they have the preliminary sensors working almost from the moment you leave the spaceport, and by the time you dock with Ssil Vida they have all their equipment arranged to quickly offload and set up. With the space cleared, they expand the research laboratory and set to work analyzing the system. Before long they are clustered around displays and adjusting sensor readings, deep in discussion. Eventually, Dusk strides over to you. "Everything is set up and proceeding nominally, Captain. We will need a few hours to complete the measurements. You do not need to stand around watching, although you are welcome to if you like." Dusk heads back over to check on one of the devices.`
+			`Dusk and the team of scientists waste no time in getting to work: they have the preliminary sensors working almost from the moment you leave the spaceport, and by the time you dock with Ssil Vida they have all their equipment arranged to quickly offload and set up. With the space cleared, they expand the Research Laboratory and set to work analyzing the system. Before long they are clustered around displays and adjusting sensor readings, deep in discussion. Eventually, Dusk strides over to you. "Everything is set up and proceeding nominally, Captain. We will need a few hours to complete the measurements. You do not need to stand around watching, although you are welcome to if you like." Dusk heads back over to check on one of the devices.`
 			choice
 				`	(Return to the <ship> and prepare for departure.)`
 					goto relax
