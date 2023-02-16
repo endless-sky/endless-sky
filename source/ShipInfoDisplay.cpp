@@ -186,7 +186,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	{
 		attributeLabels.push_back("shields (charge):");
 		attributeValues.push_back(Format::Number(attributes.Get("shields"))
-			 + " (" + (Format::Number(60. 
+			+ " (" + (Format::Number(60.
 			* min(coldShieldGen, hotShieldGen))
 			+ " - " + Format::Number(60. * max(coldShieldGen, hotShieldGen)) + "/s)"));
 	}
@@ -226,7 +226,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	{
 		attributeLabels.push_back("hull (repair):");
 		attributeValues.push_back(Format::Number(attributes.Get("hull"))
-			+ " (" + (Format::Number(60. 
+			+ " (" + (Format::Number(60.
 			* min(coldHullRepair, hotHullRepair))
 			+ " - " + Format::Number(60. * max(coldHullRepair, hotHullRepair)) + "/s)"));
 	}
