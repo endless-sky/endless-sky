@@ -167,7 +167,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	bool hasThermalShields = coldShieldGen != hotShieldGen;
 	bool hasShieldRegen = 0;
 	double shieldRegen = 0;
-	if (hasThermalShields)
+	if(hasThermalShields)
 	{
 		hasShieldRegen = 1;
 		coldShieldGen = (coldShieldGen + attributes.Get("shield generation"))
@@ -182,7 +182,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 			* (1. + attributes.Get("shield generation multiplier"));
 		hasShieldRegen = shieldRegen > 0.;
 	}
-	if (hasThermalShields)
+	if(hasThermalShields)
 	{
 		attributeLabels.push_back("shields (charge):");
 		attributeValues.push_back(Format::Number(attributes.Get("shields"))
@@ -207,7 +207,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	bool hasThermalHull = coldHullRepair != hotHullRepair;
 	bool hasHullRepair = 0;
 	double hullRepair = 0;
-	if (hasThermalHull)
+	if(hasThermalHull)
 	{
 		hasHullRepair = 1;
 		coldHullRepair = (coldHullRepair + attributes.Get("hull repair rate"))
@@ -222,7 +222,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 			* (1. + attributes.Get("hull repair multiplier"));
 		hasHullRepair = hullRepair > 0.;
 	}
-	if (hasThermalHull)
+	if(hasThermalHull)
 	{
 		attributeLabels.push_back("hull (repair):");
 		attributeValues.push_back(Format::Number(attributes.Get("hull"))
