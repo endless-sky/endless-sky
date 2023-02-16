@@ -8650,7 +8650,7 @@ system "Deep Space 19M1"
 	trade Plastic 350
 	fleet "Pincer Beast" 5000
 	object
-		sprite star/giant
+		sprite star/g-giant
 		period 10
 	object
 		sprite planet/gas0-b
@@ -17415,7 +17415,7 @@ system Kiluit
 		distance 56.09
 		period 65.48
 	object
-		sprite star/m4
+		sprite star/m3
 		distance 96.9
 		period 65.48
 		offset 180
@@ -30311,7 +30311,7 @@ system Vanguwo
 	minables copper 10 3.4
 	minables silver 26 2.1
 	object
-		sprite star/giant
+		sprite star/g-giant
 		period 10
 	object
 		sprite planet/gas0-b
