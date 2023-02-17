@@ -470,15 +470,15 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 
 		Angle angle = Angle::Random();
 		Point pos = center.first + Angle::Random().Unit() * OffsetFrom(center);
-		double velocity = 0;
+		double speed = 0;
 		if(!ship->GetPersonality().IsDerelict())
-			velocity = Random::Real() * ship->MaxSpeed(false);
+			speed = Random::Real() * ship->MaxSpeed(false);
 		else
 			ship->Disable();
 
 		ships.push_front(ship);
 		ship->SetSystem(&system);
-		ship->Place(pos, velocity * angle.Unit(), angle);
+		ship->Place(pos, speed * angle.Unit(), angle);
 
 		if(flagship)
 			ship->SetParent(flagship);
