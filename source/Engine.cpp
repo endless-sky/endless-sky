@@ -981,13 +981,11 @@ void Engine::Draw() const
 	draw[drawTickTock].Draw();
 	batchDraw[drawTickTock].Draw();
 
-	if (shipEffects[calcTickTock].size() != 0)
+	for (const auto& it : ships)
 	{
-		for (const auto& it : shipEffects[calcTickTock])
-		{
-			Logger::LogError("TODO: Get rid of this");
-		}
-		//shipEffects[calcTickTock].clear();
+		if(it->GetActualSystem() == player.GetSystem())
+			ShipFXShader::Draw(it.get(), (it->Position() - center) * zoom, it->RecentHits(), zoom, it->GetFrame());
+		if(!it->RecentHits().empty())Messages::Add(to_string((it->RecentHits()).at(it->RecentHits().size()-1).second));
 	}
 
 	for(const auto &it : statuses)
@@ -1560,7 +1558,6 @@ void Engine::CalculateStep()
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == playerSystem && ship->HasSprite())
 		{
-			shipEffects[calcTickTock].push_back(ShipFXShader::Prepare(ship->GetSprite(), ship->Position() - center, ship->RecentHits(), zoom, ship->GetFrame()));
 			if(ship.get() != flagship)
 			{
 				AddSprites(*ship);

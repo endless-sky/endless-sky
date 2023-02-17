@@ -2419,8 +2419,8 @@ void Ship::DoGeneration()
 
 	for(int i = 0; i < recentHits.size();)
 	{
-		recentHits[i].second -= 0.1;
-		if (recentHits[i].second < 0.)
+		recentHits[i].second *= 0.967;
+		if (recentHits[i].second < 0.001)
 		{
 			Logger::LogError("DESTROYING ITERATORERED NUMBA " + to_string(i) + " OF SHIP " + name + " WITH SIZEOF " + to_string(recentHits.size()));
 			recentHits.erase(recentHits.begin() + i);
@@ -3630,7 +3630,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 		ApplyForce(damage.HitForce(), damage.GetWeapon().IsGravitational());
 
 	// Update the list of latest hits
-	recentHits.emplace_back(damageSource - position, 1.);
+	recentHits.emplace_back(damageSource - position, damage.Shield());
 
 	// Prevent various stats from reaching unallowable values.
 	hull = min(hull, attributes.Get("hull"));

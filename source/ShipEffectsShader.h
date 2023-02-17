@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class Sprite;
 class Point;
+#include "Body.h"
 
 #include <cstdint>
 #include <vector>
@@ -41,6 +42,7 @@ public:
 		float clip = 1.f;
 		float alpha = 1.f;
 		std::vector<float> recentHitPoints = std::vector<float>(32 * 2);
+		std::vector<float> recentHitDamage = std::vector<float>(32);
 		int recentHits = 0;
 	};
 
@@ -50,8 +52,8 @@ public:
 	static void Init();
 
 	// Draw a sprite.
-	static void Draw(const Sprite* sprite, const Point& position, std::vector<std::pair<Point, double>>& recentHits, float zoom = 1.f, float frame = 0.f);
-	static EffectItem Prepare(const Sprite* sprite, const Point& position, std::vector<std::pair<Point, double>>& recentHits, float zoom = 1.f, float frame = 0.f);
+	static void Draw(const Body* body, const Point& position, std::vector<std::pair<Point, double>>& recentHits, float zoom = 1.f, float frame = 0.f);
+	static EffectItem Prepare(const Body *body, const Point& position, std::vector<std::pair<Point, double>>& recentHits, float zoom = 1.f, float frame = 0.f);
 
 	static void Bind();
 	static void Add(const EffectItem& item, bool withBlur = false);

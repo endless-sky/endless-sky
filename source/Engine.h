@@ -203,7 +203,6 @@ private:
 	int targetSwizzle = -1;
 	EscortDisplay escorts;
 	AmmoDisplay ammoDisplay;
-	std::vector<ShipFXShader::EffectItem> shipEffects[2];
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;
 	std::vector<AlertLabel> missileLabels;

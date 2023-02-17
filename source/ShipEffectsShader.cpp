@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <sstream>
 #include <vector>
+#include "Logger.h"
 
 #ifdef ES_GLES
 // ES_GLES always uses the shader, not this, so use a dummy value to compile.
@@ -43,6 +44,7 @@ namespace {
 	GLint alphaI;
 
 	GLint recentHitsCountI;
+	GLfloat recentDamageI;
 	GLfloat recentHitsI;
 
 	GLuint vao;
@@ -69,7 +71,6 @@ void ShipFXShader::Init()
 		"void main() {\n"
 		"  vec2 blurOff = 2.f * vec2(vert.x * abs(blur.x), vert.y * abs(blur.y));\n"
 		"  gl_Position = vec4((transform * (vert + blurOff) + position) * scale, 0, 1);\n"
-		"  shrinkby = vec2((transform * vec2(1, 1) + position)) * scale;\n"
 		"  vec2 texCoord = vert + vec2(.5, .5);\n"
 		"  fragTexCoord = vec2(texCoord.x, min(clip, texCoord.y)) + blurOff;\n"
 		"}\n";
@@ -89,6 +90,7 @@ void ShipFXShader::Init()
 		"const int range = 5;\n"
 
 		"uniform vec2 recentHits[32];\n"
+		"uniform float recentDamage[32];\n"
 		"uniform int recentHitCount;\n"
 
 		"in vec2 fragTexCoord;\n"
@@ -98,7 +100,7 @@ void ShipFXShader::Init()
 
 		"float first = floor(frame);\n"
 	"  float second = mod(ceil(frame), frameCount);\n"
-		"  float fade = frame - first;\n";
+		"  float fade = frame - first + second;\n";
 
 		//"void main() {\n"
 		//"  float first = floor(frame);\n"
@@ -138,6 +140,10 @@ void ShipFXShader::Init()
 
 		//"  finalColor = color * alpha;\n"
 		fragmentCodeStream <<
+		"vec4 sampleSmooth(sampler2DArray sampler, vec2 uv)\n"
+		"{\n"
+			"return mix( texture(tex, vec3(uv, first)),\n"
+			"			texture(tex, vec3(uv, second)), fade);}\n"	
 		"float sobellish(vec2 uv)\n"
 		"{\n"
 		"			float obel = 0.;\n"
@@ -145,7 +151,7 @@ void ShipFXShader::Init()
 		"			{\n"
 		"				for (int y = -3; y <= 3; y++)\n"
 		"				{\n"
-		"					obel += texture(tex, vec3(uv + vec2(x, y) / (100.), first)).a;\n"
+		"					obel += sampleSmooth(tex, uv + vec2(x, y) / (100.)).a;\n"
 		"				}\n"
 		"			}\n"
 		"			obel /= 49.;\n"
@@ -154,20 +160,20 @@ void ShipFXShader::Init()
 
 "		void main()\n"
 "		{\n"
-"vec3 addCol;"
-		"  for(int i = 0; i < recentHitCount && i < 32; i++)\n"
+"vec4 addCol;"
+		"  for(int i = 0; i < recentHitCount; i++)\n"
 		"  {\n"
 "				vec2 hitPoint = recentHits[i];\n"
 ""
-"				/* Normalized pixel coordinates (from 0 to 1)*/"
-"				vec2 uv = fragTexCoord;\n"
-"				vec4 col = texture(tex, vec3(uv, first));\n"
-"				vec3 color = vec3(0.3, 0.4, 1.) * sobellish(uv);\n"
+//"				/* Normalized pixel coordinates (from 0 to 1)*/\n"
+//"				vec4 col = sampleSmooth(tex, fragTexCoord);\n"
+"				vec4 color = vec4(0.3, 0.4, 1., 1.) * sobellish(fragTexCoord).rrrr;\n"
 ""
-"			addCol += clamp(1. - distance(uv, hitPoint) * 3., 0., 1.) * color * 1000.;\n"
-"}"
+"			    addCol += (color*10.*recentDamage[i]) * clamp(1. - distance(fragTexCoord, hitPoint) / 2, 0., 1.) * 10.; \n"
+"			}"
 "			/* Output to screen*/"
-"			finalColor = vec4(addCol, 1. * alpha);\n"
+"			finalColor = (addCol / recentHitCount) * alpha;\n"
+			//"finalColor += alpha * vec4(sobellish(fragTexCoord));\n"
 "		}\n"
 "	    \n";
 
@@ -185,6 +191,7 @@ void ShipFXShader::Init()
 	alphaI = shader.Uniform("alpha");
 
 	recentHitsI = shader.Uniform("recentHits");
+	recentDamageI = shader.Uniform("recentDamage");
 	recentHitsCountI = shader.Uniform("recentHitCount");
 
 	glUseProgram(shader.Object());
@@ -216,42 +223,64 @@ void ShipFXShader::Init()
 
 
 
-void ShipFXShader::Draw(const Sprite* sprite, const Point& position, std::vector<pair<Point, double>>& recentHits, float zoom, float frame)
+void ShipFXShader::Draw(const Body* body, const Point& position, std::vector<pair<Point, double>>& recentHits, float zoom, float frame)
 {
-	if (!sprite)
+	if (!body->GetSprite())
 		return;
 
 	Bind();
-	Add(Prepare(sprite, position, recentHits, zoom, frame));
+	Add(Prepare(body, position, recentHits, zoom, frame));
 	Unbind();
 }
 
 
 
-ShipFXShader::EffectItem ShipFXShader::Prepare(const Sprite* sprite, const Point& position, vector<pair<Point, double>>& recentHits, float zoom, float frame)
+ShipFXShader::EffectItem ShipFXShader::Prepare(const Body* body, const Point& position, vector<pair<Point, double>>& recentHits, float zoom, float frame)
 {
-	if (!sprite)
+	if (!body->GetSprite())
 		return {};
 
 	EffectItem item;
-	item.texture = sprite->Texture();
+	item.texture = body->GetSprite()->Texture();
 	item.frame = frame;
-	item.frameCount = sprite->Frames();
+	item.frameCount = body->GetSprite()->Frames();
 	// Position.
 	item.position[0] = static_cast<float>(position.X());
 	item.position[1] = static_cast<float>(position.Y());
-	// Rotation (none) and scale.
-	item.transform[0] = sprite->Width() * zoom;
-	item.transform[3] = sprite->Height() * zoom;
+
+	// Get unit vectors in the direction of the object's width and height.
+	double width = body->Width();
+	double height = body->Height();
+	Point unit = body->Facing().Unit();
+	Point uw = unit * width;
+	Point uh = unit * height;
+
+	// (0, -1) means a zero-degree rotation (since negative Y is up).
+	uw *= zoom;
+	uh *= zoom;
+	item.transform[0] = -uw.Y();
+	item.transform[1] = uw.X();
+	item.transform[2] = -uh.X();
+	item.transform[3] = -uh.Y();
 
 	item.recentHitPoints.clear();
-	item.recentHitPoints.reserve(recentHits.size() * 2);
-	for (pair<Point, double>& hit : recentHits)
+	auto recth = recentHits;
+	item.recentHitPoints.reserve(recth.size() * 2);
+	for(int i = 0; i < recth.size(); i++)
+	{
+			const auto newP = body->Facing().Rotate(recth[i].first);
+			item.recentHitPoints.push_back(newP.X() / (2. * body->Radius()));
+			item.recentHitPoints.push_back(newP.Y() / (2. * body->Radius()));
+			item.recentHitDamage.push_back(recth[i].second);
+			Logger::LogError("Hit at " + to_string(newP.X() / body->Radius()) + ", " + to_string(newP.Y() / body->Radius()) + ", intensity of " + to_string(recth[i].second));
+	}
+	/*for (pair<Point, double>& hit : recentHits)
 	{
 		item.recentHitPoints.push_back(hit.first.X());
 		item.recentHitPoints.push_back(hit.first.Y());
-	}
-	item.recentHits = recentHits.size();
+	}*/
+	item.recentHits = recth.size();
+	Logger::LogError("RECENT_HIT_SIZE" + to_string(item.recentHits));
 
 	return item;
 }
@@ -284,7 +313,9 @@ void ShipFXShader::Add(const EffectItem& item, bool withBlur)
 	glUniform1f(alphaI, item.alpha);
 
 	glUniform2fv(recentHitsI, 32, item.recentHitPoints.data());
-	glUniform1i(recentHitsCountI, item.recentHits);
+	glUniform1fv(recentDamageI, 32, item.recentHitDamage.data());
+	glUniform1i(recentHitsCountI, min(item.recentHits, 32));
+	Logger::LogError(to_string(item.recentHits));
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
