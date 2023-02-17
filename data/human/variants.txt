@@ -24,6 +24,21 @@ ship "Argosy" "Argosy (Blaster)"
 		"Hyperdrive"
 
 
+ship Argosy "Argosy (Modified Blaster)"
+	outfits
+		"Modified Blaster" 4
+		"Quad Blaster Turret" 2
+		"Fission Reactor"
+		"LP072a Battery Pack"
+		"D67-TM Shield Generator"
+		"Water Coolant System"
+		"Outfits Expansion" 3
+		"Laser Rifle" 4
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+
 ship "Argosy" "Argosy (Laser)"
 	outfits
 		"Beam Laser" 2
@@ -80,6 +95,63 @@ ship "Argosy" "Argosy (Turret)"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
 
+
+ship "Argosy" "Argosy (Heavy Laser)"
+	outfits
+		"Heavy Laser" 4
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D67-TM Shield Generator"
+		"Fuel Pod"
+		"Outfits Expansion"
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+
+ship "Argosy" "Argosy (Twin Blaster)"
+	outfits
+		"Twin Blaster" 4
+		"Blaster Turret" 2
+		"RT-I Radiothermal"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+
+ship Argosy "Argosy (Twin Modified Blaster)"
+	outfits
+		"Twin Modified Blaster" 4
+		"Modified Blaster Turret"
+		"Anti-Missile Turret"
+		"RT-I Radiothermal"
+		"KP-6 Photovoltaic Panel" 4
+		"LP072a Battery Pack"
+		"D67-TM Shield Generator"
+		"Water Coolant System"
+		"Outfits Expansion" 3
+		"Laser Rifle" 4
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+	turret "Anti-Missile Turret"
+	turret "Modified Blaster Turret"
+
+
+ship Argosy "Argosy (Patrol)"
+	outfits
+		"Heavy Laser Turret" 2
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D67-TM Shield Generator"
+		"Cargo Scanner"
+		"Outfit Scanner"
+		"Outfits Expansion" 2
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
 
 
 ship "Arrow" "Arrow (Hai)"
@@ -2283,6 +2355,49 @@ ship "Modified Argosy" "Modified Argosy (Missile)"
 		"Laser Rifle"
 		"X3700 Ion Thruster"
 		"Greyhound Plasma Steering"
+		"Hyperdrive"
+
+
+ship "Modified Argosy" "Modified Argosy (Particle Cannon)"
+	outfits
+		"Particle Cannon" 4
+		"NT-200 Nucleovoltaic"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		"Water Coolant System"
+		"Laser Rifle" 2
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+
+ship "Modified Argosy" "Modified Argosy (Plasma)"
+	outfits
+		"Plasma Cannon" 4
+		"Anti-Missile Turret" 2
+		"NT-200 Nucleovoltaic"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		"Water Coolant System"
+		"Cooling Ducts"
+		"Outfits Expansion"
+		"Laser Rifle" 4
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+
+ship "Modified Argosy" "Modified Argosy (Twin Modified Blaster)"
+	outfits
+		"Quad Blaster Turret" 2
+		"Twin Modified Blaster" 4
+		"NT-200 Nucleovoltaic"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"Laser Rifle" 2
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
 		"Hyperdrive"
 
 
