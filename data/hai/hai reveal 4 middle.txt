@@ -68,12 +68,12 @@ mission "Hai Reveal [A02] Symbol Identification"
 		log `Many Hai and humans have gone missing over the past few decades. Many of the ones who have subsequently been rescued have had mild cadmium poisoning from some technology not of human or Hai origin. Teeneep, a Hai social leader, is using her network of information-gatherers to find out what's going on. Heading to the Quarg south of Hai space to begin the search.`
 		log `Teeneep doubts the Hai government would arm pirates, but she claims to be able to shut down any such operation, if she has solid evidence.`
 		conversation
-			`You follow the landing coordinates to a flat area of hardened dirt near a cave. A Hai Centipede is parked next to you; it draws your attention immediately as it is equipped with some non-standard human outfits. You can see the emission components of a Scram Drive sticking out the back, and the collection prongs of a Catalytic Ramscoop. The steering is Hai, but the thrusters are human. The ship appears ready to fly rapidly through unfriendly territory without stopping.`
+			`You follow the landing coordinates to a flat area of hardened dirt near a cave. A Hai Centipede is parked next to you; it draws your attention immediately as it is equipped with some non-standard human outfits. You can see the emission components of a scram drive sticking out the back, and the collection prongs of a Catalytic Ramscoop. The steering is Hai, but the thrusters are human. The ship appears ready to fly rapidly through unfriendly territory without stopping.`
 			choice
 				`	(Walk into the cave.)`
 				`	(Come back later.)`
 					defer
-			`	You walk twenty meters into the cave before coming up to a concrete wall that fills up the entirety of the cavity. An open door passes through to an unmanned security post, until it finally leads into a small and roughly designed underground facility. Through some large windows immediately to the left, you can see a room containing a variety of medical machinery, while off to the right there are computers arrayed around a makeshift living area and some sleeping quarters. You notice that some of the people you've rescued are present, but there are many more humans and Hai you haven't met, some armed with pulse rifles. Despite all this, your attention is quickly captured by a Hai woman walking towards you.`
+			`	You walk twenty meters into the cave before coming up to a concrete wall that fills up the entirety of the cavity. An open door passes through to an unmanned security post, until it finally leads into a small and roughly designed underground facility. Through some large windows immediately to the left, you can see a room containing a variety of medical machinery, while off to the right there are computers arrayed around a makeshift living area and some sleeping quarters. You notice that some of the people you've rescued are present, but there are many more humans and Hai you haven't met, some armed with Pulse Rifles. Despite all this, your attention is quickly captured by a Hai woman walking towards you.`
 			`	"Greetings Captain <last>, my name is Teeneep Goot'r. I'm a social advocate among the Hai, and I'm trying to help your friends with a problem. As you know, they were kidnapped by humans. A few other Hai and human victims are here; they were mostly rescued by other kind merchants in human space, but around half of those here are my staff." As she speaks she directs you to some seats that are just far enough away from the other people in the room to confer at least the illusion of privacy.`
 			`	"My organization has been researching the disappearance of Hai ever since humans began disappearing here under similar circumstances. We've discovered some patterns to these abductions, and through those we've been able to reach some of the victims more quickly upon their return, and even rescue some ourselves. But we have noticed something strange among the abductees: those Hai that you rescued, and several others, too, are all experiencing mild cadmium poisoning."`
 			`	Teeneep is your best lead so far on Hai arming pirates, and this may be your only option for information. It's time to ask, but perhaps this calls for a careful choice of words.`
@@ -194,7 +194,7 @@ mission "Hai Reveal [A02] Symbol Identification"
 				`	"Yes, sorry, I'll start right away."`
 					goto questaccept
 				`	"No, that's definitely in too deep for me."`
-			`	Teeneep's expression goes blank. Behind you, you hear the sound of a pulse rifle firing before everything goes dark.`
+			`	Teeneep's expression goes blank. Behind you, you hear the sound of a Pulse Rifle firing before everything goes dark.`
 				die
 			label questaccept
 			# This will need to be a different branch for each campaign where you just start by asking the one you know the best.
@@ -223,7 +223,7 @@ mission "Hai Reveal [A03a] Symbol Identification"
 			`	"Plus," he pauses, visibly softening. "It'd be nice to know how they're handling things. It seems to have been quite a shock to them, and civilian populations don't always react well to suddenly heightened security. There's a lot of very high-level stuff going on, and I'd personally feel better if someone could tell me the regular people were handling things alright. No need to do anything special, just have a look around and see how things are going."`
 				accept
 	to complete
-		has "event: alondo symbol timer"
+		never
 		
 event "alondo symbol timer"
 
@@ -1772,7 +1772,7 @@ mission "Hai Reveal [A13] A New Elder"
 			`	"They only started locking in the last few seats a couple of hours ago. Until then we could have been prisoners and at war by now for all we knew. Peace-oriented heads seem to have prevailed though, but there's no lack of passion even in them. Near as I can tell from what has been explained and what I'm seeing; a third of the Elders have been replaced, which is the fastest change they've had since they were invaded by Korath... which I also didn't know was a thing that had happened until yesterday."`
 			`	He manages to make that last line sound both bewildered and grumpy at the same time. "That Teeneep you've been running around with - and yes, don't look at me in shock, Sayari told me when we were concerned you might not get out. You've developed some friends in high places and I admire that... where was I?"`
 			`	"Teeneep!" says Alondo, perhaps a little too loudly, nearly poking Remington in the face.`
-			`	"Of course, that Teeneep of yours, she had her position settled yesterday. She's being..." He curls his lip and frowns while looking for the right word. "Inaugurated! She's being inaugurated in about an hour or so. It's why we're still here. She's the youngest 'elder' since before we developed fire, or some similarly ridiculous time-frame. She seems to have the most influence among the new lot, at least now that 'sir pitchforks and pulse rifles' down there has definitively lost. She's a firebrand, that one, but she seems principled and decent. We're waiting to hear what she has to say in her victory speech."`
+			`	"Of course, that Teeneep of yours, she had her position settled yesterday. She's being..." He curls his lip and frowns while looking for the right word. "Inaugurated! She's being inaugurated in about an hour or so. It's why we're still here. She's the youngest 'elder' since before we developed fire, or some similarly ridiculous time-frame. She seems to have the most influence among the new lot, at least now that 'sir pitchforks and Pulse Rifles' down there has definitively lost. She's a firebrand, that one, but she seems principled and decent. We're waiting to hear what she has to say in her victory speech."`
 				goto "walk or drink"
 			label "who won"
 			`	Remington answers your question. "That Teeneep of yours, she had her position settled yesterday. She's being..." He curls his lip and frowns while looking for the right word. "Inaugurated! She's being inaugurated in about an hour or so. It's why we're still here. She's the youngest 'elder' since before we developed fire, or some similarly ridiculous time-frame. She seems to have the most influence among the new lot. She's a firebrand, that one, but she seems principled and decent. We're waiting to hear what she has to say in her victory speech."`

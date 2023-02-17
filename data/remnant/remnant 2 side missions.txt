@@ -69,7 +69,7 @@ mission "Remnant: Visit to Paradise 1"
 			`As you approach, your navigation system picks up the beacons designating the approach path, and before long you are automatically guided to a landing pad on the outskirts of the main spaceport.`
 				goto vaillanding
 			label science
-			`As you approach Vail, the specialized sensors from your Remnant research laboratory detect parts of the weather control network tasked with increasing the amount of snowfall on the planet. Your navigation system picks up the beacons designating the approach path, and before too long you are automatically guided down to a landing pad on the outskirts of the main spaceport.`
+			`As you approach Vail, the specialized sensors from your Remnant Research Laboratory detect parts of the weather control network tasked with increasing the amount of snowfall on the planet. Your navigation system picks up the beacons designating the approach path, and before too long you are automatically guided down to a landing pad on the outskirts of the main spaceport.`
 			label vaillanding
 			`	Looking outside the ship, you can see a multitude of tourist-oriented facilities overwhelming the normal spaceport functions. You can pick out a small sign off to the side that indicates professional commodity and banking facilities, but otherwise the area is dominated by businesses offering mountain touring, sports classes, and vehicle rentals. Next to you, Taely alternates between peering out at the signs and reading brochures on a new commlink. "Here, <first>. This one sounds more interested in providing a challenge and less pampering. What do you think?"`
 			choice
@@ -372,7 +372,7 @@ mission "Remnant: Teciimach Deployment"
 				`	"Yes."`
 				`	"Sorry, but I'm a bit busy at the moment."`
 					goto empno
-			`	She turns and heads towards a nearby lift where another crew of Remnant had just moved several EMP torpedo canisters into place. "Well, you have probably seen us use EMP torpedoes now and then, right? Well, as you probably noticed, they have a few tactical issues. They are slow, they often hit our ships almost as much as our targets, and they take up space we could otherwise be using for more important things like laboratories or scanners." She taps a few commands into the console, and the lift begins raising the canisters towards the waiting ship.`
+			`	She turns and heads towards a nearby lift where another crew of Remnant had just moved several EMP Torpedo canisters into place. "Well, you have probably seen us use EMP Torpedoes now and then, right? Well, as you probably noticed, they have a few tactical issues. They are slow, they often hit our ships almost as much as our targets, and they take up space we could otherwise be using for more important things like laboratories or scanners." She taps a few commands into the console, and the lift begins raising the canisters towards the waiting ship.`
 			`	"Over the past decades we have had a few teams working on improving them from different angles. Some focused on the torpedoes themselves, others focused on the launcher. The surprising development, however, was from a team working down in the Warren. They figured out a way to shave a few cubic meters off the systems that assemble the torpedoes, and compress the whole structure. Very impressive work, and the results should be in the outfitter for you in the next day or two."`
 			`	She looks at you and nods contemplatively. "One thing worth noting - you are making great strides in learning our language, so new items that appear in our outfitter will be listed under their proper name instead of substitutes from the ancestral tongue."`
 			choice
@@ -408,7 +408,7 @@ mission "Remnant: Teciimach Deployment"
 		fleet "Korath Ember Waste Raid"
 	on complete
 		dialog
-			`Now that the most recent Korath raiders have been defeated, you decide to check your sensor logs to see how the new EMP torpedoes Taely talked about performed. You note that the EMP bursts no longer have an impact on friendly ships. This could make them much more versatile.`
+			`Now that the most recent Korath raiders have been defeated, you decide to check your sensor logs to see how the new EMP Torpedoes Taely talked about performed. You note that the EMP bursts no longer have an impact on friendly ships. This could make them much more versatile.`
 	on fail
 		dialog
 			`You recall Taely mentioning something about new weaponry, so you decide to check your logs to see what your sensors have recorded lately. Looking over the most recent combat details, you note that the EMP bursts no longer have an impact on friendly ships. This could make them much more versatile.`
@@ -434,7 +434,7 @@ mission "Remnant: Shattered Light 1"
 		conversation
 			`Looking around the Viminal spaceport, you spot Taely using something that slightly resembles a small catapult to launch a sizable rock across the cavern. A nearby Merganser leaps into the air and chases after it, pouncing on the rock and vanishing from sight before reappearing next to Taely, dropping it next to her. Without looking away from the Merganser she waves you over.`
 			`	"Well met, <first>, how goes your travels? Found anything interesting?"`
-			`	She listens to your description of the encounter with the ghostly ship whilst looking at the recording you pull up from your commlink. "This is very intriguing. I will need to consult a few people. If you are interested in investigating this, ensure your ship has a research laboratory installed, and meet me in the spaceport."`
+			`	She listens to your description of the encounter with the ghostly ship whilst looking at the recording you pull up from your commlink. "This is very intriguing. I will need to consult a few people. If you are interested in investigating this, ensure your ship has a Research Laboratory installed, and meet me in the spaceport."`
 
 
 
@@ -497,7 +497,7 @@ mission "Remnant: Shattered Light 3"
 				`	"Looks good. Start loading the <ship>!"`
 					accept
 				`	"Wait, 'Maudrakoi'?"`
-			`	The Remnant who showed the video looks startled, and then embarrassed. "My apologies, I did not realize you had not been familiarized with them." She looks around the room, then gestures. The hologram returns, now showing a large room with many shelves around the edge and several large objects within it, including some that look like point defense turrets.`
+			`	The Remnant who showed the video looks startled, and then embarrassed. "My apologies, I did not realize you had not been familiarized with them." She looks around the room, then gestures. The hologram returns, now showing a large room with many shelves around the edge and several large objects within it, including some that look like Point Defense Turrets.`
 			`	"We do not have time for an in-depth presentation, but the short version is this: the Maudrakoi are the primary civilization that lived on these worlds before we arrived. They are not the only civilization to have lived here, but they are the one we find most often in the archeological record. Fortunately for our research, it seems that they lived extensively underground in complexes such as this one."`
 			`	Her gestures take on an appreciative tone. "The Maudrakoi made extensive use of the materials that make our ships and architecture so distinctive, and this has allowed their cities and technologies to survive the eons since they went extinct. One technology of note is they had an interesting ability to manipulate space. They used this to make large, highly complex objects, and then, for lack of a better term, partially embed them in pocket dimensions so as to not be entirely present. They used this frequently to allow equipment and materials to be much smaller than normal." She shrugs, and gestures with a frustrated tone. "We cannot replicate it, but we have figured out how to disrupt the compression, and thus recover the artifact."`
 			`	The hologram shifts back to showing the Shattered Light. "This ship does not show the same signatures as the Maudrakoi artifacts, but we think it is sufficiently similar that our equipment should work on it too. Hopefully. In any case, though, time is passing, so we should start loading." With that, the Remnant gather their equipment and head out.`

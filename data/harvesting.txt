@@ -281,7 +281,7 @@ outfit "Yottrite"
 	"mass" 3.14
 	"installable" -1
 	"minable" 1
-	description "An extraordinarily rare crystalline formation, forged over tens of thousands of years in the molecular clouds around supernova remnants. Although less advanced species can potentially harvest it, very few civilizations other than the Quarg have developed the technology needed to incorporate Yottrite in an alloy."
+	description "An extraordinarily rare crystalline formation, forged over tens of thousands of years in the molecular clouds around supernova remnants. Although less advanced species can potentially harvest it, very few civilizations other than the Quarg have developed the technology needed to incorporate yottrite in an alloy."
 
 
 
@@ -298,6 +298,7 @@ minable "plant"
 	explode "final explosion medium"
 
 minable "plant2"
+	"display name" "Plant"
 	sprite "asteroid/plant2/plant2"
 	hull 2340
 	"random hull" 520
@@ -325,6 +326,7 @@ minable "large plant"
 	explode "final explosion medium"
 
 minable "large plant2"
+	"display name" "Large Plant"
 	sprite "asteroid/large plant2/large plant2"
 	hull 3240
 	"random hull" 720
