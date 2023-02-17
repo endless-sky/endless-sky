@@ -53,7 +53,7 @@ namespace {
 void ShipFXShader::Init()
 {
 
-	static const char *vertexCode =
+	static const char* vertexCode =
 		"// vertex sprite shader\n"
 		"precision mediump float;\n"
 		"uniform vec2 scale;\n"
@@ -72,7 +72,7 @@ void ShipFXShader::Init()
 		"  fragTexCoord = vec2(texCoord.x, min(clip, texCoord.y)) + blurOff;\n"
 		"}\n";
 
-	static const char *fragmentCode =
+	static const char* fragmentCode =
 		"// fragment sprite shader\n"
 		"precision mediump float;\n"
 #ifdef ES_GLES
@@ -82,7 +82,7 @@ void ShipFXShader::Init()
 		"uniform float frame;\n"
 		"uniform float frameCount;\n"
 		"uniform vec2 blur;\n";
-		"uniform float alpha;\n"
+	"uniform float alpha;\n"
 		"const int range = 5;\n"
 
 		"uniform vec2 recentHits[32];\n"
@@ -176,9 +176,9 @@ void ShipFXShader::Init()
 
 
 
-void ShipFXShader::Draw(const Sprite *sprite, const Point &position, std::vector<Point, double> &recentHits, float zoom, float frame)
+void ShipFXShader::Draw(const Sprite* sprite, const Point& position, std::vector<Point, double>& recentHits, float zoom, float frame)
 {
-	if(!sprite)
+	if (!sprite)
 		return;
 
 	Bind();
@@ -188,9 +188,9 @@ void ShipFXShader::Draw(const Sprite *sprite, const Point &position, std::vector
 
 
 
-ShipFXShader::EffectItem ShipFXShader::Prepare(const Sprite *sprite, const Point &position, std::vector<Point, double> &recentHits, float zoom, float frame)
+ShipFXShader::EffectItem ShipFXShader::Prepare(const Sprite* sprite, const Point& position, std::vector<Point, double>& recentHits, float zoom, float frame)
 {
-	if(!sprite)
+	if (!sprite)
 		return {};
 
 	EffectItem item;
@@ -204,7 +204,7 @@ ShipFXShader::EffectItem ShipFXShader::Prepare(const Sprite *sprite, const Point
 	item.transform[0] = sprite->Width() * zoom;
 	item.transform[3] = sprite->Height() * zoom;
 
-	item.recentHits = recentHits;
+	//item.recentHits = recentHits;
 
 	return item;
 }
@@ -216,13 +216,13 @@ void ShipFXShader::Bind()
 	glUseProgram(shader.Object());
 	glBindVertexArray(vao);
 
-	GLfloat scale[2] = {2.f / Screen::Width(), -2.f / Screen::Height()};
+	GLfloat scale[2] = { 2.f / Screen::Width(), -2.f / Screen::Height() };
 	glUniform2fv(scaleI, 1, scale);
 }
 
 
 
-void ShipFXShader::Add(const EffectItem &item, bool withBlur)
+void ShipFXShader::Add(const EffectItem& item, bool withBlur)
 {
 	glBindTexture(GL_TEXTURE_2D_ARRAY, item.texture);
 
@@ -231,7 +231,7 @@ void ShipFXShader::Add(const EffectItem &item, bool withBlur)
 	glUniform2fv(positionI, 1, item.position);
 	glUniformMatrix2fv(transformI, 1, false, item.transform);
 	// Special case: check if the blur should be applied or not.
-	static const float UNBLURRED[2] = {0.f, 0.f};
+	static const float UNBLURRED[2] = { 0.f, 0.f };
 	glUniform2fv(blurI, 1, withBlur ? item.blur : UNBLURRED);
 	glUniform1f(clipI, item.clip);
 	glUniform1f(alphaI, item.alpha);

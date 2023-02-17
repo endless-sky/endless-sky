@@ -288,6 +288,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Shader.h
 	Ship.cpp
 	Ship.h
+	ShipEffectsShader.cpp
+	ShipEffectsShader.h
 	ShipEvent.cpp
 	ShipEvent.h
 	ShipInfoDisplay.cpp

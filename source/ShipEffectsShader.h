@@ -35,9 +35,9 @@ public:
 		uint32_t texture = 0;
 		float frame = 0.f;
 		float frameCount = 1.f;
-		float position[2] = {0.f, 0.f};
-		float transform[4] = {0.f, 0.f, 0.f, 0.f};
-		float blur[2] = {0.f, 0.f};
+		float position[2] = { 0.f, 0.f };
+		float transform[4] = { 0.f, 0.f, 0.f, 0.f };
+		float blur[2] = { 0.f, 0.f };
 		float clip = 1.f;
 		float alpha = 1.f;
 		std::vector<float> recentHitPoints = std::vector<float>(32 * 2);
@@ -50,11 +50,11 @@ public:
 	static void Init();
 
 	// Draw a sprite.
-	static void Draw(const Sprite *sprite, const Point &position, std::vector<Point, double>& recentHits, float zoom = 1.f, float frame = 0.f);
-	static EffectItem Prepare(const Sprite *sprite, const Point &position, std::vector<Point, double>& recentHits, float zoom = 1.f, float frame = 0.f);
+	static void Draw(const Sprite* sprite, const Point& position, std::vector<Point, double>& recentHits, float zoom = 1.f, float frame = 0.f);
+	static EffectItem Prepare(const Sprite* sprite, const Point& position, std::vector<Point, double>& recentHits, float zoom = 1.f, float frame = 0.f);
 
 	static void Bind();
-	static void Add(const EffectItem &item, bool withBlur = false);
+	static void Add(const EffectItem& item, bool withBlur = false);
 	static void Unbind();
 
 private:
