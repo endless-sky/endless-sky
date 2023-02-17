@@ -612,7 +612,6 @@ interface "hud"
 		color "disabled hull"
 		size 1.5
 	
-
 	visible if "range display"
 	sprite "ui/range"
 		from 130 263
@@ -705,7 +704,7 @@ interface "hud"
 	string "mission target"
 		center 75 455
 		color "medium"
-
+	
 	# Other HUD elements:
 	box "escorts"
 		from 0 460 top left

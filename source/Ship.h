@@ -200,8 +200,8 @@ public:
 	bool CanSendHail(const PlayerInfo &player, bool allowUntranslated = false) const;
 
 	// Access the ship's AI cache, containing the range and expected AI behavior for this ship.
-	ShipAICache &GetAICache();
-	void UpdateCaches();
+	const ShipAICache &GetAICache() const;
+	void UpdateCaches(bool massLessChange = false);
 
 	// Set the commands for this ship to follow this timestep.
 	void SetCommands(const Command &command);

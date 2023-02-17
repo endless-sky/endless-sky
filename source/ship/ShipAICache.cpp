@@ -27,7 +27,7 @@ using namespace std;
 
 
 
-void ShipAICache::Calibrate(Ship &ship)
+void ShipAICache::Calibrate(const Ship &ship)
 {
 	mass = ship.Mass();
 	bool hasWeapons = false;
@@ -110,7 +110,7 @@ void ShipAICache::Calibrate(Ship &ship)
 			minSafeDistance = 0.;
 	}
 	// Get the weapon ranges for this ship, so the AI can call it.
-	for(const auto &hardpoint : ship.GetArmament().Get())
+	for(const auto &hardpoint : ship.Weapons())
 	{
 		const Weapon *weapon = hardpoint.GetOutfit();
 		if(!weapon || (weapon->Ammo() && !ship.OutfitCount(weapon->Ammo())) || !weapon->DoesDamage())
@@ -125,8 +125,7 @@ void ShipAICache::Calibrate(Ship &ship)
 
 
 
-
-void ShipAICache::Recalibrate(Ship &ship)
+void ShipAICache::Recalibrate(const Ship &ship)
 {
 	if(mass != ship.Mass())
 		Calibrate(ship);

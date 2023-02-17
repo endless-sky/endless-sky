@@ -757,7 +757,7 @@ void Engine::Step(bool isActive)
 	}
 	// Use the radar that was just populated. (The draw tick-tock has not
 	// yet been toggled, but it will be at the end of this function.)
-	shared_ptr<Ship> target;
+	shared_ptr<const Ship> target;
 	shared_ptr<const Minable> targetAsteroid;
 	targetVector = Point();
 	if(flagship)
