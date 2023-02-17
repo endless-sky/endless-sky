@@ -3052,6 +3052,11 @@ int Ship::CustomSwizzle() const
 	return customSwizzle;
 }
 
+std::vector<std::pair<Point, double>> &Ship::RecentHits() const
+{
+	return recentHits;
+}
+
 
 // Check if the ship is thrusting. If so, the engine sound should be played.
 bool Ship::IsThrusting() const

@@ -43,7 +43,7 @@ namespace {
 	GLint alphaI;
 
 	GLint recentHitsCountI;
-	GLfloat recentHitsI[32];
+	GLfloat recentHitsI;
 
 	GLuint vao;
 	GLuint vbo;
@@ -72,7 +72,8 @@ void ShipFXShader::Init()
 		"  fragTexCoord = vec2(texCoord.x, min(clip, texCoord.y)) + blurOff;\n"
 		"}\n";
 
-	static const char* fragmentCode =
+	ostringstream fragmentCodeStream;
+	fragmentCodeStream <<
 		"// fragment sprite shader\n"
 		"precision mediump float;\n"
 #ifdef ES_GLES
@@ -81,8 +82,8 @@ void ShipFXShader::Init()
 		"uniform sampler2DArray tex;\n"
 		"uniform float frame;\n"
 		"uniform float frameCount;\n"
-		"uniform vec2 blur;\n";
-	"uniform float alpha;\n"
+		"uniform vec2 blur;\n"
+		"uniform float alpha;\n"
 		"const int range = 5;\n"
 
 		"uniform vec2 recentHits[32];\n"
@@ -132,7 +133,7 @@ void ShipFXShader::Init()
 		"}\n";
 
 	//static const string fragmentCodeString = fragmentCodeStream.str();
-	//static const char *fragmentCode = fragmentCodeString.c_str();
+	static const char *fragmentCode = fragmentCodeStream.str().c_str();
 
 	shader = Shader(vertexCode, fragmentCode);
 	scaleI = shader.Uniform("scale");
@@ -182,7 +183,7 @@ void ShipFXShader::Draw(const Sprite* sprite, const Point& position, std::vector
 		return;
 
 	Bind();
-	Add(Prepare(sprite, position, zoom, recentHits, frame));
+	Add(Prepare(sprite, position, recentHits, zoom, frame));
 	Unbind();
 }
 
@@ -204,7 +205,14 @@ ShipFXShader::EffectItem ShipFXShader::Prepare(const Sprite* sprite, const Point
 	item.transform[0] = sprite->Width() * zoom;
 	item.transform[3] = sprite->Height() * zoom;
 
-	//item.recentHits = recentHits;
+	item.recentHitPoints.clear();
+	item.recentHitPoints.reserve(recentHits.size() * 2);
+	for (Point& hit : recentHits)
+	{
+		item.recentHitPoints.push_back(hit.X());
+		item.recentHitPoints.push_back(hit.Y());
+	}
+	item.recentHits = recentHits.size();
 
 	return item;
 }
@@ -236,7 +244,8 @@ void ShipFXShader::Add(const EffectItem& item, bool withBlur)
 	glUniform1f(clipI, item.clip);
 	glUniform1f(alphaI, item.alpha);
 
-	glUniform2fv(recentHitsI, 32, item.recentHits.data());
+	glUniform2fv(recentHitsI, 32, item.recentHitPoints.data());
+	glUniform1i(recentHitsCountI, item.recentHits)
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }

@@ -1014,7 +1014,6 @@ void Engine::Draw() const
 		Point size(highlightSprite->Width(), highlightSprite->Height());
 		const Color &color = *colors.Get("flagship highlight");
 		// The flagship is always in the dead center of the screen.
-		//ShipFXShader::Draw(highlightSprite, Point());
 		OutlineShader::Draw(highlightSprite, Point(), size, color, highlightUnit, highlightFrame);
 	}
 
