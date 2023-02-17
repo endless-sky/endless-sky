@@ -205,12 +205,12 @@ planet Sardva
 	bribe 0
 	security 0
 
-planet Schisathro
+planet Bosunothro
 	attributes bunrodea guild manufacturing mining
 	landscape land/canyon5
-	description `Schisathro is a major mining world, and also home to some of the largest shipyards in Bunrodean space. Larger shipyards than the ones found here only exist on the capital world of Erabuthro.`
+	description `Bosunothro is a major mining world, and also home to some of the largest shipyards in Bunrodean space. Larger shipyards than the ones found here only exist on the capital world of Erabuthro.`
 	description `	The planet's success as a mining world can be owed to its many deep canyons found across most of the planet's above water surface, which allow for easier access to mineral-rich deposits in the crust. The major shipyards developed alongside these mines allowed for easy transportation of material directly to the shipyards instead of requiring lengthy journeys through space.`
-	spaceport `The main spaceport of Schisathro is almost entirely taken up by shipyards. That area which isn't dedicated to the shipyards is dedicated to the transportation of materials to them. This leaves very little space left over for the usual amenities that you would expect of a spaceport. There is only one single small outfitter tucked in between two large shipyards near the edge of the spaceport; the shipyards must receive direct shipments of the more advanced outfits that they need.`
+	spaceport `The main spaceport of Bosunothro is almost entirely taken up by shipyards. That area which isn't dedicated to the shipyards is dedicated to the transportation of materials to them. This leaves very little space left over for the usual amenities that you would expect of a spaceport. There is only one single small outfitter tucked in between two large shipyards near the edge of the spaceport; the shipyards must receive direct shipments of the more advanced outfits that they need.`
 	shipyard "Bunrodea Basic"
 	shipyard "Bunrodea Advanced"
 	outfitter "Bunrodea Basic"

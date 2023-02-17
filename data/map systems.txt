@@ -27768,7 +27768,7 @@ system "Schisa Le"
 		sprite planet/ganymede-b
 		distance 1712.9
 		period 437.555
-	object Schisathro
+	object Bosunothro
 		sprite planet/rock11-b
 		distance 2928.71
 		period 978.250
