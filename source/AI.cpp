@@ -2913,7 +2913,7 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 			return position;
 
 		double maxSpeed = ship.MaxSpeed(false);
-		double jumpTime = (v - maxVelocity) / 2.;
+		double jumpTime = (v - maxSpeed) / 2.;
 		position += velocity.Unit() * (jumpTime * (v + maxSpeed) * .5);
 		v = maxSpeed;
 	}
