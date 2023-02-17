@@ -3575,8 +3575,8 @@ bool Ship::PrefersForwardAcceleration(bool allThrust) const
 // Get maximum forward speed depending on whether regular thruster and afterburner should be combined.
 double Ship::MaxForwardSpeed(bool allThrust) const
 {
-	// v * drag / mass == thrust / mass
-	// v * drag == thrust
+	// v * drag / mass = thrust / mass
+	// v * drag = thrust
 	// v = thrust / drag
 	return ForwardThrust(allThrust) / Drag();
 }
