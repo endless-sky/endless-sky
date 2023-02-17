@@ -1993,14 +1993,14 @@ fleet "Large Southern Pirates"
 		"Modified Argosy (Missile)"
 	variant 1
 		"Sparrow" 2
-		"Modified Argosy (Twin Blaster)"
+		"Modified Argosy (Twin Modified Blaster)"
 	variant 1
-		"Hawk (Twin Modified Blaster)"
+		"Hawk (Speedy)"
 		"Modified Argosy (Twin Modified Blaster)"
 	variant 1
 		"Modified Argosy (Twin Modified Blaster)" 2
 	variant 1
-		"Modified Argosy (Twin Blaster)" 2
+		"Modified Argosy (Plasma)" 2
 	variant 1
 		"Sparrow" 2
 		"Modified Argosy (Plasma)"
