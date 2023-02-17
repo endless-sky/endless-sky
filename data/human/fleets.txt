@@ -1880,115 +1880,115 @@ fleet "Large Southern Pirates"
 	cargo 1
 	personality
 		plunders harvests
-	variant 2
+	variant 4
 		"Sparrow" 4
-	variant 1
+	variant 2
 		"Sparrow (Gatling)" 3
-	variant 5
+	variant 10
 		"Argosy"
-	variant 3
+	variant 6
 		"Argosy (Blaster)"
-	variant 3
+	variant 6
 		"Argosy (Modified Blaster)"
-	variant 3
+	variant 4
 		"Argosy (Twin Blaster)"
-	variant 2
+	variant 4
 		"Argosy (Laser)"
-	variant 2
+	variant 4
 		"Argosy (Missile)"
-	variant 2
+	variant 4
 		"Argosy (Turret)"
-	variant 1
+	variant 2
 		"Argosy (Twin Modified Blaster)"
-	variant 1
+	variant 2
 		"Argosy (Heavy Laser)"
-	variant 1
+	variant 3
 		"Modified Argosy"
-	variant 1
+	variant 2
 		"Modified Argosy (Heavy)"
-	variant 1
+	variant 2
 		"Modified Argosy (Blaster)"
-	variant 1
+	variant 2
 		"Modified Argosy (Missile)"
 	variant 1
-		"Modified Argosy (Particle Cannon)"
+		"Modified Argosy (Twin Modified Blaster)"
 	variant 1
 		"Modified Argosy (Plasma)"
 	variant 1
-		"Modified Argosy (Twin Modified Blaster)"
-	variant 4
+		"Modified Argosy (Particle Cannon)"
+	variant 8
 		"Clipper"
-	variant 2
+	variant 4
 		"Clipper (Heavy)"
-	variant 2
+	variant 4
 		"Clipper (Speedy)"
-	variant 1
+	variant 2
 		"Osprey"
 		"Fury"
-	variant 1
+	variant 2
 		"Osprey"
 		"Sparrow"
-	variant 1
-		"Osprey (Missile)"
-	variant 1
-		"Osprey (Laser)"
 	variant 2
+		"Osprey (Missile)"
+	variant 2
+		"Osprey (Laser)"
+	variant 4
 		"Clipper"
 		"Hawk"
-	variant 1
+	variant 2
 		"Clipper (Heavy)"
 		"Hawk (Rocket)"
-	variant 2
+	variant 4
 		"Hawk (Bomber)"
 		"Sparrow" 3
-	variant 2
+	variant 4
 		"Fury (Bomber)"
 		"Sparrow" 3
-	variant 1
+	variant 2
 		"Clipper (Speedy)"
 		"Hawk (Speedy)"
-	variant 1
+	variant 2
 		"Hawk (Bomber)"
 		"Fury (Gatling)" 2
-	variant 1
+	variant 2
 		"Fury (Bomber)"
 		"Fury (Gatling)" 2
-	variant 3
+	variant 6
 		"Argosy"
 		"Hawk"
-	variant 1
+	variant 2
 		"Argosy (Blaster)"
 		"Hawk (Rocket)"
-	variant 1
+	variant 2
 		"Argosy (Laser)"
 		"Hawk (Speedy)"
-	variant 1
+	variant 2
 		"Argosy (Turret)"
 		"Hawk (Speedy)"
-	variant 1
+	variant 2
 		"Argosy (Missile)"
 		"Hawk (Rocket)"
-	variant 1
+	variant 2
 		"Argosy (Modified Blaster)"
 		"Hawk"
-	variant 1
+	variant 2
 		"Argosy (Twin Blaster)"
 		"Hawk"
-	variant 1
+	variant 2
 		"Argosy (Twin Modified Blaster)"
 		"Hawk (Speedy)"
-	variant 1
+	variant 2
 		"Modified Argosy"
 		"Sparrow" 2
-	variant 1
+	variant 2
 		"Modified Argosy (Heavy)"
 		"Sparrow" 2
-	variant 1
+	variant 2
 		"Modified Argosy (Blaster)"
 		"Sparrow" 2
-	variant 1
+	variant 2
 		"Modified Argosy (Missile)" 2
-	variant 1
+	variant 2
 		"Fury (Heavy)" 2
 		"Modified Argosy (Missile)"
 	variant 1
@@ -2004,20 +2004,20 @@ fleet "Large Southern Pirates"
 	variant 1
 		"Sparrow" 2
 		"Modified Argosy (Plasma)"
-	variant 4
+	variant 8
 		"Bastion"
-	variant 2
+	variant 4
 		"Bastion (Heavy)"
-	variant 2
+	variant 4
 		"Bastion (Laser)"
-	variant 2
+	variant 4
 		"Falcon"
-	variant 1
+	variant 2
 		"Falcon"
 		"Sparrow" 3
-	variant 1
+	variant 2
 		"Falcon (Heavy)"
-	variant 1
+	variant 2
 		"Falcon (Laser)"
 
 fleet "Small Independent"
