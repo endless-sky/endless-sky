@@ -5507,13 +5507,15 @@ mission "Quicksilver Mixup [1]"
 				set "took picture of quicksilver package"
 			`	You take a few photographs of the address label, just to be sure that you've got a clear picture of the wrong address.`
 				accept
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 17100
 		event "quicksilver mixup 2 available" 90
 		conversation
 			`When you talk to a post officer in <planet>'s spaceport and point out the incorrect address before handing it over, you note that he exhibits the same frustration the clerk on <origin> did regarding the frequent switch-ups. He takes the package, muttering something about off-worlders "not knowing the difference even if it smacked 'em in the face" as he did.`
 			`	Once you return to your ship, you notice that the man who gave you that package had sent you a message. Or, to be more precise, a series of messages. An angry series of messages.`
-			`	"WHAT TOOK YOU SO LONG???" one of them said. "I NEEDED THAT DELIVERED DAYS AGO", says the next one.`
+			`	"WHAT TOOK YOU SO LONG???" one of them says. "I NEEDED THAT DELIVERED DAYS AGO", says the next one.`
 			branch picture "didn't take picture"
 				has "took picture of quicksilver package"
 
@@ -5525,13 +5527,13 @@ mission "Quicksilver Mixup [1]"
 			label "picture failure"
 			action
 				payment -17100
-			`	He leaves you on read.`
+			`	He doesn't respond.`
 				goto end
 
 			label "picture success"
 			action
 				payment 5000
-			`	He sees the message, but doesn't send a reply. Just before you walk away from your ship's terminal, however, you see a new message appear:`
+			`	He sees the message, but doesn't send a reply. But just before you walk away from your ship's terminal, you see a new message appear:`
 			`	"I am so sorry."`
 			`	The man then proceeds to apologize profusely for his mistake and his outburst, offering to pay an extra 5000 credits for the trouble. You gladly accept.`
 				goto end
