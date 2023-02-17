@@ -124,7 +124,6 @@ void PlayerInfo::Clear()
 	Messages::Reset();
 
 	conditions->Clear();
-	conditions.Clear();
 
 	delete transactionSnapshot;
 	transactionSnapshot = nullptr;
