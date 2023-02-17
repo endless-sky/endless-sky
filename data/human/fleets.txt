@@ -106,7 +106,7 @@ fleet "Large Southern Merchants"
 		"Argosy (Blaster)"
 	variant 15
 		"Argosy (Turret)"
-	variant 15
+	variant 10
 		"Argosy (Heavy Laser)"
 	variant 10
 		"Bastion"
@@ -1103,10 +1103,10 @@ fleet "Large Free Worlds"
 		"Argosy (Missile)"
 	variant 2
 		"Argosy (Turret)"
-	variant 2
+	variant 1
 		"Argosy (Heavy Laser)"
 	variant 1
-		"Argosy (Twin Blaster)"
+		"Argosy (Modified Blaster)"
 	variant 6
 		"Bastion"
 		"Osprey"
@@ -1270,10 +1270,10 @@ fleet "Large Militia"
 		"Argosy (Missile)"
 	variant 2
 		"Argosy (Turret)"
-	variant 2
+	variant 1
 		"Argosy (Heavy Laser)"
 	variant 1
-		"Argosy (Twin Blaster)"
+		"Argosy (Modified Blaster)"
 	variant 6
 		"Bastion"
 		"Osprey"
