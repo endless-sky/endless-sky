@@ -649,7 +649,14 @@ const Set<TestData> &GameData::TestDataSets()
 
 
 
-shared_ptr<ConditionsStore> GameData::GlobalConditions()
+ConditionsStore &GameData::GlobalConditions()
+{
+	return *globalConditions;
+}
+
+
+
+shared_ptr<ConditionsStore> GameData::GlobalConditionsPtr()
 {
 	return globalConditions;
 }
@@ -923,7 +930,14 @@ void GameData::DrawMenuBackground(Panel *panel)
 
 
 
-std::shared_ptr<ConditionsStore> GameData::VaryingConditions()
+ConditionsStore &GameData::VaryingConditions()
+{
+	return *varyingConditions;
+}
+
+
+
+std::shared_ptr<ConditionsStore> GameData::VaryingConditionsPtr()
 {
 	return varyingConditions;
 }

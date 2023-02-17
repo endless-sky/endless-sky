@@ -144,7 +144,8 @@ public:
 	static const Set<TestData> &TestDataSets();
 	static const Set<Wormhole> &Wormholes();
 
-	static std::shared_ptr<ConditionsStore> GlobalConditions();
+	static ConditionsStore &GlobalConditions();
+	static std::shared_ptr<ConditionsStore> GlobalConditionsPtr();
 
 	static const Government *PlayerGovernment();
 	static Politics &GetPolitics();
@@ -184,7 +185,8 @@ public:
 	// Conditions used by the game data, that can vary based on player actions.
 	// Presently, this is also the PlayerInfo.conditions, for convenience,
 	// since Endless Sky is single-player.
-	static std::shared_ptr<ConditionsStore> VaryingConditions();
+	static ConditionsStore &VaryingConditions();
+	static std::shared_ptr<ConditionsStore> VaryingConditionsPtr();
 
 
 private:

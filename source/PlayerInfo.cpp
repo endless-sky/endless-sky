@@ -107,7 +107,7 @@ namespace {
 
 
 PlayerInfo::PlayerInfo()
-	: conditions(GameData::VaryingConditions())
+	: conditions(GameData::VaryingConditionsPtr())
 {
 }
 
@@ -495,7 +495,7 @@ void PlayerInfo::Save() const
 
 	// Save global conditions:
 	DataWriter globalConditions(Files::Config() + "global conditions.txt");
-	GameData::GlobalConditions()->Save(globalConditions);
+	GameData::GlobalConditions().Save(globalConditions);
 }
 
 
@@ -3495,22 +3495,22 @@ void PlayerInfo::RegisterDerivedConditions()
 	globalProvider.SetHasFunction([](const string &name) -> bool
 	{
 		string condition = name.substr(strlen("global: "));
-		return GameData::GlobalConditions()->Has(condition);
+		return GameData::GlobalConditions().Has(condition);
 	});
 	globalProvider.SetGetFunction([](const string &name) -> int64_t
 	{
 		string condition = name.substr(strlen("global: "));
-		return GameData::GlobalConditions()->Get(condition);
+		return GameData::GlobalConditions().Get(condition);
 	});
 	globalProvider.SetSetFunction([](const string &name, int64_t value) -> bool
 	{
 		string condition = name.substr(strlen("global: "));
-		return GameData::GlobalConditions()->Set(condition, value);
+		return GameData::GlobalConditions().Set(condition, value);
 	});
 	globalProvider.SetEraseFunction([](const string &name) -> bool
 	{
 		string condition = name.substr(strlen("global: "));
-		return GameData::GlobalConditions()->Erase(condition);
+		return GameData::GlobalConditions().Erase(condition);
 	});
 }
 
