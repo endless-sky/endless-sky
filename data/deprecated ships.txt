@@ -674,7 +674,7 @@ ship "Korath Chaser" "Korath Chaser (Digger)"
 		"Korath Repeater Rifle"
 		"Cargo Expansion"
 		"Interference Plating"
-				
+		
 		"Engine (Meteor Class)"
 
 

@@ -22,8 +22,12 @@ ship "vyu-Ira"
 		category "Heavy Warship"
 		"cost" 77777777
 		"shields" 68000
+		"shield generation" 13
+		"shield energy" 13
 		"hull" 49000
-		"required crew" 1	
+		"hull repair rate" 1.9
+		"automaton" 1
+		"required crew" 1
 		"bunks" 100
 		"mass" 600
 		"drag" 20

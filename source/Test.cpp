@@ -31,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <map>
 #include <numeric>
+#include <set>
 #include <stdexcept>
 
 using namespace std;
@@ -532,6 +533,41 @@ const string &Test::StatusText() const
 
 
 
+// Get the names of the conditions relevant for this test.
+std::set<std::string> Test::RelevantConditions() const
+{
+	set<string> conditionNames;
+	for(const auto &step : steps)
+	{
+		switch(step.stepType)
+		{
+			case TestStep::Type::APPLY:
+			case TestStep::Type::ASSERT:
+			case TestStep::Type::BRANCH:
+				{
+					for(const auto &name : step.conditions.RelevantConditions())
+						conditionNames.emplace(name);
+				}
+				break;
+			case TestStep::Type::CALL:
+				{
+					auto calledTest = GameData::Tests().Find(step.nameOrLabel);
+					if(!calledTest)
+						continue;
+
+					for(const auto &name : calledTest->RelevantConditions())
+						conditionNames.emplace(name);
+				}
+				break;
+			default:
+				continue;
+		}
+	}
+	return conditionNames;
+}
+
+
+
 // Fail the test using the given message as reason.
 void Test::Fail(const TestContext &context, const PlayerInfo &player, const string &testFailReason) const
 {
@@ -580,13 +616,13 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 		Logger::LogError(shipsOverview);
 	}
 
-	// Only log the conditions that start with test; we don't want to overload the terminal or errorlog.
-	// Future versions of the test-framework could also print all conditions that are used in the test.
+	// Print all conditions that are used in the test.
 	string conditions = "";
-	const string TEST_PREFIX = "test: ";
-	auto it = player.Conditions().PrimariesLowerBound(TEST_PREFIX);
-	for( ; it != player.Conditions().PrimariesEnd() && !it->first.compare(0, TEST_PREFIX.length(), TEST_PREFIX); ++it)
-		conditions += "Condition: \"" + it->first + "\" = " + to_string(it->second) + "\n";
+	for(const auto &it : RelevantConditions())
+	{
+		const auto &val = player.Conditions().HasGet(it);
+		conditions += "Condition: \"" + it + "\" = " + (val.first ? to_string(val.second) : "(not set)") + "\n";
+	}
 
 	if(!conditions.empty())
 		Logger::LogError(conditions);
