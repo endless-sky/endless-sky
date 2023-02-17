@@ -383,7 +383,7 @@ fleet "Korath Ember Waste Large Raid"
 	outfitters "Korath Exiles Remnant Donations"
 	personality
 		disables plunders opportunistic harvests
-	variant 15
+	variant 3
 		"Palavret (Ember)"
 		"'olofez" 2
 	variant 3
