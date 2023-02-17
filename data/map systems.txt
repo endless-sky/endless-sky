@@ -30272,11 +30272,6 @@ system Vaiov
 		distance 190
 		period 130
 	object
-		sprite planet/browndwarf-y
-		distance 190
-		period 33.9882
-		offset 180
-	object
 		sprite planet/rhea-b
 		distance 687
 		period 233.686
@@ -30292,6 +30287,11 @@ system Vaiov
 			sprite planet/luna
 			distance 332.3
 			period 6.5
+	object
+		sprite planet/browndwarf-y
+		distance 2900
+		period 33.9882
+		offset 180
 
 system Vanguwo
 	pos 978.189 -237.686
