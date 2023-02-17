@@ -126,7 +126,7 @@ void StarField::SetHaze(const Sprite *sprite, bool allowAnimation)
 
 
 
-void StarField::Draw(const Point &pos, const Point &vel, double zoom, const System *system) const
+void StarField::Draw(const Point &pos, const Point &vel, double zoom, const System *system, double fogLevel) const
 {
 	double density = system ? system->StarfieldDensity() : 1.;
 
@@ -232,7 +232,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 		AddHaze(drawList, haze[1], topLeft, bottomRight, 1 - transparency);
 	AddHaze(drawList, haze[0], topLeft, bottomRight, transparency);
 
-	drawList.Draw();
+	drawList.Draw(fogLevel);
 }
 
 

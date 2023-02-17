@@ -489,6 +489,7 @@ void Engine::Step(bool isActive)
 	// The calculation thread was paused by MainPanel before calling this function, so it is safe to access things.
 	const shared_ptr<Ship> flagship = player.FlagshipPtr();
 	const StellarObject *object = player.GetStellarObject();
+	double fog = player.Flagship()->FogLevel();
 	if(object)
 	{
 		center = object->Position();
@@ -662,11 +663,10 @@ void Engine::Step(bool isActive)
 			Point pos = projectile.Position() - center;
 			if(projectile.MissileStrength() && projectile.GetGovernment()->IsEnemy()
 					&& (pos.Length() < max(Screen::Width(), Screen::Height()) * .5 / zoom))
-				missileLabels.emplace_back(AlertLabel(pos, projectile, flagship, zoom));
+				missileLabels.emplace_back(AlertLabel(pos, projectile, flagship, zoom, fog));
 		}
 
 	// Create the planet labels.
-	double fog = player.Flagship()->FogLevel();
 	labels.clear();
 	if(currentSystem && Preferences::Has("Show planet labels"))
 	{
@@ -969,11 +969,12 @@ list<ShipEvent> &Engine::Events()
 // Draw a frame.
 void Engine::Draw() const
 {
+	double fog = player.Flagship()->FogLevel();
 	GameData::Background().Draw(center, centerVelocity, zoom, (player.Flagship() ?
-		player.Flagship()->GetSystem() : player.GetSystem()));
+		player.Flagship()->GetSystem() : player.GetSystem()), fog);
 	static const Set<Color> &colors = GameData::Colors();
 	const Interface *hud = GameData::Interfaces().Get("hud");
-	double fog = player.Flagship()->FogLevel();
+
 
 	// Draw any active planet labels.
 	for(const PlanetLabel &label : labels)
@@ -2346,7 +2347,7 @@ void Engine::FillRadar()
 		{
 			// Do not show cloaked ships on the radar, except the player's ships.
 			bool isYours = ship->IsYours();
-			if ((ship->Cloaking() >= 1. && !isYours) || (ship->Attributes().Get("radar cloak") >= 1. && !isYours))
+			if((ship->Cloaking() >= 1. && !isYours) || (ship->Attributes().Get("radar cloak") >= 1. && !isYours))
 				continue;
 
 			// Figure out what radar color should be used for this ship.

@@ -102,9 +102,9 @@ PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, con
 		color = Color(.3f, .3f, .3f, 1.f);
 		government = "(No government)";
 	}
-	float distanceAlpha = max(1.f - (fogLevel / 100), .3 - (position.Length() - object.Radius()) * .001 * zoom);
+	float fogAlpha = max(1.f - (fogLevel / 100), .3 - (position.Length() - object.Radius()) * .001 * zoom);
 	float alpha = static_cast<float>(min(.5, max(0., .6 - (position.Length() - object.Radius()) * .001 * zoom)));
-	color = Color(color.Get()[0] * alpha * distanceAlpha, color.Get()[1] * alpha * distanceAlpha, color.Get()[2] * alpha * distanceAlpha, 0.);
+	color = Color(color.Get()[0] * alpha * fogAlpha, color.Get()[1] * alpha * fogAlpha, color.Get()[2] * alpha * fogAlpha, 0.);
 
 	if(!system)
 		return;
