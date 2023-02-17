@@ -50,8 +50,8 @@ public:
 	static void Init();
 
 	// Draw a sprite.
-	static void Draw(const Sprite* sprite, const Point& position, std::vector<Point, double>& recentHits, float zoom = 1.f, float frame = 0.f);
-	static EffectItem Prepare(const Sprite* sprite, const Point& position, std::vector<Point, double>& recentHits, float zoom = 1.f, float frame = 0.f);
+	static void Draw(const Sprite* sprite, const Point& position, std::vector<std::pair<Point, double>>& recentHits, float zoom = 1.f, float frame = 0.f);
+	static EffectItem Prepare(const Sprite* sprite, const Point& position, std::vector<std::pair<Point, double>>& recentHits, float zoom = 1.f, float frame = 0.f);
 
 	static void Bind();
 	static void Add(const EffectItem& item, bool withBlur = false);

@@ -981,6 +981,15 @@ void Engine::Draw() const
 	draw[drawTickTock].Draw();
 	batchDraw[drawTickTock].Draw();
 
+	if (shipEffects[calcTickTock].size() != 0)
+	{
+		for (const auto& it : shipEffects[calcTickTock])
+		{
+			Logger::LogError("TODO: Get rid of this");
+		}
+		//shipEffects[calcTickTock].clear();
+	}
+
 	for(const auto &it : statuses)
 	{
 		static const Color color[8] = {
@@ -1551,6 +1560,7 @@ void Engine::CalculateStep()
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == playerSystem && ship->HasSprite())
 		{
+			shipEffects[calcTickTock].push_back(ShipFXShader::Prepare(ship->GetSprite(), ship->Position() - center, ship->RecentHits(), zoom, ship->GetFrame()));
 			if(ship.get() != flagship)
 			{
 				AddSprites(*ship);
@@ -1593,6 +1603,7 @@ void Engine::CalculateStep()
 				Audio::Play(it.first);
 		}
 	}
+
 	// Draw the projectiles.
 	for(const Projectile &projectile : projectiles)
 		batchDraw[calcTickTock].Add(projectile, projectile.Clip());

@@ -64,16 +64,18 @@ void ShipFXShader::Init()
 
 		"in vec2 vert;\n"
 		"out vec2 fragTexCoord;\n"
+		"out vec2 shrinkby;\n"
 
 		"void main() {\n"
 		"  vec2 blurOff = 2.f * vec2(vert.x * abs(blur.x), vert.y * abs(blur.y));\n"
 		"  gl_Position = vec4((transform * (vert + blurOff) + position) * scale, 0, 1);\n"
+		"  shrinkby = vec2((transform * vec2(1, 1) + position)) * scale;\n"
 		"  vec2 texCoord = vert + vec2(.5, .5);\n"
 		"  fragTexCoord = vec2(texCoord.x, min(clip, texCoord.y)) + blurOff;\n"
 		"}\n";
 
 	ostringstream fragmentCodeStream;
-	fragmentCodeStream <<
+	fragmentCodeStream << 
 		"// fragment sprite shader\n"
 		"precision mediump float;\n"
 #ifdef ES_GLES
@@ -90,50 +92,87 @@ void ShipFXShader::Init()
 		"uniform int recentHitCount;\n"
 
 		"in vec2 fragTexCoord;\n"
+		"in vec2 shrinkby;\n"
 
 		"out vec4 finalColor;\n"
 
-		"void main() {\n"
-		"  float first = floor(frame);\n"
-		"  float second = mod(ceil(frame), frameCount);\n"
-		"  float fade = frame - first;\n"
-		"  vec4 color;\n"
-		"  if(blur.x == 0.f && blur.y == 0.f)\n"
-		"  {\n"
-		"    if(fade != 0.f)\n"
-		"      color = mix(\n"
-		"        texture(tex, vec3(fragTexCoord, first)),\n"
-		"        texture(tex, vec3(fragTexCoord, second)), fade);\n"
-		"    else\n"
-		"      color = texture(tex, vec3(fragTexCoord, first));\n"
-		"  }\n"
-		"  else\n"
-		"  {\n"
-		"    color = vec4(0., 0., 0., 0.);\n"
-		"    const float divisor = float(range * (range + 2) + 1);\n"
-		"    for(int i = -range; i <= range; ++i)\n"
-		"    {\n"
-		"      float scale = float(range + 1 - abs(i)) / divisor;\n"
-		"      vec2 coord = fragTexCoord + (blur * float(i)) / float(range);\n"
-		"      if(fade != 0.f)\n"
-		"        color += scale * mix(\n"
-		"          texture(tex, vec3(coord, first)),\n"
-		"          texture(tex, vec3(coord, second)), fade);\n"
-		"      else\n"
-		"        color += scale * texture(tex, vec3(coord, first));\n"
-		"    }\n"
-		"  }\n"
+		"float first = floor(frame);\n"
+	"  float second = mod(ceil(frame), frameCount);\n"
+		"  float fade = frame - first;\n";
 
-		"  for(int i = 0; i < recentHitCount; i++)\n"
+		//"void main() {\n"
+		//"  float first = floor(frame);\n"
+		//"  float second = mod(ceil(frame), frameCount);\n"
+		//"  float fade = frame - first;\n"
+		//"  vec4 color;\n"
+		//"  if(blur.x == 0.f && blur.y == 0.f)\n"
+		//"  {\n"
+		//"    if(fade != 0.f)\n"
+		//"      color = mix(\n"
+		//"        texture(tex, vec3(fragTexCoord, first)),\n"
+		//"        texture(tex, vec3(fragTexCoord, second)), fade);\n"
+		//"    else\n"
+		//"      color = texture(tex, vec3(fragTexCoord, first));\n"
+		//"  }\n"
+		//"  else\n"
+		//"  {\n"
+		//"    color = vec4(0., 0., 0., 0.);\n"
+		//"    const float divisor = float(range * (range + 2) + 1);\n"
+		//"    for(int i = -range; i <= range; ++i)\n"
+		//"    {\n"
+		//"      float scale = float(range + 1 - abs(i)) / divisor;\n"
+		//"      vec2 coord = fragTexCoord + (blur * float(i)) / float(range);\n"
+		//"      if(fade != 0.f)\n"
+		//"        color += scale * mix(\n"
+		//"          texture(tex, vec3(coord, first)),\n"
+		//"          texture(tex, vec3(coord, second)), fade);\n"
+		//"      else\n"
+		//"        color += scale * texture(tex, vec3(coord, first));\n"
+		//"    }\n"
+		//"  }\n"
+
+		//"  for(int i = 0; i < recentHitCount && i < 32; i++)\n"
+		//"  {\n"
+		//"    color -= clamp(distance(fragTexCoord, recentHits[i] * shrinkby), 0, 1);\n"
+		//"  }\n"
+
+		//"  finalColor = color * alpha;\n"
+		fragmentCodeStream <<
+		"float sobellish(vec2 uv)\n"
+		"{\n"
+		"			float obel = 0.;\n"
+		"			for (int x = -3; x <= 3; x++)\n"
+		"			{\n"
+		"				for (int y = -3; y <= 3; y++)\n"
+		"				{\n"
+		"					obel += texture(tex, vec3(uv + vec2(x, y) / (100.), first)).a;\n"
+		"				}\n"
+		"			}\n"
+		"			obel /= 49.;\n"
+		"			return sqrt(2. * obel - (-0.2) / (obel / 2. - .6) + 0.3);\n"
+		"		}\n"
+
+"		void main()\n"
+"		{\n"
+"vec3 addCol;"
+		"  for(int i = 0; i < recentHitCount && i < 32; i++)\n"
 		"  {\n"
-		"    color += clamp(distance(fragTexCoord, recentHits[i]) / 4, 0, 1);\n"
-		"  }\n"
+"				vec2 hitPoint = recentHits[i];\n"
+""
+"				/* Normalized pixel coordinates (from 0 to 1)*/"
+"				vec2 uv = fragTexCoord;\n"
+"				vec4 col = texture(tex, vec3(uv, first));\n"
+"				vec3 color = vec3(0.3, 0.4, 1.) * sobellish(uv);\n"
+""
+"			addCol += clamp(1. - distance(uv, hitPoint) * 3., 0., 1.) * color * 1000.;\n"
+"}"
+"			/* Output to screen*/"
+"			finalColor = vec4(addCol, 1. * alpha);\n"
+"		}\n"
+"	    \n";
 
-		"  finalColor = color * alpha;\n"
-		"}\n";
-
-	//static const string fragmentCodeString = fragmentCodeStream.str();
-	static const char *fragmentCode = fragmentCodeStream.str().c_str();
+	static const string fragmentCodeString = fragmentCodeStream.str();
+	static const char *fragmentCode = fragmentCodeString.c_str();
 
 	shader = Shader(vertexCode, fragmentCode);
 	scaleI = shader.Uniform("scale");
@@ -177,7 +216,7 @@ void ShipFXShader::Init()
 
 
 
-void ShipFXShader::Draw(const Sprite* sprite, const Point& position, std::vector<Point, double>& recentHits, float zoom, float frame)
+void ShipFXShader::Draw(const Sprite* sprite, const Point& position, std::vector<pair<Point, double>>& recentHits, float zoom, float frame)
 {
 	if (!sprite)
 		return;
@@ -189,7 +228,7 @@ void ShipFXShader::Draw(const Sprite* sprite, const Point& position, std::vector
 
 
 
-ShipFXShader::EffectItem ShipFXShader::Prepare(const Sprite* sprite, const Point& position, std::vector<Point, double>& recentHits, float zoom, float frame)
+ShipFXShader::EffectItem ShipFXShader::Prepare(const Sprite* sprite, const Point& position, vector<pair<Point, double>>& recentHits, float zoom, float frame)
 {
 	if (!sprite)
 		return {};
@@ -207,10 +246,10 @@ ShipFXShader::EffectItem ShipFXShader::Prepare(const Sprite* sprite, const Point
 
 	item.recentHitPoints.clear();
 	item.recentHitPoints.reserve(recentHits.size() * 2);
-	for (Point& hit : recentHits)
+	for (pair<Point, double>& hit : recentHits)
 	{
-		item.recentHitPoints.push_back(hit.X());
-		item.recentHitPoints.push_back(hit.Y());
+		item.recentHitPoints.push_back(hit.first.X());
+		item.recentHitPoints.push_back(hit.first.Y());
 	}
 	item.recentHits = recentHits.size();
 
@@ -245,7 +284,7 @@ void ShipFXShader::Add(const EffectItem& item, bool withBlur)
 	glUniform1f(alphaI, item.alpha);
 
 	glUniform2fv(recentHitsI, 32, item.recentHitPoints.data());
-	glUniform1i(recentHitsCountI, item.recentHits)
+	glUniform1i(recentHitsCountI, item.recentHits);
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }

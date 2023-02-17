@@ -267,7 +267,7 @@ public:
 	// Get this ship's custom swizzle.
 	int CustomSwizzle() const;
 	// Get the vector of all the recent hits this ship has taken.
-	std::vector<std::pair<Point, double>> &RecentHits() const;
+	std::vector<std::pair<Point, double>> &RecentHits();
 
 	// Check if the ship is thrusting. If so, the engine sound should be played.
 	bool IsThrusting() const;

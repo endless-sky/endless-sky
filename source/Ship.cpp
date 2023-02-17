@@ -3052,7 +3052,7 @@ int Ship::CustomSwizzle() const
 	return customSwizzle;
 }
 
-std::vector<std::pair<Point, double>> &Ship::RecentHits() const
+vector<pair<Point, double>> &Ship::RecentHits()
 {
 	return recentHits;
 }

@@ -101,6 +101,7 @@ GLuint Shader::Compile(const char *str, GLenum type)
 	{
 		version = "#version ";
 		string glsl = reinterpret_cast<const char *>(glGetString(GL_SHADING_LANGUAGE_VERSION));
+		Logger::LogError("Using GLSL Language version " + glsl);
 		bool found = false;
 		for(char c : glsl)
 		{
