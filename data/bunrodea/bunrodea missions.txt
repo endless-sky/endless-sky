@@ -66,7 +66,7 @@ mission "First Contact: Bunrodea (Hostile)"
 				`	(Sit down.)`
 					goto sit
 				`	(Turn around and reenter my ship.)`
-			`	You reenter your ship, and the aliens don't move to stop you. You decide to turn your ship back on and attempt to take off, but just as you try to activate the repulsor engines, you hear a loud buzzing sound coming from outside. You look out the nearest window, and see that the aliens have moved some sort of vehicle near your ship which is buzzing with energy. You attempt to take off, but your ship's repulsor engines aren't moving you anywhere. The vehicle seems like it is deactivating any nearby repulsors.`
+			`	You reenter your ship, and the aliens don't move to stop you. You decide to turn your ship back on and attempt to take off, but just as you try to activate the repulsor engines, you hear a loud buzzing sound coming from outside. You look out the nearest window, and see that the aliens have moved some sort of vehicle near your ship, buzzing with energy. You attempt to take off, but your ship's repulsor engines aren't moving you anywhere. The vehicle seems like it is deactivating any nearby repulsors.`
 			# Use "flagship attribute: " conditions to check turret mounts?
 			choice
 				`	(Blast the vehicle with a turret.)`
@@ -112,7 +112,7 @@ mission "First Contact: Bunrodea (Hostile)"
 				`	"I'm not the first human here?"`
 				`	"What do you mean one hundred years ago?"`
 			`	"Human visitors, many years ago," it says. "Not important. The Queen desires yours presence." It then says something in a language that the mantis-like aliens understand, and they motion for you to follow as the small alien begins making its way back to the steps of the palace. You have a feeling you're going to dread the next half hour.`
-			`	You finally reach the top of the palace stairs completely exhausted, although the aliens with you look completely unphased.`
+			`	You finally reach the top of the palace stairs completely exhausted, although the aliens with you look entirely unphased.`
 			`	The aliens lead you into the palace and through various elegant hallways. The walls are lined with marble statues and paintings that seem to be depicting historical figures and events for this alien race, although you're not allowed to linger long enough to get a good look at any of them.`
 			`	You eventually approach a large ornate doorway that the aliens push open, revealing what must be the Queen's throne room. It is a long, narrow room lined with stained glass windows with what you guess is a throne chair where the alien Queen sits. The Queen is part of the mantis-like species and considerably larger in appearance than the ones guarding you.`
 			`	The small creature says something to the Queen as you approach, and the Queen responds. The creature turns to you to translate.`
@@ -178,7 +178,7 @@ mission "First Contact: Bunrodea (Hostile)"
 			choice
 				`	"Whoever I attacked, I was only defending myself."`
 					goto lie
-				`	"Well then for that I apologize."`
+				`	"Well, then for that I apologize."`
 					goto apologize
 				`	"Okay, and?"`
 					goto and

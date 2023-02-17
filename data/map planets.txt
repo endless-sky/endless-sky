@@ -43,7 +43,7 @@ planet "Deli Kasi"
 	attributes bunrodea farming
 	landscape land/fields3
 	description `Deli Kasi is a world of vast oceans and mountainous continents. At many locations across the planet, the tall mountain ranges trap moist air from the oceans, causing large amounts of rainfall in concentrated areas. This, combined with snow melt from the mountains, creates large fertile plains across much of the habitable land area, which has led to Deli Kasi becoming a major farming world.`
-	spaceport `In addition to the usual services you would expect, the spaceport of Deli Kasi is also home to a number of genetic engineering labs geared toward the creation of more bountiful plant seeds. It's unsurprising that the Bunrodeans would genetically modify their food, but for as much as the Bunrodeans are capable of, nothing beats the usefulness of fertile farm land like what can be found on this planet.`
+	spaceport `In addition to the usual services you would expect, the spaceport of Deli Kasi is also home to a number of genetic engineering labs geared toward the creation of more bountiful plant seeds. It's unsurprising that the Bunrodeans would genetically modify their food, but for as much as the Bunrodeans are capable of, nothing beats the usefulness of fertile farmland like what can be found on this planet.`
 	"required reputation" 10
 	bribe 0
 	security 0
@@ -102,7 +102,7 @@ planet "Illbo Avo"
 	attributes bunrodea military moon
 	landscape land/badlands6
 	description `Illbo Avo is a barren moon with little to no atmosphere, but it is also the only solid ground in this system that isn't prone to sliding out under your feet as a result of volcanism. As such, because of the system's proximity to Paru Paru and to the Korath, the Bunrodea have turned the crust of this small moon into a dense network of subterranean structures with purposes ranging from large ship hangars to factories that pump out military-grade ships and outfits, essentially making it one big war factory.`
-	spaceport `The main spaceport of Illbo Avo is accessed by entering a large artificial circular cavern near the moon's equator. The walls of the cavern are lined with hangar bays, with available bays having their hangar doors open. Once you find a vacant bay to land in, the hangar door closes and the hangar becomes pressurized.`
+	spaceport `The main spaceport of Illbo Avo is accessed by entering a large, artificial, circular cavern near the moon's equator. The walls of the cavern are lined with hangar bays; available bays have their hangar doors open. Once you find a vacant bay to land in, the door closes and the hangar becomes pressurized.`
 	spaceport `	The inside of the spaceport is buzzing with activity, from shipments of new weapons being moved around to military squads marching in unison.`
 	shipyard "Bunrodea Basic"
 	shipyard "Bunrodea Advanced"
@@ -116,7 +116,7 @@ planet "Illbo Elo"
 	attributes bunrodea military
 	landscape land/badlands0
 	description `Illbo Elo is a sparsely populated world, with much of the planet's surface being barely habitable deserts. The climate becomes more temperate as you approach the poles, where most of the population is located. The Bunrodea appear to be constructing entirely new cities within these temperate zones, as evident by the large fleets of freighters bringing supplies to cities of mostly skeletal buildings with exposed foundations and metal beams.`
-	spaceport `The main spaceport of Illbo Elo appears to be a major military installation, with most of the landing pad being occupied by Bunrodean warships. Moving away from the more military focused center, you find that the edges of the spaceport are packed with civilians barely supported by the current infrastructure, which is perhaps why the Bunrodea are constructing new cities elsewhere.`
+	spaceport `The main spaceport of Illbo Elo appears to be a major military installation, with most of the landing pad being occupied by Bunrodean warships. Moving away from the more military-focused center, you find that the edges of the spaceport are packed with civilians barely supported by the current infrastructure, which is perhaps why the Bunrodea are constructing new cities elsewhere.`
 	outfitter "Bunrodea Basic"
 	outfitter "Bunrodea Advanced"
 	"required reputation" 25
@@ -127,7 +127,7 @@ planet "Disara"
 	attributes bunrodea urban military
 	landscape land/forest2
 	description `Disara is a highly developed world, with multiple large cities on each of the planet's continents. Each of the cities spread out into more suburban-like regions, which extend further into rural and wilderness zones. Unlikely many other worlds, Disara has no one primary industry that it dominates in. Instead, the planet does a bit of everything, having a rather strong internal economy.`
-	spaceport `Part of the outskirts of the planet's main spaceport has been converted into a military installation, which a large base garrisoned with a considerable number of royal guards and their many ships. Apart from that, the spaceport feels rather normal, at least by Bunrodean standards. You spot the occasional Bunrodean with an excessive number of cybernetic or genetic modification, but most appear to have few, if any, modifications done to them.`
+	spaceport `Part of the outskirts of the planet's main spaceport has been converted into a military installation, which a large base garrisoned with a considerable number of royal guards and their many ships. Apart from that, the spaceport feels rather normal, at least by Bunrodean standards. You spot the occasional Bunrodean with an excessive number of cybernetic or genetic modifications, but most appear to have few, if any, alterations done to them.`
 	shipyard "Bunrodea Basic"
 	shipyard "Bunrodea Advanced"
 	outfitter "Bunrodea Basic"
@@ -138,7 +138,7 @@ planet "Disara"
 planet Jentuthro
 	attributes bunrodea guild medical
 	landscape land/sky5
-	description `Jentuthro orbits one of the dimmest stars in this region of space, making it an unusual place to find the Bunrodea. It is also where you will find their major genetic engineering research facilities. These facilities attract the brightest minds in genetic engineering from across all of Bunrodean space, where they work to further their understand and control over genetics.`
+	description `Jentuthro orbits one of the dimmest stars in this region of space, making it an unusual place to find the Bunrodea. It is also where you will find their major genetic engineering research facilities. These facilities attract the brightest minds in genetic engineering from across all of Bunrodean space, where they work to further their understanding and control over genetics.`
 	description `	Although the majority of genetic research is done here, much of its practice is done on the world of Melenci in the region north of Paru Paru.`
 	spaceport `A large number of the genetic research facilities on Jentuthro are located close to the major spaceport, with most of the remaining facitilies being located in more minor cities scattered across the planet. There are a few facilities located in more remote locations, access to which is highly restricted.`
 	spaceport `	The use of cybernetics on this world seems to be almost entirely nonexistent. There may be a bit of a rivalry between the cybernetics world of Thshybothro and this one, hence the lack of cybernetic usage.`
@@ -160,7 +160,7 @@ planet Kisarra
 	landscape land/desert2
 	description `Kisarra's surface is one vast desert as far as the eye can see. The sandy nothingness is only occasionally broken up by oases and rocky outcrops. Many of the oases have small towns that have formed around them and some of the outcrops seem to used as entrances to mines. Strikingly, all of the towns and mines have large walls constructed around them.`
 	spaceport `Although most spaceports typically double as a massive population center for the planet, in many cases being the most populous region on the planet, Kisarra's spaceport acts only as a location to ferry minerals brought from the mines off-world, with most of the planet's population living in the small oasis towns.`
-	spaceport `	Just as with the small towns and mines, the spaceport has a large wall constructed around it. From what you can tell, this is to keep out the gigantic hostile spider-like creatures that inhabit Kissara's deserts. These spiders burrow through the sand and consume any unfortunate creature they can find.`
+	spaceport `	Just as with the small towns and mines, the spaceport has a large wall constructed around it. From what you can tell, this is to keep out the gigantic spider-like creatures that inhabit Kissara's deserts. These spiders burrow through the sand and consume any unfortunate creature they can find.`
 	outfitter "Bunrodea Basic"
 	"required reputation" 10
 	bribe 0
@@ -198,7 +198,7 @@ planet Olohoa
 planet Sardva
 	attributes bunrodea religious
 	landscape land/fields6
-	description `The planet of Sardva is used by the Bunrodea as a vault for genetic material of all origins, from the seeds of plants that the Bunrodea have encountered to the genetic material of animals and even past generations of Bunrodeans. This material is stored in many of the planet's cave systems, which, with some slight modification, have amazingly stable climates that are perfect for the long term storage of genetic material.`
+	description `The planet of Sardva is used by the Bunrodea as a vault for genetic material of all origins, from the seeds of plants that the Bunrodea have encountered to the genetic material of animals and even past generations of Bunrodeans. This material is stored in many of the planet's cave systems, which, with some slight modification, have amazingly stable climates that are perfect for the long term storage of genetic libraries.`
 	description `	The decentralized and redundant nature of the vaults also ensures that if anything happens on one part of the planet that may compromise the vaults there, locations elsewhere on the planet will still keep the material safe.`
 	spaceport `Sardva has no single major spaceport, with each vault location supporting its own small spaceport for receiving shipments and refueling the freighters. You eventually find a vault that is willing to let you land so that you may refuel, but they don't seem too happy about your presence, and seem like they're only refueling you so that you stop asking every vault you come across.`
 	"required reputation" 200

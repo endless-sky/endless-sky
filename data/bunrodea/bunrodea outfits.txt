@@ -84,7 +84,7 @@ outfit "Nanite Limiter"
 	"hull repair rate" -0.025
 	"hull energy" -0.2
 	"nanite upgrades" -1
-	description "The Nanite Limiter is a component that can be installed into a Bunrodean Nanite Fabricator in order to modify its effectiveness. Limiters increase the energy and heat efficiency of a fabricator, but at the cost of reducing the strength of its hull repair."
+	description "The Nanite Limiter is a component that can be installed into a Bunrodean nanite fabricator in order to modify its effectiveness. Limiters increase the energy and heat efficiency of a fabricator, but at the cost of reducing the strength of its hull repair."
 
 outfit "Small Nanite Fabricator"
 	category "Systems"
@@ -213,7 +213,7 @@ outfit "Lasher Pistol"
 	thumbnail "outfit/lasher pistol"
 	"capture attack" 2.6
 	"capture defense" 1.4
-	description "During their wars with the Korath, it was not uncommon for Bunrodean vessels to be boarded by Korath raiders looking for technology and supplies to steal. As such, effective small arms weapons became an essential part of every Bunrodean crew to fight off any potential boarding parties."
+	description "During their wars with the Korath, it was not uncommon for Bunrodean vessels to be boarded by Korath raiders looking for technology and supplies to steal. As such, effective small arms weapons became an essential part of every Bunrodean crew that may need to fight off any boarding parties."
 
 
 
@@ -282,7 +282,7 @@ outfit "Subarashii Rift Thruster"
 		"frame rate" 1
 		"rewind"
 	"flare sound" "ion large"
-	description "Given the lower size and thrust of rift engines, Bunrodean ships aren't well known for their pursuit capabilities. But there are rumors among some Bunrodea of an ancient cache of engines more powerful than even those of the Korath that would allow any ship to zip across the stars like a comet and chase down any potential target."
+	description "Given the lower size and thrust of rift engines, Bunrodean ships aren't well known for their pursuit capabilities. But there are rumors among some Bunrodea of an ancient cache of engines, more powerful than even those of the Korath, that would allow any ship to zip across the stars like a comet and chase down any potential target."
 
 outfit "Chiisana Rift Steering"
 	category "Engines"
