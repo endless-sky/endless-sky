@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef MISSION_H_
 #define MISSION_H_
 
-#include "ConditionsStore.h"
+#include "ConditionSet.h"
 #include "Date.h"
 #include "EsUuid.h"
 #include "LocationFilter.h"
