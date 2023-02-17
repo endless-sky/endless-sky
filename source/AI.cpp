@@ -2912,10 +2912,10 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 		if(ship.IsUsingJumpDrive() || ship.IsEnteringHyperspace())
 			return position;
 
-		double maxVelocity = ship.MaxSpeed(false);
+		double maxSpeed = ship.MaxSpeed(false);
 		double jumpTime = (v - maxVelocity) / 2.;
-		position += velocity.Unit() * (jumpTime * (v + maxVelocity) * .5);
-		v = maxVelocity;
+		position += velocity.Unit() * (jumpTime * (v + maxSpeed) * .5);
+		v = maxSpeed;
 	}
 
 	// This assumes you're facing exactly the wrong way.
