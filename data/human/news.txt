@@ -1687,7 +1687,7 @@ news "pirate (slavery ban)"
 		word
 			`"`
 		phrase
-			"pirate news without slavery" 35
+			"pirate news without slavery"
 		word
 			`"`
 
