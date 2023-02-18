@@ -1915,7 +1915,7 @@ fleet "Large Southern Pirates"
 	variant 1
 		"Modified Argosy (Plasma)"
 	variant 1
-		"Modified Argosy (Proton Gun)"
+		"Modified Argosy (Proton)"
 	variant 8
 		"Clipper"
 	variant 4
@@ -2469,7 +2469,7 @@ fleet "pirate raid"
 	variant 1
 		"Modified Argosy (Blaster)"
 	variant 1
-		"Modified Argosy (Proton Gun)"
+		"Modified Argosy (Proton)"
 	variant 1
 		"Modified Argosy (Plasma)"
 	variant 1
