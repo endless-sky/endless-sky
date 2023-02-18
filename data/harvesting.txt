@@ -382,3 +382,16 @@ outfit "Void Orchid"
 	"installable" -1
 	"minable" 1
 	description "'Void Orchid' is the generic term for a variety of strange, plant-like organisms that live primarily on asteroids. Due to the way they concentrate minerals from their host asteroid, they are valued both as scientific curiosities as well as for their mineral content."
+
+
+
+# Acheron Space-life Asteroids
+
+minable "unknown"
+	sprite "asteroid/bioroid/spin"
+	hull 1600
+	"random hull" 810
+	explode "smoke" 10
+	explode "bolide" 20
+	explode "blood" 10
+	explode "final explosion medium"
