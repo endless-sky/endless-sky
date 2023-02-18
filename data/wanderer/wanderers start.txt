@@ -1330,7 +1330,7 @@ mission "Wanderers: Alpha Surveillance F"
 	
 	npc accompany save
 		government "Navy (Oathkeeper)"
-		personality escort heroic
+		personality escort timid
 		ship "Cruiser (Jump)" "N.S. Peacemaker"
 
 
