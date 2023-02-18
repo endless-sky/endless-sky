@@ -983,7 +983,7 @@ void Engine::Draw() const
 	for(const auto &it : ships)
 	{
 		if(it->GetActualSystem() == player.GetSystem())
-			ShipFXShader::Draw(it.get(), (it->Position() - ShipFXShader::center) * zoom, it->RecentHits(), zoom, it->GetFrame());
+			ShipFXShader::Draw(it.get(), (it->Position() - center) * zoom, it->RecentHits(), zoom, it->GetFrame());
 	}
 
 	batchDraw[drawTickTock].Draw();

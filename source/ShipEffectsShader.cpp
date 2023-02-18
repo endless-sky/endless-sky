@@ -45,7 +45,7 @@ namespace {
 	GLint transformI;
 	GLint blurI;
 	GLint clipI;
-	GLint alphaI;
+	//GLint alphaI;
 
 	GLint recentHitsCountI;
 	GLfloat recentDamageI;
@@ -200,112 +200,6 @@ void ShipFXShader::SetCenter(Point newCenter)
 }
 
 
-
-ShipFXShader::EffectItem ShipFXShader::Prepare(const shared_ptr<Ship> body, float zoom)
-{
-	if(!body->GetSprite())
-		return {};
-
-	float frame = body->GetFrame();
-	Point position = body->Position() - center;
-	vector<pair<Point, double>> &recentHits = body->RecentHits();
-
-
-	EffectItem item;
-	item.texture = body->GetSprite()->Texture();
-	item.frame = frame;
-	item.frameCount = body->GetSprite()->Frames();
-	// Position.
-	item.position[0] = static_cast<float>(position.X() * zoom);
-	item.position[1] = static_cast<float>(position.Y() * zoom);
-
-	// Get unit vectors in the direction of the object's width and height.
-	double width = body->Width();
-	double height = body->Height();
-	Point unit = body->Facing().Unit();
-	Point uw = unit * width;
-	Point uh = unit * height;
-
-	// (0, -1) means a zero-degree rotation (since negative Y is up).
-	uw *= zoom;
-	uh *= zoom;
-	item.transform[0] = -uw.Y();
-	item.transform[1] = uw.X();
-	item.transform[2] = -uh.X();
-	item.transform[3] = -uh.Y();
-
-	item.recentHits = recentHits.size();
-
-	Angle sub = Angle(180.) - body->Facing();
-	for(int i = 0; i < recentHits.size(); i++)
-	{
-		const auto newP = sub.Rotate(recentHits[i].first * Point(-1, -1));
-		item.recentHitPoints[2 * i] = (newP.X() / (2. * body->Radius()));
-		item.recentHitPoints[2 * i + 1] = (newP.Y() / (2. * body->Radius()));
-		item.recentHitDamage[i] = (min(1., recentHits[i].second));
-		Messages::Add("Hit at " + to_string(newP.X() / body->Radius()) + ", " + to_string(newP.Y() / body->Radius()) + ", intensity of " + to_string(recentHits[i].second) + " with count of " + to_string(item.recentHits));
-	}
-	/*for (pair<Point, double>& hit : recentHits)
-	{
-		item.recentHitPoints.push_back(hit.first.X());
-		item.recentHitPoints.push_back(hit.first.Y());
-	}*/
-
-	return item;
-}
-
-
-
-ShipFXShader::EffectItem ShipFXShader::Prepare(const shared_ptr<Body> body, const Point &position, vector<pair<Point, double>> &recentHits, float zoom, float frame)
-{
-	if(!body->GetSprite())
-		return {};
-
-	EffectItem item;
-	item.texture = body->GetSprite()->Texture();
-	item.frame = frame;
-	item.frameCount = body->GetSprite()->Frames();
-	// Position.
-	item.position[0] = static_cast<float>(position.X() * zoom);
-	item.position[1] = static_cast<float>(position.Y() * zoom);
-
-	// Get unit vectors in the direction of the object's width and height.
-	double width = body->Width();
-	double height = body->Height();
-	Point unit = body->Facing().Unit();
-	Point uw = unit * width;
-	Point uh = unit * height;
-
-	// (0, -1) means a zero-degree rotation (since negative Y is up).
-	uw *= zoom;
-	uh *= zoom;
-	item.transform[0] = -uw.Y();
-	item.transform[1] = uw.X();
-	item.transform[2] = -uh.X();
-	item.transform[3] = -uh.Y();
-
-	item.recentHits = recentHits.size();
-
-	Angle sub = Angle(180.) - body->Facing();
-	for(int i = 0; i < recentHits.size(); i++)
-	{
-		const auto newP = sub.Rotate(recentHits[i].first * Point(-1, -1));
-		item.recentHitPoints[2 * i] = (newP.X() / (2. * body->Radius()));
-		item.recentHitPoints[2 * i + 1] = (newP.Y() / (2. * body->Radius()));
-		item.recentHitDamage[i] = (min(1., recentHits[i].second));
-		Messages::Add("Hit at " + to_string(newP.X() / body->Radius()) + ", " + to_string(newP.Y() / body->Radius()) + ", intensity of " + to_string(recentHits[i].second) + " with count of " + to_string(item.recentHits));
-	}
-	/*for (pair<Point, double>& hit : recentHits)
-	{
-		item.recentHitPoints.push_back(hit.first.X());
-		item.recentHitPoints.push_back(hit.first.Y());
-	}*/
-
-	return item;
-}
-
-
-
 ShipFXShader::EffectItem ShipFXShader::Prepare(const Body* body, const Point& position, vector<pair<Point, double>>& recentHits, float zoom, float frame)
 {
 	if (!body->GetSprite())
@@ -334,10 +228,10 @@ ShipFXShader::EffectItem ShipFXShader::Prepare(const Body* body, const Point& po
 	item.transform[2] = -uh.X();
 	item.transform[3] = -uh.Y();
 
-	item.recentHits = recentHits.size();
+	item.recentHits = min( 64, static_cast<int>(recentHits.size()) );
 
 	Angle sub = Angle(180.) - body->Facing();
-	for(int i = 0; i < recentHits.size(); i++)
+	for(int i = 0; i < item.recentHits; i++)
 	{
 		const auto newP = sub.Rotate(recentHits[i].first * Point(-1, -1));
 		item.recentHitPoints[2*i] = (newP.X() / (2. * body->Radius()));
