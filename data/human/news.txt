@@ -686,9 +686,9 @@ news "humanika engineer"
 			# Observing Korath tech or directly importing it.
 			`"We import sewage processors that can convert human waste directly into food. This planet has little viable farmland, so we couldn't have a quarter our current population without them. Now, it'll take a factor of twenty increase in population before we'll need better techniques."`
 			`"The blast doors to our bunker cities are ten meters thick, made of the most durable armor we know of. Normally, it would be impossible to machine them that size, but we developed new techniques by reverse-engineering some imported machinery."`
-			`"Did you know we can mine some materials almost three times as fast as the best Syndicate mining systems? It's because of advanced alloys we've developed for our drill heads, which can handle double the heat of anything we've seen before."`
-			`"Our bunker cities use a lot of light weight composites we've invented by analyzing bulkheads from those big ships that keep flying through this system."`
-			`"A while back, we imported some machining tools that are ten times faster than anything I know of. Although we can't reproduce them, we have used the same principles to triple our factory output. That's why we're able to pump out ships and outfits so quickly."`
+			`"I've never seen an alloy like we have on our drill heads. I wasn't able to drill half as deep back on New Wales."`
+			`"Our bunker cities use a lot of light weight composites which is why we're able to build them so large."`
+			`"A while back, we imported some machining tools that triple our engine manufacturing rate. I think we've almost caught up to Wayfarer in efficiency."`
 			`"We have a prototype ion engine that produces 50% more thrust, at triple the heat. Unfortunately, it tends to melt the ship's engine compartments and flies into the ship. I expect we'll have to cut down on thrust to compensate."`
 
 
@@ -711,8 +711,8 @@ news "humanika researcher"
 			`"My research concerns force fields. No, not those kinds of force fields."`
 
 			# New ones, relating to observing the Korath
-			`"We've always used star lanes for hyperspace communication, but we just got our hands on a probe that doesn't need them! I can't imagine how it was miniaturized into a probe, but we have a building-sized replica that is almost as strong."`
-			`"Our research group has been dismantling debris from those mysterious fighters. They use an alloy that can dissipate heat better than anything we've ever seen, and it's stronger than our best spaceship armor. We haven't had much luck reproducing it, but we won't give up so easily."`
+			`"We've always used star lanes for hyperspace communication, but it turns out you can communicate directly between two systems. The devices are hard to manufacture, though."`
+			`"There's a really creative alloy we found recently, which can dissipate heat faster than anything we ever seen. We haven't had much luck reproducing it, but we won't give up so easily."`
 			`"Recently, we've come upon a strange substance... I believe it's called Nutragel? We found that if you put it in a fuel cell, the power output doubles, but the cell quickly melts itself."`
 			`"Humanity has had nanofluids for centuries, but we've come upon a substance that quadruples the heat capacity of water. Unfortunately, the particles break down quickly, so it isn't viable yet."`
 			`"You know those expensive microbots we use for organ repair? It turns out you can modify them to repair metal instead. The power requirements are enormous, so it'll be years before we can use it for practical applications."`
@@ -1669,9 +1669,10 @@ news "syndicate soldier"
 
 
 
-news "pirate"
+news "pirate (slavery ban)"
 	location
 		government "Pirate" "Humanika (Port)"
+		attributes "slavery ban"
 	name
 		word
 			"Pirate"
@@ -1685,46 +1686,81 @@ news "pirate"
 	message
 		word
 			`"`
-		word
-			"Next time we meet up, maybe I'll be plundering your ship."
-			"What are you looking at, punk?"
-			"Hobbes and Darwin got it right: it's a war of all against all, and only the strongest deserve to survive. Without that pistol at your side, I'd slit your throat right now and take everything you own."
-			"Slaves for sale! Slaves for sale! Here is an exotic beauty with eyes full of fire that you can buy!"
-			"Wanna buy some death sticks?"
-			"Sometimes I wonder if what I'm doing is wrong."
-			"Every morning I look in the mirror... and I like what I see."
-			"Why did I become a pirate? It's the only way to truly be free. I was born a slave, and look at me now! I command a fleet of warships. I pay no taxes. I obey no laws. What a life!"
-			"Just watch yourself, and maybe we'll let you live."
-			"At half your age, I was richer than you'll ever be. This is the life, baby."
-			"Don't look at me like that. You wouldn't survive five minutes of my life."
-			"Just knocked over a fat merchant ship. Can't wait to blow all this cash on slaves and drugs!"
-			"I used to be a soft-bellied merchant captain before my life took a turn. Gotta get tough or get dead in this galaxy."
-			"Just a word of warning: don't fall asleep in the hotels here."
-			"Betcha I can name a combat use for every ship in the sky. Flivver? Might as well be a Sparrow. Freighter? Umm... it works as a great plundering vessel. Surveillance drone? Don't make me shoot you."
-			"Bah. How can you not gag at the suffocating rules that the Republic forces onto you? I mean, banning chickens with dynamite strapped to them? Ridiculous!"
-			"Yo, yo, yo, what's up, suckers! I'm high on ${contraband}! Wanna freebie? No? Coward!"
-			"You look like a good captain. I'd bet you'd be a better slave!"
-			"Hmph. You 'freelancers' have it easy, relying on the Navy as a crutch. If you wanna be your own captain, you've gotta strike out on your own!"
-			"Ever heard of the game Mafia? My life's a real-life version of that, 'cept instead of a town, there's merchants, and instead of a mafia, there's us, and the town has no way to survive!"
-			"Look at me like that one more time, and I'll give you plastic surgery free of charge."
-			"Crime pays, and the hours are good!"
-			"I'll retire as a security adviser in the Paradise Worlds. You know the saying: An old poacher makes the best gamekeeper."
-			"Hey, that's a very nice ship you have there. Would be a shame if something happened to it. Do you want to make a donation to the System Safety Fund?"
-			"Your credits or your life! Oh, you don't have either? Never mind then."
-			"Don't count on the Navy to save you if me or any of my friends attack you. Those Navy goons only hang around near the rich planets."
-			"Did I attack you? Well, I've attacked many people, could you be a bit more specific?"
-			"The size of my crimes no longer matter; one may as well hang for a sheep as for a lamb."
-			"Hey! We have this new Piracy As A Service offering. Want someone ambushed without incriminating yourself? Just tell me who, where, and how much it's worth to you."
-			"I don't get it; if I donate a kidney, then I'm some sort of hero. But if I donate 7 kidneys, then suddenly I'm some sort of monster."
-			"I wasn't close to my parents when they died. Which was quite fortunate, since they died in an exploding ship."
-			"I hate double standards; burn a body in a crematorium and you're a professional, burn a body in a spaceship and you're a criminal."
-			"I missed my lover during the raids today. But only by a few inches; next time I'll aim better."
-			"I once prayed to God for a new ship, but quickly found out He doesn't roll that way. So then I hijacked one and prayed for his forgiveness."
-			"Living on the edge."
-			"You can't win the game if you're afraid to lose it."
-			"Good things come to those who wait, and then I rob those from them very quickly."
+		phrase
+			"pirate news without slavery" 35
 		word
 			`"`
+
+
+
+news "pirate"
+	location
+		government "Pirate" "Humanika (Port)"
+		not attributes "slavery ban"
+	name
+		word
+			"Pirate"
+			"Renegade"
+			"Marauder"
+			"Looter"
+			"Buccaneer"
+			"Freebooter"
+			"Plunderer"
+			"Bandit"
+			"Slaver"
+	message
+		word
+			`"`
+		phrase
+			"pirate slavery news" 3
+			"pirate news without slavery" 35
+		word
+			`"`
+
+
+phrase "pirate slavery news"
+	word
+		"Slaves for sale! Slaves for sale! Here is an exotic beauty with eyes full of fire that you can buy!"
+		"Just knocked over a fat merchant ship. Can't wait to blow all this cash on slaves and drugs!"
+		"You look like a good captain. I'd bet you'd be a better slave!"
+
+
+phrase "pirate news without slavery"
+	word
+		"Next time we meet up, maybe I'll be plundering your ship."
+		"What are you looking at, punk?"
+		"Hobbes and Darwin got it right: it's a war of all against all, and only the strongest deserve to survive. Without that pistol at your side, I'd slit your throat right now and take everything you own."
+		"Wanna buy some death sticks?"
+		"Sometimes I wonder if what I'm doing is wrong."
+		"Every morning I look in the mirror... and I like what I see."
+		"Why did I become a pirate? It's the only way to truly be free. I was born a slave, and look at me now! I command a fleet of warships. I pay no taxes. I obey no laws. What a life!"
+		"Just watch yourself, and maybe we'll let you live."
+		"At half your age, I was richer than you'll ever be. This is the life, baby."
+		"Don't look at me like that. You wouldn't survive five minutes of my life."
+		"I used to be a soft-bellied merchant captain before my life took a turn. Gotta get tough or get dead in this galaxy."
+		"Just a word of warning: don't fall asleep in the hotels here."
+		"Betcha I can name a combat use for every ship in the sky. Flivver? Might as well be a Sparrow. Freighter? Umm... it works as a great plundering vessel. Surveillance drone? Don't make me shoot you."
+		"Bah. How can you not gag at the suffocating rules that the Republic forces onto you? I mean, banning chickens with dynamite strapped to them? Ridiculous!"
+		"Yo, yo, yo, what's up, suckers! I'm high on ${contraband}! Wanna freebie? No? Coward!"
+		"Hmph. You 'freelancers' have it easy, relying on the Navy as a crutch. If you wanna be your own captain, you've gotta strike out on your own!"
+		"Ever heard of the game Mafia? My life's a real-life version of that, 'cept instead of a town, there's merchants, and instead of a mafia, there's us, and the town has no way to survive!"
+		"Look at me like that one more time, and I'll give you plastic surgery free of charge."
+		"Crime pays, and the hours are good!"
+		"I'll retire as a security adviser in the Paradise Worlds. You know the saying: An old poacher makes the best gamekeeper."
+		"Hey, that's a very nice ship you have there. Would be a shame if something happened to it. Do you want to make a donation to the System Safety Fund?"
+		"Your credits or your life! Oh, you don't have either? Never mind then."
+		"Don't count on the Navy to save you if me or any of my friends attack you. Those Navy goons only hang around near the rich planets."
+		"Did I attack you? Well, I've attacked many people, could you be a bit more specific?"
+		"The size of my crimes no longer matter; one may as well hang for a sheep as for a lamb."
+		"Hey! We have this new Piracy As A Service offering. Want someone ambushed without incriminating yourself? Just tell me who, where, and how much it's worth to you."
+		"I don't get it; if I donate a kidney, then I'm some sort of hero. But if I donate 7 kidneys, then suddenly I'm some sort of monster."
+		"I wasn't close to my parents when they died. Which was quite fortunate, since they died in an exploding ship."
+		"I hate double standards; burn a body in a crematorium and you're a professional, burn a body in a spaceship and you're a criminal."
+		"I missed my lover during the raids today. But only by a few inches; next time I'll aim better."
+		"I once prayed to God for a new ship, but quickly found out He doesn't roll that way. So then I hijacked one and prayed for his forgiveness."
+		"Living on the edge."
+		"You can't win the game if you're afraid to lose it."
+		"Good things come to those who wait, and then I rob those from them very quickly."
 
 
 
