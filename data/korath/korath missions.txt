@@ -624,7 +624,7 @@ mission "Korath [F03]: A Fishy Proposition"
 			`	She nods and gives an approving smile.`
 			label warning
 			`	"A word of warning, Captain <last>. You may have noticed some unusual ships near here, larger than anything else in human space. Any fish delivery jobs at New Tortuga, and any jobs at this station, will earn you favor with them. Eventually, they'll stop being hostile, and you could assist their disabled ships.`
-			`	"Don't. If you see one of their red or yellow ships disabled, do not, and I repeat, do NOT, assist them. They are quite unpopular with many groups, and they know the risk they take in their raids. Helping one of their damaged ships will earn you powerful enemies.`
+			`	"Assisting those ships will anger a great many people, so don't do that unless you want most of the galaxy to hunt you. They are quite unpopular with many groups, and they know the risks they take in their raids.`
 			`	"Their green ships are civilians, and you should ensure those ships' survival. The ships with a forested dome in front are hospitals and nurseries and you should take special care to keep them safe. Shooting at them will anger even more powerful groups."`
 				goto departs
 
@@ -679,7 +679,7 @@ mission "Korath: Assistance Warning"
 		has "Korath [F03]: A Fishy Proposition: offered"
 	on offer
 		conversation
-			`Remembering the warning from New Tortuga, you realize you just made a terrible mistake. They told you that openly assisting the Korath will anger a great many people. If only you could go back and undo that mistake... but that's not how reality works. Perhaps destroying one of their ships would show people you're not on the side of the Korath?`
+			`Remembering the warning from Iris, you realize you just made a terrible mistake. She told you that openly assisting the Korath will anger a great many people. If only you could go back and undo that mistake... but that's not how reality works. Perhaps destroying one of their ships would show people you're not on the side of the Korath?`
 				decline
 
 
@@ -693,7 +693,7 @@ mission "Korath: Boarding Warning"
 		has "Korath [F03]: A Fishy Proposition: offered"
 	on offer
 		conversation
-			`Remembering the warning from New Tortuga, you realize you just made a mistake. They told you that the Korath would anger if you board them, and too much of that will make them hostile. You'll have to do jobs at La'ab Bamen to appease them.`
+			`Remembering the warning from Iris, you realize you just made a mistake. She told you that the Korath would anger if you board them, and too much of that will make them hostile. You'll have to do jobs at La'ab Bamen if you want to appease them.`
 				decline
 
 
@@ -707,7 +707,7 @@ mission "Korath: Civilian Warning"
 		"reputation: Korath (Civilian)" < 0
 	on offer
 		conversation
-			`Remembering the warning from New Tortuga, you realize you just made a terrible mistake. The green ship you attacked was a Korath civilian vessel and you now have powerful enemies. If only you could go back and undo that mistake... but that's not how reality works.`
+			`Remembering the warning from Iris, you realize you just made a terrible mistake. The green ship you attacked was a Korath civilian vessel and you now have powerful enemies. If only you could go back and undo that mistake... but that's not how reality works.`
 				decline
 
 
@@ -825,7 +825,7 @@ mission "Korath [F05]: The Rainbow Feather"
 			# is the Korath exiles. She is presenting a human interpretation of
 			# the Exiles' feelings about their own fate.
 			`	"An imperialist race called the Drak sent living weapons, the Archons, to conquer the Korath under the guise of protection. The Archons' antimatter weapons and seeming invincibility was too much at first, until the Korath gathered a larger fleet. When they managed to injure one Archon, the others revealed frightening powers. They tore open rifts in reality, simply swallowing up Korath ships. Hidden super-weapons in planetoids, intended as mines, were harmless, as the Archons shattered the planetoids and atomized the weapons. In every battle, all Korath military ships were destroyed, but the civilians were somehow unscathed.`
-			`	"The Korath saw certain defeat, and in surrender the Drak offered two options. They can give up their religion and live as the pets of their former friends, the Quarg. Or, they could keep their religion and live in starving exile near us.`
+			`	"The Korath saw certain defeat, and in surrender the Drak offered two options. They can give up their religion and live as the pets of their former friends, the Quarg. Or, they could keep their religions and live in starving exile near us.`
 			`	"Archons left the exiles with a warning: destroy Far'en Lei, and we will kill you all. You may never leave exile until you heal that planet and live there peacefully. As a precaution, and almost as a religion, they forbid weapons on that planet. A condition YOU violated." She looks heated for a moment before continuing.`
 			`	"As to their guardianship over us, it violates the letter of the law, but not the intent. The Korath believe the Drak will look favorably upon them for protecting the weak. Their aid - at our insistence - has been purely non-military, except to defend us against major attacks. They lack foresight to restrict what they share, as if they didn't understand the consequence of giving powerful weapons to a younger race. Anything we receive, the Syndicate may somehow obtain, and I shudder to think of the damage those monsters would do with Korath weapons."`
 				goto check
