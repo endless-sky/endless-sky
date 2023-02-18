@@ -20,6 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Shader.h"
 #include "Sprite.h"
 
+#include "Messages.h"
+
 #include <sstream>
 #include <vector>
 #include "Logger.h"
@@ -75,8 +77,7 @@ void ShipFXShader::Init()
 		"  fragTexCoord = vec2(texCoord.x, min(clip, texCoord.y)) + blurOff;\n"
 		"}\n";
 
-	ostringstream fragmentCodeStream;
-	fragmentCodeStream << 
+	static const char* fragmentCode =
 		"// fragment sprite shader\n"
 		"precision mediump float;\n"
 #ifdef ES_GLES
@@ -86,11 +87,11 @@ void ShipFXShader::Init()
 		"uniform float frame;\n"
 		"uniform float frameCount;\n"
 		"uniform vec2 blur;\n"
-		"uniform float alpha;\n"
+////		"uniform float alpha;\n"
 		"const int range = 5;\n"
 
-		"uniform vec2 recentHits[32];\n"
-		"uniform float recentDamage[32];\n"
+		"uniform vec2 recentHits[64];\n"
+		"uniform float recentDamage[64];\n"
 		"uniform int recentHitCount;\n"
 
 		"in vec2 fragTexCoord;\n"
@@ -99,86 +100,42 @@ void ShipFXShader::Init()
 		"out vec4 finalColor;\n"
 
 		"float first = floor(frame);\n"
-	"  float second = mod(ceil(frame), frameCount);\n"
-		"  float fade = frame - first + second;\n";
+		"float second = mod(ceil(frame), frameCount);\n"
+		"float fade = frame - first + second;\n"
 
-		//"void main() {\n"
-		//"  float first = floor(frame);\n"
-		//"  float second = mod(ceil(frame), frameCount);\n"
-		//"  float fade = frame - first;\n"
-		//"  vec4 color;\n"
-		//"  if(blur.x == 0.f && blur.y == 0.f)\n"
-		//"  {\n"
-		//"    if(fade != 0.f)\n"
-		//"      color = mix(\n"
-		//"        texture(tex, vec3(fragTexCoord, first)),\n"
-		//"        texture(tex, vec3(fragTexCoord, second)), fade);\n"
-		//"    else\n"
-		//"      color = texture(tex, vec3(fragTexCoord, first));\n"
-		//"  }\n"
-		//"  else\n"
-		//"  {\n"
-		//"    color = vec4(0., 0., 0., 0.);\n"
-		//"    const float divisor = float(range * (range + 2) + 1);\n"
-		//"    for(int i = -range; i <= range; ++i)\n"
-		//"    {\n"
-		//"      float scale = float(range + 1 - abs(i)) / divisor;\n"
-		//"      vec2 coord = fragTexCoord + (blur * float(i)) / float(range);\n"
-		//"      if(fade != 0.f)\n"
-		//"        color += scale * mix(\n"
-		//"          texture(tex, vec3(coord, first)),\n"
-		//"          texture(tex, vec3(coord, second)), fade);\n"
-		//"      else\n"
-		//"        color += scale * texture(tex, vec3(coord, first));\n"
-		//"    }\n"
-		//"  }\n"
-
-		//"  for(int i = 0; i < recentHitCount && i < 32; i++)\n"
-		//"  {\n"
-		//"    color -= clamp(distance(fragTexCoord, recentHits[i] * shrinkby), 0, 1);\n"
-		//"  }\n"
-
-		//"  finalColor = color * alpha;\n"
-		fragmentCodeStream <<
 		"vec4 sampleSmooth(sampler2DArray sampler, vec2 uv)\n"
 		"{\n"
-			"return mix( texture(tex, vec3(uv, first)),\n"
-			"			texture(tex, vec3(uv, second)), fade);}\n"	
+		"  return mix( texture(tex, vec3(uv, first)),\n"
+		"    texture(tex, vec3(uv, second)), fade);\n"
+		"}\n"
+
 		"float sobellish(vec2 uv)\n"
 		"{\n"
-		"			float obel = 0.;\n"
-		"			for (int x = -3; x <= 3; x++)\n"
-		"			{\n"
-		"				for (int y = -3; y <= 3; y++)\n"
-		"				{\n"
-		"					obel += sampleSmooth(tex, uv + vec2(x, y) / (100.)).a;\n"
-		"				}\n"
-		"			}\n"
-		"			obel /= 49.;\n"
-		"			return sqrt(2. * obel - (-0.2) / (obel / 2. - .6) + 0.3);\n"
-		"		}\n"
+		"  float obel = 0.;\n"
+		"  for (int x = -3; x <= 3; x++)\n"
+		"  {\n"
+		"    for (int y = -3; y <= 3; y++)\n"
+		"	 {\n"
+		"      obel += sampleSmooth(tex, uv + vec2(x, y) / (100.)).a;\n"
+		"    }\n"
+		"  }\n"
+		"  obel /= 49.;\n"
+		"  return sqrt(2. * obel - (-0.2) / (obel / 2. - .6) + 0.3);\n"
+		"}\n"
 
-"		void main()\n"
-"		{\n"
-"vec4 addCol;"
+		"void main()\n"
+		"{\n"
+		"  vec4 color;"
+		"  vec4 baseColor = vec4(.4, .5, 1., 1.) * sobellish(fragTexCoord);\n"
 		"  for(int i = 0; i < recentHitCount; i++)\n"
 		"  {\n"
-"				vec2 hitPoint = recentHits[i];\n"
-""
-//"				/* Normalized pixel coordinates (from 0 to 1)*/\n"
-//"				vec4 col = sampleSmooth(tex, fragTexCoord);\n"
-"				vec4 color = vec4(0.3, 0.4, 1., 1.) * sobellish(fragTexCoord).rrrr;\n"
-""
-"			    addCol += (color*10.*recentDamage[i]) * clamp(1. - distance(fragTexCoord, hitPoint) / 2, 0., 1.) * 10.; \n"
-"			}"
-"			/* Output to screen*/"
-"			finalColor = (addCol / recentHitCount) * alpha;\n"
-			//"finalColor += alpha * vec4(sobellish(fragTexCoord));\n"
-"		}\n"
-"	    \n";
+		"    vec2 hitPoint = recentHits[i] + vec2(0.5, 0.5);\n"
+		"    color += baseColor * recentDamage[i] * clamp(.5 - distance(hitPoint, fragTexCoord), 0., 1.);\n"
+		"  }\n"
 
-	static const string fragmentCodeString = fragmentCodeStream.str();
-	static const char *fragmentCode = fragmentCodeString.c_str();
+		"  finalColor = color;\n"
+		"}\n"
+		"\n";
 
 	shader = Shader(vertexCode, fragmentCode);
 	scaleI = shader.Uniform("scale");
@@ -188,7 +145,7 @@ void ShipFXShader::Init()
 	transformI = shader.Uniform("transform");
 	blurI = shader.Uniform("blur");
 	clipI = shader.Uniform("clip");
-	alphaI = shader.Uniform("alpha");
+	////alphaI = shader.Uniform("alpha");
 
 	recentHitsI = shader.Uniform("recentHits");
 	recentDamageI = shader.Uniform("recentDamage");
@@ -264,15 +221,19 @@ ShipFXShader::EffectItem ShipFXShader::Prepare(const Body* body, const Point& po
 	item.transform[3] = -uh.Y();
 
 	item.recentHitPoints.clear();
+	item.recentHitDamage.clear();
 	auto recth = recentHits;
 	item.recentHitPoints.reserve(recth.size() * 2);
+	item.recentHitDamage.reserve(recth.size());
+
+	Angle sub = Angle(180.) - body->Facing();
 	for(int i = 0; i < recth.size(); i++)
 	{
-			const auto newP = body->Facing().Rotate(recth[i].first);
-			item.recentHitPoints.push_back(newP.X() / (2. * body->Radius()));
-			item.recentHitPoints.push_back(newP.Y() / (2. * body->Radius()));
-			item.recentHitDamage.push_back(recth[i].second);
-			Logger::LogError("Hit at " + to_string(newP.X() / body->Radius()) + ", " + to_string(newP.Y() / body->Radius()) + ", intensity of " + to_string(recth[i].second));
+		const auto newP = sub.Rotate(recth[i].first * Point(-1, -1));
+		item.recentHitPoints.push_back(newP.X() / (3. * body->Radius()));
+		item.recentHitPoints.push_back(newP.Y() / (3. * body->Radius()));
+		item.recentHitDamage.push_back(min(1., recth[i].second));
+		Messages::Add("Hit at " + to_string(newP.X() / body->Radius()) + ", " + to_string(newP.Y() / body->Radius()) + ", intensity of " + to_string(recth[i].second) + " with count of " + to_string(recth.size()));
 	}
 	/*for (pair<Point, double>& hit : recentHits)
 	{
@@ -280,7 +241,6 @@ ShipFXShader::EffectItem ShipFXShader::Prepare(const Body* body, const Point& po
 		item.recentHitPoints.push_back(hit.first.Y());
 	}*/
 	item.recentHits = recth.size();
-	Logger::LogError("RECENT_HIT_SIZE" + to_string(item.recentHits));
 
 	return item;
 }
@@ -310,11 +270,11 @@ void ShipFXShader::Add(const EffectItem& item, bool withBlur)
 	static const float UNBLURRED[2] = { 0.f, 0.f };
 	glUniform2fv(blurI, 1, withBlur ? item.blur : UNBLURRED);
 	glUniform1f(clipI, item.clip);
-	glUniform1f(alphaI, item.alpha);
+	////glUniform1f(alphaI, item.alpha);
 
-	glUniform2fv(recentHitsI, 32, item.recentHitPoints.data());
-	glUniform1fv(recentDamageI, 32, item.recentHitDamage.data());
-	glUniform1i(recentHitsCountI, min(item.recentHits, 32));
+	glUniform2fv(recentHitsI, 128, item.recentHitPoints.data());
+	glUniform1fv(recentDamageI, 64, item.recentHitDamage.data());
+	glUniform1i(recentHitsCountI, item.recentHits);
 	Logger::LogError(to_string(item.recentHits));
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
