@@ -249,7 +249,7 @@ outfit "Nami Rift Thruster"
 		"rewind"
 		"scale" 0.6
 	"flare sound" "ion small"
-	description "Although Rift engines are extremely heat efficient, their energy requirement is rather high compared to the thrust they produce, even next to terribly inefficient Korath engines."
+	description "Although rift engines are extremely heat efficient, their energy requirement is rather high compared to the thrust they produce, even next to terribly inefficient Korath engines."
 
 outfit "Ookii Rift Thruster"
 	category "Engines"

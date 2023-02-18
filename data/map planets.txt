@@ -1165,11 +1165,11 @@ planet "Ember Wormhole"
 
 wormhole "Ember Wormhole"
 	mappable
+	color "wormholes: Ember Waste"
 	link Aescolanus Cardea
 	link Cardea Insitor
 	link Insitor Segesta
 	link Segesta Aescolanus
-	color "wormholes: Ember Waste"
 
 planet Eminonu
 	attributes uninhabited
@@ -2550,7 +2550,7 @@ planet Melenci
 	attributes bunrodea medical moon
 	landscape land/badlands8
 	description `While the southern world of Jentu Le is where genetic research is mainly done, the small moon of Melenci here in the north is where much of that research is put to practice. The moon has only one settlement where Bunrodeans come to receive modifications to their genome. However, the Bunrodeans ensure that any modifications that are done will affect only the individual they are being done to, and will not be passed down to any offspring.`
-	spaceport `The spaceport of Melenci has a variety of what you would assume to be advertisements for genetic operations. One displays a graphic of two animated Bunrodeans in a mine. One is injected with a needle and then become much bulkier. The mine then collapses in on the two, and the Bunrodean who was genetically modified is shown coming out of the rubble unscathed, while the other is pulled out with bent limbs and placed on a stretcher.`
+	spaceport `The spaceport of Melenci has a variety of what you would assume to be advertisements for genetic operations. One displays a graphic of two animated Bunrodeans in a mine. One is injected with a needle and then becomes much bulkier. The mine then collapses in on the two, and the Bunrodean who was genetically modified is shown coming out of the rubble unscathed, while the other is pulled out with bent limbs and placed on a stretcher.`
 	shipyard "Bunrodea Basic"
 	outfitter "Bunrodea Basic"
 	"required reputation" 50
