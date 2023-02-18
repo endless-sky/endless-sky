@@ -11,7 +11,7 @@ services:
         mkdir -p build/steam-x64
         cd build/steam-x64
         cmake ../../ -GNinja -DES_STEAM=ON -DCMAKE_BUILD_TYPE=Release -DVCPKG_TARGET_TRIPLET=steam-x64
-        ninja
+        ninja EndlessSky
 
 
   steam-x86:
@@ -26,7 +26,7 @@ services:
         mkdir -p build/steam-x86
         cd build/steam-x86
         cmake ../../ -GNinja -DES_STEAM=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-m32 -DVCPKG_TARGET_TRIPLET=steam-x86
-        ninja
+        ninja EndlessSky
 
 
   test-steam-x64:
@@ -39,6 +39,7 @@ services:
       - '-c'
       - |
         cd build/steam-x64
+        ninja
         ./endless-sky --version
         ctest --label-exclude "(benchmark|integration-debug)"
 
@@ -53,5 +54,6 @@ services:
       - '-c'
       - |
         cd build/steam-x86
+        ninja
         ./endless-sky --version
         ctest --label-exclude "(benchmark|integration-debug)"
