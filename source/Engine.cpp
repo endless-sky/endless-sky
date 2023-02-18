@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "FrameTimer.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Government.h"
 #include "Hazard.h"
 #include "Interface.h"
@@ -1752,7 +1753,7 @@ void Engine::SpawnFleets()
 // At random intervals, create new special "persons" who enter the current system.
 void Engine::SpawnPersons()
 {
-	if(Random::Int(36000) || player.GetSystem()->Links().empty())
+	if(Random::Int(GameData::GetGamerules().PersonSpawnPeriod()) || player.GetSystem()->Links().empty())
 		return;
 
 	// Loop through all persons once to see if there are any who can enter
@@ -1764,11 +1765,9 @@ void Engine::SpawnPersons()
 	if(!sum)
 		return;
 
-	// Adjustment factor: special persons will appear once every ten
-	// minutes, but much less frequently if the game only specifies a
-	// few of them. This way, they will become more common as I add
-	// more, without needing to change the 10-minute constant above.
-	sum = Random::Int(sum + 1000);
+	// Although an attempt to spawn a person is made every 10 minutes on average,
+	// that attempt can still fail due to an added weight for no person to spawn.
+	sum = Random::Int(sum + GameData::GetGamerules().NoPersonSpawnWeight());
 	for(const auto &it : GameData::Persons())
 	{
 		const Person &person = it.second;

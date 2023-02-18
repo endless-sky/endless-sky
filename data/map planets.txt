@@ -1539,7 +1539,7 @@ planet Geyser
 		fleet "Large Militia" 20
 
 planet "Giaru Gegno"
-	attributes quarg station
+	attributes "gegno quarg" quarg station
 	landscape land/station2
 	description `The quality of its structure suggests that this Quarg ringworld had to have been completed rather recently, but there are some notable differences that don't seem Quarg-like. Some of the hangers and docks on the ring are oddly larger than others, and the inner quarters are wider and taller than what is normal for a Quarg. The hangar you currently are parked in, however, seems to be void of these characteristics, and is similar to ones at the Quarg ringworld in human space.`
 	description `	Despite seeing numerous non-Quarg ships before landing on the ring, you are only guided around parts of the ring where they are not present.`
