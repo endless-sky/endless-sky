@@ -76,6 +76,8 @@ private:
 
 
 private:
+	bool isEmpty = true;
+
 	// The planet must satisfy these conditions:
 	std::set<const Planet *> planets;
 	// It must have at least one attribute from each set in this list:

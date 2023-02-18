@@ -93,8 +93,39 @@ string Format::Credits(int64_t value)
 
 
 
+// Convert the given number into abbreviated format as described in Format::Credits,
+// then attach the ' credit' or ' credits' suffix to it.
+string Format::CreditString(int64_t value)
+{
+	if(value == 1)
+		return "1 credit";
+	else
+		return Credits(value) + " credits";
+}
+
+
+
+// Writes the given number into a string,
+// then attach the ' ton' or ' tons' suffix to it.
+string Format::MassString(double amount)
+{
+	if(amount == 1)
+		return "1 ton";
+	return Format::Number(amount) + " tons";
+}
+
+
+
+// Creates a string similar to '<amount> tons of <cargo>'.
+string Format::CargoString(double amount, const string &cargo)
+{
+	return MassString(amount) + " of " + cargo;
+}
+
+
+
 // Convert a time in seconds to years/days/hours/minutes/seconds
-std::string Format::PlayTime(double timeVal)
+string Format::PlayTime(double timeVal)
 {
 	string result;
 	int timeValFormat = 0;
