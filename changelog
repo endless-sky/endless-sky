@@ -5,7 +5,7 @@ Version 0.10.0
     # Content
     * Hai Reveal! (@MasterOfGrey)
       * Various fixes to missions. (@bene-dictator, @Hurleveur, @McloughlinGuy, @RisingLeaf, @UnorderedSigh)
-      * Various typo fixes. (@bene-dictator, @Hatrask, @McloughlinGuy, @UnorderedSigh, @williaji)
+      * Various typo fixes. (@bene-dictator, @EjoThims, @Hatrask, @McloughlinGuy, @tibetiroka, @UnorderedSigh, @williaji)
       * Relocate the new "Deep Space" systems. (@Quantumshark)
       * Various fixes to other content. (@TomGoodIdea)
     * A new alien faction: The Gegno. (@Saugia)
@@ -14,7 +14,7 @@ Version 0.10.0
     # UI
     * The job board supports sorting jobs! (@alextd, @samrocketman)
     * Text and choices in conversations can be hidden with conditions! (@SolraBizna, @UnorderedSigh, @Hurleveur)
-    * It is now possible to aim your ship and fire primary weapons using your mouse! (@CAPTAIN1947, @samrocketman, @Hurleveur)
+    * It is now possible to aim your ship and fire primary weapons using your mouse! (@CAPTAIN1947, @samrocketman, @Hurleveur, @Terin)
     # Mechanics
     * Conditions can be stored and accessed across save files using the "global: " prefix. (@RisingLeaf)
     * Starts may be unlocked based on global conditions. (@RisingLeaf)
@@ -30,7 +30,7 @@ Version 0.10.0
       * Remove xcode project, use cmake to generate one on demand. (@quyykk)
   * Bug fixes:
     * Content bugs:
-      * Typo fixes. (@a-random-lemurian, @Anarchist2, @Aneutronic, @aradapilot, @Deltaspace0, @EjoThims, @Ember369, @FoxSylv, @Hecter94, @hmglasgow, @Kepler-69c, @nathan-b, @opusforlife2, @real-dam, @roadrunner56, @Terin, @ThrawnCA, @williaji, @zlonghofer)
+      * Typo fixes. (@a-random-lemurian, @Anarchist2, @Aneutronic, @aradapilot, @Corraban2, @Deltaspace0, @EjoThims, @Ember369, @FoxSylv, @Hecter94, @hmglasgow, @Kepler-69c, @nathan-b, @opusforlife2, @real-dam, @roadrunner56, @Terin, @ThrawnCA, @tibetiroka, @warp-core, @williaji, @zlonghofer)
       * Gave Void Sprite Parts a proper plural name override. (@warp-core)
       * Moved the log entry in "Unfettered: Jump Drive Source" to the correct place. (@Hurleveur)
       * Added range and velocity overrides and hit effects to the Twin Blaster definitions. (@Hecter94)
@@ -68,6 +68,8 @@ Version 0.10.0
       * Corrected an oversight where the Kimek Briar was not given reverse thrusters alongside the other civilian Coalition ships. (@Arachi-Lover)
       * Void Sprite Parts can no longer be installed. (@TomGoodIdea)
       * Correctly fail "Deep: TMBR 0" when "Deep: TMBR 1" is offered. (@warp-core)
+      * Corrected "Hai Wormhole Warning" offer conditions. (@bene-dictator)
+      * Shorten the description of "Paradise Job: Debtors" so it fits in the UI box. (@Terin)
     * Engine bugs:
       * Various style fixes. (@tibetiroka, @petervdmeer)
       * Fixed rendering of some compressed PNGs. (@quyykk)
@@ -98,6 +100,14 @@ Version 0.10.0
       * Fixed an issue with the insufficient crew flight check. (@Quantumshark)
       * Fixed a bug where the parking buttons did not work correctly with only one ship and no flagship. (@warp-core)
       * Fixed building in gcc 13 by including <cstdint>. (@heirecka)
+      * Fixed an issue with displaying hte text of the selected choice when some choices are hidden in conversations. (@warp-core)
+      * Ships which can be carried no longer select targets for plundering. (@tibetiroka)
+      * Use a PlayerInfo transaction to prevent repitition of actions in missions when saving and reloading during a conversation. (@wjp, @UnorderedSigh, @warp-core)
+      * Prevent plundering ships from retargeting a ship they've already boarded for plundering. (@tibetiroka)
+      * Carryable ships no longer offer to assist the player when hailed, since they are not able to assist. (@warp-core, @tibetiroka)
+      * Correct the minimum required crew check when installing or uninstalling an outfit to allow uninstalling a Command Center with no other rquied crew. (@TomGoodIdea, @RisingLeaf)
+      * Prevent a divide by zero error in Ship::Move(). (@warp-core)
+      * Allow mission clearance to bypass language barriers. (@Amazinite)
   * Game content:
     * New content:
       * Two new human guns: Twin Blaster and Modified Twin Blaster. (@Daeridanii1)
@@ -142,6 +152,7 @@ Version 0.10.0
       * Added a mission where the Unfettered will exchange Jump Drives for new weaponry. (@Hurleveur)
       * Unfettered Hai shipyards now sell ships outfitted differently to normal Hai shipyards. (@Hurleveur, @EjoThims)
       * Added more attributes to human worlds and two new jobs destined for planets with the "forest" attribute. (@bene-dictator)
+      * Added a mission and jobs where the player can sell Jump Drives to the Heliarchs. (@Arachi-Lover)
     * Mission changes:
       * Adjusted human bounty jobs to make them more active. (@Anarchist2)
         * The target ships will only spawn in a system one jump away from the source.
@@ -241,6 +252,7 @@ Version 0.10.0
         * For reference, in 0.9.15, afterburners gained a 50% increase in thrust, 70-80% decrease in fuel usage, and 33% decrease in size.
       * Adjusted the Sea Scorpion and Cicada slightly. (@EjoThims)
       * Increased ramscoop value of all Remnant ships and the Emergency Ramscoop by 0.75, and adjusted the performance of ramscoops in Ember Waste systems. (@Zitchas)
+      * Change the Ibis' required license to "Remnant" from "Remnant Capital". (@Zitchas)
     * Graphics:
       * Added sprites for the Remnant Swan. (@Saugia)
       * Remodelled Korath Thermal Repeater sprites. (@Daeridanii1)
@@ -289,6 +301,8 @@ Version 0.10.0
       * Added more details to the description of "Remnant: Cognizance 28". (@Aneutronic)
       * Added a new conversation option when first offered the Emerald Sword. (@dashkal16 )
       * Reworded the message given when attempting to land on an unlandable stellar object within the habitable range of its star. (@TomGoodIdea)
+      * Swapped the Ramscoop on the "Cruiser (Jump)" for a Catalytic Ramscoop. (@williaji)
+      * Removed two curse words from "Remnant: Deep Surveillance" missions. (@Zitchas)
   * Game mechanics:
     * New mechanics:
       * New autoconditions:
@@ -328,6 +342,7 @@ Version 0.10.0
       * A mission's "apparent payment" may be used in "<payment>" text replacements. (@tibetiroka)
       * Added an <npc model> text replacement for text in missions and NPCs. (@kaol)
       * Added support for a user to increase the number of previous saves created automatically by editing the preferences file. (@warp-core)
+      * Added support for gamerules, currently including the universal ramscoop, person spawn period, and the weight of the no spawn option. (@Amazinite)
     * Mechanic changes:
       * Frugal ships now consider their health percentage instead of the sum of their shield and hull percentages. (@Hurleveur)
       * Changed the scanning formula for detecting illegal cargo so more legal cargo can conceal illegal cargo in the hold, making it less likely to be detected. (@quyykk)
@@ -345,6 +360,7 @@ Version 0.10.0
       * Raid fleets are now much more customizable. (@Hurleveur)
       * Ships will now send random interval untranslated hail messages if they have hails even if the player does not have their government's language. (@UnorderedSigh)
       * Reintroduced the possibility for enabling auto-aimm only while weapons are being fired. (@Koranir)
+      * Ships conducting scans will match course and position with their target if possible. (@UnorderedSigh)
   * User interface:
     * Added shortcut keys for parking and unparking ships. (@Terin)
     * Added a setting to always underline the shortcut hotkey on button labels. (@warp-core)
@@ -376,6 +392,9 @@ Version 0.10.0
     * List outfit cost and requirements above the attributes. (@warp-core)
     * Outfits in storage on planets without an outfitter are no longer marked on the map. (@TomGoodIdea)
     * Targeting pointers and the target ship outline in the HUD can now have colors defined independently to the radar colors. (@warp-core)
+    * Flicker the name text entry fields in the conversation panel on invalid inputs. (@Terin)
+    * Added an option to hide the asteroid scanning target pointers around unselected minables. (@RisingLeaf)
+    * Hostile disabled ships no longer apologize for being unable to assist when hailed by a player in need of assistance. (@tibetiroka)
   * Under the hood:
     * Use SDL for Windows high-DPI support. (@quyykk)
     * Cache attraction and deterrence values. (@Hurleveur)
@@ -402,6 +421,7 @@ Version 0.10.0
     * Moved CanSendHail from the AI.cpp anonymous namespace to Ship. (@Hurleveur)
     * Added a method for formatting a credits string ("<number> credits") and make use of it in appropriate places. (@tibetiroka)
     * Skip the use of RendezvousTime for projectiles with TotalLifetimes of a single frame. (kaol)
+    * Standardized the construction of "<x> tons" and "<x> tons of <cargo>" strings with new Format methods. (@tibetiroka)
   * CI/CD and development environment:
     * A variety of new integration tests for new and existing features. (@Hurleveur, @warp-core)
     * Various fixes to unit tests. (@quyykk)
@@ -450,6 +470,7 @@ Version 0.10.0
     * All relevant conditions will be printed when an integration test fails, not just ones with a specific prefix. (@petervdmeer, @quyykk)
     * Muted audio by default when running integration tests. (@tibetiroka)
     * Added an extensive data file style check CI job. (@tibetiroka)
+    * Install pkg-config in MacOS CI/CD if it is not installed. (@samrocketman)
 
 Version 0.9.16.1:
   * Breaking changes:
