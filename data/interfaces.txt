@@ -628,14 +628,6 @@ interface "hud"
 		from 0 240
 		align top left
 
-	visible if "combined range display"
-	sprite "ui/range"
-		from 0 255
-		align top left
-	string "target range"
-		from 0 240
-		align top left
-
 	visible if "tactical display"
 	sprite "ui/tactical/tactical"
 		from 130 280

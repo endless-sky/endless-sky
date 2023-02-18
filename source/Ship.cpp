@@ -3540,7 +3540,7 @@ double Ship::TurnRate() const
 
 double Ship::TrueTurnRate() const
 {
-	return attributes.Get("turn") / InertialMass() * 1. / (1. + slowness * .05);
+	return TurnRate() * 1. / (1. + slowness * .05);
 }
 
 

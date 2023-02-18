@@ -833,10 +833,8 @@ void Engine::Step(bool isActive)
 
 			if(tacticalRange && !strategicScanRange)
 				info.SetCondition("range display");
-			else if(strategicScanRange && !tacticalRange)
-				info.SetCondition("strategic range display");
 			else
-				info.SetCondition("combined range display");
+				info.SetCondition("strategic range display");
 
 			bool scrutable = !target->Attributes().Get("inscrutable");
 			// Actual tactical information requires a scrutable
