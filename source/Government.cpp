@@ -239,6 +239,20 @@ void Government::Load(const DataNode &node)
 					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
+		else if(key == "reputation")
+		{
+			for(const DataNode &grand : child)
+			{
+				if(grand.Token(0) == "player reputation" && grand.Size() >= 2)
+					initialPlayerReputation = add ? initialPlayerReputation + child.Value(valueIndex) : child.Value(valueIndex);
+				else if(grand.Token(0) == "max" && grand.Size() >= 2)
+					reputationMax = add ? reputationMax + grand.Value(valueIndex) : grand.Value(valueIndex);
+				else if(grand.Token(0) == "min" && grand.Size() >= 2)
+					reputationMin = add ? reputationMin + grand.Value(valueIndex) : grand.Value(valueIndex);
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
+			}
+		}
 		else if(key == "trusted")
 		{
 			bool clearTrusted = !trusted.empty();
