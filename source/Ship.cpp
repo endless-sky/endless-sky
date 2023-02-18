@@ -2306,7 +2306,7 @@ void Ship::DoGeneration()
 		shieldDelay = max(0, shieldDelay - 1);
 		hullDelay = max(0, hullDelay - 1);
 	}
-	// Carried ships can steal energy from their parent's batteries,
+	// Carried ships can recharge energy from their parent's batteries,
 	// if they are preparing for deployment. Otherwise, they replenish the
 	// parent's batteries.
 	if(!GetSystem())
