@@ -41,7 +41,7 @@ jobs:
         docker-compose run steam-${{ matrix.arch }}
 
     # Test the binary
-    - name: Install xvfb runtime dependencies
+    - name: Install runtime dependencies
       run: sudo apt-get install -y --no-install-recommends libosmesa6 mesa-utils
     - name: Restore cached Steam Runtime environment
       id: cache-runtime
