@@ -86,7 +86,7 @@ mission "First Contact: Bunrodea (Hostile)"
 			label sit
 			`	You sit down on the boarding ramp of your ship and gaze at the scenery while you wait.`
 			label intro
-			`	After some time, you look up to the palace steps and notice a six-limbed creature unlike the mantis-like aliens watching over you slowly making its way downward. As it gets to the last few steps, the aliens guarding you stand to attention. You wonder if this entire time you've just been waiting for this alien to reach the bottom of the stairs.`
+			`	After some time, you look up to the palace steps and notice a six-limbed creature unlike the mantis-like aliens watching over you. As it slowly makes its way downward and gets to the last few steps, the aliens guarding you stand to attention. You wonder if this entire time you've just been waiting for this alien to reach the bottom of the stairs.`
 			`	The creature approaches you on all six limbs, but stands up on its hind two legs once it is only a few paces away from you. It is rather small, hardly reaching your chin while it stands at full height, with big round eyes and a large, bulbous nose. It extends its four arms outward, revealing the palms of its hands. Except for its face and palms, it is covered in a thin layer of golden brown fur. It begins speaking. You can't understand what it's saying, but it seems to be cycling through various different languages and pausing after each line, as each sentence sounds wildly different from the last. You're suddenly startled when it says perfectly, "Hello."`
 			choice
 				`	"Hello?"`
