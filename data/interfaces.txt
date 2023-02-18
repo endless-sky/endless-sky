@@ -22,6 +22,7 @@ color "medium" .5 .5 .5 0.
 color "dim" .25 .25 .25 0.
 color "dimmer" .18 .18 .18 0.
 color "faint" .1 .1 .1 0.
+color "dark" .05 .05 .05 0.
 
 # Colors used for drawing ship list in player info panel.
 color "flagship" .5 .5 .1 0.
@@ -106,6 +107,34 @@ color "radar anomalous" .7 0. 1. 0.
 color "radar blink" 1. 1. 1. 0.
 color "radar viewport" 0. .3 0. 0.
 color "radar star" .6 .6 .6 0.
+
+# Colors used for the outline of the targeted ship.
+color "ship target outline player" .2 1. 0. 0.
+color "ship target outline friendly" .4 .6 1. 0.
+color "ship target outline unfriendly" .8 .8 .3 0.
+color "ship target outline hostile" .85 .3 .2 0.
+color "ship target outline inactive" .4 .4 .4 0.
+color "ship target outline special" 1. 1. 1. 0.
+color "ship target outline blink" 1. 1. 1. 0.
+
+# Colors used for ship target pointers.
+color "ship target pointer player" .2 1. 0. 0.
+color "ship target pointer friendly" .4 .6 1. 0.
+color "ship target pointer unfriendly" .8 .8 .3 0.
+color "ship target pointer hostile" .85 .3 .2 0.
+color "ship target pointer inactive" .4 .4 .4 0.
+color "ship target pointer special" 1. 1. 1. 0.
+color "ship target pointer blink" 1. 1. 1. 0.
+
+# Colors used for minable target pointers.
+color "minable target pointer selected" 1. 1. 1. 0.
+color "minable target pointer unselected" .4 .4 .4 0.
+
+# Colors used for planet target pointers.
+color "planet target pointer friendly" .4 .6 1. 0.
+color "planet target pointer restricted" .8 .8 .3 0.
+color "planet target pointer hostile" .85 .3 .2 0.
+color "planet target pointer dominated" 1. 1. 1. 0.
 
 # Colors used for warnings and errors.
 color "error back" .25 .1 .1 1.

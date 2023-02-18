@@ -90,6 +90,12 @@ public:
 	// are multiple pilots with the same name it may have a digit appended.)
 	std::string Identifier() const;
 
+	// Start a transaction. This stores the current state, and any Save()
+	// calls during the transaction will store this saved state.
+	void StartTransaction();
+	// Complete the transaction.
+	void FinishTransaction();
+
 	// Apply the given changes and store them in the player's saved game file.
 	void AddChanges(std::list<DataNode> &changes);
 	// Add an event that will happen at the given date.
@@ -319,6 +325,7 @@ private:
 	void StepMissions(UI *ui);
 	void Autosave() const;
 	void Save(const std::string &path) const;
+	void Save(DataWriter &out) const;
 
 	// Check for and apply any punitive actions from planetary security.
 	void Fine(UI *ui);
@@ -422,6 +429,8 @@ private:
 
 	// Basic information about the player's starting scenario.
 	CoreStartData startData;
+
+	DataWriter *transactionSnapshot = nullptr;
 };
 
 
