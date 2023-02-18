@@ -236,11 +236,28 @@ bool DataNode::IsNumber(const string &token)
 // can be used to access them.
 bool DataNode::IsCondition(int index) const
 {
-	// Make sure this token exists and is not empty.
-	if(static_cast<size_t>(index) >= tokens.size() || tokens[index].empty())
-		return false;
-
 	return IsCondition(tokens[index]);
+}
+
+
+
+// Convert the token at the given index to a boolean. This returns false
+// and prints an error if the index is out of range or the token cannot
+// be interpreted as a number.
+bool DataNode::BoolValue(int index) const
+{
+	// Check for empty strings and out-of-bounds indices.
+	if(static_cast<size_t>(index) >= tokens.size() || tokens[index].empty())
+		PrintTrace("Error: Requested token index (" + to_string(index) + ") is out of bounds:");
+	else if(!IsBool(tokens[index]))
+		PrintTrace("Error: Cannot convert value \"" + tokens[index] + "\" to a boolean:");
+	else
+	{
+		const string &token = tokens[index];
+		return token == "true" || token == "1";
+	}
+
+	return false;
 }
 
 
@@ -260,6 +277,26 @@ bool DataNode::IsCondition(const string &token)
 
 	return token.size() > 1 && token[0] == CONDITION_CHAR
 		&& (token.size() > 2 || token[1] != CONDITION_CHAR);
+}
+
+
+
+// Check if the token at the given index is a boolean, i.e. "true"/"1" or "false"/"0"
+// as a string.
+bool DataNode::IsBool(int index) const
+{
+	// Make sure this token exists and is not empty.
+	if(static_cast<size_t>(index) >= tokens.size() || tokens[index].empty())
+		return false;
+
+	return IsBool(tokens[index]);
+}
+
+
+
+bool DataNode::IsBool(const string &token)
+{
+	return token == "true" || token == "1" || token == "false" || token == "0";
 }
 
 

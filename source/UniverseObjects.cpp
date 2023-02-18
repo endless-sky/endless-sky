@@ -487,6 +487,8 @@ void UniverseObjects::LoadFile(const string &path, shared_ptr<ConditionsStore> v
 			substitutions.Load(node);
 		else if(key == "wormhole" && node.Size() >= 2)
 			wormholes.Get(node.Token(1))->Load(node);
+		else if(key == "gamerules" && node.HasChildren())
+			gamerules.Load(node);
 		else if(key == "disable" && node.Size() >= 2)
 		{
 			static const set<string> canDisable = {"mission", "event", "person"};

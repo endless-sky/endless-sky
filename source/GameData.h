@@ -39,6 +39,7 @@ class Fleet;
 class FormationPattern;
 class Galaxy;
 class GameEvent;
+class Gamerules;
 class Government;
 class Hazard;
 class ImageSet;
@@ -178,6 +179,8 @@ public:
 	static MaskManager &GetMaskManager();
 
 	static const TextReplacements &GetTextReplacements();
+
+	static const Gamerules &GetGamerules();
 
 	// Thread-safe way to draw the menu background.
 	static void DrawMenuBackground(Panel *panel);
