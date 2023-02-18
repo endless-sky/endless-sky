@@ -979,14 +979,14 @@ void Engine::Draw() const
 		label.Draw();
 
 	draw[drawTickTock].Draw();
-	batchDraw[drawTickTock].Draw();
 
-	for (const auto& it : ships)
+	for(const auto &it : ships)
 	{
 		if(it->GetActualSystem() == player.GetSystem())
 			ShipFXShader::Draw(it.get(), (it->Position() - center) * zoom, it->RecentHits(), zoom, it->GetFrame());
-		if(!it->RecentHits().empty())Messages::Add(to_string((it->RecentHits()).at(it->RecentHits().size()-1).second));
 	}
+
+	batchDraw[drawTickTock].Draw();
 
 	for(const auto &it : statuses)
 	{
@@ -1534,6 +1534,7 @@ void Engine::CalculateStep()
 	draw[calcTickTock].SetCenter(newCenter, newCenterVelocity);
 	batchDraw[calcTickTock].SetCenter(newCenter);
 	radar[calcTickTock].SetCenter(newCenter);
+	ShipFXShader::SetCenter(newCenter);
 
 	// Populate the radar.
 	FillRadar();
@@ -2179,7 +2180,7 @@ void Engine::DoCollisions(Projectile &projectile)
 		}
 		else if(hit)
 		{
-			int eventType = hit->TakeDamage(visuals, damage.CalculateDamage(*hit), gov, projectile.Position());
+			int eventType = hit->TakeDamage(visuals, damage.CalculateDamage(*hit), gov, projectile.Position() + projectile.Velocity() * closestHit);
 			if(eventType)
 				eventQueue.emplace_back(gov, hit, eventType);
 		}

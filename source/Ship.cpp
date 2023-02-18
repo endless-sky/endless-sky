@@ -2431,11 +2431,12 @@ void Ship::DoGeneration()
 			i++;
 		}
 	}
-
-#include <string>
-	if (recentHits.size() > 0)
+	if(recentHits.size() > 64)
 	{
-		Logger::LogError(name + " got hit  " + to_string(recentHits.size()) + " times.");
+		sort(recentHits.begin(), recentHits.end(), [](auto &left, auto &right) {
+			return left.second > right.second;
+			});
+		recentHits.resize(64);
 	}
 
 	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());

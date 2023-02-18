@@ -18,9 +18,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class Sprite;
 class Point;
+class Ship;
 #include "Body.h"
 
 #include <cstdint>
+#include <memory>
 #include <vector>
 
 
@@ -41,8 +43,8 @@ public:
 		float blur[2] = { 0.f, 0.f };
 		float clip = 1.f;
 		float alpha = 1.f;
-		std::vector<float> recentHitPoints = std::vector<float>(32 * 2);
-		std::vector<float> recentHitDamage = std::vector<float>(32);
+		float recentHitPoints[64];
+		float recentHitDamage[32];
 		int recentHits = 0;
 	};
 
@@ -50,16 +52,22 @@ public:
 public:
 	// Initialize the shaders.
 	static void Init();
+	static void SetCenter(Point newCenter);
 
 	// Draw a sprite.
 	static void Draw(const Body* body, const Point& position, std::vector<std::pair<Point, double>>& recentHits, float zoom = 1.f, float frame = 0.f);
 	static EffectItem Prepare(const Body *body, const Point& position, std::vector<std::pair<Point, double>>& recentHits, float zoom = 1.f, float frame = 0.f);
+	static EffectItem Prepare(const std::shared_ptr<Body> body, const Point &position, std::vector<std::pair<Point, double>> &recentHits, float zoom = 1.f, float frame = 0.f);
+	static EffectItem Prepare(const std::shared_ptr<Ship> body, float zoom);
 
 	static void Bind();
 	static void Add(const EffectItem& item, bool withBlur = false);
 	static void Unbind();
 
+	static Point center;
+
 private:
+	
 };
 
 

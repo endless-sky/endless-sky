@@ -25,6 +25,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <sstream>
 #include <vector>
 #include "Logger.h"
+#include <algorithm>
+#include "Ship.h"
 
 #ifdef ES_GLES
 // ES_GLES always uses the shader, not this, so use a dummy value to compile.
@@ -43,7 +45,7 @@ namespace {
 	GLint transformI;
 	GLint blurI;
 	GLint clipI;
-	GLint alphaI;
+	//GLint alphaI;
 
 	GLint recentHitsCountI;
 	GLfloat recentDamageI;
@@ -52,6 +54,8 @@ namespace {
 	GLuint vao;
 	GLuint vbo;
 }
+
+Point ShipFXShader::center = Point();
 
 // Initialize the shaders.
 void ShipFXShader::Init()
@@ -126,14 +130,14 @@ void ShipFXShader::Init()
 		"void main()\n"
 		"{\n"
 		"  vec4 color;"
-		"  vec4 baseColor = vec4(.4, .5, 1., 1.) * sobellish(fragTexCoord);\n"
+		"  vec4 baseColor = vec4(.43, .55, .70, .75) * sobellish(fragTexCoord);\n"
 		"  for(int i = 0; i < recentHitCount; i++)\n"
 		"  {\n"
 		"    vec2 hitPoint = recentHits[i] + vec2(0.5, 0.5);\n"
-		"    color += baseColor * recentDamage[i] * clamp(.5 - distance(hitPoint, fragTexCoord), 0., 1.);\n"
+		"    color += baseColor * recentDamage[i] * clamp(1. - distance(hitPoint, fragTexCoord)*3, 0., 1.);\n"
 		"  }\n"
 
-		"  finalColor = color;\n"
+		"  finalColor = color / recentHitCount;\n"
 		"}\n"
 		"\n";
 
@@ -190,6 +194,10 @@ void ShipFXShader::Draw(const Body* body, const Point& position, std::vector<pai
 	Unbind();
 }
 
+void ShipFXShader::SetCenter(Point newCenter)
+{
+	center = newCenter;
+}
 
 
 ShipFXShader::EffectItem ShipFXShader::Prepare(const Body* body, const Point& position, vector<pair<Point, double>>& recentHits, float zoom, float frame)
@@ -202,8 +210,8 @@ ShipFXShader::EffectItem ShipFXShader::Prepare(const Body* body, const Point& po
 	item.frame = frame;
 	item.frameCount = body->GetSprite()->Frames();
 	// Position.
-	item.position[0] = static_cast<float>(position.X());
-	item.position[1] = static_cast<float>(position.Y());
+	item.position[0] = static_cast<float>(position.X() * zoom);
+	item.position[1] = static_cast<float>(position.Y() * zoom);
 
 	// Get unit vectors in the direction of the object's width and height.
 	double width = body->Width();
@@ -220,27 +228,22 @@ ShipFXShader::EffectItem ShipFXShader::Prepare(const Body* body, const Point& po
 	item.transform[2] = -uh.X();
 	item.transform[3] = -uh.Y();
 
-	item.recentHitPoints.clear();
-	item.recentHitDamage.clear();
-	auto recth = recentHits;
-	item.recentHitPoints.reserve(recth.size() * 2);
-	item.recentHitDamage.reserve(recth.size());
+	item.recentHits = min( 64, static_cast<int>(recentHits.size()) );
 
 	Angle sub = Angle(180.) - body->Facing();
-	for(int i = 0; i < recth.size(); i++)
+	for(int i = 0; i < item.recentHits; i++)
 	{
-		const auto newP = sub.Rotate(recth[i].first * Point(-1, -1));
-		item.recentHitPoints.push_back(newP.X() / (3. * body->Radius()));
-		item.recentHitPoints.push_back(newP.Y() / (3. * body->Radius()));
-		item.recentHitDamage.push_back(min(1., recth[i].second));
-		Messages::Add("Hit at " + to_string(newP.X() / body->Radius()) + ", " + to_string(newP.Y() / body->Radius()) + ", intensity of " + to_string(recth[i].second) + " with count of " + to_string(recth.size()));
+		const auto newP = sub.Rotate(recentHits[i].first * Point(-1, -1));
+		item.recentHitPoints[2*i] = (newP.X() / (2. * body->Radius()));
+		item.recentHitPoints[2*i + 1] = (newP.Y() / (2. * body->Radius()));
+		item.recentHitDamage[i] = (min(1., recentHits[i].second));
+		Messages::Add("Hit at " + to_string(newP.X() / body->Radius()) + ", " + to_string(newP.Y() / body->Radius()) + ", intensity of " + to_string(recentHits[i].second) + " with count of " + to_string(item.recentHits));
 	}
 	/*for (pair<Point, double>& hit : recentHits)
 	{
 		item.recentHitPoints.push_back(hit.first.X());
 		item.recentHitPoints.push_back(hit.first.Y());
 	}*/
-	item.recentHits = recth.size();
 
 	return item;
 }
@@ -272,8 +275,8 @@ void ShipFXShader::Add(const EffectItem& item, bool withBlur)
 	glUniform1f(clipI, item.clip);
 	////glUniform1f(alphaI, item.alpha);
 
-	glUniform2fv(recentHitsI, 128, item.recentHitPoints.data());
-	glUniform1fv(recentDamageI, 64, item.recentHitDamage.data());
+	glUniform2fv(recentHitsI, 128, item.recentHitPoints);
+	glUniform1fv(recentDamageI, 64, item.recentHitDamage);
 	glUniform1i(recentHitsCountI, item.recentHits);
 	Logger::LogError(to_string(item.recentHits));
 
