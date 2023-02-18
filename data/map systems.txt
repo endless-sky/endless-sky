@@ -28212,7 +28212,7 @@ system "Sera Natta"
 	trade Plastic 390
 	fleet "Bunrodea Defense" 3000
 	object
-		sprite star/k-giant
+		sprite star/a8
 		period 10
 	object
 		sprite planet/desert8-b

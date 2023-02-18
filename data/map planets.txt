@@ -3084,8 +3084,8 @@ planet "Ogmur's Siphon"
 planet Okoity
 	attributes bunrodea urban
 	landscape land/fog2
-	description `Okoity has the highest population of any Bunrodean world, with a staggering 24 billion people. All but the most inhospitable regions of the planet have been settled in some shape or form.`
-	description `	The planet saw a large influx of people with the destruction of Olohoa's atmosphere in the nearby system of Sera Natta, massive even relative to the already preexisting population. Although this occurred about a century ago, the planet still seems to be struggling with this increased population.`
+	description `Due to an overabundance of natural resources and arable land when the planet was discovered, Okoity has achieved the highest population of any Bunrodean world, with a staggering 24 billion people. All but the most inhospitable regions of the planet have been settled in some shape or form.`
+	description `	Unfortunately, time has taken its toll on the planet, as the once prosperous lands have run dry as a result of millennia of industrial habitation. While the planet isn't completely barren of natural resources, an increasing large amount of supplies must be brought in from other worlds to sustain the population.`
 	spaceport `The spaceport of Okoity is completely packed with Bunrodeans. You have little room to maneuver as you explore the spaceport while trying to not bump into anyone. Many of the Bunrodeans here show signs of being genetically engineered, from Bunrodeans with extra limbs to one that you see up high climbing on walls and jumping from building to building to avoid the crowd below.`
 	shipyard "Bunrodea Basic"
 	outfitter "Bunrodea Basic"
@@ -3097,7 +3097,6 @@ planet Olohoa
 	attributes bunrodea uninhabited
 	landscape land/sky3
 	description `From afar, Olohoa looks like it might be a pleasant place to live, with clear oceans not too dissimilar to what you might find on a Paradise World. But your ship's sensors tell you a different story, one of a planet with immense amounts of ultraviolet radiation bombarding its surface. Nothing short of an extremophile could survive on the surface here, and any life in the oceans is likely deep down where no radiation can reach.`
-	description `	As you explore, you begin to find occasional signs of civilization in the form of small cities with landing pads for ships, but these areas are just as lifeless as the rest of the planet.`
 
 planet Osaeli
 	attributes ka'het uninhabited
@@ -3933,7 +3932,7 @@ planet Sopoyra
 	spaceport `	There are freighters that will come from the north to drop off goods here, only for them to be immediately picked up by another freighter that brings the goods down south. It seems somewhat inefficient to do things this way, but must be done to be in keeping with royal decrees.`
 	shipyard "Bunrodea Basic"
 	outfitter "Bunrodea Basic"
-	"required reputation" 10
+	"required reputation" 25
 	bribe 0
 	security 0
 
