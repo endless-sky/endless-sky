@@ -1,19 +1,5 @@
 name: CI
 
-# TODO:
-# - Run unit tests for all platforms (Blocked by XCode build file creation.)
-# - Reduce duplicate code (Blocking: https://github.community/t5/GitHub-Actions/Support-for-YAML-anchors/td-p/30336)
-# - Investigate using scoop as package manager on windows
-# - Cache build files on all systems (Looking at you OSX)
-# - Cache development libraries on windows
-# - Run windows builds as matrix with different mingw versions
-# - Construct even more intelligent workflows
-#    e.g.
-#      data/* -> use "latest" build for triggering branch, only run parse and/or acceptance tests
-#      source/* -> build new binary, run all tests, cache binary
-#      PR opened -> upload artifact ZIPs to PR as comment, and edit/replace as new commits come in
-# - Windows: Allow programmers to use their own copy of development libs without hacking a temporary URL in the windows step
-
 on:
   push:
     # Run for pushes to master or a release branch, e.g. a PR was merged ...
@@ -27,8 +13,6 @@ on:
     - 'tests/**'
     - '.github/workflows/**'
     - keys.txt
-    - SConstruct
-    - .codespell.exclude
   pull_request:
     # Run for any push to any pull request, if it modifies source code or game text.
     types: [opened, synchronize]
@@ -38,8 +22,6 @@ on:
     - 'tests/**'
     - '.github/workflows/**'
     - keys.txt
-    - SConstruct
-    - .codespell.exclude
 
 
 concurrency:
@@ -75,7 +57,7 @@ jobs:
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v10
       with:
-        vcpkgGitCommitId: '163fe7bd3d67c41200617caaa245b5ba2ba854e6'
+        vcpkgGitCommitId: '91dd61bd441a68b4017b61011d0350b2e6aeeccf'
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
@@ -104,7 +86,7 @@ jobs:
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v10
       with:
-        vcpkgGitCommitId: '163fe7bd3d67c41200617caaa245b5ba2ba854e6'
+        vcpkgGitCommitId: '91dd61bd441a68b4017b61011d0350b2e6aeeccf'
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: 'mingw-ci'
@@ -117,13 +99,16 @@ jobs:
         echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
       if: ${{ failure() || cancelled() }}
       shell: bash
-    - name: Upload game
+    - name: Upload binary
       uses: actions/upload-artifact@v3
       with:
         name: binary-windows
-        path: |
-          ./build/ci/Endless Sky.exe
-          ./build/ci/*.dll
+        path: ./build/ci/Endless Sky.exe
+    - name: Upload DLLs
+      uses: actions/upload-artifact@v3
+      with:
+        name: windows-dlls
+        path: ./build/ci/*.dll
 
 
   build_windows_clang:
@@ -140,7 +125,7 @@ jobs:
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v10
       with:
-        vcpkgGitCommitId: '163fe7bd3d67c41200617caaa245b5ba2ba854e6'
+        vcpkgGitCommitId: '91dd61bd441a68b4017b61011d0350b2e6aeeccf'
         prependedCacheKey: vs-x64
     - uses: lukka/run-cmake@v10
       with:
@@ -170,7 +155,7 @@ jobs:
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v10
       with:
-        vcpkgGitCommitId: '163fe7bd3d67c41200617caaa245b5ba2ba854e6'
+        vcpkgGitCommitId: '91dd61bd441a68b4017b61011d0350b2e6aeeccf'
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: 'macos-ci'
@@ -188,7 +173,7 @@ jobs:
   test-parse:
     needs: [changed, build_windows]
     name: Data Files
-    if: ${{ (needs.changed.outputs.game_code == 'true' || needs.changed.outputs.cmake == 'true' || needs.changed.outputs.data == 'true' || needs.changed.outputs.parse_script == 'true') && always() }}
+    if: ${{ (needs.changed.outputs.game_code == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.data == 'true' || needs.changed.outputs.integration_tests == 'true' || needs.changed.outputs.parse_script == 'true') && always() }}
     runs-on: windows-2022
     env:
       CONTINUOUS: EndlessSky-win64-continuous.zip
@@ -197,80 +182,26 @@ jobs:
     - uses: actions/checkout@v3
     # If no code changes occurred then we can download the latest continuous.
     - name: Download latest continuous
-      if: ${{ needs.changed.outputs.game_code != 'true' && needs.changed.outputs.cmake != 'true' }}
+      if: ${{ needs.changed.outputs.game_code != 'true' && needs.changed.outputs.cmake_files != 'true' }}
       run: gh release download -R ${{ github.repository }} continuous -p ${{ env.CONTINUOUS }}
     - name: Extract and prepare continuous
-      if: ${{ needs.changed.outputs.game_code != 'true' && needs.changed.outputs.cmake != 'true' }}
+      if: ${{ needs.changed.outputs.game_code != 'true' && needs.changed.outputs.cmake_files != 'true' }}
       run: |
         Expand-Archive ${{ env.CONTINUOUS }} -DestinationPath continuous -Force
         COPY '.\continuous\Endless Sky.exe' .
         COPY '.\continuous\*.dll' .
     # Otherwise download the binary from CI.
     - name: Download game binary from CI
-      if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.cmake == 'true' }}
+      if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.cmake_files == 'true' }}
       uses: actions/download-artifact@v3
       with:
         name: binary-windows
+    - name: Download DLLs from CI
+      if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.cmake_files == 'true' }}
+      uses: actions/download-artifact@v3
+      with:
+        name: windows-dlls
     - name: Parse Datafiles
       run: .\utils\test_parse.ps1 'Endless Sky.exe'
     - name: Parse Integration Test Data
       run: .\utils\test_parse.ps1 'Endless Sky.exe' tests/integration/config
-
-
-  spellcheck:
-    name: Spellcheck
-    needs: [changed]
-    if: ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.codespell == 'true' }}
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-      with:
-        ref: ${{ github.event.pull_request.head.sha }}
-    - uses: codespell-project/actions-codespell@master
-      with:
-        builtin: clear,en-GB_to_en-US
-        path: data/
-        exclude_file: .codespell.exclude
-
-
-  style-check:
-    name: Style Check
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - uses: editorconfig-checker/action-editorconfig-checker@main
-    - run: editorconfig-checker
-
-
-  check-coding-style:
-    name: Code Style Check
-    needs: changed
-    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' }}
-    runs-on: ubuntu-latest
-    steps:
-    - name: checkout
-      uses: actions/checkout@v3
-    - name: set up python environment
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.x'
-    - name: install python packages
-      run: pip install regex
-    - name: Execute style checker
-      run: python ./utils/check_code_style.py
-
-
-  check-content-style:
-    name: Content Style Check
-    needs: changed
-    if: ${{ needs.changed.outputs.data == 'true' }}
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '3.x'
-    - name: Install dependencies
-      run: pip install regex
-    - name: Run style checker
-      run: python ./utils/check_content_style.py
