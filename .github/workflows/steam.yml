@@ -35,11 +35,6 @@ jobs:
       run: |
         STEAM_VERSION=$(curl -sSf https://repo.steampowered.com/steamrt-images-sniper/snapshots/latest-container-runtime-depot/VERSION.txt --output -)
         echo "RT_VERSION=$STEAM_VERSION" >> $GITHUB_ENV
-    - name: Setup vcpkg
-      run: |
-        git clone https://github.com/Microsoft/vcpkg
-        cd vcpkg
-        git checkout 163fe7bd3d67c41200617caaa245b5ba2ba854e6
     - name: Build Endless Sky
       run: |
         cd steam

@@ -24,11 +24,8 @@ set(CMAKE_BUILD_RPATH_USE_ORIGIN ON)
 
 # Setup vcpkg.
 if(ES_USE_VCPKG)
-	# The CMake version in the Sniper runtime is too old, so assume there is already a vcpkg/ directory.
-	if(NOT ES_STEAM)
-		include(utils/vcpkg_bootstrap.cmake)
-		x_vcpkg_bootstrap()
-	endif()
+	include(utils/vcpkg_bootstrap.cmake)
+	x_vcpkg_bootstrap()
 
 	set(VCPKG_BOOTSTRAP_OPTIONS "-disableMetrics")
 	set(VCPKG_INSTALL_OPTIONS "--no-print-usage")
