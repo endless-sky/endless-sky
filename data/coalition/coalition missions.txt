@@ -333,7 +333,7 @@ mission "Coalition Yottrite 3"
 				`	"That's gotta be the shortest courier mission I've ever heard of. Can't some other ship do the trip?"`
 					goto soitwouldseem
 			label insidecrate
-			`	"Older samples that you've brought to us, they contain. Experimented with, the Yottrite was. Unsure of the details, I am."`
+			`	"Older samples that you've brought to us, they contain. Experimented with, the yottrite was. Unsure of the details, I am."`
 				goto end
 			label soitwouldseem
 			`	"For you to carry them, the overseer asked. Why you in particular, unsure I am."`
@@ -357,7 +357,7 @@ mission "Coalition Yottrite 3"
 
 mission "Coalition Yottrite 4"
 	name "Yottrite Research"
-	description "Lugglop, one of the Arachi that oversees the mining operations in Bloptab, asked that you pick up some friends of his on <destination> so that they may help with the Yottrite research."
+	description "Lugglop, one of the Arachi that oversees the mining operations in Bloptab, asked that you pick up some friends of his on <destination> so that they may help with the yottrite research."
 	to offer
 		has "Coalition Yottrite 3: done"
 	source "Delve of Bloptab"
@@ -382,7 +382,7 @@ mission "Coalition Yottrite 4"
 
 mission "Coalition Yottrite 5"
 	name "Saryd Specialists"
-	description "Transport the twins Nasilor and Alituri to <destination>, where they will assist in the Yottrite research."
+	description "Transport the twins Nasilor and Alituri to <destination>, where they will assist in the yottrite research."
 	passengers 2
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	to offer
@@ -405,7 +405,7 @@ mission "Coalition Yottrite 5"
 
 mission "Coalition Yottrite 6"
 	name "Master Shipwright"
-	description "Head to <destination> to pick up a member of House Mallob so that they may help in trying to apply Yottrite to an alloy."
+	description "Head to <destination> to pick up a member of House Mallob so that they may help in trying to apply yottrite to an alloy."
 	landing
 	to offer
 		has "Coalition Yottrite 5: done"
@@ -425,7 +425,7 @@ mission "Coalition Yottrite 6"
 
 mission "Coalition Yottrite 7"
 	name "Master Shipwright"
-	description "Bring Pichiie to <destination>, where she will join Lugglop's team in their Yottrite research."
+	description "Bring Pichiie to <destination>, where she will join Lugglop's team in their yottrite research."
 	passengers 1
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	landing
@@ -492,7 +492,7 @@ mission "Coalition Yottrite 8"
 	destination "Pelubta Station"
 	on offer
 		conversation
-			`When you land, you receive a message from Lugglop, the Arach to whom you brought several Yottrite samples.`
+			`When you land, you receive a message from Lugglop, the Arach to whom you brought several yottrite samples.`
 			`	"Captain, some major findings, we have. Preparing a presentation about our research, to present in Ring of Wisdom, we are," he says. "Only, run out of pure samples, we have. Bring us one once more, would you? Willing to pay slightly more for the inconvenience, we are. <payment>."`
 			choice
 				`	"Okay, I'll bring you a piece of yottrite once again."`
@@ -509,7 +509,7 @@ mission "Coalition Yottrite 8"
 
 mission "Coalition Yottrite 9"
 	name "Yottrite Presentation"
-	description "Transport Lugglop and his team, alongside <cargo>, to the <destination>, where they will share with the Coalition's scientific community their findings on Yottrite."
+	description "Transport Lugglop and his team, alongside <cargo>, to the <destination>, where they will share with the Coalition's scientific community their findings on yottrite."
 	passengers 6
 	cargo "yottrite presentation materials" 6.14
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
