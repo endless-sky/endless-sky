@@ -66,6 +66,7 @@ namespace {
 		{"secretive", SECRETIVE},
 		{"ramming", RAMMING}
 	};
+
 	// Tokens that combine two or more flags.
 	const map<string, vector<PersonalityTrait>> COMPOSITE_TOKEN = {
 		{"heroic", {DARING, HUNTING}}
