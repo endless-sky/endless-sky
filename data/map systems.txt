@@ -8623,8 +8623,8 @@ system "Deep Space 19K12"
 system "Deep Space 19M1"
 	pos -895 -745
 	government Uninhabited
-	arrival 3450
-	habitable 3450
+	arrival 4050
+	habitable 4050
 	belt 2115
 	haze _menu/haze-black
 	link "Deep Space 19M2"
@@ -8655,7 +8655,7 @@ system "Deep Space 19M1"
 	object
 		sprite planet/gas0-b
 		distance 1549.84
-		period 415.509
+		period 383.497
 		object
 			sprite planet/dust1-b
 			distance 253
@@ -8671,15 +8671,15 @@ system "Deep Space 19M1"
 	object
 		sprite planet/gas16
 		distance 2193.3
-		period 699.515
+		period 645.623
 	object
 		sprite planet/gas13-b
 		distance 3145.85
-		period 1201.59
+		period 1109.02
 	object
 		sprite planet/gas3-b
 		distance 8021.02
-		period 4892.09
+		period 4515.19
 		object
 			sprite planet/rock7-b
 			distance 294
@@ -17381,8 +17381,8 @@ system Kiluit
 	pos 699.45 -562.23
 	government "Gegno Vi"
 	attributes "gegno" "vi"
-	arrival 2200
-	habitable 2200
+	arrival 2430
+	habitable 2430
 	belt 1258
 	"jump range" 70
 	haze _menu/haze
@@ -17422,15 +17422,15 @@ system Kiluit
 	object
 		sprite planet/lava5
 		distance 515
-		period 99.6688
+		period 94.8347
 	object Enbye
 		sprite planet/rock18
 		distance 1550
-		period 520.410
+		period 495.170
 	object
 		sprite planet/gas11-b
 		distance 2912.4
-		period 1340.37
+		period 1275.36
 		object
 			sprite planet/ice0-b
 			distance 269
@@ -30290,14 +30290,14 @@ system Vaiov
 	object
 		sprite planet/browndwarf-y
 		distance 2900
-		period 33.9882
+		period 2026.72
 		offset 180
 
 system Vanguwo
 	pos 978.189 -237.686
 	government Uninhabited
-	arrival 3450
-	habitable 3450
+	arrival 4050
+	habitable 4050
 	belt 1964
 	haze _menu/haze-67
 	link Lloloi
@@ -30316,7 +30316,7 @@ system Vanguwo
 	object
 		sprite planet/gas0-b
 		distance 4211
-		period 1860.92
+		period 1717.55
 		object
 			sprite planet/luna
 			distance 297
@@ -30324,7 +30324,7 @@ system Vanguwo
 	object
 		sprite planet/gas11
 		distance 7325
-		period 4269.35
+		period 3940.43
 
 system Vaticanus
 	pos 324 112
