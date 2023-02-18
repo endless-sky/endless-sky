@@ -28,7 +28,7 @@ outfit "Water Coolant System"
 	"mass" 10
 	"outfit space" -10
 	"cooling" 12
-	description "This system is a step up from ordinary cooling ducts; it circulates water in between an external radiator and your ship's hottest internal components to keep them from overheating."
+	description "This system is a step up from ordinary Cooling Ducts; it circulates water in between an external radiator and your ship's hottest internal components to keep them from overheating."
 
 outfit "Liquid Nitrogen Cooler"
 	category "Systems"
@@ -97,7 +97,7 @@ outfit "D94-YV Shield Generator"
 	"outfit space" -60
 	"shield generation" 1.31
 	"shield energy" 1.31
-	description "This is the most powerful shield generator available in human space. Because of their large size, D94-YV shield generators are mostly used in large warships, but you can fit one in a smaller ship if you are willing to sacrifice engine power or weaponry to make space for it."
+	description "This is the most powerful shield generator available in human space. Because of their large size, D94-YV Shield Generators are mostly used in large warships, but you can fit one in a smaller ship if you are willing to sacrifice engine power or weaponry to make space for it."
 
 outfit "S-270 Regenerator"
 	category "Systems"
