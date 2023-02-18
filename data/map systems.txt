@@ -2332,8 +2332,8 @@ system "Ae Ce L-332"
 	link "Is Ce B-139"
 	asteroids "large metal" 1 2.1
 	asteroids "medium rock" 11 3.6
-	minables "unknown" 1 2.7
-	fleet "Astral" 45000
+	minables unknown 1 2.7
+	fleet Astral 45000
 	object
 		sprite star/f-dwarf
 		period 10
@@ -2357,8 +2357,8 @@ system "Ae Ce L-332"
 system "Ae Ce Q-761"
 	pos 769.634 -760.648
 	government Uninhabited
-	arrival 500
-	habitable 135
+	arrival 3200
+	habitable 3200
 	belt 1002
 	haze _menu/haze-33
 	asteroids "small rock" 37 1.247
@@ -2369,7 +2369,7 @@ system "Ae Ce Q-761"
 	minables aluminum 8 3.506
 	minables copper 8 3.793
 	minables tungsten 17 2.26
-	minables "unknown" 4 1.9
+	minables unknown 4 1.9
 	fleet "Vyrmeid (Boomerang)" 900
 	object
 		sprite star/a5
@@ -2377,15 +2377,15 @@ system "Ae Ce Q-761"
 	object
 		sprite planet/io
 		distance 464
-		period 344.088
+		period 70.6743
 	object
 		sprite planet/gas14
 		distance 2550
-		period 4433.05
+		period 910.532
 	object
 		sprite planet/gas15
 		distance 5350
-		period 13471.7
+		period 2767.04
 		offset 160
 		object
 			sprite planet/rock3
@@ -2475,8 +2475,8 @@ system "Ae Il B-11"
 			period 142.306
 	object
 		sprite planet/ocean6-b
-		distance 2540.80
-		period 1068.20
+		distance 2540.8
+		period 1068.19
 		object
 			sprite planet/dust7-b
 			distance 212
@@ -2510,7 +2510,7 @@ system "Ae Il F-46"
 	pos 523.467 -743.162
 	government Uninhabited
 	arrival 5000
-	habitable 11450
+	habitable 12475
 	belt 1244
 	haze _menu/haze-67
 	asteroids "small rock" 47 4.108
@@ -2531,13 +2531,13 @@ system "Ae Il F-46"
 		period 77
 	object
 		sprite planet/cloud0
-		distance 1339.30
-		period 153.327
+		distance 1339.3
+		period 175.532
 		offset 10
 	object
 		sprite planet/ice0-b
 		distance 1880.97
-		period 255.196
+		period 292.154
 		offset 80
 		object
 			sprite planet/rock7
@@ -2545,8 +2545,8 @@ system "Ae Il F-46"
 			period 70
 	object
 		sprite planet/gas17
-		distance 5044.50
-		period 1120.80
+		distance 5044.5
+		period 1283.11
 		object
 			sprite planet/ice8-b
 			distance 256.831
@@ -2589,7 +2589,7 @@ system "Ae Il G-66"
 	object
 		sprite planet/cloud7-b
 		distance 1186.58
-		period 169.083
+		period 169.082
 	object
 		sprite planet/jupiter-b
 		distance 2492
@@ -2705,7 +2705,7 @@ system "Ae Il M-77"
 	asteroids "small metal" 1 6.56
 	asteroids "medium metal" 1 5.052
 	asteroids "large metal" 2 4.524
-	minables "unknown" 1 2.4
+	minables unknown 1 2.4
 	object
 		sprite star/b-supergiant
 		period 10
@@ -2736,7 +2736,7 @@ system "Ae Il M-77"
 	object
 		sprite planet/forest1-b
 		distance 15948.3
-		period 6174.31
+		period 6174.30
 		object
 			sprite planet/ice7-b
 			distance 168
@@ -16723,8 +16723,8 @@ system "Is Ce B-139"
 	pos 601.718 -744.259
 	government Uninhabited
 	attributes "astral"
-	arrival 500
-	habitable 370
+	arrival 550
+	habitable 550
 	haze _menu/haze
 	link "Ae Ce L-332"
 	link "Is Ce F-422"
@@ -16736,14 +16736,14 @@ system "Is Ce B-139"
 	asteroids "medium metal" 5 3.41
 	asteroids "large metal" 2 4.402
 	fleet "Vyrmeid (Plankton)" 300
-	fleet "Astral" 50000
+	fleet Astral 50000
 	object
 		sprite star/g8
 		period 40
 	object
 		sprite planet/dust6-b
 		distance 400
-		period 166.360
+		period 136.448
 
 system "Is Ce F-422"
 	pos 651.273 -687.648
@@ -16760,7 +16760,7 @@ system "Is Ce F-422"
 	asteroids "large rock" 9 2.262
 	asteroids "large metal" 1 3.783
 	fleet "Vyrmeid (Plankton)" 400
-	fleet "Astral" 50000
+	fleet Astral 50000
 	object
 		sprite star/a5
 		distance 52.236
@@ -16832,9 +16832,9 @@ system "Is Ce G-460"
 	asteroids "medium metal" 19 7.173
 	asteroids "large metal" 8 4.594
 	minables silicon 6 10.214
-	minables "unknown" 2 2.5
+	minables unknown 2 2.5
 	fleet "Vyrmeid (Plankton)" 700
-	fleet "Astral" 50000
+	fleet Astral 50000
 	object
 		sprite star/k-dwarf
 		period 10
@@ -16885,7 +16885,7 @@ system "Is Ce J-591"
 	asteroids "large metal" 3 1.664
 	minables silicon 8 3.635
 	fleet "Vyrmeid (Plankton)" 450
-	fleet "Astral" 50000
+	fleet Astral 50000
 	object
 		sprite star/f-giant
 		distance 60.57
@@ -17059,7 +17059,7 @@ system "Is Il V-263"
 	minables titanium 3 5.731
 	fleet "Vyrmeid (Plankton)" 500
 	fleet "Vyrmeid (Boomerang)" 700
-	fleet "Astral" 50000
+	fleet Astral 50000
 	object
 		sprite star/b-supergiant
 		period 10
@@ -17107,7 +17107,7 @@ system "Is Il X-626"
 	asteroids "large metal" 1 3.402
 	fleet "Vyrmeid (Plankton)" 500
 	fleet "Vyrmeid (Boomerang)" 800
-	fleet "Astral" 50000
+	fleet Astral 50000
 	object
 		sprite star/a8
 		distance 48.468
@@ -17150,7 +17150,7 @@ system "Is Il Z-59"
 	minables iron 14 4.93
 	fleet "Vyrmeid (Plankton)" 500
 	fleet "Vyrmeid (Cephalopod)" 600
-	fleet "Astral" 50000
+	fleet Astral 50000
 	object
 		sprite star/g3
 		distance 67.938
@@ -17167,11 +17167,11 @@ system "Is Il Z-59"
 	object
 		sprite planet/earth-b
 		distance 1106.36
-		period 404.390
+		period 404.386
 	object
 		sprite planet/browndwarf-y
 		distance 1771.61
-		period 819.417
+		period 819.415
 		object
 			sprite planet/rock0
 			distance 283
@@ -17223,8 +17223,8 @@ system "Is Il Z-814"
 		offset 210
 	object
 		sprite planet/dust3-b
-		distance 2445.20
-		period 683.988
+		distance 2445.2
+		period 683.984
 		offset 70
 
 system Iyech'yek
