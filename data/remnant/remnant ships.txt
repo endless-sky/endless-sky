@@ -39,9 +39,9 @@ ship "Albatross"
 		"shield energy" 4.6
 		"hull repair rate" 1.5
 		"hull energy" 1.2
-		"outfit scan power" 18
-		"outfit scan efficiency" 24
-		"tactical scan power" 39
+		"outfit scan power" 36
+		"outfit scan efficiency" 27
+		"tactical scan power" 42
 		weapon
 			"blast radius" 360
 			"shield damage" 3600
@@ -290,9 +290,9 @@ ship "Modified Dromedary"
 		"outfit space" 740
 		"weapon capacity" 270
 		"engine capacity" 195
-		"outfit scan power" 18
-		"outfit scan efficiency" 48
-		"tactical scan power" 39
+		"outfit scan power" 36
+		"outfit scan efficiency" 51
+		"tactical scan power" 42
 		"asteroid scan power" 42
 		"atmosphere scan" 100
 		weapon
@@ -501,9 +501,9 @@ ship "Gull"
 		"cloak" .02
 		"cloaking energy" 5
 		"cloaking fuel" .1
-		"outfit scan power" 12
-		"outfit scan efficiency" 20
-		"tactical scan power" 26
+		"outfit scan power" 24
+		"outfit scan efficiency" 23
+		"tactical scan power" 38
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -663,9 +663,9 @@ ship "Heron"
 		"cloaking fuel" .05
 		"gaslining" 1
 		"atmosphere scan" 100
-		"outfit scan power" 175
-		"outfit scan efficiency" 120
-		"tactical scan power" 350
+		"outfit scan power" 350
+		"outfit scan efficiency" 123
+		"tactical scan power" 360
 		"force protection" 1
 		"heat protection" 1.5
 		"ion resistance" 0.3
@@ -825,9 +825,9 @@ ship "Ibis"
 		"shield energy" 3.1
 		"hull repair rate" 1.2
 		"hull energy" 0.95
-		"outfit scan power" 18
-		"outfit scan efficiency" 20
-		"tactical scan power" 39
+		"outfit scan power" 36
+		"outfit scan efficiency" 23
+		"tactical scan power" 52
 		weapon
 			"blast radius" 240
 			"shield damage" 2400
@@ -912,9 +912,9 @@ ship "Merganser"
 		"cloaking energy" 2
 		"cloaking fuel" .05
 		"atmosphere scan" 100
-		"outfit scan power" 12
-		"outfit scan efficiency" 12
-		"tactical scan power" 26
+		"outfit scan power" 25
+		"outfit scan efficiency" 20
+		"tactical scan power" 38
 		"ion resistance" 0.1
 		"ion resistance energy" -0.05
 		"scramble resistance" 0.1
@@ -1012,9 +1012,9 @@ ship "Pelican"
 		"shield energy" 1.8
 		"hull repair rate" 1
 		"hull energy" 0.75
-		"outfit scan power" 12
-		"outfit scan efficiency" 12
-		"tactical scan power" 26
+		"outfit scan power" 25
+		"outfit scan efficiency" 15
+		"tactical scan power" 38
 		weapon
 			"blast radius" 160
 			"shield damage" 1600
@@ -1098,9 +1098,9 @@ ship "Penguin"
 		"cloak" .03
 		"cloaking energy" 3
 		"cloaking fuel" .05
-		"outfit scan power" 50
-		"outfit scan efficiency" 36
-		"tactical scan power" 50
+		"outfit scan power" 65
+		"outfit scan efficiency" 39
+		"tactical scan power" 62
 		"atmosphere scan" 100
 		"ion protection" 0.25
 		"scramble protection" 0.25
@@ -1203,9 +1203,9 @@ ship "Peregrine"
 		"cloaking energy" 2.5
 		"cloaking fuel" .05
 		"gaslining" 1
-		"outfit scan power" 18
-		"outfit scan efficiency" 22
-		"tactical scan power" 50
+		"outfit scan power" 36
+		"outfit scan efficiency" 25
+		"tactical scan power" 62
 		"ion protection" 0.25
 		"scramble protection" 0.25
 		"slowing protection" 0.25
@@ -1316,9 +1316,9 @@ ship "Petrel"
 		"hull repair rate" 0.82
 		"hull energy" 0.54
 		"gaslining" 1
-		"outfit scan power" 10
-		"outfit scan efficiency" 14
-		"tactical scan power" 20
+		"outfit scan power" 25
+		"outfit scan efficiency" 17
+		"tactical scan power" 32
 		"asteroid scan power" 30
 		weapon
 			"blast radius" 15
@@ -1378,9 +1378,9 @@ ship "Puffin"
 		"cooling" 1
 		"active cooling" 8
 		"cooling energy" .4
-		"outfit scan power" 24
-		"outfit scan efficiency" 28
-		"tactical scan power" 52
+		"outfit scan power" 48
+		"outfit scan efficiency" 31
+		"tactical scan power" 64
 		"atmosphere scan" 100
 		"ion protection" 0.25
 		"scramble protection" 0.25
@@ -1430,9 +1430,9 @@ ship "Smew"
 		"shield energy" 0.32
 		"hull repair rate" 0.9
 		"hull energy" 0.58
-		"outfit scan power" 14
-		"outfit scan efficiency" 20
-		"tactical scan power" 28
+		"outfit scan power" 25
+		"outfit scan efficiency" 23
+		"tactical scan power" 40
 		"asteroid scan power" 50
 		weapon
 			"blast radius" 24
@@ -1515,9 +1515,9 @@ ship "Starling"
 		"cloak" .02
 		"cloaking energy" 5
 		"cloaking fuel" .1
-		"outfit scan power" 12
-		"outfit scan efficiency" 20
-		"tactical scan power" 26
+		"outfit scan power" 27
+		"outfit scan efficiency" 23
+		"tactical scan power" 38
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -1672,9 +1672,9 @@ ship "Tern"
 		"hull repair rate" 0.55
 		"hull energy" 0.37
 		"gaslining" 1
-		"outfit scan power" 10
-		"outfit scan efficiency" 12
-		"tactical scan power" 20
+		"outfit scan power" 25
+		"outfit scan efficiency" 15
+		"tactical scan power" 32
 		"atmosphere scan" 100
 		"asteroid scan power" 30
 		weapon

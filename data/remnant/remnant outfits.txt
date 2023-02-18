@@ -631,7 +631,7 @@ outfit "Research Laboratory"
 	thumbnail "outfit/research laboratory"
 	"mass" 11
 	"outfit space" -6
-	"asteroid scan power" 84
+	"asteroid scan power" 120
 	"cargo scan power" 20
 	"cargo scan efficiency" 6
 	"atmosphere scan" 100
@@ -659,9 +659,9 @@ outfit "Salvage Scanner"
 	thumbnail "outfit/salvage scanner"
 	"mass" 7
 	"outfit space" -7
-	"outfit scan power" 13
-	"outfit scan efficiency" 12
-	"tactical scan power" 84
+	"outfit scan power" 25
+	"outfit scan efficiency" 20
+	"tactical scan power" 120
 	description "When the Remnant unraveled the alien Point Defense Turrets guarding the vaults on Aventine, they also deciphered the mechanisms that guided the ancient weapons. After significant investments in research and development, they have transformed those guidance systems into sophisticated scanning technology."
 	description "	While all Remnant ships are equipped with internal scanners, some captains still prefer to boost their range and power to more effectively select enemy ships worth targeting."
 
