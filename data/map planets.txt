@@ -2166,10 +2166,10 @@ planet "Laki Nemparu"
 	spaceport `All the Korath you encounter in the spaceport are wearing ventilator masks, and if you were staying here for longer you would probably do the same. The air leaves a metallic taste in your mouth, and your eyes feel dry and sting when the wind hits them. On the outskirts of the city, factory smokestacks are belching more pollution into the air; the Korath have either given up on preserving this planet, or simply have too great a need for the goods manufactured here to be willing to shut the factories down.`
 	outfitter "Korath Basics"
 
-planet "Lenz's Loophole"
+planet "Lenz's Loop"
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa28
-	description `Lenz's Loophole takes its name from the powerful magnetic field produced by its metallic hydrogen core. As one of the most powerful natural sources of magnetism known to humanity, it is named for Emil Lenz and his discoveries about the interactions between magnetism and electric currents.`
+	description `Lenz's Loop takes its name from the powerful magnetic field produced by its metallic hydrogen core. As one of the most powerful natural sources of magnetism known to humanity, it is named for Emil Lenz and his discoveries about the interactions between magnetism and electric currents.`
 	description `	While your ship's shielding fortunately keeps it safe from the dangerously strong magnetic field, captured charged particles from Kochab's frequent flares are ultimately channeled into the atmosphere near the poles, where it would be exceedingly dangerous for you to venture.`
 	government Uninhabited
 	security 0

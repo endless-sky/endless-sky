@@ -17675,7 +17675,7 @@ system Kochab
 		sprite planet/dust6
 		distance 937.01
 		period 596.451
-	object "Lenz's Loophole"
+	object "Lenz's Loop"
 		sprite planet/gas14
 		distance 2419.01
 		period 2474.09
