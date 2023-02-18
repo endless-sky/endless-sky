@@ -858,7 +858,12 @@ mission "Martini Evacuation (Exhausted Search and Rescue Team)"
 # Martini evac on complete dialog
 phrase "martini evac dialog singular"
 	word
-		"Throughout the trip, your passenger from Martini has been "
+		"Throughout the trip"
+		"While on board"
+		"During their time on board"
+		"Between hyperjumps"
+	word
+		", your passenger from Martini has been "
 	phrase
 		"martini evac 1"
 
@@ -871,7 +876,7 @@ phrase "martini evac 1"
 		" "
 	word
 		"the Free Worlds"
-		"the Pact"
+		"the Southern Defense Pact"
 		"the Southern Pact"
 		"'those ${insults for southerners}'"
 		"'them ${insults for southerners}'"
@@ -908,6 +913,9 @@ phrase "martini evac 1"
 phrase "martini evac 1"
 	word
 		"telling you"
+		"letting you know"
+		"saying"
+		"informing you"
 	word
 		" "
 	word
@@ -932,7 +940,12 @@ phrase "martini evac 1"
 
 phrase "martini evac dialog plural"
 	word
-		"Throughout the trip, your passengers from Martini have been "
+		"Throughout the trip"
+		"While on board"
+		"During their time on board"
+		"Between hyperjumps"
+	word
+		", your passengers from Martini have been "
 	phrase
 		"martini evac 2"
 
@@ -945,7 +958,7 @@ phrase "martini evac 2"
 		" "
 	word
 		"the Free Worlds"
-		"the Pact"
+		"the Southern Defense Pact"
 		"the Southern Pact"
 		"'those ${insults for southerners}'"
 		"'them ${insults for southerners}'"
@@ -982,6 +995,11 @@ phrase "martini evac 2"
 phrase "martini evac 2"
 	word
 		"telling you"
+		"letting you know"
+		"saying"
+		"informing you"
+	word
+		" "
 	word
 		"of the desperation of the people on Martini"
 		"of the people they knew who died in the blasts"
