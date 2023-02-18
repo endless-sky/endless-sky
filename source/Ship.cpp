@@ -2223,17 +2223,6 @@ void Ship::DoGeneration()
 		if(bay.ship)
 			bay.ship->DoGeneration();
 
-	// Carried ships can steal energy from their parent's batteries,
-	// if they are preparing for deployment. Otherwise, they replenish the
-	// parent's batteries.
-	if(!GetSystem())
-	{
-		if(HasDeployOrder())
-			DoRepair(energy, GetParent()->energy, attributes.Get("energy capacity"));
-		else
-			DoRepair(GetParent()->energy, energy, GetParent()->Attributes().Get("energy capacity"));
-	}
-
 	// Shield and hull recharge. This uses whatever energy is left over from the
 	// previous frame, so that it will not steal energy from movement, etc.
 	if(!isDisabled)
@@ -2316,6 +2305,17 @@ void Ship::DoGeneration()
 		// and hull repair have been skipped over.
 		shieldDelay = max(0, shieldDelay - 1);
 		hullDelay = max(0, hullDelay - 1);
+
+		// Carried ships can steal energy from their parent's batteries,
+		// if they are preparing for deployment. Otherwise, they replenish the
+		// parent's batteries.
+		if(!GetSystem())
+		{
+			if(HasDeployOrder())
+				DoRepair(energy, GetParent()->energy, attributes.Get("energy capacity"));
+			else
+				DoRepair(GetParent()->energy, energy, GetParent()->Attributes().Get("energy capacity"));
+		}
 	}
 
 	// Handle ionization effects, etc.
