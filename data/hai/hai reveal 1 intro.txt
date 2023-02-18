@@ -13,6 +13,8 @@
 
 ########################################################################
 
+disable mission "Hai Secret Leaker Begins"
+
 mission "Hai Secret Leaker Begins"
 	landing
 	invisible
