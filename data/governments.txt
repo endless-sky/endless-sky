@@ -41,6 +41,84 @@ government "Builder"
 		destroy 0
 		atrocity 0
 
+government "Bunrodea"
+	swizzle 3
+	color .35 .65 .3
+	language "Bunrodea"
+	
+	"player reputation" 1
+	"attitude toward"
+		"Bunrodea (Erabu)" 1
+		"Bunrodea (Megasa)" 1
+		"Korath" -0.01
+		"Kor Sestor" -0.01
+		"Kor Mereti" -0.01
+		"Kor Efret" -0.01
+	"bribe" 0
+	
+	"penalty for"
+		assist 0
+
+government "Bunrodea (Erabu)"
+	"display name" "Bunrodea"
+	swizzle 11
+	color .35 .65 .3
+	language "Bunrodea"
+	
+	"player reputation" 1
+	"attitude toward"
+		"Bunrodea" 1
+		"Bunrodea (Megasa)" 1
+		"Korath" -0.01
+		"Kor Sestor" -0.01
+		"Kor Mereti" -0.01
+		"Kor Efret" -0.01
+	"bribe" 0
+	
+	"penalty for"
+		assist 0
+
+government "Bunrodea (Guard)"
+	"display name" "Bunrodea"
+	swizzle 11
+	color .35 .65 .3
+	language "Bunrodea"
+	
+	"player reputation" -1
+	"attitude toward"
+		"Bunrodea" 1
+		"Bunrodea (Erabu)" 1
+		"Bunrodea (Megasa)" -0.01
+		"Korath" -0.01
+		"Kor Sestor" -0.01
+		"Kor Mereti" -0.01
+		"Kor Efret" -0.01
+	"bribe" 0
+	
+	"penalty for"
+		assist 0
+		disable 0
+
+government "Bunrodea (Megasa)"
+	"display name" "Bunrodea"
+	swizzle 18
+	color .35 .65 .3
+	language "Bunrodea"
+	
+	"player reputation" 1
+	"attitude toward"
+		"Bunrodea" 1
+		"Bunrodea (Erabu)" 1
+		"Bunrodea (Guard)" -0.01
+		"Korath" -0.01
+		"Kor Sestor" -0.01
+		"Kor Mereti" -0.01
+		"Kor Efret" -0.01
+	"bribe" 0
+	
+	"penalty for"
+		assist 0
+
 government "Bounty"
 	swizzle 6
 	"player reputation" -1000
