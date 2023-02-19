@@ -597,8 +597,8 @@ ship "Berserker"
 			"hit force" 450
 	outfits
 		"Energy Blaster" 2
-		"Javelin Mini Pod" 2
-		"Javelin" 80
+		"Javelin Pod" 2
+		"Javelin" 400
 		
 		"nGVF-CC Fuel Cell"
 		"LP072a Battery Pack"
@@ -612,8 +612,8 @@ ship "Berserker"
 	engine 10 45
 	gun -20 12 "Energy Blaster"
 	gun 20 12 "Energy Blaster"
-	gun -44 10 "Javelin Mini Pod"
-	gun 44 10 "Javelin Mini Pod"
+	gun -44 10 "Javelin Pod"
+	gun 44 10 "Javelin Pod"
 	leak "leak" 60 50
 	leak "flame" 80 80
 	explode "tiny explosion" 10
