@@ -2310,7 +2310,7 @@ void Ship::DoGeneration()
 				if(ship.HasDeployOrder())
 					DoRepair(ship.energy, energy, ship.attributes.Get("energy capacity"));
 				else
-					DoRepair(energy, ship.energy, Attributes().Get("energy capacity"));
+					DoRepair(energy, ship.energy, attributes.Get("energy capacity"));
 			}
 		}
 		// Decrease the shield and hull delays by 1 now that shield generation
