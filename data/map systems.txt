@@ -14284,6 +14284,7 @@ system G-3191
 	government Uninhabited
 	attributes "umbral reach"
 	arrival 5000
+	departure 1000
 	habitable 20250
 	belt 1341
 	"jump range" 60
