@@ -1564,7 +1564,7 @@ void Engine::CalculateStep()
 			if(ship.get() != flagship)
 			{
 				AddSprites(*ship);
-				shipEffects.push_back(ShipFXShader::Prepare(ship.get(), (ship->Position() - newCenter), ship->RecentHits(), zoom, ship->GetFrame(), ship->Attributes().Get("shield type")));
+				shipEffects.push_back(ShipFXShader::Prepare(ship.get(), (ship->Position() - newCenter), ship->RecentHits(), zoom, ship->GetFrame(), ship->Attributes().ShieldColor()));
 				if(ship->IsThrusting() && !ship->EnginePoints().empty())
 				{
 					for(const auto &it : ship->Attributes().FlareSounds())

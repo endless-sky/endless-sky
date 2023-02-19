@@ -1,3 +1,2 @@
 color "shields default" .43 .55 .70 .75
-
 color "shields heliarch" .69 .67 .23 .75

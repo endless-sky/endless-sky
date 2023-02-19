@@ -53,6 +53,7 @@ namespace {
 	GLint recentDamageI;
 	GLint recentHitsI;
 	GLint shieldTypeI;
+	GLint shieldColorI;
 
 	GLuint vao;
 	GLuint vbo;
@@ -140,23 +141,13 @@ void ShipFXShader::Init()
 		"void main()\n"
 		"{\n"
 		"  vec4 color;"
-		"  vec4 baseColor;\n"
-		"  switch(shieldType)\n"
-		"  {\n"
-		"  case 0:\n"
-		"    baseColor = vec4(.43, .55, .70, .75) * sobellish(fragTexCoord);\n"
-		"    break;\n"
-		"  case 1:\n"
-		"    baseColor = vec4(.69, .67, .23, .75) * sobellish(fragTexCoord);\n"
-		"    break;\n"
-		"  }\n"
 		"  for(int i = 0; i < recentHitCount; i++)\n"
 		"  {\n"
 		"    vec2 hitPoint = recentHits[i] + vec2(0.5, 0.5);\n"
-		"    color += baseColor * recentDamage[i] * clamp(1. - distance(hitPoint, fragTexCoord)*3., 0., 1.);\n"
+		"    color += shieldColor * recentDamage[i] * clamp(1. - distance(hitPoint, fragTexCoord)*3., 0., 1.);\n"
 		"  }\n"
 
-		"  finalColor = color / (recentHitCount / 2.);\n"
+		"  finalColor = sobellish(fragTexCoord) * color / (recentHitCount / 2.);\n"
 		"}\n"
 		"\n";
 
@@ -174,7 +165,8 @@ void ShipFXShader::Init()
 	recentDamageI = shader.Uniform("recentDamage");
 	recentHitsCountI = shader.Uniform("recentHitCount");
 
-	shieldTypeI = shader.Uniform("shieldType");
+	//shieldTypeI = shader.Uniform("shieldType");
+	shieldColorI = shader.Uniform("shieldColor");
 
 	glUseProgram(shader.Object());
 	glUniform1i(shader.Uniform("tex"), 0);
@@ -264,6 +256,7 @@ ShipFXShader::EffectItem ShipFXShader::Prepare(const Body* body, const Point& po
 		Messages::Add("Hit at " + to_string(newP.X() / body->Radius()) + ", " + to_string(newP.Y() / body->Radius()) + ", intensity of " + to_string(item.recentHitDamage[i]) + " with count of " + to_string(item.recentHits));
 		i++;
 	}
+	Messages::Add(shieldColor);
 	copy(GameData::Colors().Get(shieldColor)->Get(), GameData::Colors().Get(shieldColor)->Get() + 4, item.shieldColor);
 
 	return item;
@@ -296,7 +289,7 @@ void ShipFXShader::Add(const EffectItem& item, bool withBlur)
 	glUniform1f(clipI, item.clip);
 	////glUniform1f(alphaI, item.alpha);
 
-	glUniform1i(shieldTypeI, item.shieldType);
+	glUniform4fv(shieldColorI, 4, &item.shieldColor[0]);
 	glUniform2fv(recentHitsI, 128, item.recentHitPoints);
 	glUniform1fv(recentDamageI, 64, item.recentHitDamage);
 	glUniform1i(recentHitsCountI, item.recentHits);

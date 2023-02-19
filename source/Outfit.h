@@ -97,6 +97,7 @@ public:
 	const std::map<const Sound *, int> &JumpOutSounds() const;
 	// Get the sprite this outfit uses when dumped into space.
 	const Sprite *FlotsamSprite() const;
+	const std::string &ShieldColor() const;
 
 
 private:
@@ -131,6 +132,7 @@ private:
 	std::map<const Sound *, int> jumpInSounds;
 	std::map<const Sound *, int> jumpOutSounds;
 	const Sprite *flotsamSprite = nullptr;
+	std::string shieldColor = "shields default";
 };
 
 
