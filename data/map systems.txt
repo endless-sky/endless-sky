@@ -3466,10 +3466,6 @@ system Aleit
 	link Elifennka
 	link Ghhil
 	link Yllke
-	asteroids "small metal" 8 1.7
-	asteroids "medium metal" 38 1.2
-	asteroids "large metal" 17 1.7
-	minables titanium 3 2.82
 	trade Clothing 216
 	trade Electronics 817
 	trade Equipment 729
@@ -26641,7 +26637,6 @@ system Quaru
 	link Homeward
 	link "Ki War Ek"
 	link "Last Word"
-	asteroids "large metal" 1 2.0202
 	trade Clothing 372
 	trade Electronics 637
 	trade Equipment 676
