@@ -152,6 +152,7 @@ mission "First Contact: Bunrodea (Hostile)"
 				`	"Hey, they deserved it. They attacked me first."`
 					goto attacked
 				`	"I have, and for that I apologize."`
+					goto apologize
 				`	"Okay, and?"`
 					goto and
 			
