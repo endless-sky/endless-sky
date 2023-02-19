@@ -112,7 +112,7 @@ void Preferences::Load()
 			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
 		else if(node.Token(0) == "alert indicator")
 			alertIndicatorIndex = max<int>(0, min<int>(node.Value(1), ALERT_INDICATOR_SETTING.size() - 1));
-		else if(node.Token(0) == "previous saves")
+		else if(node.Token(0) == "previous saves" && node.Size() >= 2)
 			previousSaveCount = max<int>(3, node.Value(1));
 		else
 			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
