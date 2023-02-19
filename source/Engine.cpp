@@ -981,9 +981,13 @@ void Engine::Draw() const
 	draw[drawTickTock].Draw();
 
 	ShipFXShader::Bind();
-	for(int i = 0; i < shipEffects.size(); i++)
+	//for(int i = 0; i < shipEffects.size(); i++)
+	//{
+	//	ShipFXShader::Add(shipEffects.at(i));
+	//}
+	for(const auto &it : shipEffects)
 	{
-		ShipFXShader::Add(shipEffects.at(i));
+		ShipFXShader::Add(it);
 	}
 	ShipFXShader::Unbind();
 

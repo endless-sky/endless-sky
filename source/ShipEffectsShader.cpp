@@ -52,7 +52,6 @@ namespace {
 	GLint recentHitsCountI;
 	GLint recentDamageI;
 	GLint recentHitsI;
-	GLint shieldTypeI;
 	GLint shieldColorI;
 	GLint ratioI;
 	GLint sizeI;
@@ -259,7 +258,6 @@ ShipFXShader::EffectItem ShipFXShader::Prepare(const Body* body, const Point& po
 	Angle sub = Angle(180.) - body->Facing();
 	for(int i = 0; i < item.recentHits;)
 	{
-		static const double mod = 2.;
 		const auto newP = sub.Rotate(recth->at(i).first * Point(-1, -1));
 		item.recentHitPoints[2*i] = (newP.X() / ((2 / 1.5) * body->Radius()));
 		item.recentHitPoints[2*i + 1] = (newP.Y() / ((2 / 1.5) * body->Radius()));
