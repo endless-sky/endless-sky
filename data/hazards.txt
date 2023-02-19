@@ -109,3 +109,25 @@ hazard "Neutron Star Magnetic Field"
 		"damage dropoff" 0 450
 		"dropoff modifier" 0
 		"shield damage" 6
+
+
+
+hazard "Rulei Gravity Field"
+	"constant strength"
+	"range" 5000
+	"environmental effect" "gravity hazard" 20
+	weapon
+		"gravitational"
+		"hit force" -25
+		"damage dropoff" 150 2500
+		"dropoff modifier" 0
+
+effect "gravity hazard"
+	sprite "effect/slowing"
+		"frame rate" 30
+		"random start frame"
+	"sound" "gravity well"
+	"lifetime" 120
+	"random lifetime" 60
+	"random spin" 10
+	"random velocity" 2
