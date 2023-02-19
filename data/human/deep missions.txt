@@ -1166,7 +1166,7 @@ mission "Deep: Project Hawking: Carbuncle"
 			
 			label project
 			`	"The exact details of Project Hawking are classified. I'm not able to tell you much aside from the fact that we're doing energy and weapons research. Scientists from the Deep who are highly specialized in a certain field will be asked to work on government projects every so often.`
-			`	"In the field of energy engineering, I'm among the best that the Deep has to offer. I worked on the Dwarf Core." Garrison pauses and chuckles to himself before saying, "I also contributed toward the creation of those comically impractical LP576a battery packs that I have yet to see a single ship using.`
+			`	"In the field of energy engineering, I'm among the best that the Deep has to offer. I worked on the Dwarf Core." Garrison pauses and chuckles to himself before saying, "I also contributed toward the creation of those comically impractical LP576a Battery Packs that I have yet to see a single ship using.`
 			`	"Anyhow, because of my past work, the Deep approached me to work on this project. The pay was better than what I was getting before so I accepted it. It was a pleasant surprise to meet my partners as well. Hannah graduated in the same undergrad class as me, double majoring in quantum mechanics and ancient history, of all things."`
 			choice
 				`	"What is it that you need from Carbuncle Station that is so secret?"`
@@ -1816,8 +1816,8 @@ mission "Deep: Remnant: Inhibitor Cannon"
 		payment 276500
 		conversation
 			`Again, the Remnant technology is removed from your ship and transported to the research lab. You wander into the waiting area and are paid <payment>. After several hours, the scientists come to you with their initial findings.`
-			`	"This Millennium Cell is little more than a radiothermal generator. Not exactly the best kind of generator if you're looking for lots of power - our fusion reactors are far better at that - but for a radiothermal generator, it produces remarkably little heat. We'll have to take it apart to find out how they are manipulating the decay heat so effectively, but preparing for that will take some time.`
-			`	"I suppose by now you've seen the Remnant ships in combat more than a few times. The outfit scans showed one of their primary weapons is a modified particle cannon, but we'd need to see the actual weapon in order to understand how the modification works. Would you retrieve an Inhibitor Cannon for us?"`
+			`	"This Millennium Cell is little more than a radiothermal generator. Not exactly the best kind of generator if you're looking for lots of power - our Fusion Reactors are far better at that - but for a radiothermal generator, it produces remarkably little heat. We'll have to take it apart to find out how they are manipulating the decay heat so effectively, but preparing for that will take some time.`
+			`	"I suppose by now you've seen the Remnant ships in combat more than a few times. The outfit scans showed one of their primary weapons is a modified Particle Cannon, but we'd need to see the actual weapon in order to understand how the modification works. Would you retrieve an Inhibitor Cannon for us?"`
 			choice
 				`	"I'd be glad to."`
 					accept

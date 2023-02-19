@@ -61,8 +61,9 @@ namespace {
 
 // Constructor.
 ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation,
-	const System *system, const shared_ptr<Ship> &ship)
-	: player(player), conversation(conversation), scroll(0.), system(system), ship(ship)
+	const System *system, const shared_ptr<Ship> &ship, bool useTransactions)
+	: player(player), useTransactions(useTransactions), conversation(conversation),
+	scroll(0.), system(system), ship(ship)
 {
 #if defined _WIN32
 	PATH_LENGTH = Files::Saves().size();
@@ -75,6 +76,11 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 		subs["<ship>"] = ship->Name();
 	else if(player.Flagship())
 		subs["<ship>"] = player.Flagship()->Name();
+
+	// Start a PlayerInfo transaction to prevent saves during the conversation
+	// from recording partial results.
+	if(useTransactions)
+		player.StartTransaction();
 
 	// Begin at the start of the conversation.
 	Goto(0);
@@ -425,6 +431,10 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 // Exit this panel and do whatever needs to happen next.
 void ConversationPanel::Exit()
 {
+	// Finish the PlayerInfo transaction so any changes get saved again.
+	if(useTransactions)
+		player.FinishTransaction();
+
 	GetUI()->Pop(this);
 	// Some conversations may be offered from an NPC, e.g. an assisting or
 	// boarding mission's `on offer`, or from completing a mission's NPC

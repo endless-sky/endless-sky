@@ -69,6 +69,7 @@ private:
 	int64_t bribe = 0;
 	const Government *bribed = nullptr;
 	bool playerNeedsHelp = false;
+	bool canAssistPlayer = true;
 	bool canGiveFuel = false;
 	bool canRepair = false;
 	bool hasLanguage = true;
