@@ -46,6 +46,9 @@ Version 0.10.0
       * Correctly fail "Deep: TMBR 0" when "Deep: TMBR 1" is offered. (@warp-core)
       * Corrected "Hai Wormhole Warning" offer conditions. (@bene-dictator)
       * Shorten the description of "Paradise Job: Debtors" so it fits in the UI box. (@Terin)
+      * Added a missing "goto" in a new alien first contact mission. (@Quantumshark)
+      * Fixed a stray pixel in a new ship image. (@Terin)
+      * Added a missing mission name and description to a new alien first contact mission. (@warp-core)
     * Engine bugs:
       * Fixed rendering of some compressed PNGs. (@quyykk)
       * Use 'png_set_strip_16' when 'png_set_scale_16' is not available, such as the Steam runtime. (@quyykk)
