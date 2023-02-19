@@ -2781,9 +2781,11 @@ planet "New Tortuga"
 	"required reputation" -10
 	bribe 0.03
 	security 0
+	# The tribute and defense will be somewhat different eventually once I figure out the
+	# technical and lore aspects of how the Korath Exiles can defend without being on
+	# New Tortuga itself.
 	tribute 6000
-		# The high threshold is to ensure the player is ready for the Korath response.
-		threshold 50000
+		threshold 10000
 		fleet "Humanika Defense" 25
 
 planet "New Wales"
