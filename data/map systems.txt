@@ -14294,7 +14294,7 @@ system G-3191
 	asteroids "medium metal" 12 2.1
 	asteroids "large metal" 1 1.8
 	hazard "Rulei Gravity Field" 1
-	object "Vajra"
+	object
 		sprite planet/vajra/vajra
 			"random start frame"
 			"frame rate" 30
