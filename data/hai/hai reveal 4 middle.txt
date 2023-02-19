@@ -26,7 +26,6 @@ mission "Hai Reveal [A00] Darkwaste Timer"
 	destination Darkwaste
 	to offer
 		"hai slave prereq" >= 3
-		"combat rating" > 2400
 		has "Hai Leaks Response 6: done"
 	on offer
 		event "hai rescue: teeneep message" 20 30
