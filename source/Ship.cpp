@@ -3053,9 +3053,9 @@ int Ship::CustomSwizzle() const
 	return customSwizzle;
 }
 
-vector<pair<Point, double>> &Ship::RecentHits()
+vector<pair<Point, double>> *Ship::RecentHits()
 {
-	return recentHits;
+	return &recentHits;
 }
 
 

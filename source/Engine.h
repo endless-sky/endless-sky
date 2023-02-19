@@ -190,6 +190,7 @@ private:
 	bool isMouseHoldEnabled = false;
 	bool isMouseTurningEnabled = false;
 	DrawList draw[2];
+	std::vector<ShipFXShader::EffectItem> shipEffects;
 	BatchDrawList batchDraw[2];
 	Radar radar[2];
 	// Viewport position and velocity.

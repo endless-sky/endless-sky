@@ -980,11 +980,12 @@ void Engine::Draw() const
 
 	draw[drawTickTock].Draw();
 
-	for(const auto &it : ships)
+	ShipFXShader::Bind();
+	for(int i = 0; i < shipEffects.size(); i++)
 	{
-		if(it->GetActualSystem() == player.GetSystem())
-			ShipFXShader::Draw(it.get(), (it->Position() - center) * zoom, it->RecentHits(), zoom, it->GetFrame());
+		ShipFXShader::Add(shipEffects.at(i));
 	}
+	ShipFXShader::Unbind();
 
 	batchDraw[drawTickTock].Draw();
 
@@ -1535,6 +1536,7 @@ void Engine::CalculateStep()
 	batchDraw[calcTickTock].SetCenter(newCenter);
 	radar[calcTickTock].SetCenter(newCenter);
 	ShipFXShader::SetCenter(newCenter);
+	shipEffects.clear();
 
 	// Populate the radar.
 	FillRadar();
@@ -1562,6 +1564,7 @@ void Engine::CalculateStep()
 			if(ship.get() != flagship)
 			{
 				AddSprites(*ship);
+				shipEffects.push_back(ShipFXShader::Prepare(ship.get(), (ship->Position() - newCenter), ship->RecentHits(), zoom, ship->GetFrame(), ship->Attributes().Get("shield type")));
 				if(ship->IsThrusting() && !ship->EnginePoints().empty())
 				{
 					for(const auto &it : ship->Attributes().FlareSounds())

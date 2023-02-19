@@ -19,6 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "Shader.h"
 #include "Sprite.h"
+#include "Government.h"
+#include "GameData.h"
 
 #include "Messages.h"
 
@@ -48,8 +50,9 @@ namespace {
 	//GLint alphaI;
 
 	GLint recentHitsCountI;
-	GLfloat recentDamageI;
-	GLfloat recentHitsI;
+	GLint recentDamageI;
+	GLint recentHitsI;
+	GLint shieldTypeI;
 
 	GLuint vao;
 	GLuint vbo;
@@ -76,7 +79,7 @@ void ShipFXShader::Init()
 
 		"void main() {\n"
 		"  vec2 blurOff = 2.f * vec2(vert.x * abs(blur.x), vert.y * abs(blur.y));\n"
-		"  gl_Position = vec4((transform * (vert + blurOff) + position) * scale, 0, 1);\n"
+		"  gl_Position = vec4((transform * (vert * 1.1 + blurOff) + position) * scale, 0, 1);\n"
 		"  vec2 texCoord = vert + vec2(.5, .5);\n"
 		"  fragTexCoord = vec2(texCoord.x, min(clip, texCoord.y)) + blurOff;\n"
 		"}\n";
@@ -91,12 +94,13 @@ void ShipFXShader::Init()
 		"uniform float frame;\n"
 		"uniform float frameCount;\n"
 		"uniform vec2 blur;\n"
-////		"uniform float alpha;\n"
 		"const int range = 5;\n"
 
 		"uniform vec2 recentHits[64];\n"
 		"uniform float recentDamage[64];\n"
 		"uniform int recentHitCount;\n"
+		"uniform int shieldType;"
+		"uniform vec4 shieldColor;"
 
 		"in vec2 fragTexCoord;\n"
 		"in vec2 shrinkby;\n"
@@ -113,6 +117,11 @@ void ShipFXShader::Init()
 		"    texture(tex, vec3(uv, second)), fade);\n"
 		"}\n"
 
+		"float stripe(float a, float mod)\n"
+		"{\n"
+		"  return clamp(sin(a*360) * 2. + mod, 0., 1.);"
+		"}\n"
+
 		"float sobellish(vec2 uv)\n"
 		"{\n"
 		"  float obel = 0.;\n"
@@ -120,24 +129,34 @@ void ShipFXShader::Init()
 		"  {\n"
 		"    for (int y = -3; y <= 3; y++)\n"
 		"	 {\n"
-		"      obel += sampleSmooth(tex, uv + vec2(x, y) / (100.)).a;\n"
+		"      obel += sampleSmooth(tex, uv + vec2(x, y) / (360.)).a;\n"
 		"    }\n"
 		"  }\n"
 		"  obel /= 49.;\n"
-		"  return sqrt(2. * obel - (-0.2) / (obel / 2. - .6) + 0.3);\n"
+		"  float a = sqrt(2. * obel + 0.2 / (obel / 2. - .6) + 0.3);\n"
+		"  return a + (a - a * (stripe(uv.x, 1.5) * stripe(uv.y * 1.4, 1.5))); \n"
 		"}\n"
 
 		"void main()\n"
 		"{\n"
 		"  vec4 color;"
-		"  vec4 baseColor = vec4(.43, .55, .70, .75) * sobellish(fragTexCoord);\n"
+		"  vec4 baseColor;\n"
+		"  switch(shieldType)\n"
+		"  {\n"
+		"  case 0:\n"
+		"    baseColor = vec4(.43, .55, .70, .75) * sobellish(fragTexCoord);\n"
+		"    break;\n"
+		"  case 1:\n"
+		"    baseColor = vec4(.69, .67, .23, .75) * sobellish(fragTexCoord);\n"
+		"    break;\n"
+		"  }\n"
 		"  for(int i = 0; i < recentHitCount; i++)\n"
 		"  {\n"
 		"    vec2 hitPoint = recentHits[i] + vec2(0.5, 0.5);\n"
-		"    color += baseColor * recentDamage[i] * clamp(1. - distance(hitPoint, fragTexCoord)*3, 0., 1.);\n"
+		"    color += baseColor * recentDamage[i] * clamp(1. - distance(hitPoint, fragTexCoord)*3., 0., 1.);\n"
 		"  }\n"
 
-		"  finalColor = color / recentHitCount;\n"
+		"  finalColor = color / (recentHitCount / 2.);\n"
 		"}\n"
 		"\n";
 
@@ -154,6 +173,8 @@ void ShipFXShader::Init()
 	recentHitsI = shader.Uniform("recentHits");
 	recentDamageI = shader.Uniform("recentDamage");
 	recentHitsCountI = shader.Uniform("recentHitCount");
+
+	shieldTypeI = shader.Uniform("shieldType");
 
 	glUseProgram(shader.Object());
 	glUniform1i(shader.Uniform("tex"), 0);
@@ -184,13 +205,13 @@ void ShipFXShader::Init()
 
 
 
-void ShipFXShader::Draw(const Body* body, const Point& position, std::vector<pair<Point, double>>& recentHits, float zoom, float frame)
+void ShipFXShader::Draw(const Body* body, const Point& position, const vector<pair<Point, double>>* recentHits, const float zoom, const float frame, const string &shieldColor)
 {
 	if (!body->GetSprite())
 		return;
 
 	Bind();
-	Add(Prepare(body, position, recentHits, zoom, frame));
+	Add(Prepare(body, position, recentHits, zoom, frame, shieldColor));
 	Unbind();
 }
 
@@ -200,7 +221,7 @@ void ShipFXShader::SetCenter(Point newCenter)
 }
 
 
-ShipFXShader::EffectItem ShipFXShader::Prepare(const Body* body, const Point& position, vector<pair<Point, double>>& recentHits, float zoom, float frame)
+ShipFXShader::EffectItem ShipFXShader::Prepare(const Body* body, const Point& position, const vector<pair<Point, double>>* recentHits, const float zoom, const float frame, const string &shieldColor)
 {
 	if (!body->GetSprite())
 		return {};
@@ -228,22 +249,22 @@ ShipFXShader::EffectItem ShipFXShader::Prepare(const Body* body, const Point& po
 	item.transform[2] = -uh.X();
 	item.transform[3] = -uh.Y();
 
-	item.recentHits = min( 64, static_cast<int>(recentHits.size()) );
+	auto recth = recentHits;
+
+	item.recentHits = min(32, static_cast<int>(recth->size()));
 
 	Angle sub = Angle(180.) - body->Facing();
-	for(int i = 0; i < item.recentHits; i++)
+	for(int i = 0; i < item.recentHits;)
 	{
-		const auto newP = sub.Rotate(recentHits[i].first * Point(-1, -1));
-		item.recentHitPoints[2*i] = (newP.X() / (2. * body->Radius()));
-		item.recentHitPoints[2*i + 1] = (newP.Y() / (2. * body->Radius()));
-		item.recentHitDamage[i] = (min(1., recentHits[i].second));
-		Messages::Add("Hit at " + to_string(newP.X() / body->Radius()) + ", " + to_string(newP.Y() / body->Radius()) + ", intensity of " + to_string(recentHits[i].second) + " with count of " + to_string(item.recentHits));
+		static const double mod = 2.;
+		const auto newP = sub.Rotate(recth->at(i).first * Point(-1, -1));
+		item.recentHitPoints[2*i] = (newP.X() / ((2 / 1.5) * body->Radius()));
+		item.recentHitPoints[2*i + 1] = (newP.Y() / ((2 / 1.5) * body->Radius()));
+		item.recentHitDamage[i] = (min(1., recth->at(i).second));
+		Messages::Add("Hit at " + to_string(newP.X() / body->Radius()) + ", " + to_string(newP.Y() / body->Radius()) + ", intensity of " + to_string(item.recentHitDamage[i]) + " with count of " + to_string(item.recentHits));
+		i++;
 	}
-	/*for (pair<Point, double>& hit : recentHits)
-	{
-		item.recentHitPoints.push_back(hit.first.X());
-		item.recentHitPoints.push_back(hit.first.Y());
-	}*/
+	copy(GameData::Colors().Get(shieldColor)->Get(), GameData::Colors().Get(shieldColor)->Get() + 4, item.shieldColor);
 
 	return item;
 }
@@ -275,6 +296,7 @@ void ShipFXShader::Add(const EffectItem& item, bool withBlur)
 	glUniform1f(clipI, item.clip);
 	////glUniform1f(alphaI, item.alpha);
 
+	glUniform1i(shieldTypeI, item.shieldType);
 	glUniform2fv(recentHitsI, 128, item.recentHitPoints);
 	glUniform1fv(recentDamageI, 64, item.recentHitDamage);
 	glUniform1i(recentHitsCountI, item.recentHits);
