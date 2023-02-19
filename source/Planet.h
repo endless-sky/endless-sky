@@ -47,8 +47,15 @@ public:
 	using DescriptionStore = std::vector<std::pair<std::string, std::shared_ptr<ConditionSet>>>;
 	using DescriptionItem = DescriptionStore::value_type;
 
-public:
+	enum class Friendliness : int_fast8_t {
+		FRIENDLY,
+		RESTRICTED,
+		HOSTILE,
+		DOMINATED
+	};
 
+
+public:
 	// Load a planet's description from a file.
 	void Load(const DataNode &node, Set<Wormhole> &wormholes);
 	// Legacy wormhole do not have an associated Wormhole object so
@@ -148,6 +155,7 @@ public:
 	bool HasFuelFor(const Ship &ship) const;
 	bool CanLand(const Ship &ship) const;
 	bool CanLand() const;
+	Friendliness GetFriendliness() const;
 	bool CanUseServices() const;
 	void Bribe(bool fullAccess = true) const;
 
