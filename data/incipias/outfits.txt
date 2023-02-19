@@ -1,3 +1,17 @@
+# Copyright (c) 2023 by RisingLeaf (https://github.com/RisingLeaf)
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+# Weapons:
 outfit "Plasma Discharger"
 	category "Guns"
 	mass 25
@@ -74,7 +88,7 @@ effect "tractor beam impact"
 	"random angle" 2
 	"velocity scale" -.005
 
-
+# Shields/Energy:
 outfit "Gas Class Shield"
 	category "Systems"
 	thumbnail "outfit/gas class shield"
@@ -112,6 +126,7 @@ outfit "Liquid Hydrogen Cell"
 	"energy capacity" 2000
 	description "This form of energy storage was discovered early by the Incipias because of the great amount of hydrogen on their homeworld. Because the Incipias mostly access its energy at the time it is produced only a small storage is needed. That is why most of their ships have only one cell installed."
 
+# Hand to Hand
 outfit "Heavy Machine Gun"
 	category "Hand to Hand"
 	cost 10000
