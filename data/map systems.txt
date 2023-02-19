@@ -2413,8 +2413,8 @@ system "Ae Il A-3"
 	asteroids "large metal" 1 7.208
 	minables iron 11 4.735
 	minables silver 37 3.069
-	fleet "Vyrmeid (Plankton)" 1050
-	fleet "Vyrmeid (Cephalopod)" 400
+	fleet "Vyrmeid (Plankton)" 950
+	fleet "Vyrmeid (Cephalopod)" 140
 	object
 		sprite star/k-supergiant
 		distance 369.692
@@ -2519,7 +2519,6 @@ system "Ae Il F-46"
 	asteroids "small metal" 12 3.452
 	asteroids "large metal" 10 2.972
 	minables lead 17 2.248
-	fleet "Vyrmeid (Cephalopod)" 500
 	object
 		sprite star/b-giant
 		distance 247.167
@@ -16908,13 +16907,13 @@ system "Is Ce J-591"
 		distance 986
 		period 151.525
 	object
-		sprite planet/ocean4-b
+		sprite planet/ganymede-b
 		distance 1740
 		period 355.218
 		object
 			sprite planet/lava0
 			distance 172
-			period 59.035
+			period 50
 	object
 		sprite planet/gas6-b
 		distance 2742
@@ -17161,13 +17160,9 @@ system "Is Il Z-59"
 		distance 71.062
 		period 52.077
 	object
-		sprite planet/forest4
+		sprite planet/forest0
 		distance 807.865
 		period 252.324
-	object
-		sprite planet/earth-b
-		distance 1106.36
-		period 404.386
 	object
 		sprite planet/browndwarf-y
 		distance 1771.61
@@ -17206,6 +17201,7 @@ system "Is Il Z-814"
 	minables lead 28 4.115
 	minables iron 35 5.171
 	minables gold 47 3.479
+	minables yottrite 2 5.1
 	fleet "Vyrmeid (Boomerang)" 200
 	object
 		sprite star/wr
