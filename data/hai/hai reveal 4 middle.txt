@@ -1707,10 +1707,6 @@ mission "Hai Reveal [A11] Sound the Alarm"
 					goto quarg
 					to display
 						not "Hai Reveal [A11] Sound the Alarm: quarg book"
-				`	QRG-3H-IE80J2L: The Drak?`
-					goto drak
-					to display
-						not "Hai Reveal [A11] Sound the Alarm: drak book"
 				`	"I've changed my mind. Take me back to the proceedings instead."`
 					goto reading
 					to display
@@ -1819,16 +1815,6 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				"Hai Reveal [A11] Sound the Alarm: time" ++
 			`	This report is surprisingly light on details of any interest. It seems the Hai view the Quarg as a nearby race of friendly neighbors. There's frequent cultural exchanges, and a large food trade in both directions. Apparently, "genuine Hai cuisine" is popular among the Quarg, especially the famous Hai acorn cookies. In return, the Hai use Quarg spices extensively, including some of the meals you've eaten since you arrived. The spices are described as "subtle and mysterious."`
 			`	Between the mundane and cultural, you find a few interesting facts. There is some lingering frustration about the Quarg refusing to help fend off Korath raids. This is partly due to the Hai having to fight for themselves, but mostly out of a belief that more Korath would have survived the war if the Quarg had intervened. Also, the Hai apparently have no interest in developing the jump drives Quarg have in abundance due to "the fate of the Korath," and warnings from the Quarg about the dangers of the jump drive manufacturing process.`
-				goto reading
-
-
-			label drak
-			action
-				set "Hai Reveal [A11] Sound the Alarm: drak book"
-				"Hai Reveal [A11] Sound the Alarm: time" ++
-				log `Found a Hai intelligence report titled, "The Drak?" Hai intelligence knows little about the Drak, except their friendship with the Quarg and an unclear association with the powerful Archons. Most of the report is Korath-made paintings of Archons destroying super-weapons and sending monolithic Korath ships into exile. This, apparently, was the end of an era of Korath raiding the Hai.`
-			`	Although this report is almost a hundred pages long, it has only three pages of text. Even Hai intelligence has no certain knowledge about the Drak, let alone the Hai public. They're aware that the Quarg claim to be friends with the Korath. There are legends in the Mythos of the Dara-Irik, faceless creatures of destruction, but the report notes the similarity in name is likely a coincidence. It also describes giant space-dwelling creatures called "Archons," who Hai intelligence credits both for saving the Korath and ending the Korath raids on the Hai. The report is uncertain about whether the Archons are Drak, are ships that contain Drak, or are merely sentient creations of the Drak.`
-			`	Most of the report is Korath-made paintings of the Archons, apparently by first-hand accounts. Every picture is filled with fear and awe, as the Archons storm through systems, destroying doomsday weapons. Near the end, you see paintings of vast fleets of Korath ships, bigger than anything humans have ever produced, flying to another part of the galaxy into exile, while Archons look on sternly.`
 				goto reading
 
 
