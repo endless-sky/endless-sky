@@ -1,0 +1,254 @@
+# Copyright (c) 2021 by Amazinite
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+fleet "Bunrodea Megasa Freight"
+	government "Bunrodea (Megasa)"
+	names "bunrodea"
+	cargo 5
+	personality
+		pacifist coward appeasing
+	variant 6
+		"Tanto"
+	variant 3
+		"Tanto" 2
+	variant 3
+		"Tanto"
+		"Tekkan"
+	variant 2
+		"Ararebo"
+		"Kaiken" 8
+	variant 1
+		"Ararebo"
+		"Kaiken" 8
+		"Kunai"
+	variant 1
+		"Ararebo" 2
+		"Kaiken" 16
+
+fleet "Bunrodea Erabu Freight"
+	government "Bunrodea"
+	names "bunrodea"
+	cargo 5
+	personality
+		timid frugal coward appeasing
+	variant 6
+		"Tanto"
+	variant 3
+		"Tanto" 2
+	variant 3
+		"Tanto"
+		"Tekkan"
+	variant 2
+		"Ararebo"
+		"Kaiken" 8
+	variant 1
+		"Ararebo"
+		"Kaiken" 8
+		"Kunai"
+	variant 1
+		"Ararebo" 2
+		"Kaiken" 16
+
+fleet "Bunrodea Defense"
+	government "Bunrodea"
+	names "bunrodea"
+	personality
+		heroic
+	variant 6
+		"Tekkan" 3
+	variant 6
+		"Kunai" 2
+		"Tekkan"
+	variant 6
+		"Kunai"
+		"Tekkan" 2
+	variant 3
+		"Kama"
+		"Tekkan" 2
+	variant 3
+		"Kama" 2
+	variant 1
+		"Chigiriki"
+		"Tekkan" 3
+
+fleet "Bunrodea Royal Guard"
+	government "Bunrodea (Guard)"
+	names "bunrodea"
+	personality
+		heroic
+	variant 6
+		"Tekkan" 3
+	variant 6
+		"Kunai" 2
+		"Tekkan"
+	variant 6
+		"Kunai"
+		"Tekkan" 2
+	variant 3
+		"Kama"
+		"Tekkan" 2
+	variant 3
+		"Kama" 2
+	variant 1
+		"Chigiriki"
+		"Tekkan" 3
+
+fleet "Bunrodea Royalty"
+	government "Bunrodea (Erabu)"
+	names "bunrodea (erabu)"
+	fighters "bunrodea"
+	personality
+		timid vindictive unconstrained mute
+	variant 20
+		"Sasumata"
+		"Kaiken" 4
+	variant 10
+		"Sasumata"
+		"Kaiken" 4
+		"Tekkan" 2
+	variant 10
+		"Sasumata" 2
+		"Kaiken" 8
+		"Kama" 2
+	variant 1
+		"Sasumata"
+		"Chigiriki"
+		"Ararebo" 2
+		"Kaiken" 20
+
+
+
+outfitter "Bunrodea Basic"
+	"Locust Blaster"
+	"Swarm Missile"
+	"Swarm Clip"
+	"Reactor Overclocker"
+	"Reactor Limiter"
+	"Quark Reactor"
+	"Solar Battery"
+	"Solar Cell"
+	"Shield Relay Booster"
+	"Shield Relay Limiter"
+	"Small Shield Relay"
+	"Nanite Enhancer"
+	"Nanite Limiter"
+	"Small Nanite Fabricator"
+	"Chiisana Rift Thruster"
+	"Chiisana Rift Steering"
+	"Nami Rift Thruster"
+	"Nami Rift Steering"
+	"Lasher Pistol"
+	"Local Map"
+	"Outfits Expansion"
+	"Cargo Expansion"
+	"Bunk Room"
+	"Small Bunk Room"
+	"Fuel Pod"
+	"Hyperdrive"
+
+outfitter "Bunrodea Advanced"
+	"Locust Turret"
+	"Mandible Cannon"
+	"Swarm Pod"
+	"Buzzer Anti-Missile"
+	"Electroweak Reactor"
+	"Large Shield Relay"
+	"Large Nanite Fabricator"
+	"Ookii Rift Thruster"
+	"Ookii Rift Steering"
+	"Subarashii Rift Steering"
+	"Subarashii Rift Thruster"
+
+outfitter "Bunrodea Capital"
+	"Thorax Cannon"
+	"Dark Reactor"
+
+
+shipyard "Bunrodea Basic"
+	"Kaiken"
+	"Tanto"
+	"Tekkan"
+
+shipyard "Bunrodea Advanced"
+	"Ararebo"
+	"Kunai"
+	"Kama"
+
+shipyard "Bunrodea Capital"
+	"Sasumata"
+	"Chigiriki"
+
+
+
+phrase "bunrodea"
+	phrase
+		"bunrodea short"
+	word
+		" vo "
+	phrase
+		"bunrodea title"
+
+phrase "bunrodea (erabu)"
+	phrase
+		"bunrodea title"
+	word
+		" xx "
+	phrase
+		"bunrodea short"
+	replace
+		"a xx" "a ve"
+		"u xx" "u va"
+
+phrase "bunrodea title"
+	word
+		"Era"
+		"Eru"
+		"Erga"
+		"Ergu"
+		"Jentila"
+		"Jentlu"
+		"Thshyba"
+		"Thshu"
+		"Bosuna"
+		"Bosunu"
+		"Shina"
+		"Shinu"
+
+phrase "bunrodea short"
+	phrase
+		"bunrodea start"
+	phrase
+		"bunrodea end"
+
+phrase "bunrodea start"
+	word
+		"Sop"
+		"Kis"
+		"Ang"
+		"Byr"
+		"Del"
+		"Mel"
+		"Ol"
+		"Dis"
+		"Ok"
+
+phrase "bunrodea end"
+	word
+		"ili"
+		"ali"
+		"amo"
+		"oma"
+		"iko"
+		"eka"
+		"uzi"
+		"talo"
