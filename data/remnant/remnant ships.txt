@@ -806,7 +806,7 @@ ship "Ibis"
 	attributes
 		category "Medium Warship"
 		licenses
-			"Remnant Capital"
+			Remnant
 		"cost" 11627000
 		"shields" 14400
 		"hull" 6200
