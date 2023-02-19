@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "FrameTimer.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Government.h"
 #include "Hazard.h"
 #include "Interface.h"
@@ -1752,7 +1753,7 @@ void Engine::SpawnFleets()
 // At random intervals, create new special "persons" who enter the current system.
 void Engine::SpawnPersons()
 {
-	if(Random::Int(36000) || player.GetSystem()->Links().empty())
+	if(Random::Int(GameData::GetGamerules().PersonSpawnPeriod()) || player.GetSystem()->Links().empty())
 		return;
 
 	// Loop through all persons once to see if there are any who can enter
@@ -1764,11 +1765,9 @@ void Engine::SpawnPersons()
 	if(!sum)
 		return;
 
-	// Adjustment factor: special persons will appear once every ten
-	// minutes, but much less frequently if the game only specifies a
-	// few of them. This way, they will become more common as I add
-	// more, without needing to change the 10-minute constant above.
-	sum = Random::Int(sum + 1000);
+	// Although an attempt to spawn a person is made every 10 minutes on average,
+	// that attempt can still fail due to an added weight for no person to spawn.
+	sum = Random::Int(sum + GameData::GetGamerules().NoPersonSpawnWeight());
 	for(const auto &it : GameData::Persons())
 	{
 		const Person &person = it.second;
@@ -2048,7 +2047,10 @@ void Engine::HandleMouseInput(Command &activeCommands)
 	isMouseHoldEnabled = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
 	if(activeCommands.Has(Command::MOUSE_TURNING_TOGGLE))
 		isMouseToggleEnabled = !isMouseToggleEnabled;
-	isMouseTurningEnabled = (isMouseHoldEnabled || isMouseToggleEnabled);
+	// XOR mouse hold and mouse toggle. If mouse toggle is OFF, then mouse hold
+	// will temporarily turn ON mouse control. If mouse toggle is ON, then mouse
+	// hold will temporarily turn OFF mouse control.
+	isMouseTurningEnabled = (isMouseHoldEnabled ^ isMouseToggleEnabled);
 	Preferences::Set("alt-mouse turning", isMouseTurningEnabled);
 	if(!isMouseTurningEnabled)
 		return;
@@ -2269,16 +2271,14 @@ void Engine::DoCollection(Flotsam &flotsam)
 	if(!commodity.empty())
 	{
 		double amountInTons = amount * flotsam.UnitSize();
-		message = name + (amountInTons == 1. ? "a ton" : Format::Number(amountInTons) + " tons")
-			+ " of " + Format::LowerCase(commodity) + ".";
+		message = name + Format::CargoString(amountInTons, Format::LowerCase(commodity)) + ".";
 	}
 
 	// Unless something went wrong while forming the message, display it.
 	if(!message.empty())
 	{
 		int free = collector->Cargo().Free();
-		message += " (" + to_string(free) + (free == 1 ? " ton" : " tons");
-		message += " of free space remaining.)";
+		message += " (" + Format::CargoString(free, "free space") + " remaining.)";
 		Messages::Add(message, Messages::Importance::High);
 	}
 }

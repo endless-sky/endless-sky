@@ -900,7 +900,7 @@ mission "Hai Reveal [B11] Moving Together"
 		has "Hai Reveal [B10] Report to Teeneep: done"
 	on offer
 		conversation
-			`When you return to <origin> to tell Teeneep what you have found, she seems to already know much of what you have to say. "We've been waiting for you. Thanks to your visit to the Syndicate, we've found a lot of information in very short order. You'll have to lead another international task force through the wormhole at Devil-Eye. This time, they'll have Jump Drives from the Unfettered, which the Hai are renting for quite a hefty price. We expect all Jump Drives to be returned intact. Everyone is gathering to brief you on the status so you can prepare for the mission. A high-ranking Marshal Kaine is here with more information."`
+			`When you return to <origin> to tell Teeneep what you have found, she seems to already know much of what you have to say. "We've been waiting for you. Thanks to your visit to the Syndicate, we've found a lot of information in very short order. You'll have to lead another international task force through the wormhole at Devil-Eye. This time, they'll have jump drives from the Unfettered, which the Hai are renting for quite a hefty price. We expect all jump drives to be returned intact. Everyone is gathering to brief you on the status so you can prepare for the mission. A high-ranking Marshal Kaine is here with more information."`
 			`	Sayari seems anxious when she joins you on the way, and the two of them draw you along towards one of the meeting areas in the secured spaceport. There you are led past a selection of Navy personnel on guard into a meeting room with several people. Some appear to have just arrived, but others must have been here for a while, and to your surprise Alondo and Remington are also present. The place looks to have been acting as a war room of sorts. As soon you've walked through the door, someone says, "We're all here," and Choot'k and Remington stand up from where they'd been looking at something intently.`
 			label briefing
 			choice
@@ -1283,6 +1283,7 @@ mission "Hai Reveal [B13] Freedom"
 	description "Escort the Hai back to <planet>. Payment to cover your ongoing expenses is <payment>."
 	source "Elenchus"
 	destination "Stormhold"
+	clearance
 	to offer
 		has "Hai Reveal [B12] Devil-Hide Battle: done"
 	on visit
@@ -1296,7 +1297,7 @@ mission "Hai Reveal [B13] Freedom"
 		log `Liberated Elenchus.`
 		conversation
 			`General Choot'k cuts open the doors of a large hangar, and your ships land. The two hundred Syndicate operatives pour out, wearing exoskeletons with high density armor plating and equipped with all manner of weapons and gadgetry. They storm through the complex and you follow in their wake. Their tools melt through security locks in seconds, and most of their opposition lacks protection against the suits' stun gas bombs. With pirates focusing their efforts on the imposing suits, the Unfettered make many attacks of opportunity, inflicting massive casualties. The pirates outnumber the attackers ten to one, but this huge advantage in equipment, training, and discipline gives the attackers an overwhelming advantage.`
-			`	The squads move room to room, neutralizing all opposition with ease, until their opponents switch tactics. The pirates begin using electromagnetic pulse devices to shut down the Syndicate suits (and all other electronics nearby), leaving affected operatives helpless for ten long seconds. Here, some of General Choot'k's Unfettered show their strength, outmaneuvering the pirates long enough for the suits to recharge. They dart between operatives and bound off walls with pulse rifles and long knives. They strike rapidly and in an organized manner, before withdrawing as the operatives suits re-engage, preventing the pirates from coordinating a counter-assault.`
+			`	The squads move room to room, neutralizing all opposition with ease, until their opponents switch tactics. The pirates begin using electromagnetic pulse devices to shut down the Syndicate suits (and all other electronics nearby), leaving affected operatives helpless for ten long seconds. Here, some of General Choot'k's Unfettered show their strength, outmaneuvering the pirates long enough for the suits to recharge. They dart between operatives and bound off walls with Pulse Rifles and long knives. They strike rapidly and in an organized manner, before withdrawing as the operatives suits re-engage, preventing the pirates from coordinating a counter-assault.`
 			`	After a bloody struggle, forty-three operatives reach the end of the fight, clearing the way to a blast door. Only a couple dozen operatives are known to be seriously wounded, but many have been missing since the pirates switched tactics and began using traps and machinery to pin, crush, or disable the operatives or their suits. The Unfettered fared comparatively better, as the pirates focused most attacks on the Syndicate operatives, letting the fast, maneuverable Hai pass through. Still, over a dozen of them will take their own tails home as trophies, after the pirates used a miner's cutting power-arm extensions to great effect.`
 			`	The blast door that the force now stands before is twelve meters high and wide, and scanners show it to be six meters deep. It is designed to be closed from this side, though, and has not been sealed well against being reopened. Soon it grinds open but, evidently sabotaged, only part-way. Despite this attempt, the operatives put on their goggles and easily pass through into the darkness of the next room.`
 			`	You could be forgiven for hesitating to follow them, but General Choot'k appears beside you and places one strong paw on your shoulder. "Come, now. We will discover if our task is finished or impossible. It is time for bravery." He guides you in after the operatives, along with his own troops.`
@@ -1496,6 +1497,7 @@ mission "Hai Reveal [B14] Journey to Peace"
 	source "Stormhold"
 	stopover "Mountaintop"
 	destination "Hai-home"
+	clearance
 	passengers 4
 	to offer
 		has "Hai Reveal [B13] Freedom: done"

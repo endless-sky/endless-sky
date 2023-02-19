@@ -129,6 +129,8 @@ jobs:
         uses: ./.github/sccache
         with:
           read-only: 'true'
+      - name: Install pkg-config
+        run: type -P pkg-config || brew install pkg-config
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v10
         with:
