@@ -872,12 +872,14 @@ mission "Hai Leaks Response 4A"
 # Success means the Geodesic Geocoris may become available to purchase specially later on. Not less than 2 years later.
 mission "Hai Leaks Response 4B"
 	landing
+	invisible
 	source "Allhome"
 	to offer
 		has "ship model (all): Geodesic Geocoris"
 	on offer
 		log `Successfully rescued the kidnapped Hai and reclaimed the Geocoris. This ship has been modified in ways that aren't of Hai origin, and which don't appear to be fully functional.`
 		event "returned geocoris" 730
+		fail
 
 event "returned geocoris"
 
