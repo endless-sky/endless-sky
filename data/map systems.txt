@@ -13734,6 +13734,13 @@ system G-3191
 	asteroids "medium metal" 12 2.1
 	asteroids "large metal" 1 1.8
 	hazard "Rulei Gravity Field" 1
+	object "Vajra"
+		sprite planet/vajra/vajra
+			"random start frame"
+			"frame rate" 30
+			"scale" 0.5
+		distance 0
+		period 10
 	object
 		sprite star/f-supergiant
 		distance 600.65
