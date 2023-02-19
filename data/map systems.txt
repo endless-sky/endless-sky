@@ -13834,10 +13834,6 @@ system G-719
 			distance 269.46
 			period 570.1
 	object
-		sprite planet/gas10
-		distance 4653.99
-		period 2358.30
-	object
 		sprite planet/gas0-b
 		distance 5879
 		period 3348.23
@@ -13869,7 +13865,7 @@ system G-819
 		sprite star/g3
 		period 10
 	object
-		sprite planet/gas2-b
+		sprite planet/gas4-b
 		distance 909.1
 		period 414.408
 	object
@@ -19533,10 +19529,6 @@ system L-6181
 		period 64.23
 		offset 180
 	object
-		sprite planet/dust1
-		distance 333.31
-		period 81.8202
-	object
 		sprite planet/cloud8
 		distance 3051.66
 		period 2266.69
@@ -20266,10 +20258,6 @@ system M-1188
 		sprite star/a-dwarf
 		period 10
 	object
-		sprite planet/rock9
-		distance 749.46
-		period 299.676
-	object
 		sprite planet/gas5-b
 		distance 3738
 		period 3338.01
@@ -20361,10 +20349,6 @@ system MS-219
 			sprite planet/dust0-b
 			distance 385.29
 			period 80
-	object
-		sprite planet/gas2-b
-		distance 7384.94
-		period 5572.77
 
 system Makferuti
 	pos 288.431 -628.812
@@ -31715,10 +31699,6 @@ system W-3197
 		sprite star/b3
 		period 10
 	object
-		sprite planet/ocean3-b
-		distance 382
-		period 37.6257
-	object
 		sprite planet/io-b
 		distance 1276
 		period 229.702
@@ -31726,6 +31706,10 @@ system W-3197
 		sprite planet/gas0
 		distance 3781
 		period 1171.65
+	object
+		sprite planet/ocean3-b
+		distance 4150
+		period 1300
 	object
 		sprite planet/dust0
 		distance 9113
