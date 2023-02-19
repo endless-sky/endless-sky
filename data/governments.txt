@@ -1144,7 +1144,7 @@ government "Sheragi"
 	"crew defense" 0
 
 government "Silent Ones"
-	"display name" ???
+	"display name" "???"
 	swizzle 0
 	"player reputation" 1
 	"bribe" 0
