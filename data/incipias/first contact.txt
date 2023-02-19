@@ -20,7 +20,7 @@ mission "Incipias: First Contact I"
 		fail
 		set "saw the Incipias"
 		conversation
-			`As you enter the system, you notice ships of a type you have never seen before. You try to hail them but all that comes back is static. After some more unsuccessful attempts, you give up. Maybe you can find some more information in nearby systems.` 
+			`As you enter the system, you notice ships of a type you have never seen before. You try to hail them but all that comes back is static. After some more unsuccessful attempts, you give up. Maybe you can find some more information in nearby systems.`
 
 mission "Incipias: First Contact II"
 	invisible
@@ -31,19 +31,19 @@ mission "Incipias: First Contact II"
 	on offer
 		set "talked to quarg about incipias"
 		conversation
-			`As you leave your ship it occurs to you that the Quarg seem to settle near each intelligent species.  Maybe you can find out more about this new species here.`
+			`As you leave your ship it occurs to you that the Quarg seem to settle near each intelligent species. Maybe you can find out more about this new species here.`
 			`Just like that, you notice a Quarg approaching you.`
-			`    "A human in this region of space? This is... uncommon. May I ask what one of your kind is doing here?"`
+			`	"A human in this region of space? This is... uncommon. May I ask what one of your kind is doing here?"`
 			choice
 				"I am exploring the depths of the galaxy."
 					goto explorer
 				"I am in search for new technologies and species."
 					goto science
 			label explorer
-			`    "Exploring the whole galaxy? That is a great task you have burdened yourself with. But as long as you do not wish to conquer the regions of space you find, we do not mind you travelling around." The Quarg looks at you carefully. "On the other hand, we do not know what your real goals are." For a moment you feel threatened by the presence of the Quarg, which is strange considering their physical strength. But the moment passes, and the Quarg seems friendly again. "That aside, can I help you with something?"`
+			`	"Exploring the whole galaxy? That is a great task you have burdened yourself with. But as long as you do not wish to conquer the regions of space you find, we do not mind you travelling around." The Quarg looks at you carefully. "On the other hand, we do not know what your real goals are." For a moment you feel threatened by the presence of the Quarg, which is strange considering their physical strength. But the moment passes, and the Quarg seems friendly again. "That aside, can I help you with something?"`
 				goto helpquarg
 			label science
-			`    "Is there are species in the galaxy that has not at some point searched for the greatest godkin technology? Only few have found it. Some gave up searching and concentrated on an easier life, rather than on endless trials and errors. But I can understand your kind. You are a young species that has not yet seen the deep darknesses that exist in this galaxy." The Quarg pauses for a moment, then continues. "We wont give you any technology ourselves, but I can answer your questions, if you have any."`
+			`	"Is there are species in the galaxy that has not at some point searched for the greatest godkin technology? Only few have found it. Some gave up searching and concentrated on an easier life, rather than on endless trials and errors. But I can understand your kind. You are a young species that has not yet seen the deep darknesses that exist in this galaxy." The Quarg pauses for a moment, then continues. "We wont give you any technology ourselves, but I can answer your questions, if you have any."`
 			label helpquarg
 			choice
 				"What do you know about the species that lives south from here?"
@@ -51,25 +51,25 @@ mission "Incipias: First Contact II"
 				"What are the Quarg doing in this region of space?"
 					goto region
 			label species
-			`    "So you have seen them, the Incipias. They are a species even younger than your kind. Gifted with intelligence equal to you. We are here to watch them and protect them from others who might want harm to them." The Quarg looks at you very intensely. "I hope you mean no harm to them. If you do, we will have to stop you." It pauses for a moment and looks at you carefully. "Sadly, we do not have the power to see the intentions of a human being with our eyes. That is why we won't give you any more information about them, as long as we are not sure that you have no bad intentions. I hope you can understand that. Have you got more questions, that I can answer you?"`
+			`	"So you have seen them, the Incipias. They are a species even younger than your kind. Gifted with intelligence equal to you. We are here to watch them and protect them from others who might want harm to them." The Quarg looks at you very intensely. "I hope you mean no harm to them. If you do, we will have to stop you." It pauses for a moment and looks at you carefully. "Sadly, we do not have the power to see the intentions of a human being with our eyes. That is why we won't give you any more information about them, as long as we are not sure that you have no bad intentions. I hope you can understand that. Have you got more questions, that I can answer you?"`
 			choice
 				"How can I show you that I have no bad intentions?"
 					goto proof
 				"No, thank you."
 					goto end
 			label region
-			`    "We are here to protect a species in a nearby system. I am sure you have seen them. We make sure no one can harm them, and that they do not harm themselves too much. Until now, nothing of great importance has happened. They are developing quickly, so I am sure they will visit us in the not too distant future. Do you have another question?"`
+			`	"We are here to protect a species in a nearby system. I am sure you have seen them. We make sure no one can harm them, and that they do not harm themselves too much. Until now, nothing of great importance has happened. They are developing quickly, so I am sure they will visit us in the not too distant future. Do you have another question?"`
 			choice
 				"What do you know about the species that lives south from here?"
 					goto species
 				"No, thank you."
 					goto end
 			label proof
-			`    "You are not to interfere with their development. They are to be left alone until they travel in the galaxy by themselves. We might allow you to make contact with good reason, but I cannot guarantee you anything."`
-			`    It does not seem to be an easy task. You remember that the Hai have some good relations with the Quarg. Maybe they can give you some advice.`
-			`    "I cannot answer any more of your questions right now. It may be time for you to leave."`
+			`	"You are not to interfere with their development. They are to be left alone until they travel in the galaxy by themselves. We might allow you to make contact with good reason, but I cannot guarantee you anything."`
+			`	It does not seem to be an easy task. You remember that the Hai have some good relations with the Quarg. Maybe they can give you some advice.`
+			`	"I cannot answer any more of your questions right now. It may be time for you to leave."`
 			label end
-			`    The Quarg says its goodbye and leaves. You stand there for some time thinking about the things it said, before you decide that it is time for you to proceed.`
+			`	The Quarg says its goodbye and leaves. You stand there for some time thinking about the things it said, before you decide that it is time for you to proceed.`
 				decline
 	to complete
 		never
@@ -86,10 +86,10 @@ mission "Incipias: First Contact III"
 		set "searching for a proof"
 		conversation
 			`Now that you are on a Hai world you think it would be a good opportunity to ask the Hai government how to proof yourself to the Quarg. You head to the closest embassy to ask for their support.`
-			`    At the embassy a friendly Hai guides you to a waiting room where a lot of Hai are sitting before you even told them what you want. Annoyed by that, you sit down and wait.`
-			`    After some time, you cannot say how long because time in waiting rooms seems to flow differently, another Hai guides you to into an office. Both of you sit down. The Hai begins to talk "What can I do for you today? It is not often that we have humans here." You begin to tell the Hai your matter, and he listens carefully while you are talking.`
-			`    When you are finished he says "That seems like something very important, I fear I am not the right person to talk to. I will hand you over to my superior. He might be able to help you." Please wait here while I go and get him.`
-			`    You do not have to wait long this time until a Hai elder enters the room. The doors are closed and both of you sit silent for a short moment. The Hai begins to speak, "That is a serious matter you came here to discuss. I do not even know if we want to help you. Maybe it would be best if you start with giving us some reason. I am allowed to speak for our government so you better be cautious what you say."`
+			`	At the embassy a friendly Hai guides you to a waiting room where a lot of Hai are sitting before you even told them what you want. Annoyed by that, you sit down and wait.`
+			`	After some time, you cannot say how long because time in waiting rooms seems to flow differently, another Hai guides you to into an office. Both of you sit down. The Hai begins to talk "What can I do for you today? It is not often that we have humans here." You begin to tell the Hai your matter, and he listens carefully while you are talking.`
+			`	When you are finished he says "That seems like something very important, I fear I am not the right person to talk to. I will hand you over to my superior. He might be able to help you." Please wait here while I go and get him.`
+			`	You do not have to wait long this time until a Hai elder enters the room. The doors are closed and both of you sit silent for a short moment. The Hai begins to speak, "That is a serious matter you came here to discuss. I do not even know if we want to help you. Maybe it would be best if you start with giving us some reason. I am allowed to speak for our government so you better be cautious what you say."`
 			choice
 				"Because you do not want to separate species by force?"
 					goto separation
@@ -98,35 +98,35 @@ mission "Incipias: First Contact III"
 				"It is always better when species interact with each other early peacefully than making contact late but forcefully."
 					goto early
 			label separation
-			`    You explain the Hai that you belief in a peaceful united galaxy where all species interact with each other. After you told that to the Hai he says that he has to talk to some people. "You have to wait here for a while." He says and leaves the room.`
-			`    This time you have to wait longer. But when he comes back he has good news for you. "We do not think that you lied about your intentions, but before we help you you have to give us a proof of at least one other peaceful contact you made to a species. If you can bring us this proof we will see how we can help you.`
+			`	You explain the Hai that you belief in a peaceful united galaxy where all species interact with each other. After you told that to the Hai he says that he has to talk to some people. "You have to wait here for a while." He says and leaves the room.`
+			`	This time you have to wait longer. But when he comes back he has good news for you. "We do not think that you lied about your intentions, but before we help you you have to give us a proof of at least one other peaceful contact you made to a species. If you can bring us this proof we will see how we can help you.`
 				goto offer
 			label peace
-			`    You explain that you like to make contact with new species and the cultural exchange. You tell the Hai of the positive impacts on both sides of a peaceful contact. The Hai listens carefully and after you have finished he says "Now I understand your noble reasons for this. I will have to go to talk to some people." He leaves the room and tells you to wait there.`
-			`    You have to wait a longer period of time until he comes back. "I have good news for you. We believe you that your intentions are only this peaceful ones. We will help you if you fulfill the following condition: Bring us one other proof of a peaceful contact you made to another species."`
+			`	You explain that you like to make contact with new species and the cultural exchange. You tell the Hai of the positive impacts on both sides of a peaceful contact. The Hai listens carefully and after you have finished he says "Now I understand your noble reasons for this. I will have to go to talk to some people." He leaves the room and tells you to wait there.`
+			`	You have to wait a longer period of time until he comes back. "I have good news for you. We believe you that your intentions are only this peaceful ones. We will help you if you fulfill the following condition: Bring us one other proof of a peaceful contact you made to another species."`
 				goto offer
 			label early
-			`    You explain to the Hai that you think it is best to make contact to a species as soon as possible. Because at some point in the distant future there will be contact with them anyways so it is now the best time to establish peaceful connections. After the Hai hears that he stands up and says "I will talk to some people about the things you told me. Please wait here." and leaves the room.`
-			`    A long time passes before the Hai comes back. When he comes back he sits down and says "We are mostly sure now that you have no bad intentions. However, before we start helping you with this matter we want something from you that proves you made peaceful contact to another species. If you can get this for us we will see how we can help you.`
+			`	You explain to the Hai that you think it is best to make contact to a species as soon as possible. Because at some point in the distant future there will be contact with them anyways so it is now the best time to establish peaceful connections. After the Hai hears that he stands up and says "I will talk to some people about the things you told me. Please wait here." and leaves the room.`
+			`	A long time passes before the Hai comes back. When he comes back he sits down and says "We are mostly sure now that you have no bad intentions. However, before we start helping you with this matter we want something from you that proves you made peaceful contact to another species. If you can get this for us we will see how we can help you.`
 			label offer
-			`    You ask the Hai what this proof could look like. The Hai answers "That is something I have no answer for. Maybe it would be best if you talk to the government of the species. It was a pleasure to talk to you. I will see you when you have the proof. Oh, and one last thing: It might be better to not tell this species exactly why you need this." With these words he guides you to the exit and you say goodbye to him.`
+			`	You ask the Hai what this proof could look like. The Hai answers "That is something I have no answer for. Maybe it would be best if you talk to the government of the species. It was a pleasure to talk to you. I will see you when you have the proof. Oh, and one last thing: It might be better to not tell this species exactly why you need this." With these words he guides you to the exit and you say goodbye to him.`
 				accept
 	to complete
 		or
 			has "wanderer peace proof: done"
 			has "coalition peace proof: offered"
 	on complete
-		conversation 
+		conversation
 			branch species
 				has "wanderer peace proof: done"
-			`    You take the box with the gem inside and decide to show the Hai this very unique proof of a good relationship. When you get to the embassy the Hai there already know you and guide you to the person you spoke to last time. "Hello Captain <first> <last>, nice to see you again. If you got back here this means you have a proof?" "Yes, I have something very unique.", you answer. The Hai looks very interested and you pull out the box and put it on the table. "Well", he says, "I hope it is not only this box. It does not seem made by humans, but I fear this wont be enough for a proof." "Of course not", you say and open the box towards the Hai. Suddenly he freezes and just stares at the small gem inside of it. "Indeed, that is nothing made by humans and no Hai could create this either. This must be the work of a really advanced species. Do not worry, I will not ask you from which species you got this. This is more than enough for a proof."`
+			`	You take the box with the gem inside and decide to show the Hai this very unique proof of a good relationship. When you get to the embassy the Hai there already know you and guide you to the person you spoke to last time. "Hello Captain <first> <last>, nice to see you again. If you got back here this means you have a proof?" "Yes, I have something very unique.", you answer. The Hai looks very interested and you pull out the box and put it on the table. "Well", he says, "I hope it is not only this box. It does not seem made by humans, but I fear this wont be enough for a proof." "Of course not", you say and open the box towards the Hai. Suddenly he freezes and just stares at the small gem inside of it. "Indeed, that is nothing made by humans and no Hai could create this either. This must be the work of a really advanced species. Do not worry, I will not ask you from which species you got this. This is more than enough for a proof."`
 				goto haihelp
 			label species
-			`    Now that you have this very special gift from the Wanderers you decide to show it to the Hai, to proof you are trustworthy. Luckily the plant is small enough to be carried with you to the embassy.`
-			`    When you arrive at the embassy you are a little bit exhausted from carrying it all the way and you are really grateful that the Hai remember you and directly guide you to the person you spoke to last time. "Hello Captain <first> <last>, nice to see you again and I see you are carrying something special with you, may I ask what this plant is?". "Of course," You say, "This is the proof you asked me to bring you." Now the Hai looks closer at the plant. "I see that this is an unusual plant but why is this a proof of friendship with another species?" You answer him, "This plant was genetically manipulated to such a degree that it can survive in nearly any climate, this is nothing humans could have done." The Hai looks at you, "You mind if we test this? We will make sure not to use too extreme methods, we do not want to kill it." You agree. The Hai gets two helpers to carry the plant and tells you to wait for his return.`
-			`    About an hour later the Hai returns with the plant and a excited looking face. "This plant is a wonder, we exposed it to various environmental factors and some of them were really extreme, but all that happened was that the air got more breathable. This really is a worthy proof of a friendship with another species."`
+			`	Now that you have this very special gift from the Wanderers you decide to show it to the Hai, to proof you are trustworthy. Luckily the plant is small enough to be carried with you to the embassy.`
+			`	When you arrive at the embassy you are a little bit exhausted from carrying it all the way and you are really grateful that the Hai remember you and directly guide you to the person you spoke to last time. "Hello Captain <first> <last>, nice to see you again and I see you are carrying something special with you, may I ask what this plant is?". "Of course," You say, "This is the proof you asked me to bring you." Now the Hai looks closer at the plant. "I see that this is an unusual plant but why is this a proof of friendship with another species?" You answer him, "This plant was genetically manipulated to such a degree that it can survive in nearly any climate, this is nothing humans could have done." The Hai looks at you, "You mind if we test this? We will make sure not to use too extreme methods, we do not want to kill it." You agree. The Hai gets two helpers to carry the plant and tells you to wait for his return.`
+			`	About an hour later the Hai returns with the plant and a excited looking face. "This plant is a wonder, we exposed it to various environmental factors and some of them were really extreme, but all that happened was that the air got more breathable. This really is a worthy proof of a friendship with another species."`
 			label haihelp
-			`    Now the Hai turn to you with a very serious expression, "We have promised you to help you and now we will do so. Please come back in no earlier than four days to take a delegation of us to the Quarg ringworld. We need some time to prepare some stuff. You will meet us on Mirrorlake." You agree and say goodbye.`
+			`	Now the Hai turn to you with a very serious expression, "We have promised you to help you and now we will do so. Please come back in no earlier than four days to take a delegation of us to the Quarg ringworld. We need some time to prepare some stuff. You will meet us on Mirrorlake." You agree and say goodbye.`
 		event "Hai preparation time" 4
 
 event "Hai preparation time"
@@ -147,7 +147,7 @@ mission "wanderer peace proof"
 	on offer
 		conversation
 			`Now that you are on a wanderer world you decide this would be a good time for asking them about the proof the Hai requested from you. You head for a nearby embassy.`
-			`    At the embassy an older Wanderer ask you what you are there for. You remember the Hai telling you that you should not tell the other species about the Incipias, so you search for something else to tell them.`
+			`	At the embassy an older Wanderer ask you what you are there for. You remember the Hai telling you that you should not tell the other species about the Incipias, so you search for something else to tell them.`
 			choice
 				"I am searching for something unique that presents your species best."
 					goto unique
@@ -155,18 +155,18 @@ mission "wanderer peace proof"
 			`   "That sounds interesting, let me think about it." The Wanderer becomes silent for some time. Then he says, "I have an idea, but I need to ask some people about it first. Please wait here for a second." He leaves the room without waiting for your respond. Forced to wait for him, you ask yourself what this gift of friendship of the wanderers could be.`
 				goto c1
 			label unique
-			`    "Why are you searching for something like this? That is an quite unusual request."`
+			`	"Why are you searching for something like this? That is an quite unusual request."`
 			choice
 				"I am a passionate collector."
 				"I want something to remember you."
-			`    "Let me think about this. What would represent our species best..." The Wanderer gets silent while thinking. Than he suddenly stands up, "If I get the permission to give you this, you will get a perfect item that represents our species best. Let me go check it." The Wanderer leaves the room.`
+			`	"Let me think about this. What would represent our species best..." The Wanderer gets silent while thinking. Than he suddenly stands up, "If I get the permission to give you this, you will get a perfect item that represents our species best. Let me go check it." The Wanderer leaves the room.`
 			label c1
-			`    Time passes and you get a little bit nervous, but after some time the Wanderer finally returns. He immediately begins to speak. "I just got permission", he says "You will have to travel to <destination> to get this. You will receive it at the embassy there, I already contacted some people there." You ask him what it his but all he tells you is "It is a surprise, you will see when you get there. Take this." He hands you a small card. "This will tell the people there that you are the right one." He says goodbye to you and you leave the embassy.`
+			`	Time passes and you get a little bit nervous, but after some time the Wanderer finally returns. He immediately begins to speak. "I just got permission", he says "You will have to travel to <destination> to get this. You will receive it at the embassy there, I already contacted some people there." You ask him what it his but all he tells you is "It is a surprise, you will see when you get there. Take this." He hands you a small card. "This will tell the people there that you are the right one." He says goodbye to you and you leave the embassy.`
 				accept
 	on complete
 		conversation
-			`    After you arrived at Vara K'chrai, you directly head to the embassy excited what the Wanderers will give you. At the embassy you show the small card the Wanderer gave you and a woman guides you to a separate room, where three Wanderer are standing around a table. On the table is a small plant in a pot. But you have never seen a plant like this before on any Wanderer world. One of the three begins to talk. "This plant on the table there is our gift to you. It is a genmanipulated tree, that will survive under mostly any circumstances, it is something our species is specialized on and it will show our friendship in a very unique way. We hope you like it." Surprised by this unusual gift you thank the wanderers. "It needs nearly no water, so you do not have to care a lot about it, it survives on spaceship so you can take it with you anywhere." You again say thanks to them and then you leave.`
-			`    You now have a proof of the Wanderers friendship. You can show it to the Hai now.`
+			`	After you arrived at Vara K'chrai, you directly head to the embassy excited what the Wanderers will give you. At the embassy you show the small card the Wanderer gave you and a woman guides you to a separate room, where three Wanderer are standing around a table. On the table is a small plant in a pot. But you have never seen a plant like this before on any Wanderer world. One of the three begins to talk. "This plant on the table there is our gift to you. It is a genmanipulated tree, that will survive under mostly any circumstances, it is something our species is specialized on and it will show our friendship in a very unique way. We hope you like it." Surprised by this unusual gift you thank the wanderers. "It needs nearly no water, so you do not have to care a lot about it, it survives on spaceship so you can take it with you anywhere." You again say thanks to them and then you leave.`
+			`	You now have a proof of the Wanderers friendship. You can show it to the Hai now.`
 
 
 mission "coalition peace proof"
@@ -180,23 +180,23 @@ mission "coalition peace proof"
 	on offer
 		conversation
 			`As the Heliarch have a relationship to you feel not really like friendship but something in that direction, you decide to ask them for a proof of this relationship, to give to the Hai.`
-			`    You approach a nearby Heliarch and tell him you want to ask the government about a personal matter. He gives you directions to an office that handles matters like yours. You thank the Heliarch and make your way to the office.`
-			`    When you arrive there, you end up in a pretty long waiting line. It seems that the Heliarch are never short of work. You patiently line yourself up in the line and get ready to spend some time in the line.`
-			`    After some time has passed it is finally your turn to discuss your matter. You explain that you would like to have something that displays the good relationship between the Coalition and you. The Heliarch is quite surprised and says: "An interesting request of yours that is. Why you want this, may I ask?"`
+			`	You approach a nearby Heliarch and tell him you want to ask the government about a personal matter. He gives you directions to an office that handles matters like yours. You thank the Heliarch and make your way to the office.`
+			`	When you arrive there, you end up in a pretty long waiting line. It seems that the Heliarch are never short of work. You patiently line yourself up in the line and get ready to spend some time in the line.`
+			`	After some time has passed it is finally your turn to discuss your matter. You explain that you would like to have something that displays the good relationship between the Coalition and you. The Heliarch is quite surprised and says: "An interesting request of yours that is. Why you want this, may I ask?"`
 			choice
 				"I am gathering proofs of friendship from all over the galaxy."
 					goto cages
 				"I want to show that species do not have to be in cages."
-			`    The Heliarch seems very happy when you say that, he says "A good reason that is, here you wait, while some people above me about this I ask." He turns around and goes away.`
+			`	The Heliarch seems very happy when you say that, he says "A good reason that is, here you wait, while some people above me about this I ask." He turns around and goes away.`
 				goto c1
 			label cages
-			`    "An unusual project that is, what the reason for this is?"`
+			`	"An unusual project that is, what the reason for this is?"`
 			choice
 				"I am a passionate collector."
 				"I want something to remember you, to remember peace is possible."
-			`    "Your project understand I can. The people over me about your request let me ask." He turns around and goes away.`
+			`	"Your project understand I can. The people over me about your request let me ask." He turns around and goes away.`
 			label c1
-			`    When noises in the line behind you are growing louder he finally comes back. With him he carries a small box. "A decent gift for you I got." He opens the box and in it lies a small gem like none you have seen before, reflecting the light in green, red and blue shades. "This gem a fusion of three others is, an emerald for the Saryds, a ruby for the Kimek and a sapphire for the Arachi. A fusion of our three species it is, you could say. This gem representing our species best it is. You appreciate this gift I hope." You are really thankful for this gift and thank the Heliarch a lot. But then you have to leave because there is still a line behind you.`
+			`	When noises in the line behind you are growing louder he finally comes back. With him he carries a small box. "A decent gift for you I got." He opens the box and in it lies a small gem like none you have seen before, reflecting the light in green, red and blue shades. "This gem a fusion of three others is, an emerald for the Saryds, a ruby for the Kimek and a sapphire for the Arachi. A fusion of our three species it is, you could say. This gem representing our species best it is. You appreciate this gift I hope." You are really thankful for this gift and thank the Heliarch a lot. But then you have to leave because there is still a line behind you.`
 				accept
 
 mission "Incipias: First Contact IV"
@@ -213,11 +213,11 @@ mission "Incipias: First Contact IV"
 	on complete
 		conversation
 			`When you arrive at the ringworld the Hai take the lead. The few Quarg around seem surprised by the presence of the Hai. The Hai talk to one of the Quarg and it shows you the way.`
-			`    Once again you are overwhelmed by the size of a Quarg ringworld. It takes you some time to get to your destination. When you get to the location the Quarg told you to go, one of the Hai turns towards you. "It will be the best if we talk to them without you being present. I hope you understand that." He tells you. Surprised by this you just nod in agreement. The Hai walk into the room and leave you alone.`
-			`    After spending hours of time on waiting the door opens and not the Hai but a Quarg comes out. "Could you please follow me?" It asks and without waiting for a response it leads the way. Left no real choice you just follow it.`
-			choice 
+			`	Once again you are overwhelmed by the size of a Quarg ringworld. It takes you some time to get to your destination. When you get to the location the Quarg told you to go, one of the Hai turns towards you. "It will be the best if we talk to them without you being present. I hope you understand that." He tells you. Surprised by this you just nod in agreement. The Hai walk into the room and leave you alone.`
+			`	After spending hours of time on waiting the door opens and not the Hai but a Quarg comes out. "Could you please follow me?" It asks and without waiting for a response it leads the way. Left no real choice you just follow it.`
+			choice
 				"[continue]"
-			`    You arrive at another room. "This is... an unusual situation." The Quarg begins talk. "It is seldom that our friends, the Hai, are asking for something like this. Actually this never happened before. They brought up some good arguments and we know that they have no bad intentions." It pauses for a moment. "But this leaves us in a dilemma situation. We do not want to dismiss their request, but we also have concerns. Not concerns about you anymore, but concerns about what happens after you made contact. This will change this species for sure. But we do not know in which direction. But here comes the one reason, why we will allow you to make contact and giive you a translation device. If this species continues the path it currently is moving on. It will lead to their distinction. We see this for some time now, but we can not step in, because that is not our role in this galaxy. But you, you can change something and now that the Hai have proved you, we do not have concerns about you anymore." It takes something that looks like a tablet and hands it you. "This is the translation device. Their communication is based on light, so you have to face them while you are talking to them. This also works over video communication, you just have to hold it, so that the back of the device shows to the screen. Also their language is a lot different than yours, human, you will see what that means." You take the device and thank it. "Oh, and two other things, if you sell hyperdrives or other advanced spacetravelling technology to them we will remotely destroy them, and second, if you ever try to harm them, we will harm you. I hope this is alright for you." A little bit shocked you agree. "Go now and make contact to them. We will give the Hai a ride home." Without any further words, he leaves you alone.`
+			`	You arrive at another room. "This is... an unusual situation." The Quarg begins talk. "It is seldom that our friends, the Hai, are asking for something like this. Actually this never happened before. They brought up some good arguments and we know that they have no bad intentions." It pauses for a moment. "But this leaves us in a dilemma situation. We do not want to dismiss their request, but we also have concerns. Not concerns about you anymore, but concerns about what happens after you made contact. This will change this species for sure. But we do not know in which direction. But here comes the one reason, why we will allow you to make contact and giive you a translation device. If this species continues the path it currently is moving on. It will lead to their distinction. We see this for some time now, but we can not step in, because that is not our role in this galaxy. But you, you can change something and now that the Hai have proved you, we do not have concerns about you anymore." It takes something that looks like a tablet and hands it you. "This is the translation device. Their communication is based on light, so you have to face them while you are talking to them. This also works over video communication, you just have to hold it, so that the back of the device shows to the screen. Also their language is a lot different than yours, human, you will see what that means." You take the device and thank it. "Oh, and two other things, if you sell hyperdrives or other advanced spacetravelling technology to them we will remotely destroy them, and second, if you ever try to harm them, we will harm you. I hope this is alright for you." A little bit shocked you agree. "Go now and make contact to them. We will give the Hai a ride home." Without any further words, he leaves you alone.`
 
 mission "Incipias: First Contact V"
 	landing
@@ -231,20 +231,20 @@ mission "Incipias: First Contact V"
 				"Hello Incipiae, I am <first> <last> of the human race a space ship captain."
 				"Greetings strangers, I come to spread peace."
 				"Hello beings of another kind, I want to communicate with you."
-			`    At first nothing happens. Then your scanners register a huge raise in communication between the alien ships, their planet and their spacestation. At first it seems to be very chaotic but then slowly the spacestation dominates the communication. Then there is nothing.`
+			`	At first nothing happens. Then your scanners register a huge raise in communication between the alien ships, their planet and their spacestation. At first it seems to be very chaotic but then slowly the spacestation dominates the communication. Then there is nothing.`
 			choice
 				"[wait for some time]"
-			`    After some time the space station opens a communication channel to you. A creature like you never seen one before appears on the screen. Formed like a balloon, with some weird shaped extremeties and four eyes? at the bottom. It is floating in front of a blank wall. You remember what the Quarg told you and hold the tablet in the direction of the screen. Something on the surface of the creature begins flickering and words start appearing on the tablet screen. "Welcome, [stranger, traveller, alien] [I, we] are [happy, surprised, scared] by your visit." It seems like this is the difference the Quarg talked about, the translation device is trying to combine words to give you the actual meaning. More words appear, "[I, we] see another [intelligence, feeling one] the first time, please [explain, show, tell us] the reason for your presence."`
+			`	After some time the space station opens a communication channel to you. A creature like you never seen one before appears on the screen. Formed like a balloon, with some weird shaped extremeties and four eyes? at the bottom. It is floating in front of a blank wall. You remember what the Quarg told you and hold the tablet in the direction of the screen. Something on the surface of the creature begins flickering and words start appearing on the tablet screen. "Welcome, [stranger, traveller, alien] [I, we] are [happy, surprised, scared] by your visit." It seems like this is the difference the Quarg talked about, the translation device is trying to combine words to give you the actual meaning. More words appear, "[I, we] see another [intelligence, feeling one] the first time, please [explain, show, tell us] the reason for your presence."`
 			choice
 				"I am exploring the limits of space."
 					goto limits
 				"I am searching for new species and technologies"
-			`    The Incipias listens to you and then it looks like they are looking to someone on its right you do not see. After a short moment it turns towards you again. It starts flickering "We do not think we have [better, more advanced] technologies than [you, your kind]. But [I, we] look forward to a [beneficial, peaceful] contact with [you, your kind]. [I, we] would like to invite you to our [space station, home, safe place], to [communicate, continue this adventure] further.`
+			`	The Incipias listens to you and then it looks like they are looking to someone on its right you do not see. After a short moment it turns towards you again. It starts flickering "We do not think we have [better, more advanced] technologies than [you, your kind]. But [I, we] look forward to a [beneficial, peaceful] contact with [you, your kind]. [I, we] would like to invite you to our [space station, home, safe place], to [communicate, continue this adventure] further.`
 				goto c1
 			label limits
-			`    The Incipias listens to you and then it looks like it is looking to someone on their right you do not see. After a short moment it turns towards you again. It starts flickering "[I, we] are happy to [greet, meet, see] you traveller. [I, we] would like to invite you to our [space station, home, safe place], to [communicate, continue this meeting] further.`
+			`	The Incipias listens to you and then it looks like it is looking to someone on their right you do not see. After a short moment it turns towards you again. It starts flickering "[I, we] are happy to [greet, meet, see] you traveller. [I, we] would like to invite you to our [space station, home, safe place], to [communicate, continue this meeting] further.`
 			label c1
-			`    Some basic information about the spacestation is send to your display and the communication channel gets closed.`
+			`	Some basic information about the spacestation is send to your display and the communication channel gets closed.`
 			action
 				"reputation: Hicemus" = 1
 				"reputation: Incipias" = 1
@@ -265,7 +265,7 @@ mission "Incipias: First Contact VI"
 				"[show them a map of human systems]"
 					goto map
 				"[show them the location of Sol in the Galaxy]"
-			`    You show them a picture of the galaxy and point out where the Sol system is and where the Dom'us system is. The Incipias move closer to see and you notice some excitement in their rows. Their speaker turns towards you "A [long, unexpected distance is between our [systems, homes], [you, your kind] has to be [very, far more] advanced." You type in the tablet, "No, it is only a few of us who can travel that far between stars. My kind has not yet the technology to travel that far, I got this technology from another species." Again some rumor starts between the Incipias. "So we and [your kind] are not [the only ones, alone in space]?" Their speaker asks you.`
+			`	You show them a picture of the galaxy and point out where the Sol system is and where the Dom'us system is. The Incipias move closer to see and you notice some excitement in their rows. Their speaker turns towards you "A [long, unexpected distance is between our [systems, homes], [you, your kind] has to be [very, far more] advanced." You type in the tablet, "No, it is only a few of us who can travel that far between stars. My kind has not yet the technology to travel that far, I got this technology from another species." Again some rumor starts between the Incipias. "So we and [your kind] are not [the only ones, alone in space]?" Their speaker asks you.`
 				goto c1
 			label map
 			action
@@ -275,7 +275,7 @@ mission "Incipias: First Contact VI"
 			choice
 				"There are some, mostly more advanced then humans."
 				"Yes, there are a few."
-			`    "Thanks for these [valuable, interesting] information, [I, we] think it would be fair to let you ask some questions." It tells.`
+			`	"Thanks for these [valuable, interesting] information, [I, we] think it would be fair to let you ask some questions." It tells.`
 			label choice
 			choice
 				"Why do you use a space station as your capital?"
@@ -287,14 +287,14 @@ mission "Incipias: First Contact VI"
 				"Thanks but I have no further questions."
 					goto end
 			label capital
-			`    "We, the Hicemus believe in [progress, science] that is why we chose our first space station as our capital, as a symbol of [progress, strength]." You notice that he did not refer to themselves as the Incipias but as the Hicemus. There seem to be some disagreement with that. "Do you have any other questions?"`
+			`	"We, the Hicemus believe in [progress, science] that is why we chose our first space station as our capital, as a symbol of [progress, strength]." You notice that he did not refer to themselves as the Incipias but as the Hicemus. There seem to be some disagreement with that. "Do you have any other questions?"`
 				goto choice
 			label time
-			`    "About two hundred years ago, our kind launched the first [missile, space ship]. Since then we have progressed [in a good pace, not fast enough] and one hundred years ago we started building [this space station, the pinacle of our technology]. Right now [I, we] are working towards interstellar travelling. Is there another question?"`
+			`	"About two hundred years ago, our kind launched the first [missile, space ship]. Since then we have progressed [in a good pace, not fast enough] and one hundred years ago we started building [this space station, the pinacle of our technology]. Right now [I, we] are working towards interstellar travelling. Is there another question?"`
 				goto choice
 			label government
-			`    "Our kind is currently [lead, ruled] by us, the Hicemus. We decide in what direction and how we progress. Our homeworld is managed by the old government, who is referred to simply as the Incipias. All real progress of our kind is made in this [space station, homeworld]. You got anymore questions?"`
+			`	"Our kind is currently [lead, ruled] by us, the Hicemus. We decide in what direction and how we progress. Our homeworld is managed by the old government, who is referred to simply as the Incipias. All real progress of our kind is made in this [space station, homeworld]. You got anymore questions?"`
 				goto choice
 			label end
-			`    "If this is the case, [I, we] hereby welcome you to our capital. You may go around without any restrictions. We will sell our ships and outfits to you, but I doubt they will be much of a use to you." It makes some strange movement in the air, probably a gesture of welcome. "Thank you", you say and make a human gesture of gratitude.`
+			`	"If this is the case, [I, we] hereby welcome you to our capital. You may go around without any restrictions. We will sell our ships and outfits to you, but I doubt they will be much of a use to you." It makes some strange movement in the air, probably a gesture of welcome. "Thank you", you say and make a human gesture of gratitude.`
 
