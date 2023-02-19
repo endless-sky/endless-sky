@@ -140,8 +140,12 @@ void ShipEffectsShader::Init()
 		"    }\n"
 		"  }\n"
 		"  obel /= 49.;\n"
-		"  float a = sqrt(2. * obel + 0.2 / (obel / 2. - .6) + 0.3);\n"
-		"  return a + (a - a * (stripe(uv.x * ratio, 1.5) * stripe(uv.y, 1.5))); \n"
+		"  return sqrt(2. * obel + 0.2 / (obel / 2. - .6) + 0.3);\n"
+		"}\n"
+
+		"float gridPattern(float f, vec2 uv)\n"
+		"{\n"
+		"  return f + (f - f * (stripe(uv.x * ratio, 1.5) * stripe(uv.y, 1.5)));\n"
 		"}\n"
 
 		"void main()\n"
@@ -153,16 +157,25 @@ void ShipEffectsShader::Init()
 		"    for(int i = 0; i < recentHitCount; i++)\n"
 		"    {\n"
 		"      vec2 hitPoint = recentHits[i] + vec2(0.5, 0.5);\n"
-		"      color += shieldColor * recentDamage[i] * clamp(1. - distance(hitPoint, uv)*.05*size, 0., 1.);\n"
+		"      color += shieldColor * recentDamage[i] * clamp(1. - distance(hitPoint, uv)*.02*size, 0., 1.);\n"
 		"    }\n"
 		"    color /= recentHitCount / 2.;\n"
+		"    color *= sobellish(uv);\n"
+		// TODO: Move switch to uniform, add more patterns
+		"    int switchint = 0;\n"
+		"    switch(switchint)\n"
+		"    {\n"
+		"      case 0:\n"
+		"        color *= gridPattern(color.a, uv);\n"
+		"        break;\n"
+		"    }\n"
 		"  }\n"
 		"  else if(recentHitCount != 0)\n"
 		"  {\n"
-		"    color = shieldColor * recentDamage[0] * 0.2;\n"
+		"    color = sobellish(uv) * shieldColor * recentDamage[0] * 0.4;\n"
 		"  }\n"
 
-		"  finalColor = sobellish(uv) * color;\n"
+		"  finalColor = color;\n"
 		"}\n"
 		"\n";
 
