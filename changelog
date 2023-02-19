@@ -3,10 +3,10 @@ Version 0.10.0
     * The accompany objective on mission npcs no longer implicitly sets the save objective. Plugin missions that had "accompany" but not "save" should be changed to include "save" if the intention of the mission is that the npcs live (without the bug this time). (@Amazinite, @RisingLeaf)
   * Big changes:
     * Added a young alien faction located beyond the core, inhabiting a region of space that is home to long-lost secrets and mysterious lifeforms. (@Saugia, @GefullteTaubenbrust2)
-	* Added a not-so-young alien faction located near the Korath, an advanced race of mantis-like beings that make heavy use of genetic and cybernetic modifications. (@Amazinite, @beccabunny, @Saugia)
-	* A long-standing UI feature has been finished: the job board can now be sorted by various metrics! Jobs can be sorted alphabetically, pay, deadline, and more. (@alextd, @samrocketman)
-	* A long-standing (and annoying) bug has also been fixed: out of system mission cargo and passengers will no longer be teleported to the player's location when loading a save. (Yes, this bug was reported enough over the years that this constitutes a big change.) (@warp-core)
-	* Created a large number of new conditions for content creators to make use of, including the ability to set "global conditions" that can be accessed by any save file, as well as a few new places to use them, including allowing individual lines and choices in a conversation to be hidden by conditions. More specifics can be found below.
+    * Added a not-so-young alien faction located near the Korath, an advanced race of mantis-like beings that make heavy use of genetic and cybernetic modifications. (@Amazinite, @beccabunny, @Saugia)
+    * A long-standing UI feature has been finished: the job board can now be sorted by various metrics! Jobs can be sorted alphabetically, pay, deadline, and more. (@alextd, @samrocketman)
+    * A long-standing (and annoying) bug has also been fixed: out of system mission cargo and passengers will no longer be teleported to the player's location when loading a save. (Yes, this bug was reported enough over the years that this constitutes a big change.) (@warp-core)
+    * Created a large number of new conditions for content creators to make use of, including the ability to set "global conditions" that can be accessed by any save file, as well as a few new places to use them, including allowing individual lines and choices in a conversation to be hidden by conditions. More specifics can be found below.
   * Bug fixes:
     * Content bugs:
       * Typo fixes. (@a-random-lemurian, @Anarchist2, @Aneutronic, @aradapilot, @Corraban2, @Deltaspace0, @EjoThims, @Ember369, @FoxSylv, @Hecter94, @hmglasgow, @Kepler-69c, @nathan-b, @opusforlife2, @real-dam, @roadrunner56, @Terin, @ThrawnCA, @tibetiroka, @warp-core, @williaji, @zlonghofer)
@@ -96,7 +96,7 @@ Version 0.10.0
       * Three new ships for the Korath Exiles. (@ravenshining, @Saugia)
         * Rai'alorej: a search and rescue hospital ship.
         * Ikatila'ej: a large mining and manufacturing ship with a unique spinal weapon.
-		* Kas'ik Tek 7: a surveillance drone. (@Saugia)
+        * Kas'ik Tek 7: a surveillance drone. (@Saugia)
       * Quarg now consider possession of their outfits or ships to be atrocities and will permanently imprison the player if they are caught with them. (@Arachi-Lover)
       * Increased cooperation between Tarazed Corporation and the Free Worlds early in the campaign. (@bene-dictator)
       * A new Free Worlds side mission about expanding infrastructure on Zug. (@bene-dictator)
@@ -277,7 +277,7 @@ Version 0.10.0
         * "scan concealment" attribute, reduces the chance an outfit is found on a scan. (@quyykk)
         * Illegal and attrocity goods can now be defined individually for different governments. (@Hurleveur, @tibetiroka)
       * Added the option for a hyper, scram, or jump drive to have variable fuel cost based on the mass of the ship using it. (@Ferociousfeind)
-	  * Added new NPC ship personalities:
+      * Added new NPC ship personalities:
         * "merciful": causes ships to avoid attacking hostile ships that are fleeing. (@Hurleveur, @quyykk)
         * "daring" and "hunting": separate behaviors of "heroic" so they can be applied with more granularity. "daring" ships will disregard the strength of their opponent, while "hunting" ships will disregard how far away their target is when pursuing them. (@UnorderedSigh)
       * Added "drag reduction" and "inertia reduction" attributes. (@Azure3141)
