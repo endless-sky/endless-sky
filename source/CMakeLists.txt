@@ -2,7 +2,6 @@ add_library(EndlessSkyLib STATIC EXCLUDE_FROM_ALL)
 
 # Set the appropriate compiler flags.
 target_include_directories(EndlessSkyLib PUBLIC "${LIBMAD_INCLUDE_DIR}")
-target_compile_definitions(EndlessSkyLib PUBLIC ES_CMAKE)
 if(MSVC)
 	target_compile_options(EndlessSkyLib PUBLIC "/W3" "/permissive-" "/sdl" "/GR-" "/analyze-"
 		"-Wno-nonportable-include-path" "$<$<CONFIG:Release>:/Gy;/WX;/Oi>")
@@ -53,6 +52,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Account.h
 	AlertLabel.cpp
 	AlertLabel.h
+	AmmoDisplay.cpp
+	AmmoDisplay.h
 	Angle.cpp
 	Angle.h
 	Armament.cpp
@@ -153,6 +154,8 @@ target_sources(EndlessSkyLib PRIVATE
 	GameEvent.h
 	GameLoadingPanel.cpp
 	GameLoadingPanel.h
+	Gamerules.cpp
+	Gamerules.h
 	GameWindow.cpp
 	GameWindow.h
 	Government.cpp
@@ -355,6 +358,8 @@ target_sources(EndlessSkyLib PRIVATE
 	opengl.h
 	pi.h
 	shift.h
+	ship/ShipAICache.cpp
+	ship/ShipAICache.h
 	text/DisplayText.cpp
 	text/DisplayText.h
 	text/Font.cpp

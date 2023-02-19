@@ -51,6 +51,7 @@ namespace {
 	const int ZOOM_FACTOR_MAX = 200;
 	const int ZOOM_FACTOR_INCREMENT = 10;
 	const string VIEW_ZOOM_FACTOR = "View zoom factor";
+	const string AUTO_AIM_SETTING = "Automatic aiming";
 	const string SCREEN_MODE_SETTING = "Screen mode";
 	const string VSYNC_SETTING = "VSync";
 	const string EXPEND_AMMO = "Escorts expend ammo";
@@ -209,6 +210,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 			}
 			else if(zone.Value() == CAMERA_ACCELERATION)
 				Preferences::ToggleCameraAcceleration();
+			else if(zone.Value() == AUTO_AIM_SETTING)
+				Preferences::ToggleAutoAim();
 			else if(zone.Value() == EXPEND_AMMO)
 				Preferences::ToggleAmmoUsage();
 			else if(zone.Value() == TURRET_TRACKING)
@@ -343,6 +346,7 @@ void PreferencesPanel::DrawControls()
 		"Navigation",
 		"Weapons",
 		"Targeting",
+		"Navigation",
 		"Interface",
 		"Fleet"
 	};
@@ -367,6 +371,9 @@ void PreferencesPanel::DrawControls()
 		Command::HAIL,
 		Command::BOARD,
 		Command::SCAN,
+		Command::NONE,
+		Command::MOUSE_TURNING_HOLD,
+		Command::MOUSE_TURNING_TOGGLE,
 		Command::NONE,
 		Command::MENU,
 		Command::MAP,
@@ -486,10 +493,11 @@ void PreferencesPanel::DrawSettings()
 		"Rotate flagship in HUD",
 		"Show planet labels",
 		"Show mini-map",
+		"Show asteroid scanner overlay",
 		"Always underline shortcuts",
 		"",
 		"AI",
-		"Automatic aiming",
+		AUTO_AIM_SETTING,
 		"Automatic firing",
 		BOARDING_PRIORITY,
 		EXPEND_AMMO,
@@ -587,6 +595,9 @@ void PreferencesPanel::DrawSettings()
 		else if(setting == CAMERA_ACCELERATION)
 		{
 			text = Preferences::CameraAcceleration();
+		else if(setting == AUTO_AIM_SETTING)
+		{
+			text = Preferences::AutoAimSetting();
 			isOn = text != "off";
 		}
 		else if(setting == EXPEND_AMMO)

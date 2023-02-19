@@ -12,7 +12,7 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 # Creatures:
-	
+
 ship "Jje"
 	plural "Jje"
 	noun "creature"
@@ -51,7 +51,9 @@ ship "Jje"
 		"energy protection" 2
 		"hull protection" 2
 		"ion protection" 2
+		"scramble protection" 2
 		"ion resistance" 2
+		"scramble resistance" 2
 		"slowing protection" 2
 		weapon
 			"blast radius" 80
@@ -110,7 +112,9 @@ ship "Ayym"
 		"energy protection" 3
 		"hull protection" 3
 		"ion protection" 3
+		"scramble protection" 3
 		"ion resistance" 3
+		"scramble resistance" 3
 		"slowing protection" 3
 		weapon
 			"blast radius" 300

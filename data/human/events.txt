@@ -1118,7 +1118,7 @@ event "fw abandoned Greenrock"
 		fleet "Large Free Worlds" 9000
 	planet "Greenrock"
 		description `Greenrock was the closest thing that the pirates in southern human space had to a center of government, at least until the Free Worlds occupied it. When rival pirate bands sought to negotiate on neutral territory, this is where they met. Nearly everything was for sale here: illegal weapons, ships customized for pirating, and even slaves.`
-		description `	That was until the Free Worlds occupied the system and cleaned up many of the major population centers. With the Free Worlds gone though, the planet has begun to return to its natural state of crime and villainy .`
+		description `	That was until the Free Worlds occupied the system and cleaned up many of the major population centers. With the Free Worlds gone though, the planet has begun to return to its natural state of crime and villainy.`
 		spaceport `You have heard enough about this port's reputation that you are not surprised to see the remnants of slave markets, now empty as a result of the Free Worlds occupation. The spaceport's shady establishments are beginning to return to their normal clientele and services.`
 		spaceport `	With the Free Worlds now gone, dark alleyways are absolutely to be avoided. Down one alley you see a shop called "Mike's Mustelids," the inside like a jungle. You hear the howls and yells of various exotic animals coming from inside, and the alleyway is home to a number of presumably-escaped weasels, ferrets, and wolverines running about.`
 

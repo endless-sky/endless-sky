@@ -283,6 +283,14 @@ const vector<string> &GameData::Sources()
 
 
 
+// Get a reference to the UniverseObjects object.
+UniverseObjects &GameData::Objects()
+{
+	return objects;
+}
+
+
+
 // Revert any changes that have been made to the universe.
 void GameData::Revert()
 {
@@ -812,6 +820,13 @@ MaskManager &GameData::GetMaskManager()
 const TextReplacements &GameData::GetTextReplacements()
 {
 	return objects.substitutions;
+}
+
+
+
+const Gamerules &GameData::GetGamerules()
+{
+	return objects.gamerules;
 }
 
 
