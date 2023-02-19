@@ -155,9 +155,8 @@ ship "Tanto"
 		"Chiisana Rift Thruster"
 		"Hyperdrive"
 		
-	engine -20.5 139.5
-	engine 20.5 139.5
-	engine 0 149
+	engine -20 148
+	engine 20 148
 	gun -16.5 -135
 	gun 16.5 -135
 	turret 0 -74.5
