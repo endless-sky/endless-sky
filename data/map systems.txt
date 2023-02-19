@@ -2360,7 +2360,7 @@ system "Ae Ce Q-761"
 	arrival 3200
 	habitable 3200
 	belt 1002
-	haze _menu/haze-33
+	haze _menu/haze-brown
 	asteroids "small rock" 37 1.247
 	asteroids "medium rock" 74 2.31
 	asteroids "large rock" 4 1.686
@@ -6054,7 +6054,7 @@ system Auhru
 	habitable 8650
 	belt 1336
 	"jump range" 60
-	haze _menu/haze-67
+	haze _menu/haze-brown
 	link "Erba Yle"
 	link Mohuwo
 	asteroids "large rock" 1 3.2
@@ -12465,7 +12465,7 @@ system "Erba Yle"
 	habitable 320
 	belt 1204
 	"jump range" 90
-	haze _menu/haze-33
+	haze _menu/haze-brown
 	link Auhru
 	link Kilema
 	link Zeinar
@@ -16109,7 +16109,7 @@ system Heutesl
 	arrival 1310
 	habitable 1310
 	belt 1000
-	haze _menu/haze
+	haze _menu/haze-brown
 	link Asio
 	link Iigen
 	link Oosuoro
@@ -16697,7 +16697,7 @@ system Iigen
 	habitable 230
 	belt 1699
 	"jump range" 60
-	haze _menu/haze-33
+	haze _menu/haze-brown
 	link Heutesl
 	link Oosuoro
 	link Uttna
@@ -17620,7 +17620,7 @@ system "Is Il T-127"
 	habitable 1605
 	belt 1313 1
 	belt 2263 5
-	haze _menu/haze-67
+	haze _menu/haze-brown
 	link "Is Il T-94"
 	link "Is Il X-626"
 	asteroids "small rock" 1 1.74
@@ -17779,7 +17779,7 @@ system "Is Il X-626"
 	attributes "astral"
 	arrival 3135
 	habitable 3135
-	haze _menu/haze-67
+	haze _menu/haze-brown
 	link "Is Il T-127"
 	asteroids "large metal" 1 3.402
 	fleet "Vyrmeid (Plankton)" 500
@@ -17865,7 +17865,7 @@ system "Is Il Z-814"
 	arrival 5000
 	habitable 50000
 	belt 1862
-	haze _menu/haze-133
+	haze _menu/haze-brown
 	asteroids "small rock" 23 2.05
 	asteroids "medium rock" 2 2.52
 	asteroids "large rock" 7 3.158
@@ -19154,7 +19154,7 @@ system Kilema
 	arrival 500
 	habitable 150
 	belt 1612
-	haze _menu/haze-33
+	haze _menu/haze-brown
 	link "Erba Yle"
 	asteroids "small rock" 4 1.9
 	asteroids "medium rock" 4 2.2
@@ -23232,7 +23232,7 @@ system Mohuwo
 	habitable 6210
 	belt 1213
 	"jump range" 70
-	haze _menu/haze-67
+	haze _menu/haze-brown
 	link Auhru
 	link Pbelnep
 	asteroids "small metal" 1 6.78
@@ -31800,7 +31800,7 @@ system Tscera
 	government Uninhabited
 	arrival 2560
 	habitable 2560
-	haze _menu/haze-33
+	haze _menu/haze-brown
 	link Heutesl
 	link Yllke
 	asteroids "small rock" 4 2.6
@@ -32446,7 +32446,7 @@ system Uttna
 	habitable 3000
 	belt 1748
 	"jump range" 60
-	haze _menu/haze-33
+	haze _menu/haze-brown
 	link Iigen
 	asteroids "medium rock" 3 4.8
 	asteroids "large rock" 2 3.96
