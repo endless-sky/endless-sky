@@ -2605,10 +2605,6 @@ system "Ae Il G-66"
 			sprite planet/rock14
 			distance 366
 			period 183.248
-		object
-			sprite planet/fg_terrestrial6
-			distance 459
-			period 190
 
 system "Ae Il H-24"
 	pos 558.634 -628.884
@@ -17524,10 +17520,6 @@ system "Is Ce G-460"
 		sprite star/k-dwarf
 		period 10
 	object
-		sprite planet/fg_terrestrial6
-		distance 171
-		period 89.4446
-	object
 		sprite planet/ice0
 		distance 363
 		period 276.643
@@ -17861,10 +17853,6 @@ system "Is Il Z-59"
 			sprite planet/dust1-b
 			distance 442
 			period 289.009
-		object
-			sprite planet/fg_terrestrial6
-			distance 551
-			period 312
 	object
 		sprite planet/dust0
 		distance 2996
