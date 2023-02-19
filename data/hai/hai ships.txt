@@ -280,7 +280,7 @@ ship "Flea"
 	gun 0 -27 "Railgun"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
-	description `This combat drone is built to amplify the strength of any combat force for as few credits as possible. It was designed in conjunction with the tactical recoil of the railgun to allow it to kite its targets, prolonging its combat efficacy while it supports its allies with debilitating ion damage.`
+	description `This combat drone is built to amplify the strength of any combat force for as few credits as possible. It was designed in conjunction with the tactical recoil of the Railgun to allow it to kite its targets, prolonging its combat efficacy while it supports its allies with debilitating ion damage.`
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 ship "Flea" "Flea (Pulse)"
@@ -507,7 +507,7 @@ ship "Lightning Bug"
 	explode "medium explosion" 24
 	explode "large explosion" 8
 	"final explode" "final explosion small"
-	description "The Lightning Bug is a small defensive ship, mostly used by the Hai as a convoy escort. The Lightning Bug, as with many insects, works best in a swarm: even a small number of Lightning Bugs can manage to leave the largest of ships helpless with their stock-fitted ion cannons."
+	description "The Lightning Bug is a small defensive ship, mostly used by the Hai as a convoy escort. The Lightning Bug, as with many insects, works best in a swarm: even a small number of Lightning Bugs can manage to leave the largest of ships helpless with their stock-fitted Ion Cannons."
 
 ship "Lightning Bug" "Lightning Bug (Pulse)"
 	outfits
@@ -546,7 +546,7 @@ ship "Lightning Bug" "Lightning Bug (Unfettered Shipyards)"
 		"Hai Corundum Regenerator"
 		"Hai Williwaw Cooling"
 		"Quantum Keystone"
-		"Value Detector" 2
+		"Value Detector"
 		"Pebble Core"
 		"Sand Cell"
 		"Hai Gorge Batteries"
@@ -1155,7 +1155,7 @@ ship "Shield Beetle" "Shield Beetle (Unfettered)"
 		"Hai Valley Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 3
-		"Value Detector" 4
+		"Value Detector" 2
 		"Quantum Keystone"
 		"Pulse Rifle" 65
 		`"Bondir" Atomic Thruster`
@@ -1175,11 +1175,11 @@ ship "Shield Beetle" "Shield Beetle (Unfettered Shipyards)"
 		"Hai Octopus Jammer" 3
 		"Hai Williwaw Cooling" 4
 		"Outfits Expansion" 2
-		"Value Detector" 3
+		"Value Detector" 2
 		"Geode Reactor" 2
 		"Pebble Core"
 		"Hai Gorge Batteries"
-		"Quantum Keystone" 2
+		"Quantum Keystone"
 		"Pulse Rifle" 75
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`

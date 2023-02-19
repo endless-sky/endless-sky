@@ -252,7 +252,7 @@ outfit "RG3 Torch Steering"
 	"steering flare sprite" "effect/vi flare/large"
 		"frame rate" 2.3
 	"steering flare sound" "ion torch large"
-	description `The oldest steering system used in Gegno space, RG3 Torch thrusters can only fit on the largest Gegno vessels, and are rarely seen as a result.`
+	description `The oldest steering system used in Gegno space, RG3 Torch Thrusters can only fit on the largest Gegno vessels, and are rarely seen as a result.`
 
 
 outfit "SC-1 Plasma Engines"
@@ -612,7 +612,7 @@ outfit "Ballistic Cannon Turret"
 		"hull damage" 970
 		"hit force" 360
 		"missile strength" 18
-	description `As the largest caliber cannon in the Gegno Vi's arsenal, Ballistic Cannons require a lot of work to be fitted on even the largest of ships. A huge, self-sustaining base with its own vent ports is necessary for one of these cannons to even be fitted on a turret mount, provided there are crew to operate it. Combining destructive force with adjustable aim, Ballisic Cannon Turrets are the deadliest weapons of Vi warships.`
+	description `As the largest caliber cannon in the Gegno Vi's arsenal, Ballistic Cannons require a lot of work to be fitted on even the largest of ships. A huge, self-sustaining base with its own vent ports is necessary for one of these cannons to even be fitted on a turret mount, provided there are crew to operate it. Combining destructive force with adjustable aim, Ballistic Cannon Turrets are the deadliest weapons of Vi warships.`
 
 effect "ballistic fire"
 	sprite "effect/balfire"
@@ -752,6 +752,8 @@ outfit "Guile Pulse Laser"
 
 outfit "Excavator"
 	category "Guns"
+	licenses
+		"Gegno Civilian"
 	cost 500000
 	"thumbnail" "outfit/excavator"
 	"mass" 42
@@ -790,6 +792,8 @@ effect "drilling"
 outfit "Savagery Bludgeon"
 	category "Guns"
 	cost 10000
+	licenses
+		"Vi Evocati"
 	thumbnail "outfit/unknown"
 	"mass" 10
 	"outfit space" -10
@@ -809,6 +813,58 @@ outfit "Savagery Bludgeon"
 	
 effect "bludgeon impact"
 	sound "bludgeon impact"
+
+
+
+# Hand to Hand Weapons
+
+outfit "Savagery Pike"
+	category "Hand to Hand"
+	licenses
+		"Vi Evocati"
+		"Vi Centurion"
+	cost 13000
+	thumbnail "outfit/savagery pike"
+	"capture attack" .9
+	"capture defense" .9
+	"unplunderable" 1
+	description `This is a ceremonial spear-like weapon presented to Vi warriors when they officially become part of the military. On the forward end are several long, sharp pikes that can easily pierce enemies, and on the rear end is a built-in cannon that can fire up to two explosive rounds. The cannon rounds are rarely used by the Vi unless they deem it absolutely necessary to defeat their foe or deal with unanticipated outside factors.`
+
+outfit "Irate Carronade"
+	category "Hand to Hand"
+	licenses
+		"Vi Centurion"
+	cost 39000
+	thumbnail "outfit/irate carronade"
+	"mass" 3
+	"outfit space" -3
+	"capture defense" 3.7
+	"unplunderable" 1
+	description `Miniaturizing ship-to-ship cannons and haphazardly shoving them into small makeshift barricades isn't exactly the safest way to install boarding defenses. Despite this, the hard-armored hulls of larger Gegno warships prove resilient enough to field Irate Carronades. Anyone, or anything, that unknowingly approaches a corridor where one is installed will likely become a new paint layer on the nearby walls.`
+	
+outfit "Plasmasickle"
+	category "Hand to Hand"
+	licenses
+		"Scin Hoplologist"
+	cost 11000
+	thumbnail "outfit/plasmasickle"
+	"capture attack" .7
+	"capture defense" .6
+	"unplunderable" 1
+	description `Plasmasickles are weapons specialized for close-quarters combat. Incorporating the Scin's recently developed plasma technology, the blade is heated to high temperatures, enabling it to slice through tough targets. Only select groups of Scin crew are equipped with these, but they are trained well enough to use them effectively.`
+
+outfit "Plasma Grenades"
+	plural "Plasma Grenades"
+	category "Hand to Hand"
+	licenses
+		"Scin Hoplologist"
+	cost 60000
+	thumbnail "outfit/plasma grenades"
+	"capture attack" 1.9
+	"capture defense" 1.2
+	"unplunderable" 1
+	description `With development of more plasma-based weaponry, the Scin invented their own type of grenades using plasma to create powerful explosions. They are effective at clearing out large groups of enemies and are less of a hazard than unpredictable fragmentation grenades, allowing them to be a bit more reliable for defensive use. These grenades are kept in odd magnetic storage devices that prevent them from accidentally detonating - except on rare occasions.`
+	
 
 
 # Special Outfits
