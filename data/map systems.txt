@@ -2413,8 +2413,8 @@ system "Ae Il A-3"
 	asteroids "large metal" 1 7.208
 	minables iron 11 4.735
 	minables silver 37 3.069
-	fleet "Vyrmeid (Plankton)" 1050
-	fleet "Vyrmeid (Cephalopod)" 400
+	fleet "Vyrmeid (Plankton)" 950
+	fleet "Vyrmeid (Cephalopod)" 140
 	object
 		sprite star/k-supergiant
 		distance 369.692
@@ -2519,7 +2519,6 @@ system "Ae Il F-46"
 	asteroids "small metal" 12 3.452
 	asteroids "large metal" 10 2.972
 	minables lead 17 2.248
-	fleet "Vyrmeid (Cephalopod)" 500
 	object
 		sprite star/b-giant
 		distance 247.167
@@ -14400,10 +14399,6 @@ system G-719
 			distance 269.46
 			period 570.1
 	object
-		sprite planet/gas10
-		distance 4653.99
-		period 2358.30
-	object
 		sprite planet/gas0-b
 		distance 5879
 		period 3348.23
@@ -14435,7 +14430,7 @@ system G-819
 		sprite star/g3
 		period 10
 	object
-		sprite planet/gas2-b
+		sprite planet/gas4-b
 		distance 909.1
 		period 414.408
 	object
@@ -17590,13 +17585,13 @@ system "Is Ce J-591"
 		distance 986
 		period 151.525
 	object
-		sprite planet/ocean4-b
+		sprite planet/ganymede-b
 		distance 1740
 		period 355.218
 		object
 			sprite planet/lava0
 			distance 172
-			period 59.035
+			period 50
 	object
 		sprite planet/gas6-b
 		distance 2742
@@ -17843,13 +17838,9 @@ system "Is Il Z-59"
 		distance 71.062
 		period 52.077
 	object
-		sprite planet/forest4
+		sprite planet/forest0
 		distance 807.865
 		period 252.324
-	object
-		sprite planet/earth-b
-		distance 1106.36
-		period 404.386
 	object
 		sprite planet/browndwarf-y
 		distance 1771.61
@@ -17888,6 +17879,7 @@ system "Is Il Z-814"
 	minables lead 28 4.115
 	minables iron 35 5.171
 	minables gold 47 3.479
+	minables yottrite 2 5.1
 	fleet "Vyrmeid (Boomerang)" 200
 	object
 		sprite star/wr
@@ -20380,10 +20372,6 @@ system L-6181
 		period 64.23
 		offset 180
 	object
-		sprite planet/dust1
-		distance 333.31
-		period 81.8202
-	object
 		sprite planet/cloud8
 		distance 3051.66
 		period 2266.69
@@ -21113,10 +21101,6 @@ system M-1188
 		sprite star/a-dwarf
 		period 10
 	object
-		sprite planet/rock9
-		distance 749.46
-		period 299.676
-	object
 		sprite planet/gas5-b
 		distance 3738
 		period 3338.01
@@ -21208,10 +21192,6 @@ system MS-219
 			sprite planet/dust0-b
 			distance 385.29
 			period 80
-	object
-		sprite planet/gas2-b
-		distance 7384.94
-		period 5572.77
 
 system Makferuti
 	pos 288.431 -628.812
@@ -33164,10 +33144,6 @@ system W-3197
 		sprite star/b3
 		period 10
 	object
-		sprite planet/ocean3-b
-		distance 382
-		period 37.6257
-	object
 		sprite planet/io-b
 		distance 1276
 		period 229.702
@@ -33175,6 +33151,10 @@ system W-3197
 		sprite planet/gas0
 		distance 3781
 		period 1171.65
+	object
+		sprite planet/ocean3-b
+		distance 4150
+		period 1300
 	object
 		sprite planet/dust0
 		distance 9113
