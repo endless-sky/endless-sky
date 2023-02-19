@@ -213,10 +213,13 @@ void ShipEffectsShader::Draw(const Body* body, const Point& position, const vect
 	Unbind();
 }
 
+
+
 void ShipEffectsShader::SetCenter(Point newCenter)
 {
 	center = newCenter;
 }
+
 
 
 ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Body* body, const Point& position, const vector<pair<Point, double>>* recentHits, const float zoom, const float frame, const string &shieldColor)
