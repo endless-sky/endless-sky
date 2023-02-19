@@ -24,4 +24,5 @@
 "Fleet: Gather around me" 103
 "Fleet: Hold position" 104
 "Fleet: Toggle ammo usage" 117
-"Toggle mouse-turning" 1073742050
+"Mouse turning (hold)" 1073742050
+"Mouse turning (toggle)" 1073742054

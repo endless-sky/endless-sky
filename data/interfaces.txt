@@ -22,6 +22,7 @@ color "medium" .5 .5 .5 0.
 color "dim" .25 .25 .25 0.
 color "dimmer" .18 .18 .18 0.
 color "faint" .1 .1 .1 0.
+color "dark" .05 .05 .05 0.
 
 # Colors used for drawing ship list in player info panel.
 color "flagship" .5 .5 .1 0.
@@ -119,7 +120,7 @@ color "ship target outline blink" 1. 1. 1. 0.
 # Colors used for ship target pointers.
 color "ship target pointer player" .2 1. 0. 0.
 color "ship target pointer friendly" .4 .6 1. 0.
-color "sihp target pointer unfriendly" .8 .8 .3 0.
+color "ship target pointer unfriendly" .8 .8 .3 0.
 color "ship target pointer hostile" .85 .3 .2 0.
 color "ship target pointer inactive" .4 .4 .4 0.
 color "ship target pointer special" 1. 1. 1. 0.
@@ -154,6 +155,9 @@ color "map travel ok none" .55 .1 0. 0.
 color "map travel wormhole" .5 .2 .9 1.
 color "map wormhole" .5 .2 .9 1.
 color "map orbits fleet destination" 1. 1. 1. 1.
+
+# Miscellaneous colors
+color "wormholes: Ember Waste" .7 .1 .3
 
 
 
