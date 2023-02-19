@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Logger.h"
 #include "Messages.h"
 #include "Point.h"
+#include "Preferences.h"
 #include "Screen.h"
 #include "Shader.h"
 #include "Ship.h"
@@ -53,6 +54,8 @@ namespace {
 	GLint shieldColorI;
 	GLint ratioI;
 	GLint sizeI;
+
+	GLint fastI;
 
 	GLuint vao;
 	GLuint vbo;
@@ -104,6 +107,8 @@ void ShipEffectsShader::Init()
 		"uniform float ratio;\n"
 		"uniform float size;\n"
 
+		"uniform int isFast;\n"
+
 		"in vec2 fragTexCoord;\n"
 		"in vec2 shrinkby;\n"
 
@@ -143,13 +148,21 @@ void ShipEffectsShader::Init()
 		"{\n"
 		"  vec2 uv = fragTexCoord;\n"
 		"  vec4 color;"
-		"  for(int i = 0; i < recentHitCount; i++)\n"
+		"  if(isFast == 0)\n"
 		"  {\n"
-		"    vec2 hitPoint = recentHits[i] + vec2(0.5, 0.5);\n"
-		"    color += shieldColor * recentDamage[i] * clamp(1. - distance(hitPoint, uv)*.05*size, 0., 1.);\n"
+		"    for(int i = 0; i < recentHitCount; i++)\n"
+		"    {\n"
+		"      vec2 hitPoint = recentHits[i] + vec2(0.5, 0.5);\n"
+		"      color += shieldColor * recentDamage[i] * clamp(1. - distance(hitPoint, uv)*.05*size, 0., 1.);\n"
+		"    }\n"
+		"    color /= recentHitCount / 2.;\n"
+		"  }\n"
+		"  else if(recentHitCount != 0)\n"
+		"  {\n"
+		"    color = shieldColor * recentDamage[0] * 0.2;\n"
 		"  }\n"
 
-		"  finalColor = sobellish(uv) * color / (recentHitCount / 2.);\n"
+		"  finalColor = sobellish(uv) * color;\n"
 		"}\n"
 		"\n";
 
@@ -167,6 +180,8 @@ void ShipEffectsShader::Init()
 	recentHitsCountI = shader.Uniform("recentHitCount");
 	ratioI = shader.Uniform("ratio");
 	sizeI = shader.Uniform("size");
+
+	fastI = shader.Uniform("isFast");
 
 	shieldColorI = shader.Uniform("shieldColor");
 
@@ -305,6 +320,7 @@ void ShipEffectsShader::Add(const EffectItem& item, bool withBlur)
 	glUniform1i(recentHitsCountI, item.recentHits);
 	glUniform1f(ratioI, item.ratio);
 	glUniform1f(sizeI, item.size);
+	glUniform1i(fastI, 2 == static_cast<int>(Preferences::GetHitEffects()));
 	Logger::LogError(to_string(item.recentHits));
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
