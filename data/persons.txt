@@ -76,7 +76,9 @@ person "Michael Zahniser"
 		turret -23 14 "Heavy Anti-Missile Turret"
 		turret 23 14 "Heavy Anti-Missile Turret"
 		bay "Fighter" -46 106 under
+			"launch effect" "human internal"
 		bay "Fighter" 46 106 under
+			"launch effect" "human internal"
 		explode "small explosion" 50
 		explode "medium explosion" 80
 		explode "large explosion" 120
@@ -1018,7 +1020,7 @@ ship "Shooting Star"
 	explode "pug large explosion" 15
 	"final explode" "final explosion medium"
 	description "This ship appears to be a hollowed-out asteroid filled with strange equipment. It is unclear what is creating the rays of light, but they must have something to do with how it moves without obvious engines."
-	description "	Its advanced properties also allow it to reject the influence of enemy command centers, nullifying their effect."
+	description "	Its advanced properties also allow it to reject the influence of enemy Command Centers, nullifying their effect."
 
 outfit "Crystal Projector"
 	category "Systems"

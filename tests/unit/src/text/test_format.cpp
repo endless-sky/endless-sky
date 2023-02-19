@@ -303,6 +303,56 @@ TEST_CASE( "Format::CreditString", "[Format][CreditString]") {
 	}
 }
 
+TEST_CASE( "Format::MassString", "[Format][MassString]") {
+	SECTION( "1 ton" ) {
+		CHECK( Format::MassString(1) == "1 ton" );
+		CHECK( Format::MassString(1.) == "1 ton" );
+	}
+	SECTION( "0 tons" ) {
+		CHECK( Format::MassString(0) == "0 tons" );
+	}
+	SECTION( "Positive mass" ) {
+		CHECK( Format::MassString(2) == "2 tons" );
+		CHECK( Format::MassString(1000) == "1,000 tons" );
+		CHECK( Format::MassString(4361000) == "4,361,000 tons" );
+	}
+	SECTION( "Negative mass" ) {
+		CHECK( Format::MassString(-1) == "-1 tons" );
+		CHECK( Format::MassString(-2) == "-2 tons" );
+		CHECK( Format::MassString(-1000) == "-1,000 tons" );
+		CHECK( Format::MassString(-4361000) == "-4,361,000 tons" );
+	}
+	SECTION( "Fractional mass" ) {
+		CHECK( Format::MassString(2.5) == "2.5 tons" );
+		CHECK( Format::MassString(0.1) == "0.1 tons" );
+	}
+}
+
+TEST_CASE( "Format::CargoString", "[Format][CargoString]") {
+	SECTION( "1 ton" ) {
+		CHECK( Format::CargoString(1, "cargo") == "1 ton of cargo" );
+		CHECK( Format::CargoString(1., "cargo") == "1 ton of cargo" );
+	}
+	SECTION( "0 tons" ) {
+		CHECK( Format::CargoString(0, "cargo") == "0 tons of cargo" );
+	}
+	SECTION( "Positive mass" ) {
+		CHECK( Format::CargoString(2, "cargo") == "2 tons of cargo" );
+		CHECK( Format::CargoString(1000, "cargo") == "1,000 tons of cargo" );
+		CHECK( Format::CargoString(4361000, "cargo") == "4,361,000 tons of cargo" );
+	}
+	SECTION( "Negative mass" ) {
+		CHECK( Format::CargoString(-1, "cargo") == "-1 tons of cargo" );
+		CHECK( Format::CargoString(-2, "cargo") == "-2 tons of cargo" );
+		CHECK( Format::CargoString(-1000, "cargo") == "-1,000 tons of cargo" );
+		CHECK( Format::CargoString(-4361000, "cargo") == "-4,361,000 tons of cargo" );
+	}
+	SECTION( "Fractional mass" ) {
+		CHECK( Format::CargoString(2.5, "cargo") == "2.5 tons of cargo" );
+		CHECK( Format::CargoString(0.1, "cargo") == "0.1 tons of cargo" );
+	}
+}
+
 // #endregion unit tests
 
 // #region benchmarks
