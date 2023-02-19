@@ -2420,12 +2420,12 @@ void Ship::DoGeneration()
 
 	if(recentHits.size() > 64)
 	{
-		sort(recentHits.begin(), recentHits.end(), [](auto &left, auto &right) {
+		sort(recentHits.begin(), recentHits.end(), [](pair<Point, double> &left, pair<Point, double> &right) {
 			return left.second > right.second;
 			});
 		recentHits.resize(64);
 	}
-	for(int i = 0; i < recentHits.size();)
+	for(unsigned int i = 0; i < recentHits.size();)
 	{
 		recentHits[i].second *= 0.8;
 		if (recentHits[i].second < 0.001)

@@ -256,7 +256,7 @@ ShipFXShader::EffectItem ShipFXShader::Prepare(const Body* body, const Point& po
 	item.recentHits = min(32, static_cast<int>(recth->size()));
 
 	Angle sub = Angle(180.) - body->Facing();
-	for(int i = 0; i < item.recentHits;)
+	for(int i = 0; i < static_cast<int>(item.recentHits);)
 	{
 		const auto newP = sub.Rotate(recth->at(i).first * Point(-1, -1));
 		item.recentHitPoints[2*i] = (newP.X() / ((2 / 1.5) * body->Radius()));
