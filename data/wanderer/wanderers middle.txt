@@ -2796,6 +2796,11 @@ mission "Wanderers: Sestor Alt: Alnilam 2"
 
 
 
+event "liberated zenith"
+	planet Zenith
+		bribe .04
+		"required reputation" 0
+
 mission "Wanderers: Sestor Alt: Alnilam 3"
 	landing
 	name "Return to <planet>"
