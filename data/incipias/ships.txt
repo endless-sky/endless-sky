@@ -26,8 +26,8 @@ ship "Nimbus"
 		"turning energy" 2.5
 		"turning heat" 12
 
-		"flare sprite" "effect/incipias flare/flare"
-			"frame rate" 6
+		"flare sprite" "effect/metallic hydrogen"
+			"frame rate" 24
 		"flare sound" "plasma huge"
 		"thrust" 32
 		"thrusting energy" 5
@@ -81,8 +81,8 @@ ship "Stratus"
 		"turning energy" 1.
 		"turning heat" 3
 
-		"flare sprite" "effect/incipias flare/flare"
-			"frame rate" 6
+		"flare sprite" "effect/metallic hydrogen"
+			"frame rate" 24
 		"flare sound" "plasma huge"
 		"thrust" 16
 		"thrusting energy" 2
@@ -125,8 +125,8 @@ ship "Cirrus"
 		"turning energy" 1.
 		"turning heat" 3
 
-		"flare sprite" "effect/incipias flare/flare"
-			"frame rate" 6
+		"flare sprite" "effect/metallic hydrogen"
+			"frame rate" 24
 		"flare sound" "plasma huge"
 		"thrust" 16
 		"thrusting energy" 2
