@@ -152,7 +152,7 @@ mission "wanderer peace proof"
 				"I am searching for something unique that presents your species best."
 					goto unique
 				"I am gathering proofs of friendship from all over the galaxy."
-			`   "That sounds interesting, let me think about it." The Wanderer becomes silent for some time. Then he says, "I have an idea, but I need to ask some people about it first. Please wait here for a second." He leaves the room without waiting for your respond. Forced to wait for him, you ask yourself what this gift of friendship of the wanderers could be.`
+			`	"That sounds interesting, let me think about it." The Wanderer becomes silent for some time. Then he says, "I have an idea, but I need to ask some people about it first. Please wait here for a second." He leaves the room without waiting for your respond. Forced to wait for him, you ask yourself what this gift of friendship of the wanderers could be.`
 				goto c1
 			label unique
 			`	"Why are you searching for something like this? That is an quite unusual request."`
@@ -228,7 +228,7 @@ mission "Incipias: First Contact V"
 		conversation
 			`This time as you enter this system, you are prepared. You stop your ship and pull out the translation device the Quarg gave you. Then you stand there and think, what would be the best first contact message?`
 			choice
-				"Hello Incipiae, I am <first> <last> of the human race a space ship captain."
+				"Hello Incipiae, I am <first> <last> of the human race a spaceship captain."
 				"Greetings strangers, I come to spread peace."
 				"Hello beings of another kind, I want to communicate with you."
 			`	At first nothing happens. Then your scanners register a huge raise in communication between the alien ships, their planet and their spacestation. At first it seems to be very chaotic but then slowly the spacestation dominates the communication. Then there is nothing.`

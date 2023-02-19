@@ -30,7 +30,7 @@ ship "Nimbus"
 		"heat dissipation" .7
 		"cargo space" 100
 		"outfit space" 450
-		"weapon capacity" 120 
+		"weapon capacity" 120
 		"gaslining" 1
 		"fuel capacity" 200
 
@@ -85,7 +85,7 @@ ship "Stratus"
 		"heat dissipation" .8
 		"cargo space" 50
 		"outfit space" 250
-		"weapon capacity" 50 
+		"weapon capacity" 50
 		"gaslining" 1
 		"fuel capacity" 200
 
