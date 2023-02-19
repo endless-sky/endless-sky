@@ -213,10 +213,13 @@ void ShipFXShader::Draw(const Body* body, const Point& position, const vector<pa
 	Unbind();
 }
 
+
+
 void ShipFXShader::SetCenter(Point newCenter)
 {
 	center = newCenter;
 }
+
 
 
 ShipFXShader::EffectItem ShipFXShader::Prepare(const Body* body, const Point& position, const vector<pair<Point, double>>* recentHits, const float zoom, const float frame, const string &shieldColor)

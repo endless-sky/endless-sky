@@ -3631,7 +3631,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	if(damage.HitForce())
 		ApplyForce(damage.HitForce(), damage.GetWeapon().IsGravitational());
 
-	// Update the list of latest hits
+	// Add this hit to the list of latest hits.
 	recentHits.emplace_back(damageSource - position, Attributes().Get("shields") / (damage.Shield() + Attributes().Get("shield generation")));
 
 	// Prevent various stats from reaching unallowable values.
