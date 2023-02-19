@@ -2441,7 +2441,10 @@ void Ship::DoGeneration()
 		}
 		for(unsigned int i = 0; i < recentHits.size();)
 		{
-			recentHits[i].second *= 0.8;
+			if(recentHits[i].second > 1.)
+				recentHits[i].second *= 0.5;
+			else
+				recentHits[i].second *= 0.92;
 			if(recentHits[i].second < 0.001)
 			{
 				Logger::LogError("DESTROYING ITERATORERED NUMBA " + to_string(i) + " OF SHIP " + name

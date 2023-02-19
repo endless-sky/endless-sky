@@ -112,7 +112,7 @@ void Preferences::Load()
 		else if(node.Token(0) == "Parallax background")
 			parallaxIndex = max<int>(0, min<int>(node.Value(1), PARALLAX_SETTINGS.size() - 1));
 		else if(node.Token(0) == "On-hit effects")
-			parallaxIndex = max<int>(0, min<int>(node.Value(1), ON_HIT_EFFECTS.size() - 1));
+			hitEffectIndex = max<int>(0, min<int>(node.Value(1), ON_HIT_EFFECTS.size() - 1));
 		else if(node.Token(0) == "fullscreen")
 			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
 		else if(node.Token(0) == "alert indicator")
