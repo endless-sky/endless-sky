@@ -304,6 +304,8 @@
 		<Unit filename="source/Shader.h" />
 		<Unit filename="source/Ship.cpp" />
 		<Unit filename="source/Ship.h" />
+		<Unit filename="source/ShipEffectsShader.cpp" />
+		<Unit filename="source/ShipEffectsShader.h" />
 		<Unit filename="source/ShipEvent.cpp" />
 		<Unit filename="source/ShipEvent.h" />
 		<Unit filename="source/ShipInfoDisplay.cpp" />

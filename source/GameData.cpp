@@ -183,7 +183,7 @@ void GameData::LoadShaders(bool useShaderSwizzle)
 	OutlineShader::Init();
 	PointerShader::Init();
 	RingShader::Init();
-	ShipFXShader::Init();
+	ShipEffectsShader::Init();
 	SpriteShader::Init(useShaderSwizzle);
 	BatchShader::Init();
 
