@@ -333,7 +333,9 @@ ship "Modified Dromedary"
 	turret -63.5 120 "Thrasher Turret"
 	turret 52.5 143 "Point Defense Turret"
 	bay "Fighter" -51 -54 under
+		"launch effect" "human internal"
 	bay "Fighter" 47 -40 under
+		"launch effect" "human internal"
 	leak "leak" 30 50
 	leak "flame" 30 80
 	leak "big leak" 50 30
@@ -716,41 +718,77 @@ ship "Heron"
 	turret 0 0 "Point Defense Turret"
 	turret 0 250 "Point Defense Turret"
 	bay "Drone" -124 -122.5
+		"launch effect" "remnant internal"
 	bay "Drone" 124 -122.5
+		"launch effect" "remnant internal"
 	bay "Drone" -176 -50.5
+		"launch effect" "remnant internal"
 	bay "Drone" 176 -50.5
+		"launch effect" "remnant internal"
 	bay "Drone" -148.5 4
+		"launch effect" "remnant internal"
 	bay "Drone" 148.5 4
+		"launch effect" "remnant internal"
 	bay "Drone" -56 -150
+		"launch effect" "remnant internal"
 	bay "Drone" 56 -150
+		"launch effect" "remnant internal"
 	bay "Drone" -37 -121.5
+		"launch effect" "remnant internal"
 	bay "Drone" 37 -121.5
+		"launch effect" "remnant internal"
 	bay "Drone" -33.5 -99
+		"launch effect" "remnant internal"
 	bay "Drone" 33.5 -99
+		"launch effect" "remnant internal"
 	bay "Drone" -27 -81
+		"launch effect" "remnant internal"
 	bay "Drone" 27 -81
+		"launch effect" "remnant internal"
 	bay "Drone" -24 -49.5
+		"launch effect" "remnant internal"
 	bay "Drone" 24 -49.5
+		"launch effect" "remnant internal"
 	bay "Drone" -40 -3
+		"launch effect" "remnant internal"
 	bay "Drone" 40 -3
+		"launch effect" "remnant internal"
 	bay "Drone" -28 22.5
+		"launch effect" "remnant internal"
 	bay "Drone" 28 22.5
+		"launch effect" "remnant internal"
 	bay "Drone" -77.5 71.5
+		"launch effect" "remnant internal"
 	bay "Drone" 77.5 71.5
+		"launch effect" "remnant internal"
 	bay "Drone" -89.5 114
+		"launch effect" "remnant internal"
 	bay "Drone" 89.5 114
+		"launch effect" "remnant internal"
 	bay "Drone" -138.5 152.5
+		"launch effect" "remnant internal"
 	bay "Drone" 138.5 152.5
+		"launch effect" "remnant internal"
 	bay "Drone" -171 165.5
+		"launch effect" "remnant internal"
 	bay "Drone" 171 165.5
+		"launch effect" "remnant internal"
 	bay "Drone" -190.5 197.5
+		"launch effect" "remnant internal"
 	bay "Drone" 190.5 197.5
+		"launch effect" "remnant internal"
 	bay "Drone" -105 229.5
+		"launch effect" "remnant internal"
 	bay "Drone" 105 229.5
+		"launch effect" "remnant internal"
 	bay "Fighter" -31 70.5
+		"launch effect" "remnant internal"
 	bay "Fighter" 31 70.5
+		"launch effect" "remnant internal"
 	bay "Fighter" -40 190
+		"launch effect" "remnant internal"
 	bay "Fighter" 40 190
+		"launch effect" "remnant internal"
 	explode "small explosion" 40
 	explode "medium explosion" 30
 	explode "large explosion" 20
@@ -768,7 +806,7 @@ ship "Ibis"
 	attributes
 		category "Medium Warship"
 		licenses
-			"Remnant Capital"
+			Remnant
 		"cost" 11627000
 		"shields" 14400
 		"hull" 6200
@@ -814,11 +852,17 @@ ship "Ibis"
 		"Scram Drive"
 		
 	bay "Drone" 0 30 over
+		"launch effect" "remnant external"
 	bay "Drone" -34 68 over
+		"launch effect" "remnant external"
 	bay "Drone" 0 81 over
+		"launch effect" "remnant external"
 	bay "Drone" 34 68 over
+		"launch effect" "remnant external"
 	bay "Fighter" -25 10 under
+		"launch effect" "remnant external"
 	bay "Fighter" 25 10 under
+		"launch effect" "remnant external"
 	engine -16.5 120 0.7
 	engine 0 116.5 1
 	engine 16.5 120 0.7

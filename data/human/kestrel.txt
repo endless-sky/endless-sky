@@ -340,7 +340,9 @@ ship "Kestrel"
 	turret -20.5 9 "Heavy Laser Turret"
 	turret 20.5 9 "Heavy Laser Turret"
 	bay "Fighter" -46 106 under
+		"launch effect" "human internal"
 	bay "Fighter" 46 106 under
+		"launch effect" "human internal"
 	explode "small explosion" 25
 	explode "medium explosion" 35
 	explode "large explosion" 45
