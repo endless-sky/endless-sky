@@ -260,8 +260,8 @@ ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Body* body, const
 	for(int i = 0; i < static_cast<int>(item.recentHits);)
 	{
 		const auto newP = sub.Rotate(recth->at(i).first * Point(-1, -1));
-		item.recentHitPoints[2*i] = (newP.X() / ((2 / 1.5) * body->Radius()));
-		item.recentHitPoints[2*i + 1] = (newP.Y() / ((2 / 1.5) * body->Radius()));
+		item.recentHitPoints[2 * i] = (newP.X() / ((2 / 1.5) * body->Radius()));
+		item.recentHitPoints[2 * i + 1] = (newP.Y() / ((2 / 1.5) * body->Radius()));
 		item.recentHitDamage[i] = (min(1., recth->at(i).second));
 		Messages::Add("Hit at " + to_string(newP.X() / body->Radius()) + ", " + to_string(newP.Y() / body->Radius())
 			+ ", intensity of " + to_string(item.recentHitDamage[i]) + " with count of " + to_string(item.recentHits));

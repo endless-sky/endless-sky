@@ -1,4 +1,4 @@
-/* SpriteEffectsShader.h
+/* ShipEffectsShader.h
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -62,7 +62,7 @@ public:
 	// Draw a sprite.
 	static void Draw(const Body* body, const Point& position, const std::vector<std::pair<Point, double>>* recentHits,
 		const float zoom = 1.f, const float frame = 0.f, const std::string &shieldColor = "shields default");
-	static EffectItem Prepare(const Body *body, const Point& position,
+	static EffectItem Prepare(const Body *body, const Point &position,
 		const std::vector<std::pair<Point, double>>* recentHits, const float zoom = 1.f, const float frame = 0.f,
 		const std::string &shieldColor = "shields default");
 
