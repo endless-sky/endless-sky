@@ -15,8 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShipAICache.h"
 
-#include "../pi.h"
 #include "../Outfit.h"
+#include "../pi.h"
 #include "../Ship.h"
 
 #include <algorithm>
@@ -26,19 +26,9 @@ using namespace std;
 
 
 
-ShipAICache::ShipAICache(const Ship &ship)
+void ShipAICache::Calibrate(const Ship &ship)
 {
-	this->ship = &ship;
-	CreateWeaponCache();
-}
-
-
-
-void ShipAICache::CreateWeaponCache()
-{
-	if(!ship)
-		return;
-	mass = ship->Mass();
+	mass = ship.Mass();
 	bool hasWeapons = false;
 	bool canFight = false;
 	double totalDPS = 0.;
@@ -49,13 +39,13 @@ void ShipAICache::CreateWeaponCache()
 	shortestArtillery = 4000.;
 	minSafeDistance = 0.;
 
-	for(const Hardpoint &hardpoint : ship->Weapons())
+	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
 		const Outfit *weapon = hardpoint.GetOutfit();
 		if(weapon && !hardpoint.IsAntiMissile())
 		{
 			hasWeapons = true;
-			bool lackingAmmo = (weapon->Ammo() && weapon->AmmoUsage() && !ship->OutfitCount(weapon->Ammo()));
+			bool lackingAmmo = (weapon->Ammo() && weapon->AmmoUsage() && !ship.OutfitCount(weapon->Ammo()));
 			// Weapons without ammo might as well not exist, so don't even consider them
 			if(lackingAmmo)
 				continue;
@@ -64,8 +54,8 @@ void ShipAICache::CreateWeaponCache()
 			// Calculate the damage per second,
 			// ignoring any special effects. (could be improved to account for those, maybe be based on cost instead)
 			double DPS = (weapon->ShieldDamage() + weapon->HullDamage()
-				+ (weapon->RelativeShieldDamage() * ship->Attributes().Get("shields"))
-				+ (weapon->RelativeHullDamage() * ship->Attributes().Get("hull")))
+				+ (weapon->RelativeShieldDamage() * ship.Attributes().Get("shields"))
+				+ (weapon->RelativeHullDamage() * ship.Attributes().Get("hull")))
 				/ weapon->Reload();
 			totalDPS += DPS;
 
@@ -89,14 +79,14 @@ void ShipAICache::CreateWeaponCache()
 
 	// Calculate this ship's "turning radius"; that is, the smallest circle it
 	// can make while at full speed.
-	double stepsInHalfTurn = 180. / ship->TurnRate();
-	double circumference = stepsInHalfTurn * ship->MaxVelocity();
+	double stepsInHalfTurn = 180. / ship.TurnRate();
+	double circumference = stepsInHalfTurn * ship.MaxVelocity();
 	turningRadius = circumference / PI;
 
 	// If this ship was using the artillery AI to run away and bombard its
 	// target from a distance, have it stop running once it is out of ammo. This
 	// is not realistic, but it's less annoying for the player.
-	if(hasWeapons && !canFight && !ship->IsYours())
+	if(hasWeapons && !canFight && !ship.IsYours())
 	{
 		shortestRange = 0.;
 		shortestArtillery = 0.;
@@ -107,8 +97,8 @@ void ShipAICache::CreateWeaponCache()
 		// and other ships with exceptionally long range weapons such as detainers
 		// The AI shouldn't use the artillery AI if it has no reverse and it's turning
 		// capabilities are very bad. Otherwise it spends most of it's time flying around.
-		useArtilleryAI = (artilleryDPS > totalDPS / 2.
-			&& (ship->MaxReverseVelocity() || turningRadius < 0.2 * shortestArtillery));
+		useArtilleryAI = (artilleryDPS > totalDPS * .75
+			&& (ship.MaxReverseVelocity() || turningRadius < 0.2 * shortestArtillery));
 
 		// Don't try to avoid your own splash damage if it means you whould be losing out
 		// on a lot of DPS. Helps with ships with very slow turning and not a lot of splash
@@ -120,10 +110,8 @@ void ShipAICache::CreateWeaponCache()
 
 
 
-void ShipAICache::UpdateWeaponCache()
+void ShipAICache::Recalibrate(const Ship &ship)
 {
-	if(!ship)
-		return;
-	if(mass != ship->Mass())
-		CreateWeaponCache();
+	if(mass != ship.Mass())
+		Calibrate(ship);
 }
