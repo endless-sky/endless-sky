@@ -54,6 +54,8 @@ namespace {
 	GLint recentHitsI;
 	GLint shieldTypeI;
 	GLint shieldColorI;
+	GLint ratioI;
+	GLint sizeI;
 
 	GLuint vao;
 	GLuint vbo;
@@ -82,6 +84,7 @@ void ShipFXShader::Init()
 		"  vec2 blurOff = 2.f * vec2(vert.x * abs(blur.x), vert.y * abs(blur.y));\n"
 		"  gl_Position = vec4((transform * (vert * 1.1 + blurOff) + position) * scale, 0, 1);\n"
 		"  vec2 texCoord = vert + vec2(.5, .5);\n"
+		"  shrinkby = scale;\n"
 		"  fragTexCoord = vec2(texCoord.x, min(clip, texCoord.y)) + blurOff;\n"
 		"}\n";
 
@@ -100,8 +103,9 @@ void ShipFXShader::Init()
 		"uniform vec2 recentHits[64];\n"
 		"uniform float recentDamage[64];\n"
 		"uniform int recentHitCount;\n"
-		"uniform int shieldType;"
-		"uniform vec4 shieldColor;"
+		"uniform vec4 shieldColor;\n"
+		"uniform float ratio;\n"
+		"uniform float size;\n"
 
 		"in vec2 fragTexCoord;\n"
 		"in vec2 shrinkby;\n"
@@ -120,7 +124,7 @@ void ShipFXShader::Init()
 
 		"float stripe(float a, float mod)\n"
 		"{\n"
-		"  return clamp(sin(a*360) * 2. + mod, 0., 1.);"
+		"  return clamp(sin(a*size*4.) * 2. + mod, 0., 1.);"
 		"}\n"
 
 		"float sobellish(vec2 uv)\n"
@@ -135,19 +139,20 @@ void ShipFXShader::Init()
 		"  }\n"
 		"  obel /= 49.;\n"
 		"  float a = sqrt(2. * obel + 0.2 / (obel / 2. - .6) + 0.3);\n"
-		"  return a + (a - a * (stripe(uv.x, 1.5) * stripe(uv.y * 1.4, 1.5))); \n"
+		"  return a + (a - a * (stripe(uv.x * ratio, 1.5) * stripe(uv.y, 1.5))); \n"
 		"}\n"
 
 		"void main()\n"
 		"{\n"
+		"  vec2 uv = fragTexCoord;\n"
 		"  vec4 color;"
 		"  for(int i = 0; i < recentHitCount; i++)\n"
 		"  {\n"
 		"    vec2 hitPoint = recentHits[i] + vec2(0.5, 0.5);\n"
-		"    color += shieldColor * recentDamage[i] * clamp(1. - distance(hitPoint, fragTexCoord)*3., 0., 1.);\n"
+		"    color += shieldColor * recentDamage[i] * clamp(1. - distance(hitPoint, uv)*.05*size, 0., 1.);\n"
 		"  }\n"
 
-		"  finalColor = sobellish(fragTexCoord) * color / (recentHitCount / 2.);\n"
+		"  finalColor = sobellish(uv) * color / (recentHitCount / 2.);\n"
 		"}\n"
 		"\n";
 
@@ -164,6 +169,8 @@ void ShipFXShader::Init()
 	recentHitsI = shader.Uniform("recentHits");
 	recentDamageI = shader.Uniform("recentDamage");
 	recentHitsCountI = shader.Uniform("recentHitCount");
+	ratioI = shader.Uniform("ratio");
+	sizeI = shader.Uniform("size");
 
 	//shieldTypeI = shader.Uniform("shieldType");
 	shieldColorI = shader.Uniform("shieldColor");
@@ -233,6 +240,8 @@ ShipFXShader::EffectItem ShipFXShader::Prepare(const Body* body, const Point& po
 	Point uw = unit * width;
 	Point uh = unit * height;
 
+	item.size = body->Radius();
+
 	// (0, -1) means a zero-degree rotation (since negative Y is up).
 	uw *= zoom;
 	uh *= zoom;
@@ -240,6 +249,8 @@ ShipFXShader::EffectItem ShipFXShader::Prepare(const Body* body, const Point& po
 	item.transform[1] = uw.X();
 	item.transform[2] = -uh.X();
 	item.transform[3] = -uh.Y();
+
+	item.ratio = max(width, height);
 
 	auto recth = recentHits;
 
@@ -289,10 +300,12 @@ void ShipFXShader::Add(const EffectItem& item, bool withBlur)
 	glUniform1f(clipI, item.clip);
 	////glUniform1f(alphaI, item.alpha);
 
-	glUniform4fv(shieldColorI, 4, &item.shieldColor[0]);
 	glUniform2fv(recentHitsI, 128, item.recentHitPoints);
 	glUniform1fv(recentDamageI, 64, item.recentHitDamage);
+	glUniform4fv(shieldColorI, 1,item.shieldColor);
 	glUniform1i(recentHitsCountI, item.recentHits);
+	glUniform1f(ratioI, item.ratio);
+	glUniform1f(sizeI, item.size);
 	Logger::LogError(to_string(item.recentHits));
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);

@@ -919,6 +919,7 @@ void Ship::Save(DataWriter &out) const
 			for(const auto &it : baseAttributes.HyperOutSounds())
 				for(int i = 0; i < it.second; ++i)
 					out.Write("hyperdrive out sound", it.first->Name());
+			out.Write("shield color", baseAttributes.ShieldColor());
 			for(const auto &it : baseAttributes.Attributes())
 				if(it.second)
 					out.Write(it.first, it.second);
@@ -2417,6 +2418,13 @@ void Ship::DoGeneration()
 	double maxHull = attributes.Get("hull");
 	hull = min(hull, maxHull);
 
+	if(recentHits.size() > 64)
+	{
+		sort(recentHits.begin(), recentHits.end(), [](auto &left, auto &right) {
+			return left.second > right.second;
+			});
+		recentHits.resize(64);
+	}
 	for(int i = 0; i < recentHits.size();)
 	{
 		recentHits[i].second *= 0.8;
@@ -2430,13 +2438,6 @@ void Ship::DoGeneration()
 		{
 			i++;
 		}
-	}
-	if(recentHits.size() > 64)
-	{
-		sort(recentHits.begin(), recentHits.end(), [](auto &left, auto &right) {
-			return left.second > right.second;
-			});
-		recentHits.resize(64);
 	}
 
 	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
