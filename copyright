@@ -1004,6 +1004,7 @@ Files:
  images/planet/station15*
  images/planet/station16*
  images/planet/station17*
+ images/planet/station-bunrodea*
  images/ship/maeri'het*
  images/ship/subsidurial*
  images/ship/telis'het*
@@ -1013,6 +1014,14 @@ Files:
  images/ship/fetri'sei*
  images/ship/ember?waste?node/*
  images/ship/void?sprite/*
+ images/ship/ararebo*
+ images/ship/chigiriki*
+ images/ship/kaiken*
+ images/ship/kama*
+ images/ship/kunai*
+ images/ship/sasumata*
+ images/ship/tanto*
+ images/ship/tekkan*
  images/thumbnail/maeri'het*
  images/thumbnail/telis'het*
  images/thumbnail/faes'mar*
@@ -1023,7 +1032,18 @@ Files:
  images/thumbnail/fetri'sei*
  images/thumbnail/void?sprite?adult*
  images/thumbnail/void?sprite?infant*
+ images/thumbnail/ararebo*
+ images/thumbnail/chigiriki*
+ images/thumbnail/kaiken*
+ images/thumbnail/kama*
+ images/thumbnail/kunai*
+ images/thumbnail/sasumata*
+ images/thumbnail/tanto*
+ images/thumbnail/tekkan*
  images/effect/ravager?impact*
+ images/effect/swarm*
+ images/hardpoint/buzzer?am*
+ images/hardpoint/locust?turret*
  images/outfit/ka'het?annihilator?turret*
  images/outfit/ka'het?annihilator*
  images/outfit/ka'het?emp?deployer*
@@ -1074,8 +1094,32 @@ Files:
  images/outfit/outfit?expansion*
  images/outfit/cargo?expansion*
  images/outfit/control?transceiver*
+ images/outfit/buzzer*
+ images/outfit/dark?reactor*
+ images/outfit/electroweak?reactor*
+ images/outfit/quark?reactor*
  images/outfit/hai?jammer*
  images/outfit/hai?jammer?overclocked*
+ images/outfit/hydra?pod*
+ images/outfit/hydra*
+ images/outfit/*nanite?fabricator*
+ images/outfit/*shield?relay*
+ images/outfit/lasher?pistol*
+ images/outfit/locust?blaster*
+ images/outfit/locust?turret*
+ images/outfit/mandible?cannon*
+ images/outfit/nanite?enhancer*
+ images/outfit/nanite?limiter*
+ images/outfit/reactor?overclocker*
+ images/outfit/reactor?limiter*
+ images/outfit/solar?battery*
+ images/outfit/solar?cell*
+ images/outfit/swarm?missile*
+ images/outfit/swarm?pod*
+ images/outfit/swarm?storage*
+ images/outfit/swatter*
+ images/outfit/thorax?cannon*
+ images/outfit/*rift*
  images/planet/dyson1*
  images/planet/dyson2*
  images/planet/dyson3*
@@ -1629,16 +1673,20 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Evan Fluharty (under the same license).
 
 Files:
+ images/asteroid/*bioroid*
  images/effect/acuit?hit*
  images/effect/ast?hit*
  images/effect/balfire*
  images/effect/blink*
+ images/effect/bunrodea?flare*
+ images/effect/buzzer?am*
  images/effect/chfire*
  images/effect/composed*
  images/effect/drain*
  images/effect/irfite*
- images/effect/*scin flare*
- images/effect/*vi flare*
+ images/effect/yellow?spark*
+ images/effect/*scin?flare*
+ images/effect/*vi?flare*
  images/hardpoint/acuit*
  images/hardpoint/ballistic*
  images/hardpoint/choleric*
@@ -1676,6 +1724,7 @@ Files:
  images/outfit/warforge?battery*
  images/outfit/warzone?core*
  images/planet/tschyss*
+ images/planet/*vajra*
  images/planet/vesvi*
  images/projectile/acuit*
  images/projectile/astuit*
@@ -1684,7 +1733,11 @@ Files:
  images/projectile/firestorm?torpedo*
  images/projectile/guile?pulse?laser*
  images/projectile/irate*
+ images/projectile/locust?blaster*
+ images/projectile/mandible?cannon*
+ images/projectile/thorax?cannon*
  images/scene/rulei?flash*
+ images/ship/*astral*
  images/ship/*ayym*
  images/ship/embersylph*
  images/ship/gegno?augen*
@@ -1708,6 +1761,7 @@ Files:
  images/ship/*jje*
  images/ship/modified?dromedary*
  images/ship/modified?dromedary?wreck*
+ images/ship/*vyrmeid*
  images/ship/*vyuira*
  images/thumbnail/gegno?augen*
  images/thumbnail/gegno?coesite*
@@ -1776,10 +1830,12 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and 1010todd (under the same license). Incorporating texture made with JSPlacement by WindMillArt <https://windmillart.net/>.
 
 Files:
+ sounds/bunrodea?am*
  sounds/coalition?launch*
  sounds/drill*
  sounds/ember?tear*
  sounds/ember?tear?hit*
+ sounds/gravity?well*
  sounds/hai?launch*
  sounds/human?launch*
  sounds/human?launch?external*
@@ -1787,11 +1843,15 @@ Files:
  sounds/korath?afterburner*
  sounds/korath?launch*
  sounds/korath?launch?external*
+ sounds/locust?blaster*
+ sounds/mandible?cannon*
  sounds/remnant?afterburner*
  sounds/remnant?launch*
  sounds/remnant?launch?external*
  sounds/scin?launch*
  sounds/sheragi?launch*
+ sounds/swarm?missile*
+ sounds/thorax?cannon*
 Copyright: Saugia <https://github.com/Saugia>
 License: public-domain
 Comment: Based on public domain sounds taken from freesound.org, edits done by Saugia.
