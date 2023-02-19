@@ -33,7 +33,7 @@ class Government;
 
 // Class for drawing ship effects, such as shield or heat.
 // It's a clone of the SpriteShader, with a few extra doohickeys.
-class ShipFXShader {
+class ShipEffectsShader {
 public:
 	class EffectItem {
 	public:
@@ -71,8 +71,6 @@ public:
 
 	static Point center;
 
-private:
-	
 };
 
 

@@ -60,10 +60,10 @@ namespace {
 	GLuint vbo;
 }
 
-Point ShipFXShader::center = Point();
+Point ShipEffectsShader::center = Point();
 
 // Initialize the shaders.
-void ShipFXShader::Init()
+void ShipEffectsShader::Init()
 {
 
 	static const char* vertexCode =
@@ -203,7 +203,7 @@ void ShipFXShader::Init()
 
 
 
-void ShipFXShader::Draw(const Body* body, const Point& position, const vector<pair<Point, double>>* recentHits, const float zoom, const float frame, const string &shieldColor)
+void ShipEffectsShader::Draw(const Body* body, const Point& position, const vector<pair<Point, double>>* recentHits, const float zoom, const float frame, const string &shieldColor)
 {
 	if (!body->GetSprite())
 		return;
@@ -213,13 +213,13 @@ void ShipFXShader::Draw(const Body* body, const Point& position, const vector<pa
 	Unbind();
 }
 
-void ShipFXShader::SetCenter(Point newCenter)
+void ShipEffectsShader::SetCenter(Point newCenter)
 {
 	center = newCenter;
 }
 
 
-ShipFXShader::EffectItem ShipFXShader::Prepare(const Body* body, const Point& position, const vector<pair<Point, double>>* recentHits, const float zoom, const float frame, const string &shieldColor)
+ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Body* body, const Point& position, const vector<pair<Point, double>>* recentHits, const float zoom, const float frame, const string &shieldColor)
 {
 	if (!body->GetSprite())
 		return {};
@@ -273,7 +273,7 @@ ShipFXShader::EffectItem ShipFXShader::Prepare(const Body* body, const Point& po
 
 
 
-void ShipFXShader::Bind()
+void ShipEffectsShader::Bind()
 {
 	glUseProgram(shader.Object());
 	glBindVertexArray(vao);
@@ -284,7 +284,7 @@ void ShipFXShader::Bind()
 
 
 
-void ShipFXShader::Add(const EffectItem& item, bool withBlur)
+void ShipEffectsShader::Add(const EffectItem& item, bool withBlur)
 {
 	glBindTexture(GL_TEXTURE_2D_ARRAY, item.texture);
 
@@ -311,7 +311,7 @@ void ShipFXShader::Add(const EffectItem& item, bool withBlur)
 
 
 
-void ShipFXShader::Unbind()
+void ShipEffectsShader::Unbind()
 {
 	glBindVertexArray(0);
 	glUseProgram(0);
