@@ -2428,9 +2428,10 @@ void Ship::DoGeneration()
 	for(unsigned int i = 0; i < recentHits.size();)
 	{
 		recentHits[i].second *= 0.8;
-		if (recentHits[i].second < 0.001)
+		if(recentHits[i].second < 0.001)
 		{
-			Logger::LogError("DESTROYING ITERATORERED NUMBA " + to_string(i) + " OF SHIP " + name + " WITH SIZEOF " + to_string(recentHits.size()));
+			Logger::LogError("DESTROYING ITERATORERED NUMBA " + to_string(i) + " OF SHIP " + name
+				+ " WITH SIZEOF " + to_string(recentHits.size()));
 			recentHits.erase(recentHits.begin() + i);
 			Logger::LogError("NOW SIZE IS " + to_string(recentHits.size()));
 		}
@@ -3598,7 +3599,8 @@ double Ship::MaxReverseVelocity() const
 // DamageDealt from that weapon. The return value is a ShipEvent type,
 // which may be a combination of PROVOKED, DISABLED, and DESTROYED.
 // Create any target effects as sparks.
-int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment, const Point &damageSource)
+int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment,
+	const Point &damageSource)
 {
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
@@ -3632,7 +3634,8 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 		ApplyForce(damage.HitForce(), damage.GetWeapon().IsGravitational());
 
 	// Add this hit to the list of latest hits.
-	recentHits.emplace_back(damageSource - position, Attributes().Get("shields") / (damage.Shield() + Attributes().Get("shield generation")));
+	recentHits.emplace_back(damageSource - position,
+		Attributes().Get("shields") / (damage.Shield() + Attributes().Get("shield generation")));
 
 	// Prevent various stats from reaching unallowable values.
 	hull = min(hull, attributes.Get("hull"));

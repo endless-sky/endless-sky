@@ -1,4 +1,4 @@
-/* ShipFXShader.cpp
+/* ShipEffectsShader.cpp
 Copyright (c) 2014-2023 by Michael Zahniser & Daniel Yoon
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -15,20 +15,19 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShipEffectsShader.h"
 
+#include "GameData.h"
+#include "Government.h"
+#include "Logger.h"
+#include "Messages.h"
 #include "Point.h"
 #include "Screen.h"
 #include "Shader.h"
+#include "Ship.h"
 #include "Sprite.h"
-#include "Government.h"
-#include "GameData.h"
 
-#include "Messages.h"
-
+#include <algorithm>
 #include <sstream>
 #include <vector>
-#include "Logger.h"
-#include <algorithm>
-#include "Ship.h"
 
 #ifdef ES_GLES
 // ES_GLES always uses the shader, not this, so use a dummy value to compile.
@@ -47,7 +46,6 @@ namespace {
 	GLint transformI;
 	GLint blurI;
 	GLint clipI;
-	//GLint alphaI;
 
 	GLint recentHitsCountI;
 	GLint recentDamageI;
@@ -66,7 +64,7 @@ Point ShipEffectsShader::center = Point();
 void ShipEffectsShader::Init()
 {
 
-	static const char* vertexCode =
+	static const char *vertexCode =
 		"// vertex sprite shader\n"
 		"precision mediump float;\n"
 		"uniform vec2 scale;\n"
@@ -87,7 +85,7 @@ void ShipEffectsShader::Init()
 		"  fragTexCoord = vec2(texCoord.x, min(clip, texCoord.y)) + blurOff;\n"
 		"}\n";
 
-	static const char* fragmentCode =
+	static const char *fragmentCode =
 		"// fragment sprite shader\n"
 		"precision mediump float;\n"
 #ifdef ES_GLES
@@ -163,7 +161,6 @@ void ShipEffectsShader::Init()
 	transformI = shader.Uniform("transform");
 	blurI = shader.Uniform("blur");
 	clipI = shader.Uniform("clip");
-	////alphaI = shader.Uniform("alpha");
 
 	recentHitsI = shader.Uniform("recentHits");
 	recentDamageI = shader.Uniform("recentDamage");
@@ -171,7 +168,6 @@ void ShipEffectsShader::Init()
 	ratioI = shader.Uniform("ratio");
 	sizeI = shader.Uniform("size");
 
-	//shieldTypeI = shader.Uniform("shieldType");
 	shieldColorI = shader.Uniform("shieldColor");
 
 	glUseProgram(shader.Object());
@@ -203,9 +199,10 @@ void ShipEffectsShader::Init()
 
 
 
-void ShipEffectsShader::Draw(const Body* body, const Point& position, const vector<pair<Point, double>>* recentHits, const float zoom, const float frame, const string &shieldColor)
+void ShipEffectsShader::Draw(const Body* body, const Point& position, const vector<pair<Point, double>>* recentHits,
+	const float zoom, const float frame, const string &shieldColor)
 {
-	if (!body->GetSprite())
+	if(!body->GetSprite())
 		return;
 
 	Bind();
@@ -222,9 +219,10 @@ void ShipEffectsShader::SetCenter(Point newCenter)
 
 
 
-ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Body* body, const Point& position, const vector<pair<Point, double>>* recentHits, const float zoom, const float frame, const string &shieldColor)
+ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Body* body, const Point& position,
+	const vector<pair<Point, double>>* recentHits, const float zoom, const float frame, const string &shieldColor)
 {
-	if (!body->GetSprite())
+	if(!body->GetSprite())
 		return {};
 
 	EffectItem item;
@@ -265,7 +263,8 @@ ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Body* body, const
 		item.recentHitPoints[2*i] = (newP.X() / ((2 / 1.5) * body->Radius()));
 		item.recentHitPoints[2*i + 1] = (newP.Y() / ((2 / 1.5) * body->Radius()));
 		item.recentHitDamage[i] = (min(1., recth->at(i).second));
-		Messages::Add("Hit at " + to_string(newP.X() / body->Radius()) + ", " + to_string(newP.Y() / body->Radius()) + ", intensity of " + to_string(item.recentHitDamage[i]) + " with count of " + to_string(item.recentHits));
+		Messages::Add("Hit at " + to_string(newP.X() / body->Radius()) + ", " + to_string(newP.Y() / body->Radius())
+			+ ", intensity of " + to_string(item.recentHitDamage[i]) + " with count of " + to_string(item.recentHits));
 		i++;
 	}
 	Messages::Add(shieldColor);
@@ -299,11 +298,10 @@ void ShipEffectsShader::Add(const EffectItem& item, bool withBlur)
 	static const float UNBLURRED[2] = { 0.f, 0.f };
 	glUniform2fv(blurI, 1, withBlur ? item.blur : UNBLURRED);
 	glUniform1f(clipI, item.clip);
-	////glUniform1f(alphaI, item.alpha);
 
 	glUniform2fv(recentHitsI, 128, item.recentHitPoints);
 	glUniform1fv(recentDamageI, 64, item.recentHitDamage);
-	glUniform4fv(shieldColorI, 1,item.shieldColor);
+	glUniform4fv(shieldColorI, 1, item.shieldColor);
 	glUniform1i(recentHitsCountI, item.recentHits);
 	glUniform1f(ratioI, item.ratio);
 	glUniform1f(sizeI, item.size);

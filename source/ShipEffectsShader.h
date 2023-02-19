@@ -1,4 +1,4 @@
-/* SpriteShader.h
+/* SpriteEffectsShader.h
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -60,13 +60,14 @@ public:
 	static void SetCenter(Point newCenter);
 
 	// Draw a sprite.
-	static void Draw(const Body* body, const Point& position, const std::vector<std::pair<Point, double>>* recentHits, const float zoom = 1.f, const float frame = 0.f, const std::string &shieldColor = "shields default");
-	static EffectItem Prepare(const Body *body, const Point& position, const std::vector<std::pair<Point, double>>* recentHits, const float zoom = 1.f, const float frame = 0.f, const std::string &shieldColor = "shields default");
-	static EffectItem Prepare(const std::shared_ptr<Body> body, const Point &position, std::vector<std::pair<Point, double>> *recentHits, float zoom = 1.f, float frame = 0.f);
-	static EffectItem Prepare(const std::shared_ptr<Ship> body, float zoom);
+	static void Draw(const Body* body, const Point& position, const std::vector<std::pair<Point, double>>* recentHits,
+		const float zoom = 1.f, const float frame = 0.f, const std::string &shieldColor = "shields default");
+	static EffectItem Prepare(const Body *body, const Point& position,
+		const std::vector<std::pair<Point, double>>* recentHits, const float zoom = 1.f, const float frame = 0.f,
+		const std::string &shieldColor = "shields default");
 
 	static void Bind();
-	static void Add(const EffectItem& item, bool withBlur = false);
+	static void Add(const EffectItem &item, bool withBlur = false);
 	static void Unbind();
 
 	static Point center;

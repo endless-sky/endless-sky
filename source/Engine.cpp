@@ -980,16 +980,12 @@ void Engine::Draw() const
 
 	draw[drawTickTock].Draw();
 
-	ShipFXShader::Bind();
-	//for(int i = 0; i < shipEffects.size(); i++)
-	//{
-	//	ShipFXShader::Add(shipEffects.at(i));
-	//}
+	ShipEffectsShader::Bind();
 	for(const auto &it : shipEffects)
 	{
-		ShipFXShader::Add(it);
+		ShipEffectsShader::Add(it);
 	}
-	ShipFXShader::Unbind();
+	ShipEffectsShader::Unbind();
 
 	batchDraw[drawTickTock].Draw();
 
@@ -1539,7 +1535,7 @@ void Engine::CalculateStep()
 	draw[calcTickTock].SetCenter(newCenter, newCenterVelocity);
 	batchDraw[calcTickTock].SetCenter(newCenter);
 	radar[calcTickTock].SetCenter(newCenter);
-	ShipFXShader::SetCenter(newCenter);
+	ShipEffectsShader::SetCenter(newCenter);
 	shipEffects.clear();
 
 	// Populate the radar.
@@ -1568,7 +1564,8 @@ void Engine::CalculateStep()
 			if(ship.get() != flagship)
 			{
 				AddSprites(*ship);
-				shipEffects.push_back(ShipFXShader::Prepare(ship.get(), (ship->Position() - newCenter), ship->RecentHits(), zoom, ship->GetFrame(), ship->Attributes().ShieldColor()));
+				shipEffects.push_back(ShipEffectsShader::Prepare(ship.get(), (ship->Position() - newCenter), ship->RecentHits(),
+					zoom, ship->GetFrame(), ship->Attributes().ShieldColor()));
 				if(ship->IsThrusting() && !ship->EnginePoints().empty())
 				{
 					for(const auto &it : ship->Attributes().FlareSounds())
@@ -2187,7 +2184,8 @@ void Engine::DoCollisions(Projectile &projectile)
 		}
 		else if(hit)
 		{
-			int eventType = hit->TakeDamage(visuals, damage.CalculateDamage(*hit), gov, projectile.Position() + projectile.Velocity() * closestHit);
+			int eventType = hit->TakeDamage(visuals, damage.CalculateDamage(*hit), gov,
+				projectile.Position() + projectile.Velocity() * closestHit);
 			if(eventType)
 				eventQueue.emplace_back(gov, hit, eventType);
 		}
