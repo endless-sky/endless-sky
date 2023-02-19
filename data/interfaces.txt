@@ -156,6 +156,9 @@ color "map travel wormhole" .5 .2 .9 1.
 color "map wormhole" .5 .2 .9 1.
 color "map orbits fleet destination" 1. 1. 1. 1.
 
+# Miscellaneous colors
+color "wormholes: Ember Waste" .7 .1 .3
+
 
 
 interface "map detail panel"
