@@ -13733,6 +13733,7 @@ system G-3191
 	asteroids "small metal" 1 1.91
 	asteroids "medium metal" 12 2.1
 	asteroids "large metal" 1 1.8
+	hazard "Rulei Gravity Field" 1
 	object
 		sprite star/f-supergiant
 		distance 600.65
@@ -17702,7 +17703,6 @@ system Kanguwa
 	asteroids "medium metal" 52 2.6
 	asteroids "large metal" 40 2.7
 	hazard "Neutron Star Magnetic Field" 1
-	hazard "Rulei Gravity Field" 1
 	object
 		sprite star/neutron
 		period 10
