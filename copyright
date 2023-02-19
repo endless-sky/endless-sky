@@ -1674,6 +1674,7 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ images/asteroid/*bioroid*
  images/effect/acuit?hit*
  images/effect/ast?hit*
  images/effect/balfire*
@@ -1736,6 +1737,7 @@ Files:
  images/projectile/mandible?cannon*
  images/projectile/thorax?cannon*
  images/scene/rulei?flash*
+ images/ship/*astral*
  images/ship/*ayym*
  images/ship/embersylph*
  images/ship/gegno?augen*
@@ -1759,6 +1761,7 @@ Files:
  images/ship/*jje*
  images/ship/modified?dromedary*
  images/ship/modified?dromedary?wreck*
+ images/ship/*vyrmeid*
  images/ship/*vyuira*
  images/thumbnail/gegno?augen*
  images/thumbnail/gegno?coesite*
