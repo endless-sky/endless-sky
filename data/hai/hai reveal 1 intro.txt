@@ -13,7 +13,10 @@
 
 ########################################################################
 
-disable mission "Hai Secret Leaker Begins"
+disable mission
+	"Hai Secret Leaker Begins"
+	"Hai Rescue: Yeertle Family"
+	"Hai Rescue: Ooonem"
 
 mission "Hai Secret Leaker Begins"
 	landing
