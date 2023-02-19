@@ -46,6 +46,12 @@ public:
 		FAST
 	};
 
+	enum class OnHitEffects : int {
+		OFF = 0,
+		FANCY,
+		FAST
+	};
+
 	enum class AlertIndicator : int_fast8_t {
 		NONE = 0,
 		AUDIO,
@@ -94,6 +100,10 @@ public:
 	static void ToggleParallax();
 	static BackgroundParallax GetBackgroundParallax();
 	static const std::string &ParallaxSetting();
+
+	static void ToggleHitEffects();
+	static OnHitEffects GetHitEffects();
+	static const std::string &HitEffectSetting();
 
 	// Boarding target setting, either "proximity", "value" or "mixed".
 	static void ToggleBoarding();

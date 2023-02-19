@@ -980,12 +980,15 @@ void Engine::Draw() const
 
 	draw[drawTickTock].Draw();
 
-	ShipEffectsShader::Bind();
-	for(const auto &it : shipEffects)
+	if(static_cast<int>(Preferences::GetHitEffects()) > 0)
 	{
-		ShipEffectsShader::Add(it);
+		ShipEffectsShader::Bind();
+		for(const auto &it : shipEffects)
+		{
+			ShipEffectsShader::Add(it);
+		}
+		ShipEffectsShader::Unbind();
 	}
-	ShipEffectsShader::Unbind();
 
 	batchDraw[drawTickTock].Draw();
 
@@ -1564,8 +1567,11 @@ void Engine::CalculateStep()
 			if(ship.get() != flagship)
 			{
 				AddSprites(*ship);
-				shipEffects.push_back(ShipEffectsShader::Prepare(ship.get(), (ship->Position() - newCenter), ship->RecentHits(),
-					zoom, ship->GetFrame(), ship->Attributes().ShieldColor()));
+				if(static_cast<int>(Preferences::GetHitEffects()) > 0)
+				{
+					shipEffects.push_back(ShipEffectsShader::Prepare(ship.get(), (ship->Position() - newCenter), ship->RecentHits(),
+						zoom, ship->GetFrame(), ship->Attributes().ShieldColor()));
+				}
 				if(ship->IsThrusting() && !ship->EnginePoints().empty())
 				{
 					for(const auto &it : ship->Attributes().FlareSounds())

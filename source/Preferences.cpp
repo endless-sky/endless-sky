@@ -59,6 +59,9 @@ namespace {
 	const vector<string> PARALLAX_SETTINGS = {"off", "fancy", "fast"};
 	int parallaxIndex = 2;
 
+	const vector<string> ON_HIT_EFFECTS = { "off", "fancy", "fast" };
+	int hitEffectIndex = 2;
+
 	const vector<string> ALERT_INDICATOR_SETTING = {"off", "audio", "visual", "both"};
 	int alertIndicatorIndex = 3;
 
@@ -108,6 +111,8 @@ void Preferences::Load()
 			autoAimIndex = max<int>(0, min<int>(node.Value(1), AUTO_AIM_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Parallax background")
 			parallaxIndex = max<int>(0, min<int>(node.Value(1), PARALLAX_SETTINGS.size() - 1));
+		else if(node.Token(0) == "On-hit effects")
+			parallaxIndex = max<int>(0, min<int>(node.Value(1), ON_HIT_EFFECTS.size() - 1));
 		else if(node.Token(0) == "fullscreen")
 			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
 		else if(node.Token(0) == "alert indicator")
@@ -147,6 +152,7 @@ void Preferences::Save()
 	out.Write("vsync", vsyncIndex);
 	out.Write("Automatic aiming", autoAimIndex);
 	out.Write("Parallax background", parallaxIndex);
+	out.Write("On-hit effects", hitEffectIndex);
 	out.Write("alert indicator", alertIndicatorIndex);
 	out.Write("previous saves", previousSaveCount);
 
@@ -268,6 +274,30 @@ Preferences::BackgroundParallax Preferences::GetBackgroundParallax()
 const string &Preferences::ParallaxSetting()
 {
 	return PARALLAX_SETTINGS[parallaxIndex];
+}
+
+
+
+void Preferences::ToggleHitEffects()
+{
+	int targetIndex = hitEffectIndex + 1;
+	if(targetIndex == static_cast<int>(ON_HIT_EFFECTS.size()))
+		targetIndex = 0;
+	hitEffectIndex = targetIndex;
+}
+
+
+
+Preferences::OnHitEffects Preferences::GetHitEffects()
+{
+	return static_cast<OnHitEffects>(hitEffectIndex);
+}
+
+
+
+const string &Preferences::HitEffectSetting()
+{
+	return ON_HIT_EFFECTS[hitEffectIndex];
 }
 
 

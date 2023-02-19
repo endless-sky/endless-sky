@@ -2418,28 +2418,45 @@ void Ship::DoGeneration()
 	double maxHull = attributes.Get("hull");
 	hull = min(hull, maxHull);
 
-	if(recentHits.size() > 64)
-	{
-		sort(recentHits.begin(), recentHits.end(), [](pair<Point, double> &left, pair<Point, double> &right) {
-			return left.second > right.second;
-			});
-		recentHits.resize(64);
-	}
-	for(unsigned int i = 0; i < recentHits.size();)
-	{
-		recentHits[i].second *= 0.8;
-		if(recentHits[i].second < 0.001)
+	if(static_cast<int>(Preferences::GetHitEffects()) > 0) {
+		if(static_cast<int>(Preferences::GetHitEffects()) == 1)
 		{
-			Logger::LogError("DESTROYING ITERATORERED NUMBA " + to_string(i) + " OF SHIP " + name
-				+ " WITH SIZEOF " + to_string(recentHits.size()));
-			recentHits.erase(recentHits.begin() + i);
-			Logger::LogError("NOW SIZE IS " + to_string(recentHits.size()));
+			if(recentHits.size() > 64)
+			{
+				sort(recentHits.begin(), recentHits.end(), [](pair<Point, double> &left, pair<Point, double> &right) {
+					return left.second > right.second;
+					});
+				recentHits.resize(64);
+			}
 		}
-		else
+		else if(static_cast<int>(Preferences::GetHitEffects()) == 2)
 		{
-			i++;
+			double total = 0.;
+			for(const auto &it : recentHits)
+			{
+				total += it.second;
+			}
+			recentHits.clear();
+			recentHits.push_back(pair<Point, double>(Point(), total));
+		}
+		for(unsigned int i = 0; i < recentHits.size();)
+		{
+			recentHits[i].second *= 0.8;
+			if(recentHits[i].second < 0.001)
+			{
+				Logger::LogError("DESTROYING ITERATORERED NUMBA " + to_string(i) + " OF SHIP " + name
+					+ " WITH SIZEOF " + to_string(recentHits.size()));
+				recentHits.erase(recentHits.begin() + i);
+				Logger::LogError("NOW SIZE IS " + to_string(recentHits.size()));
+			}
+			else
+			{
+				i++;
+			}
 		}
 	}
+	else if(!recentHits.empty())
+		recentHits.clear();
 
 	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
 
@@ -3634,7 +3651,8 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 		ApplyForce(damage.HitForce(), damage.GetWeapon().IsGravitational());
 
 	// Add this hit to the list of latest hits.
-	recentHits.emplace_back(damageSource - position,
+	bool isFast = static_cast<int>(Preferences::GetHitEffects()) == 2;
+	recentHits.emplace_back(isFast ? Point() : damageSource - position,
 		Attributes().Get("shields") / (damage.Shield() + Attributes().Get("shield generation")));
 
 	// Prevent various stats from reaching unallowable values.
