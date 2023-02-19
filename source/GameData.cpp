@@ -844,6 +844,13 @@ const TextReplacements &GameData::GetTextReplacements()
 
 
 
+const Gamerules &GameData::GetGamerules()
+{
+	return objects.gamerules;
+}
+
+
+
 void GameData::LoadSources()
 {
 	sources.clear();
