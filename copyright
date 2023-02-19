@@ -1725,6 +1725,7 @@ Files:
  images/outfit/warforge?battery*
  images/outfit/warzone?core*
  images/planet/tschyss*
+ images/planet/*vajra*
  images/planet/vesvi*
  images/projectile/acuit*
  images/projectile/astuit*
@@ -1835,6 +1836,7 @@ Files:
  sounds/drill*
  sounds/ember?tear*
  sounds/ember?tear?hit*
+ sounds/gravity?well*
  sounds/hai?launch*
  sounds/human?launch*
  sounds/human?launch?external*

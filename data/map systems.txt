@@ -2605,10 +2605,6 @@ system "Ae Il G-66"
 			sprite planet/rock14
 			distance 366
 			period 183.248
-		object
-			sprite planet/fg_terrestrial6
-			distance 459
-			period 190
 
 system "Ae Il H-24"
 	pos 558.634 -628.884
@@ -14284,6 +14280,7 @@ system G-3191
 	government Uninhabited
 	attributes "umbral reach"
 	arrival 5000
+	departure 1000
 	habitable 20250
 	belt 1341
 	"jump range" 60
@@ -14293,6 +14290,14 @@ system G-3191
 	asteroids "small metal" 1 1.91
 	asteroids "medium metal" 12 2.1
 	asteroids "large metal" 1 1.8
+	hazard "Rulei Gravity Field" 1
+	object
+		sprite planet/vajra/vajra
+			"random start frame"
+			"frame rate" 30
+			"scale" 0.5
+		distance 0
+		period 10
 	object
 		sprite star/f-supergiant
 		distance 600.65
@@ -17512,10 +17517,6 @@ system "Is Ce G-460"
 		sprite star/k-dwarf
 		period 10
 	object
-		sprite planet/fg_terrestrial6
-		distance 171
-		period 89.4446
-	object
 		sprite planet/ice0
 		distance 363
 		period 276.643
@@ -17849,10 +17850,6 @@ system "Is Il Z-59"
 			sprite planet/dust1-b
 			distance 442
 			period 289.009
-		object
-			sprite planet/fg_terrestrial6
-			distance 551
-			period 312
 	object
 		sprite planet/dust0
 		distance 2996
