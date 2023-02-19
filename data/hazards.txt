@@ -114,7 +114,7 @@ hazard "Neutron Star Magnetic Field"
 
 hazard "Rulei Gravity Field"
 	"constant strength"
-	"range" 0
+	"range" 100
 	"environmental effect" "gravity well"
 	weapon
 		"gravitational"
