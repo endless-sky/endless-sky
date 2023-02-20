@@ -601,8 +601,9 @@ ship "Berserker"
 		"Javelin" 400
 		
 		"nGVF-CC Fuel Cell"
-		"LP072a Battery Pack"
-		"D23-QP Shield Generator"
+		"LP036a Battery Pack"
+		"D41-HY Shield Generator"
+		"Small Radar Jammer"
 		
 		"X2700 Ion Thruster"
 		"X3200 Ion Steering"
