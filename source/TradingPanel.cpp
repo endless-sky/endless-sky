@@ -49,8 +49,9 @@ namespace {
 	const int MAX_X = 190;
 
 	const int NAME_X = -290;
-	const int PRICE_X = -150;
-	const int LEVEL_X = -110;
+	const int PRICE_X = -170;
+	const int LEVEL_X = -130;
+	const int PROFIT_X = -50;
 	const int BUY_X = 0;
 	const int SELL_X = 60;
 	const int HOLD_X = 120;
@@ -72,13 +73,12 @@ TradingPanel::~TradingPanel()
 {
 	if(profit)
 	{
-		string message = "You sold " + to_string(tonsSold)
-			+ (tonsSold == 1 ? " ton" : " tons") + " of cargo ";
+		string message = "You sold " + Format::CargoString(tonsSold, "cargo ");
 
 		if(profit < 0)
-			message += "at a loss of " + Format::Credits(-profit) + " credits.";
+			message += "at a loss of " + Format::CreditString(-profit) + ".";
 		else
-			message += "for a total profit of " + Format::Credits(profit) + " credits.";
+			message += "for a total profit of " + Format::CreditString(profit) + ".";
 
 		Messages::Add(message, Messages::Importance::High);
 	}
@@ -134,8 +134,7 @@ void TradingPanel::Draw()
 			}
 		sellOutfits = (hasOutfits && !hasUninstallable);
 
-		string str = to_string(outfits + missionCargo);
-		str += (outfits + missionCargo == 1) ? " ton of " : " tons of ";
+		string str = Format::MassString(outfits + missionCargo) + " of ";
 		if(hasUninstallable && missionCargo)
 			str += "mission cargo and other items.";
 		else if(hasOutfits && missionCargo)
@@ -154,6 +153,7 @@ void TradingPanel::Draw()
 	int i = 0;
 	bool canSell = false;
 	bool canBuy = false;
+	bool showProfit = false;
 	for(const Trade::Commodity &commodity : GameData::Commodities())
 	{
 		y += 20;
@@ -172,20 +172,18 @@ void TradingPanel::Draw()
 			int basis = player.GetBasis(commodity.name);
 			if(basis && basis != price && hold)
 			{
-				string profit = "(profit: " + to_string(price - basis) + ")";
-				font.Draw(profit, Point(LEVEL_X, y), color);
+				string profit = to_string(price - basis);
+				font.Draw(profit, Point(PROFIT_X, y), color);
+				showProfit = true;
 			}
+			int level = (price - commodity.low);
+			if(level < 0)
+				level = 0;
+			else if(level >= (commodity.high - commodity.low))
+				level = 4;
 			else
-			{
-				int level = (price - commodity.low);
-				if(level < 0)
-					level = 0;
-				else if(level >= (commodity.high - commodity.low))
-					level = 4;
-				else
-					level = (5 * level) / (commodity.high - commodity.low);
-				font.Draw(TRADE_LEVEL[level], Point(LEVEL_X, y), color);
-			}
+				level = (5 * level) / (commodity.high - commodity.low);
+			font.Draw(TRADE_LEVEL[level], Point(LEVEL_X, y), color);
 
 			font.Draw("[buy]", Point(BUY_X, y), color);
 			font.Draw("[sell]", Point(SELL_X, y), color);
@@ -203,6 +201,9 @@ void TradingPanel::Draw()
 			font.Draw(to_string(hold), Point(HOLD_X, y), selected);
 		}
 	}
+
+	if(showProfit)
+		font.Draw("Profit", Point(PROFIT_X, FIRST_Y), selected);
 
 	const Interface *tradeUi = GameData::Interfaces().Get("trade");
 	Information info;

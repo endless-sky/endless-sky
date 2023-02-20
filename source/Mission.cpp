@@ -1331,8 +1331,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
 	substitutions.Substitutions(subs, player.Conditions());
 	subs["<commodity>"] = result.cargo;
-	subs["<tons>"] = to_string(result.cargoSize) + (result.cargoSize == 1 ? " ton" : " tons");
-	subs["<cargo>"] = subs["<tons>"] + " of " + subs["<commodity>"];
+	subs["<tons>"] = Format::MassString(result.cargoSize);
+	subs["<cargo>"] = Format::CargoString(result.cargoSize, subs["<commodity>"]);
 	subs["<bunks>"] = to_string(result.passengers);
 	subs["<passengers>"] = (result.passengers == 1) ? "passenger" : "passengers";
 	subs["<fare>"] = (result.passengers == 1) ? "a passenger" : (subs["<bunks>"] + " passengers");
@@ -1345,6 +1345,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	subs["<destination>"] = subs["<planet>"] + " in the " + subs["<system>"] + " system";
 	subs["<date>"] = result.deadline.ToString();
 	subs["<day>"] = result.deadline.LongString();
+	if(result.paymentApparent)
+		subs["<payment>"] = Format::CreditString(abs(result.paymentApparent));
 	// Stopover and waypoint substitutions: iterate by reference to the
 	// pointers so we can check when we're at the very last one in the set.
 	// Stopovers: "<name> in the <system name> system" with "," and "and".
