@@ -818,7 +818,7 @@ mission "Hai Leaks Response 4"
 			label end
 			`	"In any event, let's hope a more permanent solution can be devised soon. In the meantime, the local dealers have decided to start selling the Ladybugs again. I hear it's something about a spike in interest among the humans here, so feel free to have a look at them. I shouldn't get too distracted though, I'm sure they'll be waiting for you back on Hai-home."`
 			branch "saved geocoris2"
-				has "00 Hai Leaks Response 4B: declined"
+				has "ship model (all): Geodesic Geocoris"
 			`	With a final nod of thanks he departs to attend to his business, leaving you free to go about your own.`
 				decline
 			label "saved geocoris2"
@@ -872,12 +872,14 @@ mission "Hai Leaks Response 4A"
 # Success means the Geodesic Geocoris may become available to purchase specially later on. Not less than 2 years later.
 mission "Hai Leaks Response 4B"
 	landing
+	invisible
 	source "Allhome"
 	to offer
 		has "ship model (all): Geodesic Geocoris"
 	on offer
 		log `Successfully rescued the kidnapped Hai and reclaimed the Geocoris. This ship has been modified in ways that aren't of Hai origin, and which don't appear to be fully functional.`
 		event "returned geocoris" 730
+		fail
 
 event "returned geocoris"
 
@@ -1041,7 +1043,7 @@ mission "Hai Leaks Response 5"
 		event "allhome reinforced" 1
 		conversation
 			`When you return to Hai-home, you are greeted with a call from Sayari, who looks relieved to see you. "Captain <last>, thank you for your assistance to our security forces. They appreciated it greatly, and we should have them properly reinforced in a day or two. A few things have happened while you were away, but you haven't missed anything important yet."`
-			`	She smiles and says, "Your diplomatic colleagues are still working on their solutions, so I don't think there's anything for you to do right at this moment. Whenever you're ready, though, if you re-land at the secure port we can get you up to speed with our next steps in a day or two. I have no doubt that there'll be things for you to do by then, so you should be ready when you return."`
+			`	She smiles and says, "Your diplomatic colleagues are still working on their solutions, so I don't think there's anything for you to do right at this moment. Take a day or two, and then whenever you're ready, come to the spaceport and we'll redirect you through to the secure port. By that point we should have a plan and be able to get you up to speed with our next steps. I have no doubt that there'll be things for you to do by then, so you should be ready when you return."`
 
 event "allhome reinforced"
 	system "Heia Due"
@@ -1067,9 +1069,10 @@ mission "Hai Leaks Response 6"
 	description "Sayari's friend thinks someone with legal protection is kidnapping Hai. Check spaceports in nearby parts of human space for evidence of a Hai trafficking operation."
 	autosave
 	source "Hai-home"
+	destination "Hai-home"
 	clearance
 	to offer
-		has "Hai Leaks Response 5: done"
+		has "event: allhome reinforced"
 	on offer
 		event "secret mountaintop"
 		event "role-play fleet deception"
@@ -1191,8 +1194,9 @@ event "secret mountaintop"
 				period 31.1964
 	planet Mountaintop
 		government "Unknown"
+		attributes "requires: neverallowed"
 		# Placeholder description; you can't actually land.
-		description `This tiny asteroid has a space hazard warning transmitter, of a type typically used to mark construction sites. Perhaps someone intends to build a space station here?`
+		description `This tiny asteroid has a space hazard warning transmitter, of a type typically used to mark construction sites. Perhaps someone intends to build a space station here? [If you can see this text, report it as a bug.]`
 		"required reputation" 1000
 		bribe 0
 
