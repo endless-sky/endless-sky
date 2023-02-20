@@ -1,0 +1,10 @@
+* Merge upstream 0.10.0 update
+* Add Mine button for asteroids
+* Fix crash while loading large plugins
+* Add dropdowns to outfitter shop for quantity, cargo, and planetary storage
+* Fixed path issues for android marshmallow
+* Enable armeabi-v7a targets
+* Updated "Reduced Graphics" setting to handle low memory devices automatically
+* Fixed looping audio when navigating away from game
+* Increase object size and search radius so that it is easier to click on small objects
+* Automatically enable "Reduced Graphics" and disable plugins if previous game crashed on load
