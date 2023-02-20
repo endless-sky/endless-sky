@@ -430,8 +430,7 @@ string Format::ExpandConditions(const string &source, ConditionGetter getter)
 	size_t conditionStart = string::npos;
 	size_t conditionSize = string::npos;
 
-	// I wish I had could use flex and bison, but Endless Sky doesn't have that so...
-	// Here's a hand-coded LALR0 parser. It parses this:
+	// Hand-coded regular expression parser which parses:
 	//	&{format@condition}
 	//	&{condition}
 	// Using these states:
