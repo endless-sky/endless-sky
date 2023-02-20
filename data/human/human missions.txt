@@ -5536,7 +5536,7 @@ mission "Karen Transport 2"
 			choice
 				`	"How much are you willing to pay me?"`
 					goto pay
-				`	"Yes." (Invite him into your ship.)`
+				`	"Yes."`
 					goto board
 				`	"No, I don't."`
 					decline
@@ -5615,7 +5615,7 @@ mission "Karen Transport 2"
 			
 			label pilot
 			`	He straps himself in, and begins fiddling with the controls. Navigation lights. Life support. Thrusters.`
-			`	The ship suddenly lurches to the side, and you find yourself on the ground. "No need to panic, everything is under control," the bogus pilot exclaims.`
+			`	The ship suddenly lurches to the side, and you find yourself on the ground. "No need to panic, everything is under control," he exclaims.`
 			`	After a moment of relative calm, the world begins to spin around you with sickening speed. You hear alarms go off all over the ship, and sparks fly all around you. It seems that he managed to put the ship into a spin by overloading some of the engines.`
 			`	You try to get up, but it is impossible to find your balance in the wheeling ship. The alarms get more frantic with every passing second, until you hear a low rumbling, then a thundering explosion consumes everything.`
 				explode
@@ -5717,7 +5717,7 @@ mission "Drunk Teen Hijack"
 				`	"Sure, come in."`
 					goto come
 				`	"Sorry, I can't let you into the cockpit."`
-			`	"Well, that's too bad then. Larry, would you show the kind captain what you got?" Larry is apparently the name of the guy leaning on the wall. He puts a hand behind his back, and pulls out a -`
+			`	"Well, that's too bad then." He looks towards his friend leaning on the wall. "Larry, would you show the kind captain what you got?" He puts a hand behind his back, and pulls out a -`
 			`	You freeze. Larry has your own sidearm in his hand, pointed at you. He must have taken it last night, when you thought they were partying. Instantly, all drunkenness is gone from him and his friends, and they eye you with sudden glee and hostility. "That's right," Howard says, with a snark. "Now, will you please let us into the cockpit?"`
 			`	You step away from the door, careful not to make any sudden moves.`
 				goto options
