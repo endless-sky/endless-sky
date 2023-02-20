@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "ConditionsStore.h"
 #include "Conversation.h"
+#include "CrashState.h"
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -845,12 +846,15 @@ void GameData::LoadSources()
 		}
 	}
 
-	vector<string> localPlugins = Files::ListDirectories(Files::Config() + "plugins/");
-	for(const string &path : localPlugins)
+	if (!CrashState::HasCrashed())
 	{
-		if(Files::Exists(path + "data") || Files::Exists(path + "images") || Files::Exists(path + "sounds"))
+		vector<string> localPlugins = Files::ListDirectories(Files::Config() + "plugins/");
+		for(const string &path : localPlugins)
 		{
-			sources.push_back(path);
+			if(Files::Exists(path + "data") || Files::Exists(path + "images") || Files::Exists(path + "sounds"))
+			{
+				sources.push_back(path);
+			}
 		}
 	}
 
