@@ -435,12 +435,13 @@ ship "Berserker" "Berserker (Strike)"
 	outfits
 		"Javelin Pod" 2
 		"Javelin Mini Pod"
-		"Heavy Rocket Pod"
+		"Torpedo Pod"
 		"Javelin" 440
-		"Heavy Rocket" 2
-		"nGVF-CC Fuel Cell"
+		"Torpedo" 3
+		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"D41-HY Shield Generator"
+		"Fuel Pod"
 		"Ramscoop"
 		"Chipmunk Plasma Thruster"
 		"Greyhound Plasma Steering"
@@ -449,7 +450,7 @@ ship "Berserker" "Berserker (Strike)"
 	gun "Javelin Pod"
 	gun "Javelin Pod"
 	gun "Javelin Mini Pod"
-	gun "Heavy Rocket Pod"
+	gun "Torpedo Pod"
 
 
 ship "Blackbird" "Blackbird (Prisoner Transport)"
