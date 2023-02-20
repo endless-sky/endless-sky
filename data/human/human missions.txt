@@ -5534,7 +5534,7 @@ mission "Karen Transport 2"
 		conversation
 			`As you exit your ship, a middle-aged man in an expensive-looking suit approaches you. "I need you to take me to <planet>. I have urgent business there. Are you willing to transport me?"`
 			choice
-				`	"Yes. How much are you willing to pay me?"`
+				`	"How much are you willing to pay me?"`
 					goto pay
 				`	"Yes." (Invite him into your ship.)`
 					goto board
