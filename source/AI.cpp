@@ -2555,7 +2555,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 			// If there is nothing for this ship to scan, have it patrol the entire system
 			// instead of drifting or stopping.
 			// Also allows the ship to land.
-			double radius = 1000 * 1000 * 1.1;
+			double radius = 1000. * 1000. * 1.1;
 			for(const StellarObject &object : ship.GetSystem()->Objects())
 				radius = max(radius, object.Position().LengthSquared() * 1.1);
 
