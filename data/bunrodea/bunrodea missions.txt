@@ -13,6 +13,8 @@
 
 mission "First Contact: Bunrodea (Hostile)"
 	landing
+	name "An Intriguing Invitation"
+	description "You have received an invitation, or summons, to the marked system by some mantis-like aliens who seem to have been following you around human space."
 	source
 		near "Sol" 0 100
 		not attributes "urban" "station"
