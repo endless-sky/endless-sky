@@ -68,7 +68,7 @@ namespace {
 	const string ALERT_INDICATOR = "Alert indicator";
 
 	// How many pages of settings there are.
-	const int SETTINGS_PAGE_COUNT = 1;
+	const int SETTINGS_PAGE_COUNT = 2;
 }
 
 
@@ -488,7 +488,7 @@ void PreferencesPanel::DrawSettings()
 		"Rotate flagship in HUD",
 		"Show planet labels",
 		"Show mini-map",
-		DATE_FORMAT,
+		"Show asteroid scanner overlay",
 		"Always underline shortcuts",
 		"",
 		"AI",
@@ -519,7 +519,10 @@ void PreferencesPanel::DrawSettings()
 		"Show escort systems on map",
 		"Show stored outfits on map",
 		"System map sends move orders",
-		ALERT_INDICATOR
+		"\n",
+		"Other",
+		ALERT_INDICATOR,
+		DATE_FORMAT
 	};
 	bool isCategory = true;
 	int page = 0;
