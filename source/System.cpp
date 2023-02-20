@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Date.h"
 #include "Fleet.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Government.h"
 #include "Hazard.h"
 #include "Minable.h"
@@ -198,7 +199,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				const string &key = grand.Token(0);
 				bool hasValue = grand.Size() >= 2;
 				if(key == "universal" && hasValue)
-					universalRamscoop = grand.Value(1);
+					universalRamscoop = grand.BoolValue(1);
 				else if(key == "addend" && hasValue)
 					ramscoopAddend = grand.Value(1);
 				else if(key == "multiplier" && hasValue)
@@ -639,8 +640,9 @@ bool System::Hidden() const
 double System::RamscoopFuel(double shipRamscoop, double scale) const
 {
 	// Even if a ship has no ramscoop, it can harvest a tiny bit of fuel by flying close to the star,
-	// provided the system allows it.
-	double universal = 0.05 * scale * universalRamscoop;
+	// provided the system allows it. Both the system and the gamerule must allow the universal ramscoop
+	// in order for it to function.
+	double universal = 0.05 * scale * universalRamscoop * GameData::GetGamerules().UniversalRamscoopActive();
 	return max(0., SolarWind() * .03 * scale * ramscoopMultiplier * (sqrt(shipRamscoop) + universal) + ramscoopAddend);
 }
 
