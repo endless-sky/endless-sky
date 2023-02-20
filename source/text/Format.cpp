@@ -430,7 +430,7 @@ string Format::ExpandConditions(const string &source, ConditionGetter getter)
 	size_t conditionStart = string::npos;
 	size_t conditionSize = string::npos;
 
-	// Hand-coded regular expression parser which parses:
+	// Hand-coded regular grammar parser for:
 	//	&{format@condition}
 	//	&{condition}
 	// Using these states:
