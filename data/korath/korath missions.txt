@@ -731,9 +731,9 @@ mission "Korath [F04]: Fishy Reasoning"
 	on offer
 		conversation
 			`[Image with a collage of feather, fish, and sand drawings.]`
-			`Upon touching down, you have a feeling like a thousand piece jigsaw puzzle just came together before your eyes. When the Korath were drawing systems, three seemed to jump out at you. Misam, home of New Tortuga; Atik, where the La'ab Bamen black market resides; and Kor Ak'Mari, the ocean planet's system. The first fish you transferred from New Tortuga to La'ab Bamen looked like a tiny relative of the island-sized fish on the ocean planet. Iris called the Korath New Tortuga's chief ally, and the recipients of a fish deal. She had quite a lot of knowledge of the Korath, and spoke of them with admiration.`
+			`Suddenly, you have a feeling like a thousand piece jigsaw puzzle just came together before your eyes. When the Korath were drawing systems, three seemed to jump out at you. Misam, home of New Tortuga; Atik, where the La'ab Bamen black market resides; and Kor Ak'Mari, the ocean planet's system. The first fish you transferred from New Tortuga to La'ab Bamen looked like a tiny relative of the island-sized fish on the ocean planet. Iris called the Korath New Tortuga's chief ally, and the recipients of a fish deal. She had quite a lot of knowledge of the Korath, and spoke of them with admiration.`
 			`	Most curious of all is the rainbow feather on Iris's necklace, which was the exact shape of feathers on the Korath of Far'en Lei, but far more colorful.`
-			`	It may be time to track down Iris and get some answers.`
+			`	There's definitely something bigger going on, and it's time to track down Iris and get some answers. You last saw her on <planet>.`
 				accept
 
 
