@@ -136,7 +136,7 @@ private:
 		Point center;
 		Angle angle;
 		double radius;
-		int type;
+		const Color &color;
 		int count;
 	};
 
@@ -185,6 +185,8 @@ private:
 	bool hasFinishedCalculating = true;
 	bool terminate = false;
 	bool wasActive = false;
+	bool isMouseToggleEnabled = false;
+	bool isMouseHoldEnabled = false;
 	bool isMouseTurningEnabled = false;
 	DrawList draw[2];
 	BatchDrawList batchDraw[2];

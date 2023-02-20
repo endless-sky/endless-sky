@@ -45,11 +45,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	string Tons(int tons)
-	{
-		return to_string(tons) + (tons == 1 ? " ton" : " tons");
-	}
-
 	// Determine the refillable ammunition a particular ship consumes or stores.
 	set<const Outfit *> GetRefillableAmmunition(const Ship &ship) noexcept
 	{
@@ -431,8 +426,8 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 			return true;
 
 		return "You cannot " + string(onlyOwned ? "load" : "buy") + " this outfit, because it takes up "
-			+ Tons(mass) + " of mass, and your fleet has "
-			+ Tons(freeCargo) + " of cargo space free.";
+			+ Format::CargoString(mass, "mass") + " and your fleet has "
+			+ Format::CargoString(freeCargo, "cargo space") + " free.";
 	}
 	else
 	{
@@ -447,24 +442,24 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 		double outfitSpace = playerShip->Attributes().Get("outfit space");
 		if(outfitNeeded > outfitSpace)
 			return "You cannot install this outfit, because it takes up "
-				+ Tons(outfitNeeded) + " of outfit space, and this ship has "
-				+ Tons(outfitSpace) + " free.";
+				+ Format::CargoString(outfitNeeded, "outfit space") + ", and this ship has "
+				+ Format::MassString(outfitSpace) + " free.";
 
 		double weaponNeeded = -selectedOutfit->Get("weapon capacity");
 		double weaponSpace = playerShip->Attributes().Get("weapon capacity");
 		if(weaponNeeded > weaponSpace)
 			return "Only part of your ship's outfit capacity is usable for weapons. "
 				"You cannot install this outfit, because it takes up "
-				+ Tons(weaponNeeded) + " of weapon space, and this ship has "
-				+ Tons(weaponSpace) + " free.";
+				+ Format::CargoString(weaponNeeded, "weapon space") + ", and this ship has "
+				+ Format::MassString(weaponSpace) + " free.";
 
 		double engineNeeded = -selectedOutfit->Get("engine capacity");
 		double engineSpace = playerShip->Attributes().Get("engine capacity");
 		if(engineNeeded > engineSpace)
 			return "Only part of your ship's outfit capacity is usable for engines. "
 				"You cannot install this outfit, because it takes up "
-				+ Tons(engineNeeded) + " of engine space, and this ship has "
-				+ Tons(engineSpace) + " free.";
+				+ Format::CargoString(engineNeeded, "engine space") + ", and this ship has "
+				+ Format::MassString(engineSpace) + " free.";
 
 		if(selectedOutfit->Category() == "Ammunition")
 			return !playerShip->OutfitCount(selectedOutfit) ?
