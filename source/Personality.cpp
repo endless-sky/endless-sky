@@ -248,7 +248,7 @@ bool Personality::IsUnconstrained() const
 
 bool Personality::IsUnrestricted() const
 {
-	return flags & UNRESTRICTED;
+	return flags.test(UNRESTRICTED);
 }
 
 
