@@ -1959,23 +1959,23 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		{
 			// Check if we are able to turn.
 			double cost = attributes.Get("turning energy");
-			if(energy < cost * fabs(commands.Turn()))
+			if(cost > 0. && energy < cost * fabs(commands.Turn()))
 				commands.SetTurn(commands.Turn() * energy / (cost * fabs(commands.Turn())));
 
 			cost = attributes.Get("turning shields");
-			if(shields < cost * fabs(commands.Turn()))
+			if(cost > 0. && shields < cost * fabs(commands.Turn()))
 				commands.SetTurn(commands.Turn() * shields / (cost * fabs(commands.Turn())));
 
 			cost = attributes.Get("turning hull");
-			if(hull < cost * fabs(commands.Turn()))
+			if(cost > 0. && hull < cost * fabs(commands.Turn()))
 				commands.SetTurn(commands.Turn() * hull / (cost * fabs(commands.Turn())));
 
 			cost = attributes.Get("turning fuel");
-			if(fuel < cost * fabs(commands.Turn()))
+			if(cost > 0. && fuel < cost * fabs(commands.Turn()))
 				commands.SetTurn(commands.Turn() * fuel / (cost * fabs(commands.Turn())));
 
 			cost = -attributes.Get("turning heat");
-			if(heat < cost * fabs(commands.Turn()))
+			if(cost > 0. && heat < cost * fabs(commands.Turn()))
 				commands.SetTurn(commands.Turn() * heat / (cost * fabs(commands.Turn())));
 
 			if(commands.Turn())
@@ -2011,27 +2011,27 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			// Check if we are able to apply this thrust.
 			double cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting energy" : "reverse thrusting energy");
-			if(energy < cost)
+			if(cost > 0. && energy < cost)
 				thrustCommand *= energy / cost;
 
 			cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting shields" : "reverse thrusting shields");
-			if(shields < cost)
+			if(cost > 0. && shields < cost)
 				thrustCommand *= shields / cost;
 
 			cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting hull" : "reverse thrusting hull");
-			if(hull < cost)
+			if(cost > 0. && hull < cost)
 				thrustCommand *= hull / cost;
 
 			cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting fuel" : "reverse thrusting fuel");
-			if(fuel < cost)
+			if(cost > 0. && fuel < cost)
 				thrustCommand *= fuel / cost;
 
 			cost = -attributes.Get((thrustCommand > 0.) ?
 				"thrusting heat" : "reverse thrusting heat");
-			if(heat < cost)
+			if(cost > 0. && heat < cost)
 				thrustCommand *= heat / cost;
 
 			if(thrustCommand)
@@ -2491,6 +2491,7 @@ void Ship::DoGeneration()
 	else
 	{
 		// Ramscoops work much better when close to the system center.
+		// Carried fighters can't collect fuel or energy this way.
 		if(currentSystem)
 		{
 			double scale = .2 + 1.8 / (.001 * position.Length() + 1);

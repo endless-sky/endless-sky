@@ -28,7 +28,7 @@ outfit "Water Coolant System"
 	"mass" 10
 	"outfit space" -10
 	"cooling" 12
-	description "This system is a step up from ordinary cooling ducts; it circulates water in between an external radiator and your ship's hottest internal components to keep them from overheating."
+	description "This system is a step up from ordinary Cooling Ducts; it circulates water in between an external radiator and your ship's hottest internal components to keep them from overheating."
 
 outfit "Liquid Nitrogen Cooler"
 	category "Systems"
@@ -153,7 +153,7 @@ outfit "Ramscoop"
 	"outfit space" -10
 	"ramscoop" 1
 	description "In the early days of space exploration, when ships could travel through half a dozen systems before encountering an established colony where they could refuel, ramscoops were an essential piece of equipment, harvesting plasma from the solar wind to refill your hyperspace fuel tanks. Although you can install more than one ramscoop, additional ramscoops on a single ship are not as effective as the first."
-	description "	Different kinds of stars will generate varying levels of fuel in the solar wind, but in all cases the closer you are to the star, the faster fuel will accumulate."
+	description "	Different kinds of stars will generate varying levels of fuel in the solar wind, but in all cases the closer you are to the star, the faster fuel will accumulate. As a safety measure, all ships are able to harvest tiny amounts of fuel by flying close to a star, but this outfit allows you to accumulate fuel much more quickly."
 
 outfit "Catalytic Ramscoop"
 	category "Systems"
