@@ -575,7 +575,7 @@ government "Hai (Governor Escort)"
 	"friendly disabled hail" "friendly disabled hai"
 	"hostile hail" "hostile hai"
 	"hostile disabled hail" "hostile disabled hai"
-  color "governments: Hai (Unfettered)" .55 .27 .76
+	color "governments: Hai (Unfettered)" .55 .27 .76
 
 government "Hai (Unfettered)"
 	swizzle 4
