@@ -1259,6 +1259,12 @@ event "catalytic ramscoop available"
 
 
 
+event "fw gets catalytic ramscoop"
+	outfitter "Delta V Advanced"
+		"Catalytic Ramscoop"
+
+
+
 event "fw safe passage starts"
 	"reputation: Republic" = 5
 
