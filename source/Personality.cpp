@@ -25,6 +25,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	// Make sure the length of PersonalityTrait matches PERSONALITY_COUNT
+	// or the game will crash at runtime.
 	enum PersonalityTrait {
 		PACIFIST,
 		FORBEARING,
