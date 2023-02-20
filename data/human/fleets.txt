@@ -2243,6 +2243,8 @@ fleet "Small Northern Pirates"
 	variant 2
 		"Berserker (Strike)"
 	variant 2
+		"Berserker (Twin Modified Blaster)"
+	variant 2
 		"Hawk"
 	variant 1
 		"Hawk (Rocket)"
@@ -2318,7 +2320,7 @@ fleet "Large Northern Pirates"
 		"Fury"
 	variant 2
 		"Firebird"
-		"Berserker" 2
+		"Berserker (Twin Modified Blaster)" 2
 	variant 1
 		"Firebird (Plasma)"
 		"Fury (Missile)"
@@ -2491,7 +2493,7 @@ fleet "pirate raid"
 		"Corvette (Speedy)"
 	variant 2
 		"Firebird"
-		"Berserker" 2
+		"Berserker (Twin Modified Blaster)" 2
 	variant 1
 		"Firebird (Plasma)"
 		"Fury (Missile)"
@@ -2521,6 +2523,13 @@ fleet "pirate raid"
 	variant 8
 		"Berserker (Afterburner)" 3
 	variant 2
+		"Berserker (Afterburner)" 2
+	variant 2
+		"Berserker (Twin Modified Blaster)" 2
+	variant 8
+		"Berserker (Twin Modified Blaster)" 3
+	variant 8
+		"Berserker (Twin Modified Blaster)" 2
 		"Berserker (Afterburner)" 2
 	variant 3
 		"Scout (Speedy)" 3
@@ -2577,7 +2586,7 @@ fleet "Bounty Hunters"
 		"Fury (Bomber)"
 		"Sparrow" 2
 	variant 5
-		"Berserker (Strike)"
+		"Berserker (Twin Modified Blaster)"
 		"Quicksilver"
 	variant 5
 		"Quicksilver" 2
