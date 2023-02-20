@@ -517,8 +517,8 @@ mission "Korath [F02]: A Fishy Proposition"
 			label yup
 			action
 				log "Agreed to help a woman named Jenny Globemaster who couldn't make a delivery. Apparently the delivery is illegal, though it's unlikely to be detected since it's in a region of space not patrolled by any law-abiding governments."
-			`	[Image of interior of C-17 with a large container being unloaded.]`
-			`	"Really? Okay, hold on..." looking down, she fidgets with a datapad, perhaps transferring permission for the cargo mission. "Yeah, okay." She looks back up at last. "Transfer is approved.`
+			scene scene/c17-parker-space-probe
+			`	"Really? Okay, hold on..." looking down, she fidgets with a datapad, perhaps transferring permission for the cargo mission. "Yeah, okay." She looks back up at last. "Transfer is approved. Her crewman starts offloading the fish, preparing to transfer it to your ship.`
 			`	"If the authorities won't let you land, read them the serial number from the cargo container, and they'll open a bay for you. Oh, also, this is an illegal mission, so don't get caught, or it'll cost you. Well, it's unlikely anyone out here will care about laws, but I do believe in full disclosure."`
 				accept
 
