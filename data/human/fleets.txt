@@ -71,6 +71,9 @@ fleet "Small Southern Merchants"
 	variant 7
 		"Hauler"
 		"Berserker"
+	variant 5
+		"Hauler"
+		"Berserker (Reverse Thrust)"
 	variant 1
 		"Scout"
 	variant 1
@@ -159,7 +162,8 @@ fleet "Large Southern Merchants"
 		"Hauler" 2
 	variant 6
 		"Hauler III"
-		"Berserker" 2
+		"Berserker"
+		"Berserker (Reverse Thrust)"
 	variant 1
 		"Bulk Freighter (Long Haul)"
 		"Berserker (Strike)" 4
@@ -433,6 +437,9 @@ fleet "Paradise Merchants"
 		"Berserker" 3
 	variant 2
 		"Star Queen"
+		"Berserker (Reverse Thrust)" 3
+	variant 2
+		"Star Queen"
 		"Quicksilver" 2
 	variant 10
 		"Arrow"
@@ -460,6 +467,9 @@ fleet "Paradise Merchants"
 	variant 3
 		"Blackbird"
 		"Berserker" 2
+	variant 3
+		"Blackbird"
+		"Berserker (Reverse Thrust)" 2
 	variant 5
 		"Scout (Speedy)"
 	variant 1
@@ -495,6 +505,9 @@ fleet "Small Northern Merchants"
 	variant 3
 		"Freighter"
 		"Berserker (Strike)"
+	variant 3
+		"Freighter"
+		"Berserker (Reverse Thrust)"
 	variant 5
 		"Freighter (Fancy)"
 		"Shuttle" 4
@@ -555,6 +568,9 @@ fleet "Large Northern Merchants"
 	variant 3
 		"Freighter" 2
 		"Berserker (Strike)" 2
+	variant 3
+		"Freighter" 2
+		"Berserker (Reverse Thrust)" 2
 	variant 10
 		"Freighter" 2
 		"Firebird (Plasma)"
@@ -649,6 +665,9 @@ fleet "Large Northern Merchants"
 	variant 1
 		"Bulk Freighter (Heavy)"
 		"Berserker (Afterburner)" 2
+	variant 1
+		"Bulk Freighter (Heavy)"
+		"Berserker (Reverse Thrust)" 2
 	variant 2
 		"Bulk Freighter (Blaster)"
 		"Sparrow" 2
@@ -740,6 +759,9 @@ fleet "Large Northern Merchants"
 	variant 1
 		"Container Transport (Heavy)"
 		"Berserker (Afterburner)" 2
+	variant 1
+		"Container Transport (Heavy)"
+		"Berserker (Reverse Thrust)" 2
 	variant 2
 		"Container Transport (Blaster)"
 		"Sparrow" 2
@@ -769,6 +791,9 @@ fleet "Small Human Merchants (Hai)"
 	variant 3
 		"Freighter"
 		"Berserker (Afterburner)"
+	variant 3
+		"Freighter"
+		"Berserker (Reverse Thrust)"
 	variant 5
 		"Freighter (Hai)"
 		"Shuttle" 4
@@ -821,6 +846,9 @@ fleet "Large Human Merchants (Hai)"
 	variant 3
 		"Freighter (Hai)" 2
 		"Berserker (Afterburner)" 2
+	variant 3
+		"Freighter (Hai)" 2
+		"Berserker (Reverse Thrust)" 2
 	variant 10
 		"Freighter" 2
 		"Firebird (Hai Weapons)"
@@ -890,6 +918,9 @@ fleet "Large Human Merchants (Hai)"
 	variant 1
 		"Bulk Freighter (Hai)"
 		"Berserker (Afterburner)" 2
+	variant 1
+		"Bulk Freighter (Hai)"
+		"Berserker (Reverse Thrust)" 2
 	variant 3
 		"Bulk Freighter (Blaster)"
 		"Sparrow" 2
@@ -981,6 +1012,9 @@ fleet "Large Human Merchants (Hai)"
 	variant 1
 		"Container Transport (Hai)"
 		"Berserker (Afterburner)" 2
+	variant 1
+		"Container Transport (Hai)"
+		"Berserker (Reverse Thrust)" 2
 	variant 1
 		"Container Transport (Blaster)"
 		"Sparrow" 2
@@ -2245,6 +2279,8 @@ fleet "Small Northern Pirates"
 	variant 2
 		"Berserker (Twin Modified Blaster)"
 	variant 2
+		"Berserker (Reverse Thrust)"
+	variant 2
 		"Hawk"
 	variant 1
 		"Hawk (Rocket)"
@@ -2321,6 +2357,9 @@ fleet "Large Northern Pirates"
 	variant 2
 		"Firebird"
 		"Berserker (Twin Modified Blaster)" 2
+	variant 1
+		"Firebird"
+		"Berserker (Reverse Thrust)" 2
 	variant 1
 		"Firebird (Plasma)"
 		"Fury (Missile)"
@@ -2495,6 +2534,9 @@ fleet "pirate raid"
 		"Firebird"
 		"Berserker (Twin Modified Blaster)" 2
 	variant 1
+		"Firebird"
+		"Berserker (Reverse Thrust)" 2
+	variant 1
 		"Firebird (Plasma)"
 		"Fury (Missile)"
 	variant 1
@@ -2536,6 +2578,10 @@ fleet "pirate raid"
 	variant 3
 		"Berserker (Twin Modified Blaster)" 2
 		"Berserker (Afterburner)" 2
+	variant 2
+		"Berserker (Afterburner)"
+		"Berserker (Twin Modified Blaster)"
+		"Berserker (Reverse Thrust)"
 	variant 3
 		"Scout (Speedy)" 3
 
