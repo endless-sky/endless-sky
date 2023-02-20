@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "Dialog.h"
 #include "Files.h"
+#include "CrashState.h"
 #include "text/Font.h"
 #include "FrameTimer.h"
 #include "GameData.h"
@@ -119,7 +120,11 @@ int main(int argc, char *argv[])
 		printData = true;
 	Files::Init(argv);
 
+	// Config now set. It is safe to access the config now
+	CrashState::Init();
+
 	try {
+		CrashState::Set(CrashState::DATA);
 		// Begin loading the game data.
 		bool isConsoleOnly = loadOnly || printTests || printData;
 		future<void> dataLoading = GameData::BeginLoad(isConsoleOnly, debugMode);
@@ -151,6 +156,7 @@ int main(int argc, char *argv[])
 		{
 			// Set the game's initial internal state.
 			GameData::FinishLoading();
+			CrashState::Set(CrashState::LOADED);
 
 			// Reference check the universe, as known to the player. If no player found,
 			// then check the default state of the universe.
@@ -167,7 +173,10 @@ int main(int argc, char *argv[])
 		timeBeginPeriod(1);
 #endif
 
+		CrashState::Set(CrashState::PREFERENCES);
+
 		Preferences::Load();
+		CrashState::Set(CrashState::OPENGL);
 
 		if(!GameWindow::Init())
 			return 1;

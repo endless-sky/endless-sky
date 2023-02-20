@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Audio.h"
 #include "Conversation.h"
 #include "ConversationPanel.h"
+#include "CrashState.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
@@ -86,6 +87,7 @@ void GameLoadingPanel::Step()
 		}
 
 		finishedLoading = true;
+		CrashState::Set(CrashState::LOADED);
 	}
 }
 
