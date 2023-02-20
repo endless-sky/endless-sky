@@ -983,7 +983,7 @@ void Engine::Draw() const
 	if(static_cast<int>(Preferences::GetHitEffects()) > 0)
 	{
 		ShipEffectsShader::Bind();
-		for (int i = 0; i < shipEffects.size(); i++)
+		for (unsigned int i = 0; i < shipEffects.size(); i++)
 		{
 			ShipEffectsShader::Add(shipEffects[i]);
 		}

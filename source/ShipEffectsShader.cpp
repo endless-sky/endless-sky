@@ -147,7 +147,22 @@ void ShipEffectsShader::Init()
 
 		"float gridPattern(float f, vec2 uv)\n"
 		"{\n"
-		"  return f + (f - f * (stripe(uv.x * ratio, 1.5) * stripe(uv.y, 1.5)));\n"
+		"  return f + (f - f * (stripe(uv.x, 1.5) * stripe(uv.y * ratio, 1.5)));\n"
+		"}\n"
+
+		"float bounds(float inp, float max) {\n"
+		"  if(inp < max/10. || inp > max * 0.9){\n"
+		"    return 1.;\n"
+		"  }\n"
+		"  return 0.;\n"
+		"}\n"
+
+		"float trianglePattern(float f, vec2 duv)\n"
+		"{\n"
+		"  vec2 uv = vec2(duv.x, duv.y * ratio);\n"
+		"  vec3 nuv = vec3(mod(uv.x + uv.y, 0.2)*5., mod(uv.y - uv.x, 0.2)*5., mod(uv.x, 0.1)*10.);\n"
+		"  float maxa = length(vec3(bounds(nuv.x, 1.), bounds(nuv.y, 1.), bounds(nuv.z, 1.))); \n"
+		"  return f + (f - f * maxa);\n"
 		"}\n"
 
 		"void main()\n"
@@ -172,6 +187,9 @@ void ShipEffectsShader::Init()
 		"    {\n"
 		"      case 0:\n"
 		"        color *= gridPattern(color.a, uv);\n"
+		"        break;\n"
+		"      case 1:\n"
+		"        color *= trianglePattern(color.a, uv);\n"
 		"        break;\n"
 		"    }\n"
 		"  }\n"
@@ -273,7 +291,7 @@ ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Body* body, const
 	Point uw = unit * width;
 	Point uh = unit * height;
 
-	item.size = 80.;
+	item.size = body->Radius() * 2.;
 
 	// (0, -1) means a zero-degree rotation (since negative Y is up).
 	uw *= zoom;
@@ -301,12 +319,18 @@ ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Body* body, const
 		i++;
 	}
 
-	float total = 0.;
+	float total = 2.;
 	float finalColour[4] = {0, 0, 0, 0};
 	for (const auto& it : shieldColor)
 	{
 		total += it.second;
 	}
+	const auto colourx = body->GetGovernment()->GetColor().Get();
+	const float modix = 2. / total;
+	finalColour[0] += colourx[0] * modix;
+	finalColour[1] += colourx[1] * modix;
+	finalColour[2] += colourx[2] * modix;
+	finalColour[3] += colourx[3] * modix * .75;
 	for (const auto& it : shieldColor)
 	{
 		const auto colour = GameData::Colors().Get(it.first)->Get();
