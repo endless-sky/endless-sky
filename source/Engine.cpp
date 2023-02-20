@@ -637,7 +637,8 @@ void Engine::Step(bool isActive)
 
 	// Create the status overlays.
 	statuses.clear();
-	if(isActive && Preferences::Has("Show status overlays"))
+	std::string overlayAllSetting = Preferences::StatusOverlaysAllSetting();
+	if(isActive && overlayAllSetting != "off")
 		for(const auto &it : ships)
 		{
 			if(!it->GetGovernment() || it->GetSystem() != currentSystem || it->Cloaking() == 1.)
@@ -646,13 +647,14 @@ void Engine::Step(bool isActive)
 			if(it->IsDestroyed())
 				continue;
 
-			bool isEnemy = it->GetGovernment()->IsEnemy();
-			if(isEnemy || it->IsYours() || it->GetPersonality().IsEscort())
-			{
-				double width = min(it->Width(), it->Height());
-				statuses.emplace_back(it->Position() - center, it->Shields(), it->Hull(),
-					min(it->Hull(), it->DisabledHull()), max(20., width * .5), isEnemy);
-			}
+			if(it == player.FlagshipPtr())
+				EmplaceStatusOverlays(it, overlayAllSetting, Preferences::StatusOverlayFlagshipSetting(), 0);
+			else if(it->IsYours())
+				EmplaceStatusOverlays(it, overlayAllSetting, Preferences::StatusOverlaysEscortSetting(), 0);
+			else if(it->GetGovernment()->IsEnemy())
+				EmplaceStatusOverlays(it, overlayAllSetting, Preferences::StatusOverlaysEnemySetting(), 1);
+			else
+				EmplaceStatusOverlays(it, overlayAllSetting, Preferences::StatusOverlaysNeutralSetting(), 2);
 		}
 
 	// Create missile overlays.
@@ -983,25 +985,28 @@ void Engine::Draw() const
 
 	for(const auto &it : statuses)
 	{
-		static const Color color[8] = {
+		static const Color color[11] = {
 			*colors.Get("overlay friendly shields"),
 			*colors.Get("overlay hostile shields"),
+			*colors.Get("overlay neutral shields"),
 			*colors.Get("overlay outfit scan"),
 			*colors.Get("overlay friendly hull"),
 			*colors.Get("overlay hostile hull"),
+			*colors.Get("overlay neutral hull"),
 			*colors.Get("overlay cargo scan"),
 			*colors.Get("overlay friendly disabled"),
-			*colors.Get("overlay hostile disabled")
+			*colors.Get("overlay hostile disabled"),
+			*colors.Get("overlay neutral disabled")
 		};
 		Point pos = it.position * zoom;
 		double radius = it.radius * zoom;
 		if(it.outer > 0.)
 			RingShader::Draw(pos, radius + 3., 1.5f, it.outer, color[it.type], 0.f, it.angle);
-		double dashes = (it.type >= 2) ? 0. : 20. * min(1., zoom);
+		double dashes = (it.type >= 3) ? 0. : 20. * min(1., zoom);
 		if(it.inner > 0.)
-			RingShader::Draw(pos, radius, 1.5f, it.inner, color[3 + it.type], dashes, it.angle);
+			RingShader::Draw(pos, radius, 1.5f, it.inner, color[4 + it.type], dashes, it.angle);
 		if(it.disabled > 0.)
-			RingShader::Draw(pos, radius, 1.5f, it.disabled, color[6 + it.type], dashes, it.angle);
+			RingShader::Draw(pos, radius, 1.5f, it.disabled, color[8 + it.type], dashes, it.angle);
 	}
 
 	// Draw labels on missiles
@@ -2538,6 +2543,22 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 		message += ". Please assist us!";
 	}
 	SendMessage(target, message);
+}
+
+
+
+void Engine::EmplaceStatusOverlays(const shared_ptr<Ship> &it, const std::string &parent_setting, const std::string &setting, int type)
+{
+	std::string used_setting;
+	if(parent_setting != "--")
+		used_setting = parent_setting;
+	else
+		used_setting = setting;
+	if(used_setting == "off" || (used_setting == "damaged" && !it->IsDamaged()))
+		return;
+	double width = min(it->Width(), it->Height());
+	statuses.emplace_back(it->Position() - center, it->Shields(), it->Hull(),
+		min(it->Hull(), it->DisabledHull()), max(20., width * .5), type);
 }
 
 

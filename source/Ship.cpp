@@ -3123,6 +3123,13 @@ void Ship::Restore()
 
 
 
+bool Ship::IsDamaged() const
+{
+	return (Shields() != 1. || Hull() != 1.);
+}
+
+
+
 // Check if this ship has been destroyed.
 bool Ship::IsDestroyed() const
 {
