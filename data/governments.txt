@@ -580,6 +580,7 @@ color "governments: Hai (Unfettered)" .55 .27 .76
 color "governments: Hai (Unfettered)" .55 .27 .76
 color "governments: Hai (Unfettered)" .55 .27 .76
 color "governments: Hai (Unfettered)" .55 .27 .76
+color "governments: Hai (Unfettered)" .55 .27 .76
 
 government "Hai (Unfettered)"
 	swizzle 4
