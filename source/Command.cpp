@@ -76,10 +76,12 @@ const Command Command::AMMO(1uL << 26, "Fleet: Toggle ammo usage");
 const Command Command::WAIT(1uL << 27, "");
 const Command Command::STOP(1ul << 28, "");
 const Command Command::SHIFT(1uL << 29, "");
-const Command Command::MOVETOWARD(1uL << 30, "");
+const Command Command::MOUSE_TURNING_HOLD(1uL << 30, "Mouse turning (hold)");
+const Command Command::MOUSE_TURNING_TOGGLE(1uL << 31, "Mouse turning (toggle)");
+const Command Command::MOVETOWARD(1uL << 32, "");
 
 
-std::atomic<uint32_t> Command::simulated_command{};
+std::atomic<uint64_t> Command::simulated_command{};
 
 
 // In the given text, replace any instances of command names (in angle brackets)
@@ -255,6 +257,8 @@ void Command::Load(const DataNode &node)
 			{"hail", Command::HAIL},
 			{"scan", Command::SCAN},
 			{"jump", Command::JUMP},
+			{"mouseturninghold", Command::MOUSE_TURNING_HOLD},
+			{"mouseturningtoggle", Command::MOUSE_TURNING_TOGGLE},
 			{"fleet jump", Command::FLEET_JUMP},
 			{"target", Command::TARGET},
 			{"nearest", Command::NEAREST},
@@ -395,7 +399,7 @@ Command &Command::operator|=(const Command &command)
 
 
 // Private constructor.
-Command::Command(uint32_t state)
+Command::Command(uint64_t state)
 	: state(state)
 {
 }
@@ -404,7 +408,7 @@ Command::Command(uint32_t state)
 
 // Private constructor that also stores the given description in the lookup
 // table. (This is used for the enumeration at the top of this file.)
-Command::Command(uint32_t state, const string &text)
+Command::Command(uint64_t state, const string &text)
 	: state(state)
 {
 	if(!text.empty())

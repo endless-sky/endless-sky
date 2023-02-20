@@ -24,8 +24,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Conversation.h"
 #include "Effect.h"
 #include "Fleet.h"
+#include "FormationPattern.h"
 #include "Galaxy.h"
 #include "GameEvent.h"
+#include "Gamerules.h"
 #include "Government.h"
 #include "Hazard.h"
 #include "Interface.h"
@@ -43,6 +45,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "TestData.h"
 #include "TextReplacements.h"
 #include "Trade.h"
+#include "Wormhole.h"
 
 #include <future>
 #include <map>
@@ -61,6 +64,7 @@ class Sprite;
 class UniverseObjects {
 	// GameData currently is the orchestrating controller for all game definitions.
 	friend class GameData;
+	friend class TestData;
 public:
 	// Load game objects from the given directories of definitions.
 	std::future<void> Load(const std::vector<std::string> &sources, bool debugMode = false);
@@ -98,6 +102,7 @@ private:
 	Set<Effect> effects;
 	Set<GameEvent> events;
 	Set<Fleet> fleets;
+	Set<FormationPattern> formations;
 	Set<Galaxy> galaxies;
 	Set<Government> governments;
 	Set<Hazard> hazards;
@@ -115,8 +120,10 @@ private:
 	Set<TestData> testDataSets;
 	Set<Sale<Ship>> shipSales;
 	Set<Sale<Outfit>> outfitSales;
+	Set<Wormhole> wormholes;
 	std::set<double> neighborDistances;
 
+	Gamerules gamerules;
 	TextReplacements substitutions;
 	Trade trade;
 	std::vector<StartConditions> startConditions;

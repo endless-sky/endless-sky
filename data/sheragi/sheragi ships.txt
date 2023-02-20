@@ -16,7 +16,7 @@ ship "Emerald Sword"
 	thumbnail "thumbnail/emeraldsword"
 	swizzle 3
 	attributes
-		category "Heavy Warship"
+		category "Superheavy"
 		"cost" 100000000
 		"shields" 9500
 		"hull" 45000
@@ -116,11 +116,17 @@ ship "Emerald Sword"
 	turret 0 183 "Sheragi Anti-Missile"
 	gun 0 -276 "Dragonflame Cannon"
 	bay "Fighter" 0 220.5 back
+		"launch effect" "sheragi launch"
 	bay "Fighter" 0 220.5 back
+		"launch effect" "sheragi launch"
 	bay "Fighter" 0 220.5 back
+		"launch effect" "sheragi launch"
 	bay "Fighter" 0 220.5 back
+		"launch effect" "sheragi launch"
 	bay "Fighter" 0 220.5 back
+		"launch effect" "sheragi launch"
 	bay "Fighter" 0 220.5 back
+		"launch effect" "sheragi launch"
 	explode "tiny explosion" 60
 	explode "small explosion" 26
 	explode "medium explosion" 47

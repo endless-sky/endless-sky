@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "BatchShader.h"
 #include "Color.h"
 #include "Command.h"
+#include "ConditionsStore.h"
 #include "Conversation.h"
 #include "DataFile.h"
 #include "DataNode.h"
@@ -29,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Fleet.h"
 #include "FogShader.h"
 #include "text/FontSet.h"
+#include "FormationPattern.h"
 #include "Galaxy.h"
 #include "GameEvent.h"
 #include "Government.h"
@@ -78,6 +80,7 @@ namespace {
 	Set<Galaxy> defaultGalaxies;
 	Set<Sale<Ship>> defaultShipSales;
 	Set<Sale<Outfit>> defaultOutfitSales;
+	Set<Wormhole> defaultWormholes;
 	TextReplacements defaultSubstitutions;
 
 	Politics politics;
@@ -95,6 +98,8 @@ namespace {
 
 	const Government *playerGovernment = nullptr;
 	map<const System *, map<string, int>> purchases;
+
+	ConditionsStore globalConditions;
 }
 
 
@@ -147,6 +152,7 @@ void GameData::FinishLoading()
 	defaultShipSales = objects.shipSales;
 	defaultOutfitSales = objects.outfitSales;
 	defaultSubstitutions = objects.substitutions;
+	defaultWormholes = objects.wormholes;
 	playerGovernment = objects.governments.Get("Escort");
 
 	politics.Reset();
@@ -277,6 +283,14 @@ const vector<string> &GameData::Sources()
 
 
 
+// Get a reference to the UniverseObjects object.
+UniverseObjects &GameData::Objects()
+{
+	return objects;
+}
+
+
+
 // Revert any changes that have been made to the universe.
 void GameData::Revert()
 {
@@ -288,6 +302,7 @@ void GameData::Revert()
 	objects.shipSales.Revert(defaultShipSales);
 	objects.outfitSales.Revert(defaultOutfitSales);
 	objects.substitutions.Revert(defaultSubstitutions);
+	objects.wormholes.Revert(defaultWormholes);
 	for(auto &it : objects.persons)
 		it.second.Restore();
 
@@ -510,6 +525,13 @@ const Set<Fleet> &GameData::Fleets()
 
 
 
+const Set<FormationPattern> &GameData::Formations()
+{
+	return objects.formations;
+}
+
+
+
 const Set<Galaxy> &GameData::Galaxies()
 {
 	return objects.galaxies;
@@ -616,6 +638,13 @@ const Set<TestData> &GameData::TestDataSets()
 
 
 
+ConditionsStore &GameData::GlobalConditions()
+{
+	return globalConditions;
+}
+
+
+
 const Set<Sale<Ship>> &GameData::Shipyards()
 {
 	return objects.shipSales;
@@ -626,6 +655,13 @@ const Set<Sale<Ship>> &GameData::Shipyards()
 const Set<System> &GameData::Systems()
 {
 	return objects.systems;
+}
+
+
+
+const Set<Wormhole> &GameData::Wormholes()
+{
+	return objects.wormholes;
 }
 
 
@@ -788,6 +824,13 @@ const TextReplacements &GameData::GetTextReplacements()
 
 
 
+const Gamerules &GameData::GetGamerules()
+{
+	return objects.gamerules;
+}
+
+
+
 void GameData::LoadSources()
 {
 	sources.clear();
@@ -835,8 +878,11 @@ void GameData::LoadSources()
 		else if(Files::Exists(*it + "icon@2x.jpg"))
 			icon->Add(*it + "icon@2x.jpg");
 
-		icon->ValidateFrames();
-		spriteQueue.Add(icon);
+		if(!icon->IsEmpty())
+		{
+			icon->ValidateFrames();
+			spriteQueue.Add(icon);
+		}
 	}
 }
 

@@ -443,7 +443,7 @@ outfit "Piercer Missile Launcher"
 		"hit force" 300
 		"missile strength" 73
 		"stream"
-	description "Korath Piercer missiles carry a pair of warheads. The first, a smaller one in the very tip of the missile, explodes on impact to blast a hole in the ship's shields to allow some of the subsequent, larger explosion to pierce through."
+	description "Korath Piercer Missiles carry a pair of warheads. The first, a smaller one in the very tip of the missile, explodes on impact to blast a hole in the ship's shields to allow some of the subsequent, larger explosion to pierce through."
 
 effect "piercer fire"
 	sprite "effect/piercer fire"
@@ -915,7 +915,7 @@ outfit "Firelight Missile"
 	"firelight missile capacity" -1
 	"energy generation" 0.02
 	"heat generation" 0.1
-	description `The reactor element inside a Firelight missile must be kept minimally active in order to ensure it is ready for launch. Although terribly inefficient, it nonetheless produces a trickle of power that can be tapped into when properly installed.`
+	description `The reactor element inside a Firelight Missile must be kept minimally active in order to ensure it is ready for launch. Although terribly inefficient, it nonetheless produces a trickle of power that can be tapped into when properly installed.`
 
 outfit "Firelight Missile Bank"
 	category "Secondary Weapons"
@@ -952,7 +952,7 @@ outfit "Firelight Missile Bank"
 		"missile strength" 60
 		submunition "Firelight Turning"
 		"stream"
-	description "As the Firestorm torpedo does not require full reactor shielding or safety interlocks, Korath engineers were able to further scale down the reactor element to fit in a missile casing for use on and against smaller vessels."
+	description "As the Firestorm Torpedo does not require full reactor shielding or safety interlocks, Korath engineers were able to create the Firelight by further scaling down the reactor element to fit in a missile casing for use on and against smaller vessels."
 	description "	Rather than rely on traditional reaction engines attached to the missile for launch, this rapid-fire missile bank appears to operate on the same principles as a Banisher."
 
 
@@ -1009,6 +1009,36 @@ effect "firelight ring"
 	"random angle" 360
 	"random velocity" 2
 	"velocity scale" 0.1
+
+
+outfit "Microbot Grinder"
+	category "Guns"
+	thumbnail "outfit/unknown"
+	"mass" 182
+	"outfit space" -212
+	"weapon capacity" -112
+	"required crew" 20
+	"gun ports" -1
+	"spinal mount" -1
+	"unplunderable" 1
+	weapon
+		"hardpoint sprite" "hardpoint/factory/microbot factory"
+			"frame rate" 12
+		"hit effect" "shunt-strike hit"
+		"die effect" "shunt-strike hit"
+		"inaccuracy" 10
+		"velocity" 10
+		"lifetime" 2
+		"reload" 6
+		"firing energy" 100
+		"blast radius" 100
+		"shield damage" 48
+		"corrosion damage" 3
+		"minable damage" 200
+		"firing hull" -100
+		"piercing" 0.1
+		"safe"
+	description "This is a huge grinder that digests incoming material with the aid of microbots. With intake bays large enough to swallow a drone whole, wrecking claws massive enough to tear apart the hulls of heavy warships, and a seemingly omnicidal swarm of microbots ready to break down anything that falls in to its component molecules, it is a fearsome sight that any captain would be foolish to fly within reach of."
 
 
 outfit "Firestorm Torpedo"

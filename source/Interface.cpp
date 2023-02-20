@@ -734,6 +734,5 @@ void Interface::LineElement::Draw(const Rectangle &rect, const Information &info
 	// Avoid crashes for malformed interface elements that are not fully loaded.
 	if(!from.Get() && !to.Get())
 		return;
-	// I think this is a bug. it should be rect.Center(), not rect.TopLeft() (see https://github.com/endless-sky/endless-sky/issues/7918)
-	FillShader::Fill(rect.TopLeft(), rect.Dimensions(), *color);
+	FillShader::Fill(rect.Center(), rect.Dimensions(), *color);
 }

@@ -237,7 +237,7 @@ interface "trade"
 		from -310 -63 to 190 194
 
 	line
-		from -60 -46
+		center -60 -46
 		dimensions 480 1
 
 	active if "can buy"
@@ -269,7 +269,7 @@ interface "bank"
 		from -310 -63 to 190 214
 
 	line
-		from -60 -46
+		center -60 -46
 		dimensions 480 1
 
 	active if "can pay"
@@ -339,13 +339,8 @@ interface "map buttons" bottom right
 
 interface "info panel"
 	line "bg"
-		# line coordinates are broken. The shader expects the center coordinate,
-		# but the top left coordinate is provided. This shifts each rect 50% to
-		# the left and above where it should be.
-		# See https://github.com/endless-sky/endless-sky/issues/7918
-		# For now, just draw a massive rectangle on 0,0 and hope that nobody
-		# ever gets a screen this big
-		from 0 0 to 100000 100000 top left
+		from 0 0 top left
+		to 0 0 top right
 		color "panel background"
 	visible if "five buttons"
 	sprite "ui/five info buttons"

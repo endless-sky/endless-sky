@@ -28,7 +28,7 @@ namespace CrashState
    void Init();
    void Set(State state);
    State Previous();
-};
+}
 
 
 

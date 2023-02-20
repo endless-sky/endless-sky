@@ -72,10 +72,7 @@ void NPC::Load(const DataNode &node)
 		else if(node.Token(i) == "evade")
 			mustEvade = true;
 		else if(node.Token(i) == "accompany")
-		{
 			mustAccompany = true;
-			failIf |= ShipEvent::DESTROY;
-		}
 		else
 			node.PrintTrace("Warning: Skipping unrecognized NPC completion condition \"" + node.Token(i) + "\":");
 	}
@@ -83,6 +80,8 @@ void NPC::Load(const DataNode &node)
 	// Check for incorrect objective combinations.
 	if(failIf & ShipEvent::DESTROY && (succeedIf & ShipEvent::DESTROY || succeedIf & ShipEvent::CAPTURE))
 		node.PrintTrace("Error: conflicting NPC mission objective to save and destroy or capture.");
+	if(mustEvade && mustAccompany)
+		node.PrintTrace("Warning: NPC mission objective to accompany and evade is synonymous with kill.");
 	if(mustEvade && (succeedIf & ShipEvent::DESTROY || succeedIf & ShipEvent::CAPTURE))
 		node.PrintTrace("Warning: redundant NPC mission objective to evade and destroy or capture.");
 
@@ -458,7 +457,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 		// it, to allow the completing event's target to be destroyed.
 		if(!conversation->IsEmpty())
 			ui->Push(new ConversationPanel(player, *conversation, nullptr, ship));
-		else if(!dialogText.empty())
+		if(!dialogText.empty())
 			ui->Push(new Dialog(dialogText));
 	}
 }
@@ -477,10 +476,10 @@ bool NPC::HasSucceeded(const System *playerSystem, bool ignoreIfDespawnable) con
 	if(HasFailed())
 		return false;
 
-	// Evaluate the status of each ship in this NPC block. If it has `accompany`,
-	// it cannot be disabled or destroyed, and must be in the player's system.
-	// Destroyed `accompany` are handled in HasFailed(). If the NPC block has
-	// `evade`, the ship can be disabled, destroyed, captured, or not present.
+	// Evaluate the status of each ship in this NPC block. If it has `accompany`
+	// and is alive then it cannot be disabled and must be in the player's system.
+	// If the NPC block has `evade`, the ship can be disabled, destroyed, captured,
+	// or not present.
 	if(mustEvade || mustAccompany)
 		for(const shared_ptr<Ship> &ship : ships)
 		{
@@ -491,9 +490,11 @@ bool NPC::HasSucceeded(const System *playerSystem, bool ignoreIfDespawnable) con
 			// events (and the current system).
 			if(it != actions.end())
 			{
-				// A ship that was disabled, captured, or destroyed is considered 'immobile'.
-				isImmobile = (it->second
-					& (ShipEvent::DISABLE | ShipEvent::CAPTURE | ShipEvent::DESTROY));
+				// Captured or destroyed ships have either succeeded or no longer count.
+				if(it->second & (ShipEvent::DESTROY | ShipEvent::CAPTURE))
+					continue;
+				// A ship that was disabled is considered 'immobile'.
+				isImmobile = (it->second & ShipEvent::DISABLE);
 				// If this NPC is 'derelict' and has no ASSIST on record, it is immobile.
 				isImmobile |= ship->GetPersonality().IsDerelict()
 					&& !(it->second & ShipEvent::ASSIST);
@@ -630,8 +631,10 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 
 	// String replacement:
 	if(!result.ships.empty())
+	{
 		subs["<npc>"] = result.ships.front()->Name();
-
+		subs["<npc model>"] = result.ships.front()->ModelName();
+	}
 	// Do string replacement on any dialog or conversation.
 	string dialogText = !dialogPhrase->IsEmpty() ? dialogPhrase->Get() : this->dialogText;
 	if(!dialogText.empty())

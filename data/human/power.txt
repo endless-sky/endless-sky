@@ -74,7 +74,6 @@ outfit "KP-6 Photovoltaic Panel"
 	"outfit space" -2
 	"solar collection" .1
 	description "This early commercial photovoltaic system was the driving force behind humanity's first interplanetary trade network. Rugged and modular, it can be bolted to the hull of any ship and has seen even the most remote parts of human space."
-	description "	Solar panels are more resilient to being overheated than normal energy generation. While a normal reactor will shut down when overheated, solar panels continue to work at a reduced efficiency."
 
 outfit "KP-6 Photovoltaic Array"
 	category "Power"
@@ -84,7 +83,6 @@ outfit "KP-6 Photovoltaic Array"
 	"outfit space" -16
 	"solar collection" 1.1
 	description "The compact modularity of the KP-6 lent itself well to the creation of larger solar collection arrays. This original Korunak Photovoltaics model is equipped with a solar tracker, allowing it to make better use of available light."
-	description "	Solar panels are more resilient to being overheated than normal energy generation. While a normal reactor will shut down when overheated, solar panels continue to work at a reduced efficiency."
 
 
 outfit "nGVF-AA Fuel Cell"
@@ -197,7 +195,7 @@ outfit "Breeder Reactor"
 	"outfit space" -80
 	"energy generation" 12.8
 	"heat generation" 35
-	description "A breeder reactor is a more efficient fission reactor that captures some of the neutron radiation produced by the reactor and uses it to enrich more fuel. They are also, of course, bigger and more expensive as a result."
+	description "A Breeder Reactor is a more efficient fission reactor that captures some of the neutron radiation produced by the reactor and uses it to enrich more fuel. They are also, of course, bigger and more expensive as a result."
 
 outfit "Fusion Reactor"
 	category "Power"

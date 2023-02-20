@@ -46,12 +46,28 @@ namespace {
 	int zoomIndex = 4;
 	constexpr double VOLUME_SCALE = .25;
 
-	int screenModeIndex = 0;
+	// Default to fullscreen.
+	int screenModeIndex = 1;
 	const vector<string> SCREEN_MODE_SETTINGS = {"windowed", "fullscreen"};
 
 	// Enable standard VSync by default.
 	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
 	int vsyncIndex = 1;
+
+	const vector<string> AUTO_AIM_SETTINGS = {"off", "always on", "when firing"};
+	int autoAimIndex = 2;
+
+	const vector<string> BOARDING_SETTINGS = {"proximity", "value", "mixed"};
+	int boardingIndex = 0;
+
+	// Enable "fast" parallax by default. "fancy" is too GPU heavy, especially for low-end hardware.
+	const vector<string> PARALLAX_SETTINGS = {"off", "fancy", "fast"};
+	int parallaxIndex = 2;
+
+	const vector<string> ALERT_INDICATOR_SETTING = {"off", "audio", "visual", "both"};
+	int alertIndicatorIndex = 3;
+
+	int previousSaveCount = 3;
 }
 
 
@@ -60,20 +76,18 @@ void Preferences::Load()
 {
 	// These settings should be on by default. There is no need to specify
 	// values for settings that are off by default.
-	settings["Automatic aiming"] = true;
 	settings["Render motion blur"] = true;
 	settings[FRUGAL_ESCORTS] = true;
 	settings[EXPEND_AMMO] = true;
 	settings["Damaged fighters retreat"] = true;
-	settings["Warning siren"] = true;
 	settings["Show escort systems on map"] = true;
 	settings["Show stored outfits on map"] = true;
 	settings["Show mini-map"] = true;
 	settings["Show planet labels"] = true;
+	settings["Show asteroid scanner overlay"] = true;
 	settings["Show hyperspace flash"] = true;
 	settings["Draw background haze"] = true;
 	settings["Draw starfield"] = true;
-	settings["Parallax background"] = true;
 	settings["Hide unexplored map regions"] = true;
 	settings["Turrets focus fire"] = true;
 	settings["Ship outlines in shops"] = true;
@@ -107,14 +121,34 @@ void Preferences::Load()
 			Audio::SetVolume(node.Value(1) * VOLUME_SCALE);
 		else if(node.Token(0) == "scroll speed" && node.Size() >= 2)
 			scrollSpeed = node.Value(1);
+		else if(node.Token(0) == "boarding target")
+			boardingIndex = max<int>(0, min<int>(node.Value(1), BOARDING_SETTINGS.size() - 1));
 		else if(node.Token(0) == "view zoom")
 			zoomIndex = max<int>(0, min<int>(node.Value(1), ZOOMS.size() - 1));
 		else if(node.Token(0) == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
+		else if(node.Token(0) == "Automatic aiming")
+			autoAimIndex = max<int>(0, min<int>(node.Value(1), AUTO_AIM_SETTINGS.size() - 1));
+		else if(node.Token(0) == "Parallax background")
+			parallaxIndex = max<int>(0, min<int>(node.Value(1), PARALLAX_SETTINGS.size() - 1));
 		else if(node.Token(0) == "fullscreen")
 			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
+		else if(node.Token(0) == "alert indicator")
+			alertIndicatorIndex = max<int>(0, min<int>(node.Value(1), ALERT_INDICATOR_SETTING.size() - 1));
+		else if(node.Token(0) == "previous saves" && node.Size() >= 2)
+			previousSaveCount = max<int>(3, node.Value(1));
 		else
 			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
+	}
+
+	// For people updating from a version before the visual red alert indicator,
+	// if they have already disabled the warning siren, don't turn the audible alert back on.
+	auto it = settings.find("Warning siren");
+	if(it != settings.end())
+	{
+		if(!it->second)
+			alertIndicatorIndex = 2;
+		settings.erase(it);
 	}
 }
 
@@ -128,8 +162,13 @@ void Preferences::Save()
 	out.Write("window size", Screen::RawWidth(), Screen::RawHeight());
 	out.Write("zoom", Screen::UserZoom());
 	out.Write("scroll speed", scrollSpeed);
+	out.Write("boarding target", boardingIndex);
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
+	out.Write("Automatic aiming", autoAimIndex);
+	out.Write("Parallax background", parallaxIndex);
+	out.Write("alert indicator", alertIndicatorIndex);
+	out.Write("previous saves", previousSaveCount);
 
 	for(const auto &it : settings)
 		out.Write(it.first, it.second);
@@ -228,6 +267,31 @@ double Preferences::MaxViewZoom()
 
 
 
+// Starfield parallax.
+void Preferences::ToggleParallax()
+{
+	int targetIndex = parallaxIndex + 1;
+	if(targetIndex == static_cast<int>(PARALLAX_SETTINGS.size()))
+		targetIndex = 0;
+	parallaxIndex = targetIndex;
+}
+
+
+
+Preferences::BackgroundParallax Preferences::GetBackgroundParallax()
+{
+	return static_cast<BackgroundParallax>(parallaxIndex);
+}
+
+
+
+const string &Preferences::ParallaxSetting()
+{
+	return PARALLAX_SETTINGS[parallaxIndex];
+}
+
+
+
 void Preferences::ToggleScreenMode()
 {
 	GameWindow::ToggleFullscreen();
@@ -279,4 +343,104 @@ Preferences::VSync Preferences::VSyncState()
 const string &Preferences::VSyncSetting()
 {
 	return VSYNC_SETTINGS[vsyncIndex];
+}
+
+
+
+void Preferences::ToggleAutoAim()
+{
+	autoAimIndex = (autoAimIndex + 1) % AUTO_AIM_SETTINGS.size();
+}
+
+
+
+Preferences::AutoAim Preferences::GetAutoAim()
+{
+	return static_cast<AutoAim>(autoAimIndex);
+}
+
+
+
+const string &Preferences::AutoAimSetting()
+{
+	return AUTO_AIM_SETTINGS[autoAimIndex];
+}
+
+
+
+void Preferences::ToggleBoarding()
+{
+	int targetIndex = boardingIndex + 1;
+	if(targetIndex == static_cast<int>(BOARDING_SETTINGS.size()))
+		targetIndex = 0;
+	boardingIndex = targetIndex;
+}
+
+
+
+Preferences::BoardingPriority Preferences::GetBoardingPriority()
+{
+	return static_cast<BoardingPriority>(boardingIndex);
+}
+
+
+
+const string &Preferences::BoardingSetting()
+{
+	return BOARDING_SETTINGS[boardingIndex];
+}
+
+
+
+void Preferences::ToggleAlert()
+{
+	if(++alertIndicatorIndex >= static_cast<int>(ALERT_INDICATOR_SETTING.size()))
+		alertIndicatorIndex = 0;
+}
+
+
+
+Preferences::AlertIndicator Preferences::GetAlertIndicator()
+{
+	return static_cast<AlertIndicator>(alertIndicatorIndex);
+}
+
+
+
+const std::string &Preferences::AlertSetting()
+{
+	return ALERT_INDICATOR_SETTING[alertIndicatorIndex];
+}
+
+
+
+bool Preferences::PlayAudioAlert()
+{
+	return DoAlertHelper(AlertIndicator::AUDIO);
+}
+
+
+
+bool Preferences::DisplayVisualAlert()
+{
+	return DoAlertHelper(AlertIndicator::VISUAL);
+}
+
+
+
+bool Preferences::DoAlertHelper(Preferences::AlertIndicator toDo)
+{
+	auto value = GetAlertIndicator();
+	if(value == AlertIndicator::BOTH)
+		return true;
+	else if(value == toDo)
+		return true;
+	return false;
+}
+
+
+
+int Preferences::GetPreviousSaveCount()
+{
+	return previousSaveCount;
 }

@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Mask.h"
 
 #include <map>
+#include <mutex>
 #include <vector>
 
 class Mask;
@@ -46,6 +47,9 @@ public:
 
 private:
 	std::map<const Sprite *, std::map<double, std::vector<Mask>>> spriteMasks;
+
+	// Mutex to make sure different threads don't modify the masks at the same time.
+	std::mutex spriteMutex;
 };
 
 

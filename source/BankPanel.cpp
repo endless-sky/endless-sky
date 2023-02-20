@@ -245,7 +245,7 @@ void BankPanel::Draw()
 	if(!qualify)
 		amount = "You do not qualify for further loans at this time.";
 	else
-		amount = "You qualify for a new loan of up to " + Format::Credits(qualify) + " credits.";
+		amount = "You qualify for a new loan of up to " + Format::CreditString(qualify) + ".";
 	if(qualify && selectedRow >= mortgageRows)
 		table.DrawHighlight(back);
 	const auto amountLayout = Layout(380, Truncate::MIDDLE);

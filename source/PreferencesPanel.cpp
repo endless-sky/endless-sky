@@ -56,6 +56,7 @@ namespace {
 	const int ZOOM_FACTOR_MAX = 200;
 	const int ZOOM_FACTOR_INCREMENT = 10;
 	const string VIEW_ZOOM_FACTOR = "View zoom factor";
+	const string AUTO_AIM_SETTING = "Automatic aiming";
 	const string SCREEN_MODE_SETTING = "Screen mode";
 	const string VSYNC_SETTING = "VSync";
 	const string EXPEND_AMMO = "Escorts expend ammo";
@@ -66,6 +67,12 @@ namespace {
 	const string SCROLL_SPEED = "Scroll speed";
 	const string FIGHTER_REPAIR = "Repair fighters in";
 	const string SHIP_OUTLINES = "Ship outlines in shops";
+	const string BOARDING_PRIORITY = "Boarding target priority";
+	const string BACKGROUND_PARALLAX = "Parallax background";
+	const string ALERT_INDICATOR = "Alert indicator";
+
+	// How many pages of settings there are.
+	const int SETTINGS_PAGE_COUNT = 1;
 }
 
 
@@ -92,6 +99,12 @@ void PreferencesPanel::Draw()
 	info.SetCondition("plugin import");
 #endif
 	info.SetBar("volume", Audio::Volume());
+	if(SETTINGS_PAGE_COUNT > 1)
+		info.SetCondition("multiple pages");
+	if(currentSettingsPage > 0)
+		info.SetCondition("show previous");
+	if(currentSettingsPage + 1 < SETTINGS_PAGE_COUNT)
+		info.SetCondition("show next");
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	string pageName = (page == 'c' ? "controls" : page == 's' ? "settings" : "plugins");
 	GameData::Interfaces().Get(pageName)->Draw(info, this);
@@ -156,7 +169,14 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 			GetUI()->Push(new Dialog("Failed to remove plugin."));
 		}
 	}
+#else
+	else if(key == 'o' && page == 'p')
+		Files::OpenUserPluginFolder();
 #endif
+	else if((key == 'n' || key == SDLK_PAGEUP) && currentSettingsPage < SETTINGS_PAGE_COUNT - 1)
+		++currentSettingsPage;
+	else if((key == 'r' || key == SDLK_PAGEDOWN) && currentSettingsPage > 0)
+		--currentSettingsPage;
 	else
 		return false;
 
@@ -205,6 +225,10 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
 				SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
 			}
+			else if(zone.Value() == BOARDING_PRIORITY)
+				Preferences::ToggleBoarding();
+			else if(zone.Value() == BACKGROUND_PARALLAX)
+				Preferences::ToggleParallax();
 			else if(zone.Value() == VIEW_ZOOM_FACTOR)
 			{
 				// Increase the zoom factor unless it is at the maximum. In that
@@ -220,6 +244,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 					GetUI()->Push(new Dialog(
 						"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
 			}
+			else if(zone.Value() == AUTO_AIM_SETTING)
+				Preferences::ToggleAutoAim();
 			else if(zone.Value() == EXPEND_AMMO)
 				Preferences::ToggleAmmoUsage();
 			else if(zone.Value() == TURRET_TRACKING)
@@ -237,6 +263,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 					speed = 20;
 				Preferences::SetScrollSpeed(speed);
 			}
+			else if(zone.Value() == ALERT_INDICATOR)
+				Preferences::ToggleAlert();
 			// All other options are handled by just toggling the boolean state.
 			else
 				Preferences::Set(zone.Value(), !Preferences::Has(zone.Value()));
@@ -352,6 +380,7 @@ void PreferencesPanel::DrawControls()
 		"Navigation",
 		"Weapons",
 		"Targeting",
+		"Navigation",
 		"Interface",
 		"Fleet"
 	};
@@ -376,6 +405,9 @@ void PreferencesPanel::DrawControls()
 		Command::HAIL,
 		Command::BOARD,
 		Command::SCAN,
+		Command::NONE,
+		Command::MOUSE_TURNING_HOLD,
+		Command::MOUSE_TURNING_TOGGLE,
 		Command::NONE,
 		Command::MENU,
 		Command::MAP,
@@ -470,6 +502,18 @@ void PreferencesPanel::DrawSettings()
 	int firstY = -248;
 	table.DrawAt(Point(-130, firstY));
 
+	// About SETTINGS pagination
+	// * An empty string indicates that a category has ended.
+	// * A '\t' character indicates that the first column on this page has
+	//   ended, and the next line should be drawn at the start of the next
+	//   column.
+	// * A '\n' character indicates that this page is complete, no further lines
+	//   should be drawn on this page.
+	// * In all three cases, the first non-special string will be considered the
+	//   category heading and will be drawn differently to normal setting
+	//   entries.
+	// * The namespace variable SETTINGS_PAGE_COUNT should be updated to the max
+	//   page count (count of '\n' characters plus one).
 	static const string SETTINGS[] = {
 		"Display",
 		ZOOM_FACTOR,
@@ -477,26 +521,32 @@ void PreferencesPanel::DrawSettings()
 		SCREEN_MODE_SETTING,
 		VSYNC_SETTING,
 		"Show status overlays",
+		"Show missile overlays",
 		"Highlight player's flagship",
 		"Rotate flagship in HUD",
 		"Show planet labels",
 		"Show mini-map",
 		"Show buttons on map",
+		"Show asteroid scanner overlay",
+#ifndef __ANDROID__   // not room for all of these, and this one is useless without a keyboard anyways
+		"Always underline shortcuts",
+#endif
 		"",
 		"AI",
-		"Automatic aiming",
+		AUTO_AIM_SETTING,
 		"Automatic firing",
+		BOARDING_PRIORITY,
 		EXPEND_AMMO,
 		FIGHTER_REPAIR,
 		TURRET_TRACKING,
-		"\n",
+		"\t",
 		"Performance",
 		"Show CPU / GPU load",
 		"Render motion blur",
 		"Reduced graphics",
 		"Draw background haze",
 		"Draw starfield",
-		"Parallax background",
+		BACKGROUND_PARALLAX,
 		"Show hyperspace flash",
 		SHIP_OUTLINES,
 		"",
@@ -510,13 +560,29 @@ void PreferencesPanel::DrawSettings()
 		"Show escort systems on map",
 		"Show stored outfits on map",
 		"System map sends move orders",
-		"Warning siren"
+		ALERT_INDICATOR
 	};
 	bool isCategory = true;
+	int page = 0;
 	for(const string &setting : SETTINGS)
 	{
+		// Check if this is a page break.
+		if(setting == "\n")
+		{
+			++page;
+			continue;
+		}
+		// Check if this setting is on the page being displayed.
+		// If this setting isn't on the page being displayed, check if it is on an earlier page.
+		// If it is, continue to the next setting.
+		// Otherwise, this setting is on a later page,
+		// do not continue as no further settings are to be displayed.
+		if(page < currentSettingsPage)
+			continue;
+		else if(page > currentSettingsPage)
+			break;
 		// Check if this is a category break or column break.
-		if(setting.empty() || setting == "\n")
+		if(setting.empty() || setting == "\t")
 		{
 			isCategory = true;
 			if(!setting.empty())
@@ -562,6 +628,11 @@ void PreferencesPanel::DrawSettings()
 			text = Preferences::VSyncSetting();
 			isOn = text != "off";
 		}
+		else if(setting == AUTO_AIM_SETTING)
+		{
+			text = Preferences::AutoAimSetting();
+			isOn = text != "off";
+		}
 		else if(setting == EXPEND_AMMO)
 			text = Preferences::AmmoUsage();
 		else if(setting == TURRET_TRACKING)
@@ -578,6 +649,16 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = Preferences::Has(SHIP_OUTLINES) ? "fancy" : "fast";
+		}
+		else if(setting == BOARDING_PRIORITY)
+		{
+			isOn = true;
+			text = Preferences::BoardingSetting();
+		}
+		else if(setting == BACKGROUND_PARALLAX)
+		{
+			text = Preferences::ParallaxSetting();
+			isOn = text != "off";
 		}
 		else if(setting == REACTIVATE_HELP)
 		{
@@ -614,6 +695,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = to_string(Preferences::ScrollSpeed());
+		}
+		else if(setting == ALERT_INDICATOR)
+		{
+			isOn = Preferences::GetAlertIndicator() != Preferences::AlertIndicator::NONE;
+			text = Preferences::AlertSetting();
 		}
 		else
 			text = isOn ? "on" : "off";

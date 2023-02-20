@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DisplayText.h"
 #include "../ImageBuffer.h"
 #include "../Point.h"
+#include "../Preferences.h"
 #include "../Screen.h"
 #include "truncate.hpp"
 
@@ -236,7 +237,7 @@ int Font::Space() const noexcept
 
 void Font::ShowUnderlines(bool show) noexcept
 {
-	showUnderlines = show;
+	showUnderlines = show || Preferences::Has("Always underline shortcuts");
 }
 
 

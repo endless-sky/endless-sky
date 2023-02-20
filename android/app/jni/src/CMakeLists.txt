@@ -53,6 +53,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -flto")
 add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Account.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/AI.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/AlertLabel.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/AmmoDisplay.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Angle.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Armament.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/AsteroidField.cpp
@@ -65,6 +67,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Body.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/CaptureOdds.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/CargoHold.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/CrashState.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/CollisionSet.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Color.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Command.cpp
@@ -95,12 +98,14 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Fleet.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Flotsam.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/FogShader.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/FormationPattern.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/FrameTimer.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Galaxy.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/GameAction.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/GameData.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/GameEvent.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/GameLoadingPanel.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/Gamerules.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/GameWindow.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Government.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/HailPanel.cpp
@@ -171,7 +176,9 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/ShipEvent.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/ShipInfoDisplay.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/ShipInfoPanel.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/ShipJumpNavigation.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/ShipyardPanel.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/ship/ShipAICache.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/ShopPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Sound.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/SpaceportPanel.cpp
@@ -203,6 +210,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Visual.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Weapon.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Weather.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/Wormhole.cpp
 
 )
 

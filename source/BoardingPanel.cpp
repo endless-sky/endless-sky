@@ -107,8 +107,9 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 			plunder.emplace_back(outfit, count);
 	}
 
+	canCapture = victim->IsCapturable() || player.CaptureOverriden(victim);
 	// Some "ships" do not represent something the player could actually pilot.
-	if(!victim->IsCapturable())
+	if(!canCapture)
 		messages.emplace_back("This is not a ship that you can capture.");
 
 	// Sort the plunder by price per ton.
@@ -181,7 +182,7 @@ void BoardingPanel::Draw()
 			Round(defenseOdds.DefenderPower(crew)));
 	}
 	int vCrew = victim ? victim->Crew() : 0;
-	if(victim && (victim->IsCapturable() || victim->IsYours()))
+	if(victim && (canCapture || victim->IsYours()))
 	{
 		info.SetString("enemy crew", to_string(vCrew));
 		info.SetString("enemy attack",
@@ -189,7 +190,7 @@ void BoardingPanel::Draw()
 		info.SetString("enemy defense",
 			Round(attackOdds.DefenderPower(vCrew)));
 	}
-	if(victim && victim->IsCapturable() && !victim->IsYours())
+	if(victim && canCapture && !victim->IsYours())
 	{
 		// If you haven't initiated capture yet, show the self destruct odds in
 		// the attack odds. It's illogical for you to have access to that info,
@@ -373,7 +374,17 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			{
 				messages.push_back("You have succeeded in capturing this ship.");
 				victim->GetGovernment()->Offend(ShipEvent::CAPTURE, victim->CrewValue());
-				victim->WasCaptured(you);
+				int crewTransferred = victim->WasCaptured(you);
+				if(crewTransferred > 0)
+				{
+					string transferMessage = Format::Number(crewTransferred) + " crew member";
+					if(crewTransferred == 1)
+						transferMessage += " has";
+					else
+						transferMessage += "s have";
+					transferMessage += " been transferred.";
+					messages.push_back(transferMessage);
+				}
 				if(!victim->JumpsRemaining() && you->CanRefuel(*victim))
 					you->TransferFuel(victim->JumpFuelMissing(), &*victim);
 				player.AddShip(victim);
@@ -479,7 +490,7 @@ bool BoardingPanel::CanCapture() const
 		return false;
 	if(victim->IsYours())
 		return false;
-	if(!victim->IsCapturable())
+	if(!canCapture)
 		return false;
 
 	return (!victim->RequiredCrew() || you->Crew() > 1);
@@ -535,7 +546,7 @@ BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValu
 
 // Constructor (outfit installed in the victim ship or transported as cargo).
 BoardingPanel::Plunder::Plunder(const Outfit *outfit, int count)
-	: name(outfit->Name()), outfit(outfit), count(count),
+	: name(outfit->DisplayName()), outfit(outfit), count(count),
 	unitValue(outfit->Cost() * (outfit->Get("installable") < 0. ? 1 : Depreciation::Full()))
 {
 	UpdateStrings();

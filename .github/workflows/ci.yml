@@ -1,6 +1,5 @@
 name: CI
 
-
 on:
   push:
     # Run for pushes to master or a version branch, e.g. a PR was merged ...
@@ -14,9 +13,6 @@ on:
     - 'tests/**'
     - '.github/workflows/**'
     - keys.txt
-    - SConstruct
-    - .winmake
-    - .codespell.exclude
   pull_request:
     # Run for any push to any pull request, if it modifies source code or game text.
     types: [opened, synchronize]
@@ -25,14 +21,13 @@ on:
     - 'source/**'
     - 'data/**'
     - 'tests/**'
-    - 'EndlessSky.xcodeproj/**'
-    - 'XCode/**'
     - '.github/workflows/**'
     - keys.txt
-    - SConstruct
-    - .winmake
-    - .codespell.exclude
 
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}
+  cancel-in-progress: true
 
 jobs:
   build_android:

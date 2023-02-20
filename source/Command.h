@@ -47,6 +47,8 @@ public:
 	static const Command HAIL;
 	static const Command SCAN;
 	static const Command JUMP;
+	static const Command MOUSE_TURNING_HOLD;
+	static const Command MOUSE_TURNING_TOGGLE;
 	static const Command FLEET_JUMP;
 	static const Command TARGET;
 	static const Command NEAREST;
@@ -141,19 +143,19 @@ public:
 	static Command Get(const std::string& description);
 
 private:
-	explicit Command(uint32_t state);
-	Command(uint32_t state, const std::string &text);
+	explicit Command(uint64_t state);
+	Command(uint64_t state, const std::string &text);
 
 
 private:
 	// The key commands are stored in a single bitmask with
-	// 32 bits for key commands.
-	uint32_t state = 0;
+	// 64 bits for key commands.
+	uint64_t state = 0;
 	// Turning amount is stored as a separate double to allow fractional values.
 	double turn = 0.;
 
 	// If we want to simulate input from the ui, place it here to be read later
-	static std::atomic<uint32_t> simulated_command;
+	static std::atomic<uint64_t> simulated_command;
 };
 
 

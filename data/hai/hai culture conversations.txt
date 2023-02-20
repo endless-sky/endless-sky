@@ -281,7 +281,7 @@ mission "Robotic Musical 1"
 				has "language: Wanderer"
 			`	Music plays and some half dozen robotic caricatures of Hai in exaggerated dress spring forth from various crates and begin to caper about in a series of interactions presumably intended to be comedic, at least judging by how they keep turning away from each other to "look" at the audience and wink. Holoprojected banners and glyphs, presumably advertisement information, flicker through a series of displays as it goes through a cycle before the entire cohort appear to finish up; each onlooker the recipient of some kind of entreaty from at least one robot, before they immediately clamber back into the crates.`
 			`	Throughout this a handful of Hai have stopped to watch, and a couple of them let out small chuckles at the conclusion before continuing on their way. Most of them simply roll their eyes and move on though. One child wanders too close as their parents steer around it and a little red holographic warning sign briefly flashes at them. No one seems keen to explain what you just saw, and for the moment the crates remain resolutely closed.`
-			apply
+			action
 				set roboticconfusion
 			# This controls branching if there's a future follow-up where you get to see the performance.
 			`	Now that you think about it, you're not sure they all climbed back into the same boxes they came out of.`

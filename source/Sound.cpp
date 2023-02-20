@@ -20,12 +20,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <SDL2/SDL_rwops.h>
 
-#ifndef __APPLE__
 #include <AL/al.h>
-#else
-#include <OpenAL/al.h>
-#endif
 
+#include <cstdint>
 #include <cstdio>
 #include <vector>
 

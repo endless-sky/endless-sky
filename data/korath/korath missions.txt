@@ -75,7 +75,7 @@ mission "Setar Fort Heating"
 		near "Kaliptari" 100
 	destination "Setar Fort"
 	to offer
-		has "Wanderers: Sestor: Final: done"
+		has "wanderers sestor done"
 		random < 60
 	on offer
 		conversation
@@ -102,7 +102,7 @@ mission "Setar Fort Heating"
 					goto decline
 			
 			label payment
-			`	The Wanderer shudders slightly, almost like it had hoped you wouldn't ask that. "Well... Yes, it is low. The rest of the Kor Efreti's payment was used to [purchase, acquire] the supplies, and it seemed they could not afford to pay much more than they already had. Given their situation, we found it [reasonable, justifiable] to accept the lower payment, as the cargo is a [collection, menagarie] of equipment to help with the cooling climate on <planet>, and without it the Kor Efreti might... [perish? expire?]."`
+			`	The Wanderer shudders slightly, almost like it had hoped you wouldn't ask that. "Well... Yes, it is low. The rest of the Kor Efreti's payment was used to [purchase, acquire] the supplies, and it seemed they could not afford to pay much more than they already had. Given their situation, we found it [reasonable, justifiable] to accept the lower payment, as the cargo is a [collection, menagerie] of equipment to help with the cooling climate on <planet>, and without it the Kor Efreti might... [perish? expire?]."`
 			choice
 				`	"I understand, and the money isn't a huge problem. I was just curious. Load it up onto my ship, and I'll be ready to go."`
 					goto agree
@@ -245,7 +245,7 @@ mission "Small Scale Delivery"
 	description "Take a small delivery to <destination> for <payment> for a Kor Efret."
 	minor
 	to offer
-		has "Wanderers: Sestor: Final: done"
+		has "wanderers sestor done"
 		random < 10
 	source
 		government "Kor Efret"

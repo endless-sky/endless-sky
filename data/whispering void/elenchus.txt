@@ -1,0 +1,153 @@
+# Copyright (c) 2020 MasterOfGrey
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+shipyard "Elenctic Commune Basic"
+	# Simple, old, designs from Hai and humans
+	"Aphid"
+	"Grasshopper"
+	"Shuttle"
+	"Scout"
+	"Sparrow"
+#	"Firebird"
+# They can build the firebird but it'd have to be a variant in here.
+
+outfitter "Elenctic Commune Basic"
+	"Fuel Pod"
+	"Ramscoop"
+	"Asteroid Scanner"
+	"Outfit Scanner"
+	"Cargo Scanner"
+	"Outfits Expansion"
+	"Cargo Expansion"
+	"Hyperdrive"
+	"Scram Drive"
+	"Small Bunk Room"
+	"Bunk Room"
+	"Sand Cell"
+	"Pebble Core"
+	"Meteor Missile"
+	"Javelin"
+	"Torpedo"
+	"Heavy Rocket"
+	"Hai Tracker"
+	"Beam Laser"
+	"Heavy Laser"
+	"Pulse Cannon"
+	"Heavy Laser Turret"
+	"Bullfrog Anti-Missile"
+	"Chameleon Anti-Missile"
+	`"Basrem" Atomic Thruster`
+	`"Basrem" Atomic Steering`
+	`"Benga" Atomic Thruster`
+	`"Benga" Atomic Steering`
+	"Hai Williwaw Cooling"
+	"Liquid Nitrogen Cooler"
+	"Hai Chasm Batteries"
+	"Hai Fissure Batteries"
+	"Hai Corundum Regenerator"
+	"Laser Rifle"
+	"Fragmentation Grenades"
+	"Interference Plating"
+	"Local Map"
+
+
+event "liberated elenchus"
+	system "Devil-Hide"
+		government "Elenctic Commune"
+		add fleet "Elenctic Commune Miners" 3000
+	system "Deep Space 19M5"
+		government "Elenctic Commune"
+		add fleet "Elenctic Commune Miners" 2000
+	system "Deep Space 19K12"
+		government "Elenctic Commune"
+		add fleet "Elenctic Commune Miners" 5000
+	planet "Elenchus"
+		description `Over the past century, a cubic kilometer of this moon has been hollowed out and filled with corridors and cavernous rooms. There is a city of nearly a hundred thousand people whose lives have been focused on science since their ancestors were first brought here a hundred twenty years ago. Now humans, Hai, and even some Korath, live here working side-by-side. Once they were slaves to a succession of criminal organizations, and their story brought the Hai and humans to the brink of war. Fortunately, a resourceful pilot from New Boston averted catastrophe and freed Elenctic Commune.`
+		spaceport `The spaceport is a distinct structure separate from the larger underground settlements. It has both hangar and ventilation access to the surface with a massive air processor that is the primary supply of breathable air to the population. This once allowed the city to be controlled by pirate groups despite being vastly outnumbered by those they ruled. A disused fighting ring, empty mounts for battle trophies, and bloody spikes that once held pirate victims are all still features baked into the construction. A thick access tunnel with supplementary corridors and vents leads downward from the spaceport to the main settlement. There is still extensive damage from the invasion, but the denizens are slowly cleaning it up.`
+		outfitter "Elenctic Commune Basic"
+		shipyard "Elenctic Commune Basic"
+
+# Due to the extremely limited number of jump drives, the Devil-Run
+# pirate gang only has the largest of ships. They used jump drives in
+# pairs to transport one ship at a time.
+
+fleet "Devil-Run Miners"
+	government "Pirate (Devil-Run Gang)"
+	names "pirate"
+	cargo 0
+	personality
+		timid frugal mining harvests
+	variant 1
+		"Firebird (Laser)"
+	variant 2
+		"Firebird (Laser)" 2
+
+fleet "Devil-Run Warships"
+	government "Pirate (Devil-Run Gang)"
+	names "pirate"
+	cargo 0
+	personality
+		heroic plunders harvests vindictive
+	variant 1
+		"Firebird"
+	variant 1
+		"Firebird (Hai Shields)"
+	variant 1
+		"Modified Argosy (Heavy)"
+	variant 2
+		"Marauder Firebird (Engines)"
+	variant 2
+		"Marauder Raven (Weapons)"
+	variant 2
+		"Splinter (Laser)"
+	variant 3
+		"Bastion (Heavy)"
+	variant 3
+		"Bastion (Laser)"
+	variant 3
+		"Mule (Hai Weapons)"
+		"Dagger"
+	variant 3
+		"Vanguard (Missile)"
+	variant 3
+		"Vanguard (Plasma Slow)"
+	variant 4
+		"Vanguard (Particle)"
+	variant 3
+		"Protector (Quad Blaster)"
+	variant 3
+		"Protector"
+	variant 5
+		"Protector (Proton)"
+	variant 5
+		"Leviathan"
+	variant 6
+		"Marauder Leviathan (Weapons)"
+
+fleet "Elenctic Commune Miners"
+	government "Elenctic Commune"
+	names "civilian"
+	cargo 0
+	personality
+		confusion 20
+		timid frugal mining harvests
+	variant 5
+		"Firebird (Laser)"
+		"Sparrow"
+	variant 5
+		"Firebird (Laser)"
+		"Aphid"
+	variant 5
+		"Firebird (Laser)"
+		"Grasshopper"
+	

@@ -27,6 +27,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Outfit.h"
 #include "Personality.h"
 #include "Point.h"
+#include "ship/ShipAICache.h"
+#include "ShipJumpNavigation.h"
 
 #include <list>
 #include <map>
@@ -44,6 +46,7 @@ class Government;
 class Minable;
 class Phrase;
 class Planet;
+class PlayerInfo;
 class Projectile;
 class StellarObject;
 class System;
@@ -60,7 +63,7 @@ class Ship : public Body, public std::enable_shared_from_this<Ship> {
 public:
 	class Bay {
 	public:
-		Bay(double x, double y, std::string category) : point(x * .5, y * .5), category(category) {}
+		Bay(double x, double y, std::string category) : point(x * .5, y * .5), category(std::move(category)) {}
 		Bay(Bay &&) = default;
 		Bay &operator=(Bay &&) = default;
 		~Bay() = default;
@@ -101,13 +104,6 @@ public:
 
 		double zoom;
 		Angle facing;
-	};
-
-	enum class JumpType : uint8_t
-	{
-		Hyperdrive,
-		JumpDrive,
-		None
 	};
 
 
@@ -163,6 +159,11 @@ public:
 	// Get this ship's cost.
 	int64_t Cost() const;
 	int64_t ChassisCost() const;
+	int64_t Strength() const;
+	// Get the attraction and deterrance of this ship, for pirate raids.
+	// This is only useful for the player's ships.
+	double Attraction() const;
+	double Deterrence() const;
 
 	// Check if this ship is configured in such a way that it would be difficult
 	// or impossible to fly.
@@ -193,8 +194,14 @@ public:
 	void SetPersonality(const Personality &other);
 	// Get a random hail message, or set the object used to generate them. If no
 	// object is given the government's default will be used.
-	void SetHail(const Phrase &phrase);
+	const Phrase *GetHailPhrase() const;
+	void SetHailPhrase(const Phrase &phrase);
 	std::string GetHail(std::map<std::string, std::string> &&subs) const;
+	bool CanSendHail(const PlayerInfo &player, bool allowUntranslated = false) const;
+
+	// Access the ship's AI cache, containing the range and expected AI behavior for this ship.
+	ShipAICache &GetAICache();
+	void UpdateCaches();
 
 	// Set the commands for this ship to follow this timestep.
 	void SetCommands(const Command &command);
@@ -214,7 +221,7 @@ public:
 	std::shared_ptr<Ship> Board(bool autoPlunder, bool nonDocking);
 	// Scan the target, if able and commanded to. Return a ShipEvent bitmask
 	// giving the types of scan that succeeded.
-	int Scan();
+	int Scan(const PlayerInfo &player);
 	// Find out what fraction of the scan is complete.
 	double CargoScanFraction() const;
 	double OutfitScanFraction() const;
@@ -226,8 +233,10 @@ public:
 	// Fire an anti-missile. Returns true if the missile was killed.
 	bool FireAntiMissile(const Projectile &projectile, std::vector<Visual> &visuals);
 
-	// Get the system this ship is in.
+	// Get the system this ship is in. Set to nullptr if the ship is being carried.
 	const System *GetSystem() const;
+	// Get the system this ship is in. If being carried, gets the parent's system.
+	const System *GetActualSystem() const;
 	// If the ship is landed, get the planet it has landed on.
 	const Planet *GetPlanet() const;
 
@@ -235,10 +244,10 @@ public:
 	bool IsCapturable() const;
 	bool IsTargetable() const;
 	bool IsOverheated() const;
-	bool IsParalyzed() const;
 	bool IsDisabled() const;
 	bool IsBoarding() const;
 	bool IsLanding() const;
+	bool IsFleeing() const;
 	// Check if this ship is currently able to begin landing on its target.
 	bool CanLand() const;
 	// Check if some condition is keeping this ship from acting. (That is, it is
@@ -283,8 +292,8 @@ public:
 	bool CanRefuel(const Ship &other) const;
 	// Give the other ship enough fuel for it to jump.
 	double TransferFuel(double amount, Ship *to);
-	// Mark this ship as property of the given ship.
-	void WasCaptured(const std::shared_ptr<Ship> &capturer);
+	// Mark this ship as property of the given ship. Returns the number of crew transferred from the capturer.
+	int WasCaptured(const std::shared_ptr<Ship> &capturer);
 	// Clear all orders and targets this ship has (after capture or transfer of control).
 	void ClearTargetsAndOrders();
 
@@ -308,22 +317,17 @@ public:
 	// ship becomes disabled. Returns 0 if the ships hull is already below the
 	// disabled threshold.
 	double HullUntilDisabled() const;
+	// Get this ship's jump navigation, which contains information about how
+	// much it costs for this ship to jump, how far it can jump, and its possible
+	// jump methods.
+	const ShipJumpNavigation &JumpNavigation() const;
 	// Get the number of jumps this ship can make before running out of fuel.
 	// This depends on how much fuel it has and what sort of hyperdrive it uses.
 	// This does not show accurate number of jumps remaining beyond 1.
 	// If followParent is false, this ship will not follow the parent.
 	int JumpsRemaining(bool followParent = true) const;
 	bool NeedsFuel(bool followParent = true) const;
-	// Get the amount of fuel expended per jump.
-	double JumpFuel(const System *destination = nullptr) const;
-	// Get the distance that this ship can jump.
-	double JumpRange(bool getCached = true) const;
-	// Get the cost of making a jump of the given type (if possible).
-	double HyperdriveFuel() const;
-	double JumpDriveFuel(double jumpDistance = 0.) const;
-	std::pair<JumpType, double> GetCheapestJumpType(const System *destination) const;
-	std::pair<JumpType, double> GetCheapestJumpType(const System *from, const System *to) const;
-	// Get the amount of fuel missing for the next jump (smart refuelling)
+	// Get the amount of fuel missing for the next jump (smart refueling)
 	double JumpFuelMissing() const;
 	// Get the heat level at idle.
 	double IdleHeat() const;
@@ -333,6 +337,8 @@ public:
 	double MaximumHeat() const;
 	// Calculate the multiplier for cooling efficiency.
 	double CoolingEfficiency() const;
+	// Calculate the ship's drag after accounting for drag reduction.
+	double Drag() const;
 
 	// Access how many crew members this ship has or needs.
 	int Crew() const;
@@ -346,9 +352,11 @@ public:
 
 	// Get this ship's movement characteristics.
 	double Mass() const;
+	double InertialMass() const;
 	double TurnRate() const;
 	double Acceleration() const;
 	double MaxVelocity() const;
+	double ReverseAcceleration() const;
 	double MaxReverseVelocity() const;
 
 	// This ship just got hit by a weapon. Take damage according to the
@@ -423,6 +431,9 @@ public:
 	std::shared_ptr<Minable> GetTargetAsteroid() const;
 	std::shared_ptr<Flotsam> GetTargetFlotsam() const;
 
+	// Mark this ship as fleeing.
+	void SetFleeing(bool fleeing = true);
+
 	// Set this ship's targets.
 	void SetTargetShip(const std::shared_ptr<Ship> &ship);
 	void SetShipToAssist(const std::shared_ptr<Ship> &ship);
@@ -452,15 +463,17 @@ private:
 	void RemoveEscort(const Ship &ship);
 	// Get the hull amount at which this ship is disabled.
 	double MinimumHull() const;
-	// Find out how much fuel is consumed by the hyperdrive of the given type.
-	double BestFuel(const std::string &type, const std::string &subtype,
-		double defaultFuel, double jumpDistance = 0.) const;
 	// Create one of this ship's explosions, within its mask. The explosions can
 	// either stay over the ship, or spread out if this is the final explosion.
 	void CreateExplosion(std::vector<Visual> &visuals, bool spread = false);
 	// Place a "spark" effect, like ionization or disruption.
 	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
 	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
+
+	// Calculate the attraction and deterrance of this ship, for pirate raids.
+	// This is only useful for the player's ships.
+	double CalculateAttraction() const;
+	double CalculateDeterrence() const;
 
 
 private:
@@ -498,6 +511,7 @@ private:
 	bool isDisabled = false;
 	bool isBoarding = false;
 	bool hasBoarded = false;
+	bool isFleeing = false;
 	bool isThrusting = false;
 	bool isReversing = false;
 	bool isSteering = false;
@@ -515,11 +529,15 @@ private:
 	double cargoScan = 0.;
 	double outfitScan = 0.;
 
+	double attraction = 0.;
+	double deterrence = 0.;
+
 	Command commands;
 	FireCommand firingCommands;
 
 	Personality personality;
 	const Phrase *hail = nullptr;
+	ShipAICache aiCache;
 
 	// Installed outfits, cargo, etc.:
 	Outfit attributes;
@@ -547,6 +565,8 @@ private:
 	double heat = 0.;
 	// Accrued "ion damage" that will affect this ship's energy over time.
 	double ionization = 0.;
+	// Accrued "scrambling damage" that will affect this ship's weaponry over time.
+	double scrambling = 0.;
 	// Accrued "disruption damage" that will affect this ship's shield effectiveness over time.
 	double disruption = 0.;
 	// Accrued "slowing damage" that will affect this ship's movement over time.
@@ -575,13 +595,12 @@ private:
 	// hyperspacing, and exploding. Each one must track some special counters:
 	const Planet *landingPlanet = nullptr;
 
+	ShipJumpNavigation navigation;
 	int hyperspaceCount = 0;
 	const System *hyperspaceSystem = nullptr;
 	bool isUsingJumpDrive = false;
 	double hyperspaceFuelCost = 0.;
 	Point hyperspaceOffset;
-
-	double jumpRange = 0.;
 
 	// The hull may spring a "leak" (venting atmosphere, flames, blood, etc.)
 	// when the ship is dying.
@@ -619,6 +638,7 @@ private:
 
 	// Direction to move toward for MOVETOWARD command
 	Point moveToward;
+	bool removeBays = false;
 };
 
 
