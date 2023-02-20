@@ -76,7 +76,7 @@ namespace {
 
 
 OutfitterPanel::OutfitterPanel(PlayerInfo &player)
-	: ShopPanel(player, true)
+	: ShopPanel(player, true, !player.GetPlanet()->HasOutfitter())
 {
 	for(const pair<const string, Outfit> &it : GameData::Outfits())
 		catalog[it.second.Category()].insert(it.first);

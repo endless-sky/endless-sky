@@ -178,7 +178,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		GetUI()->Push(new ShipyardPanel(player));
 		return true;
 	}
-	else if(key == 'o' && hasAccess && planet.HasOutfitter())
+	else if(key == 'o' && hasAccess && (planet.HasOutfitter() || planet.HasSpaceport()))
 	{
 		for(const auto &it : player.Ships())
 			if(it->GetSystem() == &system && !it->IsDisabled())

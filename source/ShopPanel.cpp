@@ -63,9 +63,10 @@ namespace {
 
 
 
-ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
+ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter, const bool isLimitedOutfitter)
 	: player(player), day(player.GetDate().DaysSinceEpoch()),
-	planet(player.GetPlanet()), playerShip(player.Flagship()),
+	planet(player.GetPlanet()), isLimitedOutfitter(isLimitedOutfitter),
+	playerShip(isLimitedOutfitter ? nullptr : player.Flagship()),
 	categories(GameData::Category(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard"))
 {
@@ -192,110 +193,123 @@ void ShopPanel::DrawShipsSidebar()
 		Point(1, Screen::Height()),
 		*GameData::Colors().Get("shop side panel background"));
 
-	// Draw this string, centered in the side panel:
-	static const string YOURS = "Your Ships:";
-	Point yoursPoint(Screen::Right() - SIDEBAR_WIDTH, Screen::Top() + 10 - sidebarScroll);
-	font.Draw({YOURS, {SIDEBAR_WIDTH, Alignment::CENTER}}, yoursPoint, bright);
-
-	// Start below the "Your Ships" label, and draw them.
-	Point point(
-		Screen::Right() - SIDEBAR_WIDTH / 2 - 93,
-		Screen::Top() + SIDEBAR_WIDTH / 2 - sidebarScroll + 40 - 93);
-
-	const System *here = player.GetSystem();
-	int shipsHere = 0;
-	for(const shared_ptr<Ship> &ship : player.Ships())
-		shipsHere += CanShowInSidebar(*ship, here);
-	if(shipsHere < 4)
-		point.X() += .5 * ICON_TILE * (4 - shipsHere);
-
-	// Check whether flight check tooltips should be shown.
-	const auto flightChecks = player.FlightCheck();
-	Point mouse = GetUI()->GetMouse();
-	warningType.clear();
-
-	static const Color selected(.8f, 1.f);
-	static const Color unselected(.4f, 1.f);
-	for(const shared_ptr<Ship> &ship : player.Ships())
+	if(!isLimitedOutfitter)
 	{
-		// Skip any ships that are "absent" for whatever reason.
-		if(!CanShowInSidebar(*ship, here))
-			continue;
+		// Draw this string, centered in the side panel:
+		static const string YOURS = "Your Ships:";
+		Point yoursPoint(Screen::Right() - SIDEBAR_WIDTH, Screen::Top() + 10 - sidebarScroll);
+		font.Draw({YOURS, {SIDEBAR_WIDTH, Alignment::CENTER}}, yoursPoint, bright);
 
-		if(point.X() > Screen::Right())
+		// Start below the "Your Ships" label, and draw them.
+		Point point(
+			Screen::Right() - SIDEBAR_WIDTH / 2 - 93,
+			Screen::Top() + SIDEBAR_WIDTH / 2 - sidebarScroll + 40 - 93);
+
+		const System *here = player.GetSystem();
+		int shipsHere = 0;
+		for(const shared_ptr<Ship> &ship : player.Ships())
+			shipsHere += CanShowInSidebar(*ship, here);
+		if(shipsHere < 4)
+			point.X() += .5 * ICON_TILE * (4 - shipsHere);
+
+		// Check whether flight check tooltips should be shown.
+		const auto flightChecks = player.FlightCheck();
+		Point mouse = GetUI()->GetMouse();
+		warningType.clear();
+
+		static const Color selected(.8f, 1.f);
+		static const Color unselected(.4f, 1.f);
+		for(const shared_ptr<Ship> &ship : player.Ships())
 		{
-			point.X() -= ICON_TILE * ICON_COLS;
-			point.Y() += ICON_TILE;
-		}
+			// Skip any ships that are "absent" for whatever reason.
+			if(!CanShowInSidebar(*ship, here))
+				continue;
 
-		bool isSelected = playerShips.count(ship.get());
-		const Sprite *background = SpriteSet::Get(isSelected ? "ui/icon selected" : "ui/icon unselected");
-		SpriteShader::Draw(background, point);
-		// If this is one of the selected ships, check if the currently hovered
-		// button (if any) applies to it. If so, brighten the background.
-		if(isSelected && ShouldHighlight(ship.get()))
+			if(point.X() > Screen::Right())
+			{
+				point.X() -= ICON_TILE * ICON_COLS;
+				point.Y() += ICON_TILE;
+			}
+
+			bool isSelected = playerShips.count(ship.get());
+			const Sprite *background = SpriteSet::Get(isSelected ? "ui/icon selected" : "ui/icon unselected");
 			SpriteShader::Draw(background, point);
+			// If this is one of the selected ships, check if the currently hovered
+			// button (if any) applies to it. If so, brighten the background.
+			if(isSelected && ShouldHighlight(ship.get()))
+				SpriteShader::Draw(background, point);
 
-		const Sprite *sprite = ship->GetSprite();
-		if(sprite)
-		{
-			float scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
-			if(Preferences::Has(SHIP_OUTLINES))
+			const Sprite *sprite = ship->GetSprite();
+			if(sprite)
 			{
-				Point size(sprite->Width() * scale, sprite->Height() * scale);
-				OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
+				float scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
+				if(Preferences::Has(SHIP_OUTLINES))
+				{
+					Point size(sprite->Width() * scale, sprite->Height() * scale);
+					OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
+				}
+				else
+				{
+					int swizzle = ship->CustomSwizzle() >= 0 ? ship->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
+					SpriteShader::Draw(sprite, point, scale, swizzle);
+				}
 			}
-			else
+
+			zones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
+
+			const auto checkIt = flightChecks.find(ship);
+			if(checkIt != flightChecks.end())
 			{
-				int swizzle = ship->CustomSwizzle() >= 0 ? ship->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
-				SpriteShader::Draw(sprite, point, scale, swizzle);
+				const string &check = (*checkIt).second.front();
+				const Sprite *icon = SpriteSet::Get(check.back() == '!' ? "ui/error" : "ui/warning");
+				SpriteShader::Draw(icon, point + .5 * Point(ICON_TILE - icon->Width(), ICON_TILE - icon->Height()));
+				if(zones.back().Contains(mouse))
+				{
+					warningType = check;
+					warningPoint = zones.back().TopLeft();
+				}
 			}
+
+			point.X() += ICON_TILE;
 		}
+		point.Y() += ICON_TILE;
 
-		zones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
-
-		const auto checkIt = flightChecks.find(ship);
-		if(checkIt != flightChecks.end())
+		if(playerShip)
 		{
-			const string &check = (*checkIt).second.front();
-			const Sprite *icon = SpriteSet::Get(check.back() == '!' ? "ui/error" : "ui/warning");
-			SpriteShader::Draw(icon, point + .5 * Point(ICON_TILE - icon->Width(), ICON_TILE - icon->Height()));
-			if(zones.back().Contains(mouse))
-			{
-				warningType = check;
-				warningPoint = zones.back().TopLeft();
-			}
+			point.Y() += SHIP_SIZE / 2;
+			point.X() = Screen::Right() - SIDEBAR_WIDTH / 2;
+			DrawShip(*playerShip, point, true);
+
+			Point offset(SIDEBAR_WIDTH / -2, SHIP_SIZE / 2);
+			sideDetailHeight = DrawPlayerShipInfo(point + offset);
+			point.Y() += sideDetailHeight + SHIP_SIZE / 2;
 		}
+		else if(player.Cargo().Size())
+		{
+			point.X() = Screen::Right() - SIDEBAR_WIDTH + 10;
+			font.Draw("cargo space:", point, medium);
 
-		point.X() += ICON_TILE;
+			string space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
+			font.Draw({space, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, point, bright);
+			point.Y() += 20.;
+		}
+		maxSidebarScroll = max(0., point.Y() + sidebarScroll - Screen::Bottom() + BUTTON_HEIGHT);
+
+		PointerShader::Draw(Point(Screen::Right() - 10, Screen::Top() + 10),
+			Point(0., -1.), 10.f, 10.f, 5.f, Color(sidebarScroll > 0 ? .8f : .2f, 0.f));
+		PointerShader::Draw(Point(Screen::Right() - 10, Screen::Bottom() - 80),
+			Point(0., 1.), 10.f, 10.f, 5.f, Color(sidebarScroll < maxSidebarScroll ? .8f : .2f, 0.f));
 	}
-	point.Y() += ICON_TILE;
-
-	if(playerShip)
+	else
 	{
-		point.Y() += SHIP_SIZE / 2;
-		point.X() = Screen::Right() - SIDEBAR_WIDTH / 2;
-		DrawShip(*playerShip, point, true);
-
-		Point offset(SIDEBAR_WIDTH / -2, SHIP_SIZE / 2);
-		sideDetailHeight = DrawPlayerShipInfo(point + offset);
-		point.Y() += sideDetailHeight + SHIP_SIZE / 2;
-	}
-	else if(player.Cargo().Size())
-	{
-		point.X() = Screen::Right() - SIDEBAR_WIDTH + 10;
-		font.Draw("cargo space:", point, medium);
+		Point point(
+			Screen::Right() - SIDEBAR_WIDTH + 10,
+			Screen::Top() + 10);
+		font.Draw("Cargo space:", point, medium);
 
 		string space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
 		font.Draw({space, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, point, bright);
-		point.Y() += 20.;
 	}
-	maxSidebarScroll = max(0., point.Y() + sidebarScroll - Screen::Bottom() + BUTTON_HEIGHT);
-
-	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Top() + 10),
-		Point(0., -1.), 10.f, 10.f, 5.f, Color(sidebarScroll > 0 ? .8f : .2f, 0.f));
-	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Bottom() - 80),
-		Point(0., 1.), 10.f, 10.f, 5.f, Color(sidebarScroll < maxSidebarScroll ? .8f : .2f, 0.f));
 }
 
 
@@ -685,7 +699,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		return SetScrollToTop();
 	else if(key == SDLK_END)
 		return SetScrollToBottom();
-	else if(key >= '0' && key <= '9')
+	else if(key >= '0' && key <= '9' && !isLimitedOutfitter)
 	{
 		int group = key - '0';
 		if(mod & (KMOD_CTRL | KMOD_GUI))
