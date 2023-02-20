@@ -271,7 +271,8 @@ void ShipEffectsShader::SetCenter(Point newCenter)
 
 
 ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Body* body, const Point& position,
-	const vector<pair<Point, double>>* recentHits, const float zoom, const float frame, const vector<pair<string, double>> &shieldColor)
+	const vector<pair<Point, double>>* recentHits, const float zoom, const float frame,
+	const vector<pair<string, double>> &shieldColor)
 {
 	if(!body->GetSprite())
 		return {};
@@ -314,14 +315,15 @@ ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Body* body, const
 		item.recentHitPoints[2 * i] = (newP.X() / ((2 / 1.5) * body->Radius()));
 		item.recentHitPoints[2 * i + 1] = (newP.Y() / ((2 / 1.5) * body->Radius()));
 		item.recentHitDamage[i] = (min(1., recth->at(i).second));
-		//Messages::Add("Hit at " + to_string(newP.X() / body->Radius()) + ", " + to_string(newP.Y() / body->Radius())
+		// For debugging
+		// Messages::Add("Hit at " + to_string(newP.X() / body->Radius()) + ", " + to_string(newP.Y() / body->Radius())
 		//	+ ", intensity of " + to_string(item.recentHitDamage[i]) + " with count of " + to_string(item.recentHits));
 		i++;
 	}
 
 	float total = 2.;
 	float finalColour[4] = {0, 0, 0, 0};
-	for (const auto& it : shieldColor)
+	for(const auto &it : shieldColor)
 	{
 		total += it.second;
 	}
@@ -331,7 +333,7 @@ ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Body* body, const
 	finalColour[1] += colourx[1] * modix;
 	finalColour[2] += colourx[2] * modix;
 	finalColour[3] += colourx[3] * modix * .75;
-	for (const auto& it : shieldColor)
+	for(const auto &it : shieldColor)
 	{
 		const auto colour = GameData::Colors().Get(it.first)->Get();
 		const float modi = it.second / total;

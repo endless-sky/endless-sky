@@ -1175,9 +1175,9 @@ double Ship::Deterrence() const
 const vector<pair<string, double>> Ship::ShieldColors() const
 {
 	vector<pair<string, double>> colors;
-	for (const auto& it : outfits)
+	for(const auto &it : outfits)
 	{
-		for (const auto& it : it.first->ShieldColor())
+		for(const auto &it : it.first->ShieldColor())
 		{
 			colors.push_back(it);
 		}

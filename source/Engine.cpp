@@ -984,14 +984,15 @@ void Engine::Draw() const
 	if(static_cast<int>(Preferences::GetHitEffects()) > 0)
 	{
 		ShipEffectsShader::Bind();
-		for (unsigned int i = 0; i < shipEffects.size(); i++)
+		for(unsigned int i = 0; i < shipEffects.size(); i++)
 		{
 			ShipEffectsShader::Add(shipEffects[i]);
 		}
-		/*for (const auto& it : shipEffects)
-		{
-			ShipEffectsShader::Add(it);
-		}*/
+		// Not sure why this doesn't work
+		// for (const auto& it : shipEffects)
+		// {
+		// 	ShipEffectsShader::Add(it);
+		// }
 		ShipEffectsShader::Unbind();
 	}
 
@@ -1602,8 +1603,8 @@ void Engine::CalculateStep()
 		AddSprites(*flagship);
 		if (static_cast<int>(Preferences::GetHitEffects()) > 0)
 		{
-			shipEffects.push_back(ShipEffectsShader::Prepare(flagship, (flagship->Position() - newCenter), player.Flagship()->RecentHits(),
-				zoom, flagship->GetFrame(), flagship->ShieldColors()));
+			shipEffects.push_back(ShipEffectsShader::Prepare(flagship, (flagship->Position() - newCenter),
+				player.Flagship()->RecentHits(), zoom, flagship->GetFrame(), flagship->ShieldColors()));
 		}
 		if(flagship->IsThrusting() && !flagship->EnginePoints().empty())
 		{
