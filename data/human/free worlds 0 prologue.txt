@@ -1115,7 +1115,7 @@ mission "FW Bounty 2"
 				`	"Sorry, I'm way too busy right now."`
 					defer
 			
-			`	"There's a retrofitted heavy freighter by the name of <npc> that has been stealing large amounts of cargo from our supply convoys. It was last seen in the Delta Sagittarii system. Be warned that this ship is a tough one, fitted with more heavy lasers than I've ever seen anyone install on a single ship, but it's slow as a sloth, so you might be able to hit it from afar. The bounty on it is <payment>."`
+			`	"There's a retrofitted heavy freighter by the name of <npc> that has been stealing large amounts of cargo from our supply convoys. It was last seen in the Delta Sagittarii system. Be warned that this ship is a tough one, fitted with more Heavy Lasers than I've ever seen anyone install on a single ship, but it's slow as a sloth, so you might be able to hit it from afar. The bounty on it is <payment>."`
 			choice
 				`	"Sounds like this shouldn't be too difficult. I'm in."`
 				`	"I could handle a group of interceptors, but this sounds like too much for me. You'll have to find someone else."`
@@ -1125,7 +1125,7 @@ mission "FW Bounty 2"
 				accept
 			
 			label accept
-			`	He grins. "Your target is a retrofitted heavy freighter by the name of <npc> that has been stealing large amounts of cargo from our supply convoys. It was last seen in the Delta Sagittarii system. Be warned that this ship is a tough one, fitted with more heavy lasers than I've ever seen anyone install on a single ship, but it's slow as a sloth, so you might be able to hit it from afar. Good luck, Captain."`
+			`	He grins. "Your target is a retrofitted heavy freighter by the name of <npc> that has been stealing large amounts of cargo from our supply convoys. It was last seen in the Delta Sagittarii system. Be warned that this ship is a tough one, fitted with more Heavy Lasers than I've ever seen anyone install on a single ship, but it's slow as a sloth, so you might be able to hit it from afar. Good luck, Captain."`
 				accept
 	
 	npc kill
