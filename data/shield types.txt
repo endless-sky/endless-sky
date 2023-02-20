@@ -13,3 +13,12 @@
 
 color "shields default" .43 .55 .70 .75
 color "shields heliarch" .69 .67 .23 .75
+
+color "shields republic" .55 .60 .80 .75
+color "shields republic weak" .55 .60 .80 .75
+color "shields republic strong" .9 .3 .2 .75
+
+
+color "shields hai" .35 .8 .45 .75
+color "shields hai weak" .35 .8 .55 .75
+color "shields hai strong" .35 .8 .55 .75

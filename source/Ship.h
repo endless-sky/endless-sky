@@ -165,6 +165,8 @@ public:
 	double Attraction() const;
 	double Deterrence() const;
 
+	const std::vector<std::pair<std::string, double>> ShieldColors() const;
+
 	// Check if this ship is configured in such a way that it would be difficult
 	// or impossible to fly.
 	std::vector<std::string> FlightCheck() const;

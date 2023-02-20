@@ -986,6 +986,7 @@ color "governments: Republic" .91 .42 .09
 government "Republic"
 	swizzle 0
 	color "governments: Republic"
+	"shield color" "shields republic"
 	"crew attack" 1.2
 	"crew defense" 2.2
 	

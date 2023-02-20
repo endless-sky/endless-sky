@@ -432,6 +432,7 @@ outfit "Hai Corundum Regenerator"
 	"outfit space" -16
 	"shield generation" .7
 	"shield energy" .7
+	"shield color" "shields hai weak" 5
 	"energy consumption" .3
 	"shield heat" 3
 	description "Hai shield regenerators work by subtly modifying the geometry and harmonics of your shield matrix in order to make your shields more malleable and therefore much easier to recharge. Unfortunately, this system requires a constant power source, and generates a fair bit of heat while regenerating."
@@ -444,6 +445,7 @@ outfit "Hai Diamond Regenerator"
 	"outfit space" -49
 	"shield generation" 2.5
 	"shield energy" 2.5
+	"shield color" "shields hai strong" 15
 	"shield heat" 9
 	"energy consumption" .9
 	description "The Hai Diamond Shield Regenerator is an advanced type of shield recharging technology. Unfortunately, its power needs are quite high, and the shifts it makes to your shield matrix causes intense heat at the regenerator when your shields are charging. The Hai usually employ Williwaw Cooling when they use this regenerator."

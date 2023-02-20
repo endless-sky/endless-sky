@@ -61,10 +61,10 @@ public:
 
 	// Draw a sprite.
 	static void Draw(const Body* body, const Point& position, const std::vector<std::pair<Point, double>>* recentHits,
-		const float zoom = 1.f, const float frame = 0.f, const std::string &shieldColor = "shields default");
+		const float zoom = 1.f, const float frame = 0.f, const std::vector<std::pair<std::string, double>>& shieldColor = {});
 	static EffectItem Prepare(const Body *body, const Point &position,
 		const std::vector<std::pair<Point, double>>* recentHits, const float zoom = 1.f, const float frame = 0.f,
-		const std::string &shieldColor = "shields default");
+		const std::vector<std::pair<std::string, double>>& shieldColor = {});
 
 	static void Bind();
 	static void Add(const EffectItem &item, bool withBlur = false);

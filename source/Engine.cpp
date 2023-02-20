@@ -983,10 +983,14 @@ void Engine::Draw() const
 	if(static_cast<int>(Preferences::GetHitEffects()) > 0)
 	{
 		ShipEffectsShader::Bind();
-		for(const auto &it : shipEffects)
+		for (int i = 0; i < shipEffects.size(); i++)
+		{
+			ShipEffectsShader::Add(shipEffects[i]);
+		}
+		/*for (const auto& it : shipEffects)
 		{
 			ShipEffectsShader::Add(it);
-		}
+		}*/
 		ShipEffectsShader::Unbind();
 	}
 
@@ -1570,7 +1574,7 @@ void Engine::CalculateStep()
 				if(static_cast<int>(Preferences::GetHitEffects()) > 0)
 				{
 					shipEffects.push_back(ShipEffectsShader::Prepare(ship.get(), (ship->Position() - newCenter), ship->RecentHits(),
-						zoom, ship->GetFrame(), ship->Attributes().ShieldColor()));
+						zoom, ship->GetFrame(), ship->ShieldColors()));
 				}
 				if(ship->IsThrusting() && !ship->EnginePoints().empty())
 				{
@@ -1595,6 +1599,11 @@ void Engine::CalculateStep()
 	if(flagship && showFlagship)
 	{
 		AddSprites(*flagship);
+		if (static_cast<int>(Preferences::GetHitEffects()) > 0)
+		{
+			shipEffects.push_back(ShipEffectsShader::Prepare(flagship, (flagship->Position() - newCenter), player.Flagship()->RecentHits(),
+				zoom, flagship->GetFrame(), flagship->ShieldColors()));
+		}
 		if(flagship->IsThrusting() && !flagship->EnginePoints().empty())
 		{
 			for(const auto &it : flagship->Attributes().FlareSounds())

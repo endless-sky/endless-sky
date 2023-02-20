@@ -87,6 +87,7 @@ outfit "D67-TM Shield Generator"
 	"outfit space" -45
 	"shield generation" .82
 	"shield energy" .82
+	"shield color" "shields republic strong" 15
 	description "This shield generator is powerful enough that in combat against some particularly weak ships, they may not even be capable of depleting your shields as fast as they recharge."
 
 outfit "D94-YV Shield Generator"
@@ -97,6 +98,7 @@ outfit "D94-YV Shield Generator"
 	"outfit space" -60
 	"shield generation" 1.31
 	"shield energy" 1.31
+	"shield color" "shields republic strong" 20
 	description "This is the most powerful shield generator available in human space. Because of their large size, D94-YV shield generators are mostly used in large warships, but you can fit one in a smaller ship if you are willing to sacrifice engine power or weaponry to make space for it."
 
 outfit "S-270 Regenerator"

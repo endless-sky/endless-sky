@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShipEffectsShader.h"
 
+#include "Color.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Logger.h"
@@ -27,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sprite.h"
 
 #include <algorithm>
+#include <bit>
 #include <sstream>
 #include <vector>
 
@@ -82,7 +84,7 @@ void ShipEffectsShader::Init()
 
 		"void main() {\n"
 		"  vec2 blurOff = 2.f * vec2(vert.x * abs(blur.x), vert.y * abs(blur.y));\n"
-		"  gl_Position = vec4((transform * (vert * 1.1 + blurOff) + position) * scale, 0, 1);\n"
+		"  gl_Position = vec4((transform * (vert + blurOff) + position) * scale, 0, 1);\n"
 		"  vec2 texCoord = vert + vec2(.5, .5);\n"
 		"  shrinkby = scale;\n"
 		"  fragTexCoord = vec2(texCoord.x, min(clip, texCoord.y)) + blurOff;\n"
@@ -136,7 +138,7 @@ void ShipEffectsShader::Init()
 		"  {\n"
 		"    for (int y = -3; y <= 3; y++)\n"
 		"	 {\n"
-		"      obel += sampleSmooth(tex, uv + vec2(x, y) / (360.)).a;\n"
+		"      obel += sampleSmooth(tex, uv + vec2(x, y) / (300.)).a;\n"
 		"    }\n"
 		"  }\n"
 		"  obel /= 49.;\n"
@@ -213,10 +215,10 @@ void ShipEffectsShader::Init()
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
 	GLfloat vertexData[] = {
-		-.5f, -.5f,
-		-.5f,  .5f,
-		 .5f, -.5f,
-		 .5f,  .5f
+		-.55f, -.55f,
+		-.55f,  .55f,
+		 .55f, -.55f,
+		 .55f,  .55f
 	};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 
@@ -231,7 +233,7 @@ void ShipEffectsShader::Init()
 
 
 void ShipEffectsShader::Draw(const Body* body, const Point& position, const vector<pair<Point, double>>* recentHits,
-	const float zoom, const float frame, const string &shieldColor)
+	const float zoom, const float frame, const vector<pair<string, double>> &shieldColor)
 {
 	if(!body->GetSprite())
 		return;
@@ -251,7 +253,7 @@ void ShipEffectsShader::SetCenter(Point newCenter)
 
 
 ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Body* body, const Point& position,
-	const vector<pair<Point, double>>* recentHits, const float zoom, const float frame, const string &shieldColor)
+	const vector<pair<Point, double>>* recentHits, const float zoom, const float frame, const vector<pair<string, double>> &shieldColor)
 {
 	if(!body->GetSprite())
 		return {};
@@ -271,7 +273,7 @@ ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Body* body, const
 	Point uw = unit * width;
 	Point uh = unit * height;
 
-	item.size = body->Radius();
+	item.size = 80.;
 
 	// (0, -1) means a zero-degree rotation (since negative Y is up).
 	uw *= zoom;
@@ -294,12 +296,29 @@ ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Body* body, const
 		item.recentHitPoints[2 * i] = (newP.X() / ((2 / 1.5) * body->Radius()));
 		item.recentHitPoints[2 * i + 1] = (newP.Y() / ((2 / 1.5) * body->Radius()));
 		item.recentHitDamage[i] = (min(1., recth->at(i).second));
-		Messages::Add("Hit at " + to_string(newP.X() / body->Radius()) + ", " + to_string(newP.Y() / body->Radius())
-			+ ", intensity of " + to_string(item.recentHitDamage[i]) + " with count of " + to_string(item.recentHits));
+		//Messages::Add("Hit at " + to_string(newP.X() / body->Radius()) + ", " + to_string(newP.Y() / body->Radius())
+		//	+ ", intensity of " + to_string(item.recentHitDamage[i]) + " with count of " + to_string(item.recentHits));
 		i++;
 	}
-	Messages::Add(shieldColor);
-	copy(GameData::Colors().Get(shieldColor)->Get(), GameData::Colors().Get(shieldColor)->Get() + 4, item.shieldColor);
+
+	float total = 0.;
+	float finalColour[4] = {0, 0, 0, 0};
+	for (const auto& it : shieldColor)
+	{
+		total += it.second;
+	}
+	for (const auto& it : shieldColor)
+	{
+		const auto colour = GameData::Colors().Get(it.first)->Get();
+		const float modi = it.second / total;
+		finalColour[0] += colour[0] * modi;
+		finalColour[1] += colour[1] * modi;
+		finalColour[2] += colour[2] * modi;
+		finalColour[3] += colour[3] * modi;
+	}
+
+	copy(finalColour, finalColour + 4, item.shieldColor);
+
 
 	return item;
 }
