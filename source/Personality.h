@@ -96,7 +96,7 @@ private:
 
 
 private:
-	static const int PERSONALITY_COUNT = 32;
+	static const int PERSONALITY_COUNT = 33;
 
 	bool isDefined = false;
 
