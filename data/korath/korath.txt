@@ -209,7 +209,7 @@ fleet "Korath Raid"
 	fighters "korath"
 	cargo 1
 	personality
-		disables plunders opportunistic harvests lingering
+		disables plunders opportunistic harvests
 	variant 4
 		"Palavret"
 		"'olofez" 2
@@ -362,7 +362,7 @@ fleet "Korath Large Raid"
 	fighters "korath"
 	cargo 1
 	personality
-		disables plunders opportunistic harvests lingering
+		disables plunders opportunistic harvests
 	variant 5
 		"Palavret" 2
 		"'olofez" 4
