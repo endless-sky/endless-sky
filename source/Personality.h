@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Angle.h"
 #include "Point.h"
 
-#include <cstdint>
+#include <bitset>
 
 class DataNode;
 class DataWriter;
@@ -96,9 +96,13 @@ private:
 
 
 private:
+	// Make sure this matches the number of items in PersonalityTrait,
+	// or the game will abort at runtime.
+	static const int PERSONALITY_COUNT = 33;
+
 	bool isDefined = false;
 
-	int64_t flags;
+	std::bitset<PERSONALITY_COUNT> flags;
 	double confusionMultiplier;
 	double aimMultiplier;
 	Point confusion;

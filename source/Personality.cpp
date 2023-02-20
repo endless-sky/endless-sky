@@ -20,46 +20,48 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 
 #include <map>
+#include <vector>
 
 using namespace std;
 
 namespace {
-	const int64_t ONE = 1;
-	const int64_t PACIFIST = (ONE << 0);
-	const int64_t FORBEARING = (ONE << 1);
-	const int64_t TIMID = (ONE << 2);
-	const int64_t DISABLES = (ONE << 3);
-	const int64_t PLUNDERS = (ONE << 4);
-	const int64_t HUNTING = (ONE << 5);
-	const int64_t STAYING = (ONE << 6);
-	const int64_t ENTERING = (ONE << 7);
-	const int64_t NEMESIS = (ONE << 8);
-	const int64_t SURVEILLANCE = (ONE << 9);
-	const int64_t UNINTERESTED = (ONE << 10);
-	const int64_t WAITING = (ONE << 11);
-	const int64_t DERELICT = (ONE << 12);
-	const int64_t FLEEING = (ONE << 13);
-	const int64_t ESCORT = (ONE << 14);
-	const int64_t FRUGAL = (ONE << 15);
-	const int64_t COWARD = (ONE << 16);
-	const int64_t VINDICTIVE = (ONE << 17);
-	const int64_t SWARMING = (ONE << 18);
-	const int64_t UNCONSTRAINED = (ONE << 19);
-	const int64_t MINING = (ONE << 20);
-	const int64_t HARVESTS = (ONE << 21);
-	const int64_t APPEASING = (ONE << 22);
-	const int64_t MUTE = (ONE << 23);
-	const int64_t OPPORTUNISTIC = (ONE << 24);
-	const int64_t MERCIFUL = (ONE << 25);
-	const int64_t TARGET = (ONE << 26);
-	const int64_t MARKED = (ONE << 27);
-	const int64_t LAUNCHING = (ONE << 28);
-	const int64_t ENTHUSIASTIC = (ONE << 29);
-	const int64_t DARING = (ONE << 30);
-	const int64_t SECRETIVE = (ONE << 31);
-	const int64_t RAMMING = (ONE << 32);
+	enum PersonalityTrait {
+		PACIFIST,
+		FORBEARING,
+		TIMID,
+		DISABLES,
+		PLUNDERS,
+		HUNTING,
+		STAYING,
+		ENTERING,
+		NEMESIS,
+		SURVEILLANCE,
+		UNINTERESTED,
+		WAITING,
+		DERELICT,
+		FLEEING,
+		ESCORT,
+		FRUGAL,
+		COWARD,
+		VINDICTIVE,
+		SWARMING,
+		UNCONSTRAINED,
+		MINING,
+		HARVESTS,
+		APPEASING,
+		MUTE,
+		OPPORTUNISTIC,
+		MERCIFUL,
+		TARGET,
+		MARKED,
+		LAUNCHING,
+		ENTHUSIASTIC,
+		DARING,
+		SECRETIVE,
+		RAMMING
+	};
 
-	const map<string, int64_t> TOKEN = {
+	const map<string, PersonalityTrait> TOKEN = {
 		{"pacifist", PACIFIST},
 		{"forbearing", FORBEARING},
 		{"timid", TIMID},
@@ -96,8 +98,8 @@ namespace {
 	};
 
 	// Tokens that combine two or more flags.
-	const map<string, int64_t> COMPOSITE_TOKEN = {
-		{"heroic", DARING | HUNTING}
+	const map<string, vector<PersonalityTrait>> COMPOSITE_TOKEN = {
+		{"heroic", {DARING, HUNTING}}
 	};
 
 	const double DEFAULT_CONFUSION = 10.;
@@ -107,7 +109,7 @@ namespace {
 
 // Default settings for player's ships.
 Personality::Personality() noexcept
-	: flags(DISABLES), confusionMultiplier(DEFAULT_CONFUSION), aimMultiplier(1.)
+	: flags(1LL << DISABLES), confusionMultiplier(DEFAULT_CONFUSION), aimMultiplier(1.)
 {
 }
 
@@ -118,7 +120,7 @@ void Personality::Load(const DataNode &node)
 	bool add = (node.Token(0) == "add");
 	bool remove = (node.Token(0) == "remove");
 	if(!(add || remove))
-		flags = 0;
+		flags.reset();
 	for(int i = 1 + (add || remove); i < node.Size(); ++i)
 		Parse(node, i, remove);
 
@@ -151,7 +153,7 @@ void Personality::Save(DataWriter &out) const
 	{
 		out.Write("confusion", confusionMultiplier);
 		for(const auto &it : TOKEN)
-			if(flags & it.second)
+			if(flags.test(it.second))
 				out.Write(it.first);
 	}
 	out.EndChild();
@@ -168,42 +170,42 @@ bool Personality::IsDefined() const
 
 bool Personality::IsPacifist() const
 {
-	return flags & PACIFIST;
+	return flags.test(PACIFIST);
 }
 
 
 
 bool Personality::IsForbearing() const
 {
-	return flags & FORBEARING;
+	return flags.test(FORBEARING);
 }
 
 
 
 bool Personality::IsTimid() const
 {
-	return flags & TIMID;
+	return flags.test(TIMID);
 }
 
 
 
 bool Personality::IsHunting() const
 {
-	return flags & HUNTING;
+	return flags.test(HUNTING);
 }
 
 
 
 bool Personality::IsNemesis() const
 {
-	return flags & NEMESIS;
+	return flags.test(NEMESIS);
 }
 
 
 
 bool Personality::IsDaring() const
 {
-	return flags & DARING;
+	return flags.test(DARING);
 }
 
 
@@ -211,189 +213,189 @@ bool Personality::IsDaring() const
 
 bool Personality::IsFrugal() const
 {
-	return flags & FRUGAL;
+	return flags.test(FRUGAL);
 }
 
 
 
 bool Personality::Disables() const
 {
-	return flags & DISABLES;
+	return flags.test(DISABLES);
 }
 
 
 
 bool Personality::Plunders() const
 {
-	return flags & PLUNDERS;
+	return flags.test(PLUNDERS);
 }
 
 
 
 bool Personality::IsVindictive() const
 {
-	return flags & VINDICTIVE;
+	return flags.test(VINDICTIVE);
 }
 
 
 
 bool Personality::IsUnconstrained() const
 {
-	return flags & UNCONSTRAINED;
+	return flags.test(UNCONSTRAINED);
 }
 
 
 
 bool Personality::IsCoward() const
 {
-	return flags & COWARD;
+	return flags.test(COWARD);
 }
 
 
 
 bool Personality::IsAppeasing() const
 {
-	return flags & APPEASING;
+	return flags.test(APPEASING);
 }
 
 
 
 bool Personality::IsOpportunistic() const
 {
-	return flags & OPPORTUNISTIC;
+	return flags.test(OPPORTUNISTIC);
 }
 
 
 
 bool Personality::IsMerciful() const
 {
-	return flags & MERCIFUL;
+	return flags.test(MERCIFUL);
 }
 
 
 
 bool Personality::IsRamming() const
 {
-	return flags & RAMMING;
+	return flags.test(RAMMING);
 }
 
 
 
 bool Personality::IsStaying() const
 {
-	return flags & STAYING;
+	return flags.test(STAYING);
 }
 
 
 
 bool Personality::IsEntering() const
 {
-	return flags & ENTERING;
+	return flags.test(ENTERING);
 }
 
 
 
 bool Personality::IsWaiting() const
 {
-	return flags & WAITING;
+	return flags.test(WAITING);
 }
 
 
 
 bool Personality::IsLaunching() const
 {
-	return flags & LAUNCHING;
+	return flags.test(LAUNCHING);
 }
 
 
 
 bool Personality::IsFleeing() const
 {
-	return flags & FLEEING;
+	return flags.test(FLEEING);
 }
 
 
 
 bool Personality::IsDerelict() const
 {
-	return flags & DERELICT;
+	return flags.test(DERELICT);
 }
 
 
 
 bool Personality::IsUninterested() const
 {
-	return flags & UNINTERESTED;
+	return flags.test(UNINTERESTED);
 }
 
 
 
 bool Personality::IsSurveillance() const
 {
-	return flags & SURVEILLANCE;
+	return flags.test(SURVEILLANCE);
 }
 
 
 
 bool Personality::IsMining() const
 {
-	return flags & MINING;
+	return flags.test(MINING);
 }
 
 
 
 bool Personality::Harvests() const
 {
-	return flags & HARVESTS;
+	return flags.test(HARVESTS);
 }
 
 
 
 bool Personality::IsSwarming() const
 {
-	return flags & SWARMING;
+	return flags.test(SWARMING);
 }
 
 
 
 bool Personality::IsSecretive() const
 {
-	return flags & SECRETIVE;
+	return flags.test(SECRETIVE);
 }
 
 
 
 bool Personality::IsEscort() const
 {
-	return flags & ESCORT;
+	return flags.test(ESCORT);
 }
 
 
 
 bool Personality::IsTarget() const
 {
-	return flags & TARGET;
+	return flags.test(TARGET);
 }
 
 
 
 bool Personality::IsMarked() const
 {
-	return flags & MARKED;
+	return flags.test(MARKED);
 }
 
 
 
 bool Personality::IsMute() const
 {
-	return flags & MUTE;
+	return flags.test(MUTE);
 }
 
 
 
 bool Personality::IsEnthusiastic() const
 {
-	return flags & ENTHUSIASTIC;
+	return flags.test(ENTHUSIASTIC);
 }
 
 
@@ -427,7 +429,8 @@ void Personality::UpdateConfusion(bool isFiring)
 Personality Personality::Defender()
 {
 	Personality defender;
-	defender.flags = STAYING | MARKED | HUNTING | DARING | UNCONSTRAINED | TARGET;
+	defender.flags = bitset<PERSONALITY_COUNT>((1LL << STAYING) | (1LL << MARKED) | (1LL << HUNTING) | (1LL << DARING)
+			| (1LL << UNCONSTRAINED) | (1LL << TARGET));
 	return defender;
 }
 
@@ -438,7 +441,8 @@ Personality Personality::Defender()
 Personality Personality::DefenderFighter()
 {
 	Personality defender;
-	defender.flags = STAYING | HUNTING | DARING | UNCONSTRAINED;
+	defender.flags = bitset<PERSONALITY_COUNT>((1LL << STAYING) | (1LL << HUNTING) | (1LL << DARING)
+			| (1LL << UNCONSTRAINED));
 	return defender;
 }
 
@@ -451,16 +455,24 @@ void Personality::Parse(const DataNode &node, int index, bool remove)
 	auto it = TOKEN.find(token);
 	if(it == TOKEN.end())
 	{
-		it = COMPOSITE_TOKEN.find(token);
-		if(it == COMPOSITE_TOKEN.end())
-		{
+		auto cit = COMPOSITE_TOKEN.find(token);
+		if(cit == COMPOSITE_TOKEN.end())
 			node.PrintTrace("Warning: Skipping unrecognized personality \"" + token + "\":");
-			return;
+		else
+		{
+			if(remove)
+				for(auto personality : cit->second)
+					flags &= ~(1LL << personality);
+			else
+				for(auto personality : cit->second)
+					flags |= 1LL << personality;
 		}
 	}
-
-	if(remove)
-		flags &= ~it->second;
 	else
-		flags |= it->second;
+	{
+		if(remove)
+			flags &= ~(1LL << it->second);
+		else
+			flags |= 1LL << it->second;
+	}
 }
