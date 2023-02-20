@@ -351,6 +351,10 @@ bool ConversationPanel::Hover(int x, int y)
 // The player just selected the given choice.
 void ConversationPanel::Goto(int index, int selectedChoice)
 {
+	auto getter = [&](const std::string &str, size_t start, size_t length)
+	{
+		return player.Conditions().Get(str.substr(start, length));
+	};
 	if(index)
 	{
 		// Add the chosen option to the text.
@@ -399,7 +403,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 		{
 			// This is an ordinary conversation node which should be displayed.
 			// Perform any necessary text replacement, and add the text to the display.
-			string altered = Format::Replace(conversation.Text(node), subs);
+			string altered = Format::ExpandConditions(Format::Replace(conversation.Text(node), subs), getter);
 			text.emplace_back(altered, conversation.Scene(node), text.empty());
 		}
 		else
@@ -415,7 +419,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 	for(int i = 0; i < conversation.Choices(node); ++i)
 		if(conversation.ShouldDisplayNode(player.Conditions(), node, i))
 		{
-			string altered = Format::Replace(conversation.Text(node, i), subs);
+			string altered = Format::ExpandConditions(Format::Replace(conversation.Text(node, i), subs), getter);
 			choices.emplace_back(Paragraph(altered), i);
 		}
 	// This is a safeguard in case of logic errors, to ensure we don't set the player name.

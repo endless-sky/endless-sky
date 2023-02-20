@@ -43,6 +43,34 @@ namespace {
 
 		reverse(result.begin(), result.end());
 	}
+
+	// Helper function for ExpandConditions.
+	//
+	// source.substr(formatStart, formatSize) contains the format (credits, mass, etc)
+	// source.substr(conditionStart, conditionSize) contains the condition name
+	//
+	// If formatStart or formatSize are string::npos, then there is no formatting.
+	//
+	// The condition value, obtained via getter(), is sent through Format::Whatever()
+	// and the output of that is appended to the result.
+	void AppendCondition(string &result, const string &source, Format::ConditionGetter getter,
+		size_t formatStart, size_t formatSize, size_t conditionStart, size_t conditionSize)
+	{
+		int64_t value = getter(source, conditionStart, conditionSize);
+		if(formatStart == string::npos || formatSize == string::npos)
+			result.append(Format::Number(value));
+		else if(!source.compare(formatStart, formatSize, "credits"))
+			result.append(Format::CreditString(value)); // 1 credit, 2 credits, etc.
+		else if(!source.compare(formatStart, formatSize, "scaled"))
+			result.append(Format::Credits(value)); // 35, 35k, 35M, etc.
+		else if(!source.compare(formatStart, formatSize, "tons"))
+			result.append(Format::MassString(value)); // X tons or X ton
+		else if(!source.compare(formatStart, formatSize, "playtime"))
+			result.append(Format::PlayTime(value));
+		else
+			// "number" or unsupported format
+			result.append(Format::Number(value));
+	}
 }
 
 
@@ -387,5 +415,89 @@ vector<string> Format::Split(const string &str, const string &separator)
 		if(begin >= str.length())
 			break;
 	}
+	return result;
+}
+
+
+
+string Format::ExpandConditions(const string &source, ConditionGetter getter)
+{
+	string result;
+	result.reserve(source.size());
+
+	size_t formatStart = string::npos;
+	size_t formatSize = string::npos;
+	size_t conditionStart = string::npos;
+	size_t conditionSize = string::npos;
+
+	// I wish I had could use flex and bison, but Endless Sky doesn't have that so...
+	// Here's a hand-coded LALR0 parser. It parses this:
+	//	&{format@condition}
+	//	&{condition}
+	// Using these states:
+	//	state = _ ----- outside of all &{} regions
+	//	state = & ----- just read & and hoping to see a {
+	//	state = { ----- read &{ but haven't seen @ or } yet
+	//	state = @ ----- read &{...@ but haven't seen } yet. Have format start & size.
+	// Anything inside a &{...} is sent to AppendCondition
+	char state = '_';
+	// "start" is the beginning of the text that has not yet been sent to result.
+	size_t start = 0;
+	for(size_t look = 0; look < source.size(); ++look)
+	{
+		char next = source[look];
+		// This would be faster with a nested select, but that would be
+		// harder to read, and I don't expect this to be performance-critical.
+		if(state == '_' && next == '&')
+			state = '&';
+		else if(state == '_' || (state == '&' && next != '{'))
+		{
+			result.append(source, start, look - start + 1);
+			start = look + 1;
+			state = '_';
+		}
+		else if(state == '&' && next == '{')
+		{
+			formatStart = formatSize = conditionStart = conditionSize = string::npos;
+			state = '{';
+		}
+		else if(state == '{' && next == '@')
+		{
+			formatStart = start + 2;
+			formatSize = look - formatStart;
+			state = '@';
+		}
+		else if(state == '@' && next == '}')
+		{
+			conditionStart = formatStart + formatSize + 1;
+			conditionSize = look - conditionStart;
+			AppendCondition(result, source, getter, formatStart, formatSize,
+				conditionStart, conditionSize);
+			start = look + 1;
+			state = '_';
+		}
+		else if(state == '{' && next == '}')
+		{
+			conditionStart = start + 2;
+			conditionSize = look - conditionStart;
+			AppendCondition(result, source, getter, formatStart, formatSize,
+				conditionStart, conditionSize);
+			start = look + 1;
+			state = '_';
+		}
+		else if(state == '{' || state == '@')
+		{
+			// format or condition consumes a character
+		}
+		else
+		{
+			// Error in format string.
+			result.append(source, start, look - start + 1);
+			start = look + 1;
+			state = '_';
+		}
+	}
+	if(start < source.size())
+		result.append(source, start, string::npos);
 	return result;
 }
