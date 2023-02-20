@@ -58,7 +58,7 @@ namespace {
 		DARING,
 		SECRETIVE,
 		RAMMING,
-    UNRESTRICTED
+		UNRESTRICTED
 	};
 
 	const map<string, PersonalityTrait> TOKEN = {
