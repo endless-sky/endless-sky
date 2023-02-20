@@ -26,7 +26,7 @@ using namespace std;
 
 namespace {
 	// Make sure the length of PersonalityTrait matches PERSONALITY_COUNT
-	// or the game will crash at runtime.
+	// or the build will fail.
 	enum PersonalityTrait {
 		PACIFIST,
 		FORBEARING,
@@ -59,7 +59,10 @@ namespace {
 		LAUNCHING,
 		DARING,
 		SECRETIVE,
-		RAMMING
+		RAMMING,
+
+		// This must be last so it can be used for bounds checking.
+		LAST_ITEM_IN_PERSONALITY_TRAIT_ENUM
 	};
 
 	const map<string, PersonalityTrait> TOKEN = {
@@ -111,6 +114,8 @@ namespace {
 Personality::Personality() noexcept
 	: flags(1LL << DISABLES), confusionMultiplier(DEFAULT_CONFUSION), aimMultiplier(1.)
 {
+	static_assert(LAST_ITEM_IN_PERSONALITY_TRAIT_ENUM == PERSONALITY_COUNT,
+		"PersonalityTraits and PERSONALITY_COUNT must have the same length");
 }
 
 
