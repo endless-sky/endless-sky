@@ -2520,15 +2520,20 @@ fleet "pirate raid"
 		"Firebird (Plasma)"
 	variant 1
 		"Berserker" 3
-	variant 8
-		"Berserker (Afterburner)" 3
-	variant 2
+	variant 4
 		"Berserker (Afterburner)" 2
-	variant 2
+		"Berserker (Twin Modified Blaster)"
+	variant 4
+		"Berserker (Twin Modified Blaster)" 2
+		"Berserker (Afterburner)"
+	variant 6
+		"Berserker (Afterburner)" 2
+	variant 6
 		"Berserker (Twin Modified Blaster)" 2
 	variant 8
-		"Berserker (Twin Modified Blaster)" 3
-	variant 8
+		"Berserker (Afterburner)"
+		"Berserker (Twin Modified Blaster)"
+	variant 3
 		"Berserker (Twin Modified Blaster)" 2
 		"Berserker (Afterburner)" 2
 	variant 3
