@@ -2547,7 +2547,8 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 
 
 
-void Engine::EmplaceStatusOverlays(const shared_ptr<Ship> &it, const std::string &parent_setting, const std::string &setting, int type)
+void Engine::EmplaceStatusOverlays(const shared_ptr<Ship> &it,
+	const std::string &parent_setting, const std::string &setting, int type)
 {
 	std::string used_setting;
 	if(parent_setting != "--")
