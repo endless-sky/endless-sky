@@ -414,21 +414,23 @@ ship "Behemoth" "Behemoth (Speedy)"
 
 ship "Berserker" "Berserker (Afterburner)"
 	outfits
-		"Twin Modified Blaster" 2
-		"Javelin Mini Pod" 2
-		"Javelin" 80
-		"nGVF-CC Fuel Cell"
+		"Energy Blaster" 2
+		"Javelin Pod" 2
+		"Javelin" 400
+		"nGVF-AA Fuel Cell"
 		"LP036a Battery Pack"
-		"D41-HY Shield Generator"
+		"D23-QP Shield Generator"
+		"Small Radar Jammer"
 		"Ramscoop"
-		"Chipmunk Plasma Thruster"
+		"Fuel Pod" 2
+		"X1700 Ion Thruster"
 		"Greyhound Plasma Steering"
-		"Volcano Afterburner"
+		"Volcano Afterburner" 2
 		"Hyperdrive"
-	gun "Javelin Mini Pod"
-	gun "Javelin Mini Pod"
-	gun "Twin Modified Blaster"
-	gun "Twin Modified Blaster"
+	gun "Energy Blaster"
+	gun "Energy Blaster"
+	gun "Javelin Pod"
+	gun "Javelin Pod"
 
 
 ship "Berserker" "Berserker (Strike)"
@@ -451,6 +453,42 @@ ship "Berserker" "Berserker (Strike)"
 	gun "Javelin Pod"
 	gun "Javelin Mini Pod"
 	gun "Torpedo Pod"
+
+
+ship "Berserker" "Berserker (Twin Modified Blaster)"
+	outfits
+		"Twin Modified Blaster" 2
+		"Javelin Mini Pod" 2
+		"Javelin" 80
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
+		"D41-HY Shield Generator"
+		"Ramscoop"
+		"Chipmunk Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Volcano Afterburner"
+		"Hyperdrive"
+	gun "Javelin Mini Pod"
+	gun "Javelin Mini Pod"
+	gun "Twin Modified Blaster"
+	gun "Twin Modified Blaster"
+
+
+ship "Berserker" "Berserker (Reverse Thrust)"
+	outfits
+		"Javelin Mini Pod" 4
+		"Javelin" 160
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D41-HY Shield Generator"
+		"Ramscoop"
+		"Fuel Pod"
+		"Small Radar Jammer"
+		"Capybara Reverse Thruster"
+		"Chipmunk Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Volcano Afterburner"
+		"Hyperdrive"
 
 
 ship "Blackbird" "Blackbird (Prisoner Transport)"
