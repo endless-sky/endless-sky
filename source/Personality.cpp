@@ -115,7 +115,7 @@ Personality::Personality() noexcept
 	: flags(1LL << DISABLES), confusionMultiplier(DEFAULT_CONFUSION), aimMultiplier(1.)
 {
 	static_assert(LAST_ITEM_IN_PERSONALITY_TRAIT_ENUM == PERSONALITY_COUNT,
-		"PersonalityTraits and PERSONALITY_COUNT must have the same length");
+		"PERSONALITY_COUNT must match the length of PersonalityTraits");
 }
 
 
