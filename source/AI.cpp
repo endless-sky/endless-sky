@@ -1317,8 +1317,13 @@ shared_ptr<Ship> AI::FindNonHostileTarget(const Ship &ship) const
 		shared_ptr<Ship> oldTarget = ship.GetTargetShip();
 		if(oldTarget && !oldTarget->IsTargetable())
 			oldTarget.reset();
-		if(oldTarget && (ship.CargoScanFraction() || ship.OutfitScanFraction()))
-			target = std::move(oldTarget);
+		if(oldTarget)
+		{
+			bool cargoScanInProgress = ship.CargoScanFraction() > 0. && ship.CargoScanFraction() < 1.;
+			bool outfitScanInProgress = ship.OutfitScanFraction() > 0. && ship.OutfitScanFraction() < 1.;
+			if(cargoScanInProgress || outfitScanInProgress)
+				target = std::move(oldTarget);
+		}
 		else
 		{
 			double closest = numeric_limits<double>::infinity();
