@@ -23,7 +23,7 @@ static State g_prev_state = INVALID;
 
 static State Get()
 {
-   std::string contents = Files::Read(Files::Config() + "/state.txt");
+   std::string contents = Files::Read(Files::Config() + "/crash_state.txt");
    if (!contents.empty())
    {
       try
@@ -41,7 +41,7 @@ void Init() { g_prev_state = Get(); Set(INITIAL); }
 
 void Set(State s)
 {
-   Files::Write(Files::Config() + "/state.txt", std::to_string(static_cast<int>(s)));
+   Files::Write(Files::Config() + "/crash_state.txt", std::to_string(static_cast<int>(s)));
 }
 
 State Previous() { return g_prev_state; }

@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Conversation.h"
 #include "ConversationPanel.h"
 #include "CrashState.h"
+#include "Dialog.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
@@ -84,6 +85,13 @@ void GameLoadingPanel::Step()
 			UI *ui = GetUI();
 			talk->SetCallback([ui](int response) { ui->Quit(); });
 			GetUI()->Push(talk);
+		}
+		if (CrashState::HasCrashed())
+		{
+			GetUI()->Push(new Dialog("Endless Sky crashed during a previously attempted load. "
+											 "\"Reduced Graphics\" mode has been turned on, and all "
+											 "plugins have been disbled. Please remove any plugins "
+											 "you do not need before restarting."));
 		}
 
 		finishedLoading = true;

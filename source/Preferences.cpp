@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Preferences.h"
 
 #include "Audio.h"
+#include "CrashState.h"
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -149,6 +150,14 @@ void Preferences::Load()
 		if(!it->second)
 			alertIndicatorIndex = 2;
 		settings.erase(it);
+	}
+
+	// Check if the app crashed on startup
+	if (CrashState::HasCrashed())
+	{
+		// Force low graphics mode to on.
+		SDL_Log("Previous loading crashed... defaulting Reduced graphics to true");
+		settings["Reduced graphics"] = true;
 	}
 }
 

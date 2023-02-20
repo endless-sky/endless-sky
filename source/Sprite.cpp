@@ -59,7 +59,7 @@ void Sprite::AddFrames(ImageBuffer &buffer, bool is2x)
 
 	// Reduce the size of the textures (and the GPU memory load) if we are in
 	// "Reduced graphics" mode.
-	if(Preferences::Has("Reduced graphics"))
+	if(Preferences::Has("Reduced graphics") && name.substr(0, 3) != "ui/")
 	{
 		do
 		{

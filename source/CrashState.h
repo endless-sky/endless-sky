@@ -28,6 +28,10 @@ namespace CrashState
    void Init();
    void Set(State state);
    State Previous();
+
+   inline bool HasCrashed() { return Previous() != INVALID &&
+                                     Previous() != LOADED &&
+                                     Previous() != EXITED; }
 }
 
 
