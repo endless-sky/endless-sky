@@ -16,6 +16,7 @@
 color "shields default" .43 .55 .70 .75
 # Deep, maybe?
 color "shields deep" .10 .25 .60 .75
+color "shields wanderer" .02 .08 .46 .8
 
 # Reddish shields
 # Heat Generating i.e. regenrators, korath
@@ -23,6 +24,10 @@ color "shields republic regenerator" .8 .43 .17 .75
 color "shields korath deep" .9 .3 .2 .75
 color "shields korath" .9 .22 .02 .75
 color "shields sheragi" .29 .14 .26 .75
+
+color "shields bunrodea" .58 .32 .04 .75
+color "shields bunrodea deep" .72 .33 .04 .8
+color "shields bunrodea light" .38 .17 .02 .6
 
 # Greenish shields
 # Efficientish i.e. hai
@@ -33,6 +38,8 @@ color "shields hai" .35 .44 .1 .75
 color "shields remnant light" .14 .08 .28 .75
 color "shields remnant" .18 .08 .47 .7
 color "shields builder" .2 0. .2 .75
+color "shields coalition" .78 .55 .72 .75
+color "shields heliarch" 1. .84 0. .7
 
 color "shields heliarch" .69 .67 .23 .75
 

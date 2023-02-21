@@ -19,6 +19,7 @@ outfit "Shield Relay Booster"
 	"outfit space" -2
 	"shield generation" 0.4
 	"shield energy" 1.2
+	"shield color" "shields bunrodea deep" 3
 	"relay upgrades" -1
 	description "The Shield Relay Booster is a component that can be installed into a Bunrodean shield relay in order to modify its effectiveness. Boosters increase the shield generation strength of a relay, but at the cost of reduced energy efficiency."
 
@@ -30,6 +31,7 @@ outfit "Shield Relay Limiter"
 	"outfit space" -1
 	"shield generation" -0.02
 	"shield energy" -0.1
+	"shield color" "shields bunrodea light" 3
 	"relay upgrades" -1
 	description "The Shield Relay Limiter is a component that can be installed into a Bunrodean shield relay in order to modify its effectiveness. Limiters increase the energy efficiency of a relay, but at the cost of reducing the strength of its shield generation."
 
@@ -41,6 +43,7 @@ outfit "Small Shield Relay"
 	"outfit space" -21
 	"shield generation" 0.65
 	"shield energy" 0.6
+	"shield color" "shields bunrodea" 3
 	"relay upgrades" 6
 # Giving an outfit "ammo" like this means that selling this outfit sells the "ammo," which is better UX for selling these outfits without having to sell the upgrades first, but this also makes it so that if you have space for upgrades, entering the outfitter asks you if you want to "buy ammo," which is not good UX. We either need a way to decouple those two mechanics (only ask to buy ammo if the "ammo" is actually in the ammo category?), or come up with a new keyword that only provides the "selling this sells that" behavior.
 #	ammo "Shield Relay Booster"
@@ -56,6 +59,7 @@ outfit "Large Shield Relay"
 	"outfit space" -56
 	"shield generation" 2
 	"shield energy" 1.6
+	"shield color" "shields bunrodea" 10
 	"relay upgrades" 16
 #	ammo "Shield Relay Booster"
 #	ammo "Shield Relay Limiter"

@@ -120,6 +120,7 @@ outfit "Small Shield Module"
 	"shield generation" .28
 	"shield energy" .28
 	"shield heat" .1
+	"shield color" "shields coalition" 4
 	description "Although combat is almost unheard of in Coalition space, almost all of their ships are able to recharge their shields when necessary."
 
 outfit "Large Shield Module"
@@ -133,6 +134,7 @@ outfit "Large Shield Module"
 	"shield generation" 1.3
 	"shield energy" 1.3
 	"shield heat" .5
+	"shield color" "shields coalition" 14
 	description "The Coalition manufactures heavy shield generators for their ships in case they ever face aggression from the Quarg or another species."
 
 outfit "Overcharged Shield Module"
@@ -146,6 +148,8 @@ outfit "Overcharged Shield Module"
 	"shield generation" 4.6
 	"shield energy" 4.6
 	"shield heat" 1.4
+	"shield color" "shields heliarch" 16
+	"shield color" "shields coalition" 4
 	"energy consumption" .5
 	description "These modular shield generators are the most powerful emitters produced in Coalition space, and as such they are strictly controlled and exclusively used by the Heliarchs. The additions made to the Large Shield Module more than tripled its shield generation, but at the cost of it requiring a constant supply of energy to stabilize it."
 

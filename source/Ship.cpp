@@ -1179,9 +1179,12 @@ const vector<pair<string, double>> Ship::ShieldColors() const
 	vector<pair<string, double>> colors;
 	for(const auto &it : outfits)
 	{
-		for(const auto &it : it.first->ShieldColor())
+		for(int i = 0; i < it.second; i++)
 		{
-			colors.push_back(it);
+			for(const auto& that : it.first->ShieldColor())
+			{
+				colors.push_back(that);
+			}
 		}
 	}
 	for(const auto &it : attributes.ShieldColor())
