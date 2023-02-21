@@ -1575,8 +1575,8 @@ void Engine::CalculateStep()
 				AddSprites(*ship);
 				if(static_cast<int>(Preferences::GetHitEffects()) > 0)
 				{
-					shipEffects[calcTickTock].push_back(ShipEffectsShader::Prepare(ship.get(), (ship->Position() - newCenter), ship->RecentHits(),
-						zoom, ship->GetFrame(), ship->ShieldColors()));
+					shipEffects[calcTickTock].push_back(ShipEffectsShader::Prepare(ship.get(), (ship->Position() - newCenter),
+						ship->RecentHits(),	zoom, ship->GetFrame(), ship->ShieldColors()));
 				}
 				if(ship->IsThrusting() && !ship->EnginePoints().empty())
 				{

@@ -277,7 +277,7 @@ ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Ship* body, const
 	if(!body->GetSprite())
 		return {};
 
-	if (body->Shields() <= 0)
+	if(body->Shields() <= 0)
 		return {};
 
 	EffectItem item;
