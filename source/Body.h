@@ -68,7 +68,6 @@ public:
 	// Store the government here too, so that collision detection that is based
 	// on the Body class can figure out which objects will collide.
 	const Government *GetGovernment() const;
-	const Government *GetDefeatedGovernment() const;
 
 	// Sprite serialization.
 	void LoadSprite(const DataNode &node);
@@ -102,8 +101,6 @@ protected:
 
 	// Government, for use in collision checks.
 	const Government *government = nullptr;
-	const Government *defeatedGovernment = nullptr;
-	const Government *lootedGovernment = nullptr;
 
 
 private:

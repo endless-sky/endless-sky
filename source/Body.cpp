@@ -197,13 +197,6 @@ const Government *Body::GetGovernment() const
 
 
 
-const Government *Body::GetDefeatedGovernment() const
-{
-	return defeatedGovernment;
-}
-
-
-
 // Load the sprite specification, including all animation attributes.
 void Body::LoadSprite(const DataNode &node)
 {

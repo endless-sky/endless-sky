@@ -174,8 +174,14 @@ public:
 	void SetSystem(const System *system);
 	void SetPlanet(const Planet *planet);
 	void SetGovernment(const Government *government);
-	void SetDefeatedGovernment(const Government *defeatedGovernment);
-	void SetLootedGovernment(const Government *lootedGovernment);
+	void SetOriginalGovernment(const Government *government);
+	void SetDefeatedGovernment(const Government *government);
+	void SetLootedGovernment(const Government *government);
+	const Government *UpdateOriginalTargetGovernment();
+	const Government *GetOriginalGovernment() const;
+	const Government *GetDefeatedGovernment() const;
+	const Government *GetLootedGovernment() const;
+	const Government *GetOriginalTargetGovernment() const;
 	void SetIsSpecial(bool special = true);
 	bool IsSpecial() const;
 
@@ -505,6 +511,12 @@ private:
 	// double zoom;
 	// int swizzle;
 	// const Government *government;
+
+	const Government *originalGovernment = nullptr;
+	const Government *defeatedGovernment = nullptr;
+	const Government *lootedGovernment = nullptr;
+
+	const Government *originalTargetGovernment = nullptr;
 
 	// Characteristics of the chassis:
 	bool isDefined = false;

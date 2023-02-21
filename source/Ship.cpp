@@ -1338,6 +1338,13 @@ void Ship::SetGovernment(const Government *government)
 
 
 
+void Ship::SetOriginalGovernment(const Government *government)
+{
+	originalGovernment = government;
+}
+
+
+
 void Ship::SetDefeatedGovernment(const Government *government)
 {
 	defeatedGovernment = government;
@@ -1348,6 +1355,42 @@ void Ship::SetDefeatedGovernment(const Government *government)
 void Ship::SetLootedGovernment(const Government *government)
 {
 	lootedGovernment = government;
+}
+
+
+
+const Government *Ship::GetOriginalGovernment() const
+{
+	return originalGovernment;
+}
+
+
+
+const Government *Ship::GetDefeatedGovernment() const
+{
+	return defeatedGovernment;
+}
+
+
+
+const Government *Ship::GetLootedGovernment() const
+{
+	return lootedGovernment;
+}
+
+
+
+const Government *Ship::GetOriginalTargetGovernment() const
+{
+	return originalTargetGovernment;
+}
+
+
+
+const Government *Ship::UpdateOriginalTargetGovernment()
+{
+	shared_ptr<Ship> target = GetTargetShip();
+	return originalTargetGovernment = target ? target->GetGovernment() : nullptr;
 }
 
 
@@ -4224,6 +4267,8 @@ void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 		// When you change targets, clear your scanning records.
 		cargoScan = 0.;
 		outfitScan = 0.;
+		// Record the government of this ship as of the moment we targeted it.
+		UpdateOriginalTargetGovernment();
 	}
 	targetAsteroid.reset();
 }

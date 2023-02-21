@@ -627,6 +627,19 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 
 		// Pick a target and automatically fire weapons.
 		shared_ptr<Ship> target = it->GetTargetShip();
+		if(target && it->GetOriginalTargetGovernment()
+			&& it->GetOriginalTargetGovernment() != target->GetGovernment())
+		{
+			// The target government is not the same as we last checked.
+			// Has that caused a change in hostility?
+			if(it->GetOriginalTargetGovernment()->IsEnemy(it->GetGovernment())
+				!= target->GetGovernment()->IsEnemy(it->GetGovernment()))
+			{
+				it->SetTargetShip(nullptr);
+				target = nullptr;
+			}
+			it->UpdateOriginalTargetGovernment();
+		}
 		if(isPresent && !personality.IsSwarming())
 		{
 			// Each ship only switches targets twice a second, so that it can
@@ -829,6 +842,12 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			bool parentHasSpace = inParentSystem && parent->BaysFree(it->Attributes().Category());
 			if(findNewParent && parentHasSpace && it->IsYours())
 				parentHasSpace = parent->CanCarry(*it);
+
+			// If the carrier changed government, the carriables should match.
+			if(hasParent && parent->GetGovernment() != it->GetGovernment()
+					&& parent->GetOriginalGovernment() != parent->GetGovernment()
+					&& parent->GetOriginalGovernment() == it->GetOriginalGovernment())
+				it->ChangeGovernment(parent->GetGovernment(), true, true, true);
 			if(!hasParent || (!inParentSystem && !it->JumpNavigation().JumpFuel()) || (!parentHasSpace && findNewParent))
 			{
 				// Find the possible parents for orphaned fighters and drones.
