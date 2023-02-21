@@ -363,6 +363,7 @@ mission "Visit Wanderers Again"
 		has "human cultural data"
 	on offer
 		set "language: Wanderer"
+		set "language: Hai"
 		event "wanderer technology available"
 		log "Received a device, created by a Hai scientist, which can translate between human language and the Hai language. Since the Wanderers speak the Hai language, that should make it possible to communicate with them directly."
 		conversation "eruk cultural data"
@@ -373,6 +374,20 @@ event "wanderer technology available" # Name unchanged for compatibility
 		"friendly disabled hail" "friendly disabled wanderer"
 		"hostile hail" "hostile wanderer"
 		"hostile disabled hail" "hostile disabled wanderer"
+
+
+
+# Compatibility patch for saves before "language: Hai" variable was added.
+mission "Hai Language Patch"
+	landing
+	invisible
+	source
+	to offer
+		has "Visit Wanderers Again: offered"
+		not "language: Hai"
+	on offer
+		set "language: Hai"
+		fail
 
 
 
