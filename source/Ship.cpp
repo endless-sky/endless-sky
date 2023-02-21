@@ -2461,10 +2461,10 @@ void Ship::DoGeneration()
 				recentHits[i].second *= 0.92;
 			if(recentHits[i].second < 0.001)
 			{
-				Logger::LogError("DESTROYING ITERATORERED NUMBA " + to_string(i) + " OF SHIP " + name
-					+ " WITH SIZEOF " + to_string(recentHits.size()));
+				// Logger::LogError("DESTROYING ITERATORERED NUMBA " + to_string(i) + " OF SHIP " + name
+				// 	+ " WITH SIZEOF " + to_string(recentHits.size()));
 				recentHits.erase(recentHits.begin() + i);
-				Logger::LogError("NOW SIZE IS " + to_string(recentHits.size()));
+				// Logger::LogError("NOW SIZE IS " + to_string(recentHits.size()));
 			}
 			else
 			{
@@ -3669,8 +3669,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 		ApplyForce(damage.HitForce(), damage.GetWeapon().IsGravitational());
 
 	// Add this hit to the list of latest hits.
-	bool isFast = static_cast<int>(Preferences::GetHitEffects()) == 2;
-	recentHits.emplace_back(isFast ? Point() : damageSource - position,
+	recentHits.emplace_back(damageSource - position,
 		Attributes().Get("shields") / (damage.Shield() + Attributes().Get("shield generation")));
 
 	// Prevent various stats from reaching unallowable values.
