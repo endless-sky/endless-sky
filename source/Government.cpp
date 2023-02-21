@@ -1,3 +1,4 @@
+#include "Government.h"
 /* Government.cpp
 Copyright (c) 2014 by Michael Zahniser
 
@@ -345,6 +346,15 @@ void Government::Load(const DataNode &node)
 			else if(child.Size() >= 1 + valueIndex)
 				color = ExclusiveItem<Color>(GameData::Colors().Get(child.Token(valueIndex)));
 		}
+		else if (key == "shield color")
+		{
+			if (child.Size() >= 3 + valueIndex)
+				shieldColor = Color(child.Value(valueIndex),
+					child.Value(valueIndex + 1), child.Value(valueIndex + 2));
+			else if (child.Size() >= 1 + valueIndex)
+				shieldColor = *GameData::Colors().Get(child.Token(valueIndex));
+			hasColor = true;
+		}
 		else if(key == "death sentence")
 			deathSentence = GameData::Conversations().Get(child.Token(valueIndex));
 		else if(key == "friendly hail")
@@ -409,6 +419,14 @@ int Government::GetSwizzle() const
 // Get the color to use for displaying this government on the map.
 const Color &Government::GetColor() const
 {
+	return *color;
+}
+
+const Color& Government::GetShieldColor() const
+{
+	if (hasColor) {
+		return shieldColor;
+	}
 	return *color;
 }
 

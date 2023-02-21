@@ -76,6 +76,8 @@ public:
 	int GetSwizzle() const;
 	// Get the color to use for displaying this government on the map.
 	const Color &GetColor() const;
+	// Get the color to use for this government's shields.
+	const Color &GetShieldColor() const;
 
 	// Get the government's initial disposition toward other governments or
 	// toward the player.
@@ -154,6 +156,8 @@ private:
 	std::string displayName;
 	int swizzle = 0;
 	ExclusiveItem<Color> color;
+	Color shieldColor;
+	bool hasColor = false;
 
 	std::vector<double> attitudeToward;
 	std::set<const Government *> trusted;

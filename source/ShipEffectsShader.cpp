@@ -327,7 +327,7 @@ ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Body* body, const
 	{
 		total += it.second;
 	}
-	const auto colourx = body->GetGovernment()->GetColor().Get();
+	const auto colourx = body->GetGovernment()->GetShieldColor().Get();
 	const float modix = 2. / total;
 	finalColour[0] += colourx[0] * modix;
 	finalColour[1] += colourx[1] * modix;
