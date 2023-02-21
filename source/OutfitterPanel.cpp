@@ -94,6 +94,8 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 
 	if(player.GetPlanet())
 		outfitter = player.GetPlanet()->Outfitter();
+	if(isLimitedOutfitter)
+		showForSale = false;
 }
 
 
@@ -813,7 +815,8 @@ void OutfitterPanel::DrawKey()
 	Point off = Point(10., -.5 * font.Height());
 	SpriteShader::Draw(box[showForSale], pos);
 	font.Draw("Show outfits for sale", pos + off, color[showForSale]);
-	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){ ToggleForSale(); });
+	if(planet->HasOutfitter())
+		AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){ ToggleForSale(); });
 
 	pos.Y() += 20.;
 	SpriteShader::Draw(box[showCargo], pos);
