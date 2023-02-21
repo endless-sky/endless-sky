@@ -23,6 +23,7 @@ outfit "Small EM Battery"
 	"shield generation" 0.14
 	"shield energy" 0.14
 	"shield heat" 0.14
+	"shield color" "shields sheragi" 8
 	"energy capacity" 3600
 	description "This small superconductive inductor stores just enough power to keep a fighter running, and the electromagnetic field it generates helps to maintain the shield matrix."
 
@@ -36,6 +37,7 @@ outfit "Large EM Battery"
 	"shield generation" 0.8
 	"shield energy" 0.8
 	"shield heat" 0.8
+	"shield color" "shields sheragi" 40
 	"energy capacity" 40000
 	description "This is a massive superconductive coil, capable of storing large amounts of energy in an electromagnetic field and discharging all of it in a fraction of a second. The magnetic field also provides a small boost to the shield regeneration of the ship, which is otherwise very underdeveloped."
 

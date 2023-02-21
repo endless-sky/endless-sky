@@ -356,6 +356,7 @@ outfit "Ka'het Shield Restorer"
 	"mass" 14
 	"outfit space" -17
 	"shield generation" 1.02
+	"shield color" "shields builder" 6
 	"energy consumption" 1.53
 	description "The Builders never relied much on shield matrices, preferring instead to strengthen their hull. The reality of war, however, required that the Builders develop strong shield technology, leading to some Het vessels making extensive use of this module."
 
@@ -366,6 +367,7 @@ outfit "Ka'het Grand Restorer"
 	"mass" 72
 	"outfit space" -86
 	"shield generation" 7.08
+	"shield color" "shields builder" 30
 	"energy consumption" 10.62
 	"depleted shield delay" 350
 	description "This shield generator is the apex of Ka'het shielding technology, a field that developed rapidly and out of necessity rather than gradually and perfected over long periods. Nevertheless, the Grand Restorer grants good protection for the largest Het ships, replacing the basic restorers used elsewhere."

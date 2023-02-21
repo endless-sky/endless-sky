@@ -118,6 +118,7 @@ outfit "Systems Core (Tiny)"
 	"energy capacity" 1300
 	"shield generation" 0.8
 	"shield energy" 1.2
+	"shield color" "shields korath" 5
 	"hull repair rate" 0.1
 	"hull energy" 0.1
 	"hull heat" 0.15
@@ -133,6 +134,7 @@ outfit "Systems Core (Small)"
 	"energy capacity" 2600
 	"shield generation" 1.6
 	"shield energy" 2.4
+	"shield color" "shields korath" 9
 	"hull repair rate" 0.2
 	"hull energy" 0.2
 	"hull heat" 0.3
@@ -148,6 +150,7 @@ outfit "Systems Core (Medium)"
 	"energy capacity" 5200
 	"shield generation" 3.1
 	"shield energy" 4.6
+	"shield color" "shields korath" 17
 	"hull repair rate" 0.4
 	"hull energy" 0.4
 	"hull heat" 0.6
@@ -163,6 +166,7 @@ outfit "Systems Core (Large)"
 	"energy capacity" 10400
 	"shield generation" 6.0
 	"shield energy" 8.8
+	"shield color" "shields korath" 34
 	"hull repair rate" 0.8
 	"hull energy" 0.8
 	"hull heat" 1.2

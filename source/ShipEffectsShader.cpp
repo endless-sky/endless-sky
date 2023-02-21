@@ -231,10 +231,10 @@ void ShipEffectsShader::Init()
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
 	GLfloat vertexData[] = {
-		-.55f, -.55f,
-		-.55f,  .55f,
-		 .55f, -.55f,
-		 .55f,  .55f
+		-.5f, -.5f,
+		-.5f,  .5f,
+		 .5f, -.5f,
+		 .5f,  .5f
 	};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 

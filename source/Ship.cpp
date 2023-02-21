@@ -920,7 +920,9 @@ void Ship::Save(DataWriter &out) const
 				for(int i = 0; i < it.second; ++i)
 					out.Write("hyperdrive out sound", it.first->Name());
 			for(const auto &it : baseAttributes.ShieldColor())
-				out.Write("shield color", it.first + " " + to_string(it.second));
+			{
+				out.Write("shield color", it.first, it.second);
+			}
 			for(const auto &it : baseAttributes.Attributes())
 				if(it.second)
 					out.Write(it.first, it.second);
@@ -1181,6 +1183,10 @@ const vector<pair<string, double>> Ship::ShieldColors() const
 		{
 			colors.push_back(it);
 		}
+	}
+	for(const auto &it : attributes.ShieldColor())
+	{
+		colors.push_back(it);
 	}
 	return colors;
 }
