@@ -118,6 +118,10 @@ help "uninstalling and storage"
 	`You can also uninstall outfits directly into planetary storage by selecting the outfit and pressing U. This can be useful for if you want to shuffle outfits between ships, store outfits for future use, or simply try on different outfits. Outfits in storage can also be transferred to cargo when you go to 'purchase to cargo' mode. Outfits that are in planetary storage or cargo can be (re)installed at any outfitter without cost.`
 	`If you sell an outfit at an outfitter, then you can immediately buy it back for the same price that you sold it, so long as you do not leave the planet. This means that you do not necessarily need to worry about uninstalling outfits into planetary storage when you are changing outfits around.`
 
+help "limited outfitter"
+	`Althrough this planet's spaceport doesn't have the special equipment needed to install and uninstall outfits, you can still leave some of your cargo at a place called "planetary storage". This, however, doesn't allow you to store mission cargo or common trade goods.`
+	`To move an item into planetary storage, press R. If you want to take something back to your ship's cargo, press C. To sell an item, press S.`
+
 help "stranded"
 	`Oops! You just ran out of fuel in an uninhabited star system. Fortunately, other ships are willing to help you.`
 	`Press <Select next ship> to cycle through all the ships in this system. When you have a friendly one selected, press <Talk to selected ship> to hail it. You can then ask for help, and if it has fuel to spare it will fly over and transfer fuel to your ship. This is easiest for the other ship to do if your ship is nearly stationary.`
