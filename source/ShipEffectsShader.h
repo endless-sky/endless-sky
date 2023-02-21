@@ -60,9 +60,9 @@ public:
 	static void SetCenter(Point newCenter);
 
 	// Draw a sprite.
-	static void Draw(const Body* body, const Point& position, const std::vector<std::pair<Point, double>>* recentHits,
+	static void Draw(const Ship* body, const Point& position, const std::vector<std::pair<Point, double>>* recentHits,
 		const float zoom = 1.f, const float frame = 0.f, const std::vector<std::pair<std::string, double>>& shieldColor = {});
-	static EffectItem Prepare(const Body *body, const Point &position,
+	static EffectItem Prepare(const Ship *body, const Point &position,
 		const std::vector<std::pair<Point, double>>* recentHits, const float zoom = 1.f, const float frame = 0.f,
 		const std::vector<std::pair<std::string, double>>& shieldColor = {});
 

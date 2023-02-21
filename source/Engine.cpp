@@ -984,9 +984,9 @@ void Engine::Draw() const
 	if(static_cast<int>(Preferences::GetHitEffects()) > 0)
 	{
 		ShipEffectsShader::Bind();
-		for(unsigned int i = 0; i < shipEffects.size(); i++)
+		for(unsigned int i = 0; i < shipEffects[drawTickTock].size(); i++)
 		{
-			ShipEffectsShader::Add(shipEffects[i]);
+			ShipEffectsShader::Add(shipEffects[drawTickTock][i]);
 		}
 		// Not sure why this doesn't work
 		// for (const auto& it : shipEffects)
@@ -1545,7 +1545,7 @@ void Engine::CalculateStep()
 	batchDraw[calcTickTock].SetCenter(newCenter);
 	radar[calcTickTock].SetCenter(newCenter);
 	ShipEffectsShader::SetCenter(newCenter);
-	shipEffects.clear();
+	shipEffects[calcTickTock].clear();
 
 	// Populate the radar.
 	FillRadar();
@@ -1575,7 +1575,7 @@ void Engine::CalculateStep()
 				AddSprites(*ship);
 				if(static_cast<int>(Preferences::GetHitEffects()) > 0)
 				{
-					shipEffects.push_back(ShipEffectsShader::Prepare(ship.get(), (ship->Position() - newCenter), ship->RecentHits(),
+					shipEffects[calcTickTock].push_back(ShipEffectsShader::Prepare(ship.get(), (ship->Position() - newCenter), ship->RecentHits(),
 						zoom, ship->GetFrame(), ship->ShieldColors()));
 				}
 				if(ship->IsThrusting() && !ship->EnginePoints().empty())
@@ -1603,7 +1603,7 @@ void Engine::CalculateStep()
 		AddSprites(*flagship);
 		if (static_cast<int>(Preferences::GetHitEffects()) > 0)
 		{
-			shipEffects.push_back(ShipEffectsShader::Prepare(flagship, (flagship->Position() - newCenter),
+			shipEffects[calcTickTock].push_back(ShipEffectsShader::Prepare(flagship, (flagship->Position() - newCenter),
 				player.Flagship()->RecentHits(), zoom, flagship->GetFrame(), flagship->ShieldColors()));
 		}
 		if(flagship->IsThrusting() && !flagship->EnginePoints().empty())

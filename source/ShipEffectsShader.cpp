@@ -250,7 +250,7 @@ void ShipEffectsShader::Init()
 
 
 
-void ShipEffectsShader::Draw(const Body* body, const Point& position, const vector<pair<Point, double>>* recentHits,
+void ShipEffectsShader::Draw(const Ship* body, const Point& position, const vector<pair<Point, double>>* recentHits,
 	const float zoom, const float frame, const vector<pair<string, double>> &shieldColor)
 {
 	if(!body->GetSprite())
@@ -270,11 +270,14 @@ void ShipEffectsShader::SetCenter(Point newCenter)
 
 
 
-ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Body* body, const Point& position,
+ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Ship* body, const Point& position,
 	const vector<pair<Point, double>>* recentHits, const float zoom, const float frame,
 	const vector<pair<string, double>> &shieldColor)
 {
 	if(!body->GetSprite())
+		return {};
+
+	if (body->Shields() <= 0)
 		return {};
 
 	EffectItem item;
@@ -292,7 +295,7 @@ ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Body* body, const
 	Point uw = unit * width;
 	Point uh = unit * height;
 
-	item.size = body->Radius() * 2.;
+	item.size = 80.;
 
 	// (0, -1) means a zero-degree rotation (since negative Y is up).
 	uw *= zoom;
