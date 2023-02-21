@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "FrameTimer.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Government.h"
 #include "Hazard.h"
 #include "Interface.h"
@@ -42,6 +43,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "NPC.h"
 #include "OutlineShader.h"
 #include "Person.h"
+#include "pi.h"
 #include "Planet.h"
 #include "PlanetLabel.h"
 #include "PlayerInfo.h"
@@ -171,6 +173,65 @@ namespace {
 						draw.Add(sprite, ship.Cloaking());
 					}
 		}
+	}
+
+	const Color &GetTargetOutlineColor(int type)
+	{
+		if(type == Radar::PLAYER)
+			return *GameData::Colors().Get("ship target outline player");
+		else if(type == Radar::FRIENDLY)
+			return *GameData::Colors().Get("ship target outline friendly");
+		else if(type == Radar::UNFRIENDLY)
+			return *GameData::Colors().Get("ship target outline unfriendly");
+		else if(type == Radar::HOSTILE)
+			return *GameData::Colors().Get("ship target outline hostile");
+		else if(type == Radar::SPECIAL)
+			return *GameData::Colors().Get("ship target outline special");
+		else if(type == Radar::BLINK)
+			return *GameData::Colors().Get("ship target outline blink");
+		else
+			return *GameData::Colors().Get("ship target outline inactive");
+	}
+
+	const Color &GetPlanetTargetPointerColor(const Planet &planet)
+	{
+		switch(planet.GetFriendliness())
+		{
+			case Planet::Friendliness::FRIENDLY:
+				return *GameData::Colors().Get("planet target pointer friendly");
+			case Planet::Friendliness::RESTRICTED:
+				return *GameData::Colors().Get("planet target pointer restricted");
+			case Planet::Friendliness::HOSTILE:
+				return *GameData::Colors().Get("planet target pointer hostile");
+			case Planet::Friendliness::DOMINATED:
+				return *GameData::Colors().Get("planet target pointer dominated");
+		}
+		return *GameData::Colors().Get("planet target pointer unfriendly");
+	}
+
+	const Color &GetShipTargetPointerColor(int type)
+	{
+		if(type == Radar::PLAYER)
+			return *GameData::Colors().Get("ship target pointer player");
+		else if(type == Radar::FRIENDLY)
+			return *GameData::Colors().Get("ship target pointer friendly");
+		else if(type == Radar::UNFRIENDLY)
+			return *GameData::Colors().Get("ship target pointer unfriendly");
+		else if(type == Radar::HOSTILE)
+			return *GameData::Colors().Get("ship target pointer hostile");
+		else if(type == Radar::SPECIAL)
+			return *GameData::Colors().Get("ship target pointer special");
+		else if(type == Radar::BLINK)
+			return *GameData::Colors().Get("ship target pointer blink");
+		else
+			return *GameData::Colors().Get("ship target pointer inactive");
+	}
+
+	const Color &GetMinablePointerColor(bool selected)
+	{
+		if(selected)
+			return *GameData::Colors().Get("minable target pointer selected");
+		return *GameData::Colors().Get("minable target pointer unselected");
 	}
 
 	const double RADAR_SCALE = .025;
@@ -678,7 +739,7 @@ void Engine::Step(bool isActive)
 			object->Position() - center,
 			object->Facing(),
 			object->Radius(),
-			object->GetPlanet()->CanLand() ? Radar::FRIENDLY : Radar::HOSTILE,
+			GetPlanetTargetPointerColor(*object->GetPlanet()),
 			5});
 	}
 	else if(flagship && flagship->GetTargetSystem())
@@ -744,7 +805,7 @@ void Engine::Step(bool isActive)
 		info.SetString("mission target", target->GetPersonality().IsTarget() ? "(mission target)" : "");
 
 		int targetType = RadarType(*target, step);
-		info.SetOutlineColor(Radar::GetColor(targetType));
+		info.SetOutlineColor(GetTargetOutlineColor(targetType));
 		if(target->GetSystem() == player.GetSystem() && target->IsTargetable())
 		{
 			info.SetBar("target shields", target->Shields());
@@ -758,7 +819,7 @@ void Engine::Step(bool isActive)
 				target->Position() - center,
 				Angle(45.) + target->Facing(),
 				size,
-				targetType,
+				GetShipTargetPointerColor(targetType),
 				4});
 
 			targetVector = target->Position() - center;
@@ -844,27 +905,40 @@ void Engine::Step(bool isActive)
 				ship->Position() - center,
 				Angle(45.) + ship->Facing(),
 				size,
-				Radar::PLAYER,
+				*GameData::Colors().Get("ship target pointer player"),
 				4});
 		}
 	}
 
 	// Draw crosshairs on any minables in range of the flagship's scanners.
-	double scanRange = flagship ? 100. * sqrt(flagship->Attributes().Get("asteroid scan power")) : 0.;
-	if(flagship && scanRange && !flagship->IsHyperspacing())
-		for(const shared_ptr<Minable> &minable : asteroids.Minables())
-		{
-			Point offset = minable->Position() - center;
-			if(offset.Length() > scanRange && flagship->GetTargetAsteroid() != minable)
-				continue;
+	if(Preferences::Has("Show asteroid scanner overlay"))
+	{
+		double scanRangeMetric = flagship ? 10000. * flagship->Attributes().Get("asteroid scan power") : 0.;
+		if(flagship && scanRangeMetric && !flagship->IsHyperspacing())
+			for(const shared_ptr<Minable> &minable : asteroids.Minables())
+			{
+				Point offset = minable->Position() - center;
+				if(offset.LengthSquared() > scanRangeMetric || flagship->GetTargetAsteroid() == minable)
+					continue;
 
-			targets.push_back({
-				offset,
-				minable->Facing(),
-				.8 * minable->Radius(),
-				minable == flagship->GetTargetAsteroid() ? Radar::SPECIAL : Radar::INACTIVE,
-				3});
-		}
+				targets.push_back({
+					offset,
+					minable->Facing(),
+					.8 * minable->Radius(),
+					GetMinablePointerColor(false),
+					3
+				});
+			}
+	}
+	const auto targetAsteroidPtr = flagship ? flagship->GetTargetAsteroid() : nullptr;
+	if(targetAsteroidPtr && !flagship->IsHyperspacing())
+		targets.push_back({
+			targetAsteroidPtr->Position() - center,
+			targetAsteroidPtr->Facing(),
+			.8 * targetAsteroidPtr->Radius(),
+			GetMinablePointerColor(true),
+			3
+		});
 }
 
 
@@ -907,40 +981,27 @@ void Engine::Draw() const
 	draw[drawTickTock].Draw();
 	batchDraw[drawTickTock].Draw();
 
-	if(!statuses.empty())
+	for(const auto &it : statuses)
 	{
-		const double zoomFactor = min(1., zoom);
-		double baseDashes = 20. * zoomFactor;
-		// For zoom values between .175 and .2,
-		// gradually scale the number of dashes so we go from
-		// 4 at .2 to 1 at .175.
-		if(zoom < .2 && zoom > .175)
-			baseDashes *= (1. - (.2 - zoom) * 2. * (20. - 1. / .175));
-		// No dashes at zooms of .175 or lower.
-		else if(zoom <= .175)
-			baseDashes = 0.;
-		for(const auto &it : statuses)
-		{
-			static const Color color[8] = {
-				*colors.Get("overlay friendly shields"),
-				*colors.Get("overlay hostile shields"),
-				*colors.Get("overlay outfit scan"),
-				*colors.Get("overlay friendly hull"),
-				*colors.Get("overlay hostile hull"),
-				*colors.Get("overlay cargo scan"),
-				*colors.Get("overlay friendly disabled"),
-				*colors.Get("overlay hostile disabled")
-			};
-			Point pos = it.position * zoom;
-			double radius = it.radius * zoom;
-			if(it.outer > 0.)
-				RingShader::Draw(pos, radius + 3., 1.5f, it.outer, color[it.type], 0.f, it.angle);
-			double dashes = (it.type >= 2) ? 0. : baseDashes;
-			if(it.inner > 0.)
-				RingShader::Draw(pos, radius, 1.5f, it.inner, color[3 + it.type], dashes, it.angle);
-			if(it.disabled > 0.)
-				RingShader::Draw(pos, radius, 1.5f, it.disabled, color[6 + it.type], dashes, it.angle);
-		}
+		static const Color color[8] = {
+			*colors.Get("overlay friendly shields"),
+			*colors.Get("overlay hostile shields"),
+			*colors.Get("overlay outfit scan"),
+			*colors.Get("overlay friendly hull"),
+			*colors.Get("overlay hostile hull"),
+			*colors.Get("overlay cargo scan"),
+			*colors.Get("overlay friendly disabled"),
+			*colors.Get("overlay hostile disabled")
+		};
+		Point pos = it.position * zoom;
+		double radius = it.radius * zoom;
+		if(it.outer > 0.)
+			RingShader::Draw(pos, radius + 3., 1.5f, it.outer, color[it.type], 0.f, it.angle);
+		double dashes = (it.type >= 2) ? 0. : 20. * min(1., zoom);
+		if(it.inner > 0.)
+			RingShader::Draw(pos, radius, 1.5f, it.inner, color[3 + it.type], dashes, it.angle);
+		if(it.disabled > 0.)
+			RingShader::Draw(pos, radius, 1.5f, it.disabled, color[6 + it.type], dashes, it.angle);
 	}
 
 	// Draw labels on missiles
@@ -1002,8 +1063,7 @@ void Engine::Draw() const
 		PointerShader::Bind();
 		for(int i = 0; i < target.count; ++i)
 		{
-			PointerShader::Add(target.center * zoom, a.Unit(), 12.f, 14.f, -target.radius * zoom,
-				Radar::GetColor(target.type));
+			PointerShader::Add(target.center * zoom, a.Unit(), 12.f, 14.f, -target.radius * zoom, target.color);
 			a += da;
 		}
 		PointerShader::Unbind();
@@ -1326,6 +1386,10 @@ void Engine::CalculateStep()
 	if(!player.GetSystem())
 		return;
 
+	// Handle the mouse input of the mouse navigation
+	if(Preferences::Has("alt-mouse turning") && !isMouseTurningEnabled)
+		activeCommands.Set(Command::MOUSE_TURNING_TOGGLE);
+	HandleMouseInput(activeCommands);
 	// Now, all the ships must decide what they are doing next.
 	ai.Step(player, activeCommands);
 
@@ -1689,7 +1753,7 @@ void Engine::SpawnFleets()
 // At random intervals, create new special "persons" who enter the current system.
 void Engine::SpawnPersons()
 {
-	if(Random::Int(36000) || player.GetSystem()->Links().empty())
+	if(Random::Int(GameData::GetGamerules().PersonSpawnPeriod()) || player.GetSystem()->Links().empty())
 		return;
 
 	// Loop through all persons once to see if there are any who can enter
@@ -1701,11 +1765,9 @@ void Engine::SpawnPersons()
 	if(!sum)
 		return;
 
-	// Adjustment factor: special persons will appear once every ten
-	// minutes, but much less frequently if the game only specifies a
-	// few of them. This way, they will become more common as I add
-	// more, without needing to change the 10-minute constant above.
-	sum = Random::Int(sum + 1000);
+	// Although an attempt to spawn a person is made every 10 minutes on average,
+	// that attempt can still fail due to an added weight for no person to spawn.
+	sum = Random::Int(sum + GameData::GetGamerules().NoPersonSpawnWeight());
 	for(const auto &it : GameData::Persons())
 	{
 		const Person &person = it.second;
@@ -1812,7 +1874,7 @@ void Engine::HandleKeyboardInputs()
 
 	// Transfer all commands that need to be active as long as the corresponding key is pressed.
 	activeCommands |= keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
-		maneuveringCommands | Command::SHIFT);
+		maneuveringCommands | Command::SHIFT | Command::MOUSE_TURNING_HOLD);
 
 	// Certain commands (e.g. LAND, BOARD) are debounced, allowing the player to toggle between
 	// navigable destinations in the system.
@@ -1950,7 +2012,7 @@ void Engine::HandleMouseClicks()
 			}
 		}
 	}
-	else if(isRightClick)
+	else if(isRightClick && !isMouseTurningEnabled)
 		ai.IssueMoveTarget(player, clickPoint + center, playerSystem);
 	else if(flagship->Attributes().Get("asteroid scan power"))
 	{
@@ -1975,6 +2037,35 @@ void Engine::HandleMouseClicks()
 	// Treat an "empty" click as a request to clear targets.
 	if(!clickTarget && !isRightClick && !clickedAsteroid && !clickedPlanet)
 		flagship->SetTargetShip(nullptr);
+}
+
+
+
+// Determines alternate mouse turning, setting player mouse angle, and right-click firing weapons.
+void Engine::HandleMouseInput(Command &activeCommands)
+{
+	isMouseHoldEnabled = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
+	if(activeCommands.Has(Command::MOUSE_TURNING_TOGGLE))
+		isMouseToggleEnabled = !isMouseToggleEnabled;
+	// XOR mouse hold and mouse toggle. If mouse toggle is OFF, then mouse hold
+	// will temporarily turn ON mouse control. If mouse toggle is ON, then mouse
+	// hold will temporarily turn OFF mouse control.
+	isMouseTurningEnabled = (isMouseHoldEnabled ^ isMouseToggleEnabled);
+	Preferences::Set("alt-mouse turning", isMouseTurningEnabled);
+	if(!isMouseTurningEnabled)
+		return;
+	bool rightMouseButtonHeld = false;
+	int mousePosX;
+	int mousePosY;
+	if((SDL_GetMouseState(&mousePosX, &mousePosY) & SDL_BUTTON_RMASK) != 0)
+		rightMouseButtonHeld = true;
+	double relX = mousePosX - Screen::RawWidth() / 2;
+	double relY = mousePosY - Screen::RawHeight() / 2;
+	ai.SetMousePosition(Point(relX, relY));
+
+	// Activate firing command.
+	if(isMouseTurningEnabled && rightMouseButtonHeld)
+		activeCommands.Set(Command::PRIMARY);
 }
 
 
@@ -2180,16 +2271,14 @@ void Engine::DoCollection(Flotsam &flotsam)
 	if(!commodity.empty())
 	{
 		double amountInTons = amount * flotsam.UnitSize();
-		message = name + (amountInTons == 1. ? "a ton" : Format::Number(amountInTons) + " tons")
-			+ " of " + Format::LowerCase(commodity) + ".";
+		message = name + Format::CargoString(amountInTons, Format::LowerCase(commodity)) + ".";
 	}
 
 	// Unless something went wrong while forming the message, display it.
 	if(!message.empty())
 	{
 		int free = collector->Cargo().Free();
-		message += " (" + to_string(free) + (free == 1 ? " ton" : " tons");
-		message += " of free space remaining.)";
+		message += " (" + Format::CargoString(free, "free space") + " remaining.)";
 		Messages::Add(message, Messages::Importance::High);
 	}
 }

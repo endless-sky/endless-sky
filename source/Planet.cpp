@@ -557,6 +557,20 @@ bool Planet::CanLand() const
 
 
 
+Planet::Friendliness Planet::GetFriendliness() const
+{
+	if(GameData::GetPolitics().HasDominated(this))
+		return Friendliness::DOMINATED;
+	else if(GetGovernment()->IsEnemy())
+		return Friendliness::HOSTILE;
+	else if(CanLand())
+		return Friendliness::FRIENDLY;
+	else
+		return Friendliness::RESTRICTED;
+}
+
+
+
 bool Planet::CanUseServices() const
 {
 	return GameData::GetPolitics().CanUseServices(this);
