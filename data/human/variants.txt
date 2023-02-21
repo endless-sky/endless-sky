@@ -139,7 +139,7 @@ ship "Auxiliary (Cargo)" "Auxiliary (Cargo) (Mark II)"
 		"Scram Drive"
 
 
-ship "Auxiliary (Transport)" "Auxiliary (Transport Mark II)"
+ship "Auxiliary (Transport)" "Auxiliary (Transport) (Mark II)"
 	outfits
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 90
