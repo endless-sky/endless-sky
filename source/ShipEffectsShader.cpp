@@ -382,7 +382,7 @@ void ShipEffectsShader::Add(const EffectItem& item, bool withBlur)
 	glUniform1f(ratioI, item.ratio);
 	glUniform1f(sizeI, item.size);
 	glUniform1i(fastI, 2 == static_cast<int>(Preferences::GetHitEffects()));
-	Logger::LogError(to_string(item.recentHits));
+	// Logger::LogError(to_string(item.recentHits));
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }

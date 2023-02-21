@@ -1,4 +1,3 @@
-#include "Government.h"
 /* Government.cpp
 Copyright (c) 2014 by Michael Zahniser
 
@@ -347,12 +346,12 @@ void Government::Load(const DataNode &node)
 				color = ExclusiveItem<Color>(GameData::Colors().Get(child.Token(valueIndex)));
 			hasColor = true;
 		}
-		else if (key == "shield color")
+		else if(key == "shield color")
 		{
-			if (child.Size() >= 3 + valueIndex)
+			if(child.Size() >= 3 + valueIndex)
 				shieldColor = Color(child.Value(valueIndex),
 					child.Value(valueIndex + 1), child.Value(valueIndex + 2));
-			else if (child.Size() >= 1 + valueIndex)
+			else if(child.Size() >= 1 + valueIndex)
 				shieldColor = *GameData::Colors().Get(child.Token(valueIndex));
 			hasShieldColor = true;
 		}
@@ -384,7 +383,7 @@ void Government::Load(const DataNode &node)
 		hostileDisabledHail = GameData::Phrases().Get("hostile disabled");
 
 	// Get default shield colors
-	if (!hasShieldColor && hasColor)
+	if(!hasShieldColor && hasColor)
 		shieldColor = *color;
 	else
 		shieldColor = *GameData::Colors().Get("shields default");
@@ -429,7 +428,7 @@ const Color &Government::GetColor() const
 	return *color;
 }
 
-const Color& Government::GetShieldColor() const
+const Color &Government::GetShieldColor() const
 {
 	return shieldColor;
 }
