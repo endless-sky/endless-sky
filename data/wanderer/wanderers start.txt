@@ -381,7 +381,6 @@ event "wanderer technology available" # Name unchanged for compatibility
 mission "Hai Language Patch"
 	landing
 	invisible
-	source
 	to offer
 		has "Visit Wanderers Again: offered"
 		not "language: Hai"
