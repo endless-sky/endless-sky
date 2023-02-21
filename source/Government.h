@@ -158,6 +158,7 @@ private:
 	ExclusiveItem<Color> color;
 	Color shieldColor;
 	bool hasColor = false;
+	bool hasShieldColor = false;
 
 	std::vector<double> attitudeToward;
 	std::set<const Government *> trusted;
