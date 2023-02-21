@@ -55,7 +55,6 @@ namespace {
 	GLint recentHitsI;
 	GLint shieldColorI;
 	GLint ratioI;
-	GLint sizeI;
 
 	GLint fastI;
 
@@ -107,7 +106,7 @@ void ShipEffectsShader::Init()
 		"uniform int recentHitCount;\n"
 		"uniform vec4 shieldColor;\n"
 		"uniform float ratio;\n"
-		"uniform float size;\n"
+		"float size = 80.;\n"
 
 		"uniform int isFast;\n"
 
@@ -215,7 +214,6 @@ void ShipEffectsShader::Init()
 	recentDamageI = shader.Uniform("recentDamage");
 	recentHitsCountI = shader.Uniform("recentHitCount");
 	ratioI = shader.Uniform("ratio");
-	sizeI = shader.Uniform("size");
 
 	fastI = shader.Uniform("isFast");
 
@@ -294,8 +292,6 @@ ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Ship* body, const
 	Point unit = body->Facing().Unit();
 	Point uw = unit * width;
 	Point uh = unit * height;
-
-	item.size = 80.;
 
 	// (0, -1) means a zero-degree rotation (since negative Y is up).
 	uw *= zoom;
@@ -383,7 +379,6 @@ void ShipEffectsShader::Add(const EffectItem& item, bool withBlur)
 	glUniform4fv(shieldColorI, 1, item.shieldColor);
 	glUniform1i(recentHitsCountI, item.recentHits);
 	glUniform1f(ratioI, item.ratio);
-	glUniform1f(sizeI, item.size);
 	glUniform1i(fastI, 2 == static_cast<int>(Preferences::GetHitEffects()));
 	// Logger::LogError(to_string(item.recentHits));
 
