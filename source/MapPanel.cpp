@@ -119,7 +119,7 @@ namespace {
 			const Planet *planet = hold.first;
 			const System *system = planet->GetSystem();
 			// Skip outfits stored on planets without a system or an outfitter.
-			if(!system || !planet->HasOutfitter())
+			if(!system || !(planet->HasOutfitter()) || planet->HasSpaceport())
 				continue;
 
 			for(const auto &outfit : hold.second.Outfits())

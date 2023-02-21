@@ -229,7 +229,7 @@ void MapOutfitterPanel::DrawItems()
 						continue;
 
 					const Planet &planet = *object.GetPlanet();
-					if(planet.HasOutfitter())
+					if(planet.HasOutfitter() || planet.HasSpaceport())
 					{
 						const auto pit = storage.find(&planet);
 						if(pit != storage.end())
@@ -278,7 +278,7 @@ void MapOutfitterPanel::Init()
 
 	// Add outfits in storage
 	for(const auto &it : player.PlanetaryStorage())
-		if(it.first->HasOutfitter())
+		if(it.first->HasOutfitter() || it.first->HasSpaceport())
 			for(const auto &oit : it.second.Outfits())
 				if(!seen.count(oit.first))
 				{
