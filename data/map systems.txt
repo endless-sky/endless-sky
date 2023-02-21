@@ -2728,8 +2728,8 @@ system "Ae Il M-77"
 			sprite planet/dust0
 			distance 248
 			period 240.531
-	object
-		sprite planet/forest1-b
+	object "Aetuah"
+		sprite planet/gas3-hot
 		distance 15948.3
 		period 6174.30
 		object
@@ -2885,11 +2885,8 @@ system "Aik Kamgatake"
 	minables iron 34 2.5
 	minables copper 32 3.06
 	object
-		sprite star/nova-core
-		period 1000
-	object
-		sprite star/nova
-		period 1000
+		sprite star/nova-small
+		period 10
 	object
 		sprite planet/lava3-b
 		distance 838
@@ -12841,8 +12838,8 @@ system Evrae
 		object
 			sprite planet/ice0
 			distance 417
-			period 321
-		object
+			period 355
+		object "Veiuye"
 			sprite planet/ice7
 			distance 598
 			period 382
@@ -16678,7 +16675,7 @@ system Huud
 		sprite planet/neptune-b
 		distance 1022
 		period 223.146
-	object
+	object "Xurelei"
 		sprite planet/gas11
 		distance 3336
 		period 1315.98
@@ -17019,7 +17016,7 @@ system Ilirco
 	object
 		sprite star/k0-old
 		period 10
-	object
+	object "Yiia Iyr"
 		sprite planet/cloud5-b
 		distance 1626.52
 		period 838.177
@@ -19412,11 +19409,11 @@ system Kneirc
 		sprite planet/rock1
 		distance 401
 		period 84.9392
-	object
+	object "Ghneoe"
 		sprite planet/forest3
-		distance 888
+		distance 1125
 		period 279.905
-		object
+		object "Zydee"
 			sprite planet/dust3-b
 			distance 169
 			period 83
@@ -23189,11 +23186,11 @@ system Mnashyu
 		sprite star/k3
 		distance 170.2
 		period 70.13
-	object
+	object "Mnai"
 		sprite planet/forest3
 		distance 1087.9
 		period 379.555
-		object
+		object "Eeu Mnai"
 			sprite planet/dust3-b
 			distance 197.75
 			period 16
@@ -34374,7 +34371,7 @@ system Zeinar
 		period 185.218
 	object
 		sprite planet/gas1-b
-		distance 550
+		distance 650
 		period 250.270
 		object Cipi
 			sprite planet/ice7-b

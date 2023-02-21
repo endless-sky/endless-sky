@@ -4732,6 +4732,57 @@ planet Yedikule
 	government Uninhabited
 	security 0
 
+planet "Yiia Iyr"
+	landscape land/dune0
+	description `Rulei world.`
+	government Uninhabited
+
+-----------------
+
+planet "Veiuye"
+	landscape
+	description `Rulei world.`
+	government Uninhabited
+
+planet "Ghneoe"
+	landscape
+	description `Rulei world.`
+	government Uninhabited
+
+planet "Zydee"
+	landscape
+	description `Rulei world.`
+	government Uninhabited
+	
+planet "Eeu Mnai"
+	landscape
+	description `Rulei world.`
+	government Uninhabited
+
+planet "Mnai"
+	landscape
+	description `Rulei world.`
+	government Uninhabited
+	
+planet "Aexu Nnkai"
+	landscape
+	description `Anarchist world.`
+	government Uninhabited
+	
+planet "Xurelei"
+	landscape
+	description `Rulei gas giant.`
+	government Uninhabited
+
+planet "Aetuah"
+	landscape
+	description `Rulei gas giant.`
+	government Uninhabited
+
+
+
+------------------
+
 planet "Yniu Eiu"
 	attributes rulei
 	landscape land/canyon0
