@@ -3203,7 +3203,7 @@ fleet "Human Wormhole Guards"
 		"Combat Drone" 6
 		"Lance (Gatling)" 4
 	variant 1
-		"Auxiliary (Transport Mark II)"
+		"Auxiliary (Transport) (Mark II)"
 	variant 2
 		"Cruiser (Plasma Anti-Missile)"
 		"Combat Drone" 4
