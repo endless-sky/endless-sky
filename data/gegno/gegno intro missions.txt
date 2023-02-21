@@ -406,6 +406,57 @@ mission "Giaru Gegno: Revisit"
 				decline
 
 
+mission "First Contact: Gegno Scin"
+	landing
+	source "Yiia Iyr"
+	to offer
+		or
+			has "Giaru Gegno: Quarg Contact: offered"
+			has "Giaru Gegno: Revisit: offered"
+		not "Gegno Genocide Defense: offered"
+	on offer
+		conversation
+			`You make your descent to the surface of this world, going through several thick layers of clouds. Once you break though them and prepare to land, you notice what appear to be a few Gegno Scin ships grounded nearby, easily distinguished by their various green color patterns. Two of them look like military vessels you've seen in previous systems, while a third one between them is some type of small shuttlecraft. Before you continue further, one of the warships begins to lift off the ground, heading for your direction.`
+			choice
+				`	(Leave the planet.)`
+					goto "leave"
+				`	(Prepare for combat.)`
+				`	(Continue your descent.)`
+					goto "descend"
+			`	Engaging your weapon systems, you brace yourself for a hostile encounter as you approach them. The Scin ship advances towards yours, and slowly comes to a hault in front of you. They haven't fired any weapons, and they aren't displaying any aggressive behavior, so they don't seem to be looking for conflict. Ever so slightly, the warship reverses backwards, then comes to a stop. You decide to stop your ship as well, wondering what this is about. Once again, the Scin ship reverses again, slowly drifting away from you. It appears they want you to follow them.`
+			choice
+				`	(Follow.)`
+					goto "follow"
+				`	(Leave.)`
+					goto "leave"
+			label "leave"
+			`	Wary of the Scin ship that's approaching, you prepare your ship for departure and slowly begin the ascent back into space. The Scin ship continues to advance towards yours, but as it comes closer, it begins to take on an escort formation with you. It follows you as you leave the planet's atmosphere. Once you finally make it back into space, the Scin ship breaks from formation and flies off away from you. You're unsure of what they are doing on the planet, but as the Quarg previously suggested, it's probably better you are careful not to get involved.`
+				fail
+			
+			lable "follow"
+			`	You inch your ship forward in acknowledgment. All of a sudden, the second warship on the ground lifts off and forms up behind you. The one in front of you turns their ship around then begins to fly off into the distance. You start to follow them, curious of where they might be leading you. To your rear, the remaining shuttleship takes off, but instead of following you, heads off into the atmosphere above.`
+			`	Although this planet initially appeared dull due to the several layers of thick clouds, the surface shows occasional signs of life such as plains of grass or occasional dried-up riverbeds, while patches of low fog cover other various locations. As you continue your flight, the two Scin ships slowly start to move around so that one is on either side of you. Up ahead in the distance, a large structure comes into view from behind another wall of fog, and after getting a bit closer to it, you make out familiar green colors of the ships flying with you. The two warships begin to descend towards what you assume to be a sizeable Scin freighter.`
+			`	Your previous encounter with a Vi Warror was chaotic and unpredictable, so you make sure to be extra cautious as you set your ship down nearby the vessel. The two warships that guided you here also land near the freighter and power down. Other than the Gegno ships in front of you, there doesn't seem to be any strange readings on your radar at the moment. The outside readings actually indicate conditions safe for a human, but you keep your guard up while you exit your ship, equipping your environment suit just in case.`
+			choice
+				`	(Approach the Scin.)`
+					goto "approach"
+				`	(Stay by your ship.)`
+			`	You take one or two steps forward but remain close by your ship, staying alert. The freigher in front of you is indeed large - maybe four times the size of a Hauler, or almost two times the size of a Behemoth. As you examine it, a ramp lowers from underneath, and a group of Scin exit the ship, making their way towards you. You immediately notice their attire being much different than that of the Vi - most of them are wearing what looks like segmented armor with many layers of plates, giving off the appearance of scales or feathers. One of them, however, has much lighter armor focused around their shoulders, dressed in an orange robe-like garment underneath. Although none of them are nowhere near as bulky as the Vi, they still appear slightly taller than a human. More importantly, they seem far more eager to interact with you, seeing that they left the comfort of their own ship to greet you personally.`
+			`	Stopping within 12 feet from you, the Scin in heavier armor suddenly drop to the ground and cross their legs, while the one in the robe slowly approaches you.`
+			
+
+			IN PROGRESS
+
+
+
+
+			label "approach"
+
+
+			
+			label "descend"
+			`	Cautiously, you carry on with your landing procedure. The Scin ship flies past yours, then begins to hold a position above you. They land next to you shortly after you touch down, and you observe as their crew depart their vessel, standing as a group in front of it. It appears they are eagerly waiting for you to do the same.`
+
 
 # Gegno Superheavy
 

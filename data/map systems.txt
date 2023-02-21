@@ -15787,7 +15787,7 @@ system Ilirco
 	object
 		sprite star/k0-old
 		period 10
-	object
+	object "Yiia Iyr"
 		sprite planet/cloud5-b
 		distance 1626.52
 		period 838.177
@@ -15803,6 +15803,10 @@ system Ilirco
 		sprite planet/gas3-b
 		distance 6154
 		period 6168.55
+		object "Veiuye"
+			sprite planet/ice3
+			distance 377.16
+			period 26.3
 
 system "Imo Dep"
 	pos -56.2764 -600.1
@@ -31435,7 +31439,7 @@ system Yerser
 		period 103.115
 	object
 		sprite planet/lava4-b
-		distance 1812.86
+		distance 2812.86
 		period 511.045
 		object
 			sprite planet/lava1

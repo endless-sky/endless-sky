@@ -4240,6 +4240,11 @@ planet Vatican
 	government Uninhabited
 	security 0
 
+planet "Veiuye"
+	landscape land/ice8-b
+	description `Rulei Ice Moon.`
+	government Uninhabited
+
 planet Veliante
 	attributes ka'het uninhabited
 	landscape land/fog9
@@ -4447,6 +4452,11 @@ planet Yedikule
 	description `	While virtually every craft that tries to land here is a fuel scooping drone, a large number of satellites orbit Yedikule at various heights, meaning that it must have been exhaustively studied in the past.`
 	government Uninhabited
 	security 0
+
+planet "Yiia Iyr"
+	landscape land/dune0
+	description `Rulei world.`
+	government Uninhabited
 
 planet "Yniu Eiu"
 	landscape land/canyon0
