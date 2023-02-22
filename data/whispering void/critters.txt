@@ -35,6 +35,7 @@ ship "Pincer Beast"
 		"cooling" 13
 		"thrust" 25
 		"turn" 1100
+		"shield color" "shields none" 10
 		"hull repair rate" 5
 		"energy capacity" 1000
 		"energy generation" 5

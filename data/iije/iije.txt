@@ -34,6 +34,7 @@ ship "Jje"
 		"outfit space" 10
 		"weapon capacity" 10
 		"engine capacity" 10
+		"shield color" "shields none" 100
 		
 		"hull repair rate" 1
 		"atmosphere scan" 10
@@ -87,6 +88,7 @@ ship "Ayym"
 		"outfit space" 10
 		"weapon capacity" 10
 		"engine capacity" 10
+		"shield color" "shields none" 100
 		
 		"hull repair rate" 2
 		"ramscoop" 10

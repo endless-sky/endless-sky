@@ -36,6 +36,7 @@ ship "Vyrmeid"
 		"engine capacity" 0
 
 		"hull repair rate" 1
+		"shield color" "shields none" 10
 		"energy capacity" 100
 		"energy generation" 1
 		"inscrutable" 1
@@ -92,6 +93,7 @@ ship "Vyrmeid" "Vyrmeid (B)"
 		"weapon capacity" 0
 		"engine capacity" 0
 
+		"shield color" "shields none" 10
 		"hull repair rate" 1
 		"inscrutable" 1
 
@@ -143,6 +145,7 @@ ship "Vyrmeid" "Vyrmeid (C)"
 		"weapon capacity" 0
 		"engine capacity" 0
 
+		"shield color" "shields none" 10
 		"energy capacity" 1000
 		"energy generation" 100
 		"inscrutable" 1
@@ -197,6 +200,7 @@ ship "Astral Cetacean"
 		"weapon capacity" 0
 		"engine capacity" 0
 
+		"shield color" "shields none" 10
 		"hull repair rate" 3
 		"ramscoop" 5
 		"energy capacity" 2000

@@ -24,6 +24,7 @@ ship "vyu-Ira"
 		"shields" 68000
 		"shield generation" 13
 		"shield energy" 13
+		"shield color" "shields rulei" 10
 		"hull" 49000
 		"hull repair rate" 1.9
 		"automaton" 1

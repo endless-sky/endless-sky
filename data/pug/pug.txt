@@ -530,6 +530,7 @@ ship "Pug Zibruka"
 		"heat generation" 20
 		"shield generation" 6
 		"shield energy" 6
+		"shield color" "shields pug" 10
 		weapon
 			"blast radius" 100
 			"shield damage" 400
@@ -580,6 +581,7 @@ ship "Pug Enfolta"
 		"heat generation" 32
 		"shield generation" 8
 		"shield energy" 8
+		"shield color" "shields pug" 20
 		weapon
 			"blast radius" 180
 			"shield damage" 720
@@ -635,6 +637,7 @@ ship "Pug Maboro"
 		"heat generation" 48
 		"shield generation" 10
 		"shield energy" 10
+		"shield color" "shields pug" 30
 		weapon
 			"blast radius" 300
 			"shield damage" 1200
@@ -692,6 +695,7 @@ ship "Pug Arfecta"
 		"heat generation" 10
 		"shield generation" 32
 		"shield energy" 32
+		"shield color" "shields pug" 20
 		"hull repair rate" 5
 		"hull energy" 5
 		"cloaking fuel" -.2

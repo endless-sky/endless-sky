@@ -33,6 +33,7 @@ ship "Shale"
 		"outfit space" 113
 		"weapon capacity" 0
 		"engine capacity" 58
+		"shield color" "shields gegno" 1
 		weapon
 			"blast radius" 18
 			"shield damage" 40
@@ -71,6 +72,7 @@ ship "Dolomite"
 		"outfit space" 152
 		"weapon capacity" 0
 		"engine capacity" 81
+		"shield color" "shields gegno" 1
 		weapon
 			"blast radius" 72
 			"shield damage" 320
@@ -114,6 +116,7 @@ ship "Conglomerate"
 		"outfit space" 253
 		"weapon capacity" 0
 		"engine capacity" 146
+		"shield color" "shields gegno" 1
 		weapon
 			"blast radius" 124
 			"shield damage" 960
@@ -164,6 +167,7 @@ ship "Gypsum"
 		"engine capacity" 120
 		"drill port" 1
 		"drill lock" -1
+		"shield color" "shields gegno" 1
 		weapon
 			"blast radius" 72
 			"shield damage" 320
@@ -213,6 +217,7 @@ ship "Dunite"
 		"outfit space" 115
 		"weapon capacity" 22
 		"engine capacity" 56
+		"shield color" "shields gegno" 1
 		weapon
 			"blast radius" 10
 			"shield damage" 20
@@ -258,6 +263,7 @@ ship "Augen"
 		"outfit space" 1868
 		"weapon capacity" 1073
 		"engine capacity" 460
+		"shield color" "shields gegno" 1
 		weapon
 			"blast radius" 450
 			"shield damage" 2000
@@ -379,6 +385,7 @@ ship "Slate"
 		"outfit space" 122
 		"weapon capacity" 0
 		"engine capacity" 58
+		"shield color" "shields gegno" 1
 		weapon
 			"blast radius" 18
 			"shield damage" 40
@@ -418,6 +425,7 @@ ship "Schist"
 		"outfit space" 298
 		"weapon capacity" 100
 		"engine capacity" 96
+		"shield color" "shields gegno" 1
 		weapon
 			"blast radius" 71
 			"shield damage" 310
@@ -494,6 +502,7 @@ ship "Eclogite"
 		"outfit space" 285
 		"weapon capacity" 96
 		"engine capacity" 94
+		"shield color" "shields gegno" 1
 		weapon
 			"blast radius" 36
 			"shield damage" 210
@@ -544,6 +553,7 @@ ship "Diorite"
 		"outfit space" 453
 		"weapon capacity" 195
 		"engine capacity" 140
+		"shield color" "shields gegno" 1
 		weapon
 			"blast radius" 90
 			"shield damage" 540
@@ -611,6 +621,7 @@ ship "Hornfel"
 		"outfit space" 508
 		"weapon capacity" 240
 		"engine capacity" 94
+		"shield color" "shields gegno" 1
 		weapon
 			"blast radius" 90
 			"shield damage" 600
@@ -735,6 +746,7 @@ ship "Gneiss"
 		"outfit space" 841
 		"weapon capacity" 504
 		"engine capacity" 150
+		"shield color" "shields gegno" 1
 		weapon
 			"blast radius" 150
 			"shield damage" 1150
@@ -807,6 +819,7 @@ ship "Granulite"
 		"outfit space" 651
 		"weapon capacity" 216
 		"engine capacity" 203
+		"shield color" "shields gegno" 1
 		weapon
 			"blast radius" 280
 			"shield damage" 1550
@@ -885,6 +898,7 @@ ship "Halite"
 		"outfit space" 78
 		"weapon capacity" 30
 		"engine capacity" 21
+		"shield color" "shields gegno" 1
 		weapon
 			"blast radius" 14
 			"shield damage" 160
@@ -928,6 +942,7 @@ ship "Mica"
 		"outfit space" 118
 		"weapon capacity" 0
 		"engine capacity" 50
+		"shield color" "shields gegno" 1
 		weapon
 			"blast radius" 18
 			"shield damage" 40
@@ -967,6 +982,7 @@ ship "Coesite"
 		"outfit space" 264
 		"weapon capacity" 86
 		"engine capacity" 80
+		"shield color" "shields gegno" 1
 		weapon
 			"blast radius" 40
 			"shield damage" 240
@@ -1021,6 +1037,7 @@ ship "Tridymite"
 		"outfit space" 200
 		"weapon capacity" 0
 		"engine capacity" 86
+		"shield color" "shields gegno" 1
 		
 		"outfit scan power" 18
 		"outfit scan efficiency" 8
@@ -1074,6 +1091,7 @@ ship "Felsic"
 		"outfit space" 322
 		"weapon capacity" 109
 		"engine capacity" 106
+		"shield color" "shields gegno" 1
 		weapon
 			"blast radius" 74
 			"shield damage" 340
@@ -1126,6 +1144,7 @@ ship "Feldspar"
 		"outfit space" 566
 		"weapon capacity" 234
 		"engine capacity" 172
+		"shield color" "shields gegno" 1
 		weapon
 			"blast radius" 180
 			"shield damage" 1650
@@ -1212,6 +1231,7 @@ ship "Epidote"
 		"outfit space" 552
 		"weapon capacity" 166
 		"engine capacity" 182
+		"shield color" "shields gegno" 1
 		weapon
 			"blast radius" 216
 			"shield damage" 1920

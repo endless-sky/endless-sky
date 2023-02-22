@@ -331,7 +331,7 @@ ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Ship* body, const
 	finalColour[0] += colourx[0] * modix;
 	finalColour[1] += colourx[1] * modix;
 	finalColour[2] += colourx[2] * modix;
-	finalColour[3] += colourx[3] * modix * .75;
+	finalColour[3] += colourx[3] * modix;
 	for(const auto &it : shieldColor)
 	{
 		const auto colour = GameData::Colors().Get(it.first)->Get();
