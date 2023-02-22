@@ -431,14 +431,14 @@ string Format::ExpandConditions(const string &source, ConditionGetter getter)
 	size_t conditionSize = string::npos;
 
 	// Hand-coded regular grammar parser for:
-	//	&{format@condition}
-	//	&{condition}
+	//	&[format@condition]
+	//	&[condition]
 	// Using these states:
-	//	state = _ ----- outside of all &{} regions
-	//	state = & ----- just read & and hoping to see a {
-	//	state = { ----- read &{ but haven't seen @ or } yet
-	//	state = @ ----- read &{...@ but haven't seen } yet. Have format start & size.
-	// Anything inside a &{...} is sent to AppendCondition
+	//	state = _ ----- outside of all &[] regions
+	//	state = & ----- just read & and hoping to see a [
+	//	state = [ ----- read &[ but haven't seen @ or ] yet
+	//	state = @ ----- read &[...@ but haven't seen ] yet. Have format start & size.
+	// Anything inside a &[...] is sent to AppendCondition
 	char state = '_';
 	// "start" is the beginning of the text that has not yet been sent to result.
 	size_t start = 0;
@@ -449,24 +449,24 @@ string Format::ExpandConditions(const string &source, ConditionGetter getter)
 		// harder to read, and I don't expect this to be performance-critical.
 		if(state == '_' && next == '&')
 			state = '&';
-		else if(state == '_' || (state == '&' && next != '{'))
+		else if(state == '_' || (state == '&' && next != '['))
 		{
 			result.append(source, start, look - start + 1);
 			start = look + 1;
 			state = '_';
 		}
-		else if(state == '&' && next == '{')
+		else if(state == '&' && next == '[')
 		{
 			formatStart = formatSize = conditionStart = conditionSize = string::npos;
-			state = '{';
+			state = '[';
 		}
-		else if(state == '{' && next == '@')
+		else if(state == '[' && next == '@')
 		{
 			formatStart = start + 2;
 			formatSize = look - formatStart;
 			state = '@';
 		}
-		else if(state == '@' && next == '}')
+		else if(state == '@' && next == ']')
 		{
 			conditionStart = formatStart + formatSize + 1;
 			conditionSize = look - conditionStart;
@@ -475,7 +475,7 @@ string Format::ExpandConditions(const string &source, ConditionGetter getter)
 			start = look + 1;
 			state = '_';
 		}
-		else if(state == '{' && next == '}')
+		else if(state == '[' && next == ']')
 		{
 			conditionStart = start + 2;
 			conditionSize = look - conditionStart;
@@ -484,7 +484,7 @@ string Format::ExpandConditions(const string &source, ConditionGetter getter)
 			start = look + 1;
 			state = '_';
 		}
-		else if(state == '{' || state == '@')
+		else if(state == '[' || state == '@')
 		{
 			// format or condition consumes a character
 		}
