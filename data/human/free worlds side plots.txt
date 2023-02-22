@@ -692,7 +692,7 @@ mission "FW Wolf Pack 4"
 		government "Republic"
 		system "Mizar"
 		personality timid staying target
-		ship "Auxiliary (Cargo) (Mark II)" "RNS Golden Fleece"
+		ship "Auxiliary (Cargo Mark II)" "RNS Golden Fleece"
 		dialog "You have eliminated the Auxiliary that was carrying food to the Republic. Time to report back to the Wolf Pack and receive your reward."
 	npc
 		government "Republic"
