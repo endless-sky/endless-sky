@@ -542,6 +542,14 @@ const string &Government::Language() const
 
 
 
+// Find out if this government should send custom hails even if the player does not know its language.
+bool Government::SendUntranslatedHails() const
+{
+	return sendUntranslatedHails;
+}
+
+
+
 // Pirate raids in this government's systems use these fleet definitions. If
 // it is empty, there are no pirate raids.
 // The second attribute denotes the minimal and maximal attraction required for the fleet to appear.
