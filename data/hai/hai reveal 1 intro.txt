@@ -1058,6 +1058,7 @@ mission "Hai Leaks Response 5B"
 	clearance
 	to offer
 		has "Hai Leaks Response 5: done"
+		not "Hai Leaks Response 6: offered"
 	to complete
 		never
 
