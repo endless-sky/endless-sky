@@ -154,6 +154,19 @@ private:
 		double angle;
 	};
 
+	class Outline {
+	public:
+		Outline(const Sprite *sprite, const Point position, const Point size,
+			const Color &color, const Point angleUnit, const float frame);
+
+		const Sprite *sprite;
+		Point position;
+		Point size;
+		Color color;
+		Point angleUnit;
+		float frame;
+	};
+
 
 private:
 	PlayerInfo &player;
@@ -191,9 +204,6 @@ private:
 	DrawList draw[2];
 	BatchDrawList batchDraw[2];
 	Radar radar[2];
-	// Viewport position and velocity.
-	Point center;
-	Point centerVelocity;
 	// Other information to display.
 	Information info;
 	std::vector<Target> targets;
@@ -202,6 +212,7 @@ private:
 	int targetSwizzle = -1;
 	EscortDisplay escorts;
 	AmmoDisplay ammoDisplay;
+	std::vector<Outline> outlines;
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;
 	std::vector<AlertLabel> missileLabels;

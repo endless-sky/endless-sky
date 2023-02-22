@@ -88,6 +88,8 @@
 		<Unit filename="source/BoardingPanel.h" />
 		<Unit filename="source/Body.cpp" />
 		<Unit filename="source/Body.h" />
+		<Unit filename="source/Camera.cpp" />
+		<Unit filename="source/Camera.h" />
 		<Unit filename="source/CaptureOdds.cpp" />
 		<Unit filename="source/CaptureOdds.h" />
 		<Unit filename="source/CargoHold.cpp" />
