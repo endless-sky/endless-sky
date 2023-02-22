@@ -778,10 +778,18 @@ mission "Hai Leaks Response 4"
 					accept
 				`	"I'll beat the Lich, and do my best to capture the Geocoris and bring them safely home."`
 					accept
+	# Escorts manually defined to have weapons comparatively suitable for disabling, as would be appropriate in a mission where the *hopeful* outcome is a rescue.
 	npc
 		government "Hai"
 		personality escort heroic disables
-		fleet "Anti-Pirate Hai (No Wormhole Travel)" 5
+		fleet
+			names "hai"
+			cargo 0
+			variant
+				"Shield Beetle (Six Ion)" 2
+				"Shield Beetle (Durable Pulse)" 3
+				"Ladybug (Three Ion)" 4
+				"Ladybug (Pulse)" 6
 	npc
 		government "Pirate"
 		personality staying disables plunders harvests
