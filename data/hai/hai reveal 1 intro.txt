@@ -790,7 +790,7 @@ mission "Hai Leaks Response 4"
 		fleet "Hired Guns" 1
 	npc kill
 		government "Pirate"
-		personality staying marked target
+		personality staying target
 		system "Waypoint"
 		ship "Marauder Leviathan (Weapons)" "Black Lich"
 	on visit
