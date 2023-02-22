@@ -2880,7 +2880,8 @@ system "Aik Kamgatake"
 	asteroids "large rock" 27 1.72
 	asteroids "small metal" 8 1.74
 	asteroids "medium metal" 20 1.79
-	asteroids "large metal" 39 1.4
+	asteroids "large metal" 39 1.43
+	minables yottrite 1 2.6
 	minables lead 20 2.1
 	minables iron 34 2.5
 	minables copper 32 3.06
@@ -14322,7 +14323,6 @@ system G-6183
 	belt 1187
 	"jump range" 50
 	haze _menu/haze-coal
-	link M-1188
 	asteroids "large metal" 1 3.4
 	minables neodymium 6 3.87
 	minables titanium 44 4.15
@@ -16694,7 +16694,6 @@ system Iigen
 	haze _menu/haze-brown
 	link Heutesl
 	link Oosuoro
-	link Uttna
 	link Yllke
 	asteroids "small rock" 46 3.92
 	asteroids "medium rock" 57 5.2
@@ -21080,7 +21079,6 @@ system M-1188
 	"jump range" 80
 	haze _menu/haze-coal
 	link E-4183
-	link G-6183
 	link L-6181
 	link MS-219
 	asteroids "large metal" 1 2.54
@@ -32433,22 +32431,19 @@ system "Urba Pest"
 			period 10.8214
 
 system Uttna
-	pos 946.3 -580.8
+	pos 966.3 -575.8
 	government Uninhabited
 	arrival 3000
 	habitable 3000
 	belt 1748
-	"jump range" 60
-	haze _menu/haze-brown
-	link Iigen
+	"jump range" 50
+	haze _menu/haze-coal
 	asteroids "medium rock" 3 4.8
 	asteroids "large rock" 2 3.96
 	asteroids "small metal" 4 2.84
 	asteroids "large metal" 16 3.42
 	minables platinum 5 1.4
 	minables uranium 8 2.2
-	fleet "Gegno Basic" 2700
-	fleet "Gegno Miners" 1900
 	object
 		sprite star/a8
 		period 10
@@ -32464,14 +32459,6 @@ system Uttna
 			sprite planet/ice0
 			distance 195
 			period 102.9
-	object
-		sprite planet/gas7
-		distance 7362
-		period 4613.10
-		object
-			sprite planet/tethys-b
-			distance 267
-			period 268.6
 	object
 		sprite planet/gas7-hot
 		distance 17699
