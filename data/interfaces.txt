@@ -638,10 +638,10 @@ interface "hud"
 
 	visible if "strategic range display"
 	sprite "ui/range"
-		from 0 255
+		from 2 255
 		align top left
 	string "target range"
-		from 0 240
+		from 2 240
 		align top left
 
 	visible if "tactical display"
