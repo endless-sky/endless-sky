@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "ShipyardPanel.h"
@@ -22,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Mission.h"
 #include "Phrase.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -87,6 +91,14 @@ ShipyardPanel::ShipyardPanel(PlayerInfo &player)
 
 	if(player.GetPlanet())
 		shipyard = player.GetPlanet()->Shipyard();
+}
+
+
+
+void ShipyardPanel::Step()
+{
+	ShopPanel::Step();
+	ShopPanel::CheckForMissions(Mission::SHIPYARD);
 }
 
 
@@ -160,10 +172,11 @@ int ShipyardPanel::DrawDetails(const Point &center)
 		const Sprite *background = SpriteSet::Get("ui/shipyard selected");
 		const Sprite *shipSprite = selectedShip->GetSprite();
 		float spriteScale = shipSprite
-			? min(1.f, (INFOBAR_WIDTH  - 20.f) / max(shipSprite->Width(), shipSprite->Height()))
+			? min(1.f, (INFOBAR_WIDTH - 20.f) / max(shipSprite->Width(), shipSprite->Height()))
 			: 1.f;
 
-		int swizzle = selectedShip->CustomSwizzle() >= 0 ? selectedShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
+		int swizzle = selectedShip->CustomSwizzle() >= 0
+			? selectedShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
 
 		Point spriteCenter(center.X(), center.Y() + 20 + TileSize() / 2);
 		Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + 20 + TileSize());
@@ -186,7 +199,8 @@ int ShipyardPanel::DrawDetails(const Point &center)
 
 		// Calculate the new ClickZone for the description.
 		Point descDimensions(INFOBAR_WIDTH, descriptionOffset + 10.);
-		ClickZone<std::string> collapseDescription = ClickZone<std::string>(descCenter, descDimensions, std::string("description"));
+		ClickZone<std::string> collapseDescription = ClickZone<std::string>(
+			descCenter, descDimensions, std::string("description"));
 
 		// Find the old zone, and replace it with the new zone.
 		for(auto it = categoryZones.begin(); it != categoryZones.end(); ++it)
@@ -249,8 +263,8 @@ void ShipyardPanel::Buy(bool alreadyOwned)
 	modifier = Modifier();
 	string message;
 	if(licenseCost)
-		message = "Note: you will need to pay " + Format::Credits(licenseCost)
-			+ " credits for the licenses required to operate this ship, in addition to its cost."
+		message = "Note: you will need to pay " + Format::CreditString(licenseCost)
+			+ " for the licenses required to operate this ship, in addition to its cost."
 			" If that is okay with you, go ahead and enter a name for your brand new ";
 	else
 		message = "Enter a name for your brand new ";
@@ -355,7 +369,7 @@ void ShipyardPanel::Sell(bool toStorage)
 		toSell.push_back(it->shared_from_this());
 	int64_t total = player.FleetDepreciation().Value(toSell, day, toStorage);
 
-	message += ((initialCount > 2) ? "\nfor " : " for ") + Format::Credits(total) + " credits?";
+	message += ((initialCount > 2) ? "\nfor " : " for ") + Format::CreditString(total) + "?";
 
 	if(toStorage)
 		message += " Any outfits will be placed in storage.";
@@ -376,12 +390,13 @@ bool ShipyardPanel::CanSellMultiple() const
 void ShipyardPanel::BuyShip(const string &name)
 {
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
+	auto &playerConditions = player.Conditions();
 	if(licenseCost)
 	{
 		player.Accounts().AddCredits(-licenseCost);
 		for(const string &licenseName : selectedShip->Attributes().Licenses())
-			if(player.GetCondition("license: " + licenseName) <= 0)
-				player.Conditions()["license: " + licenseName] = true;
+			if(playerConditions.Get("license: " + licenseName) <= 0)
+				playerConditions["license: " + licenseName] = true;
 	}
 
 	for(int i = 1; i <= modifier; ++i)

@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 ship "Marauder Arrow"
 	sprite "ship/marrows"
@@ -120,7 +123,7 @@ ship "Marauder Bounder"
 		"mass" 145
 		"drag" 3.7
 		"heat dissipation" .8
-		"fuel capacity" 900
+		"fuel capacity" 800
 		"cargo space" 20
 		"outfit space" 240
 		"weapon capacity" 80
@@ -225,15 +228,15 @@ ship "Marauder Falcon"
 		"cost" 13900000
 		"shields" 14100
 		"hull" 4100
-		"required crew" 43
-		"bunks" 80
+		"required crew" 57
+		"bunks" 96
 		"mass" 560
 		"drag" 6.7
 		"heat dissipation" .8
 		"fuel capacity" 600
-		"cargo space" 60
-		"outfit space" 580
-		"weapon capacity" 265
+		"cargo space" 80
+		"outfit space" 620
+		"weapon capacity" 275
 		"engine capacity" 165
 		"self destruct" .15
 		weapon
@@ -474,8 +477,8 @@ ship "Marauder Leviathan"
 		"hull" 5500
 		"required crew" 48
 		"bunks" 69
-		"mass" 640
-		"drag" 7.6
+		"mass" 680
+		"drag" 8.1
 		"heat dissipation" .5
 		"fuel capacity" 500
 		"cargo space" 40
@@ -602,7 +605,7 @@ ship "Marauder Manta"
 		"heat dissipation" .8
 		"fuel capacity" 400
 		"cargo space" 10
-		"outfit space" 390
+		"outfit space" 400
 		"weapon capacity" 155
 		"engine capacity" 110
 		"self destruct" .25
@@ -612,8 +615,7 @@ ship "Marauder Manta"
 			"hull damage" 450
 			"hit force" 1350
 	outfits
-		"Plasma Cannon" 2
-		"Particle Cannon" 2
+		"Plasma Cannon" 4
 		"Meteor Missile Launcher" 2
 		"Meteor Missile" 60
 		"Quad Blaster Turret"
@@ -629,15 +631,15 @@ ship "Marauder Manta"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
-	engine -33 38
-	engine 33 38
-	gun -66 -30 "Meteor Missile Launcher"
-	gun 66 -30 "Meteor Missile Launcher"
-	gun -27 -30 "Plasma Cannon"
-	gun 27 -30 "Plasma Cannon"
-	gun -20 -30 "Particle Cannon"
-	gun 20 -30 "Particle Cannon"
-	turret 0 -29 "Quad Blaster Turret"
+	engine -33 40
+	engine 33 40
+	gun -20 -31 "Plasma Cannon"
+	gun 20 -31 "Plasma Cannon"
+	gun -26.5 -30 "Plasma Cannon"
+	gun 26.5 -30 "Plasma Cannon"
+	gun -68.5 -33 "Meteor Missile Launcher"
+	gun 68.5 -33 "Meteor Missile Launcher"
+	turret 0 -28 "Quad Blaster Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
@@ -666,9 +668,9 @@ ship "Marauder Manta" "Marauder Manta (Engines)"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
-	engine -33.5 38
-	engine 0 76
-	engine 33.5 38
+	engine -33 43
+	engine 0 82.5 0.7
+	engine 33 43
 	gun "Meteor Missile Launcher"
 	gun "Meteor Missile Launcher"
 	gun "Plasma Cannon"
@@ -705,13 +707,13 @@ ship "Marauder Manta" "Marauder Manta (Weapons)"
 		
 	engine -33.5 38
 	engine 33.5 38
-	gun -66 -34 "Meteor Missile Launcher"
-	gun 66 -34 "Meteor Missile Launcher"
-	gun -27 -35 "Proton Gun"
-	gun 27 -35 "Proton Gun"
-	gun -20 -35 "Particle Cannon"
-	gun 20 -35 "Particle Cannon"
-	turret 0 -29 "Heavy Anti-Missile Turret"
+	gun -68.5 -43 "Meteor Missile Launcher"
+	gun 68.5 -43 "Meteor Missile Launcher"
+	gun -26.5 -33 "Proton Gun"
+	gun 26.5 -33 "Proton Gun"
+	gun -20 -33 "Particle Cannon"
+	gun 20 -33 "Particle Cannon"
+	turret 0 -28.5 "Heavy Anti-Missile Turret"
 	description `This Manta has undergone extensive modification, featuring extra gun ports, hull plating, and shield emitters. Whoever modified it seems to have forgotten to include dedicated space for the power systems, as they're crammed in and around everything else like an afterthought. If its dry tonnage were any higher, it would be classified as a heavy warship.`
 
 

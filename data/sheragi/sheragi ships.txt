@@ -6,14 +6,17 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 ship "Emerald Sword"
 	sprite ship/emeraldsword
 	thumbnail "thumbnail/emeraldsword"
 	swizzle 3
 	attributes
-		category "Heavy Warship"
+		category "Superheavy"
 		"cost" 100000000
 		"shields" 9500
 		"hull" 45000
@@ -113,11 +116,17 @@ ship "Emerald Sword"
 	turret 0 183 "Sheragi Anti-Missile"
 	gun 0 -276 "Dragonflame Cannon"
 	bay "Fighter" 0 220.5 back
+		"launch effect" "sheragi launch"
 	bay "Fighter" 0 220.5 back
+		"launch effect" "sheragi launch"
 	bay "Fighter" 0 220.5 back
+		"launch effect" "sheragi launch"
 	bay "Fighter" 0 220.5 back
+		"launch effect" "sheragi launch"
 	bay "Fighter" 0 220.5 back
+		"launch effect" "sheragi launch"
 	bay "Fighter" 0 220.5 back
+		"launch effect" "sheragi launch"
 	explode "tiny explosion" 60
 	explode "small explosion" 26
 	explode "medium explosion" 47

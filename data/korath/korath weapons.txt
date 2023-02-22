@@ -7,9 +7,12 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
-outfit "Korath Grab-Strike"
+outfit "Grab-Strike Turret"
 	category "Turrets"
 	cost 821000
 	thumbnail "outfit/grab-strike"
@@ -112,7 +115,7 @@ effect "shunt-strike sparkle"
 	"random angle" 10
 
 
-outfit "Korath Banisher"
+outfit "Banisher Grav-Turret"
 	category "Turrets"
 	cost 943000
 	thumbnail "outfit/banisher"
@@ -172,7 +175,7 @@ effect "banisher impact"
 	"velocity scale" 0.
 
 
-outfit "Korath Warder"
+outfit "Warder Anti-Missile"
 	category "Turrets"
 	cost 845000
 	thumbnail "outfit/warder"
@@ -202,7 +205,7 @@ effect "korath warder"
 	"velocity scale" 1
 
 
-outfit "Korath Fire-Lance"
+outfit "Fire-Lance"
 	category "Guns"
 	cost 697000
 	thumbnail "outfit/fire-lance"
@@ -313,7 +316,7 @@ effect "korath inferno hit"
 	"velocity scale" .005
 
 
-outfit "Korath Repeater"
+outfit "Thermal Repeater"
 	category "Guns"
 	cost 306000
 	thumbnail "outfit/repeater"
@@ -351,7 +354,7 @@ effect "repeater impact"
 	"random velocity" .6
 	"velocity scale" -.1
 
-outfit "Korath Repeater Turret"
+outfit "Thermal Repeater Turret"
 	category "Turrets"
 	cost 874000
 	thumbnail "outfit/repeater turret"
@@ -381,28 +384,28 @@ outfit "Korath Repeater Turret"
 		"shield damage" 26
 		"hull damage" 22
 		"heat damage" 33
-	description "Korath repeaters fire compact bolts of superheated plasma at their targets. For every one of these turrets installed on a ship, an auxiliary cooling system is typically required to cope with its heat output."
+	description "Thermal Repeaters fire compact bolts of superheated plasma at their targets. For every one of these turrets installed on a ship, an auxiliary cooling system is typically required to cope with its heat output."
 
 
-outfit "Korath Piercer"
+outfit "Piercer Missile"
 	category "Ammunition"
 	cost 3500
 	thumbnail "outfit/piercer"
 	"mass" .3
 	"piercer capacity" -1
-	description "This missile is fired from a Korath Piercer Launcher."
+	description "This missile is fired from a Piercer Missile Launcher."
 
-outfit "Korath Piercer Rack"
+outfit "Piercer Missile Rack"
 	category "Ammunition"
 	cost 56000
 	thumbnail "outfit/korath piercer storage"
 	"mass" 2.2
 	"outfit space" -7
 	"piercer capacity" 16
-	ammo "Korath Piercer"
-	description "The Korath Piercer Rack is used to store extra ammunition for Korath Piercer Launchers."
+	ammo "Piercer Missile"
+	description "The Piercer Missile Rack is used to store extra ammunition for Piercer Missile Launchers."
 
-outfit "Korath Piercer Launcher"
+outfit "Piercer Missile Launcher"
 	category "Secondary Weapons"
 	cost 593000
 	thumbnail "outfit/piercer launcher"
@@ -417,7 +420,7 @@ outfit "Korath Piercer Launcher"
 			"frame rate" 5
 			"random start frame"
 		sound "piercer"
-		ammo "Korath Piercer"
+		ammo "Piercer Missile"
 		icon "icon/piercer"
 		"fire effect" "piercer fire"
 		"hit effect" "piercer impact"
@@ -440,7 +443,7 @@ outfit "Korath Piercer Launcher"
 		"hit force" 300
 		"missile strength" 73
 		"stream"
-	description "Korath Piercer missiles carry a pair of warheads. The first, a smaller one in the very tip of the missile, explodes on impact to blast a hole in the ship's shields to allow some of the subsequent, larger explosion to pierce through."
+	description "Korath Piercer Missiles carry a pair of warheads. The first, a smaller one in the very tip of the missile, explodes on impact to blast a hole in the ship's shields to allow some of the subsequent, larger explosion to pierce through."
 
 effect "piercer fire"
 	sprite "effect/piercer fire"
@@ -504,7 +507,7 @@ outfit "Korath Detainer"
 		"hull damage" 240
 		"slowing damage" 40
 		"blast radius" 20
-	description "Although not the most damaging weapon of its size, the Korath Detainer is feared for two reasons: its exceptionally long range, and its ability to interfere with the propulsion systems of any ship it strikes."
+	description "Although not the most damaging weapon of its size, the Korath Detainer is feared for two reasons: its exceptionally long range, and its ability to interfere with the propulsion systems of any ship it strikes. Its reputation has earned it the honor of being named for the Korath themselves."
 
 effect "detainer sparks"
 	sprite "effect/detainer sparks"
@@ -536,25 +539,25 @@ effect "detainer smoke"
 	"velocity scale" -.01
 
 
-outfit "Korath Mine"
+outfit "Cluster Mine"
 	category "Ammunition"
 	cost 3500
 	thumbnail "outfit/korath mine"
 	"mass" .7
 	"minelayer capacity" -1
-	description "This is ammunition for a Korath Minelayer. Each mine splits into eleven submunitions after it is deployed."
+	description "This is ammunition for a Cluster Mine Layer. Each mine splits into eleven submunitions after it is deployed."
 
-outfit "Korath Mine Rack"
+outfit "Cluster Mine Rack"
 	category "Ammunition"
 	cost 31500
 	thumbnail "outfit/korath mine storage"
 	"mass" 2.7
 	"outfit space" -9
 	"minelayer capacity" 9
-	ammo "Korath Mine"
-	description "The Korath Mine Rack is used to store extra ammunition for Korath Minelayers."
+	ammo "Cluster Mine"
+	description "The Cluster Mine Rack is used to store extra ammunition for Cluster Mine Layers."
 
-outfit "Korath Minelayer"
+outfit "Cluster Mine Layer"
 	category "Secondary Weapons"
 	cost 1073000
 	thumbnail "outfit/korath minelayer"
@@ -569,7 +572,7 @@ outfit "Korath Minelayer"
 			"frame rate" .6
 			"no repeat"
 		sound "minelayer"
-		ammo "Korath Mine"
+		ammo "Cluster Mine"
 		icon "icon/minelayer"
 		"fire effect" "minelayer fire"
 		"hit effect" "huge explosion"
@@ -634,7 +637,7 @@ effect "minelayer split"
 	"velocity scale" .8
 
 
-outfit "Korath Disruptor"
+outfit "Shield Disruptor Turret"
 	category "Turrets"
 	cost 983000
 	thumbnail "outfit/disruptor"
@@ -660,7 +663,7 @@ outfit "Korath Disruptor"
 		"shield damage" 3.8
 		"hull damage" .5
 		"disruption damage" .24
-	description "Korath Disruptors interfere with a ship's shields, allowing a ship's hull to be damaged even when shields are up. However, they do very little hull damage by themselves."
+	description "Shield Disruptor Turrets interfere with a ship's shields, allowing a ship's hull to be damaged even when shields are up. However, they do very little hull damage by themselves."
 
 effect "disruptor impact"
 	sprite "effect/static"
@@ -673,7 +676,7 @@ effect "disruptor impact"
 	"velocity scale" -.004
 
 
-outfit "Korath Slicer"
+outfit "Husk-Slice"
 	category "Guns"
 	cost 832000
 	thumbnail "outfit/slicer"
@@ -698,7 +701,7 @@ outfit "Korath Slicer"
 		"hull damage" 16.7
 	description "This massive beam weapon is relatively ineffective against shields, but cuts through hull armor like it's made of paper."
 
-outfit "Korath Slicer Turret"
+outfit "Husk-Slice Turret"
 	category "Turrets"
 	cost 1473000
 	thumbnail "outfit/slicer turret"
@@ -785,7 +788,7 @@ outfit "Digger Mining Beam"
 		"velocity" 480
 		"lifetime" 1
 		"reload" 1
-		"firing energy"  2.1
+		"firing energy" 2.1
 		"firing heat" 4.3
 		"shield damage" 0.5
 		"hull damage" 0.9
@@ -912,7 +915,7 @@ outfit "Firelight Missile"
 	"firelight missile capacity" -1
 	"energy generation" 0.02
 	"heat generation" 0.1
-	description `The reactor element inside a Firelight missile must be kept minimally active in order to ensure it is ready for launch. Although terribly inefficient, it nonetheless produces a trickle of power that can be tapped into when properly installed.`
+	description `The reactor element inside a Firelight Missile must be kept minimally active in order to ensure it is ready for launch. Although terribly inefficient, it nonetheless produces a trickle of power that can be tapped into when properly installed.`
 
 outfit "Firelight Missile Bank"
 	category "Secondary Weapons"
@@ -949,14 +952,13 @@ outfit "Firelight Missile Bank"
 		"missile strength" 60
 		submunition "Firelight Turning"
 		"stream"
-	description "Korath engineers were able to scale down reactor elements to fit in a missile casing for use on and against smaller vessels."
+	description "As the Firestorm Torpedo does not require full reactor shielding or safety interlocks, Korath engineers were able to create the Firelight by further scaling down the reactor element to fit in a missile casing for use on and against smaller vessels."
 	description "	Rather than rely on traditional reaction engines attached to the missile for launch, this rapid-fire missile bank appears to operate on the same principles as a Banisher."
 
 
 outfit "Firelight Turning"
 	weapon
 		sprite "projectile/firelight"
-			"frame rate" 12
 		"hit effect" "firelight ring" 20
 		"die effect" "piercer fire"
 		"velocity" 0.1
@@ -976,6 +978,7 @@ outfit "Firelight Activated"
 	weapon
 		sprite "projectile/firelight active"
 			"frame rate" 12
+			"random start frame"
 		"hit effect" "firelight ring" 20
 		"die effect" "small explosion"
 		"velocity" 3
@@ -1005,4 +1008,113 @@ effect "firelight ring"
 	sound "firelight hit"
 	"random angle" 360
 	"random velocity" 2
+	"velocity scale" 0.1
+
+
+outfit "Microbot Grinder"
+	category "Guns"
+	thumbnail "outfit/unknown"
+	"mass" 182
+	"outfit space" -212
+	"weapon capacity" -112
+	"required crew" 20
+	"gun ports" -1
+	"spinal mount" -1
+	"unplunderable" 1
+	weapon
+		"hardpoint sprite" "hardpoint/factory/microbot factory"
+			"frame rate" 12
+		"hit effect" "shunt-strike hit"
+		"die effect" "shunt-strike hit"
+		"inaccuracy" 10
+		"velocity" 10
+		"lifetime" 2
+		"reload" 6
+		"firing energy" 100
+		"blast radius" 100
+		"shield damage" 48
+		"corrosion damage" 3
+		"minable damage" 200
+		"firing hull" -100
+		"piercing" 0.1
+		"safe"
+	description "This is a huge grinder that digests incoming material with the aid of microbots. With intake bays large enough to swallow a drone whole, wrecking claws massive enough to tear apart the hulls of heavy warships, and a seemingly omnicidal swarm of microbots ready to break down anything that falls in to its component molecules, it is a fearsome sight that any captain would be foolish to fly within reach of."
+
+
+outfit "Firestorm Torpedo"
+	plural "Firestorm Torpedoes"
+	category "Ammunition"
+	cost 19800
+	thumbnail "outfit/firestorm torpedo"
+	"mass" 1
+	"firestorm torpedo capacity" -1
+	"energy generation" 0.06
+	"heat generation" 0.3
+	description `Massive in both size and destructive capability, the Firestorm Torpedo's enormous blast radius makes it a dangerous part of larger ship arsenals, despite the lack of more recent Korath innovations. The Firestorm Torpedo is used as ammo for the Firestorm Battery.`
+
+outfit "Firestorm Torpedo Rack"
+	category "Ammunition"
+	cost "135000"
+	thumbnail "outfit/firestorm torpedo rack"
+	"mass" 7
+	"outfit space" -20
+	"firestorm torpedo capacity" 13
+	ammo "Firestorm Torpedo"
+	description "This large cage-like rack is designed to be able to house several deadly Firestorm Torpedoes."
+
+outfit "Firestorm Battery"
+	plural "Firestorm Batteries"
+	category "Secondary Weapons"
+	cost 2383000
+	thumbnail "outfit/firestorm battery"
+	"mass" 35
+	"outfit space" -48
+	"weapon capacity" -48
+	"energy capacity" 1300
+	"turret mounts" -1
+	"required crew" 1
+	"firestorm torpedo capacity" 13
+	weapon
+		sprite "projectile/firestorm torpedo"
+			"frame rate" 6
+			"random start frame"
+		"hardpoint sprite" "hardpoint/firestorm battery"
+		sound "firestorm"
+		ammo "Firestorm Torpedo"
+		"turret turn" 2.7
+		icon "icon/firestorm torpedo"
+		"hit effect" "firestorm ring" 40
+		"die effect" "small explosion"
+		stream
+		"reload" 210
+		"firing energy" 635
+		"firing heat" 451
+		"inaccuracy" 3
+		"lifetime" 1900
+		"velocity" 6.6
+		"acceleration" .6
+		"drag" .12
+		"turn" 1.6
+		"homing" 4
+		"infrared tracking" .7
+		"optical tracking" .9
+		"trigger radius" 40
+		"blast radius" 95
+		"shield damage" 2760
+		"hull damage" 2760
+		"heat damage" 5320
+		"burn damage" 40
+		"corrosion damage" 5
+		"hit force" 4000
+		"missile strength" 115
+	description "Though not as refined as the newer Firelight version, this torpedo contains an augmented Korath Plasma Core reactor element completely stripped of its protective casing and safety interlocks. When activated, it generates a tremendous explosion of heat and force that pushes ships away and will even melt their hulls."
+
+effect "firestorm ring"
+	sprite "effect/firestorm ring"
+		"no repeat"
+		"frame rate" 7
+	"lifetime" 110
+	sound "firestorm hit"
+	"random angle" 360
+	"random velocity" 3
 	"velocity scale" 0.1

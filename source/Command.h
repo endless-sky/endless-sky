@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef COMMAND_H_
@@ -43,6 +46,8 @@ public:
 	static const Command HAIL;
 	static const Command SCAN;
 	static const Command JUMP;
+	static const Command MOUSE_TURNING_HOLD;
+	static const Command MOUSE_TURNING_TOGGLE;
 	static const Command FLEET_JUMP;
 	static const Command TARGET;
 	static const Command NEAREST;

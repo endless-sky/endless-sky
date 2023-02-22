@@ -1,5 +1,9 @@
 Welcome to Endless Sky!
-version 0.9.15-alpha
+version 0.10.1-alpha
+
+The player's manual and other
+resources are available at:
+https://endless-sky.github.io
 
 This game is open source.
 To report bugs, give feedback,
@@ -14,11 +18,13 @@ Creator and Lead Programmer
 
 Developers
   Amazinite
+  Anarchist2
   Benjamin Hauch
   MCOfficer
   Peter van der Meer
   Pointedstick
   Quyykk
+  Saugia
   W1zrad
   Zitchas
 
@@ -47,6 +53,8 @@ Storyline & Faction Authors
   LocalGod79
   Peter van der Meer
   Pointedstick
+  Lia Gerty
+  MasterOfGrey
   TheUnfetteredOne
   Zitchas
 
@@ -123,11 +131,13 @@ Thank you to all the following
 people on GitHub who have
 contributed to Endless Sky:
   10010101001
+  1010todd
   7even
   abenkovskii
   AdamKauffman
   akien-mga
   AlbertNewton
+  alex116
   AlexBassett
   alextd
   Alkallid
@@ -136,15 +146,19 @@ contributed to Endless Sky:
   AMDmi3
   anarcat
   Anarchist2
+  Aneutronic
   AraCaputDraco
   Arachi-Lover
+  aradapilot
   a-random-lemurian
   arkhne
   Arrow2thekn33
   ashdnazg
   Aurelite
+  Azure3141
   barthalion
   beccabunny
+  bene-dictator
   benflodge
   BlackVegetable
   Bladewood
@@ -152,27 +166,35 @@ contributed to Endless Sky:
   bobrobbow
   bojidar-bg
   Brick63
+  CAPTAIN1947
   ChamEV
-  colbygallup
   comnom
   corecontingency
   Corraban2
   CyberShadow
   czartrak
-  Darcman99
+  Daeridanii1
+  daggs1
+  DarcyManoel
+  dashkal16
   davidarcher
   davidwhitman
   dazuma
   db47h
   DeBlister
+  Deltaspace0
+  DimlyMoonbeam
   DingusShingleton
   Disiuze
   DJF113
+  doches
+  dorbarker
   DownsB
   dplepage
   dragonmaus
   DrBlight
   dreness
+  Dschiltt
   dufferzafar
   dzhu
   eflyon
@@ -180,14 +202,18 @@ contributed to Endless Sky:
   elgeonmb
   Eloraam
   Elyssaen
+  Ember369
   EndrosG
   EricFromCanada
+  Faileas
+  fakepass
   fcfort
   Ferociousfeind
   finite-galaxy
   FixItYondu
   flaviojs
   Floppa-Priest
+  FoxSylv
   FranchuFranchu
   Fzzr
   Galaucus
@@ -197,6 +223,11 @@ contributed to Endless Sky:
   Hacklin
   Hadron1776
   har9862
+  Hatrask
+  Hecter94
+  heirecka
+  hexarobi
+  hmglasgow
   Hurleveur
   Hyugat
   InfiniteDonuts
@@ -216,13 +247,17 @@ contributed to Endless Sky:
   jozef-mitro
   Jugosloven1612
   Just-Existing
+  justinw1320
+  kaol
   Karirawri
+  Kepler-69c
   kestrel1110
-  KevinKorzekwa
   kilobyte
   kkuchta
+  Koranir
   kozbot
   Kryes-Omega
+  leklachu
   LepRyot
   lheckemann
   Lineth
@@ -233,7 +268,9 @@ contributed to Endless Sky:
   luiges90
   LukeMarlin
   macfreek
+  Mach565
   MageKing17
+  MagicMuscleMan
   Mailaender
   MarcelineVQ
   MasterOfGrey
@@ -243,9 +280,12 @@ contributed to Endless Sky:
   MCOfficer
   MessyMix
   michel-slm
+  mike-f1
   MillerNerd
   mimirzero
+  mOctave
   mootootwo
+  Mr-L-oof
   naehc
   Nams-2
   nathan-b
@@ -254,6 +294,7 @@ contributed to Endless Sky:
   NomadicVolcano
   NRK4
   oo13
+  opusforlife2
   Ornok
   OverYrPaygrade
   pakyinw
@@ -272,9 +313,11 @@ contributed to Endless Sky:
   Pointedstick
   prophile
   pscamman
+  Quantumshark
   quyykk
   Rakete1111
   ravenshining
+  real-dam
   realityforge
   Red-57
   redschalken
@@ -283,10 +326,13 @@ contributed to Endless Sky:
   retrue
   RighthandSon
   Ririshi
+  RisingLeaf
   rlane
   roadrunner56
   Rob59er
   Rocketeer456
+  rovermicrover
+  rrigby
   rugk
   rzahniser
   salqadri
@@ -300,9 +346,12 @@ contributed to Endless Sky:
   ScruffyKitty
   sdennie
   seanfahey
+  sevu
   sfiera
   shitwolfymakes
+  sigus
   skilaa
+  skyegallup
   solardawning
   SolraBizna
   SpearDane
@@ -319,7 +368,9 @@ contributed to Endless Sky:
   TheMarksman-ES
   thenerdfreak
   TheUnfetteredOne
+  thewierdnut
   thomasballinger
+  ThrawnCA
   ThrosturX
   Thunderforge
   tibetiroka
@@ -328,30 +379,36 @@ contributed to Endless Sky:
   TJesionowski
   tmbutterworth
   toilethinges
+  TomGoodIdea
   TotalCaesar659
+  tstanke
   TurkeyMcMac
   Turtleroku
   tux2603
   unjown
+  UnorderedSigh
   Vilhelm16
   vitalchip
   W1zrad
   Waffleship
   Waladil
+  wallphoenix
   warp-core
   waterhouse
   Wedge009
   whismerhill
   willbeason
   williaji
+  wispborne
   wjbotham
   wjp
   Wrzlprnft
   YellowApple
-  yobbo2020
   yjhn
+  yobbo2020
   ZBok
   Zitchas
+  zlonghofer
   zwparchman
 
 Special thanks to MCOfficer for

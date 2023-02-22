@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "GameAction.h"
@@ -21,8 +24,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Messages.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
-#include "Ship.h"
 #include "Random.h"
+#include "Ship.h"
 #include "UI.h"
 
 #include <cstdlib>
@@ -54,7 +57,7 @@ namespace {
 
 		Ship *flagship = player.Flagship();
 		bool isSingle = (abs(count) == 1);
-		string nameWas = (isSingle ? outfit->Name() : outfit->PluralName());
+		string nameWas = (isSingle ? outfit->DisplayName() : outfit->PluralName());
 		if(!flagship || !count || nameWas.empty())
 			return;
 
@@ -245,7 +248,7 @@ void GameAction::Save(DataWriter &out) const
 	for(auto &&it : giftShips)
 		out.Write("give", "ship", it.first->VariantName(), it.second);
 	for(auto &&it : giftOutfits)
-		out.Write("outfit", it.first->Name(), it.second);
+		out.Write("outfit", it.first->TrueName(), it.second);
 	if(payment)
 		out.Write("payment", payment);
 	if(fine)
@@ -266,8 +269,11 @@ string GameAction::Validate() const
 {
 	// Events which get activated by this action must be valid.
 	for(auto &&event : events)
-		if(!event.first->IsValid())
-			return "event \"" + event.first->Name() + "\"";
+	{
+		string reason = event.first->IsValid();
+		if(!reason.empty())
+			return "event \"" + event.first->Name() + "\" - Reason: " + reason;
+	}
 
 	// Transferred content must be defined & valid.
 	for(auto &&it : giftShips)
@@ -275,7 +281,7 @@ string GameAction::Validate() const
 			return "gift ship model \"" + it.first->VariantName() + "\"";
 	for(auto &&outfit : giftOutfits)
 		if(!outfit.first->IsDefined())
-			return "gift outfit \"" + outfit.first->Name() + "\"";
+			return "gift outfit \"" + outfit.first->TrueName() + "\"";
 
 	// It is OK for this action to try to fail a mission that does not exist.
 	// (E.g. a plugin may be designed for interoperability with other plugins.)
@@ -365,9 +371,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 	}
 
 	// Check if applying the conditions changes the player's reputations.
-	player.SetReputationConditions();
 	conditions.Apply(player.Conditions());
-	player.CheckReputationConditions();
 }
 
 
@@ -392,13 +396,11 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
 	if(result.payment)
-		subs["<payment>"] = Format::Credits(abs(result.payment))
-			+ (result.payment == 1 ? " credit" : " credits");
+		subs["<payment>"] = Format::CreditString(abs(result.payment));
 
 	result.fine = fine;
 	if(result.fine)
-		subs["<fine>"] = Format::Credits(result.fine)
-			+ (result.fine == 1 ? " credit" : " credits");
+		subs["<fine>"] = Format::CreditString(result.fine);
 
 	if(!logText.empty())
 		result.logText = Format::Replace(logText, subs);

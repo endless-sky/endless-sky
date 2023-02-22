@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "ImageSet.h"
@@ -96,7 +99,8 @@ namespace {
 	}
 
 	// Add consecutive frames from the given map to the given vector. Issue warnings for missing or mislabeled frames.
-	void AddValid(const map<size_t, string> &frameData, vector<string> &sequence, const string &prefix, bool is2x) noexcept(false)
+	void AddValid(const map<size_t, string> &frameData, vector<string> &sequence, const string &prefix, bool is2x)
+		noexcept(false)
 	{
 		if(frameData.empty())
 			return;
@@ -117,14 +121,16 @@ namespace {
 		// Copy the sorted, valid paths from the map to the frame sequence vector.
 		size_t count = distance(frameData.begin(), next);
 		sequence.resize(count);
-		transform(frameData.begin(), next, sequence.begin(), [](const pair<size_t, string> &p) -> string { return p.second; });
+		transform(frameData.begin(), next, sequence.begin(),
+			[](const pair<size_t, string> &p) -> string { return p.second; });
 
 		// If `next` is not the end, then there was at least one discontinuous frame.
 		if(next != frameData.end())
 		{
 			size_t ignored = distance(next, frameData.end());
-			Logger::LogError(prefix + "missing " + (is2x ? "@2x " : "") + "frame " + to_string(it->first + 1) + " (" + to_string(ignored)
-					+ (ignored > 1 ? " frames" : " frame") + " ignored in total).");
+			Logger::LogError(prefix + "missing " + (is2x ? "@2x " : "") + "frame "
+				+ to_string(it->first + 1) + " (" + to_string(ignored)
+				+ (ignored > 1 ? " frames" : " frame") + " ignored in total).");
 		}
 	}
 }
@@ -175,6 +181,14 @@ ImageSet::ImageSet(string name)
 const string &ImageSet::Name() const
 {
 	return name;
+}
+
+
+
+// Whether this image set is empty, i.e. has no images.
+bool ImageSet::IsEmpty() const
+{
+	return framePaths[0].empty() || framePaths[1].empty();
 }
 
 

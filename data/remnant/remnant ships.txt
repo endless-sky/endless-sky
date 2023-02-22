@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
@@ -28,7 +31,7 @@ ship "Albatross"
 		"drag" 8.6
 		"heat dissipation" 0.6
 		"fuel capacity" 600
-		"ramscoop" 2
+		"ramscoop" 2.75
 		"outfit space" 672
 		"weapon capacity" 236
 		"engine capacity" 142
@@ -37,7 +40,7 @@ ship "Albatross"
 		"hull repair rate" 1.5
 		"hull energy" 1.2
 		"outfit scan power" 18
-		"outfit scan speed" 1
+		"outfit scan efficiency" 24
 		"tactical scan power" 39
 		weapon
 			"blast radius" 360
@@ -229,6 +232,246 @@ ship "Albatross" "Albatross (Ember Shield)"
 	turret
 	turret
 
+ship "Albatross" "Albatross (Sniper II)"
+	outfits
+		"Inhibitor Cannon" 5
+		"Teciimach Bay" 2
+		"Point Defense Turret" 3
+		"Teciimach Canister" 45
+		"Teciimach Canister Rack" 3
+
+		"Aeon Cell"
+		"Epoch Cell"
+		"Crystal Capacitor"
+		"Thermoelectric Cooler" 3
+		"Quantum Key Stone"
+		"Salvage Scanner"
+		"Outfits Expansion"
+		"Tuning Rifle" 57
+
+		"Forge-Class Thruster"
+		"Crucible-Class Thruster"
+		"Smelter-Class Steering"
+		"Scram Drive"
+
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun "Teciimach Bay"
+	gun "Teciimach Bay"
+
+	turret "Point Defense Turret"
+	turret "Point Defense Turret"
+	turret
+	turret
+	turret "Point Defense Turret"
+
+
+ship "Modified Dromedary"
+	plural "Modified Dromedaries"
+	sprite "ship/modified dromedary"
+	thumbnail "thumbnail/modified dromedary"
+	attributes
+		licenses
+			"Remnant Capital"
+		category "Utility"
+		"cost" 57600000
+		"shields" 15100
+		"hull" 9600
+		"required crew" 95
+		"bunks" 300
+		"mass" 2140
+		"drag" 15.1
+		"heat dissipation" .4
+		"fuel capacity" 900
+		"cargo space" 550
+		"outfit space" 740
+		"weapon capacity" 270
+		"engine capacity" 195
+		"outfit scan power" 18
+		"outfit scan efficiency" 48
+		"tactical scan power" 39
+		"asteroid scan power" 42
+		"atmosphere scan" 100
+		weapon
+			"blast radius" 260
+			"shield damage" 2600
+			"hull damage" 1300
+			"hit force" 3900
+	outfits
+		"Thrasher Turret" 2
+		"Point Defense Turret" 2
+
+		"Aeon Cell"
+		"Crystal Capacitor" 2
+		"Thermoelectric Cooler" 3
+		"Quantum Key Stone"
+		"Salvage Scanner"
+		"Tuning Rifle" 95
+
+		"Smelter-Class Thruster"
+		"Smelter-Class Steering"
+		"Hyperdrive"
+		"Scram Drive"
+
+	engine 32.5 207
+	engine 3 207
+	engine -27.5 207
+	gun 65 -111
+		angle 40
+	gun -72 -97.5
+		angle 320
+	gun -66.5 61
+		angle 270
+	gun 78 64
+		angle 90
+	turret 10 -136.5 "Thrasher Turret"
+	turret -21.5 -57.5 "Point Defense Turret"
+	turret 51 101
+	turret -63.5 120 "Thrasher Turret"
+	turret 52.5 143 "Point Defense Turret"
+	bay "Fighter" -51 -54 under
+		"launch effect" "human internal"
+	bay "Fighter" 47 -40 under
+		"launch effect" "human internal"
+	leak "leak" 30 50
+	leak "flame" 30 80
+	leak "big leak" 50 30
+	explode "small explosion" 25
+	explode "medium explosion" 35
+	explode "large explosion" 45
+	explode "huge explosion" 30
+	"final explode" "final explosion large"
+	description `The Tycho Crater Cooperative's Dromedary was one of the foremost colonization ships during the early era before piracy became rampant and triggered the necessity for city-ships to be more combat-oriented. These ships incorporate extensive hydroponics, large construction equipment installations, and hundreds of densely packed "dream cells" built to transport people in bulk.`
+	description "	Since the Remnant do not have schematics for the Dromedary, just the highly-modified example of the Shattered Light, this ship is actually a commemorative replica of that specific ship. As such, it combines the original's odd mix of eclectic modifications with new Remnant systems."
+	description "	Unfortunately, since they lack the manufacturing facilities that would normally support a large construction project, it will cost massively more than it would have originally back on Luna."
+
+
+ship "Modified Dromedary" "Modified Dromedary Ghost"
+	sprite "ship/modified dromedary ghost"
+	thumbnail "thumbnail/modified dromedary wreck"
+	"uncapturable"
+	"never disabled"
+	add attributes
+		"shields" -10000
+		"hull" -5000
+		"automaton" 1
+		inscrutable 1
+		"quantum keystone" 1
+		"burn protection" 100
+		"corrosion protection" 100
+		"discharge protection" 1
+		"disruption protection" 100
+		"energy protection" 1
+		"force protection" 100
+		"fuel protection" 100
+		"heat protection" 100
+		"hull protection" 100
+		"ion protection" 1
+		"scramble protection" 1
+		"leak protection" 100
+		"piercing protection" 100
+		"shield protection" 100
+		"slowing protection" 1
+	outfits
+		"Fusion Reactor"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"Large Radar Jammer"
+		"Ramscoop"
+		"NDR-114 Android" 100
+		"Laser Rifle" 100
+		
+		"X4700 Ion Thruster"
+		"X5200 Ion Steering"
+		"Hyperdrive"
+		
+
+ship "Modified Dromedary" "Modified Dromedary Specter"
+	sprite "ship/modified dromedary specter"
+	thumbnail "thumbnail/modified dromedary wreck"
+	"uncapturable"
+	"never disabled"
+	add attributes
+		"shields" -10000
+		"hull" -5000
+		"automaton" 1
+		inscrutable 1
+		"quantum keystone" 1
+		"burn protection" 100
+		"corrosion protection" 100
+		"discharge protection" 1
+		"disruption protection" 100
+		"energy protection" 1
+		"force protection" 100
+		"heat protection" 100
+		"fuel protection" 100
+		"hull protection" 100
+		"ion protection" 1
+		"scramble protection" 1
+		"leak protection" 100
+		"piercing protection" 100
+		"shield protection" 100
+		"slowing protection" 1
+	outfits
+		"Fusion Reactor"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"Large Radar Jammer"
+		"Ramscoop"
+		"NDR-114 Android" 100
+		"Laser Rifle" 15
+		
+		"X4700 Ion Thruster"
+		"X5200 Ion Steering"
+		"Hyperdrive"
+
+
+ship "Modified Dromedary" "Modified Dromedary Wreck"
+	sprite "ship/modified dromedary wreck"
+	thumbnail "thumbnail/modified dromedary wreck"
+	"uncapturable"
+	"never disabled"
+	attributes
+	add attributes
+		"shields" -10000
+		"hull" -5000
+		"quantum keystone" 1
+		"burn protection" 100
+		"heat protection" 1
+		"discharge protection" 1
+		"energy protection" 1
+		"hull protection" 1
+		"ion protection" 1
+		"scramble protection" 1
+		"slowing protection" 1
+	outfits
+		"Laser Turret" 2
+		"Quad Blaster Turret"
+		"Anti-Missile Turret" 2
+		
+		"Fusion Reactor"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"Large Radar Jammer"
+		"Ramscoop"
+		"NDR-114 Android" 100
+		"Laser Rifle" 150
+		
+		"X4700 Ion Thruster"
+		"X5200 Ion Steering"
+		"Hyperdrive"
+	turret "Laser Turret"
+	turret "Anti-Missile Turret"
+	turret "Quad Blaster Turret"
+	turret "Laser Turret"
+	turret "Anti-Missile Turret"
+	description `The Tycho Crater Cooperative's Dromedary was one of the foremost colonization ships during the early era before piracy became rampant and triggered the necessity for city-ships to be more combat-oriented. These ships incorporate extensive hydroponics, large construction equipment installations, and hundreds of densely packed "dream cells" built to transport people in bulk.`
+	description "	This is a wreck. A ship that once might have held hundreds of people has no functional environmental system, the once verdant hydroponics domes are shattered, and much of the ship appears to be destroyed. Burns, strange scrapes, and twists to structural elements abound. Only a smattering of droids persistently continuing their work manage to maintain any degree of functionality."
+
+
 
 ship "Gull"
 	sprite "ship/gull"
@@ -246,7 +489,7 @@ ship "Gull"
 		"drag" 6
 		"heat dissipation" 0.7
 		"fuel capacity" 600
-		"ramscoop" 1
+		"ramscoop" 1.75
 		"cargo space" 175
 		"outfit space" 311
 		"weapon capacity" 83
@@ -259,7 +502,7 @@ ship "Gull"
 		"cloaking energy" 5
 		"cloaking fuel" .1
 		"outfit scan power" 12
-		"outfit scan speed" 1
+		"outfit scan efficiency" 20
 		"tactical scan power" 26
 		weapon
 			"blast radius" 80
@@ -338,6 +581,27 @@ ship "Gull" "Gull (Support)"
 		"Forge-Class Steering"
 		"Hyperdrive"
 
+ship "Gull" "Gull (Support II)"
+	outfits
+		"Teciimach Bay"
+		"Inhibitor Cannon" 2
+		"Point Defense Turret"
+		"Teciimach Canister" 18
+		"Teciimach Canister Rack"
+
+		"Epoch Cell"
+		"Millennium Cell"
+		"Crystal Capacitor"
+		"Quantum Key Stone"
+		"Thermoelectric Cooler"
+		"Salvage Scanner" 2
+		"Outfits Expansion" 2
+		"Tuning Rifle" 3
+
+		"Forge-Class Thruster"
+		"Forge-Class Steering"
+		"Hyperdrive"
+
 ship "Gull" "Gull (Cargo)"
 	outfits
 		"Cargo Expansion" 4
@@ -373,7 +637,7 @@ ship "Gull" "Gull (Bunks)"
 ship "Heron"
 	sprite "ship/heron"
 	attributes
-		category "Utility"
+		category "Superheavy"
 		licenses
 			"Remnant Capital"
 		"cost" 256375000
@@ -385,7 +649,7 @@ ship "Heron"
 		"drag" 25
 		"heat dissipation" .80
 		"fuel capacity" 2500
-		"ramscoop" 10
+		"ramscoop" 10.75
 		"cargo space" 1110
 		"outfit space" 2150
 		"weapon capacity" 470
@@ -400,11 +664,12 @@ ship "Heron"
 		"gaslining" 1
 		"atmosphere scan" 100
 		"outfit scan power" 175
-		"outfit scan speed" 1
+		"outfit scan efficiency" 120
 		"tactical scan power" 350
 		"force protection" 1
 		"heat protection" 1.5
 		"ion resistance" 0.3
+		"scramble resistance" 0.3
 		"slowing resistance" 3
 		"remnant node" 11
 		"spinal mount" 1
@@ -453,41 +718,77 @@ ship "Heron"
 	turret 0 0 "Point Defense Turret"
 	turret 0 250 "Point Defense Turret"
 	bay "Drone" -124 -122.5
+		"launch effect" "remnant internal"
 	bay "Drone" 124 -122.5
+		"launch effect" "remnant internal"
 	bay "Drone" -176 -50.5
+		"launch effect" "remnant internal"
 	bay "Drone" 176 -50.5
+		"launch effect" "remnant internal"
 	bay "Drone" -148.5 4
+		"launch effect" "remnant internal"
 	bay "Drone" 148.5 4
+		"launch effect" "remnant internal"
 	bay "Drone" -56 -150
+		"launch effect" "remnant internal"
 	bay "Drone" 56 -150
+		"launch effect" "remnant internal"
 	bay "Drone" -37 -121.5
+		"launch effect" "remnant internal"
 	bay "Drone" 37 -121.5
+		"launch effect" "remnant internal"
 	bay "Drone" -33.5 -99
+		"launch effect" "remnant internal"
 	bay "Drone" 33.5 -99
+		"launch effect" "remnant internal"
 	bay "Drone" -27 -81
+		"launch effect" "remnant internal"
 	bay "Drone" 27 -81
+		"launch effect" "remnant internal"
 	bay "Drone" -24 -49.5
+		"launch effect" "remnant internal"
 	bay "Drone" 24 -49.5
+		"launch effect" "remnant internal"
 	bay "Drone" -40 -3
+		"launch effect" "remnant internal"
 	bay "Drone" 40 -3
+		"launch effect" "remnant internal"
 	bay "Drone" -28 22.5
+		"launch effect" "remnant internal"
 	bay "Drone" 28 22.5
+		"launch effect" "remnant internal"
 	bay "Drone" -77.5 71.5
+		"launch effect" "remnant internal"
 	bay "Drone" 77.5 71.5
+		"launch effect" "remnant internal"
 	bay "Drone" -89.5 114
+		"launch effect" "remnant internal"
 	bay "Drone" 89.5 114
+		"launch effect" "remnant internal"
 	bay "Drone" -138.5 152.5
+		"launch effect" "remnant internal"
 	bay "Drone" 138.5 152.5
+		"launch effect" "remnant internal"
 	bay "Drone" -171 165.5
+		"launch effect" "remnant internal"
 	bay "Drone" 171 165.5
+		"launch effect" "remnant internal"
 	bay "Drone" -190.5 197.5
+		"launch effect" "remnant internal"
 	bay "Drone" 190.5 197.5
+		"launch effect" "remnant internal"
 	bay "Drone" -105 229.5
+		"launch effect" "remnant internal"
 	bay "Drone" 105 229.5
+		"launch effect" "remnant internal"
 	bay "Fighter" -31 70.5
+		"launch effect" "remnant internal"
 	bay "Fighter" 31 70.5
+		"launch effect" "remnant internal"
 	bay "Fighter" -40 190
+		"launch effect" "remnant internal"
 	bay "Fighter" 40 190
+		"launch effect" "remnant internal"
 	explode "small explosion" 40
 	explode "medium explosion" 30
 	explode "large explosion" 20
@@ -505,7 +806,7 @@ ship "Ibis"
 	attributes
 		category "Medium Warship"
 		licenses
-			"Remnant Capital"
+			Remnant
 		"cost" 11627000
 		"shields" 14400
 		"hull" 6200
@@ -515,7 +816,7 @@ ship "Ibis"
 		"drag" 5.1
 		"heat dissipation" 0.7
 		"fuel capacity" 700
-		"ramscoop" 2
+		"ramscoop" 2.75
 		"cargo space" 103
 		"outfit space" 427
 		"weapon capacity" 147
@@ -525,7 +826,7 @@ ship "Ibis"
 		"hull repair rate" 1.2
 		"hull energy" 0.95
 		"outfit scan power" 18
-		"outfit scan speed" 1
+		"outfit scan efficiency" 20
 		"tactical scan power" 39
 		weapon
 			"blast radius" 240
@@ -551,11 +852,17 @@ ship "Ibis"
 		"Scram Drive"
 		
 	bay "Drone" 0 30 over
+		"launch effect" "remnant external"
 	bay "Drone" -34 68 over
+		"launch effect" "remnant external"
 	bay "Drone" 0 81 over
+		"launch effect" "remnant external"
 	bay "Drone" 34 68 over
+		"launch effect" "remnant external"
 	bay "Fighter" -25 10 under
+		"launch effect" "remnant external"
 	bay "Fighter" 25 10 under
+		"launch effect" "remnant external"
 	engine -16.5 120 0.7
 	engine 0 116.5 1
 	engine 16.5 120 0.7
@@ -591,7 +898,7 @@ ship "Merganser"
 		"bunks" 3
 		"cargo space" 11
 		"fuel capacity" 600
-		"ramscoop" 1
+		"ramscoop" 1.75
 		"mass" 30
 		"drag" 1.5
 		"heat dissipation" .9
@@ -606,10 +913,12 @@ ship "Merganser"
 		"cloaking fuel" .05
 		"atmosphere scan" 100
 		"outfit scan power" 12
-		"outfit scan speed" 1
+		"outfit scan efficiency" 12
 		"tactical scan power" 26
 		"ion resistance" 0.1
 		"ion resistance energy" -0.05
+		"scramble resistance" 0.1
+		"scramble resistance energy" -0.05
 		"thrust" 5.0
 		"turn" 60.0
 		"reverse thrust" 5.0
@@ -655,6 +964,28 @@ ship "Merganser"
 	description "	The cloaking technology is built into the Merganser's hull; it cannot be removed or transferred to another ship."
 
 
+ship "Merganser" "Merganser (II)"
+	outfits
+		"Inhibitor Cannon" 2
+		"Teciimach Pod"
+		"Teciimach Canister" 3
+		
+		"Millennium Cell" 2
+		"Crystal Capacitor" 2
+		"Small Heat Shunt"
+		"Quantum Key Stone"
+		
+		"Crucible-Class Thruster"
+		"Anvil-Class Engine"
+		"Bellows-Class Afterburner"
+		"Scram Drive"
+		
+	gun 0 -48.5 "Teciimach Pod"
+	gun -6 -41 "Inhibitor Cannon"
+	gun 6 -41 "Inhibitor Cannon"
+	turret 0 0
+
+
 
 ship "Pelican"
 	sprite "ship/pelican"
@@ -673,7 +1004,7 @@ ship "Pelican"
 		"drag" 7.2
 		"heat dissipation" 0.7
 		"fuel capacity" 600
-		"ramscoop" 2
+		"ramscoop" 2.75
 		"outfit space" 480
 		"weapon capacity" 157
 		"engine capacity" 144
@@ -682,7 +1013,7 @@ ship "Pelican"
 		"hull repair rate" 1
 		"hull energy" 0.75
 		"outfit scan power" 12
-		"outfit scan speed" 1
+		"outfit scan efficiency" 12
 		"tactical scan power" 26
 		weapon
 			"blast radius" 160
@@ -754,7 +1085,7 @@ ship "Penguin"
 		"heat dissipation" 0.9
 		"fuel capacity" 800
 		"energy capacity" 300
-		"ramscoop" 0.5
+		"ramscoop" 1.25
 		"cargo space" 19
 		"outfit space" 109
 		"weapon capacity" 33
@@ -768,9 +1099,13 @@ ship "Penguin"
 		"cloaking energy" 3
 		"cloaking fuel" .05
 		"outfit scan power" 50
-		"outfit scan speed" 1
+		"outfit scan efficiency" 36
 		"tactical scan power" 50
 		"atmosphere scan" 100
+		"ion protection" 0.25
+		"scramble protection" 0.25
+		"ion resistance" 0.05
+		"scramble resistance" 0.05
 		"thrust" 4.2
 		"turn" 80.0
 		"reverse thrust" 4.2
@@ -855,7 +1190,7 @@ ship "Peregrine"
 		"drag" 4.3
 		"heat dissipation" 0.85
 		"fuel capacity" 1100
-		"ramscoop" 2.5
+		"ramscoop" 3.25
 		"cargo space" 59
 		"outfit space" 552
 		"weapon capacity" 220
@@ -869,9 +1204,10 @@ ship "Peregrine"
 		"cloaking fuel" .05
 		"gaslining" 1
 		"outfit scan power" 18
-		"outfit scan speed" 1
+		"outfit scan efficiency" 22
 		"tactical scan power" 50
 		"ion protection" 0.25
+		"scramble protection" 0.25
 		"slowing protection" 0.25
 		"remnant node" 5
 		weapon
@@ -921,6 +1257,36 @@ ship "Peregrine"
 	description "The Peregrine is the first capital warship designed by Taely using fresh insights garnered from recent experimentation as well as renewed studies of the void sprites. Encompassing over a century of development since the last generation of warships was built, it is the forerunner of a new breed of Remnant ships."
 	description "	The Peregrine was designed along the lines of old-earth's fast-attack cruisers. Drawing on inspiration from its namesake, famed for being the fastest self-propelled lifeform on Earth, it is designed to strike hard and fast. It closes quickly with enemies to unleash devastating barrages in the opening seconds of combat."
 	description "	The cloaking technology is built into the Peregrine's hull; it cannot be removed or transferred to another ship."
+	
+ship "Peregrine" "Peregrine (II)"
+	outfits
+		"Thrasher Cannon" 4
+		"Teciimach Bay"
+		"Point Defense Turret"
+		"Thrasher Turret"
+		"Teciimach Canister" 9
+		
+		"Aeon Cell"
+		"Crystal Capacitor" 2
+		"Thermoelectric Cooler" 2
+		"Small Heat Shunt"
+		"Quantum Key Stone"
+		"Salvage Scanner"
+		"Tuning Rifle" 11
+		
+		"Bellows-Class Afterburner"
+		"Smelter-Class Thruster"
+		"Crucible-Class Thruster"
+		"Smelter-Class Steering"
+		"Scram Drive"
+		
+	gun 0 -133.5 "Teciimach Bay"
+	gun -12.5 -105 "Thrasher Cannon"
+	gun 12.5 -105 "Thrasher Cannon"
+	gun -17.5 -83 "Thrasher Cannon"
+	gun 17.5 -83 "Thrasher Cannon"
+	turret 0 -44 "Point Defense Turret"
+	turret 0 21 "Thrasher Turret"
 
 
 
@@ -936,7 +1302,7 @@ ship "Petrel"
 		"hull" 2500
 		"cargo space" 15
 		"fuel capacity" 100
-		"ramscoop" 0.5
+		"ramscoop" 1.25
 		"required crew" 2
 		"bunks" 3
 		"mass" 50
@@ -951,7 +1317,7 @@ ship "Petrel"
 		"hull energy" 0.54
 		"gaslining" 1
 		"outfit scan power" 10
-		"outfit scan speed" 1
+		"outfit scan efficiency" 14
 		"tactical scan power" 20
 		"asteroid scan power" 30
 		weapon
@@ -1000,7 +1366,7 @@ ship "Puffin"
 		"heat dissipation" 0.9
 		"fuel capacity" 700
 		"energy capacity" 150
-		"ramscoop" 0.5
+		"ramscoop" 1.25
 		"cargo space" 8
 		"outfit space" 80
 		"engine capacity" 26
@@ -1013,9 +1379,13 @@ ship "Puffin"
 		"active cooling" 8
 		"cooling energy" .4
 		"outfit scan power" 24
-		"outfit scan speed" 1
+		"outfit scan efficiency" 28
 		"tactical scan power" 52
 		"atmosphere scan" 100
+		"ion protection" 0.25
+		"scramble protection" 0.25
+		"ion resistance" 0.05
+		"scramble resistance" 0.05
 	outfits
 		"Millennium Cell"
 		"Emergency Ramscoop"
@@ -1029,6 +1399,91 @@ ship "Puffin"
 	explode "tiny explosion" 8
 	explode "small explosion" 7
 	description "Centuries ago, the Remnant built these ships in order to explore the upper atmosphere of nearby gas giants. The Archons took issue with the Remnant's research methods, and the studies were unable to be completed. The remaining Puffins have been gathering dust in storage for centuries while the Remnant wait to see if the anger of the Archons will subside."
+
+
+
+ship "Smew"
+	sprite "ship/smew"
+	thumbnail "thumbnail/smew"
+	attributes
+		category "Fighter"
+		licenses
+			Remnant
+		"cost" 971000
+		"shields" 1200
+		"hull" 2800
+		"required crew" 1
+		"bunks" 8
+		"mass" 50
+		"drag" 1.75
+		"heat dissipation" .65
+		"fuel capacity" 100
+		"cargo space" 70
+		"outfit space" 80
+		"weapon capacity" 10
+		"engine capacity" 46
+		"energy capacity" 3000
+		"ion resistance" 0.002
+		"scramble resistance" 0.002
+		"ramscoop" 1.55
+		"shield generation" 0.48
+		"shield energy" 0.32
+		"hull repair rate" 0.9
+		"hull energy" 0.58
+		"outfit scan power" 14
+		"outfit scan efficiency" 20
+		"tactical scan power" 28
+		"asteroid scan power" 50
+		weapon
+			"blast radius" 24
+			"shield damage" 130
+			"hull damage" 175
+			"hit force" 315
+	outfits
+		"Millennium Cell"
+		"Quantum Key Stone"
+		"Thermoelectric Cooler"
+		
+		"Anvil-Class Engine"
+
+	engine 0 48.5
+	gun 0 -47.5
+	leak "remnant leak sparkle" 22 3
+	explode "tiny explosion" 35
+	explode "small explosion" 24
+	description "The Remnant have long favored turns of action that avoid putting crew directly at risk; though their Terns are a rather effective result of this ideology, the Remnant still had to face the fact that, eventually, one of their manned ships was going to end up too crippled to escape to safety. To that end, the Smew was developed; though quite lightly armed, Smews are capable of carrying a considerable quantity of cargo and passengers for a ship of their size, and are durable enough to absorb some fire from enemies while doing so."
+	description "	Though originally designed as lifeboats, the surprisingly mobile freighter-fighter hybrid has seen a remarkable amount of usage in mining fleets, as a way to supplement the otherwise poor cargo capacity of the Ibis. Because their purpose can vary from fleet to fleet, Smews are traditionally sold with a fair amount of free space: enough for a small weapon, upgraded engines, or additional support systems."
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
+
+ship "Smew" "Smew (Miner)"
+	outfits
+		"Thrasher Cannon"
+		
+		"Millennium Cell"
+		"Quantum Key Stone"
+		"Thermoelectric Cooler"
+		
+		"Anvil-Class Engine"
+
+ship "Smew" "Smew (Runabout)"
+	outfits
+		"Millennium Cell"
+		"Quantum Key Stone"
+		"Thermoelectric Cooler"
+		
+		"Anvil-Class Engine"
+		"Hyperdrive"
+
+ship "Smew" "Smew (Teciimach Ferry)"
+	outfits
+		"Teciimach Canister" 3
+		"Teciimach Pod"
+		
+		"Millennium Cell"
+		"Quantum Key Stone"
+		"Thermoelectric Cooler"
+		
+		"Anvil-Class Engine"
 
 
 
@@ -1048,7 +1503,7 @@ ship "Starling"
 		"drag" 3.8
 		"heat dissipation" 0.7
 		"fuel capacity" 900
-		"ramscoop" 1
+		"ramscoop" 1.75
 		"cargo space" 36
 		"outfit space" 316
 		"weapon capacity" 83
@@ -1061,7 +1516,7 @@ ship "Starling"
 		"cloaking energy" 5
 		"cloaking fuel" .1
 		"outfit scan power" 12
-		"outfit scan speed" 1
+		"outfit scan efficiency" 20
 		"tactical scan power" 26
 		weapon
 			"blast radius" 80
@@ -1208,7 +1663,7 @@ ship "Tern"
 		"heat dissipation" .9
 		"fuel capacity" 50
 		"energy capacity" 500
-		"ramscoop" 0.5
+		"ramscoop" 1.25
 		"outfit space" 76
 		"weapon capacity" 16
 		"engine capacity" 26
@@ -1218,7 +1673,7 @@ ship "Tern"
 		"hull energy" 0.37
 		"gaslining" 1
 		"outfit scan power" 10
-		"outfit scan speed" 1
+		"outfit scan efficiency" 12
 		"tactical scan power" 20
 		"atmosphere scan" 100
 		"asteroid scan power" 30

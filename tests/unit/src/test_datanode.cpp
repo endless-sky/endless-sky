@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "es-test.hpp"
@@ -239,6 +242,43 @@ SCENARIO( "Determining if a token is numeric", "[IsNumber][Parsing][DataNode]" )
 			);
 			CAPTURE( strNum ); // Log the value if the assertion fails.
 			CHECK( DataNode::IsNumber(strNum) );
+		}
+	}
+}
+
+SCENARIO( "Determining if a token is a boolean", "[Boolean][Parsing][DataNode]" ) {
+	GIVEN( "A string that is \"true\"/\"1\" or \"false\"/\"0\"" ) {
+		THEN( "IsBool returns true" ) {
+			CHECK( DataNode::IsBool("true") );
+			CHECK( DataNode::IsBool("1") );
+			CHECK( DataNode::IsBool("false") );
+			CHECK( DataNode::IsBool("0") );
+		}
+	}
+	GIVEN( "A string that is not \"true\"/\"1\" or \"false\"/\"0\"" ) {
+		THEN( "IsBool returns false" ) {
+			CHECK_FALSE( DataNode::IsBool("monkey") );
+			CHECK_FALSE( DataNode::IsBool("banana") );
+			CHECK_FALSE( DataNode::IsBool("-1") );
+			CHECK_FALSE( DataNode::IsBool("2") );
+		}
+	}
+	GIVEN( "A DataNode with a boolean string token" ) {
+		DataNode root = AsDataNode("root\n\ttrue\n\t\tfalse");
+		const DataNode &trueVal = *root.begin();
+		const DataNode &falseVal = *trueVal.begin();
+		THEN( "BoolValue returns expected contents" ) {
+			CHECK( trueVal.BoolValue(0) );
+			CHECK_FALSE( falseVal.BoolValue(0) );
+		}
+	}
+	GIVEN( "A DataNode with a boolean number token" ) {
+		DataNode root = AsDataNode("root\n\t1\n\t\t0");
+		const DataNode &trueVal = *root.begin();
+		const DataNode &falseVal = *trueVal.begin();
+		THEN( "BoolValue returns expected contents" ) {
+			CHECK( trueVal.BoolValue(0) );
+			CHECK_FALSE( falseVal.BoolValue(0) );
 		}
 	}
 }

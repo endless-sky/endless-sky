@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef MAP_DETAIL_PANEL_H_
@@ -38,15 +41,19 @@ public:
 
 	virtual void Step() override;
 	virtual void Draw() override;
-	// Navigate through the shown planets when there are too many, otherwise use the parent function.
-	virtual bool Scroll(double dx, double dy) override;
 
 
 public:
 	static double GetScroll();
+	static double PlanetPanelHeight();
 
 
 protected:
+	// Navigates through the shown planets panel, and drags them around.
+	virtual bool Scroll(double dx, double dy) override;
+	virtual bool Drag(double dx, double dy) override;
+	virtual bool Hover(int x, int y) override;
+
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	// Handle single & double-clicks on commodities, planet information, or objects in the "orbits" display.
 	virtual bool Click(int x, int y, int clicks) override;
@@ -70,6 +77,9 @@ private:
 	int governmentY = 0;
 	int tradeY = 0;
 
+	// Which panel is being hovered over and should be affected by up and down keys.
+	bool isPlanetViewSelected = false;
+
 	// Maximum scrolling possible with the current amount of planets being displayed.
 	double maxScroll = 0.;
 	static double scroll;
@@ -80,6 +90,7 @@ private:
 	// The system currently displayed, it should be the same as the system selected at all times.
 	const System *shownSystem = nullptr;
 
+	static double planetPanelHeight;
 	std::vector<MapPlanetCard> planetCards;
 	// Vector offsets from the center of the "orbits" UI.
 	std::map<const Planet *, Point> planets;

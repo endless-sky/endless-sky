@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "DataWriter.h"
@@ -27,7 +30,16 @@ const string DataWriter::space = " ";
 
 // Constructor, specifying the file to save.
 DataWriter::DataWriter(const string &path)
-	: path(path), before(&indent)
+	: DataWriter()
+{
+	this->path = path;
+}
+
+
+
+// Constructor for a DataWriter that will not save its contents automatically
+DataWriter::DataWriter()
+	: before(&indent)
 {
 	out.precision(8);
 }
@@ -37,7 +49,16 @@ DataWriter::DataWriter(const string &path)
 // Destructor, which saves the file all in one block.
 DataWriter::~DataWriter()
 {
-	Files::Write(path, out.str());
+	if(!path.empty())
+		SaveToPath(path);
+}
+
+
+
+// Save the contents to a file.
+void DataWriter::SaveToPath(const std::string &filepath)
+{
+	Files::Write(filepath, out.str());
 }
 
 

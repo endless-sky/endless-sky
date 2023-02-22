@@ -1,72 +1,114 @@
-name: Validate Project files
+name: Check
 
 on:
   push:
     branches:
       - master
       - releases/v[0-9]+.[0-9]+.[0-9]+
-    paths:
-      - '.github/workflows/projects_check.yml'
-      - 'copyright'
-      - 'EndlessSky.xcodeproj/**'
-      - '*.cbp'
-      - 'source/**'
-      - 'utils/check_*.sh'
   pull_request:
     types: [opened, synchronize]
-    paths:
-      - '.github/workflows/projects_check.yml'
-      - 'copyright'
-      - 'EndlessSky.xcodeproj/**'
-      - '*.cbp'
-      - 'source/**'
-      - 'utils/check_*.sh'
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}
+  cancel-in-progress: true
 
 jobs:
   changed:
     uses: ./.github/workflows/compute-changes.yml
 
-  check-xcode:
-    needs: changed
-    if: ${{ needs.changed.outputs.xcode_files || needs.changed.outputs.game_code }}
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 1
-    - name: Install dependencies
-      run: python3 -m pip install --user docopt openstep_parser pbxproj
-    - name: Validate XCode .pbxproj file
-      run: ./utils/check_xcode.sh
-    - name: Upload XCode patch
-      if: failure()
-      uses: actions/upload-artifact@v2
-      with:
-        name: xcode-project.patch
-        path: xcode-project.patch
 
   check-codeblocks:
+    name: CodeBlocks
     needs: changed
-    if: ${{ needs.changed.outputs.codeblocks_files || needs.changed.outputs.game_code || needs.changed.outputs.unit_tests }}
+    if: ${{ needs.changed.outputs.codeblocks_files == 'true' || needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 1
     - name: Validate Code::Blocks project files
       run: ./utils/check_codeblocks.sh
 
 
-
-  validate-copyright:
+  check_cmake:
+    name: CMake
     needs: changed
-    if: ${{ needs.changed.outputs.copyright }}
+    if: ${{ needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
+    - name: Validate CMake project files
+      run: ./utils/check_cmake.sh
+
+
+
+  validate_copyright:
+    name: Copyright
+    needs: changed
+    if: ${{ needs.changed.outputs.copyright == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 1
     - name: Install dependencies
       run: python3 -m pip install --user python-debian
     - name: Validate copyright file
       run: python3 ./utils/check_copyright.py
+
+
+  spellcheck:
+    name: Spelling
+    needs: [changed]
+    if: ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.codespell == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.pull_request.head.sha }}
+    - uses: codespell-project/actions-codespell@master
+      with:
+        builtin: clear,en-GB_to_en-US
+        path: data/
+        exclude_file: .codespell.exclude
+
+
+  style_check:
+    name: Style
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: editorconfig-checker/action-editorconfig-checker@main
+    - run: editorconfig-checker
+
+
+  check_coding_style:
+    name: Code Style
+    needs: changed
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+    - name: Install dependencies
+      run: pip install regex
+    - name: Run style checker
+      run: python ./utils/check_code_style.py
+
+
+  check_content_style:
+    name: Content Style
+    needs: changed
+    if: ${{ needs.changed.outputs.data == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+    - name: Install dependencies
+      run: pip install regex
+    - name: Run style checker
+      run: python ./utils/check_content_style.py

@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef ES_TEXT_FORMAT_H_
@@ -26,6 +29,14 @@ public:
 	// "M" for million, "B" for billion, or "T" for trillion. Any number
 	// above 1 quadrillion is instead shown in scientific notation.
 	static std::string Credits(int64_t value);
+	// Convert the given number into abbreviated format as described in Format::Credits,
+	// then attach the ' credit' or ' credits' suffix to it.
+	static std::string CreditString(int64_t value);
+	// Writes the given number into a string,
+	// then attach the ' ton' or ' tons' suffix to it.
+	static std::string MassString(double amount);
+	// Creates a string similar to '<amount> tons of <cargo>'.
+	static std::string CargoString(double amount, const std::string &cargo);
 	// Convert a time in seconds to years/days/hours/minutes/seconds
 	static std::string PlayTime(double timeVal);
 	// Convert the given number to a string, with at most one decimal place.

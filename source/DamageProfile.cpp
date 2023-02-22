@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "DamageProfile.h"
@@ -120,7 +123,8 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	double shields = ship.ShieldLevel();
 	if(shields > 0.)
 	{
-		double piercing = max(0., min(1., weapon.Piercing() / (1. + attributes.Get("piercing protection")) - attributes.Get("piercing resistance")));
+		double piercing = max(0., min(1., weapon.Piercing() / (1. + attributes.Get("piercing protection"))
+			- attributes.Get("piercing resistance")));
 		shieldFraction = (1. - piercing) / (1. + ship.DisruptionLevel() * .01);
 
 		damage.shieldDamage = (weapon.ShieldDamage()
@@ -169,8 +173,9 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	damage.leakDamage = weapon.LeakDamage() * ScaleType(1., attributes.Get("leak protection"));
 
 	// Unique special damage types.
-	// Disruption and slowing are blocked 50% by shields.
+	// Disruption, scrambling and slowing are blocked 50% by shields.
 	damage.disruptionDamage = weapon.DisruptionDamage() * ScaleType(.5, attributes.Get("disruption protection"));
+	damage.scramblingDamage = weapon.ScramblingDamage() * ScaleType(.5, attributes.Get("scramble protection"));
 	damage.slowingDamage = weapon.SlowingDamage() * ScaleType(.5, attributes.Get("slowing protection"));
 
 	// Hit force is blocked 0% by shields.

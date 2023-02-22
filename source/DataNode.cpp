@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "DataNode.h"
@@ -214,6 +217,47 @@ bool DataNode::IsNumber(const string &token)
 			return false;
 	}
 	return true;
+}
+
+
+
+// Convert the token at the given index to a boolean. This returns false
+// and prints an error if the index is out of range or the token cannot
+// be interpreted as a number.
+bool DataNode::BoolValue(int index) const
+{
+	// Check for empty strings and out-of-bounds indices.
+	if(static_cast<size_t>(index) >= tokens.size() || tokens[index].empty())
+		PrintTrace("Error: Requested token index (" + to_string(index) + ") is out of bounds:");
+	else if(!IsBool(tokens[index]))
+		PrintTrace("Error: Cannot convert value \"" + tokens[index] + "\" to a boolean:");
+	else
+	{
+		const string &token = tokens[index];
+		return token == "true" || token == "1";
+	}
+
+	return false;
+}
+
+
+
+// Check if the token at the given index is a boolean, i.e. "true"/"1" or "false"/"0"
+// as a string.
+bool DataNode::IsBool(int index) const
+{
+	// Make sure this token exists and is not empty.
+	if(static_cast<size_t>(index) >= tokens.size() || tokens[index].empty())
+		return false;
+
+	return IsBool(tokens[index]);
+}
+
+
+
+bool DataNode::IsBool(const string &token)
+{
+	return token == "true" || token == "1" || token == "false" || token == "0";
 }
 
 

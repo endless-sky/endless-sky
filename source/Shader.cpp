@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Shader.h"
@@ -101,12 +104,14 @@ GLuint Shader::Compile(const char *str, GLenum type)
 		bool found = false;
 		for(char c : glsl)
 		{
-			if(!found && !isdigit(c)) {
+			if(!found && !isdigit(c))
+			{
 				continue;
 			}
 			if(isspace(c))
 				break;
-			if(isdigit(c)) {
+			if(isdigit(c))
+			{
 				found = true;
 				version += c;
 			}

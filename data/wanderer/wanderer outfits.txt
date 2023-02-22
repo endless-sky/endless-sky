@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 outfit "Sunbeam"
 	category "Guns"
@@ -120,7 +123,7 @@ outfit "Moonbeam"
 	weapon
 		sprite "projectile/moonbeam"
 			"random start frame"
-		sound "sunbeam"
+		sound "moonbeam"
 		"fire effect" "moonbeam fleck"
 		"hit effect" "moonbeam impact"
 		"inaccuracy" 2.0
@@ -167,7 +170,7 @@ outfit "Moonbeam Turret"
 			"random start frame"
 		"hardpoint sprite" "hardpoint/moonbeam turret"
 		"hardpoint offset" 9.
-		sound "sunbeam"
+		sound "moonbeam"
 		"fire effect" "moonbeam fleck"
 		"hit effect" "moonbeam impact"
 		"inaccuracy" 2.0
@@ -250,7 +253,7 @@ outfit "Thunderhead Launcher"
 		"infrared tracking" .9
 		"radar tracking" .6
 		"missile strength" 12
-	description "A prime example of Wanderer ingenuity, Thunderhead missiles each carry five submunitions that are capable of independent tracking. Even if the target is able to shoot down or evade a few of them, the remaining missile fragments will still find their mark."
+	description "A prime example of Wanderer ingenuity, Thunderhead Missiles each carry five submunitions that are capable of independent tracking. Even if the target is able to shoot down or evade a few of them, the remaining missile fragments will still find their mark."
 
 outfit "Thunderhead Missile"
 	category "Ammunition"
@@ -565,16 +568,16 @@ outfit "Type 4 Radiant Steering"
 	description "This is the largest steering system that the Wanderers sell."
 
 outfit "Wanderer Outfits License"
-	category "Special"
+	category "Licenses"
 	thumbnail "outfit/wanderer outfits license"
 	description "Spoke with a Wanderer ambassador named Iktat Rek using the translation device and received permission to purchase some of their technology, but not their ships."
 
 outfit "Wanderer License"
-	category "Special"
+	category "Licenses"
 	thumbnail "outfit/wanderer license"
 	description "Managed to broker a temporary ceasefire between the Unfettered Hai and the Wanderers. Was granted access to purchase the non-military Wanderer ships, as a reward."
 
 outfit "Wanderer Military License"
-	category "Special"
+	category "Licenses"
 	thumbnail "outfit/wanderer military license"
 	description "Received permission to purchase warships from the Wanderers, including a new one called the Tempest."

@@ -14,7 +14,7 @@ CBTPROJECT="${ESTOP}/EndlessSkyTests.cbp"
 
 RESULT=0
 
-for FILE in $(find source -type f -not -name WinApp.rc -not -name main.cpp | sed s,^source/,, | sort)
+for FILE in $(find source -type f -not -name WinApp.rc -not -name main.cpp -not -name CMakeLists.txt | sed s,^source/,, | sort)
 do
   # Check if the file is already in the general Code::Blocks project.
   if ! grep -Fq "${FILE}" "${CBPROJECT}"; then

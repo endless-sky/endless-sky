@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "GameLoadingPanel.h"
@@ -35,8 +38,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
-GameLoadingPanel::GameLoadingPanel(PlayerInfo &player, const Conversation &conversation, UI &gamePanels, bool &finishedLoading)
-	: player(player), conversation(conversation), gamePanels(gamePanels), finishedLoading(finishedLoading), ANGLE_OFFSET(360. / MAX_TICKS)
+GameLoadingPanel::GameLoadingPanel(PlayerInfo &player, const Conversation &conversation,
+	UI &gamePanels, bool &finishedLoading)
+	: player(player), conversation(conversation), gamePanels(gamePanels),
+		finishedLoading(finishedLoading), ANGLE_OFFSET(360. / MAX_TICKS)
 {
 	SetIsFullScreen(true);
 }

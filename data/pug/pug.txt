@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 phrase "pug"
 	word
@@ -179,7 +182,7 @@ outfit "Pug Zapper"
 			"random start frame"
 			"delay" 6
 		sound "zapper"
-		"hit effect" "skylance impact"
+		"hit effect" "zapper impact"
 		"inaccuracy" .3
 		"velocity" 320
 		"lifetime" 1
@@ -206,7 +209,7 @@ outfit "Pug Zapper Turret"
 		"hardpoint sprite" "hardpoint/pug zapper turret"
 		"hardpoint offset" 7.
 		sound "zapper"
-		"hit effect" "skylance impact"
+		"hit effect" "zapper impact"
 		"inaccuracy" .3
 		"turret turn" 2.5
 		"velocity" 320
@@ -218,6 +221,14 @@ outfit "Pug Zapper Turret"
 		"hull damage" 5.8
 	description "Mounted on a turret, this Pug weapon becomes even more devastatingly powerful. However, its energy requirements are higher than most human ships can support."
 
+effect "zapper impact"
+	sprite "effect/zapper impact"
+		"frame rate" 60
+		"random start frame"
+	"lifetime" 2
+	"random angle" 360
+	"random spin" 1
+	"velocity scale" 0.
 
 outfit "Pug Seeker"
 	category "Guns"
@@ -534,16 +545,16 @@ ship "Pug Zibruka"
 		"Pug Akfar Steering"
 		"Jump Drive"
 		
-	engine -7 35
-	engine 7 35
-	gun -15 -42 "Pug Zapper"
-	gun 15 -42 "Pug Zapper"
+	engine -8.5 43
+	engine 8.5 43
+	gun -19 -54 "Pug Zapper"
+	gun 19 -54 "Pug Zapper"
 	explode "pug tiny explosion" 10
 	explode "pug small explosion" 15
 	explode "pug medium explosion" 20
 	explode "pug large explosion" 10
 	"final explode" "final explosion small"
-	description "The Zibruka is the smallest Pug ship that you know of."
+	description `The Zibruka is the smallest Pug warship that you know of. Despite having only two gun ports, its two advanced guns combined with its fast and efficient engine systems make it a fearsome ship to face off against, especially in swarms.`
 
 
 ship "Pug Enfolta"
@@ -586,19 +597,19 @@ ship "Pug Enfolta"
 		"Pug Cormet Steering"
 		"Jump Drive"
 		
-	engine -11 68
-	engine 11 68
-	gun -11 -85 "Pug Zapper"
-	gun 11 -85 "Pug Zapper"
-	gun -11 -85 "Pug Seeker"
-	gun 11 -85 "Pug Seeker"
-	turret 0 7 "Pug Zapper Turret"
+	engine -10 63.5
+	engine 10 63.5
+	gun -12.5 -94 "Pug Zapper"
+	gun 12.5 -94 "Pug Zapper"
+	gun -12.5 -94 "Pug Seeker"
+	gun 12.5 -94 "Pug Seeker"
+	turret 0 11 "Pug Zapper Turret"
 	explode "pug tiny explosion" 5
 	explode "pug small explosion" 20
 	explode "pug medium explosion" 25
 	explode "pug large explosion" 15
 	"final explode" "final explosion medium"
-	description "This is a medium-sized Pug warship."
+	description `The Enfolta is a medium-sized Pug warship. It has a formidable armament of advanced weaponry supported by powerful integrated energy generation. A single Enfolta can take on multiple smaller human ships.`
 
 
 ship "Pug Maboro"
@@ -641,21 +652,21 @@ ship "Pug Maboro"
 		"Pug Lohmar Steering"
 		"Jump Drive"
 		
-	engine -20 136
-	engine 20 136
-	gun -20 -150 "Pug Seeker"
-	gun 20 -150 "Pug Seeker"
-	gun -10 -150 "Pug Seeker"
-	gun 10 -150 "Pug Seeker"
-	turret 0 -50 "Pug Anti-Missile"
-	turret -15 -35 "Pug Zapper Turret"
-	turret 15 -35 "Pug Zapper Turret"
+	engine -21 134.5
+	engine 21 134.5
+	gun -33.5 -142.5 "Pug Seeker"
+	gun 33.5 -142.5 "Pug Seeker"
+	gun -24.5 -165 "Pug Seeker"
+	gun 24.5 -165 "Pug Seeker"
+	turret 0 -68 "Pug Anti-Missile"
+	turret -13.5 -11.5 "Pug Zapper Turret"
+	turret 13.5 -11.5 "Pug Zapper Turret"
 	explode "pug small explosion" 25
 	explode "pug medium explosion" 30
 	explode "pug large explosion" 20
 	explode "pug huge explosion" 5
 	"final explode" "final explosion large"
-	description "This is the largest Pug warship."
+	description `The Maboro appears to be the Pug's capital warship. Its shield matrix and hull are much weaker than human capital ships; however, it is able to regenerate its shields quickly. Its fearsome ordnance and advanced anti-missile defenses make it a ship that only the strongest human capital ships are able to oppose.`
 
 
 ship "Pug Arfecta"
@@ -704,13 +715,13 @@ ship "Pug Arfecta"
 		"Pug Lohmar Steering" 2
 		"Jump Drive"
 	
-	engine -15 164
-	engine 15 164
-	turret -50 -29 "Tier 3 Anti-Missile"
-	turret 50 -29 "Tier 3 Anti-Missile"
-	turret 0 40 "Pug Gridfire Turret"
-	turret -73 84 "Pug Gridfire Turret"
-	turret 73 84 "Pug Gridfire Turret"
+	engine -17.5 157.5
+	engine 17.5 157.5
+	turret -62 -17.5 "Tier 3 Anti-Missile"
+	turret 62 -17.5 "Tier 3 Anti-Missile"
+	turret -84 114.5 "Pug Gridfire Turret"
+	turret 84 114.5 "Pug Gridfire Turret"
+	turret 0 76.5 "Pug Gridfire Turret"
 	explode "pug tiny explosion" 100
 	explode "pug small explosion" 60
 	explode "pug medium explosion" 30

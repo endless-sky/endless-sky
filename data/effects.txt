@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 effect "jump drive"
 	sprite "effect/jump drive"
@@ -25,6 +28,16 @@ effect "jump drive red"
 	"velocity scale" 3
 
 effect "ion spark"
+	sprite "effect/spark"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 9
+	"random angle" 360
+	"random spin" 10
+	"random velocity" 1
+
+# Needs unique graphics.
+effect "scramble spark"
 	sprite "effect/spark"
 		"no repeat"
 		"frame rate" 30
@@ -220,18 +233,6 @@ effect "asteroid crunch large"
 
 
 
-effect "basic launch"
-	sprite "effect/smoke"
-		"no repeat"
-		"random start frame"
-		"frame rate" 8
-	"lifetime" 30
-	"random angle" 15
-	"random spin" 360
-	"random velocity" 3
-
-
-
 effect "smoke"
 	sprite "effect/smoke"
 		"no repeat"
@@ -366,3 +367,93 @@ effect "pug huge explosion"
 	"random spin" 5
 	"random velocity" 1
 	"velocity scale" .4
+
+# Fighter launch effects/sounds.
+
+effect "basic launch"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
+
+effect "human external"
+	sound "human launch external"
+
+effect "human internal"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
+	sound "human launch"
+
+effect "hai launch"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
+	sound "hai launch"
+	
+effect "remnant external"
+	sound "remnant launch external"
+	
+effect "remnant internal"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
+	sound "remnant launch"
+
+effect "korath external"
+	sound "korath launch external"
+
+effect "korath internal"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
+	sound "korath launch"
+
+effect "coalition launch"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
+	sound "coalition launch"
+
+effect "sheragi launch"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
+	sound "sheragi launch"
+
+effect "scin launch"
+	sound "scin launch"

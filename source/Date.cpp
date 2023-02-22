@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Date.h"
@@ -29,6 +32,9 @@ namespace {
 		static const string DAY[] = {"Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"};
 		return DAY[day];
 	}
+
+	// Months contain a variable number of days.
+	const int MDAYS[] = {0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334};
 }
 
 
@@ -253,8 +259,6 @@ int Date::DaysSinceEpoch() const
 		int month = Month();
 		int year = Year();
 
-		// Months contain a variable number of days.
-		int MDAYS[] = {0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334};
 		daysSinceEpoch += MDAYS[month - 1];
 		// Add in a leap day if this is a leap year and it is after February.
 		if(month > 2 && !(year % 4) && ((year % 100) || !(year % 400)))
@@ -280,6 +284,26 @@ int Date::DaysSinceEpoch() const
 		daysSinceEpoch += 365 * year;
 	}
 	return daysSinceEpoch;
+}
+
+
+
+int Date::DaysSinceYearStart() const
+{
+	int result = Day() + MDAYS[Month() - 1];
+	// Add 1 if this is a leap year and it is after February.
+	if(Month() > 2 && !(Year() % 4))
+		++result;
+	return result;
+}
+
+
+
+int Date::DaysUntilYearEnd() const
+{
+	if(Year() % 4)
+		return 365 - DaysSinceYearStart();
+	return 366 - DaysSinceYearStart();
 }
 
 
