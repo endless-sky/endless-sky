@@ -1181,7 +1181,7 @@ const vector<pair<string, double>> Ship::ShieldColors() const
 	{
 		for(int i = 0; i < it.second; i++)
 		{
-			for(const auto& that : it.first->ShieldColor())
+			for(const auto &that : it.first->ShieldColor())
 			{
 				colors.push_back(that);
 			}
