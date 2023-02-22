@@ -1177,7 +1177,7 @@ event "catalytic ramscoop available"
 			"Frigate"
 			"Gunboat" 2
 		add variant 19
-			"Auxiliary (Cargo) (Mark II)"
+			"Auxiliary (Cargo Mark II)"
 			"Dropship" 2
 			"Lance" 2
 			"Cruiser"
@@ -1185,7 +1185,7 @@ event "catalytic ramscoop available"
 			"Frigate"
 			"Gunboat" 2
 		add variant 19
-			"Auxiliary (Transport) (Mark II)"
+			"Auxiliary (Transport Mark II)"
 			"Dropship" 2
 			"Lance" 2
 			"Cruiser"
@@ -1193,21 +1193,21 @@ event "catalytic ramscoop available"
 			"Frigate"
 			"Gunboat" 2
 		add variant 1
-			"Auxiliary (Cargo) (Mark II)" 3
+			"Auxiliary (Cargo Mark II)" 3
 			"Dropship" 3
 			"Lance" 9
 			"Cruiser" 2
 			"Combat Drone" 8
 		add variant 1
-			"Auxiliary (Transport) (Mark II)"
-			"Auxiliary (Cargo) (Mark II)"
+			"Auxiliary (Transport Mark II)"
+			"Auxiliary (Cargo Mark II)"
 			"Auxiliary (Mark II)"
 			"Dropship" 6
 			"Lance" 6
 			"Cruiser" 2
 			"Combat Drone" 8
 		add variant 1
-			"Auxiliary (Transport) (Mark II)" 3
+			"Auxiliary (Transport Mark II)" 3
 			"Dropship" 9
 			"Lance" 3
 			"Cruiser" 2
