@@ -118,7 +118,13 @@ ship "Auxiliary" "Auxiliary (Mark II)"
 		"Scram Drive"
 
 
-ship "Auxiliary (Cargo)" "Auxiliary (Cargo) (Mark II)"
+ship "Auxiliary" "Auxiliary (Cargo Mark II)"
+	plural "Auxiliaries"
+	sprite "ship/auxiliaryc"
+	thumbnail "thumbnail/auxiliaryc"
+	add attributes
+		"bunks" -112
+		"cargo space" 200
 	outfits
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 90
@@ -139,7 +145,13 @@ ship "Auxiliary (Cargo)" "Auxiliary (Cargo) (Mark II)"
 		"Scram Drive"
 
 
-ship "Auxiliary (Transport)" "Auxiliary (Transport) (Mark II)"
+ship "Auxiliary" "Auxiliary (Transport Mark II)"
+	plural "Auxiliaries"
+	sprite "ship/auxiliaryt"
+	thumbnail "thumbnail/auxiliaryt"
+	add attributes
+		"bunks" 112
+		"cargo space" -200
 	outfits
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 90
