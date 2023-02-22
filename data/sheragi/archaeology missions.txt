@@ -698,7 +698,7 @@ mission "Sheragi Archaeology: The Box 2"
 					decline
 			label take
 			`	"Splendid!"`
-			`	The two of you put the cube in an inconspicuous backpack and carry it back to your ship. Albert gives you an address where you'll deliver the cube, mentions that you will be paid after transporting it, and wishes you good luck on your travel.`
+			`	You put the cube in an inconspicuous backpack and carry it back to your ship. Albert gives you an address where you'll deliver the cube, mentions that you will be paid after transporting it, and wishes you good luck on your travel.`
 				accept
 	
 	on complete
