@@ -9,6 +9,15 @@
 
 class Camera {
 public:
+	enum class State {
+		NORMAL,
+		HYPERJUMPING,
+		HYPERJUMPED,
+		JUMPING,
+		JUMPED,
+		WORMHOLED
+	};
+
 	static Point Offset();
 	static Point VelocityOffset();
 
@@ -25,6 +34,14 @@ public:
 
 	static void Update(Point flagshipCenter, Point flagshipVelocity);
 	static void SetCenter(Point newCenter, Point newVelocity);
+
+	static void SetState(State newState);
+	static State GetState();
+
+	static double GetZoom();
+	static void SetZoom(double newZoom);
+
+	static void SetTarget(Point newTargetPos);
 };
 
 #endif

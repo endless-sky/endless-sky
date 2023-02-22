@@ -552,14 +552,14 @@ void Engine::Step(bool isActive)
 	if(nextZoom)
 	{
 		// TODO: std::exchange
-		zoom = nextZoom;
+		trueZoom = nextZoom;
 		nextZoom = 0.;
 	}
 	// Smoothly zoom in and out.
 	if(isActive)
 	{
 		double zoomTarget = Preferences::ViewZoom();
-		if(zoom != zoomTarget)
+		if(trueZoom != zoomTarget)
 		{
 			static const double ZOOM_SPEED = .05;
 
@@ -567,13 +567,14 @@ void Engine::Step(bool isActive)
 			static const double MAX_SPEED = .05;
 			static const double MIN_SPEED = .002;
 
-			double zoomRatio = max(MIN_SPEED, min(MAX_SPEED, abs(log2(zoom) - log2(zoomTarget)) * ZOOM_SPEED));
-			if(zoom < zoomTarget)
-				nextZoom = min(zoomTarget, zoom * (1. + zoomRatio));
-			else if(zoom > zoomTarget)
-				nextZoom = max(zoomTarget, zoom * (1. / (1. + zoomRatio)));
+			double zoomRatio = max(MIN_SPEED, min(MAX_SPEED, abs(log2(trueZoom) - log2(zoomTarget)) * ZOOM_SPEED));
+			if(trueZoom < zoomTarget)
+				nextZoom = min(zoomTarget, trueZoom * (1. + zoomRatio));
+			else if(trueZoom > zoomTarget)
+				nextZoom = max(zoomTarget, trueZoom * (1. / (1. + zoomRatio)));
 		}
 	}
+	zoom = trueZoom * Camera::GetZoom();
 
 	// Any of the player's ships that are in system are assumed to have
 	// landed along with the player.
@@ -670,20 +671,6 @@ void Engine::Step(bool isActive)
 				labels.emplace_back(pos, object, currentSystem, zoom);
 		}
 	}
-
-	// Draw a highlight to distinguish the flagship from other ships.
-//	outlines.clear();
-//	if(flagship && !flagship->IsDestroyed() && Preferences::Has("Highlight player's flagship"))
-//	{
-//		outlines.emplace_back(
-//			flagship->GetSprite(),
-//			-Camera::Offset(),
-//			Point(highlightSprite->Width(), highlightSprite->Height()),
-//			*GameData::Colors().Get("flagship highlight"),
-//			flagship->Unit() * zoom,
-//			flagship->GetFrame()
-//		);
-//	}
 
 	if(flagship && flagship->IsOverheated())
 		Messages::Add("Your ship has overheated.", Messages::Importance::Highest);
@@ -943,6 +930,20 @@ void Engine::Step(bool isActive)
 			GetMinablePointerColor(true),
 			3
 		});
+
+	// Draw a highlight to distinguish the flagship from other ships.
+	outlines.clear();
+	if(flagship && !flagship->IsDestroyed() && Preferences::Has("Highlight player's flagship"))
+	{
+		outlines.emplace_back(
+			flagship->GetSprite(),
+			-Camera::Offset() * zoom,
+			Point(flagship->GetSprite()->Width(), flagship->GetSprite()->Height()),
+			*GameData::Colors().Get("flagship highlight"),
+			flagship->Unit() * zoom,
+			flagship->GetFrame()
+		);
+	}
 }
 
 
@@ -1410,12 +1411,14 @@ void Engine::CalculateStep()
 	// Keep track of the flagship to see if it jumps or enters a wormhole this turn.
 	const Ship *flagship = player.Flagship();
 	bool wasHyperspacing = (flagship && flagship->IsEnteringHyperspace());
+	bool wasInHyperspace = (flagship && flagship->IsHyperspacing());
 	// Move all the ships.
 	for(const shared_ptr<Ship> &it : ships)
 		MoveShip(it);
 	// If the flagship just began jumping, play the appropriate sound.
 	if(!wasHyperspacing && flagship && flagship->IsEnteringHyperspace())
 	{
+		Camera::SetState(Camera::State::HYPERJUMPING);
 		bool isJumping = flagship->IsUsingJumpDrive();
 		const map<const Sound *, int> &jumpSounds = isJumping
 			? flagship->Attributes().JumpSounds() : flagship->Attributes().HyperSounds();
@@ -1442,12 +1445,69 @@ void Engine::CalculateStep()
 		player.SetSystemEntry(wormholeEntry ? SystemEntry::WORMHOLE :
 			flagship->IsUsingJumpDrive() ? SystemEntry::JUMP :
 			SystemEntry::HYPERDRIVE);
+		switch(player.GetSystemEntry())
+		{
+		case SystemEntry::TAKE_OFF:
+			focusedTarget = Point();
+			Camera::SetPosition(flagship->Position());
+			Camera::SetVelocity(flagship->Velocity());
+			Camera::SetState(Camera::State::NORMAL);
+		case SystemEntry::HYPERDRIVE:
+			focusedTarget = Point();
+			Camera::SetPosition(flagship->Position() * 2.);
+			Camera::SetVelocity(flagship->Velocity());
+			Camera::SetState(Camera::State::HYPERJUMPED);
+			break;
+		case SystemEntry::JUMP:
+			focusedTarget = Point();
+			Camera::SetPosition(flagship->Position());
+			Camera::SetVelocity(flagship->Velocity());
+			Camera::SetState(Camera::State::JUMPED);
+			break;
+		case SystemEntry::WORMHOLE:
+			focusedTarget = Point();
+			Camera::SetPosition(Point());
+			Camera::SetVelocity(flagship->Velocity());
+			Camera::SetState(Camera::State::WORMHOLED);
+			break;
+		}
 		doFlash = Preferences::Has("Show hyperspace flash");
 		playerSystem = flagship->GetSystem();
 		player.SetSystem(*playerSystem);
 		EnterSystem();
 	}
 	Prune(ships);
+
+	// Handle camera
+	if(flagship)
+	{
+		if((wasInHyperspace && !flagship->IsHyperspacing())
+			|| (Camera::GetState() == Camera::State::WORMHOLED && !(flagship->Zoom() < 1.)))
+		{
+			Camera::SetState(Camera::State::NORMAL);
+		}
+		Camera::SetZoom(1. + (1. - flagship->Zoom()));
+
+		const Point oldfocusedTarget = focusedTarget;
+		focusedTarget = Point();
+		if((flagship->GetTargetShip() != nullptr) && (flagship->GetTargetShip()->GetSystem() == flagship->GetSystem()))
+		{
+			const Ship &target = *flagship->GetTargetShip();
+			focusedTarget = target.Position() - Camera::CenterPos();
+		}
+		else if(flagship->GetTargetAsteroid() != nullptr)
+		{
+			focusedTarget = flagship->GetTargetAsteroid()->Position() - Camera::CenterPos();
+		}
+		else if(flagship->Commands().Has(Command::LAND) && flagship->GetTargetStellar())
+		{
+			focusedTarget = flagship->GetTargetStellar()->Position() - Camera::CenterPos();
+		}
+		if(focusedTarget.Length() > Screen::Height() / (2 * zoom))
+			focusedTarget *= ((Screen::Height() / (2 * zoom)) / focusedTarget.Length());
+		focusedTarget = oldfocusedTarget + (focusedTarget - oldfocusedTarget) * 0.1;
+		Camera::SetTarget(focusedTarget);
+	}
 
 	// Move the asteroids. This must be done before collision detection. Minables
 	// may create visuals or flotsam.
