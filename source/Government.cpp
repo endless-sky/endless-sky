@@ -180,6 +180,8 @@ void Government::Load(const DataNode &node)
 				hostileDisabledHail = nullptr;
 			else if(key == "language")
 				language.clear();
+			else if(key == "send untranslated hails")
+				sendUntranslatedHails = false;
 			else if(key == "trusted")
 				trusted.clear();
 			else if(key == "enforces")
@@ -357,6 +359,8 @@ void Government::Load(const DataNode &node)
 			hostileDisabledHail = GameData::Phrases().Get(child.Token(valueIndex));
 		else if(key == "language")
 			language = child.Token(valueIndex);
+		else if(key == "send untranslated hails")
+			sendUntranslatedHails = true;
 		else if(key == "enforces" && child.Token(valueIndex) == "all")
 		{
 			enforcementZones.clear();
