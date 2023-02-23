@@ -1452,17 +1452,19 @@ void Engine::CalculateStep()
 			Camera::SetPosition(flagship->Position());
 			Camera::SetVelocity(flagship->Velocity());
 			Camera::SetState(Camera::State::NORMAL);
+			Camera::SetAbsoluteZoom(1. + (1. - flagship->Zoom()));
 		case SystemEntry::HYPERDRIVE:
 			focusedTarget = Point();
-			Camera::SetPosition(flagship->Position() * 2.);
+			Camera::SetPosition(flagship->Position() + flagship->Velocity() * 10.);
 			Camera::SetVelocity(flagship->Velocity());
 			Camera::SetState(Camera::State::HYPERJUMPED);
 			break;
 		case SystemEntry::JUMP:
 			focusedTarget = Point();
-			Camera::SetPosition(flagship->Position());
+			Camera::SetPosition(Point());
 			Camera::SetVelocity(flagship->Velocity());
 			Camera::SetState(Camera::State::JUMPED);
+			Camera::SetAbsoluteZoom(.9 * (1. + (1. - flagship->Zoom())));
 			break;
 		case SystemEntry::WORMHOLE:
 			focusedTarget = Point();
@@ -1481,12 +1483,22 @@ void Engine::CalculateStep()
 	// Handle camera
 	if(flagship)
 	{
-		if((wasInHyperspace && !flagship->IsHyperspacing())
-			|| (Camera::GetState() == Camera::State::WORMHOLED && !(flagship->Zoom() < 1.)))
+		if((wasInHyperspace && !flagship->IsHyperspacing()))
+		{
+			Camera::SetState(Camera::State::NORMAL);
+			if(Preferences::Has("Show hyperspace flash"))
+				flash = 0.2;
+		}
+
+		else if(Camera::GetState() == Camera::State::WORMHOLED && !(flagship->Zoom() < 1.))
 		{
 			Camera::SetState(Camera::State::NORMAL);
 		}
-		Camera::SetZoom(1. + (1. - flagship->Zoom()));
+
+		if(flagship->Zoom() < 1.)
+			Camera::SetAbsoluteZoom(1. + (1. - flagship->Zoom()));
+		else
+			Camera::SetZoom(1. + (1. - flagship->Zoom()));
 
 		const Point oldfocusedTarget = focusedTarget;
 		focusedTarget = Point();

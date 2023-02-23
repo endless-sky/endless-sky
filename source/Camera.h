@@ -40,6 +40,7 @@ public:
 
 	static double GetZoom();
 	static void SetZoom(double newZoom);
+	static void SetAbsoluteZoom(double newZoom);
 
 	static void SetTarget(Point newTargetPos);
 };

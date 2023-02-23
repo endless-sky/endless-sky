@@ -1,6 +1,7 @@
 #include "Camera.h"
 #include "Camera.h"
 #include "Camera.h"
+#include "Camera.h"
 
 using namespace std;
 
@@ -96,14 +97,21 @@ void Camera::Update(Point flagshipCenter, Point flagshipVelocity)
 		cameraCenter += cameraVelocity;
 		cameraCenter += (flagshipCenter - cameraCenter) * 0.1;
 		break;
+	case State::JUMPING:
+		cameraVelocity += (flagshipVelocity - cameraVelocity) * 0.1;
+		cameraCenter += cameraVelocity;
+		cameraCenter += (flagshipCenter - cameraCenter) * 0.05;
+		break;
 	case State::JUMPED:
-		cameraCenter += (flagshipCenter - cameraCenter) * 0.01;
+		cameraCenter += (flagshipCenter - cameraCenter) * 0.006;
 		break;
 	case State::WORMHOLED:
 		cameraCenter += (flagshipCenter - cameraCenter) * 0.005;
 		break;
 	}
-	finalCameraPosition = cameraCenter + (targetPoint) * 0.4;
+
+	finalCameraPosition = center - (cameraCenter - center);
+	finalCameraPosition = finalCameraPosition + (targetPoint) * 0.4;
 }
 
 void Camera::SetCenter(Point newCenter, Point newVelocity)
@@ -129,10 +137,18 @@ double Camera::GetZoom()
 
 void Camera::SetZoom(double newZoom)
 {
-	if(state == State::WORMHOLED)
-		trueZoom = newZoom * .5;
+	if(state == State::JUMPED)
+		trueZoom = newZoom * .6;
 	else
 		trueZoom = newZoom;
+}
+
+void Camera::SetAbsoluteZoom(double newZoom)
+{
+	if (state == State::WORMHOLED)
+		zoom = newZoom * .75;
+	else
+		zoom = newZoom;
 }
 
 void Camera::SetTarget(Point newTargetPos)
