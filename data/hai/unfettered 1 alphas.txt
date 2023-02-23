@@ -1098,7 +1098,7 @@ mission "<uhai> 8: It's The Alphas"
 			label "okay boy!"
 			action
 				set "unfettered: it's the Alphas!"
-			`You head to the given coordinates on the planet, but you cannot see anyone there. You wait around for an hour or so until, looking around, you finally spot it: there is a graffiti on the wall, right at the given coordinate. At first you did not pay too much attention to it because this kind of thing is common on pirate worlds, but now you notice it depicts a green human. The message is clear.`
+			`The coordinates lead you to an enclave on the fringes of town. It's an outdoor beer garden and the regulars eye you with suspicion. You order a drink and grab a table. No one approaches you, so you just look around and people watch. The only thing that catches your eye is a mural painted on the wall of the building opposite. It's a take on St George fighting the dragon. But in this version, the dragon has a plasma rifle and St George has green skin.`
 				decline
 			label "dead, boy!"
 			`As soon as you set foot on the planet, a team of mercenaries comes out of the shadows, armored with the same kind of armor Si-Ra had. Their weapons may be holstered, but you can feel the tension in the air. Their leader speaks up. "We know your query. Consider yourself lucky to not be killed on the spot. We do not guarantee that will not happen, should you land again."`
