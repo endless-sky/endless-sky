@@ -105,8 +105,6 @@ mission "Han Sizer Month [0]"
 		distance 5 10
 		attributes "rim"
 		not attributes "station"
-	on stopover
-		dialog `As you land your passengers gather together to stare out the viewport. One of them pulls out a datapad and reads what sounds like a log entry by Han Sizer, describing the initial exploration of the planet.`
 	on complete
 		payment 10000 170
 		dialog `Your passengers thank you for taking them on a journey around the Rim, and you collect your payment of <payment>. As they depart you hear them talking about celebrating their trip with a party <on Longjump>.`
