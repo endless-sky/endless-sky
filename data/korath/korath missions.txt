@@ -499,11 +499,11 @@ mission "Korath [F02]: A Fishy Proposition"
 			label ship
 			action
 				set "Korath [F02]: A Fishy Deal: ship"
-				log "Minor People" "Jenny Globemaster" "Latest in a family line that has operated and maintained an old C17 Globemaster for over a thousand years. The present version is hyperspace-worthy and has custom engines."
-			`	[image of C-17 modified for hyperspace travel]`
-			`	You see her expression brighten as she walks towards you. "It's an heirloom," she says proudly, gesturing widely at the ship, "which has been in the family for centuries. My distant ancestor got a military surplus cargo plane and refurbished it. They used it as a personal craft. Each generation added to it; every piece has been repaired or replaced over the last thousand years.`
-			`	"The whole thing has been modernized - about a dozen times. There's a hyperdrive built into the hull itself, and those ion engines aren't of Syndicate design. They're custom-built, with ion propulsion, steering, and atmospheric anti-grav, in one assembly. The design was once called a Globemaster, and my family have taken the Globemaster name as our own.`
-			`	"Jenny Globemaster," she says, with a choreographed bow. "My family used to do air shows all across human space, until my uncle got on the bad side of the Syndicate. We flew all the way from Bourne to Tinker to pick him up and smuggled him out to New Tortuga where the Syndicate cannot reach us. Now I smuggle cargo through hyperspace in a 20th century aircraft!"`
+				log "Minor People" "Jenny Jetmaster" "Latest in a family line that has operated and maintained a replica of an ancient jet aircraft and made money on airshows. She is now on run from the Syndicate for rescuing her persecuted uncle from Tinker"
+			`	[image of a hyperspace-worth jet aircraft]`
+			`	You see her expression brighten as she walks towards you. "It's an heirloom," she says proudly, gesturing widely at the ship, "which has been in the family for centuries. My distant ancestor got a military surplus cargo plane and refurbished it. They used it as a personal craft. Each generation added to it; every piece has been repaired or replaced over the last thousand years. It's more of a replica now.`
+			`	"The whole thing has been modernized - about a dozen times. There's a hyperdrive built into the hull itself, and those ion engines aren't of Syndicate design. They're custom-built, with ion propulsion, steering, and atmospheric anti-grav, in one assembly. The design was once called a Jetmaster, and my family have taken the Jetmaster name as our own.`
+			`	"Jenny Jetmaster," she says, with a choreographed bow. "My family used to do air shows all across human space, until my uncle got on the bad side of the Syndicate. We flew all the way from Bourne to Tinker to pick him up and smuggled him out to New Tortuga where the Syndicate cannot reach us. Now I smuggle cargo through hyperspace in a 20th century aircraft!"`
 			branch questions
 				has "Korath [F02]: A Fishy Deal: down"
 			label down
@@ -518,7 +518,7 @@ mission "Korath [F02]: A Fishy Proposition"
 				goto questions
 			label yup
 			action
-				log "Agreed to help a woman named Jenny Globemaster who couldn't make a delivery. Apparently the delivery is illegal, though it's unlikely to be detected since it's in a region of space not patrolled by any law-abiding governments."
+				log "Agreed to help a woman named Jenny Jetmaster who couldn't make a delivery. Apparently the delivery is illegal, though it's unlikely to be detected since it's in a region of space not patrolled by any law-abiding governments."
 			scene scene/c17-parker-space-probe
 			`	"Really? Okay, hold on..." looking down, she fidgets with a datapad, perhaps transferring permission for the cargo mission. "Yeah, okay." She looks back up at last. "Transfer is approved." Her crewman starts offloading the fish, preparing to transfer it to your ship.`
 			`	"If the authorities won't let you land, read them the serial number from the cargo container, and they'll open a bay for you. Oh, also, this is an illegal mission, so don't get caught, or it'll cost you. Well, it's unlikely anyone out here will care about laws, but I do believe in full disclosure."`
@@ -547,7 +547,7 @@ mission "Korath [F03]: A Fishy Proposition"
 			`[Image of a scene with Iris in the middle, and large men whose heads are off-screen. Each is carrying a large orange rifle. Viewer's eyes should be drawn to the rainbow feather on her chest.]`
 			`You approach the asteroid and a crater suddenly opens up, revealing a docking bay below. It's large enough to fit entire human space stations, but there are only a few ordinary ships parked below. When you exit your ship, several threatening-looking men in odd uniforms stare you down. They're armed with bright orange rifles whose scorching heat warps the air around them.`
 			`	A woman in a white dress steps forward, whose face radiates kindness, in sharp contrast to her tactical gear. Atop her silky dress, you see two revolvers and a sizable supply of ammo. There's a knife on each leg, just above her knee-high combat boots, and you think there's another knife behind her neck. A rainbow lock contrasts her otherwise light blond hair, and matches the rainbow feather on a necklace draped around her neck.`
-			`	She shakes your hand firmly. "My name is Iris." Her glowing smile quickly switches to a look of concern. "We don't like surprises, Captain <last>. I was expecting to see Jenny Globemaster, but here you are in her stead. Care to explain?"`
+			`	She shakes your hand firmly. "My name is Iris." Her glowing smile quickly switches to a look of concern. "We don't like surprises, Captain <last>. I was expecting to see Jenny Jetmaster, but here you are in her stead. Care to explain?"`
 			choice
 				`	(Pull out your gun.)`
 					goto gun
