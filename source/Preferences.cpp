@@ -291,7 +291,7 @@ Preferences::DynamicCamera Preferences::GetCameraSetting()
 
 
 
-const string& Preferences::CameraSetting()
+const string &Preferences::CameraSetting()
 {
 	return CAMERA_SETTINGS[cameraIndex];
 }

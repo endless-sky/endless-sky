@@ -632,7 +632,7 @@ void PreferencesPanel::DrawSettings()
 			text = Preferences::ParallaxSetting();
 			isOn = text != "off";
 		}
-		else if (setting == CAMERA_SETTING)
+		else if(setting == CAMERA_SETTING)
 		{
 			text = Preferences::CameraSetting();
 			isOn = text != "off";

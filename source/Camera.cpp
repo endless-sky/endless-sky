@@ -24,7 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	static const double CAMERA_SMOOTHNESS = 0.025;
+	static const double CAMERA_SMOOTHNESS = 0.05;
 	static const double ZOOM_BLEND = 0.032;
 
 	Point center = Point();
