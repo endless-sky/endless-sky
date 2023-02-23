@@ -3679,7 +3679,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 
 	// Add this hit to the list of latest hits.
 	recentHits.emplace_back(damageSource - position,
-		Attributes().Get("shields") / (damage.Shield() + Attributes().Get("shield generation")));
+		min(shields, attributes.Get("shield generation")) * (damage.Shield()));
 
 	// Prevent various stats from reaching unallowable values.
 	hull = min(hull, attributes.Get("hull"));

@@ -50,7 +50,7 @@ public:
 		float shieldColor[4] = { 0.f, 0.f, 0.f, 0.f };
 		size_t recentHits = 0;
 		float ratio = 1.f;
-		float size = 360.f;
+		float size = 80.f;
 	};
 
 

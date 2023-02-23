@@ -55,6 +55,7 @@ namespace {
 	GLint recentHitsI;
 	GLint shieldColorI;
 	GLint ratioI;
+	GLint sizeI;
 
 	GLint fastI;
 
@@ -106,7 +107,7 @@ void ShipEffectsShader::Init()
 		"uniform int recentHitCount;\n"
 		"uniform vec4 shieldColor;\n"
 		"uniform float ratio;\n"
-		"float size = 80.;\n"
+		"uniform float size = 40.;\n"
 
 		"uniform int isFast;\n"
 
@@ -214,6 +215,7 @@ void ShipEffectsShader::Init()
 	recentDamageI = shader.Uniform("recentDamage");
 	recentHitsCountI = shader.Uniform("recentHitCount");
 	ratioI = shader.Uniform("ratio");
+	sizeI = shader.Uniform("size");
 
 	fastI = shader.Uniform("isFast");
 
@@ -275,9 +277,6 @@ ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Ship* body, const
 	if(!body->GetSprite())
 		return {};
 
-	if(body->Shields() <= 0)
-		return {};
-
 	EffectItem item;
 	item.texture = body->GetSprite()->Texture();
 	item.frame = frame;
@@ -301,6 +300,7 @@ ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Ship* body, const
 	item.transform[2] = -uh.X();
 	item.transform[3] = -uh.Y();
 
+	item.size = 60. + body->Radius() / 2.;
 	item.ratio = max(width, height);
 
 	auto recth = recentHits;
@@ -380,6 +380,7 @@ void ShipEffectsShader::Add(const EffectItem& item, bool withBlur)
 	glUniform1i(recentHitsCountI, item.recentHits);
 	glUniform1f(ratioI, item.ratio);
 	glUniform1i(fastI, 2 == static_cast<int>(Preferences::GetHitEffects()));
+	glUniform1f(sizeI, item.size);
 	// Logger::LogError(to_string(item.recentHits));
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
