@@ -108,9 +108,11 @@ void Camera::Update(Point flagshipCenter, Point flagshipVelocity)
 	switch(state)
 	{
 	case State::NORMAL:
-		cameraVelocity += (flagshipVelocity - cameraVelocity) * CAMERA_SMOOTHNESS;
-		cameraCenter += cameraVelocity;
-		cameraCenter += (flagshipCenter - cameraCenter) * CAMERA_SMOOTHNESS;
+		// cameraVelocity += (flagshipVelocity - cameraVelocity) * CAMERA_SMOOTHNESS;
+		// cameraCenter += cameraVelocity;
+		// cameraCenter += (flagshipCenter - cameraCenter) * CAMERA_SMOOTHNESS;
+		cameraCenter = flagshipCenter;
+		cameraVelocity = flagshipVelocity;
 		break;
 	case State::HYPERJUMPING:
 		cameraVelocity += (flagshipVelocity - cameraVelocity) * 0.1;
