@@ -343,6 +343,7 @@ mission "First Contact: Korath Exiles"
 					goto wait
 
 			label add
+			# MZ wrote the parts about spiders, long before the Coalition was added to the game, the spiders are Archons. (so saith ravenshining)
 			`	Near the southern end of human space, you draw a dot with a broken ring around it: the Quarg ringworld, under construction. The Korath respond by both beginning to draw more rings, spread out all over the galaxy, some broken, some complete. Then they draw more of the spiders, again spread out all over the galaxy, and then sprinkle sand over them so the lines are barely visible.`
 
 			label wait
