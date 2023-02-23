@@ -17,8 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AlertLabel.h"
 #include "Audio.h"
-#include "CategoryTypes.h"
 #include "Camera.h"
+#include "CategoryTypes.h"
 #include "CoreStartData.h"
 #include "DamageDealt.h"
 #include "DamageProfile.h"
