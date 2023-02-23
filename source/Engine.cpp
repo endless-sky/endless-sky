@@ -1423,8 +1423,8 @@ void Engine::CalculateStep()
 	// If the flagship just began jumping, play the appropriate sound.
 	if(!wasHyperspacing && flagship && flagship->IsEnteringHyperspace())
 	{
-		Camera::SetState(Camera::State::HYPERJUMPING);
 		bool isJumping = flagship->IsUsingJumpDrive();
+		Camera::SetState(isJumping ? Camera::State::JUMPING : Camera::State::HYPERJUMPING);
 		const map<const Sound *, int> &jumpSounds = isJumping
 			? flagship->Attributes().JumpSounds() : flagship->Attributes().HyperSounds();
 		if(jumpSounds.empty())
@@ -1466,14 +1466,14 @@ void Engine::CalculateStep()
 			break;
 		case SystemEntry::JUMP:
 			focusedTarget = Point();
-			Camera::SetPosition(Point());
+			Camera::SetPosition(flagship->Position());
 			Camera::SetVelocity(flagship->Velocity());
 			Camera::SetState(Camera::State::JUMPED);
-			Camera::SetAbsoluteZoom(.9 * (1. + (1. - flagship->Zoom())));
+			Camera::SetAbsoluteZoom(.6 * (1. + (1. - flagship->Zoom())));
 			break;
 		case SystemEntry::WORMHOLE:
 			focusedTarget = Point();
-			Camera::SetPosition(Point());
+			Camera::SetPosition(flagship->Position());
 			Camera::SetVelocity(flagship->Velocity());
 			Camera::SetState(Camera::State::WORMHOLED);
 			break;

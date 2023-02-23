@@ -130,7 +130,8 @@ void Camera::Update(Point flagshipCenter, Point flagshipVelocity)
 		cameraCenter += (flagshipCenter - cameraCenter) * 0.05;
 		break;
 	case State::JUMPED:
-		cameraCenter += (flagshipCenter - cameraCenter) * 0.006;
+		cameraCenter = flagshipCenter;
+		cameraVelocity = flagshipVelocity;
 		break;
 	case State::WORMHOLED:
 		cameraCenter += (flagshipCenter - cameraCenter) * 0.005;
@@ -166,7 +167,7 @@ double Camera::GetZoom()
 
 void Camera::SetZoom(double newZoom)
 {
-	if(state == State::JUMPED)
+	if(state == State::JUMPING)
 		trueZoom = newZoom * .6;
 	else
 		trueZoom = newZoom;
