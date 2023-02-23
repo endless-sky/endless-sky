@@ -18479,11 +18479,11 @@ system Kanguwa
 		sprite star/neutron
 		period 10
 	object "Yniu Eiu"
-		sprite planet/rock9-b
+		sprite "planet/yniu eiu"
 		distance 397
 		period 44.7466
 		object "Yniu Ena"
-			sprite planet/rhea
+			sprite "planet/yniu ena"
 			distance 169.29
 			period 64.72
 	object
