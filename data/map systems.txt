@@ -2360,7 +2360,7 @@ system "Ae Ce Q-761"
 	arrival 3200
 	habitable 3200
 	belt 1002
-	haze _menu/haze-33
+	haze _menu/haze-brown
 	asteroids "small rock" 37 1.247
 	asteroids "medium rock" 74 2.31
 	asteroids "large rock" 4 1.686
@@ -2413,8 +2413,8 @@ system "Ae Il A-3"
 	asteroids "large metal" 1 7.208
 	minables iron 11 4.735
 	minables silver 37 3.069
-	fleet "Vyrmeid (Plankton)" 1050
-	fleet "Vyrmeid (Cephalopod)" 400
+	fleet "Vyrmeid (Plankton)" 950
+	fleet "Vyrmeid (Cephalopod)" 140
 	object
 		sprite star/k-supergiant
 		distance 369.692
@@ -2519,7 +2519,6 @@ system "Ae Il F-46"
 	asteroids "small metal" 12 3.452
 	asteroids "large metal" 10 2.972
 	minables lead 17 2.248
-	fleet "Vyrmeid (Cephalopod)" 500
 	object
 		sprite star/b-giant
 		distance 247.167
@@ -2606,10 +2605,6 @@ system "Ae Il G-66"
 			sprite planet/rock14
 			distance 366
 			period 183.248
-		object
-			sprite planet/fg_terrestrial6
-			distance 459
-			period 190
 
 system "Ae Il H-24"
 	pos 558.634 -628.884
@@ -3467,10 +3462,6 @@ system Aleit
 	link Elifennka
 	link Ghhil
 	link Yllke
-	asteroids "small metal" 8 1.7
-	asteroids "medium metal" 38 1.2
-	asteroids "large metal" 17 1.7
-	minables titanium 3 2.82
 	trade Clothing 216
 	trade Electronics 817
 	trade Equipment 729
@@ -6059,7 +6050,7 @@ system Auhru
 	habitable 8650
 	belt 1336
 	"jump range" 60
-	haze _menu/haze-67
+	haze _menu/haze-brown
 	link "Erba Yle"
 	link Mohuwo
 	asteroids "large rock" 1 3.2
@@ -12470,7 +12461,7 @@ system "Erba Yle"
 	habitable 320
 	belt 1204
 	"jump range" 90
-	haze _menu/haze-33
+	haze _menu/haze-brown
 	link Auhru
 	link Kilema
 	link Zeinar
@@ -14289,6 +14280,7 @@ system G-3191
 	government Uninhabited
 	attributes "umbral reach"
 	arrival 5000
+	departure 1000
 	habitable 20250
 	belt 1341
 	"jump range" 60
@@ -14298,6 +14290,14 @@ system G-3191
 	asteroids "small metal" 1 1.91
 	asteroids "medium metal" 12 2.1
 	asteroids "large metal" 1 1.8
+	hazard "Rulei Gravity Field" 1
+	object
+		sprite planet/vajra/vajra
+			"random start frame"
+			"frame rate" 30
+			"scale" 0.5
+		distance 0
+		period 10
 	object
 		sprite star/f-supergiant
 		distance 600.65
@@ -14400,10 +14400,6 @@ system G-719
 			distance 269.46
 			period 570.1
 	object
-		sprite planet/gas10
-		distance 4653.99
-		period 2358.30
-	object
 		sprite planet/gas0-b
 		distance 5879
 		period 3348.23
@@ -14435,7 +14431,7 @@ system G-819
 		sprite star/g3
 		period 10
 	object
-		sprite planet/gas2-b
+		sprite planet/gas4-b
 		distance 909.1
 		period 414.408
 	object
@@ -16110,7 +16106,7 @@ system Heutesl
 	arrival 1310
 	habitable 1310
 	belt 1000
-	haze _menu/haze
+	haze _menu/haze-brown
 	link Asio
 	link Iigen
 	link Oosuoro
@@ -16698,7 +16694,7 @@ system Iigen
 	habitable 230
 	belt 1699
 	"jump range" 60
-	haze _menu/haze-33
+	haze _menu/haze-brown
 	link Heutesl
 	link Oosuoro
 	link Uttna
@@ -17521,10 +17517,6 @@ system "Is Ce G-460"
 		sprite star/k-dwarf
 		period 10
 	object
-		sprite planet/fg_terrestrial6
-		distance 171
-		period 89.4446
-	object
 		sprite planet/ice0
 		distance 363
 		period 276.643
@@ -17590,13 +17582,13 @@ system "Is Ce J-591"
 		distance 986
 		period 151.525
 	object
-		sprite planet/ocean4-b
+		sprite planet/ganymede-b
 		distance 1740
 		period 355.218
 		object
 			sprite planet/lava0
 			distance 172
-			period 59.035
+			period 50
 	object
 		sprite planet/gas6-b
 		distance 2742
@@ -17625,7 +17617,7 @@ system "Is Il T-127"
 	habitable 1605
 	belt 1313 1
 	belt 2263 5
-	haze _menu/haze-67
+	haze _menu/haze-brown
 	link "Is Il T-94"
 	link "Is Il X-626"
 	asteroids "small rock" 1 1.74
@@ -17784,7 +17776,7 @@ system "Is Il X-626"
 	attributes "astral"
 	arrival 3135
 	habitable 3135
-	haze _menu/haze-67
+	haze _menu/haze-brown
 	link "Is Il T-127"
 	asteroids "large metal" 1 3.402
 	fleet "Vyrmeid (Plankton)" 500
@@ -17843,13 +17835,9 @@ system "Is Il Z-59"
 		distance 71.062
 		period 52.077
 	object
-		sprite planet/forest4
+		sprite planet/forest0
 		distance 807.865
 		period 252.324
-	object
-		sprite planet/earth-b
-		distance 1106.36
-		period 404.386
 	object
 		sprite planet/browndwarf-y
 		distance 1771.61
@@ -17862,10 +17850,6 @@ system "Is Il Z-59"
 			sprite planet/dust1-b
 			distance 442
 			period 289.009
-		object
-			sprite planet/fg_terrestrial6
-			distance 551
-			period 312
 	object
 		sprite planet/dust0
 		distance 2996
@@ -17878,7 +17862,7 @@ system "Is Il Z-814"
 	arrival 5000
 	habitable 50000
 	belt 1862
-	haze _menu/haze-133
+	haze _menu/haze-brown
 	asteroids "small rock" 23 2.05
 	asteroids "medium rock" 2 2.52
 	asteroids "large rock" 7 3.158
@@ -17888,6 +17872,7 @@ system "Is Il Z-814"
 	minables lead 28 4.115
 	minables iron 35 5.171
 	minables gold 47 3.479
+	minables yottrite 2 5.1
 	fleet "Vyrmeid (Boomerang)" 200
 	object
 		sprite star/wr
@@ -19166,7 +19151,7 @@ system Kilema
 	arrival 500
 	habitable 150
 	belt 1612
-	haze _menu/haze-33
+	haze _menu/haze-brown
 	link "Erba Yle"
 	asteroids "small rock" 4 1.9
 	asteroids "medium rock" 4 2.2
@@ -20380,10 +20365,6 @@ system L-6181
 		period 64.23
 		offset 180
 	object
-		sprite planet/dust1
-		distance 333.31
-		period 81.8202
-	object
 		sprite planet/cloud8
 		distance 3051.66
 		period 2266.69
@@ -21113,10 +21094,6 @@ system M-1188
 		sprite star/a-dwarf
 		period 10
 	object
-		sprite planet/rock9
-		distance 749.46
-		period 299.676
-	object
 		sprite planet/gas5-b
 		distance 3738
 		period 3338.01
@@ -21208,10 +21185,6 @@ system MS-219
 			sprite planet/dust0-b
 			distance 385.29
 			period 80
-	object
-		sprite planet/gas2-b
-		distance 7384.94
-		period 5572.77
 
 system Makferuti
 	pos 288.431 -628.812
@@ -23256,7 +23229,7 @@ system Mohuwo
 	habitable 6210
 	belt 1213
 	"jump range" 70
-	haze _menu/haze-67
+	haze _menu/haze-brown
 	link Auhru
 	link Pbelnep
 	asteroids "small metal" 1 6.78
@@ -26661,7 +26634,6 @@ system Quaru
 	link Homeward
 	link "Ki War Ek"
 	link "Last Word"
-	asteroids "large metal" 1 2.0202
 	trade Clothing 372
 	trade Electronics 637
 	trade Equipment 676
@@ -31824,7 +31796,7 @@ system Tscera
 	government Uninhabited
 	arrival 2560
 	habitable 2560
-	haze _menu/haze-33
+	haze _menu/haze-brown
 	link Heutesl
 	link Yllke
 	asteroids "small rock" 4 2.6
@@ -32470,7 +32442,7 @@ system Uttna
 	habitable 3000
 	belt 1748
 	"jump range" 60
-	haze _menu/haze-33
+	haze _menu/haze-brown
 	link Iigen
 	asteroids "medium rock" 3 4.8
 	asteroids "large rock" 2 3.96
@@ -33164,10 +33136,6 @@ system W-3197
 		sprite star/b3
 		period 10
 	object
-		sprite planet/ocean3-b
-		distance 382
-		period 37.6257
-	object
 		sprite planet/io-b
 		distance 1276
 		period 229.702
@@ -33175,6 +33143,10 @@ system W-3197
 		sprite planet/gas0
 		distance 3781
 		period 1171.65
+	object
+		sprite planet/ocean3-b
+		distance 4150
+		period 1300
 	object
 		sprite planet/dust0
 		distance 9113
