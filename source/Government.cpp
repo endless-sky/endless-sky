@@ -321,6 +321,8 @@ void Government::Load(const DataNode &node)
 		else if(key == "foreign penalties for")
 			for(const DataNode &grand : child)
 				useForeignPenaltiesFor.insert(GameData::Governments().Get(grand.Token(0))->id);
+		else if(key == "send untranslated hails")
+			sendUntranslatedHails = true;
 		else if(!hasValue)
 			child.PrintTrace("Error: Expected key to have a value:");
 		else if(key == "player reputation")
@@ -359,8 +361,6 @@ void Government::Load(const DataNode &node)
 			hostileDisabledHail = GameData::Phrases().Get(child.Token(valueIndex));
 		else if(key == "language")
 			language = child.Token(valueIndex);
-		else if(key == "send untranslated hails")
-			sendUntranslatedHails = true;
 		else if(key == "enforces" && child.Token(valueIndex) == "all")
 		{
 			enforcementZones.clear();
