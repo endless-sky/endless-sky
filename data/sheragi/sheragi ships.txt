@@ -19,6 +19,7 @@ ship "Emerald Sword"
 		category "Superheavy"
 		"cost" 100000000
 		"shields" 9500
+		"shield color" "shields sheragi" 5
 		"hull" 45000
 		"required crew" 86
 		"bunks" 302

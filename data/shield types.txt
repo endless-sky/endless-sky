@@ -25,7 +25,7 @@ color "shields pug" .45 .63 .85 .7
 color "shields republic regenerator" .8 .43 .17 .75
 color "shields korath deep" .9 .3 .2 .75
 color "shields korath" .9 .22 .02 .75
-color "shields sheragi" .29 .14 .26 .75
+color "shields sheragi" .29 .14 .26 .8
 color "shields rulei" .35 .29 .4 .75
 
 color "shields bunrodea" .58 .32 .04 .75
