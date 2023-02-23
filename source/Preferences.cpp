@@ -59,6 +59,9 @@ namespace {
 	const vector<string> PARALLAX_SETTINGS = {"off", "fancy", "fast"};
 	int parallaxIndex = 2;
 
+	const vector<string> CAMERA_SETTINGS = { "off", "forward", "backward" };
+	int cameraIndex = 1;
+
 	const vector<string> ALERT_INDICATOR_SETTING = {"off", "audio", "visual", "both"};
 	int alertIndicatorIndex = 3;
 
@@ -144,6 +147,7 @@ void Preferences::Save()
 	out.Write("vsync", vsyncIndex);
 	out.Write("Automatic aiming", autoAimIndex);
 	out.Write("Parallax background", parallaxIndex);
+	out.Write("Dynamic camera", cameraIndex);
 	out.Write("alert indicator", alertIndicatorIndex);
 	out.Write("previous saves", previousSaveCount);
 
@@ -265,6 +269,31 @@ Preferences::BackgroundParallax Preferences::GetBackgroundParallax()
 const string &Preferences::ParallaxSetting()
 {
 	return PARALLAX_SETTINGS[parallaxIndex];
+}
+
+
+
+// Dynamic camera type.
+void Preferences::ToggleCamera()
+{
+	int targetIndex = cameraIndex + 1;
+	if (targetIndex == static_cast<int>(CAMERA_SETTINGS.size()))
+		targetIndex = 0;
+	cameraIndex = targetIndex;
+}
+
+
+
+Preferences::DynamicCamera Preferences::GetCameraSetting()
+{
+	return static_cast<DynamicCamera>(cameraIndex);
+}
+
+
+
+const string& Preferences::CameraSetting()
+{
+	return CAMERA_SETTINGS[cameraIndex];
 }
 
 

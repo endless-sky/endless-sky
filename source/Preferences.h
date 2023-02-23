@@ -46,6 +46,12 @@ public:
 		FAST
 	};
 
+	enum class DynamicCamera : int {
+		OFF = 0,
+		FORWARD,
+		BACKWARD
+	};
+
 	enum class AlertIndicator : int_fast8_t {
 		NONE = 0,
 		AUDIO,
@@ -94,6 +100,11 @@ public:
 	static void ToggleParallax();
 	static BackgroundParallax GetBackgroundParallax();
 	static const std::string &ParallaxSetting();
+
+	// Background parallax setting, either "fast", "fancy", or "off".
+	static void ToggleCamera();
+	static DynamicCamera GetCameraSetting();
+	static const std::string& CameraSetting();
 
 	// Boarding target setting, either "proximity", "value" or "mixed".
 	static void ToggleBoarding();

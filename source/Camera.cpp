@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Angle.h"
 #include "Point.h"
+#include "Preferences.h"
 
 #include <vector>
 
@@ -42,26 +43,33 @@ namespace {
 	Camera::State state = Camera::State::NORMAL;
 
 	vector<pair<Angle, double>> cameraShake = {};
+
+	bool enabled = true;
+}
+
+void Camera::Enable(bool newEnabled)
+{
+	enabled = newEnabled;
 }
 
 Point Camera::Offset()
 {
-	return finalCameraPosition - center;
+	return enabled ? finalCameraPosition - center : Point();
 }
 
 Point Camera::VelocityOffset()
 {
-	return cameraVelocity - centerVelocity;
+	return enabled ? cameraVelocity - centerVelocity : Point();
 }
 
 Point Camera::Position()
 {
-	return finalCameraPosition;
+	return enabled ? finalCameraPosition : center;
 }
 
 Point Camera::Velocity()
 {
-	return cameraVelocity;
+	return enabled ? cameraVelocity : centerVelocity;
 }
 
 Point Camera::CenterPos()
@@ -126,8 +134,10 @@ void Camera::Update(Point flagshipCenter, Point flagshipVelocity)
 		cameraCenter += (flagshipCenter - cameraCenter) * 0.005;
 		break;
 	}
-
-	finalCameraPosition = center - (cameraCenter - center);
+	if(Preferences::GetCameraSetting() == Preferences::DynamicCamera::FORWARD)
+		finalCameraPosition = center - (cameraCenter - center);
+	else
+		finalCameraPosition = cameraCenter;
 	finalCameraPosition = finalCameraPosition + (targetPoint) * 0.4;
 }
 
@@ -149,7 +159,7 @@ Camera::State Camera::GetState()
 
 double Camera::GetZoom()
 {
-	return zoom;
+	return enabled ? zoom : 1.;
 }
 
 void Camera::SetZoom(double newZoom)

@@ -30,6 +30,8 @@ public:
 		WORMHOLED
 	};
 
+	static void Enable(bool newEnabled);
+
 	static Point Offset();
 	static Point VelocityOffset();
 

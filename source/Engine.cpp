@@ -261,7 +261,10 @@ Engine::Engine(PlayerInfo &player)
 	// Figure out what planet the player is landed on, if any.
 	const StellarObject *object = player.GetStellarObject();
 	if(object)
+	{
 		Camera::SetCenter(object->Position(), Point());
+		Camera::SetAbsoluteZoom(0.);
+	}
 
 	// Now we know the player's current position. Draw the planets.
 	draw[calcTickTock].Clear(step, zoom);
@@ -1122,6 +1125,8 @@ void Engine::Draw() const
 		font.Draw(loadString,
 			Point(-10 - font.Width(loadString), Screen::Height() * -.5 + 5.), color);
 	}
+
+	Camera::Enable(static_cast<int>(Preferences::GetCameraSetting()) != 0);
 }
 
 
