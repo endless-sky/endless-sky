@@ -1490,6 +1490,7 @@ news "proselytizing"
 		word
 			`"`
 		word
+			# Actual quotes from about repentance and forgiveness, from religious texts:
 			"Blessed is the one whose transgressions are forgiven, whose sins are covered."
 			"Hatred stirs old quarrels, but love overlooks insults."
 			"Every son of Adam sins, the best of the sinners are those who repent."
