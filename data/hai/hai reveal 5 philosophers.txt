@@ -411,6 +411,7 @@ mission "Hai Reveal [B05-short] The Road Not Taken"
 	to offer
 		has "Hai Reveal [B04] The Road Not Taken: done"
 		has "event: knows about keystones and wormholes"
+		not "Hai Reveal [B05-long] The Red Mystery: offered"
 	on offer
 		fail "Hai Reveal [B02-S] Republic Intelligence Stalkers"
 		log `Giti tripped an alert which places you both under the jurisdiction of a Syndicate Internal Affairs investigation. You've were sent directly to Hephaestus.`
@@ -469,6 +470,7 @@ mission "Hai Reveal [B05-long] The Red Mystery"
 	to offer
 		has "Hai Reveal [B04] The Road Not Taken: done"
 		not "event: knows about keystones and wormholes"
+		not "Hai Reveal [B05-short] The Road Not Taken: offered"
 	on offer
 		conversation
 			`At length you return again to tell Giti about the system with the unstable wormhole in it. You aren't required to land elsewhere on the planet this time, so it's a shorter, if equally crowded, journey to her office.`
@@ -776,7 +778,7 @@ mission "Hai Reveal [B08-long] The Other Just As Fair"
 mission "Hai Reveal [B09] Scanning Devil-Hide"
 	landing
 	name "Searching Beyond the Wormhole"
-	description "Return to <planet> after finding and scanning the key system beyond the unstable wormhole. The syndicate will pay <payment>."
+	description "Return to <planet> after finding and scanning the key system beyond the unstable wormhole. The Syndicate will pay <payment>."
 	source "Hephaestus"
 	waypoint "Devil-Hide"
 	passengers 1
@@ -898,7 +900,7 @@ mission "Hai Reveal [B11] Moving Together"
 		has "Hai Reveal [B10] Report to Teeneep: done"
 	on offer
 		conversation
-			`When you return to <origin> to tell Teeneep what you have found, she seems to already know much of what you have to say. "We've been waiting for you. Thanks to your visit to the Syndicate, we've found a lot of information in very short order. You'll have to lead another international task force through the wormhole at Devil-Eye. This time, they'll have Jump Drives from the Unfettered, which the Hai are renting for quite a hefty price. We expect all Jump Drives to be returned intact. Everyone is gathering to brief you on the status so you can prepare for the mission. A high-ranking Marshal Kaine is here with more information."`
+			`When you return to <origin> to tell Teeneep what you have found, she seems to already know much of what you have to say. "We've been waiting for you. Thanks to your visit to the Syndicate, we've found a lot of information in very short order. You'll have to lead another international task force through the wormhole at Devil-Eye. This time, they'll have jump drives from the Unfettered, which the Hai are renting for quite a hefty price. We expect all jump drives to be returned intact. Everyone is gathering to brief you on the status so you can prepare for the mission. A high-ranking Marshal Kaine is here with more information."`
 			`	Sayari seems anxious when she joins you on the way, and the two of them draw you along towards one of the meeting areas in the secured spaceport. There you are led past a selection of Navy personnel on guard into a meeting room with several people. Some appear to have just arrived, but others must have been here for a while, and to your surprise Alondo and Remington are also present. The place looks to have been acting as a war room of sorts. As soon you've walked through the door, someone says, "We're all here," and Choot'k and Remington stand up from where they'd been looking at something intently.`
 			label briefing
 			choice
@@ -944,7 +946,7 @@ mission "Hai Reveal [B11] Moving Together"
 			label dealt
 			action
 				set "Hai Reveal [B11] Moving Together: label dealt"
-			`	Marshal Khaine continues, "While there is intel on some captured Hai in the North, we have worked out a program to address that side of things more subtly, and with a lower risk to all parties involved. Raiding pirate ships is a deadly affair and their bases more so. While it may seem heroic, even with the help of the Hai, the casualty rate is unsustainable. However, while they may be allowed to go by intact, we have much better tabs on slaver and smuggler ships in the north, so we have options that don't require the sort of thorough manhunt that's occurring here to be effective."`
+			`	Marshal Kaine continues, "While there is intel on some captured Hai in the North, we have worked out a program to address that side of things more subtly, and with a lower risk to all parties involved. Raiding pirate ships is a deadly affair and their bases more so. While it may seem heroic, even with the help of the Hai, the casualty rate is unsustainable. However, while they may be allowed to go by intact, we have much better tabs on slaver and smuggler ships in the north, so we have options that don't require the sort of thorough manhunt that's occurring here to be effective."`
 				goto briefing
 			label hai
 			action
@@ -955,7 +957,7 @@ mission "Hai Reveal [B11] Moving Together"
 			action
 				set "Hai Reveal [B11] Moving Together: label introductions"
 			`	Remington responds. "Good point. I don't think everyone here knows everyone yet."`
-			`	You look around the room as Remington does introductions for the benefit of the new people, and counts off Teeneep, Sayari, Choot'k, Batu, Danforth, Adurath Khaine - a Marshal for the Navy, which is an ex-service political appointment - Alondo, and himself.`
+			`	You look around the room as Remington does introductions for the benefit of the new people, and counts off Teeneep, Sayari, Choot'k, Batu, Danforth, Adurath Kaine - a Marshal for the Navy, which is an ex-service political appointment - Alondo, and himself.`
 			`	Remington clearly did not need to be introduced, but doing so gives him a disarming charm, and you see for a moment some of the charisma that he must utilize as head of PR.`
 			`	Marshal Kaine introduces himself to you directly. "I'm the Marshal of the Third Armada, the guards of the Far North and the uninhabited regions near it. I know you've worked with my admiral William Danforth in the past, and he has spoken highly of your work. I'm here because occasionally the Navy needs a politician, and the politicians need someone from the service that understands politicians."`
 			`	Batu jumps in. "The Marshal has been very effective in helping to develop some solutions with Hiyamaharu, and has just arrived here to make sure everything is set in order."`
@@ -964,7 +966,7 @@ mission "Hai Reveal [B11] Moving Together"
 			action
 				set "Hai Reveal [B11] Moving Together: label secret"
 			`	Remington explains. "This operation has gone on long enough that the popular opinion is that the Hai must obviously exist, even though there are no explicit voices saying as such. It has in fact almost become a joke; the perception being that, 'The Navy are blockading the Hai to hide humanity from them, because the blockade isn't doing a good job of being inconspicuous.' There have been memes of the Navy hiding their ships behind far too narrow light poles while they distract a squirrel with their headlights. Now it's a matter of being able to present good news. Place a successful spin on things."`
-			`	"Our problem," says Khaine. "Is Elenchus."`
+			`	"Our problem," says Kaine, "is Elenchus."`
 				goto briefing
 			label elenchus
 			action
@@ -974,7 +976,7 @@ mission "Hai Reveal [B11] Moving Together"
 				`	"What pressure is making this so urgent?"`
 				`	"Yes, clearly we need a quick resolution."`
 					goto briefing
-			`	Khaine sighs, and responds. "The thing about governments is that all crises are either to be solved, delayed, or weathered. This crisis cannot be delayed, and so they must choose to weather or resolve. There are enough representatives who feel that their positions are too fragile to weather it, and so they have pushed to resolve. The timeline is set by their perception of the urgency." He looks to the Hai. "And obviously, there are also those who value our historic relationship with the Hai and seek to resolve it for those reasons too. Those are only the first two reasons on a long list. At the end of the day, it's politics."`
+			`	Kaine sighs, and responds. "The thing about governments is that all crises are either to be solved, delayed, or weathered. This crisis cannot be delayed, and so they must choose to weather or resolve. There are enough representatives who feel that their positions are too fragile to weather it, and so they have pushed to resolve. The timeline is set by their perception of the urgency." He looks to the Hai. "And obviously, there are also those who value our historic relationship with the Hai and seek to resolve it for those reasons too. Those are only the first two reasons on a long list. At the end of the day, it's politics."`
 				goto briefing
 
 			label penetration
@@ -986,10 +988,10 @@ mission "Hai Reveal [B11] Moving Together"
 				goto briefing
 
 			label solution
-			`	Marshal Khaine nods in agreement. "We have all the pieces. The solution therefore, is this: <last> will escort Danforth's Cruiser, the Elder and her Centipede, the General and his Shield Beetle, and two of his closest captains to Foundry. There you'll meet up with Agent Kopkow and Captain Wallace - a decorated Navy captain who has a Parliamentary Medal of Valor for handling the rescue of slaves - who will be bringing her empty Auxiliary, and one Free World Dreadnought that the good Alondo here had the foresight to make sure was stationed nearby. There you'll load up the Syndicate troopers and go to Elenchus."`
+			`	Marshal Kaine nods in agreement. "We have all the pieces. The solution therefore, is this: <last> will escort Danforth's Cruiser, the Elder and her Centipede, the General and his Shield Beetle, and two of his closest captains to Foundry. There you'll meet up with Agent Kopkow and Captain Wallace - a decorated Navy captain who has a Parliamentary Medal of Valor for handling the rescue of slaves - who will be bringing her empty Auxiliary, and one Free World Dreadnought that the good Alondo here had the foresight to make sure was stationed nearby. There you'll load up the Syndicate troopers and go to Elenchus."`
 			# One crack team of people from all over working together.
 			# Alondo did this as a backup after his experience being briefly trapped on Hai-home.
-			`	Khaine looks at you all with an odd expression and concludes, "As plans go, it's mental. But every one of you will be heroes if you can pull it off."`
+			`	Kaine looks at you all with an odd expression and concludes, "As plans go, it's mental. But every one of you will be heroes if you can pull it off."`
 			`	General Choot'k says, "I look forward to joining your people in combat. We haven't had enough chances to fight with - or against - your species. I hope we won't be disappointed."`
 			`	"I can vouch for the skill of our people, but not the pirates," Kaine replies, smiling.`
 			`	Danforth turns to you, "So, Captain, to Foundry, when you're ready."`
@@ -1121,7 +1123,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 			`	He seems to admire your ship for a moment. "If you succeed today you shall be Hai-friend, wherever you go."`
 				accept
 	on accept
-		event "Elenchus can be dominated"
+		event "elenchus can be dominated"
 	on fail
 		fail "Hai Reveal [B12-A] Devil-Hide Fleet"
 	on decline
@@ -1130,7 +1132,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 		conversation
 			`To complete this mission, you must land with Choot'k, Teeneep, Danforth and Wallace's ships all present in the system and intact...`
 	on enter
-		dialog `Right after the fleet takes off, Danforth hails you. "We have just received additional fighters and drones from the syndicate, please wait for them before jumping."`
+		dialog `Right after the fleet takes off, Danforth hails you. "We have just received additional fighters and drones from the Syndicate, please wait for them before jumping."`
 	on enter "Devil-Hide"
 		conversation
 			`Teeneep sends out a message to the fleet informing you that she is engaging the electronic warfare baffling and reminds you that everyone needs to get onto the ground intact if this is to go well. The general's ship is the Emperor Beetle, Kratos. The baffling won't work forever, so get to it.`
@@ -1141,7 +1143,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 			`To finish this mission, you must destroy all defending pirate vessels, and land with Choot'k, Teeneep, Danforth and Wallace's ships all present in the system and intact...`
 				launch
 	on complete
-		event "Liberated Elenchus"
+		event "liberated elenchus"
 	on fail
 		dialog `You have failed an essential mission. To complete this story line, revert to the autosave or another earlier snapshot of the game.`
 
@@ -1217,11 +1219,16 @@ fleet "Elenchus Tribute"
 		"Vanguard (Missile)"
 		"Firebird"
 
-event "Elenchus can be dominated"
+# They suspect you're coming so they're on alert, and non-essential ships aren't flying about.
+# Also, removing the warship spawn stops your NPC escorts from getting overwhelmed inappropriately.
+event "elenchus can be dominated"
 	planet "Elenchus"
 		tribute 5000
 			threshold 2400
 			fleet "Elenchus Tribute"
+	system "Devil-Hide"
+		remove fleet "Devil-Run Warships"
+		remove fleet "Devil-Run Miners"
 
 
 # This allows the mission to preserve the correct number of Unfettered support ships - if one dies it will stay dead:
@@ -1260,6 +1267,7 @@ mission "Hai Reveal [B13] Freedom"
 	description "Escort the Hai back to <planet>. Payment to cover your ongoing expenses is <payment>."
 	source "Elenchus"
 	destination "Stormhold"
+	clearance
 	to offer
 		has "Hai Reveal [B12] Devil-Hide Battle: done"
 	on visit
@@ -1273,7 +1281,7 @@ mission "Hai Reveal [B13] Freedom"
 		log `Liberated Elenchus.`
 		conversation
 			`General Choot'k cuts open the doors of a large hangar, and your ships land. The two hundred Syndicate operatives pour out, wearing exoskeletons with high density armor plating and equipped with all manner of weapons and gadgetry. They storm through the complex and you follow in their wake. Their tools melt through security locks in seconds, and most of their opposition lacks protection against the suits' stun gas bombs. With pirates focusing their efforts on the imposing suits, the Unfettered make many attacks of opportunity, inflicting massive casualties. The pirates outnumber the attackers ten to one, but this huge advantage in equipment, training, and discipline gives the attackers an overwhelming advantage.`
-			`	The squads move room to room, neutralizing all opposition with ease, until their opponents switch tactics. The pirates begin using electromagnetic pulse devices to shut down the Syndicate suits (and all other electronics nearby), leaving affected operatives helpless for ten long seconds. Here, some of General Choot'k's Unfettered show their strength, outmaneuvering the pirates long enough for the suits to recharge. They dart between operatives and bound off walls with pulse rifles and long knives. They strike rapidly and in an organized manner, before withdrawing as the operatives suits re-engage, preventing the pirates from coordinating a counter-assault.`
+			`	The squads move room to room, neutralizing all opposition with ease, until their opponents switch tactics. The pirates begin using electromagnetic pulse devices to shut down the Syndicate suits (and all other electronics nearby), leaving affected operatives helpless for ten long seconds. Here, some of General Choot'k's Unfettered show their strength, outmaneuvering the pirates long enough for the suits to recharge. They dart between operatives and bound off walls with Pulse Rifles and long knives. They strike rapidly and in an organized manner, before withdrawing as the operatives suits re-engage, preventing the pirates from coordinating a counter-assault.`
 			`	After a bloody struggle, forty-three operatives reach the end of the fight, clearing the way to a blast door. Only a couple dozen operatives are known to be seriously wounded, but many have been missing since the pirates switched tactics and began using traps and machinery to pin, crush, or disable the operatives or their suits. The Unfettered fared comparatively better, as the pirates focused most attacks on the Syndicate operatives, letting the fast, maneuverable Hai pass through. Still, over a dozen of them will take their own tails home as trophies, after the pirates used a miner's cutting power-arm extensions to great effect.`
 			`	The blast door that the force now stands before is twelve meters high and wide, and scanners show it to be six meters deep. It is designed to be closed from this side, though, and has not been sealed well against being reopened. Soon it grinds open but, evidently sabotaged, only part-way. Despite this attempt, the operatives put on their goggles and easily pass through into the darkness of the next room.`
 			`	You could be forgiven for hesitating to follow them, but General Choot'k appears beside you and places one strong paw on your shoulder. "Come, now. We will discover if our task is finished or impossible. It is time for bravery." He guides you in after the operatives, along with his own troops.`
@@ -1473,6 +1481,7 @@ mission "Hai Reveal [B14] Journey to Peace"
 	source "Stormhold"
 	stopover "Mountaintop"
 	destination "Hai-home"
+	clearance
 	passengers 4
 	to offer
 		has "Hai Reveal [B13] Freedom: done"
@@ -1481,7 +1490,7 @@ mission "Hai Reveal [B14] Journey to Peace"
 	on offer
 		conversation
 			`Your arrival on <origin> is met with much fanfare. In your absence the remaining staging ground here was eventually found and purged, and an agreement of sorts has been made between the Republic authorities and the remaining major players here - or at least those whose lists of possible crimes aren't so long and well-evidenced as to be arrested for appearing. The hope is that after such a thorough purge, <origin> will manage to be less of a source of problems for a while, but the expectation is merely that people smuggling will no longer be an industry that is widely tolerated by the local powers that be.`
-			`	The Unfettered are treated as heroes by both their comrades and the other Hai crews as they return to the fold. This causes some, like Remington and Alondo, to share some concerned looks among each other and have a number of surreptitious chats with Danforth and Marshal Khaine, but the distinction between the two groups remains pronounced throughout.`
+			`	The Unfettered are treated as heroes by both their comrades and the other Hai crews as they return to the fold. This causes some, like Remington and Alondo, to share some concerned looks among each other and have a number of surreptitious chats with Danforth and Marshal Kaine, but the distinction between the two groups remains pronounced throughout.`
 			`	Once people have had a chance to get sorted Teeneep approaches you again. "There will be much work in the future, but for now it is time to return to <planet>. I have been too long away, and there are obligations to be discharged. I have returned the borrowed jump drive, so we should pick up the Deputy Minister from Mountaintop on the way."`
 				accept
 	npc save accompany

@@ -48,7 +48,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	// If the player issues any of those commands, then any auto-pilot actions for the player get cancelled.
+	// If the player issues any of those commands, then any autopilot actions for the player get cancelled.
 	const Command &AutopilotCancelCommands()
 	{
 		static const Command cancelers(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD
@@ -294,6 +294,9 @@ namespace {
 
 	// An offset to prevent the ship from being not quite over the point to departure.
 	const double SAFETY_OFFSET = 1.;
+
+	// The minimum speed advantage a ship has to have to consider running away.
+	const double SAFETY_MULTIPLIER = 1.1;
 }
 
 
@@ -1006,6 +1009,13 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 
 
 
+void AI::SetMousePosition(Point position)
+{
+	mousePosition = position;
+}
+
+
+
 // Get the in-system strength of each government's allies and enemies.
 int64_t AI::AllyStrength(const Government *government)
 {
@@ -1207,7 +1217,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	double closest = person.IsHunting() ? numeric_limits<double>::infinity() :
 		(minRange > 1000.) ? maxRange * 1.5 : 4000.;
 	bool hasNemesis = false;
-	bool canPlunder = person.Plunders() && ship.Cargo().Free();
+	bool canPlunder = person.Plunders() && ship.Cargo().Free() && !ship.CanBeCarried();
 	// Figure out how strong this ship is.
 	int64_t maxStrength = 0;
 	auto strengthIt = shipStrength.find(&ship);
@@ -1249,7 +1259,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 
 		// Ships which only disable never target already-disabled ships.
 		if((person.Disables() || (!person.IsNemesis() && foe != oldTarget.get()))
-				&& foe->IsDisabled() && !canPlunder)
+				&& foe->IsDisabled() && (!canPlunder || Has(ship, foe->shared_from_this(), ShipEvent::BOARD)))
 			continue;
 
 		// Ships that don't (or can't) plunder strongly prefer active targets.
@@ -1484,7 +1494,10 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 			target.reset();
 		else
 		{
-			CircleAround(ship, command, *target);
+			if(target->Velocity().Length() > ship.MaxVelocity() * 0.9)
+				CircleAround(ship, command, *target);
+			else
+				MoveTo(ship, command, target->Position(), target->Velocity(), 1., 1.);
 			if(!ship.IsYours() && (ship.IsSpecial() || scanPermissions.at(gov)))
 				command |= Command::SCAN;
 		}
@@ -1860,13 +1873,19 @@ double AI::TurnBackward(const Ship &ship)
 
 
 
-double AI::TurnToward(const Ship &ship, const Point &vector)
+// Determine the value to use in Command::SetTurn() to turn the ship towards the desired facing.
+// "precision" is an optional argument corresponding to a value of the dot product of the current and target facing
+// vectors above which no turning should be attempting, to reduce constant, minute corrections.
+double AI::TurnToward(const Ship &ship, const Point &vector, const double precision)
 {
 	Point facing = ship.Facing().Unit();
 	double cross = vector.Cross(facing);
 
-	if(vector.Dot(facing) > 0.)
+	double dot = vector.Dot(facing);
+	if(dot > 0.)
 	{
+		if(precision < 1. && precision > 0. && dot * dot >= precision * vector.LengthSquared() * facing.LengthSquared())
+			return 0.;
 		double angle = asin(min(1., max(-1., cross / vector.Length()))) * TO_DEG;
 		if(fabs(angle) <= ship.TurnRate())
 			return -angle / ship.TurnRate();
@@ -1910,7 +1929,7 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 
 	bool isFacing = (dp.Unit().Dot(angle.Unit()) > .95);
 	if(!isClose || (!isFacing && !shouldReverse))
-		command.SetTurn(TurnToward(ship, dp));
+		command.SetTurn(TurnToward(ship, dp, 0.9999));
 	if(isFacing)
 		command |= Command::FORWARD;
 	else if(shouldReverse)
@@ -2195,16 +2214,20 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 		return;
 	}
 
-	ShipAICache &shipAICache = ship.GetAICache();
-	bool useArtilleryAI = shipAICache.IsArtilleryAI();
-	double shortestRange = shipAICache.ShortestRange();
-	double shortestArtillery = shipAICache.ShortestArtillery();
-	double minSafeDistance = shipAICache.MinSafeDistance();
+	// Check if this ship is fast enough to keep distance from target.
+	// Have a 10% minimum to avoid ships getting in a chase loop.
+	const bool isAbleToRun = target.MaxVelocity() * SAFETY_MULTIPLIER < ship.MaxVelocity();
 
-	double totalRadius = ship.Radius() + target.Radius();
-	Point direction = target.Position() - ship.Position();
+	ShipAICache &shipAICache = ship.GetAICache();
+	const bool useArtilleryAI = shipAICache.IsArtilleryAI() && isAbleToRun;
+	const double shortestRange = shipAICache.ShortestRange();
+	const double shortestArtillery = shipAICache.ShortestArtillery();
+	double minSafeDistance = isAbleToRun ? shipAICache.MinSafeDistance() : 0.;
+
+	const double totalRadius = ship.Radius() + target.Radius();
+	const Point direction = target.Position() - ship.Position();
 	// Average distance from this ship's weapons to the enemy ship.
-	double weaponDistanceFromTarget = direction.Length() - totalRadius / 3.;
+	const double weaponDistanceFromTarget = direction.Length() - totalRadius / 3.;
 
 	// If this ship has mostly long-range weapons, or some weapons have a
 	// blast radius, it should keep some distance instead of closing in.
@@ -2481,7 +2504,10 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 			ship.SetTargetShip(shared_ptr<Ship>());
 		else
 		{
-			CircleAround(ship, command, *target);
+			if(target->Velocity().Length() > ship.MaxVelocity() * 0.9)
+				CircleAround(ship, command, *target);
+			else
+				MoveTo(ship, command, target->Position(), target->Velocity(), 1., 1.);
 			command |= Command::SCAN;
 		}
 	}
@@ -3026,22 +3052,34 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 				// have moved forward one time step.
 				p += v;
 
-				// Find out how long it would take for this projectile to reach the target.
-				double rendezvousTime = RendezvousTime(p, v, vp);
-				// If there is no intersection (i.e. the turret is not facing the target),
-				// consider this target "out-of-range" but still targetable.
-				if(std::isnan(rendezvousTime))
-					rendezvousTime = max(p.Length() / (vp ? vp : 1.), 2 * weapon->TotalLifetime());
+				double rendezvousTime = numeric_limits<double>::quiet_NaN();
+				double distance = p.Length();
+				// Beam weapons hit instantaneously if they are in range.
+				bool isInstantaneous = weapon->TotalLifetime() == 1.;
+				if(isInstantaneous && distance < vp)
+					rendezvousTime = 0.;
+				else
+				{
+					// Find out how long it would take for this projectile to reach the target.
+					if(!isInstantaneous)
+						rendezvousTime = RendezvousTime(p, v, vp);
 
-				// Determine where the target will be at that point.
-				p += v * rendezvousTime;
+					// If there is no intersection (i.e. the turret is not facing the target),
+					// consider this target "out-of-range" but still targetable.
+					if(std::isnan(rendezvousTime))
+						rendezvousTime = max(distance / (vp ? vp : 1.), 2 * weapon->TotalLifetime());
+
+					// Determine where the target will be at that point.
+					p += v * rendezvousTime;
+
+					// All bodies within weapons range have the same basic
+					// weight. Outside that range, give them lower priority.
+					rendezvousTime = max(0., rendezvousTime - weapon->TotalLifetime());
+				}
 
 				// Determine how much the turret must turn to face that vector.
 				double degrees = (Angle(p) - aim).Degrees();
 				double turnTime = fabs(degrees) / weapon->TurretTurn();
-				// All bodies within weapons range have the same basic
-				// weight. Outside that range, give them lower priority.
-				rendezvousTime = max(0., rendezvousTime - weapon->TotalLifetime());
 				// Always prefer targets that you are able to hit.
 				double score = turnTime + (180. / weapon->TurretTurn()) * rendezvousTime;
 				if(score < bestScore)
@@ -3771,11 +3809,16 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			&& !(autoPilot | activeCommands).Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD)
 			&& (!target || target->GetGovernment()->IsEnemy()))
 		AutoFire(ship, firingCommands, false);
+
+	const bool mouseTurning = Preferences::Has("alt-mouse turning");
+	if(mouseTurning && !ship.IsBoarding() && !ship.IsReversing())
+		command.SetTurn(TurnToward(ship, mousePosition, 0.9999));
+
 	if(activeCommands)
 	{
 		if(activeCommands.Has(Command::FORWARD))
 			command |= Command::FORWARD;
-		if(activeCommands.Has(Command::RIGHT | Command::LEFT))
+		if(activeCommands.Has(Command::RIGHT | Command::LEFT) && !mouseTurning)
 			command.SetTurn(activeCommands.Has(Command::RIGHT) - activeCommands.Has(Command::LEFT));
 		if(activeCommands.Has(Command::BACK))
 		{
@@ -3813,9 +3856,11 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			autoPilot = activeCommands;
 	}
 	bool shouldAutoAim = false;
-	if(Preferences::Has("Automatic aiming") && !command.Turn() && !ship.IsBoarding()
-			&& ((target && target->GetSystem() == ship.GetSystem() && target->IsTargetable())
-				|| ship.GetTargetAsteroid())
+	bool isFiring = activeCommands.Has(Command::PRIMARY) || activeCommands.Has(Command::SECONDARY);
+	if((Preferences::GetAutoAim() == Preferences::AutoAim::ALWAYS_ON
+			|| (Preferences::GetAutoAim() == Preferences::AutoAim::WHEN_FIRING && isFiring))
+			&& !command.Turn() && !ship.IsBoarding()
+			&& ((target && target->GetSystem() == ship.GetSystem() && target->IsTargetable()) || ship.GetTargetAsteroid())
 			&& !autoPilot.Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD))
 	{
 		// Check if this ship has any forward-facing weapons.

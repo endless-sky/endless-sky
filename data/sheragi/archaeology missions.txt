@@ -1280,6 +1280,13 @@ mission "Sheragi Archaeology: The Emerald Sword 2"
 			label return
 			`	"What do I get in return?" you ask.`
 			`	"Fame and fortune, my friend. And if the ship is still there, I think you deserve to keep it," Albert responds. "You've helped me so much, and you went to hell and back to get this black box decoded. Give us some time to assemble a crew to survey the system and help refurbish the ship, and in the meantime, go get us a jump drive. Come back to us once you have it."`
+			choice
+				`	"You're just going to let me have it? Isn't this something of a priceless historical artifact?"`
+					goto askkeepship
+				`	"Thank you."`
+					accept
+			label askkeepship
+			`	Albert responds, "Well, yes, but I'd feel much more comfortable with it in your hands than sitting here on <origin> waiting to be destroyed in loose fire during a pirate raid. Besides that though, while the Free Worlds work hard and have a stronger presence here than the Navy ever did, they can't stop everyone who may have an interest in this ship. At least with you it's a moving target."`
 				accept
 	
 	to complete
