@@ -134,10 +134,10 @@ void Camera::Update(Point flagshipCenter, Point flagshipVelocity)
 		cameraCenter += (flagshipCenter - cameraCenter) * 0.005;
 		break;
 	}
-	if(Preferences::GetCameraSetting() == Preferences::DynamicCamera::FORWARD)
-		finalCameraPosition = center - (cameraCenter - center);
-	else
-		finalCameraPosition = cameraCenter;
+	// if(Preferences::GetCameraSetting() == Preferences::DynamicCamera::FORWARD)
+	// 	finalCameraPosition = center - (cameraCenter - center);
+	// else
+	finalCameraPosition = cameraCenter;
 	finalCameraPosition = finalCameraPosition + (targetPoint) * 0.4;
 }
 
