@@ -437,9 +437,14 @@ string Format::ExpandConditions(const string &source, ConditionGetter getter)
 	//	state = _ ----- outside of all &[] regions
 	//	state = & ----- just read & and hoping to see a [
 	//	state = [ ----- read &[ but haven't seen @ or ] yet
+	//	state = N ----- inside a nested [] of depth `depth`
 	//	state = @ ----- read &[...@ but haven't seen ] yet. Have format start & size.
 	// Anything inside a &[...] is sent to AppendCondition
 	char state = '_';
+	// Depth of nested [] within the &[...]
+	int depth = 0;
+	// State before entering the nested []
+	char oldState = '[';
 	// "start" is the beginning of the text that has not yet been sent to result.
 	size_t start = 0;
 	for(size_t look = 0; look < source.size(); ++look)
@@ -475,6 +480,18 @@ string Format::ExpandConditions(const string &source, ConditionGetter getter)
 			start = look + 1;
 			state = '_';
 		}
+		else if((state == '[' || state == '@') && next == '[')
+		{
+			oldState = state;
+			state = 'N';
+			depth = 1;
+		}
+		else if(state == 'N' && next == '[')
+			depth++;
+		else if(state == 'N' && next == ']' && depth > 1)
+			depth--;
+		else if(state == 'N' && next == ']' && depth == 1)
+			state = oldState;
 		else if(state == '[' && next == ']')
 		{
 			conditionStart = start + 2;
@@ -484,9 +501,9 @@ string Format::ExpandConditions(const string &source, ConditionGetter getter)
 			start = look + 1;
 			state = '_';
 		}
-		else if(state == '[' || state == '@')
+		else if(state == '[' || state == '@' || state == 'N')
 		{
-			// format or condition consumes a character
+			// format, condition, or nested [] consumes a character
 		}
 		else
 		{
