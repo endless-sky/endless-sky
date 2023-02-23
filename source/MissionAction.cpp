@@ -159,7 +159,7 @@ void MissionAction::Save(DataWriter &out) const
 		if(!conversation->IsEmpty())
 			conversation->Save(out);
 		for(const auto &it : requiredOutfits)
-			out.Write("require", it.first->Name(), it.second);
+			out.Write("require", it.first->TrueName(), it.second);
 
 		action.Save(out);
 	}
@@ -192,7 +192,7 @@ string MissionAction::Validate() const
 	// Required content must be defined & valid.
 	for(auto &&outfit : requiredOutfits)
 		if(!outfit.first->IsDefined())
-			return "required outfit \"" + outfit.first->Name() + "\"";
+			return "required outfit \"" + outfit.first->TrueName() + "\"";
 
 	return action.Validate();
 }
@@ -289,7 +289,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination,
 	{
 		// Conversations offered while boarding or assisting reference a ship,
 		// which may be destroyed depending on the player's choices.
-		ConversationPanel *panel = new ConversationPanel(player, *conversation, destination, ship);
+		ConversationPanel *panel = new ConversationPanel(player, *conversation, destination, ship, isOffer);
 		if(isOffer)
 			panel->SetCallback(&player, &PlayerInfo::MissionCallback);
 		// Use a basic callback to handle forced departure outside of `on offer`
@@ -352,7 +352,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 
 	// Restore the "<payment>" and "<fine>" values from the "on complete" condition, for
 	// use in other parts of this mission.
-	if(result.Payment() && trigger != "complete")
+	if(result.Payment() && (trigger != "complete" || !previousPayment.empty()))
 		subs["<payment>"] = previousPayment;
 	if(result.action.Fine() && trigger != "complete")
 		subs["<fine>"] = previousFine;

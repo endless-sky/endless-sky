@@ -24,7 +24,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Date.h"
 #include "Depreciation.h"
 #include "GameEvent.h"
+#include "Government.h"
 #include "Mission.h"
+#include "SystemEntry.h"
 
 #include <chrono>
 #include <list>
@@ -35,7 +37,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <utility>
 #include <vector>
 
-class Government;
 class Outfit;
 class Planet;
 class Rectangle;
@@ -60,6 +61,8 @@ public:
 		int64_t maintenanceCosts = 0;
 		int64_t assetsReturns = 0;
 	};
+
+
 public:
 	PlayerInfo() = default;
 	// Don't allow copying this class.
@@ -87,6 +90,12 @@ public:
 	// are multiple pilots with the same name it may have a digit appended.)
 	std::string Identifier() const;
 
+	// Start a transaction. This stores the current state, and any Save()
+	// calls during the transaction will store this saved state.
+	void StartTransaction();
+	// Complete the transaction.
+	void FinishTransaction();
+
 	// Apply the given changes and store them in the player's saved game file.
 	void AddChanges(std::list<DataNode> &changes);
 	// Add an event that will happen at the given date.
@@ -108,11 +117,15 @@ public:
 	// Get basic data about the player's starting scenario.
 	const CoreStartData &StartData() const noexcept;
 
+	// Sets the means the player used to enter the system.
+	void SetSystemEntry(SystemEntry entryType);
+	SystemEntry GetSystemEntry() const;
 	// Set the system the player is in. This must be stored here so that even if
 	// the player sells all their ships, we still know where the player is.
 	// This also marks the given system as visited.
 	void SetSystem(const System &system);
 	const System *GetSystem() const;
+	const System *GetPreviousSystem() const;
 	// Set what planet the player is on (or nullptr, if taking off).
 	void SetPlanet(const Planet *planet);
 	const Planet *GetPlanet() const;
@@ -153,6 +166,7 @@ public:
 	void SetShipOrder(const std::vector<std::shared_ptr<Ship>> &newOrder);
 	// Get the attraction factors of the player's fleet to raid fleets.
 	std::pair<double, double> RaidFleetFactors() const;
+	double RaidFleetAttraction(const Government::RaidFleet &raidFleet, const System *system) const;
 
 	// Get cargo information.
 	CargoHold &Cargo();
@@ -203,6 +217,9 @@ public:
 	// Check to see if there is any mission to offer right now.
 	Mission *MissionToOffer(Mission::Location location);
 	Mission *BoardingMission(const std::shared_ptr<Ship> &ship);
+	// Return true if the given ship is capturable only because it's the source
+	// of a boarding mission which allows it to be.
+	bool CaptureOverriden(const std::shared_ptr<Ship> &ship) const;
 	void ClearActiveBoardingMission();
 	// If one of your missions cannot be offered because you do not have enough
 	// space for it, and it specifies a message to be shown in that situation,
@@ -252,8 +269,10 @@ public:
 	void SetTravelDestination(const Planet *planet);
 
 	// Toggle which secondary weapon the player has selected.
-	const std::set<const Outfit *> &SelectedWeapons() const;
-	void SelectNext();
+	const std::set<const Outfit *> &SelectedSecondaryWeapons() const;
+	void SelectNextSecondary();
+	void DeselectAllSecondaries();
+	void ToggleAnySecondary(const Outfit *outfit);
 
 	// Escorts currently selected for giving orders.
 	const std::vector<std::weak_ptr<Ship>> &SelectedShips() const;
@@ -306,6 +325,7 @@ private:
 	void StepMissions(UI *ui);
 	void Autosave() const;
 	void Save(const std::string &path) const;
+	void Save(DataWriter &out) const;
 
 	// Check for and apply any punitive actions from planetary security.
 	void Fine(UI *ui);
@@ -326,6 +346,8 @@ private:
 	std::string filePath;
 
 	Date date;
+	SystemEntry entry = SystemEntry::TAKE_OFF;
+	const System *previousSystem = nullptr;
 	const System *system = nullptr;
 	const Planet *planet = nullptr;
 	bool shouldLaunch = false;
@@ -407,6 +429,8 @@ private:
 
 	// Basic information about the player's starting scenario.
 	CoreStartData startData;
+
+	DataWriter *transactionSnapshot = nullptr;
 };
 
 

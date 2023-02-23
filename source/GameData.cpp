@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "BatchShader.h"
 #include "Color.h"
 #include "Command.h"
+#include "ConditionsStore.h"
 #include "Conversation.h"
 #include "DataFile.h"
 #include "DataNode.h"
@@ -47,6 +48,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Person.h"
 #include "Phrase.h"
 #include "Planet.h"
+#include "Plugins.h"
 #include "PointerShader.h"
 #include "Politics.h"
 #include "Random.h"
@@ -79,13 +81,13 @@ namespace {
 	Set<Galaxy> defaultGalaxies;
 	Set<Sale<Ship>> defaultShipSales;
 	Set<Sale<Outfit>> defaultOutfitSales;
+	Set<Wormhole> defaultWormholes;
 	TextReplacements defaultSubstitutions;
 
 	Politics politics;
 
 	StarField background;
 
-	map<string, string> plugins;
 	SpriteQueue spriteQueue;
 
 	vector<string> sources;
@@ -96,6 +98,35 @@ namespace {
 
 	const Government *playerGovernment = nullptr;
 	map<const System *, map<string, int>> purchases;
+
+	ConditionsStore globalConditions;
+
+	void LoadPlugin(const string &path)
+	{
+		const auto *plugin = Plugins::Load(path);
+		if(plugin->enabled)
+			sources.push_back(path);
+
+		// Load the icon for the plugin, if any.
+		auto icon = make_shared<ImageSet>(plugin->name);
+
+		// Try adding all the possible icon variants.
+		if(Files::Exists(path + "icon.png"))
+			icon->Add(path + "icon.png");
+		else if(Files::Exists(path + "icon.jpg"))
+			icon->Add(path + "icon.jpg");
+
+		if(Files::Exists(path + "icon@2x.png"))
+			icon->Add(path + "icon@2x.png");
+		else if(Files::Exists(path + "icon@2x.jpg"))
+			icon->Add(path + "icon@2x.jpg");
+
+		if(!icon->IsEmpty())
+		{
+			icon->ValidateFrames();
+			spriteQueue.Add(icon);
+		}
+	}
 }
 
 
@@ -148,6 +179,7 @@ void GameData::FinishLoading()
 	defaultShipSales = objects.shipSales;
 	defaultOutfitSales = objects.outfitSales;
 	defaultSubstitutions = objects.substitutions;
+	defaultWormholes = objects.wormholes;
 	playerGovernment = objects.governments.Get("Escort");
 
 	politics.Reset();
@@ -278,6 +310,14 @@ const vector<string> &GameData::Sources()
 
 
 
+// Get a reference to the UniverseObjects object.
+UniverseObjects &GameData::Objects()
+{
+	return objects;
+}
+
+
+
 // Revert any changes that have been made to the universe.
 void GameData::Revert()
 {
@@ -289,6 +329,7 @@ void GameData::Revert()
 	objects.shipSales.Revert(defaultShipSales);
 	objects.outfitSales.Revert(defaultOutfitSales);
 	objects.substitutions.Revert(defaultSubstitutions);
+	objects.wormholes.Revert(defaultWormholes);
 	for(auto &it : objects.persons)
 		it.second.Restore();
 
@@ -624,6 +665,13 @@ const Set<TestData> &GameData::TestDataSets()
 
 
 
+ConditionsStore &GameData::GlobalConditions()
+{
+	return globalConditions;
+}
+
+
+
 const Set<Sale<Ship>> &GameData::Shipyards()
 {
 	return objects.shipSales;
@@ -634,6 +682,13 @@ const Set<Sale<Ship>> &GameData::Shipyards()
 const Set<System> &GameData::Systems()
 {
 	return objects.systems;
+}
+
+
+
+const Set<Wormhole> &GameData::Wormholes()
+{
+	return objects.wormholes;
 }
 
 
@@ -775,13 +830,6 @@ const map<string, string> &GameData::HelpTemplates()
 
 
 
-const map<string, string> &GameData::PluginAboutText()
-{
-	return plugins;
-}
-
-
-
 MaskManager &GameData::GetMaskManager()
 {
 	return maskManager;
@@ -796,6 +844,13 @@ const TextReplacements &GameData::GetTextReplacements()
 
 
 
+const Gamerules &GameData::GetGamerules()
+{
+	return objects.gamerules;
+}
+
+
+
 void GameData::LoadSources()
 {
 	sources.clear();
@@ -803,45 +858,13 @@ void GameData::LoadSources()
 
 	vector<string> globalPlugins = Files::ListDirectories(Files::Resources() + "plugins/");
 	for(const string &path : globalPlugins)
-	{
-		if(Files::Exists(path + "data") || Files::Exists(path + "images") || Files::Exists(path + "sounds"))
-			sources.push_back(path);
-	}
+		if(Plugins::IsPlugin(path))
+			LoadPlugin(path);
 
 	vector<string> localPlugins = Files::ListDirectories(Files::Config() + "plugins/");
 	for(const string &path : localPlugins)
-	{
-		if(Files::Exists(path + "data") || Files::Exists(path + "images") || Files::Exists(path + "sounds"))
-			sources.push_back(path);
-	}
-
-	// Load the plugin data, if any.
-	for(auto it = sources.begin() + 1; it != sources.end(); ++it)
-	{
-		// Get the name of the folder containing the plugin.
-		size_t pos = it->rfind('/', it->length() - 2) + 1;
-		string name = it->substr(pos, it->length() - 1 - pos);
-
-		// Load the about text and the icon, if any.
-		plugins[name] = Files::Read(*it + "about.txt");
-
-		// Create an image set for the plugin icon.
-		auto icon = make_shared<ImageSet>(name);
-
-		// Try adding all the possible icon variants.
-		if(Files::Exists(*it + "icon.png"))
-			icon->Add(*it + "icon.png");
-		else if(Files::Exists(*it + "icon.jpg"))
-			icon->Add(*it + "icon.jpg");
-
-		if(Files::Exists(*it + "icon@2x.png"))
-			icon->Add(*it + "icon@2x.png");
-		else if(Files::Exists(*it + "icon@2x.jpg"))
-			icon->Add(*it + "icon@2x.jpg");
-
-		icon->ValidateFrames();
-		spriteQueue.Add(icon);
-	}
+		if(Plugins::IsPlugin(path))
+			LoadPlugin(path);
 }
 
 

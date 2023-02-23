@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
@@ -146,20 +147,7 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 				break;
 	}
 
-	// Auto select the destination system for the current mission.
-	if(availableIt != available.end())
-	{
-		selectedSystem = availableIt->Destination()->GetSystem();
-		DoScroll(available, availableIt, availableScroll, false);
-	}
-	else if(acceptedIt != accepted.end())
-	{
-		selectedSystem = acceptedIt->Destination()->GetSystem();
-		DoScroll(accepted, acceptedIt, acceptedScroll, true);
-	}
-
-	// Center on the selected system.
-	CenterOnSystem(selectedSystem, true);
+	SetSelectedScrollAndCenter(true);
 }
 
 
@@ -197,6 +185,8 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 			if(FindMissionForSystem(*it))
 				break;
 	}
+
+	SetSelectedScrollAndCenter();
 }
 
 
@@ -216,7 +206,7 @@ void MissionPanel::Draw()
 	MapPanel::Draw();
 
 	// Update the tooltip timer [0-60].
-	hoverSortCount += hoverSort >=0 ? (hoverSortCount < HOVER_TIME) : (hoverSortCount ? -1 : 0);
+	hoverSortCount += hoverSort >= 0 ? (hoverSortCount < HOVER_TIME) : (hoverSortCount ? -1 : 0);
 
 	Color routeColor(.2f, .1f, 0.f, 0.f);
 	const System *system = selectedSystem;
@@ -348,17 +338,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 
 	// To reach here, we changed the selected mission. Scroll the active
 	// mission list, update the selected system, and pan the map.
-	if(availableIt != available.end())
-	{
-		selectedSystem = availableIt->Destination()->GetSystem();
-		DoScroll(available, availableIt, availableScroll, false);
-	}
-	else if(acceptedIt != accepted.end())
-	{
-		selectedSystem = acceptedIt->Destination()->GetSystem();
-		DoScroll(accepted, acceptedIt, acceptedScroll, true);
-	}
-	CenterOnSystem(selectedSystem);
+	SetSelectedScrollAndCenter();
 
 	return true;
 }
@@ -386,16 +366,16 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			// Sorter buttons
 			else if(hoverSort >= 0)
 			{
-				if (hoverSort == 0)
+				if(hoverSort == 0)
 					player.ToggleSortSeparateDeadline();
-				else if (hoverSort == 1)
+				else if(hoverSort == 1)
 					player.ToggleSortSeparatePossible();
-				else if (hoverSort == 2)
+				else if(hoverSort == 2)
 				{
 					player.NextAvailableSortType();
 					tooltip.clear();
 				}
-				else if (hoverSort == 3)
+				else if(hoverSort == 3)
 					player.ToggleSortAscending();
 				return true;
 			}
@@ -410,9 +390,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 				++availableIt;
 			acceptedIt = accepted.end();
 			dragSide = -1;
-			selectedSystem = availableIt->Destination()->GetSystem();
-			DoScroll(available, availableIt, availableScroll, false);
-			CenterOnSystem(selectedSystem);
+			SetSelectedScrollAndCenter();
 			return true;
 		}
 	}
@@ -430,9 +408,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			}
 			availableIt = available.end();
 			dragSide = 1;
-			selectedSystem = acceptedIt->Destination()->GetSystem();
-			DoScroll(accepted, acceptedIt, acceptedScroll, true);
-			CenterOnSystem(selectedSystem);
+			SetSelectedScrollAndCenter();
 			return true;
 		}
 	}
@@ -460,7 +436,33 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			else
 				acceptedIt = accepted.begin();
 		}
-		while(options--)
+
+		// When clicking a new system, select the first available mission
+		// (instead of continuing from wherever the iterator happens to be)
+		if((availableIt != available.end() && !Involves(*availableIt, system)) ||
+			(acceptedIt != accepted.end() && !Involves(*acceptedIt, system)))
+		{
+			auto firstExistingIt = find_if(available.begin(), available.end(),
+				[&system](const Mission &m) { return Involves(m, system); });
+
+			if(firstExistingIt != available.end())
+			{
+				availableIt = firstExistingIt;
+				acceptedIt = accepted.end();
+			}
+			else
+			{
+				firstExistingIt = find_if(accepted.begin(), accepted.end(),
+					[&system](const Mission &m) { return m.IsVisible() && Involves(m, system); });
+
+				if(firstExistingIt != accepted.end())
+				{
+					availableIt = available.end();
+					acceptedIt = firstExistingIt;
+				}
+			}
+		}
+		else while(options--)
 		{
 			if(availableIt != available.end())
 			{
@@ -573,6 +575,26 @@ bool MissionPanel::Scroll(double dx, double dy)
 		return Drag(0., dy * Preferences::ScrollSpeed());
 
 	return MapPanel::Scroll(dx, dy);
+}
+
+
+
+void MissionPanel::SetSelectedScrollAndCenter(bool immediate)
+{
+	// Auto select the destination system for the current mission.
+	if(availableIt != available.end())
+	{
+		selectedSystem = availableIt->Destination()->GetSystem();
+		DoScroll(available, availableIt, availableScroll, false);
+	}
+	else if(acceptedIt != accepted.end())
+	{
+		selectedSystem = acceptedIt->Destination()->GetSystem();
+		DoScroll(accepted, acceptedIt, acceptedScroll, true);
+	}
+
+	// Center on the selected system.
+	CenterOnSystem(selectedSystem, immediate);
 }
 
 
@@ -726,11 +748,15 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 	pos += Point(10., 10. + (20. - font.Height()) * .5);
 
 	// Panel sorting
-	const Sprite *rush[2] = { SpriteSet::Get("ui/sort rush include"), SpriteSet::Get("ui/sort rush separate")};
-	const Sprite *acceptable[2] = { SpriteSet::Get("ui/sort unacceptable include"), SpriteSet::Get("ui/sort unacceptable separate") };
-	const Sprite *sortIcon[4] = { SpriteSet::Get("ui/sort abc"), SpriteSet::Get("ui/sort pay"),
-		SpriteSet::Get("ui/sort speed"), SpriteSet::Get("ui/sort convenient") };
-	const Sprite *arrow[2] = { SpriteSet::Get("ui/sort descending"), SpriteSet::Get("ui/sort ascending") };
+	const Sprite *rush[2] = {
+			SpriteSet::Get("ui/sort rush include"), SpriteSet::Get("ui/sort rush separate") };
+	const Sprite *acceptable[2] = {
+			SpriteSet::Get("ui/sort unacceptable include"), SpriteSet::Get("ui/sort unacceptable separate") };
+	const Sprite *sortIcon[4] = {
+			SpriteSet::Get("ui/sort abc"), SpriteSet::Get("ui/sort pay"),
+			SpriteSet::Get("ui/sort speed"), SpriteSet::Get("ui/sort convenient") };
+	const Sprite *arrow[2] = {
+			SpriteSet::Get("ui/sort descending"), SpriteSet::Get("ui/sort ascending") };
 
 	// Draw Sorting Columns
 	if(entries && sorter)
@@ -852,10 +878,19 @@ void MissionPanel::DrawTooltips()
 		{
 			switch(player.GetAvailableSortType())
 			{
-				case 0: tooltip = "Sort alphabetically"; break;
-				case 1: tooltip = "Sort by payment"; break;
-				case 2: tooltip = "Sort by distance"; break;
-				case 3: tooltip = "Sort by convenience: Prioritize missions going to a planet or system that is already a destination of one of your missions"; break;
+				case 0:
+					tooltip = "Sort alphabetically";
+					break;
+				case 1:
+					tooltip = "Sort by payment";
+					break;
+				case 2:
+					tooltip = "Sort by distance";
+					break;
+				case 3:
+					tooltip = "Sort by convenience: "
+							"Prioritize missions going to a planet or system that is already a destination of one of your missions";
+					break;
 			}
 		}
 		else if(hoverSort == 3)
@@ -906,13 +941,13 @@ void MissionPanel::Accept(bool force)
 		ostringstream out;
 		if(cargoToSell > 0 && crewToFire > 0)
 			out << "You must fire " << crewToFire << " of your flagship's non-essential crew members and sell "
-				<< cargoToSell << " tons of ordinary commodities to make room for this mission. Continue?";
+				<< Format::CargoString(cargoToSell, "ordinary commodities") << " to make room for this mission. Continue?";
 		else if(crewToFire > 0)
 			out << "You must fire " << crewToFire
 				<< " of your flagship's non-essential crew members to make room for this mission. Continue?";
 		else
-			out << "You must sell " << cargoToSell
-				<< " tons of ordinary commodities to make room for this mission. Continue?";
+			out << "You must sell " << Format::CargoString(cargoToSell, "ordinary commodities")
+				<< " to make room for this mission. Continue?";
 		GetUI()->Push(new Dialog(this, &MissionPanel::MakeSpaceAndAccept, out.str()));
 		return;
 	}

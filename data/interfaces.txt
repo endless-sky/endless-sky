@@ -22,6 +22,7 @@ color "medium" .5 .5 .5 0.
 color "dim" .25 .25 .25 0.
 color "dimmer" .18 .18 .18 0.
 color "faint" .1 .1 .1 0.
+color "dark" .05 .05 .05 0.
 
 # Colors used for drawing ship list in player info panel.
 color "flagship" .5 .5 .1 0.
@@ -90,16 +91,50 @@ color "overlay hostile disabled" .3 .3 0 .25
 color "overlay outfit scan" .5 .5 .5 .25
 color "overlay cargo scan" .7 .7 .7 .25
 
+# Colors used when "missile overlays" are enabled
+color "missile enemy" 1. 1. .25 .7
+color "missile locked" 1. .9 0. .9
+color "missile dangerous" 1. .1 .1 1.
+
 # Colors used in the radar map while in-flight.
 color "radar player" .2 1. 0. 0.
 color "radar friendly" .4 .6 1. 0.
-color "radar unfriendly" .8 .8 .4 0.
-color "radar hostile" 1. .6 .4 0.
+color "radar unfriendly" .8 .8 .3 0.
+color "radar hostile" .85 .3 .2 0.
 color "radar inactive" .4 .4 .4 0.
 color "radar special" 1. 1. 1. 0.
 color "radar anomalous" .7 0. 1. 0.
 color "radar blink" 1. 1. 1. 0.
 color "radar viewport" 0. .3 0. 0.
+color "radar star" .6 .6 .6 0.
+
+# Colors used for the outline of the targeted ship.
+color "ship target outline player" .2 1. 0. 0.
+color "ship target outline friendly" .4 .6 1. 0.
+color "ship target outline unfriendly" .8 .8 .3 0.
+color "ship target outline hostile" .85 .3 .2 0.
+color "ship target outline inactive" .4 .4 .4 0.
+color "ship target outline special" 1. 1. 1. 0.
+color "ship target outline blink" 1. 1. 1. 0.
+
+# Colors used for ship target pointers.
+color "ship target pointer player" .2 1. 0. 0.
+color "ship target pointer friendly" .4 .6 1. 0.
+color "ship target pointer unfriendly" .8 .8 .3 0.
+color "ship target pointer hostile" .85 .3 .2 0.
+color "ship target pointer inactive" .4 .4 .4 0.
+color "ship target pointer special" 1. 1. 1. 0.
+color "ship target pointer blink" 1. 1. 1. 0.
+
+# Colors used for minable target pointers.
+color "minable target pointer selected" 1. 1. 1. 0.
+color "minable target pointer unselected" .4 .4 .4 0.
+
+# Colors used for planet target pointers.
+color "planet target pointer friendly" .4 .6 1. 0.
+color "planet target pointer restricted" .8 .8 .3 0.
+color "planet target pointer hostile" .85 .3 .2 0.
+color "planet target pointer dominated" 1. 1. 1. 0.
 
 # Colors used for warnings and errors.
 color "error back" .25 .1 .1 1.
@@ -117,13 +152,20 @@ color "map name" .6 .6 .6 .6
 color "map travel ok fleet" .2 .5 0. 0.
 color "map travel ok flagship" .5 .4 0. 0.
 color "map travel ok none" .55 .1 0. 0.
-color "map used wormhole" .5 .2 .9 1.
-color "map unused wormhole" .165 .066 .3 .333
+color "map travel wormhole" .5 .2 .9 1.
+color "map wormhole" .5 .2 .9 1.
 color "map orbits fleet destination" 1. 1. 1. 1.
+
+# Miscellaneous colors
+color "wormholes: Ember Waste" .7 .1 .3
+
+# Color of warning message when users enable or disable plugins via in-game UI.
+color "plugin reload required" .75 .1 .1 0.
 
 
 
 interface "map detail panel"
+	value "min planet panel height" 195
 	value "max planet panel height" 2022
 	value "starting X" 100
 	value "starting Y" 45
@@ -306,7 +348,7 @@ interface "start conditions menu"
 	button b "_Back to Menu"
 		center -420 155
 		dimensions 120 30
-	active if "chosen start"
+	active if "unlocked start"
 	button s "_Start Game"
 		center -285 155
 		dimensions 90 30
@@ -401,11 +443,25 @@ interface "settings"
 		dimensions 90 30
 		color medium
 		hover bright
+	visible if "multiple pages"
+	sprite "ui/dialog cancel"
+		center -115 210
+	active if "show next"
+	button n "_Next"
+		center -115 210
+		dimensions 70 30
+	sprite "ui/wide button"
+		center -210 210
+	active if "show previous"
+	button r "P_revious"
+		center -210 210
+		dimensions 90 30
+	
 
 
 
 interface "plugins"
-	sprite "ui/settings panel"
+	sprite "ui/plugins panel"
 		center -20 -20
 	button c "_Controls"
 		center -300 -230
@@ -420,6 +476,19 @@ interface "plugins"
 	button p "_Plugins"
 		center -300 -150
 		dimensions 90 30
+		color bright
+	button o "_Open Plugins"
+		center -195 210
+		dimensions 120 30
+	visible if "show plugins changed"
+	label "Restart to apply changes"
+		from -225 -236
+		align top left
+		color "plugin reload required"
+	visible if "!show plugins changed"
+	label "Installed Plugins:"
+		from -225 -236
+		align top left
 		color bright
 
 
@@ -505,6 +574,11 @@ interface "hud"
 
 	# Targets.
 	anchor top left
+	visible if "red alert"
+	sprite "ui/red alert"
+		from 10 10
+		align top left
+	visible
 	sprite "ui/radar"
 		from 0 0
 		align top left
@@ -610,6 +684,8 @@ interface "hud"
 	box "ammo"
 		from -110 450 top right
 		to 0 0 bottom right
+	value "ammo icon height" 30
+	value "ammo icon width" 80
 	anchor top
 	point "mini-map"
 		center 0 100
@@ -848,7 +924,7 @@ interface "hiring"
 		align right
 	
 	line
-		from -60 95
+		center -60 95
 		dimensions 480 1
 
 	label "bunks"
@@ -930,7 +1006,7 @@ interface "hiring"
 
 interface "trade"
 	line
-		from -60 95
+		center -60 95
 		dimensions 480 1
 
 	active if "can buy"
@@ -959,7 +1035,7 @@ interface "trade"
 
 interface "bank"
 	line
-		from -60 95
+		center -60 95
 		dimensions 480 1
 
 	active if "can pay"
@@ -1174,6 +1250,18 @@ interface "info panel"
 	button a "Unpark _All"
 		center 145 305
 		dimensions 90 30
+	visible if "show park system"
+	sprite "ui/wide button"
+		center 40 305
+	button c "Park Lo_cal"
+		center 40 305
+		dimensions 90 30
+	visible if "show unpark system"
+	sprite "ui/wide button"
+		center 40 305
+	button c "Unpark Lo_cal"
+		center 40 305
+		dimensions 90 30
 	visible if "show save order"
 	sprite "ui/wide button"
 		center -195 305
@@ -1195,8 +1283,14 @@ interface "hail panel"
 		center 250 115
 		dimensions 80 30
 
+	visible if "!show pay bribe"
 	active if "can bribe"
 	button b "Offer _Bribe"
+		center 130 115
+		dimensions 140 30
+	visible if "show pay bribe"
+	active if "can pay bribe"
+	button b "Pay _Bribe"
 		center 130 115
 		dimensions 140 30
 		

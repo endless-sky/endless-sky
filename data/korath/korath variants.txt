@@ -478,7 +478,7 @@ ship "'olofez" "'olofez (Digger)"
 		"Thermal Repeater Rifle"
 		"Cargo Expansion"
 		"Interference Plating"
-				
+		
 		"Engine (Meteor Class)"
 
 
@@ -550,40 +550,6 @@ ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Digger)"
 	turret "Banisher Grav-Turret"
 	turret "Digger Mining Turret"
 	turret "Warder Anti-Missile"
-
-
-ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Ember)"
-	outfits
-		"Digger Mining Beam" 2
-		"Banisher Grav-Turret" 2
-		"Warder Anti-Missile" 4
-		"Shunt-Strike Turret" 2
-
-		"Triple Plasma Core"
-		"Systems Core (Large)"
-		"Liquid Sodium Cooler"
-		"Fuel Processor" 2
-		"Thermal Repeater Rifle" 453
-		"Microbot Defense Station" 15
-		"Hyperdrive"
-		"Jump Drive"
-
-		"Bow Drive (Meteor Class)"
-		"Reverser (Lunar Class)"
-		"Steering (Planetary Class)"
-		"Thruster (Planetary Class)"
-
-	gun "Digger Mining Beam"
-	gun "Digger Mining Beam"
-	turret "Shunt-Strike Turret"
-	turret "Warder Anti-Missile"
-	turret "Warder Anti-Missile"
-	turret "Shunt-Strike Turret"
-	turret "Warder Anti-Missile"
-	turret "Banisher Grav-Turret"
-	turret "Banisher Grav-Turret"
-	turret "Warder Anti-Missile"
-
 
 
 ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Crippled)"
@@ -859,6 +825,65 @@ ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Jump)"
 
 
 
+ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Stranded)"
+	outfits
+		"Langrage Hyper-Heaver" 3
+		"Warder Anti-Missile" 2
+		"Banisher Grav-Turret" 3
+
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Liquid Sodium Cooler"
+		"Fuel Processor" 6
+		"Microbot Defense Station" 10
+		"Thermal Repeater Rifle" 351
+		
+		"Steering (Lunar Class)"
+		"Steering (Asteroid Class)"
+		"Thruster (Lunar Class)"
+		"Thruster (Asteroid Class)"
+		"Jump Drive (Broken)"
+
+	turret "Langrage Hyper-Heaver"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
+	turret "Langrage Hyper-Heaver"
+	turret "Langrage Hyper-Heaver"
+	turret "Banisher Grav-Turret"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
+
+
+
+ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Ember)"
+	outfits
+		"Langrage Hyper-Heaver" 2
+		"Banisher Grav-Turret" 3
+		"Warder Anti-Missile" 3
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Liquid Sodium Cooler"
+		"Fuel Processor" 5
+		"Microbot Defense Station" 5
+		"Thermal Repeater Rifle" 551
+		
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+		Hyperdrive
+
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
+	turret "Warder Anti-Missile"
+	turret "Banisher Grav-Turret"
+	turret "Langrage Hyper-Heaver"
+	turret "Langrage Hyper-Heaver"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
+
+
+
 ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Grab)"
 	outfits
 		"Grab-Strike Turret" 2
@@ -1029,10 +1054,92 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Automata)"
 	turret "Thermal Repeater Turret"
 	turret "Warder Anti-Missile"
 	turret "Warder Anti-Missile"
+	bay "Fighter" -100 -169
+		"launch effect" "korath internal"
+	bay "Fighter" 0 -169
+		"launch effect" "korath internal"
+	bay "Fighter" 100 -169
+		"launch effect" "korath internal"
+	bay "Fighter" -98 156 back
+		"launch effect" "korath internal"
+	bay "Fighter" 98 156 back
+		"launch effect" "korath internal"
+	bay "Fighter" -50 303 back
+		"launch effect" "korath internal"
+	bay "Fighter" -50 303 back
+		"launch effect" "korath internal"
+	bay "Fighter" 50 303 back
+		"launch effect" "korath internal"
+	bay "Fighter" 50 303 back
+		"launch effect" "korath internal"
+	bay "Drone" -100 -169
+		"launch effect" "korath internal"
+	bay "Drone" 100 -169
+		"launch effect" "korath internal"
+	bay "Drone" -98 156 back
+		"launch effect" "korath internal"
+	bay "Drone" 98 156 back
+		"launch effect" "korath internal"
+	bay "Drone" -50 303 back
+		"launch effect" "korath internal"
+	bay "Drone" 50 303 back
+		"launch effect" "korath internal"
+
+
+ship "Ra'at Ik 621" "Ra'at Ik 621 (Probes)"
+	outfits
+		"Shunt-Strike Turret" 3
+		"Warder Anti-Missile" 2
+		"Banisher Grav-Turret" 2
+		"Fire-Lance" 3
+		
+		"Triple Plasma Core"
+		"Generator (Furnace Class)"
+		"Systems Core (Large)"
+		"Systems Core (Medium)"
+		"Liquid Sodium Cooler"
+		"Fuel Processor"
+		"Microbot Defense Station" 14
+		"Thermal Repeater Rifle" 799
+		
+		"Reverser (Lunar Class)"
+		"Thruster (Planetary Class)"
+		"Steering (Stellar Class)"
+		"Scram Drive"
+
+	gun "Fire-Lance"
+	gun "Fire-Lance"
+	gun "Fire-Lance"
+	turret "Shunt-Strike Turret"
+	turret "Warder Anti-Missile"
+	turret "Banisher Grav-Turret"
+	turret "Shunt-Strike Turret"
+	turret "Shunt-Strike Turret"
+	turret "Warder Anti-Missile"
+	turret "Banisher Grav-Turret"
+	bay "Drone" -100 -169
+		"launch effect" "korath internal"
+	bay "Drone" 0 -169
+		"launch effect" "korath internal"
+	bay "Drone" 100 -169
+		"launch effect" "korath internal"
+	bay "Drone" -98 156 back
+		"launch effect" "korath internal"
+	bay "Drone" 98 156 back
+		"launch effect" "korath internal"
+	bay "Drone" -50 303 back
+		"launch effect" "korath internal"
+	bay "Drone" -50 303 back
+		"launch effect" "korath internal"
+	bay "Drone" 50 303 back
+		"launch effect" "korath internal"
+	bay "Drone" 50 303 back
+		"launch effect" "korath internal"
 
 
 
 ship "Korsmanath A'awoj" "Korsmanath A'awoj (Strike)"
+	"uncapturable"
 	outfits
 		"Banisher Grav-Turret" 7
 		"Grab-Strike Turret" 4
@@ -1090,6 +1197,7 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Strike)"
 
 
 ship "Korsmanath A'awoj" "Korsmanath A'awoj (Special)"
+	"uncapturable"
 	outfits
 		"Banisher Grav-Turret" 4
 		"Digger Mining Turret" 6
@@ -1148,6 +1256,7 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Special)"
 
 
 ship "Korsmanath A'awoj" "Korsmanath A'awoj (Blaze)"
+	"uncapturable"
 	outfits
 		"Banisher Grav-Turret" 4
 		"Grab-Strike Turret" 2

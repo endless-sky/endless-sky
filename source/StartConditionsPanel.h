@@ -37,7 +37,7 @@ class UI;
 class StartConditionsPanel : public Panel {
 	using StartConditionsList = std::vector<StartConditions>;
 public:
-	StartConditionsPanel(PlayerInfo &player, UI &gamePanels, const StartConditionsList &scenarios, const Panel *parent);
+	StartConditionsPanel(PlayerInfo &player, UI &gamePanels, const StartConditionsList &allScenarios, const Panel *parent);
 
 	virtual void Draw() override final;
 
@@ -54,7 +54,7 @@ protected:
 private:
 	void OnConversationEnd(int);
 	void ScrollToSelected();
-	void Select(StartConditionsList::const_iterator it);
+	void Select(StartConditionsList::iterator it);
 
 
 private:
@@ -63,9 +63,9 @@ private:
 	// The panel to close when a scenario is chosen.
 	const Panel *parent;
 	// The list of starting scenarios to pick from.
-	const StartConditionsList &scenarios;
+	StartConditionsList scenarios;
 	// The currently selected starting scenario.
-	StartConditionsList::const_iterator startIt;
+	StartConditionsList::iterator startIt;
 	// Colors with which to draw text.
 	const Color &bright;
 	const Color &medium;
@@ -82,7 +82,7 @@ private:
 	double descriptionScroll = 0.;
 
 	// This is a map that will let us figure out which start conditions item the user clicked on.
-	std::vector<ClickZone<StartConditionsList::const_iterator>> startConditionsClickZones;
+	std::vector<ClickZone<StartConditionsList::iterator>> startConditionsClickZones;
 
 	// Interface-controlled positions & dimensions.
 	Rectangle descriptionBox;

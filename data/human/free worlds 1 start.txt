@@ -26,7 +26,7 @@ mission "Liberate Kornephoros"
 		event "prepare for battle of Kornephoros"
 		conversation
 			`The mood in the spaceport is solemn. No one has had time yet to count up the losses, on both sides of the battle, but it is likely that over a thousand lives were lost. And because the Navy is held in such high regard even here where Parliament and the Paradise Planets are viewed with disgust, many of the militia captains are almost as saddened by the loss of Navy lives as by the loss of some of their own.`
-			`	You find Tomek walking among the fleet, conversing with a large group of captains and crew members and assessing the damage they have suffered. When he sees you he says, "Captain <last>! How is your <ship> holding together?"`
+			`	You find Tomek walking among the fleet, conversing with a large group of captains and crew members and assessing the damage they have suffered. When he sees you he says, "Captain <last>! How is <ship> holding together?"`
 			choice
 				`	"She took a bit of a pounding, but I've patched her up."`
 				`	"Just fine. It'd take more than a few Cruisers to destroy the <ship>."`
@@ -366,7 +366,7 @@ mission "FW Syndicate Diplomacy 1B"
 			`	A much older man sitting next to him, Akihito, says, "Of course, such weapons would end up being bought at a significant price markup." He is grinning.`
 			`	"No," Remington says, surprising some of the other men at the table. "No markups necessary." None of the other men argue with Remington over this.`
 			`	You speak for a while longer, but Alondo manages to hash out a deal where the Free Worlds will defend any Syndicate ships they encounter within the Dirt Belt in return for a promise that the Syndicate will not serve as Republic mercenaries and will not prevent you from purchasing their equipment indirectly through Tarazed. In addition, Remington suggested that you might find some "extra goodies" among the Syndicate convoys heading to Tarazed specifically. You thank the Syndicate leaders, and begin the trip back to your ship.`
-			`	Alondo is silent. As you're about to leave the spaceport for the landing pads, you hear someone shout behind you. "No need to be a stranger, Gruyere. Can't stick around for a drink?" You turn to look at who it is, but Alondo keeps walking. You find Samuel Remington approaching, paying you no mind. "Are you still mad at me, Gruyere?" he asks`
+			`	Alondo is silent. As you're about to leave the spaceport for the landing pads, you hear someone shout behind you. "No need to be a stranger, Gruyere. Can't stick around for a drink?" You turn to look at who it is, but Alondo keeps walking. You find Samuel Remington approaching, paying you no mind. "Are you still mad at me, Gruyere?" he asks.`
 			choice
 				`	(Stand in Remington's way.)`
 					goto stand
@@ -442,9 +442,9 @@ mission "FW Syndicate Diplomacy 1C"
 		event "Tarazed neutrality"
 		log "The extra Syndicate supplies have begun arriving at Tarazed, and they include weaponry and outfits not normally shipped to the South. Spoke with Emily Lane, the CEO of the Tarazed Corporation. She is suspicious of this supposed gesture of good will from the Syndicate, and suggests remaining vigilant of the Syndicate's actions."
 		conversation
-			`When you arrive at <origin>, you find that there are already some Syndicate ships here unloading cargo that must have been sent ahead of you. You catch a glimpse of some of the crates and see large amounts of ship materials, as well as crates of blasters, proton guns, and other Syndicate products.`
+			`When you arrive at <origin>, you find that there are already some Syndicate ships here unloading cargo that must have been sent ahead of you. You catch a glimpse of some of the crates and see large amounts of ship materials, as well as crates of blasters, Proton Guns, and other Syndicate products.`
 			`	Upon contacting the Tarazed Corporation, you and Alondo are led into the Tarazed board room, which is different from the Syndicate one in two respects. First, it is much less fancy. And second, there are women present: unlike the notoriously misogynistic Syndicate, Tarazed is currently run by a female CEO, Emily Lane.`
-			`	"I'm pleased to welcome you here," says Emily. "Many of us are sympathetic to your cause."`
+			`	"I'm pleased to welcome you here," says Emily. "It's nice to finally speak with you directly, Alondo. Many of us are sympathetic to your cause."`
 			`	"Thank you," says Alondo, "although for the time being the best way to support us may be for you to remain neutral in this conflict." He explains the negotiations with the Syndicate and the idea of Tarazed being a go-between for Syndicate supplies.`
 			`	"I don't like dealing with the Syndicate," says Emily, "but like yourselves, we could not build ships without the systems they manufacture. Of course, the materials we receive from Free space are equally valuable. But if we remain nominally a part of the Republic, they will have full access to this system, including searching incoming and outgoing freighters."`
 			choice
@@ -453,7 +453,7 @@ mission "FW Syndicate Diplomacy 1C"
 				`	(Let Alondo do the talking.)`
 			`	"True," says Alondo, "but a Navy fleet here would be vulnerable to being cut off from Republic space, so unless they occupy the whole Dirt Belt, I do not think they would risk it."`
 			label skip
-			`	"Perhaps so," Emily responds. "Although I must ask what sort of strings you pulled to manage what you have. Shortly before you arrived we began receiving Syndicate supplies that we never ordered. Quad blaster turrets. Proton guns. Anti-missile turrets. Even atomic thrusters from the Deep, which the Syndicate does not normally sell. Is this all for the Free Worlds?"`
+			`	"Perhaps so," Emily responds. "Although I must ask what sort of strings you pulled to manage what you have. Shortly before you arrived we began receiving Syndicate supplies that we never ordered. Quad Blaster Turrets. Proton guns. Anti-missile turrets. Even atomic thrusters from the Deep, which the Syndicate does not normally sell. Is this all for the Free Worlds?"`
 			`	Alondo pauses. "I have... an old friend within the Syndicate. He was a part of the negotiations, and mentioned that there would be 'extra goodies' within the coming convoys. We haven't been on speaking terms for years, and I suppose this is his attempt to get back on my good side."`
 			`	"I doubt that supplies in these amounts are just an attempt at old friends trying to get back together," says Emily. "The Syndicate does not play games like this without having something to gain from it. I would suggest not taking this good gesture too highly."`
 			`	They continue talking for a while, and you leave well convinced that Tarazed is willing to support you and that the best way they can do that for now is by remaining neutral. There were questions raised about the intentions of the Syndicate, though.`
@@ -548,11 +548,24 @@ mission "FW Syndicate Diplomacy 1D"
 		payment 200000
 		event "fw dirt belt patrols"
 		event "syndicate assistance" 30
+		event "tarazed assistance" 60
 		event "unofficial ceasefire" 120
 		conversation
 			`You meet Tomek, Freya, and JJ at the spaceport, and the entire Council quickly convenes. Given that you were Alondo's transportation during his mission, you are included in the meeting. Alondo outlines the results of the diplomatic mission, which he believes has been a success. Upon hearing about the extra supplies heading to Tarazed, Tomek suggests increasing patrols in the Dirt Belt to the east to help defend Syndicate convoys while also moving supplies from Tarazed to various Free planets.`
 			`	"We're still healing from the last set of battles," says JJ. "An increased Free Worlds presence outside of our declared territory could be seen as a provocation."`
-			`	"No doubt it will, but we need to uphold our end of the bargain with the Syndicate if we want to keep them as a tentative ally," Tomek responds. After further discussion on the matter, the Council approves the increased patrols, although JJ remains somewhat apprehensive.`
+			`	"No doubt it will, but we need to uphold our end of the bargain with the Syndicate if we want to keep them as a tentative ally," Tomek responds. "We also have our deal with Tarazed for them to begin selling some of their ships within our territory. Those ships won't do us much good if they're getting blasted to pieces by pirates before they even get here."`
+			choice
+				`	"A deal with Tarazed for new ships? When did you make that?"`
+					goto deals
+				`	"I'm willing to volunteer for escort duty."`
+			`	"No need," says JJ. "We have plenty of captains who are already assigned to escort duty. We may need you elsewhere."`
+				goto end
+			label deals
+			`	"Prior to when things went hot," says Tomek, "I saw to it that we could secure a supply line for new warships outside of our borders. Southbound may be a fine shipyard, but they alone can't supply us the warships we need, especially when the largest warship they build is the Bastion. Unfortunately, the Navy attacked before things could be finalized, and the outbreak of war has slowed things down, but Tarazed has assured us the deal is moving forward."`
+			`	"Don't forget that Tarazed is also our only supplier of fighters for Southbound's Type F Haulers," Freya adds. "Unless you count the Boxwing, but those don't help much in a fight."`
+			`	"There are a lot of moving parts at play in this conflict, Captain <last>," says JJ. "All we ask is that you stay focused on where we aim you, and you let us handle the finer details."`
+			label end
+			`	After further discussion on the matter, the Council approves the increased patrols, although JJ remains somewhat apprehensive.`
 			`	"There is one other thing," Alondo says. "The Syndicate informed us that the Republic has Katya in custody, accused of terrorism."`
 			`	The news is a shock to everyone. "I had begun to worry that was the case," says Freya.`
 			`	"My contacts within the Navy have heard rumors, but I suppose this confirms it," says JJ.`
@@ -640,7 +653,7 @@ mission "FW Hope Recon 1C"
 				`	(No, sounds risky.)`
 					decline
 			
-			apply
+			action
 				set "fw caught navy planting sensors"
 			`	You approach the location, flying low to avoid detection, and come upon a Navy Gunboat, landed on the planet. Some distance away from the ship, several figures in thick snowsuits are setting up some sort of equipment with lots of antennae. It seems that the Navy had the same idea as Freya, of using this world as a listening post. Your sensors show that the Gunboat is powered down.`
 			`	The moment your ship comes over the horizon, they start running back toward the Gunboat. You destroy their equipment with a few well-placed shots, then train your guns on the crew members, who are still some distance from their ship. When they realize they cannot get back to it before being shot, they raise their hands in surrender.`
@@ -663,7 +676,7 @@ mission "FW Hope Recon 1C"
 				launch
 			
 			label accept
-			apply
+			action
 				karma ++
 				set "fw accepted Susquehanna's word of honor"
 			`	Most ships are equipped with external speakers for exactly this sort of situation. You target the ship, and your scanners identify it as the <npc>.`
@@ -750,7 +763,7 @@ mission "FW Plasma Testing 1B"
 	autosave
 	landing
 	name "Weapons Testing"
-	description "As a test for the new plasma turret, assist the Walloping Window-Blind in destroying the Red Nile, a pirate ship that is probably in the <waypoints> system. Then return to <planet>."
+	description "As a test for the new Plasma Turret, assist the Walloping Window-Blind in destroying the Red Nile, a pirate ship that is probably in the <waypoints> system. Then return to <planet>."
 	source "Rust"
 	waypoint "Ildaria"
 	to offer
@@ -779,9 +792,9 @@ mission "FW Plasma Testing 1B"
 				`	"Well, we try to only blow things up when strictly necessary."`
 			
 			label explain
-			`	"Of course," he says. "Anyway, I bet you're wondering what new toys we're going to let you play with." You nod. He says, "We've been trying to come up with a weapon for our capital ships, something that's a match for one of the Navy's heavy laser turrets. Something more elegant than those awful quad blaster turrets the Syndicate makes. So I thought, why not take the biggest thing we've got, and then mount a pair of them on a turret?" He beckons for you to follow, and leads you through a door and into a hangar.`
+			`	"Of course," he says. "Anyway, I bet you're wondering what new toys we're going to let you play with." You nod. He says, "We've been trying to come up with a weapon for our capital ships, something that's a match for one of the Navy's Heavy Laser Turrets. Something more elegant than those awful Quad Blaster Turrets the Syndicate makes. So I thought, why not take the biggest thing we've got, and then mount a pair of them on a turret?" He beckons for you to follow, and leads you through a door and into a hangar.`
 			scene "outfit/plasma turret"
-			`	In front of you is a turret. It is almost absurdly large: a pair of plasma cannons mounted on a massive rotating base. "Sixty tons," says Barmy Edward. "Draws more power than... well, than anything else, practically. Runs a little hot, too."`
+			`	In front of you is a turret. It is almost absurdly large: a pair of Plasma Cannons mounted on a massive rotating base. "Sixty tons," says Barmy Edward. "Draws more power than... well, than anything else, practically. Runs a little hot, too."`
 			choice
 				`	"It's so... big!"`
 				`	"I want one!"`
@@ -827,7 +840,7 @@ mission "FW Plasma Testing 1B"
 	on complete
 		payment 200000
 		event "plasma turret available" 50
-		log "Assisted a Kraz Cybernetics engineer known as Barmy Edward with a test of a new and extremely powerful plasma cannon turret."
+		log "Assisted a Kraz Cybernetics engineer known as Barmy Edward with a test of a new and extremely powerful Plasma Cannon turret."
 		conversation
 			scene "scene/loc7"
 			`When you enter the hangar, the Window-Blind has just returned, and a team of engineers is looking it over. Barmy Edward puts down his work to come over and debrief you. "How did the turrets perform?" he asks.`
@@ -856,7 +869,7 @@ mission "FW Plasma Testing 1B"
 			`	"I guess we'll need to test it to find out," he says, "but our main goal was to have a weapon that could do serious damage to a Cruiser. Right now the Navy's heaviest ships have ours severely outgunned.`
 			
 			label next
-			`	"This is to thank you for your help." Barmy hands you <payment>. "To help you pay for your first plasma turret once we've got them on the market," he says.`
+			`	"This is to thank you for your help." Barmy hands you <payment>. "To help you pay for your first Plasma Turret once we've got them on the market," he says.`
 			`	"When do you think that will be?" you ask.`
 			`	"A month or two. I'll send you a message when they're available. Oh, and as for your next assignment, you're escorting a supply convoy to the front. You can meet up with them in the spaceport."`
 
@@ -872,7 +885,7 @@ mission "plasma turret available"
 		conversation
 			`When you land, a message pops up on your communicator from Barmy Edward. A photograph is enclosed as well. The message reads:`
 			scene "outfit/plasma turret"
-			`	Rejoice, Captain! The next time you are on Rust, you will be able to purchase plasma turrets for your very own.`
+			`	Rejoice, Captain! The next time you are on Rust, you will be able to purchase Plasma Turrets for your very own.`
 			`				Regards,`
 			`						B. Edward Tivrusky`
 			`						Chief Offensive Engineer`
@@ -952,7 +965,7 @@ mission "FW Pirates 1"
 		log "Tomek, from the Free Worlds Council, is trying to decide how to best deal with the threat of the pirates to the south of Free Worlds space."
 		conversation
 			`You find Tomek sitting at the spaceport bar with a galactic map. The map has notes written all over it, with lines marking the current Free Worlds and Republic territories. "Good to see you, <first>!" he says. "I pray whatever weapons Barmy Edward had you testing worked well. Most of his inventions are pure genius, but some are just bizarre and useless."`
-			`	You describe to him the impressive performance of the plasma turrets, and the challenge of finding a ship with enough size for them. "Excellent!" he says. "That opens up some interesting tactical possibilities. But now it's time to switch gears entirely."`
+			`	You describe to him the impressive performance of the Plasma Turrets, and the challenge of finding a ship with enough size for them. "Excellent!" he says. "That opens up some interesting tactical possibilities. But now it's time to switch gears entirely."`
 			`	He smooths out the map, sweeping a few stray peanuts and crumbs off it. Apparently he's been sitting here for quite a while. "Right now," he says, "the Navy is leaving us alone, and we have no good reason to attack them. So the Council has been turning its attention to other matters, namely the pirates. They're a big threat to our shipping, and every shipment lost to piracy is a dent in our war effort. Plus, if we could do something about them it would gain us a whole lot of support in the nearby Republic systems. If we can gain sympathy from Republic worlds, then we will lower the Republic's appetite for war."`
 			choice
 				`	"Agreed."`
@@ -1102,19 +1115,19 @@ mission "FW Pirates 2"
 				`	"Occupying four pirate systems in perpetuity would be a huge drain on our resources. Why not try to negotiate with them, say by offering those worlds freedom from our interference as long as they stop supporting pirate fleets?"`
 					goto diplomacy
 			
-			apply
+			action
 				set "fw pirate suggestion: greenrock"
 			`	"That's definitely the fastest solution," he says, "although it would also be a difficult one. Defending an assault from the Navy was one thing, but subjugating the seat of pirate power in the region is another. It would be a great show of strength, though, not only to the pirates, but also to the Republic."`
 				goto next
 			
 			label antares
-			apply
+			action
 				set "fw pirate suggestion: antares"
 			`	"Sounds reasonable to me," he says. "We could probably do that with minimal loss of life. But the risk is that Greenrock would still refuse to surrender. Anyone could nip at the weakest member of the herd, but if we take down Greenrock first it would be a great show of strength, not only to the pirates, but also to the Republic."`
 				goto next
 			
 			label diplomacy
-			apply
+			action
 				set "fw pirate suggestion: diplomacy"
 			`	He frowns. "Negotiate with criminals?"`
 			`	"I'm told that only a small portion of the people on those worlds actually engage in piracy," you say, "and many of them are children pressed into service as crew members."`
@@ -1408,7 +1421,7 @@ mission "FW Pirates: Attack 2"
 		event "fw suppressed Greenrock"
 		log "Disobeyed the Free Worlds Senate by helping to launch an attack on the pirate hub world of Greenrock. Captured the planet after a massive battle, but it is unclear how long the Free Worlds can afford to keep them subdued by force."
 		conversation
-			`As the remaining invasion fleet comes in for a landing on <origin>, you spot small pirate ships scattering from the spaceport, not into space, but instead into the far reaches of the Greenrock wilderness. When you reach the spaceport, there is a wild mix of emotions from the locals who remained. Some spit at you and curse you out. Others thank you for driving off the pirates, even if only temporarily. Others still thank you for freeing them and ask for transportation off world before the slavers return; Greenrock is the hub of the underground slave trade in the galaxy, and it seems in the confusion and rush for some criminals to escape the spaceport, they left their slaves behind.`
+			`As the remaining invasion fleet comes in for a landing on <origin>, you spot small pirate ships scattering from the spaceport, not into space, but instead into the far reaches of the Greenrock wilderness. When you reach the spaceport, there is a wild mix of emotions from the locals who remained. Some spit at you and curse you out. Others thank you for driving off the pirates, even if only temporarily. Others still thank you for freeing them and ask for transportation off-world before the slavers return; Greenrock is the hub of the underground slave trade in the galaxy, and it seems in the confusion and rush for some criminals to escape the spaceport, they left their slaves behind.`
 			`	In an attempt to not get yourselves assassinated by pirates looking for revenge, the fleet forms their ships into a circle just outside the spaceport and keeps an eye out for aggressors while waiting for Tomek, or anyone of authority within the Free Worlds for that matter, to show up and determine your next move.`
 			`	Hours later, Tomek's ship arrives, with even more ships in tow, likely to support a continued occupation. Tomek greets the invasion fleet, looking ecstatic. "Wonderful work, all of you. The people of the Free Worlds will be thanking you for generations." Tomek orders the members of the occupation fleet to sweep the spaceport, freeing any slaves they find and arresting any known criminals and warlords. "We can't possibly take in every criminal here, but if you find someone with a big name, we need to take this opportunity to arrest them."`
 			`	After Tomek is done giving orders and celebrating, he approaches you and gives your hand a firm shake. "Thank you for listening to reason, Captain <last>. I know I asked a lot of you when I asked you to directly disobey Senate orders."`
@@ -1713,7 +1726,7 @@ mission "FW Early Warning 1"
 			`	"Let's get inside," Tomek says, motioning for a number of militia officers to follow. As they file in, he also motions to you.`
 			choice
 				`	(Go inside.)`
-			`	On the inside there is a large table with a map of the region at its center, much nicer than Tomek's map that he was using on Longjump. "Officer Sullivan, please give us a sitrep on the situation," JJ says.`
+			`	On the inside there is a large table with a map of the region at its center, much nicer than Tomek's map that he was using on Longjump. "Officer Sullivan, please give us a sitrep," JJ says.`
 			`	"Yes, sir. As the quartermaster of Deep, I have been monitoring the results of the early warning sensors installed on Hope by Captain <last>. For months now we would receive only the occasional ping of Navy ships entering the system, presumably scout fleets or fleets passing through the system from the western Dirt Belt to the east.`
 			`	"But starting within the past week, the number of Navy ships passing through the system began to rapidly increase. We went from seeing a fleet every few days to multiple per day, and those fleets that did enter often lingered for a longer amount of time for an unknown reason."`
 			branch sensors
@@ -1784,7 +1797,7 @@ mission "FW Early Warning 2"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	on offer
 		conversation
-			`When you return, you find Tomek and JJ speaking with captains of the eastern patrols. The rest of the Council has been moved off world in case the Navy retakes Kornephoros.`
+			`When you return, you find Tomek and JJ speaking with captains of the eastern patrols. The rest of the Council has been moved off-world in case the Navy retakes Kornephoros.`
 			`	"Welcome back, Captain," says Tomek. "I pray that your scouting mission went well."`
 			choice
 				`	"Yes. The Navy didn't give me too much trouble passing through their systems."`
@@ -2228,7 +2241,7 @@ mission "FW Rogue Elements"
 		conversation
 			`After you land, you notice that a sizeable crowd has gathered around a video screen near the edge of the <origin> spaceport. You approach to find out what's going on. You're about to ask someone what's happening when you overhear Tomek's voice coming from screen. You look up to see a video of Tomek standing atop a Free Worlds warship and addressing an unseen crowd.`
 			`	"For generations we have been neglected by the Republic!" he shouts. "Our grievances were ignored! Our pain and suffering was ignored! Our needs were ignored! We cried out for help, and yet the Republic did nothing, allowing our planets to be ravaged by piracy while continuing to tax our credits for services we were not provided. And as the years have gone on the pirates have only become more and more emboldened.`
-			`	"We tried our best, even with the system stacked against us. Councillor Katya Reynolds and others like her spoke on the behalf of billions within the South, Rim, and Dirt Belt. On behalf of us. On behalf of our brothers and sisters, our fathers and mothers, our sons and daughters. And they spat in her face! And when they did that, they spat in our faces!`
+			`	"We tried our best, even with the system stacked against us. Councilor Katya Reynolds and others like her spoke on the behalf of billions within the South, Rim, and Dirt Belt. On behalf of us. On behalf of our brothers and sisters, our fathers and mothers, our sons and daughters. And they spat in her face! And when they did that, they spat in our faces!`
 			`	"And so we banded together. Friends and family locked in arms, doing that which the Republic would not. We looked out for each other, and raised our own defenses against the piracy that we so feared. And then we stood up together and told the Republic that we would take their neglect no longer. We shouted that the system does not work, and so we will create our own! We, with the sweat, blood, and tears of generations, birthed these Free Worlds!`
 			`	"And how does the Republic respond to this? They have finally given us the attention we've asked, but not in the form we desired. They have attacked us! Waged war on us! And in doing so, Katya has become a prisoner of war, held for crimes she did not commit by a system that did not listen to her despite her greatest attempts to be heard."`
 			choice

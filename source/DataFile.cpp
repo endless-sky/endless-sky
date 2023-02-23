@@ -46,7 +46,7 @@ void DataFile::Load(const string &path)
 		return;
 
 	// As a sentinel, make sure the file always ends in a newline.
-	if(data.empty() || data.back() != '\n')
+	if(data.back() != '\n')
 		data.push_back('\n');
 
 	// Note what file this node is in, so it will show up in error traces.

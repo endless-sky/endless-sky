@@ -209,12 +209,12 @@ mission "FW Southern Recon 1B"
 		log "It looks like the Navy has begun using some more powerful beam weapons and torpedoes. Tasked with plundering one of the electron beam weapons so Freya can get a closer look at it."
 		event "gunboats in Alnasl"
 		conversation
-			`Freya thanks you for performing the scouting mission, and you give her a copy of your ship's logs to analyze. As she looks through them, almost immediately something catches her eye. "Looks like the Navy is fielding some new weapons," she says. "Some higher-yield torpedoes, and a beam weapon even more powerful than heavy lasers. Those beam weapons in particular worry me."`
+			`Freya thanks you for performing the scouting mission, and you give her a copy of your ship's logs to analyze. As she looks through them, almost immediately something catches her eye. "Looks like the Navy is fielding some new weapons," she says. "Some higher-yield torpedoes, and a beam weapon even more powerful than Heavy Lasers. Those beam weapons in particular worry me."`
 			choice
 				`	"Yes, that kind of negates the advantage I was hoping we'd have due to our new plasma turrets."`
 				`	"Does that mean we're not going to attack them after all?"`
 					goto attack
-			`	"Well," she says, "the plasma turrets weren't the only ace up our sleeve, but still, it's frustrating that the Navy still has such an advantage over us technologically."`
+			`	"Well," she says, "the Plasma Turrets weren't the only ace up our sleeve, but still, it's frustrating that the Navy still has such an advantage over us technologically."`
 			`	"What should we do?" you ask.`
 			label attack
 			`	"We're going to have to fight them eventually, but first we need as much information as we can get on their new weapon systems. I'd like you to find one of their Gunboats that has the new electron beams installed, steal one of them, and bring it back here. I imagine one of them can't be much bigger than twenty or thirty tons, so you ought to be able to find space for it. Think you can do that?"`
@@ -318,10 +318,10 @@ mission "FW Southern Battle 1"
 				`	"Is there any chance we can reverse engineer it and build our own?"`
 					goto reverse
 			label advice
-			`	"Well," she says, "its range is very slightly shorter than our plasma turrets. You might be able to use that to your advantage if you can position your ship just right so that you can hit an enemy target but they can't hit you. You may find that useful in the upcoming battle."`
+			`	"Well," she says, "its range is very slightly shorter than our Plasma Turrets. You might be able to use that to your advantage if you can position your ship just right so that you can hit an enemy target but they can't hit you. You may find that useful in the upcoming battle."`
 				goto battle
 			label reverse
-			`	"Maybe, although we haven't even mastered the art of building heavy lasers yet," she says. "We certainly won't have time before the upcoming battle."`
+			`	"Maybe, although we haven't even mastered the art of building Heavy Lasers yet," she says. "We certainly won't have time before the upcoming battle."`
 				goto battle
 			label battle
 			`	"So we're definitely going to attack the Navy?" you ask.`
@@ -349,8 +349,8 @@ mission "FW Southern Battle 1B"
 	on offer
 		event "flamethrower available" 10
 		conversation
-			`When you land on <origin>, a Southbound Shipyards executive leads you to a hangar. The hangar is huge, but it clearly was not meant to hold a ship as large as the one it now contains. There is barely enough space for the cranes and catwalks being used by the construction crews. He says, "The Dreadnought is a new design, the largest ship we've ever built. Only three of them have been completed so far." You can't help but be impressed at the size of the Dreadnought: as bulky as a Cruiser, it looks like a cross between a Bastion and an Argosy freighter.`
-			`	He then leads you out to a section of the spaceport where three Dreadnoughts are parked. Next to them, and looking tiny by comparison, are five Furies. You ask, "Are those Furies part of the battle fleet, too?"`
+			`When you land on <origin>, a Southbound Shipyards executive leads you to a hangar. The hangar is huge, but it clearly was not meant to hold a ship as large as the one it now contains. There is barely enough space for the cranes and catwalks being used by the construction crews.`
+			`	"The Dreadnought is a new design, the largest ship we've ever built. Only three of them have been completed so far." The size of the Dreadnought is impressive: as bulky as a Cruiser, it looks like a cross between a Bastion and an Argosy freighter. After giving you a moment to take in the view, he leads you out to a section of the spaceport where three Dreadnoughts are parked. Next to them, and looking tiny by comparison, are five Furies. You ask, "Are those Furies part of the battle fleet, too?"`
 			branch untested
 				not "FW Flamethrower 2: done"
 			`	"Yes," he says, "equipped with some fancy new weapons from Barmy Edward up at Kraz Cybernetics that he said you helped test. I haven't seen them in action yet, but he's convinced they'll be useful against the Navy."`
@@ -1175,7 +1175,7 @@ mission "FW Alphas 1.1"
 				`	"Are you insane? You're letting the Navy come here?"`
 				`	"We're going to work side by side with the Navy right after that awful battle?"`
 			`	Alondo explains, "It's only one Cruiser, an 'Oathkeeper' ship, sworn to take no part in our war. The Free Worlds have almost no troops trained for ground combat, so without the Navy's help we would be unlikely to be able to eliminate the Alphas."`
-			`	The Navy ship lands, and a man steps off who you recognize immediately: Admiral William Danforth, who is something of a folk hero throughout human space, and who you have heard is the commander of the entire Oathkeepers regiment. With him is a man who he introduces as Commander Aaron Nguyen of the Navy Humanitarian Corps. As Nguyen shakes your hand, you are struck by the fact that although he is your enemy, you see no trace of hostility in his eyes - in fact, his expression is surprisingly warm and affectionate.`
+			`	The Navy ship lands, and a man steps off who you recognize immediately: Admiral William Danforth, who is something of a folk hero throughout human space, and who you have heard is the commander of the entire Oathkeeper regiment. With him is a man who he introduces as Commander Aaron Nguyen of the Navy Humanitarian Corps. As Nguyen shakes your hand, you are struck by the fact that although he is your enemy, you see no trace of hostility in his eyes - in fact, his expression is surprisingly warm and affectionate.`
 			`	"We have no room for error," says Danforth. "These Alphas must be eliminated, and they must not be allowed to escape. On that, at least, we can all agree."`
 			`	Alondo says, "Captain <last> will lead the attack." He beckons to two of the Free Worlds captains. "Marco, Emily, you will join them with your Falcons. Destroy any pirate ships in orbit, then land and secure the facility. Understood?" You nod, and prepare to take off for the <system> system.`
 				accept
@@ -1488,7 +1488,7 @@ mission "FW Bloodsea 1.1A"
 	
 	on offer
 		conversation
-			`Waiting for you in the spaceport on <origin> are two Behemoth heavy freighters, which will be carrying the equipment and workers to Bloodsea. You can't help notice that nearly a third of their cargo space has been converted into extra outfit space, and both ships have a pair of plasma turrets mounted on them, and what looks like torpedo launchers as well.`
+			`Waiting for you in the spaceport on <origin> are two Behemoth heavy freighters, which will be carrying the equipment and workers to Bloodsea. You can't help notice that nearly a third of their cargo space has been converted into extra outfit space, and both ships have a pair of Plasma Turrets mounted on them, and what looks like Torpedo Launchers as well.`
 			`	While you are on Zug, you and Alondo meet up with Freya and ask how the Dreadnought production is going. "We're nearly there," she says, "just one or two kinks left to work out. They've produced another two prototypes, but not enough to start selling them yet. I know, you're itching to pilot one of your own. Believe me, we're working as fast as possible."`
 			`	Your next stop is to pick up more workers and construction supplies on <destination>.`
 				accept
@@ -1651,6 +1651,28 @@ mission "FW Bloodsea 1.2A"
 
 
 
+mission "Pirate Use Jousting Cutthroat"
+	landing
+	invisible
+	to offer
+		has "fw bloodsea done"
+	on offer
+		event "pirate use jousting cutthroat"
+		fail
+
+event "pirate use jousting cutthroat"
+	fleet "Large Southern Pirate"
+		add variant 2
+			"Cutthroat" 2
+			"Cutthroat (Jousting)"
+		add variant 1
+			"Modified Argosy (Blaster)"
+			"Fury (Gatling)"
+			"Cutthroat (Jousting)"
+
+
+
+
 mission "FW Dreadnoughts Ready"
 	landing
 	name "Meet Freya on <planet>"
@@ -1709,7 +1731,7 @@ mission "FW Albatross 1"
 			`	"Yes," she says. "Yes, it does. Now, let's go meet up with JJ."`
 				accept
 			label metoo
-			apply
+			action
 				set "gay"
 			`	Freya raises an eyebrow. "I hadn't heard. We don't have time to find someone else for this mission, so you'll need to be the one to transport JJ. Stay safe."`
 				accept
@@ -1765,7 +1787,7 @@ mission "FW Albatross 2A"
 		conversation
 			branch meeting
 				not "gay"
-			apply
+			action
 				clear "gay"
 			`JJ puts a hand on your shoulder before leaving the ship. "Freya let me know. For safety reasons only, of course. You can stay here if you aren't comfortable."`
 			choice
@@ -1993,7 +2015,7 @@ event "battle of alioth"
 		fleet "Small Southern Pirates" 1200
 		fleet "Large Southern Pirates" 2400
 		fleet "Small Republic" 3000
-			
+		
 event "end battle of alioth"
 	system Rutilicus
 		fleet "Small Southern Merchants" 600
@@ -2087,7 +2109,7 @@ mission "FW Defend New Tibet"
 					goto "definitely rescue"
 			
 			label "definitely surrender"
-			apply
+			action
 				set "fw did not rescue defector"
 			`	"Very well," says JJ. "In that case, we'll need to meet with the fleet captains and figure out how to take on the Navy. Let's meet in the spaceport bar in an hour."`
 				decline
@@ -2228,7 +2250,7 @@ mission "FW Liberate Delta Sagittarii"
 				`	"Yes, I helped them get access to some better ramscoop technology from the Deep."`
 					goto yes
 				`	"No, I haven't had any dealings with them."`
-			`	"That's odd," says JJ, "I thought they said you helped them to get their hands on the catalytic ramscoop. But anyway, they've agreed to make an initial strike and fade attack on the Navy fleet to soften them up, before our own fleet gets there."`
+			`	"That's odd," says JJ, "I thought they said you helped them to get their hands on the Catalytic Ramscoop. But anyway, they've agreed to make an initial strike and fade attack on the Navy fleet to soften them up, before our own fleet gets there."`
 				goto plan
 			label yes
 			`	"Ah yes," says JJ, "an excellent piece of corporate espionage. A little shady and underhanded, of course, which is why we let the Wolf Pack handle things like that rather than doing it through official channels. But anyway, they've agreed to make an initial strike and fade attack on the Navy fleet to soften them up, before our own fleet gets there."`

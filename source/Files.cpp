@@ -62,6 +62,23 @@ namespace {
 				c = '/';
 	}
 #endif
+
+	// Open the given folder in a separate window.
+	void OpenFolder(const string &path)
+	{
+#if SDL_VERSION_ATLEAST(2, 0, 14)
+		if(SDL_OpenURL(("file://" + path).c_str()))
+			Logger::LogError("Warning: SDL_OpenURL failed with \"" + string(SDL_GetError()) + "\"");
+#elif defined(__linux__)
+		// Some supported distributions do not have an up-to-date SDL.
+		cout.flush();
+		if(int result = WEXITSTATUS(system(("xdg-open file://" + path).c_str())))
+			Logger::LogError("Warning: xdg-open failed with error code " + to_string(result) + ".");
+#else
+#warning SDL 2.0.14 or higher is needed for opening folders!
+		Logger::LogError("Warning: No handler found to open \"" + path + "\" in a new window.");
+#endif
+	}
 }
 
 
@@ -106,10 +123,6 @@ void Files::Init(const char * const *argv)
 		resources = LOCAL_PATH + RESOURCE_PATH;
 	else if(!resources.compare(0, STANDARD_PATH.length(), STANDARD_PATH))
 		resources = STANDARD_PATH + RESOURCE_PATH;
-#elif defined __APPLE__
-	// Special case for Mac OS X: the resources are in ../Resources relative to
-	// the folder the binary is in.
-	resources = resources + "../Resources/";
 #endif
 	// If the resources are not here, search in the directories containing this
 	// one. This allows, for example, a Mac app that does not actually have the
@@ -544,6 +557,14 @@ void Files::Write(FILE *file, const string &data)
 		return;
 
 	fwrite(&data[0], 1, data.size(), file);
+}
+
+
+
+// Open this user's plugins directory in their native file explorer.
+void Files::OpenUserPluginFolder()
+{
+	OpenFolder(Config() + "plugins");
 }
 
 
