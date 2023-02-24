@@ -32470,8 +32470,8 @@ system Uttna
 			distance 195
 			period 102.9
 	object
-		sprite planet/gas7-hot
-			scale 0.5
+		sprite planet/gas7-r
+			scale 0.25
 		distance 17699
 		period 17195.8
 
