@@ -661,6 +661,7 @@ mission "<uhai> 7: Stolen Cargo"
 	substitutions
 		<governor> ", only wishing to scare us with the possibility of abducting the governor."
 		<governor> ", and to be completely frank I have no clue how they managed to abduct the governor."
+			has "<uhai> 6 A: Loyal Escort: failed"
 	on accept
 		conversation
 			`	You go to see He-Yi in order to discuss this job in greater details, and easily find him by asking around, everyone seems to know him here. He was having a quite animated conversation with an elder, but he puts a stop to it when he notices you.`
