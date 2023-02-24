@@ -4741,45 +4741,43 @@ planet "Yiia Iyr"
 
 planet "Veiuye"
 	landscape
-	description `Rulei world.`
+	description `World.`
 	government Uninhabited
 
 planet "Ghneoe"
 	landscape
-	description `Rulei world.`
+	description `World.`
 	government Uninhabited
 
 planet "Zydee"
 	landscape
-	description `Rulei world.`
+	description `World.`
 	government Uninhabited
 	
 planet "Eeu Mnai"
 	landscape
-	description `Rulei world.`
+	description `World.`
 	government Uninhabited
 
 planet "Mnai"
 	landscape
-	description `Rulei world.`
+	description `World.`
 	government Uninhabited
 	
 planet "Aexu Nnkai"
 	landscape
-	description `Anarchist world.`
+	description `World.`
 	government Uninhabited
 	
 planet "Xurelei"
 	landscape
-	description `Rulei gas giant.`
+	description `Gas giant.`
 	government Uninhabited
 
 planet "Aetuah"
 	landscape
-	description `Rulei gas giant.`
+	description `Gas giant.`
 	government Uninhabited
-
-
 
 ------------------
 
