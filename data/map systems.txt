@@ -32471,9 +32471,22 @@ system Uttna
 			period 102.9
 	object
 		sprite planet/gas7-r
-			scale 0.3
-		distance 17699
-		period 17195.8
+			scale 0.5
+		distance 13699
+		period 14195.8
+		offset 45
+		object
+			sprite planet/luna-b
+			distance 210
+			period 95
+		object
+			sprite planet/oberon-b
+			distance 270
+			period 160
+		object
+			sprite planet/lava3-b
+			distance 420
+			period 333
 
 system "Uwa Fahn"
 	pos 35.1585 -491.67
