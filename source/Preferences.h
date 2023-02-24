@@ -95,21 +95,9 @@ public:
 	static void SetStatusOverlaysGeneric(int &index, bool blank);
 	static void ResetStatusOverlayChildren(bool blank);
 
-	static void SetStatusOverlaysAll(bool blank);
-	static OverlayType StatusOverlaysAllState();
-	static const std::string &StatusOverlaysAllSetting();
-	static void SetStatusOverlayFlagship(bool blank);
-	static OverlayType StatusOverlayFlagshipState();
-	static const std::string &StatusOverlayFlagshipSetting();
-	static void SetStatusOverlaysEscort(bool blank);
-	static OverlayType StatusOverlaysEscortState();
-	static const std::string &StatusOverlaysEscortSetting();
-	static void SetStatusOverlaysEnemy(bool blank);
-	static OverlayType StatusOverlaysEnemyState();
-	static const std::string &StatusOverlaysEnemySetting();
-	static void SetStatusOverlaysNeutral(bool blank);
-	static OverlayType StatusOverlaysNeutralState();
-	static const std::string &StatusOverlaysNeutralSetting();
+	static void SetStatusOverlays(bool blank, int type);
+	static OverlayType StatusOverlaysState(int type);
+	static const std::string &StatusOverlaysSetting(int type);
 
 	// Auto aim setting, either "off", "always on", or "when firing".
 	static void ToggleAutoAim();

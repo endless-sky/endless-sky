@@ -221,15 +221,15 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 						"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
 			}
 			else if(zone.Value() == STATUS_OVERLAYS_ALL)
-				Preferences::SetStatusOverlaysAll(false);
+				Preferences::SetStatusOverlays(false, 0);
 			else if(zone.Value() == STATUS_OVERLAYS_FLAGSHIP)
-				Preferences::SetStatusOverlayFlagship(false);
+				Preferences::SetStatusOverlays(false, 1);
 			else if(zone.Value() == STATUS_OVERLAYS_ESCORT)
-				Preferences::SetStatusOverlaysEscort(false);
+				Preferences::SetStatusOverlays(false, 2);
 			else if(zone.Value() == STATUS_OVERLAYS_ENEMY)
-				Preferences::SetStatusOverlaysEnemy(false);
+				Preferences::SetStatusOverlays(false, 3);
 			else if(zone.Value() == STATUS_OVERLAYS_NEUTRAL)
-				Preferences::SetStatusOverlaysNeutral(false);
+				Preferences::SetStatusOverlays(false, 4);
 			else if(zone.Value() == AUTO_AIM_SETTING)
 				Preferences::ToggleAutoAim();
 			else if(zone.Value() == EXPEND_AMMO)
@@ -617,27 +617,27 @@ void PreferencesPanel::DrawSettings()
 		}
 		else if(setting == STATUS_OVERLAYS_ALL)
 		{
-			text = Preferences::StatusOverlaysAllSetting();
+			text = Preferences::StatusOverlaysSetting(0);
 			isOn = text != "off";
 		}
 		else if(setting == STATUS_OVERLAYS_FLAGSHIP)
 		{
-			text = Preferences::StatusOverlayFlagshipSetting();
+			text = Preferences::StatusOverlaysSetting(1);
 			isOn = text != "off" && text != "--";
 		}
 		else if(setting == STATUS_OVERLAYS_ESCORT)
 		{
-			text = Preferences::StatusOverlaysEscortSetting();
+			text = Preferences::StatusOverlaysSetting(2);
 			isOn = text != "off" && text != "--";
 		}
 		else if(setting == STATUS_OVERLAYS_ENEMY)
 		{
-			text = Preferences::StatusOverlaysEnemySetting();
+			text = Preferences::StatusOverlaysSetting(3);
 			isOn = text != "off" && text != "--";
 		}
 		else if(setting == STATUS_OVERLAYS_NEUTRAL)
 		{
-			text = Preferences::StatusOverlaysNeutralSetting();
+			text = Preferences::StatusOverlaysSetting(4);
 			isOn = text != "off" && text != "--";
 		}
 		else if(setting == AUTO_AIM_SETTING)

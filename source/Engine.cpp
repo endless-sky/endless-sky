@@ -637,7 +637,7 @@ void Engine::Step(bool isActive)
 
 	// Create the status overlays.
 	statuses.clear();
-	const auto overlayAllSetting = Preferences::StatusOverlaysAllState();
+	const auto overlayAllSetting = Preferences::StatusOverlaysState(0);
 	if(isActive && overlayAllSetting != Preferences::OverlayType::OFF)
 		for(const auto &it : ships)
 		{
@@ -648,13 +648,13 @@ void Engine::Step(bool isActive)
 				continue;
 
 			if(it == player.FlagshipPtr())
-				EmplaceStatusOverlays(it, overlayAllSetting, Preferences::StatusOverlayFlagshipState(), 0);
+				EmplaceStatusOverlays(it, overlayAllSetting, Preferences::StatusOverlaysState(1), 0);
 			else if(it->IsYours())
-				EmplaceStatusOverlays(it, overlayAllSetting, Preferences::StatusOverlaysEscortState(), 0);
+				EmplaceStatusOverlays(it, overlayAllSetting, Preferences::StatusOverlaysState(2), 0);
 			else if(it->GetGovernment()->IsEnemy())
-				EmplaceStatusOverlays(it, overlayAllSetting, Preferences::StatusOverlaysEnemyState(), 1);
+				EmplaceStatusOverlays(it, overlayAllSetting, Preferences::StatusOverlaysState(3), 1);
 			else
-				EmplaceStatusOverlays(it, overlayAllSetting, Preferences::StatusOverlaysNeutralState(), 2);
+				EmplaceStatusOverlays(it, overlayAllSetting, Preferences::StatusOverlaysState(4), 2);
 		}
 
 	// Create missile overlays.

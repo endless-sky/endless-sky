@@ -385,127 +385,73 @@ void Preferences::SetStatusOverlaysGeneric(int &index, bool blank)
 
 void Preferences::ResetStatusOverlayChildren(bool blank)
 {
-	Preferences::SetStatusOverlayFlagship(blank);
-	Preferences::SetStatusOverlaysEscort(blank);
-	Preferences::SetStatusOverlaysEnemy(blank);
-	Preferences::SetStatusOverlaysNeutral(blank);
+	for(int i = 1; i <= 4; ++i)
+		Preferences::SetStatusOverlays(blank, i);
 }
 
 
 
-void Preferences::SetStatusOverlaysAll(bool blank)
+void Preferences::SetStatusOverlays(bool blank, int type)
 {
-	SetStatusOverlaysGeneric(overlayAllIndex, blank);
+	switch(type)
+	{
+		default:
+		case 0:
+			SetStatusOverlaysGeneric(overlayAllIndex, blank);
+			break;
+		case 1:
+			SetStatusOverlaysGeneric(overlayFlagshipIndex, blank);
+			break;
+		case 2:
+			SetStatusOverlaysGeneric(overlayEscortIndex, blank);
+			break;
+		case 3:
+			SetStatusOverlaysGeneric(overlayEnemyIndex, blank);
+			break;
+		case 4:
+			SetStatusOverlaysGeneric(overlayNeutralIndex, blank);
+			break;
+	}
 }
 
 
 
-Preferences::OverlayType Preferences::StatusOverlaysAllState()
+Preferences::OverlayType Preferences::StatusOverlaysState(int type)
 {
-	return static_cast<OverlayType>(overlayAllIndex);
+	switch(type)
+	{
+		default:
+		case 0:
+			return static_cast<OverlayType>(overlayAllIndex);
+		case 1:
+			return static_cast<OverlayType>(overlayFlagshipIndex);
+		case 2:
+			return static_cast<OverlayType>(overlayEscortIndex);
+		case 3:
+			return static_cast<OverlayType>(overlayEnemyIndex);
+		case 4:
+			return static_cast<OverlayType>(overlayNeutralIndex);
+	}
 }
 
 
 
-const string &Preferences::StatusOverlaysAllSetting()
+const string &Preferences::StatusOverlaysSetting(int type)
 {
-	return STATUS_OVERLAYS_ALL[overlayAllIndex];
-}
-
-
-
-void Preferences::SetStatusOverlayFlagship(bool blank)
-{
-	if(blank)
-		overlayFlagshipIndex = 3;
-	else
-		SetStatusOverlaysGeneric(overlayFlagshipIndex, false);
-}
-
-
-
-Preferences::OverlayType Preferences::StatusOverlayFlagshipState()
-{
-	return static_cast<OverlayType>(overlayFlagshipIndex);
-}
-
-
-
-const string &Preferences::StatusOverlayFlagshipSetting()
-{
-	return STATUS_OVERLAYS_FLAGSHIP[overlayFlagshipIndex];
-}
-
-
-
-void Preferences::SetStatusOverlaysEscort(bool blank)
-{
-	if(blank)
-		overlayEscortIndex = 3;
-	else
-		SetStatusOverlaysGeneric(overlayEscortIndex, false);
-}
-
-
-
-Preferences::OverlayType Preferences::StatusOverlaysEscortState()
-{
-	return static_cast<OverlayType>(overlayEscortIndex);
-}
-
-
-
-const string &Preferences::StatusOverlaysEscortSetting()
-{
-	return STATUS_OVERLAYS_ESCORT[overlayEscortIndex];
-}
-
-
-
-void Preferences::SetStatusOverlaysEnemy(bool blank)
-{
-	if(blank)
-		overlayEnemyIndex = 3;
-	else
-		SetStatusOverlaysGeneric(overlayEnemyIndex, false);
-}
-
-
-
-Preferences::OverlayType Preferences::StatusOverlaysEnemyState()
-{
-	return static_cast<OverlayType>(overlayEnemyIndex);
-}
-
-
-
-const string &Preferences::StatusOverlaysEnemySetting()
-{
-	return STATUS_OVERLAYS_ENEMY[overlayEnemyIndex];
-}
-
-
-
-void Preferences::SetStatusOverlaysNeutral(bool blank)
-{
-	if(blank)
-		overlayNeutralIndex = 3;
-	else
-		SetStatusOverlaysGeneric(overlayNeutralIndex, false);
-}
-
-
-
-Preferences::OverlayType Preferences::StatusOverlaysNeutralState()
-{
-	return static_cast<OverlayType>(overlayNeutralIndex);
-}
-
-
-
-const string &Preferences::StatusOverlaysNeutralSetting()
-{
-	return STATUS_OVERLAYS_NEUTRAL[overlayNeutralIndex];
+	switch(type)
+	{
+		default:
+		case 0:
+			return STATUS_OVERLAYS_ALL[overlayAllIndex];
+		case 1:
+			return STATUS_OVERLAYS_FLAGSHIP[overlayFlagshipIndex];
+		case 2:
+			return STATUS_OVERLAYS_ESCORT[overlayEscortIndex];
+		case 3:
+			return STATUS_OVERLAYS_ENEMY[overlayEnemyIndex];
+		case 4:
+			return STATUS_OVERLAYS_NEUTRAL[overlayNeutralIndex];
+	}
 }
 
 
