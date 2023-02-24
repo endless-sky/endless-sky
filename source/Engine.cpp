@@ -552,14 +552,14 @@ void Engine::Step(bool isActive)
 	if(nextZoom)
 	{
 		// TODO: std::exchange
-		trueZoom = nextZoom;
+		baseZoom = nextZoom;
 		nextZoom = 0.;
 	}
 	// Smoothly zoom in and out.
 	if(isActive)
 	{
 		double zoomTarget = Preferences::ViewZoom();
-		if(trueZoom != zoomTarget)
+		if(baseZoom != zoomTarget)
 		{
 			static const double ZOOM_SPEED = .05;
 
@@ -567,14 +567,14 @@ void Engine::Step(bool isActive)
 			static const double MAX_SPEED = .05;
 			static const double MIN_SPEED = .002;
 
-			double zoomRatio = max(MIN_SPEED, min(MAX_SPEED, abs(log2(trueZoom) - log2(zoomTarget)) * ZOOM_SPEED));
-			if(trueZoom < zoomTarget)
-				nextZoom = min(zoomTarget, trueZoom * (1. + zoomRatio));
-			else if(trueZoom > zoomTarget)
-				nextZoom = max(zoomTarget, trueZoom * (1. / (1. + zoomRatio)));
+			double zoomRatio = max(MIN_SPEED, min(MAX_SPEED, abs(log2(baseZoom) - log2(zoomTarget)) * ZOOM_SPEED));
+			if(baseZoom < zoomTarget)
+				nextZoom = min(zoomTarget, baseZoom * (1. + zoomRatio));
+			else if(baseZoom > zoomTarget)
+				nextZoom = max(zoomTarget, baseZoom * (1. / (1. + zoomRatio)));
 		}
 	}
-	zoom = trueZoom * zoomMod;
+	zoom = baseZoom * zoomMod;
 
 	// Draw a highlight to distinguish the flagship from other ships.
 	if(flagship && !flagship->IsDestroyed() && Preferences::Has("Highlight player's flagship"))
