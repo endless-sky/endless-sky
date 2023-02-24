@@ -2419,6 +2419,7 @@ ship "Nighthawk" "Nighthawk (New Tortuga)"
 		"Proton Turret" 2
 		"Tactical Scanner"
 		"Water Coolant System"
+	description `This expensive modification of the Blackbird was not invented at New Tortuga, but is a reproduction. Their first Nighthawk was seized from slavers who use it for kidnappings. Seeing the obvious uses for smuggling, the New Tortuga shipyards reproduced them for their own purposes. Ironically, this means the Nighthawks, originally designed for enslavement, are used just as often for freeing slaves.`
 
 
 ship "Nighthawk" "Nighthawk (Raider)"
