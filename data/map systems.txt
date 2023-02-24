@@ -32460,7 +32460,7 @@ system Uttna
 			distance 195
 			period 102.9
 	object
-		sprite planet/gas7-hot
+		sprite planet/gas7-r
 		distance 17699
 		period 17195.8
 
