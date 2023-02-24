@@ -32471,7 +32471,7 @@ system Uttna
 			period 102.9
 	object
 		sprite planet/gas7-r
-			scale 0.25
+			scale 0.3
 		distance 17699
 		period 17195.8
 
