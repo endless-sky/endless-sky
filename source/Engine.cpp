@@ -2555,7 +2555,8 @@ void Engine::EmplaceStatusOverlays(const shared_ptr<Ship> &it,
 		used_setting = parent_setting;
 	else
 		used_setting = setting;
-	if(used_setting == Preferences::OverlayType::OFF || (used_setting == Preferences::OverlayType::DAMAGED && !it->IsDamaged()))
+	if(used_setting == Preferences::OverlayType::OFF ||
+		(used_setting == Preferences::OverlayType::DAMAGED && !it->IsDamaged()))
 		return;
 	double width = min(it->Width(), it->Height());
 	statuses.emplace_back(it->Position() - center, it->Shields(), it->Hull(),
