@@ -517,18 +517,18 @@ phrase "Essential Unfettered Mission Fail"
 
 substitutions
 	"<uhai>" "Unfettered: Path To Glory"
-	"<, unfettered title>" "outsider"
+	"<, unfettered title>" ", outsider"
 	"<, unfettered title>" ""
 		has "Unfettered Jump Drive 1: done"
-	"<, unfettered title>" "Captain"
+	"<, unfettered title>" ", Captain"
 		has "unfettered: beaten the captain"
-	"<, unfettered title>" "Herald"
+	"<, unfettered title>" ", Herald"
 		has "salary: Unfettered"
-	"<, unfettered title>" "Warlord"
+	"<, unfettered title>" ", Warlord"
 		"salary: Unfettered" > 1000
-	"<, unfettered title>" "High Warlord"
+	"<, unfettered title>" ", High Warlord"
 		has "unfettered: high warlord"
-	"<, unfettered title>" "outcast"
+	"<, unfettered title>" ", outcast"
 		has "event: unfettered: outcast"
 
 mission "<uhai> 0: Bring Hai"
@@ -745,7 +745,7 @@ mission "<uhai> 1: Bring Medicine"
 		log "People" "Sookootow" `An Unfettered Chief worried for his people, inside Hai or Unfettered territory. He seems to believe that all Hai are equal, and as a member of the council he has significant influence.`
 		payment 1500000
 		conversation
-			`The staff seem greatly relieved when you return promptly with the medical supplies. As you're returning to your ship, one of them catches up to you. "Hello <, unfettered title> <last>. I am Merki, manager of this hospital. I wanted to express my deepest thanks to you and give you the <payment> personally. I find it quite admirable that an outsider would risk getting caught up in all of this. It would mean a great deal to me if your bravery holds fast, so make sure to check the job board for more jobs like this."`
+			`The staff seem greatly relieved when you return promptly with the medical supplies. As you're returning to your ship, one of them catches up to you. "Hello<, unfettered title> <last>. I am Merki, manager of this hospital. I wanted to express my deepest thanks to you and give you the <payment> personally. I find it quite admirable that an outsider would risk getting caught up in all of this. It would mean a great deal to me if your bravery holds fast, so make sure to check the job board for more jobs like this."`
 			`	Once Merki leaves, you notice a recognizable face: the same Hai Chief from Firelode, speaking with someone who, judging by their demeanor and attire, could be the hospital's chief medical officer. He soon sees you as well and hurriedly finishes his conversation, seeming more than a bit emotional as he then moves to speak with you. "I knew you could be counted on as a friend to the Unfettered! With the swift response of captains like you, it seems like it has calmed down here. We did not before have the time to get properly introduced. I am Sookootow." He makes a little gesture, you assume of deference. You try to imitate the motion, apparently badly, amusing Sookootow. "Worry not, <first> <last>, I already know who you are."`
 			`	"You have been granted access to our basic outfitter on Firelode as a reward for your help, should you need it to store goods or prepare yourself for a raid."`
 			choice
