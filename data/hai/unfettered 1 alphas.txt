@@ -627,6 +627,7 @@ ship "Bactrian" "Bactrian (Cerberus)"
 	cargo
 		outfits
 			"Building Materials" 142
+		# NOTE: this does not work currently, and just displays them as "Military" instead of replacing it. Putting them in the fleet cargo can result in the ship having less than the defined amount of Building Materials in it's cargo.
 		commodities
 			"Military" 100
 			"Electronics" 100
@@ -775,7 +776,7 @@ mission "<uhai> 7: Stolen Cargo"
 		conversation
 			action
 				set "unfettered: boarded bactrian"
-			`Boarding the ship, you notice that they have other commodities than what you are looking for, but they do have the materials Sookootow talked to you about. Given the damage the ship has suffered, it seems it would require heavy works in the spaceport to get it running again, meaning they will not get repaired anytime soon. You should have some time to switch to a ship with more cargo space, should you need to in order to bring the materials back. Take all 142 tons of materials when you can and bring them back to Sookootow.`
+			`Boarding the ship, you notice that they have other commodities than what you are looking for, but they do have the materials Sookootow talked to you about. Given the damage the ship has suffered, it seems it would require heavy works in the spaceport to get it running again, meaning they will not get repaired anytime soon. You should have some time to switch to a ship with more cargo space, should you need to in order to bring the materials back. Take all 142 tons of Building Materials when you can and bring them back to Sookootow.`
 			branch "allies died"
 				has "<uhai> 7: Cavalry Arrives: failed"
 			`	Your surprise allies hail you. "Well done<, unfettered title>," the first one says. "You have truly impressed us today," the other one adds.`
