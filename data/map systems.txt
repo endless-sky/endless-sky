@@ -17709,6 +17709,16 @@ system "Is Il T-94"
 			sprite planet/oberon
 			distance 494
 			period 676.215
+	object
+		sprite planet/gas14
+		distance 14800
+		period 14600
+		offset 60
+		object
+			sprite planet/asura
+				scale 0.25
+			distance 226
+			period 115
 
 system "Is Il V-263"
 	pos 713.513 -707.278
@@ -32460,7 +32470,7 @@ system Uttna
 			distance 195
 			period 102.9
 	object
-		sprite planet/gas7-r
+		sprite planet/gas7-hot
 			scale 0.5
 		distance 17699
 		period 17195.8
