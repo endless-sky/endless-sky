@@ -4734,10 +4734,10 @@ planet Yedikule
 
 planet "Yiia Iyr"
 	landscape land/dune0
-	description `Rulei world.`
+	description `World.`
 	government Uninhabited
 
------------------
+----------------- Not organized.
 
 planet "Veiuye"
 	landscape
