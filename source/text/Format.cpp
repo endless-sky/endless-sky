@@ -501,11 +501,7 @@ string Format::ExpandConditions(const string &source, ConditionGetter getter)
 			start = look + 1;
 			state = '_';
 		}
-		else if(state == '[' || state == '@' || state == 'N')
-		{
-			// format, condition, or nested [] consumes a character
-		}
-		else
+		else if(!(state == '[' || state == '@' || state == 'N'))
 		{
 			// Error in format string.
 			result.append(source, start, look - start + 1);
