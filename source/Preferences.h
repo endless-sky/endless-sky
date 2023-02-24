@@ -28,6 +28,13 @@ public:
 		adaptive,
 	};
 
+	enum class OverlayType : int {
+		OFF = 0,
+		ON,
+		DAMAGED,
+		DISABLED
+	};
+
 	enum class AutoAim : int_fast8_t {
 		OFF = 0,
 		ALWAYS_ON,
@@ -89,14 +96,19 @@ public:
 	static void ResetStatusOverlayChildren(bool blank);
 
 	static void SetStatusOverlaysAll(bool blank);
+	static OverlayType StatusOverlaysAllState();
 	static const std::string &StatusOverlaysAllSetting();
 	static void SetStatusOverlayFlagship(bool blank);
+	static OverlayType StatusOverlayFlagshipState();
 	static const std::string &StatusOverlayFlagshipSetting();
 	static void SetStatusOverlaysEscort(bool blank);
+	static OverlayType StatusOverlaysEscortState();
 	static const std::string &StatusOverlaysEscortSetting();
 	static void SetStatusOverlaysEnemy(bool blank);
+	static OverlayType StatusOverlaysEnemyState();
 	static const std::string &StatusOverlaysEnemySetting();
 	static void SetStatusOverlaysNeutral(bool blank);
+	static OverlayType StatusOverlaysNeutralState();
 	static const std::string &StatusOverlaysNeutralSetting();
 
 	// Auto aim setting, either "off", "always on", or "when firing".

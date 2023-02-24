@@ -637,8 +637,8 @@ void Engine::Step(bool isActive)
 
 	// Create the status overlays.
 	statuses.clear();
-	std::string overlayAllSetting = Preferences::StatusOverlaysAllSetting();
-	if(isActive && overlayAllSetting != "off")
+	const auto overlayAllSetting = Preferences::StatusOverlaysAllState();
+	if(isActive && overlayAllSetting != Preferences::OverlayType::OFF)
 		for(const auto &it : ships)
 		{
 			if(!it->GetGovernment() || it->GetSystem() != currentSystem || it->Cloaking() == 1.)
@@ -648,13 +648,13 @@ void Engine::Step(bool isActive)
 				continue;
 
 			if(it == player.FlagshipPtr())
-				EmplaceStatusOverlays(it, overlayAllSetting, Preferences::StatusOverlayFlagshipSetting(), 0);
+				EmplaceStatusOverlays(it, overlayAllSetting, Preferences::StatusOverlayFlagshipState(), 0);
 			else if(it->IsYours())
-				EmplaceStatusOverlays(it, overlayAllSetting, Preferences::StatusOverlaysEscortSetting(), 0);
+				EmplaceStatusOverlays(it, overlayAllSetting, Preferences::StatusOverlaysEscortState(), 0);
 			else if(it->GetGovernment()->IsEnemy())
-				EmplaceStatusOverlays(it, overlayAllSetting, Preferences::StatusOverlaysEnemySetting(), 1);
+				EmplaceStatusOverlays(it, overlayAllSetting, Preferences::StatusOverlaysEnemyState(), 1);
 			else
-				EmplaceStatusOverlays(it, overlayAllSetting, Preferences::StatusOverlaysNeutralSetting(), 2);
+				EmplaceStatusOverlays(it, overlayAllSetting, Preferences::StatusOverlaysNeutralState(), 2);
 		}
 
 	// Create missile overlays.
@@ -2548,14 +2548,14 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 
 
 void Engine::EmplaceStatusOverlays(const shared_ptr<Ship> &it,
-	const std::string &parent_setting, const std::string &setting, int type)
+	Preferences::OverlayType parent_setting, Preferences::OverlayType setting, int type)
 {
-	std::string used_setting;
-	if(parent_setting != "--")
+	Preferences::OverlayType used_setting;
+	if(parent_setting != Preferences::OverlayType::DISABLED)
 		used_setting = parent_setting;
 	else
 		used_setting = setting;
-	if(used_setting == "off" || (used_setting == "damaged" && !it->IsDamaged()))
+	if(used_setting == Preferences::OverlayType::OFF || (used_setting == Preferences::OverlayType::DAMAGED && !it->IsDamaged()))
 		return;
 	double width = min(it->Width(), it->Height());
 	statuses.emplace_back(it->Position() - center, it->Shields(), it->Hull(),

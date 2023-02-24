@@ -356,7 +356,7 @@ const string &Preferences::VSyncSetting()
 
 void Preferences::SetStatusOverlaysGeneric(int &index, bool blank)
 {
-	// Set preference to blanked out value if bool paramater is true
+	// Set preference to blanked out value if bool parameter is true.
 	if(blank)
 		index = 3;
 	else
@@ -400,6 +400,13 @@ void Preferences::SetStatusOverlaysAll(bool blank)
 
 
 
+Preferences::OverlayType Preferences::StatusOverlaysAllState()
+{
+	return static_cast<OverlayType>(overlayAllIndex);
+}
+
+
+
 const string &Preferences::StatusOverlaysAllSetting()
 {
 	return STATUS_OVERLAYS_ALL[overlayAllIndex];
@@ -413,6 +420,13 @@ void Preferences::SetStatusOverlayFlagship(bool blank)
 		overlayFlagshipIndex = 3;
 	else
 		SetStatusOverlaysGeneric(overlayFlagshipIndex, false);
+}
+
+
+
+Preferences::OverlayType Preferences::StatusOverlayFlagshipState()
+{
+	return static_cast<OverlayType>(overlayFlagshipIndex);
 }
 
 
@@ -434,6 +448,13 @@ void Preferences::SetStatusOverlaysEscort(bool blank)
 
 
 
+Preferences::OverlayType Preferences::StatusOverlaysEscortState()
+{
+	return static_cast<OverlayType>(overlayEscortIndex);
+}
+
+
+
 const string &Preferences::StatusOverlaysEscortSetting()
 {
 	return STATUS_OVERLAYS_ESCORT[overlayEscortIndex];
@@ -451,6 +472,13 @@ void Preferences::SetStatusOverlaysEnemy(bool blank)
 
 
 
+Preferences::OverlayType Preferences::StatusOverlaysEnemyState()
+{
+	return static_cast<OverlayType>(overlayEnemyIndex);
+}
+
+
+
 const string &Preferences::StatusOverlaysEnemySetting()
 {
 	return STATUS_OVERLAYS_ENEMY[overlayEnemyIndex];
@@ -464,6 +492,13 @@ void Preferences::SetStatusOverlaysNeutral(bool blank)
 		overlayNeutralIndex = 3;
 	else
 		SetStatusOverlaysGeneric(overlayNeutralIndex, false);
+}
+
+
+
+Preferences::OverlayType Preferences::StatusOverlaysNeutralState()
+{
+	return static_cast<OverlayType>(overlayNeutralIndex);
 }
 
 
