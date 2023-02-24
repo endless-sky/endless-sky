@@ -320,7 +320,7 @@ mission "Korath: Retrieve livestock [0]"
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unique livestock and return to <planet> for <payment>."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
-	cargo "Livestock trade" 1 4 0.8
+	cargo "livestock trade" 1 4 0.8
 	source "La'ab Bamen"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -340,7 +340,7 @@ mission "Korath: Retrieve livestock [1]"
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of rare livestock and return to <planet> for <payment>."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
-	cargo "Livestock trade" 3 10 0.8
+	cargo "livestock trade" 3 10 0.8
 	source "La'ab Bamen"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -360,7 +360,7 @@ mission "Korath: Retrieve livestock [2]"
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of indigenous livestock and return to <planet> for <payment>."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
-	cargo "Livestock trade" 7 25 0.8
+	cargo "livestock trade" 7 25 0.8
 	source "La'ab Bamen"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -381,7 +381,7 @@ mission "Korath: Retrieve livestock [3]"
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual livestock and return to <planet> for <payment>."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
-	cargo "Livestock trade" 16 80 0.8
+	cargo "livestock trade" 16 80 0.8
 	source "La'ab Bamen"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -402,7 +402,7 @@ mission "Korath: Retrieve livestock [4]"
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual livestock and return to <planet> for <payment>."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
-	cargo "Livestock trade" 35 300 0.8
+	cargo "livestock trade" 35 300 0.8
 	source "La'ab Bamen"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -423,7 +423,7 @@ mission "Korath: Retrieve crops [0]"
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unique crops and return to <planet> for <payment>."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
-	cargo "Crops trade" 1 4 0.8
+	cargo "crops trade" 1 4 0.8
 	source "La'ab Bamen"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -443,7 +443,7 @@ mission "Korath: Retrieve crops [1]"
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of rare crops and return to <planet> for <payment>."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
-	cargo "Crops trade" 3 10 0.8
+	cargo "crops trade" 3 10 0.8
 	source "La'ab Bamen"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -463,7 +463,7 @@ mission "Korath: Retrieve crops [2]"
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of indigenous crops and return to <planet> for <payment>."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
-	cargo "Crops trade" 7 25 0.8
+	cargo "crops trade" 7 25 0.8
 	source "La'ab Bamen"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -484,7 +484,7 @@ mission "Korath: Retrieve crops [3]"
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual crops and return to <planet> for <payment>."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
-	cargo "Crops trade" 16 80 0.8
+	cargo "crops trade" 16 80 0.8
 	source "La'ab Bamen"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -505,7 +505,7 @@ mission "Korath: Retrieve crops [4]"
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual crops and return to <planet> for <payment>."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
-	cargo "Crops trade" 35 300 0.8
+	cargo "crops trade" 35 300 0.8
 	source "La'ab Bamen"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -526,7 +526,7 @@ mission "Korath: Retrieve fish [0]"
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unique fish and return to <planet> for <payment>."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
-	cargo "Fish trade" 1 4 0.8
+	cargo "fish trade" 1 4 0.8
 	source "La'ab Bamen"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -546,7 +546,7 @@ mission "Korath: Retrieve fish [1]"
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of rare fish and return to <planet> for <payment>."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
-	cargo "Fish trade" 3 10 0.8
+	cargo "fish trade" 3 10 0.8
 	source "La'ab Bamen"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -566,7 +566,7 @@ mission "Korath: Retrieve fish [2]"
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of indigenous fish and return to <planet> for <payment>."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
-	cargo "Fish trade" 7 25 0.8
+	cargo "fish trade" 7 25 0.8
 	source "La'ab Bamen"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -587,7 +587,7 @@ mission "Korath: Retrieve fish [3]"
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual fish and return to <planet> for <payment>."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
-	cargo "Fish trade" 16 80 0.8
+	cargo "fish trade" 16 80 0.8
 	source "La'ab Bamen"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -608,7 +608,7 @@ mission "Korath: Retrieve fish [4]"
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual fish and return to <planet> for <payment>."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
-	cargo "Fish trade" 35 300 0.8
+	cargo "fish trade" 35 300 0.8
 	source "La'ab Bamen"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -629,7 +629,7 @@ mission "Korath: Retrieve flora and fauna [0]"
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unique flora and fauna and return to <planet> for <payment>."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
-	cargo "Flora and fauna trade" 1 4 0.8
+	cargo "flora and fauna trade" 1 4 0.8
 	source "La'ab Bamen"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -649,7 +649,7 @@ mission "Korath: Retrieve flora and fauna [1]"
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of rare flora and fauna and return to <planet> for <payment>."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
-	cargo "Flora and fauna trade" 3 10 0.8
+	cargo "flora and fauna trade" 3 10 0.8
 	source "La'ab Bamen"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -669,7 +669,7 @@ mission "Korath: Retrieve flora and fauna [2]"
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of indigenous flora and fauna and return to <planet> for <payment>."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
-	cargo "Flora and fauna trade" 7 25 0.8
+	cargo "flora and fauna trade" 7 25 0.8
 	source "La'ab Bamen"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -690,7 +690,7 @@ mission "Korath: Retrieve flora and fauna [3]"
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual flora and fauna and return to <planet> for <payment>."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
-	cargo "Flora and fauna trade" 16 80 0.8
+	cargo "flora and fauna trade" 16 80 0.8
 	source "La'ab Bamen"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -711,7 +711,7 @@ mission "Korath: Retrieve flora and fauna [4]"
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual flora and fauna and return to <planet> for <payment>."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
-	cargo "Flora and fauna trade" 35 300 0.8
+	cargo "flora and fauna trade" 35 300 0.8
 	source "La'ab Bamen"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -732,7 +732,7 @@ mission "Korath: Retrieve domestic pets [0]"
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unique domestic pets and return to <planet> for <payment>."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
-	cargo "Domestic pets trade" 1 4 0.8
+	cargo "domestic pets trade" 1 4 0.8
 	source "La'ab Bamen"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -752,7 +752,7 @@ mission "Korath: Retrieve domestic pets [1]"
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of rare domestic pets and return to <planet> for <payment>."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
-	cargo "Domestic pets trade" 3 10 0.8
+	cargo "domestic pets trade" 3 10 0.8
 	source "La'ab Bamen"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -772,7 +772,7 @@ mission "Korath: Retrieve domestic pets [2]"
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of indigenous domestic pets and return to <planet> for <payment>."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
-	cargo "Domestic pets trade" 7 25 0.8
+	cargo "domestic pets trade" 7 25 0.8
 	source "La'ab Bamen"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -793,7 +793,7 @@ mission "Korath: Retrieve domestic pets [3]"
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual domestic pets and return to <planet> for <payment>."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
-	cargo "Domestic pets trade" 16 80 0.8
+	cargo "domestic pets trade" 16 80 0.8
 	source "La'ab Bamen"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -814,7 +814,7 @@ mission "Korath: Retrieve domestic pets [4]"
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual domestic pets and return to <planet> for <payment>."
 	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
-	cargo "Domestic pets trade" 35 300 0.8
+	cargo "domestic pets trade" 35 300 0.8
 	source "La'ab Bamen"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
