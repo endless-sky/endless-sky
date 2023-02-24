@@ -252,8 +252,10 @@ private:
 	TestContext *testContext = nullptr;
 
 	double zoom = 1.;
+	double trueZoom = 1.;
 	// Tracks the next zoom change so that objects aren't drawn at different zooms in a single frame.
 	double nextZoom = 0.;
+	double zoomMod = 2.;
 
 	double load = 0.;
 	int loadCount = 0;

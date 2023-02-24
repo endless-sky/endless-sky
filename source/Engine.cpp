@@ -552,14 +552,14 @@ void Engine::Step(bool isActive)
 	if(nextZoom)
 	{
 		// TODO: std::exchange
-		zoom = nextZoom;
+		trueZoom = nextZoom;
 		nextZoom = 0.;
 	}
 	// Smoothly zoom in and out.
 	if(isActive)
 	{
 		double zoomTarget = Preferences::ViewZoom();
-		if(zoom != zoomTarget)
+		if(trueZoom != zoomTarget)
 		{
 			static const double ZOOM_SPEED = .05;
 
@@ -567,13 +567,14 @@ void Engine::Step(bool isActive)
 			static const double MAX_SPEED = .05;
 			static const double MIN_SPEED = .002;
 
-			double zoomRatio = max(MIN_SPEED, min(MAX_SPEED, abs(log2(zoom) - log2(zoomTarget)) * ZOOM_SPEED));
-			if(zoom < zoomTarget)
-				nextZoom = min(zoomTarget, zoom * (1. + zoomRatio));
-			else if(zoom > zoomTarget)
-				nextZoom = max(zoomTarget, zoom * (1. / (1. + zoomRatio)));
+			double zoomRatio = max(MIN_SPEED, min(MAX_SPEED, abs(log2(trueZoom) - log2(zoomTarget)) * ZOOM_SPEED));
+			if(trueZoom < zoomTarget)
+				nextZoom = min(zoomTarget, trueZoom * (1. + zoomRatio));
+			else if(trueZoom > zoomTarget)
+				nextZoom = max(zoomTarget, trueZoom * (1. / (1. + zoomRatio)));
 		}
 	}
+	zoom = trueZoom * zoomMod;
 
 	// Draw a highlight to distinguish the flagship from other ships.
 	if(flagship && !flagship->IsDestroyed() && Preferences::Has("Highlight player's flagship"))
@@ -1523,6 +1524,7 @@ void Engine::CalculateStep()
 	{
 		newCenter = flagship->Position();
 		newCenterVelocity = flagship->Velocity();
+		zoomMod = 2. - flagship->Zoom();
 	}
 	draw[calcTickTock].SetCenter(newCenter, newCenterVelocity);
 	batchDraw[calcTickTock].SetCenter(newCenter);
