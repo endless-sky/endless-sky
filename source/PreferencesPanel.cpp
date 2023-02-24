@@ -68,7 +68,7 @@ namespace {
 	const string ALERT_INDICATOR = "Alert indicator";
 
 	// How many pages of settings there are.
-	const int SETTINGS_PAGE_COUNT = 1;
+	const int SETTINGS_PAGE_COUNT = 2;
 }
 
 
@@ -499,7 +499,7 @@ void PreferencesPanel::DrawSettings()
 		"Show mini-map",
 		"Show asteroid scanner overlay",
 		"Always underline shortcuts",
-		"",
+		"\t",
 		"AI",
 		AUTO_AIM_SETTING,
 		"Automatic firing",
@@ -507,7 +507,7 @@ void PreferencesPanel::DrawSettings()
 		EXPEND_AMMO,
 		FIGHTER_REPAIR,
 		TURRET_TRACKING,
-		"\t",
+		"\n",
 		"Performance",
 		"Show CPU / GPU load",
 		"Render motion blur",
@@ -517,7 +517,7 @@ void PreferencesPanel::DrawSettings()
 		BACKGROUND_PARALLAX,
 		"Show hyperspace flash",
 		SHIP_OUTLINES,
-		"",
+		"\t",
 		"Other",
 		"Clickable radar display",
 		"Hide unexplored map regions",
