@@ -702,8 +702,8 @@ mission "<uhai> 7: Stolen Cargo"
 				goto choose
 			label cargo
 			`	"From what I was told, there are 2 human factions in the area, and pirates. The ship always maintains a low profile and tries to pose as a merchant. Now, the syndicate would not mind a bit of smuggling, and the navy could only take it in the unlikely event that their cover was blown and they could not escape.`
-			`	Whoever stole this cargo would not be welcome in either of those spaces, meaning that they are likely to hide away in pirate space and wait for the trail to cool down, before selling the loot back. The pirates are by far not a united faction, so they could steal loot out of one another, but given the low value of this cargo it should not have attracted much attention... I do not understand what happened. Maybe they got intercepted on the way.`
-			`	Whilst she never mentioned the exact location, I suspect that our contact has her base of operation located in the north-west of human space, so you should probably start looking in that general area."`
+			`	"Whoever stole this cargo would not be welcome in either of those spaces, meaning that they are likely to hide away in pirate space and wait for the trail to cool down, before selling the loot back. The pirates are by far not a united faction, so they could steal loot out of one another, but given the low value of this cargo it should not have attracted much attention... I do not understand what happened. Maybe they got intercepted on the way.`
+			`	"Whilst she never mentioned the exact location, I suspect that our contact has her base of operation located in the north-east of human space, so you should probably start looking in that general area. They could also be in the north-west."`
 			choice
 				`	"I will try to bring the loot back without attracting too much attention."`
 					goto finalmention
@@ -874,7 +874,7 @@ mission "<uhai> 7: Cavalry Arrives"
 	on enter
 		conversation
 			"As you enter the system it becomes clear: they have called for backup! Multiple pirate ships are arriving in the system. But you also see other ships arriving by jump drives. They do not appear to be pirates, maybe the 'contact' has provided help as well?"
-			`They hail you, "Listen carefully. You may have noticed a Korath drone in the area, and they don't like Alpha dogs around much. If Korath come to help, do not open fire on them, understood?" "I would recommend you make sure these pirate ships are on your side <, unfettered title>!" The other ship adds, before ending the hail, making it clear they will not take no for an answer.`
+			`They hail you, "Listen carefully. You may have noticed a Korath drone in the area, and they don't like Alpha dogs around much. If Korath come to help, do not open fire on them, understood?" "I would recommend you make sure these pirate ships are on your side<, unfettered title>!" The other ship adds, before ending the hail, making it clear they will not take no for an answer.`
 	npc save
 		government "Shadow"
 		personality entering heroic uninterested staying mute
