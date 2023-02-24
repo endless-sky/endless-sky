@@ -114,7 +114,7 @@ mission "First Contact: Ka'het: Remnant 1B"
 				`	"Wait, why did you call them 'shells' and not ships?"`
 					goto shells
 			label tech
-			`	"Back then we found large numbers of their EMP torpedoes, most of which were in nearly pristine condition; their internal mechanisms were also simple enough that we were able to reproduce them perfectly. We couldn't do the same with the other surviving systems in the shells, but their tech has been a source of inspiration for centuries."`
+			`	"Back then we found large numbers of their EMP Torpedoes, most of which were in nearly pristine condition; their internal mechanisms were also simple enough that we were able to reproduce them perfectly. We couldn't do the same with the other surviving systems in the shells, but their tech has been a source of inspiration for centuries."`
 			choice
 				`	"Wait, why did you call them 'shells' and not ships?"`
 			label shells
@@ -137,7 +137,7 @@ mission "graveyard insights compatibility"
 
 event "graveyard insights"
 	planet Alix
-		add description `	 Here the Ka'het attacks were limited to the inhabited settlements; had they also destroyed the mining bases and the unmanned vessels, Parii'het would have run out of supplies thousands of years ago.`
+		add description `	Here the Ka'het attacks were limited to the inhabited settlements; had they also destroyed the mining bases and the unmanned vessels, Parii'het would have run out of supplies thousands of years ago.`
 	planet Celeatis
 		add description `	This planet appears to have been home to one of the largest Builder research centers, which focused on studying the anomaly in the system. Had they found out how to stabilize it and use it as a wormhole, perhaps their species would have survived and spread to the rest of the Ember Waste.`
 	planet Ceilia'sei
@@ -386,7 +386,7 @@ mission "Ka'het: Patir Mystery 1"
 			`	"That is the oddest part; it was not. We knew about the existence of the stars beyond Postverta as they could be observed from our own systems; they just were not reachable with a jump drive. But, from what I can tell from these readings, Patir did not exist until a short time ago.`
 			`	"Do you have anything on why this system appeared?" you ask.`
 			label how
-			`	"I only have theories for now, none of which can be confirmed. People more knowledgeable than me in the subject are examining the phenomena right now. But look at this," she says, opening a star map on a holographic projector. "This white dot is Postverta, and we are here. When Ssil Veda first appeared, it released a strong burst of ionizing radiation, and when we were able to calculate its velocity, we found it was going much faster than the speed of light. It is gradually slowing down, so it will not go much further, but exactly the same day that the energy burst was supposed to arrive here, Patir appeared! It would be an incredible coincidence if the two events were not connected.`
+			`	"I only have theories for now, none of which can be confirmed. People more knowledgeable than me in the subject are examining the phenomena right now. But look at this," she says, opening a star map on a holographic projector. "This white dot is Postverta, and we are here. When Ssil Vida first appeared, it released a strong burst of ionizing radiation, and when we were able to calculate its velocity, we found it was going much faster than the speed of light. It is gradually slowing down, so it will not go much further, but exactly the same day that the energy burst was supposed to arrive here, Patir appeared! It would be an incredible coincidence if the two events were not connected.`
 			`	"We have even less information about how this system disappeared. If I may venture a guess, I would say that the black hole is involved. The Builders never seemed to possess the ability to make a system disappear, and we have seen in the past that some black holes can render any hyperlane they are connected to inaccessible given enough time. Perhaps a young, non-rotating black hole like this one can do even more. There is a part of me that thinks this system could disappear again any moment, but if anything that motivates me to find as much as we can about it in the time we have," she says with a wink.`
 			choice
 				`	"Wait, are we in danger?"`
@@ -414,7 +414,7 @@ mission "Ka'het: Patir Mystery 1"
 				`	"Why aren't they in other systems?"`
 					goto jumpdrive
 			label kasei
-			`	"I imagine the problem would be with their lifespan. The Ka'het can survive for a few hundred years once they become operational; these could be potentially last for a much shorter time. Another important factor is that we do not know what happened here in the millennia the system was hidden. Perhaps the Ka'sei went into hibernation waiting for the system to appear again."`
+			`	"I imagine the problem would be with their lifespan. The Ka'het can survive for a few hundred years once they become operational; these could potentially last for a much shorter time. Another important factor is that we do not know what happened here in the millennia the system was hidden. Perhaps the Ka'sei went into hibernation waiting for the system to appear again."`
 			choice
 				`	"If the Builders were able to make self replicating spacecrafts, why aren't the Ka'het like that as well?"`
 					goto kahet

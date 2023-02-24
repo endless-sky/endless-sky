@@ -76,11 +76,15 @@ ship "Rano'erek"
 		over
 		zoom 0.7
 	bay "Fighter" -93.5 -61
+		"launch effect" "korath internal"
 	bay "Fighter" 93.5 -61
+		"launch effect" "korath internal"
 	bay "Fighter" -84 174
 		back
+		"launch effect" "korath internal"
 	bay "Fighter" 84 174
 		back
+		"launch effect" "korath internal"
 	explode "tiny explosion" 120
 	explode "small explosion" 60
 	explode "medium explosion" 70
@@ -152,7 +156,9 @@ ship "Palavret"
 	turret 0 41 "Banisher Grav-Turret"
 	turret 0 94 "Warder Anti-Missile"
 	bay "Fighter" -80 151 back
+		"launch effect" "korath internal"
 	bay "Fighter" 80 151 back
+		"launch effect" "korath internal"
 	explode "tiny explosion" 20
 	explode "small explosion" 45
 	explode "medium explosion" 50
@@ -262,8 +268,11 @@ ship "Tubfalet"
 	turret 0 41 "Banisher Grav-Turret"
 	turret 0 94 "Warder Anti-Missile"
 	bay "Fighter" -80 151 back
+		"launch effect" "korath internal"
 	bay "Fighter" 80 151 back
+		"launch effect" "korath internal"
 	bay "Fighter" 28.5 145 back
+		"launch effect" "korath internal"
 	explode "tiny explosion" 20
 	explode "small explosion" 45
 	explode "medium explosion" 50
@@ -395,7 +404,8 @@ ship "Kas'ik Tek 7"
 		"cost" 210000
 		"shields" 1400
 		"hull" 800
-		"automation" 1
+		"automaton" 1
+		"crew equivalent" 1
 		"mass" 21
 		"drag" 0.6
 		"heat dissipation" 1
@@ -404,9 +414,9 @@ ship "Kas'ik Tek 7"
 		"engine capacity" 18
 		"atmosphere scan" 100
 		"outfit scan power" 18
-		"outfit scan speed" 2
+		"outfit scan efficiency" 20
 		"cargo scan power" 6
-		"cargo scan speed" 2
+		"cargo scan efficiency" 10
 		"tactical scan power" 30
 		"asteroid scan power" 20
 		weapon
@@ -494,8 +504,10 @@ ship "Rai'alorej"
 	turret 36.5 -55.5 "Banisher Grav-Turret"
 	bay "Fighter" -115 -152
 		angle 30
+		"launch effect" "korath internal"
 	bay "Fighter" 115 -152
 		angle 330
+		"launch effect" "korath internal"
 	explode "tiny explosion" 30
 	explode "small explosion" 45
 	explode "medium explosion" 50
@@ -503,7 +515,7 @@ ship "Rai'alorej"
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
 	description "Although fierce in battle and highly adaptable, Korath do not easily recover from injury. Without the aid of a surgeon or more equipment than fits into a standard escape pod, a stranded, injured Korath faces poor odds of survival. Therefore, Korath who leave their home territory have placed great importance on the construction of hospital ships that can quickly locate, recover, and treat the survivors of wrecked ships."
-	description "	The Rai'alorej-class Refuge, named for a pioneer in the field of microbot-assisted surgery, is thoroughly appointed with lifeform scanners, locator beacon receivers, ambulances, and search-and-rescue teams. Once onboard, crash victims are greeted with the finest hospital facilities, microbot treatments, and stores of medicine the Exiles have at hand. Even incubators and nurseries are available to treat the young who grow up aboard ship."
+	description "	The Rai'alorej-Class Refuge, named for a pioneer in the field of microbot-assisted surgery, is thoroughly appointed with lifeform scanners, locator beacon receivers, ambulances, and search-and-rescue teams. Once onboard, crash victims are greeted with the finest hospital facilities, microbot treatments, and stores of medicine the Exiles have at hand. Even incubators and nurseries are available to treat the young who grow up aboard ship."
 
 
 ship "Ikatila'ej"
@@ -643,8 +655,11 @@ ship "Lor'kas Ik 577"
 	turret -58 25 "Grab-Strike Turret"
 	turret 58 25 "Warder Anti-Missile"
 	bay "Fighter" -72 294 back
+		"launch effect" "korath internal"
 	bay "Fighter" 0 294 back
+		"launch effect" "korath internal"
 	bay "Fighter" 72 294 back
+		"launch effect" "korath internal"
 	explode "tiny explosion" 30
 	explode "small explosion" 45
 	explode "medium explosion" 50
@@ -788,8 +803,11 @@ ship "Kas'lor Ik 582"
 	"reverse engine" 19 -303 0.5
 		over
 	bay "Fighter" -70 51 back
+		"launch effect" "korath internal"
 	bay "Fighter" 0 51 back
+		"launch effect" "korath internal"
 	bay "Fighter" 70 51 back
+		"launch effect" "korath internal"
 	turret -52.5 -80.5 "Banisher Grav-Turret"
 	turret 52.5 -80.5 "Warder Anti-Missile"
 	turret -57 -50.5 "Warder Anti-Missile"
@@ -860,8 +878,11 @@ ship "Lor'nag Ik 590"
 	"reverse engine" 19 -303 0.5
 		over
 	bay "Fighter" -90 160 back
+		"launch effect" "korath internal"
 	bay "Fighter" 0 160 back
+		"launch effect" "korath internal"
 	bay "Fighter" 90 160 back
+		"launch effect" "korath internal"
 	gun -45 -253 "Digger Mining Beam"
 	gun 45 -253 "Digger Mining Beam"
 	turret -77 -116.5 "Grab-Strike Turret"
@@ -930,14 +951,23 @@ ship "Ra'at Ik 621"
 	"reverse engine" -16 -336 0.9
 	"reverse engine" 16 -336 0.9
 	bay "Fighter" -100 -169
+		"launch effect" "korath internal"
 	bay "Fighter" 0 -169
+		"launch effect" "korath internal"
 	bay "Fighter" 100 -169
+		"launch effect" "korath internal"
 	bay "Fighter" -98 156 back
+		"launch effect" "korath internal"
 	bay "Fighter" 98 156 back
+		"launch effect" "korath internal"
 	bay "Fighter" -50 303 back
+		"launch effect" "korath internal"
 	bay "Fighter" -50 303 back
+		"launch effect" "korath internal"
 	bay "Fighter" 50 303 back
+		"launch effect" "korath internal"
 	bay "Fighter" 50 303 back
+		"launch effect" "korath internal"
 	gun -71 -209 "Fire-Lance"
 	gun 0 -209 "Fire-Lance"
 	gun 71 -209 "Fire-Lance"
@@ -1169,64 +1199,88 @@ ship "Korsmanath A'awoj"
 		angle 70
 	bay "Fighter" -167.5 -420
 		angle 315
+		"launch effect" "korath internal"
 	bay "Fighter" 167.5 -420
 		angle 45
+		"launch effect" "korath internal"
 	bay "Fighter" -179.5 80
 		angle 45
 		back
+		"launch effect" "korath internal"
 	bay "Fighter" 179.5 80
 		angle 315
 		back
+		"launch effect" "korath internal"
 	bay "Fighter" -167.5 -420
 		angle 315
+		"launch effect" "korath internal"
 	bay "Fighter" 167.5 -420
 		angle 45
+		"launch effect" "korath internal"
 	bay "Fighter" -179.5 80
 		angle 45
 		back
+		"launch effect" "korath internal"
 	bay "Fighter" 179.5 80
 		angle 315
 		back
+		"launch effect" "korath internal"
 	bay "Fighter" -167.5 -420
 		angle 315
+		"launch effect" "korath internal"
 	bay "Fighter" 167.5 -420
 		angle 45
+		"launch effect" "korath internal"
 	bay "Fighter" -179.5 80
 		angle 45
 		back
+		"launch effect" "korath internal"
 	bay "Fighter" 179.5 80
 		angle 315
 		back
+		"launch effect" "korath internal"
 	bay "Fighter" -167.5 -420
 		angle 315
+		"launch effect" "korath internal"
 	bay "Fighter" 167.5 -420
 		angle 45
+		"launch effect" "korath internal"
 	bay "Fighter" -179.5 80
 		angle 45
 		back
+		"launch effect" "korath internal"
 	bay "Fighter" 179.5 80
 		angle 315
 		back
+		"launch effect" "korath internal"
 	bay "Fighter" -167.5 -420
 		angle 315
+		"launch effect" "korath internal"
 	bay "Fighter" 167.5 -420
 		angle 45
+		"launch effect" "korath internal"
 	bay "Fighter" -179.5 80
 		angle 45
 		back
+		"launch effect" "korath internal"
 	bay "Fighter" 179.5 80
 		angle 315
 		back
+		"launch effect" "korath internal"
 	bay "Fighter" -167.5 -420
 		angle 315
+		"launch effect" "korath internal"
 	bay "Fighter" 167.5 -420
 		angle 45
+		"launch effect" "korath internal"
 	bay "Fighter" -179.5 80
 		angle 45
 		back
+		"launch effect" "korath internal"
 	bay "Fighter" 179.5 80
 		angle 315
 		back
+		"launch effect" "korath internal"
 	explode "tiny explosion" 30
 	explode "small explosion" 45
 	explode "medium explosion" 50
@@ -1541,15 +1595,25 @@ ship "Tek Far 71 - Lek"
 	turret -14 -38 "Banisher Grav-Turret"
 	turret 14 177 "Warder Anti-Missile"
 	bay "Drone" 20.5 -65 over
+		"launch effect" "korath external"
 	bay "Drone" 44.5 -40 over
+		"launch effect" "korath external"
 	bay "Drone" 30 67 over
+		"launch effect" "korath external"
 	bay "Drone" 61.5 83 over
+		"launch effect" "korath external"
 	bay "Drone" 43 137 over
+		"launch effect" "korath external"
 	bay "Drone" 18 171.5 over
+		"launch effect" "korath external"
 	bay "Drone" 30 -106 under
+		"launch effect" "korath external"
 	bay "Drone" 24 -8 under
+		"launch effect" "korath external"
 	bay "Drone" 42 55 under
+		"launch effect" "korath external"
 	bay "Drone" 34 172 under
+		"launch effect" "korath external"
 	explode "tiny explosion" 80
 	explode "small explosion" 45
 	explode "medium explosion" 50
@@ -1613,14 +1677,23 @@ ship "Tek Far 78 - Osk"
 	turret 23 -64 "Banisher Grav-Turret"
 	turret 38 145 "Warder Anti-Missile"
 	bay "Fighter" -18.5 -163 over
+		"launch effect" "korath external"
 	bay "Fighter" -43.5 -103.5 over
+		"launch effect" "korath external"
 	bay "Fighter" -16.5 -32.5 over
+		"launch effect" "korath external"
 	bay "Fighter" -30 57 over
+		"launch effect" "korath external"
 	bay "Fighter" -55.5 96.5 over
+		"launch effect" "korath external"
 	bay "Fighter" -21.5 150.5 over
+		"launch effect" "korath external"
 	bay "Fighter" -32.5 -76.5 under
+		"launch effect" "korath external"
 	bay "Fighter" -14.5 43.5 under
+		"launch effect" "korath external"
 	bay "Fighter" -42.5 193.5 under
+		"launch effect" "korath external"
 	explode "tiny explosion" 90
 	explode "small explosion" 50
 	explode "medium explosion" 55
@@ -1678,21 +1751,37 @@ ship "Tek Far 109"
 	turret -89 32
 	turret 89 32
 	bay "Drone" 38.5 -115.5 over
+		"launch effect" "korath external"
 	bay "Drone" 25 -50.5 over
+		"launch effect" "korath external"
 	bay "Drone" 59 28 over
+		"launch effect" "korath external"
 	bay "Drone" 28 79 over
+		"launch effect" "korath external"
 	bay "Drone" 19.5 145.5 over
+		"launch effect" "korath external"
 	bay "Drone" 57.5 -56.5 under
+		"launch effect" "korath external"
 	bay "Drone" 40 19 under
+		"launch effect" "korath external"
 	bay "Drone" 60 58.5 under
+		"launch effect" "korath external"
 	bay "Drone" 45.5 135 under
+		"launch effect" "korath external"
 	bay "Fighter" -36.5 -130.5 over
+		"launch effect" "korath external"
 	bay "Fighter" -61.5 -68 over
+		"launch effect" "korath external"
 	bay "Fighter" -29.5 -17 over
+		"launch effect" "korath external"
 	bay "Fighter" -54.5 55 over
+		"launch effect" "korath external"
 	bay "Fighter" -62 24 under
+		"launch effect" "korath external"
 	bay "Fighter" -35 136.5 under
+		"launch effect" "korath external"
 	bay "Fighter" -22 -82 under
+		"launch effect" "korath external"
 	explode "tiny explosion" 70
 	explode "small explosion" 40
 	explode "medium explosion" 45

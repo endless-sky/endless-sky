@@ -263,7 +263,7 @@ void UniverseObjects::CheckReferences()
 			NameAndWarn("government", it);
 	// Minables are not serialized.
 	for(const auto &it : minables)
-		if(it.second.Name().empty())
+		if(it.second.TrueName().empty())
 			Warn("minable", it.first);
 	// Stock missions are never serialized, and an accepted mission is
 	// always fully defined (though possibly not "valid").
@@ -487,6 +487,8 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 			substitutions.Load(node);
 		else if(key == "wormhole" && node.Size() >= 2)
 			wormholes.Get(node.Token(1))->Load(node);
+		else if(key == "gamerules" && node.HasChildren())
+			gamerules.Load(node);
 		else if(key == "disable" && node.Size() >= 2)
 		{
 			static const set<string> canDisable = {"mission", "event", "person"};
