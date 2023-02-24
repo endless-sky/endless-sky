@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipEffectsShader.h"
 
 #include "Color.h"
+#include "Files.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Logger.h"
@@ -26,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Shader.h"
 #include "Ship.h"
 #include "Sprite.h"
+#include "SpriteSet.h"
 
 #include <algorithm>
 #include <bit>
@@ -41,6 +43,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	const Sprite *shieldHexOverlay;
+
 	Shader shader;
 	GLint scaleI;
 	GLint frameI;
@@ -57,6 +61,8 @@ namespace {
 	GLint ratioI;
 	GLint sizeI;
 
+	GLint shieldTexRatioI;
+
 	GLint fastI;
 
 	GLuint vao;
@@ -68,6 +74,8 @@ Point ShipEffectsShader::center = Point();
 // Initialize the shaders.
 void ShipEffectsShader::Init()
 {
+
+	shieldHexOverlay = SpriteSet::Get("effect/shields/sideways");
 
 	static const char *vertexCode =
 		"// vertex sprite shader\n"
@@ -97,6 +105,7 @@ void ShipEffectsShader::Init()
 		"precision mediump sampler2DArray;\n"
 #endif
 		"uniform sampler2DArray tex;\n"
+		"uniform sampler2DArray shieldTex;\n"
 		"uniform float frame;\n"
 		"uniform float frameCount;\n"
 		"uniform vec2 blur;\n"
@@ -109,6 +118,8 @@ void ShipEffectsShader::Init()
 		"uniform float ratio;\n"
 		"uniform float size = 40.;\n"
 
+		"uniform float shieldTexRatio;\n"
+
 		"uniform int isFast;\n"
 
 		"in vec2 fragTexCoord;\n"
@@ -119,6 +130,7 @@ void ShipEffectsShader::Init()
 		"float first = floor(frame);\n"
 		"float second = mod(ceil(frame), frameCount);\n"
 		"float fade = frame - first + second;\n"
+		"float modSize = 60. + size / 2.;\n"
 
 		"vec4 sampleSmooth(sampler2DArray sampler, vec2 uv)\n"
 		"{\n"
@@ -128,7 +140,7 @@ void ShipEffectsShader::Init()
 
 		"float stripe(float a, float mod)\n"
 		"{\n"
-		"  return clamp(sin(a*size*4.) * 2. + mod, 0., 1.);"
+		"  return clamp(sin(a * modSize * 4.) * 2. + mod, 0., 1.);"
 		"}\n"
 
 		"float sobellish(vec2 uv)\n"
@@ -176,14 +188,15 @@ void ShipEffectsShader::Init()
 		"    {\n"
 		"      vec2 hitPoint = recentHits[i] + vec2(0.5, 0.5);\n"
 		"      totalimpact += recentDamage[i];"
-		"      color += shieldColor * recentDamage[i] * clamp(2. - distance(hitPoint, uv)*.04*size, 0., 1.5);\n"
+		"      color += shieldColor * recentDamage[i] * clamp(2. - distance(hitPoint, uv)*.04*modSize, 0., 1.5);\n"
 		"    }\n"
 		"    color /= totalimpact / 1.4;\n"
 		"    color = clamp(color, 0., 1.);\n"
 		"    color *= sobellish(uv);\n"
 		// TODO: Move switch to uniform, add more patterns
 		"    int switchint = 0;\n"
-		"    switch(switchint)\n"
+		"    color *= texture(shieldTex, mod(vec3(size * 0.1 * fragTexCoord.x / ((1 / ratio) * shieldTexRatio), size * 0.1 * fragTexCoord.y, 1), 1.));\n"
+		/*"    switch(switchint)\n"
 		"    {\n"
 		"      case 0:\n"
 		"        color *= gridPattern(color.a, uv);\n"
@@ -191,7 +204,7 @@ void ShipEffectsShader::Init()
 		"      case 1:\n"
 		"        color *= trianglePattern(color.a, uv);\n"
 		"        break;\n"
-		"    }\n"
+		"    }\n"*/
 		"  }\n"
 		"  else if(recentHitCount != 0)\n"
 		"  {\n"
@@ -217,12 +230,15 @@ void ShipEffectsShader::Init()
 	ratioI = shader.Uniform("ratio");
 	sizeI = shader.Uniform("size");
 
+	shieldTexRatioI = shader.Uniform("shieldTexRatio");
+
 	fastI = shader.Uniform("isFast");
 
 	shieldColorI = shader.Uniform("shieldColor");
 
 	glUseProgram(shader.Object());
 	glUniform1i(shader.Uniform("tex"), 0);
+	glUniform1i(shader.Uniform("shieldTex"), 1);
 	glUseProgram(0);
 
 	// Generate the vertex data for drawing sprites.
@@ -279,6 +295,7 @@ ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Ship* body, const
 
 	EffectItem item;
 	item.texture = body->GetSprite()->Texture();
+	// item.texture = shieldHexOverlay->Texture();
 	item.frame = frame;
 	item.frameCount = body->GetSprite()->Frames();
 	// Position.
@@ -300,8 +317,9 @@ ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Ship* body, const
 	item.transform[2] = -uh.X();
 	item.transform[3] = -uh.Y();
 
-	item.size = 60. + body->Radius() / 2.;
-	item.ratio = max(width, height);
+	// item.size = body->Radius();
+	item.size = max(body->Width(), body->Height());
+	item.ratio = body->GetSprite()->Width() / body->GetSprite()->Height();
 
 	auto recth = recentHits;
 
@@ -363,7 +381,10 @@ void ShipEffectsShader::Bind()
 
 void ShipEffectsShader::Add(const EffectItem& item, bool withBlur)
 {
+	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D_ARRAY, item.texture);
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D_ARRAY, shieldHexOverlay->Texture());
 
 	glUniform1f(frameI, item.frame);
 	glUniform1f(frameCountI, item.frameCount);
@@ -381,6 +402,7 @@ void ShipEffectsShader::Add(const EffectItem& item, bool withBlur)
 	glUniform1f(ratioI, item.ratio);
 	glUniform1i(fastI, 2 == static_cast<int>(Preferences::GetHitEffects()));
 	glUniform1f(sizeI, item.size);
+	glUniform1f(shieldTexRatioI, static_cast<float>(shieldHexOverlay->Width() / shieldHexOverlay->Height()));
 	// Logger::LogError(to_string(item.recentHits));
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
@@ -390,6 +412,7 @@ void ShipEffectsShader::Add(const EffectItem& item, bool withBlur)
 
 void ShipEffectsShader::Unbind()
 {
+	glActiveTexture(GL_TEXTURE0);
 	glBindVertexArray(0);
 	glUseProgram(0);
 }
