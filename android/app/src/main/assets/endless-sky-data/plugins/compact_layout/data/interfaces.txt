@@ -152,7 +152,7 @@ interface "hiring"
 		align right
 
 	line
-		from -60 -46
+		center -60 -46
 		dimensions 480 1
 
 	label "bunks"
@@ -340,7 +340,7 @@ interface "map buttons" bottom right
 interface "info panel"
 	line "bg"
 		from 0 0 top left
-		to 0 0 top right
+		to 0 0 bottom right
 		color "panel background"
 	visible if "five buttons"
 	sprite "ui/five info buttons"
@@ -375,10 +375,6 @@ interface "info panel"
 
 	visible
 	line
-		# line will be drawn 50% to the left, which we can't correct for with a
-		# variable sized screen. Just draw it all the way off the edge. If it
-		# gets too big though, the shader can lose precision with the ratio, and
-		# draw it more than one pixel thick.
 		color "bright"
 		from 0 40 top left
 		to 6000 41 top right
