@@ -339,6 +339,8 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 
 				out << "\t" << Format::CargoString(it.second, it.first) << "\n";
 			}
+
+		unsigned int unknownOutfits = 0;
 		for(const auto &it : target->Cargo().Outfits())
 			if(it.second)
 			{
@@ -346,17 +348,33 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 					out << "This " + target->Noun() + " is carrying:\n";
 				first = false;
 
-				out << "\t" << it.second;
+				int tons = 0;
 				if(it.first->Get("installable") < 0.)
+					tons = ceil(it.second * it.first->Mass());
+
+				if(!player.OutfitIsKnown(*it.first))
 				{
-					int tons = ceil(it.second * it.first->Mass());
-					out << Format::CargoString(tons, Format::LowerCase(it.first->PluralName())) << "\n";
+					unknownOutfits += (tons) ? tons : it.second;
+					continue;
 				}
+
+				out << "\t" << it.second;
+				if(tons)
+					out << Format::CargoString(tons, Format::LowerCase(it.first->PluralName())) << "\n";
 				else
 					out << " " << (it.second == 1 ? it.first->DisplayName(): it.first->PluralName()) << "\n";
 			}
 		if(first)
 			out << "This " + target->Noun() + " is not carrying any cargo.\n";
+		else if(unknownOutfits)
+		{
+			const std::string name = "Unknown Outfit";
+
+			if(unknownOutfits > 1)
+				out << Format::CargoString(unknownOutfits, Format::LowerCase(name + "s")) << "\n";
+			else
+				out << " " << name << "\n";
+		}
 	}
 	if((event.Type() & ShipEvent::SCAN_OUTFITS) && target->Attributes().Get("inscrutable"))
 		out << "Your scanners cannot make any sense of this " + target->Noun() + "'s interior.";
