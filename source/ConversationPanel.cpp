@@ -351,7 +351,7 @@ bool ConversationPanel::Hover(int x, int y)
 // The player just selected the given choice.
 void ConversationPanel::Goto(int index, int selectedChoice)
 {
-	auto getter = [&](const std::string &str, size_t start, size_t length)
+	Format::ConditionGetter getter = [&](const std::string &str, size_t start, size_t length) -> int64_t
 	{
 		return player.Conditions().Get(str.substr(start, length));
 	};
