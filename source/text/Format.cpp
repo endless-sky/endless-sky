@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <array>
 #include <cctype>
 #include <cmath>
+#include <set>
 #include <sstream>
 
 using namespace std;
@@ -377,12 +378,15 @@ string Format::LowerCase(const string &str)
 // The actual result might involve some guesswork, and is not guaranteed to be grammatically correct.
 string Format::Plural(const string &noun)
 {
+	if(noun.empty())
+		return noun;
+	static const set<string> exceptionEs={"buffalo", "domino", "echo", "embargo", "hero", "mosquito", "potato", "tomato", "torpedo", "veto"};
+	static const set<char> vowels={'a', 'e', 'i', 'o', 'u', 'y'};
 	const string nounLower = LowerCase(noun);
 	const string lastWord = nounLower.find_last_of(' ') == string::npos
 			? nounLower : nounLower.substr(nounLower.find_last_of(' '), nounLower.size());
 	auto endsWith = [&lastWord](const string &suffix) { return lastWord.size() >= suffix.size()
 			&& 0 == lastWord.compare(lastWord.size() - suffix.size(), suffix.size(), suffix); };
-	string vowels = "aeiouy";
 	if(noun.back() == 's' || endsWith("sh") || endsWith("ch") || endsWith("ch")
 			|| noun.back() == 'x' || noun.back() == 'z')
 		return noun + "es";
@@ -390,11 +394,9 @@ string Format::Plural(const string &noun)
 		return noun.substr(0, noun.size() - 1) + "ves";
 	else if(endsWith("fe"))
 		return noun.substr(0, noun.size() - 2) + "ves";
-	else if(nounLower.back() == 'y' && vowels.find(nounLower[nounLower.size() - 2]) == string::npos)
+	else if(nounLower.back() == 'y' && vowels.find(nounLower[nounLower.size() - 2]) == vowels.end())
 		return noun.substr(0, noun.size() - 1) + "ies";
-	else if(lastWord == "buffalo" || lastWord == "domino" || lastWord == "domino" || lastWord == "echo"
-			|| lastWord == "embargo" || lastWord == "hero" || lastWord == "mosquito" || lastWord == "potato"
-			|| lastWord == "tomato" || lastWord == "torpedo" || lastWord == "veto")
+	else if(exceptionEs.find(lastWord) != exceptionEs.end())
 		return noun + "es";
 	else
 		return noun + "s";
