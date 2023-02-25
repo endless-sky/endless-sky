@@ -380,7 +380,8 @@ string Format::Plural(const string &noun)
 {
 	if(noun.empty())
 		return noun;
-	static const set<string> exceptionEs={"buffalo", "domino", "echo", "embargo", "hero", "mosquito", "potato", "tomato", "torpedo", "veto"};
+	static const set<string> exceptionEs={"buffalo", "domino", "echo", "embargo", "hero",
+			"mosquito", "potato", "tomato", "torpedo", "veto"};
 	static const set<char> vowels={'a', 'e', 'i', 'o', 'u', 'y'};
 	const string nounLower = LowerCase(noun);
 	const string lastWord = nounLower.find_last_of(' ') == string::npos
