@@ -73,8 +73,7 @@ TradingPanel::~TradingPanel()
 {
 	if(profit)
 	{
-		string message = "You sold " + to_string(tonsSold)
-			+ (tonsSold == 1 ? " ton" : " tons") + " of cargo ";
+		string message = "You sold " + Format::CargoString(tonsSold, "cargo ");
 
 		if(profit < 0)
 			message += "at a loss of " + Format::CreditString(-profit) + ".";
@@ -126,26 +125,25 @@ void TradingPanel::Draw()
 	if(player.Cargo().HasOutfits() || missionCargo)
 	{
 		bool hasOutfits = false;
-		bool hasUninstallable = false;
+		bool hasMinables = false;
 		for(const auto &it : player.Cargo().Outfits())
 			if(it.second)
 			{
-				bool notInstallable = (it.first->Get("installable") < 0.);
-				(notInstallable ? hasUninstallable : hasOutfits) = true;
+				bool isMinable = it.first->Get("minable");
+				(isMinable ? hasMinables : hasOutfits) = true;
 			}
-		sellOutfits = (hasOutfits && !hasUninstallable);
+		sellOutfits = (hasOutfits && !hasMinables);
 
-		string str = to_string(outfits + missionCargo);
-		str += (outfits + missionCargo == 1) ? " ton of " : " tons of ";
-		if(hasUninstallable && missionCargo)
+		string str = Format::MassString(outfits + missionCargo) + " of ";
+		if(hasMinables && missionCargo)
 			str += "mission cargo and other items.";
 		else if(hasOutfits && missionCargo)
 			str += "outfits and mission cargo.";
-		else if(hasOutfits && hasUninstallable)
+		else if(hasOutfits && hasMinables)
 			str += "outfits and special commodities.";
 		else if(hasOutfits)
 			str += "outfits.";
-		else if(hasUninstallable)
+		else if(hasMinables)
 			str += "special commodities.";
 		else
 			str += "mission cargo.";
@@ -254,7 +252,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		int day = player.GetDate().DaysSinceEpoch();
 		for(const auto &it : player.Cargo().Outfits())
 		{
-			if(it.first->Get("installable") >= 0. && !sellOutfits)
+			if(it.first->Get("minable") <= 0. && !sellOutfits)
 				continue;
 
 			int64_t value = player.FleetDepreciation().Value(it.first, day, it.second);
