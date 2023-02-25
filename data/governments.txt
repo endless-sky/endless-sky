@@ -636,7 +636,7 @@ government "Hai (Unfettered Civilians)"
 	"hostile disabled hail" "hostile disabled unfettered"
 
 government "Heliarch"
-	swizzle 0
+	swizzle 22
 	color 1 .8 .5
 	"crew attack" 1.3
 	"crew defense" 2.8
