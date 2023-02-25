@@ -1690,6 +1690,21 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	bool planetIsHere = (parentPlanet && parentPlanet->IsInSystem(parent.GetSystem()));
 	bool systemHasFuel = hasFuelCapacity && currentSystem->HasFuelFor(ship);
 
+	if(parent.Cloaking() == 1 && (ship.GetGovernment() != parent.GetGovernment()))
+	{
+		if(parent.GetGovernment() && parent.GetGovernment()->IsPlayer() &&
+			ship.GetPersonality().IsEscort() && !ship.GetPersonality().IsUninterested())
+		{
+			// NPCs with the "escort" personality that are not uninterested
+			// act as if they were escorts, following the cloaked flagship.
+		}
+		else
+		{
+			MoveIndependent(ship, command);
+			return;
+		}
+	}
+
 	// Non-staying escorts should route to their parent ship's system if not already in it.
 	if(!parentIsHere && !isStaying)
 	{
@@ -2551,7 +2566,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		else if(!isStaying)
 			command |= Command::LAND;
 	}
-	else if(target)
+	else if(target && target->IsTargetable())
 	{
 		// Approach and scan the targeted, friendly ship's cargo or outfits.
 		bool cargoScan = ship.Attributes().Get("cargo scan power");
@@ -2773,8 +2788,20 @@ bool AI::DoCloak(Ship &ship, Command &command)
 
 		// If your parent has chosen to cloak, cloak and rendezvous with them.
 		const shared_ptr<const Ship> &parent = ship.GetParent();
-		if(parent && parent->Commands().Has(Command::CLOAK) && parent->GetSystem() == ship.GetSystem()
-				&& !parent->GetGovernment()->IsEnemy(ship.GetGovernment()))
+		bool shouldCloakWithParent = false;
+		if(parent && parent->GetGovernment() && parent->Commands().Has(Command::CLOAK)
+				&& parent->GetSystem() == ship.GetSystem())
+		{
+			const Government *parentGovernment = parent->GetGovernment();
+			bool isPlayer = parentGovernment->IsPlayer();
+			if(isPlayer && ship.GetGovernment() == parentGovernment)
+				shouldCloakWithParent = true;
+			else if(isPlayer && ship.GetPersonality().IsEscort() && !ship.GetPersonality().IsUninterested())
+				shouldCloakWithParent = true;
+			else if(!isPlayer && !parent->GetGovernment()->IsEnemy(ship.GetGovernment()))
+				shouldCloakWithParent = true;
+		}
+		if(shouldCloakWithParent)
 		{
 			command |= Command::CLOAK;
 			KeepStation(ship, command, *parent);
