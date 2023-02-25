@@ -150,7 +150,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	if(!ship.IsYours())
 		for(const string& license : attributes.Licenses())
 		{
-			if(player.GetCondition("license: " + license) > 0)
+			if(player.Conditions().Has("license: " + license))
 				continue;
 
 			const auto& licenseOutfit = GameData::Outfits().Find(license + " License");
