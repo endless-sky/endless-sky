@@ -47,6 +47,37 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.10.0" date="2023-2-19" type="development" urgency="low">
+      <description>
+        <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
+        <p>Breaking changes:</p>
+        <ul>
+          <li>The accompany objective on mission npcs no longer implicitly sets the save objective.</li>
+          <li>Plugin missions that had "accompany" but not "save" should be changed to include "save" if the intention of the mission is that the npcs live.</li>
+          <li>This is a change that was made in v0.9.16, reverted in v0.9.16.1, and has been reintroduced.</li>
+        </ul>
+        <p>Major new changes include:</p>
+        <ul>
+          <li>Two new alien factions, the Gegno and Bunrodea.</li>
+          <li>A plethora of new conditions and new ways to use them, including the introduction of "global conditions" that can be set and accessed across save files.</li>
+          <li>Improvements to how ship AI behaves, more intelligently making use of the range of their weapons. More AI improvements will come in the future.</li>
+          <li>An overhaul to how cargo and outfit scanners function, causing scanning to take overall longer to complete.</li>
+          <li>The jobs board can now be sorted on various metrics, including how much the job pays or whether it has a deadline.</li>
+          <li>Improved mouse control while in flight, including the ability to select secondary weapons by clicking on their ammo icons, and a toggle for controlling flagship aiming and firing with the mouse.</li>
+          <li>Reverted the heat damage change from v0.9.15, and reduced the buffs provided to afterburners from that same update.</li>
+          <li>Added a deadline to bounty jobs so that they cannot be stacked infinitely and finished passively. In exchange, bounty ships now don't spawn as far away, and bounty job payments are increased.</li>
+        </ul>
+        <p>Some notable bug fixes include:</p>
+        <ul>
+          <li>Reloading your save file while you have escorts in a different system that are carrying mission cargo will no longer teleport the mission cargo to the player's location.</li>
+          <li>Reloading your save file while in the middle of a conversation will no longer repeat execute the mission actions that run alongside the conversation.</li>
+          <li>Captured ships will no longer require the save file to be reloaded in order for them to make use of their weapons.</li>
+        </ul>
+        <p>There's much more in the changelog!</p>
+        <p>Special thanks to the 63 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.0/changelog</url>
+    </release>
     <release version="0.9.16.1" date="2022-10-18" urgency="high">
       <description>
         <p>This is a hotfix release, reverting a breaking change made in the last release that inadvertently introduced a bug.</p>

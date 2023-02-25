@@ -32,6 +32,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	// For getting the name of a ship model or outfit.
+	// The relevant method for each class has a different signature,
+	// so use template specialisation to select the appropriate version of the method.
 	template <class Type>
 	string ObjectName(const Type &object) = delete;
 
@@ -41,6 +44,8 @@ namespace {
 	template <>
 	string ObjectName(const Outfit &object) { return object.TrueName(); }
 
+
+	// Take a set of items and a set of sales and print a list of each item followed by the sales it appears in.
 	template <class Type>
 	void PrintItemSales(const Set<Type> &items, const Set<Sale<Type>> &sales,
 		const string &itemNoun, const string &saleNoun)
@@ -61,6 +66,8 @@ namespace {
 		}
 	}
 
+	// Take a set of sales and print a list of each followed by the items it contains.
+	// Will fail to compile for items not of type Ship or Outfit.
 	template <class Type>
 	void PrintSales(const Set<Sale<Type>> &sales, const string &saleNoun, const string &itemNoun)
 	{
@@ -75,6 +82,8 @@ namespace {
 		}
 	}
 
+
+	// Take a Set and print a list of the names (keys) it contains.
 	template <class Type>
 	void PrintObjectList(const Set<Type> &objects, bool withQuotes, const string &name)
 	{
@@ -85,6 +94,8 @@ namespace {
 			cout << start << it.first << end;
 	}
 
+	// Takes a Set of objects and prints the key for each, followed by a list of its attributes.
+	// The class 'Type' must have an accessible 'Attributes()' member method which returns a collection of strings.
 	template <class Type>
 	void PrintObjectAttributes(const Set<Type> &objects, const string &name)
 	{
@@ -100,6 +111,8 @@ namespace {
 		}
 	}
 
+	// Takes a Set of objects, which must have an accessible member `Attributes()`, returning a collection of strings.
+	// Prints a list of all those string attributes and, for each, the list of keys of objects with that attribute.
 	template <class Type>
 	void PrintObjectsByAttribute(const Set<Type> &objects, const string &name)
 	{
@@ -326,161 +339,156 @@ namespace {
 			PrintBaseShipStats();
 	}
 
-
-
-	void PrintWeaponStats()
-	{
-		cout << "name" << ',' << "category" << ',' << "cost" << ',' << "space" << ',' << "range" << ','
-			<< "reload" << ',' << "burst count" << ',' << "burst reload" << ',' << "lifetime" << ','
-			<< "shots/second" << ',' << "energy/shot" << ',' << "heat/shot" << ',' << "recoil/shot" << ','
-			<< "energy/s" << ',' << "heat/s" << ',' << "recoil/s" << ',' << "shield/s" << ','
-			<< "discharge/s" << ',' << "hull/s" << ',' << "corrosion/s" << ',' << "heat dmg/s" << ','
-			<< "burn dmg/s" << ',' << "energy dmg/s" << ',' << "ion dmg/s" << ',' << "slow dmg/s" << ','
-			<< "disruption dmg/s" << ',' << "piercing" << ',' << "fuel dmg/s" << ',' << "leak dmg/s" << ','
-			<< "push/s" << ',' << "homing" << ',' << "strength" << ',' << "deterrence" << '\n';
-
-		for(auto &it : GameData::Outfits())
-		{
-			// Skip non-weapons and submunitions.
-			if(!it.second.IsWeapon() || it.second.Category().empty())
-				continue;
-
-			const Outfit &outfit = it.second;
-			cout << it.first << ',';
-			cout << outfit.Category() << ',';
-			cout << outfit.Cost() << ',';
-			cout << -outfit.Get("weapon capacity") << ',';
-
-			cout << outfit.Range() << ',';
-
-			double reload = outfit.Reload();
-			cout << reload << ',';
-			cout << outfit.BurstCount() << ',';
-			cout << outfit.BurstReload() << ',';
-			cout << outfit.TotalLifetime() << ',';
-			double fireRate = 60. / reload;
-			cout << fireRate << ',';
-
-			double firingEnergy = outfit.FiringEnergy();
-			cout << firingEnergy << ',';
-			firingEnergy *= fireRate;
-			double firingHeat = outfit.FiringHeat();
-			cout << firingHeat << ',';
-			firingHeat *= fireRate;
-			double firingForce = outfit.FiringForce();
-			cout << firingForce << ',';
-			firingForce *= fireRate;
-
-			cout << firingEnergy << ',';
-			cout << firingHeat << ',';
-			cout << firingForce << ',';
-
-			double shieldDmg = outfit.ShieldDamage() * fireRate;
-			cout << shieldDmg << ',';
-			double dischargeDmg = outfit.DischargeDamage() * 100. * fireRate;
-			cout << dischargeDmg << ',';
-			double hullDmg = outfit.HullDamage() * fireRate;
-			cout << hullDmg << ',';
-			double corrosionDmg = outfit.CorrosionDamage() * 100. * fireRate;
-			cout << corrosionDmg << ',';
-			double heatDmg = outfit.HeatDamage() * fireRate;
-			cout << heatDmg << ',';
-			double burnDmg = outfit.BurnDamage() * 100. * fireRate;
-			cout << burnDmg << ',';
-			double energyDmg = outfit.EnergyDamage() * fireRate;
-			cout << energyDmg << ',';
-			double ionDmg = outfit.IonDamage() * 100. * fireRate;
-			cout << ionDmg << ',';
-			double slowDmg = outfit.SlowingDamage() * fireRate;
-			cout << slowDmg << ',';
-			double disruptDmg = outfit.DisruptionDamage() * fireRate;
-			cout << disruptDmg << ',';
-			cout << outfit.Piercing() << ',';
-			double fuelDmg = outfit.FuelDamage() * fireRate;
-			cout << fuelDmg << ',';
-			double leakDmg = outfit.LeakDamage() * 100. * fireRate;
-			cout << leakDmg << ',';
-			double hitforce = outfit.HitForce() * fireRate;
-			cout << hitforce << ',';
-
-			cout << outfit.Homing() << ',';
-			double strength = outfit.MissileStrength() + outfit.AntiMissile();
-			cout << strength << ',';
-
-			double damage = outfit.ShieldDamage() + outfit.HullDamage();
-			double deterrence = .12 * damage / outfit.Reload();
-			cout << deterrence << '\n';
-		}
-		cout.flush();
-	}
-
-
-
-	void PrintEngineStats()
-	{
-		cout << "name" << ',' << "cost" << ',' << "mass" << ',' << "outfit space" << ','
-			<< "engine capacity" << ',' << "thrust/s" << ',' << "thrust energy/s" << ','
-			<< "thrust heat/s" << ',' << "turn/s" << ',' << "turn energy/s" << ','
-			<< "turn heat/s" << ',' << "reverse thrust/s" << ',' << "reverse energy/s" << ','
-			<< "reverse heat/s" << ',' << "afterburner thrust/s" << ',' << "afterburner energy/s" << ','
-			<< "afterburner heat/s" << ',' << "afterburner fuel/s" << '\n';
-		for(auto &it : GameData::Outfits())
-		{
-			// Skip non-engines.
-			if(it.second.Category() != "Engines")
-				continue;
-
-			const Outfit &outfit = it.second;
-			cout << it.first << ',';
-			cout << outfit.Cost() << ',';
-			cout << outfit.Mass() << ',';
-			cout << outfit.Get("outfit space") << ',';
-			cout << outfit.Get("engine capacity") << ',';
-			cout << outfit.Get("thrust") * 3600. << ',';
-			cout << outfit.Get("thrusting energy") * 60. << ',';
-			cout << outfit.Get("thrusting heat") * 60. << ',';
-			cout << outfit.Get("turn") * 60. << ',';
-			cout << outfit.Get("turning energy") * 60. << ',';
-			cout << outfit.Get("turning heat") * 60. << ',';
-			cout << outfit.Get("reverse thrust") * 3600. << ',';
-			cout << outfit.Get("reverse thrusting energy") * 60. << ',';
-			cout << outfit.Get("reverse thrusting heat") * 60. << ',';
-			cout << outfit.Get("afterburner thrust") * 3600. << ',';
-			cout << outfit.Get("afterburner energy") * 60. << ',';
-			cout << outfit.Get("afterburner heat") * 60. << ',';
-			cout << outfit.Get("afterburner fuel") * 60. << '\n';
-		}
-		cout.flush();
-	}
-
-
-
-	void PrintPowerStats()
-	{
-		cout << "name" << ',' << "cost" << ',' << "mass" << ',' << "outfit space" << ','
-			<< "energy generation" << ',' << "heat generation" << ',' << "energy capacity" << '\n';
-		for(auto &it : GameData::Outfits())
-		{
-			// Skip non-power.
-			if(it.second.Category() != "Power")
-				continue;
-
-			const Outfit &outfit = it.second;
-			cout << it.first << ',';
-			cout << outfit.Cost() << ',';
-			cout << outfit.Mass() << ',';
-			cout << outfit.Get("outfit space") << ',';
-			cout << outfit.Get("energy generation") << ',';
-			cout << outfit.Get("heat generation") << ',';
-			cout << outfit.Get("energy capacity") << '\n';
-		}
-		cout.flush();
-	}
-
-
-
 	void Outfits(const char *const *argv)
 	{
+		auto PrintWeaponStats = []() -> void
+		{
+			cout << "name" << ',' << "category" << ',' << "cost" << ',' << "space" << ',' << "range" << ','
+				<< "reload" << ',' << "burst count" << ',' << "burst reload" << ',' << "lifetime" << ','
+				<< "shots/second" << ',' << "energy/shot" << ',' << "heat/shot" << ',' << "recoil/shot" << ','
+				<< "energy/s" << ',' << "heat/s" << ',' << "recoil/s" << ',' << "shield/s" << ','
+				<< "discharge/s" << ',' << "hull/s" << ',' << "corrosion/s" << ',' << "heat dmg/s" << ','
+				<< "burn dmg/s" << ',' << "energy dmg/s" << ',' << "ion dmg/s" << ',' << "scrambling dmg/s" << ','
+				<< "slow dmg/s" << ',' << "disruption dmg/s" << ',' << "piercing" << ',' << "fuel dmg/s" << ','
+				<< "leak dmg/s" << ',' << "push/s" << ',' << "homing" << ',' << "strength" << ','
+				<< "deterrence" << '\n';
+
+			for(auto &it : GameData::Outfits())
+			{
+				// Skip non-weapons and submunitions.
+				if(!it.second.IsWeapon() || it.second.Category().empty())
+					continue;
+
+				const Outfit &outfit = it.second;
+				cout << it.first << ',';
+				cout << outfit.Category() << ',';
+				cout << outfit.Cost() << ',';
+				cout << -outfit.Get("weapon capacity") << ',';
+
+				cout << outfit.Range() << ',';
+
+				double reload = outfit.Reload();
+				cout << reload << ',';
+				cout << outfit.BurstCount() << ',';
+				cout << outfit.BurstReload() << ',';
+				cout << outfit.TotalLifetime() << ',';
+				double fireRate = 60. / reload;
+				cout << fireRate << ',';
+
+				double firingEnergy = outfit.FiringEnergy();
+				cout << firingEnergy << ',';
+				firingEnergy *= fireRate;
+				double firingHeat = outfit.FiringHeat();
+				cout << firingHeat << ',';
+				firingHeat *= fireRate;
+				double firingForce = outfit.FiringForce();
+				cout << firingForce << ',';
+				firingForce *= fireRate;
+
+				cout << firingEnergy << ',';
+				cout << firingHeat << ',';
+				cout << firingForce << ',';
+
+				double shieldDmg = outfit.ShieldDamage() * fireRate;
+				cout << shieldDmg << ',';
+				double dischargeDmg = outfit.DischargeDamage() * 100. * fireRate;
+				cout << dischargeDmg << ',';
+				double hullDmg = outfit.HullDamage() * fireRate;
+				cout << hullDmg << ',';
+				double corrosionDmg = outfit.CorrosionDamage() * 100. * fireRate;
+				cout << corrosionDmg << ',';
+				double heatDmg = outfit.HeatDamage() * fireRate;
+				cout << heatDmg << ',';
+				double burnDmg = outfit.BurnDamage() * 100. * fireRate;
+				cout << burnDmg << ',';
+				double energyDmg = outfit.EnergyDamage() * fireRate;
+				cout << energyDmg << ',';
+				double ionDmg = outfit.IonDamage() * 100. * fireRate;
+				cout << ionDmg << ',';
+				double scramblingDmg = outfit.ScramblingDamage() * 100. * fireRate;
+				cout << scramblingDmg << ',';
+				double slowDmg = outfit.SlowingDamage() * fireRate;
+				cout << slowDmg << ',';
+				double disruptDmg = outfit.DisruptionDamage() * fireRate;
+				cout << disruptDmg << ',';
+				cout << outfit.Piercing() << ',';
+				double fuelDmg = outfit.FuelDamage() * fireRate;
+				cout << fuelDmg << ',';
+				double leakDmg = outfit.LeakDamage() * 100. * fireRate;
+				cout << leakDmg << ',';
+				double hitforce = outfit.HitForce() * fireRate;
+				cout << hitforce << ',';
+
+				cout << outfit.Homing() << ',';
+				double strength = outfit.MissileStrength() + outfit.AntiMissile();
+				cout << strength << ',';
+
+				double damage = outfit.ShieldDamage() + outfit.HullDamage();
+				double deterrence = .12 * damage / outfit.Reload();
+				cout << deterrence << '\n';
+			}
+			cout.flush();
+		};
+
+		auto PrintEngineStats = []() -> void
+		{
+			cout << "name" << ',' << "cost" << ',' << "mass" << ',' << "outfit space" << ','
+				<< "engine capacity" << ',' << "thrust/s" << ',' << "thrust energy/s" << ','
+				<< "thrust heat/s" << ',' << "turn/s" << ',' << "turn energy/s" << ','
+				<< "turn heat/s" << ',' << "reverse thrust/s" << ',' << "reverse energy/s" << ','
+				<< "reverse heat/s" << ',' << "afterburner thrust/s" << ',' << "afterburner energy/s" << ','
+				<< "afterburner heat/s" << ',' << "afterburner fuel/s" << '\n';
+			for(auto &it : GameData::Outfits())
+			{
+				// Skip non-engines.
+				if(it.second.Category() != "Engines")
+					continue;
+
+				const Outfit &outfit = it.second;
+				cout << it.first << ',';
+				cout << outfit.Cost() << ',';
+				cout << outfit.Mass() << ',';
+				cout << outfit.Get("outfit space") << ',';
+				cout << outfit.Get("engine capacity") << ',';
+				cout << outfit.Get("thrust") * 3600. << ',';
+				cout << outfit.Get("thrusting energy") * 60. << ',';
+				cout << outfit.Get("thrusting heat") * 60. << ',';
+				cout << outfit.Get("turn") * 60. << ',';
+				cout << outfit.Get("turning energy") * 60. << ',';
+				cout << outfit.Get("turning heat") * 60. << ',';
+				cout << outfit.Get("reverse thrust") * 3600. << ',';
+				cout << outfit.Get("reverse thrusting energy") * 60. << ',';
+				cout << outfit.Get("reverse thrusting heat") * 60. << ',';
+				cout << outfit.Get("afterburner thrust") * 3600. << ',';
+				cout << outfit.Get("afterburner energy") * 60. << ',';
+				cout << outfit.Get("afterburner heat") * 60. << ',';
+				cout << outfit.Get("afterburner fuel") * 60. << '\n';
+			}
+			cout.flush();
+		};
+
+		auto PrintPowerStats = []() -> void
+		{
+			cout << "name" << ',' << "cost" << ',' << "mass" << ',' << "outfit space" << ','
+				<< "energy generation" << ',' << "heat generation" << ',' << "energy capacity" << '\n';
+			for(auto &it : GameData::Outfits())
+			{
+				// Skip non-power.
+				if(it.second.Category() != "Power")
+					continue;
+
+				const Outfit &outfit = it.second;
+				cout << it.first << ',';
+				cout << outfit.Cost() << ',';
+				cout << outfit.Mass() << ',';
+				cout << outfit.Get("outfit space") << ',';
+				cout << outfit.Get("energy generation") << ',';
+				cout << outfit.Get("heat generation") << ',';
+				cout << outfit.Get("energy capacity") << '\n';
+			}
+			cout.flush();
+		};
+
 		auto PrintOutfitsAllStats = []() -> void
 		{
 			set<string> attributes;
@@ -505,27 +513,40 @@ namespace {
 			}
 		};
 
+		bool weapons = false;
+		bool engines = false;
+		bool power = false;
 		bool sales = false;
 		bool all = false;
 
-		for(const char *const *it = argv + 2; *it; ++it)
+		for(const char *const *it = argv + 1; *it; ++it)
 		{
 			string arg = *it;
-			if(arg == "-s" || arg == "--sales")
+			if(arg == "-w" || arg == "--weapons")
+				weapons = true;
+			else if(arg == "-e" || arg == "--engines")
+				engines = true;
+			else if(arg == "--power")
+				power = true;
+			else if(arg == "-s" || arg == "--sales")
 				sales = true;
 			else if(arg == "-a" || arg == "--all")
 				all = true;
 		}
 
-		if(sales)
+		if(weapons)
+			PrintWeaponStats();
+		else if(engines)
+			PrintEngineStats();
+		else if(power)
+			PrintPowerStats();
+		else if(sales)
 			PrintItemSales(GameData::Outfits(), GameData::Outfitters(), "outfit", "outfitters");
 		else if(all)
 			PrintOutfitsAllStats();
 		else
 			PrintObjectList(GameData::Outfits(), true, "outfit");
 	}
-
-
 
 	void Sales(const char *const *argv)
 	{
@@ -551,7 +572,6 @@ namespace {
 		if(outfits)
 			PrintSales(GameData::Outfitters(), "outfitters", "outfits");
 	}
-
 
 
 	void Planets(const char *const *argv)
@@ -592,8 +612,6 @@ namespace {
 			PrintObjectList(GameData::Planets(), false, "planet");
 	}
 
-
-
 	void Systems(const char *const *argv)
 	{
 		bool attributes = false;
@@ -614,8 +632,6 @@ namespace {
 		else
 			PrintObjectList(GameData::Systems(), false, "system");
 	}
-
-
 
 	void LocationFilterMatches(const char *const *argv)
 	{
@@ -648,6 +664,26 @@ namespace {
 			if(filter.Matches(&it.second))
 				cout << it.first << '\n';
 	}
+
+
+	const set<string> OUTFIT_ARGS = {
+		"-w",
+		"--weapons",
+		"-e",
+		"--engines",
+		"--power",
+		"-o",
+		"--outfits"
+	};
+
+	const set<string> OTHER_VALID_ARGS = {
+		"-s",
+		"--ships",
+		"--sales",
+		"--planets",
+		"--systems",
+		"--matches"
+	};
 }
 
 
@@ -657,10 +693,7 @@ bool PrintData::IsPrintDataArgument(const char *const *argv)
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
 		string arg = *it;
-		if(arg == "-s" || arg == "--ships" || arg == "-w" || arg == "--weapons"
-				|| arg == "-o" || arg == "--outfits" || arg == "-e" || arg == "--engines"
-				|| arg == "--power" || arg == "--sales" || arg == "--planets"
-				|| arg == "--systems" || arg == "--matches")
+		if(OTHER_VALID_ARGS.count(arg) || OUTFIT_ARGS.count(arg))
 			return true;
 	}
 	return false;
@@ -678,13 +711,7 @@ void PrintData::Print(const char *const *argv)
 			Ships(argv);
 			break;
 		}
-		else if(arg == "-w" || arg == "--weapons")
-			PrintWeaponStats();
-		else if(arg == "-e" || arg == "--engines")
-			PrintEngineStats();
-		else if(arg == "--power")
-			PrintPowerStats();
-		else if(arg == "-o" || arg == "--outfits")
+		else if(OUTFIT_ARGS.count(arg))
 		{
 			Outfits(argv);
 			break;

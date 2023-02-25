@@ -39,7 +39,7 @@ mission "Corporate retreat from <origin>"
 	job
 	repeat
 	deadline
-	description "A team of <bunks> engineers needs transport to a corporate retreat on the exotic planet of <stopovers>, after which they must return back to <origin> by <date>. They want a comfortable journey, so your ship must be outfitted suitably. Payment is <payment>."
+	description "A team of <bunks> engineers needs transport to a corporate retreat on <stopovers>, after which they must return back to <origin> by <date>. They want a comfortable journey, so your ship must be outfitted suitably. Payment is <payment>."
 	passengers 7 18
 	to offer
 		random < 20

@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <map>
 #include <set>
 #include <string>
+#include <utility>
 #include <vector>
 
 class Conversation;
@@ -44,6 +45,21 @@ class System;
 // color "swizzle." Some government's ships can also be easier or harder to
 // bribe than others.
 class Government {
+public:
+	class RaidFleet {
+		public:
+			RaidFleet(const Fleet *fleet, double minAttraction, double maxAttraction);
+			const Fleet *GetFleet() const;
+			double MinAttraction() const;
+			double MaxAttraction() const;
+
+		private:
+			const Fleet *fleet = nullptr;
+			double minAttraction;
+			double maxAttraction;
+	};
+
+
 public:
 	// Default constructor.
 	Government();
@@ -75,6 +91,7 @@ public:
 	// This government will fine you the given fraction of the maximum fine for
 	// carrying illegal cargo or outfits. Zero means they will not fine you.
 	double GetFineFraction() const;
+	bool Trusts(const Government *other) const;
 	// A government might not exercise the ability to perform scans or fine
 	// the player in every system.
 	bool CanEnforce(const System *system) const;
@@ -88,9 +105,10 @@ public:
 	std::string GetHail(bool isDisabled) const;
 	// Find out if this government speaks a different language.
 	const std::string &Language() const;
-	// Pirate raids in this government's systems use this fleet definition. If
-	// it is null, there are no pirate raids.
-	const Fleet *RaidFleet() const;
+	// Pirate raids in this government's systems use these fleet definitions. If
+	// it is empty, there are no pirate raids.
+	// The second attribute denotes the minimal and maximal attraction required for the fleet to appear.
+	const std::vector<RaidFleet> &RaidFleets() const;
 
 	// Check if, according to the politics stored by GameData, this government is
 	// an enemy of the given government right now.
@@ -138,6 +156,7 @@ private:
 	ExclusiveItem<Color> color;
 
 	std::vector<double> attitudeToward;
+	std::set<const Government *> trusted;
 	std::map<unsigned, std::map<int, double>> customPenalties;
 	double initialPlayerReputation = 0.;
 	std::map<int, double> penaltyFor;
@@ -152,7 +171,7 @@ private:
 	const Phrase *hostileHail = nullptr;
 	const Phrase *hostileDisabledHail = nullptr;
 	std::string language;
-	const Fleet *raidFleet = nullptr;
+	std::vector<RaidFleet> raidFleets;
 	double crewAttack = 1.;
 	double crewDefense = 2.;
 	bool provokedOnScan = false;
