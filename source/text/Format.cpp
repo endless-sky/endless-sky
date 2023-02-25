@@ -59,6 +59,8 @@ namespace {
 		int64_t value = getter(source, conditionStart, conditionSize);
 		if(formatStart == string::npos || formatSize == string::npos)
 			result.append(Format::Number(value));
+		else if(!source.compare(formatStart, formatSize, "raw"))
+			result.append(to_string(value));
 		else if(!source.compare(formatStart, formatSize, "credits"))
 			result.append(Format::CreditString(value)); // 1 credit, 2 credits, etc.
 		else if(!source.compare(formatStart, formatSize, "scaled"))
