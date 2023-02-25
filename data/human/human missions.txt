@@ -5507,16 +5507,6 @@ mission "Karen Transport 1"
 			`	"You expect ME to pay after all that? You're lucky I'm not suing you for damages!" She stops for a moment, then throws a credit chip at you. "Fine, take this, but don't bother me again!" She stomps off angrily.`
 			`	You look at the credit chip she has so generously given you. It's worth... 10 credits. Oh well.`
 		payment 10
-	on abort
-		conversation
-			branch landed
-				has "flagship landed"
-			`You decide you have had enough of your passenger's constant fits and inform her that her journey is now over.`
-			`	As you listen with grim satisfaction to the air hissing out of the opening airlock, you take comfort in the knowledge that you at least got the bunk space back.`
-				decline
-			label landed
-			`You decide you don't want to deal with her after all, and let her go. You wonder if you just dodged a bullet.`
-
 
 
 mission "Karen Transport 2"
