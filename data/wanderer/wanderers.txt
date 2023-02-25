@@ -453,7 +453,7 @@ phrase "friendly wanderer"
 		"wrecked"
 	word
 		"."
-			
+		
 phrase "friendly wanderer"
 	word
 		"Wanderer "

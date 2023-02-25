@@ -1,5 +1,5 @@
 # Copyright (c) 2022 by Saugia
-
+#
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
 # Foundation, either version 3 of the License, or (at your option) any later version.
@@ -224,6 +224,7 @@ ship "Dunite"
 		
 		"C3 Scrap Cell"
 		"R01 Skirmish Battery"
+		"Savagery Pike"
 
 		"RG15 Torch Thruster"
 		"RG15 Torch Steering"
@@ -272,6 +273,8 @@ ship "Augen"
 		"C17 Warzone Core"
 		"C27 Campaign Core"
 		"R04 Crusade Battery"
+		"Savagery Pike" 280
+		"Irate Carronade" 4
 		
 		"RG3 Torch Thruster" 4
 		"RG3 Torch Steering" 2
@@ -353,7 +356,7 @@ ship "Augen"
 	explode "small explosion" 20
 	explode "tiny explosion" 60
 	"final explode" "final explosion large"
-	description `The Augen-class is an ancient battleship proposed by the Vi as a large weapons platform for their Ballistic Cannons. It was built in secret over many years in Enbi's canyon shipyard, and for many periods of time its construction was put on hold. The recent civil war with the Scin gave reason to complete the warship, although it is still somewhat of a relic compared to current vessels in the service of the Vi fleet.`
+	description `The Augen-Class is an ancient battleship proposed by the Vi as a large weapons platform for their Ballistic Cannons. It was built in secret over many years in Enbi's canyon shipyard, and for many periods of time its construction was put on hold. The recent civil war with the Scin gave reason to complete the warship, although it is still somewhat of a relic compared to current vessels in the service of the Vi fleet.`
 	description `	This project was meant to result in two sister-ship behemoths, but the blueprints for the other design went missing early in the process, and are currently nowhere to be found.`
 
 ship "Slate"
@@ -384,6 +387,7 @@ ship "Slate"
 	outfits
 		"C3 Scrap Cell"
 		"R01 Skirmish Battery"
+		"Savagery Pike" 1
 		
 		"RG15 Torch Thruster"
 		"RG15 Torch Steering"
@@ -425,6 +429,8 @@ ship "Schist"
 		
 		"C7 Brawl Cell"
 		"R02 Battlezone Battery"
+		"Savagery Pike" 23
+		"Irate Carronade"
 		
 		"RG18 Torch Thruster"
 		"RG18 Torch Steering"
@@ -448,7 +454,7 @@ ship "Schist"
 	explode "small explosion" 25
 	explode "tiny explosion" 10
 	"final explode" "final explosion medium"
-	description `Based on the Gegno's old Dolomite, the Schist is a mid-range ship used by the Vi. It can carry a decent amount of cargo, and has enough bunks to carry a whole platoon of warriors. It is the primary vessel used to transport recruits to the front lines, and veterans back to home territories.` 
+	description `Based on the Gegno's old Dolomite, the Schist is a mid-range ship used by the Vi. It can carry a decent amount of cargo, and has enough bunks to carry a whole platoon of warriors. It is the primary vessel used to transport recruits to the front lines, and veterans back to home territories.`
 	description `	Although is it lightly armed compared to other Vi ships, Schists still are mounted with a pair of forward facing cannons and a turret so they can bring some type of weaponry to any possible engagement, as well as a set of angled guns for deterring any smaller, faster ships from attempting to flank the vessel.`
 
 ship "Schist" "Schist (Light Load)"
@@ -499,6 +505,7 @@ ship "Eclogite"
 		
 		"C7 Brawl Cell"
 		"R03 Warforge Battery"
+		"Savagery Pike" 9
 		
 		"RG18 Torch Thruster"
 		"RG18 Torch Steering"
@@ -548,6 +555,8 @@ ship "Diorite"
 		
 		"C17 Warzone Core"
 		"R02 Battlezone Battery"
+		"Savagery Pike" 14
+		"Irate Carronade"
 		
 		"RG18 Torch Thruster"
 		"RG3 Torch Steering"
@@ -613,6 +622,8 @@ ship "Hornfel"
 		
 		"C17 Warzone Core"
 		"R03 Warforge Battery"
+		"Savagery Pike" 32
+		"Irate Carronade" 2
 		
 		"RG18 Torch Thruster"
 		"RG18 Torch Steering"
@@ -735,6 +746,8 @@ ship "Gneiss"
 		
 		"C17 Warzone Core"
 		"R04 Crusade Battery"
+		"Savagery Pike" 112
+		"Irate Carronade" 3
 		
 		"RG3 Torch Thruster"
 		"RG3 Torch Steering"
@@ -807,6 +820,7 @@ ship "Granulite"
 		"C7 Brawl Cell" 2
 		"C3 Scrap Cell"
 		"R03 Warforge Battery" 3
+		"Savagery Pike" 53
 		
 		"RG3 Torch Thruster"
 		"RG15 Torch Thruster"
@@ -880,6 +894,7 @@ ship "Halite"
 		"Guile Pulse Laser" 2
 		
 		"I70 Ameliorate Cell"
+		"Plasmasickle"
 		
 		"SC-1 Plasma Engines"
 	engine -11 42
@@ -921,6 +936,7 @@ ship "Mica"
 	outfits
 		"C3 Scrap Cell"
 		"R01 Skirmish Battery"
+		"Plasma Grenades"
 		
 		"SC-12 Plasma Thruster"
 		"SC-12 Plasma Steering"
@@ -963,6 +979,8 @@ ship "Coesite"
 		"C3 Scrap Cell"
 		"R01 Skirmish Battery"
 		"R02 Battlezone Battery"
+		"Plasmasickle" 6
+		"Plasma Grenades" 2
 		
 		"SC-12 Plasma Thruster"
 		"SC-14 Plasma Steering"
@@ -1005,9 +1023,9 @@ ship "Tridymite"
 		"engine capacity" 86
 		
 		"outfit scan power" 18
-		"outfit scan speed" 8
+		"outfit scan efficiency" 8
 		"cargo scan power" 6
-		"cargo scan speed" 2
+		"cargo scan efficiency" 2
 		weapon
 			"blast radius" 35
 			"shield damage" 220
@@ -1016,6 +1034,8 @@ ship "Tridymite"
 	outfits
 		"C7 Brawl Cell"
 		"R02 Battlezone Battery"
+		"Plasmasickle" 3
+		"Plasma Grenades" 4
 		
 		"SC-14 Plasma Thruster"
 		"SC-14 Plasma Steering"
@@ -1064,6 +1084,8 @@ ship "Felsic"
 		
 		"C17 Warzone Core"
 		"R02 Battlezone Battery"
+		"Plasmasickle" 9
+		"Plasma Grenades" 9
 		
 		"SC-14 Plasma Thruster"
 		"SC-14 Plasma Steering"
@@ -1114,6 +1136,8 @@ ship "Feldspar"
 		
 		"C27 Campaign Core"
 		"R03 Warforge Battery"
+		"Plasmasickle" 66
+		"Plasma Grenades" 66
 		
 		"SC-15 Plasma Thrusters"
 		"SC-12 Plasma Steering"
@@ -1136,17 +1160,24 @@ ship "Feldspar"
 	turret -74.5 13 "Acuit Artillery"
 	turret 74.5 13 "Acuit Artillery"
 	bay "Fighter" -73 -173.5
+		"launch effect" "scin launch"
 		over
 	bay "Fighter" 73 -173.5
+		"launch effect" "scin launch"
 		over
 	bay "Fighter" -70 -98
+		"launch effect" "scin launch"
 		over
 	bay "Fighter" 70 -98
+		"launch effect" "scin launch"
 		over
 	bay "Fighter" -65.5 120
+		"launch effect" "scin launch"
 		angle -180
 		over
+		"launch effect" "scin launch"
 	bay "Fighter" 65.5 120
+		"launch effect" "scin launch"
 		angle -180
 		over
 	leak "leak" 50 50
@@ -1194,6 +1225,8 @@ ship "Epidote"
 		"C17 Warzone Core"
 		"R02 Battlezone Battery"
 		"R03 Warforge Battery"
+		"Plasmasickle" 51
+		"Plasma Grenades" 51
 		
 		"SC-15 Plasma Thrusters"
 		"SC-14 Plasma Steering" 2
@@ -1206,9 +1239,11 @@ ship "Epidote"
 	turret 0 -27 "Astuit Battery"
 	turret 0 65 "Acuit Artillery"
 	bay "Fighter" 0 122
+		"launch effect" "scin launch"
 		angle -180
 		under
 	bay "Fighter" 0 180
+		"launch effect" "scin launch"
 		angle -180
 		under
 	leak "leak" 10 40

@@ -35,6 +35,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 	bool isClustered = false;
 	calculatedDamage = false;
 	doesDamage = false;
+	bool safeRangeOverriden = false;
 	bool disabledDamageSet = false;
 	bool minableDamageSet = false;
 	bool relativeDisabledDamageSet = false;
@@ -212,6 +213,11 @@ void Weapon::LoadWeapon(const DataNode &node)
 				triggerRadius = max(0., value);
 			else if(key == "blast radius")
 				blastRadius = max(0., value);
+			else if(key == "safe range override")
+			{
+				safeRange = max(0., value);
+				safeRangeOverriden = true;
+			}
 			else if(key == "shield damage")
 				damage[SHIELD_DAMAGE] = value;
 			else if(key == "hull damage")
@@ -332,6 +338,11 @@ void Weapon::LoadWeapon(const DataNode &node)
 			++it;
 		}
 	}
+
+	// Only when the weapon is not safe and has a blast radius is safeRange needed,
+	// except if it is already overridden.
+	if(!isSafe && blastRadius > 0 && !safeRangeOverriden)
+		safeRange = (blastRadius + triggerRadius);
 }
 
 

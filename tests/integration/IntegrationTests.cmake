@@ -2,7 +2,7 @@ set(ES_CONFIG "${CMAKE_CURRENT_SOURCE_DIR}/integration/config")
 
 # Get all the tests to run.
 execute_process(
-	COMMAND "${ES}" --config "${ES_CONFIG}" --tests
+	COMMAND ${ES} --config "${ES_CONFIG}" --tests
 	OUTPUT_VARIABLE INTEGRATION_TESTS
 	ERROR_QUIET
 )

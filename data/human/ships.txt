@@ -59,7 +59,9 @@ ship "Aerie"
 	turret -31 15.5 "Heavy Laser Turret"
 	turret 31 15.5 "Heavy Laser Turret"
 	bay "Fighter" -43.5 2
+		"launch effect" "human internal"
 	bay "Fighter" 43.5 2
+		"launch effect" "human internal"
 	leak "leak" 50 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
@@ -239,9 +241,13 @@ ship "Auxiliary"
 	turret 0 32
 	turret 0 83 "Heavy Anti-Missile Turret"
 	bay "Fighter" 0 -74
+		"launch effect" "human internal"
 	bay "Fighter" 0 -17
+		"launch effect" "human internal"
 	bay "Fighter" 0 32
+		"launch effect" "human internal"
 	bay "Fighter" 0 83
+		"launch effect" "human internal"
 	leak "leak" 30 50
 	leak "flame" 30 80
 	leak "big leak" 30 30
@@ -252,7 +258,7 @@ ship "Auxiliary"
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
 	description "The Auxiliary is the Republic Navy's logistical backbone. The size and durability of a capital ship but more cargo and passenger space than any other Navy ship, the Auxiliary is used whenever the Navy needs large amounts of troops or cargo transported with a guarantee that they'll reach the destination."
-	description " The Auxiliary was built with modularity in mind, allowing the ship to be fitted for more cargo or bunk space depending on the mission. This modularity makes the ship rather expensive to build, however, and therefore a rare sight to see."
+	description "The Auxiliary was built with modularity in mind, allowing the ship to be fitted for more cargo or bunk space depending on the mission. This modularity makes the ship rather expensive to build, however, and therefore a rare sight to see."
 
 ship "Auxiliary" "Auxiliary (Cargo)"
 	plural "Auxiliaries"
@@ -268,9 +274,13 @@ ship "Auxiliary" "Auxiliary (Cargo)"
 	turret 0 32
 	turret 0 83 "Heavy Anti-Missile Turret"
 	bay "Fighter" 0 -72
+		"launch effect" "human internal"
 	bay "Fighter" 0 -20
+		"launch effect" "human internal"
 	bay "Fighter" 0 32
+		"launch effect" "human internal"
 	bay "Fighter" 0 83
+		"launch effect" "human internal"
 
 ship "Auxiliary" "Auxiliary (Transport)"
 	plural "Auxiliaries"
@@ -286,9 +296,13 @@ ship "Auxiliary" "Auxiliary (Transport)"
 	turret 0 20
 	turret 0 78 "Heavy Anti-Missile Turret"
 	bay "Fighter" 0 -74
+		"launch effect" "human internal"
 	bay "Fighter" 0 -17
+		"launch effect" "human internal"
 	bay "Fighter" 0 20
+		"launch effect" "human internal"
 	bay "Fighter" 0 78
+		"launch effect" "human internal"
 
 
 
@@ -349,8 +363,11 @@ ship "Bactrian"
 	turret 32.5 132 "Heavy Laser Turret"
 	turret -33.5 192.5 "Heavy Anti-Missile Turret"
 	bay "Fighter" -43.5 -125
+		"launch effect" "human internal"
 	bay "Fighter" 53 -72.5
+		"launch effect" "human internal"
 	bay "Fighter" -50 103.5
+		"launch effect" "human internal"
 	leak "leak" 30 50
 	leak "flame" 30 80
 	leak "big leak" 50 30
@@ -932,15 +949,25 @@ ship "Carrier"
 	turret -22 22 "Heavy Anti-Missile Turret"
 	turret 22 22 "Heavy Anti-Missile Turret"
 	bay "Fighter" -38.5 -64.5
+		"launch effect" "human internal"
 	bay "Fighter" 38.5 -64.5
+		"launch effect" "human internal"
 	bay "Fighter" -50 40.5
+		"launch effect" "human internal"
 	bay "Fighter" 50 40.5
+		"launch effect" "human internal"
 	bay "Drone" -71.5 -49.5
+		"launch effect" "human internal"
 	bay "Drone" 71.5 -49.5
+		"launch effect" "human internal"
 	bay "Drone" -115 55
+		"launch effect" "human internal"
 	bay "Drone" 115 55
+		"launch effect" "human internal"
 	bay "Drone" -85 55
+		"launch effect" "human internal"
 	bay "Drone" 85 55
+		"launch effect" "human internal"
 	leak "leak" 30 50
 	leak "flame" 30 80
 	leak "big leak" 30 30
@@ -1009,17 +1036,29 @@ ship "Class C Freighter"
 	turret 30 175 "Quad Blaster Turret"
 	turret -30 175 "Anti-Missile Turret"
 	bay "Drone" -66 -115 left
+		"launch effect" "human internal"
 	bay "Drone" -66 -65 left
+		"launch effect" "human internal"
 	bay "Drone" -66 -15 left
+		"launch effect" "human internal"
 	bay "Drone" -66 35 left
+		"launch effect" "human internal"
 	bay "Drone" -66 85 left
+		"launch effect" "human internal"
 	bay "Drone" -66 135 left
+		"launch effect" "human internal"
 	bay "Drone" 66 -115 right
+		"launch effect" "human internal"
 	bay "Drone" 66 -65 right
+		"launch effect" "human internal"
 	bay "Drone" 66 -15 right
+		"launch effect" "human internal"
 	bay "Drone" 66 35 right
+		"launch effect" "human internal"
 	bay "Drone" 66 85 right
+		"launch effect" "human internal"
 	bay "Drone" 66 135 right
+		"launch effect" "human internal"
 	leak "leak" 30 50
 	leak "flame" 50 80
 	leak "big leak" 40 30
@@ -1029,7 +1068,7 @@ ship "Class C Freighter"
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
 	description `The Class C "Freighter" is a Q-ship, a stealth warship designed by the Syndicate for baiting pirates with the offer of what appears to be a helpless, ordinary bulk freighter.`
-	description `	Inside, a layer of interference plating hides its military-grade equipment and a dozen combat drones secreted away in its converted cargo holds, while its faux gearing conceals extra shield emitters.`
+	description `	Inside, a layer of Interference Plating hides its military-grade equipment and a dozen combat drones secreted away in its converted cargo holds, while its faux gearing conceals extra shield emitters.`
 
 
 
@@ -1308,9 +1347,13 @@ ship "Cruiser"
 	turret 32 -23 "Heavy Laser Turret"
 	turret 0 0 "Heavy Anti-Missile Turret"
 	bay "Drone" -25 19.5
+		"launch effect" "human internal"
 	bay "Drone" 25 19.5
+		"launch effect" "human internal"
 	bay "Drone" -25 49.5
+		"launch effect" "human internal"
 	bay "Drone" 25 49.5
+		"launch effect" "human internal"
 	leak "leak" 30 50
 	leak "flame" 50 80
 	leak "big leak" 40 30
@@ -2513,9 +2556,9 @@ ship "Manta"
 			"hit force" 1200
 	outfits
 		"Particle Cannon" 4
-		"Meteor Missile Launcher"
-		"Meteor Missile" 60
-		"Meteor Missile Box" 2
+		"Torpedo Storage Rack"
+		"Torpedo" 21
+		"Torpedo Pod" 2
 		
 		"RT-I Radiothermal"
 		"LP144a Battery Pack"
@@ -2532,15 +2575,15 @@ ship "Manta"
 	gun 20 -31 "Particle Cannon"
 	gun -26.5 -30 "Particle Cannon"
 	gun 26.5 -30 "Particle Cannon"
-	gun -68.5 -33 "Meteor Missile Launcher"
-	gun 68.5 -33
+	gun -68.5 -33 "Torpedo Pod"
+	gun 68.5 -33 "Torpedo Pod"
 	leak "leak" 60 50
 	leak "flame" 40 80
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
 	"final explode" "final explosion small"
-	description "After their Quicksilver light warship with its armament of particle cannons became a large success with convoy escorts and planetary defense forces, Megaparsec decided to develop a larger ship with similar maneuverability but heavier firepower. The Manta is the result: a ship with enough long-range firepower that fleeing from a battle with it is almost impossible."
+	description "After their Quicksilver light warship with its armament of Particle Cannons became a large success with convoy escorts and planetary defense forces, Megaparsec decided to develop a larger ship with similar maneuverability but heavier firepower. The Manta is the result: a ship with enough long-range firepower that fleeing from a battle with it is almost impossible."
 
 
 
@@ -2647,6 +2690,7 @@ ship "Mule"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
+		"X1100 Ion Reverse Thruster"
 		"Hyperdrive"
 		
 	engine 11 128
@@ -2658,6 +2702,7 @@ ship "Mule"
 	turret 20 33 "Heavy Laser Turret"
 	turret -20.5 103.5 "Anti-Missile Turret"
 	bay "Fighter" -25 -25
+		"launch effect" "human internal"
 	leak "leak" 50 50
 	leak "flame" 80 80
 	leak "big leak" 80 30
@@ -2717,7 +2762,9 @@ ship "Nest"
 	turret -18.5 78.5 "Heavy Anti-Missile Turret"
 	turret 18.5 78.5 "Quad Blaster Turret"
 	bay "Fighter" -47 12 under
+		"launch effect" "human external"
 	bay "Fighter" 47 12 under
+		"launch effect" "human external"
 	leak "leak" 60 50
 	leak "flame" 40 80
 	leak "big leak" 80 30
@@ -2955,7 +3002,7 @@ ship "Quicksilver"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
 	"final explode" "final explosion small"
-	description "The Megaparsec Quicksilver is a warship built around a single concept: to design the smallest and fastest ship capable of carrying two particle cannons. Because of its speed and long weapons range, the Quicksilver can keep a safe distance from most targets and bombard them with particle bursts until they are destroyed. Unfortunately the Headhunter eventually surpassed the original design intent, but the Quicksilver's better durability to cost ratio, and the existence of long-term contracts, has kept it in use with Syndicate security forces."
+	description "The Megaparsec Quicksilver is a warship built around a single concept: to design the smallest and fastest ship capable of carrying two Particle Cannons. Because of its speed and long weapons range, the Quicksilver can keep a safe distance from most targets and bombard them with particle bursts until they are destroyed. Unfortunately the Headhunter eventually surpassed the original design intent, but the Quicksilver's better durability to cost ratio, and the existence of long-term contracts, has kept it in use with Syndicate security forces."
 
 
 
@@ -3043,7 +3090,7 @@ ship "Raven"
 	outfits
 		"Heavy Laser" 2
 		"Torpedo Launcher"
-		"Torpedo" 60
+		"Torpedo" 30
 		"Sidewinder Missile Launcher"
 		"Sidewinder Missile" 45
 		
@@ -3123,9 +3170,13 @@ ship "Roost"
 	turret -18.5 115.5 "Heavy Anti-Missile Turret"
 	turret 18.5 115.5 "Quad Blaster Turret"
 	bay "Fighter" -47 -24 under
+		"launch effect" "human external"
 	bay "Fighter" 47 -24 under
+		"launch effect" "human external"
 	bay "Fighter" -47 50 under
+		"launch effect" "human external"
 	bay "Fighter" 47 50 under
+		"launch effect" "human external"
 	leak "leak" 50 50
 	leak "flame" 40 80
 	leak "big leak" 80 30
@@ -3332,11 +3383,17 @@ ship "Skein"
 	turret -18.5 152.5 "Anti-Missile Turret"
 	turret 18.5 152.5 "Quad Blaster Turret"
 	bay "Fighter" -47 -61 under
+		"launch effect" "human external"
 	bay "Fighter" 47 -61 under
+		"launch effect" "human external"
 	bay "Fighter" -47 14 under
+		"launch effect" "human external"
 	bay "Fighter" 47 14 under
+		"launch effect" "human external"
 	bay "Fighter" -47 88 under
+		"launch effect" "human external"
 	bay "Fighter" 47 88 under
+		"launch effect" "human external"
 	leak "leak" 50 50
 	leak "flame" 40 80
 	leak "big leak" 70 30

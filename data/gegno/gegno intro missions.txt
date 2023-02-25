@@ -1,5 +1,5 @@
 # Copyright (c) 2022 by Saugia
-
+#
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
 # Foundation, either version 3 of the License, or (at your option) any later version.
@@ -28,9 +28,9 @@ mission "First Contact: Gegno Vi"
 	clearance
 	passengers 1
 	to offer
-		not "Gegno Genocide Defense: offererd"
+		not "Gegno Genocide Defense: offered"
 	on offer
-		conversation		
+		conversation
 			branch "second encounter"
 				has "Giaru Gegno: Quarg Contact: offered"
 			branch "return encounter"
@@ -62,11 +62,11 @@ mission "First Contact: Gegno Vi"
 			label help
 			`	You aim your sidearm at the beast, preparing to fire. Instead of digging back under the surface, the beast continues to thrash about where it is while the alien batters it down with their spear weapon. Making sure you don't accidentally hit them, you hold your breath and wait until the right moment comes, aiming for the creature's head. The flailing creature begins to gets closer, and your pulse begins to race. A gust of sand blasts directly towards you, and once it clears you fire your weapon. A laser shot flies directly into the face of the beast.`
 			`	Much to your dismay, the shot almost immediately ricochets off of it. You watch as the massive monster tumbles over you, just barely leaping into the air above. The monster plunges into the earth behind you, and you fall to your back with the wind knocked out of you. You raise your sidearm once more. The creature explodes out of the ground with its gaping mouth pointed upward to the sky. With shaking hands, you take aim once again and pull the trigger.`
-			`	A loud, cannon-like bang follows, but it most certainly did not come from your weapon. The beast before you falls downward in a cloud of black smoke, blasting sand and rubble everywhere with a thud. Once you come to your senses, you see the alien marching out of the creature's mouth.` 
+			`	A loud, cannon-like bang follows, but it most certainly did not come from your weapon. The beast before you falls downward in a cloud of black smoke, blasting sand and rubble everywhere with a thud. Once you come to your senses, you see the alien marching out of the creature's mouth.`
 			choice
 				`	(Stand up and approach the alien.)`
 				`	(Get up and run to your ship.)`
-			`	Before you can collect yourself, you realize the alien is now much closer to you. Within a matter of moments, the alien stands before you, giving you a much better look at them. They are at least several feet taller than you, extremely bulky, and slightly hunched over. Heavy-looking metal surrounds their body, and in any exposed areas are rough-looking patches of skin and hair. Thick facial hair covers their face, and above their human-like eyes are a pair of horns curved inward towards you.`
+			`	Before you can collect yourself, you realize the alien is now much closer to you. Within a matter of moments, the alien stands before you, giving you a much better look at them. They are much taller than you, extremely bulky, and slightly hunched over. Heavy-looking metal surrounds their body, and in any exposed areas are rough-looking patches of skin and hair. Thick facial hair covers their face, and above their human-like eyes are a pair of horns curved inward towards you.`
 			`	Awkward silence ensues, and the alien looks you up and down in an unenthused way. They emit a very deep grumble, and with a loud snort, reach into a crevice in their armor to grab something. Pulling out what looks to be some sort of star map, they point to a location on it, gesture to themselves, then lower the device slowly to you. It seems they want to be taken to one of their species' planets.`
 			choice
 				`	(Accept their request).`
@@ -120,11 +120,11 @@ mission "First Contact: Gegno Vi"
 			label assist
 			`	You bring your sidearm up to a firing position and wait for the beast. Once again, it jumps out of the sand in an incredible display, but instead of digging back under the surface, the beast continues to thrash about where it is while the Vi batters it down with their spear weapon. Making sure you don't accidentally hit them, you hold your breath and wait until the right moment comes, aiming for the creature's head. The flailing creature begins to gets closer, and your pulse begins to race. A gust of sand blasts directly towards you, and once it clears you fire your weapon. A laser shot flies directly into the face of the beast.`
 			`	Much to your dismay, the shot almost immediately ricochets off of it. You watch as the massive monster tumbles over you, just barely leaping into the air above. The monster plunges into the earth behind you, and you fall to your back with the wind knocked out of you. You raise your sidearm once more. The creature explodes out of the ground with its gaping mouth pointed upward to the sky. With shaking hands, you take aim once again and pull the trigger.`
-			`	A loud, cannon-like bang follows, but it most certainly did not come from your weapon. The beast before you falls downward in a cloud of black smoke, blasting sand and rubble everywhere with a thud. Once you come to your senses, you see the Vi marching out of the creature's mouth.` 
+			`	A loud, cannon-like bang follows, but it most certainly did not come from your weapon. The beast before you falls downward in a cloud of black smoke, blasting sand and rubble everywhere with a thud. Once you come to your senses, you see the Vi marching out of the creature's mouth.`
 			choice
 				`	(Stand up and approach the alien.)`
 				`	(Get up and run to your ship.)`
-			`	Before you can collect yourself, you realize the Vi warrior is now much closer to you. Within a matter of moments, the alien stands before you, giving you a much better look at them. They are at least several feet taller than both you and the other Gegno you've seen, extremely bulky, and slightly hunched over. Heavy-looking metal surround their body, and in any exposed areas are rough-looking patches of skin and hair. Thick facial hair covers their face, and above their human-like eyes are a pair of horns curved inward towards you.`
+			`	Before you can collect yourself, you realize the Vi warrior is now much closer to you. Within a matter of moments, the alien stands before you, giving you a much better look at them. They are much taller than both you and the other Gegno you've seen, extremely bulky, and slightly hunched over. Heavy-looking metal surround their body, and in any exposed areas are rough-looking patches of skin and hair. Thick facial hair covers their face, and above their human-like eyes are a pair of horns curved inward towards you.`
 			`	While the Gegno are known to dislike outsiders, this particular Gegno seems to at the very least acknowledge you. After a period of awkward and what seems to be judgmental silence, the Vi looks you up and down in an unenthused manner. They emit a very deep grumble, and with a loud snort, reach into a crevice in their armor to grab something. Pulling out what looks to be some sort of star map, they point to a location on it, gesture to themselves, then lower the device slowly to you. It seems they want to be taken to one of the Gegno's planets.`
 			choice
 				`	(Accept their request).`
@@ -208,12 +208,12 @@ mission "Visit Quarg in Gegno Space"
 		conversation
 			`Your trip here was full of tension and anything but pleasant. Rather than find a seat normally, the <alien> stood close behind you in your cockpit with their arms crossed during most of the ride, almost as if they were an immovable boulder. Occasionally, you made attempts to communicate with them again to break the pressure, but the most they would give you is a slight glance or low grunt.`
 			`	As you descend into the atmosphere, you watch as layers of dark smog quickly reveal massive cities glittered with various lights towering into the sky. The ships here are of different shades than the ones you previously saw, being more tan than dark brown, and are in a much larger quantity. The intensity of traffic, combined with the overwhelming mass of infrastructure, suggests that this is the homeworld of the <alien>. Before getting lost in the fantastical sight in front you, the <alien> marches up next to you and raises one arm, gesturing to an enormous factory-like structure in the distance that stands out from other towers. You carefully guide your ship to the building and with the help of the <alien> find a suitable docking port to land on.`
-			`	After you touch down, several <aliens> that are of a similar appearance to the one next to you begin to line up in a formation towards your ship, all carrying various types of staff-like weaponry. However, they don't show any signs of aggression and simply hold their position in a coordinated display of might. The <alien> beside you gestures for their compass device they gave you earlier.` 
+			`	After you touch down, several <aliens> that are of a similar appearance to the one next to you begin to line up in a formation towards your ship, all carrying various types of staff-like weaponry. However, they don't show any signs of aggression and simply hold their position in a coordinated display of might. The <alien> beside you gestures for their compass device they gave you earlier.`
 			choice
 				`	(Hand them the device.)`
 				
-			branch "has met quarg"			
-				has "Giaru Gegno: Quarg Contact: offered"	
+			branch "has met quarg"
+				has "Giaru Gegno: Quarg Contact: offered"
 			`	After fiddling with it, the <alien> marks a new location and presents it to you. "Oukeug," they say, and gesture you to depart in a fashion of urgency. They then leave your ship, walk towards the others, and have a brief discussion. A few moments later, another smaller group of <aliens> arrive with what looks to be some type of fueling device, and after a minute or so of fidgeting with it, they manage to hook it up to your ship. These <aliens> look shorter and thinner than the others, and wear more leather-like garments than heavy metal ones - but their demeanor is just as rigid. Once your ship's fuel has been filled, the <alien> that has been guiding you gestures towards the sky. It seems your visit to the mysterious <alien> homeworld will have to be cut short.`
 				launch
 			
@@ -249,7 +249,7 @@ mission "Visit Quarg in Gegno Space"
 		fleet "Vi Warfleet"
 	npc
 		government "Gegno Scin (Neutral)"
-		personality staying	
+		personality staying
 		system "Heutesl"
 		fleet "Scin Warfleet"
 	npc
@@ -300,7 +300,7 @@ mission "Giaru Gegno: Quarg Contact"
 			`	You preemptively begin to stand up, but you are cut short when you see the second Quarg raise its arms outward in a gesture you never thought you'd see from a Quarg. "This must be for you an exhilarating day, young traverser. I strongly imagine this is a first for both of us." It is now obvious that this Quarg is not the same one from earlier, and you begin to see a few differences in its attire and figure. The upbeat rhythm to their speech is not something you would expect of a Quarg.`
 			choice
 				`	"Where am I?"`
-			`	The Quarg sits down across from you, still gesturing its arms about in a strange manner, albeit slower this time. "You have found yourself in the dwelling of the mighty Gegno, who have rooted their hardy empire here in the great galactic east."`		
+			`	The Quarg sits down across from you, still gesturing its arms about in a strange manner, albeit slower this time. "You have found yourself in the dwelling of the mighty Gegno, who have rooted their hardy empire here in the great galactic east."`
 				goto "the gegno"
 			
 			label "intrigued quarg"
@@ -310,11 +310,11 @@ mission "Giaru Gegno: Quarg Contact"
 			choice
 				`	"The Gegno?"`
 					goto gegno
-				`	"Do the ships I’ve seen around belong to these Gegno?"`
+				`	"Do the ships I've seen around belong to these Gegno?"`
 					goto ships
 			label gegno
 			`	"Yes, the imperious Gegno. A juvenile race, they are, many decades younger than that of you humans. They do not find themselves in the struggle of leadership the same way as others do. Rather, they glorify their pursuit of guidance between one another to share a noble future." You wonder if the Quarg's use of boastful adjectives is because of gaps in his translations, or if they are intentionally speaking that way. Its voice still comes from the lower tones of Quarg speech, clashing with the excited pace it is speaking at.`
-			choice 
+			choice
 				`	"What is this guidance they pursue?"`
 					goto guidance
 			label ships
@@ -329,7 +329,7 @@ mission "Giaru Gegno: Quarg Contact"
 			`	"The Gegno believe it to be necessary to sacrifice whatever must be, in order to imagine a future for themselves. Thus, they have separated into two different branches. One brandishes themselves as the honorable Vi - mightiest of warriors, toughest of kin. They are brutes that see proof of strength being the one and only variable in determining their path. That of the Scin, the more technologically able, believe that only through progression of sciences and discovery will the Gegno prosper."`
 			label next
 			choice
-				`	"The Vi are right, the strength to survive is more important than anything else." `
+				`	"The Vi are right, the strength to survive is more important than anything else."`
 					goto vi
 				`	"The Scin are right, technological advancement opens up so many possibilities."`
 					goto scin
@@ -493,7 +493,7 @@ mission "Gegno Genocide Defense"
 		ship "Augen" "Vytii Yrrlausei"
 
 
-				
+
 # Gegno Hunter Fleets
 
 mission "Gegno Hunter Fleets"
@@ -502,15 +502,17 @@ mission "Gegno Hunter Fleets"
 	repeat
 	to offer
 		has "Gegno Genocide Defense: offered"
-		not "Gegno Hunter Fleets"
-	npc
+		not "Gegno Hunter Fleets: active"
+	to complete
+		never
+	npc save
 		government "Gegno"
 		personality nemesis heroic vindictive
 		system
 			government "Gegno"
 		fleet
 			names "gegno united"
-			variant 
+			variant
 				"Gneiss" 3
 				"Hornfel" 2
 				"Hornfel (Heavy Weapons)" 2
@@ -519,7 +521,7 @@ mission "Gegno Hunter Fleets"
 				"Halite" 18
 				"Felsic" 3
 				"Coesite" 5
-	npc
+	npc save
 		government "Gegno"
 		personality nemesis heroic vindictive
 		system
@@ -533,7 +535,7 @@ mission "Gegno Hunter Fleets"
 				"Felsic" 4
 				"Coesite" 4
 				"Eclogite" 3
-	npc
+	npc save
 		government "Gegno"
 		personality nemesis heroic vindictive
 		system
@@ -565,16 +567,16 @@ mission "Gegno Vi Duels"
 		random < 60
 	to complete
 		never
-	npc
+	npc provoke
 		system "Ookmya"
 		government "Gegno Vi (Duelist A)"
-		personality heroic uninterested
+		personality heroic uninterested staying
 		fleet "Gegno Vi Duelist A"
 		conversation "interfered with duel"
-	npc
+	npc provoke
 		system "Ookmya"
 		government "Gegno Vi (Duelist B)"
-		personality heroic uninterested
+		personality heroic uninterested staying
 		fleet "Gegno Vi Duelist B"
 		conversation "interfered with duel"
 
