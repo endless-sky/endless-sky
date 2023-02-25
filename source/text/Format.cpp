@@ -439,12 +439,21 @@ string Format::ExpandConditions(const string &source, ConditionGetter getter)
 	//	state = [ ----- read &[ but haven't seen @ or ] yet
 	//	state = N ----- inside a nested [] of depth `depth`
 	//	state = @ ----- read &[...@ but haven't seen ] yet. Have format start & size.
+
 	// Anything inside a &[...] is sent to AppendCondition
-	char state = '_';
+
+	static const char OUTER = '_';
+	static const char PREFIX = '&';
+	static const char LPAREN = '[';
+	static const char RPAREN = ']';
+	static const char DIVIDER = '@';
+	static const char NESTED = 'N';
+
+	char state = OUTER;
 	// Depth of nested [] within the &[...]
 	int depth = 0;
 	// State before entering the nested []
-	char oldState = '[';
+	char oldState = LPAREN;
 	// "start" is the beginning of the text that has not yet been sent to result.
 	size_t start = 0;
 	for(size_t look = 0; look < source.size(); ++look)
@@ -452,61 +461,61 @@ string Format::ExpandConditions(const string &source, ConditionGetter getter)
 		char next = source[look];
 		// This would be faster with a nested select, but that would be
 		// harder to read, and I don't expect this to be performance-critical.
-		if(state == '_' && next == '&')
-			state = '&';
-		else if(state == '_' || (state == '&' && next != '['))
+		if(state == OUTER && next == PREFIX)
+			state = PREFIX;
+		else if(state == OUTER || (state == PREFIX && next != LPAREN))
 		{
 			result.append(source, start, look - start + 1);
 			start = look + 1;
-			state = '_';
+			state = OUTER;
 		}
-		else if(state == '&' && next == '[')
+		else if(state == PREFIX && next == LPAREN)
 		{
 			formatStart = formatSize = conditionStart = conditionSize = string::npos;
-			state = '[';
+			state = LPAREN;
 		}
-		else if(state == '[' && next == '@')
+		else if(state == LPAREN && next == DIVIDER)
 		{
 			formatStart = start + 2;
 			formatSize = look - formatStart;
-			state = '@';
+			state = DIVIDER;
 		}
-		else if(state == '@' && next == ']')
+		else if(state == DIVIDER && next == RPAREN)
 		{
 			conditionStart = formatStart + formatSize + 1;
 			conditionSize = look - conditionStart;
 			AppendCondition(result, source, getter, formatStart, formatSize,
 				conditionStart, conditionSize);
 			start = look + 1;
-			state = '_';
+			state = OUTER;
 		}
-		else if((state == '[' || state == '@') && next == '[')
+		else if((state == LPAREN || state == DIVIDER) && next == LPAREN)
 		{
 			oldState = state;
-			state = 'N';
+			state = NESTED;
 			depth = 1;
 		}
-		else if(state == 'N' && next == '[')
+		else if(state == NESTED && next == LPAREN)
 			depth++;
-		else if(state == 'N' && next == ']' && depth > 1)
+		else if(state == NESTED && next == RPAREN && depth > 1)
 			depth--;
-		else if(state == 'N' && next == ']' && depth == 1)
+		else if(state == NESTED && next == RPAREN && depth == 1)
 			state = oldState;
-		else if(state == '[' && next == ']')
+		else if(state == LPAREN && next == RPAREN)
 		{
 			conditionStart = start + 2;
 			conditionSize = look - conditionStart;
 			AppendCondition(result, source, getter, formatStart, formatSize,
 				conditionStart, conditionSize);
 			start = look + 1;
-			state = '_';
+			state = OUTER;
 		}
-		else if(!(state == '[' || state == '@' || state == 'N'))
+		else if(!(state == LPAREN || state == DIVIDER || state == NESTED))
 		{
 			// Error in format string.
 			result.append(source, start, look - start + 1);
 			start = look + 1;
-			state = '_';
+			state = OUTER;
 		}
 	}
 	if(start < source.size())
