@@ -43,6 +43,8 @@ mission "Escort (Tiny, Northern, Dangerous Destination)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
@@ -56,6 +58,8 @@ mission "Escort (Tiny, Northern, Dangerous Destination)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	
 	npc accompany save
 		government "Merchant"
@@ -103,6 +107,8 @@ mission "Escort (Tiny, Northern, Dangerous Origin)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
@@ -117,6 +123,8 @@ mission "Escort (Tiny, Northern, Dangerous Origin)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	
 	npc accompany save
 		government "Merchant"
@@ -561,6 +569,8 @@ mission "Escort (Tiny, Core, Dangerous Destination)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	npc
 		government "Pirate"
 		personality nemesis staying harvests plunders
@@ -574,6 +584,8 @@ mission "Escort (Tiny, Core, Dangerous Destination)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	
 	npc accompany save
 		government "Merchant"
@@ -623,6 +635,8 @@ mission "Escort (Tiny, Core, Dangerous Origin)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
@@ -635,6 +649,8 @@ mission "Escort (Tiny, Core, Dangerous Origin)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	
 	npc accompany save
 		government "Merchant"
@@ -1075,6 +1091,8 @@ mission "Escort (Tiny, Southern, Dangerous Origin or Destination)"
 				"Fury"
 			variant
 				"Hawk"
+			variant
+				"Scrapper"
 	npc
 		government "Pirate"
 		personality nemesis staying harvests plunders
@@ -1088,6 +1106,8 @@ mission "Escort (Tiny, Southern, Dangerous Origin or Destination)"
 				"Fury"
 			variant
 				"Hawk"
+			variant
+				"Scrapper"
 	
 	npc accompany save
 		government "Merchant"
@@ -2722,7 +2742,9 @@ mission "Bounty Hunting (Very Tiny)"
 			distance 1 1
 		fleet
 			names "pirate"
-			variant
+			variant 3
+				"Scrapper"
+			variant 6
 				"Sparrow"
 			variant
 				"Wasp"
