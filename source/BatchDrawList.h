@@ -29,17 +29,6 @@ class Sprite;
 // This class collects a set of OpenGL draw commands to issue and groups them by
 // sprite, so all instances of each sprite can be drawn with a single command.
 class BatchDrawList {
-private:
-	// A struct to hold the data that is assigned to a sprite.
-	struct DrawElement {
-		// Each sprite consists of six vertices (four vertices to form a quad and
-		// two dummy vertices to mark the break in between them). Each of those
-		// vertices has five attributes: (x, y) position in pixels, (s, t) texture
-		// coordinates, and the index of the sprite frame.
-		// Each Sprite has also an alpha value asigned.
-		std::vector<float> vertices;
-		double alpha;
-	};
 public:
 	// Clear the list, also setting the global time step for animation.
 	void Clear(int step = 0, double zoom = 1.);
@@ -51,6 +40,19 @@ public:
 
 	// Draw all the items in this list.
 	void Draw() const;
+
+
+private:
+	// A struct to hold the data that is assigned to a sprite.
+	struct DrawElement {
+		// Each sprite consists of six vertices (four vertices to form a quad and
+		// two dummy vertices to mark the break in between them). Each of those
+		// vertices has five attributes: (x, y) position in pixels, (s, t) texture
+		// coordinates, and the index of the sprite frame.
+		// Each Sprite has also an alpha value asigned.
+		std::vector<float> vertices;
+		double alpha;
+	};
 
 
 private:
