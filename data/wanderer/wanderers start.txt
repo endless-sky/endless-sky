@@ -275,9 +275,9 @@ mission "Wanderers: Translation Algorithm Training Data"
 	description "Bring a copy of the human cultural archives to <destination> so the Wanderers can train an automated translation algorithm."
 	landing
 	source "Alexandria"
-	destination "Greenwater"
+	destination "Vara K'chrai"
 	to offer
-		has "Human Cultural Archives: done"
+		has "Wanderers: Translation Machine: done"
 	on offer
 		set "human cultural data"
 		payment -40
@@ -285,10 +285,15 @@ mission "Wanderers: Translation Algorithm Training Data"
 			`You travel through the library searching for data suitable for training the Wanderer translation algorithm but you have an unexpected problem: you're surrounded by it. Even a Bulk Freighter would be unable to carry all the tomes and data cores of Alexandria library. Someone with expertise in natural language processing would know what to do. Asking around, you're referred to a research librarian who develops automated translation algorithms for dead languages. She directs you to the museum gift shop, where you buy the "Human Cultural Archive" for 40 credits.`
 				accept
 	on complete
+		event "wanderer translator available" 84
 		conversation
-			event "wanderer technology available" 90
-			`A Wanderer meets you at landing and you hand them the data card. They plug it into a first-sized machine whose slot seems to adjust itself to match the shape of the card on the way in. The Wanderer makes bird-like clicking noises while manipulating the device. Eventually, the device says, "Spank moo. Peter 'n' in Mindy Ways."`
-			`	The Wanderer seems displeased with the results. After a few minutes of fiddling with the device, and various nonsense phrases, the device finally says, "Thank you. Return in ninety days." The Wanderer waves and departs.`
+			`A Wanderer meets you at landing and you hand them the data card. They plug it into a mango-sized machine whose data card slot seems to adjust itself to match the shape of the card on the way in. The Wanderer makes clicking and whistling noises while manipulating the device. Eventually, the device presents the words, "[Enter, Bring] ten and two. Within [truth, lies] the pleasant [cow, nova] tickles me [thoughtfully, gracefully]."`
+			`	The Wanderer seems displeased with the results. After a few minutes of fiddling with the device, it sputters out, "Pleasing [truth, gratifications]. [Accepting, Holding] geolocated results [within, for] three [menstrual, lunar] cycles." Seeing your confusion, the Wanderer manipulates the device for several more minutes.`
+			`	"Thank you. Return in twelve weeks", the device says. Looking quite satisfied with this, the Wanderer waves and departs.`
+
+
+event "wanderer translator available"
+
 
 
 mission "Visit Wanderers Again"
@@ -298,13 +303,12 @@ mission "Visit Wanderers Again"
 		not planet "Vara K'chrai"
 	destination "Vara K'chrai"
 	to offer
-		has "Wanderers: Translation Machine: done"
-		has "event: wanderer technology available"
+		has "event: wanderer translator available"
 		not "Wanderers Conversation: done"
 	on offer
 		set "language: Wanderer"
 		conversation
-			`Checking your ship's calendar, you realize that ninety days have passed since the Wanderer scientist started working on the translator. It should be ready for you now.`
+			`Checking your ship's calendar, you realize that twelve weeks have passed since the Wanderer scientist started working on the translator. It should be ready for you now at <planet>.`
 				accept
 
 
@@ -314,19 +318,6 @@ event "wanderer technology available" # Name unchanged for compatibility
 		"friendly disabled hail" "friendly disabled wanderer"
 		"hostile hail" "hostile wanderer"
 		"hostile disabled hail" "hostile disabled wanderer"
-
-
-
-# Compatibility patch for saves before "language: Hai" variable was added.
-mission "Hai Language Patch"
-	landing
-	invisible
-	to offer
-		has "Visit Wanderers Again: offered"
-		not "language: Hai"
-	on offer
-		set "language: Hai"
-		fail
 
 
 
@@ -346,16 +337,21 @@ mission "Wanderers Conversation"
 	landing
 	source "Vara K'chrai"
 	to offer
-		has "Visit Wanderers Again: done"
+		or
+			has "event: wanderer translator available"
+			# For users before wanderer translator:
+			has "language: Wanderers"
+			has "event: wanderer technology available"
 	on offer
+		event "wanderer technology available"
 		set "license: Wanderer Outfits"
-		log "Spoke with a Wanderer ambassador named Iktat Rek, using the translation device. Received permission to purchase some of their technology, but not their ships."
+		log "Received a translation device and used it to speak with a Wanderer ambassador named Iktat Rek. They granted permission to purchase some of their technology, but not their ships."
 		log "Factions" "Wanderers" `The Wanderers believe that their purpose in the universe is to "repair" planets whose biospheres have been ravaged by other species either through mismanagement or as a result of war. They came to their current territory through a wormhole that they call "the Eye," and they say that once their work here is done the Eye will open and lead them to a new territory and new worlds for them to care for.`
 			`It is possible that the worlds they currently inhabit were formerly part of Hai territory. That might explain why the Unfettered believe they have a right to take that territory back.`
 		log "People" "Iktat Rek" `Rek is a Wanderer ambassador, a new and unusual profession among a species that until recently has had no contact with aliens except for the occasional Unfettered Hai raid. His job is to help the Wanderers develop a deeper relationship with humans.`
 		conversation
-			`With the help of your new translation device, you are able to contact the Wanderer government. They welcome you back and tell you that a Wanderer named "Iktat Rek" has been appointed as the official envoy to deal with human visitors, and he should be arriving at your landing pad shortly.`
-			`	Rek is slightly larger than most of the Wanderers you have seen, with muted white and brown plumage and a calm, dignified bearing. "It is very [rare, exceptional] in our history that we have to [deal with, cope with] other species," he says, "and now we find ourselves dealing with two at once." He is speaking his own language, and the translation device does its best to render his words in your own language.`
+			`After you land, a group of Wanderers take you to the engineer from your last meeting. Explaining the device, the engineer says, "It will [function, succeed] on speech of typical [speed, tempo], but-" As they speak faster, the translation device produces gibberish. "This is Iktat Rek," they say, gesturing to another Wanderer. "He is [appointed, chosen] as the official [envoy, bearer] for human [visitors, couriers]."`
+			`	Rek is slightly larger than most of the Wanderers you have seen, with muted white and brown plumage and a calm, dignified bearing. "It is very [rare, exceptional] in our history that we have to [deal with, cope with] other species," he says, "and now we find ourselves dealing with two at once."`
 			choice
 				`	"How did you learn the Hai language?"`
 					goto language
@@ -363,7 +359,10 @@ mission "Wanderers Conversation"
 					goto fighting
 				`	"Why were you able to create a translation device so quickly?"`
 
-			`	"[Automated, machine] translation is a [primitive, early] technology most races develop early in their [lifetime, development]. To us, it is [simple, basic] task. If your race has traveled [the stars, space], they must have [known, possessed] that technology for centuries."`
+			# Point of note: we have this technology now, in the real world. This is a race that can
+			# encode, in a few weeks, their race's entire self-hood in a way that a sentient AI can
+			# absorb. For them, making a translation machine for a simple meat-space language is trivial.
+			`	"[Automated, machine] language translation is a [primitive, early] application of machine [learning, intelligence]. For us it is [elementary, instinctual] mathematics. Our [thinkers, tinkerers] told me that most of the [work, enjoyment] was adapting the [interface, conceptualization, mechanism] to a human mind."`
 			choice
 				`	"How did you learn the Hai language?"`
 					goto language
