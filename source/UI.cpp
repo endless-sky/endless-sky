@@ -24,6 +24,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <SDL2/SDL_log.h>
 #include <algorithm>
 
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "Preferences.h"
+#include "Color.h"
+
+
 using namespace std;
 
 
@@ -41,7 +47,7 @@ bool UI::Handle(const SDL_Event &event)
 		// Panels that are about to be popped cannot handle any other events.
 		if(count(toPop.begin(), toPop.end(), it->get()))
 			continue;
-
+		const char* event_at = "";
 		if(event.type == SDL_MOUSEMOTION)
 		{
 			// handle touch events separately. Don't use SDL_FINGERDOWN because
@@ -56,13 +62,23 @@ bool UI::Handle(const SDL_Event &event)
 			if (!handled)
 			{
 				if(event.motion.state & SDL_BUTTON(1))
+				{
 					handled = (*it)->Drag(
 						event.motion.xrel * 100. / Screen::Zoom(),
 						event.motion.yrel * 100. / Screen::Zoom());
+					event_at = "Drag()";
+				}
 				else
+				{
 					handled = (*it)->Hover(
 						Screen::Left() + event.motion.x * 100 / Screen::Zoom(),
 						Screen::Top() + event.motion.y * 100 / Screen::Zoom());
+					event_at = "Hover()";
+				}
+			}
+			else
+			{
+				event_at = "FingerMove()";
 			}
 		}
 		else if(event.type == SDL_MOUSEBUTTONDOWN)
@@ -77,13 +93,24 @@ bool UI::Handle(const SDL_Event &event)
 					if (!handled && event.button.which == SDL_TOUCH_MOUSEID)
 					{
 						handled = (*it)->FingerDown(x, y);
+						event_at = "FingerDown()";
+					}
+					else
+					{
+						event_at = "ZoneMouseDown()";
 					}
 
 					if(!handled)
+					{
 						handled = (*it)->Click(x, y, event.button.clicks);
+						event_at = "Click()";
+					}
 				}
 				else if(event.button.button == 3)
+				{
 					handled = (*it)->RClick(x, y);
+					event_at = "RClick()";
+				}
 			}
 		}
 		else if(event.type == SDL_MOUSEBUTTONUP)
@@ -96,17 +123,60 @@ bool UI::Handle(const SDL_Event &event)
 				if (!handled && event.button.which == SDL_TOUCH_MOUSEID)
 				{
 					handled = (*it)->FingerUp(x, y);
+					event_at = "FingerUp()";
+				}
+				else
+				{
+					event_at = "ZoneMouseUp()";
 				}
 				if (!handled)
+				{
 					handled = (*it)->Release(x, y);
+					event_at = "Release()";
+				}
 			}
 		}
 		else if(event.type == SDL_MOUSEWHEEL)
+		{
 			handled = (*it)->Scroll(event.wheel.x, event.wheel.y);
+			event_at = "Scroll()";
+		}
 		else if(event.type == SDL_KEYDOWN)
 		{
 			Command command(event.key.keysym.sym);
 			handled = (*it)->KeyDown(event.key.keysym.sym, event.key.keysym.mod, command, !event.key.repeat);
+			event_at = "KeyDown()";
+		}
+
+		if (handled)
+		{
+			if(event.type == SDL_MOUSEMOTION)
+			{
+				events[evt_idx++ % 10] = std::string("MOTION ") +
+												std::string(event.motion.which == SDL_TOUCH_MOUSEID ? "touch " : "mouse ") +
+												std::to_string(event.motion.x) + ", " + std::to_string(event.motion.y)
+												+ " " + event_at;
+			}
+			else if (event.type == SDL_MOUSEBUTTONDOWN)
+			{
+				events[evt_idx++ % 10] = std::string("DOWN ") +
+												std::string(event.button.which == SDL_TOUCH_MOUSEID ? "touch " : "mouse ") +
+												std::to_string(event.motion.x) + ", " + std::to_string(event.motion.y)
+												+ " " + event_at;
+
+			}
+			else if(event.type == SDL_MOUSEBUTTONUP)
+			{
+				events[evt_idx++ % 10] = std::string("UP ") +
+												std::string(event.button.which == SDL_TOUCH_MOUSEID ? "touch " : "mouse ") +
+												std::to_string(event.button.x) + ", " + std::to_string(event.button.y)
+												+ " " + event_at;
+			}
+			else if(event.type == SDL_KEYDOWN)
+			{
+				events[evt_idx++ % 10] = std::string("KEY ") + std::to_string(event.key.keysym.sym)
+												+ " " + event_at;
+			}
 		}
 
 		// If this panel does not want anything below it to receive events, do
@@ -152,6 +222,19 @@ void UI::DrawAll()
 
 	for( ; it != stack.end(); ++it)
 		(*it)->Draw();
+}
+
+void UI::DrawEvents()
+{
+	int i =1;
+	for (uint64_t idx = evt_idx - 10; idx != evt_idx; ++idx, ++i)
+	{
+		std::string loadString = events[idx % 10];
+		Color color{.6, .6, .6, 0};
+		const Font &font = FontSet::Get(14);
+		font.Draw(loadString,
+			Point(-10 - font.Width(loadString), Screen::Height() * -.5 + 5 + 20 * i), color);
+	}
 }
 
 

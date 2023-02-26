@@ -1506,6 +1506,7 @@ void Engine::CalculateStep()
 	ai.Step(player, activeCommands);
 
 	// Clear the active players commands, they are all processed at this point.
+	last_activeCommands |= activeCommands;
 	activeCommands.Clear();
 
 	// Perform actions for all the game objects. In general this is ordered from
@@ -1587,11 +1588,19 @@ void Engine::CalculateStep()
 
 	// Perform various minor actions.
 	SpawnFleets();
+	last_activeCommands |= activeCommands;
 	SpawnPersons();
+	last_activeCommands |= activeCommands;
 	GenerateWeather();
+	last_activeCommands |= activeCommands;
 	SendHails();
+	last_activeCommands |= activeCommands;
 	HandleMouseClicks();
+	last_activeCommands |= activeCommands;
 	HandleTouchEvents();
+	last_activeCommands |= activeCommands;
+
+
 
 	// Now, take the new objects that were generated this step and splice them
 	// on to the ends of the respective lists of objects. These new objects will
@@ -2181,6 +2190,14 @@ void Engine::HandleMouseClicks()
 			flagship->SetTargetShip(nullptr);
 		}
 	}
+
+	click_state = std::string() +
+		(clickTarget ? "1" : "0") +
+		(isRightClick ? "1" : "0") +
+		(clickedAsteroid ? "1" : "0") +
+		(clickedPlanet ? "1" : "0") +
+		(isFingerDown ? "1" : "0") +
+		(moveTowardActive ? "1" : "0");
 }
 
 

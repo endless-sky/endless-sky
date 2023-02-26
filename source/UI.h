@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <memory>
 #include <vector>
+#include <string>
 
 #include <SDL2/SDL_events.h>
 
@@ -77,6 +78,7 @@ public:
 	// Get the current mouse position.
 	static Point GetMouse();
 
+	void DrawEvents();
 
 private:
 	// If a push or pop is queued, apply it.
@@ -92,6 +94,10 @@ private:
 	std::vector<std::shared_ptr<Panel>> stack;
 	std::vector<std::shared_ptr<Panel>> toPush;
 	std::vector<const Panel *> toPop;
+
+
+	uint64_t evt_idx = 0;
+	std::string events[10];
 };
 
 

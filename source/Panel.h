@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Rectangle.h"
 #include "Command.h"
+#include "UI.h"
 
 #include <functional>
 #include <list>
@@ -114,6 +115,7 @@ protected:
 	// if the message was displayed.
 	bool DoHelp(const std::string &name) const;
 
+	void DrawEvents() { ui->DrawEvents(); }
 
 private:
 	class Zone : public Rectangle {

@@ -183,6 +183,9 @@ void MainPanel::Draw()
 			loadSum = 0.;
 			loadCount = 0;
 		}
+
+		FontSet::Get(14).Draw("Commands " + engine.ActiveCommands(), Point(10., Screen::Height() * -.5 + 35.), color);
+		DrawEvents();
 	}
 
 	bool isActive = (GetUI()->Top().get() == this);
