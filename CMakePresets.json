@@ -481,6 +481,20 @@
       }
     },
     {
+      "name": "test-release",
+      "hidden": true,
+      "configuration": "Release",
+      "output": {
+        "shortProgress": true,
+        "outputOnFailure": true
+      },
+      "filter": {
+        "include": {
+          "label": "unit"
+        }
+      }
+    },
+    {
       "name": "benchmark",
       "hidden": true,
       "configuration": "Release",
@@ -583,6 +597,12 @@
       "displayName": "Unit Tests",
       "configurePreset": "linux",
       "inherits": "test"
+    },
+    {
+      "name": "linux-test-release",
+      "displayName": "Unit Tests (Release)",
+      "configurePreset": "linux",
+      "inherits": "test-release"
     },
     {
       "name": "linux-benchmark",
