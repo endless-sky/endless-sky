@@ -227,7 +227,7 @@ mission "Wanderers: Translation Machine"
 	description "Sayari, the Hai ambassador, suggested that you visit <destination>, where Hai technologists are working on translation machines."
 	landing
 	source "Vara K'chrai"
-	destination "Greenwater"
+	destination "Alexandria"
 	to offer
 		has "Wanderers: Diplomacy: done"
 	on offer
@@ -260,113 +260,53 @@ mission "Wanderers: Translation Machine"
 			`	They respond, and Sayari translates, "They say that their species has encountered many other species in the past, and always has found those encounters to be valuable. Although..." She pauses to listen as the Wanderers continue speaking. "Although, they say that in their travels, far more often than they encounter living species, they instead only find themselves sifting through the refuse of a species that has destroyed itself through war or carelessness. They hope that you are not such a species, because..." Again she pauses as the Wanderers speak, then says, "Because, they hate to make new friends only to lose them again."`
 			
 			label end
-			`	Speaking through Sayari, you try to reassure the Wanderers that you have peaceful intentions. They speak with her for a while longer. She tells you, "They say that I will be allowed to stay here as an ambassador, and they will also let you land on most of their worlds. But they will not welcome any other Hai into their territory. I fear that they distrust the Hai because of the actions of the Unfettered, and being associated with me may harm your chances to win their favor. For your sake, we should find a different way for you to communicate with them."`
+			`	Speaking through Sayari, you try to reassure the Wanderers that you have peaceful intentions. They speak with her for a while longer. She tells you, "They say that I will be allowed to stay here as an ambassador, and they will also let you land on most of their worlds. But they will not welcome any other Hai into their territory. I fear that they distrust the Hai because of the actions of the Unfettered, and being associated with me may harm your chances to win their favor.`
+			`	"I'll have to remain here, so you'll need another way to communicate with them..." She pauses to talk to the Wanderers. "They're willing to create a translation device so you can communicate without an intermediary, but they need a large amount of data to train their algorithms. Human literature, speeches, interactive programs; anything with language and context."`
 			choice
-				`	"How can we do that?"`
-			`	She says, "There are scientists on the Hai world of <planet> who develop speaking machines, to allow the Hai who do not know the human language to communicate with humans. I will write a letter asking them to give you one of these speaking machines, so that you may talk with the Wanderers without needing me as an intermediary."`
+				`	"Where can I find the data?"`
+			`	"Your people have a large library at <planet>. You should fly there and find something suitable."`
 				accept
 	on accept
 		"reputation: Wanderer" >?= 10
 
 
 
-conversation "eruk cultural data"
-	branch return
-		has "Human Cultural Archives: done"
-	`You land on <origin> and seek out the technologist that Sayari told you to contact: a Hai named Eruk. His eyes light up when you describe what you need from him, and why. "Contact with a new species! How very exciting," he says. "I am glad for Sayari that such an opportunity has been presented to her. But our speaking machines are very valuable. Before I give one to you, will you do a small favor for me?"`
-	choice
-		`	"Of course. What do you need?"`
-			goto need
-		`	"Can't I just pay you for one?"`
-			goto money
-	
-	label need
-	`	He says, "The human immigrants tell me that in the region of your space they call the Deep is a space station, a library that houses human cultural artifacts and a database of human literature and history. Bring me a copy of that database, and I will give you a speaking machine."`
-		goto end
-	
-	label money
-	`	"Money?" he says, with a dismissive gesture. "What use is money? No, from you I desire something far more valuable. The human immigrants tell me that in the region of your space they call the Deep is a space station, a library that houses human cultural artifacts and a database of human literature and history. Bring me a copy of that database, and I will give you a speaking machine."`
-		goto end
-	
-	label end
-	branch data
-		has "human cultural data"
-	choice
-		`	"No problem, I'll bring you a copy of the database as soon as I can."`
-			accept
-		`	"How will I convince them to give me a copy of their data?"`
-	`	Your question seems to utterly confuse him. "Information," he says. "It is what you call a non-rival good, is it not? When I give information, I do not lose it. Sharing it costs me nothing. The librarians, surely they will understand this. Have no fear."`
-		accept
-	
-	label data
-	choice
-		`	"I actually already have a copy of that data."`
-	`	"You do? Please go get it!" he exclaims.`
-	`	You go to your ship to retrieve the data and give it to him upon returning. His eyes light up with excitement as he makes a copy of the card and returns the original to you.`
-		goto give
-	
-	label return
-	`You return to Eruk's workshop and give him the data card. His eyes light up with excitement as he makes a copy of the card and returns the original to you.`
-	
-	label give
-	`	"I have spent my whole life studying human culture," he says. "This is a treasure to me. And now, here is your speaking machine." He hands you a small, spherical device, with speakers and microphones mounted on it, as well as what look like camera lenses. "The device is programmed with the human and Hai languages," he says. "It is not always possible to translate perfectly between our two languages, but it will try to give you a sense of the range of meanings in what is being said."`
-	choice
-		`	"Thank you. I'm eager to try it out!"`
-			accept
-		`	"Is there anything else I need to know?"`
-	`	He humors you by demonstrating how the machine works, holding a conversation with you where he speaks in the Hai language, and the machine automatically translates for you and then translates your responses back into his language. It apparently uses its cameras to track who you are speaking to or listening to. It's an impressive piece of technology, and easy enough to use. You thank him for his help, and return to your ship.`
-		accept
-
-
-
-mission "Human Cultural Archives"
-	description "Eruk, the Hai technologist on <origin>, has agreed to give you a translation machine if you can somehow get him a copy of the human cultural data from <destination>."
-	landing
-	source "Greenwater"
-	destination "Alexandria"
-	to offer
-		has "Wanderers: Translation Machine: done"
-		not "human cultural data"
-	on offer
-		conversation "eruk cultural data"
-	on visit
-		dialog
-			`The station has a small museum gift shop that sells a copy of the entire archive on a data card. It only costs 40 credits, but because you have done a horrible job at managing your finances you do not have even that much cash on hand right now.`
-			`	Go earn some money, then return here.`
-	on complete
-		set "human cultural data"
-		payment -40
-
-
-
-mission "Cultural Data to Greenwater"
-	description "Bring a copy of the human cultural archives to <destination> in exchange for a translation machine."
+mission "Wanderers: Translation Algorithm Training Data"
+	description "Bring a copy of the human cultural archives to <destination> so the Wanderers can train an automated translation algorithm."
 	landing
 	source "Alexandria"
 	destination "Greenwater"
 	to offer
 		has "Human Cultural Archives: done"
 	on offer
+		set "human cultural data"
+		payment -40
 		conversation
-			`You had wondered how you would get a copy of the entire cultural archive, but it turns out to be easier than expected. The station has a small museum gift shop, which sells a copy of the archives on a data card. ("The perfect gift for the budding historian in your family! Hold all of human history in the palm of your hand. On sale now for only 39.99!") Given that a cheap data card costs a fraction of a credit, it's a bit of a rip-off, but you gladly buy one to take back to Eruk.`
+			`You travel through the library searching for data suitable for training the Wanderer translation algorithm but you have an unexpected problem: you're surrounded by it. Even a Bulk Freighter would be unable to carry all the tomes and data cores of Alexandria library. Someone with expertise in natural language processing would know what to do. Asking around, you're referred to a research librarian who develops automated translation algorithms for dead languages. She directs you to the museum gift shop, where you buy the "Human Cultural Archive" for 40 credits.`
 				accept
-
+	on complete
+		conversation
+			event "wanderer technology available" 90
+			`A Wanderer meets you at landing and you hand them the data card. They plug it into a first-sized machine whose slot seems to adjust itself to match the shape of the card on the way in. The Wanderer makes bird-like clicking noises while manipulating the device. Eventually, the device says, "Spank moo. Peter 'n' in Mindy Ways."`
+			`	The Wanderer seems displeased with the results. After a few minutes of fiddling with the device, and various nonsense phrases, the device finally says, "Thank you. Return in ninety days." The Wanderer waves and departs.`
 
 
 mission "Visit Wanderers Again"
-	description "Return to the Wanderer homeworld of <destination> with a device that will allow you to converse with them more freely."
+	description "Return to the Wanderer homeworld of <destination> to receive a device that will allow you to converse with them more freely."
 	landing
-	source "Greenwater"
+	source
+		not planet "Vara K'chrai"
 	destination "Vara K'chrai"
 	to offer
 		has "Wanderers: Translation Machine: done"
-		has "human cultural data"
+		has "event: wanderer technology available"
+		not "Wanderers Conversation: done"
 	on offer
 		set "language: Wanderer"
-		set "language: Hai"
-		event "wanderer technology available"
-		log "Received a device, created by a Hai scientist, which can translate between human language and the Hai language. Since the Wanderers speak the Hai language, that should make it possible to communicate with them directly."
-		conversation "eruk cultural data"
+		conversation
+			`Checking your ship's calendar, you realize that ninety days have passed since the Wanderer scientist started working on the translator. It should be ready for you now.`
+				accept
+
 
 event "wanderer technology available" # Name unchanged for compatibility
 	government "Wanderer"
@@ -415,12 +355,22 @@ mission "Wanderers Conversation"
 		log "People" "Iktat Rek" `Rek is a Wanderer ambassador, a new and unusual profession among a species that until recently has had no contact with aliens except for the occasional Unfettered Hai raid. His job is to help the Wanderers develop a deeper relationship with humans.`
 		conversation
 			`With the help of your new translation device, you are able to contact the Wanderer government. They welcome you back and tell you that a Wanderer named "Iktat Rek" has been appointed as the official envoy to deal with human visitors, and he should be arriving at your landing pad shortly.`
-			`	Rek is slightly larger than most of the Wanderers you have seen, with muted white and brown plumage and a calm, dignified bearing. "It is very [rare, exceptional] in our history that we have to [deal with, cope with] other species," he says, "and now we find ourselves dealing with two at once." He is speaking the Hai language, and the translation device does its best to render his words in your own language.`
+			`	Rek is slightly larger than most of the Wanderers you have seen, with muted white and brown plumage and a calm, dignified bearing. "It is very [rare, exceptional] in our history that we have to [deal with, cope with] other species," he says, "and now we find ourselves dealing with two at once." He is speaking his own language, and the translation device does its best to render his words in your own language.`
 			choice
 				`	"How did you learn the Hai language?"`
 					goto language
 				`	"How long have you been fighting the Unfettered Hai?"`
-			
+					goto fighting
+				`	"Why were you able to create a translation device so quickly?"`
+
+			`	"[Automated, machine] translation is a [primitive, early] technology most races develop early in their [lifetime, development]. To us, it is [simple, basic] task. If your race has traveled [the stars, space], they must have [known, possessed] that technology for centuries."`
+			choice
+				`	"How did you learn the Hai language?"`
+					goto language
+				`	"How long have you been fighting the Unfettered Hai?"`
+					goto fighting
+
+			label fighting
 			`	"It has been nearly twenty [years, cycles] now," he says. "At first only a single Hai ship [visited, invaded] us, but back then we had no defenses in place to stop it. For years the ship only [harvested, stole] food from our frontier worlds, and avoided combat. In our culture it is an [obligation, duty] to share our food with one who [asks for, demands] it, so we did not oppose the Hai ship. But then more Hai ships came, attacked one of our worlds and took it for themselves, and killed many of our people. We built warships and drove them back, and yet their [raids, attacks] still continue."`
 				goto food
 			
@@ -500,7 +450,7 @@ mission "Wanderers: Defend Vara Ke'sok Hint"
 		not "Wanderers: Defend Vara Ke'sok: done"
 	on offer
 		conversation
-			`Walking around the spaceport, you are approached by two Wanderers. One of them begins speaking in the Hai language, which your translator picks up. "Greetings, [stranger, curiosity]. We heard you are capable of [providing, gifting] help. Is this correct?"`
+			`Walking around the spaceport, you are approached by two Wanderers. "Greetings, [stranger, curiosity]. We heard you are capable of [providing, gifting] help. Is this correct?"`
 			choice
 				`	"Yes it is. What do you need?"`
 					goto proposal
@@ -562,7 +512,7 @@ mission "Wanderers: Defend Vara Ke'sok"
 			branch hint
 				has "Wanderers: Defend Vara Ke'sok Hint: done"
 			`Soon after you land in the spaceport, there is a flurry of activity as many of the Wanderers fly to their ships, which begin to take off from the planet. In the sky, you see bright flashes that may be distant weapons fire or explosions.`
-			`	You are buffeted by wind as one of the Wanderers lands next to your ship and says, in the Hai language, "Unfettered [raider, pirate] fleet comes. We have put food on freighter, hope they take [offering, gift] and leave. If not [appeased, satisfied] you help convince them to leave. Yes?"`
+			`	You are buffeted by wind as one of the Wanderers lands next to your ship and says, in their language, "Unfettered [raider, pirate] fleet comes. We have put food on freighter, hope they take [offering, gift] and leave. If not [appeased, satisfied] you help convince them to leave. Yes?"`
 				goto choice
 			label hint
 			`Touching down onto the planet, several Wanderers gather around your ship and prepare to carry the cargo out of your ship. Before the Wanderer you transported to <planet> can say a word, a shrill bird cry fills the air.`
@@ -661,7 +611,7 @@ mission "Wanderers: Unfettered Diplomacy 1"
 		has "Wanderers: Defended Vara Ke'sok: done"
 	on offer
 		conversation
-			`On <origin>, you meet up with Iktat Rek and the Hai ambassador Sayari, and tell them that you just helped to drive off an Unfettered raid on the Wanderer water world of Vara Ke'sok. "The situation is not [sustainable, livable]," says Rek. "Perhaps the Unfettered are the ones [chosen, intended] to [inherit, receive] the fruit of our labors here, but until the Eye beckons us to a new [home, place] we have nowhere else to go."`
+			`On <origin>, you meet up with Iktat Rek and the Hai ambassador Sayari, and tell them that you just helped to drive off an Unfettered raid on the Wanderer water world of Vara Ke'sok. Sayari has a Wanderer translator, too, and it seems to be translating to human like yours. "The situation is not [sustainable, livable]," says Rek. "Perhaps the Unfettered are the ones [chosen, intended] to [inherit, receive] the fruit of our labors here, but until the Eye beckons us to a new [home, place] we have nowhere else to go."`
 			choice
 				`	"You're saying that after working so hard to restore these worlds, you would give them to someone as destructive as the Unfettered?"`
 				`	"That can't be right. The Unfettered wrecked their own worlds. They would wreck yours as well."`
@@ -1851,7 +1801,7 @@ mission "Wanderers Invaded 3C"
 	on offer
 		conversation
 			`You land on <origin>, and Emeka'a Isai leads you to the building where the council of war is taking place. Sayari, the Hai diplomat, has also been invited, along with Iktat Rek and various other leaders. Rek looks even more bedraggled than before: his wings are drooping, and more of his feathers are out of place.`
-			`	It is not entirely clear to you who outranks whom in the meeting, or even what roles the different participants have. To make matters worse, you are uncomfortably reminded that your translator only understands the Hai language. Rek and Isai speak mostly in Hai so that you and Sayari can be included, but when the conversation gets heated they all switch into their native tongue, a cacophony of clicks and whistles.`
+			`	It is not entirely clear to you who outranks whom in the meeting, or even what roles the different participants have. To make matters worse, they're talking much faster than your translator can process. Rek and Isai speak slowly so that you and Sayari can be included, but when the conversation gets heated they speed up, in a cacophony of clicks and whistles.`
 			`	They are looking at a map of Wanderer space, and it's clear from their gestures that the discussion is about how far they can afford to retreat in order to form a more defensive position. Rek explains to you, "When the Eye opens, we must leave this [territory, space] anyway, so a retreat now will just position us better to [embark, journey on] when the time comes."`
 			choice
 				`	"But what if the Eye does not open and you are trapped here?"`
@@ -2165,16 +2115,9 @@ conversation "solifuge conversation"
 	`	"We gather a large fleet above Cloudfire," one of the elders says, "and shortly afterward the Unfettered unveil this new ship. Perhaps it is only right that we respond in kind with a ship of our own."`
 	`	"My son is an engineer," another elder says. "He helped create our Centipede and Geocoris ships, both as a result of the humans living among us. Perhaps he would be of assistance in creating a ship to respond to the Unfettered." The elder presses a button and leans over to a microphone. "Please bring Osen into the council chamber."`
 	`	A short while later, the elder's son enters the chamber and introduces himself to the council. They tell him about the Unfettered having created a carrier and the need for a new ship to be created as a response, and Osen's eyes go wide.`
-	`	Osen begins speaking very quickly in the Hai language, so fast that your translation device seems to barely be able to keep up.`
-	`	"I have [exactly, precisely] the ship! My team has been [developing, producing] a ship for many [years, cycles] that carries a [fleet, squadron] of drones. We have [working, functional] [prototypes, models], but they are not yet [finished, complete]. We are still [developing, producing] technology to repair the [hull, armor] of a ship in flight, which would make this ship and its drones much more [effective, powerful]."`
-	`	The device continues speaking to you for nearly a minute after Osen stops talking (which is a little awkward as everyone stares at you). "Sorry, I wasn't aware that you had a translation device," Osen says, no longer speaking in Hai.`
+	`	"I have precisely the ship! My team has been developing a ship for many years that carries a squadron of drones. We have functional prototypes, but they are not yet complete. We are still developing technology to repair the hull of a ship in flight, which would make this ship and its drones much more effective."`
 	choice
-		`	"It's alright."`
-			goto next
-		`	"You talk really fast."`
-	`	Osen shrugs and smiles at you. "I speak fast when I'm excited."`
-	label next
-	`	"When is the earliest that you could provide these ships to us?" Osen's father asks.`
+		`	"When is the earliest that you could provide these ships?"`
 	`	"It would only be a few weeks for us to have a number of prototype ships ready, but I highly suggest that we wait until we have created hull repair technology. If these Unfettered Solifuges do not have such technology, then having it will give our ship an advantage by being able to redeploy damaged drones, but we believe that we are still many years away from developing technology strong enough to be of any real use."`
 	`	The elders once again mumble among themselves. They continue to ask Osen a number of questions about this new carrier. How difficult is one to produce? How much does it cost? What are the capabilities of the drones? How useful would it be without being able to repair the hull of its drones?`
 	`	After having all their questions answered, the elders seem to be interested in the idea of Osen's new ship. "This hull repair technology indeed sounds necessary," an elder says. "We will provide what funding we can to help fast track its development."`
