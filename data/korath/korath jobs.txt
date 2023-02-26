@@ -257,7 +257,7 @@ mission "Korath Humanika: Fish Trade (small)"
 	destination "New Tortuga"
 	stopover "La'ab Bamen"
 	to offer
-		has "Korath [F02]: A Fishy Deal: done"
+		has "event: know about Korath fish jobs"
 		not "Korath Humanika: Fish Trade (small): active"
 	on stopover
 		dialog "You drop of your <tons> of illicit fish, and receive <tons> of unknown cargo from a woman in a blue dress."
@@ -280,7 +280,7 @@ mission "Korath Humanika: Fish Trade (medium)"
 	stopover "La'ab Bamen"
 	to offer
 		random < 20
-		has "Korath [F02]: A Fishy Deal: done"
+		has "event: know about Korath fish jobs"
 		not "Korath Humanika: Fish Trade (medium): active"
 		"cargo space" > 20
 	on stopover
@@ -304,7 +304,7 @@ mission "Korath Humanika: Fish Trade (bulk)"
 	stopover "La'ab Bamen"
 	to offer
 		random < 5
-		has "Korath [F02]: A Fishy Deal: done"
+		has "event: know about Korath fish jobs"
 		not "Korath Humanika: Fish Trade (bulk): active"
 		"cargo space" > 50
 	on stopover

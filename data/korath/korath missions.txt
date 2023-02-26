@@ -400,54 +400,7 @@ mission "First Contact: Korath Exiles"
 
 
 
-mission "Korath [F01]: Rabasot Pa'ah Failed Landings"
-	name "Land on <planet>."
-	description "Try again to land on <planet> after your last attempt failed."
-	landing
-	repeat 3
-	source "Rabasot Pa'ah"
-	destination "Rabasot Pa'ah"
-	on offer
-		conversation
-			branch "first attempt"
-				"Korath [F01]: Rabasot Pa'ah Failed Landings: offered" == 0
-			branch "second attempt"
-				"Korath [F01]: Rabasot Pa'ah Failed Landings: offered" == 1
-			branch "third attempt"
-
-			label "first attempt"
-			scene scene/purple-lightning
-			action
-				log "Failed to land on Rabasot Pa'ah due to a powerful atmospheric event brought on by unusual interactions between the planet's atmosphere and the nova it orbits. Reconfiguring the shields to act as a plow got me out of the storm. That shield configuration should allow safe transit through the atmosphere in my next landing attempt."
-			`As you descend through the magnetosphere, your computer warns you of a build-up of unusual charged particles, muons, which is a bit odd. From your training on hyperspace exit and entrance, you recall that the mean lifetime of a muon is measured in microseconds. Something here must be actively generating them.`
-			`	You travel deeper into the atmosphere, approaching what appears to be an inactive volcanic island chain. As usual, your ship's descent causes air currents, but the strange atmosphere turns those currents into a powerful storm. The muons mix with this event, creating catastrophic explosions of electrical discharge.`
-			`	Recalling the class you took on extreme atmospheric landings, you reconfigure your shields to act as a plow, pushing through the storm. At first, it isn't enough, so you pull upward, hoping the lower atmospheric density will let you escape. Once you're free, you realize you've already reached the exosphere. For once, those 50,000 credits of pilot training don't seem like a waste of money.`
-			`	A quick analysis by your ship's computer tells you the shield plow technique should get you all the way down to the surface, if you avoid eddies in the magnetosphere. It seems those eddies interact with the nova in an odd manner that produces vast amounts of muons, which ride your ship through the atmosphere.`
-			`	Certainly, a second landing attempt will get you through the atmosphere. Next, you'll have to scout for a safe place to land on this world of water and storms.`
-				launch
-
-			label "second attempt"
-			scene scene/volcanic-eruption-at-night
-			action
-				log "Was able to pass through the atmosphere of Rabasot Pa'ah despite the unusual atmospheric event. A volcanic eruption nearly hit the ship, and it may have been caused by landing on an inopportune spot. There is a large island - or small continent - that looks suitable for landing. My next landing attempt should succeed."
-			`In this trip, your ship's descent stirred up awe-inspiring storm clouds, but traveling through them was easy. Your shield plow technique took you down to the lower troposphere, where the storms cleared enough for you to see. The original island chain was too far away, so you set course for a larger island nearby.`
-			`	Aiming for a hard-looking piece of ground, you touch down. As this planet has twice Earth's gravity, you extend your ship's artificial gravity field to the surface. Donning a space suit for safety's sake, you walk out to see nature taking control once again: the massive volcano in front of you starts to erupt.`
-			`	After a dash to the cockpit, still in your suit, you take off, satisfied that you've reached the surface - albeit in the worst possible spot. A third attempt will certainly succeed, as you saw a small continent with no apparent volcanic activity, and a pleasant-looking bay.`
-				launch
-
-			label "third attempt"
-			scene scene/blue-whale
-			action
-				set "landed on Rabasot Pa'ah"
-				log "Discovered a creature in a bay on the ocean world of Rabasot Pa'ah with the front half of a whale and the back half of a giant squid. They seem out-of-place, since the planet is almost devoid of macroscopic lifeforms. Perhaps someone is shipping them to the planet?"
-			`On your third attempt, you dodge most of the storms by flying into the atmosphere at an odd angle that keeps you in stable air nearly the whole way. After a long flight through safe atmosphere, you finally reach the bay and land on a durable mesa overlooking it. Extending your ship's artificial gravity field to the surface, you don your suit and walk out.`
-			`	This is the perfect location for life, so it's no surprise there are small plants and a few fish in the water. The seas are calmer here than the rest of the planet and an unusual formation in the ionosphere protects this spot from the worst rays of the nova. The dominant land-based lifeform seems to be toothed worms about the size of your arm.`
-			`	The strangest feature is what appears to be slow-moving islands. As one comes closer, its form is more clear: an unholy marriage between a blue whale and a giant squid. Given the vast difference in size between those creatures and anything else you've seen on the planet, it is unlikely they evolved here. Has someone been shipping giant whale-squid to this bay?`
-				decline
-
-
-
-mission "Korath [F02]: A Fishy Proposition"
+mission "Korath [F01]: A Fishy Deal"
 	landing
 	name "A fishy proposition"
 	description "Transport <cargo> to <planet> by <date>. After a return trip, you'll be payed 140,000. Don't get caught."
@@ -458,6 +411,7 @@ mission "Korath [F02]: A Fishy Proposition"
 	source "New Tortuga"
 	destination "La'ab Bamen"
 	on offer
+		event "know about Korath fish jobs"
 		conversation
 			`[New Tortuga approach image]`
 			`Flying through the atmosphere of New Tortuga, you pass over a typhoon, overfly a tsunami, and take a short detour around a supercell tornado. After a half hour of delicate flying, you approach doors more than a hundred meters tall. As they open, you can see they're ten meters thick, made of a material you don't recall seeing on human planets. Two layers of shields shut down in anticipation of your entry, each strong enough to stop a Navy Carrier. To the left and right, there are turrets with heat signatures higher than a Breeder Reactor. Whoever built this place values their safety... and has the funds and technology to secure it.`
@@ -468,52 +422,52 @@ mission "Korath [F02]: A Fishy Proposition"
 				`	"That's an interesting ship."`
 					goto ship
 					to display
-						not "Korath [F02]: A Fishy Deal: ship"
+						not "Korath [F01]: A Fishy Deal: ship"
 				`	"What's getting you down?"`
 					goto down
 					to display
-						has "Korath [F02]: A Fishy Deal: ship"
-						not "Korath [F02]: A Fishy Deal: down"
+						has "Korath [F01]: A Fishy Deal: ship"
+						not "Korath [F01]: A Fishy Deal: down"
 				`	"What sort of delivery?"`
 					goto mission
 					to display
-						has "Korath [F02]: A Fishy Deal: down"
-						not "Korath [F02]: A Fishy Deal: mission"
+						has "Korath [F01]: A Fishy Deal: down"
+						not "Korath [F01]: A Fishy Deal: mission"
 				`	"Sure, I could deliver it for you."`
 					goto yup
 					to display
-						has "Korath [F02]: A Fishy Deal: mission"
+						has "Korath [F01]: A Fishy Deal: mission"
 				`	"I wish I could help, but I have urgent matters of my own."`
 					decline
 					to display
 						or
-							has "Korath [F02]: A Fishy Deal: ship"
-							has "Korath [F02]: A Fishy Deal: down"
-							has "Korath [F02]: A Fishy Deal: mission"
+							has "Korath [F01]: A Fishy Deal: ship"
+							has "Korath [F01]: A Fishy Deal: down"
+							has "Korath [F01]: A Fishy Deal: mission"
 				`	(Ignore her and go about your business.)`
 					decline
 					to display
-						not "Korath [F02]: A Fishy Deal: ship"
-						not "Korath [F02]: A Fishy Deal: down"
-						not "Korath [F02]: A Fishy Deal: mission"
+						not "Korath [F01]: A Fishy Deal: ship"
+						not "Korath [F01]: A Fishy Deal: down"
+						not "Korath [F01]: A Fishy Deal: mission"
 			label ship
 			action
-				set "Korath [F02]: A Fishy Deal: ship"
+				set "Korath [F01]: A Fishy Deal: ship"
 				log "Minor People" "Jenny Jetmaster" "Latest in a family line that has operated and maintained a replica of an ancient jet aircraft and made money on airshows. She is now on run from the Syndicate for rescuing her persecuted uncle from Tinker"
 			`	[image of a hyperspace-worth jet aircraft]`
 			`	You see her expression brighten as she walks towards you. "It's an heirloom," she says proudly, gesturing widely at the ship, "which has been in the family for centuries. My distant ancestor got a military surplus cargo plane and refurbished it. They used it as a personal craft. Each generation added to it; every piece has been repaired or replaced over the last thousand years. It's more of a replica now.`
 			`	"The whole thing has been modernized - about a dozen times. There's a hyperdrive built into the hull itself, and those ion engines aren't of Syndicate design. They're custom-built, with ion propulsion, steering, and atmospheric anti-grav, in one assembly. The design was once called a Jetmaster, and my family have taken the Jetmaster name as our own.`
 			`	"Jenny Jetmaster," she says, with a choreographed bow. "My family used to do air shows all across human space, until my uncle got on the bad side of the Syndicate. We flew all the way from Bourne to Tinker to pick him up and smuggled him out to New Tortuga where the Syndicate cannot reach us. Now I smuggle cargo through hyperspace in a 20th century aircraft!"`
 			branch questions
-				has "Korath [F02]: A Fishy Deal: down"
+				has "Korath [F01]: A Fishy Deal: down"
 			label down
 			action
-				set "Korath [F02]: A Fishy Deal: down"
+				set "Korath [F01]: A Fishy Deal: down"
 			`	Her face turns sour and she says, "Unfortunately, I can't finish my current delivery. My mother is quite sick, and I want to get to Freedom before..." she trails off. "Well, a client really needs this delivery, and I have to find someone to do it."`
 				goto questions
 			label mission
 			action
-				set "Korath [F02]: A Fishy Deal: mission"
+				set "Korath [F01]: A Fishy Deal: mission"
 			`	"It's the sort of delivery where you don't ask what sort of delivery it is. Take <tons> of fish to <planet>, and fly back here with <tons> of supplies. It's just two systems away, and the payment is 140,000 credits. Couldn't be easier."`
 				goto questions
 			label yup
@@ -529,9 +483,11 @@ mission "Korath [F02]: A Fishy Proposition"
 	on visit
 		dialog "You've arrived at <planet> but you left some of the fish behind. You should take off and wait for your escorts to arrive."
 
+event "know about Korath fish jobs"
 
 
-mission "Korath [F03]: A Fishy Proposition"
+
+mission "Korath [F02]: A Fishy Proposition"
 	landing
 	name "A fishy proposition"
 	description "Transport <cargo> to <planet> by <date> for <payment>. Avoid getting scanned or landing on high-security planets, or you may be fined."
@@ -646,6 +602,7 @@ mission "Korath [F03]: A Fishy Proposition"
 				`	"What was this cargo?"`
 				`	"I'm glad to have served another happy customer."`
 					goto done
+			`	[Image of a sophisticated-looking waste processing system.]`
 			`	She looks shocked. "You should never ask that question." Her face relaxes. "You're in luck this time: your cargo was not confidential, so I can satisfy your curiosity.`
 			`	"Much of our planet's food comes from a waste processing system that converts sewage directly into edible materials. We need a steady supply of filters to make this possible. These barrels contain several genetically-engineered organisms that feed on sewage and secrete certain types of proteins. There are other filters for sugar, oils, and just about anything else. It goes into 3D printers, and with a bit of spices, it is quite palatable. Still, we prefer to eat real food when we can.`
 
@@ -662,10 +619,57 @@ mission "Korath: Assistance Warning"
 	source
 		government Korath
 	to offer
-		has "Korath [F03]: A Fishy Proposition: offered"
+		has "Korath [F02]: A Fishy Proposition: offered"
 	on offer
 		conversation
 			`Just after the ship departs, you remember the warning from Iris: openly displaying your association with the Korath will anger half the galaxy. Hopefully that was just hyperbole...`
+				decline
+
+
+
+mission "Korath [F03]: Rabasot Pa'ah Failed Landings"
+	name "Land on <planet>."
+	description "Try again to land on <planet> after your last attempt failed."
+	landing
+	repeat 3
+	source "Rabasot Pa'ah"
+	destination "Rabasot Pa'ah"
+	on offer
+		conversation
+			branch "first attempt"
+				"Korath [F03]: Rabasot Pa'ah Failed Landings: offered" == 0
+			branch "second attempt"
+				"Korath [F03]: Rabasot Pa'ah Failed Landings: offered" == 1
+			branch "third attempt"
+
+			label "first attempt"
+			scene scene/purple-lightning
+			action
+				log "Failed to land on Rabasot Pa'ah due to a powerful atmospheric event brought on by unusual interactions between the planet's atmosphere and the nova it orbits. Reconfiguring the shields to act as a plow got me out of the storm. That shield configuration should allow safe transit through the atmosphere in my next landing attempt."
+			`As you descend through the magnetosphere, your computer warns you of a build-up of unusual charged particles, muons, which is a bit odd. From your training on hyperspace exit and entrance, you recall that the mean lifetime of a muon is measured in microseconds. Something here must be actively generating them.`
+			`	You travel deeper into the atmosphere, approaching what appears to be an inactive volcanic island chain. As usual, your ship's descent causes air currents, but the strange atmosphere turns those currents into a powerful storm. The muons mix with this event, creating catastrophic explosions of electrical discharge.`
+			`	Recalling the class you took on extreme atmospheric landings, you reconfigure your shields to act as a plow, pushing through the storm. At first, it isn't enough, so you pull upward, hoping the lower atmospheric density will let you escape. Once you're free, you realize you've already reached the exosphere. For once, those 50,000 credits of pilot training don't seem like a waste of money.`
+			`	A quick analysis by your ship's computer tells you the shield plow technique should get you all the way down to the surface, if you avoid eddies in the magnetosphere. It seems those eddies interact with the nova in an odd manner that produces vast amounts of muons, which ride your ship through the atmosphere.`
+			`	Certainly, a second landing attempt will get you through the atmosphere. Next, you'll have to scout for a safe place to land on this world of water and storms.`
+				launch
+
+			label "second attempt"
+			scene scene/volcanic-eruption-at-night
+			action
+				log "Was able to pass through the atmosphere of Rabasot Pa'ah despite the unusual atmospheric event. A volcanic eruption nearly hit the ship, and it may have been caused by landing on an inopportune spot. There is a large island - or small continent - that looks suitable for landing. My next landing attempt should succeed."
+			`In this trip, your ship's descent stirred up awe-inspiring storm clouds, but traveling through them was easy. Your shield plow technique took you down to the lower troposphere, where the storms cleared enough for you to see. The original island chain was too far away, so you set course for a larger island nearby.`
+			`	Aiming for a hard-looking piece of ground, you touch down. As this planet has twice Earth's gravity, you extend your ship's artificial gravity field to the surface. Donning a space suit for safety's sake, you walk out to see nature taking control once again: the massive volcano in front of you starts to erupt.`
+			`	After a dash to the cockpit, still in your suit, you take off, satisfied that you've reached the surface - albeit in the worst possible spot. A third attempt will certainly succeed, as you saw a small continent with no apparent volcanic activity, and a pleasant-looking bay.`
+				launch
+
+			label "third attempt"
+			scene scene/blue-whale
+			action
+				set "landed on Rabasot Pa'ah"
+				log "Discovered a creature in a bay on the ocean world of Rabasot Pa'ah with the front half of a whale and the back half of a giant squid. They seem out-of-place, since the planet is almost devoid of macroscopic lifeforms. Perhaps someone is shipping them to the planet?"
+			`On your third attempt, you dodge most of the storms by flying into the atmosphere at an odd angle that keeps you in stable air nearly the whole way. After a long flight through safe atmosphere, you finally reach the bay and land on a durable mesa overlooking it. Extending your ship's artificial gravity field to the surface, you don your suit and walk out.`
+			`	This is the perfect location for life, so it's no surprise there are small plants and a few fish in the water. The seas are calmer here than the rest of the planet and an unusual formation in the ionosphere protects this spot from the worst rays of the nova. The dominant land-based lifeform seems to be toothed worms about the size of your arm.`
+			`	The strangest feature is what appears to be slow-moving islands. As one comes closer, its form is more clear: an unholy marriage between a blue whale and a giant squid. Given the vast difference in size between those creatures and anything else you've seen on the planet, it is unlikely they evolved here. Has someone been shipping giant whale-squid to this bay?`
 				decline
 
 
@@ -685,7 +689,7 @@ mission "Korath [F04]: Fishy Reasoning"
 		has "landed on Rabasot Pa'ah"
 
 		# You have to meet Iris and know she has knowledge of Korath:
-		has "Korath [F03]: A Fishy Proposition: done"
+		has "Korath [F02]: A Fishy Proposition: done"
 	on offer
 		conversation
 			`[Image with a collage of feather, fish, and sand drawings.]`
