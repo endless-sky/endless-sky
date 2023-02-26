@@ -740,7 +740,7 @@ mission "ZZ Hai Reveal [A04] Report to Teeneep"
 			has "Hai Reveal: Pirate Troubles [4]: declined"
 			has "hr defeated scar's legion"
 	on offer
-		dialog `While resolving the situation with Scar's Legion, you have learned information which should be reported to Alondo, but apparently he is away somewhere and unavailable for a short while. Simply waiting for him at this point may be suspicious, and this is also something Teeneep should be informed of. Perhaps doing so will also help shed some light on what's going on?`
+		dialog `While resolving the situation with Scar's Legion, you have learned information which should be reported to Alondo, but apparently he is away somewhere and unavailable for a short while. Simply waiting for him at this point may be suspicious, and this situation is also something Teeneep should be informed of. Perhaps doing so will also help shed some light on what's going on?`
 
 
 mission "Hai Reveal [A05] Take Teeneep to Hai-home"
