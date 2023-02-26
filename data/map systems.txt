@@ -32443,13 +32443,14 @@ system Uttna
 	habitable 3000
 	belt 1748
 	"jump range" 50
-	haze _menu/haze-coal
+	haze _menu/haze-none
 	asteroids "medium rock" 3 4.8
 	asteroids "large rock" 2 3.96
 	asteroids "small metal" 4 2.84
 	asteroids "large metal" 16 3.42
 	minables platinum 5 1.4
 	minables uranium 8 2.2
+	fleet "Iije (Uninterested)" 9000
 	object
 		sprite star/a8
 		period 10
