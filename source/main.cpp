@@ -43,6 +43,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Test.h"
 #include "TestContext.h"
 #include "UI.h"
+#include "text/FontSet.h"
 
 #include <SDL2/SDL_events.h>
 #include <chrono>
@@ -306,6 +307,9 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	if(!testToRunName.empty())
 		testContext = TestContext(GameData::Tests().Get(testToRunName));
 
+	uint64_t evt_idx = 0;
+	std::string events[10];
+
 	// IsDone becomes true when the game is quit.
 	while(!menuPanels.IsDone())
 	{
@@ -318,6 +322,31 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		while(SDL_PollEvent(&event))
 		{
 			UI &activeUI = (menuPanels.IsEmpty() ? gamePanels : menuPanels);
+
+			if(event.type == SDL_MOUSEMOTION)
+			{
+				events[evt_idx++ % 10] = std::string("MOTION ") +
+											  std::string(event.motion.which == SDL_TOUCH_MOUSEID ? "touch " : "mouse ") +
+											  std::to_string(event.motion.x) + ", " + std::to_string(event.motion.y);
+			}
+			else if (event.type == SDL_MOUSEBUTTONDOWN)
+			{
+				events[evt_idx++ % 10] = std::string("DOWN ") +
+											  std::string(event.button.which == SDL_TOUCH_MOUSEID ? "touch " : "mouse ") +
+											  std::to_string(event.motion.x) + ", " + std::to_string(event.motion.y);
+
+			}
+			else if(event.type == SDL_MOUSEBUTTONUP)
+			{
+				events[evt_idx++ % 10] = std::string("UP ") +
+			    							  std::string(event.button.which == SDL_TOUCH_MOUSEID ? "touch " : "mouse ") +
+											  std::to_string(event.button.x) + ", " + std::to_string(event.button.y);
+			}
+			else if(event.type == SDL_KEYDOWN)
+			{
+				events[evt_idx++ % 10] = std::string("KEY ") + std::to_string(event.key.keysym.sym);
+			}
+
 
 			// If the mouse moves, reset the cursor movement timeout.
 			if(event.type == SDL_MOUSEMOTION)
@@ -451,6 +480,20 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		(menuPanels.IsEmpty() ? gamePanels : menuPanels).DrawAll();
 		if(isFastForward)
 			SpriteShader::Draw(SpriteSet::Get("ui/fast forward"), Screen::TopLeft() + Point(10., 10.));
+
+		if(Preferences::Has("Show CPU / GPU load"))
+		{
+
+			int i =1;
+			for (uint64_t idx = evt_idx - 10; idx != evt_idx; ++idx, ++i)
+			{
+				std::string loadString = events[idx % 10];
+				Color color{.6, .6, .6, 0};
+				const Font &font = FontSet::Get(14);
+				font.Draw(loadString,
+					Point(-10 - font.Width(loadString), Screen::Height() * -.5 + 5 + 20 * i), color);
+			}
+		}
 
 		GameWindow::Step();
 
