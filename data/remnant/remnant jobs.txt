@@ -112,7 +112,7 @@ mission "Remnant: Expanded Horizons Astral job"
 	job
 	repeat
 	name "Research Expedition to <waypoints>"
-	description "Travel to <waypoints> with a research laboratory to collect data, then return to <destination>."
+	description "Travel to <waypoints> with a Research Laboratory to collect data, then return to <destination>."
 	source
 		government "Remnant"
 	waypoint
