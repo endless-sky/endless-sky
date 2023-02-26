@@ -4220,7 +4220,7 @@ mission "Farming Employee Poaching"
 		or
 			random < 20
 			and
-				not "Korath [F02]: A Fishy Deal: offered"
+				not "event: know about Korath fish jobs"
 				random < 35
 	source
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -4246,7 +4246,7 @@ mission "Mining Employee Poaching"
 		or
 			random < 20
 			and
-				not "Korath [F02]: A Fishy Deal: offered"
+				not "event: know about Korath fish jobs"
 				random < 35
 	source
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -4272,7 +4272,7 @@ mission "Science Employee Poaching"
 		or
 			random < 20
 			and
-				not "Korath [F02]: A Fishy Deal: offered"
+				not "event: know about Korath fish jobs"
 				random < 35
 	source
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -4298,7 +4298,7 @@ mission "Factory Employee Poaching"
 		or
 			random < 20
 			and
-				not "Korath [F02]: A Fishy Deal: offered"
+				not "event: know about Korath fish jobs"
 				random < 35
 	source
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -4324,7 +4324,7 @@ mission "Urban Employee Poaching"
 		or
 			random < 20
 			and
-				not "Korath [F02]: A Fishy Deal: offered"
+				not "event: know about Korath fish jobs"
 				random < 35
 	source
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
