@@ -32450,7 +32450,7 @@ system Uttna
 	asteroids "large metal" 16 3.42
 	minables platinum 5 1.4
 	minables uranium 8 2.2
-	fleet "Iije (Uninterested)" 9000
+	fleet "Iije (Uninterested)" 15000
 	object
 		sprite star/a8
 		period 10
