@@ -454,12 +454,12 @@ interface "info panel"
 	visible if "show park all"
 	sprite "ui/wide button"
 		from -420 -50 to -310 0 bottom right
-	button A "Park All"
+	button a "Park _All"
 		from -420 -50 to -310 0 bottom right
 	visible if "show unpark all"
 	sprite "ui/wide button"
 		from -420 -50 to -310 0 bottom right
-	button A "Unpark All"
+	button a "Unpark _All"
 		from -420 -50 to -310 0 bottom right
 	visible if "show save order"
 	sprite "ui/wide button"
