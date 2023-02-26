@@ -574,7 +574,7 @@ void Engine::Step(bool isActive)
 				nextZoom = max(zoomTarget, baseZoom * (1. / (1. + zoomRatio)));
 		}
 	}
-	zoom = baseZoom * zoomMod;
+	zoom = Preferences::Has("Cinematic effects") ? baseZoom * zoomMod : baseZoom;
 
 	// Draw a highlight to distinguish the flagship from other ships.
 	if(flagship && !flagship->IsDestroyed() && Preferences::Has("Highlight player's flagship"))

@@ -491,6 +491,7 @@ void PreferencesPanel::DrawSettings()
 		VIEW_ZOOM_FACTOR,
 		SCREEN_MODE_SETTING,
 		VSYNC_SETTING,
+		"Cinematic effects",
 		"Show status overlays",
 		"Show missile overlays",
 		"Highlight player's flagship",
