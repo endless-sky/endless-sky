@@ -23195,21 +23195,17 @@ system Mnashyu
 		distance 170.2
 		period 70.13
 	object "Mnai"
-		sprite planet/forest3
-		distance 1087.9
-		period 379.555
-		object "Eeu Mnai"
+		sprite planet/forest3-b
+		distance 1340
+		period 980
+		object
 			sprite planet/dust3-b
 			distance 197.75
 			period 16
-	object
-		sprite planet/rock1
-		distance 1530.8
-		period 633.533
-	object
+	object "Eeu Mnai"
 		sprite planet/rock7
 		distance 1619
-		period 689.068
+		period 370
 	object
 		sprite planet/gas7-hot
 		distance 2449
