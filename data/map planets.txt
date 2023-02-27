@@ -46,7 +46,7 @@ planet Ada
 planet "Aetuah"
 	attributes "gas giant" "requires: gaslining"
 	landscape land/nasa30
-	description `The close proximity of Aetuh and the neighboring ice moon causes various ebbs and flows of the storms on the gas giant as well as constant reshaping of the moon's surface. The ice moon may have been captured by Aetuh in times past as a rogue planet, and the distance of the gas giant from the system center suggests it might be a rogue planet itself as well. In time, the gravitational force exhibited by Aetuah will tear apart the ice moon, plummeting it into the abyss.`
+	description `The close proximity of Aetuah and the neighboring ice moon causes various ebbs and flows of the storms on the gas giant as well as constant reshaping of the moon's surface. The ice moon may have been captured by Aetuah in times past as a rogue planet, and the distance of the gas giant from the system center suggests it might be a rogue planet itself as well. In time, the gravitational force exhibited by Aetuah will tear apart the ice moon, plummeting it into the abyss.`
 	description `	The most striking features of Aetuah are large oval-shaped organisms inhabiting the upper atmosphere. These lifeforms resemble some of the space fauna of nearby systems, and adopt a strange behavior to slingshot themselves away from Aetuah once they reach a certain size through some unknown propulsion method.`
 	government Uninhabited
 
@@ -4547,7 +4547,7 @@ planet Vatican
 
 planet "Veiuye"
 	landscape land/sea2
-	description `Like the other moons of the nearby gas giant, Veiyue is an icy world with incredibly cold atmospheric temperatures. In spite of this, the surface layer of Veiyue is rather thin, and more detailed scans show locations of large, hollow caverns beneath the exterior of the moon. These areas are abnormally warm compared to the rest of the moon, and appear to be filled with oceans primarily made up of water. Strange readings come from these areas, which could possibly be home to various microbic life.`
+	description `Like the other moons of the nearby gas giant, Veiuye is an icy world with incredibly cold atmospheric temperatures. In spite of this, the surface layer of Veiyue is rather thin, and more detailed scans show locations of large, hollow caverns beneath the exterior of the moon. These areas are abnormally warm compared to the rest of the moon, and appear to be filled with oceans primarily made up of water. Strange readings come from these areas, which could possibly be home to various microbic life.`
 	government Uninhabited
 
 planet Veliante
