@@ -263,6 +263,8 @@ mission "First Contact: Korath Exiles"
 	source "Far'en Lai"
 	to offer
 		not "Wanderers: Sestor: Exiles 2: active"
+	to offer
+		not "Wanderers: Sestor: Exiles 2: active"
 	on offer
 		conversation
 			# Premise: Although there are Korath who are around humans frequently,
