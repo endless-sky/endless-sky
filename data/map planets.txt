@@ -46,8 +46,8 @@ planet Ada
 planet "Aetuah"
 	attributes "gas giant" "requires: gaslining"
 	landscape land/nasa30
-	description `The close proximity of Aetuah and the neighboring ice moon causes various ebbs and flows of the storms on the gas giant as well as constant reshaping of the moon's surface. The ice moon may have been captured by Aetuah in times past as a rogue planet, and the distance of the gas giant from the system center suggests it might be a rogue planet itself as well. In time, the gravitational force exhibited by Aetuah will tear apart the ice moon, plummeting it into the abyss.`
-	description `	The most striking features of Aetuah are large oval-shaped organisms inhabiting the upper atmosphere. These lifeforms resemble some of the space fauna of nearby systems, and adopt a strange behavior to slingshot themselves away from Aetuah once they reach a certain size through some unknown propulsion method.`
+	description `The close proximity of Aetuah and the neighboring ice moon causes various ebbs and flows in the storms on the gas giant as well as constant reshaping of the moon's surface. The ice moon may have been captured by Aetuah in times past as a rogue planet, and the distance of the gas giant from the system center suggests it might be a rogue planet itself as well. In time, the gravitational force exhibited by Aetuah will tear apart the ice moon, plummeting it into the abyss.`
+	description `	The most striking features of Aetuah are large oval-shaped organisms inhabiting the upper atmosphere. These lifeforms resemble some of the space fauna of nearby systems, and have a strange behavior of slingshotting themselves away from Aetuah once they reach a certain size through some unknown propulsion method.`
 	government Uninhabited
 
 planet Ahr
@@ -1078,7 +1078,7 @@ planet Echo
 
 planet "Eeu Mnai"
 	landscape land/canyon03
-	description `In contrast to the more flourishing world of Mnai, Eeu Mnai is a fairly dull dwarf planet composed mostly of rock and stone. While still within comfortable range of the system's binary stars, the surface of this world is very rough and jagged, and is dominated by colder fall and winter seasons. This environment is not unpleasant to all, however, as various forms of life such as mammals and insectoid creatures that have adapted to these conditions inhabit this world, typically found living beneath the surface layer.`
+	description `In contrast to the flourishing world of Mnai, Eeu Mnai is a dull dwarf planet composed mostly of rock and stone. While still within habitable range of the system's binary stars, the surface of this world is rough and jagged, and is dominated by cold fall and winter seasons. This environment is not inhospitable, however, as various forms of life. such as subterranean mammals and insectoid creatures, have adapted to these conditions.`
 	government Uninhabited
 
 planet "Ef Aourtdye"
@@ -1650,7 +1650,7 @@ planet Geyser
 
 planet "Ghneoe"
 	landscape land/hills10
-	description `Ghneoe's orbital period is dominated by a very long dry season due to the binary stars at the system's center. However, during a much shorter portion of the year, Ghneoe undergoes a growth season where an intense water cycle results in a boom of greenery and wildlife activity, developing a short-lived but flourishing ecosystem. Many of the flora and fauna have adapted to such a drastic shift in environment, and return to more dormant states once the more intense heat cycle begins to appear again.`
+	description `Ghneoe's orbital period is dominated by a very long dry season due to the binary stars at the system's center. However, during a short portion of the year, Ghneoe experiences an intense water cycle that results in a boom of greenery and wildlife activity, developing a short-lived but flourishing ecosystem. Much of the flora and fauna have adapted to such drastic shifts in climate, and return to a dormant state once the intense heat cycle returns.`
 	description `	Unlike its moon, Ghneoe has yet to see any sort of colonization efforts by the nearby Gegno Scin, perhaps due to the abnormal yearly weather, system warfare, or a combination of both.`
 	government Uninhabited
 
@@ -2680,8 +2680,8 @@ planet Mirrorlake
 
 planet "Mnai"
 	landscape land/canyon1
-	description `The environment of this world is quite pleasant by human standards. A majority of Mnai's yearly seasons consist of extended warm summer periods that provide healthy conditions for both flora and fauna to thrive. Canyons are a common sight, sometimes harboring their own smaller ecosystems both up near higher mountainous regions and down in lower smooth valleys. Other patches of Mnai's surface have occasional rocky formations that are rather flat on top, and are home to many species of mammals that look like large bears with antlers.`
-	description `Although this world remains an uncolonized paradise, there is some indication that the planet has been visited relatively recently by the nearby Gegno. A select few landing sites can be found atop the taller ridges, but none are intricate enough to indicate any sort of attempt to establish a settlement.`
+	description `The environment of this world is quite pleasant by human standards. A majority of Mnai's yearly seasons consist of extended warm summer periods that provide healthy conditions for wildlife to thrive. Canyons are a common sight, sometimes harboring their own smaller ecosystems both in their higher mountainous regions and down in the valleys. Other patches of Mnai's surface have mesas that are home to mammals that look like large bears with antlers.`
+	description `	Although this world remains an uncolonized paradise, there is some indication that the planet has been visited recently by the Gegno. A few landing sites can be found atop the taller ridges, but none are intricate enough to indicate any attempt to establish a settlement.`
 	government Uninhabited
 
 planet Moonshake
@@ -4547,7 +4547,7 @@ planet Vatican
 
 planet "Veiuye"
 	landscape land/sea2
-	description `Like the other moons of the nearby gas giant, Veiuye is an icy world with incredibly cold atmospheric temperatures. In spite of this, the surface layer of Veiyue is rather thin, and more detailed scans show locations of large, hollow caverns beneath the exterior of the moon. These areas are abnormally warm compared to the rest of the moon, and appear to be filled with oceans primarily made up of water. Strange readings come from these areas, which could possibly be home to various microbic life.`
+	description `Like the other moons of the nearby gas giant, Veiuye is a frozen world. However, the surface layer of Veiyue is rather thin, and more detailed scans show large, hollow caverns beneath the exterior of the moon. These areas are abnormally warm compared to the rest of the moon, and appear to be filled with oceans primarily made up of water. Strange readings come from these areas, which could possibly be due to microbial life.`
 	government Uninhabited
 
 planet Veliante
@@ -4756,8 +4756,8 @@ planet Xerolophos
 planet "Xurelei"
 	attributes "gas giant" "requires: gaslining"
 	landscape land/nasa15
-	description `Xurelei's thick, extensive atmosphere is covered with huge tempests that would engulf an Earth-sized planet many times over. Strangely enough, these storms are initially much less violent than those recorded from other gas giants, and are easily traversable by probes and other exploration craft. Once beyond a certain depth, these storms then become exponentionally more dangerous in contrast, and the cause of this drastic shift in intensity is unknown.`
-	description `	Intriguinly, small, peculiar twinkles of light in the form of odd organic shapes begin to appear in the lower layers, flowing gracefully along with the harsh winds. Although further exploration is impossible due to the fierce weather, the unusual objects darting beneath the clouds appear to be unaffected.`
+	description `Xurelei's atmosphere is covered with huge tempests that would engulf an Earth-sized planet many times over. Strangely enough, these storms are initially much less violent than those recorded from other gas giants, and are easily traversable by probes and other exploration craft. Once below a certain depth, these storms become exponentially more dangerous. Tthe cause of this drastic shift in intensity is unknown.`
+	description `	In the lower layers, small, peculiar twinkles of light in the form of organic shapes begin to appear, flowing gracefully along with the harsh winds. Although further exploration is impossible due to the fierce weather, the unusual objects darting beneath the clouds appear to be unaffected.`
 	government Uninhabited
 
 planet Yedikule
@@ -4824,5 +4824,5 @@ planet Zug
 planet "Zydee"
 	attributes moon
 	landscape land/enceladus_1
-	description `Although this moon initially seems barren and lifeless, there is evidence that the nearby Gegno Scin have recently attempted to set up some sort of outpost here. Several partially-constructed buildings and landing zones are scattered about the surface, but none of them show any signs of activity, likely due to recent warfare with the Gegno Vi. Despite this, a small number of satellites actively orbit Zydee, likely providing important tactical information such as the volume of system traffic.`
+	description `Although this moon initially seems barren and lifeless, there is evidence that the nearby Gegno Scin have recently attempted to set up an outpost here. Several partially-constructed buildings and landing zones are scattered about the surface, but none of them show any signs of activity, likely due to recent warfare with the Gegno Vi. Despite this, a small number of satellites actively orbit Zydee, likely providing important tactical information such as the volume of system traffic.`
 	government Uninhabited
