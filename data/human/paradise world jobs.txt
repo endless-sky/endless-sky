@@ -455,7 +455,7 @@ mission "Paradise Job: Debtors"
 	name "Debtors to <planet>"
 	job
 	repeat
-	description `These <bunks> poor souls have bankrupted themselves attempting to live beyond their means. To pay off their debts, the local government will pay you <payment> to transport them securely to <destination> where they can "make themselves useful."`
+	description `These <bunks> poor souls have bankrupted themselves attempting to live beyond their means. In response, the local government will pay you <payment> to transport them securely to <destination> to "make themselves useful."`
 	passengers 20 4 .1
 	to offer
 		random < 15
