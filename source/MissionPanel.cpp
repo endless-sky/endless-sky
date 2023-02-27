@@ -522,32 +522,6 @@ bool MissionPanel::Click(int x, int y, int clicks)
 
 
 
-void MissionPanel::CycleInvolvedSystems(const Mission& mission)
-{
-	cycleInvolvedIndex++;
-
-	int index = 0;
-	for(const System *waypoint : mission.Waypoints())
-		if(cycleInvolvedIndex == ++index)
-		{
-			CenterOnSystem(waypoint);
-			return;
-		}
-
-	for(const Planet *stopover : mission.Stopovers())
-		if(cycleInvolvedIndex == ++index)
-		{
-			CenterOnSystem(stopover->GetSystem());
-			return;
-		}
-
-
-	cycleInvolvedIndex = 0;
-	CenterOnSystem(mission.Destination()->GetSystem());
-}
-
-
-
 bool MissionPanel::Drag(double dx, double dy)
 {
 	if(dragSide < 0)
@@ -1108,4 +1082,30 @@ bool MissionPanel::SelectAnyMission()
 		return availableIt != available.end() || acceptedIt != accepted.end();
 	}
 	return false;
+}
+
+
+
+void MissionPanel::CycleInvolvedSystems(const Mission& mission)
+{
+	cycleInvolvedIndex++;
+
+	int index = 0;
+	for(const System *waypoint : mission.Waypoints())
+		if(cycleInvolvedIndex == ++index)
+		{
+			CenterOnSystem(waypoint);
+			return;
+		}
+
+	for(const Planet *stopover : mission.Stopovers())
+		if(cycleInvolvedIndex == ++index)
+		{
+			CenterOnSystem(stopover->GetSystem());
+			return;
+		}
+
+
+	cycleInvolvedIndex = 0;
+	CenterOnSystem(mission.Destination()->GetSystem());
 }
