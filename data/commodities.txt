@@ -891,6 +891,7 @@ trade
 		"surface-to-air missiles"
 		"targeting systems"
 		"tents"
+	# This list is mostly a placeholder. It should be replaced with one that better fits Syndicate lore.
 	commodity "Syndicate-banned items"
 		"religious texts"
 		"religious items"
