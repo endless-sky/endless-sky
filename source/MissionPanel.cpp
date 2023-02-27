@@ -1092,14 +1092,14 @@ void MissionPanel::CycleInvolvedSystems(const Mission &mission)
 
 	int index = 0;
 	for(const System *waypoint : mission.Waypoints())
-		if(cycleInvolvedIndex == ++index)
+		if(++index == cycleInvolvedIndex)
 		{
 			CenterOnSystem(waypoint);
 			return;
 		}
 
 	for(const Planet *stopover : mission.Stopovers())
-		if(cycleInvolvedIndex == ++index)
+		if(++index == cycleInvolvedIndex)
 		{
 			CenterOnSystem(stopover->GetSystem());
 			return;
