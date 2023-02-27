@@ -1358,8 +1358,9 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		int count = 0;
 		for(const Planet * const &planet : result.stopovers)
 		{
-			if(count++) {
-				string result =  (&planet != last) ? ", " : (count > 2 ? ", and " : " and ");
+			if(count++)
+			{
+				string result = (&planet != last) ? ", " : (count > 2 ? ", and " : " and ");
 				stopovers += result;
 				planets += result;
 			}
