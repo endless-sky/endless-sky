@@ -986,7 +986,7 @@ government "Kor Isaha"
 
 government "Kor Sestor"
 	swizzle 0
-	color .43 .48 .87
+	color 1 .36 .49
 	language "Sestor"
 	
 	"attitude toward"
