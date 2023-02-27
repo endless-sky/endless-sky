@@ -1222,6 +1222,8 @@ void MapPanel::DrawMissions()
 		else
 			++it.unavailable;
 	}
+
+	DistanceMap localDistance(player);
 	for(const Mission &mission : player.Missions())
 	{
 		if(!mission.IsVisible())
@@ -1240,7 +1242,9 @@ void MapPanel::DrawMissions()
 		bool blink = false;
 		if(mission.Deadline())
 		{
-			int days = min(5, mission.Deadline() - player.GetDate()) + 1;
+			int days = mission.Deadline() - player.GetDate() + 1
+				- localDistance.Days(mission.Destination()->GetSystem());
+			days = min(6, days);
 			if(days > 0)
 				blink = (step % (10 * days) > 5 * days);
 		}
