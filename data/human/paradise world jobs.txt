@@ -567,9 +567,9 @@ mission "Lovelace Labs Shipment [0]"
 		payment 0 160
 		dialog phrase "generic cargo delivery payment"
 
-mission "Polymath Nanocircuits Shipment [0]"
+mission "CyberAcme Nanocircuits Shipment [0]"
 	name "Shipment to <planet>"
-	description "Deliver <cargo> to <destination>, the home of Polymath Nanocircuits, one of the largest electronics companies in human space. Payment is <payment>."
+	description "Deliver <cargo> to <destination>, the home of CyberAcme Nanocircuits, one of the largest electronics companies in human space. Payment is <payment>."
 	cargo Electronics 5 2 .1
 	job
 	repeat

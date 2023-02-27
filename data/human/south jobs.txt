@@ -223,7 +223,7 @@ mission "Sketchy Passenger [1]"
 
 mission "Delta V Shipment [0]"
 	name "Shipment to <planet>"
-	description "Deliver <cargo> to <destination>, the home of Delta V Corporation, a major weapons, cybernetics, and engines manufacturing firm in the Southern Rim. Payment is <payment>."
+	description "Deliver <cargo> to <destination>, the home of Delta V Corporation, a major missile and engine manufacturing firm in the Southern Rim. Payment is <payment>."
 	cargo "lightweight alloys" 5 2 .1
 	job
 	repeat
@@ -241,7 +241,7 @@ mission "Delta V Shipment [0]"
 
 mission "Delta V Shipment [1]"
 	name "Shipment to <planet>"
-	description "Deliver <cargo> to <destination>, the home of Delta V Corporation, a major weapons, cybernetics, and engines manufacturing firm in the Southern Rim. Payment is <payment>."
+	description "Deliver <cargo> to <destination>, the home of Delta V Corporation, a major missile and engine manufacturing firm in the Southern Rim. Payment is <payment>."
 	cargo Electronics 5 2 .1
 	job
 	repeat
@@ -285,7 +285,7 @@ mission "Tarazed Shipyards Shipment [1]"
 		random < 10
 	source
 		near Tarazed 2 10
-		attributes factory
+		attributes factory mining
 	destination Wayfarer
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -303,7 +303,7 @@ mission "Tarazed Systems Shipment [0]"
 		random < 10
 	source
 		near Tarazed 2 10
-		attributes factory
+		attributes factory mining
 	destination Wayfarer
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -311,9 +311,9 @@ mission "Tarazed Systems Shipment [0]"
 		payment 0 160
 		dialog phrase "generic cargo delivery payment"
 
-mission "Tarazed Shipyards Shipment [1]"
+mission "Tarazed Systems Shipment [1]"
 	name "Shipment to <planet>"
-	description "Deliver <cargo> to <planet>, the home of Tarazed Shipyards, one of the largest shipbuilding firms in southern human space. Payment is <payment>."
+	description "Deliver <cargo> to <planet>, the home of Tarazed Systems, a respected outfits manufacturer and designer in southern human space. Payment is <payment>."
 	cargo Electronics 5 2 .1
 	job
 	repeat

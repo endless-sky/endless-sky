@@ -80,7 +80,7 @@ mission "Betelgeuse Shipment [2]"
 		payment 0 160
 		dialog phrase "generic cargo delivery payment"
 
-mission "Navy resupply"
+mission "Navy resupply [0]"
 	name "Resupply Navy base on <planet>"
 	description "The Navy base on <destination> is running low on equipment, but Navy supply ships are currently held up elsewhere and cannot assist. Deliver <cargo> to <planet> by <date>. Payment is <payment>."
 	cargo Military 5 2 .1
@@ -92,9 +92,8 @@ mission "Navy resupply"
 		not government Pirate
 		attributes outfitter factory
 	destination
-		or
-			attributes "far north" military
-			attributes outfitter
+		attributes "far north"
+		attributes outfitter
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete

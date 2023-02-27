@@ -1075,14 +1075,14 @@ mission "Urgent Deep Sec Consultants [1]"
 
 mission "Lionheart Shipment [0]"
 	name "Shipment to <planet>"
-	description "Deliver <cargo> to <destination>, the home of Lionheart Industries, the main shipyard of the Deep, known for its advanced and experimental designs. Payment is <payment>."
+	description "Deliver <cargo> to <destination>, the home of Lionheart Industries, the main shipyard of the Deep that is known for its advanced and experimental designs. Payment is <payment>."
 	cargo "weapons" 5 2 .1
 	job
 	repeat
 	to offer
 		random < 10
 	source
-		near Epsilon Leonis 2 10
+		near "Epsilon Leonis" 2 10
 		attributes factory
 	destination Valhalla
 	on visit
@@ -1093,14 +1093,14 @@ mission "Lionheart Shipment [0]"
 
 mission "Lionheart Shipment [1]"
 	name "Shipment to <planet>"
-	description "Deliver <cargo> to <destination>, the home of Lionheart Industries, the main shipyard of the Deep, known for its advanced and experimental designs. Payment is <payment>."
+	description "Deliver <cargo> to <destination>, the home of Lionheart Industries, the main shipyard of the Deep that is known for its advanced and experimental designs. Payment is <payment>."
 	cargo "lightweight alloys" 5 2 .1
 	job
 	repeat
 	to offer
 		random < 10
 	source
-		near Epsilon Leonis 2 10
+		near "Epsilon Leonis" 2 10
 		attributes factory research
 	destination Valhalla
 	on visit
@@ -1111,14 +1111,14 @@ mission "Lionheart Shipment [1]"
 
 mission "Lionheart Shipment [2]"
 	name "Shipment to <planet>"
-	description "Deliver <cargo> to <destination>, the home of Lionheart Industries, the main shipyard of the Deep, known for its advanced and experimental designs. Payment is <payment>."
+	description "Deliver <cargo> to <destination>, the home of Lionheart Industries, the main shipyard of the Deep that is known for its advanced and experimental designs. Payment is <payment>."
 	cargo "ship alloys" 5 2 .1
 	job
 	repeat
 	to offer
 		random < 10
 	source
-		near Epsilon Leonis 2 10
+		near "Epsilon Leonis" 2 10
 		attributes factory mining
 	destination Valhalla
 	on visit
