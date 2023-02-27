@@ -218,7 +218,8 @@ namespace {
 
 
 
-OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player, bool canSell, bool descriptionCollapsed)
+OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player,
+		bool canSell, bool descriptionCollapsed)
 {
 	Update(outfit, player, canSell, descriptionCollapsed);
 }
@@ -251,7 +252,8 @@ void OutfitInfoDisplay::DrawRequirements(const Point &topLeft) const
 
 
 
-void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInfo &player, bool canSell, bool descriptionCollapsed)
+void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInfo &player,
+		bool canSell, bool descriptionCollapsed)
 {
 	requirementLabels.clear();
 	requirementValues.clear();
@@ -262,7 +264,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 	int64_t buyValue = player.StockDepreciation().Value(&outfit, day);
 	int64_t sellValue = player.FleetDepreciation().Value(&outfit, day);
 
-	for(const string& license : outfit.Licenses())
+	for(const string &license : outfit.Licenses())
 	{
 		if(player.Conditions().Has("license: " + license))
 			continue;

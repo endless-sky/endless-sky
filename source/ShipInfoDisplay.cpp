@@ -36,7 +36,8 @@ using namespace std;
 
 
 
-ShipInfoDisplay::ShipInfoDisplay(const Ship &ship, const PlayerInfo &player, const Depreciation &depreciation, bool descriptionCollapsed)
+ShipInfoDisplay::ShipInfoDisplay(const Ship &ship, const PlayerInfo &player,
+		const Depreciation &depreciation, bool descriptionCollapsed)
 {
 	Update(ship, player, depreciation, descriptionCollapsed);
 }
@@ -44,7 +45,8 @@ ShipInfoDisplay::ShipInfoDisplay(const Ship &ship, const PlayerInfo &player, con
 
 
 // Call this every time the ship changes.
-void ShipInfoDisplay::Update(const Ship &ship, const PlayerInfo &player, const Depreciation &depreciation, bool descriptionCollapsed)
+void ShipInfoDisplay::Update(const Ship &ship, const PlayerInfo &player,
+		const Depreciation &depreciation, bool descriptionCollapsed)
 {
 	UpdateDescription(ship.Description(), ship.Attributes().Licenses(), true);
 	UpdateAttributes(ship, player, depreciation, descriptionCollapsed);
@@ -130,7 +132,8 @@ void ShipInfoDisplay::DrawOutfits(const Point &topLeft) const
 
 
 
-void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &player, const Depreciation &depreciation, bool descriptionCollapsed)
+void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &player,
+		const Depreciation &depreciation, bool descriptionCollapsed)
 {
 	bool isGeneric = ship.Name().empty() || ship.GetPlanet();
 
@@ -148,12 +151,12 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	const Outfit &attributes = ship.Attributes();
 
 	if(!ship.IsYours())
-		for(const string& license : attributes.Licenses())
+		for(const string &license : attributes.Licenses())
 		{
 			if(player.Conditions().Has("license: " + license))
 				continue;
 
-			const auto& licenseOutfit = GameData::Outfits().Find(license + " License");
+			const auto &licenseOutfit = GameData::Outfits().Find(license + " License");
 			if(descriptionCollapsed || (licenseOutfit && licenseOutfit->Cost()))
 			{
 				attributeLabels.push_back("license:");
@@ -329,7 +332,8 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	heatTable.push_back(Format::Number(60. * idleHeatPerFrame));
 
 	attributesHeight += 20;
-	const double movingEnergyPerFrame = max(attributes.Get("thrusting energy"), attributes.Get("reverse thrusting energy"))
+	const double movingEnergyPerFrame =
+		max(attributes.Get("thrusting energy"), attributes.Get("reverse thrusting energy"))
 		+ attributes.Get("turning energy")
 		+ attributes.Get("afterburner energy");
 	const double movingHeatPerFrame = max(attributes.Get("thrusting heat"), attributes.Get("reverse thrusting heat"))
@@ -412,7 +416,9 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, 
 
 
 	int64_t totalCost = depreciation.Value(ship, player.GetDate().DaysSinceEpoch());
-	int64_t chassisCost = depreciation.Value(GameData::Ships().Get(ship.ModelName()), player.GetDate().DaysSinceEpoch());
+	int64_t chassisCost = depreciation.Value(
+		GameData::Ships().Get(ship.ModelName()),
+		player.GetDate().DaysSinceEpoch());
 	saleLabels.clear();
 	saleValues.clear();
 	saleHeight = 20;
