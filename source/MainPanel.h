@@ -63,6 +63,7 @@ protected:
 	virtual bool FingerMove(int x, int y) override;
 	virtual bool FingerUp(int x, int y) override;
 
+
 private:
 	void ShowScanDialog(const ShipEvent &event);
 	bool ShowHailPanel();

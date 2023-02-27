@@ -107,8 +107,6 @@ public:
 	const std::string &KeyName() const;
 	bool HasConflict() const;
 
-	std::string ToString() const;
-
 	// Load this command from an input file (for testing or scripted missions).
 	void Load(const DataNode &node);
 

@@ -104,13 +104,6 @@ public:
 	// projectiles stop targeting gov.
 	void BreakTargeting(const Government *gov);
 
-	std::string ActiveCommands()
-	{
-		std::string ret = last_activeCommands.ToString() + " " + click_state;
-		last_activeCommands.Clear();
-		return ret;
-	}
-
 
 private:
 	void EnterSystem();
@@ -244,7 +237,6 @@ private:
 	// Commands that are currently active (and not yet handled). This is a combination
 	// of keyboard and mouse commands (and any other available input device).
 	Command activeCommands;
-	Command last_activeCommands;
 	// Keyboard commands that were active in the previous step.
 	Command keyHeld;
 	// Pressing "land" or "board" rapidly toggles targets; pressing it once re-engages landing or boarding.
@@ -275,8 +267,6 @@ private:
 	double load = 0.;
 	int loadCount = 0;
 	double loadSum = 0.;
-
-	std::string click_state;
 };
 
 
