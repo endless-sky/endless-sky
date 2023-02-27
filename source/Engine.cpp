@@ -244,7 +244,9 @@ Engine::Engine(PlayerInfo &player)
 	: player(player), ai(ships, asteroids.Minables(), flotsam),
 	ammoDisplay(player), shipCollisions(256u, 32u)
 {
-	zoom = Preferences::ViewZoom();
+	baseZoom = Preferences::ViewZoom();
+	zoomMod = Preferences::Has("Cinematic effects") ? 2. : 1.;
+	zoom = baseZoom * zoomMod;
 
 	// Start the thread for doing calculations.
 	calcThread = thread(&Engine::ThreadEntryPoint, this);
