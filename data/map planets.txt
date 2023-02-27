@@ -1805,6 +1805,7 @@ planet "Gresku Fodar"
 	description `Situated an ideal distance from this system's twin suns, this station holds greenhouses where the Korath grow a highly nutritious bacterial sludge that serves the exiles as their main food source. A few of the greenhouses are also growing more traditional crops, but these are clearly a luxury that the Korath cannot afford to waste more of their resources on.`
 	spaceport `The bacterial soup that is being served in the food court has a texture like wet silt and an unpardonably bland flavor. Someone who could supply the Korath with a steady stream of the right sorts of spices could make a killing in trade here.`
 	security 0
+	government "Korath (Station)"
 
 planet Greymoon
 	attributes hai station
@@ -2241,6 +2242,7 @@ planet "Kessel Sepret"
 	description `In this factory station, raw metal harvested in the other Korath systems is shaped into ships and weapons, the war materiel for their raids on human space. Sections of the ships are assembled and tested in pressurized hangars, but the Palavret is a large enough ship that the final assembly must be done in space, outside the station.`
 	spaceport `This station is run with military discipline reminiscent of a human Navy base. All the Korath, even the construction workers, are in full uniform with some sort of rank insignia: epaulettes that vary both in shape and color. The largest ones appear to mark the officers in charge.`
 	security 0
+	government "Korath (Station)"
 
 planet "Ki Patek Ka"
 	attributes farming folklore kimek tourism urban
@@ -3521,6 +3523,7 @@ planet "Safaresk Enlai"
 	spaceport `This spaceport is relatively unpopulated for a station of this size, and the few Korath who are here are wandering about with the sort of deeply absorbed attitude you would expect from a scientist or an academic.`
 	spaceport `	In one corner of the spaceport is a cage housing several large rodents and some small shrubs, lit by a warm sun-lamp. The rodents are quite acrobatic.`
 	security 0
+	government "Korath (Station)"
 
 planet Sandsnap
 	attributes hai station uninhabited
@@ -3654,6 +3657,7 @@ planet "Separa Tiklar"
 	description `This station manufactures the weapon systems and other equipment that is used in the Korath stations, war vessels, and world-ships.`
 	spaceport `From the outside this station appears as run-down as their other facilities, but the interior is meticulously clean. Also, everything outside the delivery bay is restricted space, under heavy military guard.`
 	security 0
+	government "Korath (Station)"
 
 planet "Septar Lorku"
 	attributes korath station "korath exile"
@@ -3662,6 +3666,7 @@ planet "Septar Lorku"
 	description `This system has a high concentration of metallic asteroids, which the Korath are harvesting to provide iron ore for their space ships and fissionable materials for their reactor cores. Smelting metal in a high-temperature blast furnace in the interior of a space station is, of course, an incredibly risky proposition.`
 	spaceport `Despite your lack of knowledge of Korath health and anatomy, it is clear that the inhabitants of this station are under-fed and overworked. Also, an alarming number of them are missing fingers, hands, or entire limbs. It is quite possible that the work in the refineries is even more dangerous than the job of the raiders attacking human space.`
 	security 0
+	government "Korath (Station)"
 
 planet Seraglio
 	attributes "ice giant" uninhabited
@@ -3697,6 +3702,7 @@ planet "Sessiliki Far"
 	description `This is a Korath mining station, where ore extracted from asteroids is refined and processed. The Korath seem to have an aversion to harvesting raw materials from actual planets, preferring to work with lifeless asteroids instead.`
 	spaceport `A smelter is never a safe place to work, and some of the machinery looks very old, but you get the feeling that the Korath on this station are in relatively good spirits nonetheless. The cafe in the spaceport is bustling, and every few hours a bell rings and about a third of the workers leave the factory floor and are replaced by fresh and rested ones.`
 	security 0
+	government "Korath (Station)"
 
 planet "Sestor Ikfar"
 	attributes korath
