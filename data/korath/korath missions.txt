@@ -261,6 +261,8 @@ mission "Small Scale Delivery"
 mission "First Contact: Korath Exiles"
 	landing
 	source "Far'en Lai"
+	to offer
+		not "Wanderers: Sestor: Exiles 2: active"
 	on offer
 		conversation
 			# Premise: Although there are Korath who are around humans frequently,
@@ -309,7 +311,7 @@ mission "First Contact: Korath Exiles"
 			label humanika
 			`	"Human," you say, almost instinctively.`
 			`	Akafavah says, "Oy! Humanika!" It's not clear what emotion they're feeling, but it's a strong one.`
-			`	Takra asks you, "were foam?"`
+			`	Takra asks you, "Were foam?"`
 			`	They see your confusion and seem to give up on communicating in your language. It's time for a different approach.`
 				goto map
 
@@ -403,7 +405,7 @@ mission "First Contact: Korath Exiles"
 mission "Korath [F01]: A Fishy Deal"
 	landing
 	name "A fishy proposition"
-	description "Transport <cargo> to <planet> by <date>. After a return trip, you'll be payed 140,000. Don't get caught."
+	description "Transport <cargo> to <planet> by <date>. After a return trip, you'll be paid 140,000. Don't get caught."
 	cargo "live fish" 15
 	illegal 50000
 	deadline 4
@@ -498,6 +500,8 @@ mission "Korath [F02]: A Fishy Proposition"
 	clearance "The authorities do not respond, but a concealed hangar bay door opens. The meaning is clear: land here."
 	source "La'ab Bamen"
 	destination "New Tortuga"
+	to offer
+		has "Korath [F01]: A Fishy Deal: done"
 	on offer
 		conversation
 			`[Image of a scene with Iris in the middle, and large men whose heads are off-screen. Each is carrying a large orange rifle. Viewer's eyes should be drawn to the rainbow feather on her chest.]`
