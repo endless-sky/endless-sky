@@ -16,7 +16,7 @@
 mission "Remnant: Bounty"
 	job
 	repeat
-	name "Crippled Palavret Bounty"
+	name "Crippled <npc model> Bounty"
 	description "A crippled Korath ship is lurking in Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
@@ -49,7 +49,7 @@ mission "Remnant: Bounty"
 mission "Remnant: Bounty 2"
 	job
 	repeat
-	name "Troublesome Palavret Bounty"
+	name "Troublesome <npc model> Bounty"
 	description "A Korath ship is proving troublesome in Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
@@ -112,7 +112,7 @@ mission "Remnant: Expanded Horizons Astral job"
 	job
 	repeat
 	name "Research Expedition to <waypoints>"
-	description "Travel to <waypoints> with a research laboratory to collect data, then return to <destination>."
+	description "Travel to <waypoints> with a Research Laboratory to collect data, then return to <destination>."
 	source
 		government "Remnant"
 	waypoint
