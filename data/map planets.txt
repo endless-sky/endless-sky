@@ -4756,7 +4756,7 @@ planet Xerolophos
 planet "Xurelei"
 	attributes "gas giant" "requires: gaslining"
 	landscape land/nasa15
-	description `Xurelei's atmosphere is covered with huge tempests that would engulf an Earth-sized planet many times over. Strangely enough, these storms are initially much less violent than those recorded from other gas giants, and are easily traversable by probes and other exploration craft. Once below a certain depth, these storms become exponentially more dangerous. Tthe cause of this drastic shift in intensity is unknown.`
+	description `Xurelei's atmosphere is covered with huge tempests that would engulf an Earth-sized planet many times over. Strangely enough, these storms are initially much less violent than those recorded from other gas giants, and are easily traversable by probes and other exploration craft. Once below a certain depth, these storms become exponentially more dangerous. The cause of this drastic shift in intensity is unknown.`
 	description `	In the lower layers, small, peculiar twinkles of light in the form of organic shapes begin to appear, flowing gracefully along with the harsh winds. Although further exploration is impossible due to the fierce weather, the unusual objects darting beneath the clouds appear to be unaffected.`
 	government Uninhabited
 
