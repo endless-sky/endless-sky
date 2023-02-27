@@ -29179,7 +29179,7 @@ system Sepriaptu
 system "Sera Natta"
 	pos 344.9 -418.3
 	government Bunrodea
-	attribtues "bright-star" "notable-star"
+	attributes "bright-star" "notable-star"
 	arrival 3000
 	habitable 3000
 	belt 1500
