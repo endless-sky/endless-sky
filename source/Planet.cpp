@@ -568,6 +568,15 @@ void Planet::Bribe(bool fullAccess) const
 
 
 
+bool Planet::CanTribute(PlayerInfo &player) const
+{
+	auto &playerConditions = player.Conditions();
+	return !(playerConditions.Get("tribute: " + name) && (!tribute || defenseFleets.empty()) &&
+		playerConditions.Get("combat rating") < defenseThreshold);
+}
+
+
+
 // Demand tribute, and get the planet's response.
 string Planet::DemandTribute(PlayerInfo &player) const
 {

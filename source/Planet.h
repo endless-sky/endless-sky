@@ -137,6 +137,7 @@ public:
 	void Bribe(bool fullAccess = true) const;
 
 	// Demand tribute, and get the planet's response.
+	bool CanTribute(PlayerInfo &player) const;
 	std::string DemandTribute(PlayerInfo &player) const;
 	void DeployDefense(std::list<std::shared_ptr<Ship>> &ships) const;
 	void ResetDefense() const;

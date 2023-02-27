@@ -251,7 +251,15 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		}
 		else
 			if(!DoHelp("tributing"))
-				message = planet->DemandTribute(player);
+			{
+				if(planet->CanTribute(player))
+				{
+					if(!DoHelp("tributing second"))
+						message = planet->DemandTribute(player);
+				}
+				else
+				   message = planet->DemandTribute(player);
+			}
 		return true;
 	}
 	else if(key == 'h' && hasLanguage && ship)
