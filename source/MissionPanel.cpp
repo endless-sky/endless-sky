@@ -391,7 +391,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 				++availableIt;
 			acceptedIt = accepted.end();
 			dragSide = -1;
-			if(lastAvailableIt == availableIt)
+			if(availableIt == lastAvailableIt)
 			{
 				CycleInvolvedSystems(*availableIt);
 				return true;
