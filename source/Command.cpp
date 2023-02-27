@@ -78,7 +78,7 @@ const Command Command::STOP(1ul << 28, "");
 const Command Command::SHIFT(1uL << 29, "");
 const Command Command::MOUSE_TURNING_HOLD(1uL << 30, "Mouse turning (hold)");
 const Command Command::MOUSE_TURNING_TOGGLE(1uL << 31, "Mouse turning (toggle)");
-const Command Command::MOVETOWARD(1uL << 32, "");
+const Command Command::MOVETOWARD(static_cast<uint64_t>(1) << 32, ""); // uL suffix is 32 bits on 32 bit platforms
 
 
 std::atomic<uint64_t> Command::simulated_command{};
