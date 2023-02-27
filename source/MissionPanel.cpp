@@ -1086,7 +1086,7 @@ bool MissionPanel::SelectAnyMission()
 
 
 
-void MissionPanel::CycleInvolvedSystems(const Mission& mission)
+void MissionPanel::CycleInvolvedSystems(const Mission &mission)
 {
 	cycleInvolvedIndex++;
 
