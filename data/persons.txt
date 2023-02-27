@@ -256,10 +256,12 @@ ship "Marauder Fury"
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
 		
-	engine -13.5 41.5 0.7
-	engine 13.5 41.5 0.7
-	engine -22 44 0.5
-	engine 22 44 0.5
+	engine -23 44.5 0.6
+	engine 23 44.5 0.6
+	engine -17 43 0.45
+	engine 17 43 0.45
+	engine -12.5 41 0.35
+	engine 12.5 41 0.35
 	engine 0 46
 	gun -13.5 -36 "Meteor Missile Launcher"
 	gun 13.5 -36 "Meteor Missile Launcher"
