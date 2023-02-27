@@ -244,6 +244,8 @@ mission "Kor Efreti to Wanderers: Farming"
 		payment 10000 200
 		dialog `When you return, the Korath move their hands in a circular motion with their palms toward you as a sign of gratitude. They hand you <payment> and disembark your ship.`
 
+# This is your key to entering La'ab Bamen without a bribe.
+# Hence the lack of randomness.
 mission "Korath Humanika: Fish Trade (small)"
 	name "New Tortuga fish trade"
 	job
@@ -259,6 +261,7 @@ mission "Korath Humanika: Fish Trade (small)"
 	to offer
 		has "event: know about Korath fish jobs"
 		not "Korath Humanika: Fish Trade (small): active"
+		"reputation: Korath" > -3000
 	on stopover
 		dialog "You drop of your <tons> of illicit fish, and receive <tons> of unknown cargo from a woman in a blue dress."
 	on complete
@@ -283,6 +286,7 @@ mission "Korath Humanika: Fish Trade (medium)"
 		has "event: know about Korath fish jobs"
 		not "Korath Humanika: Fish Trade (medium): active"
 		"cargo space" > 20
+		"reputation: Korath" > -3000
 	on stopover
 		dialog "You drop of your <tons> of illicit fish, and receive <tons> of unknown cargo from a woman in a blue dress."
 	on complete
@@ -307,6 +311,7 @@ mission "Korath Humanika: Fish Trade (bulk)"
 		has "event: know about Korath fish jobs"
 		not "Korath Humanika: Fish Trade (bulk): active"
 		"cargo space" > 50
+		"reputation: Korath" > -3000
 	on stopover
 		dialog "You drop of your <tons> of illicit fish, and receive <tons> of unknown cargo from a woman in a blue dress."
 	on complete
@@ -326,7 +331,7 @@ mission "Korath: Retrieve livestock [0]"
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes farming
 	to offer
-		random < 70
+		random < 40
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of livestock."
 	on complete
@@ -346,7 +351,7 @@ mission "Korath: Retrieve livestock [1]"
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes farming
 	to offer
-		random < 70
+		random < 40
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of livestock."
 	on complete
@@ -366,7 +371,7 @@ mission "Korath: Retrieve livestock [2]"
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes farming
 	to offer
-		random < 70
+		random < 40
 		"cargo space" > 10
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of livestock."
@@ -387,7 +392,7 @@ mission "Korath: Retrieve livestock [3]"
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes farming
 	to offer
-		random < 70
+		random < 40
 		"cargo space" > 20
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of livestock."
@@ -408,7 +413,7 @@ mission "Korath: Retrieve livestock [4]"
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes farming
 	to offer
-		random < 70
+		random < 40
 		"cargo space" > 50
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of livestock."
@@ -429,7 +434,7 @@ mission "Korath: Retrieve crops [0]"
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes farming
 	to offer
-		random < 70
+		random < 40
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of crops."
 	on complete
@@ -449,7 +454,7 @@ mission "Korath: Retrieve crops [1]"
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes farming
 	to offer
-		random < 70
+		random < 40
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of crops."
 	on complete
@@ -469,7 +474,7 @@ mission "Korath: Retrieve crops [2]"
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes farming
 	to offer
-		random < 70
+		random < 40
 		"cargo space" > 10
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of crops."
@@ -490,7 +495,7 @@ mission "Korath: Retrieve crops [3]"
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes farming
 	to offer
-		random < 70
+		random < 40
 		"cargo space" > 20
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of crops."
@@ -511,7 +516,7 @@ mission "Korath: Retrieve crops [4]"
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes farming
 	to offer
-		random < 70
+		random < 40
 		"cargo space" > 50
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of crops."
@@ -532,7 +537,7 @@ mission "Korath: Retrieve fish [0]"
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes fishing
 	to offer
-		random < 70
+		random < 40
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of fish."
 	on complete
@@ -552,7 +557,7 @@ mission "Korath: Retrieve fish [1]"
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes fishing
 	to offer
-		random < 70
+		random < 40
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of fish."
 	on complete
@@ -572,7 +577,7 @@ mission "Korath: Retrieve fish [2]"
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes fishing
 	to offer
-		random < 70
+		random < 40
 		"cargo space" > 10
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of fish."
@@ -593,7 +598,7 @@ mission "Korath: Retrieve fish [3]"
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes fishing
 	to offer
-		random < 70
+		random < 40
 		"cargo space" > 20
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of fish."
@@ -614,7 +619,7 @@ mission "Korath: Retrieve fish [4]"
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes fishing
 	to offer
-		random < 70
+		random < 40
 		"cargo space" > 50
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of fish."
@@ -635,7 +640,7 @@ mission "Korath: Retrieve flora and fauna [0]"
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes forest
 	to offer
-		random < 70
+		random < 40
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of flora and fauna."
 	on complete
@@ -655,7 +660,7 @@ mission "Korath: Retrieve flora and fauna [1]"
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes forest
 	to offer
-		random < 70
+		random < 40
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of flora and fauna."
 	on complete
@@ -675,7 +680,7 @@ mission "Korath: Retrieve flora and fauna [2]"
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes forest
 	to offer
-		random < 70
+		random < 40
 		"cargo space" > 10
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of flora and fauna."
@@ -696,7 +701,7 @@ mission "Korath: Retrieve flora and fauna [3]"
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes forest
 	to offer
-		random < 70
+		random < 40
 		"cargo space" > 20
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of flora and fauna."
@@ -717,7 +722,7 @@ mission "Korath: Retrieve flora and fauna [4]"
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes forest
 	to offer
-		random < 70
+		random < 40
 		"cargo space" > 50
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of flora and fauna."
@@ -738,7 +743,7 @@ mission "Korath: Retrieve domestic pets [0]"
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes urban
 	to offer
-		random < 70
+		random < 40
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of domestic pets."
 	on complete
@@ -758,7 +763,7 @@ mission "Korath: Retrieve domestic pets [1]"
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes urban
 	to offer
-		random < 70
+		random < 40
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of domestic pets."
 	on complete
@@ -778,7 +783,7 @@ mission "Korath: Retrieve domestic pets [2]"
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes urban
 	to offer
-		random < 70
+		random < 40
 		"cargo space" > 10
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of domestic pets."
@@ -799,7 +804,7 @@ mission "Korath: Retrieve domestic pets [3]"
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes urban
 	to offer
-		random < 70
+		random < 40
 		"cargo space" > 20
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of domestic pets."
@@ -820,7 +825,7 @@ mission "Korath: Retrieve domestic pets [4]"
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes urban
 	to offer
-		random < 70
+		random < 40
 		"cargo space" > 50
 	on stopover
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of domestic pets."
