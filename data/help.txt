@@ -134,4 +134,4 @@ help "tributing"
 
 help "tributing second"
 	`You fire a warning shot, and the fourth wall shudders and cracks. An automated message appears on your computer.`
-	`"Captain! Demanding tribute from planets is not integrated with the storyline! You will a daily income and gain unrestricted landing access to this location, at the cost of being considered an outlaw by their government. Campaign missions will not take this into account, which may result in story events that don't make sense. Are you sure you want to proceed?"`
+	`"Captain! Demanding tribute from planets is not integrated with the storyline! You will receive a daily income and gain unrestricted landing access to this location, at the cost of being considered an outlaw by their government. Campaign missions will not take this into account, which may result in story events that don't make sense. Are you sure you want to proceed?"`
