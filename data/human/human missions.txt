@@ -5429,6 +5429,13 @@ mission "Deal Change 2"
 			label skip
 			`	After a few minutes, the pirates finish unloading the cargo, and Ci steps forward, holding out a credit chip. "<payment>, for making the right choice." Ci and the pirates return to their ships as you take off and head towards the main spaceport of <planet>.`
 
+mission "Ship Hijacking (Trigger)"
+	invisible
+	to offer
+		random < 99 # random < 5
+	on offer
+		fail
+
 mission "Ship Hijacking"
 	name "Stop ship hijacking"
 	description "The ship, <destination>, was hijacked on <origin>. Do not capture or destroy it; disable it and return to <origin>. Syndicated Security will deal with the hijackers in space after you have disabled it."
@@ -5437,7 +5444,7 @@ mission "Ship Hijacking"
 		government "Syndicate"
 		not attributes "station"
 	to offer
-		random < 99 # 15
+		has "Ship Hijacking (Trigger): failed"
 	on offer
 		conversation
 			`You're signing the landing papers with the Syndicated Security officer on <origin>, a standard procedure after landing in a planet within the Syndicate bloc. "Everything seems to be in order. And of course, we'll have your ship refuelled promptly. Have a good day, Captain <last>." He nods his head at you and starts to move off towards the next ship.`
@@ -5455,37 +5462,30 @@ mission "Ship Hijacking"
 			`	Figuring it's nothing, you turn back towards the <ship> only to hear a deafening blare of warning sirens through <origin>'s spaceport. Looking around instinctively, you notice from the corner of your eye that the <npc>, that <npc model> on the landing pad next to you, jolts up with its loading ramp still extended.`
 
 			label hijack
-			`	"Hey, what's going on here?" the Security officer trys to shout over the noise of the sirens and the repulsors, but the <npc model> veers rapidly and uncertainly towards his direction. He barely jumps down for cover before the ship comes up towards him to clip a stack of cargo crates, sending it flying into the refuelling platform. With its repulsors at full power, it narrowly avoids colliding with the <ship> and flees away into the sky.`
-			`	The Syndicated Security captain, dazed and coated in dust kicked up from the unpermitted departure, only just pulls himself up before another person runs up to accost him. "That guy, he just hijacked my <npc model>! Get someone on their tail!"`
+			`	"Hey, what's going on here?" the officer trys to shout over the noise of the sirens and the repulsors, but the <npc model> veers rapidly and uncertainly towards his direction. He barely jumps down for cover before the ship comes up towards him to clip a stack of cargo crates, sending it flying into the refuelling platform. With its repulsors at full power, it narrowly avoids colliding with the <ship> and flees away into the sky.`
+			`	The Syndicated Security officer, dazed and coated in dust kicked up from the unpermitted departure, only just pulls himself up before another person runs up to accost him. "That guy, he just hijacked my <npc model>! Get someone on their tail!"`
 			choice
 				`	"I'll do it."`
 				`	(Let Syndicated Security deal with it.)`
 					goto securityjob
+			action
+				set "hijacking accepted"
 			`	The captain turns towards you. "Oh, thank you so much! Please don't destroy the <npc>, I'm already late for my contract. Agh, this doesn't help at all," he mutters to himself.`
-			`	The Syndicated Security officer looks back at you, having dusted himself off and regained his senses. "Yes, go and deal with his ship now. We'll have Syndicated Security ships come after you to tug it down and arrest the hijackers. Go!"`
+			`	The officer looks back at you, having dusted himself off and regained his senses. "Yes, go and deal with his ship now. We'll have Syndicated Security ships come after you to tug it down and arrest the hijackers. Go!"`
 				launch
 			
 			label securityjob
-			`	The Syndicated Security officer, slightly flustered, calls for a small squadron of Syndicated Security ships to chase the hijacked <npc>, then runs off to one of <origin>'s spaceport terminals to file the paperwork with the captain.`
+			`	The officer, slightly flustered, calls for a small squadron of Syndicated Security ships to chase the hijacked <npc>, then runs off to one of <origin>'s spaceport terminals to file the paperwork with the captain.`
 				decline
-
-
-	npc
-		personality waiting fleeing uninterested
-		government "Bounty (Disguised)"
-		ship "Argosy (Blaster)" "Moonshake Express"
-
-	npc
-		personality waiting disables uninterested
-		government "Syndicate"
-		fleet "Small Syndicate"
-
+	
 	npc save disable
 		personality launching daring target uninterested
 			confusion 40
 		government "Bounty (Disguised)"
 		ship "Argosy (Blaster)" "Moonshake Express"
 		dialog `You've disabled the <npc>. Syndicated Security will now deal with the hijackers, but you should go back and report to the captain whose ship was hijacked.`
+		to spawn
+			has "hijacking accepted"
 
 	on fail
 		conversation
@@ -5494,17 +5494,35 @@ mission "Ship Hijacking"
 			choice
 				`	"I'm sorry, I was just trying to help!"`
 				`	"I'm sure whatever you lost wasn't worth all that much."`
-				`	"Well, I hope you had insurance at least."`
+				`	"Well, I hope you had insurance on that ship, at least."`
 				`	"It can't be that bad, can it?"`
-				`	"Well, you're lucky you weren't sitting in that ship."`
+				`	"You're lucky you weren't sitting in that ship with those hijackers pointing a gun at your head."`
 
 	on complete
 		payment 18000
 		dialog `When you land, the relived captain of the <npc> sends you <payment> for helping him recover his ship.`
-	
-	on decline
+
+mission "Ship Hijacking (Declined)"
+	invisible
+	to offer
+		has "Ship Hijacking (Trigger): offered"
+	on offer
 		event "ship hijacking declined"
 		event "ship hijacking declined reset" 1
+	to fail
+		has "ship hijacking declined reset"
+	npc
+		personality waiting fleeing uninterested
+		government "Bounty (Disguised)"
+		ship "Argosy (Blaster)" "Moonshake Express"
+		to spawn
+			has "Ship Hijacking: declined"
+	npc
+		personality waiting disables uninterested
+		government "Syndicate"
+		fleet "Small Syndicate"
+		to spawn
+			has "Ship Hijacking: declined"
 
 event "ship hijacking declined"
 	government "Syndicate"
