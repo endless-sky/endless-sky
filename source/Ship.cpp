@@ -3126,7 +3126,7 @@ void Ship::Restore()
 bool Ship::IsDamaged() const
 {
 	// Account for ships with no shields when determining if they're damaged.
-	return (attributes.Get("shields"))== 0. ?
+	return (attributes.Get("shields")) == 0. ?
 		(Hull() != 1.) : (Shields() != 1. || Hull() != 1.);
 }
 
