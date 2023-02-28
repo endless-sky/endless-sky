@@ -5481,7 +5481,7 @@ mission "Ship Hijacking"
 				decline
 	
 	npc save disable
-		personality launching daring target uninterested
+		personality launching daring uninterested target
 			confusion 40
 		government "Bounty (Disguised)"
 		ship "Argosy (Blaster)" "Moonshake Express"
@@ -5509,15 +5509,12 @@ mission "Ship Hijacking (Declined)"
 	landing
 	to offer
 		has "Ship Hijacking (Trigger): offered"
-	on offer
-		event "ship hijacking declined"
-		event "ship hijacking declined reset" 1
 	to fail
 		has "ship hijacking declined reset"
 	npc
 		personality launching daring uninterested
 			confusion 40
-		government "Bounty (Disguised)"
+		government "Merchant (Hijacked)"
 		ship "Argosy (Blaster)" "Moonshake Express"
 		to spawn
 			has "Ship Hijacking: declined"
@@ -5527,13 +5524,3 @@ mission "Ship Hijacking (Declined)"
 		fleet "Small Syndicate"
 		to spawn
 			has "Ship Hijacking: declined"
-
-event "ship hijacking declined"
-	government "Syndicate"
-		"attitude toward"
-			"Bounty (Disguised)" -0.1
-
-event "ship hijacking declined reset"
-	government "Syndicate"
-		"attitude toward"
-			"Bounty (Disguised)" 0
