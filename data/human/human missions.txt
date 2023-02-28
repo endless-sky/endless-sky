@@ -5431,8 +5431,10 @@ mission "Deal Change 2"
 
 mission "Ship Hijacking (Trigger)"
 	invisible
+	source
+		government "Syndicate"
 	to offer
-		random < 99 # random < 5
+		random < 99 # 5
 	on offer
 		fail
 
@@ -5504,6 +5506,7 @@ mission "Ship Hijacking"
 
 mission "Ship Hijacking (Declined)"
 	invisible
+	landing
 	to offer
 		has "Ship Hijacking (Trigger): offered"
 	on offer
@@ -5512,13 +5515,14 @@ mission "Ship Hijacking (Declined)"
 	to fail
 		has "ship hijacking declined reset"
 	npc
-		personality waiting fleeing uninterested
+		personality launching daring uninterested
+			confusion 40
 		government "Bounty (Disguised)"
 		ship "Argosy (Blaster)" "Moonshake Express"
 		to spawn
 			has "Ship Hijacking: declined"
 	npc
-		personality waiting disables uninterested
+		personality launching disables uninterested
 		government "Syndicate"
 		fleet "Small Syndicate"
 		to spawn
@@ -5527,7 +5531,7 @@ mission "Ship Hijacking (Declined)"
 event "ship hijacking declined"
 	government "Syndicate"
 		"attitude toward"
-			"Bounty (Disguised)" -1000
+			"Bounty (Disguised)" -0.1
 
 event "ship hijacking declined reset"
 	government "Syndicate"
