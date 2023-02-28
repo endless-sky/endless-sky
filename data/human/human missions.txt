@@ -5444,7 +5444,7 @@ mission "Ship Hijacking"
 		government "Syndicate"
 		not attributes "station"
 	to offer
-		has "Ship Hijacking (Trigger): failed"
+		has "Ship Hijacking (Trigger): offered"
 	on offer
 		conversation
 			`You're signing the landing papers with the Syndicated Security officer on <origin>, a standard procedure after landing in a planet within the Syndicate bloc. "Everything seems to be in order. And of course, we'll have your ship refuelled promptly. Have a good day, Captain <last>." He nods his head at you and starts to move off towards the next ship.`
