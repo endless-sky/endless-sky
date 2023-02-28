@@ -5431,6 +5431,7 @@ mission "Deal Change 2"
 
 mission "Ship Hijacking (Trigger)"
 	invisible
+	landing
 	source
 		government "Syndicate"
 	to offer
@@ -5497,8 +5498,8 @@ mission "Ship Hijacking"
 				`	"I'm sorry, I was just trying to help!"`
 				`	"I'm sure whatever you lost wasn't worth all that much."`
 				`	"Well, I hope you had insurance on that ship, at least."`
-				`	"It can't be that bad, can it?"`
 				`	"You're lucky you weren't sitting in that ship with those hijackers pointing a gun at your head."`
+			`	He doesn't seem to hear you, and instead lets go of you to stamper off to the spaceport's bank.`
 
 	on complete
 		payment 18000
