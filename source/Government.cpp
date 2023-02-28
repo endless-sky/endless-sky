@@ -33,30 +33,33 @@ namespace {
 	void PenaltyHelper(const DataNode &node, map<int, double> &penalties)
 	{
 		for(const DataNode &child : node)
-			if(node.Size() >= 2)
+			if(child.Size() >= 2)
 			{
-				if(node.Token(0) == "assist")
+				const string &key = child.Token(0);
+				if(key == "assist")
 					penalties[ShipEvent::ASSIST] = child.Value(1);
-				else if(node.Token(0) == "disable")
+				else if(key == "disable")
 					penalties[ShipEvent::DISABLE] = child.Value(1);
-				else if(child.Token(0) == "board")
+				else if(key == "board")
 					penalties[ShipEvent::BOARD] = child.Value(1);
-				else if(child.Token(0) == "capture")
+				else if(key == "capture")
 					penalties[ShipEvent::CAPTURE] = child.Value(1);
-				else if(child.Token(0) == "destroy")
+				else if(key == "destroy")
 					penalties[ShipEvent::DESTROY] = child.Value(1);
-				else if(child.Token(0) == "scan")
+				else if(key == "scan")
 				{
 					penalties[ShipEvent::SCAN_OUTFITS] = child.Value(1);
 					penalties[ShipEvent::SCAN_CARGO] = child.Value(1);
 				}
-				else if(child.Token(0) == "provoke")
+				else if(key == "provoke")
 					penalties[ShipEvent::PROVOKE] = child.Value(1);
-				else if(child.Token(0) == "atrocity")
+				else if(key == "atrocity")
 					penalties[ShipEvent::ATROCITY] = child.Value(1);
 				else
 					child.PrintTrace("Skipping unrecognized attribute:");
 			}
+			else
+				child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
 	// Determine the penalty for the given ShipEvent based on the values in the given map.
