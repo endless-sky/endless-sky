@@ -5460,24 +5460,25 @@ mission "Ship Hijacking"
 			choice
 				`	"I'll do it."`
 				`	(Let Syndicated Security deal with it.)`
-					decline
+					goto securityjob
 			`	The captain turns towards you. "Oh, thank you so much! Please don't destroy the <npc>, I'm already late for my contract. Agh, this doesn't help at all," he mutters to himself.`
 			`	The Syndicated Security officer looks back at you, having dusted himself off and regained his senses. "Yes, go and deal with his ship now. We'll have Syndicated Security ships come after you to tug it down and arrest the hijackers. Go!"`
 				launch
+			
+			label securityjob
+			`	The Syndicated Security officer, slightly flustered, calls for a small squadron of Syndicated Security ships to chase the hijacked <npc>, then runs off to one of <origin>'s spaceport terminals to file the paperwork with the captain.`
+				decline
+
 
 	npc
-		personality launching fleeing uninterested
+		personality waiting fleeing uninterested
 		government "Bounty (Disguised)"
 		ship "Argosy (Blaster)" "Moonshake Express"
-		to spawn
-			not "Ship Hijacking: accepted"
 
 	npc
-		personality launching disables uninterested
+		personality waiting disables uninterested
 		government "Syndicate"
 		fleet "Small Syndicate"
-		to spawn
-			not "Ship Hijacking: accepted"
 
 	npc save disable
 		personality launching daring target uninterested
@@ -5489,11 +5490,13 @@ mission "Ship Hijacking"
 	on fail
 		conversation
 			`When you land, the captain of the <npc> comes up to you, his face rather red.`
-			`	He puts his hands on your shoulder and shakes you, shouting, "Didn't I tell you to not destroy my ship? Do you know how many credits I've just lost on that ship? Because of you?"`
+			`	He puts his hands on your shoulders and shakes you hard, shouting, "Didn't I tell you to not destroy my ship? Do you know how many credits I've just lost because of you?"`
 			choice
 				`	"I'm sorry, I was just trying to help!"`
 				`	"I'm sure whatever you lost wasn't worth all that much."`
-				`	"`
+				`	"Well, I hope you had insurance at least."`
+				`	"It can't be that bad, can it?"`
+				`	"Well, you're lucky you weren't sitting in that ship."`
 
 	on complete
 		payment 18000
