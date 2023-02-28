@@ -258,7 +258,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 						message = planet->DemandTribute(player);
 				}
 				else
-				   message = planet->DemandTribute(player);
+					message = planet->DemandTribute(player);
 			}
 		return true;
 	}
