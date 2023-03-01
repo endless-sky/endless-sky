@@ -379,6 +379,11 @@ mission "Wanderers Conversation"
 			
 			label language
 			`	"Recently we managed to [take, capture] some of them as prisoners," he says. "They have been [raiding, visiting] us for twenty [years, cycles]. At first they only stole unguarded stores of food, and fled if we approached. We allowed them to take it, because in our culture it is a [duty, obligation] to share our food with those who [ask for, demand] it. But recently they have become far more [aggressive, desperate]. They captured one of our worlds and killed many Wanderers, and we built warships and drove them back. Some of them tried to hide on the planet, and we made them our [prisoners, guests] and slowly learned their language."`
+			choice
+				`	"Why didn't you use your automated translation software instead?"`
+				`	"Do you know what the Unfettered want?"`
+					goto food
+			`	"Having a [meaningful, successful] translation requires [copious, extensive] language data with [context, meaning]. The Unfettered [raiding, pirate] ships had no [cultural, heritage] library onboard." You detect a hint of sarcasm in his words.`
 			label food
 			`	"Do you know what the Unfettered want?" you ask.`
 			`	"They want food, and [land, elbowroom]," says Rek. "This we guessed when they first raided us, and the Hai named Sayari has confirmed this to me, that the Unfettered have [squandered, consumed] their own worlds and now make war to gain others."`
