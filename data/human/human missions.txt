@@ -5465,7 +5465,7 @@ mission "Argosy Hijacking"
 			`	Figuring it's nothing, you turn back towards the <ship> only to hear a deafening blare of warning sirens through <origin>'s spaceport. Looking around instinctively, you notice from the corner of your eye that the <npc>, that <npc model> on the landing pad next to you, jolts up with its loading ramp still extended.`
 
 			label hijack
-			`	"Hey, what's going on here?" the officer trys to shout over the noise of the sirens and the repulsors, but the rogue <npc model> veers rapidly and uncertainly towards his direction. He barely jumps down for cover before the ship comes up towards him to clip a stack of cargo crates, sending it flying into the refuelling platform. With its repulsors at full power, it narrowly avoids colliding with the <ship> and flees away into the sky.`
+			`	"Hey, what's going on here?" the officer tries to shout over the noise of the sirens and the repulsors, but the rogue <npc model> veers rapidly and uncertainly towards his direction. He barely jumps down for cover before the ship comes up towards him to clip a stack of cargo crates, sending it flying into the refuelling platform. With its repulsors at full power, it narrowly avoids colliding with the <ship> and flees away into the sky.`
 			`	The Syndicated Security officer, dazed and coated in dust kicked up from the unpermitted departure, only just pulls himself up before another person runs up to accost him. "Oi, that guy, he just hijacked my <npc model>! Get someone on their tail!"`
 			choice
 				`	"I'll do it!"`
@@ -5514,7 +5514,7 @@ mission "Argosy Hijacking"
 				goto end
 			
 			label insurance
-			`	He looks off to his left for just a moment with a look of loss in his eyes, then lets you go with a rough push. "Mmm, no, like a cocksure bastard I sure didn't. Ah, now that one isn't your fault, but if you had just taken your finger off the tigger for a few seconds less, I wouldn't be in this position now, would I? Bastards, you and the hijackers..."`
+			`	He looks off to his left for just a moment with a look of loss in his eyes, then lets you go with a rough push. "Mmm, no, like a cocksure bastard I sure didn't. Ah, now that one isn't your fault, but if you had just taken your finger off the trigger for a few seconds less, I wouldn't be in this position now, would I? Bastards, you and the hijackers..."`
 
 			label end
 			`Suddenly, he turns around and walks off towards the direction of the bar, leaving you to contemplate your actions.`
