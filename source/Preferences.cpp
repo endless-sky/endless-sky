@@ -132,6 +132,7 @@ namespace {
 	int previousSaveCount = 3;
 
 	const string HIDE_OUTFITTERS = "Hide unvisited outfitters";
+	const string HIDE_OUTFITS = "Hide unknown outfits";
 }
 
 
@@ -160,6 +161,7 @@ void Preferences::Load()
 	settings["Extra fleet status messages"] = true;
 	settings["Target asteroid based on"] = true;
 	settings[HIDE_OUTFITTERS] = false;
+	settings[HIDE_OUTFITS] = false;
 
 	DataFile prefs(Files::Config() + "preferences.txt");
 	for(const DataNode &node : prefs)

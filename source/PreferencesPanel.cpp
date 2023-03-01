@@ -76,6 +76,7 @@ namespace {
 	const string BACKGROUND_PARALLAX = "Parallax background";
 	const string ALERT_INDICATOR = "Alert indicator";
 	const string HIDE_OUTFITTERS = "Hide unvisited outfitters";
+	const string HIDE_OUTFITS = "Hide unknown outfits";
 
 	// How many pages of settings there are.
 	const int SETTINGS_PAGE_COUNT = 2;
@@ -605,7 +606,9 @@ void PreferencesPanel::DrawSettings()
 		"Interrupt fast-forward",
 		"Landing zoom",
 		SCROLL_SPEED,
-		HIDE_OUTFITTERS
+		ALERT_INDICATOR,
+		HIDE_OUTFITTERS,
+		HIDE_OUTFITS
 	};
 
 	bool isCategory = true;
