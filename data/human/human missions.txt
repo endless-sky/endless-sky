@@ -5441,7 +5441,7 @@ mission "Argosy Hijacking (Trigger)"
 
 mission "Argosy Hijacking"
 	name "Stop ship hijacking"
-	description "The ship, <npc>, was hijacked on <origin>. Do not capture or destroy it; disable it and return to <origin>. Syndicated Security will deal with the hijackers in space after you have disabled it."
+	description "The <npc> was hijacked on <origin>; disable it and return to <origin>. Do not capture or destroy it; Syndicated Security will deal with the hijackers in space after you have disabled it."
 	landing
 	source
 		government "Syndicate"
