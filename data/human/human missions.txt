@@ -5429,17 +5429,17 @@ mission "Deal Change 2"
 			label skip
 			`	After a few minutes, the pirates finish unloading the cargo, and Ci steps forward, holding out a credit chip. "<payment>, for making the right choice." Ci and the pirates return to their ships as you take off and head towards the main spaceport of <planet>.`
 
-mission "Ship Hijacking (Trigger)"
+mission "Argosy Hijacking (Trigger)"
 	invisible
 	landing
 	source
 		government "Syndicate"
 	to offer
-		random < 99 # 5
+		random < 10
 	on offer
 		fail
 
-mission "Ship Hijacking"
+mission "Argosy Hijacking"
 	name "Stop ship hijacking"
 	description "The ship, <destination>, was hijacked on <origin>. Do not capture or destroy it; disable it and return to <origin>. Syndicated Security will deal with the hijackers in space after you have disabled it."
 	landing
@@ -5447,7 +5447,7 @@ mission "Ship Hijacking"
 		government "Syndicate"
 		not attributes "station"
 	to offer
-		has "Ship Hijacking (Trigger): offered"
+		has "Argosy Hijacking (Trigger): offered"
 	on offer
 		conversation
 			`You're signing the landing papers with the Syndicated Security officer on <origin>, a standard procedure after landing in a planet within the Syndicate bloc. "Everything seems to be in order. And of course, we'll have your ship refuelled promptly. Have a good day, Captain <last>." He nods his head at you and starts to move off towards the next ship.`
@@ -5466,15 +5466,15 @@ mission "Ship Hijacking"
 
 			label hijack
 			`	"Hey, what's going on here?" the officer trys to shout over the noise of the sirens and the repulsors, but the <npc model> veers rapidly and uncertainly towards his direction. He barely jumps down for cover before the ship comes up towards him to clip a stack of cargo crates, sending it flying into the refuelling platform. With its repulsors at full power, it narrowly avoids colliding with the <ship> and flees away into the sky.`
-			`	The Syndicated Security officer, dazed and coated in dust kicked up from the unpermitted departure, only just pulls himself up before another person runs up to accost him. "That guy, he just hijacked my <npc model>! Get someone on their tail!"`
+			`	The Syndicated Security officer, dazed and coated in dust kicked up from the unpermitted departure, only just pulls himself up before another person runs up to accost him. "Oi, that guy, he just hijacked my <npc model>! Get someone on their tail!"`
 			choice
-				`	"I'll do it."`
+				`	"I'll do it!"`
 				`	(Let Syndicated Security deal with it.)`
 					goto securityjob
 			action
-				set "hijacking accepted"
-			`	The captain turns towards you. "Oh, thank you so much! Please don't destroy the <npc>, I'm already late for my contract. Agh, this doesn't help at all," he mutters to himself.`
-			`	The officer looks back at you, having dusted himself off and regained his senses. "Yes, go and deal with his ship now. We'll have Syndicated Security ships come after you to tug it down and arrest the hijackers. Go!"`
+				set "argosy hijacking accepted"
+			`	The captain turns towards you. "Thank you, Captain! Don't destroy the <npc>, I'm already late for my bloody contract. Agh, this one doesn't help at all," he mutters to himself.`
+			`	The officer looks back at you, having dusted himself off and regained his senses. "Yes, go and deal with his ship now. We'll have Syndicated Security ships come after you to arrest the hijackers and tug it down. Go!"`
 				launch
 			
 			label securityjob
@@ -5488,40 +5488,58 @@ mission "Ship Hijacking"
 		ship "Argosy (Blaster)" "Moonshake Express"
 		dialog `You've disabled the <npc>. Syndicated Security will now deal with the hijackers, but you should go back and report to the captain whose ship was hijacked.`
 		to spawn
-			has "hijacking accepted"
+			has "argosy hijacking accepted"
 
 	on fail
 		conversation
 			`When you land, the captain of the <npc> comes up to you, his face rather red.`
-			`	He puts his hands on your shoulders and shakes you hard, shouting, "Didn't I tell you to not destroy my ship? Do you know how many credits I've just lost because of you?"`
+			`	He grabs your shoulders and shakes you hard, shouting, "Didn't I tell you to not destroy my ship? Do you know how many credits I've just lost because of you?"`
 			choice
 				`	"I'm sorry, I was just trying to help!"`
+					goto help
 				`	"I'm sure whatever you lost wasn't worth all that much."`
+					goto worthless
 				`	"Well, I hope you had insurance on that ship, at least."`
-				`	"You're lucky you weren't sitting in that ship with those hijackers pointing a gun at your head."`
-			`	He doesn't seem to hear you, and instead lets go of you to stamper off to the spaceport's bank.`
+					goto insurance
+			label help
+			`	He stops shaking you for a moment to say, "Well, you shouldn't have blown up my <npc model> while you were trying to help, weren't you? Fat lot of help that was, even if you tried to do the right thing. Oh, well..."`
+				goto end
+
+			label worthless
+			`	He looks at you increduleously, scrunching up his face. "Not- not that much? Is that what you just said?" He pauses for a moment to look at the wall above you, then he stares you down again with even more intensity. "That was my life's work up there, an <npc model> that had served me for 14 years, and you have the audacity to say it was all for nothing?!"`
+			choice
+				`	"Well, yeah."`
+				`	"No, that's not what I meant."`
+			`	He scoffs at you, and lets you go with a rough push. "I don't need your explanation, I don't think you could give me one. I just can't understand how you can walk away feeling alright that you've set back one man's life so much."`
+				goto end
+			
+			label insurance
+			`	He looks off to his left for just a moment with a look of loss in his eyes, then lets you go with a rough push. "Mmm, no, like a cocksure bastard I sure didn't. Ah, now that one isn't your fault, but if you had just taken your finger off the tigger for a few seconds less, I wouldn't be in this position now, would I? Bastards, you and the hijackers..."`
+
+			label end
+			`Suddenly, he turns around and walks off towards the direction of the bar, leaving you to contemplate your actions.`
 
 	on complete
 		payment 18000
-		dialog `When you land, the relived captain of the <npc> sends you <payment> for helping him recover his ship.`
+		dialog `When you land, the captain of the <npc> sends you <payment>, and a message thanking you profusely for helping him recover his ship.`
 
-mission "Ship Hijacking (Declined)"
+mission "Argosy Hijacking (Declined)"
 	invisible
 	landing
 	to offer
-		has "Ship Hijacking (Trigger): offered"
-	to fail
-		has "ship hijacking declined reset"
+		has "Argosy Hijacking (Trigger): offered"
+	on offer
+		fail
 	npc
 		personality launching daring uninterested
 			confusion 40
 		government "Merchant (Hijacked)"
 		ship "Argosy (Blaster)" "Moonshake Express"
 		to spawn
-			has "Ship Hijacking: declined"
+			has "Argosy Hijacking: declined"
 	npc
 		personality launching disables uninterested
 		government "Syndicate"
 		fleet "Small Syndicate"
 		to spawn
-			has "Ship Hijacking: declined"
+			has "Argosy Hijacking: declined"
