@@ -4771,7 +4771,7 @@ planet Yedikule
 
 planet "Yiia Iyr"
 	landscape land/dune0
-	description `Much of Yiia Iyr is obscured by several layers of dark, ominous clouds, and what little sunlight that makes it to the surface highlights withered plains and dried up riverbeds. Thick layers of fog are often found hugging the ground, and soft winds of cool air brush against shrivelling grass fields, accentuating what little life there is. All of these characteristics make Yiia Iyr seem very mysterious, as if there should be more to it than what's present.`
+	description `Much of Yiia Iyr is obscured by several layers of dark clouds, and what little sunlight that makes it to the surface highlights withered plains and dried up riverbeds. Thick layers of fog are often found hugging the ground, and soft, cool air brushes against shrivelling grass fields. There is no discernible cause for why Yiia Iyr appears to have been able to support an ecosystem despite being so inhospitable today.`
 	government Uninhabited
 
 planet "Yniu Eiu"
