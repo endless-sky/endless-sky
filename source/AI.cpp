@@ -2928,6 +2928,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 				if(!previous && (Random::Int(60)))
 					continue;
 
+				// Sweep between the min and max arc.
 				Angle centerAngle = Angle(hardpoint.GetIdleAngle());
 				const Angle minArc = hardpoint.GetMinArc();
 				const Angle maxArc = hardpoint.GetMaxArc();
