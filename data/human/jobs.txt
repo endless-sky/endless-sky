@@ -43,6 +43,8 @@ mission "Escort (Tiny, Northern, Dangerous Destination)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
@@ -56,6 +58,8 @@ mission "Escort (Tiny, Northern, Dangerous Destination)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	
 	npc accompany save
 		government "Merchant"
@@ -103,6 +107,8 @@ mission "Escort (Tiny, Northern, Dangerous Origin)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
@@ -117,6 +123,8 @@ mission "Escort (Tiny, Northern, Dangerous Origin)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	
 	npc accompany save
 		government "Merchant"
@@ -561,6 +569,8 @@ mission "Escort (Tiny, Core, Dangerous Destination)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	npc
 		government "Pirate"
 		personality nemesis staying harvests plunders
@@ -574,6 +584,8 @@ mission "Escort (Tiny, Core, Dangerous Destination)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	
 	npc accompany save
 		government "Merchant"
@@ -623,6 +635,8 @@ mission "Escort (Tiny, Core, Dangerous Origin)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
@@ -635,6 +649,8 @@ mission "Escort (Tiny, Core, Dangerous Origin)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	
 	npc accompany save
 		government "Merchant"
@@ -1075,6 +1091,8 @@ mission "Escort (Tiny, Southern, Dangerous Origin or Destination)"
 				"Fury"
 			variant
 				"Hawk"
+			variant
+				"Scrapper"
 	npc
 		government "Pirate"
 		personality nemesis staying harvests plunders
@@ -1088,6 +1106,8 @@ mission "Escort (Tiny, Southern, Dangerous Origin or Destination)"
 				"Fury"
 			variant
 				"Hawk"
+			variant
+				"Scrapper"
 	
 	npc accompany save
 		government "Merchant"
@@ -2656,6 +2676,49 @@ mission "Recycle garbage"
 		payment
 		payment 20000
 
+mission "Wildfire Aid [1]"
+	job
+	repeat
+	name "Fire retardant to <planet>"
+	description "A major wildfire has occurred on <destination> and various settlements on the planet have been affected. Bring <cargo> to <planet> by <date> to assist in the firefighting efforts. Payment is <payment>."
+	cargo "fire retardant" 25 2 .05
+	deadline
+	to offer
+		random < 5
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		not government "Pirate"
+		distance 2 8
+		attributes "forest"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 8500 80
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>. A group of <planet> citizens thank you for your assistance and bid you farewell."
+
+mission "Wildfire Aid [2]"
+	job
+	repeat
+	name "Firefighters to <planet>"
+	description "A major wildfire has occurred on <destination> and various settlements on the planet have been affected. Bring a team of <bunks> firefighters to <planet> by <date> to assist in the firefighting efforts. Payment is <payment>."
+	passengers 5 10
+	deadline
+	to offer
+		random < 5
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		not government "Pirate"
+		distance 2 8
+		attributes "forest"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10500 80
+		dialog "You wish the firefighting team well in their efforts and collect your payment of <payment>. A group of <planet> citizens comes to guide the team away to a nearby tent, and thank you for your assistance."
+
+
 mission "Bounty Hunting (Very Tiny)"
 	name "Wanted corsair near <system>"
 	description "A small pirate fighter named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> by <day> for payment (<payment>)."
@@ -2679,7 +2742,9 @@ mission "Bounty Hunting (Very Tiny)"
 			distance 1 1
 		fleet
 			names "pirate"
-			variant
+			variant 3
+				"Scrapper"
+			variant 6
 				"Sparrow"
 			variant
 				"Wasp"
