@@ -355,7 +355,7 @@ mission "Wanderers Conversation"
 		log "People" "Iktat Rek" `Rek is a Wanderer ambassador, a new and unusual profession among a species that until recently has had no contact with aliens except for the occasional Unfettered Hai raid. His job is to help the Wanderers develop a deeper relationship with humans.`
 		conversation
 			`After you land, a group of Wanderers take you to the engineer from your last meeting. Explaining the device, the engineer says, "It will [function, succeed] on speech of typical [speed, tempo], but-" As they speak faster, the translation device produces gibberish. "This is Iktat Rek," they say, gesturing to another Wanderer. "He is [appointed, chosen] as the official [envoy, bearer] for human [visitors, couriers]."`
-			`	Rek is slightly larger than most of the Wanderers you have seen, with muted white and brown plumage and a calm, dignified bearing. "It is very [rare, exceptional] in our history that we have to [deal with, cope with] other species," he says, "and now we find ourselves dealing with two at once."`
+			`	Rek is slightly larger than most of the Wanderers you have seen, with muted white and brown plumage and a calm, dignified bearing. "It is very [rare, exceptional] in our history that we have to [deal with, cope with] other species," he says, "and now we find ourselves [dealing with, coping with] two at once."`
 			choice
 				`	"How did you learn the Hai language?"`
 					goto language
