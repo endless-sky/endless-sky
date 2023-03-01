@@ -63,6 +63,8 @@ namespace {
 	int alertIndicatorIndex = 3;
 
 	int previousSaveCount = 3;
+
+	const string HIDE_SHIP_MODELS = "Hide unknown ship models";
 }
 
 
@@ -86,6 +88,7 @@ void Preferences::Load()
 	settings["Hide unexplored map regions"] = true;
 	settings["Turrets focus fire"] = true;
 	settings["Ship outlines in shops"] = true;
+	settings[HIDE_SHIP_MODELS] = false;
 
 	DataFile prefs(Files::Config() + "preferences.txt");
 	for(const DataNode &node : prefs)
