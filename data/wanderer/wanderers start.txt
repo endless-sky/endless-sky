@@ -224,10 +224,12 @@ mission "Wanderers: Diplomacy"
 
 
 mission "Wanderers: Translation Machine"
-	description "Sayari, the Hai ambassador, suggested that you visit <destination>, where Hai technologists are working on translation machines."
+	description "Find language training data at <destination> so the Wanderers can create an automated language translator."
 	landing
 	source "Vara K'chrai"
 	destination "Alexandria"
+	substitutions
+		"<Library search.>" `You travel through the library searching for data suitable for training the Wanderer translation algorithm, but you have an unexpected problem: you're surrounded by it. Even fifty Bulk Freighters would be unable to carry all the tomes and data cores of Alexandria library. Someone with expertise in natural language processing would know what to do. Asking around, you're referred to a research librarian who develops automated translation algorithms for dead languages.`
 	to offer
 		has "Wanderers: Diplomacy: done"
 	on offer
@@ -268,32 +270,38 @@ mission "Wanderers: Translation Machine"
 				accept
 	on accept
 		"reputation: Wanderer" >?= 10
+	on complete
+		set "human cultural data"
+		payment -40
+		conversation
+			`<Library search.> She directs you to the museum gift shop, where you buy the "Human Cultural Archive" for 40 credits.`
+				to display
+					not "Bankrupt at Alexandria"
+			`Now that you finally have 40 credits, you purchase the "Human Cultural Archive" that you must take to <planet>.`
+				to display
+					has "Bankrupt at Alexandria"
+	on visit
+		set "Bankrupt at Alexandria"
+		conversation
+			`<Library search.> She directs you to the museum gift shop, to buy the "Human Cultural Archive" for 40 credits.`
+			`	Unfortunately, you have done such a horrible job at managing your finances you do not have even that much cash on hand right now.`
+			`	Go earn some money, then return here.`
 
 
 
-mission "Wanderers: Translation Algorithm Training Data"
+mission "Wanderers: Algorithm Training Data"
 	description "Bring a copy of the human cultural archives to <destination> so the Wanderers can train an automated translation algorithm."
 	landing
 	source "Alexandria"
 	destination "Vara K'chrai"
 	to offer
 		has "Wanderers: Translation Machine: done"
-	on offer
-		set "human cultural data"
-		payment -40
-		conversation
-			`You travel through the library searching for data suitable for training the Wanderer translation algorithm, but you have an unexpected problem: you're surrounded by it. Even fifty Bulk Freighters would be unable to carry all the tomes and data cores of Alexandria library. Someone with expertise in natural language processing would know what to do. Asking around, you're referred to a research librarian who develops automated translation algorithms for dead languages. She directs you to the museum gift shop, where you buy the "Human Cultural Archive" for 40 credits.`
-				accept
 	on complete
 		event "wanderer translator available" 84
 		conversation
 			`A Wanderer meets you at landing and you hand them the data card. They plug it into a mango-sized machine whose data card slot seems to adjust itself to match the shape of the card on the way in. The Wanderer makes clicking and whistling noises while manipulating the device. Eventually, the device presents the words, "[Enter, Bring] ten and two. Within [truth, lies], the pleasant [cow, nova] tickles me [thoughtfully, gracefully]."`
 			`	The Wanderer seems displeased with the results. After a few minutes of fiddling with the device, it sputters out, "Pleasing [truth, gratifications]. [Accepting, Holding] geolocated results [within, for] three [menstrual, lunar] cycles." Seeing your confusion, the Wanderer manipulates the device for several more minutes.`
 			`	"Thank you. Return in twelve weeks", the device says. Looking quite satisfied with this, the Wanderer waves and departs.`
-	on visit
-		dialog
-			`The station has a small museum gift shop that sells a copy of the entire archive on a data card. It only costs 40 credits, but because you have done a horrible job at managing your finances you do not have even that much cash on hand right now.`
-			`	Go earn some money, then return here.`
 
 
 event "wanderer translator available"
