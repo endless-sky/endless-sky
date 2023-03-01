@@ -66,6 +66,7 @@ namespace {
 	const string BOARDING_PRIORITY = "Boarding target priority";
 	const string BACKGROUND_PARALLAX = "Parallax background";
 	const string ALERT_INDICATOR = "Alert indicator";
+	const string HIDE_OUTFITTERS = "Hide unvisited outfitters";
 
 	// How many pages of settings there are.
 	const int SETTINGS_PAGE_COUNT = 2;
@@ -528,7 +529,8 @@ void PreferencesPanel::DrawSettings()
 		"Show escort systems on map",
 		"Show stored outfits on map",
 		"System map sends move orders",
-		ALERT_INDICATOR
+		ALERT_INDICATOR,
+		HIDE_OUTFITTERS
 	};
 	bool isCategory = true;
 	int page = 0;
