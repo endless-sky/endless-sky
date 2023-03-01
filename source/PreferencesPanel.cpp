@@ -75,6 +75,7 @@ namespace {
 	const string TARGET_ASTEROIDS_BASED_ON = "Target asteroid based on";
 	const string BACKGROUND_PARALLAX = "Parallax background";
 	const string ALERT_INDICATOR = "Alert indicator";
+	const string HIDE_OUTFITTERS = "Hide unvisited outfitters";
 
 	// How many pages of settings there are.
 	const int SETTINGS_PAGE_COUNT = 2;
@@ -603,7 +604,8 @@ void PreferencesPanel::DrawSettings()
 		REACTIVATE_HELP,
 		"Interrupt fast-forward",
 		"Landing zoom",
-		SCROLL_SPEED
+		SCROLL_SPEED,
+		HIDE_OUTFITTERS
 	};
 
 	bool isCategory = true;

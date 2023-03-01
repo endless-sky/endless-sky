@@ -130,6 +130,8 @@ namespace {
 	int alertIndicatorIndex = 3;
 
 	int previousSaveCount = 3;
+
+	const string HIDE_OUTFITTERS = "Hide unvisited outfitters";
 }
 
 
@@ -157,6 +159,7 @@ void Preferences::Load()
 	settings["Ship outlines in shops"] = true;
 	settings["Extra fleet status messages"] = true;
 	settings["Target asteroid based on"] = true;
+	settings[HIDE_OUTFITTERS] = false;
 
 	DataFile prefs(Files::Config() + "preferences.txt");
 	for(const DataNode &node : prefs)
