@@ -78,6 +78,7 @@ namespace {
 	const string HIDE_OUTFITTERS = "Hide unvisited outfitters";
 	const string HIDE_OUTFITS = "Hide unknown outfits";
 	const string HIDE_SHIP_MODELS = "Hide unknown ship models";
+	const string HIDE_SHIPYARDS = "Hide unvisited shipyards";
 
 	// How many pages of settings there are.
 	const int SETTINGS_PAGE_COUNT = 2;
@@ -610,7 +611,8 @@ void PreferencesPanel::DrawSettings()
 		ALERT_INDICATOR,
 		HIDE_OUTFITTERS,
 		HIDE_OUTFITS,
-		HIDE_SHIP_MODELS
+		HIDE_SHIP_MODELS,
+		HIDE_SHIPYARDS
 	};
 
 	bool isCategory = true;
