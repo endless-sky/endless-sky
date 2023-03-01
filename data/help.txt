@@ -130,7 +130,7 @@ help "friendly disabled"
 	`This ship is disabled and needs your help to patch them up! Pressing <Board selected ship> will fly you to their ship and get them up and running again. Just be sure to do it when no one is trying to kill you, or they could get caught in the crossfire!`
 
 help "tributing"
-	`You are about to demand tribute from a planet. When demanding tribute from a planet, you will have to defeat its defense fleet, and if you win you will have unrestricted access to this planet forever and receive a small amount of credits every day. Demanding tribute is an immersion breaking action that can have negative consequences on campaigns or mission lines. If you want an unaltered experience of this game, you should not demand tribute from a planet.`
+	`You are about to demand tribute from a planet. When demanding tribute from a planet, you will have to defeat their defense fleet, and if you win you will have unrestricted access to this planet forever and receive a small amount of credits every day. Demanding tribute is an immersion breaking action that can have negative consequences on campaigns or mission lines. If you want an unaltered experience of this game, you should not demand tribute from a planet.`
 
 help "tributing second"
 	`You fire a warning shot, and the fourth wall shudders and cracks. An automated message appears on your computer.`
