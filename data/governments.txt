@@ -866,7 +866,6 @@ government "Merchant"
 	"hostile hail" "hostile civilian"
 
 government "Merchant (Hijacked)"
-	"display name" "Hijackers"
 	swizzle 5
 	"attitude toward"
 		"Republic" -.2
