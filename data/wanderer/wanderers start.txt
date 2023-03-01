@@ -282,7 +282,7 @@ mission "Wanderers: Translation Algorithm Training Data"
 		set "human cultural data"
 		payment -40
 		conversation
-			`You travel through the library searching for data suitable for training the Wanderer translation algorithm but you have an unexpected problem: you're surrounded by it. Even a Bulk Freighter would be unable to carry all the tomes and data cores of Alexandria library. Someone with expertise in natural language processing would know what to do. Asking around, you're referred to a research librarian who develops automated translation algorithms for dead languages. She directs you to the museum gift shop, where you buy the "Human Cultural Archive" for 40 credits.`
+			`You travel through the library searching for data suitable for training the Wanderer translation algorithm, but you have an unexpected problem: you're surrounded by it. Even fifty Bulk Freighters would be unable to carry all the tomes and data cores of Alexandria library. Someone with expertise in natural language processing would know what to do. Asking around, you're referred to a research librarian who develops automated translation algorithms for dead languages. She directs you to the museum gift shop, where you buy the "Human Cultural Archive" for 40 credits.`
 				accept
 	on complete
 		event "wanderer translator available" 84
