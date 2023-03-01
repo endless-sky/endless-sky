@@ -103,7 +103,7 @@ help "fleet asteroid mining"
 
 help "fleet asteroid mining shortcuts"
 	`Shortcuts for asteroid targeting:`
-	`	<Target asteroid> will select the nearest asteroid and/or toggle fleet harvest.`
+	`	<Select nearest asteroid> will select the nearest asteroid and/or toggle fleet harvest.`
 	`	<Fleet: Fight my target> will focus your fleet on mining a targeted asteroid (chase and mine).`
 	``
 	`Alternate targeting:`
@@ -111,9 +111,9 @@ help "fleet asteroid mining shortcuts"
 	`	Right click - will focus your fleet to chase an asteroid and mine it.`
 
 help "fleet harvest tutorial"
-	`<Target asteroid> key is a shortcut for your fleet to harvest discarded cargo and mined asteroids. Press <Target asteroid> multiple times to toggle harvest mode on and off for your fleet.`
+	`<Select nearest asteroid> key is a shortcut for your fleet to harvest discarded cargo and mined asteroids. Press <Select nearest asteroid> multiple times to toggle harvest mode on and off for your fleet.`
 	``
-	`If you have an asteroid scanner, <Target asteroid> key will also target asteroids for fleet mining.`
+	`If you have an asteroid scanner, <Select nearest asteroid> key will also target asteroids for fleet mining.`
 
 help "fighters transfer cargo"
 	`By enabling "Fighters transfer cargo" option, drones and fighters will transfer cargo to their parent carrier if there is cargo space in the carrier. If a fighter cargo hold is full then it will return to the carrier automatically.`
