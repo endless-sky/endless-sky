@@ -5458,7 +5458,7 @@ mission "Argosy Hijacking"
 				`	(Ignore the commotion.)`
 					goto ignore
 			label turn
-			`	Both of you turn your head to see what's happening, but as you do that there's a deafening blare of warning sirens through <origin>'s spaceport. Suddenly, that <npc model> on the landing pad, the <npc>, jolts up with its loading ramp still extended.`
+			`	Both of you turn your head to see what's happening, but as you do, there's a deafening blare of warning sirens through <origin>'s spaceport. Suddenly, the <npc model> on the landing pad behind you, the <npc>, jolts up with its loading ramp still extended.`
 				goto hijack
 			
 			label ignore
