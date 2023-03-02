@@ -25,6 +25,7 @@ phrase "unfettered tribute pickup dialog"
 mission "Unfettered Tribute 1"
 	job
 	repeat
+	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the tribute from the other Hai."
 	name "Hai Tribute to <planet>"
 	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
 	cargo "food (tribute)" 25 2 .05
@@ -49,6 +50,7 @@ mission "Unfettered Tribute 1"
 mission "Unfettered Tribute 2"
 	job
 	repeat
+	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the tribute from the other Hai."
 	name "Hai Tribute to <planet>"
 	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
 	cargo "food (tribute)" 35 2 .05
@@ -73,6 +75,7 @@ mission "Unfettered Tribute 2"
 mission "Unfettered Tribute 3"
 	job
 	repeat
+	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the tribute from the other Hai."
 	name "Hai Tribute to <planet>"
 	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
 	cargo "food (tribute)" 45 2 .05
