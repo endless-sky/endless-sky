@@ -1070,7 +1070,7 @@ ship "Frugal Defense Cannon"
 		"hull threshold" 200
 		# Once this loses 50 hull ((400 - 200) / 4 hull = 50), it will stop being frugal.
 		# Since the gun does 0.5 hull damage per second, this will take exactly 100 seconds.
-		# the time it takes to fire is important for the gun to be in right position too
+		# The total time it takes to make this switch is also important to be sure that the gun is properly in position, too.
 		"hull" 400
 		"mass" 25000
 		"drag" 25
