@@ -41,6 +41,7 @@ target_sources(EndlessSkyTests PRIVATE
 
 list(APPEND INTEGRATION_TESTS
 	integration/config/plugins/integration-tests/data/tests/tests_afterburn_flight.txt
+	integration/config/plugins/integration-tests/data/tests/tests_capture_override.txt
 	integration/config/plugins/integration-tests/data/tests/tests_common.txt
 	integration/config/plugins/integration-tests/data/tests/tests_conditional_choice.txt
 	integration/config/plugins/integration-tests/data/tests/tests_disown.txt

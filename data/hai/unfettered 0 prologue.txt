@@ -303,8 +303,10 @@ mission "Unfettered Jump Drive Trading"
 	invisible
 	source "Darkcloak"
 	substitutions
+		<hood> ""
 		<hood> ", with their face hidden"
 			has "unfettered: blade rodeo"
+		<learned> ""
 		<learned> "It did take you two tries, but I am glad that you were able to learn from your mistake."
 			"unfettered: blade rodeo" == 1
 		<learned> "You finally learned from your mistakes. This is why our challenges are never fatal."
@@ -366,7 +368,7 @@ mission "Unfettered Jump Drive Trading"
 				clear "unfettered: uninterested in weapons"
 				"unfettered: jd to sell" ++
 			`	"How rude. You better hope there will be someone else to guide you, next time!" Says the engineer as you walk off and return to your ship.`
-					defer
+				defer
 			label uninterested
 			action
 				set "unfettered: uninterested in weapons"

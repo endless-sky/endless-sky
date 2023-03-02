@@ -156,6 +156,8 @@ target_sources(EndlessSkyLib PRIVATE
 	GameEvent.h
 	GameLoadingPanel.cpp
 	GameLoadingPanel.h
+	Gamerules.cpp
+	Gamerules.h
 	GameWindow.cpp
 	GameWindow.h
 	Government.cpp
@@ -257,6 +259,8 @@ target_sources(EndlessSkyLib PRIVATE
 	PlayerInfo.h
 	PlayerInfoPanel.cpp
 	PlayerInfoPanel.h
+	Plugins.cpp
+	Plugins.h
 	Point.cpp
 	Point.h
 	PointerShader.cpp
@@ -358,6 +362,8 @@ target_sources(EndlessSkyLib PRIVATE
 	opengl.h
 	pi.h
 	shift.h
+	ship/ShipAICache.cpp
+	ship/ShipAICache.h
 	text/DisplayText.cpp
 	text/DisplayText.h
 	text/Font.cpp

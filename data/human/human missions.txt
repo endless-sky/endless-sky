@@ -1330,7 +1330,7 @@ mission "Shady passenger transport 3"
 
 mission "Shady passenger transport 3 - double cross"
 	name "Shady passenger transport"
-	description "Discreetly transport <bunks> passengers to <destination>. Payment will be 350,000 credits. If you are caught with them, the legal consequences may be severe."
+	description "Discreetly transport <bunks> passengers to <destination>. Payment will be <payment>. If you are caught with them, the legal consequences may be severe."
 	"apparent payment" 350000
 	minor
 	source
@@ -2324,7 +2324,7 @@ event "terraforming follow-up"
 
 mission "A wolf, a goat, and a cabbage"
 	job
-	description "Transport a wolf, a goat, and a cabbage to <destination>. Payment will be 100,000 credits."
+	description "Transport a wolf, a goat, and a cabbage to <destination>. Payment will be <payment>."
 	"apparent payment" 100000
 	to offer
 		"day" == 1
@@ -3119,7 +3119,7 @@ mission "Capture Smuggler"
 	npc board
 		conversation
 			`The smuggler and his crew are ready and waiting when you board. You pull out the "gift" and press the button, then quickly toss it down the hallway. For a moment, you meet the smuggler's eyes. They widen with terror when he sees the "gift." You duck back into cover. A few seconds later, you hear a strangely muted detonation, followed by silence. After a minute, you hazard another peek out of cover. The smuggler and all his men are unconscious on the ground. One crewman has blood dripping from his nose and ears. You tie them all up and stow the smuggler in a locked cabin on your ship.`
-			`	Once they're secured, you sweep the ship. Ultimately you find the stolen cargo in the captain's cabin, hidden behind a false panel. The cargo is a nondescript storage container, but upon closer inspection you see that it's code-locked and covered with interference plating.`
+			`	Once they're secured, you sweep the ship. Ultimately you find the stolen cargo in the captain's cabin, hidden behind a false panel. The cargo is a nondescript storage container, but upon closer inspection you see that it's code-locked and covered with Interference Plating.`
 				launch
 		government "Merchant"
 		personality staying uninterested timid target marked
@@ -3564,7 +3564,7 @@ mission "Spacediving professionals accident"
 	job
 	repeat
 	name "Spacediving at <planet>"
-	description "Head to <destination> with <bunks> professionally equipped skydivers and drop them from the edge of space. They've agreed to pay 120,000 credits when they land."
+	description "Head to <destination> with <bunks> professionally equipped skydivers and drop them from the edge of space. They've agreed to pay <payment> when they land."
 	"apparent payment" 120000
 	passengers 5 10
 	source
@@ -3587,7 +3587,7 @@ mission "Spacediving professionals disaster"
 	job
 	repeat
 	name "Spacediving at <planet>"
-	description "Head to <destination> with <bunks> professionally equipped skydivers and drop them from the edge of space. They've agreed to pay 120,000 credits when they land."
+	description "Head to <destination> with <bunks> professionally equipped skydivers and drop them from the edge of space. They've agreed to pay <payment> when they land."
 	"apparent payment" 120000
 	passengers 5 10
 	source
@@ -3612,7 +3612,7 @@ mission "Spacediving amateurs"
 	job
 	repeat
 	name "Spacediving at <planet>"
-	description "Head to <destination> with <bunks> poorly equipped skydivers and drop them from the edge of space. They've agreed to pay 120,000 credits when they land."
+	description "Head to <destination> with <bunks> poorly equipped skydivers and drop them from the edge of space. They've agreed to pay <payment> when they land."
 	"apparent payment" 120000
 	passengers 5 10
 	source
@@ -3696,7 +3696,7 @@ mission "Human to Hai Space"
 			
 			label travel
 			`	"It was quite the trip! It's a bit odd to see only humans around, and I had to be careful to not mention where I was from. But it was definitely worth it! I got to see Earth, Skymoot, Chiron, and so many other beautiful planets. Seeing human culture with my own eyes was an eye-opening experience, although some of the places there were less... clean than I expected. I was almost robbed on Earth; I'm not used to pickpockets back home. Perhaps human space isn't as safe as Hai space, but I still don't regret coming here. It's about time for me to go back, though."`
-				
+			
 			label decision
 			choice
 				`	"Alright, I'll take you there."`
@@ -4393,8 +4393,8 @@ mission "Block Hai Wormhole Warning"
 	invisible
 	to offer
 		or
-			has "First Contact: Hai"
-			has "First Contact: Unfettered"
+			has "First Contact: Hai: declined"
+			has "First Contact: Unfettered: declined"
 		has "chosen sides"
 		not "main plot completed"
 	on offer
@@ -4407,8 +4407,8 @@ mission "Hai Wormhole Warning"
 		not attributes "deep"
 	to offer
 		or
-			has "First Contact: Hai"
-			has "First Contact: Unfettered"
+			has "First Contact: Hai: declined"
+			has "First Contact: Unfettered: declined"
 		not "Block Hai Wormhole Warning: offered"
 		not "Wanderers: Alpha Surveillance E: offered"
 	on offer
@@ -4795,7 +4795,11 @@ mission "Dangerous Games 2"
 			`	Karengo claps him on the back and gives him a signature grin. "Maybe <first> can keep you aboard after this in case they need anything from a high shelf!" Mussie smiles weakly, but his eyes don't leave the readout.`
 			`	TWENTY-FIVE KILOMETERS. "This's it," Karengo announces, "Sub up! Let's see what there is to see. And <first>, keep it to passive sensors. Don't want to attract any undue attention." The ship smoothly descends into the mouth of a massive cave and your visibility, clouded by dark sulfide emissions from the hydrothermal vents at the floor, drops to less than eight meters. 6 personal subpods fan out behind you, their communication equipment syncing with yours to display them as blips on your screen.`
 			`	"Ok, <first>," Karengo crackles over the radio. "I'll read you the first clue."`
-			`	"No other path may you take \ Oiled skins flash and flicker \ Razor spikes grow from the deep \ Titanic walls crush and smash \ Heed the beginnings to live".`
+			`"No other path may you take"`
+			`"Oiled skins flash and flicker"`
+			`"Razor spikes grow from the deep"`
+			`"Titanic walls crush and smash"`
+			`"Heed the beginnings to live".`
 			choice
 				`	(Go east).`
 					goto east
@@ -4831,7 +4835,11 @@ mission "Dangerous Games 2"
 			label riddletwo
 			branch dead
 				has "Elias and Taddese dead"
-			`	After everyone arrives and is accounted for, Karengo reads the riddle to you. "There are stingers in the deep \ A certain death, a dreamless sleep. \ Go to beast that has no bee \ No danger there, just open sea."`
+			`	After everyone arrives and is accounted for, Karengo reads the riddle to you.`
+			`"There are stingers in the deep"`
+			`"A certain death, a dreamless sleep."`
+			`"Go to beast that has no bee."`
+			`"No danger there, just open sea."`
 			choice
 				`	(Go east.)`
 					goto east1
@@ -4890,7 +4898,11 @@ mission "Dangerous Games 2"
 			`	Karengo sounds a roll call over the radio. Elias and Taddese are still missing, and now Mussie has failed to report in as well. None of their subpod beacons are responding.`
 			`	"Ah, well." says Karengo, without much sympathy. "You all stay here and I'll scout ahead." Only minutes later, he's found a clear path east, and you morosly trail the ship behind.`
 			label riddlethree
-			`	Karengo reads you the next line. "To the north and to the east \ Track my movements like a beast. \ A quick turn right and forward on, \ Come toward me where danger's gone."`
+			`	Karengo reads you the next line.`
+			`"To the north and to the east"`
+			`"Track my movements like a beast."`
+			`"A quick turn right and forward on,"`
+			`"Come toward me where danger's gone."`
 			branch dead2
 				has "Mussie dead"
 				has "Elias and Taddese dead"
@@ -5297,7 +5309,7 @@ mission "Wool Smuggling 2"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 200000
-		dialog `Your cargo of woolen garments is unloaded by several bulky workers led by a one-armed woman. She hands you <payment> for the trouble of transport, then says, "Thanks for the shipment. I know that you captains think that we're all bad, but I'm glad that you were able to aid the more friendly among us.`
+		dialog `Your cargo of woolen garments is unloaded by several bulky workers led by a one-armed woman. She hands you <payment> for the trouble of transport, then says, "Thanks for the shipment. I know that you captains think that we're all bad, but I'm glad that you were able to aid the more friendly among us."`
 
 
 
