@@ -1557,3 +1557,56 @@ mission "Strider notification"
 			scene `thumbnail/hai pond strider`
 			`Upon landing on <planet>, you receive a message from Osen. "Hello Captain <last>! I hope this message finds you well. I would like to once again thank you for your help on the Pond Strider, and would like to inform you that we have finished implementing the hull repair technology that you have provided us into the Pond Strider design and have now begun producing the ship on a mass scale. You'll also be interested to find that we have developed new weaponry for the Pond Strider's drone, the Flea. I won't spoil the surprise for you though. Check the shipyard on Hai-home the next time you stop by to take a look at it."`
 				decline
+
+
+
+mission "Hai Translator Ban Timer"
+	invisible
+	landing
+	source
+	to offer
+		has "event: hai-human resolution announced"
+		has "Wanderers Conversation: offered"
+	on offer
+		event "Hai Translator Ban Lifted" 20 30
+		fail
+
+event "Hai Translator Ban Lifted"
+
+
+
+mission "Hai Translator Ban Lifted"
+	invisible
+	landing
+	source
+	to offer
+		has "event: Hai Translator Ban Lifted"
+	on offer
+		conversation
+			`After landing, you see several humans and Hai talking to one another, each in their native language. They keep looking at a device or data pad, which seems to be translating. Some translate on-screen, while others are speaking. A Hai in an official-looking uniform comes up to you.`
+			`	"Excuse me, would you like a hai-Human translator?"`
+			label decision
+			choice
+				`	"Why are these suddenly available now?"`
+					to display
+						not "Hai Translator Ban Lifted: why?"
+				`	"I already have one."`
+					decline
+					to display
+						has "language: Hai"
+				`	"Yes, that would be great."`
+					goto yup
+					to display
+						not "language: Hai"
+				`	"Certainly not. I prefer the mystery of not knowing what the Hai are saying."`
+					decline
+			action
+				set "Hai Translator Ban Lifted: why?"
+			`	"They were illegal until now. Humans and Hai created similar devices weeks after first contact; it is an ancient technology to both races. Our Elders felt a language barrier would facilitate Hai secrecy, and human authorities agreed, so they banned the devices.`
+			`	"Times have changed, and we must shatter the language barrier to build friendships. Do you want a translator?"`
+				goto decision
+			label yup
+			action
+				set "language: Hai"
+			`	The official hands you a round device with standard data ports. You turn it on and it starts translating Hai words to human, and human to Hai, picking up several conversations around you. When you connect the data port, it uploads a translation program to your data pad.`
+				decline
