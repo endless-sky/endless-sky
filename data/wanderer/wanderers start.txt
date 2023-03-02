@@ -299,7 +299,7 @@ mission "Wanderers: Algorithm Training Data"
 	on complete
 		event "wanderer translator available" 84
 		conversation
-			`A Wanderer meets you at landing and you hand them the data card. They plug it into a mango-sized machine whose data card slot seems to adjust itself to match the shape of the card on the way in. The Wanderer makes clicking and whistling noises while manipulating the device. Eventually, the device presents the words, "[Enter, Bring] ten and two. Within [truth, lies], the pleasant [cow, nova] tickles me [thoughtfully, gracefully]."`
+			`A Wanderer meets you at landing and you hand them the data card. They plug it into a mango-sized machine whose data card slot seems to adjust itself to match the shape of the card on the way in. The Wanderer makes clicking and whistling noises while manipulating the device. Eventually, the device presents the words, "[Enter, bring] ten and two. Within [truth, lies], the pleasant [cow, nova] tickles me [thoughtfully, gracefully]."`
 			`	The Wanderer seems displeased with the results. After a few minutes of fiddling with the device, it sputters out, "Pleasing [truth, gratifications]. [Accepting, holding] geolocated results [within, for] three [menstrual, lunar] cycles." Seeing your confusion, the Wanderer manipulates the device for several more minutes.`
 			`	"Thank you. Return in twelve weeks", the device says. Looking quite satisfied with this, the Wanderer waves and departs.`
 
