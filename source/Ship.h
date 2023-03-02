@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Outfit.h"
 #include "Personality.h"
 #include "Point.h"
+#include "ship/ShipAICache.h"
 #include "ShipJumpNavigation.h"
 
 #include <list>
@@ -198,6 +199,10 @@ public:
 	std::string GetHail(std::map<std::string, std::string> &&subs) const;
 	bool CanSendHail(const PlayerInfo &player, bool allowUntranslated = false) const;
 
+	// Access the ship's AI cache, containing the range and expected AI behavior for this ship.
+	ShipAICache &GetAICache();
+	void UpdateCaches();
+
 	// Set the commands for this ship to follow this timestep.
 	void SetCommands(const Command &command);
 	void SetCommands(const FireCommand &firingCommand);
@@ -316,7 +321,6 @@ public:
 	// much it costs for this ship to jump, how far it can jump, and its possible
 	// jump methods.
 	const ShipJumpNavigation &JumpNavigation() const;
-	void RecalibrateJumpNavigation();
 	// Get the number of jumps this ship can make before running out of fuel.
 	// This depends on how much fuel it has and what sort of hyperdrive it uses.
 	// This does not show accurate number of jumps remaining beyond 1.
@@ -352,6 +356,7 @@ public:
 	double TurnRate() const;
 	double Acceleration() const;
 	double MaxVelocity() const;
+	double ReverseAcceleration() const;
 	double MaxReverseVelocity() const;
 
 	// This ship just got hit by a weapon. Take damage according to the
@@ -527,6 +532,7 @@ private:
 
 	Personality personality;
 	const Phrase *hail = nullptr;
+	ShipAICache aiCache;
 
 	// Installed outfits, cargo, etc.:
 	Outfit attributes;
