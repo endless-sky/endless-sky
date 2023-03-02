@@ -35,6 +35,9 @@ namespace {
 	// Check if the ship evades being cargo scanned.
 	bool EvadesCargoScan(const Ship &ship)
 	{
+		if(ship.Attributes().Get("inscrutable"))
+			return true;
+
 		// Illegal goods can be hidden inside legal goods to avoid detection.
 		const int contraband = ship.Cargo().IllegalCargoAmount();
 		const int netIllegalCargo = contraband - ship.Attributes().Get("scan concealment");
@@ -50,7 +53,8 @@ namespace {
 	// Check if the ship evades being outfit scanned.
 	bool EvadesOutfitScan(const Ship &ship)
 	{
-		return Random::Real() > 1. / (1. + ship.Attributes().Get("scan interference"));
+		return ship.Attributes().Get("inscrutable") ||
+				Random::Real() > 1. / (1. + ship.Attributes().Get("scan interference"));
 	}
 }
 
