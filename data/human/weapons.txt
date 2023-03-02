@@ -441,7 +441,7 @@ outfit "Heavy Anti-Missile Turret"
 		"reload" 6
 		"firing energy" 10
 		"firing heat" 5
-	description "The Heavy Anti-Missile turret has a longer range, higher power, and shorter reload time than its smaller sibling. The only way to overcome it is by firing missiles in a cluster so that while one is being targeted, the others can get through, and as a result all missile systems on the market now default to firing in clusters if multiple copies of the same launcher are installed, rather than staggering their fire as ordinary guns do."
+	description "The Heavy Anti-Missile Turret has a longer range, higher power, and shorter reload time than its smaller sibling. The only way to overcome it is by firing missiles in a cluster so that while one is being targeted, the others can get through, and as a result all missile systems on the market now default to firing in clusters if multiple copies of the same launcher are installed, rather than staggering their fire as ordinary guns do."
 
 effect "large anti-missile"
 	sprite "effect/large anti missile"
@@ -554,7 +554,7 @@ outfit "Proton Turret"
 		"firing energy" 15
 		"firing force" 2
 		"firing heat" 60
-	description "The Syndicate Proton Turret is a relatively new product designed to compete with Deep Sky's perennially popular laser turrets in the anti-fighter defense market. Though cruder than its competition, the Proton Turret maintains a loyal following among captains dissatisfied with laser weapons' short range."
+	description "The Syndicate Proton Turret is a relatively new product designed to compete with Deep Sky's perennially popular Laser Turrets in the anti-fighter defense market. Though cruder than its competition, the Proton Turret maintains a loyal following among captains dissatisfied with laser weapons' short range."
 
 
 outfit "Plasma Cannon"
@@ -609,7 +609,7 @@ outfit "Plasma Turret"
 		"shield damage" 63
 		"hull damage" 25
 		"heat damage" 340
-	description "The Plasma Turret is a pair of plasma cannons mounted on a turret so that they can fire in any direction. It is a fearsome weapon, but only the largest of ships have the space and the energy that it requires."
+	description "The Plasma Turret is a pair of Plasma Cannons mounted on a turret so that they can fire in any direction. It is a fearsome weapon, but only the largest of ships have the space and the energy that it requires."
 
 outfit "Plasma Repeater"
 	category "Guns"
@@ -874,7 +874,7 @@ outfit "Sidewinder Missile Launcher"
 		"hit force" 170
 		"missile strength" 12
 	description "The Sidewinder Missile is designed by Lovelace Labs, which is ironically also the designer of the Anti-Missile Turret. Rumors say that the two engineering teams at Lovelace who make the missiles and the anti-missiles are locked in furious competition with each other: the result has been generation after generation of smarter missiles and then smarter turrets to fend them off."
-	description "	Although not as powerful or cheap as the popular Meteor missiles, Sidewinders have several advantages, including their superior maneuverability, better tracking systems, and protective casings that make them much harder for anti-missile systems to destroy."
+	description "	Although not as powerful or cheap as the popular Meteor Missiles, Sidewinders have several advantages, including their superior maneuverability, better tracking systems, and protective casings that make them much harder for anti-missile systems to destroy."
 
 outfit "Sidewinder Missile Pod"
 	category "Secondary Weapons"
@@ -915,7 +915,7 @@ outfit "Sidewinder Missile Pod"
 		"hit force" 170
 		"missile strength" 12
 	description "The Sidewinder Missile is designed by Lovelace Labs, which is ironically also the designer of the Anti-Missile Turret. Rumors say that the two engineering teams at Lovelace who make the missiles and the anti-missiles are locked in furious competition with each other: the result has been generation after generation of smarter missiles and then smarter turrets to fend them off."
-	description "	Although not as powerful or cheap as the popular Meteor missiles, Sidewinders have several advantages, including their superior maneuverability, better tracking systems, and protective casings that make them much harder for anti-missile systems to destroy."
+	description "	Although not as powerful or cheap as the popular Meteor Missiles, Sidewinders have several advantages, including their superior maneuverability, better tracking systems, and protective casings that make them much harder for anti-missile systems to destroy."
 	description "	Pods enable fighters and other light craft to carry small quantities of missiles into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
 
 
@@ -1003,7 +1003,7 @@ outfit "Javelin Mini Pod"
 		"missile strength" 3
 	description "The Javelin Pod fires a rapid stream of unguided missiles. A Javelin Pod does far more damage than any gun of a comparable size, and has a longer range as well, but once a ship has expended all of its ammunition it must leave combat and find a planet where it can buy more, which makes Javelins less useful in protracted battles."
 	description "	The weapon's high rate of fire also makes it useful for saturating well-protected ships' anti-missile defenses so that more dangerous projectiles fired by allied ships can sneak through."
-	description "	Mini pods enable fighters and other light craft to carry small quantities of javelins into battle while retaining enough space for other weapons. Large ships are better off with full-size pods."
+	description "	Mini pods enable fighters and other light craft to carry small quantities of Javelins into battle while retaining enough space for other weapons. Large ships are better off with full-size pods."
 
 
 outfit "Torpedo"
@@ -1102,7 +1102,7 @@ outfit "Torpedo Pod"
 		"hit force" 300
 		"missile strength" 30
 	description "Torpedoes are the most powerful homing weapon, but they move slowly enough that fast ships can simply outrun them, making them most useful against large targets or against small ships at times when they are too distracted to dodge."
-	description "	Pods enable fighters and other light craft to carry small quantities of torpedoes into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
+	description "	Pods enable fighters and other light craft to carry small quantities of Torpedoes into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
 
 effect "torpedo fire"
 	sprite "effect/torpedo fire"
@@ -1207,7 +1207,7 @@ outfit "Typhoon Pod"
 		"hit force" 450
 		"missile strength" 40
 	description "Typhoon Torpedoes are an improved torpedo technology; they do considerably more damage than ordinary torpedoes. However, they are also much slower, because they are intended mostly for use against large and slow-moving capital ships. As a result, sufficiently skilled pilots can often dodge around them."
-	description "	Pods enable fighters and other light craft to carry small quantities of typhoon torpedoes into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
+	description "	Pods enable fighters and other light craft to carry small quantities of Typhoon Torpedoes into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
 
 effect "typhoon fire"
 	sprite "effect/typhoon fire"
@@ -1441,7 +1441,7 @@ outfit "Gatling Gun"
 		"submunition" "gbullet"
 		"cluster"
 		"hit effect" "bullet impact"
-	description `When Dr. Richard J. Gatling invented the rapid-fire gun bearing his name in the 19th century, he hoped that its destructiveness would lead to the end of war itself. Over a millennium later, this modern incarnation of the Gatling gun sees action in the stars, a testament to its fundamentally robust design - and Dr. Gatling's naivete. While capable of a high fire rate, this gun needs to cool down for twice as long as it fires, and can only sustain a maximum of three seconds of continuous fire.`
+	description `When Dr. Richard J. Gatling invented the rapid-fire gun bearing his name in the 19th century, he hoped that its destructiveness would lead to the end of war itself. Over a millennium later, this modern incarnation of the Gatling Gun sees action in the stars, a testament to its fundamentally robust design - and Dr. Gatling's naivete. While capable of a high fire rate, this gun needs to cool down for twice as long as it fires, and can only sustain a maximum of three seconds of continuous fire.`
 
 outfit "gbullet"
 	weapon
