@@ -11,26 +11,6 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-mission "Wandering Nightmares"
-	landing
-	name "Quiet your Nightmares"
-	description "You have recurring nightmares about an alien world north of Unfettered space. You'll never sleep again unless you investigate it."
-	source
-		not attributes "wanderer"
-	destination "Vara K'chrai"
-	to offer
-		has "event: wandering nightmare map"
-		not "First Contact: Wanderer: offered"
-		not "First Contact: Wanderer (Before Hai): offered"
-	on offer
-		log "You have reoccurring nightmares about an alien world north of Unfettered space. You'll never sleep again unless you investigate it."
-		conversation
-			`Terrified, you see you're in a room filled with angry squirrels. Suddenly one's arm is ripped off and blood spatters on a nearby wall. There's a map on the wall, but you can't quite see it. You hear the flapping of birds' wings as you struggle to see, but your dream is cut short when you awaken.`
-			`	You've had this dream every night for a week now. At long last, you realize it isn't a dream; it is a memory. When Teeneep cut the arm off an Unfettered warrior, blood spattered on a map on the wall. A map of a region north of Hai space.`
-			`	Little blood reached the wall, but it surrounded one system. Perhaps this is a threat from some malevolent deity warning you of a terrible fate that will befall you there. You'll never sleep well again until you investigate.`
-			`	Whatever fate may have in store for you, it can't be worse than a lifetime of insomnia.`
-				accept
-
 mission "First Contact: Wanderer (Before Hai)"
 	landing
 	source
@@ -39,7 +19,6 @@ mission "First Contact: Wanderer (Before Hai)"
 		not "First Contact: Wanderer: offered"
 		not "event: hai-human resolution announced"
 	on offer
-		fail "Wandering Nightmares"
 		conversation
 			`All the other worlds belonging to this species have appeared unwilling to let you land, but here you find a slightly warmer welcome. A cloud of small, highly maneuverable patrol ships takes off from the planet as you approach and herds you onto one particular landing pad where, after a few minutes, several of the aliens approach your ship.`
 			`	This species is birdlike, but with bodies nearly as large as yours, and with wings that tower above you. They come swooping down from the sky, circle your ship to inspect it, and then land near the hatch and wait for you to open it. They do not appear to be armed, but their talons are eight or nine centimeters long.`
@@ -65,7 +44,6 @@ mission "First Contact: Wanderer"
 	to complete
 		has "Wanderers: Diplomacy: offered"
 	on offer
-		fail "Wandering Nightmares"
 		log "Discovered a birdlike alien species to the north of human space. They appear to speak the Hai language in addition to their own, so with the help of a Hai interpreter it might be possible to communicate with them."
 		conversation
 			branch revisit
@@ -385,6 +363,7 @@ mission "Visit Wanderers Again"
 		has "human cultural data"
 	on offer
 		set "language: Wanderer"
+		set "language: Hai"
 		event "wanderer technology available"
 		log "Received a device, created by a Hai scientist, which can translate between human language and the Hai language. Since the Wanderers speak the Hai language, that should make it possible to communicate with them directly."
 		conversation "eruk cultural data"
@@ -395,6 +374,19 @@ event "wanderer technology available" # Name unchanged for compatibility
 		"friendly disabled hail" "friendly disabled wanderer"
 		"hostile hail" "hostile wanderer"
 		"hostile disabled hail" "hostile disabled wanderer"
+
+
+
+# Compatibility patch for saves before "language: Hai" variable was added.
+mission "Hai Language Patch"
+	landing
+	invisible
+	to offer
+		has "Visit Wanderers Again: offered"
+		not "language: Hai"
+	on offer
+		set "language: Hai"
+		fail
 
 
 
@@ -1330,7 +1322,7 @@ mission "Wanderers: Alpha Surveillance E"
 
 mission "Wanderers: Alpha Surveillance F"
 	name "Invade Avalon"
-	description "Escort Admiral Danforth's Navy Cruiser to <destination> and land on the planet with them. They will attempt to locate and eliminate the Alpha base."
+	description "Escort Admiral Danforth's Navy <npc model> to <destination> and land on the planet with them. They will attempt to locate and eliminate the Alpha base."
 	autosave
 	source "Farpoint"
 	destination "Avalon"
@@ -2138,7 +2130,7 @@ mission "Wanderers Solifuge Recon 3"
 			has "Wanderers Pond Strider Recon 2: done"
 	on offer
 		conversation
-			`Tele'ek and Sayari listen carefully as you outline the strengths and weaknesses of the new Unfettered carriers. "I am not greatly [concerned, frightened] by tiny fighters," Tele'ek says. "The weapon that has done us most harm is their ion cannons, which no ship so small can [wield, carry]. But thank you for your assistance."`
+			`Tele'ek and Sayari listen carefully as you outline the strengths and weaknesses of the new Unfettered carriers. "I am not greatly [concerned, frightened] by tiny fighters," Tele'ek says. "The weapon that has done us most harm is their Ion Cannons, which no ship so small can [wield, carry]. But thank you for your assistance."`
 			`	Sayari looks more concerned about this information. "These carriers may not be an issue for the Wanderers, but this development could cause trouble for the Hai. I have written a message describing the situation." She hands you a data chip. "Please deliver it to the council of elders on <planet>."`
 			`	"Please be quick if you are to deliver this message now," Tele'ek says. "We have no other [fights, brawls] for you to take part in right now, but once you return here, you will find another evacuation fleet that needs an [escort, protector]."`
 				accept

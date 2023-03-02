@@ -19,6 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Angle.h"
 #include "Point.h"
 
+#include <bitset>
+
 class DataNode;
 class DataWriter;
 
@@ -55,6 +57,7 @@ public:
 	bool IsAppeasing() const;
 	bool IsOpportunistic() const;
 	bool IsMerciful() const;
+	bool IsRamming() const;
 
 	// Mission NPC states:
 	bool IsStaying() const;
@@ -92,9 +95,13 @@ private:
 
 
 private:
+	// Make sure this matches the number of items in PersonalityTrait,
+	// or the build will fail.
+	static const int PERSONALITY_COUNT = 32;
+
 	bool isDefined = false;
 
-	int flags;
+	std::bitset<PERSONALITY_COUNT> flags;
 	double confusionMultiplier;
 	double aimMultiplier;
 	Point confusion;
