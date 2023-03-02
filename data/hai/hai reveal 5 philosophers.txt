@@ -1152,7 +1152,7 @@ hazard "Keep Cannon Close"
 	"range" 1000
 	weapon
 		"gravitational"
-		# the higher the mass, the more effect (so anything other than the cannon ship should be +- ignored)
+		# The higher the mass, the more effect (so anything other than the cannon ship should be +- ignored).
 		"hit force" -.1
 		"damage dropoff" 0 1000
 		"dropoff modifier" 0
