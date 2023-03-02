@@ -263,8 +263,8 @@ void ShipyardPanel::Buy(bool alreadyOwned)
 	modifier = Modifier();
 	string message;
 	if(licenseCost)
-		message = "Note: you will need to pay " + Format::Credits(licenseCost)
-			+ " credits for the licenses required to operate this ship, in addition to its cost."
+		message = "Note: you will need to pay " + Format::CreditString(licenseCost)
+			+ " for the licenses required to operate this ship, in addition to its cost."
 			" If that is okay with you, go ahead and enter a name for your brand new ";
 	else
 		message = "Enter a name for your brand new ";
@@ -363,7 +363,7 @@ void ShipyardPanel::Sell(bool toStorage)
 		toSell.push_back(it->shared_from_this());
 	int64_t total = player.FleetDepreciation().Value(toSell, day);
 
-	message += ((initialCount > 2) ? "\nfor " : " for ") + Format::Credits(total) + " credits?";
+	message += ((initialCount > 2) ? "\nfor " : " for ") + Format::CreditString(total) + "?";
 	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message, Truncate::MIDDLE));
 }
 

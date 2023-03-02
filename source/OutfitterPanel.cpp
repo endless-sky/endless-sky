@@ -46,11 +46,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	string Tons(int tons)
-	{
-		return to_string(tons) + (tons == 1 ? " ton" : " tons");
-	}
-
 	// Determine the refillable ammunition a particular ship consumes or stores.
 	set<const Outfit *> GetRefillableAmmunition(const Ship &ship) noexcept
 	{
@@ -325,17 +320,17 @@ int OutfitterPanel::DrawDetails(const Point &center)
 		}
 		categoryZones.emplace_back(collapseDescription);
 
-		Point attrPoint(startPoint.X(), startPoint.Y() + descriptionOffset);
-		Point reqsPoint(startPoint.X(), attrPoint.Y() + outfitInfo.AttributesHeight());
+		Point reqsPoint(startPoint.X(), startPoint.Y() + descriptionOffset);
+		Point attrPoint(startPoint.X(), reqsPoint.Y() + outfitInfo.RequirementsHeight());
 
 		SpriteShader::Draw(background, thumbnailCenter);
 		if(thumbnail)
 			SpriteShader::Draw(thumbnail, thumbnailCenter);
 
-		outfitInfo.DrawAttributes(attrPoint);
 		outfitInfo.DrawRequirements(reqsPoint);
+		outfitInfo.DrawAttributes(attrPoint);
 
-		heightOffset = reqsPoint.Y() + outfitInfo.RequirementsHeight();
+		heightOffset = attrPoint.Y() + outfitInfo.AttributesHeight();
 	}
 
 	// Draw this string representing the selected item (if any), centered in the details side panel
@@ -499,7 +494,7 @@ void OutfitterPanel::FailBuy() const
 	if(!isInCargo && !isInStorage && cost > credits)
 	{
 		GetUI()->Push(new Dialog("You cannot buy this outfit, because it costs "
-			+ Format::Credits(cost) + " credits, and you only have "
+			+ Format::CreditString(cost) + ", and you only have "
 			+ Format::Credits(credits) + "."));
 		return;
 	}
@@ -515,7 +510,7 @@ void OutfitterPanel::FailBuy() const
 	{
 		GetUI()->Push(new Dialog(
 			"You don't have enough money to buy this outfit, because it will cost you an extra "
-			+ Format::Credits(licenseCost) + " credits to buy the necessary licenses."));
+			+ Format::CreditString(licenseCost) + " to buy the necessary licenses."));
 		return;
 	}
 
@@ -555,8 +550,8 @@ void OutfitterPanel::FailBuy() const
 		double freeCargo = player.Cargo().Free();
 
 		GetUI()->Push(new Dialog("You cannot buy this outfit, because it takes up "
-			+ Tons(mass) + " of mass, and your fleet has "
-			+ Tons(freeCargo) + " of cargo space free."));
+			+ Format::CargoString(mass, "mass") + ", and your fleet has "
+			+ Format::CargoString(freeCargo, "cargo space") + " free."));
 		return;
 	}
 
@@ -566,8 +561,8 @@ void OutfitterPanel::FailBuy() const
 	if(outfitNeeded > outfitSpace)
 	{
 		GetUI()->Push(new Dialog("You cannot install this outfit, because it takes up "
-			+ Tons(outfitNeeded) + " of outfit space, and this ship has "
-			+ Tons(outfitSpace) + " free."));
+			+ Format::CargoString(outfitNeeded, "outfit space") + ", and this ship has "
+			+ Format::MassString(outfitSpace) + " free."));
 		return;
 	}
 
@@ -577,8 +572,8 @@ void OutfitterPanel::FailBuy() const
 	{
 		GetUI()->Push(new Dialog("Only part of your ship's outfit capacity is usable for weapons. "
 			"You cannot install this outfit, because it takes up "
-			+ Tons(weaponNeeded) + " of weapon space, and this ship has "
-			+ Tons(weaponSpace) + " free."));
+			+ Format::CargoString(weaponNeeded, "weapon space") + ", and this ship has "
+			+ Format::MassString(weaponSpace) + " free."));
 		return;
 	}
 
@@ -588,8 +583,8 @@ void OutfitterPanel::FailBuy() const
 	{
 		GetUI()->Push(new Dialog("Only part of your ship's outfit capacity is usable for engines. "
 			"You cannot install this outfit, because it takes up "
-			+ Tons(engineNeeded) + " of engine space, and this ship has "
-			+ Tons(engineSpace) + " free."));
+			+ Format::CargoString(engineNeeded, "engine space") + ", and this ship has "
+			+ Format::MassString(engineSpace) + " free."));
 		return;
 	}
 
@@ -1013,7 +1008,7 @@ void OutfitterPanel::CheckRefill()
 		string message = "Do you want to reload all the ammunition for your ship";
 		message += (count == 1) ? "?" : "s?";
 		if(cost)
-			message += " It will cost " + Format::Credits(cost) + " credits.";
+			message += " It will cost " + Format::CreditString(cost) + ".";
 		GetUI()->Push(new Dialog(this, &OutfitterPanel::Refill, message));
 	}
 }

@@ -39,6 +39,7 @@ class Fleet;
 class FormationPattern;
 class Galaxy;
 class GameEvent;
+class Gamerules;
 class Government;
 class Hazard;
 class ImageSet;
@@ -170,11 +171,11 @@ public:
 	static std::string HelpMessage(const std::string &name);
 	static const std::map<std::string, std::string> &HelpTemplates();
 
-	static const std::map<std::string, std::string> &PluginAboutText();
-
 	static MaskManager &GetMaskManager();
 
 	static const TextReplacements &GetTextReplacements();
+
+	static const Gamerules &GetGamerules();
 
 	// Thread-safe way to draw the menu background.
 	static void DrawMenuBackground(Panel *panel);
