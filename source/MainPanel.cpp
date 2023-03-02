@@ -337,9 +337,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 					out << "This " + target->Noun() + " is carrying:\n";
 				first = false;
 
-				out << "\t" << it.second
-					<< (it.second == 1 ? " ton of " : " tons of ")
-					<< it.first << "\n";
+				out << "\t" << Format::CargoString(it.second, it.first) << "\n";
 			}
 		for(const auto &it : target->Cargo().Outfits())
 			if(it.second)
@@ -352,7 +350,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 				if(it.first->Get("installable") < 0.)
 				{
 					int tons = ceil(it.second * it.first->Mass());
-					out << (tons == 1 ? " ton of " : " tons of ") << Format::LowerCase(it.first->PluralName()) << "\n";
+					out << Format::CargoString(tons, Format::LowerCase(it.first->PluralName())) << "\n";
 				}
 				else
 					out << " " << (it.second == 1 ? it.first->DisplayName(): it.first->PluralName()) << "\n";

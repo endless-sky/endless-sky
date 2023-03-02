@@ -641,7 +641,7 @@ fleet "Large Hai Merchant (Human)"
 
 
 fleet "Unfettered Logistics"
-	government "Hai (Friendly Unfettered)"
+	government "Hai (Unfettered Civilians)"
 	names "hai"
 	cargo 1
 	commodities "Food" "Heavy Metals" "Medical"
@@ -649,43 +649,43 @@ fleet "Unfettered Logistics"
 		confusion 25
 		timid frugal appeasing
 	variant 3
-		"Aphid" 2
+		"Aphid (Unfettered)" 2
 		"Lightning Bug (Pulse)"
 	variant 3
-		"Aphid" 3
+		"Aphid (Unfettered)" 3
 		"Lightning Bug (Pulse)"
 	variant 3
-		"Aphid" 2
+		"Aphid (Unfettered)" 2
 		"Lightning Bug"
 	variant
-		"Aphid" 3
+		"Aphid (Unfettered)" 3
 		"Lightning Bug"
 	variant 2
-		"Aphid" 3
+		"Aphid (Unfettered)" 3
 		"Sea Scorpion (Tracker)"
 	variant 2
-		"Aphid" 3
+		"Aphid (Unfettered)" 3
 		"Sea Scorpion (Ion)"
 	variant
-		"Aphid" 3
+		"Aphid (Unfettered)" 3
 		"Sea Scorpion (Pulse)"
 	variant 2
-		"Aphid" 4
+		"Aphid (Unfettered)" 4
 		"Sea Scorpion (Tracker)"
 	variant 2
-		"Aphid" 4
+		"Aphid (Unfettered)" 4
 		"Sea Scorpion (Ion)"
 	variant
-		"Aphid" 4
+		"Aphid (Unfettered)" 4
 		"Sea Scorpion (Pulse)"
 	variant 2
-		"Aphid" 5
+		"Aphid (Unfettered)" 5
 		"Sea Scorpion (Tracker)"
 	variant 2
-		"Aphid" 5
+		"Aphid (Unfettered)" 5
 		"Sea Scorpion (Ion)"
 	variant
-		"Aphid" 5
+		"Aphid (Unfettered)" 5
 		"Sea Scorpion (Pulse)"
 
 fleet "Small Unfettered"

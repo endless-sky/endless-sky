@@ -55,11 +55,14 @@ namespace {
 	const vector<string> BOARDING_SETTINGS = {"proximity", "value", "mixed"};
 	int boardingIndex = 0;
 
+	// Enable "fast" parallax by default. "fancy" is too GPU heavy, especially for low-end hardware.
 	const vector<string> PARALLAX_SETTINGS = {"off", "fancy", "fast"};
-	int parallaxIndex = 1;
+	int parallaxIndex = 2;
 
 	const vector<string> ALERT_INDICATOR_SETTING = {"off", "audio", "visual", "both"};
 	int alertIndicatorIndex = 3;
+
+	int previousSaveCount = 3;
 }
 
 
@@ -76,6 +79,7 @@ void Preferences::Load()
 	settings["Show stored outfits on map"] = true;
 	settings["Show mini-map"] = true;
 	settings["Show planet labels"] = true;
+	settings["Show asteroid scanner overlay"] = true;
 	settings["Show hyperspace flash"] = true;
 	settings["Draw background haze"] = true;
 	settings["Draw starfield"] = true;
@@ -108,6 +112,8 @@ void Preferences::Load()
 			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
 		else if(node.Token(0) == "alert indicator")
 			alertIndicatorIndex = max<int>(0, min<int>(node.Value(1), ALERT_INDICATOR_SETTING.size() - 1));
+		else if(node.Token(0) == "previous saves" && node.Size() >= 2)
+			previousSaveCount = max<int>(3, node.Value(1));
 		else
 			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
 	}
@@ -139,6 +145,7 @@ void Preferences::Save()
 	out.Write("Automatic aiming", autoAimIndex);
 	out.Write("Parallax background", parallaxIndex);
 	out.Write("alert indicator", alertIndicatorIndex);
+	out.Write("previous saves", previousSaveCount);
 
 	for(const auto &it : settings)
 		out.Write(it.first, it.second);
@@ -406,4 +413,11 @@ bool Preferences::DoAlertHelper(Preferences::AlertIndicator toDo)
 	else if(value == toDo)
 		return true;
 	return false;
+}
+
+
+
+int Preferences::GetPreviousSaveCount()
+{
+	return previousSaveCount;
 }
