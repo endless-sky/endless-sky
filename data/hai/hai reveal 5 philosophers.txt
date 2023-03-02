@@ -1068,7 +1068,7 @@ ship "Frugal Defense Cannon"
 	attributes
 		"heat dissipation" 1
 		"hull threshold" 200
-		# once this loses (400 - 200) / 4 hull = 50 it will stop being frugal
+		# Once this loses 50 hull ((400 - 200) / 4 hull = 50), it will stop being frugal.
 		# given the gun does 0.5 hull per second, it will take exactly 100 seconds
 		# the time it takes to fire is important for the gun to be in right position too
 		"hull" 400
