@@ -5441,12 +5441,12 @@ mission "Blind Man from Martini"
 		# random < 15
 	on offer
 		conversation
-			`As you walk through <origin>'s cramped new planetary spaceport, you see a mid-aged man on the other side of the corridor behind a column of people. He's just sitting on a bench looking ahead at nowhere in particular, with a suitcase to his side, and holding a cane in one hand. Nobody's paying any attention to him, but he is tapping his cane every so often someone passes by him.`
+			`As you walk through <origin>'s cramped new planetary spaceport, you see a middle-aged man on the other side of the corridor, behind a column of people. He's just sitting on a bench looking ahead at nowhere in particular, with a suitcase to his side, and holding a cane in one hand. Nobody's paying any attention to him, but he is tapping his cane every so often, when someone passes by him.`
 			choice
 				`	(Go up to him.)`
 				`	(Ignore him.)`
 					decline
-			`	Wading through the mix of passengers, stevedores and captains in the full corridor, you reach the man with the cane. It's obvious now that he's blind, because he doesn't move to look at you and continues looking straight ahead, but he taps his cane twice when you come by him.`
+			`	Wading through the mix of passengers, stevedores and captains in the full corridor, you reach the man with the cane. It's obvious now that he's blind, as he doesn't move to look at you and continues looking straight ahead, but he taps his cane twice when you come by him.`
 			choice
 				`	"Hello."`
 				`	"Are you alright?"`
@@ -5478,7 +5478,7 @@ mission "Blind Man from Martini"
 			label looking
 			action
 				set "Blind Man from Martini: label looking"
-			`	"Yes, I need to get to my daughter, Anita. Someone's meant to take me to her." Yet again, his cane taps twice.`
+			`	"Someone to take me to my daughter, Anita." Yet again, his cane taps twice.`
 				goto questions
 
 			label somewhere
@@ -5487,7 +5487,7 @@ mission "Blind Man from Martini"
 				`	"Of course, I'll take you to <planet>."`
 				`	"Sorry, I won't be able to."`
 					goto can't
-			`	The man musters a broad smile and says, "Thank you all too much. Could you help me with the luggage? Of course, I can't see where it is..." While boarding, he tells you his name is Douglas, and he promises to you <payment> for transporting him.`
+			`	The man musters a broad smile, says "Thank you all too much. Could you help me with the luggage? Of course, I can't see where it is..." and scans the floor with his cane for it. Later, while boarding, he tells you his name is Douglas, and he promises to you <payment> for transporting him.`
 				accept
 
 			label can't
@@ -5620,13 +5620,13 @@ mission "Blind Man from Martini"
 				goto taxi
 
 			label hospital
-			`	Eventually, the taxi passes by a sign for the "UNS Health Sciences" quarter, which by the looks of it takes up an entire section of University district. The taxi pulls up beside the entrance of the university hospital, where you help Douglas out with his luggage. The building is both stark from the outside and strangely colorful on the inside, as if the person building it decided that hospitals were far too sterile and that people should be more easily treated in a place bright and alive than cold and white.`
+			`	Eventually, the taxi passes by a sign for the "UNS Health Sciences" quarter, which by the looks of it takes up an entire section of University district. The taxi pulls up beside the entrance of the university hospital, where you help Douglas out with his luggage. The building is both stark from the outside and strangely colorful on the inside, as if the person building it decided that hospitals were far too sterile and that people should be treated in a place bright and alive instead of cold and white.`
 			`	After a short queue, you reach the reception with Douglas. The receptionist, placed behind a sterile-looking screen that looks far out of place with the colorful hallways, asks with a well-practiced smile, "How may I help you?"`
 			choice
 				`	"We're looking for Anita Pears, where can we find her?"`
 			`	For a moment, the receptionist shuffles information arounds on her terminal. "You are her father, Douglas Pears?"`
 			`	"That's me," Douglas interjects before you can speak.`
-			`	She takes a few more seconds before looking at you and saying, "Ah, but we cannot let you in. Only Douglas is booked in for today; we have a family-only policy, to keep the privacy of our patients."`
+			`	She takes a few more seconds before looking at you and saying, "Ah, but we cannot let you in. Only Mr. Pears is booked in for today; we have a family-only policy, to keep the privacy of our patients."`
 			choice
 				`	"All right."`
 					goto end
