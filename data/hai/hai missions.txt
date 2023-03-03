@@ -1579,6 +1579,7 @@ mission "Hai Translator Ban Lifted"
 	invisible
 	landing
 	source
+		government Hai
 	to offer
 		has "event: Hai Translator Ban Lifted"
 	on offer
