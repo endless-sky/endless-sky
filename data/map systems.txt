@@ -2513,7 +2513,7 @@ system "Ae Il B-11"
 system "Ae Il F-46"
 	pos 523.467 -743.162
 	government Uninhabited
-	attributes "bright-star" "giant-star" "multi-star" "notable-star"
+	attributes "bright-star" "giant-star" "notable-star"
 	arrival 5000
 	habitable 12475
 	belt 1244
@@ -5926,7 +5926,7 @@ system Aspidiske
 system Atik
 	pos -66 -52
 	government Uninhabited
-	attributes "bright-star" "giant-star" "notable-star" "multi-star"
+	attributes "bright-star" "giant-star" "multi-star" "notable-star"
 	arrival 5000
 	habitable 15105
 	belt 1240
@@ -14304,7 +14304,7 @@ system Furmeliki
 system G-3191
 	pos 1039.23 -395
 	government Uninhabited
-	attributes "bright-star" "multi-star" "notable-star" "supergiant-star" "umbral reach"
+	attributes "bright-star" "notable-star" "supergiant-star" "umbral reach"
 	arrival 5000
 	departure 1000
 	habitable 20250
@@ -14723,7 +14723,7 @@ system Gaungu
 system "Genta Bo"
 	pos 185.2 -65.9
 	government Bunrodea
-	attributes "bright-star" "multi-star" "notable-star" "supergiant-star"
+	attributes "bright-star" "notable-star" "supergiant-star"
 	arrival 5000
 	habitable 37100
 	belt 1500
@@ -21182,7 +21182,7 @@ system MC-42
 system MS-219
 	pos 1075.13 -568.167
 	government Uninhabited
-	attributes "bright-star" "iije" "multi-star" "notable-star" "umbral reach"
+	attributes "bright-star" "iije" "notable-star" "umbral reach"
 	arrival 2075
 	habitable 2075
 	belt 1404
@@ -23065,6 +23065,7 @@ system Mirzam
 system Misam
 	pos -9 -80
 	government Pirate
+	attributes "multi-star" "notable-star"
 	arrival 3835
 	habitable 3835
 	belt 1091
@@ -25203,7 +25204,7 @@ system Peacock
 system Pelubta
 	pos -757.587 575.051
 	government Coalition
-	attributes "arachi" "bright-star" "multi-star" "notable-star"
+	attributes "arachi" "bright-star" "notable-star"
 	arrival 5000
 	habitable 7050
 	belt 1709
@@ -27853,7 +27854,7 @@ system Ritilas
 system Rouseu
 	pos 566.7 -404.133
 	government Uninhabited
-	attributes "bright-star" "multi-star" "notable-star" "wormhole"
+	attributes "bright-star" "notable-star" "wormhole"
 	arrival 5000
 	habitable 8800
 	belt 1648
@@ -32599,7 +32600,7 @@ system "Uwa Fahn"
 system "Uwo Seija"
 	pos 420.667 -429
 	government Uninhabited
-	attributes "bright-star" "multi-star" "notable-star"
+	attributes "bright-star" "notable-star"
 	arrival 4630
 	habitable 4630
 	belt 1222
@@ -32641,7 +32642,7 @@ system "Uwo Seija"
 system V-2189
 	pos 1135.9 -711.667
 	government Uninhabited
-	attributes "bright-star" "multi-star" "notable-star" "umbral reach"
+	attributes "bright-star" "notable-star" "umbral reach"
 	arrival 5000
 	habitable 17370
 	belt 1985
