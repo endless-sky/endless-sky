@@ -5559,6 +5559,7 @@ mission "Blind Man from Martini"
 					goto illness
 					to display
 						not "Blind Man from Martini: label illness"
+						has "Blind Man from Martini: label daughter"
 
 				`	(Stay silent.)`
 					goto waiting
