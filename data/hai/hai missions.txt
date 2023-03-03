@@ -1585,7 +1585,7 @@ mission "Hai Translator Ban Lifted"
 	on offer
 		conversation
 			`After landing, you see several humans and Hai talking to one another, each in their native language. They keep looking at a device or data pad, which seems to be translating. Some translate on-screen, while others are speaking. A Hai in an official-looking uniform comes up to you.`
-			`	"Excuse me, would you like a hai-Human translator?"`
+			`	"Excuse me, would you like a Hai-human translator?"`
 			label decision
 			choice
 				`	"Why are these suddenly available now?"`
