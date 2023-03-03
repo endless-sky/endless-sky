@@ -230,6 +230,7 @@ phrase "unfettered mining payment dialog"
 mission "Unfettered Silicon Asteroid Mining"
 	job
 	repeat
+	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land and deliver the minerals."
 	name "Gather Silicon from asteroids"
 	description "Mine and collect 50 tons of silicon, then bring the minerals to <destination> for <payment>. Silicon is available in the asteroid field of Wah Yoot."
 	source "Darkcloak"
@@ -244,6 +245,7 @@ mission "Unfettered Silicon Asteroid Mining"
 mission "Unfettered Silicon Asteroid Mining 2"
 	job
 	repeat
+	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land and deliver the minerals."
 	name "Gather Silicon from asteroids"
 	description "Mine and collect 100 tons of silicon, then bring the minerals to <destination> for <payment>. Silicon is available in the asteroid field in Wah Yoot."
 	source "Darkcloak"
@@ -259,6 +261,7 @@ mission "Unfettered Silicon Asteroid Mining 2"
 mission "Unfettered Silver Asteroid Mining"
 	job
 	repeat
+	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land and deliver the minerals."
 	name "Gather Silver from asteroids"
 	description "Mine and collect 15 tons of silver, then bring the minerals back to <destination> for <payment>. Silver is available in the asteroid field in Ehma Ti."
 	source
@@ -275,6 +278,7 @@ mission "Unfettered Silver Asteroid Mining"
 mission "Unfettered Silver Asteroid Mining 2"
 	job
 	repeat
+	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land and deliver the minerals."
 	name "Gather Silver from asteroids"
 	description "Mine and collect 30 tons of silver, then bring the minerals to <destination> for <payment>. Silver is available in the asteroid field in Ehma Ti."
 	source
@@ -293,6 +297,7 @@ mission "Unfettered Silver Asteroid Mining 2"
 mission "Unfettered Lead Asteroid Mining"
 	job
 	repeat
+	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land and deliver the minerals."
 	name "Gather Lead from asteroids"
 	description "Mine and collect 35 tons of lead, then bring the minerals to <destination> for <payment>. Lead is available in the asteroid field in Wah Yoot."
 	source
@@ -310,6 +315,7 @@ mission "Unfettered Lead Asteroid Mining"
 mission "Unfettered Lead Asteroid Mining 2"
 	job
 	repeat
+	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land and deliver the minerals."
 	name "Gather Lead from asteroids"
 	description "Mine and collect 70 tons of lead, then bring the minerals to <destination> for <payment>. Lead is available in the asteroid field in Wah Yoot."
 	source
@@ -340,6 +346,7 @@ phrase "unfettered medicals payment dialog"
 mission "Unfettered Small Medicals Rush"
 	job
 	repeat
+	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the much needed medical supplies."
 	name "Express medical supplies to <planet>"
 	description "The Unfettered hospitals on <destination> are in urgent need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered before <date> for <payment>."
 	deadline 5 1
@@ -365,6 +372,7 @@ mission "Unfettered Small Medicals Rush"
 mission "Unfettered Big Medicals Rush"
 	job
 	repeat
+	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the much needed medical supplies."
 	name "Medical supplies to <planet>"
 	description "The Unfettered hospitals on <destination> are in need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered before <date> for <payment>."
 	deadline 10 1
