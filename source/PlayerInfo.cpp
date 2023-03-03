@@ -342,7 +342,18 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "visited" && child.Size() >= 2)
 			Visit(*GameData::Systems().Get(child.Token(1)));
 		else if(child.Token(0) == "visited planet" && child.Size() >= 2)
+		{
 			Visit(*GameData::Planets().Get(child.Token(1)));
+
+			if(child.Size() > 2)
+			{
+				string visitedStr = child.Token(2);
+
+				if(!visitedStr.empty())
+					if(visitedStr == "outfitter")
+						VisitOutfitterAt(*GameData::Planets().Get(child.Token(1)));
+			}
+		}
 		else if(child.Token(0) == "harvested")
 		{
 			for(const DataNode &grand : child)
@@ -2220,7 +2231,7 @@ void PlayerInfo::Visit(const System &system)
 // Mark the given planet as visited.
 void PlayerInfo::Visit(const Planet &planet)
 {
-	visitedPlanets.insert(&planet);
+	visitedPlanets.insert(make_pair(&planet, false));
 }
 
 
@@ -2693,6 +2704,22 @@ void PlayerInfo::SetMapZoom(int level)
 set<string> &PlayerInfo::Collapsed(const string &name)
 {
 	return collapsed[name];
+}
+
+
+
+// Mark outfitter at planet as visited
+void PlayerInfo::VisitOutfitterAt(const Planet &planet)
+{
+	visitedPlanets[&planet] = true;
+}
+
+
+
+// Check if the outfitter at planet was visited
+bool PlayerInfo::OutfitterVisitedAt(const Planet &planet)
+{
+	return true;
 }
 
 
@@ -4035,12 +4062,21 @@ void PlayerInfo::Save(DataWriter &out) const
 		});
 
 	// Save a list of planets the player has visited.
+	using PlanetEntry = pair<const Planet *const, bool>;
 	WriteSorted(visitedPlanets,
-		[](const Planet *const *lhs, const Planet *const *rhs)
-			{ return (*lhs)->TrueName() < (*rhs)->TrueName(); },
-		[&out](const Planet *planet)
+		[](const PlanetEntry *lhs, const PlanetEntry *rhs)
+			{ return lhs->first->TrueName() < rhs->first->TrueName(); },
+		[&out](const PlanetEntry &entry)
 		{
-			out.Write("visited planet", planet->TrueName());
+			string visitedOutfitterStr = "";
+
+			if(entry.second)
+				visitedOutfitterStr = "outfitter";
+
+			if(visitedOutfitterStr.empty())
+				out.Write("visited planet", entry.first->TrueName());
+			else
+				out.Write("visited planet", entry.first->TrueName(), visitedOutfitterStr);
 		});
 
 	if(!harvested.empty())

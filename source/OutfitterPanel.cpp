@@ -93,7 +93,10 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 		}
 
 	if(player.GetPlanet())
+	{
 		outfitter = player.GetPlanet()->Outfitter();
+		player.VisitOutfitterAt(*player.GetPlanet());
+	}
 }
 
 

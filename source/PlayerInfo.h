@@ -311,6 +311,9 @@ public:
 	// Get the set of collapsed categories for the named panel.
 	std::set<std::string> &Collapsed(const std::string &name);
 
+	// Methods to check if outfitter was visited or mark one as such
+	void VisitOutfitterAt(const Planet &planet);
+	bool OutfitterVisitedAt(const Planet &planet);
 
 private:
 	// Apply any "changes" saved in this player info to the global game state.
@@ -395,7 +398,12 @@ private:
 
 	std::set<const System *> seen;
 	std::set<const System *> visitedSystems;
-	std::set<const Planet *> visitedPlanets;
+
+	// this map links planet to a var that states if the outfitter in the
+	// planet was visited. if the planet doesn't have an outfitter, the
+	// relevant value will always be false
+	std::map<const Planet *, bool> visitedPlanets;
+
 	std::vector<const System *> travelPlan;
 	const Planet *travelDestination = nullptr;
 
