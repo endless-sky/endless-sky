@@ -133,8 +133,8 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 			// Determine what portion of its maximum shields the ship is currently at.
 			// Only do this if there is nonzero permeability involved, otherwise don't.
 			double shieldPortion = shields / attributes.Get("shields");
-			permeability = (fullPermeability * shieldPortion) +
-				(lowPermeability * (1. - shieldPortion));
+			permeability = max((fullPermeability * shieldPortion) +
+				(lowPermeability * (1. - shieldPortion)), 0.);
 		}
 		shieldFraction = (1. - min((piercing + permeability), 1.)) /
 			(1. + ship.DisruptionLevel() * .01);
