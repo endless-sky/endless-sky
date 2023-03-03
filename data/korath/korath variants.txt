@@ -478,7 +478,7 @@ ship "'olofez" "'olofez (Digger)"
 		"Thermal Repeater Rifle"
 		"Cargo Expansion"
 		"Interference Plating"
-				
+		
 		"Engine (Meteor Class)"
 
 
@@ -825,6 +825,36 @@ ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Jump)"
 
 
 
+ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Stranded)"
+	outfits
+		"Langrage Hyper-Heaver" 3
+		"Warder Anti-Missile" 2
+		"Banisher Grav-Turret" 3
+
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Liquid Sodium Cooler"
+		"Fuel Processor" 6
+		"Microbot Defense Station" 10
+		"Thermal Repeater Rifle" 351
+		
+		"Steering (Lunar Class)"
+		"Steering (Asteroid Class)"
+		"Thruster (Lunar Class)"
+		"Thruster (Asteroid Class)"
+		"Jump Drive (Broken)"
+
+	turret "Langrage Hyper-Heaver"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
+	turret "Langrage Hyper-Heaver"
+	turret "Langrage Hyper-Heaver"
+	turret "Banisher Grav-Turret"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
+
+
+
 ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Ember)"
 	outfits
 		"Langrage Hyper-Heaver" 2
@@ -1025,20 +1055,35 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Automata)"
 	turret "Warder Anti-Missile"
 	turret "Warder Anti-Missile"
 	bay "Fighter" -100 -169
+		"launch effect" "korath internal"
 	bay "Fighter" 0 -169
+		"launch effect" "korath internal"
 	bay "Fighter" 100 -169
+		"launch effect" "korath internal"
 	bay "Fighter" -98 156 back
+		"launch effect" "korath internal"
 	bay "Fighter" 98 156 back
+		"launch effect" "korath internal"
 	bay "Fighter" -50 303 back
+		"launch effect" "korath internal"
 	bay "Fighter" -50 303 back
+		"launch effect" "korath internal"
 	bay "Fighter" 50 303 back
+		"launch effect" "korath internal"
 	bay "Fighter" 50 303 back
+		"launch effect" "korath internal"
 	bay "Drone" -100 -169
+		"launch effect" "korath internal"
 	bay "Drone" 100 -169
+		"launch effect" "korath internal"
 	bay "Drone" -98 156 back
+		"launch effect" "korath internal"
 	bay "Drone" 98 156 back
+		"launch effect" "korath internal"
 	bay "Drone" -50 303 back
+		"launch effect" "korath internal"
 	bay "Drone" 50 303 back
+		"launch effect" "korath internal"
 
 
 ship "Ra'at Ik 621" "Ra'at Ik 621 (Probes)"
@@ -1073,14 +1118,23 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Probes)"
 	turret "Warder Anti-Missile"
 	turret "Banisher Grav-Turret"
 	bay "Drone" -100 -169
+		"launch effect" "korath internal"
 	bay "Drone" 0 -169
+		"launch effect" "korath internal"
 	bay "Drone" 100 -169
+		"launch effect" "korath internal"
 	bay "Drone" -98 156 back
+		"launch effect" "korath internal"
 	bay "Drone" 98 156 back
+		"launch effect" "korath internal"
 	bay "Drone" -50 303 back
+		"launch effect" "korath internal"
 	bay "Drone" -50 303 back
+		"launch effect" "korath internal"
 	bay "Drone" 50 303 back
+		"launch effect" "korath internal"
 	bay "Drone" 50 303 back
+		"launch effect" "korath internal"
 
 
 

@@ -352,7 +352,7 @@ fleet "Korath Surveillance"
 	cargo 1
 	personality
 		disables plunders opportunistic harvests surveillance
-	variant 
+	variant
 		"Ra'at Ik 621 (Probes)"
 		"Kas'ik Tek 7" 9
 

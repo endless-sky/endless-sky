@@ -52,6 +52,7 @@ namespace {
 		{"fuel energy", 0.},
 		{"fuel heat", 0.},
 		{"heat generation", 0.},
+		{"flotsam chance", 0.},
 
 		{"thrusting shields", 0.},
 		{"thrusting hull", 0.},
@@ -115,6 +116,9 @@ namespace {
 		{"ion resistance energy", 0.},
 		{"ion resistance fuel", 0.},
 		{"ion resistance heat", 0.},
+		{"scramble resistance energy", 0.},
+		{"scramble resistance fuel", 0.},
+		{"scramble resistance heat", 0.},
 		{"leak resistance energy", 0.},
 		{"leak resistance fuel", 0.},
 		{"leak resistance heat", 0.},
@@ -142,6 +146,7 @@ namespace {
 		{"corrosion protection", -0.99},
 		{"inertia reduction", -0.99},
 		{"ion protection", -0.99},
+		{"scramble protection", -0.99},
 		{"leak protection", -0.99},
 		{"burn protection", -0.99},
 		{"disruption protection", -0.99},
@@ -324,7 +329,7 @@ void Outfit::Load(const DataNode &node)
 	// so no runtime code has to check for both.
 	auto convertScan = [&](string &&kind) -> void
 	{
-		const string label = kind + " scan";
+		string label = kind + " scan";
 		double initial = attributes.Get(label);
 		if(initial)
 		{
@@ -336,8 +341,22 @@ void Outfit::Load(const DataNode &node)
 			attributes[label + " power"] += initial * initial * .0001;
 			// The default scan speed of 1 is unrelated to the magnitude of the scan value.
 			// It may have been already specified, and if so, should not be increased.
-			if(!attributes.Get(label + " speed"))
-				attributes[label + " speed"] = 1.;
+			if(!attributes.Get(label + " efficiency"))
+				attributes[label + " efficiency"] = 15.;
+		}
+
+		// Similar check for scan speed which is replaced with scan efficiency.
+		label += " speed";
+		initial = attributes.Get(label);
+		if(initial)
+		{
+			attributes[label] = 0.;
+			node.PrintTrace("Warning: Deprecated use of \"" + label + "\" instead of \""
+					+ kind + " scan efficiency\":");
+			// A reasonable update is 15x the previous value, as the base scan time
+			// is 10x what it was before scan efficiency was introduced, along with
+			// ships which are larger or further away also increasing the scan time.
+			attributes[kind + " scan efficiency"] += initial * 15.;
 		}
 	};
 	convertScan("outfit");
@@ -457,7 +476,7 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 
 		// Only automatons may have a "required crew" of 0.
 		if(!strcmp(at.first, "required crew"))
-			minimum = !attributes.Get("automaton");
+			minimum = !(attributes.Get("automaton") || other.attributes.Get("automaton"));
 
 		double value = Get(at.first);
 		// Allow for rounding errors:

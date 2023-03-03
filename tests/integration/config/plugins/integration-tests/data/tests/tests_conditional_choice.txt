@@ -1,4 +1,4 @@
-test-data "conditional choice"
+test-data "Conversation Conditions Test Save"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
@@ -50,122 +50,102 @@ test-data "conditional choice"
 			history
 		visited "Terra Incognita"
 		"visited planet" Ruin
-		conditions
-			# to skip the landing on ruin conversation
-			"Ruin: Landing: offered"
 
 
-mission "%TEST%: CONDITIONAL CHOICE"
-	priority
-	source "Ruin"
-	to offer
-		has "%TEST%: CONDITIONAL CHOICE"
-	on offer
-		conversation
-			# cant actually write an integration test for seeing this or not
-			`"You should not see this."`
-				to display
-					not "%TEST%: CONDITIONAL CHOICE"
-			`"Does this work? Do you not see the first sentence?"`
-			choice
-				`	"No."`
-					to display
-						has "%TEST%: CONDITIONAL CHOICE"
-					accept
-				`	"Yes."`
-					decline
-	on accept
-		set "succeed test"
-	on decline
-		set "failed test"
+test-data "Conversation Conditions Test Missions"
+	category mission
+	contents
+		mission "%TEST%: CONDITIONAL CHOICE"
+			priority
+			source "Ruin"
+			to offer
+				has "%TEST%: CONDITIONAL CHOICE"
+			on offer
+				conversation
+					# cant actually write an integration test for seeing this or not
+					`"You should not see this."`
+						to display
+							not "%TEST%: CONDITIONAL CHOICE"
+					`"Does this work? Do you not see the first sentence?"`
+					choice
+						`	"No."`
+							to display
+								has "%TEST%: CONDITIONAL CHOICE"
+							accept
+						`	"Yes."`
+							decline
+			on accept
+				set "succeed test"
+			on decline
+				set "failed test"
 
-mission "%TEST%: CONDITIONAL CHOICE GOTO"
-	priority
-	source "Ruin"
-	to offer
-		has "%TEST%: CONDITIONAL CHOICE GOTO"
-	on offer
-		conversation
-			`"Can you use the hidden path?"`
-			choice
-				`	"Yes."`
-					to display
-						not "%TEST%: CONDITIONAL CHOICE GOTO"
-				`	"No."`
-					to display
-						has "%TEST%: CONDITIONAL CHOICE GOTO"
-					goto canuse
-			# just in case the goto is fully ignored
-			`	"You should not be here!"`
-				decline
-			label canuse
-			`	"Some paths are meant to stay hidden."`
-				accept
-	on accept
-		set "succeed test"
-	on decline
-		set "failed test"
-
-
-mission "%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND"
-	priority
-	source "Ruin"
-	to offer
-		has "%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND"
-	on offer
-		conversation
-			`	"Don't you dare clicking on the hidden option!"`
-			choice
-				`	"Sure."`
-					accept
-				`	"I do what I want."`
-					to display
-						not "%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND"
-			`	"In that case... Test failed."`
-				decline
-	on accept
-		set "succeed test"
-	on decline
-		set "failed test"
+		mission "%TEST%: CONDITIONAL CHOICE GOTO"
+			priority
+			source "Ruin"
+			to offer
+				has "%TEST%: CONDITIONAL CHOICE GOTO"
+			on offer
+				conversation
+					`"Can you use the hidden path?"`
+					choice
+						`	"Yes."`
+							to display
+								not "%TEST%: CONDITIONAL CHOICE GOTO"
+						`	"No."`
+							to display
+								has "%TEST%: CONDITIONAL CHOICE GOTO"
+							goto canuse
+					# just in case the goto is fully ignored
+					`	"You should not be here!"`
+						decline
+					label canuse
+					`	"Some paths are meant to stay hidden."`
+						accept
+			on accept
+				set "succeed test"
+			on decline
+				set "failed test"
 
 
-mission "%TEST%: NAME IN CONVERSATION"
-	priority
-	source "Ruin"
-	to offer
-		has "%TEST%: NAME IN CONVERSATION"
-	on offer
-		conversation
-			name
-			`	So you are <first> <last>.`
-				accept
-			``
-				decline
-	on accept
-		set "succeed test"
-	on decline
-		set "failed test"
+		mission "%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND"
+			priority
+			source "Ruin"
+			to offer
+				has "%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND"
+			on offer
+				conversation
+					`	"Don't you dare clicking on the hidden option!"`
+					choice
+						`	"Sure."`
+							accept
+						`	"I do what I want."`
+							to display
+								not "%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND"
+					`	"In that case... Test failed."`
+						decline
+			on accept
+				set "succeed test"
+			on decline
+				set "failed test"
 
 
-test "Trigger Spaceport Mission"
-	status partial
-	description "Launch, land, and go to the spaceport to trigger any potential missions."
-	sequence
-		call "Depart"
-		call "Land On Ruin helper"
-		input
-			key p
+		mission "%TEST%: NAME IN CONVERSATION"
+			priority
+			source "Ruin"
+			to offer
+				has "%TEST%: NAME IN CONVERSATION"
+			on offer
+				conversation
+					name
+					`	So you are <first> <last>.`
+						accept
+					``
+						decline
+			on accept
+				set "succeed test"
+			on decline
+				set "failed test"
 
-
-test "Skip Spaceport Mission"
-	status partial
-	description "Just skip a mission by pressing return twice."
-	sequence
-		# press accept (or decline, depending on if it is shown) and then skip the dialog once
-		input
-			key "Return"
-		input
-			key "Return"
 
 
 test "Test Conditions"
@@ -177,18 +157,19 @@ test "Test Conditions"
 			"test: succeed test" = "succeed test"
 			"test: failed test" = "failed test"
 			# if we launched
-			"test: flagship planet: Ruin" = "flagship planet: Ruin"
+			"test: flagship landed" = "flagship landed"
 
 
 test "Conditional Test"
 	status active
 	description "Test if a conversation option shows up when the given condition is set."
 	sequence
-		inject "conditional choice"
+		inject "Conversation Conditions Test Missions"
+		inject "Conversation Conditions Test Save"
 		call "Load First Savegame"
 		apply
 			"%TEST%: CONDITIONAL CHOICE" = 1
-		call "Trigger Spaceport Mission"
+		call "Trigger Ruin Spaceport Mission"
 		call "Skip Spaceport Mission"
 		call "Depart"
 		call "Test Conditions"
@@ -200,11 +181,12 @@ test "Conditional Test Goto"
 	status active
 	description "Test if a first conversation option does not show up but the second one does, when the given condition is set. Also makes sure goto still works as expected."
 	sequence
-		inject "conditional choice"
+		inject "Conversation Conditions Test Missions"
+		inject "Conversation Conditions Test Save"
 		call "Load First Savegame"
 		apply
 			"%TEST%: CONDITIONAL CHOICE GOTO" = 1
-		call "Trigger Spaceport Mission"
+		call "Trigger Ruin Spaceport Mission"
 		call "Skip Spaceport Mission"
 		call "Depart"
 		call "Test Conditions"
@@ -216,11 +198,12 @@ test "Conditional Test Out of Bound"
 	status active
 	description "Test if a first conversation option does not show up but the second one does, when the given condition is set. Also makes sure goto still works as expected."
 	sequence
-		inject "conditional choice"
+		inject "Conversation Conditions Test Missions"
+		inject "Conversation Conditions Test Save"
 		call "Load First Savegame"
 		apply
 			"%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND" = 1
-		call "Trigger Spaceport Mission"
+		call "Trigger Ruin Spaceport Mission"
 		# If only one option is displayed this shouldn't do anything,
 		# but if we can somehow access the condition below with the down key then its a problem.
 		input
@@ -236,13 +219,14 @@ test "Enter Name in Conversation"
 	status active
 	description "Test if a first conversation option does not show up but the second one does, when the given condition is set. Also makes sure goto still works as expected."
 	sequence
-		inject "conditional choice"
+		inject "Conversation Conditions Test Missions"
+		inject "Conversation Conditions Test Save"
 		call "Load First Savegame"
 		assert
 			"name: Bobbi Bughunter" == 1
 		apply
 			"%TEST%: NAME IN CONVERSATION" = 1
-		call "Trigger Spaceport Mission"
+		call "Trigger Ruin Spaceport Mission"
 		input
 			key a
 		input
@@ -255,18 +239,6 @@ test "Enter Name in Conversation"
 			key "Return"
 		call "Depart"
 		call "Test Conditions"
-		# use test-data temporary variables for debugging in case of errors
-		apply
-			"test: %TEST%: NAME IN CONVERSATION: offered" = "%TEST%: NAME IN CONVERSATION: offered"
-			"test: name: Bobbi Bughunter" = "name: Bobbi Bughunter"
-			"test: name: a b" = "name: a b"
-			"test: name: a B" = "name: a B"
-			"test: name: A b" = "name: A b"
-			"test: name: A B" = "name: A B"
-			"test: name: b a" = "name: b a"
-			"test: name: B a" = "name: B a"
-			"test: name: b A" = "name: b A"
-			"test: name: B A" = "name: B A"
 		assert
 			"%TEST%: NAME IN CONVERSATION: offered" == 1
 			"name: a b" == 1
