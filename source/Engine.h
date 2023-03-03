@@ -193,7 +193,10 @@ private:
 	Radar radar[2];
 	// Viewport position and velocity.
 	Point center;
+	Point newCenter;
 	Point centerVelocity;
+	Point offset;
+	double offsetMultiplier = 0.;
 	// Other information to display.
 	Information info;
 	std::vector<Target> targets;

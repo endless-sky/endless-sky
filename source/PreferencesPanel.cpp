@@ -63,6 +63,7 @@ namespace {
 	const string SCROLL_SPEED = "Scroll speed";
 	const string FIGHTER_REPAIR = "Repair fighters in";
 	const string SHIP_OUTLINES = "Ship outlines in shops";
+	const string CAMERA_ACCELERATION = "Camera Acceleration";
 	const string BOARDING_PRIORITY = "Boarding target priority";
 	const string BACKGROUND_PARALLAX = "Parallax background";
 	const string ALERT_INDICATOR = "Alert indicator";
@@ -215,6 +216,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 					GetUI()->Push(new Dialog(
 						"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
 			}
+			else if(zone.Value() == CAMERA_ACCELERATION)
+				Preferences::ToggleCameraAcceleration();
 			else if(zone.Value() == AUTO_AIM_SETTING)
 				Preferences::ToggleAutoAim();
 			else if(zone.Value() == EXPEND_AMMO)
@@ -491,6 +494,7 @@ void PreferencesPanel::DrawSettings()
 		VIEW_ZOOM_FACTOR,
 		SCREEN_MODE_SETTING,
 		VSYNC_SETTING,
+		CAMERA_ACCELERATION,
 		"Show status overlays",
 		"Show missile overlays",
 		"Highlight player's flagship",
@@ -510,15 +514,6 @@ void PreferencesPanel::DrawSettings()
 		"Show hyperspace flash",
 		SHIP_OUTLINES,
 		"\n",
-		"Gameplay",
-		AUTO_AIM_SETTING,
-		"Automatic firing",
-		BOARDING_PRIORITY,
-		EXPEND_AMMO,
-		FIGHTER_REPAIR,
-		TURRET_TRACKING,
-		"Rehire extra crew when lost",
-		"\t",
 		"Other",
 		"Clickable radar display",
 		"Hide unexplored map regions",
@@ -594,6 +589,11 @@ void PreferencesPanel::DrawSettings()
 		else if(setting == VSYNC_SETTING)
 		{
 			text = Preferences::VSyncSetting();
+			isOn = text != "off";
+		}
+		else if(setting == CAMERA_ACCELERATION)
+		{
+			text = Preferences::CameraAcceleration();
 			isOn = text != "off";
 		}
 		else if(setting == AUTO_AIM_SETTING)

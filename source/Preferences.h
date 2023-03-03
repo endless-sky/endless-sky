@@ -85,6 +85,9 @@ public:
 	static VSync VSyncState();
 	static const std::string &VSyncSetting();
 
+	static void ToggleCameraAcceleration();
+	static const std::string &CameraAcceleration();
+
 	// Auto aim setting, either "off", "always on", or "when firing".
 	static void ToggleAutoAim();
 	static AutoAim GetAutoAim();

@@ -49,6 +49,9 @@ namespace {
 	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
 	int vsyncIndex = 1;
 
+	int cameraAccelerationIndex = 0;
+	const vector<string> CAMERA_ACCELERATION_SETTINGS = {"off", "on", "reversed"};
+
 	const vector<string> AUTO_AIM_SETTINGS = {"off", "always on", "when firing"};
 	int autoAimIndex = 2;
 
@@ -110,6 +113,8 @@ void Preferences::Load()
 			parallaxIndex = max<int>(0, min<int>(node.Value(1), PARALLAX_SETTINGS.size() - 1));
 		else if(node.Token(0) == "fullscreen")
 			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
+		else if(node.Token(0) == "camera acceleration")
+			cameraAccelerationIndex = max<int>(0, min<int>(node.Value(1), CAMERA_ACCELERATION_SETTINGS.size() - 1));
 		else if(node.Token(0) == "alert indicator")
 			alertIndicatorIndex = max<int>(0, min<int>(node.Value(1), ALERT_INDICATOR_SETTING.size() - 1));
 		else if(node.Token(0) == "previous saves" && node.Size() >= 2)
@@ -142,6 +147,7 @@ void Preferences::Save()
 	out.Write("boarding target", boardingIndex);
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
+	out.Write("camera acceleration", cameraAccelerationIndex);
 	out.Write("Automatic aiming", autoAimIndex);
 	out.Write("Parallax background", parallaxIndex);
 	out.Write("alert indicator", alertIndicatorIndex);
@@ -324,6 +330,14 @@ const string &Preferences::VSyncSetting()
 
 
 
+void Preferences::ToggleCameraAcceleration()
+{
+	cameraAccelerationIndex = cameraAccelerationIndex <
+		static_cast<int>(CAMERA_ACCELERATION_SETTINGS.size()) - 1 ? cameraAccelerationIndex + 1 : 0;
+}
+
+
+
 void Preferences::ToggleAutoAim()
 {
 	autoAimIndex = (autoAimIndex + 1) % AUTO_AIM_SETTINGS.size();
@@ -351,6 +365,13 @@ void Preferences::ToggleBoarding()
 	if(targetIndex == static_cast<int>(BOARDING_SETTINGS.size()))
 		targetIndex = 0;
 	boardingIndex = targetIndex;
+}
+
+
+
+const string &Preferences::CameraAcceleration()
+{
+	return CAMERA_ACCELERATION_SETTINGS[cameraAccelerationIndex];
 }
 
 
