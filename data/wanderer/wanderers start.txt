@@ -297,11 +297,11 @@ mission "Wanderers: Algorithm Training Data"
 	to offer
 		has "Wanderers: Translation Machine: done"
 	on complete
-		event "wanderer translator available" 84
+		event "wanderer translator available" 56
 		conversation
-			`A Wanderer meets you at landing and you hand them the data card. They plug it into a mango-sized machine whose data card slot seems to adjust itself to match the shape of the card on the way in. The Wanderer makes clicking and whistling noises while manipulating the device. Eventually, the device presents the words, "[Enter, Bring] ten and two. Within [truth, lies], the pleasant [cow, nova] tickles me [thoughtfully, gracefully]."`
-			`	The Wanderer seems displeased with the results. After a few minutes of fiddling with the device, it sputters out, "Pleasing [truth, gratifications]. [Accepting, Holding] geolocated results [within, for] three [menstrual, lunar] cycles." Seeing your confusion, the Wanderer manipulates the device for several more minutes.`
-			`	"Thank you. Return in twelve weeks", the device says. Looking quite satisfied with this, the Wanderer waves and departs.`
+			`A Wanderer meets you at landing and you hand them the data card. They plug it into a mango-sized machine whose data card slot seems to adjust itself to match the shape of the card on the way in. The Wanderer makes clicking and whistling noises while manipulating the device. Eventually, the device presents the words, "[Enter, Bring] three and five. Within [truth, lies], the pleasant [cow, nova] tickles me [thoughtfully, gracefully]."`
+			`	The Wanderer seems displeased with the results. After a few minutes of fiddling with the device, it sputters out, "Pleasing [truth, gratifications]. [Accepting, Holding] geolocated results [within, for] two [menstrual, lunar] cycles." Seeing your confusion, the Wanderer manipulates the device for several more minutes.`
+			`	"Thank you. Return in eight weeks", the device says. Looking quite satisfied with this, the Wanderer waves and departs.`
 
 
 event "wanderer translator available"
@@ -320,7 +320,7 @@ mission "Visit Wanderers Again"
 	on offer
 		set "language: Wanderer"
 		conversation
-			`Checking your ship's calendar, you realize that twelve weeks have passed since the Wanderer scientist started working on the translator. It should be ready for you now at <planet>.`
+			`Checking your ship's calendar, you realize that eight weeks have passed since the Wanderer scientist started working on the translator. It should be ready for you now at <planet>.`
 				accept
 
 
