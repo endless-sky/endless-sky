@@ -16,6 +16,7 @@ mission "Unfettered: Hunger!"
 	landing
 	invisible
 	repeat
+	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the much needed tribute from the other Hai."
 	to offer
 		not "event: wanderers: unfettered invasion starts"
 		# to not make it restart if it's already going and is triggered by the Hai Escort mission and only make it last longer
@@ -397,6 +398,7 @@ mission "Unfettered Hunger Aid"
 mission "Unfettered Hunger Tribute"
 	job
 	repeat
+	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the tribute from the other Hai."
 	name "Important Hai Tribute to <planet>"
 	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
 	cargo "food (tribute)" 55 2 .05
