@@ -32471,7 +32471,7 @@ system Uttna
 			scale 0.5
 		distance 13699
 		period 14195.8
-		offset 45
+		offset 150
 		object
 			sprite planet/luna-b
 			distance 210
