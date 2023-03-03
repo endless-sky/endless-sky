@@ -1862,6 +1862,11 @@ Copyright: Various
 License: CC0
 Comment: Taken from unsplash.com and cropped.
 
+Files:
+ images/ui/music?volume*
+Copyright: RisingLeaf (https://github.com/RisingLeaf)
+License: CC-BY-SA-4.0
+
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
