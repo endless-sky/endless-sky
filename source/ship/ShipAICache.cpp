@@ -97,7 +97,7 @@ void ShipAICache::Calibrate(const Ship &ship)
 		// and other ships with exceptionally long range weapons such as detainers
 		// The AI shouldn't use the artillery AI if it has no reverse and it's turning
 		// capabilities are very bad. Otherwise it spends most of it's time flying around.
-		useArtilleryAI = (artilleryDPS > totalDPS / 2.
+		useArtilleryAI = (artilleryDPS > totalDPS * .75
 			&& (ship.MaxReverseVelocity() || turningRadius < 0.2 * shortestArtillery));
 
 		// Don't try to avoid your own splash damage if it means you whould be losing out
