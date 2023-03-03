@@ -23,6 +23,9 @@ tip "afterburner corrosion:"
 tip "afterburner ion:"
 	`Accumulated ionization per second when firing this afterburner.`
 
+tip "afterburner scramble:"
+	`Accumulated scrambling per second when firing this afterburner.`
+
 tip "afterburner leakage:"
 	`Accumulated leaking fuel per second when firing this afterburner.`
 
@@ -78,6 +81,9 @@ tip "cargo scan power:"
 	`The range of this cargo scanner is proportional to the square root of this value.`
 
 tip "cargo scan speed:"
+	`Determines how long it takes to perform a cargo scan. A higher value will correspond to a quicker scan.`
+
+tip "cargo scan efficiency:"
 	`The maximum speed of this cargo scanner is proportional to the square root of this value. The observed scan speed will be impacted by multiple factors. Targets which are farther away or have a larger cargo hold will take longer to scan.`
 
 tip "cargo:"
@@ -85,6 +91,9 @@ tip "cargo:"
 
 tip "cargo space:"
 	`How much cargo (commodities, mission cargo, and plundered outfits) this ship can carry.`
+
+tip "cargo space needed:"
+	`How much cargo space this outfit uses up.`
 
 tip "cloak:"
 	`This outfit allows your ship to cloak. The value represents how long it takes to fully activate or deactivate cloaking. Ships cannot fire while cloaked.`
@@ -287,6 +296,9 @@ tip "inertia reduction:"
 tip "ion protection:"
 	`Protection against weapons that do ion damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in ion damage, while a total value of 11 only results in a 10 percent reduction.`
 
+tip "scramble protection:"
+	`Protection against weapons that do scrambling damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in ion damage, while a total value of 11 only results in a 10 percent reduction.`
+
 tip "ion resistance:"
 	`How much ionization damage this ship can resist per second.`
 
@@ -298,6 +310,21 @@ tip "ion resistance fuel:"
 
 tip "ion resistance heat:"
 	`Heat generated per second when resisting ion damage.`
+
+tip "landing speed:"
+	`How fast this ship is able to land on a planet, or travel through a wormhole.`
+
+tip "scramble resistance:"
+	`How much scrambling damage this ship can resist per second.`
+
+tip "scramble resistance energy:"
+	`Energy consumed per second when resisting scrambling damage.`
+
+tip "scramble resistance fuel:"
+	`Fuel consumed per second when resisting scrambling damage.`
+
+tip "scramble resistance heat:"
+	`Heat generated per second when resisting scrambling damage.`
 
 tip "jump speed:"
 	`How slow the ship must be moving to make a jump.`
@@ -354,7 +381,13 @@ tip "outfit scan power:"
 	`The range of this outfit scanner is proportional to the square root of this value.`
 
 tip "outfit scan speed:"
+	``Determines how long it takes to perform an outfit scan. A higher value will correspond to a quicker scan.`
+
+tip "outfit scan efficiency:"
 	`The maximum speed of this outfit scanner is proportional to the square root of this value. The observed scan speed will be impacted by multiple factors. Targets which are farther away or have a larger outfit capacity will take longer to scan.`
+
+tip "outfit space added:"
+	`How much general-purpose space this outfit provides.`
 
 tip "outfit space needed:"
 	`How much general-purpose space this outfit uses up. Some outfits also use up weapon space or engine space.`
@@ -370,6 +403,9 @@ tip "overheat damage threshold:"
 
 tip "piercing protection:"
 	`Protection against weapons that pierce shields. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in damage leak, while a total value of 11 only results in a 10 percent reduction.`
+
+tip "optical jamming:"
+	`Reduces the ability of optical-guided missiles to track your ship, which is mostly useful for larger ships. The more optical jamming is installed, the greater the distance at which missiles can be jammed, and the greater the chance that a jammed missile will fly off in a random direction.`
 
 tip "radar jamming:"
 	`Reduces the ability of radar-guided missiles to track your ship. The more radar jamming is installed, the greater the distance at which missiles can be jammed, and the greater the chance that a jammed missile will fly off in a random direction.`
@@ -409,6 +445,9 @@ tip "reverse thrusting corrosion:"
 
 tip "reverse thrusting ion:"
 	`Accumulated ionization per second when firing reverse thrusters.`
+
+tip "reverse thrusting scramble:"
+	`Accumulated scrambling per second when firing reverse thrusters.`
 
 tip "reverse thrusting leakage:"
 	`Accumulated leaking fuel per second when firing reverse thrusters.`
@@ -536,6 +575,9 @@ tip "thrusting corrosion:"
 tip "thrusting ion:"
 	`Accumulated ionization per second when firing thrusters.`
 
+tip "thrusting scramble:"
+	`Accumulated scrambling per second when firing thrusters.`
+
 tip "thrusting leakage:"
 	`Accumulated leaking fuel per second when firing thrusters.`
 
@@ -577,6 +619,9 @@ tip "turning corrosion:"
 
 tip "turning ion:"
 	`Accumulated ionization per second when turning.`
+
+tip "turning scramble:"
+	`Accumulated scrambling per second when turning.`
 
 tip "turning leakage:"
 	`Accumulated leaking fuel per second when turning.`
@@ -702,7 +747,10 @@ tip "energy damage / second:"
 	`When hitting a target this weapon reduces the target's energy by this amount per second, or half this amount if the target's shields are up.`
 
 tip "ion damage / second:"
-	`Reduces the target's energy and causes weapon failures. Ionization slowly wears off over time.`
+	`Reduces the target's energy. Ionization slowly wears off over time.`
+
+tip "scrambling damage / second:"
+	`Causes weapon failures. Scrambling slowly wears off over time.`
 
 tip "slowing damage / second:"
 	`Reduces the target's turn rate, acceleration, and top speed. Slowing wears off over time.`
@@ -758,6 +806,9 @@ tip "firing shields / second:"
 tip "firing ion / second:"
 	`Reduces energy levels for some time after this weapon is fired.`
 
+tip "firing scramble / second:"
+	`Jams the weapons for some time after this weapon is fired.`
+
 tip "firing slowing / second:"
 	`Reduces the turn rate, acceleration, and top speed of the ship when this weapon is fired. Slowing wears off over time.`
 
@@ -804,7 +855,7 @@ tip "tracking:"
 	`How well this weapon maintains its target lock.`
 
 tip "optical tracking:"
-	`How well this weapon maintains an optical target lock, which depends on the size of the target.`
+	`How well this weapon maintains an optical target lock, which depends on the size of the target; negatively affected by any potential optical jamming equipement.`
 
 tip "infrared tracking:"
 	`How well this weapon maintains an infrared target lock, which depends on the target ship's heat level and distance from the missile; IR-guided missiles become more accurate the closer they are to their targets.`
@@ -837,7 +888,10 @@ tip "energy damage / shot:"
 	`Each shot reduces the target ship's energy by this amount, or half this amount if its shields are up.`
 
 tip "ion damage / shot:"
-	`Each shot increases the target's ionization by this amount. Ionization reduces the target's energy and causes weapon failures. Ionization slowly wears off over time.`
+	`Each shot increases the target's ionization by this amount. Ionization reduces the target's energy. Ionization slowly wears off over time.`
+
+tip "scrambling damage / shot:"
+	`Each shot increases the target's scrambling by this amount. scrambling causes weapon failures. It slowly wears off over time.`
 
 tip "slowing damage / shot:"
 	`Reduces the target's turn rate, acceleration, and top speed. Slowing wears off over time.`
@@ -892,6 +946,9 @@ tip "firing shields / shot:"
 
 tip "firing ion / shot:"
 	`Each shot increases the ship's ionization by this amount. Ionization reduces the ship's energy and slowly wears off over time.`
+
+tip "firing scramble / shot:"
+	`Each shot increases the ship's scrambling by this amount. This jams the weapons and slowly wears off over time.`
 
 tip "firing slowing / shot:"
 	`Each shot reduces the ship's turn rate, acceleration, and top speed. Slowing wears off over time.`
@@ -955,6 +1012,9 @@ tip "no thruster!"
 
 tip "no steering!"
 	`This ship does not have any steering systems installed. If it took off, it would be unable to turn.`
+
+tip "insufficient bunks!"
+	`This ship does not have enough bunks for its crew. It cannot take off.`
 
 tip "afterburner only?"
 	`This ship's only thruster is an afterburner. It may be unable to move if the afterburner runs out of fuel.`

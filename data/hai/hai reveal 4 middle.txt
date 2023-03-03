@@ -26,7 +26,6 @@ mission "Hai Reveal [A00] Darkwaste Timer"
 	destination Darkwaste
 	to offer
 		"hai slave prereq" >= 3
-		"combat rating" > 2400
 		has "Hai Leaks Response 6: done"
 	on offer
 		event "hai rescue: teeneep message" 20 30
@@ -68,12 +67,12 @@ mission "Hai Reveal [A02] Symbol Identification"
 		log `Many Hai and humans have gone missing over the past few decades. Many of the ones who have subsequently been rescued have had mild cadmium poisoning from some technology not of human or Hai origin. Teeneep, a Hai social leader, is using her network of information-gatherers to find out what's going on. Heading to the Quarg south of Hai space to begin the search.`
 		log `Teeneep doubts the Hai government would arm pirates, but she claims to be able to shut down any such operation, if she has solid evidence.`
 		conversation
-			`You follow the landing coordinates to a flat area of hardened dirt near a cave. A Hai Centipede is parked next to you; it draws your attention immediately as it is equipped with some non-standard human outfits. You can see the emission components of a Scram Drive sticking out the back, and the collection prongs of a Catalytic Ramscoop. The steering is Hai, but the thrusters are human. The ship appears ready to fly rapidly through unfriendly territory without stopping.`
+			`You follow the landing coordinates to a flat area of hardened dirt near a cave. A Hai Centipede is parked next to you; it draws your attention immediately as it is equipped with some non-standard human outfits. You can see the emission components of a scram drive sticking out the back, and the collection prongs of a Catalytic Ramscoop. The steering is Hai, but the thrusters are human. The ship appears ready to fly rapidly through unfriendly territory without stopping.`
 			choice
 				`	(Walk into the cave.)`
 				`	(Come back later.)`
 					defer
-			`	You walk twenty meters into the cave before coming up to a concrete wall that fills up the entirety of the cavity. An open door passes through to an unmanned security post, until it finally leads into a small and roughly designed underground facility. Through some large windows immediately to the left, you can see a room containing a variety of medical machinery, while off to the right there are computers arrayed around a makeshift living area and some sleeping quarters. You notice that some of the people you've rescued are present, but there are many more humans and Hai you haven't met, some armed with pulse rifles. Despite all this, your attention is quickly captured by a Hai woman walking towards you.`
+			`	You walk twenty meters into the cave before coming up to a concrete wall that fills up the entirety of the cavity. An open door passes through to an unmanned security post, until it finally leads into a small and roughly designed underground facility. Through some large windows immediately to the left, you can see a room containing a variety of medical machinery, while off to the right there are computers arrayed around a makeshift living area and some sleeping quarters. You notice that some of the people you've rescued are present, but there are many more humans and Hai you haven't met, some armed with Pulse Rifles. Despite all this, your attention is quickly captured by a Hai woman walking towards you.`
 			`	"Greetings Captain <last>, my name is Teeneep Goot'r. I'm a social advocate among the Hai, and I'm trying to help your friends with a problem. As you know, they were kidnapped by humans. A few other Hai and human victims are here; they were mostly rescued by other kind merchants in human space, but around half of those here are my staff." As she speaks she directs you to some seats that are just far enough away from the other people in the room to confer at least the illusion of privacy.`
 			`	"My organization has been researching the disappearance of Hai ever since humans began disappearing here under similar circumstances. We've discovered some patterns to these abductions, and through those we've been able to reach some of the victims more quickly upon their return, and even rescue some ourselves. But we have noticed something strange among the abductees: those Hai that you rescued, and several others, too, are all experiencing mild cadmium poisoning."`
 			`	Teeneep is your best lead so far on Hai arming pirates, and this may be your only option for information. It's time to ask, but perhaps this calls for a careful choice of words.`
@@ -135,7 +134,7 @@ mission "Hai Reveal [A02] Symbol Identification"
 			`	"No known human or Hai ship technology exhausts these particles. There are some Hai medical microbots that leave behind something similar, but not quite the same, and those are microbots are self-contained for disposal. We believe this is coming from another race's technology."`
 			`	They share a glance with Teeneep, "We have our suspicions but they're not conclusive yet."`
 			branch questions
-				not "00 Hai Leaks Response 4B: declined"
+				not "Hai Leaks Response 4B: offered"
 			`	"We were able to look at the scan of that modified Geocoris you recovered. It has self-repair systems that use technology which could be responsible for something like this, and we suspect they came from the same place."`
 				goto questions
 			label patterns
@@ -194,7 +193,7 @@ mission "Hai Reveal [A02] Symbol Identification"
 				`	"Yes, sorry, I'll start right away."`
 					goto questaccept
 				`	"No, that's definitely in too deep for me."`
-			`	Teeneep's expression goes blank. Behind you, you hear the sound of a pulse rifle firing before everything goes dark.`
+			`	Teeneep's expression goes blank. Behind you, you hear the sound of a Pulse Rifle firing before everything goes dark.`
 				die
 			label questaccept
 			# This will need to be a different branch for each campaign where you just start by asking the one you know the best.
@@ -208,42 +207,43 @@ mission "Hai Reveal [A03a] Symbol Identification"
 	autosave
 	landing
 	name "Symbol Identification"
-	description "Check out the worlds near Allhome and make sure the Hai seem normal."
+	description "Check out the worlds near Allhome, explore the spaceports, and make sure the Hai seem normal."
 	source "Hai-home"
 	to offer
 		has "Hai Reveal [A02] Symbol Identification: done"
 	on offer
-		event "alondo symbol timer" 12
+		event "alondo symbol timer" 14
 		log `Alondo asked me to check out the Hai spaceports in various systems near the wormhole, to see if anything unexpected is happening.`
 		conversation
 			`You make what is beginning to feel like a standard request to land at the secure spaceport and disembark with relevant copies of files on a data stick in hand. It doesn't take long to track down Alondo, though you do have to wait nearly half an hour while he finishes a meeting with a Hai official. When he's done, Alondo waves you into the room and asks you to take a seat. The seat you choose is clearly designed to be comfortable for a Hai, making for a rather strange experience for a human.`
 			# TODO: Replace this paragraph with actual content. Include something about him working at Remington lately.
-			`	You show Alondo the cat symbol you found. He says, "There's a research institute on Earth that specializes in the history of politics during the early hyperspace travel era. If anyone would recognize this symbol, it's them. I'll pass it on and let you know what they say."`
-			`	"In the meantime," he says, "could you stop by some of the Hai worlds near the wormhole? They've obviously ramped up security on Allhome, but I'd like to have a pair of friendly eyes check it out. The Hai may be using this as a cover to put their military into a threatening position... not that I think they'd do that, but we've just been through one war. I may be getting paranoid sitting in the most Hai place that there is."`
+			`	You show Alondo the cat symbol you found. He says, "There's a research institute on Earth that specializes in the history of politics during the early hyperspace travel era. If anyone would recognize this symbol, it's them. I'll pass it on and let you know what they say.`
+			`	"In the meantime, could you stop by some of the Hai worlds near the wormhole? They've obviously ramped up security on Allhome, but I'd like to have a pair of friendly eyes check it out. The Hai may be using this as a cover to put their military into a threatening position... not that I think they'd do that, but we've just been through one war. We have concerns, and I may be getting paranoid sitting here in the most Hai place that there is.`
+			`	"Plus," he pauses, visibly softening. "It'd be nice to know how they're handling things. It seems to have been quite a shock to them, and civilian populations don't always react well to suddenly heightened security. There's a lot of very high-level stuff going on, and I'd personally feel better if someone could tell me the regular people were handling things alright. No need to do anything special, just have a look around and see how things are going."`
 				accept
 	to complete
-		has "event: alondo symbol timer"
+		never
 		
 event "alondo symbol timer"
 
 
 mission "Hai Reveal [A03a1]"
-	minor
-	invisible
+	name "Lead from Alondo"
+	description "Meet Alondo on <planet> to get the lead for your investigation, but only when you have no other business to attend to."
 	source
 		government "Republic" "Syndicate" "Hai" "Free Worlds" "Independent"
 		attributes "spaceport"
+	destination "Hai-home"
 	to offer
 		has "event: alondo symbol timer"
 		has "Hai Reveal: Pirate Troubles [0]: done"
 	on offer
-		fail "Hai Reveal [A03a] Symbol Identification"
-		# This presumably does nothing if it's already failed.
-		dialog `A message from Alondo informs you that he has a tenuous lead he can give you when you're not busy.`
+		dialog `A message from Alondo informs you that he has a tenuous lead he can give you. It also says to look for him only when you're not busy with other business.`
+	to complete
+		never
 
 
 mission "Hai Reveal [A03a2]"
-	minor
 	invisible
 	source
 		government "Republic" "Syndicate" "Hai" "Free Worlds" "Independent"
@@ -273,7 +273,7 @@ mission "Hai Reveal: Pirate Troubles [0]"
 		#		random < 10
 	on offer
 		conversation
-			`The peaceful spaceport is suddenly filled with the harsh sound of sirens. You spot some Hai and a small number of humans running to their ships and speeding quickly into orbit. It appears that the system is under attack, but this is behind the security front and the Unfettered Hai never reach this far south... A loud speaker begins blaring throughout the spaceport: "Unfettered humans have entered the system in a large fleet and have begun attacking! Requesting all combat-worthy pilots to assist in the defense of our space. These enemies of harmony are not welcome here."`
+			`The peaceful spaceport is suddenly filled with the harsh sound of sirens. You spot some Hai and a small number of humans running to their ships and speeding quickly into orbit. It appears that the system is under attack, but this is behind the heightened security front in Allhome and the Unfettered Hai never reach this far south... A loud speaker begins blaring throughout the spaceport: "Unfettered humans have entered the system in a large fleet and have begun attacking! Requesting all combat-worthy pilots to assist in the defense of our space. These enemies of harmony are not welcome here."`
 			branch unfettered
 				has "Unfettered: Jump Drive Source: offered"
 			`	You find the phrase "unfettered humans" odd, but guess that they may be referring to pirates who have somehow slipped through. The Hai probably expect you help with your reputation, and this is certainly a significant threat to be attacking here.`
@@ -367,12 +367,13 @@ mission "Hai Reveal: Pirate Troubles [1]"
 		"reputation: Hai Merchant (Human)" += 20
 		"reputation: Hai Merchant (Sympathizers)" += 20
 		conversation
-			`The battle has ended, but the spaceport still seems more hectic than usual. Ships are jumping in from the surrounding systems to help any injured and to repair any damage that may have occurred. After some hours pass and the commotion has died down, a Hai in uniform approaches you. "We have heard from several people here that you are considered a seasoned fighter among your people and learned of your current status assisting our government on other matters. Would you lend your combat prowess to us to resolve this issue?"`
+			`The battle has ended, but the spaceport still seems more hectic than usual. Ships are jumping in from the surrounding systems to help any injured and to repair any damage that may have occurred. Despite the heightened security there is an air of concern and worry that seems to be exactly the thing Alondo was worried about.`
+			`	After some hours pass and the commotion has died down, a Hai in uniform approaches you. "We have heard from several people here that you are considered a seasoned fighter among your people and learned of your current status assisting our government on other matters. Would you lend your combat prowess to us to resolve this issue?"`
 			choice
 				`	"I'd be glad to help. What can I do?"`
 					goto explain
 				`	"What issue?"`
-			`	"I understand that you just defended this system from human pirates. That is the issue that needs resolved.`
+			`	"I understand that you just helped to defend this system from human pirates. That is the issue that needs to be resolved.`
 			label explain
 			`	"Human attacks on our systems are very rare, but recently we have experienced an increased number of raids. I'm told you recently assisted in dealing with a much more successful one on Allhome. We captured a crew member of this most recent attack who was attempting to flee in an escape pod, and he gave us information that a gang that calls themselves 'Scar's Legion' has discovered our territory and is responsible for some of the recent raids.`
 			`	"Unfortunately, he would not tell us where this gang is, or who the leader is, so there is nothing we are able to do about it. Many humans who live peacefully among us told us that you might be capable of assistance, though."`
@@ -395,6 +396,9 @@ mission "Hai Reveal: Pirate Troubles [1]"
 		dialog `You receive a short message from Teeneep. "I heard what happened <last>. This is not one of the groups that was already on our radar, so once you're done I would very much like to hear what you find out."`
 	on visit
 		dialog "You've returned to <planet>, but you haven't yet tracked down Scar's Legion. Perhaps you should ask around the spaceport of pirate planets near the wormhole into Hai space for information."
+	on decline
+		dialog `You have declined an essential narrative mission. If you want to complete this story line, revert to the autosave or another earlier snapshot of the game.`
+		# Maybe we'll put in a workaround alternative pathway later.
 	to complete
 		or
 			has "hr accepted scar's legion tribute"
@@ -736,7 +740,7 @@ mission "ZZ Hai Reveal [A04] Report to Teeneep"
 			has "Hai Reveal: Pirate Troubles [4]: declined"
 			has "hr defeated scar's legion"
 	on offer
-		dialog `Alondo is apparently away somewhere and unavailable for a short while. So, now that the situation with Scar's Legion is resolved, it's time to report to Teeneep about the experience. Maybe it will shed some light on what's going on?`
+		dialog `While resolving the situation with Scar's Legion, you have learned information which should be reported to Alondo, but apparently he is away somewhere and unavailable for a short while. Even if the delay were a risk you could afford to take, simply waiting for him at this point may draw suspicion. This whole situation is probably something Teeneep should be informed of, though, and doing so may also help shed some light on the grander schemes at play. Return to and speak with her, instead.`
 
 
 mission "Hai Reveal [A05] Take Teeneep to Hai-home"
@@ -818,7 +822,7 @@ mission "Hai Reveal [A05] Take Teeneep to Hai-home"
 				goto conclusion
 			
 			label conclusion
-			`	"You must take me to <planet> immediately. This is something I should investigate this personally if I hope to find the truth of things, but I cannot land my own ship there right now because of... bureaucratic reasons. My people here can analyze any sensor logs or other data you have on Scar's Legion. You've found solid proof of the Elders arming pirates, though I doubt this is a lead on the kidnappings. At <planet>, I will catch up with our mutual friend from the secure spaceport. I have sufficient privileges to be there, even if I have no clearance for landing my ship."`
+			`	"You must take me to <planet> immediately. This is something I should investigate personally if I hope to find the truth of things, but I cannot land my own ship there right now because of... bureaucratic reasons. My people here can analyze any sensor logs or other data you have on Scar's Legion. You've found solid proof of the Elders arming pirates, though I doubt this is a lead on the kidnappings. At <planet>, I will catch up with our mutual friend from the secure spaceport. I have sufficient privileges to be there, even if I have no clearance for landing my ship."`
 			`	She waves over Wayou towards you. "Please, give Wayou any relevant data files while I pack for departure. I suspect that I have kept you away from <planet> far too long as it is. According to my sources, people there await your return."`
 			`	You've barely had time to load your logs onto a data stick and hand them to Wayou before Teeneep is packed and waiting to depart. It would seem your course is set.`
 				accept
@@ -854,7 +858,7 @@ mission "Hai Reveal [A06a] The Calm"
 			`As soon as you disembark Teeneep slips off through an entirely different security checkpoint. She definitely shows them some sort of ID but you're some distance away by that point. A quick inquiry confirms that Alondo is actually around this time and you send him a message to alert him that you're heading his way.`
 			`	As you approach the office where Alondo seems to have been set up for the time being you can hear voices through the open door and you slow to a stop as you realize they sound agitated. "Look, Gruyere, you can't expect me to not organize some things around you when you're off being busy elsewhere. Regardless of whether it was your idea."`
 			`	You clearly identify Alondo when he responds, "I wouldn't blame you if you'd at least tried to contact me, or left a message, but it's just typical of how you operate."`
-			`	"You were eleven hours out of sync across timezones, it was four in the morning where you are, and you know damn well we've all been more than busy enough to let a message slip here or there. Especially since Terry is now on Mountaintop and I am absent any assistance."`
+			`	"You were eleven hours out of sync across timezones, it was four in the morning where you were, and you know damn well we've all been more than busy enough to let a message slip here or there. Especially since Terry is now on Mountaintop and I am absent any assistance."`
 			choice
 				`	(Come back after his call is complete.)`
 					goto doorway
@@ -907,7 +911,7 @@ mission "Hai Reveal [A06a] The Calm"
 			label relays
 			`	Remington nods. "Yes, well, this end of space has never had relays since nobody needed them. For a long time the marauders here have been using the communications darkness out this way to do their business with impunity. The sole advantage of these relays is that ships out this way can call for help when they couldn't before. So the relays the Syndicate have been putting up have been getting destroyed, along with several of our security ships.`
 			`	"This one that you see in front of you is different, though." He makes eye contact with Alondo and very deliberately emphases the word as he continues, "WE have been working with the Hai to make relays that look human-made, but utilize advanced Hai technology to baffle scanners attempting to find them. They'll form communication links the marauders can't destroy."`
-			`	He looks at you, "But of course, since they have Hai tech in them, they need to be delivered a trustworthy human who's not likely to get blown up by a marauder."`
+			`	He looks at you, "But of course, since they have Hai tech in them, they need to be delivered by a trustworthy human who's not likely to get blown up by a marauder."`
 			choice
 				`	"I can deploy the relays for you."`
 					goto accepted
@@ -917,7 +921,7 @@ mission "Hai Reveal [A06a] The Calm"
 			label accepted
 			`	"Excellent," says Remington, standing up and flicking over the pickup details to your pad. "Check in with Terry on your way; she may have updated scouting information. Now I have another meeting to get to momentarily, but thank you, Captain. It's been a pleasure seeing you again."`
 			`	He gives a meaningful look to Alondo on his way out, but exactly what it means is not clear to you. Alondo's posture relaxes as he gets up and quietly closes the door.`
-			`	"Now," says Alondo, setting aside his pad. "We have some other business. I have a lead on this symbol you wanted investigating. I still wish you'd tell me why you're looking for it, but for now, I'll accept that it's important." he fishes around in a small satchel bag that usually carries his pad and pulls out an actual piece of physical paper. The text on it reads, 'Adjunct Research Library, Navy Intelligence Observatory, Moscow. Room number: 3017A19'.`
+			`	"Now," says Alondo, setting aside his pad. "We have some other business. I have a lead on this symbol you wanted investigating. I still wish you'd tell me why you're looking for it, but for now, I'll accept that it's important." He fishes around in a small satchel bag that usually carries his pad and pulls out an actual piece of physical paper. The text on it reads, 'Adjunct Research Library, Navy Intelligence Observatory, Moscow. Room number: 3017A19'.`
 			`	"Fortunately, I found someone for you to speak to and a cover for being there in the first place. Xilin needs a trusted aide to stay on top of things here, especially as Mountaintop progresses. So far he's found the staff provided there to be... lacking. I get the sense from him that he's expecting things to get more complicated, though he hasn't said in so many words. So, you get to go to Earth to pick up his assistant, and while you're there, you can speak to a certain Ms. Giti Gilani. She's an expert in the history of space flight and related archaic topics. Meanwhile the aide you'll pick up is a young man called Batu Cegeen. You'll have to land at the Ulaanbaatar spaceport for him, and travel locally for your business with Ms. Gilani."`
 			choice
 				`	"Thank you."`
@@ -929,6 +933,8 @@ mission "Hai Reveal [A06a] The Calm"
 			choice
 				`	"I will."`
 					accept
+	on accept
+		fail "Hai Reveal [A03a1]"
 		
 		
 		
@@ -987,13 +993,13 @@ mission "Hai Reveal [A07] Deliver the Relays"
 				`	"Don't mention it. I just did what I could to help."`
 					goto downplay
 				`	"Can I help you, sir?"`
-			`	"I'm the one who should be using formal titles to address you, so please, Captain, don't call me sir.`
+			`	"I'm the one who should be using formal titles to address you, so please, Captain, don't call me sir."`
 				goto introduction
 			label boast
-			`	"A personality as big as yourself should be receiving praise and recognition wherever you go! People must really have no respect these days.`
+			`	"A personality as big as yourself should be receiving praise and recognition wherever you go! People must really have no respect these days."`
 				goto introduction
 			label downplay
-			`	"No need to downplay yourself, Captain! You've done God's work in saving humanity from that alien scourge.`
+			`	"No need to downplay yourself, Captain! You've done God's work in saving humanity from that alien scourge."`
 			label introduction
 			`	Terry looks between you. "Captain <last> is doing a lot to help us out, so please make yourselves acquainted. Don't be too long though, the Captain has a job to do." With that, she gives the both of you a parting nod and strides back into the chaos. Almost immediately a swarm of people with datapads materialize from nowhere and pursue her.`
 			`	The man grins and shakes his head as she departs. "Remarkable woman. Anyway, the name's David Joseph Turner, venture capitalist, entrepreneur, and famous Paradise Worlds businessman." Turner grabs a business card from his pocket and hands it to you. It contains his contact information, an address on Martini, and boasts in golden letters his net worth of more than three billion credits.`
@@ -1084,11 +1090,11 @@ mission "Hai Reveal [A08] Symbol Identification"
 			`	"Oh excellent," she says, quickly pouring herself a coffee from the pot and practically skipping over to take her seat.`
 			label explain
 			`	"Well, you'll probably be disappointed with what I have so far," she begins, "but I'll start with what I have found and then you can show me any new pictures you have and we can see what I can do." She waits for you to indicate your understanding before she continues.`
-			`	"This cat symbol was used a century ago by a clandestine organization called 'Base Principles' that worked within the Syndicate.`
+			`	"This cat symbol was used a century ago by a clandestine organization called 'Base Principles' that worked within the Syndicate."`
 			choice
 				`	"Who were 'Base Principles?'"`
 				`	"Wait. What were they doing in the Syndicate?"`
-			`	She explains, "Base Principles were anarcho-syndicalists infiltrating the Syndicate from within, gaining clout through research findings gleaned from alien equipment, but nobody knows where they got it. The organization was eventually torn in two by a regular anarchists and other unsavory characters looking to profit off the backdoor access to the Syndicate; this group kidnapped researchers from other institutes to expand their capabilities.`
+			`	She explains, "Base Principles were anarcho-syndicalists infiltrating the Syndicate from within, gaining clout through research findings gleaned from alien equipment, but nobody knows where they got it. The organization was eventually torn in two by regular anarchists and other unsavory characters looking to profit off the backdoor access to the Syndicate; this group kidnapped researchers from other institutes to expand their capabilities.`
 			`	"These others didn't cover their tracks well enough; the trail led back to the syndicalists that started it all in the first place, and Syndicate Internal Affairs quickly put a stop to the organization with extreme prejudice. Most of the anarchist leaders were killed in battle or executed after capture, but the internal players simply... disappeared.`
 			`	"Officially, the Syndicate maintains that they wiped Base Principles out to the last individual, but evidence never proved it had been conclusively terminated."`
 			choice
@@ -1312,7 +1318,7 @@ mission "Hai Reveal [A09] History of Appeasement"
 				`	"It sounds like we've made some progress!"`
 			`	As you walk back to the diplomatic quarter, Sayari begins. "They didn't do anything, but at least they agreed to solve the problems when they become disasters."`
 			`	Teeneep objects, "We can't wait for a disaster before solving this!"`
-			`	Sayari agrees. "You're right, of course, in this matter. The Elders have ever struggled with change. They're not wise for this, but they were not elected to be so. They were elected to continue the long march of incremental development. Besides, you know far better than most exactly what challenges they contend with these past couple decades. More of them have died or retired than been unelected."`
+			`	Sayari agrees. "You're right, of course, in this matter. The Elders have ever struggled with change. They're not wise for this, but they were not elected to be so. They were elected to continue the long march of incremental development. Besides, you know far better than most exactly what challenges they've contended with these past couple of decades. More of them have died or retired than been unelected."`
 			choice
 				`	"What can we do to solve this, Sayari?"`
 				`	"Teeneep, I think we need quick action. You mentioned something back in the cave."`
@@ -1413,13 +1419,133 @@ mission "Hai Reveal [A11] Sound the Alarm"
 	on offer
 		event "hai and human ships at wormhole"
 		log `Teeneep has been rejected by the Elders again, but has set in a motion a plan which has triggered an election instead. This snap election has closed the border and risked creating a diplomatic incident.`
+		log "People" "Aimet Taepip" `An Elder of advanced age and poor eyesight. He is the "master navigator" of the Hai political system, being the first to improve on a system in several generations. He commands widespread respect and possesses enormous clout in the Council of Elders.`
 		conversation
-			`Upon your return, Teeneep demands another audience with the Elders. None of them seem thrilled about a repeat session, but this time you must attend as a witness in the Chambers in support of the case. Sayari accompanies you to act as interpreter. When Teeneep presents the Unfettered's offer of assistance there is a smattering of largely disbelieving sounds, though when she tells them about their willingness to force the matter the tone of the conversation gets remarkably more tense. "If you don't do it, they will. Whether that's with you, or through you."`
-			`	One of the Elders takes the time to address you as a witness, and confirm that threat was indeed real. Even so, though, that only seems to sway a small selection. One of the more stubborn Elders stands up. "The Unfettered have made serious attempts to push through at Wah Ki before, to no avail. More recently, they've been more trouble again, and again we have organized more than enough security to keep their disruption contained, even with the current human crisis. This is ridiculous, and the Unfettered would not dare, not while they are so dependent on our food and medical supplies these past years."`
-			`	"You are blind. Blind and old and foolish," snaps Teeneep. "If you will not even listen to this, then apparently I must now be the one to present a pathway to avoid war. If you do not take action, I will make the history of inaction I have discovered public knowledge. Every Hai from Greenwater to Snowfeather will know by the end of the day."`
-			`	Two different Elders respond simultaneously. The first says, "Five thousand Hai in two hundred years is barely a concern. That many managed to get themselves killed swimming with Gelo Appanoh in the last decade alone."`
-			`	That one is left searching the room for someone who might actually be listening halfway through his sentence, though, as the second points at Teeneep and loudly says, "You wouldn't dare!" To which Teeneep responds, "It is already scheduled to happen unless I actively stop it!"`
-			`	Sayari has to raise her voice above the din and disentangles their two responses for you as the room devolves into shouting and several Elders who look quite worried leave the room. A moment later all three of you are escorted out and the chambers are closed.`
+			`Upon your return, Teeneep lodges a formal demand for another audience with the Elders, including the context that she has acquired support from the Unfettered with appropriate proof. Once sent, Sayari steps out for a while to talk to someone and ensure that the demand is being processed with appropriate speed, leaving you and Teeneep alone in her office.`
+			`	Teeneep spends a few moments more doing some other things at her terminal before finally sitting back with an expression of quiet determination. In the quiet she turns to you from her seat and says, "Well, all the pieces are set, now I suppose all that remains is to play out the moves."`
+			label teeneepquestions
+			choice
+				`	"What will happen now then?"`
+					to display
+						not "Hai Reveal: what will happen now?"
+				`	"Do you think the Elders will listen?"`
+					goto listen
+					to display
+						not "Hai Reveal: will the elders listen?"
+				`	"Will there truly be a war between Hai and Unfettered?"`
+					goto war
+					to display
+						or
+							has "Hai Reveal: what will happen now?"
+							has "Hai Reveal: will the elders listen?"
+						not "Hai Reveal: will there be war?"
+				`	"What are the other options?"`
+					goto options
+					to display
+						has "Hai Reveal: will there be war?"
+				`	"Who is Aimet?"`
+					goto aimet
+					to display
+						has "Hai Reveal: will there be war?"
+			action
+				set "Hai Reveal: what will happen now?"
+			`	She shrugs. "It is honestly quite hard to say. I struggle to believe that the Elders could be so unwilling to act that they would risk escalating the standoff with the Unfettered into a real war. Our brethren are no longer merely a disaffected rabble of veterans, camping on the one world that supported radical change. They are a truly empowered movement with consolidated support at home and sympathizers amongst the Hai at large."`
+				goto teeneepquestions
+			label listen
+			action
+				set "Hai Reveal: will the elders listen?"
+			`	She sighs. "I wish to believe so, but part of me I can no longer ignore does not think it actually likely. Still, it is essential that I try with everything I have to make them do so. Otherwise there will be change, and we can be an unpredictable people in the face of that."`
+				goto teeneepquestions
+			label war
+			action
+				set "Hai Reveal: will there be war?"
+			`	She frowns and gently shakes her head. "No, or at least not yet. The willingness of the Unfettered to threaten war is essential to all of the possible paths from here. Even if the Elders refuse to take action, there are more steps between this meeting and that outcome. The options are not yet exhausted, though they are rapidly dwindling. With luck, though, Aimet's influence might tip the situation in our favor."`
+				goto teeneepquestions
+			label options
+			`	"Ah, well those are difficult to explain, since the options worth using will depend on exactly what happens in the meeting. One thing Sayari was very right to remind me of before is that there are normal channels and processes to follow, and those must be followed. We're an old people, Captain <last>, and not always a very patient people. We've forged a system of government with systems and processes to allow almost any internal situation to be handled without resorting to base hysteria, and to actively punish and isolate those who try and subvert those processes. It is a difficult pill to swallow sometimes, but it works, and it has ensured stability since before humans learned to bash rocks together."`
+			`	Her mouth quirks in a sly little smile. "Aimet has always been the master navigator of those systems. He's responsible for improving one of them for the first time in two thousand years." She frowns. "It's actually very odd that he wasn't chosen for the Triad last time we were here."`
+				goto return
+			label aimet
+			`	"He is the..." she pauses to look up aimlessly, "I don't think it translates quite right. You have a phenomenon in your language where you amalgamate words sometimes, like an engineer who works specifically on solutions to problems might be called a 'solutioneer'. We have a similar thing with our words for political systems and navigator. It's a title he has earned."`
+			`	She spreads her arms, 'palms' up, in a human gesture indicating a loss for words. "Our system of government has systems and processes to allow almost any internal situation to be handled without resorting to base hysteria, and to actively punish and isolate those who try and subvert those processes. It is a difficult pill to swallow sometimes, but it works, and it has ensured stability since before humans learned to bash rocks together. Aimet is the master navigator of those systems. He's responsible for improving one of them for the first time in two thousand years."`
+			
+			label return
+			`	Teeneep's console beeps a moment prior to Sayari's slightly breathless return. A message, entirely in your language, is displayed on the screen; it announces an emergency meeting of the full Elder Council in under an hour.`
+			`	Sayari steps across to Teeneep and glances at the message. "I needn't have left this room. We must prepare quickly, we're going to have an escort..."`
+			`	Teeneep's expression darkens, but she quickly ensures she has what she needs before a group of Council security staff arrive to take you to the chambers. This is not the first time you've seen the room, but it is the first time you've seen it full. There is a small desk and seat at the front of the central circle, opposite the entry point, which was not occupied when you entered here for dealing with Scar's Legion but now hosts a very serious Hai bearing unusual marks of office. Sayari sees your line of vision and nudges you, conveying in a whisper, "That's the moderator. They're only required when more than two thirds of the council is in attendance, and when there's a debate or petition to address."`
+			`	She glances around the room and raises an eyebrow. "This is a closed session, which is quite unusual for a full Council Assembly. This does not bode well."`
+			`	As the security staff take their place, the moderator walks over to address you while the Elders are still filtering in and muttering to each other. "Now, before we begin, I would like to confirm. I understand you are able to act as a witness, and confirm that the threat carried from the Unfettered was indeed real. Is this correct?"`
+			choice
+				`	"That is correct."`
+					goto correct
+				`	"I can also testify to the human position on the matter."`
+			`	The moderator pulls a strange face and says, "Right, well, I doubt that will be necessary.`
+			label correct
+			`	"Thank you, Captain. Since you have become involved as a witness, protocol dictates that the session will be held in your language, though for the sake of order normal council directions will still be in Hai. We will begin in a moment."`
+			`	After everyone is set in place, the moderator abruptly starts. "Teeneep has provided a confession about her visit to the Unfettered, incitement to war, involvement of outside government in internal Hai matters, and other concerns. She has justified this by an argument of necessity, that it is essential for action to be taken to produce both a peaceful outcome for the ongoing crisis with humanity and to heal a hole in the heart of our society."`
+			`	When the moderator refers to 'healing the hole', it is spoken with an emphasis that implies heavy quotation, and you can hear the muttering of translations and scoffs rippling out among the Elders in the room.`
+			`	Sayari hisses with distaste and quietly says, "The framing of this is terrible, someone has already decided what outcome they'd like to get and has got in on this process early."`
+			`	The moderator calls something out in Hai which ends with 'Teeneep' and Sayari translates, "The Council hears Teeneep."`
+			`	Not visibly disheartened by the situation, Teeneep steps into the middle and begins. She makes her case thoroughly and passionately, but with a clearly well-practiced presentation structure, ensuring that the full background for the situation is laid out for those present. Some Elders make snide comments at various points, but the moderator shuts them down and those most skeptical settle for being merely disengaged. When she presents the Unfettered's position as an offer of assistance there is a smattering of largely disbelieving sounds, though when she speaks of their willingness to force the matter the tone of the conversation gets remarkably more tense. "If you don't act, they will. Whether that's with you, or through you," she finishes.`
+			`	One of the more stubborn Elders stands up, heralded by the moderator. "The Unfettered have made serious attempts to push through at Wah Ki before, to no avail. More recently, they've been more trouble again, and again we have organized more than enough security to keep their disruption contained, even with the current human crisis. This threat is ridiculous, and the Unfettered would not dare, not while they are so dependent on our food and medical supplies these past years. They would most certainly sacrifice many thousands of lives in the pursuit of misguided justice for a mere handful."`
+			`	"You are blind. Blind and old and foolish," snaps Teeneep, but another Elder has leaped to their feet and the moderator cuts her off with a rebuke that you don't need translated to know what it means.`
+			`	After being properly heralded, the new Elder addresses you. "I understand Teeneep has enlisted you as her gopher. You have my sympathy. I have no doubt that your continued involvement means that you accept her conspiracy theories that many of the pirate activities, specifically relating to kidnapping and people smuggling, are a coordinated effort. So I will not waste time retreading your position on points she has just laid out. I must ask you of this recent interaction, though. Tell me, how would you characterize Teeneep's meeting with the Unfettered Choot'k: constructive, aggressive, or something else?"`
+			choice
+				`	"It was a constructive discussion."`
+					goto constructive
+				`	"I witnessed the test of two wills."`
+					goto willed
+				`	"The meeting was poignant."`
+					goto poignant
+				`	"Very aggressive and confronting."`
+			action
+				set haiignorance
+			`	You hear many sighs, and several Elders shrug, but nobody seems surprised, just disappointed. "They grow ever more brazen in their desire for change," says the Elder. "Thank you, Captain <last>."`
+				goto next
+			label willed
+			action
+				set haiignorance
+			`	Many elders chuckle around the room. The Elder says, "Ah, our pair of old rivals, divided by Cloudfire. The embers are not yet quenched then." At this, Teeneep rolls her eyes and the Elder departs.`
+				goto next
+			label poignant
+			action
+				set haiinsight
+			`	There is a quiet shuffling as some of the elders sit up a little straighter. The Elder says, "A common ground between rivals, a fearsome thing indeed."`
+				goto next
+			label constructive
+			action
+				set haiinsight
+			`	A roomful of laughter engulfs your words, but many Elders appear offended by their peers' mockery. The Elder who questioned you explains, "The Elders and the Unfettered have different views of what constitutes a 'constructive discussion.' You lack the biases of a Hai. If you say it was constructive, I believe you." The tone of the room changes after that, as the laughter ends. Most Elders appear to agree with your assessment, and many who laughed look ashamed.`
+			label next
+			`	Sayari gives you a meaningful look and whispers, "A lot of them paid attention to that..."`
+			`	The next Elder to their feet is an older lady Hai, and her expression alone is enough to cause a flicker of concern to disrupt Teeneep's careful mask of calm. She gestures around the room, pointing with a digit and squinting at several others in the room. "You are, all of you, cowards. This is the highest chamber of the Hai, elected to protect and serve, and to ensure the enduring stability of the great edifice which is now a hundred millennia of stability. This one here has sought to upend that authority and topple that edifice in favor of nothing more than a statistical blip. Five thousand Hai in two hundred years is barely a concern. That many managed to get themselves killed swimming with Gelo Appanoh in the last decade alone! Freedom through peace, peace through order, order through security, and security through secrecy. This is the mandate of this chamber, and no matter how virtuous the challenger may be, this threat cannot be allowed to stand!"`
+			`	There is a growing rumble of assent as the crescendo of her impassioned statement crests to its conclusion. She levels a clawed finger directly at Teeneep and the room is filled with the angry cries of both those emboldened by her diatribe and those distressed by her implication. The moderator makes several attempts to restore order as over a dozen Elders jump to their feet, but the cacophony is not so easily restrained. At your side, Sayari's expression is ashen, but Teeneep seems to be seeking out a particular face somewhere in the room with a fierce intensity.`
+			`	There is a shift in the sound of the room and your attention is drawn to one Hai in particular, a particularly elderly man who struggles to his feet in a series of pained stages. The effect on the assembly is profound, though. A ripple of silence flows outward from his position, and Elders all around promptly drop back into their seats as it reaches them, leaving a scant handful who were too slow to react to have their final words trail off awkwardly. Only the last speaker remains on her feet, the moderator weakly announcing in Hai what you know to be, "The council hears Aimet."`
+			`	"Security through secrecy..." He coughs. "You throw that in there as if it were always so Gemnali but, unlike you, I was there when it was added to the mandate of this chamber."`
+			`	He peers around the room, and you realize he is blind, or nearly so. "Freedom may be achieved through peace, but peace must not be maintained at the cost of freedom. Order may not be pursued at the cost of peace, nor security at the cost of order. Always this mandate must be considered in both directions. To censure this woman, to resist action on this matter... You would have us pursue secrecy at the cost of security."`
+			`	He coughs again, and it echoes in the silence of nearly a hundred Hai holding their breath. When he continues, his voice grows stronger and sharper. "My eyes may not see as well as they used to, but there are many in this chamber who are yet too blind to see. The edifice of our stability is not threatened by this woman who would have us restore security to our lost brethren. It is you who would use her virtue to topple it yourself."`
+			`	The silence stretches with all eyes on Gemnali. She clenches her fists, shaking with barely suppressed emotion, before collapsing back into her seat as if physically struck.`
+			`	Whatever spell had held the room is immediately broken and a susurrus of murmuring rises to fill its space. Within the noise a certain phrase starts to be repeated multiple times, drawing an expression of shock from Sayari.`
+			choice
+				`	"What are they saying?"`
+				`	"What just happened?"`
+			`	She glances at you briefly. "They are saying: Veeheylur and Misanaya fight over Eyrisen." Her tone carries with it a sense of awe, and despite the growing volume in the room she leans in close to you and continues in scarcely more than a whisper, "The Mythos has been invoked."`
+			`	As Aimet painfully resumes his seat, one Elder who has thus far been maintaining a fairly neutral demeanor in this seems to regain a certain sense of himself and stands up, quickly heralded by the moderator, who struggles to compose himself suitably. "I think the Council has heard enough. The petitioner is entitled to a closing statement, unless there is objection?"`
+			`	None of those assembled who might object seem to have recovered their composure enough to stand up quickly, and the moderator, perhaps sensing a politic moment to intervene, quickly announces the closing of the interrogation and calls the Council to hear Teeneep again.`
+			`	Teeneep quickly plasters back on her mask of calm as best she is able to and says, "Thank you all for your ears. You are those we trust to decide, but know this: If you will not listen to this here, then apparently I must now be the one to present a pathway to avoid war. The Unfettered are committed, no matter what path I choose now. If you do not take action, I will make the history of inaction I have discovered public knowledge. Every Hai from Greenwater to Snowfeather will know by the end of the day."`
+			`	One Elder cries out, "You wouldn't dare!" To which Teeneep responds, "It is already scheduled to happen unless I actively stop it!"`
+			`	Before any further exchange can occur, though, the moderator bellows for security to escort you all from the session and shouts down the offending Elder for impropriety. The two remain engaged in a lively shouting match as you depart, the echoes following you until the chamber doors are shut.`
+			`	Teeneep moves to pull out a datapad, but both the security officers and Sayari step in to stay her hand. "The chamber will have to vote on the proposition to act," says Sayari, looking at Teeneep pointedly. "You know that external contact is forbidden during the deliberation grace window."`
+			choice
+				`	"The deliberation grace window?"`
+				`	"So what, do we just wait?"`
+					goto wait
+			`	Teeneep sighs and points an exasperated expression your way. "Yes, after certain types of chamber hearings there is an enforced period where the petitioner must remain isolated to the chamber's waiting area, including digitally. I forgot for a moment."`
+			label wait
+			`	Sayari smiles at you. "Don't worry though, it's only for about twenty-three of your minutes." She eyes the security officer warily. "After a session such as that though, the traditional wisdom is to wait in relative silence."`
+			`	"If it wasn't a closed session we wouldn't be doing this," harrumphs Teeneep. "I hadn't realized it would be so didn't plan for it."`
+			
+			`	After only about seventeen minutes the moderator slips out and exchanges some words with Teeneep and Sayari before re-entering the chamber. "We've been released," says Sayari. "They've voted to take no immediate action, either for or against Teeneep."`
 			`	Teeneep just shakes her head, pulls out a datapad, and quickly taps a few times. "Well, that was going to happen in an hour. No point waiting, though. Let's get dinner."`
 			choice
 				`	(Get dinner.)`
@@ -1429,9 +1555,21 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			`	You're still finishing up a little shortly after they leave, at which point a harried-looking Sayari appears and practically sprints across the room to you.`
 				goto alarm
 			label dinner
+			action
+				set "learned of elders superstition"
 			`	You join Teeneep and Sayari at a fusion restaurant about a block down the road from the 'Elders' Chambers' - which turns out to be the official name of the whole government complex.`
-			`	Having finished your main meal, and while waiting for some dessert that Teeneep has ordered, Sayari pulls out her datapad. "You know, while we're waiting. It's probably a good idea to check the damage. I don't know if your plan is actually going to have the desired effect, you know. I mean, seriously, Tee, what will you do if it doesn't? Will the Hai actually have to shed our brethren's blood with lethal intent?"`
-			`	Teeneep just sips her drink and shakes her head. "Oh, Sayari, you really are getting too long in the tooth for domestic politics these days."`
+			`	Having finished your main meal, and while waiting for some dessert that Teeneep has ordered, Sayari pulls out her datapad. "You know, while we're waiting. It's probably a good idea to check the damage. I don't know if your plan is actually going to have the desired effect, you know. Especially after that scene in there; no doubt the long tooths will get riled up."`
+			choice
+				`	"What was that in there about the Mythos?"`
+				`	"What will happen if they get riled up?"`
+					goto riled
+			`	Teeneep rolls her eyes, putting her drink down with a sharp clink. "It's superstition. Humans have their religions, the Hai have the Mythos. It's a collection of stories about Hai who lived incredibly long lives and were involved in or responsible for incredibly influential events in our history, or more accurately pre-history for the vast majority of them. If you believe the stories literally, these Hai transcended mortal limitations and achieved immortality; our word for them translates imprecisely to either 'immortals' or 'imperishables'. When someone embodies a character from it well enough, there's a set of people who will believe it's actually that person come back to steer things.`
+			`	"Someone in there has linked that scene to a story, in which I am implicated as Eyrisen."`
+			label riled
+			`	She scoffs and waves a paw dismissively. "The contingencies shouldn't be affected. Superstition is mostly dead, it's really only the Elders that subscribe to it." She pauses and looks at Sayari. "The plan will work just fine."`
+			`	Sayari grumbles, "There's plenty of older Hai, those 'long tooths', that align with particular political factions. They also tend to subscribe, at least selectively, to the superstitions. Despite what Teeneep says, I would not count out the potential impact that scene in there could have on the situation."`
+			`	She rounds on Teeneep. "I mean, seriously, Tee, what will you do if the plan doesn't play out fine? Will the Hai actually have to shed our brethren's blood with lethal intent?"`
+			`	Teeneep just sips her drink and shakes her head. "Oh, Sayari, you really are getting too long in the tooth yourself for domestic politics these days."`
 			`	A moment later Sayari squeaks and looks up in horror. "You triggered an election?! This wasn't just making it public, you had the petition for redress ready to go all along!"`
 			`	She scrolls down on her pad several times and begins to mutter, "Oh dear, oh no." She lapses into Hai for a moment before returning. "It hit the trending issues board, and triggered the safety policy alert response. People got direct notifications that this was an issue. There are over two billion supporting votes for an injunctive action and it's only been two hours... this is what you hoped would happen, isn't it?"`
 			`Teeneep places a gentle hand on Sayari's arm. "Better this than war."`
@@ -1439,6 +1577,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			`	Sayari's eyes are alive with thinly-veiled panic as she slams her hand down on the table. "Captain <last>, you must leave immediately. Get on your ship and fly to <planet> right now! The winds of change are afoot and we will have an election. They'll hit the threshold in maybe only twenty minutes, and it'll take maybe thirty more for the bureaucracy to act on it. The instant the election is announced formally, all non-essential ships will be grounded, all communication in or out of Hai space will be cut off, and the border will be sealed to everyone - not in the polite way either. If even one ship tries to cross the border to investigate... there's no telling what will happen."`
 			`	"Go, go with all possible haste! I will tell the others, but right now you must go. Now!"`
 				launch
+		
 	on enter "Waypoint"
 		dialog `As you enter Waypoint one of the Hai captains hails you. "Captain, we've orders to close the border to everyone, but... we know you've been doing official business, and we haven't been told to specifically block you. We also owe you one. You can go through, but don't try and bring anyone with you. We'll have no choice but to fire upon you and them if you do."`
 
@@ -1506,6 +1645,7 @@ mission "Hai Reveal [A11-C] Outgoing Election Update 1"
 		attributes "spaceport"
 	to offer
 		has "Hai Reveal [A11] Sound the Alarm: offered"
+		not "Hai Reveal [A13] A New Elder: offered"
 	on offer
 		conversation
 			`The spaceport appears to be operating on a skeleton staff with an increased security presence. Plenty of ships are still coming and going, but they seem to be here strictly on business. The usual milling of tourists, haggling of merchants, and perusal of jobs all appear to have been suspended in favor of efficient boarding and disembarking of Hai with places to go and goods with places to be. The displays in the main thoroughfare have been switched over to wall-to-wall election coverage and the rest of the non-essential sections of the spaceport have been closed.`
@@ -1631,10 +1771,10 @@ mission "Hai Reveal [A13] A New Elder"
 			`	"They only started locking in the last few seats a couple of hours ago. Until then we could have been prisoners and at war by now for all we knew. Peace-oriented heads seem to have prevailed though, but there's no lack of passion even in them. Near as I can tell from what has been explained and what I'm seeing; a third of the Elders have been replaced, which is the fastest change they've had since they were invaded by Korath... which I also didn't know was a thing that had happened until yesterday."`
 			`	He manages to make that last line sound both bewildered and grumpy at the same time. "That Teeneep you've been running around with - and yes, don't look at me in shock, Sayari told me when we were concerned you might not get out. You've developed some friends in high places and I admire that... where was I?"`
 			`	"Teeneep!" says Alondo, perhaps a little too loudly, nearly poking Remington in the face.`
-			`	"Of course, that Teeneep of yours, she had her position settled yesterday. She's being..." He curls his lip and frowns while looking for the right word. "Inaugurated! She's being inaugurated in about an hour or so. It's why we're still here. She's the youngest 'elder' since before we developed fire, or some similarly ridiculous time-frame. She seems to have the most influence among the new lot, at least now that 'sir pitchforks and pulse rifles' down there has definitively lost. She's a firebrand, that one, but she seems principled and decent. We're waiting to hear what she has to say in her victory speech.`
+			`	"Of course, that Teeneep of yours, she had her position settled yesterday. She's being..." He curls his lip and frowns while looking for the right word. "Inaugurated! She's being inaugurated in about an hour or so. It's why we're still here. She's the youngest 'elder' since before we developed fire, or some similarly ridiculous time-frame. She seems to have the most influence among the new lot, at least now that 'sir pitchforks and Pulse Rifles' down there has definitively lost. She's a firebrand, that one, but she seems principled and decent. We're waiting to hear what she has to say in her victory speech."`
 				goto "walk or drink"
 			label "who won"
-			`	Remington answers your question. "That Teeneep of yours, she had her position settled yesterday. She's being..." He curls his lip and frowns while looking for the right word. "Inaugurated! She's being inaugurated in about an hour or so. It's why we're still here. She's the youngest 'elder' since before we developed fire, or some similarly ridiculous time-frame. She seems to have the most influence among the new lot. She's a firebrand, that one, but she seems principled and decent. We're waiting to hear what she has to say in her victory speech.`
+			`	Remington answers your question. "That Teeneep of yours, she had her position settled yesterday. She's being..." He curls his lip and frowns while looking for the right word. "Inaugurated! She's being inaugurated in about an hour or so. It's why we're still here. She's the youngest 'elder' since before we developed fire, or some similarly ridiculous time-frame. She seems to have the most influence among the new lot. She's a firebrand, that one, but she seems principled and decent. We're waiting to hear what she has to say in her victory speech."`
 			label "walk or drink"
 			`	Alondo wobbles over to the bar and says, "I'll get you a drink, <last>. What'll you have?"`
 			choice
@@ -1668,9 +1808,10 @@ mission "Hai Reveal [A13] A New Elder"
 				`	"What has Teeneep done, Sayari?"`
 					goto hasdone
 				`	"I take it you need another ride?"`
-			`	She puts her paw over her face and breathes a long sigh. "Yes, Captain <last>, I do need another ride." She smiles and laughs a little before looking at you again.`
+			`	She puts her paw over her face and breathes a long sigh. "Yes, Captain <last>, I do need another ride." She smiles sadly and looks away for a moment.`
 			label hasdone
-			`	She explains, "Things might be tense now, but I promise, things aren't as bad as they look. I know Teeneep, and she has the influential backing of another long-time advocate for sensible change, who was also just elected. They are remaining here to reinforce her position. Teeneep displaced that Elder who threatened her in the chambers. It's upset all the long-term power dynamics in the Council, but it's a much better Council overall now. You're to come with us too, and I'm told I'm required to travel with you, as insurance."`
+			`	Her tone is very serious as she explains, "Things might be tense now, but I promise, things aren't as bad as they look. I know Teeneep, and she has the influential backing of another long-time advocate for sensible change, who was also just elected. They are remaining here to reinforce her position. Teeneep displaced that Elder who threatened her in the chambers. It's upset all the long-term power dynamics in the Council, but it's a much better Council overall now.`
+			`	"Events are in motion though, we're to go to <stopovers> and then to <planet> - and you're to come with us too. I don't think it's something they view as optional, and I'm told I'm required to travel with you... as insurance."`
 			`She hesitates, seeming oddly nervous for the one who theoretically has all the power in the room. "<last>, this will sound silly, but I'm a bit of a traditionalist sometimes. There's a superstition about space travel, and under the circumstances... I'm too old for this stress. Could you please do me a favor and make sure you have a Quantum Keystone on your ship? It's meant to be good luck, and well, I think we need it."`
 			choice
 				`	"Of course."`
@@ -1695,16 +1836,16 @@ mission "Hai Reveal [A13] A New Elder"
 		require "Quantum Keystone"
 		# Apparently I can't make this either Keystones *or* Key Stones, so it'll have to be a Hai one.
 	on visit
-		dialog `Under the circumstances Sayari's superstition has got the better of her. She must travel with you, and you must have a Quantum Keystone installed for her to do so.`
-	on decline
-		dialog `You have declined an essential narrative mission. You've also made the Hai hostile. If you want to complete this story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have either not stopped on Everhope as instructed, or you have left Sayari behind. Remember, her superstition has gotten the better of her under these pressing circumstances, so you must have a Quantum Keystone installed for her to travel with you.`
+	on fail
+		dialog `You have failed an essential narrative mission. You've also made the Hai hostile. If you want to complete this story line, revert to the autosave or another earlier snapshot of the game.`
 		"reputation: Hai" -= 10000
 		"reputation: Hai (Wormhole Access)" -= 10000
 		"reputation: Hai Merchant" -= 10000
 		"reputation: Hai Merchant (Human)" -= 10000
 		"reputation: Hai Merchant (Sympathizers)" -= 10000
 	on fail
-		dialog `You have declined an essential narrative mission. You've also made the Hai hostile. If you want to complete this story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential narrative mission. You've also made the Hai hostile. If you want to complete this story line, revert to the autosave or another earlier snapshot of the game.`
 		"reputation: Hai" -= 10000
 		"reputation: Hai (Wormhole Access)" -= 10000
 		"reputation: Hai Merchant" -= 10000
@@ -1797,7 +1938,7 @@ mission "Hai Reveal [A14] A Time of Trouble"
 			label through
 			action
 				set "Hai Reveal [A14] A Time of Trouble: label through"
-			`	Xilin replies, "That would undermine the legitimacy of the Republic, especially after the war we've just had, and it would be impossible to realistically assure people that an invasion is really not going to happen. True or not. In all likelihood the Republic would fracture and the Free Worlds would probably be on the receiving end of a migration crisis. Parliament has tried to say that they'll take care of it themselves, but the Hai say they've had enough of sitting around and want to be there to save their own people.`
+			`	Xilin replies, "That would undermine the legitimacy of the Republic, especially after the war we've just had, and it would be impossible to realistically assure people that an invasion is really not going to happen. True or not. In all likelihood the Republic would fracture and the Free Worlds would probably be on the receiving end of a migration crisis. Parliament has tried to say that they'll take care of it themselves, but the Hai say they've had enough of sitting around and want to be there to save their own people."`
 				goto questions
 			label concerns
 			action
@@ -1836,6 +1977,8 @@ mission "Hai Reveal [A14] A Time of Trouble"
 				`	"Are there any counter-proposals?"`
 					goto happypres
 				`	"Surely a group of enlightened human leaders can propose an alternative?"`
+			action
+				set patronizedthepresident
 			`	The President presents a stony mask at being patronized, but the Chancellor smirks. You get a furry little smile from Teeneep.`
 			label happypres
 			`	"We have a counter-proposal," the President says. "We cannot afford to change our policy in totality, it would cost too many lives. However, we propose the following: the Free Worlds and Republic will establish a customs service on Mountaintop. Hai visiting human space will check in with us there. Our intelligence agencies will then track their movements in order to see to their safety as best we can. They'll also be given contacts on every human planet that they can go to for help. In the meantime, we will place extensive surveillance fleets at Ultima Thule to detect any unapproved Hai travel. We will do our best to disable and capture ships with kidnapped Hai, no matter the risk to Navy lives."`

@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Nomadic Volcano
+# Copyright (c) 2020 MasterOfGrey
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -145,7 +145,7 @@ mission "Hai Rescue: Yeertle Family"
 			`	"Thank you. My name is Duniip Yeertle, by the way. My wife and three children are nearby. They have holoprojectors as well."`
 				goto leave
 			label "ride offer"
-			`	"Yes! Thank you. Some crooked human merchants locked us in a cell and took us here. I've been unable to find anyone who has even heard of Hai space, and I'm afraid to approach the Syndicate. You're the first lead I have! I promise I'll pay you well when we return. I can afford <payment> once we're back at <destination>.`
+			`	"Yes! Thank you. Some crooked human merchants locked us in a cell and took us here. I've been unable to find anyone who has even heard of Hai space, and I'm afraid to approach the human authorities. You're the first lead I have! I promise I'll pay you well when we return. I can afford <payment> once we're back at <destination>.`
 			`	"My name is Duniip Yeertle, by the way. My wife and three children are nearby. They have holoprojectors as well."`
 				goto leave
 			label looking
@@ -246,10 +246,10 @@ mission "Hai Rescue: Ooonem"
 			`	Following reports of the last time the 'angel of death' was sighted, you end up loitering in a twisting street parallel to a main thoroughfare. The few people using it hurry by quickly, and rarely seem to travel any great distance down this street. One very surly looking individual gives you a sour glare on his way past, a collection of weapons on full display. He looks a lot like you'd expect a bounty hunter to look, and as he moves out of sight you observe a shadow, previously motionless, detach from a spot on a wall and head back your direction, laser rifle pointed in the direction of the departing individual. As the shadow approaches, you see there's a lot of hair sticking out from their hood. Seems you may have indeed found a Hai. Do you want to talk to them?`
 			label start
 			choice
-				`	(Talk to her.)`
+				`	(Talk to them.)`
 				`	(Come back later.)`
 					defer
-			`	As step into her path, she swings the laser rifle towards you and says, "You're either very brave, very stupid, or know something... I should warn you, I'm not going back to them!"`
+			`	As you step into their path, the Hai swings the laser rifle towards you and says, "You're either very brave, very stupid, or know something... I should warn you, I'm not going back to them!"`
 			`	She watches your expression closely and, when you don't appear to be hostile, settles into a wary but more relaxed stance. "You're not one of them. What do you want with me?"`
 			choice
 				`	"I was wondering why a Hai is on a pirate planet."`
@@ -470,7 +470,7 @@ mission "Hai Rescue: Meroot and Lucy"
 				`	"No, I was just walking by. Sorry to bother you."`
 					decline
 			label hiding
-			`	Her expression immediately takes on a shade of panic and you hear what sounds like something heavy being picked up in the background. "Please don't tell anyone! We were both kidnapped, but we managed to escape. Now we're hiding here, hoping those people don't find us again.`
+			`	Her expression immediately takes on a shade of panic and you hear what sounds like something heavy being picked up in the background. "Please don't tell anyone! We were both kidnapped, but we managed to escape. Now we're hiding here, hoping those people don't find us again."`
 				goto trustcheck
 
 			label help
@@ -560,7 +560,7 @@ mission "Hai Rescue: Gipeep"
 				has "Hai Rescue: Gipeep Hint: offered"
 			`As you come in to land one guy is on the comms, bragging particularly odiously about some lucrative transport jobs he'd picked up. This catches your attention only because <origin> is not known for lucrative transport jobs. It could likely be contraband, or worse...`
 			label hint
-			`After some quiet investigation you find out that all the lucrative transport jobs are coming out of one particular warehouse. The paperwork all looks to be in order but that just means that at the very least maybe you should pick up a job yourself.`
+			`After some quiet investigation you find out that all the lucrative transport jobs are coming out of one particular warehouse. The paperwork all looks to be in order, but to be sure you should pick up a job yourself.`
 			choice
 				`	(Check it out.)`
 				`	(Leave.)`

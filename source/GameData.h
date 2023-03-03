@@ -38,6 +38,7 @@ class Fleet;
 class FormationPattern;
 class Galaxy;
 class GameEvent;
+class Gamerules;
 class Government;
 class Hazard;
 class ImageSet;
@@ -62,6 +63,7 @@ class Test;
 class TestData;
 class TextReplacements;
 class Track;
+class UniverseObjects;
 class Wormhole;
 
 
@@ -91,6 +93,9 @@ public:
 
 	// Get the list of resource sources (i.e. plugin folders).
 	static const std::vector<std::string> &Sources();
+
+	// Get a reference to the UniverseObjects object.
+	static UniverseObjects &Objects();
 
 	// Revert any changes that have been made to the universe.
 	static void Revert();
@@ -168,11 +173,11 @@ public:
 	static std::string HelpMessage(const std::string &name);
 	static const std::map<std::string, std::string> &HelpTemplates();
 
-	static const std::map<std::string, std::string> &PluginAboutText();
-
 	static MaskManager &GetMaskManager();
 
 	static const TextReplacements &GetTextReplacements();
+
+	static const Gamerules &GetGamerules();
 
 	// Thread-safe way to draw the menu background.
 	static void DrawMenuBackground(Panel *panel);

@@ -1,5 +1,4 @@
-# Copyright (c) 2020 by Nomadic Volcano
-# Based on earlier text copyright (c) 2017 by Michael Zahniser
+# Copyright (c) 2017 by Michael Zahniser
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -634,7 +633,7 @@ news "Hai news: merchant captain"
 		word
 			"I wonder if Hai have pirates of their own, like we do?"
 			"I hear Hai defensive technology is amazing. I'm going to stock up on shields and anti-missile turrets when I get there. Hopefully I'll lose fewer ships when I fly near pirate space."
-			"Ever since I got my hands on a Shield Beetle, I've taken up bounty hunting. Replace those wimpy Hai weapons with some particle or plasma cannons, and the ships are unstoppable."
+			"Ever since I got my hands on a Shield Beetle, I've taken up bounty hunting. Replace those wimpy Hai weapons with some particle or Plasma Cannons, and the ships are unstoppable."
 			"I hear the Hai let pirates live in their territory, as part of reformation programs. That may not be the wisest decision they've ever made, but it's certainly a compassionate one."
 			"I hope nobody is smuggling Hai technology to the pirates. I don't want to think of what would happen if pirates got their hands on that stuff."
 			"I've flown through Cardax many times. How did I not notice there was a wormhole just a few systems away?"

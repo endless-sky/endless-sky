@@ -28,13 +28,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sound.h"
 #include "System.h"
 
-#if !defined(__APPLE__) || defined(ES_CMAKE)
 #include <AL/al.h>
 #include <AL/alc.h>
-#else
-#include <OpenAL/al.h>
-#include <OpenAL/alc.h>
-#endif
 
 #include <algorithm>
 #include <cmath>

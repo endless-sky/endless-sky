@@ -142,7 +142,7 @@ mission "Hai Reveal [D02] Escort to Cardax"
 			`	Xilin shrugs. "We've heard a rumor that the pirates might have caught wind of what we're doing. The reality is that the marauders up here can field a truly formidable force, if they get their act together. They've overrun the Navy outpost on Farpoint a number of times before, and it would be devastating if an entire naval flotilla, the Hai construction fleet, and a whole security force were all caught out in the open by such a fleet, possibly attacked from both sides.`
 			`	"By separating them, we're less likely to tip them off as to when exactly we choose to act, and once the station is up, the fleet can use the station's projector and facilities to support their presence. Plus, if they are tipped off already and we can't deal with them, then we only lose the one Geocoris. We expect that you and the Hai security ships are capable enough to escape from trouble if it's more than you can handle."`
 			choice
-				` 	"Makes sense."`
+				`	"Makes sense."`
 				`	"I suppose..."`
 			`	"The Geocoris and security force are ready whenever you are. Be safe out there <last>, and remember: we can't have any pirates observing the construction."`
 				accept
@@ -488,8 +488,8 @@ mission "Hai Reveal [D10] Escort Free World Outfitters"
 			`	You look at your friend, and you can tell he's waiting for you to accept his premise first, holding something back...`
 			choice
 				`	"What's the catch?"`
-			`	He chuckles. "You're getting to know me too well."`
-			`	"The catch is that the Free Worlds will only sponsor the outfitters if you agree to escort their convoys directly from Solace and Rust the entire way here. They want to make a big show of it - or rather, a certain senator has goaded them into making a show of it.'`
+			`	He chuckles. "You're getting to know me too well.`
+			`	"The catch is that the Free Worlds will only sponsor the outfitters if you agree to escort their convoys directly from Solace and Rust the entire way here. They want to make a big show of it - or rather, a certain senator has goaded them into making a show of it."`
 			`	He sighs. "On the plus side though, if you're interested, you do get paid diplomatic escort rates."`
 			choice
 				`	"I'll do it, friend."`
