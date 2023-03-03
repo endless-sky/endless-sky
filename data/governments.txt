@@ -470,6 +470,8 @@ government "Hai"
 		"Hai Merchant (Sympathizers)" 1
 		"Hai Merchant (Human)" 1
 		"Hai (Unfettered)" -.1
+		"Hai (Friendly Unfettered)" .1
+		"Hai (Unfettered Civilians)" .1
 		"Merchant" .01
 		"Bounty Hunter that Attacks Hai" -.01
 		"Elenctic Commune" .1
@@ -492,6 +494,8 @@ government "Hai (Wormhole Access)"
 		"Hai Merchant (Sympathizers)" 1
 		"Hai Merchant (Human)" 1
 		"Hai (Unfettered)" -.1
+		"Hai (Friendly Unfettered)" .1
+		"Hai (Unfettered Civilians)" .1
 		"Merchant" .01
 		"Bounty Hunter that Attacks Hai" -.01
 		"Elenctic Commune" .1
@@ -513,6 +517,8 @@ government "Hai Merchant"
 		"Hai Merchant (Sympathizers)" .95
 		"Hai Merchant (Human)" .95
 		"Hai (Unfettered)" -.1
+		"Hai (Friendly Unfettered)" .1
+		"Hai (Unfettered Civilians)" .1
 		"Merchant" .01
 	"bribe" .02
 	"friendly hail" "friendly hai"
@@ -532,6 +538,8 @@ government "Hai Merchant (Sympathizers)"
 		"Hai Merchant" .95
 		"Hai Merchant (Human)" .95
 		"Hai (Unfettered)" .01
+		"Hai (Friendly Unfettered)" .5
+		"Hai (Unfettered Civilians)" .5
 		"Merchant" .01
 	"bribe" .02
 	"friendly hail" "friendly hai"
@@ -551,14 +559,18 @@ government "Hai Merchant (Human)"
 		"Hai Merchant" .95
 		"Hai Merchant (Sympathizers)" .95
 		"Hai (Unfettered)" -.2
+		"Hai (Friendly Unfettered)" .1
+		"Hai (Unfettered Civilians)" .1
 		"Merchant" .01
 	"bribe" .02
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
 
+color "governments: Hai (Unfettered)" .55 .27 .76
+
 government "Hai (Unfettered)"
 	swizzle 4
-	color .55 .27 .76
+	color "governments: Hai (Unfettered)"
 	"crew attack" 1.4
 	"crew defense" 2.2
 	
@@ -567,7 +579,9 @@ government "Hai (Unfettered)"
 		"Hai" -.01
 		"Hai (Wormhole Access)" -.01
 		"Hai Merchant" -.01
-		"Hai Merchant (Sympathizers)" 0.01
+		"Hai Merchant (Sympathizers)" .1
+		"Hai (Friendly Unfettered)" 1
+		"Hai (Unfettered Civilians)" 2
 		"Hai Merchant (Human)" -.01
 		"Wanderer" -.01
 		"Pug" -.01
@@ -585,7 +599,7 @@ government "Hai (Unfettered)"
 
 government "Hai (Friendly Unfettered)"
 	swizzle 4
-	color .69 .33 .82
+	color "governments: Hai (Unfettered)"
 	"display name" "Hai (Unfettered)"
 	
 	"player reputation" 100
@@ -594,8 +608,25 @@ government "Hai (Friendly Unfettered)"
 		"Pirate (Devil-Run Gang)" -.01
 		"Korath" -.01
 		"Hai" .01
+		"Hai (Wormhole Access)" .01
+		"Hai (Unfettered)" 1
 		"Bounty Hunter that Attacks Hai" -.01
-		"Elenctic Commune" .1
+		"Elenctic Commune" .01
+	"bribe" .02
+	"fine" 0
+	"friendly hail" "friendly unfettered"
+	"friendly disabled hail" "friendly disabled unfettered"
+	"hostile hail" "hostile unfettered"
+	"hostile disabled hail" "hostile disabled unfettered"
+
+government "Hai (Unfettered Civilians)"
+	swizzle 4
+	color "governments: Hai (Unfettered)"
+	"display name" "Hai (Unfettered)"
+	
+	"player reputation" 10
+	"attitude toward"
+		"Hai (Unfettered)" .01
 	"bribe" .02
 	"fine" 0
 	"friendly hail" "friendly unfettered"
@@ -604,7 +635,7 @@ government "Hai (Friendly Unfettered)"
 	"hostile disabled hail" "hostile disabled unfettered"
 
 government "Heliarch"
-	swizzle 0
+	swizzle 22
 	color 1 .8 .5
 	"crew attack" 1.3
 	"crew defense" 2.8

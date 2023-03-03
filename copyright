@@ -27,7 +27,6 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
- images/outfit/gat*
  images/outfit/bullet*
  images/scene/sagittarius?a*
  images/ship/hai?solifuge*
@@ -66,7 +65,6 @@ Comment: Derived from works by Amazinite derived from works by Michael Zahniser 
 
 Files:
  images/ship/hai?pond?strider*
- images/ship/barb*
 Copyright: Iaz Poolar
 License: CC-BY-SA-4.0
 
@@ -84,11 +82,8 @@ Comment: Derived from works by Matthew Smestad (under the same license).
 License: CC-BY-SA-4.0
 
 Files:
- images/ship/vanguard*
  images/outfit/luxury accommodations*
- images/outfit/proton turret*
  images/hardpoint/proton turret*
- images/outfit/brig*
 Copyright: Nate Graham <pointedstick@zoho.com>
 License: CC-BY-SA-4.0
 
@@ -106,6 +101,19 @@ Files:
 Copyright: Amazinite
 License: CC-BY-SA-4.0
 Comment: Derived from works by Maximilian Korber (under the same license).
+
+Files:
+ images/outfit/gat*
+Copyright: Becca Tommaso
+License: CC-BY-SA-4.0
+Comment: Derived from works by Maximilian Korber (under the same license).
+
+
+Files:
+ images/outfit/scram?drive*
+Copyright: Becca Tommaso
+License: CC-BY-SA-4.0
+Comment: Derived from works by Evan Fluharty (under the same license).
 
 Files:
  images/icon/rail?gun*
@@ -150,13 +158,6 @@ Files:
 Copyright: Michael Zahniser (mzahniser@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Incorporating a photo by Aram Dulyan, under the CC-BY-2.0 license.
-
-Files:
- images/outfit/jump?drive?(broken)*
- images/outfit/plasma?repeater*
-Copyright: Darcy Manoel <Darcman00@gmail.com>
-License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
  images/scene/plasma?scene*
@@ -305,7 +306,6 @@ License: CC-BY-SA-4.0
 Files:
  images/outfit/korath?rifle*
  images/outfit/hai?rifle*
- images/outfit/scram?drive*
  images/outfit/korath?fuel?processor*
  images/outfit/remnant?rifle*
  images/ship/hai?centipede*
@@ -315,7 +315,6 @@ Files:
  images/ship/pelican*
  images/ship/peregrine/peregrine*
  images/ship/riptide*
- images/ship/auxiliary*
  images/ship/dropship*
  images/ship/heron*
  images/thumbnail/hai?centipede*
@@ -325,7 +324,6 @@ Files:
  images/thumbnail/pelican*
  images/thumbnail/peregrine*
  images/thumbnail/riptide*
- images/thumbnail/auxiliary*
  images/thumbnail/dropship*
  images/outfit/auxiliary?license*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
@@ -395,7 +393,6 @@ Files:
  images/outfit/fragmentation?grenades*
  images/outfit/nerve?gas*
  images/outfit/catalytic?ramscoop*
- images/outfit/plasma?repeater*
  images/outfit/anti-missile*
  images/outfit/blaster?turret*
  images/outfit/blaster*
@@ -406,8 +403,6 @@ Files:
  images/outfit/electron?turret*
  images/outfit/fission*
  images/outfit/flamethrower*
- images/outfit/fuel?pod*
- images/outfit/gat*
  images/outfit/hai?ionic?blaster*
  images/outfit/hai?ionic?turret*
  images/outfit/heavy?anti-missile*
@@ -424,7 +419,6 @@ Files:
  images/outfit/small?shield*
  images/outfit/tiny?shield*
  images/outfit/hyperdrive*
- images/outfit/scram?drive*
  images/outfit/large?radar?jammer*
  images/outfit/small?radar?jammer*
  images/outfit/meteor*
@@ -1301,7 +1295,6 @@ Files:
  images/outfit/*korath?reverser*
  images/projectile/expeller*
  images/projectile/heaver*
- images/projectile/korath?digger*
  images/projectile/shunt-strike*
  images/ship/kas-ik?tek?7*
  images/thumbnail/kas-ik?tek?7*
@@ -1651,7 +1644,6 @@ License: CC-BY-SA-3.0
 Comment: Derived from works by Becca Tommaso (under the same license).
 
 Files:
- images/ship/auxiliary*
  images/ship/carrier*
  images/ship/combat?drone*
  images/ship/cruiser*
@@ -1660,7 +1652,6 @@ Files:
  images/ship/lance*
  images/ship/rainmaker*
  images/ship/surveillance?drone*
- images/thumbnail/auxiliary*
  images/thumbnail/carrier*
  images/thumbnail/combat?drone*
  images/thumbnail/cruiser*
@@ -1672,6 +1663,13 @@ Files:
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/ship/auxiliary*
+ images/thumbnail/auxiliary*
+Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Evan Fluharty (under the same license).
 
 Files:
  images/asteroid/*bioroid*
@@ -1725,6 +1723,7 @@ Files:
  images/outfit/warforge?battery*
  images/outfit/warzone?core*
  images/planet/tschyss*
+ images/planet/*vajra*
  images/planet/vesvi*
  images/projectile/acuit*
  images/projectile/astuit*
@@ -1835,6 +1834,7 @@ Files:
  sounds/drill*
  sounds/ember?tear*
  sounds/ember?tear?hit*
+ sounds/gravity?well*
  sounds/hai?launch*
  sounds/human?launch*
  sounds/human?launch?external*
