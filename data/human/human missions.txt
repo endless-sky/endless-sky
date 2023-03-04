@@ -5430,14 +5430,15 @@ mission "Deal Change 2"
 			`	After a few minutes, the pirates finish unloading the cargo, and Ci steps forward, holding out a credit chip. "<payment>, for making the right choice." Ci and the pirates return to their ships as you take off and head towards the main spaceport of <planet>.`
 
 mission "Argosy Hijacking (Trigger)"
-	invisible
-	landing
 	source
 		government "Syndicate"
 	to offer
 		random < 10
 	on offer
+		event "argosy hijacking trigger" 14 35
 		fail
+
+event "argosy hijacking trigger"
 
 mission "Argosy Hijacking"
 	name "Stop ship hijacking"
@@ -5446,8 +5447,12 @@ mission "Argosy Hijacking"
 	source
 		government "Syndicate"
 		not attributes "station"
+		near "Alcyone" 4
+		near "Almach" 3
+		near "Gienah" 3
 	to offer
 		has "Argosy Hijacking (Trigger): offered"
+		has "event: argosy hijacking trigger"
 	on offer
 		conversation
 			`You're signing the landing papers with the Syndicated Security officer on <origin>, a standard procedure after landing in a planet within the Syndicate bloc. "Everything seems to be in order. And of course, we'll have your ship refuelled promptly. Have a good day, Captain <last>." He nods his head at you and starts to move off towards the next ship.`
@@ -5520,14 +5525,17 @@ mission "Argosy Hijacking"
 			`Suddenly, he turns around and walks off towards the direction of the bar, leaving you to contemplate your actions.`
 
 	on complete
-		payment 18000
-		dialog `When you land, the captain of the <npc> sends you <payment>, and a message thanking you profusely for helping him recover his ship.`
+		payment 28000
+		conversation 
+			`As you land, Syndicated Security have the <npc> in tow, escorted by a trio of Quicksilvers. The formation lands on one of the larger pads reserved for Syndicated Security vessels, where it is fenced off from the rest of the spaceport.`
+			`	The hijackers, just a raucous group of young kids, are hauled out of the <npc model> by Syndicated Security personnel towards a security van. Multiple times the kids try to run away, but after a few minutes they're finally detained; the van drives off towards the spaceport terminal.`
+			`	After the incident is wrapped up, the captain of the <npc> sends you <payment>, and a message thanking you for helping him recover his ship.`
 
 mission "Argosy Hijacking (Declined)"
-	invisible
 	landing
 	to offer
 		has "Argosy Hijacking (Trigger): offered"
+		has "event: argosy hijacking trigger"
 	on offer
 		fail
 	npc
