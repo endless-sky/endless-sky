@@ -356,9 +356,10 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 			}
 			oldState = state;
 		}
-		// If no playlist is set this means nothing should be played, so stop everything.
+		// If no playlist is set this means nothing should be played, so stop
+		// everything and fade out.
 		else
-			currentTrack->Finish();
+			PlayMusic("");
 	}
 	if(oldState != state)
 	{
