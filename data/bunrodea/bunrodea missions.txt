@@ -1,0 +1,220 @@
+# Copyright (c) 2023 by Amazinite
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+mission "First Contact: Bunrodea (Hostile)"
+	landing
+	name "An Intriguing Invitation"
+	description "You have received an invitation, or summons, to the marked system by some mantis-like aliens who seem to have been following you around human space."
+	source
+		near "Sol" 0 100
+		not attributes "urban" "station"
+		attributes "spaceport"
+	destination "Erabuthro"
+	clearance "After hailing the planet the map pointed you towards, you hear an alien voice respond. Before you can think of what to say, the small device that the aliens threw at you on <origin> responds for you. The voice on the other end says something short, then cuts the feed. It seems like you've been cleared to land."
+	to offer
+		random < 10
+		or
+			"reputation: Bunrodea" < 1
+			"reputation: Bunrodea (Megasa)" < 1
+			"reputation: Bunrodea (Erabu)" < 1
+			"reputation: Bunrodea (Guard)" < -1
+	
+	on offer
+		"bunrodea: guard rep" = "reputation: Bunrodea (Guard)"
+		"bunrodea: megasa rep" = "reputation: Bunrodea (Megasa)"
+		"bunrodea: erabu rep" = "reputation: Bunrodea (Erabu)"
+		"bunrodea: normal rep" = "reputation: Bunrodea"
+		conversation
+			`When you depart your ship, you're startled by a small alien ship uncloaking right in front of you. Two elegant mantis-like creatures step off it, each holding a strange looking weapon pointed directly at you. They have four long insectoid legs and two arms. Although their arms end in what look like hands, they also have strange claw-like features that partially enclose them, extending outward from their forearms to grasp their weapons. You look around to see if there's anyone else witnessing this, but you've landed at <origin>'s main spaceport in the middle of the night, leaving you as the only human in sight.`
+			`	The aliens begin speaking to you in a language you don't understand, their words interspersed with clicking noises. As one of them speaks, they sound almost robotic, as if they are speaking through a synthesizer. Taking a closer look, you spot what you can only guess are cybernetic modifications to parts of the alien's body; the alien's throat and one of its eyes look non-organic, as well as the joints of its legs. The other one has no such visible modifications, though.`
+			choice
+				`	"Do you come in peace?"`
+				`	"I don't understand a word you're saying."`
+				`	"Don't shoot! I'll take you to my leader."`
+			`	The aliens look at each other and say a few words. One of them grabs a small device from a belt and throws it on the ground in front of you.`
+			choice
+				`	(Pick it up.)`
+				`	(Dodge for cover.)`
+					goto dodge
+			`	You pick up the device and look at it. It springs open in your hand, causing you to drop it. After it falls to the ground, it begins projecting a holographic star map. You recognize some of the systems on the map as those where you fought an alien fleet, made up of ships similar to the one in front of you. A single system within that region is highlighted. The aliens return to their ship, which becomes invisible again, and although you can't see it, you hear it take off and fly away.`
+				accept
+			label dodge
+			`	You dodge for cover behind your ship. After a few seconds, you hear a springing sound. When you look back out from behind your ship, the aliens are gone, and the device they threw at you is now projecting a holographic star map. You recognize some of the systems on the map as those where you fought an alien fleet, made up of ships similar to the one in front of you. A single system within that region is highlighted. The alien ship becomes invisible once again, and although you can't see it, you hear it take off and fly away.`
+				accept
+	
+	on accept
+		"reputation: Bunrodea" = 0
+		"reputation: Bunrodea (Guard)" = 0
+		"reputation: Bunrodea (Megasa)" = 0
+		"reputation: Bunrodea (Erabu)" = 0
+	
+	on complete
+		"reputation: Bunrodea" = 10
+		conversation
+			`As you enter the atmosphere, you're flanked by two large alien ships which guide you to the surface, leading you to a particular landing zone. When you leave your ship, you're met by two aliens that look similar to the ones that startled you on <origin>, including having the same weaponry.`
+			`	As you take a moment to look around, you find yourself in the middle of a massive metropolis. Skyscrapers taller than anything you've ever seen in human space cover the horizon, although most of the buildings around you appear far more elegant in architecture. Directly ahead is a large palace-like building with a considerable number of steps leading up to the front doors.`
+			`	You take a step forward, but one of the aliens says something while waving its weapon around, and you take the hint that you shouldn't be moving right now. The other says something into a communication device, then sits down on the ground and gestures for you to do the same. You suspect that you might be waiting here for a while.`
+			choice
+				`	(Sit down.)`
+					goto sit
+				`	(Turn around and re-enter my ship.)`
+			`	You reenter your ship, and the aliens don't move to stop you. You decide to turn your ship back on and attempt to take off, but just as you try to activate the repulsor engines, you hear a loud buzzing sound coming from outside. You look out the nearest window, and see that the aliens have moved some sort of vehicle near your ship, buzzing with energy. You attempt to take off, but your ship's repulsor engines aren't moving you anywhere. The vehicle seems like it is deactivating any nearby repulsors.`
+			choice
+				`	(Blast the vehicle with a turret.)`
+					to display
+						"flagship base attribute: turret mounts" > "flagship attribute: turret mounts"
+				`	(Leave my ship and sit down with the aliens.)`
+					goto leave
+			action
+				"reputation: Bunrodea" = -10
+				"reputation: Bunrodea (Guard)" = -10
+				"reputation: Bunrodea (Megasa)" = -10
+				"reputation: Bunrodea (Erabu)" = -10
+			`	You turn one of your turrets toward the vehicle and fire, then immediately try to pull up. It looks like your shot either destroyed the vehicle or disrupted it enough for you to escape its influence as your ship rapidly rises into the atmosphere. It looks like the aliens didn't take too kindly to your action, though, as you begin seeing ships targeting you on your radar.`
+				flee
+			label leave
+			`	You exit your ship and sit down on the boarding ramp. The aliens that are watching you don't seem to care that you just tried to leave.`
+				goto intro
+			label sit
+			`	You sit down on the boarding ramp of your ship and gaze at the scenery while you wait.`
+			label intro
+			`	After some time, you look up to the palace steps and notice a six-limbed creature unlike the mantis-like aliens watching over you. As it slowly makes its way downward and gets to the last few steps, the aliens guarding you stand to attention. You wonder if this entire time you've just been waiting for this alien to reach the bottom of the stairs.`
+			`	The creature approaches you on all six limbs, but stands up on its hind two legs once it is only a few paces away from you. It is rather small, hardly reaching your chin while it stands at full height, with big round eyes and a large, bulbous nose. It extends its four arms outward, revealing the palms of its hands. Except for its face and palms, it is covered in a thin layer of golden brown fur. It begins speaking. You can't understand what it's saying, but it seems to be cycling through various different languages and pausing after each line, as each sentence sounds wildly different from the last. You're suddenly startled when it says perfectly, "Hello."`
+			choice
+				`	"Hello?"`
+				`	"Wait, say that again."`
+			label loop
+			`	"Hello," the creature repeats itself. "Hello. Hello. Hello," it continues to say.`
+			choice
+				`	"Can you say anything else?"`
+				`	"How do you know my language?"`
+					goto language
+				`	"Hello."`
+					goto loop
+			`	"Can you say anything else?" it repeats back to you.`
+				goto human
+			label language
+			`	"How do you know my language?" it repeats back to you.`
+			label human
+			`	"Human?" it asks.`
+			choice
+				`	"Yes, I am a human."`
+				`	"What even are you?"`
+			`	"Human," it says to itself confidently. "Human. Human. Human," it repeats, looking around as if it is searching for something in its mind. "One... hundred years ago. Human," it says.`
+			choice
+				`	"I'm not the first human here?"`
+				`	"What do you mean one hundred years ago?"`
+			`	"Human visitors, many years ago," it says. "Not important. The Queen desires yours presence." It then says something in a language that the mantis-like aliens understand, and they motion for you to follow as the small alien begins making its way back to the steps of the palace. You have a feeling you're going to dread the next half hour.`
+			`	You finally reach the top of the palace stairs completely exhausted, although the aliens with you look entirely unphased.`
+			`	The aliens lead you into the palace and through various elegant hallways. The walls are lined with marble statues and paintings that seem to be depicting historical figures and events for this alien race, although you're not allowed to linger long enough to get a good look at any of them.`
+			`	You eventually approach a large ornate doorway that the aliens push open, revealing what must be the Queen's throne room. It is a long, narrow room lined with stained glass windows with what you guess is a throne chair where the alien Queen sits. The Queen is part of the mantis-like species and considerably larger in appearance than the ones guarding you.`
+			`	The small creature says something to the Queen as you approach, and the Queen responds. The creature turns to you to translate.`
+			branch royalty
+				"bunrodea: erabu rep" < 1
+			branch guard
+				"bunrodea: guard rep" < -1
+			branch civi
+				"bunrodea: normal rep" < 1
+			`	"I hear that you have attacked one of my Megasa."`
+			choice
+				`	"Your what?"`
+					goto megasa
+				`	"I was only defending myself."`
+					goto lie
+				`	"I have, and for that I apologize."`
+					goto apologize
+				`	"Okay, and?"`
+					goto and
+			
+			label civi
+			`	"I hear that you have attacked one of my civilians."`
+			choice
+				`	"I was only defending myself."`
+					goto lie
+				`	"I have, and for that I apologize."`
+					goto apologize
+				`	"Okay, and?"`
+					goto and
+			
+			label guard
+			`	"I hear that you have fought a member of my guard."`
+			choice
+				`	"I was only defending myself."`
+					goto defending
+				`	"Hey, they deserved it. They attacked me first."`
+					goto attacked
+				`	"I have, and for that I apologize."`
+					goto apologize
+				`	"Okay, and?"`
+					goto and
+			
+			label royalty
+			`	"I hear that you have attacked one of my Erabu."`
+			choice
+				`	"Your what?"`
+					goto erabu
+				`	"I was only defending myself."`
+					goto lie
+				`	"I have, and for that I apologize."`
+					goto apologize
+				`	"Okay, and?"`
+					goto and
+			
+			
+			label erabu
+			`	As the small creature translates for you, the Queen seems to laugh in a strange chittering way. "The Erabu are the aristocrats of my land. Attacking them is a grave offense," the creature translates for the Queen. "What do you say for yourself?"`
+				goto rechoice
+			
+			label megasa
+			`	As the small creature translates for you, the Queen seems to laugh in a strange chittering way. "The Megasa are the lowest of my people, but still my people to defend," the creature translates for the Queen. "What do you say for yourself?"`
+			
+			label rechoice
+			choice
+				`	"Whoever I attacked, I was only defending myself."`
+					goto lie
+				`	"Well, then for that I apologize."`
+					goto apologize
+				`	"Okay, and?"`
+					goto and
+			
+			label defending
+			`	As the small creature translates for you, the Queen seems to laugh in a strange chittering way. "Yes, my royal guards are rather... eager to defend, and for that I apologize," the creature translates as the Queen speaks. "But would my royal guard truly be doing its duty if it were not defending my lands from unknown threats? Although, perhaps they could be more patient in assessing true threats. I might punish those responsible, but it would seem that you have already dealt with those who have slighted you."`
+				goto slighted
+			
+			label attacked
+			`	As the small creature translates for you, the Queen seems to laugh in a strange chittering way. "Deserved, you say?" the creature translates as the Queen speaks. "Would my royal guard truly be doing its duty if it were not defending my lands from unknown threats? Although, perhaps they could be more patient in assessing true threats. I might punish those responsible, but it would seem that you have already dealt with those who have slighted you."`
+				goto slighted
+			
+			label lie
+			`	As the small creature translates for you, the Queen steps off of her throne and approaches you. She extends her legs so that she towers over you to at least twice your height. She speaks, and the creature translates. "How flippant you are, to lie like that in front of the highest royalty. You're either extremely brave, or extremely stupid." The Queen turns around and returns to her throne. "I will show mercy, just this once. But you will not be so fortunate the next time."`
+				goto threatened
+			
+			label and
+			`	As the small creature translates for you, the Queen steps off of her throne and approaches you. She extends her legs so that she towers over you to at least twice your height. She speaks, and the creature translates. "How flippant you are, to speak like that in front of the highest royalty. You're either extremely brave, or extremely stupid." The Queen turns around and returns to her throne. "I will show mercy, just this once. But you will not be so fortunate the next time."`
+				goto threatened
+			
+			label apologize
+			`	As the small creature translates for you, the Queen looks as if she is smiling. "An apology. Such an... unexpected response," the creature continues to translate for the Queen. "Normally, those who have offended the Queen attempt to make excuses for themselves. Your apology is accepted."`
+			`	The Queen motions to one of the guards and says something to it that the creature does not translate. She then speaks to you, and the creature translates: "Since you have apologized, you will be allowed to live. My guards have been ordered to leave you be, and you may come and go on a small number of our worlds. But this is only so that you do not cause further trouble, and to allow you to refuel if you are passing through my systems. Your presence will only be tolerated, not welcomed. Now please leave my court."`
+				goto end
+			
+			label threatened
+			`	The Queen motions to one of the guards and says something to it that the creature does not translate. She then speaks to you, and the creature translates: "Since I have shown you mercy, you will be allowed to live. My guards have been ordered to leave you be, and you may come and go on a small number of our worlds. But this is only so that you do not cause further trouble, and to allow you to refuel if you are passing through my systems. Your presence will only be tolerated, not welcomed. Now please leave my court."`
+				goto end
+			
+			label slighted
+			`	The Queen motions to one of the guards and says something to it that the creature does not translate. She then speaks to you, and the creature translates: "Since it is my guards that have shown you disrespect, you will be allowed to live. My guards have been ordered to leave you be, and you may come and go on a small number of our worlds. But this is only so that you do not cause further trouble, and to allow you to refuel if you are passing through my systems. Your presence will only be tolerated, not welcomed. Now please leave my court."`
+			
+			label end
+			`	You're escorted out of the throne room and told by the small creature to leave as soon as you reach your ship. You exit the palace, and realize that you must once again face the stairs. You take a deep breath, and prepare yourself for the long journey down.`
+				launch
