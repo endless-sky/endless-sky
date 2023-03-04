@@ -696,8 +696,8 @@ mission "Hai Leaks Response 3"
 				`	"I don't recall there being nearly so many pirates before."`
 			`	Sayari frowns and exhales a long breath through her nose, "Yes. Well, it seems that the rumors making their way through your media have attracted every opportunist this side of the Deep."`
 			`	"Of course," she says, "some of the pirates were aware of us, and we were aware of them being aware of us. We had a quiet arrangement with a select few where we rewarded them for keeping the secret well contained within their own circles."`
-			`	Alondo looks surprised, but Mr. Yang and Ms. Adrianopolous both merely nod.`
-			`	"Extra security forces are being called in, but we've been busier than usual in Wah Ki with our northern brethren."`
+			`	Alondo looks surprised, and seems sufficiently taken aback to spare a questioning glance at Remington despite the deliberate lack of interaction between them so far. Remington's expression is unreadable though, and Mr. Yang and Ms. Adrianopolous both merely nod.`
+			`	Sayari does not appear to notice the exchange. "Extra security forces are being called in, but we've been busier than usual in Wah Ki with our northern brethren."`
 			choice
 				`	"Are the other Hai likely to be a problem here?"`
 				`	"How much longer can the Republic keep up the ruse?"`
@@ -756,10 +756,18 @@ mission "Hai Leaks Response 4"
 					accept
 				`	"I'll beat the Lich, and do my best to capture the Geocoris and bring them safely home."`
 					accept
+	# Escorts manually defined to have weapons comparatively suitable for disabling, as would be appropriate in a mission where the *hopeful* outcome is a rescue.
 	npc
 		government "Hai"
 		personality escort heroic disables
-		fleet "Anti-Pirate Hai (No Wormhole Travel)" 5
+		fleet
+			names "hai"
+			cargo 0
+			variant
+				"Shield Beetle (Six Ion)" 2
+				"Shield Beetle (Durable Pulse)" 3
+				"Ladybug (Three Ion)" 4
+				"Ladybug (Pulse)" 6
 	npc
 		government "Pirate"
 		personality staying disables plunders harvests
@@ -768,7 +776,7 @@ mission "Hai Leaks Response 4"
 		fleet "Hired Guns" 1
 	npc kill
 		government "Pirate"
-		personality staying marked target
+		personality staying target
 		system "Waypoint"
 		ship "Marauder Leviathan (Weapons)" "Black Lich"
 	on visit
@@ -796,7 +804,7 @@ mission "Hai Leaks Response 4"
 			label end
 			`	"In any event, let's hope a more permanent solution can be devised soon. In the meantime, the local dealers have decided to start selling the Ladybugs again. I hear it's something about a spike in interest among the humans here, so feel free to have a look at them. I shouldn't get too distracted though, I'm sure they'll be waiting for you back on Hai-home."`
 			branch "saved geocoris2"
-				has "00 Hai Leaks Response 4B: declined"
+				has "ship model (all): Geodesic Geocoris"
 			`	With a final nod of thanks he departs to attend to his business, leaving you free to go about your own.`
 				decline
 			label "saved geocoris2"
@@ -850,12 +858,14 @@ mission "Hai Leaks Response 4A"
 # Success means the Geodesic Geocoris may become available to purchase specially later on. Not less than 2 years later.
 mission "Hai Leaks Response 4B"
 	landing
+	invisible
 	source "Allhome"
 	to offer
 		has "ship model (all): Geodesic Geocoris"
 	on offer
 		log `Successfully rescued the kidnapped Hai and reclaimed the Geocoris. This ship has been modified in ways that aren't of Hai origin, and which don't appear to be fully functional.`
 		event "returned geocoris" 730
+		fail
 
 event "returned geocoris"
 
@@ -1034,6 +1044,7 @@ mission "Hai Leaks Response 5B"
 	clearance
 	to offer
 		has "Hai Leaks Response 5: done"
+		not "Hai Leaks Response 6: offered"
 	to complete
 		never
 
