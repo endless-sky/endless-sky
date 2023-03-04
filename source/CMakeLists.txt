@@ -257,6 +257,8 @@ target_sources(EndlessSkyLib PRIVATE
 	PlayerInfo.h
 	PlayerInfoPanel.cpp
 	PlayerInfoPanel.h
+	Plugins.cpp
+	Plugins.h
 	Point.cpp
 	Point.h
 	PointerShader.cpp

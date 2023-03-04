@@ -26,7 +26,6 @@ mission "Hai Reveal [A00] Darkwaste Timer"
 	destination Darkwaste
 	to offer
 		"hai slave prereq" >= 3
-		"combat rating" > 2400
 		has "Hai Leaks Response 6: done"
 	on offer
 		event "hai rescue: teeneep message" 20 30
@@ -135,7 +134,7 @@ mission "Hai Reveal [A02] Symbol Identification"
 			`	"No known human or Hai ship technology exhausts these particles. There are some Hai medical microbots that leave behind something similar, but not quite the same, and those are microbots are self-contained for disposal. We believe this is coming from another race's technology."`
 			`	They share a glance with Teeneep, "We have our suspicions but they're not conclusive yet."`
 			branch questions
-				not "00 Hai Leaks Response 4B: declined"
+				not "Hai Leaks Response 4B: offered"
 			`	"We were able to look at the scan of that modified Geocoris you recovered. It has self-repair systems that use technology which could be responsible for something like this, and we suspect they came from the same place."`
 				goto questions
 			label patterns
@@ -741,7 +740,7 @@ mission "ZZ Hai Reveal [A04] Report to Teeneep"
 			has "Hai Reveal: Pirate Troubles [4]: declined"
 			has "hr defeated scar's legion"
 	on offer
-		dialog `While resolving the situation with Scar's Legion, you have learned information which should be reported to Alondo, but apparently he is away somewhere and unavailable for a short while. Simply waiting for him at this point may be suspicious, and this is also something Teeneep should be informed of. Perhaps doing so will also help shed some light on what's going on?`
+		dialog `While resolving the situation with Scar's Legion, you have learned information which should be reported to Alondo, but apparently he is away somewhere and unavailable for a short while. Even if the delay were a risk you could afford to take, simply waiting for him at this point may draw suspicion. This whole situation is probably something Teeneep should be informed of, though, and doing so may also help shed some light on the grander schemes at play. Return to and speak with her, instead.`
 
 
 mission "Hai Reveal [A05] Take Teeneep to Hai-home"
@@ -859,7 +858,7 @@ mission "Hai Reveal [A06a] The Calm"
 			`As soon as you disembark Teeneep slips off through an entirely different security checkpoint. She definitely shows them some sort of ID but you're some distance away by that point. A quick inquiry confirms that Alondo is actually around this time and you send him a message to alert him that you're heading his way.`
 			`	As you approach the office where Alondo seems to have been set up for the time being you can hear voices through the open door and you slow to a stop as you realize they sound agitated. "Look, Gruyere, you can't expect me to not organize some things around you when you're off being busy elsewhere. Regardless of whether it was your idea."`
 			`	You clearly identify Alondo when he responds, "I wouldn't blame you if you'd at least tried to contact me, or left a message, but it's just typical of how you operate."`
-			`	"You were eleven hours out of sync across timezones, it was four in the morning where you are, and you know damn well we've all been more than busy enough to let a message slip here or there. Especially since Terry is now on Mountaintop and I am absent any assistance."`
+			`	"You were eleven hours out of sync across timezones, it was four in the morning where you were, and you know damn well we've all been more than busy enough to let a message slip here or there. Especially since Terry is now on Mountaintop and I am absent any assistance."`
 			choice
 				`	(Come back after his call is complete.)`
 					goto doorway
@@ -922,7 +921,7 @@ mission "Hai Reveal [A06a] The Calm"
 			label accepted
 			`	"Excellent," says Remington, standing up and flicking over the pickup details to your pad. "Check in with Terry on your way; she may have updated scouting information. Now I have another meeting to get to momentarily, but thank you, Captain. It's been a pleasure seeing you again."`
 			`	He gives a meaningful look to Alondo on his way out, but exactly what it means is not clear to you. Alondo's posture relaxes as he gets up and quietly closes the door.`
-			`	"Now," says Alondo, setting aside his pad. "We have some other business. I have a lead on this symbol you wanted investigating. I still wish you'd tell me why you're looking for it, but for now, I'll accept that it's important." he fishes around in a small satchel bag that usually carries his pad and pulls out an actual piece of physical paper. The text on it reads, 'Adjunct Research Library, Navy Intelligence Observatory, Moscow. Room number: 3017A19'.`
+			`	"Now," says Alondo, setting aside his pad. "We have some other business. I have a lead on this symbol you wanted investigating. I still wish you'd tell me why you're looking for it, but for now, I'll accept that it's important." He fishes around in a small satchel bag that usually carries his pad and pulls out an actual piece of physical paper. The text on it reads, 'Adjunct Research Library, Navy Intelligence Observatory, Moscow. Room number: 3017A19'.`
 			`	"Fortunately, I found someone for you to speak to and a cover for being there in the first place. Xilin needs a trusted aide to stay on top of things here, especially as Mountaintop progresses. So far he's found the staff provided there to be... lacking. I get the sense from him that he's expecting things to get more complicated, though he hasn't said in so many words. So, you get to go to Earth to pick up his assistant, and while you're there, you can speak to a certain Ms. Giti Gilani. She's an expert in the history of space flight and related archaic topics. Meanwhile the aide you'll pick up is a young man called Batu Cegeen. You'll have to land at the Ulaanbaatar spaceport for him, and travel locally for your business with Ms. Gilani."`
 			choice
 				`	"Thank you."`
