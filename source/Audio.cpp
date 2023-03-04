@@ -302,7 +302,7 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 	}
 	else
 	{
-		if(!player.GetSystem()->MusicName().empty())
+		if(player.GetSystem() && !player.GetSystem()->MusicName().empty())
 		{
 			PlayMusic(player.GetSystem()->MusicName());
 			return;
