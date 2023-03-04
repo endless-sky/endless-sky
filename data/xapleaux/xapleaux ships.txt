@@ -92,7 +92,8 @@ ship Ascomy
 	explode "small explosion" 60
 	explode "tiny explosion" 120
 	"final explode" "final explosion large"
-	description `The mainline security vessel of the Xapleaux, it was designed to hold enough passengers as to allow a sense of community to form among the crew. While the ship itself can be run by a moderate crew, there are plenty of bunks to facilitate the efficiency gains from having crew to oversee various standard outfits that the Ascomy is typically equipped with. All Xapleaux ships have substantial solar collection and heat dissipation capabilities to enable long-term operations in the brilliant core environment. Security ships are equipped with enough fuel to respond to events at the opposite end of the Brilliance without having to waste time refueling, as a lesson learned from their encounter with Korath raids.`
+	description `The mainline security vessel of the Xapleaux, it was designed to hold enough passengers as to allow a sense of community to form among the crew. While the ship itself can be run by a moderate crew, there are plenty of bunks to facilitate the efficiency gains from having crew to oversee various standard outfits that the Ascomy is typically equipped with.`
+	description `	All Xapleaux ships have substantial solar collection and heat dissipation capabilities to enable long-term operations in the brilliant core environment. Security ships are equipped with enough fuel to respond to events at the opposite end of the Brilliance without having to waste time refueling, as a lesson learned from their encounter with Korath raids.`
 
 ship Blastoc
 	sprite ship/blastoc
@@ -102,8 +103,8 @@ ship Blastoc
 		category "Heavy Freighter"
 		cost 42140000
 		mass 945
-		bunks 138
-		"cargo space" 104
+		bunks 58
+		"cargo space" 1269
 		drag 22.3
 		"engine capacity" 54
 		"fuel capacity" 600
@@ -157,7 +158,8 @@ ship Blastoc
 	explode "small explosion" 60
 	explode "tiny explosion" 120
 	"final explode" "final explosion large"
-	description `Blastoc.dsc`
+	description `The Blastoc is an awkward product of cargo ships being efficient to run with few crew, and the Xapleaux being really uncomfortable with solitude in space: the standard crew complement of 42 is roughly the minimum required for psychological wellbeing. Despite having extra bunks for odd passenger jobs, it is a rare captain who can run a Blastoc on minimum crew long-term. More commonly the extra bunks are filled out with traveling entertainers, counselors, and any Xapleaux who can afford to book a bunk long-term to have a controlled environment working on creative projects. This niche intersection of functions has resulted in it being the sole Xapleaux vessel used for moving freight.`
+	description `	All Xapleaux ships have substantial solar collection and heat dissipation capabilities to enable long-term operations in the brilliant core environment.`
 
 ship Basidio
 	sprite ship/basidio
@@ -220,8 +222,8 @@ ship Basidio
 	explode "small explosion" 60
 	explode "tiny explosion" 120
 	"final explode" "final explosion large"
-	description `Basidio.dsc`
-
+	description `If you replace every part of a ship, is it still the same ship? Well if that ship is a Basidio then the Xapleaux will tell you it is. Although there is always one standard Basidio design that carries the official designation, a Basidio is truly any passenger vessel which has two hulls that are able to be fully isolated from each other in a disaster and still allow full control of the ship. This was the only style of ship to survive a past crisis, and the deep scar in their racial memory has ensured that it remains the most popular design philosophy for Xapleaux transports.`
+	description `	All Xapleaux ships have substantial solar collection and heat dissipation capabilities to enable long-term operations in the brilliant core environment.`
 
 ship "Neocalli"
 	sprite "ship/neocalli"
@@ -263,5 +265,5 @@ ship "Neocalli"
 	gun 0 -14
 	turret 0 10
 	explode "tiny explosion" 15
-	description `Neocalli.`
+	description `The purpose of the Neocalli is quite simple. To keep unpleasant things away from more valuable assets while less valuable assets deal with the problem. By default they are deployed against flocks of space fauna which occasionally wander too close to an inhabited world and disrupt traffic, where large numbers of Neocalli can use their standard Repulsor Wave Turret to gently shepherd them away safely. They can also be equipped with an anti-missile turret though, allowing them to act as screens for larger ships if their systems are again threatened.`
 	description `	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay.`
