@@ -644,9 +644,17 @@ const Set<Planet> &GameData::Planets()
 
 
 
+// Playlists for playing in-game music.
 const Set<Playlist> &GameData::Playlists()
 {
 	return objects.playlists;
+}
+
+
+
+bool GameData::HasPlaylists()
+{
+	return objects.playlists.empty();
 }
 
 

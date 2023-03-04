@@ -154,6 +154,10 @@ public:
 	static const std::vector<Trade::Commodity> &Commodities();
 	static const std::vector<Trade::Commodity> &SpecialCommodities();
 
+	// Returns true if there are any music playlists in order to determine UI
+	// visibility for music volume slider.
+	static bool HasPlaylists();
+
 	// Custom messages to be shown when trying to land on certain stellar objects.
 	static bool HasLandingMessage(const Sprite *sprite);
 	static const std::string &LandingMessage(const Sprite *sprite);
