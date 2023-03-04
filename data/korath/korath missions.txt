@@ -267,9 +267,6 @@ mission "Korath Boarding Response"
 	to offer
 		not "Korath Boarding Response: active"
 		or
-			has "main plot completed"
-			has "Remnant: Technology Available: offered"
-		or
 			and
 				random < 5
 				"reputation: Korath" < -10
