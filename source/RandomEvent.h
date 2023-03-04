@@ -37,7 +37,7 @@ public:
 	// Update the period from a ConditionSet if needed:
 	void UpdateConditions();
 
-	static const P &MinimumPeriod() { return minimumPeriod; }
+	static int MinimumPeriod() { return minimumPeriod; }
 	bool HasConditions() const;
 
 private:
