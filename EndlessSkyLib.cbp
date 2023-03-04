@@ -271,6 +271,8 @@
 		<Unit filename="source/PlayerInfo.h" />
 		<Unit filename="source/PlayerInfoPanel.cpp" />
 		<Unit filename="source/PlayerInfoPanel.h" />
+		<Unit filename="source/Plugins.cpp" />
+		<Unit filename="source/Plugins.h" />
 		<Unit filename="source/Point.cpp" />
 		<Unit filename="source/Point.h" />
 		<Unit filename="source/PointerShader.cpp" />
