@@ -39,6 +39,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <stdexcept>
 #include <thread>
 #include <vector>
+#include <chrono>
 
 using namespace std;
 
@@ -122,6 +123,11 @@ namespace {
 	const Playlist *currentPlaylist = nullptr;
 	const Track *currentPlaylistTrack = nullptr;
 	Track::GameState oldState = Track::GameState::IDLE;
+
+	std::chrono::time_point<std::chrono::high_resolution_clock> onEnd;
+	int currentWait = 0;
+	bool isWaiting = false;
+	bool finishedWaiting = false;
 }
 
 
@@ -309,6 +315,28 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 		}
 	}
 
+	// Wait for the time set by the track.
+	if(currentTrack->IsFinished() && currentPlaylistTrack)
+	{
+		if(!isWaiting && currentPlaylistTrack->Wait() > 0 && !finishedWaiting)
+		{
+			isWaiting = true;
+			currentWait = currentPlaylistTrack->Wait();
+			onEnd = std::chrono::high_resolution_clock::now();
+		}
+		if(isWaiting)
+		{
+			std::chrono::duration<double> elapsed = std::chrono::high_resolution_clock::now() - onEnd;
+			if(elapsed.count() >= currentWait)
+			{
+				finishedWaiting = true;
+				isWaiting = false;
+			}
+			else
+				return;
+		}
+	}
+
 	// If the current playlists conditions are not matching anymore, search a new one.
 	bool currentPlaylistValid = currentPlaylist ?
 		currentPlaylist->MatchingConditions(player) : false;
@@ -353,6 +381,7 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 				musicVolumeModifier = currentPlaylistTrack->GetVolumeModifier();
 				SetMusicVolume(musicVolume);
 				PlayMusic(currentPlaylistTrack->GetTitle(state));
+				finishedWaiting = false;
 			}
 			oldState = state;
 		}
@@ -406,7 +435,7 @@ void Audio::PlayMusic(const string &name)
 		return;
 
 	// Skip changing music if the requested music is already playing.
-	if(name == currentTrack->GetSource())
+	if(name == currentTrack->GetSource() && !currentTrack->IsFinished())
 		return;
 
 	// Don't worry about thread safety here, since music will always be started

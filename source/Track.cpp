@@ -54,6 +54,8 @@ void Track::Load(const DataNode &node)
 			combatTitle = child.Token(1);
 		else if(child.Token(0) == "landed" && child.Size() >= 2)
 			landedTitle = child.Token(1);
+		else if(child.Token(0) == "wait" && child.Size() >= 2)
+			wait = child.Value(1);
 	}
 	finishedLoading = true;
 }
@@ -91,4 +93,11 @@ const std::string Track::GetTitle(GameState state) const
 const double Track::GetVolumeModifier() const
 {
 	return volumeModifier;
+}
+
+
+
+const int Track::Wait() const
+{
+	return wait;
 }

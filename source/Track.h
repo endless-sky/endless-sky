@@ -44,6 +44,7 @@ public:
 
 	const std::string GetTitle(GameState state) const;
 	const double GetVolumeModifier() const;
+	const int Wait() const;
 
 private:
 	std::string name;
@@ -51,6 +52,8 @@ private:
 	std::string idleTitle;
 	std::string combatTitle;
 	std::string landedTitle;
+
+	int wait = 0;
 
 	bool finishedLoading = false;
 };
