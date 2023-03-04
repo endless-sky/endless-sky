@@ -431,6 +431,8 @@ interface "controls"
 interface "settings"
 	sprite "ui/settings panel"
 		center -20 -20
+	sprite "ui/music volume"
+		center 330 -60
 	button c "_Controls"
 		center -300 -230
 		dimensions 90 30
@@ -465,6 +467,8 @@ interface "settings"
 interface "plugins"
 	sprite "ui/plugins panel"
 		center -20 -20
+	sprite "ui/music volume"
+		center 330 -60
 	button c "_Controls"
 		center -300 -230
 		dimensions 90 30
