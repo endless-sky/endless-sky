@@ -158,7 +158,7 @@ mission "lost in coalition"
 	source
 		government "Coalition" "Heliarch"
 	to offer
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 	on offer
 		require "Jump Drive" 0
 		event "lost in coalition" 14
@@ -238,7 +238,7 @@ mission "Coalition Yottrite 1"
 	name "More Yottrite"
 	description "You were offered great payment for bringing three more samples of the rare mineral yottrite to <destination>."
 	to offer
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 	to complete
 		has "Coalition Yottrite 2: offered"
 	source
@@ -759,7 +759,7 @@ mission "Coalition Outbreak 1"
 	passengers 75
 	cargo "medical supplies" 90
 	to offer
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 		random < 5
 	source
 		near "1 Axis" 1 6
@@ -984,7 +984,7 @@ mission "Saryd Census 1"
 	description "Transport these <bunks> Saryd census workers to <destination>, where they will collect data on the population growth there."
 	passengers 17
 	to offer
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 		random < 40
 	source
 		attributes saryd
@@ -1312,7 +1312,7 @@ mission "Arachi Orphans"
 	passengers 5
 	cargo "orphanage belongings" 2
 	to offer
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 		random < 45
 	source
 		attributes arach
@@ -1693,7 +1693,7 @@ mission "Coalition: Pilgrimage 1"
 	description "Bring Vellorae to <destination>, where she will begin her mourning pilgrimage for her late husband."
 	passengers 1
 	to offer
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 	source "Bright Echo"
 	destination "Saros"
 	on offer
@@ -1961,7 +1961,7 @@ mission "Coalition: Council of Ahr"
 	description "Bring the representatives of houses Ablomab, Bebliss, and Chamgar to <destination> by <date>, so that they may participate in the Council of Ahr."
 	deadline 30
 	to offer
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 		random < 50
 		"month" < 3
 	source
