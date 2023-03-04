@@ -303,9 +303,9 @@ mission "Korath Boarding Response"
 	on offer
 		"korath: boarding response count" ++
 		conversation
-			"An angry hiss comes over your radio, and you see a strange pulse along the hull of the Korath vessel. Your ship detects a powerful hyperwave emission followed by several capital ships jumping in. The pulse throws your ship off theirs, but it appears you could board them again. You had best finish your business here before you are reduced to a ball of superheated plasma."
+			"An angry hiss comes over your radio, and you see a strange pulse radiate from the hull of the Korath vessel. The pulse throws your ship off theirs, but it appears you could board them again. Suddenly, your ship detects a powerful hyperwave emission followed by several Korath ships jumping in. You had best finish your business here before you are reduced to a ball of superheated plasma."
 				accept
-	# The destination is mandatory, but its choice won't affect anything due to "deadline 1"
+	# Destinations are required for boarding missions, but this won't affect anything due to "deadline 1".
 	destination "Kessel Sepret"
 	npc kill
 		government "Korath"
