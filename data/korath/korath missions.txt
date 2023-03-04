@@ -267,6 +267,9 @@ mission "Korath Boarding Response"
 	to offer
 		not "Korath Boarding Response: active"
 		or
+			has "main plot completed"
+			has "Remnant: Technology Available: offered"
+		or
 			and
 				random < 5
 				"reputation: Korath" < -10
@@ -296,7 +299,7 @@ mission "Korath Boarding Response"
 				"reputation: Korath (Civilian)" < -3000
 	source
 		government Korath "Korath (Civilian)"
-		system Alcyone Almach "Alpha Hydri" Atik Durax Misam Polaris Sheratan
+		system Atik Durax Misam
 	on offer
 		"korath: boarding response count" ++
 		conversation
