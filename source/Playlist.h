@@ -56,7 +56,7 @@ private:
 	LocationFilter location;
 
 	int priority = 0;
-	int weight = 0;
+	int weight = 1;
 
 	std::string progressionStyle;
 	WeightedList<const Track *> tracks;

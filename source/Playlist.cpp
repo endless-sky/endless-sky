@@ -65,7 +65,7 @@ void Playlist::Load(const DataNode &node)
 		else if(child.Token(0) == "priority" && child.Size() >= 2)
 			priority = child.Value(1);
 		else if(child.Token(0) == "weight" && child.Size() >= 2)
-			weight = child.Value(1);
+			weight = max<int>(1, child.Value(1));
 		else if(child.Token(0) == "tracks")
 		{
 			if(child.Size() >= 2)
@@ -73,10 +73,10 @@ void Playlist::Load(const DataNode &node)
 			else
 				progressionStyle = "linear";
 			for(const auto &grand : child)
-				if(grand.Size() >= 2)
-					tracks.emplace_back(grand.Value(1), GameData::Tracks().Get(grand.Token(0)));
-				else
-					tracks.emplace_back(10, GameData::Tracks().Get(grand.Token(0)));
+			{
+				int trackWeight = (grand.Size() >= 2) ? max<int>(1, grand.Value(1)) : 1;
+				tracks.emplace_back(trackWeight, GameData::Tracks().Get(grand.Token(0)));
+			}
 		}
 	}
 }
