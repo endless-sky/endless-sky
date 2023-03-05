@@ -35,6 +35,9 @@ void Hazard::Load(const DataNode &node)
 		const string &key = child.Token(0);
 		if(key == "weapon")
 			LoadWeapon(child);
+		else if(key == "to" && child.Size() == 2 && child.Token(1) == "spawn")
+			// Handled by caller and stored in RandomEvent
+			continue;
 		else if(key == "constant strength")
 			deviates = false;
 		else if(key == "system-wide")

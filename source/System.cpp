@@ -42,6 +42,23 @@ namespace {
 	const double VOLUME = 2000.;
 	// Above this supply amount, price differences taper off:
 	const double LIMIT = 20000.;
+
+	template<class Container>
+	void LoadRandomIntervalConditions(Container &container, const DataNode &child)
+	{
+		if(container.empty())
+			return;
+		shared_ptr<ConditionSet> conditions = container.back().GetConditions();
+		for(auto & grand : child)
+			if(grand.Size() != 2 || grand.Token(0) != "to" || grand.Token(1) != "spawn" || !grand.HasChildren())
+				continue;
+			else if(!conditions)
+				conditions = make_shared<ConditionSet>(grand);
+			else
+				conditions->Load(grand);
+		if(conditions)
+			container.back().SetConditions(conditions);
+	}
 }
 
 const double System::DEFAULT_NEIGHBOR_DISTANCE = 100.;
@@ -268,7 +285,10 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					}
 			}
 			else
+			{
 				fleets.emplace_back(fleet, child.Value(valueIndex + 1));
+				LoadRandomIntervalConditions(fleets, child);
+			}
 		}
 		else if(key == "hazard")
 		{
@@ -283,7 +303,10 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					}
 			}
 			else
+			{
 				hazards.emplace_back(hazard, child.Value(valueIndex + 1));
+				LoadRandomIntervalConditions(hazards, child);
+			}
 		}
 		else if(key == "belt")
 		{
@@ -970,7 +993,10 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "hazard" && child.Size() >= 3)
+		{
 			object.hazards.emplace_back(GameData::Hazards().Get(child.Token(1)), child.Value(2));
+			LoadRandomIntervalConditions(object.hazards, child);
+		}
 		else if(child.Token(0) == "object")
 			LoadObject(child, planets, index);
 		else

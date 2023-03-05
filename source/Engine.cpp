@@ -1284,15 +1284,16 @@ void Engine::EnterSystem()
 	// Place five seconds worth of fleets and weather events. Check for
 	// undefined fleets by not trying to create anything with no
 	// government set.
+	ConditionsStore &conditions = player.Conditions();
 	for(int i = 0; i < 5; ++i)
 	{
 		for(const auto &fleet : system->Fleets())
-			if(fleet.Get()->GetGovernment() && Random::Int(fleet.Period()) < 60)
+			if(fleet.Get()->GetGovernment() && Random::Int(fleet.Period()) < 60 && fleet.Test(conditions))
 				fleet.Get()->Place(*system, newShips);
 
-		auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point origin)
+		auto CreateWeather = [this, conditions](const RandomEvent<Hazard> &hazard, Point origin)
 		{
-			if(hazard.Get()->IsValid() && Random::Int(hazard.Period()) < 60)
+			if(hazard.Get()->IsValid() && Random::Int(hazard.Period()) < 60 && hazard.Test(conditions))
 			{
 				const Hazard *weather = hazard.Get();
 				int hazardLifetime = weather->RandomDuration();
@@ -1730,8 +1731,9 @@ void Engine::SpawnFleets()
 
 	// Non-mission NPCs spawn at random intervals in neighboring systems,
 	// or coming from planets in the current one.
+	ConditionsStore &conditions = player.Conditions();
 	for(const auto &fleet : player.GetSystem()->Fleets())
-		if(!Random::Int(fleet.Period()))
+		if(!Random::Int(fleet.Period()) && fleet.Test(conditions))
 		{
 			const Government *gov = fleet.Get()->GetGovernment();
 			if(!gov)
@@ -1804,9 +1806,10 @@ void Engine::SpawnPersons()
 // Generate weather from the current system's hazards.
 void Engine::GenerateWeather()
 {
-	auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point origin)
+	ConditionsStore &conditions = player.Conditions();
+	auto CreateWeather = [this, conditions](const RandomEvent<Hazard> &hazard, Point origin)
 	{
-		if(hazard.Get()->IsValid() && !Random::Int(hazard.Period()))
+		if(hazard.Get()->IsValid() && !Random::Int(hazard.Period()) && hazard.Test(conditions))
 		{
 			const Hazard *weather = hazard.Get();
 			// If a hazard has activated, generate a duration and strength of the
