@@ -3787,7 +3787,7 @@ mission "Home for Skadenga 12"
 	to offer
 		has "Home for Skadenga 11: done"
 	on offer
-		dialog
+		conversation
 			`The fleet touches down just outside the crowded village of Udainsakr. The landscape is filled with the gathered Skadenga.`
 			`	The Ondurdis approaches you. "Leaving is difficult, but all winters must come to end." She watches as her people climb aboard the fleet. "I will be taking first trip to Windblain, but I must rejoin my folk. Thank you for this, and we shall speak again at our new home."`
 			`	She leaves you with a warm smile in the wintry village.`
@@ -3823,7 +3823,7 @@ mission "Home for Skadenga Captain"
 	to offer
 		has "refusedhroar"
 	on offer
-		dialog
+		conversation
 			`Your fleet touches down just outside of the crowded village of Udainsakr. The landscape is filled with the gathered Skadenga.`
 			`	The Ondurdis approaches you. "Leaving is difficult, but all winters must come to end." She looks curiously at your fleet. "This I did not expect. These are not Transport Union. These are yours? You brought your own fleet to help us?"`
 			`	You smile and shrug, letting her know that sometimes you just have to do things yourself. She shakes her head. "You are full of surprises, <first>. Perhaps I'll surprise you someday as well."`
