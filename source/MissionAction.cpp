@@ -79,9 +79,13 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 
 		if(key == "dialog")
 		{
+			const DataNode *firstNonButtonGrand = nullptr;
 			for(auto &grand : child)
 				if(grand.Size() != 2 || grand.Token(0) != "to")
-					continue;
+				{
+					if(!firstNonButtonGrand)
+						firstNonButtonGrand = &grand;
+				}
 				else if(grand.Token(1) == "decline")
 				{
 					if(!toDecline)
@@ -95,18 +99,17 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 					child.PrintTrace("Unrecognized option condition " + grand.Token(1));
 			if(hasValue && child.Token(1) == "phrase")
 			{
-				if(!child.HasChildren() && child.Size() == 3)
+				if(!firstNonButtonGrand && child.Size() == 3)
 					dialogPhrase = ExclusiveItem<Phrase>(GameData::Phrases().Get(child.Token(2)));
 				else
 					child.PrintTrace("Skipping unsupported dialog phrase syntax:");
 			}
-			else if(!hasValue && child.HasChildren() && (*child.begin()).Token(0) == "phrase")
+			else if(!hasValue && firstNonButtonGrand && (*child.begin()).Token(0) == "phrase")
 			{
-				const DataNode &firstGrand = (*child.begin());
-				if(firstGrand.Size() == 1 && firstGrand.HasChildren())
-					dialogPhrase = ExclusiveItem<Phrase>(Phrase(firstGrand));
+				if(firstNonButtonGrand->Size() == 1 && firstNonButtonGrand->HasChildren())
+					dialogPhrase = ExclusiveItem<Phrase>(Phrase(*firstNonButtonGrand));
 				else
-					firstGrand.PrintTrace("Skipping unsupported dialog phrase syntax:");
+					firstNonButtonGrand->PrintTrace("Skipping unsupported dialog phrase syntax:");
 			}
 			else
 				Dialog::ParseTextNode(child, 1, dialogText);
