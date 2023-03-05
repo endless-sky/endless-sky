@@ -546,6 +546,14 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		if(it->IsDisabled() && !it->IsDefeated())
 			it->DefeatShip();
 
+		// If the target changed from hostile to non-hostile, detarget.
+		// This is done for the player to ensure they don't keep shooting
+		// at a target that they just befriended. As with any friendly,
+		// they have to explicitly target it again to make the government hostile.
+		// For the AI, it ensures the ship keeps fighting if it is under threat,
+		// instead of moving to pillage a ship that may not be a high priority.
+		it->DetargetAfterBefriending();
+
 		if(it.get() == flagship)
 		{
 			// Player cannot do anything if the flagship is landing.
@@ -631,19 +639,6 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 
 		// Pick a target and automatically fire weapons.
 		shared_ptr<Ship> target = it->GetTargetShip();
-		if(target && it->GetOriginalTargetGovernment()
-			&& it->GetOriginalTargetGovernment() != target->GetGovernment())
-		{
-			// The target government is not the same as we last checked.
-			// Has that caused a change in hostility?
-			if(it->GetOriginalTargetGovernment()->IsEnemy(it->GetGovernment())
-				!= target->GetGovernment()->IsEnemy(it->GetGovernment()))
-			{
-				it->SetTargetShip(nullptr);
-				target = nullptr;
-			}
-			it->UpdateOriginalTargetGovernment();
-		}
 		if(isPresent && !personality.IsSwarming())
 		{
 			// Each ship only switches targets twice a second, so that it can

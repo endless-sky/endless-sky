@@ -1397,6 +1397,22 @@ const Government *Ship::UpdateOriginalTargetGovernment()
 
 
 
+void Ship::DetargetAfterBefriending()
+{
+		shared_ptr<Ship> target = GetTargetShip();
+		if(target && originalTargetGovernment && originalTargetGovernment != target->GetGovernment())
+		{
+			// The target government is not the same as we last checked.
+			// Has that caused a change in hostility?
+			if(originalTargetGovernment->IsEnemy(government)
+					&& !target->GetGovernment()->IsEnemy(government))
+				SetTargetShip(nullptr);
+			UpdateOriginalTargetGovernment();
+		}
+}
+
+
+
 void Ship::SetIsSpecial(bool special)
 {
 	isSpecial = special;
@@ -1481,6 +1497,8 @@ void Ship::MakeLooted()
 	if(InGracePeriod())
 		defeatTimer = personality.DefeatedGracePeriod();
 	isLooted = true;
+	if(lootedGovernment && lootedGovernment != government)
+		ChangeGovernment(lootedGovernment, true, false, false);
 }
 
 

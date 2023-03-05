@@ -187,6 +187,9 @@ public:
 	void SetIsSpecial(bool special = true);
 	bool IsSpecial() const;
 
+	// If the target changed from hostile to non-hostile, detarget
+	void DetargetAfterBefriending();
+
 	// Changes the government of a ship currently in space, and optionally its swizzle.
 	// Can also wipe information about the defeated and looted governments.
 	void ChangeGovernment(const Government *government, bool changeSwizzle, bool clearDefeated, bool clearLooted);
