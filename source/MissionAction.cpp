@@ -334,17 +334,15 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination,
 		// avoid the player being spammed by dialogs if they have multiple
 		// missions active with the same destination (e.g. in the case of
 		// stacking bounty jobs).
+		Dialog *dialog = nullptr;
+		if(isOffer)
+			dialog = new Dialog(text, player, destination);
+		else if(isUnique || trigger != "visit")
+			dialog = new Dialog(text);
+		if(dialog)
 		{
-			Dialog *dialog = nullptr;
-			if(isOffer)
-				dialog = new Dialog(text, player, destination);
-			else if(isUnique || trigger != "visit")
-				dialog = new Dialog(text);
-			if(dialog)
-			{
-				dialog->SetCanCancel(!toDecline || toDecline->Test(player.Conditions()));
-				ui->Push(dialog);
-			}
+			dialog->SetCanCancel(!toDecline || toDecline->Test(player.Conditions()));
+			ui->Push(dialog);
 		}
 	}
 	else if(isOffer && ui)
