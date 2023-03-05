@@ -79,6 +79,20 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 
 		if(key == "dialog")
 		{
+			for(auto &grand : child)
+				if(grand.Size() != 2 || grand.Token(0) != "to")
+					continue;
+				else if(grand.Token(1) == "decline")
+				{
+					if(!toDecline)
+						toDecline = make_shared<ConditionSet>(grand);
+					else
+						toDecline->Load(grand);
+				}
+				else if(grand.Token(1) == "accept")
+					child.PrintTrace("Cannot control whether the dialog \"Accept\" button is available");
+				else
+					child.PrintTrace("Unrecognized option condition "+grand.Token(1));
 			if(hasValue && child.Token(1) == "phrase")
 			{
 				if(!child.HasChildren() && child.Size() == 3)
@@ -150,6 +164,13 @@ void MissionAction::Save(DataWriter &out) const
 			out.Write("dialog");
 			out.BeginChild();
 			{
+				if(toDecline && !toDecline->IsEmpty())
+				{
+					out.Write("to", "decline");
+					out.BeginChild();
+					toDecline->Save(out);
+					out.EndChild();
+				}
 				// Break the text up into paragraphs.
 				for(const string &line : Format::Split(dialogText, "\n\t"))
 					out.Write(line);
@@ -313,10 +334,18 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination,
 		// avoid the player being spammed by dialogs if they have multiple
 		// missions active with the same destination (e.g. in the case of
 		// stacking bounty jobs).
-		if(isOffer)
-			ui->Push(new Dialog(text, player, destination));
-		else if(isUnique || trigger != "visit")
-			ui->Push(new Dialog(text));
+		{
+			Dialog *dialog = nullptr;
+			if(isOffer)
+				dialog = new Dialog(text, player, destination);
+			else if(isUnique || trigger != "visit")
+				dialog = new Dialog(text);
+			if(dialog)
+			{
+				dialog->SetCanCancel(!toDecline || toDecline->Test(player.Conditions()));
+				ui->Push(dialog);
+			}
+		}
 	}
 	else if(isOffer && ui)
 		player.MissionCallback(Conversation::ACCEPT);
@@ -346,6 +375,8 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	string dialogText = !dialogPhrase->IsEmpty() ? dialogPhrase->Get() : this->dialogText;
 	if(!dialogText.empty())
 		result.dialogText = Format::Replace(dialogText, subs);
+	if(toDecline)
+		result.toDecline = make_shared<ConditionSet>(*toDecline);
 
 	if(!conversation->IsEmpty())
 		result.conversation = ExclusiveItem<Conversation>(conversation->Instantiate(subs, jumps, payload));

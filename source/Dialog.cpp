@@ -107,6 +107,13 @@ Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, Tru
 
 
 
+void Dialog::SetCanCancel(bool canCancel)
+{
+	this->canCancel = canCancel;
+}
+
+
+
 // Draw this panel.
 void Dialog::Draw()
 {
@@ -194,12 +201,17 @@ void Dialog::ParseTextNode(const DataNode &node, size_t startingIndex, string &t
 		text += node.Token(i);
 	}
 	for(const DataNode &child : node)
+	{
+		if(child.Size() > 1 && child.Token(0) == "to")
+			// Caller already handles options.
+			continue;
 		for(int i = 0; i < child.Size(); ++i)
 		{
 			if(!text.empty())
 				text += "\n\t";
 			text += child.Token(i);
 		}
+	}
 }
 
 
@@ -254,17 +266,29 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 			okIsActive = true;
 		if(key == 'd' || (canCancel && isCloseRequest))
 			okIsActive = false;
-		if(okIsActive || isMission)
+
+		bool shouldCallback = false;
+		bool shouldPop = false;
+
+		// If we should accept and we can, then do that.
+		if(okIsActive && !isOkDisabled)
+			shouldCallback = shouldPop = true;
+		// When the player wants to decline a mission (and is allowed to), always call the callback.
+		else if(!okIsActive && canCancel && isMission)
+			shouldCallback = shouldPop = true;
+		// For any other dialog that wants to cancel (and can cancel) we don't call the callback.
+		else if(!okIsActive && canCancel)
+			shouldPop = true;
+		// Close requests always close the dialog.
+		else if(isCloseRequest)
 		{
-			// If the OK button is disabled (because the input failed the validation),
-			// don't execute the callback.
-			if(!isOkDisabled)
-			{
-				DoCallback();
-				GetUI()->Pop(this);
-			}
+			shouldPop = true;
+			shouldCallback = isMission;
 		}
-		else
+
+		if(shouldCallback)
+			DoCallback();
+		if(shouldPop)
 			GetUI()->Pop(this);
 	}
 	else if((key == 'm' || command.Has(Command::MAP)) && system && player)

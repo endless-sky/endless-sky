@@ -73,10 +73,11 @@ public:
 	Dialog(T *t, void (T::*fun)(), const std::string &text,
 		Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
 
+	void SetCanCancel(bool canCancel);
+
 	// Draw this panel.
 	virtual void Draw() override;
 
-	// Static method used to convert a DataNode into formatted Dialog text.
 	static void ParseTextNode(const DataNode &node, size_t startingIndex, std::string &text);
 
 	// Some dialogs allow fast-forward to stay active.
