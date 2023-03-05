@@ -412,7 +412,7 @@ mission "Remnant: Cognizance 10"
 	to offer
 		has "Remnant: Cognizance 9: done"
 	on offer
-		dialog
+		conversation
 			`As you look around this eerily silent station, you get a message on your commlink: Plume requests that you pick up another technician and <tons> of equipment from <stopovers> and bring it back to <origin>.`
 				accept
 	on stopover
