@@ -5496,6 +5496,7 @@ mission "Blind Man from Martini"
 				decline
 
 	on complete
+		log `Brought a blind man named Douglas to Chiron so he could visit his daughter, who will undergo experimental treatment at the University of New Sydney.`
 		payment 58000
 		conversation
 			`Throughout the trip, your blind passenger Douglas has been relatively quiet and has kept to himself. But when you land, he asks you again to help him bring down his luggage once more; it turns out you needn't have done so because an attendant from the planetary spaceport quickly comes to his side. They guide both of you to the spaceport's intracity transit complex; the bustling spaceport makes it a challenge to keep together, but all of you manage to reach it. From there, you hail a taxi while he arranges for the <payment> to be sent to you.`
