@@ -1,0 +1,257 @@
+test-data "quarg loot defeat barges"
+	category "savegame"
+	contents
+		pilot Bobbi Bughunter
+		date 16 11 3013
+		system "Terra Incognita"
+		planet Ruin
+		clearance
+		ship "Star Barge"
+			name "Buggy Barge"
+			sprite "ship/star barge"
+			attributes
+				category "Light Freighter"
+				cost 190000
+				mass 70
+				bunks 3
+				"cargo space" 50
+				drag 2.1
+				"engine capacity" 40
+				"fuel capacity" 300
+				"heat dissipation" 0.8
+				hull 1000
+				"outfit space" 130
+				"required crew" 1
+				shields 600
+				"turret mounts" 1
+				"weapon capacity" 20
+				"thrust" 50
+				"turn" 1000
+				"energy generation" 10
+			outfits
+				Hyperdrive
+			crew 1
+			fuel 300
+			shields 600
+			hull 1000
+			position 0 0
+			engine -9 38 1
+			engine 9 38 1
+			system "Terra Incognita"
+			planet Ruin
+		account
+			credits 100000000
+			score 400
+			history
+		visited "Terra Incognita"
+		"visited planet" Ruin
+		"available mission" "%TEST%: Quarg Loot Defeat Barges"
+			priority
+			name "Test Loot & Defeat Government Changes"
+			description "Both Pirate ships should become Escort ships after the Quarg are done with them."
+			destination Ruin
+			on offer
+				conversation
+					label 0
+					"Both Pirate ships should become Escort ships after the Quarg are done with them."
+						accept
+			npc
+				uuid dc76153f-57bd-4a7d-822f-3fc8ec92d3c2
+				government Quarg
+				personality heroic plunders
+				ship "Quarg Wardragon"
+					name Grokonimor
+					sprite ship/wardragon
+					thumbnail thumbnail/wardragon
+					uuid 5b319db5-da01-4243-999a-d3a83a0c8f47
+					attributes
+						category "Heavy Warship"
+						cost 5900000
+						mass 360
+						bunks 185
+						"cargo space" 50
+						drag 9.3
+						"engine capacity" 120
+						"fuel capacity" 800
+						"heat dissipation" 0.5
+						hull 50000
+						"hull energy" 5
+						"hull repair rate" 5
+						"outfit space" 600
+						ramscoop 10
+						"required crew" 160
+						shields 160000
+						"turret mounts" 4
+						"weapon capacity" 200
+					outfits
+						"Antimatter Core"
+						"Intrusion Countermeasures" 160
+						"Jump Drive"
+						"Medium Graviton Steering"
+						"Medium Graviton Thruster"
+						"Nanotech Battery"
+						"Quantum Shield Generator"
+						"Quarg Anti-Missile" 2
+						"Quarg Skylance" 2
+					crew 180
+					fuel 800
+					shields 160000
+					hull 50000
+					position -195.55016 482.28476
+					engine -14 47
+						zoom 1
+						angle 0
+						under
+					engine 14 47
+						zoom 1
+						angle 0
+						under
+					turret -28 7 "Quarg Skylance"
+						over
+					turret 28 7 "Quarg Skylance"
+						over
+					turret -9 -14 "Quarg Anti-Missile"
+						over
+					turret 9 -14 "Quarg Anti-Missile"
+						over
+					explode "huge explosion" 20
+					explode "large explosion" 40
+					explode "medium explosion" 30
+					explode "small explosion" 16
+					explode "tiny explosion" 12
+					"final explode" "final explosion medium" 1
+					system "Terra Incognita"
+			npc
+				uuid 7c616441-162b-4b95-a73b-33944e9933da
+				fail 128
+				government Pirate
+				personality heroic staying derelict
+				"defeated government" Quarg
+				ship "Star Barge"
+					name Derelict
+					sprite "ship/star barge"
+					thumbnail "thumbnail/star barge"
+					uuid f3c6b84b-eba7-4a6e-9464-6231b3c7223a
+					attributes
+						category "Light Freighter"
+						cost 190000
+						mass 70
+						bunks 3
+						"cargo space" 50
+						drag 2.1
+						"engine capacity" 40
+						"fuel capacity" 300
+						"heat dissipation" 0.8
+						hull 1001000
+						"outfit space" 130
+						"required crew" 1
+						shields 600
+						"turret mounts" 1
+						"weapon capacity" 20
+					outfits
+						"Anti-Missile Turret"
+						"D14-RN Shield Generator"
+						Hyperdrive
+						"LP036a Battery Pack"
+						"X1200 Ion Steering"
+						"X1700 Ion Thruster"
+						"nGVF-BB Fuel Cell"
+					crew 1
+					fuel 300
+					shields 0
+					hull 40000
+					position -309.98269 427.17637
+					engine -9.5 38
+						zoom 1
+						angle 0
+						under
+					engine 9.5 38
+						zoom 1
+						angle 0
+						under
+					turret 0 -18 "Anti-Missile Turret"
+						over
+					explode "small explosion" 10
+					explode "tiny explosion" 10
+					system "Terra Incognita"
+			npc
+				uuid df7ab59c-b8b0-4393-9e33-dd13115032ad
+				fail 128
+				government Pirate
+				personality heroic staying
+				"looted government" Quarg
+				ship "Star Barge"
+					name "Loot Me"
+					sprite "ship/star barge"
+					thumbnail "thumbnail/star barge"
+					uuid 54ab9a80-1f34-47cc-938f-56a0abebd853
+					attributes
+						category "Light Freighter"
+						cost 190000
+						mass 70
+						bunks 3
+						"cargo space" 50
+						drag 2.1
+						"engine capacity" 40
+						"fuel capacity" 300
+						"heat dissipation" 0.8
+						hull 16000
+						"outfit space" 130
+						"required crew" 1
+						shields 600
+						"turret mounts" 1
+						"weapon capacity" 20
+					outfits
+						"Anti-Missile Turret"
+						"D14-RN Shield Generator"
+						Hyperdrive
+						"LP036a Battery Pack"
+						"X1200 Ion Steering"
+						"X1700 Ion Thruster"
+						"nGVF-BB Fuel Cell"
+					crew 1
+					fuel 300
+					shields 600
+					hull 16000
+					position 760.7463 -757.55434
+					engine -9.5 38
+						zoom 1
+						angle 0
+						under
+					engine 9.5 38
+						zoom 1
+						angle 0
+						under
+					turret 0 -18 "Anti-Missile Turret"
+						over
+					explode "small explosion" 10
+					explode "tiny explosion" 10
+					system "Terra Incognita"
+
+test "Loot and Defeat Government Changes"
+	status active
+	description "Starts the mission, accepts it and then waits for the Quarg to disable & loot a pirate."
+	sequence
+		inject "quarg loot defeat barges"
+		call "Load First Savegame"
+		# launch and accept the mission
+		input
+			key p
+		input
+			key d
+		call "Depart"
+		input
+			command stop
+		# wait for the Quarg to do their thing
+		apply
+			"test: steps to wait" = 15 * 60
+		label "floating"
+		# empty input to make time pass
+		input
+		apply
+			"test: steps to wait" = "test: steps to wait" - 1
+		branch "floating"
+			"test: steps to wait" > 0
+		call "Land"
+		assert
+			"%TEST%: Quarg Loot Defeat Barges: done" == 1
