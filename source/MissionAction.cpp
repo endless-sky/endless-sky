@@ -92,7 +92,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 				else if(grand.Token(1) == "accept")
 					child.PrintTrace("Cannot control whether the dialog \"Accept\" button is available");
 				else
-					child.PrintTrace("Unrecognized option condition "+grand.Token(1));
+					child.PrintTrace("Unrecognized option condition " + grand.Token(1));
 			if(hasValue && child.Token(1) == "phrase")
 			{
 				if(!child.HasChildren() && child.Size() == 3)
