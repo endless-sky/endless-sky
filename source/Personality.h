@@ -35,7 +35,8 @@ public:
 	Personality() noexcept;
 
 	void Load(const DataNode &node);
-	void Save(DataWriter &out) const;
+	// Save to the specified DataWriter starting with the token in personalityString
+	void Save(DataWriter &out, const char *personalityString = "personality") const;
 
 	bool IsDefined() const;
 

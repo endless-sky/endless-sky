@@ -113,8 +113,16 @@ void NPC::Load(const DataNode &node)
 			mustAccompany = true;
 		else if(child.Token(0) == "government" && child.Size() >= 2)
 			government = GameData::Governments().Get(child.Token(1));
+		else if(child.Token(0) == "defeated government" && child.Size() >= 2)
+			defeatedGovernment = GameData::Governments().Get(child.Token(1));
+		else if(child.Token(0) == "looted government" && child.Size() >= 2)
+			lootedGovernment = GameData::Governments().Get(child.Token(1));
 		else if(child.Token(0) == "personality")
 			personality.Load(child);
+		else if(child.Token(0) == "defeated personality")
+			defeatedPersonality.Load(child);
+		else if(child.Token(0) == "looted personality")
+			lootedPersonality.Load(child);
 		else if(child.Token(0) == "dialog")
 		{
 			bool hasValue = (child.Size() > 1);
@@ -215,6 +223,14 @@ void NPC::Load(const DataNode &node)
 	{
 		ship->SetGovernment(government);
 		ship->SetPersonality(personality);
+		if(defeatedPersonality.IsDefined())
+			ship->SetDefeatedPersonality(defeatedPersonality);
+		if(lootedPersonality.IsDefined())
+			ship->SetLootedPersonality(lootedPersonality);
+		if(defeatedGovernment)
+			ship->SetDefeatedGovernment(defeatedGovernment);
+		if(lootedGovernment)
+			ship->SetLootedGovernment(lootedGovernment);
 		ship->SetIsSpecial();
 		ship->FinishLoading(false);
 	}
@@ -268,7 +284,15 @@ void NPC::Save(DataWriter &out) const
 
 		if(government)
 			out.Write("government", government->GetTrueName());
+		if(lootedGovernment)
+			out.Write("looted government", lootedGovernment->GetTrueName());
+		if(defeatedGovernment)
+			out.Write("defeated government", defeatedGovernment->GetTrueName());
 		personality.Save(out);
+		if(defeatedPersonality.IsDefined())
+			defeatedPersonality.Save(out, "defeated personality");
+		if(lootedPersonality.IsDefined())
+			lootedPersonality.Save(out, "looted personality");
 
 		if(!dialogText.empty())
 		{
@@ -616,6 +640,14 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		ship->SetPersonality(result.personality);
 		if(result.personality.IsDerelict())
 			ship->Disable();
+		if(defeatedPersonality.IsDefined())
+			ship->SetDefeatedPersonality(defeatedPersonality);
+		if(lootedPersonality.IsDefined())
+			ship->SetLootedPersonality(lootedPersonality);
+		if(defeatedGovernment)
+			ship->SetDefeatedGovernment(defeatedGovernment);
+		if(lootedGovernment)
+			ship->SetLootedGovernment(lootedGovernment);
 
 		if(personality.IsEntering())
 			Fleet::Enter(*result.system, *ship);

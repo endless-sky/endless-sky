@@ -151,9 +151,9 @@ void Personality::Load(const DataNode &node)
 
 
 
-void Personality::Save(DataWriter &out) const
+void Personality::Save(DataWriter &out, const char *personalityString) const
 {
-	out.Write("personality");
+	out.Write(personalityString);
 	out.BeginChild();
 	{
 		out.Write("confusion", confusionMultiplier);

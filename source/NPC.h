@@ -95,7 +95,11 @@ public:
 private:
 	// The government of the ships in this NPC:
 	const Government *government = nullptr;
+	const Government *defeatedGovernment = nullptr;
+	const Government *lootedGovernment = nullptr;
 	Personality personality;
+	Personality defeatedPersonality;
+	Personality lootedPersonality;
 
 	EsUuid uuid;
 
