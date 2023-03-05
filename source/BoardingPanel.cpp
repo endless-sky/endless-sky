@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "BoardingPanel.h"
 
 #include "text/alignment.hpp"
+#include "CaptureClass.h"
 #include "CargoHold.h"
 #include "Depreciation.h"
 #include "Dialog.h"
@@ -40,6 +41,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <algorithm>
+#include <set>
 
 using namespace std;
 
@@ -107,10 +109,53 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 			plunder.emplace_back(outfit, count);
 	}
 
-	canCapture = victim->IsCapturable() || player.CaptureOverriden(victim);
-	// Some "ships" do not represent something the player could actually pilot.
+	// Determine the capture requirements of the ship being boarded and the tools
+	// that the boarding ship has to capture it.
+	captureRequirements = victim->CaptureRequirements();
+	set<string> captureNames;
+	for(const auto &it : captureRequirements)
+		captureNames.insert(it.first);
+	captureTools = you->CaptureTools(captureNames);
+
+	// Some "ships" do not represent something the player could actually pilot
+	canCapture = (victim->IsCapturable() || player.CaptureOverriden(victim));
 	if(!canCapture)
-		messages.emplace_back("This is not a ship that you can capture.");
+	{
+		// Or may have once been capturable but have since locked down.
+		if(victim->IsLockedDown())
+			messages.push_back("This ship is locked down and be can't captured.");
+		else
+			messages.push_back("This is not a ship that you can capture.");
+	}
+	else if(!captureRequirements.empty())
+	{
+		// Other ships may require tools to capture that the player doesn't have.
+		if(captureTools.empty())
+		{
+			canCapture = false;
+			messages.push_back("You lack the tools to capture this ship.");
+		}
+		else
+		{
+			messages.push_back("A tool is required to capture this ship.");
+			messages.push_back("You must clear the crew first.");
+			// If the ship requires tools to capture, discard any capture requirements
+			// that the player doesn't have tools for. This will leave the captureRequirements
+			// and captureTools collections with only tools that can be used and the requirements
+			// that they will be used on.
+			set<string> toolsFor;
+			for(const auto &it : captureTools)
+				toolsFor.insert(it.first);
+			captureRequirements.erase(remove_if(captureRequirements.begin(), captureRequirements.end(),
+				[&toolsFor](const pair<string, CaptureClass> &it) -> bool
+				{
+					return !toolsFor.count(it.first);
+				}),
+				captureRequirements.end()
+			);
+		}
+	}
+
 
 	// Sort the plunder by price per ton.
 	sort(plunder.begin(), plunder.end());
@@ -168,6 +213,8 @@ void BoardingPanel::Draw()
 		info.SetCondition("can attack");
 	if(CanAttack())
 		info.SetCondition("can defend");
+	if(isHijacking)
+		info.SetCondition("is hijacking");
 
 	// This should always be true, but double check.
 	int crew = 0;
@@ -196,8 +243,10 @@ void BoardingPanel::Draw()
 		// the attack odds. It's illogical for you to have access to that info,
 		// but not knowing what your true odds are is annoying.
 		double odds = attackOdds.Odds(crew, vCrew);
-		if(!isCapturing)
+		if(isFirstCaptureAttempt)
 			odds *= (1. - victim->Attributes().Get("self destruct"));
+		// Do the same for displaying the odds of a hijacking tool succeeding.
+		odds *= HijackSuccessOdds();
 		info.SetString("attack odds",
 			Round(100. * odds) + "%");
 		info.SetString("attack casualties",
@@ -284,7 +333,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		// A ship that self-destructs checks once when you board it, and again
 		// when you try to capture it, to see if it will self-destruct. This is
 		// so that capturing will be harder than plundering.
-		if(Random::Real() < victim->Attributes().Get("self destruct"))
+		if(isFirstCaptureAttempt && Random::Real() < victim->Attributes().Get("self destruct"))
 		{
 			victim->SelfDestruct();
 			GetUI()->Pop(this);
@@ -293,114 +342,28 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			return true;
 		}
 		isCapturing = true;
-		messages.push_back("The airlock blasts open. Combat has begun!");
-		messages.push_back("(It will end if you both choose to \"defend.\")");
+		// If you're reentering a ship while hijacking, don't send a message.
+		if(!isHijacking)
+		{
+			if(isFirstCaptureAttempt)
+			{
+				isFirstCaptureAttempt = false;
+				messages.push_back("The airlock blasts open. Combat has begun!");
+			}
+			else
+				messages.push_back("You reenter the ship. Combat has begun!");
+			messages.push_back("(It will end if you both choose to \"defend.\")");
+		}
 	}
 	else if((key == 'a' || key == 'd') && CanAttack())
 	{
-		int yourStartCrew = you->Crew();
-		int enemyStartCrew = victim->Crew();
-
-		// Figure out what action the other ship will take. As a special case,
-		// if you board them but immediately "defend" they will let you return
-		// to your ship in peace. That is to allow the player to "cancel" if
-		// they did not really mean to try to capture the ship.
-		bool youAttack = (key == 'a' && (yourStartCrew > 1 || !victim->RequiredCrew()));
-		bool enemyAttacks = defenseOdds.Odds(enemyStartCrew, yourStartCrew) > .5;
-		if(isFirstCaptureAction && !youAttack)
-			enemyAttacks = false;
-		isFirstCaptureAction = false;
-
-		// If neither side attacks, combat ends.
-		if(!youAttack && !enemyAttacks)
+		if(isHijacking)
 		{
-			messages.push_back("You retreat to your ships. Combat ends.");
-			isCapturing = false;
+			if(RunHijacking(key))
+				return true;
 		}
 		else
-		{
-			if(youAttack)
-				messages.push_back("You attack. ");
-			else if(enemyAttacks)
-				messages.push_back("You defend. ");
-
-			// To speed things up, have multiple rounds of combat each time you
-			// click the button, if you started with a lot of crew.
-			int rounds = max(1, yourStartCrew / 5);
-			for(int round = 0; round < rounds; ++round)
-			{
-				int yourCrew = you->Crew();
-				int enemyCrew = victim->Crew();
-				if(!yourCrew || !enemyCrew)
-					break;
-
-				// Your chance of winning this round is equal to the ratio of
-				// your power to the enemy's power.
-				double yourPower = (youAttack ?
-					attackOdds.AttackerPower(yourCrew) : defenseOdds.DefenderPower(yourCrew));
-				double enemyPower = (enemyAttacks ?
-					defenseOdds.AttackerPower(enemyCrew) : attackOdds.DefenderPower(enemyCrew));
-
-				double total = yourPower + enemyPower;
-				if(!total)
-					break;
-
-				if(Random::Real() * total >= yourPower)
-					you->AddCrew(-1);
-				else
-					victim->AddCrew(-1);
-			}
-
-			// Report how many casualties each side suffered.
-			int yourCasualties = yourStartCrew - you->Crew();
-			int enemyCasualties = enemyStartCrew - victim->Crew();
-			if(yourCasualties && enemyCasualties)
-				messages.back() += "You lose " + to_string(yourCasualties)
-					+ " crew; they lose " + to_string(enemyCasualties) + ".";
-			else if(yourCasualties)
-				messages.back() += "You lose " + to_string(yourCasualties) + " crew.";
-			else if(enemyCasualties)
-				messages.back() += "They lose " + to_string(enemyCasualties) + " crew.";
-
-			// Check if either ship has been captured.
-			if(!you->Crew())
-			{
-				messages.push_back("You have been killed. Your ship is lost.");
-				you->WasCaptured(victim);
-				playerDied = true;
-				isCapturing = false;
-			}
-			else if(!victim->Crew())
-			{
-				messages.push_back("You have succeeded in capturing this ship.");
-				victim->GetGovernment()->Offend(ShipEvent::CAPTURE, victim->CrewValue());
-				int crewTransferred = victim->WasCaptured(you);
-				if(crewTransferred > 0)
-				{
-					string transferMessage = Format::Number(crewTransferred) + " crew member";
-					if(crewTransferred == 1)
-						transferMessage += " has";
-					else
-						transferMessage += "s have";
-					transferMessage += " been transferred.";
-					messages.push_back(transferMessage);
-				}
-				if(!victim->JumpsRemaining() && you->CanRefuel(*victim))
-					you->TransferFuel(victim->JumpFuelMissing(), &*victim);
-				player.AddShip(victim);
-				for(const Ship::Bay &bay : victim->Bays())
-					if(bay.ship)
-					{
-						player.AddShip(bay.ship);
-						player.HandleEvent(ShipEvent(you, bay.ship, ShipEvent::CAPTURE), GetUI());
-					}
-				isCapturing = false;
-
-				// Report this ship as captured in case any missions care.
-				ShipEvent event(you, victim, ShipEvent::CAPTURE);
-				player.HandleEvent(event, GetUI());
-			}
-		}
+			RunCombat(key);
 	}
 	else if(command.Has(Command::INFO))
 		GetUI()->Push(new ShipInfoPanel(player));
@@ -503,6 +466,243 @@ bool BoardingPanel::CanAttack() const
 {
 	return isCapturing;
 }
+
+
+
+void BoardingPanel::RunCombat(SDL_Keycode key)
+{
+	int yourStartCrew = you->Crew();
+	int enemyStartCrew = victim->Crew();
+
+	// Figure out what action the other ship will take. As a special case,
+	// if you board them but immediately "defend" they will let you return
+	// to your ship in peace. That is to allow the player to "cancel" if
+	// they did not really mean to try to capture the ship.
+	bool youAttack = (key == 'a' && (yourStartCrew > 1 || !victim->RequiredCrew()));
+	bool enemyAttacks = defenseOdds.Odds(enemyStartCrew, yourStartCrew) > .5;
+	if(isFirstCaptureAction && !youAttack)
+		enemyAttacks = false;
+	isFirstCaptureAction = false;
+
+	// If neither side attacks, combat ends.
+	if(!youAttack && !enemyAttacks)
+	{
+		messages.push_back("You retreat to your ship. Combat ends.");
+		isCapturing = false;
+	}
+	else
+	{
+		if(youAttack)
+			messages.push_back("You attack. ");
+		else if(enemyAttacks)
+			messages.push_back("You defend. ");
+
+		// To speed things up, have multiple rounds of combat each time you
+		// click the button, if you started with a lot of crew.
+		int rounds = max(1, yourStartCrew / 5);
+		for(int round = 0; round < rounds; ++round)
+		{
+			int yourCrew = you->Crew();
+			int enemyCrew = victim->Crew();
+			if(!yourCrew || !enemyCrew)
+				break;
+
+			// Your chance of winning this round is equal to the ratio of
+			// your power to the enemy's power.
+			double yourPower = (youAttack ?
+				attackOdds.AttackerPower(yourCrew) : defenseOdds.DefenderPower(yourCrew));
+			double enemyPower = (enemyAttacks ?
+				defenseOdds.AttackerPower(enemyCrew) : attackOdds.DefenderPower(enemyCrew));
+
+			double total = yourPower + enemyPower;
+			if(!total)
+				break;
+
+			if(Random::Real() * total >= yourPower)
+				you->AddCrew(-1);
+			else
+				victim->AddCrew(-1);
+		}
+
+		// Report how many casualties each side suffered.
+		int yourCasualties = yourStartCrew - you->Crew();
+		int enemyCasualties = enemyStartCrew - victim->Crew();
+		if(yourCasualties && enemyCasualties)
+			messages.back() += "You lose " + to_string(yourCasualties)
+				+ " crew; they lose " + to_string(enemyCasualties) + ".";
+		else if(yourCasualties)
+			messages.back() += "You lose " + to_string(yourCasualties) + " crew.";
+		else if(enemyCasualties)
+			messages.back() += "They lose " + to_string(enemyCasualties) + " crew.";
+
+		// Check if either ship has been captured.
+		if(!you->Crew())
+		{
+			messages.push_back("You have been killed. Your ship is lost.");
+			you->WasCaptured(victim);
+			playerDied = true;
+			isCapturing = false;
+		}
+		else if(!victim->Crew())
+		{
+			// If the ship has no capture requirements then the victim is successfully
+			// captured. Otherwise, the hijacking sequence has begun.
+			if(captureRequirements.empty())
+				CaptureVictim();
+			else
+			{
+				isHijacking = true;
+				messages.push_back("You have succeeded in clearing this ship.");
+				messages.push_back("A tool is required to capture it.");
+			}
+		}
+	}
+}
+
+
+
+bool BoardingPanel::RunHijacking(SDL_Keycode key)
+{
+	// If the pressed key is 'd', then we are withdrawing from hijacking.
+	if(key == 'd')
+	{
+		isCapturing = false;
+		return false;
+	}
+
+	// Grab the first requirement from the requirements and the first tool that works
+	// on that requirement.
+	const CaptureClass &requirement = captureRequirements.begin()->second;
+	vector<pair<CaptureClass, const Outfit *>> &tools = captureTools.find(requirement.Name())->second;
+	const CaptureClass &tool = tools[0].first;
+	const Outfit *outfit = tools[0].second;
+	messages.push_back("You use a " + outfit->DisplayName() + ".");
+
+	// In order for a hijack attempt to succeed, the tool must successfully hijack
+	// the ship and the ship must fail to defend against the hijacking.
+	if(Random::Real() < tool.SuccessChance() && Random::Real() > requirement.SuccessChance())
+	{
+		// Success.
+		CaptureVictim();
+		// Determine if the tool broke on use.
+		if(Random::Real() < tool.BreakOnSuccessChance() || Random::Real() < requirement.BreakOnSuccessChance())
+		{
+			messages.push_back("Your tool broke on use.");
+			you->AddOutfit(outfit, -1);
+		}
+	}
+	else
+	{
+		// Failure.
+		messages.push_back("You failed to capture this ship.");
+
+		// Determine if the tool broke on use.
+		if(Random::Real() < tool.BreakOnFailureChance() || Random::Real() < requirement.BreakOnFailureChance())
+		{
+			messages.push_back("Your tool broke on use.");
+			you->AddOutfit(outfit, -1);
+			// If the ship no longer has this outfit at its disposal, remove
+			// it from the list of tools for this CaptureClass.
+			if(!you->OutfitCount(outfit))
+			{
+				tools.erase(tools.begin());
+				// If the list of tools for this CaptureClass is now empty,
+				// remove it from the list of requirements and tools.
+				if(tools.empty())
+				{
+					captureTools.erase(tool.Name());
+					captureRequirements.erase(captureRequirements.begin());
+				}
+			}
+		}
+
+		// Determine if the ship has self destructed.
+		if(Random::Real() < tool.SelfDestructChance() || Random::Real() < requirement.SelfDestructChance())
+		{
+			victim->SelfDestruct();
+			GetUI()->Pop(this);
+			GetUI()->Push(new Dialog("Your attempt to capture this ship failed catastrophically."
+				" The ship is blowing up!"));
+			return true;
+		}
+		// Determine if the ship has locked down.
+		else if(Random::Real() < tool.LockDownChance() || Random::Real() < requirement.LockDownChance())
+		{
+			messages.push_back("The ship has locked down.");
+			messages.push_back("No more capture attempts can be made.");
+			isCapturing = false;
+			canCapture = false;
+			victim->LockDown();
+		}
+		// If the capture requirement or capture tools are empty then the player has run
+		// out of outfits to attempt to capture this ship with.
+		else if(captureRequirements.empty() || captureTools.empty())
+		{
+			messages.push_back("You have run out of tools to use.");
+			isCapturing = false;
+			canCapture = false;
+		}
+	}
+	return false;
+}
+
+
+
+void BoardingPanel::CaptureVictim()
+{
+	messages.push_back("You have succeeded in capturing this ship.");
+	victim->GetGovernment()->Offend(ShipEvent::CAPTURE, victim->CrewValue());
+	int crewTransferred = victim->WasCaptured(you);
+	if(crewTransferred > 0)
+	{
+		string transferMessage = Format::Number(crewTransferred) + " crew member";
+		if(crewTransferred == 1)
+			transferMessage += " has";
+		else
+			transferMessage += "s have";
+		transferMessage += " been transferred.";
+		messages.push_back(transferMessage);
+	}
+	if(!victim->JumpsRemaining() && you->CanRefuel(*victim))
+		you->TransferFuel(victim->JumpFuelMissing(), &*victim);
+	player.AddShip(victim);
+	for(const Ship::Bay &bay : victim->Bays())
+		if(bay.ship)
+		{
+			player.AddShip(bay.ship);
+			player.HandleEvent(ShipEvent(you, bay.ship, ShipEvent::CAPTURE), GetUI());
+		}
+	isCapturing = false;
+
+	// Report this ship as captured in case any missions care.
+	ShipEvent event(you, victim, ShipEvent::CAPTURE);
+	player.HandleEvent(event, GetUI());
+}
+
+
+
+double BoardingPanel::HijackSuccessOdds() const
+{
+	// If there are no capture requirements and we're hijacking, that means we ran
+	// out of hijacking tools, and so our success odds are 0%. Otherwise, there was
+	// never any requirement to begin with, so the hijacking odds are 100%.
+	if(captureRequirements.empty())
+		return isHijacking ? 0. : 1.;
+
+	// Grab the first requirement from the requirements and the first tool that works
+	// on that requirement.
+	const CaptureClass &requirement = captureRequirements.begin()->second;
+	const vector<pair<CaptureClass, const Outfit *>> &tools = captureTools.find(requirement.Name())->second;
+	const CaptureClass &tool = tools[0].first;
+
+	// The odds of successfully hijacking a ship are the odds of the tool succeeding
+	// and then the ship failing to defend. This intentionally doesn't take into account
+	// the number of tools you have, their break chances, and the chance of the ship
+	// self destructing or locking down. Simply provide the odds of the next hijacking
+	// attempt succeeding.
+	return tool.SuccessChance() * (1 - requirement.SuccessChance());
+}
+
 
 
 // Handle the keyboard scrolling and selection in the panel list.

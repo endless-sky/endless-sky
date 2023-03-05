@@ -20,10 +20,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "CaptureOdds.h"
 
+#include <map>
 #include <memory>
 #include <string>
+#include <utility>
 #include <vector>
 
+class CaptureClass;
 class Outfit;
 class PlayerInfo;
 class Ship;
@@ -58,6 +61,12 @@ private:
 	bool CanCapture() const;
 	// Check if you are in the midst of hand to hand combat.
 	bool CanAttack() const;
+
+	void RunCombat(SDL_Keycode key);
+	bool RunHijacking(SDL_Keycode key);
+	void CaptureVictim();
+
+	double HijackSuccessOdds() const;
 
 	// Handle the keyboard scrolling and selection in the panel list.
 	void DoKeyboardNavigation(const SDL_Keycode key);
@@ -123,10 +132,22 @@ private:
 	bool playerDied = false;
 	bool isCapturing = false;
 	bool isFirstCaptureAction = true;
+	bool isFirstCaptureAttempt = true;
+	bool isHijacking = false;
 	// Calculating the odds of combat success, and the expected casualties, is
 	// non-trivial. So, cache the results for all crew amounts up to full.
 	CaptureOdds attackOdds;
 	CaptureOdds defenseOdds;
+	// The capture classes of the ship being boarded. Stored in a list paired by
+	// the capture class name and the capture class itself. The list is sorted by
+	// an increasing efficiency value from the capture class.
+	std::vector<std::pair<std::string, CaptureClass>> captureRequirements;
+	// The capture classes of the outfits of the boarding ship. Mapping the name
+	// of the capture class to the list of outfits that can be used against that
+	// capture class, paired by a pointer to the outfit being used and its capture
+	// class. Each vector is sorted by a decreasing efficiency value of the capture
+	// class of the outfit.
+	std::map<std::string, std::vector<std::pair<CaptureClass, const Outfit *>>> captureTools;
 	// These messages are shown to report the results of hand to hand combat.
 	std::vector<std::string> messages;
 

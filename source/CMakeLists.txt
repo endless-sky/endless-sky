@@ -74,6 +74,8 @@ target_sources(EndlessSkyLib PRIVATE
 	BoardingPanel.h
 	Body.cpp
 	Body.h
+	CaptureClass.cpp
+	CaptureClass.h
 	CaptureOdds.cpp
 	CaptureOdds.h
 	CargoHold.cpp

@@ -896,6 +896,7 @@ interface "boarding"
 		center -40 115
 		dimensions 140 30
 	
+	visible if "!is hijacking"
 	active if "can attack"
 	button a "_Attack"
 		center 120 185
@@ -903,6 +904,17 @@ interface "boarding"
 	
 	active if "can defend"
 	button d "_Defend"
+		center 210 185
+		dimensions 80 30
+	
+	visible if "is hijacking"
+	active if "can attack"
+	button a "Hij_ack"
+		center 120 185
+		dimensions 80 30
+	
+	active if "can defend"
+	button d "With_draw"
 		center 210 185
 		dimensions 80 30
 

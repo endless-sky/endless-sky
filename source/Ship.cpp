@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 
 #include "Audio.h"
+#include "CaptureClass.h"
 #include "CategoryTypes.h"
 #include "DamageDealt.h"
 #include "DataNode.h"
@@ -345,6 +346,8 @@ void Ship::Load(const DataNode &node)
 			neverDisabled = true;
 		else if(key == "uncapturable")
 			isCapturable = false;
+		else if(key == "locked down")
+			lockedDown = true;
 		else if(((key == "fighter" || key == "drone") && child.Size() >= 3) ||
 			(key == "bay" && child.Size() >= 4))
 		{
@@ -866,6 +869,8 @@ void Ship::Save(DataWriter &out) const
 			out.Write("never disabled");
 		if(!isCapturable)
 			out.Write("uncapturable");
+		if(lockedDown)
+			out.Write("locked down");
 		if(customSwizzle >= 0)
 			out.Write("swizzle", customSwizzle);
 
@@ -919,6 +924,8 @@ void Ship::Save(DataWriter &out) const
 			for(const auto &it : baseAttributes.HyperOutSounds())
 				for(int i = 0; i < it.second; ++i)
 					out.Write("hyperdrive out sound", it.first->Name());
+			for(const auto &it : baseAttributes.CaptureClasses())
+				it.second.Save(out);
 			for(const auto &it : baseAttributes.Attributes())
 				if(it.second)
 					out.Write(it.first, it.second);
@@ -2867,7 +2874,7 @@ const Planet *Ship::GetPlanet() const
 
 bool Ship::IsCapturable() const
 {
-	return isCapturable;
+	return isCapturable && !lockedDown;
 }
 
 
@@ -4220,6 +4227,65 @@ shared_ptr<Ship> Ship::GetParent() const
 const vector<weak_ptr<Ship>> &Ship::GetEscorts() const
 {
 	return escorts;
+}
+
+
+
+vector<pair<string, CaptureClass>> Ship::CaptureRequirements() const
+{
+	vector<pair<string, CaptureClass>> capReqs;
+	for(const auto &it : baseAttributes.CaptureClasses())
+		capReqs.emplace_back(it.first, it.second);
+
+	// Sort capture requirements by increasing success chance, so that the
+	// best requirement to work against is at the front.
+	sort(capReqs.begin(), capReqs.end(),
+		[](const pair<string, CaptureClass> &a, const pair<string, CaptureClass> &b) -> bool
+		{
+			return a.second.SuccessChance() < b.second.SuccessChance();
+		});
+
+	return capReqs;
+}
+
+
+
+map<string, vector<pair<CaptureClass, const Outfit *>>> Ship::CaptureTools(const set<string> &classNames) const
+{
+	map<string, vector<pair<CaptureClass, const Outfit *>>> capTools;
+
+	for(const auto &it : outfits)
+		for(const auto &sit : it.first->CaptureClasses())
+		{
+			const string &name = sit.first;
+			if(classNames.count(name))
+				capTools[name].emplace_back(sit.second, it.first);
+		}
+
+	// Sort capture tools be decreasing success chance, so that the best tool
+	// to use is at the front.
+	for(auto &it : capTools)
+		sort(it.second.begin(), it.second.end(),
+			[](const pair<CaptureClass, const Outfit *> &a, const pair<CaptureClass, const Outfit *> &b) -> bool
+			{
+				return a.first.SuccessChance() > b.first.SuccessChance();
+			});
+
+	return capTools;
+}
+
+
+
+void Ship::LockDown()
+{
+	lockedDown = true;
+}
+
+
+
+bool Ship::IsLockedDown() const
+{
+	return lockedDown;
 }
 
 

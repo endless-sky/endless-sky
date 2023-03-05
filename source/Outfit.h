@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Weapon.h"
 
+#include "CaptureClass.h"
 #include "Dictionary.h"
 
 #include <map>
@@ -95,6 +96,8 @@ public:
 	const std::map<const Sound *, int> &JumpSounds() const;
 	const std::map<const Sound *, int> &JumpInSounds() const;
 	const std::map<const Sound *, int> &JumpOutSounds() const;
+	// Get this outfit's capture classes, if any.
+	const std::map<std::string, CaptureClass> &CaptureClasses() const;
 	// Get the sprite this outfit uses when dumped into space.
 	const Sprite *FlotsamSprite() const;
 
@@ -130,6 +133,7 @@ private:
 	std::map<const Sound *, int> jumpSounds;
 	std::map<const Sound *, int> jumpInSounds;
 	std::map<const Sound *, int> jumpOutSounds;
+	std::map<std::string, CaptureClass> captureClasses;
 	const Sprite *flotsamSprite = nullptr;
 };
 

@@ -246,6 +246,8 @@ void Outfit::Load(const DataNode &node)
 			++jumpInSounds[Audio::Get(child.Token(1))];
 		else if(child.Token(0) == "jump out sound" && child.Size() >= 2)
 			++jumpOutSounds[Audio::Get(child.Token(1))];
+		else if(child.Token(0) == "capture class" && child.Size() >= 2)
+			captureClasses.emplace(child.Token(1), child);
 		else if(child.Token(0) == "flotsam sprite" && child.Size() >= 2)
 			flotsamSprite = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
@@ -628,6 +630,14 @@ const map<const Sound *, int> &Outfit::JumpInSounds() const
 const map<const Sound *, int> &Outfit::JumpOutSounds() const
 {
 	return jumpOutSounds;
+}
+
+
+
+// Get this outfit's capture classes, if any.
+const map<string, CaptureClass> &Outfit::CaptureClasses() const
+{
+	return captureClasses;
 }
 
 

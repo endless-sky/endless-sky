@@ -35,8 +35,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <memory>
 #include <set>
 #include <string>
+#include <utility>
 #include <vector>
 
+class CaptureClass;
 class DamageDealt;
 class DataNode;
 class DataWriter;
@@ -451,6 +453,14 @@ public:
 	std::shared_ptr<Ship> GetParent() const;
 	const std::vector<std::weak_ptr<Ship>> &GetEscorts() const;
 
+	// Tools required to capture this ship, and the tools it has for capturing other ships
+	// of the given capture class names.
+	std::vector<std::pair<std::string, CaptureClass>> CaptureRequirements() const;
+	std::map<std::string, std::vector<std::pair<CaptureClass, const Outfit *>>> CaptureTools(const std::set<std::string> &classNames) const;
+	// Prevent further capture attempts from being made on this ship.
+	void LockDown();
+	bool IsLockedDown() const;
+
 
 private:
 	// Add or remove a ship from this ship's list of escorts.
@@ -513,6 +523,7 @@ private:
 	double steeringDirection = 0.;
 	bool neverDisabled = false;
 	bool isCapturable = true;
+	bool lockedDown = false;
 	bool isInvisible = false;
 	int customSwizzle = -1;
 	double cloak = 0.;
