@@ -89,9 +89,6 @@ public:
 	static Personality Defender();
 	static Personality DefenderFighter();
 
-	int DefeatedGracePeriod() const;
-	bool LootedAfterAssist() const;
-
 
 private:
 	void Parse(const DataNode &node, int index, bool remove);
@@ -109,8 +106,6 @@ private:
 	double aimMultiplier;
 	Point confusion;
 	Point confusionVelocity;
-	int defeatedGracePeriod = 300;
-	bool lootedAfterAssist = false;
 };
 
 

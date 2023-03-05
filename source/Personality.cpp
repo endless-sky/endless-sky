@@ -140,8 +140,6 @@ void Personality::Load(const DataNode &node, int tokensToSkip)
 			else
 				confusionMultiplier = child.Value(1);
 		}
-		else if(child.Size() == 3 && child.Token(0) == "grace" && child.Token(1) == "period")
-			defeatedGracePeriod = child.Value(2);
 		else
 		{
 			for(int i = 0; i < child.Size(); ++i)
@@ -444,20 +442,6 @@ Personality Personality::DefenderFighter()
 	defender.flags = bitset<PERSONALITY_COUNT>((1LL << STAYING) | (1LL << HUNTING) | (1LL << DARING)
 			| (1LL << UNCONSTRAINED));
 	return defender;
-}
-
-
-
-int Personality::DefeatedGracePeriod() const
-{
-	return defeatedGracePeriod;
-}
-
-
-
-bool Personality::LootedAfterAssist() const
-{
-	return lootedAfterAssist;
 }
 
 
