@@ -140,12 +140,12 @@ private:
 	CaptureOdds defenseOdds;
 	// The capture classes of the ship being boarded. Stored in a list paired by
 	// the capture class name and the capture class itself. The list is sorted by
-	// an increasing efficiency value from the capture class.
+	// an increasing success chance from the capture class.
 	std::vector<std::pair<std::string, CaptureClass>> captureRequirements;
 	// The capture classes of the outfits of the boarding ship. Mapping the name
 	// of the capture class to the list of outfits that can be used against that
 	// capture class, paired by a pointer to the outfit being used and its capture
-	// class. Each vector is sorted by a decreasing efficiency value of the capture
+	// class. Each vector is sorted by a decreasing success chance of the capture
 	// class of the outfit.
 	std::map<std::string, std::vector<std::pair<CaptureClass, const Outfit *>>> captureTools;
 	// These messages are shown to report the results of hand to hand combat.
