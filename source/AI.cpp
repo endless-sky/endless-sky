@@ -539,20 +539,9 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		if(!it->GetSystem())
 			continue;
 
-		// Increment the defeat timer if the ship is defeated
-		it->StepDefeatTimer();
-
 		// Disabled ships should be defeated
 		if(it->IsDisabled() && !it->IsDefeated())
 			it->DefeatShip();
-
-		// If the target changed from hostile to non-hostile, detarget.
-		// This is done for the player to ensure they don't keep shooting
-		// at a target that they just befriended. As with any friendly,
-		// they have to explicitly target it again to make the government hostile.
-		// For the AI, it ensures the ship keeps fighting if it is under threat,
-		// instead of moving to pillage a ship that may not be a high priority.
-		it->DetargetAfterBefriending();
 
 		if(it.get() == flagship)
 		{
@@ -639,6 +628,13 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 
 		// Pick a target and automatically fire weapons.
 		shared_ptr<Ship> target = it->GetTargetShip();
+		if(it->DetargetAfterBefriending())
+		{
+			if(it->GetGovernment() && it->GetGovernment()->IsPlayer())
+				Messages::Add(it->Name() + " is disengaging non-hostile target " + target->Name(),
+					Messages::Importance::High);
+			target = nullptr;
+		}
 		if(isPresent && !personality.IsSwarming())
 		{
 			// Each ship only switches targets twice a second, so that it can
@@ -3421,6 +3417,13 @@ double AI::RendezvousTime(const Point &p, const Point &v, double vp)
 
 void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommands)
 {
+	{
+		shared_ptr<const Ship> target = ship.GetTargetShip();
+		if(ship.DetargetAfterBefriending())
+			Messages::Add("Disengaging non-hostile target " + target->Name(),
+				Messages::Importance::Highest);
+	}
+
 	Command command;
 	firingCommands.SetHardpoints(ship.Weapons().size());
 

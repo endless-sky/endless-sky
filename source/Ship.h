@@ -187,8 +187,8 @@ public:
 	void SetIsSpecial(bool special = true);
 	bool IsSpecial() const;
 
-	// If the target changed from hostile to non-hostile, detarget
-	void DetargetAfterBefriending();
+	// If the target changed from hostile to non-hostile, detarget.
+	bool DetargetAfterBefriending();
 
 	// Changes the government of a ship currently in space, and optionally its swizzle.
 	// Can also wipe information about the defeated and looted governments.
@@ -199,12 +199,6 @@ public:
 
 	// Has the ship been defeated?
 	bool IsDefeated() const;
-
-	// Is this a defeated ship with a timer still inside the grace period?
-	bool InGracePeriod() const;
-
-	// If the ship is defeated, increment the timer, otherwise do nothing
-	void StepDefeatTimer();
 
 	// If the ship is not already marked as looted, make it so
 	void MakeLooted();
@@ -575,7 +569,7 @@ private:
 	double attraction = 0.;
 	double deterrence = 0.;
 
-	int defeatTimer = -1;
+	bool isDefeated = false;
 	bool isLooted = false;
 
 	Command commands;

@@ -1397,18 +1397,21 @@ const Government *Ship::UpdateOriginalTargetGovernment()
 
 
 
-void Ship::DetargetAfterBefriending()
+bool Ship::DetargetAfterBefriending()
 {
-		shared_ptr<Ship> target = GetTargetShip();
-		if(target && originalTargetGovernment && originalTargetGovernment != target->GetGovernment())
-		{
-			// The target government is not the same as we last checked.
-			// Has that caused a change in hostility?
-			if(originalTargetGovernment->IsEnemy(government)
-					&& !target->GetGovernment()->IsEnemy(government))
-				SetTargetShip(nullptr);
-			UpdateOriginalTargetGovernment();
-		}
+	shared_ptr<Ship> target = GetTargetShip();
+	bool result = false;
+	if(target && originalTargetGovernment && originalTargetGovernment != target->GetGovernment())
+	{
+		// The target government is not the same as we last checked.
+		// Has that caused a change in hostility?
+		result = originalTargetGovernment->IsEnemy(government)
+			&& !target->GetGovernment()->IsEnemy(government);
+		if(result)
+			SetTargetShip(nullptr);
+		UpdateOriginalTargetGovernment();
+	}
+	return result;
 }
 
 
@@ -1434,7 +1437,7 @@ void Ship::ChangeGovernment(const Government *next, bool changeSwizzle, bool cle
 		SetSwizzle(customSwizzle >= 0 ? customSwizzle : government->GetSwizzle());
 	if(clearDefeated)
 	{
-		defeatTimer = -1;
+		isDefeated = false;
 		if(defeatedPersonality.IsDefined())
 			defeatedPersonality = Personality();
 		defeatedGovernment = nullptr;
@@ -1452,40 +1455,18 @@ void Ship::ChangeGovernment(const Government *next, bool changeSwizzle, bool cle
 
 void Ship::DefeatShip()
 {
-	if(defeatTimer >= 0)
+	if(isDefeated)
 		return;
-
-	if(defeatedGovernment && government != defeatedGovernment)
-	{
-		defeatTimer = 0;
+	isDefeated = true;
+	if(defeatedGovernment && defeatedGovernment != government)
 		ChangeGovernment(defeatedGovernment, true, false, false);
-	}
-	if(defeatedPersonality.IsDefined())
-		personality = defeatedPersonality;
-	if(defeatTimer < 0)
-		defeatTimer = personality.DefeatedGracePeriod();
 }
 
 
 
 bool Ship::IsDefeated() const
 {
-	return defeatTimer >= 0;
-}
-
-
-
-bool Ship::InGracePeriod() const
-{
-	return defeatTimer >= 0 && defeatTimer < personality.DefeatedGracePeriod();
-}
-
-
-
-void Ship::StepDefeatTimer()
-{
-	if(InGracePeriod())
-		defeatTimer++;
+	return isDefeated;
 }
 
 
@@ -1494,8 +1475,6 @@ void Ship::MakeLooted()
 {
 	if(isLooted)
 		return;
-	if(InGracePeriod())
-		defeatTimer = personality.DefeatedGracePeriod();
 	isLooted = true;
 	if(lootedGovernment && lootedGovernment != government)
 		ChangeGovernment(lootedGovernment, true, false, false);
@@ -2942,7 +2921,7 @@ int Ship::Scan(const PlayerInfo &player)
 
 	// Some governments are provoked when a scan is completed on one of their ships.
 	const Government *gov = target->GetGovernment();
-	if(result && !target->InGracePeriod() && gov && gov->IsProvokedOnScan() && !gov->IsEnemy(government)
+	if(result && gov->IsProvokedOnScan() && !gov->IsEnemy(government)
 			&& (target->Shields() < .9 || target->Hull() < .9 || !target->GetPersonality().IsForbearing())
 			&& !target->GetPersonality().IsPacifist())
 		result |= ShipEvent::PROVOKE;
@@ -3828,7 +3807,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 
 	// If this ship did not consider itself an enemy of the ship that hit it,
 	// it is now "provoked" against that government.
-	if(!InGracePeriod() && sourceGovernment && !sourceGovernment->IsEnemy(government)
+	if(sourceGovernment && !sourceGovernment->IsEnemy(government)
 			&& !personality.IsPacifist() && (!personality.IsForbearing()
 				|| ((damage.Shield() || damage.Discharge()) && Shields() < .9)
 				|| ((damage.Hull() || damage.Corrosion()) && Hull() < .9)

@@ -120,13 +120,13 @@ Personality::Personality() noexcept
 
 
 
-void Personality::Load(const DataNode &node, int tokensToSkip)
+void Personality::Load(const DataNode &node)
 {
-	bool add = (node.Token(tokensToSkip) == "add");
-	bool remove = (node.Token(tokensToSkip) == "remove");
+	bool add = (node.Token(0) == "add");
+	bool remove = (node.Token(0) == "remove");
 	if(!(add || remove))
 		flags.reset();
-	for(int i = 1 + (add || remove) + tokensToSkip; i < node.Size(); ++i)
+	for(int i = 1 + (add || remove); i < node.Size(); ++i)
 		Parse(node, i, remove);
 
 	for(const DataNode &child : node)
@@ -134,7 +134,7 @@ void Personality::Load(const DataNode &node, int tokensToSkip)
 		if(child.Token(0) == "confusion")
 		{
 			if(add || remove)
-				child.PrintTrace("Error: Cannot \"" + node.Token(tokensToSkip) + "\" a confusion value:");
+				child.PrintTrace("Error: Cannot \"" + node.Token(0) + "\" a confusion value:");
 			else if(child.Size() < 2)
 				child.PrintTrace("Skipping \"confusion\" tag with no value specified:");
 			else
