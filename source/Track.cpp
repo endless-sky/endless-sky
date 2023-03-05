@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <iostream>
 
-
+using namespace std;
 
 Track::Track(const DataNode &node)
 {
@@ -55,7 +55,7 @@ void Track::Load(const DataNode &node)
 		else if(child.Token(0) == "landed" && child.Size() >= 2)
 			landedTitle = child.Token(1);
 		else if(child.Token(0) == "wait" && child.Size() >= 2)
-			wait = child.Value(1);
+			wait = max<int>(0, child.Value(1));
 	}
 	finishedLoading = true;
 }
