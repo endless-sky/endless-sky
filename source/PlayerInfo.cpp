@@ -3732,11 +3732,7 @@ void PlayerInfo::StepMissions(UI *ui)
 			// getting spammed by on visit dialogs if they are stacking jobs
 			// from the same destination.
 			if(visitText.empty())
-			{
-				const auto &text = mission.GetAction(Mission::VISIT).DialogText();
-				if(!text.empty())
-					visitText = Format::Replace(text, substitutions);
-			}
+				visitText = mission.GetAction(Mission::VISIT).MakeDialogText(conditions, substitutions);
 			++missionVisits;
 		}
 	}

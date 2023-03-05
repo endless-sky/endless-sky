@@ -16,6 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef MISSION_ACTION_H_
 #define MISSION_ACTION_H_
 
+#include "ConditionSet.h"
+#include "ConditionsStore.h"
 #include "Conversation.h"
 #include "ExclusiveItem.h"
 #include "GameAction.h"
@@ -25,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <map>
 #include <memory>
 #include <string>
+#include <vector>
 
 class DataNode;
 class DataWriter;
@@ -41,6 +44,11 @@ class UI;
 // the ownership of specific outfits and also display dialogs or conversations.
 class MissionAction {
 public:
+	using DialogItem = std::pair<std::string, std::shared_ptr<ConditionSet>>;
+	using DialogList = std::vector<DialogItem>;
+
+
+public:
 	MissionAction() = default;
 	// Construct and Load() at the same time.
 	MissionAction(const DataNode &node, const std::string &missionName);
@@ -52,7 +60,8 @@ public:
 	// Determine if this MissionAction references content that is not fully defined.
 	std::string Validate() const;
 
-	const std::string &DialogText() const;
+	const DialogList &GetDialogList() const;
+	std::string MakeDialogText(const ConditionsStore &conditions, const std::map<std::string, std::string> &subs) const;
 
 	// Check if this action can be completed right now. It cannot be completed
 	// if it takes away money or outfits that the player does not have, or should
@@ -65,18 +74,23 @@ public:
 
 	// "Instantiate" this action by filling in the wildcard text for the actual
 	// destination, payment, cargo, etc.
-	MissionAction Instantiate(std::map<std::string, std::string> &subs,
+	MissionAction Instantiate(const ConditionsStore &store, std::map<std::string, std::string> &subs,
 		const System *origin, int jumps, int64_t payload) const;
 
 	int64_t Payment() const noexcept;
+
+
+private:
+	static std::shared_ptr<ConditionSet> GetToDisplay(const DataNode &node);
+	void LoadDialog(const DataNode &node);
+
 
 private:
 	std::string trigger;
 	std::string system;
 	LocationFilter systemFilter;
 
-	std::string dialogText;
-	ExclusiveItem<Phrase> dialogPhrase;
+	DialogList dialog;
 	ExclusiveItem<Conversation> conversation;
 
 	// Outfits that are required to be owned (or not) for this action to be performable.
