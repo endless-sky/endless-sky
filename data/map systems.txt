@@ -10909,21 +10909,23 @@ system E-4183
 	object
 		sprite planet/gas7-r
 			scale 0.5
-		distance 13699
+		distance 11699
 		period 14195.8
-		offset 150
+		offset 120
 		object
 			sprite planet/luna-b
 			distance 210
 			period 95
 		object
 			sprite planet/oberon-b
-			distance 270
+			distance 300
 			period 160
+			offset 160
 		object
 			sprite planet/lava3-b
-			distance 420
+			distance 440
 			period 333
+			offset 240
 
 system E-9182
 	pos 1167.2 -629
