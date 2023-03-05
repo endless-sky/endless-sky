@@ -10907,17 +10907,23 @@ system E-4183
 		distance 2142.47
 		period 446.291
 	object
-		sprite planet/gas7-hot
-		distance 5174
-		period 1674.88
+		sprite planet/gas7-r
+			scale 0.5
+		distance 13699
+		period 14195.8
+		offset 150
 		object
-			sprite planet/dust3-b
-			distance 198
-			period 105.316
+			sprite planet/luna-b
+			distance 210
+			period 95
 		object
-			sprite planet/dust7-b
-			distance 350
-			period 247.515
+			sprite planet/oberon-b
+			distance 270
+			period 160
+		object
+			sprite planet/lava3-b
+			distance 420
+			period 333
 
 system E-9182
 	pos 1167.2 -629
@@ -16694,6 +16700,7 @@ system Iigen
 	haze _menu/haze-brown
 	link Heutesl
 	link Oosuoro
+	link Uttna
 	link Yllke
 	asteroids "small rock" 46 3.92
 	asteroids "medium rock" 57 5.2
@@ -32437,20 +32444,22 @@ system "Urba Pest"
 			period 10.8214
 
 system Uttna
-	pos 966.3 -575.8
+	pos 946.3 -580.8
 	government Uninhabited
 	arrival 3000
 	habitable 3000
 	belt 1748
-	"jump range" 50
-	haze _menu/haze-none
+	"jump range" 60
+	haze _menu/haze-brown
+	link Iigen
 	asteroids "medium rock" 3 4.8
 	asteroids "large rock" 2 3.96
 	asteroids "small metal" 4 2.84
 	asteroids "large metal" 16 3.42
 	minables platinum 5 1.4
 	minables uranium 8 2.2
-	fleet "Iije (Uninterested)" 15000
+	fleet "Gegno Basic" 2700
+	fleet "Gegno Miners" 1900
 	object
 		sprite star/a8
 		period 10
@@ -32467,23 +32476,17 @@ system Uttna
 			distance 195
 			period 102.9
 	object
-		sprite planet/gas7-r
-			scale 0.5
-		distance 13699
-		period 14195.8
-		offset 150
+		sprite planet/gas7-hot
+		distance 5174
+		period 1674.88
 		object
-			sprite planet/luna-b
-			distance 210
-			period 95
+			sprite planet/dust3-b
+			distance 198
+			period 105.316
 		object
-			sprite planet/oberon-b
-			distance 270
-			period 160
-		object
-			sprite planet/lava3-b
-			distance 420
-			period 333
+			sprite planet/dust7-b
+			distance 350
+			period 247.515
 
 system "Uwa Fahn"
 	pos 35.1585 -491.67
