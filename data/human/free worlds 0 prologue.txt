@@ -174,6 +174,7 @@ mission "Pact Recon 3"
 
 
 mission "Pact Questioning"
+	landing
 	source
 		attributes "near earth" "paradise"
 		government "Republic"
@@ -184,12 +185,13 @@ mission "Pact Questioning"
 	on offer
 		log "Apparently the Navy is suspicious of anyone who worked with the Southern Mutual Defense Pact; got questioned about it by an officer. It was unclear what his rank or position in the Navy was."
 		conversation
-			`As you are walking through the spaceport, a middle-aged man in a Navy uniform walks up to you and says, "Excuse me, Captain <last>. I would like to speak with you for a few minutes."`
+			`As you complete the usual landing documents with the Navy inspector outside your ship, another officer, a middle-aged man in the same uniform, walks up from behind him. He gives a curt nod to the inspector, who surprisingly walks away swiftly without saying anything, not even a "good day" to you or this officer. He must have some sort of seniority over him.`
+			`	The new officer says, "Excuse me, Captain <last>. I would like to speak with you for a few minutes."`
 			choice
 				`	"Okay."`
 					goto branch
 				`	"Sorry, I'm really busy right now."`
-			`	"Unfortunately, this cannot wait," he responds as he pulls you aside from the crowd.`
+			`	"Unfortunately, this cannot wait," he responds.`
 			label branch
 			branch free
 				has "event: war begins"
@@ -209,7 +211,7 @@ mission "Pact Questioning"
 					goto quit
 			`	He has been looking intently into your eye, and when you lie to him, he frowns. "It really isn't necessary to lie to me," he says. You are not sure what to say in response, so you remain quiet.`
 			label pact
-			`	"Tell me," he says, "was there one particular militia officer who you reported to, or was it someone different every time?" As he is speaking, you look for clues of who he is or why he is questioning you, and you notice something very odd. All Navy personnel you have encountered in the past have a name badge on their lapel and rank insignia on their collar, but his uniform is entirely blank.`
+			`	"Tell me," he says, "was there one particular militia officer who you reported to, or was it someone different every time?" As he is speaking, you look for clues of who he is or why he is questioning you, and you notice something very odd. The Navy inspector before, and all Navy personnel you have encountered in the past, had a name badge on their lapel and rank insignia on their collar. But this officer's uniform is entirely blank.`
 			choice
 				`	"I don't remember anyone's name in particular."`
 				`	"I would rather not name any names."`
@@ -240,7 +242,7 @@ mission "Pact Questioning"
 			`	"I see," he says. "I wonder why they didn't share more of the details of their work with you."`
 			`	"Why are you asking me all these questions?" you say.`
 			label questions
-			`	"I'm just collecting information," he says. "Anything you tell me is interesting to me." Then, with a mischievous grin, he adds, "Anything you refuse to tell me is also interesting. Anyway, I won't detain you any longer. Thank you for your time." He smiles and walks away. You are left with no idea of what is going on.`
+			`	"I'm just collecting information," he says. "Anything you tell me is interesting to me." Then, with a mischievous grin, he adds, "Anything you refuse to tell me is also interesting. Anyway, I won't detain you any longer. Thank you for your time." He smiles and walks away, leaving you with no idea of what is going on.`
 				decline
 			label quit
 			`	"Understood," he says. "Thank you for your time." He makes no effort to detain you. As you walk away, you glance over your shoulder a few times to make sure you are not being watched or followed, but see no one.`
