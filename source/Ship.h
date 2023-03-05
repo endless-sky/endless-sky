@@ -456,7 +456,8 @@ public:
 	// Tools required to capture this ship, and the tools it has for capturing other ships
 	// of the given capture class names.
 	std::vector<std::pair<std::string, CaptureClass>> CaptureRequirements() const;
-	std::map<std::string, std::vector<std::pair<CaptureClass, const Outfit *>>> CaptureTools(const std::set<std::string> &classNames) const;
+	std::map<std::string, std::vector<std::pair<CaptureClass, const Outfit *>>>
+		CaptureTools(const std::set<std::string> &classNames) const;
 	// Prevent further capture attempts from being made on this ship.
 	void LockDown();
 	bool IsLockedDown() const;
