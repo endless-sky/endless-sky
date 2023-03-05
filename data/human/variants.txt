@@ -2961,6 +2961,8 @@ ship "Wasp" "Wasp (Javelin)"
 	gun
 	gun "Javelin Pod"
 	gun "Javelin Pod"
+	gun
+	gun
 	
 
 ship "Wasp" "Wasp (Meteor)"
