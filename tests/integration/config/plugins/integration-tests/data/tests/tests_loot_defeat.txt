@@ -78,48 +78,26 @@ test-data "quarg loot defeat barges"
 						"hull energy" 5
 						"hull repair rate" 5
 						"outfit space" 600
-						ramscoop 10
 						"required crew" 160
 						shields 160000
-						"turret mounts" 4
+						"turret mounts" 2
 						"weapon capacity" 200
 					outfits
 						"Antimatter Core"
-						"Intrusion Countermeasures" 160
-						"Jump Drive"
 						"Medium Graviton Steering"
 						"Medium Graviton Thruster"
 						"Nanotech Battery"
 						"Quantum Shield Generator"
-						"Quarg Anti-Missile" 2
 						"Quarg Skylance" 2
 					crew 180
 					fuel 800
 					shields 160000
 					hull 50000
 					position -195.55016 482.28476
-					engine -14 47
-						zoom 1
-						angle 0
-						under
-					engine 14 47
-						zoom 1
-						angle 0
-						under
 					turret -28 7 "Quarg Skylance"
 						over
 					turret 28 7 "Quarg Skylance"
 						over
-					turret -9 -14 "Quarg Anti-Missile"
-						over
-					turret 9 -14 "Quarg Anti-Missile"
-						over
-					explode "huge explosion" 20
-					explode "large explosion" 40
-					explode "medium explosion" 30
-					explode "small explosion" 16
-					explode "tiny explosion" 12
-					"final explode" "final explosion medium" 1
 					system "Terra Incognita"
 			npc
 				uuid 7c616441-162b-4b95-a73b-33944e9933da
@@ -146,31 +124,11 @@ test-data "quarg loot defeat barges"
 						"outfit space" 130
 						"required crew" 1
 						shields 600
-						"turret mounts" 1
-						"weapon capacity" 20
-					outfits
-						"Anti-Missile Turret"
-						"D14-RN Shield Generator"
-						Hyperdrive
-						"LP036a Battery Pack"
-						"X1200 Ion Steering"
-						"X1700 Ion Thruster"
-						"nGVF-BB Fuel Cell"
 					crew 1
 					fuel 300
 					shields 0
 					hull 40000
 					position -309.98269 427.17637
-					engine -9.5 38
-						zoom 1
-						angle 0
-						under
-					engine 9.5 38
-						zoom 1
-						angle 0
-						under
-					turret 0 -18 "Anti-Missile Turret"
-						over
 					explode "small explosion" 10
 					explode "tiny explosion" 10
 					system "Terra Incognita"
@@ -199,31 +157,11 @@ test-data "quarg loot defeat barges"
 						"outfit space" 130
 						"required crew" 1
 						shields 600
-						"turret mounts" 1
-						"weapon capacity" 20
-					outfits
-						"Anti-Missile Turret"
-						"D14-RN Shield Generator"
-						Hyperdrive
-						"LP036a Battery Pack"
-						"X1200 Ion Steering"
-						"X1700 Ion Thruster"
-						"nGVF-BB Fuel Cell"
 					crew 1
 					fuel 300
 					shields 600
 					hull 16000
 					position 760.7463 -757.55434
-					engine -9.5 38
-						zoom 1
-						angle 0
-						under
-					engine 9.5 38
-						zoom 1
-						angle 0
-						under
-					turret 0 -18 "Anti-Missile Turret"
-						over
 					explode "small explosion" 10
 					explode "tiny explosion" 10
 					system "Terra Incognita"
