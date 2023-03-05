@@ -2301,7 +2301,7 @@ void Ship::DoGeneration()
 					DoRepair(ship.fuel, fuelRemaining, ship.attributes.Get("fuel capacity"));
 			}
 
-			// Carried ships can steal energy from their parent's batteries,
+			// Carried ships can recharge energy from their parent's batteries,
 			// if they are preparing for deployment. Otherwise, they replenish the
 			// parent's batteries.
 			for(const pair<double, Ship *> &it : carried)
