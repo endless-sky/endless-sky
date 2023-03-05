@@ -608,10 +608,8 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) c
 		if(lootedGovernment)
 			ship->SetLootedGovernment(lootedGovernment);
 		ship->SetPersonality(personality);
-		if(defeatedPersonality.IsDefined())
-			ship->SetDefeatedPersonality(defeatedPersonality);
-		if(lootedPersonality.IsDefined())
-			ship->SetLootedPersonality(lootedPersonality);
+		ship->SetDefeatedPersonality(defeatedPersonality);
+		ship->SetLootedPersonality(lootedPersonality);
 
 		placed.push_back(ship);
 	}
