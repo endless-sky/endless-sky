@@ -123,7 +123,10 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	{
 		// Or may have once been capturable but have since locked down.
 		if(victim->IsLockedDown())
-			messages.push_back("This ship is locked down and be can't captured.");
+		{
+			messages.push_back("This ship is locked down.");
+			messages.push_back("It can't be captured.");
+		}
 		else
 			messages.push_back("This is not a ship that you can capture.");
 	}
