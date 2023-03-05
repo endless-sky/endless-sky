@@ -32,6 +32,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <AL/alc.h>
 
 #include <algorithm>
+#include <chrono>
 #include <cmath>
 #include <map>
 #include <mutex>
@@ -39,7 +40,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <stdexcept>
 #include <thread>
 #include <vector>
-#include <chrono>
 
 using namespace std;
 

@@ -68,10 +68,18 @@ void Playlist::Load(const DataNode &node)
 			weight = max<int>(1, child.Value(1));
 		else if(child.Token(0) == "tracks")
 		{
-			if(child.Size() >= 2)
+			std::vector<std::string> progressionStyles = {"random", "linear", "pick"};
+			bool validProgressionStyle = (child.Size() >= 2) ?
+					count(progressionStyles.begin(), progressionStyles.end(), child.Token(1)) :
+					false;
+			if(validProgressionStyle)
 				progressionStyle = child.Token(1);
 			else
+			{
+				if(child.Size() >= 2)
+					child.PrintTrace("Warning: \"" + child.Token(1) + "\" is not a valid progression style so using linear:");
 				progressionStyle = "linear";
+			}
 			for(const auto &grand : child)
 			{
 				int trackWeight = (grand.Size() >= 2) ? max<int>(1, grand.Value(1)) : 1;
