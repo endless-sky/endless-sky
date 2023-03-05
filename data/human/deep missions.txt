@@ -4045,7 +4045,7 @@ mission "Hjlod Remembers Windblain"
 		has "Hjlodsaved"
 	on offer
 		dialog
-			`"Your inbox hums with a new message from <planet>:`
+			`Your inbox hums with a new message from <planet>:`
 			`	"Dear <first>,`
 			`	I never properly thanked you for saving my life on Nifel all those years ago. If you're ever in the neighborhood, please stop by <planet>.`
 			`				Signed, Hjlod"`
@@ -4075,8 +4075,8 @@ mission "Hjlod Remembers Nifel"
 		has "Hjlodsaved"
 	on offer
 		dialog
-			`"Your inbox hums with a new message from Nifel.`
-			`	Dear <first>,`
+			`Your inbox hums with a new message from Nifel.`
+			`	"Dear <first>,`
 			`	I never properly thanked you for saving my life all those years ago. If you're ever in the neighborhood, please stop by <planet>.`
 			`				Signed, Hjlod"`
 			
