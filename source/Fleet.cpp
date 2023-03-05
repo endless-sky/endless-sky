@@ -603,10 +603,8 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) c
 			ship->SetName(phrase->Get());
 		ship->SetGovernment(government);
 		ship->SetPersonality(personality);
-		if(defeatedGovernment)
-			ship->SetDefeatedGovernment(defeatedGovernment);
-		if(lootedGovernment)
-			ship->SetLootedGovernment(lootedGovernment);
+		ship->SetDefeatedGovernment(defeatedGovernment);
+		ship->SetLootedGovernment(lootedGovernment);
 		ship->SetPersonality(personality);
 		ship->SetDefeatedPersonality(defeatedPersonality);
 		ship->SetLootedPersonality(lootedPersonality);
