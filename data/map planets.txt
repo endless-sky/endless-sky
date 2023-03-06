@@ -1187,11 +1187,11 @@ planet "Ember Wormhole"
 
 wormhole "Ember Wormhole"
 	mappable
-	color "wormholes: Ember Waste"
 	link Aescolanus Cardea
 	link Cardea Insitor
 	link Insitor Segesta
 	link Segesta Aescolanus
+	color "wormholes: Ember Waste"
 
 planet Eminonu
 	attributes uninhabited
@@ -1663,7 +1663,7 @@ planet Geyser
 		threshold 3500
 		fleet "Large Militia" 20
 
-planet "Ghneoe"
+planet Ghneoe
 	attributes uninhabited
 	landscape land/hills10
 	description `Ghneoe's orbital period is dominated by a very long dry season due to the binary stars at the system's center. However, during a short portion of the year, Ghneoe experiences an intense water cycle that results in a boom of greenery and wildlife activity, developing a short-lived but flourishing ecosystem. Much of the flora and fauna have adapted to such drastic shifts in climate, and return to a dormant state once the intense heat cycle returns.`
@@ -2696,7 +2696,7 @@ planet Mirrorlake
 	spaceport `This spaceport appears to be a tourist destination. The architecture is different than on other Hai worlds, and much more primitive: stone and mortar instead of polished metal. However, all the buildings are in good repair: despite their ancient appearance, they must be maintained and rebuilt on a regular basis.`
 	security 0.2
 
-planet "Mnai"
+planet Mnai
 	attributes uninhabited
 	landscape land/canyon1
 	description `The environment of this world is quite pleasant by human standards. A majority of Mnai's yearly seasons consist of extended warm summer periods that provide healthy conditions for wildlife to thrive. Canyons are a common sight, sometimes harboring their own smaller ecosystems both in their higher mountainous regions and down in the valleys. Other patches of Mnai's surface have mesas that are home to mammals that look like large bears with antlers.`
@@ -4567,7 +4567,7 @@ planet Vatican
 	government Uninhabited
 	security 0
 
-planet "Veiuye"
+planet Veiuye
 	attributes moon uninhabited
 	landscape land/sea2
 	description `Like the other moons of the nearby gas giant, Veiuye is a frozen world. However, the surface layer of Veiyue is rather thin, and more detailed scans show large, hollow caverns beneath the exterior of the moon. These areas are abnormally warm compared to the rest of the moon, and appear to be filled with oceans primarily made up of water. Strange readings come from these areas, which could possibly be due to microbial life.`
@@ -4782,7 +4782,7 @@ planet Xerolophos
 	government Uninhabited
 	security 0
 
-planet "Xurelei"
+planet Xurelei
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa15
 	description `Xurelei's atmosphere is covered with huge tempests that would engulf an Earth-sized planet many times over. Strangely enough, these storms are initially much less violent than those recorded from other gas giants, and are easily traversable by probes and other exploration craft. Once below a certain depth, these storms become exponentially more dangerous. The cause of this drastic shift in intensity is unknown.`
@@ -4858,7 +4858,7 @@ planet Zug
 		threshold 3000
 		fleet "Large Militia" 18
 
-planet "Zydee"
+planet Zydee
 	attributes moon uninhabited
 	landscape land/enceladus_1
 	description `Although this moon initially seems barren and lifeless, there is evidence that the nearby Gegno Scin have recently attempted to set up an outpost here. Several partially-constructed buildings and landing zones are scattered about the surface, but none of them show any signs of activity, likely due to recent warfare with the Gegno Vi. Despite this, a small number of satellites actively orbit Zydee, likely providing important tactical information such as the volume of system traffic.`
