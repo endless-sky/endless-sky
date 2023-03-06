@@ -3885,21 +3885,15 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	}
 	bool shouldAutoAim = false;
 	bool isFiring = activeCommands.Has(Command::PRIMARY) || activeCommands.Has(Command::SECONDARY);
-	if( keyHeld.Has(Command::AUTOSTEER) && !command.Turn() && !ship.IsBoarding()
-			&& !keyStuck.Has(Command::LAND | Command::JUMP | Command::BOARD))
+	if(activeCommands.Has(Command::AUTOSTEER) && !command.Turn() && !ship.IsBoarding()
+			&& !autoPilot.Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD))
 	{
 		if((target && target->GetSystem() == ship.GetSystem() && target->IsTargetable()))
-		{
 			command.SetTurn(TurnToward(ship, TargetAim(ship)));
-		}
 		else if(ship.GetTargetAsteroid())
-		{
 			command.SetTurn(TurnToward(ship, ship.GetTargetAsteroid()->Position() - ship.Position()));
-		}
 		else if(ship.GetTargetStellar())
-		{
 			command.SetTurn(TurnToward(ship, ship.GetTargetStellar()->Position() - ship.Position()));
-		}
 	}
 	else if((Preferences::GetAutoAim() == Preferences::AutoAim::ALWAYS_ON
 			|| (Preferences::GetAutoAim() == Preferences::AutoAim::WHEN_FIRING && isFiring))

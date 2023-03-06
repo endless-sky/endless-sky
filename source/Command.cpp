@@ -44,40 +44,41 @@ namespace {
 
 // Command enumeration, including the descriptive strings that are used for the
 // commands both in the preferences panel and in the saved key settings.
+int64_t one = 1;
 const Command Command::NONE(0, "");
-const Command Command::MENU(1uL << 0, "Show main menu");
-const Command Command::FORWARD(1uL << 1, "Forward thrust");
-const Command Command::LEFT(1uL << 2, "Turn left");
-const Command Command::RIGHT(1uL << 3, "Turn right");
-const Command Command::BACK(1uL << 4, "Reverse");
-const Command Command::PRIMARY(1uL << 5, "Fire primary weapon");
-const Command Command::SECONDARY(1uL << 6, "Fire secondary weapon");
-const Command Command::SELECT(1uL << 7, "Select secondary weapon");
-const Command Command::LAND(1uL << 8, "Land on planet / station");
-const Command Command::BOARD(1uL << 9, "Board selected ship");
-const Command Command::HAIL(1uL << 10, "Talk to selected ship");
-const Command Command::SCAN(1uL << 11, "Scan selected ship");
-const Command Command::JUMP(1uL << 12, "Initiate hyperspace jump");
-const Command Command::FLEET_JUMP(1uL << 13, "");
-const Command Command::TARGET(1uL << 14, "Select next ship");
-const Command Command::NEAREST(1uL << 15, "Select nearest hostile ship");
-const Command Command::DEPLOY(1uL << 16, "Deploy / recall fighters");
-const Command Command::AFTERBURNER(1uL << 17, "Fire afterburner");
-const Command Command::CLOAK(1uL << 18, "Toggle cloaking device");
-const Command Command::MAP(1uL << 19, "View star map");
-const Command Command::INFO(1uL << 20, "View player info");
-const Command Command::FULLSCREEN(1uL << 21, "Toggle fullscreen");
-const Command Command::FASTFORWARD(1uL << 22, "Toggle fast-forward");
-const Command Command::FIGHT(1uL << 23, "Fleet: Fight my target");
-const Command Command::GATHER(1uL << 24, "Fleet: Gather around me");
-const Command Command::HOLD(1uL << 25, "Fleet: Hold position");
-const Command Command::AMMO(1uL << 26, "Fleet: Toggle ammo usage");
-const Command Command::WAIT(1uL << 27, "");
+const Command Command::MENU(one << 0, "Show main menu");
+const Command Command::FORWARD(one << 1, "Forward thrust");
+const Command Command::LEFT(one << 2, "Turn left");
+const Command Command::RIGHT(one << 3, "Turn right");
+const Command Command::BACK(one << 4, "Reverse");
+const Command Command::PRIMARY(one << 5, "Fire primary weapon");
+const Command Command::SECONDARY(one << 6, "Fire secondary weapon");
+const Command Command::SELECT(one << 7, "Select secondary weapon");
+const Command Command::LAND(one << 8, "Land on planet / station");
+const Command Command::BOARD(one << 9, "Board selected ship");
+const Command Command::HAIL(one << 10, "Talk to selected ship");
+const Command Command::SCAN(one << 11, "Scan selected ship");
+const Command Command::JUMP(one << 12, "Initiate hyperspace jump");
+const Command Command::FLEET_JUMP(one << 13, "");
+const Command Command::TARGET(one << 14, "Select next ship");
+const Command Command::NEAREST(one << 15, "Select nearest hostile ship");
+const Command Command::DEPLOY(one << 16, "Deploy / recall fighters");
+const Command Command::AFTERBURNER(one << 17, "Fire afterburner");
+const Command Command::CLOAK(one << 18, "Toggle cloaking device");
+const Command Command::MAP(one << 19, "View star map");
+const Command Command::INFO(one << 20, "View player info");
+const Command Command::FULLSCREEN(one << 21, "Toggle fullscreen");
+const Command Command::FASTFORWARD(one << 22, "Toggle fast-forward");
+const Command Command::FIGHT(one << 23, "Fleet: Fight my target");
+const Command Command::GATHER(one << 24, "Fleet: Gather around me");
+const Command Command::HOLD(one << 25, "Fleet: Hold position");
+const Command Command::AMMO(one << 26, "Fleet: Toggle ammo usage");
+const Command Command::WAIT(one << 27, "");
 const Command Command::STOP(1ul << 28, "");
-const Command Command::SHIFT(1uL << 29, "");
-const Command Command::MOUSE_TURNING_HOLD(1uL << 30, "Mouse turning (hold)");
-const Command Command::MOUSE_TURNING_TOGGLE(1uL << 31, "Mouse turning (toggle)");
-const Command Command::AUTOSTEER(1uL << 32, "Auto steer / face target");
+const Command Command::SHIFT(one << 29, "");
+const Command Command::MOUSE_TURNING_HOLD(one << 30, "Mouse turning (hold)");
+const Command Command::MOUSE_TURNING_TOGGLE(one << 31, "Mouse turning (toggle)");
+const Command Command::AUTOSTEER(one << 32, "Auto steer / face target");
 
 
 
@@ -392,7 +393,7 @@ Command &Command::operator|=(const Command &command)
 
 
 // Private constructor.
-Command::Command(uint32_t state)
+Command::Command(uint64_t state)
 	: state(state)
 {
 }
@@ -401,7 +402,7 @@ Command::Command(uint32_t state)
 
 // Private constructor that also stores the given description in the lookup
 // table. (This is used for the enumeration at the top of this file.)
-Command::Command(uint32_t state, const string &text)
+Command::Command(uint64_t state, const string &text)
 	: state(state)
 {
 	if(!text.empty())
