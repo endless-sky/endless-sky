@@ -346,6 +346,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 			RingShader::Draw(to, OUTER, INNER, color);
 		}
 
+		DistanceMap localDistance(player);
 		unsigned missionCounter = 0;
 		for(const Mission &mission : player.Missions())
 		{
@@ -360,7 +361,8 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 				bool blink = false;
 				if(mission.Deadline())
 				{
-					int days = min(5, mission.Deadline() - player.GetDate()) + 1;
+					int days = min(6, mission.Deadline() - player.GetDate() + 1
+							- localDistance.Days(mission.Destination()->GetSystem()));
 					if(days > 0)
 						blink = (step % (10 * days) > 5 * days);
 				}
@@ -1240,7 +1242,8 @@ void MapPanel::DrawMissions()
 		bool blink = false;
 		if(mission.Deadline())
 		{
-			int days = min(5, mission.Deadline() - player.GetDate()) + 1;
+			int days = min(6, mission.Deadline() - player.GetDate() + 1
+					- distance.Days(mission.Destination()->GetSystem()));
 			if(days > 0)
 				blink = (step % (10 * days) > 5 * days);
 		}
