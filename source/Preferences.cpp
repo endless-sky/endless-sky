@@ -49,19 +49,11 @@ namespace {
 	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
 	int vsyncIndex = 1;
 
-	const vector<string> STATUS_OVERLAYS_ALL = {"off", "always on", "damaged", "--"};
+	const vector<string> STATUS_OVERLAYS = {"off", "always on", "damaged", "--"};
 	int overlayAllIndex = 0;
-
-	const vector<string> STATUS_OVERLAYS_FLAGSHIP = {"off", "always on", "damaged", "--"};
 	int overlayFlagshipIndex = 3;
-
-	const vector<string> STATUS_OVERLAYS_ESCORT = {"off", "always on", "damaged", "--"};
 	int overlayEscortIndex = 3;
-
-	const vector<string> STATUS_OVERLAYS_ENEMY = {"off", "always on", "damaged", "--"};
 	int overlayEnemyIndex = 3;
-
-	const vector<string> STATUS_OVERLAYS_NEUTRAL = {"off", "always on", "damaged", "--"};
 	int overlayNeutralIndex = 3;
 
 	const vector<string> AUTO_AIM_SETTINGS = {"off", "always on", "when firing"};
@@ -120,15 +112,15 @@ void Preferences::Load()
 		else if(node.Token(0) == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Show status overlays")
-			overlayAllIndex = max<int>(0, min<int>(node.Value(1), STATUS_OVERLAYS_ALL.size() - 1));
+			overlayAllIndex = max<int>(0, min<int>(node.Value(1), STATUS_OVERLAYS.size() - 1));
 		else if(node.Token(0) == "Show flagship overlay" && overlayAllIndex == 3)
-			overlayFlagshipIndex = max<int>(0, min<int>(node.Value(1), STATUS_OVERLAYS_FLAGSHIP.size() - 1));
+			overlayFlagshipIndex = max<int>(0, min<int>(node.Value(1), STATUS_OVERLAYS.size() - 1));
 		else if(node.Token(0) == "Show escort overlays" && overlayAllIndex == 3)
-			overlayEscortIndex = max<int>(0, min<int>(node.Value(1), STATUS_OVERLAYS_ESCORT.size() - 1));
+			overlayEscortIndex = max<int>(0, min<int>(node.Value(1), STATUS_OVERLAYS.size() - 1));
 		else if(node.Token(0) == "Show enemy overlays" && overlayAllIndex == 3)
-			overlayEnemyIndex = max<int>(0, min<int>(node.Value(1), STATUS_OVERLAYS_ENEMY.size() - 1));
+			overlayEnemyIndex = max<int>(0, min<int>(node.Value(1), STATUS_OVERLAYS.size() - 1));
 		else if(node.Token(0) == "Show neutral overlays" && overlayAllIndex == 3)
-			overlayNeutralIndex = max<int>(0, min<int>(node.Value(1), STATUS_OVERLAYS_NEUTRAL.size() - 1));
+			overlayNeutralIndex = max<int>(0, min<int>(node.Value(1), STATUS_OVERLAYS.size() - 1));
 		else if(node.Token(0) == "Automatic aiming")
 			autoAimIndex = max<int>(0, min<int>(node.Value(1), AUTO_AIM_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Parallax background")
@@ -375,7 +367,7 @@ void Preferences::SetStatusOverlaysGeneric(int &index, bool blank)
 			}
 		}
 		int targetIndex = index + 1;
-		if(targetIndex >= static_cast<int>(STATUS_OVERLAYS_ALL.size() - 1))
+		if(targetIndex >= static_cast<int>(STATUS_OVERLAYS.size() - 1))
 			targetIndex = 0;
 		index = targetIndex;
 	}
@@ -442,15 +434,15 @@ const string &Preferences::StatusOverlaysSetting(int type)
 	{
 		default:
 		case 0:
-			return STATUS_OVERLAYS_ALL[overlayAllIndex];
+			return STATUS_OVERLAYS[overlayAllIndex];
 		case 1:
-			return STATUS_OVERLAYS_FLAGSHIP[overlayFlagshipIndex];
+			return STATUS_OVERLAYS[overlayFlagshipIndex];
 		case 2:
-			return STATUS_OVERLAYS_ESCORT[overlayEscortIndex];
+			return STATUS_OVERLAYS[overlayEscortIndex];
 		case 3:
-			return STATUS_OVERLAYS_ENEMY[overlayEnemyIndex];
+			return STATUS_OVERLAYS[overlayEnemyIndex];
 		case 4:
-			return STATUS_OVERLAYS_NEUTRAL[overlayNeutralIndex];
+			return STATUS_OVERLAYS[overlayNeutralIndex];
 	}
 }
 
