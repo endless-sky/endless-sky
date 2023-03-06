@@ -44,11 +44,12 @@ planet Ada
 		fleet "Large Republic" 16
 
 planet "Aetuah"
-	attributes "gas giant" "requires: gaslining"
+	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa30
 	description `The close proximity of Aetuah and the neighboring ice moon causes various ebbs and flows in the storms on the gas giant as well as constant reshaping of the moon's surface. The ice moon may have been captured by Aetuah in times past as a rogue planet, and the distance of the gas giant from the system center suggests it might be a rogue planet itself as well. In time, the gravitational force exhibited by Aetuah will tear apart the ice moon, plummeting it into the abyss.`
 	description `	The most striking features of Aetuah are large oval-shaped organisms inhabiting the upper atmosphere. These lifeforms resemble some of the space fauna of nearby systems, and have a strange behavior of slingshotting themselves away from Aetuah once they reach a certain size through some unknown propulsion method.`
 	government Uninhabited
+	security 0
 
 planet Ahr
 	attributes arach factory folklore shipping tourism urban
@@ -638,7 +639,7 @@ planet "Chosen Nexus"
 	security 0.6
 
 planet Cipi
-	attributes gegno scin
+	attributes gegno scin moon
 	landscape land/mountain5
 	description `Cipi's forestries and mountains are a suitable place for the Gegno Scin's less active population, home to more quiet industries. The population of this planet is limited, and architecture is built high in mountain ranges to avoid hurting the natural landscapes of the planet. This provides the Scin with healthy crop and hunting seasons to supply their main population without the interference of polluting industry.`
 	spaceport `The spaceport is built protruding off the side of a mountain, supported underneath by several pylons in a half-oval formation. The valley down below is extremely narrow, which seems to invite Scin fighters to test their skills. You spot a few Halites zipping through the valley while dodging between the supporting pylons before pulling upward and flying past the edge of the port. Despite their speed, they are not particularly loud.`
@@ -756,9 +757,11 @@ planet Crossroads
 		fleet "Small Syndicate" 11
 
 planet Cyife
+	attributes moon uninhabited
 	landscape land/snow13
 	description `This lonely, icy moon is the only non-gaseous celestial body within this rather quiet star system. Although there are no signs of life here due to the extremely low temperatures, certain parts of the surface glimmer oddly compared to others, as if to imply something may once have been here before.`
 	government Uninhabited
+	security 0
 
 planet Dancer
 	attributes research south
@@ -957,10 +960,12 @@ planet Disara
 	bribe 0
 
 planet "Dlia Jzaur"
+	attributes uninhabited
 	landscape land/mountain2
 	description `Dlia Jzaur has a few hotter seasons than normal due to the binary stars at the system's center, where beautiful eclipses can be seen weekly. The much smaller secondary star is believed to be a rogue captured by the larger one, but is slowly drifting away. There seems to be evidence of recent colonization efforts by the Gegno, but they appear to have been abandoned due to increasing warfare in nearby systems.`
 	description `	Oddly enough, Dlia Jzaur has many unnatural looking formations on the surface that seem to reach up to the sky in areas eclipses often occur. The formations are hollow underneath, but show no signs of Gegno involvement.`
 	government Uninhabited
+	security 0
 
 planet "Double Haze"
 	attributes factory farming kimek urban
@@ -982,6 +987,7 @@ planet "Drekag Firask"
 	security 0
 
 planet "Dueitch Ae"
+	attributes gegno scin
 	landscape land/mountain1
 	description `In order to pursue biological and other important scientific research, this green, lush world was designated as the Gegno Scin's capital. Much unlike the heavy industry of the core Gegno worlds, Dueitch Ae's surface still supports many natural ecosystems, and most importantly, is home to a notable amount of water bodies. The Scin effectively limit their expansion on the planet, even at the cost of their population's growth, in order to preserve the flourshing life on it as long as possible.`
 	description `	Although preservation is a primary goal, the Scin still manipulate the planet for the sake of research. Even if it's not harming the environment directly, patches of the planet have been converted into large experimentation grounds, some a bit less humane than others.`
@@ -1005,6 +1011,7 @@ planet "Dueyu Eitch"
 	outfitter "Gegno Basic"
 	outfitter "Gegno Intermediate"
 	"required reputation" 1
+	bribe 0
 	security 0
 
 planet Dune
@@ -1077,9 +1084,11 @@ planet Echo
 	security 0.9
 
 planet "Eeu Mnai"
+	attributes uninhabited
 	landscape land/canyon03
 	description `In contrast to the flourishing world of Mnai, Eeu Mnai is a dull dwarf planet composed mostly of rock and stone. While still within habitable range of the system's binary stars, the surface of this world is rough and jagged, and is dominated by cold fall and winter seasons. This environment is not inhospitable, however, as various forms of life. such as subterranean mammals and insectoid creatures, have adapted to these conditions.`
 	government Uninhabited
+	security 0
 
 planet "Ef Aourtdye"
 	attributes gegno
@@ -1093,6 +1102,7 @@ planet "Ef Aourtdye"
 	outfitter "Gegno Basic"
 	outfitter "Gegno Intermediate"
 	"required reputation" 1
+	bribe 0
 	security 0
 
 planet "Ef Osch"
@@ -1298,10 +1308,12 @@ planet Essime
 	security 0
 
 planet Esstch
-	attributes gegno
+	attributes gegno uninhabited
 	landscape land/badlands2
 	description `This hot desert world is the first world the Gegno left their imprint on outside of their home. Littered about with various recording instruments of times past, Esstch represents a historical stepping stone for the Gegno. However, due to the proximity of the system's star, it is too hot to be colonized.`
 	government Uninhabited
+	bribe 0
+	security 0
 
 planet Everhope
 	attributes hai station
@@ -1577,9 +1589,12 @@ planet Furnace
 		fleet "Large Syndicate" 7
 
 planet "Gara Pvu"
+	attributes uninhabited
 	landscape land/sky3
 	description `Beautiful landscapes cover this planet, and unlike nearby systems, the climate is more than welcoming to a human being. Most remarkably, there are small selections of elegant curved structures and overpasses spread out in patches along the surface. While they are fantastical in appearance, they are unmistakably not part of the land itself, and must have been left long ago by some other species that also managed to leave the natural beauty of this planet intact - either that, or it's been so long since their disappearance that nature has retaken everything.`
 	government Uninhabited
+	bribe 0
+	security 0
 
 planet "Garden Empyreal"
 	attributes "coalition station" kimek shipping tourism wealthy
@@ -1649,10 +1664,12 @@ planet Geyser
 		fleet "Large Militia" 20
 
 planet "Ghneoe"
+	attributes uninhabited
 	landscape land/hills10
 	description `Ghneoe's orbital period is dominated by a very long dry season due to the binary stars at the system's center. However, during a short portion of the year, Ghneoe experiences an intense water cycle that results in a boom of greenery and wildlife activity, developing a short-lived but flourishing ecosystem. Much of the flora and fauna have adapted to such drastic shifts in climate, and return to a dormant state once the intense heat cycle returns.`
 	description `	Unlike its moon, Ghneoe has yet to see any sort of colonization efforts by the nearby Gegno Scin, perhaps due to the abnormal yearly weather, system warfare, or a combination of both.`
 	government Uninhabited
+	security 0
 
 planet "Giaru Gegno"
 	attributes "gegno quarg" quarg station
@@ -2124,6 +2141,7 @@ planet "Iemn Eitch"
 	description `Although too cold for a proper civilization, Iemn Eitch has been extensively used in the past as an outpost for the growing Gegno space race. As one of their first few explored worlds, antique-looking architecture is are scattered about the surface and looks significantly different to structures found on Dueyu Eitch, perhaps due to the nature of construction in an unfamiliar environment. A few large shipyard-esque platforms continue to service a small number of still active Gegno generation vessels from times past, presumably at a much slower pace than during the earliest days of their space colonization.`
 	government Gegno
 	"required reputation" 1
+	bribe 0
 	security 0
 
 planet "Illbo Avo"
@@ -2679,10 +2697,12 @@ planet Mirrorlake
 	security 0.2
 
 planet "Mnai"
+	attributes uninhabited
 	landscape land/canyon1
 	description `The environment of this world is quite pleasant by human standards. A majority of Mnai's yearly seasons consist of extended warm summer periods that provide healthy conditions for wildlife to thrive. Canyons are a common sight, sometimes harboring their own smaller ecosystems both in their higher mountainous regions and down in the valleys. Other patches of Mnai's surface have mesas that are home to mammals that look like large bears with antlers.`
 	description `	Although this world remains an uncolonized paradise, there is some indication that the planet has been visited recently by the Gegno. A few landing sites can be found atop the taller ridges, but none are intricate enough to indicate any attempt to establish a settlement.`
 	government Uninhabited
+	security 0
 
 planet Moonshake
 	attributes core factory forest urban
@@ -4121,6 +4141,7 @@ planet "Tefkar Ret"
 	description `This station is run-down and completely abandoned, emptied of atmosphere so that air pressure will not put ongoing stress on the station's structure. Each section is sealed off from the others by heavy blast doors, leaving most of the station inaccessible.`
 
 planet Ternituul
+	attributes gegno vi
 	landscape land/fog1
 	description `Ternituul is a dull world covered in a thick layer of fog hiding a dry desolate surface: an ideal world for the hardened Gegno Vi. A large portion of the Vi's military branch is based here, where new recruits are thrown into the first bottleneck of their lives. It is not uncommon for inhabitants to be lost to the bleak ecosystem of this planet.`
 	description `	The fog also hides a more grim aspect of this world - numerous graveyards cover the terrain, serving as a final resting place for most Vi. Large ceremonies are constantly held for the fallen, though instead of grievance, the Vi celebrate the commitment and dignity of their fellow brethren.`
@@ -4390,10 +4411,11 @@ planet "Valley of the Damned"
 	description `However, there is an unusually high concentration of toxic chlorine in the lower atmosphere. Without special equipment, one can only stay on the mountains to avoid the dense gas, and even then, only for a few hours before problems arise. Most traces of attempted colonization by the Sheragi have eroded away by now, leaving only broken buildings and decaying bones.`
 
 planet "Var Oti"
-	attributes gegno
+	attributes uninhabited
 	landscape land/desert0
 	description `This rocky world is covered with vast ranges of desert. While some places have plateaus of rugged rock formations, others have articulate valleys of sand. When it comes to less distinct locations, it is hard to tell at first glance whether or not they are simply a formation of rocks resting on a deep layer of sand, or a thin layer of sand resting on a great foundation of rock. In addition, common dust storms constantly reshape the terrain, and together with the harsh, dry conditions, Var Oti is a dangerous world to visitors who aren't prepared.`
 	government Uninhabited
+	security 0
 
 planet "Var' Kar'i'i"
 	attributes farming urban wanderer
@@ -4546,10 +4568,11 @@ planet Vatican
 	security 0
 
 planet "Veiuye"
-	attributes moon
+	attributes moon uninhabited
 	landscape land/sea2
 	description `Like the other moons of the nearby gas giant, Veiuye is a frozen world. However, the surface layer of Veiyue is rather thin, and more detailed scans show large, hollow caverns beneath the exterior of the moon. These areas are abnormally warm compared to the rest of the moon, and appear to be filled with oceans primarily made up of water. Strange readings come from these areas, which could possibly be due to microbial life.`
 	government Uninhabited
+	security 0
 
 planet Veliante
 	attributes ka'het uninhabited
@@ -4566,8 +4589,11 @@ planet "Vibrant Water"
 	security 0.2
 
 planet Vigales
+	attributes uninhabited
 	landscape land/desert5
 	description `This hot desert world is home to several species of underground animals. These animals are very reptile-like, having appearances similar to that of lizards or salamanders from Earth, although much larger in size. It is believed that some indigenous species in Gegno space have originated from this world, or are descendants of ancestral species that once inhabited it.`
+	government Uninhabited
+	security 0
 
 planet Viminal
 	attributes remnant "remnant primary"
@@ -4730,10 +4756,12 @@ wormhole "Wormhole Link"
 	color "wormholes: Ember Waste"
 
 planet "Wye Tzeou"
+	attributes uninhabited
 	landscape land/snow14
 	description `Wye Tzeou is found in a noticeably quieter system than others. Its surface is covered in extreme crystalline-like structures protruding out in various fashions. These constructs are all extremely tall, and no two look alike. It seems the actual surface of the planet is far beneath a layer of these mysterious pillars. There is no apparent environmental reasoning to this composition as the soft snowy seasons and calm low winds are the most active natural elements on Wye Tzeou.`
 	description `	Deep scans reveal even more odd compositions below, showing pockets in the depths of the glass forest that look like giant empty gaps between each pillar.`
 	government Uninhabited
+	security 0
 
 planet "Wyvern Station"
 	attributes rim station
@@ -4755,11 +4783,13 @@ planet Xerolophos
 	security 0
 
 planet "Xurelei"
-	attributes "gas giant" "requires: gaslining"
+	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa15
 	description `Xurelei's atmosphere is covered with huge tempests that would engulf an Earth-sized planet many times over. Strangely enough, these storms are initially much less violent than those recorded from other gas giants, and are easily traversable by probes and other exploration craft. Once below a certain depth, these storms become exponentially more dangerous. The cause of this drastic shift in intensity is unknown.`
 	description `	In the lower layers, small, peculiar twinkles of light in the form of organic shapes begin to appear, flowing gracefully along with the harsh winds. Although further exploration is impossible due to the fierce weather, the unusual objects darting beneath the clouds appear to be unaffected.`
 	government Uninhabited
+	bribe 0
+	security 0
 
 planet Yedikule
 	attributes gas moon "requires: gaslining" uninhabited
@@ -4770,24 +4800,30 @@ planet Yedikule
 	security 0
 
 planet "Yiia Iyr"
+	attributes uninhabited
 	landscape land/dune0
 	description `Much of Yiia Iyr is obscured by several layers of dark clouds, and what little sunlight that makes it to the surface highlights withered plains and dried up riverbeds. Thick layers of fog are often found hugging the ground, and soft, cool air brushes against shrivelling grass fields. There is no discernible cause for why Yiia Iyr appears to have been able to support an ecosystem despite being so inhospitable today.`
 	government Uninhabited
+	security 0
 
 planet "Yniu Eiu"
-	attributes rulei
+	attributes rulei uninhabited
 	landscape land/canyon0
 	music "ambient/rulei planet"
 	description `Yniu Eiu is a rocky world with many canyons. A large portion of the surface is bright shades of gray and white, but the more striking visuals are the patches of purple-red webbed lakes and rivers flowing across the surface. It is unclear if this is a natural occurrence or if these were artificially created, but the way the areas around these sights are dug out and shaped imply that this planet used to be a home to some type of civilization, or one that found importance in this material.`
 	description `	The surface of these red-purple lakes and rivers move in odd ways that make them seem almost alive. Although they flow at extremely low rates, they also softly bulge and contract in a curious linear motion.`
 	government Uninhabited
+	bribe 0
+	security 0
 
 planet "Yniu Ena"
-	attributes rulei
+	attributes rulei uninhabited
 	landscape land/canyon03
 	music "ambient/rulei planet"
 	description `Like its parent planet below, Yniu Ena has a thick purple-reddish web of unnatural material spread across its surface, forming rivers and large lakes. While most of these lakes are rather small relative to the planet's surface, there are a few as large as oceans that give the appearance of scars on the planet.`
 	government Uninhabited
+	bribe 0
+	security 0
 
 planet Zenith
 	attributes frontier north "north pirate" pirate
@@ -4823,7 +4859,8 @@ planet Zug
 		fleet "Large Militia" 18
 
 planet "Zydee"
-	attributes moon
+	attributes moon uninhabited
 	landscape land/enceladus_1
 	description `Although this moon initially seems barren and lifeless, there is evidence that the nearby Gegno Scin have recently attempted to set up an outpost here. Several partially-constructed buildings and landing zones are scattered about the surface, but none of them show any signs of activity, likely due to recent warfare with the Gegno Vi. Despite this, a small number of satellites actively orbit Zydee, likely providing important tactical information such as the volume of system traffic.`
 	government Uninhabited
+	security 0
