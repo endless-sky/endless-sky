@@ -457,7 +457,7 @@ mission "Korath [F01]: A Fishy Deal"
 			label ship
 			action
 				set "Korath [F01]: A Fishy Deal: ship"
-				log "Minor People" "Jenny Jetmaster" "Latest in a family line that has operated and maintained a replica of an ancient jet aircraft and made money on airshows. She is now on run from the Syndicate for rescuing her persecuted uncle from Tinker"
+				log "Minor People" "Jenny Jetmaster" "Latest in a family line that has operated and maintained a replica of an ancient jet aircraft and made money on airshows. She is now on the run from the Syndicate for rescuing her persecuted uncle from Tinker"
 			`	[image of a hyperspace-worthy jet aircraft]`
 			`	You see her expression brighten as she walks towards you. "It's an heirloom," she says proudly, gesturing widely at the ship, "which has been in the family for centuries. My distant ancestor got a military surplus cargo plane and refurbished it. They used it as a personal craft. Each generation added to it; every piece has been repaired or replaced over the last thousand years. It's more of a replica now.`
 			`	"The whole thing has been modernized - about a dozen times. There's a hyperdrive built into the hull itself, and those ion engines aren't of Syndicate design. They're custom-built, with ion propulsion, steering, and atmospheric anti-grav, in one assembly. The design was once called a Jetmaster, and my family have taken the Jetmaster name as our own.`
@@ -574,7 +574,7 @@ mission "Korath [F02]: A Fishy Proposition"
 			`	She nods and gives an approving smile.`
 			label warning
 			`	"One more matter, Captain <last>: a fair warning about some of our associates. To keep helping our planet, you need to be able to travel far and wide, acting as a courier through space we cannot reach. If you anger half the galaxy, not only will it risk your life, it'll hurt the people of New Tortuga.`
-			`	"You may have noticed some unusual ships near here, larger than anything else in human space. Any fish delivery jobs at New Tortuga, and any jobs at this station, will earn you favor with them. Eventually, they'll stop being hostile, and you could assist their disabled ships.`
+			`	"You may have noticed some unusual ships near here, larger than anything else in human space. Any fish delivery jobs at New Tortuga, and any jobs at this station, will earn you favor with them. Eventually, they'll stop being hostile, and you will be allowed to assist their disabled ships.`
 			`	"For your safety, for their sake, and for the sake of my planet, I do implore you: do not assist those ships. They know the risk they take when raiding, and have backups in place. It is more important to them that you retain your freedom of movement by not revealing your association."`
 				goto departs
 
@@ -796,7 +796,7 @@ mission "Korath [F05]: The Rainbow Feather"
 			`	"The imperialist Drak race sent living weapons, the Archons, to conquer the Korath under the guise of protection. The Archons' antimatter weapons and seeming invincibility was too much, until the Korath gathered a larger fleet. When they managed to injure one Archon, the others revealed frightening powers. They tore open rifts in reality, simply swallowing up Korath ships. Hidden super-weapons in planetoids, intended as mines, were harmless, as the Archons shattered the planetoids and atomized the weapons. In every battle, all Korath military ships were destroyed, but the civilians were somehow unscathed.`
 			`	"The Korath saw certain defeat, and in surrender the Drak offered two options. The Korath may give up their religions and live as pets of their former friends, the Quarg. Or, they could keep their religions and live in starving exile near us.`
 			`	"The Drak left the exiles with a warning: destroy Far'en Lei, and we will kill you all. You may never leave exile until you heal that planet and live there peacefully. As a precaution, and almost as a religion, they forbid weapons on that planet. A condition YOU violated." She looks heated for a moment before continuing.`
-			`	"As to their guardianship over us, it violates the letter of the law, but not the intent. The Korath believe the Drak will look favorably upon them for protecting the weak. Their aid - at our insistence - has been purely civilian, except to defend us against major attacks. Anything we receive, the Syndicate may somehow obtain, and I shudder to think of what they may do with the wrong knowledge."`
+			`	"As to their guardianship over us, it violates the letter of the law, but not the intent. The Korath believe the Drak will look favorably upon them for protecting the weak. Along with defending us against major attacks, they have provided extensive assistance. Their aid - at our insistence - has been purely civilian: Anything we receive, the Syndicate may somehow obtain, and I shudder to think of what they may do with the wrong knowledge."`
 				goto check
 
 			label compassion
