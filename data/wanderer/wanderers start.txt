@@ -229,7 +229,7 @@ mission "Wanderers: Translation Machine"
 	source "Vara K'chrai"
 	destination "Alexandria"
 	substitutions
-		"<Library search>" `You travel through the library searching for data suitable for training the Wanderer translation algorithm, but you have an unexpected problem: you're surrounded by it. Even fifty Bulk Freighters would be unable to carry all the tomes and data cores of Alexandria library. Someone with expertise in natural language processing would know what to do. Asking around, you're referred to a research librarian who develops automated translation algorithms for dead languages.`
+		"<Library search>" `Travelling through the library in search for data suitable for training the Wanderer translation algorithm raises an unexpected problem: you're surrounded by it. You guessed that even fifty Bulk Freighters wouldn't be enough to carry all the tomes and data cores from the Alexandria library. Asking around, you're referred to a research librarian who develops automated translation algorithms for dead languages.`
 	to offer
 		has "Wanderers: Diplomacy: done"
 	on offer
