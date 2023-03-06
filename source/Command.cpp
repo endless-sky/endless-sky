@@ -38,15 +38,6 @@ namespace {
 	// Keep track of any keycodes that are mapped to multiple commands, in order
 	// to display a warning to the player.
 	map<int, int> keycodeCount;
-
-	template<unsigned bit>
-	Command::CommandState MakeCommandState()
-	{
-		Command::CommandState state;
-		static_assert(bit < Command::COMMAND_COUNT, "bit number is higher than COMMAND_COUNT - 1");
-		state.set(bit);
-		return state;
-	}
 }
 
 
@@ -54,38 +45,38 @@ namespace {
 // Command enumeration, including the descriptive strings that are used for the
 // commands both in the preferences panel and in the saved key settings.
 const Command Command::NONE(Command::CommandState(), "");
-const Command Command::MENU(MakeCommandState<0>(), "Show main menu");
-const Command Command::FORWARD(MakeCommandState<1>(), "Forward thrust");
-const Command Command::LEFT(MakeCommandState<2>(), "Turn left");
-const Command Command::RIGHT(MakeCommandState<3>(), "Turn right");
-const Command Command::BACK(MakeCommandState<4>(), "Reverse");
-const Command Command::PRIMARY(MakeCommandState<5>(), "Fire primary weapon");
-const Command Command::SECONDARY(MakeCommandState<6>(), "Fire secondary weapon");
-const Command Command::SELECT(MakeCommandState<7>(), "Select secondary weapon");
-const Command Command::LAND(MakeCommandState<8>(), "Land on planet / station");
-const Command Command::BOARD(MakeCommandState<9>(), "Board selected ship");
-const Command Command::HAIL(MakeCommandState<10>(), "Talk to selected ship");
-const Command Command::SCAN(MakeCommandState<11>(), "Scan selected ship");
-const Command Command::JUMP(MakeCommandState<12>(), "Initiate hyperspace jump");
-const Command Command::FLEET_JUMP(MakeCommandState<13>(), "");
-const Command Command::TARGET(MakeCommandState<14>(), "Select next ship");
-const Command Command::NEAREST(MakeCommandState<15>(), "Select nearest hostile ship");
-const Command Command::DEPLOY(MakeCommandState<16>(), "Deploy / recall fighters");
-const Command Command::AFTERBURNER(MakeCommandState<17>(), "Fire afterburner");
-const Command Command::CLOAK(MakeCommandState<18>(), "Toggle cloaking device");
-const Command Command::MAP(MakeCommandState<19>(), "View star map");
-const Command Command::INFO(MakeCommandState<20>(), "View player info");
-const Command Command::FULLSCREEN(MakeCommandState<21>(), "Toggle fullscreen");
-const Command Command::FASTFORWARD(MakeCommandState<22>(), "Toggle fast-forward");
-const Command Command::FIGHT(MakeCommandState<23>(), "Fleet: Fight my target");
-const Command Command::GATHER(MakeCommandState<24>(), "Fleet: Gather around me");
-const Command Command::HOLD(MakeCommandState<25>(), "Fleet: Hold position");
-const Command Command::AMMO(MakeCommandState<26>(), "Fleet: Toggle ammo usage");
-const Command Command::WAIT(MakeCommandState<27>(), "");
-const Command Command::STOP(MakeCommandState<28>(), "");
-const Command Command::SHIFT(MakeCommandState<29>(), "");
-const Command Command::MOUSE_TURNING_HOLD(MakeCommandState<30>(), "Mouse turning (hold)");
-const Command Command::MOUSE_TURNING_TOGGLE(MakeCommandState<31>(), "Mouse turning (toggle)");
+const Command Command::MENU(Command::SetBit<0>(), "Show main menu");
+const Command Command::FORWARD(Command::SetBit<1>(), "Forward thrust");
+const Command Command::LEFT(Command::SetBit<2>(), "Turn left");
+const Command Command::RIGHT(Command::SetBit<3>(), "Turn right");
+const Command Command::BACK(Command::SetBit<4>(), "Reverse");
+const Command Command::PRIMARY(Command::SetBit<5>(), "Fire primary weapon");
+const Command Command::SECONDARY(Command::SetBit<6>(), "Fire secondary weapon");
+const Command Command::SELECT(Command::SetBit<7>(), "Select secondary weapon");
+const Command Command::LAND(Command::SetBit<8>(), "Land on planet / station");
+const Command Command::BOARD(Command::SetBit<9>(), "Board selected ship");
+const Command Command::HAIL(Command::SetBit<10>(), "Talk to selected ship");
+const Command Command::SCAN(Command::SetBit<11>(), "Scan selected ship");
+const Command Command::JUMP(Command::SetBit<12>(), "Initiate hyperspace jump");
+const Command Command::FLEET_JUMP(Command::SetBit<13>(), "");
+const Command Command::TARGET(Command::SetBit<14>(), "Select next ship");
+const Command Command::NEAREST(Command::SetBit<15>(), "Select nearest hostile ship");
+const Command Command::DEPLOY(Command::SetBit<16>(), "Deploy / recall fighters");
+const Command Command::AFTERBURNER(Command::SetBit<17>(), "Fire afterburner");
+const Command Command::CLOAK(Command::SetBit<18>(), "Toggle cloaking device");
+const Command Command::MAP(Command::SetBit<19>(), "View star map");
+const Command Command::INFO(Command::SetBit<20>(), "View player info");
+const Command Command::FULLSCREEN(Command::SetBit<21>(), "Toggle fullscreen");
+const Command Command::FASTFORWARD(Command::SetBit<22>(), "Toggle fast-forward");
+const Command Command::FIGHT(Command::SetBit<23>(), "Fleet: Fight my target");
+const Command Command::GATHER(Command::SetBit<24>(), "Fleet: Gather around me");
+const Command Command::HOLD(Command::SetBit<25>(), "Fleet: Hold position");
+const Command Command::AMMO(Command::SetBit<26>(), "Fleet: Toggle ammo usage");
+const Command Command::WAIT(Command::SetBit<27>(), "");
+const Command Command::STOP(Command::SetBit<28>(), "");
+const Command Command::SHIFT(Command::SetBit<29>(), "");
+const Command Command::MOUSE_TURNING_HOLD(Command::SetBit<30>(), "Mouse turning (hold)");
+const Command Command::MOUSE_TURNING_TOGGLE(Command::SetBit<31>(), "Mouse turning (toggle)");
 
 
 
@@ -420,4 +411,15 @@ Command::Command(const CommandState &state, const string &text)
 {
 	if(!text.empty())
 		description[*this] = text;
+}
+
+
+
+template<unsigned bit>
+Command::CommandState Command::SetBit()
+{
+	Command::CommandState state;
+	static_assert(bit < state.size(), "bit number is higher than COMMAND_COUNT - 1");
+	state.set(bit);
+	return state;
 }

@@ -29,11 +29,13 @@ class DataNode;
 // A single Command object can represent multiple individual commands, e.g.
 // everything the AI wants a ship to do, or all keys the player is holding down.
 class Command {
-public:
+private:
 	// This must match the maximum command number in Command.cpp or the build will fail.
 	static const unsigned COMMAND_COUNT = 33;
 	using CommandState = std::bitset<COMMAND_COUNT>;
 
+
+public:
 	// Empty command:
 	static const Command NONE;
 	// Main menu:
@@ -142,6 +144,11 @@ public:
 private:
 	explicit Command(const CommandState &state);
 	Command(const CommandState &state, const std::string &text);
+
+	// Returns a CommandState with only one bit set. This is used for its
+	// static assertion in Command.cpp, and is available nowhere else.
+	template<unsigned bit>
+	static CommandState SetBit();
 
 
 private:
