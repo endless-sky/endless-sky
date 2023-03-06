@@ -371,9 +371,7 @@ mission "Wanderers Conversation"
 					goto fighting
 				`	"Why were you able to create a translation device so quickly?"`
 
-			# Point of note: we have this technology now, in the real world. This is a race that can
-			# encode, in a few weeks, their race's entire self-hood in a way that a sentient AI can
-			# absorb. For them, making a translation machine for a simple meat-space language is trivial.
+			# Wanderer AI technology is far beyond ours, and we can already automatically translate languages this well. Of course they can too.
 			`	"[Automated, machine] language translation is a [primitive, early] application of machine [learning, intelligence]. For us it is [elementary, instinctual] mathematics. Our [thinkers, tinkerers] told me that most of the [work, enjoyment] was adapting the [interface, conceptualization, mechanism] to a human mind."`
 			choice
 				`	"How did you learn the Hai language?"`
