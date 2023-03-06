@@ -625,7 +625,7 @@ mission "Wanderers: Unfettered Diplomacy 1"
 		has "Wanderers: Defended Vara Ke'sok: done"
 	on offer
 		conversation
-			`On <origin>, you meet up with Iktat Rek and the Hai ambassador Sayari, informing them of your efforts in driving off an Unfettered raid on the Wanderer water world of Vara Ke'sok. Sayari herself now has a Wanderer translator too, although it seems to only translate to English, like yours. "The situation is not [sustainable, livable]," says Rek. "Perhaps the Unfettered are the ones [chosen, intended] to [inherit, receive] the fruit of our labors here, but until the Eye beckons us to a new [home, place] we have nowhere else to go."`
+			`On <origin>, you meet up with Iktat Rek and the Hai ambassador Sayari, informing them of your efforts in driving off an Unfettered raid on the Wanderer water world of Vara Ke'sok. Sayari herself now has a Wanderer translator too, although it seems to be a copy of yours as it's not translating to Hai. "The situation is not [sustainable, livable]," says Rek. "Perhaps the Unfettered are the ones [chosen, intended] to [inherit, receive] the fruit of our labors here, but until the Eye beckons us to a new [home, place] we have nowhere else to go."`
 			choice
 				`	"You're saying that after working so hard to restore these worlds, you would give them to someone as destructive as the Unfettered?"`
 				`	"That can't be right. The Unfettered wrecked their own worlds. They would wreck yours as well."`
