@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef MUSIC_H_
@@ -31,28 +34,33 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class Music {
 public:
 	static void Init(const std::vector<std::string> &sources);
-	
-	
+
+
 public:
 	Music();
 	~Music();
-	
+
+	// Set the source of music. If the path is empty, this music will be silent.
 	void SetSource(const std::string &name = "");
+	// Get the name of the current music source playing.
+	const std::string &GetSource() const;
+	// Get the next audio buffer to play.
 	const std::vector<int16_t> &NextChunk();
-	
-	
+
+
 private:
 	// This is the entry point for the decoding thread.
 	void Decode();
-	
-	
+
+
 private:
 	// Buffers for storing the decoded audio sample. The "silence" buffer holds
 	// a block of silence to be returned if nothing was read from the file.
 	std::vector<int16_t> silence;
 	std::vector<int16_t> next;
 	std::vector<int16_t> current;
-	
+
+	std::string currentSource;
 	std::string previousPath;
 	// This pointer holds the file for as long as it is owned by the main
 	// thread. When the decode thread takes possession of it, it sets this
@@ -60,7 +68,7 @@ private:
 	FILE *nextFile = nullptr;
 	bool hasNewFile = false;
 	bool done = false;
-	
+
 	std::thread thread;
 	std::mutex decodeMutex;
 	std::condition_variable condition;

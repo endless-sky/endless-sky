@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 effect "jump drive"
 	sprite "effect/jump drive"
@@ -16,7 +19,25 @@ effect "jump drive"
 	"random angle" 180
 	"velocity scale" 0.
 
+effect "jump drive red"
+	sprite "effect/jump drive red"
+		"no repeat"
+		"frame rate" 8
+		"rewind"
+	"lifetime" 8
+	"velocity scale" 3
+
 effect "ion spark"
+	sprite "effect/spark"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 9
+	"random angle" 360
+	"random spin" 10
+	"random velocity" 1
+
+# Needs unique graphics.
+effect "scramble spark"
 	sprite "effect/spark"
 		"no repeat"
 		"frame rate" 30
@@ -43,6 +64,47 @@ effect "slowing spark"
 	"random spin" 30
 	"random velocity" .1
 
+# Needs unique graphics.
+effect "discharge spark"
+	sprite "effect/static"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 13
+	"random angle" 360
+	"random spin" 10
+	"random velocity" 1
+
+effect "corrosion spark"
+	sprite "effect/corrosion spark"
+		"no repeat"
+		"frame rate" 15
+	"lifetime" 60
+	"random angle" 120
+	"random spin" 5
+	"random velocity" -2
+	"velocity scale" .9
+
+# Needs unique graphics.
+effect "leakage spark"
+	sprite "effect/nano spark"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 30
+	"random angle" 360
+	"random spin" 30
+	"random velocity" 2
+	"velocity scale" -.005
+
+effect "burning spark"
+	sprite "effect/burning spark"
+		"no repeat"
+		"frame rate" 15
+	"lifetime" 40
+	"random angle" 90
+	"random spin" 3
+	"random velocity" -2
+	"velocity scale" -.005
+
 
 effect "flame"
 	sprite "effect/flame"
@@ -64,6 +126,24 @@ effect "leak"
 
 effect "big leak"
 	sprite "effect/leak big"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 7
+	"random angle" 20
+	"random spin" 2
+	"random velocity" 12
+
+effect "remnant leak"
+	sprite "effect/remnant leak"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 7
+	"random angle" 20
+	"random spin" 2
+	"random velocity" 12
+
+effect "remnant leak sparkle"
+	sprite "effect/remnant leak sparkle"
 		"no repeat"
 		"frame rate" 30
 	"lifetime" 7
@@ -142,17 +222,14 @@ effect "final explosion medium"
 effect "final explosion large"
 	sound "final explosion large"
 
+effect "asteroid crunch small"
+	sound "asteroid crunch small"
 
+effect "asteroid crunch medium"
+	sound "asteroid crunch medium"
 
-effect "basic launch"
-	sprite "effect/smoke"
-		"no repeat"
-		"random start frame"
-		"frame rate" 8
-	"lifetime" 30
-	"random angle" 15
-	"random spin" 360
-	"random velocity" 3
+effect "asteroid crunch large"
+	sound "asteroid crunch large"
 
 
 
@@ -234,7 +311,7 @@ effect "bolide"
 effect "pug tiny explosion"
 	sprite "effect/explosion/pug/tiny"
 		"no repeat"
-		"frame rate" 15
+		"frame rate" 27
 	sound "explosion tiny"
 	"lifetime" 20
 	"random angle" 360
@@ -246,7 +323,7 @@ effect "pug tiny explosion"
 effect "pug small explosion"
 	sprite "effect/explosion/pug/small"
 		"no repeat"
-		"frame rate" 15
+		"frame rate" 22
 	sound "explosion small"
 	"lifetime" 24
 	"random angle" 360
@@ -258,7 +335,7 @@ effect "pug small explosion"
 effect "pug medium explosion"
 	sprite "effect/explosion/pug/medium"
 		"no repeat"
-		"frame rate" 15
+		"frame rate" 19
 	sound "explosion medium"
 	"lifetime" 28
 	"random angle" 360
@@ -270,7 +347,7 @@ effect "pug medium explosion"
 effect "pug large explosion"
 	sprite "effect/explosion/pug/large"
 		"no repeat"
-		"frame rate" 15
+		"frame rate" 17
 	sound "explosion large"
 	"lifetime" 32
 	"random angle" 360
@@ -290,3 +367,93 @@ effect "pug huge explosion"
 	"random spin" 5
 	"random velocity" 1
 	"velocity scale" .4
+
+# Fighter launch effects/sounds.
+
+effect "basic launch"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
+
+effect "human external"
+	sound "human launch external"
+
+effect "human internal"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
+	sound "human launch"
+
+effect "hai launch"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
+	sound "hai launch"
+	
+effect "remnant external"
+	sound "remnant launch external"
+	
+effect "remnant internal"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
+	sound "remnant launch"
+
+effect "korath external"
+	sound "korath launch external"
+
+effect "korath internal"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
+	sound "korath launch"
+
+effect "coalition launch"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
+	sound "coalition launch"
+
+effect "sheragi launch"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
+	sound "sheragi launch"
+
+effect "scin launch"
+	sound "scin launch"

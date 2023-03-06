@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef SPACEPORT_PANEL_H_
@@ -16,12 +19,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Panel.h"
 
 #include "Information.h"
-#include "WrappedText.h"
+#include "text/WrappedText.h"
 
-#include <map>
-
+class News;
 class PlayerInfo;
-class Sprite;
 
 
 // GUI panel to be shown when you are in a spaceport. This just draws the port
@@ -30,24 +31,28 @@ class Sprite;
 class SpaceportPanel : public Panel {
 public:
 	explicit SpaceportPanel(PlayerInfo &player);
-	
+
 	void UpdateNews();
-	
+
 	virtual void Step() override;
 	virtual void Draw() override;
-	
-	
+
+
+private:
+	const News *PickNews() const;
+
+
 private:
 	PlayerInfo &player;
 	WrappedText text;
-	
+
 	// Current news item (if any):
 	bool hasNews = false;
+	bool hasPortrait = false;
+	int portraitWidth;
+	int normalWidth;
 	Information newsInfo;
 	WrappedText newsMessage;
-	// After displaying a portrait for a particular profession,
-	// only show it for that same profession.
-	std::map<const Sprite *, std::string> displayedProfessions;
 };
 
 

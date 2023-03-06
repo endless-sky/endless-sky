@@ -1,0 +1,1257 @@
+# Copyright (c) 2021 by Zitchas
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+event "ember waste label"
+	galaxy "label waste"
+		sprite label/waste
+
+
+
+event "remnant: change hail"
+	government "Remnant"
+		"friendly hail" "remnant friendly"
+		"hostile hail" "remnant hostile"
+	government "Remnant (Research)"
+		"friendly hail" "remnant friendly"
+		"hostile hail" "remnant hostile"
+
+
+
+event "remnant: lost in ember waste"
+
+
+
+event "remnant: defense timer"
+	clear "remnant: defense delay"
+
+
+
+event "remnant: surveillance begin"
+	system "Parca"
+		remove fleet "Korath Ember Waste Raid"
+
+
+
+event "remnant: surveillance end"
+	system "Parca"
+		add fleet "Korath Ember Waste Raid" 10000
+
+
+
+event "remnant: nenia empty"
+	system "Nenia"
+		remove fleet "Void Sprites"
+
+
+
+event "remnant: nenia restored"
+	system "Nenia"
+		add fleet "Void Sprites" 500
+
+
+
+event "remnant: puffin"
+	planet "Viminal"
+		add shipyard "Remnant Puffin"
+
+
+
+# Replaced by the "remnant: puffin" event but the listed here so older versions of the "Remnant: Void Sprites 3" mission in their save file when they update do not have issues with this event being undefined.
+# The actual content of the event is not strictly necessary, since a patch mission already exists that applies the new event if the condition for this event is present.
+# But the event still needs to be declared so it can be considered "defined" by the game, otherwise, it will disable the mission referring to it.
+# If we ever do something that makes save files from an older version of the game incompatible, this can be removed.
+event "remnant: gascraft"
+
+
+
+event "remnant: void sprite research"
+
+
+
+event "remnant: sign studies complete"
+
+
+
+event "remnant: return the samples timer"
+
+
+
+event "remnant: wait for plume"
+
+
+
+event "remnant salvage available"
+	planet "Aventine"
+		outfitter "Remnant Salvage"
+	planet "Caelian"
+		outfitter "Remnant Salvage"
+	planet "Viminal"
+		outfitter "Remnant Salvage"
+
+
+
+event "remnant: scanning tolerance"
+	government "Remnant"
+		"penalty for"
+			scan 0
+		remove "provoked on scan"
+		"friendly hail" "remnant trusting"
+	government "Remnant (Research)"
+		"friendly hail" "remnant trusting"
+
+
+
+event "remnant: research update bjd1"
+
+
+
+event "remnant: penguin"
+	shipyard "Remnant Puffin"
+		"Penguin"
+
+
+
+event "remnant: lab availability"
+	outfitter "Remnant"
+		add "Research Laboratory"
+	outfitter "Remnant Core"
+		add "Research Laboratory"
+
+
+
+event "korath hunting"
+	government "Korath"
+		"attitude toward"
+			"Indigenous Lifeform" -.01
+			"Ember Waste" -.01
+
+
+
+event "korath rescue: nenia small"
+	system Nenia
+		add fleet "Korath Rescue" 2000
+
+event "korath rescue: nenia small end"
+	system Nenia
+		remove fleet "Korath Rescue"
+
+
+event "korath rescue: aescolanus medium"
+	system Aescolanus
+		add fleet "Korath Rescue" 1000
+
+event "korath rescue: aescolanus medium end"
+	system Aescolanus
+		remove fleet "Korath Rescue"
+
+
+event "korath rescue: nenia medium"
+	system Nenia
+		add fleet "Korath Rescue" 1000
+
+event "korath rescue: nenia medium end"
+	system Nenia
+		remove fleet "Korath Rescue"
+
+
+
+event "remnant: postverta reveal"
+	unvisit Caeculus
+	unvisit Diespiter
+	unvisit Egeria
+	unvisit Levana
+	unvisit Prosa
+	unvisit Statina
+	link Postverta Diespiter
+	link Postverta Prosa
+	link Postverta Statina
+	system Postverta
+		remove hidden
+	system Egeria
+		add object "Wormhole Barren Alpha"
+			sprite planet/wormhole-red
+			distance 2313
+			period 389
+	system Levana
+		add object "Wormhole Barren Alpha"
+			sprite planet/wormhole-red
+			distance 2313
+			period 389
+	system Caeculus
+		add object "Wormhole Barren Beta"
+			sprite planet/wormhole-red
+			distance 2400
+			period 391
+	system Prosa
+		add object "Wormhole Barren Beta"
+			sprite planet/wormhole-red
+			distance 2313
+			period 389
+
+
+
+event "remnant: nenia ember waste node"
+	system "Nenia"
+		add fleet "Ember Waste Node" 10000
+
+
+
+event "remnant: pantica void sprites"
+	system "Pantica"
+		add fleet "Void Sprites" 4000
+	planet "Esquiline"
+		government "Remnant"
+		add attributes remnant
+		remove attributes uninhabited
+		description `While Esquiline used to be simply another planet the Remnant harvested valuable resources from, the introduction of void sprites and the activation of their station has turned this world into a hidden research lab: The first human astrobiology station studying void sprites.`
+		add spaceport `Although the facilities here are basic, the Remnant cafeteria boasts a food dispenser that is available at any time, along with a mesmerizing view of the clouds outside. Occasionally a void sprite will pass in front of the window, much to the delight of everyone.`
+
+
+
+event "remnant: cognizance timer"
+	system "Nenia"
+		fleet "Ember Waste Node" 6000
+
+
+
+event "remnant: cognizance 1 systems available"
+	system Diespiter
+		remove attributes "inaccessible"
+	system Egeria
+		remove attributes "inaccessible"
+	system Postverta
+		remove attributes "inaccessible"
+	system Prosa
+		remove attributes "inaccessible"
+	system Statina
+		remove attributes "inaccessible"
+	system Vaticanus
+		remove attributes "inaccessible"
+
+
+
+event "remnant: cognizance merganser"
+	shipyard "Remnant"
+		"Merganser"
+
+
+
+event "remnant: merganser fleet"
+	fleet "Small Remnant"
+		add variant 5
+			"Merganser" 2
+		add variant 3
+			"Merganser" 4
+		add variant 1
+			"Starling"
+			"Merganser" 2
+	fleet "Large Remnant"
+		add variant 5
+			"Albatross"
+			"Merganser" 4
+		add variant 4
+			"Ibis"
+			"Petrel" 2
+			"Tern" 4
+			"Merganser" 8
+	fleet "Remnant Transport"
+		add variant 3
+			"Gull"
+			"Merganser" 2
+		add variant 1
+			"Pelican"
+			"Merganser" 4
+	fleet "Remnant Home Guard"
+		add variant 5
+			"Merganser"
+		add variant 3
+			"Merganser"
+			"Petrel" 2
+			"Tern" 4
+
+
+
+event "remnant: ssil vida inhabited"
+	planet "Ssil Vida"
+		attributes emitter sheragi remnant
+		landscape land/station0
+		description `The silence of this station rings in your ears, and as you explore you are increasingly surprised that it even has an atmosphere. It is obviously ancient, and patches of ambiguous green and purple material resembling fungus grow through the walls. Whoever built this station designed it for beings much larger than you - either that, or they liked spacious environments. Even the shortest doorway you pass through is easily double your height. They are always wider than they are tall.`
+		description `	Exploring beyond the docks reveals that most of this facility is infrastructure for some type of massive emitter. It is not clear exactly what it's supposed to be emitting, but it might have something to do with how this system appeared in the first place.`
+		spaceport `The Remnant have set up a fully self-contained base of operations in this part of the station. Independent life support, its own power system, and controls tapping into the rest of station occupy much of the space, while a Research Laboratory and additional equipment fill up the rest. A rudimentary cafeteria, communication links, basic repair equipment, and sleeping quarters round out the amenities of this research camp.`
+		bribe 0
+		government Remnant
+
+
+
+event "korath rescue: egeria tiny"
+	system Egeria
+		add fleet "Korath Rescue" 4000
+
+event "korath rescue: egeria tiny end"
+	system Egeria
+		remove fleet "Korath Rescue"
+
+
+
+event "remnant: cognizance peregrine"
+	outfitter "Remnant"
+		"Bellows-Class Afterburner"
+	fleet "Small Remnant"
+		add variant 1
+			"Peregrine"
+	fleet "Large Remnant"
+		add variant 5
+			"Peregrine"
+			"Merganser" 3
+
+
+
+event "remnant: remove hidden"
+	system Diespiter
+		remove hidden
+	system Egeria
+		remove hidden
+	system Postverta
+		remove hidden
+	system Prosa
+		remove hidden
+	system Statina
+		remove hidden
+	system Vaticanus
+		remove hidden
+
+
+
+event "remnant: ssil vida area unvisited"
+	unvisit "Diespiter"
+	unvisit "Egeria"
+	unvisit "Prosa"
+	unvisit "Statina"
+	unvisit "Vaticanus"
+
+
+
+event "remnant: ssil vida activation"
+	set "remnant: ssil vida active"
+	planet Fertriery
+		attributes "requires: gaslining" uninhabited
+		landscape land/nasa8
+		description `You are not quite sure what Fetriery is. It lacks cohesive edges, and yet it has sufficient atmospheric pressure to threaten the hull integrity of ships not designed for high pressure environments. Despite such density, which would indicate a strong gravitational presence, your sensors are unable to find any kind of core.`
+		spaceport `Delving further into the clouds, it becomes obvious that the entire planet appears to be a mix of gases, aerosols, and suspended particles. Despite this, or perhaps because of it, void sprites appear to thrive in its depths, where they can be seen dancing among energy currents reminiscent of the ion storms.`
+		government "Ember Waste"
+		bribe 0
+		security 0
+	system Caeculus
+		pos 162.87 343.242
+		government Uninhabited
+		attributes "ember waste"
+		arrival 625
+		habitable 320
+		belt 1797
+		haze _menu/haze-red
+		link Stercutus
+		asteroids "small rock" 3 0.5704
+		asteroids "medium rock" 6 0.828
+		asteroids "large rock" 1 0.7176
+		asteroids "small metal" 23 1.288
+		asteroids "medium metal" 14 0.8556
+		asteroids "large metal" 37 0.6072
+		minables silicon 19 1.02332
+		trade Clothing 220
+		trade Electronics 792
+		trade Equipment 626
+		trade Food 403
+		trade "Heavy Metals" 1043
+		trade Industrial 872
+		trade "Luxury Goods" 1041
+		trade Medical 508
+		trade Metal 272
+		trade Plastic 289
+		fleet "Korath Ember Waste Raid" 20000
+		fleet "Korath Rescue" 60000
+		fleet "Small Remnant" 30000
+		fleet "Large Remnant" 30000
+		hazard "Ember Waste Base Heat" 100
+		hazard "Ember Waste Base Storm" 9000
+		object
+			sprite star/wr
+			period 10
+		object
+			sprite planet/dust6-b
+			distance 127.09
+			period 32.037
+		object
+			sprite planet/desert9
+			distance 341.05
+			period 140.835
+		object
+			sprite planet/gas5-b
+			distance 993.81
+			period 700.551
+			object
+				sprite planet/rock14-b
+				distance 258
+				period 13.7809
+			object
+				sprite planet/dust0-b
+				distance 350
+				period 21.7746
+		object
+			sprite planet/rock3
+			distance 1683.81
+			period 1544.99
+		object
+			sprite planet/jupiter-b
+			distance 2187.82
+			period 2288.24
+			object
+				sprite planet/rhea-b
+				distance 273
+				period 14.1744
+			object
+				sprite planet/ice0-b
+				distance 380
+				period 23.2775
+	system Egeria
+		pos 288 146
+		government Uninhabited
+		attributes "ember waste"
+		arrival 2030
+		belt 2000
+		habitable 1505.92
+		haze _menu/haze-red
+		"jump range" 50
+		link Statina
+		link Vaticanus
+		minables iron 20 4
+		minables lead 28 5
+		minables "plant" 80 5
+		minables "plant2" 80 5
+		minables "plant cluster" 80 5
+		minables "large plant" 40 3
+		minables "large plant2" 40 3
+		minables "large plant cluster" 40 3
+		minables "space flora" 80 5
+		minables "large space flora" 40 3
+		minables "live crystal" 60 3
+		fleet "Void Sprites (Ember Waste)" 400
+		fleet "Subsidurial (Ember Waste)" 2000
+		fleet "Embersylphs" 3000
+		hazard "Ember Waste Base Heat" 50
+		hazard "Ember Waste Base Storm" 9000
+		hazard "Ember Waste Base Storm" 15000
+		object
+			sprite star/k5-old
+			distance 40
+			period 19
+			offset 180
+		object
+			sprite star/g0
+			distance 74
+			period 19
+		object
+			sprite planet/ice4
+			distance 248
+			period 61
+		object
+			sprite planet/gas9
+			distance 1326
+			period 2174
+			object
+				sprite planet/rhea
+				distance 270
+				period 16
+	system Diespiter
+		pos 332 210
+		government Uninhabited
+		attributes "ember waste"
+		arrival 950
+		belt 2000
+		habitable 534.375
+		haze _menu/haze-red
+		"jump range" 50
+		link Statina
+		link Postverta
+		minables iron 22 3
+		minables silicon 46 3
+		minables tungsten 17 3
+		minables "plant" 80 5
+		minables "plant2" 80 5
+		minables "plant cluster" 80 5
+		minables "large plant" 40 3
+		minables "large plant2" 40 3
+		minables "large plant cluster" 40 3
+		minables "space flora" 80 5
+		minables "large space flora" 40 3
+		minables "live crystal" 60 3
+		fleet "Void Sprites (Ember Waste)" 400
+		fleet "Subsidurial (Ember Waste)" 2000
+		fleet "Embersylphs" 3000
+		hazard "Ember Waste Base Heat" 50
+		hazard "Ember Waste Base Storm" 9000
+		hazard "Ember Waste Base Storm" 15000
+		object
+			sprite star/k5-old
+			period 10
+		object
+			sprite planet/ice6
+			distance 745
+			period 394
+		object
+			sprite planet/lava0
+			distance 922
+			period 543
+		object
+			sprite planet/gas11
+			distance 1600
+			period 398
+			object
+				sprite planet/rock3
+				distance 270
+				period 14
+	system Levana
+		pos 203.504 247.389
+		government Uninhabited
+		attributes "ember waste"
+		arrival 5000
+		habitable 2798.68
+		belt 1202
+		haze _menu/haze-red
+		link Coluber
+		asteroids "medium rock" 3 10.005
+		asteroids "large rock" 1 10.5125
+		asteroids "small metal" 9 8.99
+		asteroids "medium metal" 13 9.57
+		asteroids "large metal" 31 10.15
+		minables lead 2 14.9761
+		minables uranium 8 17.5229
+		trade Clothing 285
+		trade Electronics 740
+		trade Equipment 465
+		trade Food 426
+		trade "Heavy Metals" 802
+		trade Industrial 726
+		trade "Luxury Goods" 1007
+		trade Medical 736
+		trade Metal 407
+		trade Plastic 222
+		fleet "Korath Ember Waste Raid" 10000
+		fleet "Korath Rescue" 30000
+		hazard "Ember Waste Base Heat" 100
+		hazard "Ember Waste Base Storm" 9000
+		object
+			sprite star/a-giant
+			distance 17.197
+			period 9.08241
+			offset 180
+		object
+			sprite star/k5
+			distance 95.803
+			period 9.08241
+		object
+			sprite planet/dust1-b
+			distance 215.093
+			period 23.8519
+		object
+			sprite planet/venus
+			distance 438.933
+			period 69.5314
+		object
+			sprite planet/desert1
+			distance 665.023
+			period 129.67
+		object
+			sprite planet/cloud1
+			distance 922.583
+			period 211.881
+		object
+			sprite planet/neptune-b
+			distance 3359.19
+			period 1472.09
+			object
+				sprite planet/rock17-b
+				distance 213
+				period 15.4882
+			object
+				sprite planet/dust0-b
+				distance 310
+				period 27.1941
+			object
+				sprite planet/luna
+				distance 391
+				period 38.521
+	system Postverta
+		pos 297 269
+		government Remnant
+		attributes "ember waste"
+		arrival 500
+		belt 2000
+		habitable 135
+		haze _menu/haze-red
+		"jump range" 50
+		link Diespiter
+		link Prosa
+		link Statina
+		minables "plant" 80 5
+		minables "plant2" 80 5
+		minables "plant cluster" 80 5
+		minables "large plant" 40 3
+		minables "large plant2" 40 3
+		minables "large plant cluster" 40 3
+		minables "space flora" 80 5
+		minables "large space flora" 40 3
+		minables "live crystal" 60 3
+		fleet "Void Sprites (Ember Waste)" 400
+		fleet "Subsidurial (Ember Waste)" 2000
+		fleet "Embersylphs" 3000
+		hazard "Ember Waste Base Heat" 50
+		hazard "Ember Waste Base Storm" 9000
+		hazard "Ember Waste Base Storm" 15000
+		object
+			sprite star/m8
+			period 19
+		object
+			sprite planet/desert7
+			distance 439
+			period 143
+		object Fertriery
+			sprite planet/nebula1
+			distance 814
+			period 362
+			object
+				sprite planet/dust4
+				distance 202
+				period 21
+		object
+			sprite planet/rock10
+			distance 1208
+			period 654
+		object "Ssil Vida"
+			sprite planet/sheragi_postverta
+				scale 0.5
+			distance 1408
+			period 554
+	system Prosa
+		pos 303 194
+		government Uninhabited
+		attributes "ember waste"
+		arrival 5000
+		habitable 2372.76
+		belt 2000
+		haze _menu/haze-red
+		"jump range" 50
+		link Vaticanus
+		link Postverta
+		minables copper 5 2
+		minables "plant" 80 5
+		minables "plant2" 80 5
+		minables "plant cluster" 80 5
+		minables "large plant" 40 3
+		minables "large plant2" 40 3
+		minables "large plant cluster" 40 3
+		minables "space flora" 80 5
+		minables "large space flora" 40 3
+		minables "live crystal" 60 3
+		fleet "Void Sprites (Ember Waste)" 400
+		fleet "Subsidurial (Ember Waste)" 2000
+		fleet "Embersylphs" 3000
+		hazard "Ember Waste Base Heat" 50
+		hazard "Ember Waste Base Storm" 9000
+		hazard "Ember Waste Base Storm" 15000
+		object
+			sprite star/o-giant
+			period 7
+			offset 180
+		object
+			sprite planet/cloud1
+			distance 443.879
+			period 76.7945
+		object
+			sprite planet/desert9
+			distance 881.879
+			period 215.054
+		object
+			sprite planet/rock6
+			distance 1073.88
+			period 288.979
+		object
+			sprite planet/gas17
+			distance 1443.88
+			period 450.536
+			object
+				sprite planet/callisto
+				distance 227
+				period 14
+			object
+				sprite planet/dust5
+				distance 351
+				period 28
+	system Statina
+		pos 385 198
+		government Uninhabited
+		attributes "ember waste" "wormhole"
+		arrival 500
+		belt 2000
+		habitable 135
+		haze _menu/haze-red
+		"jump range" 50
+		link Diespiter
+		link Egeria
+		link Postverta
+		minables iron 5 6
+		minables silicon 11 5
+		minables titanium 10 4
+		minables "plant" 80 5
+		minables "plant2" 80 5
+		minables "plant cluster" 80 5
+		minables "large plant" 40 3
+		minables "large plant2" 40 3
+		minables "large plant cluster" 40 3
+		minables "space flora" 80 5
+		minables "large space flora" 40 3
+		minables "live crystal" 60 3
+		fleet "Void Sprites (Ember Waste)" 400
+		fleet "Subsidurial (Ember Waste)" 2000
+		fleet "Embersylphs" 3000
+		hazard "Ember Waste Base Heat" 50
+		hazard "Ember Waste Base Storm" 9000
+		hazard "Ember Waste Base Storm" 15000
+		object
+			sprite star/m8
+			period 10
+		object
+			sprite planet/desert4
+			distance 111
+			period 30
+		object
+			sprite planet/dust3
+			distance 308
+			period 142
+		object
+			sprite planet/gas8
+			distance 636
+			period 420
+		object
+			sprite planet/ice5
+			distance 1364
+			period 84
+			object
+				sprite planet/dust4
+				distance 158
+				period 17
+		object "Wormhole Link"
+			sprite planet/wormhole-red
+			distance 2754
+			period 389
+	system Vaticanus
+		pos 324 112
+		government Uninhabited
+		attributes "ember waste"
+		arrival 500
+		belt 2000
+		habitable 320
+		haze _menu/haze-red
+		"jump range" 50
+		link Egeria
+		link Prosa
+		minables lead 16 13
+		minables tungsten 10 13
+		minables "plant" 80 5
+		minables "plant2" 80 5
+		minables "plant cluster" 80 5
+		minables "large plant" 40 3
+		minables "large plant2" 40 3
+		minables "large plant cluster" 40 3
+		minables "space flora" 80 5
+		minables "large space flora" 40 3
+		minables "live crystal" 60 3
+		fleet "Void Sprites (Ember Waste)" 400
+		fleet "Subsidurial (Ember Waste)" 2000
+		fleet "Embersylphs" 3000
+		hazard "Ember Waste Base Heat" 50
+		hazard "Ember Waste Base Storm" 9000
+		hazard "Ember Waste Base Storm" 15000
+		object
+			sprite star/m0
+			period 19
+		object
+			sprite planet/ice6
+			distance 261
+			period 73
+		object
+			sprite planet/tethys
+			distance 768
+			period 368
+		object
+			sprite planet/gas16
+			distance 1670
+			period 1181
+			object
+				sprite planet/lava1
+				distance 204
+				period 14
+		object
+			sprite planet/uranus
+			distance 2105
+			period 3438
+			object
+				sprite planet/luna
+				distance 235
+				period 14
+		object "Wormhole Link"
+			sprite planet/wormhole-red
+			distance 2754
+			period 389
+
+
+
+# The default value of a system's "jump range" is 0. In this state, the global default will be used.
+# When the bug preventing ships from jumping when the destination system has too little jump range is fixed,
+# the resetting of jump range on deactivation can be removed. Instead, jump range of other systems nearby
+# may need to be reduced on activation to prevent escorts outside the Postverta cluster jumping into that region.
+event "remnant: ssil vida deactivation"
+	clear "remnant: ssil vida active"
+	planet Fertriery
+		attributes "requires: gaslining" uninhabited
+		landscape land/nasa8
+		description `Fertriery is a fairly typical world with a particularly dense atmosphere that includes significant levels of chlorine and fluorine. The only unusual factor is the above-average temperatures, likely due to the decreased energy loss into the surrounding space.`
+		remove spaceport
+		government Uninhabited
+		bribe 0
+		security 0
+	system Egeria
+		pos 288 146
+		government Uninhabited
+		attributes "ember waste"
+		arrival 2030
+		belt 2000
+		habitable 1505.92
+		haze _menu/haze-red
+		"jump range" 0
+		link Statina
+		link Vaticanus
+		asteroids "small rock" 1 8
+		asteroids "medium rock" 20 5
+		asteroids "large rock" 9 7
+		asteroids "medium metal" 86 3
+		asteroids "large metal" 5 4
+		minables iron 20 4
+		minables lead 28 5
+		remove fleet "Void Sprites (Ember Waste)"
+		remove fleet "Subsidurial (Ember Waste)"
+		remove fleet "Embersylphs"
+		hazard "Ember Waste Base Heat" 50
+		hazard "Ember Waste Base Storm" 9000
+		hazard "Ember Waste Base Storm" 15000
+		object
+			sprite star/k5-old
+			distance 40
+			period 19
+			offset 180
+		object
+			sprite star/g0
+			distance 74
+			period 19
+		object
+			sprite planet/ice4
+			distance 248
+			period 61
+		object
+			sprite planet/gas9
+			distance 1326
+			period 2174
+			object
+				sprite planet/rhea
+				distance 270
+				period 16
+		object "Wormhole Barren Alpha"
+			sprite planet/wormhole-red
+			distance 2313
+			period 389
+	system Diespiter
+		pos 332 210
+		government Uninhabited
+		attributes "ember waste"
+		arrival 950
+		belt 2000
+		habitable 534.375
+		haze _menu/haze-red
+		"jump range" 0
+		link Statina
+		link Postverta
+		asteroids "small rock" 65 3
+		asteroids "medium rock" 14 1
+		asteroids "large rock" 3 1
+		asteroids "small metal" 74 2
+		asteroids "medium metal" 26 4
+		asteroids "large metal" 76 3
+		minables iron 22 3
+		minables silicon 46 3
+		remove fleet "Void Sprites (Ember Waste)"
+		remove fleet "Subsidurial (Ember Waste)"
+		remove fleet "Embersylphs"
+		minables tungsten 17 3
+		hazard "Ember Waste Base Heat" 50
+		hazard "Ember Waste Base Storm" 9000
+		hazard "Ember Waste Base Storm" 15000
+		object
+			sprite star/k5-old
+			period 10
+		object
+			sprite planet/ice6
+			distance 745
+			period 394
+		object
+			sprite planet/lava0
+			distance 922
+			period 543
+		object
+			sprite planet/gas11
+			distance 1600
+			period 398
+			object
+				sprite planet/rock3
+				distance 270
+				period 14
+	system Levana
+		add object "Wormhole Barren Alpha"
+			sprite planet/wormhole-red
+			distance 2313
+			period 389
+	system Caeculus
+		add object "Wormhole Barren Beta"
+			sprite planet/wormhole-red
+			distance 2400
+			period 391
+	system Postverta
+		pos 297 269
+		government Remnant
+		attributes "ember waste"
+		arrival 500
+		belt 2000
+		habitable 135
+		haze _menu/haze-red
+		"jump range" 0
+		link Diespiter
+		link Prosa
+		link Statina
+		asteroids "medium rock" 4 2
+		asteroids "large rock" 4 3
+		asteroids "medium metal" 52 1
+		asteroids "large metal" 9 3
+		remove fleet "Void Sprites (Ember Waste)"
+		remove fleet "Subsidurial (Ember Waste)"
+		remove fleet "Embersylphs"
+		hazard "Ember Waste Base Heat" 50
+		hazard "Ember Waste Base Storm" 9000
+		hazard "Ember Waste Base Storm" 15000
+		object
+			sprite star/m8
+			period 19
+		object
+			sprite planet/desert7
+			distance 439
+			period 143
+		object Fertriery
+			sprite planet/fog0
+			distance 814
+			period 362
+			object
+				sprite planet/dust4
+				distance 202
+				period 21
+		object
+			sprite planet/rock10
+			distance 1208
+			period 654
+		object "Ssil Vida"
+			sprite planet/sheragi_postverta
+				scale 0.5
+			distance 1408
+			period 554
+	system Prosa
+		pos 303 194
+		government Uninhabited
+		attributes "ember waste"
+		arrival 5000
+		habitable 2372.76
+		belt 2000
+		haze _menu/haze-red
+		"jump range" 0
+		link Vaticanus
+		link Postverta
+		asteroids "medium metal" 11 2
+		asteroids "large metal" 2 2
+		asteroids "small rock" 4 1
+		asteroids "medium rock" 16 1
+		asteroids "large rock" 16 1
+		minables copper 5 2
+		remove fleet "Void Sprites (Ember Waste)"
+		remove fleet "Subsidurial (Ember Waste)"
+		remove fleet "Embersylphs"
+		hazard "Ember Waste Base Heat" 50
+		hazard "Ember Waste Base Storm" 9000
+		hazard "Ember Waste Base Storm" 15000
+		object
+			sprite star/o-giant
+			period 7
+			offset 180
+		object
+			sprite planet/cloud1
+			distance 443.879
+			period 76.7945
+		object
+			sprite planet/desert9
+			distance 881.879
+			period 215.054
+		object
+			sprite planet/rock6
+			distance 1073.88
+			period 288.979
+		object
+			sprite planet/gas17
+			distance 1443.88
+			period 450.536
+			object
+				sprite planet/callisto
+				distance 227
+				period 14
+			object
+				sprite planet/dust5
+				distance 351
+				period 28
+		object "Wormhole Barren Beta"
+			sprite planet/wormhole-red
+			distance 2313
+			period 389
+	system Statina
+		pos 385 198
+		government Uninhabited
+		attributes "ember waste" "wormhole"
+		arrival 500
+		belt 2000
+		habitable 135
+		haze _menu/haze-red
+		"jump range" 0
+		link Diespiter
+		link Egeria
+		link Postverta
+		asteroids "large rock" 1 4
+		asteroids "small metal" 39 3
+		asteroids "medium metal" 72 3
+		asteroids "large metal" 3 5
+		minables iron 5 6
+		minables silicon 11 5
+		minables titanium 10 4
+		remove fleet "Void Sprites (Ember Waste)"
+		remove fleet "Subsidurial (Ember Waste)"
+		remove fleet "Embersylphs"
+		hazard "Ember Waste Base Heat" 50
+		hazard "Ember Waste Base Storm" 9000
+		hazard "Ember Waste Base Storm" 15000
+		object
+			sprite star/m8
+			period 10
+		object
+			sprite planet/desert4
+			distance 111
+			period 30
+		object
+			sprite planet/dust3
+			distance 308
+			period 142
+		object
+			sprite planet/gas8
+			distance 636
+			period 420
+		object
+			sprite planet/ice5
+			distance 1364
+			period 84
+			object
+				sprite planet/dust4
+				distance 158
+				period 17
+		object "Wormhole Link"
+			sprite planet/wormhole-red
+			distance 2754
+			period 389
+	system Vaticanus
+		pos 324 112
+		government Uninhabited
+		attributes "ember waste"
+		arrival 500
+		belt 2000
+		habitable 320
+		haze _menu/haze-red
+		"jump range" 0
+		link Egeria
+		link Prosa
+		asteroids "small rock" 3 6
+		asteroids "medium rock" 11 9
+		asteroids "large rock" 5 8
+		asteroids "small metal" 14 8
+		asteroids "medium metal" 47 11
+		asteroids "large metal" 11 7
+		minables lead 16 13
+		minables tungsten 10 13
+		remove fleet "Void Sprites (Ember Waste)"
+		remove fleet "Subsidurial (Ember Waste)"
+		remove fleet "Embersylphs"
+		hazard "Ember Waste Base Heat" 50
+		hazard "Ember Waste Base Storm" 9000
+		hazard "Ember Waste Base Storm" 15000
+		object
+			sprite star/m0
+			period 19
+		object
+			sprite planet/ice6
+			distance 261
+			period 73
+		object
+			sprite planet/tethys
+			distance 768
+			period 368
+		object
+			sprite planet/gas16
+			distance 1670
+			period 1181
+			object
+				sprite planet/lava1
+				distance 204
+				period 14
+		object
+			sprite planet/uranus
+			distance 2105
+			period 3438
+			object
+				sprite planet/luna
+				distance 235
+				period 14
+		object "Wormhole Link"
+			sprite planet/wormhole-red
+			distance 2754
+			period 389
+
+
+
+event "remnant: ssil vida outfitter"
+	planet "Ssil Vida"
+		add outfitter "Remnant Core"
+
+
+
+event "remnant: cognizance salvage expansion"
+	outfitter "Remnant Salvage"
+		add "Systems Core (Medium)"
+		add "Large Heat Shunt"
+		add "Fuel Processor"
+		add "Thermal Repeater Rifle"
+		add "Grab-Strike Turret"
+		add "Banisher Grav-Turret"
+		add "Warder Anti-Missile"
+	planet "Viminal"
+		add shipyard "Remnant Salvage Ships"
+	planet "Aventine"
+		add shipyard "Remnant Salvage Ships"
+	planet "Caelian"
+		add shipyard "Remnant Salvage Ships"
+
+
+
+event "remnant: cognizance calm"
+
+
+
+event "remnant: teciimach deployment"
+	outfitter "Remnant"
+		remove "EMP Torpedo Bay"
+		remove "EMP Torpedo"
+		remove "EMP Torpedo Storage Bay"
+		add "Teciimach Bay"
+		add "Teciimach Pod"
+		add "Teciimach Canister"
+		add "Teciimach Canister Rack"
+	fleet "Small Remnant"
+		add variant 5
+			"Merganser (II)" 2
+		add variant 3
+			"Merganser (II)" 4
+		add variant 1
+			"Starling"
+			"Merganser (II)" 2
+	fleet "Large Remnant"
+		add variant 5
+			"Albatross"
+			"Merganser (II)" 4
+		add variant 4
+			"Ibis"
+			"Petrel" 2
+			"Tern" 4
+			"Merganser (II)" 8
+	fleet "Remnant Transport"
+		add variant 3
+			"Gull"
+			"Merganser (II)" 2
+		add variant 1
+			"Pelican"
+			"Merganser (II)" 4
+		remove variant 4
+			"Gull (Support)"
+		add variant 4
+			"Gull (Support II)"
+	fleet "Remnant Home Guard"
+		add variant 5
+			"Merganser (II)"
+		add variant 3
+			"Merganser (II)"
+			"Petrel" 2
+			"Tern" 4
+		add variant 3
+			"Smew (Teciimach Ferry)"
+	fleet "Small Remnant"
+		remove variant 1
+			"Peregrine"
+		add variant 2
+			"Peregrine (II)"
+	fleet "Large Remnant"
+		remove variant 4
+			"Peregrine"
+			"Merganser" 3
+		add variant 5
+			"Peregrine (II)"
+			"Merganser (II)" 3
+
+
+
+event "remnant: shattered light"
+	shipyard "Remnant"
+		add "Modified Dromedary"
+
+
+
+event "remnant: shattered light research"
+
+event "remnant: tubfalet appearance"
+	fleet "Korath Raid"
+		add variant 1
+			"Tubfalet"
+			"'olofez" 3
+	fleet "Korath Ember Waste Raid"
+		add variant 3
+			"Tubfalet"
+			"'olofez" 3
+	fleet "Korath Large Raid"
+		add variant 3
+			"Tubfalet" 2
+			"'olofez" 6

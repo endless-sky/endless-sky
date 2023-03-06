@@ -6,231 +6,392 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 minable "aluminum"
 	sprite "asteroid/silicon/spin"
-	hull 1000
+	hull 900
+	"random hull" 200
 	payload "Aluminum" 40
 	explode "smoke" 40
 	explode "bolide" 40
-	explode "final explosion large"
+	explode "asteroid crunch large"
 
 outfit "Aluminum"
 	plural "Aluminum"
-	category "Special"
+	category "Minerals"
 	cost 1800
 	thumbnail "outfit/harvested aluminum"
 	"flotsam sprite" "effect/flotsam aluminum"
 	"mass" 1
 	"installable" -1
+	"minable" 1
 	description "Lightweight and rust resistant, aluminum is often used for the hulls of civilian spacecraft that do not need to be able to stand up to prolonged weapons fire."
 
 
 minable "copper"
 	sprite "asteroid/gold/spin"
-	hull 1200
+	hull 1080
+	"random hull" 240
 	payload "Copper" 20
 	explode "smoke" 20
 	explode "bolide" 20
-	explode "final explosion small"
+	explode "asteroid crunch small"
 
 outfit "Copper"
 	plural "Copper"
-	category "Special"
+	category "Minerals"
 	cost 3000
 	thumbnail "outfit/harvested copper"
 	"flotsam sprite" "effect/flotsam copper"
 	"mass" 1
 	"installable" -1
+	"minable" 1
 	description "In its pure form, copper is valued mostly for its high thermal and electrical conductivity. But, it is also used in small quantities in a wide variety of alloys."
 
 
 minable "gold"
 	sprite "asteroid/gold/spin"
-	hull 2800
+	hull 2520
+	"random hull" 560
 	payload "Gold" 16
 	explode "smoke" 20
 	explode "bolide" 20
-	explode "final explosion small"
+	explode "asteroid crunch small"
 
 outfit "Gold"
 	plural "Gold"
-	category "Special"
+	category "Minerals"
 	cost 8000
 	thumbnail "outfit/harvested gold"
 	"flotsam sprite" "effect/flotsam gold"
 	"mass" 1
 	"installable" -1
+	"minable" 1
 	description "Useful for its high electrical conductivity and prized for its beauty and luxury status, gold can always find a well-paying market."
 
 
 minable "iron"
 	sprite "asteroid/iron/spin"
-	hull 1600
+	hull 1440
+	"random hull" 320
 	payload "Iron" 50
 	explode "smoke" 40
 	explode "bolide" 40
-	explode "final explosion large"
+	explode "asteroid crunch large"
 
 outfit "Iron"
 	plural "Iron"
-	category "Special"
+	category "Minerals"
 	cost 1200
 	thumbnail "outfit/harvested iron"
 	"flotsam sprite" "effect/flotsam iron"
 	"mass" 1
 	"installable" -1
+	"minable" 1
 	description "Although it is one of the most common metals, iron is also one of the most useful."
 
 
 minable "lead"
 	sprite "asteroid/lead/spin"
-	hull 800
+	hull 720
+	"random hull" 160
 	payload "Lead" 32
 	explode "smoke" 30
 	explode "bolide" 30
-	explode "final explosion medium"
+	explode "asteroid crunch medium"
 
 outfit "Lead"
 	plural "Lead"
-	category "Special"
+	category "Minerals"
 	cost 900
 	thumbnail "outfit/harvested lead"
 	"flotsam sprite" "effect/flotsam lead"
 	"mass" 1
 	"installable" -1
+	"minable" 1
 	description "As one of the densest non-radioactive elements, lead has been the material of choice for bullets ever since the invention of firearms. Its other uses are limited by regulations for preventing lead poisoning."
 
 
 minable "neodymium"
 	sprite "asteroid/iron/spin"
-	hull 3600
+	hull 3240
+	"random hull" 720
 	payload "Neodymium" 40
 	explode "smoke" 40
 	explode "bolide" 40
-	explode "final explosion large"
+	explode "asteroid crunch large"
 
 outfit "Neodymium"
 	plural "Neodymium"
-	category "Special"
+	category "Minerals"
 	cost 3800
 	thumbnail "outfit/harvested neodymium"
 	"flotsam sprite" "effect/flotsam neodymium"
 	"mass" 1
 	"installable" -1
+	"minable" 1
 	description "One of the most abundant of the rare earth elements, neodymium is used to make strongly magnetic alloys for use in engines and generators."
 
 
 minable "platinum"
 	sprite "asteroid/silver/spin"
-	hull 4000
+	hull 3600
+	"random hull" 800
 	payload "Platinum" 16
 	explode "smoke" 20
 	explode "bolide" 20
-	explode "final explosion small"
+	explode "asteroid crunch small"
 
 outfit "Platinum"
 	plural "Platinum"
-	category "Special"
+	category "Minerals"
 	cost 10000
 	thumbnail "outfit/harvested platinum"
 	"flotsam sprite" "effect/flotsam platinum"
 	"mass" 1
 	"installable" -1
+	"minable" 1
 	description "As rare as gold and even more valuable, platinum has many industrial uses because it resists oxidation even when heated to high temperatures."
 
 
 minable "silicon"
 	sprite "asteroid/silicon/spin"
-	hull 400
+	hull 360
+	"random hull" 80
 	payload "Silicon" 50
 	explode "smoke" 40
 	explode "bolide" 40
-	explode "final explosion large"
+	explode "asteroid crunch large"
 
 outfit "Silicon"
 	plural "Silicon"
-	category "Special"
+	category "Minerals"
 	cost 400
 	thumbnail "outfit/harvested silicon"
 	"flotsam sprite" "effect/flotsam silicon"
 	"mass" 1
 	"installable" -1
+	"minable" 1
 	description "Silicon in its pure form is used for electronics and semiconductors. It is a very common element and easy to harvest."
 
 
 minable "silver"
 	sprite "asteroid/silver/spin"
-	hull 2000
+	hull 1800
+	"random hull" 400
 	payload "Silver" 20
 	explode "smoke" 20
 	explode "bolide" 20
-	explode "final explosion small"
+	explode "asteroid crunch small"
 
 outfit "Silver"
 	plural "Silver"
-	category "Special"
+	category "Minerals"
 	cost 6000
 	thumbnail "outfit/harvested silver"
 	"flotsam sprite" "effect/flotsam silver"
 	"mass" 1
 	"installable" -1
+	"minable" 1
 	description "Although not as pricy as gold, silver is used not just in jewelry but in electronics, disinfectants, and high-quality mirrors, and as a chemical catalyst."
 
 
 minable "titanium"
 	sprite "asteroid/titanium/spin"
-	hull 2400
+	hull 2160
+	"random hull" 480
 	payload "Titanium" 32
 	explode "smoke" 30
 	explode "bolide" 30
-	explode "final explosion medium"
+	explode "asteroid crunch medium"
 
 outfit "Titanium"
 	plural "Titanium"
-	category "Special"
+	category "Minerals"
 	cost 2500
 	thumbnail "outfit/harvested titanium"
 	"flotsam sprite" "effect/flotsam titanium"
 	"mass" 1
 	"installable" -1
+	"minable" 1
 	description "Strong, lightweight, and resistant to corrosion, titanium is one of the chief metals used for starship hulls and structural members."
 
 
 minable "tungsten"
 	sprite "asteroid/titanium/spin"
-	hull 4800
+	hull 4320
+	"random hull" 960
 	payload "Tungsten" 24
 	explode "smoke" 30
 	explode "bolide" 30
-	explode "final explosion medium"
+	explode "asteroid crunch medium"
 
 outfit "Tungsten"
 	plural "Tungsten"
-	category "Special"
+	category "Minerals"
 	cost 4500
 	thumbnail "outfit/harvested tungsten"
 	"flotsam sprite" "effect/flotsam tungsten"
 	"mass" 1
 	"installable" -1
+	"minable" 1
 	description "Tungsten has many industrial uses due to its high melting point and its strength."
 
 
 minable "uranium"
 	sprite "asteroid/lead/spin"
-	hull 3200
+	hull 2880
+	"random hull" 640
 	payload "Uranium" 24
 	explode "smoke" 30
 	explode "bolide" 30
-	explode "final explosion medium"
+	explode "asteroid crunch medium"
 
 outfit "Uranium"
 	plural "Uranium"
-	category "Special"
+	category "Minerals"
 	cost 5000
 	thumbnail "outfit/harvested uranium"
 	"flotsam sprite" "effect/flotsam uranium"
 	"mass" 1
 	"installable" -1
+	"minable" 1
 	description "Uranium is best known for its use in the nuclear reactors that power large starships. Its most stable isotope U-238 is also used for ultra-strong hull plating and for armor-piercing projectiles."
+
+
+minable "yottrite"
+	sprite "asteroid/yottrite/spin"
+	hull 18000
+	"random hull" 4000
+	payload "Yottrite" 7
+	explode "smoke" 30
+	explode "bolide" 30
+	explode "asteroid crunch medium"
+
+outfit "Yottrite"
+	plural "Yottrite"
+	category "Minerals"
+	cost 200000
+	thumbnail "outfit/harvested yottrite"
+	"flotsam sprite" "effect/flotsam yottrite"
+	"mass" 3.14
+	"installable" -1
+	"minable" 1
+	description "An extraordinarily rare crystalline formation, forged over tens of thousands of years in the molecular clouds around supernova remnants. Although less advanced species can potentially harvest it, very few civilizations other than the Quarg have developed the technology needed to incorporate yottrite in an alloy."
+
+
+
+# The following are not traditional asteroids, and are not present at the start of the game.
+# They are added to specific systems in the Ember Waste during the events of the 'Remnant: Cognizance' missions.
+
+minable "plant"
+	sprite "asteroid/plant/plant"
+	hull 2520
+	"random hull" 560
+	payload "Void Orchid" 21
+	explode "smoke" 30
+	explode "bolide" 30
+	explode "final explosion medium"
+
+minable "plant2"
+	"display name" "Plant"
+	sprite "asteroid/plant2/plant2"
+	hull 2340
+	"random hull" 520
+	payload "Void Orchid" 20
+	explode "smoke" 30
+	explode "bolide" 30
+	explode "final explosion medium"
+
+minable "plant cluster"
+	sprite "asteroid/plant cluster/plant cluster"
+	hull 1080
+	"random hull" 240
+	payload "Void Orchid" 11
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "large plant"
+	sprite "asteroid/large plant/large plant"
+	hull 3420
+	"random hull" 760
+	payload "Void Orchid" 41
+	explode "smoke" 30
+	explode "bolide" 40
+	explode "final explosion medium"
+
+minable "large plant2"
+	"display name" "Large Plant"
+	sprite "asteroid/large plant2/large plant2"
+	hull 3240
+	"random hull" 720
+	payload "Void Orchid" 41
+	explode "smoke" 30
+	explode "bolide" 40
+	explode "final explosion medium"
+
+minable "large plant cluster"
+	sprite "asteroid/large plant cluster/large plant cluster"
+	hull 1980
+	"random hull" 440
+	payload "Void Orchid" 22
+	explode "smoke" 30
+	explode "bolide" 40
+	explode "final explosion medium"
+
+minable "live crystal"
+	sprite "asteroid/livecrystal/livecrystal"
+	hull 900
+	"random hull" 200
+	payload "Void Orchid" 8
+	explode "smoke" 15
+	explode "bolide" 10
+	explode "final explosion small"
+
+minable "space flora"
+	sprite "asteroid/space flora/space flora"
+	hull 900
+	"random hull" 200
+	payload "Void Orchid" 8
+	explode "smoke" 15
+	explode "bolide" 10
+	explode "final explosion small"
+
+minable "large space flora"
+	sprite "asteroid/large space flora/large space flora"
+	hull 1800
+	"random hull" 400
+	payload "Void Orchid" 16
+	explode "smoke" 25
+	explode "bolide" 20
+	explode "final explosion medium"
+
+
+outfit "Void Orchid"
+	plural "Void Orchids"
+	category "Minerals"
+	cost 15000
+	thumbnail "outfit/harvested silicon"
+	"flotsam sprite" "effect/flotsam silicon"
+	"mass" 1
+	"installable" -1
+	"minable" 1
+	description "'Void Orchid' is the generic term for a variety of strange, plant-like organisms that live primarily on asteroids. Due to the way they concentrate minerals from their host asteroid, they are valued both as scientific curiosities as well as for their mineral content."
+
+
+
+# Acheron Space-life Asteroids
+
+minable "unknown"
+	sprite "asteroid/bioroid/spin"
+	hull 1600
+	"random hull" 810
+	explode "smoke" 10
+	explode "bolide" 20
+	explode "blood" 10
+	explode "final explosion medium"

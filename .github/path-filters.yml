@@ -1,0 +1,42 @@
+data:
+  - 'data/**/*'
+  - 'images/**/*'
+  - 'sounds/**/*'
+
+game_code: &build
+  - 'source/**'
+
+linux:
+  - SConstruct
+  - *build
+
+unit_tests:
+  - 'tests/unit/**/*.h'
+  - 'tests/unit/**/*.hpp'
+  - 'tests/unit/**/*.cpp'
+
+integration_tests:
+  - 'tests/integration/config/plugins/integration-tests/**'
+
+codespell:
+  - .codespell.exclude
+
+codeblocks_files:
+  - '*.cbp'
+  - 'utils/check_codeblocks.sh'
+
+cmake_files:
+  - CMakeLists.txt
+  - source/CMakeLists.txt
+  - tests/CMakeLists.txt
+  - tests/integration/IntegrationTests.cmake
+  - utils/vcpkg_bootstrap.cmake
+  - CMakePresets.json
+  - vcpkg.json
+  - vcpkg-configuration.json
+
+copyright:
+  - 'copyright'
+
+parse_script:
+  - 'utils/test_parse.ps1'

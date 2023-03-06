@@ -1,0 +1,309 @@
+# Copyright (c) 2021 by MasterOfGrey
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+mission "Theater Chat"
+	minor
+	source
+		government "Hai"
+		not attributes "station"
+	destination
+		distance 1 3
+		government "Hai"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`As you are walking through the spaceport, you come across the uncommon pairing of a Hai and a human, their conversation standing out by virtue of speaking the common tongue of humanity.`
+			`	"Oh, oh, Gemanari, this looks interesting!" The human woman looks to be in her late sixties and, when you turn to look, seems to be clucking over a holographic advertisement for a theater show. "This looks adorable, doesn't it? Oh, and it says they're using ripple ray refractive holographic flight effects!"`
+			`	The advertisement does indeed look very impressive, and you pause to observe for a moment.`
+			`	The Hai, presumably Gemanari, also appears to be a more mature lady who squints at it and wrinkles her nose. "Ugh, that's the Germontian interpretation though."`
+			`	This receives a puzzled look to which Gemanari thinks for a second before clarifying. "You would say the Social Darwinist interpretation."`
+			`	The lady grimaces and makes like she's vomiting. "I can't believe you still have those schools of thought in a society this old."`
+			`	"Oh we don't really, at least not in scientific circles, but a compelling story will outlive such things. I can't stand it personally, but it is a classic." When the lady looks unimpressed, Gemanari titters and takes her gently by the arm to steer her away again. "Don't worry Alinta; I think the Misheep Wah'uden company is running my preferred interpretation on <destination> at the moment. We can see if they have any cheap tickets. Of course my aunt would insist that the hundred and eighty-third version is the only real one, but she always..."`
+			`	You lose the conversation as they trail away from you, leaving you to wonder just what was so special about the hundred and eighty-third version of a play about a prehistoric flying Hai found frozen in the ice.`
+				decline
+
+
+
+mission "Musical Entertainment Expo"
+	minor
+	source
+		government "Hai"
+		not attributes "station"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`While stopped in the spaceport waiting for refueling, you are surprised by how hard it is to find somewhere to sit and have a meal and a drink. It seems Hai have crammed themselves into every bar or similar venue with a public display screen, arrayed in sashes and mantles and all manner of other paraphernalia which, near as you can tell, look like... team sport merchandise?`
+			`	You're not really an expert on what such things look like in Hai society and so when you finally find somewhere to sit, at a bar for lack of any other options, you ask the tired-looking bartender what exactly is going on.`
+			`	"Oh this? They're all here for the Musical Entertainment Expo streams. Unfortunately, none of them start drinking until at least one of their teams has announced something of worth," he says with an exasperated eye-roll.`
+			choice
+				`	"Okay. Can I just get some food here?"`
+					goto wrapup
+				`	"What's the Musical Entertainment Expo?"`
+				`	"Why don't they start drinking yet?"`
+			`	"Well you see, the big music labels do a lot of talent scouting all year round. They all have departments solely dedicated to finding and assembling new music groups to be the next big thing. It's tradition to celebrate only after you've committed to the journey with a new band. Every three years the industry holds ME2, which is what you're seeing up there, to debut their next round of bands and to tease any mid-season releases they might have in the works."`
+			choice
+				`	"Your music comes off a production line?"`
+					goto production
+				`	"Do you not have musicians trying to make it on their own?"`
+			`	"Oh for sure, but mostly just to get picked up by one of these companies."`
+			label production
+			`	The bartender chuckles. "We've been doing pop music for longer than your people have had fire. It's about the experience of being a fan of a group as it rises to fame and stardom. A dedicated Hai can go back and find a song for almost any possible life experience in almost any possible genre. It's the journey, and the personalities, that are what it's all about."`
+			choice
+				`	"How strange."`
+				`	"How interesting."`
+			`	"Anyway, I gather you were after some food?"`
+			label wrapup
+			`	The bartender tips his head in your direction and takes your order. "No problem, it'll be right up."`
+			`	It's a noisy meal.`
+				decline
+
+
+
+mission "The Meme Wars 1"
+	minor
+	source
+		government "Hai"
+		not attributes "station"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`Stepping into the spaceport you are beset by a riot of color. Every blank surface that's not usually paid advertising space seems to be festooned with dangling holographic projectors, banners, and ribbons. There's even actual paper fliers and posters, apparently taped to whatever surface will bear them. At first you wonder if there's some sort of festival going on, but as you watch a young Hai wearing a hood slaps up another holo projector, creating a cartoonish root vegetable with a sword, which begins hacking at the adjacent hologram, some kind of impressionist concept of a Hai elder made up of iridescent triangles. The young Hai then proceeds to tear down a banner and slap some goo on a massive poster which begins dissolving before a pair of security guards, wearing some very obviously non-standard additions to their uniforms, chase him back out of the spaceport.`
+			branch translator
+				has "language: Hai"
+			`	As you watch, the triangular elder being holoprojected seems to flicker and then fizzles out as the battery unit fades, apparently under the assault of the root vegetable which appears to do a victory dance, before proceeding to act out something that makes precisely no sense to you.`
+			`	A little further on you encounter two different groups of protesters, assuming that's what they are, weaving in and out of the spaceport's entrances like some kind of conga line. The triangular elder and opposing root vegetable make several reappearances on their placards, some of them holographically animated.`
+			`	A different security guard, this one in regular attire, appears at your elbow. "You look a little lost. Don't worry, it's just a meme war. Carry on with your business and don't touch the meme items and no one should bother you over it."`
+			`	You thank the security guard for his advice and go about what you were doing as the baffling conflict continues around you.`
+				decline
+			label translator
+			`	As you watch, the triangular elder being holoprojected seems to flicker and then fizzles out as the battery unit fades, apparently under the assault of the root vegetable which appears to do a victory dance. To your surprise, your translator pipes up: "[Victory, Success] for the true and square root that is more [significant, meaningful] than the tripartite [system, tradition] of the elders!"`
+			`	A little further on you encounter two different groups of protesters, assuming that's what they are, weaving in and out of the spaceport's entrances like some kind of conga line. The triangular elder and opposing root vegetable make several reappearances on their placards, some of them holographically animated.`
+			`	A different security guard, this one in regular attire, appears at your elbow. "You look a little lost. Don't worry, it's just a meme war. Carry on with your business and don't touch the meme items, and no one should bother you over it."`
+			choice
+				`	"Sure, will do."`
+					goto done
+				`	"Your elders have a tripartite system?"`
+			`	The security guard chuckles and says, "Oh you can understand? They don't really, but it's a very old joke from a bygone political campaign that there are only three tenets the elders care about, and they're all the ones that affect us the least."`
+			`	When you ask what has triggered this, he says, "Oh, the latest education priorities came out with a four tenet focus, on the same day that an elder accidentally quoted the old campaign. It has been very entertaining."`
+			choice
+				`	"How strange."`
+				`	"Sounds fun."`
+			label done
+			`	You thank the security guard for his advice and go about what you were doing as the baffling conflict continues around you.`
+				decline
+
+
+
+mission "Wrestling Star"
+	minor
+	source
+		government "Hai"
+		not attributes "station"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`As you pass through the spaceport you notice a crowd of trilling Hai clustered in one area.`
+			choice
+				`	(Ignore them and pass by.)`
+					goto skip
+				`	(Take a look.)`
+			`	The crowd appears to be mostly made up of younger Hai, though a few more mature Hai are also there, visibly exhibiting more restraint on their enthusiasm. Reaching the edge of the crowd and peering over the shorter Hai folk, you can see a table set up with two standing banners flanking it and a stack of, at a glance, glossy printed photos.`
+			`	The banners depict a rather buff looking Hai, rendered in great detail, with a holographically enhanced animation that makes it appear to be continuously going through the motion of lifting and dropping a generically blurred opponent. The effect is, though, achieved solely through a trick of artificially shifting perspective. To your surprise you realize that this is a signing event for a wrestling star, of all things.`
+			`	After only a moment the individual in question emerges from a booth behind the setup and greets their fans, who prove very enthusiastic, before sitting down with some kind of pen for the assembled Hai to line up. It would seem that certain human customs have become popularized among the Hai.`
+			label skip
+			`	You can hear the Hai crowd trilling for some distance as you go about your business.`
+				decline
+
+
+
+mission "Fencing Star"
+	minor
+	source
+		government "Hai"
+		not attributes "station"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`As you pass through the spaceport you notice a crowd of trilling Hai clustered in one area.`
+			choice
+				`	(Ignore them and pass by.)`
+					goto skip
+				`	(Take a look.)`
+			`	The crowd appears to be mostly made up of younger Hai, though a few more mature Hai are also there, visibly exhibiting more restraint on their enthusiasm. Reaching the edge of the crowd and peering over the shorter Hai folk, you can see a table set up with two standing banners flanking it and a stack of, at a glance, glossy printed photos.`
+			`	The banners depict a svelte Hai in the strikingly familiar costume of a fencer, with a holographically enhanced animation that makes it appear to be continuously performing an elegant parry and riposte against an out-of-frame opponent. The effect is, though, achieved solely through a trick of artificially shifting perspective. To your surprise you realize that this is a signing event for a fencing star, of all things.`
+			`	After only a moment the individual in question emerges from a booth behind the setup and greets their fans, who prove very enthusiastic, before sitting down with some kind of pen for the assembled Hai to line up. It would seem that certain human customs have become popularized among the Hai.`
+			label skip
+			`	You can hear the Hai crowd trilling for some distance as you go about your business.`
+				decline
+
+
+
+mission "Mystery Sport Star"
+	minor
+	source
+		government "Hai"
+		not attributes "station"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`As you pass through the spaceport you notice a crowd of trilling Hai clustered in one area.`
+			choice
+				`	(Ignore them and pass by.)`
+					goto skip
+				`	(Take a look.)`
+			`	The crowd appears to be mostly made up of younger Hai, though a few more mature Hai are also there, visibly exhibiting more restraint on their enthusiasm. Reaching the edge of the crowd and peering over the shorter Hai folk, you can see a table set up with two standing banners flanking it and a stack of, at a glance, glossy printed photos.`
+			`	The banners depict a pair of Hai, one with a net and one with what looks like a bladed frisbee. It's not at all clear what precisely it is that they do, and when the individuals in question emerge from a booth behind the setup and greet their fans it becomes clear that, if you could even make yourself heard over the trilling, no one is particularly keen to explain it to you.`
+			`	The pair remove their helmets and flash dazzling Hai smiles at their fans before sitting down with some kind of pen for the assembled Hai to line up. It would seem that celebrity signings are popular among the Hai.`
+			label skip
+			`	You can hear the Hai crowd trilling for some distance as you go about your business.`
+				decline
+
+
+
+mission "Gambling Judgment"
+	minor
+	source
+		government "Hai"
+		not attributes "station"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`You stop at a diner for a meal ground-side at the spaceport, but you have not been seated long before you notice there is a group of other human ship captains sequestered in a corner playing, near as you can tell, a game of poker. You note that the group seems to be getting a variety of dark looks from various Hai also dining at the establishment.`
+			`	After a short while the barkeep, a middling and slightly overweight Hai, comes over to take your order.`
+			choice
+				`	(Place an order.)`
+					goto end
+				`	"Hey, I noticed there are some dark looks around here. Are human captains not welcome?"`
+			`	The barkeep looks confused for a second before looking over at the table and shaking his head in understanding. "Oh no, you're perfectly welcome. That group is just breaking the maturity tenets, and some Hai get uncomfortable with adults blatantly acting like children in public."`
+			choice
+				`	(Place an order.)`
+					goto end
+				`	"The maturity tenets?"`
+			`	"Oh right, I suppose you wouldn't know. There are a number of tenets that Hai are taught growing up, lessons to be internalized to be a responsible and functioning member of society. The second is 'To be honest in dealings,' and the third is 'To gamble only on skill, not chance,' so their game breaks two of them."`
+			choice
+				`	"Some would say poker is more about skill than chance."`
+				`	"Surely if it's just a game though, there's no harm in it?"`
+			`	"Oh no, I'm afraid the first tenet ensures that it's really not favorable either way. The first is 'To have clear separation of fantasy and reality,' so a game cannot have real consequences or it is reality, not fantasy. So to gamble money on the game is to bring real consequences to a fantasy exercise. This is taboo for an adult.`
+			`	"If you interpret the game as being played for the skill, without the wagering, then you clear the first and third tenet, but you have the issue that the principle skills are bluffing and manipulation, which violates the second tenet. Bluffing isn't a skill seen as having virtue, nor is manipulation."`
+			choice
+				`	"Wait, do the Hai not lie or bluff?"`
+			`	The barkeep chortles with a strange trill and says, "Oh no, the Hai do lie and bluff. We're actually very good at bluffing, evolutionarily advantageous in the wild and all that. It's just seen as very immature and base. An adult should be able to conduct their lives without resorting to such primitive instincts. We learned that the hard way long ago, back before we holed up in our current borders."`
+			`	He looks at you intently before continuing, "You won't hear the tenets brought up very much, but if you look closely you'll see that the first three especially are ingrained in our society very deeply."`
+			`	With a shrug he flips open his order pad and pats his belly. "Of course, my gran always said that any of them after the tenth were more guidelines than actual rules, and I certainly have my share of disagreements with thirteen. Now, before I talk your ears off, what'll I get for you?"`
+			label end
+			`	He takes your order diligently and with a smile.`
+				decline
+
+
+
+mission "Academy Motto"
+	minor
+	source
+		government "Hai"
+		attributes "urban"
+		not attributes "station"
+	to offer
+		random < 1
+		has "language: Hai"
+	on offer
+		conversation
+			`On this particular day, the spaceport is crowded beyond belief by some arcane confluence of chance and logistics. Despite having resolved the bulk of your business the port authorities have informed you that there is no safe departure slot open for at least seven hours (and even that's not a promise). This leaves you alone to fill in your unexpected bit of time in the early morning.`
+			choice
+				`	(Play games on my ship.)`
+				`	(Have a look around further afield.)`
+					goto fieldtrip
+			`	Not interested in getting lost in an expansive Hai city, you simply load up an entertainment console to keep you occupied for the next few hours.`
+				decline
+			label fieldtrip
+			`	The tendency of the Hai to efficiently pack people into vibrant but densely populated spaces is on full display as you navigate through throngs of Hai who mostly make polite efforts to avoid bumping into you. Colorful banners, flags, murals, and even windows all provide brilliant highlights to the oft-utilitarian architectural styles underlying them. Holoprojected welcome signs even grace the entry-ways of several apartment buildings that you pass, with caveats for door-to-door salespeople.`
+			`	One apartment complex's exterior fencing bears a very large sign which your translator informs you says, "No Meme Content Here Please."`
+			`	After some time you find what appears to be a cafe, or equivalent, and sit down where you can get a good view of one of the more impressive building complexes around. After a moment a holoprojection built into the table asks you in human standard whether you'd like to order through the table or converse with a member of staff.`
+			choice
+				`	(Order through the table.)`
+					goto pleasantlunch
+				`	(Order through a person.)`
+			`	A friendly Hai emerges to take your order and politely informs you that there's a 10% surcharge for eating on the terrace. Since that's hardly a meaningful sum to a ship's captain you just nod and try and work out what you're eating. Eventually you settle for a sandwich with acorn butter and vegetable slices that appear to be spiced, or pickled, you're not really sure. It was the staff's top recommended item and didn't come with any follow-up questions about Hai food preferences that you couldn't answer.`
+				goto finishingchat
+			label pleasantlunch
+			`	The interface is rather annoying to work with human-sized hands, but eventually you settle for a sandwich with acorn butter and vegetable slices that appear to be spiced, or pickled, you're not really sure. It was the top recommended item and didn't come with any follow-up questions about Hai food preferences that you couldn't answer.`
+			label finishingchat
+			`	As you eat your strange, but actually surprisingly tasty lunch, you take note of the large text written above the gateway into the grounds for the building complex opposite you. After a moment your translator box takes note of where you're looking and reads it aloud for you.`
+			`	"To know is to lead, to study is to know, to serve is to study, to lead is to serve."`
+			`	Naturally, your translator cannot answer questions, so you eat your lunch and leave it be until a staff member emerges to take your plate.`
+			choice
+				`	(Ask them about it.)`
+					goto question
+				`	(Keep my thoughts to myself.)`
+			`	The staff member takes your plate and wishes you a lovely day.`
+				decline
+			label question
+			`	As they clear your plate from the table you ask them about the text on the gateway.`
+			`	"Oh, that's the city Academy. It's a... uh..." she pauses for a moment and relays something in Hai which your translator immediately converts to, "non-technical university."`
+			`	Giving the box a surprised look she smiles and continues in Hai, "If you want to be a manager, a politician, a social worker, or even just a public speaker, you go to the Academy and do courses on leadership and communications. Strictly speaking, it's not necessary to go, but lots of places simply won't accept you into those sorts of roles without some sort of Academy qualification, and they really do provide some great skills. I'm actually going there next year to do a proper human language course.`
+			`	"Technically the Academies are all independent, but they all share the same motto. It's an obligatory thing too though, that's what the motto is about. I'm told most humans think it's backwards, but it's not. The Academies keep tabs on their graduates; if you lead with self-interest, serve without studying, study without learning or waste your knowledge without applying it, they've been known to revoke people's qualifications. Attendance is free, so there's an expectation that you don't waste what they spend time teaching you.`
+			`	"This one is quite prestigious, but the ones near the spaceports always are." She winks. "Experience through natural exposure is worth more than what money can buy, after all."`
+			`	A moment later your comm pad alerts you that you've been assigned a departure window from the spaceport in relatively short order.`
+			`	"Well, I must be attending to other customers. You have a great day!" she says, leaving you to go about your business.`
+				decline
+
+
+
+mission "Robotic Musical 1"
+	minor
+	source
+		government "Hai"
+		attributes "tourism"
+		not attributes "station"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`Passing down the main thoroughfare of this spaceport you almost ignore a stack of haphazardly piled crates in the median strip. It's not uncommon for recently unloaded crates to temporarily sit in front of different businesses in a port, placed conspicuously out of the way of the flow of foot traffic, but it is the disordered piling that seems out of place.`
+			`	No sooner do you slow your step to give it your attention though, than the pile of crates immediately springs to life.`
+			branch translator
+				has "language: Hai"
+			`	Music plays and some half dozen robotic caricatures of Hai in exaggerated dress spring forth from various crates and begin to caper about in a series of interactions presumably intended to be comedic, at least judging by how they keep turning away from each other to "look" at the audience and wink. Holoprojected banners and glyphs, presumably advertisement information, flicker through a series of displays as it goes through a cycle before the entire cohort appear to finish up; each onlooker the recipient of some kind of entreaty from at least one robot, before they immediately clamber back into the crates.`
+			`	Throughout this a handful of Hai have stopped to watch, and a couple of them let out small chuckles at the conclusion before continuing on their way. Most of them simply roll their eyes and move on though. One child wanders too close as their parents steer around it and a little red holographic warning sign briefly flashes at them. No one seems keen to explain what you just saw, and for the moment the crates remain resolutely closed.`
+			action
+				set roboticconfusion
+			# This controls branching if there's a future follow-up where you get to see the performance.
+			`	Now that you think about it, you're not sure they all climbed back into the same boxes they came out of.`
+				decline
+			label translator
+			`	Music plays and some half dozen robotic caricatures of Hai in exaggerated dress spring forth from various crates and begin to caper about in a series of interactions. Your translator struggles to keep up as they run through a rapid-fire string of presumably witty wordplay jokes that don't translate well. The humor appears to be improvisational at first, but the illusion is so good that the realization of the impossibility of robots improvising only catches up with you after the fact. The entire thing is set to a musical score, with beat rests at various points where the animatronic Hai keep turning away from each other to 'look' at the audience and wink. Holoprojected banners and glyphs flicker through a series of displays informing you that this is an advertisement for a fully robotic comedy musical called "The Grandmother's Rules." It claims to be complete with interactive heckling responses and provides a list of dates and venues, all in the far future, where it will be showing.`
+			`	At the end each one of the robots strikes a pose and invites a different demographic to come along and "have the time of a decade," with ticket prices starting from 73 credits, before the entire cohort finish up and immediately clamber back into the crates. You're not sure they all climbed back into the same boxes they came out of.`
+			`	Throughout this a handful of Hai have stopped to watch, and a couple of them let out small chuckles at the conclusion before continuing on their way. Most of them simply roll their eyes and move on though.`
+			`	One middle-aged Hai in the crowd with racoon-like gray around his eyes wears the type of attire typical of their merchant captains. He eyes you curiously and steps over to you. "Well, well, Captain, that's a remarkable box you have there. Didn't know they'd started making live translator devices! Did it keep up alright?"`
+			choice
+				`	"Oh, it's the first of its kind."`
+					goto first
+				`	"I think I got the gist of it, though it only reads things out if I look directly at them."`
+			`	"Ah yes, I suppose that's a logical feature," he says. "I can only imagine it would be quite unwieldy if it tried to read out every piece of text in its vicinity.`
+				goto resolve
+			label first
+			`	"The first?" He studies you for a second. "Oh, you're Captain <last>! What a pleasure to meet you."`
+			`	He looks you up and down with a wry grin. "Somehow you're shorter than I expected.`
+			label resolve
+			`	"Well if you do get the chance, I do recommend the performance. I saw it a few months back and it really is quite good. Particularly popular on our worlds with many humans."`
+			`	He flicks you a friendly wave. "I must be off. Don't get too close to the displays, they don't like being touched!"`
+			`	The Hai sounds very pleased as he ambles off, quietly chortling to himself as he departs.`
+				decline
+
+

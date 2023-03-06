@@ -1,4 +1,4 @@
-/* Personality.h
+/* Personality.cpp
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Personality.h"
@@ -17,46 +20,58 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataWriter.h"
 
 #include <map>
+#include <vector>
 
 using namespace std;
 
 namespace {
-	const int PACIFIST = (1 << 0);
-	const int FORBEARING = (1 << 1);
-	const int TIMID = (1 << 2);
-	const int DISABLES = (1 << 3);
-	const int PLUNDERS = (1 << 4);
-	const int HEROIC = (1 << 5);
-	const int STAYING = (1 << 6);
-	const int ENTERING = (1 << 7);
-	const int NEMESIS = (1 << 8);
-	const int SURVEILLANCE = (1 << 9);
-	const int UNINTERESTED = (1 << 10);
-	const int WAITING = (1 << 11);
-	const int DERELICT = (1 << 12);
-	const int FLEEING = (1 << 13);
-	const int ESCORT = (1 << 14);
-	const int FRUGAL = (1 << 15);
-	const int COWARD = (1 << 16);
-	const int VINDICTIVE = (1 << 17);
-	const int SWARMING = (1 << 18);
-	const int UNCONSTRAINED = (1 << 19);
-	const int MINING = (1 << 20);
-	const int HARVESTS = (1 << 21);
-	const int APPEASING = (1 << 22);
-	const int MUTE = (1 << 23);
-	const int OPPORTUNISTIC = (1 << 24);
-	const int TARGET = (1 << 25);
-	const int MARKED = (1 << 26);
-	const int LAUNCHING = (1 << 27);
-	
-	const map<string, int> TOKEN = {
+	// Make sure the length of PersonalityTrait matches PERSONALITY_COUNT
+	// or the build will fail.
+	enum PersonalityTrait {
+		PACIFIST,
+		FORBEARING,
+		TIMID,
+		DISABLES,
+		PLUNDERS,
+		HUNTING,
+		STAYING,
+		ENTERING,
+		NEMESIS,
+		SURVEILLANCE,
+		UNINTERESTED,
+		WAITING,
+		DERELICT,
+		FLEEING,
+		ESCORT,
+		FRUGAL,
+		COWARD,
+		VINDICTIVE,
+		SWARMING,
+		UNCONSTRAINED,
+		MINING,
+		HARVESTS,
+		APPEASING,
+		MUTE,
+		OPPORTUNISTIC,
+		MERCIFUL,
+		TARGET,
+		MARKED,
+		LAUNCHING,
+		DARING,
+		SECRETIVE,
+		RAMMING,
+
+		// This must be last so it can be used for bounds checking.
+		LAST_ITEM_IN_PERSONALITY_TRAIT_ENUM
+	};
+
+	const map<string, PersonalityTrait> TOKEN = {
 		{"pacifist", PACIFIST},
 		{"forbearing", FORBEARING},
 		{"timid", TIMID},
 		{"disables", DISABLES},
 		{"plunders", PLUNDERS},
-		{"heroic", HEROIC},
+		{"hunting", HUNTING},
 		{"staying", STAYING},
 		{"entering", ENTERING},
 		{"nemesis", NEMESIS},
@@ -76,20 +91,31 @@ namespace {
 		{"appeasing", APPEASING},
 		{"mute", MUTE},
 		{"opportunistic", OPPORTUNISTIC},
+		{"merciful", MERCIFUL},
 		{"target", TARGET},
 		{"marked", MARKED},
-		{"launching", LAUNCHING}
+		{"launching", LAUNCHING},
+		{"daring", DARING},
+		{"secretive", SECRETIVE},
+		{"ramming", RAMMING}
 	};
-	
+
+	// Tokens that combine two or more flags.
+	const map<string, vector<PersonalityTrait>> COMPOSITE_TOKEN = {
+		{"heroic", {DARING, HUNTING}}
+	};
+
 	const double DEFAULT_CONFUSION = 10.;
 }
 
 
 
 // Default settings for player's ships.
-Personality::Personality()
-	: flags(DISABLES), confusionMultiplier(DEFAULT_CONFUSION), aimMultiplier(1.)
+Personality::Personality() noexcept
+	: flags(1LL << DISABLES), confusionMultiplier(DEFAULT_CONFUSION), aimMultiplier(1.)
 {
+	static_assert(LAST_ITEM_IN_PERSONALITY_TRAIT_ENUM == PERSONALITY_COUNT,
+		"PERSONALITY_COUNT must match the length of PersonalityTraits");
 }
 
 
@@ -99,16 +125,16 @@ void Personality::Load(const DataNode &node)
 	bool add = (node.Token(0) == "add");
 	bool remove = (node.Token(0) == "remove");
 	if(!(add || remove))
-		flags = 0;
+		flags.reset();
 	for(int i = 1 + (add || remove); i < node.Size(); ++i)
 		Parse(node, i, remove);
-	
+
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "confusion")
 		{
 			if(add || remove)
-				child.PrintTrace("Cannot \"" + node.Token(0) + "\" a confusion value:");
+				child.PrintTrace("Error: Cannot \"" + node.Token(0) + "\" a confusion value:");
 			else if(child.Size() < 2)
 				child.PrintTrace("Skipping \"confusion\" tag with no value specified:");
 			else
@@ -120,6 +146,7 @@ void Personality::Load(const DataNode &node)
 				Parse(child, i, remove);
 		}
 	}
+	isDefined = true;
 }
 
 
@@ -131,7 +158,7 @@ void Personality::Save(DataWriter &out) const
 	{
 		out.Write("confusion", confusionMultiplier);
 		for(const auto &it : TOKEN)
-			if(flags & it.second)
+			if(flags.test(it.second))
 				out.Write(it.first);
 	}
 	out.EndChild();
@@ -139,198 +166,234 @@ void Personality::Save(DataWriter &out) const
 
 
 
+bool Personality::IsDefined() const
+{
+	return isDefined;
+}
+
+
+
 bool Personality::IsPacifist() const
 {
-	return flags & PACIFIST;
+	return flags.test(PACIFIST);
 }
 
 
 
 bool Personality::IsForbearing() const
 {
-	return flags & FORBEARING;
+	return flags.test(FORBEARING);
 }
 
 
 
 bool Personality::IsTimid() const
 {
-	return flags & TIMID;
+	return flags.test(TIMID);
 }
 
 
 
-bool Personality::IsHeroic() const
+bool Personality::IsHunting() const
 {
-	return flags & HEROIC;
+	return flags.test(HUNTING);
 }
 
 
 
 bool Personality::IsNemesis() const
 {
-	return flags & NEMESIS;
+	return flags.test(NEMESIS);
 }
+
+
+
+bool Personality::IsDaring() const
+{
+	return flags.test(DARING);
+}
+
 
 
 
 bool Personality::IsFrugal() const
 {
-	return flags & FRUGAL;
+	return flags.test(FRUGAL);
 }
 
 
 
 bool Personality::Disables() const
 {
-	return flags & DISABLES;
+	return flags.test(DISABLES);
 }
 
 
 
 bool Personality::Plunders() const
 {
-	return flags & PLUNDERS;
+	return flags.test(PLUNDERS);
 }
 
 
 
 bool Personality::IsVindictive() const
 {
-	return flags & VINDICTIVE;
+	return flags.test(VINDICTIVE);
 }
 
 
 
 bool Personality::IsUnconstrained() const
 {
-	return flags & UNCONSTRAINED;
+	return flags.test(UNCONSTRAINED);
 }
 
 
 
 bool Personality::IsCoward() const
 {
-	return flags & COWARD;
+	return flags.test(COWARD);
 }
 
 
 
 bool Personality::IsAppeasing() const
 {
-	return flags & APPEASING;
+	return flags.test(APPEASING);
 }
 
 
 
 bool Personality::IsOpportunistic() const
 {
-	return flags & OPPORTUNISTIC;
+	return flags.test(OPPORTUNISTIC);
+}
+
+
+
+bool Personality::IsMerciful() const
+{
+	return flags.test(MERCIFUL);
+}
+
+
+
+bool Personality::IsRamming() const
+{
+	return flags.test(RAMMING);
 }
 
 
 
 bool Personality::IsStaying() const
 {
-	return flags & STAYING;
+	return flags.test(STAYING);
 }
 
 
 
 bool Personality::IsEntering() const
 {
-	return flags & ENTERING;
+	return flags.test(ENTERING);
 }
 
 
 
 bool Personality::IsWaiting() const
 {
-	return flags & WAITING;
+	return flags.test(WAITING);
 }
 
 
 
 bool Personality::IsLaunching() const
 {
-	return flags & LAUNCHING;
+	return flags.test(LAUNCHING);
 }
 
 
 
 bool Personality::IsFleeing() const
 {
-	return flags & FLEEING;
+	return flags.test(FLEEING);
 }
 
 
 
 bool Personality::IsDerelict() const
 {
-	return flags & DERELICT;
+	return flags.test(DERELICT);
 }
 
 
 
 bool Personality::IsUninterested() const
 {
-	return flags & UNINTERESTED;
+	return flags.test(UNINTERESTED);
 }
 
 
 
 bool Personality::IsSurveillance() const
 {
-	return flags & SURVEILLANCE;
+	return flags.test(SURVEILLANCE);
 }
 
 
 
 bool Personality::IsMining() const
 {
-	return flags & MINING;
+	return flags.test(MINING);
 }
 
 
 
 bool Personality::Harvests() const
 {
-	return flags & HARVESTS;
+	return flags.test(HARVESTS);
 }
 
 
 
 bool Personality::IsSwarming() const
 {
-	return flags & SWARMING;
+	return flags.test(SWARMING);
+}
+
+
+
+bool Personality::IsSecretive() const
+{
+	return flags.test(SECRETIVE);
 }
 
 
 
 bool Personality::IsEscort() const
 {
-	return flags & ESCORT;
+	return flags.test(ESCORT);
 }
 
 
 
 bool Personality::IsTarget() const
 {
-	return flags & TARGET;
+	return flags.test(TARGET);
 }
 
 
 
 bool Personality::IsMarked() const
 {
-	return flags & MARKED;
+	return flags.test(MARKED);
 }
 
 
 
 bool Personality::IsMute() const
 {
-	return flags & MUTE;
+	return flags.test(MUTE);
 }
 
 
@@ -347,7 +410,7 @@ void Personality::UpdateConfusion(bool isFiring)
 	// If you're firing weapons, aiming accuracy should slowly improve until it
 	// is 4 times more precise than it initially was.
 	aimMultiplier = .99 * aimMultiplier + .01 * (isFiring ? .5 : 2.);
-	
+
 	// Try to correct for any error in the aim, but constantly introduce new
 	// error and overcompensation so it oscillates around the origin. Apply
 	// damping to the position and velocity to avoid extreme outliers, though.
@@ -364,7 +427,20 @@ void Personality::UpdateConfusion(bool isFiring)
 Personality Personality::Defender()
 {
 	Personality defender;
-	defender.flags = STAYING | MARKED | HEROIC | UNCONSTRAINED | TARGET;
+	defender.flags = bitset<PERSONALITY_COUNT>((1LL << STAYING) | (1LL << MARKED) | (1LL << HUNTING) | (1LL << DARING)
+			| (1LL << UNCONSTRAINED) | (1LL << TARGET));
+	return defender;
+}
+
+
+
+// Remove target and marked since the defender defeat check doesn't actually care
+// about carried ships.
+Personality Personality::DefenderFighter()
+{
+	Personality defender;
+	defender.flags = bitset<PERSONALITY_COUNT>((1LL << STAYING) | (1LL << HUNTING) | (1LL << DARING)
+			| (1LL << UNCONSTRAINED));
 	return defender;
 }
 
@@ -373,15 +449,28 @@ Personality Personality::Defender()
 void Personality::Parse(const DataNode &node, int index, bool remove)
 {
 	const string &token = node.Token(index);
-	
+
 	auto it = TOKEN.find(token);
-	if(it != TOKEN.end())
+	if(it == TOKEN.end())
 	{
-		if(remove)
-			flags &= ~it->second;
+		auto cit = COMPOSITE_TOKEN.find(token);
+		if(cit == COMPOSITE_TOKEN.end())
+			node.PrintTrace("Warning: Skipping unrecognized personality \"" + token + "\":");
 		else
-			flags |= it->second;
+		{
+			if(remove)
+				for(auto personality : cit->second)
+					flags &= ~(1LL << personality);
+			else
+				for(auto personality : cit->second)
+					flags |= 1LL << personality;
+		}
 	}
 	else
-		node.PrintTrace("Invalid personality setting: \"" + token + "\"");
+	{
+		if(remove)
+			flags &= ~(1LL << it->second);
+		else
+			flags |= 1LL << it->second;
+	}
 }

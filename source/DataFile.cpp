@@ -7,12 +7,16 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "DataFile.h"
 
 #include "Files.h"
+#include "text/Utf8.h"
 
 using namespace std;
 
@@ -40,16 +44,16 @@ void DataFile::Load(const string &path)
 	string data = Files::Read(path);
 	if(data.empty())
 		return;
-	
+
 	// As a sentinel, make sure the file always ends in a newline.
-	if(data.empty() || data.back() != '\n')
+	if(data.back() != '\n')
 		data.push_back('\n');
-	
+
 	// Note what file this node is in, so it will show up in error traces.
 	root.tokens.push_back("file");
 	root.tokens.push_back(path);
-	
-	Load(&*data.begin(), &*data.end());
+
+	LoadData(data);
 }
 
 
@@ -57,8 +61,8 @@ void DataFile::Load(const string &path)
 // Constructor, taking an istream. This can be cin or a file.
 void DataFile::Load(istream &in)
 {
-	vector<char> data;
-	
+	string data;
+
 	static const size_t BLOCK = 4096;
 	while(in)
 	{
@@ -68,10 +72,10 @@ void DataFile::Load(istream &in)
 		data.resize(currentSize + in.gcount());
 	}
 	// As a sentinel, make sure the file always ends in a newline.
-	if(data.back() != '\n')
+	if(data.empty() || data.back() != '\n')
 		data.push_back('\n');
-	
-	Load(&*data.begin(), &*data.end());
+
+	LoadData(data);
 }
 
 
@@ -93,112 +97,138 @@ list<DataNode>::const_iterator DataFile::end() const
 
 
 // Parse the given text.
-void DataFile::Load(const char *it, const char *end)
+void DataFile::LoadData(const string &data)
 {
 	// Keep track of the current stack of indentation levels and the most recent
 	// node at each level - that is, the node that will be the "parent" of any
 	// new node added at the next deeper indentation level.
 	vector<DataNode *> stack(1, &root);
-	vector<int> whiteStack(1, -1);
+	vector<int> separatorStack(1, -1);
+	bool fileIsTabs = false;
 	bool fileIsSpaces = false;
-	bool warned = false;
-	
-	for( ; it != end; ++it)
+	size_t lineNumber = 0;
+
+	size_t end = data.length();
+	for(size_t pos = 0; pos < end; )
 	{
-		// Find the first non-white character in this line.
-		bool isSpaces = false;
-		int white = 0;
-		for( ; *it <= ' ' && *it != '\n'; ++it)
+		++lineNumber;
+		size_t tokenPos = pos;
+		char32_t c = Utf8::DecodeCodePoint(data, pos);
+
+		bool mixedIndentation = false;
+		int separators = 0;
+		// Find the first tokenizable character in this line (i.e. neither space nor tab).
+		while(c <= ' ' && c != '\n')
 		{
-			// Warn about mixed indentations when parsing files.
-			if(!isSpaces && *it == ' ')
+			// Determine what type of indentation this file is using.
+			if(!fileIsTabs && !fileIsSpaces)
 			{
-				// If we've parsed whitespace that wasn't a space, issue a warning.
-				if(white)
-					stack.back()->PrintTrace("Mixed whitespace usage in line");
-				else
+				if(c == '\t')
+					fileIsTabs = true;
+				else if(c == ' ')
 					fileIsSpaces = true;
-				
-				isSpaces = true;
 			}
-			else if(fileIsSpaces && !warned && *it != ' ')
-			{
-				warned = true;
-				stack.back()->PrintTrace("Mixed whitespace usage in file");
-			}
-			
-			++white;
+			// Issue a warning if the wrong indentation is used.
+			else if((fileIsTabs && c != '\t') || (fileIsSpaces && c != ' '))
+				mixedIndentation = true;
+
+			++separators;
+			tokenPos = pos;
+			c = Utf8::DecodeCodePoint(data, pos);
 		}
-		
+
 		// If the line is a comment, skip to the end of the line.
-		if(*it == '#')
+		if(c == '#')
 		{
-			while(*it != '\n')
-				++it;
+			if(mixedIndentation)
+				root.PrintTrace("Warning: Mixed whitespace usage for comment at line " + to_string(lineNumber));
+			while(c != '\n')
+				c = Utf8::DecodeCodePoint(data, pos);
 		}
 		// Skip empty lines (including comment lines).
-		if(*it == '\n')
+		if(c == '\n')
 			continue;
-		
+
 		// Determine where in the node tree we are inserting this node, based on
 		// whether it has more indentation that the previous node, less, or the same.
-		while(whiteStack.back() >= white)
+		while(separatorStack.back() >= separators)
 		{
-			whiteStack.pop_back();
+			separatorStack.pop_back();
 			stack.pop_back();
 		}
-		
+
 		// Add this node as a child of the proper node.
 		list<DataNode> &children = stack.back()->children;
 		children.emplace_back(stack.back());
 		DataNode &node = children.back();
-		
+		node.lineNumber = lineNumber;
+
 		// Remember where in the tree we are.
 		stack.push_back(&node);
-		whiteStack.push_back(white);
-		
+		separatorStack.push_back(separators);
+
 		// Tokenize the line. Skip comments and empty lines.
-		while(*it != '\n')
+		while(c != '\n')
 		{
 			// Check if this token begins with a quotation mark. If so, it will
 			// include everything up to the next instance of that mark.
-			char endQuote = *it;
+			char32_t endQuote = c;
 			bool isQuoted = (endQuote == '"' || endQuote == '`');
-			it += isQuoted;
-			
-			const char *start = it;
-			
+			if(isQuoted)
+			{
+				tokenPos = pos;
+				c = Utf8::DecodeCodePoint(data, pos);
+			}
+
+			size_t endPos = tokenPos;
+
 			// Find the end of this token.
-			while(*it != '\n' && (isQuoted ? (*it != endQuote) : (*it > ' ')))
-				++it;
-			
+			while(c != '\n' && (isQuoted ? (c != endQuote) : (c > ' ')))
+			{
+				endPos = pos;
+				c = Utf8::DecodeCodePoint(data, pos);
+			}
+
 			// It ought to be legal to construct a string from an empty iterator
 			// range, but it appears that some libraries do not handle that case
 			// correctly. So:
-			if(start == it)
+			if(tokenPos == endPos)
 				node.tokens.emplace_back();
 			else
-				node.tokens.emplace_back(start, it);
+				node.tokens.emplace_back(data, tokenPos, endPos - tokenPos);
 			// This is not a fatal error, but it may indicate a format mistake:
-			if(isQuoted && *it == '\n')
-				node.PrintTrace("Closing quotation mark is missing:");
-			
-			if(*it != '\n')
+			if(isQuoted && c == '\n')
+				node.PrintTrace("Warning: Closing quotation mark is missing:");
+
+			if(c != '\n')
 			{
 				// If we've not yet reached the end of the line of text, search
 				// forward for the next non-whitespace character.
-				it += isQuoted;
-				while(*it != '\n' && *it <= ' ' && *it != '#')
-					++it;
-				
+				if(isQuoted)
+				{
+					tokenPos = pos;
+					c = Utf8::DecodeCodePoint(data, pos);
+				}
+				while(c != '\n' && c <= ' ' && c != '#')
+				{
+					tokenPos = pos;
+					c = Utf8::DecodeCodePoint(data, pos);
+				}
+
 				// If a comment is encountered outside of a token, skip the rest
 				// of this line of the file.
-				if(*it == '#')
+				if(c == '#')
 				{
-					while(*it != '\n')
-						++it;
+					while(c != '\n')
+						c = Utf8::DecodeCodePoint(data, pos);
 				}
 			}
 		}
+		// Now that we've reached the end of the line, we know no more tokens will be added to the node.
+		node.tokens.shrink_to_fit();
+
+		// Now that we've tokenized this node, print any mixed whitespace warnings.
+		if(mixedIndentation)
+			node.PrintTrace("Warning: Mixed whitespace usage at line");
 	}
 }

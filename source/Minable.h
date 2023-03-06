@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef MINABLE_H_
@@ -36,36 +39,40 @@ class Visual;
 // ellipse around the system center.
 class Minable : public Body {
 public:
-	/* Inherited from Body:
-	Frame GetFrame(int step = -1) const;
-	const Mask &GetMask(int step = -1) const;
-	const Point &Position() const;
-	const Point &Velocity() const;
-	const Angle &Facing() const;
-	Point Unit() const; */
-	
+	// Inherited from Body:
+	// Frame GetFrame(int step = -1) const;
+	// const Mask &GetMask(int step = -1) const;
+	// const Point &Position() const;
+	// const Point &Velocity() const;
+	// const Angle &Facing() const;
+	// Point Unit() const;
+
 	// Load a definition of a minable object.
 	void Load(const DataNode &node);
-	const std::string &Name() const;
-	
+	const std::string &TrueName() const;
+	const std::string &DisplayName() const;
+	const std::string &Noun() const;
+
 	// Place a minable object with up to the given energy level, on a random
 	// orbit and a random position along that orbit.
 	void Place(double energy, double beltRadius);
-	
+
 	// Move the object forward one step. If it has been reduced to zero hull, it
 	// will "explode" instead of moving, creating flotsam and explosion effects.
 	// In that case it will return false, meaning it should be deleted.
 	bool Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
-	
+
 	// Damage this object (because a projectile collided with it).
 	void TakeDamage(const Projectile &projectile);
-	
+
 	// Determine what flotsam this asteroid will create.
 	const std::map<const Outfit *, int> &Payload() const;
-	
-	
+
+
 private:
 	std::string name;
+	std::string displayName;
+	std::string noun;
 	// Current angular position relative to the focus of the elliptical orbit,
 	// in radians. An angle of zero is the periapsis point.
 	double theta;
@@ -76,18 +83,22 @@ private:
 	double angularMomentum;
 	// Scale of the orbit. This is the orbital radius when theta is 90 degrees.
 	// The periapsis and apoapsis radii are scale / (1 +- eccentricity).
-	double scale;
+	double orbitScale;
 	// Rotation of the orbit - that is, the angle of periapsis - in radians.
 	double rotation;
 	// Rate of spin of the object.
 	Angle spin;
-	
+
 	// Cache the current orbital radius. It can be calculated from theta and the
 	// parameters above, but this avoids having to calculate every radius twice.
 	double radius;
-	
+
 	// Remaining "hull" strength of the object, before it is destroyed.
 	double hull = 1000.;
+	// The hull value that this object starts at.
+	double maxHull = 1000.;
+	// A random amount of hull that gets added to the object.
+	double randomHull = 0.;
 	// Material released when this object is destroyed. Each payload item only
 	// has a 25% chance of surviving, meaning that usually the yield is much
 	// lower than the defined limit but occasionally you get quite lucky.

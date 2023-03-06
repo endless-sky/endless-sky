@@ -1,0 +1,602 @@
+# Copyright (c) 2015 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+conversation "assisting merchant"
+	`When you repair the <origin>, the captain thanks you for your assistance and pays you <payment>.`
+		decline
+
+mission "Assisting Merchant (Small)"
+	assisting
+	repeat
+	minor
+	to offer
+		random < 20
+	source
+		government "Merchant"
+		category "Interceptor" "Light Warship" "Transport" "Light Freighter"
+		not attributes "automaton"
+	on offer
+		payment 10000
+		conversation "assisting merchant"
+	# A mission with no destination will not be offered, so give it one.
+	# What the destination is doesn't matter, because you always 'decline' this.
+	destination "Earth"
+
+mission "Assisting Merchant (Medium)"
+	assisting
+	repeat
+	minor
+	to offer
+		random < 15
+	source
+		government "Merchant"
+		category "Medium Warship" "Heavy Freighter"
+		not attributes "automaton"
+	on offer
+		payment 20000
+		conversation "assisting merchant"
+	destination "Earth"
+
+mission "Assisting Merchant (Large)"
+	assisting
+	repeat
+	minor
+	to offer
+		random < 10
+	source
+		government "Merchant"
+		category "Heavy Warship"
+		not attributes "automaton"
+	on offer
+		payment 30000
+		conversation "assisting merchant"
+	destination "Earth"
+
+
+mission "Asteroid Course"
+	assisting
+	minor
+	name "Passengers to <planet>"
+	description "Transport the remaining crew of a destroyed ship, <bunks> people that were working on the <origin>, to <destination>."
+	to offer
+		random < 6
+	source
+		government "Merchant" "Syndicate"
+		category "Light Freighter" "Interceptor"
+		not attributes "automaton"
+	passengers 3 7
+	destination
+		distance 1 3
+		not government "Pirate"
+		attributes shipyard
+	on offer
+		conversation
+			`As you are approaching the <origin>, your radar sensors detect that the ship you are assisting is about to be slammed by a huge asteroid! While in a normal flight this wouldn't cause much trouble, a ship that has already suffered heavy damage and cannot dodge could be completely destroyed.`
+			branch unarmed
+				not "armament deterrence"
+			choice
+				`	(Shoot the asteroid.)`
+					goto fire
+				`	(Maneuver my ship to shield the <origin>.)`
+					goto move
+				`	(Attempt to repair the <origin> so that it can dodge the asteroid.)`
+					goto repair
+				`	(Interrupt the docking maneuvers and fly away.)`
+					goto escape
+			label unarmed
+			choice
+				`	(Maneuver my ship to shield the <origin>.)`
+					goto move
+				`	(Attempt to repair the <origin> so that it can dodge the asteroid.)`
+					goto repair
+				`	(Interrupt the docking maneuvers and fly away.)`
+			label escape
+			`	You turn your ship around and activate your thrusters, trying to get as far as you can from the disabled ship. A few seconds later, the asteroid collides with the <origin>, tearing it to shreds and killing all of its crew members while leaving little more than a scratch on the asteroid's surface.`
+				depart
+			label fire
+			branch success
+				random < 50
+			`	You fire at the asteroid in an attempt to destroy it, but it looks like you've only made things worse. The asteroid has now broken up into dozens of smaller chunks still flying directly for the <origin>. Before you can even react to fix your mistake, most of the chunks have already hit the <origin>, which is now quickly depressurizing. There's nothing more you can do except move a safe distance away from the exploding ship...`
+				depart
+			label success
+			`	The shots you fire quickly break the asteroid into pieces, which seem to have changed course enough to completely miss the <origin>. After repairing it, you hail its captain, who thanks you with a payment of 30,000 credits.`
+				decline
+			label repair
+			branch crew
+				random < 40
+			`	You dock with the <origin>, hoping to get out of this alive, but as soon as you reach the hatch, the asteroid hits and a series of explosions start coming from the disabled ship. You are able to reach your cockpit and undock, but the crew on the other ship couldn't reach yours in time...`
+				depart
+			label crew
+			`	You dock with the <origin>, hoping to get out of this alive, but, as soon as you reach the hatch, the asteroid hits and a series of explosions start coming from the disabled ship. Most of the other ship's crew has been able to reach your ship by the time you undock from it, and they ask you to take them to <destination>.`
+			choice
+				`	"Okay, it's not far."`
+					launch
+				`	"How much can you pay me?"`
+			`	"I have a few hundred thousand credits," one of them says, presumably the captain. "I need to save enough to buy a new starship, but you will still receive a decent pay."`
+				launch
+			label move
+			`	The asteroid, after hitting your shield, breaks into a million fragments which fly away from the <origin>. After repairing it, you hail its captain, who thanks you with a payment of 30,000 credits.`
+				decline
+	on decline
+		payment 30000
+	on complete
+		payment
+		payment 35000
+		dialog "The captain you talked with before thanks you again for saving him and his crew, and hands you <payment>."
+
+
+
+mission "Dangerous Journey"
+	assisting
+	minor
+	name "Delivery to <planet>"
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	to offer
+		random < 10
+	source
+		government "Merchant"
+		category "Light Freighter" "Heavy Freighter"
+		not attributes "automaton"
+	destination
+		government "Republic" "Syndicate" "Free Worlds"
+		attributes "frontier"
+		distance 2 3
+	cargo random 5 2 .1
+	on offer
+		conversation
+			`When you repair the <origin>, the captain hails you. "This is the fourth time I've nearly died in the past week doing this job! Here, take this <cargo> to <destination> and finish this job for me. They said the payment is <payment>."`
+			choice
+				`	(Take the cargo.)`
+					accept
+				`	(Don't take the cargo.)`
+			`	The captain begins loudly swearing, so you cut the feed. Hopefully they make it to their destination in one piece.`
+				decline
+	on complete
+		payment 7500
+		dialog `You drop off your cargo of <commodity>, explain how the original merchant who took the job quit and handed off the cargo to you, and collect your payment of <payment>.`
+
+
+
+conversation "assisting law enforcement"
+	`The captain of the <origin> thanks you for repairing them, but informs you that the pirates that disabled them are only a smaller part of a fleet attacking <destination>.`
+	`	The authorities of <planet> will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
+	choice
+		`	(Don't join the fight.)`
+			decline
+		`	(Join the defense fleet.)`
+			accept
+
+mission "Assisting Free Worlds"
+	assisting
+	repeat
+	minor
+	name "Defend <planet>"
+	description "Defeat a pirate raid on <destination>."
+	to offer
+		"combat rating" > 100
+		random < 5
+	source
+		government "Free Worlds"
+		not category "Fighter" "Drone"
+		not attributes "automaton"
+	destination
+		government "Free Worlds"
+		distance 2 4
+	on offer
+		conversation "assisting law enforcement"
+	npc kill
+		government "Pirate"
+		personality heroic staying target harvests plunders
+		system destination
+		fleet "Large Southern Pirates" 2
+		fleet "Small Southern Pirates"
+	npc
+		government "Free Worlds"
+		personality heroic staying
+		system destination
+		fleet "Large Free Worlds"
+	on complete
+		payment 150000
+		dialog phrase "generic pirate attack payment dialog"
+
+mission "Assisting Republic"
+	assisting
+	repeat
+	minor
+	name "Defend <planet>"
+	description "Defeat a pirate raid on <destination>."
+	to offer
+		"combat rating" > 100
+		random < 5
+	source
+		government "Republic"
+		not category "Fighter" "Drone"
+		not attributes "automaton"
+	destination
+		government "Republic"
+		distance 2 4
+	on offer
+		conversation "assisting law enforcement"
+	npc kill
+		government "Pirate"
+		personality heroic staying target harvests plunders
+		system destination
+		fleet "Large Northern Pirates" 2
+		fleet "Small Northern Pirates"
+	npc
+		government "Republic"
+		personality heroic staying
+		system destination
+		fleet "Small Republic" 2
+	on complete
+		payment 150000
+		dialog phrase "generic pirate attack payment dialog"
+
+mission "Assisting Deep Security"
+	assisting
+	repeat
+	minor
+	name "Defend <planet>"
+	description "Defeat a pirate raid on <destination>."
+	to offer
+		"combat rating" > 100
+		random < 5
+	source
+		government "Deep Security"
+		not category "Fighter" "Drone"
+		not attributes "automaton"
+	destination
+		attributes "deep"
+		distance 2 4
+	on offer
+		conversation "assisting law enforcement"
+	npc kill
+		government "Pirate"
+		personality heroic staying target harvests plunders
+		system destination
+		fleet "Large Northern Pirates" 2
+		fleet "Small Northern Pirates"
+	npc
+		government "Deep Security"
+		personality heroic staying
+		system destination
+		fleet "Large Deep Security"
+	on complete
+		payment 150000
+		dialog phrase "generic pirate attack payment dialog"
+
+mission "Assisting Syndicate"
+	assisting
+	repeat
+	minor
+	name "Defend <planet>"
+	description "Defeat a pirate raid on <destination>."
+	to offer
+		"combat rating" > 100
+		random < 5
+	source
+		government "Syndicate"
+		not category "Fighter" "Drone"
+		not attributes "automaton"
+	destination
+		government "Syndicate"
+		distance 2 4
+	on offer
+		conversation "assisting law enforcement"
+	npc kill
+		government "Pirate"
+		personality heroic staying target harvests plunders
+		system destination
+		fleet "Large Core Pirates" 2
+		fleet "Small Core Pirates"
+	npc
+		government "Syndicate"
+		personality heroic staying
+		system destination
+		fleet "Large Syndicate"
+	on complete
+		payment 150000
+		dialog phrase "generic pirate attack payment dialog"
+
+
+
+conversation "boarding pirate"
+	`You make short-range scans of the <origin>'s outfits and cargo. Among the cargo, you find a crate full of credit chips worth <payment>. You drag the crate onto your ship before considering your next move.`
+		decline
+
+mission "Boarding Pirate (Small)"
+	boarding
+	repeat
+	minor
+	to offer
+		random < 7
+	source
+		government "Pirate"
+		category "Interceptor" "Light Warship" "Transport" "Light Freighter"
+	on offer
+		payment 50000
+		conversation "boarding pirate"
+	destination "Earth"
+
+mission "Boarding Pirate (Medium)"
+	boarding
+	repeat
+	minor
+	to offer
+		random < 5
+	source
+		government "Pirate"
+		category "Medium Warship" "Heavy Freighter"
+	on offer
+		payment 100000
+		conversation "boarding pirate"
+	destination "Earth"
+
+mission "Boarding Pirate (Large)"
+	boarding
+	repeat
+	minor
+	to offer
+		random < 3
+	source
+		government "Pirate"
+		category "Heavy Warship"
+	on offer
+		payment 150000
+		conversation "boarding pirate"
+	destination "Earth"
+
+
+
+mission "Pirate Ambush"
+	invisible
+	boarding
+	repeat
+	minor
+	deadline 1
+	to offer
+		"combat rating" > 100
+		random < 5
+	source
+		government "Pirate"
+		category "Interceptor" "Light Warship" "Transport" "Light Freighter"
+		not attributes "automaton"
+	on offer
+		conversation
+			`You board the <origin>, but find no crew aboard. When you reach the cockpit of the ship, you look out into space to see an escape pod floating away. The <origin> is emitting a distress signal to nearby pirates, and a self-destruct sequence has been activated! You run back to your ship and get ready to fight.`
+				launch
+	destination "Earth"
+	npc kill
+		government "Pirate"
+		personality nemesis harvests plunders entering
+		fleet "pirate raid" 2
+
+
+
+mission "Pirate Mutiny"
+	boarding
+	minor
+	description "Bring <bunks> ex-pirate crew members to <destination>."
+	to offer
+		random < 10
+	source
+		government "Pirate"
+		category "Medium Warship" "Heavy Warship"
+		not attributes "automaton"
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		distance 2 4
+	passengers 10 20
+	on offer
+		conversation
+			`When you board the <origin>, you find most of the crew already dead. One of the surviving crew members, who looks like a teenaged boy no older than 16, approaches you with his hands in the air. He explains that after the ship was disabled, a section of the crew decided to overthrow the tyrannical captain. He continues, saying how most pirate crew members are forced into servitude on pirate ships. The surviving <bunks> crew members beg you to bring them to <destination> so that they can escape from pirate slavery.`
+			`	The fight seems to have damaged the ship beyond repair. It may not last much longer in the vacuum of space if you leave the pirates here.`
+			choice
+				`	(Help the pirate crew.)`
+					launch
+				`	(Leave the pirate crew.)`
+					flee
+	on complete
+		payment 25000
+		dialog `The pirate crew members thank you for bringing them to <planet>. One of them hands you a small payment of <payment>. You wish them all the best of luck with their new lives and part ways.`
+
+
+
+mission "Slave Crew Rescue"
+	invisible
+	assisting
+	deadline 1
+	passengers 1
+	to offer
+		random < 10
+	source
+		government "Merchant"
+		category "Heavy Freighter"
+		not attributes "automaton"
+	destination "Earth"
+	on offer
+		conversation
+			branch "boarding alone" "boarding with a big boarding party"
+				"flagship crew" < 3
+
+			label "boarding alone"
+			branch "flagship is empty" "first mate left on flagship"
+				"flagship crew" == 1
+
+			label "flagship is empty"
+			`You leave your ship empty and board the <origin> alone. Though you aren't expecting any danger, you still feel apprehensive all by yourself on an unknown disabled vessel, so you make sure to bring a sidearm. Your apprehension rises as you realize you can't hear any sounds of frantic activity or see crew members scurrying around trying to repair damage like you would expect. Making your way to the bridge, you relax upon seeing a single handsome and well-dressed young man welding a bulkhead. His movements are dexterous and competent, but your practiced eye tells you that the bulkhead is damaged beyond repair, so his work is futile. He looks up and introduces himself as captain Tarquin, offering the princely sum of 350,000 credits for your expert help repairing his vessel.`
+				goto "first decision"
+
+			label "first mate left on flagship"
+			`You leave your first mate in charge of your ship and board the <origin> alone. Though you aren't expecting any danger, you still feel apprehensive all by yourself on an unknown disabled vessel, so you make sure to bring a sidearm. Your apprehension rises as you realize you can't hear any sounds of frantic activity or see crew members scurrying around trying to repair damage like you would expect. Making your way to the bridge, you relax upon seeing a single handsome and well-dressed young man welding a bulkhead. His movements are dexterous and competent, but your practiced eye tells you that the bulkhead is damaged beyond repair, so his work is futile. He looks up and introduces himself as captain Tarquin, offering the princely sum of 350,000 credits for your expert help repairing his vessel.`
+				goto "first decision"
+
+			label "boarding with a big boarding party"
+			`As your boarding party clambers aboard the <origin>, you realize you can't hear any sounds of frantic activity or see crew members scurrying around trying to repair damage like you would expect. Making your way to the bridge, you are greeted by a single handsome and well-dressed young man welding a bulkhead. His movements are dexterous and competent, but your practiced eye tells you that the bulkhead is damaged beyond repair, so his work is futile. He looks up and introduces himself as captain Tarquin, offering the princely sum of 350,000 credits for your expert help repairing his vessel.`
+
+			label "first decision"
+			choice
+				`	(Accept this generous payment and help make repairs.)`
+					accept
+				`	"Not to look a gift horse in the mouth, but why are you offering so much money for my assistance?"`
+					goto probe
+				`	"Can we get some help from your crew?"`
+					goto "crew missing"
+				`	"Shouldn't a ship of this size have more crew?"`
+					goto "crew missing"
+
+			label probe
+			`	Tarquin laughs self-consciously. "The truth is, I'm a bit desperate," he says. "My cargo hold is full of perishable goods that need to be delivered in three days to a very important client who will probably cut me off if I don't make the deadline. I thought I could save money by hiring inexperienced peasants to crew the ship, but as you can see, that hasn't worked out very well. They're cowering in their quarters even now. I'm offering you my profits from being a cheapskate. We'll call it paying for a lesson learned.`
+				goto "get to work"
+
+			label "crew missing"
+			`	Tarquin laughs heartily. "That lot? They're a bunch of simple peasants I picked up on New India, off hiding in their quarters right now. The bumpkins are unaccustomed to this kind of danger, and don't have a lot of technical skills. My fault for being too cheap to hire good help, I suppose. I'm definitely going to pick up some more experienced and reliable crewmen after we get out of this mess."`
+
+			label "get to work"
+			`	"Can we get to work now?"`
+			choice
+				`	(Get to work repairing the ship.)`
+					accept
+				`	(Press the matter.)`
+			`	Something about captain Tarquin's explanation doesn't sit right with you, so you keep asking questions to distract him while subtly walking towards the ship's crew section. As you get closer, you start to hear the faint sounds of people banging on walls and yelling for help. Tarquin's face displays an almost uncannily neutral expression, but his body is taut, as though every muscle has tensed up all at once.`
+			choice
+				`	"I think we took a wrong turn. Let's go repair your ship."`
+					goto coward
+				`	"Now I see what kind of ship you're running, but don't worry, you're among friends. No charge for those repairs."`
+					goto "trickster or monster"
+				`	"I'll help you, but the price just rose to a million credits, or I leave you here and tell the authorities that you're running a slave ship."`
+					goto blackmailer
+				`	"I demand that you release your slaves."`
+					goto "the direct approach"
+				`	(Attack him immediately.)`
+					goto "attack but tarquin is prepared"
+
+			label coward
+			`	"Yes, let's do that," replies Tarquin. However, his friendly attitude is gone, and he remains as tense as a steel cable. You work in stony silence and awkwardly collect your payment once the <origin> is up and running again.`
+			action
+				set "tarquin hates you"
+			`	You feel relieved that the whole situation is over once you're safely back on board your own ship.`
+				accept
+
+			label "trickster or monster"
+			`	Tarquin relaxes. "It's so nice to encounter a like-minded captain in this unfriendly galaxy," he says. "I wouldn't dream of accepting repairs for free. Take the money anyway, I insist."`
+			choice
+				`	(Now go repair his ship.)`
+					accept
+				`	(Take advantage of the opening and attack him.)`
+					goto "attack with the element of surprise"
+
+			label "attack with the element of surprise"
+			branch "attack alone with the element of surprise" "attack with a big boarding party"
+				"flagship crew" < 3
+
+			label "attack but tarquin is prepared"
+			branch "attack alone but tarquin is prepared" "attack with a big boarding party"
+				"flagship crew" < 3
+
+			label "attack alone with the element of surprise"
+			`	You draw your weapon as fast as you can.`
+			branch "good luck" "bad luck"
+				random < 80
+
+			label "attack alone but tarquin is prepared"
+			branch "good luck" "bad luck"
+				random < 40
+
+			label "attack with a big boarding party"
+			`	Tarquin can't hope to stand alone against your entire boarding party and quickly surrenders. A look of cold fury glints in his eyes, even as the rest of his face remains calm.`
+			choice
+				`	(Execute him here and now.)`
+					goto execution
+				`	(Take him prisoner.)`
+			branch "has brig"
+				has "outfit (flagship installed): Brig"
+
+			`	You instruct one of the members of your boarding party to tie him up and guard him. Tarquin curses you foully and bucks around as you search him, finding a concealed handgun and knife, and the credit chip he was going to pay you. You go to rescue the ship's crew.`
+			`	The crew quarters have been fashioned into a brig with stout cell doors. There is no obvious way to open them, so you and your compatriots begin blasting them open.`
+			`	Suddenly, a warning klaxon cuts through the noise with a harsh staccato. The ship's self-destruct sequence has been activated! You race to the room where Tarquin was being held, and find that he has somehow escaped. In his place is an unconscious member of your crew with a savage slash across his face, evidently inflicted by an additional concealed weapon you didn't manage to find. A nearby panel indicates that an escape pod has been jettisoned.`
+			`	The ship will explode in less than 30 seconds. You realize bitterly that there is no chance you can release the prisoners in time, and trying anyway will just get everyone killed. You and your boarding party storm angrily back to your ship and release the docking clamps just in time for the <origin> to disintegrate into a cloud of space debris, cruelly ending the already unhappy lives of captain Tarquin's victims.`
+			action
+				set "tarquin hates you"
+			`	You vow that it will be the last time you underestimate captain Tarquin, should your paths cross again.`
+				launch
+
+			label "has brig"
+			`	You search Tarquin and find a concealed handgun and several knives, the credit chip he was going to pay you, and a tiny unlocking device. Then you instruct one of the members of your boarding party to lock him in your ship's brig. Tarquin curses you foully as he is marched to captivity at gunpoint. You resolve to figure out what to do with him later, and go to rescue the ship's crew.`
+				goto "rescue the crew with tarquin captured"
+
+			label execution
+			`	You gun captain Tarquin down in cold blood, to the shock of at least one member of your boarding party. Good riddance to bad rubbish, you think, as you search the body of ex-captain Tarquin. You find a concealed handgun and several knives, the credit chip he was going to pay you, and a tiny unlocking device. You go to rescue his crew with it.`
+				goto "rescue the crew"
+
+			label blackmailer
+			branch "blackmailing alone" "blackmailing with a big boarding party"
+				"flagship crew" < 3
+
+			label "blackmailing with a big boarding party"
+			`	Tarquin eyes your boarding party and stares at you icily for at least five uncomfortable seconds before finally replying. "Fine," he said coldly, his eyes blazing with barely contained rage, even as the rest of his face remains calm. He remains as tense as a steel cable as you and your team repair the ship in stony silence, awkwardly collecting your payment once the <origin> is up and running again.`
+			action
+				set "tarquin hates you"
+			`	You feel relieved that the whole situation is over once you're safely back on board your own ship.`
+				decline
+
+			label "blackmailing alone"
+			`	"It'll be a cold day in hell before I get blackmailed by someone dumb enough to board a disabled ship all alone," sneers Tarquin.`
+				goto "attack alone but tarquin is prepared"
+
+			label "the direct approach"
+			branch "acting stupid alone" "attack with a big boarding party"
+				"flagship crew" < 3
+
+			label "acting stupid alone"
+			`	Captain Tarquin throws back his head and laughs at the exact moment that he draws a concealed pistol and shoots you with it five times - all in the blink of an eye. Your last thoughts concern the effectiveness of his distraction and the foolishness of your bravado.`
+				die
+
+			label "bad luck"
+			`	Quick as a flash, he whips out a concealed pistol and drills a hole in your spine before you can react. The dangerous game you were playing ends abruptly.`
+				die
+
+			label "good luck"
+			`	Quick as a flash, he whips out a concealed pistol, but you're faster. It's the last mistake he ever makes. You search the body of ex-captain Tarquin, finding several concealed knives in addition to his handgun, the credit chip he was going to pay you, and a tiny unlocking device. You go to rescue the crew with it.`
+				goto "rescue the crew"
+
+			label "rescue the crew"
+			`	The ship's crew quarters have been fashioned into a brig with stout cell doors. Fortunately the unlocking device opens them all, and close to a dozen malnourished wretches stumble out, telling you the whole story: captain Tarquin has been keeping them as slaves for the past several months, locking them in their quarters when the ship makes berth, and with no food as a punishment when they complain. They are quite happy to see his lifeless body sprawled out on the deck plating.`
+			`	You turn the <origin> over to them and return to your ship.`
+				accept
+
+			label "rescue the crew with tarquin captured"
+			`	The ship's crew quarters have been fashioned into a brig with stout cell doors. Fortunately the unlocking device opens them all, and close to a dozen malnourished wretches stumble out, telling you the whole story: captain Tarquin has been keeping them as slaves for the past several months, locking them in their quarters when the ship makes berth, and with no food as a punishment when they complain. They are quite happy to hear that he has been taken into captivity.`
+			action
+				set "captured tarquin"
+			`	You turn the <origin> over to them and return to your ship to figure out what to do with Tarquin.`
+			`	A quick check of the public data in the galactic criminal justice database doesn't reveal that he's wanted for any crimes. You decide to turn him to law enforcement authorities on the nearest planet.`
+				accept
+
+	on decline
+		payment 1000000
+	on accept
+		payment 350000
+
+mission "Turn in Tarquin"
+	description "Deliver captain Tarquin to law enforcement on the nearest planet."
+	passengers 1
+	landing
+	to offer
+		has "captured tarquin"
+	destination "Earth"
+	on offer
+		set "turned in tarquin"
+		conversation
+			"You haul captain Tarquin out of your brig and bring him to the portside police station, presenting evidence from your suit cameras and notarized witness statements compiled from your crew members attesting to his crimes of being involved in slavery. The officer on duty thanks you for the service you've rendered, and takes Tarquin into custody. He shoots one final black look at you that sends a shiver up your spine."
+				decline

@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef CLICK_ZONE_H_
@@ -17,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Rectangle.h"
 
 #include <cmath>
+#include <utility>
 
 
 
@@ -29,11 +33,11 @@ public:
 	// Constructor. The "dimensions" are the full width and height of the zone.
 	explicit ClickZone(const Rectangle &rect, Type value = 0);
 	ClickZone(Point center, Point dimensions, Type value = 0);
-	
+
 	// Retrieve the value associated with this zone.
-	Type Value() const;
-	
-	
+	Type Value() const noexcept;
+
+
 private:
 	Type value;
 };
@@ -42,7 +46,7 @@ private:
 
 template <class Type>
 ClickZone<Type>::ClickZone(Point center, Point dimensions, Type value)
-	: Rectangle(center, dimensions), value(value)
+	: Rectangle(center, dimensions), value(std::move(value))
 {
 }
 
@@ -50,14 +54,14 @@ ClickZone<Type>::ClickZone(Point center, Point dimensions, Type value)
 
 template <class Type>
 ClickZone<Type>::ClickZone(const Rectangle &rect, Type value)
-	: Rectangle(rect), value(value)
+	: Rectangle(rect), value(std::move(value))
 {
 }
 
 
 
 template <class Type>
-Type ClickZone<Type>::Value() const
+Type ClickZone<Type>::Value() const noexcept
 {
 	return value;
 }

@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Mortgage.h"
@@ -30,7 +33,7 @@ int64_t Mortgage::Maximum(int64_t annualRevenue, int creditScore, int64_t curren
 	annualRevenue -= term * currentPayments;
 	if(annualRevenue <= 0)
 		return 0;
-	
+
 	double interest = (600 - creditScore / 2) * .00001;
 	double power = pow(1. + interest, term);
 	double multiplier = interest * term * power / (power - 1.);
@@ -66,7 +69,7 @@ void Mortgage::Load(const DataNode &node)
 		type = node.Token(1);
 	else
 		type = "Mortgage";
-	
+
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "principal" && child.Size() >= 2)
@@ -78,7 +81,7 @@ void Mortgage::Load(const DataNode &node)
 			interestString = "0." + to_string(f) + "%";
 		}
 		else if(child.Token(0) == "term" && child.Size() >= 2)
-			term = child.Value(1);
+			term = max(1., child.Value(1));
 	}
 }
 
@@ -105,7 +108,7 @@ int64_t Mortgage::MakePayment()
 	MissPayment();
 	principal -= payment;
 	--term;
-	
+
 	return payment;
 }
 
@@ -168,10 +171,12 @@ int Mortgage::Term() const
 // Check the amount of the next payment due (rounded to the nearest credit).
 int64_t Mortgage::Payment() const
 {
+	if(!term)
+		return principal;
 	if(!interest)
-		return round(principal / term);
-	
+		return lround(static_cast<double>(principal) / term);
+
 	// Always require every payment to be at least 1 credit.
 	double power = pow(1. + interest, term);
-	return max<int64_t>(1, round(principal * interest * power / (power - 1.)));
+	return max<int64_t>(1, lround(principal * interest * power / (power - 1.)));
 }

@@ -1,0 +1,444 @@
+# Copyright (c) 2021 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+news "anonymous quarg"
+	location
+		government "Quarg"
+		attributes "human quarg" "hai quarg"
+	name
+		word
+			"Quarg"
+	message
+		word
+			`"Are you what is called a 'tourist'?"`
+	message
+		word
+			`"`
+		word
+			"Are you"
+		word
+			" "
+		word
+			"a merchant"
+			"a merchant captain"
+			"a travelling merchant"
+			"a captain"
+		word
+			"?"
+		word
+			" "
+		word
+			"People"
+		word
+			" "
+		word
+			"of peace"
+			"of law"
+			"of trade"
+		word
+			" "
+		word
+			"are"
+		word
+			" "
+		word
+			"welcome"
+			"appreciated"
+		word
+			" "
+		word
+			"here"
+			"on Quarg worlds"
+			"on all Quarg worlds"
+		word
+			"."
+		word
+			`"`
+
+news "linguist on quarg planets in human and hai space"
+	location
+		government "Quarg"
+		attributes "human quarg" "hai quarg"
+	name
+		word
+			"Linguist"
+	message
+		word
+			`"`
+		word
+			"The Quarg language is so different from ours"
+		word
+			" "
+		word
+			"that"
+		word
+			" "
+		word
+			"most people"
+			"ordinary people"
+		word
+			" "
+		word
+			"could never"
+			"wouldn't be able to"
+			"would never"
+		word
+			" "
+		word
+			"learn it"
+			"understand it"
+			"speak it"
+		word
+			`"`
+	message
+		word
+			`"`
+		word
+			"I've been studying"
+			"I've studied"
+			"I've been learning"
+		word
+			" "
+		word
+			"the Quarg language"
+		word
+			" "
+		word
+			"for a decade"
+			"for years"
+			"for the most part of my career"
+			"all my life"
+		word
+			", "
+		word
+			"but I still can't pronounce their words"
+			"but I've yet to grasp the logic behind it"
+		word
+			"."
+		word
+			`"`
+	message
+		word
+			`"`
+		word
+			"I'm"
+		word
+			" "
+		word
+			"writing"
+			"working on"
+		word
+			" "
+		word
+			"a study"
+			"an analysis"
+		word
+			" "
+		word
+			"of the Quarg language"
+		word
+			", "
+		word
+			"mainly focusing on the "
+		word
+			"pronunciation"
+			"use"
+		word
+			" of "
+		word
+			"nouns"
+			"verbs"
+			"adjectives"
+			"words"
+			"pronouns"
+		word
+			"."
+		word
+			`"`
+
+news "tourist on quarg planets in human and hai space"
+	location
+		government "Quarg"
+		attributes "human quarg" "hai quarg"
+		not attributes "station"
+	name
+		word
+			"Tourist"
+	message
+		word
+			`"`
+		word
+			"These Quarg look so strange I shiver every time I see one."
+			"This world has the cleanest public toilets I have ever seen."
+		word
+			`"`
+	message
+		word
+			`"`
+		word
+			"I absolutely love the look of these buildings. I'm going to decorate my "
+		word
+			"house"
+			"living room"
+			"apartment"
+			"kitchen"
+			"bedroom"
+		word
+			" after them."
+		word
+			`"`
+	message
+		word
+			`"`
+		word
+			"Have you seen"
+		word
+			" "
+		word
+			"one of those"
+			"one of their"
+		word
+			" "
+		word
+			"ringworlds"
+		word
+			" from up close"
+			""
+		word
+			"? "
+		word
+			"I can't even comprehend their extent."
+		word
+			`"`
+
+news "engineer on quarg planets in human space"
+	location
+		government "Quarg"
+		attributes "human quarg"
+	name
+		word
+			"Engineer"
+			"Tarazed engineer"
+	message
+		word
+			`"`
+		word
+			"Quarg technology is so ahead of us we probably couldn't build their ships even if they gave us the plans."
+			"I'm working on a new spaceship for the Tarazed Corporation. Every once in a while I come here to take some inspiration from these magnificent designs."
+		word
+			`"`
+
+news "merchant on quarg planets in human and hai space"
+	location
+		government "Quarg"
+		attributes "human quarg" "hai quarg"
+	name
+		word
+			"Merchant"
+			"Captain"
+			"Ship captain"
+			"Merchant captain"
+			"Starship captain"
+			"Spacecraft captain"
+			"Spaceship captain"
+			"Freelance captain"
+			"Merchant pilot"
+			"Starship pilot"
+			"Spacecraft pilot"
+			"Spaceship pilot"
+			"Freelance pilot"
+	message
+		word
+			`"`
+		word
+			"The Quarg have impressive ships, but I bet my "
+		word
+			"Behemoth"
+			"Hauler III"
+			"Bulk Freighter"
+			"Bactrian"
+		word
+			" can carry twice the cargo their ships ever could."
+		word
+			`"`
+	message
+		word
+			`"`
+		word
+			"The Quarg are an unwarlike species, but I've heard they fought battles against "
+		word
+			"an alien race"
+			"some insectoid aliens"
+		word
+			" "
+		word
+			"in the past"
+			"a long time ago"
+		word
+			"."
+		word
+			`"`
+
+news "merchant on quarg planets in human space"
+	location
+		government "Quarg"
+		attributes "human quarg"
+	name
+		word
+			"Merchant"
+			"Captain"
+			"Ship captain"
+			"Merchant captain"
+			"Starship captain"
+			"Spacecraft captain"
+			"Spaceship captain"
+			"Freelance captain"
+			"Merchant pilot"
+			"Starship pilot"
+			"Spacecraft pilot"
+			"Spaceship pilot"
+			"Freelance pilot"
+	message
+		word
+			`"`
+		word
+			"The Quarg go out of their way to keep piracy at bay in these systems. "
+		word
+			"I could fly a fleet of "
+		word
+			"Star Barges"
+			"Shuttles"
+			"Heavy Shuttles"
+		word
+			" around here!"
+		word
+			`"`
+	message
+		word
+			`"`
+		word
+			"The Quarg are "
+		word
+			"peaceful"
+			"a peaceful race"
+			"not violent"
+		word
+			", "
+		word
+			"but I've seen their weapons at work: they "
+		word
+			"took out"
+			"disabled"
+			"destroyed"
+		word
+			" "
+		word
+			"a Leviathan pirate"
+			"a pirate ship"
+			"a marauder ship"
+		word
+			" "
+		word
+			"in a matter of seconds"
+			"in a few seconds"
+			"without taking a single hit"
+		word
+			"."
+		word
+			`"`
+
+news "reporter on quarg planets in human space"
+	location
+		government "Quarg"
+		attributes "human quarg"
+	name
+		word
+			"Reporter"
+	message
+		word
+			`"`
+		word
+			"Read my new article:"
+			"Read my new article!"
+			"Read this!"
+			"Look at my new article!"
+			"Look at this!"
+		word
+			" '"
+		word
+			"Three"
+			"Five"
+			"Seven"
+		word
+			" "
+		word
+			"Things Tarazed Corporation Stole from the Quarg!"
+			"Things the Quarg helped Tarazed Corporation With!"
+			"Secrets Humanity Learned from the Quarg!"
+		word
+			`"`
+
+news "student on quarg planets"
+	location
+		government "Quarg"
+		attributes "human quarg"
+	name
+		word
+			"Student"
+			"Scholar"
+			"University student"
+	message
+		word
+			`"`
+		word
+			"I'm on a"
+		word
+			" "
+		word
+			"study tour"
+			"field trip"
+			"study visit"
+		word
+			" "
+		word
+			"with my"
+		word
+			" "
+		word
+			"class"
+			"teacher"
+			"tutor"
+			"school"
+		word
+			"."
+		word
+			" "
+		word
+			"They taught me all about"
+			"I learned everything about"
+		word
+			" "
+		word
+			"the ringworlds, but"
+			"the Quarg, but"
+		word
+			" "
+		word
+			"seeing them up close is quite different"
+			"I didn't realize how big they are"
+			"seeing their technology still fascinates me"
+			"the sheer scale of their buildings is astonishing"
+		word
+			"."
+		word
+			`"`

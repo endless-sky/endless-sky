@@ -1,0 +1,319 @@
+# Copyright (c) 2022 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+outfit "Drak Distancer"
+	category "Turrets"
+	cost 1000000
+	thumbnail "outfit/unknown"
+	"mass" 64
+	"outfit space" -64
+	"weapon capacity" -64
+	"turret mounts" -1
+	"energy capacity" 6400
+	weapon
+		"fire effect" "distancer flare"
+		"turret turn" 4.
+		"velocity" 2000
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 15
+		"firing heat" 10
+		"firing force" 75
+	description "This is a thruster that can produce force in any direction, allowing a Drak ship to keep a safe distance away from its target."
+
+effect "distancer flare"
+	sprite "effect/distancer"
+		"frame rate" 1.618
+	"lifetime" 0
+	"velocity scale" 1
+
+
+outfit "Drak Draining Field"
+	category "Turrets"
+	cost 10000000
+	thumbnail "outfit/unknown"
+	"mass" 84
+	"outfit space" -84
+	"weapon capacity" -84
+	"turret mounts" -1
+	"energy capacity" 8400
+	weapon
+		"turret turn" 180
+		"velocity" 1
+		"lifetime" 1
+		"range override" 1200
+		"velocity override" 1200
+		"blast radius" 1200
+		"trigger radius" 1200
+		"reload" 1
+		"firing energy" -15
+		"firing heat" 5
+		"firing force" 30
+		"hit force" 100
+		"shield damage" 50
+		"ion damage" .5
+		"scrambling damage" .5
+		"disruption damage" 1
+		"safe"
+	description "This device is the Archon's primary defensive tool: Not only does it disrupt the shields and energy supplies of all hostile ships within it, it also exerts a powerful repelling force that keeps ships from closing in with the Archon."
+
+
+outfit "Drak Draining Field (Augmented)"
+	category "Turrets"
+	cost 100000000
+	thumbnail "outfit/unknown"
+	"mass" 84
+	"outfit space" -84
+	"weapon capacity" -84
+	"turret mounts" -1
+	"energy capacity" 8400
+	weapon
+		ammo "Jump Drive" 0
+		"turret turn" 180
+		"velocity" 1
+		"lifetime" 1
+		"range override" 1100
+		"velocity override" 1100
+		"blast radius" 1100
+		"trigger radius" 1100
+		"reload" 1
+		"firing energy" -25
+		"firing heat" 5
+		"firing force" 30
+		"hit force" 1000
+		"shield damage" 500
+		"ion damage" 1
+		"scrambling damage" 1
+		"disruption damage" 2
+		"safe"
+	description "This device is the Archon's primary defensive tool: Not only does it disrupt the shields and energy supplies of all hostile ships within it, it also exerts a powerful repelling force that keeps ships from closing in with the Archon."
+	description "	While normally kept at minimal strength, the Archons have demonstrated the ability to ramp up the field to be vastly stronger when faced with a serious threat."
+
+
+outfit "Drak Anti-Missile Field"
+	category "Turrets"
+	cost 1000000
+	thumbnail "outfit/unknown"
+	"mass" 66
+	"outfit space" -66
+	"weapon capacity" -66
+	"turret mounts" -1
+	"energy capacity" 6600
+	weapon
+		"velocity" 400
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 10
+		"firing heat" 1
+		"anti-missile" 100
+	description "This device produces a field that destroys any missiles that come within it."
+
+
+outfit "Drak Anti-Missile Field (Augmented)"
+	category "Turrets"
+	cost 10000000
+	thumbnail "outfit/unknown"
+	"mass" 66
+	"outfit space" -66
+	"weapon capacity" -66
+	"turret mounts" -1
+	"energy capacity" 6600
+	weapon
+		ammo "Jump Drive" 0
+		"velocity" 400
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 10
+		"firing heat" 1
+		"anti-missile" 500
+	description "This device produces a field that destroys any missiles that come within it."
+	description "	This level of anti-missile effectiveness is required only when dealing with the most powerful of threats."
+
+
+outfit "Drak Turret"
+	category "Turrets"
+	cost 1000000
+	thumbnail "outfit/unknown"
+	"mass" 48
+	"outfit space" -48
+	"weapon capacity" -48
+	"turret mounts" -1
+	"energy capacity" 4800
+	weapon
+		sprite "projectile/drak bolt"
+			"frame rate" 13.318
+			"random start frame"
+		"hit effect" "drak bolt impact"
+		"inaccuracy" 1
+		"turret turn" 4.
+		"velocity" 30
+		"lifetime" 36
+		"reload" 16
+		"firing energy" 160
+		"firing heat" 160
+		"shield damage" 256
+		"hull damage" 256
+		"hit force" 120
+	description "This is a turret based cannon with significant range and accuracy."
+
+
+outfit "Drak Turret (Augmented)"
+	category "Turrets"
+	cost 10000000
+	thumbnail "outfit/unknown"
+	"mass" 48
+	"outfit space" -48
+	"weapon capacity" -48
+	"turret mounts" -1
+	"energy capacity" 4800
+	weapon
+		ammo "Jump Drive" 0
+		sprite "projectile/drak bolt"
+			"frame rate" 13.318
+			"random start frame"
+		"hit effect" "drak bolt impact"
+		"inaccuracy" 1
+		"turret turn" 8.
+		"velocity" 30
+		"lifetime" 36
+		"reload" 16
+		"firing energy" 160
+		"firing heat" 160
+		"shield damage" 2560
+		"hull damage" 2560
+		"hit force" 120
+	description "This is a turret based cannon with significant range and accuracy."
+	description "	Against most threats, Archons respond with their weapons set to very low levels. They are, however, more than capable of dealing much more damage when the situation requires it."
+
+effect "drak bolt impact"
+	sprite "effect/drak bolt impact"
+		"no repeat"
+		"frame rate" 30
+	sound "explosion small"
+	"lifetime" 20
+	"random angle" 20
+	"random spin" 10
+	"velocity scale" -.05
+
+
+outfit "Drak Antimatter Cannon"
+	category "Guns"
+	cost 10000000
+	thumbnail "outfit/unknown"
+	"mass" 96
+	"outfit space" -96
+	"weapon capacity" -96
+	"gun ports" -1
+	"energy capacity" 9600
+	"inscrutable" 1
+	weapon
+		"inaccuracy" 0
+		"velocity" 20
+		"lifetime" 1
+		"submunition" "Drak Antimatter Fragment" 3
+		"hit effect" "antimatter dust" 10
+		"hit effect" "nuke explosion"
+		"safe"
+		"reload" 187
+		"firing energy" 5610
+		"firing heat" 1870
+		"blast radius" 100
+		"hit force" 1000
+	description "This is the most powerful weapon that the Archons deign to utilize in the presence of the younger races."
+
+
+outfit "Drak Antimatter Cannon (Augmented)"
+	category "Guns"
+	cost 100000000
+	thumbnail "outfit/unknown"
+	"mass" 96
+	"outfit space" -96
+	"weapon capacity" -96
+	"gun ports" -1
+	"energy capacity" 9600
+	"inscrutable" 1
+	weapon
+		ammo "Jump Drive" 0
+		"inaccuracy" 0
+		"velocity" 20
+		"lifetime" 1
+		"submunition" "Drak Antimatter Fragment (Augmented)" 5
+		"hit effect" "antimatter dust" 10
+		"hit effect" "nuke explosion"
+		"safe"
+		"reload" 187
+		"firing energy" 5610
+		"firing heat" 1870
+		"blast radius" 250
+		"hit force" 1000
+	description "This is the most powerful weapon that the Archons deign to utilize in the presence of the younger races. Hitherto unknown as Archons are rarely pushed to the point of needing to use more than their minimum abilities, the Antimatter Cannon is capable of far more damage than originally thought."
+
+
+outfit "Drak Antimatter Fragment"
+	weapon
+		sprite "projectile/drak bolt"
+			"frame rate" 9.835
+			"random start frame"
+		"live effect" "antimatter spark" 249
+		"live effect" "antimatter dust" 249
+		"hit effect" "antimatter dust" 10
+		"hit effect" "nuke explosion"
+		"safe"
+		"inaccuracy" 1
+		"lifetime" 499
+		"hit force" 1000
+		"disruption damage" 300
+		"heat damage" 500
+		"shield damage" 5610
+		"hull damage" 5610
+		"blast radius" 100
+
+
+outfit "Drak Antimatter Fragment (Augmented)"
+	weapon
+		sprite "projectile/drak bolt"
+			"frame rate" 9.835
+			"random start frame"
+		"live effect" "antimatter spark" 249
+		"live effect" "antimatter dust" 249
+		"hit effect" "antimatter dust" 10
+		"hit effect" "nuke explosion"
+		"safe"
+		"inaccuracy" 1
+		"lifetime" 1000
+		"hit force" 1000
+		"disruption damage" 1000
+		"heat damage" 2500
+		"shield damage" 56100
+		"hull damage" 56100
+		"blast radius" 250
+
+effect "antimatter spark"
+	sprite "effect/antimatter spark"
+		"frame rate" 3
+	"lifetime" 40
+	"random angle" 1
+	"random spin" .1
+	"random velocity" 8
+	"velocity scale" .6
+
+effect "antimatter dust"
+	sprite "effect/smoke"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 13
+	"random angle" 30
+	"random spin" 50
+	"random velocity" 12
+	"velocity scale" .1
+

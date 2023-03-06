@@ -1,0 +1,585 @@
+# Copyright (c) 2019 by Tommaso Becca
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+ship "Maeri'het"
+	plural "Maeri'heta"
+	sprite "ship/maeri'het"
+	thumbnail "thumbnail/maeri'het"
+	"never disabled"
+	attributes
+		category "Light Warship"
+		"cost" 13800000
+		"shields" 17600
+		"hull" 23100
+		"required crew" 1
+		"bunks" 1
+		"mass" 390
+		"drag" 3.8
+		"heat dissipation" .4
+		"overheat damage threshold" 0.2
+		"overheat damage rate" 1.3
+		"fuel capacity" 800
+		"ramscoop" 0.58
+		"cargo space" 43
+		"outfit space" 383
+		"weapon capacity" 184
+		"engine capacity" 86
+		"energy capacity" 10000
+		"energy generation" 28.3
+		"heat generation" 32
+		"hull repair rate" 0.3
+		"shield heat" 4.9
+		"cloak" .023
+		"cloaking energy" 11.8
+		"cloaking fuel" .08
+		weapon
+			"blast radius" 180
+			"shield damage" 720
+			"hull damage" 360
+			"hit force" 1080
+	outfits
+		"Ka'het Annihilator Turret" 2
+		"Ka'het Ravager Turret" 2
+		"Ka'het Ravager Beam" 2
+
+		"Ka'het Support Cooling"
+		"Ka'het Primary Cooling"
+		"Ka'het Shield Restorer" 2
+		"Ka'het MHD Generator" 2
+		"Ka'het Reserve Accumulator"
+
+		"Maeri Engine Nacelles"
+		"Ka'het Sustainer Nacelles"
+		"Hyperdrive"
+
+	engine -22 61.5
+	engine 22 61.5
+	gun -17.5 -68.5 "Ka'het Ravager Beam"
+	gun 17.5 -68.5 "Ka'het Ravager Beam"
+	turret -13.5 -31 "Ka'het Annihilator Turret"
+	turret 13.5 -31 "Ka'het Annihilator Turret"
+	turret -15 -14.5 "Ka'het Ravager Turret"
+	turret 15 -14.5 "Ka'het Ravager Turret"
+	explode "tiny explosion" 5
+	explode "small explosion" 20
+	explode "medium explosion" 25
+	explode "large explosion" 15
+	"final explode" "final explosion medium"
+	description "The Maeri is the smallest Het ship created by the Builders' stations, a prime example of the genetic technology they once possessed. Its small size is compensated by the fact that it can hide its location from most types of sensors."
+
+ship "Maeri'het" "Maeri'het (Disable-able)"
+	"uncapturable"
+
+ship "Maeri'het" "Maeri'het (EMP)"
+	"never disabled"
+	outfits
+		"EMP Torpedo" 32
+		"Ka'het Ravager Turret"
+		"Ka'het EMP Deployer" 2
+		"Ka'het Annihilator Turret" 3
+
+		"Ka'het Support Cooling"
+		"Ka'het Primary Cooling"
+		"Ka'het Shield Restorer" 2
+		"Ka'het MHD Generator"
+
+		"Maeri Engine Nacelles"
+		"Ka'het Sustainer Nacelles"
+		"Hyperdrive"
+
+ship "Maeri'het" "Maeri'het (EMP, Disable-able)"
+	"uncapturable"
+	outfits
+		"EMP Torpedo" 32
+		"Ka'het Ravager Turret"
+		"Ka'het EMP Deployer" 2
+		"Ka'het Annihilator Turret" 3
+
+		"Ka'het Support Cooling"
+		"Ka'het Primary Cooling"
+		"Ka'het Shield Restorer" 2
+		"Ka'het MHD Generator"
+
+		"Maeri Engine Nacelles"
+		"Ka'het Sustainer Nacelles"
+		"Hyperdrive"
+
+ship "Telis'het"
+	plural "Telis'heta"
+	sprite "ship/telis'het"
+	thumbnail "thumbnail/telis'het"
+	"never disabled"
+	attributes
+		category "Medium Warship"
+		"cost" 32600000
+		"shields" 36000
+		"hull" 21300
+		"required crew" 1
+		"bunks" 1
+		"mass" 820
+		"drag" 6.9
+		"heat dissipation" .35
+		"overheat damage threshold" 0.2
+		"overheat damage rate" 1.2
+		"fuel capacity" 800
+		"ramscoop" 0.82
+		"cargo space" 71
+		"outfit space" 673
+		"weapon capacity" 254
+		"engine capacity" 138
+		"energy capacity" 28000
+		"energy generation" 37.4
+		"heat generation" 40
+		"hull repair rate" 0.5
+		"shield energy" 0.3
+		"shield heat" 9.2
+		weapon
+			"blast radius" 300
+			"shield damage" 1200
+			"hull damage" 600
+			"hit force" 1800
+	outfits
+		"Ka'het Annihilator Turret" 2
+		"Ka'het EMP Deployer" 2
+		"Ka'het Ravager Turret" 3
+		"EMP Torpedo" 32
+		"Ka'het Annihilator" 2
+
+		"Ka'het Shield Restorer" 7
+		"Ka'het Primary Cooling" 2
+		"Ka'het MHD Generator" 4
+		"Ka'het Reserve Accumulator"
+
+		"Telis Engine Nacelles"
+		"Ka'het Sustainer Nacelles" 2
+		"Hyperdrive"
+
+	engine -39.5 80
+	engine 39.5 80
+	gun -31 -83 "Ka'het Annihilator"
+	gun 31 -83 "Ka'het Annihilator"
+	gun -20.5 -90.5 "Ka'het EMP Deployer"
+	gun 20.5 -90.5 "Ka'het EMP Deployer"
+	turret -43 -51 "Ka'het Ravager Turret"
+	turret 43 -51 "Ka'het Ravager Turret"
+	turret -17.5 -51.5 "Ka'het Annihilator Turret"
+	turret 17.5 -51.5 "Ka'het Annihilator Turret"
+	turret 0 -19 "Ka'het Ravager Turret"
+	explode "small explosion" 25
+	explode "medium explosion" 30
+	explode "large explosion" 20
+	explode "huge explosion" 5
+	"final explode" "final explosion large"
+	description "When the Builders designed the exoskeleton of the Telis, they came to the conclusion that it would have been impossible to make it resilient enough without compromising its agility and integrity. Instead, they focused heavily on improving their shield technology, giving the Telis many of their regenerators."
+
+ship "Telis'het" "Telis'het (Disable-able)"
+	"uncapturable"
+
+ship "Telis'het" "Telis'het (EMP)"
+	"never disabled"
+	outfits
+		"Ka'het EMP Deployer" 4
+		"Ka'het Annihilator Turret"
+		"Ka'het Ravager Turret" 4
+		"EMP Torpedo" 64
+
+		"Ka'het Shield Restorer" 11
+		"Ka'het Primary Cooling"
+		"Ka'het Support Cooling"
+		"Ka'het MHD Generator" 2
+		"Ka'het Reserve Accumulator" 3
+
+		"Telis Engine Nacelles"
+		"Ka'het Sustainer Nacelles"
+		"Hyperdrive"
+
+ship "Telis'het" "Telis'het (EMP, Disable-able)"
+	"uncapturable"
+	outfits
+		"Ka'het EMP Deployer" 4
+		"Ka'het Annihilator Turret"
+		"Ka'het Ravager Turret" 4
+		"EMP Torpedo" 64
+
+		"Ka'het Shield Restorer" 11
+		"Ka'het Primary Cooling"
+		"Ka'het Support Cooling"
+		"Ka'het MHD Generator" 2
+		"Ka'het Reserve Accumulator" 3
+
+		"Telis Engine Nacelles"
+		"Ka'het Sustainer Nacelles"
+		"Hyperdrive"
+
+ship "Telis'het" "Telis'het (Guns)"
+	"never disabled"
+	outfits
+		"Ka'het Ravager Beam" 4
+		"Ka'het Annihilator Turret" 5
+
+		"Ka'het Shield Restorer" 10
+		"Ka'het Primary Cooling"
+		"Ka'het Support Cooling"
+		"Ka'het MHD Generator" 2
+		"Ka'het Reserve Accumulator" 6
+
+		"Telis Engine Nacelles"
+		"Ka'het Sustainer Nacelles"
+		"Hyperdrive"
+
+ship "Telis'het" "Telis'het (Guns, Disable-able)"
+	"uncapturable"
+	outfits
+		"Ka'het Ravager Beam" 4
+		"Ka'het Annihilator Turret" 5
+
+		"Ka'het Shield Restorer" 10
+		"Ka'het Primary Cooling"
+		"Ka'het Support Cooling"
+		"Ka'het MHD Generator" 2
+		"Ka'het Reserve Accumulator" 6
+
+		"Telis Engine Nacelles"
+		"Ka'het Sustainer Nacelles"
+		"Hyperdrive"
+
+ship "Vareti'het"
+	plural "Vareti'heta"
+	sprite ship/vareti'het
+	thumbnail "thumbnail/vareti'het"
+	"never disabled"
+	attributes
+		category "Heavy Warship"
+		cost 53800000
+		"shields" 42300
+		"hull" 25800
+		"required crew" 1
+		"bunks" 1
+		"mass" 1520
+		"drag" 11.9
+		"heat dissipation" 0.3
+		"overheat damage threshold" 0.2
+		"overheat damage rate" 1.4
+		"fuel capacity" 700
+		"ramscoop" 0.97
+		"cargo space" 108
+		"outfit space" 914
+		"weapon capacity" 372
+		"engine capacity" 150
+		"energy capacity" 41000
+		"energy generation" 61.2
+		"heat generation" 46
+		"hull repair rate" 0.55
+		"shield heat" 11.3
+		weapon
+			"blast radius" 400
+			"shield damage" 1600
+			"hull damage" 800
+			"hit force" 2100
+	outfits
+		"Ka'het Nullifier"
+		"Ka'het Annihilator" 4
+		"Ka'het Ravager Beam" 2
+		"Ka'het Annihilator Turret" 2
+		"Ka'het Ravager Turret" 4
+		
+		"Ka'het Grand Restorer" 2
+		"Ka'het MHD Generator" 6
+		"Ka'het Reserve Accumulator" 11
+		"Ka'het Primary Cooling"
+		"Ka'het Support Cooling"
+		
+		"Vareti Engine Block"
+		"Hyperdrive"
+
+	engine -50 128
+	engine 50 128
+	engine -23.5 132 0.8
+	engine 23.5 132 0.8
+	gun 0 -141 "Ka'het Nullifier"
+	gun -72.5 -61.5 "Ka'het Annihilator"
+	gun 72.5 -61.5 "Ka'het Annihilator"
+	gun -72.5 -61.5 "Ka'het Annihilator"
+	gun 72.5 -61.5 "Ka'het Annihilator"
+	gun -52.5 -122 "Ka'het Ravager Beam"
+	gun 52.5 -122 "Ka'het Ravager Beam"
+	turret -14 -24.5 "Ka'het Annihilator Turret"
+	turret 14 -24.5 "Ka'het Annihilator Turret"
+	turret -14 -4 "Ka'het Ravager Turret"
+	turret 14 -4 "Ka'het Ravager Turret"
+	turret -13.5 16.5 "Ka'het Ravager Turret"
+	turret 13.5 16.5 "Ka'het Ravager Turret"
+	explode "small explosion" 40
+	explode "medium explosion" 36
+	explode "large explosion" 28
+	explode "huge explosion" 7
+	"final explode" "final explosion large"
+	description "The Vareti was the strongest Het the Builders were able to complete, starting its mass production only a year before the beginning of the invasion. It relies on shield matrixes even more than its little brothers, using larger and more effective restorers that were developed alongside this project."
+
+ship "Vareti'het" "Vareti'het (Disable-able)"
+	"uncapturable"
+
+ship "Vareti'het" "Vareti'het (EMP)"
+	"never disabled"
+	outfits
+		"Ka'het Nullifier"
+		"Ka'het Ravager Beam" 4
+		"Ka'het Annihilator Turret" 4
+		"Ka'het Ravager Turret"
+		"Ka'het EMP Deployer" 2
+		"EMP Torpedo" 32
+		
+		"Ka'het Grand Restorer" 2
+		"Ka'het MHD Generator" 6
+		"Ka'het Reserve Accumulator" 8
+		"Ka'het Primary Cooling"
+		"Ka'het Support Cooling"
+		
+		"Vareti Engine Block"
+		"Hyperdrive"
+
+	gun 0 -141 "Ka'het Nullifier"
+	gun -72.5 -61.5 "Ka'het EMP Deployer"
+	gun 72.5 -61.5 "Ka'het EMP Deployer"
+	gun -72.5 -61.5 "Ka'het Ravager Beam"
+	gun 72.5 -61.5 "Ka'het Ravager Beam"
+	gun -52.5 -122 "Ka'het Ravager Beam"
+	gun 52.5 -122 "Ka'het Ravager Beam"
+	turret -14 -24.5 "Ka'het Annihilator Turret"
+	turret 14 -24.5 "Ka'het Annihilator Turret"
+	turret -14 -4 "Ka'het Annihilator Turret"
+	turret 14 -4 "Ka'het Annihilator Turret"
+	turret -13.5 16.5 "Ka'het Ravager Turret"
+	turret 13.5 16.5
+
+ship "Vareti'het" "Vareti'het (EMP, Disable-able)"
+	"uncapturable"
+	outfits
+		"Ka'het Nullifier"
+		"Ka'het Ravager Beam" 4
+		"Ka'het Annihilator Turret" 4
+		"Ka'het Ravager Turret"
+		"Ka'het EMP Deployer" 2
+		"EMP Torpedo" 32
+		
+		"Ka'het Grand Restorer" 2
+		"Ka'het MHD Generator" 6
+		"Ka'het Reserve Accumulator" 8
+		"Ka'het Primary Cooling"
+		"Ka'het Support Cooling"
+		
+		"Vareti Engine Block"
+		"Hyperdrive"
+
+	gun 0 -141 "Ka'het Nullifier"
+	gun -72.5 -61.5 "Ka'het EMP Deployer"
+	gun 72.5 -61.5 "Ka'het EMP Deployer"
+	gun -72.5 -61.5 "Ka'het Ravager Beam"
+	gun 72.5 -61.5 "Ka'het Ravager Beam"
+	gun -52.5 -122 "Ka'het Ravager Beam"
+	gun 52.5 -122 "Ka'het Ravager Beam"
+	turret -14 -24.5 "Ka'het Annihilator Turret"
+	turret 14 -24.5 "Ka'het Annihilator Turret"
+	turret -14 -4 "Ka'het Annihilator Turret"
+	turret 14 -4 "Ka'het Annihilator Turret"
+	turret -13.5 16.5 "Ka'het Ravager Turret"
+	turret 13.5 16.5
+
+ship "Vareti'het" "Vareti'het (Strong)"
+	"never disabled"
+	outfits
+		"Ka'het Nullifier"
+		"Ka'het Annihilator" 6
+		"Ka'het Annihilator Turret" 2
+		"Ka'het Ravager Turret" 2
+		
+		"Ka'het Grand Restorer" 3
+		"Ka'het MHD Generator" 7
+		"Ka'het Primary Cooling"
+		"Ka'het Support Cooling"
+		
+		"Vareti Engine Block"
+		"Hyperdrive"
+
+	gun 0 -141 "Ka'het Nullifier"
+	gun -72.5 -61.5 "Ka'het Annihilator"
+	gun 72.5 -61.5 "Ka'het Annihilator"
+	gun -72.5 -61.5 "Ka'het Annihilator"
+	gun 72.5 -61.5 "Ka'het Annihilator"
+	gun -52.5 -122 "Ka'het Annihilator"
+	gun 52.5 -122 "Ka'het Annihilator"
+	turret -14 -24.5 "Ka'het Annihilator Turret"
+	turret 14 -24.5 "Ka'het Annihilator Turret"
+	turret -14 -4
+	turret 14 -4
+	turret -13.5 16.5 "Ka'het Ravager Turret"
+	turret 13.5 16.5 "Ka'het Ravager Turret"
+
+ship "Vareti'het" "Vareti'het (Strong, Disable-able)"
+	"uncapturable"
+	outfits
+		"Ka'het Nullifier"
+		"Ka'het Annihilator" 6
+		"Ka'het Annihilator Turret" 2
+		"Ka'het Ravager Turret" 2
+		
+		"Ka'het Grand Restorer" 3
+		"Ka'het MHD Generator" 7
+		"Ka'het Primary Cooling"
+		"Ka'het Support Cooling"
+		
+		"Vareti Engine Block"
+		"Hyperdrive"
+
+	gun 0 -141 "Ka'het Nullifier"
+	gun -72.5 -61.5 "Ka'het Annihilator"
+	gun 72.5 -61.5 "Ka'het Annihilator"
+	gun -72.5 -61.5 "Ka'het Annihilator"
+	gun 72.5 -61.5 "Ka'het Annihilator"
+	gun -52.5 -122 "Ka'het Annihilator"
+	gun 52.5 -122 "Ka'het Annihilator"
+	turret -14 -24.5 "Ka'het Annihilator Turret"
+	turret 14 -24.5 "Ka'het Annihilator Turret"
+	turret -14 -4
+	turret 14 -4
+	turret -13.5 16.5 "Ka'het Ravager Turret"
+	turret 13.5 16.5 "Ka'het Ravager Turret"
+
+ship "Selii'mar"
+	sprite "ship/selii'mar"
+	thumbnail "thumbnail/selii'mar"
+	attributes
+		category "Drone"
+		"cost" 965000
+		"hull" 2800
+		"mass" 65
+		"drag" .8
+		"heat dissipation" 1.1
+		"cargo space" 14
+		"outfit space" 77
+		"weapon capacity" 18
+		"engine capacity" 21
+		weapon
+			"blast radius" 48
+			"shield damage" 320
+			"hull damage" 160
+			"hit force" 480
+	outfits
+		"Ka'het Ravager Beam"
+		"Ka'het MHD Generator"
+		"Ka'het Reserve Accumulator" 3
+		"Ka'het Compact Engine"
+	
+	gun 0 -32.5
+	engine 0 28 1.5
+	explode "tiny explosion" 16
+	description "The Selii'mar was a common Builder mining drone, one of the few automated ships they ever produced. The Het stations still produce them, in order to harvest the materials they need to keep working."
+	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
+
+ship "Faes'mar"
+	sprite "ship/faes'mar"
+	thumbnail "thumbnail/faes'mar"
+	attributes
+		category "Drone"
+		"cost" 1180000
+		"shields" 200
+		"hull" 1900
+		"mass" 46
+		"drag" .7
+		"heat dissipation" 1.05
+		"cargo space" 102
+		"outfit space" 113
+		"engine capacity" 21
+		weapon
+			"blast radius" 52
+			"shield damage" 410
+			"hull damage" 180
+			"hit force" 520
+	outfits
+		"Ka'het Shield Restorer"
+		"Ka'het Support Cooling"
+		"Ka'het MHD Generator"
+		"Ka'het Emergency Deployer"
+		"Ka'het Reserve Accumulator" 7
+		"Ka'het Compact Engine"
+	
+	gun 0 -37.5
+	engine -7 34.5
+	engine 7 34.5
+	explode "tiny explosion" 19
+	description "The Mar were the last and most successful ships of the Builders in their attempts at creating automatic drones. Today only the Het stations are still aware of their blueprints, and keep producing the Faes'mar to transport the resources mined to the station's cargo bay."
+	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
+
+ship "Faes'mar" "Faes'mar (Strong)"
+	outfits
+		"Ka'het Emergency Deployer"
+		"Ka'het Shield Restorer" 2
+		"Ka'het MHD Generator"
+		"Ka'het Reserve Accumulator" 4
+		"Ka'het Compact Engine"
+
+ship "Fetri'sei"
+	plural "Fetri'seia"
+	sprite "ship/fetri'sei"
+	thumbnail "thumbnail/fetri'sei"
+	"never disabled"
+	attributes
+		category "Interceptor"
+		"cost" 5700000
+		"shields" 2400
+		"hull" 7200
+		"required crew" 1
+		"bunks" 1
+		"mass" 210
+		"drag" 2.9
+		"heat dissipation" .5
+		"fuel capacity" 100
+		"ramscoop" 0.13
+		"cargo space" 62
+		"outfit space" 383
+		"weapon capacity" 184
+		"engine capacity" 86
+		"energy capacity" 10000
+		"energy generation" 23.3
+		"heat generation" 32
+		"shield heat" 3.4
+		"hull repair rate" 0.3
+		"ka'sei" 1
+		weapon
+			"blast radius" 120
+			"shield damage" 540
+			"hull damage" 280
+			"hit force" 780
+	outfits
+		"Ka'het Ravager Beam" 2
+
+		"Ka'het Primary Cooling"
+		"Ka'het Shield Restorer"
+		"Ka'het MHD Generator"
+		"Ka'het Reserve Accumulator"
+
+		"Ka'het Compact Engine" 2
+
+	gun -13 -36
+	gun 13 -36
+	engine -20 46.5
+	engine 20 46.5
+	explode "tiny explosion" 6
+	explode "small explosion" 10
+	explode "medium explosion" 18
+	explode "large explosion" 10
+	"final explode" "final explosion small"
+	description "The Fetri is a self replicating probe, built to harvest iridium away from the Graveyard and transport it back to the Builders."
+
+ship "Fetri'sei" "Fetri'sei (Disable-able)"
+	"uncapturable"
