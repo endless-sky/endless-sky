@@ -266,7 +266,7 @@ mission "Wanderers: Translation Machine"
 			`	"I'll have to remain here, so you'll need another way to communicate with them..." She pauses to talk to the Wanderers. "They're willing to create a translation device so you can communicate without an intermediary, but they require a large amount of data to train their algorithms. Human literature, speeches, interactive programs; anything with language and context."`
 			choice
 				`	"Where can I find the data?"`
-			`	"Your people have a large library at <planet>. You should fly there and find something suitable."`
+			`	"In the region of your space known as the Deep, there is a station named <planet>, with a vast library. It houses cultural artifacts, the literature and history of your people, documentation of modern events, and every other piece of information an librarian thought to archive. Certainly, there will be something suitable for training an algorithm."`
 				accept
 	on accept
 		"reputation: Wanderer" >?= 10
