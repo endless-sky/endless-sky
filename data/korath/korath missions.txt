@@ -575,7 +575,7 @@ mission "Korath [F02]: A Fishy Proposition"
 			label warning
 			`	"One more matter, Captain <last>: a fair warning about some of our associates. To keep helping our planet, you need to be able to travel far and wide, acting as a courier through space we cannot reach. If you anger half the galaxy, not only will it risk your life, it'll hurt the people of New Tortuga.`
 			`	"You may have noticed some unusual ships near here, larger than anything else in human space. Any fish delivery jobs at New Tortuga, and any jobs at this station, will earn you favor with them. Eventually, they'll stop being hostile, and you could assist their disabled ships.`
-			`	"For your safety, for their sake, and for the sake of my planet, I do implore you: do not assist those ships. They know the risk they take when raiding. It is more important to them that you retain your freedom of movement by not revealing your association."`
+			`	"For your safety, for their sake, and for the sake of my planet, I do implore you: do not assist those ships. They know the risk they take when raiding, and have backups in place. It is more important to them that you retain your freedom of movement by not revealing your association."`
 				goto departs
 
 			label reject
