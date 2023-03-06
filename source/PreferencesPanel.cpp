@@ -370,6 +370,7 @@ void PreferencesPanel::DrawControls()
 		Command::PRIMARY,
 		Command::SELECT,
 		Command::SECONDARY,
+		Command::CLOAK,
 		Command::NONE,
 		Command::NEAREST,
 		Command::TARGET,
@@ -390,9 +391,7 @@ void PreferencesPanel::DrawControls()
 		Command::FIGHT,
 		Command::GATHER,
 		Command::HOLD,
-		Command::AMMO,
-		Command::NONE,
-		Command::CLOAK
+		Command::AMMO
 	};
 	static const Command *BREAK = &COMMANDS[19];
 	for(const Command &command : COMMANDS)

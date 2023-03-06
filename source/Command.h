@@ -54,6 +54,7 @@ public:
 	static const Command NEAREST;
 	static const Command DEPLOY;
 	static const Command AFTERBURNER;
+	static const Command CLOAK;
 	// UI controls:
 	static const Command MAP;
 	static const Command INFO;
@@ -64,8 +65,6 @@ public:
 	static const Command GATHER;
 	static const Command HOLD;
 	static const Command AMMO;
-	// Special ability commands:
-	static const Command CLOAK;
 	// This command is given in combination with JUMP or LAND and tells a ship
 	// not to jump or land yet even if it is in position to do so. It can be
 	// given from the AI when a ship is waiting for its parent. It can also be
