@@ -38,45 +38,54 @@ namespace {
 	// Keep track of any keycodes that are mapped to multiple commands, in order
 	// to display a warning to the player.
 	map<int, int> keycodeCount;
+
+	template<unsigned bit>
+	Command::CommandState MakeCommandState()
+	{
+		Command::CommandState state;
+		static_assert(bit < Command::COMMAND_COUNT, "bit number is higher than COMMAND_COUNT - 1");
+		state.set(bit);
+		return state;
+	}
 }
 
 
 
 // Command enumeration, including the descriptive strings that are used for the
 // commands both in the preferences panel and in the saved key settings.
-const Command Command::NONE(0, "");
-const Command Command::MENU(1uL << 0, "Show main menu");
-const Command Command::FORWARD(1uL << 1, "Forward thrust");
-const Command Command::LEFT(1uL << 2, "Turn left");
-const Command Command::RIGHT(1uL << 3, "Turn right");
-const Command Command::BACK(1uL << 4, "Reverse");
-const Command Command::PRIMARY(1uL << 5, "Fire primary weapon");
-const Command Command::SECONDARY(1uL << 6, "Fire secondary weapon");
-const Command Command::SELECT(1uL << 7, "Select secondary weapon");
-const Command Command::LAND(1uL << 8, "Land on planet / station");
-const Command Command::BOARD(1uL << 9, "Board selected ship");
-const Command Command::HAIL(1uL << 10, "Talk to selected ship");
-const Command Command::SCAN(1uL << 11, "Scan selected ship");
-const Command Command::JUMP(1uL << 12, "Initiate hyperspace jump");
-const Command Command::FLEET_JUMP(1uL << 13, "");
-const Command Command::TARGET(1uL << 14, "Select next ship");
-const Command Command::NEAREST(1uL << 15, "Select nearest hostile ship");
-const Command Command::DEPLOY(1uL << 16, "Deploy / recall fighters");
-const Command Command::AFTERBURNER(1uL << 17, "Fire afterburner");
-const Command Command::CLOAK(1uL << 18, "Toggle cloaking device");
-const Command Command::MAP(1uL << 19, "View star map");
-const Command Command::INFO(1uL << 20, "View player info");
-const Command Command::FULLSCREEN(1uL << 21, "Toggle fullscreen");
-const Command Command::FASTFORWARD(1uL << 22, "Toggle fast-forward");
-const Command Command::FIGHT(1uL << 23, "Fleet: Fight my target");
-const Command Command::GATHER(1uL << 24, "Fleet: Gather around me");
-const Command Command::HOLD(1uL << 25, "Fleet: Hold position");
-const Command Command::AMMO(1uL << 26, "Fleet: Toggle ammo usage");
-const Command Command::WAIT(1uL << 27, "");
-const Command Command::STOP(1ul << 28, "");
-const Command Command::SHIFT(1uL << 29, "");
-const Command Command::MOUSE_TURNING_HOLD(1uL << 30, "Mouse turning (hold)");
-const Command Command::MOUSE_TURNING_TOGGLE(1uL << 31, "Mouse turning (toggle)");
+const Command Command::NONE(Command::CommandState(), "");
+const Command Command::MENU(MakeCommandState<0>(), "Show main menu");
+const Command Command::FORWARD(MakeCommandState<1>(), "Forward thrust");
+const Command Command::LEFT(MakeCommandState<2>(), "Turn left");
+const Command Command::RIGHT(MakeCommandState<3>(), "Turn right");
+const Command Command::BACK(MakeCommandState<4>(), "Reverse");
+const Command Command::PRIMARY(MakeCommandState<5>(), "Fire primary weapon");
+const Command Command::SECONDARY(MakeCommandState<6>(), "Fire secondary weapon");
+const Command Command::SELECT(MakeCommandState<7>(), "Select secondary weapon");
+const Command Command::LAND(MakeCommandState<8>(), "Land on planet / station");
+const Command Command::BOARD(MakeCommandState<9>(), "Board selected ship");
+const Command Command::HAIL(MakeCommandState<10>(), "Talk to selected ship");
+const Command Command::SCAN(MakeCommandState<11>(), "Scan selected ship");
+const Command Command::JUMP(MakeCommandState<12>(), "Initiate hyperspace jump");
+const Command Command::FLEET_JUMP(MakeCommandState<13>(), "");
+const Command Command::TARGET(MakeCommandState<14>(), "Select next ship");
+const Command Command::NEAREST(MakeCommandState<15>(), "Select nearest hostile ship");
+const Command Command::DEPLOY(MakeCommandState<16>(), "Deploy / recall fighters");
+const Command Command::AFTERBURNER(MakeCommandState<17>(), "Fire afterburner");
+const Command Command::CLOAK(MakeCommandState<18>(), "Toggle cloaking device");
+const Command Command::MAP(MakeCommandState<19>(), "View star map");
+const Command Command::INFO(MakeCommandState<20>(), "View player info");
+const Command Command::FULLSCREEN(MakeCommandState<21>(), "Toggle fullscreen");
+const Command Command::FASTFORWARD(MakeCommandState<22>(), "Toggle fast-forward");
+const Command Command::FIGHT(MakeCommandState<23>(), "Fleet: Fight my target");
+const Command Command::GATHER(MakeCommandState<24>(), "Fleet: Gather around me");
+const Command Command::HOLD(MakeCommandState<25>(), "Fleet: Hold position");
+const Command Command::AMMO(MakeCommandState<26>(), "Fleet: Toggle ammo usage");
+const Command Command::WAIT(MakeCommandState<27>(), "");
+const Command Command::STOP(MakeCommandState<28>(), "");
+const Command Command::SHIFT(MakeCommandState<29>(), "");
+const Command Command::MOUSE_TURNING_HOLD(MakeCommandState<30>(), "Mouse turning (hold)");
+const Command Command::MOUSE_TURNING_TOGGLE(MakeCommandState<31>(), "Mouse turning (toggle)");
 
 
 
@@ -307,7 +316,7 @@ void Command::Set(Command command)
 // Check if any of the given command's bits that are set, are also set here.
 bool Command::Has(Command command) const
 {
-	return (state & command.state);
+	return (state & command.state).any();
 }
 
 
@@ -355,7 +364,7 @@ Command::operator bool() const
 // Check whether this command is entirely empty.
 bool Command::operator!() const
 {
-	return !state && !turn;
+	return state.none() && !turn;
 }
 
 
@@ -363,7 +372,13 @@ bool Command::operator!() const
 // For sorting commands (e.g. so a command can be the key in a map):
 bool Command::operator<(const Command &command) const
 {
-	return (state < command.state);
+	static const int count = static_cast<int>(COMMAND_COUNT);
+	for(int i = count - 1; i >= 0; --i)
+		if(state[i] > command.state[i])
+			return false;
+		else if(state[i] < command.state[i])
+			return true;
+	return false;
 }
 
 
@@ -391,7 +406,7 @@ Command &Command::operator|=(const Command &command)
 
 
 // Private constructor.
-Command::Command(uint32_t state)
+Command::Command(const CommandState &state)
 	: state(state)
 {
 }
@@ -400,7 +415,7 @@ Command::Command(uint32_t state)
 
 // Private constructor that also stores the given description in the lookup
 // table. (This is used for the enumeration at the top of this file.)
-Command::Command(uint32_t state, const string &text)
+Command::Command(const CommandState &state, const string &text)
 	: state(state)
 {
 	if(!text.empty())
