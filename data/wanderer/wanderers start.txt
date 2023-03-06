@@ -262,8 +262,8 @@ mission "Wanderers: Translation Machine"
 			`	They respond, and Sayari translates, "They say that their species has encountered many other species in the past, and always has found those encounters to be valuable. Although..." She pauses to listen as the Wanderers continue speaking. "Although, they say that in their travels, far more often than they encounter living species, they instead only find themselves sifting through the refuse of a species that has destroyed itself through war or carelessness. They hope that you are not such a species, because..." Again she pauses as the Wanderers speak, then says, "Because, they hate to make new friends only to lose them again."`
 			
 			label end
-			`	Speaking through Sayari, you try to reassure the Wanderers that you have peaceful intentions. They speak with her for a while longer. She tells you, "They say that I will be allowed to stay here as an ambassador, and they will also let you land on most of their worlds. But they will not welcome any other Hai into their territory. I fear that they distrust the Hai because of the actions of the Unfettered, and being associated with me may harm your chances to win their favor.`
-			`	"I'll have to remain here, so you'll need another way to communicate with them..." She pauses to talk to the Wanderers. "They're willing to create a translation device so you can communicate without an intermediary, but they need a large amount of data to train their algorithms. Human literature, speeches, interactive programs; anything with language and context."`
+			`	Speaking through Sayari, you try to reassure the Wanderers that you have peaceful intentions. They speak with her for a while longer. "They say that I will be allowed to stay here as an ambassador," She informs you. "They will also let you land on most of their worlds, but will not welcome any other Hai into their territory. I fear they distrust the Hai because of the actions of the Unfettered, and being associated with me may harm your chances to win their favor.`
+			`	"I'll have to remain here, so you'll need another way to communicate with them..." She pauses to talk to the Wanderers. "They're willing to create a translation device so you can communicate without an intermediary, but they require a large amount of data to train their algorithms. Human literature, speeches, interactive programs; anything with language and context."`
 			choice
 				`	"Where can I find the data?"`
 			`	"Your people have a large library at <planet>. You should fly there and find something suitable."`
@@ -274,7 +274,7 @@ mission "Wanderers: Translation Machine"
 		set "human cultural data"
 		payment -40
 		conversation
-			`<Library search> She directs you to the museum gift shop, where you buy the "Human Cultural Archive" for 40 credits.`
+			`<Library search> She directs you to the museum gift shop, where, to your surprise, you could buy the full "Human Cultural Archive" for a mere 40 credits.`
 				to display
 					not "Bankrupt at Alexandria"
 			`Now that you finally have 40 credits, you purchase the "Human Cultural Archive" that you must take to <planet>.`
@@ -299,9 +299,9 @@ mission "Wanderers: Algorithm Training Data"
 	on complete
 		event "wanderer translator available" 56
 		conversation
-			`A Wanderer meets you at landing and you hand them the data card. They plug it into a mango-sized machine whose data card slot seems to adjust itself to match the shape of the card on the way in. The Wanderer makes clicking and whistling noises while manipulating the device. Eventually, the device presents the words, "[Enter, bring] three and five. Within [truth, lies], the pleasant [cow, nova] tickles me [thoughtfully, gracefully]."`
-			`	The Wanderer seems displeased with the results. After a few minutes of fiddling with the device, it sputters out, "Pleasing [truth, gratifications]. [Accepting, holding] geolocated results [within, for] two [menstrual, lunar] cycles." Seeing your confusion, the Wanderer manipulates the device for several more minutes.`
-			`	"Thank you. Return in eight weeks", the device says. Looking quite satisfied with this, the Wanderer waves and departs.`
+			`A Wanderer meets you after you land and you hand them the data card. They plug it into a mango-sized machine which seems to adjust its data card slot to match the shape of the card on the way in. The Wanderer makes clicking and whistling noises while manipulating the device. Eventually, the device spits out the phrases, "[Enter, bring] three and five. Within [truth, lies], the pleasant [cow, nova] tickles me [thoughtfully, gracefully]."`
+			`	The Wanderer seems displeased with the results. After a few minutes of fiddling with the device, it sputters out, "Pleasing [truth, gratifications]. [Accepting, holding] geolocated results [within, for] two [menstrual, lunar] cycles." Seeing your confusion, the Wanderer continues manipulating the device, chirping loudly as if in frustration.`
+			`	"Thank you. Return in eight weeks", the device eventually says, drawing what seemed like satisfaction from the Wanderer once you gave your acknowledgement. The Wanderer tinkers with the machine for a while more, before waving to you and departing, leaving you to your own devices.`
 
 
 event "wanderer translator available"
@@ -362,8 +362,8 @@ mission "Wanderers Conversation"
 			`It is possible that the worlds they currently inhabit were formerly part of Hai territory. That might explain why the Unfettered believe they have a right to take that territory back.`
 		log "People" "Iktat Rek" `Rek is a Wanderer ambassador, a new and unusual profession among a species that until recently has had no contact with aliens except for the occasional Unfettered Hai raid. His job is to help the Wanderers develop a deeper relationship with humans.`
 		conversation
-			`After you land, a group of Wanderers take you to the engineer from your last meeting. Explaining the device, the engineer says, "It will [function, succeed] on speech of typical [speed, tempo], but-" As they speak faster, the translation device produces gibberish. "This is Iktat Rek," they say, gesturing to another Wanderer. "He is [appointed, chosen] as the official [envoy, bearer] for human [visitors, couriers]."`
-			`	Rek is slightly larger than most of the Wanderers you have seen, with muted white and brown plumage and a calm, dignified bearing. "It is very [rare, exceptional] in our history that we have to [deal with, cope with] other species," he says, "and now we find ourselves [dealing with, coping with] two at once."`
+			`After you land, a group of Wanderers take you to the engineer from your last meeting. The engineer seemed rather happy as it presented the device to you, saying: "It will [function, succeed] at speeches of typical [speed, tempo], however..." They start speaking faster, demonstrating the gibberish results it produces. "This is Iktat Rek," they slow down, gesturing to another Wanderer. "He is [appointed, chosen] as the official [envoy, bearer] for human [visitors, couriers]."`
+			`	Rek is slightly larger than most of the Wanderers you have seen, with muted white and brown plumage and a calm, dignified bearing. "It is very [rare, exceptional] in our history that we have to [deal with, cope with] other species," he says, "and now we find ourselves [dealing, coping] with two at once."`
 			choice
 				`	"How did you learn the Hai language?"`
 					goto language
@@ -391,7 +391,7 @@ mission "Wanderers Conversation"
 				`	"Why didn't you use your automated translation software instead?"`
 				`	"Do you know what the Unfettered want?"`
 					goto food
-			`	"Having a [meaningful, successful] translation requires [copious, extensive] language data with [context, meaning]. The Unfettered [raiding, pirate] ships had no [cultural, heritage] library onboard." You detect a hint of sarcasm in his words.`
+			`	"Having a [meaningful, successful] translation requires [copious, extensive] language data with [context, meaning]. The Unfettered [raiding, pirate] ships had no [cultural, heritage] library onboard," he says with what seemed like a hint of sarcasm in his words.`
 			label food
 			`	"Do you know what the Unfettered want?" you ask.`
 			`	"They want food, and [land, elbowroom]," says Rek. "This we guessed when they first raided us, and the Hai named Sayari has confirmed this to me, that the Unfettered have [squandered, consumed] their own worlds and now make war to gain others."`
@@ -627,7 +627,7 @@ mission "Wanderers: Unfettered Diplomacy 1"
 		has "Wanderers: Defended Vara Ke'sok: done"
 	on offer
 		conversation
-			`On <origin>, you meet up with Iktat Rek and the Hai ambassador Sayari, and tell them that you just helped to drive off an Unfettered raid on the Wanderer water world of Vara Ke'sok. Sayari has a Wanderer translator, too, and it seems to be translating to human like yours. "The situation is not [sustainable, livable]," says Rek. "Perhaps the Unfettered are the ones [chosen, intended] to [inherit, receive] the fruit of our labors here, but until the Eye beckons us to a new [home, place] we have nowhere else to go."`
+			`On <origin>, you meet up with Iktat Rek and the Hai ambassador Sayari, informing them of your efforts in driving off an Unfettered raid on the Wanderer water world of Vara Ke'sok. Sayari herself now has a Wanderer translator too, although it seems to only translate to English, like yours. "The situation is not [sustainable, livable]," says Rek. "Perhaps the Unfettered are the ones [chosen, intended] to [inherit, receive] the fruit of our labors here, but until the Eye beckons us to a new [home, place] we have nowhere else to go."`
 			choice
 				`	"You're saying that after working so hard to restore these worlds, you would give them to someone as destructive as the Unfettered?"`
 				`	"That can't be right. The Unfettered wrecked their own worlds. They would wreck yours as well."`
@@ -1817,7 +1817,7 @@ mission "Wanderers Invaded 3C"
 	on offer
 		conversation
 			`You land on <origin>, and Emeka'a Isai leads you to the building where the council of war is taking place. Sayari, the Hai diplomat, has also been invited, along with Iktat Rek and various other leaders. Rek looks even more bedraggled than before: his wings are drooping, and more of his feathers are out of place.`
-			`	It is not entirely clear to you who outranks whom in the meeting, or even what roles the different participants have. To make matters worse, they're talking much faster than your translator can process. Rek and Isai speak slowly so that you and Sayari can be included, but when the conversation gets heated they speed up, in a cacophony of clicks and whistles.`
+			`	It is not entirely clear to you who outranks whom in the meeting, or even what roles the different participants have. To make matters worse, they're talking much faster than your translator can process. Rek and Isai speak slowly so that you and Sayari can be included, but when the conversation gets heated they speed up in a cacophony of clicks and whistles.`
 			`	They are looking at a map of Wanderer space, and it's clear from their gestures that the discussion is about how far they can afford to retreat in order to form a more defensive position. Rek explains to you, "When the Eye opens, we must leave this [territory, space] anyway, so a retreat now will just position us better to [embark, journey on] when the time comes."`
 			choice
 				`	"But what if the Eye does not open and you are trapped here?"`
