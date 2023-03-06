@@ -348,10 +348,10 @@ void PreferencesPanel::DrawControls()
 	table.DrawAt(Point(-130, firstY));
 
 	static const string CATEGORIES[] = {
-		"Navigation",
-		"Weapons",
-		"Navigation",
+		"Keyboard Navigation",
+		"Mouse Navigation",
 		"Targeting",
+		"Weapons",
 		"Interface",
 		"Fleet"
 	};
@@ -367,11 +367,6 @@ void PreferencesPanel::DrawControls()
 		Command::LAND,
 		Command::JUMP,
 		Command::NONE,
-		Command::PRIMARY,
-		Command::SELECT,
-		Command::SECONDARY,
-		Command::CLOAK,
-		Command::NONE,
 		Command::MOUSE_TURNING_HOLD,
 		Command::MOUSE_TURNING_TOGGLE,
 		Command::NONE,
@@ -380,6 +375,11 @@ void PreferencesPanel::DrawControls()
 		Command::HAIL,
 		Command::BOARD,
 		Command::SCAN,
+		Command::NONE,
+		Command::PRIMARY,
+		Command::SELECT,
+		Command::SECONDARY,
+		Command::CLOAK,
 		Command::NONE,
 		Command::MENU,
 		Command::MAP,
@@ -393,7 +393,7 @@ void PreferencesPanel::DrawControls()
 		Command::HOLD,
 		Command::AMMO
 	};
-	static const Command *BREAK = &COMMANDS[17];
+	static const Command *BREAK = &COMMANDS[18];
 	for(const Command &command : COMMANDS)
 	{
 		// The "BREAK" line is where to go to the next column.
@@ -446,7 +446,7 @@ void PreferencesPanel::DrawControls()
 	Table shiftTable;
 	shiftTable.AddColumn(125, {150, Alignment::RIGHT});
 	shiftTable.SetUnderline(0, 130);
-	shiftTable.DrawAt(Point(-400, 52));
+	shiftTable.DrawAt(Point(-400, 32));
 
 	shiftTable.DrawUnderline(medium);
 	shiftTable.Draw("With <shift> key", bright);
