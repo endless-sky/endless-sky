@@ -301,7 +301,7 @@ mission "Wanderers: Algorithm Training Data"
 		conversation
 			`A Wanderer meets you after you land and you hand them the data card. They plug it into a mango-sized machine which seems to adjust its data card slot to match the shape of the card on the way in. The Wanderer makes clicking and whistling noises while manipulating the device. Eventually, the device spits out the phrases, "[Enter, bring] three and five. Within [truth, lies], the pleasant [cow, nova] tickles me [thoughtfully, gracefully]."`
 			`	The Wanderer seems displeased with the results. After a few minutes of fiddling with the device, it sputters out, "Pleasing [truth, gratifications]. [Accepting, holding] geolocated results [within, for] two [menstrual, lunar] cycles." Seeing your confusion, the Wanderer continues manipulating the device, chirping loudly as if in frustration.`
-			`	"Thank you. Return in eight weeks", the device eventually says, drawing what seemed like satisfaction from the Wanderer once you gave your acknowledgement. The Wanderer tinkers with the machine for a while more, before waving to you and departing, leaving you to your own devices.`
+			`	"Thank you. Return in eight weeks", the device eventually says, drawing what seemed like satisfaction from the Wanderer once you gave your acknowledgment. The Wanderer tinkers with the machine for a while more, before waving to you and departing, leaving you to your own devices.`
 
 
 event "wanderer translator available"
