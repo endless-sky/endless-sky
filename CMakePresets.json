@@ -624,13 +624,13 @@
     },
     {
       "name": "linux-gles-test",
-      "displayName": "Tests",
+      "displayName": "Unit Tests",
       "configurePreset": "linux-gles",
       "inherits": "test"
     },
     {
       "name": "linux-gles-test-release",
-      "displayName": "Tests (Release build)",
+      "displayName": "Unit Tests (Release)",
       "configurePreset": "linux-gles",
       "inherits": "test-release"
     },
@@ -654,13 +654,13 @@
     },
     {
       "name": "macos-test",
-      "displayName": "Tests",
+      "displayName": "Unit Tests",
       "configurePreset": "macos",
       "inherits": "test"
     },
     {
       "name": "macos-test-release",
-      "displayName": "Tests (Release build)",
+      "displayName": "Unit Tests (Release)",
       "configurePreset": "macos",
       "inherits": "test-release"
     },
@@ -678,13 +678,13 @@
     },
     {
       "name": "macos-arm-test",
-      "displayName": "Tests",
+      "displayName": "Unit Tests",
       "configurePreset": "macos-arm",
       "inherits": "test"
     },
     {
       "name": "macos-arm-test-release",
-      "displayName": "Tests (Release build)",
+      "displayName": "Unit Tests (Release)",
       "configurePreset": "macos-arm",
       "inherits": "test-release"
     },
@@ -702,13 +702,13 @@
     },
     {
       "name": "clang-cl-test",
-      "displayName": "Tests",
+      "displayName": "Unit Tests",
       "configurePreset": "clang-cl",
       "inherits": "test"
     },
     {
       "name": "clang-cl-test-release",
-      "displayName": "Tests (Release build)",
+      "displayName": "Unit Tests (Release)",
       "configurePreset": "clang-cl",
       "inherits": "test-release"
     },
@@ -726,13 +726,13 @@
     },
     {
       "name": "mingw-test",
-      "displayName": "Tests",
+      "displayName": "Unit Tests",
       "configurePreset": "mingw",
       "inherits": "test"
     },
     {
       "name": "mingw-test-release",
-      "displayName": "Tests (Release build)",
+      "displayName": "Unit Tests (Release)",
       "configurePreset": "mingw",
       "inherits": "test-release"
     },
@@ -750,13 +750,13 @@
     },
     {
       "name": "mingw32-test",
-      "displayName": "Tests",
+      "displayName": "Unit Tests",
       "configurePreset": "mingw32",
       "inherits": "test"
     },
     {
       "name": "mingw32-test-release",
-      "displayName": "Tests (Release build)",
+      "displayName": "Unit Tests (Release)",
       "configurePreset": "mingw32",
       "inherits": "test-release"
     },
