@@ -43,7 +43,7 @@ planet Ada
 		threshold 8000
 		fleet "Large Republic" 16
 
-planet "Aetuah"
+planet Aetuah
 	attributes "gas giant" "requires: gaslining"
 	landscape land/nasa30
 	description `The close proximity of Aetuah and the neighboring ice moon causes various ebbs and flows in the storms on the gas giant as well as constant reshaping of the moon's surface. The ice moon may have been captured by Aetuah in times past as a rogue planet, and the distance of the gas giant from the system center suggests it might be a rogue planet itself as well. In time, the gravitational force exhibited by Aetuah will tear apart the ice moon, plummeting it into the abyss.`
@@ -1177,11 +1177,11 @@ planet "Ember Wormhole"
 
 wormhole "Ember Wormhole"
 	mappable
-	color "wormholes: Ember Waste"
 	link Aescolanus Cardea
 	link Cardea Insitor
 	link Insitor Segesta
 	link Segesta Aescolanus
+	color "wormholes: Ember Waste"
 
 planet Eminonu
 	attributes uninhabited
@@ -1648,7 +1648,7 @@ planet Geyser
 		threshold 3500
 		fleet "Large Militia" 20
 
-planet "Ghneoe"
+planet Ghneoe
 	landscape land/hills10
 	description `Ghneoe's orbital period is dominated by a very long dry season due to the binary stars at the system's center. However, during a short portion of the year, Ghneoe experiences an intense water cycle that results in a boom of greenery and wildlife activity, developing a short-lived but flourishing ecosystem. Much of the flora and fauna have adapted to such drastic shifts in climate, and return to a dormant state once the intense heat cycle returns.`
 	description `	Unlike its moon, Ghneoe has yet to see any sort of colonization efforts by the nearby Gegno Scin, perhaps due to the abnormal yearly weather, system warfare, or a combination of both.`
@@ -2678,7 +2678,7 @@ planet Mirrorlake
 	spaceport `This spaceport appears to be a tourist destination. The architecture is different than on other Hai worlds, and much more primitive: stone and mortar instead of polished metal. However, all the buildings are in good repair: despite their ancient appearance, they must be maintained and rebuilt on a regular basis.`
 	security 0.2
 
-planet "Mnai"
+planet Mnai
 	landscape land/canyon1
 	description `The environment of this world is quite pleasant by human standards. A majority of Mnai's yearly seasons consist of extended warm summer periods that provide healthy conditions for wildlife to thrive. Canyons are a common sight, sometimes harboring their own smaller ecosystems both in their higher mountainous regions and down in the valleys. Other patches of Mnai's surface have mesas that are home to mammals that look like large bears with antlers.`
 	description `	Although this world remains an uncolonized paradise, there is some indication that the planet has been visited recently by the Gegno. A few landing sites can be found atop the taller ridges, but none are intricate enough to indicate any attempt to establish a settlement.`
@@ -4545,7 +4545,7 @@ planet Vatican
 	government Uninhabited
 	security 0
 
-planet "Veiuye"
+planet Veiuye
 	attributes moon
 	landscape land/sea2
 	description `Like the other moons of the nearby gas giant, Veiuye is a frozen world. However, the surface layer of Veiyue is rather thin, and more detailed scans show large, hollow caverns beneath the exterior of the moon. These areas are abnormally warm compared to the rest of the moon, and appear to be filled with oceans primarily made up of water. Strange readings come from these areas, which could possibly be due to microbial life.`
@@ -4754,7 +4754,7 @@ planet Xerolophos
 	government Uninhabited
 	security 0
 
-planet "Xurelei"
+planet Xurelei
 	attributes "gas giant" "requires: gaslining"
 	landscape land/nasa15
 	description `Xurelei's atmosphere is covered with huge tempests that would engulf an Earth-sized planet many times over. Strangely enough, these storms are initially much less violent than those recorded from other gas giants, and are easily traversable by probes and other exploration craft. Once below a certain depth, these storms become exponentially more dangerous. The cause of this drastic shift in intensity is unknown.`
@@ -4822,7 +4822,7 @@ planet Zug
 		threshold 3000
 		fleet "Large Militia" 18
 
-planet "Zydee"
+planet Zydee
 	attributes moon
 	landscape land/enceladus_1
 	description `Although this moon initially seems barren and lifeless, there is evidence that the nearby Gegno Scin have recently attempted to set up an outpost here. Several partially-constructed buildings and landing zones are scattered about the surface, but none of them show any signs of activity, likely due to recent warfare with the Gegno Vi. Despite this, a small number of satellites actively orbit Zydee, likely providing important tactical information such as the volume of system traffic.`

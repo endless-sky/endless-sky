@@ -2728,7 +2728,7 @@ system "Ae Il M-77"
 			sprite planet/dust0
 			distance 248
 			period 240.531
-	object "Aetuah"
+	object Aetuah
 		sprite planet/gas3-hot
 		distance 15948.3
 		period 6174.30
@@ -10910,7 +10910,7 @@ system E-4183
 		sprite planet/gas7-r
 			scale 0.5
 		distance 11699
-		period 14195.8
+		period 5694.68
 		offset 120
 		object
 			sprite planet/luna-b
@@ -12848,7 +12848,7 @@ system Evrae
 			sprite planet/ice0
 			distance 417
 			period 355
-		object "Veiuye"
+		object Veiuye
 			sprite planet/ice7
 			distance 598
 			period 382
@@ -14301,8 +14301,7 @@ system G-3191
 		sprite planet/vajra/vajra
 			"random start frame"
 			"frame rate" 30
-			"scale" 0.5
-		distance 0
+			scale 0.5
 		period 10
 	object
 		sprite star/f-supergiant
@@ -16683,7 +16682,7 @@ system Huud
 		sprite planet/neptune-b
 		distance 1022
 		period 223.146
-	object "Xurelei"
+	object Xurelei
 		sprite planet/gas11
 		distance 3336
 		period 1315.98
@@ -17721,7 +17720,7 @@ system "Is Il T-94"
 	object
 		sprite planet/gas14
 		distance 14800
-		period 14600
+		period 15354.6
 		offset 60
 		object
 			sprite planet/asura
@@ -19427,11 +19426,11 @@ system Kneirc
 		sprite planet/rock1
 		distance 401
 		period 84.9392
-	object "Ghneoe"
+	object Ghneoe
 		sprite planet/forest3
 		distance 1125
-		period 279.905
-		object "Zydee"
+		period 399.135
+		object Zydee
 			sprite planet/dust3-b
 			distance 169
 			period 83
@@ -23203,10 +23202,10 @@ system Mnashyu
 		sprite star/k3
 		distance 170.2
 		period 70.13
-	object "Mnai"
+	object Mnai
 		sprite planet/forest3-b
 		distance 1340
-		period 980
+		period 518.858
 		object
 			sprite planet/dust3-b
 			distance 197.75
@@ -23214,7 +23213,7 @@ system Mnashyu
 	object "Eeu Mnai"
 		sprite planet/rock7
 		distance 1619
-		period 370
+		period 689.068
 	object
 		sprite planet/gas7-hot
 		distance 2449
@@ -32480,7 +32479,7 @@ system Uttna
 	object
 		sprite planet/gas7-hot
 		distance 5174
-		period 1674.88
+		period 2717.93
 		object
 			sprite planet/dust3-b
 			distance 198
@@ -33156,7 +33155,7 @@ system W-3197
 	object
 		sprite planet/ocean3-b
 		distance 4150
-		period 1300
+		period 1347.29
 	object
 		sprite planet/dust0
 		distance 9113
@@ -34385,7 +34384,7 @@ system Zeinar
 	object
 		sprite planet/gas1-b
 		distance 650
-		period 250.270
+		period 321.540
 		object Cipi
 			sprite planet/ice7-b
 			distance 411.8
