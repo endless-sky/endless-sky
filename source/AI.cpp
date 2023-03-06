@@ -3883,7 +3883,6 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		if(activeCommands.Has(AutopilotCancelCommands()))
 			autoPilot = activeCommands;
 	}
-	
 	bool shouldAutoAim = false;
 	bool isFiring = activeCommands.Has(Command::PRIMARY) || activeCommands.Has(Command::SECONDARY);
 	if( keyHeld.Has(Command::AUTOSTEER) && !command.Turn() && !ship.IsBoarding()
