@@ -489,7 +489,9 @@ void Engine::Step(bool isActive)
 	// The calculation thread was paused by MainPanel before calling this function, so it is safe to access things.
 	const shared_ptr<Ship> flagship = player.FlagshipPtr();
 	const StellarObject *object = player.GetStellarObject();
-	double fog = player.Flagship()->FogLevel();
+	double fog = 0;
+	if (player.Flagship())
+		fog = player.Flagship()->FogLevel();
 	if(object)
 	{
 		center = object->Position();
@@ -969,7 +971,9 @@ list<ShipEvent> &Engine::Events()
 // Draw a frame.
 void Engine::Draw() const
 {
-	double fog = player.Flagship()->FogLevel();
+	double fog = 0;
+	if (player.Flagship())
+		fog = player.Flagship()->FogLevel();
 	GameData::Background().Draw(center, centerVelocity, zoom, (player.Flagship() ?
 		player.Flagship()->GetSystem() : player.GetSystem()), fog);
 	static const Set<Color> &colors = GameData::Colors();
