@@ -3335,7 +3335,7 @@ planet Pugglequat
 planet Pyriphlegethon
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/clouds_02
-	description `Despite its poorly received name, Pyriphlegethon was famous in the early history of human interstellar travel, as the first "hot Jupiter" to be explored in detail. Colorful images of its incandescent clouds and glowing night sky became some of the most iconic images of space in the 23rd century, when the invention of the hyperdrive was still recent.`
+	description `Despite its poorly received name, Pyriphlegethon was famous in the early history of human interstellar travel as the first "hot Jupiter" to be explored in detail. Colorful images of its incandescent clouds and glowing night sky became some of the most iconic images of space in the 23rd century, when the invention of the hyperdrive was still recent.`
 	description `	Even on the planet's night side, everything is washed in a deep red glow that seems to come from all directions at once. You are glad that gaslining technology protects your ship from the extreme temperatures outside, keeping your own atmosphere from becoming similarly incandescent to the one outside.`
 	government Uninhabited
 	security 0
