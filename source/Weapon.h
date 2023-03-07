@@ -378,7 +378,7 @@ inline double Weapon::FiringDischarge() const{ return firingDischarge; }
 inline double Weapon::FiringCorrosion() const{ return firingCorrosion; }
 inline double Weapon::FiringLeak() const{ return firingLeak; }
 inline double Weapon::FiringBurn() const{ return firingBurn; }
-inline double Weapon::FiringFog() const { return firingFog; }
+inline double Weapon::FiringFog() const{ return firingFog; }
 
 inline double Weapon::RelativeFiringEnergy() const{ return relativeFiringEnergy; }
 inline double Weapon::RelativeFiringHeat() const{ return relativeFiringHeat; }
