@@ -2944,7 +2944,7 @@ planet Parii'het
 planet Passaritus
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa27
-	description `Decades ago, Passaritus was the subject of an ambitious project by the Deep to economically mine metallic hydrogen from its mantle. Being barely large enough to form metallic hydrogen in the first place, the gas giant's gravity was thought to be low enough to make extraction feasible. Unfortunately, the Deep's engineers overestimated their ability to build an extraction device that was not only technically workable, but economical, and the project has since been moved to the backburner in favor of more reasonable endeavors.`
+	description `Decades ago, Passaritus was the subject of an ambitious project by the Deep to mine metallic hydrogen from its mantle. Being barely large enough to form metallic hydrogen in the first place, the gas giant's gravity was thought to be low enough to make extraction feasible. Unfortunately, the Deep had overestimated their ability to build an extraction device that was not only functional, but economical, and the project has since been moved to the backburner.`
 	description `	Passaritus still happens to be an interesting locale to visit, at least if you have a gaslined ship. Its small size and relatively rapid rotation gives it sweeping bands of color, each corresponding to a different layer or wind speed, and the lower gravity allows updrafts to carry your ship upwards for kilometers.`
 	government Uninhabited
 	security 0
