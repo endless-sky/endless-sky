@@ -27850,7 +27850,7 @@ system Sol
 		sprite planet/mars
 		distance 1471.43
 		period 687.001
-	object
+	object Jupiter
 		sprite planet/jupiter
 		distance 3339
 		period 2348.40

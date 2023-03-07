@@ -2170,7 +2170,7 @@ planet "Lenz's Loop"
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa28
 	description `Lenz's Loop takes its name from the powerful magnetic field produced by its metallic hydrogen core. As one of the most powerful natural sources of magnetism known to humanity, it is named for Emil Lenz and his discoveries about the interactions between magnetism and electric currents.`
-	description `	While your ship's shielding fortunately keeps it safe from the dangerously strong magnetic field, captured charged particles from Kochab's frequent flares are ultimately channeled into the atmosphere near the poles, where it would be exceedingly dangerous for you to venture.`
+	description `	While your ship's shielding fortunately keeps it safe from the dangerously strong magnetic field, captured charged particles from Kochab's frequent flares are channeled into the atmosphere near the poles, where it would be exceedingly dangerous for you to venture.`
 	government Uninhabited
 	security 0
 
@@ -3015,7 +3015,7 @@ planet Placatious
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/clouds_07
 	description `Half a century ago, Placatious was the subject of a Syndicate marketing campaign, advertising the view of its deep blue sky from orbit to be "the most agreeable sight in the galaxy." Construction on a large station, intended to essentially be a massive hub of conference rooms with panoramic views of the supposedly breathtaking gas giant below, was started but never completed after numerous delays and budget overruns. Eventually, the executive responsible for the entire scheme was forced into an early retirement, and the idea was quietly dropped.`
-	description `	From within, Placatious is actually quite beautiful, with wisps of aquamarine colored vapor trailing vertically as far as the eye can see. Perhaps the Syndicate would have had more success had they somehow managed to suspend a conference room inside the gas giant's atmosphere.`
+	description `	From within, Placatious is actually quite beautiful, with wisps of aquamarine vapor trailing vertically as far as the eye can see. Perhaps the Syndicate would have had more success had they managed to suspend a conference room inside the gas giant's atmosphere.`
 	government Uninhabited
 	security 0
 
@@ -4384,8 +4384,8 @@ planet Violetwake
 planet "Vivid Aether"
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa29
-	description `Whether it be from local evolution or panspermia, Vivid Aether's clouds are home to colonies of anaerobic microbial life, feeding on both sunlight and traces of methane in the atmosphere. These form colorful streaks in the upper atmosphere, which attracted Saryd explorers to the planet. Now, it is common for Heliarch research patrols to sit in orbit for weeks at a time in order to study the simple, yet exotic, ecology. Occasionally, they send down hardened research vessels capable of withstanding the extreme pressures, though none happen to be nearby right now.`
-	description `	The life-bearing layer only extends downward a few hundred kilometers before pressures rise and the temperature becomes inhospitable to life. Deeper within the planet's atmosphere, the environment is barren and lifeless.`
+	description `Whether it be from local evolution or panspermia, Vivid Aether's clouds are home to colonies of anaerobic microbial life, feeding on both sunlight and traces of methane in the atmosphere. These form colorful streaks in the upper atmosphere, which initially attracted Saryd explorers to the planet. Now, it is common for Heliarch research patrols to sit in orbit for weeks at a time in order to study the simple, yet exotic, ecology. Occasionally, they send down hardened research vessels capable of withstanding the extreme pressures, though none happen to be nearby right now.`
+	description `	The life-bearing layer only extends downward a few hundred kilometers before pressures rise and the temperature becomes inhospitable to life. Deeper down, the atmosphere is barren and lifeless.`
 	government Uninhabited
 	security 0
 
