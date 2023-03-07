@@ -361,10 +361,12 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 				bool blink = false;
 				if(mission.Deadline())
 				{
-					int days = min(6, mission.Deadline() - player.GetDate() + 1
-							- localDistance.Days(mission.Destination()->GetSystem()));
+					int days = min(6, mission.Deadline() - player.GetDate() + 1);
 					if(days > 0)
+					{
+						days = max(1, days - localDistance.Days(mission.Destination()->GetSystem()));
 						blink = (step % (10 * days) > 5 * days);
+					}
 				}
 				if(!blink)
 				{
@@ -1242,10 +1244,12 @@ void MapPanel::DrawMissions()
 		bool blink = false;
 		if(mission.Deadline())
 		{
-			int days = min(6, mission.Deadline() - player.GetDate() + 1
-					- distance.Days(mission.Destination()->GetSystem()));
+			int days = min(6, mission.Deadline() - player.GetDate() + 1);
 			if(days > 0)
+			{
+				days = max(1, days - distance.Days(mission.Destination()->GetSystem()));
 				blink = (step % (10 * days) > 5 * days);
+			}
 		}
 		bool isSatisfied = IsSatisfied(player, mission);
 		DrawPointer(system, it.drawn, blink ? black : isSatisfied ? currentColor : blockedColor, isSatisfied);
