@@ -3014,8 +3014,8 @@ planet Pincian
 planet Placatious
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/clouds_07
-	description `Half a century ago, Placatious was the subject of a Syndicate marketing campaign, advertising the view of its deep blue sky from orbit to be "the most agreeable sight in the galaxy." Construction on a large station, intended to essentially be a massive hub of conference rooms with panoramic views of the supposedly breathtaking gas giant below, was started but never completed after numerous delays and budget overruns. Eventually, the executive responsible for the entire scheme was forced into an early retirement, and the idea was quietly dropped.`
-	description `	From within, Placatious is actually quite beautiful, with wisps of aquamarine vapor trailing vertically as far as the eye can see. Perhaps the Syndicate would have had more success had they managed to suspend a conference room inside the gas giant's atmosphere.`
+	description `Half a century ago, Placatious was the subject of a Syndicate marketing campaign, advertising the view of its deep blue sky from orbit to be "the most agreeable sight in the galaxy." Construction on a large station, intended to be a massive hub of conference rooms with panoramic views of the supposedly breathtaking gas giant below, was started but never completed after numerous delays and budget overruns. Eventually, the executive responsible for the entire scheme was forced into an early retirement, and the idea was quietly dropped.`
+	description `	From within, Placatious really is quite beautiful, with wisps of aquamarine vapor trailing vertically as far as the eye can see. Perhaps the Syndicate would have had more success had they managed to suspend a conference room inside the gas giant's atmosphere.`
 	government Uninhabited
 	security 0
 
