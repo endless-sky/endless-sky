@@ -5437,8 +5437,8 @@ mission "Blind Man from Martini"
 	source Martini
 	destination Chiron
 	to offer
-		# has "main plot completed"
-		# random < 15
+		has "main plot completed"
+		random < 15
 	on offer
 		conversation
 			`As you walk through <origin>'s cramped new planetary spaceport, you see a middle-aged man on the other side of the corridor, behind a column of people. He's just sitting on a bench looking ahead at nowhere in particular, with a suitcase to his side, and holding a cane in one hand. Nobody's paying any attention to him, but he is tapping his cane every so often, when someone passes by him.`
