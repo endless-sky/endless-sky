@@ -46,9 +46,11 @@ void BatchShader::Init()
 		"in vec3 texCoord;\n"
 
 		"out vec3 fragTexCoord;\n"
+		"out vec3 fragPos;\n"
 
 		"void main() {\n"
 		"  gl_Position = vec4(vert * scale, 0, 1);\n"
+		"  fragPos = vec3(gl_Position.x, gl_Position.y, gl_Position.z);\n"
 		"  fragTexCoord = texCoord;\n"
 		"}\n";
 
@@ -60,8 +62,11 @@ void BatchShader::Init()
 #endif
 		"uniform sampler2DArray tex;\n"
 		"uniform float frameCount;\n"
+		"uniform float fog;\n"
+		"uniform float zoom;\n"
 
 		"in vec3 fragTexCoord;\n"
+		"in vec3 fragPos;\n"
 
 		"out vec4 finalColor;\n"
 
@@ -72,6 +77,20 @@ void BatchShader::Init()
 		"  finalColor = mix(\n"
 		"    texture(tex, vec3(fragTexCoord.xy, first)),\n"
 		"    texture(tex, vec3(fragTexCoord.xy, second)), fade);\n"
+		"  float distanceAlpha = 1.f;\n"
+		"  if(fog > 0)\n"
+		"  {\n"
+		"    distanceAlpha = 1. - (fog / 100);\n"
+		"    float length = length(fragPos) * zoom;\n"
+		"    if(length < 1.f)\n" // everything further than 1. away is invisble
+		"    {\n"
+		"      if(length > 0.25f)\n" // everything closer than 0.25 is completely visble
+		"        distanceAlpha = 1.f - (fog / 100) * 1.333 * (length - 0.25);\n" // interpolate between 0.25 and 1.
+		"      else"
+		"        distanceAlpha = 1.f;"
+		"    }\n"
+		"  }\n"
+		"  finalColor = finalColor * distanceAlpha;\n"
 		"}\n";
 
 	// Compile the shaders.
