@@ -357,7 +357,7 @@ mission "Wanderers Conversation"
 	on offer
 		event "wanderer technology available"
 		set "license: Wanderer Outfits"
-		log "Received a translation device and used it to speak with a Wanderer ambassador named Iktat Rek. They granted permission to purchase some of their technology, but not their ships."
+		log "Received a translation device and used it to speak with a Wanderer ambassador named Iktat Rek. He granted me permission to purchase some Wanderers technology, but not their ships."
 		log "Factions" "Wanderers" `The Wanderers believe that their purpose in the universe is to "repair" planets whose biospheres have been ravaged by other species either through mismanagement or as a result of war. They came to their current territory through a wormhole that they call "the Eye," and they say that once their work here is done the Eye will open and lead them to a new territory and new worlds for them to care for.`
 			`It is possible that the worlds they currently inhabit were formerly part of Hai territory. That might explain why the Unfettered believe they have a right to take that territory back.`
 		log "People" "Iktat Rek" `Rek is a Wanderer ambassador, a new and unusual profession among a species that until recently has had no contact with aliens except for the occasional Unfettered Hai raid. His job is to help the Wanderers develop a deeper relationship with humans.`
