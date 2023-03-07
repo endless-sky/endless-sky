@@ -2351,7 +2351,7 @@ void Engine::FillRadar()
 		{
 			// Do not show cloaked ships on the radar, except the player's ships.
 			bool isYours = ship->IsYours();
-			if((ship->Cloaking() >= 1. && !isYours) || (ship->Attributes().Get("radar cloak") >= 1. && !isYours))
+			if (!isYours && (ship->Cloaking() || ship->Attributes().Get("radar cloak") >= 1.))
 				continue;
 
 			// Figure out what radar color should be used for this ship.
