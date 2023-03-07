@@ -3554,8 +3554,8 @@ planet "Shifting Sand"
 planet "Shih's Locker"
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa16
-	description `Centuries ago, this gas giant earned its name after the eponymous and infamous Captain Shih "disposed" of a mutiny by ejecting most of her crew into its atmosphere. Cruelly, they were packed into an escape pod that survived at least the upper atmosphere of her Locker, instead of simply being tossed out of an airlock as was the standard practice. In the years that followed, many seeking to prove themselves the meanest pirate in the galaxy sought to emulate her example by making the pilgrimage to her Locker whenever a crewmember went too far out of line.`
-	description `	Cold clouds of ammonia swirl around your ship as it dives deeper. This far within the planet's atmosphere, the sky is oddly colored a murky blue-green, which stands in contrast to the brownish haze that seems to extend for eternity. It is not at all difficult to imagine yourself at the bottom of a terrestrial planet's ocean. While legend on Greenrock holds that the ghosts of traitorous pirates haunt the depths of Shih's Locker, they seem to be keeping to themselves for now.`
+	description `This gas giant earned its name after the infamous Captain Shih "disposed" of a mutiny. Rather than simply ejecting her crew out of the airlock, she packed them into an escape pod that would survive the upper atmosphere of the planet. In the years that followed, many seeking to prove themselves the meanest pirate in the galaxy sought to emulate her example by making a pilgrimage to her Locker whenever a crewmember went too far out of line.`
+	description `	This far within the planet's atmosphere, the sky is colored a murky blue-green, standing in contrast to the brownish haze that seems to extend for eternity. While legend on Greenrock holds that the ghosts of traitorous pirates haunt the depths of Shih's Locker, they seem to be keeping to themselves for now.`
 	government Uninhabited
 	security 0
 
