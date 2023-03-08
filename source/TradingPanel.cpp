@@ -252,7 +252,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		int day = player.GetDate().DaysSinceEpoch();
 		for(const auto &it : player.Cargo().Outfits())
 		{
-			if(it.first->Get("minable") <= 0. && !sellOutfits)
+			if((it.first->Get("installable") >= 0. && !sellOutfits) || !player.OutfitIsKnown(*it.first))
 				continue;
 
 			int64_t value = player.FleetDepreciation().Value(it.first, day, it.second);
