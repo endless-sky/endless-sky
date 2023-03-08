@@ -55,8 +55,9 @@ namespace {
 	const vector<string> BOARDING_SETTINGS = {"proximity", "value", "mixed"};
 	int boardingIndex = 0;
 
+	// Enable "fast" parallax by default. "fancy" is too GPU heavy, especially for low-end hardware.
 	const vector<string> PARALLAX_SETTINGS = {"off", "fancy", "fast"};
-	int parallaxIndex = 1;
+	int parallaxIndex = 2;
 
 	const vector<string> ALERT_INDICATOR_SETTING = {"off", "audio", "visual", "both"};
 	int alertIndicatorIndex = 3;
@@ -78,6 +79,7 @@ void Preferences::Load()
 	settings["Show stored outfits on map"] = true;
 	settings["Show mini-map"] = true;
 	settings["Show planet labels"] = true;
+	settings["Show asteroid scanner overlay"] = true;
 	settings["Show hyperspace flash"] = true;
 	settings["Draw background haze"] = true;
 	settings["Draw starfield"] = true;
@@ -111,13 +113,10 @@ void Preferences::Load()
 		else if(node.Token(0) == "alert indicator")
 			alertIndicatorIndex = max<int>(0, min<int>(node.Value(1), ALERT_INDICATOR_SETTING.size() - 1));
 		else if(node.Token(0) == "previous saves" && node.Size() >= 2)
-			previousSaveCount = node.Value(1);
+			previousSaveCount = max<int>(3, node.Value(1));
 		else
 			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
 	}
-
-	if(previousSaveCount < 1)
-		previousSaveCount = 3;
 
 	// For people updating from a version before the visual red alert indicator,
 	// if they have already disabled the warning siren, don't turn the audible alert back on.
