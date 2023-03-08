@@ -339,6 +339,9 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 
 				out << "\t" << Format::CargoString(it.second, it.first) << "\n";
 			}
+
+		unsigned int unknownOutfitsWeight = 0;
+		std::string unknownOutfitRepName = "";
 		for(const auto &it : target->Cargo().Outfits())
 			if(it.second)
 			{
@@ -346,17 +349,37 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 					out << "This " + target->Noun() + " is carrying:\n";
 				first = false;
 
-				out << "\t" << it.second;
+				int tons = 0;
+				bool outfitKnownToPlayer = player.OutfitIsKnown(*it.first);
 				if(it.first->Get("installable") < 0.)
+					tons = ceil(it.second * it.first->Mass());
+
+				if(!outfitKnownToPlayer)
 				{
-					int tons = ceil(it.second * it.first->Mass());
-					out << Format::CargoString(tons, Format::LowerCase(it.first->PluralName())) << "\n";
+					unknownOutfitsWeight += (tons) ? tons : it.second;
+					if(unknownOutfitRepName.empty())
+						unknownOutfitRepName = it.first->TrueName();
+					continue;
 				}
+
+				out << "\t" << it.second;
+				if(tons)
+					out << Format::CargoString(tons, Format::LowerCase(it.first->PluralName())) << "\n";
 				else
-					out << " " << (it.second == 1 ? it.first->DisplayName(): it.first->PluralName()) << "\n";
+					out << " " << it.first->ShownName(outfitKnownToPlayer, it.second > 1) << "\n";
 			}
 		if(first)
 			out << "This " + target->Noun() + " is not carrying any cargo.\n";
+		else if(!unknownOutfitRepName.empty())
+		{
+			const Outfit *outfit = GameData::Outfits().Get(unknownOutfitRepName);
+			const std::string name = outfit->ShownName(player.OutfitIsKnown(*outfit), unknownOutfitsWeight > 1) ;
+
+			if(unknownOutfitsWeight > 1)
+				out << Format::CargoString(unknownOutfitsWeight, Format::LowerCase(name)) << "\n";
+			else
+				out << " " << name << "\n";
+		}
 	}
 	if((event.Type() & ShipEvent::SCAN_OUTFITS) && target->Attributes().Get("inscrutable"))
 		out << "Your scanners cannot make any sense of this " + target->Noun() + "'s interior.";
@@ -370,11 +393,44 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 		// Split target->Outfits() into categories, then iterate over them in order.
 		auto comparator = ByGivenOrder<string>(GameData::Category(CategoryType::OUTFIT));
 		map<string, map<const string, int>, ByGivenOrder<string>> outfitsByCategory(comparator);
+		const std::string unknownCategoryLabel = "Unknown";
 		for(const auto &it : target->Outfits())
 		{
-			string outfitNameForDisplay = (it.second == 1 ? it.first->DisplayName() : it.first->PluralName());
-			outfitsByCategory[it.first->Category()].emplace(std::move(outfitNameForDisplay), it.second);
+			bool outfitIsKnown = player.OutfitIsKnown(*it.first);
+			string outfitNameForDisplay = it.first->ShownName(outfitIsKnown, it.second > 1);
+			string category = (player.OutfitIsKnown(*it.first)) ? it.first->Category() : unknownCategoryLabel;
+
+			if(!outfitsByCategory[category].emplace(std::move(outfitNameForDisplay), it.second).second)
+			{
+				outfitNameForDisplay = it.first->ShownName(outfitIsKnown, it.second > 1);
+				outfitsByCategory[category][outfitNameForDisplay] += it.second;
+			}
 		}
+
+		auto unknownCategory = outfitsByCategory.find(unknownCategoryLabel);
+		if(unknownCategory != outfitsByCategory.end() && (unknownCategory->second.size() > 1))
+		{
+			int totalOutfits = 0;
+			for(const auto &it2 : unknownCategory->second)
+				totalOutfits += it2.second;
+
+			unknownCategory->second.clear();
+
+			string outfitNameForDisplay;
+			for(const auto &it : target->Outfits())
+			{
+				bool outfitIsKnown = player.OutfitIsKnown(*it.first);
+
+				if(!outfitIsKnown)
+				{
+					outfitNameForDisplay = it.first->ShownName(outfitIsKnown, true);
+					break;
+				}
+			}
+
+			unknownCategory->second.emplace(outfitNameForDisplay, totalOutfits);
+		}
+
 		for(const auto &it : outfitsByCategory)
 		{
 			if(it.second.empty())
