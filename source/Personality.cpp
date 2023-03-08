@@ -29,7 +29,7 @@ namespace {
 	const int TIMID = (1 << 2);
 	const int DISABLES = (1 << 3);
 	const int PLUNDERS = (1 << 4);
-	const int HEROIC = (1 << 5);
+	const int HUNTING = (1 << 5);
 	const int STAYING = (1 << 6);
 	const int ENTERING = (1 << 7);
 	const int NEMESIS = (1 << 8);
@@ -53,6 +53,9 @@ namespace {
 	const int TARGET = (1 << 26);
 	const int MARKED = (1 << 27);
 	const int LAUNCHING = (1 << 28);
+	const int DARING = (1 << 29);
+	const int SECRETIVE = (1 << 30);
+	const int RAMMING = (1 << 31);
 
 	const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -60,7 +63,7 @@ namespace {
 		{"timid", TIMID},
 		{"disables", DISABLES},
 		{"plunders", PLUNDERS},
-		{"heroic", HEROIC},
+		{"hunting", HUNTING},
 		{"staying", STAYING},
 		{"entering", ENTERING},
 		{"nemesis", NEMESIS},
@@ -83,7 +86,15 @@ namespace {
 		{"merciful", MERCIFUL},
 		{"target", TARGET},
 		{"marked", MARKED},
-		{"launching", LAUNCHING}
+		{"launching", LAUNCHING},
+		{"daring", DARING},
+		{"secretive", SECRETIVE},
+		{"ramming", RAMMING},
+	};
+
+	// Tokens that combine two or more flags.
+	const map<string, int> COMPOSITE_TOKEN = {
+		{"heroic", DARING | HUNTING}
 	};
 
 	const double DEFAULT_CONFUSION = 10.;
@@ -173,9 +184,9 @@ bool Personality::IsTimid() const
 
 
 
-bool Personality::IsHeroic() const
+bool Personality::IsHunting() const
 {
-	return flags & HEROIC;
+	return flags & HUNTING;
 }
 
 
@@ -184,6 +195,14 @@ bool Personality::IsNemesis() const
 {
 	return flags & NEMESIS;
 }
+
+
+
+bool Personality::IsDaring() const
+{
+	return flags & DARING;
+}
+
 
 
 
@@ -246,6 +265,13 @@ bool Personality::IsOpportunistic() const
 bool Personality::IsMerciful() const
 {
 	return flags & MERCIFUL;
+}
+
+
+
+bool Personality::IsRamming() const
+{
+	return flags & RAMMING;
 }
 
 
@@ -327,6 +353,13 @@ bool Personality::IsSwarming() const
 
 
 
+bool Personality::IsSecretive() const
+{
+	return flags & SECRETIVE;
+}
+
+
+
 bool Personality::IsEscort() const
 {
 	return flags & ESCORT;
@@ -384,7 +417,7 @@ void Personality::UpdateConfusion(bool isFiring)
 Personality Personality::Defender()
 {
 	Personality defender;
-	defender.flags = STAYING | MARKED | HEROIC | UNCONSTRAINED | TARGET;
+	defender.flags = STAYING | MARKED | HUNTING | DARING | UNCONSTRAINED | TARGET;
 	return defender;
 }
 
@@ -395,7 +428,7 @@ Personality Personality::Defender()
 Personality Personality::DefenderFighter()
 {
 	Personality defender;
-	defender.flags = STAYING | HEROIC | UNCONSTRAINED;
+	defender.flags = STAYING | HUNTING | DARING | UNCONSTRAINED;
 	return defender;
 }
 
@@ -406,13 +439,18 @@ void Personality::Parse(const DataNode &node, int index, bool remove)
 	const string &token = node.Token(index);
 
 	auto it = TOKEN.find(token);
-	if(it != TOKEN.end())
+	if(it == TOKEN.end())
 	{
-		if(remove)
-			flags &= ~it->second;
-		else
-			flags |= it->second;
+		it = COMPOSITE_TOKEN.find(token);
+		if(it == COMPOSITE_TOKEN.end())
+		{
+			node.PrintTrace("Warning: Skipping unrecognized personality \"" + token + "\":");
+			return;
+		}
 	}
+
+	if(remove)
+		flags &= ~it->second;
 	else
-		node.PrintTrace("Warning: Skipping unrecognized personality \"" + token + "\":");
+		flags |= it->second;
 }

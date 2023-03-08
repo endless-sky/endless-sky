@@ -52,6 +52,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Account.h
 	AlertLabel.cpp
 	AlertLabel.h
+	AmmoDisplay.cpp
+	AmmoDisplay.h
 	Angle.cpp
 	Angle.h
 	Armament.cpp
@@ -152,6 +154,8 @@ target_sources(EndlessSkyLib PRIVATE
 	GameEvent.h
 	GameLoadingPanel.cpp
 	GameLoadingPanel.h
+	Gamerules.cpp
+	Gamerules.h
 	GameWindow.cpp
 	GameWindow.h
 	Government.cpp
@@ -354,6 +358,8 @@ target_sources(EndlessSkyLib PRIVATE
 	opengl.h
 	pi.h
 	shift.h
+	ship/ShipAICache.cpp
+	ship/ShipAICache.h
 	text/DisplayText.cpp
 	text/DisplayText.h
 	text/Font.cpp

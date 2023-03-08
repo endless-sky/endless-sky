@@ -458,7 +458,7 @@ mission "Expanding Business [3]"
 			`Turner jumps off of his Star Queen before the boarding ramp fully reaches the ground, clearly eager to get moving with this project.`
 			`	Turner swears under his breath when he walks up to you. "Low life pirates giving us trouble on the way here. That's the kind of trouble I'm talking about that an outfitter in Hai space would help with. There's no telling what would have happened had my Bulk Freighters not had their missiles. Or if you were not there to protect them, of course."`
 			`	Turner has a talk with the spaceport authorities, and within a short amount of time the necessary cargo is loaded on to the freighters. When the freighters are fully loaded, they take off without even giving you time to get to your ship.`
-			`	"With their ammunition restocked they can get back to Greenwater on their own," Turner says from behind you as you watch the freighters fly off. "I told them to leave as soon as they could. As for you and me, I need escort to <destination>. I received a message from an old friend there who would like to have a chat with me."`
+			`	"With their ammunition restocked they can get back to Greenwater on their own," Turner says from behind you as you watch the freighters fly off. "I told them to leave as soon as they could. As for you and me, I need an escort to <destination>. I received a message from an old friend there who would like to have a chat with me."`
 				accept
 				
 	npc accompany save

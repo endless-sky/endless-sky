@@ -2322,11 +2322,483 @@ system Adhara
 		distance 2411.01
 		period 1815.95
 
+system "Ae Ce L-332"
+	pos 623.134 -765.051
+	government Uninhabited
+	attributes "astral"
+	arrival 500
+	habitable 355
+	belt 1307
+	haze _menu/haze-67
+	link "Is Ce B-139"
+	asteroids "large metal" 1 2.1
+	asteroids "medium rock" 11 3.6
+	minables unknown 1 2.7
+	fleet Astral 45000
+	object
+		sprite star/f-dwarf
+		period 10
+	object
+		sprite planet/desert9-b
+		distance 328
+		period 126.112
+	object
+		sprite planet/gas11-b
+		distance 5532
+		period 8735.12
+		object
+			sprite planet/ice7-b
+			distance 288
+			period 127.911
+		object
+			sprite planet/luna
+			distance 456
+			period 368.085
+
+system "Ae Ce Q-761"
+	pos 769.634 -760.648
+	government Uninhabited
+	arrival 3200
+	habitable 3200
+	belt 1002
+	haze _menu/haze-33
+	asteroids "small rock" 37 1.247
+	asteroids "medium rock" 74 2.31
+	asteroids "large rock" 4 1.686
+	asteroids "medium metal" 4 1.987
+	asteroids "large metal" 2 1.363
+	minables aluminum 8 3.506
+	minables copper 8 3.793
+	minables tungsten 17 2.26
+	minables unknown 4 1.9
+	fleet "Vyrmeid (Boomerang)" 900
+	object
+		sprite star/a5
+		period 10
+	object
+		sprite planet/io
+		distance 464
+		period 70.6743
+	object
+		sprite planet/gas14
+		distance 2550
+		period 910.532
+	object
+		sprite planet/gas15
+		distance 5350
+		period 2767.04
+		offset 160
+		object
+			sprite planet/rock3
+			distance 247
+			period 146.739
+		object
+			sprite planet/rock3-b
+			distance 362
+			period 260.354
+
+system "Ae Il A-3"
+	pos 477.32 -590.375
+	government Uninhabited
+	attributes "multi-star"
+	arrival 5000
+	habitable 15715
+	belt 1031 5
+	belt 1674 6
+	haze _menu/haze-133
+	link "Ae Il G-66"
+	asteroids "small rock" 3 4.185
+	asteroids "medium rock" 8 6.82
+	asteroids "large rock" 12 5.58
+	asteroids "medium metal" 1 6.2
+	asteroids "large metal" 1 7.208
+	minables iron 11 4.735
+	minables silver 37 3.069
+	fleet "Vyrmeid (Plankton)" 1050
+	fleet "Vyrmeid (Cephalopod)" 400
+	object
+		sprite star/k-supergiant
+		distance 369.692
+		period 200
+	object
+		sprite star/g-supergiant
+		distance 825.197
+		period 200
+		offset 180
+	object
+		sprite star/g-giant
+		distance 2701.42
+		period 360
+		offset 40
+		object
+			sprite star/g0
+			distance 300
+			period 60
+			offset 20
+	object
+		sprite planet/browndwarf-l-rouge
+		distance 9784.96
+		period 1100
+		offset 270
+		object
+			sprite planet/lava4-b
+			distance 533.815
+			period 160
+	object
+		sprite planet/gas1
+		distance 32407.6
+		period 18609.5
+
+system "Ae Il B-11"
+	pos 397.635 -661.079
+	government Uninhabited
+	arrival 2300
+	habitable 2300
+	belt 1328 10
+	belt 1647 2
+	haze _menu/haze-33
+	asteroids "medium rock" 4 5.643
+	asteroids "large rock" 1 5.358
+	asteroids "small metal" 10 5.016
+	asteroids "medium metal" 3 3.363
+	asteroids "large metal" 1 5.472
+	fleet "Vyrmeid (Cephalopod)" 300
+	object
+		sprite star/m-giant
+		period 10
+	object
+		sprite planet/gas14-b
+		distance 1563
+		period 515.388
+		object
+			sprite planet/dust7
+			distance 242
+			period 142.306
+	object
+		sprite planet/ocean6-b
+		distance 2540.8
+		period 1068.19
+		object
+			sprite planet/dust7-b
+			distance 212
+			period 116.682
+	object
+		sprite planet/gas11
+		distance 3868.71
+		period 2006.99
+		object
+			sprite planet/tethys-b
+			distance 259
+			period 256.711
+		object
+			sprite planet/tethys
+			distance 382
+			period 459.822
+	object
+		sprite planet/gas7-b
+		distance 5929
+		period 3807.74
+		object
+			sprite planet/rock7-b
+			distance 242
+			period 178.088
+		object
+			sprite planet/dust1-b
+			distance 359
+			period 211.554
+
+system "Ae Il F-46"
+	pos 523.467 -743.162
+	government Uninhabited
+	arrival 5000
+	habitable 12475
+	belt 1244
+	haze _menu/haze-67
+	asteroids "small rock" 47 4.108
+	asteroids "medium rock" 18 3.365
+	asteroids "large rock" 7 2.404
+	asteroids "small metal" 12 3.452
+	asteroids "large metal" 10 2.972
+	minables lead 17 2.248
+	fleet "Vyrmeid (Cephalopod)" 500
+	object
+		sprite star/b-giant
+		distance 247.167
+		period 77
+		offset 170
+	object
+		sprite star/b-dwarf
+		distance 438.402
+		period 77
+	object
+		sprite planet/cloud0
+		distance 1339.3
+		period 175.532
+		offset 10
+	object
+		sprite planet/ice0-b
+		distance 1880.97
+		period 292.154
+		offset 80
+		object
+			sprite planet/rock7
+			distance 133.113
+			period 70
+	object
+		sprite planet/gas17
+		distance 5044.5
+		period 1283.11
+		object
+			sprite planet/ice8-b
+			distance 256.831
+			period 90
+			offset 40
+		object
+			sprite planet/ice7
+			distance 406.171
+			period 120
+
+system "Ae Il G-66"
+	pos 510.097 -610.773
+	government Uninhabited
+	arrival 5000
+	habitable 9350
+	belt 1622 2
+	belt 2344 2
+	haze _menu/haze-67
+	link "Ae Il A-3"
+	link "Ae Il H-24"
+	link "Ae Il I-99"
+	asteroids "large metal" 1 2.804
+	object
+		sprite star/o8
+		distance 38.697
+		period 44.513
+		offset 180
+	object
+		sprite star/g3
+		distance 122.303
+		period 44.513
+	object
+		sprite planet/lava7
+		distance 493.915
+		period 45.4080
+	object
+		sprite planet/titan-b
+		distance 733.393
+		period 82.1597
+	object
+		sprite planet/cloud7-b
+		distance 1186.58
+		period 169.082
+	object
+		sprite planet/jupiter-b
+		distance 2492
+		period 514.607
+	object
+		sprite planet/uranus
+		distance 7018
+		period 2432.05
+		object
+			sprite planet/europa
+			distance 232
+			period 167.164
+		object
+			sprite planet/rock14
+			distance 366
+			period 183.248
+		object
+			sprite planet/fg_terrestrial6
+			distance 459
+			period 190
+
+system "Ae Il H-24"
+	pos 558.634 -628.884
+	government Uninhabited
+	arrival 2560
+	habitable 2560
+	belt 1252
+	haze _menu/haze-67
+	link "Ae Il G-66"
+	asteroids "small metal" 7 1.573
+	asteroids "large metal" 1 1.892
+	object
+		sprite star/f0
+		period 10
+	object
+		sprite planet/mercury-b
+		distance 274
+		period 35.8563
+	object
+		sprite planet/ice5-b
+		distance 890
+		period 209.906
+	object
+		sprite planet/rock17
+		distance 2100
+		period 760.797
+	object
+		sprite planet/gas9-b
+		distance 3643
+		period 1738.31
+
+system "Ae Il I-99"
+	pos 489.412 -647.829
+	government Uninhabited
+	arrival 2160
+	habitable 2160
+	belt 1099 7
+	belt 2440 7
+	belt 2713 5
+	haze _menu/haze-67
+	link "Ae Il G-66"
+	link "Is Ce G-460"
+	asteroids "small rock" 1 3.353
+	asteroids "medium rock" 1 3.548
+	asteroids "large rock" 1 4.666
+	asteroids "small metal" 9 3.353
+	asteroids "medium metal" 159 3.353
+	asteroids "large metal" 46 2.819
+	minables titanium 1 4.724
+	minables copper 5 5.306
+	fleet "Vyrmeid (Plankton)" 900
+	fleet "Vyrmeid (Cephalopod)" 600
+	object
+		sprite star/g0-old
+		period 10
+	object
+		sprite planet/lava3-b
+		distance 344
+		period 54.9124
+	object
+		sprite planet/lava0-b
+		distance 982
+		period 264.850
+	object
+		sprite planet/gas6
+		distance 2471
+		period 1057.16
+	object
+		sprite planet/gas17
+		distance 4438
+		period 2544.56
+		object
+			sprite planet/dust1-b
+			distance 270
+			period 137.983
+	object
+		sprite planet/gas8-b
+		distance 9544
+		period 8024.69
+
+system "Ae Il M-77"
+	pos 638.134 -656.718
+	government Uninhabited
+	arrival 5000
+	habitable 17025
+	belt 1979 3
+	belt 2108 1
+	belt 2658 2
+	haze _menu/haze-67
+	asteroids "small rock" 76 5.73
+	asteroids "medium rock" 37 5.957
+	asteroids "large rock" 94 7.314
+	asteroids "small metal" 1 6.56
+	asteroids "medium metal" 1 5.052
+	asteroids "large metal" 2 4.524
+	minables unknown 1 2.4
+	object
+		sprite star/b-supergiant
+		period 10
+	object
+		sprite planet/gas5
+		distance 2154
+		period 306.467
+		object
+			sprite planet/luna
+			distance 292
+			period 188.614
+	object
+		sprite planet/gas0-b
+		distance 4876
+		period 1043.78
+	object
+		sprite planet/gas10
+		distance 6002
+		period 1425.47
+	object
+		sprite planet/gas5-b
+		distance 9176
+		period 2694.61
+		object
+			sprite planet/dust0
+			distance 248
+			period 240.531
+	object
+		sprite planet/forest1-b
+		distance 15948.3
+		period 6174.30
+		object
+			sprite planet/ice7-b
+			distance 168
+			period 56.988
+
+system "Ae Il O-96"
+	pos 673.439 -635.718
+	government Uninhabited
+	arrival 2010
+	habitable 2010
+	belt 1627 4
+	belt 1952 4
+	haze _menu/haze
+	link "Is Il T-94"
+	asteroids "small rock" 14 3.666
+	asteroids "medium rock" 2 3.315
+	asteroids "large rock" 10 2.418
+	asteroids "small metal" 6 2.34
+	asteroids "medium metal" 1 3.12
+	asteroids "large metal" 4 3.081
+	minables titanium 3 4.302
+	minables neodymium 9 5.774
+	object
+		sprite star/f8
+		distance 62.594
+		period 45.008
+		offset 180
+	object
+		sprite star/g3
+		distance 65.406
+		period 45.008
+	object
+		sprite planet/mercury-b
+		distance 305
+		period 47.5238
+	object
+		sprite planet/io-b
+		distance 605
+		period 132.768
+	object
+		sprite planet/ice0-b
+		distance 845
+		period 219.152
+	object
+		sprite planet/cloud7-b
+		distance 1267
+		period 402.371
+	object
+		sprite planet/gas16
+		distance 3603
+		period 1929.56
+
 system Aescolanus
 	pos -15 340
 	government Uninhabited
 	attributes "ember waste" "wormhole"
 	arrival 500
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 230
 	belt 1323
 	haze _menu/haze-red
@@ -2454,6 +2926,10 @@ system Aki'il
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 1505
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 1505
 	belt 1500
 	asteroids "large metal" 47 5
@@ -2984,6 +3460,7 @@ system Aleit
 	government Quarg
 	attributes "ringworld"
 	arrival 700
+	departure 1000
 	habitable 700
 	belt 1864
 	haze _menu/haze-blackbody
@@ -4609,7 +5086,8 @@ system Anbrim
 	asteroids "medium metal" 39 3.4
 	asteroids "large metal" 9 2.6
 	minables yottrite 2 6.7
-	fleet "Scin Transport" 4000
+	fleet "Small Scin" 7900
+	fleet "Small Vi" 7900
 	object
 		sprite star/nova-core
 		period 1000
@@ -4897,6 +5375,10 @@ system Antevorta
 	government Uninhabited
 	attributes "carbon" "ember waste"
 	arrival 3000
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 3000
 	belt 1994
 	haze _menu/haze-red
@@ -5088,6 +5570,10 @@ system Arculus
 	government Remnant
 	attributes "ember waste"
 	arrival 625
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 625
 	belt 1536
 	haze _menu/haze-red
@@ -6817,6 +7303,10 @@ system Caeculus
 	government Uninhabited
 	attributes "ember waste" "wolf-rayet"
 	arrival 5000
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 50000
 	belt 1797
 	haze _menu/haze-red
@@ -7140,6 +7630,10 @@ system Cardea
 	government Uninhabited
 	attributes "ember waste" "wormhole"
 	arrival 1375
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 1375
 	belt 1775
 	haze _menu/haze-red
@@ -7728,6 +8222,10 @@ system Cinxia
 	government Remnant
 	attributes "ember waste"
 	arrival 500
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 490
 	belt 1788
 	haze _menu/haze-red
@@ -7785,6 +8283,10 @@ system Coluber
 	government Uninhabited
 	attributes "ember waste" "wormhole"
 	arrival 1110
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 1110
 	belt 1590
 	haze _menu/haze-red
@@ -7911,6 +8413,10 @@ system Convector
 	government Uninhabited
 	attributes "ember waste"
 	arrival 5000
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 5920
 	belt 2111
 	haze _menu/haze-red
@@ -8586,8 +9092,8 @@ system "Deep Space 19K12"
 system "Deep Space 19M1"
 	pos -895 -745
 	government Uninhabited
-	arrival 3450
-	habitable 3450
+	arrival 4050
+	habitable 4050
 	belt 2115
 	haze _menu/haze-black
 	link "Deep Space 19M2"
@@ -8613,12 +9119,12 @@ system "Deep Space 19M1"
 	trade Plastic 350
 	fleet "Pincer Beast" 5000
 	object
-		sprite star/giant
+		sprite star/g-giant
 		period 10
 	object
 		sprite planet/gas0-b
 		distance 1549.84
-		period 415.509
+		period 383.497
 		object
 			sprite planet/dust1-b
 			distance 253
@@ -8634,15 +9140,15 @@ system "Deep Space 19M1"
 	object
 		sprite planet/gas16
 		distance 2193.3
-		period 699.515
+		period 645.623
 	object
 		sprite planet/gas13-b
 		distance 3145.85
-		period 1201.59
+		period 1109.02
 	object
 		sprite planet/gas3-b
 		distance 8021.02
-		period 4892.09
+		period 4515.19
 		object
 			sprite planet/rock7-b
 			distance 294
@@ -9140,6 +9646,10 @@ system Delia
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 500
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 490
 	belt 1500
 	haze _menu/haze-red
@@ -9613,6 +10123,10 @@ system Diespiter
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
 	arrival 950
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 950
 	belt 1500
 	haze _menu/haze-red
@@ -9712,6 +10226,10 @@ system Dixere
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 980
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 980
 	belt 1500
 	haze _menu/haze-red
@@ -10415,6 +10933,10 @@ system Edusa
 	government Uninhabited
 	attributes "ember waste" "wormhole"
 	arrival 4050
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 4050
 	belt 1167
 	haze _menu/haze-red
@@ -10510,6 +11032,10 @@ system Egeria
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
 	arrival 2030
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 2030
 	belt 1500
 	haze _menu/haze-red
@@ -10683,6 +11209,7 @@ system Ekuarik
 	government Heliarch
 	attributes "ringworld"
 	arrival 700
+	departure 1000
 	habitable 700
 	belt 1711
 	link Belug
@@ -11162,6 +11689,7 @@ system Enif
 	government Quarg
 	attributes "ringworld" "south"
 	arrival 700
+	departure 1000
 	habitable 700
 	belt 1974
 	link Sadalmelik
@@ -11273,6 +11801,7 @@ system Eogho
 	asteroids "small metal" 17 6.26
 	asteroids "medium metal" 9 6.98
 	asteroids "large metal" 46 6.84
+	fleet "Gegno Basic" 2200
 	object
 		sprite star/b0
 		period 10
@@ -11570,6 +12099,10 @@ system Esix
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
 	arrival 5000
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 5600
 	belt 1500
 	haze _menu/haze-red
@@ -11715,8 +12248,8 @@ system Evrae
 	fleet "Small Scin" 800
 	fleet "Large Scin" 1600
 	fleet "Scin Cargo" 2200
-	fleet "Small Vi" 3900
-	fleet "Large Vi" 4900
+	fleet "Small Vi" 4900
+	fleet "Large Vi" 5900
 	object
 		sprite star/a5
 		distance 1.24
@@ -12161,6 +12694,10 @@ system Farinus
 	government Uninhabited
 	attributes "ember waste"
 	arrival 1270
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 1270
 	belt 1225
 	haze _menu/haze-red
@@ -12355,6 +12892,10 @@ system Fearis
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
 	arrival 980
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 980
 	belt 1500
 	haze _menu/haze-red
@@ -12499,6 +13040,10 @@ system Feraticus
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 500
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 10
 	belt 1500
 	haze _menu/haze-red
@@ -12545,6 +13090,10 @@ system Fereti
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 3200
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 3200
 	belt 1500
 	haze _menu/haze-red
@@ -13590,6 +14139,10 @@ system Gerenus
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 3000
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 3000
 	belt 1500
 	haze _menu/haze-red
@@ -13681,6 +14234,7 @@ system Ghhil
 		period 357.423
 	object Ruelogakk
 		sprite planet/station0
+			scale 0.5
 		distance 2600
 		period 968.187
 	object
@@ -13762,6 +14316,10 @@ system Giribea
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 1800
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 1800
 	belt 1500
 	haze _menu/haze-red
@@ -14926,6 +15484,7 @@ system "Hevru Hai"
 	government Quarg
 	attributes "ringworld"
 	arrival 700
+	departure 1000
 	habitable 700
 	belt 1245
 	link "Fah Soom"
@@ -15422,7 +15981,6 @@ system Huud
 	belt 1319
 	haze _menu/haze
 	link Anbrim
-	link Cotpoxi
 	link Fscher
 	link Vesvii
 	asteroids "medium rock" 24 2.2
@@ -15743,7 +16301,7 @@ system Iliniza
 		distance 237.35
 		period 53.0563
 	object "Enn Bue"
-		sprite planet/oberon-b
+		sprite planet/desert5-b
 		distance 720
 		period 280.318
 	object
@@ -15881,6 +16439,10 @@ system Insitor
 	government Uninhabited
 	attributes "ember waste" "wormhole"
 	arrival 550
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 550
 	belt 1170
 	haze _menu/haze-red
@@ -16158,6 +16720,514 @@ system Ipsing
 			distance 667
 			period 43.1032
 
+system "Is Ce B-139"
+	pos 601.718 -744.259
+	government Uninhabited
+	attributes "astral"
+	arrival 550
+	habitable 550
+	haze _menu/haze
+	link "Ae Ce L-332"
+	link "Is Ce F-422"
+	link "Is Il V-263"
+	asteroids "small rock" 4 6.076
+	asteroids "medium rock" 10 6.014
+	asteroids "large rock" 8 3.596
+	asteroids "small metal" 8 6.2
+	asteroids "medium metal" 5 3.41
+	asteroids "large metal" 2 4.402
+	fleet "Vyrmeid (Plankton)" 300
+	fleet Astral 50000
+	object
+		sprite star/g8
+		period 40
+	object
+		sprite planet/dust6-b
+		distance 400
+		period 136.448
+
+system "Is Ce F-422"
+	pos 651.273 -687.648
+	government Uninhabited
+	attributes "astral"
+	arrival 3430
+	habitable 3430
+	belt 1941 9
+	belt 2433 3
+	haze _menu/haze
+	link "Is Ce B-139"
+	asteroids "small rock" 3 2.184
+	asteroids "medium rock" 4 2.145
+	asteroids "large rock" 9 2.262
+	asteroids "large metal" 1 3.783
+	fleet "Vyrmeid (Plankton)" 400
+	fleet Astral 50000
+	object
+		sprite star/a5
+		distance 52.236
+		period 61.433
+	object
+		sprite star/m3
+		distance 100.764
+		period 61.433
+		offset 180
+	object
+		sprite planet/desert1
+		distance 344
+		period 43.5763
+	object
+		sprite planet/gas4
+		distance 943
+		period 197.779
+		object
+			sprite planet/dust3-b
+			distance 271
+			period 168.638
+	object
+		sprite planet/neptune-b
+		distance 2206
+		period 707.654
+		object
+			sprite planet/ice0
+			distance 240
+			period 140.546
+		object
+			sprite "planet/asteroid base"
+			distance 369
+			period 185.506
+		object
+			sprite planet/callisto
+			distance 540
+			period 328.404
+	object
+		sprite planet/gas7
+		distance 3308
+		period 1299.45
+		object
+			sprite planet/europa
+			distance 282
+			period 224.019
+	object
+		sprite planet/browndwarf-l
+		distance 4474
+		period 2043.88
+		object
+			sprite planet/dust1-b
+			distance 309
+			period 168.934
+
+system "Is Ce G-460"
+	pos 510.635 -698.273
+	government Uninhabited
+	attributes "astral"
+	arrival 500
+	habitable 100
+	belt 1191
+	haze _menu/haze-33
+	link "Ae Il I-99"
+	link "Is Ce J-591"
+	link "Is Il Z-59"
+	asteroids "small rock" 1 5.642
+	asteroids "medium rock" 4 4.755
+	asteroids "large rock" 1 7.818
+	asteroids "medium metal" 19 7.173
+	asteroids "large metal" 8 4.594
+	minables silicon 6 10.214
+	minables unknown 2 2.5
+	fleet "Vyrmeid (Plankton)" 700
+	fleet Astral 50000
+	object
+		sprite star/k-dwarf
+		period 10
+	object
+		sprite planet/fg_terrestrial6
+		distance 171
+		period 89.4446
+	object
+		sprite planet/ice0
+		distance 363
+		period 276.643
+	object
+		sprite planet/gas5
+		distance 4058
+		period 10340.1
+		object
+			sprite planet/rock20
+			distance 283
+			period 179.962
+		object
+			sprite planet/rhea-b
+			distance 426
+			period 273.459
+		object
+			sprite planet/dust0-b
+			distance 602
+			period 909.681
+	object
+		sprite planet/gas0-b
+		distance 7146
+		period 24163.2
+
+system "Is Ce J-591"
+	pos 573.246 -671.106
+	government Uninhabited
+	attributes "astral"
+	arrival 5000
+	habitable 6680
+	belt 1648 8
+	belt 2277 6
+	haze _menu/haze
+	link "Is Ce G-460"
+	asteroids "small rock" 2 2.72
+	asteroids "medium rock" 1 2.432
+	asteroids "large rock" 31 1.6
+	asteroids "small metal" 5 1.92
+	asteroids "medium metal" 67 2.912
+	asteroids "large metal" 3 1.664
+	minables silicon 8 3.635
+	fleet "Vyrmeid (Plankton)" 450
+	fleet Astral 50000
+	object
+		sprite star/f-giant
+		distance 60.57
+		period 87.166
+		offset 180
+	object
+		sprite star/g0
+		distance 191.43
+		period 87.166
+	object
+		sprite planet/rock18-b
+		distance 524
+		period 58.7041
+		object
+			sprite planet/rock0-b
+			distance 146
+			period 66.685
+	object
+		sprite planet/cloud6-b
+		distance 986
+		period 151.525
+	object
+		sprite planet/ocean4-b
+		distance 1740
+		period 355.218
+		object
+			sprite planet/lava0
+			distance 172
+			period 59.035
+	object
+		sprite planet/gas6-b
+		distance 2742
+		period 702.704
+		object
+			sprite planet/rhea
+			distance 369
+			period 220.454
+	object
+		sprite planet/gas2-b
+		distance 5143
+		period 1805.08
+	object
+		sprite planet/gas9
+		distance 7275
+		period 3036.83
+		object
+			sprite planet/callisto
+			distance 289
+			period 128.577
+
+system "Is Il T-127"
+	pos 792.792 -700.334
+	government Uninhabited
+	arrival 1605
+	habitable 1605
+	belt 1313 1
+	belt 2263 5
+	haze _menu/haze-67
+	link "Is Il T-94"
+	link "Is Il X-626"
+	asteroids "small rock" 1 1.74
+	asteroids "medium rock" 4 3.236
+	asteroids "large rock" 3 2.61
+	asteroids "large metal" 1 2.54
+	minables titanium 1 5.05
+	fleet "Vyrmeid (Plankton)" 350
+	object
+		sprite star/k0-old
+		distance 51.326
+		period 71.968
+	object
+		sprite star/g5
+		distance 169.674
+		period 71.968
+		offset 180
+	object
+		sprite planet/gas5-hot
+		distance 403
+		period 80.7755
+	object
+		sprite planet/dust1-b
+		distance 766
+		period 211.673
+	object
+		sprite planet/gas16
+		distance 1149
+		period 388.868
+	object
+		sprite planet/dust3-b
+		distance 1966
+		period 870.357
+
+system "Is Il T-94"
+	pos 754.681 -656.444
+	government Uninhabited
+	arrival 2200
+	habitable 2200
+	belt 1556 6
+	belt 1696 5
+	haze _menu/haze
+	link "Ae Il O-96"
+	link "Is Il T-127"
+	asteroids "small rock" 1 4.306
+	asteroids "large rock" 1 2.761
+	asteroids "small metal" 7 4.025
+	asteroids "medium metal" 137 2.714
+	asteroids "large metal" 17 2.902
+	minables iron 12 5.402
+	minables titanium 10 4.64
+	minables aluminum 16 4.987
+	object
+		sprite star/f3
+		period 10
+	object
+		sprite planet/cloud4
+		distance 354
+		period 56.8006
+	object
+		sprite planet/desert10
+		distance 1015
+		period 275.770
+		object
+			sprite planet/dust3-b
+			distance 171
+			period 84.527
+	object
+		sprite planet/gas0-hot
+		distance 1730
+		period 613.645
+		object
+			sprite planet/ice8-b
+			distance 256
+			period 154.832
+	object
+		sprite planet/gas9-b
+		distance 3232
+		period 1566.95
+		object
+			sprite planet/miranda-b
+			distance 247
+			period 183.636
+	object
+		sprite planet/gas8
+		distance 11624
+		period 10687.6
+		object
+			sprite planet/europa-b
+			distance 361
+			period 324.469
+		object
+			sprite planet/oberon
+			distance 494
+			period 676.215
+
+system "Is Il V-263"
+	pos 713.513 -707.278
+	government Uninhabited
+	attributes "astral"
+	arrival 5000
+	habitable 17025
+	belt 1434 2
+	belt 2085 7
+	haze _menu/haze-67
+	link "Is Ce B-139"
+	asteroids "small rock" 11 3.162
+	asteroids "medium rock" 46 2.697
+	asteroids "large rock" 5 4.418
+	asteroids "medium metal" 1 3.581
+	asteroids "large metal" 1 4.557
+	minables iron 4 3.442
+	minables titanium 3 5.731
+	fleet "Vyrmeid (Plankton)" 500
+	fleet "Vyrmeid (Boomerang)" 700
+	fleet Astral 50000
+	object
+		sprite star/b-supergiant
+		period 10
+	object
+		sprite planet/uranus
+		distance 2683
+		period 426.037
+		object
+			sprite planet/luna-b
+			distance 235
+			period 136.177
+		object
+			sprite planet/rock0-b
+			distance 392
+			period 293.379
+	object
+		sprite planet/gas2-hot
+		distance 7189
+		period 1868.61
+		object
+			sprite planet/desert4
+			distance 203
+			period 136.822
+	object
+		sprite planet/gas12-b
+		distance 18978
+		period 8014.78
+		object
+			sprite planet/tethys
+			distance 278
+			period 285.471
+		object
+			sprite planet/dust3-b
+			distance 402
+			period 304.677
+
+system "Is Il X-626"
+	pos 736.235 -739.779
+	government Uninhabited
+	attributes "astral"
+	arrival 3135
+	habitable 3135
+	haze _menu/haze-67
+	link "Is Il T-127"
+	asteroids "large metal" 1 3.402
+	fleet "Vyrmeid (Plankton)" 500
+	fleet "Vyrmeid (Boomerang)" 800
+	fleet Astral 50000
+	object
+		sprite star/a8
+		distance 48.468
+		period 288
+		offset 200
+	object
+		sprite star/m8
+		distance 153.479
+		period 288
+		offset 20
+	object
+		sprite planet/lava5-b
+		distance 400
+		period 57.1519
+	object
+		sprite planet/cloud4-b
+		distance 1200
+		period 296.970
+		offset 30
+	object
+		sprite planet/ice8-b
+		distance 4000
+		period 1807.30
+		offset 330
+
+system "Is Il Z-59"
+	pos 468.634 -671.106
+	government Uninhabited
+	attributes "astral"
+	arrival 1325
+	habitable 1325
+	belt 1345
+	haze _menu/haze-67
+	link "Is Ce G-460"
+	asteroids "large rock" 1 4.42
+	asteroids "small metal" 41 2.808
+	asteroids "medium metal" 34 4.212
+	asteroids "large metal" 15 4.784
+	minables aluminum 9 5.165
+	minables iron 14 4.93
+	fleet "Vyrmeid (Plankton)" 500
+	fleet "Vyrmeid (Cephalopod)" 600
+	fleet Astral 50000
+	object
+		sprite star/g3
+		distance 67.938
+		period 52.077
+		offset 180
+	object
+		sprite star/g5
+		distance 71.062
+		period 52.077
+	object
+		sprite planet/forest4
+		distance 807.865
+		period 252.324
+	object
+		sprite planet/earth-b
+		distance 1106.36
+		period 404.386
+	object
+		sprite planet/browndwarf-y
+		distance 1771.61
+		period 819.415
+		object
+			sprite planet/rock0
+			distance 283
+			period 179.962
+		object
+			sprite planet/dust1-b
+			distance 442
+			period 289.009
+		object
+			sprite planet/fg_terrestrial6
+			distance 551
+			period 312
+	object
+		sprite planet/dust0
+		distance 2996
+		period 1802.04
+
+system "Is Il Z-814"
+	pos 694.718 -785.55
+	government Uninhabited
+	attributes "wolf-rayet"
+	arrival 5000
+	habitable 50000
+	belt 1862
+	haze _menu/haze-133
+	asteroids "small rock" 23 2.05
+	asteroids "medium rock" 2 2.52
+	asteroids "large rock" 7 3.158
+	asteroids "small metal" 5 2.789
+	asteroids "medium metal" 183 3.326
+	asteroids "large metal" 1 2.016
+	minables lead 28 4.115
+	minables iron 35 5.171
+	minables gold 47 3.479
+	fleet "Vyrmeid (Boomerang)" 200
+	object
+		sprite star/wr
+		period 40
+		offset 10
+		object
+			sprite planet/gas1-hot
+			distance 500
+			period 60
+			offset 20
+	object
+		sprite planet/dust0
+		distance 1060.38
+		period 195.329
+		offset 210
+	object
+		sprite planet/dust3-b
+		distance 2445.2
+		period 683.984
+		offset 70
+
 system Iyech'yek
 	pos -277.37 -693.913
 	government Wanderer
@@ -16301,7 +17371,7 @@ system Jied
 	fleet "Small Vi" 800
 	fleet "Large Vi" 1600
 	fleet "Vi Cargo" 2300
-	fleet "Vi Small II" 3600
+	fleet "Small Vi II" 3600
 	fleet "Gegno Miners" 1700
 	object
 		sprite star/k5
@@ -16382,7 +17452,7 @@ system Jyelio
 	minables copper 2 6.62
 	fleet "Large Vi" 1800
 	fleet "Large Scin" 2700
-	fleet "Vi Small II" 3600
+	fleet "Small Vi II" 3600
 	fleet "Small Scin" 3200
 	object
 		sprite star/g8
@@ -16632,6 +17702,7 @@ system Kanguwa
 	asteroids "large rock" 17 1.8
 	asteroids "medium metal" 52 2.6
 	asteroids "large metal" 40 2.7
+	hazard "Neutron Star Magnetic Field" 1
 	object
 		sprite star/neutron
 		period 10
@@ -16996,6 +18067,7 @@ system "Ki War Ek"
 	government Heliarch
 	attributes "ringworld"
 	arrival 700
+	departure 1000
 	habitable 700
 	belt 1777
 	haze _menu/haze-133
@@ -17286,8 +18358,8 @@ system Kiluit
 	pos 699.45 -562.23
 	government "Gegno Vi"
 	attributes "gegno" "vi"
-	arrival 2200
-	habitable 2200
+	arrival 2430
+	habitable 2430
 	belt 1258
 	"jump range" 70
 	haze _menu/haze
@@ -17314,28 +18386,28 @@ system Kiluit
 	fleet "Small Vi" 1300
 	fleet "Vi Cargo" 800
 	fleet "Vi Transport" 1100
-	fleet "Vi Small II" 2200
+	fleet "Small Vi II" 2200
 	object
 		sprite star/f3
 		distance 56.09
 		period 65.48
 	object
-		sprite star/m4
+		sprite star/m3
 		distance 96.9
 		period 65.48
 		offset 180
 	object
 		sprite planet/lava5
 		distance 515
-		period 99.6688
+		period 94.8347
 	object Enbye
 		sprite planet/rock18
 		distance 1550
-		period 520.410
+		period 495.170
 	object
 		sprite planet/gas11-b
 		distance 2912.4
-		period 1340.37
+		period 1275.36
 		object
 			sprite planet/ice0-b
 			distance 269
@@ -18613,6 +19685,10 @@ system Levana
 	government Uninhabited
 	attributes "ember waste"
 	arrival 5000
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 8325
 	belt 1202
 	haze _menu/haze-red
@@ -18739,6 +19815,10 @@ system Lire
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 1080
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 1080
 	belt 1500
 	haze _menu/haze-red
@@ -18806,7 +19886,7 @@ system Lloloi
 	habitable 10000
 	belt 1338
 	"jump range" 90
-	haze _menu/haze-full
+	haze _menu/haze-33
 	link Kanguwa
 	link Vanguwo
 	link Zolpulti
@@ -19043,6 +20123,10 @@ system Lucina
 	government Uninhabited
 	attributes "ember waste"
 	arrival 500
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 320
 	belt 1466
 	haze _menu/haze-red
@@ -21337,7 +22421,7 @@ system Msalbit
 	arrival 5000
 	habitable 13720
 	belt 1333
-	haze _menu/haze-133
+	haze _menu/haze-blackbody
 	link Kanguwa
 	link Yranjiu
 	minables aluminum 29 4.6
@@ -21608,6 +22692,10 @@ system Nenia
 	government Uninhabited
 	attributes "archon" "ember waste" "void sprites"
 	arrival 4680
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 4680
 	belt 1393
 	haze _menu/haze-red
@@ -21925,6 +23013,10 @@ system Nona
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 1080
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 1080
 	belt 1500
 	haze _menu/haze-red
@@ -22298,7 +23390,7 @@ system Ookmya
 		distance 6114.1
 		period 2151.51
 	object Ternituul
-		sprite planet/dust4
+		sprite planet/desert10-b
 		distance 7375.1
 		period 2850.35
 	object
@@ -22519,6 +23611,10 @@ system Ossipago
 	government Uninhabited
 	attributes "ember waste" "wormhole"
 	arrival 3590
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 3590
 	belt 1803
 	haze _menu/haze-red
@@ -22623,6 +23719,10 @@ system Paeli
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
 	arrival 500
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 10
 	belt 1500
 	haze _menu/haze-red
@@ -22671,6 +23771,10 @@ system Pantica
 	government Remnant
 	attributes "ember waste"
 	arrival 500
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 450
 	belt 1253
 	haze _menu/haze-red
@@ -22729,6 +23833,10 @@ system Parca
 	government Uninhabited
 	attributes "ember waste"
 	arrival 1385
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 1385
 	belt 1315
 	haze _menu/haze-red
@@ -22807,6 +23915,10 @@ system Patir
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 500
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 100
 	belt 1500
 	haze _menu/haze-red
@@ -23077,6 +24189,10 @@ system Peragenor
 	government Uninhabited
 	attributes "ember waste"
 	arrival 2160
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 2160
 	belt 1920
 	haze _menu/haze-red
@@ -23192,6 +24308,10 @@ system Perfica
 	government Uninhabited
 	attributes "ember waste"
 	arrival 500
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 10
 	belt 1160
 	haze _menu/haze-red
@@ -23769,6 +24889,10 @@ system Polerius
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 2030
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 2030
 	belt 1500
 	haze _menu/haze-red
@@ -23966,6 +25090,10 @@ system Postverta
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
 	arrival 500
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 135
 	belt 1500
 	haze _menu/haze-red
@@ -24143,6 +25271,10 @@ system Prosa
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
 	arrival 5000
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 22300
 	belt 1500
 	haze _menu/haze-red
@@ -24370,6 +25502,7 @@ system Quaru
 	government Heliarch
 	attributes "ringworld"
 	arrival 700
+	departure 1000
 	habitable 700
 	belt 1440
 	haze _menu/haze-133
@@ -24715,6 +25848,10 @@ system Queri
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 700
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 700
 	belt 1500
 	haze _menu/haze-red
@@ -25185,6 +26322,10 @@ system Relifer
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
 	arrival 980
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 980
 	belt 1500
 	haze _menu/haze-red
@@ -25403,6 +26544,10 @@ system Ritilas
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
 	arrival 980
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 980
 	belt 1500
 	haze _menu/haze-red
@@ -26491,6 +27636,10 @@ system Segesta
 	government Uninhabited
 	attributes "ember waste" "wormhole"
 	arrival 950
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 950
 	belt 1120
 	haze _menu/haze-red
@@ -28236,6 +29385,10 @@ system Statina
 	government Uninhabited
 	attributes "ember waste" "inaccessible" "wormhole"
 	arrival 500
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 135
 	belt 1500
 	haze _menu/haze-red
@@ -28360,6 +29513,10 @@ system Stercutus
 	government Uninhabited
 	attributes "ember waste" "wormhole"
 	arrival 1570
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 1570
 	belt 1492
 	haze _menu/haze-red
@@ -29906,14 +31063,6 @@ system Uttna
 		sprite planet/gas7-hot
 		distance 17699
 		period 17195.8
-		object
-			sprite planet/station0
-			distance 218
-			period 55.16
-		object
-			sprite planet/station2c
-			distance 403
-			period 211.72
 
 system "Uwa Fahn"
 	pos 35.1585 -491.67
@@ -30100,11 +31249,6 @@ system Vaiov
 		distance 190
 		period 130
 	object
-		sprite planet/browndwarf-y
-		distance 190
-		period 33.9882
-		offset 180
-	object
 		sprite planet/rhea-b
 		distance 687
 		period 233.686
@@ -30120,12 +31264,17 @@ system Vaiov
 			sprite planet/luna
 			distance 332.3
 			period 6.5
+	object
+		sprite planet/browndwarf-y
+		distance 2900
+		period 2026.72
+		offset 180
 
 system Vanguwo
 	pos 978.189 -237.686
 	government Uninhabited
-	arrival 3450
-	habitable 3450
+	arrival 4050
+	habitable 4050
 	belt 1964
 	haze _menu/haze-67
 	link Lloloi
@@ -30139,12 +31288,12 @@ system Vanguwo
 	minables copper 10 3.4
 	minables silver 26 2.1
 	object
-		sprite star/giant
+		sprite star/g-giant
 		period 10
 	object
 		sprite planet/gas0-b
 		distance 4211
-		period 1860.92
+		period 1717.55
 		object
 			sprite planet/luna
 			distance 297
@@ -30152,13 +31301,17 @@ system Vanguwo
 	object
 		sprite planet/gas11
 		distance 7325
-		period 4269.35
+		period 3940.43
 
 system Vaticanus
 	pos 324 112
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
 	arrival 500
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 320
 	belt 1500
 	haze _menu/haze-red
@@ -31236,7 +32389,7 @@ system Wreoul
 	fleet "Large Vi" 5400
 	fleet "Vi Transport" 3400
 	fleet "Vi Cargo" 5000
-	fleet "Vi Small II" 4600
+	fleet "Small Vi II" 4600
 	object
 		sprite star/g-dwarf
 		period 10
