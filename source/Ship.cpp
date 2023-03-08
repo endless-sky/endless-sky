@@ -2748,7 +2748,7 @@ int Ship::Scan(const PlayerInfo &player)
 					+ Name() + "\" completed its scan of your cargo.", Messages::Importance::High);
 		if(result & ShipEvent::SCAN_OUTFITS)
 			Messages::Add("The " + government->GetName() + " " + Noun() + " \""
-					+ Name() + (target->attributes.Get("inscrutable")
+					+ Name() + (target->attributes.Get("inscrutable") > 0.
 					? "\" completed its scan of your outfits with no useful results."
 					: "\" completed its scan of your outfits."),
 					Messages::Importance::High);
