@@ -644,25 +644,31 @@ interface "hud"
 		from 2 240
 		align top left
 
-	visible if "tactical display"
+	visible if "target crew display"
 	sprite "ui/tactical/crew"
 		from 148 286
 		align top left
 	string "target crew"
 		from 162 286
 		align top left
+
+	visible if "target fuel display"
 	sprite "ui/tactical/fuel"
 		from 146 308
 		align top left
 	string "target fuel"
 		from 162 306
 		align top left
+
+	visible if "target energy display"
 	sprite "ui/tactical/energy"
 		from 144 324
 		align top left
 	string "target energy"
 		from 157 325
 		align top left
+
+	visible if "target thermal display"
 	sprite "ui/tactical/thermal"
 		from 136 343
 		align top left

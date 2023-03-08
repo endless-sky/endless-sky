@@ -843,7 +843,10 @@ void Engine::Step(bool isActive)
 			if((targetRange <= tacticalRange && scrutable)
 				|| (tacticalRange && target->IsYours()))
 			{
-				info.SetCondition("tactical display");
+				info.SetCondition("target crew display");
+				info.SetCondition("target fuel display");
+				info.SetCondition("target energy display");
+				info.SetCondition("target thermal display");
 				info.SetString("target crew", to_string(target->Crew()));
 				int fuel = round(target->Fuel() * target->Attributes().Get("fuel capacity"));
 				info.SetString("target fuel", to_string(fuel));
