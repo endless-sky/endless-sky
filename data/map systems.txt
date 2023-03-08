@@ -3968,7 +3968,7 @@ system Alhena
 		sprite planet/ice8
 		distance 1500.97
 		period 737.405
-	object
+	object Nepheritis
 		sprite planet/gas13
 		distance 3469.58
 		period 2591.57
@@ -5276,7 +5276,7 @@ system Answer
 		sprite planet/ocean7
 		distance 345.84
 		period 124.789
-	object
+	object "Vivid Aether"
 		sprite planet/gas4
 		distance 1076.6
 		period 685.404
@@ -5800,7 +5800,7 @@ system Asikafarnut
 		sprite planet/desert2
 		distance 884.13
 		period 587.840
-	object
+	object "Deka Dathnak"
 		sprite planet/gas7-b
 		distance 2686.82
 		period 3114.17
@@ -5889,7 +5889,7 @@ system Aspidiske
 		sprite planet/cloud2
 		distance 701.36
 		period 68.2515
-	object
+	object Passaritus
 		sprite planet/gas8
 		distance 1504.4
 		period 214.410
@@ -13878,8 +13878,8 @@ system Fingol
 	object
 		sprite star/m8
 		period 10
-	object
-		sprite planet/cloud4
+	object Pyriphlegethon
+		sprite planet/gas7-hot
 		distance 216.25
 		period 109.478
 	object
@@ -16078,7 +16078,7 @@ system Hesselpost
 				scale 0.5
 			distance 157.941
 			period 25.4596
-	object
+	object "Sebarep Atarkis"
 		sprite planet/gas2-b
 		distance 2053.35
 		period 1681.34
@@ -19481,7 +19481,7 @@ system Kochab
 		sprite planet/dust6
 		distance 937.01
 		period 596.451
-	object
+	object "Lenz's Loop"
 		sprite planet/gas14
 		distance 2419.01
 		period 2474.09
@@ -20856,7 +20856,7 @@ system "Lom Tahr"
 		sprite planet/desert8-b
 		distance 170.795
 		period 17.6462
-	object
+	object Steamwater
 		sprite planet/uranus
 		distance 554.485
 		period 103.222
@@ -21339,7 +21339,7 @@ system Markab
 		sprite planet/forest3
 		distance 522.53
 		period 191.111
-	object
+	object Placatious
 		sprite planet/uranus-b
 		distance 1332.97
 		period 778.664
@@ -29297,7 +29297,7 @@ system Shaula
 			sprite planet/dust0-b
 			distance 135
 			period 16.3428
-	object
+	object "Shih's Locker"
 		sprite planet/gas7
 		distance 2840.12
 		period 2421.72
@@ -30131,7 +30131,7 @@ system Sol
 		sprite planet/mars
 		distance 1471.43
 		period 687.001
-	object
+	object Jupiter
 		sprite planet/jupiter
 		distance 3339
 		period 2348.40

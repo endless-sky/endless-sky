@@ -854,6 +854,13 @@ planet "Deep Water"
 	"required reputation" 15
 	security 0.35
 
+planet "Deka Dathnak"
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa21
+	description `For whatever reason, someone has gone to the trouble of bombarding this gas giant with thousands of nuclear warheads. Swirls of radioactive isotopes are plainly visible in the lower atmosphere, and the amount of soot floating around points towards a large amount of some material having been incinerated in the recent past. The Korath were presumably the ones who decided to drop several gigatons worth of nuclear weapons into this gas giant during their civil war, but exactly why they did so remains unknown.`
+	description `	Unfortunately there is no eerie green radioactive glow to illuminate the layers beneath the clouds. Instead, your ship is shrouded in shadow and ash, plunging your viewports into darkness.`
+	government Uninhabited
+
 planet "Deli Kasi"
 	attributes bunrodea farming
 	landscape land/fields3
@@ -2186,6 +2193,13 @@ planet Janiculum
 	government Uninhabited
 	security 0
 
+planet Jupiter
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa12
+	description `Once called the King of the Solar System, Jupiter is just as impressive even considering the variety of gas giants in the galaxy. Its famous Great Red Spot is still well-known by most of humanity, and you make sure to steer clear of it while taking in the rich yellows and browns of the planet's atmosphere.`
+	description `	From your vantage point, deep below the furthest excursions of human probes, you can see the glint of a few sensor balloons and floating deuterium collectors high above you.`
+	government Uninhabited
+
 planet Jentuthro
 	attributes bunrodea guild medical
 	landscape land/sky5
@@ -2340,6 +2354,13 @@ planet "Laki Nemparu"
 	description `This is an old factory world, so shrouded in smog that only tiny glimpses of the land are visible from above. Deep under the oceans of Laki Nemparu are oil reservoirs so vast that centuries of industry have not yet drained them dry. All but the hardiest of the native vegetation and wildlife is now long extinct from lack of direct sunlight or from pollution and chemical exposure.`
 	spaceport `All the Korath you encounter in the spaceport are wearing ventilator masks, and if you were staying here for longer you would probably do the same. The air leaves a metallic taste in your mouth, and your eyes feel dry and sting when the wind hits them. On the outskirts of the city, factory smokestacks are belching more pollution into the air; the Korath have either given up on preserving this planet, or simply have too great a need for the goods manufactured here to be willing to shut the factories down.`
 	outfitter "Korath Basics"
+
+planet "Lenz's Loop"
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa28
+	description `Lenz's Loop takes its name from the powerful magnetic field produced by its metallic hydrogen core. As one of the most powerful natural sources of magnetism known to humanity, it is named for Emil Lenz and his discoveries about the interactions between magnetism and electric currents.`
+	description `	While your ship's shielding fortunately keeps it safe from the dangerously strong magnetic field, captured charged particles from Kochab's frequent flares are channeled into the atmosphere near the poles, where it would be exceedingly dangerous for you to venture.`
+	government Uninhabited
 
 planet Letis'sei
 	attributes ka'het uninhabited
@@ -2721,6 +2742,13 @@ planet "Nearby Jade"
 	landscape land/fields12-sfiera
 	description `Aside from fish, the Kimek diet is mostly vegetarian, but a few centuries ago an Arach entrepreneur decided to start ranching longcows here. It is an ideal world for ranching, with plenty of grassy fields. The ranches have begun a major industry, although generally only the wealthiest of Kimek are willing to spend money on longcow meat.`
 	spaceport `The spaceport is at the very center of a city that is laid out with perfect radial symmetry: six sectors, each with their own markets, schools, and other public services, and clusters of skyscrapers that can each house a million individuals. The spaceport itself is also symmetrical, with a concourse in the center and smaller and smaller landing pads radiating out from it so that the largest freighters have easiest access.`
+
+planet Nepheritis
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/clouds_08
+	description `An unusually large ice giant, Nepheritis is well-known among the denizens of the Paradise Planets for its prodigious rains of large diamonds. While this phenomenon is common on most ice giants of sufficient size, Nepheritis is a scientific curiosity due to the sheer size of the diamonds formed in its atmosphere, with some even becoming large boulders during their plummet into the depths.`
+	description `	While these diamonds are unfortunately not economical to collect with current human technology, if you were so inclined you could perhaps make an attempt at catching one as it fell, deep within the atmosphere where they are largest.`
+	government Uninhabited
 
 planet "New Argentina"
 	attributes "dirt belt" farming
@@ -3133,6 +3161,13 @@ planet Parii'het
 	description `Very similar to its sister station of Seli'het, Parii'het was still under construction when it was abandoned by its creators. Today, it floats uninhabited in this rarely visited section of space, approached occasionally by the automated drones that mindlessly continue to carry new supplies to the massive cargo section. If the Ka'het attacked this station, it would be made entirely inoperable in a short time.`
 	government Builder
 
+planet Passaritus
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa27
+	description `Decades ago, Passaritus was the subject of an ambitious project by the Deep to mine metallic hydrogen from its mantle. Being barely large enough to form metallic hydrogen in the first place, the gas giant's gravity was thought to be low enough to make extraction feasible. Unfortunately, the Deep had overestimated their ability to build an extraction device that was not only functional, but economical, and the project has since been moved to the backburner.`
+	description `	Passaritus still happens to be an interesting locale to visit, at least if you have a gaslined ship. Its small size and relatively rapid rotation gives it sweeping bands of color, each corresponding to a different layer or wind speed, and the lower gravity allows updrafts to carry your ship upwards for kilometers.`
+	government Uninhabited
+
 planet Pearl
 	attributes forest medical paradise tourism
 	landscape land/forest3
@@ -3196,6 +3231,13 @@ planet Pincian
 	description `	There are some small-scale mining operations all around Pincian, but everything around the crater has been left untouched except for a Remnant research station nestled into one of its edges.`
 	government Uninhabited
 	security 0
+
+planet Placatious
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/clouds_07
+	description `Half a century ago, Placatious was the subject of a Syndicate marketing campaign, advertising the view of its deep blue sky from orbit to be "the most agreeable sight in the galaxy." Construction on a large station, intended to be a massive hub of conference rooms with panoramic views of the supposedly breathtaking gas giant below, was started but never completed after numerous delays and budget overruns. Eventually, the executive responsible for the entire scheme was forced into an early retirement, and the idea was quietly dropped.`
+	description `	From within, Placatious really is quite beautiful, with wisps of aquamarine vapor trailing vertically as far as the eye can see. Perhaps the Syndicate would have had more success had they managed to suspend a conference room inside the gas giant's atmosphere.`
+	government Uninhabited
 
 planet Placer
 	attributes core frontier mining
@@ -3285,6 +3327,13 @@ planet Pugglequat
 	spaceport `The spaceport here is a set of seven tall towers of varying heights, each with landing pads jutting out from its sides like leaves from the stalk of a plant. The towers are joined to each other at various levels by arches.`
 	"required reputation" 2
 	security 1
+
+planet Pyriphlegethon
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/clouds_02
+	description `Despite its poorly received name, Pyriphlegethon was famous in the early history of human interstellar travel as the first "hot Jupiter" to be explored in detail. Colorful images of its incandescent clouds and glowing night sky became some of the most iconic images of space in the 23rd century, when the invention of the hyperdrive was still recent.`
+	description `	Even on the planet's night side, everything is washed in a deep red glow that seems to come from all directions at once. You are glad that gaslining technology protects your ship from the extreme temperatures outside, keeping your own atmosphere from becoming similarly incandescent to the one outside.`
+	government Uninhabited
 
 planet Quicksilver
 	attributes core mining volcanic
@@ -3551,6 +3600,13 @@ planet "Sasirka Gatru"
 	landscape land/desert7
 	description `This was probably a habitable world at one point. It is no longer. Nothing lives or grows here, and the atmosphere is full of toxic chemicals.`
 
+planet "Sebarep Atarkis"
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/clouds_04
+	description `Some recent event, natural or artificial, disrupted the rings around Sebarep Atarkis to the point of their complete instability. Now, hundreds of ringroids fall into the planet's atmosphere each day, tracing fiery paths in the planet's skies. This has measurably increased the temperature in the equatorial region, directly below the rings, and new storms and wind patterns are generated chaotically in the wake of their passage.`
+	description `	While you know it is extraordinarily unlikely due to the sheer size of the planet, you can't help but wonder what would happen if a ringroid were to fall directly upon your ship as you lurk under the clouds.`
+	government Uninhabited
+
 planet "Sebra Skira"
 	attributes korath station
 	landscape land/space4
@@ -3728,6 +3784,13 @@ planet "Shifting Sand"
 	spaceport `The spaceport village is built around a large oasis, a sandy-bottomed lake with startlingly blue water. The landing pads are in the desert half a kilometer out from the village, separated from the houses by windbreaks and noise barriers to avoid disrupting the tranquil atmosphere. On balconies overlooking the lake, Saryds with graying hair walk or stand around in small groups enjoying quiet conversation with each other.`
 	"required reputation" 15
 	security 0.15
+
+planet "Shih's Locker"
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa16
+	description `This gas giant earned its name after the infamous Captain Shih "disposed" of a mutiny. Rather than simply ejecting her crew out of the airlock, she packed them into an escape pod that would survive the upper atmosphere of the planet. In the years that followed, many seeking to prove themselves the meanest pirate in the galaxy sought to emulate her example by making a pilgrimage to her Locker whenever a crewmember went too far out of line.`
+	description `	This far within the planet's atmosphere, the sky is colored a murky blue-green, standing in contrast to the brownish haze that seems to extend for eternity. While legend on Greenrock holds that the ghosts of traitorous pirates haunt the depths of Shih's Locker, they seem to be keeping to themselves for now.`
+	government Uninhabited
 
 planet Shiver
 	attributes "near earth"
@@ -3991,6 +4054,13 @@ planet "Station Cian"
 	outfitter "Coalition Basics"
 	"required reputation" 15
 	security 0.5
+
+planet Steamwater
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/clouds_05
+	description `Steamwater is a hot Neptune, a misleadingly named "ice giant" close to its parent star. Steamwater is distinctive in that, by mass, it is almost entirely water. Beyond this, the range of temperatures and pressures found in its atmosphere is such that its thickest layer is composed of supercritical water, a phase state blending together the states of vapor and liquid, making flight inside it rather disorienting.`
+	description `	With no true interface between gaseous water vapor and the compressed liquid found below, the buoyant force affecting your ship is unpredictable without keeping a careful eye on your inertial altimeter. While this is true of gas giants in general, the much higher density of water as compared to common hydrogen makes this effect especially noticeable.`
+	government Uninhabited
 
 planet Stonebreak
 	attributes hai manufacturing urban
@@ -4571,6 +4641,13 @@ planet Violetwake
 	government Uninhabited
 	bribe 0
 	security 0
+
+planet "Vivid Aether"
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa29
+	description `Whether it be from local evolution or panspermia, Vivid Aether's clouds are home to colonies of anaerobic microbial life, feeding on both sunlight and traces of methane in the atmosphere. These form colorful streaks in the upper atmosphere, which were what initially attracted Saryd explorers to the planet. Now, it is common for Heliarch research patrols to sit in orbit for weeks at a time in order to study the simple, yet exotic, ecology. Occasionally, they send down hardened research vessels capable of withstanding the extreme pressures, though none happen to be nearby right now.`
+	description `	The life-bearing layer only extends downward a few hundred kilometers before pressures rise and the temperature becomes inhospitable to life. Deeper down, the atmosphere is barren and lifeless.`
+	government Uninhabited
 
 planet Warfeed
 	attributes unfettered
