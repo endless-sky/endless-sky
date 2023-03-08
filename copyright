@@ -1722,9 +1722,12 @@ Files:
  images/outfit/*torch?thruster?vi*
  images/outfit/warforge?battery*
  images/outfit/warzone?core*
+ images/planet/asura*
  images/planet/tschyss*
  images/planet/*vajra*
  images/planet/vesvi*
+ images/planet/yniu?eiu*
+ images/planet/yniu?ena*
  images/projectile/acuit*
  images/projectile/astuit*
  images/projectile/ballistic*
@@ -1792,6 +1795,7 @@ Files:
  images/outfit/teciimach?bay*
  images/outfit/teciimach?pod*
  images/planet/gas3-c*
+ images/planet/gas7-r*
  images/ship/aerie*
  images/ship/bactrian*
  images/ship/hailstone*

@@ -144,11 +144,11 @@ hazard "Neutron Star Magnetic Field"
 
 hazard "Rulei Gravity Field"
 	"constant strength"
-	"range" 100
+	"range" 200
 	"environmental effect" "gravity well"
 	weapon
 		"gravitational"
-		"hit force" -5
+		"hit force" -7
 		"damage dropoff" 100 1000
 		"dropoff modifier" 0
 
