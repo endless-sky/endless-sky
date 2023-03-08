@@ -54,7 +54,7 @@ mission "Xapleaux: First Contact"
 
 			`	The lead alien approaching makes a sharp clicking noise and steps forward once, drawing your attention back to it.`
 			label caution
-			`	It holds its two upper arms up and out, seemingly in a gesture not dissimilar to the human gesture indicating peace. Perhaps simply indicating empty appendages is a necessary evolutional feature for a society. Its middle arms though point at the gun, then at the satchel at its side, then at you, then at your holster, and then traces a line on the ground from it to you as if to indicate it would approach.`
+			`	It holds its two upper arms up and out, seemingly in a gesture not dissimilar to the human gesture indicating peace. Perhaps simply indicating empty appendages is a necessary evolutional feature for a society. However, its middle arms point at the gun, then at the satchel at its side, then at you, then at your holster, and then traces a line on the ground from it to you as if to indicate it would approach.`
 			choice
 				`	(Put the gun away.)`
 					goto peace

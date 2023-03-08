@@ -27,7 +27,7 @@ outfit "Medium Trajectile Assembler"
 	"mass" 22
 	"outfit space" 44
 	"assembly line" 2
-	description "The Small Trajectile Assembler has 2 assembly lines of space for trajectile templates to be loaded. A trajectile, which is much like a missile, is produced on demand by this machine from fuel with components and base resources contained in the template plug-in."
+	description "The Medium Trajectile Assembler has 2 assembly lines of space for trajectile templates to be loaded. A trajectile, which is much like a missile, is produced on demand by this machine from fuel with components and base resources contained in the template plug-in."
 
 outfit "Large Trajectile Assembler"
 	category "Ammunition"
@@ -36,7 +36,7 @@ outfit "Large Trajectile Assembler"
 	"mass" 40
 	"outfit space" 80
 	"assembly line" 4
-	description "The Small Trajectile Assembler has 4 assembly lines of space for trajectile templates to be loaded. A trajectile, which is much like a missile, is produced on demand by this machine from fuel with components and base resources contained in the template plug-in."
+	description "The Large Trajectile Assembler has 4 assembly lines of space for trajectile templates to be loaded. A trajectile, which is much like a missile, is produced on demand by this machine from fuel with components and base resources contained in the template plug-in."
 
 outfit "Terpenoid Trajectile Template"
 	category "Ammunition"
@@ -238,7 +238,7 @@ outfit "Xapleaux Anti-Missile"
 		"reload" 8
 		"firing energy" 24
 		"firing heat" 10
-	description "This anti-missile system helps defend Korath warships from long-range attacks."
+	description "This anti-missile system helps defend Xapleaux warships from long-range attacks."
 
 effect "xapleaux am"
 	sprite "effect/xapleaux am"

@@ -37,7 +37,7 @@ outfit "Cryo-Arithmetic Engine"
 	"cooling energy" .002
 	"scan interference" .04
 	description `Although called an "engine" on account of using heat to perform work, most pilots would typically call this hand-sized device a cooler, since that is what it actually does. Little more than a heatsink, a quantum processor, and a variety of contact connectors, this device takes a trickle of power to set running a completely hard-coded program on a repeating loop. Through the algorithmic superposition of quantum states, run nearly a million times per second, it quite simply deletes a small amount of heat using the sheer power of mathematics. Or at least, the heat goes... somewhere else.`
-	description `	Installing one requires cutting a hole and inserting it directly into the plating of a ship's hull - as such relying on these will both lighten and weaken the hull. As a side benefit, all that quantum trickery in the hull confers a passive kind of stealth on the vessel - interfering with attempts to scan it.`
+	description `	Installing one requires cutting a hole and inserting it directly into the plating of a ship's hull - as such relying on these will both lighten and weaken the hull. As a side benefit, all that quantum trickery embedded into the ship confers a passive kind of stealth on the vessel - interfering with attempts to scan it.`
 
 outfit "Small MOF Crystal Capacitor"
 	category "Power"
@@ -80,7 +80,7 @@ outfit "Piezoelectric Shaft"
 	"heat capacity" 2420
 	"cooling energy" -5.2
 	"active cooling" 76
-	description "This single massive crystal, festooned in conductive strain contacts and a wealth of monitoring equipment, is capable of converting heat into power through the piezoelectric effect. As one end of the crystal is made hot on the heatsink, the mechanical stress generated from the heat expansion of only one end of the crystal is bled off along its length into power for the ship. This also maintains the temperature gradient, so for as long as new heat is added - the strain can be harnessed for energy."
+	description "This single massive crystal, festooned in conductive strain contacts and a wealth of monitoring equipment, is capable of converting heat into power through the piezoelectric effect. As one end of the crystal is made hot on the heatsink, the mechanical stress generated from the heat expansion of only one end of the crystal is bled off along its length into power for the ship. This also maintains the temperature gradient, so for as long as new heat is added, the strain can be harnessed for energy."
 
 outfit `Type X "Coleo" Engine`
 	category Engines
