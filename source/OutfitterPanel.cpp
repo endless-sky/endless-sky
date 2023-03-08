@@ -93,7 +93,15 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 		}
 
 	if(player.GetPlanet())
+	{
 		outfitter = player.GetPlanet()->Outfitter();
+
+		for(const auto &outfit : outfitter)
+			player.DiscoverOutfit(*outfit);
+	}
+
+	for(auto &&ship : player.Ships())
+		player.DiscoverOutfits(ship->Cargo().Outfits());
 }
 
 
