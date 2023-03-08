@@ -637,3 +637,21 @@ const Sprite *Outfit::FlotsamSprite() const
 {
 	return flotsamSprite;
 }
+
+
+
+std::string Outfit::ShownName(bool knownToPlayer, bool multiple) const
+{
+	std::string name;
+
+	if(knownToPlayer)
+		name = (multiple) ? PluralName() : DisplayName();
+	else
+	{
+		name = "Unknown Outfit";
+		if(multiple)
+			name += "s";
+	}
+
+	return name;
+}

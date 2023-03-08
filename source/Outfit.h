@@ -97,6 +97,7 @@ public:
 	const std::map<const Sound *, int> &JumpOutSounds() const;
 	// Get the sprite this outfit uses when dumped into space.
 	const Sprite *FlotsamSprite() const;
+	std::string ShownName(bool knownToPlayer, bool multiple) const;
 
 
 private:
