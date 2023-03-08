@@ -30,9 +30,8 @@ class DataNode;
 // everything the AI wants a ship to do, or all keys the player is holding down.
 class Command {
 private:
-	// This must match the maximum command number in Command.cpp or the build will fail.
-	static const unsigned COMMAND_COUNT = 33;
-	using CommandState = std::bitset<COMMAND_COUNT>;
+	// The bitset size must match the maximum command number in Command.cpp or the build will fail.
+	using CommandState = std::bitset<33>;
 
 
 public:
@@ -153,7 +152,7 @@ private:
 
 private:
 	// The key commands are stored in a CommandState.
-	CommandState state = 0;
+	CommandState state;
 	// Turning amount is stored as a separate double to allow fractional values.
 	double turn = 0.;
 };

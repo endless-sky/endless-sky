@@ -363,11 +363,11 @@ bool Command::operator!() const
 // For sorting commands (e.g. so a command can be the key in a map):
 bool Command::operator<(const Command &command) const
 {
-	static const int count = static_cast<int>(COMMAND_COUNT);
+	static const int count = static_cast<int>(command.state.size());
 	for(int i = count - 1; i >= 0; --i)
-		if(state[i] > command.state[i])
+		if(state.test(i) > command.state.test(i))
 			return false;
-		else if(state[i] < command.state[i])
+		else if(state.test(i) < command.state.test(i))
 			return true;
 	return false;
 }
@@ -419,7 +419,7 @@ template<unsigned bit>
 Command::CommandState Command::SetBit()
 {
 	Command::CommandState state;
-	static_assert(bit < state.size(), "bit number is higher than COMMAND_COUNT - 1");
+	static_assert(bit < state.size(), "bit number does not fit in a CommandState");
 	state.set(bit);
 	return state;
 }
