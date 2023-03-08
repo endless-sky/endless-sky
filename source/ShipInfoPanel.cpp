@@ -580,7 +580,7 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 
 			// For outfits, show how many of them you have and their total mass.
 			bool isSingular = (it.second == 1 || it.first->Get("installable") < 0.);
-			string name = (isSingular ? it.first->DisplayName() : it.first->PluralName());
+			string name = it.first->ShownName(player.OutfitIsKnown(*it.first), !isSingular);
 			if(!isSingular)
 				name += " (" + to_string(it.second) + "x)";
 			table.Draw(name, dim);
