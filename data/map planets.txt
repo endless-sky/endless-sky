@@ -2361,7 +2361,6 @@ planet "Lenz's Loop"
 	description `Lenz's Loop takes its name from the powerful magnetic field produced by its metallic hydrogen core. As one of the most powerful natural sources of magnetism known to humanity, it is named for Emil Lenz and his discoveries about the interactions between magnetism and electric currents.`
 	description `	While your ship's shielding fortunately keeps it safe from the dangerously strong magnetic field, captured charged particles from Kochab's frequent flares are channeled into the atmosphere near the poles, where it would be exceedingly dangerous for you to venture.`
 	government Uninhabited
-	security 0
 
 planet Letis'sei
 	attributes ka'het uninhabited
@@ -2750,7 +2749,6 @@ planet Nepheritis
 	description `An unusually large ice giant, Nepheritis is well-known among the denizens of the Paradise Planets for its prodigious rains of large diamonds. While this phenomenon is common on most ice giants of sufficient size, Nepheritis is a scientific curiosity due to the sheer size of the diamonds formed in its atmosphere, with some even becoming large boulders during their plummet into the depths.`
 	description `	While these diamonds are unfortunately not economical to collect with current human technology, if you were so inclined you could perhaps make an attempt at catching one as it fell, deep within the atmosphere where they are largest.`
 	government Uninhabited
-	security 0
 
 planet "New Argentina"
 	attributes "dirt belt" farming
@@ -3169,7 +3167,6 @@ planet Passaritus
 	description `Decades ago, Passaritus was the subject of an ambitious project by the Deep to mine metallic hydrogen from its mantle. Being barely large enough to form metallic hydrogen in the first place, the gas giant's gravity was thought to be low enough to make extraction feasible. Unfortunately, the Deep had overestimated their ability to build an extraction device that was not only functional, but economical, and the project has since been moved to the backburner.`
 	description `	Passaritus still happens to be an interesting locale to visit, at least if you have a gaslined ship. Its small size and relatively rapid rotation gives it sweeping bands of color, each corresponding to a different layer or wind speed, and the lower gravity allows updrafts to carry your ship upwards for kilometers.`
 	government Uninhabited
-	security 0
 
 planet Pearl
 	attributes forest medical paradise tourism
@@ -3241,7 +3238,6 @@ planet Placatious
 	description `Half a century ago, Placatious was the subject of a Syndicate marketing campaign, advertising the view of its deep blue sky from orbit to be "the most agreeable sight in the galaxy." Construction on a large station, intended to be a massive hub of conference rooms with panoramic views of the supposedly breathtaking gas giant below, was started but never completed after numerous delays and budget overruns. Eventually, the executive responsible for the entire scheme was forced into an early retirement, and the idea was quietly dropped.`
 	description `	From within, Placatious really is quite beautiful, with wisps of aquamarine vapor trailing vertically as far as the eye can see. Perhaps the Syndicate would have had more success had they managed to suspend a conference room inside the gas giant's atmosphere.`
 	government Uninhabited
-	security 0
 
 planet Placer
 	attributes core frontier mining
@@ -3338,7 +3334,6 @@ planet Pyriphlegethon
 	description `Despite its poorly received name, Pyriphlegethon was famous in the early history of human interstellar travel as the first "hot Jupiter" to be explored in detail. Colorful images of its incandescent clouds and glowing night sky became some of the most iconic images of space in the 23rd century, when the invention of the hyperdrive was still recent.`
 	description `	Even on the planet's night side, everything is washed in a deep red glow that seems to come from all directions at once. You are glad that gaslining technology protects your ship from the extreme temperatures outside, keeping your own atmosphere from becoming similarly incandescent to the one outside.`
 	government Uninhabited
-	security 0
 
 planet Quicksilver
 	attributes core mining volcanic
@@ -3611,7 +3606,6 @@ planet "Sebarep Atarkis"
 	description `Some recent event, natural or artificial, disrupted the rings around Sebarep Atarkis to the point of their complete instability. Now, hundreds of ringroids fall into the planet's atmosphere each day, tracing fiery paths in the planet's skies. This has measurably increased the temperature in the equatorial region, directly below the rings, and new storms and wind patterns are generated chaotically in the wake of their passage.`
 	description `	While you know it is extraordinarily unlikely due to the sheer size of the planet, you can't help but wonder what would happen if a ringroid were to fall directly upon your ship as you lurk under the clouds.`
 	government Uninhabited
-	security 0
 
 planet "Sebra Skira"
 	attributes korath station
@@ -3797,7 +3791,6 @@ planet "Shih's Locker"
 	description `This gas giant earned its name after the infamous Captain Shih "disposed" of a mutiny. Rather than simply ejecting her crew out of the airlock, she packed them into an escape pod that would survive the upper atmosphere of the planet. In the years that followed, many seeking to prove themselves the meanest pirate in the galaxy sought to emulate her example by making a pilgrimage to her Locker whenever a crewmember went too far out of line.`
 	description `	This far within the planet's atmosphere, the sky is colored a murky blue-green, standing in contrast to the brownish haze that seems to extend for eternity. While legend on Greenrock holds that the ghosts of traitorous pirates haunt the depths of Shih's Locker, they seem to be keeping to themselves for now.`
 	government Uninhabited
-	security 0
 
 planet Shiver
 	attributes "near earth"
@@ -4068,7 +4061,6 @@ planet Steamwater
 	description `Steamwater is a hot Neptune, a misleadingly named "ice giant" close to its parent star. Steamwater is distinctive in that, by mass, it is almost entirely water. Beyond this, the range of temperatures and pressures found in its atmosphere is such that its thickest layer is composed of supercritical water, a phase state blending together the states of vapor and liquid, making flight inside it rather disorienting.`
 	description `	With no true interface between gaseous water vapor and the compressed liquid found below, the buoyant force affecting your ship is unpredictable without keeping a careful eye on your inertial altimeter. While this is true of gas giants in general, the much higher density of water as compared to common hydrogen makes this effect especially noticeable.`
 	government Uninhabited
-	security 0
 
 planet Stonebreak
 	attributes hai manufacturing urban
@@ -4656,7 +4648,6 @@ planet "Vivid Aether"
 	description `Whether it be from local evolution or panspermia, Vivid Aether's clouds are home to colonies of anaerobic microbial life, feeding on both sunlight and traces of methane in the atmosphere. These form colorful streaks in the upper atmosphere, which were what initially attracted Saryd explorers to the planet. Now, it is common for Heliarch research patrols to sit in orbit for weeks at a time in order to study the simple, yet exotic, ecology. Occasionally, they send down hardened research vessels capable of withstanding the extreme pressures, though none happen to be nearby right now.`
 	description `	The life-bearing layer only extends downward a few hundred kilometers before pressures rise and the temperature becomes inhospitable to life. Deeper down, the atmosphere is barren and lifeless.`
 	government Uninhabited
-	security 0
 
 planet Warfeed
 	attributes unfettered
