@@ -258,7 +258,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		{
 			const Outfit * const outfit = it.first;
 			const int64_t &amount = it.second;
-			if(outfit->Get("minable") <= 0. && !sellOutfits)
+			if((outfit->Get("minable") <= 0. && !sellOutfits) || !player.OutfitIsKnown(*outfit))
 				continue;
 
 			int64_t value = player.FleetDepreciation().Value(outfit, day, amount);
