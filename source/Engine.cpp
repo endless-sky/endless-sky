@@ -2054,8 +2054,7 @@ void Engine::HandleMouseInput(Command &activeCommands)
 	isMouseTurningEnabled = (isMouseHoldEnabled ^ isMouseToggleEnabled);
 	if(!isMouseTurningEnabled)
 		return;
-	if(!activeCommands.Has(Command::MOUSE_TURNING_HOLD))
-		activeCommands.Set(Command::MOUSE_TURNING_HOLD);
+	activeCommands.Set(Command::MOUSE_TURNING_HOLD);
 	bool rightMouseButtonHeld = false;
 	int mousePosX;
 	int mousePosY;
