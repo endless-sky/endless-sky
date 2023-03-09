@@ -860,7 +860,7 @@ void Engine::Step(bool isActive)
 			if((targetRange <= strategicScanRange && scrutable)
 				|| (strategicScanRange && target->IsYours()))
 			{
-				info.SetCondition("strategic display");
+				info.SetCondition("target weapon range display");
 				int turretRange = round(target->GetAICache().TurretRange());
 				info.SetString("target turret", to_string(turretRange) + " ");
 				int gunRange = round(target->GetAICache().GunRange());

@@ -676,7 +676,7 @@ interface "hud"
 		from 147 346
 		align top left
 
-	visible if "strategic display"
+	visible if "target weapon range display"
 	sprite "ui/tactical/gun range"
 		from 154 252
 		align top center
