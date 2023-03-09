@@ -57,6 +57,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	const string HIDE_OUTFITS = "Hide unknown outfits";
+
 	const string KNOWN_OUTFIT_KEY = "known outfit";
 
 	// Move the flagship to the start of your list of ships. It does not make sense
@@ -2708,7 +2710,7 @@ set<string> &PlayerInfo::Collapsed(const string &name)
 // Check if an given outfit is known to the player
 bool PlayerInfo::OutfitIsKnown(const Outfit& outfit) const
 {
-	return true;
+	return (Preferences::Has(HIDE_OUTFITS)) ? knownOutfits.count(&outfit) : true;
 }
 
 
