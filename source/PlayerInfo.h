@@ -337,6 +337,11 @@ public:
 	void VisitOutfitterAt(const Planet &planet);
 	bool OutfitterVisitedAt(const Planet &planet);
 
+	// Methods for changing or getting if an outfit is known to the player.
+	bool OutfitIsKnown(const Outfit &outfit) const;
+	void DiscoverOutfit(const Outfit &outfit);
+	void DiscoverOutfits(const std::map<const Outfit *, int> &outfits);
+
 private:
 	// Apply any "changes" saved in this player info to the global game state.
 	void ApplyChanges();
@@ -438,6 +443,7 @@ private:
 	std::vector<const System *> travelPlan;
 	const Planet *travelDestination = nullptr;
 
+	std::set<const Outfit *> knownOutfits;
 	std::set<const Outfit *> selectedWeapons;
 
 	std::map<const Outfit *, int> stock;

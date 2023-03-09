@@ -2885,6 +2885,7 @@ set<string> &PlayerInfo::Collapsed(const string &name)
 void PlayerInfo::VisitOutfitterAt(const Planet &planet)
 {
 	visitedPlanets[&planet] = true;
+
 }
 
 
@@ -2893,6 +2894,31 @@ void PlayerInfo::VisitOutfitterAt(const Planet &planet)
 bool PlayerInfo::OutfitterVisitedAt(const Planet &planet)
 {
 	return (Preferences::Has(HIDE_OUTFITTERS)) ? visitedPlanets[&planet] : true;
+}
+
+
+
+// Check if an given outfit is known to the player
+bool PlayerInfo::OutfitIsKnown(const Outfit& outfit) const
+{
+	return true;
+}
+
+
+
+// Mark outfit as known
+void PlayerInfo::DiscoverOutfit(const Outfit& outfit)
+{
+	knownOutfits.insert(&outfit);
+}
+
+
+
+// Mark multiple outfits as known
+void PlayerInfo::DiscoverOutfits(const std::map<const Outfit *, int> &outfits)
+{
+	for(const auto &it : outfits)
+		DiscoverOutfit(*it.first);
 }
 
 
