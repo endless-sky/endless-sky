@@ -33,6 +33,13 @@
           "platform": "linux"
         }
       ]
+    },
+    "flatpak-libs": {
+      "description": "System libraries missing in the Flatpak runtime.",
+      "dependencies": [
+        "libmad",
+        "glew"
+      ]
     }
   }
 }
