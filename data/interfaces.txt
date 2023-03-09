@@ -694,7 +694,7 @@ interface "hud"
 	value "min zoom" .25
 	value "max zoom" 2.
 	# A multiplier between 0 and 1 will invert the direction of zoom.
-	value "zoom multiplier" 1.4
+	value "zoom multiplier" 1.414213562373
 
 
 
