@@ -215,7 +215,7 @@ mission "HI2-MP"
 			`	At first glance there is nothing inside, but after he furiously crawls all over the place, he puts his head to a large metal panel on the opposite end of the room, before shooting that too. You approach him to find a hidden staircase leading underground.`
 			`	On your way down, Kirrie yells for you to take cover, and you barely escape a barrage of shots as you head back up. Kirrie isn't as lucky, as one of the shots hit one of his back legs just before he is back at the stairs. You go to help him up before any more shots come, but he seems to make do with just five good legs well enough.`
 			`	You two head back up, and Kirrie tells you to be alert and watch the staircase, as he reaches for a small radio-like device to call for support. A few minutes later, a pair of Heliarch Punishers land nearby, and dozens of armed agents enter the warehouse, while you head to one of the ships with Kirrie, and wait as his wound is treated.`
-			`	The agents return hours later, reporting they shot down the turrets and found the place deserted. "Many automated production lines, we found," one of them tells Kirrie. "Powering them, one of our reactor modules is."`
+			`	The agents return hours later, reporting they shot down the turrets and found the place deserted. "Many automated production lines, we found," one of them tells Kirrie. "Powering them, one of our Reactor Modules is."`
 			`	With the local Heliarchs taking care of the place, they have another, smaller ship come in to pick you two up, and drop you and Kirrie closer to the <ship>, where you find Iplora and Tugroob already waiting. You all head inside, and Kirrie suggests you depart now, as his colleagues follow him to his bunk to hear what happened.`
 				accept
 			label trees
@@ -346,7 +346,7 @@ mission "HI2-SS"
 			`	Lighting the way ahead with your flashlight, you're surprised to see this tunnel is dug slightly upwards, and brings you not to a large, dug out ore vein spot, but to a rustic mineshaft. A few lights on the walls flicker on as you approach them, lighting up the wooden beams supporting the long hallway. Before you go further inside, you're stopped by Tugroob, who crawls around the floor, walls and ceiling just before the first lamp, looping several times without ever going further in. He only stops to slowly reach one leg inside, then right back out after apparently touching something.`
 			`	"Request support equipment to get through safely, we must," he says, and using a communication device, he calls for assistance from Heliarch agents, warning them about the sandstorm. You head back up to the building, to wait for them.`
 			`	Shortly after, several dozen Heliarch agents arrive, most of them working to keep the sand out, while a few follow you two down and inside the peculiar tunnel, bringing some form of cutting tool, and several pieces of sensor equipment. After checking with the sensors for a few minutes, they use the tool to surgically remove what Tugroob was slowly examining before: several extremely thin wires, connected to some type of machinery hidden within the wooden beams.`
-			`	After they're done, the agents storm the place but find nobody. What they do find are dozens upon dozens of crates filled to the brim with Heliarch staves, blaster guns, confrontation gear and other weaponry.`
+			`	After they're done, the agents storm the place but find nobody. What they do find are dozens upon dozens of crates filled to the brim with Heliarch staves, blaster guns, riot gear and other weaponry.`
 			`	They escort you and Tugroob back outside as the agents prepare to bring the smuggled weapons to their own ships. Though the storm is still raging on, you can make out the shape of a few Heliarch Interdictors parked near your own ship right before you take off. You regroup with Iplora and Kirrie, and they ask Tugroob for more details on the ordeal, before they head to their own bunks.`
 				accept
 			label hole2
@@ -502,7 +502,7 @@ mission "HI2-IW"
 			`	You've barely gotten past half of the resort when the shots stop altogether. Iplora still takes aim for a bit, firing some shots as she continues on past some houses, but ultimately lowers her weapon, coming toward you. "Fled, our attacker has," she claims. You two head back to the dug out spot, and Iplora grabs her back. She managed to call for support in between running for cover and shooting back, and you two wait by one of the houses for a few minutes.`
 			label opencrate
 			`	Several Heliarch Neutralizers arrive just before the blizzard subsides, and you're directed to one of them to dry your clothes and make sure you're not frostbitten. Nearly all of the Heliarch agents making the rounds over the resort are Saryds, and are quick to locate more of the coffin-like containers buried in the snow. They pull them out with equipment they've brought in the ships, and carefully melt down the ice and snow layers covering them, finally managing to force them open once they've dried out.`
-			`	Each one houses a Heliarch finisher torpedo inside, to the agents' surprise. As they open them up and reveal dozens of the torpedoes, Iplora heads out with a group of agents, showing them signs of the shootout with the attacker, and give her thoughts on where they could be fleeing to. She also instructs another group on the local caverns, before they head underground. When she's back with you, one of the captains of the Neutralizers tell you that they will handle everything from here, and have one of the ships take you two to where your own ship landed, leaving as you prepare to take off.`
+			`	Each one houses a Heliarch Finisher Torpedo inside, to the agents' surprise. As they open them up and reveal dozens of the torpedoes, Iplora heads out with a group of agents, showing them signs of the shootout with the attacker, and give her thoughts on where they could be fleeing to. She also instructs another group on the local caverns, before they head underground. When she's back with you, one of the captains of the Neutralizers tell you that they will handle everything from here, and have one of the ships take you two to where your own ship landed, leaving as you prepare to take off.`
 			`	You head back to pick up Kirrie and Tugroob, who are excited to hear about what happened. They themselves didn't find anything, but they're content with listening to Iplora as she tells the story.`
 
 mission "HI2-RB"
@@ -561,8 +561,8 @@ mission "Heliarch Recon 1"
 			choice
 				`	"I'm not sure I understand what you're getting at."`
 				`	"Obviously I have my limits as for what I would do."`
-			`	"A jump drive, you possess. Far away, you can travel. Bother you, the harsh cages of the Quarg do not," the Saryd explains as all three walk toward your ship.`
-			`	"Few in number, our own jump drives are, and too risky would it be, for one of our own to venture far out," the Kimek adds.`
+			`	"A Jump Drive, you possess. Far away, you can travel. Bother you, the harsh cages of the Quarg do not," the Saryd explains as all three walk toward your ship.`
+			`	"Few in number, our own Jump Drives are, and too risky would it be, for one of our own to venture far out," the Kimek adds.`
 			`	"If to help us gain knowledge of the opressors, you wish, lend the Coalition your ship's sensors for a short time, would you?" asks the Arach.`
 			choice
 				`	"Are you asking me to spy on the Quarg?"`
@@ -672,7 +672,7 @@ mission "Heliarch Recon 2-A"
 				`	"I'm sorry, but I'm not willing to risk my ship any longer to help you spy on the Quarg."`
 					decline
 			`	"Too large and complex for a quick reading, planets and ringworlds are, so wish to get updated scans on Quarg ships, the consul now does," the Arach says.`
-			`	"Scan them during our war, we of course did, but much more precise now, our technology has become," the Saryd explains. "To use one of our own scanners, we cannot ask of you. Much risk, it would pose, but if to the <planet>, a human outfit scanner you could bring, alter it to suit our purposes, we will."`
+			`	"Scan them during our war, we of course did, but much more precise now, our technology has become," the Saryd explains. "To use one of our own scanners, we cannot ask of you. Much risk, it would pose, but if to the <planet>, a human Outfit Scanner you could bring, alter it to suit our purposes, we will."`
 			choice
 				`	"Alright, I'll go there once I have an outfit scanner ready."`
 				`	"That sounds even more dangerous than what you had me do before. Sorry, but I'm not interested."`
@@ -710,7 +710,7 @@ mission "Heliarch Recon 2-B"
 		payment 200000
 		conversation
 			`Once again the engineers remove your outfit scanner, taking a copy of the scan logs and handing it to the Heliarch agents, who give you <payment>. "Grateful to you, we are, Captain <last>," the Saryd says. "Remember your assistance, the consul will."`
-			`	When the engineers return, they put your outfit scanner back in place. The Heliarch agents say their goodbyes, reassuring you that the Quarg shouldn't attack you for this. "If interested in doing some investigation of your own, you wish, maybe land on their rings again, you could," the Kimek suggests. "Maybe find out something of interest for us, you will."`
+			`	When the engineers return, they put your Outfit Scanner back in place. The Heliarch agents say their goodbyes, reassuring you that the Quarg shouldn't attack you for this. "If interested in doing some investigation of your own, you wish, maybe land on their rings again, you could," the Kimek suggests. "Maybe find out something of interest for us, you will."`
 			`	He wishes you safe travels, and leaves with his colleagues.`
 
 mission "Quarg Interrogation"
@@ -783,10 +783,10 @@ mission "Heliarch Recon 3-A"
 			`	The Saryd interrupts him, "Not... satisfied with them, Consul Aulori was, however. Tasked with acquiring your help again, we were."`
 			branch license
 				has "Heliarch License: done"
-			`	"An exception, the council has decided to make," the Arach explains. "Granted one of our scanning modules, you will be. Just for the mission, it is, so return it once it's over, you must. Install it on your ship, a team in the <planet> will."`
+			`	"An exception, the council has decided to make," the Arach explains. "Granted one of our Scanning Modules, you will be. Just for the mission, it is, so return it once it's over, you must. Install it on your ship, a team in the <planet> will."`
 				goto choice
 			label license
-			`	"A 'proper' close-up scan, with a Heliarch scanning module, the consul wants," the Arach explains. "Now that in our ranks, you are, simple enough for you, purchasing one should be. Once ready, you are, head to the <planet> to hear the plan, you must."`
+			`	"A 'proper' close-up scan, with a Heliarch Scanning Module, the consul wants," the Arach explains. "Now that in our ranks, you are, simple enough for you, purchasing one should be. Once ready, you are, head to the <planet> to hear the plan, you must."`
 			label choice
 			choice
 				`	"Okay, I'll be heading there as soon as possible."`
@@ -882,7 +882,7 @@ mission "Heliarch Recon 3-C"
 	on offer
 		require "Scanning Module" 1
 		conversation
-			`The Heliarch agents are waiting for you when you land with a team of engineers. They have them perform some quick tests on your scanning module.`
+			`The Heliarch agents are waiting for you when you land with a team of engineers. They have them perform some quick tests on your Scanning Module.`
 			`	"Take your time with this task, you of course can, Captain, but told us to ask you to be hasty, Consul Aulori has," the Arach says. "Unsure about how long this window of opportunity will last, all of us are."`
 			choice
 				`	"What's this 'window of opportunity' about?"`
@@ -1053,7 +1053,7 @@ mission "Heliarch Expedition 3"
 				`	"Well, I'm no megastructure engineer, so I don't see the need to go there myself. They can find their own way."`
 					goto decline
 			label accept
-			`	"Excellent. Equipped with a jump drive, the ship is, and to reach this 'Ruin' planet, enough fuel, it has. A few last scanners, the scientists have requested, so after quick stop at <destination>, to the ringworld, you may bring them."`
+			`	"Excellent. Equipped with a Jump Drive, the ship is, and to reach this 'Ruin' planet, enough fuel, it has. A few last scanners, the scientists have requested, so after quick stop at <destination>, to the ringworld, you may bring them."`
 			label end
 			`	He introduces you to the Punisher's crew, and the dozens of scientists and engineers who are preparing to board the warship, ready to accompany you. He wishes you all good luck, and leaves, escorted by a few dozen guards. Once the consul is out of sight, some among the Punisher's crew start fidgeting. Their Captain, an Arach, has them ready the ship to follow yours, and they prepare to depart.`
 				accept
@@ -1092,7 +1092,7 @@ mission "Heliarch Expedition 4"
 				`	"Understood. Until then, good luck on your research here."`
 					goto end
 				`	"Is something wrong?"`
-			`	He goes back to looking to the sky with all eyes. "Forbidden it is, to leave the Coalition. To both civilians and Heliarchs alike. Far too dangerous, the outside has proven, and not deemed worthy to risk our jump drives like this, it has been. Worried I am about the ship's - the crew's safety."`
+			`	He goes back to looking to the sky with all eyes. "Forbidden it is, to leave the Coalition. To both civilians and Heliarchs alike. Far too dangerous, the outside has proven, and not deemed worthy to risk our Jump Drives like this, it has been. Worried I am about the ship's - the crew's safety."`
 			branch "expeditions past"
 				has "Coalition: Expeditions Past 10: done"
 			choice
@@ -1177,7 +1177,7 @@ mission "Heliarch Expedition 5"
 			choice
 				`	"I was only here for the end."`
 				`	"They didn't seem too happy with you."`
-			`	He grunts. "Cowards, the lot of them. True, it is, that something of a gamble I took, risking one of our jump drives beyond an unknown wormhole. But, necessary it was. Necessary for progress of our understanding. For our survival."`
+			`	He grunts. "Cowards, the lot of them. True, it is, that something of a gamble I took, risking one of our Jump Drives beyond an unknown wormhole. But, necessary it was. Necessary for progress of our understanding. For our survival."`
 				goto beckon
 
 
