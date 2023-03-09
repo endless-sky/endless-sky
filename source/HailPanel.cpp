@@ -56,13 +56,20 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 	// Drones are always unpiloted, so they never respond to hails.
 	bool isMute = ship->GetPersonality().IsMute() || (ship->Attributes().Category() == "Drone");
 	hasLanguage = !isMute && (gov->Language().empty() || player.Conditions().Get("language: " + gov->Language()));
+	canAssistPlayer = !ship->CanBeCarried();
 
 	if(isMute)
 		message = "(There is no response to your hail.)";
 	else if(!hasLanguage)
 		message = "(An alien voice says something in a language you do not recognize.)";
-	else if(gov->IsEnemy() && !ship->IsDisabled())
-		SetBribe(gov->GetBribeFraction());
+	else if(gov->IsEnemy())
+	{
+		// Enemy ships always show hostile messages.
+		// They either show bribing messages,
+		// or standard hostile messages, if disabled.
+		if(!ship->IsDisabled())
+			SetBribe(gov->GetBribeFraction());
+	}
 	else if(ship->IsDisabled())
 	{
 		const Ship *flagship = player.Flagship();
@@ -77,13 +84,13 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 		if(flagship->NeedsFuel(false))
 		{
 			playerNeedsHelp = true;
-			canGiveFuel = ship->CanRefuel(*flagship);
+			canGiveFuel = ship->CanRefuel(*flagship) && canAssistPlayer;
 		}
 		// Check if the player is disabled.
 		if(flagship->IsDisabled())
 		{
 			playerNeedsHelp = true;
-			canRepair = true;
+			canRepair = canAssistPlayer;
 		}
 
 		if(ship->GetPersonality().IsSurveillance())
@@ -105,6 +112,8 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 			else if(canRepair)
 				message += "patch you up?";
 		}
+		else if(playerNeedsHelp && !canAssistPlayer)
+			message = "Sorry, my ship is too small to have the right equipment to assist you.";
 	}
 
 	if(message.empty())
@@ -123,10 +132,10 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 		header = gov->GetName() + " " + planet->Noun() + " \"" + planet->Name() + "\":";
 	hasLanguage = (gov->Language().empty() || player.Conditions().Get("language: " + gov->Language()));
 
-	if(!hasLanguage)
-		message = "(An alien voice says something in a language you do not recognize.)";
-	else if(planet && player.Flagship())
-	{
+	// If the player is hailing a planet, determine if a mission grants them clearance before checking
+	// if they have a language that matches the planet's government. This allows mission clearance
+	// to bypass language barriers.
+	if(planet && player.Flagship())
 		for(const Mission &mission : player.Missions())
 			if(mission.HasClearance(planet) && mission.ClearanceMessage() != "auto"
 					&& mission.HasFullClearance())
@@ -135,6 +144,11 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 				message = mission.ClearanceMessage();
 				return;
 			}
+
+	if(!hasLanguage)
+		message = "(An alien voice says something in a language you do not recognize.)";
+	else if(planet && player.Flagship())
+	{
 		if(planet->CanLand())
 			message = "You are cleared to land, " + player.Flagship()->Name() + ".";
 		else
@@ -253,15 +267,13 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			message = planet->DemandTribute(player);
 		return true;
 	}
-	else if(key == 'h' && hasLanguage && ship)
+	else if(key == 'h' && hasLanguage && ship && canAssistPlayer)
 	{
 		if(shipIsEnemy || ship->IsDisabled())
 			return false;
 		if(playerNeedsHelp)
 		{
-			if(ship->CanBeCarried())
-				message = "Sorry, my ship is too small to have the right equipment to assist you.";
-			else if(ship->GetPersonality().IsSurveillance())
+			if(ship->GetPersonality().IsSurveillance())
 				message = "Sorry, I'm too busy to help you right now.";
 			else if(canGiveFuel || canRepair)
 			{
