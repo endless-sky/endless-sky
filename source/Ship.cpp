@@ -2463,8 +2463,8 @@ void Ship::DoGeneration()
 		double activeCooling = coolingEfficiency * attributes.Get("active cooling");
 		if(activeCooling > 0. && heat > 0. && energy >= 0.)
 		{
-			// Although it's a misuse of this feature, handle the case where
-			// "active cooling" does not require any energy.
+			// Handle the case where "active cooling"
+			// does not require any energy.
 			double coolingEnergy = attributes.Get("cooling energy");
 			if(coolingEnergy)
 			{
@@ -2473,7 +2473,7 @@ void Ship::DoGeneration()
 				energy -= spentEnergy;
 			}
 			else
-				heat -= activeCooling;
+				heat -= activeCooling * min(1., Heat());
 		}
 	}
 
