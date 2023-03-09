@@ -59,6 +59,7 @@ using namespace std;
 
 namespace {
 	const string HIDE_OUTFITTERS = "Hide unvisited outfitters";
+	const string KNOWN_OUTFIT_KEY = "known outfit";
 
 	// Move the flagship to the start of your list of ships. It does not make sense
 	// that the flagship would change if you are reunited with a different ship that
@@ -410,6 +411,8 @@ void PlayerInfo::Load(const string &path)
 		}
 		else if(child.Token(0) == "start")
 			startData.Load(child);
+		else if((child.Token(0) == KNOWN_OUTFIT_KEY) && (child.Size() >= 2))
+			DiscoverOutfit(*GameData::Outfits().Get(child.Token(1)));
 	}
 	// Modify the game data with any changes that were loaded from this file.
 	ApplyChanges();
@@ -4491,6 +4494,15 @@ void PlayerInfo::Save(DataWriter &out) const
 			}
 	}
 	out.EndChild();
+
+	//  Save a list of all known outfits to the player
+	WriteSorted(knownOutfits,
+		[](const Outfit *const *lhs, const Outfit *const *rhs)
+			{ return (*lhs)->TrueName() < (*rhs)->TrueName(); },
+		[&out](const Outfit *outfit)
+		{
+			out.Write(KNOWN_OUTFIT_KEY, outfit->TrueName());
+		});
 
 	out.Write();
 	out.WriteComment("How you began:");
