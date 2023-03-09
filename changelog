@@ -289,7 +289,7 @@ Version 0.10.0
       * Ship variant definitions can now remove all the bays from the base definition. (@daggs1)
       * It is now possible to offer a mission in the shipyard or outfitter. (@rovermmicrover)
       * A system definition can now include a custom value for the invisible fence radius. (@a-random-lemurian)
-      * TODO: find a concise way to describe the foreign penalty thing for governments. (@Hurleveur)
+      * Governments can now have penalties for actions taken against other governments that differ from how they take those same actions agsint themselves, instead of using the same penalty multipliers for everyone. (@Hurleveur)
       * Missions can now define a "to accept" condition set. (@rovermicrover)
       * Governments can use named "stock" colors instead of always defining a color literal. (@warp-core)
       * Added a "flotsam chance" attribute for outfits which determines the chance the outfit will be dropped as flotsam when the ship carrying it explodes. (@Azure3141)
@@ -313,8 +313,7 @@ Version 0.10.0
       * The "scan speed" attributes have been replaced with "scan efficiency" attributes. The higher your scan efficiency, the quicker the scan, but the speed of a scan is now also influenced by the size of the ship you are scanning and its distance from you. Overall scan times will have increased. (@Ferociousfeind)
       * Ships with the "forbearing" personality will now also react to special damage types, instead of just based on health. (@Hurleveur)
       * Both a dialog and conversation may now be displayed upon completing the objective for a mission NPC. (@Hurleveur)
-      * Improve wormhole definition syntax. (@quyykk, @tibetiroka)
-        * TODO: this
+      * Made wormholes root-defined objects, allowing for more customization of wormhole behavior. (@quyykk, @tibetiroka)
       * Restored the old overheating behaviour where a ship is completely unable to act, instead of just not having energy generation while overheated. (@warp-core)
       * Initiating a hyperspace jump with no travel plan set does not set one. (@Zitchas)
       * Hazard environmental effects may now be given non-integer magnitudes. (@RisingLeaf)

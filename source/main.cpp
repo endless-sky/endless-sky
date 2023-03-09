@@ -34,6 +34,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MenuPanel.h"
 #include "Panel.h"
 #include "PlayerInfo.h"
+#include "Plugins.h"
 #include "Preferences.h"
 #include "PrintData.h"
 #include "Screen.h"
@@ -127,6 +128,9 @@ int main(int argc, char *argv[])
 	Files::Init(argv);
 
 	try {
+		// Load plugin preferences before game data if any.
+		Plugins::LoadSettings();
+
 		// Begin loading the game data.
 		bool isConsoleOnly = loadOnly || printTests || printData;
 		future<void> dataLoading = GameData::BeginLoad(isConsoleOnly, debugMode);
@@ -217,6 +221,7 @@ int main(int argc, char *argv[])
 	Preferences::Set("fullscreen", GameWindow::IsFullscreen());
 	Screen::SetRaw(GameWindow::Width(), GameWindow::Height());
 	Preferences::Save();
+	Plugins::Save();
 
 	Audio::Quit();
 	GameWindow::Quit();

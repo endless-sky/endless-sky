@@ -1167,6 +1167,95 @@ event "navy occupying the south"
 event "catalytic ramscoop available"
 	outfitter "Deep Sky Basics"
 		"Catalytic Ramscoop"
+	fleet "Republic Logistics"
+		add variant 19
+			"Auxiliary (Mark II)"
+			"Dropship" 2
+			"Lance" 2
+			"Cruiser"
+			"Combat Drone" 4
+			"Frigate"
+			"Gunboat" 2
+		add variant 19
+			"Auxiliary (Cargo Mark II)"
+			"Dropship" 2
+			"Lance" 2
+			"Cruiser"
+			"Combat Drone" 4
+			"Frigate"
+			"Gunboat" 2
+		add variant 19
+			"Auxiliary (Transport Mark II)"
+			"Dropship" 2
+			"Lance" 2
+			"Cruiser"
+			"Combat Drone" 4
+			"Frigate"
+			"Gunboat" 2
+		add variant 1
+			"Auxiliary (Cargo Mark II)" 3
+			"Dropship" 3
+			"Lance" 9
+			"Cruiser" 2
+			"Combat Drone" 8
+		add variant 1
+			"Auxiliary (Transport Mark II)"
+			"Auxiliary (Cargo Mark II)"
+			"Auxiliary (Mark II)"
+			"Dropship" 6
+			"Lance" 6
+			"Cruiser" 2
+			"Combat Drone" 8
+		add variant 1
+			"Auxiliary (Transport Mark II)" 3
+			"Dropship" 9
+			"Lance" 3
+			"Cruiser" 2
+			"Combat Drone" 8
+		remove variant
+			"Auxiliary"
+			"Dropship" 2
+			"Lance" 2
+			"Cruiser"
+			"Combat Drone" 4
+			"Frigate"
+			"Gunboat" 2
+		remove variant
+			"Auxiliary (Cargo)"
+			"Dropship" 2
+			"Lance" 2
+			"Cruiser"
+			"Combat Drone" 4
+			"Frigate"
+			"Gunboat" 2
+		remove variant
+			"Auxiliary (Transport)"
+			"Dropship" 2
+			"Lance" 2
+			"Cruiser"
+			"Combat Drone" 4
+			"Frigate"
+			"Gunboat" 2
+		remove variant
+			"Auxiliary (Cargo)" 3
+			"Dropship" 3
+			"Lance" 9
+			"Cruiser" 2
+			"Combat Drone" 8
+		remove variant
+			"Auxiliary (Transport)"
+			"Auxiliary (Cargo)"
+			"Auxiliary"
+			"Dropship" 6
+			"Lance" 6
+			"Cruiser" 2
+			"Combat Drone" 8
+		remove variant
+			"Auxiliary (Transport)" 3
+			"Dropship" 9
+			"Lance" 3
+			"Cruiser" 2
+			"Combat Drone" 8
 
 
 
