@@ -119,7 +119,7 @@ help "uninstalling and storage"
 	`If you sell an outfit at an outfitter, then you can immediately buy it back for the same price that you sold it, so long as you do not leave the planet. This means that you do not necessarily need to worry about uninstalling outfits into planetary storage when you are changing outfits around.`
 
 help "limited outfitter"
-	`Althrough this planet's spaceport doesn't have the special equipment needed to install and uninstall outfits, you can still leave some of your cargo at a place called "planetary storage". This, however, doesn't allow you to store mission cargo or common trade goods.`
+	`Although this planet's spaceport doesn't have the special equipment needed to install and uninstall outfits, you can still leave some of your cargo at a place called "planetary storage". This, however, doesn't allow you to store mission cargo or common trade goods.`
 	`To move an item into planetary storage, press R. If you want to take something back to your ship's cargo, press C. To sell an item, press S.`
 
 help "stranded"
