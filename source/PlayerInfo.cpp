@@ -57,6 +57,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	const string KNOWN_SHIP_MODEL_KEY = "known ship model";
+
 	// Move the flagship to the start of your list of ships. It does not make sense
 	// that the flagship would change if you are reunited with a different ship that
 	// was higher up the list.
@@ -381,6 +383,8 @@ void PlayerInfo::Load(const string &path)
 		}
 		else if(child.Token(0) == "start")
 			startData.Load(child);
+		else if((child.Token(0) == KNOWN_SHIP_MODEL_KEY) && (child.Size() >= 2))
+			DiscoverShipModel(*GameData::Ships().Get(child.Token(1)));
 	}
 	// Modify the game data with any changes that were loaded from this file.
 	ApplyChanges();
@@ -4108,6 +4112,10 @@ void PlayerInfo::Save(DataWriter &out) const
 			}
 	}
 	out.EndChild();
+
+	//  Save a list of all known ships to the player
+	for(auto &&it : knownShipModels)
+		out.Write(KNOWN_SHIP_MODEL_KEY, it);
 
 	out.Write();
 	out.WriteComment("How you began:");
