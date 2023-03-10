@@ -1611,7 +1611,7 @@ mission "Hai Translator Ban Lifted"
 			action
 				set "Hai Translator Ban Lifted: why?"
 			`	"They were illegal until now. Humans and Hai created translation devices weeks after first contact; it is an ancient technology to both races. Our Elders felt a language barrier would facilitate Hai secrecy, and human authorities agreed, so they banned the devices.`
-			`	"Very few Hai actually know the human language. We've been using these devices." The official lifts fur along the side of their head, and you can see a device attached to their ear, the front of their neck, and the back of their head.`
+			`	"Very few Hai actually know the human language. We've been using these devices." The official lifts fur along the side of their head, and you can see a device attached to their ear, the front of their neck, and the back of their head. "The ones we wear only work for Hai, but we have ones designed for humans`
 			`	"Times have changed, and we must shatter the language barrier to build friendships. Do you want a translator?"`
 				goto decision
 			label how
