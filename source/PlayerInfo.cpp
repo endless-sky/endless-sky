@@ -57,7 +57,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-        const string HIDE_OUTFITTERS = "Hide unvisited outfitters";
+	const string HIDE_OUTFITTERS = "Hide unvisited outfitters";
 
 	// Move the flagship to the start of your list of ships. It does not make sense
 	// that the flagship would change if you are reunited with a different ship that
