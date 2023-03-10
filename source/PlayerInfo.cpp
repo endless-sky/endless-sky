@@ -60,6 +60,8 @@ using namespace std;
 namespace {
 	const string HIDE_OUTFITTERS = "Hide unvisited outfitters";
 	const string HIDE_OUTFITS = "Hide unknown outfits";
+	const string HIDE_SHIP_MODELS = "Hide unknown ship models";
+
 	const string KNOWN_OUTFIT_KEY = "known outfit";
 	const string KNOWN_SHIP_MODEL_KEY = "known ship model";
 
@@ -2934,7 +2936,7 @@ void PlayerInfo::DiscoverOutfits(const std::map<const Outfit *, int> &outfits)
 
 bool PlayerInfo::ShipModelIsKnown(const Ship& ship) const
 {
-	return true;
+	return (Preferences::Has(HIDE_SHIP_MODELS)) ? knownShipModels.count(ship.VariantName()) : true;
 }
 
 
