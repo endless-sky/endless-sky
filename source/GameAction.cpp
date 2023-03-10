@@ -41,6 +41,8 @@ namespace {
 		player.BuyShip(model, name, true);
 		Messages::Add("The " + model->ModelName() + " \"" + name + "\" was added to your fleet."
 			, Messages::Importance::High);
+
+		player.DiscoverShipModel(*model);
 	}
 
 	void DoGift(PlayerInfo &player, const Outfit *outfit, int count, UI *ui)
