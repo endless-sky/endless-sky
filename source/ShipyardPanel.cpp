@@ -96,7 +96,12 @@ ShipyardPanel::ShipyardPanel(PlayerInfo &player)
 		sort(it.second.begin(), it.second.end(), BySeriesAndIndex<Ship>());
 
 	if(player.GetPlanet())
+	{
 		shipyard = player.GetPlanet()->Shipyard();
+
+		for(auto it : shipyard)
+			player.DiscoverShipModel(*it);
+	}
 }
 
 
