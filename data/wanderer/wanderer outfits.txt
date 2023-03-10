@@ -23,8 +23,7 @@ outfit "Sunbeam"
 	"gun ports" -1
 	weapon
 		sprite "projectile/sunbeam"
-			"frame rate" 1.3
-			"random start frame"
+			"frame rate" 30
 		sound "sunbeam"
 		"hit effect" "sunbeam impact"
 		"inaccuracy" .2
@@ -61,8 +60,7 @@ outfit "Sunbeam Turret"
 	"required crew" 1
 	weapon
 		sprite "projectile/sunbeam"
-			"frame rate" 1.3
-			"random start frame"
+			"frame rate" 30
 		"hardpoint sprite" "hardpoint/sunbeam turret"
 		"hardpoint offset" -2.0 12.0
 		sound "sunbeam"
@@ -92,12 +90,11 @@ outfit "Dual Sunbeam Turret"
 	"required crew" 2
 	weapon
 		sprite "projectile/2x sunbeam"
-			"frame rate" 1.3
-			"random start frame"
+			"frame rate" 30
 		"hardpoint sprite" "hardpoint/dual sunbeam turret"
 		"hardpoint offset" 12.
 		sound "sunbeam"
-		"hit effect" "sunbeam impact"
+		"hit effect" "sunbeam impact" 2
 		"inaccuracy" .2
 		"turret turn" 1.0
 		"velocity" 540
