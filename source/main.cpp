@@ -157,7 +157,7 @@ int main(int argc, char *argv[])
 			return 0;
 		}
 
-		PlayerInfo player;
+		PlayerInfo &player = PlayerInfo::ActivePlayer();
 		if(loadOnly)
 		{
 			// Set the game's initial internal state.
