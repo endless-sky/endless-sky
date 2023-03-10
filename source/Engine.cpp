@@ -854,7 +854,7 @@ void Engine::Step(bool isActive)
 			// Actual information requires a scrutable target
 			// that is within the relevant scanner range.
 			bool scrutable = !target->Attributes().Get("inscrutable");
-			if ((targetRange <= (tacticalRange + crewScanRange) && scrutable)
+			if((targetRange <= (tacticalRange + crewScanRange) && scrutable)
 				|| ((tacticalRange || crewScanRange) && target->IsYours()))
 			{
 				info.SetCondition("target crew display");
@@ -881,7 +881,7 @@ void Engine::Step(bool isActive)
 				int heat = round(100. * target->Heat());
 				info.SetString("target heat", to_string(heat) + "%");
 			}
-			if ((targetRange <= (strategicScanRange + weaponScanRange) && scrutable)
+			if((targetRange <= (strategicScanRange + weaponScanRange) && scrutable)
 				|| ((strategicScanRange || weaponScanRange) && target->IsYours()))
 			{
 				info.SetCondition("target weapon range display");
@@ -891,15 +891,19 @@ void Engine::Step(bool isActive)
 				info.SetString("target gun", to_string(gunRange) + " ");
 			}
 			// This calculates the turn speed and selects the display position.
-			if((targetRange <= (tacticalRange + crewScanRange) && targetRange <= (strategicScanRange + maneuverScanRange) && scrutable)
-				|| ((strategicScanRange || maneuverScanRange) && (tacticalRange || crewScanRange) && target->IsYours()))
+			if((targetRange <= (tacticalRange + crewScanRange)
+				&& targetRange <= (strategicScanRange + maneuverScanRange) && scrutable)
+				|| ((strategicScanRange || maneuverScanRange)
+					&& (tacticalRange || crewScanRange) && target->IsYours()))
 			{
 				info.SetCondition("turn while combined");
 				int turnRate = round(60 * target->TrueTurnRate());
 				info.SetString("target turnrate", to_string(turnRate) + " ");
 			}
-			else if((targetRange >= (tacticalRange + crewScanRange) && targetRange <= (strategicScanRange + maneuverScanRange) && scrutable)
-				|| ((strategicScanRange || maneuverScanRange) && target->IsYours() && !tacticalRange && !crewScanRange))
+			else if((targetRange >= (tacticalRange + crewScanRange)
+				&& targetRange <= (strategicScanRange + maneuverScanRange) && scrutable)
+				|| ((strategicScanRange || maneuverScanRange) && target->IsYours()
+					&& !tacticalRange && !crewScanRange))
 			{
 				info.SetCondition("turn while not combined");
 				int turnRate = round(60 * target->TrueTurnRate());
