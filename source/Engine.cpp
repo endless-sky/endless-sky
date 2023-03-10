@@ -838,7 +838,7 @@ void Engine::Step(bool isActive)
 				info.SetString("target range", to_string(static_cast<int>(round(targetRange))));
 			if((tacticalRange || rangeFinder) && !strategicScanRange)
 				info.SetCondition("range display");
-			else
+			else if(strategicScanRange)
 				info.SetCondition("strategic range display");
 			// Actual information requires a scrutable target
 			// that is within the relevant scanner range.
@@ -849,21 +849,21 @@ void Engine::Step(bool isActive)
 				info.SetCondition("target crew display");
 				info.SetString("target crew", to_string(target->Crew()));
 			}
-			if ((targetRange <= (tacticalRange + energyScanRange) && scrutable)
+			if((targetRange <= (tacticalRange + energyScanRange) && scrutable)
 				|| ((tacticalRange || energyScanRange) && target->IsYours()))
 			{
 				info.SetCondition("target energy display");
 				int energy = round(target->Energy() * target->Attributes().Get("energy capacity"));
 				info.SetString("target energy", to_string(energy));
 			}
-			if ((targetRange <= (tacticalRange + fuelScanRange) && scrutable)
+			if((targetRange <= (tacticalRange + fuelScanRange) && scrutable)
 				|| ((tacticalRange || fuelScanRange) && target->IsYours()))
 			{
 				info.SetCondition("target fuel display");
 				int fuel = round(target->Fuel() * target->Attributes().Get("fuel capacity"));
 				info.SetString("target fuel", to_string(fuel));
 			}
-			if ((targetRange <= (tacticalRange + thermalScanRange) && scrutable)
+			if((targetRange <= (tacticalRange + thermalScanRange) && scrutable)
 				|| ((tacticalRange || thermalScanRange) && target->IsYours()))
 			{
 				info.SetCondition("target thermal display");
@@ -884,27 +884,19 @@ void Engine::Step(bool isActive)
 				int gunRange = round(target->GetAICache().GunRange());
 				info.SetString("target gun", to_string(gunRange) + " ");
 			}
-			if((targetRange <= tacticalRange && targetRange <= strategicScanRange && scrutable)
-				|| (strategicScanRange && tacticalRange && target->IsYours()) || (targetRange <= crewScanRange && targetRange <= strategicScanRange && scrutable))
+			if((targetRange <= (tacticalRange + crewScanRange) && targetRange <= strategicScanRange && scrutable)
+				|| (strategicScanRange && (tacticalRange || crewScanRange) && target->IsYours()))
 			{
 				info.SetCondition("turn while combined");
 				int turnRate = round(60 * target->TrueTurnRate());
 				info.SetString("target turnrate", to_string(turnRate) + " ");
 			}
-			else if((targetRange >= tacticalRange && targetRange <= strategicScanRange && scrutable)
-				|| (strategicScanRange && target->IsYours() && !tacticalRange))
+			else if((targetRange >= (tacticalRange + crewScanRange) && targetRange <= strategicScanRange && scrutable)
+				|| (strategicScanRange && target->IsYours() && !tacticalRange && !crewScanRange))
 			{
 				info.SetCondition("turn while not combined");
 				int turnRate = round(60 * target->TrueTurnRate());
 				info.SetString("target turnrate", to_string(turnRate) + " ");
-			}
-			// Crew information requires a scrutable target
-			// that is within the crew scanner range.
-			if ((targetRange <= crewScanRange && scrutable)
-				|| (crewScanRange && target->IsYours()))
-			{
-				info.SetCondition("target crew display");
-				info.SetString("target crew", to_string(target->Crew()));
 			}
 		}
 	}
