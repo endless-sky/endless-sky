@@ -5471,7 +5471,7 @@ mission "Quicksilver Mixup [2]"
 					goto refuse
 
 			label shipment
-			`	The man takes a look at his tablet and says, "This week, it totalled... 38 tons of letters and miscellaneous packages here, and then 29 tons to be brought back from Quicksilver."`
+			`	The man takes a look at his tablet and says, "This week, it totaled... 38 tons of letters and miscellaneous packages here, and then 29 tons to be brought back from Quicksilver."`
 			`	"38 tons of misposted packages? Just this month?!" you ask.`
 			`	He nods. "Told you it happened often. And few of these packages even weigh over a kilo! Big shipments hardly get misposted, it's mostly private citizens who make such a mistake. Mostly. You'd be amazed!"`
 			`	You two shake hands and arrange for the misposted packages to be loaded onto the <ship>. Time to head to Quicksilver.`
