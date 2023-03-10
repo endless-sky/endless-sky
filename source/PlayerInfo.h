@@ -311,6 +311,10 @@ public:
 	// Get the set of collapsed categories for the named panel.
 	std::set<std::string> &Collapsed(const std::string &name);
 
+	// Methods for changing or getting if an ship model is known to the player.
+	bool ShipModelIsKnown(const Ship &ship) const;
+	void DiscoverShipModel(const Ship &ship);
+
 
 private:
 	// Apply any "changes" saved in this player info to the global game state.
@@ -396,6 +400,7 @@ private:
 	std::set<const System *> seen;
 	std::set<const System *> visitedSystems;
 	std::set<const Planet *> visitedPlanets;
+	std::set<std::string> knownShipModels;
 	std::vector<const System *> travelPlan;
 	const Planet *travelDestination = nullptr;
 
