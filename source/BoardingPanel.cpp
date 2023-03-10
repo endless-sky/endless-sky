@@ -548,8 +548,8 @@ BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValu
 BoardingPanel::Plunder::Plunder(PlayerInfo &player, const Outfit *outfit, int count)
 	: knownToPlayer(player.OutfitIsKnown(*outfit)), name(outfit->ShownName(knownToPlayer, count)),
 	outfit(outfit), count(count),
-	unitValue((knownToPlayer ? outfit->Cost() :
-		   outfit->Mass()) * (outfit->Get("installable") < 0. ? 1 : Depreciation::Full()))
+	unitValue((knownToPlayer ? outfit->Cost() : outfit->Mass()) *
+		(outfit->Get("installable") < 0. ? 1 : Depreciation::Full()))
 {
 	UpdateStrings();
 }
