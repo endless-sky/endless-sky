@@ -825,15 +825,26 @@ void Engine::Step(bool isActive)
 
 			targetVector = target->Position() - center;
 
-			// Check if the target is close enough to show the relevant information.
+			// Finds the range from the center of the flagship to the center of the target
+			double targetRange = target->Position().Distance(flagship->Position());
+			// Finds the range of the scan collections (tactical and strategic)
 			double tacticalRange = 100. * sqrt(flagship->Attributes().Get("tactical scan power"));
 			double strategicScanRange = 100. * sqrt(flagship->Attributes().Get("strategic scan power"));
-			double rangeFinder = 100. * sqrt(flagship->Attributes().Get("range finder power"));
+			// Finds the range of the individual information types
 			double crewScanRange = 100. * sqrt(flagship->Attributes().Get("crew scan power"));
-			double fuelScanRange = 100. * sqrt(flagship->Attributes().Get("fuel scan power"));
 			double energyScanRange = 100. * sqrt(flagship->Attributes().Get("energy scan power"));
+			double fuelScanRange = 100. * sqrt(flagship->Attributes().Get("fuel scan power"));
+			double maneuverScanRange = 100. * sqrt(flagship->Attributes().Get("maneuver scan power"));
 			double thermalScanRange = 100. * sqrt(flagship->Attributes().Get("thermal scan power"));
-			double targetRange = target->Position().Distance(flagship->Position());
+			double weaponScanRange = 100. * sqrt(flagship->Attributes().Get("weapon scan power"));
+			// The range display currently does not care about the distance,
+			// it is either present or not; but treating it the same makes it
+			// easy for people to change this if desired.
+			double rangeFinder = 100. * sqrt(flagship->Attributes().Get("range finder power"));
+			// Range information. If the player has any range finding,
+			// then calculate the range and store it. If they do not
+			// have strategic or weapon range info, use normal display.
+			// If they do, then use strategic range display.
 			if(tacticalRange || strategicScanRange || rangeFinder)
 				info.SetString("target range", to_string(static_cast<int>(round(targetRange))));
 			if((tacticalRange || rangeFinder) && !strategicScanRange)
@@ -870,13 +881,8 @@ void Engine::Step(bool isActive)
 				int heat = round(100. * target->Heat());
 				info.SetString("target heat", to_string(heat) + "%");
 			}
-
-
-
-			// Actual strategic information requires a scrutable
-			// target that is within the strategic scanner range.
-			if((targetRange <= strategicScanRange && scrutable)
-				|| (strategicScanRange && target->IsYours()))
+			if ((targetRange <= (strategicScanRange + weaponScanRange) && scrutable)
+				|| ((strategicScanRange || weaponScanRange) && target->IsYours()))
 			{
 				info.SetCondition("target weapon range display");
 				int turretRange = round(target->GetAICache().TurretRange());
@@ -884,15 +890,16 @@ void Engine::Step(bool isActive)
 				int gunRange = round(target->GetAICache().GunRange());
 				info.SetString("target gun", to_string(gunRange) + " ");
 			}
-			if((targetRange <= (tacticalRange + crewScanRange) && targetRange <= strategicScanRange && scrutable)
-				|| (strategicScanRange && (tacticalRange || crewScanRange) && target->IsYours()))
+			// This calculates the turn speed and selects the display position.
+			if((targetRange <= (tacticalRange + crewScanRange) && targetRange <= (strategicScanRange + maneuverScanRange) && scrutable)
+				|| ((strategicScanRange || maneuverScanRange) && (tacticalRange || crewScanRange) && target->IsYours()))
 			{
 				info.SetCondition("turn while combined");
 				int turnRate = round(60 * target->TrueTurnRate());
 				info.SetString("target turnrate", to_string(turnRate) + " ");
 			}
-			else if((targetRange >= (tacticalRange + crewScanRange) && targetRange <= strategicScanRange && scrutable)
-				|| (strategicScanRange && target->IsYours() && !tacticalRange && !crewScanRange))
+			else if((targetRange >= (tacticalRange + crewScanRange) && targetRange <= (strategicScanRange + maneuverScanRange) && scrutable)
+				|| ((strategicScanRange || maneuverScanRange) && target->IsYours() && !tacticalRange && !crewScanRange))
 			{
 				info.SetCondition("turn while not combined");
 				int turnRate = round(60 * target->TrueTurnRate());
