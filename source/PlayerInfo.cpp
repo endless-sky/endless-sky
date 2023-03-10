@@ -61,6 +61,7 @@ namespace {
 	const string HIDE_OUTFITTERS = "Hide unvisited outfitters";
 	const string HIDE_OUTFITS = "Hide unknown outfits";
 	const string KNOWN_OUTFIT_KEY = "known outfit";
+	const string KNOWN_SHIP_MODEL_KEY = "known ship model";
 
 	// Move the flagship to the start of your list of ships. It does not make sense
 	// that the flagship would change if you are reunited with a different ship that
@@ -414,6 +415,8 @@ void PlayerInfo::Load(const string &path)
 			startData.Load(child);
 		else if((child.Token(0) == KNOWN_OUTFIT_KEY) && (child.Size() >= 2))
 			DiscoverOutfit(*GameData::Outfits().Get(child.Token(1)));
+		else if((child.Token(0) == KNOWN_SHIP_MODEL_KEY) && (child.Size() >= 2))
+			DiscoverShipModel(*GameData::Ships().Get(child.Token(1)));
 	}
 	// Modify the game data with any changes that were loaded from this file.
 	ApplyChanges();
@@ -4522,6 +4525,10 @@ void PlayerInfo::Save(DataWriter &out) const
 		{
 			out.Write(KNOWN_OUTFIT_KEY, outfit->TrueName());
 		});
+
+	//  Save a list of all known ships to the player
+	for(auto &&it : knownShipModels)
+		out.Write(KNOWN_SHIP_MODEL_KEY, it);
 
 	out.Write();
 	out.WriteComment("How you began:");
