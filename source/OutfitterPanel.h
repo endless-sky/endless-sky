@@ -87,7 +87,7 @@ private:
 	// Record whether we've checked if the player needs ammo refilled.
 	bool checkedRefill = false;
 	// Allow toggling whether outfits that are for sale are shown.
-	bool showForSale = true;
+	bool showForSale;
 	// Allow toggling whether stored outfits are shown.
 	bool showStorage = true;
 	// Allow toggling whether outfits in cargo are shown.

@@ -75,8 +75,7 @@ namespace {
 
 
 
-OutfitterPanel::OutfitterPanel(PlayerInfo &player)
-	: ShopPanel(player, true, !player.GetPlanet()->HasOutfitter())
+OutfitterPanel::OutfitterPanel(PlayerInfo &player) : ShopPanel(player, true)
 {
 	for(const pair<const string, Outfit> &it : GameData::Outfits())
 		catalog[it.second.Category()].insert(it.first);
@@ -94,8 +93,7 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 
 	if(player.GetPlanet())
 		outfitter = player.GetPlanet()->Outfitter();
-	if(isLimitedOutfitter)
-		showForSale = false;
+	showForSale = planet->HasOutfitter();
 }
 
 

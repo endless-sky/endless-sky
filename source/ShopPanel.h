@@ -40,7 +40,7 @@ class Ship;
 // outfitter panel (e.g. the sidebar with the ships you own).
 class ShopPanel : public Panel {
 public:
-	explicit ShopPanel(PlayerInfo &player, bool isOutfitter, const bool isLimitedOutfitter = false);
+	explicit ShopPanel(PlayerInfo &player, const bool isOutfitter);
 
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -126,8 +126,7 @@ protected:
 	// Remember the current day, for calculating depreciation.
 	int day;
 	const Planet *planet = nullptr;
-	// An "outfitter" that doesn't allow installing and uninstalling outfits.
-	const bool isLimitedOutfitter;
+	const bool isOutfitter;
 
 	// The player-owned ship that was first selected in the sidebar (or most recently purchased).
 	Ship *playerShip = nullptr;

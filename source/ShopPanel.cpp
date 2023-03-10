@@ -63,10 +63,10 @@ namespace {
 
 
 
-ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter, const bool isLimitedOutfitter)
+ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	: player(player), day(player.GetDate().DaysSinceEpoch()),
-	planet(player.GetPlanet()), isLimitedOutfitter(isLimitedOutfitter),
-	playerShip(isLimitedOutfitter ? nullptr : player.Flagship()),
+	planet(player.GetPlanet()), isOutfitter(isOutfitter),
+	playerShip((isOutfitter ? planet->HasOutfitter() : true) ? player.Flagship() : nullptr),
 	categories(GameData::Category(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard"))
 {
@@ -193,7 +193,7 @@ void ShopPanel::DrawShipsSidebar()
 		Point(1, Screen::Height()),
 		*GameData::Colors().Get("shop side panel background"));
 
-	if(!isLimitedOutfitter)
+	if(isOutfitter ? planet->HasOutfitter() : true)
 	{
 		// Draw this string, centered in the side panel:
 		static const string YOURS = "Your Ships:";
@@ -699,7 +699,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		return SetScrollToTop();
 	else if(key == SDLK_END)
 		return SetScrollToBottom();
-	else if(key >= '0' && key <= '9' && !isLimitedOutfitter)
+	else if(key >= '0' && key <= '9' && isOutfitter ? planet->HasOutfitter() : true)
 	{
 		int group = key - '0';
 		if(mod & (KMOD_CTRL | KMOD_GUI))
