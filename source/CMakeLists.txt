@@ -96,6 +96,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ConversationPanel.h
 	CoreStartData.cpp
 	CoreStartData.h
+	CrashState.cpp
+	CrashState.h
 	DamageDealt.h
 	DamageProfile.cpp
 	DamageProfile.h
@@ -117,6 +119,8 @@ target_sources(EndlessSkyLib PRIVATE
 	DistanceMap.h
 	DrawList.cpp
 	DrawList.h
+	Dropdown.cpp
+	Dropdown.h
 	Effect.cpp
 	Effect.h
 	Engine.cpp
@@ -181,6 +185,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ItemInfoDisplay.cpp
 	ItemInfoDisplay.h
 	JumpTypes.h
+	KtxFile.cpp
+	KtxFile.h
 	Logger.cpp
 	Logger.h
 	LineShader.cpp

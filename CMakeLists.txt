@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.21..3.25)
+cmake_minimum_required(VERSION 3.18)
 
 include(CMakeDependentOption)
 option(ES_USE_VCPKG "Use vcpkg to get dependencies." ON)

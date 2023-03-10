@@ -214,6 +214,17 @@ bool GameWindow::Init()
 	glDisable(GL_DEPTH_TEST);
 	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
+#ifndef NDEBUG
+#ifndef ES_GLES
+	glEnable(GL_DEBUG_OUTPUT);
+	glDebugMessageCallback([](GLenum source, GLenum type, GLuint id, GLenum severity,
+			GLsizei length, const GLchar* message, const void* userParam)
+		{
+			Logger::LogError(std::string(message, message + length));
+		},
+		nullptr);
+#endif
+#endif
 	// Check for support of various graphical features.
 	hasSwizzle = OpenGL::HasSwizzleSupport();
 	supportsAdaptiveVSync = OpenGL::HasAdaptiveVSyncSupport();

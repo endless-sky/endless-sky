@@ -145,7 +145,8 @@ bool ImageSet::IsImage(const string &path)
 		return false;
 
 	string ext = path.substr(path.length() - 4);
-	return (ext == ".png" || ext == ".jpg" || ext == ".PNG" || ext == ".JPG");
+	return (ext == ".png" || ext == ".jpg" || ext == ".PNG" || ext == ".JPG" ||
+	        ext == ".ktx" || ext == ".KTX");
 }
 
 

@@ -28,11 +28,9 @@ namespace {
 	// Trace out outlines from an image frame.
 	void Trace(const ImageBuffer &image, int frame, vector<vector<Point>> &raw)
 	{
-		const uint32_t on = 0xFF000000;
 		const int width = image.Width();
 		const int height = image.Height();
 		const int numPixels = width * height;
-		const uint32_t *begin = image.Pixels() + frame * numPixels;
 		auto LogError = [width, height](string reason)
 		{
 			Logger::LogError("Unable to create mask for " + to_string(width) + "x" + to_string(height)
@@ -52,7 +50,7 @@ namespace {
 			// Find a pixel with some renderable color data (i.e. a non-zero alpha component).
 			for( ; start < numPixels; ++start)
 			{
-				if(begin[start] & on)
+				if(image.GetAlpha(0, start % width, start / width))
 				{
 					// If this pixel is not part of an existing outline, trace it.
 					if(!hasOutline[start])
@@ -60,7 +58,7 @@ namespace {
 					// Otherwise, advance to the next transparent pixel.
 					// (any non-transparent pixels will belong to the existing outline).
 					for(++start; start < numPixels; ++start)
-						if(!(begin[start] & on))
+						if(!(image.GetAlpha(0, start % width, start / width)))
 							break;
 				}
 			}
@@ -103,7 +101,7 @@ namespace {
 					// First, ensure an offset in this direction would access a valid pixel index.
 					if(next[0] >= 0 && next[0] < width && next[1] >= 0 && next[1] < height)
 						// If that pixel has color data, then add it to the outline.
-						if(begin[pos + off[d]] & on)
+						if(image.GetAlpha(0, next[0], next[1]))
 							break;
 
 					// Otherwise, advance to the next direction.
@@ -112,7 +110,9 @@ namespace {
 					if(d == firstD)
 					{
 						isAlone = true;
-						LogError("lone point found at (" + to_string(p[0]) + ", " + to_string(p[1]) + ")");
+						// This isn't really an error, and is going to be annoyingly
+						// common when lossy compression is used.
+						//LogError("lone point found at (" + to_string(p[0]) + ", " + to_string(p[1]) + ")");
 						break;
 					}
 				}
@@ -154,7 +154,7 @@ namespace {
 				Point shift = Point(
 					step[out0][0] * scale[out0 & 1] + step[out1][0] * scale[out1 & 1],
 					step[out0][1] * scale[out0 & 1] + step[out1][1] * scale[out1 & 1]).Unit();
-				shift *= ((begin[pos] & on) >> 24) * (1. / 255.) - .5;
+				shift *= image.GetAlpha(0, p[0], p[1]) * (1. / 255.) - .5;
 				points.push_back(shift + Point(p[0], p[1]));
 
 				p[0] += step[next][0];

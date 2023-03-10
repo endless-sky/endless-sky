@@ -33,7 +33,7 @@ add_definitions("-DAL_LIBTYPE_STATIC")
 add_subdirectory(openal-soft-1.22.0  EXCLUDE_FROM_ALL)
 
 OPTION(SDL_STATIC_PIC "" ON)
-set(SDL_SHARED OFF)
+set(SDL_SHARED OFF) # doesn't seem to work right... For now passing in via gradle
 set(SDL_STATIC ON)
 add_subdirectory(SDL2-2.0.20          EXCLUDE_FROM_ALL)
 
@@ -48,8 +48,6 @@ include_directories(
 )
 
 add_definitions("-DES_GLES")
-set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -O2 -flto")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -flto")
 add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Account.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/AI.cpp
@@ -118,6 +116,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Information.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Interface.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/ItemInfoDisplay.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/KtxFile.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/LineShader.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/LoadPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/LocationFilter.cpp

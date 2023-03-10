@@ -52,21 +52,24 @@ void Sprite::AddFrames(ImageBuffer &buffer, bool is2x)
 	// If this is the 1x image, its dimensions determine the sprite's size.
 	if(!is2x)
 	{
-		width = buffer.Width();
-		height = buffer.Height();
+		width = buffer.DisplayWidth();
+		height = buffer.DisplayHeight();
 		frames = buffer.Frames();
 	}
 
-	// Reduce the size of the textures (and the GPU memory load) if we are in
-	// "Reduced graphics" mode.
-	if(Preferences::Has("Reduced graphics") && name.substr(0, 3) != "ui/")
+	if (!buffer.CompressedFormat())
 	{
-		do
+		// Reduce the size of the textures (and the GPU memory load) if we are in
+		// "Reduced graphics" mode.
+		if(Preferences::Has("Reduced graphics") && name.substr(0, 3) != "ui/")
 		{
-			buffer.ShrinkToHalfSize();
+			do
+			{
+				buffer.ShrinkToHalfSize();
+			}
+			while (buffer.Width() * buffer.Height() >= 250000);
 		}
-		while (buffer.Width() * buffer.Height() >= 250000);
-	}
+	} // else can't edit pre-compressed data like this
 
 	// Upload the images as a single array texture.
 	glGenTextures(1, &texture[is2x]);
@@ -78,11 +81,20 @@ void Sprite::AddFrames(ImageBuffer &buffer, bool is2x)
 	glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-	// Upload the image data.
-	glTexImage3D(GL_TEXTURE_2D_ARRAY, 0, GL_RGBA8, // target, mipmap level, internal format,
-		buffer.Width(), buffer.Height(), buffer.Frames(), // width, height, depth,
-		0, GL_RGBA, GL_UNSIGNED_BYTE, buffer.Pixels()); // border, input format, data type, data.
-
+	if (!buffer.CompressedFormat())
+	{
+		// Upload the image data.
+		glTexImage3D(GL_TEXTURE_2D_ARRAY, 0, GL_RGBA8, // target, mipmap level, internal format,
+			buffer.Width(), buffer.Height(), buffer.Frames(), // width, height, depth,
+			0, GL_RGBA, GL_UNSIGNED_BYTE, buffer.Pixels()); // border, input format, data type, data.
+	}
+	else
+	{
+		// Upload the image data.
+		glCompressedTexImage3D(GL_TEXTURE_2D_ARRAY, 0, buffer.CompressedFormat(), // target, mipmap level, internal format,
+			buffer.Width(), buffer.Height(), buffer.Frames(), // width, height, depth,
+			0, buffer.CompressedSize(), buffer.Pixels()); // border, input format, data type, data.
+	}
 
 	// Unbind the texture.
 	glBindTexture(GL_TEXTURE_2D_ARRAY, 0);

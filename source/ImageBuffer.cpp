@@ -15,10 +15,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ImageBuffer.h"
 
+#include "Etc2RGBA.h"
 #include "File.h"
 #include "Files.h"
+#include "KtxFile.h"
 #include "Logger.h"
 
+#include <cassert>
 #include <jpeglib.h>
 #include <png.h>
 
@@ -32,6 +35,7 @@ using namespace std;
 namespace {
 	bool ReadPNG(const string &path, ImageBuffer &buffer, int frame);
 	bool ReadJPG(const string &path, ImageBuffer &buffer, int frame);
+	bool ReadKTX(const string &path, ImageBuffer &buffer);
 	void Premultiply(ImageBuffer &buffer, int frame, int additive);
 }
 
@@ -71,8 +75,31 @@ void ImageBuffer::Allocate(int width, int height)
 		return;
 
 	pixels = new uint32_t[width * height * frames];
-	this->width = width;
-	this->height = height;
+	this->display_width = this->width = width;
+	this->display_height = this->height = height;
+}
+
+
+
+void ImageBuffer::Assign(const void* data, size_t size, int width, int height, uint32_t compressed_format)
+{
+	if(pixels || !size || !width || !height || !frames)
+		return;
+
+	pixels = new uint32_t[(size + 3) / 4 * 4];
+	memcpy(pixels, data, size);
+	this->compressed_format = compressed_format;
+	this->compressed_size = size;
+	this->display_width = this->width = width;
+	this->display_height = this->height = height;
+}
+
+
+
+void ImageBuffer::SetDisplaySize(int dw, int dh)
+{
+	display_width = dw;
+	display_height = dh;
 }
 
 
@@ -89,6 +116,19 @@ int ImageBuffer::Height() const
 	return height;
 }
 
+
+
+int ImageBuffer::DisplayWidth() const
+{
+	return display_width;
+}
+
+
+
+int ImageBuffer::DisplayHeight() const
+{
+	return display_height;
+}
 
 
 int ImageBuffer::Frames() const
@@ -114,6 +154,7 @@ uint32_t *ImageBuffer::Pixels()
 
 const uint32_t *ImageBuffer::Begin(int y, int frame) const
 {
+	assert(!compressed_format);
 	return pixels + width * (y + height * frame);
 }
 
@@ -121,13 +162,37 @@ const uint32_t *ImageBuffer::Begin(int y, int frame) const
 
 uint32_t *ImageBuffer::Begin(int y, int frame)
 {
+	assert(!compressed_format);
 	return pixels + width * (y + height * frame);
+}
+
+
+
+uint8_t ImageBuffer::GetAlpha(int frame, int x, int y) const
+{
+	if (compressed_format == 0)
+	{
+		// uncompressed RGBA
+		return *(Begin(y, frame) + x) >> 24;
+	}
+	else if (compressed_format == 0x9278    // ETC2 RGBA
+	      || compressed_format == 0x9279)   // ETC2 SRGBA
+	{
+		Etc2RGBA etc(pixels, width, height);
+		return etc.Alpha(frame, x, y);
+	}
+	else
+	{
+		// Assume compressed texture without alpha channel
+		return 255;
+	}
 }
 
 
 
 void ImageBuffer::ShrinkToHalfSize()
 {
+	assert(!compressed_format);
 	ImageBuffer result(frames);
 	result.Allocate(width / 2, height / 2);
 
@@ -162,29 +227,35 @@ bool ImageBuffer::Read(const string &path, int frame)
 	string extension = path.substr(path.length() - 4);
 	bool isPNG = (extension == ".png" || extension == ".PNG");
 	bool isJPG = (extension == ".jpg" || extension == ".JPG");
-	if(!isPNG && !isJPG)
+	bool isKTX = (extension == ".ktx" || extension == ".KTX");
+	if(!isPNG && !isJPG && !isKTX)
 		return false;
 
 	if(isPNG && !ReadPNG(path, *this, frame))
 		return false;
 	if(isJPG && !ReadJPG(path, *this, frame))
 		return false;
+	if (isKTX && !ReadKTX(path, *this))
+		return false;
 
-	// Check if the sprite uses additive blending. Start by getting the index of
-	// the last character before the frame number (if one is specified).
-	int pos = path.length() - 4;
-	if(pos > 3 && !path.compare(pos - 3, 3, "@2x"))
-		pos -= 3;
-	while(--pos)
-		if(path[pos] < '0' || path[pos] > '9')
-			break;
-	// Special case: if the image is already in premultiplied alpha format,
-	// there is no need to apply premultiplication here.
-	if(path[pos] != '=')
+	if (!isKTX) // KTX files are always pre-multiplied
 	{
-		int additive = (path[pos] == '+') ? 2 : (path[pos] == '~') ? 1 : 0;
-		if(isPNG || (isJPG && additive == 2))
-			Premultiply(*this, frame, additive);
+		// Check if the sprite uses additive blending. Start by getting the index of
+		// the last character before the frame number (if one is specified).
+		int pos = path.length() - 4;
+		if(pos > 3 && !path.compare(pos - 3, 3, "@2x"))
+			pos -= 3;
+		while(--pos)
+			if(path[pos] < '0' || path[pos] > '9')
+				break;
+		// Special case: if the image is already in premultiplied alpha format,
+		// there is no need to apply premultiplication here.
+		if(path[pos] != '=')
+		{
+			int additive = (path[pos] == '+') ? 2 : (path[pos] == '~') ? 1 : 0;
+			if(isPNG || (isJPG && additive == 2))
+				Premultiply(*this, frame, additive);
+		}
 	}
 	return true;
 }
@@ -372,8 +443,30 @@ namespace {
 
 
 
+	bool ReadKTX(const string &path, ImageBuffer &buffer)
+	{
+		File file(path);
+		if(!file)
+			return false;
+
+		std::string ktx_data = Files::Read(file);
+
+		KtxFile ktx(ktx_data);
+		if (!ktx.Valid())
+			return false;
+
+		// frames are stored in ktx file together.
+		buffer.Clear(ktx.Frames());
+		buffer.Assign(ktx.Data(), ktx.Size(), ktx.Width(), ktx.Height(), ktx.InternalFormat());
+		buffer.SetDisplaySize(ktx.OriginalWidth(), ktx.OriginalHeight());
+		return true;
+	}
+
+
+
 	void Premultiply(ImageBuffer &buffer, int frame, int additive)
 	{
+		assert(buffer.CompressedFormat() == 0); // can't do this for pre-compressed textures
 		for(int y = 0; y < buffer.Height(); ++y)
 		{
 			uint32_t *it = buffer.Begin(y, frame);

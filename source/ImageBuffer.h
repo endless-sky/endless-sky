@@ -43,8 +43,14 @@ public:
 	// image buffer; subsequent calls will be ignored.
 	void Allocate(int width, int height);
 
+	// Assign the internal buffer all at once
+	void Assign(const void* data, size_t size, int width, int height, uint32_t compressed_format);
+	void SetDisplaySize(int dw, int dh);
+
 	int Width() const;
 	int Height() const;
+	int DisplayWidth() const;
+	int DisplayHeight() const;
 	int Frames() const;
 
 	const uint32_t *Pixels() const;
@@ -53,6 +59,9 @@ public:
 	const uint32_t *Begin(int y, int frame = 0) const;
 	uint32_t *Begin(int y, int frame = 0);
 
+	// get the alpha component without making assumptions about the buffer format
+	uint8_t GetAlpha(int frame, int x, int y) const;
+
 	void ShrinkToHalfSize();
 
 	// Read a single frame. Return false if an error is encountered - either the
@@ -60,11 +69,19 @@ public:
 	bool Read(const std::string &path, int frame = 0);
 
 
+	uint32_t CompressedFormat() const { return compressed_format; }
+	uint32_t CompressedSize() const { return compressed_size; }
+
 private:
 	int width;
 	int height;
+	int display_width;
+	int display_height;
 	int frames;
 	uint32_t *pixels;
+
+	uint32_t compressed_format = 0;
+	uint32_t compressed_size = 0;
 };
 
 

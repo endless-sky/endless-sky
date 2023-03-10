@@ -92,7 +92,9 @@ void Font::Load(const string &imagePath)
 {
 	// Load the texture.
 	ImageBuffer image;
-	if(!image.Read(imagePath))
+	if(!image.Read(imagePath + ".png") &&
+	   !image.Read(imagePath + "=.ktx") &&
+	   !image.Read(imagePath + ".ktx"))
 		return;
 
 	LoadTexture(image);
@@ -265,8 +267,16 @@ void Font::LoadTexture(ImageBuffer &image)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, image.Width(), image.Height(), 0,
-		GL_RGBA, GL_UNSIGNED_BYTE, image.Pixels());
+	if (image.CompressedFormat())
+	{
+		glCompressedTexImage2D(GL_TEXTURE_2D, 0, image.CompressedFormat(),
+			image.Width(), image.Height(), 0, image.CompressedSize(), image.Pixels());
+	}
+	else
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, image.Width(), image.Height(), 0,
+			GL_RGBA, GL_UNSIGNED_BYTE, image.Pixels());
+	}
 }
 
 
@@ -276,9 +286,6 @@ void Font::CalculateAdvances(ImageBuffer &image)
 	// Get the format and size of the surface.
 	int width = image.Width() / GLYPHS;
 	height = image.Height();
-	unsigned mask = 0xFF000000;
-	unsigned half = 0xC0000000;
-	int pitch = image.Width();
 
 	// advance[previous * GLYPHS + next] is the x advance for each glyph pair.
 	// There is no advance if the previous value is 0, i.e. we are at the very
@@ -289,14 +296,16 @@ void Font::CalculateAdvances(ImageBuffer &image)
 		{
 			int maxD = 0;
 			int glyphWidth = 0;
-			uint32_t *begin = image.Pixels();
+			// Find the last non-empty pixel in the previous glyph.
 			for(int y = 0; y < height; ++y)
 			{
-				// Find the last non-empty pixel in the previous glyph.
-				uint32_t *pend = begin + previous * width;
-				uint32_t *pit = pend + width;
-				while(pit != pend && (*--pit & mask) < half) {}
-				int distance = (pit - pend) + 1;
+				int distance;
+				for (distance = width - 1; distance >= 0; --distance)
+				{
+					if (image.GetAlpha(0, previous * width + distance, y) >= 0xC0)
+						break;
+				}
+
 				glyphWidth = max(distance, glyphWidth);
 
 				// Special case: if "next" is zero (i.e. end of line of text),
@@ -304,21 +313,24 @@ void Font::CalculateAdvances(ImageBuffer &image)
 				if(next)
 				{
 					// Find the first non-empty pixel in this glyph.
-					uint32_t *nit = begin + next * width;
-					uint32_t *nend = nit + width;
-					while(nit != nend && (*nit++ & mask) < half) {}
+					int next_distance;
+					for (next_distance = 0; next_distance < width; ++next_distance)
+					{
+						if (image.GetAlpha(0, next * width + next_distance, y) >= 0xC0)
+							break;
+					}
 
 					// How far apart do you want these glyphs drawn? If drawn at
 					// an advance of "width", there would be:
 					// pend + width - pit   <- pixels after the previous glyph.
 					// nit - (nend - width) <- pixels before the next glyph.
 					// So for zero kerning distance, you would want:
-					distance += 1 - (nit - (nend - width));
+					distance += 1 - next_distance;
 				}
 				maxD = max(maxD, distance);
 
 				// Update the pointer to point to the beginning of the next row.
-				begin += pitch;
+				//begin += pitch;
 			}
 			// This is a fudge factor to avoid over-kerning, especially for the
 			// underscore and for glyph combinations like AV.
