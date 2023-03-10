@@ -90,7 +90,12 @@ ShipyardPanel::ShipyardPanel(PlayerInfo &player)
 		catalog[it.second.Attributes().Category()].insert(it.first);
 
 	if(player.GetPlanet())
+	{
 		shipyard = player.GetPlanet()->Shipyard();
+
+		for(auto it : shipyard)
+			player.DiscoverShipModel(*it);
+	}
 }
 
 
