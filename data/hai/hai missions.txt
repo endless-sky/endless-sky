@@ -1584,13 +1584,19 @@ mission "Hai Translator Ban Lifted"
 		has "event: Hai Translator Ban Lifted"
 	on offer
 		conversation
-			`After landing, you see several humans and Hai talking to one another, each in their native language. They keep looking at a device or data pad, which seems to be translating. Some translate on-screen, while others are speaking. A Hai in an official-looking uniform comes up to you.`
+			`After landing, you see several humans and Hai talking to one another, each in their native language, but they all seem to understand one another. Walking around the spaceport for a while, this seems to be ubiquitous: all humans can understand the language of the Hai. A Hai in an official-looking uniform comes up to you.`
 			`	"Excuse me, would you like a Hai-human translator?"`
 			label decision
 			choice
 				`	"Why are these suddenly available now?"`
+					goto why
 					to display
 						not "Hai Translator Ban Lifted: why?"
+				`	"How did humans never notice this?"`
+					goto how
+					to display
+						not "Hai Translator Ban Lifted: how?"
+						has "Hai Translator Ban Lifted: why?"
 				`	"I already have one."`
 					decline
 					to display
@@ -1601,13 +1607,22 @@ mission "Hai Translator Ban Lifted"
 						not "language: Hai"
 				`	"Certainly not. I prefer the mystery of not knowing what the Hai are saying."`
 					decline
+			label why
 			action
 				set "Hai Translator Ban Lifted: why?"
-			`	"They were illegal until now. Humans and Hai created similar devices weeks after first contact; it is an ancient technology to both races. Our Elders felt a language barrier would facilitate Hai secrecy, and human authorities agreed, so they banned the devices.`
+			`	"They were illegal until now. Humans and Hai created translation devices weeks after first contact; it is an ancient technology to both races. Our Elders felt a language barrier would facilitate Hai secrecy, and human authorities agreed, so they banned the devices.`
+			`	"Very few Hai actually know the human language. We've been using these devices." The official lifts fur along the side of their head, and you can see a device attached to their ear, the front of their neck, and the back of their head.`
 			`	"Times have changed, and we must shatter the language barrier to build friendships. Do you want a translator?"`
+				goto decision
+			label how
+			action
+				set "Hai Translator Ban Lifted: how?"
+			`	The official smiles. "How did humans never notice the Hai, just six jumps away, for a century? How did the Pug hide right next to you without you noticing for... how long? Decades? Centuries? Longer? How many other species surround you, that you never noticed?`
+			`	"Every species has their strengths and weaknesses. Keen awareness of your surroundings is not a trait of your species. We do, however, have high hopes for your skills at peacemaking and building friendships.`
+			`	"Do you want a translator?"`
 				goto decision
 			label yup
 			action
 				set "language: Hai"
-			`	The official hands you a round device with standard data ports. You turn it on and it starts translating Hai words to human, and human to Hai, picking up several conversations around you. When you connect the data port, it uploads a translation program to your data pad.`
+			`	The official hands you a device that you strap around your head and connect to your ear. The interface is quite intuitive, and it quickly translates between human and Hai languages, both text and speech. There's a standard interface port; when you connect to your datapad, it downloads a translation program. When you look in a mirror, you notice the device is difficult to see, possibly due to a holographic camouflage.`
 				decline
