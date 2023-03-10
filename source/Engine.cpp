@@ -825,36 +825,54 @@ void Engine::Step(bool isActive)
 
 			targetVector = target->Position() - center;
 
-			// Check if the target is close enough to show tactical information.
+			// Check if the target is close enough to show the relevant information.
 			double tacticalRange = 100. * sqrt(flagship->Attributes().Get("tactical scan power"));
 			double strategicScanRange = 100. * sqrt(flagship->Attributes().Get("strategic scan power"));
+			double rangeFinder = 100. * sqrt(flagship->Attributes().Get("range finder power"));
+			double crewScanRange = 100. * sqrt(flagship->Attributes().Get("crew scan power"));
+			double fuelScanRange = 100. * sqrt(flagship->Attributes().Get("fuel scan power"));
+			double energyScanRange = 100. * sqrt(flagship->Attributes().Get("energy scan power"));
+			double thermalScanRange = 100. * sqrt(flagship->Attributes().Get("thermal scan power"));
 			double targetRange = target->Position().Distance(flagship->Position());
-			if(tacticalRange || strategicScanRange)
+			if(tacticalRange || strategicScanRange || rangeFinder)
 				info.SetString("target range", to_string(static_cast<int>(round(targetRange))));
-
-			if(tacticalRange && !strategicScanRange)
+			if((tacticalRange || rangeFinder) && !strategicScanRange)
 				info.SetCondition("range display");
 			else
 				info.SetCondition("strategic range display");
-
+			// Actual information requires a scrutable target
+			// that is within the relevant scanner range.
 			bool scrutable = !target->Attributes().Get("inscrutable");
-			// Actual tactical information requires a scrutable
-			// target that is within the tactical scanner range.
-			if((targetRange <= tacticalRange && scrutable)
-				|| (tacticalRange && target->IsYours()))
+			if ((targetRange <= (tacticalRange + crewScanRange) && scrutable)
+				|| ((tacticalRange || crewScanRange) && target->IsYours()))
 			{
 				info.SetCondition("target crew display");
-				info.SetCondition("target fuel display");
-				info.SetCondition("target energy display");
-				info.SetCondition("target thermal display");
 				info.SetString("target crew", to_string(target->Crew()));
-				int fuel = round(target->Fuel() * target->Attributes().Get("fuel capacity"));
-				info.SetString("target fuel", to_string(fuel));
+			}
+			if ((targetRange <= (tacticalRange + energyScanRange) && scrutable)
+				|| ((tacticalRange || energyScanRange) && target->IsYours()))
+			{
+				info.SetCondition("target energy display");
 				int energy = round(target->Energy() * target->Attributes().Get("energy capacity"));
 				info.SetString("target energy", to_string(energy));
+			}
+			if ((targetRange <= (tacticalRange + fuelScanRange) && scrutable)
+				|| ((tacticalRange || fuelScanRange) && target->IsYours()))
+			{
+				info.SetCondition("target fuel display");
+				int fuel = round(target->Fuel() * target->Attributes().Get("fuel capacity"));
+				info.SetString("target fuel", to_string(fuel));
+			}
+			if ((targetRange <= (tacticalRange + thermalScanRange) && scrutable)
+				|| ((tacticalRange || thermalScanRange) && target->IsYours()))
+			{
+				info.SetCondition("target thermal display");
 				int heat = round(100. * target->Heat());
 				info.SetString("target heat", to_string(heat) + "%");
 			}
+
+
+
 			// Actual strategic information requires a scrutable
 			// target that is within the strategic scanner range.
 			if((targetRange <= strategicScanRange && scrutable)
@@ -867,7 +885,7 @@ void Engine::Step(bool isActive)
 				info.SetString("target gun", to_string(gunRange) + " ");
 			}
 			if((targetRange <= tacticalRange && targetRange <= strategicScanRange && scrutable)
-				|| (strategicScanRange && tacticalRange && target->IsYours()))
+				|| (strategicScanRange && tacticalRange && target->IsYours()) || (targetRange <= crewScanRange && targetRange <= strategicScanRange && scrutable))
 			{
 				info.SetCondition("turn while combined");
 				int turnRate = round(60 * target->TrueTurnRate());
@@ -879,6 +897,14 @@ void Engine::Step(bool isActive)
 				info.SetCondition("turn while not combined");
 				int turnRate = round(60 * target->TrueTurnRate());
 				info.SetString("target turnrate", to_string(turnRate) + " ");
+			}
+			// Crew information requires a scrutable target
+			// that is within the crew scanner range.
+			if ((targetRange <= crewScanRange && scrutable)
+				|| (crewScanRange && target->IsYours()))
+			{
+				info.SetCondition("target crew display");
+				info.SetString("target crew", to_string(target->Crew()));
 			}
 		}
 	}
