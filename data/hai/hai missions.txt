@@ -1617,8 +1617,7 @@ mission "Hai Translator Ban Lifted"
 			label how
 			action
 				set "Hai Translator Ban Lifted: how?"
-			`	The official smiles. "How did humans never notice the Hai, just six jumps away, for a century? How did the Pug hide right next to you without you noticing for... how long? Decades? Centuries? Longer? How many other species surround you, that you never noticed?`
-			`	"Every species has their strengths and weaknesses. Keen awareness of your surroundings is not a trait of your species. We do, however, have high hopes for your skills at peacemaking and building friendships.`
+			`	The official smiles. "Your species is resilient, forgiving, and tolerant, but not observant. How did humans never notice the Hai, just six jumps away, for a century? How did the Pug hide right next to you? We have high hopes for your skills at peacemaking and building friendships, and those are the most important traits of a neighbor.`
 			`	"Do you want a translator?"`
 				goto decision
 			label yup
