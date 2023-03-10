@@ -57,6 +57,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	const string HIDE_SHIP_MODELS = "Hide unknown ship models";
+
 	const string KNOWN_SHIP_MODEL_KEY = "known ship model";
 
 	// Move the flagship to the start of your list of ships. It does not make sense
@@ -2703,7 +2705,7 @@ set<string> &PlayerInfo::Collapsed(const string &name)
 
 bool PlayerInfo::ShipModelIsKnown(const Ship& ship) const
 {
-	return true;
+	return (Preferences::Has(HIDE_SHIP_MODELS)) ? knownShipModels.count(ship.VariantName()) : true;;
 }
 
 
