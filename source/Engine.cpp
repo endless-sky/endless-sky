@@ -845,6 +845,25 @@ void Engine::Step(bool isActive)
 				info.SetString("target energy", to_string(energy));
 				int heat = round(100. * target->Heat());
 				info.SetString("target heat", to_string(heat) + "%");
+
+				// if the player has a tactical scanner powerfull enough, it can detect the model of the
+				// ship by reading information the target ship leaks if ti is near enough.
+				// so based on the following formula: avg(tactical scan values for all scanners in the game)*1.5
+				// gets us to 80 (rounding up), the minimal power is 80.
+				if(flagship->Attributes().Get("tactical scan power") >= 80)
+				{
+					// the range is 35% from the scan power.
+					int maximalDetectionRange = tacticalRange * 0.35;
+
+					if(maximalDetectionRange >= targetRange)
+					{
+						std::string message = "The " + target->Name() + " was detected as a \"" +
+									target->VariantName() + "\" model ship";
+
+						Messages::Add(message, Messages::Importance::High);
+						player.DiscoverShipModel(*target.get());
+					}
+				}
 			}
 		}
 	}
