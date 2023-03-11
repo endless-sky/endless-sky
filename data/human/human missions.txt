@@ -5441,7 +5441,7 @@ mission "Blind Man from Martini"
 		random < 15
 	on offer
 		conversation
-			`As you walk through <origin>'s cramped new planetary spaceport, you see a middle-aged man on the other side of the corridor, behind a column of people. He's just sitting on a bench looking ahead at nowhere in particular, with a suitcase to his side, and holding a cane in one hand. Nobody's paying any attention to him, but he is tapping his cane every so often, when someone passes by him.`
+			`As you walk through <origin>'s cramped new planetary spaceport, you see a middle-aged man on the other side of the corridor, behind a column of people. He's just sitting on a bench looking ahead at nowhere in particular, with a suitcase to his side, and holding a cane in one hand. Nobody's paying any attention to him, but he is tapping his cane every so often someone passes by him.`
 			choice
 				`	(Go up to him.)`
 				`	(Ignore him.)`
@@ -5452,7 +5452,7 @@ mission "Blind Man from Martini"
 				`	"Are you alright?"`
 				`	(Nevermind.)`
 					decline
-			`	"Yes, hello, how are you doing?" he says, shifting his head towards your direction. "I'm here waiting for someone to pick me up," he says in a voice that sounds like he expects it at any moment.`
+			`	"Yes, hello, how are you doing?" the man responds, shifting his head towards your direction. "I'm here waiting for someone to pick me up," he says in a voice that sounds like he expects it at any moment.`
 
 			label questions
 			choice
@@ -5469,6 +5469,8 @@ mission "Blind Man from Martini"
 					goto somewhere
 					to display
 						has "Blind Man from Martini: label looking"
+				`	(Nevermind, he's just a blind man.)`
+					decline
 			
 			label far
 			action
