@@ -789,7 +789,8 @@ void Engine::Step(bool isActive)
 			targetUnit = target->Facing().Unit();
 		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrame(step));
 		info.SetString("target name", target->Name());
-		info.SetString("target type", target->DisplayModelName());
+		std::string targetModel = (player.ShipModelIsKnown(*target.get())) ? target->DisplayModelName() : "Unknown Ship Model";
+		info.SetString("target type", targetModel);
 		if(!target->GetGovernment())
 			info.SetString("target government", "No Government");
 		else
