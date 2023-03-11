@@ -428,7 +428,7 @@ mission "Ka'het: Patir Mystery 1"
 			choice
 				`	"If they can duplicate themselves, why aren't there more Ka'sei here?"`
 					goto kasei
-				`	"If they were able to get here, does this suggest they have Jump Drives?"`
+				`	"If they were able to get here, does this suggest they have jump drives?"`
 				`	"Why aren't they in other systems?"`
 			label jumpdrive
 			`	"They do not have any drives on board, not even a hyperdrive. Limited to sub-light velocity, they would need hundreds of years to pass from one system to another, which is a testament to the Builders' patience. Most species we have encountered abandon any form of sub-light transportation between star systems immediately after developing hyperdrive technology. For all we know, the Ember Waste could have been visited by these Fetri'sei or some other Ka'sei, but they had to leave for some reason we are not aware of. The last Builder died almost 100,000 years ago - so long that having a clear idea of what happened is impossible.`
