@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConversationPanel.h"
 #include "DataFile.h"
 #include "DataNode.h"
+#include "DataWriter.h"
 #include "Dialog.h"
 #include "Files.h"
 #include "text/Font.h"
@@ -33,6 +34,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MenuPanel.h"
 #include "Panel.h"
 #include "PlayerInfo.h"
+#include "Plugins.h"
 #include "Preferences.h"
 #include "PrintData.h"
 #include "Screen.h"
@@ -58,6 +60,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <windows.h>
 #include <mmsystem.h>
 #endif
+
+namespace {
+	// The delay in frames when debugging the integration tests.
+	constexpr int UI_DELAY = 60;
+}
 
 using namespace std;
 
@@ -85,6 +92,7 @@ int main(int argc, char *argv[])
 	bool loadOnly = false;
 	bool printTests = false;
 	bool printData = false;
+	bool noTestMute = false;
 	string testToRunName = "";
 
 	// Ensure that we log errors to the errors.txt file.
@@ -113,12 +121,16 @@ int main(int argc, char *argv[])
 			testToRunName = *it;
 		else if(arg == "--tests")
 			printTests = true;
+		else if(arg == "--nomute")
+			noTestMute = true;
 	}
-	if(PrintData::IsPrintDataArgument(argv))
-		printData = true;
+	printData = PrintData::IsPrintDataArgument(argv);
 	Files::Init(argv);
 
 	try {
+		// Load plugin preferences before game data if any.
+		Plugins::LoadSettings();
+
 		// Begin loading the game data.
 		bool isConsoleOnly = loadOnly || printTests || printData;
 		future<void> dataLoading = GameData::BeginLoad(isConsoleOnly, debugMode);
@@ -168,6 +180,12 @@ int main(int argc, char *argv[])
 
 		Preferences::Load();
 
+		// Load global conditions:
+		DataFile globalConditions(Files::Config() + "global conditions.txt");
+		for(const DataNode &node : globalConditions)
+			if(node.Token(0) == "conditions")
+				GameData::GlobalConditions().Load(node);
+
 		if(!GameWindow::Init())
 			return 1;
 
@@ -178,8 +196,17 @@ int main(int argc, char *argv[])
 
 		Audio::Init(GameData::Sources());
 
+		if(!testToRunName.empty() && !noTestMute)
+		{
+			Audio::SetVolume(0);
+		}
+
 		// This is the main loop where all the action begins.
 		GameLoop(player, conversation, testToRunName, debugMode);
+	}
+	catch(Test::known_failure_tag)
+	{
+		// This is not an error. Simply exit succesfully.
 	}
 	catch(const runtime_error &error)
 	{
@@ -194,6 +221,7 @@ int main(int argc, char *argv[])
 	Preferences::Set("fullscreen", GameWindow::IsFullscreen());
 	Screen::SetRaw(GameWindow::Width(), GameWindow::Height());
 	Preferences::Save();
+	Plugins::Save();
 
 	Audio::Quit();
 	GameWindow::Quit();
@@ -227,7 +255,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	FrameTimer timer(frameRate);
 	bool isPaused = false;
 	bool isFastForward = false;
-	int testDebugUIDelay = 3 * 60;
+	int testDebugUIDelay = UI_DELAY;
 
 	// If fast forwarding, keep track of whether the current frame should be drawn.
 	int skipFrame = 0;
@@ -339,7 +367,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 				Command ignored;
 				runningTest->Step(testContext, player, ignored);
 				// Reset the visual delay.
-				testDebugUIDelay = 3 * 60;
+				testDebugUIDelay = UI_DELAY;
 			}
 			// Skip drawing 29 out of every 30 in-flight frames during testing to speedup testing (unless debug mode is set).
 			// We don't skip UI-frames to ensure we test the UI code more.
@@ -418,6 +446,7 @@ void PrintHelp()
 	cerr << "    -p, --parse-save: load the most recent saved game and inspect it for content errors." << endl;
 	cerr << "    --tests: print table of available tests, then exit." << endl;
 	cerr << "    --test <name>: run given test from resources directory." << endl;
+	cerr << "    --nomute: don't mute the game while running tests." << endl;
 	PrintData::Help();
 	cerr << endl;
 	cerr << "Report bugs to: <https://github.com/endless-sky/endless-sky/issues>" << endl;
@@ -430,7 +459,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky ver. 0.9.16-alpha" << endl;
+	cerr << "Endless Sky ver. 0.10.1-alpha" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
@@ -478,13 +507,10 @@ Conversation LoadConversation()
 // (active/missing feature/known failure)..
 void PrintTestsTable()
 {
-	cout << "status" << '\t' << "name" << '\n';
 	for(auto &it : GameData::Tests())
-	{
-		const Test &test = it.second;
-		cout << test.StatusText() << '\t';
-		cout << "\"" << test.Name() << "\"" << '\n';
-	}
+		if(it.second.GetStatus() != Test::Status::PARTIAL
+				&& it.second.GetStatus() != Test::Status::BROKEN)
+			cout << it.second.Name() << '\n';
 	cout.flush();
 }
 

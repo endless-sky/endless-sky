@@ -415,6 +415,10 @@ void LoadPanel::UpdateLists()
 	vector<string> fileList = Files::List(Files::Saves());
 	for(const string &path : fileList)
 	{
+		// Skip any files that aren't text files.
+		if(path.compare(path.length() - 4, 4, ".txt"))
+			continue;
+
 		string fileName = Files::Name(path);
 		// The file name is either "Pilot Name.txt" or "Pilot Name~SnapshotTitle.txt".
 		size_t pos = fileName.find('~');

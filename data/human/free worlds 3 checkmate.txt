@@ -778,7 +778,7 @@ mission "FWC Checkmate 1"
 		"salary: Free Worlds" = 17000
 		conversation
 			`Tomek and Alondo meet you when you land. Tomek says, "Good work aiding in the defense. Now we need to move before the Navy has time to regroup. And the Senate has decided that you will be in charge of the fleet that makes our counterattack."`
-			`	Alondo says, "They have also approved a salary increase for you, to 17 thousand credits per diem. I know that's probably still not enough, but we are running a bit low on cash."`
+			`	Alondo says, "They have also approved a salary increase for you, to seventeen thousand credits per diem. I know that's probably still not enough, but we are running a bit low on cash."`
 			`	"One other thing," says Tomek. "I don't know how you'll feel about this, but I received word from Solace that they have nukes for sale if you want any. I'd advise against it, but it's up to you. Also, since you will be the flagship of our assault, you should make any improvements you feel are necessary to your ship. Then meet us back here, in the spaceport. Of course, if you're ready to go immediately that's fine, too."`
 
 

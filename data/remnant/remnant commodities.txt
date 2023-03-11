@@ -38,7 +38,7 @@ trade
 		"reactor vessels"
 		"welding and fabrication robots"
 		"air purification systems"
-		"water purificaton systems"
+		"water purification systems"
 		"environmental controls"
 		"heating and cooling systems"
 		"xenobiologic reactor vessels"

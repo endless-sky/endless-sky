@@ -29,7 +29,9 @@ ship "Subsidurial"
 		"turn" 800
 		"hull repair rate" 3
 		"ion protection" 3
+		"scramble protection" 3
 		"ion resistance" 1
+		"scramble resistance" 1
 		"energy capacity" 1
 		"inscrutable" 1
 		"gaslining" 1
@@ -70,21 +72,25 @@ ship "Void Sprite"
 		"hull" 9600
 		"required crew" 4
 		"bunks" 4
-		"mass" 480
+		"mass" 460
 		"drag" 8.2
 		"heat dissipation" .8
 		"cargo space" 40
+		"outfit space" 20
 		"thrust" 20
 		"turn" 900
 		"hull repair rate" 3
 		"ion protection" 3
+		"scramble protection" 3
 		"ion resistance" 1
+		"scramble resistance" 1
 		"energy capacity" 1
 		"fuel capacity" 1
 		"inscrutable" 1
 		"gaslining" 1
 	outfits
 		Mouthparts? 2
+		"Void Sprite Parts" 20
 	gun 0 -156
 	gun 0 -156
 	leak "blood" 40 40
@@ -123,21 +129,25 @@ ship "Void Sprite" "Void Sprite (Infant)"
 		"hull" 2800
 		"required crew" 2
 		"bunks" 2
-		"mass" 200
+		"mass" 190
 		"drag" 5.4
 		"heat dissipation" .9
 		"cargo space" 20
+		"outfit space" 10
 		"thrust" 18
 		"turn" 450
 		"hull repair rate" 1
 		"ion protection" 3
+		"scramble protection" 3
 		"ion resistance" 1
+		"scramble resistance" 1
 		"energy capacity" 1
 		"fuel capacity" 1
 		"inscrutable" 1
 		"gaslining" 1
 	outfits
 		Mouthparts?
+		"Void Sprite Parts" 10
 	gun 4 -41
 	leak "blood" 60 50
 	explode "blood" 25
@@ -176,7 +186,9 @@ ship "Ember Waste Node"
 		"turn" 3500
 		"hull repair rate" 3
 		"ion protection" 3
+		"scramble protection" 3
 		"ion resistance" 1
+		"scramble resistance" 1
 		"energy capacity" 100
 		"energy generation" 1
 		"fuel capacity" 200
@@ -186,7 +198,7 @@ ship "Ember Waste Node"
 		"cloak" .05
 		"quantum keystone" 1
 		"outfit scan power" 12
-		"outfit scan speed" 1
+		"outfit scan efficiency" 25
 		"tactical scan power" 50
 		"asteroid scan power" 50
 		"inscrutable" 1
@@ -246,6 +258,78 @@ ship "Embershade"
 	leak "blood" 40 40
 	explode "blood" 40
 	description "Long regarded as mere ghost stories, the ray-like Embershades have finally been proven to exist thanks to recent generations of ion storm resistant sensor suites. Shy by nature, these creatures generate a natural cloaking field and prefer to move unseen."
+
+
+
+ship "Embersylph"
+	noun "creature"
+	sprite "ship/embersylph/embersylph"
+		"frame rate" 34
+		"random start frame"
+	"never disabled"
+	attributes
+		category "Light Warship"
+		"shields" 7200
+		"hull" 1800
+		"required crew" 1
+		"bunks" 1
+		"mass" 140
+		"drag" 3.2
+		"heat dissipation" .7
+		"cargo space" 0
+		"fuel capacity" 100
+		"thrust" 8
+		"reverse thrust" 3
+		"turn" 90
+		"energy capacity" 800
+		"energy generation" 7
+		"hull repair rate" 2
+		"shield generation" 2
+		"scram drive" 0.4
+		"jump fuel" 100
+		"hyperdrive" 1
+		"ramscoop" 1.5
+		"gaslining" 1
+		"inscrutable" 1
+		"atmospheric scan" 1000
+		"shield resistance" 1
+	outfits
+		"Absorption Organ" 1
+	turret 0 0 "Absorption Organ"
+	leak "blood" 2
+	explode "blood" 1
+	description "Ember Ray."
+
+
+
+ship "Embersylph" "Embersylph (Small)"
+	sprite "ship/embersylph/embersylph"
+		"frame rate" 36
+		"random start frame"
+		"scale" 0.5
+	"never disabled"
+	add attributes
+		"shields" -2800
+		"hull" -900
+		"thrust" 2
+		"turn" 10
+
+
+
+outfit "Absorption Organ"
+	category "Turrets"
+	thumbnail "outfit/unknown"
+	"turret mounts" -1
+	weapon
+		"velocity" 150
+		"inaccuracy" 20
+		"turret turn" 4
+		"lifetime" 1
+		"reload" 3
+		"firing shields" -10
+		"energy damage" 80
+		"shield damage" 80
+		"ion damage" 2
 
 
 
@@ -375,6 +459,30 @@ fleet "Embershades"
 		"Embershade" 5
 	variant 1
 		"Embershade" 6
+
+
+
+fleet "Embersylphs"
+	government "Indigenous Lifeform"
+	cargo 0
+	personality
+		timid mute swarming unconstrained
+	variant 11
+		"Embersylph (Small)" 2
+	variant 7
+		"Embersylph (Small)" 3
+	variant 5
+		"Embersylph (Small)" 2
+		"Embersylph"
+	variant 3
+		"Embersylph (Small)" 4
+	variant 2
+		"Embersylph (Small)" 5
+	variant 1
+		"Embersylph (Small)" 3
+		"Embersylph"
+	variant 1
+		"Embersylph" 1
 
 
 

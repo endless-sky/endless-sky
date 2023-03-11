@@ -1237,6 +1237,7 @@ mission "FW Pug 2C: Hyperdrive"
 	description "Travel to the Deneb system to investigate the Pug; if possible, make contact with them and determine what their goals and desires are."
 	source Hephaestus
 	destination Pugglemug
+	clearance
 	to offer
 		has "FW Pug 2B: done"
 		not "fw given jump drive"
@@ -1266,6 +1267,7 @@ mission "FW Pug 2C: Scram Drive"
 	description "Travel to the Deneb system to investigate the Pug; if possible, make contact with them and determine what their goals and desires are."
 	source Hephaestus
 	destination Pugglemug
+	clearance
 	to offer
 		has "FW Pug 2B: done"
 		not "fw given jump drive"
@@ -1317,6 +1319,19 @@ mission "FW Pug 2C: A Jump Drive"
 		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
 		set "FW Pug 2C: done"
+
+
+
+mission "FW Pug Jump Drive Check"
+	landing
+	to offer
+		has "fw given jump drive"
+		not "outfit (all): Jump Drive"
+		not "event: reconnected delta capricorni"
+	on offer
+		conversation
+			`Somehow, you've misplaced or lost the jump drive needed to continue the Free Worlds story! If you are unable to find your jump drive, you should revert to the autosave or another earlier snapshot of the game.`
+				decline
 
 
 
@@ -1603,7 +1618,7 @@ mission "FW Pug 3B"
 		conversation
 			`Freya meets you soon after you land. "I've heard the news," she says. "I talked to the Senate, and they think that I should travel with you during your assault on the Pug, in case I can help figure out their technology, maybe even how to restore the hyperspace links. And they say they need Alondo back here to do diplomatic visits and help keep people from panicking."`
 			`	"I guess that makes sense," says Alondo.`
-			`	"Also," says Freya, "the Senate approved a raise for you, <first>. Your new salary will be 17 thousand credits a day. I hope that means you'll be able to go into battle against the Pug with the strongest ship possible, because I suspect we'll need all the firepower we can get."`
+			`	"Also," says Freya, "the Senate approved a raise for you, <first>. Your new salary will be seventeen thousand credits a day. I hope that means you'll be able to go into battle against the Pug with the strongest ship possible, because I suspect we'll need all the firepower we can get."`
 			`	Alondo wishes you the best of luck and leaves to catch a transport to Bourne, while Freya takes you to the spaceport and introduces you to the captains of the two Dreadnoughts that have volunteered to fight the Pug. She also asks you all sorts of technical questions: what sort of propulsion and energy sources the Pug seem to use, what their weapon capabilities are, and whether you saw any sign of the technology that was used to destroy the hyperspace links. You have a hard time answering her, but are glad that she will be with you this time to see the aliens firsthand.`
 				accept
 	

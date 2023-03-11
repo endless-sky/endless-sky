@@ -232,8 +232,8 @@ outfit "EMP Torpedo Storage Bay"
 	"energy capacity" 400
 	"emp torpedo capacity" 7
 	ammo "EMP Torpedo"
-	description "The EMP torpedo storage bay is used to store extra ammunition for weapons that use EMP torpedoes."
-	description "	In addition to its ammunition capacity, the storage bay can also contain a small amount of charge, enough to let an otherwise battery-less ship fire EMP torpedoes."
+	description "The EMP Torpedo Storage Bay is used to store extra ammunition for weapons that use EMP torpedoes."
+	description "	In addition to its ammunition capacity, the storage bay can also contain a small amount of charge, enough to let an otherwise battery-less ship fire EMP Torpedoes."
 
 outfit "EMP Torpedo Bay"
 	category "Secondary Weapons"
@@ -276,6 +276,7 @@ outfit "EMP Torpedo Bay"
 		"shield damage" 700
 		"hull damage" 100
 		"ion damage" 48
+		"scrambling damage" 48
 		"hit force" 90
 		"missile strength" 80
 	description "Electromagnetic pulse weapons were developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
@@ -290,8 +291,8 @@ outfit "Teciimach Canister"
 	thumbnail "outfit/emp torpedo"
 	"mass" 1
 	"teciimach canister capacity" -1
-	description "This canister contains everything required to assemble a Teciimach torpedo. These weapons emit strong electromagnetic pulses which interfere with a ship's generators and neutralize a portion of their energy."
-	description `	Unlike the previous generation of "EMP torpedoes," the Teciimach torpedoes actively shape their emission pattern to avoid impacting their allies.`
+	description "This canister contains everything required to assemble a Teciimach Torpedo. These weapons emit strong electromagnetic pulses which interfere with a ship's generators and neutralize a portion of their energy."
+	description `	Unlike the previous generation of "EMP Torpedoes," the Teciimach torpedoes actively shape their emission pattern to avoid impacting their allies.`
 
 outfit "Teciimach Canister Rack"
 	category "Ammunition"
@@ -304,8 +305,8 @@ outfit "Teciimach Canister Rack"
 	"energy capacity" 500
 	"teciimach canister capacity" 9
 	ammo "Teciimach Canister"
-	description "The Teciimach Canister rack is used to store extra sets of components, both to expand the capacity of a ship, and on carriers for resupplying fighters."
-	description "	In addition to its ammunition capacity, the storage bay can also contain a small amount of charge, enough to let an otherwise battery-less ship assemble Teciimach torpedoes."
+	description "The Teciimach Canister Rack is used to store extra sets of components, both to expand the capacity of a ship, and on carriers for resupplying fighters."
+	description "	In addition to its ammunition capacity, the storage bay can also contain a small amount of charge, enough to let an otherwise battery-less ship assemble Teciimach Torpedoes."
 
 outfit "Teciimach Bay"
 	category "Secondary Weapons"
@@ -350,6 +351,7 @@ outfit "Teciimach Bay"
 		"hull damage" 125
 		"disabled damage" 60
 		"ion damage" 65
+		"scrambling damage" 65
 		"energy damage" 2000
 		"hit force" 90
 		"missile strength" 95
@@ -401,6 +403,7 @@ outfit "Teciimach Pod"
 		"hull damage" 125
 		"disabled damage" 60
 		"ion damage" 60
+		"scrambling damage" 60
 		"energy damage" 2000
 		"hit force" 90
 		"missile strength" 95
@@ -454,7 +457,7 @@ outfit "Ember Tear"
 	weapon
 		sprite "projectile/ember tear/ember tear"
 			"frame rate" 30
-		sound "ion"
+		sound "ember tear"
 		"hit effect" "ember tear spark"
 		"hit effect" "ember tear impact"
 		"hit effect" "ember tear vortex"
@@ -515,6 +518,7 @@ effect "ember tear vortex"
 		"start frame" 0
 		"no repeat"
 		"frame rate" 10
+	"sound" "ember tear hit"
 	"lifetime" 100
 	"velocity scale" 0
 	"random angle" 360
@@ -537,6 +541,7 @@ outfit "Crystal Capacitor"
 	"energy consumption" .4
 	"heat generation" .4
 	"ion resistance" 0.01
+	"scrambling resistance" 0.01
 	description "These crystals, mined on the Remnant planet Viminal, can store a surprising amount of power in a compact form. Crystals pure enough to be used in such a manner are hard to find, however."
 	description "	The capacitors tend to leak small amounts of energy in the form of excess heat. This leaking of energy also results in a quicker dissipation of ionization, granting ships with these crystals some resistance against the occasional ion storms that occur in the Waste."
 
@@ -551,6 +556,7 @@ outfit "Millennium Cell"
 	"energy generation" 3.6
 	"heat generation" 6.0
 	"ion resistance" 0.025
+	"scrambling resistance" 0.025
 	description "This quite compact radiothermal generator uses isotopes so radioactive, and so tightly packed together, that it could almost be classified as a nuclear reactor."
 	description "	Although not very impressive in terms of how much energy they produce, Remnant generators have been designed to better handle the energy draining effects of ionization."
 
@@ -565,6 +571,7 @@ outfit "Epoch Cell"
 	"energy generation" 12.7
 	"heat generation" 19.8
 	"ion resistance" 0.085
+	"scrambling resistance" 0.085
 	description "Efficient Remnant technology ensures that nearly all the heat produced by this generator's radioisotopes is converted into electricity instead of becoming waste heat."
 	description "	The Remnant took the ion dissipation effects of the crystals found on Viminal and replicated them for their generators in order to help survive the hostile environment of the Ember Waste."
 
@@ -579,6 +586,7 @@ outfit "Aeon Cell"
 	"energy generation" 21.9
 	"heat generation" 31.5
 	"ion resistance" 0.14
+	"scrambling resistance" 0.14
 	description "The early Remnant engineers did not trust the finicky and unpredictable nuclear reactors that were then in use in human space, so they instead focused on perfecting the art of radioisotope thermoelectric power."
 	description "	The ion resistance on all Remnant generators not only allows them to bounce back from ion storms more quickly, but also gives their ships a window of time when an ion storm starts where they are not affected, giving them a chance to escape before becoming debilitated by the storm."
 
@@ -602,7 +610,7 @@ outfit "Emergency Ramscoop"
 	thumbnail "outfit/emergency ramscoop"
 	"mass" 4
 	"outfit space" -4
-	"ramscoop" 0.5
+	"ramscoop" 1.25
 	description "The Ember Waste is the sort of place where only a very foolish captain would travel without some sort of device for replenishing hyperspace fuel. While this risk is non-existent in Remnant ships due to their 'gills', which are effectively built-in ramscoops, some captains prefer to speed up the process by adding additional capacity. For the rare captain braving the area in non-Remnant ships, this ramscoop is not particularly powerful, but it allows a ship to explore without fear of getting stranded."
 
 outfit "NDR-114 Android"
@@ -625,7 +633,7 @@ outfit "Research Laboratory"
 	"outfit space" -6
 	"asteroid scan power" 84
 	"cargo scan power" 20
-	"cargo scan speed" 1
+	"cargo scan efficiency" 6
 	"atmosphere scan" 100
 	"required crew" 1
 	"unplunderable" 1
@@ -652,10 +660,10 @@ outfit "Salvage Scanner"
 	"mass" 7
 	"outfit space" -7
 	"outfit scan power" 13
-	"outfit scan speed" 1
+	"outfit scan efficiency" 12
 	"tactical scan power" 84
-	description "When the Remnant unraveled the alien point defense turrets guarding the vaults on Aventine, they also deciphered the mechanisms that guided the ancient weapons. After significant investments in research and development, they have transformed those guidance systems into sophisticated scanning technology."
-	description "	 While all Remnant ships are equipped with internal scanners, some captains still prefer to boost their range and power to more effectively select enemy ships worth targeting."
+	description "When the Remnant unraveled the alien Point Defense Turrets guarding the vaults on Aventine, they also deciphered the mechanisms that guided the ancient weapons. After significant investments in research and development, they have transformed those guidance systems into sophisticated scanning technology."
+	description "	While all Remnant ships are equipped with internal scanners, some captains still prefer to boost their range and power to more effectively select enemy ships worth targeting."
 
 
 
@@ -669,13 +677,13 @@ outfit "Bellows-Class Afterburner"
 	"outfit space" -7
 	"engine capacity" -7
 	"slowing resistance" 0.01
-	"afterburner thrust" 153.0
-	"afterburner fuel" 0.5
+	"afterburner thrust" 125.0
+	"afterburner fuel" 0.65
 	"afterburner energy" 6.0
 	"afterburner heat" 8.0
 	"afterburner effect" "remnant afterburner"
 	description "The Remnant live in an environment where the raw materials for fuel are relatively common on the winds of the nebula. As such, their ships incorporate significant built-in ramscoop technology, and while they are reluctant to waste fuel, they aren't afraid of using it when needed. Far more important is the ability for their ships to quickly and efficiently enter or exit combat as needed. At the end of the day, it is continued life that is paramount."
-	description "	The Bellows-class afterburner embodies this philosophy by providing captains with a tool that allows them to make great leaps of acceleration, typically during evasive maneuvers or to catch up with a fleeing target. Due to their enormous fuel usage, only the most specialized of ships have enough fuel to use these for more than a few seconds at a time before completely running out of fuel."
+	description "	The Bellows-Class Afterburner embodies this philosophy by providing captains with a tool that allows them to make great leaps of acceleration, typically during evasive maneuvers or to catch up with a fleeing target. Due to their enormous fuel usage, only the most specialized of ships have enough fuel to use these for more than a few seconds at a time before completely running out of fuel."
 
 effect "remnant afterburner"
 	sprite "effect/remnant afterburner/remnant afterburner"
@@ -869,17 +877,21 @@ outfit "Void Rifle"
 	"capture defense" 20
 	"energy consumption" 0.017
 	"unplunderable" 1
-	description "The Remnant made a significant number of these weapons during the early years of their research on the void sprites, but have not been able to make any new ones since the Archon stopped their harvests. Without a supply of new tentacles to use, the Remnant have been unable to manufacture more. While durable, they rarely last more than a decade, so even the best cared for of the old void rifles degraded into uselessness centuries ago. These highly effective weapons are credited with helping the Remnant safeguard their refuges from ground-based threats during their early years."
-	description "	When fired, the void rifle emits a beam that has a strong paralyzing effect on the nervous system. With an area of effect that penetrates walls and other solid objects, it is an incredibly effective weapon."
+	description "The Remnant made a significant number of these weapons during the early years of their research on the void sprites, but have not been able to make any new ones since the Archon stopped their harvests. Without a supply of new tentacles to use, the Remnant have been unable to manufacture more. While durable, they rarely last more than a decade, so even the best cared for of the old Void Rifles degraded into uselessness centuries ago. These highly effective weapons are credited with helping the Remnant safeguard their refuges from ground-based threats during their early years."
+	description "	When fired, the Void Rifle emits a beam that has a strong paralyzing effect on the nervous system. With an area of effect that penetrates walls and other solid objects, it is an incredibly effective weapon."
 
 
 
 outfit "Void Sprite Parts"
+	plural "Void Sprite Parts"
 	category "Unique"
 	cost 500
-	thumbnail "outfit/mouthparts"
+	thumbnail "outfit/void sprite parts"
+	"flotsam sprite" "effect/void sprite parts/void sprite parts"
 	"mass" 1
 	"outfit space" -1
+	"flotsam chance" .5
+	"installable" -1
 	description "This is nothing more and nothing less than a cubic meter of void sprite parts. To the Remnant, this represents both a terrible occurrence and a dreadful opportunity."
 	description "	This could have been very valuable to someone who knew what they were doing, if it had been handled properly. Instead, it is worth little more than the value of the compounds contained within."
 

@@ -16,7 +16,7 @@
 mission "Remnant: Bounty"
 	job
 	repeat
-	name "Crippled Palavret Bounty"
+	name "Crippled <npc model> Bounty"
 	description "A crippled Korath ship is lurking in Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
@@ -34,6 +34,7 @@ mission "Remnant: Bounty"
 		fleet
 			names "korath"
 			cargo 3
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			variant
 				"Palavret (Crippled)"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
@@ -48,7 +49,7 @@ mission "Remnant: Bounty"
 mission "Remnant: Bounty 2"
 	job
 	repeat
-	name "Troublesome Palavret Bounty"
+	name "Troublesome <npc model> Bounty"
 	description "A Korath ship is proving troublesome in Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
@@ -66,6 +67,7 @@ mission "Remnant: Bounty 2"
 		fleet
 			names "korath"
 			cargo 3
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			variant
 				"Palavret (Hyperdrive)"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
@@ -110,7 +112,7 @@ mission "Remnant: Expanded Horizons Astral job"
 	job
 	repeat
 	name "Research Expedition to <waypoints>"
-	description "Travel to <waypoints> with a research laboratory to collect data, then return to <destination>."
+	description "Travel to <waypoints> with a Research Laboratory to collect data, then return to <destination>."
 	source
 		government "Remnant"
 	waypoint
@@ -152,6 +154,7 @@ mission "Remnant: Bounty 3"
 		fleet
 			names "korath"
 			cargo 3
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			variant
 				"Rano'erek (Crippled)"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
@@ -181,8 +184,9 @@ mission "Remnant: Bounty 4"
 		fleet
 			names "korath"
 			cargo 3
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			variant
-				"Rano'erek"
+				"Rano'erek (Crippled)"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
 	on visit
 		dialog phrase "generic bounty hunting on visit"
@@ -196,7 +200,7 @@ mission "Remnant: Bounty 5"
 	job
 	repeat
 	name "Destroy Ground Assault Bounty"
-	description "A Korath ship is hunting for our outposts in the Ember Wastes. Track it down, eliminate it, and then return to <planet> to receive your payment of <payment>."
+	description "A Korath ship is hunting for our outposts in the Ember Wastes. Track it down, eliminate it and any fighters it is carrying, and then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
 	to offer
@@ -215,15 +219,16 @@ mission "Remnant: Bounty 5"
 		fleet
 			names "korath"
 			cargo 3
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			variant
 				"Rano'erek (Ground Assault)"
 				"'olofez" 4
-		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
+		dialog "You have destroyed the Korath ship and its fighters. You can now return to <planet> to collect your payment."
 	on visit
-		dialog phrase "generic bounty hunting on visit"
+		dialog "You've landed on <planet>, but the Korath ship and its fighters have not all been eliminated. Hunt them down and destroy them before returning."
 	on complete
 		payment 400000
-		dialog "A Remnant military leader thanks you for hunting down the Korath ship <npc>, and gives you the agreed-upon payment of <payment>."
+		dialog "A Remnant military leader thanks you for hunting down the Korath ship <npc> and its fighters, and gives you the agreed-upon payment of <payment>."
 
 
 
@@ -350,9 +355,7 @@ mission "Remnant: Rescue"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			not system "Perfica"
-			not system "Farinus"
-			not system "Edusa"
+			not near "Arculus" 3
 		personality derelict timid plunders
 		government "Remnant"
 		fleet
@@ -374,7 +377,7 @@ mission "Remnant: Rescue"
 
 # The Rescue Dummy is meant to commit suicide as soon as possible on entering the randomized system.
 ship "Rescue Dummy"
-	#sprite "ship/behemoth"
+	# sprite "ship/behemoth"
 	attributes
 		"heat dissipation" 1
 		"hull" 1
@@ -419,9 +422,7 @@ mission "Remnant: Rescue 1B"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			not system "Perfica"
-			not system "Farinus"
-			not system "Edusa"
+			not near "Arculus" 3
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
 		fleet
@@ -458,9 +459,7 @@ mission "Remnant: Rescue 2"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			not system "Perfica"
-			not system "Farinus"
-			not system "Edusa"
+			not near "Arculus" 3
 		personality derelict timid plunders
 		government "Remnant"
 		fleet
@@ -499,9 +498,7 @@ mission "Remnant: Rescue 2B"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			not system "Perfica"
-			not system "Farinus"
-			not system "Edusa"
+			not near "Arculus" 3
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
 		fleet
@@ -538,9 +535,7 @@ mission "Remnant: Rescue 3"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			not system "Perfica"
-			not system "Farinus"
-			not system "Edusa"
+			not near "Arculus" 3
 		personality derelict timid plunders
 		government "Remnant"
 		fleet
@@ -577,9 +572,7 @@ mission "Remnant: Rescue 3B"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			not system "Perfica"
-			not system "Farinus"
-			not system "Edusa"
+			not near "Arculus" 3
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
 		fleet
@@ -615,9 +608,7 @@ mission "Remnant: Rescue 4"
 			attributes "graveyard"
 			not attributes "inaccessible"
 			not government "Remnant"
-			not system "Perfica"
-			not system "Farinus"
-			not system "Edusa"
+			not system "Patir"
 			not system "Aki'il"
 		personality escort derelict heroic plunders
 		government "Remnant"
@@ -631,7 +622,7 @@ mission "Remnant: Rescue 4"
 		"remnant: rescue missions" ++
 		payment 500000
 		dialog
-			`Upon landing, the captain of the <npc> meets you at your ship to thank you personally for rescuing them from the Graveyard, leaving you with a heartfelt sentence: "May the Embers burn bright for you." `
+			`Upon landing, the captain of the <npc> meets you at your ship to thank you personally for rescuing them from the Graveyard, leaving you with a heartfelt sentence: "May the Embers burn bright for you."`
 			`	Soon after, your communicator notifies you of a resource allocation of <payment>.`
 	on visit
 		dialog
@@ -668,3 +659,38 @@ mission "Remnant: Rescue 5"
 	on visit
 		dialog
 			`You have returned, but there is still no word from the missing ship.`
+
+
+mission "Remnant: Disable 1"
+	job
+	repeat
+	name "Disable Damaged Kas'lor Ik 582"
+	description "A damaged Kas'lor Ik 582 is stuck in a newly accessible system, near Postverta. It has a large civilian population so we ask you to only disable it to avoid an atrocity. Once you return to <planet> you will receive a logistics adjustment of <payment>."
+	source
+		government "Remnant"
+	to offer
+		has "Remnant: Will Not Someone Please Think Of The Children: done"
+		not "Remnant: Disable 1: aborted"
+		not "Remnant: Disable 1: failed"
+		random < 5
+	npc disable save
+		government "Korath"
+		personality heroic target marked staying disables plunders
+		system
+			near "Vaticanus" 1
+		fleet
+			names "korath"
+			variant
+				"Kas'lor Ik 582 (Stranded)"
+		dialog `You have disabled the Kas'lor Ik 582. Time to report back to <planet>.`
+	on visit
+		dialog `You've landed on <planet>, but the stuck Kas'lor Ik 582 has not been disabled yet. Hunt it down and disable it before returning.`
+	on abort
+		dialog `The Remnant are puzzled at your aborting of this mission, but they tell you they will send someone else to do this work. They advise you they will prioritize other teams for these missions in the future.`
+	on fail
+		"reputation: Remnant" -= 250
+		dialog `You where unable to disable the Kas'lor Ik 582 without destroying it... The Remnant will not be pleased...`
+	on complete
+		"remnant: disable and save count" ++
+		payment 2000000
+		dialog "A Remnant military prefect thanks you for disabling down the Kas'lor Ik 582 <npc>, and gives you the agreed-upon logistics adjustment of <payment>."

@@ -123,7 +123,7 @@ outfit "Moonbeam"
 	weapon
 		sprite "projectile/moonbeam"
 			"random start frame"
-		sound "sunbeam"
+		sound "moonbeam"
 		"fire effect" "moonbeam fleck"
 		"hit effect" "moonbeam impact"
 		"inaccuracy" 2.0
@@ -170,7 +170,7 @@ outfit "Moonbeam Turret"
 			"random start frame"
 		"hardpoint sprite" "hardpoint/moonbeam turret"
 		"hardpoint offset" 9.
-		sound "sunbeam"
+		sound "moonbeam"
 		"fire effect" "moonbeam fleck"
 		"hit effect" "moonbeam impact"
 		"inaccuracy" 2.0
@@ -253,7 +253,7 @@ outfit "Thunderhead Launcher"
 		"infrared tracking" .9
 		"radar tracking" .6
 		"missile strength" 12
-	description "A prime example of Wanderer ingenuity, Thunderhead missiles each carry five submunitions that are capable of independent tracking. Even if the target is able to shoot down or evade a few of them, the remaining missile fragments will still find their mark."
+	description "A prime example of Wanderer ingenuity, Thunderhead Missiles each carry five submunitions that are capable of independent tracking. Even if the target is able to shoot down or evade a few of them, the remaining missile fragments will still find their mark."
 
 outfit "Thunderhead Missile"
 	category "Ammunition"

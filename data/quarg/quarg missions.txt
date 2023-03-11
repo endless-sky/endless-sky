@@ -164,7 +164,7 @@ mission "Quarg Satellites"
 	on enter "Kappa Centauri"
 		dialog "You open your cargo hold, and let a Quarg scanner drift out to the void."
 	on enter "Graffias"
-		dialog "Looking at the former slave-colony planet here as you deploy their scanner, you wonder if the Quarg heard about Poisonwood's history, and that's why decided to help with surveillance."
+		dialog "Looking at the former slave-colony planet here as you deploy their scanner, you wonder if the Quarg heard about Poisonwood's history, and that's why they decided to help with surveillance."
 	on enter "Antares"
 		dialog "You set a Quarg scanner free, and let it leave your ship."
 	on enter "Han"
@@ -259,3 +259,18 @@ mission "Ask Quarg About Coalition Early"
 			label end
 			`	Before you can ask it anything else, the Quarg bids you farewell, and walks away.`
 				decline
+
+
+
+mission "Quarg Ships Atrocity"
+	landing
+	invisible
+	source
+		government "Quarg"
+	to offer
+		or
+			has "ship model: Quarg Skylark"
+			has "ship model: Quarg Wardragon"
+	on offer
+		conversation "quarg imprisonment"
+
