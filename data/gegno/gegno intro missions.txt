@@ -442,26 +442,49 @@ mission "First Contact: Gegno Scin"
 					goto "approach"
 				`	(Stay by your ship.)`
 			`	You take one or two steps forward but remain close by your ship, staying alert. The freigher in front of you is indeed large - maybe four times the size of a Hauler, or almost two times the size of a Behemoth. As you examine it, an elevator lowers from underneath, and a group of Scin exit the ship, making their way towards you. You immediately notice their attire being much different than that of the Vi - most of them are wearing what looks like segmented armor with many layers of plates, giving off the appearance of scales. One of them, however, has a much lighter armor set focused mainly around their shoulders. They are slightly thinner than the other Scin, and are dressed in an orange robe-like garment underneath the armor. Although none of them are nowhere near as bulky as the Vi, they all still appear slightly taller than a human. More importantly, they seem far more eager to interact with you, seeing that they left the comfort of their own ship to greet you personally.`
-			`	Stopping within about 4 meters from you, the Scin in heavier armor suddenly drop to the ground and cross their legs, while the one in the robe slowly approaches you.`
+			`	Stopping within about 4 meters from you, the Scin in heavier armor suddenly drop to the ground on one knee. The one in the robe takes a few more steps, then sits on the ground in front you, crossing their legs.`
 			choice
+				`	(Sit down.)`
 				`	(Reach for your pistol.)`
 					goto "reach"
-				`	(Sit down.)`
-				
-				
+			`	You also sit down, taking a good look at them. Their skin appears almost bone-like with very faint patterns of light green. Unlike the Vi, they have three much smaller horns, and have barely any hair at all. They seem just as interested in your appearance, looking you up and down. Another Scin from one of the nearby ships walks over, bringing some sort of device, kneeling down next to the robed one, who takes the device and sets it down between you and them. It looks like some sort of tablet or drawing device.`
+			`	The Scin then reaches their palm out and makes a mark on one half of the display, then turns it to you.`
+			choice
+				`	(Place your hand on the device.)`
+				`	(Do nothing.)`
+					goto "no palm"
+			`	Placing your own palm on the device, you feel it vibrate a little. A detailed wireframe of your hand appears on the device now. The Scin moves the device aside, then extends one arm out showing the top of their hand.`
+			choice
+				`	(Extend your arm as well.)
+				`	(Do nothing.)`
+					goto "nothing"
+			`	Reaching with your right hand, the Scin leans forward and carefully examines it, then makes another note on their device. 
+
+
+
+			label "no palm"
+			`	Turning the device back around, the Scin types some sort of note on it then clears the display. They then begin to draw some sort of picture with one of their fingers. The finished image appears to be a portrait of themselves. "Dueyu Scin," they speak in a low tone. Clearing the image, they draw something that looks like you, although a bit out of proportion, then await some sort of answer.`
+			choice
+				`	"Dueyu human..?"
+				`	"I am human."
+				`	(Say nothing.)
+					goto "nothing"
+			`	The Scin looks at you in what you assume to be fascination. They grab the device and draw yet another picture. After setting it down, you recognize the familiar image of a Gegno Vi Warrior.`
+			choice
+				`	"Gegno Vi?"
+				`	"Dueyu Vi?"
 
 
 
 
 
 
-			`	You sit down, and they do so as well. Their skin appears almost bone-like with very faint patterns of light green. Unlike the Vi, they have three much smaller horns, and have barely any hair at all. 
+			label "reach"
 
 
 			label "approach"
 
 
-			
 			label "descend"
 			`	Cautiously, you carry on with your landing procedure. The Scin ship flies past yours, then begins to hold a position above you. They land next to you shortly after you touch down, and you observe as their crew depart their vessel, standing as a group in front of it. It appears they are eagerly waiting for you to do the same.`
 
