@@ -3068,6 +3068,51 @@ system "Al Dhanab"
 		distance 2298.15
 		period 1340.95
 
+system "Al Hurr"
+	pos -432 -491
+	government "Uninhabited"
+	arrival 1715
+	habitable 1715
+	belt 1312
+	haze _menu/haze-brown
+	trade "Clothing" 201
+	trade "Electronics" 658
+	trade "Equipment" 484
+	trade "Food" 280
+	trade "Heavy Metals" 850
+	trade "Industrial" 621
+	trade "Luxury Goods" 1134
+	trade "Medical" 582
+	trade "Metal" 339
+	trade "Plastic" 353
+	object
+		sprite star/f5
+		period 10
+	object
+		sprite planet/rock15
+		distance 382
+		period 52.6472
+	object
+		sprite planet/rock6
+		distance 686
+		period 77.7827
+	object Aspiration
+		sprite planet/ice8-b
+		distance 980
+		period 98.6622
+	object
+		sprite planet/dust6
+		distance 1299
+		period 119.0528
+	object
+		sprite planet/gas1
+		distance 1706.99
+		period 557.553
+		object
+			sprite planet/dust1
+			distance 216
+			period 11.1964
+
 system Albaldah
 	pos -350 484
 	government Republic
@@ -10258,7 +10303,6 @@ system Devil-Hide
 			period 18.5791
 
 system Devil-Run
-	hidden
 	pos -19 179
 	government Uninhabited
 	arrival 1080

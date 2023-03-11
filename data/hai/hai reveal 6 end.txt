@@ -196,59 +196,6 @@ mission "Hai Reveal [C03] Cleanup"
 			`	You leave them with only guesses. You're not entirely sure yourself what's going on, but you do know one thing: you have to go to Freedom, where this all began.`
 				accept
 
-# These don't have to be here, but this is where they used to be defined by event, and these are the systems used for this going forward.
-system "Al Hurr"
-	hidden
-	pos -432 -491
-	government "Uninhabited"
-	arrival 1715
-	habitable 1715
-	belt 1312
-	haze _menu/haze-brown
-	trade "Clothing" 201
-	trade "Electronics" 658
-	trade "Equipment" 484
-	trade "Food" 280
-	trade "Heavy Metals" 850
-	trade "Industrial" 621
-	trade "Luxury Goods" 1134
-	trade "Medical" 582
-	trade "Metal" 339
-	trade "Plastic" 353
-	object
-		sprite star/f5
-		period 10
-	object
-		sprite planet/rock15
-		distance 382
-		period 52.6472
-	object
-		sprite planet/rock6
-		distance 686
-		period 77.7827
-	object Aspiration
-		sprite planet/ice8-b
-		distance 980
-		period 98.6622
-	object
-		sprite planet/dust6
-		distance 1299
-		period 119.0528
-	object
-		sprite planet/gas1
-		distance 1706.99
-		period 557.553
-		object
-			sprite planet/dust1
-			distance 216
-			period 11.1964
-
-planet Aspiration
-	attributes pirate
-	landscape land/sea17-harro
-	description `The world of Aspiration appears to be a mild, habitable world, but one currently in an advanced ice age now slowly retreating. The equatorial region of the planet is warm and comfortable, a cool temperate at the present time. The native biosphere seems to be mostly grasses and something resembling pine trees. In a few thousand years, it might look similar to Earth before it was paved over. For now, it's a sparse world with a single major town built on a promontory, overlooking a wide river mouth which carries runoff from continental scale glaciers to the sea.`
-	spaceport `The spaceport on Aspiration is a spaceport in the same way that an airport at a regional town is an airport. It has the most minimal facilities to handle a ship landing without disturbance to the nearby town, and that is it. There are no shops or stalls. Aspiration is not on any trade routes and it does not expect visitors. A lone freighter is parked permanently on the outskirts.`
-
 
 
 mission "Hai Reveal [C04] Cleanup"
