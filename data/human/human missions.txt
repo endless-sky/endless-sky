@@ -321,6 +321,14 @@ mission "Pookie, Part 5"
 			`	Pemefrey chuckles haughtily. "Of course? Why, did you not realize that the purebred you saved is none other than the great Pocahontas? Now, show me my darling."`
 			label show
 			`	You pick up Puny and show her to the lady. When she makes eye contact with the poodle, her face contorts with anger. "What do you take me for, some kind of Dirt Belter?"`
+			branch default
+				has "start: default"
+			choice
+				`	"What do you mean?"`
+					goto explain
+				`	"I'm sorry?"`
+					goto sawwry
+			label default
 			choice
 				`	"Hey, I'm from the Dirt Belt!"`
 				`	"What do you mean?"`

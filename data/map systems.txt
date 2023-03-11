@@ -23565,7 +23565,7 @@ system Naos
 	minables copper 21 5.05288
 	minables silicon 12 6.77871
 	minables titanium 35 4.05452
-	trade Clothing 272
+	trade Clothing 322
 	trade Electronics 694
 	trade Equipment 427
 	trade Food 386

@@ -14,16 +14,41 @@
 # Give planets descriptions depending on the start chosen
 
 event "dirt belt descriptions"
+	planet "New Boston"
+		description `New Boston is a completely unremarkable world. Most of the land is wet and marshy, and the coastal regions are prone to flooding. Some food crops are grown here, but most of the farmers instead plant flax and jute, which grow well in wet soil and are used to make linen and burlap cloth. The textile mills are hot and poorly ventilated, but they offer higher and more reliable income than farming.`
 
-event "deep desciptions"
+event "deep descriptions"
+	planet "Asgard"
+		description `Asgard was one of the first worlds to be settled in the Deep. It is now home to many crowded cities, with soaring skyscrapers that are made of lightweight composite materials rather than the steel and concrete so commonly used elsewhere.`
+		description `	This is also the home of Deep Sky, a manufacturing firm that produces a wide variety of expensive and useful starship equipment.`
+		spaceport `As with many of the worlds here in the Deep, walking around this spaceport feels like making a visit to the future. Everything is immaculately clean. The port is a single building reminiscent of a sand castle or termite mound: a jumble of spires, each a slightly different shape, all piled on top of each other. Docking bays open on various sides of the spires in a haphazard arrangement. It feels like this building is an organic thing, rather than the work of human hands.`
+		spaceport `	The locals hurry by, seemingly oblivious to your presence; the only people who meet your gaze are your fellow wide-eyed visitors.`
+	planet "Mani"
+		spaceport `The spaceport is shaped like a wheel with no rim: a series of spokes jutting out from a central hub, where each spoke is a docking tunnel that can connect to any ship that lands beside it.`
+		spaceport `	Inside are about a dozen people and a couple hundred robots. The people and robots alike seem uninterested in any interactions with you. It is a strange sort of aloofness that you have heard is common to all the worlds in the Deep.`
+	planet "Midgard"
+		description `Midgard is a world with as much geographic diversity as Earth itself: mountains, tundra, desert, oceans, marshes, plains. It was the second world in the Deep to be settled, seven centuries ago. It is now home to dozens of major metropolitan areas and a population of over four billion. Although a select few live outside the cities and work in farming or ranching, the vast majority of people here have jobs in manufacturing.`
+		description `	Food, fashion, and entertainment here all strike you as out of pace with broader galactic culture. The deep independent history of the planet makes it less likely to simply follow the latest Earth trends as the more recent colonies do.`
+	planet "Muspel"
+		spaceport `The spaceport here is rudimentary: a collection of concrete landing pads clustered around a single large building. The building is designed with layers of color and rounded spires that mimic the canyonlands. From a distance, it would be indistinguishable from the natural rock outcroppings if it were not for the glitter of sunlight off the windows. Inside, people move at a slower and calmer pace than you have seen elsewhere in the Deep.`
 
 event "paradise descriptions"
+	planet "Mainsail"
+		description `Mainsail is a water world: although there are some settlements on dry land, the largest cities are floating, artificial islands, which travel between hemispheres over the course of the year pursuing the most ideal weather. Other, smaller islands are privately owned by single families or corporations. Mainsail is a prohibitively expensive place to live.`
+		description `	Centuries ago Mainsail was home to pirates of the old-fashioned variety, fleets of motor boats or even old-fashioned sailing vessels that would launch raids against the city-ships.`
 
 event "syndicate descriptions"
+	planet "Antipode"
+		description `Antipode is a world of creeping glaciers and year-round snow, orbiting far enough from a dim star that even when the sun breaks through the clouds, it brings little warmth. The few settlements that exist here are built near surface deposits of rare earth metals that were discovered recently, and that are mined for use in electronics and equipment throughout this sector.`
+		description `	The inhabitants of Antipode are among the best downhill skiers in the galaxy, and they have made some attempts to draw off-world tourists to the ski resorts here, but the weather is so hostile that they have had very little success.`
+	planet "Earth"
+		description `The ancestral home world of humanity, Earth has a population twice that of any other inhabited planet. Sprawling cities cover large portions of its surface, many of them overcrowded and dangerous. Some people work to scrape together enough money to leave, while at the same time others, born on distant worlds, make a pilgrimage of sorts to see this planet that once cradled the entirety of the human species.`
+		description `	Earth is also the capital of the Republic. Representative government becomes complicated when one planet has a greater population than a hundred planets elsewhere. As a result, smaller settlements are grouped together into planetary districts that elect a single representative between them - a source of much frustration in the frontier worlds.`
 
 
 
 mission "dirt belt descriptions"
+	invisible
 	landing
 	to offer
 		not "start: default"
@@ -34,6 +59,7 @@ mission "dirt belt descriptions"
 
 
 mission "deep descriptions"
+	invisible
 	landing
 	to offer
 		not "start: deep"
@@ -44,6 +70,7 @@ mission "deep descriptions"
 
 
 mission "paradise descriptions"
+	invisible
 	landing
 	to offer
 		not "start: paradise"
@@ -53,12 +80,13 @@ mission "paradise descriptions"
 
 
 
-mission "deep descriptions"
+mission "syndicate descriptions"
+	invisible
 	landing
 	to offer
-		not "start: deep"
+		not "start: syndicate"
 	on offer
-		event "deep descriptions"
+		event "syndicate descriptions"
 		fail
 
 

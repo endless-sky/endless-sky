@@ -1236,10 +1236,10 @@ mission "Deep: Project Hawking: Prime"
 			has "start: deep"
 		<history> "You tell Pierre about your life on Mainsail, and how you've always dreamed of becoming a starship captain, and finally got your wish when you were given a pilot's license on your eighteenth birthday."
 			has "start: paradise"
-		<history> "You tell Pierre about your life on Earth, and how you worked on a Syndicate factory world for five years before you took a loan and begain your life as a merchant captain."
+		<history> "You tell Pierre about your life moving around the galaxy, and how you worked on a Syndicate factory world for five years before you took a loan and begain your life as a merchant captain."
 			has "start: syndicate"
 		<response> `"We aren't too different then," Pierre remarks. "We both worked hard to get where we are today. Thanks for sharing, <first>."`
-		<response> `"So you're native to the Deep," Pierre remarks. "I admit that I felt like an outsider when I first came to the Deep. Everyone was so quiet and demure, and it seemed like nobody wanted to talk to me. I've gotten over those feelings since, of course. Thanks for sharing, <first>."`
+		<response> `"So you're native to the Deep," Pierre remarks. "I felt like an outsider when I first came to the Deep. Everyone was so quiet and withdrawn, and it seemed like nobody wanted to talk to me. I've gotten over that since, of course. Thanks for sharing, <first>."`
 			has "start: deep"
 		<response> `"So you're from the Paradise Worlds," Pierre remarks. "Most people from there choose to settle down and take up their parent's businesses. Very few go out on their own as a merchant. Thanks for sharing, <first>."`
 			has "start: paradise"

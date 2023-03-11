@@ -865,6 +865,14 @@ government "Merchant"
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
 
+# Ships with merchant colors that are hostile to the player
+government "Merchant (Hostile)"
+	swizzle 5
+	"display name" "Merchant"
+	
+	"player reputation" -10
+	"hostile hail" "hostile pirate"
+
 government "Militia"
 	swizzle 2
 	color "governments: Free"

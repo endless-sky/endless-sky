@@ -160,8 +160,9 @@ planet Angko
 planet Antipode
 	attributes core frontier mining
 	landscape land/snow17
-	description `Antipode is a world of creeping glaciers and year-round snow, orbiting far enough from a dim star that even when the sun breaks through the clouds, it brings little warmth. The few settlements that exist here are built near surface deposits of rare earth metals that were discovered recently, and that are mined for use in electronics and equipment throughout this sector.`
-	description `	The inhabitants of Antipode are among the best downhill skiers in the galaxy, and they have made some attempts to draw off-world tourists to the ski resorts here, but the weather is so hostile that they have had very little success.`
+	description `Antipode is a frozen, unforgiving world, orbiting far enough from a dim star that even when the sun breaks through the clouds, it brings little warmth. The few settlements that exist here are built near surface deposits of rare earth metals that were discovered recently, and that are mined for use in electronics and equipment throughout this sector.`
+	description `	What little amenites are available for the people living here are of subpar quality; only half the houses have a dedicated heating system, and it can take months before a store is able to restock its goods.`
+	description `	The inhabitants of Antipode are among the best downhill skiers in the galaxy, and they have made some attempts to draw off-world tourists to the ski resorts here, but the weather is so hostile, and living conditions so squalid, that they have had very little success.`
 	spaceport `The spaceport consists of a single enormous warehouse. The air inside is cold, but you are glad to get out of the howling wind. In one corner is a counter advertising skiing adventures, but no one is staffing it; they must be out to lunch or taking the day off.`
 	spaceport `	As with many of these small spaceports, it seems that the only option for food is a pub, but the smells coming from it are enticing; for once, you may have found a spaceport bar whose chef actually knows how to cook.`
 	security 0.1
@@ -213,8 +214,8 @@ planet Asgard
 	landscape land/city13-sfiera
 	description `Asgard was one of the first worlds to be settled in the Deep. It is now home to many crowded cities, with soaring skyscrapers that are made of lightweight composite materials rather than the steel and concrete so commonly used elsewhere.`
 	description `	This is also the home of Deep Sky, a manufacturing firm that produces a wide variety of expensive and useful starship equipment.`
-	spaceport `As with many of the worlds here in the Deep, walking around this spaceport feels like making a visit to the future. Everything is immaculately clean. The port is a single building reminiscent of a sand castle or termite mound: a jumble of spires, each a slightly different shape, all piled on top of each other. Docking bays open on various sides of the spires in a haphazard arrangement. It feels like this building is an organic thing, rather than the work of human hands.`
-	spaceport `	The locals hurry by, seemingly oblivious to your presence; the only people who meet your gaze are your fellow wide-eyed visitors.`
+	spaceport `Everything is immaculately clean. The port is a single building reminiscent of a sand castle or termite mound: a jumble of spires, each a slightly different shape, all piled on top of each other. Docking bays open on various sides of the spires in a haphazard arrangement. The liberal use of flowing shapes and earthen colors makes the building look almost organic, rather than the work of human hands.`
+	spaceport `	The locals hurry by in a mesmerising, yet purposeful, manner. You spot some stragglers in the crowd, seemingly enraptured by the people around them.`
 	shipyard "Lionheart Basics"
 	shipyard "Lionheart Advanced"
 	outfitter "Deep Sky Advanced"
@@ -1058,8 +1059,8 @@ planet "Dwelling of Speloog"
 planet Earth
 	attributes factory "near earth" research tourism urban
 	landscape land/city20
-	description `The ancestral home world of humanity, Earth has a population twice that of any other inhabited planet. Sprawling cities cover large portions of its surface, many of them overcrowded and dangerous. Some people work to scrape together enough money to leave, while at the same time others, born on distant worlds, make a pilgrimage of sorts to see this planet that once cradled the entirety of the human species.`
-	description `	Earth is also the capital of the Republic. Representative government becomes complicated when one planet has a greater population than a hundred planets elsewhere. As a result, settlements of less than a million are grouped together into planetary districts that elect a single representative between them - a source of much frustration in the frontier worlds.`
+	description `The ancestral home world of humanity, as well as your own birthplace, Earth has a population twice that of any other planet. Sprawling cities cover its surface, many of them overcrowded and dangerous. Some people work to scrape together enough money to leave, while at the same time others, born on distant worlds, make a pilgrimage of sorts to see this planet that once cradled the entirety of the human species.`
+	description `	Earth is also the capital of the Republic. Representative government becomes complicated when one planet has a greater population than a hundred planets elsewhere. As a result, smaller settlements are grouped together into planetary districts that elect a single representative between them - a source of much frustration in the frontier worlds.`
 	spaceport `Earth's spaceport is a series of massive buildings; the gaps between them form narrow concrete canyons a hundred stories deep. From a distance it has the appearance of a bustling termite mound.`
 	spaceport `	Inside the towers is a warren of dim hallways and dingy shops. Hitchhikers sleep in the corners of unused docking bays under old army blankets, a few uniformed cleaners try to keep the litter and dust in check, and rich tourists from other stars cling tightly to their expensive cameras.`
 	outfitter "Common Outfits"
@@ -2507,7 +2508,7 @@ planet Mahoganybox
 planet Mainsail
 	attributes paradise rich
 	landscape land/water13
-	description `Mainsail is a water world: although there are some settlements on dry land, the largest cities are floating, artificial islands, which travel between hemispheres over the course of the year pursuing the most ideal weather. Other, smaller islands are privately owned by single families or corporations. Mainsail is a prohibitively expensive place to live.`
+	description `Mainsail is a water world: although there are some settlements on dry land, the largest cities are floating, artificial islands, which travel between hemispheres over the course of the year pursuing the most ideal weather. Other, smaller islands are privately owned by single families or corporations, such as your own family. Mainsail is a prohibitively expensive place to live.`
 	description `	Centuries ago Mainsail was home to pirates of the old-fashioned variety, fleets of motor boats or even old-fashioned sailing vessels that would launch raids against the city-ships.`
 	spaceport `The spaceport is on its own city-ship floating some distance away from the others, so that the locals need not deal with the noise and uncouth manners of spacefarers. Surrounding the port is a ring of docks where barges are moored; on platforms farther "inland," starships land.`
 	spaceport `	Few goods are produced here; most of the people rich enough to live on Mainsail are connected with interplanetary corporations whose physical business takes place elsewhere.`
@@ -2553,7 +2554,7 @@ planet Mani
 	description `Mani is a small moon, with an atmosphere thick enough to keep your blood from boiling off but too thin to breathe without assistance. It is used only as a cargo depot and a spot for refueling and repairs.`
 	description `	The native plant life mostly consists of pale-colored lichens and a few species of grass. The only animals are insects.`
 	spaceport `The spaceport is shaped like a wheel with no rim: a series of spokes jutting out from a central hub, where each spoke is a docking tunnel that can connect to any ship that lands beside it.`
-	spaceport `	Inside are about a dozen people and a couple hundred robots. The people and robots alike seem uninterested in any interactions with you. It is a strange sort of aloofness that you have heard is common to all the worlds in the Deep.`
+	spaceport `	Inside are about a dozen people and a couple hundred robots. Everyone appears to be busy; you decide not to interrupt their work.`
 	outfitter "Ammo North"
 	security 0.6
 	tribute 500
@@ -2664,8 +2665,8 @@ planet "Miblulub's Plenty"
 planet Midgard
 	attributes deep factory mining urban
 	landscape land/city5
-	description `Midgard is a world with as much geographic diversity as Earth itself: mountains, tundra, desert, oceans, marshes, plains. It was the second world in the Deep to be settled, seven centuries ago. It is now home to dozens of major metropolitan areas and a population of over four billion. Although a select few live outside the cities and work in farming or ranching, the vast majority of people here have jobs in manufacturing.`
-	description `	Food, fashion, and entertainment here all strike you as out of pace with broader galactic culture. The deep independent history of the planet makes it less likely to simply follow the latest Earth trends as the more recent colonies do.`
+	description `Midgard is a world with as much geographic diversity as Earth itself: mountains, tundra, desert, oceans, marshes, plains. It was the second world in the Deep to be settled, seven centuries ago. It is now home to dozens of major metropolitan areas and a population of over four billion, and is where you were born. Although a select few live outside the cities and work in farming or ranching, the vast majority of people here have jobs in manufacturing.`
+	description `	The deep independent history of the planet has made its culture greatly different to the broader galaxy, not that you can tell. One such example is the tradition of "tributation:" one night every year, the citizens of the Deep leave out saucers of milk and sweet bread as an offering to the "elves:" pale, delicate beings said to keep the Deep safe.`
 	spaceport `The spaceport is located in the center of the city of New Reykjavik, a bustling metropolis which is also Midgard's center of government. The port was built five hundred years ago, and its architecture is much more conservative than other ports in the Deep: instead of domes and rounded, wavy surfaces, it is a collection of tall, square granite towers, connected by bridges at various levels. Most of the hotels and restaurants are in a central tower, slightly higher than the others.`
 	spaceport `	There is no central marketplace; instead, you can just buy or sell cargo from a computer terminal and a robotic forklift will arrive at your docking bay to carry it.`
 	shipyard "Basic Ships"
@@ -2751,7 +2752,7 @@ planet Muspel
 	landscape land/canyon9
 	description `Muspel is a hot world of deserts, canyons, and warm-water oceans. It is mostly a mining and manufacturing planet, and as a result there are few lifelong inhabitants; most of the people here are migrant workers who are just trying to save up enough money to settle down somewhere more hospitable.`
 	description `	Some tourists also come here, to walk through the sandstone canyons where the wind and rain has carved the rock into tall pillars and spires. A few particularly beautiful canyons are protected against strip mining by local law.`
-	spaceport `The spaceport here is rudimentary: a collection of concrete landing pads clustered around a single large building. The building is designed with layers of color and rounded spires that mimic the canyonlands. From a distance, it would be indistinguishable from the natural rock outcroppings if it were not for the glitter of sunlight off the windows. Inside, people move at a slower and calmer pace than you have seen elsewhere in the Deep.`
+	spaceport `The spaceport here is rudimentary: a collection of concrete landing pads clustered around a single large building. The building is designed with layers of color and rounded spires that mimic the canyonlands. From a distance, it would be indistinguishable from the natural rock outcroppings if it were not for the glitter of sunlight off the windows. Inside, people move at a slower and calmer pace, most likely to appear friendlier to tourists than other parts of the Deep.`
 	bribe 0.03
 	security 0.6
 	tribute 600
@@ -4237,7 +4238,7 @@ planet Thrall
 	attributes paradise textiles
 	landscape land/fields5
 	description `Thrall has a warm, moderate climate and a geography of mostly gently rolling hills. Most of the industry here takes the form of agriculture, especially growing cotton, which mills in the three major cities process into textiles for export off-world.`
-	description `This is one of the few places in the galaxy where cotton is picked by hand, because labor here is cheaper than the cost of buying and maintaining machinery. The locals are prevented from seeking more lucrative employment elsewhere partly by the crushingly low wages, which make the cost of space transport prohibitively high for most, and partly by the educational system, which is among the worst in the galaxy.`
+	description `	This is one of the few places in the galaxy where cotton is picked by hand, because labor here is cheaper than the cost of buying and maintaining machinery. The locals are prevented from seeking more lucrative employment elsewhere partly by the crushingly low wages, which make the cost of space transport prohibitively high for most, and partly by the educational system, which is among the worst in the galaxy.`
 	spaceport `The spaceport consists of a vast asphalt-paved field for landing ships, and some wooden buildings a few stories tall. Most of the materials for export are stored in sheds or stacked under plastic tarps, with a few police officers clustered around them to make sure no ship picks up cargo that has not been paid for. Inside the buildings, two restaurants with different names serve an identical selection of fried foods.`
 	outfitter "Basic Outfits"
 	outfitter "Ammo North"
