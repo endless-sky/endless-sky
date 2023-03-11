@@ -246,7 +246,7 @@ outfit "Shield Refactor Module"
 	"hull repair rate" -.2
 	"shield energy" .2
 	"shield heat" .24
-	"shield generation multiplier" .15
+	"shield generation multiplier" .25
 	"hull repair multiplier" -.2
 	description "In theory, all shield generators can operate at a much faster rate than normal, if pushed to their true limit. However, the constant need to reform shields during a heated battle quickly overloads shield generators and damages them in the process. By relocating dedicated hull repair systems to focus exclusively on repairing such damage, this compact device allows shield generators to reach their true potential."
 	description "	A much needed boon against the Heliarch torpedoes' devastating effects on hull plating, the Lunarium highly favors production of this expensive piece over other shield generators due to its effectiveness in preventing shields from being taken down."
