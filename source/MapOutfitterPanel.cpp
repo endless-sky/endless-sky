@@ -179,6 +179,8 @@ int MapOutfitterPanel::FindItem(const string &text) const
 
 void MapOutfitterPanel::DrawItems()
 {
+	bool headerDrawed = false;
+
 	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
 		DoHelp("map advanced shops");
 	list.clear();
@@ -188,10 +190,6 @@ void MapOutfitterPanel::DrawItems()
 		const string &category = cat.Name();
 		auto it = catalog.find(category);
 		if(it == catalog.end())
-			continue;
-
-		// Draw the header. If this category is collapsed, skip drawing the items.
-		if(DrawHeader(corner, category))
 			continue;
 
 		for(const Outfit *outfit : it->second)
@@ -244,8 +242,17 @@ void MapOutfitterPanel::DrawItems()
 					}
 				}
 			}
-			if(!isForSale && !storedInSystem && onlyShowSoldHere)
+			if((!isForSale && !storedInSystem && onlyShowSoldHere) || !player.OutfitIsKnown(*outfit))
 				continue;
+
+			if(!headerDrawed)
+			{
+				// Draw the header. If this category is collapsed, skip drawing the items.
+				if(DrawHeader(corner, category))
+					continue;
+
+				headerDrawed = true;
+			}
 
 			const std::string storage_details =
 				storedInSystem == 0
