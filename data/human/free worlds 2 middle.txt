@@ -1011,6 +1011,9 @@ mission "FW Northern 3B"
 				goto leave
 			label home
 			`	"I grew up on Earth," she says, "deep in the bowels of one of the major cities. Even as a kid I hated that dirty old planet and knew my only shot of leaving there was to be smarter than everyone else. It wasn't until years later, when I came back to visit with some money in my pocket and a bit more perspective, that I was able to travel to the few parts of Earth that are still pretty, and realize how precious our home world is."`
+			branch leave
+				not "start: syndicate"
+			`	You tell Freya about your own upbringing on Earth, and the two of you begin sharing stories. It turns out you both grew up on the continent of North America; Freya lived on the northwestern coast, while you lived close to the northeast.`
 				goto leave
 			label dreadnoughts
 			`	"Ugh," she says, "let's not talk about work while we're busy relaxing." You refrain from commenting that all her talk about starship design sounded a lot more like work than like a fun relaxing topic of conversation.`

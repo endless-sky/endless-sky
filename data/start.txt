@@ -15,7 +15,7 @@ start "default"
 	name "Endless Sky"
 	description `You grew up on New Boston, an uninteresting world in the Dirt Belt. You've dreamed of owning a starship ever since your first visit to the spaceport at the age of fifteen. After many long years of working at a textile mill, you've finally saved enough credits to apply for a pilot's license from the Republic.`
 	description `	After receiving the license and with freedom from this planet at your fingertips, you travel to the bank to take out a loan on your first ship...`
-	thumbnail "scene/lobby"
+	thumbnail "scene/new boston"
 	date 16 11 3013
 	system "Rutilicus"
 	planet "New Boston"
@@ -28,9 +28,9 @@ start "default"
 			term 365
 	set "license: Pilot's"
 	set "start: default"
-	conversation "intro"
+	conversation "default intro"
 
-conversation "intro"
+conversation "default intro"
 	scene "scene/lobby"
 	`The bank's architecture is what you would have called "futuristic" back when you dreamed that the future would be less squalid than the present: story above story of curves and spires and balconies, all in gleaming metal. A doorman stands by each of the heavy glass doors. You are wearing your very best clothes, but you feel shabby next to them.`
 	`	The loan broker's office is equally intimidating. Large computer monitors fill the walls, with stock quotes and other information spilling down them almost too fast to read. You occasionally glimpse the names of places that you have only seen in movies: Aldebaran. Tarazed. Earth.`
@@ -46,8 +46,8 @@ conversation "intro"
 start "deep"
 	name "Deep Desire"
 	description `You grew up on Midgard, a world in the advanced Deep region. Semi-autonomous from the Republic, the Deep provides free higher education to its citizens, but you've always been more interested in becoming a starship captain.`
-	description `	After finishing primary education, you find that the Deep provides low-interest loans to those who passed with high enough grades, and you made the mark! You make your way to a bank as quick as you can...`
-	thumbnail ""
+	description `	After finishing primary education, you learn that the Deep provides low-interest loans for prospecting captains with high enough grades, and you made the mark! You make your way to the capital city of New Reykjavik...`
+	thumbnail "scene/midgard"
 	date 16 11 3013
 	system "Aludra"
 	planet "Midgard"
@@ -56,29 +56,30 @@ start "deep"
 		score 400
 		mortgage Mortgage
 			principal 580000
-			interest 0.003
+			interest 0.002
 			term 365
 	set "license: Pilot's"
 	set "start: deep"
 	conversation "deep intro"
 
 conversation "deep intro"
-	``
-	`	`
-	`	`
-	`	The loan broker carefully explains the Truth in Lending statement to you. "You are borrowing 580,000 credits to be repaid over the course of one year. Your daily interest rate is 0.3%, which means that your daily payments are 2,617 credits, and by the end of the year you will have paid 375,000 credits in interest. Sign here, please."`
-	`	You sign your name one final time:`
+	scene "scene/train"
+	`The train trip from your hometown to the capital is calm and without interruption. The only other people in your car are a young couple close to your age, and a much older man wearing greasy overalls. You assume the man comes from off-world through his clothing and how his hair has turned gray.`
+	`	Before long, you arrive in New Reykjavik, and enter a government office. After asking around, you find the desk for handling starship loans. You hand over your application papers, and after verifying them against the online records you submitted beforehand, the office worker hands you two cards. One of them is the card for applying for a loan at a nearby bank; the other is your pilot's license, fully paid for.`
+	`	The bank is only a few blocks away from the office. Hundreds of people are lined up silently inside the building. You patiently wait until you can insert the loan card into one of the bank's automated clerks. The machine takes the card, makes a soft pinging sound, and dispenses a large stack of papers onto a nearby tray.`
+	`	As you pick up and begin reading through the documents, an electronic voice says, "You are borrowing 580,000 credits to be repaid over the course of a year. Your daily interest rate is 0.2%, which means that your daily payments are 2,241 credits, and by the end of two years you will have paid 197,000 credits in interest. Please sign and insert the signed legal documents into this terminal when you are ready."`
+	`	After carefully rereading every page of the loan agreement, you sign your name:`
 	name
-	`	Eager to get started, you run straight for the shipyard.`
-	`	Although the shipyard is full of massive ships, most far outside of your price range, you spot a few that you'll be able to purchase. Which one you choose will determine your future...`
+	`	Eager to get started, you rush out of the bank, get on the intra-city transport system, and head towards the shipyard. You can barely keep your face straight as the carriage sways and rocks. After getting off, you consider throwing away your planetary transport pass, but decide against it.`
+	`	You had seen videos of the shipyard in New Reykjavik, but seeing the site in person blows your wildest dreams out of the water. Throughout the facility, salespeople show of a variety of life-sized holographically-rendered vessels to finely dressed clients, while massive ships loom silently in the background. Although most of the ships are far outside of your price range, you spot a few that you'll be able to purchase. Which one you choose will determine your future...`
 
 
 
 start "paradise"
 	name "Birthday Surprise"
-	description `You grew up on Mainsail, a Paradise World terraformed with a perfect climate. Only the richest in the galaxy live on such worlds; luckily, your father is a wealthy financier from the galactic stock exchange.`
+	description `You grew up on Mainsail, a oceanic Paradise World terraformed to perfection. Only the richest in the galaxy live on such worlds; luckily, your father is a wealthy financier from the galactic stock exchange.`
 	description `	But you've always found the rich life boring and are more interested in living a life among the stars. It's your eighteenth birthday; you are now old enough to have a pilot's license. As the party winds down, your father asks to talk to you for a moment...`
-	thumbnail ""
+	thumbnail "scene/mainsail"
 	date 16 11 3013
 	system "Alhena"
 	planet "Mainsail"
@@ -88,19 +89,20 @@ start "paradise"
 		mortgage Mortgage
 			principal 640000
 			interest 0
-			term 365
+			term 730
 	set "license: Pilot's"
 	set "start: paradise"
 	conversation "paradise intro"
 
 conversation "paradise intro"
-	`"I know you've wanted to be the captain of a starship for a long time now," your father says. "So as my birthday gift to you, how about we go get you a pilot's license and a ship from the shipyard?" You say yes without a second thought. `
+	scene "scene/reception"
+	`"I know you've wanted to be the captain of a starship for a long time now," your father says. "So as my birthday gift to you, how about we go get you a pilot's license and a ship from the shipyard?" You say yes without a second thought.`
 	`	Your father brings you to the Republic Department of Starship Licensing building in the spaceport. The lines are long, but your father walks right up to one of the desks. Before the person in the front of the line or the one behind the desk can complain, he tosses a credit chip worth a substantial amount at each of them. "I'd like to get a pilot's license for my child."`
 	`	"I'm sorry," the person behind the desk starts saying, "but you'll need to go through the process of applying through the net first, then wait three to five business days before-"`
 	`	Your father tosses another credit chip at the person behind the desk, prompting them to hand you a stylus and a pad. "Sign here, please. Your pilot's license will be here in a moment."`
 	`	Without any hesitation and after skipping past a number of pages of legal text, you sign your name:`
 	name
-	`	You enter the shipyard with your brand new pilot's license held tight in your hand. Before your father left you at the shipyard, he handed you 640,000 credits and said, "I still have to run a business, so this isn't free money. This is a loan. But since you're my child, it'll be interest free. Pay me back 1,753 credits a day and you should be debt free in a year. Don't take an opportunity like this lightly."`
+	`	You enter the shipyard with your brand new pilot's license held tight in your hand. Before your father left you at the shipyard, he handed you 640,000 credits and said, "I still have to run a business, so this isn't free money. This is a loan. But since you're my child, it'll be interest free. Pay me back 877 credits a day and you should be debt free in two years. Don't take an opportunity like this lightly."`
 	`	You wander the shipyard looking at all the ships for sale, but there are only four that you are able to afford. Which one you choose will determine your future...`
 
 
@@ -109,7 +111,7 @@ start "syndicate"
 	name "Escaping Squalor"
 	description `You grew up on Earth, an overpopulated world with few opportunities. But you took a contract working for the Syndicate for five years, and they gave you a place to live, enough to eat, and a decent wage off of Earth.` 
 	description `	Afterward you moved to Antipode, a cheap frontier world, but found that it wasn't any better than Earth. Fed up with life on planets like this, you used the credits you had left to purchase a ride to the closest planet with a shipyard...`
-	thumbnail ""
+	thumbnail "scene/earth"
 	date 16 11 3013
 	system "Scheat"
 	planet "Delve"
@@ -125,11 +127,13 @@ start "syndicate"
 	conversation "syndicate intro"
 
 conversation "syndicate intro"
-	`You hand the last of your credits to the captain that brought you here. Before she leaves, she gives you some advice. "Just a heads up so you don't get yourself killed right when you get your ship, head north after launching. South of here is nothing but uninhabited systems and pirates. You wouldn't last long in whatever ship you're going to buy." You thank her for the ride and for the advice and part ways.`
-	`	You stop by the shipyard first to see what they have. You're noticed by a salesman who seems to reluctantly approach you, perhaps due to the fact that your clothes are rather shabby compared to those around you. You ask them what it would take to purchase a ship here. They mention the neccessity of a pilot's license before beginning their spiel about all their cheapest models, but you cut them short and say that's all you needed.`
+	scene "scene/tunnel"
+	`The world of Delve is unlike anything else you've ever seen before: the entire spaceport is buried into a mountain, with one side being open to receive incoming ships. The hallways leading from the hangars to the port proper are cramped, dirty, and covered in machinery, creating a sense of claustrophobia far different from the packed cities of Earth.`
+	`	You hand the last of your credits to the captain that brought you here. Before she leaves, she gives you some advice. "Just a heads up: if you don't feel like dying early, head north after launching. South of here is nothing but uninhabited systems and pirates. You wouldn't last long in whatever ship you're going to buy." You thank her for the ride and for the advice and part ways.`
+	`	You stop by the shipyard first to see what they have. You're noticed by a salesman who seems to reluctantly approach you, perhaps due to the fact that your clothes are rather shabby compared to those around you. You ask him what it would take to purchase a ship here. He mentions the neccessity of a pilot's license before beginning his spiel about all the cheapest models, but you cut him short and say that's all you needed.`
 	`	The bank is luckily not very busy at the moment. One of the tellers eyes you up as you enter. "What can we help you with?" he asks with a strange glee in his voice. You say how you're in need of a loan to buy a starship; 530,000 credits should be enough to cover the cost of the license and the ship. After handing over your Syndicate Account information, the teller comes back with a piece of paper. This whole process seems suspiciously streamlined to you.`
 	`	"Lucky for you the interest rates are great right now!" You take a glance at the paper and feel a sense of dread fall over you. The daily interest rate is 0.5%, meaning the daily payments are 3,162 credits for a whole year. If you don't pay off any of your loan early, you'll have paid a disgusting 624,000 credits in interest. "Just sign here." The teller grins.`
 	`	The interest is terrible, but there's nothing else you can do about it. You sign your name:`
 	name
-	`	After using some of your loan to buy a pilot's license, you're left with 480,000 credits. The process of buying a pilot's license was also surprisingly easy. You can't help but get the feeling that you're being played by the Syndicate once again in all this.`
+	`	After leaving the bank, you spend an hour waiting in line to apply for a pilot's license. When you finish going through the oddly easy process of applying for a license, you're left with 480,000 credits. You can't help but get the feeling that you're being played by the Syndicate once again in all this.`
 	`	You return to the shipyard, this time with a credit chip in your hand to draw the attention of the salesman. "Welcome back! I hope we can find you the perfect model," he says. The shipyard is full of ships that you can't buy, but the salesman finds three models within your price range: an interceptor, a light freighter, and a transport ship. Which one you choose will determine your future...`

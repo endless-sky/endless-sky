@@ -1616,12 +1616,19 @@ mission "FW Katya 4"
 	to fail
 		has "chosen sides"
 	
+	substitutions
+		<native> ""
+		<native> " like yourself"
+			has "start: default"
+	
 	on offer
 		log "People" "Katya Reynolds" `Katya grew up on Hope, a Dirt Belt world that is no longer inhabited because of a supervolcano eruption that triggered a new ice age. Despite her distrust of the Republic she has high regard for the Navy because they were the ones, acting without clearance from Parliament, who helped the settlers on Hope to evacuate safely.`
 		conversation
 			`You join Katya and Mr. Eyes in the restaurant, and order your meals. They are both in high spirits. While you are waiting for the food to arrive, Mr. Eyes raises his glass of wine and says, "A toast, to Captain <last> and our marvelous new toy. May it bring us good information and swift justice."`
 			`	"We're thinking that while we're in the area, we should stop on <planet> next," says Katya, "and then work our way toward the Rim."`
-			`	Your meals arrive. The food is excellent, and you spend a relaxed evening sharing stories of your childhoods. Katya turns out to be a Dirt Belt native like yourself, from a planet named Hope. "No longer settled," she explains. "Supervolcano. It was a cold planet to start out with, and the eruption sent it into an ice age that could last for millennia. My home town is under thirty meters of glacier by now."`
+			`	Your meals arrive. The food is excellent, and you spend a relaxed evening sharing stories of your childhoods. Katya turns out to be a Dirt Belt native<native>, from a planet named Hope. "No longer settled," she explains. "Supervolcano. It was a cold planet to start out with, and the eruption sent it into an ice age that could last for millennia. My home town is under thirty meters of glacier by now."`
+			
+			label choice
 			choice
 				`	"Was anyone killed?"`
 				`	"How did you escape?"`
@@ -1635,6 +1642,19 @@ mission "FW Katya 4"
 			
 			`	"Our fight isn't with the Navy," says Katya. "Most of them are good people. I'm sure they don't want war any more than we do. They're like police officers who are suddenly being asked to fight against the very people they swore to protect and serve."`
 			`	"I was a child on Vinci while this was happening," says Eyes. "A Paradise World. I would listen to the news and could never understand why all the adults around me were so very, very angry that the Navy had gone off to rescue two million people from freezing to death. But they told me that we lived in one little island of safety in a dangerous galaxy, and that without the Navy protecting us the pirates or even maybe aliens would sweep in and destroy our homes and take our money. That it was us against the whole galaxy."`
+			branch paradise
+				not "start: paradise"
+			
+			`	You talk to Eyes about your own upbringing on Mainsail, how you always dreamed of taking to the stars instead of your family's business, and how your father gave you a pilot's license for your eighteenth birthday.`
+			`	"It sounds like you've come a long way from the Paradise Worlds too," says Eyes. "If you don't mind me asking, what do you think your father would think about you helping the Free Worlds?"`
+			choice
+				`	"I'm sure he'd be happy with the path I've chosen."`
+				`	"I don't think he would like it."`
+				`	"I'm not sure myself, to be honest."`
+				`	"I'd rather not say."`
+			`	Eyes nods in acknoledgement.`
+			
+			label paradise
 			`	"I'd hate to be rich," says Katya. "So much to fear."`
 			`	You finish your meal (Katya pays the tab), and agree to take off for <planet> first thing in the morning.`
 				accept

@@ -866,12 +866,30 @@ conversation "deep: questioning"
 	`	"Well if you don't then let me jog your memory: You took a small chip of wood from a historical church on Midgard - nothing criminal, mind you - and returned it to Vinci, where I assume you handed it over to the 'archaeologist' Albert Foster." The tone of her voice as she says "archaeologist," clearly conveys her disdain for his title. "Later you returned to Midgard with Albert Foster in tow, prompting us to run you out of the Deep.`
 	
 	label foster
+	branch citizen
+		not "start: deep"
 	`	"My first question to you: what exactly were you doing with Albert Foster?"`
+		goto first
+	
+	label citizen
+	`	"My first question to you: what exactly were you doing with Albert Foster?"`
+	choice
+		`	"You can't interrogate me. I'm a citizen of the Deep."`
+		`	"We were scanning Midgard with gravitational field mapping equipment and spotted an artificial singularity before we fled."`
+			goto honest
+		`	"He told me he was researching the Deep and he needed help conducting his research."`
+			goto work
+	
+	`	She frowns. "That status does not give you immunity from our investigation. It only increases our disappointment in your actions.`
+	`	"Now again: what exactly were you doing with Albert Foster?"`
+	
+	label first
 	choice
 		`	"We were scanning Midgard with gravitational field mapping equipment and spotted an artificial singularity before we fled."`
 			goto honest
 		`	"He told me he was researching the Deep and he needed help conducting his research."`
 	
+	label work
 	`	"And why do you think he needed someone else to do the work for him?"`
 	choice
 		`	"Because he wanted something illegal done."`
@@ -1205,6 +1223,19 @@ mission "Deep: Project Hawking: Prime"
 		government "Independent (Killable)"
 		personality waiting
 		ship "Marauder Raven (Engines)" "Krampus"
+	substitutions
+		<history> "You tell Pierre about your life on New Boston, and how you saved up your money working at the textile mill from the age of fifteen until you were able to buy a pilot's license and finally leave your home world for the stars."
+		<history> "You tell Pierre about your life on Midgard, and how you graduated with high enough grades to apply for the Deep's starship loan program."
+			has "start: deep"
+		<history> "You tell Pierre about your life on Mainsail, and how you've always dreamed of becoming a starship captain, and finally got your wish when you were given a pilot's license on your eighteenth birthday."
+			has "start: paradise"
+		<history> "You tell Pierre about your life on Earth, and how you worked on a Syndicate factory world for five years before you took a loan and begain your life as a merchant captain."
+			has "start: syndicate"
+		<response> `"We aren't too different then," Pierre remarks. "We both worked hard to get where we are today. Thanks for sharing, <first>."`
+		<response> `"So you're native to the Deep," Pierre remarks. "I admit that I felt like an outsider when I first came to the Deep. Everyone was so quiet and demure, and it seemed like nobody wanted to talk to me. I've gotten over those feelings since, of course. Thanks for sharing, <first>."`
+			has "start: deep"
+		<response> `"So you're from the Paradise Worlds," Pierre remarks. "Most people from there choose to settle down and take up their parent's businesses. Very few go out on their own as a merchant. Thanks for sharing, <first>."`
+			has "start: paradise"
 	on offer
 		conversation
 			`As you approach the massive <planet> spaceport building, Pierre directs you to park on a landing pad on the third story close to the warehouse section. "We're picking up various materials used in the creation of ships that we need samples of for testing," Pierre explains.`
@@ -1226,8 +1257,8 @@ mission "Deep: Project Hawking: Prime"
 			`	"Let me answer that question with a short story of my life." Pierre clears his throat and puffs up his chest a little, as if preparing himself to tell a great epic. He may enjoy talking about himself a little too much...`
 			`	"I was born on Windblain in the Regor system. It's a small, quiet world of little galactic importance, but you should give it a visit sometime. My family wasn't the most well off, so I needed to work hard in my studies, which paid off immensely. Thanks to my exceptional grades in university, I was offered a government job even before graduation. I've been working directly for the Deep for the past 35 years and counting, and I've loved every minute of it! My younger sister though... well, let's just say she wasn't so focused on being successful in school and ended up on the wrong side of the law.`
 			`	"How about you?"`
-			`	You tell Pierre about your life on New Boston, and how you saved up your money working at the textile mill from the age of fifteen until you were able to buy a pilot's license and finally leave your home world for the stars.`
-			`	"We aren't too different then," Pierre remarks. "We both worked hard to get where we are today. Thanks for sharing, <first>."`
+			`	<history>`
+			`	<response>`
 			`	"The cargo is all in, Captain!" Garrison yells down from the platform above. "We're ready when you are!"`
 				accept
 

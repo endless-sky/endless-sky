@@ -11,6 +11,58 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+# Give planets descriptions depending on the start chosen
+
+event "dirt belt descriptions"
+
+event "deep desciptions"
+
+event "paradise descriptions"
+
+event "syndicate descriptions"
+
+
+
+mission "dirt belt descriptions"
+	landing
+	to offer
+		not "start: default"
+	on offer
+		event "dirt belt descriptions"
+		fail
+
+
+
+mission "deep descriptions"
+	landing
+	to offer
+		not "start: deep"
+	on offer
+		event "deep descriptions"
+		fail
+
+
+
+mission "paradise descriptions"
+	landing
+	to offer
+		not "start: paradise"
+	on offer
+		event "paradise descriptions"
+		fail
+
+
+
+mission "deep descriptions"
+	landing
+	to offer
+		not "start: deep"
+	on offer
+		event "deep descriptions"
+		fail
+
+
+
 event "remembrance day"
 	date 19 2 3014
 
