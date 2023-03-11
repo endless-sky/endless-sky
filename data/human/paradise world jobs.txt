@@ -532,7 +532,6 @@ mission "Martini Evacuation (Resident Family)"
 	repeat
 	passengers 3 6
 	cargo "belongings" 2 4
-	clearance "When you inform the spaceport controller that your passengers are permitted to live on <destination>, they give you the clearance to land." # In case the destination is Hermes.
 	substitutions
 		"<martini house>" "apartment"
 		"<martini house>" "house"
@@ -562,7 +561,6 @@ mission "Martini Evacuation (Resident Group)"
 	repeat
 	passengers 3 6
 	cargo "belongings" 3 6
-	clearance "When you inform the spaceport controller that your passengers are permitted to live on <destination>, they give you the clearance to land."
 	substitutions
 		"<martini house>" "apartment"
 		"<martini house>" "house"
@@ -592,7 +590,6 @@ mission "Martini Evacuation (Resident)"
 	repeat
 	passengers 1
 	cargo "belongings" 1 2
-	clearance "When you inform the spaceport controller that your passenger is permitted to live on <destination>, they give you the clearance to land."
 	substitutions
 		"<martini house>" "apartment"
 		"<martini house>" "house"
@@ -622,7 +619,6 @@ mission "Martini Evacuation (Family, Luxury)"
 	repeat
 	passengers 3 6
 	cargo "belongings" 2 4
-	clearance "When you inform the spaceport controller that your passengers are permitted to live on <destination>, they give you the clearance to land."
 	substitutions
 		"<martini house>" "apartment"
 		"<martini house>" "house"
@@ -654,7 +650,6 @@ mission "Martini Evacuation (Singular, Luxury)"
 	repeat
 	passengers 1
 	cargo "belongings" 1 2
-	clearance "When you inform the spaceport controller that your passenger is permitted to live on <destination>, they give you the clearance to land."
 	substitutions
 		"<martini house>" "apartment"
 		"<martini house>" "house"
@@ -685,7 +680,6 @@ mission "Martini Evacuation (Tourist)"
 	job
 	repeat
 	passengers 1
-	clearance "When you inform the spaceport controller that your passenger is permitted to live on <destination>, they give you the clearance to land."
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
@@ -707,7 +701,6 @@ mission "Martini Evacuation (Tourist Couple)"
 	job
 	repeat
 	passengers 2
-	clearance "When you inform the spaceport controller that your passengers are permitted to live on <destination>, they give you the clearance to land."
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
@@ -729,7 +722,6 @@ mission "Martini Evacuation (Tourist Family)"
 	job
 	repeat
 	passengers 3 6
-	clearance "When you inform the spaceport controller that your passengers are permitted to live on <destination>, they give you the clearance to land."
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
@@ -750,7 +742,6 @@ mission "Martini Evacuation (Tourist Group)"
 	job
 	repeat
 	passengers 3 6
-	clearance "When you inform the spaceport controller that your passengers are permitted to live on <destination>, they give you the clearance to land."
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
@@ -772,7 +763,6 @@ mission "Martini Evacuation (Businessman Group)"
 	job
 	repeat
 	passengers 3 6
-	clearance "When you inform the spaceport controller that your passengers are permitted to live on <destination>, they give you the clearance to land."
 	to offer
 		has "event: war begins"
 		random < 30
@@ -794,7 +784,6 @@ mission "Martini Evacuation (Businessman)"
 	job
 	repeat
 	passengers 1
-	clearance "When you inform the spaceport controller that your passenger is permitted to live on <destination>, they give you the clearance to land."
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
@@ -816,7 +805,6 @@ mission "Martini Evacuation (Exhausted Doctors)"
 	job
 	repeat
 	passengers 2 6
-	clearance "When you inform the spaceport controller that your passengers are permitted to live on <destination>, they give you the clearance to land."
 	to offer
 		has "event: initial deployment 1"
 		not "event: initial deployment 2"
@@ -838,7 +826,6 @@ mission "Martini Evacuation (Exhausted Search and Rescue Team)"
 	job
 	repeat
 	passengers 2 6
-	clearance "When you inform the spaceport controller that your passengers are permitted to live on <destination>, they give you the clearance to land."
 	to offer
 		has "event: initial deployment 1"
 		not "event: initial deployment 2"
@@ -914,17 +901,20 @@ phrase "martini evac 1"
 	word
 		"telling you"
 		"letting you know"
-		"saying"
+		"talking"
 		"informing you"
 	word
-		" "
+		" of the "
+		" about the "
 	word
-		"of the desperation of the people on Martini"
-		"of the people they knew who died in the blasts"
-		"of the dire conditions that the people are facing on Martini"
-		"of the deteriorating state on the ground on Martini"
-		"of the destruction on Martini"
-		"that they haven't heard back from their relatives on Martini"
+		"desperation of the people on Martini"
+		"people they knew who died in the blasts"
+		"dire conditions that the people are facing on Martini"
+		"deteriorating state on the ground on Martini"
+		"destruction on Martini"
+		"devastation they personally witnessed"
+		"breakdowns and losses they endured on Martini"
+		"people they haven't heard back from on Martini"
 	word
 		", and implore you to help out further in the relief efforts"
 		", and thank you for bringing them off-planet"
@@ -996,17 +986,20 @@ phrase "martini evac 2"
 	word
 		"telling you"
 		"letting you know"
-		"saying"
+		"talking"
 		"informing you"
 	word
-		" "
+		" of the "
+		" about the "
 	word
-		"of the desperation of the people on Martini"
-		"of the people they knew who died in the blasts"
-		"of the dire conditions that the people are facing on Martini"
-		"of the deteriorating state on the ground on Martini"
-		"of the destruction on Martini"
-		"that some of them haven't heard back from their relatives on Martini"
+		"desperation of the people on Martini"
+		"people they knew who died in the blasts"
+		"dire conditions that the people are facing on Martini"
+		"deteriorating state on the ground on Martini"
+		"destruction on Martini"
+		"devastation they personally witnessed"
+		"breakdowns and losses they endured on Martini"
+		"people they haven't heard back from on Martini"
 	word
 		". They "
 	word
@@ -1037,24 +1030,42 @@ phrase "insults for southerners"
 		"deceptive"
 		"terrorizing"
 		"greedy"
+		"cowardly"
+		"base"
 	word
 		" "
 	word
+		"southrons"
 		"southerners"
-		"collectivists from Bourne"
-		"subversives from the Rim"
-		"insurrectionists from the Rim"
-		"charity-cases from the South"
-		"rocketeers from Solace"
-		"pirates from Greenrock"
-		"unlawfuls from Thule"
-		"gunrunners from Rust"
+		"collectivists"
+		"subversives"
+		"insurrectionists"
+		"charity-cases"
+		"rocketeers"
+		"pirates"
+		"unlawfuls"
+		"gunrunners"
+		"sunnavaguns'"
+		"privateers"
+	word
+		" "
+	word
+		"from Bourne"
+		"from Rust"
+		"from Solace"
+		"from Greenrock"
+		"from Thule"
+		"from Zug"
+		"from Longjump"
+		"from the South"
+		"from the Rim"
+		"from the Southern Rim"
 
 
 
 mission "Martini Relief (Medical) [0]"
 	name "Disaster relief to Martini"
-	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help treat the wounded. Payment is <payment>."
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help treat the wounded. You will need to hail the spaceport controller to gain clearance to the planet. Payment is <payment>."
 	job
 	repeat
 	cargo Medical 5 25
@@ -1075,7 +1086,7 @@ mission "Martini Relief (Medical) [0]"
 
 mission "Martini Relief (Medical) [1]"
 	name "Disaster relief to Martini"
-	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help treat the wounded. Payment is <payment>."
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help treat the wounded. You will need to hail the spaceport controller to gain clearance to the planet. Payment is <payment>."
 	job
 	repeat
 	cargo Medical 5 25
@@ -1096,7 +1107,7 @@ mission "Martini Relief (Medical) [1]"
 
 mission "Martini Relief (Reconstruction)"
 	name "Construction supplies to Martini"
-	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help the reconstruction efforts. Payment is <payment>."
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help the reconstruction efforts. You will need to hail the spaceport controller to gain clearance to the planet. Payment is <payment>."
 	job
 	repeat
 	cargo Construction 5 25
@@ -1117,7 +1128,7 @@ mission "Martini Relief (Reconstruction)"
 
 mission "Martini Relief (Food)"
 	name "Food packages to Martini"
-	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help keep up supply. Payment is <payment>."
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help keep up supply. You will need to hail the spaceport controller to gain clearance to the planet. Payment is <payment>."
 	job
 	repeat
 	cargo "food packages" 5 25
@@ -1138,7 +1149,7 @@ mission "Martini Relief (Food)"
 
 mission "Martini Relief (Water Tablets)"
 	name "Water purification tablets to Martini"
-	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help keep up supply. Payment is <payment>."
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help keep up supply. You will need to hail the spaceport controller to gain clearance to the planet. Payment is <payment>."
 	job
 	repeat
 	cargo "water purification tablets" 5 25
@@ -1159,7 +1170,7 @@ mission "Martini Relief (Water Tablets)"
 
 mission "Martini Relief (Fire Retardant)"
 	name "Fire retardant to Martini"
-	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help keep up supply. Payment is <payment>."
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help keep up supply. You will need to hail the spaceport controller to gain clearance to the planet. Payment is <payment>."
 	job
 	repeat
 	cargo "fire retardant" 5 25
@@ -1180,7 +1191,7 @@ mission "Martini Relief (Fire Retardant)"
 
 mission "Martini Relief (People) [0]"
 	name "Relief workers to Martini"
-	description "Due to the recent nuclear bombings on Martini, bring <bunks> <martini relief occupations> to <planet> to release demand from overloaded hospitals. Payment is <payment>."
+	description "Due to the recent nuclear bombings on Martini, bring <bunks> <martini relief occupations> to <planet> to release demand from overloaded hospitals. You will need to hail the spaceport controller to gain clearance to the planet. Payment is <payment>."
 	job
 	repeat
 	passengers 5 15
@@ -1208,7 +1219,7 @@ mission "Martini Relief (People) [0]"
 
 mission "Martini Relief (People) [1]"
 	name "Relief workers to Martini"
-	description "Due to the recent nuclear bombings on Martini, bring <bunks> <martini relief occupations> to <planet> to assist in Martini's relief efforts. Payment is <payment>."
+	description "Due to the recent nuclear bombings on Martini, bring <bunks> <martini relief occupations> to <planet> to assist in Martini's relief efforts. You will need to hail the spaceport controller to gain clearance to the planet. Payment is <payment>."
 	job
 	repeat
 	passengers 5 15
@@ -1236,7 +1247,7 @@ mission "Martini Relief (People) [1]"
 
 mission "Martini Relief (People) [2]"
 	name "Relief workers to Martini"
-	description "Due to the recent nuclear bombings on Martini, bring <bunks> <martini relief occupations> to <planet> to assist in the accommodation and reconstruction efforts. Payment is <payment>."
+	description "Due to the recent nuclear bombings on Martini, bring <bunks> <martini relief occupations> to <planet> to assist in the accommodation and reconstruction efforts. You will need to hail the spaceport controller to gain clearance to the planet. Payment is <payment>."
 	job
 	repeat
 	passengers 5 15
