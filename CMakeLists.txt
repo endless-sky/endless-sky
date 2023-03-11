@@ -96,6 +96,7 @@ add_subdirectory(source)
 
 # Create an interface library that contains common libraries for the game and unit tests.
 add_library(ExternalLibraries INTERFACE)
+target_link_libraries(EndlessSkyLib PUBLIC ExternalLibraries)
 
 # The 'mingw32' lib needs to be linked first.
 if(MINGW)
