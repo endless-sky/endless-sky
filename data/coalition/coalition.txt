@@ -1342,6 +1342,8 @@ phrase "friendly lunarium"
 	word
 		"our"
 	word
+		" "
+	word
 		"great"
 		"noble"
 		"good"
