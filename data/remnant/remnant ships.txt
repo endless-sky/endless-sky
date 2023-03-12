@@ -291,6 +291,7 @@ ship "Modified Dromedary"
 		"outfit space" 740
 		"weapon capacity" 270
 		"engine capacity" 195
+		"solar collection" 1.1
 		"outfit scan power" 18
 		"outfit scan efficiency" 48
 		"tactical scan power" 39

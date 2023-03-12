@@ -37,6 +37,7 @@ outfit "Ka'het Nullifier"
 		"velocity" 9
 		"lifetime" 200
 		"reload" 350
+		"cluster"
 		"firing energy" 710
 		"firing force" 90
 		"firing heat" 160

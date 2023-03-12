@@ -64,7 +64,7 @@ ship "Jje"
 	engine 0 0
 	"steering engine" 0 0
 	"final explode" "jje boom"
-	description "This is an adolescent form of the Iije, having recently consumed quanities of stellar dust, matter, and energy. They are attracted to light in the dim space of the Umbral Reach, and are occasionally seen flying in groups."
+	description "This is an adolescent form of the Iije, having recently consumed quantities of stellar dust, matter, and energy. They are attracted to light in the dim space of the Umbral Reach, and are occasionally seen flying in groups."
 
 ship "Ayym"
 	plural "Ayym"

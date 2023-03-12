@@ -69,7 +69,7 @@ namespace {
 	const string ALERT_INDICATOR = "Alert indicator";
 
 	// How many pages of settings there are.
-	const int SETTINGS_PAGE_COUNT = 1;
+	const int SETTINGS_PAGE_COUNT = 2;
 }
 
 
@@ -502,14 +502,6 @@ void PreferencesPanel::DrawSettings()
 		"Show mini-map",
 		"Show asteroid scanner overlay",
 		"Always underline shortcuts",
-		"",
-		"AI",
-		AUTO_AIM_SETTING,
-		"Automatic firing",
-		BOARDING_PRIORITY,
-		EXPEND_AMMO,
-		FIGHTER_REPAIR,
-		TURRET_TRACKING,
 		"\t",
 		"Performance",
 		"Show CPU / GPU load",
@@ -517,17 +509,25 @@ void PreferencesPanel::DrawSettings()
 		"Reduce large graphics",
 		"Draw background haze",
 		"Draw starfield",
-		BACKGROUND_PARALLAX,
 		ON_HIT_EFFECTS,
+		BACKGROUND_PARALLAX,
 		"Show hyperspace flash",
 		SHIP_OUTLINES,
-		"",
+		"\n",
+		"Gameplay",
+		AUTO_AIM_SETTING,
+		"Automatic firing",
+		BOARDING_PRIORITY,
+		EXPEND_AMMO,
+		FIGHTER_REPAIR,
+		TURRET_TRACKING,
+		"Rehire extra crew when lost",
+		"\t",
 		"Other",
 		"Clickable radar display",
 		"Hide unexplored map regions",
 		REACTIVATE_HELP,
 		"Interrupt fast-forward",
-		"Rehire extra crew when lost",
 		SCROLL_SPEED,
 		"Show escort systems on map",
 		"Show stored outfits on map",
