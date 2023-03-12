@@ -683,7 +683,7 @@ outfit `"Basrem" Reverse Thruster`
 	"reverse flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"reverse flare sound" "atomic tiny"
-	description "The tiny "Basrem" Reverse Thrusters allow even the smallest of Hai ships additional maneuverability beyond normal steering. Many young Hai find these an invaluable investment when first setting out on their own."
+	description `The tiny "Basrem" Reverse Thrusters allow even the smallest of Hai ships additional maneuverability beyond normal steering. Many young Hai find these an invaluable investment when first setting out on their own.`
 
 outfit `"Benga" Reverse Thruster`
 	category "Engines"

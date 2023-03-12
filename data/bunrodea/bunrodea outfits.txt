@@ -121,6 +121,7 @@ outfit "Large Nanite Fabricator"
 
 
 outfit "Solar Battery"
+	plural "Solar Batteries"
 	category "Power"
 	cost 49000
 	thumbnail "outfit/solar battery"
