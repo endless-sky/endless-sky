@@ -196,8 +196,8 @@ mission "Wanderers: Diplomacy Delayed"
 			action
 				event "A Hai professor is available to translate" 7
 			`As you approach Hai-home, you contact the Hai government and inform them that you have found new aliens to the north. You submit a request for ambassadorial assistance to help you communicate with the aliens, who seem to speak the Hai language. They immediately direct you to a government hangar in a compound called "Directorate of Intra-Hai Affairs." A Hai approaches you in an unfamiliar uniform.`
-			# Hai Intelligence offer subtly suggests they already know what is going on, and would have done
-			# something about it by now if it were the opportune time.
+			# Hai Intelligence officer subtly suggests they already know what's happening, and would have done
+			# something about by now if it were an opportune time.
 			`	"I received word you met some troubled avians to the north. What is your intention?"`
 			choice
 				`	"They speak the Hai language, and I need a translator."`
@@ -205,8 +205,6 @@ mission "Wanderers: Diplomacy Delayed"
 				`	"I'd like to make first contact with another species."`
 					goto response
 				`	"Wait a minute. I never mentioned they were avians. Why do you say they're troubled?"`
-					to display
-						not "event: hai-human resolution announced"
 			`	The uniformed Hai ignores your question and asks again, "What is your intention, Captain <last>?"`
 			choice
 				`	"They speak the Hai language, and I need a translator."`
