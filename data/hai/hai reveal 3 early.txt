@@ -480,7 +480,7 @@ event "ladybug surveillance"
 mission "Pirates with Hai Weapons 1: Katya's Message"
 	landing
 	name "Pirates with Hai Weapons"
-	description "Katya wants you to find out if the Hai government is arming pirates, and if they are, to stop them. Don't tell the Hai that the Free Worlds sent you, and make sure the Republic doesn't find out."
+	description "You need to find out if the Hai are arming pirates and, if they are, stop them. Be patient for an opportunity, don't tell the Hai that the Free Worlds sent you, and make sure the Republic doesn't find out."
 	source Hai-home
 	destination Hai-home
 	to offer
@@ -504,7 +504,7 @@ mission "Pirates with Hai Weapons 1: Katya's Message"
 				to display
 					has "FW Bounty 3: done"
 			`	"Such a vast supply is unlikely to have come from individual smugglers, so we must assume it's the result of a large-scale operation. I'm worried the Hai government may be arming pirates. If they are, I hope the weapons are just misguided tribute payments. In the south, we well know how useful bounties and tributes are when dealing with pirates, but from my time as a councilor, I can tell you the Republic will not be so understanding.`
-			`	"You must find out if the Hai government is arming the pirates and, if they are, put a stop to it. Don't tell them the Free Worlds asked you to do it, and whatever you do, don't let the Republic know. It could lead to an explosive diplomatic incident."`
+			`	"You must discreetly find out if the Hai government is arming the pirates and, if they are, put a stop to it. Don't tell them the Free Worlds asked you to do it, and whatever you do, don't let the Republic know. It could lead to an explosive diplomatic incident."`
 			label loop
 			choice
 				`	"A diplomat called Sayari told me she has a friend looking into 'interactions between Hai and pirates' who should contact me soon."`
@@ -531,6 +531,10 @@ mission "Pirates with Hai Weapons 1: Katya's Message"
 					goto acceptable
 					to display
 						has "Pirates with Hai Weapons 1: Katya's Message: Katya vouched for Sayari"
+				`	"Don't worry, I'm good for this secret agent stuff."`
+					goto goodagent
+					to display
+						has "Pirates with Hai Weapons 1: Katya's Message: explained"
 			label discrete
 			action
 				set "Pirates with Hai Weapons 1: Katya's Message: explained"
@@ -546,5 +550,12 @@ mission "Pirates with Hai Weapons 1: Katya's Message"
 			`	You explain Sayari's appearance to Katya and she responds, "Sayari has a long history of keeping peace between Hai and humans, longer than I've been alive. If she knows there are weapon deals, then I expect she wants to stop them. Still, be careful."`
 				goto loop
 			label acceptable
+			`	"Thank you," says Alondo, "Just remember this is a secret mission. Go about your business normally and look for your opportunity. You may have to be quite patient to get this done."`
+				goto end
+			label goodagent
+			action
+				set "self-declared good agent"
+			`	Alondo chuckles. "You're full of surprises, aren't you? Good to know you're confident in your skills though."`
+			label end
 			`	After a few goodbyes, you head out to search for answers.`
 				accept

@@ -2000,23 +2000,23 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		{
 			// Check if we are able to turn.
 			double cost = attributes.Get("turning energy");
-			if(energy < cost * fabs(commands.Turn()))
+			if(cost > 0. && energy < cost * fabs(commands.Turn()))
 				commands.SetTurn(commands.Turn() * energy / (cost * fabs(commands.Turn())));
 
 			cost = attributes.Get("turning shields");
-			if(shields < cost * fabs(commands.Turn()))
+			if(cost > 0. && shields < cost * fabs(commands.Turn()))
 				commands.SetTurn(commands.Turn() * shields / (cost * fabs(commands.Turn())));
 
 			cost = attributes.Get("turning hull");
-			if(hull < cost * fabs(commands.Turn()))
+			if(cost > 0. && hull < cost * fabs(commands.Turn()))
 				commands.SetTurn(commands.Turn() * hull / (cost * fabs(commands.Turn())));
 
 			cost = attributes.Get("turning fuel");
-			if(fuel < cost * fabs(commands.Turn()))
+			if(cost > 0. && fuel < cost * fabs(commands.Turn()))
 				commands.SetTurn(commands.Turn() * fuel / (cost * fabs(commands.Turn())));
 
 			cost = -attributes.Get("turning heat");
-			if(heat < cost * fabs(commands.Turn()))
+			if(cost > 0. && heat < cost * fabs(commands.Turn()))
 				commands.SetTurn(commands.Turn() * heat / (cost * fabs(commands.Turn())));
 
 			if(commands.Turn())
@@ -2052,27 +2052,27 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			// Check if we are able to apply this thrust.
 			double cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting energy" : "reverse thrusting energy");
-			if(energy < cost)
+			if(cost > 0. && energy < cost)
 				thrustCommand *= energy / cost;
 
 			cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting shields" : "reverse thrusting shields");
-			if(shields < cost)
+			if(cost > 0. && shields < cost)
 				thrustCommand *= shields / cost;
 
 			cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting hull" : "reverse thrusting hull");
-			if(hull < cost)
+			if(cost > 0. && hull < cost)
 				thrustCommand *= hull / cost;
 
 			cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting fuel" : "reverse thrusting fuel");
-			if(fuel < cost)
+			if(cost > 0. && fuel < cost)
 				thrustCommand *= fuel / cost;
 
 			cost = -attributes.Get((thrustCommand > 0.) ?
 				"thrusting heat" : "reverse thrusting heat");
-			if(heat < cost)
+			if(cost > 0. && heat < cost)
 				thrustCommand *= heat / cost;
 
 			if(thrustCommand)
@@ -2489,6 +2489,7 @@ void Ship::DoGeneration()
 	else
 	{
 		// Ramscoops work much better when close to the system center.
+		// Carried fighters can't collect fuel or energy this way.
 		if(currentSystem)
 		{
 			double scale = GetSolarScale();
@@ -2517,8 +2518,8 @@ void Ship::DoGeneration()
 		double activeCooling = coolingEfficiency * attributes.Get("active cooling");
 		if(activeCooling > 0. && heat > 0. && energy >= 0.)
 		{
-			// Although it's a misuse of this feature, handle the case where
-			// "active cooling" does not require any energy.
+			// Handle the case where "active cooling"
+			// does not require any energy.
 			double coolingEnergy = attributes.Get("cooling energy");
 			if(coolingEnergy)
 			{
@@ -2527,7 +2528,7 @@ void Ship::DoGeneration()
 				energy -= spentEnergy;
 			}
 			else
-				heat -= activeCooling;
+				heat -= activeCooling * min(1., Heat());
 		}
 	}
 
@@ -2842,7 +2843,10 @@ int Ship::Scan(const PlayerInfo &player)
 					+ Name() + "\" completed its scan of your cargo.", Messages::Importance::High);
 		if(result & ShipEvent::SCAN_OUTFITS)
 			Messages::Add("The " + government->GetName() + " " + Noun() + " \""
-					+ Name() + "\" completed its scan of your outfits.", Messages::Importance::High);
+					+ Name() + (target->attributes.Get("inscrutable") > 0.
+					? "\" completed its scan of your outfits with no useful results."
+					: "\" completed its scan of your outfits."),
+					Messages::Importance::High);
 	}
 
 	// Some governments are provoked when a scan is completed on one of their ships.
