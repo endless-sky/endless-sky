@@ -525,6 +525,7 @@ mission "Paradise Job: Wilderness Retreat"
 
 
 # Martini Bombings jobs
+
 mission "Martini Evacuation (Resident Family)"
 	name "Evacuate Martini family to <planet>"
 	description "This family of <bunks> from Martini had their <martini house> destroyed in the nuclear bombing and wish to leave immediately. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
@@ -867,7 +868,7 @@ phrase "martini evac 1"
 		"the Southern Pact"
 		"'those ${insults for southerners}'"
 		"'them ${insults for southerners}'"
-		"'${insults for southerners}'"
+		"the '${insults for southerners}'"
 	word
 		" for the "
 	word
@@ -952,7 +953,7 @@ phrase "martini evac 2"
 		"the Southern Pact"
 		"'those ${insults for southerners}'"
 		"'them ${insults for southerners}'"
-		"'${insults for southerners}'"
+		"the '${insults for southerners}'"
 	word
 		" for the "
 	word
