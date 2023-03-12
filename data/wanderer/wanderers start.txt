@@ -293,7 +293,7 @@ mission "Wanderers: Diplomacy (Before Hai Reveal)"
 	destination "Vara K'chrai"
 	clearance
 	passengers 2
-	blocked `Professor Andelena and her student meet you in the spaceport, but you don't have enough space for them.`
+	blocked `You arrive at the spaceport, but you suddenly realize you have too few bunks for Professor Andelena and her student.`
 	to offer
 		has "Wanderers: Meet Professor: offered"
 		not "Wanderers: Meet Professor: declined"
@@ -320,15 +320,15 @@ mission "Wanderers: Diplomacy (Before Hai Reveal)"
 					decline
 			`	The armed Hai escort you to a secure room, where a worried Professor Andelena looks at her student, Eenap, who is in handcuffs. An stern-looking Hai woman in a similar uniform to the others seems to be in charge, and glares at Eenap before addressing you.`
 			`	"Your efforts to find a translator have stumbled upon a suspected Unfettered spy who tried to transmit details about you and your ship to the Unfettered." She glares again at Eenap, who parries with a defiant look. "Fortunately, we shut down the operation before it got too far; you need not worry about your safety in this matter.`
-			`	"However, we are concerned about the level of interest the Unfettered have in these aliens, so the head of our diplomatic corps wants to send an ambassador."`
+			`	"However, we are concerned about the level of interest the Unfettered have in these aliens the head of our diplomatic corps wants to send an ambassador."`
 			choice
 				`	"Who is the ambassador?"`
 				`	"I'm done with this cloak and dagger business. Find another courier."`
 					decline
 			action
 				log "People" "Irayas Payaana" `A Hai ambassador who made first contact with the Syndicate and various pirate groups. Sayari, the head of the Hai diplomatic corps, chose her as the Hai ambassador to the aliens to the north of Hai space.`
-				log "People" "Sayari" `The head of the Hai diplomatic corps.`
-			`	"Myself: Irayas Payaana", she says. "I made first contact with the Syndicate, and various pirate groups years ago. My specialty is maintaining positive relations with alien groups who have unknown, and possibly hostile, objectives. Most of my work recently has been with the Unfettered, but Sayari, head of our diplomatic corps, believes you've found a more urgent need for my skills.`
+				log "People" "Sayari" `The head of the Hai diplomatic corps who hand-picked Irayas Payaana as the Hai representative to the aliens north of Hai space.`
+			`	"Myself: Irayas Payaana", she says. "I made first contact with the Syndicate, and various pirate groups years ago. My specialty is maintaining positive relations with alien groups who have unknown, and possibly hostile, objectives. Most of my work recently has been with the Unfettered, but Sayari - the head of our diplomatic corps - believes you've found a more urgent need for my skills.`
 			`	"One warning Captain <last>, from someone who has seen the darkest side of the Hai. It is imperative that you keep silent about your discovery, and any hostilities you may take part in. Should your involvement become public knowledge, I fear there may be a backlash against humans, especially in Unfettered space."`
 			choice
 				`	"Let's go!"`
@@ -353,7 +353,6 @@ mission "Wanderers: Diplomacy"
 	to offer
 		has "First Contact: Wanderer: offered"
 		has "event: hai-human resolution announced"
-		not "Wanderers: Professor Transport: active"
 	on offer
 		log "People" "Sayari" `Now that the crisis with humanity is over she has volunteered to serve as a translator and be the Hai diplomat to the Wanderers as a capstone for her career.`
 		conversation
@@ -389,7 +388,6 @@ mission "Wanderers: Diplomacy"
 		dialog `Your ship is surrounded by the birdlike aliens. When you step onto the planet, one of the aliens seems to recognize you. "Ka'hai?" it seems to ask, once again mimicking the rodent-like ears of the Hai with its feathered limbs. You attempt to gesture to Sayari, but become embarrassed when you realize that you left her on one of your escorts that hasn't yet entered the system. Better depart and wait for it to arrive.`
 	on complete
 		fail "Wanderers: Meet Professor"
-		fail "Wanderers: Professor Transport"
 
 event "Wanderers after Hai Reveal"
 
@@ -2176,9 +2174,17 @@ mission "Wanderers Hai Assistance 2"
 	to offer
 		has "Wanderers Hai Assistance 1: done"
 	on offer
-		log "Traveled to the Hai homeworld with a Hai ambassador to see if she can convince the Hai to take action to restrain the Unfettered from attacking the Wanderers. The most that the Hai were willing to do was to mass a large war fleet near Unfettered space so that the Unfettered have to divert warships there to defend their home worlds."
 		conversation
-			`The Hai's recently elected Council of "Elders" agrees to meet with you and <Guide> and the two of you make an effort to avoid directing yourselves towards Teeneep. Your young friend's popularity as an Elder does not extend to inside these walls and, as <Guide> quietly informed you beforehand, apparently Teeneep has not explained the nature of her sympathies towards the Unfettered, even to her oldest friends. It would be detrimental to your cause to specifically seek her assent here, on <origin>, for this matter. After you describe the situation with the Wanderers, one of the other elders who seems older and authoritative says, "We had heard rumors of this. The Unfettered have recruited thousands of new warriors by telling stories of planets for us to explore and colonize, and a cowardly and foolish enemy to defeat."`
+			# Two conversations, depending on whether Hai Reveal 6 is finished.
+			branch "Teeneep is unavailable"
+				has "event: hai-human resolution announced"
+
+			# Hai Reveal 6 is finished, so this is a full council meeting with Teeneep present.
+			action
+				set "visited Elders for Wanderer Assistance"	
+				log "Traveled to the Hai homeworld with a Hai ambassador to see if she can convince the Hai to take action to restrain the Unfettered from attacking the Wanderers. The most that the Hai were willing to do was to mass a large war fleet near Unfettered space so that the Unfettered have to divert warships there to defend their home worlds."
+
+		`The Hai's recently elected Council of "Elders" agrees to meet with you and <Guide> and the two of you make an effort to avoid directing yourselves towards Teeneep. Your young friend's popularity as an Elder does not extend to inside these walls and, as <Guide> quietly informed you beforehand, apparently Teeneep has not explained the nature of her sympathies towards the Unfettered, even to her oldest friends. It would be detrimental to your cause to specifically seek her assent here, on <origin>, for this matter. After you describe the situation with the Wanderers, one of the other elders who seems older and authoritative says, "We had heard rumors of this. The Unfettered have recruited thousands of new warriors by telling stories of planets for us to explore and colonize, and a cowardly and foolish enemy to defeat."`
 			`	<Guide> says, "We must not allow the Unfettered to commit genocide in the name of the Hai people."`
 			`	Another elder responds, "But, we promised in the Frostmark Accords that we would not interfere in Unfettered space."`
 			`	"They have never kept their side of the treaty," says yet another of the elders, "and surely the prevention of genocide is enough reason to break ours."`
@@ -2197,6 +2203,22 @@ mission "Wanderers Hai Assistance 2"
 			`	"Perhaps Teeneep is right and it would be enough merely to threaten them," says another of the elders. "We could gather a massive war fleet above Cloudfire. The Unfettered would need to muster a matching fleet above Darkcloak. It would draw many of their warships away from the alien territory."`
 			`	After well over an hour of further discussion, and with calculated backing from Teeneep, they reach the consensus that this is their best option. As you leave the meeting, <Guide> exchanges a few words with Teeneep before approaching you, "And now, I would like to visit the Unfettered themselves. They will probably not listen, but perhaps we can talk sense into them. In any event, it is my job to try."`
 				accept
+
+			# Hai Reveal 6 is incomplete, so Captain Last has the alternative guide, and we deal with the military.
+			label "Teeneep is unavailable"
+			action
+				log "Traveled to the Hai homeworld with a Hai ambassador to see if she can convince the Hai to take action to restrain the Unfettered from attacking the Wanderers. A military council agreed on a build-up of forces at Wah-Ki to force the Unfettered to redirect ships and resources. They hope this will buy the Wanderers enough time for someone to find a lasting solution."
+			`<Guide> has you land at the Directorate of Intra-Hai Affairs, and takes you through a corridor and deep elevator towards a central command compound. Several other Hai are present, in a variety of uniforms.`
+			`	After <Guide> explains the problem, a Hai with a well-decorated uniform responds. "Rek's suggestion to attack our own kind is unthinkable to the Hai. A neighboring species tried that, and nearly drove themselves extinct." Others nod in agreement.`
+			`	Another Hai continues. "There is another option." The other Hai look as if they know what he's about to say. "Recently, the Unfettered raids at Wah Ki have been especially successful, severely disrupting the economy of nearby planets. The Elders gave us broad powers to increase the military presence in the system, as needed.`
+			`	"A massive military build-up will force the Unfettered to redirect ships and supplies to their boarder with us. That should buy them time until either someone can find a more lasting solution."`
+			choice
+				`	"Can't you provide any further military assistance?"`
+				`	"When will you increase the military presence?"`
+			`	"I'll give orders for deployment immediately," says the well-decorated Hai, "and investigate any military research we can accelerate. For now, this is the best we can do for the Wanderers. Tell them to stay strong and fight wisely, Captain <last>." With this, the Hai depart in several directions.`
+			`	<Guide> addresses you. "We do have one more option. There's a council of generals among the Unfettered that deal with Hai conflict resolution. I've worked with them before, and they're receptive to suggestions. Take me to <planet> and we'll see what we can do."`
+				accept
+
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying the Hai ambassador hasn't entered the system yet. Better depart and wait for it to arrive.`
 
@@ -2233,9 +2255,22 @@ mission "Wanderers Hai Assistance 3"
 		log "The Unfettered are unwilling to agree to even a temporary ceasefire with the Wanderers. They seem to think that they will win this war easily."
 		event "wanderers: tempest mass production"
 		conversation
+			branch "Visit council of generals"
+				or
+					not "event: hai-human resolution announced"
+					has "visited Elders for Wanderer Assistance"
+			action
+				set "Beg Choot'k for mercy towards Wanderers."
 			`The Unfettered war chiefs gather around General Choot'k to listen to <Guide>'s plea with condescending smiles on their faces. When she is done speaking, Choot'k says, "This is a war, not a polite dinner party. We will take what we want, when we want it. We are through with waiting on the charity of others."`
+				goto meeting
+			label "Visit council of generals"
+			`You and <Guide> are led to a council of generals. As <Guide> makes her plea, the generals have condescending smiles on their faces. When she's done speaking, one of them says, "This is a war, not a polite dinner party. We will take what we want, when we want it. We are through with waiting on the charity of others."`
+
+			label meeting
 			`	"But people will die, on your side as well as the Wanderers," says <Guide>. "They are willing to give you these worlds if you only give them time, perhaps no more than a few months or a year. Why lose your lives to claim what will be yours soon enough?"`
 			`	"Better to die asserting our strength than to live with our hands outstretched to beg," says one of the chiefs.`
+			branch nobody
+				not "Beg Choot'k for mercy towards Wanderers."
 			branch positive
 				"reputation: Hai (Unfettered)" > 0
 			`	You are unable to convince them to change their plans, and as soon as the conversation ends General Choot'k insists that you leave their planet, "You were afforded a safe arrival here because of our history with the mighty Captain <last>, but now you must leave."`
@@ -2246,6 +2281,11 @@ mission "Wanderers Hai Assistance 3"
 			`	You are unable to convince them to change their plans, and as soon as the conversation ends General Choot'k insists that you leave their planet, "You are a respected warrior Captain <last>, but now you must leave with this Fettered diplomat."`
 			`	As you and <Guide> board your ship she mutters to you, "I was told to expect this, but it was only right to try."`
 				accept
+			label nobody
+			`	<Guide> is unable to convince them to change their plans, and as soon as the conversation ends, the generals insist that you leave their planet, "You were granted an audience due to your past services to all Hai as a negotiator, <Guide>. Now you must leave with this monkey."`
+			`	As you and <Guide> board your ship she whispers to you, "This meeting doesn't bode well, Captain <last>. Those were the generals who manage the Wanderer conflict, not the ones who manage intra-species affairs. This means they knew the reason for our coming before we told them."`
+				accept
+
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying the Hai ambassador hasn't entered the system yet. Better depart and wait for it to arrive.`
 
