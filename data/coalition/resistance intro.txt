@@ -677,30 +677,30 @@ mission "House Bebliss 4-FW"
 					goto tell
 			`	Everyone quietly listens as you explain to them all you've learned about the Coalition. You bring up a map of the Free Worlds and show them the rough area of Coalition space and where it borders Free Worlds territory. As you gesture towards the map, you tell them of the three species, about the Heliarchs and how they've taken the three Quarg rings. Eventually you get to the Arach Houses, explaining that House Bebliss are the ones who wish to go study the Pug artifacts with Freya.`
 			`	When you're done, Alondo is the first to speak up, "So far, we seem to be getting along better with these aliens than we did with the Pug. It's good that they're trying to be diplomatic, though I'm not sure it'd be a good idea for the general public to know of them, given past experiences. At least for right now."`
-			`	"Do they have Jump Drives?" Katya asks. You nod, but say that they can't make their own. "Well, as long as what stockpile they have isn't too large, we shouldn't be in too much trouble."`
+			`	"Do they have jump drives?" Katya asks. You nod, but say that they can't make their own. "Well, as long as what stockpile they have isn't too large, we shouldn't be in too much trouble."`
 			`	"Except they took three Quarg rings," JJ chimes in. "They've beaten the Quarg? So they're stronger than the Quarg? More advanced?" He asks.`
 			choice
 				`	"No, but their ships are still a lot tougher than human ones."`
 				`	"No, but they do outnumber humans - all humans."`
 			`	"The Quarg would never just abandon their rings, and do you know how many Quarg are in one ring alone? There's no way they would have lost three of them like that," Ijs says. "They'll want those rings back, that's certain."`
-			`	"And we're right between this 'Coalition' and the Quarg near Tarazed," JJ points at the map. "If they decide to go get their rings back, and our neighbors decide to use their Jump Drives to create a buffer before the Quarg hit them on their home turf..."`
+			`	"And we're right between this 'Coalition' and the Quarg near Tarazed," JJ points at the map. "If they decide to go get their rings back, and our neighbors decide to use their jump drives to create a buffer before the Quarg hit them on their home turf..."`
 			`	They stay silent for a while, then Alondo picks up the talk again. "If the Quarg have waited six thousand years, then they might wait a few thousand more. What matters now is that we know of these aliens, meaning we must start thinking about possible outcomes to all of this and what they mean for the Free Worlds. If we start preparations now, perhaps we'll get lucky and we won't get caught up in any other wars; especially wars involving the Quarg."`
 				goto accept
 			label tell
 			`	Everyone quietly listens as you explain to them all you've learned about the Coalition. You bring up a map of the Free Worlds and show them the rough area of Coalition space and where it borders Free Worlds territory. As you gesture towards the map, you tell them of the three species, about the Heliarchs and how they've taken the three Quarg rings. Eventually you get to the Arach Houses, explaining that House Bebliss are the ones who wish to go study the Pug artifacts with Freya. You also tell them about the Lunarium, explaining the group's actions and their wish to take down the Heliarch government, and what role House Bebliss has in helping them.`
 			`	When you're done, Alondo is the first to speak up, "So far, we seem to be getting along better with these aliens than we did with the Pug. It's good that they're trying to be diplomatic, though I'm not sure it'd be a good idea for the general public to know of them, given past experiences. At least for right now." He pauses, then addresses you directly. "It's... bold of you to want to help this resistance group of theirs. There's some sympathy given the Free Worlds' own history, but they sound like they have an even worse shot than what we had."`
-			`	"Whatever their government is, or whether it's overthrown or not, it doesn't change that they're right at our doorstep," Katya says. "Do they have Jump Drives?" she asks. You nod, but say that they can't make their own. "Well, as long as what stockpile they have isn't too large, we shouldn't be in too much trouble."`
+			`	"Whatever their government is, or whether it's overthrown or not, it doesn't change that they're right at our doorstep," Katya says. "Do they have jump drives?" she asks. You nod, but say that they can't make their own. "Well, as long as what stockpile they have isn't too large, we shouldn't be in too much trouble."`
 			`	"Except they took three Quarg rings," JJ chimes in. "They've beaten the Quarg? So they're stronger than the Quarg? More advanced?" He asks.`
 			choice
 				`	"No, but their ships are still a lot tougher than human ones."`
 				`	"No, but they do outnumber humans - all humans."`
 			`	"The Quarg would never just abandon their rings, and do you know how many Quarg are in one ring alone? There's no way they would have lost three of them like that," Ijs says. "They'll want those rings back, no matter what faction is holding them."`
-			`	"And we're right between this 'Coalition' and the Quarg near Tarazed," JJ points at the map. "If they decide to go get their rings back, and our neighbors decide to use their Jump Drives to create a buffer before the Quarg hit them on their home turf..."`
+			`	"And we're right between this 'Coalition' and the Quarg near Tarazed," JJ points at the map. "If they decide to go get their rings back, and our neighbors decide to use their jump drives to create a buffer before the Quarg hit them on their home turf..."`
 			`	"Well, if <first> and this 'Lunarium Redoubt' succeed, it probably won't come to that, from what I've gathered," Alondo says.`
-			`	"And if they don't? Then a human tried to help the rebels in their space overthrow them. A human that worked for the Free Worlds," JJ responds. "I'm not blaming you, <first>, but we don't know what these 'Heliarchs' will do if you fail. If they figure out how to make their own Jump Drives, or worse, learn how to cut off our systems like the Pug did..."`
+			`	"And if they don't? Then a human tried to help the rebels in their space overthrow them. A human that worked for the Free Worlds," JJ responds. "I'm not blaming you, <first>, but we don't know what these 'Heliarchs' will do if you fail. If they figure out how to make their own jump drives, or worse, learn how to cut off our systems like the Pug did..."`
 			`	They stay silent for a while, then Alondo picks up the talk again. "If this rebel group never came to be, we could eventually be caught up in a war between the Heliarchs and the Quarg. If they succeed, we won't need to worry about that, at least. If they fail, and the Heliarchs retaliate against humanity, we ask the Quarg for help. At least, with <first> helping these rebels, there's a chance we won't get caught up in a war between the Heliarchs and the Quarg."`
 			label accept
-			`	Alondo makes a few calls, arranging some meetings to inform Free Worlds officials of what you've told him, then heads out with you and the others. You go to a cozy restaurant near the center of town, where Ijs and Katya tell you a bit of their recent work in the Conservatory, and JJ laments about some trouble he's been having with handling patrol fleets. Alondo keeps asking you to tell more of your travels with the Jump Drive, and what you've seen of the galaxy. You do your best to describe the stars you've seen and planets you've been to, as well as the alien wildlife you've encountered. You worry at first that the stories might draw some attention to your table, but the waiters and other customers don't seem to pay much mind; either they ignored you or simply brushed it off as you having had too many drinks. You leave at dusk, say your goodbyes to everyone, and head back to your ship. You should head back to <planet> now and tell House Bebliss that Freya's agreed to their proposal.`
+			`	Alondo makes a few calls, arranging some meetings to inform Free Worlds officials of what you've told him, then heads out with you and the others. You go to a cozy restaurant near the center of town, where Ijs and Katya tell you a bit of their recent work in the Conservatory, and JJ laments about some trouble he's been having with handling patrol fleets. Alondo keeps asking you to tell more of your travels with the jump drive, and what you've seen of the galaxy. You do your best to describe the stars you've seen and planets you've been to, as well as the alien wildlife you've encountered. You worry at first that the stories might draw some attention to your table, but the waiters and other customers don't seem to pay much mind; either they ignored you or simply brushed it off as you having had too many drinks. You leave at dusk, say your goodbyes to everyone, and head back to your ship. You should head back to <planet> now and tell House Bebliss that Freya's agreed to their proposal.`
 				accept
 
 mission "House Bebliss 5-FW"
@@ -719,27 +719,27 @@ mission "House Bebliss 5-FW"
 			`	"Understandable, that is. An unusual request, from an unknown group, it was." They have some of the servants start carrying dozens of luggage bags outside. "If in agreement, Miss Freya is, head to that planet, 'Deneb,' to meet her, we shall."`
 			choice
 				`	"How do you plan to do that?"`
-				`	"Do you have a Jump Drive?"`
-			`	"From the Heliarchs, much information our House can gather. Much more difficult, however, acquiring a Jump Drive is. Risky to possess one, even," they explain. "Assist us on that front, you must, Captain. Bring a Jump Drive, to <destination>, you must. Equip one of our ships with it, we will. <payment>, you will receive."`
+				`	"Do you have a jump drive?"`
+			`	"From the Heliarchs, much information our House can gather. Much more difficult, however, acquiring a jump drive is. Risky to possess one, even," they explain. "Assist us on that front, you must, Captain. Bring a jump drive, to <destination>, you must. Equip one of our ships with it, we will. <payment>, you will receive."`
 			choice
 				`	"Why can't I just bring you to Deneb myself?"`
 					goto myself
 				`	"But you just said it's risky to possess one."`
-			`	"Indeed. Keep it, we would not," another one responds. "Once concluded, our business with your friend Freya is, and returned, we have, give you back the Jump Drive, we would."`
+			`	"Indeed. Keep it, we would not," another one responds. "Once concluded, our business with your friend Freya is, and returned, we have, give you back the jump drive, we would."`
 				goto accept
 			label myself
 			`	"Stay there for some months, we will, and though agreed to help us, your friend Freya has, troubled by our presence, other humans may be," they respond. "So that issues with accommodating us, she does not have, use our ship as a base, we will."`
 			label accept
-			`	You follow them outside, and see them board the Spindle, heading to <destination>. You board your own ship, and head back to the city docks, preparing to meet them on <planet> when you have a spare Jump Drive for their ship.`
+			`	You follow them outside, and see them board the Spindle, heading to <destination>. You board your own ship, and head back to the city docks, preparing to meet them on <planet> when you have a spare jump drive for their ship.`
 				accept
 	on visit
-		dialog `You land on <planet>, but realize your escort bringing the Jump Drive hasn't arrived in this system yet. Better depart and wait for it to arrive.`
+		dialog `You land on <planet>, but realize your escort bringing the jump drive hasn't arrived in this system yet. Better depart and wait for it to arrive.`
 	on complete
 		require "Jump Drive" 2
 		outfit "Jump Drive" -1
 		payment 1500000
 		conversation
-			`Some coordinates are automatically selected when you approach the surface of <planet>. You follow them to reach another private area of sorts, though it looks much more like a factory or a warehouse than an estate. On the corners, several flags and banners of House Idriss are in full display. House Bebliss' Spindle is landed there, and the members who will be following you to Deneb come to your ship when you land beside it. Some workers remove the Jump Drive from your ship and begin installing it on the Spindle. The House Bebliss members crewing the ship hand you <payment> when the drive is ready.`
+			`Some coordinates are automatically selected when you approach the surface of <planet>. You follow them to reach another private area of sorts, though it looks much more like a factory or a warehouse than an estate. On the corners, several flags and banners of House Idriss are in full display. House Bebliss' Spindle is landed there, and the members who will be following you to Deneb come to your ship when you land beside it. Some workers remove the jump drive from your ship and begin installing it on the Spindle. The House Bebliss members crewing the ship hand you <payment> when the drive is ready.`
 			`	"Once ready to leave, you are, meet us in the main spaceport, you should," one of them says.`
 
 mission "House Bebliss 6-FW"
@@ -803,7 +803,7 @@ mission "House Bebliss 7-FW"
 	destination "Ablub's Invention"
 	on offer
 		conversation
-			`You receive a message from Freya as you land on <origin>. "Hello <first>! I hope this finds you well. The past few months here have been... interesting, to say the least. Working with the Arachi has helped us find answers to the questions we had about the Pug artifacts, which invariably has led to more questions. The Arachi are a bit odd, but it's been fun working with them. I figured they would stay here for at least a year, given how many containers and large crates of supplies they brought in that freighter of theirs, but it looks like they've grown homesick, so we said our goodbyes today. They asked me to contact you and say they'll be waiting in a system called '<system>' to pay you, and hand you back the Jump Drive they borrowed. Have a safe trip there, Captain."`
+			`You receive a message from Freya as you land on <origin>. "Hello <first>! I hope this finds you well. The past few months here have been... interesting, to say the least. Working with the Arachi has helped us find answers to the questions we had about the Pug artifacts, which invariably has led to more questions. The Arachi are a bit odd, but it's been fun working with them. I figured they would stay here for at least a year, given how many containers and large crates of supplies they brought in that freighter of theirs, but it looks like they've grown homesick, so we said our goodbyes today. They asked me to contact you and say they'll be waiting in a system called '<system>' to pay you, and hand you back the jump drive they borrowed. Have a safe trip there, Captain."`
 			`	When you finish reading the message you plot a course to <destination>.`
 				accept
 	on complete
@@ -811,9 +811,9 @@ mission "House Bebliss 7-FW"
 		outfit "Jump Drive" 1
 		payment 2000000
 		conversation
-			`Once again, coordinates appear on your screen as you come in to land on <planet>, leading you to the same building where you delivered the Jump Drive to House Bebliss. Their Arach Spindle is docked there, and the members who were working with Freya come to your ship. "Captain <last>!" One of them greets you as you come down the hatch. "Received the message from Miss Freya, I trust you have? Very fruitful, our conjoined efforts have been."`
+			`Once again, coordinates appear on your screen as you come in to land on <planet>, leading you to the same building where you delivered the jump drive to House Bebliss. Their Arach Spindle is docked there, and the members who were working with Freya come to your ship. "Captain <last>!" One of them greets you as you come down the hatch. "Received the message from Miss Freya, I trust you have? Very fruitful, our conjoined efforts have been."`
 			`	"Unfortunate, it is, that stay there longer we could not," another one interjects. "But away for much longer, we could not be. Need us here, House Bebliss does."`
-			`	They hand you <payment> as thanks for all your help, while the workers remove the Jump Drive from their Spindle and put it in your ship. The Arachi thank you once more and say goodbye one final time, boarding their Spindle and leaving the planet.`
+			`	They hand you <payment> as thanks for all your help, while the workers remove the jump drive from their Spindle and put it in your ship. The Arachi thank you once more and say goodbye one final time, boarding their Spindle and leaving the planet.`
 
 
 
@@ -1070,7 +1070,7 @@ mission "Resistance: Evacuation 5"
 		conversation
 			branch resistance
 				has "Resistance: Questions: done"
-			`You receive a call instants after you've touched down on <origin>. It's from Elirom, the Saryd who had you help transport some of his company's clients, racing towards you. "Captain <last>! Your help again, we need," he begins. "Hired us to bring them to their new home on Ablub's Invention, some immigrants from <destination> did. <bunks> in total. Only..." he looks down, his mouth struggling for words. "Fallen ill, the captain of the ship we had arranged for them has. Supposed to leave by <date>, they were, but get to <planet> in time, we cannot. You, however, a Jump Drive possess. Help us now, only you can, Captain."`
+			`You receive a call instants after you've touched down on <origin>. It's from Elirom, the Saryd who had you help transport some of his company's clients, racing towards you. "Captain <last>! Your help again, we need," he begins. "Hired us to bring them to their new home on Ablub's Invention, some immigrants from <destination> did. <bunks> in total. Only..." he looks down, his mouth struggling for words. "Fallen ill, the captain of the ship we had arranged for them has. Supposed to leave by <date>, they were, but get to <planet> in time, we cannot. You, however, a jump drive possess. Help us now, only you can, Captain."`
 			choice
 				`	"I'd be glad to help. I'll head there as quick as I can."`
 					goto glad
@@ -1082,7 +1082,7 @@ mission "Resistance: Evacuation 5"
 			`	He sighs in relief, then quickly types away at something close to the camera on his end, and you're notified of <payment> in total just having been transferred to your account. "Paid much more you will be, once safe, the immigrants are. Bring them back to Ablub's Invention, you must. Send word for them to expect you, I shall." He bows lightly, then logs off.`
 				accept
 			label resistance
-			`You receive a call instants after you've touched down on <origin>. It's from Elirom, and he wastes no time giving you your next mission. "A particularly urgent matter, this is. Looking for our members on <planet>, the Heliarchs are. Found, dozens have already been, and even more Heliarchs by <date> will there arrive. Make it in time, none of our ships can, too far away it is. You, however, a Jump Drive possess. Rescue the <bunks> remaining, you must." He types away at something on his end for a bit, and you see <payment> have been transferred to your account. "Much more I will give you, once safely back on Ablub's Invention you are. If stopped by the Heliarchs you are..." He trails off for a while, and you can hear the increasingly hurried, repeated tapping of hooves on the floor. "If stopped you are, tell them that transporting immigrants to their new homes on Ablub's Invention, you will. Hired by House Idriss, they have been." He urges you to go to <destination> immediately, wishing you good luck, and logging off.`
+			`You receive a call instants after you've touched down on <origin>. It's from Elirom, and he wastes no time giving you your next mission. "A particularly urgent matter, this is. Looking for our members on <planet>, the Heliarchs are. Found, dozens have already been, and even more Heliarchs by <date> will there arrive. Make it in time, none of our ships can, too far away it is. You, however, a jump drive possess. Rescue the <bunks> remaining, you must." He types away at something on his end for a bit, and you see <payment> have been transferred to your account. "Much more I will give you, once safely back on Ablub's Invention you are. If stopped by the Heliarchs you are..." He trails off for a while, and you can hear the increasingly hurried, repeated tapping of hooves on the floor. "If stopped you are, tell them that transporting immigrants to their new homes on Ablub's Invention, you will. Hired by House Idriss, they have been." He urges you to go to <destination> immediately, wishing you good luck, and logging off.`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort with the <bunks> bunks for the immigrants hasn't arrived in the system yet. Better depart and wait for it.`
@@ -1478,7 +1478,7 @@ mission "Resistance: Combat Training 1"
 				`	"I'm sorry, but helping your group any further sounds too risky to me."`
 					decline
 			label help
-			`	"Difficult it is, to fight Heliarch ships, but fight them all the same we eventually will need to," she explains. "Not very... experienced in warfare, most of our members are, as avoiding any ship battles we have been. Seeing as a Jump Drive you have, thought we did that bring some of our regional fleet leaders to human space, you could. Train there against human pirates, we can."`
+			`	"Difficult it is, to fight Heliarch ships, but fight them all the same we eventually will need to," she explains. "Not very... experienced in warfare, most of our members are, as avoiding any ship battles we have been. Seeing as a jump drive you have, thought we did that bring some of our regional fleet leaders to human space, you could. Train there against human pirates, we can."`
 			choice
 				`	"Alright. I'll help you. How many people are you bringing along?"`
 				`	"I'm sorry, but helping your group any further sounds too risky to me."`
@@ -1491,7 +1491,7 @@ mission "Resistance: Combat Training 1"
 				`	"What do you need help with?"`
 					goto with
 				`	"I'm not very good at training others, are you sure you need my help?"`
-			`	Her mandibles click together rapidly, sounding almost like a chime in its rhythm. "Doing the training you will not be. For the most part, at least," she explains. "Waiting just outside, many of our regional fleet leaders are. Your Jump Drive, and some of your knowledge, what we need is." She chirps again.`
+			`	Her mandibles click together rapidly, sounding almost like a chime in its rhythm. "Doing the training you will not be. For the most part, at least," she explains. "Waiting just outside, many of our regional fleet leaders are. Your jump drive, and some of your knowledge, what we need is." She chirps again.`
 			label with
 			`	"Very... lacking, most of our members are, in ship to ship combat expertise. Wish to test some tactics, the leaders do, so that better explain it to members under them they can. Of course, dangerous to challenge the Heliarchs for that, it is, so thought of training against human pirates, we did. Bring us to human space for that, you would. <bunks> in total we are, and bring along <cargo> to sustain ourselves without needing to leave the ships and cause a commotion, we will."`
 			label accept
@@ -1737,7 +1737,7 @@ mission "Resistance: Quarg Interview"
 				goto questions
 			label outsiders
 			`	For a few seconds, they simply exchange looks at your question, until Lobmab speaks up. "Transmissions and messages from some source, Bebliss has received for centuries now. Told us they have of Heliarch activity, fleet movements, training drills, propaganda plans. Always exactly right on their predictions, the messages were. Also pointed us to equipment caches - caches with outfits previously found nowhere in the Coalition - they have. Human weaponry, blueprints, factory parts..."`
-			`	"Aware of the identity of whoever does it, we are not," Elirom says. "An arbiter I was, and though a great deal I knew, still kept from me, some critical information was. Possible, it is, that from one of the consuls, the information comes. Though, difficult to steal a Jump Drive to bring in the weapons, it would be, even for a consul." He pauses, a dead stare in his eyes as he bites lightly on a finger. "Word of... experiments, we have also received from the messages. Some manner of procedure to take over bodies... stop whatever it is they're doing in the rings, we must."`
+			`	"Aware of the identity of whoever does it, we are not," Elirom says. "An arbiter I was, and though a great deal I knew, still kept from me, some critical information was. Possible, it is, that from one of the consuls, the information comes. Though, difficult to steal a jump drive to bring in the weapons, it would be, even for a consul." He pauses, a dead stare in his eyes as he bites lightly on a finger. "Word of... experiments, we have also received from the messages. Some manner of procedure to take over bodies... stop whatever it is they're doing in the rings, we must."`
 				goto questions
 			label pay
 			`	The rest of the table look to Lobmab at the same time, prompting her explanation. "Amassed great fortune over our history, House Bebliss has. As part of our gracious help to the Lunarium, providing nearly everything in financial terms we have been."`
@@ -1745,7 +1745,7 @@ mission "Resistance: Quarg Interview"
 				goto questions
 			label task
 			`	Tummug goes around the table, handing copies of some document of sorts to the other leaders before answering. "One of the center points of Heliarch propaganda, the fear of the Quarg is. Served to justify their budget, and their obsession with hoarding the military, for millennia it has. Thought up a way to mitigate the effect that has on the populace, Oobat has."`
-			`	As if given her cue, Oobat goes further into the plan. "Seen in the Coalition in over six thousand years, no Quarg ship has been. Most likely moved on from our war, they have, unlike the Heliarchs. If proof of the Quarg's lack of interest in waging war against us, we had, spread it to the people, we could. Given the Captain's resourcefulness, and Jump Drive, thought we did that the best way to acquire that proof, meeting up with the Quarg is." She grabs one of the documents, pointing to it. "For you all to review these questions, I would like. Careful we should be, about how worded they are. Once done, we are, board Captain <last>'s ship, I will. Meet with the Quarg in human space, we must," she says the last part looking at you. "Met with the Quarg before, have you, Captain?"`
+			`	As if given her cue, Oobat goes further into the plan. "Seen in the Coalition in over six thousand years, no Quarg ship has been. Most likely moved on from our war, they have, unlike the Heliarchs. If proof of the Quarg's lack of interest in waging war against us, we had, spread it to the people, we could. Given the Captain's resourcefulness, and jump drive, thought we did that the best way to acquire that proof, meeting up with the Quarg is." She grabs one of the documents, pointing to it. "For you all to review these questions, I would like. Careful we should be, about how worded they are. Once done, we are, board Captain <last>'s ship, I will. Meet with the Quarg in human space, we must," she says the last part looking at you. "Met with the Quarg before, have you, Captain?"`
 			branch metquarg
 				has "First Contact: Quarg: offered"
 			choice
