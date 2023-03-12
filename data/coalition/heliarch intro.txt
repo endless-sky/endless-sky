@@ -561,8 +561,8 @@ mission "Heliarch Recon 1"
 			choice
 				`	"I'm not sure I understand what you're getting at."`
 				`	"Obviously I have my limits as for what I would do."`
-			`	"A Jump Drive, you possess. Far away, you can travel. Bother you, the harsh cages of the Quarg do not," the Saryd explains as all three walk toward your ship.`
-			`	"Few in number, our own Jump Drives are, and too risky would it be, for one of our own to venture far out," the Kimek adds.`
+			`	"A jump drive, you possess. Far away, you can travel. Bother you, the harsh cages of the Quarg do not," the Saryd explains as all three walk toward your ship.`
+			`	"Few in number, our own jump drives are, and too risky would it be, for one of our own to venture far out," the Kimek adds.`
 			`	"If to help us gain knowledge of the opressors, you wish, lend the Coalition your ship's sensors for a short time, would you?" asks the Arach.`
 			choice
 				`	"Are you asking me to spy on the Quarg?"`
@@ -672,7 +672,7 @@ mission "Heliarch Recon 2-A"
 				`	"I'm sorry, but I'm not willing to risk my ship any longer to help you spy on the Quarg."`
 					decline
 			`	"Too large and complex for a quick reading, planets and ringworlds are, so wish to get updated scans on Quarg ships, the consul now does," the Arach says.`
-			`	"Scan them during our war, we of course did, but much more precise now, our technology has become," the Saryd explains. "To use one of our own scanners, we cannot ask of you. Much risk, it would pose, but if to the <planet>, a human Outfit Scanner you could bring, alter it to suit our purposes, we will."`
+			`	"Scan them during our war, we of course did, but much more precise now, our technology has become," the Saryd explains. "To use one of our own scanners, we cannot ask of you. Much risk, it would pose, but if to the <planet>, a human outfit scanner you could bring, alter it to suit our purposes, we will."`
 			choice
 				`	"Alright, I'll go there once I have an outfit scanner ready."`
 				`	"That sounds even more dangerous than what you had me do before. Sorry, but I'm not interested."`
@@ -693,7 +693,7 @@ mission "Heliarch Recon 2-B"
 		not "Resistance: Questions: done"
 	on offer
 		conversation
-			`The Heliarch agents who spoke to you are ready with a team of engineers once you land. They remove the Outfit Scanner from your ship and take it to some restricted area. After about an hour, they come back, and while you can't see any visible changes to the outfit, they assure you it is better suited for scanning Quarg ships now.`
+			`The Heliarch agents who spoke to you are ready with a team of engineers once you land. They remove the outfit scanner from your ship and take it to some restricted area. After about an hour, they come back, and while you can't see any visible changes to the outfit, they assure you it is better suited for scanning Quarg ships now.`
 			`	The agents come into your ship, asking for your map again. "Now, in the earliest stages of construction, this ring you showed us is," the Arach says, pointing to <waypoints>, where Lagrange is. "Interested in the Quarg ships guarding that system, Consul Aulori is. Suffice, one scan per type of ship there should."`
 				accept
 	npc "scan outfits"
@@ -710,7 +710,7 @@ mission "Heliarch Recon 2-B"
 		payment 200000
 		conversation
 			`Once again the engineers remove your outfit scanner, taking a copy of the scan logs and handing it to the Heliarch agents, who give you <payment>. "Grateful to you, we are, Captain <last>," the Saryd says. "Remember your assistance, the consul will."`
-			`	When the engineers return, they put your Outfit Scanner back in place. The Heliarch agents say their goodbyes, reassuring you that the Quarg shouldn't attack you for this. "If interested in doing some investigation of your own, you wish, maybe land on their rings again, you could," the Kimek suggests. "Maybe find out something of interest for us, you will."`
+			`	When the engineers return, they put your outfit scanner back in place. The Heliarch agents say their goodbyes, reassuring you that the Quarg shouldn't attack you for this. "If interested in doing some investigation of your own, you wish, maybe land on their rings again, you could," the Kimek suggests. "Maybe find out something of interest for us, you will."`
 			`	He wishes you safe travels, and leaves with his colleagues.`
 
 mission "Quarg Interrogation"
@@ -1053,7 +1053,7 @@ mission "Heliarch Expedition 3"
 				`	"Well, I'm no megastructure engineer, so I don't see the need to go there myself. They can find their own way."`
 					goto decline
 			label accept
-			`	"Excellent. Equipped with a Jump Drive, the ship is, and to reach this 'Ruin' planet, enough fuel, it has. A few last scanners, the scientists have requested, so after quick stop at <destination>, to the ringworld, you may bring them."`
+			`	"Excellent. Equipped with a jump drive, the ship is, and to reach this 'Ruin' planet, enough fuel, it has. A few last scanners, the scientists have requested, so after quick stop at <destination>, to the ringworld, you may bring them."`
 			label end
 			`	He introduces you to the Punisher's crew, and the dozens of scientists and engineers who are preparing to board the warship, ready to accompany you. He wishes you all good luck, and leaves, escorted by a few dozen guards. Once the consul is out of sight, some among the Punisher's crew start fidgeting. Their Captain, an Arach, has them ready the ship to follow yours, and they prepare to depart.`
 				accept
@@ -1092,7 +1092,7 @@ mission "Heliarch Expedition 4"
 				`	"Understood. Until then, good luck on your research here."`
 					goto end
 				`	"Is something wrong?"`
-			`	He goes back to looking to the sky with all eyes. "Forbidden it is, to leave the Coalition. To both civilians and Heliarchs alike. Far too dangerous, the outside has proven, and not deemed worthy to risk our Jump Drives like this, it has been. Worried I am about the ship's - the crew's safety."`
+			`	He goes back to looking to the sky with all eyes. "Forbidden it is, to leave the Coalition. To both civilians and Heliarchs alike. Far too dangerous, the outside has proven, and not deemed worthy to risk our jump drives like this, it has been. Worried I am about the ship's - the crew's safety."`
 			branch "expeditions past"
 				has "Coalition: Expeditions Past 10: done"
 			choice
@@ -1177,7 +1177,7 @@ mission "Heliarch Expedition 5"
 			choice
 				`	"I was only here for the end."`
 				`	"They didn't seem too happy with you."`
-			`	He grunts. "Cowards, the lot of them. True, it is, that something of a gamble I took, risking one of our Jump Drives beyond an unknown wormhole. But, necessary it was. Necessary for progress of our understanding. For our survival."`
+			`	He grunts. "Cowards, the lot of them. True, it is, that something of a gamble I took, risking one of our jump drives beyond an unknown wormhole. But, necessary it was. Necessary for progress of our understanding. For our survival."`
 				goto beckon
 
 
