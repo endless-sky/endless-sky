@@ -1,3 +1,70 @@
+Version 0.10.1
+  * Big changes:
+    * Created an extensive storyline that takes place after the main campaign is compeleted, focusing on the open secret of the existance of the Hai. (@MasterOfGrey, @NomadicVolcano, @UnorderedSigh)
+      * Development help and fixes from many community members. (@EjoThims, @warp-core)
+  * Bug fixes:
+    * Content bugs:
+      * Typo fixes. (@quyykk)
+      * Fixed the offer requirements for various Coalition missions that had been unable to offer under the correct circumstances. (@Arachi-Lover)
+      * Added a proper plural form to the Solar Batteries outfit. (@Terin)
+      * Fixed the displaying of the Basrem Reverse Thrusters description. (@Fzzr)
+      * Cleaned up the brown haze graphics. (@RisingLeaf)
+    * Engine bugs:
+      * Outfits with the "uninstallable" attribute are no longer sold alongside minables when using the "Sell All" button on the trading panel. (@TomGoodIdea)
+      * The string truncation functions now properly handle inputs that would have previously hit an infinite loop check. (@warp-core)
+      * The location of outfit thumnails on the UI is now rounded to an integer, preventing blurry thumbnails. (@TomGoodIdea)
+  * Game content:
+    * New content:
+      * Various new landable gas giants outside of the Ember Waste. (@Azure3141)
+      * Various new landable objects in Gegno space. (@Saugia)
+    * Mission changes:
+      * Scrappers can now spawn in various bounty jobs. (@Anarchist2)
+      * Changed the description of the size of the black box in the Sheragi Arhcaeology missions to make more sense with how it is handled. (@ziproot)'
+      * Repeatable Unfettered jobs now have destination clearance. (@EjoThims)
+      * Improved how certain Remnant missions are blocked if the player doesn't have a Research Laboratory outfit using newer mechanics. (@warp-core)
+    * Balance:
+      * Added a reverse thruster to the stock Mule loadout. (@LorenzoBolla)
+      * Added built-in solar collection to the Dromedary to reflect that the sprite has a solar panel array on it. (@Zitchas)
+      * Increased the number of gun hardpoints on various smaller human ships to allow them to saturate their weapon space with smaller weaponry. (@Anarchist2)
+        * Dagger: 2 -> 3
+        * Finch: 2 -> 3
+        * Lance: 2 -> 3
+        * Sparrow: 2 -> 4
+        * Wasp: 3 -> 5
+        * Fury: 4 -> 6
+        * Marauder Fury: 6 -> 8
+      * Changed the Ka'het Nullifier to fire in cluster mode, firing all equipped Nullifiers at once. (@1001010100)
+      * Added a fuel pod to the "Raven (Afterburner)" variant. (@LorenzoBolla)
+    * Graphics:
+    * Sounds:
+    * Other:
+      * Created new subfactions to the Hai and Unfettered to better reflect dynamics between the Hai and Unfettered. (@EjoThims, @Hurleveur)
+      * The Wanderer government now understands both the Wanderer and Hai languages, and the player gains the Hai language when receiving the Hai translation device instead of receiving the Wanderer language. (@UnorderedSigh)
+      * Changed the Heliarch swizzle to gold instead of red/orange/yellow. (@Arachi-Lover)
+      * Added a Mark II variant of the Auxiliary. (@LorenzoBolla)
+  * Game mechanics:
+    * New mechanics:
+      * Added a "<planet stopovers>" substitution that more concisely lists all stopover locations. (@Terin)
+      * The "inscrutable" attribute which makes the player unable to scan NPC ships now causes the player's ships to be unscannable by NPCs. (@ToomGoodIdea)
+    * Mechanic changes:
+      * NPCs without the escort personality no longer follow the player's flagship if it is cloaked. (@UnorderedSigh)
+      * Having "active cooling" without "cooling energy" now causes "active cooling" to scale with heat level, instead of always operating at 100% as it normally does when "cooling energy" is present. (@Ferociousfeind)
+  * User interface:
+    * Plugins are now able to be enabled and disabled within the Plugins menu. (@samrocketman, @quyykk)
+    * Broke the user preferences up into multiple pages. (@Terin)
+  * Under the hood:
+    * Changed the Personality class from using a single integer to track personality flags to a bitset, allowing for more than just 32 NPC personality flags to exist. (@tibetiroka)
+    * The Personality class will fail compilation if the personality count enum doesn't match the number of possible personalities. (@UnorderedSigh)
+    * Corrected the declaration order of pirvate members of the Conversation class. (@warp-core)
+    * Added a missing #include to the Preferences class. (@quyykk)
+  * CI/CD and development environment:
+    * Removed use of deprecated attributes in test data. (@UnorderedSigh)
+    * Added a CMake preset to run the unit tests in Release mode. (@UnorderedSigh)
+    * CI tests now also run when the CMake files have been edited. (@quyykk)
+    * The creation of the static library is now skipped to increase build speed, as it was unnecessary to have. (@quyykk)
+    * Fixed MacOS CI/CD failures. (@quyykk)
+    * Warnings are no longer treated as errors for release builds. (@quyykk)
+
 Version 0.10.0
   * Breaking changes:
     * The accompany objective on mission npcs no longer implicitly sets the save objective. Plugin missions that had "accompany" but not "save" should be changed to include "save" if the intention of the mission is that the npcs live (without the bug this time). (@Amazinite, @RisingLeaf)
