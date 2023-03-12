@@ -45,9 +45,6 @@ namespace {
 		"(very high)"
 	};
 
-	//const int MIN_X = -310;
-	//const int MAX_X = 190;
-
 	const int NAME_X = 20;
 	const int PRICE_X = 140;
 	const int LEVEL_X = 180;
@@ -55,8 +52,6 @@ namespace {
 	const int BUY_X = 310;
 	const int SELL_X = 370;
 	const int HOLD_X = 430;
-
-	//const int FIRST_Y = 80;
 }
 
 
@@ -97,8 +92,10 @@ void TradingPanel::Draw()
 {
 	const Interface *tradeUi = GameData::Interfaces().Get("trade");
 	const Rectangle box = tradeUi->GetBox("content");
-	const int MIN_X = box.Left();
-	const int FIRST_Y = box.Top();
+	// if box dimensions are default-initialized, then "content" is missing,
+	// so fill it in with the old defaults.
+	const int MIN_X = box.Width() == 0 ? -310 : box.Left();
+	const int FIRST_Y = box.Height() == 0 ? 80 : box.Top();
 
 	const Color &back = *GameData::Colors().Get("faint");
 	int selectedRow = player.MapColoring();
@@ -282,9 +279,11 @@ bool TradingPanel::Click(int x, int y, int clicks)
 {
 	const Interface *tradeUi = GameData::Interfaces().Get("trade");
 	const Rectangle box = tradeUi->GetBox("content");
-	const int MIN_X = box.Left();
-	const int FIRST_Y = box.Top();
-	const int MAX_X = box.Right();
+	// if box dimensions are default-initialized, then "content" is missing,
+	// so fill it in with the old defaults.
+	const int MIN_X = box.Width() == 0 ? -310 : box.Left();
+	const int FIRST_Y = box.Height() == 0 ? 80 : box.Top();
+	const int MAX_X = box.Width() == 0 ? 190 : box.Right();
 	int maxY = FIRST_Y + 25 + 20 * COMMODITY_COUNT;
 	if(x >= MIN_X && x <= MAX_X && y >= FIRST_Y + 25 && y < maxY)
 	{

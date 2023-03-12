@@ -146,14 +146,18 @@ void PlanetPanel::Draw()
 	if(!selectedPanel)
 	{
 		Rectangle box = ui.GetBox("content");
-		if (box.Width() != text.WrapWidth())
+		if(box.Width() == 0)
+		{
+			// default-initialized. "content" is probably missing from the file
+			box = Rectangle::FromCorner(Point(-300., 80.), Point(text.WrapWidth(), 240));
+		}
+		if(box.Width() != text.WrapWidth())
 		{
 			text.SetWrapWidth(box.Width());
 			text.Wrap(planet.Description());
 		}
 		text.Draw(box.TopLeft(), *GameData::Colors().Get("bright"));
 	}
-
 }
 
 

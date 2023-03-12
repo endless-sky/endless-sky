@@ -71,9 +71,9 @@ void BankPanel::Draw()
 	// Draw the "Pay All" button.
 	const Interface *bankUi = GameData::Interfaces().Get("bank");
 	const Rectangle box = bankUi->GetBox("content");
-	const int MIN_X = box.Left();
-	const int FIRST_Y = box.Top();
-	const int MAX_X = box.Right();
+	const int MIN_X = box.Width() == 0 ? -310 : box.Left();
+	const int FIRST_Y = box.Height() == 0 ? -63 : box.Top();
+	const int MAX_X = box.Width() == 0 ? 190 : box.Right();
 
 	// Set up the table that will contain most of the information.
 	Table table;
@@ -317,9 +317,9 @@ bool BankPanel::Click(int x, int y, int clicks)
 {
 	const Interface *bankUi = GameData::Interfaces().Get("bank");
 	const Rectangle box = bankUi->GetBox("content");
-	const int MIN_X = box.Left();
-	const int FIRST_Y = box.Top();
-	const int MAX_X = box.Right();
+	const int MIN_X = box.Width() == 0 ? -310 : box.Left();
+	const int FIRST_Y = box.Height() == 0 ? 78 : box.Top();
+	const int MAX_X = box.Width() == 0 ? 190 : box.Right();
 
 	// Check if the click was on one of the rows of the table that represents a
 	// mortgage or other current debt you have.
