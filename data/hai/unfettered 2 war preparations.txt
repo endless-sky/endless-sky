@@ -1259,7 +1259,7 @@ mission "<uhai> 16: Strength Of A Leader"
 			`	He then draws his long sword, which has the same appearance as the keystone pendants popular among his race, and he hands it to you. "You have also deserved the right to have this. It is a proof of our trust toward you and means you will have access to all of our ships. Whenever a warlord is defeated in battle, he has to surrender his sword to the one who vanquished him."`
 			choice
 				`	"I would like to ask a few questions, about your ship."`
-				`	"I am honoured, and hope we will fight again, later."`
+				`	"I am honored, and hope we will fight again, later."`
 					accept
 			`	"Yes, that was to be [suspected, expected]. I am prepared to answer a few, but choose wisely what you want to ask."`
 			action

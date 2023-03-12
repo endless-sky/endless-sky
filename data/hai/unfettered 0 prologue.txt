@@ -1224,7 +1224,7 @@ mission "<uhai> 4: Scan Geocoris"
 				`	"I don't want to get in trouble with the Hai."`
 			`	"That should not be a problem, the Hai will not bothered about you scanning their ship, if they even notice it."`
 			label design
-			`	"We would like to know how they avoided vulnerabilities in the hull of a ship of such size, and the way cargo can be stored without making the ship defenceless. Extra space on a ship cannot only be used for cargo... I will tell you more about it later, once you bring us the scans. That is, if you are willing of course."`
+			`	"We would like to know how they avoided vulnerabilities in the hull of a ship of such size, and the way cargo can be stored without making the ship defenseless. Extra space on a ship cannot only be used for cargo... I will tell you more about it later, once you bring us the scans. That is, if you are willing of course."`
 			choice
 				`	"Sure, will do."`
 					goto agree
