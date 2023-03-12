@@ -1147,9 +1147,15 @@ mission "Hai Reveal [A09] History of Appeasement"
 		dialog `Teeneep is on another ship not yet in the system, take off and wait for the ship to arrive in order to continue.`
 	on offer
 		log `A group of Hai Elders agreed to change their approach to the problem of pirates if the situation deteriorates further. Unfortunately, they refused to even discuss the disappearances.`
-		"reputation: Hai (Unfettered)" >?= 10
 		conversation
 			`As you return, you give Batu directions to find Xilin and then arrange evening meetings with the other diplomats. To pass the time, you search for Teeneep and Sayari, hoping to swap information with the two. You find yourself at Sayari's office, only to be met by the sight of Teeneep and Sayari arguing. Teeneep is shouting angrily at Sayari, who is trying to calm her. Their argument is so intense that they don't hear you approaching.`
+
+			# Player gets no reputation reset if they're at war with the Unfettered.
+			branch questions
+				has "event: Wanderers before Hai Reveal"
+			action
+				"reputation: Hai (Unfettered)" >?= 10
+
 			label questions
 			choice
 				# First phase of conversation: listen in or interrupt.
@@ -1391,7 +1397,32 @@ mission "Hai Reveal [A10] Demanding Satisfaction"
 			choice
 				`	(Walk to her.)`
 			`	"Captain <first> <last> led great fleets during a civil war of the humans. We will have the honor of fighting alongside this warrior of the humans."`
-			`	He looks at you appraisingly. "That is well, but there is a matter yet to be addressed. We cannot just 'waltz' through Hai and human space without being blasted. How will you convince your Elders to allow us passage?"`
+			branch nobody
+				not "event: Wanderers before Hai Reveal"
+			`	"Indeed, we have had the honor of fighting against this warrior of humans. Quite a troublemaker on the battlefield." He looks at you. "Did you think we wouldn't notice the same ship landing on our world as the one flying alongside the flag of our enemy? We've been studying your actions for quite a while. Why are you here now, as an ally of this True Hai?"`
+			choice
+				`	"You and I have crossed swords before, but this is a matter that concerns us both: the safety and honor of the Hai."`
+					goto honor
+				`	"I fight for money and prestige. The Hai are paying plenty of both for protection against a pirate threat."`
+					goto mercenary
+				`	"I assumed furballs like you were too brain-dead to count to two."`
+			`	Teeneep rolls her eyes and makes no attempt to intervene as General Choot'k moves rapidly to cut your head in twain.`
+				die
+			label honor
+			`	He stares intensely at you, as if he's trying to read your very soul. After a long moment, the general says, "You have proven an honorable warrior, Captain <last>, even if you have chosen the wrong side of one war. I will fight alongside you, as we defend the Hai.`
+				goto spy
+			label mercenary
+			`	"If you prove an honorable warrior as you fight alongside us, I may consider paying you far higher than the Wanderers to help us take back our stolen worlds.`
+			label spy
+			`	"Besides," he says, patting you on the shoulder, "there's no better way to learn the tactics of the enemy than observing those of someone from their inner circle. You've been an invaluable source of information these past few months, but now I'll study you in person. You will teach me much about how to take our worlds back, Captain <last>."`
+			choice
+				`	"As I shall learn from you, General Choot'k."`
+				`	"You'll find human tactics to be quite advanced, General."`
+			`	He nods and turns back to Teeneep, returning to the matter at hand. "Bravery becomes foolishness if it gives way to defeat, Teeneep. We cannot just 'waltz' through Hai and human space without being blasted. How will you convince your Elders to allow us passage?"`
+				goto allow
+			label nobody
+			`	He looks at you appraisingly. "Bravery becomes foolishness if it gives way to defeat, Teeneep. We cannot just 'waltz' through Hai and human space without being blasted. How will you convince your Elders to allow us passage?"`
+			label allow
 			`	"They will not allow it," says Teeneep. "We must force them."`
 			`	A round of muttering breaks out around the room.`
 			`	"The threat of true war, then..." In the ensuing silence you swear you could have heard a pin drop.`
@@ -1403,6 +1434,11 @@ mission "Hai Reveal [A10] Demanding Satisfaction"
 			`	There is a moment where it seems as if something respectful is being observed and then, like a switch being flicked, the energy returns and the leader smiles at you as those around start jostling and making quiet remarks to each other.`
 			`	The Unfettered leader seems to sense your confusion. "Neither True Hai nor Fettered truly desire to shed the blood of the other. Our disagreement is a protest, a lesson to be learned that we are learning but slowly. Perhaps it is time though that we demonstrate the seriousness of our resolve, especially if the Elders have become so mired as for it to have come to this."`
 			`	He grins. "I look forward to seeing you fight, human. Now both of you, go. Do what you must."`
+				to display
+					not "event: Wanderers before Hai Reveal"
+			`	He sighs. "Now both of you, go. Do what you must."`
+				to display
+					has "event: Wanderers before Hai Reveal"
 			`	Teeneep turns and leads you out, making sure they return your weapon as you leave. "Now we must return to <planet> and address the Elders again. Hopefully they will now see reason."`
 				accept
 
