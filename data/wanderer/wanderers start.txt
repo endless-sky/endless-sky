@@ -17,7 +17,6 @@ mission "First Contact: Wanderer (Before Hai)"
 		attributes "wanderer"
 	to offer
 		not "First Contact: Wanderer: offered"
-		not "event: hai-human resolution announced"
 	on offer
 		conversation
 			`All the other worlds belonging to this species have appeared unwilling to let you land, but here you find a slightly warmer welcome. A cloud of small, highly maneuverable patrol ships takes off from the planet as you approach and herds you onto one particular landing pad where, after a few minutes, several of the aliens approach your ship.`
@@ -39,12 +38,10 @@ mission "First Contact: Wanderer"
 	landing
 	source
 		attributes "wanderer"
-	to offer
-		has "event: hai-human resolution announced"
 	to complete
 		or
 			has "Wanderers: Diplomacy: offered"
-			has "Wanderers: Professor"
+			has "Wanderers: Diplomacy (Before Hai Reveal): offered"
 	on offer
 		log "Discovered a birdlike alien species to the north of human space. They appear to speak the Hai language in addition to their own, so with the help of a Hai interpreter it might be possible to communicate with them."
 		conversation
@@ -100,6 +97,7 @@ mission "Wanderers: Unfettered Diplomat"
 		not "unfettered know of wanderers"
 		not "Wanderers: Hai Diplomat: offered"
 		not "Wanderers: Diplomacy: offered"
+		not "Wanderers: Diplomacy (Before Hai Reveal): offered"
 	on offer
 		conversation
 			`The aliens north of Hai space seem to speak the Hai language. Do you want to look for someone here who could serve as an interpreter?`
@@ -158,6 +156,7 @@ mission "Wanderers: Hai Diplomat"
 		has "First Contact: Wanderer: offered"
 		has "First Contact: Hai: offered"
 		not "Wanderers: Diplomacy: offered"
+		not "Wanderers: Diplomacy (Before Hai Reveal): offered"
 	on offer
 		conversation
 			`The aliens north of Hai space seem to speak the Hai language. Do you want to look for someone here who could serve as an interpreter?`
@@ -183,7 +182,7 @@ mission "Wanderers: Hai Diplomat"
 
 mission "Wanderers: Diplomacy Delayed"
 	name "Wanderers: Diplomacy"
-	description "Resolve Hai internal social problems and arrange a Hai-human treaty so the Hai will provide an ambassador. Or, find someone else to translate the Hai language."
+	description "Resolve Hai internal social problems and arrange a Hai-human treaty so the Hai will provide an ambassador. Or, hope someone you talked to on Hai-home will find a translator for you."
 	landing
 	source "Hai-home"
 	clearance
@@ -191,6 +190,11 @@ mission "Wanderers: Diplomacy Delayed"
 	to offer
 		has "First Contact: Wanderer: offered"
 		not "event: hai-human resolution announced"
+	to complete
+		or
+			has "Wanderers: Diplomacy: offered"
+			has "Wanderers: Diplomacy (Before Hai Reveal): accepted"
+			has "Wanderers: Diplomacy (Before Hai Reveal): done"
 	on offer
 		conversation
 			action
@@ -202,13 +206,13 @@ mission "Wanderers: Diplomacy Delayed"
 			choice
 				`	"They speak the Hai language, and I need a translator."`
 					goto response
-				`	"I'd like to make first contact with another species."`
+				`	"I'd like to make first contact with their species."`
 					goto response
 				`	"Wait a minute. I never mentioned they were avians. Why do you say they're troubled?"`
 			`	The uniformed Hai ignores your question and asks again, "What is your intention, Captain <last>?"`
 			choice
 				`	"They speak the Hai language, and I need a translator."`
-				`	"I'd like to make first contact with another species."`
+				`	"I'd like to make first contact with their species."`
 			label response
 			branch election
 				or
@@ -243,13 +247,17 @@ mission "Wanderers: Professor Available"
 	source
 		not planet Hai-home
 		not planet Allhome
+		not attributes uninhabited
+		government Hai Republic Syndicate "Free Worlds" Neutral Independent
 	destination Allhome
 	to offer
 		has "event: A Hai professor is available to translate"
 		not "Wanderers: Diplomacy: accepted"
+		not "Wanderers: Diplomacy: done"
 	on offer
 		conversation
 			`Your ship's terminal bleats out a pinging noise, accompanied by a message from a university on All-home. It mentions Professor Andelena the Department of Skiourology at Mongongo University. The message is otherwise short and cryptic, but it sounds like a translator may be waiting for you on <planet>: Professor Andalena`
+				accept
 
 
 
@@ -261,9 +269,7 @@ mission "Wanderers: Meet Professor"
 	to offer
 		has "Wanderers: Professor Available: done"
 	to complete
-		has "Wanderers: Professor Transport: accepted"
-		not "Wanderers: Diplomacy: done"
-		not "Wanderers: Diplomacy: active"
+		has "Wanderers: Diplomacy (Before Hai Reveal): offered"
 	on offer
 		log "Minor People" "Professor Andelena" `Professor Maindell Stormchild Andelena, IV speaks with Shroud cloud city accent and is a daughter of the rich Andelena family. Her wealthy meanderings have led her to a university on Allhome where she studies Skiorology, the Hai-studying equivalent of Anthropology.`
 		log "Minor People" "Eenap" `Professor Andelena's small Hai grad student, who is interested in studying the aliens to the north as her thesis research subject.`
@@ -295,11 +301,11 @@ mission "Wanderers: Diplomacy (Before Hai Reveal)"
 	passengers 2
 	blocked `You arrive at the spaceport, but you suddenly realize you have too few bunks for Professor Andelena and her student.`
 	to offer
-		has "Wanderers: Meet Professor: offered"
-		not "Wanderers: Meet Professor: declined"
+		has "Wanderers: Professor Available: done"
 		not "Wanderers: Diplomacy: active"
 		not "Wanderers: Diplomacy: done"
 	on offer
+		fail "Wanderers: Meet Professor"
 		conversation
 			`As you enter the spaceport, a group of armed Hai in uniforms approach you. The uniforms match the one from the Hai that refused to help you on Hai-home.`
 			`	One of them addresses you. "Are you looking for Professor Andelena?"`
@@ -329,12 +335,12 @@ mission "Wanderers: Diplomacy (Before Hai Reveal)"
 				log "People" "Irayas Payaana" `A Hai ambassador who made first contact with the Syndicate and various pirate groups. Sayari, the head of the Hai diplomatic corps, chose her as the Hai ambassador to the aliens to the north of Hai space.`
 				log "People" "Sayari" `The head of the Hai diplomatic corps who hand-picked Irayas Payaana as the Hai representative to the aliens north of Hai space.`
 			`	"Myself: Irayas Payaana", she says. "I made first contact with the Syndicate, and various pirate groups years ago. My specialty is maintaining positive relations with alien groups who have unknown, and possibly hostile, objectives. Most of my work recently has been with the Unfettered, but Sayari - the head of our diplomatic corps - believes you've found a more urgent need for my skills.`
-			`	"One warning Captain <last>, from someone who has seen the darkest side of the Hai. It is imperative that you keep silent about your discovery, and any hostilities you may take part in. Should your involvement become public knowledge, I fear there may be a backlash against humans, especially in Unfettered space."`
 			choice
 				`	"Let's go!"`
-					accept
 				`	"I'm done with this cloak and dagger business. Find another courier."`
 					decline
+			`	"One warning Captain <last>, from someone who has seen the darkest side of the Hai. It is imperative that you keep silent about your discovery, and any hostilities you may take part in. Should your involvement become public knowledge, I fear there may be a backlash against humans, especially in Unfettered space."`
+				accept
 	on accept
 		event "Wanderers before Hai Reveal"
 
@@ -405,7 +411,9 @@ mission "Wanderers: Translation Machine"
 		<Guide> Sayari
 			not "event: Wanderers before Hai Reveal"
 	to offer
-		has "Wanderers: Diplomacy: done"
+		or
+			has "Wanderers: Diplomacy: done"
+			has "Wanderers: Diplomacy (Before Hai Reveal): done"
 	on offer
 		log `Was able to communicate with the birdlike "Wanderers" with the help of a Hai ambassador. It turns out that they have been under attack by the Unfettered Hai for some time, and have learned the Hai language by taking captives.`
 		log "Factions" "Wanderers" `The Wanderers are a bird-like species who inhabit a small region of space adjacent to the Hai. They have been under attack by the "Unfettered" Hai for some time. The Wanderers claim to be peaceful, and most of their ships are not designed for military use.`
@@ -482,6 +490,18 @@ event "wanderer translator available"
 
 
 
+mission "Wanderers: Translator Reminder"
+	description "Wait for the Wanderers to create a device to translate between their language and yours."
+	name "Wait for the Wanderers"
+	landing
+	source "Vara K'chrai"
+	to offer
+		has "Wanderers: Translation Machine: done"
+	to complete
+		has "event: wanderer translator available"
+
+
+
 mission "Visit Wanderers Again"
 	description "Return to the Wanderer homeworld of <destination> to receive a device that will allow you to converse with them more freely."
 	landing
@@ -493,6 +513,7 @@ mission "Visit Wanderers Again"
 		not "Wanderers Conversation: done"
 	on offer
 		set "language: Wanderer"
+		fail "Wanderers: Translator Reminder"
 		conversation
 			`Checking your ship's calendar, you realize that eight weeks have passed since the Wanderer scientist started working on the translator. It should be ready for you now at <planet>.`
 				accept
@@ -2184,7 +2205,7 @@ mission "Wanderers Hai Assistance 2"
 				set "visited Elders for Wanderer Assistance"	
 				log "Traveled to the Hai homeworld with a Hai ambassador to see if she can convince the Hai to take action to restrain the Unfettered from attacking the Wanderers. The most that the Hai were willing to do was to mass a large war fleet near Unfettered space so that the Unfettered have to divert warships there to defend their home worlds."
 
-		`The Hai's recently elected Council of "Elders" agrees to meet with you and <Guide> and the two of you make an effort to avoid directing yourselves towards Teeneep. Your young friend's popularity as an Elder does not extend to inside these walls and, as <Guide> quietly informed you beforehand, apparently Teeneep has not explained the nature of her sympathies towards the Unfettered, even to her oldest friends. It would be detrimental to your cause to specifically seek her assent here, on <origin>, for this matter. After you describe the situation with the Wanderers, one of the other elders who seems older and authoritative says, "We had heard rumors of this. The Unfettered have recruited thousands of new warriors by telling stories of planets for us to explore and colonize, and a cowardly and foolish enemy to defeat."`
+			`The Hai's recently elected Council of "Elders" agrees to meet with you and <Guide> and the two of you make an effort to avoid directing yourselves towards Teeneep. Your young friend's popularity as an Elder does not extend to inside these walls and, as <Guide> quietly informed you beforehand, apparently Teeneep has not explained the nature of her sympathies towards the Unfettered, even to her oldest friends. It would be detrimental to your cause to specifically seek her assent here, on <origin>, for this matter. After you describe the situation with the Wanderers, one of the other elders who seems older and authoritative says, "We had heard rumors of this. The Unfettered have recruited thousands of new warriors by telling stories of planets for us to explore and colonize, and a cowardly and foolish enemy to defeat."`
 			`	<Guide> says, "We must not allow the Unfettered to commit genocide in the name of the Hai people."`
 			`	Another elder responds, "But, we promised in the Frostmark Accords that we would not interfere in Unfettered space."`
 			`	"They have never kept their side of the treaty," says yet another of the elders, "and surely the prevention of genocide is enough reason to break ours."`
