@@ -100,7 +100,7 @@ mission "Remnant: Broken Jump Drive job"
 		dialog phrase "broken jump drive on visit"
 	on complete
 		outfit "Jump Drive (Broken)" -1
-		"remnant: broken Jump Drive count" ++
+		"remnant: broken jump drive count" ++
 		payment 300000
 		"reputation: Remnant" ++
 		"Remnant: Broken Jump Drive job: offered" --
