@@ -1240,7 +1240,7 @@ mission "FW Pug 2C: Hyperdrive"
 	clearance
 	to offer
 		has "FW Pug 2B: done"
-		not "fw given Jump Drive"
+		not "fw given jump drive"
 	passengers 1
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
@@ -1253,7 +1253,7 @@ mission "FW Pug 2C: Hyperdrive"
 	
 	on accept
 		outfit "Jump Drive" 1
-		set "fw given Jump Drive"
+		set "fw given jump drive"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
@@ -1270,7 +1270,7 @@ mission "FW Pug 2C: Scram Drive"
 	clearance
 	to offer
 		has "FW Pug 2B: done"
-		not "fw given Jump Drive"
+		not "fw given jump drive"
 	passengers 1
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
@@ -1283,7 +1283,7 @@ mission "FW Pug 2C: Scram Drive"
 	
 	on accept
 		outfit "Jump Drive" 1
-		set "fw given Jump Drive"
+		set "fw given jump drive"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
@@ -1300,7 +1300,7 @@ mission "FW Pug 2C: A Jump Drive"
 	clearance
 	to offer
 		has "FW Pug 2B: done"
-		not "fw given Jump Drive"
+		not "fw given jump drive"
 	passengers 1
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
@@ -1313,8 +1313,8 @@ mission "FW Pug 2C: A Jump Drive"
 	
 	on accept
 		outfit "Jump Drive" 1
-		set "fw given Jump Drive"
-		set "already had Jump Drive"
+		set "fw given jump drive"
+		set "already had jump drive"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
@@ -1325,7 +1325,7 @@ mission "FW Pug 2C: A Jump Drive"
 mission "FW Pug Jump Drive Check"
 	landing
 	to offer
-		has "fw given Jump Drive"
+		has "fw given jump drive"
 		not "outfit (all): Jump Drive"
 		not "event: reconnected delta capricorni"
 	on offer
@@ -1341,7 +1341,7 @@ mission "FW Pug 2C: Side"
 		government Pug
 		near Deneb 1 100
 	to offer
-		has "fw given Jump Drive"
+		has "fw given jump drive"
 		not "FW Pug 3: offered"
 	
 	on offer
@@ -1413,7 +1413,7 @@ mission "FW Pug 2C: Pugglequat"
 	landing
 	source Pugglequat
 	to offer
-		has "fw given Jump Drive"
+		has "fw given jump drive"
 		not "FW Pug 3: offered"
 	
 	on offer
@@ -1432,7 +1432,7 @@ mission "FW Pug 3"
 	destination Earth
 	clearance
 	to offer
-		has "fw given Jump Drive"
+		has "fw given jump drive"
 		has "FW Pug 2C: done"
 	passengers 1
 	on fail
@@ -1661,7 +1661,7 @@ mission "FW Pug 3C"
 	destination Hephaestus
 	to offer
 		has "FW Pug 3B: done"
-		not "already had Jump Drive"
+		not "already had jump drive"
 	passengers 1
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
@@ -1697,7 +1697,7 @@ mission "FW Pug 3C (Extra)"
 	destination Hephaestus
 	to offer
 		has "FW Pug 3B: done"
-		has "already had Jump Drive"
+		has "already had jump drive"
 	passengers 1
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
@@ -1783,7 +1783,7 @@ mission "FW Pug 4: Escorts (Extra)"
 	source Hephaestus
 	to offer
 		has "FW Pug 3C: done"
-		has "already had Jump Drive"
+		has "already had jump drive"
 	to fail
 		has "FW Pug 6: done"
 	npc kill
@@ -1816,7 +1816,7 @@ mission "FW Pug 4"
 		conversation
 			`The Syndicate directs you to land your ships in the private hangars for Syndicated Systems. Once you have landed, they quickly work to install Jump Drives in the Navy and Free Worlds ships. As they work, you hear one of the workers saying to another, "Golly, I'd forgotten how big those Navy ships are. Makes a Protector look puny by comparison, doesn't it?"`
 			branch extra
-				has "already had Jump Drive"
+				has "already had jump drive"
 			`	Once the work is done, you meet with a senior Syndicate executive named Marco Bugati. "I really hope this works," he says, "because these are the only Jump Drives we've been able to acquire. If your fleet is destroyed, we will have lost access to the occupied territory entirely."`
 				goto end
 			label extra
@@ -2044,7 +2044,7 @@ mission "FW Pug 5"
 		event "battle for altair"
 		conversation
 			branch extra
-				has "already had Jump Drive"
+				has "already had jump drive"
 			`Freya is overjoyed that she has found a way to reverse the Pug technology and restore a hyperspace connection to human space. "Now we actually have a chance," she says. "Before, with just you and six other ships, victory seemed unlikely."`
 				goto choice
 			label extra
