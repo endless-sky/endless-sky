@@ -383,7 +383,7 @@ mission "Ka'het: Patir Mystery 1"
 				`	"Did you find anything new on how this system appeared?"`
 					goto how
 				`	"Was this one already known to the Remnant?"`
-			`	"That is the oddest part; it was not. We knew about the existence of the stars beyond Postverta as they could be observed from our own systems; they just were not reachable with a jump drive. But, from what I can tell from these readings, Patir did not exist until a short time ago.`
+			`	"That is the oddest part; it was not. We knew about the existence of the stars beyond Postverta as they could be observed from our own systems; they just were not reachable with a Jump Drive. But, from what I can tell from these readings, Patir did not exist until a short time ago.`
 			`	"Do you have anything on why this system appeared?" you ask.`
 			label how
 			`	"I only have theories for now, none of which can be confirmed. People more knowledgeable than me in the subject are examining the phenomena right now. But look at this," she says, opening a star map on a holographic projector. "This white dot is Postverta, and we are here. When Ssil Vida first appeared, it released a strong burst of ionizing radiation, and when we were able to calculate its velocity, we found it was going much faster than the speed of light. It is gradually slowing down, so it will not go much further, but exactly the same day that the energy burst was supposed to arrive here, Patir appeared! It would be an incredible coincidence if the two events were not connected.`
@@ -409,7 +409,7 @@ mission "Ka'het: Patir Mystery 1"
 					goto kasei
 				`	"If the Builders were able to make self replicating spacecrafts, why aren't the Ka'het like that as well?"`
 					goto kahet
-				`	"If they were able to get to Patir, does this suggest they have jump drives?"`
+				`	"If they were able to get to Patir, does this suggest they have Jump Drives?"`
 					goto jumpdrive
 				`	"Why aren't they in other systems?"`
 					goto jumpdrive
@@ -418,7 +418,7 @@ mission "Ka'het: Patir Mystery 1"
 			choice
 				`	"If the Builders were able to make self replicating spacecrafts, why aren't the Ka'het like that as well?"`
 					goto kahet
-				`	"If they were able to get to Patir, does this suggest they have jump drives?"`
+				`	"If they were able to get to Patir, does this suggest they have Jump Drives?"`
 					goto jumpdrive
 				`	"Why aren't they in other systems?"`
 					goto jumpdrive

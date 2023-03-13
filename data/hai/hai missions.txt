@@ -46,8 +46,8 @@ mission "First Contact: Hai"
 			branch wormhole
 				has "wormhole alpha found"
 			choice
-				`	"How did humanity reach this place? Did they use jump drives?"`
-			`	The human merchant raises an eyebrow. "Can't say I'm familiar with what a jump drive is. In case you aren't in the know, though, there's a wormhole in Hai space that connects back to a secluded part of human space. Don't bother trying to figure out why and how it's there, because not even the Hai know."`
+				`	"How did humanity reach this place? Did they use Jump Drives?"`
+			`	The human merchant raises an eyebrow. "Can't say I'm familiar with what a Jump Drive is. In case you aren't in the know, though, there's a wormhole in Hai space that connects back to a secluded part of human space. Don't bother trying to figure out why and how it's there, because not even the Hai know."`
 			label wormhole
 			choice
 				`	"Why do you allow humans to settle here?"`

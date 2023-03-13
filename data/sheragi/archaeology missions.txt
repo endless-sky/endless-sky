@@ -1251,7 +1251,7 @@ mission "Sheragi Archaeology: The Emerald Sword 1"
 mission "Sheragi Archaeology: The Emerald Sword 2"
 	landing
 	name "The Emerald Sword"
-	description "Bring an additional jump drive to Zug."
+	description "Bring an additional Jump Drive to Zug."
 	source "Zug"
 	to offer
 		has "Sheragi Archaeology: The Emerald Sword 1: done"
@@ -1268,7 +1268,7 @@ mission "Sheragi Archaeology: The Emerald Sword 2"
 				`	"What did it contain?"`
 			`	Desyo responds, "It was all fleet movement data and military strategy details. This system was apparently on the border of one of the factions' territories. On the final moments of the recording, a large transport fleet had entered the system, unarmed ships. They were followed by military vessels in pursuit. There's no telling what they thought at the time, but a military fleet was immediately dispatched to eliminate both fleets. One particular ship, the name of which Eyama has translated as 'Emerald Sword,' started behaving erratically when given orders. It fired and missed a few shots until it eventually stopped and fled. Clear signs of a mutiny. However, what is perhaps most interesting is that when it fled, it fled in an unexpected direction, away from any hyperlanes."`
 			`	Albert continues, "We think they wanted to flee from the fighting. These were soldiers scarred by the horrors of the war, and they just got ordered to attack what we assume to be refugees. The Emerald Sword was a big ship, likely with an equally large crew, and from the movement data, its engines were very powerful too, possibly capable of crossing interstellar distances within a Sheragi lifetime. This has some interesting implications. The ship was moving precisely towards a star named Zubenelhakrabi. Not significant enough to show up in the star maps, but we did our survey, and there is a potentially habitable planet there, but zero signs of intelligent life. We think they failed in colonizing it, but the ship might still be there. It's a priceless artifact. We can't know for sure until we get there. Thing is, there is no way to do so."`
-			`	"Unless you have a jump drive," Rakei adds. "And you do have one, don't you?"`
+			`	"Unless you have a Jump Drive," Rakei adds. "And you do have one, don't you?"`
 			choice
 				`	"I do."`
 				`	"I used to, but not anymore."`
@@ -1279,7 +1279,7 @@ mission "Sheragi Archaeology: The Emerald Sword 2"
 			`	"You sold it?" she replies incredulously. "How can you sell such a priceless piece of technology? Well, I hope there is a way to get more of them without having one, because we're going to need two for the next stage. One for your ship, and another one for the Emerald Sword, if its remains are still there."`
 			label return
 			`	"What do I get in return?" you ask.`
-			`	"Fame and fortune, my friend. And if the ship is still there, I think you deserve to keep it," Albert responds. "You've helped me so much, and you went to hell and back to get this black box decoded. Give us some time to assemble a crew to survey the system and help refurbish the ship, and in the meantime, go get us a jump drive. Come back to us once you have it."`
+			`	"Fame and fortune, my friend. And if the ship is still there, I think you deserve to keep it," Albert responds. "You've helped me so much, and you went to hell and back to get this black box decoded. Give us some time to assemble a crew to survey the system and help refurbish the ship, and in the meantime, go get us a Jump Drive. Come back to us once you have it."`
 			choice
 				`	"You're just going to let me have it? Isn't this something of a priceless historical artifact?"`
 					goto askkeepship
@@ -1307,7 +1307,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 	destination "Valley of the Damned"
 	cargo "Outfitting Equipment" 50
 	passengers 150
-	blocked `You arrive to make the preparations to jump to Zubenelhakrabi, but Albert stops you. "Captain, the Emerald Sword is an alien ship, and we have no idea how many people we will need to man it, so I've taken the liberty of hiring some extra crew on top of the specialist team. We're going to need 150 additional crew to help, including us, and 50 tons of cargo to take our materials and the spare jump drive."`
+	blocked `You arrive to make the preparations to jump to Zubenelhakrabi, but Albert stops you. "Captain, the Emerald Sword is an alien ship, and we have no idea how many people we will need to man it, so I've taken the liberty of hiring some extra crew on top of the specialist team. We're going to need 150 additional crew to help, including us, and 50 tons of cargo to take our materials and the spare Jump Drive."`
 	
 	to offer
 		has "Sheragi Archaeology: The Emerald Sword 2: active"
@@ -1315,13 +1315,13 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 	on offer
 		require "Jump Drive" 2
 		conversation
-			`You have a spare jump drive in your possession. Would you like to give it to Albert's crew?`
+			`You have a spare Jump Drive in your possession. Would you like to give it to Albert's crew?`
 			choice
 				`	(Yes.)`
 				`	(No.)`
 					defer
-			`	You give Albert a call, and arrange to meet with him to plan the next step. He shows up at your ship, greets you, and starts loading in some equipment, along with the jump drive you brought. He has assembled a crew of around 150 people, including a specialized team of shipyard workers, a large amount of veteran crew members, himself, and the three Hai archaeologists, who are comfortable to let go of their disguise once they're back in your ship.`
-			`	"<first>, meet the people who will help us uncover the fate of the Emerald Sword. I've just briefed them on the situation and what we plan to do. Along with the jump drive, we're going to take some specialized tools with us, which should allow us to repair and outfit the ship in any world we can land on. This might look like a lot of people, but if we want to recover a derelict ship, I suspect we'll need just this many. If you're ready to go, here are the coordinates to Zubenelhakrabi."`
+			`	You give Albert a call, and arrange to meet with him to plan the next step. He shows up at your ship, greets you, and starts loading in some equipment, along with the Jump Drive you brought. He has assembled a crew of around 150 people, including a specialized team of shipyard workers, a large amount of veteran crew members, himself, and the three Hai archaeologists, who are comfortable to let go of their disguise once they're back in your ship.`
+			`	"<first>, meet the people who will help us uncover the fate of the Emerald Sword. I've just briefed them on the situation and what we plan to do. Along with the Jump Drive, we're going to take some specialized tools with us, which should allow us to repair and outfit the ship in any world we can land on. This might look like a lot of people, but if we want to recover a derelict ship, I suspect we'll need just this many. If you're ready to go, here are the coordinates to Zubenelhakrabi."`
 			`	You thank Albert, and make your preparations for the voyage into the unknown.`
 				accept
 	
@@ -1539,7 +1539,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 			`	The crew are still standing around in shock as Desyo fiddles with her damaged computer. She looks up to see everyone staring at her. "Well, let's get back to work. We're not going to make any progress just standing around."`
 			
 			label end
-			`	You return to your ship, and after a few hours Foster contacts you saying that the ship is in operational condition. It'll need to be landed on the planet in this system so that the jump drive can be installed, though.`
+			`	You return to your ship, and after a few hours Foster contacts you saying that the ship is in operational condition. It'll need to be landed on the planet in this system so that the Jump Drive can be installed, though.`
 		
 	on visit
 		dialog `Upon landing on this strange world, you realize not everything is accounted for! Better make sure the Emerald Sword has been boarded, and no crew or cargo is on escorts out of the system.`
@@ -1581,7 +1581,7 @@ mission "Sheragi Archaeology: Epilogue"
 			label alive
 			`	"After thousands of years? I'm not holding my breath," he responds.`
 			label landing
-			`	You land your ship next to the Emerald Sword and the crew gets to work transporting heavy equipment from your ship to the Emerald Sword to finish getting it functional and install the jump drive.`
+			`	You land your ship next to the Emerald Sword and the crew gets to work transporting heavy equipment from your ship to the Emerald Sword to finish getting it functional and install the Jump Drive.`
 			`	Foster and Eyama get into their environmental suits. "Want to join us in investigating the ruins, <first>?" Foster asks. "Rakei and Desyo will be staying here to finish work on the ship."`
 			choice
 				`	"Sure, I'll come along."`
@@ -1593,7 +1593,7 @@ mission "Sheragi Archaeology: Epilogue"
 			`	While in one of the rooms, Eyama spots a young Sheragi skeleton laying on the ground that looks like they were reaching out for something when they died. Eyama kneels down next to the skeleton and reaches out to touch its hand. "Don't," Foster says from across the room, stopping Eyama from moving. "We need to leave this place undisturbed. We've done enough already by taking the ship." Eyama gets up without speaking, but gives a look of understanding to Foster.`
 			`	After spending enough time among the ruins, you return to the ships with Foster and Eyama.`
 			label end
-			`	The final repairs on the Emerald Sword take up nearly an entire day, with the crew working in shifts to get the job done. Once the ship is patched up and all the systems are functional, the jump drive is installed. While the Emerald Sword was being worked on, Rakei was able to get a group to retrieve the final fighter and return it to the ship. All that is left to do now is to get the ship in orbit and return to <planet>.`
+			`	The final repairs on the Emerald Sword take up nearly an entire day, with the crew working in shifts to get the job done. Once the ship is patched up and all the systems are functional, the Jump Drive is installed. While the Emerald Sword was being worked on, Rakei was able to get a group to retrieve the final fighter and return it to the ship. All that is left to do now is to get the ship in orbit and return to <planet>.`
 				accept
 	on visit
 		dialog `You have reached <planet>, but not all of the archaeology equipment made it back! Better depart and wait for your escorts to arrive in this star system.`

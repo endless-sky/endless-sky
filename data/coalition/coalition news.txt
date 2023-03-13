@@ -240,7 +240,7 @@ news "coalition merchant"
 			`"Enough money for my first ship, I didn't have, so a loan from House Plumtab, I took. Read the interest rates a bit better, I should have..."`
 			`"On a Hulk, my first job in a spaceship was. Thought falling apart it was, I had, when to a Spindle it switched."`
 			`"Liked my ship so much, a Kimek passenger did, that decided to live in it, they have. For 'transport' they still pay, so mind it I do not."`
-			`"Jealous of you, I am. If a jump drive I had, bypass the gap between Saryd and Arach space, I could, and quickly earn a fortune, I would."`
+			`"Jealous of you, I am. If a Jump Drive I had, bypass the gap between Saryd and Arach space, I could, and quickly earn a fortune, I would."`
 			`"Agreed to transport some Saryd graduates for a 'field trip,' I once did. Almost arrested, I was."`
 			"The spacefarer is assisting the rest of their crew in unloading cargo from a ship."
 			`"Used to fly with me, my brother did, but now become a Heliarch, he has."`

@@ -1158,7 +1158,7 @@ mission "FW Pug 2A Visit"
 mission "FW Pug 2B"
 	landing
 	name "Install a Jump Drive"
-	description "Travel to the Syndicate world of Hephaestus, where the Syndicate Systems personnel have been instructed to install a jump drive on your ship, so that you can investigate the systems that the Pug has cut off."
+	description "Travel to the Syndicate world of Hephaestus, where the Syndicate Systems personnel have been instructed to install a Jump Drive on your ship, so that you can investigate the systems that the Pug has cut off."
 	autosave
 	source "Foundry"
 	destination "Hephaestus"
@@ -1170,7 +1170,7 @@ mission "FW Pug 2B"
 	
 	on offer
 		log "The Syndicate CEO claims that the disappearing hyperspace links are not their doing, and that in fact they are under attack by aliens. In fact, they say that the Syndicate has had contact with two different alien species in this region - raiders and scavengers known as the Korath coming from the galactic core, and an enigmatic and irrational species named the Pug who occupy the system adjacent to the ones that recently got cut off from human space."
-		log "By plundering the Korath raiders, the Syndicate has acquired some jump drives, which allow a ship to travel between systems that are not connected by hyperspace links. They are willing to part with one of these jump drives in order to prove the truth of their story to the rest of humanity."
+		log "By plundering the Korath raiders, the Syndicate has acquired some Jump Drives, which allow a ship to travel between systems that are not connected by hyperspace links. They are willing to part with one of these Jump Drives in order to prove the truth of their story to the rest of humanity."
 		conversation
 			`As you are coming in for a landing you announce yourselves to the spaceport authorities as diplomatic representatives of the Free Worlds and the Republic. The moment you have landed, a Syndicate employee meets you and escorts you to their headquarters, to the incredibly fancy corner office of Alastair Korban, the CEO of the entire Syndicate Corporation. "I'm very glad you've come," says Alastair. "It seems unlikely that we can defeat this attack unless we work together."`
 			`	"Wait," says Alondo, "you're saying this whole thing is not the Syndicate's doing?"`
@@ -1197,7 +1197,7 @@ mission "FW Pug 2B"
 			label who
 			`	"They are called the Pug," says Alastair, "an irrational alien species that previously inhabited a single star system in between Syndicate and Republic space. They have since expanded their territory to include all the human systems neighboring their own star, and have essentially made those human worlds into their slaves."`
 			`	"How do you know this?" asks Alondo.`
-			`	Alastair pauses for a minute as if trying to figure out the best way to explain himself, then says, "One of our ships traveled to the occupied systems, using a jump drive that we... acquired... from another alien species." He seems to realize how unlikely that sounds, and backpedals. "For years we've been dealing with occasional raids from a species called the Korath. As best we can tell, they're nomadic scavengers and pirates who currently inhabit the galactic core. Over the years we have disabled several of their ships and stolen their jump drives."`
+			`	Alastair pauses for a minute as if trying to figure out the best way to explain himself, then says, "One of our ships traveled to the occupied systems, using a Jump Drive that we... acquired... from another alien species." He seems to realize how unlikely that sounds, and backpedals. "For years we've been dealing with occasional raids from a species called the Korath. As best we can tell, they're nomadic scavengers and pirates who currently inhabit the galactic core. Over the years we have disabled several of their ships and stolen their Jump Drives."`
 			choice
 				`	"Did it not occur to you that attacking the Korath might anger other alien species?"`
 					goto anger
@@ -1214,17 +1214,17 @@ mission "FW Pug 2B"
 			
 			label help
 			`	"Assuming you're telling the truth," says Alondo, "what sort of help do you need from us?"`
-			`	Alastair says, "We have only seven jump drives, so whatever fleet attacks the Pug can only contain seven ships. Unless the Quarg or someone else will give you more drives, I suppose. So those ships must be stronger than any ship we have here in Syndicate space, because the Pug are very strong. They obliterated our fleet that had been occupying the Sol system, even though that fleet was armed with the majority of our nuclear arsenal."`
+			`	Alastair says, "We have only seven Jump Drives, so whatever fleet attacks the Pug can only contain seven ships. Unless the Quarg or someone else will give you more drives, I suppose. So those ships must be stronger than any ship we have here in Syndicate space, because the Pug are very strong. They obliterated our fleet that had been occupying the Sol system, even though that fleet was armed with the majority of our nuclear arsenal."`
 			choice
-				`	"You're saying you'll provide the jump drives, and we'll provide the ships? Sounds fair enough."`
+				`	"You're saying you'll provide the Jump Drives, and we'll provide the ships? Sounds fair enough."`
 					goto deal
 				`	"Wait, you're saying that your fleet that was in orbit around Earth... was armed with nuclear weapons? Are you genocidal?"`
 			
-			`	Alastair seems like the kind of person who seldom admits he is wrong, but your question definitely flusters him. "Okay, okay, I admit, we've been making one bad decision after another ever since... well, since that first bad decision. It just got out of control. We thought the Navy was going to raid us and put us all behind bars. We thought we needed a deterrent. It was stupid. I admit it, okay? Now please, let's just move on. We need your capital ships, and you need our jump drives."`
+			`	Alastair seems like the kind of person who seldom admits he is wrong, but your question definitely flusters him. "Okay, okay, I admit, we've been making one bad decision after another ever since... well, since that first bad decision. It just got out of control. We thought the Navy was going to raid us and put us all behind bars. We thought we needed a deterrent. It was stupid. I admit it, okay? Now please, let's just move on. We need your capital ships, and you need our Jump Drives."`
 			
 			label deal
-			`	"Hold on," says Alondo, "I have one condition to add. You will give us one of your jump drives immediately. We will install it in our ship and verify that you are telling the truth about the Pug. If you are, we will work together until this threat is dealt with... and once it is dealt with, we will return our attention to bringing every member of the Syndicate who had a hand in those terrorist attacks to justice. That is our best and final offer." You nod in agreement.`
-			`	It's clear that Alastair is none too happy about that deal, but he accepts it. "The jump drives are all being kept on Hephaestus," he says. "Our Systems division was trying to discover the secret behind them, with little success. If you travel there, I'll tell them to install one of the drives in your ship."`
+			`	"Hold on," says Alondo, "I have one condition to add. You will give us one of your Jump Drives immediately. We will install it in our ship and verify that you are telling the truth about the Pug. If you are, we will work together until this threat is dealt with... and once it is dealt with, we will return our attention to bringing every member of the Syndicate who had a hand in those terrorist attacks to justice. That is our best and final offer." You nod in agreement.`
+			`	It's clear that Alastair is none too happy about that deal, but he accepts it. "The Jump Drives are all being kept on Hephaestus," he says. "Our Systems division was trying to discover the secret behind them, with little success. If you travel there, I'll tell them to install one of the drives in your ship."`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
@@ -1240,7 +1240,7 @@ mission "FW Pug 2C: Hyperdrive"
 	clearance
 	to offer
 		has "FW Pug 2B: done"
-		not "fw given jump drive"
+		not "fw given Jump Drive"
 	passengers 1
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
@@ -1248,12 +1248,12 @@ mission "FW Pug 2C: Hyperdrive"
 	on offer
 		outfit "Hyperdrive" -1
 		conversation
-			`You are directed to land in a hangar some distance away from the spaceport, in a cluster of buildings owned by Syndicated Systems. A team of engineers meets you and quickly and efficiently removes your hyperdrive and replaces it with a strange, alien-looking device that you assume must be a jump drive. "Now, be careful with your fuel gauge," one of them tells you. "This thing guzzles twice as much fuel per jump as an ordinary hyperdrive, and you don't want to become stranded while outside human space."`
+			`You are directed to land in a hangar some distance away from the spaceport, in a cluster of buildings owned by Syndicated Systems. A team of engineers meets you and quickly and efficiently removes your hyperdrive and replaces it with a strange, alien-looking device that you assume must be a Jump Drive. "Now, be careful with your fuel gauge," one of them tells you. "This thing guzzles twice as much fuel per jump as an ordinary hyperdrive, and you don't want to become stranded while outside human space."`
 				accept
 	
 	on accept
 		outfit "Jump Drive" 1
-		set "fw given jump drive"
+		set "fw given Jump Drive"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
@@ -1270,7 +1270,7 @@ mission "FW Pug 2C: Scram Drive"
 	clearance
 	to offer
 		has "FW Pug 2B: done"
-		not "fw given jump drive"
+		not "fw given Jump Drive"
 	passengers 1
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
@@ -1278,12 +1278,12 @@ mission "FW Pug 2C: Scram Drive"
 	on offer
 		outfit "Scram Drive" -1
 		conversation
-			`You are directed to land in a hangar some distance away from the spaceport, in a cluster of buildings owned by Syndicated Systems. A team of engineers meets you and quickly and efficiently removes your scram drive and replaces it with a strange, alien-looking device that you assume must be a jump drive. "Now, be careful with your fuel gauge," one of them tells you. "This thing guzzles twice as much fuel per jump as an ordinary hyperdrive, and you don't want to become stranded while outside human space."`
+			`You are directed to land in a hangar some distance away from the spaceport, in a cluster of buildings owned by Syndicated Systems. A team of engineers meets you and quickly and efficiently removes your scram drive and replaces it with a strange, alien-looking device that you assume must be a Jump Drive. "Now, be careful with your fuel gauge," one of them tells you. "This thing guzzles twice as much fuel per jump as an ordinary hyperdrive, and you don't want to become stranded while outside human space."`
 				accept
 	
 	on accept
 		outfit "Jump Drive" 1
-		set "fw given jump drive"
+		set "fw given Jump Drive"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
@@ -1300,7 +1300,7 @@ mission "FW Pug 2C: A Jump Drive"
 	clearance
 	to offer
 		has "FW Pug 2B: done"
-		not "fw given jump drive"
+		not "fw given Jump Drive"
 	passengers 1
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
@@ -1308,13 +1308,13 @@ mission "FW Pug 2C: A Jump Drive"
 	on offer
 		outfit "Jump Drive" -1
 		conversation
-			`You are directed to land in a hangar some distance away from the spaceport, in a cluster of buildings owned by Syndicated Systems. A team of engineers meets you and asks if they can look over your ship; a few minutes later, one of them says in surprise, "You've already got a jump drive! How did you manage that?" Since you don't need their equipment, they urge you to head directly for Pug space and continue your mission.`
+			`You are directed to land in a hangar some distance away from the spaceport, in a cluster of buildings owned by Syndicated Systems. A team of engineers meets you and asks if they can look over your ship; a few minutes later, one of them says in surprise, "You've already got a Jump Drive! How did you manage that?" Since you don't need their equipment, they urge you to head directly for Pug space and continue your mission.`
 				accept
 	
 	on accept
 		outfit "Jump Drive" 1
-		set "fw given jump drive"
-		set "already had jump drive"
+		set "fw given Jump Drive"
+		set "already had Jump Drive"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
@@ -1325,12 +1325,12 @@ mission "FW Pug 2C: A Jump Drive"
 mission "FW Pug Jump Drive Check"
 	landing
 	to offer
-		has "fw given jump drive"
+		has "fw given Jump Drive"
 		not "outfit (all): Jump Drive"
 		not "event: reconnected delta capricorni"
 	on offer
 		conversation
-			`Somehow, you've misplaced or lost the jump drive needed to continue the Free Worlds story! If you are unable to find your jump drive, you should revert to the autosave or another earlier snapshot of the game.`
+			`Somehow, you've misplaced or lost the Jump Drive needed to continue the Free Worlds story! If you are unable to find your Jump Drive, you should revert to the autosave or another earlier snapshot of the game.`
 				decline
 
 
@@ -1341,7 +1341,7 @@ mission "FW Pug 2C: Side"
 		government Pug
 		near Deneb 1 100
 	to offer
-		has "fw given jump drive"
+		has "fw given Jump Drive"
 		not "FW Pug 3: offered"
 	
 	on offer
@@ -1413,7 +1413,7 @@ mission "FW Pug 2C: Pugglequat"
 	landing
 	source Pugglequat
 	to offer
-		has "fw given jump drive"
+		has "fw given Jump Drive"
 		not "FW Pug 3: offered"
 	
 	on offer
@@ -1432,7 +1432,7 @@ mission "FW Pug 3"
 	destination Earth
 	clearance
 	to offer
-		has "fw given jump drive"
+		has "fw given Jump Drive"
 		has "FW Pug 2C: done"
 	passengers 1
 	on fail
@@ -1560,9 +1560,9 @@ mission "FW Pug 3: Quarg"
 			choice
 				`	"Thank you for your time."`
 					decline
-				`	"Is there any chance you could give us some jump drives, so we can bring a bigger fleet against the Pug?"`
+				`	"Is there any chance you could give us some Jump Drives, so we can bring a bigger fleet against the Pug?"`
 			
-			`	"No, I apologize," it says. "We see that you have somehow gained access to a jump drive, and we will not take it away from you, but we also cannot give your species more of them."`
+			`	"No, I apologize," it says. "We see that you have somehow gained access to a Jump Drive, and we will not take it away from you, but we also cannot give your species more of them."`
 				decline
 
 
@@ -1582,8 +1582,8 @@ mission "FW Pug 3A"
 	
 	on offer
 		conversation
-			`Your ship caused quite a stir when it entered the Sol system via jump drive. Fortunately Parliament allowed you to land in one of their private hangars, but even so a few press drones managed to follow your ship into the hangar and have cameras pointed at you from the moment you and Alondo disembark.`
-			`	You report to Parliament that the hyperspace links are being cut not by the Syndicate, but by an alien species, and that the Syndicate has offered to supply jump drives for an attack fleet if the Republic and the Free Worlds will supply the ships. You also report that the aliens' intention is to spread out to occupy more of human space and to demand a fraction of the resource production of all human planets, supposedly in the name of bringing "peace."`
+			`Your ship caused quite a stir when it entered the Sol system via Jump Drive. Fortunately Parliament allowed you to land in one of their private hangars, but even so a few press drones managed to follow your ship into the hangar and have cameras pointed at you from the moment you and Alondo disembark.`
+			`	You report to Parliament that the hyperspace links are being cut not by the Syndicate, but by an alien species, and that the Syndicate has offered to supply Jump Drives for an attack fleet if the Republic and the Free Worlds will supply the ships. You also report that the aliens' intention is to spread out to occupy more of human space and to demand a fraction of the resource production of all human planets, supposedly in the name of bringing "peace."`
 			`	One of the senators asks, "Do you think we have any chance of defeating the aliens?"`
 			choice
 				`	"It's possible. They all live in a single star system, so we outnumber them."`
@@ -1655,19 +1655,19 @@ conversation "fw pug"
 mission "FW Pug 3C"
 	landing
 	name "Escort to Hephaestus"
-	description "Escort the combined Free Worlds and Navy fleet to <destination>, where the Syndicate will fit all the ships with jump drives."
+	description "Escort the combined Free Worlds and Navy fleet to <destination>, where the Syndicate will fit all the ships with Jump Drives."
 	autosave
 	source Geminus
 	destination Hephaestus
 	to offer
 		has "FW Pug 3B: done"
-		not "already had jump drive"
+		not "already had Jump Drive"
 	passengers 1
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		log "The Free Worlds and Republic Navy are sending a joint fleet into Syndicate space, where they will be fitted with jump drives to make an assault on Pug territory. The Syndicate only has six jump drives available, so this fleet will have to survive without reinforcements until a way is found to reopen the connection to the rest of human space."
+		log "The Free Worlds and Republic Navy are sending a joint fleet into Syndicate space, where they will be fitted with Jump Drives to make an assault on Pug territory. The Syndicate only has six Jump Drives available, so this fleet will have to survive without reinforcements until a way is found to reopen the connection to the rest of human space."
 		conversation "fw pug"
 	
 	npc accompany save
@@ -1691,19 +1691,19 @@ mission "FW Pug 3C"
 mission "FW Pug 3C (Extra)"
 	landing
 	name "Escort to Hephaestus"
-	description "Escort the combined Free Worlds and Navy fleet to <destination>, where the Syndicate will fit all the ships with jump drives."
+	description "Escort the combined Free Worlds and Navy fleet to <destination>, where the Syndicate will fit all the ships with Jump Drives."
 	autosave
 	source Geminus
 	destination Hephaestus
 	to offer
 		has "FW Pug 3B: done"
-		has "already had jump drive"
+		has "already had Jump Drive"
 	passengers 1
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		log "The Free Worlds and Republic Navy are sending a joint fleet into Syndicate space, where they will be fitted with jump drives to make an assault on Pug territory. The Syndicate only has seven jump drives available, so this fleet will have to survive without reinforcements until a way is found to reopen the connection to the rest of human space."
+		log "The Free Worlds and Republic Navy are sending a joint fleet into Syndicate space, where they will be fitted with Jump Drives to make an assault on Pug territory. The Syndicate only has seven Jump Drives available, so this fleet will have to survive without reinforcements until a way is found to reopen the connection to the rest of human space."
 		conversation "fw pug"
 	
 	npc accompany save
@@ -1783,7 +1783,7 @@ mission "FW Pug 4: Escorts (Extra)"
 	source Hephaestus
 	to offer
 		has "FW Pug 3C: done"
-		has "already had jump drive"
+		has "already had Jump Drive"
 	to fail
 		has "FW Pug 6: done"
 	npc kill
@@ -1814,13 +1814,13 @@ mission "FW Pug 4"
 	on offer
 		event "at war with the pug"
 		conversation
-			`The Syndicate directs you to land your ships in the private hangars for Syndicated Systems. Once you have landed, they quickly work to install jump drives in the Navy and Free Worlds ships. As they work, you hear one of the workers saying to another, "Golly, I'd forgotten how big those Navy ships are. Makes a Protector look puny by comparison, doesn't it?"`
+			`The Syndicate directs you to land your ships in the private hangars for Syndicated Systems. Once you have landed, they quickly work to install Jump Drives in the Navy and Free Worlds ships. As they work, you hear one of the workers saying to another, "Golly, I'd forgotten how big those Navy ships are. Makes a Protector look puny by comparison, doesn't it?"`
 			branch extra
-				has "already had jump drive"
-			`	Once the work is done, you meet with a senior Syndicate executive named Marco Bugati. "I really hope this works," he says, "because these are the only jump drives we've been able to acquire. If your fleet is destroyed, we will have lost access to the occupied territory entirely."`
+				has "already had Jump Drive"
+			`	Once the work is done, you meet with a senior Syndicate executive named Marco Bugati. "I really hope this works," he says, "because these are the only Jump Drives we've been able to acquire. If your fleet is destroyed, we will have lost access to the occupied territory entirely."`
 				goto end
 			label extra
-			`	Once the work is done, you meet with a senior Syndicate executive named Marco Bugati. "I really hope this works," he says, "because these are the only jump drives we've been able to acquire, though you seem to have picked one up yourself; I'd like to have a chat with you and find out how, if we all survive this. I can tell you, that extra ship we've got thanks to the spare jump drive may be pivotal. But if your fleet is destroyed, we will have lost access to the occupied territory entirely."`
+			`	Once the work is done, you meet with a senior Syndicate executive named Marco Bugati. "I really hope this works," he says, "because these are the only Jump Drives we've been able to acquire, though you seem to have picked one up yourself; I'd like to have a chat with you and find out how, if we all survive this. I can tell you, that extra ship we've got thanks to the spare Jump Drive may be pivotal. But if your fleet is destroyed, we will have lost access to the occupied territory entirely."`
 			label end
 			`	You gather your fleet and prepare for an assault on Delta Capricorni, which is the occupied star system closest to Syndicate space.`
 			``
@@ -2018,7 +2018,7 @@ mission "FW Pug 4C"
 		event "reconnected delta capricorni"
 		conversation
 			`Freya sent detailed instructions with the reflector for where it should be set up and how it should be adjusted to interface with the transmitter back in Pug space. You hand it over to a team of Syndicate engineers, who seem quite capable and confident that they can make it work; you suspect that these are the same engineers who have been playing with equipment stolen from the Korath, so they are no strangers to alien technology.`
-			`	You also meet with Marco Bugati, the Syndicate executive who oversaw the installation of your jump drives, and tell him that you may soon be able to reopen one of the connections to Republic space, as well. You ask if he can send a courier ship to Earth to inform them of the new situation, to have them begin massing a fleet there. He agrees. He also tells you that a few of the Syndicate ships that met you in orbit have been designated as additions to your attack fleet, so they will be traveling back to Maker with you if the reflector succeeds in reopening the link.`
+			`	You also meet with Marco Bugati, the Syndicate executive who oversaw the installation of your Jump Drives, and tell him that you may soon be able to reopen one of the connections to Republic space, as well. You ask if he can send a courier ship to Earth to inform them of the new situation, to have them begin massing a fleet there. He agrees. He also tells you that a few of the Syndicate ships that met you in orbit have been designated as additions to your attack fleet, so they will be traveling back to Maker with you if the reflector succeeds in reopening the link.`
 			`	A few hours later, the engineers tell you that they think the link is beginning to reopen. Bugati says, "You should take off and return as soon as possible, in case Maker has been attacked in your absence."`
 				accept
 
@@ -2044,7 +2044,7 @@ mission "FW Pug 5"
 		event "battle for altair"
 		conversation
 			branch extra
-				has "already had jump drive"
+				has "already had Jump Drive"
 			`Freya is overjoyed that she has found a way to reverse the Pug technology and restore a hyperspace connection to human space. "Now we actually have a chance," she says. "Before, with just you and six other ships, victory seemed unlikely."`
 				goto choice
 			label extra
@@ -2406,7 +2406,7 @@ mission "FW Syndicate Extremists 1A"
 			`	"These consultants," says Freya, "were they human?"`
 			`	Alastair looks very uncomfortable. "Yes... and no," he says.`
 			`	Danforth swears. "Alphas. You were dealing with the Alphas. What did you give them in return?"`
-			`	"The Korath raids had just begun," says Alastair, "so we suddenly had access to alien technology. They were interested in all of it, but particularly the jump drives. So they could spread beyond human space."`
+			`	"The Korath raids had just begun," says Alastair, "so we suddenly had access to alien technology. They were interested in all of it, but particularly the Jump Drives. So they could spread beyond human space."`
 			choice
 				`	"Was the information from the Oracle accurate?"`
 					goto information
@@ -2466,7 +2466,7 @@ mission "FW Syndicate Extremists 1B"
 		event "battle of algenib"
 		outfit "Cloaking Device" 1
 		conversation
-			`You land in the same private hangar that you visited previously to have the jump drive installed, and you think these engineers are the same crew that met you back then. "This thing is almost as bizarre as the jump drive itself," one of them says. "We have no clue how it works, and we weren't done studying it when Korban ordered us to give it to you, so please don't get yourself blown up. Okay?"`
+			`You land in the same private hangar that you visited previously to have the Jump Drive installed, and you think these engineers are the same crew that met you back then. "This thing is almost as bizarre as the Jump Drive itself," one of them says. "We have no clue how it works, and we weren't done studying it when Korban ordered us to give it to you, so please don't get yourself blown up. Okay?"`
 			`	Meanwhile, Danforth is on his way back to Deneb to rally the Oathkeepers. You should head directly for the <system> system, so that you arrive there far enough in advance of the Oathkeeper fleet.`
 				accept
 	on visit
@@ -2561,7 +2561,7 @@ mission "FW Syndicate Extremists 1C"
 					goto end
 				`	"You mean this is the end? No more battles to fight?"`
 			
-			`	"What, does peace and reconciliation sound boring to you?" he says. "Don't worry about that. With that jump drive installed in your ship, the whole galaxy is open to you. Who knows what you might discover beyond the boundaries of human space?"`
+			`	"What, does peace and reconciliation sound boring to you?" he says. "Don't worry about that. With that Jump Drive installed in your ship, the whole galaxy is open to you. Who knows what you might discover beyond the boundaries of human space?"`
 			label end
 			`	You return to your ship, and prepare for the journey back to Earth, hopeful that at last Parliament will be willing to negotiate a permanent peace with the Free Worlds.`
 				accept
@@ -2569,7 +2569,7 @@ mission "FW Syndicate Extremists 1C"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Freya hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
-		log "Received an official commendation from Parliament and a promise that the war with the Free Worlds is officially over. Humanity is at peace once more, but new challenges may await in the star systems out beyond human space that are accessible only by jump drive."
+		log "Received an official commendation from Parliament and a promise that the war with the Free Worlds is officially over. Humanity is at peace once more, but new challenges may await in the star systems out beyond human space that are accessible only by Jump Drive."
 		log "Factions" "Free Worlds" `Tensions between the Free Worlds and the Republic mounted when additional systems decided to leave the Republic and join the Free Worlds, culminating in a series of military confrontations that ended when the Free Worlds were able to present credible evidence denying any involvement in the terrorist attacks. After the Free Worlds joined the effort to drive out the Pug invaders, the Republic officially recognized the Free Worlds and diplomatic relations were established.`
 		log "Factions" "Syndicate" `It was exposed that the bombings of Gemini and Martini that helped cause the war between the Republic and Free Worlds were the doing of the Syndicate, designed by top executives with the help of a group of Alphas. Despite the claims that all the extremists responsible have been purged and handed over to the Navy, the reputation of the Syndicate will be damaged for years to come.`
 		payment 5000000
@@ -2616,7 +2616,7 @@ mission "FW Syndicate Extremists 1C"
 			choice
 				`	"Build a merchant fleet and live a safe, quiet life."`
 				`	"See if folks in the fringe worlds need any help against the pirates."`
-				`	"Use my jump drive to explore beyond human space."`
+				`	"Use my Jump Drive to explore beyond human space."`
 			`	"Well, we all wish you the best of luck," says Freya. "We would never have gotten this far without you. Be sure to stay in touch." You hug each of them goodbye, and return to your ship. What you do next is up to you...`
 
 

@@ -813,7 +813,7 @@ mission "Wanderers: Kor Efret 4"
 		has "Wanderers: Kor Efret 3: done"
 	on offer
 		log "Helped to defend one of the friendly Korath worlds from an attack by Kor Mereti drones. There are Korath scientists on that world who have been working for decades to find a way to hack into the Kor Mereti network, but they do not think it is possible."
-		log "Factions" "Archons" `When the Korath civil war reached a point where they had nearly driven themselves extinct, the Drak Archons stepped in and offered the surviving Korath an ultimatum: they must either give up their advanced weaponry and live peaceably under the protection of the Quarg, or be banished to some lifeless star systems near the galactic core. Those who chose banishment apparently took with them the secret of how to build jump drives, which has enabled them to raid other species and steal from them.`
+		log "Factions" "Archons" `When the Korath civil war reached a point where they had nearly driven themselves extinct, the Drak Archons stepped in and offered the surviving Korath an ultimatum: they must either give up their advanced weaponry and live peaceably under the protection of the Quarg, or be banished to some lifeless star systems near the galactic core. Those who chose banishment apparently took with them the secret of how to build Jump Drives, which has enabled them to raid other species and steal from them.`
 		conversation
 			`When you land back on the planet, Rek and several of the Korath meet you at your ship. "They would like to thank you for your assistance in defending their home," says Rek, "and they apologize for being so dismissive of the Wanderer plans to defeat the drones. They still think that hacking or corrupting the Mereti network is impossible, though."`
 			choice
@@ -822,17 +822,17 @@ mission "Wanderers: Kor Efret 4"
 
 			`	Rek asks a question, and translates the answer. "There was a civil war. It lasted hundreds of years. The Kor Mereti and the Kor Sestor were the two rival empires. The Kor Efret were those who sought to remain neutral and not join in the fighting."`
 			`	She waits as the Korath continue the story, then says, "The Mereti and the Sestor each built drone fleets programmed to attack the other. They also made many other weapons, very dangerous ones. Eventually, about a century ago, it became clear that the war would consume and destroy both empires, if it continued. The Archons stepped in and gave a choice to each member of the Kor Mereti and the Kor Sestor."`
-			`	The Korath continue the story. Rek says, "The choice was: to give up jump drives, give up their advanced technologies of war, and join the Kor Efret, living under Quarg supervision. Any who refused were exiled to the lifeless star systems near the core. Sestor and Mereti, forced to live together in exile and to depend on each other, united by their anger toward the Archons who exiled them."`
+			`	The Korath continue the story. Rek says, "The choice was: to give up Jump Drives, give up their advanced technologies of war, and join the Kor Efret, living under Quarg supervision. Any who refused were exiled to the lifeless star systems near the core. Sestor and Mereti, forced to live together in exile and to depend on each other, united by their anger toward the Archons who exiled them."`
 			choice
 				`	"What sort of technologies did they develop?"`
-				`	"What do they mean, 'give up jump drives'? Did they figure out how to manufacture them?"`
+				`	"What do they mean, 'give up Jump Drives'? Did they figure out how to manufacture them?"`
 					goto jump
 
 			`	Rek asks, and translates the response. "They say, they will not relive the shame of their parents by describing their deeds. But the scars that they left on their former planets, and even on entire star systems, speak for themselves. As do the drone fleets, who continue to drain their homes of resources to prosecute a war that their creators have long since abandoned."`
 				goto end
 
 			label jump
-			`	Rek asks, and translates the response. "Yes, one thing that the exiles were unwilling to give up was the knowledge of how to create jump drives so they could raid other nearby species. Although..." She pauses to listen as one of the Korath says something else. "He says, the exiles would be far better off without them. The manufacturing process is precarious, and one wrong step can cause an explosion that destroys the ship or station where the drives are being constructed."`
+			`	Rek asks, and translates the response. "Yes, one thing that the exiles were unwilling to give up was the knowledge of how to create Jump Drives so they could raid other nearby species. Although..." She pauses to listen as one of the Korath says something else. "He says, the exiles would be far better off without them. The manufacturing process is precarious, and one wrong step can cause an explosion that destroys the ship or station where the drives are being constructed."`
 
 			label end
 			`	Rek tells you that she wants to return to <planet> to continue her work with the Korath community there. You agree to take her there before returning to report to Tele'ek.`
@@ -1975,7 +1975,7 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 	to offer
 		has "wanderers: found the sestor fleet"
 	on offer
-		log "The Kor Sestor fleet has somehow made its way into northern human space, perhaps using a small number of jump drives to ferry ships back and forth the same way that the Unfettered invaders did. Admiral Danforth says that the system where the Korath ships have gathered is home to a secret Alpha base, so he is concerned that the Kor Sestor drones are under Alpha control."
+		log "The Kor Sestor fleet has somehow made its way into northern human space, perhaps using a small number of Jump Drives to ferry ships back and forth the same way that the Unfettered invaders did. Admiral Danforth says that the system where the Korath ships have gathered is home to a secret Alpha base, so he is concerned that the Kor Sestor drones are under Alpha control."
 		conversation
 			`As you are coming in for a landing, you contact Admiral Danforth and ask to speak with him as soon as possible. He meets you at the landing pad and invites you back to his office, where you explain about the large Kor Sestor fleet that is now gathering to the north of here. He tells you, "For the past several months, Intelligence has been tracking a hidden Alpha base on Zenith and making plans to trap and exterminate them. And now you tell me that Zenith is being guarded by Korath drones. It seems unlikely to be a coincidence."`
 			choice

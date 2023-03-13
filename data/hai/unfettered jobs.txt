@@ -99,7 +99,7 @@ mission "Unfettered Jump Drive 4"
 	job
 	repeat
 	name "Sell Jump Drive"
-	description "Exchange a jump drive for money or weapons, if an outfitter is available."
+	description "Exchange a Jump Drive for money or weapons, if an outfitter is available."
 	source
 		attributes "unfettered"
 	to offer
@@ -116,18 +116,18 @@ mission "Unfettered Jump Drive 4"
 			label money
 			action
 				payment 1000000
-			`As usual, the Unfettered are more than willing to pay you a million credits for your jump drive, but you do not gain any additional information by talking with them.`
+			`As usual, the Unfettered are more than willing to pay you a million credits for your Jump Drive, but you do not gain any additional information by talking with them.`
 				goto trade
 
 			label "want outfits"
-			`The Unfettered's usual deal of trading a jump drive for weapons still stands.`
+			`The Unfettered's usual deal of trading a Jump Drive for weapons still stands.`
 			choice
 				`	(Take two Tripulse Shredders.)`
 				`	(Take money instead.)`
 					goto money
 			action
 				outfit "Tripulse Shredder" 2
-			`	The two Shredders are loaded onto your ship, in exchange for your jump drive.`
+			`	The two Shredders are loaded onto your ship, in exchange for your Jump Drive.`
 
 			label trade
 			action
