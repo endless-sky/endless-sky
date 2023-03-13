@@ -2202,7 +2202,7 @@ mission "Wanderers Hai Assistance 2"
 
 			# Hai Reveal 6 is finished, so this is a full council meeting with Teeneep present.
 			action
-				set "visited Elders for Wanderer Assistance"	
+				set "visited Elders for Wanderer Assistance"
 				log "Traveled to the Hai homeworld with a Hai ambassador to see if she can convince the Hai to take action to restrain the Unfettered from attacking the Wanderers. The most that the Hai were willing to do was to mass a large war fleet near Unfettered space so that the Unfettered have to divert warships there to defend their home worlds."
 
 			`The Hai's recently elected Council of "Elders" agrees to meet with you and <Guide> and the two of you make an effort to avoid directing yourselves towards Teeneep. Your young friend's popularity as an Elder does not extend to inside these walls and, as <Guide> quietly informed you beforehand, apparently Teeneep has not explained the nature of her sympathies towards the Unfettered, even to her oldest friends. It would be detrimental to your cause to specifically seek her assent here, on <origin>, for this matter. After you describe the situation with the Wanderers, one of the other elders who seems older and authoritative says, "We had heard rumors of this. The Unfettered have recruited thousands of new warriors by telling stories of planets for us to explore and colonize, and a cowardly and foolish enemy to defeat."`
