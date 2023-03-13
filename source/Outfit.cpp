@@ -648,7 +648,13 @@ std::string Outfit::ShownName(bool knownToPlayer, bool multiple) const
 		name = (multiple) ? PluralName() : DisplayName();
 	else
 	{
-		name = "Unknown Outfit";
+		name = "Unknown ";
+
+		if(Category() == "Minerals")
+			name += Category().substr(0, Category().size() - 1);
+		else
+			name += "Outfit";
+
 		if(multiple)
 			name += "s";
 	}
