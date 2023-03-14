@@ -439,6 +439,7 @@ mission "Paradise Job: Parolees"
 	to accept
 		has "outfit: Brig"
 	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "mining" "fishing" "textiles" "factory" "farming" "oil"
 	destination
 		distance 2 18
@@ -511,7 +512,7 @@ mission "Paradise Job: Pirate Retirees (Illegal)"
 	illegal 15000 `In addition to the fine, the "retirees" and their posessions are removed from your ship.`
 	stealth
 	to offer
-		random < 5
+		random < 100
 		"passenger space" > 15
 		"cargo space" > 40
 	to accept
@@ -537,7 +538,7 @@ mission "Paradise Job: Pirate Retirees (Legal)"
 	passengers 4 10 .6
 	stealth
 	to offer
-		random < 5
+		random < 100
 		"passenger space" > 15
 		"cargo space" > 40
 	to accept
