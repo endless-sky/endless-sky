@@ -512,14 +512,13 @@ mission "Paradise Job: Pirate Retirees (Illegal)"
 	illegal 15000 `In addition to the fine, the "retirees" and their posessions are removed from your ship.`
 	stealth
 	to offer
-		random < 100
+		random < 5
 		"passenger space" > 15
 		"cargo space" > 40
 	to accept
 		has "outfit: Luxury Accommodations"
 	source
 		government "Pirate"
-		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest" "urban"
 	destination
 		distance 3 16
 		attributes "paradise"
@@ -538,14 +537,13 @@ mission "Paradise Job: Pirate Retirees (Legal)"
 	passengers 4 10 .6
 	stealth
 	to offer
-		random < 100
+		random < 5
 		"passenger space" > 15
 		"cargo space" > 40
 	to accept
 		has "outfit: Luxury Accommodations"
 	source
 		government "Pirate"
-		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest" "urban"
 	destination
 		distance 3 16
 		attributes "paradise"
