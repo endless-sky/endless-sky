@@ -514,10 +514,11 @@ ship "Berserker" "Berserker (Strike)"
 		"Javelin Mini Pod"
 		"Torpedo Pod"
 		"Javelin" 440
-		"Torpedo" 3
+		"Torpedo" 18
+		"Torpedo Storage Rack"
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
-		"D41-HY Shield Generator"
+		"D23-QP Shield Generator"
 		"Fuel Pod"
 		"Ramscoop"
 		"Chipmunk Plasma Thruster"
@@ -552,10 +553,11 @@ ship "Berserker" "Berserker (Twin Modified Blaster)"
 ship "Berserker" "Berserker (Reverse Thrust)"
 	outfits
 		"Javelin Mini Pod" 4
-		"Javelin" 160
+		"Javelin" 260
+		"Javelin Storage Crate"
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
-		"D41-HY Shield Generator"
+		"D23-QP Shield Generator"
 		"Ramscoop"
 		"Fuel Pod"
 		"Small Radar Jammer"
