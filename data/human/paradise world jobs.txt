@@ -509,7 +509,7 @@ mission "Paradise Job: Pirate Retirees (Illegal)"
 	description "This coterie of <bunks> wealthy retirees is willing to pay <payment> for stylish, no-questions-asked transport to <destination>, along with <tons> of their most treasured possessions."
 	passengers 4 10 .6
 	cargo "treasured possessions" 4 10 .2
-	illegal 15000 `In addition to the fine, the "retirees" and their posessions are removed from your ship.`
+	illegal 15000 `In addition to the fine, the "retirees" and their possessions are removed from your ship.`
 	stealth
 	to offer
 		random < 5
