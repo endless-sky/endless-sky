@@ -107,7 +107,7 @@ mission "Han Sizer Month [0]"
 		not attributes "station"
 	on complete
 		payment 10000 170
-		dialog `Your passengers thank you for taking them on a journey around the Rim, and you collect your payment of <payment>. As they depart you hear them talking about celebrating their trip with a party <on Longjump>.`
+		dialog `Your passengers thank you for taking them on a journey around the Rim, and you collect your payment of <payment>. As they depart, you hear them talking about celebrating their trip with a party <on Longjump>.`
 
 
 mission "Han Sizer Month [1]"
