@@ -132,6 +132,10 @@ void PlanetPanel::Draw()
 					info.SetCondition("has outfitter");
 					break;
 				}
+
+		if(flagship && !planet.HasOutfitter() && planet.HasSpaceport() && player.Storage(true) &&
+				(planet.StorageLimit() < 0 ? !player.Storage(true)->IsEmpty() : true))
+			info.SetCondition("has non-outfitter storage");
 	}
 
 	ui.Draw(info, this);

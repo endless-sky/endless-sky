@@ -109,6 +109,8 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 				shipSales.clear();
 			else if(key == "outfitter")
 				outfitSales.clear();
+			else if(key == "storage limit")
+				storageLimit = 0;
 			else if(key == "government")
 				government = nullptr;
 			else if(key == "required reputation")
@@ -176,6 +178,8 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 			text += value;
 			text += '\n';
 		}
+		else if(key == "storage limit")
+			storageLimit = child.Value(valueIndex);
 		else if(key == "government")
 			government = GameData::Governments().Get(value);
 		else if(key == "required reputation")
@@ -404,6 +408,19 @@ const Sale<Outfit> &Planet::Outfitter() const
 		outfitter.Add(*sale);
 
 	return outfitter;
+}
+
+
+int Planet::StorageLimit() const
+{
+	return storageLimit;
+}
+
+
+
+bool Planet::AllowsStorage() const
+{
+	return StorageLimit() >= 0 && (HasOutfitter() || HasSpaceport());
 }
 
 

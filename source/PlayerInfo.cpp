@@ -1659,7 +1659,8 @@ bool PlayerInfo::TakeOff(UI *ui)
 			it->second -= basis;
 			totalBasis += basis;
 		}
-		if(!planet->HasOutfitter())
+		if(!planet->AllowsStorage() || (planet->StorageLimit() &&
+				Storage(true)->UsedPrecise() + cargo.OutfitsSizePrecise() > planet->StorageLimit()))
 			for(const auto &outfit : cargo.Outfits())
 			{
 				// Compute the total value for each type of excess outfit.

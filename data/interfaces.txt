@@ -711,20 +711,20 @@ interface "planet"
 		align right
 		pad 10 0
 	
-	visible if "has spaceport"
+	visible if "has outfitter"
 	sprite "ui/planet dialog button"
 		center 280 150
-	button o "St_orage"
+	button o "_Outfitter"
 		center 280 150
 		dimensions 140 40
 		size 18
 		align right
 		pad 10 0
 	
-	visible if "has outfitter"
+	visible if "has non-outfitter storage"
 	sprite "ui/planet dialog button"
 		center 280 150
-	button o "_Outfitter"
+	button o "St_orage"
 		center 280 150
 		dimensions 140 40
 		size 18

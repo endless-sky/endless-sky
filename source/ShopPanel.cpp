@@ -193,17 +193,28 @@ void ShopPanel::DrawShipsSidebar()
 		Point(1, Screen::Height()),
 		*GameData::Colors().Get("shop side panel background"));
 
+	Point point(
+			Screen::Right() - SIDEBAR_WIDTH + 10,
+			Screen::Top() + 10);
+
+	font.Draw("Storage space:", point, medium);
+	string space = planet->AllowsStorage() ? planet->StorageLimit() ?
+			Format::Number(planet->StorageLimit() - player.Storage(true)->UsedPrecise())
+			+ " / " + Format::Number(planet->StorageLimit()) : "unlimited" : "none";
+	font.Draw({space, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, point, bright);
+	point.Y() += 30.;
+
 	if(isOutfitter ? planet->HasOutfitter() : true)
 	{
 		// Draw this string, centered in the side panel:
 		static const string YOURS = "Your Ships:";
-		Point yoursPoint(Screen::Right() - SIDEBAR_WIDTH, Screen::Top() + 10 - sidebarScroll);
+		Point yoursPoint(Screen::Right() - SIDEBAR_WIDTH, point.Y() - sidebarScroll);
 		font.Draw({YOURS, {SIDEBAR_WIDTH, Alignment::CENTER}}, yoursPoint, bright);
 
 		// Start below the "Your Ships" label, and draw them.
-		Point point(
+		point = Point(
 			Screen::Right() - SIDEBAR_WIDTH / 2 - 93,
-			Screen::Top() + SIDEBAR_WIDTH / 2 - sidebarScroll + 40 - 93);
+			yoursPoint.Y() + 50);
 
 		const System *here = player.GetSystem();
 		int shipsHere = 0;
@@ -276,7 +287,7 @@ void ShopPanel::DrawShipsSidebar()
 
 		if(playerShip)
 		{
-			point.Y() += SHIP_SIZE / 2;
+			point.Y() += SHIP_SIZE / 2.5;
 			point.X() = Screen::Right() - SIDEBAR_WIDTH / 2;
 			DrawShip(*playerShip, point, true);
 
@@ -289,7 +300,7 @@ void ShopPanel::DrawShipsSidebar()
 			point.X() = Screen::Right() - SIDEBAR_WIDTH + 10;
 			font.Draw("cargo space:", point, medium);
 
-			string space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
+			space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
 			font.Draw({space, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, point, bright);
 			point.Y() += 20.;
 		}
@@ -302,12 +313,10 @@ void ShopPanel::DrawShipsSidebar()
 	}
 	else
 	{
-		Point point(
-			Screen::Right() - SIDEBAR_WIDTH + 10,
-			Screen::Top() + 10);
+		point.X() = Screen::Right() - SIDEBAR_WIDTH + 10;
 		font.Draw("Cargo space:", point, medium);
 
-		string space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
+		space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
 		font.Draw({space, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, point, bright);
 	}
 }

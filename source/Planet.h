@@ -102,6 +102,11 @@ public:
 	bool HasOutfitter() const;
 	// Get the list of outfits available from the outfitter.
 	const Sale<Outfit> &Outfitter() const;
+	// Get this planet's storage space. Zero means unlimited space,
+	// negative blocks adding to the storage.
+	int StorageLimit() const;
+	// Check if the player can add outfits to storage on this planet.
+	bool AllowsStorage() const;
 
 	// Get this planet's government. If not set, returns the system's government.
 	const Government *GetGovernment() const;
@@ -168,6 +173,7 @@ private:
 	// first asked for:
 	mutable Sale<Ship> shipyard;
 	mutable Sale<Outfit> outfitter;
+	int storageLimit = 0;
 
 	const Government *government = nullptr;
 	double requiredReputation = 0.;

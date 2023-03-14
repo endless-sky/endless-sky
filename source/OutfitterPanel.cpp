@@ -625,6 +625,10 @@ bool OutfitterPanel::CanSell(bool toStorage) const
 	if(!planet || !selectedOutfit)
 		return false;
 
+	if(toStorage)
+		return planet->AllowsStorage() && (planet->StorageLimit() ?
+				player.Storage(true)->UsedPrecise() + selectedOutfit->Mass() <= planet->StorageLimit() : true);
+
 	if(player.Cargo().Get(selectedOutfit))
 		return true;
 
@@ -654,7 +658,7 @@ void OutfitterPanel::Sell(bool toStorage)
 		{
 			// Transfer to planetary storage completed.
 			// The storage->Add() function should never fail as long as
-			// planetary storage has unlimited size.
+			// planetary storage technically has unlimited size.
 		}
 		else
 		{
@@ -744,6 +748,8 @@ void OutfitterPanel::FailSell(bool toStorage) const
 		GetUI()->Push(new Dialog("You cannot " + verb + " maps. Once you buy one, it is yours permanently."));
 	else if(HasLicense(selectedOutfit->TrueName()))
 		GetUI()->Push(new Dialog("You cannot " + verb + " licenses. Once you obtain one, it is yours permanently."));
+	else if(toStorage && !CanSell(true))
+		GetUI()->Push(new Dialog("You do not have enough storage space for this outfit."));
 	else
 	{
 		bool hasOutfit = player.Cargo().Get(selectedOutfit);
