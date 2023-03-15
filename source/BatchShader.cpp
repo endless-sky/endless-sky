@@ -98,6 +98,7 @@ void BatchShader::Init()
 	shader = Shader(vertexCode, fragmentCode);
 	// Get the indices of the uniforms and attributes.
 	scaleI = shader.Uniform("scale");
+	fogI = shader.Uniform("fog");
 	frameCountI = shader.Uniform("frameCount");
 	vertI = shader.Attrib("vert");
 	texCoordI = shader.Attrib("texCoord");
