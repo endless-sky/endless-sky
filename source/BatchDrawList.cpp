@@ -82,12 +82,12 @@ bool BatchDrawList::AddVisual(const Body &visual)
 
 
 // Draw all the items in this list.
-void BatchDrawList::Draw(double fog) const
+void BatchDrawList::Draw(double zoom, double fog) const
 {
 	BatchShader::Bind();
 
 	for(const pair<const Sprite * const, vector<float>> &it : data)
-		BatchShader::Add(it.first, isHighDPI, it.second, fog);
+		BatchShader::Add(it.first, isHighDPI, it.second, zoom, fog);
 
 	BatchShader::Unbind();
 }
