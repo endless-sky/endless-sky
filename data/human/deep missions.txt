@@ -403,7 +403,7 @@ mission "Deep: Mystery Cubes 2"
 		has "Deep: Mystery Cubes 1: done"
 	
 	on offer
-		log `Traveled to a restricted Navy base on Luna. Beelzebub has been causing trouble for both Deep Security and the Navy, so Navy has begun recruiting merchants to help in the search for the warlord.`
+		log `Traveled to a restricted Navy base on Luna. Beelzebub has been causing trouble for both Deep Security and the Navy, so they have begun recruiting merchants to help in the search for the warlord.`
 		conversation
 			`A pair of men in Navy uniforms escort you to a restricted area of the Luna facility. One of them uses a keycard to open an elevator and ushers you in. The elevator opens up many floors below the spaceport, to an area of the facility that looks far newer than that on the surface.`
 			`	You are kept in what looks like a waiting room along with five others. After a bit of talking, you find out that these are the other merchant captains who helped place the cubes across different regions of the galaxy.`
@@ -519,7 +519,7 @@ mission "Deep: Mystery Cubes 3"
 				goto mirfak
 				
 			label ship
-			`	One of the Navy crewmen produces a football from their cabin, and a small game begins inside of an open landing pad. Others try to pass the time by reading or writing. Everyone comes to a standstill though once the ground begins to rumble; an earthquake. A Navy member calls out to everyone. "Don't worry, this is a small one. We get earthquakes like this a lot on Gemstone." The shaking eventually subsides, and you decide to go into your ship to rest.`
+			`	One of the Navy crewmen produces a football from their cabin, and a small game begins inside of an open landing pad. Others try to pass the time by reading or writing. Everyone comes to a standstill though once the ground begins to rumble; an earthquake. A Navy member calls out to everyone, "Don't worry, this is a small one. We get earthquakes like this a lot on Gemstone." The shaking eventually subsides, and you decide to go into your ship to rest.`
 			
 			label mirfak
 			`	Suddenly, your communication device beeps and you hear Lieutenant Paris' voice, "The blockade in Mirfak has just been attacked. I repeat, the blockade in Mirfak has just been attacked. Reports are that the blockade has sustained heavy losses as the pirate fleet included one of the stolen Cruisers."`
@@ -637,7 +637,7 @@ mission "Deep: Mystery Cubes 4"
 		log "People" "Beelzebub" `Beelzebub, as many call them, is one of the most notorious pirates in human space. They're responsible for committing countless acts of crimes against both humanity and the Republic government and are still at large somewhere in the galaxy despite a major setback.`
 		conversation
 			`As you come in for a landing, you can see that a number of buildings have taken fire from the pirate fleet above. White tents have been set up to tend to the wounded and multiple ships are being repaired. You are directed to an unscathed building in which a number of Navy officers, the admiral you met on Luna, Lieutenant Paris, and your fellow merchant captains have convened. After you enter the room and get settled down, the admiral begins to speak.`
-			`	"Here's the sitrep. Beelzebub's ship was spotted entering the system, followed by the rest of the pirate fleet. His ship seemed to disappear in the confusion, so we have no idea where he went. Either Beelzebub is currently hiding on the anarchist worlds or made a dash for the Core, in which case the chase goes on."`
+			`	"Here's the sitrep. Beelzebub's ship was spotted entering the system, followed by the rest of the pirate fleet. His ship seemed to disappear in the confusion, so we have no idea where he went. Either Beelzebub is currently hiding on the anarchist worlds or has made a dash for the Core, in which case the chase goes on."`
 			branch core
 				not "deep: passed through north"
 			
@@ -832,7 +832,7 @@ conversation "deep: questioning"
 		`	(Follow their orders.)`
 			goto orders
 		`	"Why do you need to question me?"`
-		`	(Close the hatch and flee)`
+		`	(Close the hatch and flee.)`
 			goto flee
 	
 	`	"Because we wish to question you on the nature of your work for Albert Foster. Now please, step off your ship and come with us."`
@@ -1166,7 +1166,7 @@ mission "Deep: Project Hawking: Carbuncle"
 			
 			label project
 			`	"The exact details of Project Hawking are classified. I'm not able to tell you much aside from the fact that we're doing energy and weapons research. Scientists from the Deep who are highly specialized in a certain field will be asked to work on government projects every so often.`
-			`	"In the field of energy engineering, I'm among the best that the Deep has to offer. I worked on the Dwarf Core." Garrison pauses and chuckles to himself before saying, "I also contributed toward the creation of those comically impractical LP576a battery packs that I have yet to see a single ship using.`
+			`	"In the field of energy engineering, I'm among the best that the Deep has to offer. I worked on the Dwarf Core." Garrison pauses and chuckles to himself before saying, "I also contributed toward the creation of those comically impractical LP576a Battery Packs that I have yet to see a single ship using.`
 			`	"Anyhow, because of my past work, the Deep approached me to work on this project. The pay was better than what I was getting before so I accepted it. It was a pleasant surprise to meet my partners as well. Hannah graduated in the same undergrad class as me, double majoring in quantum mechanics and ancient history, of all things."`
 			choice
 				`	"What is it that you need from Carbuncle Station that is so secret?"`
@@ -1183,7 +1183,7 @@ mission "Deep: Project Hawking: Carbuncle"
 				goto laura
 			
 			label electron
-			`	"Pierre is an older guy. He has been working on laser weaponry for the better part of three decades now. If you've ever seen an electron beam in action, you have him to thank for that. And a few others, of course, but one of his findings is really what brought the whole project together.`
+			`	"Pierre is an older guy. He has been working on laser weaponry for the better part of three decades now. If you've ever seen an Electron Beam in action, you have him to thank for that. And a few others, of course, but one of his findings is really what brought the whole project together.`
 			
 			label laura
 			`	"Laura, on the other hand--"`
@@ -1195,7 +1195,7 @@ mission "Deep: Project Hawking: Carbuncle"
 			`		Your immediate departure is required.`
 			`					Carbuncle Station Docking Authority`
 			``
-			`	You signal to your crew and passengers that takeoff is imminent, and obey the wishes of the Lovelace Lab's research station.`
+			`	You signal to your crew and passengers that takeoff is imminent, and obey the wishes of Lovelace Labs' research station.`
 				launch
 
 
@@ -1214,7 +1214,7 @@ mission "Deep: Project Hawking: Prime"
 		ship "Marauder Raven (Engines)" "Krampus"
 	on offer
 		conversation
-			`As you approach the massive <planet> spaceport building, Pierre directs you to park on a landing pad on the third story close to the warehouse section. "We're picking up various materials used in the creation of ships that we need samples of for testing," Pierre explains.`
+			`As you approach the massive <planet> spaceport building, Pierre directs you to park on a landing pad on the third story, close to the warehouse section. "We're picking up various materials used in the creation of ships, that we need samples of for testing," Pierre explains.`
 			`	The scientists speak with the spaceport authorities, who begin loading several tons of alloys into your cargo from an overhead platform. You sit with Pierre as you wait for them to finish.`
 			choice
 				`	"That's a lot of different alloys. What are they going to be used for?"`
@@ -1816,8 +1816,8 @@ mission "Deep: Remnant: Inhibitor Cannon"
 		payment 276500
 		conversation
 			`Again, the Remnant technology is removed from your ship and transported to the research lab. You wander into the waiting area and are paid <payment>. After several hours, the scientists come to you with their initial findings.`
-			`	"This Millennium Cell is little more than a radiothermal generator. Not exactly the best kind of generator if you're looking for lots of power - our fusion reactors are far better at that - but for a radiothermal generator, it produces remarkably little heat. We'll have to take it apart to find out how they are manipulating the decay heat so effectively, but preparing for that will take some time.`
-			`	"I suppose by now you've seen the Remnant ships in combat more than a few times. The outfit scans showed one of their primary weapons is a modified particle cannon, but we'd need to see the actual weapon in order to understand how the modification works. Would you retrieve an Inhibitor Cannon for us?"`
+			`	"This Millennium Cell is little more than a radiothermal generator. Not exactly the best kind of generator if you're looking for lots of power - our Fusion Reactors are far better at that - but for a radiothermal generator, it produces remarkably little heat. We'll have to take it apart to find out how they are manipulating the decay heat so effectively, but preparing for that will take some time.`
+			`	"I suppose by now you've seen the Remnant ships in combat more than a few times. The outfit scans showed one of their primary weapons is a modified Particle Cannon, but we'd need to see the actual weapon in order to understand how the modification works. Would you retrieve an Inhibitor Cannon for us?"`
 			choice
 				`	"I'd be glad to."`
 					accept
@@ -2215,7 +2215,7 @@ mission "Deep: Scientist Rescue 1: Reinforcements"
 	
 	on offer
 		conversation
-			`While refueling at the Farpoint naval base, you are approached by two Navy officers who recognize you as Captain <last>. They tell you that Lieutenant Paris contacted them a few days ago, indicating that the rescue fleet was en route and would be reaching the Alnitak system shortly. They inform you that they have requisitioned two Cruisers to assist in the Star Queen's retrieval, and depart for their ships.`
+			`While refueling at the Farpoint Navy base, you are approached by two Navy officers who recognize you as Captain <last>. They tell you that Lieutenant Paris contacted them a few days ago, indicating that the rescue fleet was en route and would be reaching the Alnitak system shortly. They inform you that they have requisitioned two Cruisers to assist in the Star Queen's retrieval, and depart for their ships.`
 				accept
 	npc kill
 		government "Republic"
