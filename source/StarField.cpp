@@ -169,6 +169,8 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 			glUniform1f(brightnessI, min(1., pow(zoom, .5)));
 
 			glUniform1f(fogI, fog);
+			float dimensions = static_cast<float>(Screen::RawHeight()) / static_cast<float>(Screen::RawWidth());
+			glUniform1f(dimensionsI, dimensions);
 			glUniform1f(zoomI, 1 / zoom);
 
 			// Stars this far beyond the border may still overlap the screen.
@@ -249,6 +251,7 @@ void StarField::SetUpGraphics()
 		"uniform vec2 scale;\n"
 		"uniform float elongation;\n"
 		"uniform float brightness;\n"
+		"uniform float dimensions;\n"
 
 		"in vec2 offset;\n"
 		"in float size;\n"
@@ -261,9 +264,12 @@ void StarField::SetUpGraphics()
 
 		"void main() {\n"
 		"  fragmentAlpha = brightness * (4. / (4. + elongation)) * size * .2 + .05;\n"
+		"  fragPos = (transform * (vert + blurOff) + position) * scale;\n"
+		"  fragPos.y *= dimensions;\n"
 		"  coord = vec2(sin(corner), cos(corner));\n"
 		"  vec2 elongated = vec2(coord.x * size, coord.y * (size + elongation));\n"
 		"  gl_Position = vec4((rotate * elongated + translate + offset) * scale, 0, 1);\n"
+		"  fragPos = vec2(gl_Position.x, gl_Position.y);\n"
 		"}\n";
 
 	static const char *fragmentCode =
@@ -283,12 +289,6 @@ void StarField::SetUpGraphics()
 		"  float alpha = fragmentAlpha * (1. - abs(coord.x) - abs(coord.y));\n"
 		"  finalColor = vec4(1, 1, 1, 1) * alpha;\n"
 
-		"  float first = floor(fragTexCoord.z);\n"
-		"  float second = mod(ceil(fragTexCoord.z), frameCount);\n"
-		"  float fade = fragTexCoord.z - first;\n"
-		"  finalColor = mix(\n"
-		"    texture(tex, vec3(fragTexCoord.xy, first)),\n"
-		"    texture(tex, vec3(fragTexCoord.xy, second)), fade);\n"
 		"  float distanceAlpha = 1.f;\n"
 		"  if(fog > 0)\n"
 		"  {\n"
@@ -326,6 +326,7 @@ void StarField::SetUpGraphics()
 	brightnessI = shader.Uniform("brightness");
 
 	fogI = shader.Uniform("fog");
+	dimensionsI = shader.Uniform("dimensions");
 	zoomI = shader.Uniform("zoom");
 }
 

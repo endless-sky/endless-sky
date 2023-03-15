@@ -73,6 +73,7 @@ private:
 	GLuint brightnessI;
 
 	GLint fogI;
+	GLint dimensionsI;
 	GLint zoomI;
 };
 
