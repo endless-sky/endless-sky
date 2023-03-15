@@ -552,7 +552,7 @@ mission "Martini Evacuation (Resident Family)"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		dialog phrase "martini evac dialog plural"
-		payment 10000 120
+		payment 4000 180
 
 
 mission "Martini Evacuation (Resident Group)"
@@ -581,7 +581,7 @@ mission "Martini Evacuation (Resident Group)"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		dialog phrase "martini evac dialog plural"
-		payment 20000 100
+		payment 4000 180
 
 
 mission "Martini Evacuation (Resident)"
@@ -610,7 +610,7 @@ mission "Martini Evacuation (Resident)"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		dialog phrase "martini evac dialog singular"
-		payment 20000 150
+		payment 3000 180
 
 
 mission "Martini Evacuation (Family, Luxury)"
@@ -641,7 +641,7 @@ mission "Martini Evacuation (Family, Luxury)"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		dialog phrase "martini evac dialog plural"
-		payment 30000 200
+		payment 8000 200
 
 
 mission "Martini Evacuation (Singular, Luxury)"
@@ -672,7 +672,7 @@ mission "Martini Evacuation (Singular, Luxury)"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		dialog phrase "martini evac dialog singular"
-		payment 30000 220
+		payment 6000 200
 
 
 mission "Martini Evacuation (Tourist)"
@@ -693,7 +693,7 @@ mission "Martini Evacuation (Tourist)"
 		dialog phrase "generic passenger on visit"
 	on complete
 		dialog phrase "generic passenger dropoff payment"
-		payment 5000 80
+		payment 3000 150
 
 
 mission "Martini Evacuation (Tourist Couple)"
@@ -714,7 +714,7 @@ mission "Martini Evacuation (Tourist Couple)"
 		dialog phrase "generic passenger on visit"
 	on complete
 		dialog phrase "generic passenger dropoff payment"
-		payment 5000 140
+		payment 3000 150
 
 
 mission "Martini Evacuation (Tourist Family)"
@@ -735,7 +735,7 @@ mission "Martini Evacuation (Tourist Family)"
 		dialog phrase "generic passenger on visit"
 	on complete
 		dialog phrase "generic passenger dropoff payment"
-		payment 5000 80
+		payment 5000 150
 
 mission "Martini Evacuation (Tourist Group)"
 	name "Evacuate tourist group to <planet>"
@@ -755,7 +755,7 @@ mission "Martini Evacuation (Tourist Group)"
 		dialog phrase "generic passenger on visit"
 	on complete
 		dialog phrase "generic passenger dropoff payment"
-		payment 5000 60
+		payment 5000 150
 
 
 mission "Martini Evacuation (Businessman Group)"
@@ -776,7 +776,7 @@ mission "Martini Evacuation (Businessman Group)"
 		dialog phrase "generic passenger on visit"
 	on complete
 		dialog phrase "martini evac dialog plural"
-		payment 15000 150
+		payment 5000 180
 
 
 mission "Martini Evacuation (Businessman)"
@@ -797,7 +797,7 @@ mission "Martini Evacuation (Businessman)"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		dialog phrase "martini evac dialog singular"
-		payment 15000 160
+		payment 2000 180
 
 
 mission "Martini Evacuation (Exhausted Doctors)"
@@ -818,7 +818,7 @@ mission "Martini Evacuation (Exhausted Doctors)"
 		dialog phrase "generic passenger on visit"
 	on complete
 		dialog phrase "generic passenger dropoff payment"
-		payment 8000 80
+		payment 5000 150
 
 
 mission "Martini Evacuation (Exhausted Search and Rescue Team)"
@@ -839,7 +839,7 @@ mission "Martini Evacuation (Exhausted Search and Rescue Team)"
 		dialog phrase "generic passenger on visit"
 	on complete
 		dialog phrase "generic passenger dropoff payment"
-		payment 8000 80
+		payment 5000 150
 
 
 
