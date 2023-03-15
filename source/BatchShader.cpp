@@ -25,11 +25,13 @@ namespace {
 	Shader shader;
 	// Uniforms:
 	GLint scaleI;
-	GLint fogI;
 	GLint frameCountI;
 	// Vertex data:
 	GLint vertI;
 	GLint texCoordI;
+
+	GLint fogI;
+	GLint zoomI;
 
 	GLuint vao;
 	GLuint vbo;
@@ -98,10 +100,11 @@ void BatchShader::Init()
 	shader = Shader(vertexCode, fragmentCode);
 	// Get the indices of the uniforms and attributes.
 	scaleI = shader.Uniform("scale");
-	fogI = shader.Uniform("fog");
 	frameCountI = shader.Uniform("frameCount");
 	vertI = shader.Attrib("vert");
 	texCoordI = shader.Attrib("texCoord");
+	fogI = shader.Uniform("fog");
+	zoomI = shader.Uniform("zoom");
 
 	// Make sure we're using texture 0.
 	glUseProgram(shader.Object());
@@ -158,6 +161,7 @@ void BatchShader::Add(const Sprite *sprite, bool isHighDPI, const vector<float> 
 	glUniform1f(frameCountI, sprite->Frames());
 
 	glUniform1f(fogI, fog);
+	glUniform1f(zoomI, 1 / zoom);
 
 	// Upload the vertex data.
 	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * data.size(), data.data(), GL_STREAM_DRAW);
