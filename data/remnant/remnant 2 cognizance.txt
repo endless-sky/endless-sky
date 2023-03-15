@@ -1412,7 +1412,7 @@ mission "Remnant: Cognizance 32"
 		event "remnant: cognizance peregrine"
 	on decline
 		dialog
-			`	You have declined an essential Remnant mission, and this ends the Remnant campaign. If that was not what you intended, you may wish to reload.`
+			`You have declined an essential Remnant mission, and this ends the Remnant campaign. If that was not what you intended, you may wish to reload.`
 
 
 
