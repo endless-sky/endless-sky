@@ -506,7 +506,7 @@ mission "Paradise Job: Pirate Retirees (Illegal)"
 	name "Wealthy retirees to <planet>"
 	job
 	repeat
-	description "This coterie of <bunks> wealthy retirees is willing to pay <payment> for stylish, no-questions-asked transport to <destination>, along with <tons> of their most treasured possessions."
+	description `This coterie of <bunks> wealthy "retirees" is willing to pay <payment> for stylish, no-questions-asked transport to <destination>, along with <tons> of their most treasured possessions.`
 	passengers 4 10 .6
 	cargo "treasured possessions" 4 10 .2
 	illegal 15000 `In addition to the fine, the "retirees" and their possessions are removed from your ship.`
@@ -526,14 +526,14 @@ mission "Paradise Job: Pirate Retirees (Illegal)"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 15000 300
-		dialog "You bid goodbye to the retirees, who were somewhat prone to spilling drinks or irritating you whilst attempting to do work. They were otherwise extremely polite and full of highly amusing, though often morally questionable, anecdotes. Once the last of their belongings have been safely unloaded your accounts receive the payment of <payment> from an anyonymous source."
+		dialog "You bid goodbye to the self-proclaimed retirees, who were somewhat prone to spilling drinks or irritating you whilst attempting to do work. They were otherwise extremely polite, if raucous, and full of highly amusing, though often morally questionable, anecdotes. Once the last of their belongings have been safely unloaded your accounts receive the payment of <payment> from an anyonymous source."
 
 
 mission "Paradise Job: Pirate Retirees (Legal)"
 	name "Wealthy retirees to <planet>"
 	job
 	repeat
-	description "This coterie of <bunks> wealthy retirees is willing to pay <payment> for stylish, no-questions-asked transport to <destination>, along with <tons> of their most treasured possessions."
+	description `This coterie of <bunks> wealthy "retirees" is willing to pay <payment> for stylish, no-questions-asked transport to <destination>, along with <tons> of their most treasured possessions.`
 	passengers 4 10 .6
 	stealth
 	to offer
@@ -551,7 +551,7 @@ mission "Paradise Job: Pirate Retirees (Legal)"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 10000 200
-		dialog "You bid goodbye to the retirees, who were somewhat prone to spilling drinks or irritating you whilst attempting to do work. They were otherwise extremely polite and full of highly amusing, though often morally questionable, anecdotes. Once the last of their belongings have been safely unloaded your accounts receive the payment of <payment> from an anyonymous source."
+		dialog "You bid goodbye to the self-proclaimed retirees, who were somewhat prone to spilling drinks or irritating you whilst attempting to do work. They were otherwise extremely polite, if raucous, and full of highly amusing, though often morally questionable, anecdotes. Once the last of their belongings have been safely unloaded your accounts receive the payment of <payment> from an anyonymous source."
 
 
 mission "Paradise Job: Wilderness Retreat"
