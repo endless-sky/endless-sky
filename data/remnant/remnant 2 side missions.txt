@@ -441,14 +441,15 @@ mission "Remnant: Shattered Light 1"
 mission "Remnant: Shattered Light 2"
 	name "Searching for Ghosts"
 	description "Take Ruach to find and scan the ghostly ship."
-	blocked "Your commlink chimes with a note that this mission requires a Research Laboratory as well as 2 tons of cargo space and 1 free bunk."
+	blocked "Your commlink chimes with a note that this mission requires a Research Laboratory installed on your flagship as well as 2 tons of cargo space and 1 free bunk."
 	cargo "equipment" 2
 	passengers 1
 	source "Viminal"
 	to offer
 		has "Remnant: Shattered Light 1: done"
+	to accept
+		has "outfit (flagship installed): Research Laboratory"
 	on offer
-		require "Research Laboratory"
 		conversation
 			`Your arrival in the spaceport finds Taely in deep conversation with an elderly Remnant, empty food trays cluttering the table before them. They both turn when you approach, breaking off their conversation.`
 			`	"Thank you for coming, Captain <last>. I would like to introduce you to Ruach. She was a shipyard engineering prefect for many decades, but now spends most of her time as a teacher."`

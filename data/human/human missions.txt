@@ -370,7 +370,7 @@ mission "Pookie, Part 5"
 			label lazy
 			action
 				log `Saved a dog from a hound-racing ring, and tried to give her a home. However, her alleged owner rejected her. Eventually decided to keep her.`
-				outfit `"Puny"`
+				outfit "Puny"
 			`	You lean back in your seat as the taxi passes through the town without interruption. Not long after you find yourself back in the spaceport, with Puny still in your care. With nowhere else to go, you decide to bring Puny aboard your ship. As you lead her, she happily strolls up the landing ramp and settles into one of your bunks.`
 				decline
 
