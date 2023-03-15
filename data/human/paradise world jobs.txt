@@ -876,6 +876,7 @@ phrase "martini evac 1"
 		"nuclear bombings"
 		"destruction"
 		"devastation"
+		"disaster"
 	word
 		" on Martini. They hand you <payment> and head off for their"
 	word
@@ -1050,18 +1051,18 @@ phrase "insults for southerners"
 		"sunnavaguns'"
 		"privateers"
 	word
-		" "
+		" from "
 	word
-		"from Bourne"
-		"from Rust"
-		"from Solace"
-		"from Greenrock"
-		"from Thule"
-		"from Zug"
-		"from Longjump"
-		"from the South"
-		"from the Rim"
-		"from the Southern Rim"
+		"Bourne"
+		"Rust"
+		"Solace"
+		"Greenrock"
+		"Thule"
+		"Zug"
+		"Longjump"
+		"the South"
+		"the Rim"
+		"the Southern Rim"
 
 
 
@@ -1082,7 +1083,7 @@ mission "Martini Relief (Medical) [0]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 32000 50
+		payment 6000 170
 		dialog phrase "generic cargo delivery payment"
 
 
