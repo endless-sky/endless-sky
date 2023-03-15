@@ -92,10 +92,8 @@ void TradingPanel::Draw()
 {
 	const Interface *tradeUi = GameData::Interfaces().Get("trade");
 	const Rectangle box = tradeUi->GetBox("content");
-	// if box dimensions are default-initialized, then "content" is missing,
-	// so fill it in with the old defaults.
-	const int MIN_X = box.Width() == 0 ? -310 : box.Left();
-	const int FIRST_Y = box.Height() == 0 ? 80 : box.Top();
+	const int MIN_X = box.Left();
+	const int FIRST_Y = box.Top();
 
 	const Color &back = *GameData::Colors().Get("faint");
 	int selectedRow = player.MapColoring();
@@ -279,11 +277,9 @@ bool TradingPanel::Click(int x, int y, int clicks)
 {
 	const Interface *tradeUi = GameData::Interfaces().Get("trade");
 	const Rectangle box = tradeUi->GetBox("content");
-	// if box dimensions are default-initialized, then "content" is missing,
-	// so fill it in with the old defaults.
-	const int MIN_X = box.Width() == 0 ? -310 : box.Left();
-	const int FIRST_Y = box.Height() == 0 ? 80 : box.Top();
-	const int MAX_X = box.Width() == 0 ? 190 : box.Right();
+	const int MIN_X = box.Left();
+	const int FIRST_Y = box.Top();
+	const int MAX_X = box.Right();
 	int maxY = FIRST_Y + 25 + 20 * COMMODITY_COUNT;
 	if(x >= MIN_X && x <= MAX_X && y >= FIRST_Y + 25 && y < maxY)
 	{
