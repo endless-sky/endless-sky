@@ -293,7 +293,6 @@ void StarField::SetUpGraphics()
 		"  {\n"
 		"    distanceAlpha = 1. - (fog / 100);\n"
 		"    float length = length(fragPos) * zoom;\n"
-		"    if(length < 1.f)\n" // everything further than 1. away is invisble
 		"    {\n"
 		"      if(length > 0.25f)\n" // everything closer than 0.25 is completely visble
 		"        distanceAlpha = 1.f - (fog / 100) * 1.333 * (length - 0.25);\n" // interpolate between 0.25 and 1.
@@ -301,7 +300,7 @@ void StarField::SetUpGraphics()
 		"        distanceAlpha = 1.f;"
 		"    }\n"
 		"  }\n"
-		"  finalColor = finalColor * max(distanceAlpha, 0.6);\n"
+		"  finalColor = finalColor * max(distanceAlpha, 0.5);\n"
 		"}\n";
 
 	shader = Shader(vertexCode, fragmentCode);
