@@ -25,6 +25,7 @@ namespace {
 	Shader shader;
 	// Uniforms:
 	GLint scaleI;
+	GLint fogI;
 	GLint frameCountI;
 	// Vertex data:
 	GLint vertI;
@@ -144,7 +145,7 @@ void BatchShader::Bind()
 
 
 
-void BatchShader::Add(const Sprite *sprite, bool isHighDPI, const vector<float> &data)
+void BatchShader::Add(const Sprite *sprite, bool isHighDPI, const vector<float> &data, double fog)
 {
 	// Do nothing if there are no sprites to draw.
 	if(data.empty())
@@ -154,6 +155,8 @@ void BatchShader::Add(const Sprite *sprite, bool isHighDPI, const vector<float> 
 	glBindTexture(GL_TEXTURE_2D_ARRAY, sprite->Texture(isHighDPI));
 	// The shader also needs to know how many frames the texture has.
 	glUniform1f(frameCountI, sprite->Frames());
+
+	glUniform1f(fogI, fog);
 
 	// Upload the vertex data.
 	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * data.size(), data.data(), GL_STREAM_DRAW);

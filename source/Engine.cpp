@@ -985,7 +985,7 @@ void Engine::Draw() const
 		label.Draw();
 
 	draw[drawTickTock].Draw(zoom, fog);
-	batchDraw[drawTickTock].Draw();
+	batchDraw[drawTickTock].Draw(fog);
 
 	for(const auto &it : statuses)
 	{
@@ -1599,9 +1599,14 @@ void Engine::CalculateStep()
 				Audio::Play(it.first);
 		}
 	}
+
+	double fog = 0;
+	if (player.Flagship())
+		fog = player.Flagship()->FogLevel();
+
 	// Draw the projectiles.
 	for(const Projectile &projectile : projectiles)
-		batchDraw[calcTickTock].Add(projectile, projectile.Clip());
+		batchDraw[calcTickTock].Add(projectile, projectile.Clip(), fog);
 	// Draw the visuals.
 	for(const Visual &visual : visuals)
 		batchDraw[calcTickTock].AddVisual(visual);

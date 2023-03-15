@@ -39,7 +39,7 @@ public:
 	bool AddVisual(const Body &visual);
 
 	// Draw all the items in this list.
-	void Draw() const;
+	void Draw(double fog = 0.) const;
 
 
 private:
