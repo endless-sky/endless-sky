@@ -81,6 +81,10 @@ ship "Argosy" "Argosy (Proton)"
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
+	gun "Proton Gun"
+	gun
+	gun "Proton Gun"
+	gun
 
 
 ship "Argosy" "Argosy (Turret)"
@@ -2446,6 +2450,10 @@ ship "Modified Argosy" "Modified Argosy (Proton)"
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
+	gun "Proton Gun"
+	gun
+	gun "Proton Gun"
+	gun
 
 
 ship "Modified Argosy" "Modified Argosy (Plasma)"
