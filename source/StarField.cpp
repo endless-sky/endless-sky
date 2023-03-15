@@ -126,7 +126,7 @@ void StarField::SetHaze(const Sprite *sprite, bool allowAnimation)
 
 
 
-void StarField::Draw(const Point &pos, const Point &vel, double zoom, const System *system, double fogLevel) const
+void StarField::Draw(const Point &pos, const Point &vel, double zoom, const System *system, double fog) const
 {
 	double density = system ? system->StarfieldDensity() : 1.;
 
@@ -167,6 +167,9 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 
 			glUniform1f(elongationI, length * zoom);
 			glUniform1f(brightnessI, min(1., pow(zoom, .5)));
+
+			glUniform1f(fogI, fog);
+			glUniform1f(zoomI, 1 / zoom);
 
 			// Stars this far beyond the border may still overlap the screen.
 			double borderX = fabs(vel.X()) + 1.;
@@ -232,7 +235,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 		AddHaze(drawList, haze[1], topLeft, bottomRight, 1 - transparency);
 	AddHaze(drawList, haze[0], topLeft, bottomRight, transparency);
 
-	drawList.Draw(fogLevel);
+	drawList.Draw(fog);
 }
 
 
@@ -253,6 +256,9 @@ void StarField::SetUpGraphics()
 		"out float fragmentAlpha;\n"
 		"out vec2 coord;\n"
 
+		"out vec2 fragTexCoord;\n"
+		"out vec2 fragPos;\n"
+
 		"void main() {\n"
 		"  fragmentAlpha = brightness * (4. / (4. + elongation)) * size * .2 + .05;\n"
 		"  coord = vec2(sin(corner), cos(corner));\n"
@@ -261,15 +267,42 @@ void StarField::SetUpGraphics()
 		"}\n";
 
 	static const char *fragmentCode =
+		"uniform float fog;\n"
+		"uniform float zoom;\n"
+
 		"// fragment starfield shader\n"
 		"precision mediump float;\n"
 		"in float fragmentAlpha;\n"
 		"in vec2 coord;\n"
 		"out vec4 finalColor;\n"
 
+		"in vec2 fragTexCoord;\n"
+		"in vec2 fragPos;\n"
+
 		"void main() {\n"
 		"  float alpha = fragmentAlpha * (1. - abs(coord.x) - abs(coord.y));\n"
 		"  finalColor = vec4(1, 1, 1, 1) * alpha;\n"
+
+		"  float first = floor(fragTexCoord.z);\n"
+		"  float second = mod(ceil(fragTexCoord.z), frameCount);\n"
+		"  float fade = fragTexCoord.z - first;\n"
+		"  finalColor = mix(\n"
+		"    texture(tex, vec3(fragTexCoord.xy, first)),\n"
+		"    texture(tex, vec3(fragTexCoord.xy, second)), fade);\n"
+		"  float distanceAlpha = 1.f;\n"
+		"  if(fog > 0)\n"
+		"  {\n"
+		"    distanceAlpha = 1. - (fog / 100);\n"
+		"    float length = length(fragPos) * zoom;\n"
+		"    if(length < 1.f)\n" // everything further than 1. away is invisble
+		"    {\n"
+		"      if(length > 0.25f)\n" // everything closer than 0.25 is completely visble
+		"        distanceAlpha = 1.f - (fog / 100) * 1.333 * (length - 0.25);\n" // interpolate between 0.25 and 1.
+		"      else"
+		"        distanceAlpha = 1.f;"
+		"    }\n"
+		"  }\n"
+		"  finalColor = finalColor * distanceAlpha;\n"
 		"}\n";
 
 	shader = Shader(vertexCode, fragmentCode);
@@ -291,6 +324,9 @@ void StarField::SetUpGraphics()
 	elongationI = shader.Uniform("elongation");
 	translateI = shader.Uniform("translate");
 	brightnessI = shader.Uniform("brightness");
+
+	fogI = shader.Uniform("fog");
+	zoomI = shader.Uniform("zoom");
 }
 
 
