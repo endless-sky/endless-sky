@@ -87,7 +87,7 @@ void BatchDrawList::Draw(double zoom, double fog) const
 	BatchShader::Bind();
 
 	for(const pair<const Sprite * const, vector<float>> &it : data)
-		BatchShader::Add(it.first, isHighDPI, it.second, zoom, fog);
+		BatchShader::Add(it.first, isHighDPI, it.second, fog, zoom);
 
 	BatchShader::Unbind();
 }

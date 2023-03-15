@@ -146,7 +146,7 @@ void BatchShader::Bind()
 
 
 
-void BatchShader::Add(const Sprite *sprite, bool isHighDPI, const vector<float> &data, double zoom, double fog)
+void BatchShader::Add(const Sprite *sprite, bool isHighDPI, const vector<float> &data, double fog, double zoom)
 {
 	// Do nothing if there are no sprites to draw.
 	if(data.empty())

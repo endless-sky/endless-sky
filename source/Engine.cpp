@@ -985,7 +985,7 @@ void Engine::Draw() const
 		label.Draw();
 
 	draw[drawTickTock].Draw(zoom, fog);
-	batchDraw[drawTickTock].Draw(fog);
+	batchDraw[drawTickTock].Draw(zoom, fog);
 
 	for(const auto &it : statuses)
 	{
@@ -1600,9 +1600,6 @@ void Engine::CalculateStep()
 		}
 	}
 
-	double fog = 0;
-	if (player.Flagship())
-		fog = player.Flagship()->FogLevel();
 
 	// Draw the projectiles.
 	for(const Projectile &projectile : projectiles)
