@@ -237,7 +237,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 		AddHaze(drawList, haze[1], topLeft, bottomRight, 1 - transparency);
 	AddHaze(drawList, haze[0], topLeft, bottomRight, transparency);
 
-	drawList.Draw(fog);
+	drawList.Draw(zoom, fog);
 }
 
 
@@ -264,12 +264,11 @@ void StarField::SetUpGraphics()
 
 		"void main() {\n"
 		"  fragmentAlpha = brightness * (4. / (4. + elongation)) * size * .2 + .05;\n"
-		"  fragPos = (transform * (vert + blurOff) + position) * scale;\n"
-		"  fragPos.y *= dimensions;\n"
 		"  coord = vec2(sin(corner), cos(corner));\n"
 		"  vec2 elongated = vec2(coord.x * size, coord.y * (size + elongation));\n"
 		"  gl_Position = vec4((rotate * elongated + translate + offset) * scale, 0, 1);\n"
 		"  fragPos = vec2(gl_Position.x, gl_Position.y);\n"
+		"  fragPos.y *= dimensions;\n"
 		"}\n";
 
 	static const char *fragmentCode =
@@ -302,7 +301,7 @@ void StarField::SetUpGraphics()
 		"        distanceAlpha = 1.f;"
 		"    }\n"
 		"  }\n"
-		"  finalColor = finalColor * distanceAlpha;\n"
+		"  finalColor = finalColor * max(distanceAlpha, 0.6);\n"
 		"}\n";
 
 	shader = Shader(vertexCode, fragmentCode);
