@@ -64,7 +64,7 @@ mission "Paradise Job: Art Delivery"
 	repeat
 	deadline
 	description "Deliver <cargo> for an upcoming art exhibition on <destination> by <date>. Payment is <payment>."
-	cargo "Luxury Goods" 3 8
+	cargo "Luxury Goods" 1 2 .4
 	to offer
 		random < 10
 	source
@@ -112,7 +112,7 @@ mission "Paradise Job: Theater Props"
 	repeat
 	deadline
 	description "A theater troupe on <destination> needs a delivery of <tons> of special <commodity> to use as props in an upcoming performance on <date>. Payment is <payment>."
-	cargo "Luxury Goods" 9 15
+	cargo "Luxury Goods" 2 6 .35
 	to offer
 		random < 10
 	source
@@ -135,7 +135,7 @@ mission "Paradise Job: Fine Food"
 	repeat
 	deadline
 	description "A highly-rated restaurant on <destination> seeks to acquire <tons> of fine <commodity> by <date>. Payment is <payment>."
-	cargo "Food" 9 25
+	cargo "Food" 2 5 .25
 	to offer
 		random < 10
 	source
@@ -397,7 +397,7 @@ mission "Pleasure cruise security"
 	description "Escort the <npc> on a pleasure cruise to the wild and exotic planet of <stopovers> along with <tons> of their <commodity>, then return to <destination>, where you will be paid <payment>."
 	job
 	repeat
-	cargo "Luxury Goods" 20 35
+	cargo "Luxury Goods" 15 3 .17
 	to offer
 		random < 10
 		"combat rating" > 10

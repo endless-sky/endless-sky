@@ -407,7 +407,7 @@ mission "Delivery to Human Space [0]"
 	job
 	repeat
 	description "This human wishes for <cargo> to be delivered to <destination> in human space. Payment is <payment>."
-	cargo random 5 10
+	cargo random 2 2 .29
 	to offer
 		random < 30
 	source
@@ -431,7 +431,7 @@ mission "Delivery to Human Space [1]"
 	job
 	repeat
 	description "This Hai wishes for <cargo> to be delivered to <destination> in human space. Payment is <payment>."
-	cargo random 5 10
+	cargo random 2 2 .29
 	to offer
 		random < 25
 	source
@@ -455,7 +455,7 @@ mission "Delivery to Human Space [2]"
 	job
 	repeat
 	description "This human wishes for <cargo> to be delivered to <destination> in human space. Payment is <payment>."
-	cargo random 5 10
+	cargo random 2 2 .29
 	to offer
 		random < 20
 	source
@@ -479,7 +479,7 @@ mission "Hai Retrieve Human Luxury Goods"
 	job
 	repeat
 	description "A Hai socialite on <planet> wants to show off their knowledge of human culture to their peers. They want <cargo> from <stopovers> by <date>. Payment is <payment>."
-	cargo "Luxury Goods" 5 10
+	cargo "Luxury Goods" 2 2 .29
 	deadline 24
 	to offer
 		random < 15
@@ -507,7 +507,7 @@ mission "Hai Retrieve Human Food"
 	job
 	repeat
 	description "A Hai gourmet on <planet> is bored with local fare and wants to try food they heard about from human tourists. They want <cargo> from <stopovers> by <date>. Payment is <payment>."
-	cargo "Food" 5 10
+	cargo "Food" 2 2 .29
 	deadline 24
 	to offer
 		random < 15
@@ -534,7 +534,7 @@ mission "Hai Retrieve Human Electronics"
 	job
 	repeat
 	description "A Hai tinkerer on <planet> wants to experiment with human technology. They want <cargo> from <stopovers> by <date>. Payment is <payment>."
-	cargo "Electronics" 5 10
+	cargo "Electronics" 2 2 .29
 	deadline 24
 	to offer
 		random < 15
