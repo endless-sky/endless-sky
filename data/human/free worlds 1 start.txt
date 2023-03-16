@@ -921,7 +921,7 @@ mission "FW Supply Convoy 1"
 					accept
 			
 			label cattle
-			`	She grins. "Yes, I know it's not terribly glamorous work, and keeping track of a big fleet of slow ships is a pain. But, bulk freighters are just too expensive to use on internal cargo convoys. Just make sure you do a headcount when you arrive in each system."`
+			`	She grins. "Yes, I know it's not terribly glamorous work, and keeping track of a big fleet of slow ships is a pain. But, Bulk Freighters are just too expensive to use on internal cargo convoys. Just make sure you do a headcount when you arrive in each system."`
 			choice
 				`	"Okay, whatever it takes to further the cause of freedom, I'll do it."`
 					accept
