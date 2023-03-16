@@ -683,7 +683,7 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Grab)"
 
 
 # This variant needs to have the same load-out as the default 618 to
-# keep the intended difficulty level of the Korath Artifacts 2  mission
+# keep the intended difficulty level of the Korath Artifacts 2 mission.
 ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Sentry)"
 	"crew" 794
 
