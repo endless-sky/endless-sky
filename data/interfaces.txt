@@ -702,7 +702,7 @@ interface "planet"
 		dimensions 720 360
 
 	box "content"
-		from -300 78 to 180 355
+		from -300 80 to 180 355
 
 	visible if "has shipyard"
 	sprite "ui/planet dialog button"
