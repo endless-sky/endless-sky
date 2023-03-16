@@ -1531,7 +1531,7 @@ mission "Saryd University Lecture"
 				`	"Sorry, I don't have time."`
 					decline
 			label low
-			`	"Nonsense! Travel the galaxy, you do. A most knowledgable individual, surely you must be. Accept my offer, will you?"`
+			`	"Nonsense! Travel the galaxy, you do. A most knowledgeable individual, surely you must be. Accept my offer, will you?"`
 			choice
 				`	"Sure, I'd be glad to."`
 					goto yes
@@ -1742,7 +1742,7 @@ mission "Coalition: Pilgrimage 2"
 				`	"If you're okay with me going, I'd be glad to accompany you."`
 				`	"Sorry, I'm not in the mood for a mourning ritual."`
 					goto skip
-			`	Together you follow the streets out of the spaceport city and into a park filled with several different forms of trees twisting upon themselves; some reach far up to the skies while others anchor most of their branches into the ground. The trail brings you to a large clearing, where dozens of Saryds are gathered by a circle of tall, rocky pillars with an altar at the center. Many of the Saryds there are dressed in delicate fabrics of dark greens or ochre colors. Some of them are grouped into pairs that seem to be young couples, while others appear to simply be passing visitors to the shrine.`
+			`	Together you follow the streets out of the spaceport city and into a park filled with several different forms of trees twisting upon themselves; some reach far up to the skies while others anchor most of their branches into the ground. The trail brings you to a large clearing, where dozens of Saryds are gathered by a circle of tall, rocky pillars with an altar at the center. Many of the Saryds there are dressed in delicate fabrics of dark greens or ocher colors. Some of them are grouped into pairs that seem to be young couples, while others appear to simply be passing visitors to the shrine.`
 			`	Once the sun peeks over the tree tops and into the clearing, the visitors move away from the pillars and the altar while the couples line up and walk to it one at a time. There they remain for a few minutes, speaking to one another, before moving aside for the next pair. "Exchanging their vows, they are," Vellorae explains. "Our most popular wedding locations, the shrines here on the capital are."`
 			choice
 				`	"I thought this was a shrine for mourning the dead?"`

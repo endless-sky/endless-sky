@@ -278,7 +278,7 @@ int OutfitterPanel::DrawDetails(const Point &center)
 			? max(thumbnail->Height(), static_cast<float>(TileSize()))
 			: static_cast<float>(TileSize());
 
-		Point thumbnailCenter(center.X(), center.Y() + 20 + tileSize / 2);
+		Point thumbnailCenter(center.X(), center.Y() + 20 + static_cast<int>(tileSize / 2));
 
 		Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + 20 + tileSize);
 
