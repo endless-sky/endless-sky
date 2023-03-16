@@ -306,7 +306,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination,
 		subs["<last>"] = player.LastName();
 		if(player.Flagship())
 			subs["<ship>"] = player.Flagship()->Name();
-		string text = Format::Replace(Phrase::ExpandPhrases(dialogText), subs);
+		string text = Format::Replace(dialogText, subs);
 
 		// Don't push the dialog text if this is a visit action on a nonunique
 		// mission; on visit, nonunique dialogs are handled by PlayerInfo as to
