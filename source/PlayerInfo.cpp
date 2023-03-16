@@ -2705,7 +2705,7 @@ set<string> &PlayerInfo::Collapsed(const string &name)
 
 bool PlayerInfo::ShipModelIsKnown(const Ship& ship) const
 {
-	return (Preferences::Has(HIDE_SHIP_MODELS)) ? knownShipModels.count(ship.VariantName()) : true;;
+	return (Preferences::Has(HIDE_SHIP_MODELS)) ? knownShipModels.count(ship.VariantName()) : true;
 }
 
 
