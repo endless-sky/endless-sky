@@ -1263,7 +1263,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	// cargo name with something more specific.
 	if(!cargo.empty())
 	{
-		string expandedCargo = Phrase::ExpandPhrases(cargo);
+		const string expandedCargo = Phrase::ExpandPhrases(cargo);
 		const Trade::Commodity *commodity = nullptr;
 		if(expandedCargo == "random")
 			commodity = PickCommodity(*sourceSystem, *result.destination->GetSystem());
