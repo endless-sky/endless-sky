@@ -20,7 +20,7 @@ mission "Intro [0]"
 	destination "New Greenland"
 	
 	on offer
-		log "Finally scraped together enough money for a down payment on a starship. The interest on the mortgage is exorbitant."
+		log "Finally scraped together enough money for a down payment on a starship."
 		log "Factions" "Republic" `Hundreds of years ago, the independent territories in different parts of human space agreed to join together into a single democratic government, with Earth as its capital. The rise of the Republic ushered in a long period of peace and prosperity in human history.`
 			`Representation in the Republic Parliament is based on population. That means that some individual "Paradise Worlds" have more representatives than entire regions of space like the Dirt Belt that are more sparsely settled.`
 		log "Factions" "Syndicate" `The Syndicate is a megacorporation, the largest employer in human space. People who cannot find steady work elsewhere flock to the Syndicate factory worlds, where they are almost guaranteed to find a job. Although the Syndicate is technically part of the Republic, Syndicate worlds are governed directly by the corporation.`
@@ -118,7 +118,7 @@ mission "Intro [1 Transport]"
 		payment 40000
 		conversation
 			`Along the journey, you learned that the family you are transporting are named the Hendersons, and that they are moving to <planet> mostly because they hope the urban setting will be better for their kids than <origin>, where there were hardly any children at all and their village had only a few thousand people in it. The grandmother, Olivia, has also been chattering nonstop about how excited she is about being on a world where she can actually go sunbathing: "I've gotten much too old for snowshoeing," she says.`
-			`	You say goodbye to them and wish them well, and as agreed they pay you <payment>. You are already well on your way towards paying down your mortgage!`
+			`	You say goodbye to them and wish them well, and as agreed they pay you <payment>.`
 			`	As James leaves the ship, he says, "Again, if you're okay with continuing to give me a ride, just meet me in the spaceport."`
 			``
 			`	(As before, click the "Spaceport" button to continue this mission.)`
@@ -182,6 +182,7 @@ mission "Intro [3 Transport]"
 		payment 30000
 		log "Dropped James off on Hestia after running a few missions with him. Met a few spoiled tourists and got to visit Earth along the way."
 		conversation "end of intro missions"
+		event "intro upgrade unavailable" 5
 
 
 
@@ -313,6 +314,7 @@ mission "Intro [3 Freighter]"
 		payment 30000
 		log "Dropped James off on Hestia after running a few missions with him. Ship still smells like fish."
 		conversation "end of intro missions"
+		event "intro upgrade unavailable" 5
 
 
 
@@ -445,6 +447,7 @@ mission "Intro [3 Interceptor]"
 		payment 30000
 		log "Dropped James off on Hestia after running a few missions with him. Escort duty is a risky business."
 		conversation "end of intro missions"
+		event "intro upgrade unavailable" 5
 
 
 
@@ -478,6 +481,8 @@ conversation "end of intro missions"
 			goto trade
 		`	"Where can I find well-paying jobs?"`
 			goto jobs
+		`	"How can I get a better ship?"`
+			goto ship
 		`	"I think I'll manage."`
 			goto end
 	`	"Stay near Sol and around the Paradise Worlds. The Navy stays there the most, so even if a pirate does show up, they won't last long. The Deep is also a pretty safe place, as they have their own security forces. Once you start moving farther south, things get riskier. The worlds down there don't bring in as much tax revenue as the Paradise Worlds do, so the Navy tends to ignore them. You'll find some local militia to back you up, but they're nothing compared to one of the Navy's Cruisers.`
@@ -497,10 +502,124 @@ conversation "end of intro missions"
 	
 	label jobs
 	`	"Getting good jobs is more about having the space to accept the good jobs than it is finding them, but if you're looking for jobs that pay well for little effort, then you'll want to watch out around the holidays. There's always a big celebration on Earth every April 22nd, Earth Day, so pay attention to the job board in the months leading up to that. The people down in the Rim have some month-long celebration every August that you should look out for too.`
-	
+		goto more
+
+	label ship
+	`	"Well, the first step will be to earn enough credits to afford one. Once you've earned some nice pay, you can visit shipyards and find something you like. Cargo capacity and bunks will allow you to take on larger and better-paying jobs to help you earn credits faster while more shields and hull will keep you alive to spend them. If you're looking for a quick upgrade, I actually have an old friend right here on <planet> who could help you get started. You can meet him in the spaceport if you're interested.`
+
 	label more
 	`	"Anything else you want to ask me?"`
 		goto choices
 		
 	label end
 	`	He hands you a credit chip worth <payment>, and says, "Best of luck to you, Captain. Don't hesitate to look me up if you're ever in the area. And remember to check the spaceports wherever you land. You never know who you'll find wandering around there."`
+
+mission "Intro [Upgrade]"
+	priority
+	source "Hestia"
+	to offer
+		or
+			has "Intro [3 Transport]: done"
+			has "Intro [3 Freighter]: done"
+			has "Intro [3 Interceptor]: done"
+		not "event: intro upgrade unavailable"
+
+	on offer
+		conversation
+			`Following James' advice, you visit the local spaceport, finding it a large and oppressive concrete structure that towers over you, devoid of color or decoration. You can't see any obvious means of entry from the direction you've approached. However, as you walk around the building, you catch a glimpse of a large blue tarp stretched out from one side of the building, which seems to be used as a makeshift cover for what appears to be a large starship. However, you can't distinguish the model from what is visible under the tarp.`
+			choice
+				`	Approach the tarp.`
+					goto merchant
+				`	Keep looking for an entrance.`
+			`You ignore the tarp for now and walk back around the spaceport, finally finding a small public entrance that you had previously mistaken as a service door but appears to be the main entrance instead. Stepping inside the spaceport reveals it to be impressively barren, with little in the way of publicly available spaces or services. As you wander aimlessly past loading dock after loading dock, you spot something that catches your eye: a large neon sign advertising cheap used starships. The sign is currently not on and appears to be in some disrepair. However, it would have been an impressive sight when active, especially compared to the bleak surroundings you find yourself in. Underneath the sign is a small sliding door that curiously leads back outside the building.`
+			choice
+				`	See what's through the door.`
+					goto merchant
+				`	There's nothing of interest here; just leave.`
+			`You've seen enough of this place by now; heading back outside, you start the long walk back to the landing pad. Eager to get back to your new life as a starship captain.`
+				decline
+			label merchant
+			`This appears to be a small outdoor shop, with a large tarp stretched over the starship, presumably the merchandise being sold. As you look closer, there appear to be three different starships under the tarp. However, you still can't determine the specific models. As you're looking, you notice a small, wiry man approaching you with a large smile on his face, "Ho friend!" he calls out to you, "what brings you here?"`
+			choice
+				`	An old merchant captain named James hired me to transport him here for his retirement.`
+			`As you answer, the man's smile seems to, impossibly, widen even further, and as soon as you finish, he speaks again, "James? James is an old friend of mine, I was the one who sold him his first starship and he's helped me out a lot over the years, I'd heard he was coming back to retire here but I never imagined it would be so soon", the man pauses and his smile falters before he continues talking, "It's a shame you didn't arrive a week sooner, I would have been happy to offer you a discount on one of these fine starships but alas, I am no longer able to sell them even if I wanted to."`
+			choice
+				`	What happened a week ago?`
+				`	You aren't able to sell them?`
+			`"You see, business has been bad recently", the man replies, "no-one here wants to buy old, used starships, even if I guarantee that they'll run good as new, and while trying to keep myself afloat, I ended up wracking up a debt of 800,000 credits and my last remaining asset, this store, and the bank revoked my business license until I pay off what I owe."`
+			choice
+				`	I'm sorry to hear that. Is there some way I could help?`
+				`	I'm sorry to hear that. Hopefully, things turn around for you.`
+					goto end
+			`The man shakes his head before replying, "At this point, the only thing anyone could do for me would be to take over my debt. Once I was no longer indebted, I would be able to operate my store again. If you were willing to do that for me, I could offer you one of these ships for free, and they're all worth well more than 800,000 credits, so you'd be getting a good deal out of it."`
+			choice
+				`	I might be interested. Could you tell me more about what you have?`
+				`	Sorry, I'd like to help, but I'm not comfortable with going into that much debt so soon after starting as an independent captain.`
+					goto end
+			`"Of course!" the former merchant replies, beaming at you, "I have three models currently on display, A Scout, a Clipper, and a Hawk. All fine ships and all well worth the cost."`
+			label models
+			`"Is there a specific model you might be interested in learning more about?"`
+			choice
+				`	The Scout.`
+					goto scout
+				`	The Clipper.`
+					goto clipper
+				`	The Hawk.`
+					goto hawk
+				`	Sorry, I've changed my mind; I don't want to do this after all.`
+					goto end
+
+			label scout
+			"Ah, the Scout! An excellent ship, as its name would imply, was previously used for exploring the unknown expanses of space. It has good mobility and a large fuel reserve and is fitted with a ramscoop for in-flight refueling. You won't find a better ship for long-distance travel or exploration. Its available bunks and cargo capacity are nothing to sneeze at either; I'm sure you would find an excellent use for it."
+			choice
+				`I'm not sure that's right for me.`
+					goto models
+				`That sounds perfect! I'll take it!`
+					goto buyScout
+
+			label clipper
+			"You have a discerning eye, my friend, the Clipper is the perfect ship for a new captain just starting; many captains praise them for their extensive versatility, able to be customized to fulfill whatever role you need it to fill. With some elbow grease and tender love and care, this Clipper will serve you for many years."
+			choice
+				`I'm not sure that's right for me.`
+					goto models
+				`That sounds perfect! I'll take it!`
+					goto buyClipper
+
+			label hawk
+			"Wonderful, Captain! The Hawk is an impressive ship for combat, sporting a pair of heavy lasers, it's able to bring substantial firepower upon anything smaller than itself while being fast enough to run circles around anything bigger than itself. With this ship, you will soon be known as the protector of the weak or the scourge of the galaxy, whichever strikes your fancy."
+			choice
+				`I'm not sure that's right for me.`
+					goto models
+				`That sounds perfect! I'll take it!`
+					goto buyHawk
+
+			label buyScout
+			action
+				fine 800000
+				give ship Scout
+			`"Wonderful to hear, captain! I'm sure you'll be very happy with your new ship. Remember me when you're flying to the ends of the galaxy", he says with a smile.`
+				goto purchased
+
+			label buyClipper
+			action
+				fine 800000
+				give ship Clipper
+			`"Wonderful to hear captain! I'm sure you'll be very happy with your new ship. Remember me when you're celebrated across the galaxy for your varied exploits", he says with a smile.`
+				goto purchased
+
+			label buyHawk
+			action
+				fine 800000
+				give ship Hawk
+			`"Wonderful to hear, captain! I'm sure you'll be very happy with your new ship. Remember me when you're a famous war hero.`
+
+			label purchased
+			`You thank the Merchant and help him to uncover your new ship, inspecting it as you do, but it seems he was true to his word, and while there are evident signs of wear and tear, the ship is in excellent condition, you have no doubt it will function like new.`
+			`Now 800,000 credits in debt, but with a shiny new ship in your possession, you set off once again, eager to start earning your fortune.`
+				decline
+
+			label end
+			"The merchant seems disappointed by your answer but doesn't argue or call after you as you leave."
+				decline
+
+event "intro upgrade unavailable"

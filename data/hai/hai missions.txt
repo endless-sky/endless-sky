@@ -850,7 +850,7 @@ mission "Nanachi 1"
 				`	(Leave them alone.)`
 					decline
 			`	The Hai is a bit startled, but quickly calms down. "Sorry, you caught me by surprise. I've just bought my first ship and need to find some jobs to do, but nobody I've talked to wants to trust a beginner captain. I just don't know what to do anymore, I've been working for so long to qualify for this loan, but I'm running out of time and I'll never be able to pay it like this."`
-			`	Turns out the documents she is holding are the bank papers for the loan, somewhat similar to the one you took when you bought your first ship. You've come a long way since your days as a beginner, and know how hard it is to be starting out as a starship captain; you could probably convince someone here to offer a simple cargo job to this young Hai.`
+			`	Turns out the documents she is holding are the bank papers for the loan. You've come a long way since your days as a beginner, and know how hard it is to be starting out as a starship captain; you could probably convince someone here to offer a simple cargo job to this young Hai.`
 			choice
 				`	"If you're interested, I could try to help you find a job."`
 					goto "positive1"
