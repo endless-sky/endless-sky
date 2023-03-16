@@ -12,9 +12,9 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 # This mission sets the "know who the korath are" variable in old saves.
-mission "000 Do I know the Korath?"
+mission "000 Korath Knowledge Patch"
 	landing
-	source
+	invisible
 	to offer
 		or
 			has "event: label korath space"
@@ -272,16 +272,16 @@ mission "Small Scale Delivery"
 		dialog `You find a Korath who seems to have been waiting for you in the spaceport. They greet you by showing their palms, then outstretch their hands as if waiting to receive the package. You hand off the small delivery and they hand you a small payment of <payment>.`
 
 mission "Korath Stormhold Artifacts [1] Coded Message"
+	landing
 	name "Go to <planet>"
 	description `Head to <planet> to deal with a "security issue."`
-	landing
-	to offer
-		has "event: stormhold korath issue"
-		not "Hai Reveal [B12] Devil-Hide Battle: offered"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai" "Hai (Unfettered)" "Pirate"
 		not planet Stormhold
 	destination Stormhold
+	to offer
+		has "event: stormhold korath issue"
+		not "Hai Reveal [B12] Devil-Hide Battle: offered"
 	on offer
 		conversation
 			`As soon as you land, your communications console beeps urgently. It's a coded message from <planet> that simply reads, "Security issue. Return to <planet> as soon as possible."`
