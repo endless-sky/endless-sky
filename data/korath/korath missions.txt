@@ -285,7 +285,7 @@ mission "Korath Stormhold Artifacts [1] Coded Message"
 	on offer
 		conversation
 			`As soon as you land, your communications console beeps urgently. It's a coded message from <planet> that simply reads, "Security issue. Return to <planet> as soon as possible."`
-			`	The digital signature claims to be of diplomatic origin, and from the burning acorn insignia, it is most likely from the Unfettered.`
+			`	The signature block claims to be of diplomatic origin, and from the burning acorn insignia, it is most likely from the Unfettered.`
 				accept
 
 mission "Korath Stormhold Artifacts [2] Drones"
