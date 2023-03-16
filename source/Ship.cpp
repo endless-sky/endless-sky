@@ -4215,10 +4215,12 @@ void Ship::SetParent(const shared_ptr<Ship> &ship)
 
 bool Ship::CanPickUp(const Flotsam &flotsam) const
 {
-	return this != flotsam.Source()
-		&& (government != flotsam.SourceGovernment() ||
-		(personality.Harvests() && !personality.IsAppeasing()))
-		&& cargo.Free() >= flotsam.UnitSize();
+	if(this == flotsam.Source())
+		return false;
+	else if(government == flotsam.SourceGovernment() && (!personality.Harvests() || personality.IsAppeasing()))
+		return false;
+	else
+		return cargo.Free() >= flotsam.UnitSize();
 }
 
 
