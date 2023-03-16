@@ -356,6 +356,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 	{
 		return conditions.Get(str.substr(start, length));
 	};
+
 	if(index)
 	{
 		// Add the chosen option to the text.
