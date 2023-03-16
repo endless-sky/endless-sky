@@ -82,8 +82,8 @@ import sys;
 #    'GNL'
 #     ^^^
 #     |||-- Kor Efret letter
-#     |---- Korath Exile letter
-#     ----- Indonesian letter
+#     ||--- Korath Exile letter
+#     |---- Indonesian letter
 replace = [
     'AAA', 'EEE', 'III', 'OUU', 'UOO', 'BHB', 'CDV', 'DST',
     'FJY', 'GNL', 'HPH', 'JVW', 'KTS', 'LMN', 'MFF', 'NRR',
