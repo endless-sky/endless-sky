@@ -4217,10 +4217,9 @@ bool Ship::CanPickUp(const Flotsam &flotsam) const
 {
 	if(this == flotsam.Source())
 		return false;
-	else if(government == flotsam.SourceGovernment() && (!personality.Harvests() || personality.IsAppeasing()))
+	if(government == flotsam.SourceGovernment() && (!personality.Harvests() || personality.IsAppeasing()))
 		return false;
-	else
-		return cargo.Free() >= flotsam.UnitSize();
+	return cargo.Free() >= flotsam.UnitSize();
 }
 
 
