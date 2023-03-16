@@ -1352,16 +1352,23 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	// Stopovers: "<name> in the <system name> system" with "," and "and".
 	if(!result.stopovers.empty())
 	{
+		string stopovers;
 		string planets;
 		const Planet * const *last = &*--result.stopovers.end();
 		int count = 0;
 		for(const Planet * const &planet : result.stopovers)
 		{
 			if(count++)
-				planets += (&planet != last) ? ", " : (count > 2 ? ", and " : " and ");
-			planets += planet->Name() + " in the " + planet->GetSystem()->Name() + " system";
+			{
+				string result = (&planet != last) ? ", " : (count > 2 ? ", and " : " and ");
+				stopovers += result;
+				planets += result;
+			}
+			stopovers += planet->Name() + " in the " + planet->GetSystem()->Name() + " system";
+			planets += planet->Name();
 		}
-		subs["<stopovers>"] = planets;
+		subs["<stopovers>"] = stopovers;
+		subs["<planet stopovers>"] = planets;
 	}
 	// Waypoints: "<system name>" with "," and "and".
 	if(!result.waypoints.empty())
