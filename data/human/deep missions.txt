@@ -2800,7 +2800,7 @@ mission "Home for Skadenga 1"
 			`	The woman hesitates. "Don't you worry! Why, that Ice-Crawler is the safest place in all of Nifel! Those other accidents were flukes, and what happened to her sister Ice-Crawler, Gudrun, was entirely unforeseeable."`
 				goto what
 			label old
-			`	"Well, you know the old saying, 'They don't build 'em like they used to?' It's your lucky day because that is when this was built! Part of the excitement of the tour is riding in an authentic four hundred year old colonial Ice-Crawler."`
+			`	"Well, you know the old saying, 'They don't build 'em like they used to'? It's your lucky day because that is when this was built! Part of the excitement of the tour is riding in an authentic four hundred year old colonial Ice-Crawler."`
 			label what
 			`	The woman pulls out a small touchscreen. "For very standard liability reasons, I need you to quickly put your digital signature right here. You, or your estate, can't sue us if you're injured or die on the excursion. Furthermore there is no expectation of rescue should you get lost out there, or the Ice-Crawler breaks down." She gives you a small forced smile. "Not that it ever would happen, and like I said, this is a very standard waiver in the tourist trade. I wouldn't think too much about it."`
 			`	She holds up the touchscreen for you to sign.`
@@ -3055,7 +3055,7 @@ mission "Home for Skadenga 1"
 			`	The Ondurdis smiles. "Thank you." She nods toward the door. "Come with me."`
 			`	In the light of early day, the village looks stranger than you remember. Carved wooden structures weave flawlessly into sleek fabricated composites in a marriage of ancient with new. Oddly enough, the effect does not clash, but instead gives off an impression of seamless artistry. To the south, there is an open space filled with high-stacked stone cairns. At the center of the space, or holy site, is a giant wall made of an unusual gleaming metal and surrounded by eight ornate wooden pillars. The wall, despite being filled with strange letters and images, is dominated by the single image of a giant humanoid. As you stare into the structure, you feel unnaturally chilly.`
 			`	"That is Goddess-Stone." The Ondurdis gestures toward the large stone-wall. "This is why we settled here. Most worlds in Deep have stones like this upon them. They go by many names; Elf-Stones, God-Stones, Jotun-Stones, and more. Now, at base of wall, those pillars, they are our Setstokkr. They are holy relics of our folk, and guided us here, to this very wall, long ago. Just as they will guide us once more to our new home. There are eight Setstokkr here, but once there was nine."`
-			`	The Ondurdis turns back to you. "You must find the ninth Setstokkr, the missing pillar. It was dropped in space long ago, and we believe based on where it started it could have only found its way to one of two worlds. It either on Windblain in the Regor system, or Asgard in the Naos system." Offering you a small storage device, the Onduris continues, "Setstokkr have... unusual properties. This drive contains information that will allow you to track them. Go to these worlds, see if you can find the Setstokkr, and return to us with news. We are eager to know where Skade will send us."`
+			`	The Ondurdis turns back to you. "You must find the ninth Setstokkr, the missing pillar. It was dropped in space long ago, and we believe based on where it started it could have only found its way to one of two worlds. It either on Windblain in the Regor system, or Asgard in the Naos system." Offering you a small storage device, the Ondurdis continues, "Setstokkr have... unusual properties. This drive contains information that will allow you to track them. Go to these worlds, see if you can find the Setstokkr, and return to us with news. We are eager to know where Skade will send us."`
 			`	The sky glows and the earth rumbles as a shuttle lands not far from the village. "That shuttle will return you to the spaceport and your ship. May Skade guide you." With that The Ondurdis leaves you.`
 			choice
 				`	(Head to the shuttle)`
@@ -3080,7 +3080,7 @@ mission "Home for Skadenga 1"
 				accept
 	on stopover
 		dialog
-			`	You land on the final world you were asked to visit. Once you're done here, you should return to Nifel.`
+			`You land on the final world you were asked to visit. Once you're done here, you should return to Nifel.`
 	on visit
 		dialog phrase "generic stopover on visit"
 	on complete
@@ -3096,7 +3096,6 @@ event "nifel waiting"
 
 
 mission "Home for Skadenga 2"
-	name "Home for Skadenga"
 	invisible
 	landing
 	to offer
@@ -3195,7 +3194,6 @@ mission "Home for Skadenga 2"
 
 
 mission "Home for Skadenga 3"
-	name "Home for Skadenga"
 	invisible
 	landing
 	to offer
@@ -3247,7 +3245,7 @@ mission "Home for Skadenga 3"
 			`	Either for profit, or out of a longing for home, many local communities promoted these ideas about the origins of these structures. Scientists have determined these structures were once large segments of the metal hulls of the original colony ships. To date, there has been some difficulty in identifying exactly what alloy they were constructed from.`
 			`	Most worlds in the Deep have "Colonial Graffiti," and they are proud reminders of our enterprising colonial origins. They are sometimes known in older texts, and by early communities, as God-Stones and Elf-Stones.`
 			``
-			`	Here at the Helsingor Family-Fun-Shopping-Center, we are committed to celebrating our past! This is why we, in the spirit of graffiti being the cultural touchstone of the day, have renovated this colonial structure into a central communication piece and made it a vital part of our vibrant community!'`
+			`	Here at the Helsingor Family-Fun-Shopping-Center, we are committed to celebrating our past! This is why we, in the spirit of graffiti being the cultural touchstone of the day, have renovated this colonial structure into a central communication piece and made it a vital part of our vibrant community!`
 			``
 			`	You finish reading the plaque, and look at the dull gray metal wall and the inhuman things carved upon it. It looks nothing like a ship's hull.`
 			label ship
@@ -3343,8 +3341,8 @@ mission "Home for Skadenga 4"
 
 
 mission "Home for Skadenga 5"
-	name "Transport for Skadenga"
 	landing
+	name "Transport for Skadenga"
 	description "Travel to <destination> to prepare the Transport Union Fleet."
 	to offer
 		has "Asgard"
@@ -3365,6 +3363,7 @@ event "mani refit"
 
 
 mission "Mani Refit"
+	landing
 	name "Mani Refitted"
 	to offer
 		has "event: mani refit"
@@ -3374,10 +3373,11 @@ mission "Mani Refit"
 		not planet "Mani"
 	destination "Mani"
 	on offer
-		dialog
+		conversation
 			`Your inbox blinks with a new message from the Transport Union:`
-			`	The fleet is ready for its inspirational journey. Please return to Mani.`
-			`		-Jayden, Mani Administrator, Transport Union`
+			`	"The fleet is ready for its inspirational journey. Please return to Mani.`
+			`		-Jayden, Mani Administrator, Transport Union"`
+				accept
 
 
 
@@ -3420,9 +3420,10 @@ mission "Home for Skadenga 7"
 	to offer
 		has "Home for Skadenga 6: done"
 	on offer
-		dialog
+		conversation
 			`The fleet touches down just outside the over-crowded village of Udainsakr. The landscape is filled with the gathered Skadenga.`
 			`	The Ondurdis approaches you. "Leaving is difficult, but all winters must come to end." As her people board the ships, she adds, "I will be going on first trip to Asgard, but I must rejoin my folk. Thank you for this, and we shall speak again at our new home."`
+				accept
 	npc accompany save
 		government "Deep Security"
 		personality timid escort
@@ -3469,7 +3470,7 @@ mission "Skadenga Call 1"
 	on offer
 		dialog
 			`There is a new message in your inbox from Hjlod, one of the Skadenga you helped relocate to <planet>.`
-			`	<first>, we need your help. Come to <planet>, and have space for 52 souls.`
+			`	"<first>, we need your help. Come to <planet>, and have space for 52 souls."`
 
 
 
@@ -3708,8 +3709,8 @@ event "hroar message"
 
 
 mission "Home for Skadenga 10"
-	name "Head Back to <planet>"
 	landing
+	name "Head Back to <planet>"
 	to offer
 		has "event: hroar message"
 		has "dealwithhroar"
@@ -3719,12 +3720,13 @@ mission "Home for Skadenga 10"
 		not planet "Muspel"
 	destination "Muspel"
 	on offer
-		dialog
+		conversation
 			`Your inbox blinks with a new message from Hroar on <planet>.`
-			`	'Everything is ready. Get back here.`
+			`	"Everything is ready. Get back here.`
 			`				-Hroar`
 			`			CEO of Hardy Hroar's Haulers`
-			`			"We're an unstoppable force that has never met an immovable object!"`
+			`			'We're an unstoppable force that has never met an immovable object!'"`
+				accept
 
 
 
@@ -3765,7 +3767,7 @@ mission "Home for Skadenga 11"
 conversation "land at windblain"
 	scene "scene/seasidecliffs"
 	`The reserved and limited government of Windblain pays neither you nor your fleet any heed as you make your way down to the outskirts of Hrithfjall. An empty, windswept landscape beneath gray clouds and a small group of weathered fishermen are waiting for you outside your ship.`
-	`	"I thought I'd be seeing you again," Aldfrith says at the front of his small delegation. "I dreamt that ice rained down upon the seas, and that Ran was glad of it." The creases in his face bunch up as he smiles at the memory, and then his eyes wander to the disembarking Skadenga. A moment later, The Ondurdis joins you.`
+	`	"I thought I'd be seeing you again," Aldfrith says at the front of his small delegation. "I dreamt that ice rained down upon the seas, and that Ran was glad of it." The creases in his face bunch up as he smiles at the memory, and then his eyes wander to the disembarking Skadenga. A moment later, the Ondurdis joins you.`
 	`	"So, you are the ice that falls from the stars?" asks Aldfrith with a hint of mirth in his eyes.`
 	`	"We are Skadenga, daughters of Skade. Mistresses of ice, mountain, and cold. But, I think now, she sends us to her sister Ran." The Ondurdis replies.`
 	`	Aldfrith nods slowly. "We are the folk of Ran; the offspring of the surf, the students of the wind, and the watchers of the storm. We welcome you and your people here. Though there are few here at present, many more of our number can be found out amongst the surging seas." He glances at the growing number of Skadenga. "If you follow me, I will escort you to our village and show you what buildings you may use. Though I fear we can not house so many."`
@@ -3787,7 +3789,7 @@ mission "Home for Skadenga 12"
 	to offer
 		has "Home for Skadenga 11: done"
 	on offer
-		dialog
+		conversation
 			`The fleet touches down just outside the crowded village of Udainsakr. The landscape is filled with the gathered Skadenga.`
 			`	The Ondurdis approaches you. "Leaving is difficult, but all winters must come to end." She watches as her people climb aboard the fleet. "I will be taking first trip to Windblain, but I must rejoin my folk. Thank you for this, and we shall speak again at our new home."`
 			`	She leaves you with a warm smile in the wintry village.`
@@ -3823,7 +3825,7 @@ mission "Home for Skadenga Captain"
 	to offer
 		has "refusedhroar"
 	on offer
-		dialog
+		conversation
 			`Your fleet touches down just outside of the crowded village of Udainsakr. The landscape is filled with the gathered Skadenga.`
 			`	The Ondurdis approaches you. "Leaving is difficult, but all winters must come to end." She looks curiously at your fleet. "This I did not expect. These are not Transport Union. These are yours? You brought your own fleet to help us?"`
 			`	You smile and shrug, letting her know that sometimes you just have to do things yourself. She shakes her head. "You are full of surprises, <first>. Perhaps I'll surprise you someday as well."`
@@ -3972,12 +3974,12 @@ event "hjlod waits"
 
 
 mission "Stones of Skadenga 2"
+	landing
 	name "Stones of Skadenga"
 	description "Take the mourning Skadenga to <stopovers>, so that they can enact the rites of their dead, then return them to <planet>. Payment is <payment>."
 	source "Windblain"
 	stopover "Nifel"
 	passengers 8
-	landing
 	to offer
 		has "event: skadenga mourners"
 		has "Stones of Skadenga 1: done"
@@ -4031,6 +4033,7 @@ mission "Stone-Bearers to Nifel"
 
 
 mission "Hjlod Remembers Windblain"
+	landing
 	name "Hjlod Remembers"
 	description `Hjlod wishes to meet with you again on <planet>.`
 	source
@@ -4043,9 +4046,9 @@ mission "Hjlod Remembers Windblain"
 	on offer
 		dialog
 			`Your inbox hums with a new message from <planet>:`
-			`	Dear <first>,`
+			`	"Dear <first>,`
 			`	I never properly thanked you for saving my life on Nifel all those years ago. If you're ever in the neighborhood, please stop by <planet>.`
-			`				Signed, Hjlod`
+			`				Signed, Hjlod"`
 	on complete
 		outfit "Tear of Skade"
 		conversation
@@ -4060,6 +4063,7 @@ mission "Hjlod Remembers Windblain"
 
 
 mission "Hjlod Remembers Nifel"
+	landing
 	name "Hjlod Remembers"
 	description `Hjlod wishes to meet with you again on <planet>.`
 	source
@@ -4072,9 +4076,9 @@ mission "Hjlod Remembers Nifel"
 	on offer
 		dialog
 			`Your inbox hums with a new message from Nifel.`
-			`	Dear <first>,`
+			`	"Dear <first>,`
 			`	I never properly thanked you for saving my life all those years ago. If you're ever in the neighborhood, please stop by <planet>.`
-			`				Signed, Hjlod`
+			`				Signed, Hjlod"`
 			
 	on complete
 		outfit "Tear of Skade"
@@ -4082,9 +4086,9 @@ mission "Hjlod Remembers Nifel"
 			`Nifel is colder than you remember. The snow is deeper, and the ice harder. Despite this, the small recolonized settlement of Udainsakr appears to be thriving. Although it started with less than 50 Skadenga, thanks to the steady flow of pilgrims, the village population now numbers over a thousand.`
 			`	Hjlod finds you and gives you a small smile. "I am glad you came."`
 			`	She reaches into her pocket and pulls out a small wooden box, similar to the one you saw displayed at Asgard years ago. "I have been thinking," Hjlod says. "Maybe all this vas vill of Skade. Maybe you took us to Asgard to make us stronger, to make us better. It is bitter lesson, but I understand it now."`
-			`	She holds out the box. "This is tear of Skadenga. Only few ever found, and this I give to you. For saving my life, for bringing us back here, for making us stronger."`
+			`	She holds out the box. "This is Tear of Skade. Only few ever found, and this I give to you. For saving my life, for bringing us back here, for making us stronger."`
 			scene "outfit/skadetear"
-			`	The box opens, displaying a small, blue glowing rock. "This is Tear of Skade. Alvays makes cold. Alvays. Useful on hot ship. Keep this vith you, and know Skadenga vith you too," Hjlod says, handing it to you.`
+			`	The box opens, displaying a small, blue glowing rock. "Alvays makes cold. Alvays. Useful on hot ship. Keep this vith you, and know Skadenga vith you too," Hjlod says, handing it to you.`
 			`	Her eyes water, and she wipes them. "Your story is forever chiseled on our stones."`
 			`	She turns and leaves you there, holding a Tear of Skade, and shivering in Nifel's unforgiving cold.`
 
