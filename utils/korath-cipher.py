@@ -58,7 +58,8 @@
 #
 # There are a few words with standard translations you'll need to apply manually:
 #
-# human => humanika                             (both Exile and Efreti)
+# humans => humanika                            (Exile, Efreti, and Quarg)
+# human (noun, member of species) => humani     (Exile, Efreti, and Quarg)
 # Quarg => Kuwaru                               (Efreti)
 # Drak => Drak                                  (both Exile and Efreti)
 # Ember Space => Nraol Alaj                     (Exile)
