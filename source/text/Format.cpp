@@ -57,18 +57,22 @@ namespace {
 		size_t formatStart, size_t formatSize, size_t conditionStart, size_t conditionSize)
 	{
 		int64_t value = getter(source, conditionStart, conditionSize);
+		auto IsFormat = [&source, formatStart, formatSize](const char *format)
+		{
+			return !source.compare(formatStart, formatSize, format);
+		};
 		if(formatStart == string::npos || formatSize == string::npos)
 			result.append(Format::Number(value));
-		else if(!source.compare(formatStart, formatSize, "raw"))
+		else if(IsFormat("raw"))
 			result.append(to_string(value));
-		else if(!source.compare(formatStart, formatSize, "credits"))
+		else if(IsFormat("credits"))
 			result.append(Format::CreditString(value)); // 1 credit, 2 credits, etc.
-		else if(!source.compare(formatStart, formatSize, "scaled"))
+		else if(IsFormat("scaled"))
 			result.append(Format::Credits(value)); // 35, 35k, 35M, etc.
-		else if(!source.compare(formatStart, formatSize, "tons"))
+		else if(IsFormat("tons"))
 			result.append(Format::MassString(value)); // X tons or X ton
-		else if(!source.compare(formatStart, formatSize, "playtime"))
-			result.append(Format::PlayTime(value));
+		else if(IsFormat("playtime"))
+			result.append(Format::PlayTime(value)); // 3d 19h 24m 8s
 		else
 			// "number" or unsupported format
 			result.append(Format::Number(value));
