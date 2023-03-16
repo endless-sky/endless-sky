@@ -32,8 +32,7 @@ using namespace std;
 
 
 SpaceportPanel::SpaceportPanel(PlayerInfo &player)
-	: player(player)
-	, ui(*GameData::Interfaces().Get("spaceport"))
+	: player(player), ui(*GameData::Interfaces().Get("spaceport"))
 {
 	SetTrapAllEvents(false);
 

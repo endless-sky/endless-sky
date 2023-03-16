@@ -1015,7 +1015,7 @@ interface "hiring"
 
 interface "trade"
 	box "content"
-		from -310 78 to 190 355
+		from -310 80 to 190 355
 
 	line
 		center -60 95

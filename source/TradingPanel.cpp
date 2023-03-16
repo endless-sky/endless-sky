@@ -98,7 +98,7 @@ void TradingPanel::Draw()
 	const Color &back = *GameData::Colors().Get("faint");
 	int selectedRow = player.MapColoring();
 	if(selectedRow >= 0 && selectedRow < COMMODITY_COUNT)
-		FillShader::Fill(Point(MIN_X + 250., FIRST_Y + 20 * selectedRow + 33), Point(480., 20.), back);
+		FillShader::Fill(Point(MIN_X + box.Width()/2, FIRST_Y + 20 * selectedRow + 33), Point(480., 20.), back);
 
 	const Font &font = FontSet::Get(14);
 	const Color &unselected = *GameData::Colors().Get("medium");
