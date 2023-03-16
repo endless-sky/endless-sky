@@ -1263,19 +1263,20 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	// cargo name with something more specific.
 	if(!cargo.empty())
 	{
+		string expandedCargo = Phrase::ExpandPhrases(cargo);
 		const Trade::Commodity *commodity = nullptr;
-		if(cargo == "random")
+		if(expandedCargo == "random")
 			commodity = PickCommodity(*sourceSystem, *result.destination->GetSystem());
 		else
 		{
 			for(const Trade::Commodity &option : GameData::Commodities())
-				if(option.name == cargo)
+				if(option.name == expandedCargo)
 				{
 					commodity = &option;
 					break;
 				}
 			for(const Trade::Commodity &option : GameData::SpecialCommodities())
-				if(option.name == cargo)
+				if(option.name == expandedCargo)
 				{
 					commodity = &option;
 					break;
@@ -1284,7 +1285,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		if(commodity)
 			result.cargo = commodity->items[Random::Int(commodity->items.size())];
 		else
-			result.cargo = Phrase::ExpandPhrases(cargo);
+			result.cargo = expandedCargo;
 	}
 	// Pick a random cargo amount, if requested.
 	if(cargoSize || cargoLimit)
