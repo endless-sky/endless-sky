@@ -242,6 +242,7 @@ namespace {
 
 Engine::Engine(PlayerInfo &player)
 	: player(player), ai(ships, asteroids.Minables(), flotsam),
+	isMouseToggleEnabled(Preferences::Has("alt-mouse turning")),
 	ammoDisplay(player), shipCollisions(256u, 32u)
 {
 	zoom = Preferences::ViewZoom();
@@ -2046,7 +2047,7 @@ void Engine::HandleMouseInput(Command &activeCommands)
 	if(activeCommands.Has(Command::MOUSE_TURNING_TOGGLE))
 	{
 		isMouseToggleEnabled = !isMouseToggleEnabled;
-		Preferences::Set("alt-mouse turning", isMouseTurningEnabled);
+		Preferences::Set("alt-mouse turning", isMouseToggleEnabled);
 	}
 	// XOR mouse hold and mouse toggle. If mouse toggle is OFF, then mouse hold
 	// will temporarily turn ON mouse control. If mouse toggle is ON, then mouse
