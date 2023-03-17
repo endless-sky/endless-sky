@@ -1,0 +1,41 @@
+# Paradise Threatened
+
+mission "RN Analyze the Nukes"
+	Name "Analyze the Nukes"
+	description "Go to <destination> to drop the sensor readings off at Lovelace Labs to be analyzed."
+	source "Geminus"
+	destination "Ada"
+	on offer
+		conversation "Shah vs Melgrew"
+			`Amelia is engrossed in some kind of spreadsheet when you barge into her office and drop a datachip of scans from your fight with the Wolf Pack onto her desk. Her brows knit at this breach of protocol but she switches her display to show the data and you watch closely as her eyes widen and the colour drains from her face.`
+			`	“Is this… this can’t be right!" she says, flipping back and forth through the images. “Nukes? I... I almost believed them!"`
+			`	You remain quiet and let her process what she is seeing. It takes a while and so you make yourself comfortable on a recliner in the corner, just answering the occasional question when she wants a bit more context. Eventually she leans back on her chair shaking her head. You notice that she seems to have aged in the short time you have been here.`
+			`	“I need a little time to decide what to do. Please stay nearby, I'm going to need your help.“`
+			`	You nod and leave her alone in the office staring at the ceiling and go for a walk around the campus. The grounds of the headquarters buildings have been beautifully landscaped and it isn't difficult to find a nice green, quiet space to think.`
+			`	However you had felt about the Free Worlds before, it is clear now that they are worse than terrorists. Their protestations of innocence in the bombings of Geminus and Martini are obviously nothing more than a cynical attempt at political obfuscation. You try to distract yourself with cargo manifests while you wait, but the events of the past few days keep exploding back into your mind. Finally you get a prompt to return to the office where Commander Shah is waiting for you.`
+			`	“We can’t make any mistakes here," she says, “this is too important. This has to be passed up to the top, but we need to have the answers to every question that might be asked ready. I’ll talk to Anton but I already know what he’ll say, we need to get the data independently analysed and verified. We can’t risk broadcasting this, the data has to be physically taken to Ada, to Lovelace Labs. The fewer people who are in the loop the better.`
+			`	"<first>, you of all people know what is riding on this. Can you deliver the data, and make sure that it gets to the right hands at Lovelace Labs? I can’t send anyone from the Navy without drawing attention."`
+			`	You nod, understanding the importance of this task.`
+			`	"Good," Amelia says with a sigh of relief. "I'm counting on you to be discreet, I don't need to remind you of the consequences if this information falls into the wrong hands."`
+	on accept
+		log "I know Commander Melgrew wanted me to help out on Farpoint but the sensor readings of the nukes need to be analyzed before we react. Commander Shah has asked me to take them to Lovelace Labs on Ada. I just hope they can make some sense of it all."
+	on complete
+		dialog `As soon as you contact control you are told to land on a reserved pad some way from the main space port. When you land an aide is awaiting you and reverently loads the logs into a reinforced data case. She then tells you that they will contact you when the analysis is done, it will probably take a few days.`
+# I feel like there should be a timer on this mission. It just seems urgent.
+
+
+mission "RN Waiting for the Analysis"
+	minor
+	to offer
+		has "RN Analyze the Nukes: done"
+# Need to figure out how to set a timer.
+
+
+mission "Investigate the Source"
+		autosave
+		landing
+		name "Investigate the Source"
+		description "Track down the source of the plutonium used for the Free Worlds nukes."
+		source "Ada"
+		destination "Geminus"
+		waypoint "
