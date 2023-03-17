@@ -3,10 +3,11 @@
 mission "RN Analyze the Nukes"
 	Name "Analyze the Nukes"
 	description "Go to <destination> to drop the sensor readings off at Lovelace Labs to be analyzed."
+	deadline
 	source "Geminus"
 	destination "Ada"
 	on offer
-		conversation "Shah vs Melgrew"
+		conversation
 			`Amelia is engrossed in some kind of spreadsheet when you barge into her office and drop a datachip of scans from your fight with the Wolf Pack onto her desk. Her brows knit at this breach of protocol but she switches her display to show the data and you watch closely as her eyes widen and the colour drains from her face.`
 			`	“Is this… this can’t be right!" she says, flipping back and forth through the images. “Nukes? I... I almost believed them!"`
 			`	You remain quiet and let her process what she is seeing. It takes a while and so you make yourself comfortable on a recliner in the corner, just answering the occasional question when she wants a bit more context. Eventually she leans back on her chair shaking her head. You notice that she seems to have aged in the short time you have been here.`
@@ -18,24 +19,152 @@ mission "RN Analyze the Nukes"
 			`	You nod, understanding the importance of this task.`
 			`	"Good," Amelia says with a sigh of relief. "I'm counting on you to be discreet, I don't need to remind you of the consequences if this information falls into the wrong hands."`
 	on accept
-		log "I know Commander Melgrew wanted me to help out on Farpoint but the sensor readings of the nukes need to be analyzed before we react. Commander Shah has asked me to take them to Lovelace Labs on Ada. I just hope they can make some sense of it all."
+		log "Commander Melgrew wanted me to help out on Farpoint but the sensor readings of the nukes need to be analyzed before we react. Commander Shah has asked me to take them to Lovelace Labs on Ada. Hopefully they can make some sense of it all."
 	on complete
 		dialog `As soon as you contact control you are told to land on a reserved pad some way from the main space port. When you land an aide is awaiting you and reverently loads the logs into a reinforced data case. She then tells you that they will contact you when the analysis is done, it will probably take a few days.`
-# I feel like there should be a timer on this mission. It just seems urgent.
+	on complete
+		event "Analysis Complete"
 
 
-mission "RN Waiting for the Analysis"
+event "Analysis Complete" 5
+		
+
+mission "Return to Ada"
 	minor
 	to offer
-		has "RN Analyze the Nukes: done"
-# Need to figure out how to set a timer.
+		has "event: Analysis Complete"
+	on offer
+		dialog
+			`A message pings on your console. "The analysis is complete, Captain <last>. Please return to Ada as soon as possible."`
+		log "The analysis of the nukes used in Denebola is complete. Time to find out where they came from."
+	destination "Ada"
 
 
-mission "Investigate the Source"
-		autosave
-		landing
-		name "Investigate the Source"
-		description "Track down the source of the plutonium used for the Free Worlds nukes."
-		source "Ada"
-		destination "Geminus"
-		waypoint "
+mission "Investigate the Source A"
+	autosave
+	landing
+	name "Investigate the Source"
+	description "Track down the source of the plutonium used for the Free Worlds nukes."
+	deadline
+	passengers 1
+	priority
+	source "Ada"
+	infiltrating
+	destination "Lodestone"
+	to offer
+		has "Return to Ada: done"
+	blocked `A message comes through from Commander Shah, "Captain <last>, thank you for sticking with us. I have just received word that you will have a passenger for the next part of the mission so please make sure you have room for them."`
+	on offer
+		conversation
+			`	As soon as you land a transport pulls up outside of the hatch of your ship and a small contingent of technicians start unloading equipment, supervised by a man in a generic-looking business suit. The man notices you watching and approaches, pulling out a badge identifying him as an agent of Republic Intelligence.`
+			choice
+				`	"Republic Intelligence? Isn't that an oxymoron?"`
+				`	"What's this all about?"`
+					goto friendly
+				`	Wait for him to introduce himself.`
+					goto friendly
+			`	The agent stares blankly at you and as he does so you start to notice just how much muscle is bulking up his jacket. He doesn't blink and eventually you have to look away.`
+			goto friendly
+				label friendly
+			`	"Captain <last>?" the man asks, studying your face intently.`
+			`	"I am Agent Norris, I have been assigned to this case by Parliament. As you can imagine they are very interested in getting results as quickly as possible."`
+			choice
+				`	Nod.`
+				`	"As am I."`
+				`	"I work faster alone."`
+			`	He turns away and waves the technicians past you onto the ship.`
+			`	"They will sweep the vessel for bugs," he says, "it won't take long. As soon as they are done we can be on our way. I will brief you as we go."`
+		log `Agent Norris of Republic Intelligence will tag along as we search for the source of the Wolf Pack nukes.`
+	on enter "Aldebaran"
+		conversation
+			`	As soon as you break atmosphere Agent Norris is at your shoulder.`
+			`	"The analysis seems to confirm a Syndicate origin," he says grimly. "There are only a few worlds with plutonium mines where they would have had a chance of avoiding Republic inspectors. Our mission is to get soil samples form each of them."`
+			choice
+				`	"What if the Syndicate don't want to let us?"`
+				`	"Sounds easier said than done."`
+			`	"We can't afford any delay here, we need to shut this down before they can build up an arsenal. We will be landing directly at each of the mines and moving on as soon as we have the sample. We will not be asking permission."
+			choice
+				`	"Sounds good to me."`
+					goto end
+				`	"I don't want to take on the entire syndicate fleet! In my experience ignoring traffic control makes planetary militias trigger-happy."`
+			`	"That's why I'm here," Agent Norris says. "We will be carrying out a warrant. The only way they could legally stop us would be to file an injunction with the Supreme Court, and we're not going to give them time to do that."
+			label end
+			`	He points to a system on your nav screen.`
+			`	"Our first stop is <destination>, Captain. Let's get moving."`
+	on complete
+		conversation
+			`	Your descent to the surface of <destination> is violently bumpy, the turbulence threatening to send the <ship> hurtling out of control. As soon as it becomes clear that you are not heading towards the small landing site, your com system lights up with warnings.`
+			`	"Uh, <ship>, please be advised that you are in restricted airspace. Divert to the heading indicated immediately."`
+			`	Agent Norris steps calmly forward and presses the button to respond.
+			`	"<destination> control," he says, his voice smooth as silk, completely unlike his usual gravelly rumble. "This is <ship>, currently acting on parliamentary orders. I am transmitting a warrant which allows us to act as we see fit. I understand that you will want to check it with your superiors, so be my guest."`
+			`	He cuts the comms and then leans over the nav screen, his eyes narrowed as he searches for the mine.`
+			`	"There," he says, pointing to a cluster of machinery at the foot of an old lava flow. "Take us in, Captain."`
+			`	The <ship> touches down and Agent Norris already has a mask on and the sampling tool in his hand. He jumps out of the hatch before the ramp has even finished extending and then pushes the tool into the ground, where it immediately separates and then seals around a sample. He strides back up the ramp and hits the button to seal the hatch.`
+			`	"That's it, Captain," he says as soon as he has taken off the breath mask. "Break atmosphere and we can move on to the next location."`
+
+
+mission "Investigate the Source B"
+	autosave
+	landing
+	name "Investigate the Source"
+	description "Track down the source of the plutonium used for the Free Worlds nukes."
+	deadline
+	passengers 1
+	priority
+	source "Lodestone"
+	infiltrating
+	destination "Placer"
+	to offer
+		has "Investigate the Source A: done"
+	on offer
+		conversation
+			`	It is a relief to be back in space, where you are significantly less likely to be hit by a lava bomb. Agent Norris calls up the star chart and selects the next destination.`
+			`	"<destination> next, Captain," he says. "We should expect a little more pushback this time as the warrant won't be a complete surprise. Don't worry though, they can't get an injunction this quickly."`
+	on complete
+		conversation
+			
+
+
+mission "Investigate the Source C"
+	autosave
+	landing
+	name "Investigate the Source"
+	description "Track down the source of the plutonium used for the Free Worlds nukes."
+	deadline
+	passengers 1
+	priority
+	source "Placer"
+	infiltrating
+	destination "Quicksilver"
+	to offer
+		has "Investigate the Source B: done"
+
+
+mission "Investigate the Source D"
+	autosave
+	landing
+	name "Investigate the Source"
+	description "Track down the source of the plutonium used for the Free Worlds nukes."
+	deadline
+	passengers 1
+	priority
+	source "Quicksilver"
+	infiltrating
+	destination "Bluestone"
+	to offer
+		has "Investigate the Source C: done"
+
+
+mission "Investigate the Source E"
+	autosave
+	landing
+	name "Investigate the Source"
+	description "Track down the source of the plutonium used for the Free Worlds nukes."
+	deadline
+	passengers 1
+	priority
+	source "Bluestone"
+	infiltrating
+	destination "Ada"
+	to offer
+		has "Investigate the Source D: done"
