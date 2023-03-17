@@ -163,7 +163,7 @@ namespace {
 				cout << ship.Cost() << ',';
 
 				auto mass = attributes.Mass() ? attributes.Mass() : 1.;
-				cout << attributes.Get("shields") << ',';
+				cout << ship.MaxShields() << ',';
 				cout << attributes.Get("hull") << ',';
 				cout << mass << ',';
 				cout << attributes.Get("drag") << ',';
@@ -218,7 +218,7 @@ namespace {
 				cout << ship.Cost() << ',';
 
 				auto mass = attributes.Mass() ? attributes.Mass() : 1.;
-				cout << attributes.Get("shields") << ',';
+				cout << ship.MaxShields() << ',';
 				cout << attributes.Get("hull") << ',';
 				cout << mass << ',';
 				cout << attributes.Get("required crew") << ',';

@@ -128,7 +128,7 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 		shieldFraction = (1. - piercing) / (1. + ship.DisruptionLevel() * .01);
 
 		damage.shieldDamage = (weapon.ShieldDamage()
-			+ weapon.RelativeShieldDamage() * attributes.Get("shields"))
+			+ weapon.RelativeShieldDamage() * ship.MaxShields())
 			* ScaleType(0., attributes.Get("shield protection"));
 		if(damage.shieldDamage > shields)
 			shieldFraction = min(shieldFraction, shields / damage.shieldDamage);

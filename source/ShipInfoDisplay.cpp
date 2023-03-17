@@ -168,13 +168,13 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	if(hasShieldRegen)
 	{
 		attributeLabels.push_back("shields (charge):");
-		attributeValues.push_back(Format::Number(attributes.Get("shields"))
+		attributeValues.push_back(Format::Number(ship.MaxShields())
 			+ " (" + Format::Number(60. * shieldRegen) + "/s)");
 	}
 	else
 	{
 		attributeLabels.push_back("shields:");
-		attributeValues.push_back(Format::Number(attributes.Get("shields")));
+		attributeValues.push_back(Format::Number(ship.MaxShields()));
 	}
 	attributesHeight += 20;
 	double hullRepair = attributes.Get("hull repair rate")
