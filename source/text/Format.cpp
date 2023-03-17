@@ -57,10 +57,12 @@ namespace {
 		size_t formatStart, size_t formatSize, size_t conditionStart, size_t conditionSize)
 	{
 		int64_t value = getter(source, conditionStart, conditionSize);
+
 		auto IsFormat = [&source, formatStart, formatSize](const char *format)
 		{
 			return !source.compare(formatStart, formatSize, format);
 		};
+
 		if(formatStart == string::npos || formatSize == string::npos)
 			result.append(Format::Number(value));
 		else if(IsFormat("raw"))

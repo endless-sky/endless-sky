@@ -32,7 +32,7 @@ namespace { // test namespace
 // to help test this class/method.
 	std::map<std::string, int64_t> conditions = {
 		{ "zero", 0 }, // "0"
-		{ "negative", -5 }, // "5"
+		{ "negative", -5 }, // "-5"
 		{ "positive", 61 }, // "61"
 		{ "mass test", 4361000 }, // "4,361,000 tons"
 		{ "scaled test", 3361000000 }, // "3.361B"
