@@ -797,7 +797,7 @@ mission "<uhai> 2: Prove Your Strength"
 	to offer
 		or
 			has "Wanderers: Defend Vara Ke'sok: failed"
-			random < "Unfettered Jump Drive 1: offered" * 10 + "Unfettered Jump Drive 2: offered" * 15 + "Unfettered Jump Drive 3: offered" * 20 + "Unfettered Jump Drive 4: failed" * 25
+			random < "Unfettered Jump Drive 1: offered" * 20 + "Unfettered Jump Drive 2: offered" * 25 + "Unfettered Jump Drive 3: offered" * 30 + "Unfettered Jump Drive 4: failed" * 25
 		# 3 is what a default built Sea Scorpion has
 		"armament deterrence" >= 3
 	on offer
