@@ -39,7 +39,7 @@ namespace { // test namespace
 		{ "raw test", 1810244 }, // "1810224"
 		{ "big test", 30103010301 }, // "30,103,010,301"
 		{ "credits test", -2361000 }, // "-2.361M credits"
-		{ "playtime test", 5000000 }, // "??"
+		{ "playtime test", 5000000 }, // "50d 11h 23m 20s"
 		{ "balanced[][[]][]", 4361000 }, // 4361000, 4,361,000, 4.361M, 4.361M credits, 4,361,000 tons, 50d 11h 23m 20s
 		{ "balanced at [[@]]", 33104 }, // "33,104"
 		{ "@", 38 } // "38"
