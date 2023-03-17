@@ -3335,13 +3335,13 @@ double Ship::DisabledHull() const
 // Get the maximum shield and hull values of the ship, accounting for multipliers.
 double Ship::MaxShields() const
 {
-	return attributes.Get("shields") * max(1., attributes.Get("shield multiplier"));
+	return attributes.Get("hull") * (1 + attributes.Get("shield multiplier"));
 }
 
 
 double Ship::MaxHull() const
 {
-	return attributes.Get("hull") * max(1., attributes.Get("hull multiplier"));
+	return attributes.Get("hull") * (1 + attributes.Get("hull multiplier"));
 }
 
 
