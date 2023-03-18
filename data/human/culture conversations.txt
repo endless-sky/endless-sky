@@ -345,7 +345,7 @@ mission "Local Politics"
 	minor
 	source
 		attributes "frontier"
-		not attributes "station"
+		not attributes "station" "urban"
 	to offer
 		or
 			and
