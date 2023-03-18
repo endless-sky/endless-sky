@@ -1289,7 +1289,7 @@ mission "<uhai> 16: Strength Of A Leader"
 					to display
 						not "unfettered: weapon choice"
 					goto weapon
-				`	"I am honoured, but I don't have any more questions."`
+				`	"I am honored, but I don't have any more questions."`
 					goto clearconditions
 			action
 				set "unfettered: sword choice"
