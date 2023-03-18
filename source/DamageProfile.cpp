@@ -136,7 +136,7 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 			permeability = max((fullPermeability * shieldPortion) +
 				(lowPermeability * (1. - shieldPortion)), 0.);
 		}
-		shieldFraction = (1. - min((piercing + permeability), 1.)) /
+		shieldFraction = (1. - min(piercing + permeability, 1.)) /
 			(1. + ship.DisruptionLevel() * .01);
 
 		damage.shieldDamage = (weapon.ShieldDamage()
