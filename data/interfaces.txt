@@ -629,7 +629,7 @@ interface "hud"
 		size 1.5
 	
 	visible if "range display"
-	sprite "ui/range"
+	sprite "ui/tactical/range"
 		from 130 263
 		align top left
 	string "target range"
@@ -637,7 +637,7 @@ interface "hud"
 		align top left
 
 	visible if "strategic range display"
-	sprite "ui/range"
+	sprite "ui/tactical/range"
 		from 2 255
 		align top left
 	string "target range"
