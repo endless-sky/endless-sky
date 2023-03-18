@@ -474,13 +474,17 @@ string Format::ExpandConditions(const string &source, ConditionGetter getter)
 		// This would be faster with a nested select, but that would be
 		// harder to read, and I don't expect this to be performance-critical.
 		if(state == OUTER && next == PREFIX)
-			state = PREFIX;
-		else if(state == OUTER || (state == PREFIX && next != LPAREN))
 		{
-			result.append(source, start, look - start + 1);
-			start = look + 1;
-			state = OUTER;
+			if(look > start)
+			{
+				result.append(source, start, look - start);
+				start = look;
+			}
+			state = PREFIX;
 		}
+		else if(state == OUTER || (state == PREFIX && next != LPAREN))
+			// Accumulate one character to print outside of any &[@]
+			state = OUTER;
 		else if(state == PREFIX && next == LPAREN)
 		{
 			formatStart = formatSize = conditionStart = conditionSize = string::npos;
