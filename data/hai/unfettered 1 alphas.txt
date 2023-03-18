@@ -1098,7 +1098,7 @@ mission "<uhai> 8: It's The Alphas"
 			label "okay boy!"
 			action
 				set "unfettered: it's the Alphas!"
-			`The coordinates lead you to an enclave on the fringes of town. It's an outdoor beer garden and the regulars eye you with suspicion. You order a drink and grab a table. No one approaches you, so you just look around and watch people come and go. The only thing that catches your eye is a mural painted on the wall of the building opposite. It reminds you of ancient illustrations you've seen of a knight fighting a dragon. But in this version, the knight is wearing light battle armor and hovering with some kind of jet pack. His lance is made of a stream of shots from a Hai pulse rifle. You can't see wings on the dragon, but it has a weapon firing bright red lines of what must be plasma.`
+			`The coordinates lead you to an enclave on the fringes of town. It's an outdoor beer garden, and the regulars eye you with suspicion. You order a drink and grab a table. No one approaches you, so you just look around and watch people come and go. The only thing that catches your eye is a mural painted on the wall of the building opposite. It reminds you of ancient illustrations you've seen of a knight fighting a dragon. But in this version, the knight is wearing light battle armor and hovering with some kind of jet pack. His lance is made of a stream of shots from a Hai pulse rifle. You can't see wings on the dragon, but it has a weapon firing bright red lines of what must be plasma.`
 			`	You order another drink and look at the mural in more detail. You nearly choke on your drink when you realise that the exposed face and hands of the knight are green.`
 				decline
 			label "dead, boy!"
