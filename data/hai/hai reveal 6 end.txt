@@ -645,3 +645,12 @@ event "hai-human resolution announced"
 	system "Almach"
 		remove fleet "Smuggler (Hai Traffickers)"
 
+
+mission "Hai Reveal [C05b] Danforth is Available"
+	landing
+	invisible
+	to offer
+		has "event: hai-human resolution announced"
+		"Danforth in mission sequence" == 1
+	on offer
+		"Danforth in mission sequence" = 0

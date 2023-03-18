@@ -1013,6 +1013,9 @@ mission "Wanderers: Truce Check"
 		has "main plot completed"
 		has "event: wanderers: truce timer"
 		not "Wanderers: Jump Drive Source: offered"
+
+		# Make it less likely player will have a Danforth scheduling conflict.
+		not "Danforth in mission sequence"
 	source
 		government "Wanderer"
 		near "Ka'ch'chrai" 1 100
@@ -1517,15 +1520,44 @@ mission "Wanderers: Alpha Surveillance E"
 			`	"Can you think of any other option?" he says.`
 			`	"There's a branch of the Navy called the 'Oathkeepers,'" you tell him, "led by Admiral Danforth. If there is anyone in the Navy whom we can trust, it's them."`
 			label danforth
+			branch "Hai Reveal"
+				"Danforth in mission sequence" == 1
+			action
+				# Danforth mission sequence 2 is the Alpha Hunt
+				"Danforth in mission sequence" = 2
 			`	"Danforth?" says Elias. "William Danforth? The Hero of Hope? He's still in the service?" You nod. "Well then yes, let's go to him," says Elias.`
 			`	He comes back aboard your ship, and you prepare to travel to Danforth's base on <destination>.`
 				accept
-	
+			label "Hai Reveal"
+			`	"Danforth?" says Elias. "William Danforth? The Hero of Hope? He's still in the service?"`
+			choice
+				`	"Yes, but he's busy with the Hai-human troubles now."`
+			`	"Well, best resolve that as quickly as possible, then. I'll wait for you here."`
+				decline
 	on visit
 		dialog `You've landed on <planet>, but you realize that Elias is on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive before meeting with Admiral Danforth.`
 	on complete
-		conversation
-			`Admiral Danforth is very pleased to see you, but his expression turns grim when you explain why you have come. When you mention the Alphas, he hushes you. "Let's not speak of that, out here in the open," he says. "Not that I do not trust my people, but it is best to be safe. I will gather troops who I know are able to operate discreetly and have them be ready to join us on an expedition. Meet me in my private office at the spaceport when you're ready."`
+		conversation "Danforth Alpha Surveillance E"
+
+
+mission "Wanderers: Alpha Surveillance E (Hai Reveal Delayed)"
+	name "Visit Danforth"
+	description "Visit Admiral Danforth on <planet> and see if he is able to supply you with an attack force to locate and destroy the Alpha base."
+	source "Alta Hai"
+	destination "Farpoint"
+	passengers 1
+	to offer
+		has "Wanderers: Alpha Surveillance D: done"
+		has "Wanderers: Alpha Surveillance E: declined"
+		has ""
+	on offer
+		
+	on complete
+		conversation "Danforth Alpha Surveillance E"
+
+
+conversation "Danforth Alpha Surveillance E"
+	`Admiral Danforth is very pleased to see you, but his expression turns grim when you explain why you have come. When you mention the Alphas, he hushes you. "Let's not speak of that, out here in the open," he says. "Not that I do not trust my people, but it is best to be safe. I will gather troops who I know are able to operate discreetly and have them be ready to join us on an expedition. Meet me in my private office at the spaceport when you're ready."`
 
 
 
@@ -1537,7 +1569,9 @@ mission "Wanderers: Alpha Surveillance F"
 	destination "Avalon"
 	passengers 1
 	to offer
-		has "Wanderers: Alpha Surveillance E: done"
+		or
+			has "Wanderers: Alpha Surveillance E: done"
+			has "Wanderers: Alpha Surveillance E (Hai Reveal Delayed): done"
 	
 	on offer
 		log "Admiral Danforth agreed to bring his Cruiser to the planet in Korath space where the Alphas seem to be hiding, with enough troops and equipment to launch an assault on the base."
@@ -1734,6 +1768,17 @@ mission "Wanderers: Alpha Surveillance I"
 				accept
 	on visit
 		dialog `You've landed on <planet>, but you realize that Elias is on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
+
+
+
+mission "Wanderers: Alpha Surveillance done with Danforth"
+	landing
+	invisible
+	to offer
+		has "Wanderers: Alpha Surveillance I: offered"
+		"Danforth in mission sequence" == 2
+	on offer
+		"Danforth in mission sequence" == 0
 
 
 
