@@ -111,6 +111,7 @@ mission "Coalition: Contributor"
 	description "Return to the <planet> to see if the Heliarchs will grant you a higher status in the Coalition now that you have been working among them for some time."
 	to offer
 		"coalition jobs" >= 30
+		not "license: Coalition"
 	source
 		government "Coalition"
 	destination "Ring of Friendship"
@@ -157,7 +158,7 @@ mission "lost in coalition"
 	source
 		government "Coalition" "Heliarch"
 	to offer
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 	on offer
 		require "Jump Drive" 0
 		event "lost in coalition" 14
@@ -237,7 +238,7 @@ mission "Coalition Yottrite 1"
 	name "More Yottrite"
 	description "You were offered great payment for bringing three more samples of the rare mineral yottrite to <destination>."
 	to offer
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 	to complete
 		has "Coalition Yottrite 2: offered"
 	source
@@ -333,7 +334,7 @@ mission "Coalition Yottrite 3"
 				`	"That's gotta be the shortest courier mission I've ever heard of. Can't some other ship do the trip?"`
 					goto soitwouldseem
 			label insidecrate
-			`	"Older samples that you've brought to us, they contain. Experimented with, the Yottrite was. Unsure of the details, I am."`
+			`	"Older samples that you've brought to us, they contain. Experimented with, the yottrite was. Unsure of the details, I am."`
 				goto end
 			label soitwouldseem
 			`	"For you to carry them, the overseer asked. Why you in particular, unsure I am."`
@@ -357,7 +358,7 @@ mission "Coalition Yottrite 3"
 
 mission "Coalition Yottrite 4"
 	name "Yottrite Research"
-	description "Lugglop, one of the Arachi that oversees the mining operations in Bloptab, asked that you pick up some friends of his on <destination> so that they may help with the Yottrite research."
+	description "Lugglop, one of the Arachi that oversees the mining operations in Bloptab, asked that you pick up some friends of his on <destination> so that they may help with the yottrite research."
 	to offer
 		has "Coalition Yottrite 3: done"
 	source "Delve of Bloptab"
@@ -382,7 +383,7 @@ mission "Coalition Yottrite 4"
 
 mission "Coalition Yottrite 5"
 	name "Saryd Specialists"
-	description "Transport the twins Nasilor and Alituri to <destination>, where they will assist in the Yottrite research."
+	description "Transport the twins Nasilor and Alituri to <destination>, where they will assist in the yottrite research."
 	passengers 2
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	to offer
@@ -405,7 +406,7 @@ mission "Coalition Yottrite 5"
 
 mission "Coalition Yottrite 6"
 	name "Master Shipwright"
-	description "Head to <destination> to pick up a member of House Mallob so that they may help in trying to apply Yottrite to an alloy."
+	description "Head to <destination> to pick up a member of House Mallob so that they may help in trying to apply yottrite to an alloy."
 	landing
 	to offer
 		has "Coalition Yottrite 5: done"
@@ -425,7 +426,7 @@ mission "Coalition Yottrite 6"
 
 mission "Coalition Yottrite 7"
 	name "Master Shipwright"
-	description "Bring Pichiie to <destination>, where she will join Lugglop's team in their Yottrite research."
+	description "Bring Pichiie to <destination>, where she will join Lugglop's team in their yottrite research."
 	passengers 1
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	landing
@@ -492,7 +493,7 @@ mission "Coalition Yottrite 8"
 	destination "Pelubta Station"
 	on offer
 		conversation
-			`When you land, you receive a message from Lugglop, the Arach to whom you brought several Yottrite samples.`
+			`When you land, you receive a message from Lugglop, the Arach to whom you brought several yottrite samples.`
 			`	"Captain, some major findings, we have. Preparing a presentation about our research, to present in Ring of Wisdom, we are," he says. "Only, run out of pure samples, we have. Bring us one once more, would you? Willing to pay slightly more for the inconvenience, we are. <payment>."`
 			choice
 				`	"Okay, I'll bring you a piece of yottrite once again."`
@@ -509,7 +510,7 @@ mission "Coalition Yottrite 8"
 
 mission "Coalition Yottrite 9"
 	name "Yottrite Presentation"
-	description "Transport Lugglop and his team, alongside <cargo>, to the <destination>, where they will share with the Coalition's scientific community their findings on Yottrite."
+	description "Transport Lugglop and his team, alongside <cargo>, to the <destination>, where they will share with the Coalition's scientific community their findings on yottrite."
 	passengers 6
 	cargo "yottrite presentation materials" 6.14
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
@@ -758,7 +759,7 @@ mission "Coalition Outbreak 1"
 	passengers 75
 	cargo "medical supplies" 90
 	to offer
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 		random < 5
 	source
 		near "1 Axis" 1 6
@@ -983,7 +984,7 @@ mission "Saryd Census 1"
 	description "Transport these <bunks> Saryd census workers to <destination>, where they will collect data on the population growth there."
 	passengers 17
 	to offer
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 		random < 40
 	source
 		attributes saryd
@@ -1311,7 +1312,7 @@ mission "Arachi Orphans"
 	passengers 5
 	cargo "orphanage belongings" 2
 	to offer
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 		random < 45
 	source
 		attributes arach
@@ -1530,7 +1531,7 @@ mission "Saryd University Lecture"
 				`	"Sorry, I don't have time."`
 					decline
 			label low
-			`	"Nonsense! Travel the galaxy, you do. A most knowledgable individual, surely you must be. Accept my offer, will you?"`
+			`	"Nonsense! Travel the galaxy, you do. A most knowledgeable individual, surely you must be. Accept my offer, will you?"`
 			choice
 				`	"Sure, I'd be glad to."`
 					goto yes
@@ -1692,7 +1693,7 @@ mission "Coalition: Pilgrimage 1"
 	description "Bring Vellorae to <destination>, where she will begin her mourning pilgrimage for her late husband."
 	passengers 1
 	to offer
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 	source "Bright Echo"
 	destination "Saros"
 	on offer
@@ -1741,7 +1742,7 @@ mission "Coalition: Pilgrimage 2"
 				`	"If you're okay with me going, I'd be glad to accompany you."`
 				`	"Sorry, I'm not in the mood for a mourning ritual."`
 					goto skip
-			`	Together you follow the streets out of the spaceport city and into a park filled with several different forms of trees twisting upon themselves; some reach far up to the skies while others anchor most of their branches into the ground. The trail brings you to a large clearing, where dozens of Saryds are gathered by a circle of tall, rocky pillars with an altar at the center. Many of the Saryds there are dressed in delicate fabrics of dark greens or ochre colors. Some of them are grouped into pairs that seem to be young couples, while others appear to simply be passing visitors to the shrine.`
+			`	Together you follow the streets out of the spaceport city and into a park filled with several different forms of trees twisting upon themselves; some reach far up to the skies while others anchor most of their branches into the ground. The trail brings you to a large clearing, where dozens of Saryds are gathered by a circle of tall, rocky pillars with an altar at the center. Many of the Saryds there are dressed in delicate fabrics of dark greens or ocher colors. Some of them are grouped into pairs that seem to be young couples, while others appear to simply be passing visitors to the shrine.`
 			`	Once the sun peeks over the tree tops and into the clearing, the visitors move away from the pillars and the altar while the couples line up and walk to it one at a time. There they remain for a few minutes, speaking to one another, before moving aside for the next pair. "Exchanging their vows, they are," Vellorae explains. "Our most popular wedding locations, the shrines here on the capital are."`
 			choice
 				`	"I thought this was a shrine for mourning the dead?"`
@@ -1960,7 +1961,7 @@ mission "Coalition: Council of Ahr"
 	description "Bring the representatives of houses Ablomab, Bebliss, and Chamgar to <destination> by <date>, so that they may participate in the Council of Ahr."
 	deadline 30
 	to offer
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 		random < 50
 		"month" < 3
 	source
@@ -3111,3 +3112,58 @@ mission "Coalition: Outskirts Gauger Ready"
 			`	While the Arachi work on the outfit, she explains that they used the probe's algorithms to have the scanners excel at finding basic energy signatures, such as heat or energy levels of other ships. "Made to check for complex machinery like outfits, or recognize specific cargo types, it was not, but still find uses for its current form, I'm sure you will."`
 			`	When everything's ready, you two head back inside your ship, and the elevator brings you back up. You fly back to the main landing area, and she pulls close to you just before you open your hatch. "Now, still... experimental, the outfit is, and provide the Heliarchs with a potentially faulty product, we do not wish. So, naturally, not yet registered it with them, we have. Provide you with more copies, we cannot, so careful not to lose this one, you should be." She thanks you again for helping out, and leaves for her workplace.`
 				decline
+
+
+
+mission "Heliarchs Buy Jump Drive Mission"
+	minor
+	landing
+	invisible
+	to offer
+		has "known to the heliarchs"
+		has "outfit (cargo): Jump Drive"
+	source
+		government "Heliarch"
+	on offer
+		conversation
+			`Your ship has barely touched down in the <origin> when several dozen Heliarch warships of all sizes start landing around it. The local garrison wastes no time in hailing you. "Captain <last>, our esteemed friend. Noticed it was that in your possession an extra jump drive is. Aid us tremendously any extra copies would, so if willing to sell your spare to us you are, thank you with <payment> we will." Many Heliarchs leave their ships, staring at the <ship> as they eagerly wait for your decision.`
+			choice
+				`	(Accept the deal.)`
+					goto accept
+				`	(No, you're not interested.)`
+			`	"Regrettable that is," the Heliarch voice hailing you says with great disappointment. "If ever change your mind you do, prepared, a special job request will be, for when a spare jump drive you bring. Recommend it we do that our offer you carefully consider, Captain. Very generous in rewarding you for any and all copies you bring us, we would be."`
+				decline
+			label accept
+			`	They thank you profusely, and as if collectively told about the decision in an instant, all the Heliarch personnel stop gawking, and make space for an army of engineers to come and remove the spare jump drive from your ship. Still watching the scene, only now in formations, the Heliarch agents whisper among themselves, rarely shifting their eyes, as if looking at a spectacle.`
+			`	Once the drive is out of your ship, it is secured in an excessively reinforced container and transported to a restricted section of the ring, under the guard of hundreds of armed soldiers. One of the Heliarchs who seem to be in charge of the procedure, an Arach, personally comes to you, thanking you again and handing you <payment>. "Honor us you do with such generosity, Captain. Though made great progress in studying jump drives and their mechanisms, we have, still incapable of creating our own, we are, and means of acquiring new copies we have not. Tremendously valuable, each and every drive you could bring us is, so prepare special job requests for them, I will. If interested in selling any more jump drives, you are, check the job boards in the rings, from now on you should."`
+			branch license
+				"coalition jobs" < 30
+			`	She thanks you yet again, salutes, and leaves to follow the entourage guarding the newly purchased jump drive.`
+				accept
+			label license
+			action
+				"reputation: Coalition" += 10
+				"reputation: Heliarch" += 10
+				set "license: Coalition"
+				log "Sold a Jump Drive to the Heliarchs and received permission to purchase Coalition civilian technology and ships."
+				log "Factions" "Saryds" `Saryds are an alien species who look suspiciously similar to the centaurs found in early human mythology. They prefer to live on worlds with as much green space as possible, and even their major cities are full of parks and gardens. Most Saryds live in small communes with up to a few dozen of them per house.`
+				log "Factions" "Kimek" `The Kimek are large insectoid aliens, and are members of the Coalition. They discovered spaceflight after the Saryds, but before the Arachi. They are intensely social creatures, preferring to live together in massive buildings with thousands of inhabitants, and many of their worlds have populations in the tens of billions, far more than any human world.`
+				log "Factions" "Arachi" `The spider-like Arachi were the last of the three Coalition species to discover interstellar travel. Most members of their society owe allegiance to one of the great Arach "Houses," organizations that are somewhat similar to guilds and that each specialize in one particular form of industry or technology.`
+			`	She thanks you yet again, salutes, and leaves to follow the entourage guarding the newly purchased jump drive. Not a minute after she has left, three more Heliarchs arrive at your ship, a delegation consisting of a member of each of the three Coalition species, all wearing golden circlets denoting their rank and authority. "A most unexpected, but greatly value contribution this is," the Saryd says, "to think that so eager would our visitor be to prove their diligence and commitment."`
+			`	The Kimek says, "As aided you have our society in breaking free of the Quarg's cages, with our society's technology may you be trusted."`
+			`	"But," says the Arach, "like all civilians, even citizens, to you our weapons and warships we still cannot sell."`
+			choice
+				`	"Thank you."`
+					goto end
+				`	"Why don't you allow civilians to purchase weapons or warships?"`
+			`	"For the sake of peace it is," says the Saryd. "The Heliarch military, well trained to use weapons only for defense and only for justice, they are. And to place the needs of the Coalition over the ambitions of their own native species, each one committed is. No such discipline do civilians have, even you. But as a respectful guest you are, to maintain your weapons we shall allow."`
+			label end
+			`	Apparently nothing is for sale here, but they assure you that many Coalition worlds will now grant you access to their shipyards and outfitters. The three Heliarchs all express their deep gratitude for your generosity with providing them a fresh jump drive, and wish you well.`
+				accept
+
+
+	on accept
+		"coalition jobs" >?= 30
+		outfit "Jump Drive" -1
+		payment 5000000
+		fail

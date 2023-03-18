@@ -252,7 +252,7 @@ outfit "RG3 Torch Steering"
 	"steering flare sprite" "effect/vi flare/large"
 		"frame rate" 2.3
 	"steering flare sound" "ion torch large"
-	description `The oldest steering system used in Gegno space, RG3 Torch thrusters can only fit on the largest Gegno vessels, and are rarely seen as a result.`
+	description `The oldest steering system used in Gegno space, RG3 Torch Thrusters can only fit on the largest Gegno vessels, and are rarely seen as a result.`
 
 
 outfit "SC-1 Plasma Engines"
@@ -612,7 +612,7 @@ outfit "Ballistic Cannon Turret"
 		"hull damage" 970
 		"hit force" 360
 		"missile strength" 18
-	description `As the largest caliber cannon in the Gegno Vi's arsenal, Ballistic Cannons require a lot of work to be fitted on even the largest of ships. A huge, self-sustaining base with its own vent ports is necessary for one of these cannons to even be fitted on a turret mount, provided there are crew to operate it. Combining destructive force with adjustable aim, Ballisic Cannon Turrets are the deadliest weapons of Vi warships.`
+	description `As the largest caliber cannon in the Gegno Vi's arsenal, Ballistic Cannons require a lot of work to be fitted on even the largest of ships. A huge, self-sustaining base with its own vent ports is necessary for one of these cannons to even be fitted on a turret mount, provided there are crew to operate it. Combining destructive force with adjustable aim, Ballistic Cannon Turrets are the deadliest weapons of Vi warships.`
 
 effect "ballistic fire"
 	sprite "effect/balfire"
@@ -752,6 +752,8 @@ outfit "Guile Pulse Laser"
 
 outfit "Excavator"
 	category "Guns"
+	licenses
+		"Gegno Civilian"
 	cost 500000
 	"thumbnail" "outfit/excavator"
 	"mass" 42
@@ -790,6 +792,8 @@ effect "drilling"
 outfit "Savagery Bludgeon"
 	category "Guns"
 	cost 10000
+	licenses
+		"Vi Evocati"
 	thumbnail "outfit/unknown"
 	"mass" 10
 	"outfit space" -10
@@ -816,6 +820,9 @@ effect "bludgeon impact"
 
 outfit "Savagery Pike"
 	category "Hand to Hand"
+	licenses
+		"Vi Evocati"
+		"Vi Centurion"
 	cost 13000
 	thumbnail "outfit/savagery pike"
 	"capture attack" .9
@@ -825,6 +832,8 @@ outfit "Savagery Pike"
 
 outfit "Irate Carronade"
 	category "Hand to Hand"
+	licenses
+		"Vi Centurion"
 	cost 39000
 	thumbnail "outfit/irate carronade"
 	"mass" 3
@@ -835,6 +844,8 @@ outfit "Irate Carronade"
 	
 outfit "Plasmasickle"
 	category "Hand to Hand"
+	licenses
+		"Scin Hoplologist"
 	cost 11000
 	thumbnail "outfit/plasmasickle"
 	"capture attack" .7
@@ -845,12 +856,14 @@ outfit "Plasmasickle"
 outfit "Plasma Grenades"
 	plural "Plasma Grenades"
 	category "Hand to Hand"
+	licenses
+		"Scin Hoplologist"
 	cost 60000
 	thumbnail "outfit/plasma grenades"
 	"capture attack" 1.9
 	"capture defense" 1.2
 	"unplunderable" 1
-	description `With development of more plasma-based weaponry, the Scin invented their own type of grenades using plasma to create powerful explosions. They are effective at clearing out large groups of enemies and are less of a hazard than unpredictable fragmentation grenades, allowing them to be a bit more reliable for defensive use. These grenades are kept in odd magentic storage devices that prevent them from accidentally detonating - except on rare occasions.`
+	description `With development of more plasma-based weaponry, the Scin invented their own type of grenades using plasma to create powerful explosions. They are effective at clearing out large groups of enemies and are less of a hazard than unpredictable fragmentation grenades, allowing them to be a bit more reliable for defensive use. These grenades are kept in odd magnetic storage devices that prevent them from accidentally detonating - except on rare occasions.`
 	
 
 

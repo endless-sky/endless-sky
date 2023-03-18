@@ -1263,19 +1263,20 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	// cargo name with something more specific.
 	if(!cargo.empty())
 	{
+		const string expandedCargo = Phrase::ExpandPhrases(cargo);
 		const Trade::Commodity *commodity = nullptr;
-		if(cargo == "random")
+		if(expandedCargo == "random")
 			commodity = PickCommodity(*sourceSystem, *result.destination->GetSystem());
 		else
 		{
 			for(const Trade::Commodity &option : GameData::Commodities())
-				if(option.name == cargo)
+				if(option.name == expandedCargo)
 				{
 					commodity = &option;
 					break;
 				}
 			for(const Trade::Commodity &option : GameData::SpecialCommodities())
-				if(option.name == cargo)
+				if(option.name == expandedCargo)
 				{
 					commodity = &option;
 					break;
@@ -1284,7 +1285,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		if(commodity)
 			result.cargo = commodity->items[Random::Int(commodity->items.size())];
 		else
-			result.cargo = cargo;
+			result.cargo = expandedCargo;
 	}
 	// Pick a random cargo amount, if requested.
 	if(cargoSize || cargoLimit)
@@ -1308,7 +1309,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	result.paymentApparent = paymentApparent;
 	result.illegalCargoFine = illegalCargoFine;
-	result.illegalCargoMessage = illegalCargoMessage;
+	result.illegalCargoMessage = Phrase::ExpandPhrases(illegalCargoMessage);
 	result.failIfDiscovered = failIfDiscovered;
 
 	int jumps = result.CalculateJumps(sourceSystem);
@@ -1331,8 +1332,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
 	substitutions.Substitutions(subs, player.Conditions());
 	subs["<commodity>"] = result.cargo;
-	subs["<tons>"] = to_string(result.cargoSize) + (result.cargoSize == 1 ? " ton" : " tons");
-	subs["<cargo>"] = subs["<tons>"] + " of " + subs["<commodity>"];
+	subs["<tons>"] = Format::MassString(result.cargoSize);
+	subs["<cargo>"] = Format::CargoString(result.cargoSize, subs["<commodity>"]);
 	subs["<bunks>"] = to_string(result.passengers);
 	subs["<passengers>"] = (result.passengers == 1) ? "passenger" : "passengers";
 	subs["<fare>"] = (result.passengers == 1) ? "a passenger" : (subs["<bunks>"] + " passengers");
@@ -1352,16 +1353,23 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	// Stopovers: "<name> in the <system name> system" with "," and "and".
 	if(!result.stopovers.empty())
 	{
+		string stopovers;
 		string planets;
 		const Planet * const *last = &*--result.stopovers.end();
 		int count = 0;
 		for(const Planet * const &planet : result.stopovers)
 		{
 			if(count++)
-				planets += (&planet != last) ? ", " : (count > 2 ? ", and " : " and ");
-			planets += planet->Name() + " in the " + planet->GetSystem()->Name() + " system";
+			{
+				string result = (&planet != last) ? ", " : (count > 2 ? ", and " : " and ");
+				stopovers += result;
+				planets += result;
+			}
+			stopovers += planet->Name() + " in the " + planet->GetSystem()->Name() + " system";
+			planets += planet->Name();
 		}
-		subs["<stopovers>"] = planets;
+		subs["<stopovers>"] = stopovers;
+		subs["<planet stopovers>"] = planets;
 	}
 	// Waypoints: "<system name>" with "," and "and".
 	if(!result.waypoints.empty())
@@ -1442,10 +1450,10 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		result.genericOnEnter.emplace_back(action.Instantiate(subs, sourceSystem, jumps, payload));
 
 	// Perform substitution in the name and description.
-	result.displayName = Format::Replace(displayName, subs);
-	result.description = Format::Replace(description, subs);
-	result.clearance = Format::Replace(clearance, subs);
-	result.blocked = Format::Replace(blocked, subs);
+	result.displayName = Format::Replace(Phrase::ExpandPhrases(displayName), subs);
+	result.description = Format::Replace(Phrase::ExpandPhrases(description), subs);
+	result.clearance = Format::Replace(Phrase::ExpandPhrases(clearance), subs);
+	result.blocked = Format::Replace(Phrase::ExpandPhrases(blocked), subs);
 	result.clearanceFilter = clearanceFilter;
 	result.hasFullClearance = hasFullClearance;
 
