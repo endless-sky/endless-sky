@@ -5429,48 +5429,7 @@ mission "Deal Change 2"
 			label skip
 			`	After a few minutes, the pirates finish unloading the cargo, and Ci steps forward, holding out a credit chip. "<payment>, for making the right choice." Ci and the pirates return to their ships as you take off and head towards the main spaceport of <planet>.`
 
-mission "Escort offer (Generic South)"
-	repeat
-	deadline
-	name "Escort to <planet>"
-	description "The captain of the <npc> has offered to fly alongside you, protecting you from pirates, on your way to <destination>."
-	source
-		attributes "dirt belt" "south" "rim"
-	destination
-		government "Free Worlds" "Syndicate" "Republic"
-		distance 5 8
-	to offer
-		"armament deterrence" <= 2
-		"cargo attractiveness" >= 2
-		random < 15
-	on offer
-		conversation
-			`As you are walking from your landing pad to the spaceport, you pass a cheerful man standing next to an impressively well-armed Bastion. He notices you, waves to you, and says "Hey, need some help with the local pirates? I'm on my way to <destination> at the moment, and I'd be happy to fly alongside your ship on the way for 15,000 credits, plus an extra 300 per day."`
-			choice
-				`	"Thank you, that would be perfect!"`
-				`	"Thanks for the offer, but I'm not headed that way."`
-					goto thanksbut
-			`	The man smiles as you hand over the credits. "Sure thing! We'll head out tomorrow."`
-				accept
-			label thanksbut
-			`	The man nods. "Fair enough, you just keep yourself safe out there, alright?"`
-			`	As you walk away, you see him make the same offer to the passing captain of a Hauler.`
-				decline
-	on accept
-		payment -15000
-	on daily
-		payment -300
-	on complete
-		conversation
-			`The captain of the <npc> waves you off cheerfully as you leave. "Have a great day, and stay safe out there!"`
-	npc accompany save
-		government "Merchant"
-		personality escort timid
-			confusion 20
-		fleet
-			names "civilian"
-			variant
-				"Bastion (Laser)"
+
 
 government "Escort (Betraying)"
 	"display name" "Merchant"
