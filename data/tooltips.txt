@@ -501,7 +501,7 @@ tip "full shield permeability:"
 	`This percentage of all incoming damage bypasses shields and applies directly to the hull when at full shields.`
 
 tip "low shield permeability:"
-	`This percentage of all incoming damage will bypass shields and apply directly to the hull as shields approach 0 (in practice, this number is never reached, because when shields are 0 all damage goes to the hull).`
+	`This percentage of all incoming damage will bypass shields and apply directly to the hull as shields approach zero.`
 
 tip "shields (charge):"
 	`Total shield strength and regeneration rate (per second).`
