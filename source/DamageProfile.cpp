@@ -116,8 +116,8 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	auto ScaleType = [&](double shieldBlocked, double hullBlocked, double protection)
 	{
 		return damage.scaling *
-			(((1. - shieldBlocked) * (1. - shieldFraction))
-			+ ((1. - hullBlocked) * (shieldFraction)))
+			(((1. - shieldBlocked) * (shieldFraction))
+			+ ((1. - hullBlocked) * (1. - shieldFraction)))
 			/ (1. + protection);
 	};
 
