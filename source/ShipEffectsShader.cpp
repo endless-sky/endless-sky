@@ -43,7 +43,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const Sprite *shieldHexOverlay;
 
 	Shader shader;
 	GLint scaleI;
