@@ -169,10 +169,9 @@ void Government::Load(const DataNode &node)
 				for(const DataNode &grand : child)
 				{
 					const string &grandKey = grand.Token(0);
-					bool hasGrandValue = grand.Size() >= 2;
-					if(grandKey == "max" && hasGrandValue)
+					if(grandKey == "max")
 						reputationMax = numeric_limits<double>::max();
-					else if(grandKey == "min" && hasGrandValue)
+					else if(grandKey == "min")
 						reputationMin = numeric_limits<double>::lowest();
 				}
 			}
