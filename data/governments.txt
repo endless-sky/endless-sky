@@ -1039,9 +1039,6 @@ government "Quarg"
 		"Quarg (Kor Efret)" 1
 		"Quarg (Gegno)" 1
 		"Merchant" .01
-		"Kor Efret" .01
-		"Kor Mereti" -.01
-		"Kor Sestor" -.01
 		"Hai" .01
 		"Hai (Wormhole Access)" .01
 		"Pirate" -.01
@@ -1070,9 +1067,6 @@ government "Quarg (Hai)"
 		"Quarg (Kor Efret)" 1
 		"Quarg (Gegno)" 1
 		"Merchant" .01
-		"Kor Efret" .01
-		"Kor Mereti" -.01
-		"Kor Sestor" -.01
 		"Hai" .01
 		"Hai (Wormhole Access)" .01
 		"Pirate" -.01
@@ -1100,14 +1094,9 @@ government "Quarg (Kor Efret)"
 		"Quarg" 1
 		"Quarg (Hai)" 1
 		"Quarg (Gegno)" 1
-		"Merchant" .01
 		"Kor Efret" .01
 		"Kor Mereti" -.01
 		"Kor Sestor" -.01
-		"Hai" .01
-		"Hai (Wormhole Access)" .01
-		"Pirate" -.01
-		"Pirate (Devil-Run Gang)" -.01
 	"death sentence" "quarg imprisonment"
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
@@ -1131,14 +1120,6 @@ government "Quarg (Gegno)"
 		"Quarg" 1
 		"Quarg (Hai)" 1
 		"Quarg (Kor Efret)" 1
-		"Merchant" .01
-		"Kor Efret" .01
-		"Kor Mereti" -.01
-		"Kor Sestor" -.01
-		"Hai" .01
-		"Hai (Wormhole Access)" .01
-		"Pirate" -.01
-		"Pirate (Devil-Run Gang)" -.01
 		"Gegno" 0.1
 	"foreign penalties for"
 		"Gegno"
