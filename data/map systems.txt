@@ -10477,7 +10477,7 @@ system Dixere
 
 system Dokdobaru
 	pos -21.5695 -241.812
-	government "Quarg (Efret)"
+	government "Quarg (Kor Efret)"
 	attributes "korath" "ringworld"
 	arrival 700
 	habitable 700

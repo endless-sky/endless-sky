@@ -266,7 +266,11 @@ mission "Quarg Ships Atrocity"
 	landing
 	invisible
 	source
-		government "Quarg"
+		or
+			government "Quarg"
+			government "Quarg (Hai)"
+			government "Quarg (Efret)"
+			government "Quarg (Gegno)"
 	to offer
 		or
 			has "ship model: Quarg Skylark"
