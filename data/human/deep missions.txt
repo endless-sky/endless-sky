@@ -2827,21 +2827,33 @@ mission "Home for Skadenga 1"
 			label questions
 			choice
 				`	"What happened to the researchers?"`
+					to display
+						not "skadenga: asked about researchers"
 				`	"Is it safe to drive over the ice?"`
+					to display
+						not "skadenga: asked about ice"
 					goto ice
 				`	"Are there sea-monsters beneath the ice?"`
+					to display
+						not "skadenga: asked about monsters"
 					goto monster
 				`	"Nope. No questions."`
 					goto noquestion
+			action
+				set "skadenga: asked about researchers"
 			`	"Long time ago. Researcher convoy look for bacterial pharmaceutical. Many researcher convoy in area. Most smart use native pathfinder, like me. This convoy, they not so smart, they say pathfinder waste of money. They go out in ice alone and they never come back."`
 			`	Hjlod shrugs. "Maybe they fall in ice. Maybe they get eaten by Ice-Slug. Maybe avalanche fall on them. Maybe fall on own veapon and die. Nobody ever find them. Tour-guide book say that some night you can see their ghost haunting ice. Tour-guide book dumb."`
 			`	"Any more question?"`
 				goto questions
 			label ice
+			action
+				set "skadenga: asked about ice"
 			`	"Very safe. Except when not. Ice always frozen, but sometime very thin. I can tell. You cannot. Trust Hjlod and you not drown and get eaten by Ice-Slug."`
 			`	"You have more question?"`
 				goto questions
 			label monster
+			action
+				set "skadenga: asked about monsters"
 			`	"Every world have animal. Some animal big, some small. Voolly octopus, mostly small. Size of this Ice-Crawler, only. Vorst in Glaesisvellir ice-plains is Ice-Slug. They can squeeze through tiniest hole in ice. This take long time, for they are as big as house. They have no teeth, too hard to squeeze through little hole, but they have acid spit. Put hole in Ice-Crawler, easy. They eat many foolish researcher and tourist."`
 			`	She smiles at you. "You're not foolish tourist. You are with Hjlod. You are safe."`
 			`	"Any more question?"`
