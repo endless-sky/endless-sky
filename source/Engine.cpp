@@ -763,6 +763,10 @@ void Engine::Step(bool isActive)
 	{
 		target = flagship->GetTargetShip();
 		targetAsteroid = flagship->GetTargetAsteroid();
+		// Record that the player knows this type of asteroid is available here.
+		if(targetAsteroid)
+			for(const auto &it : targetAsteroid->Payload())
+				player.Harvest(it.first);
 	}
 	if(!target)
 		targetSwizzle = -1;
