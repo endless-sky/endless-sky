@@ -280,7 +280,8 @@ mission "Quarg Pug Arfecta Warning"
 	minor
 	landing
 	source
-		attributes "quarg" "ringworld"
+		attributes "quarg"
+		attributes "ringworld"
 	to offer
 		has "First Contact: Quarg: offered"
 		has "ship model: Pug Arfecta"
