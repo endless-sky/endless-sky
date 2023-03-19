@@ -279,15 +279,21 @@ mission "Quarg Ships Atrocity"
 mission "Quarg Pug Arfecta Warning"
 	minor
 	landing
-	to offer
-		has "First Contact: Quarg: offered"
-		has "flagship model: Pug Arfecta"
 	source
 		attributes "quarg" "ringworld"
+	to offer
+		has "First Contact: Quarg: offered"
+		has "ship model: Pug Arfecta"
 	on offer
 		conversation
-			`As soon as you land your ship a crowd of visibly irritated Quarg start to gather around. As you go to disembark, you find a rather imposing Quarg blocking the exit while staring piercingly at you.`
-			`	"It is as though a baby in swaddling has tamed a dragon and now rides it through the sky spewing fire with reckless abandon," it says with a mix of amusement and disgust.`
+			branch flagship
+				has "flagship model: Pug Arfecta"
+			`As soon as you land, you see a crowd of Quarg gathering around one of your escorts, the Pug Arfecta. The captain of the ship looks shaken as the Quarg surround them, seemingly being questioned by a rather tall Quarg, even by Quarg standards. The captain looks around and, seeing you, points in your direction, causing the Quarg to come your way. The tall Quarg towers over you and gives you a piercing stare.`
+				goto choice
+			label flagship
+			`As soon as you land your ship, a crowd of Quarg start to gather around. As you go to disembark, you find a rather imposing Quarg blocking the exit. Tall even by Quarg standards, it towers over you and gives you a piercing stare.`
+			label choice
+			`	"It is as though a baby in swaddling has tamed a dragon and now rides it through the sky spewing fire with reckless abandon," it says while not breaking its gaze, unblinking.`
 			choice
 				`	"It's a long story..."`
 					goto evasive
@@ -298,7 +304,7 @@ mission "Quarg Pug Arfecta Warning"
 				`	"I saw something I liked, so I made it mine."`
 					goto greedy
 			label evasive
-			`	It scoffs, "It matters not how it happened."`
+			`	It scoffs, "It matters not how it happened.`
 				goto end
 			label righteous
 			`	"You fancy yourself a savior or a revolutionary then?" the Quarg says with what you assume is a sarcastic tone.`
@@ -307,12 +313,12 @@ mission "Quarg Pug Arfecta Warning"
 			`	"So you took it upon yourself to prove them wrong?" the Quarg says with an amused, incredulous smile.`
 				goto end
 			label greedy
-			`	"A baby in swaddling, as I said before."`
+			`	"A baby in swaddling, as I said before.`
 				goto end
 			label end
-			`	"We give you a warning. You know not what you have, child - the weapon you wield."`
-			`	"We have seen its power. We have felt its power. We have learned from its power. But you and your kind know nothing of this power and its burdens and dangers. Be careful that you are the one who directs this power, and not it you."`
+			`	"We give you a warning. You know not what you have, child - the weapon you wield.`
+			`	"We have seen its power. We have felt its power. We have learned from its power. But you and your kind know nothing of this power and its burdens and dangers. Be careful that you are the one who directs this power, and not it you.`
 			`	"And be careful to remember that we have learned how to overcome it."`
 			`	The Quarg curtly motions farewell then takes one last long look at your ship before leaving you to your business. The crowd too starts to disperse, with a few staying behind to gawk at it.`
-			`	As you make your way through the ring, you notice that many of the Quarg onboard glare at you with disgust.`
+			`	As you make your way through the ring, you notice that many of the Quarg onboard glare at you.`
 				decline
