@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "ShipInfoDisplay.h"
@@ -224,9 +227,14 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	attributeValues.push_back(string());
 	attributesHeight += 20;
 	attributeLabels.push_back("max speed:");
-	attributeValues.push_back(Format::Number(60. * forwardThrust / attributes.Get("drag")));
+	attributeValues.push_back(Format::Number(60. * forwardThrust / ship.Drag()));
 	attributesHeight += 20;
 
+	// Movement stats are influenced by inertia redeuction.
+	double reduction = 1. + attributes.Get("inertia reduction");
+	emptyMass /= reduction;
+	currentMass /= reduction;
+	fullMass /= reduction;
 	attributeLabels.push_back("acceleration:");
 	if(!isGeneric)
 		attributeValues.push_back(Format::Number(3600. * forwardThrust / currentMass));
@@ -362,7 +370,7 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const Depreciation &deprec
 
 	map<string, map<string, int>> listing;
 	for(const auto &it : ship.Outfits())
-		listing[it.first->Category()][it.first->Name()] += it.second;
+		listing[it.first->Category()][it.first->DisplayName()] += it.second;
 
 	for(const auto &cit : listing)
 	{

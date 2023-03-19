@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 
@@ -22,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
@@ -51,6 +55,9 @@ using namespace std;
 namespace {
 	constexpr int SIDE_WIDTH = 280;
 
+	// Hovering over sort buttons for this many frames activates the tooltip.
+	const int HOVER_TIME = 60;
+
 	// Check if the mission involves the given system,
 	bool Involves(const Mission &mission, const System *system)
 	{
@@ -77,7 +84,8 @@ namespace {
 	}
 
 	// Compute the required scroll amount for the given list of jobs/missions.
-	void DoScroll(const list<Mission> &missionList, const list<Mission>::const_iterator &it, double &sideScroll, bool checkVisibility)
+	void DoScroll(const list<Mission> &missionList, const list<Mission>::const_iterator &it,
+		double &sideScroll, bool checkVisibility)
 	{
 		// We don't need to scroll at all if the selection must be within the viewport. The current
 		// scroll could be non-zero if missions were added/aborted, so return the delta that will reset it.
@@ -119,6 +127,9 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	availableIt(player.AvailableJobs().begin()),
 	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end())
 {
+	// Re-do job sorting since something could have changed
+	player.SortAvailable();
+
 	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 		++acceptedIt;
 
@@ -136,20 +147,7 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 				break;
 	}
 
-	// Auto select the destination system for the current mission.
-	if(availableIt != available.end())
-	{
-		selectedSystem = availableIt->Destination()->GetSystem();
-		DoScroll(available, availableIt, availableScroll, false);
-	}
-	else if(acceptedIt != accepted.end())
-	{
-		selectedSystem = acceptedIt->Destination()->GetSystem();
-		DoScroll(accepted, acceptedIt, acceptedScroll, true);
-	}
-
-	// Center on the selected system.
-	CenterOnSystem(selectedSystem, true);
+	SetSelectedScrollAndCenter(true);
 }
 
 
@@ -163,6 +161,9 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
 	availableScroll(0), acceptedScroll(0), dragSide(0)
 {
+	// Re-do job sorting since something could have changed
+	player.SortAvailable();
+
 	// In this view, always color systems based on player reputation.
 	commodity = SHOW_REPUTATION;
 
@@ -184,6 +185,8 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 			if(FindMissionForSystem(*it))
 				break;
 	}
+
+	SetSelectedScrollAndCenter();
 }
 
 
@@ -201,6 +204,9 @@ void MissionPanel::Step()
 void MissionPanel::Draw()
 {
 	MapPanel::Draw();
+
+	// Update the tooltip timer [0-60].
+	hoverSortCount += hoverSort >= 0 ? (hoverSortCount < HOVER_TIME) : (hoverSortCount ? -1 : 0);
 
 	Color routeColor(.2f, .1f, 0.f, 0.f);
 	const System *system = selectedSystem;
@@ -229,11 +235,16 @@ void MissionPanel::Draw()
 	if(acceptedIt != accepted.end() && acceptedIt->Destination())
 		DrawMissionSystem(*acceptedIt, IsSatisfied(*acceptedIt) ? currentColor : blockedColor);
 
-	Point pos = DrawPanel(
-		Screen::TopLeft() + Point(0., -availableScroll),
-		"Missions available here:",
-		available.size());
-	DrawList(available, pos, availableIt);
+	Point pos;
+	if(player.GetPlanet())
+	{
+		pos = DrawPanel(
+			Screen::TopLeft() + Point(0., -availableScroll),
+			"Missions available here:",
+			available.size(),
+			true);
+		DrawList(available, pos, availableIt, true);
+	}
 
 	pos = DrawPanel(
 		Screen::TopRight() + Point(-SIDE_WIDTH, -acceptedScroll),
@@ -245,6 +256,7 @@ void MissionPanel::Draw()
 	DrawKey();
 	DrawSelectedSystem();
 	DrawMissionInfo();
+	DrawTooltips();
 	DrawButtons("is missions");
 }
 
@@ -255,7 +267,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 {
 	if(key == 'a' && CanAccept())
 	{
-		Accept();
+		Accept((mod & KMOD_CTRL));
 		return true;
 	}
 	else if(key == 'A' || (key == 'a' && (mod & KMOD_SHIFT)))
@@ -282,6 +294,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	else if(key == SDLK_UP)
 	{
 		SelectAnyMission();
+		// Select the previous mission, which may be at the end of the list.
 		if(availableIt != available.end())
 		{
 			// All available missions are, by definition, visible.
@@ -299,11 +312,13 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			} while(!acceptedIt->IsVisible());
 		}
 	}
-	else if(key == SDLK_DOWN && !SelectAnyMission())
+	else if(key == SDLK_DOWN)
 	{
-		// Keyed "Down," and didn't auto-select the first mission on a side,
-		// so update the existing selected mission.
-		if(availableIt != available.end())
+		if(SelectAnyMission())
+		{
+			// A mission was just auto-selected. Nothing else to do here.
+		}
+		else if(availableIt != available.end())
 		{
 			++availableIt;
 			if(availableIt == available.end())
@@ -323,17 +338,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 
 	// To reach here, we changed the selected mission. Scroll the active
 	// mission list, update the selected system, and pan the map.
-	if(availableIt != available.end())
-	{
-		selectedSystem = availableIt->Destination()->GetSystem();
-		DoScroll(available, availableIt, availableScroll, false);
-	}
-	else if(acceptedIt != accepted.end())
-	{
-		selectedSystem = acceptedIt->Destination()->GetSystem();
-		DoScroll(accepted, acceptedIt, acceptedScroll, true);
-	}
-	CenterOnSystem(selectedSystem);
+	SetSelectedScrollAndCenter();
 
 	return true;
 }
@@ -349,6 +354,34 @@ bool MissionPanel::Click(int x, int y, int clicks)
 
 	if(x < Screen::Left() + SIDE_WIDTH)
 	{
+		// Panel header
+		if(y + static_cast<int>(availableScroll) < Screen::Top() + 30)
+		{
+			dragSide = -1;
+			if(y + static_cast<int>(availableScroll) < Screen::Top() + 10)
+			{
+				// empty space
+				return false;
+			}
+			// Sorter buttons
+			else if(hoverSort >= 0)
+			{
+				if(hoverSort == 0)
+					player.ToggleSortSeparateDeadline();
+				else if(hoverSort == 1)
+					player.ToggleSortSeparatePossible();
+				else if(hoverSort == 2)
+				{
+					player.NextAvailableSortType();
+					tooltip.clear();
+				}
+				else if(hoverSort == 3)
+					player.ToggleSortAscending();
+				return true;
+			}
+			return false;
+		}
+		// Available missions
 		unsigned index = max(0, (y + static_cast<int>(availableScroll) - 36 - Screen::Top()) / 20);
 		if(index < available.size())
 		{
@@ -357,14 +390,13 @@ bool MissionPanel::Click(int x, int y, int clicks)
 				++availableIt;
 			acceptedIt = accepted.end();
 			dragSide = -1;
-			selectedSystem = availableIt->Destination()->GetSystem();
-			DoScroll(available, availableIt, availableScroll, false);
-			CenterOnSystem(selectedSystem);
+			SetSelectedScrollAndCenter();
 			return true;
 		}
 	}
 	else if(x >= Screen::Right() - SIDE_WIDTH)
 	{
+		// Accepted missions
 		int index = max(0, (y + static_cast<int>(acceptedScroll) - 36 - Screen::Top()) / 20);
 		if(index < AcceptedVisible())
 		{
@@ -376,9 +408,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			}
 			availableIt = available.end();
 			dragSide = 1;
-			selectedSystem = acceptedIt->Destination()->GetSystem();
-			DoScroll(accepted, acceptedIt, acceptedScroll, true);
-			CenterOnSystem(selectedSystem);
+			SetSelectedScrollAndCenter();
 			return true;
 		}
 	}
@@ -406,7 +436,33 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			else
 				acceptedIt = accepted.begin();
 		}
-		while(options--)
+
+		// When clicking a new system, select the first available mission
+		// (instead of continuing from wherever the iterator happens to be)
+		if((availableIt != available.end() && !Involves(*availableIt, system)) ||
+			(acceptedIt != accepted.end() && !Involves(*acceptedIt, system)))
+		{
+			auto firstExistingIt = find_if(available.begin(), available.end(),
+				[&system](const Mission &m) { return Involves(m, system); });
+
+			if(firstExistingIt != available.end())
+			{
+				availableIt = firstExistingIt;
+				acceptedIt = accepted.end();
+			}
+			else
+			{
+				firstExistingIt = find_if(accepted.begin(), accepted.end(),
+					[&system](const Mission &m) { return m.IsVisible() && Involves(m, system); });
+
+				if(firstExistingIt != accepted.end())
+				{
+					availableIt = available.end();
+					acceptedIt = firstExistingIt;
+				}
+			}
+		}
+		else while(options--)
 		{
 			if(availableIt != available.end())
 			{
@@ -480,17 +536,34 @@ bool MissionPanel::Drag(double dx, double dy)
 bool MissionPanel::Hover(int x, int y)
 {
 	dragSide = 0;
+	int oldSort = hoverSort;
+	hoverSort = -1;
 	unsigned index = max(0, (y + static_cast<int>(availableScroll) - 36 - Screen::Top()) / 20);
 	if(x < Screen::Left() + SIDE_WIDTH)
 	{
 		if(index < available.size())
+		{
 			dragSide = -1;
+
+			// Hovering over sort buttons
+			if(y + static_cast<int>(availableScroll) < Screen::Top() + 30 && y >= Screen::Top() + 10
+				&& x >= Screen::Left() + SIDE_WIDTH - 110)
+			{
+				hoverSort = (x - Screen::Left() - SIDE_WIDTH + 110) / 30;
+				if(hoverSort > 3)
+					hoverSort = -1;
+			}
+		}
 	}
 	else if(x >= Screen::Right() - SIDE_WIDTH)
 	{
 		if(static_cast<int>(index) < AcceptedVisible())
 			dragSide = 1;
 	}
+
+	if(oldSort != hoverSort)
+		tooltip.clear();
+
 	return dragSide ? true : MapPanel::Hover(x, y);
 }
 
@@ -502,6 +575,26 @@ bool MissionPanel::Scroll(double dx, double dy)
 		return Drag(0., dy * Preferences::ScrollSpeed());
 
 	return MapPanel::Scroll(dx, dy);
+}
+
+
+
+void MissionPanel::SetSelectedScrollAndCenter(bool immediate)
+{
+	// Auto select the destination system for the current mission.
+	if(availableIt != available.end())
+	{
+		selectedSystem = availableIt->Destination()->GetSystem();
+		DoScroll(available, availableIt, availableScroll, false);
+	}
+	else if(acceptedIt != accepted.end())
+	{
+		selectedSystem = acceptedIt->Destination()->GetSystem();
+		DoScroll(accepted, acceptedIt, acceptedScroll, true);
+	}
+
+	// Center on the selected system.
+	CenterOnSystem(selectedSystem, immediate);
 }
 
 
@@ -620,11 +713,13 @@ void MissionPanel::DrawMissionSystem(const Mission &mission, const Color &color)
 
 
 // Draw the background for the lists of available and accepted missions (based on pos).
-Point MissionPanel::DrawPanel(Point pos, const string &label, int entries) const
+Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool sorter) const
 {
 	const Color &back = *GameData::Colors().Get("map side panel background");
-	const Color &unselected = *GameData::Colors().Get("medium");
-	const Color &selected = *GameData::Colors().Get("bright");
+	const Color &text = *GameData::Colors().Get("medium");
+	const Color separatorLine = text.Opaque();
+	const Color &title = *GameData::Colors().Get("bright");
+	const Color &highlight = *GameData::Colors().Get("dim");
 
 	// Draw the panel.
 	Point size(SIDE_WIDTH, 20 * entries + 40);
@@ -651,11 +746,40 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries) const
 
 	const Font &font = FontSet::Get(14);
 	pos += Point(10., 10. + (20. - font.Height()) * .5);
-	font.Draw(label, pos, selected);
+
+	// Panel sorting
+	const Sprite *rush[2] = {
+			SpriteSet::Get("ui/sort rush include"), SpriteSet::Get("ui/sort rush separate") };
+	const Sprite *acceptable[2] = {
+			SpriteSet::Get("ui/sort unacceptable include"), SpriteSet::Get("ui/sort unacceptable separate") };
+	const Sprite *sortIcon[4] = {
+			SpriteSet::Get("ui/sort abc"), SpriteSet::Get("ui/sort pay"),
+			SpriteSet::Get("ui/sort speed"), SpriteSet::Get("ui/sort convenient") };
+	const Sprite *arrow[2] = {
+			SpriteSet::Get("ui/sort descending"), SpriteSet::Get("ui/sort ascending") };
+
+	// Draw Sorting Columns
+	if(entries && sorter)
+	{
+		SpriteShader::Draw(arrow[player.ShouldSortAscending()], pos + Point(SIDE_WIDTH - 15., 7.5));
+
+		SpriteShader::Draw(sortIcon[player.GetAvailableSortType()], pos + Point(SIDE_WIDTH - 45., 7.5));
+
+		SpriteShader::Draw(acceptable[player.ShouldSortSeparatePossible()], pos + Point(SIDE_WIDTH - 75., 7.5));
+
+		SpriteShader::Draw(rush[player.ShouldSortSeparateDeadline()], pos + Point(SIDE_WIDTH - 105., 7.5));
+
+		if(hoverSort >= 0)
+			FillShader::Fill(pos + Point(SIDE_WIDTH - 105. + 30 * hoverSort, 7.5), Point(22., 16.), highlight);
+	}
+
+	// Panel title
+	font.Draw(label, pos, title);
 	FillShader::Fill(
 		pos + Point(.5 * size.X() - 5., 15.),
 		Point(size.X() - 10., 1.),
-		unselected);
+		separatorLine);
+
 	pos.Y() += 5.;
 
 	return pos;
@@ -663,14 +787,16 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries) const
 
 
 
-Point MissionPanel::DrawList(const list<Mission> &list, Point pos,
-	const std::list<Mission>::const_iterator &selectIt) const
+Point MissionPanel::DrawList(const list<Mission> &list, Point pos, const std::list<Mission>::const_iterator &selectIt,
+	bool separateDeadlineOrPossible) const
 {
 	const Font &font = FontSet::Get(14);
 	const Color &highlight = *GameData::Colors().Get("faint");
 	const Color &unselected = *GameData::Colors().Get("medium");
 	const Color &selected = *GameData::Colors().Get("bright");
 	const Color &dim = *GameData::Colors().Get("dim");
+	const Sprite *fast = SpriteSet::Get("ui/fast forward");
+	bool separated = false;
 
 	for(auto it = list.begin(); it != list.end(); ++it)
 	{
@@ -678,6 +804,13 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos,
 			continue;
 
 		pos.Y() += 20.;
+		if(separateDeadlineOrPossible && !separated
+				&& ((player.ShouldSortSeparateDeadline() && it->Deadline())
+						|| (player.ShouldSortSeparatePossible() && !it->CanAccept(player))))
+		{
+			pos.Y() += 8.;
+			separated = true;
+		}
 
 		bool isSelected = it == selectIt;
 		if(isSelected)
@@ -685,6 +818,9 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos,
 				pos + Point(.5 * SIDE_WIDTH - 5., 8.),
 				Point(SIDE_WIDTH - 10., 20.),
 				highlight);
+
+		if(it->Deadline())
+			SpriteShader::Draw(fast, pos + Point(-4., 8.));
 
 		bool canAccept = (&list == &available ? it->CanAccept(player) : IsSatisfied(*it));
 		font.Draw({it->Name(), {SIDE_WIDTH - 11, Truncate::BACK}},
@@ -726,6 +862,56 @@ void MissionPanel::DrawMissionInfo()
 
 
 
+void MissionPanel::DrawTooltips()
+{
+	if(hoverSort < 0 || hoverSortCount < HOVER_TIME)
+		return;
+
+	// Create the tooltip text.
+	if(tooltip.empty())
+	{
+		if(hoverSort == 0)
+			tooltip = "Filter out missions with a deadline";
+		else if(hoverSort == 1)
+			tooltip = "Filter out missions that you can't accept";
+		else if(hoverSort == 2)
+		{
+			switch(player.GetAvailableSortType())
+			{
+				case 0:
+					tooltip = "Sort alphabetically";
+					break;
+				case 1:
+					tooltip = "Sort by payment";
+					break;
+				case 2:
+					tooltip = "Sort by distance";
+					break;
+				case 3:
+					tooltip = "Sort by convenience: "
+							"Prioritize missions going to a planet or system that is already a destination of one of your missions";
+					break;
+			}
+		}
+		else if(hoverSort == 3)
+			tooltip = "Sort direction";
+
+		hoverText.Wrap(tooltip);
+	}
+	if(!tooltip.empty())
+	{
+		// Add 10px margin to all sides of the text.
+		Point size(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
+		size += Point(20., 20.);
+		Point topLeft = Point(Screen::Left() + SIDE_WIDTH - 120. + 30 * hoverSort, Screen::Top() + 30.);
+		// Draw the background fill and the tooltip text.
+		FillShader::Fill(topLeft + .5 * size, size, *GameData::Colors().Get("tooltip background"));
+		hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
+	}
+}
+
+
+
 bool MissionPanel::CanAccept() const
 {
 	if(availableIt == available.end())
@@ -736,7 +922,7 @@ bool MissionPanel::CanAccept() const
 
 
 
-void MissionPanel::Accept()
+void MissionPanel::Accept(bool force)
 {
 	const Mission &toAccept = *availableIt;
 	int cargoToSell = 0;
@@ -747,16 +933,21 @@ void MissionPanel::Accept()
 		crewToFire = toAccept.Passengers() - player.Cargo().BunksFree();
 	if(cargoToSell > 0 || crewToFire > 0)
 	{
+		if(force)
+		{
+			MakeSpaceAndAccept();
+			return;
+		}
 		ostringstream out;
 		if(cargoToSell > 0 && crewToFire > 0)
 			out << "You must fire " << crewToFire << " of your flagship's non-essential crew members and sell "
-				<< cargoToSell << " tons of ordinary commodities to make room for this mission. Continue?";
+				<< Format::CargoString(cargoToSell, "ordinary commodities") << " to make room for this mission. Continue?";
 		else if(crewToFire > 0)
 			out << "You must fire " << crewToFire
 				<< " of your flagship's non-essential crew members to make room for this mission. Continue?";
 		else
-			out << "You must sell " << cargoToSell
-				<< " tons of ordinary commodities to make room for this mission. Continue?";
+			out << "You must sell " << Format::CargoString(cargoToSell, "ordinary commodities")
+				<< " to make room for this mission. Continue?";
 		GetUI()->Push(new Dialog(this, &MissionPanel::MakeSpaceAndAccept, out.str()));
 		return;
 	}

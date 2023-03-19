@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 minable "aluminum"
 	sprite "asteroid/silicon/spin"
@@ -19,7 +22,7 @@ minable "aluminum"
 
 outfit "Aluminum"
 	plural "Aluminum"
-	category "Special"
+	category "Minerals"
 	cost 1800
 	thumbnail "outfit/harvested aluminum"
 	"flotsam sprite" "effect/flotsam aluminum"
@@ -40,7 +43,7 @@ minable "copper"
 
 outfit "Copper"
 	plural "Copper"
-	category "Special"
+	category "Minerals"
 	cost 3000
 	thumbnail "outfit/harvested copper"
 	"flotsam sprite" "effect/flotsam copper"
@@ -61,7 +64,7 @@ minable "gold"
 
 outfit "Gold"
 	plural "Gold"
-	category "Special"
+	category "Minerals"
 	cost 8000
 	thumbnail "outfit/harvested gold"
 	"flotsam sprite" "effect/flotsam gold"
@@ -82,7 +85,7 @@ minable "iron"
 
 outfit "Iron"
 	plural "Iron"
-	category "Special"
+	category "Minerals"
 	cost 1200
 	thumbnail "outfit/harvested iron"
 	"flotsam sprite" "effect/flotsam iron"
@@ -103,7 +106,7 @@ minable "lead"
 
 outfit "Lead"
 	plural "Lead"
-	category "Special"
+	category "Minerals"
 	cost 900
 	thumbnail "outfit/harvested lead"
 	"flotsam sprite" "effect/flotsam lead"
@@ -124,7 +127,7 @@ minable "neodymium"
 
 outfit "Neodymium"
 	plural "Neodymium"
-	category "Special"
+	category "Minerals"
 	cost 3800
 	thumbnail "outfit/harvested neodymium"
 	"flotsam sprite" "effect/flotsam neodymium"
@@ -145,7 +148,7 @@ minable "platinum"
 
 outfit "Platinum"
 	plural "Platinum"
-	category "Special"
+	category "Minerals"
 	cost 10000
 	thumbnail "outfit/harvested platinum"
 	"flotsam sprite" "effect/flotsam platinum"
@@ -166,7 +169,7 @@ minable "silicon"
 
 outfit "Silicon"
 	plural "Silicon"
-	category "Special"
+	category "Minerals"
 	cost 400
 	thumbnail "outfit/harvested silicon"
 	"flotsam sprite" "effect/flotsam silicon"
@@ -187,7 +190,7 @@ minable "silver"
 
 outfit "Silver"
 	plural "Silver"
-	category "Special"
+	category "Minerals"
 	cost 6000
 	thumbnail "outfit/harvested silver"
 	"flotsam sprite" "effect/flotsam silver"
@@ -208,7 +211,7 @@ minable "titanium"
 
 outfit "Titanium"
 	plural "Titanium"
-	category "Special"
+	category "Minerals"
 	cost 2500
 	thumbnail "outfit/harvested titanium"
 	"flotsam sprite" "effect/flotsam titanium"
@@ -229,7 +232,7 @@ minable "tungsten"
 
 outfit "Tungsten"
 	plural "Tungsten"
-	category "Special"
+	category "Minerals"
 	cost 4500
 	thumbnail "outfit/harvested tungsten"
 	"flotsam sprite" "effect/flotsam tungsten"
@@ -250,7 +253,7 @@ minable "uranium"
 
 outfit "Uranium"
 	plural "Uranium"
-	category "Special"
+	category "Minerals"
 	cost 5000
 	thumbnail "outfit/harvested uranium"
 	"flotsam sprite" "effect/flotsam uranium"
@@ -271,14 +274,14 @@ minable "yottrite"
 
 outfit "Yottrite"
 	plural "Yottrite"
-	category "Special"
+	category "Minerals"
 	cost 200000
 	thumbnail "outfit/harvested yottrite"
 	"flotsam sprite" "effect/flotsam yottrite"
 	"mass" 3.14
 	"installable" -1
 	"minable" 1
-	description "An extraordinarily rare crystalline formation, forged over tens of thousands of years in the molecular clouds around supernova remnants. Although less advanced species can potentially harvest it, very few civilizations other than the Quarg have developed the technology needed to incorporate Yottrite in an alloy."
+	description "An extraordinarily rare crystalline formation, forged over tens of thousands of years in the molecular clouds around supernova remnants. Although less advanced species can potentially harvest it, very few civilizations other than the Quarg have developed the technology needed to incorporate yottrite in an alloy."
 
 
 
@@ -295,6 +298,7 @@ minable "plant"
 	explode "final explosion medium"
 
 minable "plant2"
+	"display name" "Plant"
 	sprite "asteroid/plant2/plant2"
 	hull 2340
 	"random hull" 520
@@ -322,6 +326,7 @@ minable "large plant"
 	explode "final explosion medium"
 
 minable "large plant2"
+	"display name" "Large Plant"
 	sprite "asteroid/large plant2/large plant2"
 	hull 3240
 	"random hull" 720
@@ -369,11 +374,24 @@ minable "large space flora"
 
 outfit "Void Orchid"
 	plural "Void Orchids"
-	category "Special"
+	category "Minerals"
 	cost 15000
 	thumbnail "outfit/harvested silicon"
 	"flotsam sprite" "effect/flotsam silicon"
 	"mass" 1
 	"installable" -1
 	"minable" 1
-	description "'Void orchid' is the generic term for a variety of strange, plant-like organisms that live primarily on asteroids. Due to the way they concentrate minerals from their host asteroid, they are valued both as scientific curiosities as well as for their mineral content."
+	description "'Void Orchid' is the generic term for a variety of strange, plant-like organisms that live primarily on asteroids. Due to the way they concentrate minerals from their host asteroid, they are valued both as scientific curiosities as well as for their mineral content."
+
+
+
+# Acheron Space-life Asteroids
+
+minable "unknown"
+	sprite "asteroid/bioroid/spin"
+	hull 1600
+	"random hull" 810
+	explode "smoke" 10
+	explode "bolide" 20
+	explode "blood" 10
+	explode "final explosion medium"

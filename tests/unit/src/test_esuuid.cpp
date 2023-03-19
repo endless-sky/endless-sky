@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "es-test.hpp"
@@ -37,7 +40,7 @@ namespace detail {
 namespace Catch {
 	template<>
 	struct StringMaker<EsUuid> {
-		static std::string convert(const EsUuid &value ) {
+		static std::string convert(const EsUuid &value) {
 			return value.ToString();
 		}
 	};
@@ -51,8 +54,14 @@ struct Identifiable {
 	const EsUuid &UUID() const noexcept { return id; }
 };
 struct InstantiableContainer : public Identifiable {
-	std::list<InstantiableContainer> items;
-	std::vector<InstantiableContainer> others;
+	std::vector<InstantiableContainer> items;
+	std::list<InstantiableContainer> others;
+
+	InstantiableContainer() noexcept = default;
+	InstantiableContainer(const InstantiableContainer &) noexcept = default;
+	InstantiableContainer &operator=(const InstantiableContainer &) noexcept = default;
+	InstantiableContainer(InstantiableContainer &&) noexcept = default;
+	InstantiableContainer &operator=(InstantiableContainer &&) noexcept = default;
 
 	std::vector<std::string> GetIds() const {
 		auto result = std::vector<std::string>{
@@ -289,9 +298,12 @@ SCENARIO( "Constructing uniquely identifiable objects", "[uuid][creation]" ) {
 	}
 
 	GIVEN( "multiple template identifiable objects" ) {
-		const auto parentIds = std::vector<std::string>{"0ac0837c-bbf8-452a-850d-79d08e667ca7", "33e28130-4e1e-4676-835a-98395c3bc3bb"};
-		const auto childIds = std::vector<std::string>{"4c5c32ff-bb9d-43b0-b5b4-2d72e54eaaa4", "c4900540-2379-4c75-844b-64e6faf8716b"};
-		const auto otherIds = std::vector<std::string>{"fd228cb7-ae11-4ae3-864c-16f3910ab8fe", "d9dc8a3b-b784-432e-a781-5a1130a75963"};
+		const auto parentIds = std::vector<std::string>
+			{"0ac0837c-bbf8-452a-850d-79d08e667ca7", "33e28130-4e1e-4676-835a-98395c3bc3bb"};
+		const auto childIds = std::vector<std::string>
+			{"4c5c32ff-bb9d-43b0-b5b4-2d72e54eaaa4", "c4900540-2379-4c75-844b-64e6faf8716b"};
+		const auto otherIds = std::vector<std::string>
+			{"fd228cb7-ae11-4ae3-864c-16f3910ab8fe", "d9dc8a3b-b784-432e-a781-5a1130a75963"};
 
 		std::map<unsigned, InstantiableContainer> collection;
 		collection.emplace(0U, MakeContainer(parentIds[0], childIds[0], otherIds[0]));
@@ -316,7 +328,7 @@ SCENARIO( "Constructing uniquely identifiable objects", "[uuid][creation]" ) {
 
 			THEN( "all IDs are unique" ) {
 				unsigned num = 1;
-				for (auto &&ic : results)
+				for(auto &&ic : results)
 				{
 					auto instanceIds = ic.GetIds();
 					for(auto &&id : instanceIds)

@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Intro [0]"
 	name "Passenger to <planet>"
@@ -60,7 +63,13 @@ mission "Intro [0]"
 			label end
 			`	"Great," he says. "My name is James, by the way."`
 			`	"<first> <last>," you say.`
+			branch MZ
+				has "name: Michael Zahniser"
 			`	"I'm looking forward to traveling with you, Captain <last>," says James.`
+				goto advice
+			label MZ
+			`	"<first> <last>?" he stops for a moment. "I've heard that name before. Reminds me of someone famous, I think," says James. "Anyways, I'm looking forward to traveling with you."`
+			label advice
 			`	As you're helping him wheel his luggage aboard and showing him his bunk, he says, "Before we take off, you might head on over to the trading center and stock up on medical goods; we can sell those for a good profit on <planet>. Also make sure to visit the local outfitter. While they don't sell much here compared to on the big manufacturing worlds, every world with an outfitter will at least carry a map with information on the neighboring systems. Buying them can help if you're not quite sure where you're going."`
 				accept
 	
@@ -213,7 +222,7 @@ mission "Intro [1 Freighter]"
 				`	"But what if I want to earn money more quickly than I can by trading?"`
 					goto quick
 			label pirates
-			`	"Some. That's why you can't just go traipsing around the galaxy in a fleet of unarmed star barges; every pirate within a week's travel will hear you're coming through and come after you. In the long term, having a few heavy freighters with good defenses is more cost effective than losing a star barge or two to the pirates on every journey."`
+			`	"Some. That's why you can't just go traipsing around the galaxy in a fleet of unarmed star barges; every pirate within a week's travel will hear you're coming through and come after you. In the long term, having a few heavy freighters with good defenses is more cost-effective than losing a star barge or two to the pirates on every journey."`
 				goto port
 			label quick
 			`	"There's no quick road to riches, kid. The more something pays, the riskier it is. If you need to make lots of money in a hurry, bounty hunting is the way to go, but nine out of ten pilots who give bounty hunting a try end up dead. And, no one's going to give you those sorts of missions until you've proved yourself in combat, anyway."`
@@ -375,7 +384,7 @@ mission "Intro [2 Interceptor]"
 	
 	on offer
 		conversation
-			`You find James in the spaceport bar, talking with a woman wearing a business suit. The expression on James's face is growing increasingly concerned as she speaks. Seeing you come in, he waves to you and you join them at the table.`
+			`You find James in the spaceport bar, talking with a woman wearing a business suit. The expression on James' face is growing increasingly concerned as she speaks. Seeing you come in, he waves to you and you join them at the table.`
 			`	"Hello <first>," says James. "This is Marissa, a senior manager at the mines." You shake hands with her.`
 			`	"Here's the deal," says Marissa. "Most of the gemstones we mine here are industrial grade, not pretty enough to be worth using as anything but sandpaper grit or drill bits. But every once in a while we happen on some higher quality gems. No one in this sector has the money to spend on jewelry, so we ship them north to the Paradise Worlds.`
 			`	"But in the past few months, every shipment we've sent has been attacked by a pirate ship, the Hammer of Thor. We don't have the money to pay a bounty hunter to take out the Hammer, so instead we're going to pay you to outrun it. Is the <ship> a fast ship?"`
@@ -389,7 +398,7 @@ mission "Intro [2 Interceptor]"
 				`	"Got it."`
 					accept
 				`	"I really shouldn't try to fight?"`
-			`	"It just isn't feasible," he says. "If a ship has turrets, your Sparrow can't get close enough to hit it with your guns without being damaged, and then it's just a matter of whose weapons and shields are stronger. And one heavy rocket hit could nearly disable you. Also, if it has anti-missile turrets, you can't count on hanging back and bombarding it with missiles from long distances, or at least not with weapons that can fit in a Sparrow. So, don't risk it. It's like rock paper scissors; recognize what your enemy's strengths and weaknesses are, as well as your own."`
+			`	"It just isn't feasible," he says. "If a ship has turrets, your Sparrow can't get close enough to hit it with your guns without being damaged, and then it's just a matter of whose weapons and shields are stronger. And one Heavy Rocket hit could nearly disable you. Also, if it has anti-missile turrets, you can't count on hanging back and bombarding it with missiles from long distances, or at least not with weapons that can fit in a Sparrow. So, don't risk it. It's like rock paper scissors; recognize what your enemy's strengths and weaknesses are, as well as your own."`
 				accept
 	
 	on complete

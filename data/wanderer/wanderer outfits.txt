@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 outfit "Sunbeam"
 	category "Guns"
@@ -19,9 +22,8 @@ outfit "Sunbeam"
 	"weapon capacity" -34
 	"gun ports" -1
 	weapon
-		sprite "projectile/sunbeam"
-			"frame rate" 1.3
-			"random start frame"
+		sprite "projectile/sunbeam/sunbeam"
+			"frame rate" 30
 		sound "sunbeam"
 		"hit effect" "sunbeam impact"
 		"inaccuracy" .2
@@ -57,9 +59,8 @@ outfit "Sunbeam Turret"
 	"turret mounts" -1
 	"required crew" 1
 	weapon
-		sprite "projectile/sunbeam"
-			"frame rate" 1.3
-			"random start frame"
+		sprite "projectile/sunbeam/sunbeam"
+			"frame rate" 30
 		"hardpoint sprite" "hardpoint/sunbeam turret"
 		"hardpoint offset" -2.0 12.0
 		sound "sunbeam"
@@ -88,13 +89,12 @@ outfit "Dual Sunbeam Turret"
 	"turret mounts" -1
 	"required crew" 2
 	weapon
-		sprite "projectile/2x sunbeam"
-			"frame rate" 1.3
-			"random start frame"
+		sprite "projectile/sunbeam/2x sunbeam"
+			"frame rate" 30
 		"hardpoint sprite" "hardpoint/dual sunbeam turret"
 		"hardpoint offset" 12.
 		sound "sunbeam"
-		"hit effect" "sunbeam impact"
+		"hit effect" "sunbeam impact" 2
 		"inaccuracy" .2
 		"turret turn" 1.0
 		"velocity" 540
@@ -120,7 +120,7 @@ outfit "Moonbeam"
 	weapon
 		sprite "projectile/moonbeam"
 			"random start frame"
-		sound "sunbeam"
+		sound "moonbeam"
 		"fire effect" "moonbeam fleck"
 		"hit effect" "moonbeam impact"
 		"inaccuracy" 2.0
@@ -167,7 +167,7 @@ outfit "Moonbeam Turret"
 			"random start frame"
 		"hardpoint sprite" "hardpoint/moonbeam turret"
 		"hardpoint offset" 9.
-		sound "sunbeam"
+		sound "moonbeam"
 		"fire effect" "moonbeam fleck"
 		"hit effect" "moonbeam impact"
 		"inaccuracy" 2.0
@@ -250,7 +250,7 @@ outfit "Thunderhead Launcher"
 		"infrared tracking" .9
 		"radar tracking" .6
 		"missile strength" 12
-	description "A prime example of Wanderer ingenuity, Thunderhead missiles each carry five submunitions that are capable of independent tracking. Even if the target is able to shoot down or evade a few of them, the remaining missile fragments will still find their mark."
+	description "A prime example of Wanderer ingenuity, Thunderhead Missiles each carry five submunitions that are capable of independent tracking. Even if the target is able to shoot down or evade a few of them, the remaining missile fragments will still find their mark."
 
 outfit "Thunderhead Missile"
 	category "Ammunition"
@@ -303,7 +303,7 @@ outfit "Small Biochemical Cell"
 	"outfit space" -17
 	"energy generation" 1.6
 	"heat generation" 1.4
-	"energy capacity" 3000
+	"energy capacity" 7500
 	description "This tiny generator draws energy from the metabolic byproducts of a collection of microorganisms that have been engineered by the Wanderers specifically for this purpose."
 
 outfit "Large Biochemical Cell"
@@ -316,7 +316,7 @@ outfit "Large Biochemical Cell"
 	"outfit space" -63
 	"energy generation" 6.2
 	"heat generation" 4.9
-	"energy capacity" 7000
+	"energy capacity" 30000
 	description "The Wanderers are masters of unusual and efficient technology. This bioreactor is fueled by a culture of microorganisms that produce a small electric charge."
 
 outfit "Red Sun Reactor"
@@ -565,16 +565,16 @@ outfit "Type 4 Radiant Steering"
 	description "This is the largest steering system that the Wanderers sell."
 
 outfit "Wanderer Outfits License"
-	category "Special"
+	category "Licenses"
 	thumbnail "outfit/wanderer outfits license"
 	description "Spoke with a Wanderer ambassador named Iktat Rek using the translation device and received permission to purchase some of their technology, but not their ships."
 
 outfit "Wanderer License"
-	category "Special"
+	category "Licenses"
 	thumbnail "outfit/wanderer license"
 	description "Managed to broker a temporary ceasefire between the Unfettered Hai and the Wanderers. Was granted access to purchase the non-military Wanderer ships, as a reward."
 
 outfit "Wanderer Military License"
-	category "Special"
+	category "Licenses"
 	thumbnail "outfit/wanderer military license"
 	description "Received permission to purchase warships from the Wanderers, including a new one called the Tempest."

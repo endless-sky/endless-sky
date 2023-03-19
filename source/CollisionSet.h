@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef COLLISION_SET_H_
@@ -53,14 +56,18 @@ public:
 	// centered at the given point.
 	const std::vector<Body *> &Ring(const Point &center, double inner, double outer) const;
 
+	// Get all objects within this collision set.
+	const std::vector<Body *> &All() const;
+
 
 private:
 	class Entry {
 	public:
 		Entry() = default;
-		Entry(Body *body, int x, int y) : body(body), x(x), y(y) {}
+		Entry(Body *body, unsigned seenIndex, int x, int y) : body(body), seenIndex(seenIndex), x(x), y(y) {}
 
 		Body *body;
+		unsigned seenIndex;
 		int x;
 		int y;
 	};
@@ -80,6 +87,7 @@ private:
 	int step;
 
 	// Vectors to store the objects in the collision set.
+	std::vector<Body *> all;
 	std::vector<Entry> added;
 	std::vector<Entry> sorted;
 	// After Finish(), counts[index] is where a certain bin begins.
@@ -87,6 +95,10 @@ private:
 
 	// Vector for returning the result of a circle query.
 	mutable std::vector<Body *> result;
+
+	// Keep track of which objects we've already considered
+	mutable std::vector<unsigned> seen;
+	mutable unsigned seenEpoch = 0;
 };
 
 

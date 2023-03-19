@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "First Contact: Hai"
 	landing
@@ -129,125 +132,6 @@ mission "Assisting Hai"
 
 
 
-mission "First Contact: Unfettered"
-	landing
-	source
-		attributes "unfettered"
-	on offer
-		conversation
-			branch hai
-				has "First Contact: Hai: offered"
-				
-			`This planet is populated by a hostile alien species that resembles giant, intelligent squirrels. Do you want to approach one of them?`
-			choice
-				`	(Sure.)`
-				`	(Not now, it's too risky.)`
-					defer
-			`	You catch the eye of one of the alien dock workers and it walks over. "Ah," it says, "the monkey is curious. The monkey has never been face to face with a true Hai before?"`
-			choice
-				`	"Hai? Is that what you call yourselves?"`
-					goto name
-				`	"What do you mean, 'true Hai'?"`
-					goto true
-				`	"Why did you shoot at me? Are you at war?"`
-					goto war
-
-			label hai
-			`The Hai here appear to be at war with the rest of their species. Do you want to approach one of them and ask why?`
-			choice
-				`	(Sure.)`
-				`	(Not now, it's too risky.)`
-					defer
-			`	You catch the eye of one of the Hai dock workers and it walks over. "Ah," it says, "the monkey is curious. The monkey has never been face to face with a true Hai before?"`
-			choice
-				`	"No, I've encountered many of your brethren south of here."`
-					goto brethren
-				`	"What do you mean, 'true Hai'?"`
-					goto true
-				`	"Why are you at war with everyone else?"`
-					goto everyone
-			
-			label brethren
-			`	It hisses. "They are not true Hai. We are Hai. The unaltered. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
-				goto masters
-			
-			label true
-			`	"It means that we are unaltered, Hai as Hai were first born to be. Hai the conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
-				goto masters
-			
-			label name
-			`	"We are Hai. Hai the conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
-				goto masters
-			
-			label war
-			`	"We fight to defend ourselves from extinction," it says.`
-			`	"Extinction?" you ask. "Do you mean that there are no other Hai?"`
-			`	"We are all that is left of the original Hai," it says. "Unaltered. The conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
-				goto masters
-			
-			label everyone
-			`	"We fight to defend ourselves from extinction," it says.`
-			`	"Extinction?" you ask. "Do you mean that you are not the same species as the other Hai?"`
-			`	"Indeed," it says. "We are all that is left of the original Hai. Unaltered. The conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
-				goto masters
-			
-			label masters
-			choice
-				`	"Where was your territory? Why have I never heard of you before?"`
-				`	"What do you mean, the Hai were altered?"`
-			
-			`	"This is our story," it says. "Once, many worlds beyond wormhole were ours. Once, hundred thousand years now gone. We needed more worlds. A species that does not expand becomes like brackish water, like stunted tree. But dragonfolk in the south had created hyperdrive, and human monkeys had begun banging rocks together in what the Drak said was very intelligent fashion. So we were forbidden from taking more worlds."`
-			branch sheragi
-				has "Rim Archaeology 6: offered"
-			`	"'Dragonfolk?'" you ask. "I've never heard of them."`
-			`	"Sheragi," it says, "they are extinct. Only their dumb ancestors survive, just as monkeys will outlast the thinking humans."`
-				goto altered
-
-			label sheragi
-			`	"'Dragonfolk?'" you ask. "Do you mean the Sheragi?"`
-			`	"Impressive," it replies, "the monkey knows of Sheragi. We outlived them all. Funny that only their dumb ancestors survive, just as monkeys will outlast the thinking humans."`
-
-			label altered
-			`	"How were you altered?" you ask.`
-			`	It says, "We Hai fought Sheragi and took worlds that Drak said belonged to them, worlds that Sheragi had not yet even discovered. Drak retaliated. On all Hai worlds, Drak ships appeared in orbit. Sickness swept each planet: quick fever, strange feeling of frailness, like you are brittle bones with mouth full of dirt. Victims left alive, but all ambition gone, no desire but to die of comfortable old age."`
-			choice
-				`	"Did you try to resist the Drak?"`
-					goto resist
-				`	"How do you know this, if it happened a hundred thousand years ago?"`
-					goto know
-			
-			label resist
-			`	"Silly monkey," it says, "none can resist. They are strong. Their will prevails. And their will is for the galaxy to be a zoo, little remnants of each species all in separate cages. For now they let humans run free so humans will grow in knowledge, but soon they will fashion a cage for humans too."`
-				goto help
-			
-			label know
-			`	"All Hai know. The story is passed down. Others tell an altered version, where the way of peace was choice and not an inflicted wound, but some in each generation learn truth, and join us here."`
-				goto help
-			
-			label help
-			choice
-				`	"That is a frightening story. Thank you for taking the time to speak with me."`
-					decline
-				`	"Is there anything I can do to help you?"`
-			
-			`	"If you are ever willing to sell us a jump drive," it says, "we will richly reward you. And if you discover the secret of how we can construct our own jump drives and escape from this prison, bring it to us and you will live as a god among us."`
-			choice
-				`	"I'm sorry, I don't know the secret of the jump drive. No human being does."`
-				`	"If I ever have an extra jump drive to sell, I will bring it to you."`
-					goto sell
-			`	"Then leave us alone," it says, and it walks off.`
-				decline
-			
-			label sell
-			`	"Bring us a jump drive," it says, "and we will count you among our friends. Bring us more, and we may even consider you worthy of a share of the plunder, when we take back what is ours."`
-				decline
-	
-	on decline
-		log "Factions" "Unfettered Hai" `The "Unfettered" are a faction within the Hai species who are not as peaceful as the rest, and are normally not friendly toward humans. They claim that long ago the Drak altered the Hai to make them docile and peaceful, and that the Unfettered are descendants of those Hai who avoided undergoing that alteration. They are seeking jump drives so that they can escape the "prison" they are now stuck in: a few deteriorating worlds on the far northern edge of Hai space.`
-		log "Factions" "Sheragi" `The Unfettered Hai say that a dragon-like species called the "Sheragi" who are long extinct used to live in human space, back when much of what is now human territory was occupied by the Hai.`
-
-
-
 mission "Ask the Hai about the Unfettered"
 	landing
 	source
@@ -298,265 +182,13 @@ mission "Ask the Hai about the Unfettered"
 
 
 
-mission "Unfettered Jump Drive 1"
-	minor
-	landing
-	name "More Jump Drives"
-	description "The Unfettered Hai have promised you rich rewards if you bring them more jump drives."
-	to offer
-		has "First Contact: Unfettered: offered"
-		not "Wanderers: Jump Drive Source: active"
-	to fail
-		has "event: wanderers: unfettered invasion starts"
-	to complete
-		has "Unfettered Jump Drive 2: offered"
-	source
-		attributes "unfettered"
-	on offer
-		conversation
-			`The Unfettered have clearly noticed that you have a jump drive installed; a large crowd of them has gathered around your ship. Do you want to talk with them, and perhaps arrange a sale of your jump drive?`
-			choice
-				`	(No.)`
-					defer
-				`	(Yes.)`
-			`	As soon as you approach the crowd, one of them steps forward and says, "One million credits, and the friendship of the true Hai people. This is our offer, for the jump drive."`
-			choice
-				`	"Sure, I will accept that deal."`
-					goto end
-				`	"Can you offer me more than that?"`
-					goto more
-				`	"How will my ship leave here without my jump drive?"`
-			
-			`	"We will give you a hyperdrive in its place," it says, "and you will be counted as our friend, so you will not need to leave here quickly, or under threat of violence." You can't help but wonder if they will try to take your ship by force if you do not agree to the deal.`
-			choice
-				`	"Okay, I accept your generous offer."`
-					goto end
-				`	"Sorry, but if I give you this jump drive, I will lose my ability to capture more of them. Be patient, and I will bring you several of them when I am able."`
-					goto refuse
-			
-			label refuse
-			`	It ponders this for a while, and says, "Very well. Our offer stands, whenever you choose to return." They allow you to return to your ship peacefully.`
-				defer
-			
-			label more
-			`	"Do not underestimate the value of our friendship," it says. "Soon we will become powerful once more, with many fruitful worlds under our control, and when that day comes you will benefit greatly from being our ally."`
-			choice
-				`	"Okay, as long as you give me a hyperdrive to take its place, I'll give you my jump drive."`
-					goto end
-				`	"Sorry, but if I give you this jump drive, I will lose my ability to capture more of them. Be patient, and I will bring you several of them when I am able."`
-					goto refuse
-			
-			label end
-			`	The Unfettered engineers quickly and carefully remove your jump drive and replace it with an ordinary hyperdrive. You sincerely hope that you are not making a mistake by giving them this new technology. "Remember," one of them says as it hands you your payment, "when you acquire more jump drives, return here with them and we will give you further rewards. Until then, may fortune favor you, human friend."`
-				accept
-	
-	on accept
-		outfit "Jump Drive" -1
-		outfit "Hyperdrive" 1
-		payment 1000000
-		"reputation: Hai (Unfettered)" >?= 10
-
-
-
-mission "Unfettered Jump Drive 2"
-	minor
-	landing
-	name "More Jump Drives"
-	description "The Unfettered Hai have promised you rich rewards, and more information about their plans, if you bring them more jump drives."
-	to offer
-		has "Unfettered Jump Drive 1: offered"
-		not "Wanderers: Jump Drive Source: active"
-	to fail
-		has "event: wanderers: unfettered invasion starts"
-	to complete
-		has "Unfettered Jump Drive 3: offered"
-	source
-		attributes "unfettered"
-	on offer
-		conversation
-			`As before, when you land on this Unfettered world with a jump drive, a large crowd gathers around your ship. Clearly they are hoping that once again you will arrange a sale. Do you want to bargain with them?`
-			choice
-				`	(No.)`
-					defer
-				`	(Yes.)`
-			`	When you approach the crowd, one of them says, "Greetings, human friend. We have made you known to all our brothers and sisters as one of the few creatures who have chosen to help the true Hai to gain their freedom. If you give us another jump drive, we will pay you another million credits, and make you one of our emissaries to collect the payments with which our frail brothers seek to buy peace. Will you accept this exchange?"`
-			choice
-				`	"Sorry, I need this jump drive right now, but I will come back later and sell it to you."`
-					defer
-				`	"Yes, I will sell you my jump drive."`
-			`	Once again, they swap your jump drive for a hyperdrive, and pay you far more than you could sell a jump drive for anywhere else. "We will tell the other true Hai to offer you jobs in our job boards," they tell you, "and remember that we need still more jump drives."`
-			choice
-				`	"Then I will find more, and bring them to you."`
-					accept
-				`	"Can you tell me what you are using them for?"`
-			`	"Not yet. If you further prove your friendship, perhaps we will." You assure them that you will continue to do your best to assist them.`
-				accept
-	
-	on accept
-		outfit "Jump Drive" -1
-		outfit "Hyperdrive" 1
-		payment 1000000
-		"reputation: Hai (Unfettered)" >?= 20
-		fail "Unfettered Jump Drive 1"
-
-
-
-mission "Unfettered Jump Drive 3"
-	minor
-	landing
-	name "More Jump Drives"
-	description "If you find more jump drives, you can sell them to the Unfettered Hai for considerably more money than they are worth elsewhere."
-	to offer
-		has "Unfettered Jump Drive 2: offered"
-		not "Wanderers: Jump Drive Source: active"
-	to fail
-		has "event: wanderers: unfettered invasion starts"
-	to complete
-		has "Unfettered Jump Drive 4: offered"
-	source
-		attributes "unfettered"
-	on offer
-		conversation
-			`You have another jump drive, and the Unfettered will certainly be willing to pay you well for it. They also hinted that they might be willing to give you more information about what they plan to use the jump drives for. Do you want to sell them another drive?`
-			choice
-				`	(No.)`
-					defer
-				`	(Yes.)`
-			`	You meet up with some local Unfettered leaders, and they again pay you a million credits and arrange for your jump drive to be swapped out of your ship. "If you bring more, we will continue to pay you," they say.`
-			choice
-				`	"Can you tell me what you are using the jump drives for?"`
-				`	"Thank you, I will certainly bring more of them when I am able."`
-					accept
-			apply
-				set "unfettered know of wanderers"
-			`	After a brief and hushed discussion in their own language, one of the leaders says, "You have proven your worth, so we will share our secret. The Hai once owned many worlds on the galactic fringe, a territory we can only visit using the jump drive. Those worlds are fruitful and nearly uninhabited. We will reclaim them as our own, and there will be food there to feed the Unfettered for many thousands of years to come."`
-			branch know
-				has "First Contact: Wanderer: offered"
-			choice
-				`	"Is there any other way I can help you to reclaim those worlds?"`
-					goto help
-				`	"'Nearly uninhabited?' You mean another species inhabits some of those worlds now?"`
-					goto wanderers
-			
-			label know
-			`	You suspect that they are talking about the territory that is now inhabited by the Wanderers.`
-			choice
-				`	"Are you at war with the Wanderers? Can I help you to reclaim your territory?"`
-					goto help
-				`	"What are you going to do to the species that owns those worlds right now?"`
-					goto wanderers
-			
-			label help
-			`	"Your help may indeed be beneficial to us," says the leader. "I will tell the others to contact you if they have any particular missions you can undertake."`
-			choice
-				`	"I look forward to hearing from them."`
-					accept
-				`	"What do you plan to do to the species that inhabits those worlds now?"`
-			
-			label wanderers
-			`	"Those worlds are now held by a species of scavengers, who feast on the ruin of proud civilizations. Our scouts tell us that these carrion-feeders have wiped away nearly every Hai artifact, melting down our cities to make metal for their ships and factories, and hiding the scars of our wars beneath newly planted forests. They are an old and strong species, but few in number, and those worlds are ours by right."`
-			`	You try to press them for more information, but they tell you nothing useful, aside from promising you that they will seek out your help when it is time to reclaim their territory.`
-				accept
-	
-	on accept
-		outfit "Jump Drive" -1
-		outfit "Hyperdrive" 1
-		payment 1000000
-		"reputation: Hai (Unfettered)" >?= 30
-		fail "Unfettered Jump Drive 2"
-
-
-
-mission "Unfettered Jump Drive 4"
-	repeat
-	minor
-	to offer
-		has "Unfettered Jump Drive 3: offered"
-		not "Wanderers: Jump Drive Source: active"
-	to fail
-		has "event: wanderers: unfettered invasion starts"
-	to complete
-		never
-	source
-		attributes "unfettered"
-	on offer
-		conversation
-			`Would you like to sell another jump drive to the Unfettered?`
-			choice
-				`	(No.)`
-					defer
-				`	(Yes.)`
-			`	As usual, they are more than willing to pay you a million credits for your jump drive, but you do not gain any additional information by talking with them.`
-				accept
-	
-	on accept
-		outfit "Jump Drive" -1
-		outfit "Hyperdrive" 1
-		payment 1000000
-		"reputation: Hai (Unfettered)" >?= 40
-		fail "Unfettered Jump Drive 3"
-		fail "Unfettered Jump Drive 4"
-
-
-
-mission "Unfettered returning home"
-	description "This Hai has asked you to smuggle him out of Unfettered space and bring him to <destination>."
-	minor
-	source
-		attributes "unfettered"
-	destination "Hai-home"
-	clearance
-	passengers 1
-	to offer
-		has "Unfettered Tribute 3: done"
-		random < 40
-	on offer
-		conversation
-			`During the night, you hear a gentle scratching sound on your ship's main hatch. Do you investigate?`
-			choice
-				`	(Yes.)`
-				`	(No.)`
-					defer
-			`	You grab a flashlight and open the hatch, and find a juvenile Hai there, with a large satchel slung over his shoulder. "You are the <first> <last>, yes?" he says. You nod. He says, "Is it true what is written here?"`
-			`	In his hands he is holding a piece of foil paper. You recognize it as the wrapper from one of the food rations that you have been transporting to the Unfettered, the "tribute" that they demand from the peaceful Hai. But having never unwrapped one of the rations, you had not realized that there is writing on the inside, a few words in the angular alphabet of the Hai. The Unfettered youth sees your look of confusion, and translates the message. "It says, 'Hai-home is your home too. Rejoin your people.'"`
-			choice
-				`	"I think it is true. The Hai who gave this tribute said they hoped the Unfettered would turn from violence and be reconciled with them."`
-					goto true
-				`	"I'm sorry, but I don't think they will ever let you live among them, if it is your nature to be prone to violence."`
-			`	You have little experience reading Hai emotion, but the youth seems crestfallen. "You are certain?" he asks.`
-			choice
-				`	"I am certain. I can do nothing for you."`
-					goto refuse
-				`	"Perhaps you can come with me and find out, but don't get your hopes up."`
-					goto end
-			label true
-			`	"Will you take me to Hai-home?" he asks. "You are able to be outside Unfettered places. Can I go with you?"`
-			choice
-				`	"Yes, I will take you there."`
-					goto end
-				`	"Sorry, I can't risk angering the Unfettered by carrying a defector."`
-			label refuse
-			`	Disappointed, the youth leaves. You hope you made the right choice.`
-				decline
-			label end
-			`	You show the youth to one of your bunk rooms, and tell him to stay hidden there until you reach Hai-home.`
-				accept
-	
-	on visit
-		dialog `You look for the young Hai, but realize that he took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
-	on complete
-		payment 100000
-		dialog
-			`You need not have worried about the reception the Unfettered youth would receive here on Hai-home. Scarcely minutes after you hesitantly contact the Hai government, a happy crowd has gathered around your ship. When he steps out of the hatchway, he looks stunned at being welcomed so warmly. One of the Hai governors thanks you for transporting him, and pays you <payment>.`
-		"reputation: Hai" += 10
-
-
-
 mission "Returning Home"
 	description "Bring Elliot home to his family on <destination>. Elliot ran away from his family as a teenager and hasn't seen them in almost six years."
 	minor
 	source
 		government "Hai"
+		not planet "Allhome"
+		not attributes "station"
 	destination
 		attributes "dirt belt"
 		attributes "farming"
@@ -640,6 +272,7 @@ mission "Unwanted Cargo Trigger"
 	to offer
 		random < 1
 		"cargo space" > 0
+		not "event: hai secret leaks"
 	on offer
 		event "hai in cargo" 14
 		fail
@@ -652,15 +285,17 @@ mission "Unwanted Cargo"
 	description "Bring a Hai child who hid in your cargo hold back to <destination>."
 	source
 		not government "Hai" "Hai (Unfettered)"
+		not near "Heia Due" 0 100
 	destination "Allhome"
 	to offer
 		has "event: hai in cargo"
+		not "event: hai secret leaks"
 	on offer
 		conversation
 			`The "Check Cargo" light for your ship begins blinking when you land, meaning that a cargo crate may have come loose in flight. You shut off the ship's engines and walk to the cargo hold.`
 			`	You check every cargo crate in the hold, but can't find anything wrong. Right as you decide to leave, one of the smaller crates begins rocking back and forth.`
 			branch translator
-				has "language: Wanderer"
+				has "language: Hai"
 				
 			`	You hear a voice come from the crate, but it is not a language you understand. The voice continues to speak, and you recognize it as the Hai language.`
 			choice
@@ -705,32 +340,13 @@ mission "Expanding Business [1]"
 	source "Greenwater"
 	destination "Allhome"
 	to offer
-		has "First Contact: Hai: offered"
-		has "main plot completed"
+		has "event: hai-human resolution announced"
 	on offer
 		conversation
 			`Walking through the <origin> spaceport, you notice that almost half of the people you see are humans, unlike other Hai worlds where the Hai outnumber humans by a sizable degree. A human dressed in a business suit shouts your name from across the street and approaches you.`
-			`	"Captain <last>, one of the many heroes of humanity! I noticed you right away when I laid my eyes upon you. I'd like to personally thank you for what you've done."`
-			choice
-				`	"Glad to get some recognition for all the hard work I've done."`
-					goto boast
-				`	"Don't mention it. I just did what I could to help."`
-					goto downplay
-				`	"Can I help you, sir?"`
-			
-			`	"I'm the one who should be using formal titles to address you, so please, Captain, don't call me sir.`
-				goto proposition
-			
-			label boast
-			`	"A personality as big as yourself should be receiving praise and recognition wherever you go! People must really have no respect these days.`
-				goto proposition
-			
-			label downplay
-			`	"No need to downplay yourself, Captain! You've done God's work in saving humanity from that alien scourge.`
-			
-			label proposition
-			`	"The name's David Joseph Turner, venture capitalist, entrepreneur, and famous Paradise Worlds businessman." Turner grabs a business card from his pocket and hands it to you. The card contains his contact information, an address on Martini, and makes sure to boast in golden letters his net worth of more than three billion credits.`
-			`	"You may not have heard of me, but I've sure as hell heard of you, and I'd like to make a proposition to you." Turner turns around and waves his arm across the crowd of people in the spaceport. "You see all the humans here? About one out of every four of these people only arrived here after war broke out through the wormhole. Captains who knew of the Hai came flocking here in droves after the Navy entered Kornephoros, hoping to avoid any troubles that the war would bring. Some captains returned after the war ended, but most stayed, and I see a massive market opportunity in that."`
+			`	"Captain <last>, fantastic to see you again! I noticed you right away when I laid my eyes upon you and I must say, I'd like to thank you again for what you've done."`
+			`	The man is David Turner, who was involved in the movie production during the Hai crisis. Almost reflexively he goes to grab a business card from his pocket but then seems to remember and puts it back away. Seems to be exactly the same card as last time though.`
+			`	"Now Captain, if you have a moment, I'd like to make a proposition to you." Turner turns around and waves his arm across the crowd of people in the spaceport. "You see all the humans here? About one out of every four of these people only arrived here after war broke out through the wormhole. Captains who knew of the Hai came flocking here in droves after the Navy entered Kornephoros, hoping to avoid any troubles that the war would bring. Some captains returned after the war ended, but most stayed, and I see a massive market opportunity in that."`
 			branch rich
 				"net worth" >= 4000000000
 			
@@ -755,8 +371,9 @@ mission "Expanding Business [1]"
 			`	You try to walk away, but Turner stops you by grabbing your arm and continues to talk.`
 			
 			label opportunity
-			`	"Allow me to explain. The journey to the Hai can be a dangerous one, and you know that. I heard many stories during the war of merchants trying to reach the Hai, but thanks to the Navy being distracted, those merchants fell victim to pirates patrolling the systems of the Far North. Now that many merchants are here, they're trapped. They expended most of if not all of their ammunition trying to get here, and now they have none to defend them on their way back. Human ammunition has become a scarce commodity among human captains in this region of space, leaving open a market that's just waiting to be cornered.`
+			`	"Allow me to explain. The journey to the Hai can be a dangerous one, even with the new commitment to safety made by both governments. I heard many stories during the war of merchants trying to reach the Hai, but thanks to the Navy being distracted, those merchants fell victim to pirates patrolling the systems of the Far North. Even now, those pirates roam almost unchallenged, and many merchants are trapped here without the means to safely return. They expended most, if not all, of their ammunition trying to get here, and now they have none to defend them on their way back. Human ammunition has become a scarce commodity among human captains in this region of space, leaving open a market that's just waiting to be cornered.`
 			`	"I'd like you, Captain <last>, hero of humanity, to help me set up an outfitter here on <origin>, an outfitter that would supply these desperate merchants with relief by supplying them with the ammunition they need, along with outfits they might want to buy for their old ships. I've already received approval from the Hai government for the construction of an outfitter, and with a name like yours backing up this business, the profits are sure to be phenomenal, profits that you would be sharing in by being a founding member of this outfitter."`
+			label choices
 			choice
 				`	"This sounds like a good idea to me. What do you need me to do?"`
 					goto interested
@@ -841,7 +458,7 @@ mission "Expanding Business [3]"
 			`Turner jumps off of his Star Queen before the boarding ramp fully reaches the ground, clearly eager to get moving with this project.`
 			`	Turner swears under his breath when he walks up to you. "Low life pirates giving us trouble on the way here. That's the kind of trouble I'm talking about that an outfitter in Hai space would help with. There's no telling what would have happened had my Bulk Freighters not had their missiles. Or if you were not there to protect them, of course."`
 			`	Turner has a talk with the spaceport authorities, and within a short amount of time the necessary cargo is loaded on to the freighters. When the freighters are fully loaded, they take off without even giving you time to get to your ship.`
-			`	"They can get back to Greenwater on their own," Turner says from behind you as you watch the freighters fly off. "I told them to leave as soon as they could. As for you and me, I need escort to <destination>. I received a message from an old friend there who would like to have a chat with me."`
+			`	"With their ammunition restocked they can get back to Greenwater on their own," Turner says from behind you as you watch the freighters fly off. "I told them to leave as soon as they could. As for you and me, I need an escort to <destination>. I received a message from an old friend there who would like to have a chat with me."`
 				accept
 				
 	npc accompany save
@@ -877,11 +494,11 @@ mission "Expanding Business [4]"
 	
 	on complete
 		event "outfitter on greenwater" 95
-		log "People" "David Turner" `An entrepreneur with a sharp mind, he was instrumental in the creation of a human outfitter in Hai space, allowing merchants to arm themselves for the dangerous trip back to human space.`
+		log "People" "David Turner" `Now apparently a frequenter of Hai space, he was instrumental in the creation of a human outfitter in Hai space, allowing merchants to arm themselves for the dangerous trip back to human space.`
 		conversation
 			`By the time you finally reach <planet>, construction on the outfitter is already underway. The construction workers have laid the foundation of the outfitter close to the spaceport, taking up a good portion of a park.`
-			`	"I had to pay a pretty penny to get the outfitter this close to the spaceport," Turner says to you, "but it'll all be worth it in the end.`
-			`	"The outfitter should be done in three months or so. You'll know it's done once you find an extra two thousand credits in your pocket every day." Turner pats you on the back. "Have fun until then, Captain <last>. Keep yourself busy saving the galaxy."`
+			`	"I had to pay a pretty penny to get the outfitter this close to the spaceport," Turner says to you, "but it'll all be worth it in the end. The outfitter should be done in three months or so. You'll know it's done once you find an extra two thousand credits in your pocket every day."`
+			`	Turner pats you on the back. "Have fun until then, Captain <last>. Keep yourself busy saving the galaxy."`
 
 event "outfitter on greenwater"
 	planet "Greenwater"
@@ -952,7 +569,7 @@ mission "Expanding Business [6]"
 				`	"You need me to help you escort freighters again?"`
 				`	"Do you want to build a shipyard selling human ships?"`
 			
-			`	"Yes, Captain. Right now, the only realistic way that a human born here can get a ship is if they know a captain willing to retire. Even then, prices for a human ship can be more than twice what they are across the wormhole. It's preposterous, Captain <last>!`
+			`	"Yes, Captain. Right now, the only realistic way that a human born here can get a ship is if they know a captain willing to retire. Even then, prices for a human ship can be more than twice what they are across the wormhole. You'd think they could just get passage and buy a human ship over there, but those banks just don't recognize credit histories from this side. It's preposterous, Captain <last>!`
 			`	"I've already made arrangements with the local Hai government. The rest of the park next to the outfitter is now my property, and I intend to use it to build the shipyard. I've also contacted Megaparsec and bought a license to build their ships and some of the outfits they sell on <planet>. My freighters are at the ready in the spaceport right now. All I need you to do is escort them to <destination> and back, and in six to seven months' time when the shipyard is done, you'll reap the rewards. What do you say, Captain <last>? Do you want to be a hero to millions once again?"`
 			choice
 				`	"Sure, this sounds like a great idea."`
@@ -1103,6 +720,7 @@ mission "Expanding Business: shipyard complete"
 		has "event: shipyard on greenwater"
 	on offer
 		"salary: Turner Incorporated" = 4000
+		dialog "On receipt of a new and unexpected deposit, you realize that the shipyard on Greenwater must now be operational."
 		fail
 
 
@@ -1112,12 +730,16 @@ mission "Hiding in Plain Sight"
 	minor
 	source
 		government "Hai"
+		not attributes "station"
 	destination "Vinci"
 	passengers 2
 	deadline 30
 	to offer
 		random < 30
 		has "First Contact: Hai: offered"
+		or
+			not "event: hai secret leaks"
+			has "event: hai-human resolution announced"
 	on offer
 		conversation
 			`While eating in a spaceport cafeteria that serves both Hai and human cuisine, you are approached by a teenage human and Hai. "Hello. Do you know how to get to <destination>?" the Hai asks.`
@@ -1125,7 +747,13 @@ mission "Hiding in Plain Sight"
 				`	"I do. Why do you want to go there?"`
 				`	"I don't. You'll have to ask someone else."`
 					decline
-			`	The human responds, "There's a massive convention on <planet> on <date> for a game called 'Boundless Frontiers.' The convention has a huge cosplaying scene, and I think Kiru would fit right in."`
+			branch public
+				has "event: hai-human resolution announced"
+			`	The human responds, "There's a massive convention on <planet> for a game called 'Boundless Frontiers.' The convention has a huge cosplaying scene, and I think Kiru would fit right in."`
+				goto return
+			label public
+			`	The human responds, "There's a massive convention on <planet> for a game called 'Boundless Frontiers.' Now that Kiru doesn't have to worry about pretending to be a cosplayer the whole time, we're really keen to go."`
+			label return
 			`	"Arthur and I have <payment> to give you if you bring us to the <planet>," Kiru says. "We can find our own way back to the Hai space, as well."`
 			choice
 				`	"Alright, I can take you there."`
@@ -1176,7 +804,13 @@ mission "Hai Honeymoon"
 			`	"What, you've never seen an interspecies couple before?" Touhar asks with a hint of sarcasm in his voice.`
 			
 			label next
+			branch public
+				has "event: hai-human resolution announced"
 			`	"We got married last week, and we were hoping to travel to <destination> for our honeymoon. I know it's risky to bring Touhar into human space, but <planet> is a sparsely inhabited world, and I have a friend who owns a house in the mountains far from anyone who could see him."`
+				goto return
+			label public
+			`	"We got married last week, and we were hoping to travel to <destination> for our honeymoon. Some people still tell us it's risky to bring Touhar into human space, especially to such a sparsely inhabited world as <planet>, but I have a friend who owns a house in the mountains, and it just seems like everything is working out so well right now."`
+			label return
 			`	"Said friend will be able to arrange for our return to <origin> as well," Touhar adds. "Will you take us?"`
 			choice
 				`	"Sure."`
@@ -1193,424 +827,21 @@ mission "Hai Honeymoon"
 
 
 
-mission "Pirate Troubles [0]"
-	name "Defend <system>"
-	description "A sizable group of pirates has found their way into Hai space and is terrorizing the system. Help the Hai fight back against them."
-	source
-		near "Waypoint" 2
-		government "Hai"
-	to offer
-		has "First Contact: Unfettered: offered"
-		"combat rating" > 1100
-		random < 10
-	on offer
-		conversation
-			`The peaceful spaceport is suddenly filled with the harsh sound of sirens. You spot some Hai and a small number of humans running to their ships and speeding quickly into orbit. It appears that the system is under attack, but the Unfettered Hai never reach this far south. A loud speaker begins blaring throughout the spaceport: "Unfettered humans have entered the system in a large fleet and have begun attacking! Requesting all combat-worthy pilots to assist in the defense of our space. These enemies of harmony are not welcome here."`
-			branch unfettered
-				has "Unfettered: Jump Drive Source: offered"
-			`	You find the phrase "unfettered humans" odd, but guess that they may be referring to pirates. The Hai will probably be very gracious if you help, but this could also be an easy way to get yourself killed, especially if a group of pirates is bold enough to attack the Hai.`
-				goto choice
-			
-			label unfettered
-			`	Your heart drops at the phrase "unfettered humans," as the last time you heard that was when the Unfettered Hai used that phrase to refer to the Alphas. If it is really the Alphas attacking the Hai, then it is probably a good idea to help.`
-			label choice
-			choice
-				`	(Join the defense fleet.)`
-					launch
-				`	(Stay here until the fight is over.)`
-					decline
-	npc
-		government "Hai"
-		personality staying
-		fleet "Large Hai"
-	npc
-		government "Merchant"
-		personality staying
-		fleet "Large Human Merchants (Hai)"
-	npc evade
-		government "Pirate"
-		personality staying
-		fleet
-			names "pirate"
-			variant
-				"Leviathan" 2
-				"Mule" 2
-				"Firebird"
-				"Headhunter" 3
-				"Raven" 3
-
-
-
-mission "Pirate Troubles [1]"
-	landing
-	name "Unfettered Humans"
-	description `Track down the leaders of the pirate gang "Scar's Legion" and "persuade" them to stop attacking Hai space, then return to <destination> to tell the Hai.`
-	source
-		government "Hai"
-	destination "Hai-home"
-	clearance
-	to offer
-		has "Pirate Troubles [0]: done"
-	on offer
-		"reputation: Hai" += 20
-		conversation
-			`The battle has ended, but the spaceport still seems more hectic than usual. Ships are jumping in from the surrounding systems to help any injured and to repair any damage that may have occurred. After some hours pass and the commotion has died down, a Hai elder approaches you. "We have heard from the humans here that you are considered a seasoned fighter among your people. May you lend your combat prowess to us to resolve this issue?"`
-			choice
-				`	"I'd be glad to help. What can I do?"`
-					goto explain
-				`	"What issue?"`
-			`	"I understand that you just defended this system from human pirates. That is the issue that needs resolved.`
-			label explain
-			`	"Human attacks on our systems are very rare, but recently we have experienced an increased number of raids. Not all have been as unsuccessful as this one. We captured a crew member of this most recent attack who was attempting to flee in an escape pod, and he gave us information that a gang that calls themselves 'Scar's Legion' has discovered our territory and is responsible for the recent raids.`
-			`	"Unfortunately, he would not tell us where this gang is, or who the leader is, so there is nothing we are able to do about it. Many humans who live peacefully among us told us that you might be capable of assistance, though."`
-			choice
-				`	"I'll see what I can do."`
-					goto yes
-				`	"You want me to hunt down Scar's Legion to stop them from attacking you?"`
-				`	"Sorry, I'm not interested."`
-					decline
-			`	"We understand that these humans are likely misguided. We ask that you resolve this peacefully if possible, but the loss of life from these continued attacks is unacceptable."`
-			choice
-				`	"I'll see what I can do."`
-					goto yes
-				`	"Sorry, but I'm not interested."`
-					decline
-			label yes
-			`	"Thank you. Please return to <destination> after you have sought to resolve this situation."`
-				accept
-	on visit
-		dialog "You've returned to <planet>, but you haven't yet tracked down Scar's Legion. Perhaps you should ask around the spaceport of pirate planets near the wormhole into Hai space for information."
-	to complete
-		or
-			has "accepted scar's legion tribute"
-			has "defeated scar's legion"
-
-
-
-mission "Pirate Troubles [1]: Farpoint"
-	landing
-	invisible
-	source "Farpoint"
-	to offer
-		has "Pirate Troubles [1]: active"
-	on offer
-		conversation
-			`You visit the Navy outpost on <origin> and ask the officers there if they have any information on Scar's Legion. After running a background check on you to make sure you're not up to no good, an officer hands you a copy of a folder containing all the information that the Navy has on the gang. "Nothing in here is classified, so you're free to keep it," the officer says.`
-			`	You return to your ship and sift through the files. The leader of the gang is named Scar (to no one's surprise), who used to be an important member of another pirate gang before forming his own. The Navy estimates their numbers to be in the low thousands, mostly responsible for petty crime in the Far North and not a cause of too much trouble, but the files all date back to a number of years ago. Clearly something has changed in the time since these files were last updated if Scar's Legion is now powerful enough to even attempt to attack the Hai.`
-				decline
-
-
-
-mission "Pirate Troubles [1]: Freedom or Zenith"
-	landing
-	invisible
-	source
-		planet "Freedom" "Zenith"
-	to offer
-		has "Pirate Troubles [1]: active"
-	on offer
-		payment -5000
-		conversation
-			`You wander the <origin> spaceport on the lookout for anyone who might have any information on the whereabouts of Scar's Legion. A self-described fixer promises you information in exchange for payment, but after handing her the few credits that she's asking for, she runs off with her gun in her hands to discourage you from following. Perhaps someone on another nearby pirate planet will have actual information for you.`
-				decline
-
-
-
-mission "Pirate Troubles [1]: Haven"
-	landing
-	invisible
-	source "Haven"
-	to offer
-		has "Pirate Troubles [1]: active"
-	on offer
-		payment -100
-		"scar's legion information" ++
-		conversation
-			`You order a drink from a small rundown bar in the <origin> spaceport and try to make small talk with the bartender to get him open to giving information about Scar's Legion. He seems reluctant at first, but eventually warms up to you. A few other patrons of the bar join in on the conversation. Luckily no one seems mad about you asking about Scar's Legion. One of the patrons makes it clear that Scar's Legion has no friends on this world, "at least not anymore."`
-			`	You leave the bar after an hour or two. Once you return to your ship, you write down all the information you can remember. The gang used to operate exclusively out of the Far North until they crossed one of the larger gangs, causing them to flee the region a few years ago. One of the pirates guessed that they fled for the Core.`
-			`	Another person mentioned that the leader of the gang used to always talk about making their own base in an uninhabited system where no one would find it. "He always talked about hollowing out an asteroid to use as a hideout. My guess is he was just always high on the ringworld shavings his gang was dealing."`
-				decline
-
-
-
-mission "Pirate Troubles [1]: Stormhold"
-	landing
-	invisible
-	source "Stormhold"
-	to offer
-		has "Pirate Troubles [1]: active"
-	on offer
-		"scar's legion information" ++
-		conversation
-			`It doesn't take long for you to find someone who knows something about Scar's Legion. You meet someone who says he'll give you information "free of charge."`
-			`	"Scar's Legion have been a thorn in my side for months now. Wrecked my ship a while back, and have been causing me trouble ever since. If you're planning on taking them out, then I'll tell you everything you need to know."`
-			`	The pirate tells you that he doesn't know where the base of Scar's Legion is, but he mentions that they spend a lot of time in the uninhabited systems of the Far North. "Nothing out there but cold rocks and gas giants, but if they're spending so much time out there then they must have set up a base of some sort on one of those frozen planets."`
-				decline
-
-
-
-event "scar's hideout"
-	system "Danoa"
-		object
-			sprite star/m3
-			period 10
-		object
-			sprite planet/desert7-b
-			distance 168.64
-			period 75.3935
-		object
-			sprite planet/fog0-b
-			distance 693.93
-			period 629.313
-			object
-				sprite planet/mercury
-				distance 174
-				period 15.1961
-		object
-			sprite planet/gas6
-			distance 2069.42
-			period 3240.9
-			object
-				sprite planet/lava1-b
-				distance 293
-				period 11.3672
-			object
-				sprite planet/rock0-b
-				distance 440
-				period 20.9186
-			object
-				sprite planet/lava2-b
-				distance 607
-				period 33.895
-			object "Scar's Hideout"
-				sprite "planet/asteroid base"
-				distance 809
-				period 52.153
-
-planet "Scar's Hideout"
-	attributes uninhabited
-	landscape land/loc1
-	description "Scar's Hideout is a hollowed-out asteroid used by Scar's Legion as their main base of operations. From here they harass anyone making the journey through the uninhabited systems of the Far North. Recently the gang has discovered the wormhole to Hai space, leading them to start causing trouble for more than just unlucky merchants."
-	spaceport "The spaceport of Scar's Hideout is a massive hangar dug into the core of the asteroid, accessible only by a single blast door on the ceiling. Judging by the size of the hangar, you'd guess that about a third of the entire asteroid was hollowed out for the spaceport alone."
-	security 0
-	government "Scar's Legion"
-
-mission "Pirate Troubles [2]"
-	landing
-	name "Scar's Legion"
-	description "You've pieced together enough information to find out that the Scar's Legion hideout is in one of four systems in the Far North. Search those systems for the gang's hideout and confront them."
-	waypoint "Danoa"
-	waypoint "Rajak"
-	waypoint "Sumar"
-	waypoint "Hassaleh"
-	to offer
-		"scar's legion information" >= 2
-	on offer
-		event "scar's hideout"
-		conversation
-			`After having visited various pirate worlds asking about Scar's Legion, you believe that you know where their hideout is.`
-			`	You know that the leader of Scar's Legion used to talk about wanting a hollowed out asteroid as a base. You also know that Scar's Legion has recently been very active in the uninhabited systems of the Far North. You conclude that the gang's hideout is likely an asteroid located in one of a few systems that are in proximity to the wormhole that leads to the Hai. You mark <waypoints> on your map and get ready to confront them.`
-				accept
-	to complete
-		never
-	to fail
-		has "Pirate Troubles [3]: offered"
-
-
-
-event "battle against scar's legion"
-	system "Danoa"
-		fleet "Human Miners" 1600
-
-event "battle against scar's legion over"
-	system "Danoa"
-		fleet "Small Northern Merchants" 15000
-		fleet "Small Northern Pirates" 5000
-		fleet "Large Northern Pirates" 16000
-		fleet "Large Republic" 30000
-		fleet "Human Miners" 1600
-
-mission "Pirate Troubles [3]"
-	landing
-	name "Scar's Legion"
-	description "Having declined the tribute, the leader of Scar's Legion has challenged you to a fight to the death. Defeat the <npc>, then return to <destination>."
-	source "Scar's Hideout"
-	destination "Hai-home"
-	clearance
-	to offer
-		has "event: scar's hideout"
-	on offer
-		conversation
-			`You've located the Scar's Hideout, a massive asteroid in orbit around a gas giant. As you fly over the asteroid's surface, you spot an open blast door. They must be inviting you inside. It surprises you that a gang of pirates would be capable of creating such a base, as the materials and time needed to make something like this are immense.`
-			`	Upon entering the blast door, it closes behind you, leaving you in complete dark. Suddenly, floodlights flash on all around your ship. The brightness of the lights prevents you from seeing anyone beyond them, but you suspect that there are a number of weapons pointed at your ship right now.`
-			`	"Who are you and what do you want?" a voice booms from a loud speaker. You press a button to activate your ship's external speakers.`
-			choice
-				`	"I'm <first> <last>, here to negotiate on behalf of the Hai."`
-					goto negotiate
-				`	"I'm <first> <last>, here to take this gang down."`
-			`	The voice laughs. "Well too bad, because you're right in the middle of a hornet's nest. Fire, boys!"`
-				goto die
-			
-			label negotiate
-			`	The voice laughs. "Ah, yes. Those squirrels. I take it they've had enough of us plundering their systems. Boys!"`
-			`	The floodlights turn off, revealing a large room with what must be hundreds of pirates with guns of various sizes trained on your ship. One wrong move and you're toast. "Please, Captain. Step out of your ship."`
-			choice
-				`	(Comply with the orders.)`
-					goto comply
-				`	(Attempt to escape.)`
-			`	You activate your ship's engines to escape. The floodlights suddenly reactivate.`
-			
-			label die
-			`	Before you can even react, several dozen lasers and streams of bullets come flying out from behind the floodlights. You attempt to pull your ship up and fly straight through the ceiling before your ship is too damaged to move, but then you spot a number of rockets flying straight at your cockpit. You die instantly as the rockets impact the glass in front of you.`
-				die
-			
-			label comply
-			`	You step out of your ship, and a tall man with a scar across his cheek steps forward from the crowd of pirates, presumably the leader of the gang.`
-			choice
-				`	"The Hai ask that you stop attacking their systems."`
-					goto negotiations
-				`	"You must be Scar."`
-			`	"No. Scar is long dead," the leader says.`
-			choice
-				`	"Oh, so does that make you Scab?"`
-				`	"The Hai ask that you stop attacking their systems."`
-					goto negotiations
-			`	The leader grimaces. "I'll cut your tongue out if you don't watch your mouth."`
-			`	You take a step back. "The Hai ask that you stop attacking their systems," you say, attempting not to get shanked.`
-			
-			label negotiations
-			`	"Perhaps we will stop," the leader says with a smile. "Under one condition. We'd like a one time shipment of various Hai weapons and technology. The shipment should be as big as possible. I've seen the freighters those aliens have. They're massive. Load two or three up with the goods and we'll consider focusing our attention elsewhere."`
-			choice
-				`	"Okay. I'll meet with the Hai and see what they can provide."`
-					goto tribute
-				`	"I'm afraid that I can't allow that."`
-			`	The crowd of pirates response with a cacophony of jeers and boos. The leader raises his fist in the air, and the crowd falls silent. "Well I'm afraid that just won't do."`
-			`	The leader paces back and forth in silence for a moment. "Well if we don't get what we want, then we're just going to need to keep on attacking. Which means that your presence here is pretty useless."`
-			`	The leader turns to the crowd. "How about a fight? To the death!" The crowd erupts in cheers. The leader turns back to you. "We fight in this system only. Just you and me. You attempt to run, my men hunt you down. How's that sound?" You attempt to respond, but before you can, the leader pulls his gun and aims it at you. "Run."`
-				launch
-			
-			label tribute
-			`	"Excellent!" the pirate says, which is met with cheers from the rest of the pirates in the room. "But make it quick. Wouldn't want to keep us waiting." The blast doors reopen, and you return to your ship to leave immediately.`
-				flee
-	
-	on decline
-		set "accepted scar's legion tribute"
-	on accept
-		event "battle against scar's legion"
-	
-	npc kill
-		government "Scar's Legion (Killable)"
-		personality nemesis
-		ship "Leviathan (Hai Weapons)" "Keloid"
-		dialog "You've defeated the leader of Scar's Legion. The various spectators to the fight aren't attacking you, but it may only be a matter of time before they decide to turn their guns on you for killing their leader. Better head to <destination> before that happens."
-	
-	npc
-		government "Scar's Legion"
-		personality nemesis
-		fleet "Small Northern Pirates"
-		fleet "Large Northern Pirates" 4
-	
-	on enter
-	on enter
-		"reputation: Scar's Legion" = -1000
-	
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-		
-	on complete
-		set "defeated scar's legion"
-		event "battle against scar's legion over"
-
-
-
-mission "Pirate Troubles [4]"
-	landing
-	name "Pirate Tribute"
-	description "Escort the three Hai freighters carrying Hai weapons and technology to <stopovers>, then escort the freighters back to <destination>."
-	source "Hai-home"
-	stopover "Scar's Hideout"
-	clearance
-	to offer
-		or
-			has "defeated scar's legion"
-			has "accepted scar's legion tribute"
-	on offer
-		"reputation: Hai" += 20
-		payment 2500000
-		conversation
-			`Upon landing on <origin>, the Hai authorities give you <payment> for your assistance in defending their systems and for helping to track down the culprits. You're sent to the council of elders, the elected ruling body of the Hai, to tell them about Scar's Legion. "Please, tell us what has occurred," one of the elders says.`
-			branch defeated
-				has "defeated scar's legion"
-			
-			`	"They asked that you load three large freighters with various weapons and technology to give to them. Only then will they stop attacking you."`
-			`	"A simple request," the elders says. "Little more than what the Unfettered ask of us. We shall load three Geocoris immediately."`
-			`	"Who is to say that they will not use our own weapons against us?" another elder chimes in. "This deal could only hurt us."`
-			choice
-				`	"There's no guarantee that they will not attack again, but they promised that they would focus elsewhere."`
-					goto guarantee
-				`	"I could return to them and defeat them if you desire."`
-			`	"No," says the elder. "We are not interested in condemning these humans to death if all they ask is for technology."`
-			
-			label guarantee
-			`	"I believe a bigger issue here is how this will impact our human friends beyond the wormhole," an elder says. "If these pirates are not attacking us, then who will they be attacking? Will we not simply become weapons dealers for a far off war?"`
-			`	"We will inform the Republic Navy that we are providing these pirates with our technology for our own sake. They have been capable of combating our technology in the past. I am sure that they will be able to handle it now. Please, <first>, escort the freighters to these pirates so that they may leave us alone."`
-				accept
-			
-			label defeated
-			`	"I defeated the leader of Scar's Legion. They shouldn't cause any more trouble for you now."`
-			`	One of the elders frowns. "Did you kill their leader in cold blood, or was it self defense?"`
-			choice
-				`	"They asked for a tribute of your weapons and technology, but I refused the offer, so they attacked me."`
-					goto refused
-				`	"They were not willing to negotiate, and I was forced to defend myself."`
-			`	"This is most unfortunate," another elder says. "But I am happy to hear that they will not cause any more loss of life among our people."`
-				goto end
-			
-			label refused
-			`	"This is most unfortunate," another elder says. "We would have been willing to provide them the technology they sought if only they had asked nicely in the first place."`
-			`	"Better that we eliminate a threat instead of making them stronger through becoming their weapons dealer," the first elder says. "These pirates might have attacked us with our own technology, or worse still, attacked other humans with them, making us complicit in this slaughter."`
-			
-			label end
-			`	The elders thank you for your assistance in this situation and send you on your way.`
-				decline
-	
-	on decline
-		"reputation: Hai" += 40
-	
-	npc save accompany
-		government "Hai (Wormhole Access)"
-		personality escort
-		fleet
-			names "hai"
-			cargo 10
-			variant
-				"Geocoris" 3
-	
-	on stopover
-		dialog `You lead the Hai freighters into the blast doors. Despite the massive size of the freighters, they all manage to fit into the asteroid's spaceport with some room to spare, a testament to how much work was put into this base. The pirates of Scar's Legion unload all the Hai technology from the freighters. After the last crate is gone, the freighters quickly launch from the asteroid.`
-	
-	on visit
-		dialog phrase "generic arrived-without-npc dialog"
-	
-	on complete
-		"reputation: Hai" += 40
-		payment 500000
-		dialog `With the freighters safely returned, the Hai thank you for resolving the situation with Scar's Legion and hand you <payment> for your help.`
-
-
-
 mission "Nanachi 1"
 	name "Escort Nanachi to <planet>"
 	description "Help Nanachi, a Hai who just bought her first ship, make a simple delivery to <destination> by <date>."
 	minor
 	source "Giverstone"
 	destination "Cloudfire"
-	deadline
+	deadline 2 1
 	to offer
+		random < 15
 		"net worth" > 20000000
 		"combat rating" > 1200
-		year > 3018
 		has "First Contact: Hai: offered"
+		or
+			not "event: hai secret leaks"
+			has "event: hai-human resolution announced"
 	on offer
 		conversation
 			`As you are making your way through the spaceport you notice a worried-looking Hai staring at the local job board and back at some sort of document they are holding.`
@@ -1705,7 +936,13 @@ mission "Nanachi 3"
 	on offer
 		conversation
 			`You send a message to Nanachi and you two meet up in the spaceport. You're still walking toward the job board, when she asks: "Back home I heard stories about how humans have a much larger population than the Hai, and that their home planet has even more people than Hai-home. Is it true that there are many other human worlds with spaceports this large?" You name her a few human planets that are extremely populous, and how even some planets with fewer people than this world have incredibly large spaceports.`
+			branch public
+				has "event: hai-human resolution announced"
 			`	While you tell her stories of many different planets you've visited, she seems to be particularly interested in Earth. "I've seen a bit of human architecture in videos of planets like Allhome, but I can't even imagine what your capital must look like. Tens of thousands of years of another species' history, it sounds even more exciting than what I heard about our landmarks on Hai-home. Captain, do you think that someday, when we no longer need to be kept hidden from humanity, that I'll be able to visit Earth, and see the beauty of your capital?" Seeing how little she knows about humanity, it's not surprising that she is unaware of the state that Earth is in.`
+				goto return
+			label public
+			`	While you tell her stories of many different planets you've visited, she seems to be particularly interested in Earth. "I've seen a bit of human architecture in videos of planets like Allhome, but I can't even imagine what your capital must look like. Tens of thousands of years of another species' history, it sounds even more exciting than what I heard about our landmarks on Hai-home. Captain, do you think that someday, when I have a bigger ship or when the routes are safer, that I'll be able to visit Earth, and see the beauty of your capital?" Seeing how little she knows about humanity, it's not surprising that she is unaware of the state that Earth is in.`
+			label return
 			choice
 				`	"I've never actually been to Earth before, so I couldn't tell you what it's like."`
 					goto avoid
@@ -1715,10 +952,15 @@ mission "Nanachi 3"
 					goto truth
 			label avoid
 			`	"Oh, sorry about that, shouldn't have assumed you knew everything, you're a starship captain after all, not a historian, I'll just ask someone else when I get the chance," says Nanachi.`
-					goto board
+				goto board
 			label fake
+			branch public2
+				has "event: hai-human resolution announced"
 			`	You start making up stories about how beautiful the skies of Earth are. You describe forests teeming with life, and do your best to remember ancient civilizations and their monuments. From the looks of it she believes you, and your lie seems to have sated her curiosity for now. If the day where the Hai are allowed to move around human space ever comes, though, she will no doubt be extremely disappointed.`
-					goto board
+				goto board
+			label public2
+			`	You start making up stories about how beautiful the skies of Earth are. You describe forests teeming with life, and do your best to remember ancient civilizations and their monuments. From the looks of it she believes you, and your lie seems to have sated her curiosity for now. If she does manage to be successful enough to fly to Earth one day, though, she will no doubt be extremely disappointed.`
+				goto board
 			label truth
 			`	She looks at you in confusion, as if trying to understand what you mean, so you explain it to her. "Despite how much humanity has advanced in the past centuries, Earth has been largely neglected. Most of the land has been turned into cities, which have over the years decayed into slums. If you ever managed to visit you'd be better off going to museums or monuments, but even then there are many thieves roaming the streets and it is very dangerous to be out at night. Lots of folks born there just think about how to get out."`
 			`	You keep telling her about the issues facing humanity's birthplace, and her previous eagerness to learn about the planet fades. "How could your ancestors let their own home become like this?"`
@@ -1732,11 +974,11 @@ mission "Nanachi 3"
 			choice
 				`	"I guess it isn't too unlike how the Unfettered have treated their worlds."`
 			`	Nanachi looks confused, so you continue to elaborate on that idea. "They're expecting to be able to have new worlds soon, so they consider the decay of their current ones as acceptable losses. Humans have also had issues with long-term planning and preparing for adverse events."`
-					goto end
+				goto end
 			label end
 			`	"I see..." She says. "I just thought it would be fun to hear about another large planet like Hai-Home. Sorry for asking about it, Captain, I'm sure having to speak of it wasn't a pleasant feeling."`
 			`	Although you're sure that even in Hai space there is social inequality, she probably can't fathom that the home planet of a species could be in such bad shape, considering the Hai even go as far as to send aid to the Unfettered on a regular basis.`
-					goto board
+				goto board
 			label board
 			`	You two reach the job board and decide to start looking for jobs suited for Nanachi's ship.`
 			choice
@@ -1776,7 +1018,13 @@ mission "Nanachi 4"
 	on offer
 		conversation
 			`The bar is just as busy as the docks. Many captains here must have transported something for the festival. "Captain <last>, Captain Nanachi!" shouts Narancia, beckoning the two of you to join her and the others at their table. You learn that they were inspired by the Hai's own March festival, and wanted to bring small parts of human culture to Hai space.`
+			branch public
+				has "event: hai-human resolution announced"
 			`	"They can't go to our planets and experience it for themselves yet, so we thought about bringing it to them!" Vanessa says.`
+				goto return
+			label public
+			`	"It's still quite an expensive ordeal to go to our planets and experience it for themselves, so we thought about bringing it to them!" Vanessa says.`
+			label return
 			`	"It was very hard to get enough sponsors for this, but after years of hard work we even managed to have famous art pieces be brought here, some of which date back to the European Renaissance!" Xavier adds.`
 			`	Afterwards the conversation topic shifts to you as a captain, as you describe your journey after buying your first ship, and how you met Nanachi. You're about to order another drink for the group when a grizzled old man barges into the bar, and starts shouting: "The art convoy has been attacked! The freighter managed to escape but they're stranded on Prime now, and the pirates are still out there, patrolling the route to the wormhole!"`
 			`	Xavier stands up with a shocked expression. "How? We had a Leviathan escorting them!"`
@@ -1784,17 +1032,30 @@ mission "Nanachi 4"
 			choice
 				`	"Are those art pieces really that valuable?"`
 				`	"Can't you just postpone the festival until the pirates are taken care of?"`
+			branch public2
+				has "event: hai-human resolution announced"
 			`	Xavier collapses back to the table, holding his head in both hands. "Those paintings and sculptures were our main attraction! They're worth tens of billions! It'll take months before the Navy ever notices the pirates there and makes it safe for the convoy to come here. The art exhibition is scheduled three weeks from now!"`
 			`	As they try to figure out what to do, Nanachi speaks up. "I'll go there. I pilot a human ship and if we just need to transfer cargo from one ship to the other, I could get out of there quickly. Nobody would notice that a Hai ever went there."`
+				goto return2
+			label public2
+			`	Xavier collapses back to the table, holding his head in both hands. "Those paintings and sculptures were our main attraction! They're worth tens of billions! Even if we contact the Navy it will take weeks before they can mobilize to hunt them down and guarantee that they've made it safe for the convoy to come here, and the hazard pay to request a carrier escort is frankly ridiculous. The art exhibition is scheduled for only three weeks from now!"`
+			`	Some of them eye you as they try to figure out what to do, but Nanachi speaks up before any well-formed ideas are reached, "I'll go there. I pilot a human ship and if we just need to transfer cargo from one ship to the other, I could get out of there quickly. It's not an impressive ship either, so it's much more likely to go unnoticed or uncared for."`
+			label return2
 			`	"Are you insane?" Vanessa says, "If they managed to take down that Leviathan, you wouldn't last a second! Besides, our convoy was extremely fast. If even they were caught, your chances of outrunning the pirates are next to nothing!"`
-			`	"Captain <last>," Nanachi turns to you. "I know you already helped me way more than anyone would ever be willing to, and I'm really grateful for that, but would you be willing to help me one last time, to get to that planet, and travel back here?" While it's certain that for a pirate fleet to take down a Leviathan so easily they must be incredibly powerful and this could be extremely dangerous, you're sure that if Nanachi tries to get to Prime by herself she'll just get herself killed.`
+			`	"Captain <last>," Nanachi turns to you. "I know you already helped me way more than anyone would ever be willing to, and I'm really grateful for that, but would you be willing to help me one last time, to get to that planet, and travel back here?"`
+			`	It's certain that for a pirate fleet to take down a Leviathan so easily they must be incredibly powerful, and this could be extremely dangerous. You're sure that if Nanachi tries to get to Prime by herself she'll just get herself killed.`
 			choice
 				`	"Alright, I'll make sure we reach Prime and get back here safely."`
 				`	"No, I agreed to help you find and deal with some simple jobs, but I can't risk fighting such a fleet by myself."`
 					decline
 			`	She thanks you profusely, and promises that she'll pay you for everything as soon as she can. The organizers are a bit hesitant, but seeing as no other captain here has decided to offer them help, they agree to let the two of you go to Prime and retrieve the cargo.`
 			`	Vanessa grabs ahold of Nanachi's arm before she can run off to the spaceport. "Just remember, if you can't get back here by <day>, don't worry about it; we'll understand. I'm sure we can come up with some alternative to have the festival without our main attractions."`
+			branch public3
+				has "event: hai-human resolution announced"
 			`	As you're leaving the bar, Xavier pulls you aside, speaking very quietly, "<last>, I know you're just trying to help this girl, but don't get killed over this. If you run into those pirates don't try to fight them, just rush to Prime."`
+				accept
+			label public3
+			`	As you're leaving the bar, Xavier pulls you aside, speaking very quietly. "<last>, I know you're no stranger to combat and danger, but don't get killed over this. The girl won't know what's sensible for her if it gets hairy, and she shouldn't have to get killed over this. If you run into those pirates don't try to fight them, just rush her through. I have faith in a person such as yourself."`
 				accept
 	npc
 		personality nemesis waiting
@@ -1817,7 +1078,7 @@ mission "Nanachi 4"
 		event "Nanachi: payment" 180
 		log "Minor People" "Nanachi" `A young Hai merchant captain who struggled in the beginning of her career. Her fortune turned when she was able, against difficult circumstances, to deliver a valuable collection of human arts on time to the organizers of a Hai festival.`
 		conversation
-			`Landing back on Allhome, the festival group gives you and Nanachi a warm hug, "We sold tens of thousands of tickets for the festival by promising to host a great art exhibition with pieces from all over human space. Without them it'd be a complete failure, and we'd be in serious trouble with our sponsors." Narancia explains.`
+			`Landing back on Allhome, the festival group gives you and Nanachi a warm hug. "We sold tens of thousands of tickets for the festival by promising to host a great art exhibition with pieces from all over human space. Without them it'd be a complete failure, and we'd be in serious trouble with our sponsors," Narancia explains.`
 			`	As the cargo is rushed to the exhibition site, Nanachi shows you the chip she got as payment, and the balance of her bank account: this last payment allowed her to fully pay off her loan. "Captain," she speaks with some difficulty, and tries to hide her face, as if to wipe away some tears. "I'll never be able to thank you properly, if not for you I'd still be lost in that spaceport, and would eventually have to go back to my mining job. I'll work hard now; I'll save up and pay you for everything!" She hugs you and bows to you in a way you'd see in movies, as if trying to imitate the gesture. You two finally say goodbye, and head back to your ships.`
 
 event "Nanachi: payment"
@@ -1870,7 +1131,7 @@ mission "Strider Alt Start"
 	source
 		government "Hai"
 		not planet "Hai-home"
-		not attributes "uninhabited"
+		not attributes "uninhabited" "station"
 	destination "Hai-home"
 	clearance
 	to offer
@@ -1979,14 +1240,14 @@ mission "Strider 1"
 					goto coalition
 			
 			label remnant
-			apply
+			action
 				set "strider: remnant"
 			`	"A group of humans with hull repair technology?" one of the elders asks with a puzzled look. "I am surprised that we have not heard of these humans before. Are they well known among the Republic?"`
 			`	"No," you explain. "They are a reclusive group unknown to most of humanity. They likely wouldn't take kindly to being visited by aliens."`
 				goto end
 			
 			label coalition
-			apply
+			action
 				set "strider: coalition"
 			`	"A group of three aliens?" one of the elders asks with a puzzled look. "It is not often in the galaxy that such groups appear."`
 			
@@ -2176,14 +1437,26 @@ mission "Strider: Coalition 2"
 				accept
 
 
-
+# For compatibility
 event "pond strider mass production"
-	shipyard "Hai Basics"
-		"Flea"
-	shipyard "Hai Advanced"
-		"Pond Strider"
-		"Flea"
-	outfitter "Hai Basic"
+
+# The mission to ensure the Pond Strider is properly added to the new Hai shipyards.
+mission "Pond Strider Patch for v2"
+	landing
+	invisible
+	to offer
+		has "event: pond strider mass production"
+	on offer
+		event "pond strider mass production v2"
+		fail
+
+
+event "pond strider mass production v2"
+	shipyard "Mon Ki i'Hiya Basics"
+		add "Flea"
+	shipyard "Mon Ki i'Hiya Advanced"
+		add "Pond Strider"
+	outfitter "Hai Basics"
 		"Railgun Slug"
 	outfitter "Hai Intermediate"
 		"Railgun"
@@ -2231,7 +1504,7 @@ mission "Strider 3"
 			has "Strider: Coalition 2: done"
 			has "Strider: Remnant 3: done"
 	on offer
-		event "pond strider mass production" 30 90
+		event "pond strider mass production v2" 30 90
 		conversation
 			`Yashili contacts the elders as you land, informing them that you have obtained the hull repair technology. They agree to meet you in the spaceport along with Osen. A group of spaceport workers begins unloading the samples from your cargo bay after you land.`
 			`	As you depart your ship, you spot the Hai elders and Osen approaching. Ambassador Yashili and the Hai delegation step forward to meet them.`

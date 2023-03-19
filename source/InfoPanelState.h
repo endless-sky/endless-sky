@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef INFO_PANEL_STATE_H_
@@ -28,7 +31,7 @@ class Ship;
 // saved when the user is switching between the panels.
 class InfoPanelState {
 public:
-	using ShipComparator = bool (const std::shared_ptr <Ship>&, const std::shared_ptr <Ship>&);
+	using ShipComparator = bool(const std::shared_ptr<Ship> &, const std::shared_ptr<Ship> &);
 
 	InfoPanelState(PlayerInfo &player);
 
@@ -36,12 +39,13 @@ public:
 	void SetSelectedIndex(int newSelectedIndex);
 
 	const std::set<int> &AllSelected() const;
-	void SetSelected(const std::set<int> &selected);
+	void SetSelected(std::set<int> selected);
 	void Select(int index);
 	void SelectOnly(int index);
 	void SelectMany(int start, int end);
 	bool Deselect(int index);
 	void DeselectAll();
+	void Disown(std::vector<std::shared_ptr<Ship>>::const_iterator it);
 
 	bool CanEdit() const;
 
@@ -50,13 +54,19 @@ public:
 
 	std::vector<std::shared_ptr<Ship>> &Ships();
 	const std::vector<std::shared_ptr<Ship>> &Ships() const;
-	bool ReorderShips(const std::set<int> &fromIndices, int toIndex);
+	bool ReorderShipsTo(int toIndex);
 
 	ShipComparator *CurrentSort() const;
 	void SetCurrentSort(ShipComparator *s);
 
 
 private:
+	bool ReorderShips(const std::set<int> &fromIndices, int toIndex);
+
+
+private:
+	PlayerInfo &player;
+
 	// Most recent selected ship index.
 	int selectedIndex = -1;
 

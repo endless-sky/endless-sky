@@ -1,0 +1,232 @@
+# Copyright 2020 by Peter van der Meer
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+test "Test-Framework - Empty Testcase"
+	status "active"
+	description "Test with no test sequence. Only starts and exits the game."
+
+
+
+test "Test-Framework - Empty Test Sequence"
+	status "active"
+	description "Test with an empty sequence. Only starts and exits the game."
+	sequence
+
+
+
+test "Test-Framework - Conditions Arithmetic and Loops"
+	status "active"
+	description "Test condition-setting, condition-checking, additions, labels and branching."
+	sequence
+		watchdog 100
+		apply
+			"test: myFirstTestVariable" = 100
+			"test: mySecondTestVariable" = 200
+		assert
+			"test: myFirstTestVariable" == 100
+			"test: mySecondTestVariable" == 200
+		apply
+			"test: myFirstTestVariable" += 100
+			"test: mySecondTestVariable" += 200
+		assert
+			200 == "test: myFirstTestVariable"
+		assert
+			400 == "test: mySecondTestVariable"
+		label looping
+		apply
+			"test: loopControl" += 1
+			"test: myFirstTestVariable" -= 5
+			"test: mySecondTestVariable" *= 2
+		branch looping
+			"test: loopControl" < 10
+		assert
+			10 == "test: loopControl"
+			"test: myFirstTestVariable" == 200 - 50
+			400 * 1024 == "test: mySecondTestVariable"
+		watchdog 0
+
+
+test "Test-Framework - UI Keyboard controls"
+	status active
+	description "Tests if the in-game panels can be controlled by keypresses."
+	sequence
+		# Create/inject the savegame and load it.
+		inject "Three Earthly Barges Save"
+		call "Load First Savegame"
+		# Enter and leave jobs
+		input
+			key j
+			# TODO: check if the panel is actually loaded
+		input
+			key d
+			# TODO: check if the panel is actually loaded
+		# Enter trading
+		input
+			key t
+			# TODO: check if the panel is actually loaded
+		# Enter bank
+		input
+			key b
+			# TODO: check if the panel is actually loaded
+		# Enter spaceport
+		input
+			key p
+			# TODO: check if the panel is actually loaded
+		# Enter and leave shipyard
+		# Skipped, since Earth (the starting planet) doesn't have a shipyard.
+		#input
+		#	key s
+		#input
+		#	key l
+		# Enter and leave outfitter
+		input
+			key o
+			# TODO: check if the panel is actually loaded
+		input
+			key l
+		# Enter hire-crew section
+		input
+			key h
+			# TODO: check if the panel is actually loaded
+		# Depart
+		input
+			key d
+
+
+test "Test-Framework - Load Depart Land"
+	status active
+	description "Test with only a departure. Mostly tests the testframework itself."
+	sequence
+		# Create/inject the savegame and load it.
+		inject "Three Earthly Barges Save"
+		call "Load First Savegame"
+		# Check startup conditions.
+		assert
+			"ships: Light Freighter" == 3
+		call "Depart"
+		# Re-check startup conditions.
+		assert
+			"ships: Light Freighter" == 3
+		watchdog 90000
+		call "Land"
+		assert
+			"flagship landed" > 0
+
+
+test "Test-Framework - Recursive Calling"
+	status active
+	description "Test-Framework - Test for recursive calling of functions (initialize part)."
+	sequence
+		watchdog 10000
+		apply
+			"test: callLoopControl" = 1
+		call "Test-Framework - Recursive Call"
+
+
+test "Test-Framework - Recursive Call"
+	status partial
+	description "Test-Framework - Test for recursive calling (recursive call part)."
+	sequence
+		apply
+			"test: callLoopControl" = "test: callLoopControl" + 1
+		branch loopBreak
+			"test: callLoopControl" > 10
+		# Use recursive call to get callLoopControl above 10.
+		call "Test-Framework - Recursive Call"
+		label loopBreak
+
+
+test "Test-Framework - Calling other functions"
+	status active
+	description "Test-Framework - Test for calls to other functions."
+	sequence
+		call "Test-Framework - UI Keyboard controls"
+		call "Test-Framework - Empty Test Sequence"
+		call "Test-Framework - Empty Testcase"
+		call "Test-Framework - Conditions Arithmetic and Loops"
+
+
+test "Test-Framework - Navigate"
+	status active
+	description "Test-Framework - Navigation to other star system."
+	sequence
+		# Create/inject the savegame and load it.
+		inject "Three Earthly Barges Save"
+		call "Load First Savegame"
+		# Set desired travel plan.
+		navigate
+			travel "Alpha Centauri"
+			travel "Sol"
+			travel "Alpha Centauri"
+		assert
+			"ships: Light Freighter" == 3
+		call "Depart"
+		# Check startup conditions.
+		assert
+			"ships: Light Freighter" == 3
+		# Give jump command.
+		input
+			command jump
+		# Wait loop while jumping to Alpha Centuari (with a timeout for if this jump fails).
+		watchdog 12000
+		label notAlpha1
+		branch notAlpha1
+			not "flagship system: Alpha Centauri"
+		# Wait loop while jumping back to Sol (with a timeout for if this jump fails).
+		watchdog 12000
+		label notSol
+		branch notSol
+			not "flagship system: Sol"
+		# Wait loop while jumping to Alpha Centauri again (with again a timeout for if this jump fails).
+		watchdog 12000
+		label notAlpha2
+		branch notAlpha2
+			not "flagship system: Alpha Centauri"
+
+
+
+test-data "Test Mission Injection Mission"
+	category "mission"
+	contents
+		mission "A mission for testing injection of missions into integration tests"
+			landing
+			name "A mission name"
+			description "A mission description."
+			source
+				system "Sol"
+			destination
+				not system "Sol"
+			on offer
+				conversation
+					`This mission has been injected!`
+					`   It was not present in the base game data.`
+						accept
+
+
+
+test "Test-Framework - Mission Injection"
+	status active
+	description "A test to test that missions defined in test-data can be injected into a test environment."
+	sequence
+		inject "Test Mission Injection Mission"
+		inject "Three Earthly Barges Save"
+		call "Load First Savegame"
+		call "Depart"
+		assert
+			"flagship landed" == 0
+		call "Land"
+		input
+			key "Return"
+		assert
+			"A mission for testing injection of missions into integration tests: offered" > 0
+			"A mission for testing injection of missions into integration tests: active" > 0

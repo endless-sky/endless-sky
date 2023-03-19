@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "MissionAction.h"
@@ -79,7 +82,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			if(hasValue && child.Token(1) == "phrase")
 			{
 				if(!child.HasChildren() && child.Size() == 3)
-					stockDialogPhrase = GameData::Phrases().Get(child.Token(2));
+					dialogPhrase = ExclusiveItem<Phrase>(GameData::Phrases().Get(child.Token(2)));
 				else
 					child.PrintTrace("Skipping unsupported dialog phrase syntax:");
 			}
@@ -87,7 +90,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			{
 				const DataNode &firstGrand = (*child.begin());
 				if(firstGrand.Size() == 1 && firstGrand.HasChildren())
-					dialogPhrase.Load(firstGrand);
+					dialogPhrase = ExclusiveItem<Phrase>(Phrase(firstGrand));
 				else
 					firstGrand.PrintTrace("Skipping unsupported dialog phrase syntax:");
 			}
@@ -95,9 +98,9 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 				Dialog::ParseTextNode(child, 1, dialogText);
 		}
 		else if(key == "conversation" && child.HasChildren())
-			conversation.Load(child, missionName);
+			conversation = ExclusiveItem<Conversation>(Conversation(child, missionName));
 		else if(key == "conversation" && hasValue)
-			stockConversation = GameData::Conversations().Get(child.Token(1));
+			conversation = ExclusiveItem<Conversation>(GameData::Conversations().Get(child.Token(1)));
 		else if(key == "require" && hasValue)
 		{
 			int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
@@ -153,10 +156,10 @@ void MissionAction::Save(DataWriter &out) const
 			}
 			out.EndChild();
 		}
-		if(!conversation.IsEmpty())
-			conversation.Save(out);
+		if(!conversation->IsEmpty())
+			conversation->Save(out);
 		for(const auto &it : requiredOutfits)
-			out.Write("require", it.first->Name(), it.second);
+			out.Write("require", it.first->TrueName(), it.second);
 
 		action.Save(out);
 	}
@@ -174,22 +177,22 @@ string MissionAction::Validate() const
 		return "system location filter";
 
 	// Stock phrases that generate text must be defined.
-	if(stockDialogPhrase && stockDialogPhrase->IsEmpty())
+	if(dialogPhrase.IsStock() && dialogPhrase->IsEmpty())
 		return "stock phrase";
 
 	// Stock conversations must be defined.
-	if(stockConversation && stockConversation->IsEmpty())
+	if(conversation.IsStock() && conversation->IsEmpty())
 		return "stock conversation";
 
 	// Conversations must have valid actions.
-	string reason = stockConversation ? stockConversation->Validate() : conversation.Validate();
+	string reason = conversation->Validate();
 	if(!reason.empty())
 		return reason;
 
 	// Required content must be defined & valid.
 	for(auto &&outfit : requiredOutfits)
 		if(!outfit.first->IsDefined())
-			return "required outfit \"" + outfit.first->Name() + "\"";
+			return "required outfit \"" + outfit.first->TrueName() + "\"";
 
 	return action.Validate();
 }
@@ -207,7 +210,7 @@ const string &MissionAction::DialogText() const
 // if it takes away money or outfits that the player does not have.
 bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &boardingShip) const
 {
-	if(player.Accounts().Credits() < -action.Payment())
+	if(player.Accounts().Credits() < -Payment())
 		return false;
 
 	const Ship *flagship = player.Flagship();
@@ -278,14 +281,15 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 
 
 
-void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, const shared_ptr<Ship> &ship, const bool isUnique) const
+void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination,
+	const shared_ptr<Ship> &ship, const bool isUnique) const
 {
 	bool isOffer = (trigger == "offer");
-	if(!conversation.IsEmpty() && ui)
+	if(!conversation->IsEmpty() && ui)
 	{
 		// Conversations offered while boarding or assisting reference a ship,
 		// which may be destroyed depending on the player's choices.
-		ConversationPanel *panel = new ConversationPanel(player, conversation, destination, ship);
+		ConversationPanel *panel = new ConversationPanel(player, *conversation, destination, ship, isOffer);
 		if(isOffer)
 			panel->SetCallback(&player, &PlayerInfo::MissionCallback);
 		// Use a basic callback to handle forced departure outside of `on offer`
@@ -323,7 +327,8 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 
 
 // Convert this validated template into a populated action.
-MissionAction MissionAction::Instantiate(map<string, string> &subs, const System *origin, int jumps, int64_t payload) const
+MissionAction MissionAction::Instantiate(map<string, string> &subs, const System *origin,
+	int jumps, int64_t payload) const
 {
 	MissionAction result;
 	result.trigger = trigger;
@@ -338,23 +343,26 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	result.action = action.Instantiate(subs, jumps, payload);
 
 	// Create any associated dialog text from phrases, or use the directly specified text.
-	string dialogText = stockDialogPhrase ? stockDialogPhrase->Get()
-		: (!dialogPhrase.Name().empty() ? dialogPhrase.Get()
-		: this->dialogText);
+	string dialogText = !dialogPhrase->IsEmpty() ? dialogPhrase->Get() : this->dialogText;
 	if(!dialogText.empty())
-		result.dialogText = Format::Replace(dialogText, subs);
+		result.dialogText = Format::Replace(Phrase::ExpandPhrases(dialogText), subs);
 
-	if(stockConversation)
-		result.conversation = stockConversation->Instantiate(subs, jumps, payload);
-	else if(!conversation.IsEmpty())
-		result.conversation = conversation.Instantiate(subs, jumps, payload);
+	if(!conversation->IsEmpty())
+		result.conversation = ExclusiveItem<Conversation>(conversation->Instantiate(subs, jumps, payload));
 
 	// Restore the "<payment>" and "<fine>" values from the "on complete" condition, for
 	// use in other parts of this mission.
-	if(result.action.Payment() && trigger != "complete")
+	if(result.Payment() && (trigger != "complete" || !previousPayment.empty()))
 		subs["<payment>"] = previousPayment;
 	if(result.action.Fine() && trigger != "complete")
 		subs["<fine>"] = previousFine;
 
 	return result;
+}
+
+
+
+int64_t MissionAction::Payment() const noexcept
+{
+	return action.Payment();
 }

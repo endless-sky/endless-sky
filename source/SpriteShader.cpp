@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "SpriteShader.h"
@@ -17,8 +20,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Shader.h"
 #include "Sprite.h"
 
-#include <vector>
 #include <sstream>
+#include <vector>
 
 #ifdef ES_GLES
 // ES_GLES always uses the shader, not this, so use a dummy value to compile.
@@ -99,7 +102,7 @@ void SpriteShader::Init(bool useShaderSwizzle)
 		"  vec2 blurOff = 2.f * vec2(vert.x * abs(blur.x), vert.y * abs(blur.y));\n"
 		"  gl_Position = vec4((transform * (vert + blurOff) + position) * scale, 0, 1);\n"
 		"  vec2 texCoord = vert + vec2(.5, .5);\n"
-		"  fragTexCoord = vec2(texCoord.x, max(clip, texCoord.y)) + blurOff;\n"
+		"  fragTexCoord = vec2(texCoord.x, min(clip, texCoord.y)) + blurOff;\n"
 		"}\n";
 
 	ostringstream fragmentCodeStream;
@@ -301,6 +304,19 @@ void SpriteShader::Draw(const Sprite *sprite, const Point &position, float zoom,
 	if(!sprite)
 		return;
 
+	Bind();
+	Add(Prepare(sprite, position, zoom, swizzle, frame));
+	Unbind();
+}
+
+
+
+SpriteShader::Item SpriteShader::Prepare(const Sprite *sprite, const Point &position,
+	float zoom, int swizzle, float frame)
+{
+	if(!sprite)
+		return {};
+
 	Item item;
 	item.texture = sprite->Texture();
 	item.frame = frame;
@@ -314,9 +330,7 @@ void SpriteShader::Draw(const Sprite *sprite, const Point &position, float zoom,
 	// Swizzle.
 	item.swizzle = swizzle;
 
-	Bind();
-	Add(item);
-	Unbind();
+	return item;
 }
 
 
@@ -343,8 +357,7 @@ void SpriteShader::Add(const Item &item, bool withBlur)
 	// Special case: check if the blur should be applied or not.
 	static const float UNBLURRED[2] = {0.f, 0.f};
 	glUniform2fv(blurI, 1, withBlur ? item.blur : UNBLURRED);
-	// Clipping has the opposite sense in the shader.
-	glUniform1f(clipI, 1.f - item.clip);
+	glUniform1f(clipI, item.clip);
 	glUniform1f(alphaI, item.alpha);
 
 	// Bounds check for the swizzle value:

@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "LoadPanel.h"
@@ -52,13 +55,16 @@ namespace {
 		static const size_t BUF_SIZE = 24;
 		char buf[BUF_SIZE];
 
-		const tm *date = localtime(&timestamp);
 #ifdef _WIN32
+		tm date;
+		localtime_s(&date, &timestamp);
 		static const char *FORMAT = "%#I:%M %p on %#d %b %Y";
+		return string(buf, strftime(buf, BUF_SIZE, FORMAT, &date));
 #else
+		const tm *date = localtime(&timestamp);
 		static const char *FORMAT = "%-I:%M %p on %-d %b %Y";
-#endif
 		return string(buf, strftime(buf, BUF_SIZE, FORMAT, date));
+#endif
 	}
 
 	// Extract the date from this pilot's most recent save.
@@ -216,10 +222,10 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(key == 'd' && !selectedPilot.empty())
 	{
 		GetUI()->Push(new Dialog(this, &LoadPanel::DeletePilot,
-			"Are you sure you want to delete the selected pilot, \"" + selectedPilot
+			"Are you sure you want to delete the selected pilot, \"" + loadedInfo.Name()
 				+ "\", and all their saved games?\n\n(This will permanently delete the pilot data.)\n"
 				+ "Confirm the name of the pilot you want to delete.",
-				[this](const string &pilot) { return pilot == selectedPilot; }));
+				[this](const string &pilot) { return pilot == loadedInfo.Name(); }));
 	}
 	else if(key == 'a' && !player.IsDead() && player.IsLoaded())
 	{
@@ -409,6 +415,10 @@ void LoadPanel::UpdateLists()
 	vector<string> fileList = Files::List(Files::Saves());
 	for(const string &path : fileList)
 	{
+		// Skip any files that aren't text files.
+		if(path.compare(path.length() - 4, 4, ".txt"))
+			continue;
+
 		string fileName = Files::Name(path);
 		// The file name is either "Pilot Name.txt" or "Pilot Name~SnapshotTitle.txt".
 		size_t pos = fileName.find('~');

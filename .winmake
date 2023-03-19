@@ -114,7 +114,7 @@ scons_exe = $(PYTHON_BINARY) ./scons-local/scons.py
 get_scons: scons-local; @echo "Using locally installed scons"
 else
 # (A system-installed SCons also implies that a python binary is located in the user's PATH.)
-scons_exe ::= $(native_scons)
+scons_exe ::= "$(native_scons)"
 get_scons:
 	@echo "Using system scons $(scons_exe)"
 endif

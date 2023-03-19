@@ -6,14 +6,18 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "First Contact: Wanderer (Before Hai)"
 	landing
 	source
 		attributes "wanderer"
 	to offer
-		not "First Contact: Hai: offered"
+		not "First Contact: Wanderer: offered"
+		not "event: hai-human resolution announced"
 	on offer
 		conversation
 			`All the other worlds belonging to this species have appeared unwilling to let you land, but here you find a slightly warmer welcome. A cloud of small, highly maneuverable patrol ships takes off from the planet as you approach and herds you onto one particular landing pad where, after a few minutes, several of the aliens approach your ship.`
@@ -23,7 +27,7 @@ mission "First Contact: Wanderer (Before Hai)"
 				`	"Hello. I come in peace."`
 				`	"My name is <first>. I am glad to meet you."`
 			`	The alien leans forward as you speak, as if trying to decipher your words. "Iyik'ka'ak kareek elik, ek karu karai kavet," it says. You shake your head to indicate that you do not understand, and again try to speak to it in your own language. Again it leans forward as if deeply focused on what you are saying.`
-			`	The other aliens standing beside it are inspecting you with equal curiosity. Finally, one of them says to the leader, "Ek kalek kiro suk i'hai, sek speru siyek ka'hai esek'ru fer'ek." The leader gestures in response, turning up open palms, and the second alien steps forward and addresses you in an entirely different language, one that does not sound like birdsong at all. In fact, you suspect that it is the language of a different species entirely, but unfortunately it is no more comprehensible to you than the bird's own language.`
+			`	The other aliens standing beside it are inspecting you with equal curiosity. Finally, one of them says to the leader, "Ek kalek kiro suk i'hai, sek speru siyek ka'hai esek'ru fer'ek." The leader gestures in response, turning up open palms, and the second alien steps forward and addresses you in an entirely different language, one that does not sound like birdsong at all. In fact, judging by the difficulty it seems to be having in trying to speak it, you suspect that it is the language of a different species entirely. Unfortunately, it is no more comprehensible to you than the bird's own language.`
 			`	They make some further attempts to communicate with you, but without success. Eventually they give up and all but the leader leaves. The leader makes a sweeping gesture to the rest of the spaceport, apparently inviting you to explore.`
 				decline
 
@@ -36,9 +40,7 @@ mission "First Contact: Wanderer"
 	source
 		attributes "wanderer"
 	to offer
-		or
-			has "First Contact: Hai: offered"
-			has "First Contact: Unfettered: offered"
+		has "event: hai-human resolution announced"
 	to complete
 		has "Wanderers: Diplomacy: offered"
 	on offer
@@ -59,7 +61,7 @@ mission "First Contact: Wanderer"
 			`As before, you are ushered to the ground by a flock of the small alien ships, and a few of them fly over to your ship and wait for your to come out and try to talk to them. Also as before, you do not recognize their language and they do not understand yours, although their leader seems to be focused intently on trying to understand you.`
 			
 			label hai
-			`	The other aliens standing beside it are inspecting you with equal curiosity. Finally, one of them says to the leader, "Ek kalek kiro suk i'hai, sek speru siyek ka'hai esek'ru fer'ek." The leader gestures in response, turning up open palms, and the second alien steps forward and begins speaking in an entirely different language. After a moment, you are startled to realize that it is speaking the language of the Hai.`
+			`	The other aliens standing beside it are inspecting you with equal curiosity. Finally, one of them says to the leader, "Ek kalek kiro suk i'hai, sek speru siyek ka'hai esek'ru fer'ek." The leader gestures in response, turning up open palms, and the second alien steps forward and begins speaking in an entirely different language. After a moment, you are startled to realize that it is speaking the language of the Hai. The difficulty it has producing the sounds lends it a rather coarse accent, but it is almost certainly Hai.`
 			`	"Hai, you speak the Hai language?" you ask. You cup your hands above your ears to mimic the large, rodent-like ears of the Hai.`
 			`	"Iy, ka'hai!" says the alien, rustling its wings in what you take as a gesture of excitement, "Speru ek ka'hai?" At the same time, though, one of the other aliens takes a step back and flexes its talons at you. It occurs to you that the Hai may or may not be viewed favorably here.`
 			choice
@@ -165,7 +167,15 @@ mission "Wanderers: Hai Diplomat"
 				accept
 	on accept
 		"reputation: Hai" >?= 20
+		"reputation: Hai (Wormhole Access)" >?= 20
+		"reputation: Hai Merchant" >?= 20
+		"reputation: Hai Merchant (Human)" >?= 20
+		"reputation: Hai Merchant (Sympathizers)" >?= 20
 		"reputation: Hai" += 30
+		"reputation: Hai (Wormhole Access)" += 30
+		"reputation: Hai Merchant" += 30
+		"reputation: Hai Merchant (Human)" += 30
+		"reputation: Hai Merchant (Sympathizers)" += 30
 
 
 
@@ -179,25 +189,33 @@ mission "Wanderers: Diplomacy"
 	to offer
 		has "First Contact: Wanderer: offered"
 	on offer
-		log "People" "Sayari" `Ambassador Sayari, a Hai, served as their envoy to the human government a century ago (although no public records of this exist in human space). She has now been assigned by the Hai to be their diplomat to the Wanderers, and to serve as a translator as well.`
+		log "People" "Sayari" `Now that the crisis with humanity is over she has volunteered to serve as a translator and be the Hai diplomat to the Wanderers as a capstone for her career.`
 		conversation
-			`As you are approaching Hai-home, you contact the Hai government and ask if they would be willing to provide an ambassador to help you communicate with the aliens to the north, who seem to speak the Hai language. They immediately direct you to a private government hangar, where a diplomat meets you. She holds out a paw to greet you, and says, "My name is Sayari. I was the envoy to the human government, a century ago." To the best of your knowledge, the Republic has never mentioned the Hai or publicly acknowledged receiving an envoy from them.`
+			`As you are approaching Hai-home, you contact the Hai government and inform them that you have found new aliens to the north. You submit a request for ambassadorial assistance to help you communicate with the aliens to the north, who seem to speak the Hai language. They immediately direct you to a now familiar private government hangar, where a familiar diplomat meets you.`
+			`	"Good to see you again Captain <last>, I have arranged for some refreshments so please, come and tell me all about these new aliens you have discovered!"`
+			`	Her exuberance is catching and after recent stressful events you see a new side to her as you relay your experience with the bird-like aliens. You realize that opportunities like this are why she became a diplomat in the first place and that this is, to some degree, a dream come true.`
+			`	"So in conclusion, it seems you need a translator," she says with a wry smile.`
 			choice
-				`	"Wait, the human Republic knows that the Hai exist? I had heard nothing but vague rumors of your existence before I found the wormhole."`
-				`	"I'm pleased to meet you. Are you willing to travel with me?"`
-					goto travel
-			
-			`	She laughs, in the Hai manner: a rapid chittering sound. "Yes, the humans and the Hai both worried that too many humans would emigrate all at once if they knew of our peaceful lands. So we agreed that the Hai would be a secret, always here for the adventurous to discover, but difficult to find, so that the human immigration would be slow enough for us to gradually adjust to it."`
-			`	"Are you the translator who will travel with me?" you ask.`
-			label travel
+				`	"Indeed, I'm hoping you have someone in mind."`
+				`	"It would be great to work with you again if you're willing."`
+			`	You open your mouth to respond but the effort is pointless.`
+			`	"I accept!" she cries, leaning forward on the desk with a gleeful look in her eyes.`
+			`	"A first contact is a dream opportunity, and there are so very few of them. So of course I will come with you."`
+			choice
+				`	"Let's go visit these aliens immediately!"`
+					accept
+				`	"Can a distinguished ambassador such as yourself just leave like that?"`
+				`	"What if the humans want our own envoy to these aliens?"`
+					goto envoy
 			`	"Yes," she says. "If these aliens will provide a place for me, I mean to live with them permanently, an ambassador between their people and ours. I am old, and in need of a great novelty like this to make my life interesting once more." You note that the fur on her face, especially on the snout, has turned from brown to silvery gray - a sign of age in terrestrial creatures, and perhaps in the Hai as well.`
+			`	"Besides," she says, "after recent events they can hardly say no to me."`
 			choice
-				`	"I'm glad to have the company of such a distinguished ambassador. Let's go visit these aliens immediately!"`
+				`	"Let's go visit these aliens immediately!"`
 					accept
 				`	"What if the humans want our own envoy to these aliens?"`
+			label envoy
 			`	She says, "If they prove to be friendly, I will help you to find a way to communicate with them directly, so you need not use me as an intermediary. But our first step must be to speak with them." You help her aboard your ship, and get ready to return to the alien homeworld.`
 				accept
-	
 	on accept
 		fail "First Contact: Wanderer"
 	on visit
@@ -345,6 +363,7 @@ mission "Visit Wanderers Again"
 		has "human cultural data"
 	on offer
 		set "language: Wanderer"
+		set "language: Hai"
 		event "wanderer technology available"
 		log "Received a device, created by a Hai scientist, which can translate between human language and the Hai language. Since the Wanderers speak the Hai language, that should make it possible to communicate with them directly."
 		conversation "eruk cultural data"
@@ -355,6 +374,19 @@ event "wanderer technology available" # Name unchanged for compatibility
 		"friendly disabled hail" "friendly disabled wanderer"
 		"hostile hail" "hostile wanderer"
 		"hostile disabled hail" "hostile disabled wanderer"
+
+
+
+# Compatibility patch for saves before "language: Hai" variable was added.
+mission "Hai Language Patch"
+	landing
+	invisible
+	to offer
+		has "Visit Wanderers Again: offered"
+		not "language: Hai"
+	on offer
+		set "language: Hai"
+		fail
 
 
 
@@ -863,7 +895,6 @@ mission "Unfettered: Jump Drive Source"
 	to offer
 		has "Wanderers: Jump Drive Source: active"
 	on offer
-		log `Learned from the Unfettered Hai that they have been purchasing jump drives from the Alphas (whom they refer to as "unfettered humans").`
 		conversation
 			`Following Iktat Rek's suggestion, would you like to sell a jump drive to the Hai and see what information you can get in return?`
 			choice
@@ -899,6 +930,7 @@ mission "Unfettered: Jump Drive Source"
 			`	You are able to get no further information from him, but what you already know is quite valuable. You should report back to Iktat Rek and see what he says.`
 				accept
 	on accept
+		log `Learned from the Unfettered Hai that they have been purchasing jump drives from the Alphas (whom they refer to as "unfettered humans").`
 		outfit "Jump Drive" -1
 		outfit "Hyperdrive" 1
 		payment 1000000
@@ -938,7 +970,7 @@ mission "Wanderers: Alpha Surveillance A"
 			`	You split the devices up into three groups to launch out your airlock in each of the three Unfettered systems. Hopefully the Unfettered will not notice what you are doing.`
 				accept
 			label steal
-			apply
+			action
 				set "stole a wanderer micro-sat"
 			`	You split the devices up into three piles, one for each of the Unfettered systems, and keep one of them for yourself, well hidden in a safe place on your ship.`
 				accept
@@ -947,10 +979,11 @@ mission "Wanderers: Alpha Surveillance A"
 		dialog phrase "generic waypoint on visit"
 	on complete
 		log "Planted some surveillance devices, designed by the Wanderers, in Unfettered Hai space. A month from now, they will be done collecting data on ship movements in the area, and may provide a hint of where the Alphas who are selling jump drives to the Unfettered are coming from."
+		log "People" "Hiyamaharu" `Hiyamaharu is an aged Hai ambassador. He appears to have taken of Sayari's role in dealing with humans since her departure from Hai space.`
 		event "wanderers: alpha surveillance done" 30
 		conversation
-			`The surveillance cubes have all been deployed. While you wait for them to collect their recordings of the ship traffic in the Unfettered systems, you stop by the Hai center of government and ask for the human ambassador. When they realize that you are the one who made contact with the Wanderers, they quickly give you an appointment.`
-			`	The ambassador is an old, male Hai named Hiyamaharu. "Honored human," he says. "It is a pleasure to meet you. If I may assist you in any way, I shall do so."`
+			`The surveillance cubes have all been deployed. While you wait for them to collect their recordings of the ship traffic in the Unfettered systems, you stop by the Hai center of government and ask for the human ambassador. With the combination of your reputation, and the more recent discovery of the Wanderers, they quickly give you an appointment.`
+			`	The ambassador is an old, male Hai named Hiyamaharu. "Honored human," he says, "It is a pleasure to meet you. If I may assist you in any way, I shall do so."`
 			choice
 				`	"Thank you." (Explain about the Alphas.)`
 			`	He says, "We know of them. Indeed, our first contact with the humans, two centuries ago, was with these green people. They sought to cheat us and dominate us. They are not merely misfits like the Unfettered; these Alpha humans are cruel and self-interested. They thought we were simple because we are peaceful, but we were too shrewd and too strong for them, and they are now banned from our territory. But then the peaceful humans came, and we learned that you are not all like the Alphas."`
@@ -1058,7 +1091,7 @@ mission "Wanderers: Alpha Surveillance C (Naughty)"
 			`	"I see," says Rek. You wish you were able to read Wanderer facial expressions; you are not sure if he believes you. You go into your ship, wait long enough to make it appear that you needed to search, then return and give the device back to him.`
 				goto carrier
 			label apologized
-			apply
+			action
 				clear "stole a wanderer micro-sat"
 			`	"I am glad you [admitted, confessed] that," says Rek. "Please be more [honest, obedient] in the future." You retrieve the hidden surveillance device and return it to him.`
 			label carrier
@@ -1131,8 +1164,8 @@ ship "Carrier" "Carrier (Alpha)"
 		"Ion Cannon" 2
 		"Hai Tracker Pod" 4
 		"Hai Tracker" 224
-		"Korath Disruptor" 2
-		"Korath Slicer Turret" 2
+		"Shield Disruptor Turret" 2
+		"Husk-Slice Turret" 2
 		
 		"Triple Plasma Core"
 		"Systems Core (Large)"
@@ -1154,10 +1187,10 @@ ship "Carrier" "Carrier (Alpha)"
 	gun "Hai Tracker Pod"
 	gun
 	gun
-	turret "Korath Disruptor"
-	turret "Korath Slicer Turret"
-	turret "Korath Disruptor"
-	turret "Korath Slicer Turret"
+	turret "Shield Disruptor Turret"
+	turret "Husk-Slice Turret"
+	turret "Shield Disruptor Turret"
+	turret "Husk-Slice Turret"
 
 mission "Wanderers: Alpha Surveillance D"
 	name "Find the Alphas"
@@ -1289,7 +1322,7 @@ mission "Wanderers: Alpha Surveillance E"
 
 mission "Wanderers: Alpha Surveillance F"
 	name "Invade Avalon"
-	description "Escort Admiral Danforth's Navy Cruiser to <destination> and land on the planet with them. They will attempt to locate and eliminate the Alpha base."
+	description "Escort Admiral Danforth's Navy <npc model> to <destination> and land on the planet with them. They will attempt to locate and eliminate the Alpha base."
 	autosave
 	source "Farpoint"
 	destination "Avalon"
@@ -1306,11 +1339,11 @@ mission "Wanderers: Alpha Surveillance F"
 			choice
 				`	"Yes."`
 					goto jump
-				`	"Wait, you know about the Hai?"`
-			`	Danforth looks bemused. "Living on their doorstep? Of course I do. Why do you think the Navy maintains such a large base on Farpoint in the first place? It's not like the human anarchists up north pose that much of a threat."`
+				`	"You seem to be very familiar with the Hai's space?"`
+			`	Danforth looks bemused. "Living on their doorstep? I've known about them from long before the secret broke. Why do you think the Navy maintains such a large base on Farpoint in the first place? It's not like the human anarchists up north pose that much of a threat."`
 			label jump
 			`	"It's not just the distance," says Elias. "The only way to get there is by jump drive. Fortunately Captain <last> has one."`
-			`	"As do I," says Danforth, a bit smugly. When he sees your surprised expressions he elaborates. "Recovered it from the Pug. Accidentally forgot to file the paperwork reporting it. You know how it is. Old men like me can be absent-minded." He smiles. "My engineers are installing it in my flagship even as we speak."`
+			`	"As do I," says Danforth, a bit smugly. When he sees your surprised expressions he elaborates. "Recovered it from the Pug. Accidentally forgot to file the paperwork reporting it. You know how it is. Old men like me can be absent-minded." He smiles, "My engineers are installing it in my flagship even as we speak."`
 			choice
 				`	"So you're willing to come with us?"`
 				`	"Are you sure you want to take the risk of traveling with us?"`
@@ -1351,7 +1384,7 @@ mission "Wanderers: Alpha Surveillance G"
 	
 	npc accompany save
 		government "Navy (Oathkeeper)"
-		personality escort heroic
+		personality escort timid
 		ship "Cruiser (Jump)" "N.S. Peacemaker"
 	npc
 		government "Alpha"
@@ -1892,7 +1925,7 @@ mission "Wanderers Invaded 3C (Pug)"
 			choice
 				`	(Return to my ship.)`
 					decline
-				`	(Keep insisting that they listen to you.)`
+				`	(Keep insisting that they listen.)`
 			`	With a somewhat contemptuous gesture, the Pug points the staff toward your face and a wave of wonderful rainbow light washes over you and bathes the whole world in iridescent sparkles that leap nimbly from the whiskers of things and nuzzle into your contented consciousness like flashing minnows of pure joy. You caper off to chase a trail of floating soapy baubles that burst with the sound of wind chimes and distant trumpets as you touch each one and the smell of ripe peaches fills the air until you stagger through your airlock and throw up in a corner.`
 			`	It may be time to leave this planet.`
 				decline
@@ -1940,10 +1973,12 @@ mission "Wanderers Hai Assistance 2"
 	on offer
 		log "Traveled to the Hai homeworld with Ambassador Sayari to see if she can convince the Hai to take action to restrain the Unfettered from attacking the Wanderers. The most that the Hai were willing to do was to mass a large war fleet near Unfettered space so that the Unfettered have to divert warships there to defend their home worlds."
 		conversation
-			`The Hai are ruled by an elected "council of elders" who agree to meet with you and Sayari. After you describe the situation with the Wanderers, one of the elders says, "We had heard rumors of this. The Unfettered have recruited thousands of new warriors by telling stories of planets for us to explore and colonize, and a cowardly and foolish enemy to defeat."`
+			`The Hai's recently elected Council of "Elders" agrees to meet with you and Sayari and the two of you make an effort to avoid directing yourselves towards Teeneep. Your young friend's popularity as an Elder does not extend to inside these walls and, as Sayari quietly informed you beforehand, apparently Teeneep has not explained the nature of her sympathies towards the Unfettered, even to her oldest friends. It would be detrimental to your cause to specifically seek her assent here, on <origin>, for this matter. After you describe the situation with the Wanderers, one of the other elders who seems older and authoritative says, "We had heard rumors of this. The Unfettered have recruited thousands of new warriors by telling stories of planets for us to explore and colonize, and a cowardly and foolish enemy to defeat."`
 			`	Sayari says, "We must not allow the Unfettered to commit genocide in the name of the Hai people."`
 			`	Another elder responds, "But, we promised in the Frostmark Accords that we would not interfere in Unfettered space."`
 			`	"They have never kept their side of the treaty," says yet another of the elders, "and surely the prevention of genocide is enough reason to break ours."`
+			`	Teeneep responds, "You can hardly fault them for that; a treaty under duress is no treaty at all. No amount of begging or negotiating will convince them to stop their war. They recognize only strength, not the pleas of a coward. We must show strength, and so must the Wanderers. We should increase our fleets at Wah Ki, making ourselves more of a threat."`
+			`	Some of the other Elders nod in agreement, but a smattering of dissent is voiced loudly enough that the older Elder from before interjects, "Perhaps there are other suggestions we may consider?".`
 			choice
 				`	"Could you threaten to cut off aid to the Unfettered if they continue their aggression?"`
 				`	"Could you launch an attack on the Unfettered, force them to fight a war on two fronts?"`
@@ -1952,9 +1987,10 @@ mission "Wanderers Hai Assistance 2"
 				goto threaten
 			label attack
 			`	"I will not authorize preemptive violence against our own flesh and blood," says one of the elders. "We only defend ourselves against them, never willingly initiate an attack."`
+			`	Teeneep and another Elder who seems to be in her corner both chitter the Hai equivalent of "Hear Hear" to this, though she is being very careful with her contributions.`
 			label threaten
-			`	"Perhaps it would be enough merely to threaten them," says another of the elders. "We could gather a massive war fleet above Cloudfire. The Unfettered would need to muster a matching fleet above Darkcloak. It would draw many of their warships away from the alien territory."`
-			`	After well over an hour of further discussion, they reach consensus that that is their best option. As you leave the meeting, Sayari says, "And now, I would like to visit the Unfettered themselves. Perhaps we can talk sense into them."`
+			`	"Perhaps Teeneep is right and it would be enough merely to threaten them," says another of the elders. "We could gather a massive war fleet above Cloudfire. The Unfettered would need to muster a matching fleet above Darkcloak. It would draw many of their warships away from the alien territory."`
+			`	After well over an hour of further discussion, and with calculated backing from Teeneep, they reach the consensus that this is their best option. As you leave the meeting, Sayari exchanges a few words with Teeneep before approaching you, "And now, I would like to visit the Unfettered themselves. They will probably not listen, but perhaps we can talk sense into them. In any event, it is my job to try."`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Sayari hasn't entered the system yet. Better depart and wait for it to arrive.`
@@ -1976,6 +2012,7 @@ mission "Wanderers Hai Assistance 3"
 	landing
 	name "Return to <planet>"
 	description "Return with Sayari to <destination>, and tell Iktat Rek that you had some success in convincing the Hai to interfere with the Unfettered."
+	clearance
 	autosave
 	source "Darkcloak"
 	destination "Vara K'chrai"
@@ -1986,11 +2023,19 @@ mission "Wanderers Hai Assistance 3"
 		log "The Unfettered are unwilling to agree to even a temporary ceasefire with the Wanderers. They seem to think that they will win this war easily."
 		event "wanderers: tempest mass production"
 		conversation
-			`The Unfettered war chiefs listen to Sayari's plea with condescending smiles on their faces. When she is done speaking, one of them says, "This is a war, not a polite dinner party. We will take what we want, when we want it. We are through with waiting on the charity of others."`
+			`The Unfettered war chiefs gather around General Choot'k to listen to Sayari's plea with condescending smiles on their faces. When she is done speaking, Choot'k says, "This is a war, not a polite dinner party. We will take what we want, when we want it. We are through with waiting on the charity of others."`
 			`	"But people will die, on your side as well as the Wanderers," says Sayari. "They are willing to give you these worlds if you only give them time, perhaps no more than a few months or a year. Why lose your lives to claim what will be yours soon enough?"`
-			`	"Better to die asserting our strength than to live with our hands outstretched to beg," says another of the chiefs.`
-			`	You are unable to convince them to change their plans, and as soon as the conversation ends they insist that you leave their planet. "Our warriors in orbit are eager to test this human's strength," says one of the chiefs, laughing.`
+			`	"Better to die asserting our strength than to live with our hands outstretched to beg," says one of the chiefs.`
+			branch positive
+				"reputation: Hai (Unfettered)" > 0
+			`	You are unable to convince them to change their plans, and as soon as the conversation ends General Choot'k insists that you leave their planet, "You were afforded a safe arrival here because of our history with the mighty Captain <last>, but now you must leave."`
+			`	"Beware! Our warriors in orbit are eager to test themselves against this famous human's strength," says one of the chiefs, laughing.`
+			`	As you and Sayari board your ship she mutters to you, "I was told to expect this, there's no need to stay and fight."`
 				launch
+			label positive
+			`	You are unable to convince them to change their plans, and as soon as the conversation ends General Choot'k insists that you leave their planet, "You are a respected warrior Captain <last>, but now you must leave with this Fettered diplomat."`
+			`	As you and Sayari board your ship she mutters to you, "I was told to expect this, but it was only right to try."`
+				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Sayari hasn't entered the system yet. Better depart and wait for it to arrive.`
 
@@ -2085,7 +2130,7 @@ mission "Wanderers Solifuge Recon 3"
 			has "Wanderers Pond Strider Recon 2: done"
 	on offer
 		conversation
-			`Tele'ek and Sayari listen carefully as you outline the strengths and weaknesses of the new Unfettered carriers. "I am not greatly [concerned, frightened] by tiny fighters," Tele'ek says. "The weapon that has done us most harm is their ion cannons, which no ship so small can [wield, carry]. But thank you for your assistance."`
+			`Tele'ek and Sayari listen carefully as you outline the strengths and weaknesses of the new Unfettered carriers. "I am not greatly [concerned, frightened] by tiny fighters," Tele'ek says. "The weapon that has done us most harm is their Ion Cannons, which no ship so small can [wield, carry]. But thank you for your assistance."`
 			`	Sayari looks more concerned about this information. "These carriers may not be an issue for the Wanderers, but this development could cause trouble for the Hai. I have written a message describing the situation." She hands you a data chip. "Please deliver it to the council of elders on <planet>."`
 			`	"Please be quick if you are to deliver this message now," Tele'ek says. "We have no other [fights, brawls] for you to take part in right now, but once you return here, you will find another evacuation fleet that needs an [escort, protector]."`
 				accept
@@ -2157,7 +2202,7 @@ conversation "solifuge conversation"
 		accept
 	
 	label glad
-	`	"Wonderful," Osen's father responds. "Once you have finished looking, simply return to <origin> and inform the port authorities that you have what we seek, and we will meet with you again." The elders all thank you for giving them more information on the Unfettered Solifuge and bid you safe travels.`
+	`	"Wonderful," Osen's father responds. "Once you have finished looking, simply return to <planet> and inform the port authorities that you have what we seek, and we will meet with you again." The elders all thank you for giving them more information on the Unfettered Solifuge and bid you safe travels.`
 		accept
 
 

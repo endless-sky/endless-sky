@@ -1,4 +1,4 @@
-.TH endless\-sky 6 "15 Sep 2021" "ver. 0.9.15-alpha" "Endless Sky"
+.TH endless\-sky 6 "19 Feb 2023" "ver. 0.10.1-alpha" "Endless Sky"
 
 .SH NAME
 endless\-sky \- a space exploration and combat game.
@@ -26,12 +26,6 @@ prints a short help message.
 .IP \fB\-v,\ \-\-version
 prints the software version.
 
-.IP \fB\-s,\ \-\-ships
-prints (to STDOUT) a table showing primary characteristics of all ships in the game, to aid in balancing. This option prevents the game from launching.
-
-.IP \fB\-w,\ \-\-weapons
-prints (to STDOUT) a table of characteristics of all the available weapons. This option prevents the game from launching.
-
 .IP \fB\-t,\ \-\-talk
 reads a data file from STDIN and looks for a "conversation" node at the root level (i.e. not indentated). If it finds one, that conversation is displayed in a pop\-up dialog. This is for testing conversations in a new mission you are developing.
 
@@ -45,10 +39,80 @@ sets the directory where preferences and saved games will be stored.
 prints any content or whitespace\-formatting errors found while loading data files and the most recent saved game. This option prevents the game from launching.
 
 .IP \fB\-\-test\ <name>
-execute the test case with the given name
+execute the test case with the given name. By default, the game will be muted while running tests.
 
 .IP \fB\-\-tests
-prints (to STDOUT) a table of available tests, usable for automatic test runs. This option prevents the game from launching.
+prints (to STDOUT) a list of available tests, usable for automatic test runs. This option prevents the game from launching.
+
+.IP \fB\-\-nomute
+prevents muting the game when running tests.
+
+.IP \fB\-s,\ \-\-ships
+prints (to STDOUT) a table of ship stats (just the base stats, not considering any stored outfits). This option prevents the game from launching.
+.RS
+.IP \fB\-\-sales
+prints (to STDOUT) a table of ships with every 'shipyard' each appears in.
+.IP \fB\-\-loaded
+prints (to STDOUT) a table of ship stats accounting for installed outfits. Does not include variants.
+.IP \fB\-\-list
+prints (to STDOUT) a list of all ship names.
+.IP \fB\-\-variants
+consider ship variants as well.
+.RE
+
+.IP \fB\-w,\ \-\-weapons
+prints (to STDOUT) a table of characteristics of all the available weapons. This option prevents the game from launching.
+
+.IP \fB\-e,\ \-\-engines
+prints (to STDOUT) a table of characteristics of all the available engines. This option prevents the game from launching.
+
+.IP \fB\-\-power
+prints (to STDOUT) a table of power outfit stats.
+
+.IP \fB\-o,\ \-\-outfits
+prints (to STDOUT) a table of characteristics of all the available outfits. This option prevents the game from launching.
+.RS
+.IP \fB\-\-sales
+prints (to STDOUT) a list of outfits and every 'outfitter' each appears in.
+.IP \fB\-a,\ \-\-all
+prints a table of outfits and all attributes used by any outfits present.
+.RE
+
+.IP \fB\-\-sales
+prints (to STDOUT) a list of all shipyards and outfitters and the ships and outfits they each contain.
+.RS
+.IP \fB\-\s,\ \-\-ships
+prints a list of shipyards and the ships they each contain.
+.IP \fB\-\o,\ \-\-outfits
+pritns a list of outfitters and the outfits they each contain.
+.RE
+
+.IP \fB\-\-planets
+prints (to STDOUT) a list of all planets.
+.RS
+.IP \fB\-\-descriptions
+prints (to STDOUT) a table of all planets and their descriptions.
+.IP \fB\-\-attributes
+prints (to STDOUT) a table of all planets and their attributes.
+.RS
+.IP \fB\-\-reverse
+prints (to STDOUT) a table of all planet attributes and which planets have them.
+.RE
+.RE
+
+.IP \fB\-\-systems
+prints (to STDOUT) a list of all systems.
+.RS
+.IP \fB\-\-attributes
+prints (to STDOUT) a list of all systems and their attributes.
+.RS
+.IP \fB\-\-reverse
+prints (to STDOUT) a list of all system attributes and which systems have them.
+.RE
+.RE
+
+.IP \fB\-\-matches
+reads a data file from STDIN and looks for a "location" node at the root level (i.e. not indentated). If it finds one, prints a list of all systems and planets which match the location filter in that node.
 
 .SH AUTHOR
 Michael Zahniser (mzahniser@gmail.com)
