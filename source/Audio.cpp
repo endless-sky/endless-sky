@@ -155,7 +155,8 @@ void Audio::Init(const vector<string> &sources)
 		vector<string> files = Files::RecursiveList(root);
 		for(const string &path : files)
 		{
-			if(!path.compare(path.length() - 4, 4, ".wav"))
+			if(!path.compare(path.length() - 4, 4, ".wav") ||
+			   !path.compare(path.length() - 4, 4, ".mp3"))
 			{
 				// The "name" of the sound is its full path within the "sounds/"
 				// folder, without the ".wav" or "~.wav" suffix.
