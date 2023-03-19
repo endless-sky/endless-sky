@@ -2210,7 +2210,7 @@ system Actannka
 	minables silver 12 5.36
 	minables titanium 12 5.45
 	fleet "Large Quarg (Gegno)" 1400
-	fleet "Quarg (Gegno) 1400
+	fleet "Quarg (Gegno) 1400"
 	object
 		sprite star/a5
 		period 10
