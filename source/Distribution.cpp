@@ -70,9 +70,10 @@ Angle Distribution::GenerateInaccuracy(double value, pair<Type, bool> distributi
 		case Type::Narrow:
 		case Type::Medium:
 		case Type::Wide:
-		return Angle(value * ManipulateNormal(SMOOTHNESS_TABLE[static_cast<int>(distribution.first)], distribution.second));
+			return Angle(value * ManipulateNormal(SMOOTHNESS_TABLE[static_cast<int>(distribution.first)],
+					distribution.second));
 		case Type::Triangular:
 		default:
-			return Angle((Random::Real() - Random::Real()) * value);;
+			return Angle((Random::Real() - Random::Real()) * value);
 	}
 }
