@@ -240,6 +240,27 @@ event "A Hai professor is available to translate"
 
 
 
+mission "Wanderers: Sayari Available After Hai Reveal"
+	landing
+	name "Wanderers: Pick Up Sayari"
+	description "The Hai government have chosen an ambassador for the aliens to the north of Hai space. Pick them up at <destination>."
+	source
+		not planet Hai-home
+		not attributes uninhabited
+		government Hai Republic Syndicate "Free Worlds" Neutral Independent
+	destination Hai-home
+	to offer
+		has "Wanderers: Diplomacy Delayed: offered"
+		not "event: Wanderers before Hai Reveal"
+	on offer
+		fail "Wanderers: Diplomacy Delayed"
+		fail "Wanderers: Professor Available"
+		fail "Wanderers: Meet Professor"
+		conversation
+			`Upon landing, you receive an official communique from the Hai government. "A diplomat is available for reassignment to first contact with the avian species you met to the north. Please meet her as soon as possible at <planet>.`
+				accept
+
+
 mission "Wanderers: Professor Available"
 	landing
 	name "Wanderers: Professor Andelena"
@@ -339,10 +360,10 @@ mission "Wanderers: Diplomacy (Before Hai Reveal)"
 				`	"Let's go!"`
 				`	"I'm done with this cloak and dagger business. Find another courier."`
 					decline
+			action
+				event "Wanderers before Hai Reveal"
 			`	"One warning Captain <last>, from someone who has seen the darkest side of the Hai. It is imperative that you keep silent about your discovery, and any hostilities you may take part in. Should your involvement become public knowledge, I fear there may be a backlash against humans, especially in Unfettered space."`
 				accept
-	on accept
-		event "Wanderers before Hai Reveal"
 
 
 event "Wanderers before Hai Reveal"
@@ -363,6 +384,11 @@ mission "Wanderers: Diplomacy"
 		log "People" "Sayari" `Now that the crisis with humanity is over she has volunteered to serve as a translator and be the Hai diplomat to the Wanderers as a capstone for her career.`
 		conversation
 			`As you are approaching Hai-home, you contact the Hai government and inform them that you have found new aliens to the north. You submit a request for ambassadorial assistance to help you communicate with the aliens to the north, who seem to speak the Hai language. They immediately direct you to a now familiar private government hangar, where a familiar diplomat meets you.`
+				to display
+					not "Wanderers: Diplomacy Delayed: offered"
+			`As you are approaching Hai-home, you contact the Hai government and inform them you are ready to receive an ambassador to the aliens to the north. They immediately direct you to a now familiar private government hangar, where a familiar diplomat meets you.`
+				to display
+					has "Wanderers: Diplomacy Delayed: offered"
 			`	"Good to see you again Captain <last>, I have arranged for some refreshments so please, come and tell me all about these new aliens you have discovered!"`
 			`	Her exuberance is catching and after recent stressful events you see a new side to her as you relay your experience with the bird-like aliens. You realize that opportunities like this are why she became a diplomat in the first place and that this is, to some degree, a dream come true.`
 			`	"So in conclusion, it seems you need a translator," she says with a wry smile.`
@@ -1540,6 +1566,19 @@ mission "Wanderers: Alpha Surveillance E"
 		conversation "Danforth Alpha Surveillance E"
 
 
+
+mission "Wanderers: Alpha Surveillance Danforth Mission Sequence Fix"
+	landing
+	invisible
+	to offer
+		not "Danforth in mission sequence"
+		has "Wanderers: Alpha Surveillance E: accepted"
+		not "Wanderers: Alpha Surveillance I: offered"
+	on offer
+		"Danforth in mission sequence" = 2
+
+
+
 mission "Wanderers: Alpha Surveillance E (Hai Reveal Reminder)"
 	name "Elias and the Alpha Enclave"
 	description "Resolve Hai social issues and come to a successful Hai-human agreement so Danforth and the Navy will be able to switch focus to the Alpha enclave."
@@ -1570,16 +1609,17 @@ mission "Wanderers: Alpha Surveillance E (Hai Reveal Delayed)"
 		has "Wanderers: Alpha Surveillance E: declined"
 		not "Wanderers: Alpha Surveillance F: offered"
 		not "Danforth in mission sequence"
+		has "event: Hai Reveal [C06D] Danforth Availability Timer"
 	on offer
 		# Danforth mission sequence 2 is the Alpha Hunt
 		"Danforth in mission sequence" = 2
 		conversation
-			`Upon touching down, you receive a communique from Elias reminding you of the Alpha enclave on Avalon. You had best pick up Elias at <stopovers> and fly him to Danforth at <planet>.`
+			`Upon touching down, you receive a communique from Elias reminding you of the Alpha enclave on Avalon. You had best pick up Elias at <stopovers> and fly him to Danforth at <planet>. Now that you've averted other catastrophes, Danforth should be available to help.`
 				accept
 	on stopover
 		dialog `Elias boards your ship, eager to get to <planet> and talk to Danforth about the Alpha enclave on Avalon.`
 	on visit
-		dialog `You've landed on <planet>, but you forgot to bring Elias. You must visit <stopovers> to pick him up, and ensure the he lands with you. If he is in one of your escorts, you should take off and wait for it to catch up.`
+		dialog `You've landed on <planet>, but you forgot to bring Elias. You must visit <stopovers> to pick him up, and ensure the he lands with you on <planet>. If he is in one of your escorts, you should take off and wait for it to catch up.`
 	on complete
 		conversation "Danforth Alpha Surveillance E"
 

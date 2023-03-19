@@ -1639,6 +1639,18 @@ event "hai and human ships at wormhole"
 		add fleet "Human Wormhole Guards" 1000
 
 
+
+mission "Hai Reveal [A11-0] Hai Election Start Fix"
+	landing
+	invisible
+	to offer
+		has "Hai Reveal [A13] A New Elder: offered"
+		not "event: Hai election has ended"
+	on offer
+		event "Hai election has started"
+
+
+
 # Ensure there are some impressive fleets at each system.
 mission "Hai Reveal [A11-A] Permanent Fleets"
 	landing
@@ -1839,8 +1851,24 @@ mission "Hai Reveal [A12] Into the Lion's Den"
 				decline
 
 
+event "Hai election has ended"
 
-mission "Hai Reveal [A13b] Danforth is Available"
+
+
+mission "Hai Reveal [A12-0] Danforth Mission Sequence Fix"
+	landing
+	invisible
+	to offer
+		has "Hai Reveal [A12] Into the Lion's Den: accepted"
+		not "Danforth in mission sequence"
+		not "event: hai-human resolution announced"
+	on offer
+		# Danforth mission sequence 1 is Hai Reveal 4-6
+		"Danforth in mission sequence" = 1
+
+
+
+mission "Hai Reveal [A12-D] Danforth is Available"
 	landing
 	name "Back Into the Lion's Den"
 	description "Return to <planet> to pick up Teeneep and deal with the Hai emergency."
@@ -1859,9 +1887,6 @@ mission "Hai Reveal [A13b] Danforth is Available"
 		conversation
 			`Upon landing, you receive a message from Danforth. "The Navy forces near Hai space are prepared for an invasion as best we can, but I've gathered that the situation on Hai-home has changed. We got word that the Hai election is over, their politics are heating up, and your friend Teeneep is in the middle of it all. Please fly to <planet> as soon as possible to deal with the Hai situation."`
 				accept
-
-
-event "Hai election has ended"
 
 
 
@@ -1998,6 +2023,17 @@ mission "Hai Reveal [A13-A] Unfettered Pickup"
 		system "Bote Asu"
 		personality escort heroic opportunistic
 		fleet "Large Unfettered" 7
+
+
+mission "Hai Reveal [A13-B] Hai Election End Fix"
+	landing
+	invisible
+	to offer
+		has "Hai Reveal [A13] A New Elder: offered"
+		not "event: Hai election has ended"
+	on offer
+		event "Hai election has ended"
+
 
 
 # Ambassadorial Centipede designed to fly deep into hostile space if necessary:

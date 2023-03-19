@@ -1375,6 +1375,19 @@ mission "Wanderers: Tour 1"
 
 
 
+# Must begin with 0 so it happens before "Wanderers: Sestor Alt: Return to Wanderers" mission "on offer"
+mission "000 Wanderers: Alpha Sestor Invasion Danforth Fix"
+	landing
+	invisible
+	to offer
+		not "Danforth in mission sequence"
+		has "Wanderers: Tour 1: offered"
+		not "Wanderers: Sestor Alt: Return to Wanderers: offered"
+	on offer
+		"Danforth in mission sequence" = 3
+
+
+
 mission "Wanderers: Tour 2"
 	landing
 	name "Kor Efret Diplomacy"
@@ -2734,6 +2747,11 @@ mission "Wanderers: Sestor: Return to Wanderers"
 		fail "Wanderers: Sestor: Drones in Alnilam"
 		log "Succeeded in destroying the last of the Kor Sestor drones that the Alphas brought into human space. Danforth and his Navy base also survived, but he is worried about the political fallout of having to use such a destructive weapon on a populated planet in order to eliminate the Alphas."
 		conversation
+			branch "no Danforth reset"
+				"Danforth in mission sequence" != 3
+			action
+				"Danforth in mission sequence" = 0
+			label "no Danforth reset"
 			`Danforth breathes a sigh of relief when you tell him that the last of the Kor Sestor drones have been destroyed. "I am grateful for your help, Captain <last>," he says. "And now that we have finished with that battle, the public relations nightmare over what we did to Zenith begins. We don't need you to get involved in that, though; perhaps you should return to Wanderer space until things cool down a bit around here."`
 				accept
 
@@ -2835,9 +2853,26 @@ mission "Wanderers: Sestor Alt: Return to Wanderers"
 	on offer
 		log "Succeeded in destroying the Kor Sestor fleet and eliminating the Alpha base on the anarchist world of Zenith. He is very grateful that the bomb or super-weapon, whatever it was, did not need to be used."
 		conversation
+			branch "no Danforth reset"
+				"Danforth in mission sequence" != 3
+			action
+				"Danforth in mission sequence" = 0
+			label "no Danforth reset"
 			`The Navy officers report the results of the battle on Zenith's surface to Danforth. "So it's over," he says. "Captain <last>, thank you for your assistance. This battle would have gone very differently if you were not here."`
 			`	Now that the Kor Sestor fleet has been dealt with, you should probably return and see how things are going for the Wanderers in Korath space.`
 				accept
+
+
+mission "Wanderers: Return to Wanderers Danforth Fix"
+	landing
+	invisible
+	to offer
+		or
+			has "Wanderers: Sestor: Return to Wanderers: done"
+			has "Wanderers: Sestor Alt: Return to Wanderers: done"
+		has "Danforth in mission sequence" == 3
+	on offer
+		"Danforth in mission sequence" = 0
 
 
 
@@ -2898,6 +2933,10 @@ mission "Wanderers: Sestor: Scan Drones"
 		ship "Kar Ik Vot 349 (Offense)" "07-546.2"
 		ship "Kar Ik Vot 349 (Trapper)" "07-321.8"
 		ship "Kar Ik Vot 349 (Defense)" "07-963.4"
+
+
+
+mission "Wanderers: Sestor: Scan Drones"
 
 
 

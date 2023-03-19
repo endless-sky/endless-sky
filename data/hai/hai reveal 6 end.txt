@@ -646,11 +646,23 @@ event "hai-human resolution announced"
 		remove fleet "Smuggler (Hai Traffickers)"
 
 
-mission "Hai Reveal [C05b] Danforth is Available"
+mission "Hai Reveal [C06D] Danforth Availability Timer"
 	landing
 	invisible
 	to offer
 		has "event: hai-human resolution announced"
-		"Danforth in mission sequence" == 1
 	on offer
-		"Danforth in mission sequence" = 0
+		event "Hai Reveal [C06D] Danforth Availability Timer" 10 20
+
+event "Hai Reveal [C06D] Danforth Availability Timer"
+
+
+mission "Hai Reveal [C06S] Sayari Availability Timer"
+	landing
+	invisible
+	to offer
+		has "event: hai-human resolution announced"
+	on offer
+		event "Hai Reveal [C06S] Sayari Availability Timer" 5 10
+
+event "Hai Reveal [C06S] Sayari Availability Timer"
