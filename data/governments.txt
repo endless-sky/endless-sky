@@ -1469,6 +1469,8 @@ government "Ember Waste"
 
 government "Wanderer"
 	swizzle 2
+	"crew attack" 1.4
+	"crew defense" 1.8
 	color .70 .91 .12
 	"player reputation" 1
 	language "Wanderer"
