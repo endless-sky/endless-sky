@@ -249,7 +249,7 @@ void Ship::Load(const DataNode &node)
 			customSwizzle = child.Value(1);
 		else if(key == "uuid" && child.Size() >= 2)
 			uuid = EsUuid::FromString(child.Token(1));
-		if(key == "shield" && child.Size() >= 2)
+		else if(key == "shield" && child.Size() >= 2)
 		{
 			shield = SpriteSet::Get(child.Token(1));
 		}
