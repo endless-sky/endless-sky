@@ -311,15 +311,15 @@ mission "Quarg Pug Arfecta Warning"
 			`	"You fancy yourself a savior or a revolutionary then?" the Quarg says with what you assume is a sarcastic tone.`
 				goto end
 			label anarchy
-			`	"So you took it upon yourself to prove them wrong?" the Quarg says with an amused, incredulous smile.`
+			`	"So you deign to prove them wrong?" the Quarg says with an almost amused, or perhaps incredulous tone.`
 				goto end
 			label greedy
-			`	"A baby in swaddling, as I said before.`
+			`	"A baby in swaddling, indeed...`
 				goto end
 			label end
-			`	"We give you a warning. You know not what you have, child - the weapon you wield.`
-			`	"We have seen its power. We have felt its power. We have learned from its power. But you and your kind know nothing of this power and its burdens and dangers. Be careful that you are the one who directs this power, and not it you.`
-			`	"And be careful to remember that we have learned how to overcome it."`
-			`	The Quarg curtly motions farewell then takes one last long look at your ship before leaving you to your business. The crowd too starts to disperse, with a few staying behind to gawk at it.`
-			`	As you make your way through the ring, you notice that many of the Quarg onboard glare at you.`
+			`	"We give you a warning. You know not what you have, human - what weapon you wield.`
+			`	"We have seen its power. We have felt it, and learned from it. But you and your kind know nothing of the burdens and dangers that follow it. Be careful that you are the one who directs this power, and not it you.`
+			`	"Know well that we have learned how to overcome it."`
+			`	The Quarg takes one last long look at your ship, then makes a curt farewell motion, leaving you to your business. The crowd, too, starts to disperse, with only a few staying behind to gawk at the ship.`
+			`	As you make your way through the ring, you notice occasional glares from the Quarg onboard the ring.`
 				decline
