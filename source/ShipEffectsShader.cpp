@@ -159,7 +159,7 @@ void ShipEffectsShader::Init()
 		"    {\n"
 		"      vec2 hitPoint = recentHits[i] + vec2(0.5, 0.5);\n"
 		"      totalimpact += recentDamage[i];"
-		"      color += shieldColor * recentDamage[i] * clamp(2. - distance(hitPoint, uv)*.04*modSize, 0., 1.5);\n"
+		"      color += shieldColor * recentDamage[i] * clamp(2. - length((hitPoint - uv) * vec2(ratio, 1))*.04*modSize, 0., 1.5);\n"
 		"    }\n"
 		"    color /= totalimpact / 1.4;\n"
 		"    color = clamp(color, 0., 1.);\n"
@@ -298,7 +298,7 @@ ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Ship* ship, const
 	{
 		const auto newP = sub.Rotate(recth->at(i).first * Point(-1, -1));
 		item.recentHitPoints[2 * i] = (newP.X() / ((2 / 1.5) * ship->Radius()));
-		item.recentHitPoints[2 * i + 1] = (newP.Y() / ((2 / 1.5) * ship->Radius()));
+		item.recentHitPoints[2 * i + 1] = (newP.Y() / ((2 / 1.2) * ship->Radius()));
 		item.recentHitDamage[i] = (min(1., recth->at(i).second));
 		// For debugging
 		// Messages::Add("Hit at " + to_string(newP.X() / body->Radius()) + ", " + to_string(newP.Y() / body->Radius())
