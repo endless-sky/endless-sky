@@ -168,9 +168,11 @@ void Government::Load(const DataNode &node)
 			{
 				for(const DataNode &grand : child)
 				{
-					if(grand.Token(0) == "max" && grand.Size() >= 2)
+					const string &grandKey = grand.Token(0);
+					bool hasGrandValue = grand.Size() >= 2;
+					if(grandKey == "max" && hasGrandValue)
 						reputationMax = numeric_limits<double>::max();
-					else if(grand.Token(0) == "mint" && grand.Size() >= 2)
+					else if(grandKey == "min" && hasGrandValue)
 						reputationMin = numeric_limits<double>::lowest();
 				}
 			}
@@ -249,11 +251,13 @@ void Government::Load(const DataNode &node)
 		{
 			for(const DataNode &grand : child)
 			{
-				if(grand.Token(0) == "player reputation" && grand.Size() >= 2)
+				const string &grandKey = grand.Token(0);
+				bool hasGrandValue = grand.Size() >= 2;
+				if(grandKey == "player reputation" && hasGrandValue)
 					initialPlayerReputation = add ? initialPlayerReputation + child.Value(valueIndex) : child.Value(valueIndex);
-				else if(grand.Token(0) == "max" && grand.Size() >= 2)
+				else if(grandKey == "max" && hasGrandValue)
 					reputationMax = add ? reputationMax + grand.Value(valueIndex) : grand.Value(valueIndex);
-				else if(grand.Token(0) == "min" && grand.Size() >= 2)
+				else if(grandKey == "min" && hasGrandValue)
 					reputationMin = add ? reputationMin + grand.Value(valueIndex) : grand.Value(valueIndex);
 				else
 					grand.PrintTrace("Skipping unrecognized attribute:");
