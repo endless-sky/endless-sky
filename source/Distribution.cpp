@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Distribution.h"
 
+#include "Angle.h"
 #include "Random.h"
 
 #include <vector>
@@ -28,7 +29,6 @@ namespace {
 		// at the endpoints (rather than at the center) of the distribution.
 		double randomFactor = Random::Normal(.5, smoothness);
 		// Retain only the fractional information, to keep all absolute values within [0, 1].
-		// Might be possible to get away with int32_t here, not sure.
 		randomFactor = randomFactor - static_cast<int64_t>(randomFactor);
 
 		// Shift negative values into [0, 1] to create redundancy at the endpoints

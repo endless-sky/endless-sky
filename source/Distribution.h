@@ -16,12 +16,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef DISTRIBUTION_H_
 #define DISTRIBUTION_H_
 
-#include "Angle.h"
+#include <utility>
 
-#include <tuple>
+class Angle;
 
 
 
+// A class which generates an angle of inaccuracy for a projectile
+// given its inaccuracy value and type.
 class Distribution {
 public:
 	enum class Type {
@@ -36,7 +38,7 @@ public:
 public:
 	// Generate an angle that gets projectile heading
 	// when combined with hardpoint aim.
-	static Angle GenerateInaccuracy(double value, std::pair<Type, bool>);
+	static Angle GenerateInaccuracy(double value, std::pair<Type, bool> distribution);
 };
 
 

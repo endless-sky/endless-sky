@@ -255,6 +255,8 @@ private:
 
 	double turn = 0.;
 	double inaccuracy = 0.;
+	// A pair representing the disribution type of this weapon's inaccuracy
+	// and whether it is inverted
 	std::pair<Distribution::Type, bool> inaccuracyDistribution = {Distribution::Type::Triangular, false};
 	double turretTurn = 0.;
 

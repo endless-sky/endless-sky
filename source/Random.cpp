@@ -40,6 +40,7 @@ namespace {
 }
 
 
+
 // Seed the generator (e.g. to make it produce exactly the same random
 // numbers it produced previously).
 void Random::Seed(uint64_t seed)
