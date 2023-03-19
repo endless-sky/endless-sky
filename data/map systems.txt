@@ -2192,7 +2192,7 @@ system Acrux
 
 system Actannka
 	pos 1016.73 -706.867
-	government Quarg
+	government "Quarg (Gegno)"
 	arrival 3200
 	habitable 3200
 	belt 1228
@@ -3449,7 +3449,7 @@ system Aldhibain
 
 system Aleit
 	pos 967.604 -690.722
-	government Quarg
+	government "Quarg (Gegno)"
 	attributes "ringworld"
 	arrival 700
 	departure 1000
@@ -10477,7 +10477,7 @@ system Dixere
 
 system Dokdobaru
 	pos -21.5695 -241.812
-	government Quarg
+	government "Quarg (Efret)"
 	attributes "korath" "ringworld"
 	arrival 700
 	habitable 700
@@ -14882,7 +14882,7 @@ system Gerenus
 
 system Ghhil
 	pos 922.4 -714
-	government Quarg
+	government "Quarg (Gegno)"
 	arrival 3000
 	habitable 3000
 	belt 1760
@@ -16162,7 +16162,7 @@ system Heutesl
 
 system "Hevru Hai"
 	pos -189 -310
-	government Quarg
+	government "Quarg (Hai)"
 	attributes "ringworld"
 	arrival 700
 	departure 1000
