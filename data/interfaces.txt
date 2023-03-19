@@ -703,7 +703,10 @@ interface "planet"
 	button l
 		center -60 -140
 		dimensions 720 360
-	
+
+	box "content"
+		from -300 80 to 180 355
+
 	visible if "has shipyard"
 	sprite "ui/planet dialog button"
 		center 280 90
@@ -781,6 +784,12 @@ interface "planet"
 		size 18
 		align right
 		pad 10 0
+
+
+
+interface "spaceport"
+	box "content"
+		from -300 80 to 180 355
 
 
 
@@ -1008,6 +1017,9 @@ interface "hiring"
 
 
 interface "trade"
+	box "content"
+		from -310 80 to 190 355
+
 	line
 		center -60 95
 		dimensions 480 1
@@ -1037,6 +1049,9 @@ interface "trade"
 
 
 interface "bank"
+	box "content"
+		from -310 78 to 190 355
+
 	line
 		center -60 95
 		dimensions 480 1
