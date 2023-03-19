@@ -381,7 +381,7 @@ tip "outfit scan power:"
 	`The range of this outfit scanner is proportional to the square root of this value.`
 
 tip "outfit scan speed:"
-	``Determines how long it takes to perform an outfit scan. A higher value will correspond to a quicker scan.`
+	`Determines how long it takes to perform an outfit scan. A higher value will correspond to a quicker scan.`
 
 tip "outfit scan efficiency:"
 	`The maximum speed of this outfit scanner is proportional to the square root of this value. The observed scan speed will be impacted by multiple factors. Targets which are farther away or have a larger outfit capacity will take longer to scan.`
@@ -496,6 +496,12 @@ tip "shield generation:"
 
 tip "shield generation multiplier:"
 	`Modifies the amount of shield points recharged per second by the given factor.`
+
+tip "high shield permeability:"
+	`This percentage of all incoming damage bypasses shields and applies directly to the hull when at full shields.`
+
+tip "low shield permeability:"
+	`This percentage of all incoming damage will bypass shields and apply directly to the hull as shields approach zero.`
 
 tip "shields (charge):"
 	`Total shield strength and regeneration rate (per second).`

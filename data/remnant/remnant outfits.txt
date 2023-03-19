@@ -232,8 +232,8 @@ outfit "EMP Torpedo Storage Bay"
 	"energy capacity" 400
 	"emp torpedo capacity" 7
 	ammo "EMP Torpedo"
-	description "The EMP torpedo storage bay is used to store extra ammunition for weapons that use EMP torpedoes."
-	description "	In addition to its ammunition capacity, the storage bay can also contain a small amount of charge, enough to let an otherwise battery-less ship fire EMP torpedoes."
+	description "The EMP Torpedo Storage Bay is used to store extra ammunition for weapons that use EMP torpedoes."
+	description "	In addition to its ammunition capacity, the storage bay can also contain a small amount of charge, enough to let an otherwise battery-less ship fire EMP Torpedoes."
 
 outfit "EMP Torpedo Bay"
 	category "Secondary Weapons"
@@ -291,8 +291,8 @@ outfit "Teciimach Canister"
 	thumbnail "outfit/emp torpedo"
 	"mass" 1
 	"teciimach canister capacity" -1
-	description "This canister contains everything required to assemble a Teciimach torpedo. These weapons emit strong electromagnetic pulses which interfere with a ship's generators and neutralize a portion of their energy."
-	description `	Unlike the previous generation of "EMP torpedoes," the Teciimach torpedoes actively shape their emission pattern to avoid impacting their allies.`
+	description "This canister contains everything required to assemble a Teciimach Torpedo. These weapons emit strong electromagnetic pulses which interfere with a ship's generators and neutralize a portion of their energy."
+	description `	Unlike the previous generation of "EMP Torpedoes," the Teciimach torpedoes actively shape their emission pattern to avoid impacting their allies.`
 
 outfit "Teciimach Canister Rack"
 	category "Ammunition"
@@ -306,7 +306,7 @@ outfit "Teciimach Canister Rack"
 	"teciimach canister capacity" 9
 	ammo "Teciimach Canister"
 	description "The Teciimach Canister Rack is used to store extra sets of components, both to expand the capacity of a ship, and on carriers for resupplying fighters."
-	description "	In addition to its ammunition capacity, the storage bay can also contain a small amount of charge, enough to let an otherwise battery-less ship assemble Teciimach torpedoes."
+	description "	In addition to its ammunition capacity, the storage bay can also contain a small amount of charge, enough to let an otherwise battery-less ship assemble Teciimach Torpedoes."
 
 outfit "Teciimach Bay"
 	category "Secondary Weapons"
@@ -662,7 +662,7 @@ outfit "Salvage Scanner"
 	"outfit scan power" 13
 	"outfit scan efficiency" 12
 	"tactical scan power" 84
-	description "When the Remnant unraveled the alien point defense turrets guarding the vaults on Aventine, they also deciphered the mechanisms that guided the ancient weapons. After significant investments in research and development, they have transformed those guidance systems into sophisticated scanning technology."
+	description "When the Remnant unraveled the alien Point Defense Turrets guarding the vaults on Aventine, they also deciphered the mechanisms that guided the ancient weapons. After significant investments in research and development, they have transformed those guidance systems into sophisticated scanning technology."
 	description "	While all Remnant ships are equipped with internal scanners, some captains still prefer to boost their range and power to more effectively select enemy ships worth targeting."
 
 
@@ -877,8 +877,8 @@ outfit "Void Rifle"
 	"capture defense" 20
 	"energy consumption" 0.017
 	"unplunderable" 1
-	description "The Remnant made a significant number of these weapons during the early years of their research on the void sprites, but have not been able to make any new ones since the Archon stopped their harvests. Without a supply of new tentacles to use, the Remnant have been unable to manufacture more. While durable, they rarely last more than a decade, so even the best cared for of the old void rifles degraded into uselessness centuries ago. These highly effective weapons are credited with helping the Remnant safeguard their refuges from ground-based threats during their early years."
-	description "	When fired, the void rifle emits a beam that has a strong paralyzing effect on the nervous system. With an area of effect that penetrates walls and other solid objects, it is an incredibly effective weapon."
+	description "The Remnant made a significant number of these weapons during the early years of their research on the void sprites, but have not been able to make any new ones since the Archon stopped their harvests. Without a supply of new tentacles to use, the Remnant have been unable to manufacture more. While durable, they rarely last more than a decade, so even the best cared for of the old Void Rifles degraded into uselessness centuries ago. These highly effective weapons are credited with helping the Remnant safeguard their refuges from ground-based threats during their early years."
+	description "	When fired, the Void Rifle emits a beam that has a strong paralyzing effect on the nervous system. With an area of effect that penetrates walls and other solid objects, it is an incredibly effective weapon."
 
 
 

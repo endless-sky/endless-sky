@@ -50,7 +50,8 @@ namespace {
 	// Check if the ship evades being outfit scanned.
 	bool EvadesOutfitScan(const Ship &ship)
 	{
-		return Random::Real() > 1. / (1. + ship.Attributes().Get("scan interference"));
+		return ship.Attributes().Get("inscrutable") > 0. ||
+				Random::Real() > 1. / (1. + ship.Attributes().Get("scan interference"));
 	}
 }
 
