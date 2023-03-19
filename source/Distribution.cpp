@@ -65,7 +65,7 @@ Angle Distribution::GenerateInaccuracy(double value, pair<Type, bool> distributi
 
 	switch(distribution.first)
 	{
-		case Distribution::Type::Uniform:
+		case Type::Uniform:
 			return Angle(2 * (Random::Real() - .5) * value);
 		case Type::Narrow:
 		case Type::Medium:

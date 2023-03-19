@@ -118,25 +118,25 @@ void Weapon::LoadWeapon(const DataNode &node)
 			inaccuracy = child.Value(1);
 			for(const DataNode &grand : child)
 			{
-				const string &grandKey = grand.Token((grand.Size() >= 2) ? 1 : 0);
-
-				if(grand.Size() >= 2 && grand.Token(0) == "inverted")
-					inaccuracyDistribution.second = true;
-				else
-					grand.PrintTrace("Skipping unknown or incomplete inaccuracy distribution attribute:");
-
-				if(grandKey == "triangular")
-					inaccuracyDistribution.first = Distribution::Type::Triangular;
-				else if(grandKey == "uniform")
-					inaccuracyDistribution.first = Distribution::Type::Uniform;
-				else if(grandKey == "narrow")
-					inaccuracyDistribution.first = Distribution::Type::Narrow;
-				else if(grandKey == "medium")
-					inaccuracyDistribution.first = Distribution::Type::Medium;
-				else if(grandKey == "wide")
-					inaccuracyDistribution.first = Distribution::Type::Wide;
-				else
-					grand.PrintTrace("Skipping unknown or incomplete inaccuracy distribution attribute:");
+				for(int j = 0; j < grand.Size(); ++j)
+				{
+					const string &token = grand.Token(j);
+					
+					if(token == "inverted")
+						inaccuracyDistribution.second = true;
+					else if(token == "triangular")
+						inaccuracyDistribution.first = Distribution::Type::Triangular;
+					else if(token == "uniform")
+						inaccuracyDistribution.first = Distribution::Type::Uniform;
+					else if(token == "narrow")
+						inaccuracyDistribution.first = Distribution::Type::Narrow;
+					else if(token == "medium")
+						inaccuracyDistribution.first = Distribution::Type::Medium;
+					else if(token == "wide")
+						inaccuracyDistribution.first = Distribution::Type::Wide;
+					else
+						grand.PrintTrace("Skipping unknown distribution attribute:");
+				}
 			}
 		}
 		else
