@@ -349,7 +349,7 @@ government "Gegno"
 	"attitude toward"
 		"Gegno Scin" 0.01
 		"Gegno Vi" 0.01
-		"Quarg" 0.02
+		"Quarg (Gegno)" 0.02
 	"penalty for"
 		assist 0
 		provoke 10
@@ -1002,6 +1002,9 @@ government "Pug"
 	"attitude toward"
 		"Drak" -.01
 		"Quarg" -.01
+		"Quarg (Hai)" -.01
+		"Quarg (Kor Efret)" -.01
+		"Quarg (Gegno)" -.01
 	"friendly hail" "friendly pug"
 	"friendly disabled hail" "friendly disabled pug"
 	"hostile hail" "hostile pug"
@@ -1017,6 +1020,9 @@ government "Pug (Wanderer)"
 	"attitude toward"
 		"Drak" -.01
 		"Quarg" -.01
+		"Quarg (Hai)" -.01
+		"Quarg (Kor Efret)" -.01
+		"Quarg (Gegno)" -.01
 	"friendly hail" "friendly pug"
 	"friendly disabled hail" "friendly disabled pug"
 	"hostile hail" "hostile pug"
@@ -1029,6 +1035,9 @@ government "Quarg"
 	
 	"player reputation" 1
 	"attitude toward"
+		"Quarg (Hai)" 1
+		"Quarg (Kor Efret)" 1
+		"Quarg (Gegno)" 1
 		"Merchant" .01
 		"Kor Efret" .01
 		"Kor Mereti" -.01
@@ -1057,6 +1066,9 @@ government "Quarg (Hai)"
 
 	"player reputation" 1
 	"attitude toward"
+		"Quarg" 1
+		"Quarg (Kor Efret)" 1
+		"Quarg (Gegno)" 1
 		"Merchant" .01
 		"Kor Efret" .01
 		"Kor Mereti" -.01
@@ -1085,6 +1097,9 @@ government "Quarg (Kor Efret)"
 
 	"player reputation" 1
 	"attitude toward"
+		"Quarg" 1
+		"Quarg (Hai)" 1
+		"Quarg (Gegno)" 1
 		"Merchant" .01
 		"Kor Efret" .01
 		"Kor Mereti" -.01
@@ -1113,6 +1128,9 @@ government "Quarg (Gegno)"
 
 	"player reputation" 1
 	"attitude toward"
+		"Quarg" 1
+		"Quarg (Hai)" 1
+		"Quarg (Kor Efret)" 1
 		"Merchant" .01
 		"Kor Efret" .01
 		"Kor Mereti" -.01
