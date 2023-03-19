@@ -123,7 +123,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 				if(grand.Size() >= 2 && grand.Token(0) == "inverted")
 					inaccuracyDistribution.second = true;
 				else
-					child.PrintTrace("Skipping unknown or incomplete inaccuracy distribution attribute:");
+					grand.PrintTrace("Skipping unknown or incomplete inaccuracy distribution attribute:");
 
 				if(grandKey == "triangular")
 					inaccuracyDistribution.first = Distribution::Type::Triangular;
@@ -136,7 +136,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 				else if(grandKey == "wide")
 					inaccuracyDistribution.first = Distribution::Type::Wide;
 				else
-					child.PrintTrace("Skipping unknown or incomplete inaccuracy distribution attribute:");
+					grand.PrintTrace("Skipping unknown or incomplete inaccuracy distribution attribute:");
 			}
 		}
 		else
