@@ -907,7 +907,7 @@ void Engine::Step(bool isActive)
 
 	// Draw crosshairs on any minables in range of the flagship's scanners.
 	bool shouldShowAsteroidOverlay = Preferences::Has("Show asteroid scanner overlay");
-	// Decide before looping whether or not to catalog asteroids.  This
+	// Decide before looping whether or not to catalog asteroids. This
 	// results in cataloging in-range asteroids roughly 3 times a second.
 	bool shouldCatalogAsteroids = (!isAsteroidCatalogComplete && !Random::Int(20));
 	if(shouldShowAsteroidOverlay || shouldCatalogAsteroids)
