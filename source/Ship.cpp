@@ -249,6 +249,10 @@ void Ship::Load(const DataNode &node)
 			customSwizzle = child.Value(1);
 		else if(key == "uuid" && child.Size() >= 2)
 			uuid = EsUuid::FromString(child.Token(1));
+		if(key == "shield" && child.Size() >= 2)
+		{
+			shield = SpriteSet::Get(child.Token(1));
+		}
 		else if(key == "attributes" || add)
 		{
 			if(!add)
@@ -526,6 +530,12 @@ void Ship::Load(const DataNode &node)
 		if(modelName.back() == 's' || modelName.back() == 'z')
 			node.PrintTrace("Warning: explicit plural name definition required, but none is provided. Defaulting to \""
 					+ pluralModelName + "\".");
+	}
+
+	// If no shield sprite is supplied, default to a hex pattern.
+	if(!shield)
+	{
+		shield = SpriteSet::Get("effect/shield/default");
 	}
 }
 
@@ -861,6 +871,8 @@ void Ship::Save(DataWriter &out) const
 		SaveSprite(out);
 		if(thumbnail)
 			out.Write("thumbnail", thumbnail->Name());
+		if(shield)
+			out.Write("shield", shield->Name());
 
 		if(neverDisabled)
 			out.Write("never disabled");
@@ -4300,6 +4312,13 @@ shared_ptr<Ship> Ship::GetParent() const
 const vector<weak_ptr<Ship>> &Ship::GetEscorts() const
 {
 	return escorts;
+}
+
+
+
+const Sprite *Ship::GetShieldSprite() const
+{
+	return shield;
 }
 
 

@@ -38,6 +38,7 @@ public:
 	class EffectItem {
 	public:
 		uint32_t texture = 0;
+		uint32_t shieldTex = 0;
 		float frame = 0.f;
 		float frameCount = 1.f;
 		float position[2] = { 0.f, 0.f };
@@ -50,6 +51,7 @@ public:
 		float shieldColor[4] = { 0.f, 0.f, 0.f, 0.f };
 		size_t recentHits = 0;
 		float ratio = 1.f;
+		float shieldRatio = 1.f;
 		float size = 80.f;
 	};
 
