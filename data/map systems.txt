@@ -2209,8 +2209,8 @@ system Actannka
 	minables iron 22 3.6
 	minables silver 12 5.36
 	minables titanium 12 5.45
-	fleet "Large Quarg" 1400
-	fleet Quarg 1400
+	fleet "Large Quarg (Gegno)" 1400
+	fleet "Quarg (Gegno) 1400
 	object
 		sprite star/a5
 		period 10
@@ -3470,8 +3470,8 @@ system Aleit
 	trade Medical 605
 	trade Metal 539
 	trade Plastic 378
-	fleet Quarg 1100
-	fleet "Large Quarg" 1600
+	fleet "Quarg (Gegno)" 1100
+	fleet "Large Quarg (Gegno)" 1600
 	fleet "Gegno Basic" 1000
 	object
 		sprite star/g3
@@ -10506,8 +10506,8 @@ system Dokdobaru
 	trade Medical 500
 	trade Metal 473
 	trade Plastic 317
-	fleet Quarg 600
-	fleet "Large Quarg" 800
+	fleet "Quarg (Kor EFret)" 600
+	fleet "Large Quarg (Kor Efret)" 800
 	fleet "Kor Efret Home" 750
 	object
 		sprite star/g3
@@ -10766,7 +10766,7 @@ system "Due Yoot"
 	fleet "Small Human Merchants (Hai)" 3000
 	fleet "Large Human Merchants (Hai)" 6000
 	fleet "Hai Surveillance" 5000
-	fleet Quarg 2000
+	fleet "Quarg (Hai)" 2000
 	object
 		sprite star/m3
 		period 10
@@ -11681,7 +11681,7 @@ system Elifennka
 	asteroids "large metal" 27 4.49
 	minables aluminum 28 8.68
 	minables titanium 31 9.59
-	fleet Quarg 4000
+	fleet "Quarg (Gegno)" 4000
 	object
 		sprite star/a3
 		period 10
@@ -12891,7 +12891,7 @@ system "Fah Root"
 	fleet "Small Human Merchants (Hai)" 15000
 	fleet "Large Human Merchants (Hai)" 25000
 	fleet "Hai Surveillance" 3000
-	fleet Quarg 2000
+	fleet "Quarg (Hai)" 2000
 	object
 		sprite star/k0
 		period 10
@@ -12966,7 +12966,7 @@ system "Fah Soom"
 	fleet "Small Human Merchants (Hai)" 6000
 	fleet "Large Human Merchants (Hai)" 9000
 	fleet "Hai Surveillance" 4000
-	fleet Quarg 1000
+	fleet "Quarg (Hai)" 1000
 	object
 		sprite star/k5
 		period 10
@@ -14897,7 +14897,7 @@ system Ghhil
 	minables silicon 2 6.3
 	minables copper 13 3.31
 	minables titanium 7 4.9
-	fleet Quarg 2000
+	fleet "Quarg (Gegno)" 2000
 	object
 		sprite star/a8
 		period 10
@@ -16134,7 +16134,7 @@ system Heutesl
 	trade Metal 571
 	trade Plastic 196
 	fleet "Gegno Basic" 200
-	fleet Quarg 2800
+	fleet "Quarg (Gegno)" 2800
 	fleet "Gegno Miners" 2000
 	object
 		sprite star/f8
@@ -16189,7 +16189,7 @@ system "Hevru Hai"
 	fleet "Large Hai Merchant (Human)" 7500
 	fleet "Small Human Merchants (Hai)" 9000
 	fleet "Large Human Merchants (Hai)" 15000
-	fleet Quarg 600
+	fleet "Quarg (Hai)" 600
 	object
 		sprite star/g3
 		period 10
@@ -16713,7 +16713,7 @@ system Iigen
 	minables iron 22 1.47
 	fleet "Gegno Basic" 1900
 	fleet "Gegno Miners" 2100
-	fleet Quarg 3500
+	fleet "Quarg (Gegno)" 3500
 	object
 		sprite star/m3
 		period 10
@@ -18649,8 +18649,8 @@ system Kashikt
 	trade Medical 543
 	trade Metal 443
 	trade Plastic 292
-	fleet Quarg 1000
-	fleet "Large Quarg" 2000
+	fleet "Quarg (Kor Efret)" 1000
+	fleet "Large Quarg (Kor Efret)" 2000
 	fleet "Kor Efret Home" 500
 	fleet "Kor Efret Miners" 3600
 	object
@@ -20862,7 +20862,7 @@ system "Lom Tahr"
 	fleet "Small Human Merchants (Hai)" 6000
 	fleet "Large Human Merchants (Hai)" 9000
 	fleet "Hai Surveillance" 3000
-	fleet Quarg 4000
+	fleet "Quarg (Hai)" 4000
 	object
 		sprite star/f0
 		period 10
@@ -29217,8 +29217,8 @@ system Sevrelect
 	trade Medical 603
 	trade Metal 446
 	trade Plastic 288
-	fleet Quarg 1000
-	fleet "Large Quarg" 3000
+	fleet "Quarg (Kor Efret)" 1000
+	fleet "Large Quarg (Kor Efret)" 3000
 	fleet "Kor Efret Home" 500
 	fleet "Kor Efret Miners" 3600
 	object
@@ -31043,8 +31043,8 @@ system Sumprast
 	trade Medical 591
 	trade Metal 483
 	trade Plastic 323
-	fleet Quarg 1000
-	fleet "Large Quarg" 2500
+	fleet "Quarg (Kor Efret)" 1000
+	fleet "Large Quarg (Kor Efret)" 2500
 	fleet "Kor Efret Home" 500
 	fleet "Kor Efret Miners" 3600
 	object
@@ -31815,7 +31815,7 @@ system Tscera
 	asteroids "large metal" 2 4.27
 	minables aluminum 1 5.75
 	minables lead 7 6.19
-	fleet Quarg 3800
+	fleet "Quarg (Gegno)" 3800
 	fleet "Gegno Basic" 3000
 	object
 		sprite star/f0
@@ -33993,7 +33993,7 @@ system "Ya Hai"
 	fleet "Small Human Merchants (Hai)" 12000
 	fleet "Large Human Merchants (Hai)" 17000
 	fleet "Hai Surveillance" 3000
-	fleet Quarg 6000
+	fleet "Quarg (Hai)" 6000
 	object
 		sprite star/k5
 		period 10
@@ -34199,7 +34199,7 @@ system Yllke
 	minables aluminum 42 1.94
 	fleet "Gegno Miners" 3000
 	fleet "Gegno Basic" 1300
-	fleet Quarg 3300
+	fleet "Quarg (Gegno)" 3300
 	object
 		sprite star/b8
 		distance 31.2
