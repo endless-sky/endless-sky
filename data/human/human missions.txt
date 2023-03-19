@@ -47,11 +47,9 @@ mission "Immigrant Workers"
 
 
 mission "Pookie, Part 1"
+	minor
 	name "Pookie"
 	description "Travel to <destination> and meet Pookie, who is staying with her aunt and may be scared of flying."
-	minor
-	to offer
-		random < 50
 	source "Hestia"
 	destination "Shroud"
 	passengers 1
