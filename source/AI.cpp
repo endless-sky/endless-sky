@@ -1259,7 +1259,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 
 		// Ships which only disable never target already-disabled ships.
 		if((person.Disables() || (!person.IsNemesis() && foe != oldTarget.get()))
-				&& foe->IsDisabled() && !canPlunder)
+				&& foe->IsDisabled() && (!canPlunder || Has(ship, foe->shared_from_this(), ShipEvent::BOARD)))
 			continue;
 
 		// Ships that don't (or can't) plunder strongly prefer active targets.
@@ -1494,7 +1494,10 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 			target.reset();
 		else
 		{
-			CircleAround(ship, command, *target);
+			if(target->Velocity().Length() > ship.MaxVelocity() * 0.9)
+				CircleAround(ship, command, *target);
+			else
+				MoveTo(ship, command, target->Position(), target->Velocity(), 1., 1.);
 			if(!ship.IsYours() && (ship.IsSpecial() || scanPermissions.at(gov)))
 				command |= Command::SCAN;
 		}
@@ -1630,6 +1633,21 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	const Planet *parentPlanet = (parent.GetTargetStellar() ? parent.GetTargetStellar()->GetPlanet() : nullptr);
 	bool planetIsHere = (parentPlanet && parentPlanet->IsInSystem(parent.GetSystem()));
 	bool systemHasFuel = hasFuelCapacity && currentSystem->HasFuelFor(ship);
+
+	if(parent.Cloaking() == 1 && (ship.GetGovernment() != parent.GetGovernment()))
+	{
+		if(parent.GetGovernment() && parent.GetGovernment()->IsPlayer() &&
+			ship.GetPersonality().IsEscort() && !ship.GetPersonality().IsUninterested())
+		{
+			// NPCs with the "escort" personality that are not uninterested
+			// act as if they were escorts, following the cloaked flagship.
+		}
+		else
+		{
+			MoveIndependent(ship, command);
+			return;
+		}
+	}
 
 	// Non-staying escorts should route to their parent ship's system if not already in it.
 	if(!parentIsHere && !isStaying)
@@ -1926,7 +1944,7 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 
 	bool isFacing = (dp.Unit().Dot(angle.Unit()) > .95);
 	if(!isClose || (!isFacing && !shouldReverse))
-		command.SetTurn(TurnToward(ship, dp));
+		command.SetTurn(TurnToward(ship, dp, 0.9999));
 	if(isFacing)
 		command |= Command::FORWARD;
 	else if(shouldReverse)
@@ -2489,7 +2507,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		else if(!isStaying)
 			command |= Command::LAND;
 	}
-	else if(target)
+	else if(target && target->IsTargetable())
 	{
 		// Approach and scan the targeted, friendly ship's cargo or outfits.
 		bool cargoScan = ship.Attributes().Get("cargo scan power");
@@ -2501,7 +2519,10 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 			ship.SetTargetShip(shared_ptr<Ship>());
 		else
 		{
-			CircleAround(ship, command, *target);
+			if(target->Velocity().Length() > ship.MaxVelocity() * 0.9)
+				CircleAround(ship, command, *target);
+			else
+				MoveTo(ship, command, target->Position(), target->Velocity(), 1., 1.);
 			command |= Command::SCAN;
 		}
 	}
@@ -2630,7 +2651,7 @@ bool AI::DoHarvesting(Ship &ship, Command &command)
 {
 	// If the ship has no target to pick up, do nothing.
 	shared_ptr<Flotsam> target = ship.GetTargetFlotsam();
-	if(target && ship.Cargo().Free() < target->UnitSize())
+	if(target && !ship.CanPickUp(*target))
 	{
 		target.reset();
 		ship.SetTargetFlotsam(target);
@@ -2645,7 +2666,7 @@ bool AI::DoHarvesting(Ship &ship, Command &command)
 		double bestTime = 600.;
 		for(const shared_ptr<Flotsam> &it : flotsam)
 		{
-			if(ship.Cargo().Free() < it->UnitSize())
+			if(!ship.CanPickUp(*it))
 				continue;
 			// Only pick up flotsam that is nearby and that you are facing toward.
 			Point p = it->Position() - ship.Position();
@@ -2708,8 +2729,20 @@ bool AI::DoCloak(Ship &ship, Command &command)
 
 		// If your parent has chosen to cloak, cloak and rendezvous with them.
 		const shared_ptr<const Ship> &parent = ship.GetParent();
-		if(parent && parent->Commands().Has(Command::CLOAK) && parent->GetSystem() == ship.GetSystem()
-				&& !parent->GetGovernment()->IsEnemy(ship.GetGovernment()))
+		bool shouldCloakWithParent = false;
+		if(parent && parent->GetGovernment() && parent->Commands().Has(Command::CLOAK)
+				&& parent->GetSystem() == ship.GetSystem())
+		{
+			const Government *parentGovernment = parent->GetGovernment();
+			bool isPlayer = parentGovernment->IsPlayer();
+			if(isPlayer && ship.GetGovernment() == parentGovernment)
+				shouldCloakWithParent = true;
+			else if(isPlayer && ship.GetPersonality().IsEscort() && !ship.GetPersonality().IsUninterested())
+				shouldCloakWithParent = true;
+			else if(!isPlayer && !parent->GetGovernment()->IsEnemy(ship.GetGovernment()))
+				shouldCloakWithParent = true;
+		}
+		if(shouldCloakWithParent)
 		{
 			command |= Command::CLOAK;
 			KeepStation(ship, command, *parent);
