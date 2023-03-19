@@ -1359,7 +1359,9 @@ mission "Wanderers: Tour 1"
 	destination "Setar Fort"
 	to offer
 		has "event: wanderers: desi seledrak"
+		not "Danforth in mission sequence"
 	on offer
+		"Danforth in mission sequence" = 3
 		conversation
 			`Most of the Wanderer elders have moved to this world, to be more involved in the newest terraforming effort, which they clearly find much more rewarding than the battle against the drones. After listening to them talk for nearly an hour about soil restoration and atmospheric particulates and carbon cycles, you ask what you can help them with next.`
 			`	Tema'a Iriket says, "We should take further action to [befriend, collaborate with] the Korath. Perhaps you could visit Rek, and [invite, welcome] her Korath friends to [witness, inspect] the work we are doing here? Our hope is that our next [settlement, project] will be a [joint effort?] with them."`

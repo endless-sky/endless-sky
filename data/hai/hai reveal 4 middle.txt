@@ -1454,6 +1454,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 		has "Hai Reveal [A10] Demanding Satisfaction: done"
 	on offer
 		event "hai and human ships at wormhole"
+		event "Hai election has started"
 		log `Teeneep has been rejected by the Elders again, but has set in a motion a plan which has triggered an election instead. This snap election has closed the border and risked creating a diplomatic incident.`
 		log "People" "Aimet Taepip" `An Elder of advanced age and poor eyesight. He is the "master navigator" of the Hai political system, being the first to improve on a system in several generations. He commands widespread respect and possesses enormous clout in the Council of Elders.`
 		conversation
@@ -1617,6 +1618,8 @@ mission "Hai Reveal [A11] Sound the Alarm"
 	on enter "Waypoint"
 		dialog `As you enter Waypoint one of the Hai captains hails you. "Captain, we've orders to close the border to everyone, but... we know you've been doing official business, and we haven't been told to specifically block you. We also owe you one. You can go through, but don't try and bring anyone with you. We'll have no choice but to fire upon you and them if you do."`
 
+event "Hai election has started"
+
 event "hai and human ships at wormhole"
 	system "Waypoint"
 		remove fleet "Anti-Pirate Hai (Wormhole Travel)"
@@ -1680,8 +1683,8 @@ mission "Hai Reveal [A11-C] Outgoing Election Update 1"
 		not planet "Hai-home"
 		attributes "spaceport"
 	to offer
-		has "Hai Reveal [A11] Sound the Alarm: offered"
-		not "Hai Reveal [A13] A New Elder: offered"
+		has "event: Hai election has started"
+		not "event: Hai election has ended"
 	on offer
 		conversation
 			`The spaceport appears to be operating on a skeleton staff with an increased security presence. Plenty of ships are still coming and going, but they seem to be here strictly on business. The usual milling of tourists, haggling of merchants, and perusal of jobs all appear to have been suspended in favor of efficient boarding and disembarking of Hai with places to go and goods with places to be. The displays in the main thoroughfare have been switched over to wall-to-wall election coverage and the rest of the non-essential sections of the spaceport have been closed.`
@@ -1736,7 +1739,6 @@ mission "Hai Reveal [A12] Into the Lion's Den"
 	to offer
 		has "Hai Reveal [A11] Sound the Alarm: done"
 	on offer
-		log `Alerted Turner and Danforth to the situation. Been sent back to <planet> to ensure the safety of the diplomats.`
 		conversation
 			`Mountaintop appears to be in chaos by the time you dock and make your way onto the promenade. Discarded equipment is scattered in many places and a whole group of Hai are desperately lining up to try and get on one of the Hai merchant ships to return to Hai space, all while trying to pretend like it's for some movie exercise. A selection of brave but confused tourists are trying to work out how to get from one place to another, now that the line has disrupted all normal flow through this section. Someone is crying behind a greenscreen, and a great many people involved both in running the station and making the movie seem to be frantically attempting to keep up with events. The hectic order that was present last time is nowhere to be seen.`
 			`	You can't find Terry. She seems to be battling organizational fires and moving round the station fast enough that by the time you get to where she's last been, she's already moved on somewhere else; possibly twice. However, Turner manages to find you in relatively short order.`
@@ -1767,26 +1769,74 @@ mission "Hai Reveal [A12] Into the Lion's Den"
 					goto danforth
 					to display
 						"Danforth in mission sequence" != 2
+
+			branch "Danforth Alpha Sestor Invasion: Before Danforth"
+				"Danforth in mission sequence" == 3
+				not "Wanderers: Sestor: Farpoint Attack 1: offered"
+
+			branch "Danforth Alpha Sestor Invasion: drop the bomb"
+				has "Wanderers: Sestor: Farpoint Attack 2: active"
+
+			branch "Danforth Alpha Sestor Invasion"
+				"Danforth in mission sequence" == 3
+
 			branch "Danforth Alpha Hunt: present but unavailable"
 				or
 					"Wanderers: Alpha Surveillance F: active"
 					"Wanderers: Alpha Surveillance G: active"
+
+			# Either Danforth is at Farpoint during the Alpha Hunt, or isn't in any mission sequence.
+			`	From back on your ship it is easy enough to use the station's network to place a call. You get in contact with Danforth to brief him on what's going on, with the possibility of an Unfettered fleet coming through the wormhole in a matter of days. He seems unsurprised, but disappointed. "Well, I'll scramble some additional Navy forces. We'll hopefully make sure that whatever happens, we'll have some options."`
+			`	You can hear him grimace on the call. "When this went on as long as it did, I pulled strings to get some Cruisers specially equipped for deep-range, long-duration missions." He sighs. "This is one of those situations where I really wish I hadn't prepared for an eventuality and been right about it.`
 			branch "Danforth Alpha Hunt"
 				"Danforth in mission sequence" == 2
-			branch "Danforth Alpha Sestor Invasion"
-				"Danforth in mission sequence" == 3
+
+			# Danforth is not in any mission sequence.
 			action
 				# Danforth mission sequence 1 is Hai Reveal 4-6
 				"Danforth in mission sequence" = 1
-			`	From back on your ship it is easy enough to use the station's network to place a call. You get in contact with Danforth to brief him on what's going on, with the possibility of an Unfettered fleet coming through the wormhole in a matter of days. He seems unsurprised, but disappointed. "Well, I'll scramble some additional Navy forces. We'll hopefully make sure that whatever happens, we'll have some options."`
-			`	You can hear him grimace on the call. "When this went on as long as it did, I pulled strings to get some Cruisers specially equipped for deep-range, long-duration missions." He sighs. "This is one of those situations where I really wish I hadn't prepared for an eventuality and been right about it.`
+				log `Alerted Turner and Danforth to the situation. Been sent back to <planet> to ensure the safety of the diplomats.`
 			`	"I'll be there with a fleet soon. In the meantime, you need to go back to <planet> to ensure the safety of the diplomatic corps. Get them out if need be, otherwise just be there with a ship so you can monitor the situation."`
 				accept
+
+			# Danforth is at Farpoint during the Alpha Hunt sequence.
+			label "Danforth Alpha Hunt"
+			action
+				log `Alerted Turner and Danforth to the Hai situation. Was urged to finish finding and eliminating the Alpha enclave as soon as possible, so the Navy can deal with this new threat.`
+			`	"I can't deal with this problem personally until I finish hunting the Alphas. The Hai - even the Unfettered - are capable of restraint; they're not amoral and power-hungry like the Alphas. We need to solve the Alpha problem decisively, before they can do any real harm. After that, I'll arrange formal discussions with the Hai."`
+				decline
+
+			# Danforth is at Farpoint during the Sestor invasion, and Farpoint is not under attack.
+			label "Danforth Alpha Sestor Invasion"
+			action
+				log `Alerted Turner and Danforth to the Hai situation. Was urged to finish finding and eliminating the Alpha enclave as soon as possible, so the Navy can deal with this new threat.`
+			`	From back on your ship it is easy enough to use the station's network to place a call. You get in contact with Danforth to brief him on what's going on, with the possibility of an Unfettered fleet coming through the wormhole in a matter of days. He seems exasperated. "We have few ships to spare, but I'll send enough to make our presence felt at the wormhole. In the meantime, I suggest you focus on the current invasion of human space before trying to spark any new ones.`
+				decline
+
+			# Danforth is at Farpoint, under attack, waiting for you to drop the bomb.
+			label "Danforth Alpha Sestor Invasion: drop the bomb"
+			action
+				log `Alerted Turner and Danforth to the Hai situation. Was urged to finish finding and eliminating the Alpha enclave as soon as possible, so the Navy can deal with this new threat.`
+			`	From back on your ship it is easy enough to use the station's network to place a call. You get in contact with Danforth to brief him on what's going on, with the possibility of an Unfettered fleet coming through the wormhole in a matter of days. You can barely hear his response over the explosions around his base. "What the hell are you doing here? Haven't you noticed the Navy is occupied right now? Drop the bomb and then we'll worry about the Hai."`
+				decline
+
+			# Danforth is with Captain <last> during the Alpha Hunt. He might not be at the planet if his ship was left behind.
 			label "Danforth Alpha Hunt: present but unavailable"
-			`	You find Danforth in the spaceport, eager to get back to  what's going on, with the possibility of an Unfettered fleet coming through the wormhole in a matter of days.`
+			action
+				log `Alerted Turner and Danforth to the Hai situation. Was urged to finish finding and eliminating the Alpha enclave as soon as possible, so the Navy can deal with this new threat.`
+			`	You contact in the spaceport, eager to get back to  what's going on, with the possibility of an Unfettered fleet coming through the wormhole in a matter of days.`
 			`	He seems unsurprised, but disappointed. "When this went on as long as it did, I pulled strings to get some Cruisers specially equipped for deep-range, long-duration missions." He sighs. "This is one of those situations where I really wish I hadn't prepared for an eventuality and been right about it.`
 			`	"I'll scramble some additional Navy forces, but I can't deal with this problem personally until I finish hunting the Alphas. The Hai - even the Unfettered - are capable of restraint; they're not amoral and power-hungry like the Alphas. We need to solve the Alpha problem decisively, before they can do any real harm. After that, I'll arrange formal discussions with the Hai."`
-				accept
+				decline
+
+			label "Danforth Alpha Sestor Invasion: Before Danforth"
+			action
+				log "Minor People" "Commodore Trinkenschuh" "Second in command at the Republic Navy base at Farpoint, under Admiral Danforth."
+				log `Alerted Turner and Commodore Trinkenschuh (Danforth's second-in-command) to the Hai situation. Was urged to finish finding and eliminating the Alpha enclave as soon as possible, so the Navy can deal with this new threat.`
+				log `Danforth is unavailable to help with the Hai situation due to a possible return of the Alphas from Avalon to regions north of Farpoint.`
+			`	From back on your ship it is easy enough to use the station's network to place a call. You get in contact with Farpoint's second in command, Commodore Trinkenschuh, who tells you Danforth dealing with an urgent security matter and cannot be interrupted. You brief the officer on the possibility of an Unfettered fleet coming through the wormhole in a matter of days. They promise to send enough reinforcements to the wormhole to make the Hai think twice about attacking, and arrange high-level diplomatic talks.`
+			`	When pressed for answers about why Danforth is unavailable to deal with this threat, the officer says, "There's some odd activity up north that worries us just as much: the... individuals... we found at Avalon may have returned to human space. Considering the technology near Avalon, that presents some dangerous possibilities. We'll pass this warning onto the Hai in preliminary diplomatic discussions, and try to delay our Hai problems a little while."`
+				decline
 
 
 
@@ -1799,15 +1849,19 @@ mission "Hai Reveal [A13b] Danforth is Available"
 		not planet Farpoint
 	destination "Hai-home"
 	to offer
-		has "Hai Reveal [A12] Into the Lion's Den: done"
+		has "Hai Reveal [A12] Into the Lion's Den: declined"
 		not "Danforth in mission sequence"
 		not "Hai Reveal [A13] A New Elder: offered"
 	on offer
 		# Danforth mission sequence 1 is Hai Reveal 4-6
 		"Danforth in mission sequence" = 1
+		event "Hai election has ended"
 		conversation
-			`Upon landing, you receive a message from Danforth. "The Navy forces near Hai space are prepared for any invasion, but we got word that politics on Hai-home are heating up, and your friend Teeneep is in the middle of it. Please fly to <planet> as soon as possible to deal with the Hai situation."`
+			`Upon landing, you receive a message from Danforth. "The Navy forces near Hai space are prepared for an invasion as best we can, but I've gathered that the situation on Hai-home has changed. We got word that the Hai election is over, their politics are heating up, and your friend Teeneep is in the middle of it all. Please fly to <planet> as soon as possible to deal with the Hai situation."`
 				accept
+
+
+event "Hai election has ended"
 
 
 
@@ -1823,6 +1877,7 @@ mission "Hai Reveal [A13] A New Elder"
 		has "Hai Reveal [A12] Into the Lion's Den: done"
 		"Danforth in mission sequence" == 1
 	on offer
+		event "Hai election has ended"
 		conversation
 			`You are granted access to the secure spaceport, potentially because nobody has filed any paperwork to stop you, and you can't help but notice that the strangely-outfitted Centipede from Teeneep's operations on Darkwaste has made its way here as well. It is late in the day when you enter the diplomatic wing of the government complex. The developing gloom as Ya Hai sinks behind the buildings of the capital underscores the mood; the place appears nearly deserted.`
 			`	Fortunately though, you swiftly discover Alondo and Remington who are sitting in the empty cafeteria with paired glasses of what appears to be scotch whiskey. When he sees you Alondo raises a hand and gestures for you to sit with them. "<first>! Bloody hell, come join us."`

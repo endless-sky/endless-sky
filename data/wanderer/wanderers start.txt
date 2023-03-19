@@ -1540,18 +1540,46 @@ mission "Wanderers: Alpha Surveillance E"
 		conversation "Danforth Alpha Surveillance E"
 
 
+mission "Wanderers: Alpha Surveillance E (Hai Reveal Reminder)"
+	name "Elias and the Alpha Enclave"
+	description "Resolve Hai social issues and come to a successful Hai-human agreement so Danforth and the Navy will be able to switch focus to the Alpha enclave."
+	source "Alta Hai"
+	passengers 1
+	to offer
+		has "Wanderers: Alpha Surveillance D: done"
+		"Danforth in mission sequence" == 1
+	to complete
+		or
+			has "Wanderers: Alpha Surveillance E: done"
+			has "Wanderers: Alpha Surveillance E (Hai Reveal Delayed): done"
+
+
 mission "Wanderers: Alpha Surveillance E (Hai Reveal Delayed)"
 	name "Visit Danforth"
-	description "Visit Admiral Danforth on <planet> and see if he is able to supply you with an attack force to locate and destroy the Alpha base."
-	source "Alta Hai"
+	description "Pick up Elias at <stopovers> and take him to Admiral Danforth on <planet> to ask for an attack force to locate and destroy the Alpha base."
+	source
+		government Quarg Hai Republic Neutral Independent Syndicate "Free Worlds"
+		not planet Farpoint
+		not planet "Alta Hai"
+		not attributes uninhabited
+	stopover "Alta Hai"
 	destination "Farpoint"
 	passengers 1
 	to offer
 		has "Wanderers: Alpha Surveillance D: done"
 		has "Wanderers: Alpha Surveillance E: declined"
-		has ""
+		not "Wanderers: Alpha Surveillance F: offered"
+		not "Danforth in mission sequence"
 	on offer
-		
+		# Danforth mission sequence 2 is the Alpha Hunt
+		"Danforth in mission sequence" = 2
+		conversation
+			`Upon touching down, you receive a communique from Elias reminding you of the Alpha enclave on Avalon. You had best pick up Elias at <stopovers> and fly him to Danforth at <planet>.`
+				accept
+	on stopover
+		dialog `Elias boards your ship, eager to get to <planet> and talk to Danforth about the Alpha enclave on Avalon.`
+	on visit
+		dialog `You've landed on <planet>, but you forgot to bring Elias. You must visit <stopovers> to pick him up, and ensure the he lands with you. If he is in one of your escorts, you should take off and wait for it to catch up.`
 	on complete
 		conversation "Danforth Alpha Surveillance E"
 
