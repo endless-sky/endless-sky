@@ -121,7 +121,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 				for(int j = 0; j < grand.Size(); ++j)
 				{
 					const string &token = grand.Token(j);
-					
+
 					if(token == "inverted")
 						inaccuracyDistribution.second = true;
 					else if(token == "triangular")
