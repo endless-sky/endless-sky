@@ -164,10 +164,16 @@ void Government::Load(const DataNode &node)
 		{
 			if(key == "provoked on scan")
 				provokedOnScan = false;
-			else if(key == "reputation max")
-				reputationMax = numeric_limits<double>::max();
-			else if(key == "reputation min")
-				reputationMax = numeric_limits<double>::lowest();
+			else if(key == "reputation")
+			{
+				for(const DataNode &grand : child)
+				{
+					if(grand.Token(0) == "max" && grand.Size() >= 2)
+						reputationMax = numeric_limits<double>::max();
+					else if(grand.Token(0) == "mint" && grand.Size() >= 2)
+						reputationMin = numeric_limits<double>::lowest();
+				}
+			}
 			else if(key == "raid")
 				raidFleets.clear();
 			else if(key == "display name")
@@ -341,10 +347,6 @@ void Government::Load(const DataNode &node)
 			child.PrintTrace("Error: Expected key to have a value:");
 		else if(key == "player reputation")
 			initialPlayerReputation = add ? initialPlayerReputation + child.Value(valueIndex) : child.Value(valueIndex);
-		else if(key == "reputation max")
-			reputationMax = add ? reputationMax + child.Value(valueIndex) : child.Value(valueIndex);
-		else if(key == "reputation min")
-			reputationMin = add ? reputationMin + child.Value(valueIndex) : child.Value(valueIndex);
 		else if(key == "crew attack")
 			crewAttack = max(0., add ? child.Value(valueIndex) + crewAttack : child.Value(valueIndex));
 		else if(key == "crew defense")
