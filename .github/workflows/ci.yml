@@ -107,5 +107,6 @@ jobs:
         github-release upload \
           --tag continuous \
           --name endless-mobile-debug-latest.apk \
+          --replace \
           --file android/app/build/outputs/apk/debug/app-debug.apk
 
