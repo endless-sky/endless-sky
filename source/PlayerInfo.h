@@ -337,6 +337,10 @@ public:
 	void VisitOutfitterAt(const Planet &planet);
 	bool OutfitterVisitedAt(const Planet &planet);
 
+	// Methods to check if shipyard was visited or mark one as such
+	void VisitShipyardAt(const Planet &planet);
+	bool ShipyardVisitedAt(const Planet &planet);
+
 	// Methods for changing or getting if an outfit is known to the player.
 	bool OutfitIsKnown(const Outfit &outfit) const;
 	void DiscoverOutfit(const Outfit &outfit);
@@ -382,6 +386,7 @@ private:
 private:
 	struct PlanetVisitedEstablishmets {
 		bool outfitter;
+		bool shipyard;
 	};
 
 	std::string firstName;

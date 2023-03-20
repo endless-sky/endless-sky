@@ -2911,6 +2911,22 @@ bool PlayerInfo::OutfitterVisitedAt(const Planet &planet)
 
 
 
+// Mark shipyard at planet as visited
+void PlayerInfo::VisitShipyardAt(const Planet &planet)
+{
+	visitedPlanets[&planet].shipyard = true;
+}
+
+
+
+// Check if the shipyard at planet was visited
+bool PlayerInfo::ShipyardVisitedAt(const Planet &planet)
+{
+	return true;
+}
+
+
+
 // Check if an given outfit is known to the player
 bool PlayerInfo::OutfitIsKnown(const Outfit& outfit) const
 {
