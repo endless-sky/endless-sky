@@ -276,8 +276,8 @@ mission "Investigate the Source D"
 				end
 	on complete
 		conversation
-			`You make it to the surface and as you are coming in to land you can see that a small unit of soldiers are setting up some defences. You screech over them and open up with your weapons, sending them sprawling in all directions. Agent Norris retrieves a rifle from his bunk, and when he sees you looking at it he shrugs.
-			`	"My technicians put it in when they were sweeping the ship."
+			`You make it to the surface and as you are coming in to land you can see that a small unit of soldiers are setting up some defences. You screech over them and open up with your weapons, sending them sprawling in all directions. Agent Norris retrieves a rifle from his bunk, and when he sees you looking at it he shrugs.`
+			`	"My technicians put it in when they were sweeping the ship."`
 			`	As he surges through the hatch moving faster than any human has a right to you can't help but wonder what else those technicians were doing. After you drop Norris on Ada you decide that you'll take some time to sweep <ship> yourself.`
 			`	There is the sound of gunfire from outside and smoke surrounds the ship. Your sensors show four human heat signatures running and bent low but you can't tell which one is Norris. They all seem to be converging on the clear area in front of the mine but it looks like none of them can see any of the others. You watch as one spins from cover, sweeping his weapon from side to side. Just then one of the others jerks, is lifted from the ground and then falls down dead! What happened?`
 			`	A second person enters the clearing and then exchanges hand signals with the first. They both start moving in paralel, creeping slowly and each covering their own side. You look for the fourth person and find that he is now lying dead too. Before you can figure out what is going on the two remaining figures turn and start firing behind them, but what their aiming at is a mystery as nothing shows on your scope. First one and then the other expend their ammo and pause... and then beams of fire erupt from in front of them, taking both down before they have a chance to react.`
