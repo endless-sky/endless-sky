@@ -103,7 +103,7 @@ void Preferences::Load()
 	if (0 == sysinfo(&si))
 	{
 		SDL_Log("sysinfo: totalram: %lu mem_unit %u", si.totalram, si.mem_unit);
-		if (si.totalram * si.mem_unit < 4lu * 1024*1024*1024)
+		if (static_cast<uint64_t>(si.totalram) * si.mem_unit < static_cast<uint64_t>(4) * 1024*1024*1024)
 		{
 			SDL_Log("Detected low memory... defaulting Reduced graphics to true");
 			settings["Reduced graphics"] = true;
