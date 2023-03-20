@@ -369,13 +369,18 @@ void PlayerInfo::Load(const string &path)
 			Visit(*GameData::Planets().Get(child.Token(1)));
 
 			if(child.Size() > 2)
-			{
-				string visitedStr = child.Token(2);
+				for(int i = 2; i < child.Size(); i++)
+				{
+					string visitedStr = child.Token(i);
 
-				if(!visitedStr.empty())
-					if(visitedStr == "outfitter")
-						VisitOutfitterAt(*GameData::Planets().Get(child.Token(1)));
-			}
+					if(!visitedStr.empty())
+					{
+						if(visitedStr == "outfitter")
+							VisitOutfitterAt(*GameData::Planets().Get(child.Token(1)));
+						else if(visitedStr == "shipyard")
+							VisitShipyardAt(*GameData::Planets().Get(child.Token(1)));
+					}
+				}
 		}
 		else if(child.Token(0) == "harvested")
 		{
@@ -4475,14 +4480,22 @@ void PlayerInfo::Save(DataWriter &out) const
 		[&out](const PlanetEntry &entry)
 		{
 			string visitedOutfitterStr = "";
+			string visitedShipyardStr = "";
 
 			if(entry.second.outfitter)
 				visitedOutfitterStr = "outfitter";
 
-			if(visitedOutfitterStr.empty())
+			if(entry.second.shipyard)
+				visitedShipyardStr = "shipyard";
+
+			if(visitedOutfitterStr.empty() && visitedShipyardStr.empty())
 				out.Write("visited planet", entry.first->TrueName());
-			else
+			else if(!visitedOutfitterStr.empty() && visitedShipyardStr.empty())
 				out.Write("visited planet", entry.first->TrueName(), visitedOutfitterStr);
+			else if(visitedOutfitterStr.empty() && !visitedShipyardStr.empty())
+				out.Write("visited planet", entry.first->TrueName(), visitedShipyardStr);
+			else
+				out.Write("visited planet", entry.first->TrueName(), visitedOutfitterStr, visitedShipyardStr);
 		});
 
 	if(!harvested.empty())
