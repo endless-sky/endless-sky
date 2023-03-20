@@ -196,6 +196,7 @@ bool Preferences::Has(const string &name)
 void Preferences::Set(const string &name, bool on)
 {
 	settings[name] = on;
+	Preferences::Save();
 }
 
 

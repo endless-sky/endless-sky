@@ -765,7 +765,6 @@ void PreferencesPanel::DrawPlugins()
 void PreferencesPanel::Exit()
 {
 	Command::SaveSettings(Files::Config() + "keys.txt");
-	Preferences::Save();
 
 	GetUI()->Pop(this);
 }
