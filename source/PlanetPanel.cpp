@@ -65,9 +65,6 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	// landscapes for this system are loaded before showing the planet panel.
 	GameData::Preload(planet.Landscape());
 	GameData::FinishLoadingSprites();
-
-	// Save on landing.
-	player.Save();
 }
 
 

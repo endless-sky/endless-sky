@@ -93,6 +93,8 @@ void MainPanel::Step()
 	{
 		GetUI()->Push(new PlanetPanel(player, bind(&MainPanel::OnCallback, this)));
 		player.Land(GetUI());
+		// Save on landing, in case the app is killed uncleanly
+		player.Save();
 		isActive = false;
 	}
 
