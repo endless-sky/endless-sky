@@ -72,6 +72,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/WrappedText.h"
 
 #include <algorithm>
+#include <chrono>
 #include <cmath>
 #include <string>
 
@@ -1235,6 +1236,12 @@ bool Engine::FingerDown(const Point &p)
 {
 	isTouch = true;
 	isFingerDown = true;
+	auto now = std::chrono::steady_clock::now();
+	if (now - last_tap_stamp < std::chrono::milliseconds(500))
+	{
+		isDoubleTap = true;
+	}
+	last_tap_stamp = now;
 	Click(p, p, false, false);
 
 	// Returning true here means don't convert this to a normal mouse click
@@ -1248,6 +1255,7 @@ bool Engine::FingerUp(const Point &p)
 {
 	isTouch = true;
 	isFingerDown = false;
+	isDoubleTap = false;
 
 	// Determine if the point was within the radar display.
 	const Interface *hud = GameData::Interfaces().Get("hud");
@@ -2187,7 +2195,7 @@ void Engine::HandleMouseClicks()
 
 void Engine::HandleTouchEvents()
 {
-	if (!isTouch)
+	if(!isTouch)
 	{
 		return;
 	}
@@ -2196,11 +2204,15 @@ void Engine::HandleTouchEvents()
 	if(!flagship)
 		return;
 
-	if (isFingerDown)
+	if(isFingerDown)
 	{
-		if (moveTowardActive)
+		if(moveTowardActive)
 		{
 			activeCommands |= Command::MOVETOWARD;
+			if(isDoubleTap)
+			{
+				activeCommands |= Command::AFTERBURNER;
+			}
 			flagship->SetMoveToward(clickPoint + center - flagship->Position());
 		}
 	}

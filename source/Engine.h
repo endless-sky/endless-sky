@@ -29,6 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Radar.h"
 #include "Rectangle.h"
 
+#include <chrono>
 #include <condition_variable>
 #include <list>
 #include <map>
@@ -252,10 +253,12 @@ private:
 	bool isTouch = false;
 	bool isFingerDown = false;
 	bool moveTowardActive = false;
+	bool isDoubleTap = false;
 	Point clickPoint;
 	Rectangle uiClickBox;
 	Rectangle clickBox;
 	int groupSelect = -1;
+	std::chrono::steady_clock::time_point last_tap_stamp;
 
 	// Input, Output and State handling for automated tests.
 	TestContext *testContext = nullptr;
