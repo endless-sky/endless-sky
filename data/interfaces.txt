@@ -1423,3 +1423,12 @@ interface "main buttons" bottom right
 		from -330 -50 to -240 0
 	button "Scan selected ship" "_Scan"
 		from -320 -40 to -250 -10
+
+	# Overlayed on target display, but the hud doesn't have a panel, so to
+	# handle input, we put it here instead.
+	visible
+	active
+	anchor top left
+	button "Select next ship"
+		center 75 315
+		dimensions 50 50
