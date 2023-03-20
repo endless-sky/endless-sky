@@ -1778,9 +1778,6 @@ mission "Hai Reveal [A12] Into the Lion's Den"
 			`	When you finish on the possibility of an Unfettered war fleet appearing at the wormhole to scour pirate worlds, he stops you with a pained expression. "Well, it's all falling apart, isn't it... Alright, look, this is above my pay-grade, and I don't think within Terry's either. You need to go contact Admiral Danforth. The connection from here to Farpoint is excellent now, since all our other traffic is routing through those new relays, so it should be easy enough. I'll make sure no one does anything stupid from this side. I'm sure there's a solution here, we all just need to keep our heads and call the right people."`
 			choice
 				`	"I'll go to my ship's comms now and call him."`
-					goto danforth
-					to display
-						"Danforth in mission sequence" != 2
 
 			branch "Danforth Alpha Sestor Invasion: Before Danforth"
 				"Danforth in mission sequence" == 3
@@ -1794,8 +1791,8 @@ mission "Hai Reveal [A12] Into the Lion's Den"
 
 			branch "Danforth Alpha Hunt: present but unavailable"
 				or
-					"Wanderers: Alpha Surveillance F: active"
-					"Wanderers: Alpha Surveillance G: active"
+					has "Wanderers: Alpha Surveillance F: active"
+					has "Wanderers: Alpha Surveillance G: active"
 
 			# Either Danforth is at Farpoint during the Alpha Hunt, or isn't in any mission sequence.
 			`	From back on your ship it is easy enough to use the station's network to place a call. You get in contact with Danforth to brief him on what's going on, with the possibility of an Unfettered fleet coming through the wormhole in a matter of days. He seems unsurprised, but disappointed. "Well, I'll scramble some additional Navy forces. We'll hopefully make sure that whatever happens, we'll have some options."`
@@ -1836,7 +1833,7 @@ mission "Hai Reveal [A12] Into the Lion's Den"
 			label "Danforth Alpha Hunt: present but unavailable"
 			action
 				log `Alerted Turner and Danforth to the Hai situation. Was urged to finish finding and eliminating the Alpha enclave as soon as possible, so the Navy can deal with this new threat.`
-			`	You contact in the spaceport, eager to get back to  what's going on, with the possibility of an Unfettered fleet coming through the wormhole in a matter of days.`
+			`	From back on your ship it is easy enough to use the station's network to place a call. You get in contact with Danforth to brief him on what's going on, with the possibility of an Unfettered fleet coming through the wormhole in a matter of days.`
 			`	He seems unsurprised, but disappointed. "When this went on as long as it did, I pulled strings to get some Cruisers specially equipped for deep-range, long-duration missions." He sighs. "This is one of those situations where I really wish I hadn't prepared for an eventuality and been right about it.`
 			`	"I'll scramble some additional Navy forces, but I can't deal with this problem personally until I finish hunting the Alphas. The Hai - even the Unfettered - are capable of restraint; they're not amoral and power-hungry like the Alphas. We need to solve the Alpha problem decisively, before they can do any real harm. After that, I'll arrange formal discussions with the Hai."`
 				decline

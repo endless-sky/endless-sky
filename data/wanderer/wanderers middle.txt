@@ -2936,10 +2936,6 @@ mission "Wanderers: Sestor: Scan Drones"
 
 
 
-mission "Wanderers: Sestor: Scan Drones"
-
-
-
 mission "Wanderers: Sestor: Exiles 1"
 	landing
 	name "Pick up Rek"
