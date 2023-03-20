@@ -91,12 +91,19 @@ jobs:
         echo $DESCRIPTION
         echo $GITHUB_ENV
         echo $GITHUB_PATH
-        github-release delete --tag continuous
-        github-release release \
-          --tag continuous \
-          --name "Continuous Build" \
-          --description "$DESCRIPTION" \
-          --pre-release
+        if ! github-release info -t continuous > /dev/null 2>&1; then
+          github-release release \
+            --tag continuous \
+            --name "Continuous Build" \
+            --description "$DESCRIPTION" \
+            --pre-release
+        else
+          github-release edit \
+            --tag continuous \
+            --name "Continuous Build" \
+            --description "$DESCRIPTION" \
+            --pre-release
+        fi
         github-release upload \
           --tag continuous \
           --name endless-mobile-debug-latest.apk \
