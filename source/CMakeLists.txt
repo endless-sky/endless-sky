@@ -83,6 +83,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Dictionary.h
 	DistanceMap.cpp
 	DistanceMap.h
+	Distribution.cpp
+	Distribution.h
 	DrawList.cpp
 	DrawList.h
 	Effect.cpp
