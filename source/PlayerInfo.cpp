@@ -2416,7 +2416,9 @@ void PlayerInfo::Visit(const System &system)
 // Mark the given planet as visited.
 void PlayerInfo::Visit(const Planet &planet)
 {
-	visitedPlanets.insert(make_pair(&planet, false));
+	struct PlanetVisitedEstablishmets data = { 0 };
+
+	visitedPlanets.insert(make_pair(&planet, data));
 }
 
 
@@ -2896,7 +2898,7 @@ set<string> &PlayerInfo::Collapsed(const string &name)
 // Mark outfitter at planet as visited
 void PlayerInfo::VisitOutfitterAt(const Planet &planet)
 {
-	visitedPlanets[&planet] = true;
+	visitedPlanets[&planet].outfitter = true;
 }
 
 
@@ -2904,7 +2906,7 @@ void PlayerInfo::VisitOutfitterAt(const Planet &planet)
 // Check if the outfitter at planet was visited
 bool PlayerInfo::OutfitterVisitedAt(const Planet &planet)
 {
-	return (Preferences::Has(HIDE_OUTFITTERS)) ? visitedPlanets[&planet] : true;
+	return (Preferences::Has(HIDE_OUTFITTERS)) ? visitedPlanets[&planet].outfitter : true;
 }
 
 
@@ -4450,7 +4452,7 @@ void PlayerInfo::Save(DataWriter &out) const
 		});
 
 	// Save a list of planets the player has visited.
-	using PlanetEntry = pair<const Planet *const, bool>;
+	using PlanetEntry = pair<const Planet *const, struct PlanetVisitedEstablishmets>;
 	WriteSorted(visitedPlanets,
 		[](const PlanetEntry *lhs, const PlanetEntry *rhs)
 			{ return lhs->first->TrueName() < rhs->first->TrueName(); },
@@ -4458,7 +4460,7 @@ void PlayerInfo::Save(DataWriter &out) const
 		{
 			string visitedOutfitterStr = "";
 
-			if(entry.second)
+			if(entry.second.outfitter)
 				visitedOutfitterStr = "outfitter";
 
 			if(visitedOutfitterStr.empty())
