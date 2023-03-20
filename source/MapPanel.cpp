@@ -161,9 +161,37 @@ namespace {
 			int days = min(6, mission.Deadline() - player.GetDate() + 1);
 			if(days > 0)
 			{
-				DistanceMap distance(player);
+				DistanceMap distance(player.GetSystem());
 				if(distance.HasRoute(mission.Destination()->GetSystem()))
+				{
+					set<const System *> toVisit;
+					for(const Planet *stopover : mission.Stopovers())
+					{
+						if(distance.HasRoute(stopover->GetSystem()))
+							toVisit.insert(stopover->GetSystem());
+						days -= 1;
+					}
+					for(const System *waypoint : mission.Waypoints())
+						if(distance.HasRoute(waypoint))
+							toVisit.insert(waypoint);
+
+					int systemCount = toVisit.size();
+					for(int i = 0; i < systemCount; ++i)
+					{
+						const System *closest;
+						int minimalDist = numeric_limits<int>::max();
+						for(const System *sys : toVisit)
+							if(distance.Days(sys) < minimalDist)
+							{
+								closest = sys;
+								minimalDist = distance.Days(sys);
+							}
+						days -= distance.Days(closest);
+						distance = DistanceMap(closest);
+						toVisit.erase(closest);
+					}
 					days = max(1, days - distance.Days(mission.Destination()->GetSystem()));
+				}
 				blink = (step % (10 * days) > 5 * days);
 			}
 		}
