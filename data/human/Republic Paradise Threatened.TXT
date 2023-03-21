@@ -9,7 +9,7 @@ mission "RN Analyze the Nukes"
 	on offer
 		conversation
 			`Amelia is engrossed in some kind of spreadsheet when you barge into her office and drop a datachip of scans from your fight with the Wolf Pack onto her desk. Her brows knit at this breach of protocol but she switches her display to show the data and you watch closely as her eyes widen and the colour drains from her face.`
-			`	“Is this… this can’t be right!" she says, flipping back and forth through the images. “Nukes? I... I almost believed them!"`
+			`	"Is this... this can’t be right?!" she says, flipping back and forth through the images. “Nukes? I... I almost believed them!"`
 			`	You remain quiet and let her process what she is seeing. It takes a while and so you make yourself comfortable on a recliner in the corner, just answering the occasional question when she wants a bit more context. Eventually she leans back on her chair shaking her head. You notice that she seems to have aged in the short time you have been here.`
 			`	“I need a little time to decide what to do. Please stay nearby, I'm going to need your help.“`
 			`	You nod and leave her alone in the office staring at the ceiling and go for a walk around the campus. The grounds of the headquarters buildings have been beautifully landscaped and it isn't difficult to find a nice green, quiet space to think.`
