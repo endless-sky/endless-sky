@@ -11,7 +11,8 @@ mission "RN Analyze the Nukes"
 			`Amelia is engrossed in some kind of spreadsheet when you barge into her office and drop a datachip of scans from your fight with the Wolf Pack onto her desk. Her brows knit at this breach of protocol but she switches her display to show the data and you watch closely as her eyes widen and the colour drains from her face.`
 			`	"Is this... this can’t be right?!" she says, flipping back and forth through the images. “Nukes? I... I almost believed them!"`
 			`	You remain quiet and let her process what she is seeing. It takes a while and so you make yourself comfortable on a recliner in the corner, just answering the occasional question when she wants a bit more context. Eventually she leans back on her chair shaking her head. You notice that she seems to have aged in the short time you have been here.`
-			`	“I need a little time to decide what to do. Please stay nearby, I'm going to need your help.“`
+			`	"I need a little time to decide what to do. Please stay nearby, I'm going to need your help."`
+
 			`	You nod and leave her alone in the office staring at the ceiling and go for a walk around the campus. The grounds of the headquarters buildings have been beautifully landscaped and it isn't difficult to find a nice green, quiet space to think.`
 			`	However you had felt about the Free Worlds before, it is clear now that they are worse than terrorists. Their protestations of innocence in the bombings of Geminus and Martini are obviously nothing more than a cynical attempt at political obfuscation. You try to distract yourself with cargo manifests while you wait, but the events of the past few days keep exploding back into your mind. Finally you get a prompt to return to the office where Commander Shah is waiting for you.`
 			`	"We can’t make any mistakes here," she says, "this is too important. It has to be passed up to the top, but we need to have the answers to every question that might be asked ready. I’ll talk to Anton but I already know what he’ll say, we need to get the data independently analysed and verified. We can’t risk broadcasting this, the data has to be physically taken to Lovelace Labs; the fewer people who are in the loop, the better.`
@@ -75,7 +76,8 @@ mission "Investigate the Source A"
 				`	"As am I."`
 				`	"I work faster alone."`
 			`	He turns away and waves the technicians past you onto the ship.`
-			`	"They will sweep the vessel for bugs," he says, "it won't take long. As soon as they are done we can be on our way. I will brief you as we go."`
+			`	"They will sweep the vessel for bugs," he says. "It won't take long; as soon as they are done we can be on our way, and I will brief you as we go."`
+
 		log `Agent Norris of Republic Intelligence will tag along as we search for the source of the Wolf Pack nukes.`
 	on enter "Aldebaran"
 		conversation
@@ -88,14 +90,14 @@ mission "Investigate the Source A"
 			choice
 				`	"Sounds good to me."`
 					goto end
-				`	"I don't want to take on the entire syndicate fleet! In my experience ignoring traffic control makes planetary militias trigger-happy."`
+				`	"In my experience ignoring traffic control makes planetary militias trigger-happy."`
 			`	"That's why I'm here," Agent Norris says. "We will be carrying out a warrant. The only way they could legally stop us would be to file an injunction with the Supreme Court, and we're not going to give them time to do that."
 			label end
 			`	He points to a system on your nav screen.`
 			`	"Our first stop is <destination>, Captain. Let's get moving."`
 	on complete
 		conversation
-			`Your descent to the surface of <destination> is violently bumpy, the turbulence threatening to send the <ship> hurtling out of control. As soon as it becomes clear that you are not heading towards the small landing site, your com system lights up with warnings.`
+			`Your descent to the surface of <destination> is violently bumpy, the turbulence threatening to send the <ship> hurtling out of control. As soon as it becomes clear that you are not heading towards the small landing site, your comm system lights up with warnings.`
 			`	"Uh, <ship>, please be advised that you are in restricted airspace. Divert to the heading indicated immediately."`
 			`	Agent Norris steps calmly forward and presses the button to respond.
 			`	"<destination> control," he says, his voice smooth as silk, completely unlike his usual gravelly rumble. "This is <ship>, currently acting on parliamentary orders. I am transmitting a warrant which allows us to act as we see fit. I understand that you will want to check it with your superiors, so be my guest."`
@@ -126,15 +128,16 @@ mission "Investigate the Source B"
 			`	"I won't lie to you, it will be tight."
 			choice
 				`	"Fair enough, this was never going to be easy."`
-					end
+					goto end
 				`	"This is sounding worse by the moment."`
 				`	"And if they get an injunction? What, we just stop?"`
 			`	For the first time since you met him Agent Norris actually smiles, a grim expression which makes you think that he really hopes the worst will happen.`
 			`	"Captain <last>," he says, leaning casually against a console. "We will complete this mission. The whole mission, not just the easy parts. The Syndicate are not above the law."`
 			`	He nods once and retires to his bunk leaving you to plot the course to <system>, his words still echoing in your head. You think you've seen a fair bit of the galaxy, much more than most of humanity, and in your experience in Syndicate space the Syndicate makes the laws. This will certainly be interesting.`
+			label end
 	on complete
 		conversation
-			`You start your descent, aiming for a small but well-organized settlement in the southern hemisphere. It takes a little longer than usual for traffic control to contact you, but when they finally do you realize that is probably because they were getting somebody senior on the line.`
+			`You start your descent, aiming for a small but well-organized settlement in the southern hemisphere. It takes a little longer than usual for spaceport control to contact you, but when they finally do you realize that it's probably because they were getting somebody senior on the line.`
 			`	"<ship>, be advised that we have received details of your warrant in advance and we are cooperating fully. You may land and make use of all of the spaceport facilities to refuel your ship, and we can offer you and your crew vouchers for the Starlink Casino and all of our fine bars and restaurants. The Syndicate has nothing to hide."`
 			`	Your sigh of relief is short-lived, however, as Agent Norris is shaking his head.`
 			`	"They are trying to stall us," he says. "Probably so that they can force their injunction through. Refuel if you need to, but don't let them drag it out any more than necessary."`
@@ -173,7 +176,7 @@ mission "Investigate the Source C"
 				`	"What do you think?"`
 				`	"They'll try anything, won't they?"`
 			`	He shrugs. "You know the stakes as well as I do, Captain <last>. I see this as a good sign, they're desparate."`
-			`	You clear your throat and then key the comm. "Thank you <source> control. We will be careful."`
+			`	You clear your throat and then key the comm. "Thank you, <source> control. We will be careful."`
 	on enter "Al Dhanab"
 		dialog
 			`It looks like the warning from <source> control about pirates was real. As you jump emerge from hyperspace you are confronted by a small group who are already plundering.`
@@ -183,12 +186,12 @@ mission "Investigate the Source C"
 			`	"This can't be coincidence!" he growls. "A pirate fleet this large in a small system like <system>? It makes no sense. Somebody has paid them off!"`
 			choice
 				`	"Don't worry, that's why they have me ferrying you around."`
-				`	"They might be strong but <ship> is faster!"`
-				`	"As long as we can make it into the atmosphere I can evade them."`
+				`	"They might be strong, but the <ship> is faster!"`
+				`	"As long as we can make it into the atmosphere, I can evade them."`
 			`	Agent Norris looks at you and nods, and this might just be your imagination but you think you see a hint of respect in his eyes.`
 	on complete
 		conversation
-			`You make it to the surface of <destination> and land at the test site. While Agent Norris is outside taking the sample you get a message through from <destination> control once again offering you free fueling and the run of the spaceport amenities. How nice of them.`
+			`You make it to the surface of <destination> and land at the test site. While Agent Norris is outside taking the sample, you get a message from <destination> control once again offering you free fueling and the run of the spaceport amenities. How nice of them.`
 
 mission "Investigate the Source D"
 	autosave
@@ -220,11 +223,12 @@ mission "Investigate the Source D"
 			`	Before you can respond the light starts moving, faster and faster until it is spelling out a message.`
 			`	"1,000,000 credits to seal your hatch and power down your sensors"`
 			choice
-				`	Do as they wish. A million credits is a million credits.`
-				`	Darken the viewports and ignore the message.`
-					end
-				`	You press the button to seal the outer hatch and then, after a moments hesitation, power the sensors down completely. As you sit in your chair you wonder what is going on outside but the chime of your comm which tells you that one million credits has been added to your account dampens down your curiosity significantly.`
-				`	After what seems like an age but was apparently only five minutes, a green laser spot appears on your console and just as quickly disappears again. You take that as an 'all clear' and look out your viewport. The ground crew are still working but there is no sign of Agent Norris. You open the hatch and take a look around but the agent is nowhere to be seen.`
+				`	(Do as they wish. A million credits is a million credits.)`
+				`	(Darken the viewports and ignore the message.)`
+					goto end
+
+				`	You press the button to seal the outer hatch and then, after a moment's hesitation, power the sensors down completely. As you sit in your chair you wonder what is going on outside, but the chime of your comm which tells you that one million credits has been added to your account dampens down your curiosity significantly.`
+				`	After what seems like an age but was apparently only five minutes, a green laser spot appears on your console and just as quickly disappears again. You take that as an 'all clear' and look out your viewport. The ground crew are still working, but there is no sign of Agent Norris. Just to be sure, you open the hatch and take a look around, but the agent is nowhere to be seen.`
 				`	Without knowing what other systems you are supposed to be investigating you can't continue the mission. You tell yourself that the truth about the Wolf Pack nukes has to come out eventually, and in the mean time at least you have a million more reasons to sleep well.`
 					payment 1000000
 					log "Accepted a bribe to look the other way instead of tracing the source of the Wolf Pack nukes. The money was just too good to turn down."
@@ -233,8 +237,8 @@ mission "Investigate the Source D"
 		conversation
 			`Agent Norris instructs you to plot a course for <destination> and seems completely unaware of the odd message that you received.
 			choice
-				`	Tell him what happened.`
-				`	No need to worry him.`
+				`	(Tell him what happened.)`
+				`	(There's no need to worry him.)`
 					goto onward
 				`	You decide that he should know and explain that somebody used a laser to send you a message asking you to seal the hatch and deactivate the sensors. Agent Norris nods slowly.
 				`	"What did they offer you?" he asks as though he is aksing what you had for your lunch.
@@ -246,7 +250,8 @@ mission "Investigate the Source D"
 					`	You program the nav computer and prepare to jump, but before you can do so Agent Norris receives a message and raises a hand as though asking for you to wait. He reads the message several times before looking back up at you.`
 					`	"The injunction has been approved," he says. "The Syndicate won't be so friendly from here on out."`
 					`	You laugh. If that was the Syndicate being 'friendly' you wouldn't want to see them hostile, but it looks like you're going to.`
-					`	"<destination> is the last planet on our list," Norris tells you quietly. "We just need to get to the test site and then get the samples back to Ada."`
+					`	"<planet> is the last planet on our list," Norris tells you quietly. "We just need to get to the test site and then get the samples back to Ada."`
+
 					choice
 						`	"Piece of cake."`
 						`	"No Syndicate ship built with parts from the lowest bidder is going to stop the <ship>."`
@@ -257,32 +262,33 @@ mission "Investigate the Source D"
 			`	"<ship>, we have reason to believe that you are carrying illegal cargo. Heave to and prepare to be boarded."`
 			choice
 			`	"Not today!"`
-			`	"That's a bogus charge and you know it! We are conducting an investigation and if you try to obstruct it you will be the one breaking the law!"`
-			`	Say nothing, let your flying do the talking.`
-			`	Comply with their instructions.`
+			`	"That's a bogus charge and you know it!"
+			`	"We are conducting an investigation, and if you try to obstruct it you will be the one breaking the law!"`
+			`	(Say nothing, let your flying do the talking.)`
+			`	(Comply with their instructions.)`
 				goto surrender
 			label surrender
 				`	Agent Norris sees what you are doing and comes storming over.`
 				`	"We must complete this mission!" he hisses.
 				choice
 					`	"There's too many of them!"`
-						goto actually surrender
+						goto "actually surrender"
 					`	"Hold on, I have an idea!"`
 						# I want to be able to lure the fleet closer with this option so that it's easier to make a run to the planet, although I'm not sure if that's possible.
-						label actually surrender
-							`	Agent Norris shakes his head in disgust and turns away from you... and then bursts into motion and before you can react he is on top of you and with one jerk of his arms you lie on the deck of your ship with your neck broken.`
+						label "actually surrender"
+							`	Agent Norris shakes his head in disgust and turns away from you... and then before you can react he is on top of you, and with one jerk of his arms you lie on the deck of your ship with your neck broken.`
 							die
-			`	You continue on a course for <destination> hoping that the Syndicate admiral is bluffing. The seconds tick by and just when you think they are going to back down a voice comes over the comm.`
+			`	You continue on a course for <destination>, hoping that the Syndicated Security officer is bluffing. The seconds tick by, and just when you think they are going to back down, a voice comes over the comm.`
 			`	"If that's the way you want it..."`
 			`	Immediately your sensors indicate that the Syndicate fleet has started targetting you. You are going to have to do this the hard way.`
-				end
+				label end
 	on complete
 		conversation
-			`You make it to the surface and as you are coming in to land you can see that a small unit of soldiers are setting up some defences. You screech over them and open up with your weapons, sending them sprawling in all directions. Agent Norris retrieves a rifle from his bunk, and when he sees you looking at it he shrugs.`
-			`	"My technicians put it in when they were sweeping the ship."`
-			`	As he surges through the hatch moving faster than any human has a right to you can't help but wonder what else those technicians were doing. After you drop Norris on Ada you decide that you'll take some time to sweep <ship> yourself.`
-			`	There is the sound of gunfire from outside and smoke surrounds the ship. Your sensors show four human heat signatures running and bent low but you can't tell which one is Norris. They all seem to be converging on the clear area in front of the mine but it looks like none of them can see any of the others. You watch as one spins from cover, sweeping his weapon from side to side. Just then one of the others jerks, is lifted from the ground and then falls down dead! What happened?`
-			`	A second person enters the clearing and then exchanges hand signals with the first. They both start moving in paralel, creeping slowly and each covering their own side. You look for the fourth person and find that he is now lying dead too. Before you can figure out what is going on the two remaining figures turn and start firing behind them, but what their aiming at is a mystery as nothing shows on your scope. First one and then the other expend their ammo and pause... and then beams of fire erupt from in front of them, taking both down before they have a chance to react.`
+			`You make it to the surface, and as you are coming in to land you can see that a small unit of Syndicated Security soldiers are setting up some defences. You screech over them and open up with your weapons, sending them sprawling in all directions.`
+			`	Agent Norris retrieves a rifle from his bunk, and when he sees you looking at it he shrugs. "My technicians put it in when they were sweeping the ship."`
+			`	As he surges through the hatch, moving faster than any human has a right to, you can't help but wonder what else those technicians were doing. After you drop Norris on Ada, you decide that you'll take some time to sweep <ship> yourself.`
+			`	There is the sound of gunfire from outside, and smoke surrounds the ship. Your sensors show four human heat signatures running and bent low but you can't tell which one is Norris. They all seem to be converging on the clear area in front of the mine, but it looks like none of them can see any of the others. You watch as one spins from cover, sweeping his weapon from side to side. Just then, one of the others jerks, lifts from the ground and then falls down dead, all in a flash.`
+			`	A second person enters the clearing and then exchanges hand signals with the first. They both start moving in parallel, creeping slowly and each covering their own side. You look for the fourth person and find that he is now lying dead too. Before you can figure out what is going on, the two remaining figures turn and start firing behind them, but what their aiming at is a mystery as nothing shows on your scope. First one and then the other expend their ammo and pause... and then beams of fire erupt from in front of them, taking both down before they have a chance to react.`
 			`	When the smoke eventually clears you see Norris calmly toting the sample back towards the ship.`
 			`	"Back to Ada, Captain," he says when he is back on board. You are not about to argue with him.`
 
