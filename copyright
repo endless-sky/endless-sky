@@ -935,6 +935,7 @@ License: CC-BY-SA-4.0
 Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
 
 Files:
+ images/projectile/sunbeam/*
  images/ship/blackbird*
  images/ship/falcon*
  images/ship/hawk*
@@ -1722,9 +1723,12 @@ Files:
  images/outfit/*torch?thruster?vi*
  images/outfit/warforge?battery*
  images/outfit/warzone?core*
+ images/planet/asura*
  images/planet/tschyss*
  images/planet/*vajra*
  images/planet/vesvi*
+ images/planet/yniu?eiu*
+ images/planet/yniu?ena*
  images/projectile/acuit*
  images/projectile/astuit*
  images/projectile/ballistic*
@@ -1792,6 +1796,7 @@ Files:
  images/outfit/teciimach?bay*
  images/outfit/teciimach?pod*
  images/planet/gas3-c*
+ images/planet/gas7-r*
  images/ship/aerie*
  images/ship/bactrian*
  images/ship/hailstone*
@@ -2080,6 +2085,11 @@ Comment: Derived from _menu/haze-133 (no copyright given).
 Files:
  images/star/proto-planetary-disk*
 Copyright: RisingLeaf (https://github.com/RisingLeaf)
+License: CC-BY-SA-4.0
+
+Files:
+ images/land/hills11*
+Copyright: CyberJudas (cyberjudas@dnmx.org)
 License: CC-BY-SA-4.0
 
 License: GPL-3+
