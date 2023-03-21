@@ -345,6 +345,7 @@ mission "Local Politics"
 	minor
 	source
 		attributes "frontier"
+		attributes "south"
 		not attributes "station" "urban"
 	to offer
 		or
@@ -352,14 +353,11 @@ mission "Local Politics"
 				random < 5
 				or
 					has "flagship planet attribute: south pirate"
-					and
-						not "event: war begins"
-						has "flagship planet attribute: south"
+					not "event: war begins"
 			and
 				random < 1
 				has "event: war begins"
 				not "event: fw suppressed Greenrock"
-				has "flagship planet attribute: south"
 	on offer
 		conversation
 			`As you land on the pad, you note a general lack of presence around the spaceport. No one has scrambled to hook up your ship, nor has anybody else acknowledged your arrival. Instead, when you leave your ship, all you find is a note within the spaceport detailing where their "overlords" can find their yearly tribute.`
