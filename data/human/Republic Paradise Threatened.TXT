@@ -53,7 +53,8 @@ mission "Investigate the Source A"
 	destination "Lodestone"
 	to offer
 		has "Return to Ada: done"
-	blocked `A message comes through from Commander Shah, "Captain <last>, thank you for sticking with us. I have just received word that you will have a passenger for the next part of the mission so please make sure you have room for them."`
+	blocked `A message comes through from Commander Shah. "Captain <last>, thank you for sticking with us. I have just received word that you will have a passenger for the next part of the mission, so please make sure you have room for them."`
+
 	on offer
 		conversation
 			`As soon as you land a transport pulls up outside of the hatch of your ship and a small contingent of technicians start unloading equipment, supervised by a man in a generic-looking business suit. The man notices you watching and approaches, pulling out a badge identifying him as an agent of Republic Intelligence.`
