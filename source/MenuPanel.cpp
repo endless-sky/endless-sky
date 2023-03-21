@@ -72,6 +72,8 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 				credits.insert(credits.end(), 15, "");
 			}
 		}
+		// Remove the last 15 lines, as there is already a gap at the beginning of the credits.
+		credits.resize(credits.size() - 15);
 	}
 	else if(showCreditsWarning)
 	{
