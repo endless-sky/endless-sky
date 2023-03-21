@@ -161,7 +161,7 @@ namespace {
 			int days = min(6, mission.Deadline() - player.GetDate() + 1);
 			if(days > 0)
 			{
-				DistanceMap distance(player.GetSystem());
+				DistanceMap distance(player, player.GetSystem());
 				if(distance.HasRoute(mission.Destination()->GetSystem()))
 				{
 					set<const System *> toVisit;
@@ -187,7 +187,7 @@ namespace {
 								minimalDist = distance.Days(sys);
 							}
 						days -= distance.Days(closest);
-						distance = DistanceMap(closest);
+						distance = DistanceMap(player, closest);
 						toVisit.erase(closest);
 					}
 					days = max(1, days - distance.Days(mission.Destination()->GetSystem()));
