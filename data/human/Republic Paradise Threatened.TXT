@@ -62,7 +62,7 @@ mission "Investigate the Source A"
 				`	"Republic Intelligence? Isn't that an oxymoron?"`
 				`	"What's this all about?"`
 					goto friendly
-				`	Wait for him to introduce himself.`
+				`	(Wait for him to introduce himself.)`
 					goto friendly
 			`	The agent stares blankly at you and as he does so you start to notice just how much muscle is bulking up his jacket. He doesn't blink and eventually you have to look away.`
 			goto friendly
