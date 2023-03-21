@@ -1611,7 +1611,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			if(!forget)
 			{
 				if(IsYours())
-					Messages::Add("The " + Name() + " has been destroyed.", Messages::Importance::High);
+					Messages::Add("Your ship '" + Name() + "' has been destroyed.", Messages::Importance::Highest);
 
 				const Effect *effect = GameData::Effects().Get("smoke");
 				double size = Width() + Height();
