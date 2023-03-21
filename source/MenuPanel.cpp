@@ -68,13 +68,8 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 			auto credit = Format::Split(Files::Read(source + "credits.txt"), "\n");
 			if((credit.size() > 1) || (credit.front() != ""))
 			{
-				credits.push_back("######################");
-				credits.push_back("");
 				credits.insert(credits.end(), credit.begin(), credit.end());
-				credits.push_back("");
-				credits.push_back("######################");
-				credits.push_back("");
-				credits.push_back("");
+				credits.insert(credits.end(), 15, "");
 			}
 		}
 	}
