@@ -179,7 +179,7 @@ int MapOutfitterPanel::FindItem(const string &text) const
 
 void MapOutfitterPanel::DrawItems()
 {
-	bool headerDrawed = false;
+	bool headerDrawed;
 
 	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
 		DoHelp("map advanced shops");
@@ -188,6 +188,8 @@ void MapOutfitterPanel::DrawItems()
 	for(const auto &cat : categories)
 	{
 		const string &category = cat.Name();
+		headerDrawed = false;
+
 		auto it = catalog.find(category);
 		if(it == catalog.end())
 			continue;
