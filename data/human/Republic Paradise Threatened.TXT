@@ -70,7 +70,8 @@ mission "Investigate the Source A"
 			`	"Captain <last>?" the man asks, studying your face intently.`
 			`	"I am Agent Norris, I have been assigned to this case by Parliament. As you can imagine they are very interested in getting results as quickly as possible."`
 			choice
-				`	Nod.`
+				`	(Nod.)`
+
 				`	"As am I."`
 				`	"I work faster alone."`
 			`	He turns away and waves the technicians past you onto the ship.`
