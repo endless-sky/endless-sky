@@ -860,7 +860,7 @@ void Engine::Step(bool isActive)
 				|| ((tacticalRange || crewScanRange) && target->IsYours()))
 			{
 				info.SetString("target crew", to_string(target->Crew()));
-				if (targetRange <= (strategicScanRange + accelerationScanRange)
+				if(targetRange <= (strategicScanRange + accelerationScanRange)
 					|| targetRange <= (strategicScanRange + velocityScanRange))
 				{
 					info.SetCondition("mobility crew display");
@@ -919,7 +919,7 @@ void Engine::Step(bool isActive)
 				info.SetString("target turnrate", to_string(turnRate) + " ");
 			}
 			// This calculates the current speed
-			if ((targetRange <= (strategicScanRange + accelerationScanRange) && scrutable)
+			if((targetRange <= (strategicScanRange + accelerationScanRange) && scrutable)
 				|| ((tacticalRange || accelerationScanRange) && target->IsYours()))
 			{
 				info.SetCondition("target velocity display");
@@ -927,7 +927,7 @@ void Engine::Step(bool isActive)
 				info.SetString("target velocity", to_string(presentSpeed) + " ");
 			}
 			// This calculates the current maximum acceleration
-			if ((targetRange <= (strategicScanRange + velocityScanRange) && scrutable)
+			if((targetRange <= (strategicScanRange + velocityScanRange) && scrutable)
 				|| ((tacticalRange || velocityScanRange) && target->IsYours()))
 			{
 				info.SetCondition("target acceleration display");
