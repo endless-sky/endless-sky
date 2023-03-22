@@ -1608,11 +1608,11 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		// Once we've created enough little explosions, die.
 		if(explosionCount == explosionTotal || forget)
 		{
+			if(IsYours())
+				Messages::Add("Your ship '" + Name() + "' has been destroyed.", Messages::Importance::Highest);
+
 			if(!forget)
 			{
-				if(IsYours())
-					Messages::Add("Your ship '" + Name() + "' has been destroyed.", Messages::Importance::Highest);
-
 				const Effect *effect = GameData::Effects().Get("smoke");
 				double size = Width() + Height();
 				double scale = .03 * size + .5;
