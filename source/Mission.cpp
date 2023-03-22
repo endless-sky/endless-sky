@@ -1263,19 +1263,20 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	// cargo name with something more specific.
 	if(!cargo.empty())
 	{
+		const string expandedCargo = Phrase::ExpandPhrases(cargo);
 		const Trade::Commodity *commodity = nullptr;
-		if(cargo == "random")
+		if(expandedCargo == "random")
 			commodity = PickCommodity(*sourceSystem, *result.destination->GetSystem());
 		else
 		{
 			for(const Trade::Commodity &option : GameData::Commodities())
-				if(option.name == cargo)
+				if(option.name == expandedCargo)
 				{
 					commodity = &option;
 					break;
 				}
 			for(const Trade::Commodity &option : GameData::SpecialCommodities())
-				if(option.name == cargo)
+				if(option.name == expandedCargo)
 				{
 					commodity = &option;
 					break;
@@ -1284,7 +1285,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		if(commodity)
 			result.cargo = commodity->items[Random::Int(commodity->items.size())];
 		else
-			result.cargo = cargo;
+			result.cargo = expandedCargo;
 	}
 	// Pick a random cargo amount, if requested.
 	if(cargoSize || cargoLimit)
@@ -1308,7 +1309,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	result.paymentApparent = paymentApparent;
 	result.illegalCargoFine = illegalCargoFine;
-	result.illegalCargoMessage = illegalCargoMessage;
+	result.illegalCargoMessage = Phrase::ExpandPhrases(illegalCargoMessage);
 	result.failIfDiscovered = failIfDiscovered;
 
 	int jumps = result.CalculateJumps(sourceSystem);
@@ -1449,10 +1450,10 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		result.genericOnEnter.emplace_back(action.Instantiate(subs, sourceSystem, jumps, payload));
 
 	// Perform substitution in the name and description.
-	result.displayName = Format::Replace(displayName, subs);
-	result.description = Format::Replace(description, subs);
-	result.clearance = Format::Replace(clearance, subs);
-	result.blocked = Format::Replace(blocked, subs);
+	result.displayName = Format::Replace(Phrase::ExpandPhrases(displayName), subs);
+	result.description = Format::Replace(Phrase::ExpandPhrases(description), subs);
+	result.clearance = Format::Replace(Phrase::ExpandPhrases(clearance), subs);
+	result.blocked = Format::Replace(Phrase::ExpandPhrases(blocked), subs);
 	result.clearanceFilter = clearanceFilter;
 	result.hasFullClearance = hasFullClearance;
 

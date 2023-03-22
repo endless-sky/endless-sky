@@ -404,32 +404,31 @@ mission "Ka'het: Patir Mystery 1"
 			`Upon your return to <planet>, Taely immediately begins browsing through several images on her console that were compiled by the sensors.`
 			`	"Look at these, <first>. What do you see?" The first image shows a ship like the others you've seen in Patir working on some kind of small structure. In the following pictures, presumably depicting different iterations of the same ship, the structure becomes gradually bigger and more complex until the last one, where a Ka'het-like slug is shown growing inside this shell.`
 			`	"The ships, the Fetri'sei, are Von Neumann probes," she says. "Self replicating spacecraft. Unlike the Ka'het, which we found to be unable to reproduce and can only be created in a factory, the Ka'sei can duplicate their own structure with the material harvested from the local asteroids. The process probably takes years, or more, but it is still an incredible achievement."`
+			label questions
 			choice
 				`	"If they can duplicate themselves, why aren't there more Ka'sei?"`
+					to display
+						not "patir: asked about ka'sei"
 					goto kasei
 				`	"If the Builders were able to make self replicating spacecrafts, why aren't the Ka'het like that as well?"`
+					to display
+						not "patir: asked about ka'het"
 					goto kahet
 				`	"If they were able to get to Patir, does this suggest they have jump drives?"`
 					goto jumpdrive
 				`	"Why aren't they in other systems?"`
 					goto jumpdrive
 			label kasei
+			action
+				set "patir: asked about ka'sei"
 			`	"I imagine the problem would be with their lifespan. The Ka'het can survive for a few hundred years once they become operational; these could potentially last for a much shorter time. Another important factor is that we do not know what happened here in the millennia the system was hidden. Perhaps the Ka'sei went into hibernation waiting for the system to appear again."`
-			choice
-				`	"If the Builders were able to make self replicating spacecrafts, why aren't the Ka'het like that as well?"`
-					goto kahet
-				`	"If they were able to get to Patir, does this suggest they have jump drives?"`
-					goto jumpdrive
-				`	"Why aren't they in other systems?"`
-					goto jumpdrive
+				goto questions
 			label kahet
+			action
+				set "patir: asked about ka'het"
 			`	Taely looks towards the console again. On the screen a tactical view of the Fetri'sei appears. "Well, consider that the Ka'het are true battleships, heavily shielded and always with their weapons ready. These are more akin to reconnaissance and mining probes. Their structure is extremely weak, and they do not have any weapons except the equipment necessary to mine asteroids. I imagine it would take decades for even just a Maeri'het to replicate itself.`
 			`	"There is also the tactical problem: forcing a Ka'het to spend such a long time building copies of itself makes them vulnerable to enemy attacks and unable to effectively fight back, making them ill-suited for the job."`
-			choice
-				`	"If they can duplicate themselves, why aren't there more Ka'sei here?"`
-					goto kasei
-				`	"If they were able to get here, does this suggest they have Jump Drives?"`
-				`	"Why aren't they in other systems?"`
+				goto questions
 			label jumpdrive
 			`	"They do not have any drives on board, not even a hyperdrive. Limited to sub-light velocity, they would need hundreds of years to pass from one system to another, which is a testament to the Builders' patience. Most species we have encountered abandon any form of sub-light transportation between star systems immediately after developing hyperdrive technology. For all we know, the Ember Waste could have been visited by these Fetri'sei or some other Ka'sei, but they had to leave for some reason we are not aware of. The last Builder died almost 100,000 years ago - so long that having a clear idea of what happened is impossible.`
 			choice
