@@ -99,7 +99,7 @@ mission "Unfettered Jump Drive 4"
 	job
 	repeat
 	name "Sell Jump Drive"
-	description "Exchange a Jump Drive for money or weapons, if an outfitter is available."
+	description "Exchange a jump drive for money or weapons, if an outfitter is available."
 	source
 		attributes "unfettered"
 	to offer

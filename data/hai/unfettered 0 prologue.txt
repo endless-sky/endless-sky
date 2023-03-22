@@ -134,7 +134,7 @@ mission "Unfettered Jump Drive 1"
 	minor
 	landing
 	name "More Jump Drives"
-	description "The Unfettered Hai have promised you rich rewards if you bring them more Jump Drives."
+	description "The Unfettered Hai have promised you rich rewards if you bring them more jump drives."
 	to offer
 		has "First Contact: Unfettered: offered"
 		not "Wanderers: Jump Drive Source: active"

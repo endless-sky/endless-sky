@@ -971,7 +971,7 @@ mission "Hai Reveal [B11] Moving Together"
 			label elenchus
 			action
 				set "Hai Reveal [B11] Moving Together: label elenchus"
-			`	Marshal Kaine explains, "Reaching Elenchus would seem to be a problem, because it is behind systems we cannot reach with our hyperdrives. However, the Unfettered are willing to loan us a few jump drives. Additionally, the base on Elenchus appears to be a hardened target. It will need specialized and suitably equipped shock troops to be sure of taking it. In our assessment so far we have determined that the Syndicate have suitable troopers they can mobilize quickly, but no way of getting them there, and our suitable shock troops are largely pre-occupied; either being needed here on <origin>, or are at least a week away from being available. We need a resolution sooner than that."`d
+			`	Marshal Kaine explains, "Reaching Elenchus would seem to be a problem, because it is behind systems we cannot reach with our hyperdrives. However, the Unfettered are willing to loan us a few jump drives. Additionally, the base on Elenchus appears to be a hardened target. It will need specialized and suitably equipped shock troops to be sure of taking it. In our assessment so far we have determined that the Syndicate have suitable troopers they can mobilize quickly, but no way of getting them there, and our suitable shock troops are largely pre-occupied; either being needed here on <origin>, or are at least a week away from being available. We need a resolution sooner than that."`
 			choice
 				`	"What pressure is making this so urgent?"`
 				`	"Yes, clearly we need a quick resolution."`
