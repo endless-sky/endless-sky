@@ -609,7 +609,6 @@ government "Hai (Friendly Unfettered)"
 		"Korath" -.01
 		"Hai" .01
 		"Hai (Wormhole Access)" .01
-		"Hai (Unfettered)" 1
 		"Bounty Hunter that Attacks Hai" -.01
 		"Elenctic Commune" .01
 		"Wanderer" -1e5
@@ -626,8 +625,6 @@ government "Hai (Unfettered Civilians)"
 	"display name" "Hai (Unfettered)"
 	
 	"player reputation" 10
-	"attitude toward"
-		"Hai (Unfettered)" .01
 	"bribe" .02
 	"fine" 0
 	"friendly hail" "friendly unfettered"

@@ -1150,7 +1150,7 @@ mission "Hai Reveal [A09] History of Appeasement"
 		conversation
 			`As you return, you give Batu directions to find Xilin and then arrange evening meetings with the other diplomats. To pass the time, you search for Teeneep and Sayari, hoping to swap information with the two. You find yourself at Sayari's office, only to be met by the sight of Teeneep and Sayari arguing. Teeneep is shouting angrily at Sayari, who is trying to calm her. Their argument is so intense that they don't hear you approaching.`
 
-			# Player gets no reputation reset if they're at war with the Unfettered.
+			# Player gets no reputation reset yet if they're at war with the Unfettered.
 			branch questions
 				has "event: Wanderers before Hai Reveal"
 			action
@@ -1398,7 +1398,7 @@ mission "Hai Reveal [A10] Demanding Satisfaction"
 				`	(Walk to her.)`
 			`	"Captain <first> <last> led great fleets during a civil war of the humans. We will have the honor of fighting alongside this warrior of the humans."`
 			branch nobody
-				not "event: Wanderers before Hai Reveal"
+				not "Wanderers: Defend Vara Ke'sok: done"
 			`	"Indeed, we have had the honor of fighting against this warrior of humans. Quite a troublemaker on the battlefield." He looks at you. "Did you think we wouldn't notice the same ship landing on our world as the one flying alongside the flag of our enemy? We've been studying your actions for quite a while. Why are you here now, as an ally of this True Hai?"`
 			choice
 				`	"You and I have crossed swords before, but this is a matter that concerns us both: the safety and honor of the Hai."`
@@ -1409,16 +1409,26 @@ mission "Hai Reveal [A10] Demanding Satisfaction"
 			`	Teeneep rolls her eyes and makes no attempt to intervene as General Choot'k moves rapidly to cut your head in twain.`
 				die
 			label honor
-			`	He stares intensely at you, as if he's trying to read your very soul. After a long moment, the general says, "You have proven an honorable warrior, Captain <last>, even if you have chosen the wrong side of one war. I will fight alongside you, as we defend the Hai.`
+			`	He stares intensely at you with a piercing gaze. After a long moment, General Choot'k says, "You have proven an honorable warrior, Captain <last>, even if you have chosen the wrong side of one war. Yes, I am willing to fight alongside you, defending the Hai.`
 				goto spy
 			label mercenary
-			`	"If you prove an honorable warrior as you fight alongside us, I may consider paying you far higher than the Wanderers to help us take back our stolen worlds.`
+			`	"If you prove a skilled and honorable warrior as you fight alongside us, I may consider paying you far higher than the Wanderers to help us take back our stolen worlds.`
 			label spy
 			`	"Besides," he says, patting you on the shoulder, "there's no better way to learn the tactics of the enemy than observing those of someone from their inner circle. You've been an invaluable source of information these past few months, but now I'll study you in person. You will teach me much about how to take our worlds back, Captain <last>."`
+			`	"A truce, then, until this matter is resolved. Only between you and us; the Wanderers aren't a part of this."`
 			choice
-				`	"As I shall learn from you, General Choot'k."`
-				`	"You'll find human tactics to be quite advanced, General."`
-			`	He nods and turns back to Teeneep, returning to the matter at hand. "Bravery becomes foolishness if it gives way to defeat, Teeneep. We cannot just 'waltz' through Hai and human space without being blasted. How will you convince your Elders to allow us passage?"`
+				`	"Agreed."`
+					goto agreed
+				`	"I'd rather keep fighting."`
+			`	"So be it." One of the generals hands you a sword and Choot'k draws his. The generals make it clear this duel is your only way out alive. As the duel begins, Choot'k moves slowly, toying with you while the generals laugh. When novelty wears off, the generals stop laughing, and Choot'k quickly slices open your sword arm. "You should have agreed to a truce, human," he says, as you rapidly bleed to death, "but I'll let you die as a warrior."`
+				die
+			label agreed
+			action
+				# Temporary truce until Captain Last fights the Unfettered again
+				"reputation: Hai (Unfettered)" >?= 1
+				"reputation: Hai (Friendly Unfettered)" >?= 1
+				"reputation: Hai (Unfettered Civilians)" >?= 1
+			`	He shakes your hand and turns back to Teeneep who looks pleased at this development. Choot'k says, "Bravery becomes foolishness if it gives way to defeat, Teeneep. We cannot just 'waltz' through Hai and human space without being blasted. How will you convince your Elders to allow us passage?"`
 				goto allow
 			label nobody
 			`	He looks at you appraisingly. "Bravery becomes foolishness if it gives way to defeat, Teeneep. We cannot just 'waltz' through Hai and human space without being blasted. How will you convince your Elders to allow us passage?"`

@@ -1551,8 +1551,6 @@ mission "Wanderers: Alpha Surveillance E"
 			branch "Hai Reveal"
 				"Danforth in mission sequence" == 1
 			action
-				# Danforth mission sequence 2 is the Alpha Hunt
-				"Danforth in mission sequence" = 2
 			`	"Danforth?" says Elias. "William Danforth? The Hero of Hope? He's still in the service?" You nod. "Well then yes, let's go to him," says Elias.`
 			`	He comes back aboard your ship, and you prepare to travel to Danforth's base on <destination>.`
 				accept
@@ -1613,8 +1611,6 @@ mission "Wanderers: Alpha Surveillance E (Hai Reveal Delayed)"
 		not "Danforth in mission sequence"
 		has "event: Hai Reveal [C06D] Danforth Availability Timer"
 	on offer
-		# Danforth mission sequence 2 is the Alpha Hunt
-		"Danforth in mission sequence" = 2
 		conversation
 			`Upon touching down, you receive a communique from Elias reminding you of the Alpha enclave on Avalon. You had best pick up Elias at <stopovers> and fly him to Danforth at <planet>. Now that you've averted other catastrophes, Danforth should be available to help.`
 				accept
@@ -1639,11 +1635,14 @@ mission "Wanderers: Alpha Surveillance F"
 	destination "Avalon"
 	passengers 1
 	to offer
+		not "Danforth in mission sequence"
 		or
 			has "Wanderers: Alpha Surveillance E: done"
 			has "Wanderers: Alpha Surveillance E (Hai Reveal Delayed): done"
 	
 	on offer
+		# Danforth mission sequence 2 is the Alpha Hunt
+		"Danforth in mission sequence" = 2
 		log "Admiral Danforth agreed to bring his Cruiser to the planet in Korath space where the Alphas seem to be hiding, with enough troops and equipment to launch an assault on the base."
 		log "Factions" "Oathkeepers" `However, the true reason that the powerful Oathkeeper fleet is positioned in the North is not just to keep the pirates at bay, but also to stand as a last defense in case the Hai decide to invade human space. Apparently the Navy has known about the Hai and the wormhole linking their space to human space for some time, but chooses not to make that knowledge public.`
 		conversation
