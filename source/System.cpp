@@ -55,8 +55,8 @@ System::Asteroid::Asteroid(const string &name, int count, double energy)
 
 
 
-System::Asteroid::Asteroid(const Minable *type, int count, double energy)
-	: type(type), count(count), energy(energy)
+System::Asteroid::Asteroid(const Minable *type, int count, double energy, double spread)
+	: type(type), count(count), energy(energy), spread(spread)
 {
 }
 
@@ -86,6 +86,13 @@ int System::Asteroid::Count() const
 double System::Asteroid::Energy() const
 {
 	return energy;
+}
+
+
+
+double System::Asteroid::Spread() const
+{
+	return spread;
 }
 
 
@@ -253,7 +260,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					}
 			}
 			else if(child.Size() >= 4)
-				asteroids.emplace_back(type, child.Value(valueIndex + 1), child.Value(valueIndex + 2));
+				asteroids.emplace_back(type, child.Value(valueIndex + 1), child.Value(valueIndex + 2), child.Value(valueIndex + 3));
 		}
 		else if(key == "fleet")
 		{

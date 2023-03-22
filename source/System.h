@@ -50,18 +50,20 @@ public:
 	class Asteroid {
 	public:
 		Asteroid(const std::string &name, int count, double energy);
-		Asteroid(const Minable *type, int count, double energy);
+		Asteroid(const Minable *type, int count, double energy, double spread);
 
 		const std::string &Name() const;
 		const Minable *Type() const;
 		int Count() const;
 		double Energy() const;
+		double Spread() const;
 
 	private:
 		std::string name;
 		const Minable *type = nullptr;
 		int count;
 		double energy;
+		double spread;
 	};
 
 

@@ -99,7 +99,7 @@ const string &Minable::Noun() const
 
 // Place a minable object with up to the given energy level, on a random
 // orbit and a random position along that orbit.
-void Minable::Place(double energy, double beltRadius)
+void Minable::Place(double energy, double beltRadius, double spread)
 {
 	// Note: there's no closed-form equation for orbital position as a function
 	// of time, so either I need to use Newton's method to get high precision
@@ -116,7 +116,10 @@ void Minable::Place(double energy, double beltRadius)
 
 	// Generate random orbital parameters. Limit eccentricity so that the
 	// objects do not spend too much time far away and moving slowly.
-	eccentricity = Random::Real() * .6;
+
+	double randomFactor = spread;
+
+	eccentricity = randomFactor * Random::Real() * .6;
 
 	// Since an object is moving slower at apoapsis than at periapsis, it is
 	// more likely to start out there. So, rather than a uniform distribution of
@@ -133,7 +136,7 @@ void Minable::Place(double energy, double beltRadius)
 	// apoapsis distance is no closer than .8: scale >= .8 * (1 - e)
 	double sMin = max(.4 * (1. + eccentricity), .8 * (1. - eccentricity));
 	double sMax = min(4. * (1. - eccentricity), 1.3 * (1. + eccentricity));
-	orbitScale = (sMin + Random::Real() * (sMax - sMin)) * beltRadius;
+	orbitScale = (sMin + randomFactor * Random::Real() * (sMax - sMin)) * beltRadius;
 
 	// At periapsis, the object should have this velocity:
 	double maximumVelocity = (Random::Real() + 2. * eccentricity) * .5 * energy;

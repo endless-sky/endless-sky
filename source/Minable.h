@@ -55,7 +55,7 @@ public:
 
 	// Place a minable object with up to the given energy level, on a random
 	// orbit and a random position along that orbit.
-	void Place(double energy, double beltRadius);
+	void Place(double energy, double beltRadius, double spread);
 
 	// Move the object forward one step. If it has been reduced to zero hull, it
 	// will "explode" instead of moving, creating flotsam and explosion effects.
