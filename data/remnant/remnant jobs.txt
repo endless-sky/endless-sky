@@ -81,7 +81,7 @@ mission "Remnant: Bounty 2"
 
 mission "Remnant: Broken Jump Drive job"
 	name "Broken Jump Drive Delivery"
-	description "The researchers on <planet> need another broken Jump Drive to continue their project."
+	description "The researchers on <planet> need another broken jump drive to continue their project."
 	job
 	repeat 4
 	to offer
@@ -104,7 +104,7 @@ mission "Remnant: Broken Jump Drive job"
 		payment 300000
 		"reputation: Remnant" ++
 		"Remnant: Broken Jump Drive job: offered" --
-		dialog "The research team quickly offloads the broken Jump Drive and pays you <payment> before hurrying back to their lab."
+		dialog "The research team quickly offloads the broken jump drive and pays you <payment> before hurrying back to their lab."
 
 
 

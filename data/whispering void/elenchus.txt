@@ -77,8 +77,8 @@ event "liberated elenchus"
 		outfitter "Elenctic Commune Basic"
 		shipyard "Elenctic Commune Basic"
 
-# Due to the extremely limited number of Jump Drives, the Devil-Run
-# pirate gang only has the largest of ships. They used Jump Drives in
+# Due to the extremely limited number of jump drives, the Devil-Run
+# pirate gang only has the largest of ships. They used jump drives in
 # pairs to transport one ship at a time.
 
 fleet "Devil-Run Miners"

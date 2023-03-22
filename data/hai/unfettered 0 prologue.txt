@@ -114,8 +114,8 @@ mission "First Contact: Unfettered"
 			
 			`	"If you are ever willing to sell us a Jump Drive," it says, "we will richly reward you. And if you discover the secret of how we can construct our own Jump Drives and escape from this prison, bring it to us and you will live as a god among us."`
 			choice
-				`	"I'm sorry, I don't know the secret of the Jump Drive. No human being does."`
-				`	"If I ever have an extra Jump Drive to sell, I will bring it to you."`
+				`	"I'm sorry, I don't know the secret of the jump drive. No human being does."`
+				`	"If I ever have an extra jump drive to sell, I will bring it to you."`
 					goto sell
 			`	"Then leave us alone," it says, and it walks off.`
 				decline
@@ -125,7 +125,7 @@ mission "First Contact: Unfettered"
 				decline
 	
 	on decline
-		log "Factions" "Unfettered Hai" `The "Unfettered" are a faction within the Hai species who are not as peaceful as the rest, and are normally not friendly toward humans. They claim that long ago the Drak altered the Hai to make them docile and peaceful, and that the Unfettered are descendants of those Hai who avoided undergoing that alteration. They are seeking Jump Drives so that they can escape the "prison" they are now stuck in: a few deteriorating worlds on the far northern edge of Hai space.`
+		log "Factions" "Unfettered Hai" `The "Unfettered" are a faction within the Hai species who are not as peaceful as the rest, and are normally not friendly toward humans. They claim that long ago the Drak altered the Hai to make them docile and peaceful, and that the Unfettered are descendants of those Hai who avoided undergoing that alteration. They are seeking jump drives so that they can escape the "prison" they are now stuck in: a few deteriorating worlds on the far northern edge of Hai space.`
 		log "Factions" "Sheragi" `The Unfettered Hai say that a dragon-like species called the "Sheragi" who are long extinct used to live in human space, back when much of what is now human territory was occupied by the Hai.`
 
 
@@ -146,7 +146,7 @@ mission "Unfettered Jump Drive 1"
 		attributes "unfettered"
 	on offer
 		conversation
-			`The Unfettered have clearly noticed that you have a Jump Drive installed; a large crowd of them has gathered around your ship. Do you want to talk with them, and perhaps arrange a sale of your Jump Drive?`
+			`The Unfettered have clearly noticed that you have a jump drive installed; a large crowd of them has gathered around your ship. Do you want to talk with them, and perhaps arrange a sale of your jump drive?`
 			choice
 				`	(No.)`
 					defer
@@ -157,13 +157,13 @@ mission "Unfettered Jump Drive 1"
 					goto end
 				`	"Can you offer me more than that?"`
 					goto more
-				`	"How will my ship leave here without my Jump Drive?"`
+				`	"How will my ship leave here without my jump drive?"`
 			
 			`	"We will give you a hyperdrive in its place," it says, "and you will be counted as our friend, so you will not need to leave here quickly, or under threat of violence." You can't help but wonder if they will try to take your ship by force if you do not agree to the deal.`
 			choice
 				`	"Okay, I accept your generous offer."`
 					goto end
-				`	"Sorry, but if I give you this Jump Drive, I will lose my ability to capture more of them. Be patient, and I will bring you several of them when I am able."`
+				`	"Sorry, but if I give you this jump drive, I will lose my ability to capture more of them. Be patient, and I will bring you several of them when I am able."`
 					goto refuse
 			
 			label refuse
@@ -173,13 +173,13 @@ mission "Unfettered Jump Drive 1"
 			label more
 			`	"Do not underestimate the value of our friendship," it says. "Soon we will become powerful once more, with many fruitful worlds under our control, and when that day comes you will benefit greatly from being our ally."`
 			choice
-				`	"Okay, as long as you give me a hyperdrive to take its place, I'll give you my Jump Drive."`
+				`	"Okay, as long as you give me a hyperdrive to take its place, I'll give you my jump drive."`
 					goto end
-				`	"Sorry, but if I give you this Jump Drive, I will lose my ability to capture more of them. Be patient, and I will bring you several of them when I am able."`
+				`	"Sorry, but if I give you this jump drive, I will lose my ability to capture more of them. Be patient, and I will bring you several of them when I am able."`
 					goto refuse
 			
 			label end
-			`	The Unfettered engineers quickly and carefully remove your Jump Drive and replace it with an ordinary hyperdrive. You sincerely hope that you are not making a mistake by giving them this new technology. "Remember," one of them says as it hands you your payment, "when you acquire more Jump Drives, return here with them and we will give you further rewards. Until then, may fortune favor you, human friend."`
+			`	The Unfettered engineers quickly and carefully remove your jump drive and replace it with an ordinary hyperdrive. You sincerely hope that you are not making a mistake by giving them this new technology. "Remember," one of them says as it hands you your payment, "when you acquire more Jump Drives, return here with them and we will give you further rewards. Until then, may fortune favor you, human friend."`
 				accept
 	
 	on accept
@@ -194,7 +194,7 @@ mission "Unfettered Jump Drive 2"
 	minor
 	landing
 	name "More Jump Drives"
-	description "The Unfettered Hai have promised you rich rewards, and more information about their plans, if you bring them more Jump Drives."
+	description "The Unfettered Hai have promised you rich rewards, and more information about their plans, if you bring them more jump drives."
 	to offer
 		has "Unfettered Jump Drive 1: offered"
 		not "Wanderers: Jump Drive Source: active"
@@ -206,17 +206,17 @@ mission "Unfettered Jump Drive 2"
 		attributes "unfettered"
 	on offer
 		conversation
-			`As before, when you land on this Unfettered world with a Jump Drive, a large crowd gathers around your ship. Clearly they are hoping that once again you will arrange a sale. Do you want to bargain with them?`
+			`As before, when you land on this Unfettered world with a jump drive, a large crowd gathers around your ship. Clearly they are hoping that once again you will arrange a sale. Do you want to bargain with them?`
 			choice
 				`	(No.)`
 					defer
 				`	(Yes.)`
 			`	When you approach the crowd, one of them says, "Greetings, human friend. We have made you known to all our brothers and sisters as one of the few creatures who have chosen to help the true Hai to gain their freedom. If you give us another Jump Drive, we will pay you another million credits, and make you one of our emissaries to collect the payments with which our frail brothers seek to buy peace. Will you accept this exchange?"`
 			choice
-				`	"Sorry, I need this Jump Drive right now, but I will come back later and sell it to you."`
+				`	"Sorry, I need this jump drive right now, but I will come back later and sell it to you."`
 					defer
-				`	"Yes, I will sell you my Jump Drive."`
-			`	Once again, they swap your Jump Drive for a hyperdrive, and pay you far more than you could sell a Jump Drive for anywhere else. "We will tell the other true Hai to offer you jobs in our job boards," they tell you, "and remember that we need still more Jump Drives."`
+				`	"Yes, I will sell you my jump drive."`
+			`	Once again, they swap your jump drive for a hyperdrive, and pay you far more than you could sell a jump drive for anywhere else. "We will tell the other true Hai to offer you jobs in our job boards," they tell you, "and remember that we need still more Jump Drives."`
 			choice
 				`	"Then I will find more, and bring them to you."`
 					accept
@@ -244,14 +244,14 @@ mission "Unfettered Jump Drive 3"
 		attributes "unfettered"
 	on offer
 		conversation
-			`You have another Jump Drive, and the Unfettered will certainly be willing to pay you well for it. They also hinted that they might be willing to give you more information about what they plan to use the Jump Drives for. Do you want to sell them another drive?`
+			`You have another jump drive, and the Unfettered will certainly be willing to pay you well for it. They also hinted that they might be willing to give you more information about what they plan to use the jump drives for. Do you want to sell them another drive?`
 			choice
 				`	(No.)`
 					defer
 				`	(Yes.)`
-			`	You meet up with some local Unfettered leaders, and they again pay you a million credits and arrange for your Jump Drive to be swapped out of your ship. "If you bring more, we will continue to pay you," they say.`
+			`	You meet up with some local Unfettered leaders, and they again pay you a million credits and arrange for your jump drive to be swapped out of your ship. "If you bring more, we will continue to pay you," they say.`
 			choice
-				`	"Can you tell me what you are using the Jump Drives for?"`
+				`	"Can you tell me what you are using the jump drives for?"`
 				`	"Thank you, I will certainly bring more of them when I am able."`
 					goto job
 			action
@@ -335,11 +335,11 @@ mission "Unfettered Jump Drive Trading"
 		random < 20 + 8 * "Unfettered Jump Drive 4: failed"
 	on offer
 		conversation
-			`The Unfettered are starting to know you by reputation for bringing Jump Drives to them. This time, one of them<hood> - an engineer, judging by the writing pad and equipment they have - is waiting for you at your hatch.`
+			`The Unfettered are starting to know you by reputation for bringing jump drives to them. This time, one of them<hood> - an engineer, judging by the writing pad and equipment they have - is waiting for you at your hatch.`
 			`	Maybe they mean to trade something other than money with you. Do you want to bargain for another drive with them?`
 				to display
 					not "unfettered: blade rodeo"
-			`	They probably mean to offer the same deal of exchanging Jump Drives for weapons as before. Do you want to try and see if you can prove yourself worthy this time, and bargain for a Jump Drive?`
+			`	They probably mean to offer the same deal of exchanging jump drives for weapons as before. Do you want to try and see if you can prove yourself worthy this time, and bargain for a jump drive?`
 				to display
 					has "unfettered: blade rodeo"
 			choice

@@ -783,7 +783,7 @@ event "wanderers: unfettered invasion starts"
 	planet "Varu K'est"
 		attributes "unfettered"
 		description `Varu K'est is a spare, ancient planet of arid plateaus and deep, meandering canyons, with too little rainfall to support any but the hardiest of shrubs. Before the Unfettered invaded, the only Wanderer settlements remaining here were the military bases they had set up to defend their frontier. Now, it is home to an ever-growing number of Unfettered settlements, including many civilians who have come here just for the chance to live on a world that is not overcrowded and polluted.`
-		spaceport `The Unfettered are using the few Jump Drives they have to ferry more and more of their people into Wanderer space. When each wave of ships arrives here in the spaceport, technicians carefully remove the Jump Drives from all but a few of them. A few well guarded jump-capable ships then carry those spare Jump Drives back to Unfettered space, where they are used to bring more ships and people.`
+		spaceport `The Unfettered are using the few jump drives they have to ferry more and more of their people into Wanderer space. When each wave of ships arrives here in the spaceport, technicians carefully remove the jump drives from all but a few of them. A few well guarded jump-capable ships then carry those spare jump drives back to Unfettered space, where they are used to bring more ships and people.`
 		shipyard clear
 		outfitter clear
 	planet "Varu Mer'ek"

@@ -712,7 +712,7 @@ mission "Wanderers: Unfettered Diplomacy 1A"
 		has "Wanderers: Unfettered Diplomacy 1: done"
 	on offer
 		conversation
-			`Once you arrive on <origin>, Iktat Rek explains, "We have [captured, salvaged] a few Jump Drives from the Unfettered, and installed one in a freighter. To avoid [provoking, threatening] the Unfettered, the freighter is unarmed. It would be a bad start to our [diplomacy, peacemaking] to strike the Unfettered with Wanderer weapons."`
+			`Once you arrive on <origin>, Iktat Rek explains, "We have [captured, salvaged] a few jump drives from the Unfettered, and installed one in a freighter. To avoid [provoking, threatening] the Unfettered, the freighter is unarmed. It would be a bad start to our [diplomacy, peacemaking] to strike the Unfettered with Wanderer weapons."`
 			choice
 				`	"Does that mean I should not fire on them either?"`
 				`	"What should we do if they attack us, then?"`
@@ -805,8 +805,8 @@ mission "Wanderers: Unfettered Diplomacy 1C"
 		log "Managed to broker a temporary ceasefire between the Unfettered Hai and the Wanderers. Was granted access to purchase the non-military Wanderer ships, as a reward."
 		conversation
 			`When you return to <planet>, Iktat Rek meets with Ambassador Sayari and a few of the Wanderer elders. The elders thank you for the role that you played in negotiating a temporary peace, and Rek says, "We will [reward, honor] you by allowing you to purchase our current [civilian, peacekeeping] ships."`
-			`	The elders seem to agree that this is only a temporary solution. The Unfettered cannot be granted a base in Wanderer territory: they would use their few Jump Drives to move a few warships at a time to that base until they had a fleet too strong for the Wanderers to defeat. Sooner or later, the Unfettered will grow tired of demanding such a base and will return to open warfare.`
-			`	In the meantime, the only way to defuse the situation would be to get all the Jump Drives out of the hands of the Unfettered - and that means discovering and stopping whoever is supplying those drives to them.`
+			`	The elders seem to agree that this is only a temporary solution. The Unfettered cannot be granted a base in Wanderer territory: they would use their few jump drives to move a few warships at a time to that base until they had a fleet too strong for the Wanderers to defeat. Sooner or later, the Unfettered will grow tired of demanding such a base and will return to open warfare.`
+			`	In the meantime, the only way to defuse the situation would be to get all the jump drives out of the hands of the Unfettered - and that means discovering and stopping whoever is supplying those drives to them.`
 
 
 
@@ -843,7 +843,7 @@ mission "Wanderers: Truce Check"
 mission "Wanderers: Jump Drive Source"
 	landing
 	name "Jump drive source?"
-	description "Iktat Rek asked you to acquire a spare Jump Drive and sell it to the Unfettered in exchange for information on where they are getting Jump Drives from. Then, return to <destination>."
+	description "Iktat Rek asked you to acquire a spare jump drive and sell it to the Unfettered in exchange for information on where they are getting jump drives from. Then, return to <destination>."
 	autosave
 	source "Vara K'chrai"
 	to offer
@@ -851,7 +851,7 @@ mission "Wanderers: Jump Drive Source"
 		has "event: wanderers: truce timer"
 	on offer
 		conversation
-			`When you arrive on <origin>, Iktat Rek greets you warmly. "Human," he says, "it is a [relief, delight] to have [peace, safety] within our territory. But the Unfettered will not be [placated, satisfied] forever. I have spoken with ambassador Sayari about this and we are agreed that we must know what [allies, accomplices] the Unfettered have, what their [strength, capability] is, and how they have acquired Jump Drives."`
+			`When you arrive on <origin>, Iktat Rek greets you warmly. "Human," he says, "it is a [relief, delight] to have [peace, safety] within our territory. But the Unfettered will not be [placated, satisfied] forever. I have spoken with ambassador Sayari about this and we are agreed that we must know what [allies, accomplices] the Unfettered have, what their [strength, capability] is, and how they have acquired jump drives."`
 			branch naughty
 				has "Unfettered Jump Drive 3: offered"
 			choice
@@ -861,29 +861,29 @@ mission "Wanderers: Jump Drive Source"
 			choice
 				`	"Agreed. How can I help you?"`
 					goto help
-				`	"Umm... they may actually have gotten some of those Jump Drives from me."`
-			`	Rek seems startled, but finally says, "I see. It is [understandable, forgivable] that you would want to placate them. So I will not [fault, censure] you for that. In fact it may help us that you have done so. What we [ask, desire] of you is to sell them another drive, but this time find a [pretense, excuse] to ask who else supplies them with Jump Drives. Since you have [helped, abetted] them, they may trust you with that information."`
+				`	"Umm... they may actually have gotten some of those jump drives from me."`
+			`	Rek seems startled, but finally says, "I see. It is [understandable, forgivable] that you would want to placate them. So I will not [fault, censure] you for that. In fact it may help us that you have done so. What we [ask, desire] of you is to sell them another drive, but this time find a [pretense, excuse] to ask who else supplies them with jump drives. Since you have [helped, abetted] them, they may trust you with that information."`
 				goto end
 			label help
-			`	Rek says, "What we [ask, desire] of you is to acquire a Jump Drive and sell it to them, to [earn, curry] more favor with them. Then find a [pretense, excuse] to ask who else supplies them with Jump Drives. Because you [brokered, negotiated] the ceasefire, they may trust you with that information."`
+			`	Rek says, "What we [ask, desire] of you is to acquire a jump drive and sell it to them, to [earn, curry] more favor with them. Then find a [pretense, excuse] to ask who else supplies them with jump drives. Because you [brokered, negotiated] the ceasefire, they may trust you with that information."`
 			label end
 			choice
 				`	"Sure, I can do that."`
 					accept
-				`	"But, won't it hurt you in the long run for the Unfettered to have another Jump Drive?"`
-			`	Rek says, "Over a hundred of their ships have [raided, violated] our space in the past few years. Someone is [equipping, supplying] them with many Jump Drives, and one more will make little difference. We must [cut off, eliminate] the source."`
+				`	"But, won't it hurt you in the long run for the Unfettered to have another jump drive?"`
+			`	Rek says, "Over a hundred of their ships have [raided, violated] our space in the past few years. Someone is [equipping, supplying] them with many jump drives, and one more will make little difference. We must [cut off, eliminate] the source."`
 			`	You promise to do your best to cajole information from the Unfettered, and he wishes you luck in doing so.`
 				accept
 	on accept
-		log "Agreed to try to sell a Jump Drive to the Unfettered Hai, as a way to get more information from them about who else is providing them with Jump Drives and enabling their attacks on the Wanderers."
+		log "Agreed to try to sell a jump drive to the Unfettered Hai, as a way to get more information from them about who else is providing them with jump drives and enabling their attacks on the Wanderers."
 	
 	to complete
 		has "Unfettered: Jump Drive Source: offered"
 	on visit
-		dialog `You have not yet tried to sell the Unfettered Hai a Jump Drive. Return here after doing so.`
+		dialog `You have not yet tried to sell the Unfettered Hai a jump drive. Return here after doing so.`
 	on complete
 		conversation
-			`You report to Iktat Rek. "Most [intriguing, disturbing]," he says. "If what you say of these Alpha humans is [correct, unbiased], they are a dangerous foe. And in exchange for so many Jump Drives, no doubt the Unfettered have [supplied, furnished] them with many weapons." He pauses to think for a minute, then says, "You must track them. There is a Wanderer [device, technology] that can help you. But I must ask our [elders, government] for permission before giving you access to it. I will meet you back in the spaceport soon."`
+			`You report to Iktat Rek. "Most [intriguing, disturbing]," he says. "If what you say of these Alpha humans is [correct, unbiased], they are a dangerous foe. And in exchange for so many jump drives, no doubt the Unfettered have [supplied, furnished] them with many weapons." He pauses to think for a minute, then says, "You must track them. There is a Wanderer [device, technology] that can help you. But I must ask our [elders, government] for permission before giving you access to it. I will meet you back in the spaceport soon."`
 
 
 
@@ -896,7 +896,7 @@ mission "Unfettered: Jump Drive Source"
 		has "Wanderers: Jump Drive Source: active"
 	on offer
 		conversation
-			`Following Iktat Rek's suggestion, would you like to sell a Jump Drive to the Hai and see what information you can get in return?`
+			`Following Iktat Rek's suggestion, would you like to sell a jump drive to the Hai and see what information you can get in return?`
 			choice
 				`	(Yes.)`
 				`	(Not now.)`
@@ -904,12 +904,12 @@ mission "Unfettered: Jump Drive Source"
 			`	You eventually find one of the Unfettered who speaks your language. She directs you to the office of the "governor" (or perhaps warlord) in charge of the spaceport. The governor says, "I offer you same terms as to the other humans. One million credits, and we give you hyperdrive in place of Jump Drive. Is this acceptable?"`
 			choice
 				`	"Yes."`
-				`	"Sorry, let me come back when I have a Jump Drive to spare."`
+				`	"Sorry, let me come back when I have a jump drive to spare."`
 					defer
-			`	Carefully, almost reverently, the Unfettered technicians remove the Jump Drive from your ship. The governor pays you and then stands by to watch them work. Perhaps you can get more information from him.`
+			`	Carefully, almost reverently, the Unfettered technicians remove the jump drive from your ship. The governor pays you and then stands by to watch them work. Perhaps you can get more information from him.`
 			choice
-				`	"If I want to find more Jump Drives to give you, where should I look?"`
-				`	"You said that 'other humans' have been selling you Jump Drives as well?"`
+				`	"If I want to find more jump drives to give you, where should I look?"`
+				`	"You said that 'other humans' have been selling you jump drives as well?"`
 					goto others
 			`	He says, "The unfettered humans will not tell us their source, but we suspect they steal from our old foe, the Korathi invaders. The unfettered human leader told a story I did not understand, that Prometheus was punished for stealing from the gods, but no one is punished for stealing from Prometheus. Was Prometheus a human hero?"`
 				goto prometheus
@@ -930,7 +930,7 @@ mission "Unfettered: Jump Drive Source"
 			`	You are able to get no further information from him, but what you already know is quite valuable. You should report back to Iktat Rek and see what he says.`
 				accept
 	on accept
-		log `Learned from the Unfettered Hai that they have been purchasing Jump Drives from the Alphas (whom they refer to as "unfettered humans").`
+		log `Learned from the Unfettered Hai that they have been purchasing jump drives from the Alphas (whom they refer to as "unfettered humans").`
 		outfit "Jump Drive" -1
 		outfit "Hyperdrive" 1
 		payment 1000000
@@ -978,7 +978,7 @@ mission "Wanderers: Alpha Surveillance A"
 	on visit
 		dialog phrase "generic waypoint on visit"
 	on complete
-		log "Planted some surveillance devices, designed by the Wanderers, in Unfettered Hai space. A month from now, they will be done collecting data on ship movements in the area, and may provide a hint of where the Alphas who are selling Jump Drives to the Unfettered are coming from."
+		log "Planted some surveillance devices, designed by the Wanderers, in Unfettered Hai space. A month from now, they will be done collecting data on ship movements in the area, and may provide a hint of where the Alphas who are selling jump drives to the Unfettered are coming from."
 		log "People" "Hiyamaharu" `Hiyamaharu is an aged Hai ambassador. He appears to have taken of Sayari's role in dealing with humans since her departure from Hai space.`
 		event "wanderers: alpha surveillance done" 30
 		conversation
@@ -1032,14 +1032,14 @@ mission "Wanderers: Alpha Surveillance B"
 		dialog phrase "generic waypoint on visit"
 	on complete
 		conversation
-			`When you arrive at the spaceport, you contact Iktat Rek and send him a copy of the encrypted recordings. You also mention to him that the Unfettered attacked you after you sent out the data retrieval signal. "That is [unfortunate, regrettable]," says Rek. "I hope they will [cool off, calm down] in time. I suspect you could buy their [friendship, favor] back with another Jump Drive, or just ignore their [attacks, antagonism] for now."`
+			`When you arrive at the spaceport, you contact Iktat Rek and send him a copy of the encrypted recordings. You also mention to him that the Unfettered attacked you after you sent out the data retrieval signal. "That is [unfortunate, regrettable]," says Rek. "I hope they will [cool off, calm down] in time. I suspect you could buy their [friendship, favor] back with another jump drive, or just ignore their [attacks, antagonism] for now."`
 			`	You ask what you should do next, and Rek says, "We need some time to [analyze, inspect] the sensor logs. Meet me in the spaceport in an hour."`
 
 
 
 mission "Wanderers: Alpha Surveillance C"
 	name "Alpha Surveillance"
-	description "The Wanderers have no technology for tracking a ship that is using a Jump Drive, but Iktat Rek thinks the Quarg might be able to and suggested visiting them on <destination>."
+	description "The Wanderers have no technology for tracking a ship that is using a jump drive, but Iktat Rek thinks the Quarg might be able to and suggested visiting them on <destination>."
 	source "Vara K'chrai"
 	destination "Alta Hai"
 	to offer
@@ -1048,7 +1048,7 @@ mission "Wanderers: Alpha Surveillance C"
 		not "Wanderers: Alpha Surveillance C (Naughty): offered"
 	on offer
 		conversation
-			`When you meet up with Iktat Rek, he shows you a picture of a Navy Carrier. "The sensors [observed, detected] this ship entering the Hi Yahr system via Jump Drive," he says. You tell him that it is a human military vessel. "Do you think your military could be [assisting, abetting] the Unfettered?" he asks.`
+			`When you meet up with Iktat Rek, he shows you a picture of a Navy Carrier. "The sensors [observed, detected] this ship entering the Hi Yahr system via jump drive," he says. You tell him that it is a human military vessel. "Do you think your military could be [assisting, abetting] the Unfettered?" he asks.`
 			choice
 				`	"It's possible, but it could also be a stolen ship. I wouldn't expect the Navy to side with the Unfettered."`
 					goto no
@@ -1060,19 +1060,19 @@ mission "Wanderers: Alpha Surveillance C"
 			`	"I hope you are right," says Rek. "I do not wish our [conflict, tension] with the Unfettered to place us at war with humans. We must [investigate, explore] this matter further."`
 			`	"How can we do that?" you ask.`
 			label end
-			`	"You must track this ship," says Rek. "A Jump Drive creates a temporary [portal? identity? oneness?] between two [locations, regions] in space. A species that [creates, manufactures] Jump Drives may be able to [track, detect] the residue of those links. Sayari tells me that such a species [lives in, borders on] Hai space. Perhaps they will aid you."`
+			`	"You must track this ship," says Rek. "A jump drive creates a temporary [portal? identity? oneness?] between two [locations, regions] in space. A species that [creates, manufactures] jump drives may be able to [track, detect] the residue of those links. Sayari tells me that such a species [lives in, borders on] Hai space. Perhaps they will aid you."`
 			`	You agree to make a visit to the Quarg ringworld in Hai space, and he wishes you luck on your journey.`
 				accept
 	
 	on complete
 		conversation
-			`As always, it is impossible to tell which of the Quarg is in charge here or might be able to help you. The first few you ask seem none too eager to give any technology related to the Jump Drive to a human, but finally one of them listens to your story and says, "I know of the Alphas. And of the Unfettered. There is one who may be willing to assist you." After a brief conversation in the Quarg language via a communication device, the Quarg says, "Return to the spaceport in an hour and one will meet you to hear your petition."`
+			`As always, it is impossible to tell which of the Quarg is in charge here or might be able to help you. The first few you ask seem none too eager to give any technology related to the jump drive to a human, but finally one of them listens to your story and says, "I know of the Alphas. And of the Unfettered. There is one who may be willing to assist you." After a brief conversation in the Quarg language via a communication device, the Quarg says, "Return to the spaceport in an hour and one will meet you to hear your petition."`
 
 
 
 mission "Wanderers: Alpha Surveillance C (Naughty)"
 	name "Alpha Surveillance"
-	description "The Wanderers have no technology for tracking a ship that is using a Jump Drive, but Iktat Rek thinks the Quarg might be able to and suggested visiting them on <destination>."
+	description "The Wanderers have no technology for tracking a ship that is using a jump drive, but Iktat Rek thinks the Quarg might be able to and suggested visiting them on <destination>."
 	source "Vara K'chrai"
 	destination "Alta Hai"
 	to offer
@@ -1095,7 +1095,7 @@ mission "Wanderers: Alpha Surveillance C (Naughty)"
 				clear "stole a wanderer micro-sat"
 			`	"I am glad you [admitted, confessed] that," says Rek. "Please be more [honest, obedient] in the future." You retrieve the hidden surveillance device and return it to him.`
 			label carrier
-			`	"Thank you," says Rek. "Now, here is what we discovered." He shows you a picture of a Navy Carrier. "The sensors [observed, detected] this ship entering the Hi Yahr system via Jump Drive," he says. You tell him that it is a human military vessel. "Do you think your military could be [assisting, abetting] the Unfettered?" he asks.`
+			`	"Thank you," says Rek. "Now, here is what we discovered." He shows you a picture of a Navy Carrier. "The sensors [observed, detected] this ship entering the Hi Yahr system via jump drive," he says. You tell him that it is a human military vessel. "Do you think your military could be [assisting, abetting] the Unfettered?" he asks.`
 			choice
 				`	"It's possible, but it could also be a stolen ship. I wouldn't expect the Navy to side with the Unfettered."`
 					goto no
@@ -1107,7 +1107,7 @@ mission "Wanderers: Alpha Surveillance C (Naughty)"
 			`	"I hope you are right," says Rek. "I do not wish our [conflict, tension] with the Unfettered to place us at war with humans. We must [investigate, explore] this matter further."`
 			`	"How can we do that?" you ask.`
 			label end
-			`	"You must track this ship," says Rek. "A Jump Drive creates a temporary [portal? identity? oneness?] between two [locations, regions] in space. A species that [creates, manufactures] Jump Drives may be able to [track, detect] the residue of those links. Sayari tells me that such a species [lives in, borders on] Hai space. Perhaps they will aid you."`
+			`	"You must track this ship," says Rek. "A jump drive creates a temporary [portal? identity? oneness?] between two [locations, regions] in space. A species that [creates, manufactures] jump drives may be able to [track, detect] the residue of those links. Sayari tells me that such a species [lives in, borders on] Hai space. Perhaps they will aid you."`
 			`	You agree to make a visit to the Quarg ringworld in Hai space, and he wishes you luck on your journey.`
 				accept
 			label fail
@@ -1118,7 +1118,7 @@ mission "Wanderers: Alpha Surveillance C (Naughty)"
 	
 	on complete
 		conversation
-			`As always, it is impossible to tell which of the Quarg is in charge here or might be able to help you. The first few you ask seem none too eager to give any technology related to the Jump Drive to a human, but finally one of them listens to your story and says, "I know of the Alphas. And of the Unfettered. There is one who may be willing to assist you." After a brief conversation in the Quarg language via a communication device, the Quarg says, "Go to the spaceport, and one will meet you to hear your petition."`
+			`As always, it is impossible to tell which of the Quarg is in charge here or might be able to help you. The first few you ask seem none too eager to give any technology related to the jump drive to a human, but finally one of them listens to your story and says, "I know of the Alphas. And of the Unfettered. There is one who may be willing to assist you." After a brief conversation in the Quarg language via a communication device, the Quarg says, "Go to the spaceport, and one will meet you to hear your petition."`
 
 event "robbed the wanderers"
 	"reputation: Wanderer" = 1
@@ -1205,13 +1205,13 @@ mission "Wanderers: Alpha Surveillance D"
 	blocked "You need a bunk free in order to take on this mission."
 	
 	on offer
-		log "Met a human named Elias Hanover who is friends with the Quarg and who has been given permission to use Quarg technology to track the Alpha ship that is selling Jump Drives to the Unfettered."
+		log "Met a human named Elias Hanover who is friends with the Quarg and who has been given permission to use Quarg technology to track the Alpha ship that is selling jump drives to the Unfettered."
 		log "People" "Elias Hanover" `Elias has been living with the Quarg in Hai space for a long time, and they trust him enough to give him access to some of their restricted technology.`
 		"reputation: Alpha" <?= -1
 		conversation
 			`You are met in the spaceport by a bearded, middle-aged human man and a Quarg with exceptionally wrinkly skin. The Quarg says, "I hear that you need help against the Alphas. My friend Elias here has lived among us for a long time, and has told me much about the Alphas, their wars and their depredations."`
 			`	The human shakes hands with you and introduces himself as Elias Hanover. He says, "The Quarg are very hesitant to take sides in what they view as an internal human conflict. And they are equally hesitant to entrust their technology to a stranger like you. But if the Alphas are gathering strength and amassing alien technology, they must be stopped."`
-			`	The Quarg says, "Elias is a trusted friend of ours. We have given him a device for tracking a ship traveling by Jump Drive, and programmed it with the parameters of a human Carrier. Do not try to take the device from him. He will lead you to find your quarry, and then you must return the device to us immediately."`
+			`	The Quarg says, "Elias is a trusted friend of ours. We have given him a device for tracking a ship traveling by jump drive, and programmed it with the parameters of a human Carrier. Do not try to take the device from him. He will lead you to find your quarry, and then you must return the device to us immediately."`
 			`	Elias asks, "If we find them, are you prepared to take on a Carrier by yourself?"`
 			choice
 				`	"Yes, my ship is stronger than anything in human space."`
@@ -1233,7 +1233,7 @@ mission "Wanderers: Alpha Surveillance D"
 	on enter "Ferukistek"
 		dialog `Elias says, "Found their trail. They've turned and headed east again, and maybe a little bit north."`
 	on enter "Makferuti"
-		dialog `Elias frowns as he looks at the tracker's readout. "I think we've taken a wrong turn. No sign of Jump Drives being used in this system," he says.`
+		dialog `Elias frowns as he looks at the tracker's readout. "I think we've taken a wrong turn. No sign of jump drives being used in this system," he says.`
 	on enter "Host"
 		dialog `When you enter this system, your sensors pick up a Navy Carrier in orbit around an Earth-like planet. It appears that you have found the Alpha base. "That's them," says Hanover. "I hope you're strong enough to destroy them." The Carrier starts to launch fighters: Korath ones, not human ships. This might be a difficult fight...`
 	
@@ -1342,7 +1342,7 @@ mission "Wanderers: Alpha Surveillance F"
 				`	"You seem to be very familiar with the Hai's space?"`
 			`	Danforth looks bemused. "Living on their doorstep? I've known about them from long before the secret broke. Why do you think the Navy maintains such a large base on Farpoint in the first place? It's not like the human anarchists up north pose that much of a threat."`
 			label jump
-			`	"It's not just the distance," says Elias. "The only way to get there is by Jump Drive. Fortunately Captain <last> has one."`
+			`	"It's not just the distance," says Elias. "The only way to get there is by jump drive. Fortunately Captain <last> has one."`
 			`	"As do I," says Danforth, a bit smugly. When he sees your surprised expressions he elaborates. "Recovered it from the Pug. Accidentally forgot to file the paperwork reporting it. You know how it is. Old men like me can be absent-minded." He smiles, "My engineers are installing it in my flagship even as we speak."`
 			choice
 				`	"So you're willing to come with us?"`
@@ -1553,7 +1553,7 @@ mission "Wanderers: Alpha Surveillance J"
 	on complete
 		"reputation: Wanderer" >?= 30
 		event "wanderers: unfettered invasion starts" 64
-		log "Reported to the Wanderers that the Alphas who had been selling Jump Drives to the Unfettered have been weakened and driven into hiding. The Wanderers are ramping up production of military ships to try to face the continuing Unfettered onslaught."
+		log "Reported to the Wanderers that the Alphas who had been selling jump drives to the Unfettered have been weakened and driven into hiding. The Wanderers are ramping up production of military ships to try to face the continuing Unfettered onslaught."
 		conversation
 			`It's hard to be certain, but the activity around the spaceport seems more hectic than usual, and the Wanderers seem to have put some new ship models into production as well. When you ask Iktat Rek about it, he says, "When the Unfettered first [invaded, occupied] our territory, we had almost no weapons of [war, defense]. Since then we have retrieved old [designs, instructions] and begun preparing for what is to come, [unpleasant, unfortunate] though it may be."`
 			`	As you describe your mixed success at dealing with the Alphas, he shakes his wings and ruffles out his feathers in what seems to be a nervous, agitated gesture. "These Alpha [beings, creatures] sound more [dangerous, unreasonable, ruthless] than the Unfettered," he says. "Any [social, gregarious] species that evolves naturally develops certain [limits, checks, restraints] that an [artificial, constructed] species may not possess. How can we best [respond to, deal with] them?"`
@@ -1604,7 +1604,7 @@ mission "Wanderers Invaded 1"
 	to offer
 		has "event: wanderers: unfettered invasion starts"
 	on offer
-		log "The Unfettered have established a beachhead on one of the Wanderer worlds and are now apparently using what few Jump Drives they possess to shuttle more and more warships into Wanderer space. War has begun in earnest."
+		log "The Unfettered have established a beachhead on one of the Wanderer worlds and are now apparently using what few jump drives they possess to shuttle more and more warships into Wanderer space. War has begun in earnest."
 		conversation
 			`Iktat Rek looks more harried and anxious than you have ever seen him: his feathers, normally perfectly preened, stick out at odd angles in patches on his face and shoulders, and he paces back and forth restlessly as you converse. "We have begun building warships," he says, "but do not yet have the [strength, numbers] to resist the invaders. We must retreat to a more [narrow? defensible?] position. Will you assist us in the evacuation?"`
 			choice
@@ -1863,7 +1863,7 @@ mission "Wanderers Invaded 3C"
 			`	"That is my concern too," says Isai. "The Eye is a thing of [myth, mystery] and it may not answer to our need. We cannot afford to make plans [assuming, expecting] that it will open this year, or even in the next hundred years. So we must choose what we can afford to [lose, cede, give up] now, and [hold, defend] the rest of our territory firmly."`
 			label end
 			`	The Wanderer leaders decide to begin evacuating four more of their worlds closest to the Unfettered, hoping that they will not be attacked until the evacuation is complete. If necessary, they will fall back to the Ap'arak system, immediately east of this one, and take their final stand there.`
-			`	In the meantime, the entire Wanderer strategy depends on where and when the mythical Eye will open, the portal that will carry them to their next home. As the only Wanderer ally with access to a Jump Drive, perhaps you will be able to answer that question.`
+			`	In the meantime, the entire Wanderer strategy depends on where and when the mythical Eye will open, the portal that will carry them to their next home. As the only Wanderer ally with access to a jump drive, perhaps you will be able to answer that question.`
 				accept
 	on accept
 		"reputation: Pug (Wanderer)" >?= 1
@@ -2879,7 +2879,7 @@ mission "Wanderers Ap'arak 3"
 		has "Wanderers Ap'arak 2: done"
 	on offer
 		log `The Wanderers have begun producing even larger warships, and have succeeded in driving off yet another Unfettered assault. Afterwards the Pug, whom the Wanderers refer to as the "Keepers," finally sent assistance... in the form of two ships, which they claim are powerful enough to keep the entire Unfettered fleet at bay.`
-		log "Factions" "Unfettered Hai" `After obtaining a sufficient number of Jump Drives, the Unfettered expanded into Wanderer space and managed to conquer six worlds from the Wanderers before their advance was stopped due to Pug interference.`
+		log "Factions" "Unfettered Hai" `After obtaining a sufficient number of jump drives, the Unfettered expanded into Wanderer space and managed to conquer six worlds from the Wanderers before their advance was stopped due to Pug interference.`
 		conversation
 			`The Wanderers here seem incredulous that they managed to drive off such a powerful Unfettered attack force. As you walk through the spaceport, many of them stop to thank you for your assistance in defending their home.`
 			`	Just as you reach the pavilion where the military leaders are gathering, a shadow falls over you, and you look up to see two ships approaching with the unmistakable horned silhouettes of Pug warships. Throughout the spaceport you hear Wanderer voices raised in excitement, and hundreds of them leap into the air to accompany the Pug ships to the landing pad. Sobari Tele'ek says to you, "It is a [visitation, appearance] of the Keepers! In our hour of [need, desperation] they make themselves known at last." A small delegation of Pug disembarks from the ships and approaches the pavilion on foot.`

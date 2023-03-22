@@ -1508,7 +1508,7 @@ ship "Solifuge"
 	explode "large explosion" 50
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description `Impressed by the Alpha's "Giftbringer," the Unfettered endeavored to build their own fighter carrier to take more advantage of their supply of Jump Drives.`
+	description `Impressed by the Alpha's "Giftbringer," the Unfettered endeavored to build their own fighter carrier to take more advantage of their supply of jump drives.`
 
 ship "Solifuge" "Solifuge (Jump)"
 	outfits

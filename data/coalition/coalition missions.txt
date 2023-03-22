@@ -64,7 +64,7 @@ mission "Coalition: First Contact"
 				goto next
 			label oppressive
 			`	The spider says, "In separate boxes, they each species keep. And in subtle ways, your development and discoveries they limit. And on your technology, restrictions they place."`
-			`	The beetle says, "Or, wrong are we? And the Jump Drive that brought you here, a gift from the Quarg it is? They its secret no longer hoard?" You tell it that the Quarg do indeed refuse to give Jump Drives to humans, and it says, "Then, prisoners indeed you are."`
+			`	The beetle says, "Or, wrong are we? And the Jump Drive that brought you here, a gift from the Quarg it is? They its secret no longer hoard?" You tell it that the Quarg do indeed refuse to give jump drives to humans, and it says, "Then, prisoners indeed you are."`
 			label next
 			branch hai
 				has "First Contact: Hai: offered"
@@ -170,7 +170,7 @@ event "lost in coalition"
 
 mission "Coalition: Lost: Marker"
 	name "Foreign Aid"
-	description "The Heliarchs have noticed that you've lost your Jump Drive, being now stranded in Coalition space, and have offered to help. Head to the <destination> to speak with them."
+	description "The Heliarchs have noticed that you've lost your jump drive, being now stranded in Coalition space, and have offered to help. Head to the <destination> to speak with them."
 	landing
 	source
 		near "Ekuarik" 1 100
@@ -184,8 +184,8 @@ mission "Coalition: Lost: Marker"
 			`	"Unlike previous scans, a Jump Drive in your ship, our scanners found not," the Kimek continues.`
 			`	"Though appreciate the work you here perform, we do, for you to be cut-off from the galaxy, we wish not," the Arach says. "Discussed much, our consuls have, and to help you, they decided. To the <destination> you must go, there discussed, the terms will be."`
 			choice
-				`	"By that you mean you'll get me another Jump Drive? That's pretty generous of you."`
-				`	"What? I lost my Jump Drive? You've gotta be kidding!"`
+				`	"By that you mean you'll get me another jump drive? That's pretty generous of you."`
+				`	"What? I lost my jump drive? You've gotta be kidding!"`
 					goto unaware
 			`	"Generous we are indeed. Lucky you are, that under our jurisdiction this happened. Were it the Quarg's, stranded you would remain," the Saryd responds.`
 				goto end
@@ -201,7 +201,7 @@ mission "Coalition: Lost: Marker"
 
 mission "Coalition: Lost: Offer"
 	name "Jump Drive Loan"
-	description "The Heliarchs have provided you a Jump Drive to leave Coalition space. Bring another Jump Drive to the <destination> by <date>, to replace the one you borrowed, or they will be extremely angered by you breaking their trust."
+	description "The Heliarchs have provided you a jump drive to leave Coalition space. Bring another jump drive to the <destination> by <date>, to replace the one you borrowed, or they will be extremely angered by you breaking their trust."
 	deadline 333
 	landing
 	source "Ring of Wisdom"
@@ -214,10 +214,10 @@ mission "Coalition: Lost: Offer"
 			`	"Mind you, not a gift this is, but a loan, Captain," the Kimek continues. "Another one to replace this one, you must bring us, so that losing a copy of such valuable equipment, we are not."`
 			`	"By <date>, brought here the replacement Jump Drive must be. If any longer you take, assume that betrayed our trust you have, we will, and an enemy, considered you will be," the Arach finishes explaining. "Agree with those terms, do you, Captain?"`
 			choice
-				`	"Yes, I promise I'll return with a second Jump Drive."`
+				`	"Yes, I promise I'll return with a second jump drive."`
 				`	"Sorry, I need more time to think on this."`
 					defer
-			`	Their engineers proceed to install the Jump Drive in your ship. A couple of the guards come a bit closer during the process. When it's all done, you're reminded that you need to bring another Jump Drive here by <date>.`
+			`	Their engineers proceed to install the jump drive in your ship. A couple of the guards come a bit closer during the process. When it's all done, you're reminded that you need to bring another jump drive here by <date>.`
 				accept
 	on accept
 		outfit "Jump Drive" 1
@@ -228,7 +228,7 @@ mission "Coalition: Lost: Offer"
 	on complete
 		require "Jump Drive" 2
 		outfit "Jump Drive" -1
-		dialog `After you once again land near several of their warships and armed guards, the Heliarchs take the Jump Drive you brought them. They thank you for keeping true to your word, and ask that you avoid losing such an important outfit again.`
+		dialog `After you once again land near several of their warships and armed guards, the Heliarchs take the jump drive you brought them. They thank you for keeping true to your word, and ask that you avoid losing such an important outfit again.`
 
 
 
@@ -872,7 +872,7 @@ mission "Coalition Outbreak 3"
 mission "Kimek Gift"
 	minor
 	name "Not One Minute Late"
-	description "A Kimek researcher from <origin> forgot the birthday of her Saryd friend, who lives on <destination>. Since you have a Jump Drive and can make it there in time, she asked you to deliver the present by <date>."
+	description "A Kimek researcher from <origin> forgot the birthday of her Saryd friend, who lives on <destination>. Since you have a jump drive and can make it there in time, she asked you to deliver the present by <date>."
 	deadline 2
 	to offer
 		has "Coalition: First Contact: done"
@@ -1417,7 +1417,7 @@ mission "Coalition: Alpha Encounter"
 		not planet "Secret Sky" "Remote Blue" "Bloptab's Furnace" "Ahr"
 	on offer
 		event "alitis freed" 1095
-		log "Minor People" "Alitis" `Alitis, formerly known as Athis, is an Alpha who lives in the Coalition. Centuries ago, he stole a Jump Drive from an alien ship and used it to explore, but after some sort of encounter in the galactic east, he decided to give up on his former life.`
+		log "Minor People" "Alitis" `Alitis, formerly known as Athis, is an Alpha who lives in the Coalition. Centuries ago, he stole a jump drive from an alien ship and used it to explore, but after some sort of encounter in the galactic east, he decided to give up on his former life.`
 		conversation
 			`You're window-browsing a shop in the spaceport when you catch the scuff of too quick footsteps coming towards you. Before you can glance in that direction, you're suddenly tackled into the ground by someone astonishingly human-shaped. You try to get up, but whoever attacked you pins you down, pressing your face into the ground and holding your arms behind your back to restrain you. As you struggle against your attacker you manage to catch sight of long hair and then, with a flash of concern, a glimpse of green skin - an Alpha.`
 			`	You are not pressed for long though. You feel the Alpha's attention shift to the side you cannot see, as an Arach swoops in with a tackle. The Alpha lets go of your arms in an attempt to block the attack, but it does not prevent the Arach from bowling them clear off of you where the two begin to wrestle in your line of sight. The Alpha is a man and, surprisingly to you, despite his strength, it doesn't take long for the Arach Heliarch to restrain your attacker. The Arach firmly pins his arms to his torso with four legs, holds his hips down with two, and uses her last pair to lever herself until she rests her entire body weight into pinning the Alpha.`
@@ -1654,18 +1654,18 @@ mission "Saryd University Lecture"
 			`	The Saryd walks away, disappointed.`
 				goto sorry
 			label tell
-			`	"I've met an alien species there called the Korath," you say. "They're reptilian creatures. What's left of their planets has been ruined by infighting. The Kor Sestor and Kor Mereti have been fighting a civil war using autonomous ships. The Kor Efreti have stayed out of the civil war, living under the Quarg's protection. The Korath Exiles have been banished to the Core by the Drak for refusing to give up their ability to manufacture Jump Drives. They are now raiding humanity for supplies."`
+			`	"I've met an alien species there called the Korath," you say. "They're reptilian creatures. What's left of their planets has been ruined by infighting. The Kor Sestor and Kor Mereti have been fighting a civil war using autonomous ships. The Kor Efreti have stayed out of the civil war, living under the Quarg's protection. The Korath Exiles have been banished to the Core by the Drak for refusing to give up their ability to manufacture jump drives. They are now raiding humanity for supplies."`
 			`	The crowd shows considerable interest at this last part. "Knowledge of the Jump Drive, a species besides the Quarg possesses? Great news, this is! Our struggle against the Quarg, we do not take up alone. Possess Jump Drives, do any other species?" The Heliarch does not seem to mind you answering another question.`
 			branch unfettered
 				has "coalition knows hai"
 			choice
-				`	"There are aliens to the north of human space called the Hai. Some of them steal from the normal Hai, and try to get their hands on Jump Drives any way they can."`
+				`	"There are aliens to the north of human space called the Hai. Some of them steal from the normal Hai, and try to get their hands on jump drives any way they can."`
 					goto knowunfettered
 				`	"Sorry, I don't know of any other species that does."`
 					goto sorry
 			label unfettered
 			choice
-				`	"There is a faction among the Hai, the Unfettered. They steal from the normal Hai, and try to get their hands on Jump Drives any way they can."`
+				`	"There is a faction among the Hai, the Unfettered. They steal from the normal Hai, and try to get their hands on jump drives any way they can."`
 					goto unfortunate
 				`	"Sorry, I don't know of any other species that does."`
 					goto sorry
@@ -3134,22 +3134,22 @@ mission "Heliarchs Buy Jump Drive Mission"
 			`	"Regrettable that is," the Heliarch voice hailing you says with great disappointment. "If ever change your mind you do, prepared, a special job request will be, for when a spare Jump Drive you bring. Recommend it we do that our offer you carefully consider, Captain. Very generous in rewarding you for any and all copies you bring us, we would be."`
 				decline
 			label accept
-			`	They thank you profusely, and as if collectively told about the decision in an instant, all the Heliarch personnel stop gawking, and make space for an army of engineers to come and remove the spare Jump Drive from your ship. Still watching the scene, only now in formations, the Heliarch agents whisper among themselves, rarely shifting their eyes, as if looking at a spectacle.`
+			`	They thank you profusely, and as if collectively told about the decision in an instant, all the Heliarch personnel stop gawking, and make space for an army of engineers to come and remove the spare jump drive from your ship. Still watching the scene, only now in formations, the Heliarch agents whisper among themselves, rarely shifting their eyes, as if looking at a spectacle.`
 			`	Once the drive is out of your ship, it is secured in an excessively reinforced container and transported to a restricted section of the ring, under the guard of hundreds of armed soldiers. One of the Heliarchs who seem to be in charge of the procedure, an Arach, personally comes to you, thanking you again and handing you <payment>. "Honor us you do with such generosity, Captain. Though made great progress in studying Jump Drives and their mechanisms, we have, still incapable of creating our own, we are, and means of acquiring new copies we have not. Tremendously valuable, each and every drive you could bring us is, so prepare special job requests for them, I will. If interested in selling any more Jump Drives, you are, check the job boards in the rings, from now on you should."`
 			branch license
 				"coalition jobs" < 30
-			`	She thanks you yet again, salutes, and leaves to follow the entourage guarding the newly purchased Jump Drive.`
+			`	She thanks you yet again, salutes, and leaves to follow the entourage guarding the newly purchased jump drive.`
 				accept
 			label license
 			action
 				"reputation: Coalition" += 10
 				"reputation: Heliarch" += 10
 				set "license: Coalition"
-				log "Sold a Jump Drive to the Heliarchs and received permission to purchase Coalition civilian technology and ships."
+				log "Sold a jump drive to the Heliarchs and received permission to purchase Coalition civilian technology and ships."
 				log "Factions" "Saryds" `Saryds are an alien species who look suspiciously similar to the centaurs found in early human mythology. They prefer to live on worlds with as much green space as possible, and even their major cities are full of parks and gardens. Most Saryds live in small communes with up to a few dozen of them per house.`
 				log "Factions" "Kimek" `The Kimek are large insectoid aliens, and are members of the Coalition. They discovered spaceflight after the Saryds, but before the Arachi. They are intensely social creatures, preferring to live together in massive buildings with thousands of inhabitants, and many of their worlds have populations in the tens of billions, far more than any human world.`
 				log "Factions" "Arachi" `The spider-like Arachi were the last of the three Coalition species to discover interstellar travel. Most members of their society owe allegiance to one of the great Arach "Houses," organizations that are somewhat similar to guilds and that each specialize in one particular form of industry or technology.`
-			`	She thanks you yet again, salutes, and leaves to follow the entourage guarding the newly purchased Jump Drive. Not a minute after she has left, three more Heliarchs arrive at your ship, a delegation consisting of a member of each of the three Coalition species, all wearing golden circlets denoting their rank and authority. "A most unexpected, but greatly value contribution this is," the Saryd says, "to think that so eager would our visitor be to prove their diligence and commitment."`
+			`	She thanks you yet again, salutes, and leaves to follow the entourage guarding the newly purchased jump drive. Not a minute after she has left, three more Heliarchs arrive at your ship, a delegation consisting of a member of each of the three Coalition species, all wearing golden circlets denoting their rank and authority. "A most unexpected, but greatly value contribution this is," the Saryd says, "to think that so eager would our visitor be to prove their diligence and commitment."`
 			`	The Kimek says, "As aided you have our society in breaking free of the Quarg's cages, with our society's technology may you be trusted."`
 			`	"But," says the Arach, "like all civilians, even citizens, to you our weapons and warships we still cannot sell."`
 			choice
@@ -3158,7 +3158,7 @@ mission "Heliarchs Buy Jump Drive Mission"
 				`	"Why don't you allow civilians to purchase weapons or warships?"`
 			`	"For the sake of peace it is," says the Saryd. "The Heliarch military, well trained to use weapons only for defense and only for justice, they are. And to place the needs of the Coalition over the ambitions of their own native species, each one committed is. No such discipline do civilians have, even you. But as a respectful guest you are, to maintain your weapons we shall allow."`
 			label end
-			`	Apparently nothing is for sale here, but they assure you that many Coalition worlds will now grant you access to their shipyards and outfitters. The three Heliarchs all express their deep gratitude for your generosity with providing them a fresh Jump Drive, and wish you well.`
+			`	Apparently nothing is for sale here, but they assure you that many Coalition worlds will now grant you access to their shipyards and outfitters. The three Heliarchs all express their deep gratitude for your generosity with providing them a fresh jump drive, and wish you well.`
 				accept
 
 

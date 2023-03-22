@@ -1339,7 +1339,7 @@ mission "FWC Pug 2C"
 mission "FWC Pug 2D"
 	landing
 	name "Escape Pug Space"
-	description "Disable one of the Pug ships, steal its Jump Drive, and use it to escape from their territory and report to the Free Worlds that an alien invasion is imminent."
+	description "Disable one of the Pug ships, steal its jump drive, and use it to escape from their territory and report to the Free Worlds that an alien invasion is imminent."
 	source "Oblivion"
 	destination "New Iceland"
 	clearance "The locals are terrified by the fact that you have decided to fight the Pug, but eventually they agree to let you land."
@@ -1358,7 +1358,7 @@ mission "FWC Pug 2D"
 			choice
 				`	"Sorry, not yet."`
 				`	"We'll let you know when it's time."`
-			`	They seem disappointed that you aren't here to liberate them immediately, but you tell them to wait and not do anything foolish, for now, and they tell you how to contact them when you are ready. Back inside your ship, you and Katya talk. "It sounds like the aliens are planning to invade more systems," she says. "We need to get a warning out somehow. And the only way to do that is with a Jump Drive. We'll need to disable one of the alien ships, take out its Jump Drive, and install it on your ship. Then we can take your ship to <planet> and contact the Senate and the rest of the Council."`
+			`	They seem disappointed that you aren't here to liberate them immediately, but you tell them to wait and not do anything foolish, for now, and they tell you how to contact them when you are ready. Back inside your ship, you and Katya talk. "It sounds like the aliens are planning to invade more systems," she says. "We need to get a warning out somehow. And the only way to do that is with a jump drive. We'll need to disable one of the alien ships, take out its jump drive, and install it on your ship. Then we can take your ship to <planet> and contact the Senate and the rest of the Council."`
 			choice
 				`	"Sounds risky, but let's give it a try!"`
 					accept
@@ -1367,7 +1367,7 @@ mission "FWC Pug 2D"
 			`	"I don't think we have any other choice," she says. "Our friends out there need to know what is happening here. And maybe this, at last, will give the Navy a reason to stop fighting us and to begin working together for peace." Reluctantly, you agree.`
 				accept
 	on visit
-		dialog `You land on <planet>, but realize that your escort carrying Katya hasn't entered the system yet. Better depart and wait for it to arrive. (If your escorts don't have Jump Drives, try parking them so that Katya will be on your flagship.)`
+		dialog `You land on <planet>, but realize that your escort carrying Katya hasn't entered the system yet. Better depart and wait for it to arrive. (If your escorts don't have jump drives, try parking them so that Katya will be on your flagship.)`
 
 
 
@@ -1385,11 +1385,11 @@ mission "FWC Pug 3"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		log "Escaped from the territory captured by the Pug by using a Jump Drive. Found out that Freya has been captured by the Navy while she was trying to figure out the reason for the hyperspace links disappearing. The Navy thinks that the Free Worlds are behind the hyperspace disruptions. But, making peace with the Navy may be the only way to defeat the Pug."
+		log "Escaped from the territory captured by the Pug by using a jump drive. Found out that Freya has been captured by the Navy while she was trying to figure out the reason for the hyperspace links disappearing. The Navy thinks that the Free Worlds are behind the hyperspace disruptions. But, making peace with the Navy may be the only way to defeat the Pug."
 		event "fwc peace with the navy"
 		set "event: fw armistice"
 		conversation
-			`Your ship creates quite a stir when it enters the system via Jump Drive, and the moment you've landed Alondo is waiting outside your hatch to speak with you. "What the heck is going on?" he says. "What happened to your fleet? And how in the world did you get access to a Jump Drive? We asked the Quarg to sell us one, but they gave us some vague response about 'not meddling in the affairs of other species.'"`
+			`Your ship creates quite a stir when it enters the system via jump drive, and the moment you've landed Alondo is waiting outside your hatch to speak with you. "What the heck is going on?" he says. "What happened to your fleet? And how in the world did you get access to a jump drive? We asked the Quarg to sell us one, but they gave us some vague response about 'not meddling in the affairs of other species.'"`
 			`	Katya says, "We were attacked by aliens. They cut the hyperspace links. And they're likely to invade more systems. We need to warn everyone. Including the Republic and the Navy." She explains more of the situation to him, and hands him a copy of your sensor scans of the alien ships.`
 			`	Alondo says, "What do you think we should do next?"`
 			choice
@@ -1451,10 +1451,10 @@ mission "FWC Pug 3A"
 		conversation
 			branch know
 				has "FW Alphas 1.1: done"
-			`Surprisingly, the Navy lets you land without firing on you; the fact that you entered the system via Jump Drive probably made a big impression on them. But when your ship lands, it is immediately surrounded by Navy troops. Hesitantly, you and Katya disembark. You are greeted by a Navy admiral who you recognize as William Danforth, the leader of the Navy Oathkeepers. Even among the Free Worlds Danforth is spoken of with respect due to his courage and levelheadedness in battle and his leadership of countless humanitarian missions.`
+			`Surprisingly, the Navy lets you land without firing on you; the fact that you entered the system via jump drive probably made a big impression on them. But when your ship lands, it is immediately surrounded by Navy troops. Hesitantly, you and Katya disembark. You are greeted by a Navy admiral who you recognize as William Danforth, the leader of the Navy Oathkeepers. Even among the Free Worlds Danforth is spoken of with respect due to his courage and levelheadedness in battle and his leadership of countless humanitarian missions.`
 				goto introductions
 			label know
-			`Surprisingly, the Navy lets you land without firing on you; the fact that you entered the system via Jump Drive probably made a big impression on them. But when your ship lands, it is immediately surrounded by Navy troops. Hesitantly, you and Katya disembark. You are greeted by Admiral Danforth, the leader of the Oathkeepers who previously assisted you to drive the Alphas and their mercenary fleet away from Poisonwood.`
+			`Surprisingly, the Navy lets you land without firing on you; the fact that you entered the system via jump drive probably made a big impression on them. But when your ship lands, it is immediately surrounded by Navy troops. Hesitantly, you and Katya disembark. You are greeted by Admiral Danforth, the leader of the Oathkeepers who previously assisted you to drive the Alphas and their mercenary fleet away from Poisonwood.`
 				goto introductions
 			label introductions
 			`	Standing next to Danforth is someone you think might be his bodyguard: a dark-skinned woman dressed entirely in black. Even the whites of her eyes are black: when she gets closer, you can see that it is actually a scleric tattoo, an intricate Celtic knotwork pattern inked into the whites of her eyes. Surprisingly, Katya recognizes her. "Raven!" says Katya. You aren't sure if Katya sounds happy to see her, or scared.`
@@ -1870,7 +1870,7 @@ mission "FWC Pug 4B"
 				`	"It does all seem odd, that we could have any success at all fighting a species that is apparently so sophisticated."`
 			`	She nods. "I have the uncomfortable feeling that we're caught up in a game we don't understand," she says. "And before we make the next move, we should get more information."`
 			`	"From whom?" you ask.`
-			`	"The Quarg," she says. "We're just a few jumps away from their space, and they claim to know what's going on throughout the galaxy. And when this crisis started and we asked them for a Jump Drive, they said they didn't want to meddle in the affairs of other species, which means maybe they knew another species was involved here."`
+			`	"The Quarg," she says. "We're just a few jumps away from their space, and they claim to know what's going on throughout the galaxy. And when this crisis started and we asked them for a jump drive, they said they didn't want to meddle in the affairs of other species, which means maybe they knew another species was involved here."`
 			choice
 				`	"Our mission is urgent. We should just continue to Arabia."`
 				`	"Okay, let's take a detour to talk with the Quarg."`
@@ -2019,7 +2019,7 @@ mission "FWC Pug 4C"
 
 mission "FWC Pug 5"
 	name "Liberate <system>"
-	description "Some of the Navy ships have been outfitted with Jump Drives. Travel with them to the <system> system, avoiding the main Pug fleet in their home system, and reclaim control of the planet."
+	description "Some of the Navy ships have been outfitted with jump drives. Travel with them to the <system> system, avoiding the main Pug fleet in their home system, and reclaim control of the planet."
 	autosave
 	source Rand
 	destination Silver
@@ -2036,8 +2036,8 @@ mission "FWC Pug 5"
 			choice
 				`	"That does sound like a good strategic choice."`
 				`	"How will your fleet get to Vega without traveling through the Pug home system? That system is swarming with their ships."`
-			`	Danforth says, "During the battle, we managed to salvage Jump Drives from a few of the Pug ships. We've installed them in three of our Carriers. Hopefully, with your help, that will be enough to overcome any resistance in the Vega system. Then Miss Winters can work her magic with the hyperlinks again, and we'll be able to bring a massive reinforcement fleet from Sol."`
-			`	"Sounds good to me," says Freya. "I wish more of our own ships had Jump Drives, so we could assist you."`
+			`	Danforth says, "During the battle, we managed to salvage jump drives from a few of the Pug ships. We've installed them in three of our Carriers. Hopefully, with your help, that will be enough to overcome any resistance in the Vega system. Then Miss Winters can work her magic with the hyperlinks again, and we'll be able to bring a massive reinforcement fleet from Sol."`
+			`	"Sounds good to me," says Freya. "I wish more of our own ships had jump drives, so we could assist you."`
 			`	"Indeed," says Danforth. "That's why it's so important for Captain <last>'s ship to be part of this battle. When it's all over, I want to be able to tell Parliament that this war was won by the Free Worlds and the Navy fighting side by side every step of the way. And I hope you will be able to tell your Senate the same thing, so that they will be more amenable to a compromise between us."`
 			choice
 				`	"I'm glad to hear you say that. Your fleet is so much stronger than ours that you could easily take all the credit."`
@@ -2100,7 +2100,7 @@ mission "FWC Pug 5B"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		log "Drove the Pug out of the Vega system with the help of some Navy ships equipped with Jump Drives. Once again, the Pug somehow managed to evacuate all their people from the planet before the Navy arrived, as if they were already expecting to lose this system."
+		log "Drove the Pug out of the Vega system with the help of some Navy ships equipped with jump drives. Once again, the Pug somehow managed to evacuate all their people from the planet before the Navy arrived, as if they were already expecting to lose this system."
 		conversation
 			`Once again, the Pug seem to have anticipated your attack and evacuated all their personnel from the planet before your arrival. It's a little disconcerting that they seem to have planned for events to unfold in exactly this way. Once again, you find one of the transmitter stations, abandoned on <origin> but still in working order, and inside the station Freya locates another one of the "reflectors" that she needs in order to complete the link. "I don't get it," she says. "They should've destroyed all this before they left."`
 			choice
@@ -2388,5 +2388,5 @@ mission "FWC End"
 			choice
 				`	"Build a merchant fleet and live a safe, quiet life."`
 				`	"See if folks in the fringe worlds need any help against the pirates."`
-				`	"Use my Jump Drive to explore beyond human space."`
+				`	"Use my jump drive to explore beyond human space."`
 			`	"Well, we all wish you the best of luck," says Freya. "We would never have won this war without you. Be sure to stay in touch." You hug each of them goodbye, and return to your ship. What you do next is up to you...`

@@ -194,7 +194,7 @@ mission "Remnant: Lost in Ember Waste"
 				goto keystone
 			
 			label know
-			`	"Lost your Key Stone?" she asks with another chuckle. "Or maybe your Jump Drive, and now you're stuck here? No problem."`
+			`	"Lost your Key Stone?" she asks with another chuckle. "Or maybe your jump drive, and now you're stuck here? No problem."`
 			
 			label keystone
 			`	The woman reaches into a bag that she has with her and hands you a Quantum Key Stone. "Just put this on your ship and you can be on your way out of here."`
@@ -313,7 +313,7 @@ mission "Remnant: Defense 2"
 				`	"Sorry, I don't have time to help you out."`
 					decline
 
-			`	"Thank you," she sings. "It keeps jumping between systems in our territory. Maybe its Jump Drive was damaged or something, and it cannot escape. I will spread the information that you've taken on the bounty for hunting it, so others will not risk their lives fighting it."`
+			`	"Thank you," she sings. "It keeps jumping between systems in our territory. Maybe its jump drive was damaged or something, and it cannot escape. I will spread the information that you've taken on the bounty for hunting it, so others will not risk their lives fighting it."`
 				accept
 	npc kill
 		government "Korath"
@@ -333,7 +333,7 @@ mission "Remnant: Defense 2"
 	on complete
 		payment 500000
 		dialog `The same woman meets you when you land on <planet>. "Again, thank you," she says. "I will suggest to others that they might offer you similar bounty hunting jobs in the future." She pays you <payment>.`
-		log "Factions" "Remnant" `Recently, Korath ships have begun raiding Remnant worlds. The Remnant have decided not to try to discourage these raids, because they are a perfect opportunity to steal Jump Drives and other valuable alien technology from the Korath.`
+		log "Factions" "Remnant" `Recently, Korath ships have begun raiding Remnant worlds. The Remnant have decided not to try to discourage these raids, because they are a perfect opportunity to steal jump drives and other valuable alien technology from the Korath.`
 
 
 
@@ -2598,14 +2598,14 @@ mission "Remnant: Expanded Horizons Quarg 3"
 
 phrase "broken jump drive on visit"
 	word
-		`You've landed on <planet>, but you don't have a broken Jump Drive to give to the Remnant. You may need to steal one from Palavrets or Rano'ereks found through Remnant jobs, or depart and wait for an escort carrying one to enter the system.`
+		`You've landed on <planet>, but you don't have a broken jump drive to give to the Remnant. You may need to steal one from Palavrets or Rano'ereks found through Remnant jobs, or depart and wait for an escort carrying one to enter the system.`
 
 mission "Remnant: Broken Jump Drive 1"
 	repeat
 	minor
 	landing
 	name "Broken Jump Drive Delivery"
-	description "You have been asked to deliver a broken Jump Drive to the researchers on <planet>."
+	description "You have been asked to deliver a broken jump drive to the researchers on <planet>."
 	to offer
 		has "remnant: blood test pure"
 		not "Remnant: Broken Jump Drive 1: active"
@@ -2623,7 +2623,7 @@ mission "Remnant: Broken Jump Drive 1"
 		conversation
 			branch repeated
 				has "Remnant: Broken Jump Drive 1: offered"
-			`As the <ship> settles onto its designated landing pad, you see someone emerge from the nearby outfitter and quickly make their way to you. The man waits a safe distance before approaching once you cycle the hatch and disembark. "Greetings, Captain <last>," trills the Remnant, "we saw the news that the newcomer among us was tracking down an erratic Korath ship. When you came in to land, we saw on the scans that you salvaged its malfunctioning Jump Drive. Could we take it to study?"`
+			`As the <ship> settles onto its designated landing pad, you see someone emerge from the nearby outfitter and quickly make their way to you. The man waits a safe distance before approaching once you cycle the hatch and disembark. "Greetings, Captain <last>," trills the Remnant, "we saw the news that the newcomer among us was tracking down an erratic Korath ship. When you came in to land, we saw on the scans that you salvaged its malfunctioning jump drive. Could we take it to study?"`
 			choice
 				`	"Maybe later."`
 					goto refuse
@@ -2631,15 +2631,15 @@ mission "Remnant: Broken Jump Drive 1"
 					goto accept
 			
 			label repeated
-			`You have a broken Jump Drive that the Remnant might be interested in. Do you want to seek out someone to give it to?`
+			`You have a broken jump drive that the Remnant might be interested in. Do you want to seek out someone to give it to?`
 			choice
 				`	(Maybe later.)`
 					defer
 				`	(Yes.)`
-			`	You find a Remnant director and inform them about the broken Jump Drive that you have.`
+			`	You find a Remnant director and inform them about the broken jump drive that you have.`
 			
 			label accept
-			`	"Excellent!" he glances at his data pad. "There are several teams working on aspects of the Jump Drive, and the team with the highest priority for this one is on <planet>. I will notify them to expect you."`
+			`	"Excellent!" he glances at his data pad. "There are several teams working on aspects of the jump drive, and the team with the highest priority for this one is on <planet>. I will notify them to expect you."`
 				accept
 			label refuse
 			`	He considers this, and sings, "If you wish. Our offer stands, whenever you choose to return."`
@@ -2652,7 +2652,7 @@ mission "Remnant: Broken Jump Drive 1"
 		payment 300000
 		"reputation: Remnant" ++
 		conversation
-			`When you arrive on <planet> there is a team of engineers and mechanics waiting for you, along with a flatbed freight truck. Once you open the cargo doors they quickly free the broken Jump Drive from its moorings and load it delicately onto their truck. The lead engineer comes over to hand you <payment>. "Thank you for salvaging this. I suspect my compatriot who spoke to you never mentioned this, but we have a fund set aside for rewarding captains who bring in rare pieces of alien technology. If you find any more of these drives, there is sure to be a research team somewhere that is willing to reward you for it."`
+			`When you arrive on <planet> there is a team of engineers and mechanics waiting for you, along with a flatbed freight truck. Once you open the cargo doors they quickly free the broken jump drive from its moorings and load it delicately onto their truck. The lead engineer comes over to hand you <payment>. "Thank you for salvaging this. I suspect my compatriot who spoke to you never mentioned this, but we have a fund set aside for rewarding captains who bring in rare pieces of alien technology. If you find any more of these drives, there is sure to be a research team somewhere that is willing to reward you for it."`
 			choice
 				`	"I will keep a lookout for more."`
 					goto end
@@ -2665,7 +2665,7 @@ mission "Remnant: Broken Jump Drive 1"
 
 mission "Remnant: Broken Jump Drive 2"
 	name "Broken Jump Drive Delivery"
-	description "The researchers on <planet> have requested your broken Jump Drive."
+	description "The researchers on <planet> have requested your broken jump drive."
 	to offer
 		has "Remnant: Broken Jump Drive 1: done"
 	source
@@ -2678,13 +2678,13 @@ mission "Remnant: Broken Jump Drive 2"
 	on offer
 		require "Jump Drive (Broken)"
 		conversation
-			`You've plundered another broken Jump Drive. Do you want to seek out a director to give it to?`
+			`You've plundered another broken jump drive. Do you want to seek out a director to give it to?`
 			choice
 				`	(Maybe later.)`
 					defer
 				`	(Yes.)`
 			`	Information must flow quickly amongst the Remnant, because by the time you arrive at the director's desk she already has the information ready for you.`
-			`	"Greetings, newcomer," she chants. "Are you interested in turning in the broken Jump Drive you salvaged to our researchers?"`
+			`	"Greetings, newcomer," she chants. "Are you interested in turning in the broken jump drive you salvaged to our researchers?"`
 			`	You nod.`
 			`	"They will definitely appreciate new material to research. The team is located on <planet>. I will send a notification ahead so they will be expecting you."`
 				accept
@@ -2702,7 +2702,7 @@ mission "Remnant: Broken Jump Drive 2"
 				`	"Great! I will find more."`
 					goto end
 				`	"What are you studying?"`
-			`	"Our previous research into Jump Drives determined that these drives are unsurprisingly multi-part systems. We know the outer part that we can see and handle is mostly the machinery for generating some kind of containment field or pocket. As to how it works or why it is needed..." his chant trails off and he makes a gesture you suspect may be the equivalent of a shrug. "Anyway, our team is focused on the nature of this outer system. It is our hope that, damaged as it is, its continued existence might allow us to look a little farther inside its inner workings to figure out exactly what that field does and how it is used.`
+			`	"Our previous research into jump drives determined that these drives are unsurprisingly multi-part systems. We know the outer part that we can see and handle is mostly the machinery for generating some kind of containment field or pocket. As to how it works or why it is needed..." his chant trails off and he makes a gesture you suspect may be the equivalent of a shrug. "Anyway, our team is focused on the nature of this outer system. It is our hope that, damaged as it is, its continued existence might allow us to look a little farther inside its inner workings to figure out exactly what that field does and how it is used.`
 			label end
 			`	"Well, my compatriots finished unloading rather quickly, so I should be off. For all our sakes, I hope you find more of these for us."`
 
@@ -2710,7 +2710,7 @@ mission "Remnant: Broken Jump Drive 2"
 
 mission "Remnant: Broken Jump Drive 3"
 	name "Broken Jump Drive Delivery"
-	description "The researchers on <planet> need a broken Jump Drive for testing."
+	description "The researchers on <planet> need a broken jump drive for testing."
 	to offer
 		has "Remnant: Broken Jump Drive 2: done"
 	source
@@ -2723,14 +2723,14 @@ mission "Remnant: Broken Jump Drive 3"
 	on offer
 		require "Jump Drive (Broken)"
 		conversation
-			`You've plundered another broken Jump Drive. Do you want to seek out a director to give it to?`
+			`You've plundered another broken jump drive. Do you want to seek out a director to give it to?`
 			choice
 				`	(Maybe later.)`
 					defer
 				`	(Yes.)`
-			`	As you approach the director in the spaceport concourse, he looks up and waves at you. "Good timing, Captain <first>," he sings. "We have a team of researchers on <planet> who have requested a broken Jump Drive. Could you deliver one to them?"`
+			`	As you approach the director in the spaceport concourse, he looks up and waves at you. "Good timing, Captain <first>," he sings. "We have a team of researchers on <planet> who have requested a broken jump drive. Could you deliver one to them?"`
 			`	"I can," you respond.`
-			`	"Excellent. The recent discovery of these broken drives has spurred discussion and excitement in various quarters. We have had teams researching Jump Drives for at least a century now without a lot of success. I'm told they are rather intricate, but your finds are opening new avenues of investigation. That being said, I will notify the team on <planet> to expect you."`
+			`	"Excellent. The recent discovery of these broken drives has spurred discussion and excitement in various quarters. We have had teams researching jump drives for at least a century now without a lot of success. I'm told they are rather intricate, but your finds are opening new avenues of investigation. That being said, I will notify the team on <planet> to expect you."`
 				accept
 	on visit
 		dialog phrase "broken jump drive on visit"
@@ -2740,13 +2740,13 @@ mission "Remnant: Broken Jump Drive 3"
 		payment 300000
 		"reputation: Remnant" ++
 		conversation
-			`The team waiting for you on <planet> is definitely eager to begin. You barely have the hatch open before they are chivying their camel-pulled wagon up the ramp. They load the broken Jump Drive surprisingly quickly despite their delicate movements.`
+			`The team waiting for you on <planet> is definitely eager to begin. You barely have the hatch open before they are chivying their camel-pulled wagon up the ramp. They load the broken jump drive surprisingly quickly despite their delicate movements.`
 			`	"This is an exciting day, Captain <first>! Countless theories may be proven or put back into the fires of refinement based on the testing we can do with this!"`
 			choice
 				`	"Great! I will find more."`
 					goto end
 				`	"Any theories of note?"`
-			`	He looks thoughtful for a moment, then warbles, "As you may know, standard hyperdrives work by generating a fusion reaction and folding it into the fabric of space/time, and these folds naturally fall along the known hyperlanes. I suppose one could view those lanes as the 'crease lines' of the universe. My favorite theory is that Jump Drives have some additional machinery to guide the fold. That way they can dictate where the fold occurs instead of just aligning with the nearest crease. Given their increased fuel draw, it makes sense that it would take more fuel to generate a fresh fold than to re-use an existing crease.`
+			`	He looks thoughtful for a moment, then warbles, "As you may know, standard hyperdrives work by generating a fusion reaction and folding it into the fabric of space/time, and these folds naturally fall along the known hyperlanes. I suppose one could view those lanes as the 'crease lines' of the universe. My favorite theory is that jump drives have some additional machinery to guide the fold. That way they can dictate where the fold occurs instead of just aligning with the nearest crease. Given their increased fuel draw, it makes sense that it would take more fuel to generate a fresh fold than to re-use an existing crease.`
 			label end
 			`	"Oh, before I forget..." he hands you <payment>. "Off to start setting up the tests." He sings half to himself as he trundles off after the wagon.`
 
@@ -2754,7 +2754,7 @@ mission "Remnant: Broken Jump Drive 3"
 
 mission "Remnant: Broken Jump Drive 4"
 	name "Broken Jump Drive Delivery"
-	description "You have been asked to deliver a broken Jump Drive to the researchers on <planet>."
+	description "You have been asked to deliver a broken jump drive to the researchers on <planet>."
 	to offer
 		has "Remnant: Broken Jump Drive 3: done"
 	source
@@ -2767,12 +2767,12 @@ mission "Remnant: Broken Jump Drive 4"
 	on offer
 		require "Jump Drive (Broken)"
 		conversation
-			`You've plundered another broken Jump Drive. Do you want to seek out a director to give it to?`
+			`You've plundered another broken jump drive. Do you want to seek out a director to give it to?`
 			choice
 				`	(Maybe later.)`
 					defer
 				`	(Yes.)`
-			`You head over to the director's desk to see who is in need of the next broken Jump Drive. The director smiles at you, looks over several messages on her screen, then clears her throat.`
+			`You head over to the director's desk to see who is in need of the next broken jump drive. The director smiles at you, looks over several messages on her screen, then clears her throat.`
 			`	"Your finds are very much in demand," she sings. "Could you bring this one to a team working on <planet>?"`
 			`	You nod in response.`
 			`	"Thank you. We are looking forward to seeing what comes from this."`
@@ -2790,7 +2790,7 @@ mission "Remnant: Broken Jump Drive 4"
 				`	"Good luck with that."`
 					goto end
 				`	"How is your research going?"`
-			`	"Good, and about to get better," they sing. "We are working on various aspects of a theory that the Jump Drive actually disregards traditional jumping entirely, and uses the folding mechanism to put the ship itself into a pocket, while somehow triggering an opening to said pocket in the target system." One of them continues, "If this is true, it could be fairly dangerous to try activating these anywhere close to fragile things like cities or mountains, which is why they put our lab on the far side of the planet from all such things.`
+			`	"Good, and about to get better," they sing. "We are working on various aspects of a theory that the jump drive actually disregards traditional jumping entirely, and uses the folding mechanism to put the ship itself into a pocket, while somehow triggering an opening to said pocket in the target system." One of them continues, "If this is true, it could be fairly dangerous to try activating these anywhere close to fragile things like cities or mountains, which is why they put our lab on the far side of the planet from all such things.`
 			label end
 			`	"Well, we have a bit of a trip to get to our lab, but it should be exciting once we get there. Fare well!" With that, they head off towards a large vehicle nearby.`
 
@@ -2798,7 +2798,7 @@ mission "Remnant: Broken Jump Drive 4"
 
 mission "Remnant: Broken Jump Drive 5"
 	name "Broken Jump Drive Delivery"
-	description "A team of engineers on <planet> would like a broken Jump Drive to study."
+	description "A team of engineers on <planet> would like a broken jump drive to study."
 	to offer
 		has "Remnant: Broken Jump Drive 4: done"
 	source
@@ -2811,14 +2811,14 @@ mission "Remnant: Broken Jump Drive 5"
 	on offer
 		require "Jump Drive (Broken)"
 		conversation
-			`You've plundered another broken Jump Drive. Do you want to seek out a director to give it to?`
+			`You've plundered another broken jump drive. Do you want to seek out a director to give it to?`
 			choice
 				`	(Maybe later.)`
 					defer
 				`	(Yes.)`
-			`	You stop by the director's desk to report having salvaged another broken Jump Drive for one of their research teams. The director nods in appreciation and checks his list. "There is a new team starting a project on <planet>. Could you take it there please?"`
+			`	You stop by the director's desk to report having salvaged another broken jump drive for one of their research teams. The director nods in appreciation and checks his list. "There is a new team starting a project on <planet>. Could you take it there please?"`
 			`	"Sure," you respond.`
-			`	"Much appreciated. The sooner they get it, the sooner they can start on their project. That being said, I have spoken with the other directors, and we have decided that we are getting so many requests that we will put these into the job board for you. Any time the landing scans detect one of these broken Jump Drives, the system will display a message on the job board listing where the next one needs to be delivered."`
+			`	"Much appreciated. The sooner they get it, the sooner they can start on their project. That being said, I have spoken with the other directors, and we have decided that we are getting so many requests that we will put these into the job board for you. Any time the landing scans detect one of these broken jump drives, the system will display a message on the job board listing where the next one needs to be delivered."`
 				accept
 	on visit
 		dialog phrase "broken jump drive on visit"
@@ -3593,14 +3593,14 @@ mission "Remnant: Expanded Horizons Astral 1"
 					goto labnext
 			`	"If you want good data, you need to spend time to get it. And especially when we are tracking stellar phenomena, you need periods of long observation. Snapshots of the sky are good - that is what we will be collecting on this trip. But for watching the galaxy at large, other civilizations, and things of that ilk... Nothing is better than long-term observation." She looks lost in thought for a moment. "That is neither here nor there, however.`
 			label labnext
-			`	"Now that you have the Research Laboratory, you will need to locate a Jump Drive in order to reach Sagittarius A*." She pauses and checks her commlink. "If you do not already have one, you can salvage one from a Korath raider. Our early warning system indicates that there are several incoming Korath fleets that should be here within the next day or two. Any one of them should have a Jump Drive you can take. Meet me in the starport once you have a Jump Drive."`
+			`	"Now that you have the Research Laboratory, you will need to locate a jump drive in order to reach Sagittarius A*." She pauses and checks her commlink. "If you do not already have one, you can salvage one from a Korath raider. Our early warning system indicates that there are several incoming Korath fleets that should be here within the next day or two. Any one of them should have a jump drive you can take. Meet me in the starport once you have a jump drive."`
 
 
 
 mission "Remnant: Expanded Horizons Astral 2"
 	name "Research expedition to Sagittarius A*"
 	description "Travel to Sagittarius A* with a Research Laboratory installed in order to make measurements on the supermassive black hole and then return to <destination>."
-	blocked "You need a Jump Drive and a research laboratory to take this mission."
+	blocked "You need a jump drive and a research laboratory to take this mission."
 	source
 		government "Remnant"
 	destination
@@ -3641,7 +3641,7 @@ mission "Remnant: Expanded Horizons Astral 2"
 				accept
 	on enter "Sagittarius A*"
 		conversation
-			`As the Jump Drive's energy ripples fade away, the spectacular void that is Sagittarius A* takes shape before you. Compared to the vast darkness of space that you are accustomed to, reality here feels almost like a color negative: even with the automatic filtering in your windows, space is incredibly bright with the densely packed stars that provide a backdrop for its inky mass. The moment of awe is shattered by alarms warning of your impending doom as the <ship> begins to fall inwards towards the black hole. You quickly activate your repulsor engines, which, although vastly under-powered for dealing with the immense pull of a black hole, does provide a degree of protection so long as you maintain a safe distance from it.`
+			`As the jump drive's energy ripples fade away, the spectacular void that is Sagittarius A* takes shape before you. Compared to the vast darkness of space that you are accustomed to, reality here feels almost like a color negative: even with the automatic filtering in your windows, space is incredibly bright with the densely packed stars that provide a backdrop for its inky mass. The moment of awe is shattered by alarms warning of your impending doom as the <ship> begins to fall inwards towards the black hole. You quickly activate your repulsor engines, which, although vastly under-powered for dealing with the immense pull of a black hole, does provide a degree of protection so long as you maintain a safe distance from it.`
 			`	After a few minutes of just absorbing the spectacle before you, Dawn pulls herself away from the cockpit windows and scurries down to the lab. Leaving you to your thoughts, she quickly has the lab set up and running a variety of recordings, tests, and observations. After a few hours of work, she reappears on the bridge.`
 			`	"Things are proceeding smoothly, Captain. All the sensors are working nominally, and we are creating extensive archives of astronomical data as well. Another few hours, and we should have all the data we need."`
 			choice
@@ -3655,7 +3655,7 @@ mission "Remnant: Expanded Horizons Astral 2"
 					goto astraldata
 				`	"How much longer does the equipment need?"`
 					goto astralfinish
-			`	"No, this is the forty-third such expedition. Sagittarius A* was one of the first places our explorers sought to visit after we acquired Jump Drives, and we have been coming back regularly ever since. I know some of our reconnaissance pilots consider visiting here a pilgrimage of sorts. It is humbling to be here myself after reviewing so many data sets of past expeditions." She looks thoughtful, staring out the window at the the hub of the galaxy, as if her thoughts are jumping from idea to idea.`
+			`	"No, this is the forty-third such expedition. Sagittarius A* was one of the first places our explorers sought to visit after we acquired jump drives, and we have been coming back regularly ever since. I know some of our reconnaissance pilots consider visiting here a pilgrimage of sorts. It is humbling to be here myself after reviewing so many data sets of past expeditions." She looks thoughtful, staring out the window at the the hub of the galaxy, as if her thoughts are jumping from idea to idea.`
 			choice
 				`	"Anything unusual in the data?"`
 				`	"How much longer does the equipment need?"`

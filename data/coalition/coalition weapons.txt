@@ -265,7 +265,7 @@ outfit "Heliarch Attractor"
 		"hull damage" 4.2
 		"firing force" -30
 		"hit force" -30
-	description "When battling the Quarg, the Heliarchs learned that the Quarg would not engage in a battle that their ships might be unable to escape. In response, they focused on building weapons that would keep a ship from being able to come to a stop and activate its Jump Drive."
+	description "When battling the Quarg, the Heliarchs learned that the Quarg would not engage in a battle that their ships might be unable to escape. In response, they focused on building weapons that would keep a ship from being able to come to a stop and activate its jump drive."
 
 effect "attractor impact"
 	sprite "effect/attractor impact"

@@ -312,7 +312,7 @@ mission "Hai Reveal [B03] Contact Giti"
 mission "Hai Reveal [B04] The Road Not Taken"
 	landing
 	name "Investigate Coordinates"
-	description "Investigate the coordinates Giti found via Jump Drive"
+	description "Investigate the coordinates Giti found via jump drive"
 	source "Canyon"
 	waypoint "Devil-Run"
 	destination "Earth"
@@ -338,11 +338,11 @@ mission "Hai Reveal [B04] The Road Not Taken"
 			choice
 				`	"What is Elenchus?"`
 				`	"I've never seen this system on a star map. What do you expect to find there?"`
-			`	Giti ignores your question and continues. "What I've just sent you is the modern representation of coordinates in the notation. Now it's possible there's some kind of code or cipher, in which case they'd be wrong, but if they are direct from the notation, they indicate a system in Syndicate space that is not on the regular star maps. It must require a Jump Drive to access, but fortunately I know you happen to have one."`
-			`	She shrugs. "Of course, I have no idea how they'd have a Jump Drive, but that's not my problem. Whether you find something or not, come back and see me. If that turns up bust, I found an online community who seem to be a support group for people who've had family members kidnapped. The missing person reports for some of them are suspiciously close matches or share features with those in the files you left for me. I haven't looked deeply though, it just came up yesterday while I was chasing down loose threads."`
+			`	Giti ignores your question and continues. "What I've just sent you is the modern representation of coordinates in the notation. Now it's possible there's some kind of code or cipher, in which case they'd be wrong, but if they are direct from the notation, they indicate a system in Syndicate space that is not on the regular star maps. It must require a jump drive to access, but fortunately I know you happen to have one."`
+			`	She shrugs. "Of course, I have no idea how they'd have a jump drive, but that's not my problem. Whether you find something or not, come back and see me. If that turns up bust, I found an online community who seem to be a support group for people who've had family members kidnapped. The missing person reports for some of them are suspiciously close matches or share features with those in the files you left for me. I haven't looked deeply though, it just came up yesterday while I was chasing down loose threads."`
 			choice
 				`	"Can you tell me more about the victim support group?"`
-				`	"How do you know I have a Jump Drive?"`
+				`	"How do you know I have a jump drive?"`
 				`	(Give up on getting any more information out of her.)`
 					goto giveup
 			`	She seems rushed and ignores you, picking up a bag and putting some items from her desk into it.`
@@ -971,7 +971,7 @@ mission "Hai Reveal [B11] Moving Together"
 			label elenchus
 			action
 				set "Hai Reveal [B11] Moving Together: label elenchus"
-			`	Marshal Kaine explains, "Reaching Elenchus would seem to be a problem, because it is behind systems we cannot reach with our hyperdrives. However, the Unfettered are willing to loan us a few Jump Drives. Additionally, the base on Elenchus appears to be a hardened target. It will need specialized and suitably equipped shock troops to be sure of taking it. In our assessment so far we have determined that the Syndicate have suitable troopers they can mobilize quickly, but no way of getting them there, and our suitable shock troops are largely pre-occupied; either being needed here on <origin>, or are at least a week away from being available. We need a resolution sooner than that."`
+			`	Marshal Kaine explains, "Reaching Elenchus would seem to be a problem, because it is behind systems we cannot reach with our hyperdrives. However, the Unfettered are willing to loan us a few jump drives. Additionally, the base on Elenchus appears to be a hardened target. It will need specialized and suitably equipped shock troops to be sure of taking it. In our assessment so far we have determined that the Syndicate have suitable troopers they can mobilize quickly, but no way of getting them there, and our suitable shock troops are largely pre-occupied; either being needed here on <origin>, or are at least a week away from being available. We need a resolution sooner than that."`d
 			choice
 				`	"What pressure is making this so urgent?"`
 				`	"Yes, clearly we need a quick resolution."`
@@ -1164,7 +1164,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 		dialog `You have failed an essential mission. To complete this story line, revert to the autosave or another earlier snapshot of the game.`
 
 	# IMPORTANT: For story reasons, all non-Unfettered ships must have "save" to ensure
-	# the Unfettered get their Jump Drives back.
+	# the Unfettered get their jump drives back.
 
 	# The fleet on the way to elenchus
 	npc save accompany
@@ -1399,7 +1399,7 @@ mission "Hai Reveal [B13] Freedom"
 			label space
 			action
 				set "Hai Reveal [B13] Freedom: label space"
-			`	"Very little. The pirates wouldn't let us leave the planet, and Jump Drives are precious to them. They cannot risk drives on science expeditions. Still, we have managed a few trips under different regimes."`
+			`	"Very little. The pirates wouldn't let us leave the planet, and jump drives are precious to them. They cannot risk drives on science expeditions. Still, we have managed a few trips under different regimes."`
 			`	"There is no evidence that any civilization has ever reached this region of space until us, and this system is not native to the others around it. It was flung from our galaxy millions of years ago, and is still traveling relatively fast. One day, far from now, this system will pass beyond even this loose collection of systems that it is now close to. There are also many space-faring indigenous creatures that live in gas giants, and sometimes venture beyond. Most are harmless, so long as you leave them alone. There are flocking apex predators who hunt anything that moves.`
 			`	"The planet below is a mystery to us. It has a thousand times the mass it realistically should, and its gravitational field reads as such from a great distance. This tremendous gravitational field sustains the large asteroid belt. Despite its incredible mass, as you approach the surface, the field does not increase at anywhere near the rate that it should. Thus, when you stand upon it, the gravity is only similar to that of Earth. There are many forms of radiation and strange materials inside the planet's caves. We believe it is a relic from a forgotten past, but we have no idea what sort of relic it is. Perhaps, now that we are not developing pirate weapons, we can focus on exploration."`
 				goto questions
