@@ -182,7 +182,7 @@ mission "Wanderers: Hai Diplomat"
 
 mission "Wanderers: Diplomacy Delayed"
 	name "Wanderers: Diplomacy"
-	description "Resolve Hai internal social problems and arrange a Hai-human treaty so the Hai will provide an ambassador. Or, hope someone you talked to on Hai-home will find a translator for you."
+	description "Resolve Hai internal social problems and arrange a Hai-human treaty so the Hai will provide an ambassador. Or, hope someone you talked to on Hai-home will find an interpreter for you."
 	landing
 	source "Hai-home"
 	clearance
@@ -204,14 +204,14 @@ mission "Wanderers: Diplomacy Delayed"
 			# something about by now if it were an opportune time.
 			`	"I received word you met some troubled avians to the north. What is your intention?"`
 			choice
-				`	"They speak the Hai language, and I need a translator."`
+				`	"They speak the Hai language, and I need an interpreter."`
 					goto response
 				`	"I'd like to make first contact with their species."`
 					goto response
 				`	"Wait a minute. I never mentioned they were avians. Why do you say they're troubled?"`
 			`	The uniformed Hai ignores your question and asks again, "What is your intention, Captain <last>?"`
 			choice
-				`	"They speak the Hai language, and I need a translator."`
+				`	"They speak the Hai language, and I need an interpreter."`
 				`	"I'd like to make first contact with their species."`
 			label response
 			branch election
@@ -278,7 +278,7 @@ mission "Wanderers: Professor Available"
 		not "Wanderers: Diplomacy: done"
 	on offer
 		conversation
-			`Your ship's terminal bleats out a pinging noise, accompanied by a message from a university on All-home. It mentions Professor Andelena the Department of Skiourology at Mongongo University. The message is otherwise short and cryptic, but it sounds like a translator may be waiting for you on <planet>: Professor Andalena`
+			`Your ship's terminal bleats out a pinging noise, accompanied by a message from a university on All-home. It mentions Professor Andelena the Department of Skiourology at Mongongo University. The message is otherwise short and cryptic, but it sounds like an interpreter may be waiting for you on <planet>: Professor Andalena`
 				accept
 
 
@@ -286,7 +286,7 @@ mission "Wanderers: Professor Available"
 mission "Wanderers: Meet Professor"
 	landing
 	name "Wanderers: Professor Andelena"
-	description "Pick up Professor Andelena and her student Eenap at the <planet> spaceport, so they can serve as translators for you."
+	description "Pick up Professor Andelena and her student Eenap at the <planet> spaceport, so they can serve as interpreters for you."
 	source Allhome
 	to offer
 		has "Wanderers: Professor Available: done"
@@ -347,7 +347,7 @@ mission "Wanderers: Diplomacy (Before Hai Reveal)"
 				`	"No, I think I'll be on my way."`
 					decline
 			`	The armed Hai escort you to a secure room, where a worried Professor Andelena looks at her student, Eenap, who is in handcuffs. An stern-looking Hai woman in a similar uniform to the others seems to be in charge, and glares at Eenap before addressing you.`
-			`	"Your efforts to find a translator have stumbled upon a suspected Unfettered spy who tried to transmit details about you and your ship to the Unfettered." She glares again at Eenap, who parries with a defiant look. "Fortunately, we shut down the operation before it got too far; you need not worry about your safety in this matter.`
+			`	"Your efforts to find an interpreter have stumbled upon a suspected Unfettered spy who tried to transmit details about you and your ship to the Unfettered." She glares again at Eenap, who parries with a defiant look. "Fortunately, we shut down the operation before it got too far; you need not worry about your safety in this matter.`
 			`	"However, we are concerned about the level of interest the Unfettered have in these aliens the head of our diplomatic corps wants to send an ambassador."`
 			choice
 				`	"Who is the ambassador?"`

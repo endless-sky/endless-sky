@@ -1416,8 +1416,8 @@ mission "Hai Reveal [A10] Demanding Satisfaction"
 			label spy
 			`	"Besides," he says, patting you on the shoulder, "there's no better way to learn the tactics of the enemy than observing those of someone from their inner circle. You've been an invaluable source of information these past few months, but now I'll study you in person. You will teach me much about how to take our worlds back, Captain <last>.`
 			choice
-                               `       "As I shall learn from you, General Choot'k."`
-                               `       "You'll find human tactics to be quite advanced, General."`
+				`	"As I shall learn from you, General Choot'k."`
+				`	"You'll find human tactics to be quite advanced, General."`
 			action
 				# Hostilities cease until Captain Last fights the Unfettered again
 				"reputation: Hai (Unfettered)" >?= 1
