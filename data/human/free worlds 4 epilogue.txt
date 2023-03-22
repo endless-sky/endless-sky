@@ -152,6 +152,7 @@ mission "FW Epilogue: Danforth"
 	to offer
 		has "free worlds plot completed"
 		not "Wanderers: Alpha Surveillance E: offered"
+		not "Danforth in mission sequence"
 	
 	on offer
 		conversation

@@ -252,6 +252,7 @@ mission "Wanderers: Sayari Available After Hai Reveal"
 	to offer
 		has "Wanderers: Diplomacy Delayed: offered"
 		not "event: Wanderers before Hai Reveal"
+		has "event: Hai Reveal [C06S] Sayari Availability Timer"
 	on offer
 		fail "Wanderers: Diplomacy Delayed"
 		fail "Wanderers: Professor Available"
@@ -319,7 +320,7 @@ mission "Wanderers: Diplomacy (Before Hai Reveal)"
 	source Allhome
 	destination "Vara K'chrai"
 	clearance
-	passengers 2
+	passengers 1
 	blocked `You arrive at the spaceport, but you suddenly realize you have too few bunks for Professor Andelena and her student.`
 	to offer
 		has "Wanderers: Professor Available: done"
@@ -355,13 +356,14 @@ mission "Wanderers: Diplomacy (Before Hai Reveal)"
 			action
 				log "People" "Irayas Payaana" `A Hai ambassador who made first contact with the Syndicate and various pirate groups. Sayari, the head of the Hai diplomatic corps, chose her as the Hai ambassador to the aliens to the north of Hai space.`
 				log "People" "Sayari" `The head of the Hai diplomatic corps who hand-picked Irayas Payaana as the Hai representative to the aliens north of Hai space.`
-			`	"Myself: Irayas Payaana", she says. "I made first contact with the Syndicate, and various pirate groups years ago. My specialty is maintaining positive relations with alien groups who have unknown, and possibly hostile, objectives. Most of my work recently has been with the Unfettered, but Sayari - the head of our diplomatic corps - believes you've found a more urgent need for my skills.`
+			`	"Myself: Irayas Payaana", she says. "I made first contact with the Syndicate, and various pirate groups years ago. My specialty is maintaining positive relations with alien groups who have unknown, and possibly hostile, objectives. Most of my work recently has been with the Unfettered, but Sayari - the head of our diplomatic corps - believes you've found a more urgent need for my skills."`
 			choice
 				`	"Let's go!"`
 				`	"I'm done with this cloak and dagger business. Find another courier."`
 					decline
 			action
 				event "Wanderers before Hai Reveal"
+				fail "Wanderers: Diplomacy Delayed"
 			`	"One warning Captain <last>, from someone who has seen the darkest side of the Hai. It is imperative that you keep silent about your discovery, and any hostilities you may take part in. Should your involvement become public knowledge, I fear there may be a backlash against humans, especially in Unfettered space."`
 				accept
 
@@ -536,7 +538,7 @@ mission "Visit Wanderers Again"
 	destination "Vara K'chrai"
 	to offer
 		has "event: wanderer translator available"
-		not "Wanderers Conversation: done"
+		not "Wanderers Conversation: offered"
 	on offer
 		set "language: Wanderer"
 		fail "Wanderers: Translator Reminder"
@@ -1846,7 +1848,8 @@ mission "Wanderers: Alpha Surveillance done with Danforth"
 		has "Wanderers: Alpha Surveillance I: offered"
 		"Danforth in mission sequence" == 2
 	on offer
-		"Danforth in mission sequence" == 0
+		"Danforth in mission sequence" = 0
+		fail
 
 
 
@@ -2311,7 +2314,7 @@ mission "Wanderers Hai Assistance 2"
 		conversation
 			# Two conversations, depending on whether Hai Reveal 6 is finished.
 			branch "Teeneep is unavailable"
-				has "event: hai-human resolution announced"
+				not "event: hai-human resolution announced"
 
 			# Hai Reveal 6 is finished, so this is a full council meeting with Teeneep present.
 			action
@@ -2342,9 +2345,9 @@ mission "Wanderers Hai Assistance 2"
 			label "Teeneep is unavailable"
 			action
 				log "Traveled to the Hai homeworld with a Hai ambassador to see if she can convince the Hai to take action to restrain the Unfettered from attacking the Wanderers. A military council agreed on a build-up of forces at Wah-Ki to force the Unfettered to redirect ships and resources. They hope this will buy the Wanderers enough time for someone to find a lasting solution."
-			`<Guide> has you land at the Directorate of Intra-Hai Affairs, and takes you through a corridor and deep elevator towards a central command compound. Several other Hai are present, in a variety of uniforms.`
+			`<Guide> has you land at the Directorate of Intra-Hai Affairs, and takes you through a corridor and deep elevator towards what she says is a central command compound. Several other Hai are present, in a variety of uniforms.`
 			`	After <Guide> explains the problem, a Hai with a well-decorated uniform responds. "Rek's suggestion to attack our own kind is unthinkable to the Hai. A neighboring species tried that, and nearly drove themselves extinct." Others nod in agreement.`
-			`	Another Hai continues. "There is another option." The other Hai look as if they know what he's about to say. "Recently, the Unfettered raids at Wah Ki have been especially successful, severely disrupting the economy of nearby planets. The Elders gave us broad powers to increase the military presence in the system, as needed.`
+			`	Another Hai continues. "There is another option." All Hai in the room look as if they know what he's about to say. "Recently, the Unfettered raids at Wah Ki have been especially successful, severely disrupting the economy of nearby planets. The Elders gave us broad powers to increase the military presence in the system, as needed.`
 			`	"A massive military build-up will force the Unfettered to redirect ships and supplies to their boarder with us. That should buy them time until either someone can find a more lasting solution."`
 			choice
 				`	"Can't you provide any further military assistance?"`
