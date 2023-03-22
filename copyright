@@ -2073,9 +2073,11 @@ Comment: Taken from unsplash.com and cropped.
 
 Files:
  images/ui/red?alert*
+ images/ui/tactical/acceleration*
  images/ui/tactical/gun?range*
  images/ui/tactical/turret?range*
  images/ui/tactical/turn*
+ images/ui/tactical/velocity*
 Copyright: Zitchas (zitchas.jma@gmail.com)
 License: CC-BY-SA-4.0
 

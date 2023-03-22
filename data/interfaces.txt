@@ -627,6 +627,26 @@ interface "hud"
 		dimensions 110 110
 		color "disabled hull"
 		size 1.5
+	string "target name"
+		center 75 395
+		color "bright"
+		width 150
+		truncate middle
+	string "target type"
+		center 75 415
+		color "medium"
+		width 150
+		truncate middle
+	string "target government"
+		center 75 435
+		color "medium"
+		width 150
+		truncate middle
+	point "faction markers"
+		center 75 435
+	string "mission target"
+		center 75 455
+		color "medium"
 	
 	visible if "range display"
 	sprite "ui/tactical/range"
@@ -651,6 +671,14 @@ interface "hud"
 	string "target crew"
 		from 162 286
 		align top left
+	
+	visible if "mobility crew display"
+	sprite "ui/tactical/crew"
+		from 13 354
+		align top left
+	string "target crew"
+		from 17 372
+		align top center
 
 	visible if "target fuel display"
 	sprite "ui/tactical/fuel"
@@ -705,28 +733,23 @@ interface "hud"
 	string "target turnrate"
 		from 162 286
 		align top left
-	visible
+
+	visible if "target velocity display"
+	sprite "ui/tactical/velocity"
+		from 142 288
+		align top left
+	string "target velocity"
+		from 158 286
+		align top left
+
+	visible if "target acceleration display"
+	sprite "ui/tactical/acceleration"
+		from 190 286
+		align top left
+	string "target acceleration"
+		from 204 286
+		align top left
 	
-	string "target name"
-		center 75 395
-		color "bright"
-		width 150
-		truncate middle
-	string "target type"
-		center 75 415
-		color "medium"
-		width 150
-		truncate middle
-	string "target government"
-		center 75 435
-		color "medium"
-		width 150
-		truncate middle
-	point "faction markers"
-		center 75 435
-	string "mission target"
-		center 75 455
-		color "medium"
 	
 	# Other HUD elements:
 	box "escorts"

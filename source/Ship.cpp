@@ -3557,6 +3557,13 @@ double Ship::Acceleration() const
 
 
 
+double Ship::TrueAcceleration() const
+{
+	return Acceleration() * 1. / (1. + slowness * .05);
+}
+
+
+
 double Ship::MaxVelocity() const
 {
 	// v * drag / mass == thrust / mass
@@ -3578,6 +3585,13 @@ double Ship::ReverseAcceleration() const
 double Ship::MaxReverseVelocity() const
 {
 	return attributes.Get("reverse thrust") / Drag();
+}
+
+
+
+double Ship::CurrentSpeed() const
+{
+	return Velocity().Length();
 }
 
 

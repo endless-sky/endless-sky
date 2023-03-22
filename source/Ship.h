@@ -354,11 +354,16 @@ public:
 	double Mass() const;
 	double InertialMass() const;
 	double TurnRate() const;
-	double TrueTurnRate() const;
 	double Acceleration() const;
 	double MaxVelocity() const;
 	double ReverseAcceleration() const;
 	double MaxReverseVelocity() const;
+	// This is their potential acceleration right now
+	double TrueAcceleration() const;
+	// This is their potential turn right now
+	double TrueTurnRate() const;
+	// This is their current speed right now
+	double CurrentSpeed() const;
 
 	// This ship just got hit by a weapon. Take damage according to the
 	// DamageDealt from that weapon. The return value is a ShipEvent type,

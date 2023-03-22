@@ -835,6 +835,8 @@ void Engine::Step(bool isActive)
 			double energyScanRange = 100. * sqrt(flagship->Attributes().Get("energy scan power"));
 			double fuelScanRange = 100. * sqrt(flagship->Attributes().Get("fuel scan power"));
 			double maneuverScanRange = 100. * sqrt(flagship->Attributes().Get("maneuver scan power"));
+			double accelerationScanRange = 100. * sqrt(flagship->Attributes().Get("acceleration scan power"));
+			double velocityScanRange = 100. * sqrt(flagship->Attributes().Get("velocity scan power"));
 			double thermalScanRange = 100. * sqrt(flagship->Attributes().Get("thermal scan power"));
 			double weaponScanRange = 100. * sqrt(flagship->Attributes().Get("weapon scan power"));
 			// The range display currently does not care about the distance,
@@ -857,8 +859,14 @@ void Engine::Step(bool isActive)
 			if((targetRange <= (tacticalRange + crewScanRange) && scrutable)
 				|| ((tacticalRange || crewScanRange) && target->IsYours()))
 			{
-				info.SetCondition("target crew display");
 				info.SetString("target crew", to_string(target->Crew()));
+				if (targetRange <= (strategicScanRange + accelerationScanRange)
+					|| targetRange <= (strategicScanRange + velocityScanRange))
+				{
+					info.SetCondition("mobility crew display");
+				}
+				else
+					info.SetCondition("target crew display");
 			}
 			if((targetRange <= (tacticalRange + energyScanRange) && scrutable)
 				|| ((tacticalRange || energyScanRange) && target->IsYours()))
@@ -893,7 +901,8 @@ void Engine::Step(bool isActive)
 			// This calculates the turn speed and selects the display position.
 			if((targetRange <= (tacticalRange + crewScanRange)
 				&& targetRange <= (strategicScanRange + maneuverScanRange) && scrutable)
-				|| ((strategicScanRange || maneuverScanRange)
+				|| ((targetRange <= (strategicScanRange + accelerationScanRange) && scrutable))
+				|| ((strategicScanRange || maneuverScanRange || velocityScanRange || accelerationScanRange)
 					&& (tacticalRange || crewScanRange) && target->IsYours()))
 			{
 				info.SetCondition("turn while combined");
@@ -908,6 +917,22 @@ void Engine::Step(bool isActive)
 				info.SetCondition("turn while not combined");
 				int turnRate = round(60 * target->TrueTurnRate());
 				info.SetString("target turnrate", to_string(turnRate) + " ");
+			}
+			// This calculates the current speed
+			if ((targetRange <= (strategicScanRange + accelerationScanRange) && scrutable)
+				|| ((tacticalRange || accelerationScanRange) && target->IsYours()))
+			{
+				info.SetCondition("target velocity display");
+				int presentSpeed = round(60 * target->CurrentSpeed());
+				info.SetString("target velocity", to_string(presentSpeed) + " ");
+			}
+			// This calculates the current maximum acceleration
+			if ((targetRange <= (strategicScanRange + velocityScanRange) && scrutable)
+				|| ((tacticalRange || velocityScanRange) && target->IsYours()))
+			{
+				info.SetCondition("target acceleration display");
+				int presentAcceleration = 3600 * target->TrueAcceleration();
+				info.SetString("target acceleration", to_string(presentAcceleration) + " ");
 			}
 		}
 	}
