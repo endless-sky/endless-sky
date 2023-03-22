@@ -47,11 +47,9 @@ mission "Immigrant Workers"
 
 
 mission "Pookie, Part 1"
+	minor
 	name "Pookie"
 	description "Travel to <destination> and meet Pookie, who is staying with her aunt and may be scared of flying."
-	minor
-	to offer
-		random < 50
 	source "Hestia"
 	destination "Shroud"
 	passengers 1
@@ -5059,7 +5057,7 @@ mission "Dangerous Games 2"
 			`	"Alright," he says. "Let's get back to the surface. <first>, kindly be our chariot and haul."`
 			`	It seems ages, but finally you break through to the surface. Karengo smiles, and a sigh of relief goes through the crew.`
 			`	Once back to the surface, the passengers begin to shuffle off your ship, clearly exhausted but happy that they got to experience such an adventure. You're just relieved all of them stayed alive.`
-			`As soon as the passengers are out of earshot, Karengo calls up someone on his receiver. Soon, a small flock of scientists arrive and haul the machine to a local lab for investigation. They quickly determine it to be non-functional and promise to extract as many secrets as possible.`
+			`	As soon as the passengers are out of earshot, Karengo calls up someone on his receiver. Soon, a small flock of scientists arrive and haul the machine to a local lab for investigation. They quickly determine it to be non-functional and promise to extract as many secrets as possible.`
 				goto end
 			label some
 			`	"Alright," he says. "Let's get back to the surface. <first>, kindly be our chariot and haul."`
