@@ -1414,12 +1414,12 @@ mission "Hai Reveal [A10] Demanding Satisfaction"
 			label mercenary
 			`	"If you prove a skilled and honorable warrior as you fight alongside us, I may consider paying you far higher than the Wanderers to help us take back our stolen worlds.`
 			label spy
-			`	"Besides," he says, patting you on the shoulder, "there's no better way to learn the tactics of the enemy than observing those of someone from their inner circle. You've been an invaluable source of information these past few months, but now I'll study you in person. You will teach me much about how to take our worlds back, Captain <last>."`
+			`	"Besides," he says, patting you on the shoulder, "there's no better way to learn the tactics of the enemy than observing those of someone from their inner circle. You've been an invaluable source of information these past few months, but now I'll study you in person. You will teach me much about how to take our worlds back, Captain <last>.`
 			`	"A truce, then, until this matter is resolved. Only between you and us; the Wanderers aren't a part of this."`
 			choice
 				`	"Agreed."`
 					goto agreed
-				`	"I'd rather keep fighting."`
+				`	"No, I'd rather fight you."`
 			`	"So be it." One of the generals hands you a sword and Choot'k draws his. The generals make it clear this duel is your only way out alive. As the duel begins, Choot'k moves slowly, toying with you while the generals laugh. When novelty wears off, the generals stop laughing, and Choot'k quickly slices open your sword arm. "You should have agreed to a truce, human," he says, as you rapidly bleed to death, "but I'll let you die as a warrior."`
 				die
 			label agreed
@@ -1444,11 +1444,6 @@ mission "Hai Reveal [A10] Demanding Satisfaction"
 			`	There is a moment where it seems as if something respectful is being observed and then, like a switch being flicked, the energy returns and the leader smiles at you as those around start jostling and making quiet remarks to each other.`
 			`	The Unfettered leader seems to sense your confusion. "Neither True Hai nor Fettered truly desire to shed the blood of the other. Our disagreement is a protest, a lesson to be learned that we are learning but slowly. Perhaps it is time though that we demonstrate the seriousness of our resolve, especially if the Elders have become so mired as for it to have come to this."`
 			`	He grins. "I look forward to seeing you fight, human. Now both of you, go. Do what you must."`
-				to display
-					not "event: Wanderers before Hai Reveal"
-			`	He sighs. "Now both of you, go. Do what you must."`
-				to display
-					has "event: Wanderers before Hai Reveal"
 			`	Teeneep turns and leads you out, making sure they return your weapon as you leave. "Now we must return to <planet> and address the Elders again. Hopefully they will now see reason."`
 				accept
 
