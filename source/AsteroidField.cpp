@@ -64,7 +64,8 @@ void AsteroidField::Add(const string &name, int count, double energy)
 
 
 
-void AsteroidField::Add(const Minable *minable, int count, double energy, double spread, const WeightedList<double> &belts)
+void AsteroidField::Add(const Minable *minable, int count, double energy, double spread,
+	const WeightedList<double> &belts)
 {
 	// Double check that the given asteroid is defined.
 	if(!minable || !minable->GetMask().IsLoaded())
