@@ -155,6 +155,7 @@ void NPC::Load(const DataNode &node, string missionName)
 		else if(child.Token(0) == "on" && child.Size() >= 2)
 		{
 			int eventType = ShipEvent::TypeFromString(child.Token(1));
+			// The JUMP ShipEvent is only ever triggered by the player's flagship.
 			if(eventType == ShipEvent::JUMP)
 				child.PrintTrace("Error: \"jump\" is not a supported event for NPC actions.");
 			else if(eventType == ShipEvent::NONE)
