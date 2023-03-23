@@ -261,7 +261,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			}
 			else if(child.Size() >= 4)
 				asteroids.emplace_back(type, child.Value(valueIndex + 1), child.Value(valueIndex + 2),
-					child.Value(valueIndex + 3) ? child.Value(valueIndex + 3) : 1);
+					(child.Size() > 4) ? child.Value(valueIndex + 3) : 1);
 		}
 		else if(key == "fleet")
 		{

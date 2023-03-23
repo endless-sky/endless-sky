@@ -71,7 +71,6 @@ void AsteroidField::Add(const Minable *minable, int count, double energy, double
 	if(!minable || !minable->GetMask().IsLoaded())
 		return;
 
-	spread = spread > 0. ? spread : 1;
 
 	// Place copies of the given minable asteroid throughout the system.
 	for(int i = 0; i < count; ++i)
