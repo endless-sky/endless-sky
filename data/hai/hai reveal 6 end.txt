@@ -421,9 +421,12 @@ mission "Hai Reveal [C05] Cleanup"
 				accept
 	on complete
 		event "hai-human resolution announced"
-		event "Sayari available after Hai Reveal" 5 15
 		fail "Hai Reveal [A11-A] Permanent Fleets"
 		fail "Hai Reveal [B02-A] The Blockade Goes Up"
+
+		# Delay after Hai Reveal before the Hai government releases Sayari, if they refused her before.
+		event "Sayari available after Hai Reveal" 5 15
+
 		conversation
 			# Make Danforth available if Hai Reveal has him reserved.
 			branch nodan
@@ -446,7 +449,6 @@ mission "Hai Reveal [C05] Cleanup"
 					has "Wanderers Conversation: offered"
 					not "Wanderers: Tour 1: offered"
 			`	At last, it really is over, and you can get back to your own life.`
-
 
 
 event "Sayari available after Hai Reveal"

@@ -1856,7 +1856,9 @@ mission "Hai Reveal [A12-0] Danforth Mission Sequence Fix"
 	landing
 	invisible
 	to offer
-		has "Hai Reveal [A12] Into the Lion's Den: accepted"
+		or
+			has "Hai Reveal [A12] Into the Lion's Den: accepted"
+			has "Hai Reveal [A12] Into the Lion's Den: done"
 		not "Danforth in mission sequence"
 		not "event: hai-human resolution announced"
 	on offer

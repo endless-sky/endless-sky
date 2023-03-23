@@ -290,6 +290,7 @@ mission "Wanderers: Meet Professor"
 	source Allhome
 	to offer
 		has "Wanderers: Professor Available: done"
+		not "Wanderers: Sayari Available After Hai Reveal: offered"
 	to complete
 		has "Wanderers: Diplomacy (Before Hai Reveal): offered"
 	on offer
@@ -326,6 +327,7 @@ mission "Wanderers: Diplomacy (Before Hai Reveal)"
 		has "Wanderers: Professor Available: done"
 		not "Wanderers: Diplomacy: active"
 		not "Wanderers: Diplomacy: done"
+		not "Wanderers: Sayari Available After Hai Reveal: offered"
 	on offer
 		fail "Wanderers: Meet Professor"
 		conversation
