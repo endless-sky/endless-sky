@@ -114,6 +114,7 @@ private:
 	void SendHails();
 	void HandleKeyboardInputs();
 	void HandleMouseClicks();
+	void HandleMouseInput(Command &activeCommands);
 
 	void FillCollisionSets();
 
@@ -135,7 +136,7 @@ private:
 		Point center;
 		Angle angle;
 		double radius;
-		int type;
+		const Color &color;
 		int count;
 	};
 
@@ -184,6 +185,9 @@ private:
 	bool hasFinishedCalculating = true;
 	bool terminate = false;
 	bool wasActive = false;
+	bool isMouseToggleEnabled = false;
+	bool isMouseHoldEnabled = false;
+	bool isMouseTurningEnabled = false;
 	DrawList draw[2];
 	BatchDrawList batchDraw[2];
 	Radar radar[2];
@@ -243,6 +247,10 @@ private:
 	Rectangle uiClickBox;
 	Rectangle clickBox;
 	int groupSelect = -1;
+
+	// Set of asteroids scanned in the current system.
+	std::set<std::string> asteroidsScanned;
+	bool isAsteroidCatalogComplete = false;
 
 	// Input, Output and State handling for automated tests.
 	TestContext *testContext = nullptr;

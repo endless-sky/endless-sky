@@ -136,6 +136,8 @@ event "war begins"
 		"required reputation" 100
 	planet "Martini"
 		description `Martini is a world of exotic beaches and perfect weather. The Republic's central bank and the galactic stock exchange were previously headquartered here, before a terrorist attack destroyed them and a large portion of the capital city as well.`
+		description `	Currently, a massive rescue and evacuation operation is underway in and around the capital to find and treat survivors and contain the radiation. As to be expected, the planet's supplies are running dangerously low, and what remains of Martini's government has called for civilian ships to help deliver goods and provisions for the operation.`
+		spaceport `Instead of the immaculate spaceport that Martini once sported, this temporary spaceport consists of randomly-scattered makeshift landing areas, in order to support the large number of Navy and civilian ships assisting with the rescue and evacuation operation.`
 		"required reputation" 100
 		security .9
 	planet "Bourne"
@@ -1118,7 +1120,7 @@ event "fw abandoned Greenrock"
 		fleet "Large Free Worlds" 9000
 	planet "Greenrock"
 		description `Greenrock was the closest thing that the pirates in southern human space had to a center of government, at least until the Free Worlds occupied it. When rival pirate bands sought to negotiate on neutral territory, this is where they met. Nearly everything was for sale here: illegal weapons, ships customized for pirating, and even slaves.`
-		description `	That was until the Free Worlds occupied the system and cleaned up many of the major population centers. With the Free Worlds gone though, the planet has begun to return to its natural state of crime and villainy .`
+		description `	That was until the Free Worlds occupied the system and cleaned up many of the major population centers. With the Free Worlds gone though, the planet has begun to return to its natural state of crime and villainy.`
 		spaceport `You have heard enough about this port's reputation that you are not surprised to see the remnants of slave markets, now empty as a result of the Free Worlds occupation. The spaceport's shady establishments are beginning to return to their normal clientele and services.`
 		spaceport `	With the Free Worlds now gone, dark alleyways are absolutely to be avoided. Down one alley you see a shop called "Mike's Mustelids," the inside like a jungle. You hear the howls and yells of various exotic animals coming from inside, and the alleyway is home to a number of presumably-escaped weasels, ferrets, and wolverines running about.`
 
@@ -1167,6 +1169,95 @@ event "navy occupying the south"
 event "catalytic ramscoop available"
 	outfitter "Deep Sky Basics"
 		"Catalytic Ramscoop"
+	fleet "Republic Logistics"
+		add variant 19
+			"Auxiliary (Mark II)"
+			"Dropship" 2
+			"Lance" 2
+			"Cruiser"
+			"Combat Drone" 4
+			"Frigate"
+			"Gunboat" 2
+		add variant 19
+			"Auxiliary (Cargo Mark II)"
+			"Dropship" 2
+			"Lance" 2
+			"Cruiser"
+			"Combat Drone" 4
+			"Frigate"
+			"Gunboat" 2
+		add variant 19
+			"Auxiliary (Transport Mark II)"
+			"Dropship" 2
+			"Lance" 2
+			"Cruiser"
+			"Combat Drone" 4
+			"Frigate"
+			"Gunboat" 2
+		add variant 1
+			"Auxiliary (Cargo Mark II)" 3
+			"Dropship" 3
+			"Lance" 9
+			"Cruiser" 2
+			"Combat Drone" 8
+		add variant 1
+			"Auxiliary (Transport Mark II)"
+			"Auxiliary (Cargo Mark II)"
+			"Auxiliary (Mark II)"
+			"Dropship" 6
+			"Lance" 6
+			"Cruiser" 2
+			"Combat Drone" 8
+		add variant 1
+			"Auxiliary (Transport Mark II)" 3
+			"Dropship" 9
+			"Lance" 3
+			"Cruiser" 2
+			"Combat Drone" 8
+		remove variant
+			"Auxiliary"
+			"Dropship" 2
+			"Lance" 2
+			"Cruiser"
+			"Combat Drone" 4
+			"Frigate"
+			"Gunboat" 2
+		remove variant
+			"Auxiliary (Cargo)"
+			"Dropship" 2
+			"Lance" 2
+			"Cruiser"
+			"Combat Drone" 4
+			"Frigate"
+			"Gunboat" 2
+		remove variant
+			"Auxiliary (Transport)"
+			"Dropship" 2
+			"Lance" 2
+			"Cruiser"
+			"Combat Drone" 4
+			"Frigate"
+			"Gunboat" 2
+		remove variant
+			"Auxiliary (Cargo)" 3
+			"Dropship" 3
+			"Lance" 9
+			"Cruiser" 2
+			"Combat Drone" 8
+		remove variant
+			"Auxiliary (Transport)"
+			"Auxiliary (Cargo)"
+			"Auxiliary"
+			"Dropship" 6
+			"Lance" 6
+			"Cruiser" 2
+			"Combat Drone" 8
+		remove variant
+			"Auxiliary (Transport)" 3
+			"Dropship" 9
+			"Lance" 3
+			"Cruiser" 2
+			"Combat Drone" 8
 
 
 
@@ -2950,4 +3041,20 @@ mission "Geminus Rebuilt"
 		has "main plot completed"
 	on offer
 		event "geminus rebuilt" 90
+		fail
+
+event "martini recovers"
+	planet "Martini"
+		description `Martini is a world of exotic beaches and perfect weather. The Republic's central bank and the galactic stock exchange were previously headquartered here, before a terrorist attack destroyed them and a large portion of the old capital city as well.`
+		description `	The new capital city is on the other side of the main continent, where lingering radiation will not affect the rest of the population. It is not so grand as the old capital, but its population has swelled from resettlement from the irradiated areas and it is quickly gaining the air of a major metropolis. The inhabitants, many of whom are survivors of the blast, have rallied behind a sort of 'will-do' attitude that only occurs after such a devastating and destructive event.`
+		spaceport `Currently, the newly-designated planetary spaceport does not possess the infrastructure to act as the main spaceport of Martini. The expansive temporary spaceport from the relief operation is still being used, and since then, permanent landing pads have been built, but there are now plans to demolish it and give the new planetary spaceport a desperately needed expansion.`
+		spaceport `	Martini's old spaceport still remains, as it was located just outside the blast zone and its deflector shields bore the brunt of the shockwave, but its towers partially collapsed in the days following the devastation. It now appears from a distance to be a few unevenly-levelled black spires rising before a backdrop of the smoke and remnants of a ruined city, no longer gleaming as it once did.`
+
+mission "Martini Recovers"
+	landing
+	invisible
+	to offer
+		has "main plot completed"
+	on offer
+		event "martini recovers" 45
 		fail

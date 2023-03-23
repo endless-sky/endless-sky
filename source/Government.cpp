@@ -33,30 +33,33 @@ namespace {
 	void PenaltyHelper(const DataNode &node, map<int, double> &penalties)
 	{
 		for(const DataNode &child : node)
-			if(node.Size() >= 2)
+			if(child.Size() >= 2)
 			{
-				if(node.Token(0) == "assist")
+				const string &key = child.Token(0);
+				if(key == "assist")
 					penalties[ShipEvent::ASSIST] = child.Value(1);
-				else if(node.Token(0) == "disable")
+				else if(key == "disable")
 					penalties[ShipEvent::DISABLE] = child.Value(1);
-				else if(child.Token(0) == "board")
+				else if(key == "board")
 					penalties[ShipEvent::BOARD] = child.Value(1);
-				else if(child.Token(0) == "capture")
+				else if(key == "capture")
 					penalties[ShipEvent::CAPTURE] = child.Value(1);
-				else if(child.Token(0) == "destroy")
+				else if(key == "destroy")
 					penalties[ShipEvent::DESTROY] = child.Value(1);
-				else if(child.Token(0) == "scan")
+				else if(key == "scan")
 				{
 					penalties[ShipEvent::SCAN_OUTFITS] = child.Value(1);
 					penalties[ShipEvent::SCAN_CARGO] = child.Value(1);
 				}
-				else if(child.Token(0) == "provoke")
+				else if(key == "provoke")
 					penalties[ShipEvent::PROVOKE] = child.Value(1);
-				else if(child.Token(0) == "atrocity")
+				else if(key == "atrocity")
 					penalties[ShipEvent::ATROCITY] = child.Value(1);
 				else
 					child.PrintTrace("Skipping unrecognized attribute:");
 			}
+			else
+				child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
 	// Determine the penalty for the given ShipEvent based on the values in the given map.
@@ -161,6 +164,17 @@ void Government::Load(const DataNode &node)
 		{
 			if(key == "provoked on scan")
 				provokedOnScan = false;
+			else if(key == "reputation")
+			{
+				for(const DataNode &grand : child)
+				{
+					const string &grandKey = grand.Token(0);
+					if(grandKey == "max")
+						reputationMax = numeric_limits<double>::max();
+					else if(grandKey == "min")
+						reputationMin = numeric_limits<double>::lowest();
+				}
+			}
 			else if(key == "raid")
 				raidFleets.clear();
 			else if(key == "display name")
@@ -228,6 +242,22 @@ void Government::Load(const DataNode &node)
 					attitudeToward.resize(nextID, 0.);
 					attitudeToward[gov->id] = grand.Value(1);
 				}
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
+			}
+		}
+		else if(key == "reputation")
+		{
+			for(const DataNode &grand : child)
+			{
+				const string &grandKey = grand.Token(0);
+				bool hasGrandValue = grand.Size() >= 2;
+				if(grandKey == "player reputation" && hasGrandValue)
+					initialPlayerReputation = add ? initialPlayerReputation + child.Value(valueIndex) : child.Value(valueIndex);
+				else if(grandKey == "max" && hasGrandValue)
+					reputationMax = add ? reputationMax + grand.Value(valueIndex) : grand.Value(valueIndex);
+				else if(grandKey == "min" && hasGrandValue)
+					reputationMin = add ? reputationMin + grand.Value(valueIndex) : grand.Value(valueIndex);
 				else
 					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
@@ -362,6 +392,12 @@ void Government::Load(const DataNode &node)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+
+	// Ensure reputation minimum is not above the
+	// maximum, and set reputation again to enforce limtis.
+	if(reputationMin > reputationMax)
+		reputationMin = reputationMax;
+	SetReputation(Reputation());
 
 	// Default to the standard disabled hail messages.
 	if(!friendlyDisabledHail)
@@ -629,6 +665,20 @@ int Government::Fines(const Outfit *outfit) const
 double Government::Reputation() const
 {
 	return GameData::GetPolitics().Reputation(this);
+}
+
+
+
+double Government::ReputationMax() const
+{
+	return reputationMax;
+}
+
+
+
+double Government::ReputationMin() const
+{
+	return reputationMin;
 }
 
 

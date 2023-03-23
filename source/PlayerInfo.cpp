@@ -31,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Outfit.h"
 #include "Person.h"
 #include "Planet.h"
+#include "Plugins.h"
 #include "Politics.h"
 #include "Preferences.h"
 #include "Random.h"
@@ -44,6 +45,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <algorithm>
+#include <cassert>
 #include <cmath>
 #include <ctime>
 #include <functional>
@@ -116,6 +118,9 @@ void PlayerInfo::Clear()
 	Messages::Reset();
 
 	conditions.Clear();
+
+	delete transactionSnapshot;
+	transactionSnapshot = nullptr;
 }
 
 
@@ -465,17 +470,18 @@ void PlayerInfo::Save() const
 		if(saved.GetDate() != date.ToString())
 		{
 			string root = filePath.substr(0, filePath.length() - 4);
-			string files[4] = {
-				root + "~~previous-3.txt",
-				root + "~~previous-2.txt",
-				root + "~~previous-1.txt",
-				filePath
-			};
-			for(int i = 0; i < 3; ++i)
-				if(Files::Exists(files[i + 1]))
-					Files::Move(files[i + 1], files[i]);
+			const int previousCount = Preferences::GetPreviousSaveCount();
+			const string rootPrevious = root + "~~previous-";
+			for(int i = previousCount - 1; i > 0; --i)
+			{
+				const string toMove = rootPrevious + to_string(i) + ".txt";
+				if(Files::Exists(toMove))
+					Files::Move(toMove, rootPrevious + to_string(i + 1) + ".txt");
+			}
+			if(Files::Exists(filePath))
+				Files::Move(filePath, rootPrevious + "1.txt");
 			if(planet->HasSpaceport())
-				Save(root + "~~previous-spaceport.txt");
+				Save(rootPrevious + "spaceport.txt");
 		}
 	}
 
@@ -495,6 +501,26 @@ string PlayerInfo::Identifier() const
 {
 	string name = Files::Name(filePath);
 	return (name.length() < 4) ? "" : name.substr(0, name.length() - 4);
+}
+
+
+
+void PlayerInfo::StartTransaction()
+{
+	assert(!transactionSnapshot && "Starting PlayerInfo transaction while one is already active");
+
+	// Create in-memory DataWriter and save to it.
+	transactionSnapshot = new DataWriter();
+	Save(*transactionSnapshot);
+}
+
+
+
+void PlayerInfo::FinishTransaction()
+{
+	assert(transactionSnapshot && "Finishing PlayerInfo while one hasn't been started");
+	delete transactionSnapshot;
+	transactionSnapshot = nullptr;
 }
 
 
@@ -693,7 +719,7 @@ void PlayerInfo::IncrementDate()
 	{
 		string message = "You receive ";
 		if(salariesIncome)
-			message += Format::Credits(salariesIncome) + " credits salary";
+			message += Format::CreditString(salariesIncome) + " salary";
 		if(salariesIncome && tributeIncome)
 		{
 			if(b.assetsReturns)
@@ -702,13 +728,13 @@ void PlayerInfo::IncrementDate()
 				message += " and ";
 		}
 		if(tributeIncome)
-			message += Format::Credits(tributeIncome) + " credits in tribute";
+			message += Format::CreditString(tributeIncome) + " in tribute";
 		if(salariesIncome && tributeIncome && b.assetsReturns)
 			message += ",";
 		if((salariesIncome || tributeIncome) && b.assetsReturns)
 			message += " and ";
 		if(b.assetsReturns)
-			message += Format::Credits(b.assetsReturns) + " credits based on outfits and ships";
+			message += Format::CreditString(b.assetsReturns) + " based on outfits and ships";
 		message += ".";
 		Messages::Add(message, Messages::Importance::High);
 		accounts.AddCredits(salariesIncome + tributeIncome + b.assetsReturns);
@@ -1233,7 +1259,7 @@ double PlayerInfo::RaidFleetAttraction(const Government::RaidFleet &raid, const 
 	if(raidGov && raidGov->IsEnemy())
 	{
 		// The player's base attraction to a fleet is determined by their fleet attraction minus
-		// their fleet deterence, minus whatever the minimum attraction of this raid fleet is.
+		// their fleet deterrence, minus whatever the minimum attraction of this raid fleet is.
 		pair<double, double> factors = RaidFleetFactors();
 		// If there is a maximum attraction for this fleet, and we are above it, it will not spawn.
 		if(raid.MaxAttraction() > 0 && factors.first > raid.MaxAttraction())
@@ -1487,6 +1513,8 @@ bool PlayerInfo::TakeOff(UI *ui)
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && !ship->IsDisabled())
 		{
+			// Recalculate the weapon cache in case a mass-less change had an effect.
+			ship->GetAICache().Calibrate(*ship.get());
 			if(ship->GetSystem() != system)
 			{
 				ship->Recharge(false);
@@ -1658,9 +1686,9 @@ bool PlayerInfo::TakeOff(UI *ui)
 	{
 		// Report how much excess cargo was sold, and what profit you earned.
 		ostringstream out;
-		out << "You sold " << sold << " tons of excess cargo for " << Format::Credits(income) << " credits";
+		out << "You sold " << Format::CargoString(sold, "excess cargo") << " for " << Format::CreditString(income);
 		if(totalBasis && totalBasis != income)
-			out << " (for a profit of " << (income - totalBasis) << " credits).";
+			out << " (for a profit of " << Format::CreditString(income - totalBasis) << ").";
 		else
 			out << ".";
 		Messages::Add(out.str(), Messages::Importance::High);
@@ -1904,6 +1932,25 @@ Mission *PlayerInfo::BoardingMission(const shared_ptr<Ship> &ship)
 		}
 
 	return nullptr;
+}
+
+
+
+bool PlayerInfo::CaptureOverriden(const shared_ptr<Ship> &ship) const
+{
+	if(ship->IsCapturable())
+		return false;
+	// Check if there's a boarding mission being offered which allows this ship to be captured. If the boarding
+	// mission was declined, then this results in one-time capture access to the ship. If it was accepted, then
+	// the next boarding attempt will have the boarding mission in the player's active missions list, checked below.
+	const Mission *mission = boardingMissions.empty() ? nullptr : &boardingMissions.back();
+	// Otherwise, check if there's an already active mission which grants access. This allows trying to board the
+	// ship again after accepting the mission.
+	if(!mission)
+		for(const Mission &mission : Missions())
+			if(mission.OverridesCapture() && !mission.IsFailed() && mission.SourceShip() == ship.get())
+				return true;
+	return mission && mission->OverridesCapture() && !mission->IsFailed() && mission->SourceShip() == ship.get();
 }
 
 
@@ -3745,11 +3792,21 @@ void PlayerInfo::Autosave() const
 
 
 
-void PlayerInfo::Save(const string &path) const
+void PlayerInfo::Save(const string &filePath) const
 {
-	DataWriter out(path);
+	if(transactionSnapshot)
+		transactionSnapshot->SaveToPath(filePath);
+	else
+	{
+		DataWriter out(filePath);
+		Save(out);
+	}
+}
 
 
+
+void PlayerInfo::Save(DataWriter &out) const
+{
 	// Basic player information and persistent UI settings:
 
 	// Pilot information:
@@ -4043,16 +4100,17 @@ void PlayerInfo::Save(const string &path) const
 	startData.Save(out);
 
 	// Write plugins to player's save file for debugging.
-	if(!GameData::PluginAboutText().empty())
+	out.Write();
+	out.WriteComment("Installed plugins:");
+	out.Write("plugins");
+	out.BeginChild();
+	for(const auto &it : Plugins::Get())
 	{
-		out.Write();
-		out.WriteComment("Installed plugins:");
-		out.Write("plugins");
-		out.BeginChild();
-		for(const auto &plugin : GameData::PluginAboutText())
-			out.Write(plugin.first);
-		out.EndChild();
+		const auto &plugin = it.second;
+		if(plugin.IsValid() && plugin.enabled)
+			out.Write(plugin.name);
 	}
+	out.EndChild();
 }
 
 

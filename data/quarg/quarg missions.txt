@@ -164,7 +164,7 @@ mission "Quarg Satellites"
 	on enter "Kappa Centauri"
 		dialog "You open your cargo hold, and let a Quarg scanner drift out to the void."
 	on enter "Graffias"
-		dialog "Looking at the former slave-colony planet here as you deploy their scanner, you wonder if the Quarg heard about Poisonwood's history, and that's why decided to help with surveillance."
+		dialog "Looking at the former slave-colony planet here as you deploy their scanner, you wonder if the Quarg heard about Poisonwood's history, and that's why they decided to help with surveillance."
 	on enter "Antares"
 		dialog "You set a Quarg scanner free, and let it leave your ship."
 	on enter "Han"
@@ -274,3 +274,52 @@ mission "Quarg Ships Atrocity"
 	on offer
 		conversation "quarg imprisonment"
 
+
+
+mission "Quarg Pug Arfecta Warning"
+	minor
+	landing
+	source
+		attributes "quarg"
+		attributes "ringworld"
+	to offer
+		has "First Contact: Quarg: offered"
+		has "ship model: Pug Arfecta"
+	on offer
+		conversation
+			branch flagship
+				has "flagship model: Pug Arfecta"
+			`As soon as you land, you see a crowd of Quarg gathering around one of your escorts, the Pug Arfecta. The captain of the ship looks shaken as the Quarg surround them, seemingly being questioned by a rather tall Quarg, even by Quarg standards. The captain looks around and, seeing you, points in your direction, causing the Quarg to come your way. The tall Quarg towers over you and gives you a piercing stare.`
+				goto choice
+			label flagship
+			`As soon as you land your ship, a crowd of Quarg start to gather around. As you go to disembark, you find a rather imposing Quarg blocking the exit. Tall even by Quarg standards, it towers over you and gives you a piercing stare.`
+			label choice
+			`	"It is as though a baby in swaddling has tamed a dragon and now rides it through the sky spewing fire with reckless abandon," it says while not breaking its gaze, unblinking.`
+			choice
+				`	"It's a long story..."`
+					goto evasive
+				`	"It was an act of righteous defiance."`
+					goto righteous
+				`	"The Pug fancy themselves gods, but since God is dead..."`
+					goto anarchy
+				`	"I saw something I liked, so I made it mine."`
+					goto greedy
+			label evasive
+			`	It scoffs, "It matters not how it happened.`
+				goto end
+			label righteous
+			`	"You fancy yourself a savior or a revolutionary then?" the Quarg says with what you assume is a sarcastic tone.`
+				goto end
+			label anarchy
+			`	"So you deign to prove them wrong?" the Quarg says with an almost amused, or perhaps incredulous tone.`
+				goto end
+			label greedy
+			`	"A baby in swaddling, indeed...`
+				goto end
+			label end
+			`	"We give you a warning. You know not what you have, human - what weapon you wield.`
+			`	"We have seen its power. We have felt it, and learned from it. But you and your kind know nothing of the burdens and dangers that follow it. Be careful that you are the one who directs this power, and not it you.`
+			`	"Know well that we have learned how to overcome it."`
+			`	The Quarg takes one last long look at your ship, then makes a curt farewell motion, leaving you to your business. The crowd, too, starts to disperse, with only a few staying behind to gawk at the ship.`
+			`	As you make your way through the ring, you notice occasional glares from the Quarg onboard the ring.`
+				decline
