@@ -137,8 +137,10 @@ private:
 	int failIf = 0;
 	bool mustEvade = false;
 	bool mustAccompany = false;
-	std::map<const Ship *, int> shipActions;
+	// The events that have already been done to each ship.
+	std::map<const Ship *, int> shipEvents;
 
+	// The actions that this NPC can run on certain events/triggers.
 	std::map<int, MissionAction> npcActions;
 };
 

@@ -171,7 +171,7 @@ void NPC::Load(const DataNode &node, string missionName)
 				ships.emplace_back(make_shared<Ship>(child));
 				for(const DataNode &grand : child)
 					if(grand.Token(0) == "actions" && grand.Size() >= 2)
-						shipActions[ships.back().get()] = grand.Value(1);
+						shipEvents[ships.back().get()] = grand.Value(1);
 			}
 			else if(child.Size() >= 2)
 			{
@@ -301,8 +301,8 @@ void NPC::Save(DataWriter &out) const
 		for(const shared_ptr<Ship> &ship : ships)
 		{
 			ship->Save(out);
-			auto it = shipActions.find(ship.get());
-			if(it != shipActions.end() && it->second)
+			auto it = shipEvents.find(ship.get());
+			if(it != shipEvents.end() && it->second)
 			{
 				// Append an "actions" tag to the end of the ship data.
 				out.BeginChild();
@@ -430,7 +430,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 				Ship *copy = new Ship(*ptr);
 				copy->SetUUID(ptr->UUID());
 				copy->Destroy();
-				shipActions[copy] = shipActions[ptr.get()];
+				shipEvents[copy] = shipEvents[ptr.get()];
 				// Count this ship as destroyed, as well as captured.
 				type |= ShipEvent::DESTROY;
 				ptr.reset(copy);
@@ -448,7 +448,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 
 	// If this event was "ASSIST", the ship is now known as not disabled.
 	if(type == ShipEvent::ASSIST)
-		shipActions[ship.get()] &= ~(ShipEvent::DISABLE);
+		shipEvents[ship.get()] &= ~(ShipEvent::DISABLE);
 
 	// Certain events only count towards the NPC's status if originated by
 	// the player: scanning, boarding, assisting, capturing, or provoking.
@@ -457,11 +457,12 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 				| ShipEvent::BOARD | ShipEvent::CAPTURE | ShipEvent::PROVOKE);
 
 	// Apply this event to the ship and any ships it is carrying.
-	shipActions[ship.get()] |= type;
+	shipEvents[ship.get()] |= type;
 	for(const Ship::Bay &bay : ship->Bays())
 		if(bay.ship)
-			shipActions[bay.ship.get()] |= type;
+			shipEvents[bay.ship.get()] |= type;
 
+	// Run any mission actions that trigger on this event.
 	for(auto &it : npcActions)
 		if(type & it.first)
 			it.second.Do(player, ui);
@@ -501,12 +502,12 @@ bool NPC::HasSucceeded(const System *playerSystem, bool ignoreIfDespawnable) con
 	if(mustEvade || mustAccompany)
 		for(const shared_ptr<Ship> &ship : ships)
 		{
-			auto it = shipActions.find(ship.get());
+			auto it = shipEvents.find(ship.get());
 			// If a derelict ship has not received any ShipEvents, it is immobile.
 			bool isImmobile = ship->GetPersonality().IsDerelict();
 			// The success status calculation can only be based on recorded
 			// events (and the current system).
-			if(it != shipActions.end())
+			if(it != shipEvents.end())
 			{
 				// Captured or destroyed ships have either succeeded or no longer count.
 				if(it->second & (ShipEvent::DESTROY | ShipEvent::CAPTURE))
@@ -532,8 +533,8 @@ bool NPC::HasSucceeded(const System *playerSystem, bool ignoreIfDespawnable) con
 
 	for(const shared_ptr<Ship> &ship : ships)
 	{
-		auto it = shipActions.find(ship.get());
-		if(it == shipActions.end() || (it->second & succeedIf) != succeedIf)
+		auto it = shipEvents.find(ship.get());
+		if(it == shipEvents.end() || (it->second & succeedIf) != succeedIf)
 			return false;
 	}
 
@@ -566,7 +567,7 @@ bool NPC::HasFailed() const
 	if(!passedSpawnConditions || passedDespawnConditions)
 		return false;
 
-	for(const auto &it : shipActions)
+	for(const auto &it : shipEvents)
 	{
 		if(it.second & failIf)
 			return true;
