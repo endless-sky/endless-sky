@@ -66,7 +66,7 @@ mission "First Contact: Gegno Vi"
 			choice
 				`	(Stand up and approach the alien.)`
 				`	(Get up and run to your ship.)`
-			`	Before you can collect yourself, you realize the alien is now much closer to you. Within a matter of moments, the alien stands before you, giving you a much better look at them. They are at least several feet taller than you, extremely bulky, and slightly hunched over. Heavy-looking metal surrounds their body, and in any exposed areas are rough-looking patches of skin and hair. Thick facial hair covers their face, and above their human-like eyes are a pair of horns curved inward towards you.`
+			`	Before you can collect yourself, you realize the alien is now much closer to you. Within a matter of moments, the alien stands before you, giving you a much better look at them. They are much taller than you, extremely bulky, and slightly hunched over. Heavy-looking metal surrounds their body, and in any exposed areas are rough-looking patches of skin and hair. Thick facial hair covers their face, and above their human-like eyes are a pair of horns curved inward towards you.`
 			`	Awkward silence ensues, and the alien looks you up and down in an unenthused way. They emit a very deep grumble, and with a loud snort, reach into a crevice in their armor to grab something. Pulling out what looks to be some sort of star map, they point to a location on it, gesture to themselves, then lower the device slowly to you. It seems they want to be taken to one of their species' planets.`
 			choice
 				`	(Accept their request).`
@@ -124,7 +124,7 @@ mission "First Contact: Gegno Vi"
 			choice
 				`	(Stand up and approach the alien.)`
 				`	(Get up and run to your ship.)`
-			`	Before you can collect yourself, you realize the Vi warrior is now much closer to you. Within a matter of moments, the alien stands before you, giving you a much better look at them. They are at least several feet taller than both you and the other Gegno you've seen, extremely bulky, and slightly hunched over. Heavy-looking metal surround their body, and in any exposed areas are rough-looking patches of skin and hair. Thick facial hair covers their face, and above their human-like eyes are a pair of horns curved inward towards you.`
+			`	Before you can collect yourself, you realize the Vi warrior is now much closer to you. Within a matter of moments, the alien stands before you, giving you a much better look at them. They are much taller than both you and the other Gegno you've seen, extremely bulky, and slightly hunched over. Heavy-looking metal surround their body, and in any exposed areas are rough-looking patches of skin and hair. Thick facial hair covers their face, and above their human-like eyes are a pair of horns curved inward towards you.`
 			`	While the Gegno are known to dislike outsiders, this particular Gegno seems to at the very least acknowledge you. After a period of awkward and what seems to be judgmental silence, the Vi looks you up and down in an unenthused manner. They emit a very deep grumble, and with a loud snort, reach into a crevice in their armor to grab something. Pulling out what looks to be some sort of star map, they point to a location on it, gesture to themselves, then lower the device slowly to you. It seems they want to be taken to one of the Gegno's planets.`
 			choice
 				`	(Accept their request).`
@@ -394,7 +394,7 @@ mission "Giaru Gegno: Revisit"
 	on offer
 		conversation
 			`You arrive once more at Giaru Gegno, hoping to find another Quarg that speaks your language. This time, however, you notice that a few of the Gegno on this ringworld occasionally give you a look of interest as they walk by. After about a minute of this a pair of Quarg approach you, motioning you to follow them. Led back to the familiar room from before, the Quarg you previously spoke with is already calmly sitting at the other end of the table.`
-			`	"You have astonishingly achieved a wonderous feat, brave traverser," the Quarg says, placing its hands together. It seems the Quarg are already aware of your encounter on the alien homeworld. In fact, thinking back to it, the looks of interest you received earlier suggests that the word spread quickly. "Not significantly often it is the mighty Gegno interact with daring outsiders."`
+			`	"You have astonishingly achieved a wondrous feat, brave traverser," the Quarg says, placing its hands together. It seems the Quarg are already aware of your encounter on the alien homeworld. In fact, thinking back to it, the looks of interest you received earlier suggests that the word spread quickly. "Not significantly often it is the mighty Gegno interact with daring outsiders."`
 			choice
 				`	"It was a coincidence."`
 				`	"They seemed in trouble when I found them, so I helped them."`
