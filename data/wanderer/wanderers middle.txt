@@ -1383,6 +1383,7 @@ mission "000 Wanderers: Alpha Sestor Invasion Danforth Fix"
 		not "Danforth in mission sequence"
 		has "Wanderers: Tour 1: offered"
 		not "Wanderers: Sestor Alt: Return to Wanderers: offered"
+		not "Wanderers: Return to Wanderers: offered"
 	on offer
 		"Danforth in mission sequence" = 3
 
@@ -2752,8 +2753,18 @@ mission "Wanderers: Sestor: Return to Wanderers"
 			action
 				"Danforth in mission sequence" = 0
 			label "no Danforth reset"
+			branch "waiting for help with Hai"
+				has "Hai Reveal [A12] Into the Lion's Den: declined"
 			`Danforth breathes a sigh of relief when you tell him that the last of the Kor Sestor drones have been destroyed. "I am grateful for your help, Captain <last>," he says. "And now that we have finished with that battle, the public relations nightmare over what we did to Zenith begins. We don't need you to get involved in that, though; perhaps you should return to Wanderer space until things cool down a bit around here."`
 				accept
+			label "waiting for help with Hai"
+			action
+				event "Danforth is available after Sestor invasion" 20
+			`Danforth breathes a sigh of relief when you tell him that the last of the Kor Sestor drones have been destroyed. "I am grateful for your help, Captain <last>," he says. "And now that we have finished with that battle, the public relations nightmare over what we did to Zenith begins. We don't need you to get involved in that, though. I'll let you know when the Navy is ready for a dialog with the Hai. In the meantime, you might want to check on the Wanderers."`
+				accept
+
+
+event "Danforth is available after Sestor invasion"
 
 
 
@@ -2858,8 +2869,16 @@ mission "Wanderers: Sestor Alt: Return to Wanderers"
 			action
 				"Danforth in mission sequence" = 0
 			label "no Danforth reset"
+			branch "waiting for help with Hai"
+				has "Hai Reveal [A12] Into the Lion's Den: declined"
 			`The Navy officers report the results of the battle on Zenith's surface to Danforth. "So it's over," he says. "Captain <last>, thank you for your assistance. This battle would have gone very differently if you were not here."`
 			`	Now that the Kor Sestor fleet has been dealt with, you should probably return and see how things are going for the Wanderers in Korath space.`
+				accept
+			label "waiting for help with Hai"
+			action
+				event "Danforth is available after Sestor invasion" 20
+			`The Navy officers report the results of the battle on Zenith's surface to Danforth. "So it's over," he says. "Captain <last>, thank you for your assistance. This battle would have gone very differently if you were not here.`
+			`	"Now that we've fought off one invasion, it's time to prevent a second. I'll let you know when the Navy is ready for you to start a dialog with the Hai. In the meantime, you might want to check on the Wanderers."`
 				accept
 
 
@@ -2868,11 +2887,31 @@ mission "Wanderers: Return to Wanderers Danforth Fix"
 	invisible
 	to offer
 		or
-			has "Wanderers: Sestor: Return to Wanderers: done"
-			has "Wanderers: Sestor Alt: Return to Wanderers: done"
+			has "Wanderers: Sestor: Return to Wanderers: offered"
+			has "Wanderers: Sestor Alt: Return to Wanderers: offered"
 		has "Danforth in mission sequence" == 3
 	on offer
 		"Danforth in mission sequence" = 0
+		event "Danforth is available after Sestor invasion" 15
+
+
+
+mission "Wanderers: Hai Reveal Waits for Danforth"
+	landing
+	name "Wait for Danforth"
+	description "Danforth is arranging high-level talks with the Hai and will inform you when it is time to visit them again."
+	source Farpoint
+	destination "Hai-home"
+	to offer
+		or
+			has "Wanderers: Sestor Alt: Alnilam 3: done"
+			and
+				has "Wanderers: Sestor: Scattered Remnant: done"
+				has "Wanderers: Sestor: Alnilam Fleet 1: done"
+				has "Wanderers: Sestor: Alnilam Fleet 2: done"
+		has "Hai Reveal [A12] Into the Lion's Den: declined"
+	to complete
+		has "event: Danforth is available after Sestor invasion"
 
 
 

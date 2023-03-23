@@ -1815,11 +1815,11 @@ mission "Hai Reveal [A12] Into the Lion's Den"
 			`	"I can't deal with this problem personally until we finish hunting the Alphas. The Hai - even the Unfettered - are capable of restraint; they're not amoral and power-hungry like the Alphas. We need to solve the Alpha problem decisively, before they can do any real harm. After that, I'll arrange formal discussions with the Hai."`
 				decline
 
-			# Danforth is at Farpoint during the Sestor invasion, and Farpoint is not under attack.
+			# Danforth is at Farpoint during the Sestor invasion, and he is NOT waiting for you to drop the bomb.
 			label "Danforth Alpha Sestor Invasion"
 			action
 				log `Alerted Turner and Danforth to the Hai situation. Was urged to finish finding and eliminating the Alpha enclave as soon as possible, so the Navy can deal with this new threat.`
-			`	From back on your ship it is easy enough to use the station's network to place a call. You get in contact with Danforth to brief him on what's going on, with the possibility of an Unfettered fleet coming through the wormhole in a matter of days. He seems exasperated. "We have few ships to spare, but I'll send enough to make our presence felt at the wormhole. In the meantime, I suggest you focus on the current invasion of human space before trying to spark any new ones.`
+			`	From back on your ship it is easy enough to use the station's network to place a call. You get in contact with Danforth to brief him on what's going on, with the possibility of an Unfettered fleet coming through the wormhole in a matter of days. He seems exasperated. "We have few ships to spare, but I'll send enough to make our presence felt at the wormhole. In the meantime, I suggest you focus on the current invasion of human space before trying to spark any new ones."`
 				decline
 
 			# Danforth is at Farpoint, under attack, waiting for you to drop the bomb.
@@ -1870,8 +1870,10 @@ mission "Hai Reveal [A12-D] Danforth is Available"
 	name "Back Into the Lion's Den"
 	description "Return to <planet> to pick up Teeneep and deal with the Hai emergency."
 	source
-		government Republic Independent Neutral "Free Worlds" Syndicate
+		# Quarg relay this message since they realize the importance, and invasions of the humans are at the forefront of their minds.
+		government Republic Independent Neutral "Free Worlds" Syndicate Wanderer Hai Quarg "Kor Efret"
 		not planet Farpoint
+		not planet "Hai-home"
 	destination "Hai-home"
 	to offer
 		has "Hai Reveal [A12] Into the Lion's Den: declined"
