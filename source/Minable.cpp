@@ -135,7 +135,7 @@ void Minable::Place(double energy, double beltRadius, double spread)
 	// apoapsis distance is no closer than .8: scale >= .8 * (1 - e)
 	double sMin = max(.4 * (1. + eccentricity), .8 * (1. - eccentricity));
 	double sMax = min(4. * (1. - eccentricity), 1.3 * (1. + eccentricity));
-	orbitScale = (sMin + randomFactor * Random::Real() * (sMax - sMin)) * beltRadius;
+	orbitScale = (sMin + spread * Random::Real() * (sMax - sMin)) * beltRadius;
 
 	// At periapsis, the object should have this velocity:
 	double maximumVelocity = (Random::Real() + 2. * eccentricity) * .5 * energy;
