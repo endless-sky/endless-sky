@@ -1812,7 +1812,7 @@ mission "Hai Reveal [A12] Into the Lion's Den"
 			label "Danforth Alpha Hunt"
 			action
 				log `Alerted Turner and Danforth to the Hai situation. Was urged to finish finding and eliminating the Alpha enclave as soon as possible, so the Navy can deal with this new threat.`
-			`	"I can't deal with this problem personally until I finish hunting the Alphas. The Hai - even the Unfettered - are capable of restraint; they're not amoral and power-hungry like the Alphas. We need to solve the Alpha problem decisively, before they can do any real harm. After that, I'll arrange formal discussions with the Hai."`
+			`	"I can't deal with this problem personally until we finish hunting the Alphas. The Hai - even the Unfettered - are capable of restraint; they're not amoral and power-hungry like the Alphas. We need to solve the Alpha problem decisively, before they can do any real harm. After that, I'll arrange formal discussions with the Hai."`
 				decline
 
 			# Danforth is at Farpoint during the Sestor invasion, and Farpoint is not under attack.
@@ -1835,7 +1835,7 @@ mission "Hai Reveal [A12] Into the Lion's Den"
 				log `Alerted Turner and Danforth to the Hai situation. Was urged to finish finding and eliminating the Alpha enclave as soon as possible, so the Navy can deal with this new threat.`
 			`	From back on your ship it is easy enough to use the station's network to place a call. You get in contact with Danforth to brief him on what's going on, with the possibility of an Unfettered fleet coming through the wormhole in a matter of days.`
 			`	He seems unsurprised, but disappointed. "When this went on as long as it did, I pulled strings to get some Cruisers specially equipped for deep-range, long-duration missions." He sighs. "This is one of those situations where I really wish I hadn't prepared for an eventuality and been right about it.`
-			`	"I'll scramble some additional Navy forces, but I can't deal with this problem personally until I finish hunting the Alphas. The Hai - even the Unfettered - are capable of restraint; they're not amoral and power-hungry like the Alphas. We need to solve the Alpha problem decisively, before they can do any real harm. After that, I'll arrange formal discussions with the Hai."`
+			`	"I'll scramble some additional Navy forces, but I can't deal with this problem personally until we finish hunting the Alphas. The Hai - even the Unfettered - are capable of restraint; they're not amoral and power-hungry like the Alphas. We need to solve the Alpha problem decisively, before they can do any real harm. After that, I'll arrange formal discussions with the Hai."`
 				decline
 
 			label "Danforth Alpha Sestor Invasion: Before Danforth"
