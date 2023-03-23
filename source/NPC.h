@@ -78,6 +78,7 @@ public:
 	const std::list<std::shared_ptr<Ship>> Ships() const;
 
 	// Handle the given ShipEvent.
+	enum Trigger {KILL, BOARD, ASSIST, DISABLE, SCAN_CARGO, SCAN_OUTFITS, CAPTURE, PROVOKE};
 	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui = nullptr, bool isVisible = true);
 	// Determine if the NPC is in a successful state, assuming the player is in the given system.
 	// (By default, a despawnable NPC has succeeded and is not actually checked.)
@@ -90,7 +91,13 @@ public:
 
 	// Create a copy of this NPC but with the fleets replaced by the actual
 	// ships they represent, wildcards in the conversation text replaced, etc.
-	NPC Instantiate(std::map<std::string, std::string> &subs, const System *origin, const System *destination) const;
+	NPC Instantiate(std::map<std::string, std::string> &subs, const System *origin, const System *destination,
+			int jumps, int64_t payload) const;
+
+
+private:
+	// Handle any NPC mission actions that may have been triggered by a ShipEvent.
+	void DoActions(const ShipEvent &event, PlayerInfo &player, UI *ui = nullptr);
 
 
 private:
@@ -137,11 +144,11 @@ private:
 	int failIf = 0;
 	bool mustEvade = false;
 	bool mustAccompany = false;
-	// The events that have already been done to each ship.
+	// The ShipEvent actions that have been done to each ship.
 	std::map<const Ship *, int> shipEvents;
 
-	// The actions that this NPC can run on certain events/triggers.
-	std::map<int, MissionAction> npcActions;
+	// The MissionActions that this NPC can run on certain events/triggers.
+	std::map<Trigger, MissionAction> npcActions;
 };
 
 

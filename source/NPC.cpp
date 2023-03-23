@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Logger.h"
 #include "Messages.h"
 #include "MissionAction.h"
 #include "Planet.h"
@@ -35,6 +36,33 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 using namespace std;
+
+namespace {
+	string TriggerToText(NPC::Trigger trigger)
+	{
+		switch(trigger)
+		{
+			case NPC::Trigger::KILL:
+				return "on kill";
+			case NPC::Trigger::BOARD:
+				return "on board";
+			case NPC::Trigger::ASSIST:
+				return "on assist";
+			case NPC::Trigger::DISABLE:
+				return "on disable";
+			case NPC::Trigger::SCAN_CARGO:
+				return "on 'scan cargo'";
+			case NPC::Trigger::SCAN_OUTFITS:
+				return "on 'scan outfits'";
+			case NPC::Trigger::CAPTURE:
+				return "on capture";
+			case NPC::Trigger::PROVOKE:
+				return "on provoke";
+			default:
+				return "unknown trigger";
+		}
+	}
+}
 
 
 
@@ -154,14 +182,21 @@ void NPC::Load(const DataNode &node, string missionName)
 		}
 		else if(child.Token(0) == "on" && child.Size() >= 2)
 		{
-			int eventType = ShipEvent::TypeFromString(child.Token(1));
-			// The JUMP ShipEvent is only ever triggered by the player's flagship.
-			if(eventType == ShipEvent::JUMP)
-				child.PrintTrace("Error: \"jump\" is not a supported event for NPC actions.");
-			else if(eventType == ShipEvent::NONE)
-				child.PrintTrace("Error: invalid ShipEvent.");
+			static const map<string, Trigger> trigger = {
+				{"kill", KILL},
+				{"board", BOARD},
+				{"assist", ASSIST},
+				{"disable", DISABLE},
+				{"scan cargo", SCAN_CARGO},
+				{"scan outfits", SCAN_OUTFITS},
+				{"capture", CAPTURE},
+				{"provoke", PROVOKE},
+			};
+			auto it = trigger.find(child.Token(1));
+			if(it != trigger.end())
+				npcActions[it->second].Load(child, missionName);
 			else
-				npcActions.emplace(eventType, MissionAction(child, missionName));
+				child.PrintTrace("Skipping unrecognized attribute:");
 		}
 		else if(child.Token(0) == "ship")
 		{
@@ -464,9 +499,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 			shipEvents[bay.ship.get()] |= type;
 
 	// Run any mission actions that trigger on this event.
-	for(auto &it : npcActions)
-		if(type & it.first)
-			it.second.Do(player, ui);
+	DoActions(event, player, ui);
 
 	// Check if the success status has changed. If so, display a message.
 	if(isVisible && !alreadyFailed && HasFailed())
@@ -586,7 +619,8 @@ bool NPC::HasFailed() const
 
 // Create a copy of this NPC but with the fleets replaced by the actual
 // ships they represent, wildcards in the conversation text replaced, etc.
-NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const System *destination) const
+NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const System *destination,
+		int jumps, int64_t payload) const
 {
 	NPC result;
 	result.government = government;
@@ -601,6 +635,24 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	result.passedSpawnConditions = passedSpawnConditions;
 	result.toSpawn = toSpawn;
 	result.toDespawn = toDespawn;
+
+	// Instantiate the actions.
+	string reason;
+	auto ait = npcActions.begin();
+	for( ; ait != npcActions.end(); ++ait)
+	{
+		reason = ait->second.Validate();
+		if(!reason.empty())
+			break;
+	}
+	if(ait != npcActions.end())
+	{
+		Logger::LogError("Instantiation Error: Action \"" + TriggerToText(ait->first) +
+				"\" in NPC uses invalid " + std::move(reason));
+		return result;
+	}
+	for(const auto &it : npcActions)
+		result.npcActions[it.first] = it.second.Instantiate(subs, origin, jumps, payload);
 
 	// Pick the system for this NPC to start out in.
 	result.system = system;
@@ -664,4 +716,49 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		result.conversation = ExclusiveItem<Conversation>(conversation->Instantiate(subs));
 
 	return result;
+}
+
+
+
+// Handle any NPC mission actions that may have been triggered by a ShipEvent.
+void NPC::DoActions(const ShipEvent &event, PlayerInfo &player, UI *ui)
+{
+	// Map the ShipEvent that was received to the Triggers it could flip.
+	static const map<int, vector<Trigger>> eventTriggers = {
+		{ShipEvent::DESTROY, {KILL}},
+		{ShipEvent::BOARD, {BOARD}},
+		{ShipEvent::ASSIST, {ASSIST}},
+		{ShipEvent::DISABLE, {DISABLE}},
+		{ShipEvent::SCAN_CARGO, {SCAN_CARGO}},
+		{ShipEvent::SCAN_OUTFITS, {SCAN_OUTFITS}},
+		{ShipEvent::CAPTURE, {CAPTURE}},
+		{ShipEvent::PROVOKE, {PROVOKE}},
+	};
+
+	// Get the actions for the Triggers that could potentially run.
+	auto triggers = eventTriggers.find(event.Type());
+	if(triggers == eventTriggers.end())
+		return;
+
+	for(Trigger trigger : triggers->second)
+	{
+		auto it = npcActions.find(trigger);
+		// Currently, all Triggers only run their actions if the objective for that Trigger is
+		// complete. That is, every ship in this NPC has received this event. For example, if
+		// all ships have received the DESTROY event, then the kill objective has succeeded,
+		// and so the KILL action runs.
+		// In the future, we may have ShipEvents tied to multiple Triggers with different run
+		// requirements. For example, the DESTROY event may check both the KILL Trigger and a
+		// LOSS trigger, where the LOSS Trigger doesn't check if all ships in the NPC are
+		// destroyed.
+		if(it != npcActions.end() && all_of(ships.begin(), ships.end(),
+				[&](const shared_ptr<Ship> &ship) -> bool
+				{
+					auto it = shipEvents.find(ship.get());
+					return it != shipEvents.end() && it->second & event.Type();
+				}))
+		{
+			it->second.Do(player, ui);
+		}
+	}
 }
