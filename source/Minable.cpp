@@ -117,7 +117,6 @@ void Minable::Place(double energy, double beltRadius, double spread)
 	// Generate random orbital parameters. Limit eccentricity so that the
 	// objects do not spend too much time far away and moving slowly.
 
-	double randomFactor = spread;
 
 	eccentricity = randomFactor * Random::Real() * .6;
 
