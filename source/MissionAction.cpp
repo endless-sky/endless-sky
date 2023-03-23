@@ -58,14 +58,14 @@ namespace {
 
 
 // Construct and Load() at the same time.
-MissionAction::MissionAction(const DataNode &node, const string &missionName, bool isNPCAction)
+MissionAction::MissionAction(const DataNode &node, const string &missionName)
 {
-	Load(node, missionName, isNPCAction);
+	Load(node, missionName);
 }
 
 
 
-void MissionAction::Load(const DataNode &node, const string &missionName, bool isNPCAction)
+void MissionAction::Load(const DataNode &node, const string &missionName)
 {
 	if(node.Size() >= 2)
 		trigger = node.Token(1);
@@ -112,12 +112,6 @@ void MissionAction::Load(const DataNode &node, const string &missionName, bool i
 		// The legacy syntax "outfit <outfit> 0" means "the player must have this outfit installed."
 		else if(key == "outfit" && child.Size() >= 3 && child.Token(2) == "0")
 		{
-			// Do not support this syntax for NPC actions, since they were created after it was deprecated.
-			if(isNPCAction)
-			{
-				child.PrintTrace("Error: unsupported use of \"outfit\" inside an NPC action.");
-				continue;
-			}
 			child.PrintTrace("Warning: Deprecated use of \"outfit\" with count of 0. Use \"require <outfit>\" instead:");
 			requiredOutfits[GameData::Outfits().Get(child.Token(1))] = 1;
 		}
