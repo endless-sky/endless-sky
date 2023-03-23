@@ -68,14 +68,14 @@ namespace {
 
 
 // Construct and Load() at the same time.
-NPC::NPC(const DataNode &node, string missionName)
+NPC::NPC(const DataNode &node, const string &missionName)
 {
 	Load(node, missionName);
 }
 
 
 
-void NPC::Load(const DataNode &node, string missionName)
+void NPC::Load(const DataNode &node, const string &missionName)
 {
 	// Any tokens after the "npc" tag list the things that must happen for this
 	// mission to succeed.

@@ -57,9 +57,9 @@ public:
 	~NPC() noexcept = default;
 
 	// Construct and Load() at the same time.
-	NPC(const DataNode &node, std::string missionName);
+	NPC(const DataNode &node, const std::string &missionName);
 
-	void Load(const DataNode &node, std::string missionName);
+	void Load(const DataNode &node, const std::string &missionName);
 	// Note: the Save() function can assume this is an instantiated mission, not
 	// a template, so fleets will be replaced by individual ships already.
 	void Save(DataWriter &out) const;
