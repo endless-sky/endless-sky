@@ -1821,6 +1821,11 @@ mission "Wanderers: Alpha Surveillance I"
 		fail "Wanderers: Alpha Surveillance H"
 		conversation
 			`Danforth looks relieved to see you both alive. "Damned Republic Intelligence Agency," he says. "They think they're above the law. And after all that they decided you both are clean?" He looks intently at Elias.`
+			branch "Danforth is already in another mission sequence"
+				"Danforth in mission sequence" != 2
+			action
+				"Danforth in mission sequence" = 0
+			label "Danforth is already in another mission sequence"
 			choice
 				`	"Yes, in fact now they're trying to get us to work together with them against the Alphas."`
 				`	"Yes, and they think Elias can help them against the Alphas."`
