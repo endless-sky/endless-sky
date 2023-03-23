@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define SHIP_EVENT_H_
 
 #include <memory>
-#include <string>
 
 class Government;
 class Ship;
@@ -80,10 +79,6 @@ public:
 	const std::shared_ptr<Ship> &Target() const;
 	const Government *TargetGovernment() const;
 	int Type() const;
-
-	static std::string TypeToString(int type);
-
-	static int TypeFromString(const std::string &name);
 
 
 private:

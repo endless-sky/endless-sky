@@ -33,6 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "System.h"
 #include "UI.h"
 
+#include <algorithm>
 #include <vector>
 
 using namespace std;

@@ -17,24 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Ship.h"
 
-#include <algorithm>
-
 using namespace std;
-
-namespace {
-	const map<string, int> EVENT_NAMES = {
-		{"assist", ShipEvent::ASSIST},
-		{"scan cargo", ShipEvent::SCAN_CARGO},
-		{"scan outfits", ShipEvent::SCAN_OUTFITS},
-		{"provoke", ShipEvent::PROVOKE},
-		{"disable", ShipEvent::DISABLE},
-		{"board", ShipEvent::BOARD},
-		{"capture", ShipEvent::CAPTURE},
-		{"destroy", ShipEvent::DESTROY},
-		{"atrocity", ShipEvent::ATROCITY},
-		{"jump", ShipEvent::JUMP},
-	};
-}
 
 
 
@@ -90,25 +73,4 @@ const Government *ShipEvent::TargetGovernment() const
 int ShipEvent::Type() const
 {
 	return type;
-}
-
-
-
-string ShipEvent::TypeToString(int type)
-{
-	auto it = find_if(EVENT_NAMES.begin(), EVENT_NAMES.end(),
-			[&type](const pair<string, int> &it) -> bool { return type == it.second; });
-	if(it == EVENT_NAMES.end())
-		return "none";
-	return it->first;
-}
-
-
-
-int ShipEvent::TypeFromString(const string &name)
-{
-	auto it = EVENT_NAMES.find(name);
-	if(it == EVENT_NAMES.end())
-		return NONE;
-	return it->second;
 }
