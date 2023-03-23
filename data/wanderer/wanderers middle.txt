@@ -1358,6 +1358,7 @@ mission "Wanderers: Tour 1"
 	source "Desi Seledrak"
 	destination "Setar Fort"
 	to offer
+		# These conditions should match the "on complete" conversation in Hai Reveal [C05] Cleanup
 		has "event: wanderers: desi seledrak"
 		not "Danforth in mission sequence"
 	on offer

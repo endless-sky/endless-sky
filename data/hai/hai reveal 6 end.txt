@@ -1,4 +1,4 @@
-# Copyright (c) 2020 MasterOfGrey
+ Copyright (c) 2020 MasterOfGrey
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -421,20 +421,39 @@ mission "Hai Reveal [C05] Cleanup"
 				accept
 	on complete
 		event "hai-human resolution announced"
+		event "Sayari available after Hai Reveal" 5 15
 		fail "Hai Reveal [A11-A] Permanent Fleets"
 		fail "Hai Reveal [B02-A] The Blockade Goes Up"
 		conversation
+			# Make Danforth available if Hai Reveal has him reserved.
+			branch nodan
+				"Danforth in mission sequence" != 1
+			action
+				"Danforth in mission sequence" = 0
+			label nodan
 			`When you return to <planet>, you reassure Sayari and Xilin that there is nothing more to do. The danger is over, for good.`
 			`	As it happens, the summit has functionally concluded by the time you return. In fact, diplomats had been running interference to prolong things, knowing that your return could potentially have critical consequences. Now that you're here, the remaining agenda items miraculously get resolved within hours, and late in the day, you find yourself once again "Where Mountains Touch The Sky," as the successful resolution is announced.`
 			`	The historic moment lays the groundwork for a future official treaty framework and governmental cooperation, as well as establishing <planet> as the principle diplomatic embassy for both peoples. Less publicly, extensive surveillance fleets are posted on both sides of the wormhole to detect any kidnappings or other illegal travel. Now, the only way for illicit transfers to happen is if a government employee is involved, but all three countries have quietly agreed to watch for that behavior and punish it severely.`
-			`	At last, it really is over, and you can get back to your own life.`
 			`	Maybe you'll have to find out who the Unfettered were stealing their other technologies from. They mentioned another group: the "Wanderers."`
+				decline # This does not decline the mission. It still ends up completed.
 				to display
 					not "Wanderers Conversation: offered"
 
+			# The player would have gotten this reminder in the Wanderer Campaign missions, but they missed it since Danforth was preoccupied with Hai issues.
+			`	Now that events in Hai and human space have calmed down, it's probably time to check in on the Wanderers again.`
+				decline # This does not decline the mission. It still ends up completed.
+				to display
+					has "Wanderers Conversation: offered"
+					not "Wanderers: Tour 1: offered"
+			`	At last, it really is over, and you can get back to your own life.`
 
 
-mission "Hai Reveal [C06S] Danforth is Available"
+
+event "Sayari available after Hai Reveal"
+
+
+
+mission "Hai Reveal [C06D] Danforth Availability Fix"
 	landing
 	invisible
 	to offer

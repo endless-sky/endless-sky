@@ -252,7 +252,7 @@ mission "Wanderers: Sayari Available After Hai Reveal"
 	to offer
 		has "Wanderers: Diplomacy Delayed: offered"
 		not "event: Wanderers before Hai Reveal"
-		has "event: Hai Reveal [C06S] Sayari Availability Timer"
+		has "event: Sayari available after Hai Reveal"
 	on offer
 		fail "Wanderers: Diplomacy Delayed"
 		fail "Wanderers: Professor Available"
