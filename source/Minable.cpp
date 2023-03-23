@@ -118,7 +118,7 @@ void Minable::Place(double energy, double beltRadius, double spread)
 	// objects do not spend too much time far away and moving slowly.
 
 
-	eccentricity = randomFactor * Random::Real() * .6;
+	eccentricity = spread * Random::Real() * .6;
 
 	// Since an object is moving slower at apoapsis than at periapsis, it is
 	// more likely to start out there. So, rather than a uniform distribution of
