@@ -17,7 +17,11 @@ mission "Kestrel Testing"
 	source "Wayfarer"
 	waypoint "Umbral"
 	to offer
-		"combat rating" > 2500
+		or
+			"combat rating" > 6000
+			and
+				"combat rating" > 2500
+				has "main plot completed"
 	
 	on offer
 		conversation
