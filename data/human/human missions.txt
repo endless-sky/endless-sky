@@ -5431,7 +5431,8 @@ mission "Deal Change 2"
 
 
 
-mission "Quicksilver Mixup [0]"
+mission "Quicksilver Mixup 0"
+	minor
 	name "Package to Silver"
 	description "Deliver a package to <planet> by <date>. Payment is <payment>."
 	"apparent payment" 17100
@@ -5466,7 +5467,7 @@ mission "Quicksilver Mixup [0]"
 	on visit
 		dialog phrase "generic cargo on visit"
 
-mission "Quicksilver Mixup [1]"
+mission "Quicksilver Mixup 1"
 	name "Redirect Package to <planet>"
 	description "Apparently the package labeled for <origin> was actually intended for <planet>. You'll have missed the deadline, so you probably won't be paid the <payment> offered."
 	landing
@@ -5474,13 +5475,14 @@ mission "Quicksilver Mixup [1]"
 	source Silver
 	destination Quicksilver
 	to offer
+		not "Quicksilver Mixup 0: aborted"
 		or
-			has "Quicksilver Mixup [0]: done"
-			has "Quicksilver Mixup [0]: failed"
+			has "Quicksilver Mixup 0: done"
+			has "Quicksilver Mixup 0: failed"
 	on offer
 		conversation
 			branch late
-				not "Quicksilver Mixup [0]: done"
+				not "Quicksilver Mixup 0: done"
 			`Barely making the deadline, you take the package to the post office in <origin>'s spaceport. The service clerk immediately lets out a sigh of frustration before setting the package down on the counter in front of you.`
 				goto "can't take package"
 			
@@ -5515,7 +5517,8 @@ mission "Quicksilver Mixup [1]"
 		conversation
 			`When you talk to a post officer in <planet>'s spaceport and point out the incorrect address before handing it over, you note that he exhibits the same frustration the clerk on <origin> did regarding the frequent switch-ups. He takes the package, muttering something about off-worlders "not knowing the difference even if it smacked 'em in the face" as he did.`
 			`	Once you return to your ship, you notice that the man who gave you that package had sent you a message. Or, to be more precise, a series of messages. An angry series of messages.`
-			`	"WHAT TOOK YOU SO LONG???" one of them says. "I NEEDED THAT DELIVERED DAYS AGO", says the next one.`
+			`	"WHAT TOOK YOU SO LONG???"`
+			`	"I NEEDED THAT DELIVERED DAYS AGO"`
 			branch picture "didn't take picture"
 				has "took picture of quicksilver package"
 
@@ -5528,15 +5531,15 @@ mission "Quicksilver Mixup [1]"
 			action
 				payment -17100
 			`	He doesn't respond.`
-				goto end
+				decline
 
 			label "picture success"
 			action
 				payment 5000
-			`	He sees the message, but doesn't send a reply. But just before you walk away from your ship's terminal, you see a new message appear:`
+			`	He sees the message, but doesn't send a reply. Just before you walk away from your ship's terminal, you see a new message appear:`
 			`	"I am so sorry."`
-			`	The man then proceeds to apologize profusely for his mistake and his outburst, offering to pay an extra 5000 credits for the trouble. You gladly accept.`
-				goto end
+			`	The man then proceeds to apologize profusely for his mistake and his outburst, offering to pay an extra 5,000 credits for the trouble. You gladly accept.`
+				decline
 
 			label "didn't take picture"
 			action
@@ -5544,6 +5547,5 @@ mission "Quicksilver Mixup [1]"
 			`	You try to defend yourself, but the man remains adamant that it was your mistake that got the package sent so late. After a frustrating back-and-forth, you decide to relent and (reluctantly) offer an apology. He ignores it and threatens to get spaceport authorities to "STOP OFFERING JOBS TO INCOMPETENTS LIKE YOU."`
 			`	You don't bother to reply.`
 			
-			label end
 
 event "quicksilver mixup 2 available"
