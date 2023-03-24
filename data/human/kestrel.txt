@@ -17,7 +17,7 @@ mission "Kestrel Testing"
 	source "Wayfarer"
 	waypoint "Umbral"
 	to offer
-		"combat rating" > 8000
+		"combat rating" > 2500
 	
 	on offer
 		conversation
