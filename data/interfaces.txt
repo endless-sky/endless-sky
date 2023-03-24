@@ -531,6 +531,10 @@ interface "hud"
 	outline "player sprite"
 		center -75 155
 		dimensions 70 70
+	outline "velocity sprite"
+		center -75 155
+		dimensions 70 70
+		colored
 	ring "shields"
 		center -75 155
 		dimensions 120 120
