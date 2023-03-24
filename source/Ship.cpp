@@ -1847,8 +1847,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 		float landingSpeed = attributes.Get("landing speed");
 		landingSpeed = landingSpeed > 0 ? landingSpeed : .02f;
-		// Special ships do not disappear forever when they land; they
-		// just slowly refuel.
+		// Special ships do not disappear forever when they land; they just slowly refuel.
+		// Exception: mission NPCs given the 'land' directive will delete when they land on their target.
 		if(landingPlanet && zoom)
 		{
 			// Move the ship toward the center of the planet while landing.
@@ -1870,10 +1870,25 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					SetTargetSystem(nullptr);
 					landingPlanet = nullptr;
 				}
-				else if(!isSpecial || personality.IsFleeing())
+				// NPCs which are "fleeing" delete themselves on landing,
+				// unless they have an incomplete travel directive.
+				else if(!isSpecial || (personality.IsFleeing() && !HasTravelDirective()))
 				{
 					MarkForRemoval();
+					hasLanded = true;
 					return;
+				}
+				else if(isSpecial && !isYours && !travelDestinations.empty())
+				{
+					// This mission NPC has a directive to land on at least one specific planet.
+					// If this is one of them, this ship may 'land'.
+					auto it = travelDestinations.find(landingPlanet);
+					if(it != travelDestinations.end())
+					{
+						MarkForRemoval();
+						hasLanded = true;
+						return;
+					}
 				}
 
 				zoom = 0.f;
@@ -2145,8 +2160,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		{
 			if(!target->IsDisabled() && government->IsEnemy(target->government))
 				isBoarding = false;
-			else if(target->IsDestroyed() || target->IsLanding() || target->IsHyperspacing()
-					|| target->GetSystem() != GetSystem())
+			else if(!target->IsTargetable() || target->GetSystem() != GetSystem())
 				isBoarding = false;
 		}
 		if(isBoarding && !pilotError)
@@ -2193,10 +2207,11 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		}
 	}
 
-	// Clear your target if it is destroyed. This is only important for NPCs,
-	// because ordinary ships cease to exist once they are destroyed.
+	// Clear your target if it is destroyed or permanently landed. This is only important
+	// for NPCs, because ordinary ships cease to exist once they are destroyed.
 	target = GetTargetShip();
-	if(target && target->IsDestroyed() && target->explosionCount >= target->explosionTotal)
+	if(target && ((target->IsDestroyed() && target->explosionCount >= target->explosionTotal)
+			|| target->HasLanded()))
 		targetShip.reset();
 
 	// Finally, move the ship and create any movement visuals.
@@ -2573,7 +2588,8 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 	hasBoarded = false;
 
 	shared_ptr<Ship> victim = GetTargetShip();
-	if(CannotAct() || !victim || victim->IsDestroyed() || victim->GetSystem() != GetSystem())
+	if(CannotAct() || !victim || victim->IsDestroyed() || victim->HasLanded()
+			|| victim->GetSystem() != GetSystem())
 		return shared_ptr<Ship>();
 
 	// For a fighter or drone, "board" means "return to ship." Except when the ship is
@@ -3134,10 +3150,26 @@ bool Ship::IsDestroyed() const
 
 
 
+void Ship::Land()
+{
+	hasLanded = true;
+}
+
+
+
+// Check if this ship has permanently landed.
+bool Ship::HasLanded() const
+{
+	return hasLanded;
+}
+
+
+
+
 // Recharge and repair this ship (e.g. because it has landed).
 void Ship::Recharge(bool atSpaceport)
 {
-	if(IsDestroyed())
+	if(IsDestroyed() || HasLanded())
 		return;
 
 	if(atSpaceport)
@@ -3257,6 +3289,8 @@ void Ship::ClearTargetsAndOrders()
 	targetFlotsam.reset();
 	hyperspaceSystem = nullptr;
 	landingPlanet = nullptr;
+	destinationSystem = nullptr;
+	travelDestinations.clear();
 }
 
 
@@ -4122,6 +4156,21 @@ const StellarObject *Ship::GetTargetStellar() const
 const System *Ship::GetTargetSystem() const
 {
 	return (targetSystem == currentSystem) ? nullptr : targetSystem;
+}
+
+
+
+// Persistent targets for mission NPCs.
+const bool Ship::HasTravelDirective() const
+{
+	return !travelDestinations.empty() || destinationSystem;
+}
+
+
+
+const System *Ship::GetDestinationSystem() const
+{
+	return destinationSystem;
 }
 
 
