@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef COMMAND_H_
 #define COMMAND_H_
 
-#include <bitset>
 #include <cstdint>
 #include <string>
 
@@ -30,10 +29,6 @@ class DataNode;
 // everything the AI wants a ship to do, or all keys the player is holding down.
 class Command {
 public:
-	// This must match the maximum command number in Command.cpp or the build will fail.
-	static const unsigned COMMAND_COUNT = 33;
-	using CommandState = std::bitset<COMMAND_COUNT>;
-
 	// Empty command:
 	static const Command NONE;
 	// Main menu:
@@ -141,13 +136,14 @@ public:
 
 
 private:
-	explicit Command(const CommandState &state);
-	Command(const CommandState &state, const std::string &text);
+	explicit Command(uint64_t state);
+	Command(uint64_t state, const std::string &text);
 
 
 private:
-	// The key commands are stored in a CommandState.
-	CommandState state = 0;
+	// The key commands are stored in a single bitmask with
+	// 32 bits for key commands.
+	uint64_t state = 0;
 	// Turning amount is stored as a separate double to allow fractional values.
 	double turn = 0.;
 };
