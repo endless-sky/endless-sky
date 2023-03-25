@@ -2301,7 +2301,7 @@ mission "Stranded Field Trip"
 	name "Stranded field trip to <planet>"
 	job
 	repeat
-	description `These <bunks> school students have been stranded on a field trip due to the unexpected bankruptcy of their booked transport. The school and parents have put up a reward of <payment> for them to be returned home to <destination>.`
+	description `These <bunks> pupils have been stranded on a field trip due to the unexpected bankruptcy of their booked transport. A reward of <payment> is available for them and their <tons> of luggage to be returned home to <destination>.`
 	passengers 20 4 .1
 	cargo "educational supplies" 2 10 .6
 	to offer
