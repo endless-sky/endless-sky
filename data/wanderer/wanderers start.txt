@@ -511,7 +511,7 @@ mission "Wanderers: Algorithm Training Data"
 	on complete
 		event "wanderer translator available" 56
 		conversation
-			`A Wanderer meets you after you land and you hand them the data card. They plug it into a mango-sized machine which seems to adjust its data card slot to match the shape of the card on the way in. The Wanderer makes clicking and whistling noises while manipulating the device. Eventually, the device spits out the phrases, "[Enter, bring] three and five. Within [truth, lies], the pleasant [cow, nova] tickles me [thoughtfully, gracefully]."`
+			`A Wanderer meets you after you land and you hand them the data card. They plug it into what looks like a fat data pad with several different types of data card slots. The Wanderer makes clicking and whistling noises while manipulating the device. Eventually, the device spits out the phrases, "[Enter, bring] three and five. Within [truth, lies], the pleasant [cow, nova] tickles me [thoughtfully, gracefully]."`
 			`	The Wanderer seems displeased with the results. After a few minutes of fiddling with the device, it sputters out, "Pleasing [truth, gratifications]. [Accepting, holding] geolocated results [within, for] two [menstrual, lunar] cycles." Seeing your confusion, the Wanderer continues manipulating the device, chirping loudly as if in frustration.`
 			`	"Thank you. Return in eight weeks", the device eventually says, drawing what seemed like satisfaction from the Wanderer once you gave your acknowledgment. The Wanderer tinkers with the machine for a while more, before waving to you and departing, leaving you to your own devices.`
 
@@ -602,7 +602,7 @@ mission "Wanderers Conversation"
 				`	"Why were you able to create a translation device so quickly?"`
 
 			# Wanderer AI technology is far beyond ours, and we can already automatically translate languages this well. Of course they can too.
-			`	"[Automated, machine] language translation is a [primitive, early] application of machine [learning, intelligence]. For us it is [elementary, instinctual] mathematics. Our [thinkers, tinkerers] told me that most of the [work, enjoyment] was adapting the [interface, conceptualization, mechanism] to a human mind."`
+			`	"[Automated, machine] language translation is a [primitive, early] application of machine [learning, intelligence]. For us it is [elementary, instinctual] mathematics. Our [thinkers, tinkerers] told me that most of the [work, enjoyment] was adapting the [interface, conceptualization, mechanism] to a human."`
 			choice
 				`	"How did you learn the Hai language?"`
 					goto language
