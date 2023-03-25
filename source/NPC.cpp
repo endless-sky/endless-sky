@@ -493,6 +493,8 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 		type &= ~(ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS | ShipEvent::ASSIST
 				| ShipEvent::BOARD | ShipEvent::CAPTURE | ShipEvent::PROVOKE);
 
+	// Determine if this event is new for this ship.
+	bool newEvent = ~(shipEvents[ship.get()]) & type;
 	// Apply this event to the ship and any ships it is carrying.
 	shipEvents[ship.get()] |= type;
 	for(const Ship::Bay &bay : ship->Bays())
@@ -500,7 +502,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 			shipEvents[bay.ship.get()] |= type;
 
 	// Run any mission actions that trigger on this event.
-	DoActions(event, player, ui);
+	DoActions(event, newEvent, player, ui);
 
 	// Check if the success status has changed. If so, display a message.
 	if(isVisible && !alreadyFailed && HasFailed())
@@ -722,7 +724,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 
 
 // Handle any NPC mission actions that may have been triggered by a ShipEvent.
-void NPC::DoActions(const ShipEvent &event, PlayerInfo &player, UI *ui)
+void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, UI *ui)
 {
 	// Map the ShipEvent that was received to the Triggers it could flip.
 	static const map<int, vector<Trigger>> eventTriggers = {
@@ -736,30 +738,39 @@ void NPC::DoActions(const ShipEvent &event, PlayerInfo &player, UI *ui)
 		{ShipEvent::PROVOKE, {PROVOKE}},
 	};
 
+	int type = event.Type();
+
+	// Ships are capable of receiving multiple DESTROY events. Only
+	// handle the first such event, because a ship can't actually be
+	// destroyed multiple times.
+	if(type == ShipEvent::DESTROY && !newEvent)
+		return;
+
 	// Get the actions for the Triggers that could potentially run.
-	auto triggers = eventTriggers.find(event.Type());
+	auto triggers = eventTriggers.find(type);
 	if(triggers == eventTriggers.end())
 		return;
 
 	for(Trigger trigger : triggers->second)
 	{
 		auto it = npcActions.find(trigger);
-		// Currently, all Triggers only run their actions if the objective for that Trigger is
-		// complete. That is, every ship in this NPC has received this event. For example, if
-		// all ships have received the DESTROY event, then the kill objective has succeeded,
-		// and so the KILL action runs.
-		// In the future, we may have ShipEvents tied to multiple Triggers with different run
-		// requirements. For example, the DESTROY event may check both the KILL Trigger and a
-		// LOSS trigger, where the LOSS Trigger doesn't check if all ships in the NPC are
-		// destroyed.
-		if(it != npcActions.end() && all_of(ships.begin(), ships.end(),
+		if(it == npcActions.end())
+			continue;
+
+		// The PROVOKE Trigger only requires a single ship to receive the
+		// event in order to run. All other Triggers require that all ships
+		// be affected.
+		if(trigger == PROVOKE || all_of(ships.begin(), ships.end(),
 				[&](const shared_ptr<Ship> &ship) -> bool
 				{
 					auto it = shipEvents.find(ship.get());
-					return it != shipEvents.end() && it->second & event.Type();
+					return it != shipEvents.end() && it->second & type;
 				}))
 		{
 			it->second.Do(player, ui);
+			// All actions are currently one-time-use. Erase the action from
+			// the map so that it can't be reused.
+			npcActions.erase(it);
 		}
 	}
 }

@@ -97,7 +97,7 @@ public:
 
 private:
 	// Handle any NPC mission actions that may have been triggered by a ShipEvent.
-	void DoActions(const ShipEvent &event, PlayerInfo &player, UI *ui = nullptr);
+	void DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, UI *ui = nullptr);
 
 
 private:
