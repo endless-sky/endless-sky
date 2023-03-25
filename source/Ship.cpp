@@ -1609,7 +1609,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		if(explosionCount == explosionTotal || forget)
 		{
 			if(IsYours())
-				Messages::Add("Your ship '" + Name() + "' has been destroyed.", Messages::Importance::Highest);
+				Messages::Add("Your ship \"" + Name() + "\" has been destroyed.", Messages::Importance::Highest);
 
 			if(!forget)
 			{
