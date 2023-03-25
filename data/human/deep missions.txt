@@ -2735,8 +2735,8 @@ mission "Stone of our Fathers 5"
 			`	"The day I struck the mother lode on Helheim."`
 			`	"The day I met <first>, who helped me find my family again."`
 			`	"The day I saw my son again, even though he would not see me."`
-			`	Thorleif sniffs, takes a moment to write something down he saw on the stone, and then walks forward and places it upon the cairn, at home now with hundreds of other stones each with their own handful of memories.`
-			`	"He had not so many good memories, I think," Thorleif said quietly. "I realize now that mine too are quite few. Perhaps that, if nothing else, is a lesson he can teach me. For that, I thank you, father."`
+			`	Thorleif sniffs, takes a moment to write down something he saw on the stone, and then walks forward and places it upon the cairn, at home now with hundreds of other stones each with their own handful of memories.`
+			`	"He had not so many good memories, I think," Thorleif said quietly. "I realize now that mine too are quite few. Perhaps that, if nothing else, is a lesson he can teach me. For that I thank you, father."`
 			`	With that, Thorleif turns from the cairn with teary eyes. "It is done. Let us head back."`
 			choice
 				`	(Follow Thorleif back to the village.)`
@@ -2755,11 +2755,11 @@ mission "Stone of our Fathers 5"
 			`The trip back to Norn was restful.`
 			`	You spent most of it listening to Ragnhild tell the old stories and legends of Alfheim that she had learned as a child.`
 			`	Stories about alien trees whispering dark secrets, of oil barons destroying sacred sites and being cursed by alien artifacts they were too blinded by greed to see, and even tales of the elves and miracles of the Elf-Stones.`
-			`	Again, as before, you're almost sad when you make it back to Norn and the time for telling stories has ended, and the time for saying goodbye has begun.`
+			`	Again, as before, you're almost sad when you make it back to Norn. The time for telling stories has ended, and the time for saying goodbye has begun.`
 			`	Thorleif wraps you in a bear hug. "I thank you for all you have done, <first>. I was so wound up in my own anger and bitterness I couldn't see anything beyond my own pain. But now, I feel like I can live again. Trust that our meeting has been etched into my own stone. I hope someday you come back and visit us. To remember us small folk on a small world so far from places of power and grand events. Remember you'll always have a home here."`
 			`	With that Thorleif and Ragnhild make their way off your ship. Thorleif only takes a few steps out into the quiet Norn spaceport before stopping suddenly and turning back towards you.`
-			`	"I almost forgot. The old man, Skaldgar, well, he had quite a bit of money saved up. I don't think he hardly spent anything on himself. Anyways, I've decided to split the inheritance with you. After taxes, your half comes out to around 500,000 even."`
-			`	Thorleif, shrugs, laughs, and walks with Ragnhild hand in hand out into the foggy mists of Norn.`
+			`	"I almost forgot. The old man, well, he had quite a bit of money saved up. I don't think he hardly spent anything on himself. Anyways, I've decided to split the inheritance with you. After taxes, your half comes out to around 500,000 even."`
+			`	Thorleif shrugs, laughs, and walks with Ragnhild hand in hand out into the foggy mists of Norn.`
 
 
 
@@ -2827,21 +2827,33 @@ mission "Home for Skadenga 1"
 			label questions
 			choice
 				`	"What happened to the researchers?"`
+					to display
+						not "skadenga: asked about researchers"
 				`	"Is it safe to drive over the ice?"`
+					to display
+						not "skadenga: asked about ice"
 					goto ice
 				`	"Are there sea-monsters beneath the ice?"`
+					to display
+						not "skadenga: asked about monsters"
 					goto monster
 				`	"Nope. No questions."`
 					goto noquestion
+			action
+				set "skadenga: asked about researchers"
 			`	"Long time ago. Researcher convoy look for bacterial pharmaceutical. Many researcher convoy in area. Most smart use native pathfinder, like me. This convoy, they not so smart, they say pathfinder waste of money. They go out in ice alone and they never come back."`
 			`	Hjlod shrugs. "Maybe they fall in ice. Maybe they get eaten by Ice-Slug. Maybe avalanche fall on them. Maybe fall on own veapon and die. Nobody ever find them. Tour-guide book say that some night you can see their ghost haunting ice. Tour-guide book dumb."`
 			`	"Any more question?"`
 				goto questions
 			label ice
+			action
+				set "skadenga: asked about ice"
 			`	"Very safe. Except when not. Ice always frozen, but sometime very thin. I can tell. You cannot. Trust Hjlod and you not drown and get eaten by Ice-Slug."`
 			`	"You have more question?"`
 				goto questions
 			label monster
+			action
+				set "skadenga: asked about monsters"
 			`	"Every world have animal. Some animal big, some small. Voolly octopus, mostly small. Size of this Ice-Crawler, only. Vorst in Glaesisvellir ice-plains is Ice-Slug. They can squeeze through tiniest hole in ice. This take long time, for they are as big as house. They have no teeth, too hard to squeeze through little hole, but they have acid spit. Put hole in Ice-Crawler, easy. They eat many foolish researcher and tourist."`
 			`	She smiles at you. "You're not foolish tourist. You are with Hjlod. You are safe."`
 			`	"Any more question?"`
