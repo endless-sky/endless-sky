@@ -262,6 +262,10 @@ private:
 	Rectangle clickBox;
 	int groupSelect = -1;
 
+	// Set of asteroids scanned in the current system.
+	std::set<std::string> asteroidsScanned;
+	bool isAsteroidCatalogComplete = false;
+
 	// Input, Output and State handling for automated tests.
 	TestContext *testContext = nullptr;
 

@@ -61,7 +61,7 @@ list(APPEND INTEGRATION_TESTS
 )
 
 target_include_directories(EndlessSkyTests PRIVATE unit/include)
-target_link_libraries(EndlessSkyTests PRIVATE EndlessSkyLib)
+target_link_libraries(EndlessSkyTests PRIVATE ExternalLibraries $<TARGET_OBJECTS:EndlessSkyLib>)
 
 # CTest support for our unit tests.
 add_test(NAME unit COMMAND EndlessSkyTests)
