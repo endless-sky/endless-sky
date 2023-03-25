@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+      - mirror
+      - main
+      - experimental
   pull_request:
     types:
       - synchronize
