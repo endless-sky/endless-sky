@@ -372,7 +372,7 @@ mission "Wanderers Conversation"
 				`	"Why were you able to create a translation device so quickly?"`
 
 			# Wanderer AI technology is far beyond ours, and we can already automatically translate languages this well. Of course they can too.
-			`	"[Automated, machine] language translation is a [primitive, early] application of machine [learning, intelligence]. For us it is [elementary, instinctual] mathematics. Our [thinkers, tinkerers] told me that most of the [work, enjoyment] was adapting the [interface, conceptualization, mechanism] to a human mind."`
+			`	"[Automated, machine] language translation is a [primitive, early] application of machine [learning, intelligence]. For us it is [elementary, instinctual] mathematics. Our [thinkers, tinkerers] told me that most of the [work, enjoyment] was adapting the [interface, conceptualization, mechanism] to a human."`
 			choice
 				`	"How did you learn the Hai language?"`
 					goto language
