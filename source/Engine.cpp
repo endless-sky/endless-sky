@@ -911,14 +911,35 @@ void Engine::Step(bool isActive)
 	}
 
 	// Draw crosshairs on any minables in range of the flagship's scanners.
-	if(Preferences::Has("Show asteroid scanner overlay"))
+	bool shouldShowAsteroidOverlay = Preferences::Has("Show asteroid scanner overlay");
+	// Decide before looping whether or not to catalog asteroids. This
+	// results in cataloging in-range asteroids roughly 3 times a second.
+	bool shouldCatalogAsteroids = (!isAsteroidCatalogComplete && !Random::Int(20));
+	if(shouldShowAsteroidOverlay || shouldCatalogAsteroids)
 	{
 		double scanRangeMetric = flagship ? 10000. * flagship->Attributes().Get("asteroid scan power") : 0.;
 		if(flagship && scanRangeMetric && !flagship->IsHyperspacing())
+		{
+			bool scanComplete = true;
 			for(const shared_ptr<Minable> &minable : asteroids.Minables())
 			{
 				Point offset = minable->Position() - center;
-				if(offset.LengthSquared() > scanRangeMetric || flagship->GetTargetAsteroid() == minable)
+				// Use the squared length, as we used the squared scan range.
+				bool inRange = offset.LengthSquared() <= scanRangeMetric;
+
+				// Autocatalog asteroid: Record that the player knows this type of asteroid is available here.
+				if(shouldCatalogAsteroids && !asteroidsScanned.count(minable->DisplayName()))
+				{
+					scanComplete = false;
+					if(!Random::Int(10) && inRange)
+					{
+						asteroidsScanned.insert(minable->DisplayName());
+						for(const auto &it : minable->Payload())
+							player.Harvest(it.first);
+					}
+				}
+
+				if(!shouldShowAsteroidOverlay || !inRange || flagship->GetTargetAsteroid() == minable)
 					continue;
 
 				targets.push_back({
@@ -929,6 +950,9 @@ void Engine::Step(bool isActive)
 					3
 				});
 			}
+			if(shouldCatalogAsteroids && scanComplete)
+				isAsteroidCatalogComplete = true;
+		}
 	}
 	const auto targetAsteroidPtr = flagship ? flagship->GetTargetAsteroid() : nullptr;
 	if(targetAsteroidPtr && !flagship->IsHyperspacing())
@@ -1278,6 +1302,8 @@ void Engine::EnterSystem()
 		else
 			asteroids.Add(a.Name(), a.Count(), a.Energy());
 	}
+	asteroidsScanned.clear();
+	isAsteroidCatalogComplete = false;
 
 	// Clear any active weather events
 	activeWeather.clear();
@@ -2232,8 +2258,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 	for(Body *body : shipCollisions.Circle(flotsam.Position(), 5.))
 	{
 		Ship *ship = reinterpret_cast<Ship *>(body);
-		if(!ship->CannotAct() && ship != flotsam.Source() && ship->GetGovernment() != flotsam.SourceGovernment()
-			&& ship->Cargo().Free() >= flotsam.UnitSize())
+		if(!ship->CannotAct() && ship->CanPickUp(flotsam))
 		{
 			collector = ship;
 			break;
