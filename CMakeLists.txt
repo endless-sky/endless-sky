@@ -44,7 +44,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT EndlessSky)
 set(CMAKE_VS_JUST_MY_CODE_DEBUGGING ON)
 
-project("Endless Sky" VERSION 0.10.0
+project("Endless Sky" VERSION 0.10.1
 	DESCRIPTION "Space exploration, trading, and combat game."
 	HOMEPAGE_URL https://endless-sky.github.io/
 	LANGUAGES CXX)
@@ -93,6 +93,61 @@ endif()
 
 # Add the library target.
 add_subdirectory(source)
+
+# Create an interface library that contains common libraries for the game and unit tests.
+add_library(ExternalLibraries INTERFACE)
+target_link_libraries(EndlessSkyLib PUBLIC ExternalLibraries)
+
+# The 'mingw32' lib needs to be linked first.
+if(MINGW)
+	target_link_libraries(ExternalLibraries INTERFACE mingw32)
+endif()
+
+# Link with the general libraries.
+target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG OpenAL::OpenAL
+	"$<IF:$<CONFIG:Debug>,${LIBMAD_LIB_DEBUG},${LIBMAD_LIB_RELEASE}>")
+
+# Link the needed OS-specific dependencies, if any.
+if(WIN32)
+	target_link_libraries(ExternalLibraries INTERFACE rpcrt4 Winmm)
+else()
+	target_link_libraries(ExternalLibraries INTERFACE pthread)
+endif()
+
+# Link with the UUID library, which is different for each OS.
+if(UNIX)
+	if(APPLE)
+		find_library(UUID_LIB NAMES System PATHS /lib /usr/lib /usr/local/lib)
+		find_path(UUID_INCLUDE uuid/uuid.h /usr/local/include /usr/include)
+		target_link_libraries(ExternalLibraries INTERFACE "${UUID_LIB}")
+		target_include_directories(ExternalLibraries INTERFACE "${UUID_INCLUDE}")
+	elseif(ES_USE_SYSTEM_LIBRARIES)
+		find_library(UUID_LIB uuid)
+		target_link_libraries(ExternalLibraries INTERFACE "${UUID_LIB}")
+	else()
+		find_package(unofficial-libuuid CONFIG REQUIRED)
+		target_link_libraries(ExternalLibraries INTERFACE unofficial::UUID::uuid)
+	endif()
+endif()
+
+# Link with OpenGL or OpenGL ES.
+if(ES_GLES)
+	find_package(OpenGL REQUIRED OpenGL EGL)
+	target_link_libraries(ExternalLibraries INTERFACE OpenGL::OpenGL OpenGL::EGL)
+	target_compile_definitions(EndlessSkyLib PUBLIC ES_GLES)
+else()
+	find_package(OpenGL REQUIRED)
+	target_link_libraries(ExternalLibraries INTERFACE OpenGL::GL)
+
+	if(APPLE)
+		# Apple deprecated OpenGL in MacOS 10.14, but we don't care.
+		target_compile_definitions(EndlessSkyLib PUBLIC GL_SILENCE_DEPRECATION)
+	else()
+		# GLEW is only needed on Linux and Windows.
+		target_link_libraries(ExternalLibraries INTERFACE GLEW::GLEW)
+	endif()
+endif()
+
 # Setup for the testing frameworks.
 include(CTest)
 if(BUILD_TESTING)
@@ -152,25 +207,7 @@ else()
 endif()
 
 # Link with the library dependencies.
-target_link_libraries(EndlessSky PRIVATE EndlessSkyLib $<TARGET_NAME_IF_EXISTS:SDL2::SDL2main>)
-
-# Link with OpenGL or OpenGL ES.
-if(ES_GLES)
-	find_package(OpenGL REQUIRED OpenGL EGL)
-	target_link_libraries(EndlessSky PRIVATE OpenGL::OpenGL OpenGL::EGL)
-	target_compile_definitions(EndlessSkyLib PUBLIC ES_GLES)
-else()
-	find_package(OpenGL REQUIRED)
-	target_link_libraries(EndlessSky PRIVATE OpenGL::GL)
-
-	if(APPLE)
-		# Apple deprecated OpenGL in MacOS 10.14, but we don't care.
-		target_compile_definitions(EndlessSkyLib PUBLIC GL_SILENCE_DEPRECATION)
-	else()
-		# GLEW is only needed on Linux and Windows.
-		target_link_libraries(EndlessSky PRIVATE GLEW::GLEW)
-	endif()
-endif()
+target_link_libraries(EndlessSky PRIVATE ExternalLibraries $<TARGET_OBJECTS:EndlessSkyLib> $<TARGET_NAME_IF_EXISTS:SDL2::SDL2main>)
 
 # Copy the MinGW runtime DLLs if necessary.
 if(MINGW AND WIN32)

@@ -129,6 +129,8 @@
 		<Unit filename="source/Dictionary.h" />
 		<Unit filename="source/DistanceMap.cpp" />
 		<Unit filename="source/DistanceMap.h" />
+		<Unit filename="source/Distribution.cpp" />
+		<Unit filename="source/Distribution.h" />
 		<Unit filename="source/DrawList.cpp" />
 		<Unit filename="source/DrawList.h" />
 		<Unit filename="source/Effect.cpp" />
@@ -271,6 +273,8 @@
 		<Unit filename="source/PlayerInfo.h" />
 		<Unit filename="source/PlayerInfoPanel.cpp" />
 		<Unit filename="source/PlayerInfoPanel.h" />
+		<Unit filename="source/Plugins.cpp" />
+		<Unit filename="source/Plugins.h" />
 		<Unit filename="source/Point.cpp" />
 		<Unit filename="source/Point.h" />
 		<Unit filename="source/PointerShader.cpp" />
