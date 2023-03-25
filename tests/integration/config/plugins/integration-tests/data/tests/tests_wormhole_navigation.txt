@@ -44,7 +44,7 @@ test-data "Wormhole Navigation Save"
 				"gaslining" 1
 				"atmosphere scan" 100
 				"outfit scan power" 175
-				"outfit scan speed" 1
+				"outfit scan efficiency" 1
 				"tactical scan power" 350
 				"force protection" 1
 				"heat protection" 1.5
@@ -161,7 +161,7 @@ test-data "Ember Wastes Navigation Save"
 				"gaslining" 1
 				"atmosphere scan" 100
 				"outfit scan power" 175
-				"outfit scan speed" 1
+				"outfit scan efficiency" 1
 				"tactical scan power" 350
 				"force protection" 1
 				"heat protection" 1.5
