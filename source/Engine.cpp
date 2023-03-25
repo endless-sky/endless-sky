@@ -709,6 +709,21 @@ void Engine::Step(bool isActive)
 		// Have an alarm label flash up when enemy ships are in the system
 		if(alarmTime && step / 20 % 2 && Preferences::DisplayVisualAlert())
 			info.SetCondition("red alert");
+		// Display current flagship speed, potential acceleration, and potential turning
+		int flagshipSpeed = round(flagship->CurrentSpeed() * 60);
+		info.SetString("flagship speed", to_string(flagshipSpeed));
+		int flagshipAcceleration = flagship->TrueAcceleration() * 3600;
+		info.SetString("flagship acceleration", to_string(flagshipAcceleration));
+		int flagshipTurn = round(flagship->TrueTurnRate() * 60);
+		info.SetString("flagship turn", to_string(flagshipTurn));
+
+		// slow = (step / 20) % 2 ? round(100. * flagship->DisplaySlowing()) : slow;
+		// info.SetString("slow", to_string(slow) + "%");
+		// int solar = (player.TravelPlan().size());
+		// int solar = (flagship->DisplayRamScoop() * 100);
+		// info.SetString("solar", to_string(solar));
+		// info.SetString("incoming", to_string(flagship->CountTargeting()));
+		// Get the flagship's fuel capacity
 		double fuelCap = flagship->Attributes().Get("fuel capacity");
 		// If the flagship has a large amount of fuel, display a solid bar.
 		// Otherwise, display a segment for every 100 units of fuel.

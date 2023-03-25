@@ -575,6 +575,53 @@ interface "hud"
 		dimensions 0 -192
 		color "dim"
 		size 2
+	sprite "ui/tactical/velocity"
+		from -110 230
+		align top left
+	string "flagship speed"
+		from -90 237
+		color "medium"
+		align left
+	sprite "ui/tactical/acceleration"
+		from -110 250
+		align top left
+	string "flagship acceleration"
+		from -90 257
+		color "medium"
+		align left
+	sprite "ui/tactical/turn"
+		from -110 270
+		align top left
+	string "flagship turn"
+		from -90 277
+		color "medium"
+		align left
+	string "solar"
+		from -90 296
+		color "medium"
+		align right
+	string "incoming"
+		from -70 320
+		color "medium"
+		align right
+
+	bar "thrust"
+		from -110 460
+		dimensions 50 0
+		color "heat"
+		size 2
+	bar "turn"
+		from -110 476
+		dimensions 50 0
+		color "heat"
+		size 2
+	bar "lateralthrust"
+		from -110 492
+		dimensions 50 0
+		color "heat"
+		size 2
+
+
 
 	# Targets.
 	anchor top left
