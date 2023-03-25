@@ -112,18 +112,24 @@ mission "Deep Archaeology 3"
 		personality waiting
 		government "Deep Security"
 		ship "Raven (Afterburner)" "D.P.S. Wyrd"
+		on kill
+			set "dps wyrd dead"
 	
 	npc
 		personality waiting
 		system Aspidiske
 		government "Deep Security"
 		ship "Raven (Afterburner)" "D.P.S. Skuld"
+		on kill
+			set "dps skuld dead"
 	
 	npc
 		personality waiting
 		system Gomeisa
 		government "Deep Security"
 		ship "Raven (Afterburner)" "D.P.S. Verthandi"
+		on kill
+			set "dps verthandi dead"
 	
 	on complete
 		payment 200000
@@ -204,8 +210,20 @@ mission "Deep Archaeology 5"
 		personality heroic
 		government Deep
 		ship "Raven (Afterburner)" "D.P.S. Wyrd"
+		to spawn
+			not "dps wyrd dead"
+	npc 
+		personality heroic
+		government Deep
 		ship "Raven (Afterburner)" "D.P.S. Skuld"
+		to spawn
+			not "dps skuld dead"
+	npc
+		personality heroic
+		government Deep
 		ship "Raven (Afterburner)" "D.P.S. Verthandi"
+		to spawn
+			not "dps verthandi dead"
 	
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Albert, John, and the mapping equipment hasn't entered the system yet. Better depart and wait for it.`
