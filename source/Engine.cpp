@@ -854,8 +854,9 @@ void Engine::Step(bool isActive)
 						std::string message = "The " + target->Name() + " was detected as a \"" +
 									target->VariantName() + "\" model ship";
 
-						Messages::Add(message, Messages::Importance::High);
-						player.DiscoverShipModel(*target.get());
+						// if model was instered, prints the status msg
+						if(player.DiscoverShipModel(*target.get()))
+							Messages::Add(message, Messages::Importance::High);
 					}
 				}
 			}

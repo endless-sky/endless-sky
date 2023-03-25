@@ -2965,9 +2965,10 @@ bool PlayerInfo::ShipModelIsKnown(const Ship& ship) const
 
 
 
-void PlayerInfo::DiscoverShipModel(const Ship& ship)
+// this func returns true iff the item was inserted
+bool PlayerInfo::DiscoverShipModel(const Ship& ship)
 {
-	knownShipModels.insert(ship.VariantName());
+	return knownShipModels.insert(ship.VariantName()).second;
 }
 
 
