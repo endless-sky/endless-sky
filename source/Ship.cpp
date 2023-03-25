@@ -3299,6 +3299,25 @@ double Ship::Energy() const
 
 
 
+double Ship::DisplaySolar() const
+{
+	double scale = .2 + 1.8 / (.001 * position.Length() + 1);
+	double solarScaling = currentSystem->SolarPower() * scale;
+	double solarPower = solarScaling * attributes.Get("solar collection");
+	return solarPower;
+}
+
+
+
+double Ship::DisplayRamScoop() const
+{
+	double scale = .2 + 1.8 / (.001 * position.Length() + 1);
+	double ramScoop = currentSystem->SolarWind() * .03 * scale * (sqrt(attributes.Get("ramscoop")) + .05 * scale);
+	return ramScoop;
+}
+
+
+
 // Allow returning a heat value greater than 1 (i.e. conveying how overheated
 // this ship has become).
 double Ship::Heat() const

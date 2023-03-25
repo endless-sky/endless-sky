@@ -302,6 +302,8 @@ public:
 	double Hull() const;
 	double Fuel() const;
 	double Energy() const;
+	double DisplaySolar() const;
+	double DisplayRamScoop() const;
 	// A ship's heat is generally between 0 and 1, but if it receives
 	// heat damage the value can increase above 1.
 	double Heat() const;

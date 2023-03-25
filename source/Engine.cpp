@@ -720,8 +720,10 @@ void Engine::Step(bool isActive)
 		// slow = (step / 20) % 2 ? round(100. * flagship->DisplaySlowing()) : slow;
 		// info.SetString("slow", to_string(slow) + "%");
 		// int solar = (player.TravelPlan().size());
-		// int solar = (flagship->DisplayRamScoop() * 100);
-		// info.SetString("solar", to_string(solar));
+		int flagshipRamscoop = (flagship->DisplayRamScoop() * 100);
+		info.SetString("flagship ramscoop", to_string(flagshipRamscoop));
+		int flagshipSolar = (flagship->DisplaySolar() * 100);
+		info.SetString("flagship solar", to_string(flagshipSolar));
 		// info.SetString("incoming", to_string(flagship->CountTargeting()));
 		// Get the flagship's fuel capacity
 		double fuelCap = flagship->Attributes().Get("fuel capacity");

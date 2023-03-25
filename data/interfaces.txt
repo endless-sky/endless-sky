@@ -596,10 +596,20 @@ interface "hud"
 		from -90 277
 		color "medium"
 		align left
-	string "solar"
-		from -90 296
+	sprite "ui/tactical/turn"
+		from -110 290
+		align top left
+	string "flagship ramscoop"
+		from -90 297
 		color "medium"
-		align right
+		align left
+	sprite "ui/tactical/turn"
+		from -110 310
+		align top left
+	string "flagship solar"
+		from -90 317
+		color "medium"
+		align left
 	string "incoming"
 		from -70 320
 		color "medium"
