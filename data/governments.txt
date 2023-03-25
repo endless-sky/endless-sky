@@ -612,6 +612,9 @@ government "Hai (Friendly Unfettered)"
 		"Bounty Hunter that Attacks Hai" -.01
 		"Elenctic Commune" .01
 		"Wanderer" -1e5
+
+		"Hai (Unfettered)" 1e-5
+		"Hai (Unfettered Civilians)" .01
 	"bribe" .02
 	"fine" 0
 	"friendly hail" "friendly unfettered"
@@ -625,6 +628,9 @@ government "Hai (Unfettered Civilians)"
 	"display name" "Hai (Unfettered)"
 	
 	"player reputation" 10
+	"attitude toward"
+		"Hai (Unfettered)" 1e-5
+		"Hai (Friendly Unfettered)" 1e-5
 	"bribe" .02
 	"fine" 0
 	"friendly hail" "friendly unfettered"
