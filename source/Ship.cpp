@@ -2419,14 +2419,6 @@ void Ship::DoGeneration()
 
 	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
 
-	// Whenever not actively scanning, the amount of
-	// scan information the ship has "decays" over time.
-	// Only apply the decay if not already done scanning the target.
-	if(cargoScan < SCAN_TIME)
-		cargoScan = max(0., cargoScan - 1.);
-	if(outfitScan < SCAN_TIME)
-		outfitScan = max(0., outfitScan - 1.);
-
 	// Update ship supply levels.
 	if(isDisabled)
 		PauseAnimation();
@@ -2700,9 +2692,8 @@ int Ship::Scan(const PlayerInfo &player)
 			// "1 / depth"
 			// This makes scan time proportional to cargo or outfit space.
 
-			// To make up for previous scan delay, also add 1.
 			elapsed += ((scannerRange - .5 * distanceSquared) * speed)
-				/ (scannerRange * (sqrt(speed) + distanceSquared) * depth) + 1;
+				/ (scannerRange * (sqrt(speed) + distanceSquared) * depth);
 
 			if(elapsed >= SCAN_TIME)
 				result |= event;
