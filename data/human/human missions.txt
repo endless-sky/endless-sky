@@ -5439,7 +5439,7 @@ mission "Quicksilver Mixup 0"
 	to offer
 		random < 25
 	source
-		near Algol 3
+		near Algol 1 3
 	destination Silver
 	on offer
 		conversation
