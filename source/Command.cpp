@@ -78,7 +78,7 @@ const Command Command::STOP(ONE << 28, "");
 const Command Command::SHIFT(ONE << 29, "");
 const Command Command::MOUSE_TURNING_HOLD(ONE << 30, "Mouse turning (hold)");
 const Command Command::MOUSE_TURNING_TOGGLE(ONE << 31, "Mouse turning (toggle)");
-const Command Command::AUTOSTEER(ONE <<32, "Auto steer / face target");
+const Command Command::AUTOSTEER(ONE << 32, "Auto steer / face target");
 
 
 
