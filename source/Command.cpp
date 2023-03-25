@@ -38,13 +38,14 @@ namespace {
 	// Keep track of any keycodes that are mapped to multiple commands, in order
 	// to display a warning to the player.
 	map<int, int> keycodeCount;
+	// Need a uint64_t 1 to generate Commands.
+	const uint64_t ONE = 1;
 }
 
 
 
 // Command enumeration, including the descriptive strings that are used for the
 // commands both in the preferences panel and in the saved key settings.
-const uint64_t ONE = 1;
 const Command Command::NONE(0, "");
 const Command Command::MENU(ONE << 0, "Show main menu");
 const Command Command::FORWARD(ONE << 1, "Forward thrust");
