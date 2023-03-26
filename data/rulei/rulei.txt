@@ -20,9 +20,9 @@ mission "Relic of the Past"
 		government "Rulei"
 		personality heroic vindictive staying mute unconstrained frugal
 		system "Kanguwa"
-		ship "vyu-Ira" "Solemnity"
+		ship "vyu-Ir" "Solemnity"
 
-mission "Ira Contact"
+mission "First Contact: Rulei"
 	invisible
 	landing
 	to complete
@@ -63,8 +63,8 @@ mission "Ira Contact"
 			`	Taking another look at the vessel, it seems to have some sort of advanced origin. Eerie star-like patterns flow on its surface, and it doesn't visibly have any standard means of propulsion. At the rear end is some type of floating ring of objects that rotate in a peculiar manner.`
 			`	The planets in this system seem to have an abnormal appearance similar to that of the starship, but for some reason even looking at them gives you a headache. Something unusual must have happened here a long time ago.`
 				decline
-				
-				
+
+
 mission "Rulei Planet"
 	invisible
 	landing

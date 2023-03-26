@@ -47,7 +47,7 @@ outfit "Fate Sealer Activated"
 		"acceleration" 0.01
 		"trigger radius" 50
 		"blast radius" 100
-		"shield damage" 700
+		"shield damage" 900
 		"hull damage" 300
 		"hit force" -800
 		"slowing damage" 20
@@ -89,7 +89,7 @@ outfit "Fate Divider Activated"
 		"acceleration" 0.01
 		"trigger radius" 50
 		"blast radius" 100
-		"shield damage" 700
+		"shield damage" 900
 		"hull damage" 300
 		"hit force" 800
 		"discharge damage" 45
@@ -129,6 +129,7 @@ outfit "Abyssal Composer"
 		"hit effect" "composed" 2
 		"hit effect" "drained"
 		"inaccuracy" 45
+			"uniform"
 		"velocity" 660
 		"lifetime" 1
 		"range override" 600
@@ -146,7 +147,7 @@ outfit "Abyssal Composer"
 		"energy damage" 100
 		"piercing" 0.3
 		"safe"
-	description `This is an extremely dangerous weapon that uses graviton technology to pull a target's mass and energy apart, and then feeds the materials to the firing ship's systems.`
+	description `This is an extremely dangerous device that uses graviton technology to pull a target's mass and energy apart, and then feeds the materials to the firing ship's systems.`
 
 effect "composed"
 	sprite "effect/composed"
