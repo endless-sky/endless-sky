@@ -1563,7 +1563,6 @@ mission "Strider notification"
 mission "Hai Translator Ban Timer"
 	invisible
 	landing
-	source
 	to offer
 		has "event: hai-human resolution announced"
 		has "Wanderers Conversation: offered"
@@ -1582,46 +1581,52 @@ mission "Hai Translator Ban Lifted"
 		government Hai
 	to offer
 		has "event: Hai Translator Ban Lifted"
+		or
+			not "Hai Translator Offers"
+			random < 20
 	on offer
 		conversation
-			`After landing, you see several humans and Hai talking to one another, each in their native language, but they all seem to understand one another. Walking around the spaceport for a while, this seems to be ubiquitous: all humans can understand the language of the Hai. A Hai in an official-looking uniform comes up to you.`
-			`	"Excuse me, would you like a Hai-human translator?"`
-			label decision
+			action
+				"Hai Translator Offers" ++
+			`Nearby, you see a store with a big sign, "Hai Speaking Devices: New Reduced Price: 1200 credits!" A Hai saleswoman under the sign is holding a strange orb and waving at you. Do you want to check it out?`
 			choice
-				`	"Why are these suddenly available now?"`
-					goto why
+				`	(Yes.)`
+				`	(No.)`
+					defer
+				`	(Never.)`
+					decline
 					to display
-						not "Hai Translator Ban Lifted: why?"
-				`	"How did humans never notice this?"`
-					goto how
-					to display
-						not "Hai Translator Ban Lifted: how?"
-						has "Hai Translator Ban Lifted: why?"
+						"Hai Translator Offers" > 1
+			`	The saleswoman says something in Hai you don't understand, and holds up to you a small, spherical device, with speakers and microphones mounted on it, as well as what look like camera lenses.`
+			`	She presses a button on the device, and it translates, speaking in her voice. "This device is [programmed, trained] with the human and Hai languages," it says. "It is not always possible to [translate, interpret] perfectly between our languages, but it will try to give you a sense of the [range of meanings, subtext] in what is being said."`
+			`	For a few minutes, she demonstrates how the machine works, holding a conversation with you in the Hai language. The machine automatically translates for you and then translates your responses back into her language. It apparently uses its cameras to track who you are speaking to or listening to. It's an impressive piece of technology, and easy enough to use.`
+			`	"Only 1200 credits," she says. "A good [bargain, investment], yes?"`
+			label maybe
+			choice
 				`	"I already have one."`
 					decline
 					to display
 						has "language: Hai"
-				`	"Yes, that would be great."`
+				`	"Yes, I'll take one."`
 					goto yup
 					to display
 						not "language: Hai"
+						credits >= 1200
+				`	"Maybe later."`
+					defer
+				`	"Why are these suddenly available now?"`
+					to display
+						not "Hai Translator Ban Lifted: why?"
 				`	"Certainly not. I prefer the mystery of not knowing what the Hai are saying."`
 					decline
-			label why
 			action
 				set "Hai Translator Ban Lifted: why?"
-			`	"They were illegal until now. Humans and Hai created translation devices weeks after first contact; it is an ancient technology to both races. Our Elders felt a language barrier would facilitate Hai secrecy, and human authorities agreed, so they banned the devices.`
-			`	"Very few Hai actually know the human language. We've been using these devices." The official lifts fur along the side of their head, and you can see a device attached to their ear, the front of their neck, and the back of their head. "The ones we wear only work for Hai, but we have ones designed for humans`
-			`	"Times have changed, and we must shatter the language barrier to build friendships. Do you want a translator?"`
-				goto decision
-			label how
-			action
-				set "Hai Translator Ban Lifted: how?"
-			`	The official smiles. "Your species is resilient, forgiving, and tolerant, but not observant. How did humans never notice the Hai, just six jumps away, for a century? How did the Pug hide right next to you? We have high hopes for your skills at peacemaking and building friendships, and those are the most important traits of a neighbor.`
-			`	"Do you want a translator?"`
-				goto decision
+			`	"Until our [awakening, transformation], for Hai, [security, safety] could only be [earned, gleaned] through secrecy. When we first met your species, you had automated [translation, speaking] technology, as did we. If that technology was [generally available, pervasive], there would be much room for [unwanted conflict, misunderstandings], should a human venture into [unfamiliar, unwelcoming] areas. In their great [wisdom, dormancy], the Elders [banned, forbade] humans to use that technology on our language."`
+			`	"Times have [advanced, improved], and so have the Elders," she smiles. You notice some Teeneep merchandise behind her, including an expensive autographed sword. "The [dictate, law] is gone, and it costs only 1200 credits to [understand, befriend] any Hai. How about it?"`
+				goto maybe
 			label yup
 			action
 				set "language: Hai"
-			`	The official hands you a device that you strap around your head and connect to your ear. The interface is quite intuitive, and it quickly translates between human and Hai languages, both text and speech. There's a standard interface port; when you connect to your datapad, it downloads a translation program. When you look in a mirror, you notice the device is difficult to see, possibly due to a holographic camouflage.`
+				payment -1200
+			`	"Here is your speaking machine." The saleswoman swaps the device for your credit chips. As you depart, she waves over another customer.`
 				decline
