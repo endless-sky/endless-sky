@@ -290,41 +290,43 @@ void Outfit::Load(const DataNode &node)
 			// Jump range must be positive.
 			attributes[child.Token(0)] = max(0., child.Value(1));
 		}
-		else if(child.Token(0) == "production")
+		else if(child.Token(0) == "factory")
 		{
-			productions.emplace_back();
-			auto &production = productions.back();
-
-			auto ParseChild = [] (const DataNode &grand, std::map<const Outfit *, int> &map, bool &location)
-			{
-				if(grand.Token(1) == "outfit")
-					location = false;
-				else if(grand.Token(1) != "cargo")
-					grand.PrintTrace("Unrecognized location \"" + grand.Token(1) + "\". Defaulting to \"cargo\":");
-
-				for(const auto &outfit : grand)
-					map[GameData::Outfits().Get(outfit.Token(0))] += (outfit.Size() >= 2 ? outfit.Value(1) : 1.);
-			};
+			Outfit::Factory factory;
 
 			for(const auto &grand : child)
 			{
 				if(grand.Size() >= 2)
 					if(grand.Token(0) == "input")
-						ParseChild(grand, production.input, production.inputFromCargo);
+					{
+						Factory::Item it;
+						it.outfit = GameData::Outfits().Get(grand.Token(2));
+						it.count = grand.Value(grand.Value(3));
+						factory.input.push_back(it);
+					}
 					else if(grand.Token(0) == "output")
-						ParseChild(grand, production.output, production.outputInCargo);
-					else if(grand.Token(0) == "speed")
-						production.speed = static_cast<int>(grand.Value(1));
-					else if(grand.Token(0) == "shields")
-						production.shield = static_cast<double>(grand.Value(1));
+					{
+						Factory::Item it;
+						it.outfit = GameData::Outfits().Get(grand.Token(2));
+						it.count = grand.Value(static_cast<int>(grand.Value(3)));
+						factory.output.push_back(it);
+					}
+					else if(grand.Token(0) == "interval")
+						factory.interval = static_cast<int>(grand.Value(1));
+					else if(grand.Token(0) == "period")
+						factory.period = static_cast<int>(grand.Value(1));
+					else if(grand.Token(0) == "repeat")
+						factory.repeat = static_cast<int>(grand.Value(1));
+					else if(grand.Token(0) == "shield")
+						factory.shield = grand.Value(1);
 					else if (grand.Token(0) == "hull")
-						production.hull = static_cast<double>(grand.Value(1));
-					else if (grand.Token(0) == "energy consumption")
-						production.energy = static_cast<double>(grand.Value(1));
-					else if (grand.Token(0) == "fuel consumption")
-						production.fuel = static_cast<double>(grand.Value(1));
-					else if (grand.Token(0) == "heat production")
-						production.heat = static_cast<double>(grand.Value(1));
+						factory.hull = grand.Value(1);
+					else if (grand.Token(0) == "energy")
+						factory.energy = grand.Value(1);
+					else if (grand.Token(0) == "fuel")
+						factory.fuel = grand.Value(1);
+					else if (grand.Token(0) == "heat")
+						factory.heat = grand.Value(1);
 					else
 						grand.PrintTrace("Skipping unrecognized attribute:");
 				else

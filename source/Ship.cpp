@@ -922,28 +922,27 @@ void Ship::Save(DataWriter &out) const
 			for(const auto &it : baseAttributes.Attributes())
 				if(it.second)
 					out.Write(it.first, it.second);
-			for(const auto &it : baseAttributes.Productions())
+			// TODO: Finish output
+			for(const auto &it : baseAttributes.Factories())
 			{
-				out.Write("production");
+				out.Write("factory");
 				out.BeginChild();
 				{
-					out.Write("input", it.inputFromCargo ? "cargo" : "outfit");
-					out.BeginChild();
 					for(const auto &input : it.input)
-						if(input.second == 1)
-							out.Write(input.first->TrueName());
-						else if(input.second > 1)
-							out.Write(input.first->TrueName(), input.second);
-					out.EndChild();
+					{
+						if(input.count == 1)
+							out.Write("input", input.asCargo ? "cargo" : "outfit", input.outfit->TrueName());
+						else if(input.count > 1)
+							out.Write("input", input.asCargo ? "cargo" : "outfit", input.outfit->TrueName(), input.count);
+					}
 
-					out.Write("output", it.outputInCargo ? "cargo" : "outfit");
-					out.BeginChild();
-					for(const auto &output : it.output)
-						if(output.second == 1)
-							out.Write(output.first->TrueName());
-						else if(output.second > 1)
-							out.Write(output.first->TrueName(), output.second);
-					out.EndChild();
+					for(const auto &input : it.input)
+					{
+						if(input.count == 1)
+							out.Write("output", input.asCargo ? "cargo" : "outfit", input.outfit->TrueName());
+						else if(input.count > 1)
+							out.Write("output", input.asCargo ? "cargo" : "outfit", input.outfit->TrueName(), input.count);
+					}
 				}
 				out.EndChild();
 			}
@@ -2224,20 +2223,21 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int
 	// Clear your target if it is destroyed. This is only important for NPCs,
 	// because ordinary ships cease to exist once they are destroyed.
 	target = GetTargetShip();
-	if(target && target->IsDestroyed() && target->explosionCount >= target->explosionTotal)
+	if(target && target->IsDestroyed() && target->explosionCount >= target->explosionTotal) 
 		targetShip.reset();
 
 	// If this ship isn't disabled then it can potentially produce outfits.
 	if(!isDisabled)
 	{
 		// Make sure there is enough space for every factory this ship has.
-		productionSteps.resize(attributes.Productions().size());
-		for(size_t i = 0; i < attributes.Productions().size(); ++i)
+		productionSteps.resize(attributes.Factories().size());
+		for(size_t i = 0; i < attributes.Factories().size(); ++i)
 		{
-			const auto &production = attributes.Productions()[i];
+			const auto &production = attributes.Factories()[i];
 
 			// First check if the factory is ready to produce.
-			if(step - productionSteps[i] < production.speed)
+			// TODO: Add period checking
+			if((step - productionSteps[i] < production.interval))
 				continue;
 
 			// Next check if this ship has enough energy/fuel/heat etc.
@@ -2261,18 +2261,13 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int
 				|| attributes.Get("fuel capacity") - fuel + epsilon < -production.fuel)
 				continue;
 
-			// Next check if this ship has the required input outfits.
-			// If it doesn't, "continue" to the next factory.
-			const auto &outfitsToCheck
-				= (production.inputFromCargo ? cargo.Outfits() : outfits);
-
 			for(const auto &input : production.input)
 			{
-				auto it = outfitsToCheck.find(input.first);
+				Outfit *it = input.asCargo ? cargo.Outfits().find(input.outfit) : outfits.find(input.outfit);
 				// If the cargo hold either doesn't have or doesn't have
 				// enough of the given outfit requirement then abort.
 				if(it == outfitsToCheck.end()
-						|| it->second < input.second)
+						|| it->second < input.count)
 					continue;
 			}
 
@@ -2281,30 +2276,30 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int
 			// inputs freeing up space for outputs.
 			for(const auto &it : production.input)
 				production.inputFromCargo
-					? static_cast<void>(cargo.Remove(it.first, it.second))
-					: AddOutfit(it.first, -it.second);
+					? static_cast<void>(cargo.Remove(it.outfit, it.count))
+					: AddOutfit(it.outfit, -it.count);
 
 			// Check if there is even enough space for the output.
 			if(production.outputInCargo)
 			{
 				double cargoUsage = 0.;
 				for(const auto &output : production.output)
-					cargoUsage += output.first->Mass() * output.second;
+					cargoUsage += output.outfit->Mass() * output.count;
 
 				if(cargo.Free() < cargoUsage)
 				{
 					// Re-add the inputs because we don't have room for the outputs.
 					for(const auto &it : production.input)
 						production.inputFromCargo
-							? static_cast<void>(cargo.Add(it.first, it.second))
-							: AddOutfit(it.first, it.second);
+							? static_cast<void>(cargo.Add(it.outfit, it.count))
+							: AddOutfit(it.outfit, it.count);
 					continue;
 				}
 			}
 			else
 			{
 				for(const auto &output : production.output)
-					if(!attributes.CanAdd(*output.first, output.second))
+					if(!attributes.CanAdd(*output.outfit, output.count))
 						continue;
 			}
 
@@ -2318,8 +2313,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int
 
 			for(const auto &it : production.output)
 				production.outputInCargo
-					? static_cast<void>(cargo.Add(it.first, it.second))
-					: AddOutfit(it.first, it.second);
+					? static_cast<void>(cargo.Add(it.outfit, it.count))
+					: AddOutfit(it.outfit, it.count);
 
 			productionSteps[i] = step;
 		}

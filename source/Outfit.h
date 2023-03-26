@@ -46,19 +46,27 @@ public:
 
 
 public:
-	// A class that represents the production of outfits, given other outfits.
-	class Production {
+	// A class that represents an outfir that makes other outfits.
+	class Factory {
 	public:
-		std::map<const Outfit *, int> input;
-		std::map<const Outfit *, int> output;
+		class Item {
+		public:
+			const Outfit *outfit = nullptr;
+			int count = 1;
+			bool asCargo = false;
+		};
+
+	public:
+		std::vector<Item> input;
+		std::vector<Item> output;
 		double shield;
 		double hull;
 		double energy;
 		double fuel;
 		double heat;
-		bool inputFromCargo = true;
-		bool outputInCargo = true;
-		int speed = 60;
+		int interval = 60;
+		int period = -1;
+		int repeat = 1;
 	};
 
 
@@ -85,7 +93,7 @@ public:
 	double Get(const std::string &attribute) const;
 	const Dictionary &Attributes() const;
 
-	const std::vector<Production> &Productions() const;
+	const std::vector<Factory> &Factories() const;
 
 	// Determine whether the given number of instances of the given outfit can
 	// be added to a ship with the attributes represented by this instance. If
@@ -132,7 +140,7 @@ private:
 	// Licenses needed to purchase this item.
 	std::vector<std::string> licenses;
 
-	std::vector<Production> productions;
+	std::vector<Factory> factories;
 
 	Dictionary attributes;
 
