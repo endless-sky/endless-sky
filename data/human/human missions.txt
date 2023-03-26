@@ -5428,6 +5428,7 @@ mission "Deal Change 2"
 			`	After a few minutes, the pirates finish unloading the cargo, and Ci steps forward, holding out a credit chip. "<payment>, for making the right choice." Ci and the pirates return to their ships as you take off and head towards the main spaceport of <planet>.`
 
 
+
 mission "Quicksilver Mixup 0"
 	minor
 	name "Package to Silver"
