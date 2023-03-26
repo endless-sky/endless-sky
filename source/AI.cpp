@@ -1169,7 +1169,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	shared_ptr<Ship> target;
 	const Government *gov = ship.GetGovernment();
 	if(!gov || ship.GetPersonality().IsPacifist())
-		return target;
+		return FindNonHostileTarget(ship);
 
 	bool isYours = ship.IsYours();
 	if(isYours)
@@ -1189,7 +1189,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 			maxRange = max(maxRange, weapon.GetOutfit()->Range());
 		}
 	if(!maxRange)
-		return target;
+		return FindNonHostileTarget(ship);
 
 	const Personality &person = ship.GetPersonality();
 	shared_ptr<Ship> oldTarget = ship.GetTargetShip();
@@ -1289,13 +1289,45 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	// With no hostile targets, NPCs with enforcement authority (and any
 	// mission NPCs) should consider friendly targets for surveillance.
 	if(!isYours && !target && (ship.IsSpecial() || scanPermissions.at(gov)))
+		target = FindNonHostileTarget(ship);
+
+	// Vindictive personalities without in-range hostile targets keep firing at an old
+	// target (instead of perhaps moving about and finding one that is still alive).
+	if(!target && person.IsVindictive())
 	{
-		bool cargoScan = ship.Attributes().Get("cargo scan power");
-		bool outfitScan = ship.Attributes().Get("outfit scan power");
-		if(cargoScan || outfitScan)
+		target = ship.GetTargetShip();
+		if(target && (target->Cloaking() == 1. || target->GetSystem() != ship.GetSystem()))
+			target.reset();
+	}
+
+	return target;
+}
+
+
+
+shared_ptr<Ship> AI::FindNonHostileTarget(const Ship &ship) const
+{
+	shared_ptr<Ship> target;
+	bool cargoScan = ship.Attributes().Get("cargo scan power");
+	bool outfitScan = ship.Attributes().Get("outfit scan power");
+	if(cargoScan || outfitScan)
+	{
+		const auto allies = GetShipsList(ship, false);
+		// If this ship already has a target, and is in the process of scanning it, prioritise that.
+		shared_ptr<Ship> oldTarget = ship.GetTargetShip();
+		if(oldTarget && !oldTarget->IsTargetable())
+			oldTarget.reset();
+		if(oldTarget)
 		{
-			closest = numeric_limits<double>::infinity();
-			const auto allies = GetShipsList(ship, false);
+			bool cargoScanInProgress = ship.CargoScanFraction() > 0. && ship.CargoScanFraction() < 1.;
+			bool outfitScanInProgress = ship.OutfitScanFraction() > 0. && ship.OutfitScanFraction() < 1.;
+			if(cargoScanInProgress || outfitScanInProgress)
+				target = std::move(oldTarget);
+		}
+		else
+		{
+			double closest = numeric_limits<double>::infinity();
+			const Government *gov = ship.GetGovernment();
 			for(const auto &it : allies)
 				if(it->GetGovernment() != gov)
 				{
@@ -1305,7 +1337,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 							&& (!outfitScan || Has(gov, ptr, ShipEvent::SCAN_OUTFITS)))
 						continue;
 
-					double range = it->Position().Distance(ship.Position());
+					double range = it->Position().DistanceSquared(ship.Position());
 					if(range < closest)
 					{
 						closest = range;
@@ -1313,15 +1345,6 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 					}
 				}
 		}
-	}
-
-	// Vindictive personalities without in-range hostile targets keep firing at an old
-	// target (instead of perhaps moving about and finding one that is still alive).
-	if(!target && person.IsVindictive())
-	{
-		target = ship.GetTargetShip();
-		if(target && (target->Cloaking() == 1. || target->GetSystem() != ship.GetSystem()))
-			target.reset();
 	}
 
 	return target;
