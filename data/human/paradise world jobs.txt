@@ -509,7 +509,7 @@ mission "Paradise Job: Pirate Retirees (Illegal)"
 	description `This coterie of <bunks> wealthy "retirees" is willing to pay <payment> for stylish, no-questions-asked transport to <destination>, along with <tons> of their most treasured possessions.`
 	passengers 4 10 .6
 	cargo "treasured possessions" 4 10 .2
-	illegal 15000 `In addition to the fine, the "retirees" and their possessions are removed from your ship.`
+	illegal 15000 `After scanning your ship, law enforcement notifies you. Apparently the "retirees" you've been carting around are secretly wanted individuals. After taking boarding your ship, they arrest the so-called retirees and search through their "treasured posessions," which are innocent enough, besides being obtained illegally. In the end, they confiscate the posessions and take away the criminals, leaving you with a small fine and a black mark on your record that isn't going to help your reputation.`
 	stealth
 	to offer
 		random < 5
@@ -535,7 +535,7 @@ mission "Paradise Job: Pirate Retirees (Legal)"
 	repeat
 	description `This coterie of <bunks> wealthy "retirees" is willing to pay <payment> for stylish, no-questions-asked transport to <destination>, along with <tons> of their most treasured possessions.`
 	passengers 4 10 .6
-	stealth
+	cargo "treasured possessions" 4 10 .2
 	to offer
 		random < 5
 		"passenger space" > 15
