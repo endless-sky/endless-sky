@@ -377,9 +377,9 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 		{
 			// Player hit 'i' or 'c' when they should've hit 'b'.
 			if(playerShip)
-				return "You'll need to buy this outfit to install it. (using 'b')";
+				return "You'll need to buy this outfit to install it (using \"b\").";
 			else
-				return "You'll need to buy this outfit to put it in your cargo hold. (using 'b')";
+				return "You'll need to buy this outfit to put it in your cargo hold (using \"b\").";
 		}
 		else
 		{
