@@ -1,0 +1,11 @@
+outfit TempFac
+	category "Unique"
+	thumbnail "outfit/unknown"
+	description "What in the..."
+	production
+		input outfit
+			"Javelin" 1
+		output outfit
+			"Sidewinder Missile" 1
+		speed 30
+		"energy consumption" 200

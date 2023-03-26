@@ -217,6 +217,7 @@ outfitter "Ammo North"
 	"Torpedo"
 	"Sidewinder Missile"
 	"Local Map"
+	"TempFac"
 
 outfitter "Ammo South"
 	"Meteor Missile"

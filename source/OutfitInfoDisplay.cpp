@@ -424,6 +424,62 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		hasNormalAttributes = true;
 	}
 
+	if(!outfit.Productions().empty())
+	{
+		attributeLabels.emplace_back("Produces");
+		attributeValues.emplace_back("nothing");
+
+		for(const auto &it : outfit.Productions())
+		{
+			bool first = true;
+			for(const auto &input : it.input)
+			{
+				attributeLabels.emplace_back(first ? "Consumes" : "");
+				int count = input.second;
+				string name = (count != 1) ? input.first->PluralName() : input.first->DisplayName();
+				string countString = to_string(count);
+				attributeValues.emplace_back(countString + " " + name);
+			}
+			for(const auto &output : it.output)
+			{
+				attributeLabels.emplace_back(first ? "Produces" : "");
+				int count = output.second;
+				string name = (count != 1) ? output.first->PluralName() : output.first->DisplayName();
+				string countString = to_string(count);
+				attributeValues.emplace_back(countString + " " + name);
+			}
+			if(it.energy)
+			{
+				attributeLabels.emplace_back("Energy Cost");
+				attributeValues.emplace_back(Format::Number(it.energy));
+			}
+			if(it.fuel)
+			{
+				attributeLabels.emplace_back("Fuel Cost");
+				attributeValues.emplace_back(Format::Number(it.fuel));
+			}
+			if(it.heat)
+			{
+				attributeLabels.emplace_back("Heat Cost");
+				attributeValues.emplace_back(Format::Number(it.heat));
+			}
+			if(it.hull)
+			{
+				attributeLabels.emplace_back("Hull Cost");
+				attributeValues.emplace_back(Format::Number(it.energy));
+			}
+			if(it.shield)
+			{
+				attributeLabels.emplace_back("Shield Cost");
+				attributeValues.emplace_back(Format::Number(it.fuel));
+			}
+			attributeLabels.emplace_back("Interval");
+			attributeValues.emplace_back(Format::Number(it.speed / 60.) + "s");
+		}
+
+		hasNormalAttributes = true;
+	}
+
 	if(!outfit.IsWeapon())
 		return;
 

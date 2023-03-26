@@ -931,18 +931,18 @@ void Ship::Save(DataWriter &out) const
 					out.BeginChild();
 					for(const auto &input : it.input)
 						if(input.second == 1)
-							out.Write(input.first->Name());
+							out.Write(input.first->TrueName());
 						else if(input.second > 1)
-							out.Write(input.first->Name(), input.second);
+							out.Write(input.first->TrueName(), input.second);
 					out.EndChild();
 
 					out.Write("output", it.outputInCargo ? "cargo" : "outfit");
 					out.BeginChild();
 					for(const auto &output : it.output)
 						if(output.second == 1)
-							out.Write(output.first->Name());
+							out.Write(output.first->TrueName());
 						else if(output.second > 1)
-							out.Write(output.first->Name(), output.second);
+							out.Write(output.first->TrueName(), output.second);
 					out.EndChild();
 				}
 				out.EndChild();
@@ -2247,14 +2247,18 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int
 				|| fuel < production.fuel
 				|| heat < -production.heat)
 				continue;
+
 			// Also do not produce if this ship doesn't have the capacities
 			// to accept all of the energy products.
 			// TODO: give warning if any of these capacities are less than the productions
 			// because then this outfit would never get the chance to produce!
-			if(attributes.Get("shields") - shields < -production.shield
-				|| attributes.Get("hull") - hull < -production.hull
-				|| attributes.Get("energy capacity") - energy < -production.energy
-				|| attributes.Get("fuel capacity") - fuel < -production.fuel)
+
+			// Values can go above the capacity and make the value negative, so just add a small number to it.
+			const static double epsilon = 0.5;
+			if(attributes.Get("shields") - shields + epsilon < -production.shield
+				|| attributes.Get("hull") - hull + epsilon < -production.hull
+				|| attributes.Get("energy capacity") - energy + epsilon < -production.energy
+				|| attributes.Get("fuel capacity") - fuel + epsilon < -production.fuel)
 				continue;
 
 			// Next check if this ship has the required input outfits.
