@@ -266,7 +266,7 @@ mission "Quarg Ships Atrocity"
 	landing
 	invisible
 	source
-		government "Quarg"
+		attributes quarg
 	to offer
 		or
 			has "ship model: Quarg Skylark"
