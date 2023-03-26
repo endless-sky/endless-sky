@@ -5574,6 +5574,10 @@ mission "Argosy Hijacking"
 		near "Gienah" 3
 	to offer
 		has "event: argosy hijacking trigger"
+	substitutions
+		"<argosy hijacking variable>" "destroy"
+		"<argosy hijacking variable>" "board"
+			has "boarded hijacked argosy"
 	on offer
 		conversation
 			`You're signing the standard Syndicate landing papers with an officer on <origin>. "Everything seems to be in order. And of course, we'll have your ship refueled promptly. Have a good day, Captain <last>." He nods his head at you and starts to move off towards the next ship.`
@@ -5588,7 +5592,7 @@ mission "Argosy Hijacking"
 				goto hijack
 			
 			label ignore
-			`	Figuring it's nothing, you turn back towards the <ship> only to hear a deafening blare of warning sirens through <origin>'s spaceport. Looking around instinctively, you notice from the corner of your eye that the <npc>, that <npc model> on the landing pad next to you, jolts up with its loading ramp still extended.`
+			`	You turn back towards the <ship> only to hear a deafening blare of warning sounds through <origin>'s spaceport. Looking around instinctively, you notice from the corner of your eye that the <npc>, that <npc model> on the landing pad next to you, jolts up with its loading ramp still extended.`
 
 			label hijack
 			`	"Hey, what's going on here?" the officer tries to shout over the noise of the sirens and the repulsors, but the rogue <npc model> veers rapidly and uncertainly towards his direction and the <ship>. He can barely jump down for cover before the ship clips a stack of cargo crates, sending them flying into the refueling platform. With its repulsors at full power, it narrowly avoids colliding with the <ship> and flees away into the sky.`
@@ -5597,8 +5601,8 @@ mission "Argosy Hijacking"
 				`	"I'll do it!"`
 				`	(Let Syndicated Security deal with it.)`
 					goto securityjob
-			`	The captain turns towards you. "Thank you, Captain! Don't destroy the <npc>, I'm already late for my bloody contract. Agh, this one doesn't help at all," he mutters to himself.`
-			`	The officer looks back at you, having dusted himself off and regained his senses. "Yes, go and deal with his ship now. We'll have Syndicated Security ships come after you to arrest the hijackers and tug it down. Go!"`
+			`	The captain of the stolen <npc model> turns towards you. "Thank you, Captain! Don't destroy the <npc>, I'm already late for my bloody contract. Agh, this doesn't help at all," he mutters to himself.`
+			`	The officer looks back at you, having dusted himself off and regained his senses. "Yes, go and deal with his ship now. Don't board it, we'll have Syndicated Security ships come after you to board the hijacked ship and tug it down. Go!"`
 				launch
 			
 			label securityjob
@@ -5610,22 +5614,22 @@ mission "Argosy Hijacking"
 			confusion 40
 		government "Bounty (Disguised)"
 		ship "Argosy (Blaster)" "Moonshake Express"
-		dialog `You've disabled the <npc>. Syndicated Security will now deal with the hijackers, but you should go back and report to the captain whose ship was hijacked.`
+		dialog `The <npc> has been disabled. Syndicated Security will now deal with the hijackers, but you should go back and report to the captain whose ship was hijacked.`
+		on board
+			set "boarded hijacked argosy"
+			dialog `You have failed this mission because you boarded the ship, against the orders of the Syndicated Security officer. The captain whose ship was hijacked won't be impressed.`
+			fail
 
 	on fail
 		conversation
 			`When you land, the captain of the <npc> comes up to you, his face rather red.`
-			`	He grabs your shoulders and shakes you hard, shouting, "Didn't I tell you to not destroy my ship? Do you know how many credits I've just lost because of you?"`
+			`	He grabs your shoulders and shakes you hard, shouting, "Didn't I tell you not to <argosy hijacking variable> my ship? Do you know how many credits I've just lost because of you?"`
 			choice
 				`	"I'm sorry, I was just trying to help!"`
-					goto help
 				`	"I'm sure whatever you lost wasn't worth all that much."`
 					goto worthless
-				`	"Well, I hope you had insurance on that ship, at least."`
-					goto insurance
-			label help
 			`	He stops shaking you for a moment to say, "Well, you shouldn't have blown up my <npc model> while you were trying to help, weren't you? Fat lot of help that was, even if you tried to do the right thing. Oh, well..."`
-				goto end
+			`	He lets you go with a push and turns around to walk off towards the direction of the bar, leaving you to contemplate your actions.`
 
 			label worthless
 			`	He looks at you incredulously, scrunching up his face. "Not--not that much? Is that what you just said?" He pauses for a moment to look at the wall above you, looking lost, then he stares you down again with even more intensity. "That was my life's work up there, an <npc model> that had served me for 14 years, and you have the audacity to say it was all for nothing?!"`
@@ -5633,12 +5637,6 @@ mission "Argosy Hijacking"
 				`	"Well, yeah."`
 				`	"No, that's not what I meant."`
 			`	He scoffs at you, and lets you go with a rough push. "I don't need your explanation, I don't think you could give me one. I just can't understand how you can walk away feeling alright that you've set back one man's life so much."`
-				goto end
-			
-			label insurance
-			`	He looks off to his left for just a moment with a look of loss in his eyes, then lets you go with a rough push. "Mmm, no, like a cocksure bastard I sure didn't. Ah, now that one isn't your fault, but if you had just taken your finger off the trigger for a few seconds less, I wouldn't be in this position now, would I? Bastards, you and the hijackers..."`
-
-			label end
 			`	Suddenly, he turns around and walks off towards the direction of the bar, leaving you to contemplate your actions.`
 
 	on complete
@@ -5651,6 +5649,12 @@ mission "Argosy Hijacking"
 mission "Argosy Hijacking (Declined)"
 	invisible
 	landing
+	source
+		government "Syndicate"
+		not attributes "station"
+		near "Alcyone" 4
+		near "Almach" 3
+		near "Gienah" 3
 	to offer
 		has "event: argosy hijacking trigger"
 	on offer
