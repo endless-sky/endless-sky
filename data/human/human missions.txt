@@ -5565,7 +5565,7 @@ event "argosy hijacking trigger"
 mission "Argosy Hijacking"
 	landing
 	name "Stop Ship Hijacking"
-	description "The <npc> was hijacked on <origin>; disable it and return to <origin>. Do not capture or destroy it; Syndicated Security will deal with the hijackers in space after you have disabled it."
+	description "The <npc> was hijacked on <origin>; disable it and return to <origin>. Do not board, capture, or destroy it; Syndicated Security will deal with the hijackers in space after you have disabled it."
 	source
 		government "Syndicate"
 		not attributes "station"
