@@ -411,7 +411,7 @@ tip "outfit scan power:"
 	`The range of this outfit scanner is proportional to the square root of this value.`
 
 tip "outfit scan speed:"
-	``Determines how long it takes to perform an outfit scan. A higher value will correspond to a quicker scan.`
+	`Determines how long it takes to perform an outfit scan. A higher value will correspond to a quicker scan.`
 
 tip "outfit scan efficiency:"
 	`The maximum speed of this outfit scanner is proportional to the square root of this value. The observed scan speed will be impacted by multiple factors. Targets which are farther away or have a larger outfit capacity will take longer to scan.`
@@ -526,6 +526,12 @@ tip "shield generation:"
 
 tip "shield generation multiplier:"
 	`Modifies the amount of shield points recharged per second by the given factor.`
+
+tip "high shield permeability:"
+	`This percentage of all incoming damage bypasses shields and applies directly to the hull when at full shields.`
+
+tip "low shield permeability:"
+	`This percentage of all incoming damage will bypass shields and apply directly to the hull as shields approach zero.`
 
 tip "shields (charge):"
 	`Total shield strength and regeneration rate (per second).`
@@ -786,7 +792,7 @@ tip "slowing damage / second:"
 	`Reduces the target's turn rate, acceleration, and top speed. Slowing wears off over time.`
 
 tip "disruption damage / second:"
-	`Disrupts the target's shields, allowing weapon damage to "leak through" to the hull even if shields are up. Shield disruption wears off over time.`
+	`Disrupts the target's shields, allowing weapon damage to "leak through" to the hull even if shields are up. Shield disruption wears off over time, and adding additional shield disruption becomes more difficult as damage leaks past shields instead of disrupting them.`
 
 tip "discharge damage / second:"
 	`Amount of shield damage over time dealt by this weapon per second when firing.`
@@ -843,7 +849,7 @@ tip "firing slowing / second:"
 	`Reduces the turn rate, acceleration, and top speed of the ship when this weapon is fired. Slowing wears off over time.`
 
 tip "firing disruption / second:"
-	`Disrupts the ships shields after firing this weapon, allowing damage from hostile weapons to "leak through" to the hull even if shields are up. Shield disruption wears off over time.`
+	`Disrupts the ships shields after firing this weapon, allowing damage from hostile weapons to "leak through" to the hull even if shields are up. Shield disruption wears off over time, but imparting disruption on yourself does not lose effectiveness as your shields become more leaky.`
 
 tip "firing discharge / second:"
 	`Reduces shields for some time after this weapon is fired.`
@@ -927,7 +933,7 @@ tip "slowing damage / shot:"
 	`Reduces the target's turn rate, acceleration, and top speed. Slowing wears off over time.`
 
 tip "disruption damage / shot:"
-	`Disrupts the target's shields, allowing weapon damage to "leak through" to the hull even if shields are up. Shield disruption wears off over time.`
+	`Disrupts the target's shields, allowing weapon damage to "leak through" to the hull even if shields are up. Shield disruption wears off over time, and adding additional shield disruption becomes more difficult as damage leaks past shields instead of disrupting them.`
 
 tip "discharge damage / shot:"
 	`Each shot increases the target's shield discharge by this amount. Shield discharge continuously reduces the target's shields and slowly wears off over time.`
@@ -984,10 +990,10 @@ tip "firing slowing / shot:"
 	`Each shot reduces the ship's turn rate, acceleration, and top speed. Slowing wears off over time.`
 
 tip "firing disruption / shot:"
-	`Each shot disrupts the ship's shields, allowing hostile weapon damage to "leak through" to the hull even if shields are up. Shield disruption wears off over time.`
+	`Each shot disrupts the ship's shields, allowing hostile weapon damage to "leak through" to the hull even if shields are up. Shield disruption wears off over time, but imparting disruption on yourself does not lose effectiveness as your shields become more leaky.`
 
 tip "firing discharge / shot:"
-	`Each shot applies discharge to the ship, reducing its shields over time. Shield disruption wears off over time.`
+	`Each shot applies discharge to the ship, reducing its shields over time. Shield discharge wears off over time.`
 
 tip "firing corrosion / shot:"
 	`Each shot applies corrosion to the ship, reducing the ship's hull over time. Corrosion wears off over time.`

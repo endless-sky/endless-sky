@@ -164,6 +164,7 @@ namespace {
 		{"leak resistance", 2},
 		{"burn resistance", 2},
 
+		{"cloak by mass", 3},
 		{"hull repair multiplier", 3},
 		{"hull energy multiplier", 3},
 		{"hull fuel multiplier", 3},
@@ -175,7 +176,8 @@ namespace {
 		{"shield heat multiplier", 3},
 		{"threshold percentage", 3},
 		{"overheat damage threshold", 3},
-		{"cloak by mass", 3},
+		{"high shield permeability", 3},
+		{"low shield permeability", 3},
 
 		{"burn protection", 4},
 		{"corrosion protection", 4},
