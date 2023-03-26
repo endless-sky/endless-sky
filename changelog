@@ -4,24 +4,38 @@ Version 0.10.1
       * Development help and fixes from many community members. (@EjoThims, @warp-core)
   * Bug fixes:
     * Content bugs:
-      * Typo fixes. (@quyykk)
+      * Typo fixes. (@bene-dictator, @quyykk, @shitwolfymakes, @Terin, @TomGoodIdea, @UnorderedSigh, @warp-core)
       * Fixed the offer requirements for various Coalition missions that had been unable to offer under the correct circumstances. (@Arachi-Lover)
       * Added a proper plural form to the Solar Batteries outfit. (@Terin)
       * Fixed the displaying of the Basrem Reverse Thrusters description. (@Fzzr)
       * Cleaned up the brown haze graphics. (@RisingLeaf)
+      * The "Puny" outfit no longer disappears after reloading the game. (@warp-core)
+      * The "Stranded field trip to <planet>" job description now mentions that there is cargo involved. (@3agleEmpire)
+      * Fixed the NPC spawn distance on a Marauder job that was using an older value, spawning ships up to three systems away instead of up to one. (@Terin)
     * Engine bugs:
       * Outfits with the "uninstallable" attribute are no longer sold alongside minables when using the "Sell All" button on the trading panel. (@TomGoodIdea)
       * The string truncation functions now properly handle inputs that would have previously hit an infinite loop check. (@warp-core)
       * The location of outfit thumnails on the UI is now rounded to an integer, preventing blurry thumbnails. (@TomGoodIdea)
+      * NPCs will no longer attempt to target flotsams that they cannot pick up. (@UnorderedSigh)
+      * Surveillance ships now maintain the same target until they are finished scanning, preventing a bug where some surveillance ships would never succeed their scan. (@warp-core)
+      * The shop will now properly report why it is that you can't "buy" an outfit from storage instead of saying that you can't place it into your cargo. (@alextd, @warp-core)
   * Game content:
     * New content:
       * Various new landable gas giants outside of the Ember Waste. (@Azure3141)
       * Various new landable objects in Gegno space. (@Saugia)
+      * Created jobs that only appear around the time of the bombings of Martini and Geminus. (@bene-dictator)
+      * Landing on a Quarg ringworld with a Pug Arfecta now provokes a reaction from the Quarg. (@rovermicrover)
+      * Added a spaceport mission about a package with a mixed up destination. (@bene-dictator, Improvise#7330)
+      * Split the single Quarg government into a set of regional governments, allowing for more fine-tuned story interactions with different groups of Quarg. (@Saugia)
     * Mission changes:
       * Scrappers can now spawn in various bounty jobs. (@Anarchist2)
       * Changed the description of the size of the black box in the Sheragi Arhcaeology missions to make more sense with how it is handled. (@ziproot)'
       * Repeatable Unfettered jobs now have destination clearance. (@EjoThims)
       * Improved how certain Remnant missions are blocked if the player doesn't have a Research Laboratory outfit using newer mechanics. (@warp-core)
+      * Add more detail to the dialogs in Han Sizer jobs. (@Zitchas)
+      * Every choice at the end of the Sheragi Archaeology missions can now be chosen, instead of only allowing one. (@warp-core)
+      * Changed the Pookie mission to have a 100% offer rate, giving players a guaranteed next mission after finishing the James tutorial, should they visit the spaceport. (@warp-cores)
+      * The banker from the intro conversation now provides the exact amount of interest that will be paid for the loan instead of rounding to the nearest 1,000 credits. (@ziproot)
     * Balance:
       * Added a reverse thruster to the stock Mule loadout. (@LorenzoBolla)
       * Added built-in solar collection to the Dromedary to reflect that the sprite has a solar panel array on it. (@Zitchas)
@@ -35,7 +49,12 @@ Version 0.10.1
         * Marauder Fury: 6 -> 8
       * Changed the Ka'het Nullifier to fire in cluster mode, firing all equipped Nullifiers at once. (@1001010100)
       * Added a fuel pod to the "Raven (Afterburner)" variant. (@LorenzoBolla)
+      * Wanderer crew now has non-default base hand-to-hand stats. (@Quantumshark)
+        * Attack: 1 -> 1.4
+        * Defense: 2 -> 1.8
     * Graphics:
+      * New Sunbeam projectile sprites. (@Anarchist2)
+      * Added a new hills landscape image, used on Blubipad's Workshop. (@mOctave)
     * Sounds:
     * Other:
       * Created new subfactions to the Hai and Unfettered to better reflect dynamics between the Hai and Unfettered. (@EjoThims, @Hurleveur)
@@ -46,17 +65,35 @@ Version 0.10.1
     * New mechanics:
       * Added a "<planet stopovers>" substitution that more concisely lists all stopover locations. (@Terin)
       * The "inscrutable" attribute which makes the player unable to scan NPC ships now causes the player's ships to be unscannable by NPCs. (@ToomGoodIdea)
+      * Phrases can now be inserted into various mission texts using the same "${phrase name}" syntax that phrases use. (@UnorderedSigh)
+      * Created two new attributes, "high shield permeability" and "low shield permeability", which allow for shield which are not 100% effective at blocking damage to the hull. (@Quantumshark)
+      * Weapons can now define how their inaccuracy is distributed, allowing the default triangular distribution to be changed to a uniform or normal distribution. (@DeBlister)
+      * Having asteroid scanners equipped can now automatically catalog the locations of minables should you be in close proximity to the minable for a short duration, in addition to the old behavior of targeting an asteroid causing it to be cataloged. (@samrocketman)
+      * Governments can now be given minimum and maximum reputation limits outside of which your reputation with them cannot go. (@Terin)
+      * Plugins are now able to add to the menu credits by having their own credits.txt file. Plugin credits are appended to the bottom of the existing credits. (@Koranir)
+      * NPC nodes in missions can now be given "on *" nodes that behave similarly to "on *" nodes on missions, triggering actions on status changes for the NPC. (@Amazinite, @warp-core)
+      * Events are now able to remove sprites from galaxies. (@warp-core)
     * Mechanic changes:
       * NPCs without the escort personality no longer follow the player's flagship if it is cloaked. (@UnorderedSigh)
       * Having "active cooling" without "cooling energy" now causes "active cooling" to scale with heat level, instead of always operating at 100% as it normally does when "cooling energy" is present. (@Ferociousfeind)
+      * Disruption and discharge damage now deal 50% damage against hull, while still dealing 100% damage against shields. (@Ferociousfeind)
+      * Removed the scan decay that occurred when a target that was being scanned got out of range of the scanner, as it made scanning faster ships after the recent scanning changes too difficult. (@Amazinite)
   * User interface:
     * Plugins are now able to be enabled and disabled within the Plugins menu. (@samrocketman, @quyykk)
     * Broke the user preferences up into multiple pages. (@Terin)
+    * Repeatedly clicking on a selected mission now cycles through every system involved with that mission, be that the waypoints, stopovers, or destination. (@alextd)
+    * The credits on the main menu can now have their speed and direction of travel controlled using the up and down arrow keys. (@Koranir)
+    * Added a message that appears at the bottom left when one of your escorts is destroyed. This message can be disabled by the "Extra fleet status messages" preference. (@Koranir)
   * Under the hood:
     * Changed the Personality class from using a single integer to track personality flags to a bitset, allowing for more than just 32 NPC personality flags to exist. (@tibetiroka)
     * The Personality class will fail compilation if the personality count enum doesn't match the number of possible personalities. (@UnorderedSigh)
     * Corrected the declaration order of pirvate members of the Conversation class. (@warp-core)
     * Added a missing #include to the Preferences class. (@quyykk)
+    * The planet, spaceport, bank, and trade panels are now defined by the interface file instead of entirely hardcoded, allowing for plugins to edit them. (@theweirdnut)
+    * Simplified various conversations using new "to display" nodes. (@warp-core)
+    * Cleaned up and updated information in the README file. (@quyykk)
+    * Cleaned up the syntax of the Ringworld Debris missions. (@warp-core)
+    * Refactored and improved the shop's handling of purchasing errors. (@alextd, @warp-core)
   * CI/CD and development environment:
     * Removed use of deprecated attributes in test data. (@UnorderedSigh)
     * Added a CMake preset to run the unit tests in Release mode. (@UnorderedSigh)
