@@ -720,23 +720,18 @@ void Engine::Step(bool isActive)
 		info.SetString("flagship acceleration", to_string(flagshipAcceleration));
 		int flagshipTurn = round(flagship->TrueTurnRate() * 60);
 		info.SetString("flagship turn", to_string(flagshipTurn));
-
-		// slow = (step / 20) % 2 ? round(100. * flagship->DisplaySlowing()) : slow;
-		// info.SetString("slow", to_string(slow) + "%");
-		// int solar = (player.TravelPlan().size());
 		int flagshipRamscoop = (flagship->DisplayRamScoop() * 100);
 		if(flagshipRamscoop >= 0.05 && Preferences::Has("Show flagship data in HUD"))
 		{
 			info.SetCondition("flagship ramscoop display");
+			info.SetString("flagship ramscoop", to_string(flagshipRamscoop));
 		}
-		info.SetString("flagship ramscoop", to_string(flagshipRamscoop));
 		int flagshipSolar = (flagship->DisplaySolar() * 100);
 		if (flagshipSolar >= 0.05 && Preferences::Has("Show flagship data in HUD"))
 		{
 			info.SetCondition("flagship solar display");
+			info.SetString("flagship solar", to_string(flagshipSolar));
 		}
-		info.SetString("flagship solar", to_string(flagshipSolar));
-		// info.SetString("incoming", to_string(flagship->CountTargeting()));
 		// Get the flagship's fuel capacity
 		double fuelCap = flagship->Attributes().Get("fuel capacity");
 		// If the flagship has a large amount of fuel, display a solid bar.
