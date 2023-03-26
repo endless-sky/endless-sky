@@ -3435,7 +3435,7 @@ mission "Bounty Hunting (Marauder IV)"
 		government "Bounty"
 		personality heroic staying nemesis target
 		system
-			distance 1 3
+			distance 1 1
 		fleet "Marauder fleet IV"
 		dialog phrase "generic hunted bounty fleet eliminated dialog"
 	on visit
