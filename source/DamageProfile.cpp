@@ -143,7 +143,7 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 		damage.shieldDamage = (weapon.ShieldDamage()
 			+ weapon.RelativeShieldDamage() * attributes.Get("shields"))
 			* ScaleType(0., 0., attributes.Get("shield protection") +
-			(ship.IsCloaked() ? attributes.Get("cloak shield protection") : 0.));
+			(ship.IsCloaked() ? attributes.Get("cloak shield protection") : 0.)));
 		if(damage.shieldDamage > shields)
 			shieldFraction = min(shieldFraction, shields / damage.shieldDamage);
 	}
