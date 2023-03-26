@@ -303,8 +303,10 @@ mission "Unfettered Jump Drive Trading"
 	invisible
 	source "Darkcloak"
 	substitutions
+		<hood> ""
 		<hood> ", with their face hidden"
 			has "unfettered: blade rodeo"
+		<learned> ""
 		<learned> "It did take you two tries, but I am glad that you were able to learn from your mistake."
 			"unfettered: blade rodeo" == 1
 		<learned> "You finally learned from your mistakes. This is why our challenges are never fatal."

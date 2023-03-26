@@ -41,6 +41,7 @@ target_sources(EndlessSkyTests PRIVATE
 
 list(APPEND INTEGRATION_TESTS
 	integration/config/plugins/integration-tests/data/tests/tests_afterburn_flight.txt
+	integration/config/plugins/integration-tests/data/tests/tests_capture_override.txt
 	integration/config/plugins/integration-tests/data/tests/tests_common.txt
 	integration/config/plugins/integration-tests/data/tests/tests_conditional_choice.txt
 	integration/config/plugins/integration-tests/data/tests/tests_disown.txt
@@ -59,7 +60,7 @@ list(APPEND INTEGRATION_TESTS
 )
 
 target_include_directories(EndlessSkyTests PRIVATE unit/include)
-target_link_libraries(EndlessSkyTests PRIVATE EndlessSkyLib)
+target_link_libraries(EndlessSkyTests PRIVATE ExternalLibraries $<TARGET_OBJECTS:EndlessSkyLib>)
 
 # CTest support for our unit tests.
 add_test(NAME unit COMMAND EndlessSkyTests)
