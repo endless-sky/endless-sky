@@ -2263,10 +2263,11 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int
 
 			for(const auto &input : production.input)
 			{
-				Outfit *it = input.asCargo ? cargo.Outfits().find(input.outfit) : outfits.find(input.outfit);
+				const auto &checkOutfitMap = input.asCargo ? cargo.Outfits() : outfits;
+				const auto &it = checkOutfitMap.find(input.outfit);
 				// If the cargo hold either doesn't have or doesn't have
 				// enough of the given outfit requirement then abort.
-				if(it == outfitsToCheck.end()
+				if(it == checkOutfitMap.end()
 						|| it->second < input.count)
 					continue;
 			}
@@ -2275,32 +2276,29 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int
 			// Otherwise, these checks will not properly account for
 			// inputs freeing up space for outputs.
 			for(const auto &it : production.input)
-				production.inputFromCargo
+				it.asCargo
 					? static_cast<void>(cargo.Remove(it.outfit, it.count))
 					: AddOutfit(it.outfit, -it.count);
 
 			// Check if there is even enough space for the output.
-			if(production.outputInCargo)
+			bool canAdd = true;
+			double cargoUsage = 0.;
+			for(const auto &output : production.output)
 			{
-				double cargoUsage = 0.;
-				for(const auto &output : production.output)
+				if(output.asCargo)
 					cargoUsage += output.outfit->Mass() * output.count;
-
-				if(cargo.Free() < cargoUsage)
-				{
-					// Re-add the inputs because we don't have room for the outputs.
-					for(const auto &it : production.input)
-						production.inputFromCargo
-							? static_cast<void>(cargo.Add(it.outfit, it.count))
-							: AddOutfit(it.outfit, it.count);
-					continue;
-				}
+				else if(!attributes.CanAdd(*output.outfit, output.count))
+					canAdd = false;
 			}
-			else
+			if(cargo.Free() < cargoUsage)
+				canAdd = false;
+			if(!canAdd)
 			{
-				for(const auto &output : production.output)
-					if(!attributes.CanAdd(*output.outfit, output.count))
-						continue;
+				for(const auto &it : production.input)
+					it.asCargo
+					? static_cast<void>(cargo.Add(it.outfit, it.count))
+					: AddOutfit(it.outfit, it.count);
+				continue;
 			}
 
 			// Next, finish by adding the output and adjusting energy levels.
@@ -2312,7 +2310,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int
 			heat += production.heat;
 
 			for(const auto &it : production.output)
-				production.outputInCargo
+				it.asCargo
 					? static_cast<void>(cargo.Add(it.outfit, it.count))
 					: AddOutfit(it.outfit, it.count);
 
