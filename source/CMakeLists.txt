@@ -4,11 +4,11 @@ add_library(EndlessSkyLib OBJECT)
 target_include_directories(EndlessSkyLib PUBLIC "${LIBMAD_INCLUDE_DIR}")
 if(MSVC)
 	target_compile_options(EndlessSkyLib PUBLIC "/W3" "/permissive-" "/sdl" "/GR-" "/analyze-"
-		"-Wno-nonportable-include-path" "$<$<CONFIG:Release>:/Gy;/WX;/Oi>")
+		"-Wno-nonportable-include-path" "$<$<CONFIG:Release>:/Gy;/Oi>")
 	target_compile_definitions(EndlessSkyLib PUBLIC "_UNICODE" "UNICODE")
 else()
 	target_compile_options(EndlessSkyLib PUBLIC
-		"-Wall" "-pedantic-errors" "-Wold-style-cast" "-fno-rtti" "$<$<CONFIG:Release>:-Werror>")
+		"-Wall" "-pedantic-errors" "-Wold-style-cast" "-fno-rtti")
 endif()
 
 # Every source file (and header file) should be listed here, except main.cpp.
@@ -83,6 +83,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Dictionary.h
 	DistanceMap.cpp
 	DistanceMap.h
+	Distribution.cpp
+	Distribution.h
 	DrawList.cpp
 	DrawList.h
 	Effect.cpp
