@@ -426,11 +426,10 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 
 	if(!outfit.Productions().empty())
 	{
-		attributeLabels.emplace_back("Produces");
-		attributeValues.emplace_back("nothing");
-
 		for(const auto &it : outfit.Productions())
 		{
+			attributeLabels.emplace_back("Interval");
+			attributeValues.emplace_back(Format::Number(it.speed / 60.) + "s");
 			bool first = true;
 			for(const auto &input : it.input)
 			{
@@ -473,8 +472,6 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 				attributeLabels.emplace_back("Shield Cost");
 				attributeValues.emplace_back(Format::Number(it.fuel));
 			}
-			attributeLabels.emplace_back("Interval");
-			attributeValues.emplace_back(Format::Number(it.speed / 60.) + "s");
 		}
 
 		hasNormalAttributes = true;
