@@ -5650,7 +5650,7 @@ mission "Argosy Hijacking"
 		payment 28000
 		conversation 
 			`As you land, Syndicated Security have the <npc> in tow, escorted by a trio of Quicksilvers. The formation lands on one of the larger pads reserved for Syndicated Security vessels, fenced off from the rest of the spaceport.`
-			`	The hijackers, just a raucous group of young kids, are hauled out of the <npc model> by Syndicated Security personnel towards an armoured van. Multiple times the kids try to run away, but after a few minutes they're finally detained; the van ultimately drives off towards the spaceport terminal.`
+			`	The hijackers, just a raucous group of young kids, are hauled out of the <npc model> by Syndicated Security personnel towards an armored van. Multiple times the kids try to run away, but after a few minutes they're finally detained; the van ultimately drives off towards the spaceport terminal.`
 			`	After the incident is wrapped up, the captain of the <npc> sends you <payment>, and a message thanking you for helping him recover his ship.`
 
 mission "Argosy Hijacking (Declined)"
