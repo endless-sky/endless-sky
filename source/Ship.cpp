@@ -2233,87 +2233,88 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int
 		productionSteps.resize(attributes.Factories().size());
 		for(size_t i = 0; i < attributes.Factories().size(); ++i)
 		{
-			const auto &production = attributes.Factories()[i];
+			const auto &factory = attributes.Factories()[i];
 
 			// First check if the factory is ready to produce.
 			// TODO: Add period checking
-			if((step - productionSteps[i] < production.interval))
+			if((step - productionSteps[i] < factory.interval))
 				continue;
 
-			// Next check if this ship has enough energy/fuel/heat etc.
-			if(shields < production.shield
-				|| hull < production.hull
-				|| energy < production.energy
-				|| fuel < production.fuel
-				|| heat < -production.heat)
-				continue;
-
-			// Also do not produce if this ship doesn't have the capacities
-			// to accept all of the energy products.
-			// TODO: give warning if any of these capacities are less than the productions
-			// because then this outfit would never get the chance to produce!
-
-			// Values can go above the capacity and make the value negative, so just add a small number to it.
-			const static double epsilon = 0.5;
-			if(attributes.Get("shields") - shields + epsilon < -production.shield
-				|| attributes.Get("hull") - hull + epsilon < -production.hull
-				|| attributes.Get("energy capacity") - energy + epsilon < -production.energy
-				|| attributes.Get("fuel capacity") - fuel + epsilon < -production.fuel)
-				continue;
-
-			for(const auto &input : production.input)
+			for(int repeat = 0; repeat < factory.repeat; i++)
 			{
-				const auto &checkOutfitMap = input.asCargo ? cargo.Outfits() : outfits;
-				const auto &it = checkOutfitMap.find(input.outfit);
-				// If the cargo hold either doesn't have or doesn't have
-				// enough of the given outfit requirement then abort.
-				if(it == checkOutfitMap.end()
-						|| it->second < input.count)
+				// Next check if this ship has enough energy/fuel/heat etc.
+				if(shields < factory.shield
+					|| hull < factory.hull
+					|| energy < factory.energy
+					|| fuel < factory.fuel
+					|| heat < -factory.heat)
 					continue;
-			}
 
-			// For sake of argument, remove the inputs from the ship.
-			// Otherwise, these checks will not properly account for
-			// inputs freeing up space for outputs.
-			for(const auto &it : production.input)
-				it.asCargo
+				// Also do not produce if this ship doesn't have the capacities
+				// to accept all of the energy products.
+				// TODO: give warning if any of these capacities are less than the productions
+				// because then this outfit would never get the chance to produce!
+
+				// Values can go above the capacity and make the value negative, so just add a small number to it.
+				const static double epsilon = 0.5;
+				if(attributes.Get("shields") - shields + epsilon < -factory.shield
+					|| attributes.Get("hull") - hull + epsilon < -factory.hull
+					|| attributes.Get("energy capacity") - energy + epsilon < -factory.energy
+					|| attributes.Get("fuel capacity") - fuel + epsilon < -factory.fuel)
+					continue;
+
+				for(const auto &input : factory.input)
+				{
+					const auto &checkOutfitMap = input.asCargo ? cargo.Outfits() : outfits;
+					const auto &it = checkOutfitMap.find(input.outfit);
+					// If the cargo hold either doesn't have or doesn't have
+					// enough of the given outfit requirement then abort.
+					if(it == checkOutfitMap.end()
+						|| it->second < input.count)
+						continue;
+				}
+
+				// For sake of argument, remove the inputs from the ship.
+				// Otherwise, these checks will not properly account for
+				// inputs freeing up space for outputs.
+				for(const auto &it : factory.input)
+					it.asCargo
 					? static_cast<void>(cargo.Remove(it.outfit, it.count))
 					: AddOutfit(it.outfit, -it.count);
 
-			// Check if there is even enough space for the output.
-			bool canAdd = true;
-			double cargoUsage = 0.;
-			for(const auto &output : production.output)
-			{
-				if(output.asCargo)
-					cargoUsage += output.outfit->Mass() * output.count;
-				else if(!attributes.CanAdd(*output.outfit, output.count))
+				// Check if there is even enough space for the output.
+				bool canAdd = true;
+				double cargoUsage = 0.;
+				for(const auto &output : factory.output)
+				{
+					if(output.asCargo)
+						cargoUsage += output.outfit->Mass() * output.count;
+					else if(!attributes.CanAdd(*output.outfit, output.count))
+						canAdd = false;
+				}
+				if(cargo.Free() < cargoUsage)
 					canAdd = false;
-			}
-			if(cargo.Free() < cargoUsage)
-				canAdd = false;
-			if(!canAdd)
-			{
-				for(const auto &it : production.input)
+				if(!canAdd)
+				{
+					for(const auto &it : factory.input)
+						it.asCargo
+						? static_cast<void>(cargo.Add(it.outfit, it.count))
+						: AddOutfit(it.outfit, it.count);
+					continue;
+				}
+
+				// Next, finish by adding the output and adjusting energy levels.
+				shields -= factory.shield;
+				hull -= factory.hull;
+				energy -= factory.energy;
+				fuel -= factory.fuel;
+				heat += factory.heat;
+
+				for(const auto &it : factory.output)
 					it.asCargo
 					? static_cast<void>(cargo.Add(it.outfit, it.count))
 					: AddOutfit(it.outfit, it.count);
-				continue;
 			}
-
-			// Next, finish by adding the output and adjusting energy levels.
-
-			shields -= production.shield;
-			hull -= production.hull;
-			energy -= production.energy;
-			fuel -= production.fuel;
-			heat += production.heat;
-
-			for(const auto &it : production.output)
-				it.asCargo
-					? static_cast<void>(cargo.Add(it.outfit, it.count))
-					: AddOutfit(it.outfit, it.count);
-
 			productionSteps[i] = step;
 		}
 	}
