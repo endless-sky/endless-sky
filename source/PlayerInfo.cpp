@@ -3206,6 +3206,28 @@ void PlayerInfo::RegisterDerivedConditions()
 		return retVal;
 	});
 
+	// The following condition checks the player's fleet for installed outfits on escorts
+	// which are active (not parked or disabled) and local to the player.
+	auto &activePresentInstalledOutfitProvider = conditions.GetProviderPrefixed("outfit (active installed): ");
+	activePresentInstalledOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
+	{
+		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (active installed): ")));
+		if(!outfit)
+			return 0;
+		int64_t retVal = 0;
+		// Ships must be active: not parked or disabled.
+		// If on a planet, the ship's planet must match.
+		for(const shared_ptr<Ship> &ship : ships)
+		{
+			if(ship->IsDestroyed() || ship->IsParked() || ship->IsDisabled()
+					|| (planet && ship->GetPlanet() != planet)
+					|| (!planet && ship->GetActualSystem() != system))
+				continue;
+			retVal += ship->OutfitCount(outfit);
+		}
+		return retVal;
+	});
+
 	// The following condition checks the player's entire fleet for installed outfits.
 	auto &&allInstalledOutfitProvider = conditions.GetProviderPrefixed("outfit (all installed): ");
 	allInstalledOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
