@@ -868,8 +868,8 @@ government "Merchant"
 government "Merchant (Hijacked)"
 	swizzle 5
 	"attitude toward"
-		"Republic" -.2
-		"Syndicate" -.2
+		"Republic" -.01
+		"Syndicate" -.01
 	"player reputation" 1
 	"fine" 0
 	"friendly hail" "friendly civilian"
