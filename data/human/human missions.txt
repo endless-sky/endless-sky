@@ -5551,7 +5551,7 @@ event "quicksilver mixup 2 available"
 
 
 mission "Argosy Hijacking (Trigger)"
-  invisible
+	invisible
 	source
 		government "Syndicate"
 	to offer
@@ -5654,7 +5654,7 @@ mission "Argosy Hijacking"
 			`	After the incident is wrapped up, the captain of the <npc> sends you <payment>, and a message thanking you for helping him recover his ship.`
 
 mission "Argosy Hijacking (Declined)"
-  invisible
+	invisible
 	landing
 	to offer
 		has "Argosy Hijacking (Trigger): offered"
