@@ -709,7 +709,7 @@ void Engine::Step(bool isActive)
 		// Have an alarm label flash up when enemy ships are in the system
 		if(alarmTime && step / 20 % 2 && Preferences::DisplayVisualAlert())
 			info.SetCondition("red alert");
-		if (Preferences::Has("Show flagship data in HUD"))
+		if(Preferences::Has("Show flagship data in HUD"))
 		{
 			info.SetCondition("flagship data display");
 		}
@@ -727,7 +727,7 @@ void Engine::Step(bool isActive)
 			info.SetString("flagship ramscoop", to_string(flagshipRamscoop));
 		}
 		int flagshipSolar = (flagship->DisplaySolar() * 100);
-		if (flagshipSolar >= 0.05 && Preferences::Has("Show flagship data in HUD"))
+		if(flagshipSolar >= 0.05 && Preferences::Has("Show flagship data in HUD"))
 		{
 			info.SetCondition("flagship solar display");
 			info.SetString("flagship solar", to_string(flagshipSolar));
