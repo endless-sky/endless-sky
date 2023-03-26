@@ -5581,18 +5581,18 @@ mission "Argosy Hijacking"
 	on offer
 		conversation
 			`You're signing the standard Syndicate landing papers with an officer on <origin>. "Everything seems to be in order. And of course, we'll have your ship refueled promptly. Have a good day, Captain <last>." He nods his head at you and starts to move off towards the next ship.`
-			`	Before he can make it there, you hear a commotion by the <npc model> on the landing pad next to you.`
+			`	Before he can make it there, you hear a commotion by the <npc>, the <npc model> on the landing pad next to you.`
 			choice
 				`	(Turn around to see what's going on.)`
 					goto turn
 				`	(Ignore the commotion.)`
 					goto ignore
 			label turn
-			`	Both of you turn your head to see what's happening, but as you do a deafening blare of warning sounds through <origin>'s spaceport. Suddenly, the <npc model> on the landing pad behind you, the <npc>, jolts up with its loading ramp still extended.`
+			`	Both of you turn your heads towards the <npc> to see what's happening, but as you do you hear the deafening blare of warning sirens through <origin>'s spaceport; at the same time, the <npc> suddenly jolts up with its loading ramp still extended.`
 				goto hijack
 			
 			label ignore
-			`	You turn back towards the <ship> only to hear a deafening blare of warning sounds through <origin>'s spaceport. Looking around instinctively, you notice from the corner of your eye that the <npc>, that <npc model> on the landing pad next to you, jolts up with its loading ramp still extended.`
+			`	You turn back towards the <ship> only to hear the deafening blares of warning sirens through <origin>'s spaceport. Looking around instinctively, you notice from the corner of your eye that the <npc> suddenly jolts up with its loading ramp still extended.`
 
 			label hijack
 			`	"Hey, what's going on here?" the officer tries to shout over the noise of the sirens and the repulsors, but the rogue <npc model> veers rapidly and uncertainly towards his direction and the <ship>. He can barely jump down for cover before the ship clips a stack of cargo crates, sending them flying into the refueling platform. With its repulsors at full power, it narrowly avoids colliding with the <ship> and flees away into the sky.`
@@ -5630,6 +5630,7 @@ mission "Argosy Hijacking"
 					goto worthless
 			`	He stops shaking you for a moment to say, "Well, you shouldn't have blown up my <npc model> while you were trying to help, weren't you? Fat lot of help that was, even if you tried to do the right thing. Oh, well..."`
 			`	He lets you go with a push and turns around to walk off towards the direction of the bar, leaving you to contemplate your actions.`
+				decline
 
 			label worthless
 			`	He looks at you incredulously, scrunching up his face. "Not--not that much? Is that what you just said?" He pauses for a moment to look at the wall above you, looking lost, then he stares you down again with even more intensity. "That was my life's work up there, an <npc model> that had served me for 14 years, and you have the audacity to say it was all for nothing?!"`
@@ -5638,6 +5639,7 @@ mission "Argosy Hijacking"
 				`	"No, that's not what I meant."`
 			`	He scoffs at you, and lets you go with a rough push. "I don't need your explanation, I don't think you could give me one. I just can't understand how you can walk away feeling alright that you've set back one man's life so much."`
 			`	Suddenly, he turns around and walks off towards the direction of the bar, leaving you to contemplate your actions.`
+				decline
 
 	on complete
 		payment 28000
