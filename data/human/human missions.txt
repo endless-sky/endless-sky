@@ -5557,15 +5557,15 @@ mission "Argosy Hijacking (Trigger)"
 	to offer
 		random < 10
 	on offer
-		event "argosy hijacking trigger" 14 35
+		event "argosy hijacking trigger"
 		fail
 
 event "argosy hijacking trigger"
 
 mission "Argosy Hijacking"
-	name "Stop ship hijacking"
-	description "The <npc> was hijacked on <origin>; disable it and return to <origin>. Do not capture or destroy it; Syndicated Security will deal with the hijackers in space after you have disabled it."
 	landing
+	name "Stop Ship Hijacking"
+	description "The <npc> was hijacked on <origin>; disable it and return to <origin>. Do not capture or destroy it; Syndicated Security will deal with the hijackers in space after you have disabled it."
 	source
 		government "Syndicate"
 		not attributes "station"
@@ -5573,19 +5573,18 @@ mission "Argosy Hijacking"
 		near "Almach" 3
 		near "Gienah" 3
 	to offer
-		has "Argosy Hijacking (Trigger): offered"
 		has "event: argosy hijacking trigger"
 	on offer
 		conversation
-			`You're signing the landing papers with the Syndicated Security officer on <origin>, a standard procedure after landing in a planet within the Syndicate bloc. "Everything seems to be in order. And of course, we'll have your ship refuelled promptly. Have a good day, Captain <last>." He nods his head at you and starts to move off towards the next ship.`
-			`	Just before he is able to, however, you hear a commotion going on by the <npc model> on the landing pad next to you.`
+			`You're signing the standard Syndicate landing papers with an officer on <origin>. "Everything seems to be in order. And of course, we'll have your ship refueled promptly. Have a good day, Captain <last>." He nods his head at you and starts to move off towards the next ship.`
+			`	Before he can make it there, you hear a commotion by the <npc model> on the landing pad next to you.`
 			choice
 				`	(Turn around to see what's going on.)`
 					goto turn
 				`	(Ignore the commotion.)`
 					goto ignore
 			label turn
-			`	Both of you turn your head to see what's happening, but as you do, there's a deafening blare of warning sirens through <origin>'s spaceport. Suddenly, the <npc model> on the landing pad behind you, the <npc>, jolts up with its loading ramp still extended.`
+			`	Both of you turn your head to see what's happening, but as you do a deafening blare of warning sounds through <origin>'s spaceport. Suddenly, the <npc model> on the landing pad behind you, the <npc>, jolts up with its loading ramp still extended.`
 				goto hijack
 			
 			label ignore
@@ -5598,8 +5597,6 @@ mission "Argosy Hijacking"
 				`	"I'll do it!"`
 				`	(Let Syndicated Security deal with it.)`
 					goto securityjob
-			action
-				set "argosy hijacking accepted"
 			`	The captain turns towards you. "Thank you, Captain! Don't destroy the <npc>, I'm already late for my bloody contract. Agh, this one doesn't help at all," he mutters to himself.`
 			`	The officer looks back at you, having dusted himself off and regained his senses. "Yes, go and deal with his ship now. We'll have Syndicated Security ships come after you to arrest the hijackers and tug it down. Go!"`
 				launch
@@ -5614,8 +5611,6 @@ mission "Argosy Hijacking"
 		government "Bounty (Disguised)"
 		ship "Argosy (Blaster)" "Moonshake Express"
 		dialog `You've disabled the <npc>. Syndicated Security will now deal with the hijackers, but you should go back and report to the captain whose ship was hijacked.`
-		to spawn
-			has "argosy hijacking accepted"
 
 	on fail
 		conversation
@@ -5633,7 +5628,7 @@ mission "Argosy Hijacking"
 				goto end
 
 			label worthless
-			`	He looks at you increduleously, scrunching up his face. "Not- not that much? Is that what you just said?" He pauses for a moment to look at the wall above you, looking lost, then he stares you down again with even more intensity. "That was my life's work up there, an <npc model> that had served me for 14 years, and you have the audacity to say it was all for nothing?!"`
+			`	He looks at you incredulously, scrunching up his face. "Not--not that much? Is that what you just said?" He pauses for a moment to look at the wall above you, looking lost, then he stares you down again with even more intensity. "That was my life's work up there, an <npc model> that had served me for 14 years, and you have the audacity to say it was all for nothing?!"`
 			choice
 				`	"Well, yeah."`
 				`	"No, that's not what I meant."`
@@ -5650,14 +5645,13 @@ mission "Argosy Hijacking"
 		payment 28000
 		conversation 
 			`As you land, Syndicated Security have the <npc> in tow, escorted by a trio of Quicksilvers. The formation lands on one of the larger pads reserved for Syndicated Security vessels, fenced off from the rest of the spaceport.`
-			`	The hijackers, just a raucous group of young kids, are hauled out of the <npc model> by Syndicated Security personnel towards an armored van. Multiple times the kids try to run away, but after a few minutes they're finally detained; the van ultimately drives off towards the spaceport terminal.`
+			`	The hijackers, just a raucous group of young kids, are hauled out of the <npc model> by Syndicated Security personnel towards an armored van. Multiple times the kids try to run away, but after a few minutes they're finally detained; the van drives off towards the spaceport terminal.`
 			`	After the incident is wrapped up, the captain of the <npc> sends you <payment>, and a message thanking you for helping him recover his ship.`
 
 mission "Argosy Hijacking (Declined)"
 	invisible
 	landing
 	to offer
-		has "Argosy Hijacking (Trigger): offered"
 		has "event: argosy hijacking trigger"
 	on offer
 		fail
