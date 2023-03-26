@@ -44,6 +44,24 @@ public:
 	// These are all the possible category strings for outfits.
 	static const std::vector<std::string> CATEGORIES;
 
+
+public:
+	// A class that represents the production of outfits, given other outfits.
+	class Production {
+	public:
+		std::map<const Outfit *, int> input;
+		std::map<const Outfit *, int> output;
+		double shield;
+		double hull;
+		double energy;
+		double fuel;
+		double heat;
+		bool inputFromCargo = true;
+		bool outputInCargo = true;
+		int speed = 60;
+	};
+
+
 public:
 	// An "outfit" can be loaded from an "outfit" node or from a ship's
 	// "attributes" node.
@@ -66,6 +84,8 @@ public:
 	double Get(const char *attribute) const;
 	double Get(const std::string &attribute) const;
 	const Dictionary &Attributes() const;
+
+	const std::vector<Production> &Productions() const;
 
 	// Determine whether the given number of instances of the given outfit can
 	// be added to a ship with the attributes represented by this instance. If
@@ -111,6 +131,8 @@ private:
 	double mass = 0.;
 	// Licenses needed to purchase this item.
 	std::vector<std::string> licenses;
+
+	std::vector<Production> productions;
 
 	Dictionary attributes;
 

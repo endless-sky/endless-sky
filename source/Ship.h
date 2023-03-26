@@ -210,7 +210,7 @@ public:
 	const FireCommand &FiringCommands() const noexcept;
 	// Move this ship. A ship may create effects as it moves, in particular if
 	// it is in the process of blowing up.
-	void Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	void Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam, int step);
 	// Generate energy, heat, etc. (This is called by Move().)
 	void DoGeneration();
 	// Launch any ships that are ready to launch.
@@ -628,6 +628,9 @@ private:
 	const System *targetSystem = nullptr;
 	std::weak_ptr<Minable> targetAsteroid;
 	std::weak_ptr<Flotsam> targetFlotsam;
+
+	// Last production times.
+	std::vector<int> productionSteps;
 
 	// Links between escorts and parents.
 	std::vector<std::weak_ptr<Ship>> escorts;
