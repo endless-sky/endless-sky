@@ -709,6 +709,10 @@ void Engine::Step(bool isActive)
 		// Have an alarm label flash up when enemy ships are in the system
 		if(alarmTime && step / 20 % 2 && Preferences::DisplayVisualAlert())
 			info.SetCondition("red alert");
+		if (Preferences::Has("Show flagship data in HUD"))
+		{
+			info.SetCondition("flagship data display");
+		}
 		// Display current flagship speed, potential acceleration, and potential turning
 		int flagshipSpeed = round(flagship->CurrentSpeed() * 60);
 		info.SetString("flagship speed", to_string(flagshipSpeed));
@@ -721,8 +725,16 @@ void Engine::Step(bool isActive)
 		// info.SetString("slow", to_string(slow) + "%");
 		// int solar = (player.TravelPlan().size());
 		int flagshipRamscoop = (flagship->DisplayRamScoop() * 100);
+		if(flagshipRamscoop >= 0.05 && Preferences::Has("Show flagship data in HUD"))
+		{
+			info.SetCondition("flagship ramscoop display");
+		}
 		info.SetString("flagship ramscoop", to_string(flagshipRamscoop));
 		int flagshipSolar = (flagship->DisplaySolar() * 100);
+		if (flagshipSolar >= 0.05 && Preferences::Has("Show flagship data in HUD"))
+		{
+			info.SetCondition("flagship solar display");
+		}
 		info.SetString("flagship solar", to_string(flagshipSolar));
 		// info.SetString("incoming", to_string(flagship->CountTargeting()));
 		// Get the flagship's fuel capacity

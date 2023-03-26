@@ -495,6 +495,7 @@ void PreferencesPanel::DrawSettings()
 		"Show missile overlays",
 		"Highlight player's flagship",
 		"Rotate flagship in HUD",
+		"Show flagship data in HUD",
 		"Show planet labels",
 		"Show mini-map",
 		"Show asteroid scanner overlay",
