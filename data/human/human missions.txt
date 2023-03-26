@@ -5591,7 +5591,7 @@ mission "Argosy Hijacking"
 			`	Figuring it's nothing, you turn back towards the <ship> only to hear a deafening blare of warning sirens through <origin>'s spaceport. Looking around instinctively, you notice from the corner of your eye that the <npc>, that <npc model> on the landing pad next to you, jolts up with its loading ramp still extended.`
 
 			label hijack
-			`	"Hey, what's going on here?" the officer tries to shout over the noise of the sirens and the repulsors, but the rogue <npc model> veers rapidly and uncertainly towards his direction and the <ship>. He barely jumps down for cover before the ship comes up towards him to clip a stack of cargo crates, sending them flying into the refueling platform. With its repulsors at full power, it narrowly avoids colliding with the <ship> and flees away into the sky.`
+			`	"Hey, what's going on here?" the officer tries to shout over the noise of the sirens and the repulsors, but the rogue <npc model> veers rapidly and uncertainly towards his direction and the <ship>. He can barely jump down for cover before the ship clips a stack of cargo crates, sending them flying into the refueling platform. With its repulsors at full power, it narrowly avoids colliding with the <ship> and flees away into the sky.`
 			`	The Syndicated Security officer, dazed and coated in dust kicked up from the unpermitted departure, only just pulls himself up before another person runs up to accost him. "Oi, those kids, they just hijacked my <npc model>! Get someone on their tail!"`
 			choice
 				`	"I'll do it!"`
