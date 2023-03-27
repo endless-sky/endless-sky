@@ -301,14 +301,14 @@ void Outfit::Load(const DataNode &node)
 					{
 						Factory::Item it;
 						it.outfit = GameData::Outfits().Get(grand.Token(2));
-						it.count = grand.Value(grand.Value(3));
+						it.count = grand.Value(3);
 						factory.input.push_back(it);
 					}
 					else if(grand.Token(0) == "output")
 					{
 						Factory::Item it;
 						it.outfit = GameData::Outfits().Get(grand.Token(2));
-						it.count = grand.Value(static_cast<int>(grand.Value(3)));
+						it.count = static_cast<int>(grand.Value(3));
 						factory.output.push_back(it);
 					}
 					else if(grand.Token(0) == "interval")
@@ -332,6 +332,8 @@ void Outfit::Load(const DataNode &node)
 				else
 					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
+
+			factories.emplace_back(factory);
 		}
 		else if(child.Size() >= 2)
 			attributes[child.Token(0)] = child.Value(1);
@@ -497,9 +499,9 @@ const Dictionary &Outfit::Attributes() const
 
 
 
-const vector<Outfit::Production> &Outfit::Productions() const
+const vector<Outfit::Factory> &Outfit::Factories() const
 {
-	return productions;
+	return factories;
 }
 
 
@@ -551,9 +553,9 @@ void Outfit::Add(const Outfit &other, int count)
 		if(fabs(attributes[at.first]) < EPS)
 			attributes[at.first] = 0.;
 	}
-	productions.reserve(productions.size() + other.productions.size() * count);
+	factories.reserve(factories.size() + other.factories.size() * count);
 	for(int i = 0; i < count; ++i)
-		productions.insert(productions.end(), other.productions.begin(), other.productions.end());
+		factories.insert(factories.end(), other.factories.begin(), other.factories.end());
 
 	for(const auto &it : other.flareSprites)
 		AddFlareSprites(flareSprites, it, count);

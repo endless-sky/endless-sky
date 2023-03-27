@@ -2231,8 +2231,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int
 	{
 		// Make sure there is enough space for every factory this ship has.
 		productionSteps.resize(attributes.Factories().size());
-		for(size_t i = 0; i < attributes.Factories().size(); ++i)
+		for(unsigned i = 0; i < attributes.Factories().size(); i++)
 		{
+
 			const auto &factory = attributes.Factories()[i];
 
 			// First check if the factory is ready to produce.
@@ -2240,7 +2241,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int
 			if((step - productionSteps[i] < factory.interval))
 				continue;
 
-			for(int repeat = 0; repeat < factory.repeat; i++)
+			for(int repeat = 0; repeat < factory.repeat; repeat++)
 			{
 				// Next check if this ship has enough energy/fuel/heat etc.
 				if(shields < factory.shield
@@ -2314,8 +2315,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int
 					it.asCargo
 					? static_cast<void>(cargo.Add(it.outfit, it.count))
 					: AddOutfit(it.outfit, it.count);
+
+				productionSteps[i] = step;
 			}
-			productionSteps[i] = step;
 		}
 	}
 

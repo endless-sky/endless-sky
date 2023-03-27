@@ -424,52 +424,64 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		hasNormalAttributes = true;
 	}
 
-	if(!outfit.Productions().empty())
+	if(!outfit.Factories().empty())
 	{
-		for(const auto &it : outfit.Productions())
+		for(const auto &it : outfit.Factories())
 		{
-			attributeLabels.emplace_back("Interval");
-			attributeValues.emplace_back(Format::Number(it.speed / 60.) + "s");
+			if(it.interval)
+			{
+				attributeLabels.emplace_back("Interval");
+				attributeValues.emplace_back(Format::Number(it.interval / 60.) + "s");
+			}
+			if(it.period)
+			{
+				attributeLabels.emplace_back("Period");
+				attributeValues.emplace_back(to_string(it.period) + ((it.period != 1) ? " days" : " day"));
+			}
+			if(it.repeat > 1)
+			{
+				attributeLabels.emplace_back("Repeat");
+				attributeValues.emplace_back(to_string(it.repeat));
+			}
+
 			bool first = true;
 			for(const auto &input : it.input)
 			{
 				attributeLabels.emplace_back(first ? "Consumes" : "");
-				int count = input.second;
-				string name = (count != 1) ? input.first->PluralName() : input.first->DisplayName();
-				string countString = to_string(count);
+				string name = (input.count != 1) ? input.outfit->PluralName() : input.outfit->DisplayName();
+				string countString = to_string(input.count);
 				attributeValues.emplace_back(countString + " " + name);
 			}
 			for(const auto &output : it.output)
 			{
 				attributeLabels.emplace_back(first ? "Produces" : "");
-				int count = output.second;
-				string name = (count != 1) ? output.first->PluralName() : output.first->DisplayName();
-				string countString = to_string(count);
+				string name = (output.count != 1) ? output.outfit->PluralName() : output.outfit->DisplayName();
+				string countString = to_string(output.count);
 				attributeValues.emplace_back(countString + " " + name);
 			}
 			if(it.energy)
 			{
-				attributeLabels.emplace_back("Energy Cost");
+				attributeLabels.emplace_back("Energy Consumption");
 				attributeValues.emplace_back(Format::Number(it.energy));
 			}
 			if(it.fuel)
 			{
-				attributeLabels.emplace_back("Fuel Cost");
+				attributeLabels.emplace_back("Fuel Consumption");
 				attributeValues.emplace_back(Format::Number(it.fuel));
 			}
 			if(it.heat)
 			{
-				attributeLabels.emplace_back("Heat Cost");
+				attributeLabels.emplace_back("Heat Consumption");
 				attributeValues.emplace_back(Format::Number(it.heat));
 			}
 			if(it.hull)
 			{
-				attributeLabels.emplace_back("Hull Cost");
+				attributeLabels.emplace_back("Hull Consumption");
 				attributeValues.emplace_back(Format::Number(it.energy));
 			}
 			if(it.shield)
 			{
-				attributeLabels.emplace_back("Shield Cost");
+				attributeLabels.emplace_back("Shield Consumption");
 				attributeValues.emplace_back(Format::Number(it.fuel));
 			}
 		}

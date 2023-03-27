@@ -64,8 +64,8 @@ public:
 		double energy;
 		double fuel;
 		double heat;
-		int interval = 60;
-		int period = -1;
+		int interval = 0;
+		int period = 0;
 		int repeat = 1;
 	};
 
