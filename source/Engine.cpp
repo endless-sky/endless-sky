@@ -694,12 +694,16 @@ void Engine::Step(bool isActive)
 		if(Preferences::Has("Rotate flagship in HUD"))
 		{
 			shipFacingUnit = flagship->Facing().Unit();
-			velocityFacingUnit = flagship->Velocity().Unit();
 		}
-
 		info.SetSprite("player sprite", flagship->GetSprite(), shipFacingUnit, flagship->GetFrame(step));
-		info.SetSprite("flagship velocity sprite", flagship->GetSprite(), velocityFacingUnit, flagship->GetFrame(step));
-		info.SetOutlineColor(Radar::GetColor(1));
+		// If the Flagship Velocity Indicator preference is set to "ghost" or "both",
+		// this will display the blue ship outline pointing in the ship's direction of motion.
+		if (Preferences::DisplayFlagshipVelocityGhost())
+		{
+			velocityFacingUnit = flagship->Velocity().Unit();
+			info.SetSprite("flagship velocity sprite", flagship->GetSprite(), velocityFacingUnit, flagship->GetFrame(step));
+			info.SetOutlineColor(Radar::GetColor(1));
+		}
 	}
 	if(currentSystem)
 		info.SetString("location", currentSystem->Name());
@@ -1160,7 +1164,10 @@ void Engine::Draw() const
 	}
 	// Draw flagship velocity indicator
 	const shared_ptr<Ship> flagship = player.FlagshipPtr();
-	if(flagship && flagship->Hull())
+	// If the Display Flagship Velocity Indicator is set to "arrow" or "both",
+	// this will display a small white arrow that indicates the direction of motion.
+	// The position of the arrow is set in interfaces.txt in the hud section.
+	if(flagship && flagship->Hull() && Preferences::DisplayFlagshipVelocityArrow())
 	{
 		Point center = hud->GetPoint("flagship velocity indicator");
 		double radius = hud->GetValue("flagship velocity radius");

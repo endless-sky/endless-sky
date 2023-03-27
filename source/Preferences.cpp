@@ -62,6 +62,9 @@ namespace {
 	const vector<string> ALERT_INDICATOR_SETTING = {"off", "audio", "visual", "both"};
 	int alertIndicatorIndex = 3;
 
+	const vector<string> FLAGSHIP_VELOCITY_SETTING = { "off", "ghost", "arrow", "both" };
+	int flagshipVelocityIndicatorIndex = 3;
+
 	int previousSaveCount = 3;
 }
 
@@ -113,6 +116,8 @@ void Preferences::Load()
 			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
 		else if(node.Token(0) == "alert indicator")
 			alertIndicatorIndex = max<int>(0, min<int>(node.Value(1), ALERT_INDICATOR_SETTING.size() - 1));
+		else if (node.Token(0) == "flagship velocity indicator")
+			flagshipVelocityIndicatorIndex = max<int>(0, min<int>(node.Value(1), FLAGSHIP_VELOCITY_SETTING.size() - 1));
 		else if(node.Token(0) == "previous saves" && node.Size() >= 2)
 			previousSaveCount = max<int>(3, node.Value(1));
 		else
@@ -146,6 +151,7 @@ void Preferences::Save()
 	out.Write("Automatic aiming", autoAimIndex);
 	out.Write("Parallax background", parallaxIndex);
 	out.Write("alert indicator", alertIndicatorIndex);
+	out.Write("flagship velocity indicator", flagshipVelocityIndicatorIndex);
 	out.Write("previous saves", previousSaveCount);
 
 	for(const auto &it : settings)
@@ -416,6 +422,54 @@ bool Preferences::DoAlertHelper(Preferences::AlertIndicator toDo)
 	return false;
 }
 
+
+
+void Preferences::ToggleFlagshipVelocityIndicator()
+{
+	if (++flagshipVelocityIndicatorIndex >= static_cast<int>(FLAGSHIP_VELOCITY_SETTING.size()))
+		flagshipVelocityIndicatorIndex = 0;
+}
+
+
+
+Preferences::FlagshipVelocityIndicator Preferences::GetFlagshipVelocityIndicator()
+{
+	return static_cast<FlagshipVelocityIndicator>(flagshipVelocityIndicatorIndex);
+}
+
+
+
+const std::string& Preferences::FlagshipVelocityIndicatorSetting()
+{
+	return FLAGSHIP_VELOCITY_SETTING[flagshipVelocityIndicatorIndex];
+}
+
+//	static bool DisplayFlagshipVelocityGhost();
+//  static bool DisplayFlagshipVelocityArrow();
+
+bool Preferences::DisplayFlagshipVelocityGhost()
+{
+	return DoFlagshipVelocityIndicatorHelper(FlagshipVelocityIndicator::GHOST);
+}
+
+
+
+bool Preferences::DisplayFlagshipVelocityArrow()
+{
+	return DoFlagshipVelocityIndicatorHelper(FlagshipVelocityIndicator::ARROW);
+}
+
+
+
+bool Preferences::DoFlagshipVelocityIndicatorHelper(Preferences::FlagshipVelocityIndicator toDo)
+{
+	auto value = GetFlagshipVelocityIndicator();
+	if (value == FlagshipVelocityIndicator::BOTH)
+		return true;
+	else if (value == toDo)
+		return true;
+	return false;
+}
 
 
 int Preferences::GetPreviousSaveCount()
