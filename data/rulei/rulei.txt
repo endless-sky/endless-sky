@@ -41,7 +41,7 @@ mission "First Contact: Rulei"
 				`	"Hello?"`
 				`	"Is there someone there?"`
 				`	"Show yourself!"`
-			scene "scene/rulei flash"
+			scene "scene/rulei"
 			`	"Human."`
 			`	An image suddenly flashes in your head as you feel millions of eyes staring at you from beyond the boundaries of space. Looking around again, you see a strange-looking spacecraft a bit off into the distance in front of you facing your direction. The voices continue to surround your mind with only slightly reduced intensity.`
 			choice
