@@ -1399,7 +1399,7 @@ mission "Hai Reveal [A10] Demanding Satisfaction"
 			`	"Captain <first> <last> led great fleets during a civil war of the humans. We will have the honor of fighting alongside this warrior of the humans."`
 			branch nobody
 				not "Wanderers: Defend Vara Ke'sok: done"
-			`	"Indeed, we have had the honor of fighting against this warrior of humans. Quite a troublemaker on the battlefield." He looks at you. "Did you think we wouldn't notice the same ship landing on our world as the one flying alongside the flag of our enemy? We've been studying your actions for quite a while. Why are you here now, as an ally of this True Hai?"`
+			`	"Indeed, we have had the honor of fighting against this warrior of humans. Quite a troublemaker on the battlefield." He looks at you. "Your professor friend was chatty before you left, and it's been easy to track you since then. We've been studying your actions for quite a while. Why are you here now, as an ally of this True Hai?"`
 			choice
 				`	"You and I have crossed swords before, but this is a matter that concerns us both: the safety and honor of the Hai."`
 					goto honor

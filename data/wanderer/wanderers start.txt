@@ -374,6 +374,23 @@ event "Wanderers before Hai Reveal"
 
 
 
+mission "Wanderers: Unfettered surveillance"
+	landing
+	invisible
+	repeat
+	deadline 1
+	source
+		government "Hai" "Hai (Unfettered)"
+		near "Ya Hai" 10
+		not attributes uninhabited
+	to offer
+		has "event: Wanderers before Hai Reveal"
+	npc
+		government "Hai Merchant (Sympathizers)"
+		fleet "Small Hai"
+
+
+
 mission "Wanderers: Diplomacy"
 	description "Travel to the Wanderer homeworld with a Hai ambassador who can help communicate with them."
 	landing
