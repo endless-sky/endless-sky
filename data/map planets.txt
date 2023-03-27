@@ -3023,12 +3023,10 @@ planet "New Tortuga"
 	"required reputation" -10
 	bribe 0.03
 	security 0
-	# The tribute and defense will be somewhat different eventually once I figure out the
-	# technical and lore aspects of how the Korath Exiles can defend without being on
-	# New Tortuga itself.
 	tribute 6000
 		threshold 10000
 		fleet "Humanika Defense" 25
+		fleet "Korath Civilian Delivery" 2
 
 planet "New Wales"
 	attributes "dirt belt" mining
