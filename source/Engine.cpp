@@ -1654,7 +1654,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	bool wasDisabled = ship->IsDisabled();
 	// Give the ship the list of visuals so that it can draw explosions,
 	// ion sparks, jump drive flashes, etc.
-	ship->Move(newVisuals, newFlotsam, step);
+	ship->Move(newVisuals, newFlotsam, step, player);
 	if(ship->IsDisabled() && !wasDisabled)
 		eventQueue.emplace_back(nullptr, ship, ShipEvent::DISABLE);
 	// Bail out if the ship just died.

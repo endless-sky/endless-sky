@@ -1538,7 +1538,7 @@ const FireCommand &Ship::FiringCommands() const noexcept
 // Move this ship. A ship may create effects as it moves, in particular if
 // it is in the process of blowing up. If this returns false, the ship
 // should be deleted.
-void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int step)
+void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int step, const PlayerInfo &player)
 {
 	// Check if this ship has been in a different system from the player for so
 	// long that it should be "forgotten." Also eliminate ships that have no
@@ -2231,6 +2231,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int
 	{
 		// Make sure there is enough space for every factory this ship has.
 		productionSteps.resize(attributes.Factories().size());
+		productionDates.resize(attributes.Factories().size());
 		for(unsigned i = 0; i < attributes.Factories().size(); i++)
 		{
 
@@ -2238,7 +2239,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int
 
 			// First check if the factory is ready to produce.
 			// TODO: Add period checking
-			if((step - productionSteps[i] < factory.interval))
+			if(((step - productionSteps[i] < factory.interval) && factory.interval)
+				|| (player.GetDate().DaysSinceEpoch() - productionDates[i] < factory.period) && factory.period)
 				continue;
 
 			for(int repeat = 0; repeat < factory.repeat; repeat++)
@@ -2317,6 +2319,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int
 					: AddOutfit(it.outfit, it.count);
 
 				productionSteps[i] = step;
+				productionDates[i] = player.GetDate().DaysSinceEpoch();
 			}
 		}
 	}

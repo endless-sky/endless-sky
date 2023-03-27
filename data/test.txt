@@ -11,6 +11,5 @@ outfit TempFac
 		fuel 250
 		heat 1000
 		
-		interval 30
 		period 1
-		repeat 2
+		repeat 5
