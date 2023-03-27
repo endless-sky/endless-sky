@@ -116,7 +116,7 @@ void Preferences::Load()
 			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
 		else if(node.Token(0) == "alert indicator")
 			alertIndicatorIndex = max<int>(0, min<int>(node.Value(1), ALERT_INDICATOR_SETTING.size() - 1));
-		else if (node.Token(0) == "flagship velocity indicator")
+		else if(node.Token(0) == "flagship velocity indicator")
 			flagshipVelocityIndicatorIndex = max<int>(0, min<int>(node.Value(1), FLAGSHIP_VELOCITY_SETTING.size() - 1));
 		else if(node.Token(0) == "previous saves" && node.Size() >= 2)
 			previousSaveCount = max<int>(3, node.Value(1));
@@ -426,7 +426,7 @@ bool Preferences::DoAlertHelper(Preferences::AlertIndicator toDo)
 
 void Preferences::ToggleFlagshipVelocityIndicator()
 {
-	if (++flagshipVelocityIndicatorIndex >= static_cast<int>(FLAGSHIP_VELOCITY_SETTING.size()))
+	if(++flagshipVelocityIndicatorIndex >= static_cast<int>(FLAGSHIP_VELOCITY_SETTING.size()))
 		flagshipVelocityIndicatorIndex = 0;
 }
 
@@ -464,9 +464,9 @@ bool Preferences::DisplayFlagshipVelocityArrow()
 bool Preferences::DoFlagshipVelocityIndicatorHelper(Preferences::FlagshipVelocityIndicator toDo)
 {
 	auto value = GetFlagshipVelocityIndicator();
-	if (value == FlagshipVelocityIndicator::BOTH)
+	if(value == FlagshipVelocityIndicator::BOTH)
 		return true;
-	else if (value == toDo)
+	else if(value == toDo)
 		return true;
 	return false;
 }

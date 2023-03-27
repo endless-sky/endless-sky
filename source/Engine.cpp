@@ -698,7 +698,7 @@ void Engine::Step(bool isActive)
 		info.SetSprite("player sprite", flagship->GetSprite(), shipFacingUnit, flagship->GetFrame(step));
 		// If the Flagship Velocity Indicator preference is set to "ghost" or "both",
 		// this will display the blue ship outline pointing in the ship's direction of motion.
-		if (Preferences::DisplayFlagshipVelocityGhost())
+		if(Preferences::DisplayFlagshipVelocityGhost())
 		{
 			velocityFacingUnit = flagship->Velocity().Unit();
 			info.SetSprite("flagship velocity sprite", flagship->GetSprite(), velocityFacingUnit, flagship->GetFrame(step));

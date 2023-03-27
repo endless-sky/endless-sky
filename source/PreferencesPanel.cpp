@@ -675,7 +675,7 @@ void PreferencesPanel::DrawSettings()
 			isOn = Preferences::GetAlertIndicator() != Preferences::AlertIndicator::NONE;
 			text = Preferences::AlertSetting();
 		}
-		else if (setting == FLAGSHIP_VELOCITY_INDICATOR)
+		else if(setting == FLAGSHIP_VELOCITY_INDICATOR)
 		{
 			isOn = Preferences::GetFlagshipVelocityIndicator() != Preferences::FlagshipVelocityIndicator::OFF;
 			text = Preferences::FlagshipVelocityIndicatorSetting();
