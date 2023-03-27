@@ -1160,7 +1160,7 @@ void Engine::Draw() const
 	}
 	// Draw flagship velocity indicator
 	const shared_ptr<Ship> flagship = player.FlagshipPtr();
-	if (flagship && flagship->Hull())
+	if(flagship && flagship->Hull())
 	{
 		Point center = hud->GetPoint("flagship velocity indicator");
 		double radius = hud->GetValue("flagship velocity radius");
