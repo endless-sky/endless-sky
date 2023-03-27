@@ -28,6 +28,7 @@
       },
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_COMPILE_WARNING_AS_ERROR": "ON",
         "ES_USE_SYSTEM_LIBRARIES": "OFF"
       },
       "condition": {
@@ -481,6 +482,20 @@
       }
     },
     {
+      "name": "test-release",
+      "hidden": true,
+      "configuration": "Release",
+      "output": {
+        "shortProgress": true,
+        "outputOnFailure": true
+      },
+      "filter": {
+        "include": {
+          "label": "unit"
+        }
+      }
+    },
+    {
       "name": "benchmark",
       "hidden": true,
       "configuration": "Release",
@@ -585,6 +600,12 @@
       "inherits": "test"
     },
     {
+      "name": "linux-test-release",
+      "displayName": "Unit Tests (Release)",
+      "configurePreset": "linux",
+      "inherits": "test-release"
+    },
+    {
       "name": "linux-benchmark",
       "displayName": "Benchmarks",
       "configurePreset": "linux",
@@ -604,9 +625,15 @@
     },
     {
       "name": "linux-gles-test",
-      "displayName": "Tests",
+      "displayName": "Unit Tests",
       "configurePreset": "linux-gles",
       "inherits": "test"
+    },
+    {
+      "name": "linux-gles-test-release",
+      "displayName": "Unit Tests (Release)",
+      "configurePreset": "linux-gles",
+      "inherits": "test-release"
     },
     {
       "name": "linux-gles-benchmark",
@@ -628,9 +655,15 @@
     },
     {
       "name": "macos-test",
-      "displayName": "Tests",
+      "displayName": "Unit Tests",
       "configurePreset": "macos",
       "inherits": "test"
+    },
+    {
+      "name": "macos-test-release",
+      "displayName": "Unit Tests (Release)",
+      "configurePreset": "macos",
+      "inherits": "test-release"
     },
     {
       "name": "macos-benchmark",
@@ -646,9 +679,15 @@
     },
     {
       "name": "macos-arm-test",
-      "displayName": "Tests",
+      "displayName": "Unit Tests",
       "configurePreset": "macos-arm",
       "inherits": "test"
+    },
+    {
+      "name": "macos-arm-test-release",
+      "displayName": "Unit Tests (Release)",
+      "configurePreset": "macos-arm",
+      "inherits": "test-release"
     },
     {
       "name": "macos-arm-benchmark",
@@ -664,9 +703,15 @@
     },
     {
       "name": "clang-cl-test",
-      "displayName": "Tests",
+      "displayName": "Unit Tests",
       "configurePreset": "clang-cl",
       "inherits": "test"
+    },
+    {
+      "name": "clang-cl-test-release",
+      "displayName": "Unit Tests (Release)",
+      "configurePreset": "clang-cl",
+      "inherits": "test-release"
     },
     {
       "name": "clang-cl-benchmark",
@@ -682,9 +727,15 @@
     },
     {
       "name": "mingw-test",
-      "displayName": "Tests",
+      "displayName": "Unit Tests",
       "configurePreset": "mingw",
       "inherits": "test"
+    },
+    {
+      "name": "mingw-test-release",
+      "displayName": "Unit Tests (Release)",
+      "configurePreset": "mingw",
+      "inherits": "test-release"
     },
     {
       "name": "mingw-benchmark",
@@ -700,9 +751,15 @@
     },
     {
       "name": "mingw32-test",
-      "displayName": "Tests",
+      "displayName": "Unit Tests",
       "configurePreset": "mingw32",
       "inherits": "test"
+    },
+    {
+      "name": "mingw32-test-release",
+      "displayName": "Unit Tests (Release)",
+      "configurePreset": "mingw32",
+      "inherits": "test-release"
     },
     {
       "name": "mingw32-benchmark",

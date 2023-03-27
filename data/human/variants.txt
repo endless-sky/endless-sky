@@ -97,6 +97,81 @@ ship "Arrow" "Arrow (Hai)"
 
 
 
+ship "Auxiliary" "Auxiliary (Mark II)"
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"Fusion Reactor"
+		"LP288a Battery Pack"
+		"D94-YV Shield Generator"
+		"D67-TM Shield Generator"
+		"Water Coolant System"
+		"Large Radar Jammer"
+		"Catalytic Ramscoop"
+		
+		"X4700 Ion Thruster"
+		"X1700 Ion Thruster"
+		"X5200 Ion Steering"
+		"Scram Drive"
+
+
+ship "Auxiliary" "Auxiliary (Cargo Mark II)"
+	plural "Auxiliaries"
+	sprite "ship/auxiliaryc"
+	thumbnail "thumbnail/auxiliaryc"
+	add attributes
+		"bunks" -112
+		"cargo space" 200
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"Fusion Reactor"
+		"LP288a Battery Pack"
+		"D94-YV Shield Generator"
+		"D67-TM Shield Generator"
+		"Water Coolant System"
+		"Large Radar Jammer"
+		"Catalytic Ramscoop"
+		
+		"X4700 Ion Thruster"
+		"X1700 Ion Thruster"
+		"X5200 Ion Steering"
+		"Scram Drive"
+
+
+ship "Auxiliary" "Auxiliary (Transport Mark II)"
+	plural "Auxiliaries"
+	sprite "ship/auxiliaryt"
+	thumbnail "thumbnail/auxiliaryt"
+	add attributes
+		"bunks" 112
+		"cargo space" -200
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"Fusion Reactor"
+		"LP288a Battery Pack"
+		"D94-YV Shield Generator"
+		"D67-TM Shield Generator"
+		"Water Coolant System"
+		"Large Radar Jammer"
+		"Catalytic Ramscoop"
+		
+		"X4700 Ion Thruster"
+		"X1700 Ion Thruster"
+		"X5200 Ion Steering"
+		"Scram Drive"
+
+
 ship "Auxiliary" "Auxiliary (Jump Transport)"
 	plural "Auxiliaries"
 	sprite "ship/auxiliaryt"
@@ -2685,6 +2760,7 @@ ship "Raven" "Raven (Afterburner)"
 		"Heavy Laser" 4
 		"NT-200 Nucleovoltaic"
 		"D41-HY Shield Generator"
+		"Fuel Pod"
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
@@ -3004,6 +3080,8 @@ ship "Wasp" "Wasp (Javelin)"
 	gun
 	gun "Javelin Pod"
 	gun "Javelin Pod"
+	gun
+	gun
 	
 
 ship "Wasp" "Wasp (Meteor)"

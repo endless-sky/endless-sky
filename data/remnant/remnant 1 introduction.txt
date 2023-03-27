@@ -1121,46 +1121,30 @@ mission "Remnant: Deep Surveillance"
 			`	Torza's eyes go wide. "What do they know?"`
 			
 			label knowledge
-			branch unknown
-				has "deep: did not reveal remnant"
-			
-			branch surveillance
-				has "Deep: Remnant Surveillance: done"
-			
-			branch technology
-				has "Deep: Remnant: Engines: done"
-			
-			choice
-				`	"They know where the Remnant are in the Ember Waste."`
-					goto location
-				`	"They have scans of a few Remnant ships."`
-					goto scans
-			
-			label technology
-			choice
-				`	"They know where the Remnant are in the Ember Waste."`
-					goto location
-				`	"They have scans of a few Remnant ships."`
-					goto scans
-				`	"They have samples of some Remnant technology."`
-					goto tech
-			
-			label surveillance
-			choice
-				`	"They know where the Remnant are in the Ember Waste."`
-					goto location
-				`	"They have scans of a few Remnant ships."`
-					goto scans
-				`	"They have samples of some Remnant technology."`
-					goto tech
-				`	"They are actively surveilling Remnant worlds."`
-					goto surveilled
-			
-			label unknown
 			choice
 				`	"They don't know about the Remnant, at least not yet."`
+					to display
+						has "deep: did not reveal remnant"
 				`	"They have only discovered the void sprites."`
+					to display
+						has "deep: did not reveal remnant"
 					goto sprites
+				`	"They know where the Remnant are in the Ember Waste."`
+					to display
+						has "deep: did reveal remnant"
+					goto location
+				`	"They have scans of a few Remnant ships."`
+					to display
+						has "deep: did reveal remnant"
+					goto scans
+				`	"They have samples of some Remnant technology."`
+					to display
+						has "Deep: Remnant: Engines: done"
+					goto tech
+				`	"They are actively surveilling Remnant worlds."`
+					to display
+						has "Deep: Remnant Surveillance: done"
+					goto surveilled
 			
 			action
 				set "remnant: told that deep knows nothing"
