@@ -319,13 +319,13 @@ void Outfit::Load(const DataNode &node)
 						factory.repeat = static_cast<int>(grand.Value(1));
 					else if(grand.Token(0) == "shield")
 						factory.shield = grand.Value(1);
-					else if (grand.Token(0) == "hull")
+					else if(grand.Token(0) == "hull")
 						factory.hull = grand.Value(1);
-					else if (grand.Token(0) == "energy")
+					else if(grand.Token(0) == "energy")
 						factory.energy = grand.Value(1);
-					else if (grand.Token(0) == "fuel")
+					else if(grand.Token(0) == "fuel")
 						factory.fuel = grand.Value(1);
-					else if (grand.Token(0) == "heat")
+					else if(grand.Token(0) == "heat")
 						factory.heat = grand.Value(1);
 					else
 						grand.PrintTrace("Skipping unrecognized attribute:");

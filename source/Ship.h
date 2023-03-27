@@ -211,7 +211,8 @@ public:
 	// Move this ship. A ship may create effects as it moves, in particular if
 	// it is in the process of blowing up.
 	// Remove player once PlayerInfo can return player
-	void Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam, int step, const PlayerInfo &player);
+	void Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam, 
+		int step, const PlayerInfo &player);
 	// Generate energy, heat, etc. (This is called by Move().)
 	void DoGeneration();
 	// Launch any ships that are ready to launch.

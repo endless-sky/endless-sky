@@ -2223,7 +2223,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int
 	// Clear your target if it is destroyed. This is only important for NPCs,
 	// because ordinary ships cease to exist once they are destroyed.
 	target = GetTargetShip();
-	if(target && target->IsDestroyed() && target->explosionCount >= target->explosionTotal) 
+	if(target && target->IsDestroyed() && target->explosionCount >= target->explosionTotal)
 		targetShip.reset();
 
 	// If this ship isn't disabled then it can potentially produce outfits.
@@ -2240,7 +2240,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int
 			// First check if the factory is ready to produce.
 			// TODO: Add period checking
 			if(((step - productionSteps[i] < factory.interval) && factory.interval)
-				|| (player.GetDate().DaysSinceEpoch() - productionDates[i] < factory.period) && factory.period)
+				|| ((player.GetDate().DaysSinceEpoch() - productionDates[i] < factory.period) && factory.period))
 				continue;
 
 			for(int repeat = 0; repeat < factory.repeat; repeat++)
