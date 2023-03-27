@@ -519,6 +519,7 @@ void PreferencesPanel::DrawSettings()
 		FIGHTER_REPAIR,
 		TURRET_TRACKING,
 		"Rehire extra crew when lost",
+		"Extra fleet status messages",
 		"\t",
 		"Other",
 		"Clickable radar display",
