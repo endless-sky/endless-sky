@@ -233,13 +233,13 @@ mission "Deep Archaeology 5"
 	npc
 		personality heroic
 		government Deep
-		ship "Aerie" "D.P.S Wyrdson"
+		ship "Aerie" "D.P.S. Wyrdson"
 		to despawn
 			not "dps wyrd dead"
 	npc
 		personality heroic
 		government Deep
-		ship "Aerie" "D.P.S Skuldson"
+		ship "Aerie" "D.P.S. Skuldson"
 		to despawn
 			not "dps skuld dead"
 	
