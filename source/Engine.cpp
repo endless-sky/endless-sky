@@ -698,7 +698,7 @@ void Engine::Step(bool isActive)
 		}
 
 		info.SetSprite("player sprite", flagship->GetSprite(), shipFacingUnit, flagship->GetFrame(step));
-		info.SetSprite("velocity sprite", flagship->GetSprite(), velocityFacingUnit, flagship->GetFrame(step));
+		info.SetSprite("flagship velocity sprite", flagship->GetSprite(), velocityFacingUnit, flagship->GetFrame(step));
 		info.SetOutlineColor(Radar::GetColor(1));
 	}
 	if(currentSystem)
@@ -1157,6 +1157,14 @@ void Engine::Draw() const
 		const Color &color = *colors.Get("flagship highlight");
 		// The flagship is always in the dead center of the screen.
 		OutlineShader::Draw(highlightSprite, Point(), size, color, highlightUnit, highlightFrame);
+	}
+	// Draw flagship velocity indicator
+	const shared_ptr<Ship> flagship = player.FlagshipPtr();
+	if (flagship && flagship->Hull())
+	{
+		Point center = hud->GetPoint("flagship velocity indicator");
+		double radius = hud->GetValue("flagship velocity radius");
+		PointerShader::Draw(center, flagship->Velocity().Unit(), 10.f, 10.f, radius, Color(1.f));
 	}
 
 	if(flash)

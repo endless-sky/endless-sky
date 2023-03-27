@@ -531,10 +531,14 @@ interface "hud"
 	outline "player sprite"
 		center -75 155
 		dimensions 70 70
-	outline "velocity sprite"
+	outline "flagship velocity sprite"
 		center -75 155
 		dimensions 70 70
 		colored
+	point "flagship velocity indicator"
+		center -75 155
+		dimensions 140 140
+	value "flagship velocity radius" 50
 	ring "shields"
 		center -75 155
 		dimensions 120 120
