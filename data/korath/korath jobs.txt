@@ -263,11 +263,11 @@ mission "Korath Humanika: Fish Trade (small)"
 		not "Korath Humanika: Fish Trade (small): active"
 		"reputation: Korath" > -3000
 	on stopover
-		dialog "You drop of your <tons> of illicit fish, and receive <tons> of unknown cargo from a woman in a blue dress."
+		dialog "You drop of your <tons> of illicit fish, and receive <tons> of unknown cargo."
 	on complete
 		payment 25000 500
-		dialog "A woman in a blue dress thanks you for the delivery and pays you <payment>."
-		"reputation: Korath" ++
+		dialog "An inventory officer meets you to trade your cargo for <payment>."
+		"reputation: Korath" += 2
 
 mission "Korath Humanika: Fish Trade (medium)"
 	name "New Tortuga fish trade"
@@ -288,11 +288,11 @@ mission "Korath Humanika: Fish Trade (medium)"
 		"cargo space" > 20
 		"reputation: Korath" > -3000
 	on stopover
-		dialog "You drop of your <tons> of illicit fish, and receive <tons> of unknown cargo from a woman in a blue dress."
+		dialog "You drop of your <tons> of illicit fish, and receive <tons> of unknown cargo."
 	on complete
 		payment 35000 400
-		dialog "A woman in a blue dress thanks you for the delivery and pays you <payment>."
-		"reputation: Korath" += 2
+		dialog "An inventory officer meets you to trade your cargo for <payment>."
+		"reputation: Korath" += 4
 
 mission "Korath Humanika: Fish Trade (bulk)"
 	name "New Tortuga fish trade"
@@ -313,11 +313,11 @@ mission "Korath Humanika: Fish Trade (bulk)"
 		"cargo space" > 50
 		"reputation: Korath" > -3000
 	on stopover
-		dialog "You drop of your <tons> of illicit fish, and receive <tons> of unknown cargo from a woman in a blue dress."
+		dialog "You drop of your <tons> of illicit fish, and receive <tons> of unknown cargo."
 	on complete
 		payment 45000 350
-		dialog "A woman in a blue dress thanks you for the delivery and pays you <payment>."
-		"reputation: Korath" += 3
+		dialog "An inventory officer meets you to trade your cargo for <payment>."
+		"reputation: Korath" += 7
 
 mission "Korath: Retrieve livestock [0]"
 	name "Livestock from <stopovers>"
@@ -336,8 +336,8 @@ mission "Korath: Retrieve livestock [0]"
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of livestock."
 	on complete
 		payment 30000 180
-		dialog "A woman in a blue dress examines the livestock and confirms the trade. You receive <payment>."
-		"reputation: Korath" ++
+		dialog "An inventory officer examines the livestock and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 2
 
 mission "Korath: Retrieve livestock [1]"
 	name "Livestock from <stopovers>"
@@ -356,8 +356,8 @@ mission "Korath: Retrieve livestock [1]"
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of livestock."
 	on complete
 		payment 30000 180
-		dialog "A woman in a blue dress examines the livestock and confirms the trade. You receive <payment>."
-		"reputation: Korath" += 2
+		dialog "An inventory officer examines the livestock and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 4
 
 mission "Korath: Retrieve livestock [2]"
 	name "Livestock from <stopovers>"
@@ -377,8 +377,8 @@ mission "Korath: Retrieve livestock [2]"
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of livestock."
 	on complete
 		payment 30000 180
-		dialog "A woman in a blue dress examines the livestock and confirms the trade. You receive <payment>."
-		"reputation: Korath" += 3
+		dialog "An inventory officer examines the livestock and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 10
 
 mission "Korath: Retrieve livestock [3]"
 	name "Livestock from <stopovers>"
@@ -398,8 +398,8 @@ mission "Korath: Retrieve livestock [3]"
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of livestock."
 	on complete
 		payment 30000 180
-		dialog "A woman in a blue dress examines the livestock and confirms the trade. You receive <payment>."
-		"reputation: Korath" += 4
+		dialog "An inventory officer examines the livestock and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 10
 
 mission "Korath: Retrieve livestock [4]"
 	name "Livestock from <stopovers>"
@@ -419,8 +419,8 @@ mission "Korath: Retrieve livestock [4]"
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of livestock."
 	on complete
 		payment 30000 180
-		dialog "A woman in a blue dress examines the livestock and confirms the trade. You receive <payment>."
-		"reputation: Korath" += 5
+		dialog "An inventory officer examines the livestock and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 12
 
 mission "Korath: Retrieve crops [0]"
 	name "Crops from <stopovers>"
@@ -439,8 +439,8 @@ mission "Korath: Retrieve crops [0]"
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of crops."
 	on complete
 		payment 30000 180
-		dialog "A woman in a blue dress examines the crops and confirms the trade. You receive <payment>."
-		"reputation: Korath" ++
+		dialog "An inventory officer examines the crops and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 2
 
 mission "Korath: Retrieve crops [1]"
 	name "Crops from <stopovers>"
@@ -459,8 +459,8 @@ mission "Korath: Retrieve crops [1]"
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of crops."
 	on complete
 		payment 30000 180
-		dialog "A woman in a blue dress examines the crops and confirms the trade. You receive <payment>."
-		"reputation: Korath" += 2
+		dialog "An inventory officer examines the crops and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 4
 
 mission "Korath: Retrieve crops [2]"
 	name "Crops from <stopovers>"
@@ -480,8 +480,8 @@ mission "Korath: Retrieve crops [2]"
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of crops."
 	on complete
 		payment 30000 180
-		dialog "A woman in a blue dress examines the crops and confirms the trade. You receive <payment>."
-		"reputation: Korath" += 3
+		dialog "An inventory officer examines the crops and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 7
 
 mission "Korath: Retrieve crops [3]"
 	name "Crops from <stopovers>"
@@ -501,8 +501,8 @@ mission "Korath: Retrieve crops [3]"
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of crops."
 	on complete
 		payment 30000 180
-		dialog "A woman in a blue dress examines the crops and confirms the trade. You receive <payment>."
-		"reputation: Korath" += 4
+		dialog "An inventory officer examines the crops and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 10
 
 mission "Korath: Retrieve crops [4]"
 	name "Crops from <stopovers>"
@@ -522,8 +522,8 @@ mission "Korath: Retrieve crops [4]"
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of crops."
 	on complete
 		payment 30000 180
-		dialog "A woman in a blue dress examines the crops and confirms the trade. You receive <payment>."
-		"reputation: Korath" += 5
+		dialog "An inventory officer examines the crops and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 12
 
 mission "Korath: Retrieve fish [0]"
 	name "Fish from <stopovers>"
@@ -542,8 +542,8 @@ mission "Korath: Retrieve fish [0]"
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of fish."
 	on complete
 		payment 30000 180
-		dialog "A woman in a blue dress examines the fish and confirms the trade. You receive <payment>."
-		"reputation: Korath" ++
+		dialog "An inventory officer examines the fish and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 2
 
 mission "Korath: Retrieve fish [1]"
 	name "Fish from <stopovers>"
@@ -562,8 +562,8 @@ mission "Korath: Retrieve fish [1]"
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of fish."
 	on complete
 		payment 30000 180
-		dialog "A woman in a blue dress examines the fish and confirms the trade. You receive <payment>."
-		"reputation: Korath" += 2
+		dialog "An inventory officer examines the fish and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 4
 
 mission "Korath: Retrieve fish [2]"
 	name "Fish from <stopovers>"
@@ -583,8 +583,8 @@ mission "Korath: Retrieve fish [2]"
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of fish."
 	on complete
 		payment 30000 180
-		dialog "A woman in a blue dress examines the fish and confirms the trade. You receive <payment>."
-		"reputation: Korath" += 3
+		dialog "An inventory officer examines the fish and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 7
 
 mission "Korath: Retrieve fish [3]"
 	name "Fish from <stopovers>"
@@ -604,8 +604,8 @@ mission "Korath: Retrieve fish [3]"
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of fish."
 	on complete
 		payment 30000 180
-		dialog "A woman in a blue dress examines the fish and confirms the trade. You receive <payment>."
-		"reputation: Korath" += 4
+		dialog "An inventory officer examines the fish and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 10
 
 mission "Korath: Retrieve fish [4]"
 	name "Fish from <stopovers>"
@@ -625,8 +625,8 @@ mission "Korath: Retrieve fish [4]"
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of fish."
 	on complete
 		payment 30000 180
-		dialog "A woman in a blue dress examines the fish and confirms the trade. You receive <payment>."
-		"reputation: Korath" += 5
+		dialog "An inventory officer examines the fish and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 12
 
 mission "Korath: Retrieve flora and fauna [0]"
 	name "Flora and fauna from <stopovers>"
@@ -645,8 +645,8 @@ mission "Korath: Retrieve flora and fauna [0]"
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of flora and fauna."
 	on complete
 		payment 30000 180
-		dialog "A woman in a blue dress examines the flora and fauna and confirms the trade. You receive <payment>."
-		"reputation: Korath" ++
+		dialog "An inventory officer examines the flora and fauna and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 2
 
 mission "Korath: Retrieve flora and fauna [1]"
 	name "Flora and fauna from <stopovers>"
@@ -665,8 +665,8 @@ mission "Korath: Retrieve flora and fauna [1]"
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of flora and fauna."
 	on complete
 		payment 30000 180
-		dialog "A woman in a blue dress examines the flora and fauna and confirms the trade. You receive <payment>."
-		"reputation: Korath" += 2
+		dialog "An inventory officer examines the flora and fauna and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 4
 
 mission "Korath: Retrieve flora and fauna [2]"
 	name "Flora and fauna from <stopovers>"
@@ -686,8 +686,8 @@ mission "Korath: Retrieve flora and fauna [2]"
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of flora and fauna."
 	on complete
 		payment 30000 180
-		dialog "A woman in a blue dress examines the flora and fauna and confirms the trade. You receive <payment>."
-		"reputation: Korath" += 3
+		dialog "An inventory officer examines the flora and fauna and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 7
 
 mission "Korath: Retrieve flora and fauna [3]"
 	name "Flora and fauna from <stopovers>"
@@ -707,8 +707,8 @@ mission "Korath: Retrieve flora and fauna [3]"
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of flora and fauna."
 	on complete
 		payment 30000 180
-		dialog "A woman in a blue dress examines the flora and fauna and confirms the trade. You receive <payment>."
-		"reputation: Korath" += 4
+		dialog "An inventory officer examines the flora and fauna and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 10
 
 mission "Korath: Retrieve flora and fauna [4]"
 	name "Flora and fauna from <stopovers>"
@@ -728,8 +728,8 @@ mission "Korath: Retrieve flora and fauna [4]"
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of flora and fauna."
 	on complete
 		payment 30000 180
-		dialog "A woman in a blue dress examines the flora and fauna and confirms the trade. You receive <payment>."
-		"reputation: Korath" += 5
+		dialog "An inventory officer examines the flora and fauna and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 12
 
 mission "Korath: Retrieve domestic pets [0]"
 	name "Domestic pets from <stopovers>"
@@ -748,8 +748,8 @@ mission "Korath: Retrieve domestic pets [0]"
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of domestic pets."
 	on complete
 		payment 30000 180
-		dialog "A woman in a blue dress examines the domestic pets and confirms the trade. You receive <payment>."
-		"reputation: Korath" ++
+		dialog "An inventory officer examines the domestic pets and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 2
 
 mission "Korath: Retrieve domestic pets [1]"
 	name "Domestic pets from <stopovers>"
@@ -768,8 +768,8 @@ mission "Korath: Retrieve domestic pets [1]"
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of domestic pets."
 	on complete
 		payment 30000 180
-		dialog "A woman in a blue dress examines the domestic pets and confirms the trade. You receive <payment>."
-		"reputation: Korath" += 2
+		dialog "An inventory officer examines the domestic pets and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 4
 
 mission "Korath: Retrieve domestic pets [2]"
 	name "Domestic pets from <stopovers>"
@@ -789,8 +789,8 @@ mission "Korath: Retrieve domestic pets [2]"
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of domestic pets."
 	on complete
 		payment 30000 180
-		dialog "A woman in a blue dress examines the domestic pets and confirms the trade. You receive <payment>."
-		"reputation: Korath" += 3
+		dialog "An inventory officer examines the domestic pets and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 7
 
 mission "Korath: Retrieve domestic pets [3]"
 	name "Domestic pets from <stopovers>"
@@ -810,8 +810,8 @@ mission "Korath: Retrieve domestic pets [3]"
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of domestic pets."
 	on complete
 		payment 30000 180
-		dialog "A woman in a blue dress examines the domestic pets and confirms the trade. You receive <payment>."
-		"reputation: Korath" += 4
+		dialog "An inventory officer examines the domestic pets and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 10
 
 mission "Korath: Retrieve domestic pets [4]"
 	name "Domestic pets from <stopovers>"
@@ -831,5 +831,5 @@ mission "Korath: Retrieve domestic pets [4]"
 		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of domestic pets."
 	on complete
 		payment 30000 180
-		dialog "A woman in a blue dress examines the domestic pets and confirms the trade. You receive <payment>."
-		"reputation: Korath" += 5
+		dialog "An inventory officer examines the domestic pets and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 12
