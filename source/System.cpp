@@ -49,7 +49,7 @@ namespace {
 		if(container.empty())
 			return;
 		shared_ptr<ConditionSet> conditions = container.back().GetConditions();
-		for(auto & grand : child)
+		for(auto &grand : child)
 			if(grand.Size() != 2 || grand.Token(0) != "to" || grand.Token(1) != "spawn" || !grand.HasChildren())
 				continue;
 			else if(!conditions)
