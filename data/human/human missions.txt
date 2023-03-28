@@ -5572,10 +5572,6 @@ mission "Argosy Hijacking"
 		not near "Sol" 3
 	to offer
 		has "event: argosy hijacking trigger"
-	substitutions
-		"<argosy hijacking variable>" "destroy"
-		"<argosy hijacking variable>" "board"
-			has "boarded hijacked argosy"
 	on offer
 		conversation
 			`You're signing the standard Syndicate landing papers with an officer on <origin>. "Everything seems to be in order. And of course, we'll have your ship refueled promptly. Have a good day, Captain <last>." He nods his head at you and starts to move off towards the next ship.`
@@ -5615,13 +5611,31 @@ mission "Argosy Hijacking"
 		dialog `The <npc> has been disabled. Syndicated Security will now deal with the hijackers, but you should go back and report to the captain whose ship was hijacked.`
 		on board
 			set "boarded hijacked argosy"
-			dialog `You have failed this mission because you boarded the ship, against the orders of the Syndicated Security officer. The captain whose ship was hijacked won't be impressed.`
+			dialog `You have failed this mission because you boarded the Moonshake Express, against the orders of the Syndicated Security officer. The captain whose ship was hijacked won't be impressed.`
 			fail
+		on kill
+			set "destroyed hijacked argosy"
+			dialog `You have failed this mission because you destroyed the Moonshake Express. The captain whose ship was hijacked won't be impressed.`
 
 	on fail
 		conversation
 			`When you land, the captain of the <npc> comes up to you, his face rather red.`
-			`	He grabs your shoulders and shakes you hard, shouting, "Didn't I tell you not to <argosy hijacking variable> my ship? Do you know how many credits I've just lost because of you?"`
+			branch boarded destroyed
+				and
+					has "boarded hijacked argosy"
+					not "destroyed hijacked argosy"
+			label boarded
+			`	He grabs your shoulders and shakes you hard, shouting, "Didn't I tell you not to board my ship? Do you know how many credits I've just lost because of you?"`
+			choice
+				`	"I'm sorry, I was just trying to help!"`
+				`	"I'm sure whatever you lost wasn't worth all that much."`
+					goto worthless
+			`	He stops shaking you for a moment to say, "Well, you shouldn't have shot up the insides of my <npc model> while you were trying to help, weren't you? Fat lot of help that was, even if you tried to do the right thing. Oh, well..."`
+			`	He lets you go with a push and turns around to walk off towards the direction of the bar, leaving you to contemplate your actions.`
+				decline
+
+			label destroyed
+			`	He grabs your shoulders and shakes you hard, shouting, "Didn't I tell you not to destroy my ship? Do you know how many credits I've just lost because of you?"`
 			choice
 				`	"I'm sorry, I was just trying to help!"`
 				`	"I'm sure whatever you lost wasn't worth all that much."`
@@ -5640,7 +5654,7 @@ mission "Argosy Hijacking"
 				decline
 
 	on complete
-		payment 28000
+		payment 48000
 		conversation 
 			`As you land, Syndicated Security have the <npc> in tow, escorted by a trio of Quicksilvers. The formation lands on one of the larger pads reserved for Syndicated Security vessels, fenced off from the rest of the spaceport.`
 			`	The hijackers, just a raucous group of young kids, are hauled out of the <npc model> by Syndicated Security personnel towards an armored van. Multiple times the kids try to run away, but after a few minutes they're finally detained; the van drives off towards the spaceport terminal.`
