@@ -5569,9 +5569,7 @@ mission "Argosy Hijacking"
 	source
 		government "Syndicate"
 		not attributes "station"
-		near "Alcyone" 4
-		near "Almach" 3
-		near "Gienah" 3
+		not near "Sol" 3
 	to offer
 		has "event: argosy hijacking trigger"
 	substitutions
@@ -5654,9 +5652,7 @@ mission "Argosy Hijacking (Declined)"
 	source
 		government "Syndicate"
 		not attributes "station"
-		near "Alcyone" 4
-		near "Almach" 3
-		near "Gienah" 3
+		not near "Sol" 3
 	to offer
 		has "event: argosy hijacking trigger"
 	on offer
