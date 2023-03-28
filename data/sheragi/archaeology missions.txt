@@ -119,7 +119,7 @@ mission "Deep Archaeology 3"
 	
 	npc
 		personality waiting
-		system Aspidiske
+		system "Aspidiske"
 		government "Deep Security"
 		ship "Raven (Afterburner)" "D.P.S. Skuld"
 		on kill
@@ -129,7 +129,7 @@ mission "Deep Archaeology 3"
 	
 	npc
 		personality waiting
-		system Gomeisa
+		system "Gomeisa"
 		government "Deep Security"
 		ship "Raven (Afterburner)" "D.P.S. Verthandi"
 		on kill
@@ -214,34 +214,40 @@ mission "Deep Archaeology 5"
 	
 	npc
 		personality heroic
-		government Deep
+		government "Deep"
 		ship "Raven (Afterburner)" "D.P.S. Wyrd"
 		to despawn
 			has "dps wyrd dead"
 	npc 
 		personality heroic
-		government Deep
+		government "Deep"
 		ship "Raven (Afterburner)" "D.P.S. Skuld"
 		to despawn
 			has "dps skuld dead"
 	npc
 		personality heroic
-		government Deep
+		government "Deep"
 		ship "Raven (Afterburner)" "D.P.S. Verthandi"
 		to despawn
 			has "dps verthandi dead"
 	npc
 		personality heroic
-		government Deep
-		ship "Aerie" "D.P.S. Wyrdson"
+		government "Deep"
+		ship "Corvette (Speedy)" "D.P.S. Wyrdson"
 		to despawn
 			not "dps wyrd dead"
 	npc
 		personality heroic
-		government Deep
-		ship "Aerie" "D.P.S. Skuldson"
+		government "Deep"
+		ship "Corvette (Speedy)" "D.P.S. Skuldson"
 		to despawn
 			not "dps skuld dead"
+	npc
+		personality heroic
+		government "Deep"
+		ship "Corvette (Speedy)" "D.P.S. Verthandison"
+		to despawn
+			not "dps verthandi dead"
 	
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Albert, John, and the mapping equipment hasn't entered the system yet. Better depart and wait for it.`
