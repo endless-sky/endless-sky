@@ -96,9 +96,9 @@ mission "Umbral's Reach"
 		fail
 		log "Factions" "Rulei" `The ancient Rulei ship stated to be careful of "Umbral's Reach".`
 		conversation
-			`As you enter Kanguwa, ancient whispers seep into your mind once more. They murmur slowly at first, but grow faster and louder from the direcetion of the ancient vessel as they coalesce into one spoken phrase.`
+			`As you enter Kanguwa, ancient whispers seep into your mind once more. They murmur slowly at first, but grow faster and louder from the direcetion of the ancient vessel. as they coalesce into one spoken phrase.`
 			`	"Beware Umbral's Reach."
-			`	You feel tremendous weight behind the expression, as if it shook your mind itself. It's as though every emotion has flooded into your head at once- sadness, anger, joy, disgust, even some you can't seem to understand. Before you can respond to them, the voices quickly dissapate, and you're left alone in an uncomfortable silence.`
+			`	You feel tremendous weight behind the expression, as if it shook your mind itself. It's as though every emotion has flooded into your head at once- sadness, anger, joy, disgust, even some you can't seem to understand. Before you can respond to them, the voices quickly dissapate, and you're left alone in an uncomfortable silence. You aren't sure what "Umbral's Reach" is, but it seems the Rulei are linked to it.`
 				decline
 
 phrase "rulei hostile"
