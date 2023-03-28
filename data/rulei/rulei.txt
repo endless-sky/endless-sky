@@ -20,9 +20,9 @@ mission "Relic of the Past"
 		government "Rulei"
 		personality heroic vindictive staying mute unconstrained frugal
 		system "Kanguwa"
-		ship "vyu-Ira" "Solemnity"
+		ship "vyu-Ir" "Solemnity"
 
-mission "Ira Contact"
+mission "First Contact: Rulei"
 	invisible
 	landing
 	to complete
@@ -91,6 +91,7 @@ mission "Umbral's Reach"
 	to complete
 		never
 	to offer
+		has "Rulei: First Contact: offered"
 		has visited "L-118"
 	on enter "Kanguwa"
 		fail
