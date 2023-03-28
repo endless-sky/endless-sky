@@ -2368,15 +2368,15 @@ mission "Wanderers Hai Assistance 2"
 			label "Teeneep is unavailable"
 			action
 				log "Traveled to the Hai homeworld with a Hai ambassador to see if she can convince the Hai to take action to restrain the Unfettered from attacking the Wanderers. A military council agreed on a build-up of forces at Wah-Ki to force the Unfettered to redirect ships and resources. They hope this will buy the Wanderers enough time for someone to find a lasting solution."
-			`<Guide> has you land at the Directorate of Intra-Hai Affairs, and takes you through a corridor and deep elevator towards what she says is a central command compound. Several other Hai are present, in a variety of uniforms.`
-			`	After <Guide> explains the problem, a Hai with a well-decorated uniform responds. "Rek's suggestion to attack our own kind is unthinkable to the Hai. A neighboring species tried that, and nearly drove themselves extinct." Others nod in agreement.`
-			`	Another Hai continues. "There is another option." All Hai in the room look as if they know what he's about to say. "Recently, the Unfettered raids at Wah Ki have been especially successful, severely disrupting the economy of nearby planets. The Elders gave us broad powers to increase the military presence in the system, as needed.`
-			`	"A massive military build-up will force the Unfettered to redirect ships and supplies to their boarder with us. That should buy them time until either someone can find a more lasting solution."`
+			`<Guide> has you land at the Directorate of Intra-Hai Affairs. A deep elevator takes you to what she says is a central command compound. Many uniformed Hai are in the room when you arrive.`
+			`	After <Guide> explains the problem, a Hai with a well-decorated uniform says, "Rek's asked us to attack our own kind, which is unthinkable. A nearby species' civil war nearly drove themselves extinct." Others nod in agreement.`
+			`	"There is another option." Everyone looks like they know what he's about to say. "The Unfettered raids at Wah Ki are ravaging the economy of nearby planets. The Elders gave us broad powers to send fleets to Wah Ki. For trade issues, this would backfire. The Unfettered will send a large fleet to Wah Ki to compensate.`
+			`	"Unfettered ships at Wah Ki won't invade the Wanderers. This will buy time for them to find a lasting solution."`
 			choice
-				`	"Can't you provide any further military assistance?"`
-				`	"When will you increase the military presence?"`
-			`	"I'll give orders for deployment immediately," says the well-decorated Hai, "and investigate any military research we can accelerate. For now, this is the best we can do for the Wanderers. Tell them to stay strong and fight wisely, Captain <last>." With this, the Hai depart in several directions.`
-			`	<Guide> addresses you. "We do have one more option. There's a council of generals among the Unfettered that deal with Hai conflict resolution. I've worked with them before, and they're receptive to suggestions. Take me to <planet> and we'll see what we can do."`
+				`	"When will you send the ships?"`
+				`	"Can you provide more help?"`
+			`	"I'll give orders for deployment immediately," says the well-decorated Hai. "We will accelerate our military research. For now, this is the most we can do. Tell the Wanderers to stay strong and fight wisely, Captain <last>." With this, the Hai depart in several directions.`
+			`	<Guide> addresses you. "We do have one more option. There are Unfettered generals that help with Hai conflict resolution. I've worked with them before, and they're open to suggestions. Take me to <planet> and we'll see what we can do."`
 				accept
 
 	on visit
