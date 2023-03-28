@@ -11,11 +11,13 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-mission "Relic of the Past"
+mission "Relic of Pasts"
 	invisible
 	landing
 	to complete
 		never
+	on offer
+		fail "Relic of the Past"
 	npc save
 		government "Rulei"
 		personality heroic vindictive staying mute unconstrained frugal
