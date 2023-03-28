@@ -346,7 +346,7 @@ mission "Local Politics"
 	source
 		attributes "frontier"
 		attributes "south"
-		not attributes "station" "urban"
+		not attributes "station" "urban" "ex-pirate"
 	to offer
 		or
 			and
