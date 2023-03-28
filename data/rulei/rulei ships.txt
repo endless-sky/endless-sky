@@ -11,11 +11,11 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-ship "vyu-Ira"
+ship "vyu-Ir"
 	noun "entity"
-	sprite "ship/vyuira/vyuira"
+	sprite "ship/vyuira/vyuir"
 		"frame rate" 4
-	thumbnail "thumbnail/vyuira"
+	thumbnail "thumbnail/vyuir"
 	swizzle 0
 	"never disabled"
 	attributes
@@ -84,5 +84,5 @@ ship "vyu-Ira"
 	explode "small explosion" 60
 	explode "tiny explosion" 120
 	"final explode" "final explosion large"
-	description `The vyu-Ira is an ancient ship of the Vyu, one of several chambers of the Rulei. It is not known whether or not this was their final ship-class, or one of many, but the technology found on it may represent the height of the Rulei's advancements, as well as the cause of their downfall.`
+	description `The vyu-Ir is an ancient ship of the Vyu, one of several chambers of the Rulei. It is not known whether or not this was their final ship-class, or one of many, but the technology found on it may represent the height of the Rulei's advancements, as well as the cause of their downfall.`
 
