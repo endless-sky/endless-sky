@@ -2810,8 +2810,6 @@ mission "Wanderers: Sestor Alt: Alnilam 3"
 	to offer
 		has "Wanderers: Sestor Alt: Alnilam 2: done"
 	on offer
-		event "liberated zenith"
-		fail "Wanderers: Sestor Alt: Zenith Patch"
 		conversation
 			`Danforth's troops set up a defensive circle around the entrance to the Alpha base. It appears that they have achieved the element of surprise: the Alphas did not know that the Navy had already located their base, and were probably counting on having a longer time to evacuate. The troop transports were carrying concrete mixers and mining drills; apparently their plan is to seal the Alphas underground and then drill down through the ice and bedrock to bomb and collapse the bunker.`
 			`	As the Navy troops begin pouring the concrete, the massive gate to the tunnel bursts open and more Alphas than you have ever seen in one place come flooding out, several dozen of them. But even these superhuman soldiers cannot survive the concentrated firepower of hundreds of Navy troops. The air fills with explosions and smoke and powdered snow, but as far as you can tell not one of the Alphas escapes alive.`
@@ -2830,8 +2828,7 @@ mission "Wanderers: Sestor Alt: Zenith Patch"
 	landing
 	invisible
 	to offer
-		has "Wanderers: Sestor Alt: Alnilam 3: offered"
-		not "event: liberated zenith"
+		has "Wanderers: Sestor Alt: Alnilam 2: done"
 	on offer
 		event "liberated zenith"
 		fail
