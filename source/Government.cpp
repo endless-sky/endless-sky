@@ -164,6 +164,17 @@ void Government::Load(const DataNode &node)
 		{
 			if(key == "provoked on scan")
 				provokedOnScan = false;
+			else if(key == "reputation")
+			{
+				for(const DataNode &grand : child)
+				{
+					const string &grandKey = grand.Token(0);
+					if(grandKey == "max")
+						reputationMax = numeric_limits<double>::max();
+					else if(grandKey == "min")
+						reputationMin = numeric_limits<double>::lowest();
+				}
+			}
 			else if(key == "raid")
 				raidFleets.clear();
 			else if(key == "display name")
@@ -180,6 +191,8 @@ void Government::Load(const DataNode &node)
 				hostileDisabledHail = nullptr;
 			else if(key == "language")
 				language.clear();
+			else if(key == "send untranslated hails")
+				sendUntranslatedHails = false;
 			else if(key == "trusted")
 				trusted.clear();
 			else if(key == "enforces")
@@ -231,6 +244,22 @@ void Government::Load(const DataNode &node)
 					attitudeToward.resize(nextID, 0.);
 					attitudeToward[gov->id] = grand.Value(1);
 				}
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
+			}
+		}
+		else if(key == "reputation")
+		{
+			for(const DataNode &grand : child)
+			{
+				const string &grandKey = grand.Token(0);
+				bool hasGrandValue = grand.Size() >= 2;
+				if(grandKey == "player reputation" && hasGrandValue)
+					initialPlayerReputation = add ? initialPlayerReputation + child.Value(valueIndex) : child.Value(valueIndex);
+				else if(grandKey == "max" && hasGrandValue)
+					reputationMax = add ? reputationMax + grand.Value(valueIndex) : grand.Value(valueIndex);
+				else if(grandKey == "min" && hasGrandValue)
+					reputationMin = add ? reputationMin + grand.Value(valueIndex) : grand.Value(valueIndex);
 				else
 					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
@@ -319,6 +348,8 @@ void Government::Load(const DataNode &node)
 		else if(key == "foreign penalties for")
 			for(const DataNode &grand : child)
 				useForeignPenaltiesFor.insert(GameData::Governments().Get(grand.Token(0))->id);
+		else if(key == "send untranslated hails")
+			sendUntranslatedHails = true;
 		else if(!hasValue)
 			child.PrintTrace("Error: Expected key to have a value:");
 		else if(key == "player reputation")
@@ -365,6 +396,12 @@ void Government::Load(const DataNode &node)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+
+	// Ensure reputation minimum is not above the
+	// maximum, and set reputation again to enforce limtis.
+	if(reputationMin > reputationMax)
+		reputationMin = reputationMax;
+	SetReputation(Reputation());
 
 	// Default to the standard disabled hail messages.
 	if(!friendlyDisabledHail)
@@ -542,6 +579,14 @@ const string &Government::Language() const
 
 
 
+// Find out if this government should send custom hails even if the player does not know its language.
+bool Government::SendUntranslatedHails() const
+{
+	return sendUntranslatedHails;
+}
+
+
+
 // Pirate raids in this government's systems use these fleet definitions. If
 // it is empty, there are no pirate raids.
 // The second attribute denotes the minimal and maximal attraction required for the fleet to appear.
@@ -632,6 +677,20 @@ int Government::Fines(const Outfit *outfit) const
 double Government::Reputation() const
 {
 	return GameData::GetPolitics().Reputation(this);
+}
+
+
+
+double Government::ReputationMax() const
+{
+	return reputationMax;
+}
+
+
+
+double Government::ReputationMin() const
+{
+	return reputationMin;
 }
 
 
