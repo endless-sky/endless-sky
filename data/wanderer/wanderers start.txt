@@ -768,14 +768,6 @@ fleet "Unfettered Tribute"
 	variant
 		"Water Bug (Jump)"
 
-# TODO: this fleet is considered deprecated, but preserved for old save files with references to it.
-fleet "Unfettered Tribute"
-	government "Hai (Unfettered)"
-	names "hai"
-	cargo 3
-	variant
-		"Water Bug (Jump)"
-
 event "wanderer / unfettered peace"
 	"reputation: Hai (Unfettered)" >?= 1
 	system "Ehma Ti"
