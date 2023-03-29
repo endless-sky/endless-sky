@@ -647,7 +647,7 @@ void Engine::Step(bool isActive)
 			if(it->IsDestroyed())
 				continue;
 
-			if(it == player.FlagshipPtr())
+			if(it == flagship)
 				EmplaceStatusOverlays(it, overlayAllSetting, Preferences::StatusOverlaysState(1), 0);
 			else if(it->IsYours())
 				EmplaceStatusOverlays(it, overlayAllSetting, Preferences::StatusOverlaysState(2), 0);
