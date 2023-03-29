@@ -129,7 +129,7 @@ int OutfitterPanel::VisibilityCheckboxesSize() const
 
 int OutfitterPanel::DrawPlayerShipInfo(const Point &point)
 {
-	shipInfo.Update(*playerShip, player.FleetDepreciation(), day);
+	shipInfo.Update(*playerShip, player, collapsed.count("description"));
 	shipInfo.DrawAttributes(point);
 
 	return shipInfo.AttributesHeight();
@@ -268,7 +268,7 @@ int OutfitterPanel::DrawDetails(const Point &center)
 
 	if(selectedOutfit)
 	{
-		outfitInfo.Update(*selectedOutfit, player, CanSell());
+		outfitInfo.Update(*selectedOutfit, player, CanSell(), collapsed.count("description"));
 		selectedItem = selectedOutfit->DisplayName();
 
 		const Sprite *thumbnail = selectedOutfit->Thumbnail();
