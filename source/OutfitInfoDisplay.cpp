@@ -445,43 +445,63 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			}
 
 			bool first = true;
-			for(const auto &input : it.input)
+			if(!it.input.empty())
 			{
-				attributeLabels.emplace_back(first ? "Consumes" : "");
-				string name = (input.count != 1) ? input.outfit->PluralName() : input.outfit->DisplayName();
-				string countString = to_string(input.count);
-				attributeValues.emplace_back(countString + " " + name);
+				attributeLabels.emplace_back("Consumes:");
+				attributeValues.emplace_back();
+				for(const auto &input : it.input)
+				{
+					string name = input.isCommodity
+						? input.name
+						: (input.count != 1)
+							? input.outfit->PluralName()
+							: input.outfit->DisplayName();
+					name = "  " + name;
+					attributeLabels.emplace_back(name);
+					attributeValues.emplace_back(Format::Number(input.count));
+				}
 			}
-			for(const auto &output : it.output)
+			if(!it.output.empty())
 			{
-				attributeLabels.emplace_back(first ? "Produces" : "");
-				string name = (output.count != 1) ? output.outfit->PluralName() : output.outfit->DisplayName();
-				string countString = to_string(output.count);
-				attributeValues.emplace_back(countString + " " + name);
+				attributeLabels.emplace_back("Produces:");
+				attributeValues.emplace_back();
+				for(const auto &input : it.output)
+				{
+					string name = input.isCommodity
+						? input.name
+						: (input.count != 1)
+							? input.outfit->PluralName()
+							: input.outfit->DisplayName();
+					name = "  " + name;
+					attributeLabels.emplace_back(name);
+					attributeValues.emplace_back(Format::Number(input.count));
+				}
 			}
+			attributeLabels.emplace_back("Uses:");
+			attributeValues.emplace_back();
 			if(it.energy)
 			{
-				attributeLabels.emplace_back("Energy Consumption");
+				attributeLabels.emplace_back("  Energy");
 				attributeValues.emplace_back(Format::Number(it.energy));
 			}
 			if(it.fuel)
 			{
-				attributeLabels.emplace_back("Fuel Consumption");
+				attributeLabels.emplace_back("  Fuel");
 				attributeValues.emplace_back(Format::Number(it.fuel));
 			}
 			if(it.heat)
 			{
-				attributeLabels.emplace_back("Heat Consumption");
+				attributeLabels.emplace_back("  Heat");
 				attributeValues.emplace_back(Format::Number(it.heat));
 			}
 			if(it.hull)
 			{
-				attributeLabels.emplace_back("Hull Consumption");
+				attributeLabels.emplace_back("  Hull");
 				attributeValues.emplace_back(Format::Number(it.energy));
 			}
 			if(it.shield)
 			{
-				attributeLabels.emplace_back("Shield Consumption");
+				attributeLabels.emplace_back("  Shield");
 				attributeValues.emplace_back(Format::Number(it.fuel));
 			}
 		}

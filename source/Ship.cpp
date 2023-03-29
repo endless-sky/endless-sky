@@ -2268,29 +2268,47 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int
 
 				for(const auto &input : factory.input)
 				{
-					const auto &checkOutfitMap = input.asCargo ? cargo.Outfits() : outfits;
-					const auto &it = checkOutfitMap.find(input.outfit);
-					// If the cargo hold either doesn't have or doesn't have
-					// enough of the given outfit requirement then abort.
-					if(it == checkOutfitMap.end()
-						|| it->second < input.count)
-						continue;
+					if(input.isCommodity)
+					{
+						const auto &checkCommodityMap = cargo.Commodities();
+						const auto &it = checkCommodityMap.find(input.name);
+						// Abort is the commodity doesn't exist
+						if(it == checkCommodityMap.end()
+							|| it->second < input.count)
+							continue;
+					}
+					else
+					{
+						const auto &checkOutfitMap = input.asCargo ? cargo.Outfits() : outfits;
+						const auto &it = checkOutfitMap.find(input.outfit);
+						// If the cargo hold either doesn't have or doesn't have
+						// enough of the given outfit requirement then abort.
+						if(it == checkOutfitMap.end()
+							|| it->second < input.count)
+							continue;
+					}
 				}
 
 				// For sake of argument, remove the inputs from the ship.
 				// Otherwise, these checks will not properly account for
 				// inputs freeing up space for outputs.
 				for(const auto &it : factory.input)
-					it.asCargo
-					? static_cast<void>(cargo.Remove(it.outfit, it.count))
-					: AddOutfit(it.outfit, -it.count);
+					if(it.isCommodity)
+						cargo.Remove(it.name, it.count);
+					else
+						it.asCargo
+						? static_cast<void>(cargo.Remove(it.outfit, it.count))
+						: AddOutfit(it.outfit, -it.count);
 
 				// Check if there is even enough space for the output.
 				bool canAdd = true;
 				double cargoUsage = 0.;
 				for(const auto &output : factory.output)
 				{
-					if(output.asCargo)
+					// Pretty sure each commodity is 1 ton
+					if(output.isCommodity)
+						cargoUsage += output.count;
+					else if(output.asCargo)
 						cargoUsage += output.outfit->Mass() * output.count;
 					else if(!attributes.CanAdd(*output.outfit, output.count))
 						canAdd = false;
@@ -2300,9 +2318,12 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int
 				if(!canAdd)
 				{
 					for(const auto &it : factory.input)
-						it.asCargo
-						? static_cast<void>(cargo.Add(it.outfit, it.count))
-						: AddOutfit(it.outfit, it.count);
+						if(it.isCommodity)
+							cargo.Add(it.name, it.count);
+						else
+							it.asCargo
+							? static_cast<void>(cargo.Add(it.outfit, it.count))
+							: AddOutfit(it.outfit, it.count);
 					continue;
 				}
 
@@ -2314,9 +2335,12 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int
 				heat += factory.heat;
 
 				for(const auto &it : factory.output)
-					it.asCargo
-					? static_cast<void>(cargo.Add(it.outfit, it.count))
-					: AddOutfit(it.outfit, it.count);
+					if(it.isCommodity)
+						cargo.Add(it.name, it.count);
+					else
+						it.asCargo
+						? static_cast<void>(cargo.Add(it.outfit, it.count))
+						: AddOutfit(it.outfit, it.count);
 
 				productionSteps[i] = step;
 				productionDates[i] = player.GetDate().DaysSinceEpoch();

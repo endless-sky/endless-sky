@@ -296,21 +296,29 @@ void Outfit::Load(const DataNode &node)
 
 			for(const auto &grand : child)
 			{
+				const static auto ParseFactoryItem = [](const DataNode &grand, vector<Factory::Item> &IO)
+				{
+					Factory::Item it;
+					if(grand.Token(1) == "outfit")
+						it.outfit = GameData::Outfits().Get(grand.Token(2));
+					else if(grand.Token(1) == "commodity")
+					{
+						it.name = grand.Token(2);
+						it.isCommodity = true;
+					}
+					else
+						grand.PrintTrace("Factory Input/Output type is not outfit or commodity:");
+					it.count = static_cast<int>(grand.Value(3));
+					if(grand.Size() >= 5)
+						it.asCargo = grand.Token(4) == "cargo";
+					IO.push_back(it);
+				};
+
 				if(grand.Size() >= 2)
 					if(grand.Token(0) == "input")
-					{
-						Factory::Item it;
-						it.outfit = GameData::Outfits().Get(grand.Token(2));
-						it.count = grand.Value(3);
-						factory.input.push_back(it);
-					}
+						ParseFactoryItem(grand, factory.input);
 					else if(grand.Token(0) == "output")
-					{
-						Factory::Item it;
-						it.outfit = GameData::Outfits().Get(grand.Token(2));
-						it.count = static_cast<int>(grand.Value(3));
-						factory.output.push_back(it);
-					}
+						ParseFactoryItem(grand, factory.output);
 					else if(grand.Token(0) == "interval")
 						factory.interval = static_cast<int>(grand.Value(1));
 					else if(grand.Token(0) == "period")

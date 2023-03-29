@@ -52,8 +52,10 @@ public:
 		class Item {
 		public:
 			const Outfit *outfit = nullptr;
+			std::string name = "";
 			int count = 1;
 			bool asCargo = false;
+			bool isCommodity = false;
 		};
 
 	public:
