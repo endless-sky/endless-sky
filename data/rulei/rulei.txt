@@ -16,6 +16,8 @@ mission "Relic of Pasts"
 	landing
 	to complete
 		never
+	on offer
+		fail "Relic of the Past"
 	npc save
 		government "Rulei"
 		personality heroic vindictive staying mute unconstrained frugal
@@ -27,10 +29,7 @@ mission "First Contact: Rulei"
 	landing
 	to complete
 		never
-	on offer
-		fail "Relic of the Past"
 	on enter "Kanguwa"
-		fail
 		log "Factions" "Rulei" `The Rulei were likely an ancient, technologically advanced civilization from long ago, but the only things that remain of them are a single strange ship and two scarred planets.`
 			`They communicate through some sort of invasive psionic ability, speaking in a thousand voices all at once. Prolonged contact seems unhealthy.`
 		conversation
@@ -95,7 +94,6 @@ mission "Fragment of Time"
 	to offer
 		has "Rulei: First Contact: offered"
 	on enter "G-3191"
-		fail
 		log "Factions" "Rulei" `The enormous structure in the G-3191 system appears Ruleian in origin, generating both a gravitational field and an eerie tune.`
 		conversation
 			`The enormous structure found in the center of this system appears similar to that of the ancient Ruleian starship. The sheer size of it, almost the length of a Quarg ringword's diameter, further suggests that the Rulei were an advanced species capable of many feats. The construct seems to generate some type of gravitational force between the binary supergiant stars as several parts of it rotate in a mesmerising manner.`
@@ -112,7 +110,6 @@ mission "Umbral's Reach"
 		has "Rulei: First Contact: offered"
 		has "visited system: L-118"
 	on enter "Kanguwa"
-		fail
 		log "Factions" "Rulei" `The ancient Rulei ship stated to be careful of "Umbral's Reach".`
 		conversation
 			`As you enter Kanguwa, ancient whispers begin to seep into your mind once more. They murmur slowly at first, but grow faster and louder from the direcetion of the ancient vessel, eventually coalescing into one spoken phrase.`
