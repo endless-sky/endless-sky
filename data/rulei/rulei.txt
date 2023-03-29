@@ -11,7 +11,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-mission "Relic of the Past"
+mission "Relic of Pasts"
 	invisible
 	landing
 	to complete
@@ -27,6 +27,8 @@ mission "First Contact: Rulei"
 	landing
 	to complete
 		never
+	on offer
+		fail "Relic of the Past"
 	on enter "Kanguwa"
 		fail
 		log "Factions" "Rulei" `The Rulei were likely an ancient, technologically advanced civilization from long ago, but the only things that remain of them are a single strange ship and two scarred planets.`
@@ -83,6 +85,21 @@ mission "Rulei Planet"
 			``
 			``
 			`	It's best you don't remain here for too long.`
+				decline
+
+mission "Fragment of Time"
+	invisible
+	landing
+	to complete
+		never
+	to offer
+		has "Rulei: First Contact: offered"
+	on enter "G-118"
+		fail
+		log "Factions" "Rulei" `The enormous structure in the G-118 system appears Ruleian in origin.`
+		conversation
+			`The enormous structure found in the center of this system appears similar to that of the ancient Ruleian starship. The sheer size of it, almost the length of a Quarg ringword's diameter, suggests that the Rulei were indeed an advanced species capable of many feats. The construct seemingly generates some type of gravitational field between the nearby supergiant stars.`
+			`	While no eerie whispers seem to be haunting the construct, it emits an eerie tune almost that of a hymn, and while it does so, several parts of it rotate in a mesmerising manner, so it must be active in some manner.`
 				decline
 
 
