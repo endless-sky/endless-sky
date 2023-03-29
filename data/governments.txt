@@ -1444,6 +1444,7 @@ government "Wanderer"
 	"attitude toward"
 		"Hai (Unfettered Wanderer Tribute)" .1
 	language "Wanderer"
+	"send untranslated hails"
 	"friendly hail" "wanderer untranslated"
 	"friendly disabled hail" "wanderer untranslated"
 	"hostile hail" "wanderer untranslated"
