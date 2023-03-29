@@ -767,7 +767,7 @@ event "wanderers: unfettered invasion starts"
 		fleet "Small Unfettered" 1800
 		fleet "Large Unfettered" 800
 	system "Ehma Ti"
-		remove fleet "Unfettered Tribute (Wanderer)"
+		remove fleet "Unfettered Tribute"
 	system "Sich'ka'ara"
 		add fleet "Wanderer Defense" 500
 		add fleet "Wanderer Flycatchers" 600
