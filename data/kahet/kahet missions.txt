@@ -162,8 +162,8 @@ event "graveyard insights"
 		add description `	Soon after the beginning the invasion, an attack on some sort of advanced nuclear facility started a meltdown; the fallout quickly spread across most of the planet, leaving all Builder settlements uninhabitable.`
 
 mission "Ringworld Debris"
-	invisible
 	landing
+	invisible
 	on enter "Queri"
 		set "ringworld debris"
 		conversation
@@ -177,8 +177,9 @@ mission "Ringworld Debris"
 		never
 
 mission "Ringworld Debris: Remnant"
-	invisible
+	minor
 	landing
+	invisible
 	source
 		government "Remnant"
 	to offer
@@ -197,8 +198,9 @@ mission "Ringworld Debris: Remnant"
 				decline
 
 mission "Ringworld Debris: Hai"
-	invisible
+	minor
 	landing
+	invisible
 	source
 		government "Hai"
 	to offer
@@ -218,8 +220,9 @@ mission "Ringworld Debris: Hai"
 				decline
 
 mission "Ringworld Debris: Coalition"
-	invisible
+	minor
 	landing
+	invisible
 	source
 		government "Coalition" "Heliarch"
 	to offer
@@ -239,9 +242,9 @@ mission "Ringworld Debris: Coalition"
 				decline
 
 mission "Ringworld Debris: Quarg"
-	invisible
+	minor
 	landing
-	deadline 1
+	invisible
 	source
 		attributes "quarg"
 	to offer
@@ -256,6 +259,8 @@ mission "Ringworld Debris: Quarg"
 					defer
 			action
 				clear "ringworld debris"
+				log "Factions" "Builders" `The Builders inhabited the Graveyard millennia ago, but have since become extinct. They developed some sort of weapon, called the "Ka'het," which stopped obeying their orders and rebelled against them.`
+				log "Factions" "Ka'het" `According to the Quarg, the Ka'het were initially a weapon created by the Builders, which then rebelled and led them to extinction. Even in the millennia that passed, they are still being produced in the Graveyard.`
 			`	Walking down the principal, alien-looking hall, you decide to stop one of the few Quarg you see there. "Hello, human. How may I be of service?" the Quarg says. You show it the piece of debris, and ask what it knows about it. It is momentarily stunned when you show the dark piece of technology, calmly taking it into its own hands after recovering. "A fragment of our ships, is what it is. A remnant of part of our equipment. Thank you for returning it to us."`
 			`	You continue by telling it about your travels in the section of the galaxy where you found the debris, and asking what it knows of the place and the hostiles that inhabit it.`
 			`	"Ah, you encountered the remains of the Builders. Millennia ago, they were a flourishing and thoughtful empire, but hostile contacts forced them to grow fearful and hawkish. Although they never did attack us, they always refrained from accepting our aid, and attempted to relocate a greater distance from us and our ringworld there, in worlds easier to maintain than ones they were closer to."`
@@ -269,35 +274,24 @@ mission "Ringworld Debris: Quarg"
 			label ka'het
 			`	The Quarg stops for a few seconds before continuing, as if it was reflecting on something. "For many millennia they grew, developing brilliant pieces of technology. Then, compelled by their past experiences, they began creating weapons not only to defend themselves, but also to retaliate; these 'Ka'het', as they named them, turned on their creators shortly after they were complete.`
 			`	"For a few more centuries the Builders lasted, before falling under their very own hubris. Their space is still populated by the Ka'het they gave birth to through the immense facilities they assembled, a being that does not yet possess a vast intelligence." The Quarg bows, still holding on to the piece of debris, and seems to be preparing to walk away.`
+			choice
+				`	"What happened to your ringworld in the Graveyard? Was it in the system I found that thing?"`
+				`	(Let the Quarg walk away.)`
+					decline
+			`	For the briefest moment, you see patches of skin all over the Quarg's body radically shift from the usual gray to red and blue, some spots mixing into purple, and you could have sworn you saw some part of the iris on its eyes "open" very slightly.`
 			branch pug
 				has "main plot completed"
-			choice
-				`	"What happened to your ringworld in the Graveyard? Was it in the system I found that thing?"`
-				`	(Let the Quarg walk away.)`
-					decline
-			`	For the briefest moment, you see patches of skin all over the Quarg's body radically shift from the usual gray to red and blue, some spots mixing into purple, and you could have sworn you saw some part of the iris on its eyes "open" very slightly.`
+			action
+				log "Asked the Quarg about the history of the Graveyard, and have learned about the previous inhabitants of the region, the Builders."
 			`	After coming back to normal, it ponders for a second, then says, "It was in that system, and it was lost in a war, millennia after the Builders had perished."`
+				goto end
+			label pug
+			action
+				log "Asked the Quarg about the history of the Graveyard. Was told that the ringworld the Quarg had there was lost in their war with the Pug, and have learned about the previous inhabitants of the region, the Builders."
+			`	After coming back to normal, it ponders for a second, then says, "It was in that system, and it was lost in our war with the despicable Pug. When we tried to resist them. By then, the Builders had been gone for millennia."`
+			label end
 			`	It doesn't seem too inclined on answering any more questions, and swiftly walks away.`
 				decline
-			label pug
-			choice
-				`	"What happened to your ringworld in the Graveyard? Was it in the system I found that thing?"`
-				`	(Let the Quarg walk away.)`
-					decline
-			`	For the briefest moment, you see patches of skin all over the Quarg's body radically shift from the usual gray to red and blue, some spots mixing into purple, and you could have sworn you saw some part of the iris on its eyes "open" very slightly.`
-			`	After coming back to normal, it ponders for a second, then says, "It was in that system, and it was lost in our war with the despicable Pug. When we tried to resist them. By then, the Builders had been gone for millennia."`
-			`	It doesn't seem too inclined on answering any more questions, and swiftly walks away.`
-				accept
-	on decline
-		fail "Ringworld Debris"
-		log "Asked the Quarg about the history of the Graveyard, and have learned about the previous inhabitants of the region, the Builders."
-		log "Factions" "Builders" `The Builders inhabited the Graveyard millennia ago, but have since become extinct. They developed some sort of weapon, called the "Ka'het," which stopped obeying their orders and rebelled against them.`
-		log "Factions" "Ka'het" `According to the Quarg, the Ka'het were initially a weapon created by the Builders, which then rebelled and led them to extinction. Even in the millennia that passed, they are still being produced in the Graveyard.`
-	on accept
-		fail "Ringworld Debris"
-		log "Asked the Quarg about the history of the Graveyard. Was told that the ringworld the Quarg had there was lost in their war with the Pug, and have learned about the previous inhabitants of the region, the Builders."
-		log "Factions" "Builders" `The Builders inhabited the Graveyard millennia ago, but have since become extinct. They developed some sort of weapon, called the "Ka'het," which stopped obeying their orders and rebelled against them.`
-		log "Factions" "Ka'het" `According to the Quarg, the Ka'het were initially a weapon created by the Builders, which then rebelled and led them to extinction. Even in the millennia that passed, they are still being produced in the Graveyard.`
 
 mission "Ka'het: Patir Reveal"
 	invisible
@@ -404,32 +398,30 @@ mission "Ka'het: Patir Mystery 1"
 			`Upon your return to <planet>, Taely immediately begins browsing through several images on her console that were compiled by the sensors.`
 			`	"Look at these, <first>. What do you see?" The first image shows a ship like the others you've seen in Patir working on some kind of small structure. In the following pictures, presumably depicting different iterations of the same ship, the structure becomes gradually bigger and more complex until the last one, where a Ka'het-like slug is shown growing inside this shell.`
 			`	"The ships, the Fetri'sei, are Von Neumann probes," she says. "Self replicating spacecraft. Unlike the Ka'het, which we found to be unable to reproduce and can only be created in a factory, the Ka'sei can duplicate their own structure with the material harvested from the local asteroids. The process probably takes years, or more, but it is still an incredible achievement."`
+			label questions
 			choice
 				`	"If they can duplicate themselves, why aren't there more Ka'sei?"`
+					to display
+						not "patir: asked about ka'sei"
 					goto kasei
 				`	"If the Builders were able to make self replicating spacecrafts, why aren't the Ka'het like that as well?"`
+					to display
+						not "patir: asked about ka'het"
 					goto kahet
 				`	"If they were able to get to Patir, does this suggest they have jump drives?"`
 					goto jumpdrive
 				`	"Why aren't they in other systems?"`
 					goto jumpdrive
 			label kasei
+			action
+				set "patir: asked about ka'sei"
 			`	"I imagine the problem would be with their lifespan. The Ka'het can survive for a few hundred years once they become operational; these could potentially last for a much shorter time. Another important factor is that we do not know what happened here in the millennia the system was hidden. Perhaps the Ka'sei went into hibernation waiting for the system to appear again."`
-			choice
-				`	"If the Builders were able to make self replicating spacecrafts, why aren't the Ka'het like that as well?"`
-					goto kahet
-				`	"If they were able to get to Patir, does this suggest they have jump drives?"`
-					goto jumpdrive
-				`	"Why aren't they in other systems?"`
-					goto jumpdrive
+				goto questions
 			label kahet
+			action
+				set "patir: asked about ka'het"
 			`	Taely looks towards the console again. On the screen a tactical view of the Fetri'sei appears. "Well, consider that the Ka'het are true battleships, heavily shielded and always with their weapons ready. These are more akin to reconnaissance and mining probes. Their structure is extremely weak, and they do not have any weapons except the equipment necessary to mine asteroids. I imagine it would take decades for even just a Maeri'het to replicate itself.`
 			`	"There is also the tactical problem: forcing a Ka'het to spend such a long time building copies of itself makes them vulnerable to enemy attacks and unable to effectively fight back, making them ill-suited for the job."`
-			choice
-				`	"If they can duplicate themselves, why aren't there more Ka'sei here?"`
-					goto kasei
-				`	"If they were able to get here, does this suggest they have jump drives?"`
-				`	"Why aren't they in other systems?"`
 			label jumpdrive
 			`	"They do not have any drives on board, not even a hyperdrive. Limited to sub-light velocity, they would need hundreds of years to pass from one system to another, which is a testament to the Builders' patience. Most species we have encountered abandon any form of sub-light transportation between star systems immediately after developing hyperdrive technology. For all we know, the Ember Waste could have been visited by these Fetri'sei or some other Ka'sei, but they had to leave for some reason we are not aware of. The last Builder died almost 100,000 years ago - so long that having a clear idea of what happened is impossible.`
 			choice
