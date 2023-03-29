@@ -2077,6 +2077,7 @@ system Achernar
 system Acnanjo
 	pos 516.8 -544.7
 	government Uninhabited
+	attributes "giant star" "notable star"
 	arrival 4050
 	habitable 4050
 	belt 1944
@@ -2192,7 +2193,8 @@ system Acrux
 
 system Actannka
 	pos 1016.73 -706.867
-	government Quarg
+	government "Quarg (Gegno)"
+	attributes "bright star" "notable star"
 	arrival 3200
 	habitable 3200
 	belt 1228
@@ -2209,8 +2211,8 @@ system Actannka
 	minables iron 22 3.6
 	minables silver 12 5.36
 	minables titanium 12 5.45
-	fleet "Large Quarg" 1400
-	fleet Quarg 1400
+	fleet "Large Quarg (Gegno)" 1400
+	fleet "Quarg (Gegno)" 1400
 	object
 		sprite star/a5
 		period 10
@@ -2321,6 +2323,474 @@ system Adhara
 		distance 2411.01
 		period 1815.95
 
+system "Ae Ce L-332"
+	pos 623.134 -765.051
+	government Uninhabited
+	attributes "astral"
+	arrival 500
+	habitable 355
+	belt 1307
+	haze _menu/haze-67
+	link "Is Ce B-139"
+	asteroids "large metal" 1 2.1
+	asteroids "medium rock" 11 3.6
+	minables unknown 1 2.7
+	fleet Astral 45000
+	object
+		sprite star/f-dwarf
+		period 10
+	object
+		sprite planet/desert9-b
+		distance 328
+		period 126.112
+	object
+		sprite planet/gas11-b
+		distance 5532
+		period 8735.12
+		object
+			sprite planet/ice7-b
+			distance 288
+			period 127.911
+		object
+			sprite planet/luna
+			distance 456
+			period 368.085
+
+system "Ae Ce Q-761"
+	pos 769.634 -760.648
+	government Uninhabited
+	attributes "bright star" "notable star"
+	arrival 3200
+	habitable 3200
+	belt 1002
+	haze _menu/haze-brown
+	asteroids "small rock" 37 1.247
+	asteroids "medium rock" 74 2.31
+	asteroids "large rock" 4 1.686
+	asteroids "medium metal" 4 1.987
+	asteroids "large metal" 2 1.363
+	minables aluminum 8 3.506
+	minables copper 8 3.793
+	minables tungsten 17 2.26
+	minables unknown 4 1.9
+	fleet "Vyrmeid (Boomerang)" 900
+	object
+		sprite star/a5
+		period 10
+	object
+		sprite planet/io
+		distance 464
+		period 70.6743
+	object
+		sprite planet/gas14
+		distance 2550
+		period 910.532
+	object
+		sprite planet/gas15
+		distance 5350
+		period 2767.04
+		offset 160
+		object
+			sprite planet/rock3
+			distance 247
+			period 146.739
+		object
+			sprite planet/rock3-b
+			distance 362
+			period 260.354
+
+system "Ae Il A-3"
+	pos 477.32 -590.375
+	government Uninhabited
+	attributes "giant star" "multi-star" "notable star" "supergiant star"
+	arrival 5000
+	habitable 15715
+	belt 1031 5
+	belt 1674 6
+	haze _menu/haze-133
+	link "Ae Il G-66"
+	asteroids "small rock" 3 4.185
+	asteroids "medium rock" 8 6.82
+	asteroids "large rock" 12 5.58
+	asteroids "medium metal" 1 6.2
+	asteroids "large metal" 1 7.208
+	minables iron 11 4.735
+	minables silver 37 3.069
+	fleet "Vyrmeid (Plankton)" 950
+	fleet "Vyrmeid (Cephalopod)" 140
+	object
+		sprite star/k-supergiant
+		distance 369.692
+		period 200
+	object
+		sprite star/g-supergiant
+		distance 825.197
+		period 200
+		offset 180
+	object
+		sprite star/g-giant
+		distance 2701.42
+		period 360
+		offset 40
+		object
+			sprite star/g0
+			distance 300
+			period 60
+			offset 20
+	object
+		sprite planet/browndwarf-l-rouge
+		distance 9784.96
+		period 1100
+		offset 270
+		object
+			sprite planet/lava4-b
+			distance 533.815
+			period 160
+	object
+		sprite planet/gas1
+		distance 32407.6
+		period 18609.5
+
+system "Ae Il B-11"
+	pos 397.635 -661.079
+	government Uninhabited
+	attributes "giant star" "notable star"
+	arrival 2300
+	habitable 2300
+	belt 1328 10
+	belt 1647 2
+	haze _menu/haze-33
+	asteroids "medium rock" 4 5.643
+	asteroids "large rock" 1 5.358
+	asteroids "small metal" 10 5.016
+	asteroids "medium metal" 3 3.363
+	asteroids "large metal" 1 5.472
+	fleet "Vyrmeid (Cephalopod)" 300
+	object
+		sprite star/m-giant
+		period 10
+	object
+		sprite planet/gas14-b
+		distance 1563
+		period 515.388
+		object
+			sprite planet/dust7
+			distance 242
+			period 142.306
+	object
+		sprite planet/ocean6-b
+		distance 2540.8
+		period 1068.19
+		object
+			sprite planet/dust7-b
+			distance 212
+			period 116.682
+	object
+		sprite planet/gas11
+		distance 3868.71
+		period 2006.99
+		object
+			sprite planet/tethys-b
+			distance 259
+			period 256.711
+		object
+			sprite planet/tethys
+			distance 382
+			period 459.822
+	object
+		sprite planet/gas7-b
+		distance 5929
+		period 3807.74
+		object
+			sprite planet/rock7-b
+			distance 242
+			period 178.088
+		object
+			sprite planet/dust1-b
+			distance 359
+			period 211.554
+
+system "Ae Il F-46"
+	pos 523.467 -743.162
+	government Uninhabited
+	attributes "bright star" "giant star" "notable star"
+	arrival 5000
+	habitable 12475
+	belt 1244
+	haze _menu/haze-67
+	asteroids "small rock" 47 4.108
+	asteroids "medium rock" 18 3.365
+	asteroids "large rock" 7 2.404
+	asteroids "small metal" 12 3.452
+	asteroids "large metal" 10 2.972
+	minables lead 17 2.248
+	object
+		sprite star/b-giant
+		distance 247.167
+		period 77
+		offset 170
+	object
+		sprite star/b-dwarf
+		distance 438.402
+		period 77
+	object
+		sprite planet/cloud0
+		distance 1339.3
+		period 175.532
+		offset 10
+	object
+		sprite planet/ice0-b
+		distance 1880.97
+		period 292.154
+		offset 80
+		object
+			sprite planet/rock7
+			distance 133.113
+			period 70
+	object
+		sprite planet/gas17
+		distance 5044.5
+		period 1283.11
+		object
+			sprite planet/ice8-b
+			distance 256.831
+			period 90
+			offset 40
+		object
+			sprite planet/ice7
+			distance 406.171
+			period 120
+
+system "Ae Il G-66"
+	pos 510.097 -610.773
+	government Uninhabited
+	attributes "bright star" "notable star"
+	arrival 5000
+	habitable 9350
+	belt 1622 2
+	belt 2344 2
+	haze _menu/haze-67
+	link "Ae Il A-3"
+	link "Ae Il H-24"
+	link "Ae Il I-99"
+	asteroids "large metal" 1 2.804
+	object
+		sprite star/o8
+		distance 38.697
+		period 44.513
+		offset 180
+	object
+		sprite star/g3
+		distance 122.303
+		period 44.513
+	object
+		sprite planet/lava7
+		distance 493.915
+		period 45.4080
+	object
+		sprite planet/titan-b
+		distance 733.393
+		period 82.1597
+	object
+		sprite planet/cloud7-b
+		distance 1186.58
+		period 169.082
+	object
+		sprite planet/jupiter-b
+		distance 2492
+		period 514.607
+	object
+		sprite planet/uranus
+		distance 7018
+		period 2432.05
+		object
+			sprite planet/europa
+			distance 232
+			period 167.164
+		object
+			sprite planet/rock14
+			distance 366
+			period 183.248
+
+system "Ae Il H-24"
+	pos 558.634 -628.884
+	government Uninhabited
+	arrival 2560
+	habitable 2560
+	belt 1252
+	haze _menu/haze-67
+	link "Ae Il G-66"
+	asteroids "small metal" 7 1.573
+	asteroids "large metal" 1 1.892
+	object
+		sprite star/f0
+		period 10
+	object
+		sprite planet/mercury-b
+		distance 274
+		period 35.8563
+	object
+		sprite planet/ice5-b
+		distance 890
+		period 209.906
+	object
+		sprite planet/rock17
+		distance 2100
+		period 760.797
+	object
+		sprite planet/gas9-b
+		distance 3643
+		period 1738.31
+
+system "Ae Il I-99"
+	pos 489.412 -647.829
+	government Uninhabited
+	arrival 2160
+	habitable 2160
+	belt 1099 7
+	belt 2440 7
+	belt 2713 5
+	haze _menu/haze-67
+	link "Ae Il G-66"
+	link "Is Ce G-460"
+	asteroids "small rock" 1 3.353
+	asteroids "medium rock" 1 3.548
+	asteroids "large rock" 1 4.666
+	asteroids "small metal" 9 3.353
+	asteroids "medium metal" 159 3.353
+	asteroids "large metal" 46 2.819
+	minables titanium 1 4.724
+	minables copper 5 5.306
+	fleet "Vyrmeid (Plankton)" 900
+	fleet "Vyrmeid (Cephalopod)" 600
+	object
+		sprite star/g0-old
+		period 10
+	object
+		sprite planet/lava3-b
+		distance 344
+		period 54.9124
+	object
+		sprite planet/lava0-b
+		distance 982
+		period 264.850
+	object
+		sprite planet/gas6
+		distance 2471
+		period 1057.16
+	object
+		sprite planet/gas17
+		distance 4438
+		period 2544.56
+		object
+			sprite planet/dust1-b
+			distance 270
+			period 137.983
+	object
+		sprite planet/gas8-b
+		distance 9544
+		period 8024.69
+
+system "Ae Il M-77"
+	pos 638.134 -656.718
+	government Uninhabited
+	attributes "bright star" "notable star" "supergiant star"
+	arrival 5000
+	habitable 17025
+	belt 1979 3
+	belt 2108 1
+	belt 2658 2
+	haze _menu/haze-67
+	asteroids "small rock" 76 5.73
+	asteroids "medium rock" 37 5.957
+	asteroids "large rock" 94 7.314
+	asteroids "small metal" 1 6.56
+	asteroids "medium metal" 1 5.052
+	asteroids "large metal" 2 4.524
+	minables unknown 1 2.4
+	object
+		sprite star/b-supergiant
+		period 10
+	object
+		sprite planet/gas5
+		distance 2154
+		period 306.467
+		object
+			sprite planet/luna
+			distance 292
+			period 188.614
+	object
+		sprite planet/gas0-b
+		distance 4876
+		period 1043.78
+	object
+		sprite planet/gas10
+		distance 6002
+		period 1425.47
+	object
+		sprite planet/gas5-b
+		distance 9176
+		period 2694.61
+		object
+			sprite planet/dust0
+			distance 248
+			period 240.531
+	object Aetuah
+		sprite planet/gas3-hot
+		distance 15948.3
+		period 6174.30
+		object
+			sprite planet/ice7-b
+			distance 168
+			period 56.988
+
+system "Ae Il O-96"
+	pos 673.439 -635.718
+	government Uninhabited
+	arrival 2010
+	habitable 2010
+	belt 1627 4
+	belt 1952 4
+	haze _menu/haze
+	link "Is Il T-94"
+	asteroids "small rock" 14 3.666
+	asteroids "medium rock" 2 3.315
+	asteroids "large rock" 10 2.418
+	asteroids "small metal" 6 2.34
+	asteroids "medium metal" 1 3.12
+	asteroids "large metal" 4 3.081
+	minables titanium 3 4.302
+	minables neodymium 9 5.774
+	object
+		sprite star/f8
+		distance 62.594
+		period 45.008
+		offset 180
+	object
+		sprite star/g3
+		distance 65.406
+		period 45.008
+	object
+		sprite planet/mercury-b
+		distance 305
+		period 47.5238
+	object
+		sprite planet/io-b
+		distance 605
+		period 132.768
+	object
+		sprite planet/ice0-b
+		distance 845
+		period 219.152
+	object
+		sprite planet/cloud7-b
+		distance 1267
+		period 402.371
+	object
+		sprite planet/gas16
+		distance 3603
+		period 1929.56
+
 system Aescolanus
 	pos -15 340
 	government Uninhabited
@@ -2372,6 +2842,7 @@ system Aescolanus
 system Aierena
 	pos 1048.06 -348.956
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 3000
 	habitable 3000
 	belt 1856
@@ -2406,7 +2877,7 @@ system Aierena
 system "Aik Kamgatake"
 	pos 487.63 -365.37
 	government Uninhabited
-	attributes "nova"
+	attributes "notable star" "nova"
 	arrival 500
 	habitable 100
 	belt 1920
@@ -2417,16 +2888,14 @@ system "Aik Kamgatake"
 	asteroids "large rock" 27 1.72
 	asteroids "small metal" 8 1.74
 	asteroids "medium metal" 20 1.79
-	asteroids "large metal" 39 1.4
+	asteroids "large metal" 39 1.43
+	minables yottrite 1 2.6
 	minables lead 20 2.1
 	minables iron 34 2.5
 	minables copper 32 3.06
 	object
-		sprite star/nova-core
-		period 1000
-	object
-		sprite star/nova
-		period 1000
+		sprite star/nova-small
+		period 10
 	object
 		sprite planet/lava3-b
 		distance 838
@@ -2512,6 +2981,7 @@ system Aki'il
 system Aksek
 	pos 477.944 -401.011
 	government Uninhabited
+	attributes "giant star" "notable star"
 	arrival 2300
 	habitable 2300
 	belt 1795
@@ -2988,7 +3458,7 @@ system Aldhibain
 
 system Aleit
 	pos 967.604 -690.722
-	government Quarg
+	government "Quarg (Gegno)"
 	attributes "ringworld"
 	arrival 700
 	departure 1000
@@ -2999,10 +3469,6 @@ system Aleit
 	link Elifennka
 	link Ghhil
 	link Yllke
-	asteroids "small metal" 8 1.7
-	asteroids "medium metal" 38 1.2
-	asteroids "large metal" 17 1.7
-	minables titanium 3 2.82
 	trade Clothing 216
 	trade Electronics 817
 	trade Equipment 729
@@ -3013,8 +3479,8 @@ system Aleit
 	trade Medical 605
 	trade Metal 539
 	trade Plastic 378
-	fleet Quarg 1100
-	fleet "Large Quarg" 1600
+	fleet "Quarg (Gegno)" 1100
+	fleet "Large Quarg (Gegno)" 1600
 	fleet "Gegno Basic" 1000
 	object
 		sprite star/g3
@@ -3259,7 +3725,7 @@ system Algieba
 system Algol
 	pos -210 17
 	government Syndicate
-	attributes "core"
+	attributes "bright star" "core" "notable star"
 	arrival 3490
 	habitable 3490
 	belt 1839
@@ -3509,7 +3975,7 @@ system Alhena
 		sprite planet/ice8
 		distance 1500.97
 		period 737.405
-	object
+	object Nepheritis
 		sprite planet/gas13
 		distance 3469.58
 		period 2591.57
@@ -3644,7 +4110,7 @@ system Alkaid
 system Almaaz
 	pos -349 -538
 	government Pirate
-	attributes "north"
+	attributes "giant star" "north" "notable star"
 	arrival 5000
 	habitable 5600
 	belt 2873
@@ -4604,7 +5070,7 @@ system Aludra
 system Anbrim
 	pos 725.7 -376.2
 	government Uninhabited
-	attributes "nova"
+	attributes "notable star" "nova"
 	arrival 500
 	habitable 100
 	belt 1101
@@ -4817,7 +5283,7 @@ system Answer
 		sprite planet/ocean7
 		distance 345.84
 		period 124.789
-	object
+	object "Vivid Aether"
 		sprite planet/gas4
 		distance 1076.6
 		period 685.404
@@ -4904,7 +5370,7 @@ system Antares
 system Antevorta
 	pos -36.1297 446.242
 	government Uninhabited
-	attributes "carbon" "ember waste"
+	attributes "carbon" "ember waste" "notable star"
 	arrival 3000
 	ramscoop
 		universal 0
@@ -5341,7 +5807,7 @@ system Asikafarnut
 		sprite planet/desert2
 		distance 884.13
 		period 587.840
-	object
+	object "Deka Dathnak"
 		sprite planet/gas7-b
 		distance 2686.82
 		period 3114.17
@@ -5400,7 +5866,7 @@ system Asio
 system Aspidiske
 	pos -690 -282
 	government Republic
-	attributes "deep"
+	attributes "bright star" "deep" "notable star" "supergiant star"
 	arrival 5000
 	habitable 11850
 	belt 2385
@@ -5430,7 +5896,7 @@ system Aspidiske
 		sprite planet/cloud2
 		distance 701.36
 		period 68.2515
-	object
+	object Passaritus
 		sprite planet/gas8
 		distance 1504.4
 		period 214.410
@@ -5458,6 +5924,7 @@ system Aspidiske
 system Atik
 	pos -66 -52
 	government Uninhabited
+	attributes "bright star" "giant star" "multi-star" "notable star"
 	arrival 5000
 	habitable 15105
 	belt 1240
@@ -5586,12 +6053,12 @@ system Atria
 system Auhru
 	pos 1007.41 -524.011
 	government "Gegno Scin"
-	attributes "gegno" "scin"
+	attributes "bright star" "gegno" "notable star" "scin"
 	arrival 5000
 	habitable 8650
 	belt 1336
 	"jump range" 60
-	haze _menu/haze-67
+	haze _menu/haze-brown
 	link "Erba Yle"
 	link Mohuwo
 	asteroids "large rock" 1 3.2
@@ -5703,6 +6170,71 @@ system Avior
 				scale 0.5
 			distance 212
 			period 15.2148
+
+system "Avo Chigo"
+	pos 242.817 -205.83
+	government "Bunrodea (Guard)"
+	attributes "bright star" "notable star"
+	arrival 5000
+	habitable 5600
+	belt 1500
+	link "Eragaru Le"
+	link "Jentu Le"
+	link "Paru Paru"
+	asteroids "small rock" 13 5.46
+	asteroids "medium rock" 11 7.32
+	asteroids "large rock" 3 7.26
+	asteroids "small metal" 34 6
+	asteroids "medium metal" 8 6.24
+	asteroids "large metal" 30 9
+	trade Clothing 180
+	trade Electronics 850
+	trade Equipment 660
+	trade Food 520
+	trade "Heavy Metals" 980
+	trade Industrial 860
+	trade "Luxury Goods" 1130
+	trade Medical 680
+	trade Metal 550
+	trade Plastic 360
+	fleet "Bunrodea Erabu Freight" 1200
+	fleet "Bunrodea Defense" 2000
+	fleet "Bunrodea Royal Guard" 2000
+	object
+		sprite star/b5
+		period 10
+	object
+		sprite planet/gas13-b
+		distance 979.93
+		period 163.967
+	object
+		sprite planet/gas4
+		distance 2019.93
+		period 485.255
+	object
+		sprite planet/cloud8
+		distance 2932.03
+		period 848.630
+	object
+		sprite planet/gas11
+		distance 4710.9
+		period 1728.31
+	object
+		sprite planet/gas2-b
+		distance 7673.34
+		period 3592.87
+		object
+			sprite planet/io
+			distance 300
+			period 31.4845
+		object "Illbo Avo"
+			sprite planet/desert4-b
+			distance 405
+			period 49.3852
+		object
+			sprite planet/lava0-b
+			distance 547
+			period 77.5168
 
 system Aya'k'k
 	pos -434.245 -616.57
@@ -6169,7 +6701,7 @@ system "Beta Lupi"
 system Betelgeuse
 	pos -384 -322
 	government Republic
-	attributes "north"
+	attributes "north" "notable star" "supergiant star"
 	arrival 3450
 	habitable 3450
 	belt 2141
@@ -6581,6 +7113,63 @@ system "Bore Fah"
 			distance 388
 			period 21.5754
 
+system "Bosuno Le"
+	pos 335.9 -152.3
+	government "Bunrodea (Guard)"
+	attributes "bright star" "notable star"
+	arrival 3400
+	habitable 3400
+	belt 1500
+	link "Bunri Lemeta"
+	link "Erabu Lemeta"
+	link "Eragaru Le"
+	asteroids "small rock" 30 4.5724
+	asteroids "medium rock" 20 3.9284
+	asteroids "large rock" 5 4.508
+	asteroids "small metal" 10 5.474
+	asteroids "large metal" 56 8.4364
+	trade Clothing 360
+	trade Electronics 660
+	trade Equipment 670
+	trade Food 500
+	trade "Heavy Metals" 520
+	trade Industrial 800
+	trade "Luxury Goods" 1240
+	trade Medical 520
+	trade Metal 390
+	trade Plastic 430
+	fleet "Bunrodea Erabu Freight" 1200
+	fleet "Bunrodea Defense" 2000
+	fleet "Bunrodea Royalty" 5000
+	fleet "Bunrodea Royal Guard" 2000
+	object
+		sprite star/a3
+		period 10
+	object
+		sprite planet/lava6-b
+		distance 391.663
+		period 53.1727
+	object
+		sprite planet/lava7
+		distance 1024.59
+		period 224.980
+	object
+		sprite planet/ganymede-b
+		distance 1712.9
+		period 486.315
+	object Bosunothro
+		sprite planet/rock11-b
+		distance 2928.71
+		period 1087.26
+	object
+		sprite planet/gas0-b
+		distance 4837.14
+		period 2307.82
+		object
+			sprite planet/ice8
+			distance 275
+			period 13.3646
+
 system "Bote Asu"
 	pos 8.87418 -572.768
 	government Hai
@@ -6829,10 +7418,80 @@ system "Broken Bowl"
 			distance 297
 			period 13.0737
 
+system "Bunri Lemeta"
+	pos 317.9 -94.3
+	government "Bunrodea (Guard)"
+	attributes "bright star" "notable star"
+	arrival 3650
+	habitable 3650
+	belt 1500
+	link "Bosuno Le"
+	link "Erabu Lemeta"
+	link "Shini Bori"
+	asteroids "small rock" 2 0.8788
+	asteroids "medium rock" 25 1.69
+	asteroids "large rock" 8 1.8928
+	asteroids "small metal" 22 1.5717
+	asteroids "medium metal" 26 0.9295
+	asteroids "large metal" 14 0.9633
+	trade Clothing 390
+	trade Electronics 600
+	trade Equipment 620
+	trade Food 500
+	trade "Heavy Metals" 640
+	trade Industrial 710
+	trade "Luxury Goods" 1360
+	trade Medical 430
+	trade Metal 410
+	trade Plastic 450
+	fleet "Bunrodea Erabu Freight" 3000
+	fleet "Bunrodea Defense" 2000
+	fleet "Bunrodea Royalty" 3000
+	fleet "Bunrodea Royal Guard" 2000
+	object
+		sprite star/a0
+		period 10
+	object
+		sprite planet/rock2-b
+		distance 1024.96
+		period 217.257
+		object
+			sprite planet/rock14
+			distance 148
+			period 19.4415
+	object
+		sprite planet/ocean4
+		distance 2876.38
+		period 1021.36
+		object
+			sprite planet/miranda
+			distance 155
+			period 17.5682
+	object Bunthro
+		sprite planet/forest5
+		distance 4015.45
+		period 1684.67
+		object
+			sprite planet/desert4
+			distance 167
+			period 23.303
+	object
+		sprite planet/gas13
+		distance 6042.24
+		period 3109.64
+		object
+			sprite planet/dust1-b
+			distance 301
+			period 14.7421
+		object
+			sprite planet/rock7-b
+			distance 445
+			period 26.5003
+
 system Caeculus
 	pos 162.87 343.242
 	government Uninhabited
-	attributes "ember waste" "wolf-rayet"
+	attributes "ember waste" "notable star" "wolf-rayet"
 	arrival 5000
 	ramscoop
 		universal 0
@@ -7942,7 +8601,7 @@ system Companion
 system Convector
 	pos -14.1297 379.242
 	government Uninhabited
-	attributes "ember waste"
+	attributes "ember waste" "giant star" "notable star"
 	arrival 5000
 	ramscoop
 		universal 0
@@ -8115,6 +8774,7 @@ system Cotpoxi
 system Cshudlye
 	pos 595.14 -477.911
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 5000
 	habitable 5600
 	belt 1675
@@ -8593,6 +9253,7 @@ system Debrugt
 system "Deep Space 19K12"
 	pos -1113 -747
 	government Uninhabited
+	attributes "proto-system" "notable star"
 	arrival 500
 	habitable 135
 	belt 1977
@@ -8623,6 +9284,7 @@ system "Deep Space 19K12"
 system "Deep Space 19M1"
 	pos -895 -745
 	government Uninhabited
+	attributes "giant star" "notable star"
 	arrival 4050
 	habitable 4050
 	belt 2115
@@ -8751,6 +9413,7 @@ system "Deep Space 19M2"
 system "Deep Space 19M5"
 	pos -1133 -828
 	government Uninhabited
+	attributes "proto-system" "notable star"
 	arrival 500
 	habitable 370
 	belt 1977
@@ -8807,6 +9470,7 @@ system "Deep Space 19M5"
 system "Deep Space 1Q"
 	pos -920 -668
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 3650
 	habitable 3650
 	belt 2577
@@ -8877,6 +9541,7 @@ system "Deep Space 1Q"
 system "Deep Space 1X"
 	pos -935 -695
 	government Uninhabited
+	attributes "notable star" "nova"
 	arrival 500
 	habitable 100
 	belt 1751
@@ -9831,7 +10496,7 @@ system Dixere
 
 system Dokdobaru
 	pos -21.5695 -241.812
-	government Quarg
+	government "Quarg (Kor Efret)"
 	attributes "korath" "ringworld"
 	arrival 700
 	habitable 700
@@ -9860,8 +10525,8 @@ system Dokdobaru
 	trade Medical 500
 	trade Metal 473
 	trade Plastic 317
-	fleet Quarg 600
-	fleet "Large Quarg" 800
+	fleet "Quarg (Kor Efret)" 600
+	fleet "Large Quarg (Kor Efret)" 800
 	fleet "Kor Efret Home" 750
 	object
 		sprite star/g3
@@ -10120,7 +10785,7 @@ system "Due Yoot"
 	fleet "Small Human Merchants (Hai)" 3000
 	fleet "Large Human Merchants (Hai)" 6000
 	fleet "Hai Surveillance" 5000
-	fleet Quarg 2000
+	fleet "Quarg (Hai)" 2000
 	object
 		sprite star/m3
 		period 10
@@ -10228,7 +10893,7 @@ system Durax
 system E-4183
 	pos 1042.97 -618.13
 	government Uninhabited
-	attributes "umbral reach"
+	attributes "bright star" "giant star" "notable star" "umbral reach"
 	arrival 5000
 	habitable 7900
 	belt 1542
@@ -10261,22 +10926,30 @@ system E-4183
 		distance 2142.47
 		period 446.291
 	object
-		sprite planet/gas7-hot
-		distance 5174
-		period 1674.88
+		sprite planet/gas7-r
+			scale 0.5
+		distance 11699
+		period 5694.68
+		offset 120
 		object
-			sprite planet/dust3-b
-			distance 198
-			period 105.316
+			sprite planet/luna-b
+			distance 210
+			period 95
 		object
-			sprite planet/dust7-b
-			distance 350
-			period 247.515
+			sprite planet/oberon-b
+			distance 300
+			period 160
+			offset 160
+		object
+			sprite planet/lava3-b
+			distance 440
+			period 333
+			offset 240
 
 system E-9182
 	pos 1167.2 -629
 	government Uninhabited
-	attributes "umbral reach"
+	attributes "bright star" "notable star" "umbral reach"
 	arrival 5000
 	habitable 13720
 	belt 1387
@@ -10462,7 +11135,7 @@ system Eblumab
 system Edusa
 	pos 273.87 347.242
 	government Uninhabited
-	attributes "ember waste" "wormhole"
+	attributes "ember waste" "giant star" "notable star" "wormhole"
 	arrival 4050
 	ramscoop
 		universal 0
@@ -10948,9 +11621,73 @@ system Ekuarik
 		period 349.820
 		offset 253
 
+system "Elabi Choati"
+	pos 205.2 -175.9
+	government Bunrodea
+	attributes "carbon" "notable star"
+	arrival 3000
+	habitable 3000
+	belt 1500
+	link "Elo Chigo"
+	link "Thshybo Le"
+	asteroids "small rock" 9 8.7808
+	asteroids "medium rock" 32 9.3296
+	asteroids "large rock" 4 10.4272
+	asteroids "small metal" 2 6.9776
+	asteroids "medium metal" 14 11.4464
+	asteroids "large metal" 20 11.76
+	trade Clothing 170
+	trade Electronics 680
+	trade Equipment 620
+	trade Food 550
+	trade "Heavy Metals" 720
+	trade Industrial 750
+	trade "Luxury Goods" 1250
+	trade Medical 680
+	trade Metal 410
+	trade Plastic 510
+	fleet "Bunrodea Erabu Freight" 2000
+	fleet "Bunrodea Defense" 1000
+	object
+		sprite star/carbon
+		period 10
+	object
+		sprite star/carbon-core
+		period 10
+	object
+		sprite planet/cloud1-b
+		distance 199.04
+		period 20.5073
+	object
+		sprite planet/gas2
+		distance 780.29
+		period 159.178
+		object
+			sprite planet/dust7
+			distance 212
+			period 18.7033
+	object
+		sprite planet/rock16-b
+		distance 1452.1
+		period 404.104
+		object Iddesato
+			sprite planet/station-bunrodea
+				scale 0.5
+			distance 142
+			period 23.094
+	object
+		sprite planet/oberon-b
+		distance 1731.14
+		period 526.014
+	object
+		sprite planet/gas13-b
+		distance 2183.75
+		period 745.253
+
 system Elifennka
 	pos 990.5 -728.2
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 3400
 	habitable 3400
 	belt 1533
@@ -10965,7 +11702,7 @@ system Elifennka
 	asteroids "large metal" 27 4.49
 	minables aluminum 28 8.68
 	minables titanium 31 9.59
-	fleet Quarg 4000
+	fleet "Quarg (Gegno)" 4000
 	object
 		sprite star/a3
 		period 10
@@ -11052,6 +11789,64 @@ system Elnath
 				scale 0.5
 			distance 253
 			period 12.546
+
+system "Elo Chigo"
+	pos 170.2 -121.8
+	government Bunrodea
+	attributes "bright star" "notable star"
+	arrival 3000
+	habitable 3000
+	belt 1500
+	link "Elabi Choati"
+	link "Era Natta"
+	link "Thshybo Le"
+	asteroids "medium rock" 28 2.6163
+	asteroids "large rock" 1 4.5144
+	asteroids "small metal" 3 6.3612
+	asteroids "large metal" 2 4.7709
+	trade Clothing 190
+	trade Electronics 710
+	trade Equipment 640
+	trade Food 560
+	trade "Heavy Metals" 710
+	trade Industrial 740
+	trade "Luxury Goods" 1200
+	trade Medical 670
+	trade Metal 440
+	trade Plastic 530
+	fleet "Bunrodea Erabu Freight" 2000
+	fleet "Bunrodea Defense" 1000
+	object
+		sprite star/a8
+		period 10
+	object
+		sprite planet/lava4
+		distance 199
+		period 20.5011
+	object
+		sprite planet/rock9-b
+		distance 866.979
+		period 186.428
+		object
+			sprite planet/luna-b
+			distance 156
+			period 24.9916
+	object "Illbo Elo"
+		sprite planet/rock16
+		distance 1875.67
+		period 593.244
+		object
+			sprite planet/io
+			distance 158
+			period 27.1052
+	object
+		sprite planet/gas9
+		distance 2931.78
+		period 1159.30
+	object
+		sprite planet/gas12-b
+		distance 4754.07
+		period 2393.85
 
 system Eltanin
 	pos -328 433
@@ -11215,6 +12010,63 @@ system Eneremprukt
 		distance 2137.8
 		period 1786.12
 
+system "Eneva Katta"
+	pos 193 -27
+	government Bunrodea
+	attributes "giant star" "notable star"
+	arrival 4050
+	habitable 4050
+	belt 1500
+	link "Genta Bo"
+	asteroids "small rock" 1 2.431
+	asteroids "medium rock" 5 2.244
+	asteroids "large rock" 8 1.666
+	asteroids "small metal" 17 1.819
+	asteroids "medium metal" 128 2.278
+	asteroids "large metal" 10 0.935
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Defense" 5000
+	object
+		sprite star/g-giant
+		period 10
+	object
+		sprite planet/lava1-b
+		distance 380.61
+		period 46.6716
+	object
+		sprite planet/desert1-b
+		distance 904.231
+		period 170.903
+		object
+			sprite planet/io
+			distance 151
+			period 16.1069
+	object Kalbai
+		sprite planet/desert2-b
+		distance 2253.31
+		period 672.301
+	object
+		sprite planet/desert8-b
+		distance 3252.18
+		period 1165.72
+	object
+		sprite planet/jupiter
+		distance 4738.48
+		period 2050.17
+		object
+			sprite planet/ice7-b
+			distance 279
+			period 14.6443
+
 system Enif
 	pos -177 498
 	government Quarg
@@ -11319,6 +12171,7 @@ system Enif
 system Eogho
 	pos 812.579 -541.547
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 5000
 	habitable 7000
 	belt 1960
@@ -11429,6 +12282,209 @@ system "Epsilon Leonis"
 			distance 515
 			period 37.9234
 
+system "Era Natta"
+	pos 129.2 -134.8
+	government Bunrodea
+	arrival 2200
+	habitable 2200
+	belt 1500
+	link "Elo Chigo"
+	asteroids "small rock" 5 4.1952
+	asteroids "medium rock" 9 4.9128
+	asteroids "large rock" 3 6.0168
+	asteroids "medium metal" 3 5.0784
+	asteroids "large metal" 1 2.9808
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Defense" 4000
+	object
+		sprite star/f3
+		period 10
+	object
+		sprite planet/desert8
+		distance 161.89
+		period 17.5662
+	object
+		sprite planet/rock11
+		distance 397.14
+		period 67.4938
+	object
+		sprite planet/rock0-b
+		distance 683.14
+		period 152.269
+	object
+		sprite planet/lava7-b
+		distance 1349.98
+		period 422.999
+	object Byruca
+		sprite planet/ocean3-b
+		distance 1708.22
+		period 602.094
+	object
+		sprite planet/gas17-b
+		distance 2382.54
+		period 991.765
+		object
+			sprite planet/dust3-b
+			distance 201
+			period 12.175
+		object
+			sprite planet/dust5
+			distance 295
+			period 21.6474
+
+system "Erabu Lemeta"
+	pos 284.9 -136.3
+	government "Bunrodea (Guard)"
+	attributes "bright star" "notable star"
+	arrival 3650
+	habitable 3650
+	belt 1500
+	link "Bosuno Le"
+	link "Bunri Lemeta"
+	link "Jentu Le"
+	link "Shini Bori"
+	link "Thshybo Le"
+	asteroids "small rock" 1 5.382
+	asteroids "medium rock" 16 3.042
+	asteroids "large rock" 60 5.226
+	asteroids "medium metal" 11 5.733
+	asteroids "large metal" 1 2.379
+	trade Clothing 410
+	trade Electronics 740
+	trade Equipment 520
+	trade Food 600
+	trade "Heavy Metals" 630
+	trade Industrial 840
+	trade "Luxury Goods" 1400
+	trade Medical 470
+	trade Metal 480
+	trade Plastic 480
+	fleet "Bunrodea Erabu Freight" 500
+	fleet "Bunrodea Defense" 1000
+	fleet "Bunrodea Royalty" 2000
+	fleet "Bunrodea Royal Guard" 1000
+	object
+		sprite star/a0
+		period 10
+	object
+		sprite planet/rock2-b
+		distance 1024.96
+		period 217.257
+		object
+			sprite planet/callisto-b
+			distance 148
+			period 19.4415
+	object
+		sprite planet/cloud4-b
+		distance 2876.38
+		period 1021.36
+		object
+			sprite planet/desert4
+			distance 155
+			period 17.5682
+	object Erabuthro
+		sprite planet/forest5-b
+		distance 4015.45
+		period 1684.67
+		object
+			sprite planet/desert4-b
+			distance 167
+			period 23.303
+	object
+		sprite planet/gas13
+		distance 6042.24
+		period 3109.64
+		object
+			sprite planet/dust1
+			distance 301
+			period 14.7421
+		object
+			sprite planet/rock7
+			distance 445
+			period 26.5003
+
+system "Eragaru Le"
+	pos 302.817 -185.83
+	government "Bunrodea (Guard)"
+	attributes "bright star" "notable star"
+	arrival 3650
+	habitable 3650
+	belt 1500
+	link "Avo Chigo"
+	link "Bosuno Le"
+	link "Paru Paru"
+	asteroids "small rock" 6 3.9672
+	asteroids "medium rock" 2 2.8044
+	asteroids "large rock" 1 3.0438
+	asteroids "small metal" 2 3.249
+	asteroids "medium metal" 1 4.4118
+	asteroids "large metal" 4 3.8646
+	trade Clothing 290
+	trade Electronics 720
+	trade Equipment 540
+	trade Food 440
+	trade "Heavy Metals" 780
+	trade Industrial 780
+	trade "Luxury Goods" 1190
+	trade Medical 570
+	trade Metal 470
+	trade Plastic 380
+	fleet "Bunrodea Erabu Freight" 1200
+	fleet "Bunrodea Defense" 2000
+	fleet "Bunrodea Royal Guard" 2000
+	object
+		sprite star/a0
+		period 10
+	object
+		sprite planet/fog0-b
+		distance 457.716
+		period 64.8347
+		object
+			sprite planet/dust4-b
+			distance 187
+			period 18.8643
+	object
+		sprite planet/cloud1-b
+		distance 1035.53
+		period 220.626
+	object
+		sprite planet/gas4-b
+		distance 1731.99
+		period 477.234
+	object
+		sprite planet/gas2-b
+		distance 3049.48
+		period 1114.94
+		object
+			sprite planet/ice7
+			distance 330
+			period 36.3233
+		object
+			sprite planet/io
+			distance 466
+			period 60.9528
+	object
+		sprite planet/gas1-b
+		distance 4852.84
+		period 2238.24
+		object Eragarthro
+			sprite planet/ice7
+			distance 341.05
+			period 25.1735
+		object
+			sprite planet/dust3
+			distance 539.746
+			period 50.1187
+
 system "Erba Yle"
 	pos 1001.69 -488.05
 	government "Gegno Scin"
@@ -11437,7 +12493,7 @@ system "Erba Yle"
 	habitable 320
 	belt 1204
 	"jump range" 90
-	haze _menu/haze-33
+	haze _menu/haze-brown
 	link Auhru
 	link Kilema
 	link Zeinar
@@ -11628,7 +12684,7 @@ system Eshkoshtar
 system Esix
 	pos 142 532
 	government Uninhabited
-	attributes "ember waste" "graveyard" "wormhole"
+	attributes "bright star" "ember waste" "graveyard" "notable star" "wormhole"
 	arrival 5000
 	ramscoop
 		universal 0
@@ -11760,7 +12816,7 @@ system Eteron
 system Evrae
 	pos 884.49 -475.35
 	government Gegno
-	attributes "gegno"
+	attributes "bright star" "gegno" "notable star"
 	arrival 3200
 	habitable 3200
 	belt 1985
@@ -11817,8 +12873,8 @@ system Evrae
 		object
 			sprite planet/ice0
 			distance 417
-			period 321
-		object
+			period 355
+		object Veiuye
 			sprite planet/ice7
 			distance 598
 			period 382
@@ -11861,7 +12917,7 @@ system "Fah Root"
 	fleet "Small Human Merchants (Hai)" 15000
 	fleet "Large Human Merchants (Hai)" 25000
 	fleet "Hai Surveillance" 3000
-	fleet Quarg 2000
+	fleet "Quarg (Hai)" 2000
 	object
 		sprite star/k0
 		period 10
@@ -11936,7 +12992,7 @@ system "Fah Soom"
 	fleet "Small Human Merchants (Hai)" 6000
 	fleet "Large Human Merchants (Hai)" 9000
 	fleet "Hai Surveillance" 4000
-	fleet Quarg 1000
+	fleet "Quarg (Hai)" 1000
 	object
 		sprite star/k5
 		period 10
@@ -12371,7 +13427,7 @@ system Faronektu
 system Fasitopfar
 	pos 92.4305 -105.812
 	government Uninhabited
-	attributes "archon" "korath" "nova"
+	attributes "archon" "korath" "notable star" "nova"
 	arrival 500
 	habitable 100
 	belt 1670
@@ -12619,7 +13675,7 @@ system Feraticus
 system Fereti
 	pos -39 600
 	government Uninhabited
-	attributes "ember waste" "graveyard"
+	attributes "bright star" "ember waste" "graveyard" "notable star"
 	arrival 3200
 	ramscoop
 		universal 0
@@ -12682,7 +13738,7 @@ system Fereti
 system Feroteri
 	pos 149.431 -205.812
 	government Uninhabited
-	attributes "korath"
+	attributes "bright star" "korath" "notable star"
 	arrival 4075
 	habitable 4075
 	belt 1419
@@ -12854,8 +13910,8 @@ system Fingol
 	object
 		sprite star/m8
 		period 10
-	object
-		sprite planet/cloud4
+	object Pyriphlegethon
+		sprite planet/gas7-hot
 		distance 216.25
 		period 109.478
 	object
@@ -13147,7 +14203,7 @@ system "Four Pillars"
 system Fscher
 	pos 725.47 -418.2
 	government Gegno
-	attributes "gegno"
+	attributes "bright star" "gegno" "notable star"
 	arrival 5000
 	habitable 6300
 	belt 1048
@@ -13254,8 +14310,9 @@ system Furmeliki
 system G-3191
 	pos 1039.23 -395
 	government Uninhabited
-	attributes "umbral reach"
+	attributes "bright star" "notable star" "supergiant star" "umbral reach"
 	arrival 5000
+	departure 1000
 	habitable 20250
 	belt 1341
 	"jump range" 60
@@ -13265,6 +14322,13 @@ system G-3191
 	asteroids "small metal" 1 1.91
 	asteroids "medium metal" 12 2.1
 	asteroids "large metal" 1 1.8
+	hazard "Rulei Gravity Field" 1
+	object
+		sprite planet/vajra/vajra
+			"random start frame"
+			"frame rate" 30
+			scale 0.5
+		period 10
 	object
 		sprite star/f-supergiant
 		distance 600.65
@@ -13286,13 +14350,12 @@ system G-3191
 system G-6183
 	pos 1019.4 -590.18
 	government Uninhabited
-	attributes "blackhole" "umbral reach"
+	attributes "black hole" "notable star" "umbral reach"
 	arrival 5000
 	habitable 10000
 	belt 1187
 	"jump range" 50
 	haze _menu/haze-coal
-	link M-1188
 	asteroids "large metal" 1 3.4
 	minables neodymium 6 3.87
 	minables titanium 44 4.15
@@ -13367,10 +14430,6 @@ system G-719
 			distance 269.46
 			period 570.1
 	object
-		sprite planet/gas10
-		distance 4653.99
-		period 2358.30
-	object
 		sprite planet/gas0-b
 		distance 5879
 		period 3348.23
@@ -13402,7 +14461,7 @@ system G-819
 		sprite star/g3
 		period 10
 	object
-		sprite planet/gas2-b
+		sprite planet/gas4-b
 		distance 909.1
 		period 414.408
 	object
@@ -13494,7 +14553,7 @@ system Gacrux
 system "Gamma Cassiopeiae"
 	pos -116 293
 	government Syndicate
-	attributes "core"
+	attributes "bright star" "core" "notable star"
 	arrival 5000
 	habitable 7000
 	belt 1779
@@ -13665,10 +14724,129 @@ system Gaungu
 		distance 3490
 		period 4123.52
 
+system "Genta Bo"
+	pos 185.2 -65.9
+	government Bunrodea
+	attributes "bright star" "notable star" "supergiant star"
+	arrival 5000
+	habitable 37100
+	belt 1500
+	link "Eneva Katta"
+	link "Thshybo Le"
+	asteroids "medium rock" 7 11.76
+	asteroids "large rock" 1 11.424
+	asteroids "small metal" 6 10.836
+	asteroids "medium metal" 11 7.728
+	asteroids "large metal" 12 9.912
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Defense" 3500
+	object
+		sprite star/o-supergiant
+		distance 14.1508
+		period 5.23479
+	object
+		sprite star/a0
+		distance 231.848
+		period 5.23479
+		offset 180
+	object
+		sprite planet/rock11-b
+		distance 461.753
+		period 20.6057
+	object
+		sprite planet/lava3-b
+		distance 709.963
+		period 39.2849
+	object
+		sprite planet/rock17-b
+		distance 1089.12
+		period 74.6425
+	object
+		sprite planet/gas15
+		distance 1497.21
+		period 120.308
+		object
+			sprite planet/oberon-b
+			distance 208
+			period 15.7904
+	object
+		sprite planet/gas8
+		distance 2020.25
+		period 188.573
+
+system "Gento Ah"
+	pos 351.9 -352.3
+	government Bunrodea
+	attributes "bright star" "notable star" "supergiant star"
+	arrival 5000
+	habitable 11850
+	belt 1500
+	link "Jentu Centi"
+	link "Mego Seo"
+	link Piadenli
+	link "Urba Pest"
+	asteroids "medium rock" 29 1.4144
+	asteroids "large rock" 3 2.1488
+	asteroids "small metal" 28 3.5632
+	asteroids "medium metal" 29 3.9712
+	asteroids "large metal" 17 3.2912
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Megasa Freight" 2000
+	fleet "Bunrodea Defense" 1500
+	object
+		sprite star/a-supergiant
+		period 10
+	object
+		sprite planet/io
+		distance 416.636
+		period 31.2489
+	object
+		sprite planet/miranda-b
+		distance 611.326
+		period 55.5405
+	object
+		sprite planet/desert2
+		distance 1009.75
+		period 117.902
+	object
+		sprite planet/gas16
+		distance 1627.52
+		period 241.262
+		object
+			sprite planet/luna
+			distance 187
+			period 13.4605
+	object
+		sprite planet/lava6-b
+		distance 2553.6
+		period 474.165
+	object
+		sprite planet/gas5
+		distance 3995.19
+		period 927.912
+
 system Gerenus
 	pos 197 514
 	government Uninhabited
-	attributes "ember waste" "graveyard"
+	attributes "ember waste" "giant star" "graveyard" "notable star"
 	arrival 3000
 	ramscoop
 		universal 0
@@ -13732,7 +14910,8 @@ system Gerenus
 
 system Ghhil
 	pos 922.4 -714
-	government Quarg
+	government "Quarg (Gegno)"
+	attributes "bright star" "notable star"
 	arrival 3000
 	habitable 3000
 	belt 1760
@@ -13747,7 +14926,7 @@ system Ghhil
 	minables silicon 2 6.3
 	minables copper 13 3.31
 	minables titanium 7 4.9
-	fleet Quarg 2000
+	fleet "Quarg (Gegno)" 2000
 	object
 		sprite star/a8
 		period 10
@@ -14206,7 +15385,7 @@ system "Good Omen"
 system Gorvi
 	pos -250 -483
 	government Republic
-	attributes "north" "wolf-rayet"
+	attributes "north" "notable star" "wolf-rayet"
 	arrival 5000
 	habitable 50000
 	belt 1345
@@ -14422,7 +15601,7 @@ system Gupta
 system H-8188
 	pos 1206.6 -506.5
 	government Uninhabited
-	attributes "umbral reach"
+	attributes "bright star" "notable star" "umbral reach"
 	arrival 3650
 	habitable 3650
 	belt 1254
@@ -14460,7 +15639,7 @@ system H-8188
 system H-9187
 	pos 1130.88 -455.97
 	government Uninhabited
-	attributes "umbral reach"
+	attributes "bright star" "notable star" "umbral reach"
 	arrival 3400
 	habitable 3400
 	belt 1102
@@ -14932,7 +16111,7 @@ system Hesselpost
 				scale 0.5
 			distance 157.941
 			period 25.4596
-	object
+	object "Sebarep Atarkis"
 		sprite planet/gas2-b
 		distance 2053.35
 		period 1681.34
@@ -14960,7 +16139,7 @@ system Heutesl
 	arrival 1310
 	habitable 1310
 	belt 1000
-	haze _menu/haze
+	haze _menu/haze-brown
 	link Asio
 	link Iigen
 	link Oosuoro
@@ -14984,7 +16163,7 @@ system Heutesl
 	trade Metal 571
 	trade Plastic 196
 	fleet "Gegno Basic" 200
-	fleet Quarg 2800
+	fleet "Quarg (Gegno)" 2800
 	fleet "Gegno Miners" 2000
 	object
 		sprite star/f8
@@ -15012,7 +16191,7 @@ system Heutesl
 
 system "Hevru Hai"
 	pos -189 -310
-	government Quarg
+	government "Quarg (Hai)"
 	attributes "ringworld"
 	arrival 700
 	departure 1000
@@ -15039,7 +16218,7 @@ system "Hevru Hai"
 	fleet "Large Hai Merchant (Human)" 7500
 	fleet "Small Human Merchants (Hai)" 9000
 	fleet "Large Human Merchants (Hai)" 15000
-	fleet Quarg 600
+	fleet "Quarg (Hai)" 600
 	object
 		sprite star/g3
 		period 10
@@ -15532,7 +16711,7 @@ system Huud
 		sprite planet/neptune-b
 		distance 1022
 		period 223.146
-	object
+	object Xurelei
 		sprite planet/gas11
 		distance 3336
 		period 1315.98
@@ -15548,7 +16727,7 @@ system Iigen
 	habitable 230
 	belt 1699
 	"jump range" 60
-	haze _menu/haze-33
+	haze _menu/haze-brown
 	link Heutesl
 	link Oosuoro
 	link Uttna
@@ -15563,7 +16742,7 @@ system Iigen
 	minables iron 22 1.47
 	fleet "Gegno Basic" 1900
 	fleet "Gegno Miners" 2100
-	fleet Quarg 3500
+	fleet "Quarg (Gegno)" 3500
 	object
 		sprite star/m3
 		period 10
@@ -15591,6 +16770,7 @@ system Iigen
 system Iinjma
 	pos 986.29 -410.7
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 3755
 	habitable 3755
 	belt 1861
@@ -15740,7 +16920,7 @@ system Ik'kara'ka
 system Ildaria
 	pos -702 317
 	government Republic
-	attributes "nova" "rim"
+	attributes "notable star" "nova" "rim"
 	arrival 500
 	habitable 100
 	belt 1132
@@ -15873,7 +17053,7 @@ system Ilirco
 	object
 		sprite star/k0-old
 		period 10
-	object
+	object "Yiia Iyr"
 		sprite planet/cloud5-b
 		distance 1626.52
 		period 838.177
@@ -16251,6 +17431,513 @@ system Ipsing
 			distance 667
 			period 43.1032
 
+system "Is Ce B-139"
+	pos 601.718 -744.259
+	government Uninhabited
+	attributes "astral"
+	arrival 550
+	habitable 550
+	haze _menu/haze
+	link "Ae Ce L-332"
+	link "Is Ce F-422"
+	link "Is Il V-263"
+	asteroids "small rock" 4 6.076
+	asteroids "medium rock" 10 6.014
+	asteroids "large rock" 8 3.596
+	asteroids "small metal" 8 6.2
+	asteroids "medium metal" 5 3.41
+	asteroids "large metal" 2 4.402
+	fleet "Vyrmeid (Plankton)" 300
+	fleet Astral 50000
+	object
+		sprite star/g8
+		period 40
+	object
+		sprite planet/dust6-b
+		distance 400
+		period 136.448
+
+system "Is Ce F-422"
+	pos 651.273 -687.648
+	government Uninhabited
+	attributes "astral" "bright star" "notable star"
+	arrival 3430
+	habitable 3430
+	belt 1941 9
+	belt 2433 3
+	haze _menu/haze
+	link "Is Ce B-139"
+	asteroids "small rock" 3 2.184
+	asteroids "medium rock" 4 2.145
+	asteroids "large rock" 9 2.262
+	asteroids "large metal" 1 3.783
+	fleet "Vyrmeid (Plankton)" 400
+	fleet Astral 50000
+	object
+		sprite star/a5
+		distance 52.236
+		period 61.433
+	object
+		sprite star/m3
+		distance 100.764
+		period 61.433
+		offset 180
+	object
+		sprite planet/desert1
+		distance 344
+		period 43.5763
+	object
+		sprite planet/gas4
+		distance 943
+		period 197.779
+		object
+			sprite planet/dust3-b
+			distance 271
+			period 168.638
+	object
+		sprite planet/neptune-b
+		distance 2206
+		period 707.654
+		object
+			sprite planet/ice0
+			distance 240
+			period 140.546
+		object
+			sprite "planet/asteroid base"
+			distance 369
+			period 185.506
+		object
+			sprite planet/callisto
+			distance 540
+			period 328.404
+	object
+		sprite planet/gas7
+		distance 3308
+		period 1299.45
+		object
+			sprite planet/europa
+			distance 282
+			period 224.019
+	object
+		sprite planet/browndwarf-l
+		distance 4474
+		period 2043.88
+		object
+			sprite planet/dust1-b
+			distance 309
+			period 168.934
+
+system "Is Ce G-460"
+	pos 510.635 -698.273
+	government Uninhabited
+	attributes "astral"
+	arrival 500
+	habitable 100
+	belt 1191
+	haze _menu/haze-33
+	link "Ae Il I-99"
+	link "Is Ce J-591"
+	link "Is Il Z-59"
+	asteroids "small rock" 1 5.642
+	asteroids "medium rock" 4 4.755
+	asteroids "large rock" 1 7.818
+	asteroids "medium metal" 19 7.173
+	asteroids "large metal" 8 4.594
+	minables silicon 6 10.214
+	minables unknown 2 2.5
+	fleet "Vyrmeid (Plankton)" 700
+	fleet Astral 50000
+	object
+		sprite star/k-dwarf
+		period 10
+	object
+		sprite planet/ice0
+		distance 363
+		period 276.643
+	object
+		sprite planet/gas5
+		distance 4058
+		period 10340.1
+		object
+			sprite planet/rock20
+			distance 283
+			period 179.962
+		object
+			sprite planet/rhea-b
+			distance 426
+			period 273.459
+		object
+			sprite planet/dust0-b
+			distance 602
+			period 909.681
+	object
+		sprite planet/gas0-b
+		distance 7146
+		period 24163.2
+
+system "Is Ce J-591"
+	pos 573.246 -671.106
+	government Uninhabited
+	attributes "astral" "giant star" "notable star"
+	arrival 5000
+	habitable 6680
+	belt 1648 8
+	belt 2277 6
+	haze _menu/haze
+	link "Is Ce G-460"
+	asteroids "small rock" 2 2.72
+	asteroids "medium rock" 1 2.432
+	asteroids "large rock" 31 1.6
+	asteroids "small metal" 5 1.92
+	asteroids "medium metal" 67 2.912
+	asteroids "large metal" 3 1.664
+	minables silicon 8 3.635
+	fleet "Vyrmeid (Plankton)" 450
+	fleet Astral 50000
+	object
+		sprite star/f-giant
+		distance 60.57
+		period 87.166
+		offset 180
+	object
+		sprite star/g0
+		distance 191.43
+		period 87.166
+	object
+		sprite planet/rock18-b
+		distance 524
+		period 58.7041
+		object
+			sprite planet/rock0-b
+			distance 146
+			period 66.685
+	object
+		sprite planet/cloud6-b
+		distance 986
+		period 151.525
+	object
+		sprite planet/ganymede-b
+		distance 1740
+		period 355.218
+		object
+			sprite planet/lava0
+			distance 172
+			period 50
+	object
+		sprite planet/gas6-b
+		distance 2742
+		period 702.704
+		object
+			sprite planet/rhea
+			distance 369
+			period 220.454
+	object
+		sprite planet/gas2-b
+		distance 5143
+		period 1805.08
+	object
+		sprite planet/gas9
+		distance 7275
+		period 3036.83
+		object
+			sprite planet/callisto
+			distance 289
+			period 128.577
+
+system "Is Il T-127"
+	pos 792.792 -700.334
+	government Uninhabited
+	arrival 1605
+	habitable 1605
+	belt 1313 1
+	belt 2263 5
+	haze _menu/haze-brown
+	link "Is Il T-94"
+	link "Is Il X-626"
+	asteroids "small rock" 1 1.74
+	asteroids "medium rock" 4 3.236
+	asteroids "large rock" 3 2.61
+	asteroids "large metal" 1 2.54
+	minables titanium 1 5.05
+	fleet "Vyrmeid (Plankton)" 350
+	object
+		sprite star/k0-old
+		distance 51.326
+		period 71.968
+	object
+		sprite star/g5
+		distance 169.674
+		period 71.968
+		offset 180
+	object
+		sprite planet/gas5-hot
+		distance 403
+		period 80.7755
+	object
+		sprite planet/dust1-b
+		distance 766
+		period 211.673
+	object
+		sprite planet/gas16
+		distance 1149
+		period 388.868
+	object
+		sprite planet/dust3-b
+		distance 1966
+		period 870.357
+
+system "Is Il T-94"
+	pos 754.681 -656.444
+	government Uninhabited
+	arrival 2200
+	habitable 2200
+	belt 1556 6
+	belt 1696 5
+	haze _menu/haze
+	link "Ae Il O-96"
+	link "Is Il T-127"
+	asteroids "small rock" 1 4.306
+	asteroids "large rock" 1 2.761
+	asteroids "small metal" 7 4.025
+	asteroids "medium metal" 137 2.714
+	asteroids "large metal" 17 2.902
+	minables iron 12 5.402
+	minables titanium 10 4.64
+	minables aluminum 16 4.987
+	object
+		sprite star/f3
+		period 10
+	object
+		sprite planet/cloud4
+		distance 354
+		period 56.8006
+	object
+		sprite planet/desert10
+		distance 1015
+		period 275.770
+		object
+			sprite planet/dust3-b
+			distance 171
+			period 84.527
+	object
+		sprite planet/gas0-hot
+		distance 1730
+		period 613.645
+		object
+			sprite planet/ice8-b
+			distance 256
+			period 154.832
+	object
+		sprite planet/gas9-b
+		distance 3232
+		period 1566.95
+		object
+			sprite planet/miranda-b
+			distance 247
+			period 183.636
+	object
+		sprite planet/gas8
+		distance 11624
+		period 10687.6
+		object
+			sprite planet/europa-b
+			distance 361
+			period 324.469
+		object
+			sprite planet/oberon
+			distance 494
+			period 676.215
+	object
+		sprite planet/gas14
+		distance 14800
+		period 15354.6
+		offset 60
+		object
+			sprite planet/asura
+				scale 0.25
+			distance 226
+			period 115
+
+system "Is Il V-263"
+	pos 713.513 -707.278
+	government Uninhabited
+	attributes "astral" "bright star" "notable star" "supergiant star"
+	arrival 5000
+	habitable 17025
+	belt 1434 2
+	belt 2085 7
+	haze _menu/haze-67
+	link "Is Ce B-139"
+	asteroids "small rock" 11 3.162
+	asteroids "medium rock" 46 2.697
+	asteroids "large rock" 5 4.418
+	asteroids "medium metal" 1 3.581
+	asteroids "large metal" 1 4.557
+	minables iron 4 3.442
+	minables titanium 3 5.731
+	fleet "Vyrmeid (Plankton)" 500
+	fleet "Vyrmeid (Boomerang)" 700
+	fleet Astral 50000
+	object
+		sprite star/b-supergiant
+		period 10
+	object
+		sprite planet/uranus
+		distance 2683
+		period 426.037
+		object
+			sprite planet/luna-b
+			distance 235
+			period 136.177
+		object
+			sprite planet/rock0-b
+			distance 392
+			period 293.379
+	object
+		sprite planet/gas2-hot
+		distance 7189
+		period 1868.61
+		object
+			sprite planet/desert4
+			distance 203
+			period 136.822
+	object
+		sprite planet/gas12-b
+		distance 18978
+		period 8014.78
+		object
+			sprite planet/tethys
+			distance 278
+			period 285.471
+		object
+			sprite planet/dust3-b
+			distance 402
+			period 304.677
+
+system "Is Il X-626"
+	pos 736.235 -739.779
+	government Uninhabited
+	attributes "astral" "bright star" "notable star"
+	arrival 3135
+	habitable 3135
+	haze _menu/haze-brown
+	link "Is Il T-127"
+	asteroids "large metal" 1 3.402
+	fleet "Vyrmeid (Plankton)" 500
+	fleet "Vyrmeid (Boomerang)" 800
+	fleet Astral 50000
+	object
+		sprite star/a8
+		distance 48.468
+		period 288
+		offset 200
+	object
+		sprite star/m8
+		distance 153.479
+		period 288
+		offset 20
+	object
+		sprite planet/lava5-b
+		distance 400
+		period 57.1519
+	object
+		sprite planet/cloud4-b
+		distance 1200
+		period 296.970
+		offset 30
+	object
+		sprite planet/ice8-b
+		distance 4000
+		period 1807.30
+		offset 330
+
+system "Is Il Z-59"
+	pos 468.634 -671.106
+	government Uninhabited
+	attributes "astral"
+	arrival 1325
+	habitable 1325
+	belt 1345
+	haze _menu/haze-67
+	link "Is Ce G-460"
+	asteroids "large rock" 1 4.42
+	asteroids "small metal" 41 2.808
+	asteroids "medium metal" 34 4.212
+	asteroids "large metal" 15 4.784
+	minables aluminum 9 5.165
+	minables iron 14 4.93
+	fleet "Vyrmeid (Plankton)" 500
+	fleet "Vyrmeid (Cephalopod)" 600
+	fleet Astral 50000
+	object
+		sprite star/g3
+		distance 67.938
+		period 52.077
+		offset 180
+	object
+		sprite star/g5
+		distance 71.062
+		period 52.077
+	object
+		sprite planet/forest0
+		distance 807.865
+		period 252.324
+	object
+		sprite planet/browndwarf-y
+		distance 1771.61
+		period 819.415
+		object
+			sprite planet/rock0
+			distance 283
+			period 179.962
+		object
+			sprite planet/dust1-b
+			distance 442
+			period 289.009
+	object
+		sprite planet/dust0
+		distance 2996
+		period 1802.04
+
+system "Is Il Z-814"
+	pos 694.718 -785.55
+	government Uninhabited
+	attributes "notable star" "wolf-rayet"
+	arrival 5000
+	habitable 50000
+	belt 1862
+	haze _menu/haze-brown
+	asteroids "small rock" 23 2.05
+	asteroids "medium rock" 2 2.52
+	asteroids "large rock" 7 3.158
+	asteroids "small metal" 5 2.789
+	asteroids "medium metal" 183 3.326
+	asteroids "large metal" 1 2.016
+	minables lead 28 4.115
+	minables iron 35 5.171
+	minables gold 47 3.479
+	minables yottrite 2 5.1
+	fleet "Vyrmeid (Boomerang)" 200
+	object
+		sprite star/wr
+		period 40
+		offset 10
+		object
+			sprite planet/gas1-hot
+			distance 500
+			period 60
+			offset 20
+	object
+		sprite planet/dust0
+		distance 1060.38
+		period 195.329
+		offset 210
+	object
+		sprite planet/dust3-b
+		distance 2445.2
+		period 683.984
+		offset 70
+
 system Iyech'yek
 	pos -277.37 -693.913
 	government Wanderer
@@ -16372,6 +18059,117 @@ system Izar
 			distance 201
 			period 12.6652
 
+system "Jentu Centi"
+	pos 390.9 -291.3
+	government Bunrodea
+	attributes "giant star" "notable star"
+	arrival 4050
+	habitable 4050
+	belt 1500
+	link "Gento Ah"
+	link "Mego Faro"
+	link "Mego Inito"
+	asteroids "small rock" 7 9.6432
+	asteroids "large rock" 31 9.7216
+	asteroids "small metal" 24 11.6032
+	asteroids "medium metal" 34 4.2336
+	asteroids "large metal" 5 11.5248
+	trade Clothing 160
+	trade Electronics 780
+	trade Equipment 580
+	trade Food 260
+	trade "Heavy Metals" 760
+	trade Industrial 800
+	trade "Luxury Goods" 980
+	trade Medical 750
+	trade Metal 390
+	trade Plastic 260
+	fleet "Bunrodea Megasa Freight" 2000
+	fleet "Bunrodea Defense" 1000
+	object
+		sprite star/g-giant
+		period 10
+	object
+		sprite planet/lava7-b
+		distance 443.102
+		period 58.6257
+	object
+		sprite planet/luna
+		distance 1073.75
+		period 221.150
+	object
+		sprite planet/dust3-b
+		distance 1728.6
+		period 451.725
+	object
+		sprite planet/rock9
+		distance 2531.11
+		period 800.385
+	object
+		sprite planet/gas14-b
+		distance 4954.61
+		period 2192.03
+		object Melenci
+			sprite planet/rock17
+			distance 221
+			period 13.3797
+
+system "Jentu Le"
+	pos 243.817 -162.83
+	government "Bunrodea (Guard)"
+	arrival 2200
+	habitable 2200
+	belt 1500
+	link "Avo Chigo"
+	link "Erabu Lemeta"
+	asteroids "small rock" 5 2.16
+	asteroids "medium rock" 43 2.052
+	asteroids "large rock" 5 2.1384
+	asteroids "small metal" 34 1.6416
+	asteroids "medium metal" 95 1.8792
+	asteroids "large metal" 43 2.4408
+	trade Clothing 250
+	trade Electronics 730
+	trade Equipment 560
+	trade Food 510
+	trade "Heavy Metals" 790
+	trade Industrial 780
+	trade "Luxury Goods" 1260
+	trade Medical 580
+	trade Metal 410
+	trade Plastic 460
+	fleet "Bunrodea Erabu Freight" 1500
+	fleet "Bunrodea Defense" 2000
+	fleet "Bunrodea Royalty" 5000
+	fleet "Bunrodea Royal Guard" 2000
+	object
+		sprite star/f3
+		period 10
+	object
+		sprite planet/lava4-b
+		distance 485.963
+		period 91.3594
+	object
+		sprite planet/cloud1-b
+		distance 1038.11
+		period 285.242
+	object Jentuthro
+		sprite planet/ocean4
+		distance 2056.46
+		period 795.296
+	object
+		sprite planet/rock13
+		distance 2812.31
+		period 1271.87
+	object
+		sprite planet/gas10
+		distance 5017.38
+		period 3030.84
+		object
+			sprite planet/oberon-b
+			distance 195
+			period 14.3334
+
 system Jied
 	pos 720.68 -541.24
 	government Uninhabited
@@ -16411,6 +18209,7 @@ system Jied
 system "Jyeg Pvu"
 	pos 904.75 -426.028
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 5000
 	habitable 5160
 	belt 1522
@@ -16709,7 +18508,7 @@ system Kaliptari
 system Kanguwa
 	pos 990.137 -331.456
 	government Uninhabited
-	attributes "neutron" "rulei"
+	attributes "neutron" "notable star" "rulei"
 	music "ambient/rulei space"
 	arrival 500
 	habitable 100
@@ -16730,11 +18529,11 @@ system Kanguwa
 		sprite star/neutron
 		period 10
 	object "Yniu Eiu"
-		sprite planet/rock9-b
+		sprite "planet/yniu eiu"
 		distance 397
 		period 44.7466
 		object "Yniu Ena"
-			sprite planet/rhea
+			sprite "planet/yniu ena"
 			distance 169.29
 			period 64.72
 	object
@@ -16882,8 +18681,8 @@ system Kashikt
 	trade Medical 543
 	trade Metal 443
 	trade Plastic 292
-	fleet Quarg 1000
-	fleet "Large Quarg" 2000
+	fleet "Quarg (Kor Efret)" 1000
+	fleet "Large Quarg (Kor Efret)" 2000
 	fleet "Kor Efret Home" 500
 	fleet "Kor Efret Miners" 3600
 	object
@@ -16926,7 +18725,7 @@ system Kashikt
 system Kasikfar
 	pos 10.4305 -127.812
 	government Uninhabited
-	attributes "archon" "korath" "nova"
+	attributes "archon" "korath" "notable star" "nova"
 	arrival 500
 	habitable 100
 	belt 1539
@@ -17341,13 +19140,65 @@ system "Ki War Ek"
 		period 349.820
 		offset 250
 
+system "Kifrana Terberah"
+	pos 362.817 -200.83
+	government Bunrodea
+	attributes "giant star" "notable star"
+	arrival 2300
+	habitable 2300
+	belt 1500
+	link "Mego Inito"
+	link "Ravu Kon"
+	link "Xutluno Fali"
+	asteroids "small rock" 5 3.6432
+	asteroids "medium rock" 13 4.6
+	asteroids "large rock" 5 2.5024
+	asteroids "small metal" 10 5.0048
+	asteroids "medium metal" 1 5.0784
+	asteroids "large metal" 27 2.3552
+	trade Clothing 270
+	trade Electronics 750
+	trade Equipment 650
+	trade Food 340
+	trade "Heavy Metals" 780
+	trade Industrial 760
+	trade "Luxury Goods" 1060
+	trade Medical 690
+	trade Metal 410
+	trade Plastic 290
+	fleet "Bunrodea Megasa Freight" 1200
+	fleet "Bunrodea Defense" 1500
+	object
+		sprite star/m-giant
+		period 10
+	object
+		sprite planet/venus
+		distance 487.26
+		period 89.7092
+	object
+		sprite planet/desert8-b
+		distance 1067.52
+		period 290.910
+	object
+		sprite planet/dust0-b
+		distance 1780.83
+		period 626.801
+	object Kisarra
+		sprite planet/dust6
+		distance 2720.54
+		period 1183.52
+	object
+		sprite planet/gas11
+		distance 5592.93
+		period 3488.63
+
 system Kilema
 	pos 1043.5 -472.08
 	government Uninhabited
 	arrival 500
 	habitable 150
 	belt 1612
-	haze _menu/haze-33
+	haze _menu/haze-brown
 	link "Erba Yle"
 	asteroids "small rock" 4 1.9
 	asteroids "medium rock" 4 2.2
@@ -17608,11 +19459,11 @@ system Kneirc
 		sprite planet/rock1
 		distance 401
 		period 84.9392
-	object
+	object Ghneoe
 		sprite planet/forest3
-		distance 888
-		period 279.905
-		object
+		distance 1125
+		period 399.135
+		object Zydee
 			sprite planet/dust3-b
 			distance 169
 			period 83
@@ -17677,7 +19528,7 @@ system Kochab
 		sprite planet/dust6
 		distance 937.01
 		period 596.451
-	object
+	object "Lenz's Loop"
 		sprite planet/gas14
 		distance 2419.01
 		period 2474.09
@@ -17685,7 +19536,7 @@ system Kochab
 system "Kor Ak'Mari"
 	pos 43 42
 	government Korath
-	attributes "carbon" "korath"
+	attributes "carbon" "korath" "notable star"
 	arrival 3100
 	habitable 3100
 	belt 1606
@@ -18495,7 +20346,7 @@ system Kursa
 system L-118
 	pos 1085.78 -416.75
 	government Uninhabited
-	attributes "umbral reach"
+	attributes "bright star" "notable star" "umbral reach"
 	arrival 3000
 	habitable 3000
 	belt 1724
@@ -18532,7 +20383,7 @@ system L-118
 system L-6181
 	pos 1139.93 -522.87
 	government Uninhabited
-	attributes "umbral reach"
+	attributes "bright star" "notable star" "umbral reach"
 	arrival 885
 	habitable 885
 	belt 1758
@@ -18560,10 +20411,6 @@ system L-6181
 		distance 81.2
 		period 64.23
 		offset 180
-	object
-		sprite planet/dust1
-		distance 333.31
-		period 81.8202
 	object
 		sprite planet/cloud8
 		distance 3051.66
@@ -18706,7 +20553,7 @@ system Lesath
 system Levana
 	pos 203.504 247.389
 	government Uninhabited
-	attributes "ember waste"
+	attributes "bright star" "ember waste" "giant star" "notable star"
 	arrival 5000
 	ramscoop
 		universal 0
@@ -18905,6 +20752,7 @@ system Lire
 system Lloloi
 	pos 907.022 -251.144
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 5000
 	habitable 10000
 	belt 1338
@@ -19048,7 +20896,7 @@ system "Lom Tahr"
 	fleet "Small Human Merchants (Hai)" 6000
 	fleet "Large Human Merchants (Hai)" 9000
 	fleet "Hai Surveillance" 3000
-	fleet Quarg 4000
+	fleet "Quarg (Hai)" 4000
 	object
 		sprite star/f0
 		period 10
@@ -19056,7 +20904,7 @@ system "Lom Tahr"
 		sprite planet/desert8-b
 		distance 170.795
 		period 17.6462
-	object
+	object Steamwater
 		sprite planet/uranus
 		distance 554.485
 		period 103.222
@@ -19276,14 +21124,13 @@ system Lurata
 system M-1188
 	pos 1124.66 -607.233
 	government Uninhabited
-	attributes "umbral reach"
+	attributes "bright star" "notable star" "umbral reach"
 	arrival 750
 	habitable 750
 	belt 1676
 	"jump range" 80
 	haze _menu/haze-coal
 	link E-4183
-	link G-6183
 	link L-6181
 	link MS-219
 	asteroids "large metal" 1 2.54
@@ -19293,10 +21140,6 @@ system M-1188
 	object
 		sprite star/a-dwarf
 		period 10
-	object
-		sprite planet/rock9
-		distance 749.46
-		period 299.676
 	object
 		sprite planet/gas5-b
 		distance 3738
@@ -19352,7 +21195,7 @@ system MC-42
 system MS-219
 	pos 1075.13 -568.167
 	government Uninhabited
-	attributes "iije" "umbral reach"
+	attributes "bright star" "iije" "notable star" "umbral reach"
 	arrival 2075
 	habitable 2075
 	belt 1404
@@ -19389,10 +21232,6 @@ system MS-219
 			sprite planet/dust0-b
 			distance 385.29
 			period 80
-	object
-		sprite planet/gas2-b
-		distance 7384.94
-		period 5572.77
 
 system Makferuti
 	pos 288.431 -628.812
@@ -19547,7 +21386,7 @@ system Markab
 		sprite planet/forest3
 		distance 522.53
 		period 191.111
-	object
+	object Placatious
 		sprite planet/uranus-b
 		distance 1332.97
 		period 778.664
@@ -19841,7 +21680,7 @@ system Meblumem
 system Mebsuta
 	pos -482 -394
 	government Republic
-	attributes "north"
+	attributes "north" "notable star" "supergiant star"
 	arrival 5000
 	habitable 6110
 	belt 2340
@@ -19977,6 +21816,180 @@ system Meftarkata
 			sprite planet/io
 			distance 315
 			period 29.4282
+
+system "Mego Faro"
+	pos 412.9 -347.3
+	government Bunrodea
+	arrival 1080
+	habitable 1080
+	belt 1500
+	link "Jentu Centi"
+	link "Urba Pest"
+	link "Xutluno Rees"
+	asteroids "medium rock" 4 2.9412
+	asteroids "large rock" 1 2.3028
+	asteroids "small metal" 1 1.5048
+	asteroids "medium metal" 5 2.2116
+	asteroids "large metal" 1 2.7816
+	trade Clothing 160
+	trade Electronics 690
+	trade Equipment 630
+	trade Food 190
+	trade "Heavy Metals" 880
+	trade Industrial 700
+	trade "Luxury Goods" 970
+	trade Medical 710
+	trade Metal 370
+	trade Plastic 250
+	fleet "Bunrodea Megasa Freight" 1200
+	fleet "Bunrodea Defense" 1500
+	object
+		sprite star/g0
+		period 10
+	object
+		sprite planet/desert8-b
+		distance 289.89
+		period 60.0755
+		object
+			sprite planet/rock14
+			distance 161
+			period 26.2027
+	object
+		sprite planet/cloud0-b
+		distance 654.25
+		period 203.687
+	object "Deli Kat"
+		sprite planet/cloud3
+		distance 1118.25
+		period 455.152
+	object
+		sprite planet/neptune-b
+		distance 1389.74
+		period 630.591
+	object
+		sprite planet/water0-b
+		distance 1642.03
+		period 809.878
+	object
+		sprite planet/gas17-b
+		distance 4556.52
+		period 3743.67
+		object
+			sprite planet/tethys-b
+			distance 227
+			period 14.6121
+		object
+			sprite planet/rock17-b
+			distance 350
+			period 27.9753
+
+system "Mego Inito"
+	pos 394.9 -230.3
+	government Bunrodea
+	arrival 2200
+	habitable 2200
+	belt 1500
+	link "Jentu Centi"
+	link "Kifrana Terberah"
+	link "Ravu Kon"
+	link "Xutluno Fali"
+	link "Xutluno Rees"
+	asteroids "small rock" 2 5.481
+	asteroids "medium rock" 1 5.8058
+	asteroids "large rock" 3 4.1006
+	asteroids "small metal" 5 2.7202
+	asteroids "medium metal" 35 2.8014
+	asteroids "large metal" 91 6.0088
+	trade Clothing 220
+	trade Electronics 820
+	trade Equipment 560
+	trade Food 320
+	trade "Heavy Metals" 1160
+	trade Industrial 870
+	trade "Luxury Goods" 1100
+	trade Medical 640
+	trade Metal 530
+	trade Plastic 320
+	fleet "Bunrodea Megasa Freight" 1200
+	fleet "Bunrodea Defense" 1500
+	object
+		sprite star/f3
+		period 10
+	object
+		sprite planet/rock10-b
+		distance 433.463
+		period 76.9620
+		object
+			sprite planet/tethys-b
+			distance 185
+			period 21.1774
+	object
+		sprite planet/desert2
+		distance 796.823
+		period 191.818
+	object
+		sprite planet/io
+		distance 1766.07
+		period 632.937
+	object Angko
+		sprite planet/water1-b
+		distance 2288.16
+		period 933.422
+
+system "Mego Seo"
+	pos 354.817 -279.83
+	government Bunrodea
+	arrival 2560
+	habitable 2560
+	belt 1500
+	link "Gento Ah"
+	link "Ravu Kon"
+	asteroids "small metal" 1 4.374
+	asteroids "medium metal" 14 5.5404
+	asteroids "large metal" 1 3.5964
+	trade Clothing 190
+	trade Electronics 720
+	trade Equipment 680
+	trade Food 240
+	trade "Heavy Metals" 1200
+	trade Industrial 680
+	trade "Luxury Goods" 990
+	trade Medical 620
+	trade Metal 380
+	trade Plastic 270
+	fleet "Bunrodea Megasa Freight" 1200
+	fleet "Bunrodea Defense" 1500
+	object
+		sprite star/f0
+		period 10
+	object
+		sprite planet/desert5-b
+		distance 494.59
+		period 86.9576
+	object
+		sprite planet/mars-b
+		distance 842.59
+		period 193.359
+	object "Deli Kasi"
+		sprite planet/forest3-b
+		distance 2164.91
+		period 796.342
+	object
+		sprite planet/uranus-b
+		distance 3270.95
+		period 1478.94
+		object
+			sprite planet/rock7
+			distance 238
+			period 15.687
+		object
+			sprite planet/tethys
+			distance 314
+			period 23.7721
+		object
+			sprite planet/rock17-b
+			distance 391
+			period 33.0323
 
 system "Mei Yohn"
 	pos -106.757 -581.698
@@ -21065,6 +23078,7 @@ system Mirzam
 system Misam
 	pos -9 -80
 	government Pirate
+	attributes "multi-star" "notable star"
 	arrival 3835
 	habitable 3835
 	belt 1091
@@ -21223,19 +23237,15 @@ system Mnashyu
 		sprite star/k3
 		distance 170.2
 		period 70.13
-	object
-		sprite planet/forest3
-		distance 1087.9
-		period 379.555
+	object Mnai
+		sprite planet/forest3-b
+		distance 1340
+		period 518.858
 		object
 			sprite planet/dust3-b
 			distance 197.75
 			period 16
-	object
-		sprite planet/rock1
-		distance 1530.8
-		period 633.533
-	object
+	object "Eeu Mnai"
 		sprite planet/rock7
 		distance 1619
 		period 689.068
@@ -21259,11 +23269,12 @@ system Mnashyu
 system Mohuwo
 	pos 956.45 -544.26
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 5000
 	habitable 6210
 	belt 1213
 	"jump range" 70
-	haze _menu/haze-67
+	haze _menu/haze-brown
 	link Auhru
 	link Pbelnep
 	asteroids "small metal" 1 6.78
@@ -21441,6 +23452,7 @@ system Mora
 system Msalbit
 	pos 978.348 -274.767
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 5000
 	habitable 13720
 	belt 1333
@@ -21871,6 +23883,7 @@ system Nihal
 system Nnatai
 	pos 513.2 -470.3
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 5000
 	habitable 5600
 	belt 1478
@@ -21906,7 +23919,7 @@ system Nnatai
 system Nnaug
 	pos 718.89 -592.01
 	government "Gegno Vi"
-	attributes "gegno" "vi"
+	attributes "bright star" "gegno" "notable star" "vi"
 	arrival 3650
 	habitable 3650
 	belt 1901
@@ -22095,6 +24108,7 @@ system Nona
 system Nssryos
 	pos 770.122 -524.267
 	government Uninhabited
+	attributes "giant star" "notable star"
 	arrival 5000
 	habitable 5600
 	belt 1175
@@ -22263,7 +24277,7 @@ system O-3184
 system Oblate
 	pos -124 -119
 	government Pirate
-	attributes "core"
+	attributes "core" "giant star" "notable star"
 	arrival 2300
 	habitable 2300
 	belt 1954
@@ -22370,7 +24384,7 @@ system Oihaug
 system Ookmya
 	pos 633.6 -610.17
 	government "Gegno Vi"
-	attributes "gegno" "vi"
+	attributes "bright star" "gegno" "giant star" "notable star" "vi"
 	arrival 5000
 	habitable 7900
 	belt 1144
@@ -22493,7 +24507,7 @@ system Oosuoro
 system Orbona
 	pos -735.99 -97.2491
 	government Republic
-	attributes "dirt belt"
+	attributes "bright star" "dirt belt" "giant star" "notable star"
 	arrival 5000
 	habitable 11840
 	belt 1507
@@ -22932,11 +24946,83 @@ system Parca
 			distance 545
 			period 35.9174
 
+system "Paru Paru"
+	pos 275.9 -237.3
+	government Bunrodea
+	attributes "neutron" "notable star"
+	arrival 500
+	habitable 100
+	belt 1500
+	link "Avo Chigo"
+	link "Eragaru Le"
+	link "Ravu Kon"
+	asteroids "small rock" 59 3.3852
+	asteroids "medium rock" 4 2.184
+	asteroids "large rock" 30 3.5308
+	asteroids "small metal" 8 3.6764
+	asteroids "medium metal" 10 3.4216
+	asteroids "large metal" 11 5.1688
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Erabu Freight" 900
+	fleet "Bunrodea Defense" 2000
+	hazard "Neutron Star Magnetic Field" 1
+	object
+		sprite star/neutron-core
+		period 10
+	object
+		sprite star/neutron
+		period 10
+	object
+		sprite planet/desert10
+		distance 821.186
+		period 133.118
+		object
+			sprite planet/dust4
+			distance 154
+			period 19.5654
+	object
+		sprite planet/lava3
+		distance 1289.95
+		period 262.080
+	object
+		sprite planet/rock9
+		distance 1791.24
+		period 428.850
+	object
+		sprite planet/gas2
+		distance 2311.88
+		period 628.815
+		object
+			sprite planet/tethys
+			distance 167
+			period 13.0764
+	object
+		sprite planet/gas16
+		distance 4238.09
+		period 1560.73
+		object
+			sprite planet/dust1-b
+			distance 205
+			period 15.45
+		object
+			sprite planet/dust0
+			distance 350
+			period 34.4667
+
 system Patir
 	hidden
 	pos -38 553
 	government Uninhabited
-	attributes "ember waste" "graveyard"
+	attributes "black hole" "ember waste" "notable star" "nova" "graveyard"
 	arrival 500
 	ramscoop
 		universal 0
@@ -23127,7 +25213,7 @@ system Peacock
 system Pelubta
 	pos -757.587 575.051
 	government Coalition
-	attributes "arachi"
+	attributes "arachi" "bright star" "notable star"
 	arrival 5000
 	habitable 7050
 	belt 1709
@@ -23281,7 +25367,7 @@ system Peragenor
 system Peresedersi
 	pos 81.4305 -154.812
 	government Uninhabited
-	attributes "archon" "korath" "nova"
+	attributes "archon" "korath" "notable star" "nova"
 	arrival 500
 	habitable 100
 	belt 1065
@@ -23450,7 +25536,7 @@ system Persian
 system Persitar
 	pos 297.431 -395.812
 	government Uninhabited
-	attributes "korath" "nova"
+	attributes "korath" "notable star" "nova"
 	arrival 500
 	habitable 100
 	belt 1948
@@ -23739,6 +25825,70 @@ system Phurad
 		sprite planet/dust3-b
 		distance 2639.02
 		period 1650.10
+
+system Piadenli
+	pos 318.817 -338.83
+	government Bunrodea
+	attributes "notable star" "supergiant star"
+	arrival 4500
+	habitable 4500
+	belt 1500
+	link "Gento Ah"
+	asteroids "small rock" 12 4.6176
+	asteroids "medium rock" 83 3.3696
+	asteroids "large rock" 6 5.5744
+	asteroids "medium metal" 8 5.7408
+	asteroids "large metal" 4 4.368
+	trade Clothing 170
+	trade Electronics 680
+	trade Equipment 670
+	trade Food 300
+	trade "Heavy Metals" 720
+	trade Industrial 760
+	trade "Luxury Goods" 970
+	trade Medical 630
+	trade Metal 550
+	trade Plastic 290
+	fleet "Bunrodea Defense" 1000
+	object
+		sprite star/k-supergiant
+		period 10
+	object
+		sprite planet/lava3
+		distance 548.933
+		period 76.6889
+	object
+		sprite planet/rock5
+		distance 924.573
+		period 167.635
+	object
+		sprite planet/rock2
+		distance 1734.31
+		period 430.669
+	object
+		sprite planet/ocean0-b
+		distance 3157.69
+		period 1058.05
+	object Disara
+		sprite planet/forest3-b
+		distance 4958.7
+		period 2082.11
+		object
+			sprite planet/rock3-b
+			distance 169
+			period 23.7229
+	object
+		sprite planet/gas15
+		distance 7111.5
+		period 3575.98
+		object
+			sprite planet/dust7
+			distance 228
+			period 18.1217
+		object
+			sprite planet/europa-b
+			distance 323
+			period 30.5563
 
 system Pik'ro'iyak
 	pos -378.845 -677.001
@@ -24292,7 +26442,7 @@ system Procyon
 system Prosa
 	pos 303 194
 	government Uninhabited
-	attributes "ember waste" "inaccessible"
+	attributes "bright star" "ember waste" "giant star" "inaccessible" "notable star"
 	arrival 5000
 	ramscoop
 		universal 0
@@ -24405,6 +26555,7 @@ system Ptetubo
 system Ptobeh
 	pos 553.2 -526.3
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 5000
 	habitable 13720
 	belt 1440
@@ -24533,7 +26684,6 @@ system Quaru
 	link Homeward
 	link "Ki War Ek"
 	link "Last Word"
-	asteroids "large metal" 1 2.0202
 	trade Clothing 372
 	trade Electronics 637
 	trade Equipment 676
@@ -25204,6 +27354,76 @@ system "Rati Cal"
 			distance 240
 			period 17.5
 
+system "Ravu Kon"
+	pos 332.9 -251.3
+	government Bunrodea
+	attributes "bright star" "notable star"
+	arrival 5000
+	habitable 5000
+	belt 1500
+	link "Kifrana Terberah"
+	link "Mego Inito"
+	link "Mego Seo"
+	link "Paru Paru"
+	asteroids "small rock" 41 1.314
+	asteroids "medium rock" 36 2.484
+	asteroids "large rock" 14 1.098
+	asteroids "small metal" 19 1.332
+	asteroids "medium metal" 46 2.502
+	asteroids "large metal" 7 1.152
+	trade Clothing 240
+	trade Electronics 800
+	trade Equipment 620
+	trade Food 350
+	trade "Heavy Metals" 1120
+	trade Industrial 800
+	trade "Luxury Goods" 1090
+	trade Medical 620
+	trade Metal 500
+	trade Plastic 340
+	fleet "Bunrodea Megasa Freight" 800
+	fleet "Bunrodea Erabu Freight" 800
+	fleet "Bunrodea Defense" 1200
+	object
+		sprite star/b8
+		period 10
+	object
+		sprite planet/gas4-b
+		distance 1035.53
+		period 188.503
+		object
+			sprite planet/rock7-b
+			distance 239
+			period 13.0315
+		object
+			sprite planet/dust7-b
+			distance 350
+			period 23.094
+	object
+		sprite planet/gas2-b
+		distance 2125.74
+		period 554.421
+	object
+		sprite planet/gas16-b
+		distance 2527.78
+		period 718.925
+	object Sopoyra
+		sprite planet/dust5
+		distance 4673.79
+		period 1807.50
+	object
+		sprite planet/gas8
+		distance 6110.71
+		period 2702.16
+		object
+			sprite planet/oberon-b
+			distance 184
+			period 13.2863
+		object
+			sprite planet/rock3-b
+			distance 275
+			period 24.2759
+
 system Regor
 	pos -702 -335
 	government Republic
@@ -25271,7 +27491,7 @@ system Regor
 system Regulus
 	pos -544 25
 	government Republic
-	attributes "near earth"
+	attributes "bright star" "near earth" "notable star"
 	arrival 5000
 	habitable 7000
 	belt 1605
@@ -25487,7 +27707,7 @@ system Remembrance
 system Rigel
 	pos -324 -363
 	government Republic
-	attributes "north"
+	attributes "bright star" "north" "notable star" "supergiant star"
 	arrival 5000
 	habitable 17025
 	belt 1882
@@ -25643,7 +27863,7 @@ system Ritilas
 system Rouseu
 	pos 566.7 -404.133
 	government Uninhabited
-	attributes "wormhole"
+	attributes "bright star" "notable star" "wormhole"
 	arrival 5000
 	habitable 8800
 	belt 1648
@@ -26050,7 +28270,7 @@ system Sadalsuud
 system Sadr
 	pos -287 543
 	government Republic
-	attributes "south"
+	attributes "bright star" "notable star" "south"
 	arrival 3430
 	habitable 3430
 	belt 1388
@@ -26116,7 +28336,7 @@ system Sadr
 system "Sagittarius A*"
 	pos 112 22
 	government Uninhabited
-	attributes "blackhole"
+	attributes "black hole" "notable star"
 	arrival 5000
 	habitable 100000
 	belt 1500
@@ -26258,7 +28478,7 @@ system Salipastart
 system Saquergen
 	pos -482 561
 	government Uninhabited
-	attributes "nova"
+	attributes "notable star" "nova"
 	arrival 500
 	habitable 100
 	belt 1435
@@ -26581,7 +28801,7 @@ system Schedar
 system Scija
 	pos 651.5 -586
 	government "Gegno Vi"
-	attributes "gegno" "vi"
+	attributes "bright star" "gegno" "notable star" "vi"
 	arrival 5000
 	habitable 5600
 	belt 1431
@@ -26966,6 +29186,59 @@ system Sepriaptu
 		distance 2309.96
 		period 984.429
 
+system "Sera Natta"
+	pos 344.9 -418.3
+	government Bunrodea
+	attributes "bright star" "notable star"
+	arrival 3000
+	habitable 3000
+	belt 1500
+	link "Urba Pest"
+	asteroids "small rock" 81 1.7472
+	asteroids "medium rock" 6 1.5561
+	asteroids "large rock" 7 3.0303
+	asteroids "small metal" 8 2.9757
+	asteroids "medium metal" 35 2.3478
+	asteroids "large metal" 8 1.4196
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Defense" 3000
+	object
+		sprite star/a8
+		period 10
+	object
+		sprite planet/desert8-b
+		distance 452.155
+		period 70.2150
+	object
+		sprite planet/lava6
+		distance 868.284
+		period 186.849
+	object
+		sprite planet/ice4-b
+		distance 1060.17
+		period 252.094
+	object
+		sprite planet/gas3
+		distance 1608.17
+		period 470.974
+		object
+			sprite planet/dust1
+			distance 300
+			period 13.2723
+	object Olohoa
+		sprite planet/ocean6
+		distance 2631.05
+		period 985.582
+
 system Sevrelect
 	pos -114.569 -239.812
 	government "Kor Efret"
@@ -26987,8 +29260,8 @@ system Sevrelect
 	trade Medical 603
 	trade Metal 446
 	trade Plastic 288
-	fleet Quarg 1000
-	fleet "Large Quarg" 3000
+	fleet "Quarg (Kor Efret)" 1000
+	fleet "Large Quarg (Kor Efret)" 3000
 	fleet "Kor Efret Home" 500
 	fleet "Kor Efret Miners" 3600
 	object
@@ -27076,7 +29349,7 @@ system Shaula
 			sprite planet/dust0-b
 			distance 135
 			period 16.3428
-	object
+	object "Shih's Locker"
 		sprite planet/gas7
 		distance 2840.12
 		period 2421.72
@@ -27149,6 +29422,64 @@ system Sheratan
 		sprite planet/dust3-b
 		distance 4399.99
 		period 2556.72
+
+system "Shini Bori"
+	pos 258.9 -74.3
+	government "Bunrodea (Guard)"
+	arrival 2560
+	habitable 2560
+	belt 1500
+	link "Bunri Lemeta"
+	link "Erabu Lemeta"
+	asteroids "large rock" 2 3.1395
+	asteroids "small metal" 16 1.8837
+	asteroids "medium metal" 12 2.8405
+	asteroids "large metal" 19 3.2292
+	trade Clothing 340
+	trade Electronics 680
+	trade Equipment 650
+	trade Food 490
+	trade "Heavy Metals" 620
+	trade Industrial 760
+	trade "Luxury Goods" 1300
+	trade Medical 450
+	trade Metal 440
+	trade Plastic 470
+	fleet "Bunrodea Erabu Freight" 1500
+	fleet "Bunrodea Defense" 2000
+	fleet "Bunrodea Royalty" 3000
+	fleet "Bunrodea Royal Guard" 2000
+	object
+		sprite star/f0
+		period 10
+	object
+		sprite planet/lava1
+		distance 367.992
+		period 55.8081
+	object
+		sprite planet/rock4
+		distance 920.336
+		period 220.729
+		object
+			sprite planet/rhea-b
+			distance 173
+			period 20.7157
+	object Sardva
+		sprite planet/cloud1
+		distance 2122.92
+		period 773.286
+	object
+		sprite planet/gas9
+		distance 3518.74
+		period 1650.13
+		object
+			sprite planet/desert4-b
+			distance 238
+			period 13.7675
+		object
+			sprite planet/dust0-b
+			distance 333
+			period 22.7854
 
 system Si'yak'ku
 	pos -329.235 -760.435
@@ -27731,7 +30062,7 @@ system Sko'karak
 system Sobarati
 	pos 277.431 -557.812
 	government "Kor Sestor"
-	attributes "korath"
+	attributes "bright star" "korath" "notable star"
 	arrival 3355
 	habitable 3355
 	belt 1314
@@ -27852,7 +30183,7 @@ system Sol
 		sprite planet/mars
 		distance 1471.43
 		period 687.001
-	object
+	object Jupiter
 		sprite planet/jupiter
 		distance 3339
 		period 2348.40
@@ -28206,7 +30537,7 @@ system Solifar
 system Sospi
 	pos -317 -161
 	government Republic
-	attributes "north" "wolf-rayet"
+	attributes "north" "notable star" "wolf-rayet"
 	arrival 5000
 	habitable 50000
 	belt 1715
@@ -28606,7 +30937,7 @@ system Stercutus
 system Suhail
 	pos -774 -338
 	government Republic
-	attributes "deep"
+	attributes "deep" "giant star" "notable star"
 	arrival 3000
 	habitable 3000
 	belt 2715
@@ -28755,8 +31086,8 @@ system Sumprast
 	trade Medical 591
 	trade Metal 483
 	trade Plastic 323
-	fleet Quarg 1000
-	fleet "Large Quarg" 2500
+	fleet "Quarg (Kor Efret)" 1000
+	fleet "Large Quarg (Kor Efret)" 2500
 	fleet "Kor Efret Home" 500
 	fleet "Kor Efret Miners" 3600
 	object
@@ -28798,7 +31129,7 @@ system Sumprast
 system Tais
 	pos -346 381
 	government Republic
-	attributes "dirt belt"
+	attributes "bright star" "dirt belt" "notable star"
 	arrival 3200
 	habitable 3200
 	belt 1379
@@ -29307,6 +31638,63 @@ system "Terra Incognita"
 			distance 543
 			period 32.7715
 
+system "Thshybo Le"
+	pos 217.2 -94.9
+	government "Bunrodea (Guard)"
+	attributes "bright star" "notable star"
+	arrival 3200
+	habitable 3200
+	belt 1500
+	link "Elabi Choati"
+	link "Elo Chigo"
+	link "Erabu Lemeta"
+	link "Genta Bo"
+	asteroids "medium rock" 131 3.2256
+	asteroids "large rock" 1 2.016
+	asteroids "medium metal" 60 3.6624
+	asteroids "large metal" 4 5.0064
+	trade Clothing 220
+	trade Electronics 760
+	trade Equipment 580
+	trade Food 515
+	trade "Heavy Metals" 900
+	trade Industrial 760
+	trade "Luxury Goods" 1290
+	trade Medical 570
+	trade Metal 430
+	trade Plastic 500
+	fleet "Bunrodea Erabu Freight" 1500
+	fleet "Bunrodea Defense" 2000
+	fleet "Bunrodea Royalty" 5000
+	fleet "Bunrodea Royal Guard" 2000
+	object
+		sprite star/a5
+		period 10
+	object
+		sprite planet/rock5
+		distance 474.146
+		period 73.0050
+	object
+		sprite planet/rock10
+		distance 1315.6
+		period 337.419
+	object
+		sprite planet/cloud3-b
+		distance 2321.69
+		period 791.027
+	object
+		sprite planet/gas6
+		distance 3417.15
+		period 1412.47
+	object Thshybothro
+		sprite planet/dust3-b
+		distance 3764.71
+		period 1633.36
+	object
+		sprite planet/gas0-b
+		distance 4964.03
+		period 2473.07
+
 system Torbab
 	pos -949.587 490.051
 	government Coalition
@@ -29461,7 +31849,7 @@ system Tscera
 	government Uninhabited
 	arrival 2560
 	habitable 2560
-	haze _menu/haze-33
+	haze _menu/haze-brown
 	link Heutesl
 	link Yllke
 	asteroids "small rock" 4 2.6
@@ -29471,7 +31859,7 @@ system Tscera
 	asteroids "large metal" 2 4.27
 	minables aluminum 1 5.75
 	minables lead 7 6.19
-	fleet Quarg 3800
+	fleet "Quarg (Gegno)" 3800
 	fleet "Gegno Basic" 3000
 	object
 		sprite star/f0
@@ -29595,6 +31983,7 @@ system U-5188
 system Uelawan
 	pos 895.2 -565.75
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 3200
 	habitable 3200
 	belt 1976
@@ -29657,7 +32046,7 @@ system Uelawan
 system Uhebe
 	pos 647.4 -496.3
 	government "Gegno Vi"
-	attributes "gegno" "vi"
+	attributes "bright star" "gegno" "notable star" "vi"
 	arrival 5000
 	habitable 10000
 	belt 1771
@@ -30042,14 +32431,74 @@ system Unukalhai
 		distance 3243.71
 		period 2955.85
 
+system "Urba Pest"
+	pos 391.9 -394.3
+	government Bunrodea
+	attributes "bright star" "notable star"
+	arrival 5000
+	habitable 5000
+	belt 1500
+	link "Gento Ah"
+	link "Mego Faro"
+	link "Sera Natta"
+	asteroids "small rock" 11 10.36
+	asteroids "medium rock" 4 7
+	asteroids "large rock" 24 9.59
+	asteroids "small metal" 1 8.4
+	asteroids "large metal" 1 3.71
+	trade Clothing 200
+	trade Electronics 720
+	trade Equipment 610
+	trade Food 250
+	trade "Heavy Metals" 650
+	trade Industrial 840
+	trade "Luxury Goods" 1030
+	trade Medical 780
+	trade Metal 420
+	trade Plastic 240
+	fleet "Bunrodea Megasa Freight" 1000
+	fleet "Bunrodea Defense" 1000
+	object
+		sprite star/b8
+		period 10
+	object
+		sprite planet/dust4
+		distance 603.334
+		period 83.8323
+	object
+		sprite planet/titan
+		distance 2026.22
+		period 515.946
+	object
+		sprite planet/mercury-b
+		distance 2764.22
+		period 822.117
+	object Okoity
+		sprite planet/cloud3-b
+		distance 5223.4
+		period 2135.52
+		object
+			sprite planet/dust5
+			distance 187
+			period 28.1187
+	object
+		sprite planet/gas12
+		distance 6781.96
+		period 3159.42
+		object
+			sprite planet/rock7-b
+			distance 257
+			period 10.8214
+
 system Uttna
 	pos 946.3 -580.8
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 3000
 	habitable 3000
 	belt 1748
 	"jump range" 60
-	haze _menu/haze-33
+	haze _menu/haze-brown
 	link Iigen
 	asteroids "medium rock" 3 4.8
 	asteroids "large rock" 2 3.96
@@ -30075,17 +32524,17 @@ system Uttna
 			distance 195
 			period 102.9
 	object
-		sprite planet/gas7
-		distance 7362
-		period 4613.10
-		object
-			sprite planet/tethys-b
-			distance 267
-			period 268.6
-	object
 		sprite planet/gas7-hot
-		distance 17699
-		period 17195.8
+		distance 5174
+		period 2717.93
+		object
+			sprite planet/dust3-b
+			distance 198
+			period 105.316
+		object
+			sprite planet/dust7-b
+			distance 350
+			period 247.515
 
 system "Uwa Fahn"
 	pos 35.1585 -491.67
@@ -30160,6 +32609,7 @@ system "Uwa Fahn"
 system "Uwo Seija"
 	pos 420.667 -429
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 4630
 	habitable 4630
 	belt 1222
@@ -30201,7 +32651,7 @@ system "Uwo Seija"
 system V-2189
 	pos 1135.9 -711.667
 	government Uninhabited
-	attributes "umbral reach"
+	attributes "bright star" "notable star" "umbral reach"
 	arrival 5000
 	habitable 17370
 	belt 1985
@@ -30296,6 +32746,7 @@ system Vaiov
 system Vanguwo
 	pos 978.189 -237.686
 	government Uninhabited
+	attributes "giant star" "notable star"
 	arrival 4050
 	habitable 4050
 	belt 1964
@@ -30693,7 +33144,7 @@ system Vorsuke
 system Vulcuja
 	pos 1071.75 -263.767
 	government Uninhabited
-	attributes "carbon"
+	attributes "carbon" "notable star"
 	arrival 3000
 	habitable 3000
 	belt 1972
@@ -30721,7 +33172,7 @@ system Vulcuja
 system W-3197
 	pos 1204.5 -400
 	government Uninhabited
-	attributes "umbral reach"
+	attributes "bright star" "notable star" "umbral reach"
 	arrival 5000
 	habitable 6300
 	belt 1887
@@ -30743,10 +33194,6 @@ system W-3197
 		sprite star/b3
 		period 10
 	object
-		sprite planet/ocean3-b
-		distance 382
-		period 37.6257
-	object
 		sprite planet/io-b
 		distance 1276
 		period 229.702
@@ -30754,6 +33201,10 @@ system W-3197
 		sprite planet/gas0
 		distance 3781
 		period 1171.65
+	object
+		sprite planet/ocean3-b
+		distance 4150
+		period 1347.29
 	object
 		sprite planet/dust0
 		distance 9113
@@ -30837,6 +33288,7 @@ system "Wah Ki"
 system "Wah Oh"
 	pos -205.344 -381.381
 	government Hai
+	attributes "bright star" "notable star"
 	arrival 3650
 	habitable 3650
 	belt 1194
@@ -31437,6 +33889,121 @@ system Wreoul
 		distance 7745.8
 		period 22264.5
 
+system "Xutluno Fali"
+	pos 399.817 -177.83
+	government Bunrodea
+	attributes "ringworld"
+	arrival 700
+	habitable 700
+	belt 1500
+	link "Kifrana Terberah"
+	link "Mego Inito"
+	asteroids "large rock" 1 3.84
+	asteroids "small metal" 1 4.8
+	asteroids "medium metal" 9 4.2
+	asteroids "large metal" 10 4.26
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Defense" 2500
+	object
+		sprite star/g3
+		period 10
+	object
+		sprite planet/tethys-b
+		distance 240
+		period 56.2118
+	object
+		sprite "planet/ringworld left"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset -30
+	object
+		sprite "planet/ringworld right"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset -50
+	object
+		sprite planet/lava3
+		distance 1020
+		period 492.505
+	object
+		sprite planet/saturn
+		distance 3812
+		period 3558.28
+
+system "Xutluno Rees"
+	pos 435.817 -281.83
+	government Bunrodea
+	attributes "bright star" "notable star"
+	arrival 5000
+	habitable 9075
+	belt 1500
+	link "Mego Faro"
+	link "Mego Inito"
+	asteroids "small rock" 2 2.464
+	asteroids "medium rock" 45 3.724
+	asteroids "large rock" 2 3.108
+	asteroids "small metal" 6 3.64
+	asteroids "medium metal" 1 2.548
+	asteroids "large metal" 1 1.988
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Defense" 3500
+	object
+		sprite star/o8
+		distance 3.38968
+		period 4.03012
+	object
+		sprite star/k5
+		distance 109.426
+		period 4.03012
+	object
+		sprite planet/dust2-b
+		distance 489.448
+		period 45.4670
+	object
+		sprite planet/gas8
+		distance 1130.17
+		period 159.533
+		object
+			sprite planet/rock17
+			distance 172
+			period 12.008
+	object
+		sprite planet/uranus-b
+		distance 2061.41
+		period 392.991
+		object
+			sprite planet/dust3-b
+			distance 208
+			period 12.8165
+		object
+			sprite planet/dust5-b
+			distance 303
+			period 22.5339
+	object
+		sprite planet/gas15-b
+		distance 3516.64
+		period 875.645
+
 system "Ya Hai"
 	pos -24.9453 -505.571
 	government Hai
@@ -31477,7 +34044,7 @@ system "Ya Hai"
 	fleet "Small Human Merchants (Hai)" 12000
 	fleet "Large Human Merchants (Hai)" 17000
 	fleet "Hai Surveillance" 3000
-	fleet Quarg 6000
+	fleet "Quarg (Hai)" 6000
 	object
 		sprite star/k5
 		period 10
@@ -31580,6 +34147,7 @@ system "Yed Prior"
 system Yerser
 	pos 827.319 -412.984
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 3650
 	habitable 3650
 	belt 1478
@@ -31665,6 +34233,7 @@ system Yli
 system Yllke
 	pos 947.7 -648.2
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 5000
 	habitable 5160
 	belt 1925
@@ -31683,7 +34252,7 @@ system Yllke
 	minables aluminum 42 1.94
 	fleet "Gegno Miners" 3000
 	fleet "Gegno Basic" 1300
-	fleet Quarg 3300
+	fleet "Quarg (Gegno)" 3300
 	object
 		sprite star/b8
 		distance 31.2
@@ -31717,7 +34286,7 @@ system Yllke
 system Yranjiu
 	pos 1054.27 -298.942
 	government Uninhabited
-	attributes "blackhole"
+	attributes "black hole" "notable star"
 	arrival 5000
 	habitable 10550
 	belt 1478
@@ -31867,8 +34436,8 @@ system Zeinar
 		period 185.218
 	object
 		sprite planet/gas1-b
-		distance 550
-		period 250.270
+		distance 650
+		period 321.540
 		object Cipi
 			sprite planet/ice7-b
 			distance 411.8
