@@ -138,7 +138,7 @@ outfit "Abyssal Composer"
 		"firing force" 25
 		"firing heat" 20
 		"firing shields" -30
-		"firing hull" -7
+		"firing hull" -8
 		"shield damage" 180
 		"hull damage" 180
 		"hit force" -125
