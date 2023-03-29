@@ -93,7 +93,7 @@ mission "Umbral's Reach"
 		never
 	to offer
 		has "Rulei: First Contact: offered"
-		has visited "L-118"
+		has "visited planet: H-9187"
 	on enter "Kanguwa"
 		fail
 		log "Factions" "Rulei" `The ancient Rulei ship stated to be careful of "Umbral's Reach".`
