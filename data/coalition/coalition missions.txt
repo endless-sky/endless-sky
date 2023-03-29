@@ -158,7 +158,7 @@ mission "lost in coalition"
 	source
 		government "Coalition" "Heliarch"
 	to offer
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 	on offer
 		require "Jump Drive" 0
 		event "lost in coalition" 14
@@ -238,7 +238,7 @@ mission "Coalition Yottrite 1"
 	name "More Yottrite"
 	description "You were offered great payment for bringing three more samples of the rare mineral yottrite to <destination>."
 	to offer
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 	to complete
 		has "Coalition Yottrite 2: offered"
 	source
@@ -759,7 +759,7 @@ mission "Coalition Outbreak 1"
 	passengers 75
 	cargo "medical supplies" 90
 	to offer
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 		random < 5
 	source
 		near "1 Axis" 1 6
@@ -984,7 +984,7 @@ mission "Saryd Census 1"
 	description "Transport these <bunks> Saryd census workers to <destination>, where they will collect data on the population growth there."
 	passengers 17
 	to offer
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 		random < 40
 	source
 		attributes saryd
@@ -1312,7 +1312,7 @@ mission "Arachi Orphans"
 	passengers 5
 	cargo "orphanage belongings" 2
 	to offer
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 		random < 45
 	source
 		attributes arach
@@ -1531,7 +1531,7 @@ mission "Saryd University Lecture"
 				`	"Sorry, I don't have time."`
 					decline
 			label low
-			`	"Nonsense! Travel the galaxy, you do. A most knowledgable individual, surely you must be. Accept my offer, will you?"`
+			`	"Nonsense! Travel the galaxy, you do. A most knowledgeable individual, surely you must be. Accept my offer, will you?"`
 			choice
 				`	"Sure, I'd be glad to."`
 					goto yes
@@ -1693,7 +1693,7 @@ mission "Coalition: Pilgrimage 1"
 	description "Bring Vellorae to <destination>, where she will begin her mourning pilgrimage for her late husband."
 	passengers 1
 	to offer
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 	source "Bright Echo"
 	destination "Saros"
 	on offer
@@ -1742,7 +1742,7 @@ mission "Coalition: Pilgrimage 2"
 				`	"If you're okay with me going, I'd be glad to accompany you."`
 				`	"Sorry, I'm not in the mood for a mourning ritual."`
 					goto skip
-			`	Together you follow the streets out of the spaceport city and into a park filled with several different forms of trees twisting upon themselves; some reach far up to the skies while others anchor most of their branches into the ground. The trail brings you to a large clearing, where dozens of Saryds are gathered by a circle of tall, rocky pillars with an altar at the center. Many of the Saryds there are dressed in delicate fabrics of dark greens or ochre colors. Some of them are grouped into pairs that seem to be young couples, while others appear to simply be passing visitors to the shrine.`
+			`	Together you follow the streets out of the spaceport city and into a park filled with several different forms of trees twisting upon themselves; some reach far up to the skies while others anchor most of their branches into the ground. The trail brings you to a large clearing, where dozens of Saryds are gathered by a circle of tall, rocky pillars with an altar at the center. Many of the Saryds there are dressed in delicate fabrics of dark greens or ocher colors. Some of them are grouped into pairs that seem to be young couples, while others appear to simply be passing visitors to the shrine.`
 			`	Once the sun peeks over the tree tops and into the clearing, the visitors move away from the pillars and the altar while the couples line up and walk to it one at a time. There they remain for a few minutes, speaking to one another, before moving aside for the next pair. "Exchanging their vows, they are," Vellorae explains. "Our most popular wedding locations, the shrines here on the capital are."`
 			choice
 				`	"I thought this was a shrine for mourning the dead?"`
@@ -1961,7 +1961,7 @@ mission "Coalition: Council of Ahr"
 	description "Bring the representatives of houses Ablomab, Bebliss, and Chamgar to <destination> by <date>, so that they may participate in the Council of Ahr."
 	deadline 30
 	to offer
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 		random < 50
 		"month" < 3
 	source
@@ -3145,7 +3145,7 @@ mission "Heliarchs Buy Jump Drive Mission"
 				"reputation: Coalition" += 10
 				"reputation: Heliarch" += 10
 				set "license: Coalition"
-				log "Sold a Jump Drive to the Heliarchs and received permission to purchase Coalition civilian technology and ships."
+				log "Sold a jump drive to the Heliarchs and received permission to purchase Coalition civilian technology and ships."
 				log "Factions" "Saryds" `Saryds are an alien species who look suspiciously similar to the centaurs found in early human mythology. They prefer to live on worlds with as much green space as possible, and even their major cities are full of parks and gardens. Most Saryds live in small communes with up to a few dozen of them per house.`
 				log "Factions" "Kimek" `The Kimek are large insectoid aliens, and are members of the Coalition. They discovered spaceflight after the Saryds, but before the Arachi. They are intensely social creatures, preferring to live together in massive buildings with thousands of inhabitants, and many of their worlds have populations in the tens of billions, far more than any human world.`
 				log "Factions" "Arachi" `The spider-like Arachi were the last of the three Coalition species to discover interstellar travel. Most members of their society owe allegiance to one of the great Arach "Houses," organizations that are somewhat similar to guilds and that each specialize in one particular form of industry or technology.`
