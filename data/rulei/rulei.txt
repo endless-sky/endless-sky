@@ -92,7 +92,7 @@ mission "Rulei Megastructure"
 	to complete
 		never
 	to offer
-		has "Rulei: First Contact: offered"
+		has "First Contact: Rulei: offered"
 	on enter "G-3191"
 		log "Factions" "Rulei" `The enormous structure in the G-3191 system appears Rulei in origin, generating both a gravitational field and an eerie tune.`
 		conversation
@@ -107,7 +107,7 @@ mission "Umbral's Reach"
 	to complete
 		never
 	to offer
-		has "Rulei: First Contact: offered"
+		has "First Contact: Rulei: offered"
 		has "visited system: L-118"
 	on enter "Kanguwa"
 		log "Factions" "Rulei" `The ancient Rulei ship stated to be careful of "Umbral's Reach".`
