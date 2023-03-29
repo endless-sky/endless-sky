@@ -709,7 +709,7 @@ event "wanderers: first tech increase"
 	system "Chy'chra"
 		add fleet "Wanderer Flycatchers" 300
 	system "Prakacha'a"
-		remove fleet "Unfettered Tribute (Wanderer)"
+		remove fleet "Unfettered Tribute"
 	system "Sich'ka'ara"
 		add fleet "Wanderer Flycatchers" 600
 	system "Chirr'ay'akai"
