@@ -2796,11 +2796,6 @@ mission "Wanderers: Sestor Alt: Alnilam 2"
 
 
 
-event "liberated zenith"
-	planet "Zenith"
-		bribe .04
-		"required reputation" 0
-
 mission "Wanderers: Sestor Alt: Alnilam 3"
 	landing
 	name "Return to <planet>"
@@ -2823,6 +2818,11 @@ mission "Wanderers: Sestor Alt: Alnilam 3"
 		ship "Cruiser (Mark II)" "R.N.S. Virtue"
 	on visit
 		dialog `You've reached <planet>, but not all of the Navy Cruisers have entered the system yet. Better depart and wait for them to arrive.`
+
+event "liberated zenith"
+	planet "Zenith"
+		bribe .04
+		"required reputation" 0
 
 mission "Wanderers: Sestor Alt: Zenith Patch"
 	landing
