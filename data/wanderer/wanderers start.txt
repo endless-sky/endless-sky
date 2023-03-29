@@ -760,7 +760,6 @@ mission "Wanderers: Unfettered Diplomacy 1B"
 			`	Iktat Rek says, "We will give you food, but I am not [authorized, permitted] to give you a world. I must speak to our [government, elders]." The Hai agree to that, and you get ready to return the freighter to <planet>.`
 				accept
 	on accept
-		set "using updated wanderer unfettered tribute fleet"
 		event "wanderer / unfettered peace"
 	on visit
 		dialog `You've landed on <planet>, but you're missing something! Either the <npc> hasn't entered the system yet, or Iktat Rek is on one of your escorts that hasn't entered the system yet. Better depart and wait for it.`
@@ -1587,24 +1586,6 @@ mission "Wanderers: Unfettered Invasion Patch"
 		has "event: wanderers: unfettered invasion"
 	on offer
 		event "wanderers: unfettered invasion starts"
-		fail
-
-
-
-event "wanderers: unfettered invasion starts tribute fleet patch"
-	system "Ehma Ti"
-		remove fleet "Unfettered Tribute"
-
-
-
-mission "Wanderers: Unfettered Tribute Fleet Patch"
-	landing
-	invisible
-	to offer
-		has "event: wanderers: unfettered invasion starts"
-		not "using updated wanderer unfettered tribute fleet"
-	on offer
-		event "wanderers: unfettered invasion starts tribute fleet patch"
 		fail
 
 
