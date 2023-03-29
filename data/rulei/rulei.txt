@@ -94,9 +94,9 @@ mission "Fragment of Time"
 		never
 	to offer
 		has "Rulei: First Contact: offered"
-	on enter "G-118"
+	on enter "G-3191"
 		fail
-		log "Factions" "Rulei" `The enormous structure in the G-118 system appears Ruleian in origin, generating both a gravitational field and an eerie tune.`
+		log "Factions" "Rulei" `The enormous structure in the G-3191 system appears Ruleian in origin, generating both a gravitational field and an eerie tune.`
 		conversation
 			`The enormous structure found in the center of this system appears similar to that of the ancient Ruleian starship. The sheer size of it, almost the length of a Quarg ringword's diameter, further suggests that the Rulei were an advanced species capable of many feats. The construct seems to generate some type of gravitational force between the binary supergiant stars as several parts of it rotate in a mesmerising manner.`
 			`	While no eerie whispers seem to be haunting the device, it emits a strange tune, sounding almost like that of a hymn.`
