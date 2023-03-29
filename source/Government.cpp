@@ -347,25 +347,6 @@ void Government::Load(const DataNode &node)
 			enforcementZones.emplace_back(child);
 		else if(key == "provoked on scan")
 			provokedOnScan = true;
-		else if((child.Token(0) == "interdiction" || child.Token(0) == "interdiction bribe")
-				&& child.Size() >= 2)
-		{
-			const bool isInterdiction = child.Token(0) == "interdiction";
-			string &text = isInterdiction ? interdiction : interdictionBribe;
-			bool &seen = isInterdiction ? hasInterdiction : hasInterdictionBribe;
-
-			if(!seen)
-			{
-				text.clear();
-				seen = true;
-			}
-
-			const auto &value = child.Token(1);
-			if(!text.empty() && !value.empty() && value[0] > ' ')
-				text += '\t';
-			text += child.Token(1);
-			text += "\n\t";
-		}
 		else if(key == "foreign penalties for")
 			for(const DataNode &grand : child)
 				useForeignPenaltiesFor.insert(GameData::Governments().Get(grand.Token(0))->id);
@@ -383,8 +364,26 @@ void Government::Load(const DataNode &node)
 			bribe = add ? bribe + child.Value(valueIndex) : child.Value(valueIndex);
 		else if(key == "fine")
 			fine = add ? fine + child.Value(valueIndex) : child.Value(valueIndex);
-		else if(child.Token(0) == "bribe factor" && child.Size() >= 2)
+		else if(key == "bribe factor")
 			bribeFactor = add ? bribeFactor + child.Value(valueIndex) : child.Value(valueIndex);
+		else if(key == "interdiction" || key == "interdiction bribe")
+		{
+			const bool isInterdiction = key == "interdiction";
+			string &text = isInterdiction ? interdiction : interdictionBribe;
+			bool &seen = isInterdiction ? hasInterdiction : hasInterdictionBribe;
+
+			if(!seen)
+			{
+				text.clear();
+				seen = true;
+			}
+
+			const string &value = child.Token(1);
+			if(!text.empty() && !value.empty() && value[0] > ' ')
+				text += '\t';
+			text += value;
+			text += "\n\t";
+		}
 		else if(add)
 			child.PrintTrace("Error: Unsupported use of add:");
 		else if(key == "display name")
