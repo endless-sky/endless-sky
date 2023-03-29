@@ -723,7 +723,7 @@ void ShipInfoPanel::Dump()
 
 	info.Update(**shipIt, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
 	if(loss)
-		Messages::Add("You jettisoned " + Format::Credits(loss) + " credits worth of cargo."
+		Messages::Add("You jettisoned " + Format::CreditString(loss) + " worth of cargo."
 			, Messages::Importance::High);
 }
 
@@ -740,7 +740,7 @@ void ShipInfoPanel::DumpPlunder(int count)
 		info.Update(**shipIt, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
 
 		if(loss)
-			Messages::Add("You jettisoned " + Format::Credits(loss) + " credits worth of cargo."
+			Messages::Add("You jettisoned " + Format::CreditString(loss) + " worth of cargo."
 				, Messages::Importance::High);
 	}
 }
@@ -760,7 +760,7 @@ void ShipInfoPanel::DumpCommodities(int count)
 		info.Update(**shipIt, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
 
 		if(loss)
-			Messages::Add("You jettisoned " + Format::Credits(loss) + " credits worth of cargo."
+			Messages::Add("You jettisoned " + Format::CreditString(loss) + " worth of cargo."
 				, Messages::Importance::High);
 	}
 }

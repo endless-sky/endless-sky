@@ -557,6 +557,20 @@ bool Planet::CanLand() const
 
 
 
+Planet::Friendliness Planet::GetFriendliness() const
+{
+	if(GameData::GetPolitics().HasDominated(this))
+		return Friendliness::DOMINATED;
+	else if(GetGovernment()->IsEnemy())
+		return Friendliness::HOSTILE;
+	else if(CanLand())
+		return Friendliness::FRIENDLY;
+	else
+		return Friendliness::RESTRICTED;
+}
+
+
+
 bool Planet::CanUseServices() const
 {
 	return GameData::GetPolitics().CanUseServices(this);
@@ -614,7 +628,7 @@ string Planet::DemandTribute(PlayerInfo &player) const
 
 	playerConditions["tribute: " + name] = tribute;
 	GameData::GetPolitics().DominatePlanet(this);
-	return "We surrender. We will pay you " + Format::Credits(tribute) + " credits per day to leave us alone.";
+	return "We surrender. We will pay you " + Format::CreditString(tribute) + " per day to leave us alone.";
 }
 
 

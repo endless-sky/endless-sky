@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 #include "Interface.h"
 #include "text/layout.hpp"
+#include "Plugins.h"
 #include "Preferences.h"
 #include "Screen.h"
 #include "Sprite.h"
@@ -51,6 +52,7 @@ namespace {
 	const int ZOOM_FACTOR_MAX = 200;
 	const int ZOOM_FACTOR_INCREMENT = 10;
 	const string VIEW_ZOOM_FACTOR = "View zoom factor";
+	const string AUTO_AIM_SETTING = "Automatic aiming";
 	const string SCREEN_MODE_SETTING = "Screen mode";
 	const string VSYNC_SETTING = "VSync";
 	const string EXPEND_AMMO = "Escorts expend ammo";
@@ -66,7 +68,7 @@ namespace {
 	const string ALERT_INDICATOR = "Alert indicator";
 
 	// How many pages of settings there are.
-	const int SETTINGS_PAGE_COUNT = 1;
+	const int SETTINGS_PAGE_COUNT = 2;
 }
 
 
@@ -74,8 +76,13 @@ namespace {
 PreferencesPanel::PreferencesPanel()
 	: editing(-1), selected(0), hover(-1)
 {
-	if(!GameData::PluginAboutText().empty())
-		selectedPlugin = GameData::PluginAboutText().begin()->first;
+	// Select the first valid plugin.
+	for(const auto &plugin : Plugins::Get())
+		if(plugin.second.IsValid())
+		{
+			selectedPlugin = plugin.first;
+			break;
+		}
 
 	SetIsFullScreen(true);
 }
@@ -90,6 +97,8 @@ void PreferencesPanel::Draw()
 
 	Information info;
 	info.SetBar("volume", Audio::Volume());
+	if(Plugins::HasChanged())
+		info.SetCondition("show plugins changed");
 	if(SETTINGS_PAGE_COUNT > 1)
 		info.SetCondition("multiple pages");
 	if(currentSettingsPage > 0)
@@ -206,6 +215,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 					GetUI()->Push(new Dialog(
 						"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
 			}
+			else if(zone.Value() == AUTO_AIM_SETTING)
+				Preferences::ToggleAutoAim();
 			else if(zone.Value() == EXPEND_AMMO)
 				Preferences::ToggleAmmoUsage();
 			else if(zone.Value() == TURRET_TRACKING)
@@ -340,6 +351,7 @@ void PreferencesPanel::DrawControls()
 		"Navigation",
 		"Weapons",
 		"Targeting",
+		"Navigation",
 		"Interface",
 		"Fleet"
 	};
@@ -364,6 +376,9 @@ void PreferencesPanel::DrawControls()
 		Command::HAIL,
 		Command::BOARD,
 		Command::SCAN,
+		Command::NONE,
+		Command::MOUSE_TURNING_HOLD,
+		Command::MOUSE_TURNING_TOGGLE,
 		Command::NONE,
 		Command::MENU,
 		Command::MAP,
@@ -482,15 +497,8 @@ void PreferencesPanel::DrawSettings()
 		"Rotate flagship in HUD",
 		"Show planet labels",
 		"Show mini-map",
+		"Show asteroid scanner overlay",
 		"Always underline shortcuts",
-		"",
-		"AI",
-		"Automatic aiming",
-		"Automatic firing",
-		BOARDING_PRIORITY,
-		EXPEND_AMMO,
-		FIGHTER_REPAIR,
-		TURRET_TRACKING,
 		"\t",
 		"Performance",
 		"Show CPU / GPU load",
@@ -501,13 +509,22 @@ void PreferencesPanel::DrawSettings()
 		BACKGROUND_PARALLAX,
 		"Show hyperspace flash",
 		SHIP_OUTLINES,
-		"",
+		"\n",
+		"Gameplay",
+		AUTO_AIM_SETTING,
+		"Automatic firing",
+		BOARDING_PRIORITY,
+		EXPEND_AMMO,
+		FIGHTER_REPAIR,
+		TURRET_TRACKING,
+		"Rehire extra crew when lost",
+		"Extra fleet status messages",
+		"\t",
 		"Other",
 		"Clickable radar display",
 		"Hide unexplored map regions",
 		REACTIVATE_HELP,
 		"Interrupt fast-forward",
-		"Rehire extra crew when lost",
 		SCROLL_SPEED,
 		"Show escort systems on map",
 		"Show stored outfits on map",
@@ -578,6 +595,11 @@ void PreferencesPanel::DrawSettings()
 		else if(setting == VSYNC_SETTING)
 		{
 			text = Preferences::VSyncSetting();
+			isOn = text != "off";
+		}
+		else if(setting == AUTO_AIM_SETTING)
+		{
+			text = Preferences::AutoAimSetting();
 			isOn = text != "off";
 		}
 		else if(setting == EXPEND_AMMO)
@@ -663,33 +685,55 @@ void PreferencesPanel::DrawSettings()
 void PreferencesPanel::DrawPlugins()
 {
 	const Color &back = *GameData::Colors().Get("faint");
+	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
+
+	const Sprite *box[2] = { SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked") };
 
 	const int MAX_TEXT_WIDTH = 230;
 	Table table;
 	table.AddColumn(-115, {MAX_TEXT_WIDTH, Truncate::MIDDLE});
-	table.SetUnderline(-120, 120);
+	table.SetUnderline(-120, 100);
 
 	int firstY = -238;
-	table.DrawAt(Point(-130, firstY));
+	// Table is at -110 while checkbox is at -130
+	table.DrawAt(Point(-110, firstY));
 	table.DrawUnderline(medium);
-	table.Draw("Installed plugins:", bright);
-	table.DrawGap(5);
+	table.DrawGap(25);
 
 	const Font &font = FontSet::Get(14);
-	for(const auto &plugin : GameData::PluginAboutText())
-	{
-		pluginZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), plugin.first);
 
-		bool isSelected = (plugin.first == selectedPlugin);
-		if(isSelected || plugin.first == hoverPlugin)
+	for(const auto &it : Plugins::Get())
+	{
+		const auto &plugin = it.second;
+		if(!plugin.IsValid())
+			continue;
+
+		pluginZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), plugin.name);
+
+		bool isSelected = (plugin.name == selectedPlugin);
+		if(isSelected || plugin.name == hoverPlugin)
 			table.DrawHighlight(back);
-		table.Draw(plugin.first, isSelected ? bright : medium);
+
+		const Sprite *sprite = box[plugin.currentState];
+		Point topLeft = table.GetRowBounds().TopLeft() - Point(sprite->Width(), 0.);
+		Rectangle spriteBounds = Rectangle::FromCorner(topLeft, Point(sprite->Width(), sprite->Height()));
+		SpriteShader::Draw(sprite, spriteBounds.Center());
+
+		topLeft.X() += 6.;
+		topLeft.Y() += 7.;
+		Rectangle zoneBounds = Rectangle::FromCorner(topLeft, Point(sprite->Width() - 8., sprite->Height() - 8.));
+
+		AddZone(zoneBounds, [&]() { Plugins::TogglePlugin(plugin.name); });
+		if(isSelected)
+			table.Draw(plugin.name, bright);
+		else
+			table.Draw(plugin.name, plugin.enabled ? medium : dim);
 
 		if(isSelected)
 		{
-			const Sprite *sprite = SpriteSet::Get(plugin.first);
+			const Sprite *sprite = SpriteSet::Get(plugin.name);
 			Point top(15., firstY);
 			if(sprite)
 			{
@@ -701,7 +745,7 @@ void PreferencesPanel::DrawPlugins()
 			WrappedText wrap(font);
 			wrap.SetWrapWidth(MAX_TEXT_WIDTH);
 			static const string EMPTY = "(No description given.)";
-			wrap.Wrap(plugin.second.empty() ? EMPTY : plugin.second);
+			wrap.Wrap(plugin.aboutText.empty() ? EMPTY : plugin.aboutText);
 			wrap.Draw(top, medium);
 		}
 	}
