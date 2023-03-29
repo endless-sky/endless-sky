@@ -13,9 +13,9 @@
 
 ship "vyu-Ir"
 	noun "entity"
-	sprite "ship/vyuira/vyuir"
+	sprite "ship/vyuira/vyuira"
 		"frame rate" 4
-	thumbnail "thumbnail/vyuir"
+	thumbnail "thumbnail/vyuira"
 	swizzle 0
 	"never disabled"
 	attributes
