@@ -3511,7 +3511,7 @@ void PlayerInfo::CreateMissions()
 	boardingMissions.clear();
 
 	// Check for available missions.
-	bool skipJobs = planet && !planet->IsInhabited();
+	bool skipJobs = planet && !planet->GetPort().HasService(Port::ServicesType::JobBoard);
 	bool hasPriorityMissions = false;
 	for(const auto &it : GameData::Missions())
 	{
