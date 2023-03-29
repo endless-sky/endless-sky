@@ -444,7 +444,6 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 				attributeValues.emplace_back(to_string(it.repeat));
 			}
 
-			bool first = true;
 			if(!it.input.empty())
 			{
 				attributeLabels.emplace_back("Consumes:");
