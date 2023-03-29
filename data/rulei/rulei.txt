@@ -98,8 +98,8 @@ mission "Fragment of Time"
 		fail
 		log "Factions" "Rulei" `The enormous structure in the G-118 system appears Ruleian in origin, generating both a gravitational field and an eerie tune.`
 		conversation
-			`The enormous structure found in the center of this system appears similar to that of the ancient Ruleian starship. The sheer size of it, almost the length of a Quarg ringword's diameter, suggests that the Rulei were indeed an advanced species capable of many feats. The construct seemingly generates some type of gravitational field between the nearby supergiant stars, and while it does so, several parts of it rotate in a mesmerising manner.`
-			`	While no eerie whispers seem to be haunting the construct, it emits a strange tune, sounding almost like that of a hymn.`
+			`The enormous structure found in the center of this system appears similar to that of the ancient Ruleian starship. The sheer size of it, almost the length of a Quarg ringword's diameter, further suggests that the Rulei were an advanced species capable of many feats. The construct seems to generate some type of gravitational force between the binary supergiant stars as several parts of it rotate in a mesmerising manner.`
+			`	While no eerie whispers seem to be haunting the device, it emits a strange tune, sounding almost like that of a hymn.`
 				decline
 
 
