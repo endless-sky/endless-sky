@@ -2819,6 +2819,20 @@ mission "Wanderers: Sestor Alt: Alnilam 3"
 	on visit
 		dialog `You've reached <planet>, but not all of the Navy Cruisers have entered the system yet. Better depart and wait for them to arrive.`
 
+event "liberated zenith"
+	planet "Zenith"
+		bribe .04
+		"required reputation" 0
+
+mission "Wanderers: Sestor Alt: Zenith Patch"
+	landing
+	invisible
+	to offer
+		has "Wanderers: Sestor Alt: Alnilam 2: done"
+	on offer
+		event "liberated zenith"
+		fail
+
 
 
 mission "Wanderers: Sestor Alt: Return to Wanderers"
