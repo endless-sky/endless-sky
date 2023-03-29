@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Angle.h"
 #include "Body.h"
+#include "Distribution.h"
 #include "Point.h"
 
 #include <cstddef>
@@ -101,6 +102,7 @@ public:
 
 	double Turn() const;
 	double Inaccuracy() const;
+	std::pair<Distribution::Type, bool> InaccuracyDistribution() const;
 	double TurretTurn() const;
 
 	double Tracking() const;
@@ -134,6 +136,7 @@ public:
 	double SplitRange() const;
 	double TriggerRadius() const;
 	double BlastRadius() const;
+	double SafeRange() const;
 	double HitForce() const;
 
 	// A "safe" weapon hits only hostile ships (even if it has a blast radius).
@@ -252,6 +255,9 @@ private:
 
 	double turn = 0.;
 	double inaccuracy = 0.;
+	// A pair representing the disribution type of this weapon's inaccuracy
+	// and whether it is inverted
+	std::pair<Distribution::Type, bool> inaccuracyDistribution = {Distribution::Type::Triangular, false};
 	double turretTurn = 0.;
 
 	double tracking = 0.;
@@ -283,6 +289,7 @@ private:
 	double splitRange = 0.;
 	double triggerRadius = 0.;
 	double blastRadius = 0.;
+	double safeRange = 0.;
 
 	static const int DAMAGE_TYPES = 23;
 	static const int HIT_FORCE = 0;
@@ -350,7 +357,6 @@ inline double Weapon::Drag() const { return drag; }
 inline const Point &Weapon::HardpointOffset() const { return hardpointOffset; }
 
 inline double Weapon::Turn() const { return turn; }
-inline double Weapon::Inaccuracy() const { return inaccuracy; }
 inline double Weapon::TurretTurn() const { return turretTurn; }
 
 inline double Weapon::Tracking() const { return tracking; }
@@ -384,6 +390,7 @@ inline double Weapon::Piercing() const { return piercing; }
 inline double Weapon::SplitRange() const { return splitRange; }
 inline double Weapon::TriggerRadius() const { return triggerRadius; }
 inline double Weapon::BlastRadius() const { return blastRadius; }
+inline double Weapon::SafeRange() const { return safeRange; }
 inline double Weapon::HitForce() const { return TotalDamage(HIT_FORCE); }
 
 inline bool Weapon::IsSafe() const { return isSafe; }
