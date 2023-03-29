@@ -1479,7 +1479,8 @@ bool Ship::CanSendHail(const PlayerInfo &player, bool allowUntranslated) const
 	// Ships that don't share a language with the player shouldn't communicate when hailed directly.
 	// Only random event hails should work, and only if the government explicitly has
 	// untranslated hails. This is ensured by the allowUntranslated argument.
-	if(!allowUntranslated && !gov->Language().empty() && !player.Conditions().Get("language: " + gov->Language()))
+	if(!(allowUntranslated && gov->SendUntranslatedHails())
+			&& !gov->Language().empty() && !player.Conditions().Get("language: " + gov->Language()))
 		return false;
 
 	return true;

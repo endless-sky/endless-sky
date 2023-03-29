@@ -681,7 +681,8 @@ outfit "Flamethrower Projectile"
 		"hit effect" "flamethrower hit"
 		"die effect" "flamethrower die"
 		"inaccuracy" 20
-		"lifetime" 22
+		"lifetime" 18
+		"random lifetime" 8
 		"damage dropoff" 0 198
 		"dropoff modifier" .5
 		"shield damage" .8
