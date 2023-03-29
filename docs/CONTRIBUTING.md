@@ -22,4 +22,4 @@ If proposing a major pull request, start by posting an issue and discussing the 
 
 ## Closing issues
 
-If you believe your issue has been resolved, you can close the issue yourself. If your PR gets closed because a PR was merged, and you are not satisfied, please open a new issue.
+If you believe your issue has been resolved, you can close the issue yourself. If your issue gets closed because a PR was merged, and you are not satisfied, please open a new issue.
