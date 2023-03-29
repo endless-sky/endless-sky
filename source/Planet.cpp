@@ -103,13 +103,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 				attributes.clear();
 			else if(key == "description")
 				description.clear();
-			else if(key == "spaceport")
-			{
-				port = Port();
-				if(overwriteAll)
-					shouldOverwrite.erase("port");
-			}
-			else if(key == "port")
+			else if(key == "port" || key == "spaceport")
 			{
 				port = Port();
 				if(overwriteAll)
