@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "FrameTimer.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Government.h"
 #include "Hazard.h"
 #include "Interface.h"
@@ -910,14 +911,35 @@ void Engine::Step(bool isActive)
 	}
 
 	// Draw crosshairs on any minables in range of the flagship's scanners.
-	if(Preferences::Has("Show asteroid scanner overlay"))
+	bool shouldShowAsteroidOverlay = Preferences::Has("Show asteroid scanner overlay");
+	// Decide before looping whether or not to catalog asteroids. This
+	// results in cataloging in-range asteroids roughly 3 times a second.
+	bool shouldCatalogAsteroids = (!isAsteroidCatalogComplete && !Random::Int(20));
+	if(shouldShowAsteroidOverlay || shouldCatalogAsteroids)
 	{
 		double scanRangeMetric = flagship ? 10000. * flagship->Attributes().Get("asteroid scan power") : 0.;
 		if(flagship && scanRangeMetric && !flagship->IsHyperspacing())
+		{
+			bool scanComplete = true;
 			for(const shared_ptr<Minable> &minable : asteroids.Minables())
 			{
 				Point offset = minable->Position() - center;
-				if(offset.LengthSquared() > scanRangeMetric || flagship->GetTargetAsteroid() == minable)
+				// Use the squared length, as we used the squared scan range.
+				bool inRange = offset.LengthSquared() <= scanRangeMetric;
+
+				// Autocatalog asteroid: Record that the player knows this type of asteroid is available here.
+				if(shouldCatalogAsteroids && !asteroidsScanned.count(minable->DisplayName()))
+				{
+					scanComplete = false;
+					if(!Random::Int(10) && inRange)
+					{
+						asteroidsScanned.insert(minable->DisplayName());
+						for(const auto &it : minable->Payload())
+							player.Harvest(it.first);
+					}
+				}
+
+				if(!shouldShowAsteroidOverlay || !inRange || flagship->GetTargetAsteroid() == minable)
 					continue;
 
 				targets.push_back({
@@ -928,6 +950,9 @@ void Engine::Step(bool isActive)
 					3
 				});
 			}
+			if(shouldCatalogAsteroids && scanComplete)
+				isAsteroidCatalogComplete = true;
+		}
 	}
 	const auto targetAsteroidPtr = flagship ? flagship->GetTargetAsteroid() : nullptr;
 	if(targetAsteroidPtr && !flagship->IsHyperspacing())
@@ -1277,6 +1302,8 @@ void Engine::EnterSystem()
 		else
 			asteroids.Add(a.Name(), a.Count(), a.Energy());
 	}
+	asteroidsScanned.clear();
+	isAsteroidCatalogComplete = false;
 
 	// Clear any active weather events
 	activeWeather.clear();
@@ -1752,7 +1779,7 @@ void Engine::SpawnFleets()
 // At random intervals, create new special "persons" who enter the current system.
 void Engine::SpawnPersons()
 {
-	if(Random::Int(36000) || player.GetSystem()->Links().empty())
+	if(Random::Int(GameData::GetGamerules().PersonSpawnPeriod()) || player.GetSystem()->Links().empty())
 		return;
 
 	// Loop through all persons once to see if there are any who can enter
@@ -1764,11 +1791,9 @@ void Engine::SpawnPersons()
 	if(!sum)
 		return;
 
-	// Adjustment factor: special persons will appear once every ten
-	// minutes, but much less frequently if the game only specifies a
-	// few of them. This way, they will become more common as I add
-	// more, without needing to change the 10-minute constant above.
-	sum = Random::Int(sum + 1000);
+	// Although an attempt to spawn a person is made every 10 minutes on average,
+	// that attempt can still fail due to an added weight for no person to spawn.
+	sum = Random::Int(sum + GameData::GetGamerules().NoPersonSpawnWeight());
 	for(const auto &it : GameData::Persons())
 	{
 		const Person &person = it.second;
@@ -2230,8 +2255,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 	for(Body *body : shipCollisions.Circle(flotsam.Position(), 5.))
 	{
 		Ship *ship = reinterpret_cast<Ship *>(body);
-		if(!ship->CannotAct() && ship != flotsam.Source() && ship->GetGovernment() != flotsam.SourceGovernment()
-			&& ship->Cargo().Free() >= flotsam.UnitSize())
+		if(!ship->CannotAct() && ship->CanPickUp(flotsam))
 		{
 			collector = ship;
 			break;
