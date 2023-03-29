@@ -30,10 +30,12 @@ namespace {
 	mt19937_64 gen;
 	uniform_int_distribution<uint32_t> uniform;
 	uniform_real_distribution<double> real;
+	normal_distribution<double> normal;
 #else
 	thread_local mt19937_64 gen;
 	thread_local uniform_int_distribution<uint32_t> uniform;
 	thread_local uniform_real_distribution<double> real;
+	thread_local normal_distribution<double> normal;
 #endif
 }
 
@@ -107,12 +109,11 @@ uint32_t Random::Binomial(uint32_t t, double p)
 
 
 
-// Get a normally distributed number (mean = 0, sigma= 1).
-double Random::Normal()
+// Get a normally distributed number with standard or specified mean and stddev.
+double Random::Normal(double mean, double sigma)
 {
-	normal_distribution<double> normal;
 #ifndef __linux__
 	lock_guard<mutex> lock(workaroundMutex);
 #endif
-	return normal(gen);
+	return sigma * normal(gen) + mean;
 }

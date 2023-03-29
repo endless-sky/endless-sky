@@ -278,7 +278,7 @@ void Mission::Load(const DataNode &node)
 		else if(child.Token(0) == "substitutions" && child.HasChildren())
 			substitutions.Load(child);
 		else if(child.Token(0) == "npc")
-			npcs.emplace_back(child);
+			npcs.emplace_back(child, name);
 		else if(child.Token(0) == "on" && child.Size() >= 2 && child.Token(1) == "enter")
 		{
 			// "on enter" nodes may either name a specific system or use a LocationFilter
@@ -1114,7 +1114,7 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 	if(event.TargetGovernment()->IsPlayer() && !hasFailed)
 	{
 		bool failed = false;
-		string message = "Your ship '" + event.Target()->Name() + "' has been ";
+		string message = "Your ship \"" + event.Target()->Name() + "\" has been ";
 		if(event.Type() & ShipEvent::DESTROY)
 		{
 			// Destroyed ships carrying mission cargo result in failed missions.
@@ -1397,7 +1397,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		return result;
 	}
 	for(const NPC &npc : npcs)
-		result.npcs.push_back(npc.Instantiate(subs, sourceSystem, result.destination->GetSystem()));
+		result.npcs.push_back(npc.Instantiate(subs, sourceSystem, result.destination->GetSystem(), jumps, payload));
 
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
