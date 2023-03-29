@@ -11,7 +11,7 @@ This fork has a number of branches, two of which are our primary work environmen
 
 Mirror : This is our base branch, and is kept synchronized with the main Endless Sky "master" branch.
 - Main : This is our long-term branch that will collect all the changes we have tried out and feel should be a permanent part of the game. It is based on "Mirror."
--- Experimental : This is our experimental working area. All our changes start out here where they can be tested in conjunction with many other changes. It is based on "Main."
+- - Experimental : This is our experimental working area. All our changes start out here where they can be tested in conjunction with many other changes. It is based on "Main."
 
 **All PRs suggesting changes should be made to the "Experimental" branch.**
 
