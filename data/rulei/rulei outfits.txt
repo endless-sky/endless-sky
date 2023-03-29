@@ -129,7 +129,6 @@ outfit "Abyssal Composer"
 		"hit effect" "composed" 2
 		"hit effect" "drained"
 		"inaccuracy" 45
-			"uniform"
 		"velocity" 660
 		"lifetime" 1
 		"range override" 600
