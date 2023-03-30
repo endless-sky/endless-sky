@@ -102,6 +102,8 @@ namespace {
 				return "on waypoint";
 			case Mission::Trigger::DAILY:
 				return "on daily";
+			case Mission::Trigger::DISABLED:
+				return "on disabled";
 			default:
 				return "unknown trigger";
 		}
@@ -305,6 +307,7 @@ void Mission::Load(const DataNode &node)
 				{"stopover", STOPOVER},
 				{"waypoint", WAYPOINT},
 				{"daily", DAILY},
+				{"disabled", DISABLED},
 			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
@@ -1143,6 +1146,9 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 				Messages::Add(message + "Mission failed: \"" + displayName + "\".", Messages::Importance::Highest);
 		}
 	}
+
+	if(event.Type() & ShipEvent::DISABLE && event.Target().get() == player.Flagship())
+		Do(DISABLED, player, ui);
 
 	// Jump events are only created for the player's flagship.
 	if((event.Type() & ShipEvent::JUMP) && event.Actor())
