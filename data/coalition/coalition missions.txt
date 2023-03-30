@@ -1586,8 +1586,6 @@ mission "Saryd University Lecture"
 			`	"Tell us more of them, could you?" asks another scientist.`
 			`	As you open your mouth to speak, the Heliarch cuts you off. "Enough questions on the Hai, we have." The crowd looks disappointed at this development.`
 			label nextquestion
-			branch war
-				has "FWC End: completed"
 			`	The Arach selects another, this time a Kimek. "All of human space, united politically is it?"`
 			choice
 				`	"No, human space is split between the Republic in the north and the Free Worlds in the south."`
