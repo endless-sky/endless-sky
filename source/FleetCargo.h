@@ -22,9 +22,14 @@ class DataNode;
 class Outfit;
 class Ship;
 
+
+
+// A collection of cargo settings to be applied to ships from a Fleet or NPC.
 class FleetCargo {
 public:
 	void Load(const DataNode &node);
+	void LoadSingle(const DataNode &node);
+
 	void SetCargo(Ship *ship) const;
 
 

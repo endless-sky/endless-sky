@@ -145,7 +145,7 @@ void NPC::Load(const DataNode &node, const string &missionName)
 			government = GameData::Governments().Get(child.Token(1));
 		else if(child.Token(0) == "personality")
 			personality.Load(child);
-		else if(child.Token(0) == "cargo" || child.Token(0) == "commodities" || child.Token(0) == "outfitters")
+		else if(child.Token(0) == "cargo settings" && child.HasChildren())
 		{
 			cargo.Load(child);
 			overrideFleetCargo = true;
@@ -709,10 +709,10 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 			Fleet::Place(*result.system, *ship);
 	}
 
+	// Set the cargo for each ship in the NPC if the NPC itself has cargo settings.
 	if(overrideFleetCargo)
 		for(auto ship : result.ships)
 			cargo.SetCargo(&*ship);
-
 
 	// String replacement:
 	if(!result.ships.empty())

@@ -133,10 +133,17 @@ namespace {
 
 void FleetCargo::Load(const DataNode &node)
 {
-	if(node.Size() < 2)
-		return;
+	for(const DataNode &child : node)
+		LoadSingle(child)
+}
 
-	if(node.Token(0) == "cargo")
+
+
+void FleetCargo::LoadSingle(const DataNode &node)
+{
+	if(node.Size() < 2)
+		child.PrintTrace("Error: Expected key to have a value:");
+	else if(node.Token(0) == "cargo")
 			cargo = static_cast<int>(node.Value(1));
 	else if(node.Token(0) == "commodities")
 	{
@@ -150,6 +157,8 @@ void FleetCargo::Load(const DataNode &node)
 		for(int i = 1; i < node.Size(); ++i)
 			outfitters.insert(GameData::Outfitters().Get(node.Token(i)));
 	}
+	else
+		child.PrintTrace("Skipping unrecognized attribute:");
 }
 
 
