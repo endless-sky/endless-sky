@@ -452,9 +452,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 				{
 					string name = input.isCommodity
 						? input.name
-						: (input.count != 1)
-							? input.outfit->PluralName()
-							: input.outfit->DisplayName();
+						: input.outfit->DisplayName();
 					name = "  " + name;
 					attributeLabels.emplace_back(name);
 					attributeValues.emplace_back(Format::Number(input.count));
@@ -468,9 +466,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 				{
 					string name = input.isCommodity
 						? input.name
-						: (input.count != 1)
-							? input.outfit->PluralName()
-							: input.outfit->DisplayName();
+						: input.outfit->DisplayName();
 					name = "  " + name;
 					attributeLabels.emplace_back(name);
 					attributeValues.emplace_back(Format::Number(input.count));
