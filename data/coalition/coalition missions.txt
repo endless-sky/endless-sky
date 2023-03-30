@@ -1627,7 +1627,19 @@ mission "Saryd University Lecture"
 							has "Discovered Korath Space: offered"
 							has "Wanderers: Rek To Kor Efret: offered"
 				`	(Don't tell them about the Korath.)`
+					to display
+						or
+							has "Discovered Korath Space: offered"
+							has "Wanderers: Rek To Kor Efret: offered"
+				`	"Sorry, I don't know what's there any more than you do."`
+					to display
+						not "Discovered Korath Space: offered"
+						not "Wanderers: Rek To Kor Efret: offered"
 			`	"Sorry, I don't know what's there any more than you do."`
+				to display
+					or
+						has "Discovered Korath Space: offered"
+						has "Wanderers: Rek To Kor Efret: offered"
 			`	The Saryd walks away, disappointed.`
 				goto sorry
 			label tell
