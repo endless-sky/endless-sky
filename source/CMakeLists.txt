@@ -83,6 +83,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Dictionary.h
 	DistanceMap.cpp
 	DistanceMap.h
+	Distribution.cpp
+	Distribution.h
 	DrawList.cpp
 	DrawList.h
 	Effect.cpp
@@ -104,6 +106,8 @@ target_sources(EndlessSkyLib PRIVATE
 	FireCommand.h
 	Fleet.cpp
 	Fleet.h
+	FleetCargo.cpp
+	FleetCargo.h
 	Flotsam.cpp
 	Flotsam.h
 	FogShader.cpp
