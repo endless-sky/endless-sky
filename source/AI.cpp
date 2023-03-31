@@ -3861,7 +3861,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			&& (!target || target->GetGovernment()->IsEnemy()))
 		AutoFire(ship, firingCommands, false);
 
-	const bool mouseTurning = Preferences::Has("alt-mouse turning");
+	const bool mouseTurning = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
 	if(mouseTurning && !ship.IsBoarding() && !ship.IsReversing())
 		command.SetTurn(TurnToward(ship, mousePosition, 0.9999));
 
