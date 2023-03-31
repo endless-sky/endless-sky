@@ -243,6 +243,7 @@ namespace {
 
 Engine::Engine(PlayerInfo &player)
 	: player(player), ai(ships, asteroids.Minables(), flotsam),
+	isMouseToggleEnabled(Preferences::Has("alt-mouse turning")),
 	ammoDisplay(player), shipCollisions(256u, 32u)
 {
 	zoom = Preferences::ViewZoom();
@@ -638,7 +639,8 @@ void Engine::Step(bool isActive)
 
 	// Create the status overlays.
 	statuses.clear();
-	if(isActive && Preferences::Has("Show status overlays"))
+	const auto overlayAllSetting = Preferences::StatusOverlaysState(0);
+	if(isActive && overlayAllSetting != Preferences::OverlayType::OFF)
 		for(const auto &it : ships)
 		{
 			if(!it->GetGovernment() || it->GetSystem() != currentSystem || it->Cloaking() == 1.)
@@ -647,13 +649,14 @@ void Engine::Step(bool isActive)
 			if(it->IsDestroyed())
 				continue;
 
-			bool isEnemy = it->GetGovernment()->IsEnemy();
-			if(isEnemy || it->IsYours() || it->GetPersonality().IsEscort())
-			{
-				double width = min(it->Width(), it->Height());
-				statuses.emplace_back(it->Position() - center, it->Shields(), it->Hull(),
-					min(it->Hull(), it->DisabledHull()), max(20., width * .5), isEnemy);
-			}
+			if(it == flagship)
+				EmplaceStatusOverlays(it, overlayAllSetting, Preferences::StatusOverlaysState(1), 0);
+			else if(it->IsYours())
+				EmplaceStatusOverlays(it, overlayAllSetting, Preferences::StatusOverlaysState(2), 0);
+			else if(it->GetGovernment()->IsEnemy())
+				EmplaceStatusOverlays(it, overlayAllSetting, Preferences::StatusOverlaysState(3), 1);
+			else
+				EmplaceStatusOverlays(it, overlayAllSetting, Preferences::StatusOverlaysState(4), 2);
 		}
 
 	// Create missile overlays.
@@ -1129,25 +1132,28 @@ void Engine::Draw() const
 
 	for(const auto &it : statuses)
 	{
-		static const Color color[8] = {
+		static const Color color[11] = {
 			*colors.Get("overlay friendly shields"),
 			*colors.Get("overlay hostile shields"),
+			*colors.Get("overlay neutral shields"),
 			*colors.Get("overlay outfit scan"),
 			*colors.Get("overlay friendly hull"),
 			*colors.Get("overlay hostile hull"),
+			*colors.Get("overlay neutral hull"),
 			*colors.Get("overlay cargo scan"),
 			*colors.Get("overlay friendly disabled"),
-			*colors.Get("overlay hostile disabled")
+			*colors.Get("overlay hostile disabled"),
+			*colors.Get("overlay neutral disabled")
 		};
 		Point pos = it.position * zoom;
 		double radius = it.radius * zoom;
 		if(it.outer > 0.)
 			RingShader::Draw(pos, radius + 3., 1.5f, it.outer, color[it.type], 0.f, it.angle);
-		double dashes = (it.type >= 2) ? 0. : 20. * min(1., zoom);
+		double dashes = (it.type >= 3) ? 0. : 20. * min(1., zoom);
 		if(it.inner > 0.)
-			RingShader::Draw(pos, radius, 1.5f, it.inner, color[3 + it.type], dashes, it.angle);
+			RingShader::Draw(pos, radius, 1.5f, it.inner, color[4 + it.type], dashes, it.angle);
 		if(it.disabled > 0.)
-			RingShader::Draw(pos, radius, 1.5f, it.disabled, color[6 + it.type], dashes, it.angle);
+			RingShader::Draw(pos, radius, 1.5f, it.disabled, color[8 + it.type], dashes, it.angle);
 	}
 
 	// Draw labels on missiles
@@ -1546,8 +1552,6 @@ void Engine::CalculateStep()
 		return;
 
 	// Handle the mouse input of the mouse navigation
-	if(Preferences::Has("alt-mouse turning") && !isMouseTurningEnabled)
-		activeCommands.Set(Command::MOUSE_TURNING_TOGGLE);
 	HandleMouseInput(activeCommands);
 	// Now, all the ships must decide what they are doing next.
 	ai.Step(player, activeCommands);
@@ -2205,14 +2209,17 @@ void Engine::HandleMouseInput(Command &activeCommands)
 {
 	isMouseHoldEnabled = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
 	if(activeCommands.Has(Command::MOUSE_TURNING_TOGGLE))
+	{
 		isMouseToggleEnabled = !isMouseToggleEnabled;
+		Preferences::Set("alt-mouse turning", isMouseToggleEnabled);
+	}
 	// XOR mouse hold and mouse toggle. If mouse toggle is OFF, then mouse hold
 	// will temporarily turn ON mouse control. If mouse toggle is ON, then mouse
 	// hold will temporarily turn OFF mouse control.
 	isMouseTurningEnabled = (isMouseHoldEnabled ^ isMouseToggleEnabled);
-	Preferences::Set("alt-mouse turning", isMouseTurningEnabled);
 	if(!isMouseTurningEnabled)
 		return;
+	activeCommands.Set(Command::MOUSE_TURNING_HOLD);
 	bool rightMouseButtonHeld = false;
 	int mousePosX;
 	int mousePosY;
@@ -2696,6 +2703,24 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 		message += ". Please assist us!";
 	}
 	SendMessage(target, message);
+}
+
+
+
+void Engine::EmplaceStatusOverlays(const shared_ptr<Ship> &it,
+	Preferences::OverlayType parent_setting, Preferences::OverlayType setting, int type)
+{
+	Preferences::OverlayType used_setting;
+	if(parent_setting != Preferences::OverlayType::DISABLED)
+		used_setting = parent_setting;
+	else
+		used_setting = setting;
+	if(used_setting == Preferences::OverlayType::OFF ||
+		(used_setting == Preferences::OverlayType::DAMAGED && !it->IsDamaged()))
+		return;
+	double width = min(it->Width(), it->Height());
+	statuses.emplace_back(it->Position() - center, it->Shields(), it->Hull(),
+		min(it->Hull(), it->DisabledHull()), max(20., width * .5), type);
 }
 
 
