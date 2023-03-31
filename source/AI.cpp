@@ -252,7 +252,7 @@ namespace {
 		else if(needsRefuel)
 		{
 			// There is at least one planet that can refuel the ship.
-			ship.SetTargetStellar(AI::FindLandLocation(ship));
+			ship.SetTargetStellar(AI::FindLandingLocation(ship));
 			return;
 		}
 		// Either there is no viable wormhole route to this system, or
@@ -1010,7 +1010,7 @@ int64_t AI::EnemyStrength(const Government *government)
 
 
 // Find nearest landing location.
-const StellarObject *AI::FindLandLocation(const Ship &ship, const bool refuel)
+const StellarObject *AI::FindLandingLocation(const Ship &ship, const bool refuel)
 {
 	const StellarObject *target = nullptr;
 	const System *system = ship.GetSystem();
@@ -1804,7 +1804,7 @@ void AI::Refuel(Ship &ship, Command &command)
 	if(CanRefuel(ship, parentTarget))
 		ship.SetTargetStellar(parentTarget);
 	else if(!CanRefuel(ship, ship.GetTargetStellar()))
-		ship.SetTargetStellar(FindLandLocation(ship));
+		ship.SetTargetStellar(FindLandingLocation(ship));
 
 	if(ship.GetTargetStellar())
 	{

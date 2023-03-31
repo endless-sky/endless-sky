@@ -1424,7 +1424,7 @@ void PlayerInfo::Land(UI *ui)
 				// in the system.
 				else
 				{
-					const StellarObject *landingObject = AI::FindLandLocation(*ship);
+					const StellarObject *landingObject = AI::FindLandingLocation(*ship);
 					if(landingObject)
 					{
 						ship->SetPlanet(landingObject->GetPlanet());
@@ -1432,7 +1432,7 @@ void PlayerInfo::Land(UI *ui)
 					}
 					else
 					{
-						landingObject = AI::FindLandLocation(*ship, false);
+						landingObject = AI::FindLandingLocation(*ship, false);
 						if(landingObject)
 							ship->SetPlanet(landingObject->GetPlanet());
 						ship->Recharge(false);

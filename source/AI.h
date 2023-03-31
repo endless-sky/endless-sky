@@ -78,7 +78,7 @@ template <class Type>
 	int64_t EnemyStrength(const Government *government);
 
 	// Find nearest landing location.
-	static const StellarObject *FindLandLocation(const Ship &ship, const bool refuel = true);
+	static const StellarObject *FindLandingLocation(const Ship &ship, const bool refuel = true);
 
 
 private:
