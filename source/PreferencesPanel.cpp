@@ -538,6 +538,7 @@ void PreferencesPanel::DrawSettings()
 		TURRET_TRACKING,
 		"Rehire extra crew when lost",
 		"Extra fleet status messages",
+		"Important scan messages only",
 		"\t",
 		"Other",
 		"Clickable radar display",
