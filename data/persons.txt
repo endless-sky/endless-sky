@@ -256,13 +256,19 @@ ship "Marauder Fury"
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
 		
-	engine -21 42 .9
-	engine 0 48
-	engine 21 42 .9
-	gun -12 -33 "Meteor Missile Launcher"
-	gun 12 -33 "Meteor Missile Launcher"
+	engine -23 44.5 0.6
+	engine 23 44.5 0.6
+	engine -17 43 0.45
+	engine 17 43 0.45
+	engine -12.5 41 0.35
+	engine 12.5 41 0.35
+	engine 0 46
+	gun -13.5 -36 "Meteor Missile Launcher"
+	gun 13.5 -36 "Meteor Missile Launcher"
 	gun -20 -25 "Meteor Missile Launcher"
 	gun 20 -25 "Meteor Missile Launcher"
+	gun -6 -41.5
+	gun 6 -41.5
 	gun -43.5 2 "Hai Tracker Pod"
 	gun 43.5 2 "Hai Tracker Pod"
 	explode "tiny explosion" 10
