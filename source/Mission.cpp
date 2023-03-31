@@ -1147,7 +1147,7 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 		}
 	}
 
-	if(event.Type() & ShipEvent::DISABLE && event.Target().get() == player.Flagship())
+	if((event.Type() & ShipEvent::DISABLE) && event.Target().get() == player.Flagship())
 		Do(DISABLED, player, ui);
 
 	// Jump events are only created for the player's flagship.
