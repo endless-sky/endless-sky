@@ -653,7 +653,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 
 		// Check if a ship is armed with only ammo-using weapons,
 		// but no longer has the ammunition needed to use them.
-		bool neeedsAmmo = false;
+		bool needsAmmo = false;
 		for(const Hardpoint &hardpoint : it->Weapons())
 		{
 			const Weapon *weapon = hardpoint.GetOutfit();
@@ -663,11 +663,11 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				if(!ammo || it->OutfitCount(ammo))
 				{
 					// This ship has at least one usable weapon.
-					neeedsAmmo = false;
+					needsAmmo = false;
 					break;
 				}
 				else
-					neeedsAmmo = true;
+					needsAmmo = true;
 			}
 		}
 
@@ -677,7 +677,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		// do so only if they are allowed to leave.
 		const bool shouldFlee = (personality.IsFleeing() ||
 			(!personality.IsDaring() && !personality.IsStaying()
-			&& (healthRemaining < RETREAT_HEALTH + .25 * personality.IsCoward() || neeedsAmmo)));
+			&& (healthRemaining < RETREAT_HEALTH + .25 * personality.IsCoward() || needsAmmo)));
 		if(!it->IsYours() && shouldFlee && target && target->GetGovernment()->IsEnemy(gov) && !target->IsDisabled()
 			&& (!it->GetParent() || !it->GetParent()->GetGovernment()->IsEnemy(gov)))
 		{
