@@ -5633,7 +5633,7 @@ mission "Blind Man from Martini"
 				`	"Could I come with you?"`
 					goto comealong
 			label bye
-			`	"Bye, now. I wish you greater luck in your travels and your sights. Take it from me: there is no greater sight than to see." With that, he taps his cane twice, and then steps into one of New Sydney's taxis, going toward the University of Chiron campus on the far side of town.`
+			`	"Bye, now. I wish you greater luck in your travels and your sights. Take it from me: there is no greater sight than to see." With that, he taps his cane twice, and then steps into one of New Sydney's taxis, going toward the University of New Sydney campus on the far side of town.`
 				decline
 
 			label recovery
