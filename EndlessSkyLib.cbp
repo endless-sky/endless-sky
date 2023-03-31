@@ -152,6 +152,8 @@
 		<Unit filename="source/FireCommand.h" />
 		<Unit filename="source/Fleet.cpp" />
 		<Unit filename="source/Fleet.h" />
+		<Unit filename="source/FleetCargo.cpp" />
+		<Unit filename="source/FleetCargo.h" />
 		<Unit filename="source/Flotsam.cpp" />
 		<Unit filename="source/Flotsam.h" />
 		<Unit filename="source/FogShader.cpp" />
