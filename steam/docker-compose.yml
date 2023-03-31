@@ -11,7 +11,7 @@ services:
       - |
         mkdir -p build/steam-x64
         cd build/steam-x64
-        cmake ../../ -GNinja -DES_STEAM=ON -DCMAKE_BUILD_TYPE=Release -DVCPKG_TARGET_TRIPLET=steam-x64
+        cmake ../../ -GNinja -DES_STEAM=ON -DCMAKE_BUILD_TYPE=Release -DVCPKG_TARGET_TRIPLET=linux-x64-release-static
         ninja EndlessSky
 
 
@@ -26,7 +26,7 @@ services:
       - |
         mkdir -p build/steam-x86
         cd build/steam-x86
-        cmake ../../ -GNinja -DES_STEAM=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-m32 -DVCPKG_TARGET_TRIPLET=steam-x86
+        cmake ../../ -GNinja -DES_STEAM=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-m32 -DVCPKG_TARGET_TRIPLET=linux-x86-release-static
         ninja EndlessSky
 
 
