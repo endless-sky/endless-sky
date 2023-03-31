@@ -285,6 +285,7 @@ public:
 	void SelfDestruct();
 	void Restore();
 	bool IsDamaged() const;
+	float SmoothIsDamaged(int ticksBeforeFade, int fadeTicks) const;
 	// Check if this ship has been destroyed.
 	bool IsDestroyed() const;
 	// Recharge and repair this ship (e.g. because it has landed).
@@ -318,6 +319,8 @@ public:
 	// ship becomes disabled. Returns 0 if the ships hull is already below the
 	// disabled threshold.
 	double HullUntilDisabled() const;
+	// Get the time in ticks since the last time this ship was hit.
+	int TicksSincelastHit() const;
 	// Get this ship's jump navigation, which contains information about how
 	// much it costs for this ship to jump, how far it can jump, and its possible
 	// jump methods.
@@ -578,6 +581,7 @@ private:
 	// Accrued "burn damage" that will affect this ship's heat over time.
 	double burning = 0.;
 	// Delays for shield generation and hull repair.
+	int ticksSinceLastHit = 0;
 	int shieldDelay = 0;
 	int hullDelay = 0;
 	// Acceleration can be created by engines, firing weapons, or weapon impacts.

@@ -1568,7 +1568,10 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 	// Move the turrets.
 	if(!isDisabled)
+	{
+		ticksSinceLastHit++;
 		armament.Aim(firingCommands);
+	}
 
 	if(!isInvisible)
 	{
@@ -3129,6 +3132,13 @@ bool Ship::IsDamaged() const
 
 
 
+float Ship::SmoothIsDamaged(int ticksBeforeFade, int fadeTicks) const
+{
+	return max(fadeTicks - max(ticksSinceLastHit - ticksBeforeFade, 0), 0) / static_cast<float>(fadeTicks);
+}
+
+
+
 // Check if this ship has been destroyed.
 bool Ship::IsDestroyed() const
 {
@@ -3364,6 +3374,13 @@ double Ship::HullUntilDisabled() const
 
 
 
+int Ship::TicksSincelastHit() const
+{
+	return ticksSinceLastHit;
+}
+
+
+
 const ShipJumpNavigation &Ship::JumpNavigation() const
 {
 	return navigation;
@@ -3582,6 +3599,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 
+	ticksSinceLastHit = 0;
 	shields -= damage.Shield();
 	if(damage.Shield() && !isDisabled)
 	{
