@@ -5550,7 +5550,6 @@ event "quicksilver mixup 2 available"
 
 
 
-# Rationale for Douglas' actions; in 1000 years, treatment for blindness would be expected to be better. So he is able to do some limited actions, like recognize people, but not much more.
 mission "Blind Man from Martini"
 	name "Transport a blind passenger to <planet>"
 	description "This blind man, Douglas, wishes to be transported to <destination>, so he can be with his daughter while she undergoes treatment there. He will pay you <payment>."
@@ -5566,7 +5565,7 @@ mission "Blind Man from Martini"
 				`	(Go up to him.)`
 				`	(Ignore him.)`
 					decline
-			`	Wading through the mix of passengers, stevedores and captains in the overflowing corridor, you reach the man with the cane. It's obvious now that he's blind; he doesn't move to look at you and continues looking straight ahead, but he taps his cane twice when you come by him.`
+			`	Wading through the mix of passengers, stevedores, and captains in the overflowing corridor, you reach the man with the cane. It's obvious now that he's blind; he doesn't move to look at you and continues looking straight ahead, but he taps his cane twice when you come by him.`
 			choice
 				`	"Hello."`
 				`	"Are you alright?"`
