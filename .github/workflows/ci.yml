@@ -59,9 +59,9 @@ jobs:
     - name: Setup sccache
       uses: ./.github/sccache
     - uses: lukka/get-cmake@latest
-    - uses: lukka/run-vcpkg@v10
+    - uses: lukka/run-vcpkg@v11
       with:
-        vcpkgGitCommitId: '91dd61bd441a68b4017b61011d0350b2e6aeeccf'
+        vcpkgGitCommitId: 'c9f906558f9bb12ee9811d6edc98ec9255c6cda5'
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
@@ -69,11 +69,6 @@ jobs:
         testPreset: ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
     - name: Run Benchmarks
       run: ctest --preset ${{ matrix.opengl == 'GL' && 'linux-ci-benchmark' || 'linux-gles-ci-benchmark' }}
-    - name: Prevent saving cache on failure
-      run: |
-        echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
-      if: ${{ failure() || cancelled() }}
-      shell: bash
 
 
   build_windows:
@@ -88,21 +83,16 @@ jobs:
     - name: Setup sccache
       uses: ./.github/sccache
     - uses: lukka/get-cmake@latest
-    - uses: lukka/run-vcpkg@v10
+    - uses: lukka/run-vcpkg@v11
       with:
-        vcpkgGitCommitId: '91dd61bd441a68b4017b61011d0350b2e6aeeccf'
-    - uses: lukka/run-cmake@v10
+        vcpkgGitCommitId: 'c9f906558f9bb12ee9811d6edc98ec9255c6cda5'
+    - uses: lukka/run-cmake@v11
       with:
         configurePreset: 'mingw-ci'
         buildPreset: 'mingw-ci'
         testPreset: 'mingw-ci'
     - name: Run Benchmarks
       run: ctest --preset mingw-ci-benchmark
-    - name: Prevent saving cache on failure
-      run: |
-        echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
-      if: ${{ failure() || cancelled() }}
-      shell: bash
     - name: Upload binary
       uses: actions/upload-artifact@v3
       with:
@@ -127,9 +117,9 @@ jobs:
     - name: Setup sccache
       uses: ./.github/sccache
     - uses: lukka/get-cmake@latest
-    - uses: lukka/run-vcpkg@v10
+    - uses: lukka/run-vcpkg@v11
       with:
-        vcpkgGitCommitId: '91dd61bd441a68b4017b61011d0350b2e6aeeccf'
+        vcpkgGitCommitId: 'c9f906558f9bb12ee9811d6edc98ec9255c6cda5'
         prependedCacheKey: vs-x64
     - uses: lukka/run-cmake@v10
       with:
@@ -138,11 +128,6 @@ jobs:
         testPreset: 'clang-cl-ci'
     - name: Run Benchmarks
       run: ctest --preset clang-cl-ci-benchmark
-    - name: Prevent saving cache on failure
-      run: |
-        echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
-      if: ${{ failure() || cancelled() }}
-      shell: bash
 
 
   build_macos:
@@ -159,9 +144,9 @@ jobs:
     - name: Install pkg-config
       run: type -P pkg-config || brew install pkg-config
     - uses: lukka/get-cmake@latest
-    - uses: lukka/run-vcpkg@v10
+    - uses: lukka/run-vcpkg@v11
       with:
-        vcpkgGitCommitId: '91dd61bd441a68b4017b61011d0350b2e6aeeccf'
+        vcpkgGitCommitId: 'c9f906558f9bb12ee9811d6edc98ec9255c6cda5'
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: 'macos-ci'
@@ -169,11 +154,6 @@ jobs:
         testPreset: 'macos-ci'
     - name: Run Benchmarks
       run: ctest --preset macos-ci-benchmark
-    - name: Prevent saving cache on failure
-      run: |
-        echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
-      if: ${{ failure() || cancelled() }}
-      shell: bash
 
 
   test-parse:
