@@ -134,7 +134,7 @@ outfit "Abyssal Composer"
 		"range override" 600
 		"reload" 1
 		"hardpoint offset" 20
-		"firing energy" -60
+		"firing energy" -8
 		"firing force" 25
 		"firing heat" 25
 		"firing shields" -30
