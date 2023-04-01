@@ -134,9 +134,9 @@ outfit "Abyssal Composer"
 		"range override" 600
 		"reload" 1
 		"hardpoint offset" 20
-		"firing energy" 60
+		"firing energy" -60
 		"firing force" 25
-		"firing heat" 20
+		"firing heat" 25
 		"firing shields" -30
 		"firing hull" -8
 		"shield damage" 180
@@ -145,7 +145,6 @@ outfit "Abyssal Composer"
 		"slowing damage" 10
 		"energy damage" 100
 		"piercing" 0.3
-		"safe"
 	description `This is an extremely dangerous device that uses graviton technology to pull a target's mass and energy apart, and then feeds the materials to the firing ship's systems.`
 
 effect "composed"
