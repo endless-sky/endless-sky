@@ -128,3 +128,12 @@ help "trading"
 
 help "friendly disabled"
 	`This ship is disabled and needs your help to patch them up! Pressing <Board selected ship> will fly you to their ship and get them up and running again. Just be sure to do it when no one is trying to kill you, or they could get caught in the crossfire!`
+
+help "control ship with mouse"
+	`You've enabled controlling your ship with your mouse.`
+	``
+	`The nose of your ship will always turn toward your mouse pointer.`
+	`<Forward thrust> is used to thrust forward.`
+	`<Reverse> is used to thrust reverse.`
+	`Right mouse click will shoot primary weapons.`
+	`<Mouse turning (hold)> can temporarily enable or disable this preference.`

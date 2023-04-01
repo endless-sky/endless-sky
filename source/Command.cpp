@@ -78,7 +78,6 @@ const Command Command::WAIT(ONE << 27, "");
 const Command Command::STOP(ONE << 28, "");
 const Command Command::SHIFT(ONE << 29, "");
 const Command Command::MOUSE_TURNING_HOLD(ONE << 30, "Mouse turning (hold)");
-const Command Command::MOUSE_TURNING_TOGGLE(ONE << 31, "Mouse turning (toggle)");
 
 
 
@@ -252,7 +251,6 @@ void Command::Load(const DataNode &node)
 			{"scan", Command::SCAN},
 			{"jump", Command::JUMP},
 			{"mouseturninghold", Command::MOUSE_TURNING_HOLD},
-			{"mouseturningtoggle", Command::MOUSE_TURNING_TOGGLE},
 			{"fleet jump", Command::FLEET_JUMP},
 			{"target", Command::TARGET},
 			{"nearest", Command::NEAREST},

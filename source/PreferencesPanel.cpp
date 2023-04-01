@@ -71,6 +71,7 @@ namespace {
 	const string BOARDING_PRIORITY = "Boarding target priority";
 	const string BACKGROUND_PARALLAX = "Parallax background";
 	const string ALERT_INDICATOR = "Alert indicator";
+	const string CONTROL_SHIP_WITH_MOUSE = "Control ship with mouse";
 
 	// How many pages of settings there are.
 	const int SETTINGS_PAGE_COUNT = 2;
@@ -393,7 +394,6 @@ void PreferencesPanel::DrawControls()
 		Command::SCAN,
 		Command::NONE,
 		Command::MOUSE_TURNING_HOLD,
-		Command::MOUSE_TURNING_TOGGLE,
 		Command::NONE,
 		Command::MENU,
 		Command::MAP,
@@ -533,6 +533,7 @@ void PreferencesPanel::DrawSettings()
 		AUTO_AIM_SETTING,
 		"Automatic firing",
 		BOARDING_PRIORITY,
+		CONTROL_SHIP_WITH_MOUSE,
 		EXPEND_AMMO,
 		FIGHTER_REPAIR,
 		TURRET_TRACKING,
