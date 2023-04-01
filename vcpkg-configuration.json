@@ -1,7 +1,7 @@
 {
   "default-registry": {
     "kind": "builtin",
-    "baseline": "c9f906558f9bb12ee9811d6edc98ec9255c6cda5"
+    "baseline": "69efe9cc2df0015f0bb2d37d55acde4a75c9a25b"
   },
   "overlay-triplets": [ "./overlays" ]
 }
