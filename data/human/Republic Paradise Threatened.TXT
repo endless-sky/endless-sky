@@ -100,7 +100,7 @@ mission "Investigate the Source A"
 			`Your descent to the surface of <destination> is violently bumpy, the turbulence threatening to send the <ship> hurtling out of control. As soon as it becomes clear that you are not heading towards the small landing site, your comm system lights up with warnings.`
 			`	"Uh, <ship>, please be advised that you are in restricted airspace. Divert to the heading indicated immediately."`
 			`	Agent Norris steps calmly forward and presses the button to respond.
-			`	"<destination> control," he says, his voice smooth as silk, completely unlike his usual gravelly rumble. "This is <ship>, currently acting on parliamentary orders. I am transmitting a warrant which allows us to act as we see fit. I understand that you will want to check it with your superiors, so be my guest."`
+			`	"<destination> planetary spaceport control," he says in a voice smooth as silk, completely unlike his usual gravelly rumble. "This is <ship>, currently acting on Parliamentary orders. I am transmitting a warrant which allows us to act as we see fit. I understand that you will want to check it with your superiors, so be my guest."`
 			`	He cuts the comms and then leans over the nav screen, his eyes narrowed as he searches for the mine.`
 			`	"There," he says, pointing to a cluster of machinery at the foot of an old lava flow. "Take us in, Captain."`
 			`	The <ship> touches down and Agent Norris already has a mask on and the sampling tool in his hand. He jumps out of the hatch before the ramp has even finished extending and then pushes the tool into the ground, where it immediately separates and then seals around a sample. He strides back up the ramp and hits the button to seal the hatch.`
