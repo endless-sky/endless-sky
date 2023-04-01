@@ -38,6 +38,8 @@ namespace {
 	// Keep track of any keycodes that are mapped to multiple commands, in order
 	// to display a warning to the player.
 	map<int, int> keycodeCount;
+	// Need a uint64_t 1 to generate Commands.
+	const uint64_t ONE = 1uLL;
 }
 
 
@@ -45,40 +47,40 @@ namespace {
 // Command enumeration, including the descriptive strings that are used for the
 // commands both in the preferences panel and in the saved key settings.
 const Command Command::NONE(0uLL, "");
-const Command Command::MENU(1uLL << 0, "Show main menu");
-const Command Command::FORWARD(1uLL << 1, "Forward thrust");
-const Command Command::LEFT(1uLL << 2, "Turn left");
-const Command Command::RIGHT(1uLL << 3, "Turn right");
-const Command Command::BACK(1uLL << 4, "Reverse");
-const Command Command::MOUSE_TURNING_HOLD(1uLL << 5, "Mouse turning (hold)");
-const Command Command::MOUSE_TURNING_TOGGLE(1uLL << 6, "Mouse turning (toggle)");
-const Command Command::PRIMARY(1uLL << 7, "Fire primary weapon");
-const Command Command::SECONDARY(1uLL << 8, "Fire secondary weapon");
-const Command Command::SELECT(1uLL << 9, "Select secondary weapon");
-const Command Command::LAND(1uLL << 10, "Land on planet / station");
-const Command Command::BOARD(1uLL << 11, "Board selected ship");
-const Command Command::HAIL(1uLL << 12, "Talk to selected ship");
-const Command Command::SCAN(1uLL << 13, "Scan selected ship");
-const Command Command::JUMP(1uLL << 14, "Initiate hyperspace jump");
-const Command Command::FLEET_JUMP(1uLL << 15, "");
-const Command Command::TARGET(1uLL << 16, "Select next ship");
-const Command Command::NEAREST(1uLL << 17, "Select nearest hostile ship");
+const Command Command::MENU(ONE << 0, "Show main menu");
+const Command Command::FORWARD(ONE << 1, "Forward thrust");
+const Command Command::LEFT(ONE << 2, "Turn left");
+const Command Command::RIGHT(ONE << 3, "Turn right");
+const Command Command::BACK(ONE << 4, "Reverse");
+const Command Command::MOUSE_TURNING_HOLD(ONE << 5, "Mouse turning (hold)");
+const Command Command::MOUSE_TURNING_TOGGLE(ONE << 6, "Mouse turning (toggle)");
+const Command Command::PRIMARY(ONE << 7, "Fire primary weapon");
+const Command Command::SECONDARY(ONE << 8, "Fire secondary weapon");
+const Command Command::SELECT(ONE << 9, "Select secondary weapon");
+const Command Command::LAND(ONE << 10, "Land on planet / station");
+const Command Command::BOARD(ONE << 11, "Board selected ship");
+const Command Command::HAIL(ONE << 12, "Talk to selected ship");
+const Command Command::SCAN(ONE << 13, "Scan selected ship");
+const Command Command::JUMP(ONE << 14, "Initiate hyperspace jump");
+const Command Command::FLEET_JUMP(ONE << 15, "");
+const Command Command::TARGET(ONE << 16, "Select next ship");
+const Command Command::NEAREST(ONE << 17, "Select nearest hostile ship");
 const Command Command::NEAREST_ASTEROID(1uLL << 18, "Select nearest asteroid");
-const Command Command::DEPLOY(1uLL << 19, "Deploy / recall fighters");
-const Command Command::AFTERBURNER(1uLL << 20, "Fire afterburner");
-const Command Command::CLOAK(1uLL << 21, "Toggle cloaking device");
-const Command Command::MAP(1uLL << 22, "View star map");
-const Command Command::INFO(1uLL << 23, "View player info");
-const Command Command::FULLSCREEN(1uLL << 24, "Toggle fullscreen");
-const Command Command::FASTFORWARD(1uLL << 25, "Toggle fast-forward");
-const Command Command::FIGHT(1uLL << 26, "Fleet: Fight my target");
-const Command Command::GATHER(1uLL << 27, "Fleet: Gather around me");
-const Command Command::HOLD(1uLL << 28, "Fleet: Hold position");
-const Command Command::AMMO(1uLL << 29, "Fleet: Toggle ammo usage");
-const Command Command::HARVEST(1uLL << 30, "Fleet: Harvest Flotsam");
-const Command Command::WAIT(1uLL << 31, "");
-const Command Command::STOP(1uLL << 32, "");
-const Command Command::SHIFT(1uLL << 33, "");
+const Command Command::DEPLOY(ONE << 19, "Deploy / recall fighters");
+const Command Command::AFTERBURNER(ONE << 20, "Fire afterburner");
+const Command Command::CLOAK(ONE << 21, "Toggle cloaking device");
+const Command Command::MAP(ONE << 22, "View star map");
+const Command Command::INFO(ONE << 23, "View player info");
+const Command Command::FULLSCREEN(ONE << 24, "Toggle fullscreen");
+const Command Command::FASTFORWARD(ONE << 25, "Toggle fast-forward");
+const Command Command::FIGHT(ONE << 26, "Fleet: Fight my target");
+const Command Command::GATHER(ONE << 27, "Fleet: Gather around me");
+const Command Command::HOLD(ONE << 28, "Fleet: Hold position");
+const Command Command::HARVEST(1uLL << 29, "Fleet: Harvest Flotsam");
+const Command Command::AMMO(ONE << 30, "Fleet: Toggle ammo usage");
+const Command Command::WAIT(ONE << 31, "");
+const Command Command::STOP(ONE << 32, "");
+const Command Command::SHIFT(ONE << 33, "");
 
 
 

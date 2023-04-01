@@ -129,6 +129,8 @@
 		<Unit filename="source/Dictionary.h" />
 		<Unit filename="source/DistanceMap.cpp" />
 		<Unit filename="source/DistanceMap.h" />
+		<Unit filename="source/Distribution.cpp" />
+		<Unit filename="source/Distribution.h" />
 		<Unit filename="source/DrawList.cpp" />
 		<Unit filename="source/DrawList.h" />
 		<Unit filename="source/Effect.cpp" />
@@ -150,6 +152,8 @@
 		<Unit filename="source/FireCommand.h" />
 		<Unit filename="source/Fleet.cpp" />
 		<Unit filename="source/Fleet.h" />
+		<Unit filename="source/FleetCargo.cpp" />
+		<Unit filename="source/FleetCargo.h" />
 		<Unit filename="source/Flotsam.cpp" />
 		<Unit filename="source/Flotsam.h" />
 		<Unit filename="source/FogShader.cpp" />
