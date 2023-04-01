@@ -950,7 +950,6 @@ government "Pirate (Devil-Run Gang)"
 		"Syndicate" -.001
 		"Hai (Friendly Unfettered)" -.001
 		"Forest (Prey)" -.001
-		"Forest (Predator)" -.001
 	"bribe" .05
 	"fine" 0
 	"friendly hail" "friendly pirate"
