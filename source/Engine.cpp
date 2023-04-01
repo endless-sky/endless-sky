@@ -2074,7 +2074,11 @@ void Engine::HandleMouseClicks()
 // Determines alternate mouse turning, setting player mouse angle, and right-click firing weapons.
 void Engine::HandleMouseInput(Command &activeCommands)
 {
-	isMouseHoldEnabled = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
+	int mousePosX;
+	int mousePosY;
+	Uint32 mouseState = SDL_GetMouseState(&mousePosX, &mousePosY);
+	bool middleMouseButtonHeld = ((mouseState & SDL_BUTTON_MMASK) != 0);
+	isMouseHoldEnabled = activeCommands.Has(Command::MOUSE_TURNING_HOLD) || middleMouseButtonHeld;
 	if(activeCommands.Has(Command::MOUSE_TURNING_TOGGLE))
 	{
 		isMouseToggleEnabled = !isMouseToggleEnabled;
@@ -2088,9 +2092,7 @@ void Engine::HandleMouseInput(Command &activeCommands)
 		return;
 	activeCommands.Set(Command::MOUSE_TURNING_HOLD);
 	bool rightMouseButtonHeld = false;
-	int mousePosX;
-	int mousePosY;
-	if((SDL_GetMouseState(&mousePosX, &mousePosY) & SDL_BUTTON_RMASK) != 0)
+	if((mouseState & SDL_BUTTON_RMASK) != 0)
 		rightMouseButtonHeld = true;
 	double relX = mousePosX - Screen::RawWidth() / 2;
 	double relY = mousePosY - Screen::RawHeight() / 2;
