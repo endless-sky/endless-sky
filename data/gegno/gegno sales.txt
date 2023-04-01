@@ -23,6 +23,9 @@ shipyard "Gegno Intermediate"
 
 shipyard "Gegno Advanced"
 	"Gypsum"
+	"Corundum"
+	"Granufel"
+	"Protolith"
 
 outfitter "Gegno Basic"
 	"C3 Scrap Cell"

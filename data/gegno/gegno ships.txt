@@ -131,8 +131,58 @@ ship "Conglomerate"
 		"Hyperdrive"
 	engine -34.5 220
 	engine 34.5 220
-	engine 13 206 0.75
-	engine -13 206 0.75
+	engine 15 210 0.75
+	engine -15 210 0.75
+	leak "leak" 30 40
+	leak "flame" 80 20
+	explode "huge explosion" 10
+	explode "large explosion" 30
+	explode "medium explosion" 38
+	explode "small explosion" 26
+	"final explode" "final explosion large"
+	description `Over time, the Gegno needed larger vessels to carry materials to and from new worlds - ones that would be easier to build and operate than their older, outdated generation ships, but larger than their shuttlecraft. The Conglomerate was designed to fill that exact role.`
+
+ship "Granofel"
+	sprite "ship/gegno granofel"
+	thumbnail "thumbnail/gegno granofel"
+	attributes
+		category "Heavy Freighter"
+		licenses
+			"Gegno Civilian"
+		"cost" 5909000
+		"shields" 0
+		"hull" 10600
+		"required crew" 13
+		"bunks" 50
+		"mass" 905
+		"drag" 13.9
+		"heat dissipation" 0.6
+		"fuel capacity" 500
+		"cargo space" 415
+		"outfit space" 253
+		"weapon capacity" 0
+		"engine capacity" 146
+		weapon
+			"blast radius" 124
+			"shield damage" 960
+			"hull damage" 1160
+			"hit force" 1650
+	outfits
+		"C7 Brawl Cell"
+		"C3 Scrap Cell"
+		"R02 Battlezone Battery"
+		
+		"RG18 Torch Thruster"
+		"RG15 Torch Thruster"
+		"RG18 Torch Steering"
+		"RG15 Torch Steering"
+		"Hyperdrive"
+	engine -36 114
+	engine 36 114
+	"steering engine" 94 -6 0.75
+		left
+	"steering engine" -94 -6 0.75
+		right
 	leak "leak" 30 40
 	leak "flame" 80 20
 	explode "huge explosion" 10
@@ -190,6 +240,124 @@ ship "Gypsum"
 	"final explode" "final explosion medium"
 	description `To fuel their increasing need for materials, the Gegno designed a new ship class for the sole purpose of mining. The resulting platform, the Gypsum, is not much more than a flying drill with cargo containers, engines, and a bridge attached behind it, making it cost-efficient and easy to manufacture.`
 	description `	Because Gegno engines are not very powerful, the Gypsum has difficulty chasing faster-moving asteroids. In order to alleviate this problem without needing to massively increase the engine space on the ship, the Gegno have instead developed the powerful Excavator Drill, which can shred asteroids in a matter of seconds, meaning the Gypsum only needs to be near an asteroid for a mere moment in order to mine it.`
+
+ship "Corundum"
+	sprite "ship/gegno corundum"
+	thumbnail "thumbnail/gegno corundum"
+	attributes
+		category "Light Freighter"
+		licenses
+			"Gegno Civilian"
+		"cost" 1692000
+		"shields" 0
+		"hull" 5500
+		"required crew" 5
+		"bunks" 9
+		"mass" 360
+		"drag" 3
+		"heat dissipation" 0.8
+		"fuel capacity" 600
+		"cargo space" 160
+		"outfit space" 240
+		"weapon capacity" 42
+		"engine capacity" 120
+		"drill port" 1
+		"drill lock" -1
+		weapon
+			"blast radius" 72
+			"shield damage" 320
+			"hull damage" 620
+			"hit force" 720
+	outfits
+		"Excavator"
+		
+		"C7 Brawl Cell"
+		"R01 Skirmish Battery"
+		
+		"RG18 Torch Thruster"
+		"RG15 Torch Steering"
+		"RG18 Torch Steering"
+		"Hyperdrive"
+	engine 58 -58
+	engine -58 -58
+	"steering engine" 58 -58
+		left
+	"steering engine" -58 -58
+		right
+	gun 9 -132 Excavator
+	gun -9 -132
+	leak "leak" 60 50
+	leak "flame" 60 80
+	explode "large explosion" 14
+	explode "medium explosion" 24
+	explode "small explosion" 26
+	explode "tiny explosion" 10
+	"final explode" "final explosion medium"
+	description `To fuel their increasing need for materials, the Gegno designed a new ship class for the sole purpose of mining. The resulting platform, the Gypsum, is not much more than a flying drill with cargo containers, engines, and a bridge attached behind it, making it cost-efficient and easy to manufacture.`
+	description `	Because Gegno engines are not very powerful, the Gypsum has difficulty chasing faster-moving asteroids. In order to alleviate this problem without needing to massively increase the engine space on the ship, the Gegno have instead developed the powerful Excavator Drill, which can shred asteroids in a matter of seconds, meaning the Gypsum only needs to be near an asteroid for a mere moment in order to mine it.`
+
+ship "Protolith"
+	sprite "ship/gegno protolith"
+	thumbnail "thumbnail/gegno protolith"
+	attributes
+		category "Heavy Freighter"
+		licenses
+			"Vi Lord"
+		"cost" 16820000
+		"shields" 0
+		"hull" 21200
+		"required crew" 53
+		"bunks" 237
+		"mass" 1260
+		"drag" 23.5
+		"heat dissipation" 0.4
+		"fuel capacity" 900
+		"cargo space" 718
+		"outfit space" 651
+		"weapon capacity" 216
+		"engine capacity" 203
+		weapon
+			"blast radius" 280
+			"shield damage" 1550
+			"hull damage" 2050
+			"hit force" 3950
+	outfits
+		"C7 Brawl Cell" 2
+		"C3 Scrap Cell"
+		"R03 Warforge Battery" 3
+		"Savagery Pike" 53
+		
+		"RG3 Torch Thruster"
+		"RG15 Torch Thruster"
+		"RG3 Torch Steering"
+		"RG15 Torch Steering"
+		"Hyperdrive"
+		
+	"steering engine" 87 -289 0.5
+		angle -90
+		left
+	"steering engine" -87 -289 0.5
+		angle 90
+		right
+	"steering engine" 97 214 0.5
+		angle -90
+		right
+	"steering engine" -97 214 0.5
+		angle 90
+		left
+	engine 76 365
+	engine -76 365
+	engine 46 366
+	engine -46 366
+	leak "leak" 30 50
+	leak "flame" 30 80
+	leak "big leak" 50 30
+	explode "huge explosion" 30
+	explode "large explosion" 45
+	explode "medium explosion" 35
+	explode "small explosion" 25
+	"final explode" "final explosion large"
+	description `Granulites are descendants of the Gegno's early generation ships used to colonize nearby systems before the invention of the hyperdrive. They now carry hundreds of Vi both in and out of war, and huge cargo loads to supply depots. They are not typically used as warships, but can support enough weaponry to threaten most smaller vessels, or fend off larger ships long enough for reinforcements to arrive.`
 
 # Gegno Vi:
 
