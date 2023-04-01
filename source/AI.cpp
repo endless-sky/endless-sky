@@ -2042,7 +2042,7 @@ bool AI::Stop(Ship &ship, Command &command, double maxSpeed, const Point directi
 
 	command.SetTurn(TurnBackward(ship));
 	if(velocity.Unit().Dot(angle.Unit()) < -limit)
-		command |= Command::FORWARD;
+		command.SetThrust(1.);
 
 	return false;
 }
@@ -3882,31 +3882,31 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 //		}
 		bool shipThrusting = false;
 		bool ShipLateralThrusting = false;
-		if (activeCommands.Has(Command::FORWARD) && !activeCommands.Has(Command::BACK)) // tweaked for better 'spin around' behaviour. ajc.
+		if(activeCommands.Has(Command::FORWARD) && !activeCommands.Has(Command::BACK)) // tweaked for better 'spin around' behaviour.
 		{
 			command.SetThrust(hasCtrl ? .5 : 1.);
 			shipThrusting = true;
 		}
-		if (activeCommands.Has(Command::LATERALLEFT | Command::LATERALRIGHT))
+		if(activeCommands.Has(Command::LATERALLEFT | Command::LATERALRIGHT))
 		{
 			command.SetLateralThrust((activeCommands.Has(Command::LATERALRIGHT) - activeCommands.Has(Command::LATERALLEFT)) * (hasCtrl ? .5 : 1.));
 			ShipLateralThrusting = true;
 		}
-		if (activeCommands.Has(Command::RIGHT) && activeCommands.Has(Command::LEFT))
+		if(activeCommands.Has(Command::RIGHT) && activeCommands.Has(Command::LEFT))
 			command.SetTurn(TurnToward(ship, target ? target->Position() - ship.Position() : Point() - ship.Position()));
-		else if (activeCommands.Has(Command::RIGHT | Command::LEFT))
+		else if(activeCommands.Has(Command::RIGHT | Command::LEFT))
 			command.SetTurn((activeCommands.Has(Command::RIGHT) - activeCommands.Has(Command::LEFT))* (hasCtrl ? .5 : 1.));
-		if (activeCommands.Has(Command::BACK))
+		if(activeCommands.Has(Command::BACK))
 		{
-			if (!activeCommands.Has(Command::FORWARD) && ship.Attributes().Get("reverse thrust"))
+			if(!activeCommands.Has(Command::FORWARD) && ship.Attributes().Get("reverse thrust"))
 				command.SetThrust(hasCtrl ? -.5 : -1.);
-			else if (!activeCommands.Has(Command::RIGHT | Command::LEFT))
+			else if(!activeCommands.Has(Command::RIGHT | Command::LEFT))
 				command.SetTurn(TurnBackward(ship));
 		}
 
-		// Stability control, uses lateral thrusters instead of ship applying drag. ajc
+		// Stability control, uses lateral thrusters instead of ship applying drag.
 		double deviation = ship.Velocity().Unit().Cross(ship.Facing().Unit());
-		if (shipThrusting && !shift && !ShipLateralThrusting)
+		if(shipThrusting && !shift && !ShipLateralThrusting)
 			command.SetLateralThrust(deviation * 5);
 
 		if(activeCommands.Has(Command::PRIMARY))

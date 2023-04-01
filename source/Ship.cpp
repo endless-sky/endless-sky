@@ -2056,20 +2056,20 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		// Lateral Thrust functionality.
 		double latThrustCommand = commands.LateralThrust();
 		double latThrust = 0.;
-		if (latThrustCommand)
+		if(latThrustCommand)
 		{
 			// Check if we are able to apply this thrust.
 			double cost = attributes.Get("thrusting energy") * 0.5;
-			if (energy < cost)
+			if(energy < cost)
 				latThrustCommand *= energy / cost;
 
-			if (latThrustCommand)
+			if(latThrustCommand)
 			{
 				// These will be used for lateral thrusting flares once supported.
 				// isLatThrusting = true;
 				// lateralDirection = latThrustCommand;
 				latThrust = attributes.Get("thrust") * 0.5;
-				if (latThrust)
+				if(latThrust)
 				{
 					double scale = fabs(latThrustCommand);
 					energy -= scale * cost;

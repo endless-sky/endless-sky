@@ -124,7 +124,7 @@ void Command::ReadKeyboard()
 	// Check whether the `Shift` modifier key was pressed for this step.
 	if(SDL_GetModState() & KMOD_SHIFT)
 		*this |= SHIFT;
-	if (SDL_GetModState() & KMOD_CTRL)
+	if(SDL_GetModState() & KMOD_CTRL)
 		*this |= CTRL;
 }
 
