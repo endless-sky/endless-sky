@@ -3429,7 +3429,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 
 	bool shift = activeCommands.Has(Command::SHIFT);
 	bool hasCtrl = activeCommands.Has(Command::CTRL);
-	
+
 
 	bool isWormhole = false;
 	if(player.HasTravelPlan())
