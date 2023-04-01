@@ -3882,14 +3882,16 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 //		}
 		bool shipThrusting = false;
 		bool ShipLateralThrusting = false;
-		if(activeCommands.Has(Command::FORWARD) && !activeCommands.Has(Command::BACK)) // tweaked for better 'spin around' behaviour.
+		// Following tweak is for better 'spin around' behaviour.
+		if(activeCommands.Has(Command::FORWARD) && !activeCommands.Has(Command::BACK))
 		{
 			command.SetThrust(hasCtrl ? .5 : 1.);
 			shipThrusting = true;
 		}
 		if(activeCommands.Has(Command::LATERALLEFT | Command::LATERALRIGHT))
 		{
-			command.SetLateralThrust((activeCommands.Has(Command::LATERALRIGHT) - activeCommands.Has(Command::LATERALLEFT)) * (hasCtrl ? .5 : 1.));
+			command.SetLateralThrust((activeCommands.Has(Command::LATERALRIGHT)
+				- activeCommands.Has(Command::LATERALLEFT)) * (hasCtrl ? .5 : 1.));
 			ShipLateralThrusting = true;
 		}
 		if(activeCommands.Has(Command::RIGHT) && activeCommands.Has(Command::LEFT))
