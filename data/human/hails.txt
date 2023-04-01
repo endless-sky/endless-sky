@@ -1976,7 +1976,7 @@ phrase "friendly civilian"
 		" I heard a rumor that "
 	word
 		"smugglers almost always get caught in the end."
-		"sven the most powerful warship won't save you from a knife in the back."
+		"even the most powerful warship won't save you from a knife in the back."
 		"the Quarg will arrest you if they catch a whiff of any of their equipment on your ship."
 		"the Quarg imprison anyone they catch carrying their outfits."
 		"nine out of ten pirates die within their first year."
