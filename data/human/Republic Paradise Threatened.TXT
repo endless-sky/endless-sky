@@ -11,29 +11,58 @@ mission "RN Analyze the Nukes"
 			`Amelia is engrossed in some kind of spreadsheet when you barge into her office and drop a datachip of scans from your fight with the Wolf Pack onto her desk. Her brows knit at this breach of protocol but she switches her display to show the data and you watch closely as her eyes widen and the colour drains from her face.`
 			`	"Is this... this can’t be right?!" she says, flipping back and forth through the images. “Nukes? I... I almost believed them!"`
 			`	You remain quiet and let her process what she is seeing. It takes a while and so you make yourself comfortable on a recliner in the corner, just answering the occasional question when she wants a bit more context. Eventually she leans back on her chair shaking her head. You notice that she seems to have aged in the short time you have been here.`
-			`	"I need a little time to decide what to do. Please stay nearby, I'm going to need your help."`
-
-			`	You nod and leave her alone in the office staring at the ceiling and go for a walk around the campus. The grounds of the headquarters buildings have been beautifully landscaped and it isn't difficult to find a nice green, quiet space to think.`
-			`	However you had felt about the Free Worlds before, it is clear now that they are worse than terrorists. Their protestations of innocence in the bombings of Geminus and Martini are obviously nothing more than a cynical attempt at political obfuscation. You try to distract yourself with cargo manifests while you wait, but the events of the past few days keep exploding back into your mind. Finally you get a prompt to return to the office where Commander Shah is waiting for you.`
-			`	"We can’t make any mistakes here," she says, "this is too important. It has to be passed up to the top, but we need to have the answers to every question that might be asked ready. I’ll talk to Anton but I already know what he’ll say, we need to get the data independently analysed and verified. We can’t risk broadcasting this, the data has to be physically taken to Lovelace Labs; the fewer people who are in the loop, the better.`
-			`	"<first>, you of all people know what is riding on this. Can you deliver the data, and make sure that it gets to the right hands at Lovelace Labs? I can’t send anyone from the Navy without drawing attention."`
-			`	You nod, understanding the importance of this task.`
-			`	"Good," Amelia says with a sigh of relief. "I'm counting on you to be discreet, I don't need to remind you of the consequences if this information falls into the wrong hands."`
+			`	"I need to brief Colonel Howell. Please stay nearby, we are going to need your help."`
+			choice
+				`	(Take a walk around the gardens.)`
+					goto garden
+				`	(Find a bench on the campus where you can at least get some work done.)`
+					`	You had never got the chance to see the Geminus naval base before the bombings, but it couldn't have been as nice as this new campus. The administrative buildings are a gleaming white, and stand tall as though stretching for the heavens. 
+					label garden
+						# Add garden description here.
+			`	"<first>, you of all people know what is riding on this. Can you deliver the data, and make sure that it gets into the right hands at Lovelace Labs? I can’t send anyone from the Navy without drawing attention."`
+			choice
+				`	"You can count on me, Amelia."`
+					goto end
+				`	"Of course."`
+					goto end
+				`	(Refuse.)`
+					goto refuse
+					label refuse
+						`	You tell her that you can't do it, to which she stiffens and raises an eyebrow.`
+						`	"<last>," she says icily. "I can get another captain, but then I wouldn't be able to keep you in the loop with what is going on. You would go back to hauling for the Logistics Corps. It's important work, but... is that really what you want?`
+					choice
+						`	"You're right, I'll do it."`
+						`	"I just need to sort a few things out, can you give me some time?"`
+							goto time
+						`	"I'm sure. I have other priorities right now."`
+							action fail
+						label time
+							`	"This is only a two jump courier mission," she says wearily. "The analysis will take some time so you can deal with your 'other priorities' while you're waiting. Understood?"`
+							choice
+								`	"Fine, I'll do it."`
+								`	"Sorry, you'll need to get somebody else."`
+									action fail
+			label end
+			`	"Good," Amelia says with a sigh of relief. A strand of her hair, usually tightly bound, has come loose and hangs over her left eye, but she ignores it for now. "I'm counting on you to be discreet, I don't need to remind you of the consequences if this information falls into the wrong hands."`
+			`	She stops you as you are turning to the door.`
+			`	"You have been a real asset, Captain <last>. When all of this is over I will make sure you get the recognition that you deserve."`
 	on accept
 		log "Commander Melgrew wanted me to help out on Farpoint but the sensor readings of the nukes need to be analyzed before we react. Commander Shah has asked me to take them to Lovelace Labs on Ada. Hopefully they can make some sense of it all."
 	on complete
 		dialog `As soon as you contact control you are told to land on a reserved pad some way from the main space port. When you land an aide is awaiting you and reverently loads the logs into a reinforced data case. She then tells you that they will contact you when the analysis is done, it will probably take a few days.`
 	on complete
-		event "Analysis Complete"
+		event "RN Analysis Complete"
+	on fail
+		log "Refused to help Commander Shah get to the bottom of the Wolf Pack nukes."
 
 
-event "Analysis Complete" 5
+event "RN Analysis Complete" 5
 		
 
-mission "Return to Ada"
+mission "RN Return to Ada"
 	minor
 	to offer
-		has "event: Analysis Complete"
+		has "event: RN Analysis Complete"
 	on offer
 		dialog
 			`A message pings on your console. "The analysis is complete, Captain <last>. Please return to Ada as soon as possible."`
@@ -41,7 +70,7 @@ mission "Return to Ada"
 	destination "Ada"
 
 
-mission "Investigate the Source A"
+mission "RN Investigate the Source A"
 	autosave
 	landing
 	name "Investigate the Source"
@@ -53,23 +82,22 @@ mission "Investigate the Source A"
 	infiltrating
 	destination "Lodestone"
 	to offer
-		has "Return to Ada: done"
+		has "RN Return to Ada: done"
 	blocked `A message comes through from Commander Shah. "Captain <last>, thank you for sticking with us. I have just received word that you will have a passenger for the next part of the mission, so please make sure you have room for them."`
-
 	on offer
 		conversation
-			`As soon as you land a transport pulls up outside of the hatch of your ship and a small contingent of technicians start unloading equipment, supervised by a man in a generic-looking business suit. The man notices you watching and approaches, pulling out a badge identifying him as an agent of Republic Intelligence.`
+			`As soon as you land a transport pulls up outside of the hatch of your ship and a small contingent of technicians start unloading equipment, supervised by a tall man in a generic-looking business suit. He notices you watching and approaches, pulling out a badge identifying him as an agent of Republic Intelligence.`
 			choice
 				`	"Republic Intelligence? Isn't that an oxymoron?"`
 				`	"What's this all about?"`
 					goto friendly
 				`	(Wait for him to introduce himself.)`
 					goto friendly
-			`	The agent stares blankly at you and as he does so you start to notice just how much muscle is bulking up his jacket. He doesn't blink and eventually you have to look away.`
+			`	The agent stares blankly at you and as he does so you start to feel uneasy, realising that he is standing just a little too close so that you feel crowded. The scent of some kind of fruit washes over you, presumably from this guys breath.`
 			goto friendly
 				label friendly
 			`	"Captain <last>?" the man asks, studying your face intently.`
-			`	"I am Agent Norris, I have been assigned to this case by Parliament. As you can imagine they are very interested in getting results as quickly as possible."`
+			`	"I am Agent Kasra Satari, I have been assigned to this case by Parliament. As you can imagine they are very interested in getting results as quickly as possible."`
 			choice
 				`	(Nod.)`
 
@@ -78,11 +106,11 @@ mission "Investigate the Source A"
 			`	He turns away and waves the technicians past you onto the ship.`
 			`	"They will sweep the vessel for bugs," he says. "It won't take long; as soon as they are done we can be on our way, and I will brief you as we go."`
 
-		log `Agent Norris of Republic Intelligence will tag along as we search for the source of the Wolf Pack nukes.`
+		log `Agent Kasra Satari of Republic Intelligence will tag along as we search for the source of the Wolf Pack nukes.`
 	on enter "Aldebaran"
 		conversation
-			`As soon as you break atmosphere Agent Norris is at your shoulder.`
-			`	"The analysis seems to confirm a Syndicate origin," he says grimly. "There are only a few worlds with plutonium mines where they would have had a chance of avoiding Republic inspectors. Our mission is to get soil samples form each of them."`
+			`You break atmosphere and are busy preparing the ship for the voyage when you notice a strange fruity fragrance and turn to find Agent Satari looking over you.`
+			`	"The analysis seems to confirm a Syndicate origin," he says grimly. "There are only a few worlds with plutonium mines where they would have had a chance of avoiding Republic inspectors. Our mission is to get soil samples from each of them."`
 			choice
 				`	"What if the Syndicate don't want to let us?"`
 				`	"Sounds easier said than done."`
@@ -91,7 +119,7 @@ mission "Investigate the Source A"
 				`	"Sounds good to me."`
 					goto end
 				`	"In my experience ignoring traffic control makes planetary militias trigger-happy."`
-			`	"That's why I'm here," Agent Norris says. "We will be carrying out a warrant. The only way they could legally stop us would be to file an injunction with the Supreme Court, and we're not going to give them time to do that."
+			`	"That's why I'm here," Agent Satari says. "We will be carrying out a warrant. The only way they could legally stop us would be to file an injunction with the Supreme Court, and we're not going to give them time to do that."
 			label end
 			`	He points to a system on your nav screen.`
 			`	"Our first stop is <destination>, Captain. Let's get moving."`
@@ -99,15 +127,15 @@ mission "Investigate the Source A"
 		conversation
 			`Your descent to the surface of <destination> is violently bumpy, the turbulence threatening to send the <ship> hurtling out of control. As soon as it becomes clear that you are not heading towards the small landing site, your comm system lights up with warnings.`
 			`	"Uh, <ship>, please be advised that you are in restricted airspace. Divert to the heading indicated immediately."`
-			`	Agent Norris steps calmly forward and presses the button to respond.
+			`	Agent Satari steps calmly forward and presses the button to respond.
 			`	"<destination> control," he says, his voice smooth as silk, completely unlike his usual gravelly rumble. "This is <ship>, currently acting on parliamentary orders. I am transmitting a warrant which allows us to act as we see fit. I understand that you will want to check it with your superiors, so be my guest."`
 			`	He cuts the comms and then leans over the nav screen, his eyes narrowed as he searches for the mine.`
 			`	"There," he says, pointing to a cluster of machinery at the foot of an old lava flow. "Take us in, Captain."`
-			`	The <ship> touches down and Agent Norris already has a mask on and the sampling tool in his hand. He jumps out of the hatch before the ramp has even finished extending and then pushes the tool into the ground, where it immediately separates and then seals around a sample. He strides back up the ramp and hits the button to seal the hatch.`
-			`	"That's it, Captain," he says as soon as he has taken off the breath mask. "Break atmosphere and we can move on to the next location."`
+			`	The <ship> touches down and Agent Satari already has a mask on and the sampling tool in his hand. He jumps out of the hatch before the ramp has even finished extending and then pushes the tool into the ground, where it immediately separates and then seals around a sample. He strides back up the ramp and hits the button to seal the hatch.`
+			`	"That's it, Captain," he says as soon as he has taken off the breath mask. "Take off and we can move on to the next location."`
 
 
-mission "Investigate the Source B"
+mission "RN Investigate the Source B"
 	autosave
 	landing
 	name "Investigate the Source"
@@ -118,10 +146,10 @@ mission "Investigate the Source B"
 	source "Lodestone"
 	destination "Placer"
 	to offer
-		has "Investigate the Source A: done"
+		has "RN Investigate the Source A: done"
 	on enter
 		conversation
-			`It is a relief to be back in space where you are significantly less likely to be hit by a lava bomb. Agent Norris calls up the star chart and selects the next destination.`
+			`It is a relief to be back in space where you are significantly less likely to be hit by a lava bomb. Agent Satari calls up the star chart and selects the next destination.`
 			`	"<destination> next, Captain," he says. "We should expect a little more pushback this time as the warrant won't be a complete surprise. Don't worry though, they can't get an injunction this quickly."`
 			`	"So how quickly can they get one?" you ask. "And how many more systems are we looking at?"`
 			`	He looks at you for several long moments, his face expressionless.
@@ -131,7 +159,7 @@ mission "Investigate the Source B"
 					goto end
 				`	"This is sounding worse by the moment."`
 				`	"And if they get an injunction? What, we just stop?"`
-			`	For the first time since you met him Agent Norris actually smiles, a grim expression which makes you think that he really hopes the worst will happen.`
+			`	For the first time since you met him, Agent Satari actually smiles, a grim expression which makes you think that he really hopes the worst will happen.`
 			`	"Captain <last>," he says, leaning casually against a console. "We will complete this mission. The whole mission, not just the easy parts. The Syndicate are not above the law."`
 			`	He nods once and retires to his bunk leaving you to plot the course to <system>, his words still echoing in your head. You think you've seen a fair bit of the galaxy, much more than most of humanity, and in your experience in Syndicate space the Syndicate makes the laws. This will certainly be interesting.`
 			label end
@@ -139,11 +167,11 @@ mission "Investigate the Source B"
 		conversation
 			`You start your descent, aiming for a small but well-organized settlement in the southern hemisphere. It takes a little longer than usual for spaceport control to contact you, but when they finally do you realize that it's probably because they were getting somebody senior on the line.`
 			`	"<ship>, be advised that we have received details of your warrant in advance and we are cooperating fully. You may land and make use of all of the spaceport facilities to refuel your ship, and we can offer you and your crew vouchers for the Starlink Casino and all of our fine bars and restaurants. The Syndicate has nothing to hide."`
-			`	Your sigh of relief is short-lived, however, as Agent Norris is shaking his head.`
+			`	Your sigh of relief is short-lived, however, as Agent Satari is shaking his head.`
 			`	"They are trying to stall us," he says. "Probably so that they can force their injunction through. Refuel if you need to, but don't let them drag it out any more than necessary."`
 
 
-mission "Investigate the Source C"
+mission "RN Investigate the Source C"
 	autosave
 	landing
 	name "Investigate the Source"
@@ -163,37 +191,37 @@ mission "Investigate the Source C"
 		system "Algol"
 		fleet "Large Core Pirates"
 	to offer
-		has "Investigate the Source B: done"
+		has "RN Investigate the Source B: done"
 	on offer
 		conversation
-			`Agent Norris collects his sample and you make a short hop to the spaceport to refuel. The ground crew does seem a little more disorganized than usual but Agent Norris goes out to bully them into getting their work done as quickly as possible while you take the opportunity to do some quick maintenance. Soon enough <ship> is fully fueled and you seal the hatch for takeoff.
+			`Agent Satari collects his sample and you make a short hop to the spaceport to refuel. The ground crew does seem a little more disorganized than usual but Agent Satari goes out to bully them into getting their work done as quickly as possible while you take the opportunity to do some quick maintenance. Soon enough the <ship> is fully fueled and you seal the hatch for takeoff.
 			`	"Where to this time?" you ask.`
-			`	"<destination>," Norris says simply. He turns to go back to his bunk but just as he does so the same voice as before comes over the channel to <source> control.
-			`	"<ship>, please advised, we have received warnings of increased pirate activity in the region, recommend delaying departure until it has been dealt with."`
-			`	Norris simply gestures for you to take this.
+			`	"<destination>," Satari says simply. He turns to go back to his bunk but just as he does so the same voice as before comes over the channel to <source> control.
+			`	"<ship>, please be advised, we have received warnings of increased pirate activity in the region, recommend delaying departure until it has been dealt with."`
+			`	Satari simply gestures for you to take this.
 			choice
 				`	"A bluff?"`
 				`	"What do you think?"`
 				`	"They'll try anything, won't they?"`
-			`	He shrugs. "You know the stakes as well as I do, Captain <last>. I see this as a good sign, they're desparate."`
+			`	He shrugs. "You know the stakes as well as I do, Captain <last>. I see this as a good sign, they're desperate."`
 			`	You clear your throat and then key the comm. "Thank you, <source> control. We will be careful."`
 	on enter "Al Dhanab"
 		dialog
-			`It looks like the warning from <source> control about pirates was real. As you jump emerge from hyperspace you are confronted by a small group who are already plundering.`
+			`It looks like the warning from <source> control about pirates was real. As you emerge from hyperspace you are confronted by a small group who are already plundering.`
 	on enter "Algol"
 		conversation
-			`You emerge in <system> to find a large fleet of pirates waiting. Agent Norris swears, looking flustered for the first time since you met him.`
+			`You emerge in <system> to find a large fleet of pirates waiting. Agent Satari swears, looking flustered for the first time since you met him.`
 			`	"This can't be coincidence!" he growls. "A pirate fleet this large in a small system like <system>? It makes no sense. Somebody has paid them off!"`
 			choice
 				`	"Don't worry, that's why they have me ferrying you around."`
 				`	"They might be strong, but the <ship> is faster!"`
 				`	"As long as we can make it into the atmosphere, I can evade them."`
-			`	Agent Norris looks at you and nods, and this might just be your imagination but you think you see a hint of respect in his eyes.`
+			`	Agent Satari looks at you and nods, and this might just be your imagination but you think you see a hint of respect in his eyes.`
 	on complete
 		conversation
-			`You make it to the surface of <destination> and land at the test site. While Agent Norris is outside taking the sample, you get a message from <destination> control once again offering you free fueling and the run of the spaceport amenities. How nice of them.`
+			`You make it to the surface of <destination> and land at the test site. While Agent Satari is outside taking the sample, you get a message from <destination> control once again offering you free fuelling and the run of the spaceport amenities. How nice of them.`
 
-mission "Investigate the Source D"
+mission "RN Investigate the Source D"
 	autosave
 	landing
 	name "Investigate the Source"
@@ -216,41 +244,40 @@ mission "Investigate the Source D"
 		system "Bellatrix"
 		fleet "Large Syndicate"
 	to offer
-		has "Investigate the Source C: done"
+		has "RN Investigate the Source C: done"
 	on offer
 		conversation
-			`You hop over to the spaceport and as you do so you can see from your scope that there are no pirates left in the system. As before the ground crew seem unusually incompetent, and as before Agent Norris goes outside to deal with it. You take the time to perform some routine maintenance, and then you notice a ruby red laser light shining on one of the consoles. You freeze. Are they goind to try to assassinate you? You're not aware of any handheld munition which could penetrate the armor of your ship but suddenly you wonder what the labs on Hephaestus might have quietly come up with.`
+			`You hop over to the spaceport and as you do so you can see from your scope that there are no pirates left in the system. As before the ground crew seem unusually incompetent, and as before Agent Satari goes outside to deal with it. You take the time to perform some routine maintenance, and then you notice a ruby red laser light shining on one of the consoles. You freeze. Are they going to try to assassinate you? You're not aware of any handheld munition which could penetrate the armor of your ship but suddenly you wonder what the labs on Hephaestus might have quietly come up with.`
 			`	Before you can respond the light starts moving, faster and faster until it is spelling out a message.`
 			`	"1,000,000 credits to seal your hatch and power down your sensors"`
 			choice
 				`	(Do as they wish. A million credits is a million credits.)`
 				`	(Darken the viewports and ignore the message.)`
 					goto end
-
 				`	You press the button to seal the outer hatch and then, after a moment's hesitation, power the sensors down completely. As you sit in your chair you wonder what is going on outside, but the chime of your comm which tells you that one million credits has been added to your account dampens down your curiosity significantly.`
-				`	After what seems like an age but was apparently only five minutes, a green laser spot appears on your console and just as quickly disappears again. You take that as an 'all clear' and look out your viewport. The ground crew are still working, but there is no sign of Agent Norris. Just to be sure, you open the hatch and take a look around, but the agent is nowhere to be seen.`
+				`	After what seems like an age but was apparently only five minutes, a green laser spot appears on your console and just as quickly disappears again. You take that as an 'all clear' and look out your viewport. The ground crew are still working, but there is no sign of Agent Satari. Just to be sure, you open the hatch and take a look around, but the agent is nowhere to be seen.`
 				`	Without knowing what other systems you are supposed to be investigating you can't continue the mission. You tell yourself that the truth about the Wolf Pack nukes has to come out eventually, and in the mean time at least you have a million more reasons to sleep well.`
 					payment 1000000
 					log "Accepted a bribe to look the other way instead of tracing the source of the Wolf Pack nukes. The money was just too good to turn down."
 					fail
 	on enter
 		conversation
-			`Agent Norris instructs you to plot a course for <destination> and seems completely unaware of the odd message that you received.
+			`Agent Satari instructs you to plot a course for <destination> and seems completely unaware of the odd message that you received.
 			choice
 				`	(Tell him what happened.)`
 				`	(There's no need to worry him.)`
 					goto onward
-				`	You decide that he should know and explain that somebody used a laser to send you a message asking you to seal the hatch and deactivate the sensors. Agent Norris nods slowly.
-				`	"What did they offer you?" he asks as though he is aksing what you had for your lunch.
+				`	You decide that he should know and explain that somebody used a laser to send you a message asking you to seal the hatch and deactivate the sensors. Agent Satari nods slowly.
+				`	"What did they offer you?" he asks as though he is asking what you had for your lunch.
 				`	"A million credits," you say.`
 				`	He nods again looking mildly impressed. "And you turned it down? Captain <last>, I didn't know you cared."`
-				`	"Wait, was that a joke?" you ask, but Norris' face is still stony.`
-				`	"Thank you, Captain," he says. "If you had accepted I have no doubt I would be dead by now. That or under interrogation. We must proceed more carefully from now on. If we can avoid refueling on any Syndicate worlds we should do so."`
+				`	"Wait, was that a joke?" you ask, but Satari's face is still stony.`
+				`	"Thank you, Captain," he says. "If you had accepted I have no doubt I would be dead by now. That or under interrogation. We must proceed more carefully from now on. If we can avoid refuelling on any Syndicate worlds we should do so."`
 				label onward
-					`	You program the nav computer and prepare to jump, but before you can do so Agent Norris receives a message and raises a hand as though asking for you to wait. He reads the message several times before looking back up at you.`
+					`	You program the nav computer and prepare to jump, but before you can do so Agent Satari receives a message and raises a hand as though asking for you to wait. He reads the message several times before looking back up at you.`
 					`	"The injunction has been approved," he says. "The Syndicate won't be so friendly from here on out."`
 					`	You laugh. If that was the Syndicate being 'friendly' you wouldn't want to see them hostile, but it looks like you're going to.`
-					`	"<planet> is the last planet on our list," Norris tells you quietly. "We just need to get to the test site and then get the samples back to Ada."`
+					`	"<planet> is the last planet on our list," Satari tells you quietly. "We just need to get to the test site and then get the samples back to Ada."`
 
 					choice
 						`	"Piece of cake."`
@@ -268,7 +295,7 @@ mission "Investigate the Source D"
 			`	(Comply with their instructions.)`
 				goto surrender
 			label surrender
-				`	Agent Norris sees what you are doing and comes storming over.`
+				`	Agent Satari sees what you are doing and comes storming over.`
 				`	"We must complete this mission!" he hisses.
 				choice
 					`	"There's too many of them!"`
@@ -276,24 +303,24 @@ mission "Investigate the Source D"
 					`	"Hold on, I have an idea!"`
 						# I want to be able to lure the fleet closer with this option so that it's easier to make a run to the planet, although I'm not sure if that's possible.
 						label "actually surrender"
-							`	Agent Norris shakes his head in disgust and turns away from you... and then before you can react he is on top of you, and with one jerk of his arms you lie on the deck of your ship with your neck broken.`
+							`	Agent Satari shakes his head in disgust and turns away from you... and then before you can react he is on top of you, and with one jerk of his arms you lie on the deck of your ship with your neck broken. The fruity scent of hard candy is the last thing that you are aware of.`
 							die
 			`	You continue on a course for <destination>, hoping that the Syndicated Security officer is bluffing. The seconds tick by, and just when you think they are going to back down, a voice comes over the comm.`
 			`	"If that's the way you want it..."`
-			`	Immediately your sensors indicate that the Syndicate fleet has started targetting you. You are going to have to do this the hard way.`
+			`	Immediately your sensors indicate that the Syndicate fleet has started targeting you. You are going to have to do this the hard way.`
 				label end
 	on complete
 		conversation
 			`You make it to the surface, and as you are coming in to land you can see that a small unit of Syndicated Security soldiers are setting up some defences. You screech over them and open up with your weapons, sending them sprawling in all directions.`
-			`	Agent Norris retrieves a rifle from his bunk, and when he sees you looking at it he shrugs. "My technicians put it in when they were sweeping the ship."`
-			`	As he surges through the hatch, moving faster than any human has a right to, you can't help but wonder what else those technicians were doing. After you drop Norris on Ada, you decide that you'll take some time to sweep <ship> yourself.`
-			`	There is the sound of gunfire from outside, and smoke surrounds the ship. Your sensors show four human heat signatures running and bent low but you can't tell which one is Norris. They all seem to be converging on the clear area in front of the mine, but it looks like none of them can see any of the others. You watch as one spins from cover, sweeping his weapon from side to side. Just then, one of the others jerks, lifts from the ground and then falls down dead, all in a flash.`
-			`	A second person enters the clearing and then exchanges hand signals with the first. They both start moving in parallel, creeping slowly and each covering their own side. You look for the fourth person and find that he is now lying dead too. Before you can figure out what is going on, the two remaining figures turn and start firing behind them, but what their aiming at is a mystery as nothing shows on your scope. First one and then the other expend their ammo and pause... and then beams of fire erupt from in front of them, taking both down before they have a chance to react.`
-			`	When the smoke eventually clears you see Norris calmly toting the sample back towards the ship.`
+			`	Agent Satari retrieves a rifle from his bunk, and when he sees you looking at it he shrugs. "My technicians put it in when they were sweeping the ship."`
+			`	As he surges through the hatch, moving faster than any human has a right to, you can't help but wonder what else those technicians were doing. After you drop Satari on Ada, you decide that you'll take some time to sweep the <ship> yourself.`
+			`	There is the sound of gunfire from outside, and smoke surrounds the ship. Your sensors show four human heat signatures running and bent low but you can't tell which one is Satari. They all seem to be converging on the clear area in front of the mine, but it looks like none of them can see any of the others. You watch as one spins from cover, sweeping his weapon from side to side. Just then, one of the others jerks, lifts from the ground and then falls down dead, all in a flash.`
+			`	A second person enters the clearing and then exchanges hand signals with the first. They both start moving in parallel, creeping slowly and each covering their own side. You look for the fourth person and find that he is now lying dead too. Before you can figure out what is going on, the two remaining figures turn and start firing behind them, but what they are aiming at is a mystery as nothing shows on your scope. First one and then the other expend their ammo and pause... and then beams of fire erupt from in front of them, taking both down before they have a chance to react.`
+			`	When the smoke eventually clears you see Satari calmly toting the sample back towards the ship.`
 			`	"Back to Ada, Captain," he says when he is back on board. You are not about to argue with him.`
 
 
-mission "Investigate the Source E"
+mission "RN Investigate the Source E"
 	autosave
 	landing
 	name "Investigate the Source"
@@ -304,6 +331,103 @@ mission "Investigate the Source E"
 	source "Bluestone"
 	destination "Ada"
 	to offer
-		has "Investigate the Source D: done"
+		has "RN Investigate the Source D: done"
 	on complete
-		log "Managed to collect all of the samples from Syndicate space and deliver them to the lab on Ada with the help of Agent Norris of Republic Intelligence."
+		conversation
+			`When you touch down on a private launch pad Agent Satari already has the samples in a bag ready to go.`
+			`	"Thank you for the ride, Captain <last>," he says, opening the outer hatch. As you both peer out you can see a vehicle from Lovelace Labs speeding towards you. "It shouldn't take them long to analyze these samples since they already know what they are looking for."`
+			`	You nod, thinking about the implications if one of the Syndicate worlds really turns out to be the source of nukes.`
+			choice
+				`"And then what?"`
+				`"Do you think they'll find anything?"`
+					`	He watches the vehicle screeching to a halt, seemingly ignoring you, but then he turns, his piercing green eyes boring into yours.`
+					`	"I prefer not to speculate. But if the Syndicate is behind this I have no doubt that Republic Intelligence will do everything to bring the perpetrators to justice." He smiles, his eyes turning predatory. "And I will be happy to hunt them down."
+					`	He hands the bag to one of the technicians who very carefully transfers the samples one-by-one into some contoured holders in the trunk. While the man is doing that Agent Satari takes a bag of fruit flavoured candy out of his pocket and pops one in his mouth, and then turns to you.`
+					`	"Candy?" He asks, holding out a small selection towards you.`
+					choice
+						`"No. Thank you."`
+						`(Take the red one.)`
+						`(Take the green one.)`
+						`(Take the yellow one.)`
+					`	He pats you roughly on the shoulder and gets into the back of the vehicle, which is soon speeding off to a lab somewhere. You had heard many stories about Republic Intelligence but none of them had prepared you for meeting Agent Satari. You turn back to the <ship> and decide to focus on its much neglected maintenance. No doubt when the analysis is done she will be needed again."`
+		log "Managed to collect all of the samples from Syndicate space and deliver them to the lab on Ada with the help of Agent Satari of Republic Intelligence."
+
+
+mission "RN Licence to Reinforce the Fleet A"
+	autosave
+	landing
+	name "Option to enlist"
+	descriptions "Return to Geminus to meet up with Commander Shah and Admiral Kent."
+	priority
+	destination "Geminus"
+	to offer
+		has "RN Investigate the Source D: done"
+	on offer
+		dialog
+			`You receive a message from Commander Amelia Shah asking you to meet her on Geminus. "We think it is time to reward you for your dedication," she says.`
+	on complete
+		conversation
+			`You land at the spaceport and make your way to Commander Shah's office but are stopped by the NCO who acts as her receptionist.`
+			`	"Ah, Captain <last>," he says. "Commander Shah would like you to meet her in briefing room 3. And, uh..." He looks over your clothing with a critical scowl. "You may want to freshen up a little first."`
+			choice
+				`(Go straight to the briefing room.)`
+					goto meeting
+				`(Take a detour to the nearest bathroom to fix yourself up as much as you can.)`
+					goto meeting
+				`"Keep your opinions to yourself."`
+					`	The man shrugs and sits back at his desk indignantly.`
+					`	"Fine. Go like that. I was just trying to help."`
+					label meeting
+						`	You enter the briefing room to find Commander Shah sitting with Colonel Kent and a few other officers that you don't recognise. As soon as she sees you, Shah gets to her feet and strides over to you then ushers you to the seat beside the colonel.`
+						`	"This is him," she says, resuming her seat next to you. "Captain <last> has been instrumental in uncovering the treachery of the Syndicate."`
+					choice
+						`"I don't know about that. I'm just a pilot."`
+							goto modest
+						`"Anything to serve the Republic."`
+							goto modest
+						`"So it's confirmed? The Syndicate built the nukes?"`
+						`(Say nothing.)`
+							goto offer
+							`	The tension in the room doubles and the officers all exchange looks.`
+							`	"We'll come to that," Commander Shah assures you. "For now we have something a little more cheerful to discuss."`
+								goto offer
+							label modest
+								`	Commander Shah grins and exchanges a look with some of the other officers.`
+								`	"There is no need to be modest, Captain," Admiral Kent says, patting you on the back. "We have all seen the reports."
+								`	"You have displayed impressive tactical awareness," one of the other officers chimes in, a pinch-faced man with commander's stripes and the name 'Nguyen" on his chest. "And admirable flying ability. Better even than most Navy pilots."`
+								`	"I wouldn't go that far," the other officer grumbles, a captain by the name of Hines. He leans forward to address you directly. "An academy education does more than just teach you to run a ship. Sure, you can fly, but other than that..." He huffs and shakes his head. "You are rough around the edges."`
+								`	"That may be," Shah says, a core of ice in her voice. "But Captain <last> has got results where our regular navy captains have not."`
+								`	Colonel Kent holds up a hand before Captain Hines can say anything more. "There is no point in discussing this any further."`
+								`	Hines simply nods his ascent, though he doesn't look happy.`
+							label offer
+								`	Colonel Kent turns to you, a smile tugging at his lips. "Captain <last>," he says formally. "Due to your outstanding work on behalf of the Republic Navy, we have been authorised to offer you a full Navy commission."`
+								`	You look around the table wondering if this is some kind of joke but everyone seems serious.`
+								`	"Of course, your situation is... unique, and as such this would be a special kind of commission. You would officially hold the rank of Captain, but would exist outside of the normal rank structure. The bureaucrats describe it as an adjunct commission. Essentially you run your own ships just as you do now, but you fly navy colors."`
+								`	"You've missed out the best part," Commander Shah interrupts.`
+								`	"The best part is, as a Navy officer you can requisition, or in your case buy, navy ships. You can fly a frigate!"`
+								`	"If he can afford one," Captain Hines says, but he fails to bring the mood down.`
+								choice
+								`"Where do I sign up?"`
+								`"I don't know what to say. Thank you."`
+								`"Sorry, I am not interested in joining the Navy. Even as an adjunct."`
+									goto nope
+									`	Colonel Kent slides a small blue box closer to himself and opens it. He takes out a set of golden navy captain's stripes in both hands and turns towards you.`
+									`	"Captain <last>. Do you swear to uphold the values and principles of the Republic? To comport yourself with honor and respect? To put your duty to the people of the Republic above all other concerns?"`
+									choice
+										`"I do."`
+											goto accept
+										`"Wait, can I think about this?"`
+											label nope
+											`	The officers look uncomfortable, all except for Hines who grins.`
+											`	"Think carefully," Shah says impatiently. "Accepting gives you clearance for the briefing we are about to hold. You can either join up and continue the fight, or..."`
+											`	"Or go back to being a merchant," Hines finishes for her, the contempt obvious in his voice.`
+											choice
+												`"Okay, I'm in."`
+													goto accept
+												`"No. This isn't for me."`
+														goto fail
+											label accept
+												`	Kent pins the stripes to your arm and then hands you a small tubular electronic device about the size of a data drive. "Hold this tight in your hand," Kent says, and when you do the device heats up and then vibrates. "It has paired with you, only you will be able to use it from now on. It will unscramble coded messages and identify you to any Navy systems."`
+												`	You put the device in your pocket and then Colonel Kent firmly shakes your hand. "Welcome to the service," he says. You look around the table. Nguyen is grinning in an endearingly goofy way, Hines is staring back at you with a poker face and Shah looks, if anything, proud.`
+												`	"You made the right choice, Captain," she says. "We need people that we can trust for what's coming next."`
+		# code to add navy licence goes here.
