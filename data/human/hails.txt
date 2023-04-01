@@ -1964,6 +1964,54 @@ phrase "friendly civilian"
 	word
 		"."
 
+phrase "friendly civilian"
+	word
+		"Sometimes it's too good to be true."
+		"Don't take unnecessary risks."
+		"Crime doesn't pay in the end."
+		""
+	word
+		" It's a fact that "
+		" I've heard "
+		" I heard a rumor that "
+	word
+		"smugglers almost always get caught in the end."
+		"sven the most powerful warship won't save you from a knife in the back."
+		"the Quarg will arrest you if they catch a whiff of any of their equipment on your ship."
+		"the Quarg imprison anyone they catch carrying their outfits."
+		"nine out of ten pirates die within their first year."
+
+phrase "friendly civilian"
+	word
+		"When I was younger,"
+		"When I was a kid,"
+		"When I was your age,"
+		"Long ago,"
+	word
+		" I dreamed of "
+		" I had hopes of "
+		" I had dreams of "
+	word
+		"flying "
+		"owning "
+		"piloting "
+	word
+		"an Auxiliary. Too bad only the Navy can use those."
+		"a Bactrian. The maintenance costs though? I'm not so sure anymore."
+		"a Bulk Freighter. They may be slow, but they're worth their weight in gold."
+		"a Protector. Sure, it's an ugly ship, but the firepower?"
+		"a Shuttle. A lot has changed since then!"
+		"a Flivver. Now, I could buy ten."
+
+phrase "friendly civilian"
+	word
+		"I was born on "
+		"I come from "
+		"Before I bought my first ship, I lived on "
+	word
+		"New Sahara. It's not often you meet someone else from there."
+		"Earth. I was lucky to escape."
+
 phrase "friendly navy"
 	word
 		"The Navy"
