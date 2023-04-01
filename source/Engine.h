@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "EscortDisplay.h"
 #include "Information.h"
 #include "Point.h"
+#include "Preferences.h"
 #include "Radar.h"
 #include "Rectangle.h"
 
@@ -128,6 +129,8 @@ private:
 	void AddSprites(const Ship &ship);
 
 	void DoGrudge(const std::shared_ptr<Ship> &target, const Government *attacker);
+	void EmplaceStatusOverlays(const std::shared_ptr<Ship> &ship, Preferences::OverlayType parent_setting,
+		Preferences::OverlayType setting, int value);
 
 
 private:
