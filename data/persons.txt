@@ -158,7 +158,6 @@ person "Marauding Max"
 			"got what it takes to "
 			"got the gumption to "
 			"could "
-			"are capable of "
 			"have the guramba to "
 			"are good enough to "
 		word
