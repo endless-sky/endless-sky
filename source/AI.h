@@ -32,6 +32,7 @@ class Body;
 class Flotsam;
 class Government;
 class Minable;
+class Planet;
 class PlayerInfo;
 class Ship;
 class ShipEvent;
@@ -169,6 +170,8 @@ private:
 		// actively needs to move back to the position it was holding.
 		static const int HOLD_ACTIVE = 0x001;
 		static const int MOVE_TO = 0x002;
+		static const int TRAVEL_TO = 0x003;
+		static const int LAND_ON = 0x004;
 		static const int KEEP_STATION = 0x100;
 		static const int GATHER = 0x101;
 		static const int ATTACK = 0x102;
@@ -181,6 +184,7 @@ private:
 		std::weak_ptr<Ship> target;
 		Point point;
 		const System *targetSystem = nullptr;
+		const Planet *targetPlanet = nullptr;
 	};
 
 
@@ -188,6 +192,8 @@ private:
 	void IssueOrders(const PlayerInfo &player, const Orders &newOrders, const std::string &description);
 	// Convert order types based on fulfillment status.
 	void UpdateOrders(const Ship &ship);
+	// NPC commands from mission events.
+	void IssueNPCOrders(Ship &ship, const System *waypoint, const std::map<const Planet *, bool> stopovers);
 
 
 private:
@@ -217,8 +223,8 @@ private:
 	// The minimum speed before landing will consider non-landable objects.
 	const float MIN_LANDING_VELOCITY = 80.;
 
-	// Current orders for the player's ships. Because this map only applies to
-	// player ships, which are never deleted except when landed, it can use
+	// Current orders for the player's ships or NPCs. Because this map only applies
+	// to special ships, which are never deleted except when landed, it can use
 	// ordinary pointers instead of weak pointers.
 	std::map<const Ship *, Orders> orders;
 
