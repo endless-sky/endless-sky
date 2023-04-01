@@ -651,31 +651,12 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			continue;
 		}
 
-		// Check if a ship is armed with only ammo-using weapons,
-		// but no longer has the ammunition needed to use them.
-		bool needsAmmo = false;
-		for(const Hardpoint &hardpoint : it->Weapons())
-		{
-			const Weapon *weapon = hardpoint.GetOutfit();
-			if(weapon && !hardpoint.IsAntiMissile())
-			{
-				const Outfit *ammo = weapon->Ammo();
-				if(!ammo || it->OutfitCount(ammo))
-				{
-					// This ship has at least one usable weapon.
-					needsAmmo = false;
-					break;
-				}
-				else
-					needsAmmo = true;
-			}
-		}
-
 		// Run away if your hostile target is not disabled
 		// and you are either badly damaged or have run out of ammo.
 		// Player ships never stop targeting hostiles, while hostile mission NPCs will
 		// do so only if they are allowed to leave.
 		const bool lowHealth = healthRemaining < RETREAT_HEALTH + .25 * personality.IsCoward();
+		const bool needsAmmo = it->GetAICache().NeedsAmmo();
 		const bool shouldFlee = personality.IsFleeing()
 				|| (!personality.IsStaying()
 				&& ((!personality.IsDaring() && lowHealth) || needsAmmo));
