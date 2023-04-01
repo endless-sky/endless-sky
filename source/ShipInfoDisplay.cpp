@@ -48,7 +48,7 @@ ShipInfoDisplay::ShipInfoDisplay(const Ship &ship, const PlayerInfo &player, boo
 void ShipInfoDisplay::Update(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed, bool sale)
 {
 	UpdateDescription(ship.Description(), ship.Attributes().Licenses(), true);
-	UpdateAttributes(ship, player, descriptionCollapsed);
+	UpdateAttributes(ship, player, descriptionCollapsed, sale);
 	const Depreciation &depreciation = ship.IsYours() ? player.FleetDepreciation() : player.StockDepreciation();
 	UpdateOutfits(ship, player, depreciation);
 
@@ -132,7 +132,7 @@ void ShipInfoDisplay::DrawOutfits(const Point &topLeft) const
 
 
 
-void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed, bool sale)
+void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed, bool sale = false)
 {
 	bool isGeneric = ship.Name().empty() || ship.GetPlanet();
 
