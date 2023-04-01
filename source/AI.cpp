@@ -4347,7 +4347,6 @@ void AI::IssueNPCOrders(Ship &ship, const System *waypoint, const std::map<const
 				}
 				else
 					newOrders.type = 0;
-				
 			}
 		}
 	}

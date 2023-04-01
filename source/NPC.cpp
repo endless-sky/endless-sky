@@ -698,7 +698,7 @@ bool NPC::HasFailed() const
 // Create a copy of this NPC but with the fleets replaced by the actual
 // ships they represent, wildcards in the conversation text replaced, etc.
 NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Planet *destinationPlanet,
-  int jumps, int64_t payload) const
+	int jumps, int64_t payload) const
 {
 	NPC result;
 	result.destination = destinationPlanet->GetSystem();
@@ -764,7 +764,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Plan
 		if(choice)
 			result.stopovers.push_back(choice);
 	}
-	
+
 	// If a planet was specified in the template, it must be in this system.
 	if(planet && result.system->FindStellar(planet))
 		result.planet = planet;
@@ -793,7 +793,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Plan
 		ship->SetPersonality(result.personality);
 		if(result.personality.IsDerelict())
 			ship->Disable();
-		
+
 		// Use the destinations stored in the NPC copy, in case they were auto-generated.
 		if(!result.stopovers.empty())
 			ship->SetStopovers(result.stopovers, result.doVisit);
