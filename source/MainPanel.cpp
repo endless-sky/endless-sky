@@ -444,8 +444,9 @@ bool MainPanel::ShowHailPanel()
 	{
 		// If the target is out of system, always report a generic response
 		// because the player has no way of telling if it's presently jumping or
-		// not. If it's in system and has begun jumping, report that.
-		if(!target->IsTargetable() || target->GetSystem() != player.GetSystem())
+		// not. If it's in system and jumping, report that.
+		if(target->Zoom() < 1. || target->IsDestroyed() || target->GetSystem() != player.GetSystem()
+				|| target->Cloaking() == 1.)
 			Messages::Add("Unable to hail target " + target->Noun() + ".", Messages::Importance::High);
 		else if(target->IsEnteringHyperspace())
 			Messages::Add("Unable to send hail: " + target->Noun() + " is entering hyperspace."

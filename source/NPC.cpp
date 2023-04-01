@@ -69,8 +69,6 @@ void NPC::Load(const DataNode &node)
 			succeedIf |= ShipEvent::CAPTURE;
 		else if(node.Token(i) == "provoke")
 			succeedIf |= ShipEvent::PROVOKE;
-		else if(node.Token(i) == "land")
-			succeedIf |= ShipEvent::LAND;
 		else if(node.Token(i) == "evade")
 			mustEvade = true;
 		else if(node.Token(i) == "accompany")
@@ -555,17 +553,9 @@ bool NPC::HasFailed() const
 		if(it.second & failIf)
 			return true;
 
-		// If we still need to perform an action that requires the NPC ship be
-		// alive, then that ship being destroyed or landed causes the mission to fail.
-		if((~it.second & succeedIf) && (it.second & (ShipEvent::DESTROY | ShipEvent::LAND)))
-			return true;
-
-		// If this ship has landed permanently, the NPC has failed if
-		// 1) it must accompany and is not in the destination system, or
-		// 2) it must evade, and is in the destination system.
-		if((it.second & ShipEvent::LAND) && it.first->GetSystem()
-				&& ((mustAccompany && it.first->GetSystem() != destination)
-					|| (mustEvade && it.first->GetSystem() == destination)))
+		// If we still need to perform an action on this NPC, then that ship
+		// being destroyed should cause the mission to fail.
+		if((~it.second & succeedIf) && (it.second & ShipEvent::DESTROY))
 			return true;
 	}
 
@@ -576,10 +566,9 @@ bool NPC::HasFailed() const
 
 // Create a copy of this NPC but with the fleets replaced by the actual
 // ships they represent, wildcards in the conversation text replaced, etc.
-NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Planet *destinationPlanet) const
+NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const System *destination) const
 {
 	NPC result;
-	result.destination = destinationPlanet->GetSystem();
 	result.government = government;
 	if(!result.government)
 		result.government = GameData::PlayerGovernment();

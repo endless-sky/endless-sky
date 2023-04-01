@@ -1397,7 +1397,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		return result;
 	}
 	for(const NPC &npc : npcs)
-		result.npcs.push_back(npc.Instantiate(subs, sourceSystem, result.destination));
+		result.npcs.push_back(npc.Instantiate(subs, sourceSystem, result.destination->GetSystem()));
 
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.

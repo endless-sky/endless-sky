@@ -286,9 +286,6 @@ public:
 	void Restore();
 	// Check if this ship has been destroyed.
 	bool IsDestroyed() const;
-	// Land / Check if this ship has permanently landed.
-	void Land();
-	bool HasLanded() const;
 	// Recharge and repair this ship (e.g. because it has landed).
 	void Recharge(bool atSpaceport = true);
 	// Check if this ship is able to give the given ship enough fuel to jump.
@@ -430,10 +427,6 @@ public:
 	const StellarObject *GetTargetStellar() const;
 	// Get ship's target system (it should always be one jump / wormhole pass away).
 	const System *GetTargetSystem() const;
-	// Targets for persistent ships (i.e. mission NPCs).
-	const bool HasTravelDirective() const;
-	const System *GetDestinationSystem() const;
-	
 	// Mining target.
 	std::shared_ptr<Minable> GetTargetAsteroid() const;
 	std::shared_ptr<Flotsam> GetTargetFlotsam() const;
@@ -506,8 +499,7 @@ private:
 	int forget = 0;
 	bool isInSystem = true;
 	// "Special" ships cannot be forgotten, and if they land on a planet, they
-	// continue to exist and refuel instead of being deleted, unless explicitly
-	// designed to do so by a mission's NPC specification.
+	// continue to exist and refuel instead of being deleted.
 	bool isSpecial = false;
 	bool isYours = false;
 	bool isParked = false;
@@ -524,7 +516,6 @@ private:
 	bool neverDisabled = false;
 	bool isCapturable = true;
 	bool isInvisible = false;
-	bool hasLanded = false;
 	int customSwizzle = -1;
 	double cloak = 0.;
 	double cloakDisruption = 0.;
@@ -637,12 +628,6 @@ private:
 	const System *targetSystem = nullptr;
 	std::weak_ptr<Minable> targetAsteroid;
 	std::weak_ptr<Flotsam> targetFlotsam;
-
-	// NPC travel directives
-	const System *destinationSystem = nullptr;
-	// The list of planets this NPC may land on, and if they have already
-	// been landed on in this sequence.
-	std::map<const Planet *, bool> travelDestinations;
 
 	// Links between escorts and parents.
 	std::vector<std::weak_ptr<Ship>> escorts;
