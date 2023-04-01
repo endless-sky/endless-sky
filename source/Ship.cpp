@@ -1993,7 +1993,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				angle += commands.Turn() * TurnRate() * slowMultiplier;
 			}
 		}
-		double thrustCommand = commands.Has(Command::FORWARD) - commands.Has(Command::BACK);
+		double thrustCommand = commands.Thrust();
 		double thrust = 0.;
 		if(thrustCommand)
 		{
@@ -2053,6 +2053,33 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				}
 			}
 		}
+		// Lateral Thrust functionality.
+		double latThrustCommand = commands.LateralThrust();
+		double latThrust = 0.;
+		if (latThrustCommand)
+		{
+			// Check if we are able to apply this thrust.
+			double cost = attributes.Get("thrusting energy") * 0.5;
+			if (energy < cost)
+				latThrustCommand *= energy / cost;
+
+			if (latThrustCommand)
+			{
+				// These will be used for lateral thrusting flares once supported.
+				// isLatThrusting = true;
+				// lateralDirection = latThrustCommand;
+				latThrust = attributes.Get("thrust") * 0.5;
+				if (latThrust)
+				{
+					double scale = fabs(latThrustCommand);
+					energy -= scale * cost;
+					heat += scale * attributes.Get("thrusting heat") * 0.5;
+					Point lateral(-angle.Unit().Y(), angle.Unit().X());
+					acceleration += lateral * (latThrustCommand * latThrust / mass);
+				}
+			}
+		}
+
 		bool applyAfterburner = (commands.Has(Command::AFTERBURNER) || (thrustCommand > 0. && !thrust))
 				&& !CannotAct();
 		if(applyAfterburner)
@@ -2127,7 +2154,10 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				if((aNormal > 0.) != (vNormal > 0.) && fabs(aNormal) > fabs(vNormal))
 					dragAcceleration = -vNormal * angle.Unit();
 			}
-			velocity += dragAcceleration;
+			if(velocity.Length() > MaxVelocity() || velocity.Length() < 0.1)
+				velocity += dragAcceleration;
+			else
+				velocity += acceleration;
 		}
 		acceleration = Point();
 	}
