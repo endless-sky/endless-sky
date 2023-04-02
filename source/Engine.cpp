@@ -164,28 +164,32 @@ namespace {
 			Point pos = ship.Facing().Rotate(point) * ship.Zoom() + ship.Position();
 			// If multiple engines with the same flare are installed,
 			// draw up to three copies of the flare sprite.
-			for (const auto& it : flareSprites)
-				if ((point.side == side && point.steering == Ship::EnginePoint::NONE && point.lateral == Ship::EnginePoint::NONE)
+			for(const auto & it : flareSprites)
+				if((point.side == side && point.steering == Ship::EnginePoint::NONE
+					&& point.lateral == Ship::EnginePoint::NONE)
 					|| (point.steering == Ship::EnginePoint::LEFT && ship.SteeringDirection() < 0.)
 					|| (point.steering == Ship::EnginePoint::RIGHT && ship.SteeringDirection() > 0.)
 					|| (point.lateral == Ship::EnginePoint::LEFT && ship.LateralDirection() < 0.)
 					|| (point.lateral == Ship::EnginePoint::RIGHT && ship.LateralDirection() > 0.))
-					for (int i = 0; i < it.second && i < 3; ++i)
+					for(int i = 0; i < it.second && i < 3; ++i)
 					{
 						// Scale all engine flares by the magnitude of the thrust/turn.
-						if (!(point.steering == Ship::EnginePoint::NONE))
+						if(!(point.steering == Ship::EnginePoint::NONE))
 						{
-							Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.facing, point.zoom * abs(ship.SteeringDirection()));
+							Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.facing,
+								point.zoom * abs(ship.SteeringDirection()));
 							draw.Add(sprite, ship.Cloaking());
 						}
-						else if (!(point.lateral == Ship::EnginePoint::NONE))
+						else if(!(point.lateral == Ship::EnginePoint::NONE))
 						{
-							Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.facing, point.zoom * abs(ship.LateralDirection()));
+							Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.facing,
+								point.zoom * abs(ship.LateralDirection()));
 							draw.Add(sprite, ship.Cloaking());
 						}
 						else
 						{
-							Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.facing, point.zoom * abs(ship.ThrustMagnitude()));
+							Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.facing,
+								point.zoom * abs(ship.ThrustMagnitude()));
 							draw.Add(sprite, ship.Cloaking());
 						}
 					}
@@ -2586,7 +2590,7 @@ void Engine::AddSprites(const Ship &ship)
 	else if(ship.IsReversing() && !ship.ReverseEnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.ReverseEnginePoints(),
 			ship.Attributes().ReverseFlareSprites(), Ship::EnginePoint::OVER);
-	if (ship.IsLatThrusting() && !ship.LateralEnginePoints().empty())
+	if(ship.IsLatThrusting() && !ship.LateralEnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.LateralEnginePoints(),
 			ship.Attributes().FlareSprites(), Ship::EnginePoint::OVER);
 	if(ship.IsSteering() && !ship.SteeringEnginePoints().empty())

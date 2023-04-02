@@ -224,7 +224,7 @@ void Outfit::Load(const DataNode &node)
 			steeringFlareSprites.emplace_back(Body(), 1);
 			steeringFlareSprites.back().first.LoadSprite(child);
 		}
-		else if (child.Token(0) == "lateral flare sprite" && child.Size() >= 2)
+		else if(child.Token(0) == "lateral flare sprite" && child.Size() >= 2)
 		{
 			lateralFlareSprites.emplace_back(Body(), 1);
 			lateralFlareSprites.back().first.LoadSprite(child);
@@ -513,7 +513,7 @@ void Outfit::Add(const Outfit &other, int count)
 		AddFlareSprites(reverseFlareSprites, it, count);
 	for(const auto &it : other.steeringFlareSprites)
 		AddFlareSprites(steeringFlareSprites, it, count);
-	for (const auto& it : other.lateralFlareSprites)
+	for(const auto & it : other.lateralFlareSprites)
 		AddFlareSprites(lateralFlareSprites, it, count);
 	MergeMaps(flareSounds, other.flareSounds, count);
 	MergeMaps(reverseFlareSounds, other.reverseFlareSounds, count);

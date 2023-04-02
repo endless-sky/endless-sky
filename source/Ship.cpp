@@ -298,9 +298,9 @@ void Ship::Load(const DataNode &node)
 						for(unsigned j = 1; j < STEERING_FACING.size(); ++j)
 							if(grandKey == STEERING_FACING[j])
 								engine.steering = j;
-					if (lateral)
-						for (unsigned j = 1; j < LATERAL_FACING.size(); ++j)
-							if (grandKey == LATERAL_FACING[j])
+					if(lateral)
+						for(unsigned j = 1; j < LATERAL_FACING.size(); ++j)
+							if(grandKey == LATERAL_FACING[j])
 								engine.lateral = j;
 				}
 			}
@@ -577,7 +577,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			reverseEnginePoints = base->reverseEnginePoints;
 		if(steeringEnginePoints.empty())
 			steeringEnginePoints = base->steeringEnginePoints;
-		if (lateralEnginePoints.empty())
+		if(lateralEnginePoints.empty())
 			lateralEnginePoints = base->lateralEnginePoints;
 		if(explosionEffects.empty())
 		{
@@ -890,8 +890,8 @@ void Ship::Save(DataWriter &out) const
 			for(const auto &it : baseAttributes.FlareSprites())
 				for(int i = 0; i < it.second; ++i)
 					it.first.SaveSprite(out, "flare sprite");
-			for (const auto& it : baseAttributes.LateralFlareSprites())
-				for (int i = 0; i < it.second; ++i)
+			for(const auto & it : baseAttributes.LateralFlareSprites())
+				for(int i = 0; i < it.second; ++i)
 					it.first.SaveSprite(out, "lateral flare sprite");
 			for(const auto &it : baseAttributes.FlareSounds())
 				for(int i = 0; i < it.second; ++i)
@@ -991,7 +991,7 @@ void Ship::Save(DataWriter &out) const
 			out.Write(STEERING_FACING[point.steering]);
 			out.EndChild();
 		}
-		for (const EnginePoint& point : lateralEnginePoints)
+		for(const EnginePoint &point : lateralEnginePoints)
 		{
 			out.Write("lateral engine", 2. * point.X(), 2. * point.Y());
 			out.BeginChild();

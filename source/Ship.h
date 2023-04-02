@@ -363,9 +363,9 @@ public:
 	double TurnRate() const;
 	double Acceleration() const;
 	double MaxVelocity() const;
-	double DisplayThrust()  const;
-	double DisplayTurn()  const;
-	double DisplayLateralThrust()  const;
+	double DisplayThrust() const;
+	double DisplayTurn() const;
+	double DisplayLateralThrust() const;
 	double ReverseAcceleration() const;
 	double MaxReverseVelocity() const;
 	// This is their potential acceleration right now
