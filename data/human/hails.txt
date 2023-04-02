@@ -2019,7 +2019,7 @@ phrase "friendly civilian"
 		"an Osprey. I still can't afford one."
 		"a Corvette. Look how sleek they are!"
 		"a Sparrow. My parents talked me out of it, though."
-		"a Star Liner. It's just too bad its crew quarters aren't as good as its passenger bunks, though."
+		"a Star Queen. It's just too bad its crew quarters aren't as good as its passenger bunks, though."
 		"a Scout. Something about exploring the fringes of human space still appeals to me."
 
 phrase "friendly civilian"
