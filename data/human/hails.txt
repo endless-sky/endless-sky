@@ -1987,6 +1987,8 @@ phrase "friendly civilian"
 		"the Quarg will arrest you if they catch a whiff of any of their equipment on your ship."
 		"the Quarg imprison anyone they catch carrying their outfits."
 		"nine out of ten pirates die within their first year."
+		"Republic Intelligence has their eyes everywhere."
+		"the law will always catch up to those who try to bypass it."
 
 phrase "friendly civilian"
 	word
