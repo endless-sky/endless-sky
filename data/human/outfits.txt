@@ -130,7 +130,7 @@ outfit "Small Radar Jammer"
 	thumbnail "outfit/small radar jammer"
 	"mass" 4
 	"outfit space" -4
-	"radar jamming" 2
+	"radar jamming" 4
 	description "This radar jammer is designed to interfere with Sidewinders and any other missiles that rely on radar for tracking their targets. Jamming will occasionally cause missiles to lose their target locks."
 
 outfit "Large Radar Jammer"
@@ -139,7 +139,7 @@ outfit "Large Radar Jammer"
 	thumbnail "outfit/large radar jammer"
 	"mass" 14
 	"outfit space" -14
-	"radar jamming" 10
+	"radar jamming" 18
 	description "This high-power radar jammer will make it much more difficult for missiles that rely on radar to track you. It will not affect missiles that track you optically or that look for your ship's heat signature."
 
 

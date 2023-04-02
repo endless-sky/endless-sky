@@ -865,10 +865,10 @@ outfit "Sidewinder Missile Launcher"
 		"reload" 60
 		"firing energy" 1
 		"firing heat" 15
-		"acceleration" .3
-		"drag" .021
+		"acceleration" .6
+		"drag" .042
 		"turn" 4
-		"homing" 4
+		"homing" 3
 		"radar tracking" .9
 		"shield damage" 260
 		"hull damage" 180
@@ -906,15 +906,15 @@ outfit "Sidewinder Missile Pod"
 		"burst reload" 60
 		"firing energy" 1
 		"firing heat" 15
-		"acceleration" .3
-		"drag" .021
+		"acceleration" .6
+		"drag" .042
 		"turn" 4
-		"homing" 4
+		"homing" 3
 		"radar tracking" .9
 		"shield damage" 260
 		"hull damage" 180
 		"hit force" 170
-		"missile strength" 12
+		"missile strength" 18
 	description "The Sidewinder Missile is designed by Lovelace Labs, which is ironically also the designer of the Anti-Missile Turret. Rumors say that the two engineering teams at Lovelace who make the missiles and the anti-missiles are locked in furious competition with each other: the result has been generation after generation of smarter missiles and then smarter turrets to fend them off."
 	description "	Although not as powerful or cheap as the popular Meteor Missiles, Sidewinders have several advantages, including their superior maneuverability, better tracking systems, and protective casings that make them much harder for anti-missile systems to destroy."
 	description "	Pods enable fighters and other light craft to carry small quantities of missiles into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
@@ -1053,11 +1053,11 @@ outfit "Torpedo Launcher"
 		"reload" 150
 		"firing energy" 2
 		"firing heat" 45
-		"acceleration" .1
-		"drag" .015
+		"acceleration" .2
+		"drag" .03
 		"turn" 1.5
 		"homing" 3
-		"optical tracking" .85
+		"optical tracking" .8
 		"shield damage" 820
 		"hull damage" 820
 		"hit force" 300
@@ -1093,11 +1093,11 @@ outfit "Torpedo Pod"
 		"burst reload" 150
 		"firing energy" 2
 		"firing heat" 45
-		"acceleration" .1
-		"drag" .015
+		"acceleration" .2
+		"drag" .03
 		"turn" 1.5
 		"homing" 3
-		"optical tracking" .85
+		"optical tracking" .8
 		"shield damage" 820
 		"hull damage" 820
 		"hit force" 300
