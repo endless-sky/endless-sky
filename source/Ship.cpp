@@ -1789,7 +1789,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 			if(isUsingJumpDrive)
 			{
-				position = target + Angle::Random().Unit() * (300. * (Random::Real() + 1.) + extraArrivalDistance);
+				position = target + jumpDriveTargetAngle.Unit() * (300. * (Random::Real() + 1.) + extraArrivalDistance);
+				// give it some jitter, so your ships aren't all stacked
+				position += Angle::Random().Unit() * 300 * Random::Real();
 				return;
 			}
 

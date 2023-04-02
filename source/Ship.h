@@ -457,6 +457,11 @@ public:
 	void SetMoveToward(const Point& p) { moveToward = p; }
 	const Point& GetMoveTowardPos() const { return moveToward; }
 
+	// use a common target angle for jump drives, so that fleets don't just
+	// scatter all around the solar system
+	void SetJumpDriveTargetAngle(const Angle& a) { jumpDriveTargetAngle = a; }
+	const Angle& GetJumpDriveTargetAngle() const { return jumpDriveTargetAngle; }
+
 private:
 	// Add or remove a ship from this ship's list of escorts.
 	void AddEscort(Ship &ship);
@@ -639,6 +644,9 @@ private:
 	// Direction to move toward for MOVETOWARD command
 	Point moveToward;
 	bool removeBays = false;
+
+	// Angle from target location where a ship should jump to
+	Angle jumpDriveTargetAngle;
 };
 
 

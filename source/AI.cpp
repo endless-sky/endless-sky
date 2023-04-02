@@ -3952,6 +3952,15 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		}
 		else
 		{
+			if(!ship.Commands().Has(Command::JUMP))
+			{
+				// At the start of the jump sequence, pick a common target angle for the
+				// jump drive, so that the fleet will appear in the same spot in the target
+				// system, instead of spread all along the edges.
+				auto targetAngle = Angle::Random();
+				for(auto& s: player.Ships())
+					s->SetJumpDriveTargetAngle(targetAngle);
+			}
 			PrepareForHyperspace(ship, command);
 			command |= Command::JUMP;
 
