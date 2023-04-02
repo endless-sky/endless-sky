@@ -24,7 +24,7 @@ using namespace std;
 
 
 
-const bool CategoryList::Category::SortHelper(const CategoryList::Category &a, const CategoryList::Category &b) const
+const bool CategoryList::Category::SortHelper(const CategoryList::Category &a, const CategoryList::Category &b)
 {
 	if(a.precedence == b.precedence)
 		return a.name < b.name;

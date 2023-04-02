@@ -44,7 +44,7 @@ public:
 		const bool operator()(Category &a, Category &b) const { return SortHelper(a, b); }
 
 	private:
-		static const bool SortHelper(const Category &a, const Category &b) const;
+		static const bool SortHelper(const Category &a, const Category &b);
 
 
 	private:
