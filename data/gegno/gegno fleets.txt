@@ -354,20 +354,20 @@ fleet "Vi Warfleet"
 	personality
 		heroic vindictive opportunistic harvests
 	variant 5
-		"Hornfel"
 		"Eclogite" 2
 	variant 3
-		"Eclogite" 3
+		"Hornfel"
+		"Eclogite" 2
 	variant 2
 		"Hornfel"
 		"Hornfel (Light Load)"
 	variant
 		"Gneiss"
-		"Eclogite" 2
+		"Eclogite"
 	variant
 		"Gneiss"
 		"Eclogite"
-		"Hornfel (Heavy Load)" 2
+		"Hornfel (Heavy Load)"
 	variant
 		"Gneiss"
 		"Hornfel (Heavy Weapons)"
@@ -381,23 +381,24 @@ fleet "Scin Warfleet"
 	variant 5
 		"Felsic"
 		"Coesite" 3
-	variant 4
-		"Felsic" 2
+	variant 3
+		"Felsic"
 		"Coesite" 2
+	variant
+		"Felsic" 2
+		"Coesite"
 	variant
 		"Feldspar" 2
 		"Halite" 12
 	variant
 		"Feldspar"
 		"Halite" 6
-		"Coesite" 2
+		"Coesite"
 		"Felsic"
 	variant
 		"Feldspar"
 		"Halite" 6
 		"Coesite" 2
-	variant
-		"Felsic" 3
 		
 fleet "Gegno Vi Duelist A"
 	government "Gegno Vi (Duelist A)"
