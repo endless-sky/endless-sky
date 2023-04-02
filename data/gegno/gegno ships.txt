@@ -328,10 +328,7 @@ ship "Protolith"
 		"Savagery Pike" 53
 		
 		"RG3 Torch Thruster"
-		"RG15 Torch Thruster"
 		"RG3 Torch Steering"
-		"RG15 Torch Steering"
-		"Hyperdrive"
 		
 	"steering engine" 87 -289 0.5
 		angle -90

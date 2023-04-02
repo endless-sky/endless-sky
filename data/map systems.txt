@@ -3482,6 +3482,7 @@ system Aleit
 	fleet "Quarg (Gegno)" 1100
 	fleet "Large Quarg (Gegno)" 1600
 	fleet "Gegno Basic" 1000
+	fleet "Gegno Cargo" 6000
 	object
 		sprite star/g3
 		period 10
@@ -5840,9 +5841,9 @@ system Asio
 	asteroids "medium metal" 9 4.13
 	asteroids "large metal" 2 4.2
 	minables iron 7 1.8
-	fleet "Gegno Basic" 1200
-	fleet "Small Vi" 2300
-	fleet "Gegno Miners" 1600
+	fleet "Gegno Basic" 800
+	fleet "Gegno Cargo" 1200
+	fleet "Gegno Miners" 1200
 	object
 		sprite star/m0
 		period 10
@@ -16165,6 +16166,8 @@ system Heutesl
 	fleet "Gegno Basic" 200
 	fleet "Quarg (Gegno)" 2800
 	fleet "Gegno Miners" 2000
+	fleet "Gegno Cargo" 4000
+	fleet "Gegno Old" 60000
 	object
 		sprite star/f8
 		period 10
@@ -24474,6 +24477,7 @@ system Oosuoro
 	trade Plastic 274
 	fleet "Gegno Basic" 500
 	fleet "Gegno Miners" 2150
+	fleet "Gegno Cargo" 6400
 	object
 		sprite star/g3
 		period 10
@@ -28834,6 +28838,7 @@ system Scija
 	fleet "Vi Transport" 900
 	fleet "Vi Cargo" 1400
 	fleet "Gegno Basic" 3600
+	fleet "Gegno Cargo" 3400
 	fleet "Gegno Miners" 2500
 	object
 		sprite star/b5
@@ -34426,6 +34431,7 @@ system Zeinar
 	fleet "Scin Transport" 800
 	fleet "Scin Cargo" 1500
 	fleet "Gegno Basic" 2600
+	fleet "Gegno Cargo" 2800
 	fleet "Gegno Miners" 2500
 	object
 		sprite star/k5
