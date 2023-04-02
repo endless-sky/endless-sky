@@ -87,8 +87,8 @@ void MapSalesPanel::Draw()
 	DrawKey();
 	DrawPanel();
 	DrawItems();
-	DrawButtons(isOutfitters ? "is outfitters" : "is shipyards");
 	DrawInfo();
+	FinishDrawing(isOutfitters ? "is outfitters" : "is shipyards");
 }
 
 
