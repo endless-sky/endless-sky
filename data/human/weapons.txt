@@ -865,10 +865,10 @@ outfit "Sidewinder Missile Launcher"
 		"reload" 60
 		"firing energy" 1
 		"firing heat" 15
-		"acceleration" .6
-		"drag" .042
+		"acceleration" .45
+		"drag" .031
 		"turn" 4
-		"homing" 3
+		"homing" 4
 		"radar tracking" .9
 		"shield damage" 260
 		"hull damage" 180
@@ -906,10 +906,10 @@ outfit "Sidewinder Missile Pod"
 		"burst reload" 60
 		"firing energy" 1
 		"firing heat" 15
-		"acceleration" .6
-		"drag" .042
+		"acceleration" .45
+		"drag" .031
 		"turn" 4
-		"homing" 3
+		"homing" 4
 		"radar tracking" .9
 		"shield damage" 260
 		"hull damage" 180
