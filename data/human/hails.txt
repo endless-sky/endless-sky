@@ -1965,6 +1965,7 @@ phrase "friendly civilian"
 		"."
 
 phrase "friendly civilian"
+	word
 		"Sometimes it's too good to be true. "
 		"Don't take unnecessary risks. "
 		"Don't get on the bad side of the authorities. "
