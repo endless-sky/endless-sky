@@ -76,7 +76,9 @@ person "Michael Zahniser"
 		turret -23 14 "Heavy Anti-Missile Turret"
 		turret 23 14 "Heavy Anti-Missile Turret"
 		bay "Fighter" -46 106 under
+			"launch effect" "human internal"
 		bay "Fighter" 46 106 under
+			"launch effect" "human internal"
 		explode "small explosion" 50
 		explode "medium explosion" 80
 		explode "large explosion" 120
@@ -254,13 +256,19 @@ ship "Marauder Fury"
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
 		
-	engine -21 42 .9
-	engine 0 48
-	engine 21 42 .9
-	gun -12 -33 "Meteor Missile Launcher"
-	gun 12 -33 "Meteor Missile Launcher"
+	engine -23 44.5 0.6
+	engine 23 44.5 0.6
+	engine -17 43 0.45
+	engine 17 43 0.45
+	engine -12.5 41 0.35
+	engine 12.5 41 0.35
+	engine 0 46
+	gun -13.5 -36 "Meteor Missile Launcher"
+	gun 13.5 -36 "Meteor Missile Launcher"
 	gun -20 -25 "Meteor Missile Launcher"
 	gun 20 -25 "Meteor Missile Launcher"
+	gun -6 -41.5
+	gun 6 -41.5
 	gun -43.5 2 "Hai Tracker Pod"
 	gun 43.5 2 "Hai Tracker Pod"
 	explode "tiny explosion" 10
@@ -783,7 +791,7 @@ ship "Ursa Polaris"
 		"hull repair rate" 7
 		"energy generation" 200
 		"outfit scan power" 186
-		"outfit scan speed" 15
+		"outfit scan efficiency" 15
 		"tactical scan power" 99
 		"asteroid scan power" 69
 		"cargo space" 1408
@@ -1018,7 +1026,7 @@ ship "Shooting Star"
 	explode "pug large explosion" 15
 	"final explode" "final explosion medium"
 	description "This ship appears to be a hollowed-out asteroid filled with strange equipment. It is unclear what is creating the rays of light, but they must have something to do with how it moves without obvious engines."
-	description "	Its advanced properties also allow it to reject the influence of enemy command centers, nullifying their effect."
+	description "	Its advanced properties also allow it to reject the influence of enemy Command Centers, nullifying their effect."
 
 outfit "Crystal Projector"
 	category "Systems"
@@ -1481,7 +1489,7 @@ ship "Modified Boxwing"
 
 person "Gefullte Taubenbrust"
 	government "Author"
-	frequency 1000
+	frequency 200
 	personality
 		heroic plunders opportunistic
 	phrase
@@ -1704,7 +1712,7 @@ effect "fusion cannon cloud"
 
 person "MasterOfGrey"
 	government "Author"
-	frequency 1000
+	frequency 200
 	personality
 		heroic plunders opportunistic
 	system
@@ -1761,9 +1769,9 @@ ship "Modified Ladybug"
 		# Features from original Ladybug:
 		"ramscoop" 0.5
 		"cargo scan power" 5
-		"cargo scan speed" 16
+		"cargo scan efficiency" 16
 		"outfit scan power" 17
-		"outfit scan speed" 15
+		"outfit scan efficiency" 15
 		"tactical scan power" 25
 		"atmosphere scan" 100
 		"asteroid scan power" 30

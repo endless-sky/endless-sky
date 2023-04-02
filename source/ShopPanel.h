@@ -46,6 +46,30 @@ public:
 	virtual void Step() override;
 	virtual void Draw() override;
 
+
+protected:
+	// BuyResult holds the result of an attempt to buy. It is implicitly
+	// created from a string or boolean in code. Any string indicates failure.
+	// True indicates success, of course, while false (without a string)
+	// indicates failure, but no need to pop up a message about it.
+	class BuyResult {
+	public:
+		BuyResult(const char *error) : success(false), message(error) {}
+		BuyResult(std::string error) : success(false), message(std::move(error)) {}
+		BuyResult(bool result) : success(result), message() {}
+
+		explicit operator bool() const noexcept { return success; }
+
+		bool HasMessage() const noexcept { return !message.empty(); }
+		const std::string &Message() const noexcept { return message; }
+
+
+	private:
+		bool success = true;
+		std::string message;
+	};
+
+
 protected:
 	void DrawShipsSidebar();
 	void DrawDetailsSidebar();
@@ -65,9 +89,8 @@ protected:
 	virtual int DividerOffset() const = 0;
 	virtual int DetailWidth() const = 0;
 	virtual int DrawDetails(const Point &center) = 0;
-	virtual bool CanBuy(bool checkAlreadyOwned = true) const = 0;
-	virtual void Buy(bool alreadyOwned = false) = 0;
-	virtual void FailBuy() const = 0;
+	virtual BuyResult CanBuy(bool onlyOwned = false) const = 0;
+	virtual void Buy(bool onlyOwned = false) = 0;
 	virtual bool CanSell(bool toStorage = false) const = 0;
 	virtual void Sell(bool toStorage = false) = 0;
 	virtual void FailSell(bool toStorage = false) const;

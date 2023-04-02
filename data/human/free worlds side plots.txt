@@ -21,7 +21,7 @@ mission "FW Zug Expansion: Assisted"
 		near Zubeneschamali 2 4
 	destination "Zug"
 	to offer
-		has "event: tarazed diplomacy"
+		has "event: tarazed assistance"
 		not "FW Diplomacy 1: done"
 	on offer
 		conversation
@@ -362,7 +362,7 @@ mission "FW Flamethrower 2"
 		log "Assisted Barmy Edward with another weapon test: this time, a flamethrower weapon that works by overheating and disabling its target rather than dealing lots of damage to it. It may or may not be useful in actual combat."
 		conversation
 			scene "outfit/flamethrower"
-			`You head to the hangar to meet up with Barmy Edward, and find him tinkering with a large gun you don't recognize. Presumably, this is the flamethrower that you were just attacked with in orbit. "It runs on hyperspace fuel, you see," he says. "So, what did you think?"`
+			`You head to the hangar to meet up with Barmy Edward, and find him tinkering with a large gun you don't recognize. Presumably, this is the Flamethrower that you were just attacked with in orbit. "It runs on hyperspace fuel, you see," he says. "So, what did you think?"`
 			choice
 				`	"It's a terrifying weapon."`
 					goto terrifying
@@ -379,7 +379,7 @@ mission "FW Flamethrower 2"
 			`	"That is an interesting idea," you say. "Are they available for sale yet?"`
 				goto available
 			label bad
-			`	"Oh." He seems somewhat dejected. "Well, if you were flying a smaller ship, you might think differently. Or if your ship didn't have adequate cooling. Or maybe the Doombat didn't get close enough to give you the full power of it. My idea was to target pirate ships with those illegal modified blasters that run hotter than usual."`
+			`	"Oh." He seems somewhat dejected. "Well, if you were flying a smaller ship, you might think differently. Or if your ship didn't have adequate cooling. Or maybe the Doombat didn't get close enough to give you the full power of it. My idea was to target pirate ships with those illegal Modified Blasters that run hotter than usual."`
 			`	"I guess that makes sense," you say, "although I wouldn't want to run out of jump fuel by accident. Are you going to be making them available for sale?"`
 				goto available
 			label available
@@ -455,7 +455,7 @@ mission "FW Wolf Pack 1B"
 	
 	on offer
 		conversation
-			`You land your ship by night in a private hangar that you assume is owned by one of the elite families on <origin>. Your contact is wearing a black mask over his face. That seems unnecessary to you, but perhaps he is just really enjoying the thrill of being involved in something illegal. He hands you a data card and says, "This contains all the information you will need to build your own catalytic ramscoop. And before you leave, you may also visit our private outfitter and purchase one of your own, if you wish."`
+			`You land your ship by night in a private hangar that you assume is owned by one of the elite families on <origin>. Your contact is wearing a black mask over his face. That seems unnecessary to you, but perhaps he is just really enjoying the thrill of being involved in something illegal. He hands you a data card and says, "This contains all the information you will need to build your own Catalytic Ramscoop. And before you leave, you may also visit our private outfitter and purchase one of your own, if you wish."`
 			choice
 				`	"Thank you."`
 					goto leave
@@ -470,7 +470,7 @@ mission "FW Wolf Pack 1B"
 		payment 250000
 		event "fw gets catalytic ramscoop" 24
 		log "Helped the Free Worlds gain access to new ramscoop technology that has been developed in the Deep. This should make it significantly easier to travel long distances through unfriendly systems."
-		dialog `You deliver the data card with the details of the catalytic ramscoop to the contact you were given in the Delta V corporation. "Excellent," she says. "We have been trying to duplicate their work for months, but this will make it much easier." She hands you a credit chip worth <payment>, and says, "We'll contact you when we've begun mass-producing the new ramscoops. I hope they will be useful in the conflict ahead."`
+		dialog `You deliver the data card with the details of the Catalytic Ramscoop to the contact you were given in the Delta V corporation. "Excellent," she says. "We have been trying to duplicate their work for months, but this will make it much easier." She hands you a credit chip worth <payment>, and says, "We'll contact you when we've begun mass-producing the new ramscoops. I hope they will be useful in the conflict ahead."`
 
 
 
@@ -596,7 +596,7 @@ event "wolf pack gacrux end"
 mission "FW Wolf Pack 3"
 	landing
 	name "Attack Food Convoy"
-	description "Destroy two Republic bulk freighters in the Gacrux system that are carrying food, then report back to <planet> for payment."
+	description "Destroy two Republic Bulk Freighters in the Gacrux system that are carrying food, then report back to <planet> for payment."
 	source
 		government "Free Worlds"
 	destination "Solace"
@@ -610,7 +610,7 @@ mission "FW Wolf Pack 3"
 	
 	on offer
 		dialog
-			`You receive another message from the Wolf Pack: "Great work with those freighters, Captain! We've got another target for you, if you're interested: a pair of bulk freighters, which you ought to be able to intercept in the Gacrux system. It's an uninhabited system, so you shouldn't have much interference from the Navy. As before, you only need to destroy the freighters, not any other ships you encounter."`
+			`You receive another message from the Wolf Pack: "Great work with those freighters, Captain! We've got another target for you, if you're interested: a pair of Bulk Freighters, which you ought to be able to intercept in the Gacrux system. It's an uninhabited system, so you shouldn't have much interference from the Navy. As before, you only need to destroy the freighters, not any other ships you encounter."`
 			`	Every one of these missions you complete will create more animosity between the Republic and the Free Worlds. But on the other hand, they may be right that it's the fastest way to bring this war to a close.`
 	
 	on accept
@@ -692,7 +692,7 @@ mission "FW Wolf Pack 4"
 		government "Republic"
 		system "Mizar"
 		personality timid staying target
-		ship "Auxiliary (Cargo)" "RNS Golden Fleece"
+		ship "Auxiliary (Cargo Mark II)" "RNS Golden Fleece"
 		dialog "You have eliminated the Auxiliary that was carrying food to the Republic. Time to report back to the Wolf Pack and receive your reward."
 	npc
 		government "Republic"

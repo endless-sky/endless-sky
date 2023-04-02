@@ -34,18 +34,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	// Dimensions of the table.
-	const int MIN_X = -310;
-	const int MAX_X = 190;
-
 	// Column headings.
 	const string HEADING[6] = {"Type", "Principal", "Interest", "Term", "Payment", ""};
 	// X coordinates of the columns of the table.
-	const int COLUMN[5] = {-290, -180, -100, -30, 20};
-	const int EXTRA_X = 100;
-
-	// Position of the first line of the table.
-	const int FIRST_Y = 78;
+	const int COLUMN[5] = {20, 130, 210, 280, 330};
+	const int EXTRA_X = 410;
 
 	// Maximum number of rows of mortages, etc. to draw.
 	const int MAX_ROWS = 8;
@@ -75,10 +68,17 @@ void BankPanel::Step()
 // Draw the bank information.
 void BankPanel::Draw()
 {
+	// Draw the "Pay All" button.
+	const Interface *bankUi = GameData::Interfaces().Get("bank");
+	const Rectangle box = bankUi->GetBox("content");
+	const int MIN_X = box.Left();
+	const int FIRST_Y = box.Top();
+	const int MAX_X = box.Right();
+
 	// Set up the table that will contain most of the information.
 	Table table;
 	for(auto x : COLUMN)
-		table.AddColumn(x);
+		table.AddColumn(MIN_X + x);
 	// The last column is for the "pay extra" button.
 	table.AddColumn(MAX_X - 20, {Alignment::RIGHT});
 	table.SetHighlight(MIN_X + 10, MAX_X - 10);
@@ -245,7 +245,7 @@ void BankPanel::Draw()
 	if(!qualify)
 		amount = "You do not qualify for further loans at this time.";
 	else
-		amount = "You qualify for a new loan of up to " + Format::Credits(qualify) + " credits.";
+		amount = "You qualify for a new loan of up to " + Format::CreditString(qualify) + ".";
 	if(qualify && selectedRow >= mortgageRows)
 		table.DrawHighlight(back);
 	const auto amountLayout = Layout(380, Truncate::MIDDLE);
@@ -256,8 +256,6 @@ void BankPanel::Draw()
 		table.Draw("[apply]", selected);
 	}
 
-	// Draw the "Pay All" button.
-	const Interface *bankUi = GameData::Interfaces().Get("bank");
 	Information info;
 	if((salariesOwed || maintenanceDue) && player.Accounts().Credits() > 0)
 		info.SetCondition("can pay");
@@ -317,16 +315,22 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 // Handle mouse clicks.
 bool BankPanel::Click(int x, int y, int clicks)
 {
+	const Interface *bankUi = GameData::Interfaces().Get("bank");
+	const Rectangle box = bankUi->GetBox("content");
+	const int MIN_X = box.Left();
+	const int FIRST_Y = box.Top();
+	const int MAX_X = box.Right();
+
 	// Check if the click was on one of the rows of the table that represents a
 	// mortgage or other current debt you have.
 	int maxY = FIRST_Y + 25 + 20 * mortgageRows;
 	if(x >= MIN_X && x <= MAX_X && y >= FIRST_Y + 25 && y < maxY)
 	{
 		selectedRow = (y - FIRST_Y - 25) / 20;
-		if(x >= EXTRA_X)
+		if(x >= MIN_X + EXTRA_X)
 			DoKey(SDLK_RETURN);
 	}
-	else if(x >= EXTRA_X - 10 && x <= MAX_X && y >= FIRST_Y + 230 && y <= FIRST_Y + 250)
+	else if(x >= MIN_X + EXTRA_X - 10 && x <= MAX_X && y >= FIRST_Y + 230 && y <= FIRST_Y + 250)
 	{
 		// If the player clicks the "apply" button, check if you qualify.
 		if(qualify)

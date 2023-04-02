@@ -119,7 +119,7 @@ fleet "Vi Transport"
 	variant
 		"Schist (Heavy Load)"
 	variant
-		"Protolith"
+		"Granulite"
 
 fleet "Vi Cargo"
 	government "Gegno Vi"
@@ -143,10 +143,10 @@ fleet "Vi Cargo"
 		"Hornfel (Heavy Load)"
 		"Schist (Heavy Load)"
 	variant
-		"Protolith"
+		"Granulite"
 		"Schist (Heavy Load)"
 
-fleet "Vi Small II"
+fleet "Small Vi II"
 	government "Gegno Vi"
 	names "gegno vi"
 	cargo 2
@@ -159,8 +159,6 @@ fleet "Vi Small II"
 		"Diorite"
 	variant
 		"Diorite"
-	variant 
-		"Diorite" 2
 	variant
 		"Eclogite" 2
 		"Diorite"
@@ -201,10 +199,10 @@ fleet "Large Scin"
 		"Coesite" 2
 	variant 3
 		"Coesite" 3
-	variant 
+	variant
 		"Feldspar"
 		"Halite" 6
-	variant 
+	variant
 		"Feldspar"
 		"Halite" 6
 		"Coesite"
@@ -271,7 +269,7 @@ fleet "Vi Warfleet"
 	names "gegno vi"
 	cargo 0
 	personality
-		heroic vindictive opportunistic
+		heroic vindictive opportunistic harvests
 	variant 5
 		"Hornfel"
 		"Eclogite" 2
@@ -296,7 +294,7 @@ fleet "Scin Warfleet"
 	names "gegno scin"
 	cargo 0
 	personality
-		vindictive opportunistic
+		vindictive opportunistic harvests
 	variant 5
 		"Felsic"
 		"Coesite" 3
