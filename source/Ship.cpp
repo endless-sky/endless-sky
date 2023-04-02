@@ -2085,26 +2085,34 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			}
 		}
 		// Lateral Thrust functionality.
+		// This pulls "lateral thrust ratio" from the ship definition,
+		// and if there isn't one, it uses the default value of 0.25.
+		// Future thought: move this default into a gamerule or interfaces.txt
 		double latThrustCommand = commands.LateralThrust();
 		double latThrust = 0.;
+		double lateralThrustValue = 0.;
+		if(attributes.Get("lateral thrust ratio"))
+			lateralThrustValue = attributes.Get("lateral thrust ratio");
+		else
+			lateralThrustValue = 0.25;
 		if(latThrustCommand)
 		{
 			// Check if we are able to apply this thrust.
-			double cost = attributes.Get("thrusting energy") * 0.5;
+			double cost = attributes.Get("thrusting energy") * lateralThrustValue;
 			if(energy < cost)
 				latThrustCommand *= energy / cost;
 
 			if(latThrustCommand)
 			{
-				// These will be used for lateral thrusting flares once supported.
+				// These area used for lateral thrusting flares.
 				isLatThrusting = true;
 				lateralDirection = latThrustCommand;
-				latThrust = attributes.Get("thrust") * 0.5;
+				latThrust = attributes.Get("thrust") * lateralThrustValue;
 				if(latThrust)
 				{
 					double scale = fabs(latThrustCommand);
 					energy -= scale * cost;
-					heat += scale * attributes.Get("thrusting heat") * 0.5;
+					heat += scale * attributes.Get("thrusting heat") * lateralThrustValue;
 					Point lateral(-angle.Unit().Y(), angle.Unit().X());
 					acceleration += lateral * (latThrustCommand * latThrust / mass);
 				}
