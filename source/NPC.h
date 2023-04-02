@@ -128,7 +128,6 @@ private:
 	std::list<LocationFilter> stopoverFilters;
 	// Default behavior is to permanently land on the destination planet.
 	bool doVisit = false;
-	size_t destinationQueue = 0;
 
 	// Start out landed on this planet.
 	const Planet *planet = nullptr;
