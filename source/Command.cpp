@@ -76,7 +76,7 @@ const Command Command::FASTFORWARD(ONE << 25, "Toggle fast-forward");
 const Command Command::FIGHT(ONE << 26, "Fleet: Fight my target");
 const Command Command::GATHER(ONE << 27, "Fleet: Gather around me");
 const Command Command::HOLD(ONE << 28, "Fleet: Hold position");
-const Command Command::HARVEST(1uLL << 29, "Fleet: Harvest Flotsam");
+const Command Command::HARVEST(ONE << 29, "Fleet: Harvest Flotsam");
 const Command Command::AMMO(ONE << 30, "Fleet: Toggle ammo usage");
 const Command Command::WAIT(ONE << 31, "");
 const Command Command::STOP(ONE << 32, "");
