@@ -760,9 +760,9 @@ outfit "Meteor Missile Launcher"
 		"reload" 80
 		"firing energy" 1
 		"firing heat" 20
-		"acceleration" .4
-		"drag" .02
-		"turn" 2
+		"acceleration" 1.2
+		"drag" .06
+		"turn" 1.8
 		"homing" 1
 		"infrared tracking" .65
 		"shield damage" 360
@@ -800,9 +800,9 @@ outfit "Meteor Missile Pod"
 		"burst reload" 80
 		"firing energy" 1
 		"firing heat" 20
-		"acceleration" .4
-		"drag" .02
-		"turn" 2
+		"acceleration" 1.2
+		"drag" .06
+		"turn" 1.8
 		"homing" 1
 		"infrared tracking" .65
 		"shield damage" 360
@@ -1057,7 +1057,7 @@ outfit "Torpedo Launcher"
 		"drag" .015
 		"turn" 1.5
 		"homing" 3
-		"optical tracking" .8
+		"optical tracking" .85
 		"shield damage" 820
 		"hull damage" 820
 		"hit force" 300
@@ -1097,7 +1097,7 @@ outfit "Torpedo Pod"
 		"drag" .015
 		"turn" 1.5
 		"homing" 3
-		"optical tracking" .8
+		"optical tracking" .85
 		"shield damage" 820
 		"hull damage" 820
 		"hit force" 300
