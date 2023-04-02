@@ -65,7 +65,7 @@ const Command Command::JUMP(ONE << 14, "Initiate hyperspace jump");
 const Command Command::FLEET_JUMP(ONE << 15, "");
 const Command Command::TARGET(ONE << 16, "Select next ship");
 const Command Command::NEAREST(ONE << 17, "Select nearest hostile ship");
-const Command Command::NEAREST_ASTEROID(1uLL << 18, "Select nearest asteroid");
+const Command Command::NEAREST_ASTEROID(ONE << 18, "Select nearest asteroid");
 const Command Command::DEPLOY(ONE << 19, "Deploy / recall fighters");
 const Command Command::AFTERBURNER(ONE << 20, "Fire afterburner");
 const Command Command::CLOAK(ONE << 21, "Toggle cloaking device");
