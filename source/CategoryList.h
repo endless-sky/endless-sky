@@ -44,10 +44,13 @@ public:
 		const bool operator()(Category &a, Category &b) const { return SortHelper(a, b); }
 
 	private:
+		static const bool SortHelper(const Category &a, const Category &b) const;
+
+
+	private:
 		friend class CategoryList;
 		std::string name;
 		int precedence = 0;
-		const bool SortHelper(const Category &a, const Category &b) const;
 	};
 
 public:
