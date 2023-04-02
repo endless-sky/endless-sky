@@ -60,7 +60,7 @@ void CategoryList::Load(const DataNode &node)
 
 
 // Sort the CategoryList. Categories are sorted by precedence. If multiple categories
-//  share the same precedence then they are sorted alphabetically.
+// share the same precedence then they are sorted alphabetically.
 void CategoryList::Sort()
 {
 	sort(list.begin(), list.end());
@@ -80,7 +80,8 @@ bool CategoryList::Contains(const string &name) const
 
 const CategoryList::Category CategoryList::GetCategory(const string &name) const
 {
-	if(byName.count(name))
-		return byName.at(name);
+	auto it = byName.find(name);
+	if(it != byName.end())
+		return it->second;
 	return Category("", numeric_limits<int>::max());
 }

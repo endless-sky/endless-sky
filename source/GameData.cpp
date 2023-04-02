@@ -778,7 +778,7 @@ const string &GameData::Rating(const string &type, int level)
 
 
 
-// Strings for ship, bay type, and outfit categories.
+// Collections for ship, bay type, outfit, and other categories.
 const CategoryList &GameData::GetCategory(const CategoryType type)
 {
 	return objects.categories[type];

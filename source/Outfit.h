@@ -107,6 +107,8 @@ private:
 	std::string displayName;
 	std::string pluralName;
 	std::string category;
+	// The series that this outfit is a part of and its index within that series.
+	// Used for sorting within shops.
 	std::string series;
 	int index;
 	std::string description;
