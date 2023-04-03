@@ -33,7 +33,7 @@ public:
 		dmy = 0, // Day-first format. (Sat, 4 Oct 1941)
 		mdy,     // Month-first format. (Sat, Oct 4, 1941)
 		ymd      // All-numeric ISO 8601. (1941-10-04)
-  };
+	};
 
 	enum class OverlayType : int {
 		OFF = 0,
