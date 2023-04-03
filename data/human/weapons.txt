@@ -749,27 +749,21 @@ outfit "Meteor Missile Launcher"
 		sound "meteor"
 		ammo "Meteor Missile"
 		icon "icon/meteor"
+		"submunition" "Meteor Homing"
 		"fire effect" "meteor fire"
-		"die effect" "missile death"
 		"hit effect" "missile hit"
-		"inaccuracy" 5
+		"inaccuracy" 2
 		"velocity" 0
 		"velocity override" 20
-		"lifetime" 192
+		"lifetime" 56
 		"range override" 3850
 		"reload" 80
 		"firing energy" 1
 		"firing heat" 20
-		"acceleration" 1.2
-		"drag" .06
-		"turn" 1.8
-		"homing" 1
-		"infrared tracking" .65
-		"shield damage" 360
-		"hull damage" 220
-		"hit force" 220
-		"missile strength" 6
-	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space, with only rudimentary infrared tracking systems that can have trouble homing in on targets with low heat levels. True to its name, the missile reaches a very high speed to leave its target's anti-missile defenses with little time to react. The trade-off is maneuverability, so Meteor Missiles are practically useless against agile targets farther than point-blank range."
+		"acceleration" .5
+		"drag" .025
+		"missile strength" 10
+	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors have limited maneuvering capabilities, and their infrared tracking systems only activate after a second of flight. However, Meteor Missiles are able to reach high velocities, leaving targets with little time to react. These qualities make Meteor Missiles effective against distant targets, but they will struggle to lock onto nearby enemies."
 
 outfit "Meteor Missile Pod"
 	category "Secondary Weapons"
@@ -787,30 +781,43 @@ outfit "Meteor Missile Pod"
 		sound "meteor"
 		ammo "Meteor Missile"
 		icon "icon/meteor"
+		"submunition" "Meteor Homing"
 		"fire effect" "meteor fire"
-		"die effect" "missile death"
 		"hit effect" "missile hit"
-		"inaccuracy" 5
+		"inaccuracy" 2
 		"velocity" 0
 		"velocity override" 20
-		"lifetime" 192
+		"lifetime" 56
 		"range override" 3850
 		"reload" 200
 		"burst count" 7
 		"burst reload" 80
 		"firing energy" 1
 		"firing heat" 20
-		"acceleration" 1.2
-		"drag" .06
-		"turn" 1.8
-		"homing" 1
+		"acceleration" .5
+		"drag" .025
+		"missile strength" 10
+	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors have limited maneuvering capabilities, and their infrared tracking systems only activate after a second of flight. However, Meteor Missiles are able to reach high velocities, leaving targets with little time to react. These qualities make Meteor Missiles effective at a distance, but they will struggle to lock onto nearby enemies."
+	description "	Pods enable fighters and other light craft to carry small quantities of missiles into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
+
+outfit "Meteor Homing"
+	weapon
+		sprite "projectile/meteor"
+			"no repeat"
+			"frame rate" .25
+		"die effect" "missile death"
+		"hit effect" "missile hit"
+		"velocity" 0
+		"lifetime" 136
+		"acceleration" 1.6
+		"drag" .08
+		"turn" 1.5
+		"homing" 4
 		"infrared tracking" .65
 		"shield damage" 360
 		"hull damage" 220
 		"hit force" 220
-		"missile strength" 6
-	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space, with only rudimentary infrared tracking systems that can have trouble homing in on targets with low heat levels. True to its name, the missile reaches a very high speed to leave its target's anti-missile defenses with little time to react. The trade-off is maneuverability, so Meteor Missiles are practically useless against agile targets farther than point-blank range."
-	description "	Pods enable fighters and other light craft to carry small quantities of missiles into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
+		"missile strength" 10
 
 effect "meteor fire"
 	sprite "effect/meteor fire"
@@ -867,7 +874,7 @@ outfit "Sidewinder Missile Launcher"
 		"firing heat" 15
 		"acceleration" .45
 		"drag" .031
-		"turn" 4
+		"turn" 3
 		"homing" 4
 		"radar tracking" .9
 		"shield damage" 260
@@ -908,7 +915,7 @@ outfit "Sidewinder Missile Pod"
 		"firing heat" 15
 		"acceleration" .45
 		"drag" .031
-		"turn" 4
+		"turn" 3
 		"homing" 4
 		"radar tracking" .9
 		"shield damage" 260
