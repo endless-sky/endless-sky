@@ -361,17 +361,17 @@ void ShopPanel::DrawButtons()
 
 	const Point buyCenter = Screen::BottomRight() - Point(210, 25);
 	FillShader::Fill(buyCenter, Point(60, 30), back);
-	const Color &buyTextColor;
+	const Color *buyTextColor;
 	if(!CanBuy(IsAlreadyOwned()))
-		buyTextColor = inactive;
+		buyTextColor = &inactive;
 	else if(hoverButton == (IsAlreadyOwned() ? 'i' : 'b'))
-		buyTextColor = hover;
+		buyTextColor = &hover;
 	else
-		buyTextColor = active;
+		buyTextColor = &active;
 	string BUY = IsAlreadyOwned() ? (playerShip ? "_Install" : "_Cargo") : "_Buy";
 	bigFont.Draw(BUY,
 		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
-		buyTextColor);
+		*buyTextColor);
 
 	const Point sellCenter = Screen::BottomRight() - Point(130, 25);
 	FillShader::Fill(sellCenter, Point(60, 30), back);
