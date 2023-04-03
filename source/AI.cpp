@@ -3805,6 +3805,34 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	else if(activeCommands.Has(Command::SCAN))
 	{
 		command |= Command::SCAN;
+
+		if(Preferences::Has("Show buttons on map"))
+		{
+			// On android, chase the target if they get too far away while the
+			// user is holding the scan button.
+			auto target = ship.GetTargetShip();
+			double cargoDistanceSquared = ship.Attributes().Get("cargo scan power");
+			double outfitDistanceSquared = ship.Attributes().Get("outfit scan power");
+			double distance = cargoDistanceSquared;
+			if(cargoDistanceSquared > 0 && outfitDistanceSquared > 0)
+				distance = min(cargoDistanceSquared, outfitDistanceSquared);
+			else if(outfitDistanceSquared > 0)
+				distance = outfitDistanceSquared;
+			if(distance > 0 && target)
+			{
+				// 1 scan power == 100 px
+				double targetDistance = target->Position().DistanceSquared(ship.Position());
+				// convert from pixels to scan units. remember, this is a squared
+				// distance, so the conversion ratio has to be squared as well
+				targetDistance /= (100*100);
+				// try to stay close to the target
+				if(targetDistance > distance * .5)
+				{
+					ship.SetMoveToward(target->Position());
+					MoveTo(ship, command, target->Position(), target->Velocity(), 5.0, 0.8);
+				}
+			}
+		}
 	}
 	if(activeCommands.Has(Command::MOVETOWARD))
 	{
@@ -3850,7 +3878,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				}
 				++index;
 			}
-			if(Preferences::Has("Automatic firing"))
+			if(Preferences::Has("Show buttons on map"))
 			{
 				// On android, chase the target if they get too far away while the
 				// user is holding the fire button.
