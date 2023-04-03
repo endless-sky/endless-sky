@@ -1397,7 +1397,7 @@ interface "main buttons" bottom right
 	visible if "can attack"
 	sprite "ui/dialog cancel"
 		from -250 -40 to -160 -90
-	button "Fleet: Fight my target" "_Attack"
+	button "Fire primary weapon" "Fire"
 		from -240 -40 to -170 -90
 
 	visible if "targeting asteroid"

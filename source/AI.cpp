@@ -3840,11 +3840,33 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		if(activeCommands.Has(Command::PRIMARY))
 		{
 			int index = 0;
+			double maxRange = -1;
 			for(const Hardpoint &hardpoint : ship.Weapons())
 			{
 				if(hardpoint.IsReady() && !hardpoint.GetOutfit()->Icon())
+				{
 					firingCommands.SetFire(index);
+					maxRange = max(maxRange, hardpoint.GetOutfit()->Range());
+				}
 				++index;
+			}
+			if(Preferences::Has("Automatic firing"))
+			{
+				// On android, chase the target if they get too far away while the
+				// user is holding the fire button.
+				maxRange *= .5;
+				auto targetShip = ship.GetTargetShip();
+				auto targetAsteroid = ship.GetTargetAsteroid();
+				Body* target = targetShip.get();
+				if (!target)
+					target = targetAsteroid.get();
+
+				if(target && target->Position().DistanceSquared(ship.Position()) > maxRange * maxRange)
+				{
+					// target is too far away. lets chase it
+					ship.SetMoveToward(target->Position());
+					MoveToAttack(ship, command, *target);
+				}
 			}
 		}
 		if(activeCommands.Has(Command::SECONDARY))
