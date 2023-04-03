@@ -561,6 +561,16 @@ bool Interface::TextElement::ParseLine(const DataNode &node)
 		else
 			return false;
 	}
+	else if (node.Token(0) == "command" && node.Size() >= 2)
+	{
+		Command parsedCommand = Command::Get(node.Token(1));
+		if (parsedCommand == Command::NONE)
+		{
+			node.PrintTrace("\"" + node.Token(1) + "\" is not a valid command");
+			return false;
+		}
+		command.Set(parsedCommand);
+	}
 	else
 		return false;
 
