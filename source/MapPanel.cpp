@@ -76,6 +76,17 @@ namespace {
 		unsigned unavailable = 0;
 	};
 
+	// Struct for storing the ends of wormhole links and their colors.
+	struct WormholeArrow {
+		WormholeArrow() = default;
+		WormholeArrow(const System *from, const System *to, const Color *color)
+		: from(from), to(to), color(color) {}
+		const System *from = nullptr;
+		const System *to = nullptr;
+		const Color *color = nullptr;
+	};
+
+
 	// Log how many player ships are in a given system, tracking whether
 	// they are parked or in-flight.
 	void TallyEscorts(const vector<shared_ptr<Ship>> &escorts,
@@ -107,8 +118,8 @@ namespace {
 			// Get the system in which the planet storage is located.
 			const Planet *planet = hold.first;
 			const System *system = planet->GetSystem();
-			// Skip outfits stored on planets without a system.
-			if(!system)
+			// Skip outfits stored on planets without a system or an outfitter.
+			if(!system || !planet->HasOutfitter())
 				continue;
 
 			for(const auto &outfit : hold.second.Outfits())
@@ -309,10 +320,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 		// might not be linked via hyperspace.
 		Color color = Color(.5f * alpha, 0.f);
 		if(player.HasVisited(system) && system.IsInhabited(flagship) && gov)
-			color = Color(
-				alpha * gov->GetColor().Get()[0],
-				alpha * gov->GetColor().Get()[1],
-				alpha * gov->GetColor().Get()[2], 0.f);
+			color = gov->GetColor().Additive(alpha);
 		RingShader::Draw(from, OUTER, INNER, color);
 
 		for(const System *link : system.Links())
@@ -334,10 +342,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 			gov = link->GetGovernment();
 			Color color = Color(.5f * alpha, 0.f);
 			if(player.HasVisited(*link) && link->IsInhabited(flagship) && gov)
-				color = Color(
-					alpha * gov->GetColor().Get()[0],
-					alpha * gov->GetColor().Get()[1],
-					alpha * gov->GetColor().Get()[2], 0.f);
+				color = gov->GetColor().Additive(alpha);
 			RingShader::Draw(to, OUTER, INNER, color);
 		}
 
@@ -466,12 +471,15 @@ bool MapPanel::Click(int x, int y, int clicks)
 	// Figure out if a system was clicked on.
 	Point click = Point(x, y) / Zoom() - center;
 	for(const auto &it : GameData::Systems())
-		if(it.second.IsValid() && click.Distance(it.second.Position()) < 10.
-				&& (player.HasSeen(it.second) || &it.second == specialSystem))
+	{
+		const System &system = it.second;
+		if(system.IsValid() && !system.Inaccessible() && click.Distance(system.Position()) < 10.
+				&& (player.HasSeen(system) || &system == specialSystem))
 		{
-			Select(&it.second);
+			Select(&system);
 			break;
 		}
+	}
 
 	return true;
 }
@@ -689,13 +697,15 @@ void MapPanel::Find(const string &name)
 {
 	int bestIndex = 9999;
 	for(const auto &it : GameData::Systems())
-		if(it.second.IsValid() && player.HasVisited(it.second))
+	{
+		const System &system = it.second;
+		if(system.IsValid() && !system.Inaccessible() && player.HasVisited(system))
 		{
 			int index = Search(it.first, name);
 			if(index >= 0 && index < bestIndex)
 			{
 				bestIndex = index;
-				selectedSystem = &it.second;
+				selectedSystem = &system;
 				CenterOnSystem(selectedSystem);
 				if(!index)
 				{
@@ -704,22 +714,26 @@ void MapPanel::Find(const string &name)
 				}
 			}
 		}
+	}
 	for(const auto &it : GameData::Planets())
-		if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
+	{
+		const Planet &planet = it.second;
+		if(planet.IsValid() && player.HasVisited(*planet.GetSystem()))
 		{
 			int index = Search(it.first, name);
 			if(index >= 0 && index < bestIndex)
 			{
 				bestIndex = index;
-				selectedSystem = it.second.GetSystem();
+				selectedSystem = planet.GetSystem();
 				CenterOnSystem(selectedSystem);
 				if(!index)
 				{
-					selectedPlanet = &it.second;
+					selectedPlanet = &planet;
 					return;
 				}
 			}
 		}
+	}
 }
 
 
@@ -784,8 +798,8 @@ void MapPanel::UpdateCache()
 	for(const auto &it : GameData::Systems())
 	{
 		const System &system = it.second;
-		// Ignore systems which have been referred to, but not actually defined.
-		if(!system.IsValid())
+		// Ignore systems which are inaccessible or have been referred to, but not actually defined.
+		if(!system.IsValid() || system.Inaccessible())
 			continue;
 		// Ignore systems the player has never seen, unless they have a pending mission that lets them see it.
 		if(!player.HasSeen(system) && &system != specialSystem)
@@ -926,7 +940,7 @@ void MapPanel::DrawTravelPlan()
 	const Color &defaultColor = *colors.Get("map travel ok flagship");
 	const Color &outOfFlagshipFuelRangeColor = *colors.Get("map travel ok none");
 	const Color &withinFleetFuelRangeColor = *colors.Get("map travel ok fleet");
-	const Color &wormholeColor = *colors.Get("map used wormhole");
+	const Color &wormholeColor = *colors.Get("map travel wormhole");
 
 	// At each point in the path, keep track of how many ships in the
 	// fleet are able to make it this far.
@@ -1045,7 +1059,7 @@ void MapPanel::DrawEscorts()
 void MapPanel::DrawWormholes()
 {
 	// Keep track of what arrows and links need to be drawn.
-	set<pair<const System *, const System *>> arrowsToDraw;
+	vector<WormholeArrow> arrowsToDraw;
 
 	// A system can host more than one set of wormholes (e.g. Cardea), and some wormholes may even
 	// share a link vector.
@@ -1059,32 +1073,37 @@ void MapPanel::DrawWormholes()
 			continue;
 
 		for(auto &&link : it.second.Links())
-			if(p.IsInSystem(link.first)
+			if(!link.first->Inaccessible() && !link.second->Inaccessible() && p.IsInSystem(link.first)
 					&& player.HasVisited(*link.first) && player.HasVisited(*link.second))
-				arrowsToDraw.emplace(link.first, link.second);
+				arrowsToDraw.emplace_back(link.first, link.second, it.second.GetLinkColor());
+
 	}
 
-	const Color &wormholeDim = *GameData::Colors().Get("map unused wormhole");
-	const Color &arrowColor = *GameData::Colors().Get("map used wormhole");
 	static const double ARROW_LENGTH = 4.;
 	static const double ARROW_RATIO = .3;
 	static const Angle LEFT(30.);
 	static const Angle RIGHT(-30.);
 	const double zoom = Zoom();
 
-	for(const pair<const System *, const System *> &link : arrowsToDraw)
+	for(const WormholeArrow &link : arrowsToDraw)
 	{
+		// Get the wormhole link color.
+		const Color &arrowColor = *link.color;
+		const Color &wormholeDim = Color::Multiply(.33f, arrowColor);
+
 		// Compute the start and end positions of the wormhole link.
-		Point from = zoom * (link.first->Position() + center);
-		Point to = zoom * (link.second->Position() + center);
+		Point from = zoom * (link.from->Position() + center);
+		Point to = zoom * (link.to->Position() + center);
 		Point offset = (from - to).Unit() * LINK_OFFSET;
 		from -= offset;
 		to += offset;
 
 		// If an arrow is being drawn, the link will always be drawn too. Draw
 		// the link only for the first instance of it in this set.
-		if(link.first < link.second || !arrowsToDraw.count(make_pair(link.second, link.first)))
-			LineShader::Draw(from, to, LINK_WIDTH, wormholeDim);
+		if(link.from < link.to || !count_if(arrowsToDraw.begin(), arrowsToDraw.end(),
+			[&link](const WormholeArrow &cmp)
+			{ return cmp.from == link.to && cmp.to == link.from; }))
+				LineShader::Draw(from, to, LINK_WIDTH, wormholeDim);
 
 		// Compute the start and end positions of the arrow edges.
 		Point arrowStem = zoom * ARROW_LENGTH * offset;

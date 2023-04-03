@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define ENGINE_H_
 
 #include "AI.h"
+#include "AmmoDisplay.h"
 #include "AsteroidField.h"
 #include "BatchDrawList.h"
 #include "CollisionSet.h"
@@ -25,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "EscortDisplay.h"
 #include "Information.h"
 #include "Point.h"
+#include "Preferences.h"
 #include "Radar.h"
 #include "Rectangle.h"
 
@@ -89,7 +91,7 @@ public:
 	void SetTestContext(TestContext &newTestContext);
 
 	// Select the object the player clicked on.
-	void Click(const Point &from, const Point &to, bool hasShift);
+	void Click(const Point &from, const Point &to, bool hasShift, bool hasControl);
 	void RClick(const Point &point);
 	void SelectGroup(int group, bool hasShift, bool hasControl);
 
@@ -113,6 +115,7 @@ private:
 	void SendHails();
 	void HandleKeyboardInputs();
 	void HandleMouseClicks();
+	void HandleMouseInput(Command &activeCommands);
 
 	void FillCollisionSets();
 
@@ -126,6 +129,8 @@ private:
 	void AddSprites(const Ship &ship);
 
 	void DoGrudge(const std::shared_ptr<Ship> &target, const Government *attacker);
+	void EmplaceStatusOverlays(const std::shared_ptr<Ship> &ship, Preferences::OverlayType parent_setting,
+		Preferences::OverlayType setting, int value);
 
 
 private:
@@ -134,7 +139,7 @@ private:
 		Point center;
 		Angle angle;
 		double radius;
-		int type;
+		const Color &color;
 		int count;
 	};
 
@@ -183,6 +188,9 @@ private:
 	bool hasFinishedCalculating = true;
 	bool terminate = false;
 	bool wasActive = false;
+	bool isMouseToggleEnabled = false;
+	bool isMouseHoldEnabled = false;
+	bool isMouseTurningEnabled = false;
 	DrawList draw[2];
 	BatchDrawList batchDraw[2];
 	Radar radar[2];
@@ -196,6 +204,7 @@ private:
 	Point targetUnit;
 	int targetSwizzle = -1;
 	EscortDisplay escorts;
+	AmmoDisplay ammoDisplay;
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;
 	std::vector<AlertLabel> missileLabels;
@@ -238,8 +247,13 @@ private:
 	bool isRightClick = false;
 	bool isRadarClick = false;
 	Point clickPoint;
+	Rectangle uiClickBox;
 	Rectangle clickBox;
 	int groupSelect = -1;
+
+	// Set of asteroids scanned in the current system.
+	std::set<std::string> asteroidsScanned;
+	bool isAsteroidCatalogComplete = false;
 
 	// Input, Output and State handling for automated tests.
 	TestContext *testContext = nullptr;

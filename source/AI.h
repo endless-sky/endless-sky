@@ -70,6 +70,9 @@ template <class Type>
 	// Issue AI commands to all ships for one game step.
 	void Step(const PlayerInfo &player, Command &activeCommands);
 
+	// Set the mouse position for turning the player's flagship.
+	void SetMousePosition(Point position);
+
 	// Get the in-system strength of each government's allies and enemies.
 	int64_t AllyStrength(const Government *government);
 	int64_t EnemyStrength(const Government *government);
@@ -84,6 +87,7 @@ private:
 	bool HasHelper(const Ship &ship, const bool needsFuel);
 	// Pick a new target for the given ship.
 	std::shared_ptr<Ship> FindTarget(const Ship &ship) const;
+	std::shared_ptr<Ship> FindNonHostileTarget(const Ship &ship) const;
 	// Obtain a list of ships matching the desired hostility.
 	std::vector<Ship *> GetShipsList(const Ship &ship, bool targetEnemies, double maxRange = -1.) const;
 
@@ -96,7 +100,10 @@ private:
 
 	// Methods of moving from the current position to a desired position / orientation.
 	static double TurnBackward(const Ship &ship);
-	static double TurnToward(const Ship &ship, const Point &vector);
+	// Determine the value to use in Command::SetTurn() to turn the ship towards the desired facing.
+	// "precision" is an optional argument corresponding to a value of the dot product of the current and target facing
+	// vectors above which no turning should be attempting, to reduce constant, minute corrections.
+	static double TurnToward(const Ship &ship, const Point &vector, const double precision = 1.);
 	static bool MoveToPlanet(Ship &ship, Command &command);
 	static bool MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 		const Point &targetVelocity, double radius, double slow);
@@ -106,6 +113,7 @@ private:
 	static void Swarm(Ship &ship, Command &command, const Body &target);
 	static void KeepStation(Ship &ship, Command &command, const Body &target);
 	static void Attack(Ship &ship, Command &command, const Ship &target);
+	static void AimToAttack(Ship &ship, Command &command, const Body &target);
 	static void MoveToAttack(Ship &ship, Command &command, const Body &target);
 	static void PickUp(Ship &ship, Command &command, const Body &target);
 	// Special decisions a ship might make.
@@ -119,6 +127,7 @@ private:
 	bool DoCloak(Ship &ship, Command &command);
 	// Prevent ships from stacking on each other when many are moving in sync.
 	void DoScatter(Ship &ship, Command &command);
+	bool DoSecretive(Ship &ship, Command &command);
 
 	static Point StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &shouldReverse);
 	// Get a vector giving the direction this ship should aim in in order to do
@@ -195,6 +204,8 @@ private:
 
 	// Command applied by the player's "autopilot."
 	Command autoPilot;
+	// Position of the cursor, for when the player is using mouse turning.
+	Point mousePosition;
 	// General firing command for ships. This is a data member to avoid
 	// thrashing the heap, since we can reuse the storage for
 	// each ship.

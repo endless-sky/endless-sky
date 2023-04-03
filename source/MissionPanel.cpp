@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
@@ -146,20 +147,7 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 				break;
 	}
 
-	// Auto select the destination system for the current mission.
-	if(availableIt != available.end())
-	{
-		selectedSystem = availableIt->Destination()->GetSystem();
-		DoScroll(available, availableIt, availableScroll, false);
-	}
-	else if(acceptedIt != accepted.end())
-	{
-		selectedSystem = acceptedIt->Destination()->GetSystem();
-		DoScroll(accepted, acceptedIt, acceptedScroll, true);
-	}
-
-	// Center on the selected system.
-	CenterOnSystem(selectedSystem, true);
+	SetSelectedScrollAndCenter(true);
 }
 
 
@@ -197,6 +185,8 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 			if(FindMissionForSystem(*it))
 				break;
 	}
+
+	SetSelectedScrollAndCenter();
 }
 
 
@@ -348,17 +338,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 
 	// To reach here, we changed the selected mission. Scroll the active
 	// mission list, update the selected system, and pan the map.
-	if(availableIt != available.end())
-	{
-		selectedSystem = availableIt->Destination()->GetSystem();
-		DoScroll(available, availableIt, availableScroll, false);
-	}
-	else if(acceptedIt != accepted.end())
-	{
-		selectedSystem = acceptedIt->Destination()->GetSystem();
-		DoScroll(accepted, acceptedIt, acceptedScroll, true);
-	}
-	CenterOnSystem(selectedSystem);
+	SetSelectedScrollAndCenter();
 
 	return true;
 }
@@ -405,14 +385,18 @@ bool MissionPanel::Click(int x, int y, int clicks)
 		unsigned index = max(0, (y + static_cast<int>(availableScroll) - 36 - Screen::Top()) / 20);
 		if(index < available.size())
 		{
+			const auto lastAvailableIt = availableIt;
 			availableIt = available.begin();
 			while(index--)
 				++availableIt;
 			acceptedIt = accepted.end();
 			dragSide = -1;
-			selectedSystem = availableIt->Destination()->GetSystem();
-			DoScroll(available, availableIt, availableScroll, false);
-			CenterOnSystem(selectedSystem);
+			if(availableIt == lastAvailableIt)
+			{
+				CycleInvolvedSystems(*availableIt);
+				return true;
+			}
+			SetSelectedScrollAndCenter();
 			return true;
 		}
 	}
@@ -422,6 +406,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 		int index = max(0, (y + static_cast<int>(acceptedScroll) - 36 - Screen::Top()) / 20);
 		if(index < AcceptedVisible())
 		{
+			const auto lastAcceptedIt = acceptedIt;
 			acceptedIt = accepted.begin();
 			while(index || !acceptedIt->IsVisible())
 			{
@@ -430,9 +415,12 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			}
 			availableIt = available.end();
 			dragSide = 1;
-			selectedSystem = acceptedIt->Destination()->GetSystem();
-			DoScroll(accepted, acceptedIt, acceptedScroll, true);
-			CenterOnSystem(selectedSystem);
+			if(lastAcceptedIt == acceptedIt)
+			{
+				CycleInvolvedSystems(*acceptedIt);
+				return true;
+			}
+			SetSelectedScrollAndCenter();
 			return true;
 		}
 	}
@@ -460,7 +448,33 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			else
 				acceptedIt = accepted.begin();
 		}
-		while(options--)
+
+		// When clicking a new system, select the first available mission
+		// (instead of continuing from wherever the iterator happens to be)
+		if((availableIt != available.end() && !Involves(*availableIt, system)) ||
+			(acceptedIt != accepted.end() && !Involves(*acceptedIt, system)))
+		{
+			auto firstExistingIt = find_if(available.begin(), available.end(),
+				[&system](const Mission &m) { return Involves(m, system); });
+
+			if(firstExistingIt != available.end())
+			{
+				availableIt = firstExistingIt;
+				acceptedIt = accepted.end();
+			}
+			else
+			{
+				firstExistingIt = find_if(accepted.begin(), accepted.end(),
+					[&system](const Mission &m) { return m.IsVisible() && Involves(m, system); });
+
+				if(firstExistingIt != accepted.end())
+				{
+					availableIt = available.end();
+					acceptedIt = firstExistingIt;
+				}
+			}
+		}
+		else while(options--)
 		{
 			if(availableIt != available.end())
 			{
@@ -573,6 +587,28 @@ bool MissionPanel::Scroll(double dx, double dy)
 		return Drag(0., dy * Preferences::ScrollSpeed());
 
 	return MapPanel::Scroll(dx, dy);
+}
+
+
+
+void MissionPanel::SetSelectedScrollAndCenter(bool immediate)
+{
+	// Auto select the destination system for the current mission.
+	if(availableIt != available.end())
+	{
+		selectedSystem = availableIt->Destination()->GetSystem();
+		DoScroll(available, availableIt, availableScroll, false);
+	}
+	else if(acceptedIt != accepted.end())
+	{
+		selectedSystem = acceptedIt->Destination()->GetSystem();
+		DoScroll(accepted, acceptedIt, acceptedScroll, true);
+	}
+
+	// Center on the selected system.
+	CenterOnSystem(selectedSystem, immediate);
+
+	cycleInvolvedIndex = 0;
 }
 
 
@@ -919,13 +955,13 @@ void MissionPanel::Accept(bool force)
 		ostringstream out;
 		if(cargoToSell > 0 && crewToFire > 0)
 			out << "You must fire " << crewToFire << " of your flagship's non-essential crew members and sell "
-				<< cargoToSell << " tons of ordinary commodities to make room for this mission. Continue?";
+				<< Format::CargoString(cargoToSell, "ordinary commodities") << " to make room for this mission. Continue?";
 		else if(crewToFire > 0)
 			out << "You must fire " << crewToFire
 				<< " of your flagship's non-essential crew members to make room for this mission. Continue?";
 		else
-			out << "You must sell " << cargoToSell
-				<< " tons of ordinary commodities to make room for this mission. Continue?";
+			out << "You must sell " << Format::CargoString(cargoToSell, "ordinary commodities")
+				<< " to make room for this mission. Continue?";
 		GetUI()->Push(new Dialog(this, &MissionPanel::MakeSpaceAndAccept, out.str()));
 		return;
 	}
@@ -949,6 +985,8 @@ void MissionPanel::Accept(bool force)
 					break;
 			}
 	}
+
+	cycleInvolvedIndex = 0;
 }
 
 
@@ -1044,4 +1082,30 @@ bool MissionPanel::SelectAnyMission()
 		return availableIt != available.end() || acceptedIt != accepted.end();
 	}
 	return false;
+}
+
+
+
+void MissionPanel::CycleInvolvedSystems(const Mission &mission)
+{
+	cycleInvolvedIndex++;
+
+	int index = 0;
+	for(const System *waypoint : mission.Waypoints())
+		if(++index == cycleInvolvedIndex)
+		{
+			CenterOnSystem(waypoint);
+			return;
+		}
+
+	for(const Planet *stopover : mission.Stopovers())
+		if(++index == cycleInvolvedIndex)
+		{
+			CenterOnSystem(stopover->GetSystem());
+			return;
+		}
+
+
+	cycleInvolvedIndex = 0;
+	CenterOnSystem(mission.Destination()->GetSystem());
 }

@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/alignment.hpp"
 #include "CategoryTypes.h"
 #include "Color.h"
+#include "Dialog.h"
 #include "text/DisplayText.h"
 #include "FillShader.h"
 #include "text/Font.h"
@@ -25,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Mission.h"
 #include "OutlineShader.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -65,7 +67,7 @@ namespace {
 ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	: player(player), day(player.GetDate().DaysSinceEpoch()),
 	planet(player.GetPlanet()), playerShip(player.Flagship()),
-	categories(GameData::Category(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
+	categories(GameData::GetCategory(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard"))
 {
 	if(playerShip)
@@ -349,7 +351,7 @@ void ShopPanel::DrawButtons()
 		Screen::Bottom() - 65);
 	font.Draw("You have:", creditsPoint, dim);
 
-	const auto credits = Format::Credits(player.Accounts().Credits()) + " credits";
+	const auto credits = Format::CreditString(player.Accounts().Credits());
 	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
 
 	const Font &bigFont = FontSet::Get(18);
@@ -418,9 +420,10 @@ void ShopPanel::DrawMain()
 	const float endX = Screen::Right() - (SIDE_WIDTH + 1);
 	double nextY = begin.Y() + TILE_SIZE;
 	int scrollY = 0;
-	for(const string &category : categories)
+	for(const auto &cat : categories)
 	{
-		map<string, set<string>>::const_iterator it = catalog.find(category);
+		const string &category = cat.Name();
+		map<string, vector<string>>::const_iterator it = catalog.find(category);
 		if(it == catalog.end())
 			continue;
 
@@ -528,6 +531,20 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 
 
 
+void ShopPanel::CheckForMissions(Mission::Location location)
+{
+	if(!GetUI()->IsTop(this))
+		return;
+
+	Mission *mission = player.MissionToOffer(location);
+	if(mission)
+		mission->Do(Mission::OFFER, player, GetUI());
+	else
+		player.HandleBlockedMissions(location, GetUI());
+}
+
+
+
 void ShopPanel::FailSell(bool toStorage) const
 {
 }
@@ -607,11 +624,14 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		player.UpdateCargoCapacities();
 		GetUI()->Pop(this);
 	}
-	else if(key == 'b' || ((key == 'i' || key == 'c') && selectedOutfit && (player.Cargo().Get(selectedOutfit)
-			|| (player.Storage() && player.Storage()->Get(selectedOutfit)))))
+	else if(key == 'b' || key == 'i' || key == 'c')
 	{
-		if(!CanBuy(key == 'i' || key == 'c'))
-			FailBuy();
+		const auto result = CanBuy(key == 'i' || key == 'c');
+		if(!result)
+		{
+			if(result.HasMessage())
+				GetUI()->Push(new Dialog(result.Message()));
+		}
 		else
 		{
 			Buy(key == 'i' || key == 'c');
@@ -758,8 +778,8 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 				{
 					selectedShip = nullptr;
 					selectedOutfit = nullptr;
-					for(const string &category : categories)
-						collapsed.insert(category);
+					for(const auto &category : categories)
+						collapsed.insert(category.Name());
 				}
 				else
 				{

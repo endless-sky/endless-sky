@@ -208,11 +208,7 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 		if(toFail.empty())
 			child.PrintTrace("Error: Skipping invalid \"fail\" with no mission:");
 		else
-		{
 			fail.insert(toFail);
-			// Create a GameData reference to this mission name.
-			GameData::Missions().Get(toFail);
-		}
 	}
 	else
 		conditions.Add(child);
@@ -269,8 +265,11 @@ string GameAction::Validate() const
 {
 	// Events which get activated by this action must be valid.
 	for(auto &&event : events)
-		if(!event.first->IsValid())
-			return "event \"" + event.first->Name() + "\"";
+	{
+		string reason = event.first->IsValid();
+		if(!reason.empty())
+			return "event \"" + event.first->Name() + "\" - Reason: " + reason;
+	}
 
 	// Transferred content must be defined & valid.
 	for(auto &&it : giftShips)
@@ -393,13 +392,11 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
 	if(result.payment)
-		subs["<payment>"] = Format::Credits(abs(result.payment))
-			+ (result.payment == 1 ? " credit" : " credits");
+		subs["<payment>"] = Format::CreditString(abs(result.payment));
 
 	result.fine = fine;
 	if(result.fine)
-		subs["<fine>"] = Format::Credits(result.fine)
-			+ (result.fine == 1 ? " credit" : " credits");
+		subs["<fine>"] = Format::CreditString(result.fine);
 
 	if(!logText.empty())
 		result.logText = Format::Replace(logText, subs);

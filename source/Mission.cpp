@@ -207,7 +207,18 @@ void Mission::Load(const DataNode &node)
 		else if(child.Token(0) == "assisting")
 			location = ASSISTING;
 		else if(child.Token(0) == "boarding")
+		{
 			location = BOARDING;
+			for(const DataNode &grand : child)
+				if(grand.Token(0) == "override capture")
+					overridesCapture = true;
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
+		}
+		else if(child.Token(0) == "shipyard")
+			location = SHIPYARD;
+		else if(child.Token(0) == "outfitter")
+			location = OUTFITTER;
 		else if(child.Token(0) == "repeat")
 			repeat = (child.Size() == 1 ? 0 : static_cast<int>(child.Value(1)));
 		else if(child.Token(0) == "clearance")
@@ -227,6 +238,8 @@ void Mission::Load(const DataNode &node)
 				toComplete.Load(child);
 			else if(child.Token(1) == "fail")
 				toFail.Load(child);
+			else if(child.Token(1) == "accept")
+				toAccept.Load(child);
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
@@ -265,7 +278,7 @@ void Mission::Load(const DataNode &node)
 		else if(child.Token(0) == "substitutions" && child.HasChildren())
 			substitutions.Load(child);
 		else if(child.Token(0) == "npc")
-			npcs.emplace_back(child);
+			npcs.emplace_back(child, name);
 		else if(child.Token(0) == "on" && child.Size() >= 2 && child.Token(1) == "enter")
 		{
 			// "on enter" nodes may either name a specific system or use a LocationFilter
@@ -349,7 +362,17 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		if(location == ASSISTING)
 			out.Write("assisting");
 		if(location == BOARDING)
+		{
 			out.Write("boarding");
+			if(overridesCapture)
+			{
+				out.BeginChild();
+				{
+					out.Write("override capture");
+				}
+				out.EndChild();
+			}
+		}
 		if(location == JOB)
 			out.Write("job");
 		if(!clearance.empty())
@@ -370,6 +393,15 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.BeginChild();
 			{
 				toOffer.Save(out);
+			}
+			out.EndChild();
+		}
+		if(!toAccept.IsEmpty())
+		{
+			out.Write("to", "accept");
+			out.BeginChild();
+			{
+				toAccept.Save(out);
 			}
 			out.EndChild();
 		}
@@ -539,6 +571,13 @@ bool Mission::IsAtLocation(Location location) const
 
 
 // Information about what you are doing.
+const Ship *Mission::SourceShip() const
+{
+	return sourceShip;
+}
+
+
+
 const Planet *Mission::Destination() const
 {
 	return destination;
@@ -735,6 +774,10 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 
 bool Mission::CanAccept(const PlayerInfo &player) const
 {
+	const auto &playerConditions = player.Conditions();
+	if(!toAccept.Test(playerConditions))
+		return false;
+
 	auto it = actions.find(OFFER);
 	if(it != actions.end() && !it->second.CanBeDone(player))
 		return false;
@@ -841,6 +884,13 @@ bool Mission::IsFailed() const
 
 
 
+bool Mission::OverridesCapture() const
+{
+	return overridesCapture;
+}
+
+
+
 // Mark a mission failed (e.g. due to a "fail" action in another mission).
 void Mission::Fail()
 {
@@ -877,8 +927,6 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 		cargoNeeded -= flagship->Cargo().Free();
 		bunksNeeded -= flagship->Cargo().BunksFree();
 	}
-	if(cargoNeeded < 0 && bunksNeeded < 0)
-		return "";
 
 	map<string, string> subs;
 	GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
@@ -888,6 +936,9 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 	if(flagship)
 		subs["<ship>"] = flagship->Name();
 
+	const auto &playerConditions = player.Conditions();
+	subs["<conditions>"] = toAccept.Test(playerConditions) ? "meet" : "do not meet";
+
 	ostringstream out;
 	if(bunksNeeded > 0)
 		out << (bunksNeeded == 1 ? "another bunk" : to_string(bunksNeeded) + " more bunks");
@@ -895,6 +946,8 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 		out << " and ";
 	if(cargoNeeded > 0)
 		out << (cargoNeeded == 1 ? "another ton" : to_string(cargoNeeded) + " more tons") << " of cargo space";
+	if(bunksNeeded <= 0 && cargoNeeded <= 0)
+		out << "no additional space";
 	subs["<capacity>"] = out.str();
 
 	string message = Format::Replace(blocked, subs);
@@ -1061,7 +1114,7 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 	if(event.TargetGovernment()->IsPlayer() && !hasFailed)
 	{
 		bool failed = false;
-		string message = "Your ship '" + event.Target()->Name() + "' has been ";
+		string message = "Your ship \"" + event.Target()->Name() + "\" has been ";
 		if(event.Type() & ShipEvent::DESTROY)
 		{
 			// Destroyed ships carrying mission cargo result in failed missions.
@@ -1148,6 +1201,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.isMinor = isMinor;
 	result.autosave = autosave;
 	result.location = location;
+	result.overridesCapture = overridesCapture;
+	result.sourceShip = boardingShip.get();
 	result.repeat = repeat;
 	result.name = name;
 	result.waypoints = waypoints;
@@ -1208,19 +1263,20 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	// cargo name with something more specific.
 	if(!cargo.empty())
 	{
+		const string expandedCargo = Phrase::ExpandPhrases(cargo);
 		const Trade::Commodity *commodity = nullptr;
-		if(cargo == "random")
+		if(expandedCargo == "random")
 			commodity = PickCommodity(*sourceSystem, *result.destination->GetSystem());
 		else
 		{
 			for(const Trade::Commodity &option : GameData::Commodities())
-				if(option.name == cargo)
+				if(option.name == expandedCargo)
 				{
 					commodity = &option;
 					break;
 				}
 			for(const Trade::Commodity &option : GameData::SpecialCommodities())
-				if(option.name == cargo)
+				if(option.name == expandedCargo)
 				{
 					commodity = &option;
 					break;
@@ -1229,7 +1285,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		if(commodity)
 			result.cargo = commodity->items[Random::Int(commodity->items.size())];
 		else
-			result.cargo = cargo;
+			result.cargo = expandedCargo;
 	}
 	// Pick a random cargo amount, if requested.
 	if(cargoSize || cargoLimit)
@@ -1253,7 +1309,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	result.paymentApparent = paymentApparent;
 	result.illegalCargoFine = illegalCargoFine;
-	result.illegalCargoMessage = illegalCargoMessage;
+	result.illegalCargoMessage = Phrase::ExpandPhrases(illegalCargoMessage);
 	result.failIfDiscovered = failIfDiscovered;
 
 	int jumps = result.CalculateJumps(sourceSystem);
@@ -1267,6 +1323,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	// Copy the conditions. The offer conditions must be copied too, because they
 	// may depend on a condition that other mission offers might change.
 	result.toOffer = toOffer;
+	result.toAccept = toAccept;
 	result.toComplete = toComplete;
 	result.toFail = toFail;
 
@@ -1275,8 +1332,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
 	substitutions.Substitutions(subs, player.Conditions());
 	subs["<commodity>"] = result.cargo;
-	subs["<tons>"] = to_string(result.cargoSize) + (result.cargoSize == 1 ? " ton" : " tons");
-	subs["<cargo>"] = subs["<tons>"] + " of " + subs["<commodity>"];
+	subs["<tons>"] = Format::MassString(result.cargoSize);
+	subs["<cargo>"] = Format::CargoString(result.cargoSize, subs["<commodity>"]);
 	subs["<bunks>"] = to_string(result.passengers);
 	subs["<passengers>"] = (result.passengers == 1) ? "passenger" : "passengers";
 	subs["<fare>"] = (result.passengers == 1) ? "a passenger" : (subs["<bunks>"] + " passengers");
@@ -1289,21 +1346,30 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	subs["<destination>"] = subs["<planet>"] + " in the " + subs["<system>"] + " system";
 	subs["<date>"] = result.deadline.ToString();
 	subs["<day>"] = result.deadline.LongString();
+	if(result.paymentApparent)
+		subs["<payment>"] = Format::CreditString(abs(result.paymentApparent));
 	// Stopover and waypoint substitutions: iterate by reference to the
 	// pointers so we can check when we're at the very last one in the set.
 	// Stopovers: "<name> in the <system name> system" with "," and "and".
 	if(!result.stopovers.empty())
 	{
+		string stopovers;
 		string planets;
 		const Planet * const *last = &*--result.stopovers.end();
 		int count = 0;
 		for(const Planet * const &planet : result.stopovers)
 		{
 			if(count++)
-				planets += (&planet != last) ? ", " : (count > 2 ? ", and " : " and ");
-			planets += planet->Name() + " in the " + planet->GetSystem()->Name() + " system";
+			{
+				string result = (&planet != last) ? ", " : (count > 2 ? ", and " : " and ");
+				stopovers += result;
+				planets += result;
+			}
+			stopovers += planet->Name() + " in the " + planet->GetSystem()->Name() + " system";
+			planets += planet->Name();
 		}
-		subs["<stopovers>"] = planets;
+		subs["<stopovers>"] = stopovers;
+		subs["<planet stopovers>"] = planets;
 	}
 	// Waypoints: "<system name>" with "," and "and".
 	if(!result.waypoints.empty())
@@ -1331,7 +1397,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		return result;
 	}
 	for(const NPC &npc : npcs)
-		result.npcs.push_back(npc.Instantiate(subs, sourceSystem, result.destination->GetSystem()));
+		result.npcs.push_back(npc.Instantiate(subs, sourceSystem, result.destination->GetSystem(), jumps, payload));
 
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
@@ -1384,10 +1450,10 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		result.genericOnEnter.emplace_back(action.Instantiate(subs, sourceSystem, jumps, payload));
 
 	// Perform substitution in the name and description.
-	result.displayName = Format::Replace(displayName, subs);
-	result.description = Format::Replace(description, subs);
-	result.clearance = Format::Replace(clearance, subs);
-	result.blocked = Format::Replace(blocked, subs);
+	result.displayName = Format::Replace(Phrase::ExpandPhrases(displayName), subs);
+	result.description = Format::Replace(Phrase::ExpandPhrases(description), subs);
+	result.clearance = Format::Replace(Phrase::ExpandPhrases(clearance), subs);
+	result.blocked = Format::Replace(Phrase::ExpandPhrases(blocked), subs);
 	result.clearanceFilter = clearanceFilter;
 	result.hasFullClearance = hasFullClearance;
 
