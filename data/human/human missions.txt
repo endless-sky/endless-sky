@@ -4090,6 +4090,7 @@ mission "00 Spaceport Reminder Resetter"
 	to offer
 		not "chosen sides"
 		not "Spaceport Reminder: offered"
+		not "global: spaceport reminder seen"
 	on offer
 		"spaceport reminder year" = "year"
 		"spaceport reminder month" = "month"
@@ -4102,17 +4103,17 @@ mission "Spaceport Reminder"
 		not attributes "uninhabited"
 	to offer
 		not "chosen sides"
+		not "global: spaceport reminder seen"
 		"spaceport reminder year" + "spaceport reminder month" != 0
-		"spaceport reminder year" * 12 + "spaceport reminder month" < "year" * 12 + "month" - 7
+		"spaceport reminder year" * 12 + "spaceport reminder month" < "year" * 12 + "month" - 3
 	on offer
+		set "global: spaceport reminder seen"
 		conversation
 			`As soon as you touch down on <origin>, you step off your ship and head directly for the job board and trade hub, brushing past several locals on the way. The constant routine of interstellar commerce has been firmly drilled into your brain; you near unconsciously peruse the boards, trying to suss out the most profitable route.`
 			`	You're caught off guard when you hear a voice behind you. "Hey, what's with all the rush, Captain?" You turn and see a dark-haired man in a faded green longcoat approaching you. "You seem awfully focused on getting off-world as soon as possible. Why not take a moment to look around? Admire the sights, try the local cuisine, maybe even talk to some of the people."`
 			choice
 				`	"Why should I do that?"`
 				`	"I'm a spaceship captain; I don't have time to waste."`
-				`	"Yes, I know already. I'll take my time later."`
-					decline
 			`	He tilts his head to the side. "You know, I'm a captain too. I know how quickly the luster of the galaxy can fade into the weekly grind if you wait for opportunity to come knocking. So why keep waiting? I'm sure you'll find something new to do in the spaceport."`
 			choice
 				`	"I'll be sure to check more spaceports in the future."`
