@@ -2020,7 +2020,7 @@ mission "Wealthy tourists out"
 	to offer
 		random < 75
 	to accept
-		has "outfit (active installed): Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	source
 		attributes "rich" "urban"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2085,7 +2085,7 @@ mission "Wealthy tourists back"
 	to offer
 		random < 75
 	to accept
-		has "outfit (active installed): Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	source
 		attributes "tourism"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2338,7 +2338,7 @@ mission "Prisoners [0]"
 	to offer
 		random < 15
 	to accept
-		has "outfit (active installed): Brig"
+		has "outfit (installed): Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2354,7 +2354,7 @@ mission "Prisoners [1]"
 	to offer
 		random < 15
 	to accept
-		has "outfit (active installed): Brig"
+		has "outfit (installed): Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2377,7 +2377,7 @@ mission "Prisoners [2]"
 	to offer
 		random < 15
 	to accept
-		has "outfit (active installed): Brig"
+		has "outfit (installed): Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2399,7 +2399,7 @@ mission "Prisoners [3]"
 	to offer
 		random < 15
 	to accept
-		has "outfit (active installed): Brig"
+		has "outfit (installed): Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2422,7 +2422,7 @@ mission "Prisoners [4]"
 		random < 10
 		"combat rating" > 50
 	to accept
-		has "outfit (active installed): Brig"
+		has "outfit (installed): Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -3147,7 +3147,7 @@ mission "Bounty Hunting (Small, Boarding, Entering)"
 		"combat rating" > 50
 		random < 15
 	to accept
-		has "outfit (active installed): Brig"
+		has "outfit (installed): Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -3186,7 +3186,7 @@ mission "Bounty Hunting (Medium, Boarding, Entering)"
 		"combat rating" > 200
 		random < 15
 	to accept
-		has "outfit (active installed): Brig"
+		has "outfit (installed): Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"

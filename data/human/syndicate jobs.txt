@@ -21,7 +21,7 @@ mission "Transport executive to <planet>"
 	to offer
 		random < 20
 	to accept
-		has "outfit (active installed): Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	source
 		government "Syndicate"
 	destination
@@ -44,7 +44,7 @@ mission "Corporate retreat from <origin>"
 	to offer
 		random < 20
 	to accept
-		has "outfit (active installed): Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	source
 		government "Syndicate"
 	stopover
@@ -353,7 +353,7 @@ mission "Syndicate Prisoner Transport [0]"
 	to offer
 		random < 5
 	to accept
-		has "outfit (active installed): Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
@@ -377,7 +377,7 @@ mission "Syndicate Prisoner Transport [1]"
 	to offer
 		random < 15
 	to accept
-		has "outfit (active installed): Brig"
+		has "outfit (installed): Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -401,7 +401,7 @@ mission "Syndicate Prisoner Transport [2]"
 	to offer
 		random < 15
 	to accept
-		has "outfit (active installed): Brig"
+		has "outfit (installed): Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -426,7 +426,7 @@ mission "Syndicate Prisoner Transport [3]"
 	to offer
 		random < 15
 	to accept
-		has "outfit (active installed): Brig"
+		has "outfit (installed): Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -451,7 +451,7 @@ mission "Syndicate Prisoner Transport [4]"
 	to offer
 		random < 10
 	to accept
-		has "outfit (active installed): Brig"
+		has "outfit (installed): Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -477,7 +477,7 @@ mission "Return Syndicate Prisoners [0]"
 	to offer
 		random < 5
 	to accept
-		has "outfit (active installed): Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete

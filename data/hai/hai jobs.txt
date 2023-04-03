@@ -167,8 +167,8 @@ mission "Wealthy Hai [1]"
 	to offer
 		random < 70
 	to accept
-		has "outfit (active installed): Luxury Accommodations"
-		has "outfit (active installed): Quantum Keystone"
+		has "outfit (installed): Luxury Accommodations"
+		has "outfit (installed): Quantum Keystone"
 	source
 		government "Hai"
 	destination
@@ -195,8 +195,8 @@ mission "Wealthy Hai [2]"
 	to offer
 		random < 30
 	to accept
-		has "outfit (active installed): Luxury Accommodations"
-		has "outfit (active installed): Quantum Keystone"
+		has "outfit (installed): Luxury Accommodations"
+		has "outfit (installed): Quantum Keystone"
 	source
 		government "Hai"
 	destination
@@ -1483,7 +1483,7 @@ mission "Hai Prisoner Roleplay"
 		government "Hai"
 		not attributes "station"
 	to accept
-		has "outfit (active installed): Brig"
+		has "outfit (installed): Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
