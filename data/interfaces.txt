@@ -427,7 +427,7 @@ interface "controls"
 		dimensions 90 30
 		color medium
 		hover bright
-	label "Unbind highlighted keybind with 'x'"
+	label "Press '_x' over keybind to unbind"
 		from -255 200
 		color "bright"
 		align left
