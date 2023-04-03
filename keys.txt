@@ -21,9 +21,9 @@
 "Toggle fullscreen" 1073741892
 "Toggle fast-forward" 1073741881
 "Fleet: Fight my target" 102
-"Fleet: Gather around me" 103
 "Fleet: Hold fire" 120
-"Fleet: Stay in position" 104
+"Fleet: Gather around me" 103
+"Fleet: Hold position" 104
 "Fleet: Toggle ammo usage" 117
 "Mouse turning (hold)" 1073742050
 "Mouse turning (toggle)" 1073742054

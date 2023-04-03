@@ -393,12 +393,12 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 		newOrders.target = target;
 		IssueOrders(player, newOrders, "focusing fire on \"" + target->Name() + "\".");
 	}
-	if(activeCommands.Has(Command::HOLD))
+	if(activeCommands.Has(Command::HOLD_FIRE))
 	{
 		newOrders.type = Orders::HOLD_FIRE;
 		IssueOrders(player, newOrders, "holding fire");
 	}
-	if(activeCommands.Has(Command::STAY))
+	if(activeCommands.Has(Command::HOLD_POSITION))
 	{
 		newOrders.type = Orders::HOLD_POSITION;
 		IssueOrders(player, newOrders, "holding position.");

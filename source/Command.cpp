@@ -71,9 +71,9 @@ const Command Command::INFO(ONE << 20, "View player info");
 const Command Command::FULLSCREEN(ONE << 21, "Toggle fullscreen");
 const Command Command::FASTFORWARD(ONE << 22, "Toggle fast-forward");
 const Command Command::FIGHT(ONE << 23, "Fleet: Fight my target");
-const Command Command::GATHER(ONE << 24, "Fleet: Gather around me");
-const Command Command::HOLD_POSITION(ONE << 25, "Fleet: Hold position");
-const Command Command::HOLD_FIRE(ONE << 26, "Fleet: Hold fire");
+const Command Command::HOLD_FIRE(ONE << 24, "Fleet: Hold fire");
+const Command Command::GATHER(ONE << 25, "Fleet: Gather around me");
+const Command Command::HOLD_POSITION(ONE << 26, "Fleet: Hold position");
 const Command Command::AMMO(ONE << 27, "Fleet: Toggle ammo usage");
 const Command Command::WAIT(ONE << 28, "");
 const Command Command::STOP(ONE << 29, "");
@@ -265,9 +265,9 @@ void Command::Load(const DataNode &node)
 			{"fullscreen", Command::FULLSCREEN},
 			{"fastforward", Command::FASTFORWARD},
 			{"fight", Command::FIGHT},
+			{"holdfire", Command::HOLD_FIRE},
 			{"gather", Command::GATHER},
-			{"hold", Command::HOLD},
-			{"stay", Command::STAY},
+			{"holdposition", Command::HOLD_POSITION},
 			{"ammo", Command::AMMO},
 			{"wait", Command::WAIT},
 			{"stop", Command::STOP},

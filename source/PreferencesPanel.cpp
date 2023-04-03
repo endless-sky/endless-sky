@@ -403,9 +403,9 @@ void PreferencesPanel::DrawControls()
 		Command::NONE,
 		Command::DEPLOY,
 		Command::FIGHT,
+		Command::HOLD_FIRE,
 		Command::GATHER,
-		Command::STAY,
-		Command::HOLD,
+		Command::HOLD_POSITION,
 		Command::AMMO
 	};
 	static const Command *BREAK = &COMMANDS[19];

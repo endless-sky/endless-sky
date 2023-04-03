@@ -61,9 +61,9 @@ public:
 	static const Command FASTFORWARD;
 	// Escort commands:
 	static const Command FIGHT;
+	static const Command HOLD_FIRE;
 	static const Command GATHER;
-	static const Command HOLD;
-	static const Command STAY;
+	static const Command HOLD_POSITION;
 	static const Command AMMO;
 	// This command is given in combination with JUMP or LAND and tells a ship
 	// not to jump or land yet even if it is in position to do so. It can be
