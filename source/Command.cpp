@@ -220,10 +220,7 @@ bool Command::HasBinding() const
 {
 	auto it = keyName.find(*this);
 
-	if(it == keyName.end())
-		return false;
-
-	if(it->second == "")
+	if(it == keyName.end() || it->second == "")
 		return false;
 
 	return true;
