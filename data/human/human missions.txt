@@ -47,11 +47,9 @@ mission "Immigrant Workers"
 
 
 mission "Pookie, Part 1"
+	minor
 	name "Pookie"
 	description "Travel to <destination> and meet Pookie, who is staying with her aunt and may be scared of flying."
-	minor
-	to offer
-		random < 50
 	source "Hestia"
 	destination "Shroud"
 	passengers 1
@@ -370,7 +368,7 @@ mission "Pookie, Part 5"
 			label lazy
 			action
 				log `Saved a dog from a hound-racing ring, and tried to give her a home. However, her alleged owner rejected her. Eventually decided to keep her.`
-				outfit `"Puny"`
+				outfit "Puny"
 			`	You lean back in your seat as the taxi passes through the town without interruption. Not long after you find yourself back in the spaceport, with Puny still in your care. With nowhere else to go, you decide to bring Puny aboard your ship. As you lead her, she happily strolls up the landing ramp and settles into one of your bunks.`
 				decline
 
@@ -3119,7 +3117,7 @@ mission "Capture Smuggler"
 	npc board
 		conversation
 			`The smuggler and his crew are ready and waiting when you board. You pull out the "gift" and press the button, then quickly toss it down the hallway. For a moment, you meet the smuggler's eyes. They widen with terror when he sees the "gift." You duck back into cover. A few seconds later, you hear a strangely muted detonation, followed by silence. After a minute, you hazard another peek out of cover. The smuggler and all his men are unconscious on the ground. One crewman has blood dripping from his nose and ears. You tie them all up and stow the smuggler in a locked cabin on your ship.`
-			`	Once they're secured, you sweep the ship. Ultimately you find the stolen cargo in the captain's cabin, hidden behind a false panel. The cargo is a nondescript storage container, but upon closer inspection you see that it's code-locked and covered with interference plating.`
+			`	Once they're secured, you sweep the ship. Ultimately you find the stolen cargo in the captain's cabin, hidden behind a false panel. The cargo is a nondescript storage container, but upon closer inspection you see that it's code-locked and covered with Interference Plating.`
 				launch
 		government "Merchant"
 		personality staying uninterested timid target marked
@@ -4393,8 +4391,8 @@ mission "Block Hai Wormhole Warning"
 	invisible
 	to offer
 		or
-			has "First Contact: Hai"
-			has "First Contact: Unfettered"
+			has "First Contact: Hai: declined"
+			has "First Contact: Unfettered: declined"
 		has "chosen sides"
 		not "main plot completed"
 	on offer
@@ -4407,8 +4405,8 @@ mission "Hai Wormhole Warning"
 		not attributes "deep"
 	to offer
 		or
-			has "First Contact: Hai"
-			has "First Contact: Unfettered"
+			has "First Contact: Hai: declined"
+			has "First Contact: Unfettered: declined"
 		not "Block Hai Wormhole Warning: offered"
 		not "Wanderers: Alpha Surveillance E: offered"
 	on offer
@@ -4795,7 +4793,11 @@ mission "Dangerous Games 2"
 			`	Karengo claps him on the back and gives him a signature grin. "Maybe <first> can keep you aboard after this in case they need anything from a high shelf!" Mussie smiles weakly, but his eyes don't leave the readout.`
 			`	TWENTY-FIVE KILOMETERS. "This's it," Karengo announces, "Sub up! Let's see what there is to see. And <first>, keep it to passive sensors. Don't want to attract any undue attention." The ship smoothly descends into the mouth of a massive cave and your visibility, clouded by dark sulfide emissions from the hydrothermal vents at the floor, drops to less than eight meters. 6 personal subpods fan out behind you, their communication equipment syncing with yours to display them as blips on your screen.`
 			`	"Ok, <first>," Karengo crackles over the radio. "I'll read you the first clue."`
-			`	"No other path may you take \ Oiled skins flash and flicker \ Razor spikes grow from the deep \ Titanic walls crush and smash \ Heed the beginnings to live".`
+			`"No other path may you take"`
+			`"Oiled skins flash and flicker"`
+			`"Razor spikes grow from the deep"`
+			`"Titanic walls crush and smash"`
+			`"Heed the beginnings to live".`
 			choice
 				`	(Go east).`
 					goto east
@@ -4831,7 +4833,11 @@ mission "Dangerous Games 2"
 			label riddletwo
 			branch dead
 				has "Elias and Taddese dead"
-			`	After everyone arrives and is accounted for, Karengo reads the riddle to you. "There are stingers in the deep \ A certain death, a dreamless sleep. \ Go to beast that has no bee \ No danger there, just open sea."`
+			`	After everyone arrives and is accounted for, Karengo reads the riddle to you.`
+			`"There are stingers in the deep"`
+			`"A certain death, a dreamless sleep."`
+			`"Go to beast that has no bee."`
+			`"No danger there, just open sea."`
 			choice
 				`	(Go east.)`
 					goto east1
@@ -4890,7 +4896,11 @@ mission "Dangerous Games 2"
 			`	Karengo sounds a roll call over the radio. Elias and Taddese are still missing, and now Mussie has failed to report in as well. None of their subpod beacons are responding.`
 			`	"Ah, well." says Karengo, without much sympathy. "You all stay here and I'll scout ahead." Only minutes later, he's found a clear path east, and you morosly trail the ship behind.`
 			label riddlethree
-			`	Karengo reads you the next line. "To the north and to the east \ Track my movements like a beast. \ A quick turn right and forward on, \ Come toward me where danger's gone."`
+			`	Karengo reads you the next line.`
+			`"To the north and to the east"`
+			`"Track my movements like a beast."`
+			`"A quick turn right and forward on,"`
+			`"Come toward me where danger's gone."`
 			branch dead2
 				has "Mussie dead"
 				has "Elias and Taddese dead"
@@ -5047,7 +5057,7 @@ mission "Dangerous Games 2"
 			`	"Alright," he says. "Let's get back to the surface. <first>, kindly be our chariot and haul."`
 			`	It seems ages, but finally you break through to the surface. Karengo smiles, and a sigh of relief goes through the crew.`
 			`	Once back to the surface, the passengers begin to shuffle off your ship, clearly exhausted but happy that they got to experience such an adventure. You're just relieved all of them stayed alive.`
-			`As soon as the passengers are out of earshot, Karengo calls up someone on his receiver. Soon, a small flock of scientists arrive and haul the machine to a local lab for investigation. They quickly determine it to be non-functional and promise to extract as many secrets as possible.`
+			`	As soon as the passengers are out of earshot, Karengo calls up someone on his receiver. Soon, a small flock of scientists arrive and haul the machine to a local lab for investigation. They quickly determine it to be non-functional and promise to extract as many secrets as possible.`
 				goto end
 			label some
 			`	"Alright," he says. "Let's get back to the surface. <first>, kindly be our chariot and haul."`
@@ -5297,7 +5307,7 @@ mission "Wool Smuggling 2"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 200000
-		dialog `Your cargo of woolen garments is unloaded by several bulky workers led by a one-armed woman. She hands you <payment> for the trouble of transport, then says, "Thanks for the shipment. I know that you captains think that we're all bad, but I'm glad that you were able to aid the more friendly among us.`
+		dialog `Your cargo of woolen garments is unloaded by several bulky workers led by a one-armed woman. She hands you <payment> for the trouble of transport, then says, "Thanks for the shipment. I know that you captains think that we're all bad, but I'm glad that you were able to aid the more friendly among us."`
 
 
 
@@ -5416,3 +5426,124 @@ mission "Deal Change 2"
 				die
 			label skip
 			`	After a few minutes, the pirates finish unloading the cargo, and Ci steps forward, holding out a credit chip. "<payment>, for making the right choice." Ci and the pirates return to their ships as you take off and head towards the main spaceport of <planet>.`
+
+
+
+mission "Quicksilver Mixup 0"
+	minor
+	name "Package to Silver"
+	description "Deliver a package to <planet> by <date>. Payment is <payment>."
+	"apparent payment" 17100
+	cargo package 1
+	deadline 4 0
+	to offer
+		random < 25
+	source
+		near Algol 1 3
+	destination Silver
+	on offer
+		conversation
+			`You're looking at some job listings when a man with a harried face approaches you, carrying a package.`
+			`	"Excuse me, Captain," he says. "I need this package delivered in the next four days. Details are on the package. I'll pay you <payment> once it's done." Without waiting for a response, he shoves the package into your hands and runs off to attend to whatever business has gotten him in such a hurry. The package is addressed to a location on <planet>.`
+			branch "can't make it in time"
+				has "hyperjumps to planet: Silver" > 3
+			`	It's going to be close to his deadline, but it's possible.`
+				goto choice
+			label "can't make it in time"
+			`	How he expects you to deliver that package in four days is beyond you, seeing as <planet> is not within three jumps of <origin>, but you might as well try and get there as soon as possible.`
+			label choice
+			choice
+				`	(Deliver the package.)`
+				`	(Find another pilot to give the package to.)`
+					goto declined
+			`	You take the package to your ship, leave it in the cargo bay, and prepare for the flight to <planet>.`
+				accept
+			
+			label declined
+			`	It takes a while searching for a pilot who can handle the delivery, but you do eventually find one. You hand them the package, explain the situation, thank them, and leave.`
+				decline
+	on visit
+		dialog phrase "generic cargo on visit"
+
+mission "Quicksilver Mixup 1"
+	name "Redirect Package to <planet>"
+	description "Apparently the package labeled for <origin> was actually intended for <planet>. You'll have missed the deadline, so you probably won't be paid the <payment> offered."
+	landing
+	cargo package 1
+	source Silver
+	destination Quicksilver
+	to offer
+		not "Quicksilver Mixup 0: aborted"
+		or
+			has "Quicksilver Mixup 0: done"
+			has "Quicksilver Mixup 0: failed"
+	on offer
+		conversation
+			branch late
+				not "Quicksilver Mixup 0: done"
+			`Barely making the deadline, you take the package to the post office in <origin>'s spaceport. The service clerk immediately lets out a sigh of frustration before setting the package down on the counter in front of you.`
+				goto "can't take package"
+			
+			label late
+			`Despite missing the deadline, you take the package to the post office in <origin>'s spaceport. The service clerk immediately lets out a sigh of frustration before setting the package down on the counter in front of you.`
+			
+			label "can't take package"
+			`	"I'm sorry, but we can't take this package," they say.`
+			choice
+				`	"Is something wrong?"`
+					goto misdirected
+				`	"What do you mean? Surely you can."`
+			`	"Again, I'm sorry, but we can't send the package," they reiterate. "It's got an incorrect address.`
+			label misdirected
+			`	"This package is addressed to 2081 Amethyst Avenue, Mercury City, <origin>. Mercury City is <planet>'s capital. Y'know, that planet out east in Algol. Syndicate space. Not a place on <origin>. The package was posted to the wrong planet."`
+			`	"Oh," you say.`
+			`	"I've lost count of how many times this has happened just this month. <origin>, <planet>, I wonder what's the difference! At this point, I don't know why no one's started to regularly meet with <planet>'s postmaster to exchange all this wrongly-posted mail. Alright, here's a word of advice: I highly recommend you take a picture of the incorrect address. I've had plenty of captains get put on blast 'cause of an error the sender made. Not your fault it got addressed to the wrong planet."`
+			`	You thank the clerk and take the package back to your ship.`
+			choice
+				`	(Take a picture of the incorrect address.)`
+				`	(Don't bother taking a picture.)`
+					accept
+			action
+				set "took picture of quicksilver package"
+			`	You take a few photographs of the address label, just to be sure that you've got a clear picture of the wrong address.`
+				accept
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 17100
+		event "quicksilver mixup 2 available" 90
+		conversation
+			`When you talk to a post officer in <planet>'s spaceport and point out the incorrect address before handing it over, you note that he exhibits the same frustration the clerk on <origin> did regarding the frequent switch-ups. He takes the package, muttering something about off-worlders "not knowing the difference even if it smacked 'em in the face" as he did.`
+			`	Once you return to your ship, you notice that the man who gave you that package had sent you a message. Or, to be more precise, a series of messages. An angry series of messages.`
+			`	"WHAT TOOK YOU SO LONG???"`
+			`	"I NEEDED THAT DELIVERED DAYS AGO"`
+			branch picture "didn't take picture"
+				has "took picture of quicksilver package"
+
+			label picture
+			`	You send the man the picture you took of his error and point out that it was his mistake that got the package initially got sent to the wrong place, and politely inform him that had he wanted a smoother delivery, then maybe he should've filed a proper job listing and made sure that he placed the correct address.`
+			branch "picture success" "picture failure"
+				random < 50
+
+			label "picture failure"
+			action
+				payment -17100
+			`	He doesn't respond.`
+				decline
+
+			label "picture success"
+			action
+				payment 5000
+			`	He sees the message, but doesn't send a reply. Just before you walk away from your ship's terminal, you see a new message appear:`
+			`	"I am so sorry."`
+			`	The man then proceeds to apologize profusely for his mistake and his outburst, offering to pay an extra 5,000 credits for the trouble. You gladly accept.`
+				decline
+
+			label "didn't take picture"
+			action
+				payment -17100
+			`	You try to defend yourself, but the man remains adamant that it was your mistake that got the package sent so late. After a frustrating back-and-forth, you decide to relent and (reluctantly) offer an apology. He ignores it and threatens to get spaceport authorities to "STOP OFFERING JOBS TO INCOMPETENTS LIKE YOU."`
+			`	You don't bother to reply.`
+			
+
+event "quicksilver mixup 2 available"

@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef PREFERENCES_H_
 #define PREFERENCES_H_
 
+#include <cstdint>
 #include <string>
 
 
@@ -26,6 +27,13 @@ public:
 		off = 0,
 		on,
 		adaptive,
+	};
+
+	enum class OverlayType : int {
+		OFF = 0,
+		ON,
+		DAMAGED,
+		DISABLED
 	};
 
 	enum class AutoAim : int_fast8_t {
@@ -84,6 +92,13 @@ public:
 	static bool ToggleVSync();
 	static VSync VSyncState();
 	static const std::string &VSyncSetting();
+
+	static void SetStatusOverlaysGeneric(int &index, bool blank);
+	static void ResetStatusOverlayChildren(bool blank);
+
+	static void SetStatusOverlays(bool blank, int type);
+	static OverlayType StatusOverlaysState(int type);
+	static const std::string &StatusOverlaysSetting(int type);
 
 	// Auto aim setting, either "off", "always on", or "when firing".
 	static void ToggleAutoAim();

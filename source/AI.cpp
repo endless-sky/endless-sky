@@ -294,6 +294,9 @@ namespace {
 
 	// An offset to prevent the ship from being not quite over the point to departure.
 	const double SAFETY_OFFSET = 1.;
+
+	// The minimum speed advantage a ship has to have to consider running away.
+	const double SAFETY_MULTIPLIER = 1.1;
 }
 
 
@@ -1166,7 +1169,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	shared_ptr<Ship> target;
 	const Government *gov = ship.GetGovernment();
 	if(!gov || ship.GetPersonality().IsPacifist())
-		return target;
+		return FindNonHostileTarget(ship);
 
 	bool isYours = ship.IsYours();
 	if(isYours)
@@ -1186,7 +1189,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 			maxRange = max(maxRange, weapon.GetOutfit()->Range());
 		}
 	if(!maxRange)
-		return target;
+		return FindNonHostileTarget(ship);
 
 	const Personality &person = ship.GetPersonality();
 	shared_ptr<Ship> oldTarget = ship.GetTargetShip();
@@ -1256,7 +1259,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 
 		// Ships which only disable never target already-disabled ships.
 		if((person.Disables() || (!person.IsNemesis() && foe != oldTarget.get()))
-				&& foe->IsDisabled() && !canPlunder)
+				&& foe->IsDisabled() && (!canPlunder || Has(ship, foe->shared_from_this(), ShipEvent::BOARD)))
 			continue;
 
 		// Ships that don't (or can't) plunder strongly prefer active targets.
@@ -1286,13 +1289,45 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	// With no hostile targets, NPCs with enforcement authority (and any
 	// mission NPCs) should consider friendly targets for surveillance.
 	if(!isYours && !target && (ship.IsSpecial() || scanPermissions.at(gov)))
+		target = FindNonHostileTarget(ship);
+
+	// Vindictive personalities without in-range hostile targets keep firing at an old
+	// target (instead of perhaps moving about and finding one that is still alive).
+	if(!target && person.IsVindictive())
 	{
-		bool cargoScan = ship.Attributes().Get("cargo scan power");
-		bool outfitScan = ship.Attributes().Get("outfit scan power");
-		if(cargoScan || outfitScan)
+		target = ship.GetTargetShip();
+		if(target && (target->Cloaking() == 1. || target->GetSystem() != ship.GetSystem()))
+			target.reset();
+	}
+
+	return target;
+}
+
+
+
+shared_ptr<Ship> AI::FindNonHostileTarget(const Ship &ship) const
+{
+	shared_ptr<Ship> target;
+	bool cargoScan = ship.Attributes().Get("cargo scan power");
+	bool outfitScan = ship.Attributes().Get("outfit scan power");
+	if(cargoScan || outfitScan)
+	{
+		const auto allies = GetShipsList(ship, false);
+		// If this ship already has a target, and is in the process of scanning it, prioritise that.
+		shared_ptr<Ship> oldTarget = ship.GetTargetShip();
+		if(oldTarget && !oldTarget->IsTargetable())
+			oldTarget.reset();
+		if(oldTarget)
 		{
-			closest = numeric_limits<double>::infinity();
-			const auto allies = GetShipsList(ship, false);
+			bool cargoScanInProgress = ship.CargoScanFraction() > 0. && ship.CargoScanFraction() < 1.;
+			bool outfitScanInProgress = ship.OutfitScanFraction() > 0. && ship.OutfitScanFraction() < 1.;
+			if(cargoScanInProgress || outfitScanInProgress)
+				target = std::move(oldTarget);
+		}
+		else
+		{
+			double closest = numeric_limits<double>::infinity();
+			const Government *gov = ship.GetGovernment();
 			for(const auto &it : allies)
 				if(it->GetGovernment() != gov)
 				{
@@ -1302,7 +1337,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 							&& (!outfitScan || Has(gov, ptr, ShipEvent::SCAN_OUTFITS)))
 						continue;
 
-					double range = it->Position().Distance(ship.Position());
+					double range = it->Position().DistanceSquared(ship.Position());
 					if(range < closest)
 					{
 						closest = range;
@@ -1310,15 +1345,6 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 					}
 				}
 		}
-	}
-
-	// Vindictive personalities without in-range hostile targets keep firing at an old
-	// target (instead of perhaps moving about and finding one that is still alive).
-	if(!target && person.IsVindictive())
-	{
-		target = ship.GetTargetShip();
-		if(target && (target->Cloaking() == 1. || target->GetSystem() != ship.GetSystem()))
-			target.reset();
 	}
 
 	return target;
@@ -1491,7 +1517,10 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 			target.reset();
 		else
 		{
-			CircleAround(ship, command, *target);
+			if(target->Velocity().Length() > ship.MaxVelocity() * 0.9)
+				CircleAround(ship, command, *target);
+			else
+				MoveTo(ship, command, target->Position(), target->Velocity(), 1., 1.);
 			if(!ship.IsYours() && (ship.IsSpecial() || scanPermissions.at(gov)))
 				command |= Command::SCAN;
 		}
@@ -1627,6 +1656,21 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	const Planet *parentPlanet = (parent.GetTargetStellar() ? parent.GetTargetStellar()->GetPlanet() : nullptr);
 	bool planetIsHere = (parentPlanet && parentPlanet->IsInSystem(parent.GetSystem()));
 	bool systemHasFuel = hasFuelCapacity && currentSystem->HasFuelFor(ship);
+
+	if(parent.Cloaking() == 1 && (ship.GetGovernment() != parent.GetGovernment()))
+	{
+		if(parent.GetGovernment() && parent.GetGovernment()->IsPlayer() &&
+			ship.GetPersonality().IsEscort() && !ship.GetPersonality().IsUninterested())
+		{
+			// NPCs with the "escort" personality that are not uninterested
+			// act as if they were escorts, following the cloaked flagship.
+		}
+		else
+		{
+			MoveIndependent(ship, command);
+			return;
+		}
+	}
 
 	// Non-staying escorts should route to their parent ship's system if not already in it.
 	if(!parentIsHere && !isStaying)
@@ -1867,13 +1911,19 @@ double AI::TurnBackward(const Ship &ship)
 
 
 
-double AI::TurnToward(const Ship &ship, const Point &vector)
+// Determine the value to use in Command::SetTurn() to turn the ship towards the desired facing.
+// "precision" is an optional argument corresponding to a value of the dot product of the current and target facing
+// vectors above which no turning should be attempting, to reduce constant, minute corrections.
+double AI::TurnToward(const Ship &ship, const Point &vector, const double precision)
 {
 	Point facing = ship.Facing().Unit();
 	double cross = vector.Cross(facing);
 
-	if(vector.Dot(facing) > 0.)
+	double dot = vector.Dot(facing);
+	if(dot > 0.)
 	{
+		if(precision < 1. && precision > 0. && dot * dot >= precision * vector.LengthSquared() * facing.LengthSquared())
+			return 0.;
 		double angle = asin(min(1., max(-1., cross / vector.Length()))) * TO_DEG;
 		if(fabs(angle) <= ship.TurnRate())
 			return -angle / ship.TurnRate();
@@ -1917,7 +1967,7 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 
 	bool isFacing = (dp.Unit().Dot(angle.Unit()) > .95);
 	if(!isClose || (!isFacing && !shouldReverse))
-		command.SetTurn(TurnToward(ship, dp));
+		command.SetTurn(TurnToward(ship, dp, 0.9999));
 	if(isFacing)
 		command |= Command::FORWARD;
 	else if(shouldReverse)
@@ -2202,16 +2252,20 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 		return;
 	}
 
-	ShipAICache &shipAICache = ship.GetAICache();
-	bool useArtilleryAI = shipAICache.IsArtilleryAI();
-	double shortestRange = shipAICache.ShortestRange();
-	double shortestArtillery = shipAICache.ShortestArtillery();
-	double minSafeDistance = shipAICache.MinSafeDistance();
+	// Check if this ship is fast enough to keep distance from target.
+	// Have a 10% minimum to avoid ships getting in a chase loop.
+	const bool isAbleToRun = target.MaxVelocity() * SAFETY_MULTIPLIER < ship.MaxVelocity();
 
-	double totalRadius = ship.Radius() + target.Radius();
-	Point direction = target.Position() - ship.Position();
+	ShipAICache &shipAICache = ship.GetAICache();
+	const bool useArtilleryAI = shipAICache.IsArtilleryAI() && isAbleToRun;
+	const double shortestRange = shipAICache.ShortestRange();
+	const double shortestArtillery = shipAICache.ShortestArtillery();
+	double minSafeDistance = isAbleToRun ? shipAICache.MinSafeDistance() : 0.;
+
+	const double totalRadius = ship.Radius() + target.Radius();
+	const Point direction = target.Position() - ship.Position();
 	// Average distance from this ship's weapons to the enemy ship.
-	double weaponDistanceFromTarget = direction.Length() - totalRadius / 3.;
+	const double weaponDistanceFromTarget = direction.Length() - totalRadius / 3.;
 
 	// If this ship has mostly long-range weapons, or some weapons have a
 	// blast radius, it should keep some distance instead of closing in.
@@ -2476,7 +2530,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		else if(!isStaying)
 			command |= Command::LAND;
 	}
-	else if(target)
+	else if(target && target->IsTargetable())
 	{
 		// Approach and scan the targeted, friendly ship's cargo or outfits.
 		bool cargoScan = ship.Attributes().Get("cargo scan power");
@@ -2488,7 +2542,10 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 			ship.SetTargetShip(shared_ptr<Ship>());
 		else
 		{
-			CircleAround(ship, command, *target);
+			if(target->Velocity().Length() > ship.MaxVelocity() * 0.9)
+				CircleAround(ship, command, *target);
+			else
+				MoveTo(ship, command, target->Position(), target->Velocity(), 1., 1.);
 			command |= Command::SCAN;
 		}
 	}
@@ -2617,7 +2674,7 @@ bool AI::DoHarvesting(Ship &ship, Command &command)
 {
 	// If the ship has no target to pick up, do nothing.
 	shared_ptr<Flotsam> target = ship.GetTargetFlotsam();
-	if(target && ship.Cargo().Free() < target->UnitSize())
+	if(target && !ship.CanPickUp(*target))
 	{
 		target.reset();
 		ship.SetTargetFlotsam(target);
@@ -2632,7 +2689,7 @@ bool AI::DoHarvesting(Ship &ship, Command &command)
 		double bestTime = 600.;
 		for(const shared_ptr<Flotsam> &it : flotsam)
 		{
-			if(ship.Cargo().Free() < it->UnitSize())
+			if(!ship.CanPickUp(*it))
 				continue;
 			// Only pick up flotsam that is nearby and that you are facing toward.
 			Point p = it->Position() - ship.Position();
@@ -2695,8 +2752,20 @@ bool AI::DoCloak(Ship &ship, Command &command)
 
 		// If your parent has chosen to cloak, cloak and rendezvous with them.
 		const shared_ptr<const Ship> &parent = ship.GetParent();
-		if(parent && parent->Commands().Has(Command::CLOAK) && parent->GetSystem() == ship.GetSystem()
-				&& !parent->GetGovernment()->IsEnemy(ship.GetGovernment()))
+		bool shouldCloakWithParent = false;
+		if(parent && parent->GetGovernment() && parent->Commands().Has(Command::CLOAK)
+				&& parent->GetSystem() == ship.GetSystem())
+		{
+			const Government *parentGovernment = parent->GetGovernment();
+			bool isPlayer = parentGovernment->IsPlayer();
+			if(isPlayer && ship.GetGovernment() == parentGovernment)
+				shouldCloakWithParent = true;
+			else if(isPlayer && ship.GetPersonality().IsEscort() && !ship.GetPersonality().IsUninterested())
+				shouldCloakWithParent = true;
+			else if(!isPlayer && !parent->GetGovernment()->IsEnemy(ship.GetGovernment()))
+				shouldCloakWithParent = true;
+		}
+		if(shouldCloakWithParent)
 		{
 			command |= Command::CLOAK;
 			KeepStation(ship, command, *parent);
@@ -3791,9 +3860,9 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			&& (!target || target->GetGovernment()->IsEnemy()))
 		AutoFire(ship, firingCommands, false);
 
-	const bool mouseTurning = Preferences::Has("alt-mouse turning");
+	const bool mouseTurning = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
 	if(mouseTurning && !ship.IsBoarding() && !ship.IsReversing())
-		command.SetTurn(TurnToward(ship, mousePosition));
+		command.SetTurn(TurnToward(ship, mousePosition, 0.9999));
 
 	if(activeCommands)
 	{

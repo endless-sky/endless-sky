@@ -641,7 +641,7 @@ fleet "Large Hai Merchant (Human)"
 
 
 fleet "Unfettered Logistics"
-	government "Hai (Friendly Unfettered)"
+	government "Hai (Unfettered Civilians)"
 	names "hai"
 	cargo 1
 	commodities "Food" "Heavy Metals" "Medical"

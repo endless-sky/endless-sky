@@ -31,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Outfit.h"
 #include "Person.h"
 #include "Planet.h"
+#include "Plugins.h"
 #include "Politics.h"
 #include "Preferences.h"
 #include "Random.h"
@@ -44,6 +45,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <algorithm>
+#include <cassert>
 #include <cmath>
 #include <ctime>
 #include <functional>
@@ -116,6 +118,9 @@ void PlayerInfo::Clear()
 	Messages::Reset();
 
 	conditions.Clear();
+
+	delete transactionSnapshot;
+	transactionSnapshot = nullptr;
 }
 
 
@@ -496,6 +501,26 @@ string PlayerInfo::Identifier() const
 {
 	string name = Files::Name(filePath);
 	return (name.length() < 4) ? "" : name.substr(0, name.length() - 4);
+}
+
+
+
+void PlayerInfo::StartTransaction()
+{
+	assert(!transactionSnapshot && "Starting PlayerInfo transaction while one is already active");
+
+	// Create in-memory DataWriter and save to it.
+	transactionSnapshot = new DataWriter();
+	Save(*transactionSnapshot);
+}
+
+
+
+void PlayerInfo::FinishTransaction()
+{
+	assert(transactionSnapshot && "Finishing PlayerInfo while one hasn't been started");
+	delete transactionSnapshot;
+	transactionSnapshot = nullptr;
 }
 
 
@@ -1661,9 +1686,9 @@ bool PlayerInfo::TakeOff(UI *ui)
 	{
 		// Report how much excess cargo was sold, and what profit you earned.
 		ostringstream out;
-		out << "You sold " << sold << " tons of excess cargo for " << Format::CreditString(income);
+		out << "You sold " << Format::CargoString(sold, "excess cargo") << " for " << Format::CreditString(income);
 		if(totalBasis && totalBasis != income)
-			out << " (for a profit of " << (income - totalBasis) << " credits).";
+			out << " (for a profit of " << Format::CreditString(income - totalBasis) << ").";
 		else
 			out << ".";
 		Messages::Add(out.str(), Messages::Importance::High);
@@ -3111,7 +3136,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	// The following condition checks all sources of outfits which are present with the player.
 	// If in orbit, this means checking all ships in-system for installed and in cargo outfits.
 	// If landed, this means checking all landed ships for installed outfits, the pooled cargo
-	// hold, and the planetary storage of the planet.
+	// hold, and the planetary storage of the planet. Excludes parked ships.
 	auto &&presentOutfitProvider = conditions.GetProviderPrefixed("outfit: ");
 	presentOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
@@ -3128,10 +3153,12 @@ void PlayerInfo::RegisterDerivedConditions()
 		}
 		for(const shared_ptr<Ship> &ship : ships)
 		{
-			// If not on a planet, parked ships in system don't count.
+			// Destroyed and parked ships aren't checked.
+			// If not on a planet, the ship's system must match.
 			// If on a planet, the ship's planet must match.
-			if(ship->IsDestroyed() || (planet && ship->GetPlanet() != planet)
-					|| (!planet && (ship->GetActualSystem() != system || ship->IsParked())))
+			if(ship->IsDestroyed() || ship->IsParked()
+					|| (planet && ship->GetPlanet() != planet)
+					|| (!planet && ship->GetActualSystem() != system))
 				continue;
 			retVal += ship->OutfitCount(outfit);
 			retVal += ship->Cargo().Get(outfit);
@@ -3160,8 +3187,8 @@ void PlayerInfo::RegisterDerivedConditions()
 		return retVal;
 	});
 
-	// The following condition checks the player's fleet for installed outfits on escorts
-	// local to the player.
+	// The following condition checks the player's fleet for installed outfits on active
+	// escorts local to the player.
 	auto &presentInstalledOutfitProvider = conditions.GetProviderPrefixed("outfit (installed): ");
 	presentInstalledOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
@@ -3171,10 +3198,33 @@ void PlayerInfo::RegisterDerivedConditions()
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
 		{
-			// If not on a planet, parked ships in system don't count.
+			// Destroyed and parked ships aren't checked.
+			// If not on a planet, the ship's system must match.
 			// If on a planet, the ship's planet must match.
-			if(ship->IsDestroyed() || (planet && ship->GetPlanet() != planet)
-					|| (!planet && (ship->GetActualSystem() != system || ship->IsParked())))
+			if(ship->IsDestroyed() || ship->IsParked()
+					|| (planet && ship->GetPlanet() != planet)
+					|| (!planet && ship->GetActualSystem() != system))
+				continue;
+			retVal += ship->OutfitCount(outfit);
+		}
+		return retVal;
+	});
+
+	// The following condition checks the player's fleet for installed outfits on parked escorts
+	// which are local to the player.
+	auto &parkedInstalledOutfitProvider = conditions.GetProviderPrefixed("outfit (parked): ");
+	parkedInstalledOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
+	{
+		// If the player isn't landed then there can be no parked ships local to them.
+		if(!planet)
+			return 0;
+		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (parked): ")));
+		if(!outfit)
+			return 0;
+		int64_t retVal = 0;
+		for(const shared_ptr<Ship> &ship : ships)
+		{
+			if(!ship->IsParked() || ship->GetPlanet() != planet)
 				continue;
 			retVal += ship->OutfitCount(outfit);
 		}
@@ -3767,11 +3817,21 @@ void PlayerInfo::Autosave() const
 
 
 
-void PlayerInfo::Save(const string &path) const
+void PlayerInfo::Save(const string &filePath) const
 {
-	DataWriter out(path);
+	if(transactionSnapshot)
+		transactionSnapshot->SaveToPath(filePath);
+	else
+	{
+		DataWriter out(filePath);
+		Save(out);
+	}
+}
 
 
+
+void PlayerInfo::Save(DataWriter &out) const
+{
 	// Basic player information and persistent UI settings:
 
 	// Pilot information:
@@ -4065,16 +4125,17 @@ void PlayerInfo::Save(const string &path) const
 	startData.Save(out);
 
 	// Write plugins to player's save file for debugging.
-	if(!GameData::PluginAboutText().empty())
+	out.Write();
+	out.WriteComment("Installed plugins:");
+	out.Write("plugins");
+	out.BeginChild();
+	for(const auto &it : Plugins::Get())
 	{
-		out.Write();
-		out.WriteComment("Installed plugins:");
-		out.Write("plugins");
-		out.BeginChild();
-		for(const auto &plugin : GameData::PluginAboutText())
-			out.Write(plugin.first);
-		out.EndChild();
+		const auto &plugin = it.second;
+		if(plugin.IsValid() && plugin.enabled)
+			out.Write(plugin.name);
 	}
+	out.EndChild();
 }
 
 

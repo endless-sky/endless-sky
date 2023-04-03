@@ -88,6 +88,9 @@ color "overlay friendly disabled" .5 0 0 .25
 color "overlay hostile shields" .5 .15 0. .25
 color "overlay hostile hull" .5 .3 0. .25
 color "overlay hostile disabled" .3 .3 0 .25
+color "overlay neutral shields" .43 .55 .70 .75
+color "overlay neutral hull" .45 .5 0. .25
+color "overlay neutral disabled" .5 0 0 .25
 color "overlay outfit scan" .5 .5 .5 .25
 color "overlay cargo scan" .7 .7 .7 .25
 
@@ -156,6 +159,12 @@ color "map travel ok none" .55 .1 0. 0.
 color "map travel wormhole" .5 .2 .9 1.
 color "map wormhole" .5 .2 .9 1.
 color "map orbits fleet destination" 1. 1. 1. 1.
+
+# Miscellaneous colors
+color "wormholes: Ember Waste" .7 .1 .3
+
+# Color of warning message when users enable or disable plugins via in-game UI.
+color "plugin reload required" .75 .1 .1 0.
 
 
 
@@ -481,6 +490,16 @@ interface "plugins"
 	button o "_Open Plugins"
 		center -195 210
 		dimensions 120 30
+	visible if "show plugins changed"
+	label "Restart to apply changes"
+		from -225 -236
+		align top left
+		color "plugin reload required"
+	visible if "!show plugins changed"
+	label "Installed Plugins:"
+		from -225 -236
+		align top left
+		color bright
 
 
 
@@ -691,7 +710,10 @@ interface "planet"
 	button l
 		center -60 -140
 		dimensions 720 360
-	
+
+	box "content"
+		from -300 80 to 180 355
+
 	visible if "has shipyard"
 	sprite "ui/planet dialog button"
 		center 280 90
@@ -769,6 +791,12 @@ interface "planet"
 		size 18
 		align right
 		pad 10 0
+
+
+
+interface "spaceport"
+	box "content"
+		from -300 80 to 180 355
 
 
 
@@ -996,6 +1024,9 @@ interface "hiring"
 
 
 interface "trade"
+	box "content"
+		from -310 80 to 190 355
+
 	line
 		center -60 95
 		dimensions 480 1
@@ -1025,6 +1056,9 @@ interface "trade"
 
 
 interface "bank"
+	box "content"
+		from -310 78 to 190 355
+
 	line
 		center -60 95
 		dimensions 480 1
