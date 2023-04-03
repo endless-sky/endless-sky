@@ -20,12 +20,11 @@ shipyard "Gegno Basic"
 
 shipyard "Gegno Intermediate"
 	"Conglomerate"
+	"Granufel"
 
 shipyard "Gegno Advanced"
 	"Gypsum"
 	"Corundum"
-	"Granufel"
-	"Protolith"
 
 outfitter "Gegno Basic"
 	"C3 Scrap Cell"
@@ -40,7 +39,7 @@ outfitter "Gegno Intermediate"
 	"R02 Battlezone Battery"
 	"RG18 Torch Steering"
 	"RG18 Torch Thruster"
-	
+
 
 # Gegno Vi
 

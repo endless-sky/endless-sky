@@ -874,6 +874,11 @@ outfit "Gegno Civilian License"
 	thumbnail "outfit/unknown"
 	description "You have been accepted as a titular Gegno citizen that provides benefits for the Gegno race, and have been awarded access to their civilian technology."
 
+outfit "Gegno Driller License"
+	category "Licenses"
+	thumbnail "outfit/unknown"
+	descruption "The Gegno now acknowledge your resourcefulness and ability to deliver more than acceptable results of work. You have been bestown the right of access to their mining technology."
+
 outfit "Vi Lord License"
 	category "Licenses"
 	thumbnail "outfit/unknown"

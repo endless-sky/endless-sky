@@ -199,6 +199,7 @@ ship "Gypsum"
 		category "Light Freighter"
 		licenses
 			"Gegno Civilian"
+			"Gegno Driller"
 		"cost" 1692000
 		"shields" 0
 		"hull" 5500
@@ -248,6 +249,7 @@ ship "Corundum"
 		category "Light Freighter"
 		licenses
 			"Gegno Civilian"
+			"Gegno Driller"
 		"cost" 1692000
 		"shields" 0
 		"hull" 5500
