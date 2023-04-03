@@ -18,12 +18,9 @@ mission "Kestrel Testing"
 	waypoint "Umbral"
 	to offer
 		or
-			"combat rating" > 6000
+			"combat rating" > 8000
 			and
-				"combat rating" > 2500
-				has "main plot completed"
-			and
-				"combat rating" > 1500
+				"combat rating" > 2000
 				has "global: unlocked kestrel"
 	
 	on offer
