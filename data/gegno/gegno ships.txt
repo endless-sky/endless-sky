@@ -1423,3 +1423,66 @@ ship "Epidote"
 	"final explode" "final explosion large"
 	description `Epidotes are large independent research platforms with adequately-sized cargo holds, allowing them to perform as a reliable heavy freighter for the Gegno Scin. A large number of bunks either help transport groups of Scin scientists to their project destinations, or allow for mobile on-board demonstrations and observations. Each Epidote is equipped with a rear fighter docking bay capable of carrying two Halites, typically used to ship Halite fighters around Scin space to resupply carriers. Thanks to these fighters and the Epidotes' three dorsal turrets, they can also be used as a secondary warship when needed.`
 	description `	Like other Gegno Scin ships, Epidotes themselves are an experimental test bed; they are built around the same large engine system tested on Feldspars, making them notably fast for their size.`
+
+ship "Kyanite"
+	sprite "ship/gegno kyanite"
+	thumbnail "thumbnail/gegno kyanite"
+	attributes
+		category "Utility"
+		"cost" 14454000
+		"shields" 0
+		"hull" 16900
+		"required crew" 102
+		"bunks" 170
+		"mass" 1146
+		"drag" 16.1
+		"heat dissipation" 0.55
+		"fuel capacity" 600
+		"cargo space" 430
+		"outfit space" 552
+		"weapon capacity" 166
+		"engine capacity" 182
+		weapon
+			"blast radius" 216
+			"shield damage" 1920
+			"hull damage" 1630
+			"hit force" 3200
+	outfits
+		"Astuit Battery" 2
+		"Acuit Artillery"
+		
+		"C7 Brawl Cell"
+		"C17 Warzone Core"
+		"R02 Battlezone Battery"
+		"R03 Warforge Battery"
+		"Plasmasickle" 51
+		"Plasma Grenades" 51
+		
+		"SC-15 Plasma Thrusters"
+		"SC-14 Plasma Steering" 2
+		"Hyperdrive"
+	engine 64 188
+	engine -64 188
+	"reverse engine" 66 -155
+	"reverse engine" -66 -155
+	turret 0 -144.5 "Astuit Battery"
+	turret 0 -27 "Astuit Battery"
+	turret 0 65 "Acuit Artillery"
+	bay "Fighter" 0 122
+		"launch effect" "scin launch"
+		angle -180
+		under
+	bay "Fighter" 0 180
+		"launch effect" "scin launch"
+		angle -180
+		under
+	leak "leak" 10 40
+	leak "flame" 40 70
+	leak "big leak" 30 50
+	explode "huge explosion" 15
+	explode "large explosion" 42
+	explode "medium explosion" 42
+	explode "small explosion" 38
+	"final explode" "final explosion large"
+	description `Epidotes are large independent research platforms with adequately-sized cargo holds, allowing them to perform as a reliable heavy freighter for the Gegno Scin. A large number of bunks either help transport groups of Scin scientists to their project destinations, or allow for mobile on-board demonstrations and observations. Each Epidote is equipped with a rear fighter docking bay capable of carrying two Halites, typically used to ship Halite fighters around Scin space to resupply carriers. Thanks to these fighters and the Epidotes' three dorsal turrets, they can also be used as a secondary warship when needed.`
+	description `	Like other Gegno Scin ships, Epidotes themselves are an experimental test bed; they are built around the same large engine system tested on Feldspars, making them notably fast for their size.`
