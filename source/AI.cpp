@@ -3829,6 +3829,11 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				if(targetDistance > distance * .5)
 				{
 					ship.SetMoveToward(target->Position());
+					// This code has an annoying side-effect that I'm not sure how
+					// to counter. if somebody in your fleet is being followed by
+					// the scan target, then everybody ends up moving after a point
+					// in front of your fleet, and you all just wander off together
+					// without being able to complete a scan
 					MoveTo(ship, command, target->Position(), target->Velocity(), 5.0, 0.8);
 				}
 			}
