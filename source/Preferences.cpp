@@ -94,7 +94,6 @@ void Preferences::Load()
 	settings["Turrets focus fire"] = true;
 	settings["Ship outlines in shops"] = true;
 	settings["Extra fleet status messages"] = true;
-	settings["Advanced shipyard stats"] = true;
 
 	DataFile prefs(Files::Config() + "preferences.txt");
 	for(const DataNode &node : prefs)

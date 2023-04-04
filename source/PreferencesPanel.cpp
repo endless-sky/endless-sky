@@ -518,7 +518,6 @@ void PreferencesPanel::DrawSettings()
 		"Show mini-map",
 		"Show asteroid scanner overlay",
 		"Always underline shortcuts",
-		"Show advanced shipyard stats",
 		"\t",
 		"AI",
 		"Automatic aiming",
@@ -557,8 +556,7 @@ void PreferencesPanel::DrawSettings()
 		"Show escort systems on map",
 		"Show stored outfits on map",
 		"System map sends move orders",
-		ALERT_INDICATOR,
-		"Advanced shipyard stats"
+		ALERT_INDICATOR
 	};
 	bool isCategory = true;
 	int page = 0;
