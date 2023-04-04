@@ -180,7 +180,7 @@ private:
 		static const int GATHER = 0x101;
 		static const int ATTACK = 0x102;
 		static const int FINISH_OFF = 0x103;
-		// MINE is for fleet targeting the asteroid for mining.  ATTACK is used
+		// MINE is for fleet targeting the asteroid for mining. ATTACK is used
 		// to chase and attack the asteroid.
 		static const int MINE = 0x104;
 		// Bit mask to figure out which orders are canceled if their target

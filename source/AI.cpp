@@ -1471,7 +1471,7 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 	else if(type == Orders::MINE && targetAsteroid)
 	{
 		ship.SetTargetAsteroid(targetAsteroid);
-		// escorts should chase the player-targeted asteroid
+		// Escorts should chase the player-targeted asteroid.
 		MoveToAttack(ship, command, *targetAsteroid);
 	}
 	else if(type == Orders::HARVEST)
@@ -1940,10 +1940,9 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 			parent.Attributes().Get("fuel capacity") - maxFuel)
 		return true;
 
-	// NPC ships should always transfer cargo.  Player ships should only
-	// transfer cargo if they set the AI preference.
-	const bool shouldTransferCargo = !ship.IsYours() || Preferences::Has("Fighters transfer cargo");
-	if(shouldTransferCargo)
+	// NPC ships should always transfer cargo. Player ships should only
+	// transfer cargo if the player has the AI preference set for it.
+	if(!ship.IsYours() || Preferences::Has("Fighters transfer cargo"))
 	{
 		// If an out-of-combat carried ship is carrying a significant cargo
 		// load and can transfer some of it to the parent, it should do so.
@@ -2750,7 +2749,9 @@ bool AI::DoHarvesting(Ship &ship, Command &command) const
 		{
 			if(!ship.CanPickUp(*it))
 				continue;
-			// Only pick up flotsam that is nearby and that you are facing toward.
+			// Only pick up flotsam that is nearby and that you are facing toward. Player escorts should
+			// always attempt to pick up nearby flotsams when they are given a harvest order, and so ignore
+			// the facing angle check.
 			Point p = it->Position() - ship.Position();
 			double range = p.Length();
 			if(range > 800. || (range > 100. && p.Unit().Dot(ship.Facing().Unit()) < .9 && !ship.IsYours()))
