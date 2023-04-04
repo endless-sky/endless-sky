@@ -1590,6 +1590,7 @@ mission "Saryd University Lecture"
 			choice
 				`	"No, human space is split between the Republic in the north and the Free Worlds in the south."`
 					to display
+						has "event: war begins"
 						not "FWC End: completed"
 				`	"No, human space is split between the Republic in the west, the Free Worlds in the south, and the Syndicate in the east. The Syndicate is technically part of the Republic, but they have a lot of autonomy."`
 					to display
