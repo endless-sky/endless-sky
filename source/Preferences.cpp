@@ -49,12 +49,12 @@ namespace {
 	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
 	int vsyncIndex = 1;
 
-	const vector<string> STATUS_OVERLAYS = {"off", "always on", "on-hit", "damaged", "--"};
+	const vector<string> STATUS_OVERLAYS = {"off", "always on", "when hit", "damaged", "--"};
 	int overlayAllIndex = 0;
-	int overlayFlagshipIndex = 3;
-	int overlayEscortIndex = 3;
-	int overlayEnemyIndex = 3;
-	int overlayNeutralIndex = 3;
+	int overlayFlagshipIndex = 4;
+	int overlayEscortIndex = 4;
+	int overlayEnemyIndex = 4;
+	int overlayNeutralIndex = 4;
 
 	const vector<string> AUTO_AIM_SETTINGS = {"off", "always on", "when firing"};
 	int autoAimIndex = 2;
@@ -351,7 +351,7 @@ void Preferences::SetStatusOverlaysGeneric(int &index, bool blank)
 {
 	// Set preference to blanked out value if bool parameter is true.
 	if(blank)
-		index = 3;
+		index = 4;
 	else
 	{
 		// If the parent overlay setting is being clicked, make sure the children are reset
@@ -361,9 +361,9 @@ void Preferences::SetStatusOverlaysGeneric(int &index, bool blank)
 		{
 			// If a child setting is being clicked, and the parent setting is active,
 			// blank out the parent and reset the children to their defaults.
-			if(overlayAllIndex != 3)
+			if(overlayAllIndex != 4)
 			{
-				overlayAllIndex = 3;
+				overlayAllIndex = 4;
 				Preferences::ResetStatusOverlayChildren(false);
 			}
 		}
