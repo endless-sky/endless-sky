@@ -208,6 +208,10 @@ void Outfit::Load(const DataNode &node)
 			displayName = child.Token(1);
 		else if(child.Token(0) == "category" && child.Size() >= 2)
 			category = child.Token(1);
+		else if(child.Token(0) == "series" && child.Size() >= 2)
+			series = child.Token(1);
+		else if(child.Token(0) == "index" && child.Size() >= 2)
+			index = child.Value(1);
 		else if(child.Token(0) == "plural" && child.Size() >= 2)
 			pluralName = child.Token(1);
 		else if(child.Token(0) == "flare sprite" && child.Size() >= 2)
@@ -412,6 +416,20 @@ const string &Outfit::PluralName() const
 const string &Outfit::Category() const
 {
 	return category;
+}
+
+
+
+const string &Outfit::Series() const
+{
+	return series;
+}
+
+
+
+const int Outfit::Index() const
+{
+	return index;
 }
 
 
