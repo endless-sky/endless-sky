@@ -46,6 +46,8 @@ target_sources(EndlessSkyLib PRIVATE
 	CaptureOdds.h
 	CargoHold.cpp
 	CargoHold.h
+	CategoryList.cpp
+	CategoryList.h
 	CategoryTypes.h
 	ClickZone.h
 	CollisionSet.cpp
@@ -328,6 +330,7 @@ target_sources(EndlessSkyLib PRIVATE
 	Wormhole.h
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
+	comparators/BySeriesAndIndex.h
 	opengl.cpp
 	opengl.h
 	pi.h

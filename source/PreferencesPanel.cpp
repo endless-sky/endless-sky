@@ -380,6 +380,8 @@ void PreferencesPanel::DrawControls()
 		Command::LEFT,
 		Command::RIGHT,
 		Command::BACK,
+		Command::LATERALLEFT,
+		Command::LATERALRIGHT,
 		Command::AFTERBURNER,
 		Command::LAND,
 		Command::JUMP,
@@ -459,7 +461,7 @@ void PreferencesPanel::DrawControls()
 			table.Draw(command.KeyName(), isEditing ? bright : medium);
 		}
 	}
-
+	// todo: adjust position of this table and verify preference positions didn't get messed up.
 	Table shiftTable;
 	shiftTable.AddColumn(125, {150, Alignment::RIGHT});
 	shiftTable.SetUnderline(0, 130);

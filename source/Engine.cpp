@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AlertLabel.h"
 #include "Audio.h"
+#include "CategoryList.h"
 #include "CategoryTypes.h"
 #include "CoreStartData.h"
 #include "DamageDealt.h"
@@ -162,16 +163,36 @@ namespace {
 		for(const Ship::EnginePoint &point : enginePoints)
 		{
 			Point pos = ship.Facing().Rotate(point) * ship.Zoom() + ship.Position();
-			// If multiple engines with the same flare are installed, draw up to
-			// three copies of the flare sprite.
-			for(const auto &it : flareSprites)
-				if(point.side == side && (point.steering == Ship::EnginePoint::NONE
+			// If multiple engines with the same flare are installed,
+			// draw up to three copies of the flare sprite.
+			for(const auto & it : flareSprites)
+				if((point.side == side && point.steering == Ship::EnginePoint::NONE
+					&& point.lateral == Ship::EnginePoint::NONE)
 					|| (point.steering == Ship::EnginePoint::LEFT && ship.SteeringDirection() < 0.)
-					|| (point.steering == Ship::EnginePoint::RIGHT && ship.SteeringDirection() > 0.)))
+					|| (point.steering == Ship::EnginePoint::RIGHT && ship.SteeringDirection() > 0.)
+					|| (point.lateral == Ship::EnginePoint::LEFT && ship.LateralDirection() < 0.)
+					|| (point.lateral == Ship::EnginePoint::RIGHT && ship.LateralDirection() > 0.))
 					for(int i = 0; i < it.second && i < 3; ++i)
 					{
-						Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.facing, point.zoom);
-						draw.Add(sprite, ship.Cloaking());
+						// Scale all engine flares by the magnitude of the thrust/turn.
+						if(!(point.steering == Ship::EnginePoint::NONE))
+						{
+							Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.facing,
+								point.zoom * abs(ship.SteeringDirection()));
+							draw.Add(sprite, ship.Cloaking());
+						}
+						else if(!(point.lateral == Ship::EnginePoint::NONE))
+						{
+							Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.facing,
+								point.zoom * abs(ship.LateralDirection()));
+							draw.Add(sprite, ship.Cloaking());
+						}
+						else
+						{
+							Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.facing,
+								point.zoom * abs(ship.ThrustMagnitude()));
+							draw.Add(sprite, ship.Cloaking());
+						}
 					}
 		}
 	}
@@ -416,8 +437,9 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 			if(ship->HasBays())
 			{
 				ship->UnloadBays();
-				for(const string &bayType : GameData::Category(CategoryType::BAY))
+				for(const auto &cat : GameData::GetCategory(CategoryType::BAY))
 				{
+					const string &bayType = cat.Name();
 					int baysTotal = ship->BaysTotal(bayType);
 					if(baysTotal)
 						carriers[bayType][&*ship] = baysTotal;
@@ -824,6 +846,7 @@ void Engine::Step(bool isActive)
 		if(flagship->Attributes().Get("tactical scan power") || flagship->Attributes().Get("strategic scan power"))
 		{
 			info.SetCondition("range display");
+			info.SetBar("target hull", targetAsteroid->Hull(), 20.);
 			int targetRange = round(targetAsteroid->Position().Distance(flagship->Position()));
 			info.SetString("target range", to_string(targetRange));
 		}
@@ -1717,7 +1740,7 @@ void Engine::CalculateStep()
 			if(ship.get() != flagship)
 			{
 				AddSprites(*ship);
-				if(ship->IsThrusting() && !ship->EnginePoints().empty())
+				if(ship->ThrustMagnitude() && !ship->EnginePoints().empty())
 				{
 					for(const auto &it : ship->Attributes().FlareSounds())
 						Audio::Play(it.first, ship->Position());
@@ -2033,11 +2056,11 @@ void Engine::HandleKeyboardInputs()
 
 	// Certain commands are always sent when the corresponding key is depressed.
 	static const Command maneuveringCommands = Command::AFTERBURNER | Command::BACK |
-		Command::FORWARD | Command::LEFT | Command::RIGHT;
+		Command::FORWARD | Command::LEFT | Command::RIGHT | Command::LATERALLEFT | Command::LATERALRIGHT;
 
 	// Transfer all commands that need to be active as long as the corresponding key is pressed.
 	activeCommands |= keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
-		maneuveringCommands | Command::SHIFT | Command::MOUSE_TURNING_HOLD);
+		maneuveringCommands | Command::SHIFT | Command::CTRL | Command::MOUSE_TURNING_HOLD);
 
 	// Certain commands (e.g. LAND, BOARD) are debounced, allowing the player to toggle between
 	// navigable destinations in the system.
@@ -2580,6 +2603,9 @@ void Engine::AddSprites(const Ship &ship)
 	else if(ship.IsReversing() && !ship.ReverseEnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.ReverseEnginePoints(),
 			ship.Attributes().ReverseFlareSprites(), Ship::EnginePoint::UNDER);
+	if(ship.IsLatThrusting() && !ship.LateralEnginePoints().empty())
+		DrawFlareSprites(ship, draw[calcTickTock], ship.LateralEnginePoints(),
+			ship.Attributes().FlareSprites(), Ship::EnginePoint::UNDER);
 	if(ship.IsSteering() && !ship.SteeringEnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.SteeringEnginePoints(),
 			ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::UNDER);
@@ -2612,6 +2638,9 @@ void Engine::AddSprites(const Ship &ship)
 	else if(ship.IsReversing() && !ship.ReverseEnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.ReverseEnginePoints(),
 			ship.Attributes().ReverseFlareSprites(), Ship::EnginePoint::OVER);
+	if(ship.IsLatThrusting() && !ship.LateralEnginePoints().empty())
+		DrawFlareSprites(ship, draw[calcTickTock], ship.LateralEnginePoints(),
+			ship.Attributes().FlareSprites(), Ship::EnginePoint::OVER);
 	if(ship.IsSteering() && !ship.SteeringEnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.SteeringEnginePoints(),
 			ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::OVER);
