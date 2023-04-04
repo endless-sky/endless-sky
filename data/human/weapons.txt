@@ -811,7 +811,7 @@ outfit "Meteor Homing"
 		"lifetime" 136
 		"acceleration" 1.6
 		"drag" .08
-		"turn" 1.5
+		"turn" 1.1
 		"homing" 4
 		"infrared tracking" .65
 		"shield damage" 360
