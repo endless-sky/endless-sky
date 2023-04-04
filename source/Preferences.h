@@ -32,6 +32,7 @@ public:
 	enum class OverlayType : int {
 		OFF = 0,
 		ON,
+		ON_HIT,
 		DAMAGED,
 		DISABLED
 	};

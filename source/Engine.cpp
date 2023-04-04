@@ -2585,10 +2585,11 @@ void Engine::EmplaceStatusOverlays(const shared_ptr<Ship> &it,
 		used_setting = parent_setting;
 	else
 		used_setting = setting;
-	if(used_setting == Preferences::OverlayType::OFF)
+	if(used_setting == Preferences::OverlayType::OFF ||
+		(used_setting == Preferences::OverlayType::DAMAGED && !it->IsDamaged()))
 		return;
 	double width = min(it->Width(), it->Height());
-	float alpha = (used_setting == Preferences::OverlayType::DAMAGED) ? it->SmoothIsDamaged(30, 10) : 1.f;
+	float alpha = (used_setting == Preferences::OverlayType::ON_HIT) ? it->SmoothIsDamaged(30, 10) : 1.f;
 	statuses.emplace_back(it->Position() - center, it->Shields(), it->Hull(),
 		min(it->Hull(), it->DisabledHull()), max(20., width * .5), type, alpha);
 }

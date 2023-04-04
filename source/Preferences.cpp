@@ -49,7 +49,7 @@ namespace {
 	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
 	int vsyncIndex = 1;
 
-	const vector<string> STATUS_OVERLAYS = {"off", "always on", "damaged", "--"};
+	const vector<string> STATUS_OVERLAYS = {"off", "always on", "on-hit", "damaged", "--"};
 	int overlayAllIndex = 0;
 	int overlayFlagshipIndex = 3;
 	int overlayEscortIndex = 3;
