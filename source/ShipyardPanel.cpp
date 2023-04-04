@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipyardPanel.h"
 
 #include "text/alignment.hpp"
+#include "comparators/BySeriesAndIndex.h"
 #include "ClickZone.h"
 #include "Color.h"
 #include "Dialog.h"
@@ -38,6 +39,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpriteShader.h"
 #include "text/truncate.hpp"
 #include "UI.h"
+
+#include <algorithm>
 
 class System;
 
@@ -87,7 +90,10 @@ ShipyardPanel::ShipyardPanel(PlayerInfo &player)
 	: ShopPanel(player, false), modifier(0)
 {
 	for(const auto &it : GameData::Ships())
-		catalog[it.second.Attributes().Category()].insert(it.first);
+		catalog[it.second.Attributes().Category()].push_back(it.first);
+
+	for(pair<const string, vector<string>> &it : catalog)
+		sort(it.second.begin(), it.second.end(), BySeriesAndIndex<Ship>());
 
 	if(player.GetPlanet())
 		shipyard = player.GetPlanet()->Shipyard();
@@ -112,7 +118,7 @@ int ShipyardPanel::TileSize() const
 
 int ShipyardPanel::DrawPlayerShipInfo(const Point &point)
 {
-	shipInfo.Update(*playerShip, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
+	shipInfo.Update(*playerShip, player, collapsed.count("description"));
 	shipInfo.DrawAttributes(point, true);
 
 	return shipInfo.GetAttributesHeight(true);
@@ -166,7 +172,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 
 	if(selectedShip)
 	{
-		shipInfo.Update(*selectedShip, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
+		shipInfo.Update(*selectedShip, player, collapsed.count("description"));
 		selectedItem = selectedShip->ModelName();
 
 		const Sprite *background = SpriteSet::Get("ui/shipyard selected");
