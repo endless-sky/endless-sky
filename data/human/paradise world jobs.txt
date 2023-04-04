@@ -92,7 +92,7 @@ mission "Paradise Job: Newlyweds"
 	to offer
 		random < 10
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	source
 		attributes "paradise"
 	destination
@@ -164,7 +164,7 @@ mission "Transport partiers [1]"
 	to offer
 		random < 10
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	source
 		attributes "paradise"
 	destination
@@ -188,7 +188,7 @@ mission "Transport partiers [2]"
 	to offer
 		random < 10
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	source
 		attributes "paradise"
 	destination
@@ -380,7 +380,7 @@ mission "Transport high-class tourists"
 	to offer
 		random < 10
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	source
 		attributes "paradise"
 	destination
@@ -437,7 +437,7 @@ mission "Paradise Job: Parolees"
 		random < 15
 		"passenger space" > 40
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "mining" "fishing" "textiles" "factory" "farming" "oil"
@@ -462,7 +462,7 @@ mission "Paradise Job: Debtors"
 		random < 15
 		"passenger space" > 40
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	source
 		attributes "paradise"
 	destination
@@ -488,7 +488,7 @@ mission "Paradise Job: Retirees"
 		"passenger space" > 15
 		"cargo space" > 40
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest" "urban"
@@ -564,7 +564,7 @@ mission "Paradise Job: Wilderness Retreat"
 		random < 10
 		"passenger space" > 25
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "urban" "near earth" "core" "paradise"

@@ -67,7 +67,7 @@ namespace {
 ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	: player(player), day(player.GetDate().DaysSinceEpoch()),
 	planet(player.GetPlanet()), playerShip(player.Flagship()),
-	categories(GameData::Category(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
+	categories(GameData::GetCategory(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard"))
 {
 	if(playerShip)
@@ -420,9 +420,10 @@ void ShopPanel::DrawMain()
 	const float endX = Screen::Right() - (SIDE_WIDTH + 1);
 	double nextY = begin.Y() + TILE_SIZE;
 	int scrollY = 0;
-	for(const string &category : categories)
+	for(const auto &cat : categories)
 	{
-		map<string, set<string>>::const_iterator it = catalog.find(category);
+		const string &category = cat.Name();
+		map<string, vector<string>>::const_iterator it = catalog.find(category);
 		if(it == catalog.end())
 			continue;
 
@@ -777,8 +778,8 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 				{
 					selectedShip = nullptr;
 					selectedOutfit = nullptr;
-					for(const string &category : categories)
-						collapsed.insert(category);
+					for(const auto &category : categories)
+						collapsed.insert(category.Name());
 				}
 				else
 				{
