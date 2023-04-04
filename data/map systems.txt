@@ -19216,7 +19216,7 @@ system Kilema
 	minables lead 2 0.9
 	fleet "Small Scin" 4600
 	fleet "Scin Transport" 3500
-	fleet "Scin Science" 4400
+	fleet "Scin Science" 17400
 	object
 		sprite star/g-dwarf
 		period 10

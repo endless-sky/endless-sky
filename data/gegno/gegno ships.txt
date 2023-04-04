@@ -1467,15 +1467,22 @@ ship "Kyanite"
 		"SC-14 Plasma Thruster" 2
 		"SC-14 Plasma Steering" 2
 		"Hyperdrive"
-	engine 64 188
-	engine -64 188
-	"reverse engine" 66 -155
-	"reverse engine" -66 -155
-	gun -20 -100 "Guile Pulse Laser"
-	gun 20 -100 "Guile Pulse Laser"
-	turret 0 -144.5 "Astuit Battery"
-	turret 0 -27 "Astuit Battery"
-	turret 0 65 "Acuit Artillery"
+	"steering engine" -84 -100 0.5
+		angle 58.5
+		right 
+	"steering engine" 84 -100 0.5
+		angle -58.5
+		left
+	engine -15 140
+	engine 15 140
+	engine -28.5 169
+	engine 28.5 169
+	gun -40 -350 "Guile Pulse Laser"
+	gun 40 -350 "Guile Pulse Laser"
+	gun 0 -62.5
+	turret -46 -102 "Astuit Battery"
+	turret 46 -102 "Astuit Battery"
+	turret 0 69 "Acuit Artillery"
 	leak "leak" 10 40
 	leak "flame" 40 70
 	leak "big leak" 30 50
