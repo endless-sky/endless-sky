@@ -791,6 +791,7 @@ void Engine::Step(bool isActive)
 		if(flagship->Attributes().Get("tactical scan power"))
 		{
 			info.SetCondition("range display");
+			info.SetBar("target hull", targetAsteroid->Hull(), 20.);
 			int targetRange = round(targetAsteroid->Position().Distance(flagship->Position()));
 			info.SetString("target range", to_string(targetRange));
 		}
