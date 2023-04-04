@@ -1591,26 +1591,26 @@ mission "Saryd University Lecture"
 				`	"No, human space is split between the Republic in the north and the Free Worlds in the south."`
 					to display
 						has "event: war begins"
-						not "FWC End: completed"
+						not "free worlds checkmate"
 				`	"No, human space is split between the Republic in the west, the Free Worlds in the south, and the Syndicate in the east. The Syndicate is technically part of the Republic, but they have a lot of autonomy."`
 					to display
 						has "event: war begins"
-						not "FWC End: completed"
+						not "free worlds checkmate"
 				`	"Yes, all of human space is united under the Republic."`
 					goto united
 					to display
 						or
 							not "event: war begins"
-							has "FWC End: completed"
+							has "free worlds checkmate"
 				`	"Yes, but there are internal subdivisions: the Free Worlds in the south, the Republic in the north, and the Syndicate in the east."`
 					to display
-						has "FWC End: completed"
+						has "free worlds checkmate"
 				`	"No. Technically all of human space is under the Republic, but the Syndicate has significant autonomy."`
 					to display
 						not "event: war begins"
 				`	"No. Technically all of human space is under the Republic, but the Free Worlds and Syndicate have significant autonomy."`
 					to display
-						has "FWC End: completed"
+						has "free worlds checkmate"
 			`	As you answer the question, your translator begins to cut out. Repeating your answer does no good, as it continues to fizzle out as you talk. You look over to the Heliarch, who eyes the curious Kimek with suspicion. "Apologize for the malfunction, I must," says the Heliarch. "The next question, answer it please."`
 				goto questionthree
 			label united
