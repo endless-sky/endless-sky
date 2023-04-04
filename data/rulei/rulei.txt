@@ -12,7 +12,7 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 
-# (Previous iterations of first two missions are failed on offer to ensure save compatibility.)
+# Previous iterations of first two missions are failed on offer to ensure save compatibility.
 mission "Relic of Pasts"
 	invisible
 	landing
