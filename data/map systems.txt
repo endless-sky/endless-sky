@@ -19204,7 +19204,7 @@ system Kilema
 	government Uninhabited
 	arrival 500
 	habitable 150
-	belt 1612
+	belt 612
 	haze _menu/haze-brown
 	link "Erba Yle"
 	asteroids "small rock" 4 1.9
@@ -19213,8 +19213,10 @@ system Kilema
 	asteroids "small metal" 8 1.8
 	asteroids "medium metal" 7 2.7
 	asteroids "large metal" 3 2.3
+	minables lead 2 0.9
 	fleet "Small Scin" 4600
 	fleet "Scin Transport" 3500
+	fleet "Scin Science" 4400
 	object
 		sprite star/g-dwarf
 		period 10
@@ -19237,10 +19239,6 @@ system Kilema
 		sprite planet/gas0
 		distance 4002
 		period 8268.56
-	object
-		sprite planet/browndwarf-l
-		distance 15993
-		period 66055.5
 
 system Kiluit
 	pos 699.45 -562.23

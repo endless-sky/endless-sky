@@ -1188,7 +1188,7 @@ ship "Tridymite"
 		"outfit space" 200
 		"weapon capacity" 0
 		"engine capacity" 86
-		
+
 		"outfit scan power" 18
 		"outfit scan efficiency" 8
 		"cargo scan power" 6
@@ -1434,7 +1434,7 @@ ship "Kyanite"
 		"hull" 16900
 		"required crew" 102
 		"bunks" 170
-		"mass" 1146
+		"mass" 1010
 		"drag" 16.1
 		"heat dissipation" 0.55
 		"fuel capacity" 600
@@ -1442,12 +1442,18 @@ ship "Kyanite"
 		"outfit space" 552
 		"weapon capacity" 166
 		"engine capacity" 182
+
+		"outfit scan power" 18
+		"outfit scan efficiency" 8
+		"cargo scan power" 6
+		"cargo scan efficiency" 2
 		weapon
 			"blast radius" 216
 			"shield damage" 1920
 			"hull damage" 1630
 			"hit force" 3200
 	outfits
+		"Guile Pulse Laser" 2
 		"Astuit Battery" 2
 		"Acuit Artillery"
 		
@@ -1457,25 +1463,19 @@ ship "Kyanite"
 		"R03 Warforge Battery"
 		"Plasmasickle" 51
 		"Plasma Grenades" 51
-		
-		"SC-15 Plasma Thrusters"
+
+		"SC-14 Plasma Thruster" 2
 		"SC-14 Plasma Steering" 2
 		"Hyperdrive"
 	engine 64 188
 	engine -64 188
 	"reverse engine" 66 -155
 	"reverse engine" -66 -155
+	gun -20 -100 "Guile Pulse Laser"
+	gun 20 -100 "Guile Pulse Laser"
 	turret 0 -144.5 "Astuit Battery"
 	turret 0 -27 "Astuit Battery"
 	turret 0 65 "Acuit Artillery"
-	bay "Fighter" 0 122
-		"launch effect" "scin launch"
-		angle -180
-		under
-	bay "Fighter" 0 180
-		"launch effect" "scin launch"
-		angle -180
-		under
 	leak "leak" 10 40
 	leak "flame" 40 70
 	leak "big leak" 30 50

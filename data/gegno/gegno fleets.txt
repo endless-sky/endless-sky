@@ -318,7 +318,6 @@ fleet "Scin Transport"
 	variant
 		"Epidote"
 		"Halite"
-		"Coesite"
 	variant
 		"Tridymite"
 
@@ -328,24 +327,25 @@ fleet "Scin Cargo"
 	cargo 4
 	personality
 		timid
-	variant 4
+	variant 5
 		"Felsic"
+	variant 3
+		"Felsic"
+		"Coesite"
 	variant 2
 		"Felsic"
+		"Mica"
 		"Coesite"
 	variant
 		"Felsic" 2
 		"Mica"
-	variant 2
-		"Felsic"
-		"Mica"
-		"Coesite"
-	variant
-		"Epidote" 2
-		"Halite" 2
 	variant
 		"Epidote"
 		"Halite"
+	variant
+		"Epidote"
+		"Halite"
+		"Coesite"
 
 fleet "Vi Warfleet"
 	government "Gegno Vi"
@@ -415,3 +415,13 @@ fleet "Gegno Vi Duelist B"
 		heroic unconstrained
 	variant
 		"Dunite"
+
+fleet "Scin Science"
+	government "Gegno Scin"
+	names "gegno scin"
+	cargo 4
+	personality
+		mining harvests
+	variant
+		"Kyanite"
+		"Tridymite"
