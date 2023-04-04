@@ -1593,14 +1593,20 @@ mission "Saryd University Lecture"
 						not "FWC End: completed"
 				`	"No, human space is split between the Republic in the west, the Free Worlds in the south, and the Syndicate in the east. The Syndicate is technically part of the Republic, but they have a lot of autonomy."`
 					to display
+						has "event: war begins"
 						not "FWC End: completed"
 				`	"Yes, all of human space is united under the Republic."`
 					goto united
 					to display
-						has "FWC End: completed"
+						or
+							not "event: war begins"
+							has "FWC End: completed"
 				`	"Yes, but there are internal subdivisions: the Free Worlds in the south, the Republic in the north, and the Syndicate in the east."`
 					to display
 						has "FWC End: completed"
+				`	"No. Technically all of human space is under the Republic, but the Syndicate has significant autonomy."`
+					to display
+						not "event: war begins"
 				`	"No. Technically all of human space is under the Republic, but the Free Worlds and Syndicate have significant autonomy."`
 					to display
 						has "FWC End: completed"
