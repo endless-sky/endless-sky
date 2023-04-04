@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "OutfitterPanel.h"
 
 #include "text/alignment.hpp"
+#include "comparators/BySeriesAndIndex.h"
 #include "Color.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
@@ -79,7 +80,10 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 	: ShopPanel(player, true)
 {
 	for(const pair<const string, Outfit> &it : GameData::Outfits())
-		catalog[it.second.Category()].insert(it.first);
+		catalog[it.second.Category()].push_back(it.first);
+
+	for(pair<const string, vector<string>> &it : catalog)
+		sort(it.second.begin(), it.second.end(), BySeriesAndIndex<Outfit>());
 
 	// Add owned licenses
 	const string PREFIX = "license: ";
@@ -89,7 +93,7 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 			const string name = it->first.substr(PREFIX.length()) + " License";
 			const Outfit *outfit = GameData::Outfits().Get(name);
 			if(outfit)
-				catalog[outfit->Category()].insert(name);
+				catalog[outfit->Category()].push_back(name);
 		}
 
 	if(player.GetPlanet())
