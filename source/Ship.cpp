@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 
 #include "Audio.h"
+#include "CategoryList.h"
 #include "CategoryTypes.h"
 #include "DamageDealt.h"
 #include "DataNode.h"
@@ -755,11 +756,11 @@ void Ship::FinishLoading(bool isNewInstance)
 	// invalid bays. Add a default "launch effect" to any remaining internal bays if
 	// this ship is crewed (i.e. pressurized).
 	string warning;
-	const auto &bayCategories = GameData::Category(CategoryType::BAY);
+	const auto &bayCategories = GameData::GetCategory(CategoryType::BAY);
 	for(auto it = bays.begin(); it != bays.end(); )
 	{
 		Bay &bay = *it;
-		if(find(bayCategories.begin(), bayCategories.end(), bay.category) == bayCategories.end())
+		if(!bayCategories.Contains(bay.category))
 		{
 			warning += "Invalid bay category: " + bay.category + "\n";
 			it = bays.erase(it);
@@ -771,7 +772,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			bay.launchEffects.emplace_back(GameData::Effects().Get("basic launch"));
 	}
 
-	canBeCarried = find(bayCategories.begin(), bayCategories.end(), attributes.Category()) != bayCategories.end();
+	canBeCarried = bayCategories.Contains(attributes.Category());
 
 	// Issue warnings if this ship has is misconfigured, e.g. is missing required values
 	// or has negative outfit, cargo, weapon, or engine capacity.
@@ -1474,7 +1475,8 @@ bool Ship::CanSendHail(const PlayerInfo &player, bool allowUntranslated) const
 	// Ships that don't share a language with the player shouldn't communicate when hailed directly.
 	// Only random event hails should work, and only if the government explicitly has
 	// untranslated hails. This is ensured by the allowUntranslated argument.
-	if(!allowUntranslated && !gov->Language().empty() && !player.Conditions().Get("language: " + gov->Language()))
+	if(!(allowUntranslated && gov->SendUntranslatedHails())
+			&& !gov->Language().empty() && !player.Conditions().Get("language: " + gov->Language()))
 		return false;
 
 	return true;
@@ -1608,6 +1610,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		// Once we've created enough little explosions, die.
 		if(explosionCount == explosionTotal || forget)
 		{
+			if(IsYours() && Preferences::Has("Extra fleet status messages"))
+				Messages::Add("Your ship \"" + Name() + "\" has been destroyed.", Messages::Importance::Highest);
+
 			if(!forget)
 			{
 				const Effect *effect = GameData::Effects().Get("smoke");
@@ -2419,14 +2424,6 @@ void Ship::DoGeneration()
 
 	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
 
-	// Whenever not actively scanning, the amount of
-	// scan information the ship has "decays" over time.
-	// Only apply the decay if not already done scanning the target.
-	if(cargoScan < SCAN_TIME)
-		cargoScan = max(0., cargoScan - 1.);
-	if(outfitScan < SCAN_TIME)
-		outfitScan = max(0., outfitScan - 1.);
-
 	// Update ship supply levels.
 	if(isDisabled)
 		PauseAnimation();
@@ -2463,8 +2460,8 @@ void Ship::DoGeneration()
 		double activeCooling = coolingEfficiency * attributes.Get("active cooling");
 		if(activeCooling > 0. && heat > 0. && energy >= 0.)
 		{
-			// Although it's a misuse of this feature, handle the case where
-			// "active cooling" does not require any energy.
+			// Handle the case where "active cooling"
+			// does not require any energy.
 			double coolingEnergy = attributes.Get("cooling energy");
 			if(coolingEnergy)
 			{
@@ -2473,7 +2470,7 @@ void Ship::DoGeneration()
 				energy -= spentEnergy;
 			}
 			else
-				heat -= activeCooling;
+				heat -= activeCooling * min(1., Heat());
 		}
 	}
 
@@ -2700,9 +2697,8 @@ int Ship::Scan(const PlayerInfo &player)
 			// "1 / depth"
 			// This makes scan time proportional to cargo or outfit space.
 
-			// To make up for previous scan delay, also add 1.
 			elapsed += ((scannerRange - .5 * distanceSquared) * speed)
-				/ (scannerRange * (sqrt(speed) + distanceSquared) * depth) + 1;
+				/ (scannerRange * (sqrt(speed) + distanceSquared) * depth);
 
 			if(elapsed >= SCAN_TIME)
 				result |= event;
@@ -2748,7 +2744,10 @@ int Ship::Scan(const PlayerInfo &player)
 					+ Name() + "\" completed its scan of your cargo.", Messages::Importance::High);
 		if(result & ShipEvent::SCAN_OUTFITS)
 			Messages::Add("The " + government->GetName() + " " + Noun() + " \""
-					+ Name() + "\" completed its scan of your outfits.", Messages::Importance::High);
+					+ Name() + (target->attributes.Get("inscrutable") > 0.
+					? "\" completed its scan of your outfits with no useful results."
+					: "\" completed its scan of your outfits."),
+					Messages::Importance::High);
 	}
 
 	// Some governments are provoked when a scan is completed on one of their ships.
@@ -3119,6 +3118,14 @@ void Ship::Restore()
 	explosionRate = 0;
 	UnmarkForRemoval();
 	Recharge(true);
+}
+
+
+
+bool Ship::IsDamaged() const
+{
+	// Account for ships with no shields when determining if they're damaged.
+	return (attributes.Get("shields") != 0 && Shields() != 1.) || Hull() != 1.;
 }
 
 
@@ -4206,6 +4213,17 @@ void Ship::SetParent(const shared_ptr<Ship> &ship)
 	parent = ship;
 	if(ship)
 		ship->AddEscort(*this);
+}
+
+
+
+bool Ship::CanPickUp(const Flotsam &flotsam) const
+{
+	if(this == flotsam.Source())
+		return false;
+	if(government == flotsam.SourceGovernment() && (!personality.Harvests() || personality.IsAppeasing()))
+		return false;
+	return cargo.Free() >= flotsam.UnitSize();
 }
 
 
