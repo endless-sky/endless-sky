@@ -1453,9 +1453,7 @@ ship "Kyanite"
 			"hull damage" 1630
 			"hit force" 3200
 	outfits
-		"Guile Pulse Laser" 2
-		"Astuit Battery" 2
-		"Acuit Artillery"
+		"Acumen Bolt Cannon"
 		
 		"C7 Brawl Cell"
 		"C17 Warzone Core"
@@ -1477,12 +1475,12 @@ ship "Kyanite"
 	engine 15 140
 	engine -28.5 169
 	engine 28.5 169
-	gun -40 -350 "Guile Pulse Laser"
-	gun 40 -350 "Guile Pulse Laser"
-	gun 0 -62.5
-	turret -46 -102 "Astuit Battery"
-	turret 46 -102 "Astuit Battery"
-	turret 0 69 "Acuit Artillery"
+	gun -40 -350
+	gun 40 -350
+	gun 0 -62.5 "Acumen Bolt Cannon"
+	turret -46 -102
+	turret 46 -102
+	turret 0 69
 	leak "leak" 10 40
 	leak "flame" 40 70
 	leak "big leak" 30 50
