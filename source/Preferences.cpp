@@ -430,8 +430,9 @@ const string &Preferences::StatusOverlaysSetting(Preferences::OverlayType type)
 	{
 		if(type == OverlayType::ALL)
 			return allOverlaysSetting.ToString();
-		else
-			return OVERLAY_SETTINGS[static_cast<int>(OverlayState::DISABLED)];
+
+		static const OverlaySetting DISABLED = OverlayState::DISABLED;
+		return DISABLED.ToString();
 	}
 	return statusOverlaySettings[type].ToString();
 }
