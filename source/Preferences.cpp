@@ -57,6 +57,12 @@ namespace {
 		{Preferences::OverlayType::ENEMY, Preferences::OverlayState::ON},
 		{Preferences::OverlayType::NEUTRAL, Preferences::OverlayState::OFF},
 	};
+	void SetOverlayState(Preferences::OverlayType type, int value)
+	{
+		value = max<int>(value, 0);
+		value = min<int>(value, OVERLAY_SETTINGS.size() - 1);
+		statusOverlaySettings[type] = static_cast<Preferences::OverlayState>(value);
+	}
 
 	const vector<string> AUTO_AIM_SETTINGS = {"off", "always on", "when firing"};
 	int autoAimIndex = 2;
@@ -164,20 +170,15 @@ void Preferences::Load()
 		else if(node.Token(0) == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Show all status overlays")
-			statusOverlaySettings[OverlayType::ALL] =
-					static_cast<OverlayState>(max<int>(0, min<int>(node.Value(1), OVERLAY_SETTINGS.size() - 1)));
+			SetOverlayState(OverlayType::ALL, node.Value(1));
 		else if(node.Token(0) == "Show flagship overlay")
-			statusOverlaySettings[OverlayType::FLAGSHIP] =
-					static_cast<OverlayState>(max<int>(0, min<int>(node.Value(1), OVERLAY_SETTINGS.size() - 1)));
+			SetOverlayState(OverlayType::FLAGSHIP, node.Value(1));
 		else if(node.Token(0) == "Show escort overlays")
-			statusOverlaySettings[OverlayType::ESCORT] =
-					static_cast<OverlayState>(max<int>(0, min<int>(node.Value(1), OVERLAY_SETTINGS.size() - 1)));
+			SetOverlayState(OverlayType::ESCORT, node.Value(1));
 		else if(node.Token(0) == "Show enemy overlays")
-			statusOverlaySettings[OverlayType::ENEMY] =
-					static_cast<OverlayState>(max<int>(0, min<int>(node.Value(1), OVERLAY_SETTINGS.size() - 1)));
+			SetOverlayState(OverlayType::ENEMY, node.Value(1));
 		else if(node.Token(0) == "Show neutral overlays")
-			statusOverlaySettings[OverlayType::NEUTRAL] =
-					static_cast<OverlayState>(max<int>(0, min<int>(node.Value(1), OVERLAY_SETTINGS.size() - 1)));
+			SetOverlayState(OverlayType::NEUTRAL, node.Value(1));
 		else if(node.Token(0) == "Automatic aiming")
 			autoAimIndex = max<int>(0, min<int>(node.Value(1), AUTO_AIM_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Parallax background")
