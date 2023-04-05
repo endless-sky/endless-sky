@@ -407,12 +407,8 @@ const string &Preferences::VSyncSetting()
 void Preferences::CycleStatusOverlays(Preferences::OverlayType type)
 {
 	if(type == OverlayType::ALL && statusOverlaySettings[OverlayType::ALL] == OverlayState::DAMAGED)
-	{
 		statusOverlaySettings[OverlayType::ALL] = OverlayState::DISABLED;
-		return;
-	}
-
-	if(type != OverlayType::ALL && statusOverlaySettings[OverlayType::ALL].IsActive())
+	else if(type != OverlayType::ALL && statusOverlaySettings[OverlayType::ALL].IsActive())
 		statusOverlaySettings[OverlayType::ALL] = OverlayState::DISABLED;
 	else
 		statusOverlaySettings[type].Increment();
