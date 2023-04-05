@@ -112,9 +112,11 @@ help "fleet asteroid mining shortcuts"
 	`	Right click - will focus your fleet to chase an asteroid and mine it.`
 
 help "fleet harvest tutorial"
-	`If you have an asteroid scanner, <Select nearest asteroid> key will target asteroids for fleet mining.`
+	`You can order your escort to pick up discarded cargo or asteroid flotsam.`
 	``
-	`<Fleet: Harvest Flotsam> key is a shortcut for your fleet to harvest discarded cargo and mined asteroids. Press <Fleet: Harvest Flotsam> multiple times to toggle harvest mode on and off for your fleet.`
+	`<Fleet: Harvest Flotsam> will order your fleet to collect flotsam if they have free cargo.`
+	``
+	`Equip an asteroid scanner to learn more.`
 
 help "fighters transfer cargo"
 	`By enabling the "Fighters transfer cargo" preference, drones and fighters in your fleet will transfer cargo to their parent carrier if there is cargo space in the carrier. If a fighter cargo hold is full then it will return to the carrier automatically.`

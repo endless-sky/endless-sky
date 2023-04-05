@@ -1127,6 +1127,9 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 			if(foundOrders != orders.end())
 			{
 				int helperOrders = foundOrders->second.type;
+				// If your own escorts become disabled, then your mining fleet
+				// should prioritize repairing escorts instead of mining or
+				// harvesting flotsam.
 				if(helper->IsYours() && ship.IsYours() && helperOrders != Orders::MINE && helperOrders != Orders::HARVEST)
 					continue;
 			}
