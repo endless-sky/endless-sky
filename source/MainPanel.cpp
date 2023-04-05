@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "BoardingPanel.h"
 #include "comparators/ByGivenOrder.h"
+#include "CategoryList.h"
 #include "CoreStartData.h"
 #include "Dialog.h"
 #include "text/Font.h"
@@ -378,7 +379,10 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 			out << "This " + target->Noun() + " is not equipped with any outfits.\n";
 
 		// Split target->Outfits() into categories, then iterate over them in order.
-		auto comparator = ByGivenOrder<string>(GameData::Category(CategoryType::OUTFIT));
+		vector<string> categories;
+		for(const auto &category : GameData::GetCategory(CategoryType::OUTFIT))
+			categories.push_back(category.Name());
+		auto comparator = ByGivenOrder<string>(categories);
 		map<string, map<const string, int>, ByGivenOrder<string>> outfitsByCategory(comparator);
 		for(const auto &it : target->Outfits())
 		{

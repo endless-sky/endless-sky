@@ -3141,7 +3141,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	// The following condition checks all sources of outfits which are present with the player.
 	// If in orbit, this means checking all ships in-system for installed and in cargo outfits.
 	// If landed, this means checking all landed ships for installed outfits, the pooled cargo
-	// hold, and the planetary storage of the planet.
+	// hold, and the planetary storage of the planet. Excludes parked ships.
 	auto &&presentOutfitProvider = conditions.GetProviderPrefixed("outfit: ");
 	presentOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
@@ -3158,10 +3158,12 @@ void PlayerInfo::RegisterDerivedConditions()
 		}
 		for(const shared_ptr<Ship> &ship : ships)
 		{
-			// If not on a planet, parked ships in system don't count.
+			// Destroyed and parked ships aren't checked.
+			// If not on a planet, the ship's system must match.
 			// If on a planet, the ship's planet must match.
-			if(ship->IsDestroyed() || (planet && ship->GetPlanet() != planet)
-					|| (!planet && (ship->GetActualSystem() != system || ship->IsParked())))
+			if(ship->IsDestroyed() || ship->IsParked()
+					|| (planet && ship->GetPlanet() != planet)
+					|| (!planet && ship->GetActualSystem() != system))
 				continue;
 			retVal += ship->OutfitCount(outfit);
 			retVal += ship->Cargo().Get(outfit);
@@ -3190,8 +3192,8 @@ void PlayerInfo::RegisterDerivedConditions()
 		return retVal;
 	});
 
-	// The following condition checks the player's fleet for installed outfits on escorts
-	// local to the player.
+	// The following condition checks the player's fleet for installed outfits on active
+	// escorts local to the player.
 	auto &presentInstalledOutfitProvider = conditions.GetProviderPrefixed("outfit (installed): ");
 	presentInstalledOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
@@ -3201,10 +3203,33 @@ void PlayerInfo::RegisterDerivedConditions()
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
 		{
-			// If not on a planet, parked ships in system don't count.
+			// Destroyed and parked ships aren't checked.
+			// If not on a planet, the ship's system must match.
 			// If on a planet, the ship's planet must match.
-			if(ship->IsDestroyed() || (planet && ship->GetPlanet() != planet)
-					|| (!planet && (ship->GetActualSystem() != system || ship->IsParked())))
+			if(ship->IsDestroyed() || ship->IsParked()
+					|| (planet && ship->GetPlanet() != planet)
+					|| (!planet && ship->GetActualSystem() != system))
+				continue;
+			retVal += ship->OutfitCount(outfit);
+		}
+		return retVal;
+	});
+
+	// The following condition checks the player's fleet for installed outfits on parked escorts
+	// which are local to the player.
+	auto &parkedInstalledOutfitProvider = conditions.GetProviderPrefixed("outfit (parked): ");
+	parkedInstalledOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
+	{
+		// If the player isn't landed then there can be no parked ships local to them.
+		if(!planet)
+			return 0;
+		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (parked): ")));
+		if(!outfit)
+			return 0;
+		int64_t retVal = 0;
+		for(const shared_ptr<Ship> &ship : ships)
+		{
+			if(!ship->IsParked() || ship->GetPlanet() != planet)
 				continue;
 			retVal += ship->OutfitCount(outfit);
 		}

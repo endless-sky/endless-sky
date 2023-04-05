@@ -229,6 +229,13 @@ void Minable::TakeDamage(const Projectile &projectile)
 
 
 
+double Minable::Hull() const
+{
+	return min(1., hull / maxHull);
+}
+
+
+
 // Determine what flotsam this asteroid will create.
 const map<const Outfit *, int> &Minable::Payload() const
 {
