@@ -120,7 +120,6 @@ public:
 	static VSync VSyncState();
 	static const std::string &VSyncSetting();
 
-	static void SetStatusOverlays(bool blank, OverlayType type);
 	static void CycleStatusOverlays(OverlayType type);
 	static OverlaySetting StatusOverlaysState(OverlayType type);
 	static const std::string &StatusOverlaysSetting(OverlayType type);
