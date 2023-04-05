@@ -5551,17 +5551,15 @@ event "quicksilver mixup 2 available"
 
 
 mission "Argosy Hijacking (Trigger)"
+	landing
 	invisible
 	source
 		government "Syndicate"
 	to offer
-		"combat rating" > 0
-		random < 10
+		"combat rating" > 200
+		random < 5
 	on offer
-		event "argosy hijacking trigger"
 		fail
-
-event "argosy hijacking trigger"
 
 mission "Argosy Hijacking"
 	landing
@@ -5572,7 +5570,7 @@ mission "Argosy Hijacking"
 		not attributes "station"
 		not near "Sol" 3
 	to offer
-		has "event: argosy hijacking trigger"
+		has "Argosy Hijacking (Trigger): offered"
 	on offer
 		conversation
 			`You're signing the standard Syndicate landing papers with an officer on <origin>. "Everything seems to be in order. And of course, we'll have your ship refueled promptly. Have a good day, Captain <last>." He nods his head at you and starts to move off towards the next ship.`
@@ -5587,7 +5585,7 @@ mission "Argosy Hijacking"
 				goto hijack
 			
 			label ignore
-			`	You turn back towards the <ship> only to hear the deafening blares of warning sirens through <origin>'s spaceport. Looking around instinctively, you notice from the corner of your eye that the <npc> suddenly jolts up with its loading ramp still extended.`
+			`	You turn back towards the <ship> only to hear the deafening blares of warning sirens through <origin>'s spaceport. Looking around instinctively, you notice the <npc> jolting up with its loading ramp still extended.`
 
 			label hijack
 			`	"Hey, what's going on here?" the officer tries to shout over the noise of the sirens and the repulsors, but the rogue <npc model> veers rapidly and uncertainly towards you and the officer.`
@@ -5595,11 +5593,11 @@ mission "Argosy Hijacking"
 				`	(Jump for cover.)`
 				`	(Take a shot at the <npc model> with your sidearm.)`
 					goto shoot
-			`	Both of you barely jump down for cover before the ship clips a stack of cargo crates, sending them flying into the refueling platform. The Quad Blaster Turret mounted on the top of the <npc model> swivel around aimlessly then fire without warning, its energy bolts scattering some of the startled onlookers nearby and sending up debris where they hit the ground. It comes dangerously close to colliding with the <ship>- before it veers off to the side and sends its repulsors into full thrust, fleeing away into the sky.`
+			`	Both of you barely jump down for cover before the ship clips a stack of cargo crates, sending them flying into the refueling platform. The Quad Blaster Turret mounted on the top of the <npc model> swivels around aimlessly, then fires without warning, its energy bolts scattering some of the startled onlookers nearby and sending up debris where they hit the ground. It comes dangerously close to colliding with the <ship> before it veers off to the side and sends its repulsors into full thrust, fleeing away into the sky.`
 				goto dazed
 
 			label shoot
-			`	You aim for a shot right at the cockpit with your pistol, and fire. But the shot is absorbed by the <npc model>'s shield matrix, rendering it useless; the <npc> flies right over you, sending you backwards and into the ground.`
+			`	You fire a shot right at the cockpit with your pistol but the shot is absorbed by the <npc model>'s shield matrix, rendering it useless. The <npc> flies right over you, sending you backwards and into the ground.`
 			`	You prop yourself up to hear the <npc model>'s Quad Blaster Turret fire aimlessly around the spaceport, shortly replaced by the sounds of its repulsors being sent up to full thrust. By the time you get up, the <npc> has already started fleeing off into the sky.`
 
 			label dazed
@@ -5622,14 +5620,14 @@ mission "Argosy Hijacking"
 			confusion 80
 		government "Bounty (Disguised)"
 		ship "Argosy (Blaster)" "Moonshake Express"
-		dialog `The <npc> has been disabled. Syndicated Security will now deal with the hijackers, but you should go back and report to the captain whose ship was hijacked.`
+		dialog `The <npc> has been disabled. Syndicated Security will now deal with the hijackers, but you should go back and report to the captain of the ship.`
 		on board
 			set "boarded hijacked argosy"
-			dialog `You have failed this mission because you boarded the Moonshake Express, against the orders of the Syndicated Security officer. The captain whose ship was hijacked won't be impressed.`
+			dialog `You've boarded the Moonshake Express, against the orders of the Syndicated Security officer. The ship's captain won't be impressed.`
 			fail
 		on kill
 			set "destroyed hijacked argosy"
-			dialog `You have failed this mission because you destroyed the Moonshake Express. The captain whose ship was hijacked won't be impressed.`
+			dialog `You have destroyed the Moonshake Express. Its captain won't be impressed.`
 
 	on fail
 		conversation
@@ -5648,11 +5646,11 @@ mission "Argosy Hijacking"
 				`	"It fled before I could disable it."`
 				`	"I blew it up, just like you wanted."`
 					goto blew
-			`	He frowns at this and lets out a sigh. "Well, I'll contact Syndicated Security and let them deal with this. Don't worry, they'll sort it out. But thanks for getting back to me about it." He walks off towards the Syndicated Security offices.`
+			`	He frowns at this and lets out a sigh. "Well, I'll contact security and let them deal with this. Don't worry, they'll sort it out. But thanks for getting back to me about it." He walks off towards the Syndicated Security offices.`
 				decline
 
 			label blew
-			`	He jolts his head back, startled. "What'd you say?"`
+			`	He jolts his head back. "What'd you say?"`
 			choice
 				`	"Yeah, I blew it up."`
 					goto destroyed
@@ -5661,7 +5659,7 @@ mission "Argosy Hijacking"
 			choice
 				`	"I blew it up, didn't you hear me?"`
 				`	"You ship got away. That's what happened."`
-			`	"If you're going to waste my time, get out of here." Before you can react, he suddenly walks off towards the Syndicated Security offices.`
+			`	"If you're going to waste my time, get out of here." Before you can react, he storms off towards the Syndicated Security offices.`
 				decline
 
 			label fail
@@ -5718,7 +5716,7 @@ mission "Argosy Hijacking (Declined)"
 		not attributes "station"
 		not near "Sol" 3
 	to offer
-		has "event: argosy hijacking trigger"
+		has "Argosy Hijacking (Trigger): offered"
 	on offer
 		fail
 	npc
