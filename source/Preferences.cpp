@@ -49,12 +49,14 @@ namespace {
 	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
 	int vsyncIndex = 1;
 
-	const vector<string> STATUS_OVERLAYS = {"off", "always on", "damaged", "--"};
-	int overlayAllIndex = 0;
-	int overlayFlagshipIndex = 3;
-	int overlayEscortIndex = 3;
-	int overlayEnemyIndex = 3;
-	int overlayNeutralIndex = 3;
+	const vector<string> OVERLAY_SETTINGS = {"off", "always on", "damaged", "--"};
+	map<Preferences::OverlayType, Preferences::OverlaySetting> statusOverlaySettings = {
+		{Preferences::OverlayType::ALL, Preferences::OverlayState::DISABLED},
+		{Preferences::OverlayType::FLAGSHIP, Preferences::OverlayState::ON},
+		{Preferences::OverlayType::ESCORT, Preferences::OverlayState::ON},
+		{Preferences::OverlayType::ENEMY, Preferences::OverlayState::ON},
+		{Preferences::OverlayType::NEUTRAL, Preferences::OverlayState::OFF},
+	};
 
 	const vector<string> AUTO_AIM_SETTINGS = {"off", "always on", "when firing"};
 	int autoAimIndex = 2;
@@ -70,6 +72,55 @@ namespace {
 	int alertIndicatorIndex = 3;
 
 	int previousSaveCount = 3;
+}
+
+
+
+Preferences::OverlaySetting::OverlaySetting(const Preferences::OverlayState &state)
+	: state(state)
+{
+}
+
+
+
+const bool Preferences::OverlaySetting::IsActive() const
+{
+	return state != Preferences::OverlayState::DISABLED;
+}
+
+
+
+const string &Preferences::OverlaySetting::ToString() const
+{
+	return OVERLAY_SETTINGS[max<int>(0, min<int>(OVERLAY_SETTINGS.size() - 1, static_cast<int>(state)))];
+}
+
+
+
+const int Preferences::OverlaySetting::ToInt() const
+{
+	return static_cast<int>(state);
+}
+
+
+
+void Preferences::OverlaySetting::Increment()
+{
+	switch(state)
+	{
+		case Preferences::OverlayState::OFF:
+			state = Preferences::OverlayState::ON;
+			break;
+		case Preferences::OverlayState::ON:
+			state = Preferences::OverlayState::DAMAGED;
+			break;
+		case Preferences::OverlayState::DAMAGED:
+			state = Preferences::OverlayState::OFF;
+			break;
+		case Preferences::OverlayState::DISABLED:
+			state = Preferences::OverlayState::OFF;
+			break;
+	}
 }
 
 
@@ -112,16 +163,21 @@ void Preferences::Load()
 			zoomIndex = max<int>(0, min<int>(node.Value(1), ZOOMS.size() - 1));
 		else if(node.Token(0) == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
-		else if(node.Token(0) == "Show status overlays")
-			overlayAllIndex = max<int>(0, min<int>(node.Value(1), STATUS_OVERLAYS.size() - 1));
-		else if(node.Token(0) == "Show flagship overlay" && overlayAllIndex == 3)
-			overlayFlagshipIndex = max<int>(0, min<int>(node.Value(1), STATUS_OVERLAYS.size() - 1));
-		else if(node.Token(0) == "Show escort overlays" && overlayAllIndex == 3)
-			overlayEscortIndex = max<int>(0, min<int>(node.Value(1), STATUS_OVERLAYS.size() - 1));
-		else if(node.Token(0) == "Show enemy overlays" && overlayAllIndex == 3)
-			overlayEnemyIndex = max<int>(0, min<int>(node.Value(1), STATUS_OVERLAYS.size() - 1));
-		else if(node.Token(0) == "Show neutral overlays" && overlayAllIndex == 3)
-			overlayNeutralIndex = max<int>(0, min<int>(node.Value(1), STATUS_OVERLAYS.size() - 1));
+		else if(node.Token(0) == "Show all status overlays")
+			statusOverlaySettings[OverlayType::ALL] =
+					static_cast<OverlayState>(max<int>(0, min<int>(node.Value(1), OVERLAY_SETTINGS.size() - 1)));
+		else if(node.Token(0) == "Show flagship overlay")
+			statusOverlaySettings[OverlayType::FLAGSHIP] =
+					static_cast<OverlayState>(max<int>(0, min<int>(node.Value(1), OVERLAY_SETTINGS.size() - 1)));
+		else if(node.Token(0) == "Show escort overlays")
+			statusOverlaySettings[OverlayType::ESCORT] =
+					static_cast<OverlayState>(max<int>(0, min<int>(node.Value(1), OVERLAY_SETTINGS.size() - 1)));
+		else if(node.Token(0) == "Show enemy overlays")
+			statusOverlaySettings[OverlayType::ENEMY] =
+					static_cast<OverlayState>(max<int>(0, min<int>(node.Value(1), OVERLAY_SETTINGS.size() - 1)));
+		else if(node.Token(0) == "Show neutral overlays")
+			statusOverlaySettings[OverlayType::NEUTRAL] =
+					static_cast<OverlayState>(max<int>(0, min<int>(node.Value(1), OVERLAY_SETTINGS.size() - 1)));
 		else if(node.Token(0) == "Automatic aiming")
 			autoAimIndex = max<int>(0, min<int>(node.Value(1), AUTO_AIM_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Parallax background")
@@ -160,11 +216,11 @@ void Preferences::Save()
 	out.Write("boarding target", boardingIndex);
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
-	out.Write("Show status overlays", overlayAllIndex);
-	out.Write("Show flagship overlay", overlayFlagshipIndex);
-	out.Write("Show escort overlays", overlayEscortIndex);
-	out.Write("Show enemy overlays", overlayEnemyIndex);
-	out.Write("Show neutral overlays", overlayNeutralIndex);
+	out.Write("Show all status overlays", statusOverlaySettings[OverlayType::ALL].ToInt());
+	out.Write("Show flagship overlay", statusOverlaySettings[OverlayType::FLAGSHIP].ToInt());
+	out.Write("Show escort overlays", statusOverlaySettings[OverlayType::ESCORT].ToInt());
+	out.Write("Show enemy overlays", statusOverlaySettings[OverlayType::ENEMY].ToInt());
+	out.Write("Show neutral overlays", statusOverlaySettings[OverlayType::NEUTRAL].ToInt());
 	out.Write("Automatic aiming", autoAimIndex);
 	out.Write("Parallax background", parallaxIndex);
 	out.Write("alert indicator", alertIndicatorIndex);
@@ -347,104 +403,40 @@ const string &Preferences::VSyncSetting()
 
 
 
-void Preferences::SetStatusOverlaysGeneric(int &index, bool blank)
+void Preferences::CycleStatusOverlays(Preferences::OverlayType type)
 {
-	// Set preference to blanked out value if bool parameter is true.
-	if(blank)
-		index = 3;
+	if(type == OverlayType::ALL && statusOverlaySettings[OverlayType::ALL] == OverlayState::DAMAGED)
+	{
+		statusOverlaySettings[OverlayType::ALL] = OverlayState::DISABLED;
+		return;
+	}
+
+	if(type != OverlayType::ALL && statusOverlaySettings[OverlayType::ALL].IsActive())
+		statusOverlaySettings[OverlayType::ALL] = OverlayState::DISABLED;
 	else
+		statusOverlaySettings[type].Increment();
+}
+
+
+
+Preferences::OverlaySetting Preferences::StatusOverlaysState(Preferences::OverlayType type)
+{
+	return statusOverlaySettings[type];
+}
+
+
+
+const string &Preferences::StatusOverlaysSetting(Preferences::OverlayType type)
+{
+	const auto allOverlaysSetting = statusOverlaySettings[OverlayType::ALL];
+	if(allOverlaysSetting.IsActive())
 	{
-		// If the parent overlay setting is being clicked, make sure the children are reset
-		if(&index == &overlayAllIndex)
-			Preferences::ResetStatusOverlayChildren(true);
+		if(type == OverlayType::ALL)
+			return allOverlaysSetting.ToString();
 		else
-		{
-			// If a child setting is being clicked, and the parent setting is active,
-			// blank out the parent and reset the children to their defaults.
-			if(overlayAllIndex != 3)
-			{
-				overlayAllIndex = 3;
-				Preferences::ResetStatusOverlayChildren(false);
-			}
-		}
-		int targetIndex = index + 1;
-		if(targetIndex >= static_cast<int>(STATUS_OVERLAYS.size() - 1))
-			targetIndex = 0;
-		index = targetIndex;
+			return OVERLAY_SETTINGS[static_cast<int>(OverlayState::DISABLED)];
 	}
-}
-
-
-
-void Preferences::ResetStatusOverlayChildren(bool blank)
-{
-	for(int i = 1; i <= 4; ++i)
-		Preferences::SetStatusOverlays(blank, i);
-}
-
-
-
-void Preferences::SetStatusOverlays(bool blank, int type)
-{
-	switch(type)
-	{
-		default:
-		case 0:
-			SetStatusOverlaysGeneric(overlayAllIndex, blank);
-			break;
-		case 1:
-			SetStatusOverlaysGeneric(overlayFlagshipIndex, blank);
-			break;
-		case 2:
-			SetStatusOverlaysGeneric(overlayEscortIndex, blank);
-			break;
-		case 3:
-			SetStatusOverlaysGeneric(overlayEnemyIndex, blank);
-			break;
-		case 4:
-			SetStatusOverlaysGeneric(overlayNeutralIndex, blank);
-			break;
-	}
-}
-
-
-
-Preferences::OverlayType Preferences::StatusOverlaysState(int type)
-{
-	switch(type)
-	{
-		default:
-		case 0:
-			return static_cast<OverlayType>(overlayAllIndex);
-		case 1:
-			return static_cast<OverlayType>(overlayFlagshipIndex);
-		case 2:
-			return static_cast<OverlayType>(overlayEscortIndex);
-		case 3:
-			return static_cast<OverlayType>(overlayEnemyIndex);
-		case 4:
-			return static_cast<OverlayType>(overlayNeutralIndex);
-	}
-}
-
-
-
-const string &Preferences::StatusOverlaysSetting(int type)
-{
-	switch(type)
-	{
-		default:
-		case 0:
-			return STATUS_OVERLAYS[overlayAllIndex];
-		case 1:
-			return STATUS_OVERLAYS[overlayFlagshipIndex];
-		case 2:
-			return STATUS_OVERLAYS[overlayEscortIndex];
-		case 3:
-			return STATUS_OVERLAYS[overlayEnemyIndex];
-		case 4:
-			return STATUS_OVERLAYS[overlayNeutralIndex];
-	}
+	return statusOverlaySettings[type].ToString();
 }
 
 
