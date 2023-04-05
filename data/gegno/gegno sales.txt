@@ -20,7 +20,7 @@ shipyard "Gegno Basic"
 
 shipyard "Gegno Intermediate"
 	"Conglomerate"
-	"Granufel"
+	"Granofel"
 
 shipyard "Gegno Advanced"
 	"Gypsum"

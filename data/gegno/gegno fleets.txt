@@ -89,7 +89,7 @@ fleet "Gegno Old"
 	government Gegno
 	names "gegno vi"
 	cargo 2
-	peresonality
+	personality
 		timid
 	variant
 		"Protolith"
