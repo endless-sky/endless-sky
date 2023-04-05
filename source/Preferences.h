@@ -16,10 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef PREFERENCES_H_
 #define PREFERENCES_H_
 
-#include <algorithm>
 #include <cstdint>
 #include <string>
-#include <vector>
 
 
 
