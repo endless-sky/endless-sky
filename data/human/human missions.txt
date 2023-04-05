@@ -5620,7 +5620,7 @@ mission "Blind Man from Martini"
 		log `Brought a blind man named Douglas to Chiron so he could visit his daughter, who will undergo experimental treatment at the University of New Sydney.`
 		payment 58000
 		conversation
-			`Throughout the trip, your blind passenger Douglas has been relatively quiet and has kept to himself. But when you land, he asks you again to help him bring down his luggage once more; it turns out you needn't have done so because an attendant from the planetary spaceport quickly comes to his side. He guides both of you to the spaceport's intracity transit complex; the bustling spaceport makes it a challenge to keep together, but all of you manage to reach it. From there, you hail a taxi while he arranges for the <payment> to be sent to you.`
+			`Throughout the trip, Douglas has been relatively quiet and has kept to himself. But when you land, he asks you again to help him bring down his luggage once more; it turns out you needn't have done so because an attendant from the planetary spaceport quickly comes to his side. He guides both of you to the spaceport's intracity transit complex; the bustling spaceport makes it a challenge to keep together, but all of you manage to reach it. From there, you hail a taxi while Douglas arranges for the <payment> to be sent to you.`
 			`	"Well, I must go now to the University of New Sydney. They and my daughter are expecting me at their Health Sciences quarter."`
 			choice
 				`	"Goodbye."`
@@ -5709,7 +5709,15 @@ mission "Blind Man from Martini"
 				set "Blind Man from Martini: label atomic-bombings"
 				"Blind Man from Martini: taxi questions count" ++
 			`	"How do I feel about the bombings? Well, they changed everything. In some ways I'm very grateful that it showed - no, it exposed to me, that people, they- there's people that live this way. With no sight. Who need other people to help them just... live. And that there are plenty of people who don't have people to help them live. I was lucky, I could get treatment for my blindness. But others, no...`
+			# This will need to be updated once new Human campaigns are written.
+			branch reconciliation checkmate
+				has "free worlds reconciliation"
+			label reconciliation
 			`	"And for the bombings themselves, they were certainly a malicious act. The Syndicate needs to take full accountability for it, not only for the people who were killed or affected in some form or another. I'm too cynical to say that they will, with all the power they still have in Parliament."`
+				goto taxi
+
+			label checkmate
+			`	"And for the bombings themselves, they were certainly a malicious act. I hear the authorities are still investigating the bombings, although it's very curious that Korban, the CEO of the Syndicate, resigned as soon as the Republic starting poking their heads that way. I'm still not sure who's responsible for the bombings, the deaths, the war... I can only hope the investigation will be thorough."`
 				goto taxi
 
 			label daughter
