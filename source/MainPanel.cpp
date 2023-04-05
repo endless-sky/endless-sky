@@ -119,7 +119,7 @@ void MainPanel::Step()
 			isActive = !DoHelp("fleet asteroid mining") && !DoHelp("fleet asteroid mining shortcuts");
 		if(isActive && flagship->IsTargetable() && player.Ships().size() > 1)
 			isActive = !DoHelp("fleet harvest tutorial");
-		if(isActive && player.OwnsCarrier())
+		if(isActive && player.DisplayCarrierHelp())
 			isActive = !DoHelp("try out fighters transfer cargo");
 		if(isActive && Preferences::Has("Fighters transfer cargo"))
 			isActive = !DoHelp("fighters transfer cargo");

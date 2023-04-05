@@ -1092,7 +1092,7 @@ void PlayerInfo::AddShip(const shared_ptr<Ship> &ship)
 	ship->SetIsSpecial();
 	ship->SetIsYours();
 	if(ship->HasBays())
-		ownsCarrier = true;
+		displayCarrierHelp = true;
 }
 
 
@@ -1129,7 +1129,7 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift)
 		}
 
 		if(ships.back()->HasBays())
-			ownsCarrier = true;
+			displayCarrierHelp = true;
 	}
 }
 
@@ -4192,9 +4192,9 @@ void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
 	}
 }
 
-bool PlayerInfo::OwnsCarrier() const
+bool PlayerInfo::DisplayCarrierHelp() const
 {
-	return ownsCarrier;
+	return displayCarrierHelp;
 }
 
 
