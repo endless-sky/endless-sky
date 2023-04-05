@@ -310,7 +310,7 @@ public:
 	void SetMapZoom(int level);
 	// Get the set of collapsed categories for the named panel.
 	std::set<std::string> &Collapsed(const std::string &name);
-	// Does the player own a ship with bays?
+	// Should help dialogs relating to carriers be displayed?
 	bool DisplayCarrierHelp() const;
 
 

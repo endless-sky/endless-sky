@@ -3484,8 +3484,9 @@ double AI::RendezvousTime(const Point &p, const Point &v, double vp)
 }
 
 
-// Searches every asteroid within the ship scan limit and returns the asteroid
-// closest to the ship.
+// Searches every asteroid within the ship scan limit and returns either the
+// asteroid closest to the ship or the asteroid of highest value in range, depending
+// on the player's preferences.
 bool AI::TargetMinable(Ship &ship) const
 {
 	double scanRangeMetric = 10000. * ship.Attributes().Get("asteroid scan power");
