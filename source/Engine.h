@@ -157,8 +157,8 @@ private:
 
 	void DoGrudge(const std::shared_ptr<Ship> &target, const Government *attacker);
 
-	void EmplaceStatusOverlay(const std::shared_ptr<Ship> &ship, Preferences::OverlayState overlaySetting, int value);
 	void CreateStatusOverlays();
+	void EmplaceStatusOverlay(const std::shared_ptr<Ship> &ship, Preferences::OverlayState overlaySetting, int value);
 
 
 private:

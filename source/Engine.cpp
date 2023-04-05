@@ -2560,22 +2560,6 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 
 
 
-void Engine::EmplaceStatusOverlay(const shared_ptr<Ship> &it, Preferences::OverlayState overlaySetting, int type)
-{
-	if(overlaySetting == Preferences::OverlayState::OFF)
-		return;
-
-	if(overlaySetting == Preferences::OverlayState::DAMAGED && !it->IsDamaged())
-		return;
-
-	double width = min(it->Width(), it->Height());
-
-	statuses.emplace_back(it->Position() - center, it->Shields(), it->Hull(),
-		min(it->Hull(), it->DisabledHull()), max(20., width * .5), type);
-}
-
-
-
 void Engine::CreateStatusOverlays()
 {
 	const auto overlayAllSetting = Preferences::StatusOverlaysState(Preferences::OverlayType::ALL);
@@ -2619,4 +2603,20 @@ void Engine::CreateStatusOverlays()
 				EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::NEUTRAL], 2);
 		}
 	}
+}
+
+
+
+void Engine::EmplaceStatusOverlay(const shared_ptr<Ship> &it, Preferences::OverlayState overlaySetting, int type)
+{
+	if(overlaySetting == Preferences::OverlayState::OFF)
+		return;
+
+	if(overlaySetting == Preferences::OverlayState::DAMAGED && !it->IsDamaged())
+		return;
+
+	double width = min(it->Width(), it->Height());
+
+	statuses.emplace_back(it->Position() - center, it->Shields(), it->Hull(),
+		min(it->Hull(), it->DisabledHull()), max(20., width * .5), type);
 }
