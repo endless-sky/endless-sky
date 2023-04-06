@@ -19217,7 +19217,6 @@ system Kilema
 	minables iron 5 1.1
 	fleet "Small Scin" 4600
 	fleet "Scin Transport" 3500
-	fleet "Scin Science" 14400
 	object
 		sprite star/g-dwarf
 		period 10
