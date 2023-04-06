@@ -68,8 +68,6 @@ public:
 	// Determine what flotsam this asteroid will create.
 	const std::map<const Outfit *, int> &Payload() const;
 
-	// Get hull remaining of this asteroid, as a fraction between 0 and 1.
-	double Hull() const;
 
 private:
 	std::string name;

@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipInfoPanel.h"
 
 #include "text/alignment.hpp"
-#include "CategoryList.h"
 #include "CategoryTypes.h"
 #include "Command.h"
 #include "Dialog.h"
@@ -351,9 +350,8 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 	table.DrawAt(start);
 
 	// Draw the outfits in the same order used in the outfitter.
-	for(const auto &cat : GameData::GetCategory(CategoryType::OUTFIT))
+	for(const string &category : GameData::Category(CategoryType::OUTFIT))
 	{
-		const string &category = cat.Name();
 		auto it = outfits.find(category);
 		if(it == outfits.end())
 			continue;

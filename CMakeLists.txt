@@ -3,7 +3,6 @@ cmake_minimum_required(VERSION 3.21..3.25)
 include(CMakeDependentOption)
 option(ES_USE_VCPKG "Use vcpkg to get dependencies." ON)
 cmake_dependent_option(ES_GLES "Build the game with OpenGL ES" OFF UNIX OFF)
-cmake_dependent_option(ES_STEAM "Build the game for the Steam Linux runtime" OFF UNIX OFF)
 cmake_dependent_option(ES_USE_SYSTEM_LIBRARIES "Use system libraries instead of the vcpkg ones." ON UNIX OFF)
 cmake_dependent_option(ES_USE_OFFSCREEN
 	"Use SDL's offscreen backend instead of Xvfb for the integration tests" OFF UNIX OFF)
@@ -38,11 +37,6 @@ endif()
 if(NOT ES_USE_SYSTEM_LIBRARIES)
 	# Tell vcpkg to use the required system libraries.
 	list(APPEND VCPKG_MANIFEST_FEATURES "system-libs")
-endif()
-
-# Some system libraries aren't available on the default Sniper runtime and need to be built from source.
-if(ES_STEAM)
-	list(APPEND VCPKG_MANIFEST_FEATURES "steam-libs")
 endif()
 
 # Various helpful options for IDEs.
@@ -142,11 +136,6 @@ if(ES_GLES)
 	target_link_libraries(ExternalLibraries INTERFACE OpenGL::OpenGL OpenGL::EGL)
 	target_compile_definitions(EndlessSkyLib PUBLIC ES_GLES)
 else()
-	# The Steam runtime can't rely on GLVND being available, so link against the legacy interface.
-	if(ES_STEAM)
-		set(OpenGL_GL_PREFERENCE "LEGACY")
-	endif()
-
 	find_package(OpenGL REQUIRED)
 	target_link_libraries(ExternalLibraries INTERFACE OpenGL::GL)
 

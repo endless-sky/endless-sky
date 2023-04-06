@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
-#include "CategoryList.h"
 #include "ClickZone.h"
 #include "Mission.h"
 #include "OutfitInfoDisplay.h"
@@ -183,8 +182,8 @@ protected:
 	std::vector<Zone> zones;
 	std::vector<ClickZone<std::string>> categoryZones;
 
-	std::map<std::string, std::vector<std::string>> catalog;
-	const CategoryList &categories;
+	std::map<std::string, std::set<std::string>> catalog;
+	const std::vector<std::string> &categories;
 	std::set<std::string> &collapsed;
 
 	ShipInfoDisplay shipInfo;

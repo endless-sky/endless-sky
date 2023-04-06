@@ -182,9 +182,8 @@ void MapShipyardPanel::DrawItems()
 		DoHelp("map advanced shops");
 	list.clear();
 	Point corner = Screen::TopLeft() + Point(0, scroll);
-	for(const auto &cat : categories)
+	for(const string &category : categories)
 	{
-		const string &category = cat.Name();
 		auto it = catalog.find(category);
 		if(it == catalog.end())
 			continue;

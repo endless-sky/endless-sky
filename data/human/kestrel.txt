@@ -17,11 +17,7 @@ mission "Kestrel Testing"
 	source "Wayfarer"
 	waypoint "Umbral"
 	to offer
-		or
-			"combat rating" > 8000
-			and
-				"combat rating" > 2000
-				has "global: unlocked kestrel"
+		"combat rating" > 8000
 	
 	on offer
 		conversation
@@ -64,7 +60,6 @@ mission "Kestrel Testing"
 	
 	on complete
 		payment 2000000
-		"global: unlocked kestrel" ++
 		conversation
 			`Atinoda meets up with you soon after you land. "I see that you survived," he says. "Was it a difficult fight?"`
 			choice

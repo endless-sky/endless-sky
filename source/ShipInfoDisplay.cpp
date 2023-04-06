@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipInfoDisplay.h"
 
 #include "text/alignment.hpp"
-#include "CategoryList.h"
 #include "CategoryTypes.h"
 #include "Color.h"
 #include "Depreciation.h"
@@ -297,9 +296,8 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	}
 
 	// Print the number of bays for each bay-type we have
-	for(const auto &category : GameData::GetCategory(CategoryType::BAY))
+	for(auto &&bayType : GameData::Category(CategoryType::BAY))
 	{
-		const string &bayType = category.Name();
 		int totalBays = ship.BaysTotal(bayType);
 		if(totalBays)
 		{

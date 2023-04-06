@@ -19,8 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 enum class CategoryType : int {
 	SHIP,
 	BAY,
-	OUTFIT,
-	SERIES
+	OUTFIT
 };
 
 

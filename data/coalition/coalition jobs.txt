@@ -644,7 +644,7 @@ mission "Coalition: Tourists Out 1"
 		has "known to the heliarchs"
 		random < 40
 	to accept
-		has "outfit (installed): Luxury Accommodations"
+		has "outfit: Luxury Accommodations"
 	source
 		government "Coalition"
 	destination
@@ -669,7 +669,7 @@ mission "Coalition: Tourists Out 2"
 		has "known to the heliarchs"
 		random < 30
 	to accept
-		has "outfit (installed): Luxury Accommodations"
+		has "outfit: Luxury Accommodations"
 	source
 		government "Coalition"
 	destination
@@ -694,7 +694,7 @@ mission "Coalition: Tourists Out 3"
 		has "known to the heliarchs"
 		random < 20
 	to accept
-		has "outfit (installed): Luxury Accommodations"
+		has "outfit: Luxury Accommodations"
 	source
 		government "Coalition"
 	destination
@@ -724,7 +724,7 @@ mission "Coalition: Tourists Home 1"
 		has "known to the heliarchs"
 		random < 40
 	to accept
-		has "outfit (installed): Luxury Accommodations"
+		has "outfit: Luxury Accommodations"
 	source
 		government "Coalition"
 		attributes "tourism"
@@ -749,7 +749,7 @@ mission "Coalition: Tourists Home 2"
 		has "known to the heliarchs"
 		random < 30
 	to accept
-		has "outfit (installed): Luxury Accommodations"
+		has "outfit: Luxury Accommodations"
 	source
 		government "Coalition"
 		attributes "tourism"
@@ -774,7 +774,7 @@ mission "Coalition: Tourists Home 3"
 		has "known to the heliarchs"
 		random < 20
 	to accept
-		has "outfit (installed): Luxury Accommodations"
+		has "outfit: Luxury Accommodations"
 	source
 		government "Coalition"
 		attributes "tourism"
