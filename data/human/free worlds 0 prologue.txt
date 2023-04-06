@@ -186,8 +186,8 @@ mission "Pact Questioning"
 	on offer
 		log "Apparently the Navy is suspicious of anyone who worked with the Southern Mutual Defense Pact; got questioned about it by an officer. It was unclear what his rank or position in the Navy was."
 		conversation
-			`As you complete the usual landing documents with the Navy inspector outside your ship, another officer, a middle-aged man in the same uniform, walks up from behind him. As he passes by, he gives a curt nod to the inspector, who suddenly walks away swiftly without saying anything, not even a "good day" to you or the officer. He must have some sort of seniority over him.`
-			`	The new officer turns to you and says, "Excuse me, Captain <last>. I would like to speak with you for a few minutes."`
+			`As you complete the usual landing documents with the Navy inspector outside your ship, another officer, a middle-aged man in the same uniform, walks up from behind him. As he passes by he gives a curt nod to the inspector, who suddenly walks away swiftly without saying anything, not even a "good day" to you or this new officer. He must have some sort of seniority over the inspector.`
+			`	Once the inspector is out of the way, the new officer turns to you and says, "Excuse me, Captain <last>. I would like to speak with you for a few minutes."`
 			choice
 				`	"Okay."`
 					goto branch
