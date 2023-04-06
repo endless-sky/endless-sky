@@ -2595,10 +2595,10 @@ void Engine::CreateStatusOverlays()
 
 			if(it == flagship)
 				EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::FLAGSHIP], 0);
-			else if(it->IsYours() || it->GetPersonality().IsEscort())
-				EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::ESCORT], 0);
 			else if(it->GetGovernment()->IsEnemy())
 				EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::ENEMY], 1);
+			else if(it->IsYours() || it->GetPersonality().IsEscort())
+				EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::ESCORT], 0);
 			else
 				EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::NEUTRAL], 2);
 		}
