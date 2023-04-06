@@ -2165,7 +2165,7 @@ map<string, string> PlayerInfo::GetSubstitutions() const
 
 
 
-bool PlayerInfo::SetTribute(const Planet * planet, int64_t payment)
+bool PlayerInfo::SetTribute(const Planet *planet, int64_t payment)
 {
 	if(payment > 0)
 	{
@@ -3016,7 +3016,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	{
 		const Planet *planet = GameData::Planets().Find(name);
 		if(!planet)
-			return false;
+			return 0;
 
 		auto it = tributeReceived.find(planet);
 		if(it == tributeReceived.end())
@@ -4075,9 +4075,7 @@ void PlayerInfo::Save(DataWriter &out) const
 		out.BeginChild();
 		{
 			for(const string &license : licenses)
-			{
 				out.Write(license);
-			}
 		}
 		out.EndChild();
 	}

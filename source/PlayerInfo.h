@@ -247,7 +247,7 @@ public:
 	std::map<std::string, std::string> GetSubstitutions() const;
 
 	// Get and set the "tribute" that the player receives from dominated planets.
-	bool SetTribute(const Planet * planet, int64_t payment);
+	bool SetTribute(const Planet *planet, int64_t payment);
 	bool SetTribute(const std::string &planetTrueName, int64_t payment);
 	const std::map<const Planet *, int64_t> GetTribute() const;
 	int64_t GetTributeTotal() const;
