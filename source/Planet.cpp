@@ -588,7 +588,7 @@ void Planet::Bribe(bool fullAccess) const
 // Demand tribute, and get the planet's response.
 string Planet::DemandTribute(PlayerInfo &player) const
 {
-	auto &playerTribute = player.GetTribute();
+	const auto &playerTribute = player.GetTribute();
 	if(playerTribute.find(this) != playerTribute.end())
 		return "We are already paying you as much as we can afford.";
 	if(!tribute || defenseFleets.empty())
@@ -627,7 +627,6 @@ string Planet::DemandTribute(PlayerInfo &player) const
 		return "We're not ready to surrender yet.";
 
 	player.SetTribute(this, tribute);
-	GameData::GetPolitics().DominatePlanet(this);
 	return "We surrender. We will pay you " + Format::CreditString(tribute) + " per day to leave us alone.";
 }
 

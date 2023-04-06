@@ -187,7 +187,7 @@ SCENARIO( "Creating a ConditionsStore", "[ConditionsStore][Creation]" )
 				REQUIRE( store.Get("hello world") == 100 );
 				REQUIRE( store.Get("goodbye world") == 404 );
 				REQUIRE( store.PrimariesSize() == 2 );
-				// Also check for possible ill-effects from primariesSize() itself.
+				// Also check for possible ill-effects from PrimariesSize() itself.
 				REQUIRE( store.PrimariesSize() == 2 );
 			}
 			THEN( "not given conditions return the default value" )

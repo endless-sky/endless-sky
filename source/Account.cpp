@@ -310,9 +310,9 @@ int64_t Account::SalariesIncomeTotal() const
 		salariesIncome.begin(),
 		salariesIncome.end(),
 		0,
-		[](int64_t value, const std::map<string, int64_t>::value_type &t)
+		[](int64_t value, const std::map<string, int64_t>::value_type &salary)
 		{
-			return value + t.second;
+			return value + salary.second;
 		}
 	);
 }

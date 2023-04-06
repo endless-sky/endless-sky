@@ -389,8 +389,7 @@ int64_t ConditionsStore::PrimariesSize() const
 		// We only count primary conditions; conditions that don't have a provider.
 		if(it->second.provider)
 			continue;
-		else
-			++result;
+		++result;
 	}
 	return result;
 }

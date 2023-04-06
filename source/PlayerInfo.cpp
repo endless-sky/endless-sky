@@ -280,7 +280,7 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "licenses")
 		{
 			for(const DataNode &grand : child)
-				licenses.insert(grand.Token(0));
+				AddLicense(grand.Token(0));
 		}
 		else if(child.Token(0) == "account")
 			accounts.Load(child, true);
@@ -939,9 +939,17 @@ void PlayerInfo::AddLicense(const string &name)
 
 
 
+void PlayerInfo::RemoveLicense(const string &name)
+{
+	licenses.erase(name);
+}
+
+
+
 bool PlayerInfo::HasLicense(const string &name) const
 {
-	return licenses.find(name) != licenses.end();
+	// TODO: This should be changed to use std::set<>::contains when we move to C++20.
+	return licenses.count(name);
 }
 
 
@@ -2197,7 +2205,7 @@ bool PlayerInfo::SetTribute(const string &planetTrueName, int64_t payment)
 
 
 // Get a list of all tribute that the player receives.
-const map<const Planet *, int64_t> PlayerInfo::GetTribute() const
+const map<const Planet *, int64_t> &PlayerInfo::GetTribute() const
 {
 	return tributeReceived;
 }
@@ -2211,9 +2219,9 @@ int64_t PlayerInfo::GetTributeTotal() const
 		tributeReceived.begin(),
 		tributeReceived.end(),
 		0,
-		[](int64_t value, const std::map<const Planet *, int64_t>::value_type& t)
+		[](int64_t value, const std::map<const Planet *, int64_t>::value_type &tribute)
 		{
-			return value + t.second;
+			return value + tribute.second;
 		}
 	);
 }
@@ -2802,7 +2810,7 @@ void PlayerInfo::ApplyChanges()
 	destroyedPersons.clear();
 
 	// Check which planets you have dominated.
-	for(auto it = tributeReceived.begin(); it != tributeReceived.end(); ++ it)
+	for(auto it = tributeReceived.begin(); it != tributeReceived.end(); ++it)
 		GameData::GetPolitics().DominatePlanet(it->first);
 
 	// Issue warnings for any data which has been mentioned but not actually defined, and
@@ -3027,28 +3035,32 @@ void PlayerInfo::RegisterDerivedConditions()
 	tributeProvider.SetHasFunction(tributeHasGetFun);
 	tributeProvider.SetGetFunction(tributeHasGetFun);
 	tributeProvider.SetSetFunction([this](const string &name, int64_t value) -> bool {
-		return SetTribute(name.substr(strlen("tribute: ")), value); });
+		return SetTribute(name.substr(strlen("tribute: ")), value);
+	});
 	tributeProvider.SetEraseFunction([this](const string &name) -> bool {
-		return SetTribute(name.substr(strlen("tribute: ")), 0); });
+		return SetTribute(name.substr(strlen("tribute: ")), 0);
+	});
 
 	auto &&licenseProvider = conditions.GetProviderPrefixed("license: ");
 	licenseProvider.SetHasFunction([this](const string &name) -> bool {
-		return licenses.count(name.substr(strlen("license: "))); });
+		return HasLicense(name.substr(strlen("license: ")));
+	});
 	licenseProvider.SetGetFunction([this](const string &name) -> int64_t {
-		return licenses.count(name.substr(strlen("license: "))); });
+		return HasLicense(name.substr(strlen("license: ")));
+	});
 
 	licenseProvider.SetSetFunction([this](const string &name, int64_t value) -> bool
 	{
 		if(!value)
-			licenses.erase(name.substr(strlen("license: ")));
+			RemoveLicense(name.substr(strlen("license: ")));
 		else
-			licenses.insert(name.substr(strlen("license: ")));
+			AddLicense(name.substr(strlen("license: ")));
 		return true;
 	});
 
 	licenseProvider.SetEraseFunction([this](const string &name) -> bool
 	{
-		licenses.erase(name.substr(strlen("license: ")));
+		RemoveLicense(name.substr(strlen("license: ")));
 		return true;
 	});
 

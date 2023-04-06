@@ -145,6 +145,7 @@ public:
 
 	// Access to the licenses the player owns.
 	void AddLicense(const std::string &name);
+	void RemoveLicense(const std::string &name);
 	bool HasLicense(const std::string &name) const;
 	const std::set<std::string> &Licenses() const;
 
@@ -249,7 +250,7 @@ public:
 	// Get and set the "tribute" that the player receives from dominated planets.
 	bool SetTribute(const Planet *planet, int64_t payment);
 	bool SetTribute(const std::string &planetTrueName, int64_t payment);
-	const std::map<const Planet *, int64_t> GetTribute() const;
+	const std::map<const Planet *, int64_t> &GetTribute() const;
 	int64_t GetTributeTotal() const;
 
 	// Check what the player knows about the given system or planet.
