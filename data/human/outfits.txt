@@ -139,7 +139,7 @@ outfit "Large Radar Jammer"
 	thumbnail "outfit/large radar jammer"
 	"mass" 14
 	"outfit space" -14
-	"radar jamming" 18
+	"radar jamming" 20
 	description "This high-power radar jammer will make it much more difficult for missiles that rely on radar to track you. It will not affect missiles that track you optically or that look for your ship's heat signature."
 
 
