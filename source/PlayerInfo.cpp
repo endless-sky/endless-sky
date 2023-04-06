@@ -946,13 +946,6 @@ bool PlayerInfo::HasLicense(const string &name) const
 
 
 
-set<string> &PlayerInfo::Licenses()
-{
-	return licenses;
-}
-
-
-
 const set<string> &PlayerInfo::Licenses() const
 {
 	return licenses;

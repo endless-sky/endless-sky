@@ -146,7 +146,6 @@ public:
 	// Access to the licenses the player owns.
 	void AddLicense(const std::string &name);
 	bool HasLicense(const std::string &name) const;
-	std::set<std::string> &Licenses();
 	const std::set<std::string> &Licenses() const;
 
 	// Access the flagship (the first ship in the list). This returns null if
