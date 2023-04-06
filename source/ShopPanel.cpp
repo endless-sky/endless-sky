@@ -268,6 +268,10 @@ void ShopPanel::DrawShipsSidebar()
 			}
 		}
 
+		if(ship->OutfitCount(selectedOutfit))
+			PointerShader::Draw(Point(point.X() - static_cast<int>(ICON_TILE / 3), point.Y()),
+				Point(1., 0.), 14.f, 12.f, 0., Color(.9f, .9f, .9f, .2f));
+
 		point.X() += ICON_TILE;
 	}
 	point.Y() += ICON_TILE;
