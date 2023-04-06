@@ -85,6 +85,17 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 	for(pair<const string, vector<string>> &it : catalog)
 		sort(it.second.begin(), it.second.end(), BySeriesAndIndex<Outfit>());
 
+	// Add owned licenses
+	const string PREFIX = "license: ";
+	for(auto it = player.Conditions().PrimariesBegin(); it != player.Conditions().PrimariesEnd(); ++it)
+		if(it->first.compare(0, PREFIX.length(), PREFIX) == 0 && it->second > 0)
+		{
+			const string name = it->first.substr(PREFIX.length()) + " License";
+			const Outfit *outfit = GameData::Outfits().Get(name);
+			if(outfit)
+				catalog[outfit->Category()].push_back(name);
+		}
+
 	if(player.GetPlanet())
 		outfitter = player.GetPlanet()->Outfitter();
 }
