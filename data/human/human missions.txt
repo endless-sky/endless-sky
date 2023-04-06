@@ -5715,10 +5715,11 @@ mission "Argosy Hijacking (Declined)"
 		government "Syndicate"
 		not attributes "station"
 		not near "Sol" 3
+	deadline 1
 	to offer
 		has "Argosy Hijacking (Trigger): offered"
-	on offer
-		fail
+	to complete
+		never
 	npc
 		personality launching daring uninterested
 			confusion 40
