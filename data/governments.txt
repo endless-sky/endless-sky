@@ -576,6 +576,7 @@ government "Hai (Unfettered)"
 	
 	"player reputation" -1000
 	"attitude toward"
+		"Hai (Unfettered Wanderer Tribute)" 2
 		"Hai" -.01
 		"Hai (Wormhole Access)" -.01
 		"Hai Merchant" -.01
@@ -592,6 +593,18 @@ government "Hai (Unfettered)"
 		"Elenctic Commune" .1
 	"bribe" .02
 	"fine" 0
+	"friendly hail" "friendly unfettered"
+	"friendly disabled hail" "friendly disabled unfettered"
+	"hostile hail" "hostile unfettered"
+	"hostile disabled hail" "hostile disabled unfettered"
+
+government "Hai (Unfettered Wanderer Tribute)"
+	swizzle 4
+	"display name" "Hai (Unfettered)"
+	"crew attack" 1.4
+	"crew defense" 2.2
+	
+	"player reputation" 0
 	"friendly hail" "friendly unfettered"
 	"friendly disabled hail" "friendly disabled unfettered"
 	"hostile hail" "hostile unfettered"
@@ -864,6 +877,24 @@ government "Merchant"
 	"fine" 0
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
+
+government "Merchant (Hijacked)"
+	"display name" "Merchant"
+	swizzle 5
+	"attitude toward"
+		"Republic" -.01
+		"Syndicate" -.01
+	"player reputation" 1
+	"fine" 0
+	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile pirate"
+	"penalty for"
+		assist 0
+		disable 0
+		board 0
+		capture 0
+		destroy 0
+		atrocity 0
 
 government "Militia"
 	swizzle 2
@@ -1428,7 +1459,10 @@ government "Wanderer"
 	"crew defense" 1.8
 	color .70 .91 .12
 	"player reputation" 1
+	"attitude toward"
+		"Hai (Unfettered Wanderer Tribute)" .1
 	language "Wanderer"
+	"send untranslated hails"
 	"friendly hail" "wanderer untranslated"
 	"friendly disabled hail" "wanderer untranslated"
 	"hostile hail" "wanderer untranslated"
