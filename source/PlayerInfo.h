@@ -144,7 +144,8 @@ public:
 	FleetBalance MaintenanceAndReturns() const;
 
 	// Access to the licenses the player owns.
-	bool HasLicense(std::string name) const;
+	void AddLicense(const std::string &name);
+	bool HasLicense(const std::string &name) const;
 	std::set<std::string> &Licenses();
 	const std::set<std::string> &Licenses() const;
 

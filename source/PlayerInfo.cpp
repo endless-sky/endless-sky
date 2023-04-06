@@ -932,7 +932,14 @@ PlayerInfo::FleetBalance PlayerInfo::MaintenanceAndReturns() const
 
 
 
-bool PlayerInfo::HasLicense(string name) const
+void PlayerInfo::AddLicense(const string &name)
+{
+	licenses.insert(name);
+}
+
+
+
+bool PlayerInfo::HasLicense(const string &name) const
 {
 	return licenses.find(name) != licenses.end();
 }
