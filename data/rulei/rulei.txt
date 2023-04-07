@@ -34,6 +34,7 @@ mission "First Contact: Rulei"
 	on offer
 		fail "Ira Contact"
 	on enter "Kanguwa"
+		fail
 		log "Factions" "Rulei" `The Rulei were likely an ancient, technologically advanced civilization from long ago, but the only things that remain of them are a single strange ship and two scarred planets.`
 			`They communicate through some sort of invasive psionic ability, speaking in a thousand voices all at once. Prolonged contact seems unhealthy.`
 		conversation
@@ -99,12 +100,11 @@ mission "Umbral's Reach"
 		has "First Contact: Rulei: offered"
 		has "visited system: L-118"
 	on enter "Kanguwa"
-		log "Factions" "Rulei" `The ancient Rulei ship stated to be careful of "Umbral's Reach".`
 		conversation
-			`Out of nowhere, the mysterious whispers of the Rulei begin to seep into your mind once more. They murmur slowly at first, but grow faster and louder from the direcetion of the ancient vessel, eventually coalescing into one spoken phrase.`
-			`	"Beware.`
-			`	"Umbral's Reach."`
-			`	You feel tremendous weight behind the expression, as if it shook your mind itself. It's as though every emotion has flooded into your head at once- sadness, anger, joy, disgust, even some you can't seem to understand. Before you can respond to them, the voices quickly dissipate, and you're left alone in an uncomfortable silence. You aren't sure what "Umbral's Reach" is, but it seems the Rulei don't want you to be involved with it.`
+			`Out of nowhere, the mysterious whispers of the Rulei seep into your mind once more. They murmur slowly at first, but grow faster and louder from the direction of the ancient vessel, eventually coalescing into one spoken phrase.`
+			`	"Beware..."`
+			`	"...Umbral's Reach."`
+			`	You feel tremendous weight behind the expression, as if it shook your mind itself. It's as though every emotion has flooded into your head at once -- sadness, anger, joy, disgust, even some you can't seem to understand. Before you can respond to them, the voices quickly dissipate, and you're left alone in an uncomfortable silence. You aren't sure what "Umbral's Reach" is, but it seems the Rulei don't want you to be involved with it.`
 				decline
 
 phrase "rulei hostile"
