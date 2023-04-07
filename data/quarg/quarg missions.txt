@@ -236,8 +236,7 @@ mission "Ask Quarg About Coalition Early"
 	source
 		attributes "quarg"
 		attributes "station"
-		not
-			attributes "gegno quarg"
+		not attributes "gegno quarg"
 	on offer
 		conversation
 			`You've met the Coalition, and the Heliarchs that rule their space from within the ringworlds the Quarg built there who claim that they "defeated the Quarg oppressors." Would you like to look for some Quarg here and ask for their side of the story?`
@@ -284,8 +283,7 @@ mission "Quarg Pug Arfecta Warning"
 	source
 		attributes "quarg"
 		attributes "ringworld"
-		not
-			attributes "gegno quarg"
+		not attributes "gegno quarg"
 	to offer
 		has "First Contact: Quarg: offered"
 		has "ship model: Pug Arfecta"
