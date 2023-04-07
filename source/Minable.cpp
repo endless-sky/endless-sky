@@ -79,7 +79,7 @@ void Minable::Load(const DataNode &node)
 // Calculate the expected payload value of this Minable after all outfits have been fully loaded.
 void Minable::FinishLoading()
 {
-	for(auto it : payload)
+	for(const auto &it : payload)
 		value += it.first->Cost() * it.second * 0.25;
 }
 
