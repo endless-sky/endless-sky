@@ -2666,11 +2666,11 @@ int Ship::Scan(const PlayerInfo &player)
 	// scan as one with 10 tons. This avoids small sizes being scanned instantly, or
 	// causing a divide by zero error at sizes of 0.
 	// If instantly scanning very small ships is desirable, this can be removed.
-	// One point of scan opacity is the equivalent of an additional 100 tons of cargo / outfit space
-	double outfits = max(10., target->baseAttributes.Get("outfit space")) * .005
-		+ target->baseAttributes.Get("outfit scan opacity") * .5;
-	double cargo = max(10., target->attributes.Get("cargo space")) * .005
-		+ target->baseAttributes.Get("cargo scan opacity") * .5;
+	// One point of scan opacity is the equivalent of an additional ton of cargo / outfit space
+	double outfits = max(10., (target->baseAttributes.Get("outfit space") 
+		+ target->baseAttributes.Get("outfit scan opacity"))) * .005;
+	double cargo = max(10., (target->attributes.Get("cargo space")
+		+ target->baseAttributes.Get("cargo scan opacity"))) * .005;
 
 	// Check if either scanner has finished scanning.
 	bool startedScanning = false;
