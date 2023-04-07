@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "EscortDisplay.h"
 #include "Information.h"
 #include "Point.h"
+#include "Preferences.h"
 #include "Radar.h"
 #include "Rectangle.h"
 
@@ -114,6 +115,7 @@ private:
 	void SendHails();
 	void HandleKeyboardInputs();
 	void HandleMouseClicks();
+	void HandleMouseInput(Command &activeCommands);
 
 	void FillCollisionSets();
 
@@ -127,6 +129,8 @@ private:
 	void AddSprites(const Ship &ship);
 
 	void DoGrudge(const std::shared_ptr<Ship> &target, const Government *attacker);
+	void EmplaceStatusOverlays(const std::shared_ptr<Ship> &ship, Preferences::OverlayType parent_setting,
+		Preferences::OverlayType setting, int value);
 
 
 private:
@@ -135,7 +139,7 @@ private:
 		Point center;
 		Angle angle;
 		double radius;
-		int type;
+		const Color &color;
 		int count;
 	};
 
@@ -184,6 +188,9 @@ private:
 	bool hasFinishedCalculating = true;
 	bool terminate = false;
 	bool wasActive = false;
+	bool isMouseToggleEnabled = false;
+	bool isMouseHoldEnabled = false;
+	bool isMouseTurningEnabled = false;
 	DrawList draw[2];
 	BatchDrawList batchDraw[2];
 	Radar radar[2];
@@ -243,6 +250,10 @@ private:
 	Rectangle uiClickBox;
 	Rectangle clickBox;
 	int groupSelect = -1;
+
+	// Set of asteroids scanned in the current system.
+	std::set<std::string> asteroidsScanned;
+	bool isAsteroidCatalogComplete = false;
 
 	// Input, Output and State handling for automated tests.
 	TestContext *testContext = nullptr;

@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "Effect.h"
 #include "Flotsam.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Mask.h"
 #include "Outfit.h"
@@ -43,9 +44,13 @@ void Minable::Load(const DataNode &node)
 
 	for(const DataNode &child : node)
 	{
+		if(child.Token(0) == "display name" && child.Size() >= 2)
+			displayName = child.Token(1);
+		else if(child.Token(0) == "noun" && child.Size() >= 2)
+			noun = child.Token(1);
 		// A full sprite definition (frame rate, etc.) is not needed, because
 		// the frame rate will be set randomly and it will always be looping.
-		if(child.Token(0) == "sprite" && child.Size() >= 2)
+		else if(child.Token(0) == "sprite" && child.Size() >= 2)
 			SetSprite(SpriteSet::Get(child.Token(1)));
 		else if(child.Token(0) == "hull" && child.Size() >= 2)
 			hull = child.Value(1);
@@ -62,13 +67,32 @@ void Minable::Load(const DataNode &node)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+
+	if(displayName.empty())
+		displayName = Format::Capitalize(name);
+	if(noun.empty())
+		noun = "Asteroid";
 }
 
 
 
-const string &Minable::Name() const
+const string &Minable::TrueName() const
 {
 	return name;
+}
+
+
+
+const string &Minable::DisplayName() const
+{
+	return displayName;
+}
+
+
+
+const string &Minable::Noun() const
+{
+	return noun;
 }
 
 
@@ -192,6 +216,13 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 void Minable::TakeDamage(const Projectile &projectile)
 {
 	hull -= projectile.GetWeapon().MinableDamage() + projectile.GetWeapon().RelativeMinableDamage() * maxHull;
+}
+
+
+
+double Minable::Hull() const
+{
+	return min(1., hull / maxHull);
 }
 
 

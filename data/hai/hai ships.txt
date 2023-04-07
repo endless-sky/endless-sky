@@ -64,6 +64,19 @@ ship "Aphid" "Aphid (Armed)"
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
 
+ship "Aphid" "Aphid (Unfettered)"
+	outfits
+		"Chameleon Anti-Missile"
+		"Cargo Expansion" 2
+		"Hai Corundum Regenerator"
+		"Hai Fissure Batteries"
+		"Sand Cell"
+		"Small Bunk Room"
+		"Quantum Keystone"
+		"Pulse Rifle"
+		`"Basrem" Atomic Steering`
+		`"Basrem" Atomic Thruster`
+		"Hyperdrive"
 
 
 ship "Centipede"
@@ -195,7 +208,7 @@ ship "Cicada"
 		"cargo space" 143
 		"outfit space" 323
 		"weapon capacity" 89
-		"engine capacity" 58
+		"engine capacity" 64
 		weapon
 			"blast radius" 80
 			"shield damage" 960
@@ -267,7 +280,7 @@ ship "Flea"
 	gun 0 -27 "Railgun"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
-	description `This combat drone is built to amplify the strength of any combat force for as few credits as possible. It was designed in conjunction with the tactical recoil of the railgun to allow it to kite its targets, prolonging its combat efficacy while it supports its allies with debilitating ion damage.`
+	description `This combat drone is built to amplify the strength of any combat force for as few credits as possible. It was designed in conjunction with the tactical recoil of the Railgun to allow it to kite its targets, prolonging its combat efficacy while it supports its allies with debilitating ion damage.`
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 ship "Flea" "Flea (Pulse)"
@@ -494,7 +507,7 @@ ship "Lightning Bug"
 	explode "medium explosion" 24
 	explode "large explosion" 8
 	"final explode" "final explosion small"
-	description "The Lightning Bug is a small defensive ship, mostly used by the Hai as a convoy escort. The Lightning Bug, as with many insects, works best in a swarm: even a small number of Lightning Bugs can manage to leave the largest of ships helpless with their stock-fitted ion cannons."
+	description "The Lightning Bug is a small defensive ship, mostly used by the Hai as a convoy escort. The Lightning Bug, as with many insects, works best in a swarm: even a small number of Lightning Bugs can manage to leave the largest of ships helpless with their stock-fitted Ion Cannons."
 
 ship "Lightning Bug" "Lightning Bug (Pulse)"
 	outfits
@@ -526,6 +539,21 @@ ship "Lightning Bug" "Lightning Bug (Surveillance)"
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
 
+ship "Lightning Bug" "Lightning Bug (Unfettered Shipyards)"
+	outfits
+		"Pulse Cannon"
+		"Pulse Turret" 2
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling"
+		"Quantum Keystone"
+		"Value Detector"
+		"Pebble Core"
+		"Sand Cell"
+		"Hai Gorge Batteries"
+		"Pulse Rifle" 6
+		`"Benga" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		"Hyperdrive"
 
 
 ship "Ladybug"
@@ -550,9 +578,9 @@ ship "Ladybug"
 		# Expensive features mentioned in description:
 		"ramscoop" 0.25
 		"cargo scan power" 5
-		"cargo scan speed" 16
+		"cargo scan efficiency" 16
 		"outfit scan power" 17
-		"outfit scan speed" 15
+		"outfit scan efficiency" 15
 		"tactical scan power" 25
 		"atmosphere scan" 100
 		"asteroid scan power" 30
@@ -716,13 +744,21 @@ ship "Pond Strider"
 	turret 18 -53 "Bullfrog Anti-Missile"
 	turret 0 14 "Chameleon Anti-Missile"
 	bay "Drone" -70 -45 left under
+		"launch effect" "hai launch"
 	bay "Drone" 70 -45 right under
+		"launch effect" "hai launch"
 	bay "Drone" -70 28 left under
+		"launch effect" "hai launch"
 	bay "Drone" 70 28 right under
+		"launch effect" "hai launch"
 	bay "Drone" -70 -45 over
+		"launch effect" "hai launch"
 	bay "Drone" 70 -45 over
+		"launch effect" "hai launch"
 	bay "Drone" -70 28 over
+		"launch effect" "hai launch"
 	bay "Drone" 70 28 over
+		"launch effect" "hai launch"
 	leak "leak" 40 50
 	leak "flame" 40 70
 	leak "big leak" 70 30
@@ -815,13 +851,13 @@ ship "Sea Scorpion"
 		"hull" 4900
 		"required crew" 14
 		"bunks" 36
-		"mass" 360
+		"mass" 320
 		"drag" 5.2
 		"heat dissipation" .7
 		"fuel capacity" 500
 		"cargo space" 45
 		"outfit space" 510
-		"weapon capacity" 168
+		"weapon capacity" 188
 		"engine capacity" 117
 		weapon
 			"blast radius" 84
@@ -829,20 +865,23 @@ ship "Sea Scorpion"
 			"hull damage" 420
 			"hit force" 1260
 	outfits
-		"Hai Tracker Pod" 4
-		"Chameleon Anti-Missile" 2
-		"Tracker Storage Pod" 4
-		"Hai Tracker" 336
-		"Hai Williwaw Cooling" 2
-		"Hai Octopus Jammer"
-		"Boulder Reactor"
-		"Hai Ravine Batteries"
-		"Hai Diamond Regenerator"
-		`"Bondir" Atomic Thruster`
 		`"Bondir" Atomic Steering`
-		"Value Detector"
-		"Hyperdrive"
+		`"Bondir" Atomic Thruster`
+		"Cargo Expansion"
+		"Chameleon Anti-Missile"
+		"Fuel Pod"
+		"Geode Reactor"
+		"Hai Diamond Regenerator"
+		"Hai Ravine Batteries"
+		"Hai Tracker" 336
+		"Hai Tracker Pod" 4
+		"Hai Williwaw Cooling"
+		Hyperdrive
 		"Pulse Rifle" 15
+		"Pulse Turret"
+		"Quantum Keystone"
+		"Tracker Storage Pod" 4
+		"Value Detector" 2
 
 	engine -28.5 68.5
 	engine 28.5 68.5
@@ -874,6 +913,22 @@ ship "Sea Scorpion"
 	explode "large explosion" 14
 	"final explode" "final explosion medium"
 	description "The Sea Scorpion was designed several decades ago to serve as a mobile platform to launch Trackers. However, it is only recently that the Unfettered have been able to mass produce them. While individually vulnerable, the reduced cost of manufacturing compared to Shield Beetles allow the materially inferior Unfettered to gain a numerical advantage against their brethren."
+
+ship "Sea Scorpion" "Sea Scorpion (Tracker)"
+	outfits
+		"Hai Tracker Pod" 4
+		"Chameleon Anti-Missile" 2
+		"Tracker Storage Pod" 4
+		"Hai Tracker" 336
+		"Hai Williwaw Cooling" 2
+		"Hai Octopus Jammer"
+		"Boulder Reactor"
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator"
+		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Value Detector"
+		"Hyperdrive"
 
 ship "Sea Scorpion" "Sea Scorpion (Pulse)"
 	outfits
@@ -1100,9 +1155,32 @@ ship "Shield Beetle" "Shield Beetle (Unfettered)"
 		"Hai Valley Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 3
-		"Value Detector" 4
+		"Value Detector" 2
 		"Quantum Keystone"
 		"Pulse Rifle" 65
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+
+ship "Shield Beetle" "Shield Beetle (Unfettered Shipyards)"
+	outfits
+		"Ion Cannon" 2
+		"Hai Tracker" 420
+		"Hai Tracker Pod" 6
+		"Tracker Storage Pod" 3
+		"Pulse Turret" 3
+		"Chameleon Anti-Missile"
+		"Hai Corundum Regenerator"
+		"Hai Diamond Regenerator"
+		"Hai Octopus Jammer" 3
+		"Hai Williwaw Cooling" 4
+		"Outfits Expansion" 2
+		"Value Detector" 2
+		"Geode Reactor" 2
+		"Pebble Core"
+		"Hai Gorge Batteries"
+		"Quantum Keystone"
+		"Pulse Rifle" 75
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
@@ -1410,11 +1488,17 @@ ship "Solifuge"
 	turret 54.5 50.5 "Bullfrog Anti-Missile"
 	turret -54.5 50.5 "Bullfrog Anti-Missile"
 	bay "Fighter" -51.5 -71 under
+		"launch effect" "hai launch"
 	bay "Fighter" 51.5 -71 under
+		"launch effect" "hai launch"
 	bay "Fighter" -58.5 2 under
+		"launch effect" "hai launch"
 	bay "Fighter" 58.5 2 under
+		"launch effect" "hai launch"
 	bay "Fighter" -51.5 76 under
+		"launch effect" "hai launch"
 	bay "Fighter" 51.5 76 under
+		"launch effect" "hai launch"
 	leak "leak" 40 50
 	leak "flame" 60 70
 	leak "big leak" 70 50

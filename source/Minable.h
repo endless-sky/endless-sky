@@ -49,7 +49,9 @@ public:
 
 	// Load a definition of a minable object.
 	void Load(const DataNode &node);
-	const std::string &Name() const;
+	const std::string &TrueName() const;
+	const std::string &DisplayName() const;
+	const std::string &Noun() const;
 
 	// Place a minable object with up to the given energy level, on a random
 	// orbit and a random position along that orbit.
@@ -66,9 +68,13 @@ public:
 	// Determine what flotsam this asteroid will create.
 	const std::map<const Outfit *, int> &Payload() const;
 
+	// Get hull remaining of this asteroid, as a fraction between 0 and 1.
+	double Hull() const;
 
 private:
 	std::string name;
+	std::string displayName;
+	std::string noun;
 	// Current angular position relative to the focus of the elliptical orbit,
 	// in radians. An angle of zero is the periapsis point.
 	double theta;

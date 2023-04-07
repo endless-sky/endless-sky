@@ -256,7 +256,7 @@ event "wanderers: kaliptari battle begins"
 
 event "wanderers: kaliptari battle ends"
 	system Kaliptari
-		add fleet "Large Quarg" 2000
+		add fleet "Large Quarg (Kor Efret)" 2000
 		add fleet "Small Kor Mereti" 8000
 		add fleet "Large Kor Mereti" 3600
 		add fleet "Wanderer Defense" 1000
@@ -462,7 +462,7 @@ mission "Wanderers: Quarg Assistance 2"
 	on visit
 		dialog `You've reached <planet>, but you left one of the Quarg ships behind. Better depart and wait for it to arrive.`
 	npc accompany save
-		government "Quarg"
+		government "Quarg (Kor Efret)"
 		personality escort
 		ship "Quarg Wardragon" "Elearu-quara"
 		ship "Quarg Wardragon" "Kumawar Kwarca"
@@ -477,7 +477,7 @@ mission "Wanderers: Quarg Defenders"
 	to offer
 		has "Wanderers: Quarg Assistance 2: done"
 	npc kill
-		government "Quarg"
+		government "Quarg (Kor Efret)"
 		personality staying uninterested heroic
 		ship "Quarg Wardragon" "Elearu-quara"
 		ship "Quarg Wardragon" "Kumawar Kwarca"
@@ -714,8 +714,8 @@ event "wanderers: kashikt battle begins"
 
 event "wanderers: kashikt battle ends"
 	system "Kashikt"
-		fleet "Quarg" 1000
-		fleet "Large Quarg" 2000
+		fleet "Quarg (Kor Efret)" 1000
+		fleet "Large Quarg (Kor Efret)" 2000
 		fleet "Kor Efret Home" 1000
 
 mission "Wanderers: Kor Efret 3"
@@ -775,14 +775,14 @@ mission "Wanderers: Kor Efret 3"
 				"Arch-Carrack" 2
 				"Charm-Shallop" 4
 	npc
-		government "Quarg"
+		government "Quarg (Kor Efret)"
 		personality heroic staying entering
 		fleet
 			names "quarg"
 			variant
 				"Quarg Wardragon" 1
 	npc
-		government "Quarg"
+		government "Quarg (Kor Efret)"
 		personality heroic
 		system "Host"
 		fleet
@@ -790,7 +790,7 @@ mission "Wanderers: Kor Efret 3"
 			variant
 				"Quarg Wardragon" 3
 	npc
-		government "Quarg"
+		government "Quarg (Kor Efret)"
 		personality heroic
 		system "Mesuket"
 		fleet
@@ -1070,7 +1070,7 @@ event "wanderers: kor mereti friendly"
 	government "Kor Mereti"
 		"attitude toward"
 			"Wanderer" 1
-	government "Quarg"
+	government "Quarg (Kor Efret)"
 		"attitude toward"
 			"Kor Mereti" 0
 	government "Kor Efret"
@@ -1585,7 +1585,7 @@ event "wanderers: battle in solifar begins"
 
 event "wanderers: battle in solifar ends"
 	system Solifar
-		fleet "Large Quarg" 3000
+		fleet "Large Quarg (Kor Efret)" 3000
 		fleet "Wanderer Defense" 1800
 		fleet "Wanderer Drones" 700
 		fleet "Wanderer Flycatchers" 800
@@ -1763,7 +1763,7 @@ mission "Wanderers: Sestor Search"
 		never
 	destination "Vara K'chrai"
 	on offer
-		log "Someone else seems to have located the Kor Sestor command center before the Wanderers did, and has taken control of the Kor Sestor fleet. Most of the Kor Sestor drones flew through the Eye into the old Wanderer territory, where the Wanderers will probably not be prepared to fight them."
+		log "Someone else seems to have located the Kor Sestor central command before the Wanderers did, and has taken control of the Kor Sestor fleet. Most of the Kor Sestor drones flew through the Eye into the old Wanderer territory, where the Wanderers will probably not be prepared to fight them."
 		event "wanderers: kor sestor are aimless"
 		conversation
 			`You return to the planet expecting the Wanderers to be celebrating their victory, but the leaders have grim news. "The drones we fought were only the [rearguard? remnant?] of the fleet," says Tele'ek. "Dozens of [capital ships?] passed through this system and continued on. With this [heading, destination]." On the holographic projector, he brings up a star map, and points to the system where the Eye is. The wormhole leading back to Wanderer space.`
@@ -1882,7 +1882,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 				`	"You should be glad you're still in one piece."`
 					goto glad1
 					
-			`	"Well," the pilot says, "we had hired a beefy Leviathan escort to Farpoint. When we were going in for landing, two of these hostile ships jumped in from the northwest, the direction of all the anarchist colonies in this area. The ships weren't big, but they were tough: our four heavy laser turrets weren't enough to produce even a dent in their shields. They made short work of the Leviathan, and nearly disabled our ship, too. It was lucky I decided that jumping would be faster than landing. We warped out of the system while in atmosphere, saving the ship, but now I'm in debt to all my crew because I couldn't meet a rush delivery deadline. Still had to deliver the goods, but lost a pretty substantial bonus."`
+			`	"Well," the pilot says, "we had hired a beefy Leviathan escort to Farpoint. When we were going in for landing, two of these hostile ships jumped in from the northwest, the direction of all the anarchist colonies in this area. The ships weren't big, but they were tough: our four Heavy Laser Turrets weren't enough to produce even a dent in their shields. They made short work of the Leviathan, and nearly disabled our ship, too. It was lucky I decided that jumping would be faster than landing. We warped out of the system while in atmosphere, saving the ship, but now I'm in debt to all my crew because I couldn't meet a rush delivery deadline. Still had to deliver the goods, but lost a pretty substantial bonus."`
 			choice
 				`	"You're lucky as hell to be here today."`
 					goto glad
@@ -1898,7 +1898,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 					goto thanks
 			
 			label glad1
-			`	"I am! The attacking ships weren't big, but they were tough: our four heavy laser turrets couldn't even produce a dent in their shields," the captain says. "We even hired a beefy Leviathan to protect us from the pirate raids as we traveled to Farpoint, but when these hostile ships jumped in from the northwest, they made short work of our escort and nearly disabled our ship, too. I had to jump out of the system while in atmosphere to save the ship, but now I'm in debt to all my crew because I didn't meet a rush delivery deadline. Still had to deliver the goods, but lost a pretty substantial bonus."`
+			`	"I am! The attacking ships weren't big, but they were tough: our four Heavy Laser Turrets couldn't even produce a dent in their shields," the captain says. "We even hired a beefy Leviathan to protect us from the pirate raids as we traveled to Farpoint, but when these hostile ships jumped in from the northwest, they made short work of our escort and nearly disabled our ship, too. I had to jump out of the system while in atmosphere to save the ship, but now I'm in debt to all my crew because I didn't meet a rush delivery deadline. Still had to deliver the goods, but lost a pretty substantial bonus."`
 			choice
 				`	"You really are lucky as hell to be here today."`
 					goto glad
@@ -2819,6 +2819,20 @@ mission "Wanderers: Sestor Alt: Alnilam 3"
 	on visit
 		dialog `You've reached <planet>, but not all of the Navy Cruisers have entered the system yet. Better depart and wait for them to arrive.`
 
+event "liberated zenith"
+	planet "Zenith"
+		bribe .04
+		"required reputation" 0
+
+mission "Wanderers: Sestor Alt: Zenith Patch"
+	landing
+	invisible
+	to offer
+		has "Wanderers: Sestor Alt: Alnilam 2: done"
+	on offer
+		event "liberated zenith"
+		fail
+
 
 
 mission "Wanderers: Sestor Alt: Return to Wanderers"
@@ -3309,7 +3323,7 @@ event "wanderers: sestor eliminated"
 event "wanderers: sabira eseskrai colony"
 	system "Skeruto"
 		government "Wanderer"
-		fleet "Large Quarg" 1000
+		fleet "Large Quarg (Kor Efret)" 1000
 		fleet "Wanderer Defense" 1200
 		fleet "Wanderer Drones" 800
 		fleet "Kor Efret Home" 800

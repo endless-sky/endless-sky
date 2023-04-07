@@ -1,4 +1,4 @@
-test-data "quarg rescue"
+test-data "quarg rescue save"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
@@ -71,7 +71,7 @@ test-data "quarg rescue"
 						"heat dissipation" 0.5
 						hull 50000
 						"outfit scan power" 1e+09
-						"outfit scan speed" 1e+09
+						"outfit scan efficiency" 1e+09
 						"energy generation" 10
 						shields 160000
 					fuel 0
@@ -88,7 +88,7 @@ test-data "quarg rescue"
 		conditions
 			"%TEST%: SCANNING ILLEGALS"
 
-test-data "quarg scanning"
+test-data "quarg scanning save"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
@@ -170,7 +170,7 @@ test-data "quarg scanning"
 						"heat dissipation" 0.5
 						hull 50000
 						"outfit scan power" 1e+09
-						"outfit scan speed" 1e+09
+						"outfit scan efficiency" 1e+09
 						"energy generation" 10
 						shields 160000
 					fuel 0
@@ -188,7 +188,7 @@ test-data "quarg scanning"
 			"%TEST%: SCANNING ILLEGALS"
 
 
-test-data "quarg atrocity"
+test-data "quarg atrocity save"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
@@ -270,7 +270,7 @@ test-data "quarg atrocity"
 						"heat dissipation" 0.5
 						hull 50000
 						"outfit scan power" 1e+09
-						"outfit scan speed" 1e+09
+						"outfit scan efficiency" 1e+09
 						"energy generation" 10
 						shields 160000
 					fuel 0
@@ -320,7 +320,7 @@ test "Boarding Test - Repair Friendly Ship"
 	status active
 	description "Test if you can repair a disabled Quarg ship trough an assist derelict mission."
 	sequence
-		inject "quarg rescue"
+		inject "quarg rescue save"
 		call "Load First Savegame"
 		watchdog 6000
 		call "Launch Quarg Scanning Mission And Board"
@@ -334,7 +334,7 @@ test "Illegal Test - Ignore and New Illegal"
 	status active
 	description "Test if a Quarg ship spawning disabled in the system will give you a fine for an illegal outfit and ignore the fine for another, after you repaired it."
 	sequence
-		inject "quarg scanning"
+		inject "quarg scanning save"
 		call "Load First Savegame"
 		watchdog 6000
 		assert
@@ -350,7 +350,7 @@ test "Atrocity Test - New Atrocity"
 	status active
 	description "Test if a Quarg ship spawning disabled in the system will consider an outfit an atrocity when specified by an event."
 	sequence
-		inject "quarg atrocity"
+		inject "quarg atrocity save"
 		call "Load First Savegame"
 		watchdog 6000
 		assert
