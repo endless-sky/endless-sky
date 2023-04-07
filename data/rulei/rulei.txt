@@ -104,7 +104,7 @@ mission "Umbral's Reach"
 			`Out of nowhere, the mysterious whispers of the Rulei seep into your mind once more. They murmur slowly at first, but grow faster and louder from the direction of the ancient vessel, eventually coalescing into one spoken phrase.`
 			`	"Beware..."`
 			`	"...Umbral's Reach."`
-			`	You feel tremendous weight behind the expression, as if it shook your mind itself. It's as though every emotion has flooded into your head at once -- sadness, anger, joy, disgust, even some you can't seem to understand. Before you can respond to them, the voices quickly dissipate, and you're left alone in an uncomfortable silence. You aren't sure what "Umbral's Reach" is, but it seems the Rulei don't want you to be involved with it.`
+			`	You feel tremendous weight behind the expression, as if it shook your mind itself. It's as though every emotion has flooded into your head at once - sadness, anger, joy, disgust, even some you can't seem to understand. Before you can respond to them, the voices quickly dissipate, and you're left alone in an uncomfortable silence. You aren't sure what "Umbral's Reach" is, but it seems the Rulei don't want you to be involved with it.`
 				decline
 
 phrase "rulei hostile"
