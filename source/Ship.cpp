@@ -2670,7 +2670,7 @@ int Ship::Scan(const PlayerInfo &player)
 	double outfits = max(10., (target->baseAttributes.Get("outfit space")
 		+ target->attributes.Get("outfit scan opacity"))) * .005;
 	double cargo = max(10., (target->attributes.Get("cargo space")
-		+ target->baseAttributes.Get("cargo scan opacity"))) * .005;
+		+ target->attributes.Get("cargo scan opacity"))) * .005;
 
 	// Check if either scanner has finished scanning.
 	bool startedScanning = false;
