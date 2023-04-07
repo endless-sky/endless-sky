@@ -877,7 +877,7 @@ outfit "Gegno Civilian License"
 outfit "Gegno Driller License"
 	category "Licenses"
 	thumbnail "outfit/unknown"
-	description "The Gegno now acknowledge your resourcefulness and ability to deliver more than acceptable results of work. You have been bestown the right of access to their mining technology."
+	description "The Gegno now acknowledge your resourcefulness and ability to deliver more than acceptable results of work. You have been bestowed the right of access to their mining technology."
 
 outfit "Vi Lord License"
 	category "Licenses"
