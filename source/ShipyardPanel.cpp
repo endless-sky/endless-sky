@@ -374,13 +374,12 @@ bool ShipyardPanel::CanSellMultiple() const
 void ShipyardPanel::BuyShip(const string &name)
 {
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
-	auto &playerConditions = player.Conditions();
 	if(licenseCost)
 	{
 		player.Accounts().AddCredits(-licenseCost);
 		for(const string &licenseName : selectedShip->Attributes().Licenses())
-			if(playerConditions.Get("license: " + licenseName) <= 0)
-				playerConditions["license: " + licenseName] = true;
+			if(!player.HasLicense(licenseName))
+				player.AddLicense(licenseName);
 	}
 
 	for(int i = 1; i <= modifier; ++i)
