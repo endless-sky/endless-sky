@@ -55,6 +55,11 @@ namespace {
 	const string AUTO_AIM_SETTING = "Automatic aiming";
 	const string SCREEN_MODE_SETTING = "Screen mode";
 	const string VSYNC_SETTING = "VSync";
+	const string STATUS_OVERLAYS_ALL = "Show status overlays";
+	const string STATUS_OVERLAYS_FLAGSHIP = "   Show flagship overlay";
+	const string STATUS_OVERLAYS_ESCORT = "   Show escort overlays";
+	const string STATUS_OVERLAYS_ENEMY = "   Show enemy overlays";
+	const string STATUS_OVERLAYS_NEUTRAL = "   Show neutral overlays";
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string TURRET_TRACKING = "Turret tracking";
 	const string FOCUS_PREFERENCE = "Turrets focus fire";
@@ -64,6 +69,7 @@ namespace {
 	const string FIGHTER_REPAIR = "Repair fighters in";
 	const string SHIP_OUTLINES = "Ship outlines in shops";
 	const string BOARDING_PRIORITY = "Boarding target priority";
+	const string TARGET_ASTEROIDS_BASED_ON = "Target asteroid based on";
 	const string BACKGROUND_PARALLAX = "Parallax background";
 	const string ALERT_INDICATOR = "Alert indicator";
 
@@ -215,6 +221,16 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 					GetUI()->Push(new Dialog(
 						"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
 			}
+			else if(zone.Value() == STATUS_OVERLAYS_ALL)
+				Preferences::SetStatusOverlays(false, 0);
+			else if(zone.Value() == STATUS_OVERLAYS_FLAGSHIP)
+				Preferences::SetStatusOverlays(false, 1);
+			else if(zone.Value() == STATUS_OVERLAYS_ESCORT)
+				Preferences::SetStatusOverlays(false, 2);
+			else if(zone.Value() == STATUS_OVERLAYS_ENEMY)
+				Preferences::SetStatusOverlays(false, 3);
+			else if(zone.Value() == STATUS_OVERLAYS_NEUTRAL)
+				Preferences::SetStatusOverlays(false, 4);
 			else if(zone.Value() == AUTO_AIM_SETTING)
 				Preferences::ToggleAutoAim();
 			else if(zone.Value() == EXPEND_AMMO)
@@ -353,7 +369,8 @@ void PreferencesPanel::DrawControls()
 		"Targeting",
 		"Navigation",
 		"Interface",
-		"Fleet"
+		"Fleet",
+		"Targeting"
 	};
 	const string *category = CATEGORIES;
 	static const Command COMMANDS[] = {
@@ -375,7 +392,7 @@ void PreferencesPanel::DrawControls()
 		Command::TARGET,
 		Command::HAIL,
 		Command::BOARD,
-		Command::SCAN,
+		Command::NEAREST_ASTEROID,
 		Command::NONE,
 		Command::MOUSE_TURNING_HOLD,
 		Command::MOUSE_TURNING_TOGGLE,
@@ -390,7 +407,10 @@ void PreferencesPanel::DrawControls()
 		Command::FIGHT,
 		Command::GATHER,
 		Command::HOLD,
-		Command::AMMO
+		Command::AMMO,
+		Command::HARVEST,
+		Command::NONE,
+		Command::SCAN
 	};
 	static const Command *BREAK = &COMMANDS[19];
 	for(const Command &command : COMMANDS)
@@ -491,7 +511,11 @@ void PreferencesPanel::DrawSettings()
 		VIEW_ZOOM_FACTOR,
 		SCREEN_MODE_SETTING,
 		VSYNC_SETTING,
-		"Show status overlays",
+		STATUS_OVERLAYS_ALL,
+		STATUS_OVERLAYS_FLAGSHIP,
+		STATUS_OVERLAYS_ESCORT,
+		STATUS_OVERLAYS_ENEMY,
+		STATUS_OVERLAYS_NEUTRAL,
 		"Show missile overlays",
 		"Highlight player's flagship",
 		"Rotate flagship in HUD",
@@ -515,9 +539,12 @@ void PreferencesPanel::DrawSettings()
 		"Automatic firing",
 		BOARDING_PRIORITY,
 		EXPEND_AMMO,
-		FIGHTER_REPAIR,
-		TURRET_TRACKING,
+		"Extra fleet status messages",
+		"Fighters transfer cargo",
 		"Rehire extra crew when lost",
+		FIGHTER_REPAIR,
+		TARGET_ASTEROIDS_BASED_ON,
+		TURRET_TRACKING,
 		"\t",
 		"Other",
 		"Clickable radar display",
@@ -596,6 +623,31 @@ void PreferencesPanel::DrawSettings()
 			text = Preferences::VSyncSetting();
 			isOn = text != "off";
 		}
+		else if(setting == STATUS_OVERLAYS_ALL)
+		{
+			text = Preferences::StatusOverlaysSetting(0);
+			isOn = text != "off";
+		}
+		else if(setting == STATUS_OVERLAYS_FLAGSHIP)
+		{
+			text = Preferences::StatusOverlaysSetting(1);
+			isOn = text != "off" && text != "--";
+		}
+		else if(setting == STATUS_OVERLAYS_ESCORT)
+		{
+			text = Preferences::StatusOverlaysSetting(2);
+			isOn = text != "off" && text != "--";
+		}
+		else if(setting == STATUS_OVERLAYS_ENEMY)
+		{
+			text = Preferences::StatusOverlaysSetting(3);
+			isOn = text != "off" && text != "--";
+		}
+		else if(setting == STATUS_OVERLAYS_NEUTRAL)
+		{
+			text = Preferences::StatusOverlaysSetting(4);
+			isOn = text != "off" && text != "--";
+		}
 		else if(setting == AUTO_AIM_SETTING)
 		{
 			text = Preferences::AutoAimSetting();
@@ -622,6 +674,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = Preferences::BoardingSetting();
+		}
+		else if(setting == TARGET_ASTEROIDS_BASED_ON)
+		{
+			isOn = true;
+			text = Preferences::Has(TARGET_ASTEROIDS_BASED_ON) ? "proximity" : "value";
 		}
 		else if(setting == BACKGROUND_PARALLAX)
 		{

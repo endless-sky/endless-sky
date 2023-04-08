@@ -935,6 +935,7 @@ License: CC-BY-SA-4.0
 Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
 
 Files:
+ images/projectile/sunbeam/*
  images/ship/blackbird*
  images/ship/falcon*
  images/ship/hawk*
@@ -1764,7 +1765,7 @@ Files:
  images/ship/modified?dromedary*
  images/ship/modified?dromedary?wreck*
  images/ship/*vyrmeid*
- images/ship/*vyuira*
+ images/ship/*vyuir*
  images/thumbnail/gegno?augen*
  images/thumbnail/gegno?coesite*
  images/thumbnail/gegno?conglomerate*
@@ -1785,7 +1786,7 @@ Files:
  images/thumbnail/gegno?tridymite*
  images/thumbnail/modified?dromedary*
  images/thumbnail/modified?dromedary?wreck*
- images/thumbnail/vyuira*
+ images/thumbnail/vyuir*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 
@@ -2084,6 +2085,11 @@ Comment: Derived from _menu/haze-133 (no copyright given).
 Files:
  images/star/proto-planetary-disk*
 Copyright: RisingLeaf (https://github.com/RisingLeaf)
+License: CC-BY-SA-4.0
+
+Files:
+ images/land/hills11*
+Copyright: CyberJudas (cyberjudas@dnmx.org)
 License: CC-BY-SA-4.0
 
 License: GPL-3+

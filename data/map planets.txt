@@ -205,7 +205,7 @@ planet Arroharg
 	landscape land/canyon12
 	description `Arroharg is a low-gravity moon that the Quarg have converted to some sort of harvesting grounds. Massive machines that dwarf your ship seem to be displacing mountainous formations while smaller ones collect from the zones left behind. Most of the architecture here is Quarg-like and is not designed in a way that welcomes visitors very comfortably. The lower levels of the outpost seem to dig deeper into the surface of the moon, but the farther they go down the more complex they become. There's no telling how deep into the moon they go, as they are restricted to anyone but the Quarg.`
 	spaceport `A few Quarg greet you with astonished expressions, but kindly assist you in anything you have trouble with due to the spaceport being designed for them. They communicate mostly in gestures and facial expressions, although this is sometimes hard to decipher. It seems they aren't used to outside visitors here and don't speak your language.`
-	government Quarg
+	government "Quarg (Gegno)"
 	bribe 0
 	security 0.9
 
@@ -346,7 +346,7 @@ planet "Bloptab's Furnace"
 
 planet "Blubipad's Workshop"
 	attributes arach factory tourism urban
-	landscape land/forest2
+	landscape land/hills11
 	description `Dozens of small cities dot the valleys and hilltops of this warm and pleasant forest world. Due to a high tech manufacturing industry, there is plenty of work here for all the inhabitants, who hail from planets throughout Coalition space. With broad streets, ample parks, and gleaming skyscrapers, the cities bear witness to the very best of what Coalition society can accomplish when the three species work together.`
 	spaceport `The spaceport here has become a popular destination for tourists interested in exotic foods. The blend of smells drifting from the many restaurants, cafes, and open-air markets is almost overwhelming, and not always pleasant to your human senses; the Kimek, in particular, appear to consider food that has already been partly broken down by decomposition to be a delicacy.`
 	outfitter "Coalition Basics"
@@ -858,7 +858,7 @@ planet "Deep Water"
 	landscape land/fog3
 	description `The upper layers of Deep Water's mantle are unusually hot, resulting in continuous volcanic eruptions that shroud its skies in ash and particulate matter. Aside from one small continent most of the surface is ocean, but the volcanoes have formed hundreds of separate island chains and archipelagos, each of which is home to unique plant and animal species.`
 	description `	To preserve the planet's rich biodiversity, the Saryds do not allow permanent settlements to be built on the islands, but village-sized research stations have been built that can be anchored near an island while scientists work there.`
-	spaceport `The entire spaceport on Deep Water is an artificial island, a mesh of floating platforms the size of city blocks connected to each other by flexible bridges, leaving a system of canals in between them. The platforms are large enough that even the weight of a bulk freighter landing only causes them to ride a meter or two lower in the water.`
+	spaceport `The entire spaceport on Deep Water is an artificial island, a mesh of floating platforms the size of city blocks connected to each other by flexible bridges, leaving a system of canals in between them. The platforms are large enough that even the weight of a Bulk Freighter landing only causes them to ride a meter or two lower in the water.`
 	spaceport `	The spaceport is moored in place to keep it from drifting on the ocean currents and colliding with the natural islands that dot the planet's surface.`
 	"required reputation" 15
 	security 0.35
@@ -1680,7 +1680,7 @@ planet "Giaru Gegno"
 	description `The quality of its structure suggests that this Quarg ringworld had to have been completed rather recently, but there are some notable differences that don't seem Quarg-like. Some of the hangers and docks on the ring are oddly larger than others, and the inner quarters are wider and taller than what is normal for a Quarg. The hangar you currently are parked in, however, seems to be void of these characteristics, and is similar to ones at the Quarg ringworld in human space.`
 	description `	Despite seeing numerous non-Quarg ships before landing on the ring, you are only guided around parts of the ring where they are not present.`
 	spaceport `There are probably many hundreds of billions of Quarg on this ring, and yet it still manages to feel spacious and lightly populated. They shift past you at a normal walking pace for a Quarg, and don't give you much attention except from the occasional uninterested glance or two. There seems to be little conversation and effort to accommodate you as the only non-Quarg in sight. It seems areas containing the aliens from nearby are off-limits to you.`
-	government Quarg
+	government "Quarg (Gegno)"
 	bribe 0
 	security 1
 
@@ -2487,7 +2487,7 @@ planet Maelstrom
 	landscape land/mountain21-harro
 	description `Maelstrom is a stormy, geologically young world with towering mountains and frequent earthquakes. Most of the large cities are near the center of the planet's main continent, where the iron beds from an ancient ocean are exposed. Maelstrom is one of the chief exporters of iron, copper, gold, titanium, and other metals to Ada, where Lovelace Labs and the associated industries have a continuous need for raw materials.`
 	description `	Extreme rock climbing is a hugely popular sport among the mining workers here, who have a tendency to be young, male, and reckless. The mountains are dramatic enough to even attract off-world climbers as tourists, though more than once a favorite climbing face has been sloughed off its mountain in an earthquake.`
-	spaceport `The spaceport is a single massive complex of buildings, with hangars large enough for even a bulk freighter or a Navy flagship. A railroad runs through several of the nearby mining towns and straight into the spaceport building itself, allowing ore and processed metal to be loaded directly from the mine cars into the waiting freighters.`
+	spaceport `The spaceport is a single massive complex of buildings, with hangars large enough for even a Bulk Freighter or a Navy flagship. A railroad runs through several of the nearby mining towns and straight into the spaceport building itself, allowing ore and processed metal to be loaded directly from the mine cars into the waiting freighters.`
 	outfitter "Lovelace Basics"
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
@@ -2907,7 +2907,7 @@ planet "New Iceland"
 	description `New Iceland is a perpetually hazy volcanic world, with a slightly caustic atmosphere but enough reserves of metal and petrochemicals to draw a large number of settlers. Some of those settlers also make a living as farmers, and a few well-developed factory towns produce goods for export to other worlds.`
 	description `	Many of the inhabitants wear dust masks to avoid letting the particulate matter from the volcanoes accumulate in their lungs.`
 	spaceport `Almost as soon as you stepped off your ship, your eyes began to sting. You try to breathe as shallowly as possible.`
-	spaceport `	This port consists of a single large hangar, only big enough for two or three bulk freighters, plus some overflow landing pads and old rusted storage sheds outside. There is a small cafeteria, offering you a choice between two kinds of soup, some pre-made sandwiches, or the hot meal of the day.`
+	spaceport `	This port consists of a single large hangar, only big enough for two or three Bulk Freighters, plus some overflow landing pads and old rusted storage sheds outside. There is a small cafeteria, offering you a choice between two kinds of soup, some pre-made sandwiches, or the hot meal of the day.`
 	security 0.05
 	tribute 300
 		threshold 2000
@@ -2954,7 +2954,7 @@ planet "New Sahara"
 	landscape land/water1
 	description `New Sahara is mostly desert and savanna, with very little precipitation.`
 	description `	A century ago, some entrepreneurs settled here and built a factory complex that is entirely powered by wind and solar energy, because there are so few cloudy days here and the wind and sunshine are so reliable. The factory is mostly autonomous, with only a few thousand people living here to perform maintenance or to grow crops in irrigated fields.`
-	spaceport `The spaceport consists of a few large concrete slabs, each big enough for a dozen small ships or a pair of bulk freighters to land on. Farther away are fields of solar panels and the factories that they power. The spaceport buildings themselves, however, are underground, where less energy is needed to keep the air cool. Light pipes bring sunlight down from the surface to illuminate the subterranean storage caverns and living quarters, while keeping the searing heat of the sunlight out.`
+	spaceport `The spaceport consists of a few large concrete slabs, each big enough for a dozen small ships or a pair of Bulk Freighters to land on. Farther away are fields of solar panels and the factories that they power. The spaceport buildings themselves, however, are underground, where less energy is needed to keep the air cool. Light pipes bring sunlight down from the surface to illuminate the subterranean storage caverns and living quarters, while keeping the searing heat of the sunlight out.`
 	security 0.05
 	tribute 400
 		threshold 3000
@@ -3527,7 +3527,7 @@ planet Ruelogakk
 	landscape land/station5
 	description `This Quarg station, although pristine and kept in high order, has been constructed rather recently compared to the complete ringworld the next system over. It appears to be purposed as some sort of resting spot for tourists, though very few docking bays are in use. A hauntingly low number of Quarg are seen walking about the brightly lit abstract hallways of glass with only the faintest hum of machinery.`
 	spaceport `Only a few small alien transports can be seen docked with this station, hooked up to strange devices that seem to match the designs of their ships. Other than that, the alien's presence here seems to be kept at an extreme minimum, with at most one or two seen passing by occasionally.`
-	government Quarg
+	government "Quarg (Gegno)"
 	bribe 0
 	security 0.9
 
@@ -3678,7 +3678,7 @@ planet "Second Viridian"
 	landscape land/hills5-sfiera
 	description `More than ten billion Kimek live here, most of them living in one of several arcologies near the equator: massive structures that reach nearly a kilometer tall and may house over half a billion individuals. As a result, despite the large population most of the land is either undeveloped or used for farming.`
 	description `	The Kimek arcologies are said to be able to recycle more than 99% of the waste produced in them each day, which is what makes it feasible for so many Kimek to live in such close proximity.`
-	spaceport `The spaceport facility is a kilometer-tall pyramid honeycombed with tunnels wide enough for a pair of bulk freighters to pass each other with plenty of room to spare. There is no single central warehouse district or meeting area. Instead, each cluster of docking bays is surrounded by its own storage facilities, food courts, and concourses.`
+	spaceport `The spaceport facility is a kilometer-tall pyramid honeycombed with tunnels wide enough for a pair of Bulk Freighters to pass each other with plenty of room to spare. There is no single central warehouse district or meeting area. Instead, each cluster of docking bays is surrounded by its own storage facilities, food courts, and concourses.`
 	outfitter "Coalition Basics"
 	security 0.3
 
@@ -4379,7 +4379,7 @@ planet Truklar
 	landscape land/mars2
 	description `This world, like others the Quarg live on, has noticeably lower gravity than humans are accustomed to. Several medium-sized extravagant villages are found nested deep within an oddly shaped glass structure, and it is a beautiful sight to behold. Many different, smaller biomes also contain wondrous flora and fauna that don't seem to be native to this particular moon. Despite all of this, structures were not built in accustom to visitors such as the nearby aliens, who find it hard navigating through the narrow hallways.`
 	spaceport `Most of the spaceport is automated Quarg robotics that do not provide any interaction with you besides basic spaceport tasks such as refueling. Occasionally, one of these robots, visually similar to the Quarg themselves, guide you throughout the visitable zones of the port. Otherwise, your presence here is mostly overlooked.`
-	government Quarg
+	government "Quarg (Gegno)"
 	bribe 0
 	security 0.9
 
@@ -4550,7 +4550,7 @@ planet "Vara Kehi'ki"
 planet "Vara Pug"
 	attributes pug
 	landscape land/bwerner5
-	description `Vara Pug is an ocean world, wild and almost unsettled, except for a single Pug city on the coast of one of the major continents. The animals and plants on the land are relatively uninteresting, but the oceans are home to an enormous variety of creatures, including whales the size of a bulk freighter, a highly intelligent species of jellyfish, and other, far stranger creatures that rarely venture up from the sunless ocean depths.`
+	description `Vara Pug is an ocean world, wild and almost unsettled, except for a single Pug city on the coast of one of the major continents. The animals and plants on the land are relatively uninteresting, but the oceans are home to an enormous variety of creatures, including whales the size of a Bulk Freighter, a highly intelligent species of jellyfish, and other, far stranger creatures that rarely venture up from the sunless ocean depths.`
 	description `	To avoid contact with these marine creatures, when the Pug travel to other parts of the planet they use massive solar-powered airships rather than boats.`
 	spaceport `The Pug here all seem to be busy with various tasks, none of which make any sense to you: rushing from building to building on their long, spindly legs; playing a game involving colored stones on a hexagonal table; constructing what appears to be collaborative holographic artwork.`
 	spaceport `	None of them speak to you, but a worker in the spaceport digs around in a closet for a while and comes up with a conversion attachment that allows your fuel tanks to be filled using their style of fuel nozzle.`
