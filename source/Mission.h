@@ -23,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MissionAction.h"
 #include "NPC.h"
 #include "TextReplacements.h"
-#include "WormholeStrategy.hpp"
+#include "WormholeStrategy.h"
 
 #include <list>
 #include <map>
@@ -215,7 +215,7 @@ private:
 	int expectedJumps = 0;
 	int deadlineBase = 0;
 	int deadlineMultiplier = 0;
-	RoutingOptions distanceCalcOptions;
+	RoutingOptions distanceCalcSettings;
 	std::string clearance;
 	LocationFilter clearanceFilter;
 	bool hasFullClearance = true;

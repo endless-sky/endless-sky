@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef DISTANCE_MAP_H_
 #define DISTANCE_MAP_H_
 
-#include "WormholeStrategy.hpp"
+#include "WormholeStrategy.h"
 
 #include <map>
 #include <queue>
