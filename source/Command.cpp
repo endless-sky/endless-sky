@@ -52,33 +52,35 @@ const Command Command::FORWARD(ONE << 1, "Forward thrust");
 const Command Command::LEFT(ONE << 2, "Turn left");
 const Command Command::RIGHT(ONE << 3, "Turn right");
 const Command Command::BACK(ONE << 4, "Reverse");
-const Command Command::PRIMARY(ONE << 5, "Fire primary weapon");
-const Command Command::SECONDARY(ONE << 6, "Fire secondary weapon");
-const Command Command::SELECT(ONE << 7, "Select secondary weapon");
-const Command Command::LAND(ONE << 8, "Land on planet / station");
-const Command Command::BOARD(ONE << 9, "Board selected ship");
-const Command Command::HAIL(ONE << 10, "Talk to selected ship");
-const Command Command::SCAN(ONE << 11, "Scan selected ship");
-const Command Command::JUMP(ONE << 12, "Initiate hyperspace jump");
-const Command Command::FLEET_JUMP(ONE << 13, "");
-const Command Command::TARGET(ONE << 14, "Select next ship");
-const Command Command::NEAREST(ONE << 15, "Select nearest hostile ship");
-const Command Command::DEPLOY(ONE << 16, "Deploy / recall fighters");
-const Command Command::AFTERBURNER(ONE << 17, "Fire afterburner");
-const Command Command::CLOAK(ONE << 18, "Toggle cloaking device");
-const Command Command::MAP(ONE << 19, "View star map");
-const Command Command::INFO(ONE << 20, "View player info");
-const Command Command::FULLSCREEN(ONE << 21, "Toggle fullscreen");
-const Command Command::FASTFORWARD(ONE << 22, "Toggle fast-forward");
-const Command Command::FIGHT(ONE << 23, "Fleet: Fight my target");
-const Command Command::GATHER(ONE << 24, "Fleet: Gather around me");
-const Command Command::HOLD(ONE << 25, "Fleet: Hold position");
-const Command Command::AMMO(ONE << 26, "Fleet: Toggle ammo usage");
-const Command Command::WAIT(ONE << 27, "");
-const Command Command::STOP(ONE << 28, "");
-const Command Command::SHIFT(ONE << 29, "");
-const Command Command::MOUSE_TURNING_HOLD(ONE << 30, "Mouse turning (hold)");
-const Command Command::MOUSE_TURNING_TOGGLE(ONE << 31, "Mouse turning (toggle)");
+const Command Command::MOUSE_TURNING_HOLD(ONE << 5, "Mouse turning (hold)");
+const Command Command::MOUSE_TURNING_TOGGLE(ONE << 6, "Mouse turning (toggle)");
+const Command Command::PRIMARY(ONE << 7, "Fire primary weapon");
+const Command Command::SECONDARY(ONE << 8, "Fire secondary weapon");
+const Command Command::SELECT(ONE << 9, "Select secondary weapon");
+const Command Command::LAND(ONE << 10, "Land on planet / station");
+const Command Command::BOARD(ONE << 11, "Board selected ship");
+const Command Command::HAIL(ONE << 12, "Talk to selected ship");
+const Command Command::SCAN(ONE << 13, "Scan selected ship");
+const Command Command::JUMP(ONE << 14, "Initiate hyperspace jump");
+const Command Command::FLEET_JUMP(ONE << 15, "");
+const Command Command::TARGET(ONE << 16, "Select next ship");
+const Command Command::NEAREST(ONE << 17, "Select nearest hostile ship");
+const Command Command::NEAREST_ASTEROID(ONE << 18, "Select nearest asteroid");
+const Command Command::DEPLOY(ONE << 19, "Deploy / recall fighters");
+const Command Command::AFTERBURNER(ONE << 20, "Fire afterburner");
+const Command Command::CLOAK(ONE << 21, "Toggle cloaking device");
+const Command Command::MAP(ONE << 22, "View star map");
+const Command Command::INFO(ONE << 23, "View player info");
+const Command Command::FULLSCREEN(ONE << 24, "Toggle fullscreen");
+const Command Command::FASTFORWARD(ONE << 25, "Toggle fast-forward");
+const Command Command::FIGHT(ONE << 26, "Fleet: Fight my target");
+const Command Command::GATHER(ONE << 27, "Fleet: Gather around me");
+const Command Command::HOLD(ONE << 28, "Fleet: Hold position");
+const Command Command::HARVEST(ONE << 29, "Fleet: Harvest Flotsam");
+const Command Command::AMMO(ONE << 30, "Fleet: Toggle ammo usage");
+const Command Command::WAIT(ONE << 31, "");
+const Command Command::STOP(ONE << 32, "");
+const Command Command::SHIFT(ONE << 33, "");
 
 
 
@@ -267,6 +269,7 @@ void Command::Load(const DataNode &node)
 			{"gather", Command::GATHER},
 			{"hold", Command::HOLD},
 			{"ammo", Command::AMMO},
+			{"nearest asteroid", Command::NEAREST_ASTEROID},
 			{"wait", Command::WAIT},
 			{"stop", Command::STOP},
 			{"shift", Command::SHIFT}
