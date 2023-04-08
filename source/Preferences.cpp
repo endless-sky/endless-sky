@@ -49,14 +49,27 @@ namespace {
 	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
 	int vsyncIndex = 1;
 
+	const vector<string> STATUS_OVERLAYS = {"off", "always on", "damaged", "--"};
+	int overlayAllIndex = 0;
+	int overlayFlagshipIndex = 3;
+	int overlayEscortIndex = 3;
+	int overlayEnemyIndex = 3;
+	int overlayNeutralIndex = 3;
+
+	const vector<string> AUTO_AIM_SETTINGS = {"off", "always on", "when firing"};
+	int autoAimIndex = 2;
+
 	const vector<string> BOARDING_SETTINGS = {"proximity", "value", "mixed"};
 	int boardingIndex = 0;
 
+	// Enable "fast" parallax by default. "fancy" is too GPU heavy, especially for low-end hardware.
 	const vector<string> PARALLAX_SETTINGS = {"off", "fancy", "fast"};
-	int parallaxIndex = 1;
+	int parallaxIndex = 2;
 
 	const vector<string> ALERT_INDICATOR_SETTING = {"off", "audio", "visual", "both"};
 	int alertIndicatorIndex = 3;
+
+	int previousSaveCount = 3;
 }
 
 
@@ -65,7 +78,6 @@ void Preferences::Load()
 {
 	// These settings should be on by default. There is no need to specify
 	// values for settings that are off by default.
-	settings["Automatic aiming"] = true;
 	settings["Render motion blur"] = true;
 	settings[FRUGAL_ESCORTS] = true;
 	settings[EXPEND_AMMO] = true;
@@ -74,12 +86,15 @@ void Preferences::Load()
 	settings["Show stored outfits on map"] = true;
 	settings["Show mini-map"] = true;
 	settings["Show planet labels"] = true;
+	settings["Show asteroid scanner overlay"] = true;
 	settings["Show hyperspace flash"] = true;
 	settings["Draw background haze"] = true;
 	settings["Draw starfield"] = true;
 	settings["Hide unexplored map regions"] = true;
 	settings["Turrets focus fire"] = true;
 	settings["Ship outlines in shops"] = true;
+	settings["Extra fleet status messages"] = true;
+	settings["Target asteroid based on"] = true;
 
 	DataFile prefs(Files::Config() + "preferences.txt");
 	for(const DataNode &node : prefs)
@@ -98,12 +113,26 @@ void Preferences::Load()
 			zoomIndex = max<int>(0, min<int>(node.Value(1), ZOOMS.size() - 1));
 		else if(node.Token(0) == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
+		else if(node.Token(0) == "Show status overlays")
+			overlayAllIndex = max<int>(0, min<int>(node.Value(1), STATUS_OVERLAYS.size() - 1));
+		else if(node.Token(0) == "Show flagship overlay" && overlayAllIndex == 3)
+			overlayFlagshipIndex = max<int>(0, min<int>(node.Value(1), STATUS_OVERLAYS.size() - 1));
+		else if(node.Token(0) == "Show escort overlays" && overlayAllIndex == 3)
+			overlayEscortIndex = max<int>(0, min<int>(node.Value(1), STATUS_OVERLAYS.size() - 1));
+		else if(node.Token(0) == "Show enemy overlays" && overlayAllIndex == 3)
+			overlayEnemyIndex = max<int>(0, min<int>(node.Value(1), STATUS_OVERLAYS.size() - 1));
+		else if(node.Token(0) == "Show neutral overlays" && overlayAllIndex == 3)
+			overlayNeutralIndex = max<int>(0, min<int>(node.Value(1), STATUS_OVERLAYS.size() - 1));
+		else if(node.Token(0) == "Automatic aiming")
+			autoAimIndex = max<int>(0, min<int>(node.Value(1), AUTO_AIM_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Parallax background")
 			parallaxIndex = max<int>(0, min<int>(node.Value(1), PARALLAX_SETTINGS.size() - 1));
 		else if(node.Token(0) == "fullscreen")
 			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
 		else if(node.Token(0) == "alert indicator")
 			alertIndicatorIndex = max<int>(0, min<int>(node.Value(1), ALERT_INDICATOR_SETTING.size() - 1));
+		else if(node.Token(0) == "previous saves" && node.Size() >= 2)
+			previousSaveCount = max<int>(3, node.Value(1));
 		else
 			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
 	}
@@ -132,8 +161,15 @@ void Preferences::Save()
 	out.Write("boarding target", boardingIndex);
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
+	out.Write("Show status overlays", overlayAllIndex);
+	out.Write("Show flagship overlay", overlayFlagshipIndex);
+	out.Write("Show escort overlays", overlayEscortIndex);
+	out.Write("Show enemy overlays", overlayEnemyIndex);
+	out.Write("Show neutral overlays", overlayNeutralIndex);
+	out.Write("Automatic aiming", autoAimIndex);
 	out.Write("Parallax background", parallaxIndex);
 	out.Write("alert indicator", alertIndicatorIndex);
+	out.Write("previous saves", previousSaveCount);
 
 	for(const auto &it : settings)
 		out.Write(it.first, it.second);
@@ -312,6 +348,129 @@ const string &Preferences::VSyncSetting()
 
 
 
+void Preferences::SetStatusOverlaysGeneric(int &index, bool blank)
+{
+	// Set preference to blanked out value if bool parameter is true.
+	if(blank)
+		index = 3;
+	else
+	{
+		// If the parent overlay setting is being clicked, make sure the children are reset
+		if(&index == &overlayAllIndex)
+			Preferences::ResetStatusOverlayChildren(true);
+		else
+		{
+			// If a child setting is being clicked, and the parent setting is active,
+			// blank out the parent and reset the children to their defaults.
+			if(overlayAllIndex != 3)
+			{
+				overlayAllIndex = 3;
+				Preferences::ResetStatusOverlayChildren(false);
+			}
+		}
+		int targetIndex = index + 1;
+		if(targetIndex >= static_cast<int>(STATUS_OVERLAYS.size() - 1))
+			targetIndex = 0;
+		index = targetIndex;
+	}
+}
+
+
+
+void Preferences::ResetStatusOverlayChildren(bool blank)
+{
+	for(int i = 1; i <= 4; ++i)
+		Preferences::SetStatusOverlays(blank, i);
+}
+
+
+
+void Preferences::SetStatusOverlays(bool blank, int type)
+{
+	switch(type)
+	{
+		default:
+		case 0:
+			SetStatusOverlaysGeneric(overlayAllIndex, blank);
+			break;
+		case 1:
+			SetStatusOverlaysGeneric(overlayFlagshipIndex, blank);
+			break;
+		case 2:
+			SetStatusOverlaysGeneric(overlayEscortIndex, blank);
+			break;
+		case 3:
+			SetStatusOverlaysGeneric(overlayEnemyIndex, blank);
+			break;
+		case 4:
+			SetStatusOverlaysGeneric(overlayNeutralIndex, blank);
+			break;
+	}
+}
+
+
+
+Preferences::OverlayType Preferences::StatusOverlaysState(int type)
+{
+	switch(type)
+	{
+		default:
+		case 0:
+			return static_cast<OverlayType>(overlayAllIndex);
+		case 1:
+			return static_cast<OverlayType>(overlayFlagshipIndex);
+		case 2:
+			return static_cast<OverlayType>(overlayEscortIndex);
+		case 3:
+			return static_cast<OverlayType>(overlayEnemyIndex);
+		case 4:
+			return static_cast<OverlayType>(overlayNeutralIndex);
+	}
+}
+
+
+
+const string &Preferences::StatusOverlaysSetting(int type)
+{
+	switch(type)
+	{
+		default:
+		case 0:
+			return STATUS_OVERLAYS[overlayAllIndex];
+		case 1:
+			return STATUS_OVERLAYS[overlayFlagshipIndex];
+		case 2:
+			return STATUS_OVERLAYS[overlayEscortIndex];
+		case 3:
+			return STATUS_OVERLAYS[overlayEnemyIndex];
+		case 4:
+			return STATUS_OVERLAYS[overlayNeutralIndex];
+	}
+}
+
+
+
+void Preferences::ToggleAutoAim()
+{
+	autoAimIndex = (autoAimIndex + 1) % AUTO_AIM_SETTINGS.size();
+}
+
+
+
+Preferences::AutoAim Preferences::GetAutoAim()
+{
+	return static_cast<AutoAim>(autoAimIndex);
+}
+
+
+
+const string &Preferences::AutoAimSetting()
+{
+	return AUTO_AIM_SETTINGS[autoAimIndex];
+}
+
+
+
 void Preferences::ToggleBoarding()
 {
 	int targetIndex = boardingIndex + 1;
@@ -380,4 +539,11 @@ bool Preferences::DoAlertHelper(Preferences::AlertIndicator toDo)
 	else if(value == toDo)
 		return true;
 	return false;
+}
+
+
+
+int Preferences::GetPreviousSaveCount()
+{
+	return previousSaveCount;
 }

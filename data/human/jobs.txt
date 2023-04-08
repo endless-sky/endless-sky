@@ -43,6 +43,8 @@ mission "Escort (Tiny, Northern, Dangerous Destination)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
@@ -56,6 +58,8 @@ mission "Escort (Tiny, Northern, Dangerous Destination)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	
 	npc accompany save
 		government "Merchant"
@@ -103,6 +107,8 @@ mission "Escort (Tiny, Northern, Dangerous Origin)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
@@ -117,6 +123,8 @@ mission "Escort (Tiny, Northern, Dangerous Origin)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	
 	npc accompany save
 		government "Merchant"
@@ -561,6 +569,8 @@ mission "Escort (Tiny, Core, Dangerous Destination)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	npc
 		government "Pirate"
 		personality nemesis staying harvests plunders
@@ -574,6 +584,8 @@ mission "Escort (Tiny, Core, Dangerous Destination)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	
 	npc accompany save
 		government "Merchant"
@@ -623,6 +635,8 @@ mission "Escort (Tiny, Core, Dangerous Origin)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
@@ -635,6 +649,8 @@ mission "Escort (Tiny, Core, Dangerous Origin)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	
 	npc accompany save
 		government "Merchant"
@@ -1075,6 +1091,8 @@ mission "Escort (Tiny, Southern, Dangerous Origin or Destination)"
 				"Fury"
 			variant
 				"Hawk"
+			variant
+				"Scrapper"
 	npc
 		government "Pirate"
 		personality nemesis staying harvests plunders
@@ -1088,6 +1106,8 @@ mission "Escort (Tiny, Southern, Dangerous Origin or Destination)"
 				"Fury"
 			variant
 				"Hawk"
+			variant
+				"Scrapper"
 	
 	npc accompany save
 		government "Merchant"
@@ -2000,7 +2020,7 @@ mission "Wealthy tourists out"
 	to offer
 		random < 75
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	source
 		attributes "rich" "urban"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2065,7 +2085,7 @@ mission "Wealthy tourists back"
 	to offer
 		random < 75
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	source
 		attributes "tourism"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2281,7 +2301,7 @@ mission "Stranded Field Trip"
 	name "Stranded field trip to <planet>"
 	job
 	repeat
-	description `These <bunks> school students have been stranded on a field trip due to the unexpected bankruptcy of their booked transport. The school and parents have put up a reward of <payment> for them to be returned home to <destination>.`
+	description `These <bunks> pupils have been stranded on a field trip due to the unexpected bankruptcy of their booked transport. A reward of <payment> is available for them and their <tons> of luggage to be returned home to <destination>.`
 	passengers 20 4 .1
 	cargo "educational supplies" 2 10 .6
 	to offer
@@ -2318,7 +2338,7 @@ mission "Prisoners [0]"
 	to offer
 		random < 15
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2334,7 +2354,7 @@ mission "Prisoners [1]"
 	to offer
 		random < 15
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2357,7 +2377,7 @@ mission "Prisoners [2]"
 	to offer
 		random < 15
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2379,7 +2399,7 @@ mission "Prisoners [3]"
 	to offer
 		random < 15
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2402,7 +2422,7 @@ mission "Prisoners [4]"
 		random < 10
 		"combat rating" > 50
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2656,6 +2676,49 @@ mission "Recycle garbage"
 		payment
 		payment 20000
 
+mission "Wildfire Aid [1]"
+	job
+	repeat
+	name "Fire retardant to <planet>"
+	description "A major wildfire has occurred on <destination> and various settlements on the planet have been affected. Bring <cargo> to <planet> by <date> to assist in the firefighting efforts. Payment is <payment>."
+	cargo "fire retardant" 25 2 .05
+	deadline
+	to offer
+		random < 5
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		not government "Pirate"
+		distance 2 8
+		attributes "forest"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 8500 80
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>. A group of <planet> citizens thank you for your assistance and bid you farewell."
+
+mission "Wildfire Aid [2]"
+	job
+	repeat
+	name "Firefighters to <planet>"
+	description "A major wildfire has occurred on <destination> and various settlements on the planet have been affected. Bring a team of <bunks> firefighters to <planet> by <date> to assist in the firefighting efforts. Payment is <payment>."
+	passengers 5 10
+	deadline
+	to offer
+		random < 5
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		not government "Pirate"
+		distance 2 8
+		attributes "forest"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10500 80
+		dialog "You wish the firefighting team well in their efforts and collect your payment of <payment>. A group of <planet> citizens comes to guide the team away to a nearby tent, and thank you for your assistance."
+
+
 mission "Bounty Hunting (Very Tiny)"
 	name "Wanted corsair near <system>"
 	description "A small pirate fighter named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> by <day> for payment (<payment>)."
@@ -2679,7 +2742,9 @@ mission "Bounty Hunting (Very Tiny)"
 			distance 1 1
 		fleet
 			names "pirate"
-			variant
+			variant 3
+				"Scrapper"
+			variant 6
 				"Sparrow"
 			variant
 				"Wasp"
@@ -3082,7 +3147,7 @@ mission "Bounty Hunting (Small, Boarding, Entering)"
 		"combat rating" > 50
 		random < 15
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -3121,7 +3186,7 @@ mission "Bounty Hunting (Medium, Boarding, Entering)"
 		"combat rating" > 200
 		random < 15
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -3370,7 +3435,7 @@ mission "Bounty Hunting (Marauder IV)"
 		government "Bounty"
 		personality heroic staying nemesis target
 		system
-			distance 1 3
+			distance 1 1
 		fleet "Marauder fleet IV"
 		dialog phrase "generic hunted bounty fleet eliminated dialog"
 	on visit

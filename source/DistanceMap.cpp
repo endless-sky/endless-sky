@@ -27,11 +27,22 @@ using namespace std;
 
 
 
-// Find paths branching out from the given system. The optional arguments put
-// a limit on how many systems will be returned (e.g. buying a local map) and
-// a limit on how many jumps away they can be (e.g. a valid mission location).
-DistanceMap::DistanceMap(const System *center, int maxSystems, int maxDays)
-	: center(center), maxSystems(maxSystems), maxDays(maxDays)
+// Find paths to the given system. If the given maximum count is above zero,
+// it is a limit on how many systems should be returned. If it is below zero
+// it specifies the maximum distance away that paths should be found.
+DistanceMap::DistanceMap(const System *center, int maxCount, int maxDistance)
+	: DistanceMap(center, WormholeStrategy::NONE, false, maxCount, maxDistance)
+{
+}
+
+
+
+// Constructor that allows configuring the use of wormholes and jump drive travel.
+// Since no ship instance is available, we use the base game's default fuel for jump travel.
+DistanceMap::DistanceMap(const System *center, WormholeStrategy wormholeStrategy,
+		bool useJumpDrive, int maxCount, int maxDistance)
+	: center(center), wormholeStrategy(wormholeStrategy), maxCount(maxCount),
+			maxDistance(maxDistance), jumpFuel(useJumpDrive ? 200 : 0), jumpRange(useJumpDrive ? 100. : 0.)
 {
 	Init();
 }
@@ -217,9 +228,10 @@ void DistanceMap::Init(const Ship *ship)
 
 		// Check for wormholes (which cost zero fuel). Wormhole travel should
 		// not be included in Local Maps or mission itineraries.
-		if(useWormholes)
-			for(const StellarObject &object : currentSystem->Objects())
-				if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsWormhole())
+		if(wormholeStrategy != WormholeStrategy::NONE)
+			for(const StellarObject &object : top.next->Objects())
+				if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsWormhole()
+					&& (object.GetPlanet()->IsUnrestricted() || wormholeStrategy == WormholeStrategy::ALL))
 				{
 					// If we're seeking a path toward a "source," travel through
 					// wormholes in the reverse of the normal direction.
