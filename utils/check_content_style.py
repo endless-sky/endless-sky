@@ -424,7 +424,6 @@ def find_text_lines(contents, config, excluded_nodes, exclude_comments, exclude_
 		if not is_word and ("\"" in line or "`" in line or (not exclude_keywords)):
 			new_contents.append(line)
 		elif line.strip().startswith("#"):
-	return new_contents
 			new_contents.append(line)
 		else:
 			new_contents.append(None)
