@@ -222,7 +222,6 @@ ship "Gypsum"
 			"hit force" 720
 	outfits
 		"Excavator"
-		
 		"C7 Brawl Cell"
 		"R01 Skirmish Battery"
 		
@@ -263,22 +262,18 @@ ship "Corundum"
 		"outfit space" 240
 		"weapon capacity" 42
 		"engine capacity" 120
-		"drill port" 1
-		"drill lock" -1
 		weapon
 			"blast radius" 72
 			"shield damage" 320
 			"hull damage" 620
 			"hit force" 720
 	outfits
-		"Excavator"
-		
+		"Ion Torch" 2
 		"C7 Brawl Cell"
 		"R01 Skirmish Battery"
 		
-		"RG18 Torch Thruster"
-		"RG15 Torch Steering"
-		"RG18 Torch Steering"
+		"RG18 Torch Thruster" 2
+		"RG18 Torch Steering" 2
 		"Hyperdrive"
 	engine 58 -58
 	engine -58 -58
@@ -286,8 +281,10 @@ ship "Corundum"
 		left
 	"steering engine" -58 -58
 		right
-	gun 9 -132 Excavator
-	gun -9 -132
+	gun 9 -132 "Ion Torch"
+		over
+	gun -9 -132 "Ion Torch"
+		over
 	leak "leak" 60 50
 	leak "flame" 60 80
 	explode "large explosion" 14

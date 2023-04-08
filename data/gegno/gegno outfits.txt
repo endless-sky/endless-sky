@@ -789,6 +789,37 @@ effect "drilling"
 	"velocity scale" -0.01
 
 
+outfit "Ion Torch"
+	category "Guns"
+	licenses
+		"Gegno Civilian"
+	cost 500000
+	"thumbnail" "outfit/ion torch"
+	"mass" 4
+	"outfit space" -4
+	"weapon capacity" -4
+	"gun ports" -1
+	weapon
+		"sprite" "projectile/torch"
+			"frame rate" 15
+			"scale" 0.75
+		"inaccuracy" 0.2
+		"velocity" 50
+		"lifetime" 1
+		sound "ion torch"
+		"hardpoint sprite" "hardpoint/ion lance"
+		"hardpoint offset" 10
+		"hit effect" "burning spark"
+		"reload" 1
+		"range override" 80
+		"firing energy" 1
+		"firing heat" 1
+		"shield damage" .7
+		"hull damage" 1.2
+		"heat damage" 90
+		"minable damage" 3
+	description `Torch.`
+
 outfit "Savagery Bludgeon"
 	category "Guns"
 	cost 10000
