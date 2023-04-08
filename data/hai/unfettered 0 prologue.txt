@@ -113,7 +113,7 @@ mission "First Contact: Unfettered"
 				`	"Is there anything I can do to help you?"`
 			action
 				set "unfettered requested jump drives"
-			`	"If you are ever willing to sell us a jump drive," it says, "we will richly reward you. And if you discover the secret of how we can construct our own jump drives and escape from this prison, bring it to us and you will live as a god among us."`
+			`	"If you are ever willing to sell us a Jump Drive," it says, "we will richly reward you. And if you discover the secret of how we can construct our own Jump Drives and escape from this prison, bring it to us and you will live as a god among us."`
 			choice
 				`	"I'm sorry, I don't know the secret of the jump drive. No human being does."`
 				`	"If I ever have an extra jump drive to sell, I will bring it to you."`
