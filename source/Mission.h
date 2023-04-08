@@ -183,7 +183,7 @@ public:
 
 
 private:
-	struct RoutingOptions {
+	struct DistanceCalculationSettings {
 		WormholeStrategy wormholeStrategy = WormholeStrategy::NONE;
 		bool assumesJumpDrive = false;
 	};
@@ -215,7 +215,7 @@ private:
 	int expectedJumps = 0;
 	int deadlineBase = 0;
 	int deadlineMultiplier = 0;
-	RoutingOptions distanceCalcSettings;
+	DistanceCalculationSettings distanceCalcSettings;
 	std::string clearance;
 	LocationFilter clearanceFilter;
 	bool hasFullClearance = true;
