@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 
 #include "Audio.h"
+#include "CategoryList.h"
 #include "CategoryTypes.h"
 #include "DamageDealt.h"
 #include "DataNode.h"
@@ -755,11 +756,11 @@ void Ship::FinishLoading(bool isNewInstance)
 	// invalid bays. Add a default "launch effect" to any remaining internal bays if
 	// this ship is crewed (i.e. pressurized).
 	string warning;
-	const auto &bayCategories = GameData::Category(CategoryType::BAY);
+	const auto &bayCategories = GameData::GetCategory(CategoryType::BAY);
 	for(auto it = bays.begin(); it != bays.end(); )
 	{
 		Bay &bay = *it;
-		if(find(bayCategories.begin(), bayCategories.end(), bay.category) == bayCategories.end())
+		if(!bayCategories.Contains(bay.category))
 		{
 			warning += "Invalid bay category: " + bay.category + "\n";
 			it = bays.erase(it);
@@ -771,7 +772,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			bay.launchEffects.emplace_back(GameData::Effects().Get("basic launch"));
 	}
 
-	canBeCarried = find(bayCategories.begin(), bayCategories.end(), attributes.Category()) != bayCategories.end();
+	canBeCarried = bayCategories.Contains(attributes.Category());
 
 	// Issue warnings if this ship has is misconfigured, e.g. is missing required values
 	// or has negative outfit, cargo, weapon, or engine capacity.
@@ -3121,6 +3122,14 @@ void Ship::Restore()
 
 
 
+bool Ship::IsDamaged() const
+{
+	// Account for ships with no shields when determining if they're damaged.
+	return (attributes.Get("shields") != 0 && Shields() != 1.) || Hull() != 1.;
+}
+
+
+
 // Check if this ship has been destroyed.
 bool Ship::IsDestroyed() const
 {
@@ -3755,6 +3764,10 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 	// Check only for the category that we are interested in.
 	const string &category = ship->attributes.Category();
 
+	// NPC ships should always transfer cargo. Player ships should only
+	// transfer cargo if they set the AI preference.
+	const bool shouldTransferCargo = !IsYours() || Preferences::Has("Fighters transfer cargo");
+
 	for(Bay &bay : bays)
 		if((bay.category == category) && !bay.ship)
 		{
@@ -3769,9 +3782,8 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			ship->isSteering = false;
 			ship->commands.Clear();
 
-			// If this fighter collected anything in space, try to store it
-			// (unless this is a player-owned ship).
-			if(!isYours && cargo.Free() && !ship->Cargo().IsEmpty())
+			// If this fighter collected anything in space, try to store it.
+			if(shouldTransferCargo && cargo.Free() && !ship->Cargo().IsEmpty())
 				ship->Cargo().TransferAll(cargo);
 
 			// Return unused fuel and ammunition to the carrier, so they may
