@@ -1515,14 +1515,14 @@ int Mission::CalculateJumps(const System *sourceSystem)
 		}
 
 		sourceSystem = *bestIt;
-		// If currently unreachable, this system adds -1 to the deadline, to match previous behaviour.
+		// If currently unreachable, this system adds -1 to the deadline, to match previous behavior.
 		expectedJumps += bestDays == numeric_limits<int>::max() ? -1 : bestDays;
 		destinations.erase(bestIt);
 	}
 	DistanceMap distance(sourceSystem,
 			distanceCalcSettings.wormholeStrategy,
 			distanceCalcSettings.assumesJumpDrive);
-	// If currently unreachable, this system adds -1 to the deadline, to match previous behaviour.
+	// If currently unreachable, this system adds -1 to the deadline, to match previous behavior.
 	expectedJumps += distance.Days(destination->GetSystem());
 
 	return expectedJumps;
