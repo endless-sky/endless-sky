@@ -135,6 +135,10 @@ void UniverseObjects::FinishLoading()
 	for(auto &&it : persons)
 		it.second.FinishLoading();
 
+	// Calculate minable values.
+	for(auto &&it : minables)
+		it.second.FinishLoading();
+
 	for(auto &&it : startConditions)
 		it.FinishLoading();
 	// Remove any invalid starting conditions, so the game does not use incomplete data.
