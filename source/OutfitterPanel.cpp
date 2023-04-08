@@ -414,7 +414,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 	{
 		// Buying into cargo, so check cargo space vs mass.
 		double mass = selectedOutfit->Mass();
-		double freeCargo = player.Cargo().Free();
+		double freeCargo = player.Cargo().FreePrecise();
 		if(!mass || freeCargo >= mass)
 			return true;
 
