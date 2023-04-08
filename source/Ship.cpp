@@ -4266,10 +4266,15 @@ void Ship::SetTargetSystem(const System *system)
 void Ship::SetStopovers(const std::vector<const Planet *> planets, const bool shouldRelaunch)
 {
 	doVisit = shouldRelaunch;
+	std::vector<const System *> waypoints;
 
 	// Mark each planet as not visited.
-	for(const auto &it : planets)
+	for(const auto &it : planets){
 		travelDestinations[it] = false;
+        waypoints.push_back(it->GetSystem());
+	}
+
+    this->SetWaypoints(waypoints);
 }
 
 
