@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipyardPanel.h"
 
 #include "text/alignment.hpp"
+#include "comparators/BySeriesAndIndex.h"
 #include "ClickZone.h"
 #include "Color.h"
 #include "Dialog.h"
@@ -38,6 +39,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpriteShader.h"
 #include "text/truncate.hpp"
 #include "UI.h"
+
+#include <algorithm>
 
 class System;
 
@@ -87,7 +90,10 @@ ShipyardPanel::ShipyardPanel(PlayerInfo &player)
 	: ShopPanel(player, false), modifier(0)
 {
 	for(const auto &it : GameData::Ships())
-		catalog[it.second.Attributes().Category()].insert(it.first);
+		catalog[it.second.Attributes().Category()].push_back(it.first);
+
+	for(pair<const string, vector<string>> &it : catalog)
+		sort(it.second.begin(), it.second.end(), BySeriesAndIndex<Ship>());
 
 	if(player.GetPlanet())
 		shipyard = player.GetPlanet()->Shipyard();
@@ -368,13 +374,12 @@ bool ShipyardPanel::CanSellMultiple() const
 void ShipyardPanel::BuyShip(const string &name)
 {
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
-	auto &playerConditions = player.Conditions();
 	if(licenseCost)
 	{
 		player.Accounts().AddCredits(-licenseCost);
 		for(const string &licenseName : selectedShip->Attributes().Licenses())
-			if(playerConditions.Get("license: " + licenseName) <= 0)
-				playerConditions["license: " + licenseName] = true;
+			if(!player.HasLicense(licenseName))
+				player.AddLicense(licenseName);
 	}
 
 	for(int i = 1; i <= modifier; ++i)
