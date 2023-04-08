@@ -5405,7 +5405,7 @@ mission "Deal Change 2"
 				accept
 	on complete
 		fail "Deal Change 1"
-		payment 500000
+		payment 250000
 		conversation
 			`You follow the coordinates to a clearing within the forests of Greenrock. Several other ships are present near the landing site, all of which wear pirate colors. A person wearing a cloak steps out of one of the vessels to greet you. "I am glad that you were able to trust us," they say. "My name is not Ci, but you may refer to me as such." A gang of pirates emerges from the foliage around your ship and begin to unload the cargo from your ship.`
 			choice
