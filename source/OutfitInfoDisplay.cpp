@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Depreciation.h"
 #include "text/Format.h"
+#include "GameData.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
 
@@ -173,6 +174,8 @@ namespace {
 		{"shield heat multiplier", 3},
 		{"threshold percentage", 3},
 		{"overheat damage threshold", 3},
+		{"high shield permeability", 3},
+		{"low shield permeability", 3},
 
 		{"burn protection", 4},
 		{"corrosion protection", 4},
@@ -206,22 +209,30 @@ namespace {
 		{"minable", "This item is mined from asteroids."},
 		{"atrocity", "This outfit is considered an atrocity."}
 	};
+
+	bool IsNotRequirement(const string &label)
+	{
+		return label == "automaton" ||
+			SCALE.find(label) != SCALE.end() ||
+			BOOLEAN_ATTRIBUTES.find(label) != BOOLEAN_ATTRIBUTES.end();
+	}
 }
 
 
 
-OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player, bool canSell)
+OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player,
+		bool canSell, bool descriptionCollapsed)
 {
-	Update(outfit, player, canSell);
+	Update(outfit, player, canSell, descriptionCollapsed);
 }
 
 
 
 // Call this every time the ship changes.
-void OutfitInfoDisplay::Update(const Outfit &outfit, const PlayerInfo &player, bool canSell)
+void OutfitInfoDisplay::Update(const Outfit &outfit, const PlayerInfo &player, bool canSell, bool descriptionCollapsed)
 {
 	UpdateDescription(outfit.Description(), outfit.Licenses(), false);
-	UpdateRequirements(outfit, player, canSell);
+	UpdateRequirements(outfit, player, canSell, descriptionCollapsed);
 	UpdateAttributes(outfit);
 
 	maximumHeight = max(descriptionHeight, max(requirementsHeight, attributesHeight));
@@ -243,7 +254,8 @@ void OutfitInfoDisplay::DrawRequirements(const Point &topLeft) const
 
 
 
-void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInfo &player, bool canSell)
+void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInfo &player,
+		bool canSell, bool descriptionCollapsed)
 {
 	requirementLabels.clear();
 	requirementValues.clear();
@@ -253,6 +265,20 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 	int64_t cost = outfit.Cost();
 	int64_t buyValue = player.StockDepreciation().Value(&outfit, day);
 	int64_t sellValue = player.FleetDepreciation().Value(&outfit, day);
+
+	for(const string &license : outfit.Licenses())
+	{
+		if(player.HasLicense(license))
+			continue;
+
+		const auto &licenseOutfit = GameData::Outfits().Find(license + " License");
+		if(descriptionCollapsed || (licenseOutfit && licenseOutfit->Cost()))
+		{
+			requirementLabels.push_back("license:");
+			requirementValues.push_back(license);
+			requirementsHeight += 20;
+		}
+	}
 
 	if(buyValue == cost)
 		requirementLabels.push_back("cost:");
@@ -286,33 +312,65 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		requirementsHeight += 20;
 	}
 
-	bool hasContent = true;
-	static const vector<string> NAMES = {
-		"", "",
-		"outfit space needed:", "outfit space",
-		"weapon capacity needed:", "weapon capacity",
-		"engine capacity needed:", "engine capacity",
-		"", "",
-		"gun ports needed:", "gun ports",
-		"turret mounts needed:", "turret mounts"
-	};
-	for(unsigned i = 0; i + 1 < NAMES.size(); i += 2)
+	requirementLabels.emplace_back();
+	requirementValues.emplace_back();
+	requirementsHeight += 10;
+
+	bool hasContent = false;
+	static const vector<string> BEFORE = {"outfit space", "weapon capacity", "engine capacity"};
+	for(const auto &attr : BEFORE)
 	{
-		if(NAMES[i].empty() && hasContent)
+		if(outfit.Get(attr) < 0)
 		{
-			requirementLabels.emplace_back();
-			requirementValues.emplace_back();
-			requirementsHeight += 10;
-			hasContent = false;
-		}
-		else if(outfit.Get(NAMES[i + 1]))
-		{
-			requirementLabels.push_back(NAMES[i]);
-			requirementValues.push_back(Format::Number(-outfit.Get(NAMES[i + 1])));
-			requirementsHeight += 20;
+			AddRequirementAttribute(attr, outfit.Get(attr));
 			hasContent = true;
 		}
 	}
+
+	if(hasContent)
+	{
+		requirementLabels.emplace_back();
+		requirementValues.emplace_back();
+		requirementsHeight += 10;
+	}
+
+	for(const pair<const char *, double> &it : outfit.Attributes())
+		if(!count(BEFORE.begin(), BEFORE.end(), it.first))
+			AddRequirementAttribute(it.first, it.second);
+}
+
+
+
+// Any attribute with a negative value is considered a requirement.
+// Any exceptions to that rule would require in-game code to handle
+// their unique properties, so when code is added to handle a new
+// attribute, this code also should also be updated.
+void OutfitInfoDisplay::AddRequirementAttribute(string label, double value)
+{
+	// These attributes have negative values but are not requirements
+	if(IsNotRequirement(label))
+		return;
+
+	// Special case for 'required crew' - use positive values as a requirement.
+	if(label == "required crew")
+	{
+		if(value > 0)
+		{
+			requirementLabels.push_back(label + ":");
+			requirementValues.push_back(Format::Number(value));
+			requirementsHeight += 20;
+			return;
+		}
+		else
+			value *= -1;
+	}
+
+	if(value >= 0)
+		return;
+
+	requirementLabels.push_back(label + " needed:");
+	requirementValues.push_back(Format::Number(-value));
+	requirementsHeight += 20;
 }
 
 
@@ -324,12 +382,43 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	attributesHeight = 20;
 
 	bool hasNormalAttributes = false;
+
+	// These attributes are regularly negative on outfits, so when positive,
+	// tag them with "added" and show them first. They conveniently
+	// don't use SCALE or BOOLEAN_ATTRIBUTES.
+	static const vector<string> EXPECTED_NEGATIVE = {
+		"outfit space", "weapon capacity", "engine capacity", "gun ports", "turret mounts"
+	};
+
+	for(const string &attr : EXPECTED_NEGATIVE)
+	{
+		double value = outfit.Get(attr);
+		if(value <= 0)
+			continue;
+
+		attributeLabels.emplace_back(attr + " added:");
+		attributeValues.emplace_back(Format::Number(value));
+		attributesHeight += 20;
+		hasNormalAttributes = true;
+	}
+
 	for(const pair<const char *, double> &it : outfit.Attributes())
 	{
-		static const set<string> SKIP = {
-			"outfit space", "weapon capacity", "engine capacity", "gun ports", "turret mounts"
-		};
-		if(SKIP.count(it.first))
+		if(count(EXPECTED_NEGATIVE.begin(), EXPECTED_NEGATIVE.end(), it.first))
+			continue;
+
+		// Only show positive values here, with some exceptions.
+		// Negative values are usually handled as a "requirement"
+		if(static_cast<string>(it.first) == "required crew")
+		{
+			// 'required crew' is inverted - positive values are requirements.
+			if(it.second > 0)
+				continue;
+
+			// A negative 'required crew' would be a benefit, so it is listed here.
+		}
+		// If this attribute is not a requirement, it is always listed here, though it may be negative.
+		else if(it.second < 0 && !IsNotRequirement(it.first))
 			continue;
 
 		auto sit = SCALE.find(it.first);
