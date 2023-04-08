@@ -1651,7 +1651,7 @@ mission "Saryd University Lecture"
 				goto sorry
 			label tell
 			`	"I've met an alien species there called the Korath," you say. "They're reptilian creatures. What's left of their planets has been ruined by infighting. The Kor Sestor and Kor Mereti have been fighting a civil war using autonomous ships. The Kor Efreti have stayed out of the civil war, living under the Quarg's protection. The Korath Exiles have been banished to the Core by the Drak for refusing to give up their ability to manufacture jump drives. They are now raiding humanity for supplies."`
-			`	The crowd shows considerable interest at this last part. "Knowledge of the jump drive, a species besides the Quarg possesses? Great news, this is! Our struggle against the Quarg, we do not take up alone. Possess jump drives, do any other species?" The Heliarch does not seem to mind you answering another question.`
+			`	The crowd shows considerable interest at this last part. "Knowledge of the Jump Drive, a species besides the Quarg possesses? Great news, this is! Our struggle against the Quarg, we do not take up alone. Possess Jump Drives, do any other species?" The Heliarch does not seem to mind you answering another question.`
 			choice
 				`	"There are aliens to the north of human space called the Hai. Some of them steal from the normal Hai, and try to get their hands on jump drives any way they can."`
 					goto knowunfettered
