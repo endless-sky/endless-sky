@@ -47,17 +47,10 @@ public:
 	// one end of the path has been visited. Also, if the ship has a jump drive
 	// or wormhole access, the route will make use of it.
 	explicit DistanceMap(const PlayerInfo &player);
-	// Find paths to the given system. The optional arguments put a limit on how
-	// many systems will be returned and how far away they are allowed to be.
-	explicit DistanceMap(const System *center, int maxCount = -1, int maxDistance = -1);
 	// Find paths to the given system, potentially using wormholes, a jump drive, or both.
 	// Optional arguments are as above.
 	explicit DistanceMap(const System *center, WormholeStrategy wormholeStrategy,
 			bool useJumpDrive, int maxCount = -1, int maxDistance = -1);
-	// If a player is given, the map will only use hyperspace paths known to the
-	// player; that is, one end of the path has been visited. Also, if the
-	// player's flagship has a jump drive, the jumps will be make use of it.
-	explicit DistanceMap(const PlayerInfo &player, const System *center = nullptr);
 	// Calculate the path for the given ship to get to the given system. The
 	// ship will use a jump drive or hyperdrive depending on what it has. The
 	// pathfinding will stop once a path to the destination is found.

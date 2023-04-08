@@ -41,8 +41,8 @@ DistanceMap::DistanceMap(const System *center, int maxCount, int maxDistance)
 // Since no ship instance is available, we use the base game's default fuel for jump travel.
 DistanceMap::DistanceMap(const System *center, WormholeStrategy wormholeStrategy,
 		bool useJumpDrive, int maxCount, int maxDistance)
-	: center(center), wormholeStrategy(wormholeStrategy), maxCount(maxCount),
-			maxDistance(maxDistance), jumpFuel(useJumpDrive ? 200 : 0), jumpRange(useJumpDrive ? 100. : 0.)
+	: center(center), maxSystems(maxCount), maxDays(maxDistance), wormholeStrategy(wormholeStrategy),
+			jumpFuel(useJumpDrive ? 200 : 0), jumpRange(useJumpDrive ? 100. : 0.)
 {
 	Init();
 }
@@ -229,7 +229,7 @@ void DistanceMap::Init(const Ship *ship)
 		// Check for wormholes (which cost zero fuel). Wormhole travel should
 		// not be included in Local Maps or mission itineraries.
 		if(wormholeStrategy != WormholeStrategy::NONE)
-			for(const StellarObject &object : top.next->Objects())
+			for(const StellarObject &object : nextEdge.prev->Objects())
 				if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsWormhole()
 					&& (object.GetPlanet()->IsUnrestricted() || wormholeStrategy == WormholeStrategy::ALL))
 				{
