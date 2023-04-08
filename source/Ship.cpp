@@ -4271,10 +4271,10 @@ void Ship::SetStopovers(const std::vector<const Planet *> planets, const bool sh
 	// Mark each planet as not visited.
 	for(const auto &it : planets){
 		travelDestinations[it] = false;
-        waypoints.push_back(it->GetSystem());
+		waypoints.push_back(it->GetSystem());
 	}
 
-    this->SetWaypoints(waypoints);
+	this->SetWaypoints(waypoints);
 }
 
 
