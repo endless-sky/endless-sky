@@ -49,20 +49,66 @@ namespace {
 	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
 	int vsyncIndex = 1;
 
-	const vector<string> OVERLAY_SETTINGS = {"off", "always on", "damaged", "--"};
-	map<Preferences::OverlayType, Preferences::OverlaySetting> statusOverlaySettings = {
+	class OverlaySetting {
+	public:
+		OverlaySetting() = default;
+		OverlaySetting(const Preferences::OverlayState &state) : state(state) {}
+
+		operator Preferences::OverlayState() const { return state; }
+
+		const bool IsActive() const { return state != Preferences::OverlayState::DISABLED; }
+
+		const std::string &ToString() const
+		{
+			return OVERLAY_SETTINGS[max<int>(0, min<int>(OVERLAY_SETTINGS.size() - 1, static_cast<int>(state)))];
+		}
+
+		const int ToInt() const { return static_cast<int>(state); }
+
+		void SetState(int value)
+		{
+			value = max<int>(value, 0);
+			value = min<int>(value, OVERLAY_SETTINGS.size() - 1);
+			state = static_cast<Preferences::OverlayState>(value);
+		}
+
+		void Increment()
+		{
+			switch(state)
+			{
+				case Preferences::OverlayState::OFF:
+					state = Preferences::OverlayState::ON;
+					break;
+				case Preferences::OverlayState::ON:
+					state = Preferences::OverlayState::DAMAGED;
+					break;
+				case Preferences::OverlayState::DAMAGED:
+					state = Preferences::OverlayState::OFF;
+					break;
+				case Preferences::OverlayState::DISABLED:
+					state = Preferences::OverlayState::OFF;
+					break;
+			}
+		}
+
+
+	private:
+		static const vector<string> OVERLAY_SETTINGS;
+
+
+	private:
+		Preferences::OverlayState state = Preferences::OverlayState::OFF;
+	};
+
+	const vector<string> OverlaySetting::OVERLAY_SETTINGS = {"off", "always on", "damaged", "--"};
+
+	map<Preferences::OverlayType, OverlaySetting> statusOverlaySettings = {
 		{Preferences::OverlayType::ALL, Preferences::OverlayState::DISABLED},
 		{Preferences::OverlayType::FLAGSHIP, Preferences::OverlayState::ON},
 		{Preferences::OverlayType::ESCORT, Preferences::OverlayState::ON},
 		{Preferences::OverlayType::ENEMY, Preferences::OverlayState::ON},
 		{Preferences::OverlayType::NEUTRAL, Preferences::OverlayState::OFF},
 	};
-	void SetOverlayState(Preferences::OverlayType type, int value)
-	{
-		value = max<int>(value, 0);
-		value = min<int>(value, OVERLAY_SETTINGS.size() - 1);
-		statusOverlaySettings[type] = static_cast<Preferences::OverlayState>(value);
-	}
 
 	const vector<string> AUTO_AIM_SETTINGS = {"off", "always on", "when firing"};
 	int autoAimIndex = 2;
@@ -78,55 +124,6 @@ namespace {
 	int alertIndicatorIndex = 3;
 
 	int previousSaveCount = 3;
-}
-
-
-
-Preferences::OverlaySetting::OverlaySetting(const Preferences::OverlayState &state)
-	: state(state)
-{
-}
-
-
-
-const bool Preferences::OverlaySetting::IsActive() const
-{
-	return state != Preferences::OverlayState::DISABLED;
-}
-
-
-
-const string &Preferences::OverlaySetting::ToString() const
-{
-	return OVERLAY_SETTINGS[max<int>(0, min<int>(OVERLAY_SETTINGS.size() - 1, static_cast<int>(state)))];
-}
-
-
-
-const int Preferences::OverlaySetting::ToInt() const
-{
-	return static_cast<int>(state);
-}
-
-
-
-void Preferences::OverlaySetting::Increment()
-{
-	switch(state)
-	{
-		case Preferences::OverlayState::OFF:
-			state = Preferences::OverlayState::ON;
-			break;
-		case Preferences::OverlayState::ON:
-			state = Preferences::OverlayState::DAMAGED;
-			break;
-		case Preferences::OverlayState::DAMAGED:
-			state = Preferences::OverlayState::OFF;
-			break;
-		case Preferences::OverlayState::DISABLED:
-			state = Preferences::OverlayState::OFF;
-			break;
-	}
 }
 
 
@@ -170,15 +167,15 @@ void Preferences::Load()
 		else if(node.Token(0) == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Show all status overlays")
-			SetOverlayState(OverlayType::ALL, node.Value(1));
+			statusOverlaySettings[OverlayType::ALL].SetState(node.Value(1));
 		else if(node.Token(0) == "Show flagship overlay")
-			SetOverlayState(OverlayType::FLAGSHIP, node.Value(1));
+			statusOverlaySettings[OverlayType::FLAGSHIP].SetState(node.Value(1));
 		else if(node.Token(0) == "Show escort overlays")
-			SetOverlayState(OverlayType::ESCORT, node.Value(1));
+			statusOverlaySettings[OverlayType::ESCORT].SetState(node.Value(1));
 		else if(node.Token(0) == "Show enemy overlays")
-			SetOverlayState(OverlayType::ENEMY, node.Value(1));
+			statusOverlaySettings[OverlayType::ENEMY].SetState(node.Value(1));
 		else if(node.Token(0) == "Show neutral overlays")
-			SetOverlayState(OverlayType::NEUTRAL, node.Value(1));
+			statusOverlaySettings[OverlayType::NEUTRAL].SetState(node.Value(1));
 		else if(node.Token(0) == "Automatic aiming")
 			autoAimIndex = max<int>(0, min<int>(node.Value(1), AUTO_AIM_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Parallax background")
@@ -406,8 +403,12 @@ const string &Preferences::VSyncSetting()
 
 void Preferences::CycleStatusOverlays(Preferences::OverlayType type)
 {
+	// Calling OverlaySetting::Increment when the state is DAMAGED will cycle to off.
+	// But, for the ALL overlay type, allow it to cycle to DISABLED.
 	if(type == OverlayType::ALL && statusOverlaySettings[OverlayType::ALL] == OverlayState::DAMAGED)
 		statusOverlaySettings[OverlayType::ALL] = OverlayState::DISABLED;
+	// If one of the child types was clicked, but the all overlay state is the one currently being used,
+	// set the all overlay state to DISABLED but do not increment any of the child settings.
 	else if(type != OverlayType::ALL && statusOverlaySettings[OverlayType::ALL].IsActive())
 		statusOverlaySettings[OverlayType::ALL] = OverlayState::DISABLED;
 	else
@@ -416,8 +417,10 @@ void Preferences::CycleStatusOverlays(Preferences::OverlayType type)
 
 
 
-Preferences::OverlaySetting Preferences::StatusOverlaysState(Preferences::OverlayType type)
+Preferences::OverlayState Preferences::StatusOverlaysState(Preferences::OverlayType type)
 {
+	if(statusOverlaySettings[OverlayType::ALL].IsActive())
+		return statusOverlaySettings[OverlayType::ALL];
 	return statusOverlaySettings[type];
 }
 
@@ -425,14 +428,12 @@ Preferences::OverlaySetting Preferences::StatusOverlaysState(Preferences::Overla
 
 const string &Preferences::StatusOverlaysSetting(Preferences::OverlayType type)
 {
-	const auto allOverlaysSetting = statusOverlaySettings[OverlayType::ALL];
+	const auto &allOverlaysSetting = statusOverlaySettings[OverlayType::ALL];
 	if(allOverlaysSetting.IsActive())
 	{
-		if(type == OverlayType::ALL)
-			return allOverlaysSetting.ToString();
-
 		static const OverlaySetting DISABLED = OverlayState::DISABLED;
-		return DISABLED.ToString();
+		if(type != OverlayType::ALL)
+			return DISABLED.ToString();
 	}
 	return statusOverlaySettings[type].ToString();
 }

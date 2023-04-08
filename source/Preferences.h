@@ -69,25 +69,6 @@ public:
 		BOTH
 	};
 
-	class OverlaySetting {
-	public:
-		OverlaySetting() = default;
-		OverlaySetting(const Preferences::OverlayState &state);
-
-		operator OverlayState() const { return state; }
-
-		const bool IsActive() const;
-
-		const std::string &ToString() const;
-
-		const int ToInt() const;
-
-		void Increment();
-
-	private:
-		Preferences::OverlayState state = Preferences::OverlayState::OFF;
-	};
-
 
 public:
 	static void Load();
@@ -121,7 +102,7 @@ public:
 	static const std::string &VSyncSetting();
 
 	static void CycleStatusOverlays(OverlayType type);
-	static OverlaySetting StatusOverlaysState(OverlayType type);
+	static OverlayState StatusOverlaysState(OverlayType type);
 	static const std::string &StatusOverlaysSetting(OverlayType type);
 
 	// Auto aim setting, either "off", "always on", or "when firing".

@@ -2564,44 +2564,40 @@ void Engine::CreateStatusOverlays()
 {
 	const auto overlayAllSetting = Preferences::StatusOverlaysState(Preferences::OverlayType::ALL);
 
-	if(overlayAllSetting != Preferences::OverlayState::OFF)
+	if(overlayAllSetting == Preferences::OverlayState::OFF)
+		return;
+
+	const System *currentSystem = player.GetSystem();
+	const auto flagship = player.FlagshipPtr();
+
+	static const set<Preferences::OverlayType> overlayTypes = {
+		Preferences::OverlayType::FLAGSHIP,
+		Preferences::OverlayType::ESCORT,
+		Preferences::OverlayType::ENEMY,
+		Preferences::OverlayType::NEUTRAL
+	};
+
+	map<Preferences::OverlayType, Preferences::OverlayState> overlaySettings;
+
+	for(const auto &it : overlayTypes)
+		overlaySettings[it] = Preferences::StatusOverlaysState(it);
+
+	for(const auto &it : ships)
 	{
-		const System *currentSystem = player.GetSystem();
-		const auto flagship = player.FlagshipPtr();
+		if(!it->GetGovernment() || it->GetSystem() != currentSystem || it->Cloaking() == 1.)
+			continue;
+		// Don't show status for dead ships.
+		if(it->IsDestroyed())
+			continue;
 
-		static const set<Preferences::OverlayType> overlayTypes = {
-			Preferences::OverlayType::FLAGSHIP,
-			Preferences::OverlayType::ESCORT,
-			Preferences::OverlayType::ENEMY,
-			Preferences::OverlayType::NEUTRAL
-		};
-
-		map<Preferences::OverlayType, Preferences::OverlayState> overlaySettings;
-
-		if(overlayAllSetting.IsActive())
-			for(const auto &it : overlayTypes)
-				overlaySettings[it] = overlayAllSetting;
+		if(it == flagship)
+			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::FLAGSHIP], 0);
+		else if(it->GetGovernment()->IsEnemy())
+			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::ENEMY], 1);
+		else if(it->IsYours() || it->GetPersonality().IsEscort())
+			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::ESCORT], 0);
 		else
-			for(const auto &it : overlayTypes)
-				overlaySettings[it] = Preferences::StatusOverlaysState(it);
-
-		for(const auto &it : ships)
-		{
-			if(!it->GetGovernment() || it->GetSystem() != currentSystem || it->Cloaking() == 1.)
-				continue;
-			// Don't show status for dead ships.
-			if(it->IsDestroyed())
-				continue;
-
-			if(it == flagship)
-				EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::FLAGSHIP], 0);
-			else if(it->GetGovernment()->IsEnemy())
-				EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::ENEMY], 1);
-			else if(it->IsYours() || it->GetPersonality().IsEscort())
-				EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::ESCORT], 0);
-			else
-				EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::NEUTRAL], 2);
-		}
+			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::NEUTRAL], 2);
 	}
 }
 
