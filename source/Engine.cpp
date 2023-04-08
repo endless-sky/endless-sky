@@ -247,7 +247,7 @@ Engine::Engine(PlayerInfo &player)
 	ammoDisplay(player), shipCollisions(256u, 32u)
 {
 	baseZoom = Preferences::ViewZoom();
-	zoomMod = Preferences::Has("Cinematic effects") ? 2. : 1.;
+	zoomMod = Preferences::Has("Landing zoom") ? 2. : 1.;
 	zoom = baseZoom * zoomMod;
 
 	// Start the thread for doing calculations.
@@ -579,7 +579,7 @@ void Engine::Step(bool isActive)
 				nextZoom = max(zoomTarget, baseZoom * (1. / (1. + zoomRatio)));
 		}
 	}
-	zoom = Preferences::Has("Dynamic zoom") ? baseZoom * (1 + pow(zoomMod - 1, 2)) : baseZoom;
+	zoom = Preferences::Has("Landing zoom") ? baseZoom * (1 + pow(zoomMod - 1, 2)) : baseZoom;
 
 	// Draw a highlight to distinguish the flagship from other ships.
 	if(flagship && !flagship->IsDestroyed() && Preferences::Has("Highlight player's flagship"))
