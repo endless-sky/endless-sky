@@ -85,17 +85,6 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 	for(pair<const string, vector<string>> &it : catalog)
 		sort(it.second.begin(), it.second.end(), BySeriesAndIndex<Outfit>());
 
-	// Add owned licenses
-	const string PREFIX = "license: ";
-	for(auto it = player.Conditions().PrimariesBegin(); it != player.Conditions().PrimariesEnd(); ++it)
-		if(it->first.compare(0, PREFIX.length(), PREFIX) == 0 && it->second > 0)
-		{
-			const string name = it->first.substr(PREFIX.length()) + " License";
-			const Outfit *outfit = GameData::Outfits().Get(name);
-			if(outfit)
-				catalog[outfit->Category()].push_back(name);
-		}
-
 	if(player.GetPlanet())
 		outfitter = player.GetPlanet()->Outfitter();
 }
@@ -187,7 +176,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 		int minCount = numeric_limits<int>::max();
 		int maxCount = 0;
 		if(isLicense)
-			minCount = maxCount = player.Conditions().Get(LicenseName(name));
+			minCount = maxCount = player.HasLicense(LicenseRoot(name));
 		else if(mapSize)
 			minCount = maxCount = player.HasMapped(mapSize);
 		else
@@ -425,7 +414,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 	{
 		// Buying into cargo, so check cargo space vs mass.
 		double mass = selectedOutfit->Mass();
-		double freeCargo = player.Cargo().Free();
+		double freeCargo = player.Cargo().FreePrecise();
 		if(!mass || freeCargo >= mass)
 			return true;
 
@@ -499,13 +488,12 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 void OutfitterPanel::Buy(bool onlyOwned)
 {
 	int64_t licenseCost = LicenseCost(selectedOutfit);
-	auto &playerConditions = player.Conditions();
 	if(licenseCost)
 	{
 		player.Accounts().AddCredits(-licenseCost);
 		for(const string &licenseName : selectedOutfit->Licenses())
-			if(!playerConditions.Get("license: " + licenseName))
-				playerConditions.Set("license: " + licenseName, true);
+			if(!player.HasLicense(licenseName))
+				player.AddLicense(licenseName);
 	}
 
 	// Special case: maps.
@@ -520,7 +508,7 @@ void OutfitterPanel::Buy(bool onlyOwned)
 	// Special case: licenses.
 	if(IsLicense(selectedOutfit->TrueName()))
 	{
-		player.Conditions()[LicenseName(selectedOutfit->TrueName())] = true;
+		player.AddLicense(LicenseRoot(selectedOutfit->TrueName()));
 		player.Accounts().AddCredits(-selectedOutfit->Cost());
 		return;
 	}
@@ -905,15 +893,15 @@ bool OutfitterPanel::IsLicense(const string &name) const
 
 bool OutfitterPanel::HasLicense(const string &name) const
 {
-	return (IsLicense(name) && player.Conditions().Get(LicenseName(name)) > 0);
+	return (IsLicense(name) && player.HasLicense(LicenseRoot(name)));
 }
 
 
 
-string OutfitterPanel::LicenseName(const string &name) const
+string OutfitterPanel::LicenseRoot(const string &name) const
 {
 	static const string &LICENSE = " License";
-	return "license: " + name.substr(0, name.length() - LICENSE.length());
+	return name.substr(0, name.length() - LICENSE.length());
 }
 
 
