@@ -185,7 +185,7 @@ public:
 private:
 	struct RoutingOptions {
 		WormholeStrategy wormholeStrategy = WormholeStrategy::NONE;
-		bool requiresJumpDrive = false;
+		bool assumesJumpDrive = false;
 	};
 
 

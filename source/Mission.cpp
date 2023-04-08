@@ -170,8 +170,8 @@ void Mission::Load(const DataNode &node)
 					distanceCalcSettings.wormholeStrategy = WormholeStrategy::ONLY_UNRESTRICTED;
 				else if(grand.Token(0) == "all wormholes")
 					distanceCalcSettings.wormholeStrategy = WormholeStrategy::ALL;
-				else if(grand.Token(0) == "requires jump drive")
-					distanceCalcSettings.requiresJumpDrive = true;
+				else if(grand.Token(0) == "assumes jump drive")
+					distanceCalcSettings.assumesJumpDrive = true;
 				else
 					grand.PrintTrace("Invalid \"distance calculation settings\" child:");
 			}
@@ -1496,7 +1496,9 @@ int Mission::CalculateJumps(const System *sourceSystem)
 	while(!destinations.empty())
 	{
 		// Find the closest destination to this location.
-		DistanceMap distance(sourceSystem, distanceCalcSettings.wormholeStrategy, distanceCalcSettings.requiresJumpDrive);
+		DistanceMap distance(sourceSystem,
+				distanceCalcSettings.wormholeStrategy,
+				distanceCalcSettings.assumesJumpDrive);
 		auto it = destinations.begin();
 		auto bestIt = it;
 		int bestDays = distance.Days(*bestIt);
@@ -1517,7 +1519,9 @@ int Mission::CalculateJumps(const System *sourceSystem)
 		expectedJumps += bestDays == numeric_limits<int>::max() ? -1 : bestDays;
 		destinations.erase(bestIt);
 	}
-	DistanceMap distance(sourceSystem, distanceCalcSettings.wormholeStrategy, distanceCalcSettings.requiresJumpDrive);
+	DistanceMap distance(sourceSystem,
+			distanceCalcSettings.wormholeStrategy,
+			distanceCalcSettings.assumesJumpDrive);
 	// If currently unreachable, this system adds -1 to the deadline, to match previous behaviour.
 	expectedJumps += distance.Days(destination->GetSystem());
 

@@ -42,7 +42,7 @@ DistanceMap::DistanceMap(const System *center, int maxCount, int maxDistance)
 DistanceMap::DistanceMap(const System *center, WormholeStrategy wormholeStrategy,
 		bool useJumpDrive, int maxCount, int maxDistance)
 	: center(center), wormholeStrategy(wormholeStrategy), maxCount(maxCount),
-			maxDistance(maxDistance), jumpFuel(useJumpDrive ? 200 : 0)
+			maxDistance(maxDistance), jumpFuel(useJumpDrive ? 200 : 0), jumpRange(useJumpDrive ? 100. : 0.)
 {
 	Init();
 }
