@@ -764,20 +764,20 @@ outfit "Excavator"
 	"drill lock" 1
 	weapon
 		sound "drill"
-		"hit effect" "drilling"
+		"hit effect" "excavate"
 		"inaccuracy" 90
 		"velocity" 18
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 4
-		"firing heat" 100
-		"shield damage" 8
+		"firing heat" 72
+		"shield damage" 6
 		"hull damage" 14
 		"minable damage" 104
 		"hit force" -4
 	description `Excavator Drills are large drills designed by the Gegno that rip materials out of asteroids in an efficient manner. These types of drill systems are only found on ships specifically designed around them as they require substantial infrastructure to be functional.`
 
-effect "drilling"
+effect "excavate"
 	sprite "effect/smoke"
 		"no repeat"
 	sound "explosion tiny"
@@ -786,6 +786,50 @@ effect "drilling"
 	"random frame rate" 5
 	"random spin" 2
 	"random velocity" 0.4
+	"velocity scale" -0.01
+
+
+outfit "Burrower"
+	category "Guns"
+	licenses
+		"Gegno Civilian"
+	cost 326000
+	"thumbnail" "outfit/burrower"
+	"mass" 32
+	"outfit space" -28
+	"weapon capacity" -28
+	"gun ports" -1
+	"drill spar" -1
+	weapon
+		sound "drill"
+		"hardpoint sprite" "hardpoint/burrower"
+		"hardpoint offset" 14
+		"hit effect" "burrow"
+		"inaccuracy" 0.4
+		"velocity" 30
+		"lifetime" 1
+		"reload" 1
+		"range override" 60
+		"velocity override" 4
+		"firing energy" 1.8
+		"firing heat" 24
+		"shield damage" .4
+		"hull damage" 6
+		"minable damage" 2
+		"hit force" 4
+	description `Burrower Drills are longer, thinner, and more precise than the larger Excavator Drill system, and although are nowhere near as powerful, can mine asteroids more carefully, preserving mroe materials in the process. Rather than constructing the spaceship around the base system, these drills are more compact and are mounted on self-sustaining drill spars, resulting in lower required internal space and machinery.
+	description `	This mining outfit requires a drill spar port, in addition to a gun port, in order to be mounted.`
+
+effect "burrow"
+	sprite "effect/smoke"
+		"no repeat"
+		"scale" 0.25
+	sound "explosion tiny"
+	"lifetime" 12
+	"random angle" 360
+	"random frame rate" 5
+	"random spin" 2
+	"random velocity" 0.5
 	"velocity scale" -0.01
 
 
@@ -800,11 +844,16 @@ outfit "Ion Torch"
 	"weapon capacity" -32
 	"gun ports" -1
 	"drill spar" -1
+	"reverse thrust" 9.7
+	"reverse thrusting energy" 0.7
+	"reverse thrusting heat" 1.5
+	"flare sprite" "effect/vi flare/small"
+		"frame rate" 2.4
 	weapon
 		"sprite" "projectile/torch"
 			"frame rate" 15
 			"scale" 0.75
-		"inaccuracy" 0.2
+		"inaccuracy" 0.4
 		"velocity" 50
 		"lifetime" 1
 		sound "ion torch"
@@ -814,12 +863,12 @@ outfit "Ion Torch"
 		"reload" 1
 		"range override" 74
 		"velocity override" 10
-		"firing energy" 1.9
+		"firing energy" 2.3
 		"firing heat" 46.2
-		"shield damage" .7
-		"hull damage" 1.2
+		"shield damage" 1.2
+		"hull damage" 1
 		"heat damage" 90
-		"minable damage" 2
+		"minable damage" 4
 	description `Based on the RG-series Torch engine, Ion Torches are a unique type of utility mining weapon that focus the originally explosive exhaust into a thinner, more powerful flare. The more-controlled flame is akin to a heated blade allowing for more precise handling. In contrast to the Excavator, which aggressively grinds asteroids down, an Ion Torch can remove materials more accurately and safely from an asteroid.`
 	description `	This mining outfit requires a drill spar port, in addition to a gun port, in order to be mounted.`
 

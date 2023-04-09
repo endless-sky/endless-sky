@@ -266,7 +266,7 @@ ship "Corundum"
 			"hull damage" 710
 			"hit force" 800
 	outfits
-		"Ion Torch" 2
+		"Burrower" 2
 		"C3 Scrap Cell"
 		"C7 Brawl Cell"
 		"R01 Skirmish Battery"
@@ -280,9 +280,9 @@ ship "Corundum"
 		left
 	"steering engine" -58 -58
 		right
-	gun 9 -132 "Ion Torch"
+	gun 9 -132
 		over
-	gun -9 -132 "Ion Torch"
+	gun -9 -132
 		over
 	leak "leak" 50 60
 	leak "flame" 70 70
@@ -293,6 +293,29 @@ ship "Corundum"
 	"final explode" "final explosion medium"
 	description `While the Gypsum has remained the most reliable mining platform for generations, the Corundum was designed for the purpose of modularity on account of the ever-growing technological potential of the Gegno. Using a similar principle to the Gypusm's design, the Corundum's structure is mostly built around not one but two adjustable drill systems that are capable of mounting more advanced mining tools.`
 	description `Although not able to mount the powerful Excavator Drill, the Corundum's engine capacity is twice that of the Gypsum. Not only that, but the modularity of the two new mounting systems grants it the ability to adapt to future technologies the Gegno develop for mining.`
+
+ship "Corundum" "Corundum (Torch)"
+	outfits
+		"Ion Torch" 2
+		"C3 Scrap Cell"
+		"C7 Brawl Cell"
+		"R01 Skirmish Battery"
+		
+		"RG18 Torch Thruster"
+		"RG18 Torch Steering" 2
+		"Hyperdrive"
+
+ship "Corundum" "Corundum (Multi)"
+	outfits
+		"Ion Torch"
+		"Burrower"
+		"C3 Scrap Cell"
+		"C7 Brawl Cell"
+		"R01 Skirmish Battery"
+		
+		"RG18 Torch Thruster"
+		"RG18 Torch Steering" 2
+		"Hyperdrive"
 
 ship "Protolith"
 	sprite "ship/gegno protolith"

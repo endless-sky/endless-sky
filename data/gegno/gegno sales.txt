@@ -83,8 +83,6 @@ outfitter "Vi Intermediate"
 	"RG3 Torch Thruster"
 	"R03 Warforge Battery"
 	"R04 Crusade Battery"
-	
-#outfitter "Vi Advanced"
 
 
 # Gegno Scin
