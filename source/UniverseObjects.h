@@ -50,6 +50,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <future>
 #include <map>
+#include <unordered_map>
 #include <set>
 #include <string>
 #include <vector>
@@ -137,6 +138,7 @@ private:
 	std::map<std::string, std::string> tooltips;
 	std::map<std::string, std::string> helpMessages;
 	std::map<std::string, std::set<std::string>> disabled;
+	std::unordered_map<std::string, std::string> stringTable;
 
 	// A local cache of the menu background interface for thread-safe access.
 	mutable std::mutex menuBackgroundMutex;

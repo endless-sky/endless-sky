@@ -482,6 +482,19 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 				text += child.Token(0);
 			}
 		}
+		else if((key == "string") && node.Size() >= 2)
+		{
+			string &text = stringTable[node.Token(1)];
+			text.clear();
+			for(const DataNode &child : node)
+			{
+				if(!text.empty())
+				{
+					text += '\n';
+				}
+				text += child.Token(0);
+			}
+		}
 		else if(key == "substitutions" && node.HasChildren())
 			substitutions.Load(node);
 		else if(key == "wormhole" && node.Size() >= 2)

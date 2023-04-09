@@ -248,6 +248,7 @@ void HailPanel::Draw()
 bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	bool shipIsEnemy = (ship && ship->GetGovernment()->IsEnemy());
+	const Interface *hailUi = GameData::Interfaces().Get("hail panel");
 
 	if(key == 'd' || key == SDLK_ESCAPE || key == SDLK_RETURN || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 	{
@@ -262,7 +263,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			GameData::GetPolitics().DominatePlanet(planet, false);
 			// Set payment 0 to erase the tribute.
 			player.SetTribute(planet, 0);
-			message = "Thank you for granting us our freedom!";
+			message = hailUi->GetString("relinquish domination");
 		}
 		else
 			message = planet->DemandTribute(player);

@@ -1326,3 +1326,5 @@ interface "hail panel"
 	button h "Ask For _Help"
 		center -20 115
 		dimensions 140 30
+
+	string "relinquish domination" "Thank you for granting us our freedom!"

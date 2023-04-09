@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "DistanceMap.h"
 #include "Flotsam.h"
+#include "GameData.h"
 #include "Government.h"
 #include "Hardpoint.h"
 #include "JumpTypes.h"
@@ -173,14 +174,18 @@ namespace {
 		{
 			for(Ship *ship : toDeploy)
 				ship->SetDeployOrder(true);
-			Messages::Add("Deployed " + to_string(toDeploy.size()) + " carried ships.", Messages::Importance::High);
+			Messages::Add(GameData::GetString("deployed",
+					{{"<count>", to_string(toDeploy.size())}}
+				), Messages::Importance::High);
 		}
 		// Otherwise, instruct the carried ships to return to their berth.
 		else if(!toRecall.empty())
 		{
 			for(Ship *ship : toRecall)
 				ship->SetDeployOrder(false);
-			Messages::Add("Recalled " + to_string(toRecall.size()) + " carried ships", Messages::Importance::High);
+			Messages::Add(GameData::GetString("recalled",
+					{{"<count>", to_string(toRecall.size())}}
+				), Messages::Importance::High);
 		}
 	}
 

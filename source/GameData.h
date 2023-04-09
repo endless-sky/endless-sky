@@ -168,6 +168,8 @@ public:
 
 	static const std::string &Tooltip(const std::string &label);
 	static std::string HelpMessage(const std::string &name);
+	static const std::string& GetString(const std::string &name);
+	static std::string GetString(const std::string &name, const std::map<std::string, std::string> &substitutions);
 	static const std::map<std::string, std::string> &HelpTemplates();
 
 	static MaskManager &GetMaskManager();

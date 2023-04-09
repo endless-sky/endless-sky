@@ -16,12 +16,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Interface.h"
 
 #include "DataNode.h"
+#include "Logger.h"
 #include "text/DisplayText.h"
 #include "FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "Information.h"
+#include "text/Format.h"
 #include "text/layout.hpp"
 #include "LineShader.h"
 #include "OutlineShader.h"
@@ -78,6 +80,9 @@ void Interface::Load(const DataNode &node)
 	// Skip unnamed interfaces.
 	if(node.Size() < 2)
 		return;
+
+	name = node.Token(1);
+
 	// Re-loading an interface always clears the previous interface, rather than
 	// appending new elements to the end of it.
 	elements.clear();
@@ -96,6 +101,8 @@ void Interface::Load(const DataNode &node)
 			anchor = ParseAlignment(child);
 		else if(child.Token(0) == "value" && child.Size() >= 3)
 			values[child.Token(1)] = child.Value(2);
+		else if(child.Token(0) == "string" && child.Size() >= 3)
+			stringTable[child.Token(1)] = child.Token(2);
 		else if((child.Token(0) == "point" || child.Token(0) == "box") && child.Size() >= 2)
 		{
 			// This node specifies a named point where custom drawing is done.
@@ -180,6 +187,36 @@ double Interface::GetValue(const string &name) const
 {
 	auto it = values.find(name);
 	return (it == values.end() ? 0. : it->second);
+}
+
+
+
+// Get a named string.
+const string& Interface::GetString(const string &name) const
+{
+	static string EMPTY;
+	auto it = stringTable.find(name);
+	if(it == stringTable.end())
+	{
+		static set<string> logOnce;
+		if(logOnce.count(this->name + name) == 0)
+		{
+			Logger::LogError("Attempting to get non-existent string \"" + name +
+							  "\" from interface \"" + this->name + "\"");
+			logOnce.insert(this->name + name);
+		}
+		return EMPTY;
+	}
+	return it->second;
+}
+
+
+
+// Get a named string, with formatting
+std::string Interface::GetString(const std::string& key,
+		const std::map<std::string, std::string>& values) const
+{
+	return Format::Replace(GetString(key), values);
 }
 
 
