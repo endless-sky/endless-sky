@@ -6,6 +6,9 @@
 "help: dead" 1
 "help: disabled" 1
 "help: fighter fleet logistics" 1
+"help: fleet asteroid mining shortcuts" 1
+"help: fleet asteroid mining" 1
+"help: fleet harvest tutorial" 1
 "help: friendly disabled" 1
 "help: hiring" 1
 "help: jobs" 1
@@ -30,3 +33,4 @@
 "help: stranded" 1
 "help: trading" 1
 "help: try out fighter fleet logistics" 1
+"help: try out fighters transfer cargo" 1
