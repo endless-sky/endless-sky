@@ -580,19 +580,6 @@ mission "Midas: Bar Selling 2"
 
 
 
-conversation "midas: mission failure?"
-	branch betrayal
-		"reputation: Midas" < 0
-	action
-		"reputation: Midas" <?= -1000
-	`You hear a voice once alone in your quarters, "A shame, captain. Truly a shame, but we will hold no grudge over it."`
-		accept
-	label betrayal
-	`You hear a voice once alone in your quarters, "Did you think us fools? Nemo Me Impune Lacessit, <first>." You feel a strong pain in your neck.`
-	action
-		"reputation: Midas" <?= -1000
-		"midas: wronged" ++
-
 # SPOILERS: Midas want that governor down because she can easily help the Hai-Unfettered Hai unite, given she understands the Unfettered well.
 # They will only take her hostage here, she may come back later.
 mission "<uhai> 6 B: To The Wolves"
@@ -629,19 +616,21 @@ mission "<uhai> 6 B: To The Wolves"
 		system "Heia Due"
 		personality plunders staying harvests
 		fleet "Large Northern Pirates" 6
+		on provoke
+			`You hear a voice once alone in your quarters, "You have chosen your side. Nemo Me Impune Lacessit, <first>." You feel a strong pain in your neck.`
+			"reputation: Midas" <?= -1000
+			"midas: wronged" ++
 	npc
 		government "Pirate"
 		system "Heia Due"
 		personality entering plunders staying
 		fleet "Small Northern Pirates" 10
-	on abort
-		conversation "midas: mission failure?"
 	to fail
 		or
 			has "<uhai> 6 A: Loyal Escort: done"
 			has "<uhai> 6 A: Loyal Escort: aborted"
 	on fail
-		conversation "midas: mission failure?"
+		dialog `You hear a voice once alone in your quarters, "A shame, captain. Truly a shame."`
 	to complete
 		has "<uhai> 6 A: Loyal Escort: failed"
 	on complete
@@ -679,24 +668,24 @@ mission "<uhai> 7: Duel"
 		personality waiting heroic unconstrained staying disables
 		ship "Sea Dragon" "Thorn"
 		ship "Sea Dragon" "Talon"
+		on kill
+			dialog "You killed one of the ships. You will need to restart the mission in order to progress further with the Shadow of Mintaka. They may want to have their vengeance on you... The Unfettered may not offer you any missions anymore, for disrespecting the sacred rules of the duel."
+			set "midas: thorn talon death"
+			set "midas: thorn talon murdered"
+			"midas: wronged" ++
+			event "midas: thorn talon vengeance" 180
+			log `Destroyed mysterious ships that serve the 'Sadow of Mintaka' in a duel. What's the worst that could happen? No idea if the Unfettered will forgive this act.`
 		conversation
 			`Seeing the fight is over, they hail you, "Indeed you know how to fight, <last>," the first one compliments you, "That was just luck!" the other one argues. "Whatever the case, you have gained the right to plunder our ships. But do not dare even think about trying to capture. We will be leaving once you land. Oh, and here are your 10 million credits back."`
 			action
 				set "midas: won the duel"
-				log `Won a duel against 2 mysterious ships that serve the 'Shadow of Mintaka', whatever that means. Plundering of their ships was so nicely offered!`
+				log `Won a duel against two mysterious ships that serve the 'Shadow of Mintaka', whatever that means. Plundering of their ships was so nicely offered!`
 				payment 10000000
 	on enter
 		set "despawn the duel ships"
 	on abort
 		dialog `You decide to abort the duel. They hail you, "We have no idea why you decided to cancel the duel, but our prize of 10 million credits is still due."`
-		log `Lost a duel against 2 mysterious ships that serve the 'Shadow of Mintaka', whatever that means. Had to pay up 10 million credits.`
-	on fail
-		dialog "You killed one of the ships. You will need to restart the mission in order to progress further with the Shadow of Mintaka. They may want to have their vengeance on you... The Unfettered may not offer you any missions anymore, for disrespecting the sacred rules of the duel."
-		set "midas: thorn talon death"
-		set "midas: thorn talon murdered"
-		"midas: wronged" ++
-		event "midas: thorn talon vengeance" 180
-		log `Killed the mysterious ships that serve the 'Sadow of Mintaka' in a duel. What's the worst that could happen? No idea if the Unfettered will forgive this act.`
+		log `Lost a duel against two mysterious ships that serve the 'Shadow of Mintaka', whatever that means. Had to pay up 10 million credits.`
 	on complete
 		conversation
 			`Having landed, you concede the duel, and receive a hail. "Do not feel ashamed, you fought well. To be fair, you never stood much of a chance against our superior firepower and agility," one says. "We hope you will have improved next time!"`
