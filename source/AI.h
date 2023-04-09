@@ -57,6 +57,7 @@ template <class Type>
 
 	// Fleet commands from the player.
 	void IssueShipTarget(const PlayerInfo &player, const std::shared_ptr<Ship> &target);
+	void IssueAsteroidTarget(const PlayerInfo &player, const std::shared_ptr<Minable> &targetAsteroid);
 	void IssueMoveTarget(const PlayerInfo &player, const Point &target, const System *moveToSystem);
 	// Commands issued via the keyboard (mostly, to the flagship).
 	void UpdateKeys(PlayerInfo &player, Command &clickCommands);
@@ -124,7 +125,7 @@ private:
 	void DoSwarming(Ship &ship, Command &command, std::shared_ptr<Ship> &target);
 	void DoSurveillance(Ship &ship, Command &command, std::shared_ptr<Ship> &target) const;
 	void DoMining(Ship &ship, Command &command);
-	bool DoHarvesting(Ship &ship, Command &command);
+	bool DoHarvesting(Ship &ship, Command &command) const;
 	bool DoCloak(Ship &ship, Command &command);
 	// Prevent ships from stacking on each other when many are moving in sync.
 	void DoScatter(Ship &ship, Command &command);
@@ -151,6 +152,8 @@ private:
 
 	void MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommands);
 
+	// True if found asteroid.
+	bool TargetMinable(Ship &ship) const;
 	// True if the ship performed the indicated event to the other ship.
 	bool Has(const Ship &ship, const std::weak_ptr<const Ship> &other, int type) const;
 	// True if the government performed the indicated event to the other ship.
@@ -171,18 +174,25 @@ private:
 		// actively needs to move back to the position it was holding.
 		static const int HOLD_ACTIVE = 0x001;
 		static const int MOVE_TO = 0x002;
-		static const int TRAVEL_TO = 0x003;
-		static const int LAND_ON = 0x004;
+		// HARVEST is related to MINE and is for picking up flotsam after
+		// ATTACK.
+		static const int HARVEST = 0x003;
+		static const int TRAVEL_TO = 0x004;
+		static const int LAND_ON = 0x005;
 		static const int KEEP_STATION = 0x100;
 		static const int GATHER = 0x101;
 		static const int ATTACK = 0x102;
 		static const int FINISH_OFF = 0x103;
+		// MINE is for fleet targeting the asteroid for mining. ATTACK is used
+		// to chase and attack the asteroid.
+		static const int MINE = 0x104;
 		// Bit mask to figure out which orders are canceled if their target
 		// ceases to be targetable or present.
 		static const int REQUIRES_TARGET = 0x100;
 
 		int type = 0;
 		std::weak_ptr<Ship> target;
+		std::weak_ptr<Minable> targetAsteroid;
 		Point point;
 		const System *targetSystem = nullptr;
 		const Planet *targetPlanet = nullptr;
