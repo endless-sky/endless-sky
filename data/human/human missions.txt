@@ -5609,7 +5609,7 @@ mission "Blind Man from Martini"
 				`	"Of course, I'll take you to <planet>."`
 				`	"Sorry, I won't be able to."`
 					goto can't
-			`	The man musters a broad smile, says "Thank you all too much. Could you help me with the luggage? Of course, I can't see where it is..." and scans the floor with his cane for it. Later, while boarding, he tells you his name is Douglas Pears, and he promises to you <payment> for transporting him.`
+			`	The man musters a broad smile, says "Thank you all too much. Would you like to help me with the luggage?" He scans the floor with his cane for it. Later, while boarding, he tells you his name is Douglas Pears, and he promises to you <payment> for transporting him.`
 				accept
 
 			label can't
@@ -5620,7 +5620,7 @@ mission "Blind Man from Martini"
 		log `Brought a blind man named Douglas to Chiron so he could visit his daughter, who will undergo experimental treatment at the University of New Sydney.`
 		payment 58000
 		conversation
-			`Throughout the trip, Douglas has been relatively quiet and has kept to himself. But when you land, he asks you again to help him bring down his luggage once more; it turns out you needn't have done so because an attendant from the planetary spaceport quickly comes to his side. He guides both of you to the spaceport's intracity transit complex; the bustling spaceport makes it a challenge to keep together, but all of you manage to reach it. From there, you hail a taxi while Douglas arranges for the <payment> to be sent to you.`
+			`Throughout the trip, Douglas has been relatively quiet and has kept to himself. When you land, he lets you help him bring down his luggage once more; it turns out you needn't have done so because an attendant from the planetary spaceport quickly comes to his side. He guides both of you to the spaceport's intracity transit complex; the bustling spaceport makes it a challenge to keep together, but all of you manage to reach it. From there, you hail a taxi while Douglas arranges for the <payment> to be sent to you.`
 			`	"Well, I must go now to the University of New Sydney. They and my daughter are expecting me at their Health Sciences quarter."`
 			choice
 				`	"Goodbye."`
@@ -5632,7 +5632,7 @@ mission "Blind Man from Martini"
 				`	"Could I come with you?"`
 					goto comealong
 			label bye
-			`	"Bye, now. I wish you greater luck in your travels and your sights. Take it from me: there is no greater sight than to see." With that, he taps his cane twice, and then steps into one of New Sydney's taxis, going toward the University of New Sydney campus on the far side of town.`
+			`	"Bye, now. I wish you greater luck in your travels and your sights." With that, he taps his cane twice, and then steps into one of New Sydney's taxis, going toward the University of New Sydney campus on the far side of town.`
 				decline
 
 			label recovery
@@ -5701,7 +5701,7 @@ mission "Blind Man from Martini"
 			action
 				set "Blind Man from Martini: label blind-1"
 				"Blind Man from Martini: taxi questions count" ++
-			`	"Hmm... well, it was really only one of many things that hit my life then, not least of which was my newfound blindness, and the loss of my company and my job." He gives a heavy sigh, and he shifts in his seat as if something heavy was placed on his shoulders. "I was able to keep things intact for a while, but no, it was too much. I took my life for granted then, but anything can be taken away from you if you get too used to it."`
+			`	"Hmm... well, it was really only one of many things that hit my life then, not least of which was my newfound blindness, and the loss of my company and my job." He gives a heavy sigh, and he shifts in his seat as if something heavy was placed on his shoulders. "I was able to keep things intact for a while, but no, it was too much. Anything can be taken away from you if you get too used to it."`
 				goto taxi
 			
 			label atomic-bombings
@@ -5757,8 +5757,8 @@ mission "Blind Man from Martini"
 			`	After a short queue, you reach the reception with Douglas. The receptionist, placed behind a sterile-looking screen that looks far out of place with the colorful hallways, asks with a well-practiced smile, "How may I help you?"`
 			choice
 				`	"We're looking for Anita Pears. Where can we find her?"`
-			`	For a moment, the receptionist shuffles information arounds on her terminal. "You are her father, Douglas Pears?"`
-			`	"That's me," Douglas interjects before you can speak.`
+			`	For a moment, the receptionist shuffles information around on her terminal. "Are one of you a parent?"`
+			`	"I'm the father, Douglas Pears," he replies.`
 			`	She takes a few more seconds before looking at you and saying, "Ah, but we cannot let you in. Only Mr. Pears is booked in for his daughter's procedure; we have a family-only policy, to keep the privacy of our patients."`
 			choice
 				`	"All right."`
