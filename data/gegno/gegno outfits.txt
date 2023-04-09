@@ -799,6 +799,7 @@ outfit "Ion Torch"
 	"outfit space" -4
 	"weapon capacity" -4
 	"gun ports" -1
+	"drill spar" -1
 	weapon
 		"sprite" "projectile/torch"
 			"frame rate" 15

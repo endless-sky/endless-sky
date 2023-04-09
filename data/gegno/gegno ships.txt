@@ -262,6 +262,7 @@ ship "Corundum"
 		"outfit space" 240
 		"weapon capacity" 42
 		"engine capacity" 120
+		"drill spar" 2
 		weapon
 			"blast radius" 72
 			"shield damage" 320

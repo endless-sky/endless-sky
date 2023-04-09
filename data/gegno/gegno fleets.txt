@@ -41,7 +41,7 @@ fleet "Gegno Miners"
 	names "gegno scin"
 	cargo 0
 	personality
-		pacifist timid plunders frugal mining harvests
+		pacifist timid plunders mining harvests ramming
 	variant 13
 		"Gypsum"
 	variant 11
@@ -404,7 +404,7 @@ fleet "Gegno Vi Duelist A"
 	government "Gegno Vi (Duelist A)"
 	names "gegno vi"
 	personality
-		heroic unconstrained
+		heroic unconstrained ramming
 	variant
 		"Dunite"
 
@@ -412,6 +412,6 @@ fleet "Gegno Vi Duelist B"
 	government "Gegno Vi (Duelist B)"
 	names "gegno vi"
 	personality
-		heroic unconstrained
+		heroic unconstrained ramming
 	variant
 		"Dunite"
