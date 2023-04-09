@@ -30,7 +30,7 @@
 		"regexChecks": [
 			{
 				"excludedNodes": [],
-				"checks":[
+				"checks": [
 					{
 						"description": "multiple consecutive space characters",
 						"regex": "(?<!^tip .*)([^ ])  +([^# ])",
@@ -43,39 +43,6 @@
 						"regex": "([\"'`]\t+) +",
 						"correction":{
 							"replaceWith": "\\1"
-						}
-					},
-					{
-						"description": "trailing whitespace",
-						"regex": "([^\\s])\\s+$",
-						"correction": {
-							"replaceWith": "\\1"
-						}
-					},
-					{
-						"description": "non-ASCII apostrophe",
-						"regex": "[’‘]",
-						"correction": {
-							"replaceWith": "'"
-						}
-					},
-					{
-						"description": "non-ASCII quotation mark",
-						"regex": "[“”]",
-						"correction": {
-							"replaceWith": "\""
-						}
-					},
-					{
-						"description": "non-ASCII character",
-						"regex": "[^\\x00-\\x7F]+"
-					},
-					{
-						"description": "missing space before commment",
-						"regex": "(^\\s*#+)([^\\s#])",
-						"isError": false,
-						"correction": {
-							"replaceWith": "\\1 \\2"
 						}
 					},
 					{
@@ -105,8 +72,48 @@
 				]
 			},
 			{
-				"excludedNodes": ["^word$", "^replace$"],
+				"excludedNodes": [],
+				"excludeComments": false,
+				"excludeKeywords": false,
 				"checks":[
+					{
+						"description": "trailing whitespace",
+						"regex": "([^\\s])\\s+$",
+						"correction": {
+							"replaceWith": "\\1"
+						}
+					},
+					{
+						"description": "non-ASCII apostrophe",
+						"regex": "[’‘]",
+						"correction": {
+							"replaceWith": "'"
+						}
+					},
+					{
+						"description": "non-ASCII quotation mark",
+						"regex": "[“”]",
+						"correction": {
+							"replaceWith": "\""
+						}
+					},
+					{
+						"description": "non-ASCII character",
+						"regex": "[^\\x00-\\x7F]+"
+					},
+					{
+						"description": "missing space before comment",
+						"regex": "(^\\s*#+)([^\\s#])",
+						"isError": false,
+						"correction": {
+							"replaceWith": "\\1 \\2"
+						}
+					}
+				]
+			},
+			{
+				"excludedNodes": ["^word$", "^replace$"],
+				"checks": [
 					{
 						"description": "whitespace before end of text",
 						"regex": "([^\"` ]+)\\s+([\"`'])$",
