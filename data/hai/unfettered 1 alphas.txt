@@ -79,11 +79,6 @@ ship "Auxiliary (Alpha)"
 	"final explode" "final explosion large"
 	description "This is a stolen Auxiliary that was used by the Alphas to move supplies and outfits around, mainly for trading with the Unfettered. It seems that they did not modify it much and it conveniently retained their logs, although in an encrypted form."
 
-# name of the ship, needed in a phrase because we need it in a fleet for the cargo
-phrase "Settler"
-	word
-		"Settler"
-
 conversation "unfettered: destroyed auxiliary"
 	`The Unfettered that hails you is enraged, "How dare you?! This ship was helping us by providing supplies, and you just shoot it down? We don't care who may have drawn the first shot, you are now an enemy of the Unfettered."`
 	action
@@ -144,13 +139,11 @@ mission "Unfettered: Alpha Supplies: Coming"
 		government "Alpha"
 		personality entering uninterested fleeing timid
 		system "Hi Yahr"
-		fleet
+		"cargo settings"
 			cargo 4
 			commodities "Military" "Electronics"
 			outfitters "Korath Drones Alpha Loot"
-			names "Settler"
-			variant
-				"Auxiliary (Alpha)"
+		ship "Auxiliary (Alpha)" "Settler"
 		conversation "unfettered: destroyed auxiliary"
 
 # The Unfettered do not give any prototype weaponry, but do give advanced things, including Wanderer loot.
@@ -203,13 +196,11 @@ mission "Unfettered: Alpha Supplies: Leaving"
 		government "Alpha"
 		personality launching uninterested fleeing timid
 		system "Hi Yahr"
-		fleet
+		"cargo settings"
 			cargo 6
 			commodities "Metal" "Heavy Metals"
 			outfitters "Unfettered Alpha Trade"
-			names "Settler"
-			variant
-				"Auxiliary (Alpha)"
+		ship "Auxiliary (Alpha)" "Settler"
 		conversation "unfettered: destroyed auxiliary"
 
 
@@ -255,12 +246,13 @@ mission "<uhai> 5: Scan Auxiliary"
 		government "Alpha"
 		personality entering timid staying target
 		system "Hi Yahr"
-		fleet
+		"cargo settings"
 			commodities "Military" "Electronics"
 			outfitters "Korath Drones Alpha Loot"
-			names "Settler"
-			variant
-				"Auxiliary (Alpha)"
+		ship "Auxiliary (Alpha)" "Settler"
+		on kill
+			dialog `The local authorities hail you, with a code purple message. "You have disapointed us. Think very carefuly of your next actions."`
+			"reputation: Hai (Unfettered)" <?= 0
 		conversation
 			branch "didn't listen"
 				not "outfit (flagship installed): Value Detector"
