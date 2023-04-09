@@ -112,7 +112,8 @@ mission "First Contact: Unfettered"
 				`	"That is a frightening story. Thank you for taking the time to speak with me."`
 					decline
 				`	"Is there anything I can do to help you?"`
-			
+			action
+				set "unfettered requested jump drives"
 			`	"If you are ever willing to sell us a jump drive," they say, "we will richly reward you. And if you discover the secret of how we can construct our own jump drives and escape from this prison, bring it to us and you will live as a god among us."`
 			choice
 				`	"I'm sorry, I don't know the secret of the jump drive. No human being does."`
