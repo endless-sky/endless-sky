@@ -818,7 +818,7 @@ outfit "Burrower"
 		"hull damage" 6
 		"minable damage" 2
 		"hit force" 4
-	description `Burrower Drills are longer, thinner, and more precise than the larger Excavator Drill system, and although are nowhere near as powerful, can mine asteroids more carefully, preserving more materials in the process. Rather than constructing the spaceship around the base system, these drills are more compact and are mounted on self-sustaining drill spars, resulting in lower required internal space and machinery.`
+	description `Burrower Drills are longer, thinner, and more precise than the larger Excavator Drill system; although they are nowhere near as powerful, Burrowers can mine asteroids more carefully, preserving more materials in the process. Rather than constructing the spaceship around the base system, these drills are more compact and are mounted on self-sustaining drill spars, resulting in lower required internal space and machinery.`
 	description `	This mining outfit requires a drill spar port, in addition to a gun port, in order to be mounted.`
 
 effect "burrow"
