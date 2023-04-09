@@ -793,11 +793,11 @@ outfit "Ion Torch"
 	category "Guns"
 	licenses
 		"Gegno Civilian"
-	cost 500000
+	cost 410000
 	"thumbnail" "outfit/ion torch"
-	"mass" 4
-	"outfit space" -4
-	"weapon capacity" -4
+	"mass" 36
+	"outfit space" -32
+	"weapon capacity" -32
 	"gun ports" -1
 	"drill spar" -1
 	weapon
@@ -813,13 +813,14 @@ outfit "Ion Torch"
 		"hit effect" "burning spark"
 		"reload" 1
 		"range override" 80
-		"firing energy" 1
-		"firing heat" 1
+		"firing energy" 1.1
+		"firing heat" 1.2
 		"shield damage" .7
 		"hull damage" 1.2
 		"heat damage" 90
 		"minable damage" 3
 	description `Torch.`
+
 
 outfit "Savagery Bludgeon"
 	category "Guns"
