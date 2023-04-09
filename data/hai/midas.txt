@@ -617,7 +617,7 @@ mission "<uhai> 6 B: To The Wolves"
 		personality plunders staying harvests
 		fleet "Large Northern Pirates" 6
 		on provoke
-			`You hear a voice once alone in your quarters, "You have chosen your side. Nemo Me Impune Lacessit, <first>." You feel a strong pain in your neck.`
+			dialog `You hear a voice once alone in your quarters, "You have chosen your side. Nemo Me Impune Lacessit, <first>." You feel a strong pain in your neck.`
 			"reputation: Midas" <?= -1000
 			"midas: wronged" ++
 	npc
