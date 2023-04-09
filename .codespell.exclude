@@ -53,18 +53,5 @@ planet "Sies Upi"
 		"Brocken"
 			`	"What part of non-negotiable did you not understand? You're pushing your luck, Captain <last>. I didn't expect you to be such a petty money pincher."`
 		"Shepard"
-			`Once you are alone in your quarters you hear a voice, darker and more serious than ever before. "You have betrayed us. Nemo Me Impune Laccessit, <first>. We have a message to transmit to you on behalf of the council of Chiefs.`
-			`	"Nemo Me Impune Lacessit"`
-				`	"Can you tell me more? The message was signed with 'nemo me impune lacessit'."`
-			`	"She of the Void does not forget. Nemo Me Impune Lacessit, <last>. Do not presume to attempt to betray us again."`
-			`You receive an ominous message of defiance, "Nemo me impune lacessit."`
-			`	They evaluate their surroundings before coming closer to you, and once they are a meter away they stop, clearly speaking their words as a threat, with a pause between each of them "Nemo. Me. Impune. Laccesit."`
-	description "It shines; you can feel its value. For some reason, the text 'nemo me impune lacessit' is written on them. You wonder what that could mean... surely nothing to worry about. Most outfitters are not real 'connoisseurs' of the value these hold though, and would not give you any more than the price of brute gold for it."
-		`After disabling the last of the pirate ships, you wonder what could have motivated such an attack. Do you possess something valuable to them? When they entered the system, they only sent one message: "nemo me impune lacessit". It is probably best to store whatever they were interested in on a planet (using U) or to get rid of it.`
-mission "Midas: Nemo Me Impune Lacessit"
-mission "Midas: Nemo Me Impune Lacessit 2"
-			`You hit the crew member in the shoulder and they fall. You remove their weapon to be safe and ask for an explanation, but the only answer you get is "nemo me impune lacessit" before they lose consciousness. Looking into their eyes, you could see terror. You put them at a nearby hospital, but when you come back later, the crew member is gone, and no one has seen or heard anything.`
-	`You hear a voice once alone in your quarters, "Did you think us fools? Nemo Me Impune Lacessit, <first>." You feel a strong pain in your neck.`
-		dialog `As you enter Wah Yoot you spot a fleet of mercenaries, larger than anything you've seen from them before. The captain of the fleet hails you. "Nemo Me Impune Lacessit, <first> <last>. You have killed our own. We have come to bring justice upon you, whatever the cost. There will be no negotiations, no forgiveness. I am the Shadow of Mintaka, and the last person you will ever meet."`
-		" Nemo Me Impune Lacessit"
-		"Nemo Me Impune Laccessit!" 2
+		"impune"
+		"Impune"
