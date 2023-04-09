@@ -640,25 +640,8 @@ void Engine::Step(bool isActive)
 
 	// Create the status overlays.
 	statuses.clear();
-	const auto overlayAllSetting = Preferences::StatusOverlaysState(0);
-	if(isActive && overlayAllSetting != Preferences::OverlayType::OFF)
-		for(const auto &it : ships)
-		{
-			if(!it->GetGovernment() || it->GetSystem() != currentSystem || it->Cloaking() == 1.)
-				continue;
-			// Don't show status for dead ships.
-			if(it->IsDestroyed())
-				continue;
-
-			if(it == flagship)
-				EmplaceStatusOverlays(it, overlayAllSetting, Preferences::StatusOverlaysState(1), 0);
-			else if(it->IsYours())
-				EmplaceStatusOverlays(it, overlayAllSetting, Preferences::StatusOverlaysState(2), 0);
-			else if(it->GetGovernment()->IsEnemy())
-				EmplaceStatusOverlays(it, overlayAllSetting, Preferences::StatusOverlaysState(3), 1);
-			else
-				EmplaceStatusOverlays(it, overlayAllSetting, Preferences::StatusOverlaysState(4), 2);
-		}
+	if(isActive)
+		CreateStatusOverlays();
 
 	// Create missile overlays.
 	missileLabels.clear();
@@ -2045,8 +2028,6 @@ void Engine::HandleMouseClicks()
 			}
 		}
 	}
-	else if(isRightClick && !isMouseTurningEnabled)
-		ai.IssueMoveTarget(player, clickPoint + center, playerSystem);
 	else if(flagship->Attributes().Get("asteroid scan power"))
 	{
 		// If the click was not on any ship, check if it was on a minable.
@@ -2063,9 +2044,13 @@ void Engine::HandleMouseClicks()
 				clickedAsteroid = true;
 				clickRange = range;
 				flagship->SetTargetAsteroid(minable);
+				if(isRightClick)
+					ai.IssueAsteroidTarget(player, minable);
 			}
 		}
 	}
+	if(isRightClick && !clickTarget && !clickedAsteroid && !isMouseTurningEnabled)
+		ai.IssueMoveTarget(player, clickPoint + center, playerSystem);
 
 	// Treat an "empty" click as a request to clear targets.
 	if(!clickTarget && !isRightClick && !clickedAsteroid && !clickedPlanet)
@@ -2577,29 +2562,59 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 
 
 
-void Engine::EmplaceStatusOverlays(const shared_ptr<Ship> &it,
-	Preferences::OverlayType parent_setting, Preferences::OverlayType setting, int type)
+void Engine::CreateStatusOverlays()
 {
-	Preferences::OverlayType used_setting;
-	if(parent_setting != Preferences::OverlayType::DISABLED)
-		used_setting = parent_setting;
-	else
-		used_setting = setting;
-	if(used_setting == Preferences::OverlayType::OFF ||
-		(used_setting == Preferences::OverlayType::DAMAGED && !it->IsDamaged()))
+	const auto overlayAllSetting = Preferences::StatusOverlaysState(Preferences::OverlayType::ALL);
+
+	if(overlayAllSetting == Preferences::OverlayState::OFF)
 		return;
-	double width = min(it->Width(), it->Height());
-	float alpha = (used_setting == Preferences::OverlayType::ON_HIT) ? it->SmoothIsDamaged(30, 10) : 1.f;
-	statuses.emplace_back(it->Position() - center, it->Shields(), it->Hull(),
-		min(it->Hull(), it->DisabledHull()), max(20., width * .5), type, alpha);
+
+	const System *currentSystem = player.GetSystem();
+	const auto flagship = player.FlagshipPtr();
+
+	static const set<Preferences::OverlayType> overlayTypes = {
+		Preferences::OverlayType::FLAGSHIP,
+		Preferences::OverlayType::ESCORT,
+		Preferences::OverlayType::ENEMY,
+		Preferences::OverlayType::NEUTRAL
+	};
+
+	map<Preferences::OverlayType, Preferences::OverlayState> overlaySettings;
+
+	for(const auto &it : overlayTypes)
+		overlaySettings[it] = Preferences::StatusOverlaysState(it);
+
+	for(const auto &it : ships)
+	{
+		if(!it->GetGovernment() || it->GetSystem() != currentSystem || it->Cloaking() == 1.)
+			continue;
+		// Don't show status for dead ships.
+		if(it->IsDestroyed())
+			continue;
+
+		if(it == flagship)
+			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::FLAGSHIP], 0);
+		else if(it->GetGovernment()->IsEnemy())
+			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::ENEMY], 1);
+		else if(it->IsYours() || it->GetPersonality().IsEscort())
+			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::ESCORT], 0);
+		else
+			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::NEUTRAL], 2);
+	}
 }
 
 
 
-// Constructor for the ship status display rings.
-Engine::Status::Status(const Point &position, double outer, double inner,
-	double disabled, double radius, int type, float alpha, double angle)
-	: position(position), outer(outer), inner(inner), disabled(disabled), radius(radius),
-		type(type), alpha(alpha), angle(angle)
+void Engine::EmplaceStatusOverlay(const shared_ptr<Ship> &it, Preferences::OverlayState overlaySetting, int type)
 {
+	if(overlaySetting == Preferences::OverlayState::OFF)
+		return;
+
+	if(overlaySetting == Preferences::OverlayState::DAMAGED && !it->IsDamaged())
+		return;
+
+	double width = min(it->Width(), it->Height());
+	float alpha = (overlaySetting == Preferences::OverlayState::ON_HIT) ? it->SmoothIsDamaged(30, 10) : 1.f;
+	statuses.emplace_back(it->Position() - center, it->Shields(), it->Hull(),
+		min(it->Hull(), it->DisabledHull()), max(20., width * .5), type, alpha);
 }

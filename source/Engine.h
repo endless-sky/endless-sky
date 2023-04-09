@@ -102,6 +102,34 @@ public:
 
 
 private:
+	class Target {
+	public:
+		Point center;
+		Angle angle;
+		double radius;
+		const Color &color;
+		int count;
+	};
+
+	class Status {
+	public:
+		Status(const Point &position, double outer, double inner,
+			double disabled, double radius, int type, float alpha, double angle = 0.)
+			: position(position), outer(outer), inner(inner),
+				disabled(disabled), radius(radius), type(type), alpha(alpha), angle(angle) {}
+
+		Point position;
+		double outer;
+		double inner;
+		double disabled;
+		double radius;
+		int type;
+		float alpha;
+		double angle;
+	};
+
+
+private:
 	void EnterSystem();
 
 	void ThreadEntryPoint();
@@ -129,34 +157,9 @@ private:
 	void AddSprites(const Ship &ship);
 
 	void DoGrudge(const std::shared_ptr<Ship> &target, const Government *attacker);
-	void EmplaceStatusOverlays(const std::shared_ptr<Ship> &ship, Preferences::OverlayType parent_setting,
-		Preferences::OverlayType setting, int value);
 
-
-private:
-	class Target {
-	public:
-		Point center;
-		Angle angle;
-		double radius;
-		const Color &color;
-		int count;
-	};
-
-	class Status {
-	public:
-		Status(const Point &position, double outer, double inner,
-			double disabled, double radius, int type, float alpha, double angle = 0.);
-
-		Point position;
-		double outer;
-		double inner;
-		double disabled;
-		double radius;
-		int type;
-		float alpha;
-		double angle;
-	};
+	void CreateStatusOverlays();
+	void EmplaceStatusOverlay(const std::shared_ptr<Ship> &ship, Preferences::OverlayState overlaySetting, int value);
 
 
 private:
