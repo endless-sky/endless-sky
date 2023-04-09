@@ -341,16 +341,63 @@ fleet "Gegno Basic"
 		"Conglomerate"
 		"Shale"
 
+fleet "Gegno Cargo"
+	government Gegno
+	names "gegno vi"
+	cargo 0
+	personality
+		timid
+	variant 8
+		"Dolomite" 2
+	variant 6
+		"Conglomerate"
+	variant 4
+		"Granofel"
+	variant 2
+		"Dolomite"
+		"Granofel"
+	variant 2
+		"Conglomerate"
+		"Dolomite"
+	variant 2
+		"Conglomerate"
+		"Granofel"
+	variant
+		"Granofel" 2
+		"Gypsum"
+	variant
+		"Granofel"
+		"Corundum"
+
 fleet "Gegno Miners"
 	government Gegno
 	names "gegno scin"
 	cargo 0
 	personality
-		pacifist timid plunders frugal mining harvests
-	variant 14
+		pacifist timid plunders mining harvests ramming
+	variant 13
 		"Gypsum"
+	variant 11
+		"Corundum"
+	variant
+		"Gypsum"
+		"Granofel"
+	variant
+		"Corundum"
+		"Granofel"
 	variant
 		"Gypsum" 2
+	variant
+		"Corundum" 2
+
+fleet "Gegno Old"
+	government Gegno
+	names "gegno vi"
+	cargo 2
+	personality
+		timid
+	variant
+		"Protolith"
 		
 fleet "Gegno Vi Duelist A"
 	government "Gegno Vi (Duelist A)"
