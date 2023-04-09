@@ -5717,7 +5717,7 @@ mission "Blind Man from Martini"
 				goto taxi
 
 			label checkmate
-			`	"And for the bombings themselves, they were certainly a malicious act. I hear the authorities are still investigating the bombings, although it's very curious that Korban, the CEO of the Syndicate, resigned as soon as the Republic starting poking their heads that way. I'm still not sure who's responsible for the bombings, the deaths, the war... I can only hope the investigation will be thorough."`
+			`	"And for the bombings themselves, they were certainly a malicious act. I hear the authorities are still investigating the bombings, although it's very curious that Korban, the CEO of the Syndicate, resigned as soon as the Republic started poking their heads that way. I'm still not sure who's responsible for the bombings, the deaths, the war... I can only hope the investigation will be thorough."`
 				goto taxi
 
 			label daughter
