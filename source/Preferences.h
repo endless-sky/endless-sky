@@ -32,8 +32,8 @@ public:
 	enum class OverlayState : int_fast8_t {
 		OFF = 0,
 		ON,
-		ON_HIT,
 		DAMAGED,
+		ON_HIT,
 		DISABLED
 	};
 
