@@ -2093,7 +2093,7 @@ bool AI::Stop(Ship &ship, Command &command, double maxSpeed, const Point directi
 
 		if(reverseTime < forwardTime)
 		{
-			command.SetTurn(TurnToward(ship, velocity));
+			command.SetTurn(TurnToward(ship, velocity, 0.9999));
 			if(velocity.Unit().Dot(angle.Unit()) > limit)
 				command |= Command::BACK;
 			return false;
