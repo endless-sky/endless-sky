@@ -808,18 +808,20 @@ outfit "Ion Torch"
 		"velocity" 50
 		"lifetime" 1
 		sound "ion torch"
-		"hardpoint sprite" "hardpoint/ion lance"
+		"hardpoint sprite" "hardpoint/ion torch"
 		"hardpoint offset" 10
 		"hit effect" "burning spark"
 		"reload" 1
-		"range override" 80
-		"firing energy" 1.1
-		"firing heat" 1.2
+		"range override" 74
+		"velocity override" 70
+		"firing energy" 1.9
+		"firing heat" 46.2
 		"shield damage" .7
 		"hull damage" 1.2
 		"heat damage" 90
 		"minable damage" 3
-	description `Torch.`
+	description `Based on the RG-series Torch engine, Ion Torches are a unique type of utility mining weapon that focus the originally explosive exhaust into a thinner, more powerful flare. The more-controlled flame is akin to a heated blade allowing for more precise handling. In contrast to the Excavator, which aggressively grinds asteroids down, an Ion Torch can remove materials more accurately and safely from an asteroid.`
+	description `	This mining outfit requires a drill spar port in addition to a gun port in order to mount.`
 
 
 outfit "Savagery Bludgeon"

@@ -255,10 +255,10 @@ ship "Corundum"
 		"drag" 3.6
 		"heat dissipation" 0.8
 		"fuel capacity" 600
-		"cargo space" 146
-		"outfit space" 318
+		"cargo space" 140
+		"outfit space" 316
 		"weapon capacity" 64
-		"engine capacity" 182
+		"engine capacity" 162
 		"drill spar" 2
 		weapon
 			"blast radius" 84
@@ -267,10 +267,11 @@ ship "Corundum"
 			"hit force" 800
 	outfits
 		"Ion Torch" 2
+		"C3 Scrap Cell"
 		"C7 Brawl Cell"
 		"R01 Skirmish Battery"
 		
-		"RG18 Torch Thruster" 2
+		"RG18 Torch Thruster"
 		"RG18 Torch Steering" 2
 		"Hyperdrive"
 	engine 58 -58
