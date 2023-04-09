@@ -2600,6 +2600,6 @@ void Engine::EmplaceStatusOverlays(const shared_ptr<Ship> &it,
 Engine::Status::Status(const Point &position, double outer, double inner,
 	double disabled, double radius, int type, float alpha, double angle)
 	: position(position), outer(outer), inner(inner), disabled(disabled), radius(radius),
-		type(type), angle(angle), alpha(alpha)
+		type(type), alpha(alpha), angle(angle)
 {
 }
