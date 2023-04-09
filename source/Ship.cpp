@@ -2710,7 +2710,7 @@ int Ship::Scan(const PlayerInfo &player)
 	if(isYours || (target->isYours && activeScanning))
 		Audio::Play(Audio::Get("scan"), Position());
 
-	bool isImportant;
+	bool isImportant = false;
 	if(target->isYours)
 	{
 		bool hasIllegal = target->Cargo().IllegalCargoFine(government);
