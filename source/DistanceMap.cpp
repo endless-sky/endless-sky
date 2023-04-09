@@ -40,8 +40,8 @@ DistanceMap::DistanceMap(const System *center, int maxCount, int maxDistance)
 // Constructor that allows configuring the use of wormholes and jump drive travel.
 // Since no ship instance is available, we use the base game's default fuel for jump travel.
 DistanceMap::DistanceMap(const System *center, WormholeStrategy wormholeStrategy,
-		bool useJumpDrive, int maxCount, int maxDistance)
-	: center(center), maxSystems(maxCount), maxDays(maxDistance), wormholeStrategy(wormholeStrategy),
+		bool useJumpDrive, int maxSystems, int maxDays)
+	: center(center), maxSystems(maxSystems), maxDays(maxDays), wormholeStrategy(wormholeStrategy),
 			jumpFuel(useJumpDrive ? 200 : 0), jumpRange(useJumpDrive ? 100. : 0.)
 {
 	Init();
