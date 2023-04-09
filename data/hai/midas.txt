@@ -897,8 +897,13 @@ phrase "enemy midas"
 
 phrase "enemy midas"
 	word
-		"Nemo Me Impune Laccessit!" 2
-		"You should run if you still hope to see the sun rise."
-		"We will never stop hunting you!"
-		"You do not understand the value of what you have stolen."
-		"Mere children cannot be allowed to hold on to such power!"
+		"Nemo Me Impune Lacessit" 3
+		"You should run if you still hope to see the sun rise"
+		"We will never stop hunting you"
+		"You do not understand the value of what you have stolen"
+		"Mere children cannot be allowed to hold on to such power"
+		"Do not stand in our way, we act for the benefit of all"
+		"Come, let us teach you our ways"
+	word
+		"!"
+		"."
