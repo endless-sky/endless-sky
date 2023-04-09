@@ -821,7 +821,7 @@ outfit "Ion Torch"
 		"heat damage" 90
 		"minable damage" 3
 	description `Based on the RG-series Torch engine, Ion Torches are a unique type of utility mining weapon that focus the originally explosive exhaust into a thinner, more powerful flare. The more-controlled flame is akin to a heated blade allowing for more precise handling. In contrast to the Excavator, which aggressively grinds asteroids down, an Ion Torch can remove materials more accurately and safely from an asteroid.`
-	description `	This mining outfit requires a drill spar port in addition to a gun port in order to mount.`
+	description `	This mining outfit requires a drill spar port, in addition to a gun port, in order to be mounted.`
 
 
 outfit "Savagery Bludgeon"
