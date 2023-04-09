@@ -1689,6 +1689,7 @@ Files:
  images/effect/*vi?flare*
  images/hardpoint/acuit*
  images/hardpoint/ballistic*
+ images/hardpoint/burrower*
  images/hardpoint/choleric*
  images/hardpoint/firestorm?battery*
  images/hardpoint/ion?torch*
@@ -1700,6 +1701,7 @@ Files:
  images/outfit/ballistic?turret*
  images/outfit/battlezone?battery*
  images/outfit/brawl?cell*
+ images/outfit/burrower*
  images/outfit/campaign?core*
  images/outfit/choleric?cannon*
  images/outfit/choleric?turret*
