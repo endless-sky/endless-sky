@@ -251,7 +251,7 @@ mission "<uhai> 5: Scan Auxiliary"
 			outfitters "Korath Drones Alpha Loot"
 		ship "Auxiliary (Alpha)" "Settler"
 		on kill
-			dialog `The local authorities hail you, with a code purple message. "You have disapointed us. Think very carefuly of your next actions."`
+			dialog `The local authorities hail you, with a code purple message. "You have disappointed us. Think very carefully before you make any more mistakes, or it will be war!"`
 			"reputation: Hai (Unfettered)" <?= 0
 		conversation
 			branch "didn't listen"
