@@ -154,8 +154,8 @@ private:
 		double disabled;
 		double radius;
 		int type;
-		double angle;
 		float alpha;
+		double angle;
 	};
 
 
