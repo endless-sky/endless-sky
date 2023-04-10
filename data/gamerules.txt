@@ -36,3 +36,8 @@ gamerules
 	# DEFAULT: 1000
 	# ALLOWABLE VALUES: any integer >= 0
 	"no person spawn weight" 1000
+	
+	# NPC ships with mining personality will spend this much amount of time in frames to mine in the system.
+	# DEFAULT: 3600
+	# ALLOWABLE VALUES: any integer >= 0
+	"npc max mining time" 3600
