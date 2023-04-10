@@ -913,10 +913,12 @@ mission "<uhai> 7: Cavalry Arrives"
 	on fail
 		"unfettered: upset Sookootow" ++
 		conversation
-			branch nevercompleted
-				not "<uhai> 7: Stolen Cargo: done"
+			branch completed
+				has "<uhai> 7: Stolen Cargo: done"
 			branch betrayed
 				"reputation: Shadow" < 0
+			branch failed
+				has "<uhai> 7: Stolen Cargo: failed"
 			action
 				set "midas: thorn talon death"
 			`One of the ships, Thorn, or Talon, got killed. You will need to restart the mission in order to progress further with the Shadow of Mintaka.`
@@ -929,8 +931,11 @@ mission "<uhai> 7: Cavalry Arrives"
 				event "midas: thorn talon vengeance" 360
 			`You receive an ominous message of defiance, "Nemo me impune lacessit."`
 				decline
-			label nevercompleted
-			`You gave up fixing the Unfettered cargo situation.`
+			label failed
+			`You gave up on fixing the Unfettered cargo situation.`
+				decline
+			label completed
+			`Once alone in your quarters you hear a voice, "Well done, <last>."`
 
 
 
