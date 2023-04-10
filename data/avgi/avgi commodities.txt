@@ -1,0 +1,142 @@
+
+
+
+
+
+
+
+
+trade
+	commodity "Food" 100 600
+		"cereal"
+		"fruit nectar"
+		"fruits"
+		"vegetables"
+		"meat"
+		"synthetic meat"
+		"protein cubes"
+		"protein concentrate"
+		"juice concentrate"
+		"fish"
+		
+		
+		
+		
+		
+	commodity "Clothing" 140 440
+	commodity "Metal" 190 590
+		"aluminized steel"
+		"aluminum"
+		"aluminum wire"
+		"aluminum brass"
+		"aluminum bronze"
+		"beryllium"
+		"beryllium copper"
+		"brass"
+		"brass gears"
+		"metallic glasses"
+		"cadmium"
+		"chromium"
+		"copper pipes"
+		"copper wire"
+		"copper"
+		"cupronickel"
+		"gallium"
+		"gallium arsenide"
+		"galvanized steel"
+		"graphite"
+		"indium"
+		"indium tin oxide"
+		"manganese"
+		"metallic foam"
+		"magnesium"
+		"molybdenum"
+		"nickel"
+		"niobium"
+		"osmium"
+		"platinum"
+		"rebar"
+		"scandium"
+		"sheet metal"
+		"silicon bronze"
+		"silver ingots"
+		"silver"
+		"sintered bronze"
+		"stainless steel"
+		"steel bars"
+		"steel cable"
+		"steel girders"
+		"steel plating"
+		"tin"
+		"titanium"
+		"vanadium"
+		"zinc"
+	
+	
+	
+	commodity "Plastic" 240 540
+	commodity "Equipment" 330 730
+	commodity "Medical" 430 930
+	commodity "Industrial" 520 920
+	commodity "Electronics" 590 890
+	commodity "Heavy Metals" 610 1310
+	commodity "Luxury Goods" 920 1520
+	
+	commodity "Garbage"
+	commodity "Construction"
+	commodity "Military"
+	commodity "Nuclear Weapons"
+		"pulse drive charges"
+		"
+	commodity "Fissiles"
+		"uranium-235"
+		"uranium-238"
+		"uranium-233
+		"uranium"
+		"enriched uranium"
+		"highly enriched uranium"
+		"yellowcake"
+		"uranium hexafluoride"
+		"uranium salts"
+		"plutonium salts"
+		"powdered plutonium"
+		"powdered uranium"
+
+		"plutonium"
+		"plutonium-239"
+		"plutonium-238"
+	
+		"technetium"
+		"polonium"
+		"radium"
+		"liquid radon"
+		"thorium"
+		"depleted uranium"
+
+	
+		"californium"
+		"americium"
+		"curium"
+	commodity "Fusion Fuels"
+		"deuterium"
+		"tritium"
+		"lithium-6"
+		"boron"
+		"deuterium pellets"
+		"tritium pellets"
+		"lithium foil"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,1402 @@
+outfitter omnis
+	"Speck Round"
+	"Speckle Railgun"
+	"Speckle Turret"
+	"Fleck Round"
+	"Fleck Coilgun"
+	"Fleck Turret"
+	"Iota Shell"
+	"Iota Turret"
+	"Quenchgun Artillery"
+	"Phased Array Laser (450 nm)"
+	"Phased Array Laser (540 nm)"
+	"Sidereal Missile"
+	"Sidereal Rotary Launcher"
+	"Sidereal Pod"
+	"Sidereal Missile Stockpile"
+	"Equinox Torpedo"
+	"Equinox Torpedo Pylon"
+	"Equinox Torpedo Stockpile"
+	"Nadir Missile"
+	"Nadir Rotary Launcher"
+	"Nadir Magazine"
+	"Azimuth Missile"
+	"Azimuth Rotary Launcher"
+	"Azimuth Magazine"
+	"Solstice Torpedo"
+	"Solstice Torpedo Pylon"
+	"Solstice Torpedo Stockpile"
+	"Zenith Missile"
+	"Zenith Rotary Launcher"
+	"Radiative Scales"
+	"Obscurity Scales"
+	"Aetherdynamic Scales"
+	"Adamant Scales"
+	"Warding Scales"
+	"Polarizing Scales"
+	"Electrostatic Ramscoop"
+	"Dipole Ramscoop"
+	"Protium Fusion Ramscoop"
+	"Multispectral Scanner"
+	"Spectrometer Array"
+	"Small Auxiliary Radiator"
+	"Large Auxiliary Radiator"
+	"Diffuse Deflector"
+	"Specular Deflector"
+	"Mirror Deflector"
+	"Fractal Capacitor Cell"
+	"Fractal Capacitor Bank"
+	"Concentrating Solar Array"
+	"Trifold Solar Array"
+	"Photovoltaic Scales"
+	"Pebble Bed Cell"
+	"Luminous Fusion Core"
+	"Brilliant Fusion Core"
+	"Radiant Fusion Core"
+	"Stellar Fusion Core"
+	"M018 Magnetoplasma Drive"
+	"M042 Magnetoplasma Drive"
+	"S024 Coaxial Fusion Drive"
+	"S036 Axial Fusion Torch"
+	"S060 Axial Fusion Torch"
+	"S102 Axial Fusion Torch"
+	"M030 Transverse Thrusters"
+	"M052 Transverse Thrusters"
+	"M089 Transverse Thrusters"
+	"Fog Laser"
+
+
+
+
+outfit "Local Map"
+	map 1000
+
+# Weapons:
+
+
+
+
+
+
+outfit "Speck Round"
+	category "Ammunition"
+	cost 6
+	thumbnail "outfit/thunderhead"
+	"mass" 0.006
+	"sabot capacity" -1
+	"flotsam chance" 1
+	description "These dense metallic glass sabots are capable of inflicting kinetic damage via hypervelocity impacts, but are easily stopped by momentum-repulsion shield systems."
+	description "Due to their simple makeup, they can be easily manufactured out of most commonly found metals."
+
+
+
+
+outfit "Speckle Railgun"
+	category "Guns"
+	cost 40000
+	thumbnail "outfit/speckle gun"
+	"mass" 6
+	"outfit space" -9
+	"weapon capacity" -9
+	"energy capacity" 72
+	"gun ports" -1
+	"sabot capacity" 900
+	weapon
+		sound "repeater"
+		ammo "Mass Driver Round"
+		icon "icon/rail gun"
+		"fire effect" "finisher sparks"
+		"hit effect" "bombardment impact"
+		"inaccuracy" 1.8
+		"velocity" 48
+		"range override" 2400
+		"lifetime" 1
+		"reload" 12
+		"burst reload" 3
+		"burst count" 3
+		"firing energy" 24
+		"firing heat" 36
+		"firing force" 42
+		"submunition" "speckle slug"
+	description "This compact railgun fires a stream of hypervelocity metallic sabots, trading accuracy for firing rate. The Speckle Railgun files in short bursts in order to minimize rail ablation, giving the gun a chance to cool down."
+	description "A small internal capacitor allows the Speckle Railgun to be trickle charged, even if a ship's power supply would otherwise be insufficient to fire a single shot."
+	
+
+outfit "Speckle Turret"
+	category "Turrets"
+	cost 40000
+	thumbnail "outfit/speckle turret"
+	"mass" 18
+	"outfit space" -24
+	"weapon capacity" -24
+	"energy capacity" 144
+	"turret mounts" -1
+	"sabot capacity" 3600
+	weapon
+		sound "repeater"
+		ammo "Mass Driver Round"
+		icon "icon/rail gun"
+		"fire effect" "finisher sparks"
+		"hit effect" "bombardment impact"
+		"inaccuracy" 1.8
+		"velocity" 48
+		"range override" 2400
+		"lifetime" 1
+		"reload" 6
+		"turret turn" 9.0
+		"burst reload" 3
+		"burst count" 3
+		"firing energy" 24
+		"firing heat" 72
+		"firing force" 84
+		"submunition" "speckle slug"
+	description "The turreted version of the Speckle Railgun mounts a pair of railguns onto a nimble swiveling base. Its light weight and minimal size allows even the smallest ships to fit one, enabling them to engage much larger targets at extreme ranges."
+
+
+outfit "speckle slug"
+	weapon
+		sprite "projectile/proton"
+			"zoom" 0.25
+			"frame rate" 30
+		"hit effect" "bombardment impact"
+		"lifetime" 48
+		"random lifetime" 30
+		"shield damage" 24
+		"hull damage" 54
+		"hit force" 84
+
+
+outfit "Fleck Round"
+	category "Ammunition"
+	cost 6
+	thumbnail "outfit/thunderhead"
+	"mass" 0.006
+	"sabot capacity" -1
+	"flotsam chance" 1
+	description "These dense metallic glass slugs are capable of inflicting kinetic damage via hypervelocity impacts, but are easily stopped by momentum-repulsion shield systems."
+	description "Due to their simple makeup, they can be easily manufactured out of most commonly found metals."
+
+
+outfit "Fleck Coilgun"
+	category "Guns"
+	cost 40000
+	thumbnail "outfit/particle cannon"
+	"mass" 18
+	"outfit space" -18
+	"weapon capacity" -18
+	"energy capacity" 1260
+	"gun ports" -1
+	"sabot capacity" 1000
+	weapon
+		sound "repeater"
+		ammo "Fleck Round" 1
+		icon "icon/rail gun"
+		"fire effect" "finisher sparks"
+		"hit effect" "bombardment impact"
+		"inaccuracy" 1
+		"velocity" 42
+		"range override" 3600
+		"lifetime" 1
+		"reload" 30
+		"firing energy" 180
+		"firing heat" 120
+		"firing force" 180
+		"submunition" "fleck slug"
+	description `A dedicated artillery weapon, the Fleck Coilgun launches a forty-two kilogram hypervelocity projectile at extreme ranges, dealing devastating damage on any ship unfortunate enough to cross its line of fire. `
+
+
+
+outfit "Fleck Turret"
+	category "Turrets"
+	cost 40000
+	thumbnail "outfit/particle cannon"
+	"mass" 42
+	"outfit space" -42
+	"weapon capacity" -42
+	"energy capacity" 2520
+	"turret mounts" -1
+	"sabot capacity" 3600
+	weapon
+		sound "repeater"
+		ammo "Fleck Round" 2
+		icon "icon/rail gun"
+		"fire effect" "finisher sparks"
+		"hit effect" "bombardment impact"
+		"inaccuracy" 0.9
+		"velocity" 42
+		"range override" 3600
+		"lifetime" 1
+		"reload" 30
+		"turret turn" 3.6
+		"firing energy" 360
+		"firing heat" 240
+		"firing force" 360
+		"submunition" "fleck slug"
+			"offset" 3 0
+		"submunition" "fleck slug"
+			"offset" -3 0
+	description "A pair of Fleck Coilguns on a sturdy turret mount produces a powerful kinetic artillery piece capable of lobbing projectiles across an entire battlefield. The sheer momentum behind each forty-two kilogram slug can push around even the heaviest warships, while also inflicting serious damage to any physical barrier."
+	description "Like its fixed gun version, the Fleck Turret is unfortunately much less effective against the momentum-repulsion technology of shields."
+
+
+outfit "fleck slug"
+	weapon
+		sprite "projectile/coilgun"
+			"frame rate" 6
+		"hit effect" "bombardment impact"
+		"lifetime" 180
+		"inaccuracy" 0.3
+		"shield damage" 90
+		"hull damage" 180
+		"hit force" 360
+		"missile strength" 60
+
+
+
+outfit "Iota Shell"
+	category "Ammunition"
+	cost 6
+	thumbnail "outfit/thunderhead"
+	"mass" 0.06
+	"iota capacity" -1
+	"flotsam chance" 1
+	description "Nuclear shells designed to be fired from a coilgun assembly"
+
+
+outfit "Iota Turret"
+	category "Turrets"
+	cost 40000
+	thumbnail "outfit/bombardment turret"
+	"mass" 66
+	"outfit space" -66
+	"weapon capacity" -66
+	"turret mounts" -1
+	"iota capacity" 36
+	weapon
+		sound "repeater"
+		ammo "Iota Shell"
+		icon "icon/rail gun"
+		"fire effect" "finisher sparks"
+		"hit effect" "bombardment impact"
+		"inaccuracy" 0.6
+		"velocity" 36
+		"range override" 3600
+		"lifetime" 1
+		"reload" 90
+		"turret turn" 1.8
+		"firing energy" 492
+		"firing heat" 304
+		"firing force" 360
+		"submunition" "iota slug"
+	description "A coilgun that shoots nukes (campaign unlock, not needed for initial PR)"
+
+
+outfit "iota slug"
+	weapon
+		sprite "projectile/coilgun"
+			"frame rate" 6
+		"hit effect" "thermonuclear flash"
+		"hit effect" "prompt radiation" 12
+		"hit effect" "fission fragments" 60
+		"die effect" "missile death"
+		"lifetime" 180
+		"blast radius" 120
+		"shield damage" 4800
+		"hull damage" 3600
+		"hit force" 1800
+		"missile strength" 60
+
+
+
+
+
+
+
+
+
+
+
+outfit "Phased Array Laser (450 nm)"
+	category "Turrets"
+	cost 12000000
+	thumbnail "outfit/t3 anti missile"
+	"mass" 42
+	"outfit space" -42
+	"weapon capacity" -32
+	"turret mounts" -1
+	weapon
+		"hardpoint sprite" "hardpoint/blue phaser"
+		"die effect" "blue phaser die"
+		"die effect" "blue phaser die 1"
+		"fire effect" "blue phaser fire"
+		"anti-missile" 2
+		"velocity" 900
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 15
+		"firing heat" 21
+		"shield damage" 60
+		"hull damage" 60
+
+
+	description "This compact phased array laser turret uses a set of individually targetable fiber lasers to create a single collimated beam precise enough to target projectiles in flight. An azure glow strong enough to blind the naked eye is the only indication of this weapon firing."
+	description "Unlike the beam weapons used by many species, which incorporate exotic fields to mitigate beam diffraction, this weapon's effectiveness quickly drops off with range. However, the Avgi have managed to pump enough power into this laser to render it a potent missile defense system, even if its damage against other ships is lacking."
+	description "The lasing medium itself is a tightly wrapped coil of optical fiber, which would be more than a kilometer long if unraveled. This allows much of the laser to be stored internally inside the ship, with the turret itself merely containing the optics needed to aim it."
+	description "In the future, when the engineers known as "Code Herders" add the ability for turrets to contain both weapons attributes and antimissile attributes, this turret is planned to also double as a rather weak invisible beam weapon."
+	
+
+
+outfit "Phased Array Laser (540 nm)"
+	category "Turrets"
+	cost 12000000
+	thumbnail "outfit/t3 anti missile"
+	"mass" 24
+	"outfit space" -24
+	"weapon capacity" -18
+	"turret mounts" -1
+	weapon
+		"hardpoint sprite" "hardpoint/green phaser"
+		"die effect" "blue phaser die"
+		"die effect" "blue phaser die 1"
+		"fire effect" "blue phaser fire"
+		"anti-missile" 2
+		"velocity" 600
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 9
+		"firing heat" 12
+	description "This compact phased array laser turret uses a set of individually targetable fiber lasers to create a single collimated beam precise enough to target projectiles in flight. A verdant glow strong enough to blind the naked eye is the only indication of this weapon firing."
+	description "Unlike the beam weapons used by many species, which are not just simple lasers, there is nothing to stop the beam from diffracting with distance, and as such this weapon's effectiveness quickly drops off with range. However, the Avgi have managed to pump enough power into this laser to render it a potent missile defense system, even if its damage against other ships is lacking."
+	description "In the future, when the engineers known as "Code Herders" add the ability for turrets to contain both weapons attributes and antimissile attributes, this turret is planned to also double as a rather weak invisible beam weapon."
+
+
+
+effect "blue phaser die"
+	sprite "effect/attractor impact"
+		"no repeat"
+		"frame rate" 20
+		"scale" 0.5
+	"lifetime" 16
+	"random angle" 20
+	"random spin" 20
+	"random velocity" -12
+
+
+effect "blue phaser die 1"
+	sprite "effect/skylance impact"
+		"frame rate" 3
+		"scale" 2
+	"lifetime" 3
+	
+effect "blue phaser fire"
+	sprite "effect/ion rain impact"
+		"frame rate" 4
+		"random start frame"
+	"lifetime" 1
+
+
+outfit "Sidereal Missile"
+	category "Ammunition"
+	cost 660000
+	thumbnail "outfit/nuke"
+	"mass" 0.3
+	"sidereal capacity" -1
+	description "The Sidereal missile knows where it is at all times. It knows this because it knows where it isn't. By subtracting where it is from where it isn't, or where it isn't from where it is (whichever is greater), it obtains a difference, or deviation. The guidance subsystem uses deviations to generate corrective commands to drive the missile from a position where it is to a position where it isn't, and arriving at a position where it wasn't, it now is. Consequently, the position where it is, is now the position that it wasn't, and it follows that the position that it was, is now the position that it isn't"
+	description "In the event that the position that it is in is not the position that it wasn't, the system has acquired a variation, the variation being the difference between where the missile is, and where it wasn't. If variation is considered to be a significant factor, it too may be corrected by the GEA. However, the missile must also know where it was."
+	description "The missile guidance computer scenario works as follows. Because a variation has modified some of the information the missile has obtained, it is not sure just where it is. However, it is sure where it isn't, within reason, and it knows where it was. It now subtracts where it should be from where it wasn't, or vice-versa, and by differentiating this from the algebraic sum of where it shouldn't be, and where it was, it is able to obtain the deviation and its variation, which is called error."
+
+
+outfit "Sidereal Rotary Launcher"
+	category "Secondary Weapons"
+	cost 1370000
+	thumbnail "outfit/finisher pod"
+	"mass" 5.4
+	"outfit space" -18
+	"weapon capacity" -18
+	"gun ports" -1
+	"sidereal capacity" 42
+	weapon
+		sprite "projectile/sidewinder"
+			"no repeat"
+			"frame rate" .25
+		sound "finisher"
+		ammo "Sidereal Missile"
+		icon "icon/finisher"
+		"fire effect" "sidewinder fire"
+		"die effect" "finisher fragment" 6
+		"inaccuracy" 2.4
+		"velocity" 6
+		"lifetime" 30
+		"reload" 60
+		"firing energy" 12
+		"firing heat" 6
+		"acceleration" .9
+		"drag" .06
+		"turn" 0.1
+		"homing" 2
+		"radar tracking" .9
+		"optical tracking" .6
+		"missile strength" 9
+		"submunition" "Sidereal Active"
+	description `Flak Missile`
+
+
+outfit "Sidereal Pod"
+	category "Secondary Weapons"
+	cost 1370000
+	thumbnail "outfit/finisher pod"
+	"mass" 4.8
+	"outfit space" -6
+	"weapon capacity" -6
+	"gun ports" -1
+	"sidereal capacity" 6
+	weapon
+		sprite "projectile/sidewinder"
+			"no repeat"
+			"frame rate" .25
+		sound "finisher"
+		ammo "Sidereal Missile"
+		icon "icon/finisher"
+		"fire effect" "sidewinder fire"
+		"die effect" "finisher fragment" 6
+		"inaccuracy" 3.6
+		"velocity" 3
+		"lifetime" 30
+		"reload" 90
+		"firing energy" 6
+		"firing heat" 3
+		"acceleration" .9
+		"drag" .06
+		"turn" 0.1
+		"homing" 2
+		"radar tracking" .9
+		"missile strength" 9
+		"submunition" "Sidereal Active"
+	description `Standard nuke launcher`
+
+
+outfit "Sidereal Active"
+	weapon
+		sprite "projectile/sidewinder"
+			"no repeat"
+			"frame rate" .25
+		"die effect" "small explosion"
+		"hit effect" "missile hit"
+		"lifetime" 420
+		"split range" 600
+		"acceleration" 0.9
+		"drag" .03
+		"turn" 3
+		"homing" 4
+		"radar tracking" .9
+		"optical tracking" .6
+		"shield damage" 360
+		"hull damage" 480
+		"hit force" 210
+		"missile strength" 12
+		"submunition" "Sidereal Flack" 12
+
+
+outfit "Sidereal Flack"
+	weapon
+		sprite "projectile/rail slug"
+			"no repeat"
+			"frame rate" .1
+		"die effect" "missile death"
+		"hit effect" "bombardment impact"
+		"inaccuracy" 6
+		"random velocity" 6
+		"lifetime" 60
+		"random lifetime" 180
+		"shield damage" 18
+		"hull damage" 24
+		"hit force" 33
+		"missile strength" 3
+
+
+outfit "Sidereal Missile Stockpile"
+	category "Ammunition"
+	cost 1440000
+	thumbnail "outfit/outfit expansion"
+	"mass" 4.8
+	"outfit space" -12
+	"sidereal capacity" 24
+	ammo "Sidereal Missile"
+	description "Sidereal storage"
+
+
+outfit "Equinox Torpedo"
+	category "Ammunition"
+	cost 660000
+	thumbnail "outfit/nuke"
+	"mass" 3
+	"equinox capacity" -1
+	description "The Equinox makes no compromises with its design goal of fitting the largest thermonuclear warhead feasible. After minimalizing its propulsion system to little more than a few reaction control thrusters, the Equinox lacks the delta-v to make large changes to its trajectory. A carrying ship must instead both accelerate and aim the torpedo properly to ensure a hit."
+	description "A thin coating of ablative polymer designed to defeat lasers was the only mass the Avgi were willing to allocate to armor, and as such the Equinox is easily shot down by most modern antimissile systems."
+
+
+outfit "Equinox Torpedo Pylon"
+	category "Secondary Weapons"
+	cost 80000
+	thumbnail "outfit/teciimach pod"
+	"mass" 6
+	"outfit space" -6
+	"weapon capacity" -9
+	"gun ports" -1
+	"equinox capacity" 1
+	weapon
+		sprite "projectile/emp torpedo"
+			"frame rate" 3
+		sound "torpedo"
+		ammo "Equinox Torpedo"
+		"stream"
+		icon "icon/nuke"
+		"fire effect" "torpedo fire"
+		"firing energy" 24
+		"firing force" -1200
+		"reload" 360
+		"range override" 720
+		"velocity override" 6
+		"lifetime" 60
+		"turn" 720
+		"acceleration" 0.3
+		"drag" 0.06
+		"homing" 4
+		"hit effect" "thermonuclear flash"
+		"hit effect" "prompt radiation" 24
+		"hit effect" "fission fragments" 860
+		"die effect" "missile death"
+		"missile strength" 24
+		"submunition" "Equinox Active"
+	description "Designed concurrently with the Phonon-class Torpedo Bomber, the Equinox Torpedo is a large, minimally guided thermonuclear torpedo that allows even small drones to pose a credible threat to a capital warship."
+	description "Unlike the nuclear missiles employed by the Avgi, the Equinox carries only enough propellant to make small adjustments to its trajectory, and lacks the ability to accelerate entirely. It instead relies on the speed of the bomber carrying it, trading an independent propulsive capability for an oversized warhead."
+	description "This pylon externally mounts a single Equinox Torpedo, employing a small electromagnetic catapult to fling the torpedo towards its target."
+
+
+outfit "Equinox Active"
+	weapon
+		sprite "projectile/emp torpedo"
+			"frame rate" 3
+		"acceleration" 0.03
+		"drag" 0.006
+		"turn" 0.03
+		"homing" 4
+		"optical tracking" .6
+		"lifetime" 600
+		"hit effect" "nuke explosion"
+		"hit effect" "mhd explosion"
+		"hit effect" "mhd spark" 860
+		"die effect" "missile death"
+		"shield damage" 16200
+		"hull damage" 9000
+		"heat damage" 7200
+		"hit force" 3600
+		"blast radius" 180
+		"trigger radius" 90
+		"missile strength" 24
+		
+
+outfit "Equinox Torpedo Stockpile"
+	category "Ammunition"
+	cost 1440000
+	thumbnail "outfit/outfit expansion"
+	"mass" 6
+	"outfit space" -24
+	"cargo space" -18
+	"crew requirement" 3
+	"equinox capacity" 12
+	ammo "Equinox Torpedo"
+	description "This automated reloading bay, intended for use on carriers, can quickly replenish a docked fighter or drone with Equinox Torpedoes. A generous stockpile of torpedoes allows a carrier to support multiple sorties before needing to resupply."
+
+
+outfit "Nadir Missile"
+	category "Ammunition"
+	cost 660000
+	thumbnail "outfit/nuke"
+	"mass" 1
+	"nadir capacity" -1
+	description "Standard thermonuclear missile"
+
+
+outfit "Nadir Rotary Launcher"
+	category "Secondary Weapons"
+	cost 1370000
+	thumbnail "outfit/finisher pod"
+	"mass" 18
+	"outfit space" -24
+	"weapon capacity" -24
+	"gun ports" -1
+	"nadir capacity" 6
+	weapon
+		sprite "projectile/finisher activating"
+			"frame rate" 1
+			"no repeat"
+		sound "finisher"
+		ammo "Nadir Missile"
+		stream
+		icon "icon/finisher"
+		"fire effect" "finisher sparks" 6
+		"die effect" "finisher fragment" 6
+		"inaccuracy" 3
+		"velocity" 9
+		"lifetime" 30
+		"range override" 4800
+		"reload" 90
+		"firing energy" 6
+		"firing heat" 9
+		"turn" 6
+		"homing" 2
+		"radar tracking" .9
+		"missile strength" 36
+		"submunition" "Nadir Active"
+	description `WIP`
+
+
+outfit "Nadir Active"
+	weapon
+		sprite "projectile/thunderhead"
+			"frame rate" 2.4
+		"hit effect" "thermonuclear flash"
+		"hit effect" "prompt radiation" 9
+		"hit effect" "fission fragments" 240
+		"die effect" "missile death"
+		"lifetime" 600
+		"acceleration" 0.9
+		"drag" 0.03
+		"turn" 2.4
+		"homing" 4
+		"radar tracking" .9
+		"optical tracking" .6
+		"trigger radius" 36
+		"blast radius" 150
+		"shield damage" 4800
+		"hull damage" 3600
+		"hit force" 1800
+		"missile strength" 36
+
+
+outfit "Nadir Magazine"
+	category "Ammunition"
+	cost 1440000
+	thumbnail "outfit/outfit expansion"
+	"mass" 3
+	"outfit space" -18
+	"nadir capacity" 12
+	ammo "Nadir Missile"
+	description "Nadir storage"
+
+outfit "Azimuth Missile"
+	category "Ammunition"
+	cost 660000
+	thumbnail "outfit/nuke"
+	"mass" 1
+	"azimuth capacity" -1
+	description "Casaba Howitzer (campaign unlock, not needed for initial PR)"
+
+
+outfit `Azimuth Rotary Launcher`
+	category "Secondary Weapons"
+	licenses
+		Heliarch
+	cost 1370000
+	thumbnail "outfit/finisher pod"
+	"mass" 24
+	"outfit space" -24
+	"weapon capacity" -24
+	"gun ports" -1
+	"azimuth capacity" 12
+	weapon
+		sprite "projectile/finisher activating"
+			"frame rate" 1
+			"no repeat"
+		sound "finisher"
+		ammo "Azimuth Missile"
+		icon "icon/finisher"
+		"fire effect" "finisher sparks" 8
+		"die effect" "finisher fragment" 6
+		"inaccuracy" 5
+		"velocity" 10
+		"lifetime" 60
+		"reload" 80
+		"firing energy" 120
+		"firing heat" 20
+		"acceleration" .8
+		"drag" .1
+		"turn" 0.1
+		"homing" 2
+		"radar tracking" .8
+		"missile strength" 12
+		"submunition" "Active Azimuth"
+	description `Casaba Howitzer`
+
+
+
+outfit "Active Azimuth"
+	weapon
+		sprite "projectile/thunderhead"
+			"frame rate" 2.4
+		"live effect" "finisher trail" 50
+		"hit effect" "thermonuclear flash"
+		"hit effect" "prompt radiation" 12
+		"hit effect" "fission fragments" 60
+		"die effect" "missile death"
+		"lifetime" 500
+		"acceleration" 1
+		"drag" .1
+		"turn" 2
+		"homing" 4
+		"radar tracking" .8
+		"optical tracking" .5
+		"trigger radius" 36
+		"blast radius" 120
+		"shield damage" 4800
+		"hull damage" 3600
+		"hit force" 2100
+		"missile strength" 50
+
+
+
+
+
+
+
+
+effect "thermonuclear flash"
+	sprite "effect/explosion/nuke"
+		"no repeat"
+		"frame rate" 30
+	sound "explosion nuke"
+	"lifetime" 15
+	"random angle" 360
+	"random spin" 5
+	"random velocity" 1
+	"velocity scale" .4
+
+effect "prompt radiation"
+	sprite "effect/explosion/huge"
+		"no repeat"
+		"frame rate" 15
+	"lifetime" 36
+	"random angle" 360
+	"random spin" 5
+	"random velocity" 8
+	"velocity scale" 0.1
+
+effect "fission fragments"
+	sprite "effect/finisher sparks"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 60
+	"random angle" 360
+	"random spin" 5
+	"random velocity" 5
+	"velocity scale" 0.1
+
+
+
+
+Fission
+
+Equinox Torpedo
+Azimuth Missile
+Nadir Missile
+
+Fusion
+
+Horizon Missile
+Solstice Torpedo
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Systems:
+
+outfit "Radiative Scales"
+	category "Systems"
+	cost 200000
+	thumbnail "outfit/interference plating"
+	"mass" 12
+	"surface space" 0
+	"cooling" 69
+	"heat dissipation" 0.3
+	"solar heat" 0.6
+	description "This modular set of graphene microchannel radiators can be mounted conformally to a ship's hull, allowing it to radiate away waste heat."
+	description "Radiant Scales take advantage of special external hardpoints cleverly built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
+
+
+outfit "Obscurity Scales"
+	category "Systems"
+	cost 200000
+	thumbnail "outfit/interference plating"
+	"mass" 6
+	"surface space" 6
+	"scan interference" 1.2
+	"radar jamming" 6
+	"optical jamming" 6
+	"solar heat" 0.3
+	"radar cloak" 1
+	description "A specialized coating of carbon nanotubes and diamondoid nanocrystals, grown molecule by molecule, produces this conformal film capable of interfering with any attempts to scan or detect a ship covered with these."
+	description "Obscurity Scales take advantage of special external hardpoints cleverly built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
+
+
+outfit "Aetherdynamic Scales"
+	category "Systems"
+	cost 200000
+	thumbnail "outfit/interference plating"
+	"mass" 12
+	"surface space" -12
+	"drag reduction" 0.33
+	"solar heat" 0.3
+	description "These special plates conform to a ship's hull, streamlining it allowing it to reach higher maximum speeds, even without an increase in thrust."
+	description "Aetherdynamic Scales take advantage of special external hardpoints cleverly built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
+
+
+outfit "Adamant Scales"
+	category "Systems"
+	cost 200000
+	thumbnail "outfit/interference plating"
+	"mass" 36
+	"surface space" -36
+	"hull multiplier" 1.8
+	"solar heat" 9
+	description "Thanks to recent breakthroughts in materials science, the Avgi have devised this retrofitting kit to allow older ships to take advantage of the increased hull strength offered by exotic materials. These armor plates and structural members reinforce both the skin and core strength of a ship, strengthening it without compromising its internal structure."
+	description "Adamant Scales take advantage of special external hardpoints cleverly built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
+
+
+outfit "Warding Scales"
+	category "Systems"
+	cost 200000
+	thumbnail "outfit/warding scales"
+	"mass" 42
+	"surface space" -42
+	"shield multiplier" 0.6
+	"solar heat" 3
+	description "Breakthrough physics research has allowed the Avgi to create advanced shield emitters well in advance of their previous ones. While baked into the ships of most species, Avgi starship construction is sophisticated enough to allow their shield matrices to be retrofitted with relative ease."
+	description "Warding Scales take advantage of special external hardpoints cleverly built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
+
+
+outfit "Polarizing Scales"
+	category "Systems"
+	cost 200000
+	thumbnail "outfit/interference plating"
+	"mass" 24
+	"surface space" -24
+	"ion protection" 0.3
+	"ion resistance" 0.16
+	"solar heat" 6
+	description "A careful arrangement of both conductive and dielectric materials, arranged in conformal conduits, provides a degree of protection against external electromagnetic or ionizing damage."
+	description "Polarizing Scales take advantage of special external hardpoints cleverly built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
+
+
+outfit "Electrostatic Ramscoop"
+	category "Systems"
+	cost 60000
+	thumbnail "outfit/ramscoop"
+	"mass" 12
+	"outfit space" -12
+	"ramscoop" 3.6
+	"fuel generation" 0.03
+	"energy consumption" 1.2
+	description "A powerful bank of lasers ionizes the interstellar medium around ships equipped with these ramscoops, allowing electromagnets to collect extra material on top of the naturally charged solar wind. This results in a predictable supply of fuel, even around stars with solar winds poor in deuterium."
+	description "Ramscoops like these were used in Avgi ram-augmented torchships, allowing them to sustain constant burns during their sublight interstellar journeys."
+
+
+outfit "Dipole Ramscoop"
+	category "Systems"
+	cost 60000
+	thumbnail "outfit/ramscoop"
+	"mass" 36
+	"outfit space" -36
+	"ramscoop" 9
+	"fuel generation" 0.03
+	"energy consumption" 0.9
+	description "By producing extremely powerful magnetic fields, this ramscoop is able to grab ambient hydrogen atoms by their magnetic dipoles, channeling them towards the ship without needing to first ionize them. This results in a ramscoop that is more efficient in energy-per-fuel collected than the Electrostatic Ramscoop, but is not quite as compact."
+	description "Ramscoops like these were used in Avgi ram-augmented torchships, allowing them to sustain constant burns during their sublight interstellar journeys."
+
+
+outfit "Protium Fusion Ramscoop"
+	category "Systems"
+	cost 60000000
+	thumbnail "outfit/ramscoop"
+	"mass" 108
+	"outfit space" -108
+	"spinal mount" -1
+	"ramscoop" 90
+	"fuel generation" 1.2
+	"energy consumption" 12
+	description "The largest of the Avgi's sublight starships used direct cycle ramjet engines to collect hydrogen from the interstellar medium, fusing it while it sped by at a small fraction of the speed of light to produce thrust. This ramscoop takes that original design and strips out the thruster, modifying the fusion reactor to fuse protium into deuterium while preventing the deuterium from then fusing. While the process needed to inhibit deuterium fusion does make the reaction net energy negative, this ramscoop's ability to produce hyperspace fuel is unparalleled. However, it usually needs a dedicated reactor to run it, and is usually installed only on the largest Avgi tankers."
+
+
+outfit "Multispectral Scanner"
+	category "Systems"
+	cost 24000
+	thumbnail "outfit/outfit scanner"
+	"mass" 3
+	"outfit space" -6
+	"tactical scan power" 72
+	"radar refresh rate" 6
+	"radar beam width" 30
+	"energy consumption" 0.15
+	"heat generation" 0.3
+	description "A scanner with excellent sensitivity by human standards, this array of sensors covers nearly the entire electromagnetic spectrum, from hard x-rays to the softest radio waves. It is able to discern a surprising amount of information about a ship from a significant distance, providing a ship fitted with one with a plethora of targeting data."
+	description "To increase the sensitivity of the instrument, certain component sensors require constant cooling to microkelvin scale temperatures. The heat pump system responsible for maintaining this requires a surprising amount of energy, while also producing a small amount of waste heat."
+
+
+outfit "Spectrometer Array"
+	category "Systems"
+	cost 24000
+	thumbnail "outfit/outfit scanner"
+	"mass" 6
+	"outfit space" -12
+	"outfit scan power" 30
+	"outfit scan speed" 9
+	"cargo scan power" 12
+	"cargo scan speed" 9
+	"asteroid scan power" 72
+	"energy consumption" 0.03
+	description "This sensor array features a set of sensitive spectrometers capable of analyzing the spectral signatures of materials in order to determine their composition. A small ultraviolet laser can speed this process up for asteroids by vaporizing a small surface sample, making the spectral lines much more visibile, but is unfortunately useless against shielded ships and their internal systems."
+	description "Unfortunately, while Avgi sensors excel in determining information such as the chemical composition of an object, the amount of information required to predict a component's functionality means this sensor can be quite slow when scanning a ship's complex systems or its internal bay contents."
+
+
+outfit "Small Auxiliary Radiator"
+	category "Systems"
+	cost 200000
+	thumbnail "outfit/small heat shunt"
+	"mass" 6
+	"outfit space" -12
+	"cooling" 12
+	description "Smaller Avgi ships usually lack the distinctive triangular radiators found on their warships. Instead, they tend to use simple flat panel radiators such as these. This closed-loop radiator circulates hot coolant through millions of channels embedded in a thin graphene sheet, radiating away waste heat in a lightweight package."
+
+
+outfit "Large Auxiliary Radiator"
+	category "Systems"
+	cost 200000
+	thumbnail "outfit/small heat shunt"
+	"mass" 18
+	"outfit space" -42
+	"cooling" 72
+	description "While most large Avgi ships are built with a comprehensive set of radiators, trimmed to fall within the radiation shadow produced by their engines and reactors, they occasionally require additional heat rejection systems. This large radiator saves on space compared to its smaller cousin by taking advantage of the scaling efficiencies of its larger coolant pump, but is otherwise very similar."
+
+
+outfit "Diffuse Deflector"
+	category "Systems"
+	cost 35000
+	thumbnail "outfit/small shield"
+	"mass" 24
+	"outfit space" -24
+	"shield generation" .24
+	"shield energy" .9
+	"shield heat" 2.4
+	"shield delay" 6
+	description "Avgi shield generators are primitive at best, which is especially evident in their attempt to scale them down to a manageable size for their drones and interceptors. This shield generator requires a prodigious amount of cooling after Avgi engineers miniturized it to the limits of their knowledge of shielding principles."
+
+
+outfit "Specular Deflector"
+	category "Systems"
+	cost 120000
+	thumbnail "outfit/large shield"
+	"mass" 54
+	"outfit space" -54
+	"shield generation" .84
+	"shield energy" 1.8
+	"shield heat" 4.8
+	"shield delay" 6
+	description "For its size, you would expect this shield generator to be far more powerful than it actually is. While it is nearly as large as the heaviest human shield generators, it is only about three quarters as strong, while also consuming much more power."
+
+outfit "Mirror Deflector"
+	category "Systems"
+	cost 200000
+	thumbnail "outfit/huge shield"
+	"mass" 72
+	"outfit space" -72
+	"shield generation" 1.08
+	"shield energy" 3.6
+	"shield heat" 9.6
+	"shield delay" 6
+	description "The largest shield generator manufactured by the Avgi is impressive, if only because of how far the Avgi have pushed their limited theory of shielding principles. While their engineering ingenuity is admirable, there is a limit to how far you can take an incomplete understanding of the base physics behind shielding, and this generator approaches that limit."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Power:
+
+
+outfit "Concentrating Solar Array"
+	category "Power"
+	cost 200000
+	thumbnail "outfit/tiny photovoltaic"
+	"mass" 1
+	"outfit space" -6
+	"solar collection" 0.3
+	"solar heat" 0.3
+	description "This small set of concentrating solar cells efficiently collects sunlight, turning it into usable energy. Fresnel lenses concentrate sunlight onto a smaller number of highly efficient solar cells, reducing weight."
+
+
+outfit "Trifold Solar Array"
+	category "Power"
+	cost 200000
+	thumbnail "outfit/small photovoltaic"
+	"mass" 3
+	"outfit space" -18
+	"solar collection" 1.2
+	"solar heat" 1.2
+	description "This large set of concentrating solar cells efficiently collects sunlight, turning it into usable energy. Fresnel lenses concentrate sunlight onto a smaller number of highly efficient solar cells, reducing weight."
+
+
+outfit "Photovoltaic Scales"
+	category "Power"
+	cost 200000
+	thumbnail "outfit/interference plating"
+	"mass" 24
+	"surface space" -24
+	"solar collection" 3.6
+	"solar heat" 1.8
+	description "These concentrating solar panels can be mounted conformally to a ship's hull, efficiently collecting sunlight and turning it into usable energy."
+	description "Photovoltaic Scales take advantage of special external hardpoints cleverly built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star. However, they also tend to increase the amount of heat absorbed from the local star."
+
+
+outfit "Pebble Bed Cell"
+	category "Power"
+	cost 1200000
+	thumbnail "outfit/pebble core"
+	"mass" 15
+	"outfit space" -24
+	"energy generation" 3.6
+	"heat generation" 5.4
+	description `The Pebble Bed reactor is an extremely compact fission reactor designed to fit even on large fighters or interceptors. By passing a gas through a tightly-packed pile of uranium-cored graphite "pebbles", the reactor can achieve core temperatures high enough to make it efficient for its size.`
+
+
+`"Subdwarf" Fusion Core`
+`"Main Sequence" Fusion Core`
+`"Supergiant" Fusion Core`
+`"Nova" Fusion Core`
+
+
+outfit "Luminous Fusion Core"
+	category "Power"
+	cost 20460000
+	thumbnail "outfit/triple plasma core"
+	"mass" 42
+	"outfit space" -42
+	"energy generation" 12
+	"heat generation" 30
+	"fuel consumption" 0.0033
+	
+
+outfit "Brilliant Fusion Core"
+	category "Power"
+	cost 20460000
+	thumbnail "outfit/triple plasma core"
+	"mass" 72
+	"outfit space" -72
+	"energy generation" 21
+	"heat generation" 54
+	"fuel consumption" 0.0042
+	
+
+outfit "Radiant Fusion Core"
+	category "Power"
+	cost 20460000
+	thumbnail "outfit/triple plasma core"
+	"mass" 114
+	"outfit space" -114
+	"energy generation" 36
+	"heat generation" 96
+	"fuel consumption" 0.0066
+	
+
+outfit "Stellar Fusion Core"
+	category "Power"
+	cost 20460000
+	thumbnail "outfit/triple plasma core"
+	"mass" 162
+	"outfit space" -162
+	"energy generation" 54
+	"heat generation" 156
+	"fuel consumption" 0.009
+
+
+outfit "Fractal Capacitor Cell"
+	category "Power"
+	cost 200000
+	thumbnail "outfit/supercapacitor"
+	"mass" 0.5
+	"outfit space" -3
+	"energy capacity" 1800
+	"ion protection" -0.003
+	"description" "The internal structure of this deceptively light capacitor cell resembles a fractal of molecule-thin graphene sheets interlocked together. While not the most efficient in their use of volume, and thus outfit space, this capacitor cell is extraordinarily energy dense for its mass, a deliberate design choice from the days of sublight interstellar travel, when every gram counted."
+	"description" "Unfortunately, the internal structure is also quite delicate, and is prone to potential discharge when exposed to ionizing radiation. Thankfully, resilient grounding leads prevents this discharge from becoming catastrophic."
+	
+	
+outfit "Fractal Capacitor Bank"
+	category "Power"
+	cost 200000
+	thumbnail "outfit/supercapacitor"
+	"mass" 3
+	"outfit space" -15
+	"energy capacity" 10800
+	"ion protection" -0.009
+	"description" "Fractal capacitors are capable of storing a large amount of energy within superconducting graphene sheets. This capacitor bank chains together six individual cells, but saves both space and mass by discarding redundant components and unnecessary structural mass."
+	"description" "Like its component cells, the capacitor bank is vulnerable to ionizing weapons, but is relatively better shielded for its size by virtue of its reduced surface area to volume ratio."
+
+
+
+
+
+
+
+
+# Engines:
+
+
+outfit "M018 Magnetoplasma Drive"
+	category "Engines"
+	"cost" 100000
+	thumbnail "outfit/ionic afterburner"
+	"mass" 12
+	"outfit space" -18
+	"engine capacity" -18
+	"thrust" 6
+	"thrusting energy" 1.2
+	"thrusting heat" 0.6
+	"reverse thrust" 3
+	"reverse thrusting energy" 0.6
+	"reverse thrusting heat" 0.3
+	"turn" 270
+	"turning energy" 0.6
+	"turning heat" 0.3
+	"drag reduction" 0.12
+	"flare sprite" "effect/pug flare"
+		"frame rate" 5
+	"flare sound" "plasma tiny"
+	description "This compact cluster of omnidirectional magnetoplasmadynamic thrusters can propel small ships to impressive speeds over time, but is also quite energy hungry." 
+
+
+outfit "M042 Magnetoplasma Drive"
+	category "Engines"
+	"cost" 100000
+	thumbnail "outfit/ionic afterburner"
+	"mass" 33
+	"outfit space" -42
+	"engine capacity" -42
+	"thrust" 14.4
+	"thrusting energy" 2.4
+	"thrusting heat" 1.5
+	"reverse thrust" 9
+	"reverse thrusting energy" 1.2
+	"reverse thrusting heat" 0.75
+	"turn" 630
+	"turning energy" 1.2
+	"turning heat" 0.6
+	"drag reduction" 0.18
+	"flare sprite" "effect/pug flare"
+		"frame rate" 5
+	"flare sound" "plasma tiny"
+	description "This compact cluster of omnidirectional magnetoplasmadynamic thrusters can propel small ships to impressive speeds over time, but is also quite energy hungry." 
+
+
+outfit "S024 Coaxial Fusion Drive"
+	category "Engines"
+	"cost" 100000
+	thumbnail "outfit/ionic afterburner"
+	"mass" 24
+	"outfit space" -24
+	"engine capacity" -24
+	"thrust" 21
+	"thrusting energy" 1.2
+	"thrusting heat" 2.4
+	"thrusting fuel" 0.012
+	"turn" 420
+	"turning energy" 0.42
+	"turning heat" 0.9
+	"turning fuel" 0.006
+	"drag reduction" 0.6
+	"ramscoop" 0.6
+	"flare sprite" "effect/fusionflare"
+		"frame rate" 5
+	"flare sound" "plasma tiny"
+
+
+outfit "S036 Axial Fusion Torch"
+	category "Engines"
+	"cost" 100000
+	thumbnail "outfit/ionic afterburner"
+	"mass" 36
+	"outfit space" -36
+	"engine capacity" -36
+	"thrust" 54
+	"thrusting energy" 2.16
+	"thrusting heat" 15
+	"thrusting fuel" 0.06
+	"drag reduction" 1
+	"flare sprite" "effect/fusionflare"
+		"frame rate" 5
+	"flare sound" "plasma tiny"
+
+
+outfit "S060 Axial Fusion Torch"
+	category "Engines"
+	"cost" 100000
+	thumbnail "outfit/ionic afterburner"
+	"mass" 60
+	"outfit space" -60
+	"engine capacity" -60
+	"thrust" 99
+	"thrusting energy" 3.66
+	"thrusting heat" 27
+	"thrusting fuel" 0.06
+	"drag reduction" 1.2
+	"flare sprite" "effect/fusionflare"
+		"frame rate" 5
+	"flare sound" "plasma tiny"
+
+
+outfit "S102 Axial Fusion Torch"
+	category "Engines"
+	"cost" 100000
+	thumbnail "outfit/ionic afterburner"
+	"mass" 102
+	"outfit space" -102
+	"engine capacity" -102
+	"thrust" 180
+	"thrusting energy" 6
+	"thrusting heat" 54
+	"thrusting fuel" 0.1
+	"drag reduction" 1.8
+	"flare sprite" "effect/fusionflare"
+		"frame rate" 5
+	"flare sound" "plasma tiny"
+
+
+effect "fusion afterburner"
+	sprite "effect/fusionflare"
+		"frame rate" 10
+		zoom 2
+	sound "remnant afterburner"
+
+
+
+outfit "M018 Transverse Thrusters"
+	plural "Steerings (Comet Class)"
+	category "Engines"
+	"cost" 221000
+	thumbnail "outfit/small korath steering"
+	"mass" 18
+	"outfit space" -18
+	"engine capacity" -18
+	"turn" 568.8
+	"turning energy" 1.4
+	"turning heat" 4.1
+	"steering flare sprite" "effect/korath flare/small"
+		"frame rate" 7.5
+	"steering flare sound" "plasma small"
+	description "This compact steering system is a classic example of Korath technology: small, powerful, and woefully inefficient."
+
+
+outfit "M030 Transverse Thrusters"
+	plural "Steerings (Lunar Class)"
+	category "Engines"
+	"cost" 473000
+	thumbnail "outfit/medium korath steering"
+	"mass" 30
+	"outfit space" -30
+	"engine capacity" -30
+	"turn" 1056.0
+	"turning energy" 2.5
+	"turning heat" 7.4
+	"steering flare sprite" "effect/korath flare/medium"
+		"frame rate" 7
+	"steering flare sound" "plasma medium"
+	description "Korath engines can be fitted into just about any ship, but unless accompanied by some Korath cooling systems as well, their heat output will often be more than the ship can handle."
+
+
+outfit "M052 Transverse Thrusters"
+	plural "Steerings (Planetary Class)"
+	category "Engines"
+	"cost" 1077000
+	thumbnail "outfit/large korath steering"
+	"mass" 52
+	"outfit space" -52
+	"engine capacity" -52
+	"turn" 2069.6
+	"turning energy" 4.6
+	"turning heat" 14.2
+	"steering flare sprite" "effect/korath flare/large"
+		"frame rate" 6.5
+	"steering flare sound" "plasma large"
+	description "Where other species might focus on converting energy into thrust as efficiently as possible, the Korath instead strive to pack as much power as possible into the smallest area. This steering system is a classic example of their work."
+
+
+outfit "M089 Transverse Thrusters"
+	plural "Steerings (Stellar Class)"
+	category "Engines"
+	"cost" 2435000
+	thumbnail "outfit/huge korath steering"
+	"mass" 89
+	"outfit space" -89
+	"engine capacity" -89
+	"turn" 4005.0
+	"turning energy" 8.2
+	"turning heat" 26.7
+	"steering flare sprite" "effect/korath flare/huge"
+		"frame rate" 6
+	"steering flare sound" "plasma huge"
+	description "After millennia of war, the Korath have developed some truly enormous warships. These steering systems give even their largest warships a reasonable amount of agility in combat."
+
+
+
+
+
+
+# Special:
+
+
+
+
+outfit "Electromotive Rifle"
+	category "Hand to Hand"
+	cost 53000
+	thumbnail "outfit/avgi rifle"
+	"capture attack" 0.6
+	"capture defense" 1.2
+	"unplunderable" 1
+	description "This slim coilgun rifle fires a small metallic glass flechette with deadly accuracy. While those intended for ground combat can easily achieve muzzle velocities in the high hypersonic regime, this version, adapted for shipboard combat, is deliberately undervolted to reduce the risk of overpenetrating and breaching a ship's hull."
+
+
+outfit "Lancet Adamant"
+	category "Unique"
+	cost 53000
+	thumbnail "outfit/korath rifle"
+	"capture attack" 3
+	"capture defense" 6
+	"unplunderable" 1
+	description "Mostly used as a ceremonial weapon, this sleek silver spear is tipped with diamond. While not particularly useful in the realities of modern combat, it certainly looks impressive."
+
+
+
+

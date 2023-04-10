@@ -1,0 +1,981 @@
+shipyard "omnis"
+	"Flutter (Transport)"
+	"Flutter (Cargo)"
+	"Echo"
+	"Vibe"
+	"Timbre"
+	"Rhythm"
+	"Coherence"
+	"Resonance"
+	"Reverberance"
+	"Crest"
+	"Cascade"
+	"Quake"
+	"Lumen"
+	"Lens"
+	"Wavelet"
+	"Phonon"
+
+
+shipyard Avgi
+	"Flutter (Transport)"
+	"Flutter (Cargo)"
+	"Echo"
+	"Vibe"
+	"Timbre"
+	"Rhythm"
+	"Coherence"
+	"Resonance"
+	"Reverberance"
+	"Crest"
+	"Cascade"
+	"Quake"
+	"Lumen"
+	"Lens"
+	"Wavelet"
+	"Phonon"
+
+
+
+# Transports:
+
+
+
+ship "Swell (Transport)"
+	sprite "ship/swell crew"
+	thumbnail "thumbnail/swell crew"
+	attributes
+		category "Transport"
+		"shields" 700
+		"hull" 1100
+		"required crew" 2
+		"bunks" 36
+		"mass" 114
+		"drag" 1.4
+		"heat dissipation" 1.3
+		"fuel capacity" 600
+		"outfit space" 186
+		"weapon capacity" 36
+		"engine capacity" 72
+		"solar collection" 2.1
+		"surface space" 27
+		weapon
+			"blast radius" 18
+			"shield damage" 180
+			"hull damage" 90
+			"hit force" 270
+		outfits
+
+
+
+ship "Flutter (Transport)"
+	sprite "ship/swell crew"
+	thumbnail "thumbnail/swell crew"
+	attributes
+		category "Transport"
+		"shields" 700
+		"hull" 1100
+		"required crew" 2
+		"bunks" 36
+		"mass" 114
+		"drag" 1.4
+		"heat dissipation" 1.3
+		"fuel capacity" 600
+		"outfit space" 186
+		"weapon capacity" 36
+		"engine capacity" 72
+		"solar collection" 2.1
+		"surface space" 27
+		weapon
+			"blast radius" 18
+			"shield damage" 180
+			"hull damage" 90
+			"hit force" 270
+		outfits
+
+
+
+
+
+
+
+# Freighters:
+
+
+ship "Swell (Cargo)"
+	sprite "ship/flutter cargo"
+	thumbnail "thumbnail/flutter cargo"
+	attributes
+		category "Light Freighter"
+		"shields" 700
+		"hull" 1400
+		"automaton" 1
+		"cargo space" 228
+		"mass" 114
+		"drag" 1.4
+		"heat dissipation" 1.3
+		"fuel capacity" 600
+		"outfit space" 186
+		"weapon capacity" 36
+		"engine capacity" 72
+		"solar collection" 2.1
+		"surface space" 27
+		weapon
+			"blast radius" 21
+			"shield damage" 210
+			"hull damage" 105
+			"hit force" 315 
+		outfits
+
+
+
+ship "Flutter (Cargo)"
+	sprite "ship/flutter cargo"
+	thumbnail "thumbnail/flutter cargo"
+	attributes
+		category "Light Freighter"
+		"shields" 700
+		"hull" 1400
+		"automaton" 1
+		"cargo space" 228
+		"mass" 114
+		"drag" 1.4
+		"heat dissipation" 1.3
+		"fuel capacity" 600
+		"outfit space" 186
+		"weapon capacity" 36
+		"engine capacity" 72
+		"solar collection" 2.1
+		"surface space" 27
+		weapon
+			"blast radius" 21
+			"shield damage" 210
+			"hull damage" 105
+			"hit force" 315 
+		outfits
+
+
+
+
+
+
+
+# Utility:
+
+
+ship "Echo"
+	sprite "ship/echo"
+	thumbnail "thumbnail/echo"
+	attributes
+		category "Utility"
+		"shields" 2400
+		"hull" 7200
+		"required crew" 12
+		"bunks" 15
+		"cargo space" 54
+		"mass" 414
+		"drag" 6.0
+		"heat dissipation" .89
+		"fuel capacity" 8400
+		"outfit space" 504
+		"weapon capacity" 93
+		"engine capacity" 162
+		"surface space" 63
+		"ramscoop" 18
+		"fuel generation" 0.05
+		"energy consumption" 1.3
+		weapon
+			"blast radius" 192
+			"shield damage" 1920
+			"hull damage" 960
+			"hit force" 2880
+		outfits
+
+		engine 0 252
+
+		turret 0 42
+		turret -36 -138
+		turret 36 -138
+
+		bay "Drone" -69 -3
+		bay "Drone" 69 -3
+		bay "Drone" -69 27
+		bay "Drone" 69 27
+	description "Echo-class Tanker"
+
+
+ship "Damper"
+	sprite "ship/damper"
+	thumbnail "thumbnail/damper"
+	attributes
+		category "Utility"
+		"shields" 700
+		"hull"	1900
+		"required crew" 3
+		"bunks" 9
+		"mass" 54
+		"drag" 1.8
+		"heat dissipation" 0.98
+		"fuel capacity" 2300
+		"cargo space" 18
+		"outfit space" 252
+		"weapon capacity" 63
+		"engine capacity" 84
+		"surface space" 40
+		weapon
+			"blast radius" 600
+			"shield damage" 8000
+			"hull damage" 16000
+			"hit force" 8000
+		outfits
+	description "Damper-class Tanker"
+
+
+
+ship "Crest"
+	sprite "ship/crest"
+	thumbnail "thumbnail/crest"
+	attributes
+		category "Utility"
+		"shields" 700
+		"hull"	1900
+		"required crew" 3
+		"bunks" 9
+		"mass" 54
+		"drag" 1.8
+		"heat dissipation" 0.98
+		"fuel capacity" 2300
+		"cargo space" 18
+		"outfit space" 252
+		"weapon capacity" 63
+		"engine capacity" 84
+		"surface space" 40
+		weapon
+			"blast radius" 600
+			"shield damage" 8000
+			"hull damage" 16000
+			"hit force" 8000
+		outfits
+	description "Crest-class Scout"
+
+
+# Interceptors
+
+ship "Vibe"
+	sprite "ship/vibe"
+	thumbnail "thumbnail/vibe"
+	attributes
+		category "Interceptor"
+		"cost" 490000
+		"shields" 540
+		"hull" 1500
+		"automaton" 1
+		"crew equivalent" 1
+		"mass" 66
+		"drag" .54
+		"heat dissipation" 0.96
+		"fuel capacity" 600
+		"outfit space" 162
+		"weapon capacity" 48
+		"engine capacity" 66
+		"surface space" 31
+		weapon
+			"blast radius" 21
+			"shield damage" 204
+			"hull damage" 102
+			"hit force" 306
+	outfits
+		"Speckle Railgun" 2
+		"Mass Driver Round" 3000
+		
+		"Pebble Bed Cell" 1
+		"Fractal Capacitor Cell" 3
+		
+		"Hyperdrive" 1
+		"Small Auxiliary Radiator" 1
+		"Diffuse Deflector" 1
+		"Multispectral Scanner" 1
+		
+		"S014 Axial Fusion Torch" 1
+		"M018 Transverse Thrusters" 1	
+
+	engine 0 54
+	gun -6 -18 "Speckle Railgun"
+	gun 6 -18 "Speckle Railgun"
+
+	explode "tiny explosion" 9
+
+	description "Vibe-class Interceptor"
+
+
+
+
+# Light Warships:
+
+
+
+ship "Timbre"
+	sprite "ship/timbre"
+	thumbnail "thumbnail/timbre"
+	attributes
+		category "Light Warship"
+		"shields" 1600
+		"hull" 4800
+		"automaton" 1
+		"crew equivalent" 3
+		"mass" 78
+		"drag" 3.3
+		"heat dissipation" 1.36
+		"fuel capacity" 1800
+		"cargo space" 24
+		"outfit space" 342
+		"weapon capacity" 114
+		"engine capacity" 96
+		"surface space" 49
+		weapon
+			"blast radius" 126
+			"shield damage" 1284
+			"hull damage" 852
+			"hit force" 960
+	outfits
+		"Speckle Turret" 2
+		"Mass Driver Round" 6000
+		"Phased Array Laser (540 nm)"
+
+		"Luminous Fusion Core" 1
+		"Fractal Capacitor Bank" 2
+		
+		"Hyperdrive" 1
+		"Small Auxiliary Radiator" 2
+		"Specular Deflector" 1
+		"Multispectral Scanner" 1
+		"Dipole Ramscoop" 1
+		
+		"S036 Axial Fusion Torch" 1
+		"M018 Transverse Thrusters" 1		
+		
+		
+	engine 0 114
+
+	turret -21 -81 "Speckle Turret"
+	turret -21 -81 "Speckle Turret"
+	turret 0 -48 "Phased Array Laser (540 nm)"
+
+	leak "leak" 50 50
+	leak "flame" 50 80
+	explode "tiny explosion" 12
+	explode "small explosion" 15
+	explode "medium explosion" 15
+	"final explode" "final explosion medium"
+
+	description "Timbre-class Frigate"
+
+
+
+
+ship "Rhythm"
+	sprite "ship/rhythm"
+	thumbnail "thumbnail/rhythm"
+	attributes
+		category "Light Warship"
+		"shields" 1440
+		"hull" 6000
+		"required crew" 2
+		"bunks" 6
+		"mass" 63
+		"drag" 1.8
+		"heat dissipation" 1.24
+		"fuel capacity" 1000
+		"cargo space" 12
+		"outfit space" 324
+		"weapon capacity" 72
+		"engine capacity" 96
+		"surface space" 46
+		weapon
+			"blast radius" 52
+			"shield damage" 520
+			"hull damage" 260
+			"hit force" 780
+	outfits
+
+		"Speckle Turret" 2
+		"Mass Driver Round" 6000
+
+		"Luminous Fusion Core" 1
+		"Fractal Capacitor Bank" 1
+		
+		"Hyperdrive" 1
+		"Small Auxiliary Radiator" 3
+		"Specular Deflector" 1
+		"Multispectral Scanner" 1
+		"Electrostatic Ramscoop" 1
+		
+		"S060 Axial Fusion Torch" 1
+		"M030 Transverse Thrusters" 1
+
+	engine 0 108
+
+	gun -0 33
+		angle -90
+	gun 0 33
+		angle 90
+	turret -9 18 "Speckle Turret"
+	turret 9 18 "Speckle Turret"
+
+	leak "leak" 50 50
+	leak "flame" 50 80
+	explode "tiny explosion" 12
+	explode "small explosion" 15
+	explode "medium explosion" 15
+	"final explode" "final explosion medium"
+
+	description "Rhythm-class Frigate"
+
+
+
+
+
+
+
+
+# Medium Warships:
+
+ship "Coherence"
+	sprite "ship/coherence"
+	thumbnail "thumbnail/coherence"
+	attributes
+		category "Medium Warship"
+		"cost" 2400000
+		"shields" 2400
+		"hull" 9600
+		"required crew" 12
+		"bunks" 30
+		"mass" 240
+		"drag" 2.4
+		"heat dissipation" 1.36
+		"fuel capacity" 2400
+		"cargo space" 60
+		"outfit space" 420
+		"weapon capacity" 144
+		"engine capacity" 114
+		weapon
+			"blast radius" 240
+			"shield damage" 4800
+			"hull damage" 3600
+			"hit force" 3600
+	outfits
+		"Speckle Turret" 2
+		"Mass Driver Round" 7200
+		"Phased Array Laser (450 nm)" 1
+
+		"Brilliant Fusion Core" 1
+		"Fractal Capacitor Bank" 1
+		
+		"Hyperdrive" 1
+		"Small Auxiliary Radiator" 2
+		"Specular Deflector" 1
+		"Multispectral Scanner" 3
+		"Dipole Ramscoop" 1
+		
+		"S036 Axial Fusion Torch" 1
+		"M052 Transverse Thrusters" 1
+		
+	engine 0 156
+
+	gun -18 9
+	gun 18 9
+	turret 0 48 "Phased Array Laser (540 nm)"
+	turret -9 12 "Speckle Turret"  
+	turret 9 12 "Speckle Turret"
+	
+	bay "Drone" 21 -75
+	bay "Drone" -21 -75
+	bay "Drone" -24 -51
+	bay "Drone" 24 -51
+	bay "Drone" -24 -30
+	bay "Drone" 24 -30
+	bay "Fighter" 0 -84 under
+	bay "Fighter" 0 -84 under
+	
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 9
+	explode "small explosion" 21
+	explode "medium explosion" 21
+	explode "large explosion" 9
+	"final explode" "final explosion medium"
+
+	description "The Coherence-class Escort Carrier"
+
+
+
+ship "Resonance"
+	sprite "ship/resonance"
+	thumbnail "thumbnail/resonance"
+	attributes
+		category "Medium Warship"
+		"cost" 3600000
+		"shields" 4200
+		"hull" 18000
+		"required crew" 15
+		"bunks" 42
+		"mass" 240
+		"drag" 4.2
+		"heat dissipation" 1.6
+		"fuel capacity" 2100
+		"cargo space" 48
+		"outfit space" 498
+		"weapon capacity" 202
+		"engine capacity" 96
+		weapon
+			"blast radius" 240
+			"shield damage" 4800
+			"hull damage" 3600
+			"hit force" 3600
+	outfits
+		"Fleck Turret" 4
+		"Mass Driver Round" 10800
+
+		"Radiant Fusion Core" 1
+		"Fractal Capacitor Bank" 2
+		
+		"Hyperdrive" 1
+		"Small Auxiliary Radiator" 2
+		"Mirror Deflector" 1
+		
+		"S036 Axial Fusion Torch" 1
+		"M030 Transverse Thrusters" 1
+		
+	engine -3 144
+	engine 3 144
+
+	turret 0 -126 "Fleck Turret"
+	turret 0 -99 "Fleck Turret"
+	turret 0 -78 "Fleck Turret"
+	turret 0 -9 "Fleck Turret"
+	turret 0 84
+
+	bay "Drone" -24 -24
+	bay "Drone" 24 -24
+	
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 9
+	explode "small explosion" 24
+	explode "medium explosion" 24
+	explode "large explosion" 12
+	"final explode" "final explosion medium"
+
+	description "The Resonance-class Cruiser"
+
+
+
+ship "Reverberance"
+	sprite "ship/reverberance"
+	thumbnail "thumbnail/reverberance"
+	attributes
+		category "Medium Warship"
+		"shields" 2700
+		"hull" 6000
+		"required crew" 9
+		"bunks" 18
+		"mass" 132
+		"drag" 3.6
+		"heat dissipation" 1.6
+		"fuel capacity" 1200
+		"cargo space" 12
+		"outfit space" 462
+		"weapon capacity" 180
+		"engine capacity" 132
+		"surface space" 58
+		weapon
+			"blast radius" 88
+			"shield damage" 880
+			"hull damage" 440
+			"hit force" 1320
+	outfits
+		"Speckle Turret" 1
+		"Mass Driver Round" 7200
+		"Phased Array Laser (540 nm)" 1
+		"Nadir Rotary Launcher" 2
+		"Nadir Magazine" 6
+		"Nadir Missile" 84
+
+		"Brilliant Fusion Core" 1
+		"Fractal Capacitor Bank" 1
+		
+		"Hyperdrive" 1
+		"Specular Deflector" 1
+		"Multispectral Scanner" 3
+		"Electrostatic Ramscoop" 1
+		
+		"S036 Axial Fusion Torch" 1
+		"M030 Transverse Thrusters" 1
+
+	engine 0 168
+
+	gun -24 -33 "Nadir Rotary Launcher"
+		angle -90
+	gun 24 -33 "Nadir Rotary Launcher"
+		angle 90
+	gun -24 -9 
+		angle -90
+	gun 24 -9
+		angle 90
+	turret -18 -78
+	turret 18 -78
+	turret 0 54 "Phased Array Laser (540 nm)"
+	turret 0 -39 "Speckle Turret"
+
+	leak "leak" 60 60
+	leak "flame" 60 90
+	leak "big leak" 90 30
+	explode "tiny explosion" 12
+	explode "small explosion" 24
+	explode "medium explosion" 24
+	explode "large explosion" 9
+	"final explode" "final explosion medium"
+
+	description "The Reverberance-class Missile Cruiser is a relatively recent, post-Evacuation design with a single focus: missiles. While its armor and shielding systems are fairly minimal, it can carry a staggering arsenal of nuclear tipped missiles, allowing even a single ship to dominate the battlefield - at least until it runs out of ammunition."
+	description "A long truss running the length of the ship normally fits an impressively large mirror-cell fusion torch, giving the Reverbernace the mobility needed to evade opponents until they are reduced to hot vapor."
+
+
+
+
+# Heavy Warships:
+
+
+ship "Cascade"
+	sprite "ship/cascade"
+	thumbnail "thumbnail/cascade"
+	attributes
+		category "Heavy Warship"
+		"shields" 4200
+		"hull" 24000
+		"required crew" 42
+		"bunks" 72
+		"mass" 204
+		"drag" 5.4
+		"heat dissipation" 1.36
+		"fuel capacity" 2400
+		"cargo space" 54
+		"outfit space" 696
+		"weapon capacity" 198
+		"engine capacity" 174
+		"surface space" 73
+		weapon
+			"blast radius" 360
+			"shield damage" 6400
+			"hull damage" 4800
+			"hit force" 4200
+	outfits
+		"Fleck Turret" 1
+		"Mass Driver Round" 6000
+		"Phased Array Laser (450 nm)" 2
+		"Equinox Torpedo Stockpile" 3
+		"Equinox Torpedo" 36
+		
+		"Radiant Fusion Core" 1
+		"Trifold Solar Array" 1
+		"Fractal Capacitor Bank" 2
+		
+		"Hyperdrive" 1
+		"Large Auxiliary Radiator" 1
+		"Mirror Deflector" 1
+		"Multispectral Scanner" 9
+		"Dipole Ramscoop" 1
+		
+		"S036 Axial Fusion Torch" 1
+		"M052 Transverse Thrusters" 1
+
+	engine 0 243
+
+	gun -15 -135
+		angle -90
+	gun 15 -135
+		angle 90
+	gun -15 -120
+		angle -90
+	gun 15 -120
+		angle 90
+	turret 0 -102 "Phased Array Laser (450 nm)"
+	turret 0 -42 "Fleck Turret"
+	turret 0 18 "Phased Array Laser (450 nm)"
+	turret -15 -42
+	turret 15 -42
+
+	bay "Drone" -63 -204
+	bay "Drone" 63 -204
+	bay "Drone" -42 -213
+	bay "Drone" 42 -213
+	bay "Drone" -21 -219
+	bay "Drone" 21 -219
+	bay "Drone" -15 -207
+	bay "Drone" 15 -207
+	bay "Drone" -18 -180
+	bay "Drone" 18 -180
+	bay "Drone" -18 -160
+	bay "Drone" 18 -160
+
+	leak "leak" 30 60
+	leak "flame" 30 90
+	leak "big leak" 30 30
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+
+	description "Cascade-class Carrier"
+
+
+
+
+
+
+
+
+
+# Fighters:
+
+ship "Quake"
+	sprite "ship/quake"
+	thumbnail "thumbnail/quake"
+	attributes
+		category "Fighter"
+		"shields" 120
+		"hull" 900
+		"required crew" 1
+		"bunks" 2
+		"mass" 36
+		"drag" 1.2
+		"heat dissipation" 1.02
+		"fuel capacity" 120
+		"cargo space" 19
+		"outfit space" 96
+		"weapon capacity" 24
+		"engine capacity" 28
+		"surface space" 20
+		weapon
+			"blast radius" 8
+			"shield damage" 80
+			"hull damage" 40
+			"hit force" 120
+	outfits
+		"Trifold Solar Array" 1
+		"Fractal Capacitor Cell" 3
+
+		"Diffuse Deflector"
+		
+		"Multispectral Scanner" 1
+		
+		"M018 Magnetoplasma Drive" 1
+
+	explode "tiny explosion" 9
+
+	description "Quake-class Excursion Vehicle"
+
+
+
+
+
+# Drones:
+
+ship "Lens"
+	sprite "ship/lens"
+	thumbnail "thumbnail/lens"
+	attributes
+		category "Drone"
+		"hull" 360
+		"automaton" 1
+		"mass" 12
+		"drag" .72
+		"heat dissipation" .84
+		"fuel capacity" 60
+		"outfit space" 60
+		"engine capacity" 24
+		"surface space" 6
+		weapon
+			"blast radius" 3
+			"shield damage" 30
+			"hull damage" 15
+			"hit force" 45
+	outfits
+		"Trifold Solar Array" 1
+		"Fractal Capacitor Cell" 1
+		
+		"Multispectral Scanner" 1
+		"Spectrometer Array" 1
+
+		"M018 Magnetoplasma Drive" 1
+
+	explode "tiny explosion" 6
+
+	description "The Lens-class Sensor Platform is the latest iteration of a long line of exploration probes developed shortly after the discovery of the hyperdrive. No longer limited to launching swarms of laser-propelled probes weighing a mere handful of kilograms, the Avgi built robust probes designed to quickly map out newly accessible star systems. Over the decades, these eventually shrank, and the duty of carrying them between star systems was offloaded onto the Crest-class scout ship. This left behind the modern Lens as a highly capable deployable sensor platform, used in both scientific and combat information roles."
+
+
+ship "Lumen"
+	sprite "ship/lumen"
+	thumbnail "thumbnail/lumen"
+	attributes
+		category "Drone"
+		"cost" 36000
+		"hull" 360
+		"automaton" 1
+		"mass" 12
+		"drag" 2.4
+		"heat dissipation" .78
+		"fuel capacity" 60
+		"outfit space" 84
+		"weapon capacity" 42
+		"engine capacity" 18
+		weapon
+			"blast radius" 6
+			"shield damage" 36
+			"hull damage" 18
+			"hit force" 72
+	outfits
+		"Nadir Rotary Launcher" 1
+		"Nadir Missile" 6
+		
+		"Concentrating Solar Array" 2
+		"Fractal Capacitor Cell" 1
+		
+		"Multispectral Scanner" 1
+
+		"M018 Magnetoplasma Drive" 1
+		
+		
+	engine -8.5 28.5 0.9
+	engine 8.5 28.5 0.9
+	gun 0 -29 "Nadir Rotary Launcher"
+
+	explode "tiny explosion" 6
+
+	description "The Lumen-class Siloship was first envisioned as a cheap static defense satellite, little more than a tube capable of storing and launching nuclear missiles. Over time, this specialization was broadened, and the modern line of Lumens is also capable of mounting a large fixed gun, and the energy supply to support it, in order to serve as in the ranged artillery role. Their mostly hollow construction provides a great deal of internal space for their size, but also makes the drone quite fragile."
+	description "Lumens are usually seen defending important Avgi systems, ready to fire their payloads on any hostile ships that jump into the system."
+	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
+
+
+ship "Wavelet"
+	sprite "ship/wavelet"
+	thumbnail "thumbnail/wavelet"
+	attributes
+		category "Drone"
+		"cost" 36000
+		"hull" 900
+		"automaton" 1
+		"threshold percentage" 0.09
+		"mass" 18
+		"drag" .18
+		"heat dissipation" .96
+		"fuel capacity" 90
+		"outfit space" 90
+		"weapon capacity" 24
+		"engine capacity" 24
+		weapon
+			"blast radius" 9
+			"shield damage" 60
+			"hull damage" 18
+			"hit force" 72
+	outfits
+		"Speckle Railgun" 2
+		"Mass Driver Round" 1800
+		
+		"Pebble Bed Cell" 1
+		"Fractal Capacitor Cell" 1
+		
+		"Multispectral Scanner" 1
+		"Small Auxiliary Radiator" 1
+		
+		"M018 Magnetoplasma Drive" 1
+		
+	engine -8.5 28.5 0.9
+	engine 8.5 28.5 0.9
+	gun -3 -30 "Speckle Railgun"
+	gun 3 -30 "Speckle Railgun"
+	gun 0 -30 "Sidereal Pod"
+
+	explode "tiny explosion" 9
+
+	description "The Wavelet-class Interdictor is the primary Avgi strike fighter. While individually quite fragile, Wavelets are usually deployed in large swarms, and are agile enough to be surprisingly survivable."
+	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
+
+
+ship "Phonon"
+	sprite "ship/phonon"
+	thumbnail "thumbnail/phonon"
+	attributes
+		category "Drone"
+		"shields" 240
+		"hull" 1500
+		"automaton" 1
+		"mass" 36
+		"drag" .36
+		"heat dissipation" .9
+		"fuel capacity" 60
+		"outfit space" 114
+		"weapon capacity" 27
+		"engine capacity" 24
+		"surface space" 15
+		weapon
+			"blast radius" 12
+			"shield damage" 72
+			"hull damage" 30
+			"hit force" 102
+	outfits
+		"Equinox Torpedo Pylon" 2
+		"Equinox Torpedo" 2
+		
+		"Trifold Solar Array" 1
+		"Fractal Capacitor Cell" 3
+		
+		"Multispectral Scanner" 1
+		
+		"M018 Magnetoplasma Drive" 1
+
+	engine -8.5 28.5 0.9
+	engine 8.5 28.5 0.9
+	gun 0 -30 "Equinox Torpedo Pylon"
+	gun 0 -30 "Equinox Torpedo Pylon"
+	turret 0 -33
+
+	explode "tiny explosion" 12
+
+	description "The Phonon-class Torpedo Bomber is the cornerstone of Avgi carrier doctrine. While it is possible for a swarm of Wavelets and similar interdiction drones to engage capital ships, it is the Phonon that is capable of delivering the nuclear anti-ship munitions necessary to bring down the largest warships. By bringing a nuclear torpedo within close range, the payload has a higher chance of surviving enemy point defense weapons compared with standard missiles."
+	description "Phonons are occasionally used as gun platforms, mounting a Speckle Turret instead of their standard armament of a pair of Equinox Torpedoes."
+	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
+
+
+
+
+
+
+# Variants
+
+
+ship "Wavelet" "Wavelet (Fusion)"
+	outfits
+		"Speckle Railgun" 2
+		"Mass Driver Round" 1800
+		"Sidereal Pod" 1
+		"Sidereal Missile" 6
+		
+		"Pebble Bed Cell" 1
+		"Fractal Capacitor Cell" 1
+		
+		"Multispectral Scanner" 1
+		"Small Auxiliary Radiator" 1
+		
+		"S024 Coaxial Fusion Drive" 1
+
+
+
+
+
+
+
+
