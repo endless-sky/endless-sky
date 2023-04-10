@@ -1,5 +1,5 @@
-/* WormholeStrategy.h
-Copyright (c) 2022 by warp-core
+/* DistanceCalculationSettings.h
+Copyright (c) 2023 by warp-core
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -13,23 +13,31 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef WORMHOLE_STRATEGY_H_
-#define WORMHOLE_STRATEGY_H_
+#ifndef DISTANCE_CALCULATION_OPTIONS_H_
+#define DISTANCE_CALCULATION_OPTIONS_H_
 
-#include <cstdint>
+#include "WormholeStrategy.h"
+
+class DataNode;
 
 
 
-// Strategies that a DistanceMap can use to determine which wormholes to make use of
-// when plotting a course to a destination, if any.
-enum class WormholeStrategy : int_fast8_t {
-	// Disallow use of any wormholes.
-	NONE,
-	// Disallow use of wormholes which the player cannot access, such as in
-	// the case of a wormhole that requires an attribute to use.
-	ONLY_UNRESTRICTED,
-	// Allow use of all wormholes.
-	ALL,
+class DistanceCalculationSettings {
+public:
+	DistanceCalculationSettings() = default;
+	DistanceCalculationSettings(const DataNode &node);
+
+	bool operator!=(const DistanceCalculationSettings &other) const;
+
+	void Load(const DataNode &node);
+
+	WormholeStrategy WormholeStrategy() const;
+	bool AssumesJumpDrive() const;
+
+
+private:
+	enum WormholeStrategy wormholeStrategy = WormholeStrategy::NONE;
+	bool assumesJumpDrive = false;
 };
 
 

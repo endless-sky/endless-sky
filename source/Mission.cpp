@@ -162,19 +162,7 @@ void Mission::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "distance calculation settings" && child.HasChildren())
 		{
-			for(const DataNode &grand : child)
-			{
-				if(grand.Token(0) == "no wormholes")
-					distanceCalcSettings.wormholeStrategy = WormholeStrategy::NONE;
-				else if(grand.Token(0) == "only unrestricted wormholes")
-					distanceCalcSettings.wormholeStrategy = WormholeStrategy::ONLY_UNRESTRICTED;
-				else if(grand.Token(0) == "all wormholes")
-					distanceCalcSettings.wormholeStrategy = WormholeStrategy::ALL;
-				else if(grand.Token(0) == "assumes jump drive")
-					distanceCalcSettings.assumesJumpDrive = true;
-				else
-					grand.PrintTrace("Invalid \"distance calculation settings\" child:");
-			}
+			distanceCalcSettings.Load(child);
 		}
 		else if(child.Token(0) == "cargo" && child.Size() >= 3)
 		{
@@ -1497,8 +1485,8 @@ int Mission::CalculateJumps(const System *sourceSystem)
 	{
 		// Find the closest destination to this location.
 		DistanceMap distance(sourceSystem,
-				distanceCalcSettings.wormholeStrategy,
-				distanceCalcSettings.assumesJumpDrive);
+				distanceCalcSettings.WormholeStrategy(),
+				distanceCalcSettings.AssumesJumpDrive());
 		auto it = destinations.begin();
 		auto bestIt = it;
 		int bestDays = distance.Days(*bestIt);
@@ -1520,8 +1508,8 @@ int Mission::CalculateJumps(const System *sourceSystem)
 		destinations.erase(bestIt);
 	}
 	DistanceMap distance(sourceSystem,
-			distanceCalcSettings.wormholeStrategy,
-			distanceCalcSettings.assumesJumpDrive);
+			distanceCalcSettings.WormholeStrategy(),
+			distanceCalcSettings.AssumesJumpDrive());
 	// If currently unreachable, this system adds -1 to the deadline, to match previous behavior.
 	expectedJumps += distance.Days(destination->GetSystem());
 
