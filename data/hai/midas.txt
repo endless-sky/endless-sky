@@ -203,7 +203,7 @@ ship "Tick"
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 
-# ship of the twins, Thorn and Talon. 
+# Ships of the twins, Thorn and Talon.
 # They trade with the Korath, which is how their outfits were obtained.
 ship "Sea Dragon"
 	crew 34
