@@ -202,7 +202,7 @@ const string& Interface::GetString(const string &name) const
 		if(logOnce.count(this->name + name) == 0)
 		{
 			Logger::LogError("Attempting to get non-existent string \"" + name +
-			                 "\" from interface \"" + this->name + "\"");
+				"\" from interface \"" + this->name + "\"");
 			logOnce.insert(this->name + name);
 		}
 		return EMPTY;
