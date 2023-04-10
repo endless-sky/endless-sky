@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Interface.h"
 
 #include "DataNode.h"
-#include "Logger.h"
 #include "text/DisplayText.h"
 #include "FillShader.h"
 #include "text/Font.h"
@@ -26,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "text/layout.hpp"
 #include "LineShader.h"
+#include "Logger.h"
 #include "OutlineShader.h"
 #include "Panel.h"
 #include "Rectangle.h"
@@ -192,7 +192,7 @@ double Interface::GetValue(const string &name) const
 
 
 // Get a named string.
-const string& Interface::GetString(const string &name) const
+const string &Interface::GetString(const string &name) const
 {
 	static string EMPTY;
 	auto it = stringTable.find(name);

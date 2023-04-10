@@ -30,7 +30,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FillShader.h"
 #include "Fleet.h"
 #include "FogShader.h"
-#include "Logger.h"
 #include "text/FontSet.h"
 #include "FormationPattern.h"
 #include "Galaxy.h"
@@ -40,6 +39,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ImageSet.h"
 #include "Interface.h"
 #include "LineShader.h"
+#include "Logger.h"
 #include "MaskManager.h"
 #include "Minable.h"
 #include "Mission.h"
@@ -826,7 +826,7 @@ string GameData::HelpMessage(const string &name)
 
 
 
-const string& GameData::GetString(const string &name)
+const string &GameData::GetString(const string &name)
 {
 	static const string EMPTY;
 	auto it = objects.stringTable.find(name);
