@@ -166,5 +166,5 @@ help "control ship with mouse"
 	`The nose of your ship will always turn toward your mouse pointer.`
 	`<Forward thrust> is used to thrust forward.`
 	`<Reverse> is used to thrust reverse.`
-	`Right mouse click will shoot primary weapons.`
-	`<Mouse turning (hold)> can temporarily enable or disable this preference.`
+	`Right mouse click will fire primary weapons.`
+	`<Mouse turning (hold)> will toggle mouse turning while it is held.`

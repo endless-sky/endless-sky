@@ -72,7 +72,6 @@ namespace {
 	const string TARGET_ASTEROIDS_BASED_ON = "Target asteroid based on";
 	const string BACKGROUND_PARALLAX = "Parallax background";
 	const string ALERT_INDICATOR = "Alert indicator";
-	const string CONTROL_SHIP_WITH_MOUSE = "Control ship with mouse";
 
 	// How many pages of settings there are.
 	const int SETTINGS_PAGE_COUNT = 2;
@@ -538,7 +537,7 @@ void PreferencesPanel::DrawSettings()
 		AUTO_AIM_SETTING,
 		"Automatic firing",
 		BOARDING_PRIORITY,
-		CONTROL_SHIP_WITH_MOUSE,
+		"Control ship with mouse",
 		EXPEND_AMMO,
 		"Extra fleet status messages",
 		"Fighters transfer cargo",
