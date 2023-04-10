@@ -836,7 +836,7 @@ const string& GameData::GetString(const string &name)
 		if(logOnce.count(name) == 0)
 		{
 			Logger::LogError("Attempting to get non-existent string \"" + name +
-							  "\" from global string table");
+			                 "\" from global string table");
 			logOnce.insert(name);
 		}
 		return EMPTY;
