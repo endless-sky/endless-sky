@@ -78,7 +78,7 @@ const DataNode unrestrictedWormholesNode = AsDataNode("node\n\t\"only unrestrict
 const DataNode unrestrictedWormholesJDNode =
 		AsDataNode("node\n\t\"only unrestricted wormholes\"\n\t\"assumes jump drive\"");
 const DataNode allWormholesNode = AsDataNode("node\n\t\"all wormholes\"");
-const DataNode allWormholesJDNode = AsDataNode("node\n\t\"allwormholes\"\n\t\"assumes jump drive\"");
+const DataNode allWormholesJDNode = AsDataNode("node\n\t\"all wormholes\"\n\t\"assumes jump drive\"");
 
 TEST_CASE( "DistanceCalculationSettings::Load", "[DistanceCalculationSettings::Load]") {
 	using T = DistanceCalculationSettings;
