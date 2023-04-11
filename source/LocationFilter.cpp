@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "LocationFilter.h"
 
+#include "CategoryList.h"
 #include "CategoryTypes.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -299,8 +300,9 @@ bool LocationFilter::IsValid() const
 	if(!shipCategory.empty())
 	{
 		// At least one desired category must be valid.
-		const auto &shipCategories = GameData::Category(CategoryType::SHIP);
-		auto categoriesSet = set<string>(shipCategories.begin(), shipCategories.end());
+		set<string> categoriesSet;
+		for(const auto &category : GameData::GetCategory(CategoryType::SHIP))
+			categoriesSet.insert(category.Name());
 		if(!SetsIntersect(shipCategory, categoriesSet))
 			return false;
 	}
