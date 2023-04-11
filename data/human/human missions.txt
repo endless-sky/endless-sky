@@ -5780,7 +5780,7 @@ mission "Blind Man from Martini"
 			label far
 			action
 				set "Blind Man from Martini: label far"
-			`	"Well, I suppose you could say that they are far away, or they could be right here. I don't know, I can't see them." He taps his cane twice more.`
+			`	"Well, I suppose you could say that they are far away, or they could be right here. I don't know." He taps his cane twice more.`
 				goto questions
 			
 			label looking
@@ -5792,7 +5792,7 @@ mission "Blind Man from Martini"
 			label somewhere
 			`	He looks over to his side, as if he feels reserved about something. "She's on <planet>, getting some experimental treatment from the University of New Sydney. I want to be by her side if anything goes wrong, to tell her that I'm there for her, that I love her, and that everything will be okay. She's been waiting for the treatment for so long now. And since nobody else seems to have arrived here yet, I hope you'll be the one to take me there."`
 			choice
-				`	"Of course, I'll take you to <planet>."`
+				`	"Of course, I can take you to <planet>."`
 				`	"Sorry, I won't be able to."`
 					goto can't
 			`	The man musters a broad smile, says "Thank you all too much. Would you like to help me with the luggage?" He scans the floor with his cane for it. Later, while boarding, he tells you his name is Douglas Pears, and he promises to you <payment> for transporting him.`
@@ -5880,7 +5880,7 @@ mission "Blind Man from Martini"
 				"Blind Man from Martini: taxi questions count" ++
 			`	"It was the fourth of July, 3014. I was in my office, on one of the high rises on the outskirts of the capital, with my office window pointed right at the city center." He turns to look out the window, as if he knew New Sydney's skyline was out there where he couldn't see. In the small lull, he takes an audible breath.`
 			`	"It was a beautiful day that day. I... I remember that Pollux was especially bright and colorful that day, and the songbirds that inhabit the city were alive with sound. They were unusually so. It was very vivid, very strange. Maybe I should have listened to the birds...`
-			`	"But when the bomb dropped, I was looking right at it, from my office window. All I could remember next was that I was in a lot of pain, that I couldn't see, but my secretary - thank goodness for her - found me afterwards, during the evacuation, covered in glass from the shockwave. I survived mostly because I was sitting at my terminal and that protected me from the bulk of the shards.`
+			`	"But when the bomb dropped, I was looking right at it, from my office window. All I could remember next was that I was in a lot of pain, that I couldn't see, but one of my colleagues - thank goodness for her - found me afterwards, during the evacuation, covered in glass from the shockwave. I survived mostly because I was sitting at my terminal and that protected me from the bulk of the shards."`
 				goto taxi
 
 			label blind-1
@@ -5947,7 +5947,7 @@ mission "Blind Man from Martini"
 			`	"I'm the father, Douglas Pears," he replies.`
 			`	She takes a few more seconds before looking at you and saying, "Ah, but we cannot let you in. Only Mr. Pears is booked in for his daughter's procedure; we have a family-only policy, to keep the privacy of our patients."`
 			choice
-				`	"All right."`
+				`	"Alright."`
 					goto end
 				`	"Are you sure?"`
 			`	"We can't allow immediate exceptions, sorry. There's nothing I can do."`
