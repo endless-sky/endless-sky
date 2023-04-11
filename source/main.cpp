@@ -271,6 +271,10 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	// directly rather than relying on the sdl event loop.
 	SDL_SetEventFilter(EventFilter, nullptr);
 
+	// Set up custom events so that we can forward injected commands to the main
+	// game loop
+	const uint32_t COMMAND_EVENT = Command::RegisterEvent();
+
 	// gamePanels is used for the main panel where you fly your spaceship.
 	// All other game content related dialogs are placed on top of the gamePanels.
 	// If there are both menuPanels and gamePanels, then the menuPanels take
@@ -361,6 +365,15 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			{
 				isFastForward = !isFastForward;
 			}
+			else if(event.type == COMMAND_EVENT)
+			{
+				// handle injected commands
+				Command command(event);
+				if(command == Command::FASTFORWARD && event.key.state == SDL_PRESSED)
+				{
+					isFastForward = !isFastForward;
+				}
+			}
 		}
 		SDL_Keymod mod = SDL_GetModState();
 		Font::ShowUnderlines(mod & KMOD_ALT);
@@ -381,7 +394,9 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		// can switch fast-forward on again when flight is resumed.
 		bool allowFastForward = !gamePanels.IsEmpty() && gamePanels.Top()->AllowsFastForward();
 		if(Preferences::Has("Interrupt fast-forward") && !inFlight && isFastForward && !allowFastForward)
+		{
 			isFastForward = false;
+		}
 
 		// Tell all the panels to step forward, then draw them.
 		((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();

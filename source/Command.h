@@ -92,6 +92,7 @@ public:
 	// Create a command representing whatever command is mapped to the given
 	// keycode (if any).
 	explicit Command(int keycode);
+	explicit Command(const union SDL_Event &event);
 
 	// Read the current keyboard state and set this object to reflect it.
 	void ReadKeyboard();
@@ -138,9 +139,12 @@ public:
 	bool operator==(const Command &command) const { return command.state == state && command.turn == turn; }
 
 	// Allow UI's to simulate keyboard input
-	static void InjectSet(const Command& command) { simulated_command.fetch_or(command.state, std::memory_order_relaxed); }
-	static void InjectUnset(const Command& command)	{ simulated_command.fetch_and(~command.state, std::memory_order_relaxed); }
+	static void InjectSet(const Command& command);
+	static void InjectUnset(const Command& command);
 	static Command Get(const std::string& description);
+	// Register an event, and return its value. This event gets triggered
+	// whenever we call InjectSet/InjetUnset
+	static uint32_t RegisterEvent();
 
 private:
 	explicit Command(uint64_t state);
@@ -156,6 +160,7 @@ private:
 
 	// If we want to simulate input from the ui, place it here to be read later
 	static std::atomic<uint64_t> simulated_command;
+	static uint32_t command_event;
 };
 
 

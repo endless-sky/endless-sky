@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <SDL2/SDL.h>
 
+#include <SDL_events.h>
 #include <algorithm>
 #include <atomic>
 #include <cmath>
@@ -82,6 +83,7 @@ const Command Command::MOVETOWARD(static_cast<uint64_t>(1) << 32, ""); // uL suf
 
 
 std::atomic<uint64_t> Command::simulated_command{};
+uint32_t Command::command_event = 0xffffffff;
 
 
 // In the given text, replace any instances of command names (in angle brackets)
@@ -103,6 +105,17 @@ Command::Command(int keycode)
 	auto it = commandForKeycode.find(keycode);
 	if(it != commandForKeycode.end())
 		*this = it->second;
+}
+
+
+
+// Create a command representing whatever is mapped to the given key code.
+Command::Command(const SDL_Event &event)
+{
+	if(event.type == command_event)
+	{
+		state = event.key.windowID;
+	}
 }
 
 
@@ -428,4 +441,38 @@ Command Command::Get(const std::string& command_description)
 		}
 	}
 	return Command::NONE;
+}
+
+
+
+// Simulate a keyboard press for commands
+void Command::InjectSet(const Command& command)
+{
+	simulated_command.fetch_or(command.state, std::memory_order_relaxed);
+	SDL_Event event{};
+	event.type = command_event;
+	event.key.windowID = command.state;
+	event.key.state = SDL_PRESSED;
+	SDL_PushEvent(&event);
+}
+
+
+
+// Simulate a keyboard release for commands
+void Command::InjectUnset(const Command& command)
+{
+	simulated_command.fetch_and(~command.state, std::memory_order_relaxed);
+	SDL_Event event{};
+	event.type = command_event;
+	event.key.windowID = command.state;
+	event.key.state = SDL_RELEASED;
+	SDL_PushEvent(&event);
+}
+
+
+
+// Register a set of events with SDL's event loop
+uint32_t Command::RegisterEvent()
+{
+	return (command_event = SDL_RegisterEvents(sizeof(Command::state) * 8));
 }

@@ -1441,3 +1441,10 @@ interface "main buttons" bottom right
 	active
 	button "Land on planet / station"
 		from 200 0 to 380 60
+
+	# hidden button in top-left corner that turns on fast-forwarding
+	visible
+	active
+	anchor top left
+	button "Toggle fast-forward"
+		from 0 0 to 48 48
