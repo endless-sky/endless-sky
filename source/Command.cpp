@@ -22,7 +22,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <SDL2/SDL.h>
 
-#include <SDL_events.h>
 #include <algorithm>
 #include <atomic>
 #include <cmath>
