@@ -5739,6 +5739,7 @@ mission "Argosy Hijacking (Declined)"
 mission "A Dead Man's Path 1"
 	name "Siblings to New China"
 	description "Bring these siblings to New China to hear their father's last will by <date>. They offer to pay you <payment>."
+	minor
 	passengers 2
 	deadline 7
 	source
@@ -5790,7 +5791,7 @@ mission "A Dead Man's Path 1"
 
 mission "A Dead Man's Path 2"
 	name "Following Footprints"
-	description "Bring Sophie and Liam through <waypoints>, before finally bringing them to <destination>. They will pay you another <payment> credits."
+	description "Bring Sophie and Liam through <waypoints>, before finally bringing them to <destination>. They will pay you another <payment>."
 	passengers 2
 	source
 		planet "New China"
@@ -5810,27 +5811,39 @@ mission "A Dead Man's Path 2"
 				`	"But what do you want me to do?"`
 				`	"Sorry, but I'd be stupid to accept a mission I don't know anything about."`
 			`	Sophie looks at her brother with an amused look on her face. "Of course, my brother just can't wait to get started!" She turns back to you. "Maybe I should start with who our father was. We didn't get to know him very well - he came home only occasionally. Don't get me wrong, our parents weren't fighting, but he had this... passion, it just couldn't make him stay in one place for very long. He was a captain, not unlike you, and he was restless to explore even the furthest parts of the galaxy. We believe he traveled further than most human captains; sometimes he brought small items back home that nobody could explain."`
-			`	She pauses for a moment. "Anyways," she continues, "in his testament he told us that he left something behind for us on <planet>, in <system>. He said that he would not make it easy, though; he loved fantasy books, and in those stories there is always something mysterious at play that we do not understand the meaning of until the very end. So he told us of a few systems that before we should visit before we go to Prime.`
+			`	She pauses for a moment. "Anyway, in his testament he told us that he left something behind for us on <planet>, in <system>. He said that he would not make it easy, though; he loved fantasy books, and in those stories there is always something mysterious at play that we do not understand the meaning of until the very end. So he told us of a few systems that before we should visit before we go to Prime.`
 			`	"Of course, it would be much easier if we could go directly to Prime, but we want to respect our father's last will." She looks directly at you now. "And that is why we need your help. Could you help us again and take us through all these systems?"`
 			choice
-				`	"Yes, I'd be glad to."`
-						goto accepted
+				`	"Which systems would we have to fly through?"`
+					goto starmap
 				`	"I'm sorry, but that sounds too complicated to me."`
+					goto nothanks
+
+			label starmap
+			`	Liam pulls a starmap out of his bag. "These are the systems our father wants us to visit: <waypoints>. Those systems are spread far out around human space, but apparently they all have something unique to them. We've never really travelled beyond our home planet, so it'll be quite a big adventure for us! Does that sound good to you?"`
+			choice
+				`	"Sounds good!"`
+				`	"Sorry, I won't be able to take you. Those systems are too far away from each other."`
+					goto nothanks
+			`	"We weren't expecting this trip, so we'll need to buy some supplies," Sophie says, "but as soon as you're ready we'll be on board."`
+				accept
+
+			label nothanks
 			`	"Well, it looks like we'll need to find somebody else," Sophie says. They both thank you for bringing them this far and walk away.`
 				decline
-			label accepted
-			`	Liam pulls a starmap out of his bag. "These are the systems our father wants us to visit. Apparently they all have something unique to them. We weren't expecting this trip, so we'll need to buy some supplies, but as soon as you're ready we'll be on board."`
-				accept
+
 	on enter "Terminus"
-		dialog `It's often thought that there are nothing to these uninhabited systems by the Deep, but Sophie points out that there's a strange anomaly in this system. "Father used to talk all about the unusual sights he saw on his adventures, flying through wormholes or nebulae. It reminds me of one of them."`
+		dialog `It's often thought that there are nothing to these uninhabited systems by the Deep, but Sophie points out that there's a strange anomaly in this system. "When we got to see him, our father used to describe all these unusual sights he saw on his adventures flying through wormholes or nebulae. That anomaly reminds me of one of them."`
 	on enter "Aspidiske"
 		dialog `While Sophie and Liam are both quite chatty at times, the beauty of this star stops all their conversations.`
 	on enter "Gorvi"
-		dialog `Flying into the nebula surrounding Gorvi, Sophie and Liam both chatter to each outher about the marvels and mysteries of the Wolf-Rayet star at its center.`
+		dialog `Approaching the nebula surrounding Gorvi, Sophie and Liam both chatter to each outher about the marvels and mysteries of the Wolf-Rayet star at its center.`
 	on enter "Enif"
 		dialog `If there was ever a prime example of how much the human race still has to learn, it is the strange, impressive, and yet still unfinished ringworld in this system. Liam tells you, "Our father was a very curious man, and he always talked about the Quarg and their ringworlds, and how it would be another thousand years before humanity could build anything similar. We've never seen how big it was until now!"`
+
 	on visit
 		dialog phrase "generic missing waypoint or passengers"
+
 	on complete
 		payment 50000
 		log `Brought Sophie and Liam around the galaxy to various locations that their departed father asked them to visit in his will, before finally bringing them to Prime where he left something for them.`
@@ -5845,26 +5858,27 @@ mission "A Dead Man's Path 2"
 			`	"Well, that's okay. We'll always appreciate the help you've given us in fulfilling our father's will. Oh, and here's your payment, and a little extra for putting up with us all this time," Liam says, handing you a few credit chips for <payment>. "We wish you well through the stars!" Again, the siblings both thank you profusely for the trip, and you watch them leave Prime's spaceport with their heads up.`
 				decline
 			label continue
-			`	Liam pulls out a map; not the starmap he had before but a local map of Prime marked 'New Voronezh'. "Apparently our father bought a whole mountain on this planet, and he wants us to go there. It's to the west of us near the New Urals, a little while away from Prime Central Spaceport where we are."`
+			`	Liam pulls out a map; not the starmap he had before but a local map of Prime marked 'New Toulouse'. "Apparently our father bought a whole mountain on this planet, and he wants us to go there. It's to the west of us near the New Pyrenees, a little while away from Prime Central Spaceport where we are."`
 			choice
 				`	"Sounds good. I'll follow your lead."`
 						goto shuttle
 				`	"We could also have a look around here, and see why your father chose this planet."`
 			`	"You're right. I hadn't thought of that," Sophie says."`
-			`	All three of you walk around the spaceport district for some time. Coming into a giant plaza, you see one of the newest ships of Betelgeuse being displayed.`
-			`	Liam's face brightens as if he just understood something. "I think our father chose this planet because he was always a fan of Betelgeuse ships. Before he went on his adventures he used to be a test pilot here, and once he was allowed to keep one of their experimental models as a gift for being one of their most productive pilots." Sophie nods, "Right! Now that you say that, I remember that too. Anyways, shall we go to the mountain now?"`
+			`	All three of you walk around the spaceport district for some time. Coming into a giant plaza, you see one of the newest models from Betelgeuse, a Behemoth, on display in the center. The massive freighter with its many turret  emplacements towers over even the plaza, an obvious showcase of Prime's leading shipbuilding industry.`
+			`	Liam's face brightens as if he just understood something. "I think our father chose this planet because he was always a fan of Betelgeuse ships. Before he went on his adventures he used to be a test pilot for the shipyard."`
+			`	Sophie nods. "Right! And once he was allowed to keep one of their experimental models as a gift for being one of their most productive pilots. Betelgeuse wouldn't let him go when he wanted to leave and start exploring the galaxy! But we're running out of time. Shall we go to the mountain now?"`
 			choice
 				`	"We should take a shuttle. It'll be the fastest way."`
 						goto shuttle
-				`	"We have time. Let's take the maglev."`
+				`	"Let's take the maglev, we should make it before it gets dark."`
 						goto maglev
 			label shuttle
-			`	After a short shuttlecraft flight on Prime's extensive and well maintained shuttle service, you and the siblings arrive at a provincial town, where you can see a small mountain that stands alone against the rest of the landscape.`
+			`	After a short shuttlecraft flight on Prime's extensive and well maintained shuttle service, you and the siblings arrive at a provincial city, where you can see a small mountain that stands alone against the rest of the landscape.`
 				goto front-mountain
 			label maglev
-			`	You take a maglev from the spaceport and get a tour through some of the regions of Prime's mainland; the train speeds away from the spaceport city, through the fields of New Voronezh, and into the New Urals department at lightning speed. After an hour, you and the siblings step off at a provincial town, where you can see a small mountain that stands alone against the rest of the landscape.`
+			`	You take a maglev from the spaceport and get a tour through some of the regions of Prime's mainland; on the way you pass through the fields of New Toulouse, where the majority of the local agriculture industry is located, and into the New Pyrenees hills. After an hour you and the siblings step off at a provincial city. Although Betelgeuse starts to recede behind the horizon, you can see a small mountain that stands alone against the rest of the landscape.`
 			label front-mountain
-			`	Liam, with the help of the map, guides all of you to a flat wall. He looks a bit embarrassed as he says, "There's a phrase our father left in the instructions: 'Edr- i fen'. I don't know what it means, but I'm certain it has something to do with one of these fantasy novels he used to read."`
+			`	Liam, with the help of the map, guides all of you to the base of the mountain where you come across a flat wall embedded into a small cavern in its side. He looks a bit embarrassed as he says, "There's a phrase our father left in the instructions: 'Edr- i fen'. I don't know what it means, but I'm certain it has something to do with one of these fantasy novels he used to read."`
 			choice
 				`	"Sounds funny, but let's say it."`
 				`	"You've got a strange dad, but I like his sense of humor."`
@@ -5888,6 +5902,8 @@ mission "A Dead Man's Path 2"
 				to display
 					has "Sheragi Archaeology: The Emerald Sword 3: done"
 			`	After some time, Sophie calls you both to come to look at the tablet.`
+			choice
+				`	(Go over to Sophie.)`
 			label sword-scene
 			`	Approaching the tablet, there is a short message written on it:`
 			`			"My dear children. The galaxy runs far and wide, and I have traveled many places, more than most in many lifetimes. I have seen many worlds, both alien and human, too. And it was on those worlds that I have been exploring, discovering, and researching everything you see around you. It was my life's duty.`
@@ -5912,7 +5928,7 @@ mission "A Dead Man's Path 2"
 			
 			label declined
 			action
-				payment 50000
+				payment 100000
 				set "declined old man's sword"
 			`	"I see... please, if you won't take our father's sword, take an extra payment for having to put up with us all the way up until now." She takes the sword away and inserts it back into the pedestal.`
 				goto conclusion
@@ -5927,10 +5943,10 @@ mission "A Dead Man's Path 2"
 			`	Liam adds, "We will always thank you for helping us with our father's will. We never imagined that we would come so far and we would have never done it without you. It means so much to us. We wish you well through the stars, Captain <last>."`
 
 			branch accepted-sword extra-money
-				has "accepted old man's sword"
+				not "declined old man's sword"
 
 			label accepted-sword
-			`	After Liam hands you a credit chip of <payment>, you say goodbye to the two siblings and leave them in their father's mysterious dome.`
+			`	After Liam hands you a credit chip for <payment>, you say goodbye to the two siblings and leave them in their father's mysterious dome.`
 				decline
 
 			label extra-money
