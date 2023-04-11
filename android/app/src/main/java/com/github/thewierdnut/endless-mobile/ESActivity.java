@@ -15,6 +15,10 @@ import java.io.FileOutputStream;
 import java.io.File;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipEntry;
+import android.provider.OpenableColumns;
+import android.database.Cursor;
+
+import android.util.Log;
 
 /**
     SDL Activity.
@@ -23,7 +27,7 @@ public class ESActivity extends SDLActivity
 {
     static int SAVE_FILE = 1;
     static int GET_FILE = 2;
-    static int UNZIP_FILE = 3;
+    static int UNZIP_PLUGIN = 3;
 
     protected String[] getLibraries()
     {
@@ -79,8 +83,8 @@ public class ESActivity extends SDLActivity
         return ret;
     }
 
-    // Call to unzip a large file
-    protected boolean promptUserAndUnzipFile(String prompt, String path)
+    // Call to unzip a plugin
+    protected boolean promptUserAndUnzipPlugin(String prompt, String path)
     {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -89,8 +93,8 @@ public class ESActivity extends SDLActivity
         {
             unzip_path = path;
             zip_file_lock[0] = 0;
-            startActivityForResult(Intent.createChooser(intent, prompt), UNZIP_FILE);
-            //startActivityForResult(intent, UNZIP_FILE);
+            startActivityForResult(Intent.createChooser(intent, prompt), UNZIP_PLUGIN);
+            //startActivityForResult(intent, UNZIP_PLUGIN);
             // wait until intent finishes
             try
             {
@@ -158,7 +162,7 @@ public class ESActivity extends SDLActivity
                 load_file_lock.notify();
             }
         }
-        else if(requestCode == UNZIP_FILE)
+        else if(requestCode == UNZIP_PLUGIN)
         {
             int status = 0;
             if (resultCode == Activity.RESULT_OK)
@@ -166,12 +170,56 @@ public class ESActivity extends SDLActivity
                 Uri uri = data.getData();
                 try
                 {
+                    // Retrieve the filename from the data uri
+                    String zipfilename = null;
+                    if (uri.getScheme().equals("content"))
+                    {
+                        Cursor cursor = getContext().getContentResolver().query(uri, null, null, null, null);
+                        try
+                        {
+                            if (cursor != null && cursor.moveToFirst())
+                            {
+                                zipfilename = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                            }
+                        }
+                        finally
+                        {
+                            cursor.close();
+                        }
+                    }
+                    if (zipfilename == null)
+                    {
+                        zipfilename = uri.getPath();
+                        int cut = zipfilename.lastIndexOf('/');
+                        if (cut != -1)
+                        {
+                            zipfilename = zipfilename.substring(cut + 1);
+                        }
+                    }
+                    if (zipfilename != null && zipfilename.endsWith(".zip"))
+                    {
+                        zipfilename = zipfilename.substring(0, zipfilename.length() - 4);
+                    }
+                    
+                    String unzipped_path = unzip_path;
+                    if (zipfilename != null)
+                    {
+                        unzipped_path = unzipped_path + "tmp_" + zipfilename + "/";
+                    }
+
                     InputStream is = getContext().getContentResolver().openInputStream(uri);
                     ZipInputStream zip = new ZipInputStream(new BufferedInputStream(is));
                     ZipEntry e;
+                    Boolean is_nested = true;
                     while ((e = zip.getNextEntry()) != null)
                     {
-                        String path = unzip_path + e.getName();
+                        String path = unzipped_path + e.getName();
+                        if (e.getName().startsWith("data/") ||
+                            e.getName().startsWith("images/") ||
+                            e.getName().startsWith("sounds/"))
+                        {
+                            is_nested = false;
+                        }
                         if (e.isDirectory())
                         {
                             File f = new File(path);
@@ -192,6 +240,30 @@ public class ESActivity extends SDLActivity
                     }
 
                     zip.close();
+
+                    // post-unzip cleanup
+                    if (zipfilename != null)
+                    {
+                        if (is_nested && zipfilename != null)
+                        {
+                            // We have detected the plugin folders nested within
+                            // a subfolder. Move everything up one level.
+                            File oldDir = new File(unzipped_path);
+                            for (String child: oldDir.list())
+                            {
+                                File nested = new File(unzipped_path + "/" + child);
+                                nested.renameTo(new File(unzip_path + "/" + child));
+                            }
+                            oldDir.delete();
+                        }
+                        else
+                        {
+                            // The unzipped path has the correct structure.
+                            // Strip off the tmp_tag
+                            File oldDir = new File(unzipped_path);
+                            oldDir.renameTo(new File(unzip_path + zipfilename));
+                        }
+                    }
                     status = 1; // success
                 }
                 catch(IOException e)

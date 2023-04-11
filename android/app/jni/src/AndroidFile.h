@@ -90,17 +90,17 @@ public:
 	}
 
 	/// Prompt the user for a zip file, and then unpack it at the given path.
-	bool GetAndUnzipFile(const std::string& prompt, const std::string& zip_path)
+	bool GetAndUnzipPlugin(const std::string& prompt, const std::string& zip_path)
 	{
 		jobject context = (jobject)SDL_AndroidGetActivity();
       // void getFile(java.lang.String, java.lang.String)
-      jmethodID promptUserAndUnzipFile = m_env->GetMethodID(m_env->GetObjectClass(context),
-					"promptUserAndUnzipFile", "(Ljava/lang/String;Ljava/lang/String;)Z");
+      jmethodID promptUserAndUnzipPlugin = m_env->GetMethodID(m_env->GetObjectClass(context),
+					"promptUserAndUnzipPlugin", "(Ljava/lang/String;Ljava/lang/String;)Z");
 
 		// This method is blocking while the user selects or cancels the file.
 		jstring prompt_str = m_env->NewStringUTF(prompt.c_str());
 		jstring zip_path_str = m_env->NewStringUTF(zip_path.c_str());
-		bool success = (bool)m_env->CallBooleanMethod(context, promptUserAndUnzipFile, prompt_str, zip_path_str);
+		bool success = (bool)m_env->CallBooleanMethod(context, promptUserAndUnzipPlugin, prompt_str, zip_path_str);
 		m_env->DeleteLocalRef(prompt_str);
 		m_env->DeleteLocalRef(zip_path_str);
 

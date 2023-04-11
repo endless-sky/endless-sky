@@ -147,7 +147,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	{
 		// Import plugin
 		AndroidFile af;
-		bool success = af.GetAndUnzipFile("Select plugin zipfile", Files::Config() + "/plugins/");
+		bool success = af.GetAndUnzipPlugin("Select plugin zipfile", Files::Config() + "/plugins/");
 
 		if (success)
 		{
