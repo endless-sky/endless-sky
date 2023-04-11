@@ -57,7 +57,7 @@ void DistanceCalculationSettings::Load(const DataNode &node)
 
 
 
-WormholeStrategy DistanceCalculationSettings::WormholeStrategy() const
+WormholeStrategy DistanceCalculationSettings::WormholeStrat() const
 {
 	return wormholeStrategy;
 }

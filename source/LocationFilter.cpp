@@ -81,7 +81,7 @@ namespace {
 		static const System *previousCenter = center;
 		static DistanceMap distance(
 			center,
-			distanceSettings.WormholeStrategy(),
+			distanceSettings.WormholeStrat(),
 			distanceSettings.AssumesJumpDrive(),
 			-1,
 			maximum
@@ -96,7 +96,7 @@ namespace {
 			previousDistanceSettings = distanceSettings;
 			distance = DistanceMap(
 				center,
-				distanceSettings.WormholeStrategy(),
+				distanceSettings.WormholeStrat(),
 				distanceSettings.AssumesJumpDrive(),
 				-1,
 				maximum

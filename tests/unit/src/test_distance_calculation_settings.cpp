@@ -65,7 +65,7 @@ SCENARIO( "A wormmhole strategy and boolean must be stored.", "[DistanceCalculat
 		DistanceCalculationSettings a;
 		WHEN( "the settings are created" ) {
 			THEN( "it represents (NONE, false)" ) {
-				CHECK( a.WormholeStrategy() == WormholeStrategy::NONE );
+				CHECK( a.WormholeStrat() == WormholeStrategy::NONE );
 				CHECK( a.AssumesJumpDrive() == false );
 			}
 		}
@@ -83,32 +83,32 @@ TEST_CASE( "DistanceCalculationSettings::Load", "[DistanceCalculationSettings::L
 	using T = DistanceCalculationSettings;
 	SECTION( "No wormholes, no jump drive") {
 		T settings(defaultNode);
-		CHECK( settings.WormholeStrategy() == WormholeStrategy::NONE );
+		CHECK( settings.WormholeStrat() == WormholeStrategy::NONE );
 		CHECK( settings.AssumesJumpDrive() == false );
 	}
 	SECTION( "No wormholes, jump drive") {
 		T settings(jdNode);
-		CHECK( settings.WormholeStrategy() == WormholeStrategy::NONE );
+		CHECK( settings.WormholeStrat() == WormholeStrategy::NONE );
 		CHECK( settings.AssumesJumpDrive() == true );
 	}
 	SECTION( "Unrestricted wormholes, no jump drive") {
 		T settings(unrestrictedWormholesNode);
-		CHECK( settings.WormholeStrategy() == WormholeStrategy::ONLY_UNRESTRICTED );
+		CHECK( settings.WormholeStrat() == WormholeStrategy::ONLY_UNRESTRICTED );
 		CHECK( settings.AssumesJumpDrive() == false );
 	}
 	SECTION( "Unrestricted wormholes, jump drive") {
 		T settings(unrestrictedWormholesJDNode);
-		CHECK( settings.WormholeStrategy() == WormholeStrategy::ONLY_UNRESTRICTED );
+		CHECK( settings.WormholeStrat() == WormholeStrategy::ONLY_UNRESTRICTED );
 		CHECK( settings.AssumesJumpDrive() == true );
 	}
 	SECTION( "All wormholes, no jump drive") {
 		T settings(allWormholesNode);
-		CHECK( settings.WormholeStrategy() == WormholeStrategy::ALL );
+		CHECK( settings.WormholeStrat() == WormholeStrategy::ALL );
 		CHECK( settings.AssumesJumpDrive() == false );
 	}
 	SECTION( "All wormholes, jump drive") {
 		T settings(allWormholesJDNode);
-		CHECK( settings.WormholeStrategy() == WormholeStrategy::ALL );
+		CHECK( settings.WormholeStrat() == WormholeStrategy::ALL );
 		CHECK( settings.AssumesJumpDrive() == true );
 	}
 }
@@ -117,50 +117,50 @@ TEST_CASE( "Copying DistanceCalculationSettings", "[DistanceCalculationSettings]
 	using T = DistanceCalculationSettings;
 	SECTION( "No wormholes, no jump drive") {
 		T settings(defaultNode);
-		CHECK( settings.WormholeStrategy() == WormholeStrategy::NONE );
+		CHECK( settings.WormholeStrat() == WormholeStrategy::NONE );
 		CHECK( settings.AssumesJumpDrive() == false );
 		T copiedSettings = settings;
-		CHECK( copiedSettings.WormholeStrategy() == WormholeStrategy::NONE );
+		CHECK( copiedSettings.WormholeStrat() == WormholeStrategy::NONE );
 		CHECK( copiedSettings.AssumesJumpDrive() == false );
 	}
 	SECTION( "No wormholes, jump drive") {
 		T settings(jdNode);
-		CHECK( settings.WormholeStrategy() == WormholeStrategy::NONE );
+		CHECK( settings.WormholeStrat() == WormholeStrategy::NONE );
 		CHECK( settings.AssumesJumpDrive() == true );
 		T copiedSettings = settings;
-		CHECK( copiedSettings.WormholeStrategy() == WormholeStrategy::NONE );
+		CHECK( copiedSettings.WormholeStrat() == WormholeStrategy::NONE );
 		CHECK( copiedSettings.AssumesJumpDrive() == true );
 	}
 	SECTION( "Unrestricted wormholes, no jump drive") {
 		T settings(unrestrictedWormholesNode);
-		CHECK( settings.WormholeStrategy() == WormholeStrategy::ONLY_UNRESTRICTED );
+		CHECK( settings.WormholeStrat() == WormholeStrategy::ONLY_UNRESTRICTED );
 		CHECK( settings.AssumesJumpDrive() == false );
 		T copiedSettings = settings;
-		CHECK( copiedSettings.WormholeStrategy() == WormholeStrategy::ONLY_UNRESTRICTED );
+		CHECK( copiedSettings.WormholeStrat() == WormholeStrategy::ONLY_UNRESTRICTED );
 		CHECK( copiedSettings.AssumesJumpDrive() == false );
 	}
 	SECTION( "Unrestricted wormholes, jump drive") {
 		T settings(unrestrictedWormholesJDNode);
-		CHECK( settings.WormholeStrategy() == WormholeStrategy::ONLY_UNRESTRICTED );
+		CHECK( settings.WormholeStrat() == WormholeStrategy::ONLY_UNRESTRICTED );
 		CHECK( settings.AssumesJumpDrive() == true );
 		T copiedSettings = settings;
-		CHECK( copiedSettings.WormholeStrategy() == WormholeStrategy::ONLY_UNRESTRICTED );
+		CHECK( copiedSettings.WormholeStrat() == WormholeStrategy::ONLY_UNRESTRICTED );
 		CHECK( copiedSettings.AssumesJumpDrive() == true );
 	}
 	SECTION( "All wormholes, no jump drive") {
 		T settings(allWormholesNode);
-		CHECK( settings.WormholeStrategy() == WormholeStrategy::ALL );
+		CHECK( settings.WormholeStrat() == WormholeStrategy::ALL );
 		CHECK( settings.AssumesJumpDrive() == false );
 		T copiedSettings = settings;
-		CHECK( copiedSettings.WormholeStrategy() == WormholeStrategy::ALL );
+		CHECK( copiedSettings.WormholeStrat() == WormholeStrategy::ALL );
 		CHECK( copiedSettings.AssumesJumpDrive() == false );
 	}
 	SECTION( "All wormholes, jump drive") {
 		T settings(allWormholesJDNode);
-		CHECK( settings.WormholeStrategy() == WormholeStrategy::ALL );
+		CHECK( settings.WormholeStrat() == WormholeStrategy::ALL );
 		CHECK( settings.AssumesJumpDrive() == true );
 		T copiedSettings = settings;
-		CHECK( copiedSettings.WormholeStrategy() == WormholeStrategy::ALL );
+		CHECK( copiedSettings.WormholeStrat() == WormholeStrategy::ALL );
 		CHECK( copiedSettings.AssumesJumpDrive() == true );
 	}
 }

@@ -31,7 +31,7 @@ public:
 
 	void Load(const DataNode &node);
 
-	WormholeStrategy WormholeStrategy() const;
+	WormholeStrategy WormholeStrat() const;
 	bool AssumesJumpDrive() const;
 
 

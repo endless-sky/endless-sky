@@ -1485,7 +1485,7 @@ int Mission::CalculateJumps(const System *sourceSystem)
 	{
 		// Find the closest destination to this location.
 		DistanceMap distance(sourceSystem,
-				distanceCalcSettings.WormholeStrategy(),
+				distanceCalcSettings.WormholeStrat(),
 				distanceCalcSettings.AssumesJumpDrive());
 		auto it = destinations.begin();
 		auto bestIt = it;
@@ -1508,7 +1508,7 @@ int Mission::CalculateJumps(const System *sourceSystem)
 		destinations.erase(bestIt);
 	}
 	DistanceMap distance(sourceSystem,
-			distanceCalcSettings.WormholeStrategy(),
+			distanceCalcSettings.WormholeStrat(),
 			distanceCalcSettings.AssumesJumpDrive());
 	// If currently unreachable, this system adds -1 to the deadline, to match previous behavior.
 	expectedJumps += distance.Days(destination->GetSystem());
