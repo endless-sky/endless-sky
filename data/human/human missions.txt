@@ -5810,7 +5810,7 @@ mission "A Dead Man's Path 2"
 			choice
 				`	"But what do you want me to do?"`
 				`	"Sorry, but I'd be stupid to accept a mission I don't know anything about."`
-			`	Sophie looks at her brother with an amused look on her face. "Of course, my brother just can't wait to get started!" She turns back to you. "Maybe I should start with who our father was. We didn't get to know him very well - he came home only occasionally. Don't get me wrong, our parents weren't fighting, but he had this... passion, it just couldn't make him stay in one place for very long. He was a captain, not unlike you, and he was restless to explore even the furthest parts of the galaxy. We believe he traveled further than most human captains; sometimes he brought small items back home that nobody could explain."`
+			`	Sophie smiles at her brother. "Of course, Liam just can't wait to get started!" She turns back to you. "Maybe I should start with who our father was. We didn't get to know him very well - he came home only occasionally. Don't get me wrong, our parents weren't fighting, but he had this passion that couldn't make him stay in one place for very long. He was a captain, not unlike you, and he was restless to explore even the furthest parts of the galaxy. We believe he traveled further than most human captains; sometimes he brought small items back home that nobody could explain."`
 			`	She pauses for a moment. "Anyway, in his testament he told us that he left something behind for us on <planet>, in <system>. He said that he would not make it easy, though; he loved fantasy books, and in those stories there is always something mysterious at play that we do not understand the meaning of until the very end. So he told us of a few systems that before we should visit before we go to Prime.`
 			`	"Of course, it would be much easier if we could go directly to Prime, but we want to respect our father's last will." She looks directly at you now. "And that is why we need your help. Could you help us again and take us through all these systems?"`
 			choice
@@ -5825,7 +5825,7 @@ mission "A Dead Man's Path 2"
 				`	"Sounds good!"`
 				`	"Sorry, I won't be able to take you. Those systems are too far away from each other."`
 					goto nothanks
-			`	"We weren't expecting this trip, so we'll need to buy some supplies," Sophie says, "but as soon as you're ready we'll be on board."`
+			`	"Great! We weren't expecting this trip, so we'll need to buy some supplies," Sophie says, "but as soon as you're ready we'll be on board."`
 				accept
 
 			label nothanks
@@ -5845,7 +5845,6 @@ mission "A Dead Man's Path 2"
 		dialog phrase "generic missing waypoint or passengers"
 
 	on complete
-		payment 50000
 		log `Brought Sophie and Liam around the galaxy to various locations that their departed father asked them to visit in his will, before finally bringing them to Prime where he left something for them.`
 		conversation
 			`The siblings are uncharacteristically quiet, perhaps in anticipation of finally arriving at their destination. It is only when you've all stepped out into Prime's spaceport that Sophie says, "Captain <last>, you've helped us immensely, and we can't thank you enough for bringing us all across the galaxy! But we have one last request. Both of us think that you should come with us to see what our father left behind. Do you want to see it?"`
@@ -5853,10 +5852,7 @@ mission "A Dead Man's Path 2"
 				`	"Now that we've come so far, sure."`
 					goto continue
 				`	"I'm sorry, I've got to be somewhere else."`
-			action
-				payment 50000
-			`	"Well, that's okay. We'll always appreciate the help you've given us in fulfilling our father's will. Oh, and here's your payment, and a little extra for putting up with us all this time," Liam says, handing you a few credit chips for <payment>. "We wish you well through the stars!" Again, the siblings both thank you profusely for the trip, and you watch them leave Prime's spaceport with their heads up.`
-				decline
+					goto somewhere-else
 			label continue
 			`	Liam pulls out a map; not the starmap he had before but a local map of Prime marked 'New Toulouse'. "Apparently our father bought a whole mountain on this planet, and he wants us to go there. It's to the west of us near the New Pyrenees, a little while away from Prime Central Spaceport where we are."`
 			choice
@@ -5926,17 +5922,16 @@ mission "A Dead Man's Path 2"
 				`	"Well, if you frame it that way, I'll take it."`
 					goto accepted
 			
-			label declined
-			action
-				payment 100000
-				set "declined old man's sword"
-			`	"I see... please, if you won't take our father's sword, take an extra payment for having to put up with us all the way up until now." She takes the sword away and inserts it back into the pedestal.`
-				goto conclusion
-
 			label accepted
 			action
 				outfit "Old Man's Sword" 1
 			`	You take the strange sword from Sophie. It's weirdly light, and you don't really know how to use it yet, but it has some strange feeling of power that seems to emanate from it.`
+				goto conclusion
+
+			label declined
+			action
+				set "declined old man's sword"
+			`	"I see... please, if you won't take our father's sword, take an extra payment for having to put up with us all the way up until now." She takes the sword away and inserts it back into the pedestal.`
 
 			label conclusion
 			`	"Well, we'll need some time to take it all in and arrange things, find a place to stay on Prime and all that," Sophie says, "but we won't keep you from your ship any longer. It was a pleasure to travel with you, Captain <last>."`
@@ -5946,9 +5941,19 @@ mission "A Dead Man's Path 2"
 				not "declined old man's sword"
 
 			label accepted-sword
+			action
+				payment 50000
 			`	After Liam hands you a credit chip for <payment>, you say goodbye to the two siblings and leave them in their father's mysterious dome.`
 				decline
 
 			label extra-money
+			action
+				payment 100000
 			`	After Liam hands you a few credit chips for <payment>, you say goodbye to the two siblings and leave them in their father's mysterious dome.`
+				decline
+
+			label somewhere-else
+			action
+				payment 100000
+			`	"Well, that's okay. We'll always appreciate the help you've given us in fulfilling our father's will. Oh, and here's your payment, and a little extra for putting up with us all this time," Liam says, handing you a few credit chips for <payment>. "We wish you well through the stars!" Again, the siblings both thank you profusely for the trip, and you watch them leave Prime's spaceport with their heads up.`
 				decline
