@@ -2020,7 +2020,7 @@ mission "Wealthy tourists out"
 	to offer
 		random < 75
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	source
 		attributes "rich" "urban"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2085,7 +2085,7 @@ mission "Wealthy tourists back"
 	to offer
 		random < 75
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	source
 		attributes "tourism"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2301,7 +2301,7 @@ mission "Stranded Field Trip"
 	name "Stranded field trip to <planet>"
 	job
 	repeat
-	description `These <bunks> school students have been stranded on a field trip due to the unexpected bankruptcy of their booked transport. The school and parents have put up a reward of <payment> for them to be returned home to <destination>.`
+	description `These <bunks> pupils have been stranded on a field trip due to the unexpected bankruptcy of their booked transport. A reward of <payment> is available for them and their <tons> of luggage to be returned home to <destination>.`
 	passengers 20 4 .1
 	cargo "educational supplies" 2 10 .6
 	to offer
@@ -2338,7 +2338,7 @@ mission "Prisoners [0]"
 	to offer
 		random < 15
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2354,7 +2354,7 @@ mission "Prisoners [1]"
 	to offer
 		random < 15
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2377,7 +2377,7 @@ mission "Prisoners [2]"
 	to offer
 		random < 15
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2399,7 +2399,7 @@ mission "Prisoners [3]"
 	to offer
 		random < 15
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2422,7 +2422,7 @@ mission "Prisoners [4]"
 		random < 10
 		"combat rating" > 50
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -3147,7 +3147,7 @@ mission "Bounty Hunting (Small, Boarding, Entering)"
 		"combat rating" > 50
 		random < 15
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -3186,7 +3186,7 @@ mission "Bounty Hunting (Medium, Boarding, Entering)"
 		"combat rating" > 200
 		random < 15
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -3435,7 +3435,7 @@ mission "Bounty Hunting (Marauder IV)"
 		government "Bounty"
 		personality heroic staying nemesis target
 		system
-			distance 1 3
+			distance 1 1
 		fleet "Marauder fleet IV"
 		dialog phrase "generic hunted bounty fleet eliminated dialog"
 	on visit
