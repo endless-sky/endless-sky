@@ -75,7 +75,8 @@ SCENARIO( "A wormmhole strategy and boolean must be stored.", "[DistanceCalculat
 const DataNode defaultNode = AsDataNode("node\n\t\"no wormholes\"");
 const DataNode jdNode = AsDataNode("node\n\t\"assumes jump drive\"");
 const DataNode unrestrictedWormholesNode = AsDataNode("node\n\t\"only unrestricted wormholes\"");
-const DataNode unrestrictedWormholesJDNode = AsDataNode("node\n\t\"only unrestricted wormholes\"\n\t\"assumes jump drive\"");
+const DataNode unrestrictedWormholesJDNode =
+		AsDataNode("node\n\t\"only unrestricted wormholes\"\n\t\"assumes jump drive\"");
 const DataNode allWormholesNode = AsDataNode("node\n\t\"all wormholes\"");
 const DataNode allWormholesJDNode = AsDataNode("node\n\t\"allwormholes\"\n\t\"assumes jump drive\"");
 
