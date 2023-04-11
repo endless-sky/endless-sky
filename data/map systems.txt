@@ -19206,6 +19206,8 @@ system Kilema
 	asteroids "small metal" 8 1.8
 	asteroids "medium metal" 7 2.7
 	asteroids "large metal" 3 2.3
+	minables lead 3 1.4
+	minables iron 5 1.1
 	fleet "Small Scin" 4600
 	fleet "Scin Transport" 3500
 	fleet "Scin Science" 14400
