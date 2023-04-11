@@ -29,11 +29,19 @@ public:
 		adaptive,
 	};
 
-	enum class OverlayType : int {
+	enum class OverlayState : int_fast8_t {
 		OFF = 0,
 		ON,
 		DAMAGED,
 		DISABLED
+	};
+
+	enum class OverlayType : int_fast8_t {
+		ALL = 0,
+		FLAGSHIP,
+		ESCORT,
+		ENEMY,
+		NEUTRAL
 	};
 
 	enum class AutoAim : int_fast8_t {
@@ -93,12 +101,9 @@ public:
 	static VSync VSyncState();
 	static const std::string &VSyncSetting();
 
-	static void SetStatusOverlaysGeneric(int &index, bool blank);
-	static void ResetStatusOverlayChildren(bool blank);
-
-	static void SetStatusOverlays(bool blank, int type);
-	static OverlayType StatusOverlaysState(int type);
-	static const std::string &StatusOverlaysSetting(int type);
+	static void CycleStatusOverlays(OverlayType type);
+	static OverlayState StatusOverlaysState(OverlayType type);
+	static const std::string &StatusOverlaysSetting(OverlayType type);
 
 	// Auto aim setting, either "off", "always on", or "when firing".
 	static void ToggleAutoAim();
