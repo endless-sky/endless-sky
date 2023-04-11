@@ -5761,16 +5761,16 @@ mission "A Dead Man's Path 1"
 			`	Her face brightens up with a smile, and she continues, "That's good to hear! My brother and I were searching for someone who could give us a ride to New China. We received notice that our father's last will is going to be published there. Do you think you could bring us there? We will pay you for your service, of course."`
 				goto helpornot
 			label suspicious
-			`    She laughs. "There's no need to be suspicious, my brother and I were just searching for someone who could give us a ride to New China. We received notice that our father's last will is going to be published there. Do you think you could bring us there? We will pay you for your service, of course.`
+			`	She laughs. "There's no need to be suspicious, my brother and I were just searching for someone who could give us a ride to New China. We received notice that our father's last will is going to be published there. Do you think you could bring us there? We will pay you for your service, of course.`
 			label helpornot
 			choice
 				`	"Of course I can."`
-						goto agreed
+					goto agreed
 				`	"I'm sorry, but I've got more urgent things to do. You'll need to find someone else."`
 			`	Her smile fades away as you say that, but they both simply nod and walk away out the gates of the spaceport, with both heads looking down.`
 				decline
 			label agreed
-			`    "Fantastic! My name is Sophie, and this is my younger brother," she says, pointing at the man to her side, who goes to shake your hand. "Hi, I'm Liam. We've been looking for a ride for some time now. We were starting to worry that we wouldn't get there in time! You'll have to bring us there quickly."`
+			`	"Fantastic! My name is Sophie, and this is my younger brother," she says, pointing at the man to her side, who goes to shake your hand. "Hi, I'm Liam. We've been looking for a ride for some time now. We were starting to worry that we wouldn't get there in time! You'll have to bring us there quickly."`
 			choice
 				`	"Don't worry, you'll be surprised how fast my ship flies. We'll get there in no time."`
 					goto notime
@@ -5837,7 +5837,7 @@ mission "A Dead Man's Path 2"
 	on enter "Aspidiske"
 		dialog `While Sophie and Liam are both quite chatty at times, the beauty of this star stops all their conversations.`
 	on enter "Gorvi"
-		dialog `Approaching the nebula surrounding Gorvi, Sophie and Liam both chatter to each outher about the marvels and mysteries of the Wolf-Rayet star at its center.`
+		dialog `Approaching the nebula surrounding Gorvi, Sophie and Liam both chatter to each other about the marvels and mysteries of the Wolf-Rayet star at its center.`
 	on enter "Enif"
 		dialog `If there was ever a prime example of how much the human race still has to learn, it is the strange, impressive, and yet still unfinished ringworld in this system. Liam tells you, "Our father was a very curious man, and he always talked about the Quarg and their ringworlds, and how it would be another thousand years before humanity could build anything similar. We've never seen how big it was until now!"`
 
@@ -5861,17 +5861,17 @@ mission "A Dead Man's Path 2"
 			`	Liam pulls out a map; not the starmap he had before but a local map of Prime marked 'New Toulouse'. "Apparently our father bought a whole mountain on this planet, and he wants us to go there. It's to the west of us near the New Pyrenees, a little while away from Prime Central Spaceport where we are."`
 			choice
 				`	"Sounds good. I'll follow your lead."`
-						goto shuttle
+					goto shuttle
 				`	"We could also have a look around here, and see why your father chose this planet."`
 			`	"You're right. I hadn't thought of that," Sophie says."`
-			`	All three of you walk around the spaceport district for some time. Coming into a giant plaza, you see one of the newest models from Betelgeuse, a Behemoth, on display in the center. The massive freighter with its many turret  emplacements towers over even the plaza, an obvious showcase of Prime's leading shipbuilding industry.`
+			`	All three of you walk around the spaceport district for some time. Coming into a giant plaza, you see one of the newest models from Betelgeuse, a Behemoth, on display in the center. The massive freighter with its many turret emplacements towers over even the plaza, an obvious showcase of Prime's leading shipbuilding industry.`
 			`	Liam's face brightens as if he just understood something. "I think our father chose this planet because he was always a fan of Betelgeuse ships. Before he went on his adventures he used to be a test pilot for the shipyard."`
 			`	Sophie nods. "Right! And once he was allowed to keep one of their experimental models as a gift for being one of their most productive pilots. Betelgeuse wouldn't let him go when he wanted to leave and start exploring the galaxy! But we're running out of time. Shall we go to the mountain now?"`
 			choice
 				`	"We should take a shuttle. It'll be the fastest way."`
-						goto shuttle
+					goto shuttle
 				`	"Let's take the maglev, we should make it before it gets dark."`
-						goto maglev
+					goto maglev
 			label shuttle
 			`	After a short shuttlecraft flight on Prime's extensive and well maintained shuttle service, you and the siblings arrive at a provincial city, where you can see a small mountain that stands alone against the rest of the landscape.`
 				goto front-mountain
@@ -5887,7 +5887,7 @@ mission "A Dead Man's Path 2"
 			`	For a moment, nothing happens, and the siblings are too stunned to do anything. The blue rectangle starts flashing between different hues of blue, until the whole rectangle and the stone it covered disappears suddenly to leave behind a cavity in the wall. "I could have sworn the stone was real," Liam says under his breath.`
 			choice
 				`	"Well, this is a real adventure. Lets go!"`
-						goto enter
+					goto enter
 				`	"We don't know what's inside there. Be careful."`
 			`	"Well, now that you say it, I recently bought a small camera drone," Liam responds. "We can use it to scout out the hallway. It's only in infrared, so we won't see too many details," he adds. Liam starts the drone and guides it using a small remote control with integrated display. After some time, the drone flies back out and he tells you, "I think it is safe. We can go."`
 			label enter
@@ -5895,7 +5895,7 @@ mission "A Dead Man's Path 2"
 			`	For a long while, the three of you continue through the stone hallway, the light following your movements, until it opens up into a dome-shaped room brilliantly bathed in blue light. On the walls, there are all kinds of alien artifacts lined up next to each other, but at the center of the room there is a pedestal with a sword inserted into it. A small tablet stands in a socket in front of it.`
 			choice
 				`	(Go up to the sword.)`
-						goto sword-scene
+					goto sword-scene
 				`	(Take a look around first.)`
 			`	You walk around to the right of the dome to the collection of alien objects, all steel in color and rather blocky. "Wow, he must have always brought us back the small items from his expeditions, because these artifacts over here are huge!" Liam exclaims from another part of the dome. "How did he even move all these here?"`
 			`	Now that Liam points it out, many of the larger artifacts over his way look similar to the Sheragi technology you studied with Albert Foster.`
@@ -5915,9 +5915,9 @@ mission "A Dead Man's Path 2"
 			`	"This sword was always at our father's side, and it has been many places. Take it to many more." She pulls the sword from the pedestal, and gives it one last look over before handing over it to you. "It is yours now."`
 			choice
 				`	"I would be more than grateful to accept it."`
-						goto accepted
+					goto accepted
 				`	"This is too much for me to take."`
-						goto lastchance
+					goto lastchance
 			label lastchance
 			`	"Are you sure?" Sophie asks. "This is a one time offer. It would be wasted on us."`
 			choice
