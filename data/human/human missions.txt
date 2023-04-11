@@ -5921,7 +5921,7 @@ mission "Blind Man from Martini"
 				goto taxi
 
 			label waiting
-			action 
+			action
 				"Blind Man from Martini: taxi questions count" ++
 			`	Deciding not to ask Douglas anything, you look out the windows of the taxi. You're in the midst of New Sydney, and skyscrapers stare down at your tiny taxi from each side of the avenue, but despite this it is still quite green and cheery, with trees on each side and people walking to work in the morning.`
 				to display
