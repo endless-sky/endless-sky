@@ -1299,7 +1299,7 @@ ship "Kyanite"
 		"Hyperdrive"
 	"steering engine" -84 -100 0.5
 		angle 58.5
-		right 
+		right
 	"steering engine" 84 -100 0.5
 		angle -58.5
 		left

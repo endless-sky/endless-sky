@@ -746,7 +746,7 @@ outfit "Acumen Bolt Cannon"
 		"shield damage" 46
 		"hull damage" 60
 		"hit force" 86
-	description `Further progressing research in energy weaponry, the Gegno Scin recently designed the Acumen Bolt Cannon -- a proof-of-concept neutron cannon that fires dangerous balls of plasma capable of dealing noticable damage to armor and shielding alike.`
+	description `Further progressing research in energy weaponry, the Gegno Scin recently designed the Acumen Bolt Cannon -- a proof-of-concept neutron cannon that fires dangerous balls of plasma capable of dealing decent damage to armor and shielding alike.`
 	description `Although more powerful than Astuit blaster projectiles, Acumen plasma bolts are harder to fire accurately, travel much slower, and require more energy to fire.`
 
 effect "neutron explosion"
