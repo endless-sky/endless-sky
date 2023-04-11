@@ -290,6 +290,14 @@ planet "Belug's Plunge"
 	outfitter "Coalition Advanced"
 	security 0.5
 
+planet "Beryl"
+	attributes gegno scin "requires: scin access" uninhabited
+	landscape land/station16
+	description `Beryl is a small space telescope deployed by the Gegno Scin to observe a relatively nearby section of space, home to mysteriously dark nebulae and black holes. Only select Scin scientists are allowed to acquire research data from Beryl, which is otherwise not publically accessible.`
+	government "Gegno Scin"
+	bribe 0
+	security 0
+
 planet "Big Sky"
 	attributes "dirt belt" farming forest frontier
 	landscape land/mountain12-sfiera

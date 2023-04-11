@@ -725,28 +725,29 @@ outfit "Acumen Bolt Cannon"
 	licenses
 		"Gegno Civilian"
 		"Scin Hoplologist"
-	cost 244000
+	cost 58000
 	thumbnail "outfit/acumen"
 	"mass" 15
-	"outfit space" -15
-	"weapon capacity" -15
+	"outfit space" -33
+	"weapon capacity" -33
 	"gun ports" -1
 	weapon
 		sprite "projectile/neutron bolt"
 			"scale" 0.5
 		"hit effect" "neutron explosion"
 		sound "neutron bolt"
-		"inaccuracy" 8
+		"inaccuracy" 9
 		"velocity" 5
 		"lifetime" 62
 		"reload" 20
 		"turn" 4
-		"firing energy" 19
-		"firing heat" 30
+		"firing energy" 26
+		"firing heat" 66
 		"shield damage" 46
 		"hull damage" 60
 		"hit force" 86
-	description `With a better grasp on plasma and energy weaponry, the Gegno Scin developed a larger blaster weapon to mount on the Feldspar Carrier as a counter to the Gegno Vi's huge cannon weaponry. Acuit Artillery turrets outrange most weapons in Gegno space, while having a higher rate of fire as well, making them very efficient bombardment weapons.`
+	description `Further progressing research in energy weaponry, the Gegno Scin recently designed the Acumen Bolt Cannon -- a proof-of-concept neutron cannon that fires dangerous balls of plasma capable of dealing noticable damage to armor and shielding alike.`
+	description `Although more powerful than Astuit blaster projectiles, Acumen plasma bolts are harder to fire accurately, travel much slower, and require more energy to fire.`
 
 effect "neutron explosion"
 	sprite "effect/explosion/neutron/tiny"

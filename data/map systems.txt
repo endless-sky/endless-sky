@@ -19208,6 +19208,7 @@ system Kilema
 	asteroids "large metal" 3 2.3
 	fleet "Small Scin" 4600
 	fleet "Scin Transport" 3500
+	fleet "Scin Science" 14400
 	object
 		sprite star/g-dwarf
 		period 10
@@ -19215,6 +19216,13 @@ system Kilema
 		sprite planet/ice8
 		distance 638
 		period 526.314
+	object "Beryl"
+		sprite planet/beryl/beryl
+			"scale" 0.25
+			"frame rate" 4
+		distance 1200
+		period 1980
+		offset 90
 	object
 		sprite planet/rock17
 		distance 1761
@@ -19223,10 +19231,6 @@ system Kilema
 		sprite planet/gas0
 		distance 4002
 		period 8268.56
-	object
-		sprite planet/browndwarf-l
-		distance 15993
-		period 66055.5
 
 system Kiluit
 	pos 699.45 -562.23

@@ -367,3 +367,19 @@ fleet "Gegno Vi Duelist B"
 		heroic unconstrained
 	variant
 		"Dunite"
+
+fleet "Scin Science"
+	government "Gegno Scin"
+	names "gegno scin"
+	cargo 4
+	personality
+		mining harvests
+	variant
+		"Kyanite"
+		"Tridymite"
+	variant
+		"Kyanite (Guile)"
+		"Tridymite"
+	variant
+		"Kyanite (Acumen)"
+		"Tridymite"

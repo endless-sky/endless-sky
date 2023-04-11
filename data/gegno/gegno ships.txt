@@ -1262,38 +1262,37 @@ ship "Kyanite"
 	thumbnail "thumbnail/gegno kyanite"
 	attributes
 		category "Utility"
-		"cost" 14454000
+		"cost" 28870000
 		"shields" 0
-		"hull" 16900
-		"required crew" 102
-		"bunks" 170
-		"mass" 1010
-		"drag" 16.1
-		"heat dissipation" 0.55
-		"fuel capacity" 600
-		"cargo space" 430
-		"outfit space" 552
-		"weapon capacity" 166
-		"engine capacity" 182
-
+		"hull" 13650
+		"required crew" 66
+		"bunks" 93
+		"mass" 985
+		"drag" 14.6
+		"heat dissipation" 0.5
+		"fuel capacity" 400
+		"cargo space" 76
+		"outfit space" 380
+		"weapon capacity" 202
+		"engine capacity" 160
+		"energy capacity" 21300
+		"energy generation" 11.3
+		"heat generation" 27.2
 		"outfit scan power" 18
 		"outfit scan efficiency" 8
 		"cargo scan power" 6
 		"cargo scan efficiency" 2
 		weapon
-			"blast radius" 216
-			"shield damage" 1920
-			"hull damage" 1630
-			"hit force" 3200
+			"blast radius" 197
+			"shield damage" 2030
+			"hull damage" 1440
+			"hit force" 2800
 	outfits
-		"Acumen Bolt Cannon"
-		
-		"C7 Brawl Cell"
-		"C17 Warzone Core"
-		"R02 Battlezone Battery"
-		"R03 Warforge Battery"
-		"Plasmasickle" 51
-		"Plasma Grenades" 51
+		"Astuit Battery" 2
+		"Acuit Artillery"
+
+		"Plasmasickle" 33
+		"Plasma Grenades" 33
 
 		"SC-14 Plasma Thruster" 2
 		"SC-14 Plasma Steering" 2
@@ -1310,17 +1309,53 @@ ship "Kyanite"
 	engine 28.5 169
 	gun -40 -350
 	gun 40 -350
-	gun 0 -62.5 "Acumen Bolt Cannon"
-	turret -46 -102
-	turret 46 -102
-	turret 0 69
-	leak "leak" 10 40
-	leak "flame" 40 70
+	gun 0 -62.5
+	turret -46 -102 "Astuit Battery"
+	turret 46 -102 "Astuit Battery"
+	turret 0 69 "Acuit Artillery"
+	leak "leak" 20 50
+	leak "flame" 90 160
 	leak "big leak" 30 50
-	explode "huge explosion" 15
-	explode "large explosion" 42
-	explode "medium explosion" 42
-	explode "small explosion" 38
+	explode "huge explosion" 12
+	explode "large explosion" 46
+	explode "medium explosion" 44
+	explode "small explosion" 30
 	"final explode" "final explosion large"
-	description `Epidotes are large independent research platforms with adequately-sized cargo holds, allowing them to perform as a reliable heavy freighter for the Gegno Scin. A large number of bunks either help transport groups of Scin scientists to their project destinations, or allow for mobile on-board demonstrations and observations. Each Epidote is equipped with a rear fighter docking bay capable of carrying two Halites, typically used to ship Halite fighters around Scin space to resupply carriers. Thanks to these fighters and the Epidotes' three dorsal turrets, they can also be used as a secondary warship when needed.`
-	description `	Like other Gegno Scin ships, Epidotes themselves are an experimental test bed; they are built around the same large engine system tested on Feldspars, making them notably fast for their size.`
+	description `Kyanites are intricately-built test platforms for Gegno Scin technology, equipped with an extensive built-in power system and energy reserve able to support many types of outfits. Weapon experimentation, the most common practice of kyanites, is recorded by various scanner instruments littering the two long structures on the front of the hull. Despite being weapon research vessels, Kyanites are not combat-capable due to how exposed their systems are and how little hull covers them. These systems are also very expensive and difficult to produce, so only a small amount Kyanites are found in service.`
+	description `	The scanner system found on the Tridymite was originally developed and tested on Kyanite platforms, eventually becoming part of their integration as well.`
+
+ship "Kyanite" "Kyanite (Guile)"
+	outfits
+		"Guile Pulse Laser" 2
+
+		"Plasmasickle" 33
+		"Plasma Grenades" 33
+
+		"SC-14 Plasma Thruster" 2
+		"SC-14 Plasma Steering" 2
+		"Hyperdrive"
+
+	gun "Guile Pulse Laser"
+	gun "Guile Pulse Laser"
+	gun
+	turret
+	turret
+	turret
+
+ship "Kyanite" "Kyanite (Acumen)"
+	outfits
+		"Acumen Bolt Cannon"
+
+		"Plasmasickle" 33
+		"Plasma Grenades" 33
+
+		"SC-14 Plasma Thruster" 2
+		"SC-14 Plasma Steering" 2
+		"Hyperdrive"
+
+	gun
+	gun
+	gun "Acumen Bolt Cannon"
+	turret
+	turret
+	turret
