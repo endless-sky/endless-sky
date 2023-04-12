@@ -720,7 +720,6 @@ effect "acuit hit"
 
 
 outfit "Acumen Bolt Cannon"
-	plural "Acuit Artillery"
 	category "Guns"
 	licenses
 		"Gegno Civilian"
