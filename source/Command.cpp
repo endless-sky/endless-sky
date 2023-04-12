@@ -74,7 +74,7 @@ const Command Command::GATHER(1uL << 24, "Fleet: Gather around me");
 const Command Command::HOLD(1uL << 25, "Fleet: Hold position");
 const Command Command::AMMO(1uL << 26, "Fleet: Toggle ammo usage");
 const Command Command::WAIT(1uL << 27, "");
-const Command Command::STOP(1ul << 28, "");
+const Command Command::STOP(1ul << 28, "Stop");
 const Command Command::SHIFT(1uL << 29, "");
 const Command Command::MOUSE_TURNING_HOLD(1uL << 30, "Mouse turning (hold)");
 const Command Command::MOUSE_TURNING_TOGGLE(1uL << 31, "Mouse turning (toggle)");
