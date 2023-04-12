@@ -19218,13 +19218,14 @@ system Kilema
 		sprite planet/ice8
 		distance 638
 		period 526.314
+		offset -10
 	object "Beryl"
 		sprite planet/beryl/beryl
-			"scale" 0.25
+			"scale" 0.5
 			"frame rate" 4
 		distance 1200
-		period 1980
-		offset 90
+		period 3000
+		offset 75
 	object
 		sprite planet/rock17
 		distance 1761
