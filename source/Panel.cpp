@@ -126,6 +126,7 @@ void Panel::AddZone(const Rectangle &rect, Command command)
 bool Panel::ZoneMouseDown(const Point &point)
 {
 	for(const Zone &zone : zones)
+	{
 		if(zone.Contains(point))
 		{
 			// If the panel is in editing mode, make sure it knows that a mouse
@@ -135,6 +136,7 @@ bool Panel::ZoneMouseDown(const Point &point)
 			zone.MouseDown();
 			return true;
 		}
+	}
 	return false;
 }
 

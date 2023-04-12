@@ -270,6 +270,8 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	// events need handled from within the java callback context. Handle them
 	// directly rather than relying on the sdl event loop.
 	SDL_SetEventFilter(EventFilter, nullptr);
+	SDL_SetHint(SDL_HINT_TOUCH_MOUSE_EVENTS, "0"); // turn off mouse emulation
+	SDL_SetHint(SDL_HINT_MOUSE_TOUCH_EVENTS, "0"); // turn off mouse emulation
 
 	// Set up custom events so that we can forward injected commands to the main
 	// game loop

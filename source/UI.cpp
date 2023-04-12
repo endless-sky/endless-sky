@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <SDL2/SDL.h>
 
 #include <SDL2/SDL_log.h>
+#include <SDL_events.h>
 #include <algorithm>
 
 using namespace std;
@@ -44,65 +45,94 @@ bool UI::Handle(const SDL_Event &event)
 
 		if(event.type == SDL_MOUSEMOTION)
 		{
-			// handle touch events separately. Don't use SDL_FINGERDOWN because
-			// by default, SDL issues *both* events, and we only need it once.
-			if((event.motion.state & SDL_BUTTON(1))
-				&& event.motion.which == SDL_TOUCH_MOUSEID)
-			{
-				int x = Screen::Left() + event.motion.x * 100 / Screen::Zoom();
-				int y = Screen::Top() + event.motion.y * 100 / Screen::Zoom();
-				handled = (*it)->FingerMove(x, y);
-			}
-			if (!handled)
-			{
-				if(event.motion.state & SDL_BUTTON(1))
-					handled = (*it)->Drag(
-						event.motion.xrel * 100. / Screen::Zoom(),
-						event.motion.yrel * 100. / Screen::Zoom());
-				else
-					handled = (*it)->Hover(
-						Screen::Left() + event.motion.x * 100 / Screen::Zoom(),
-						Screen::Top() + event.motion.y * 100 / Screen::Zoom());
-			}
+			if(event.motion.state & SDL_BUTTON(1))
+				handled = (*it)->Drag(
+					event.motion.xrel * 100. / Screen::Zoom(),
+					event.motion.yrel * 100. / Screen::Zoom());
+			else
+				handled = (*it)->Hover(
+					Screen::Left() + event.motion.x * 100 / Screen::Zoom(),
+					Screen::Top() + event.motion.y * 100 / Screen::Zoom());
 		}
 		else if(event.type == SDL_MOUSEBUTTONDOWN)
 		{
 			int x = Screen::Left() + event.button.x * 100 / Screen::Zoom();
 			int y = Screen::Top() + event.button.y * 100 / Screen::Zoom();
-			if (!handled)
+			if(event.button.button == 1)
 			{
-				if(event.button.button == 1)
-				{
-					handled = (*it)->ZoneMouseDown(Point(x, y));
-					if (!handled && event.button.which == SDL_TOUCH_MOUSEID)
-					{
-						handled = (*it)->FingerDown(x, y);
-					}
-
-					if(!handled)
-						handled = (*it)->Click(x, y, event.button.clicks);
-				}
-				else if(event.button.button == 3)
-					handled = (*it)->RClick(x, y);
+				handled = (*it)->ZoneMouseDown(Point(x, y));
+				if(!handled)
+					handled = (*it)->Click(x, y, event.button.clicks);
 			}
+			else if(event.button.button == 3)
+				handled = (*it)->RClick(x, y);
 		}
 		else if(event.type == SDL_MOUSEBUTTONUP)
 		{
 			int x = Screen::Left() + event.button.x * 100 / Screen::Zoom();
 			int y = Screen::Top() + event.button.y * 100 / Screen::Zoom();
-			if (event.button.button == 1)
-			{
-				handled = (*it)->ZoneMouseUp(Point(x, y));
-				if (!handled && event.button.which == SDL_TOUCH_MOUSEID)
-				{
-					handled = (*it)->FingerUp(x, y);
-				}
-				if (!handled)
-					handled = (*it)->Release(x, y);
-			}
+			handled = (*it)->ZoneMouseUp(Point(x, y));
+			if(!handled)
+				handled = (*it)->Release(x, y);
 		}
 		else if(event.type == SDL_MOUSEWHEEL)
 			handled = (*it)->Scroll(event.wheel.x, event.wheel.y);
+		else if(event.type == SDL_FINGERDOWN)
+		{
+			// finger coordinates are 0 to 1, normalize to screen coordinates
+			int x = (event.tfinger.x - .5) * Screen::Width();
+			int y = (event.tfinger.y - .5) * Screen::Height();
+
+			// Order:
+			//   1. Zones (these will be buttons)
+			//   2. Finger down events (this will be game controls)
+			//      2.5 Trigger a hover as well, as some ui's use this to
+			//          determine where a drag begins from.
+			//   3. Clicks (fallback to mouse click)
+			if(!handled)
+				handled = (*it)->ZoneMouseDown(Point(x, y));
+			if(!handled)
+			{
+				(*it)->Hover(x, y);
+				handled = (*it)->FingerDown(x, y);
+			}
+			if(!handled)
+				handled = (*it)->Click(x, y, 1);
+		}
+		else if(event.type == SDL_FINGERMOTION)
+		{
+			// finger coordinates are 0 to 1, normalize to screen coordinates
+			int x = (event.tfinger.x - .5) * Screen::Width();
+			int y = (event.tfinger.y - .5) * Screen::Height();
+			int dx = (event.tfinger.dx) * Screen::Width();
+			int dy = (event.tfinger.dy) * Screen::Height();
+
+			// Order:
+			//   1. FingerMove events (These will be game controls)
+			//   2. Drag (ui events)
+
+			if(!handled)
+				handled = (*it)->FingerMove(x, y);
+			if (!handled)
+				handled = (*it)->Drag(dx, dy);
+		}
+		else if(event.type == SDL_FINGERUP)
+		{
+			// finger coordinates are 0 to 1, normalize to screen coordinates
+			int x = (event.tfinger.x - .5) * Screen::Width();
+			int y = (event.tfinger.y - .5) * Screen::Height();
+
+			// Order:
+			//   1. Zones (these will be buttons)
+			//   2. Finger down events (this will be game controls)
+			//   3. Clicks (fallback to mouse click)
+			if(!handled)
+				handled = (*it)->ZoneMouseUp(Point(x, y));
+			if(!handled)
+				handled = (*it)->FingerUp(x, y);
+			if(!handled)
+				handled = (*it)->Release(x, y);
+		}
 		else if(event.type == SDL_KEYDOWN)
 		{
 			Command command(event.key.keysym.sym);
