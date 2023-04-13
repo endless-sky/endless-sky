@@ -22,6 +22,18 @@ government "Alpha"
 government "Author"
 	"player reputation" 1
 	"bribe" 0
+	
+government "Avgi"
+	color 0 0.78 0.84
+	swizzle 3
+	"attitude toward"
+		"" -0.1
+		Merchant 0.01
+	bribe 0.2
+	"friendly hail" "friendly hai"
+	"friendly disabled hail" "friendly disabled hai"
+	"hostile hail" "hostile hai"
+	"hostile disabled hail" "hostile disabled hai"
 
 government "Bad Trip"
 	swizzle 0
