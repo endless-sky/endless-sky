@@ -23,23 +23,22 @@ mission "You Are A Pirate"
 conversation "You Are A Pirate"
 	`Preparing to land is second nature by now: patch any perforations in the inner hull, get in touch with ground control, and then make sure your chosen parking pad isn't controlled by extortionists. When you disembark, it's with a pistol at your hip, bribe money in your pocket, and a swagger in your step; to leave behind any one of these is to invite trouble. Perhaps a life of violence on the high skies and association with the rougher elements of the galaxy weren't what you had in mind when you left your homeworld, but it's what you found.`
 	choice
-		`	(This is my life now. Piracy, smuggling, the existence of the outlaw. I'm ready to embrace it.)`
-		`	(This isn't what I wanted. This isn't the life I imagined when I decided to take to the high skies.)`
+		`	(Piracy, smuggling, the existence of the outlaw; this is my life now.)`
+		`	(This isn't what I want. This isn't the life I imagined when I took to the skies.)`
 			decline
-	`	Resolve will carry you far in this world. Tonight it's carried you to a spaceport paint supplier; you return to your vessel with a pallet loaded with blacks and reds. Apply it to your vessel, make your intentions known to the galaxy. There can be no pretense of peace when you fly girded in blood and midnight, but maybe that's exactly the way you want it to be.`
+	`	Resolve will carry you far in this world. Tonight it's carried you to a spaceport paint supplier; you return to your vessel with a pallet loaded with blacks and reds. Apply it to your vessel, and you will make your intentions known to the galaxy. There can be no pretense of peace when you fly girded in blood and midnight.`
 	choice
-		`	(Don the smock and mask, turn on the compressor, conceal your old life beneath bellicose black.)`
-		`	(No. Not now, perhaps not ever. The galaxy at large may consider you a pirate, but you're not ready to adopt their colors.)`
+		`	(Conceal my old life beneath bellicose black.)`
+		`	(No. The galaxy at large may consider me a pirate, but I'm not ready to adopt their colors.)`
 			decline
-	`	Some paint covers all manner of sin. Some speaks of the intention to commit yet more. You've applied the latter sort to your ship.`
+	`	You don the smock and mask, turn on the compressor. Some paint covers all manner of sin. Some speaks of the intention to commit yet more. You apply the latter sort to your ship.`
 		accept
 
 
 
 mission "I Want To Be A Pirate"
 	clearance
-	name "Become a pirate"
-	description "Being a pirate in the eyes of the law isn't the same as being one in the eyes of fellow buccaneers. You'll have them know your name - but first you must make one for yourself."
+	invisible
 	source
 		government "Pirate"
 	destination "Greenrock"
@@ -68,18 +67,18 @@ mission "I Want To Be A Pirate"
 
 
 conversation "I Want To Be A Pirate"
-	`The drinking holes flanking this outlaw spaceport are a motley mix indeed, each apparently shabbier, dingier, or more raucous than the last. Perhaps that's just the way you like your establishments; perhaps not. Whatever the case, a sense of purpose has brought you here, far from the factories and fields of New Boston. Out here to the fringes of society.`
+	`The drinking holes flanking this outlaw spaceport are a motley mix indeed, each apparently shabbier, dingier, or more raucous than the last. For whatever reason, you've ventured far from the factories and fields of New Boston. Out here to the fringes of society.`
 	`	Instinct - or an overabundance of swashbuckling serials consumed during your childhood - brings you to the back of a smoky bar, where a trio of grizzled ruffians sit: an eyepatched Corsair festooned in somewhat anachronistic couture; a jewelry-encrusted Capo with a mechanical jaw and the haughty bearing of a born and bred gangster; and a Mercenary wearing a beret and military fatigues. A patch affixed to her shirt identifies her as a member of the "Devil's Due Contracting Company". The three turn to stare at you. You came here for a reason, didn't you?`
 	choice
 		`	"My name is <first> <last>, and I want to be a pirate."`
 		`	(This was a terrible idea. Back to the ship.)`
 			goto retreat
 	`	The three regard you with a mixture of surprise and bemusement.`
-	`	"Is that so?" inquires the woman dressed for war. "And you're telling us why? Because you suspect that we might know the right people to, say, make it known that there's a new terror plying the hyperlanes?" She leans back, pauses, carefully inspects the seat behind her, and satisfied that it's not covered in too much grease, completes the maneuver. "...Well, you'd be right. But nothing in this world is free."`
-	`	"Aye, it be not enough to simply cover yer' ship with the old black-and-red. A pirate must earn the respect - or fear - of their fellows, lest they be seen as fair plunder," the Corsair contributes. This is followed up with an entirely gratuitous but quite hearty "Arrrrgh."`
-	`	The Capo speaks last, jaw motionless; his voice is provided by a cybernetic vocoder, mellifluous if gently synthetic. "Indeed. There's three things you'll need to do before you'll be taken seriously. Speaking personally, I'm always on the eye for upcoming talent. Prove that you've got what it takes and I'm sure at least one of us would make it known within our circles that you aren't to be trifled with - and perhaps even worth offering work to. But first, those tasks."`
+	`	"Is that so?" asks the Mercenary. "And you're telling us why? Because you suspect that we might know the right people to, say, make it known that there's a new terror plying the hyperlanes?" She leans back, pauses, carefully inspects the seat behind her, and satisfied that it's not covered in too much grease, completes the maneuver. "Well, you'd be right. But nothing in this world is free."`
+	`	"Aye, it be not enough to simply cover yer' ship with the old black-and-red. A pirate must earn the respect - or fear - of their fellows, lest they be seen as fair plunder," the Corsair adds. This is followed up with an entirely gratuitous, but quite hearty, "Arrrrgh!"`
+	`	The Capo speaks last, jaw motionless; his voice is provided by a cybernetic vocoder, producing a honeyed if gently synthetic sound. "Indeed. There's three things you'll need to do before you'll be taken seriously. Speaking personally, I'm always on the eye for upcoming talent. Prove that you've got what it takes and I'm sure at least one of us would make it known within our circles that you aren't to be trifled with - and perhaps even worth offering work to. But first, those tasks."`
 	choice
-		`	(Nod towards the Corsair.) "Does he always speak like that?"`
+		`	"Does that guy always speak like that? With the 'arrrgh's and such?"`
 		`	"Oh, I know! I need to master theft, swordplay, and treasure hunting!"`
 			goto hahareferencegoeshere
 		`	"Fine. What should I do if I want other pirates to take me seriously?"`
@@ -489,13 +488,13 @@ conversation "Den Handoff"
 	label cool
 	`	You keep your hands where they are and wait for the officer to speak. "There's a listening device on your left hip. Pocket, perhaps. I want you to slowly withdraw it and place it on the table in front of us. Gabriel, get the coffee out of here." A soldier hastily scoops up the beverage and disappears into the gloom of the hangar.`
 	choice
-		`	(Check your pocket for anything unexpected.)`
+		`	(Check your pocket.)`
 	`	As expected, you find something unexpected: a small device about the size of a fingernail. You gingerly remove it from your belongings and place it on the table. The officer across from you wastes no time in drawing his pistol and sharply smashing its butt against the device, crushing it to pieces.`
 	`	"Care to explain what that was doing on you?"`
 	label explanation
 	choice
 		`	"I didn't bring that here on purpose, but I did brush against a very friendly janitor on the way here."`
-	`	Ahhs of understanding and enlightenment echo from the soldiers standing about the hangar. Most of them visibly relax, appeased by this explanation.`
+	`	Sounds of understanding and enlightenment echo from the soldiers standing about the hangar. Most of them visibly relax, appeased by this explanation.`
 	`	"Yeah. That's Frank. Republic Intelligence. We'd shoot him, but they would just send another, and he's incompetent enough that it's better this way. Really, though? You need to be more careful."`
 	`	You hear a barely-audible "jackass" muttered by one of the soldiers. The officer doesn't appear to have any desire to reprimand them.`
 	branch continued
