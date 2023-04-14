@@ -1,0 +1,295 @@
+# Copyright (c) 2023 by Saugia
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+ship "Vyrmeid"
+	noun "creature"
+	plural "Vyrmeid"
+	sprite "ship/vyrmeid/plankton"
+		"frame rate" 24
+		"random start frame"
+	swizzle 0
+	"never disabled"
+	attributes
+		"category" "Fighter"
+		"cost" 0
+		"shields" 0
+		"hull" 400
+		"required crew" 1
+		"bunks" 1
+		"mass" 60
+		"drag" 8
+		"heat dissipation" 1.4
+		"fuel capacity" 0
+		"cargo space" 0
+		"outfit space" 0
+		"weapon capacity" 0
+		"engine capacity" 0
+
+		"hull repair rate" 1
+		"energy capacity" 100
+		"energy generation" 1
+		"inscrutable" 1
+		
+		"thrust" 10
+		"turn" 120
+
+		"atmospheric scan" 1
+		"energy protection" 1
+		"ion protection" 1
+	outfits
+		"Plankton Mouth"
+	"gun" 0 -3
+	"leak" "blood" 1 2
+	"final explode" "blood"
+	description `These are tiny space creatures that feed on solar energy, storing it into two receptors found at the front of their bodies. They are extremely docile, and are found in large groups, almost never seen alone.`
+
+outfit "Plankton Mouth"
+	category "Guns"
+	thumbnail "outfit/unknown"
+	"gun ports" -1
+	weapon
+		"sound" "plankton bite"
+		"velocity" 50
+		"lifetime" 1
+		"burst reload" 1
+		"burst count" 5
+		"reload" 20
+		"firing force" 50
+		"energy damage" 50
+
+
+ship "Vyrmeid" "Vyrmeid (B)"
+	noun "creature"
+	plural "Vyrmeid"
+	sprite "ship/vyrmeid/boomerang"
+		"frame rate" 24
+		"random start frame"
+	swizzle 0
+	"never disabled"
+	attributes
+		"category" "Fighter"
+		"cost" 0
+		"shields" 0
+		"hull" 1420
+		"required crew" 1
+		"bunks" 1
+		"mass" 140
+		"drag" 10
+		"heat dissipation" 1
+		"fuel capacity" 0
+		"cargo space" 0
+		"outfit space" 10
+		"weapon capacity" 0
+		"engine capacity" 0
+
+		"hull repair rate" 1
+		"inscrutable" 1
+
+		"thrust" 12
+		"turn" 60
+
+		"energy protection" 1
+		"ion protection" 1
+	outfits
+		"Boomerang Organ"
+	"leak" "blood" 2 3
+	"final explode" "blood"
+	description `Oddly shaped like a boomerang, these space creatures are in a constant rotary motion caused by a small internal organ. The motion provides a natural defense against small debris and projectiles that threaten to intercept the creature, which is harmless otherwise.`
+
+outfit "Boomerang Organ"
+	category "Turrets"
+	cost 0
+	thumbnail "outfit/unknown"
+	"mass" 10
+	"outfit space" 10
+	"radar jamming" 30
+	"optical jamming" 20
+	"energy capacity" 100
+	"energy generation" 1
+	"heat generation" 0.5
+
+
+ship "Vyrmeid" "Vyrmeid (C)"
+	noun "creature"
+	plural "Vyrmeid"
+	sprite "ship/vyrmeid/squid"
+		"frame rate" 24
+		"random start frame"
+	swizzle 0
+	"never disabled"
+	attributes
+		category "Fighter"
+		"cost" 0
+		"shields" 0
+		"hull" 860
+		"required crew" 1
+		"bunks" 1
+		"mass" 200
+		"drag" 9
+		"heat dissipation" 1.8
+		"fuel capacity" 0
+		"cargo space" 0
+		"outfit space" 0
+		"weapon capacity" 0
+		"engine capacity" 0
+
+		"energy capacity" 1000
+		"energy generation" 100
+		"inscrutable" 1
+
+		"thrust" 6
+		"turn" 80
+
+		"energy protection" 1
+		"heat protection" 1
+		weapon
+			"blast radius" 1600
+			"shield damage" 3000
+			"hull damage" 8000
+			"hit force" 4000
+			"piercing" 0.1
+	explode "flamethrower die" 1
+	"final explode" "fission explosion"
+	description `This species of space life is found around hotter stars and feeds on solar energy, storing it in four organs that give off the appearance of eyes. Due to all of the internal energy and pressure, these creatures explode violently upon death, which may surprise aggressors.`
+
+effect "fission explosion"
+	sprite "effect/explosion/nuke"
+		"no repeat"
+		"frame rate" 30
+	sound "heavy rocket hit"
+	"lifetime" 15
+	"random angle" 360
+	"random spin" 5
+	"random velocity" 1
+	"velocity scale" .4
+
+
+ship "Astral Cetacean"
+	noun "creature"
+	sprite "ship/astral cetacean/astral"
+		"frame rate" 24
+		"random start frame"
+	swizzle 0
+	"never disabled"
+	attributes
+		category "Transport"
+		"cost" 0
+		"shields" 0
+		"hull" 11000
+		"required crew" 1
+		"bunks" 1
+		"mass" 1200
+		"drag" 15.7
+		"heat dissipation" 0.68
+		"fuel capacity" 200
+		"cargo space" 0
+		"outfit space" 0
+		"weapon capacity" 0
+		"engine capacity" 0
+
+		"hull repair rate" 3
+		"ramscoop" 5
+		"energy capacity" 2000
+		"energy generation" 160
+
+		"thrust" 24
+		"flare sound" "astral cetacean"
+		"turn" 240
+		"steering flare sound" "astral cetacean"
+
+		"jump fuel" 80
+		"jump speed" .1
+		"hyperdrive" 1
+		"hyperdrive sound" "organ drive"
+		"hyperdrive out sound" "organ drive out"
+		"hyperdrive in sound" "organ drive in"
+
+		"energy protection" 2
+		"heat protection" 2
+		"ion protection" 2
+		weapon
+			"blast radius" 300
+			"shield damage" 3000
+			"hull damage" 1500
+			"hit force" 4500
+	outfits
+		"Astral Mouth"
+	engine 0 0
+	"steering engine" 0 0
+	gun 0 -210
+	leak "blood" 60 60
+	explode "blood" 160
+	"final explode" "blood"
+	description `Only few captains have had the chance to observe this illustrious creature. Its natural attenuation to the depths of space allows it to travel beyond where most ships are able, and its appearance reflects both the beauty and mystery of the void itself.`
+
+outfit "Astral Mouth"
+	category "Guns"
+	thumbnail "outfit/unknown"
+	"gun ports" -1
+	weapon
+		"sound" "astral attack"
+		"velocity" 100
+		"lifetime" 1
+		"inaccuracy" 3
+		"burst reload" 1
+		"burst count" 10
+		"reload" 40
+		"hit force" -50
+		"piercing" 1
+		"hull damage" 200
+
+# Fleets:
+
+fleet "Vyrmeid (Plankton)"
+	government "Indigenous Lifeform"
+	cargo 0
+	personality
+		timid mute swarming surveillance unconstrained
+	variant 200
+		"Vyrmeid" 7
+	variant 140
+		"Vyrmeid" 5
+	variant 50
+		"Vyrmeid" 4
+	variant 20
+		"Vyrmeid" 3
+	variant
+		"Vyrmeid"
+
+fleet "Vyrmeid (Boomerang)"
+	government "Indigenous Lifeform"
+	cargo 0
+	personality
+		timid mute
+	variant 20
+		"Vyrmeid (B)"
+	variant
+		"Vyrmeid (B)" 2
+	variant
+		"Vyrmeid (B)" 3
+
+fleet "Vyrmeid (Cephalopod)"
+	government "Indigenous Lifeform"
+	cargo 0
+	personality
+		timid mute pacifist
+	variant
+		"Vyrmeid (C)"
+
+fleet "Astral"
+	government "Indigenous Lifeform (Astral)"
+	cargo 0
+	personality
+		mute unconstrained
+	variant
+		"Astral Cetacean"

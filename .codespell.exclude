@@ -51,6 +51,8 @@ system Nnaug
 planet "Sies Upi"
 	description "Sies Upi is one of the most recently colonized planets of the Gegno Vi. This hot, dry world with harsh living environments serves as more of an outpost than it does a colony, but nevertheless the Vi found ways to create manageable living conditions."
 		"Brocken"
+			`	"What part of non-negotiable did you not understand? You're pushing your luck, Captain <last>. I didn't expect you to be such a petty money pincher."`
+		"Shepard"
 # Following two lines to be deleted once unicode support is added
 	#`	"Eu preferiria se tu não fosse tão negativo, camarada. Tu sabe tão bem quanto eu que é só uma questão de esperar as coisas entrarem em colapso. Porra, tem uma guerra civil arriscando começar a qualquer momento, se segura por só mais um pouquinho! Inclusive, eu escutei a pouco que – "`
 	`	"Eu preferiria se tu nao fosse tao negativo, camarada. Tu sabe tao bem quanto eu que e so uma questao de esperar as coisas entrarem em colapso. Porra, tem uma guerra civil arriscando começar a qualquer momento, se segura por so mais um pouquinho! Inclusive, eu escutei a pouco que-"`

@@ -207,6 +207,10 @@ void Outfit::Load(const DataNode &node)
 			displayName = child.Token(1);
 		else if(child.Token(0) == "category" && child.Size() >= 2)
 			category = child.Token(1);
+		else if(child.Token(0) == "series" && child.Size() >= 2)
+			series = child.Token(1);
+		else if(child.Token(0) == "index" && child.Size() >= 2)
+			index = child.Value(1);
 		else if(child.Token(0) == "plural" && child.Size() >= 2)
 			pluralName = child.Token(1);
 		else if(child.Token(0) == "flare sprite" && child.Size() >= 2)
@@ -410,6 +414,20 @@ const string &Outfit::Category() const
 
 
 
+const string &Outfit::Series() const
+{
+	return series;
+}
+
+
+
+const int Outfit::Index() const
+{
+	return index;
+}
+
+
+
 const string &Outfit::Description() const
 {
 	return description;
@@ -476,7 +494,7 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 
 		// Only automatons may have a "required crew" of 0.
 		if(!strcmp(at.first, "required crew"))
-			minimum = !attributes.Get("automaton");
+			minimum = !(attributes.Get("automaton") || other.attributes.Get("automaton"));
 
 		double value = Get(at.first);
 		// Allow for rounding errors:
