@@ -70,6 +70,8 @@ int Gamerules::NoPersonSpawnWeight() const
 	return noPersonSpawnWeight;
 }
 
+
+
 int Gamerules::NPCMaxMiningTime() const
 {
 	return npcMaxMiningTime;
