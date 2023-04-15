@@ -14,7 +14,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 */
 #include "Gesture.h"
 
-#include <SDL_timer.h>
+#include <SDL2/SDL.h>
 
 #include <array>
 #include <cmath>
