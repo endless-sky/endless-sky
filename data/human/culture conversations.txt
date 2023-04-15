@@ -624,7 +624,7 @@ mission "Station External Fuel Leak"
 		random < 1
 	on offer
 		conversation
-			`As you approach <planet>, the stars behind the station seem blurry. You rub your eyes; you've been at the helm for a long time. The blur doesn't clear, and you realize there's some sort of amorphous haze hanging in space close to the station.
+			`As you approach <planet>, the stars behind the station seem blurry. You rub your eyes; you've been at the helm for a long time. The blur doesn't clear, and you realize there's some sort of amorphous haze hanging in space close to the station.`
 			`	You receive a hail from traffic control. "<ship>, please manoeuvre to parking orbit Six Alpha and await further instructions."`
 			choice
 				`	"What seems to be the problem, <planet> Control?"`
@@ -657,4 +657,34 @@ mission "Station External Fuel Leak"
 			choice
 				`	"Thanks, <planet> Control. Coming in to dock."`
 					decline
+
+mission "Dirt Belt Charity Collection"
+	minor
+	landing
+	source
+		attributes "dirt belt"
+		attributes "farming"
+		not attributes "urban"
+		not attributes "station"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`Leaving your ship on the rudimentary landing pad, you see two earnest-looking people ahead. They're attempting to engage passers-by in conversation, but appear to be having little success. Their eyes meet yours, "Oh, hello Captain! Could we speak to you for a moment?"`
+			choice
+				`	"Sure. I have a few minutes."`
+				goto dirt_belt_charity_pitch
+				`	(Avert your gaze and keep walking.)`
+					decline
+			label dirt_belt_charity_pitch
+			`	"Oh thank you for taking the time to speak with us. We're soliciting contributions to the Saints Isidore and Solange Society for the Betterment and Dignity of Galactic Agrarians."`
+			`	The other cuts in, "We collect donations to help out poor Dirt Belters; it's mostly people that have been injured in farm accidents."`
+			`	"Would you be willing to contribute?"` 
+			choice
+				`	"Uh, sure. Here's 50 credits."`
+					payment -50
+					goto gave_modest_dirt_belt_donation
+				`	"A worthy cause! Please accept this transfer of 1000 credits."`
+					payment -1000
+					goto gave_generous_dirt_belt_donation
 
