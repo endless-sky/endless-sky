@@ -82,6 +82,7 @@ const Command Command::MOVETOWARD(static_cast<uint64_t>(1) << 32, ""); // uL suf
 
 
 std::atomic<uint64_t> Command::simulated_command{};
+std::atomic<uint64_t> Command::simulated_command_once{};
 uint32_t Command::command_event = 0xffffffff;
 
 
@@ -125,7 +126,7 @@ void Command::ReadKeyboard()
 	Clear();
 
 	// inject simulated commands
-	state = simulated_command.load(std::memory_order_relaxed);
+	state = simulated_command.load(std::memory_order_relaxed) | simulated_command_once.exchange(0);
 
 	const Uint8 *keyDown = SDL_GetKeyboardState(nullptr);
 
@@ -452,6 +453,21 @@ void Command::InjectSet(const Command& command)
 	event.type = command_event;
 	event.key.windowID = command.state;
 	event.key.state = SDL_PRESSED;
+	SDL_PushEvent(&event);
+}
+
+
+
+// Simulate a keyboard press for commands
+void Command::InjectOnce(const Command& command)
+{
+	simulated_command_once.fetch_or(command.state, std::memory_order_relaxed);
+	SDL_Event event{};
+	event.type = command_event;
+	event.key.windowID = command.state;
+	event.key.state = SDL_PRESSED;
+	SDL_PushEvent(&event);
+	event.key.state = SDL_RELEASED;
 	SDL_PushEvent(&event);
 }
 

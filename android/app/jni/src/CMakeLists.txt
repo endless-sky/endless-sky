@@ -105,6 +105,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/GameLoadingPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Gamerules.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/GameWindow.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/Gesture.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Government.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/HailPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Hardpoint.cpp

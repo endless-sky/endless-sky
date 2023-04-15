@@ -162,6 +162,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Gamerules.h
 	GameWindow.cpp
 	GameWindow.h
+	Gesture.cpp
+	Gesture.h
 	Government.cpp
 	Government.h
 	HailPanel.cpp

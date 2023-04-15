@@ -139,6 +139,7 @@ public:
 	bool operator==(const Command &command) const { return command.state == state && command.turn == turn; }
 
 	// Allow UI's to simulate keyboard input
+	static void InjectOnce(const Command& command);
 	static void InjectSet(const Command& command);
 	static void InjectUnset(const Command& command);
 	static Command Get(const std::string& description);
@@ -160,6 +161,7 @@ private:
 
 	// If we want to simulate input from the ui, place it here to be read later
 	static std::atomic<uint64_t> simulated_command;
+	static std::atomic<uint64_t> simulated_command_once;
 	static uint32_t command_event;
 };
 

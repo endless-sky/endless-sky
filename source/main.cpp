@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "GameLoadingPanel.h"
 #include "GameWindow.h"
+#include "Gesture.h"
 #include "Hardpoint.h"
 #include "Logger.h"
 #include "MenuPanel.h"
@@ -43,6 +44,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Test.h"
 #include "TestContext.h"
 #include "UI.h"
+#include "text/FontSet.h"
 
 #include <SDL2/SDL_events.h>
 #include <chrono>
@@ -312,6 +314,8 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	if(!testToRunName.empty())
 		testContext = TestContext(GameData::Tests().Get(testToRunName));
 
+	Gesture gesture;
+
 	// IsDone becomes true when the game is quit.
 	while(!menuPanels.IsDone())
 	{
@@ -328,6 +332,52 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			// If the mouse moves, reset the cursor movement timeout.
 			if(event.type == SDL_MOUSEMOTION)
 				cursorTime = 0;
+
+			// Filter touch events through the gesture manager
+			if(event.type == SDL_FINGERDOWN)
+			{
+				gesture.Start(event.tfinger.x * Screen::Width(), event.tfinger.y * Screen::Height(), event.tfinger.fingerId);
+			}
+			else if(event.type == SDL_FINGERMOTION)
+			{
+				if(Gesture::ZOOM == gesture.Add(event.tfinger.x* Screen::Width(), event.tfinger.y * Screen::Height(), event.tfinger.fingerId))
+				{
+					SDL_Log("Gesture ZOOM: %f", gesture.ZoomAmount());
+				}
+			}
+			else if(event.type == SDL_FINGERUP)
+			{
+				gesture.Add(event.tfinger.x* Screen::Width(), event.tfinger.y * Screen::Height(), event.tfinger.fingerId);
+				
+				// TODO: make these configurable
+				switch(gesture.End())
+				{
+				case Gesture::X:
+					SDL_Log("Gesture X");
+					Command::InjectOnce(Command::HOLD);
+					break;
+				case Gesture::CIRCLE:
+					SDL_Log("Gesture CIRCLE");
+					Command::InjectOnce(Command::GATHER);
+					break;
+				case Gesture::CARET_UP:
+					SDL_Log("Gesture UP");
+					break;
+				case Gesture::CARET_DOWN:
+					SDL_Log("Gesture DOWN");
+					Command::InjectOnce(Command::STOP);
+					break;
+				case Gesture::CARET_LEFT:
+					SDL_Log("Gesture LEFT");
+					break;
+				case Gesture::CARET_RIGHT:
+					SDL_Log("Gesture RIGHT");
+					break;
+				case Gesture::ZOOM:
+				case Gesture::NONE:
+					break;
+				}
+			}
 
 			if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
 			{
