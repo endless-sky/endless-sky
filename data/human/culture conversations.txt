@@ -679,7 +679,7 @@ mission "Dirt Belt Charity Collection"
 			label dirt_belt_charity_pitch
 			`	"Oh thank you for taking the time to speak with us. We're soliciting contributions to the Saints Isidore and Solange Society for the Betterment and Dignity of Galactic Agrarians."`
 			`	The other cuts in, "We collect donations to help out poor Dirt Belters; it's mostly people that have been injured in farm accidents."`
-			`	"Would you be willing to contribute?"` 
+			`	"Would you be willing to contribute?"`
 			choice
 				`	"Uh, sure. Here's 50 credits."`
 					payment -50
