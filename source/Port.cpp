@@ -68,6 +68,8 @@ void Port::Load(const DataNode &node)
 					recharge |= RechargeType::Energy;
 				else if(grandKey == "fuel")
 					recharge |= RechargeType::Fuel;
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
 		else if(key == "services" && child.HasChildren())
@@ -88,6 +90,8 @@ void Port::Load(const DataNode &node)
 					services |= ServicesType::HireCrew;
 				else if(grandKey == "offers missions")
 					services |= ServicesType::OffersMissions;
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
 		else if(key == "news")
