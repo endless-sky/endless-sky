@@ -236,8 +236,37 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
-	static const vector<string> AUTO_ATTRIBUTES = {"spaceport", "shipyard", "outfitter"};
-	bool autoValues[3] = {port.HasService(Port::ServicesType::All), !shipSales.empty(), !outfitSales.empty()};
+	static const vector<string> AUTO_ATTRIBUTES = {
+		"spaceport",
+		"shipyard",
+		"outfitter",
+		"service: trading",
+		"service: jobs",
+		"service: bank",
+		"service: crew",
+		"service: missions",
+		"recharges: shields",
+		"recharges: hull",
+		"recharges: energy",
+		"recharges: fuel",
+		"spaceport news",
+	};
+	bool autoValues[13] = {
+		port.HasService(Port::ServicesType::All) && port.CanRecharge(Port::RechargeType::All)
+				&& port.HasNews() && !port.Name().empty(),
+		!shipSales.empty(),
+		!outfitSales.empty(),
+		port.HasService(Port::ServicesType::Trading),
+		port.HasService(Port::ServicesType::JobBoard),
+		port.HasService(Port::ServicesType::Bank),
+		port.HasService(Port::ServicesType::HireCrew),
+		port.HasService(Port::ServicesType::OffersMissions),
+		port.CanRecharge(Port::RechargeType::Shields),
+		port.CanRecharge(Port::RechargeType::Hull),
+		port.CanRecharge(Port::RechargeType::Energy),
+		port.CanRecharge(Port::RechargeType::Fuel),
+		port.HasNews(),
+	};
 	for(unsigned i = 0; i < AUTO_ATTRIBUTES.size(); ++i)
 	{
 		if(autoValues[i])
