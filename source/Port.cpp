@@ -57,7 +57,9 @@ void Port::Load(const DataNode &node)
 			{
 				const string &grandKey = grand.Token(0);
 
-				if(grandKey == "shields")
+				if(grandKey == "all")
+					recharge |= Port::RechargeType::All;
+				else if(grandKey == "shields")
 					recharge |= Port::RechargeType::Shields;
 				else if(grandKey == "hull")
 					recharge |= Port::RechargeType::Hull;
@@ -73,7 +75,9 @@ void Port::Load(const DataNode &node)
 			{
 				const string &grandKey = grand.Token(0);
 
-				if(grandKey == "trading")
+				if(grandKey == "all")
+					services |= Port::ServicesType::All;
+				else if(grandKey == "trading")
 					services |= Port::ServicesType::Trading;
 				else if(grandKey == "job board")
 					services |= Port::ServicesType::JobBoard;
