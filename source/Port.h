@@ -61,6 +61,10 @@ public:
 	// Load a port's description from a node.
 	void Load(const DataNode &node);
 	void LoadDefaultSpaceport();
+	void LoadUninhabitedSpaceport();
+
+	// Whether this port was loaded from the Load function.
+	bool CustomLoaded() const;
 
 	// Whether this port has any services available.
 	bool HasServices() const;
@@ -81,6 +85,9 @@ public:
 
 
 private:
+	// Whether this port was loaded from the Load function.
+	bool loaded = false;
+
 	// The name of this port.
 	std::string name;
 

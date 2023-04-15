@@ -44,6 +44,7 @@ namespace {
 // Load a port's description from a node.
 void Port::Load(const DataNode &node)
 {
+	loaded = true;
 	if(node.Size() > 1)
 		name = node.Token(1);
 
@@ -116,6 +117,23 @@ void Port::LoadDefaultSpaceport()
 	recharge = RechargeType::All;
 	services = ServicesType::All;
 	hasNews = true;
+}
+
+
+
+void Port::LoadUninhabitedSpaceport()
+{
+	name = SPACEPORT;
+	recharge = RechargeType::All;
+	services = ServicesType::None;
+	hasNews = false;
+}
+
+
+
+bool Port::CustomLoaded() const
+{
+	return loaded;
 }
 
 

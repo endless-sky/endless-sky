@@ -240,6 +240,13 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
+	// For reverse compatibility, if this planet has a spaceport but it was not custom loaded,
+	// and the planet has the "uninhabited" attribute, replace the spaceport with a special-case
+	// uninhabited spaceport.
+	if(attributes.count("uninhabited") && HasNamedPort() && !port.CustomLoaded())
+		port.LoadUninhabitedSpaceport();
+
+	// Apply any auto-attributes to this planet depending on what it has.
 	static const vector<string> AUTO_ATTRIBUTES = {
 		"spaceport",
 		"port",
