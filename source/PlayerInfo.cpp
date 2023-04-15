@@ -33,6 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "Plugins.h"
 #include "Politics.h"
+#include "Port.h"
 #include "Preferences.h"
 #include "Random.h"
 #include "SavedGame.h"

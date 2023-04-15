@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Government.h"
 #include "Planet.h"
+#include "Port.h"
 #include "Random.h"
 #include "Ship.h"
 #include "StellarObject.h"
