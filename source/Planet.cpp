@@ -106,8 +106,12 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 			else if(key == "port" || key == "spaceport")
 			{
 				port = Port();
+				// Overwriting either port or spaceport counts as overwriting the other.
 				if(overwriteAll)
+				{
+					shouldOverwrite.erase("port");
 					shouldOverwrite.erase("spaceport");
+				}
 			}
 			else if(key == "shipyard")
 				shipSales.clear();
