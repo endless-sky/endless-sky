@@ -47,31 +47,49 @@ void Port::Load(const DataNode &node)
 	if(node.Size() > 1)
 		name = node.Token(1);
 
-	for(const auto &child : node)
+	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "shields")
-			recharge |= Port::RechargeType::Shields;
-		else if(child.Token(0) == "hull")
-			recharge |= Port::RechargeType::Hull;
-		else if(child.Token(0) == "energy")
-			recharge |= Port::RechargeType::Energy;
-		else if(child.Token(0) == "fuel")
-			recharge |= Port::RechargeType::Fuel;
-		else if(child.Token(0) == "news")
-			hasNews = true;
-		else if(child.Token(0) == "trading")
-			services |= Port::ServicesType::Trading;
-		else if(child.Token(0) == "job board")
-			services |= Port::ServicesType::JobBoard;
-		else if(child.Token(0) == "bank")
-			services |= Port::ServicesType::Bank;
-		else if(child.Token(0) == "hire crew")
-			services |= Port::ServicesType::HireCrew;
-		else if(child.Token(0) == "offers missions")
-			services |= Port::ServicesType::OffersMissions;
-		else if(child.Token(0) == "description" && child.Size() >= 2)
+		const string &key = child.Token(0);
+
+		if(key == "recharges" && child.HasChildren())
 		{
-			const auto &value = child.Token(1);
+			for(const DataNode &grand : child)
+			{
+				const string &grandKey = grand.Token(0);
+
+				if(grandKey == "shields")
+					recharge |= Port::RechargeType::Shields;
+				else if(grandKey == "hull")
+					recharge |= Port::RechargeType::Hull;
+				else if(grandKey == "energy")
+					recharge |= Port::RechargeType::Energy;
+				else if(grandKey == "fuel")
+					recharge |= Port::RechargeType::Fuel;
+			}
+		}
+		else if(key == "services" && child.HasChildren())
+		{
+			for(const DataNode &grand : child)
+			{
+				const string &grandKey = grand.Token(0);
+
+				if(grandKey == "trading")
+					services |= Port::ServicesType::Trading;
+				else if(grandKey == "job board")
+					services |= Port::ServicesType::JobBoard;
+				else if(grandKey == "bank")
+					services |= Port::ServicesType::Bank;
+				else if(grandKey == "hire crew")
+					services |= Port::ServicesType::HireCrew;
+				else if(grandKey == "offers missions")
+					services |= Port::ServicesType::OffersMissions;
+			}
+		}
+		else if(key == "news")
+			hasNews = true;
+		else if(key == "description" && child.Size() >= 2)
+		{
+			const string &value = child.Token(1);
 			if(!description.empty() && !value.empty() && value[0] > ' ')
 				description += '\t';
 			description += value;
