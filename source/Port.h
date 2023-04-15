@@ -26,11 +26,12 @@ class DataNode;
 
 
 
-// Class representing a port on a planet.
+// Class representing a port on a planet and its capabilities, such as what properties
+// of a ship it can recharge and what services (e.g. banking, trading) it can provide.
 class Port
 {
 public:
-	// The different properties that can be recharged by a port.
+	// The different ship properties that can be recharged by a port.
 	class RechargeType
 	{
 	public:
