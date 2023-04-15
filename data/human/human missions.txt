@@ -2879,7 +2879,7 @@ mission "Northern Blockade"
 mission "Southern Blockade"
 	minor
 	name `Spaceport Defenses`
-	description `<stopovers> are under attack and in need of spaceport defenses. Drop off your cargo of <cargo> on these three planets and return to <destination> for payment. (<payment>)`
+	description `<stopovers> are under attack and need spaceport defenses. Drop off <cargo> on these planets and return to <destination> for payment. (<payment>)`
 	source
 		near "Pherkad" 2 4
 		government "Free Worlds"
