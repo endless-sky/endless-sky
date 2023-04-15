@@ -121,7 +121,7 @@ void PlanetPanel::Draw()
 				info.SetCondition("can hire crew");
 			if(port.HasService(Port::ServicesType::Trading) && system.HasTrade())
 				info.SetCondition("has trade");
-			if(!port.Name().empty())
+			if(planet.HasNamedPort())
 			{
 				info.SetCondition("has port");
 				info.SetString("port name", port.Name());

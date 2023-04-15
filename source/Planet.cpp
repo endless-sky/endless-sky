@@ -238,6 +238,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 
 	static const vector<string> AUTO_ATTRIBUTES = {
 		"spaceport",
+		"port",
 		"shipyard",
 		"outfitter",
 		"service: trading",
@@ -251,9 +252,10 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 		"recharges: fuel",
 		"spaceport news",
 	};
-	bool autoValues[13] = {
+	bool autoValues[14] = {
 		port.HasService(Port::ServicesType::All) && port.CanRecharge(Port::RechargeType::All)
-				&& port.HasNews() && !port.Name().empty(),
+				&& port.HasNews() && HasNamedPort(),
+		HasNamedPort(),
 		!shipSales.empty(),
 		!outfitSales.empty(),
 		port.HasService(Port::ServicesType::Trading),
