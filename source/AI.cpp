@@ -19,6 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "DistanceMap.h"
 #include "Flotsam.h"
+#include "GameData.h"
+#include "Gamerules.h"
 #include "Government.h"
 #include "Hardpoint.h"
 #include "JumpTypes.h"
@@ -554,6 +556,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 	const int maxMinerCount = minables.empty() ? 0 : 9;
 	bool opportunisticEscorts = !Preferences::Has("Turrets focus fire");
 	bool fightersRetreat = Preferences::Has("Damaged fighters retreat");
+	const int npcMaxMiningTime = GameData::GetGamerules().NPCMaxMiningTime();
 	for(const auto &it : ships)
 	{
 		// Skip any carried fighters or drones that are somehow in the list.
@@ -812,7 +815,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			// Miners with free cargo space and available mining time should mine. Mission NPCs
 			// should mine even if there are other miners or they have been mining a while.
 			if(it->Cargo().Free() >= 5 && IsArmed(*it) && (it->IsSpecial()
-					|| (++miningTime[&*it] < 3600 && ++minerCount < maxMinerCount)))
+					|| (++miningTime[&*it] < npcMaxMiningTime && ++minerCount < maxMinerCount)))
 			{
 				if(it->HasBays())
 				{
