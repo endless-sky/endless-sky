@@ -120,12 +120,11 @@ void PlanetPanel::Draw()
 				info.SetCondition("can hire crew");
 			if(port.HasService(Port::ServicesType::Trading) && system.HasTrade())
 				info.SetCondition("has trade");
-		}
-
-		if(flagship && planet.HasPort())
-		{
-			info.SetCondition("has port");
-			info.SetString("port name", port.Name());
+			if(!port.Name().empty())
+			{
+				info.SetCondition("has port");
+				info.SetString("port name", port.Name());
+			}
 		}
 
 		if(planet.HasShipyard())
@@ -181,7 +180,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		selectedPanel = bank.get();
 		GetUI()->Push(bank);
 	}
-	else if(key == 'p' && hasAccess && flagship && planet.HasPort())
+	else if(key == 'p' && hasAccess && flagship && planet.HasNamedPort())
 	{
 		selectedPanel = spaceport.get();
 		if(isNewPress)

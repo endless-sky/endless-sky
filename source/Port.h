@@ -62,8 +62,6 @@ public:
 	void Load(const DataNode &node);
 	void LoadDefaultSpaceport();
 
-	// Whether this is in fact a port in some matter.
-	bool IsValid() const;
 	// Whether this port has any services available.
 	bool HasServices() const;
 

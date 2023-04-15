@@ -381,15 +381,15 @@ const string &Planet::Noun() const
 
 
 
-// Check whether there is a port (which may even be a full spaceport).
-bool Planet::HasPort() const
+// Check whether this planet's port is named.
+bool Planet::HasNamedPort() const
 {
-	return port.IsValid();
+	return !port.Name().empty();
 }
 
 
 
-// Get this planet's port. Might be empty if there is no port.
+// Get this planet's port.
 const Port &Planet::GetPort() const
 {
 	return port;

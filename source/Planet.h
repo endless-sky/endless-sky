@@ -81,9 +81,9 @@ public:
 	// Get planet's noun descriptor from attributes
 	const std::string &Noun() const;
 
-	// Check whether there is a port (which may even be a full spaceport).
-	bool HasPort() const;
-	// Get this planet's port. Might be empty if there is no port.
+	// Check whether this planet's port is named.
+	bool HasNamedPort() const;
+	// Get this planet's port.
 	const Port &GetPort() const;
 	// Check whether there are port services (such as trading, jobs, banking, and hiring)
 	// available on this planet.

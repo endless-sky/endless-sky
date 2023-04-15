@@ -98,14 +98,6 @@ void Port::LoadDefaultSpaceport()
 
 
 
-// Whether this is in fact a port in some matter.
-bool Port::IsValid() const
-{
-	return !name.empty();
-}
-
-
-
 // Whether this port has any services available.
 bool Port::HasServices() const
 {
