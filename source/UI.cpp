@@ -22,7 +22,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <SDL2/SDL.h>
 
 #include <SDL2/SDL_log.h>
-#include <SDL_events.h>
 #include <algorithm>
 
 using namespace std;
