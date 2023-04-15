@@ -1127,6 +1127,8 @@ planet Eldergrasp
 	port
 		recharges
 			all
+		services
+			"offers mmissions"
 		description `The spaceport is virtually non-existent, with just a single cafeteria, a fuel pump for the desperate, and a dedicated loading area for loading and unloading the facility's regular deliveries. Despite its small size, everything is in excellent condition.`
 	government Hai
 	bribe 0.1
@@ -1746,6 +1748,8 @@ planet Goldcrawl
 	port
 		recharges
 			all
+		services
+			"offers mmissions"
 		description `The spaceport is virtually non-existent. A trio of vending machines occupy the entranceway from the dedicated loading area for the facility's regular deliveries. The entire place has a somewhat tacky vibe to it, and its ventilation system doesn't quite cover up the antiseptic hospital smell familiar to anyone who has visited terrestrial aged care facilities.`
 	government Hai
 	bribe 0.1
@@ -2258,6 +2262,8 @@ planet Kaeyin
 	port
 		recharges
 			all
+		services
+			"offers mmissions"
 		description `The only word you can think of to describe the spaceport is "impressive." It is on the top of the largest tower, placed in the exact center of a gargantuan city. With a base almost as big as a sizable village, very quickly getting thinner as it raises into the city's skyline.`
 		description `	Tiny, four-legged robots walk on the walls of every room, cleaning them in a matter of seconds. You can see more on the road below, and you presume they are everywhere in this city; this makes it impossible to estimate how long the planet has been abandoned, since everything here is perfect and clean.`
 
@@ -2511,6 +2517,8 @@ planet Mahoganybox
 	port
 		recharges
 			all
+		services
+			"offers mmissions"
 		description `The spaceport here is scarcely worthy of the name and does not facilitate trading, but is well equipped to handle regular traffic bringing people to and from the station. This place appears to service the fit but retiring demographic, whose minds are as sharp as ever but benefit from fewer demanding pressures on their physical bodies.`
 	government Hai
 	bribe 0.1
@@ -3550,6 +3558,8 @@ planet Ruin
 	port "Space_port?"
 		recharges
 			all
+		services
+			"offers mmissions"
 		description `Perhaps the oddest thing about this planet is this spaceport: a ring of landing pads surrounding a collection of fuel tanks. The landing pads are not concrete or any other material humans customarily use, but monolithic slabs of basalt. One of the fuel tanks has a human-style connector on it, but there are a dozen other connectors branching off from it as well.`
 		description `	A few insectoid robots scuttle slowly across the tanks and landing pads, removing ice and rust and lichen and polishing the surfaces of the tanks. No living creatures are present.`
 
@@ -4076,6 +4086,8 @@ planet "Ssil Vida"
 	port
 		recharges
 			all
+		services
+			"offers mmissions"
 		description `Exploring beyond the docks reveals that most of this facility is infrastructure for some type of massive emitter. It is not clear exactly what it's supposed to be emitting, but it might have something to do with how this system appeared in the first place.`
 
 planet Starcross
@@ -4249,6 +4261,8 @@ planet Thornlight
 	port
 		recharges
 			all
+		services
+			"offers mmissions"
 		description `The spaceport is small but serviceable, featuring a luxuriously appointed Centipede parked in a berth, presumably for entertainment voyages. There is a small but fancy cafe, and a gift shop with gold watches, jewelry, wines, and other pricey trinkets. This place must provide aged care services for only the very wealthy.`
 	government Hai
 	bribe 0.3

@@ -59,15 +59,15 @@ void Port::Load(const DataNode &node)
 				const string &grandKey = grand.Token(0);
 
 				if(grandKey == "all")
-					recharge |= Port::RechargeType::All;
+					recharge |= RechargeType::All;
 				else if(grandKey == "shields")
-					recharge |= Port::RechargeType::Shields;
+					recharge |= RechargeType::Shields;
 				else if(grandKey == "hull")
-					recharge |= Port::RechargeType::Hull;
+					recharge |= RechargeType::Hull;
 				else if(grandKey == "energy")
-					recharge |= Port::RechargeType::Energy;
+					recharge |= RechargeType::Energy;
 				else if(grandKey == "fuel")
-					recharge |= Port::RechargeType::Fuel;
+					recharge |= RechargeType::Fuel;
 			}
 		}
 		else if(key == "services" && child.HasChildren())
@@ -77,17 +77,17 @@ void Port::Load(const DataNode &node)
 				const string &grandKey = grand.Token(0);
 
 				if(grandKey == "all")
-					services |= Port::ServicesType::All;
+					services |= ServicesType::All;
 				else if(grandKey == "trading")
-					services |= Port::ServicesType::Trading;
+					services |= ServicesType::Trading;
 				else if(grandKey == "job board")
-					services |= Port::ServicesType::JobBoard;
+					services |= ServicesType::JobBoard;
 				else if(grandKey == "bank")
-					services |= Port::ServicesType::Bank;
+					services |= ServicesType::Bank;
 				else if(grandKey == "hire crew")
-					services |= Port::ServicesType::HireCrew;
+					services |= ServicesType::HireCrew;
 				else if(grandKey == "offers missions")
-					services |= Port::ServicesType::OffersMissions;
+					services |= ServicesType::OffersMissions;
 			}
 		}
 		else if(key == "news")
@@ -125,7 +125,7 @@ void Port::LoadUninhabitedSpaceport()
 {
 	name = SPACEPORT;
 	recharge = RechargeType::All;
-	services = ServicesType::None;
+	services = ServicesType::OffersMissions;
 	hasNews = false;
 }
 
