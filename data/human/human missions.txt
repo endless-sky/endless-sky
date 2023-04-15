@@ -20,6 +20,7 @@ mission "Immigrant Workers"
 		random < 50
 	source "New Iceland"
 	destination
+		not government "Pirate"
 		attributes "core"
 		attributes "factory" "textile"
 	on complete
