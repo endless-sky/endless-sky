@@ -92,7 +92,7 @@ mission "Paradise Job: Newlyweds"
 	to offer
 		random < 10
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	source
 		attributes "paradise"
 	destination
@@ -164,7 +164,7 @@ mission "Transport partiers [1]"
 	to offer
 		random < 10
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	source
 		attributes "paradise"
 	destination
@@ -188,7 +188,7 @@ mission "Transport partiers [2]"
 	to offer
 		random < 10
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	source
 		attributes "paradise"
 	destination
@@ -380,7 +380,7 @@ mission "Transport high-class tourists"
 	to offer
 		random < 10
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	source
 		attributes "paradise"
 	destination
@@ -437,8 +437,9 @@ mission "Paradise Job: Parolees"
 		random < 15
 		"passenger space" > 40
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "mining" "fishing" "textiles" "factory" "farming" "oil"
 	destination
 		distance 2 18
@@ -461,7 +462,7 @@ mission "Paradise Job: Debtors"
 		random < 15
 		"passenger space" > 40
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	source
 		attributes "paradise"
 	destination
@@ -487,8 +488,9 @@ mission "Paradise Job: Retirees"
 		"passenger space" > 15
 		"cargo space" > 40
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest" "urban"
 	destination
 		distance 3 16
@@ -498,6 +500,58 @@ mission "Paradise Job: Retirees"
 	on complete
 		payment 10000 200
 		dialog "You bid goodbye to the retirees, who were somewhat prone to spilling drinks or irritating you whilst attempting to do work. They were otherwise extremely polite and full of highly amusing, though often morally questionable, anecdotes. Once the last of their belongings have been safely unloaded your accounts receive the payment of <payment> from their travel broker."
+
+
+mission "Paradise Job: Pirate Retirees (Illegal)"
+	name "Wealthy retirees to <planet>"
+	job
+	repeat
+	description `This coterie of <bunks> wealthy "retirees" is willing to pay <payment> for stylish, no-questions-asked transport to <destination>, along with <tons> of their most treasured possessions.`
+	passengers 4 10 .6
+	cargo "treasured possessions" 4 10 .2
+	illegal 15000 `After scanning your ship, law enforcement notifies you. Apparently the "retirees" you've been carting around are secretly wanted individuals. After taking boarding your ship, they arrest the so-called retirees and search through their "treasured possessions," which are innocent enough, besides being obtained illegally. In the end, they confiscate the possessions and take away the criminals, leaving you with a small fine.`
+	stealth
+	to offer
+		random < 5
+		"passenger space" > 15
+		"cargo space" > 40
+	to accept
+		has "outfit: Luxury Accommodations"
+	source
+		government "Pirate"
+	destination
+		distance 3 16
+		attributes "paradise"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 15000 300
+		dialog "You bid goodbye to the self-proclaimed retirees, who were somewhat prone to spilling drinks or irritating you whilst attempting to do work. They were otherwise extremely polite, if raucous, and full of highly amusing, though often morally questionable, anecdotes. Once the last of their belongings have been safely unloaded your accounts receive the payment of <payment> from an anyonymous source."
+
+
+mission "Paradise Job: Pirate Retirees (Legal)"
+	name "Wealthy retirees to <planet>"
+	job
+	repeat
+	description `This coterie of <bunks> wealthy "retirees" is willing to pay <payment> for stylish, no-questions-asked transport to <destination>, along with <tons> of their most treasured possessions.`
+	passengers 4 10 .6
+	cargo "treasured possessions" 4 10 .2
+	to offer
+		random < 5
+		"passenger space" > 15
+		"cargo space" > 40
+	to accept
+		has "outfit: Luxury Accommodations"
+	source
+		government "Pirate"
+	destination
+		distance 3 16
+		attributes "paradise"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 200
+		dialog "You bid goodbye to the self-proclaimed retirees, who were somewhat prone to spilling drinks or irritating you whilst attempting to do work. They were otherwise extremely polite, if raucous, and full of highly amusing, though often morally questionable, anecdotes. Once the last of their belongings have been safely unloaded your accounts receive the payment of <payment> from an anyonymous source."
 
 
 mission "Paradise Job: Wilderness Retreat"
@@ -510,8 +564,9 @@ mission "Paradise Job: Wilderness Retreat"
 		random < 10
 		"passenger space" > 25
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "urban" "near earth" "core" "paradise"
 	destination
 		distance 6 20

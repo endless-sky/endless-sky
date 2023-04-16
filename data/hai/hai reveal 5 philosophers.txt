@@ -982,8 +982,8 @@ mission "Hai Reveal [B11] Moving Together"
 			label penetration
 			action
 				set "Hai Reveal [B11] Moving Together: label penetration"
-			`	Teeneep explains, "We also need a way to deal with the surface turrets and, short of bringing overwhelming firepower which we do not have, there's only one ship available with the systems to be able to affect that within our timeline. That ship is my Centipede. I had electronic warfare systems installed on it to baffle pirate defenses when I was investigating this before. It is our assessment that I should be able to baffle the turrets long enough to deal with any spaceship defenders, and land where the turrets will no longer matter." She looks to Choot'k. "The General has generously offered to loan a drive for my use."`
-			`	Choot'k addresses the group. "The designs of the facility show a weak point in one of the hangars, which we can exploit. My flagship has weapons pillaged from another species, which are strong enough to cut open the hangar doors yet precise enough not to destroy the hangar.`
+			`	Teeneep explains, "We also need a way to deal with the surface turrets and, short of bringing overwhelming firepower which we do not have, there's only one ship available with the systems to be able to affect that within our timeline. That ship is my Centipede. I had installed electronic warfare systems on it to baffle pirate defenses when I was investigating this before. It is our assessment that I should be able to baffle the turrets long enough to deal with any spaceship defenders, and land where the turrets will no longer matter." She looks to Choot'k. "The General has generously offered to loan a drive for my use."`
+			`	Choot'k addresses the group. "The designs of the facility show a weak point in one of the hangars, which we can exploit. My flagship has advanced ionic weaponry, that combined with enough raw burst firepower will disable and get rid of the hangar door without destroying too much of the hangar itself.`
 			`	"I also have two trusted captains who have been exploring the value of human weapons while they've been here, and think they have some winning combinations they would like to test in battle. I have chosen them to make use of our remaining available drives, and out of consideration for you humans. It would seem that the fewer alien weapons we carry through your space, the better."`
 				goto briefing
 
@@ -1004,7 +1004,7 @@ mission "Hai Reveal [B11] Moving Together"
 	npc save accompany
 		government "Hai (Friendly Unfettered)"
 		personality escort heroic opportunistic vindictive
-		ship "Shield Beetle (Sunbeam Korath Jump)" "Choot'k's Ship"
+		ship "Emperor Beetle" "Kratos"
 	npc save accompany
 		government "Hai (Friendly Unfettered)"
 		personality escort heroic opportunistic vindictive
@@ -1023,22 +1023,6 @@ mission "Hai Reveal [B11] Moving Together"
 	on visit
 		dialog `You've arrived on <planet>, but you've left one or more of your escorts behind.`
 
-
-# Flagship of the Unfettered Hai, filled with the spoils of wars against Korath and Wanderers:
-ship "Shield Beetle" "Shield Beetle (Sunbeam Korath Jump)"
-	outfits
-		"Large Heat Shunt" 2
-		"Jump Drive"
-		"Systems Core (Large)"
-		"Quantum Keystone"
-		"Outfits Expansion" 3
-		"Boulder Reactor" 3
-		`"Bufaer" Atomic Steering`
-		Sunbeam 6
-		"Korath Warder"
-		"Small Heat Shunt"
-		"Thruster (Planetary Class)"
-		"Fuel Processor" 2
 
 
 # Ambassadorial Centipede designed to fly deep into hostile space if necessary:
@@ -1151,7 +1135,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 		dialog `Right after the fleet takes off, Danforth hails you. "We have just received additional fighters and drones from the Syndicate, please wait for them before jumping."`
 	on enter "Devil-Hide"
 		conversation
-			`Teeneep sends out a message to the fleet informing you that she is engaging the electronic warfare baffling and reminds you that everyone needs to get onto the ground intact if this is to go well. Choot'k's Shield Beetle has red engine flares; the others have blue. So if he gets into trouble you should be able to tell at a distance. The baffling won't work forever, so get to it.`
+			`Teeneep sends out a message to the fleet informing you that she is engaging the electronic warfare baffling and reminds you that everyone needs to get onto the ground intact if this is to go well. The general's ship is the Emperor Beetle, Kratos. The baffling won't work forever, so get to it.`
 			`	(NOTE: You need to dominate this planet to finish the battle. To do that, talk to the planet and demand tribute. The planet will send multiple waves of defense fleets. Demand tribute after defeating the final wave, and they'll agree. Then land to finish the mission.)`
 			`	(WARNING: The allies you are escorting will not help you fight the defense fleets sent in response to your tribute demands, but they will fight any other pirate ships in the system.)`
 	on visit
@@ -1174,7 +1158,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 	npc save accompany
 		government "Hai (Friendly Unfettered)"
 		personality escort heroic opportunistic vindictive
-		ship "Shield Beetle (Sunbeam Korath Jump)" "Choot'k's Ship"
+		ship "Emperor Beetle" "Kratos"
 
 	npc save accompany
 		government "Navy (Oathkeeper)"
@@ -1460,7 +1444,7 @@ mission "Hai Reveal [B13] Freedom"
 	npc save accompany
 		government "Hai (Friendly Unfettered)"
 		personality escort heroic opportunistic vindictive
-		ship "Shield Beetle (Sunbeam Korath Jump)" "Choot'k's Ship"
+		ship "Emperor Beetle" "Kratos"
 	npc save accompany
 		government "Navy (Oathkeeper)"
 		personality escort heroic opportunistic
@@ -1516,4 +1500,4 @@ mission "Hai Reveal [B14] Journey to Peace"
 	npc save accompany
 		government "Hai (Friendly Unfettered)"
 		personality escort heroic opportunistic vindictive
-		ship "Shield Beetle (Sunbeam Korath Jump)" "Choot'k's Ship"
+		ship "Emperor Beetle" "Kratos"
