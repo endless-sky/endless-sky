@@ -282,7 +282,7 @@ mission "Remnant: Logistics Industrial Delivery"
 	on complete
 		dialog `A project technician inspects the <cargo> and approves your payment of <payment>.`
 		payment
-		payment 10000
+		payment 15000
 
 
 
@@ -310,7 +310,7 @@ mission "Remnant: Logistics Outfitter Delivery"
 	on complete
 		dialog `A repair technician inspects the <cargo> parts and authorizes your payment of <payment>.`
 		payment
-		payment 10000
+		payment 30000
 
 
 
