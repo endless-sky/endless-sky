@@ -36,3 +36,11 @@ gamerules
 	# DEFAULT: 1000
 	# ALLOWABLE VALUES: any integer >= 0
 	"no person spawn weight" 1000
+	
+	# NPC ships with the mining personality will spend this many frames mining in the current system
+	# before deciding to do something else. The purpose of this limit is so that NPC ships can be seen
+	# by the player to show how to mine without also stripping the system bare of minable asteroids.
+	# This limit does not apply to mining ships that are spawned by a mission.
+	# DEFAULT: 3600 frames (one minute)
+	# ALLOWABLE VALUES: any integer >= 0
+	"npc max mining time" 3600
