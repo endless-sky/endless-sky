@@ -191,6 +191,8 @@ void Government::Load(const DataNode &node)
 				hostileDisabledHail = nullptr;
 			else if(key == "language")
 				language.clear();
+			else if(key == "send untranslated hails")
+				sendUntranslatedHails = false;
 			else if(key == "trusted")
 				trusted.clear();
 			else if(key == "enforces")
@@ -346,6 +348,8 @@ void Government::Load(const DataNode &node)
 		else if(key == "foreign penalties for")
 			for(const DataNode &grand : child)
 				useForeignPenaltiesFor.insert(GameData::Governments().Get(grand.Token(0))->id);
+		else if(key == "send untranslated hails")
+			sendUntranslatedHails = true;
 		else if(!hasValue)
 			child.PrintTrace("Error: Expected key to have a value:");
 		else if(key == "player reputation")
@@ -573,6 +577,14 @@ string Government::GetHail(bool isDisabled) const
 const string &Government::Language() const
 {
 	return language;
+}
+
+
+
+// Find out if this government should send custom hails even if the player does not know its language.
+bool Government::SendUntranslatedHails() const
+{
+	return sendUntranslatedHails;
 }
 
 

@@ -145,6 +145,11 @@ void NPC::Load(const DataNode &node, const string &missionName)
 			government = GameData::Governments().Get(child.Token(1));
 		else if(child.Token(0) == "personality")
 			personality.Load(child);
+		else if(child.Token(0) == "cargo settings" && child.HasChildren())
+		{
+			cargo.Load(child);
+			overrideFleetCargo = true;
+		}
 		else if(child.Token(0) == "dialog")
 		{
 			bool hasValue = (child.Size() > 1);
@@ -682,7 +687,7 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 		result.ships.back()->SetName(*nameIt);
 	}
 	for(const ExclusiveItem<Fleet> &fleet : fleets)
-		fleet->Place(*result.system, result.ships, false);
+		fleet->Place(*result.system, result.ships, false, !overrideFleetCargo);
 	// Ships should either "enter" the system or start out there.
 	for(const shared_ptr<Ship> &ship : result.ships)
 	{
@@ -703,6 +708,11 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 		else
 			Fleet::Place(*result.system, *ship);
 	}
+
+	// Set the cargo for each ship in the NPC if the NPC itself has cargo settings.
+	if(overrideFleetCargo)
+		for(auto ship : result.ships)
+			cargo.SetCargo(&*ship);
 
 	// String replacement:
 	if(!result.ships.empty())
