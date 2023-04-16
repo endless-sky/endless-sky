@@ -18,7 +18,7 @@
 # about the war. This leads to the reveal of the Hai, who are unable
 # to stay hidden with so many people thinking about aliens.
 
-mission "00 Post-War Reactions Begin"
+mission "Post-War Reactions Begin"
 	landing
 	invisible
 	to offer
