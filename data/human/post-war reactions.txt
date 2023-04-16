@@ -31,26 +31,6 @@ event "post-war reactions begin"
 
 
 
-# Fix to prevent breaking old or new saves due to variable rename
-mission "00 Fix for pug media coverage"
-	landing
-	repeat
-	invisible
-		"pug media coverage" != "human awareness of aliens"
-	on offer
-		# Set both variables to the maximum of the two.
-		"pug aware max" = "pug media coverage"
-		"pug aware max" >?= "human awareness of aliens"
-		"human awareness of aliens" = "pug aware max"
-		"pug media coverage" = "pug aware max"
-
-		# Delete the temporary variable to avoid cluttering saves
-		"pug aware max" = 0
-
-		fail
-
-
-
 mission "War Reactions: Asteroid Miners"
 	landing
 	minor
