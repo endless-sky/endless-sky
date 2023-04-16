@@ -89,18 +89,6 @@ void Fleet::Load(const DataNode &node)
 			names = GameData::Phrases().Get(child.Token(1));
 		else if(key == "fighters" && hasValue)
 			fighterNames = GameData::Phrases().Get(child.Token(1));
-		else if(key == "commodities" && hasValue)
-		{
-			commodities.clear();
-			for(int i = 1; i < child.Size(); ++i)
-				commodities.push_back(child.Token(i));
-		}
-		else if(key == "outfitters" && hasValue)
-		{
-			outfitters.clear();
-			for(int i = 1; i < child.Size(); ++i)
-				outfitters.insert(GameData::Outfitters().Get(child.Token(i)));
-		}
 		else if(key == "cargo settings" && child.HasChildren())
 			cargo.Load(child);
 		// Allow certain individual cargo settings to be direct children

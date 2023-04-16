@@ -387,6 +387,22 @@ void ConditionsStore::Clear()
 
 
 
+// Helper for testing; check how many primary conditions are registered.
+int64_t ConditionsStore::PrimariesSize() const
+{
+	int64_t result = 0;
+	for(auto it = storage.begin(); it != storage.end(); ++it)
+	{
+		// We only count primary conditions; conditions that don't have a provider.
+		if(it->second.provider)
+			continue;
+		++result;
+	}
+	return result;
+}
+
+
+
 shared_ptr<ConditionsStore::ConditionEntry> ConditionsStore::FromStorage(const string &name)
 {
 	auto it = storage.lower_bound(name);
