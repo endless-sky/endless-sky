@@ -17,7 +17,7 @@ mission "Hai Secret Leaker Begins"
 	landing
 	invisible
 	to offer
-		has "pug media coverage"
+		has "human awareness of aliens"
 	on offer
 		event "hai secret leaks" 10 15
 		fail
@@ -30,7 +30,7 @@ mission "Hai Reveal: Reputation Reset"
 	landing
 	invisible
 	to offer
-		has "pug media coverage"
+		has "human awareness of aliens"
 	on offer
 		# Sync reputations for aliases of governments:
 		"reputation: Deep Security that won't enter wormhole" = "reputation: Deep Security"

@@ -30,11 +30,31 @@ mission "00 Post-War Reactions Begin"
 event "post-war reactions begin"
 
 
+
+# Fix to prevent breaking old or new saves due to variable rename
+mission "00 Fix for pug media coverage"
+	landing
+	invisible
+		"pug media coverage" != "human awareness of aliens"
+	on offer
+		# Set both variables to the maximum of the two.
+		"pug aware max" = "pug media coverage"
+		"pug aware max" >?= "human awareness of aliens"
+		"human awareness of aliens" = "pug aware max"
+		"pug media coverage" = "pug aware max"
+
+		# Delete the temporary variable to avoid cluttering saves
+		"pug aware max" = 0
+
+		fail
+
+
+
 mission "War Reactions: Asteroid Miners"
 	landing
 	minor
 	source
-		government "Republic" "Syndicate" "Free Worlds"
+		government "Republic" "Free Worlds"
 		# These miners were far from the war the whole time.
 		attributes "deep" "paradise" "north"
 		not attributes uninhabited
@@ -42,7 +62,7 @@ mission "War Reactions: Asteroid Miners"
 		has "event: post-war reactions begin"
 		random < 30
 	on offer
-		"pug media coverage" ++
+		"human awareness of aliens" ++
 		log "Minor People" "Maduena Kabiru" `A senator from Bounty in the Delta Velorum system. He is somewhat paranoid, and insists upon the Navy taking greater steps to better explore the galaxy beyond human space to search for possible threats.`
 		conversation
 			`As you leave your ship, you see a crowd watching a video on an interactive information display not far from your landing spot. The video jumps between a panel discussion and footage of Admiral Danforth being quizzed by Parliament. It has finished by the time you arrive, and many of the onlookers have already left for their business. Two captains remain, however, and, by the sounds of it, they're having a passionate discussion about the video.`
@@ -103,14 +123,14 @@ mission "War Reactions: Navy and Free Worlds Captains"
 	minor
 	source
 		government "Republic" "Syndicate" "Free Worlds"
-		attributes "spaceport"
 		# This distance from Sirius puts them a few jumps from the edge of human space, or anywhere in the Free Worlds
 		near "Sirius" 5 100
+		not attributes uninhabited
 	to offer
 		has "event: post-war reactions begin"
 		random < 30
 	on offer
-		"pug media coverage" ++
+		"human awareness of aliens" ++
 		conversation
 			`You are relaxing in a cafe while your ship refuels, and a pair of middle-aged captains come to your table. One is Navy, the other is Free Worlds, and they bear a striking resemblance to each other.`
 			`	"Captain Rain, R.N.S. Camuy," says one. "How's the <ship>, Captain <last>?"`
@@ -185,12 +205,12 @@ mission "War Reactions: Syndicate Orphan"
 	minor
 	source
 		government "Syndicate"
-		not attributes "station"
+		not attributes uninhabited station
 	to offer
 		has "event: post-war reactions begin"
 		random < 30
 	on offer
-		"pug media coverage" ++
+		"human awareness of aliens" ++
 		conversation
 			`	When you exit the secure landing area, you hear sounds of fists falling on skin and a kid yelling for help. Around the corner are three scruffy-looking boys hitting a fourth, who just fell on the ground. It's not clear if they're going to stop attacking him.`
 			choice
