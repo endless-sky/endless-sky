@@ -90,6 +90,23 @@ mission "Rulei Planet"
 			`	It's best you don't remain here for too long.`
 				decline
 
+
+mission "Umbral Reach"
+	invisible
+	landing
+	to complete
+		never
+	to offer
+		has "First Contact: Rulei: offered"
+		has "visited system: L-118"
+	on enter "Kanguwa"
+		conversation
+			`Out of nowhere, the mysterious whispers of the Rulei seep into your mind once more. They murmur slowly at first, but grow faster and louder from the direction of the ancient vessel, eventually coalescing into one spoken phrase.`
+			`	"Beware..."`
+			`	"...Umbral Reach."`
+			`	You feel tremendous weight behind the expression, as if it shook your mind itself. It's as though every emotion has flooded into your head at once - sadness, anger, joy, disgust, even some you can't seem to understand. Before you can respond to them, the voices quickly dissipate, and you're left alone in an uncomfortable silence.`
+				decline
+
 phrase "rulei hostile"
 	word
 		"Concede."
