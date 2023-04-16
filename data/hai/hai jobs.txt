@@ -415,10 +415,13 @@ mission "Delivery to Human Space [0]"
 		near "Heia Due" 2
 	destination
 		attributes "north"
+	"distance calculation settings"
+		"only unrestricted wormholes"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 60000
+		payment
+		payment 50000
 		"reputation: Hai" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
@@ -442,7 +445,8 @@ mission "Delivery to Human Space [1]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 60000
+		payment
+		payment 50000
 		"reputation: Hai" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
@@ -463,10 +467,13 @@ mission "Delivery to Human Space [2]"
 		near "Heia Due" 2
 	destination
 		attributes "north"
+	"distance calculation settings"
+		"only unrestricted wormholes"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 60000
+		payment
+		payment 50000
 		"reputation: Hai" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
@@ -489,12 +496,14 @@ mission "Hai Retrieve Human Luxury Goods"
 		not attributes "station"
 	stopover
 		attributes "north"
+	"distance calculation settings"
+		"only unrestricted wormholes"
 	on stopover
 		dialog "You gather the requested <commodity> and load them on your ship for return to <planet>."
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on complete
-		payment 120000
+		payment 100000 200
 		"reputation: Hai" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
@@ -516,12 +525,14 @@ mission "Hai Retrieve Human Food"
 		near "Heia Due" 2
 	stopover
 		attributes "north"
+	"distance calculation settings"
+		"only unrestricted wormholes"
 	on stopover
 		dialog "You gather the requested <commodity> and load them on your ship for return to <planet>."
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on complete
-		payment 120000
+		payment 100000 200
 		"reputation: Hai" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
@@ -543,12 +554,14 @@ mission "Hai Retrieve Human Electronics"
 		near "Heia Due" 2
 	stopover
 		attributes "north"
+	"distance calculation settings"
+		"only unrestricted wormholes"
 	on stopover
 		dialog "You gather the requested <commodity> and load them on your ship for return to <planet>."
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on complete
-		payment 120000
+		payment 100000 200
 		"reputation: Hai" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
