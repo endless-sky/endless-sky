@@ -7,8 +7,6 @@ on:
         value: ${{ jobs.changed.outputs.data }}
       game_code:
         value: ${{ jobs.changed.outputs.game_code }}
-      linux:
-        value: ${{ jobs.changed.outputs.linux }}
       unit_tests:
         value: ${{ jobs.changed.outputs.unit_tests }}
       integration_tests:
@@ -30,7 +28,6 @@ jobs:
     outputs:
       data: ${{ steps.filter.outputs.data }}
       game_code: ${{ steps.filter.outputs.game_code }}
-      linux: ${{ steps.filter.outputs.linux }}
       unit_tests: ${{ steps.filter.outputs.unit_tests }}
       integration_tests: ${{ steps.filter.outputs.integration_tests }}
       codespell: ${{ steps.filter.outputs.codespell }}

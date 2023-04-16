@@ -33,6 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <cmath>
+#include <limits>
 #include <sstream>
 
 using namespace std;
@@ -159,6 +160,22 @@ void Mission::Load(const DataNode &node)
 			if(child.Size() >= 3)
 				deadlineMultiplier += child.Value(2);
 		}
+		else if(child.Token(0) == "distance calculation settings" && child.HasChildren())
+		{
+			for(const DataNode &grand : child)
+			{
+				if(grand.Token(0) == "no wormholes")
+					distanceCalcSettings.wormholeStrategy = WormholeStrategy::NONE;
+				else if(grand.Token(0) == "only unrestricted wormholes")
+					distanceCalcSettings.wormholeStrategy = WormholeStrategy::ONLY_UNRESTRICTED;
+				else if(grand.Token(0) == "all wormholes")
+					distanceCalcSettings.wormholeStrategy = WormholeStrategy::ALL;
+				else if(grand.Token(0) == "assumes jump drive")
+					distanceCalcSettings.assumesJumpDrive = true;
+				else
+					grand.PrintTrace("Invalid \"distance calculation settings\" child:");
+			}
+		}
 		else if(child.Token(0) == "cargo" && child.Size() >= 3)
 		{
 			cargo = child.Token(1);
@@ -278,7 +295,7 @@ void Mission::Load(const DataNode &node)
 		else if(child.Token(0) == "substitutions" && child.HasChildren())
 			substitutions.Load(child);
 		else if(child.Token(0) == "npc")
-			npcs.emplace_back(child);
+			npcs.emplace_back(child, name);
 		else if(child.Token(0) == "on" && child.Size() >= 2 && child.Token(1) == "enter")
 		{
 			// "on enter" nodes may either name a specific system or use a LocationFilter
@@ -1114,7 +1131,7 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 	if(event.TargetGovernment()->IsPlayer() && !hasFailed)
 	{
 		bool failed = false;
-		string message = "Your ship '" + event.Target()->Name() + "' has been ";
+		string message = "Your ship \"" + event.Target()->Name() + "\" has been ";
 		if(event.Type() & ShipEvent::DESTROY)
 		{
 			// Destroyed ships carrying mission cargo result in failed missions.
@@ -1263,19 +1280,20 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	// cargo name with something more specific.
 	if(!cargo.empty())
 	{
+		const string expandedCargo = Phrase::ExpandPhrases(cargo);
 		const Trade::Commodity *commodity = nullptr;
-		if(cargo == "random")
+		if(expandedCargo == "random")
 			commodity = PickCommodity(*sourceSystem, *result.destination->GetSystem());
 		else
 		{
 			for(const Trade::Commodity &option : GameData::Commodities())
-				if(option.name == cargo)
+				if(option.name == expandedCargo)
 				{
 					commodity = &option;
 					break;
 				}
 			for(const Trade::Commodity &option : GameData::SpecialCommodities())
-				if(option.name == cargo)
+				if(option.name == expandedCargo)
 				{
 					commodity = &option;
 					break;
@@ -1284,7 +1302,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		if(commodity)
 			result.cargo = commodity->items[Random::Int(commodity->items.size())];
 		else
-			result.cargo = cargo;
+			result.cargo = expandedCargo;
 	}
 	// Pick a random cargo amount, if requested.
 	if(cargoSize || cargoLimit)
@@ -1308,7 +1326,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	result.paymentApparent = paymentApparent;
 	result.illegalCargoFine = illegalCargoFine;
-	result.illegalCargoMessage = illegalCargoMessage;
+	result.illegalCargoMessage = Phrase::ExpandPhrases(illegalCargoMessage);
 	result.failIfDiscovered = failIfDiscovered;
 
 	int jumps = result.CalculateJumps(sourceSystem);
@@ -1352,16 +1370,23 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	// Stopovers: "<name> in the <system name> system" with "," and "and".
 	if(!result.stopovers.empty())
 	{
+		string stopovers;
 		string planets;
 		const Planet * const *last = &*--result.stopovers.end();
 		int count = 0;
 		for(const Planet * const &planet : result.stopovers)
 		{
 			if(count++)
-				planets += (&planet != last) ? ", " : (count > 2 ? ", and " : " and ");
-			planets += planet->Name() + " in the " + planet->GetSystem()->Name() + " system";
+			{
+				string result = (&planet != last) ? ", " : (count > 2 ? ", and " : " and ");
+				stopovers += result;
+				planets += result;
+			}
+			stopovers += planet->Name() + " in the " + planet->GetSystem()->Name() + " system";
+			planets += planet->Name();
 		}
-		subs["<stopovers>"] = planets;
+		subs["<stopovers>"] = stopovers;
+		subs["<planet stopovers>"] = planets;
 	}
 	// Waypoints: "<system name>" with "," and "and".
 	if(!result.waypoints.empty())
@@ -1389,7 +1414,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		return result;
 	}
 	for(const NPC &npc : npcs)
-		result.npcs.push_back(npc.Instantiate(subs, sourceSystem, result.destination->GetSystem()));
+		result.npcs.push_back(npc.Instantiate(subs, sourceSystem, result.destination->GetSystem(), jumps, payload));
 
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
@@ -1442,10 +1467,10 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		result.genericOnEnter.emplace_back(action.Instantiate(subs, sourceSystem, jumps, payload));
 
 	// Perform substitution in the name and description.
-	result.displayName = Format::Replace(displayName, subs);
-	result.description = Format::Replace(description, subs);
-	result.clearance = Format::Replace(clearance, subs);
-	result.blocked = Format::Replace(blocked, subs);
+	result.displayName = Format::Replace(Phrase::ExpandPhrases(displayName), subs);
+	result.description = Format::Replace(Phrase::ExpandPhrases(description), subs);
+	result.clearance = Format::Replace(Phrase::ExpandPhrases(clearance), subs);
+	result.blocked = Format::Replace(Phrase::ExpandPhrases(blocked), subs);
 	result.clearanceFilter = clearanceFilter;
 	result.hasFullClearance = hasFullClearance;
 
@@ -1471,18 +1496,33 @@ int Mission::CalculateJumps(const System *sourceSystem)
 	while(!destinations.empty())
 	{
 		// Find the closest destination to this location.
-		DistanceMap distance(sourceSystem);
+		DistanceMap distance(sourceSystem,
+				distanceCalcSettings.wormholeStrategy,
+				distanceCalcSettings.assumesJumpDrive);
 		auto it = destinations.begin();
 		auto bestIt = it;
+		int bestDays = distance.Days(*bestIt);
+		if(bestDays < 0)
+			bestDays = numeric_limits<int>::max();
 		for(++it; it != destinations.end(); ++it)
-			if(distance.Days(*it) < distance.Days(*bestIt))
+		{
+			int days = distance.Days(*it);
+			if(days >= 0 && days < bestDays)
+			{
 				bestIt = it;
+				bestDays = days;
+			}
+		}
 
 		sourceSystem = *bestIt;
-		expectedJumps += distance.Days(*bestIt);
+		// If currently unreachable, this system adds -1 to the deadline, to match previous behavior.
+		expectedJumps += bestDays == numeric_limits<int>::max() ? -1 : bestDays;
 		destinations.erase(bestIt);
 	}
-	DistanceMap distance(sourceSystem);
+	DistanceMap distance(sourceSystem,
+			distanceCalcSettings.wormholeStrategy,
+			distanceCalcSettings.assumesJumpDrive);
+	// If currently unreachable, this system adds -1 to the deadline, to match previous behavior.
 	expectedJumps += distance.Days(destination->GetSystem());
 
 	return expectedJumps;

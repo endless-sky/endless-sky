@@ -1067,7 +1067,7 @@ ship "Class C Freighter"
 	explode "large explosion" 35
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description `The Class C "Freighter" is a Q-ship, a stealth warship designed by the Syndicate for baiting pirates with the offer of what appears to be a helpless, ordinary bulk freighter.`
+	description `The Class C "Freighter" is a Q-ship, a stealth warship designed by the Syndicate for baiting pirates with the offer of what appears to be a helpless, ordinary Bulk Freighter.`
 	description `	Inside, a layer of Interference Plating hides its military-grade equipment and a dozen combat drones secreted away in its converted cargo holds, while its faux gearing conceals extra shield emitters.`
 
 
@@ -1463,6 +1463,7 @@ ship "Dagger"
 	engine 8 34
 	gun -11 -21 "Beam Laser"
 	gun 11 -21 "Javelin Mini Pod"
+	gun 0 -35
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -1688,6 +1689,7 @@ ship "Finch"
 	engine 5 32
 	gun -7 -14 "Beam Laser"
 	gun 7 -14 "Javelin Mini Pod"
+	gun 0 -31.5
 	leak "flame" 60 80
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -1960,10 +1962,12 @@ ship "Fury"
 	engine 11 35 0.8
 	engine -18 37 0.6
 	engine 18 37 0.6
-	gun -10.5 -25.5
-	gun 10.5 -25.5
+	gun -11 -28
+	gun 11 -28
 	gun -17 -19.5
 	gun 17 -19.5
+	gun -5.5 -33
+	gun 5.5 -33
 	leak "flame" 50 80
 	explode "tiny explosion" 10
 	explode "small explosion" 20
@@ -2391,6 +2395,7 @@ ship "Lance"
 	engine 14.5 30.5 0.5
 	gun -13.5 -6.5 "Energy Blaster"
 	gun 13.5 -6.5 "Sidewinder Missile Pod"
+	gun 0 -34
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "The Lance is the primary fighter used by the Republic Navy. As with all fighters, it is weak by itself but very effective as part of a larger squadron."
@@ -3444,6 +3449,8 @@ ship "Sparrow"
 	engine 5 35
 	gun -7 -10
 	gun 7 -10
+	gun -10.5 -8.5
+	gun 10.5 -8.5
 	leak "flame" 60 80
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -3820,8 +3827,10 @@ ship "Wasp"
 	engine -5.5 32.5
 	engine 5.5 32.5
 	gun 0 -41 "Sidewinder Missile Pod"
-	gun -13 -30.5 "Energy Blaster"
-	gun 13 -30.5 "Energy Blaster"
+	gun -13.5 -35 "Energy Blaster"
+	gun 13.5 -35 "Energy Blaster"
+	gun -18.5 -27
+	gun 18.5 -27
 	leak "leak" 60 50
 	explode "tiny explosion" 20
 	explode "small explosion" 10
