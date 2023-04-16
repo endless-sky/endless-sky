@@ -2,7 +2,7 @@
 "Forward thrust" 1073741906
 "Turn left" 1073741904
 "Turn right" 1073741903
-"Auto steer / face target" 122
+"Auto steer / face target" 101
 "Reverse" 1073741905
 "Fire primary weapon" 9
 "Fire secondary weapon" 113

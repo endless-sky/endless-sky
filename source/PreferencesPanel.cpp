@@ -365,12 +365,11 @@ void PreferencesPanel::DrawControls()
 
 	static const string CATEGORIES[] = {
 		"Keyboard Navigation",
-		"Mouse Navigation",
+		"Interface",
 		"Targeting",
 		"Weapons",
 		"Interface",
-		"Fleet",
-		"Targeting"
+		"Fleet"
 	};
 	const string *category = CATEGORIES;
 	static const Command COMMANDS[] = {
@@ -384,12 +383,15 @@ void PreferencesPanel::DrawControls()
 		Command::LAND,
 		Command::JUMP,
 		Command::NONE,
+		Command::MAP,
+		Command::INFO,
 		Command::NONE,
 		Command::NEAREST,
 		Command::TARGET,
 		Command::HAIL,
 		Command::BOARD,
 		Command::NEAREST_ASTEROID,
+		Command::SCAN,
 		Command::NONE,
 		Command::PRIMARY,
 		Command::SELECT,
@@ -398,8 +400,6 @@ void PreferencesPanel::DrawControls()
 		Command::MOUSE_TURNING_HOLD,
 		Command::NONE,
 		Command::MENU,
-		Command::MAP,
-		Command::INFO,
 		Command::FULLSCREEN,
 		Command::FASTFORWARD,
 		Command::NONE,
@@ -408,11 +408,9 @@ void PreferencesPanel::DrawControls()
 		Command::GATHER,
 		Command::HOLD,
 		Command::AMMO,
-		Command::HARVEST,
-		Command::NONE,
-		Command::SCAN
+		Command::HARVEST
 	};
-	static const Command *BREAK = &COMMANDS[18];
+	static const Command *BREAK = &COMMANDS[19];
 	for(const Command &command : COMMANDS)
 	{
 		// The "BREAK" line is where to go to the next column.
