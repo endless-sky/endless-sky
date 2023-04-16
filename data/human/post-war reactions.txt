@@ -35,7 +35,7 @@ mission "War Reactions: Asteroid Miners"
 	landing
 	minor
 	source
-		government "Republic" "Free Worlds"
+		government "Republic"
 		# These miners were far from the war the whole time.
 		attributes "deep" "paradise" "north"
 		not attributes uninhabited
