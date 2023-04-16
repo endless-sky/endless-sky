@@ -42,7 +42,7 @@ mission "War Reactions: Asteroid Miners"
 		has "event: post-war reactions begin"
 		random < 30
 	on offer
-		set "pug media coverage"
+		"pug media coverage" ++
 		log "Minor People" "Maduena Kabiru" `A senator from Bounty in the Delta Velorum system. He is somewhat paranoid, and insists upon the Navy taking greater steps to better explore the galaxy beyond human space to search for possible threats.`
 		conversation
 			`As you leave your ship, you see a crowd watching a video on an interactive information display not far from your landing spot. The video jumps between a panel discussion and footage of Admiral Danforth being quizzed by Parliament. It has finished by the time you arrive, and many of the onlookers have already left for their business. Two captains remain, however, and, by the sounds of it, they're having a passionate discussion about the video.`
@@ -63,7 +63,7 @@ mission "War Reactions: Asteroid Miners"
 			`	One twin rolls his eyes while the other twitches his mustache awkwardly. He rewinds the video to the Parliamentary discussion, where Danforth is reassuring councilors about the Navy's ability to patrol the fringes of human space.`
 			`	The left twin says, "Look at this bozo! Bounty's Councilor Maduena Kabiru, he keeps ranting against this Navy guy, uh, this Admiral..." He snaps his fingers trying to remember the name.`
 			`	"Admiral Danforth," says the right twin.`
-			`	"Right. Danforth. This Councilor wants Danforth to defend against 'unknown dangers at the fringes of human space'. Don't we have enough immediate problems without imagining new horrors?"`
+			`	"Right. Danforth. This councilor wants Danforth to defend against 'unknown dangers at the fringes of human space'. Don't we have enough immediate problems without imagining new horrors?"`
 			`	"Like terrorists nuking us," says the right twin.`
 			choice
 				`	"The Navy is skilled and honorable. I trust them to protect us."`
@@ -110,7 +110,7 @@ mission "War Reactions: Navy and Free Worlds Captains"
 		has "event: post-war reactions begin"
 		random < 30
 	on offer
-		set "pug media coverage"
+		"pug media coverage" ++
 		conversation
 			`You are relaxing in a cafe while your ship refuels, and a pair of middle-aged captains come to your table. One is Navy, the other is Free Worlds, and they bear a striking resemblance to each other.`
 			`	"Captain Rain, R.N.S. Camuy," says one. "How's the <ship>, Captain <last>?"`
@@ -190,7 +190,7 @@ mission "War Reactions: Syndicate Orphan"
 		has "event: post-war reactions begin"
 		random < 30
 	on offer
-		set "pug media coverage"
+		"pug media coverage" ++
 		conversation
 			`	When you exit the secure landing area, you hear sounds of fists falling on skin and a kid yelling for help. Around the corner are three scruffy-looking boys hitting a fourth, who just fell on the ground. It's not clear if they're going to stop attacking him.`
 			choice
@@ -212,7 +212,7 @@ mission "War Reactions: Syndicate Orphan"
 			label attacking
 			action
 				set "War Reactions: Syndicate Orphan: attacking"
-			`	"My sister is a Private, Third Class, in the Syndicate's Ancillary Security Service." He grins proudly, clearly having practiced that delivery. "She monitors the Syndicate workplaces and she turned those boys in for smoking on the job last week. I guess they finally got a break for the repair shop and came after me since they can't hurt my sister."`
+			`	"My sister is a private, third class, in the Syndicate's Ancillary Security Service." He grins proudly, clearly having practiced that delivery. "She monitors the Syndicate workplaces and she turned those boys in for smoking on the job last week. I guess they finally got a break for the repair shop and came after me since they can't hurt my sister."`
 				goto questions
 			label young
 			`	As you start walking, he answers. "No, I'm an orphan." He sees your confusion and explains. "The Syndicate lets some of us orphans work in industry. In return they give us better schooling, nicer housing, and doctor's visits." He puffs himself up. "Only the cleverest of us get to do it. All of the jobs for orphans are safe too; we don't use big dangerous equipment. Just ordinary stuff, like hammers, soldering irons, or sewing machines.`
