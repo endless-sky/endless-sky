@@ -224,24 +224,58 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 
 
 
-bool ShipInfoPanel::Click(int x, int y, int /* clicks */)
+bool ShipInfoPanel::Click(int x, int y, int clicks)
 {
 	if(shipIt == panelState.Ships().end())
 		return true;
 
-	draggingIndex = -1;
-	if(panelState.CanEdit() && hoverIndex >= 0 && (**shipIt).GetSystem() == player.GetSystem() && !(**shipIt).IsDisabled())
-		draggingIndex = hoverIndex;
+	Ship &ship =  (**shipIt);
+	const Outfit *selectedWeapon = (hoverIndex != -1) ? ship.Weapons()[hoverIndex].GetOutfit() : NULL;
 
-	selectedCommodity.clear();
-	selectedPlunder = nullptr;
-	Point point(x, y);
-	for(const auto &zone : commodityZones)
-		if(zone.Contains(point))
-			selectedCommodity = zone.Value();
-	for(const auto &zone : plunderZones)
-		if(zone.Contains(point))
-			selectedPlunder = zone.Value();
+	if((clicks == 2) && (player.Flagship() == &ship) && selectedWeapon && !selectedWeapon->Icon())
+	{
+		Hardpoint *hp = NULL;
+
+		for(const Hardpoint &hardpoint : ship.Weapons())
+			if(hardpoint.GetOutfit() == selectedWeapon)
+			{
+				hp = const_cast<Hardpoint *>(&hardpoint);
+				break;
+			}
+
+		if(hp) // add
+		{
+			if(hp->GetCustomSecIdx() == -1)
+			{
+				if(ship.DefineAsCustomSecWeapon(selectedWeapon))
+					this->Draw();
+				else
+					Messages::Add("failed to add \"" + selectedWeapon->TrueName() + "\" as secondary cusrom weapon.",
+					Messages::Importance::Highest);
+			}
+			else
+			{
+				ship.UnDefineAsCustomSecWeapon(selectedWeapon);
+				this->Draw();
+			}
+		}
+	}
+	else
+	{
+		draggingIndex = -1;
+		if(panelState.CanEdit() && hoverIndex >= 0 && (**shipIt).GetSystem() == player.GetSystem() && !(**shipIt).IsDisabled())
+			draggingIndex = hoverIndex;
+
+		selectedCommodity.clear();
+		selectedPlunder = nullptr;
+		Point point(x, y);
+		for(const auto &zone : commodityZones)
+			if(zone.Contains(point))
+				selectedCommodity = zone.Value();
+		for(const auto &zone : plunderZones)
+			if(zone.Contains(point))
+				selectedPlunder = zone.Value();
+	}
 
 	return true;
 }
@@ -409,8 +443,11 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	// Colors to draw with.
 	Color dim = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
+	Color weaponColor;
 	const Font &font = FontSet::Get(14);
 	const Ship &ship = **shipIt;
+	bool isFlagship = &ship == player.Flagship();
+	const float CustomSecondaryWeaponCoefficient = 0.165;
 
 	// Figure out how much to scale the sprite by.
 	const Sprite *sprite = ship.GetSprite();
@@ -470,18 +507,35 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	auto layout = Layout(static_cast<int>(LABEL_WIDTH), Truncate::BACK);
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
+		auto outfit = hardpoint.GetOutfit();
 		string name = "[empty]";
-		if(hardpoint.GetOutfit())
+		bool isHover = (index == hoverIndex);
+		weaponColor = (isHover ? bright : dim);
+
+		if(outfit)
+		{
 			name = hardpoint.GetOutfit()->DisplayName();
+			auto hardpointIcon = player.Flagship()->GetHardpointIcon(outfit);
+			bool specialCustomSecondary = hardpointIcon && !outfit->Icon();
+
+			if(isFlagship && specialCustomSecondary)
+			{
+				double alpha = 0;
+				double red = 0;
+				double green = hardpoint.GetCustomSecIdx() * CustomSecondaryWeaponCoefficient;
+				double blue = 1. - hardpoint.GetCustomSecIdx() * CustomSecondaryWeaponCoefficient;
+
+				weaponColor = Color(red, green, blue, alpha);
+			}
+		}
 
 		bool isRight = (hardpoint.GetPoint().X() >= 0.);
 		bool isTurret = hardpoint.IsTurret();
 
 		double &y = nextY[isRight][isTurret];
 		double x = centerX + (isRight ? LABEL_DX : -LABEL_DX - LABEL_WIDTH);
-		bool isHover = (index == hoverIndex);
 		layout.align = isRight ? Alignment::LEFT : Alignment::RIGHT;
-		font.Draw({name, layout}, Point(x, y + TEXT_OFF), isHover ? bright : dim);
+		font.Draw({name, layout}, Point(x, y + TEXT_OFF), weaponColor);
 		Point zoneCenter(labelCenter[isRight], y + .5 * LINE_HEIGHT);
 		zones.emplace_back(zoneCenter, LINE_SIZE, index);
 
