@@ -12,7 +12,7 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 # This mission sets the "know who the korath are" variable in old saves.
-mission "000 Korath Knowledge Patch"
+mission "00 Korath Knowledge Patch"
 	landing
 	invisible
 	to offer
