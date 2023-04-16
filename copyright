@@ -1630,6 +1630,13 @@ Copyright: Ejo Thims <https://github.com/EjoThims>
 License: CC-BY-SA-4.0
 
 Files:
+ images/ship/hai?emperor?beetle*
+ images/thumbnail/hai?emperor?beetle*
+Copyright: Ejo Thims <https://github.com/EjoThims>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Becca Tommaso and Michael Zahniser (under the same license)
+
+Files:
  images/planet/stationh-ancient0*
  images/planet/stationh-ancient1*
  images/planet/stationh-ancient2*
@@ -1765,7 +1772,7 @@ Files:
  images/ship/modified?dromedary*
  images/ship/modified?dromedary?wreck*
  images/ship/*vyrmeid*
- images/ship/*vyuira*
+ images/ship/*vyuir*
  images/thumbnail/gegno?augen*
  images/thumbnail/gegno?coesite*
  images/thumbnail/gegno?conglomerate*
@@ -1786,7 +1793,7 @@ Files:
  images/thumbnail/gegno?tridymite*
  images/thumbnail/modified?dromedary*
  images/thumbnail/modified?dromedary?wreck*
- images/thumbnail/vyuira*
+ images/thumbnail/vyuir*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 
@@ -2062,11 +2069,24 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Becca Tommaso and Michael Zahniser (under the same license).
 
 Files:
+ images/land/badlands13*
+ images/land/beach15*
  images/land/city19*
  images/land/city20*
  images/land/city21*
  images/land/city22*
  images/land/city23*
+ images/land/city24*
+ images/land/city25*
+ images/land/desert14*
+ images/land/desert15*
+ images/land/forest10*
+ images/land/mountain27*
+ images/land/mountain28*
+ images/land/mountain29*
+ images/land/mountain30*
+ images/land/sea22*
+ images/land/snow22*
 Copyright: Various
 License: CC0
 Comment: Taken from unsplash.com and cropped.
