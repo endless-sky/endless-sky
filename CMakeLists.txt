@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.21..3.25)
 include(CMakeDependentOption)
 option(ES_USE_VCPKG "Use vcpkg to get dependencies." ON)
 cmake_dependent_option(ES_GLES "Build the game with OpenGL ES" OFF UNIX OFF)
+cmake_dependent_option(ES_STEAM "Build the game for the Steam Linux runtime" OFF UNIX OFF)
 cmake_dependent_option(ES_USE_SYSTEM_LIBRARIES "Use system libraries instead of the vcpkg ones." ON UNIX OFF)
 cmake_dependent_option(ES_USE_OFFSCREEN
 	"Use SDL's offscreen backend instead of Xvfb for the integration tests" OFF UNIX OFF)
@@ -37,6 +38,11 @@ endif()
 if(NOT ES_USE_SYSTEM_LIBRARIES)
 	# Tell vcpkg to use the required system libraries.
 	list(APPEND VCPKG_MANIFEST_FEATURES "system-libs")
+endif()
+
+# Some system libraries aren't available on the default Sniper runtime and need to be built from source.
+if(ES_STEAM)
+	list(APPEND VCPKG_MANIFEST_FEATURES "steam-libs")
 endif()
 
 # Various helpful options for IDEs.
@@ -93,6 +99,66 @@ endif()
 
 # Add the library target.
 add_subdirectory(source)
+
+# Create an interface library that contains common libraries for the game and unit tests.
+add_library(ExternalLibraries INTERFACE)
+target_link_libraries(EndlessSkyLib PUBLIC ExternalLibraries)
+
+# The 'mingw32' lib needs to be linked first.
+if(MINGW)
+	target_link_libraries(ExternalLibraries INTERFACE mingw32)
+endif()
+
+# Link with the general libraries.
+target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG OpenAL::OpenAL
+	"$<IF:$<CONFIG:Debug>,${LIBMAD_LIB_DEBUG},${LIBMAD_LIB_RELEASE}>")
+
+# Link the needed OS-specific dependencies, if any.
+if(WIN32)
+	target_link_libraries(ExternalLibraries INTERFACE rpcrt4 Winmm)
+else()
+	target_link_libraries(ExternalLibraries INTERFACE pthread)
+endif()
+
+# Link with the UUID library, which is different for each OS.
+if(UNIX)
+	if(APPLE)
+		find_library(UUID_LIB NAMES System PATHS /lib /usr/lib /usr/local/lib)
+		find_path(UUID_INCLUDE uuid/uuid.h /usr/local/include /usr/include)
+		target_link_libraries(ExternalLibraries INTERFACE "${UUID_LIB}")
+		target_include_directories(ExternalLibraries INTERFACE "${UUID_INCLUDE}")
+	elseif(ES_USE_SYSTEM_LIBRARIES)
+		find_library(UUID_LIB uuid)
+		target_link_libraries(ExternalLibraries INTERFACE "${UUID_LIB}")
+	else()
+		find_package(unofficial-libuuid CONFIG REQUIRED)
+		target_link_libraries(ExternalLibraries INTERFACE unofficial::UUID::uuid)
+	endif()
+endif()
+
+# Link with OpenGL or OpenGL ES.
+if(ES_GLES)
+	find_package(OpenGL REQUIRED OpenGL EGL)
+	target_link_libraries(ExternalLibraries INTERFACE OpenGL::OpenGL OpenGL::EGL)
+	target_compile_definitions(EndlessSkyLib PUBLIC ES_GLES)
+else()
+	# The Steam runtime can't rely on GLVND being available, so link against the legacy interface.
+	if(ES_STEAM)
+		set(OpenGL_GL_PREFERENCE "LEGACY")
+	endif()
+
+	find_package(OpenGL REQUIRED)
+	target_link_libraries(ExternalLibraries INTERFACE OpenGL::GL)
+
+	if(APPLE)
+		# Apple deprecated OpenGL in MacOS 10.14, but we don't care.
+		target_compile_definitions(EndlessSkyLib PUBLIC GL_SILENCE_DEPRECATION)
+	else()
+		# GLEW is only needed on Linux and Windows.
+		target_link_libraries(ExternalLibraries INTERFACE GLEW::GLEW)
+	endif()
+endif()
+
 # Setup for the testing frameworks.
 include(CTest)
 if(BUILD_TESTING)
@@ -152,25 +218,7 @@ else()
 endif()
 
 # Link with the library dependencies.
-target_link_libraries(EndlessSky PRIVATE EndlessSkyLib $<TARGET_NAME_IF_EXISTS:SDL2::SDL2main>)
-
-# Link with OpenGL or OpenGL ES.
-if(ES_GLES)
-	find_package(OpenGL REQUIRED OpenGL EGL)
-	target_link_libraries(EndlessSky PRIVATE OpenGL::OpenGL OpenGL::EGL)
-	target_compile_definitions(EndlessSkyLib PUBLIC ES_GLES)
-else()
-	find_package(OpenGL REQUIRED)
-	target_link_libraries(EndlessSky PRIVATE OpenGL::GL)
-
-	if(APPLE)
-		# Apple deprecated OpenGL in MacOS 10.14, but we don't care.
-		target_compile_definitions(EndlessSkyLib PUBLIC GL_SILENCE_DEPRECATION)
-	else()
-		# GLEW is only needed on Linux and Windows.
-		target_link_libraries(EndlessSky PRIVATE GLEW::GLEW)
-	endif()
-endif()
+target_link_libraries(EndlessSky PRIVATE ExternalLibraries $<TARGET_OBJECTS:EndlessSkyLib> $<TARGET_NAME_IF_EXISTS:SDL2::SDL2main>)
 
 # Copy the MinGW runtime DLLs if necessary.
 if(MINGW AND WIN32)
