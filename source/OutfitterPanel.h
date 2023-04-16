@@ -55,9 +55,8 @@ protected:
 	virtual int DividerOffset() const override;
 	virtual int DetailWidth() const override;
 	virtual int DrawDetails(const Point &center) override;
-	virtual bool CanBuy(bool checkAlreadyOwned = true) const override;
-	virtual void Buy(bool alreadyOwned = false) override;
-	virtual void FailBuy() const override;
+	virtual BuyResult CanBuy(bool onlyOwned = false) const override;
+	virtual void Buy(bool onlyOwned = false) override;
 	virtual bool CanSell(bool toStorage = false) const override;
 	virtual void Sell(bool toStorage = false) override;
 	virtual void FailSell(bool toStorage = false) const override;
@@ -76,7 +75,7 @@ private:
 	static void DrawOutfit(const Outfit &outfit, const Point &center, bool isSelected, bool isOwned);
 	bool IsLicense(const std::string &name) const;
 	bool HasLicense(const std::string &name) const;
-	std::string LicenseName(const std::string &name) const;
+	std::string LicenseRoot(const std::string &name) const;
 	void CheckRefill();
 	void Refill();
 	// Shared code for reducing the selected ships to those that have the

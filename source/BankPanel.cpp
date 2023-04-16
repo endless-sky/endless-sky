@@ -108,22 +108,17 @@ void BankPanel::Draw()
 
 	// Check if salaries need to be drawn.
 	int64_t salaries = player.Salaries();
-	int64_t salariesOwed = player.Accounts().SalariesOwed();
-	int64_t income[2] = {0, 0};
-	static const string prefix[2] = {"salary: ", "tribute: "};
-	for(int i = 0; i < 2; ++i)
-	{
-		auto it = player.Conditions().PrimariesLowerBound(prefix[i]);
-		for( ; it != player.Conditions().PrimariesEnd() && !it->first.compare(0, prefix[i].length(), prefix[i]); ++it)
-			income[i] += it->second;
-	}
+	int64_t crewSalariesOwed = player.Accounts().CrewSalariesOwed();
+	int64_t salariesIncome = player.Accounts().SalariesIncomeTotal();
+	int64_t tributeIncome = player.GetTributeTotal();
+
 	// Check if maintenance needs to be drawn.
 	PlayerInfo::FleetBalance b = player.MaintenanceAndReturns();
 	int64_t maintenanceDue = player.Accounts().MaintenanceDue();
 	// Figure out how many rows of the display are for mortgages, and also check
 	// whether multiple mortgages have to be combined into the last row.
-	mortgageRows = MAX_ROWS - (salaries != 0 || salariesOwed != 0) - (b.maintenanceCosts != 0 || maintenanceDue != 0)
-		- (b.assetsReturns != 0 || income[0] != 0 || income[1] != 0);
+	mortgageRows = MAX_ROWS - (salaries != 0 || crewSalariesOwed != 0) - (b.maintenanceCosts != 0 || maintenanceDue != 0)
+		- (b.assetsReturns != 0 || salariesIncome != 0 || tributeIncome != 0);
 	int mortgageCount = player.Accounts().Mortgages().size();
 	mergedMortgages = (mortgageCount > mortgageRows);
 	if(!mergedMortgages)
@@ -176,16 +171,16 @@ void BankPanel::Draw()
 	}
 	table.SetColor(unselected);
 	// Draw the salaries, if necessary.
-	if(salaries || salariesOwed)
+	if(salaries || crewSalariesOwed)
 	{
 		// Include salaries in the total daily payment.
 		totalPayment += salaries;
 
 		table.Draw("Crew Salaries");
 		// Check whether the player owes back salaries.
-		if(salariesOwed)
+		if(crewSalariesOwed)
 		{
-			table.Draw(Format::Credits(salariesOwed));
+			table.Draw(Format::Credits(crewSalariesOwed));
 			table.Draw("(overdue)");
 			table.Advance(1);
 		}
@@ -211,19 +206,20 @@ void BankPanel::Draw()
 		table.Draw(Format::Credits(b.maintenanceCosts));
 		table.Advance();
 	}
-	if(income[0] || income[1] || b.assetsReturns)
+	if(salariesIncome || tributeIncome || b.assetsReturns)
 	{
 		// Your daily income offsets expenses.
-		totalPayment -= income[0] + income[1] + b.assetsReturns;
+		totalPayment -= salariesIncome + tributeIncome + b.assetsReturns;
 
 		static const string LABEL[] = {"", "Your Salary Income", "Your Tribute Income", "Your Salary and Tribute Income",
 			"Your Return on Assets Income", "Your Salary and Return on Assets Income",
 			"Your Tribute and Return on Assets Income", "Your Salary, Tribute, and Returns Income" };
 		const auto incomeLayout = Layout(310, Truncate::BACK);
-		table.DrawCustom({LABEL[(income[0] != 0) + 2 * (income[1] != 0) + 4 * (b.assetsReturns != 0)], incomeLayout});
+		table.DrawCustom({LABEL[(salariesIncome != 0) + 2 * (tributeIncome != 0) + 4 * (b.assetsReturns != 0)],
+			incomeLayout});
 		// For crew salaries, only the "payment" field needs to be shown.
 		table.Advance(3);
-		table.Draw(Format::Credits(-(income[0] + income[1] + b.assetsReturns)));
+		table.Draw(Format::Credits(-(salariesIncome + tributeIncome + b.assetsReturns)));
 		table.Advance();
 	}
 
@@ -257,7 +253,7 @@ void BankPanel::Draw()
 	}
 
 	Information info;
-	if((salariesOwed || maintenanceDue) && player.Accounts().Credits() > 0)
+	if((crewSalariesOwed || maintenanceDue) && player.Accounts().Credits() > 0)
 		info.SetCondition("can pay");
 	else
 		for(const Mortgage &mortgage : player.Accounts().Mortgages())
@@ -300,7 +296,7 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			else
 				++i;
 		}
-		player.Accounts().PaySalaries(player.Accounts().SalariesOwed());
+		player.Accounts().PaySalaries(player.Accounts().CrewSalariesOwed());
 		player.Accounts().PayMaintenance(player.Accounts().MaintenanceDue());
 		qualify = player.Accounts().Prequalify();
 	}
