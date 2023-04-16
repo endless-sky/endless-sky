@@ -789,6 +789,7 @@ government "Korath"
 		"Korath (Civilian)" 1
 		"Hai (Friendly Unfettered)" -.01
 	
+	"send untranslated hails"
 	"player reputation" -10
 	"friendly hail" "friendly korath untranslated"
 	"friendly disabled hail" "friendly disabled korath untranslated"
@@ -809,6 +810,7 @@ government "Korath (Civilian)"
 		"Korath" .01
 
 	"player reputation" 1
+	"send untranslated hails"
 	"friendly hail" "friendly korath untranslated"
 	"friendly disabled hail" "friendly disabled korath untranslated"
 	"hostile hail" "hostile korath civilian untranslated"
@@ -829,6 +831,7 @@ government "Kor Efret"
 		"Kor Sestor" -.01
 	
 	"player reputation" 1
+	"send untranslated hails"
 	"friendly hail" "friendly kor efret untranslated"
 	"friendly disabled hail" "friendly disabled kor efret untranslated"
 	"hostile hail" "hostile kor efret untranslated"
