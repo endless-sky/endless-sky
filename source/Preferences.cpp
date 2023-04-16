@@ -202,6 +202,16 @@ void Preferences::Load()
 			alertIndicatorIndex = 2;
 		settings.erase(it);
 	}
+
+	// For people updating from a version before the status overlay customization
+	// changes, don't turn all the overlays on if they were off before.
+	it = settings.find("Show status overlays");
+	if(it != settings.end())
+	{
+		if(!it->second)
+			statusOverlaySettings[OverlayType::ALL] = OverlayState::OFF;
+		settings.erase(it);
+	}
 }
 
 
