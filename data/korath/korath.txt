@@ -356,16 +356,6 @@ fleet "Korath Surveillance"
 		"Ra'at Ik 621 (Probes)"
 		"Kas'ik Tek 7" 9
 
-fleet "Korath Stealth Relay"
-	government "Korath"
-	names "korath"
-	fighters "korath probes"
-	cargo 0
-	personality
-		timid uninterested
-	variant
-		"Kas'ik Tek 7 (Self-Destruct)" 12
-
 fleet "Korath Large Raid"
 	government "Korath"
 	names "korath"

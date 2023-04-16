@@ -464,7 +464,9 @@ mission "Korath Stormhold Artifacts [2] Drones"
 		government Korath
 		system Almach
 		personality staying timid target marked
-		fleet "Korath Stealth Relay"
+		fleet
+			variant
+				"Kas'ik Tek 7 (Self-Destruct)" 12
 		dialog "With the probes destroyed, you can now return to Stormhold for your payment."
 	npc
 		government Korath
