@@ -203,6 +203,8 @@ void Preferences::Load()
 		settings.erase(it);
 	}
 
+	// For people updating from a version before the status overlay customization
+	// changes, don't turn all the overlays on if they were off before.
 	it = settings.find("Show status overlays");
 	if(it != settings.end())
 	{
