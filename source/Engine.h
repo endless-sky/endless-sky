@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 #include "LimitedEvents.h"
 #include "Point.h"
+#include "Preferences.h"
 #include "Radar.h"
 #include "Rectangle.h"
 #include "SpawnedFleet.h"
@@ -105,6 +106,33 @@ public:
 
 
 private:
+	class Target {
+	public:
+		Point center;
+		Angle angle;
+		double radius;
+		const Color &color;
+		int count;
+	};
+
+	class Status {
+	public:
+		Status(const Point &position, double outer, double inner,
+			double disabled, double radius, int type, double angle = 0.)
+			: position(position), outer(outer), inner(inner),
+				disabled(disabled), radius(radius), type(type), angle(angle) {}
+
+		Point position;
+		double outer;
+		double inner;
+		double disabled;
+		double radius;
+		int type;
+		double angle;
+	};
+
+
+private:
 	void EnterSystem();
 
 	void ThreadEntryPoint();
@@ -139,29 +167,8 @@ private:
 	void PruneSpawnedFleets();
 	void AddSpawnedFleet(const LimitedEvents<Fleet> &category);
 
-private:
-	class Target {
-	public:
-		Point center;
-		Angle angle;
-		double radius;
-		const Color &color;
-		int count;
-	};
-
-	class Status {
-	public:
-		Status(const Point &position, double outer, double inner,
-			double disabled, double radius, int type, double angle = 0.);
-
-		Point position;
-		double outer;
-		double inner;
-		double disabled;
-		double radius;
-		int type;
-		double angle;
-	};
+	void CreateStatusOverlays();
+	void EmplaceStatusOverlay(const std::shared_ptr<Ship> &ship, Preferences::OverlayState overlaySetting, int value);
 
 
 private:
@@ -199,7 +206,6 @@ private:
 	bool hasFinishedCalculating = true;
 	bool terminate = false;
 	bool wasActive = false;
-	bool isMouseToggleEnabled = false;
 	bool isMouseHoldEnabled = false;
 	bool isMouseTurningEnabled = false;
 	DrawList draw[2];
