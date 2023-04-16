@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define FLEET_H_
 
 #include "ConditionsStore.h"
+#include "FleetCargo.h"
 #include "Personality.h"
 #include "Sale.h"
 #include "Variant.h"
@@ -66,7 +67,8 @@ public:
 	void Enter(const System &system, std::list<std::shared_ptr<Ship>> &ships, const Planet *planet = nullptr) const;
 	// Place a fleet in the given system, already "in action." If the carried flag is set, only
 	// uncarried ships will be added to the list (as any carriables will be stored in bays).
-	void Place(const System &system, std::list<std::shared_ptr<Ship>> &ships, bool carried = true) const;
+	void Place(const System &system, std::list<std::shared_ptr<Ship>> &ships,
+			bool carried = true, bool addCargo = true) const;
 
 	// Do the randomization to make a ship enter or be in the given system.
 	// Return the system that was chosen for the ship to enter from.
@@ -91,7 +93,6 @@ private:
 	static std::pair<Point, double> ChooseCenter(const System &system);
 	std::vector<std::shared_ptr<Ship>> Instantiate(const std::vector<const Ship *> &ships) const;
 	bool PlaceFighter(std::shared_ptr<Ship> fighter, std::vector<std::shared_ptr<Ship>> &placed) const;
-	void SetCargo(Ship *ship) const;
 
 
 private:
@@ -102,9 +103,11 @@ private:
 	const Phrase *fighterNames = nullptr;
 	WeightedList<Variant,WeightType> variants;
 	// The number of different items the ships in this fleet will carry in cargo.
-	Condition<int> cargo = Condition<int>(3);
 	std::vector<std::string> commodities;
 	std::set<const Sale<Outfit> *> outfitters;
+	WeightedList<Variant> variants;
+	// The cargo ships in this fleet will carry.
+	FleetCargo cargo;
 
 	Personality personality;
 };

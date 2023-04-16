@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MissionAction.h"
 #include "NPC.h"
 #include "TextReplacements.h"
+#include "WormholeStrategy.h"
 
 #include <list>
 #include <map>
@@ -182,6 +183,13 @@ public:
 
 
 private:
+	struct DistanceCalculationSettings {
+		WormholeStrategy wormholeStrategy = WormholeStrategy::NONE;
+		bool assumesJumpDrive = false;
+	};
+
+
+private:
 	bool Enter(const System *system, PlayerInfo &player, UI *ui);
 	// For legacy code, contraband definitions can be placed in two different
 	// locations, so move that parsing out to a helper function.
@@ -207,6 +215,7 @@ private:
 	int expectedJumps = 0;
 	int deadlineBase = 0;
 	int deadlineMultiplier = 0;
+	DistanceCalculationSettings distanceCalcSettings;
 	std::string clearance;
 	LocationFilter clearanceFilter;
 	bool hasFullClearance = true;

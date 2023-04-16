@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sale.h"
 #include "Set.h"
 
+#include "CategoryList.h"
 #include "Color.h"
 #include "ConditionsStore.h"
 #include "Conversation.h"
@@ -135,7 +136,7 @@ private:
 	std::map<const Sprite *, std::string> landingMessages;
 	std::map<const Sprite *, double> solarPower;
 	std::map<const Sprite *, double> solarWind;
-	std::map<CategoryType, std::vector<std::string>> categories;
+	std::map<CategoryType, CategoryList> categories;
 
 	std::map<std::string, std::string> tooltips;
 	std::map<std::string, std::string> helpMessages;
