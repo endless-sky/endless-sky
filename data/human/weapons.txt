@@ -681,7 +681,8 @@ outfit "Flamethrower Projectile"
 		"hit effect" "flamethrower hit"
 		"die effect" "flamethrower die"
 		"inaccuracy" 20
-		"lifetime" 22
+		"lifetime" 18
+		"random lifetime" 8
 		"damage dropoff" 0 198
 		"dropoff modifier" .5
 		"shield damage" .8
@@ -991,7 +992,6 @@ outfit "Javelin Mini Pod"
 		"inaccuracy" 1
 		"velocity" 10
 		"lifetime" 60
-		"range override" 300
 		"reload" 40
 		"burst count" 40
 		"burst reload" 15
@@ -1292,7 +1292,6 @@ outfit "Heavy Rocket Pod"
 		"lifetime" 125
 		"range override" 1000
 		"reload" 500
-		"range override" 500
 		"burst count" 2
 		"burst reload" 240
 		"firing energy" 1
