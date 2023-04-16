@@ -204,7 +204,7 @@ planet Arroharg
 	landscape land/canyon12
 	description `Arroharg is a low-gravity moon that the Quarg have converted to some sort of harvesting grounds. Massive machines that dwarf your ship seem to be displacing mountainous formations while smaller ones collect from the zones left behind. Most of the architecture here is Quarg-like and is not designed in a way that welcomes visitors very comfortably. The lower levels of the outpost seem to dig deeper into the surface of the moon, but the farther they go down the more complex they become. There's no telling how deep into the moon they go, as they are restricted to anyone but the Quarg.`
 	spaceport `A few Quarg greet you with astonished expressions, but kindly assist you in anything you have trouble with due to the spaceport being designed for them. They communicate mostly in gestures and facial expressions, although this is sometimes hard to decipher. It seems they aren't used to outside visitors here and don't speak your language.`
-	government Quarg
+	government "Quarg (Gegno)"
 	bribe 0
 	security 0.9
 
@@ -237,7 +237,7 @@ planet "Ashy Reach"
 	security 0.1
 
 planet Avalon
-	landscape land/sea17-harro
+	landscape land/sea22
 	description `This is a pristine and perfectly habitable world, with warm oceans and a temperate climate. The land is dominated by large reptiles similar to the dinosaurs that roamed the continents of ancient Earth. Some of the land reptiles are over twenty meters in length, and the sea holds monsters more than twice that size.`
 	description `	Deep in the jungles near the equator, small mammals are working hard to avoid being eaten by the great lizards, and to survive for long enough that they will be able to evolve into the dominant life form.`
 	security 0
@@ -466,7 +466,7 @@ planet "Builder Settlement"
 
 planet Bunthro
 	attributes bunrodea religious
-	landscape land/sky6
+	landscape land/mountain27
 	description `Despite being a pristine world for colonizing, Bunthro appears to be almost entirely untouched by the Bunrodea. Aside from the spaceport, there are hardly any structures on the planet, most that you can find being small shrines built atop high locations such as hills or mountains.`
 	description `	Permission to land is even more restricted than the capital; the entire world of Bunthro appears to be a religious site of some sort to the Bunrodea.`
 	spaceport `The spaceport is practically nonexistent, consisting of little more than a few landing pads, a refueling station, and a few buildings for shelter. Beyond the landing pads are paths that branch out into the wilderness, presumably off toward the shrines that can be spotted from above.`
@@ -1679,7 +1679,7 @@ planet "Giaru Gegno"
 	description `The quality of its structure suggests that this Quarg ringworld had to have been completed rather recently, but there are some notable differences that don't seem Quarg-like. Some of the hangers and docks on the ring are oddly larger than others, and the inner quarters are wider and taller than what is normal for a Quarg. The hangar you currently are parked in, however, seems to be void of these characteristics, and is similar to ones at the Quarg ringworld in human space.`
 	description `	Despite seeing numerous non-Quarg ships before landing on the ring, you are only guided around parts of the ring where they are not present.`
 	spaceport `There are probably many hundreds of billions of Quarg on this ring, and yet it still manages to feel spacious and lightly populated. They shift past you at a normal walking pace for a Quarg, and don't give you much attention except from the occasional uninterested glance or two. There seems to be little conversation and effort to accommodate you as the only non-Quarg in sight. It seems areas containing the aliens from nearby are off-limits to you.`
-	government Quarg
+	government "Quarg (Gegno)"
 	bribe 0
 	security 1
 
@@ -1931,7 +1931,7 @@ planet Haven
 
 planet Haze
 	attributes deep factory
-	landscape land/mfield2
+	landscape land/city24
 	description `Haze is a manufacturing world, covered in sprawling cities. It is a relatively prosperous planet, but so far the inhabitants have chosen to spend more of their terraforming budget on climate control than on pollution reduction.`
 	description `	Very few regions of this planet remain untouched by human hands, but a few of the particularly mountainous or marshy areas have been set aside as nature preserves. More than half of the indigenous life forms have gone extinct since human settlement began here four centuries ago.`
 	spaceport `The spaceport is constructed purely for efficiency and functionality. It is a long building, stretching in a straight line across more than a kilometer. Through the center, on tracks elevated at various levels, run monorail trams for carrying passengers and cargo. Along the sides of the building are docking bays alternating with storage rooms. The wide corridors are packed both with people and with robotic freight carts.`
@@ -1960,7 +1960,7 @@ planet Heartland
 
 planet Heartvalley
 	attributes hai "hai tourism" manufacturing
-	landscape land/fog0
+	landscape land/mountain28
 	description `An extreme amount of tectonic activity in its distant past has left Heartvalley with mountain ranges five to ten kilometers high in some places. Most of the Hai settlements here are in the valleys closer to sea level, where the air is dense enough for them to breathe comfortably. The tectonic activity has left many ancient sea-beds exposed, providing access to bountiful supplies of oil. To the Hai, oil is too precious a resource to be used for fuel; instead they process it into plastic and use the byproducts in other chemical processes.`
 	spaceport `The spaceport is built halfway up the slope of one of the most heavily settled valleys. Farther down the valley, the tallest buildings of the city seem tiny compared to the mountains that surround them. On the outskirts of the city sit strange engines the size of a spacecraft, with pipes snaking out from them in all directions and sinking deep into the ground.`
 	shipyard "Imo Loo Mer Basics"
@@ -2691,7 +2691,7 @@ planet "Midway Emerald"
 
 planet Millrace
 	attributes factory "near earth" urban
-	landscape land/mfield1
+	landscape land/city25
 	description `Millrace is an overpopulated world, full of factories and manufacturing plants. It is one of several planets in this region of space where people trying to escape from the crowded squalor and polluted cities of Earth come looking for work. Most of the goods manufactured here end up being used by the Syndicate for constructing starships or driving industry on other worlds.`
 	description `	The Syndicate is a fair employer: living conditions here may be squalid, but most workers are earning a living wage and some are able to save up for a new life on a more pleasant planet. The Syndicate trusts there will never be a shortage of new immigrants to replace them.`
 	spaceport `This spaceport is ugly. It was designed not for the pleasure of sight, but for processing as many people through it as possible, without collapsing onto itself.`
@@ -2760,7 +2760,7 @@ planet Muspel
 
 planet Mutiny
 	attributes pirate
-	landscape land/badlands8
+	landscape land/badlands13
 	description `Centuries ago, Mutiny was used as a sort of prison world for a powerful band of pirates, a place where rivals could be marooned or held for ransom, rather than killing them outright. It is a cold, dark planet, and food is scarce, but over time several villages developed in the more hospitable regions. No longer prisoners, the inhabitants who remain do so because they prefer a simple life beyond the reach of any government, on a planet that will never be stolen from them because it carries nothing of value.`
 	security 0
 
@@ -3062,7 +3062,7 @@ planet Nifel
 
 planet Nimbus
 	attributes core fishing medical
-	landscape land/fog6
+	landscape land/beach15
 	description `Nimbus is a stormy ocean world, where a rain shower can descend on you almost without warning, only to be replaced with equal suddenness by bright sunshine. It draws mostly the sort of people who can weather such changes with placid, unperturbed calm; tourist guidebooks often rank Nimbus near the top in their lists of "friendliest natives."`
 	description `	All the industry on Nimbus is driven by the sea. Fish are plentiful, and the oceans here also contain some unique microorganisms that are harvested to extract useful medical compounds.`
 	spaceport `The spaceport is on a small island, but well above the high water mark. The mixture of ocean spray and fog and drizzling rain is enough to turn your clothes damp even just on the short walk from your landing pad to the main cluster of buildings.`
@@ -3208,7 +3208,7 @@ planet Passaritus
 
 planet Pearl
 	attributes forest medical paradise tourism
-	landscape land/forest3
+	landscape land/forest10
 	description `Pearl is an idyllic, forested world, mostly set aside as a wildlife sanctuary for imported exotic species. Each of the islands and continents houses animals and plants from a different planet's biosphere. Terraforming stations and satellites maintain the atmospheric gas levels in order to keep each island at the proper temperature and rainfall level.`
 	description `	Some of the islands are open for tourists and safari tours, and even for hunting. Others are owned by private companies and used for medical research. People with training in veterinary medicine are always in high demand here.`
 	spaceport `The spaceport is on one of the smaller islands, where the outside contagions brought in by visiting ships - including the rats and insects that inevitably stow away inside cargo crates - can be kept in isolation. The spaceport is located on a mountain slope immediately above a sea port, where visitors can charter a ship to one of the other islands. The warehouses for incoming and outgoing supplies are massive, but have been dug partly into the mountain so that the part of them that extends above ground is less prominent.`
@@ -3526,7 +3526,7 @@ planet Ruelogakk
 	landscape land/station5
 	description `This Quarg station, although pristine and kept in high order, has been constructed rather recently compared to the complete ringworld the next system over. It appears to be purposed as some sort of resting spot for tourists, though very few docking bays are in use. A hauntingly low number of Quarg are seen walking about the brightly lit abstract hallways of glass with only the faintest hum of machinery.`
 	spaceport `Only a few small alien transports can be seen docked with this station, hooked up to strange devices that seem to match the designs of their ships. Other than that, the alien's presence here seems to be kept at an extreme minimum, with at most one or two seen passing by occasionally.`
-	government Quarg
+	government "Quarg (Gegno)"
 	bribe 0
 	security 0.9
 
@@ -3733,7 +3733,7 @@ planet "Septar Lorku"
 
 planet Seraglio
 	attributes "ice giant" uninhabited
-	landscape land/snow13
+	landscape land/snow22
 	description `Seraglio's vast ice fields hint at a variety of mysteries, most notably the chasms that suggest the planet was somehow subjected to massive compressive forces at some point in its recent geological history.`
 	description `At present, Seraglio is the focus of considerable attention from researchers searching for clues as to the planet's history.`
 	government Uninhabited
@@ -3883,7 +3883,7 @@ planet Siedi
 
 planet "Sies Upi"
 	attributes gegno vi
-	landscape land/hills1
+	landscape land/desert15
 	description `Sies Upi is one of the most recently colonized planets of the Gegno Vi. This hot, dry world with harsh living environments serves as more of an outpost than it does a colony, but nevertheless the Vi found ways to create manageable living conditions.`
 	spaceport `This spaceport seems a lot more militarized than other Gegno planet spaceports, full of geared up Vi with their ships parked close by. The roar of an enormous cruiser's engines can be heard just as often as the shutting down of another. There doesn't look to be very many non-military personnel here, and it feels somewhat claustrophobic with all of the guards standing around.`
 	government "Gegno Vi"
@@ -4378,7 +4378,7 @@ planet Truklar
 	landscape land/mars2
 	description `This world, like others the Quarg live on, has noticeably lower gravity than humans are accustomed to. Several medium-sized extravagant villages are found nested deep within an oddly shaped glass structure, and it is a beautiful sight to behold. Many different, smaller biomes also contain wondrous flora and fauna that don't seem to be native to this particular moon. Despite all of this, structures were not built in accustom to visitors such as the nearby aliens, who find it hard navigating through the narrow hallways.`
 	spaceport `Most of the spaceport is automated Quarg robotics that do not provide any interaction with you besides basic spaceport tasks such as refueling. Occasionally, one of these robots, visually similar to the Quarg themselves, guide you throughout the visitable zones of the port. Otherwise, your presence here is mostly overlooked.`
-	government Quarg
+	government "Quarg (Gegno)"
 	bribe 0
 	security 0.9
 
@@ -4652,7 +4652,7 @@ planet "Vibrant Water"
 
 planet Vigales
 	attributes uninhabited
-	landscape land/desert5
+	landscape land/desert14
 	description `This hot desert world is home to several species of underground animals. These animals are very reptile-like, having appearances similar to that of lizards or salamanders from Earth, although much larger in size. It is believed that some indigenous species in Gegno space have originated from this world, or are descendants of ancestral species that once inhabited it.`
 	government Uninhabited
 
