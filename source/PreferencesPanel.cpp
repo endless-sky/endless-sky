@@ -384,8 +384,6 @@ void PreferencesPanel::DrawControls()
 		Command::LAND,
 		Command::JUMP,
 		Command::NONE,
-		Command::MOUSE_TURNING_HOLD,
-		Command::MOUSE_TURNING_TOGGLE,
 		Command::NONE,
 		Command::NEAREST,
 		Command::TARGET,
