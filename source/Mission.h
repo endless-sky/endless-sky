@@ -218,8 +218,8 @@ private:
 	DistanceCalculationSettings distanceCalcSettings;
 	std::string clearance;
 	LocationFilter clearanceFilter;
-	bool ignoreClearance = false;
 	bool hasFullClearance = true;
+	bool ignoreClearance = false;
 
 	int repeat = 1;
 	std::string cargo;
