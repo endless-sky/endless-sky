@@ -3638,6 +3638,7 @@ mission "Human to Hai Space - No Contact"
 	to offer
 		random < 2
 		not "First Contact: Hai: offered"
+		not "event: hai-human resolution announced"
 	on offer
 		conversation
 			`	A young man carrying luggage approaches you. "You look like a knowledgeable captain," he says. "In all your travels, have you ever heard tell of any... intelligent rodents?"`
@@ -3663,7 +3664,9 @@ mission "Human to Hai Space"
 	destination "Greenwater"
 	to offer
 		random < 10
-		has "First Contact: Hai: offered"
+		or
+			has "First Contact: Hai: offered"
+			has "event: hai-human resolution announced"
 		not "Human to Hai Space - No Contact: offered"
 	on offer
 		conversation
@@ -3674,6 +3677,8 @@ mission "Human to Hai Space"
 				`	"Ah, I think I know of some large squirrels to the north of here."`
 					goto hai
 				`	"What are you talking about?"`
+					to display
+						not "event: hai-human resolution announced"
 			`	"Oh, never mind then," he says, with a note of disappointment in his voice. You feel good knowing that you are helping to keep the Hai's existence a secret in human space. Better safe than sorry.`
 				decline
 			
@@ -4400,7 +4405,7 @@ mission "Block Hai Wormhole Warning"
 		fail
 
 mission "Hai Wormhole Warning"
-	minor
+	landing
 	source
 		government "Republic"
 		not attributes "deep"
@@ -4410,10 +4415,11 @@ mission "Hai Wormhole Warning"
 			has "First Contact: Unfettered: declined"
 		not "Block Hai Wormhole Warning: offered"
 		not "Wanderers: Alpha Surveillance E: offered"
+		not "Hai Leaks Response 1: offered"
 	on offer
 		log "Was pulled aside by a Navy officer and told to keep the wormhole to the Hai a secret. The Republic doesn't want the knowledge of the wormhole to be widespread, as that could cause chaos for both the Republic and the Hai."
 		conversation
-			`Upon entering the spaceport, you're stopped by a Navy officer. "Captain <last>. I'd like to speak with you for a few minutes. In private." He motions toward a Frigate on a landing pad behind you.`
+			`When you open the door to let in the Navy officer on inspection duty, you expect him to produce the usual set of landing papers and bureaucracy. But instead he says, "Captain <last>. I'd like to speak with you for a few minutes. In private." He motions toward a Frigate on the landing pad next to <ship>.`
 			choice
 				`	"What about?"`
 					goto what
@@ -4425,7 +4431,7 @@ mission "Hai Wormhole Warning"
 			label what
 			`	"I did say in private, did I not?" he says, once again motioning to the Frigate.`
 			label frigate
-			`	The man puts a hand on your shoulder and begins walking you toward the ship. As you approach, you note that the man's uniform doesn't have any Naval markings that you recognize.`
+			`	The man puts a hand on your shoulder and begins walking you toward the ship. As you approach, you note that the man's uniform doesn't have any Navy markings that you recognize.`
 			`	You enter the ship with the officer, and despite the decent crew requirement of a Frigate, you don't notice anyone else on board, and the interior of the ship appears more cushy than you would expect out of a military vessel. The officer leads you to what looks like a rather comfy lounge area. "Please, have a seat," he says.`
 			choice
 				`	(Take a seat.)`
@@ -4478,7 +4484,7 @@ mission "Hai Wormhole Warning"
 			label ok
 			`	"That's good to hear," the officer responds. "Thank you for your cooperation, <last>. Now, if you'll please depart my ship so that I can be on my way."`
 			label end
-			`	The officer leads you out of the ship and closes the doors behind you. As you make your way back to the spaceport, you turn back and see the Frigate take off, slowly getting smaller in the sky until it finally disappears.`
+			`	The officer leads you out of the ship and closes the doors behind you, while the actual Navy officer on inspection duty stands beside <ship>, brandishing a set of landing documents. When you've finished signing them, you turn back to see the Frigate take off, slowly getting smaller in the sky until it finally disappears.`
 				decline
 
 
