@@ -76,6 +76,15 @@ void Minable::Load(const DataNode &node)
 
 
 
+// Calculate the expected payload value of this Minable after all outfits have been fully loaded.
+void Minable::FinishLoading()
+{
+	for(const auto &it : payload)
+		value += it.first->Cost() * it.second * 0.25;
+}
+
+
+
 const string &Minable::TrueName() const
 {
 	return name;
@@ -220,8 +229,23 @@ void Minable::TakeDamage(const Projectile &projectile)
 
 
 
+double Minable::Hull() const
+{
+	return min(1., hull / maxHull);
+}
+
+
+
 // Determine what flotsam this asteroid will create.
 const map<const Outfit *, int> &Minable::Payload() const
 {
 	return payload;
+}
+
+
+
+// Get the expected value of the flotsams this minable will create when destroyed.
+const int64_t &Minable::GetValue() const
+{
+	return value;
 }
