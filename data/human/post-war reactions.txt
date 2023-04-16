@@ -100,7 +100,6 @@ mission "War Reactions: Asteroid Miners"
 
 
 mission "War Reactions: Navy and Free Worlds Captains"
-	landing
 	minor
 	source
 		government "Republic" "Syndicate" "Free Worlds"
