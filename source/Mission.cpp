@@ -33,6 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <cmath>
+#include <limits>
 #include <sstream>
 
 using namespace std;
@@ -158,6 +159,22 @@ void Mission::Load(const DataNode &node)
 				deadlineBase += child.Value(1);
 			if(child.Size() >= 3)
 				deadlineMultiplier += child.Value(2);
+		}
+		else if(child.Token(0) == "distance calculation settings" && child.HasChildren())
+		{
+			for(const DataNode &grand : child)
+			{
+				if(grand.Token(0) == "no wormholes")
+					distanceCalcSettings.wormholeStrategy = WormholeStrategy::NONE;
+				else if(grand.Token(0) == "only unrestricted wormholes")
+					distanceCalcSettings.wormholeStrategy = WormholeStrategy::ONLY_UNRESTRICTED;
+				else if(grand.Token(0) == "all wormholes")
+					distanceCalcSettings.wormholeStrategy = WormholeStrategy::ALL;
+				else if(grand.Token(0) == "assumes jump drive")
+					distanceCalcSettings.assumesJumpDrive = true;
+				else
+					grand.PrintTrace("Invalid \"distance calculation settings\" child:");
+			}
 		}
 		else if(child.Token(0) == "cargo" && child.Size() >= 3)
 		{
@@ -1114,7 +1131,7 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 	if(event.TargetGovernment()->IsPlayer() && !hasFailed)
 	{
 		bool failed = false;
-		string message = "Your ship '" + event.Target()->Name() + "' has been ";
+		string message = "Your ship \"" + event.Target()->Name() + "\" has been ";
 		if(event.Type() & ShipEvent::DESTROY)
 		{
 			// Destroyed ships carrying mission cargo result in failed missions.
@@ -1483,18 +1500,33 @@ int Mission::CalculateJumps(const System *sourceSystem)
 	while(!destinations.empty())
 	{
 		// Find the closest destination to this location.
-		DistanceMap distance(sourceSystem);
+		DistanceMap distance(sourceSystem,
+				distanceCalcSettings.wormholeStrategy,
+				distanceCalcSettings.assumesJumpDrive);
 		auto it = destinations.begin();
 		auto bestIt = it;
+		int bestDays = distance.Days(*bestIt);
+		if(bestDays < 0)
+			bestDays = numeric_limits<int>::max();
 		for(++it; it != destinations.end(); ++it)
-			if(distance.Days(*it) < distance.Days(*bestIt))
+		{
+			int days = distance.Days(*it);
+			if(days >= 0 && days < bestDays)
+			{
 				bestIt = it;
+				bestDays = days;
+			}
+		}
 
 		sourceSystem = *bestIt;
-		expectedJumps += distance.Days(*bestIt);
+		// If currently unreachable, this system adds -1 to the deadline, to match previous behavior.
+		expectedJumps += bestDays == numeric_limits<int>::max() ? -1 : bestDays;
 		destinations.erase(bestIt);
 	}
-	DistanceMap distance(sourceSystem);
+	DistanceMap distance(sourceSystem,
+			distanceCalcSettings.wormholeStrategy,
+			distanceCalcSettings.assumesJumpDrive);
+	// If currently unreachable, this system adds -1 to the deadline, to match previous behavior.
 	expectedJumps += distance.Days(destination->GetSystem());
 
 	return expectedJumps;
