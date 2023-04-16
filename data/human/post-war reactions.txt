@@ -34,6 +34,7 @@ event "post-war reactions begin"
 # Fix to prevent breaking old or new saves due to variable rename
 mission "00 Fix for pug media coverage"
 	landing
+	repeat
 	invisible
 		"pug media coverage" != "human awareness of aliens"
 	on offer
