@@ -202,6 +202,14 @@ void Preferences::Load()
 			alertIndicatorIndex = 2;
 		settings.erase(it);
 	}
+
+	it = settings.find("Show status overlays");
+	if(it != settings.end())
+	{
+		if(!it->second)
+			statusOverlaySettings[OverlayType::ALL] = OverlayState::OFF;
+		settings.erase(it);
+	}
 }
 
 
