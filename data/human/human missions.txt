@@ -20,6 +20,7 @@ mission "Immigrant Workers"
 		random < 50
 	source "New Iceland"
 	destination
+		not government "Pirate"
 		attributes "core"
 		attributes "factory" "textile"
 	on complete
@@ -2878,7 +2879,7 @@ mission "Northern Blockade"
 mission "Southern Blockade"
 	minor
 	name `Spaceport Defenses`
-	description `<stopovers> are under attack and in need of spaceport defenses. Drop off your cargo of <cargo> on these three planets and return to <destination> for payment. (<payment>)`
+	description `<stopovers> are under attack. Drop off <cargo> on these planets and return to <destination> for payment. (<payment>)`
 	source
 		near "Pherkad" 2 4
 		government "Free Worlds"
@@ -5703,7 +5704,7 @@ mission "Argosy Hijacking"
 	on complete
 		log `Helped an unfortunate captain recover his Argosy after a bunch of delinquents hijacked it.`
 		payment 48000
-		conversation 
+		conversation
 			`As you land, Syndicated Security have the <npc> in tow, escorted by a trio of Quicksilvers. The formation lands on one of the larger pads reserved for Syndicated Security vessels, fenced off from the rest of the spaceport.`
 			`	The hijackers, just a raucous group of young kids, are hauled out of the <npc model> by Syndicated Security personnel towards an armored van. Multiple times the kids try to run away, but after a few minutes they're finally detained; the van drives off towards the spaceport terminal.`
 			`	After the incident is wrapped up, the captain of the <npc> sends you <payment>, and a message thanking you for helping him recover his ship.`

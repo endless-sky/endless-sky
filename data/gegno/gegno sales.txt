@@ -82,7 +82,7 @@ outfitter "Vi Intermediate"
 	"R03 Warforge Battery"
 	"R04 Crusade Battery"
 	
-#outfitter "Vi Advanced"
+# outfitter "Vi Advanced"
 
 
 # Gegno Scin
