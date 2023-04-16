@@ -1080,24 +1080,7 @@ ship "Frugal Defense Cannon"
 		"landing speed" 1
 	outfits
 		"Timer Weapon Rangeless"
-		"Defense Cannon"
-		"Defense Cannon"
-		"Defense Cannon"
-		"Defense Cannon"
-		"Defense Cannon"
-		"Defense Cannon"
-		"Defense Cannon"
-		"Defense Cannon"
-		"Defense Cannon"
-		"Defense Cannon"
-		"Defense Cannon"
-		"Defense Cannon"
-		"Defense Cannon"
-		"Defense Cannon"
-		"Defense Cannon"
-		"Defense Cannon"
-		"Defense Cannon"
-		"Defense Cannon"
+		"Defense Cannon" 18
 	turret 0 0
 	turret -80 20
 	turret -70 -10
