@@ -45,7 +45,7 @@ mission "War Reactions: Asteroid Miners"
 		set "pug media coverage"
 		log "Minor People" "Maduena Kabiru" `A senator from Bounty in the Delta Velorum system. He is somewhat paranoid, and insists upon the Navy taking greater steps to better explore the galaxy beyond human space to search for possible threats.`
 		conversation
-			`As you leave your ship, you see a crowd watching a video on a interactive information display not far from your landing spot. The video jumps between a panel discussion and footage of Admiral Danforth being quizzed by Parliament. It has finished by the time you arrive, and many of the onlookers have already left for their business. Two captains remain, however, and, by the sounds of it, they're having a passionate discussion about the video.`
+			`As you leave your ship, you see a crowd watching a video on an interactive information display not far from your landing spot. The video jumps between a panel discussion and footage of Admiral Danforth being quizzed by Parliament. It has finished by the time you arrive, and many of the onlookers have already left for their business. Two captains remain, however, and, by the sounds of it, they're having a passionate discussion about the video.`
 			choice
 				`	"Hey! What's this video about?"`
 				`	(Leave them be.)`
