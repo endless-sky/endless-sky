@@ -43,8 +43,10 @@ namespace {
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 
-	const vector<double> ZOOMS = {.0625, .125, .25, .35, .50, .70, 1.00, 1.40, 2.00};
-	int zoomIndex = 4;
+	const double ZOOM_MAX = 2.0;
+	const double ZOOM_MIN = .0625;
+	const double ZOOM_INTERVAL = 1.25;
+	double viewZoom = 1.0;
 	constexpr double VOLUME_SCALE = .25;
 
 	// Default to fullscreen.
@@ -125,7 +127,7 @@ void Preferences::Load()
 		else if(node.Token(0) == "boarding target")
 			boardingIndex = max<int>(0, min<int>(node.Value(1), BOARDING_SETTINGS.size() - 1));
 		else if(node.Token(0) == "view zoom")
-			zoomIndex = max<int>(0, min<int>(node.Value(1), ZOOMS.size() - 1));
+			viewZoom = max(ZOOM_MIN, min(node.Value(1), ZOOM_MAX));
 		else if(node.Token(0) == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Automatic aiming")
@@ -172,7 +174,7 @@ void Preferences::Save()
 	out.Write("zoom", Screen::UserZoom());
 	out.Write("scroll speed", scrollSpeed);
 	out.Write("boarding target", boardingIndex);
-	out.Write("view zoom", zoomIndex);
+	out.Write("view zoom", viewZoom);
 	out.Write("vsync", vsyncIndex);
 	out.Write("Automatic aiming", autoAimIndex);
 	out.Write("Parallax background", parallaxIndex);
@@ -236,28 +238,38 @@ void Preferences::SetScrollSpeed(int speed)
 // View zoom.
 double Preferences::ViewZoom()
 {
-	return ZOOMS[zoomIndex];
+	return viewZoom;
 }
 
 
 
 bool Preferences::ZoomViewIn()
 {
-	if(zoomIndex == static_cast<int>(ZOOMS.size() - 1))
-		return false;
-
-	++zoomIndex;
-	return true;
+	return ZoomView(ZOOM_INTERVAL);
 }
 
 
 
 bool Preferences::ZoomViewOut()
 {
-	if(zoomIndex == 0)
-		return false;
+	return ZoomView(1.0/ZOOM_INTERVAL);
+}
 
-	--zoomIndex;
+
+
+bool Preferences::ZoomView(double amount)
+{
+	viewZoom *= amount;
+	if(viewZoom < ZOOM_MIN)
+	{
+		viewZoom = ZOOM_MIN;
+		return false;
+	}
+	if(viewZoom > ZOOM_MAX)
+	{
+		viewZoom = ZOOM_MAX;
+		return false;
+	}
 	return true;
 }
 
@@ -265,14 +277,14 @@ bool Preferences::ZoomViewOut()
 
 double Preferences::MinViewZoom()
 {
-	return ZOOMS[0];
+	return ZOOM_MIN;
 }
 
 
 
 double Preferences::MaxViewZoom()
 {
-	return ZOOMS[ZOOMS.size() - 1];
+	return ZOOM_MAX;
 }
 
 

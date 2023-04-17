@@ -20,6 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <atomic>
 
+#include "Gesture.h"
+
 class DataNode;
 
 
@@ -92,7 +94,10 @@ public:
 	// Create a command representing whatever command is mapped to the given
 	// keycode (if any).
 	explicit Command(int keycode);
+	// Create a command from an sdl command event
 	explicit Command(const union SDL_Event &event);
+	// Create a command representing whatever is mapped to the given gesture
+	explicit Command(Gesture::GestureEnum gesture);
 
 	// Read the current keyboard state and set this object to reflect it.
 	void ReadKeyboard();
@@ -101,6 +106,7 @@ public:
 	static void LoadSettings(const std::string &path);
 	static void SaveSettings(const std::string &path);
 	static void SetKey(Command command, int keycode);
+	static void SetGesture(Command command, Gesture::GestureEnum gesture);
 
 	// Get the description or keycode name for this command. If this command is
 	// a combination of more than one command, an empty string is returned.
@@ -145,7 +151,7 @@ public:
 	static Command Get(const std::string& description);
 	// Register an event, and return its value. This event gets triggered
 	// whenever we call InjectSet/InjetUnset
-	static uint32_t RegisterEvent();
+	static uint32_t EventID();
 
 private:
 	explicit Command(uint64_t state);
@@ -162,7 +168,6 @@ private:
 	// If we want to simulate input from the ui, place it here to be read later
 	static std::atomic<uint64_t> simulated_command;
 	static std::atomic<uint64_t> simulated_command_once;
-	static uint32_t command_event;
 };
 
 

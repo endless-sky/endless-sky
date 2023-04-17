@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include "Command.h"
+#include "Gesture.h"
 #include "Panel.h"
 #include "Screen.h"
 
@@ -136,6 +137,35 @@ bool UI::Handle(const SDL_Event &event)
 		{
 			Command command(event.key.keysym.sym);
 			handled = (*it)->KeyDown(event.key.keysym.sym, event.key.keysym.mod, command, !event.key.repeat);
+		}
+		else if(event.type == Command::EventID())
+		{
+			Command command(event);
+			if(event.button.state == SDL_PRESSED)
+				handled = (*it)->KeyDown(0, 0, command, true);
+		}
+		else if(event.type == Gesture::EventID())
+		{
+			auto gesture_type = static_cast<Gesture::GestureEnum>(event.user.code);
+			if(gesture_type == Gesture::ZOOM)
+			{
+				//float total_zoom;
+				float incremental_zoom;
+				//memcpy(&total_zoom, &event.user.data1, sizeof(total_zoom));
+				memcpy(&incremental_zoom, &event.user.data2, sizeof(incremental_zoom));
+				handled = (*it)->Zoom(incremental_zoom);
+			}
+			else
+			{
+				// if the panel doesn't want the gesture, convert it to a
+				// command, and try again
+				if(!(handled = (*it)->Gesture(gesture_type)))
+				{
+					Command command(gesture_type);
+					Command::InjectOnce(command);
+					handled = (*it)->KeyDown(0, 0, command, true);
+				}
+			}
 		}
 
 		// If this panel does not want anything below it to receive events, do

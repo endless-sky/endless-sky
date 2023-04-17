@@ -253,6 +253,20 @@ bool Panel::FingerUp(int x, int y)
 
 
 
+bool Panel::Zoom(float amount)
+{
+	return false;
+}
+
+
+
+bool Panel::Gesture(Gesture::GestureEnum gesture)
+{
+	return false;
+}
+
+
+
 void Panel::SetIsFullScreen(bool set)
 {
 	isFullScreen = set;

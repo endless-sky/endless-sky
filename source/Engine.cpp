@@ -883,7 +883,10 @@ void Engine::Step(bool isActive)
 			doClick = !ammoDisplay.Click(uiClickBox);
 		else
 			doClick = !ammoDisplay.Click(clickPoint, hasControl);
-		doClick = doClick && !player.SelectShips(clickBox, hasShift);
+		if(doClick && clickBox.Dimensions())
+		{
+			doClick = !player.SelectShips(clickBox, hasShift);
+		}
 		if(doClick)
 		{
 			const vector<const Ship *> &stack = escorts.Click(clickPoint);
@@ -2177,6 +2180,7 @@ void Engine::HandleMouseClicks()
 			if (flagship->GetMask().Range(clickPoint, flagship->Facing()) < clickRange)
 			{
 				flagship->SetTargetShip(nullptr);
+				player.SelectShips(vector<const Ship*>{}, false);
 			}
 			else
 			{

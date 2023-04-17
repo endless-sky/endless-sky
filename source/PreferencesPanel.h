@@ -42,6 +42,9 @@ protected:
 	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
+	virtual bool Gesture(Gesture::GestureEnum gesture) override;
+	virtual bool FingerDown(int x, int y) override;
+	virtual bool FingerUp(int x, int y) override;
 
 	virtual void EndEditing() override;
 
@@ -56,6 +59,7 @@ private:
 
 private:
 	int editing;
+	int editingGesture;
 	int selected;
 	int hover;
 	Point hoverPoint;

@@ -74,6 +74,7 @@ public:
 	static double ViewZoom();
 	static bool ZoomViewIn();
 	static bool ZoomViewOut();
+	static bool ZoomView(double amount);
 	static double MinViewZoom();
 	static double MaxViewZoom();
 

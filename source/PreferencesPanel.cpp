@@ -187,6 +187,25 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 
 bool PreferencesPanel::Click(int x, int y, int clicks)
 {
+	return FingerDown(x, y) && FingerUp(x, y);
+}
+
+
+
+bool PreferencesPanel::FingerDown(int x, int y)
+{
+	if(editing >= 0 && editing < static_cast<ssize_t>(zones.size()))
+	{
+		Command::SetGesture(zones[editing].Value(), Gesture::NONE);
+	}
+	editingGesture = editing;
+	return true;
+}
+
+
+
+bool PreferencesPanel::FingerUp(int x, int y)
+{
 	EndEditing();
 
 	if(x >= 265 && x < 295 && y >= -220 && y < 70)
@@ -351,6 +370,22 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 
 
 
+bool PreferencesPanel::Gesture(Gesture::GestureEnum gesture)
+{
+	if(editingGesture >= 0 && editingGesture < static_cast<ssize_t>(zones.size()))
+	{
+		SDL_Log("PreferencesPanel::Gesture(%d)", static_cast<int>(gesture));
+		Command::SetGesture(zones[editingGesture].Value(), gesture);
+	}
+	else
+	{
+		SDL_Log("editing has been unset");
+	}
+	return true;
+}
+
+
+
 void PreferencesPanel::EndEditing()
 {
 	editing = -1;
@@ -408,6 +443,7 @@ void PreferencesPanel::DrawControls()
 		Command::NONE,
 		Command::MOUSE_TURNING_HOLD,
 		Command::MOUSE_TURNING_TOGGLE,
+		Command::STOP,
 		Command::NONE,
 		Command::MENU,
 		Command::MAP,
@@ -483,6 +519,26 @@ void PreferencesPanel::DrawControls()
 	shiftTable.Draw("Select next escort", medium);
 	shiftTable.Draw("Talk to planet", medium);
 	shiftTable.Draw("Board disabled escort", medium);
+
+	auto* ui = GameData::Interfaces().Get("controls");
+	Rectangle gestureRect = ui->GetBox("supported gestures");
+	const string gestureLabel = "Supported Gestures";
+	const int lineWidth = FontSet::Get(14).Width(gestureLabel);
+	Table gestureTable;
+	gestureTable.AddColumn(gestureRect.Width(), {static_cast<int>(gestureRect.Width()), Alignment::RIGHT});
+	gestureTable.SetUnderline(gestureRect.Width() - lineWidth, gestureRect.Width());
+	gestureTable.DrawAt(gestureRect.TopLeft());
+
+	gestureTable.DrawUnderline(medium);
+	gestureTable.Draw(gestureLabel, bright);
+	gestureTable.DrawGap(5);
+	for(int i = 1; ; ++i)
+	{
+		auto& description = Gesture::Description(static_cast<Gesture::GestureEnum>(i));
+		if(description.empty())
+			break;
+		gestureTable.Draw(description, medium);
+	}
 }
 
 

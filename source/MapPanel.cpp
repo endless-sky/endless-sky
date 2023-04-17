@@ -460,9 +460,15 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 		return true;
 	}
 	else if(key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS)
+	{
 		player.SetMapZoom(min(static_cast<int>(mapInterface->GetValue("max zoom")), player.MapZoom() + 1));
+		mapZoom = pow(1.5, player.MapZoom());
+	}
 	else if(key == SDLK_MINUS || key == SDLK_KP_MINUS)
+	{
 		player.SetMapZoom(max(static_cast<int>(mapInterface->GetValue("min zoom")), player.MapZoom() - 1));
+		mapZoom = pow(1.5, player.MapZoom());
+	}
 	else
 		return false;
 
@@ -549,12 +555,40 @@ bool MapPanel::Scroll(double dx, double dy)
 		player.SetMapZoom(min(static_cast<int>(mapInterface->GetValue("max zoom")), player.MapZoom() + 1));
 	else if(dy < 0.)
 		player.SetMapZoom(max(static_cast<int>(mapInterface->GetValue("min zoom")), player.MapZoom() - 1));
+	mapZoom = pow(1.5, player.MapZoom());
 
 	// Now, Zoom() has changed (unless at one of the limits). But, we still want
 	// anchor to be the same, so:
 	center = mouse / Zoom() - anchor;
 	return true;
 }
+
+
+
+bool MapPanel::Zoom(float z)
+{
+	const Interface *mapInterface = GameData::Interfaces().Get("map");
+
+	// We want to support arbitrary zoom levels, but the upstream zoom config
+	// is an integer power of 1.5, so we have to convert it when we store it
+	// in the player object or check the bounds.
+
+	mapZoom *= z;
+	int player_zoom_level = log(mapZoom) / log(1.5);
+	if(player_zoom_level >= mapInterface->GetValue("max zoom"))
+	{
+		player_zoom_level = mapInterface->GetValue("max zoom");
+		mapZoom = pow(1.5, player_zoom_level);
+	}
+	else if(player_zoom_level <= mapInterface->GetValue("min zoom"))
+	{
+		player_zoom_level = mapInterface->GetValue("min zoom");
+		mapZoom = pow(1.5, player_zoom_level);
+	}
+	player.SetMapZoom(player_zoom_level);
+	return true;
+}
+
 
 
 
@@ -745,7 +779,7 @@ void MapPanel::Find(const string &name)
 
 double MapPanel::Zoom() const
 {
-	return pow(1.5, player.MapZoom());
+	return mapZoom;
 }
 
 

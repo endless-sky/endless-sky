@@ -2439,6 +2439,7 @@ bool PlayerInfo::SelectShips(const vector<const Ship *> &stack, bool hasShift)
 	// If shift is not held down, replace the current selection.
 	if(!hasShift)
 		selectedShips.clear();
+	
 	// If shift is not held, the first ship in the stack will also become the
 	// player's flagship's target.
 	bool first = !hasShift;
@@ -4172,6 +4173,7 @@ void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
 	for( ; it != selectedShips.end(); ++it)
 		if(it->lock() == ship)
 			break;
+		
 	if(it == selectedShips.end())
 	{
 		// This ship is not yet selected.

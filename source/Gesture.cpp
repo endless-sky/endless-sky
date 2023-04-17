@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <array>
 #include <cmath>
 #include <cassert>
+#include <map>
 
 namespace
 {
@@ -26,7 +27,7 @@ namespace
    const size_t VSIZE = 16;
    typedef std::array<Gesture::Point, VSIZE> GVector;
 
-   static const float MATCH_THRESHOLD = .91; // about 20 degree variance.
+   static const float MATCH_THRESHOLD = .90; // about 20 degree variance.
 
    float Distance(Gesture::Point a, Gesture::Point b)
    {
@@ -301,6 +302,15 @@ namespace
          {1.000000, 0.000000},{0.923880, -0.382683},{0.707107, -0.707107},{0.382683, -0.923880}})},
       
    };
+
+   const std::map<Gesture::GestureEnum, std::string> DESCRIPTIONS = {
+      {Gesture::X, "Draw an X"}, 
+      {Gesture::CIRCLE, "Draw a circle"},
+      {Gesture::CARET_UP, "Draw a ^"},
+      {Gesture::CARET_LEFT, "Draw a <"},
+      {Gesture::CARET_RIGHT, "Draw a >"},
+      {Gesture::CARET_DOWN, "Draw a V"}
+   };
    static const size_t NUM_UNISTROKES = sizeof(UNISTROKES)/sizeof(*UNISTROKES);
 }
 
@@ -339,6 +349,8 @@ Gesture::GestureEnum Gesture::Add(float x, float y, int finger_id)
    if(!m_valid)
       return NONE;
    
+   Point prev_finger1 = m_finger1.second;
+   Point prev_finger2 = m_finger2.second;
    if(finger_id == 0 && !m_path.empty())
    {
       m_finger1.second = Point{x, y};
@@ -352,7 +364,28 @@ Gesture::GestureEnum Gesture::Add(float x, float y, int finger_id)
    else if(finger_id == 1)
       m_finger2.second = Point{x, y};
 
-   return m_path.empty() ? ZOOM : NONE;
+   if(m_path.empty())
+   {
+      SDL_Event event{};
+      event.type = EventID();
+      event.user.code = ZOOM;
+      // The data1 and data2 pointer fields are almost unusable. They are
+      // different sizes on 32 vs 64 bit architectures, and I can't put a
+      // reference to static data there due to race conditions, and I can't
+      // allocate data on the fly because I'm not guaranteed that the target
+      // of the event actually cares about it. For now, memcpy the 32 bit
+      // floats in there that I want.
+      float total_zoom = ZoomAmount();
+      float d1 = Distance(prev_finger1, prev_finger2);
+      float d2 = Distance(m_finger1.second, m_finger2.second);
+      float incremental_zoom = d2/d1;
+      memcpy(&event.user.data1, &total_zoom, sizeof(total_zoom));
+      memcpy(&event.user.data2, &incremental_zoom, sizeof(incremental_zoom));
+
+      SDL_PushEvent(&event);
+      return ZOOM;
+   }
+   return NONE;
 }
 
 
@@ -392,6 +425,10 @@ Gesture::GestureEnum Gesture::End()
    if(best_idx >= NUM_UNISTROKES || best_distance < MATCH_THRESHOLD)
       return NONE;
 
+   SDL_Event event{};
+	event.type = EventID();
+   event.user.code = UNISTROKES[best_idx].name;
+	SDL_PushEvent(&event);
    return UNISTROKES[best_idx].name;
 }
 
@@ -402,4 +439,21 @@ float Gesture::ZoomAmount() const
    float d1 = Distance(m_finger1.first, m_finger2.first);
    float d2 = Distance(m_finger1.second, m_finger2.second);
    return d2/d1;
+}
+
+
+
+uint32_t Gesture::EventID()
+{
+   static uint32_t event_id = SDL_RegisterEvents(1);
+   return event_id;
+}
+
+
+
+const std::string& Gesture::Description(GestureEnum gesture)
+{
+   static std::string EMPTY;
+   auto it = DESCRIPTIONS.find(gesture);
+   return it != DESCRIPTIONS.end() ? it->second : EMPTY;
 }

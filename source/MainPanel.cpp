@@ -457,6 +457,14 @@ bool MainPanel::FingerUp(int x, int y)
 
 
 
+bool MainPanel::Zoom(float amount)
+{
+	Preferences::ZoomView(amount);
+	return true;
+}
+
+
+
 void MainPanel::ShowScanDialog(const ShipEvent &event)
 {
 	shared_ptr<Ship> target = event.Target();

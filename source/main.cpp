@@ -275,10 +275,6 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	SDL_SetHint(SDL_HINT_TOUCH_MOUSE_EVENTS, "0"); // turn off mouse emulation
 	SDL_SetHint(SDL_HINT_MOUSE_TOUCH_EVENTS, "0"); // turn off mouse emulation
 
-	// Set up custom events so that we can forward injected commands to the main
-	// game loop
-	const uint32_t COMMAND_EVENT = Command::RegisterEvent();
-
 	// gamePanels is used for the main panel where you fly your spaceship.
 	// All other game content related dialogs are placed on top of the gamePanels.
 	// If there are both menuPanels and gamePanels, then the menuPanels take
@@ -342,41 +338,44 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			{
 				if(Gesture::ZOOM == gesture.Add(event.tfinger.x* Screen::Width(), event.tfinger.y * Screen::Height(), event.tfinger.fingerId))
 				{
-					SDL_Log("Gesture ZOOM: %f", gesture.ZoomAmount());
+					// The gesture manager will convert these to Gesture ZOOM events
+					continue;
 				}
 			}
 			else if(event.type == SDL_FINGERUP)
 			{
-				gesture.Add(event.tfinger.x* Screen::Width(), event.tfinger.y * Screen::Height(), event.tfinger.fingerId);
+				if (Gesture::ZOOM == gesture.Add(event.tfinger.x* Screen::Width(), event.tfinger.y * Screen::Height(), event.tfinger.fingerId))
+					continue;
+				gesture.End();
 				
-				// TODO: make these configurable
-				switch(gesture.End())
-				{
-				case Gesture::X:
-					SDL_Log("Gesture X");
-					Command::InjectOnce(Command::HOLD);
-					break;
-				case Gesture::CIRCLE:
-					SDL_Log("Gesture CIRCLE");
-					Command::InjectOnce(Command::GATHER);
-					break;
-				case Gesture::CARET_UP:
-					SDL_Log("Gesture UP");
-					break;
-				case Gesture::CARET_DOWN:
-					SDL_Log("Gesture DOWN");
-					Command::InjectOnce(Command::STOP);
-					break;
-				case Gesture::CARET_LEFT:
-					SDL_Log("Gesture LEFT");
-					break;
-				case Gesture::CARET_RIGHT:
-					SDL_Log("Gesture RIGHT");
-					break;
-				case Gesture::ZOOM:
-				case Gesture::NONE:
-					break;
-				}
+				//// TODO: make these configurable
+				//switch(gesture.End())
+				//{
+				//case Gesture::X:
+				//	SDL_Log("Gesture X");
+				//	Command::InjectOnce(Command::HOLD);
+				//	break;
+				//case Gesture::CIRCLE:
+				//	SDL_Log("Gesture CIRCLE");
+				//	Command::InjectOnce(Command::GATHER);
+				//	break;
+				//case Gesture::CARET_UP:
+				//	SDL_Log("Gesture UP");
+				//	break;
+				//case Gesture::CARET_DOWN:
+				//	SDL_Log("Gesture DOWN");
+				//	Command::InjectOnce(Command::STOP);
+				//	break;
+				//case Gesture::CARET_LEFT:
+				//	SDL_Log("Gesture LEFT");
+				//	break;
+				//case Gesture::CARET_RIGHT:
+				//	SDL_Log("Gesture RIGHT");
+				//	break;
+				//case Gesture::ZOOM:
+				//case Gesture::NONE:
+				//	break;
+				//}
 			}
 
 			if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
@@ -417,7 +416,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			{
 				isFastForward = !isFastForward;
 			}
-			else if(event.type == COMMAND_EVENT)
+			else if(event.type == Command::EventID())
 			{
 				// handle injected commands
 				Command command(event);

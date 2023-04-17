@@ -88,6 +88,8 @@ protected:
 	virtual bool FingerDown(int x, int y);
 	virtual bool FingerMove(int x, int y);
 	virtual bool FingerUp(int x, int y);
+	virtual bool Zoom(float amount);
+	virtual bool Gesture(Gesture::GestureEnum gesture);
 	// If a clickable zone is clicked while editing is happening, the panel may
 	// need to know to exit editing mode before handling the click.
 	virtual void EndEditing() {}

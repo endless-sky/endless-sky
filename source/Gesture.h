@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 #include <cstdint>
 #include <array>
+#include <string>
 
 /**
  * Handle gesture recognition and events. Intentionally ignoring the
@@ -36,6 +37,10 @@ public:
    float ZoomAmount() const;
 
    struct Point { float x; float y; };
+
+   static uint32_t EventID();
+   static const std::string& Description(GestureEnum gesture);
+
 
 private:
    std::vector<Point> m_path;

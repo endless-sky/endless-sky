@@ -62,6 +62,7 @@ protected:
 	virtual bool FingerDown(int x, int y) override;
 	virtual bool FingerMove(int x, int y) override;
 	virtual bool FingerUp(int x, int y) override;
+	virtual bool Zoom(float amount) override;
 
 
 private:

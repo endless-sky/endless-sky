@@ -88,6 +88,7 @@ protected:
 	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
+	virtual bool Zoom(float z) override;
 
 	// Get the color mapping for various system attributes.
 	static Color MapColor(double value);
@@ -199,6 +200,8 @@ private:
 		Color color;
 	};
 	std::vector<Link> links;
+
+	double mapZoom = 1.0;
 };
 
 

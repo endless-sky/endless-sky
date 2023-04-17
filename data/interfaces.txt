@@ -406,6 +406,21 @@ interface "load menu"
 interface "controls"
 	sprite "ui/keys panel"
 		center -65 -20
+
+	# Box to hold supported gestures
+	line
+		center -344 -45
+		dimensions 161 156
+		color "bright"
+	line
+		center -344 -45
+		dimensions 159 154
+		color "map side panel background"
+	box "supported gestures"
+		center -344 -45
+		dimensions 136 147
+	
+
 	button c "_Controls"
 		center -300 -230
 		dimensions 90 30

@@ -35,6 +35,7 @@ namespace {
 	map<Command, string> description;
 	map<Command, string> keyName;
 	map<int, Command> commandForKeycode;
+	map<Gesture::GestureEnum, Command> commandForGesture;
 	map<Command, int> keycodeForCommand;
 	// Keep track of any keycodes that are mapped to multiple commands, in order
 	// to display a warning to the player.
@@ -83,7 +84,6 @@ const Command Command::MOVETOWARD(static_cast<uint64_t>(1) << 32, ""); // uL suf
 
 std::atomic<uint64_t> Command::simulated_command{};
 std::atomic<uint64_t> Command::simulated_command_once{};
-uint32_t Command::command_event = 0xffffffff;
 
 
 // In the given text, replace any instances of command names (in angle brackets)
@@ -112,10 +112,20 @@ Command::Command(int keycode)
 // Create a command representing whatever is mapped to the given key code.
 Command::Command(const SDL_Event &event)
 {
-	if(event.type == command_event)
+	if(event.type == EventID())
 	{
 		state = event.key.windowID;
 	}
+}
+
+
+
+// Create a command representing whatever is mapped to the given gesture
+Command::Command(Gesture::GestureEnum gesture)
+{
+	auto it = commandForGesture.find(gesture);
+	if(it != commandForGesture.end())
+		*this = it->second;
 }
 
 
@@ -162,9 +172,16 @@ void Command::LoadSettings(const string &path)
 		if(it != commands.end() && node.Size() >= 2)
 		{
 			Command command = it->second;
-			int keycode = node.Value(1);
-			keycodeForCommand[command] = keycode;
-			keyName[command] = SDL_GetKeyName(keycode);
+			if(node.Token(1) == "gesture" && node.Size() >= 3)
+			{
+				commandForGesture[static_cast<Gesture::GestureEnum>(node.Value(2))] = command;
+			}
+			else
+			{
+				int keycode = node.Value(1);
+				keycodeForCommand[command] = keycode;
+				keyName[command] = SDL_GetKeyName(keycode);
+			}
 		}
 	}
 
@@ -191,6 +208,12 @@ void Command::SaveSettings(const string &path)
 		if(dit != description.end())
 			out.Write(dit->second, it.second);
 	}
+	for(const auto& kv : commandForGesture)
+	{
+		auto dit = description.find(kv.second);
+		if(dit != description.end())
+			out.Write(dit->second, "gesture", static_cast<int>(kv.first));
+	}
 }
 
 
@@ -215,6 +238,27 @@ void Command::SetKey(Command command, int keycode)
 
 
 
+// Set the gesture that is mapped to the given command
+void Command::SetGesture(Command command, Gesture::GestureEnum gesture)
+{
+	if(gesture == Gesture::NONE)
+	{
+		for(auto it = commandForGesture.begin(); it != commandForGesture.end(); ++it)
+		{
+			if(it->second == command)
+			{
+				commandForGesture.erase(it);
+			}
+		}
+	}
+	else
+	{
+		commandForGesture[gesture] = command;
+	}
+}
+
+
+
 // Get the description of this command. If this command is a combination of more
 // than one command, an empty string is returned.
 const string &Command::Description() const
@@ -232,7 +276,17 @@ const string &Command::KeyName() const
 {
 	static const string empty;
 	auto it = keyName.find(*this);
-	return (it == keyName.end() ? empty : it->second);
+	if(it != keyName.end())
+		return it->second;
+	
+	for(auto& kv: commandForGesture)
+	{
+		if(kv.second == *this)
+		{
+			return Gesture::Description(kv.first);
+		}
+	}
+	return empty;
 }
 
 
@@ -450,7 +504,7 @@ void Command::InjectSet(const Command& command)
 {
 	simulated_command.fetch_or(command.state, std::memory_order_relaxed);
 	SDL_Event event{};
-	event.type = command_event;
+	event.type = EventID();
 	event.key.windowID = command.state;
 	event.key.state = SDL_PRESSED;
 	SDL_PushEvent(&event);
@@ -463,7 +517,7 @@ void Command::InjectOnce(const Command& command)
 {
 	simulated_command_once.fetch_or(command.state, std::memory_order_relaxed);
 	SDL_Event event{};
-	event.type = command_event;
+	event.type = EventID();
 	event.key.windowID = command.state;
 	event.key.state = SDL_PRESSED;
 	SDL_PushEvent(&event);
@@ -478,7 +532,7 @@ void Command::InjectUnset(const Command& command)
 {
 	simulated_command.fetch_and(~command.state, std::memory_order_relaxed);
 	SDL_Event event{};
-	event.type = command_event;
+	event.type = EventID();
 	event.key.windowID = command.state;
 	event.key.state = SDL_RELEASED;
 	SDL_PushEvent(&event);
@@ -487,7 +541,8 @@ void Command::InjectUnset(const Command& command)
 
 
 // Register a set of events with SDL's event loop
-uint32_t Command::RegisterEvent()
+uint32_t Command::EventID()
 {
-	return (command_event = SDL_RegisterEvents(sizeof(Command::state) * 8));
+	static uint32_t command_event = SDL_RegisterEvents(1);
+	return command_event;
 }
