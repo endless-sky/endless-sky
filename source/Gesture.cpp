@@ -23,9 +23,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 namespace
 {
+   // how many units wide our gesture should be, before we bother checking
+   // it. (so that we don't analyze every screen tap as a gesture)
+   const float MIN_SIZE = 50;
    // The protractor variant should only need 16 points to work optimally
    const size_t VSIZE = 16;
    typedef std::array<Gesture::Point, VSIZE> GVector;
+   
 
    static const float MATCH_THRESHOLD = .90; // about 20 degree variance.
 
@@ -323,6 +327,8 @@ void Gesture::Start(float x, float y, int finger_id)
       m_tick_start = SDL_GetTicks();
       m_path.clear();
       m_path.push_back(Point{x, y});
+      m_ymin = m_ymax = y;
+      m_xmin = m_xmax = x;
       m_valid = true;
    }
    else if(finger_id == 1)
@@ -359,6 +365,10 @@ Gesture::GestureEnum Gesture::Add(float x, float y, int finger_id)
          if(SDL_GetTicks() - m_tick_start > 2000)
             m_valid = false;
          m_path.push_back({x, y});
+         if(x < m_xmin) m_xmin = x;
+         else if(x > m_xmax) m_xmax = x;
+         if(y < m_ymin) m_ymin = y;
+         else if(y > m_ymax) m_ymax = y;
       }
    }
    else if(finger_id == 1)
@@ -395,6 +405,10 @@ Gesture::GestureEnum Gesture::End()
    if(!m_valid)
       return NONE;
    m_valid = false;
+
+   // Don't analyze really small gestures, as they are probably just plain taps
+   if(MIN_SIZE > m_ymax - m_ymin && MIN_SIZE > m_xmax - m_xmin)
+      return NONE;
 
    // using the protractor variation of the dollar algorithm, as described
    // here: http://depts.washington.edu/acelab/proj/dollar/index.html

@@ -47,6 +47,11 @@ private:
    std::pair<Point, Point> m_finger1;
    std::pair<Point, Point> m_finger2;
 
+   float m_ymin;
+   float m_ymax;
+   float m_xmin;
+   float m_xmax;
+
    uint64_t m_tick_start = 0;
    float m_zoom = 0;
 
