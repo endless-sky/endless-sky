@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "EsUuid.h"
 #include "ExclusiveItem.h"
 #include "Fleet.h"
+#include "FleetCargo.h"
 #include "LocationFilter.h"
 #include "Personality.h"
 #include "Phrase.h"
@@ -108,6 +109,10 @@ private:
 	Personality personality;
 	Personality defeatedPersonality;
 	Personality lootedPersonality;
+
+	// The cargo ships in this NPC will be able to carry.
+	FleetCargo cargo;
+	bool overrideFleetCargo = false;
 
 	EsUuid uuid;
 

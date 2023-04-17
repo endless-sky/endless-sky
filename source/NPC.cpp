@@ -153,6 +153,11 @@ void NPC::Load(const DataNode &node, const string &missionName)
 			defeatedPersonality.Load(child);
 		else if(child.Token(0) == "looted personality")
 			lootedPersonality.Load(child);
+		else if(child.Token(0) == "cargo settings" && child.HasChildren())
+		{
+			cargo.Load(child);
+			overrideFleetCargo = true;
+		}
 		else if(child.Token(0) == "dialog")
 		{
 			bool hasValue = (child.Size() > 1);
@@ -706,7 +711,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		result.ships.back()->SetName(*nameIt);
 	}
 	for(const ExclusiveItem<Fleet> &fleet : fleets)
-		fleet->Place(*result.system, result.ships, false);
+		fleet->Place(*result.system, result.ships, false, !overrideFleetCargo);
 	// Ships should either "enter" the system or start out there.
 	for(const shared_ptr<Ship> &ship : result.ships)
 	{
@@ -735,6 +740,11 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		else
 			Fleet::Place(*result.system, *ship);
 	}
+
+	// Set the cargo for each ship in the NPC if the NPC itself has cargo settings.
+	if(overrideFleetCargo)
+		for(auto ship : result.ships)
+			cargo.SetCargo(&*ship);
 
 	// String replacement:
 	if(!result.ships.empty())

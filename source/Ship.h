@@ -317,6 +317,7 @@ public:
 	void Destroy();
 	void SelfDestruct();
 	void Restore();
+	bool IsDamaged() const;
 	// Check if this ship has been destroyed.
 	bool IsDestroyed() const;
 	// Recharge and repair this ship (e.g. because it has landed).
