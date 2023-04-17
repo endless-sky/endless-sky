@@ -153,13 +153,14 @@ namespace {
 		return false;
 	}
 
-	bool BlinkMissionIndicator(const PlayerInfo &player, const Mission &mission, const int step)
+	pair<bool, bool> BlinkMissionIndicator(const PlayerInfo &player, const Mission &mission, const int step)
 	{
 		bool blink = false;
+		int daysLeft = 1;
 		if(mission.Deadline())
 		{
-			int days = min(6, mission.Deadline() - player.GetDate() + 1);
-			if(days > 0)
+			daysLeft = mission.Deadline() - player.GetDate() + 1;
+			if(daysLeft > 0)
 			{
 				DistanceMap distance(player, player.GetSystem());
 				if(distance.HasRoute(mission.Destination()->GetSystem()))
@@ -169,7 +170,7 @@ namespace {
 					{
 						if(distance.HasRoute(stopover->GetSystem()))
 							toVisit.insert(stopover->GetSystem());
-						days -= 1;
+						--daysLeft;
 					}
 					for(const System *waypoint : mission.Waypoints())
 						if(distance.HasRoute(waypoint))
@@ -186,16 +187,17 @@ namespace {
 								closest = sys;
 								minimalDist = distance.Days(sys);
 							}
-						days -= distance.Days(closest);
+						daysLeft -= distance.Days(closest);
 						distance = DistanceMap(player, closest);
 						toVisit.erase(closest);
 					}
-					days = max(1, days - distance.Days(mission.Destination()->GetSystem()));
+					daysLeft -= distance.Days(mission.Destination()->GetSystem());
 				}
-				blink = (step % (10 * days) > 5 * days);
+				int blinkFactor = min(6, max(1, daysLeft));
+				blink = (step % (10 * blinkFactor) > 5 * blinkFactor);
 			}
 		}
-		return blink;
+		return pair<bool, bool>(blink, daysLeft > 0);
 	}
 }
 
@@ -402,9 +404,10 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 
 			if(mission.Destination()->IsInSystem(&system))
 			{
-				if(!BlinkMissionIndicator(player, mission, step))
+				pair<bool, bool> blink = BlinkMissionIndicator(player, mission, step);
+				if(!blink.first)
 				{
-					bool isSatisfied = IsSatisfied(player, mission);
+					bool isSatisfied = IsSatisfied(player, mission) && blink.second;
 					DrawPointer(from, missionCounter, isSatisfied ? currentColor : blockedColor, false);
 				}
 				else
@@ -1275,9 +1278,9 @@ void MapPanel::DrawMissions()
 		if(it.drawn >= MAX_MISSION_POINTERS_DRAWN - reserved)
 			continue;
 
-		bool isSatisfied = IsSatisfied(player, mission);
-		DrawPointer(system, it.drawn, BlinkMissionIndicator(player, mission, step) ?
-				black : isSatisfied ? currentColor : blockedColor, isSatisfied);
+		pair<bool, bool> blink = BlinkMissionIndicator(player, mission, step);
+		bool isSatisfied = IsSatisfied(player, mission) && blink.second;
+		DrawPointer(system, it.drawn, blink.first ? black : isSatisfied ? currentColor : blockedColor, isSatisfied);
 
 		for(const System *waypoint : mission.Waypoints())
 			DrawPointer(waypoint, missionCount[waypoint].drawn, waypointColor);
