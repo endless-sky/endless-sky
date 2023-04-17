@@ -1321,7 +1321,7 @@ ship "Kyanite"
 	explode "medium explosion" 44
 	explode "small explosion" 30
 	"final explode" "final explosion large"
-	description `Kyanites are intricately-built test platforms for Gegno Scin technology, equipped with an extensive built-in power system and energy reserve able to support many types of outfits. Weapon experimentation, the most common practice of kyanites, is recorded by various scanner instruments littering the two long structures on the front of the hull. Despite being weapon research vessels, Kyanites are not combat-capable due to how exposed their systems are and how little hull covers them. These systems are also very expensive and difficult to produce, so only a small amount Kyanites are found in service.`
+	description `Kyanites are intricately-built test platforms for Gegno Scin technology, equipped with an extensive built-in power system and energy reserve able to support many types of outfits. Weapon experimentation, the most common practice of Kyanites, is recorded by various scanner instruments littering the two long structures on the front of the hull. Despite being weapon research vessels, Kyanites are not combat-capable due to how exposed their systems are and how little hull covers them. These systems are also very expensive and difficult to produce, so only a small amount of Kyanites are found in service.`
 	description `	The scanner system found on the Tridymite was originally developed and tested on Kyanite platforms, eventually becoming part of their integration as well.`
 
 ship "Kyanite" "Kyanite (Guile)"
