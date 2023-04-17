@@ -38,7 +38,6 @@ public:
 	double GunRange() const;
 	double TurretRange() const;
 	double MinSafeDistance() const;
-	double TurningRadius() const;
 
 
 private:
@@ -48,7 +47,7 @@ private:
 	double shortestRange = 1000.;
 	double shortestArtillery = 4000.;
 	double minSafeDistance = 0.;
-	double turningRadius = 200.;
+	double maxTurningRadius = 200.;
 	double turretRange = 0.;
 	double gunRange = 0.;
 };
@@ -62,7 +61,6 @@ inline double ShipAICache::ShortestArtillery() const { return shortestArtillery;
 inline double ShipAICache::GunRange() const { return gunRange; }
 inline double ShipAICache::TurretRange() const { return turretRange; }
 inline double ShipAICache::MinSafeDistance() const { return minSafeDistance; }
-inline double ShipAICache::TurningRadius() const { return turningRadius; }
 
 
 
