@@ -104,7 +104,7 @@ private:
 	// Determine the value to use in Command::SetTurn() to turn the ship towards the desired facing.
 	// "precision" is an optional argument corresponding to a value of the dot product of the current and target facing
 	// vectors above which no turning should be attempting, to reduce constant, minute corrections.
-	static double TurnToward(const Ship &ship, const Point &vector, const double precision = 1.);
+	static double TurnToward(const Ship &ship, const Point &vector, const double precision = 0.9999);
 	static bool MoveToPlanet(Ship &ship, Command &command);
 	static bool MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 		const Point &targetVelocity, double radius, double slow);
