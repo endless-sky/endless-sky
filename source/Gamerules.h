@@ -32,12 +32,14 @@ public:
 	bool UniversalRamscoopActive() const;
 	int PersonSpawnPeriod() const;
 	int NoPersonSpawnWeight() const;
+	int NPCMaxMiningTime() const;
 
 
 private:
 	bool universalRamscoop = true;
 	int personSpawnPeriod = 36000;
 	int noPersonSpawnWeight = 1000;
+	int npcMaxMiningTime = 3600;
 };
 
 
