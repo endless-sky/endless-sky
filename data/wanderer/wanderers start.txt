@@ -368,6 +368,8 @@ mission "Wanderers: Diplomacy (Before Hai Reveal)"
 				fail "Wanderers: Diplomacy Delayed"
 			`	"One warning, Captain <last>, from someone who has seen the darkest side of the Hai: It is imperative that you keep silent about your discovery, and any hostilities you may take part in. Should your involvement become public knowledge, I fear there may be a backlash against humans, especially in Unfettered space."`
 				accept
+	on accept
+		fail "First Contact: Wanderer"
 
 
 event "Wanderers before Hai Reveal"
