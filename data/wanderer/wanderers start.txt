@@ -278,7 +278,7 @@ mission "Wanderers: Professor Available"
 		not "Wanderers: Diplomacy: done"
 	on offer
 		conversation
-			`Your ship's terminal bleats out a pinging noise, accompanied by a message from a university on All-home. It mentions Professor Andelena the Department of Skiourology at Mongongo University. The message is otherwise short and cryptic, but it sounds like an interpreter may be waiting for you on <planet>: Professor Andalena`
+			`Your ship's terminal bleats out a pinging noise, accompanied by a message from a university on <planet>. "Professor Andelena the Department of Skiourology at Mongongo University awaits your transport services on her expedition." This may be the interpreter you've been waiting for.`
 				accept
 
 
