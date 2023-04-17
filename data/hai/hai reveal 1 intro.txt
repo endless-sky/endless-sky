@@ -17,12 +17,12 @@ mission "Hai Secret Leaker Begins"
 	landing
 	invisible
 	to offer
-		has "main plot completed"
+		has "human awareness of aliens"
 	on offer
-		event "pug media coverage" 20 30
+		event "hai secret leaks" 10 15
 		fail
 
-event "pug media coverage"
+event "hai secret leaks"
 
 
 
@@ -30,7 +30,7 @@ mission "Hai Reveal: Reputation Reset"
 	landing
 	invisible
 	to offer
-		has "event: pug media coverage"
+		has "human awareness of aliens"
 	on offer
 		# Sync reputations for aliases of governments:
 		"reputation: Deep Security that won't enter wormhole" = "reputation: Deep Security"
@@ -44,28 +44,6 @@ mission "Hai Reveal: Reputation Reset"
 		"reputation: Elenctic Commune" = 1000
 		"reputation: Pirate (Devil-Run Gang)" = -1000
 		fail
-
-
-
-mission "Event: Pug Media Coverage"
-	landing
-	source
-		government "Republic" "Syndicate" "Free Worlds"
-		attributes "spaceport"
-	to offer
-		has "event: pug media coverage"
-	on offer
-		event "hai secret leaks" 10 15
-		log "Minor People" "Maduena Kabiru" `A senator from Bounty in the Delta Velorum system. He is somewhat paranoid, and insists upon the Navy taking greater steps to better explore the galaxy beyond human space to search for possible threats.`
-		conversation
-			`As you walk through the spaceport, you can't help but notice that coverage on the events of the Pug invasion still continues to dominate headlines, even though it's been weeks now.`
-			`	Looking around, you see that experts and officials have given way to talking heads and theorists. Some of them are saying what you also suspect: that the Pug invasion was a ploy to cause humanity to band together, learn to resolve differences without conflict, and ensure the sorts of extremism that led to the events precipitating the war would not be tolerated.`
-			`	But others...`
-			`	One particular paranoid fringe-world politician dominates the air on the channel you're watching here. Councilor Maduena Kabiru from Bounty demands that the edges of human space be better understood, that threats and even potential threats must clearly exist beyond what is already known, and that it is the responsibility of the government to find out and inform the people. While one could definitely argue in favor of his point, it doesn't carry much weight coming from a councilor whose system is a mere two jumps from a brand new Navy base.`
-			`	In this very public space you spot a couple of people who seem to hesitantly recognize you, presumably from other coverage, and so you keep your thoughts to yourself.`
-				decline
-
-event "hai secret leaks"
 
 
 
