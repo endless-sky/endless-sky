@@ -339,43 +339,18 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 				if(Gesture::ZOOM == gesture.Add(event.tfinger.x* Screen::Width(), event.tfinger.y * Screen::Height(), event.tfinger.fingerId))
 				{
 					// The gesture manager will convert these to Gesture ZOOM events
+					// TODO: now that we know it is a zoom event, we would in theory
+					//       use our magic time machine to undo any taps/clicks that
+					//       occurred at the start of the gesture.
+					// TODO: Should we hook these in MainPanel instead? then we can
+					//			explicitly fake a fingerup if we need to.
 					continue;
 				}
 			}
 			else if(event.type == SDL_FINGERUP)
 			{
-				if (Gesture::ZOOM == gesture.Add(event.tfinger.x* Screen::Width(), event.tfinger.y * Screen::Height(), event.tfinger.fingerId))
-					continue;
+				gesture.Add(event.tfinger.x* Screen::Width(), event.tfinger.y * Screen::Height(), event.tfinger.fingerId);
 				gesture.End();
-				
-				//// TODO: make these configurable
-				//switch(gesture.End())
-				//{
-				//case Gesture::X:
-				//	SDL_Log("Gesture X");
-				//	Command::InjectOnce(Command::HOLD);
-				//	break;
-				//case Gesture::CIRCLE:
-				//	SDL_Log("Gesture CIRCLE");
-				//	Command::InjectOnce(Command::GATHER);
-				//	break;
-				//case Gesture::CARET_UP:
-				//	SDL_Log("Gesture UP");
-				//	break;
-				//case Gesture::CARET_DOWN:
-				//	SDL_Log("Gesture DOWN");
-				//	Command::InjectOnce(Command::STOP);
-				//	break;
-				//case Gesture::CARET_LEFT:
-				//	SDL_Log("Gesture LEFT");
-				//	break;
-				//case Gesture::CARET_RIGHT:
-				//	SDL_Log("Gesture RIGHT");
-				//	break;
-				//case Gesture::ZOOM:
-				//case Gesture::NONE:
-				//	break;
-				//}
 			}
 
 			if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
