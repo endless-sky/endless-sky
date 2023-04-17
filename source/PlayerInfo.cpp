@@ -3019,7 +3019,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		return accounts.CreditScore(); });
 
 	// Read/write assets and debts.
-	auto &&salaryIncomeProvider = conditions.GetProviderPrefixed("salary: ");
+	auto &&salaryIncomeProvider = conditions->GetProviderPrefixed("salary: ");
 	auto salaryIncomeHasGetFun = [this](const string &name) -> int64_t
 	{
 		const map<string, int64_t> &si = accounts.SalariesIncome();
@@ -3041,7 +3041,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		return true;
 	});
 
-	auto &&tributeProvider = conditions.GetProviderPrefixed("tribute: ");
+	auto &&tributeProvider = conditions->GetProviderPrefixed("tribute: ");
 	auto tributeHasGetFun = [this](const string &name) -> int64_t
 	{
 		const Planet *planet = GameData::Planets().Find(name);
@@ -3063,7 +3063,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		return SetTribute(name.substr(strlen("tribute: ")), 0);
 	});
 
-	auto &&licenseProvider = conditions.GetProviderPrefixed("license: ");
+	auto &&licenseProvider = conditions->GetProviderPrefixed("license: ");
 	licenseProvider.SetHasFunction([this](const string &name) -> bool {
 		return HasLicense(name.substr(strlen("license: ")));
 	});
@@ -3380,7 +3380,7 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	// The following condition checks the player's fleet for installed outfits on parked escorts
 	// which are local to the player.
-	auto &parkedInstalledOutfitProvider = conditions.GetProviderPrefixed("outfit (parked): ");
+	auto &parkedInstalledOutfitProvider = conditions->GetProviderPrefixed("outfit (parked): ");
 	parkedInstalledOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
 		// If the player isn't landed then there can be no parked ships local to them.

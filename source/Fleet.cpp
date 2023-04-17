@@ -125,8 +125,7 @@ void Fleet::Load(const DataNode &node)
 		node.PrintTrace("Warning: " + (fleetName.empty()
 			? "unnamed fleet" : "Fleet \"" + fleetName + "\"") + " contains no variants:");
 
-	hasConditions = cargo.HasConditions() ||
-		variants.Any([](const WeightType &w, const Variant &v) noexcept -> bool { return w.HasConditions(); });
+	hasConditions = variants.Any([](const WeightType &w, const Variant &v) noexcept -> bool { return w.HasConditions(); });
 }
 
 
@@ -180,7 +179,6 @@ void Fleet::UpdateConditions()
 	if(!hasConditions)
 		return;
 	variants.UpdateConditions();
-	cargo.UpdateConditions();
 }
 
 

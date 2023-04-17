@@ -183,13 +183,13 @@ void ConditionsStore::Save(DataWriter &out) const
 	for(auto it = storage.begin(); it != storage.end(); ++it)
 	{
 		// We don't need to save derived conditions that have a provider.
-		if(it->second.provider)
+		if(it->second->provider)
 			continue;
 		// If the condition's value is 1, don't bother writing the 1.
-		else if(it->second.value == 1)
+		else if(it->second->value == 1)
 			out.Write(it->first);
 		else
-			out.Write(it->first, it->second.value);
+			out.Write(it->first, it->second->value);
 	}
 	out.EndChild();
 }
@@ -394,7 +394,7 @@ int64_t ConditionsStore::PrimariesSize() const
 	for(auto it = storage.begin(); it != storage.end(); ++it)
 	{
 		// We only count primary conditions; conditions that don't have a provider.
-		if(it->second.provider)
+		if(it->second->provider)
 			continue;
 		++result;
 	}

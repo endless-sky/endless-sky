@@ -105,7 +105,6 @@ private:
 	// The number of different items the ships in this fleet will carry in cargo.
 	std::vector<std::string> commodities;
 	std::set<const Sale<Outfit> *> outfitters;
-	WeightedList<Variant> variants;
 	// The cargo ships in this fleet will carry.
 	FleetCargo cargo;
 
