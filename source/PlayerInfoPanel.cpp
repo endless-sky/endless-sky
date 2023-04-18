@@ -921,3 +921,124 @@ PlayerInfoPanel::SortableColumn::SortableColumn(
 : name(name), offset(offset), endX(endX), layout(layout), shipSort(shipSort)
 {
 }
+
+
+
+bool PlayerInfoPanel::FingerDown(int x, int y)
+{
+	uint32_t now = SDL_GetTicks();
+	bool doubleClick = now - lastClickTime < 500;
+	lastClickTime = now;
+
+	// Sort the ships if the click was on one of the column headers.
+	touchPos = Point(x, y);
+	touchScrollStart = panelState.Scroll();
+	for(auto &zone : menuZones)
+	{
+		if(zone.Contains(touchPos))
+		{
+			SortShips(*zone.Value());
+			return true;
+		}
+	}
+	
+	touchSelectedShipIndex = GetShipIndexFromPoint(x, y);
+	
+	// Do nothing if the click was not on one of the ships in the fleet list.
+	if(touchSelectedShipIndex < 0)
+		return true;
+
+	if(panelState.CanEdit() && !doubleClick)
+	{
+		// If the control+click was on an already selected ship, deselect it.
+		if(panelState.AllSelected().count(touchSelectedShipIndex))
+		{
+			// If the click is on an already selected line, start dragging
+			// but do not change the selection.
+		}
+		else
+		{
+			panelState.SelectOnly(touchSelectedShipIndex);
+		}
+	}
+	else
+	{
+		// If not landed, clicking a ship name takes you straight to its info.
+		panelState.SetSelectedIndex(touchSelectedShipIndex);
+
+		GetUI()->Pop(this);
+		GetUI()->Push(new ShipInfoPanel(player, std::move(panelState)));
+	}
+
+	return true;
+}
+
+
+
+bool PlayerInfoPanel::FingerMove(int x, int y)
+{
+	if(touchSelectedShipIndex >= 0)
+	{
+		isDragging = true;
+		Hover(Point(x, y));
+		touchSelectedShipIndex = GetShipIndexFromPoint(x, y);
+	}
+	else
+	{
+		// Scroll units are in rows, which are 20 px high
+		int dy = y - touchPos.Y();
+		ScrollAbsolute(touchScrollStart - dy/20);
+	}
+	return true;
+}
+
+
+
+bool PlayerInfoPanel::FingerUp(int x, int y)
+{
+	isDragging = false;
+
+	// Do nothing if the block of ships has not been dragged to a valid new
+	// location in the list, or if it's not possible to reorder the list.
+	if(!panelState.CanEdit() || touchSelectedShipIndex < 0 || touchSelectedShipIndex == panelState.SelectedIndex())
+		return true;
+
+	panelState.ReorderShipsTo(touchSelectedShipIndex);
+	return true;
+}
+
+
+
+int PlayerInfoPanel::GetShipIndexFromPoint(int x, int y)
+{
+	auto bounds = GameData::Interfaces().Get("info panel")->GetBox("fleet");
+
+	// Duplicate the table drawing logic. This would be much nicer if table was
+	// persistent class, instead of just a formatting aid.
+	int ypos = bounds.Top() + 8;
+	static const int rowSize = 20; // from table defaults
+	ypos += rowSize; // table header
+	ypos += 5; // five pixel gap
+
+	if(menuZones.empty())
+		return -1;
+
+	// Only allow selection from first column.
+	Rectangle columnRect = menuZones.front();
+	if(x < columnRect.Left() || x > columnRect.Right())
+		return -1;
+
+	int index = panelState.Scroll();
+	for(auto sit = panelState.Ships().begin() + panelState.Scroll(); sit < panelState.Ships().end(); ++sit, ++index)
+	{
+		// Bail out if we've used out the whole drawing area.
+		if(ypos > bounds.Bottom())
+			break;
+
+		if(y >= ypos && y < ypos + rowSize)
+			return index;
+
+		ypos += rowSize;
+	}
+	return -1;
+}

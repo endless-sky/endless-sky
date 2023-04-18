@@ -55,6 +55,14 @@ protected:
 	virtual bool Release(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
 
+	// The mouse logic relies on interleaved hover and draw events, which don't
+	// work at all for touchscreens.
+	virtual bool FingerDown(int x, int y) override;
+	virtual bool FingerMove(int x, int y) override;
+	virtual bool FingerUp(int x, int y) override;
+
+	int GetShipIndexFromPoint(int x, int y);
+
 
 private:
 	// Draw the two subsections of this panel.
@@ -100,6 +108,11 @@ private:
 
 	// When reordering ships, the names of ships being moved are displayed alongside the cursor.
 	bool isDragging = false;
+
+	uint32_t lastClickTime = 0;
+	int touchSelectedShipIndex = -1;
+	Point touchPos;
+	int touchScrollStart = 0;
 };
 
 

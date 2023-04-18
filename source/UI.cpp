@@ -97,7 +97,11 @@ bool UI::Handle(const SDL_Event &event)
 				handled = (*it)->FingerDown(x, y);
 			}
 			if(!handled)
-				handled = (*it)->Click(x, y, 1);
+			{
+				uint32_t now = SDL_GetTicks();
+				handled = (*it)->Click(x, y, (now - lastTap) > 500 ? 1 : 2);
+				lastTap = now;
+			}
 		}
 		else if(event.type == SDL_FINGERMOTION)
 		{

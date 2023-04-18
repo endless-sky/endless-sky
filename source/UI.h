@@ -92,6 +92,8 @@ private:
 	std::vector<std::shared_ptr<Panel>> stack;
 	std::vector<std::shared_ptr<Panel>> toPush;
 	std::vector<const Panel *> toPop;
+
+	uint32_t lastTap = 0;
 };
 
 
