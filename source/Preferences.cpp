@@ -592,12 +592,9 @@ bool Preferences::DisplayFlagshipVelocityArrow()
 bool Preferences::DoFlagshipVelocityIndicatorHelper(Preferences::FlagshipVelocityIndicator toDo)
 {
 	auto value = GetFlagshipVelocityIndicator();
-	if(value == FlagshipVelocityIndicator::BOTH)
-		return true;
-	else if(value == toDo)
-		return true;
-	return false;
+	return value == FlagshipVelocityIndicator::BOTH || value == toDo;
 }
+
 
 
 int Preferences::GetPreviousSaveCount()
