@@ -3347,7 +3347,7 @@ double Ship::DisplayTurn() const
 
 
 
-//double Ship::DisplayLateralThrust() const
+// double Ship::DisplayLateralThrust() const
 // {
 	// return -commands.LateralThrust();
 // }
