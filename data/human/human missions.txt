@@ -5925,7 +5925,7 @@ mission "A Dead Man's Path 2"
 			label accepted
 			action
 				outfit "Old Man's Sword" 1
-			`	You take the strange sword from Sophie. It's weirdly light, and you don't really know how to use it yet, but it has some strange feeling of power that seems to emanate from it.`
+			`	You take the strange sword from Sophie. It's abnormally light, and you don't really know how to use it yet, but it has some strange feeling of power that seems to emanate from it.`
 				goto conclusion
 
 			label declined
