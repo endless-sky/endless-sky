@@ -98,6 +98,9 @@ private:
 	bool hasControl = false;
 	bool canClick = false;
 	bool canDrag = false;
+
+	Point touchSteer;
+	bool touchSteerBold = false;
 };
 
 

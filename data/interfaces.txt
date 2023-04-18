@@ -1463,3 +1463,10 @@ interface "main buttons" bottom right
 	anchor top left
 	button "Toggle fast-forward"
 		from 0 0 to 48 48
+
+	# box in bottom left corner that defines a steering control
+	anchor bottom left
+	box "steering control"
+		center 128 -128
+		dimensions 192 192
+		

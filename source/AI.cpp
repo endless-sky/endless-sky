@@ -3828,7 +3828,6 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				// try to stay close to the target
 				if(targetDistance > distance * .5)
 				{
-					ship.SetMoveToward(target->Position());
 					// This code has an annoying side-effect that I'm not sure how
 					// to counter. if somebody in your fleet is being followed by
 					// the scan target, then everybody ends up moving after a point
@@ -3897,7 +3896,6 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				if(target && target->Position().DistanceSquared(ship.Position()) > maxRange * maxRange)
 				{
 					// target is too far away. lets chase it
-					ship.SetMoveToward(target->Position());
 					MoveToAttack(ship, command, *target);
 				}
 			}

@@ -16,6 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MainPanel.h"
 
 #include "BoardingPanel.h"
+#include "Command.h"
+#include "RingShader.h"
 #include "comparators/ByGivenOrder.h"
 #include "CoreStartData.h"
 #include "Dialog.h"
@@ -283,11 +285,26 @@ void MainPanel::Draw()
 					info.SetCondition("secondary selected");
 					SpriteShader::Draw(SpriteSet::Get("icon/all"), icon_box.Center());
 				}
-
 			}
 		}
 
 		mapButtonUi->Draw(info, this);
+
+		// Draw a steering control in the bottom left corner, if enabled
+		if(Preferences::Has("Onscreen Joystick"))
+		{
+			Rectangle scBounds = mapButtonUi->GetBox("steering control");
+			const char* colorStr = "faint";
+			if(touchSteer)
+				colorStr = touchSteerBold ? "dim" : "dimmer";
+			const Color &color = *GameData::Colors().Get(colorStr);
+			RingShader::Draw(scBounds.Center(), scBounds.Width()/2, touchSteerBold ? 4.0 : 2.0, 1.0, color);
+
+			if(touchSteer)
+			{
+				RingShader::Draw(touchSteer, 50, 0, color);
+			}
+		}
 	}
 }
 
@@ -435,6 +452,35 @@ bool MainPanel::FingerDown(int x, int y)
 	if(!canClick)
 		return false;
 
+	// Check for steering control
+	bool isActive = (GetUI()->Top().get() == this);
+	if (isActive && Preferences::Has("Onscreen Joystick"))
+	{
+		const Interface *mapButtonUi = GameData::Interfaces().Get("main buttons");
+
+		Rectangle scBounds = mapButtonUi->GetBox("steering control");
+		Point pring(
+			x - scBounds.Center().X(),
+			y - scBounds.Center().Y()
+		);
+		int radius = scBounds.Width()/2;
+
+		// Are we within the ring?
+		if(pring.LengthSquared() < radius * radius)
+		{
+			touchSteer = Point(x, y);
+			touchSteerBold = false;
+
+			Ship* flagship = player.Flagship();
+			if(flagship)
+			{
+				flagship->SetMoveToward(pring * 5);
+				Command::InjectSet(Command::MOVETOWARD);
+			}
+			return true;
+		}
+	}
+
 	return engine.FingerDown(Point(x, y));
 }
 
@@ -445,6 +491,48 @@ bool MainPanel::FingerMove(int x, int y)
 	if (!canClick)
 		return false;
 
+	if(touchSteer)
+	{
+		const Interface *mapButtonUi = GameData::Interfaces().Get("main buttons");
+		Rectangle scBounds = mapButtonUi->GetBox("steering control");
+
+		// Don't let the point leave the bounds of the ring
+		Point pring(
+			x - scBounds.Center().X(),
+			y - scBounds.Center().Y()
+		);
+		int radius = scBounds.Width()/2;
+
+		// Are we outside the ring?
+		float distance = pring.Length();
+		if(distance > radius)
+		{
+			touchSteer = scBounds.Center() + pring * (radius / distance);
+			if(!touchSteerBold)
+			{
+				touchSteerBold = true;
+				Command::InjectSet(Command::AFTERBURNER);
+			}
+		}
+		else
+		{
+			touchSteer = Point(x, y);
+			if(touchSteerBold)
+			{
+				touchSteerBold = false;
+				Command::InjectUnset(Command::AFTERBURNER);
+			}
+		}
+
+		Ship* flagship = player.Flagship();
+		if(flagship)
+		{
+			flagship->SetMoveToward(pring * 5);
+		}
+
+		return true;
+	}
+
 	return engine.FingerMove(Point(x, y));
 }
 
@@ -452,6 +540,14 @@ bool MainPanel::FingerMove(int x, int y)
 
 bool MainPanel::FingerUp(int x, int y)
 {
+	if(touchSteer)
+	{
+		touchSteer = Point();
+		touchSteerBold = false;
+		Command::InjectUnset(Command::MOVETOWARD);
+		Command::InjectUnset(Command::AFTERBURNER);
+		return true;
+	}
 	return engine.FingerUp(Point(x, y));
 }
 
