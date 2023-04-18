@@ -746,7 +746,7 @@ void Engine::Step(bool isActive)
 		// new thrust/turn/lateral bars.
 		info.SetBar("thrust", flagship->DisplayThrust());
 		info.SetBar("turn", flagship->DisplayTurn());
-		// info.SetBar("lateralthrust", flagship->DisplayLateralThrust());
+		info.SetBar("lateralthrust", flagship->DisplayLateralThrust());
 		// Get the flagship's fuel capacity
 		double fuelCap = flagship->Attributes().Get("fuel capacity");
 		// If the flagship has a large amount of fuel, display a solid bar.
