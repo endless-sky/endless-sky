@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Shader.h"
 
 #include <stdexcept>
+#include <string>
 
 using namespace std;
 
@@ -88,7 +89,31 @@ void RingShader::Init()
 		"  finalColor = color * alpha;\n"
 		"}\n";
 
-	shader = Shader(vertexCode, fragmentCode);
+	auto replace = [](std::string& s, const std::string& a, const std::string& b)
+	{
+		size_t pos = s.find(a);
+		while(pos != std::string::npos)
+		{
+			s.replace(pos, a.size(), b);
+			pos = s.find(a);
+		}
+	};
+	
+	try
+	{
+		// default mediump code has some visual glitches for large rings. See if
+		// a highp variant will compile first.
+		std::string vertexHighpCode(vertexCode);
+		std::string fragmentHighpCode(fragmentCode);
+		replace(vertexHighpCode, " mediump ", " highp ");
+		replace(fragmentHighpCode, " mediump ", " highp ");
+		shader = Shader(vertexHighpCode.c_str(), fragmentHighpCode.c_str());
+	}
+	catch (const std::runtime_error&)
+	{
+		// fallback to default mediump code
+		shader = Shader(vertexCode, fragmentCode);
+	}
 	scaleI = shader.Uniform("scale");
 	positionI = shader.Uniform("position");
 	radiusI = shader.Uniform("radius");
