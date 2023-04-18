@@ -539,6 +539,7 @@ void PreferencesPanel::DrawSettings()
 		BOARDING_PRIORITY,
 		"Control ship with mouse",
 		EXPEND_AMMO,
+		"Defensive escort cloaking",
 		"Extra fleet status messages",
 		"Fighters transfer cargo",
 		"Rehire extra crew when lost",
