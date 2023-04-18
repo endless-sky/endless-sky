@@ -3432,10 +3432,10 @@ double Ship::DisplayTurn() const
 
 
 
-// double Ship::DisplayLateralThrust() const
-// {
-	// return -commands.LateralThrust();
-// }
+double Ship::DisplayLateralThrust() const
+{
+	return -commands.LateralThrust();
+}
 
 
 
@@ -3711,27 +3711,6 @@ double Ship::MaxVelocity() const
 	// v = thrust / drag
 	double thrust = attributes.Get("thrust");
 	return (thrust ? thrust : attributes.Get("afterburner thrust")) / Drag();
-}
-
-
-
-double Ship::DisplayThrust() const
-{
-	return -thrustMagnitude;
-}
-
-
-
-double Ship::DisplayTurn() const
-{
-	return -commands.Turn();
-}
-
-
-
-double Ship::DisplayLateralThrust() const
-{
-	return -commands.LateralThrust();
 }
 
 
