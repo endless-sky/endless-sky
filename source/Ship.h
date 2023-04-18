@@ -271,6 +271,7 @@ public:
 	bool IsThrusting() const;
 	bool IsReversing() const;
 	bool IsSteering() const;
+	double ThrustMagnitude() const;
 	// The direction that the ship is steering. If positive, the ship is steering right.
 	// If negative, the ship is steering left.
 	double SteeringDirection() const;
@@ -305,6 +306,10 @@ public:
 	double Energy() const;
 	double DisplaySolar() const;
 	double DisplayRamScoop() const;
+	// These are for the thruster activity bars
+	double DisplayThrust() const;
+	double DisplayTurn() const;
+	double DisplayLateralThrust()  const;
 	// A ship's heat is generally between 0 and 1, but if it receives
 	// heat damage the value can increase above 1.
 	double Heat() const;
@@ -521,7 +526,9 @@ private:
 	bool isThrusting = false;
 	bool isReversing = false;
 	bool isSteering = false;
+	double thrustMagnitude = 0.;
 	double steeringDirection = 0.;
+	// double lateralDirection = 0.;
 	bool neverDisabled = false;
 	bool isCapturable = true;
 	bool isInvisible = false;

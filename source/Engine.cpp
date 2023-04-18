@@ -723,6 +723,10 @@ void Engine::Step(bool isActive)
 			info.SetCondition("flagship solar display");
 			info.SetString("flagship solar", to_string(flagshipSolar));
 		}
+		// new thrust/turn/lateral bars.
+		info.SetBar("thrust", flagship->DisplayThrust());
+		info.SetBar("turn", flagship->DisplayTurn());
+		// info.SetBar("lateralthrust", flagship->DisplayLateralThrust());
 		// Get the flagship's fuel capacity
 		double fuelCap = flagship->Attributes().Get("fuel capacity");
 		// If the flagship has a large amount of fuel, display a solid bar.

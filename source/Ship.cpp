@@ -2001,6 +2001,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		}
 		double thrustCommand = commands.Has(Command::FORWARD) - commands.Has(Command::BACK);
 		double thrust = 0.;
+		thrustMagnitude = 0.;
 		if(thrustCommand)
 		{
 			// Check if we are able to apply this thrust.
@@ -2028,6 +2029,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				"thrusting heat" : "reverse thrusting heat");
 			if(cost > 0. && heat < cost)
 				thrustCommand *= heat / cost;
+
+			thrustMagnitude = thrustCommand * slowMultiplier;
 
 			if(thrustCommand)
 			{
@@ -3066,6 +3069,13 @@ double Ship::SteeringDirection() const
 
 
 
+double Ship::ThrustMagnitude() const
+{
+	return thrustMagnitude;
+}
+
+
+
 // Get the points from which engine flares should be drawn.
 const vector<Ship::EnginePoint> &Ship::EnginePoints() const
 {
@@ -3319,6 +3329,28 @@ double Ship::DisplayRamScoop() const
 	double ramScoop = currentSystem->SolarWind() * .03 * scale * (sqrt(attributes.Get("ramscoop")) + .05 * scale);
 	return ramScoop;
 }
+
+
+
+// These are for the thruster activity bars
+double Ship::DisplayThrust() const
+{
+	return -thrustMagnitude;
+}
+
+
+
+double Ship::DisplayTurn() const
+{
+	return -commands.Turn();
+}
+
+
+
+//double Ship::DisplayLateralThrust() const
+// {
+	// return -commands.LateralThrust();
+// }
 
 
 
