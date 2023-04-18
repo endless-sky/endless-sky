@@ -1,0 +1,7 @@
+* Fixed some ui glitches
+* Fixed park/unpark all button
+* Fixed ship movement for armv7a platforms
+* Add compressed sound and textures to shrink apk size
+* Tapping target display selects the next ship
+* Double-tap to activate afterburners
+* Fixed save-on-land job triggers
