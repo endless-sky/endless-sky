@@ -44,3 +44,12 @@ gamerules
 	# DEFAULT: 3600 frames (one minute)
 	# ALLOWABLE VALUES: any integer >= 0
 	"npc max mining time" 3600
+
+	# All ships typically need some degree of station keeping lateral thrust capability,
+	# as such, while ships should have a defined ratio of how much lateral thrust they have
+	# as a portion of their regular thrust; a default value is required to ensure that
+	# plug-in ships and others that may not be updated to handle lateral thrust will have some.
+	# DEFAULT: 0.25 (one quarter of their regular thrust)
+	# ALLOWABLE VALUES: any double (negatives will cause lateral left and right to be inverted,
+	# while values greater than 1 will result in ships that can go faster sideways than forwards)
+	"default lateral thrust ratio" 0.25

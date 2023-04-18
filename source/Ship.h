@@ -98,6 +98,7 @@ public:
 		static const uint8_t OVER = 1;
 
 		uint8_t steering = 0;
+		uint8_t lateral = 0;
 		static const uint8_t NONE = 0;
 		static const uint8_t LEFT = 1;
 		static const uint8_t RIGHT = 2;
@@ -269,15 +270,20 @@ public:
 
 	// Check if the ship is thrusting. If so, the engine sound should be played.
 	bool IsThrusting() const;
+	bool IsLatThrusting() const;
 	bool IsReversing() const;
 	bool IsSteering() const;
+	double ThrustMagnitude() const;
 	// The direction that the ship is steering. If positive, the ship is steering right.
 	// If negative, the ship is steering left.
 	double SteeringDirection() const;
+	// If negative, the ship is thrusting left, if positive, the ship is thrusting right.
+	double LateralDirection() const;
 	// Get the points from which engine flares should be drawn.
 	const std::vector<EnginePoint> &EnginePoints() const;
 	const std::vector<EnginePoint> &ReverseEnginePoints() const;
 	const std::vector<EnginePoint> &SteeringEnginePoints() const;
+	const std::vector<EnginePoint>& LateralEnginePoints() const;
 
 	// Make a ship disabled or destroyed, or bring back a destroyed ship.
 	void Disable();
@@ -357,6 +363,9 @@ public:
 	double TurnRate() const;
 	double Acceleration() const;
 	double MaxVelocity() const;
+	double DisplayThrust() const;
+	double DisplayTurn() const;
+	double DisplayLateralThrust() const;
 	double ReverseAcceleration() const;
 	double MaxReverseVelocity() const;
 	// This is their potential acceleration right now
@@ -517,9 +526,12 @@ private:
 	bool hasBoarded = false;
 	bool isFleeing = false;
 	bool isThrusting = false;
+	bool isLatThrusting = false;
 	bool isReversing = false;
 	bool isSteering = false;
+	double thrustMagnitude = 0.;
 	double steeringDirection = 0.;
+	double lateralDirection = 0.;
 	bool neverDisabled = false;
 	bool isCapturable = true;
 	bool isInvisible = false;
@@ -559,6 +571,7 @@ private:
 	std::vector<EnginePoint> enginePoints;
 	std::vector<EnginePoint> reverseEnginePoints;
 	std::vector<EnginePoint> steeringEnginePoints;
+	std::vector<EnginePoint> lateralEnginePoints;
 	Armament armament;
 
 	// Various energy levels:
