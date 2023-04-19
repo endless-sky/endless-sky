@@ -789,8 +789,8 @@ government "Korath"
 		"Korath (Civilian)" 1
 		"Hai (Friendly Unfettered)" -.01
 	
-	"send untranslated hails"
 	"player reputation" -10
+	"send untranslated hails"
 	"friendly hail" "friendly korath untranslated"
 	"friendly disabled hail" "friendly disabled korath untranslated"
 	"hostile hail" "hostile korath untranslated"

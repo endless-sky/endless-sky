@@ -95,11 +95,7 @@ phrase "friendly disabled kor efret untranslated"
 		"efreti: miscellaneous rambling" 50
 		"efreti: friendly warning about being protected" 50
 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-
-# No top-level phrases below this line.                                       #
-
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# Subphrases:
 
 phrase "exile humanika: If you board us, we will win."
 	phrase
@@ -113,7 +109,7 @@ phrase "exile humanika: If you board us, we will win."
 		"exile mixed:, you inferior beings"
 		"exile: empty phrase"
 	word
-		". "
+		"."
 
 phrase "exile humanika: insults"
 	phrase
@@ -174,10 +170,8 @@ phrase "exile mixed: bragging about tech"
 		"exile: [system] is snazzy" 7
 		"exile: [system] is better than yours" 4
 	word
-		.
-		.
-		.
-		!
+		"." 3
+		"!"
 
 phrase "exile mixed: request for mercy"
 	phrase
@@ -312,11 +306,7 @@ phrase "exile mixed: Please don't do terrible things to us while we are disabled
 		"ratlaih ifat 'aheh."             # let us free.
 		"nrahlek okineh ava'."            # just fly away.
 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-
-# No phrases accessed directly by hails below this line                       #
-
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# Phrase building blocks:
 
 
 phrase "exile humanika: If you board our ship, then"
@@ -1001,9 +991,8 @@ phrase "exile: I do bad things to my enemies"
 	phrase
 		"exile: people who offend, attack, or oppress me"
 	word
-		.
-		.
-		!
+		"." 2
+		"!"
 
 phrase "efreti: I do bad things to my enemies"
 	phrase
@@ -1013,9 +1002,8 @@ phrase "efreti: I do bad things to my enemies"
 	phrase
 		"efreti: people who offend, attack, or oppress me"
 	word
-		.
-		.
-		!
+		"." 2
+		"!"
 
 phrase "exile: I perform harmful acts upon"
 	word
@@ -1183,7 +1171,7 @@ phrase "exile: I like to do things"
 		"exile: listen to (Band)"
 		"exile: eat good food"
 	word
-		.
+		"."
 
 phrase "efreti: I like to do things"
 	phrase
@@ -1194,7 +1182,7 @@ phrase "efreti: I like to do things"
 		"efreti: listen to (Band)"
 		"efreti: eat good food"
 	word
-		.
+		"."
 
 phrase "exile: I learned to do things"
 	phrase
@@ -1210,7 +1198,7 @@ phrase "exile: I learned to do things"
 		"exile: artistic or musical skill"
 		"exile: practical skill"
 	word
-		.
+		"."
 
 phrase "efreti: I learned to do things"
 	phrase
@@ -1226,7 +1214,7 @@ phrase "efreti: I learned to do things"
 		"efreti: artistic or musical skill"
 		"efreti: practical skill"
 	word
-		.
+		"."
 
 phrase "exile: I like to"
 	word
