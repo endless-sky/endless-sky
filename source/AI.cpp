@@ -2890,7 +2890,8 @@ bool AI::DoCloak(Ship &ship, Command &command)
 			}
 		}
 		// Choose to cloak if there are no enemies nearby and cloaking is sensible.
-		if(range == MAX_RANGE && cloakFreely && !ship.GetTargetShip())
+		// Player ships should never cloak automatically if not damaged.
+		if(range == MAX_RANGE && cloakFreely && !ship.GetTargetShip() && !ship.IsYours())
 			command |= Command::CLOAK;
 	}
 	return false;
