@@ -11,14 +11,6 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-mission "bribe test"
-	job
-	repeat
-	npc
-		government "Bounty Hunter"
-		personality staying
-		ship "Sparrow" "Bribe Me"
-
 # Ships of these types can be purchased and also used as mission sources.
 category "ship"
 	"Transport"
