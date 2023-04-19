@@ -604,6 +604,24 @@ interface "hud"
 		from -90 277
 		color "medium"
 		align left
+	sprite "ui/thrust bar frame"
+		from 0 454
+		align top right
+	bar "thrust"
+		from -108 461
+		dimensions 50 0
+		color "heat"
+		size 4
+	bar "turn"
+		from -108 478
+		dimensions 50 0
+		color "heat"
+		size 4
+	bar "lateralthrust"
+		from -108 495
+		dimensions 50 0
+		color "heat"
+		size 4
 
 	visible if "flagship ramscoop display"
 	sprite "ui/tactical/ramscoop"
@@ -627,22 +645,6 @@ interface "hud"
 		from -70 320
 		color "medium"
 		align right
-
-	bar "thrust"
-		from -110 460
-		dimensions 50 0
-		color "heat"
-		size 2
-	bar "turn"
-		from -110 476
-		dimensions 50 0
-		color "heat"
-		size 2
-	bar "lateralthrust"
-		from -110 492
-		dimensions 50 0
-		color "heat"
-		size 2
 
 
 
