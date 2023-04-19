@@ -72,6 +72,7 @@ namespace {
 	const string TARGET_ASTEROIDS_BASED_ON = "Target asteroid based on";
 	const string BACKGROUND_PARALLAX = "Parallax background";
 	const string ALERT_INDICATOR = "Alert indicator";
+	const string FLAGSHIP_VELOCITY_INDICATOR = "Flagship Velocity Indicator";
 
 	// How many pages of settings there are.
 	const int SETTINGS_PAGE_COUNT = 2;
@@ -252,6 +253,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 			}
 			else if(zone.Value() == ALERT_INDICATOR)
 				Preferences::ToggleAlert();
+			else if(zone.Value() == FLAGSHIP_VELOCITY_INDICATOR)
+				Preferences::ToggleFlagshipVelocityIndicator();
 			// All other options are handled by just toggling the boolean state.
 			else
 				Preferences::Set(zone.Value(), !Preferences::Has(zone.Value()));
@@ -516,6 +519,8 @@ void PreferencesPanel::DrawSettings()
 		"Show missile overlays",
 		"Highlight player's flagship",
 		"Rotate flagship in HUD",
+		FLAGSHIP_VELOCITY_INDICATOR,
+		"Show flagship data in HUD",
 		"Show planet labels",
 		"Show mini-map",
 		"Show asteroid scanner overlay",
@@ -723,6 +728,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = Preferences::GetAlertIndicator() != Preferences::AlertIndicator::NONE;
 			text = Preferences::AlertSetting();
+		}
+		else if(setting == FLAGSHIP_VELOCITY_INDICATOR)
+		{
+			isOn = Preferences::GetFlagshipVelocityIndicator() != Preferences::FlagshipVelocityIndicator::OFF;
+			text = Preferences::FlagshipVelocityIndicatorSetting();
 		}
 		else
 			text = isOn ? "on" : "off";

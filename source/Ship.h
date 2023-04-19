@@ -309,6 +309,12 @@ public:
 	double Hull() const;
 	double Fuel() const;
 	double Energy() const;
+	double DisplaySolar() const;
+	double DisplayRamScoop() const;
+	// These are for the thruster activity bars
+	double DisplayThrust() const;
+	double DisplayTurn() const;
+	double DisplayLateralThrust() const;
 	// A ship's heat is generally between 0 and 1, but if it receives
 	// heat damage the value can increase above 1.
 	double Heat() const;
@@ -363,9 +369,6 @@ public:
 	double TurnRate() const;
 	double Acceleration() const;
 	double MaxVelocity() const;
-	double DisplayThrust() const;
-	double DisplayTurn() const;
-	double DisplayLateralThrust() const;
 	double ReverseAcceleration() const;
 	double MaxReverseVelocity() const;
 	// This is their potential acceleration right now

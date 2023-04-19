@@ -2056,6 +2056,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			if(cost > 0. && heat < cost)
 				thrustCommand *= heat / cost;
 
+			thrustMagnitude = thrustCommand * slowMultiplier;
+
 			if(thrustCommand)
 			{
 				// If a reverse thrust is commanded and the capability does not
@@ -3396,6 +3398,47 @@ double Ship::Energy() const
 
 
 
+double Ship::DisplaySolar() const
+{
+	double scale = .2 + 1.8 / (.001 * position.Length() + 1);
+	double solarScaling = currentSystem->SolarPower() * scale;
+	double solarPower = solarScaling * attributes.Get("solar collection");
+	return solarPower;
+}
+
+
+
+double Ship::DisplayRamScoop() const
+{
+	double scale = .2 + 1.8 / (.001 * position.Length() + 1);
+	double ramScoop = currentSystem->SolarWind() * .03 * scale * (sqrt(attributes.Get("ramscoop")) + .05 * scale);
+	return ramScoop;
+}
+
+
+
+// These are for the thruster activity bars
+double Ship::DisplayThrust() const
+{
+	return -thrustMagnitude;
+}
+
+
+
+double Ship::DisplayTurn() const
+{
+	return -commands.Turn();
+}
+
+
+
+double Ship::DisplayLateralThrust() const
+{
+	return -commands.LateralThrust();
+}
+
+
+
 // Allow returning a heat value greater than 1 (i.e. conveying how overheated
 // this ship has become).
 double Ship::Heat() const
@@ -3668,27 +3711,6 @@ double Ship::MaxVelocity() const
 	// v = thrust / drag
 	double thrust = attributes.Get("thrust");
 	return (thrust ? thrust : attributes.Get("afterburner thrust")) / Drag();
-}
-
-
-
-double Ship::DisplayThrust() const
-{
-	return -thrustMagnitude;
-}
-
-
-
-double Ship::DisplayTurn() const
-{
-	return -commands.Turn();
-}
-
-
-
-double Ship::DisplayLateralThrust() const
-{
-	return -commands.LateralThrust();
 }
 
 

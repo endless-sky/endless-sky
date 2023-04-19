@@ -697,10 +697,20 @@ void Engine::Step(bool isActive)
 	if(flagship && flagship->Hull())
 	{
 		Point shipFacingUnit(0., -1.);
+		Point velocityFacingUnit(0., -1.);
 		if(Preferences::Has("Rotate flagship in HUD"))
+		{
 			shipFacingUnit = flagship->Facing().Unit();
-
+		}
 		info.SetSprite("player sprite", flagship->GetSprite(), shipFacingUnit, flagship->GetFrame(step));
+		// If the Flagship Velocity Indicator preference is set to "ghost" or "both",
+		// this will display the blue ship outline pointing in the ship's direction of motion.
+		if(Preferences::DisplayFlagshipVelocityGhost())
+		{
+			velocityFacingUnit = flagship->Velocity().Unit();
+			info.SetSprite("flagship velocity sprite", flagship->GetSprite(), velocityFacingUnit, flagship->GetFrame(step));
+			info.SetOutlineColor(Radar::GetColor(1));
+		}
 	}
 	if(currentSystem)
 		info.SetString("location", currentSystem->Name());
@@ -710,6 +720,34 @@ void Engine::Step(bool isActive)
 		// Have an alarm label flash up when enemy ships are in the system
 		if(alarmTime && step / 20 % 2 && Preferences::DisplayVisualAlert())
 			info.SetCondition("red alert");
+		if(Preferences::Has("Show flagship data in HUD"))
+		{
+			info.SetCondition("flagship data display");
+		}
+		// Display current flagship speed, potential acceleration, and potential turning
+		int flagshipSpeed = round(flagship->CurrentSpeed() * 60);
+		info.SetString("flagship speed", to_string(flagshipSpeed));
+		int flagshipAcceleration = flagship->TrueAcceleration() * 3600;
+		info.SetString("flagship acceleration", to_string(flagshipAcceleration));
+		int flagshipTurn = round(flagship->TrueTurnRate() * 60);
+		info.SetString("flagship turn", to_string(flagshipTurn));
+		int flagshipRamscoop = (flagship->DisplayRamScoop() * 100);
+		if(flagshipRamscoop >= 0.05 && Preferences::Has("Show flagship data in HUD"))
+		{
+			info.SetCondition("flagship ramscoop display");
+			info.SetString("flagship ramscoop", to_string(flagshipRamscoop));
+		}
+		int flagshipSolar = (flagship->DisplaySolar() * 100);
+		if(flagshipSolar >= 0.05 && Preferences::Has("Show flagship data in HUD"))
+		{
+			info.SetCondition("flagship solar display");
+			info.SetString("flagship solar", to_string(flagshipSolar));
+		}
+		// new thrust/turn/lateral bars.
+		info.SetBar("thrust", flagship->DisplayThrust());
+		info.SetBar("turn", flagship->DisplayTurn());
+		info.SetBar("lateralthrust", flagship->DisplayLateralThrust());
+		// Get the flagship's fuel capacity
 		double fuelCap = flagship->Attributes().Get("fuel capacity");
 		// If the flagship has a large amount of fuel, display a solid bar.
 		// Otherwise, display a segment for every 100 units of fuel.
@@ -1138,6 +1176,17 @@ void Engine::Draw() const
 		const Color &color = *colors.Get("flagship highlight");
 		// The flagship is always in the dead center of the screen.
 		OutlineShader::Draw(highlightSprite, Point(), size, color, highlightUnit, highlightFrame);
+	}
+	// Draw flagship velocity indicator
+	const shared_ptr<Ship> flagship = player.FlagshipPtr();
+	// If the Display Flagship Velocity Indicator is set to "arrow" or "both",
+	// this will display a small white arrow that indicates the direction of motion.
+	// The position of the arrow is set in interfaces.txt in the hud section.
+	if(flagship && flagship->Hull() && Preferences::DisplayFlagshipVelocityArrow())
+	{
+		Point center = hud->GetPoint("flagship velocity indicator");
+		double radius = hud->GetValue("flagship velocity radius");
+		PointerShader::Draw(center, flagship->Velocity().Unit(), 10.f, 10.f, radius, Color(1.f));
 	}
 
 	if(flash)
