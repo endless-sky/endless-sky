@@ -211,7 +211,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Weapon.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Weather.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Wormhole.cpp
-
+   ${CMAKE_SOURCE_DIR}/../../../source/ZoomGesture.cpp
 )
 
 target_link_libraries(main

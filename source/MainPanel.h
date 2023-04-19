@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Command.h"
 #include "Engine.h"
+#include "ZoomGesture.h"
 
 #include <list>
 
@@ -59,10 +60,9 @@ protected:
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Release(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
-	virtual bool FingerDown(int x, int y) override;
-	virtual bool FingerMove(int x, int y) override;
-	virtual bool FingerUp(int x, int y) override;
-	virtual bool Zoom(float amount) override;
+	virtual bool FingerDown(int x, int y, int fid) override;
+	virtual bool FingerMove(int x, int y, int fid) override;
+	virtual bool FingerUp(int x, int y, int fid) override;
 
 
 private:
@@ -99,8 +99,12 @@ private:
 	bool canClick = false;
 	bool canDrag = false;
 
-	Point touchSteer;
-	bool touchSteerBold = false;
+	Point osJoystick;	// onscreen joystick
+	bool osJoystickMax = false;
+	int osJoystickFinger = -1;
+
+	// track zoom gestures
+	ZoomGesture zoomGesture;
 };
 
 

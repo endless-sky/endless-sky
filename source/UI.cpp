@@ -90,16 +90,20 @@ bool UI::Handle(const SDL_Event &event)
 			//          determine where a drag begins from.
 			//   3. Clicks (fallback to mouse click)
 			if(!handled)
-				handled = (*it)->ZoneMouseDown(Point(x, y));
+			{
+				if((handled = (*it)->ZoneMouseDown(Point(x, y))))
+					zoneFingerId = event.tfinger.fingerId;
+			}
 			if(!handled)
 			{
 				(*it)->Hover(x, y);
-				handled = (*it)->FingerDown(x, y);
+				handled = (*it)->FingerDown(x, y, event.tfinger.fingerId);
 			}
 			if(!handled)
 			{
 				uint32_t now = SDL_GetTicks();
-				handled = (*it)->Click(x, y, (now - lastTap) > 500 ? 1 : 2);
+				if((handled = (*it)->Click(x, y, (now - lastTap) > 500 ? 1 : 2)))
+					panelFingerId = event.tfinger.fingerId;
 				lastTap = now;
 			}
 		}
@@ -116,8 +120,8 @@ bool UI::Handle(const SDL_Event &event)
 			//   2. Drag (ui events)
 
 			if(!handled)
-				handled = (*it)->FingerMove(x, y);
-			if (!handled)
+				handled = (*it)->FingerMove(x, y, event.tfinger.fingerId);
+			if(!handled && panelFingerId == event.tfinger.fingerId)
 				handled = (*it)->Drag(dx, dy);
 		}
 		else if(event.type == SDL_FINGERUP)
@@ -130,12 +134,18 @@ bool UI::Handle(const SDL_Event &event)
 			//   1. Zones (these will be buttons)
 			//   2. Finger down events (this will be game controls)
 			//   3. Clicks (fallback to mouse click)
-			if(!handled)
+			if(!handled && zoneFingerId == event.tfinger.fingerId)
+			{
 				handled = (*it)->ZoneMouseUp(Point(x, y));
+				zoneFingerId = -1;
+			}
 			if(!handled)
-				handled = (*it)->FingerUp(x, y);
-			if(!handled)
+				handled = (*it)->FingerUp(x, y, event.tfinger.fingerId);
+			if(!handled && panelFingerId == event.tfinger.fingerId)
+			{
 				handled = (*it)->Release(x, y);
+				panelFingerId = -1;
+			}
 		}
 		else if(event.type == SDL_KEYDOWN)
 		{
@@ -151,24 +161,14 @@ bool UI::Handle(const SDL_Event &event)
 		else if(event.type == Gesture::EventID())
 		{
 			auto gesture_type = static_cast<Gesture::GestureEnum>(event.user.code);
-			if(gesture_type == Gesture::ZOOM)
+
+			// if the panel doesn't want the gesture, convert it to a
+			// command, and try again
+			if(!(handled = (*it)->Gesture(gesture_type)))
 			{
-				//float total_zoom;
-				float incremental_zoom;
-				//memcpy(&total_zoom, &event.user.data1, sizeof(total_zoom));
-				memcpy(&incremental_zoom, &event.user.data2, sizeof(incremental_zoom));
-				handled = (*it)->Zoom(incremental_zoom);
-			}
-			else
-			{
-				// if the panel doesn't want the gesture, convert it to a
-				// command, and try again
-				if(!(handled = (*it)->Gesture(gesture_type)))
-				{
-					Command command(gesture_type);
-					Command::InjectOnce(command);
-					handled = (*it)->KeyDown(0, 0, command, true);
-				}
+				Command command(gesture_type);
+				Command::InjectOnce(command);
+				handled = (*it)->KeyDown(0, 0, command, true);
 			}
 		}
 

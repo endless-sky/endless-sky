@@ -290,19 +290,19 @@ void MainPanel::Draw()
 
 		mapButtonUi->Draw(info, this);
 
-		// Draw a steering control in the bottom left corner, if enabled
+		// Draw a onscreen joystick in the bottom left corner, if enabled
 		if(Preferences::Has("Onscreen Joystick"))
 		{
-			Rectangle scBounds = mapButtonUi->GetBox("steering control");
+			Rectangle scBounds = mapButtonUi->GetBox("onscreen joystick");
 			const char* colorStr = "faint";
-			if(touchSteer)
-				colorStr = touchSteerBold ? "dim" : "dimmer";
+			if(osJoystick)
+				colorStr = osJoystickMax ? "dim" : "dimmer";
 			const Color &color = *GameData::Colors().Get(colorStr);
-			RingShader::Draw(scBounds.Center(), scBounds.Width()/2, touchSteerBold ? 4.0 : 2.0, 1.0, color);
+			RingShader::Draw(scBounds.Center(), scBounds.Width()/2, osJoystickMax ? 4.0 : 2.0, 1.0, color);
 
-			if(touchSteer)
+			if(osJoystick)
 			{
-				RingShader::Draw(touchSteer, 50, 0, color);
+				RingShader::Draw(osJoystick, 50, 0, color);
 			}
 		}
 	}
@@ -446,55 +446,67 @@ bool MainPanel::Scroll(double dx, double dy)
 
 
 
-bool MainPanel::FingerDown(int x, int y)
+bool MainPanel::FingerDown(int x, int y, int fid)
 {
 	// Don't respond to clicks if another panel is active.
 	if(!canClick)
 		return false;
 
-	// Check for steering control
+	// If the gui is active, check for input
 	bool isActive = (GetUI()->Top().get() == this);
-	if (isActive && Preferences::Has("Onscreen Joystick"))
+	if (isActive)
 	{
-		const Interface *mapButtonUi = GameData::Interfaces().Get("main buttons");
-
-		Rectangle scBounds = mapButtonUi->GetBox("steering control");
-		Point pring(
-			x - scBounds.Center().X(),
-			y - scBounds.Center().Y()
-		);
-		int radius = scBounds.Width()/2;
-
-		// Are we within the ring?
-		if(pring.LengthSquared() < radius * radius)
+		// Check for onscreen joystick
+		if(Preferences::Has("Onscreen Joystick") && osJoystickFinger == -1)
 		{
-			touchSteer = Point(x, y);
-			touchSteerBold = false;
+			const Interface *mapButtonUi = GameData::Interfaces().Get("main buttons");
 
-			Ship* flagship = player.Flagship();
-			if(flagship)
+			Rectangle scBounds = mapButtonUi->GetBox("onscreen joystick");
+			Point pring(
+				x - scBounds.Center().X(),
+				y - scBounds.Center().Y()
+			);
+			int radius = scBounds.Width()/2;
+
+			// Are we within the ring?
+			if(pring.LengthSquared() < radius * radius)
 			{
-				flagship->SetMoveToward(pring * 5);
-				Command::InjectSet(Command::MOVETOWARD);
+				osJoystick = Point(x, y);
+				osJoystickMax = false;
+				osJoystickFinger = fid;
+
+				Ship* flagship = player.Flagship();
+				if(flagship)
+				{
+					flagship->SetMoveToward(pring * 5);
+					Command::InjectSet(Command::MOVETOWARD);
+				}
+				return true;
 			}
+		}
+
+		// Check for zoom events
+		if(zoomGesture.FingerDown(Point(x, y), fid))
+		{
 			return true;
 		}
 	}
 
-	return engine.FingerDown(Point(x, y));
+
+	return engine.FingerDown(Point(x, y), fid);
 }
 
 
 
-bool MainPanel::FingerMove(int x, int y)
+bool MainPanel::FingerMove(int x, int y, int fid)
 {
 	if (!canClick)
 		return false;
 
-	if(touchSteer)
+	if(osJoystick && fid == osJoystickFinger)
 	{
 		const Interface *mapButtonUi = GameData::Interfaces().Get("main buttons");
-		Rectangle scBounds = mapButtonUi->GetBox("steering control");
+		Rectangle scBounds = mapButtonUi->GetBox("onscreen joystick");
 
 		// Don't let the point leave the bounds of the ring
 		Point pring(
@@ -507,19 +519,19 @@ bool MainPanel::FingerMove(int x, int y)
 		float distance = pring.Length();
 		if(distance > radius)
 		{
-			touchSteer = scBounds.Center() + pring * (radius / distance);
-			if(!touchSteerBold)
+			osJoystick = scBounds.Center() + pring * (radius / distance);
+			if(!osJoystickMax)
 			{
-				touchSteerBold = true;
+				osJoystickMax = true;
 				Command::InjectSet(Command::AFTERBURNER);
 			}
 		}
 		else
 		{
-			touchSteer = Point(x, y);
-			if(touchSteerBold)
+			osJoystick = Point(x, y);
+			if(osJoystickMax)
 			{
-				touchSteerBold = false;
+				osJoystickMax = false;
 				Command::InjectUnset(Command::AFTERBURNER);
 			}
 		}
@@ -532,31 +544,33 @@ bool MainPanel::FingerMove(int x, int y)
 
 		return true;
 	}
+	else if(zoomGesture.FingerMove(Point(x, y), fid))
+	{
+		Preferences::ZoomView(zoomGesture.Zoom());
+		return true;
+	}
 
-	return engine.FingerMove(Point(x, y));
+	return engine.FingerMove(Point(x, y), fid);
 }
 
 
 
-bool MainPanel::FingerUp(int x, int y)
+bool MainPanel::FingerUp(int x, int y, int fid)
 {
-	if(touchSteer)
+	if(osJoystick && fid == osJoystickFinger)
 	{
-		touchSteer = Point();
-		touchSteerBold = false;
+		osJoystick = Point();
+		osJoystickMax = false;
+		osJoystickFinger = -1;
 		Command::InjectUnset(Command::MOVETOWARD);
 		Command::InjectUnset(Command::AFTERBURNER);
 		return true;
 	}
-	return engine.FingerUp(Point(x, y));
-}
-
-
-
-bool MainPanel::Zoom(float amount)
-{
-	Preferences::ZoomView(amount);
-	return true;
+	else if(zoomGesture.FingerUp(Point(x, y), fid))
+	{
+		return true;
+	}
+	return engine.FingerUp(Point(x, y), fid);
 }
 
 

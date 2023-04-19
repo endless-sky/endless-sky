@@ -331,19 +331,9 @@ void Gesture::Start(float x, float y, int finger_id)
       m_xmin = m_xmax = x;
       m_valid = true;
    }
-   else if(finger_id == 1)
-   {
-      if(!m_path.empty())
-      {
-         m_finger1.first = m_finger1.second = m_path.back();
-         m_path.clear(); // don't track the path, two finger events are zooms
-         m_finger2.first = m_finger2.second = Point{x, y};
-         m_valid = true;
-      }
-   }
    else
    {
-      // we don't support more than one or two finger gestures.
+      // Only support single finger gestures
       m_valid = false;
    }
 }
@@ -355,46 +345,21 @@ Gesture::GestureEnum Gesture::Add(float x, float y, int finger_id)
    if(!m_valid)
       return NONE;
    
-   Point prev_finger1 = m_finger1.second;
-   Point prev_finger2 = m_finger2.second;
    if(finger_id == 0 && !m_path.empty())
    {
-      m_finger1.second = Point{x, y};
       if(!m_path.empty())
       {
          if(SDL_GetTicks() - m_tick_start > 2000)
             m_valid = false;
          m_path.push_back({x, y});
+
          if(x < m_xmin) m_xmin = x;
          else if(x > m_xmax) m_xmax = x;
          if(y < m_ymin) m_ymin = y;
          else if(y > m_ymax) m_ymax = y;
       }
    }
-   else if(finger_id == 1)
-      m_finger2.second = Point{x, y};
 
-   if(m_path.empty())
-   {
-      SDL_Event event{};
-      event.type = EventID();
-      event.user.code = ZOOM;
-      // The data1 and data2 pointer fields are almost unusable. They are
-      // different sizes on 32 vs 64 bit architectures, and I can't put a
-      // reference to static data there due to race conditions, and I can't
-      // allocate data on the fly because I'm not guaranteed that the target
-      // of the event actually cares about it. For now, memcpy the 32 bit
-      // floats in there that I want.
-      float total_zoom = ZoomAmount();
-      float d1 = Distance(prev_finger1, prev_finger2);
-      float d2 = Distance(m_finger1.second, m_finger2.second);
-      float incremental_zoom = d2/d1;
-      memcpy(&event.user.data1, &total_zoom, sizeof(total_zoom));
-      memcpy(&event.user.data2, &incremental_zoom, sizeof(incremental_zoom));
-
-      SDL_PushEvent(&event);
-      return ZOOM;
-   }
    return NONE;
 }
 
@@ -446,14 +411,6 @@ Gesture::GestureEnum Gesture::End()
    return UNISTROKES[best_idx].name;
 }
 
-
-
-float Gesture::ZoomAmount() const
-{
-   float d1 = Distance(m_finger1.first, m_finger2.first);
-   float d2 = Distance(m_finger1.second, m_finger2.second);
-   return d2/d1;
-}
 
 
 

@@ -96,9 +96,9 @@ public:
 	void SelectGroup(int group, bool hasShift, bool hasControl);
 
 	// Touchscreen controls
-	bool FingerDown(const Point &p);
-	bool FingerUp(const Point &p);
-	bool FingerMove(const Point &p);
+	bool FingerDown(const Point &p, int fid);
+	bool FingerUp(const Point &p, int fid);
+	bool FingerMove(const Point &p, int fid);
 
 	// Break targeting on all projectiles between the player and the given
 	// government; gov projectiles stop targeting the player and player's
@@ -251,7 +251,7 @@ private:
 	bool isRightClick = false;
 	bool isRadarClick = false;
 	bool isTouch = false;
-	bool isFingerDown = false;
+	int isFingerDown = -1;
 	bool moveTowardActive = false;
 	bool isDoubleTap = false;
 	Point clickPoint;

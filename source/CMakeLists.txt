@@ -360,6 +360,8 @@ target_sources(EndlessSkyLib PRIVATE
 	WeightedList.h
 	Wormhole.cpp
 	Wormhole.h
+	ZoomGesture.cpp
+	ZoomGesture.h
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
 	opengl.cpp

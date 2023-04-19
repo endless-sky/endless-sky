@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "DistanceMap.h"
 #include "Point.h"
+#include "ZoomGesture.h"
 #include "text/WrappedText.h"
 
 #include <map>
@@ -88,7 +89,9 @@ protected:
 	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
-	virtual bool Zoom(float z) override;
+	virtual bool FingerDown(int x, int y, int fid) override;
+	virtual bool FingerMove(int x, int y, int fid) override;
+	virtual bool FingerUp(int x, int y, int fid) override;
 
 	// Get the color mapping for various system attributes.
 	static Color MapColor(double value);
@@ -202,6 +205,7 @@ private:
 	std::vector<Link> links;
 
 	double mapZoom = 1.0;
+	ZoomGesture zoomGesture;
 };
 
 

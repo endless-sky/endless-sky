@@ -28,13 +28,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Gesture
 {
 public:
-   enum GestureEnum {NONE, X, CIRCLE, CARET_UP, CARET_LEFT, CARET_RIGHT, CARET_DOWN, ZOOM};
+   enum GestureEnum {NONE, X, CIRCLE, CARET_UP, CARET_LEFT, CARET_RIGHT, CARET_DOWN};
 
    void Start(float x, float y, int finger_id);
    GestureEnum Add(float x, float y, int finger_id);
    GestureEnum End();
-
-   float ZoomAmount() const;
 
    struct Point { float x; float y; };
 
@@ -44,8 +42,6 @@ public:
 
 private:
    std::vector<Point> m_path;
-   std::pair<Point, Point> m_finger1;
-   std::pair<Point, Point> m_finger2;
 
    float m_ymin;
    float m_ymax;
@@ -53,7 +49,6 @@ private:
    float m_xmax;
 
    uint64_t m_tick_start = 0;
-   float m_zoom = 0;
 
    bool m_valid = false;
 };

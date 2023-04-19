@@ -1464,9 +1464,9 @@ interface "main buttons" bottom right
 	button "Toggle fast-forward"
 		from 0 0 to 48 48
 
-	# box in bottom left corner that defines a steering control
+	# box in bottom left corner that defines a location for the onscreen joystick
 	anchor bottom left
-	box "steering control"
+	box "onscreen joystick"
 		center 128 -128
 		dimensions 192 192
 		

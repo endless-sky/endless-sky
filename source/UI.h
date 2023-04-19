@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <memory>
 #include <vector>
+#include <map>
 
 #include <SDL2/SDL_events.h>
 
@@ -94,6 +95,10 @@ private:
 	std::vector<const Panel *> toPop;
 
 	uint32_t lastTap = 0;
+	// Track which finger was used for zone/panels, so we send followup motion/
+	// finger controls to the correct one. If we want to be able to 
+	int zoneFingerId = -1;
+	int panelFingerId = -1;
 };
 
 

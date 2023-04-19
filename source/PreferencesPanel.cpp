@@ -187,12 +187,12 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 
 bool PreferencesPanel::Click(int x, int y, int clicks)
 {
-	return FingerDown(x, y) && FingerUp(x, y);
+	return FingerDown(x, y, 0) && FingerUp(x, y, 0);
 }
 
 
 
-bool PreferencesPanel::FingerDown(int x, int y)
+bool PreferencesPanel::FingerDown(int x, int y, int fid)
 {
 	if(editing >= 0 && editing < static_cast<ssize_t>(zones.size()))
 	{
@@ -204,7 +204,7 @@ bool PreferencesPanel::FingerDown(int x, int y)
 
 
 
-bool PreferencesPanel::FingerUp(int x, int y)
+bool PreferencesPanel::FingerUp(int x, int y, int fid)
 {
 	EndEditing();
 

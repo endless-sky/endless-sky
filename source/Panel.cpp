@@ -232,28 +232,21 @@ bool Panel::Release(int x, int y)
 
 
 
-bool Panel::FingerDown(int x, int y)
+bool Panel::FingerDown(int x, int y, int fid)
 {
 	return false;
 }
 
 
 
-bool Panel::FingerMove(int x, int y)
+bool Panel::FingerMove(int x, int y, int fid)
 {
 	return false;
 }
 
 
 
-bool Panel::FingerUp(int x, int y)
-{
-	return false;
-}
-
-
-
-bool Panel::Zoom(float amount)
+bool Panel::FingerUp(int x, int y, int fid)
 {
 	return false;
 }

@@ -57,9 +57,9 @@ protected:
 
 	// The mouse logic relies on interleaved hover and draw events, which don't
 	// work at all for touchscreens.
-	virtual bool FingerDown(int x, int y) override;
-	virtual bool FingerMove(int x, int y) override;
-	virtual bool FingerUp(int x, int y) override;
+	virtual bool FingerDown(int x, int y, int fid) override;
+	virtual bool FingerMove(int x, int y, int fid) override;
+	virtual bool FingerUp(int x, int y, int fid) override;
 
 	int GetShipIndexFromPoint(int x, int y);
 
@@ -113,6 +113,7 @@ private:
 	int touchSelectedShipIndex = -1;
 	Point touchPos;
 	int touchScrollStart = 0;
+	int touchFingerId = -1;
 };
 
 

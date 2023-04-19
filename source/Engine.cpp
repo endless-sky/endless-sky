@@ -1235,17 +1235,20 @@ void Engine::SelectGroup(int group, bool hasShift, bool hasControl)
 
 
 
-bool Engine::FingerDown(const Point &p)
+bool Engine::FingerDown(const Point &p, int fid)
 {
-	isTouch = true;
-	isFingerDown = true;
-	auto now = std::chrono::steady_clock::now();
-	if (now - last_tap_stamp < std::chrono::milliseconds(500))
+	if(isFingerDown == -1)
 	{
-		isDoubleTap = true;
+		isTouch = true;
+		isFingerDown = fid;
+		auto now = std::chrono::steady_clock::now();
+		if (now - last_tap_stamp < std::chrono::milliseconds(500))
+		{
+			isDoubleTap = true;
+		}
+		last_tap_stamp = now;
+		Click(p, p, false, false);
 	}
-	last_tap_stamp = now;
-	Click(p, p, false, false);
 
 	// Returning true here means don't convert this to a normal mouse click
 	return true;
@@ -1254,29 +1257,31 @@ bool Engine::FingerDown(const Point &p)
 
 
 
-bool Engine::FingerUp(const Point &p)
+bool Engine::FingerUp(const Point &p, int fid)
 {
-	isTouch = true;
-	isFingerDown = false;
-	isDoubleTap = false;
+	if(fid == isFingerDown)
+	{
+		isTouch = true;
+		isFingerDown = -1;
+		isDoubleTap = false;
 
-	// Determine if the point was within the radar display.
-	const Interface *hud = GameData::Interfaces().Get("hud");
-	Point radarCenter = hud->GetPoint("radar");
-	double radarRadius = hud->GetValue("radar radius");
-	if(Preferences::Has("Clickable radar display") && (p - radarCenter).Length() <= radarRadius)
-		isRadarClick = true;
-	else
-		isRadarClick = false;
+		// Determine if the point was within the radar display.
+		const Interface *hud = GameData::Interfaces().Get("hud");
+		Point radarCenter = hud->GetPoint("radar");
+		double radarRadius = hud->GetValue("radar radius");
+		if(Preferences::Has("Clickable radar display") && (p - radarCenter).Length() <= radarRadius)
+			isRadarClick = true;
+		else
+			isRadarClick = false;
 
-	clickPoint = isRadarClick ? p - radarCenter : p;
-	if(isRadarClick)
-		clickBox = Rectangle::WithCorners(
-			(p - radarCenter) / RADAR_SCALE + center,
-			(p - radarCenter) / RADAR_SCALE  + center);
-	else
-		clickBox = Rectangle::WithCorners(p / zoom + center, p / zoom + center);
-
+		clickPoint = isRadarClick ? p - radarCenter : p;
+		if(isRadarClick)
+			clickBox = Rectangle::WithCorners(
+				(p - radarCenter) / RADAR_SCALE + center,
+				(p - radarCenter) / RADAR_SCALE  + center);
+		else
+			clickBox = Rectangle::WithCorners(p / zoom + center, p / zoom + center);
+	}
 
 	return true;
 }
@@ -1284,27 +1289,29 @@ bool Engine::FingerUp(const Point &p)
 
 
 
-bool Engine::FingerMove(const Point &p)
+bool Engine::FingerMove(const Point &p, int fid)
 {
-	isTouch = true;
-	isFingerDown = true;
+	if(fid == isFingerDown)
+	{
+		isTouch = true;
 
-	// Determine if the left-click was within the radar display.
-	const Interface *hud = GameData::Interfaces().Get("hud");
-	Point radarCenter = hud->GetPoint("radar");
-	double radarRadius = hud->GetValue("radar radius");
-	if(Preferences::Has("Clickable radar display") && (p - radarCenter).Length() <= radarRadius)
-		isRadarClick = true;
-	else
-		isRadarClick = false;
+		// Determine if the left-click was within the radar display.
+		const Interface *hud = GameData::Interfaces().Get("hud");
+		Point radarCenter = hud->GetPoint("radar");
+		double radarRadius = hud->GetValue("radar radius");
+		if(Preferences::Has("Clickable radar display") && (p - radarCenter).Length() <= radarRadius)
+			isRadarClick = true;
+		else
+			isRadarClick = false;
 
-	clickPoint = isRadarClick ? p - radarCenter : p;
-	if(isRadarClick)
-		clickBox = Rectangle::WithCorners(
-			(p - radarCenter) / RADAR_SCALE + center,
-			(p - radarCenter) / RADAR_SCALE  + center);
-	else
-		clickBox = Rectangle::WithCorners(p / zoom + center, p / zoom + center);
+		clickPoint = isRadarClick ? p - radarCenter : p;
+		if(isRadarClick)
+			clickBox = Rectangle::WithCorners(
+				(p - radarCenter) / RADAR_SCALE + center,
+				(p - radarCenter) / RADAR_SCALE  + center);
+		else
+			clickBox = Rectangle::WithCorners(p / zoom + center, p / zoom + center);
+	}
 
 	return true;
 }
@@ -2173,7 +2180,7 @@ void Engine::HandleMouseClicks()
 	{
 		// If this is a touch event, treat an "empty" click as a request to move
 		// the flagship in that direction.
-		if (isFingerDown)
+		if(isFingerDown != -1)
 		{
 			// if the touch is on the flagship, treat it as a request to clear the
 			// target
@@ -2208,7 +2215,7 @@ void Engine::HandleTouchEvents()
 	if(!flagship)
 		return;
 
-	if(isFingerDown)
+	if(isFingerDown != -1)
 	{
 		if(moveTowardActive)
 		{

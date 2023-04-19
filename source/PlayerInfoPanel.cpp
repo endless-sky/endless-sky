@@ -924,8 +924,11 @@ PlayerInfoPanel::SortableColumn::SortableColumn(
 
 
 
-bool PlayerInfoPanel::FingerDown(int x, int y)
+bool PlayerInfoPanel::FingerDown(int x, int y, int fid)
 {
+	if(touchFingerId != -1)
+		return false;
+	touchFingerId = fid;
 	uint32_t now = SDL_GetTicks();
 	bool doubleClick = now - lastClickTime < 500;
 	lastClickTime = now;
@@ -975,8 +978,11 @@ bool PlayerInfoPanel::FingerDown(int x, int y)
 
 
 
-bool PlayerInfoPanel::FingerMove(int x, int y)
+bool PlayerInfoPanel::FingerMove(int x, int y, int fid)
 {
+	if(touchFingerId != fid)
+		return false;
+	
 	if(touchSelectedShipIndex >= 0)
 	{
 		isDragging = true;
@@ -994,8 +1000,11 @@ bool PlayerInfoPanel::FingerMove(int x, int y)
 
 
 
-bool PlayerInfoPanel::FingerUp(int x, int y)
+bool PlayerInfoPanel::FingerUp(int x, int y, int fid)
 {
+	if(touchFingerId != fid)
+		return false;
+	
 	isDragging = false;
 
 	// Do nothing if the block of ships has not been dragged to a valid new

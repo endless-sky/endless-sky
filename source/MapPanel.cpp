@@ -565,28 +565,47 @@ bool MapPanel::Scroll(double dx, double dy)
 
 
 
-bool MapPanel::Zoom(float z)
+bool MapPanel::FingerDown(int x, int y, int fid)
 {
-	const Interface *mapInterface = GameData::Interfaces().Get("map");
+	return zoomGesture.FingerDown(Point(x, y), fid);
+}
 
-	// We want to support arbitrary zoom levels, but the upstream zoom config
-	// is an integer power of 1.5, so we have to convert it when we store it
-	// in the player object or check the bounds.
 
-	mapZoom *= z;
-	int player_zoom_level = log(mapZoom) / log(1.5);
-	if(player_zoom_level >= mapInterface->GetValue("max zoom"))
+
+bool MapPanel::FingerMove(int x, int y, int fid)
+{
+	if(zoomGesture.FingerMove(Point(x, y), fid))
 	{
-		player_zoom_level = mapInterface->GetValue("max zoom");
-		mapZoom = pow(1.5, player_zoom_level);
+		const Interface *mapInterface = GameData::Interfaces().Get("map");
+
+		// We want to support arbitrary zoom levels, but the upstream zoom config
+		// is an integer power of 1.5, so we have to convert it when we store it
+		// in the player object or check the bounds.
+
+		center += zoomGesture.CenterDelta();
+		mapZoom *= zoomGesture.Zoom();
+		int player_zoom_level = log(mapZoom) / log(1.5);
+		if(player_zoom_level >= mapInterface->GetValue("max zoom"))
+		{
+			player_zoom_level = mapInterface->GetValue("max zoom");
+			mapZoom = pow(1.5, player_zoom_level);
+		}
+		else if(player_zoom_level <= mapInterface->GetValue("min zoom"))
+		{
+			player_zoom_level = mapInterface->GetValue("min zoom");
+			mapZoom = pow(1.5, player_zoom_level);
+		}
+		player.SetMapZoom(player_zoom_level);
+		return true;
 	}
-	else if(player_zoom_level <= mapInterface->GetValue("min zoom"))
-	{
-		player_zoom_level = mapInterface->GetValue("min zoom");
-		mapZoom = pow(1.5, player_zoom_level);
-	}
-	player.SetMapZoom(player_zoom_level);
-	return true;
+	return false;
+}
+
+
+
+bool MapPanel::FingerUp(int x, int y, int fid)
+{
+	return zoomGesture.FingerUp(Point(x, y), fid);
 }
 
 

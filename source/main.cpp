@@ -329,23 +329,15 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			if(event.type == SDL_MOUSEMOTION)
 				cursorTime = 0;
 
-			// Filter touch events through the gesture manager
+			// Filter touch events through the gesture manager. It will create
+			// user gesture events we can use for input.
 			if(event.type == SDL_FINGERDOWN)
 			{
 				gesture.Start(event.tfinger.x * Screen::Width(), event.tfinger.y * Screen::Height(), event.tfinger.fingerId);
 			}
 			else if(event.type == SDL_FINGERMOTION)
 			{
-				if(Gesture::ZOOM == gesture.Add(event.tfinger.x* Screen::Width(), event.tfinger.y * Screen::Height(), event.tfinger.fingerId))
-				{
-					// The gesture manager will convert these to Gesture ZOOM events
-					// TODO: now that we know it is a zoom event, we would in theory
-					//       use our magic time machine to undo any taps/clicks that
-					//       occurred at the start of the gesture.
-					// TODO: Should we hook these in MainPanel instead? then we can
-					//			explicitly fake a fingerup if we need to.
-					continue;
-				}
+				gesture.Add(event.tfinger.x* Screen::Width(), event.tfinger.y * Screen::Height(), event.tfinger.fingerId);
 			}
 			else if(event.type == SDL_FINGERUP)
 			{
