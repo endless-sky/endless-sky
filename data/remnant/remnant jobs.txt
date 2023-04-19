@@ -317,7 +317,7 @@ mission "Remnant: Logistics Outfitter Delivery"
 mission "Remnant: Logistics Salvage Delivery"
 	name "Salvage delivery to <planet>"
 	description `Deliver <cargo> components from recent salvage operations to the outfitters on <planet> for research, refurbishment, or recycling. Logistics adjustment is <payment>.`
-	cargo "remnant salvage" 5 4 .08
+	cargo "remnant salvage" 5 4 .06
 	job
 	repeat
 	to offer
@@ -337,8 +337,7 @@ mission "Remnant: Logistics Salvage Delivery"
 		dialog phrase "generic cargo on visit"
 	on complete
 		dialog `Two armed repair technicians inspects the <cargo> and authorize your payment of <payment>.`
-		payment
-		payment 10000
+		payment 25000 300
 
 
 
