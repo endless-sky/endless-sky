@@ -2090,15 +2090,22 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		}
 		// Lateral Thrust functionality.
 		// This pulls "lateral thrust ratio" from the ship definition,
-		// and if there isn't one, it uses the default value of 0.25.
-		// Future thought: move this default into a gamerule or interfaces.txt
+		// and if there isn't one, it uses the default value of 0.25,
+		// which is listed as a gamerule value.
 		double latThrustCommand = commands.LateralThrust();
 		double latThrust = 0.;
 		double lateralThrustValue = 0.;
 		if(attributes.Get("lateral thrust ratio"))
 			lateralThrustValue = attributes.Get("lateral thrust ratio");
 		else if(!attributes.Get("lateral thrust ratio"))
-			lateralThrustValue = GameData::GetGamerules().DefaultLateralThrustRatio();
+		{
+			// lateralThrustValue = GameData::GetGamerules().DefaultLateralThrustRatio();
+			if(mass < 2500)
+				lateralThrustValue = (3000 - mass) / 3500;
+			else
+				lateralThrustValue = 0.1;
+		}
+
 		if(latThrustCommand)
 		{
 			// Check if we are able to apply this thrust.
