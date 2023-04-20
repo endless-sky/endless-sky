@@ -1337,10 +1337,10 @@ outfit "Nuclear Missile"
 		ammo "Nuclear Missile"
 		stream
 		icon "icon/nuke"
-		"hit effect" "nuke explosion"
-		"hit effect" "nuke residue fast" 10
-		"hit effect" "nuke residue slow" 10
+		"submunition" "Active Nuclear Missile"
+		"split range" 300
 		"die effect" "missile death"
+		"hit effect" "medium explosion"
 		"inaccuracy" 1
 		"velocity" 6
 		"lifetime" 800
@@ -1353,19 +1353,43 @@ outfit "Nuclear Missile"
 		"homing" 4
 		"radar tracking" .5
 		"optical tracking" 1
-		"trigger radius" 30
-		"blast radius" 150
-		"shield damage" 9000
-		"hull damage" 7000
-		"hit force" 4000
+		"shield damage" -23700
+		"hull damage" -15800
+		"hit force" -5700
 		"missile strength" 200
 	description "It has been centuries since the last nuclear war was fought, and until very recently, most people in the galaxy assumed that that era of chaos and destruction was forever behind us..."
 	description "	[Nuclear missiles are a one-shot weapon: each missile occupies a gun slot, and after it is fired, the slot it was in is left empty.]"
+
+
+outfit "Active Nuclear Missile"
+	weapon
+		sprite "projectile/missile"
+			"no repeat"
+			"frame rate" .25
+		"hit effect" "nuke explosion"
+		"hit effect" "nuke residue fast" 20
+		"hit effect" "nuke residue slow" 15
+		"die effect" "missile death"
+		"lifetime" 400
+		"acceleration" .8
+		"drag" .1
+		"turn" 4
+		"homing" 4
+		"radar tracking" .5
+		"optical tracking" 1
+		"trigger radius" 270
+		"blast radius" 300
+		"shield damage" 24000
+		"hull damage" 16000
+		"hit force" 6000
+		"missile strength" 200
+
 
 effect "nuke explosion"
 	sprite "effect/explosion/nuke"
 		"no repeat"
 		"frame rate" 30
+		"scale" 2
 	sound "explosion nuke"
 	"lifetime" 15
 	"random angle" 360
@@ -1377,20 +1401,20 @@ effect "nuke residue fast"
 	sprite "effect/explosion/huge"
 		"no repeat"
 		"frame rate" 15
-	"lifetime" 36
+	"lifetime" 48
 	"random angle" 360
 	"random spin" 5
-	"random velocity" 8
+	"random velocity" 12
 	"velocity scale" 0.1
 
 effect "nuke residue slow"
 	sprite "effect/explosion/huge"
 		"no repeat"
 		"frame rate" 10
-	"lifetime" 60
+	"lifetime" 90
 	"random angle" 360
 	"random spin" 5
-	"random velocity" 5
+	"random velocity" 7
 	"velocity scale" 0.1
 
 
