@@ -55,12 +55,6 @@ protected:
 	virtual bool Release(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
 
-	// The mouse logic relies on interleaved hover and draw events, which don't
-	// work at all for touchscreens.
-	virtual bool FingerDown(int x, int y, int fid) override;
-	virtual bool FingerMove(int x, int y, int fid) override;
-	virtual bool FingerUp(int x, int y, int fid) override;
-
 	int GetShipIndexFromPoint(int x, int y);
 
 
@@ -99,21 +93,16 @@ private:
 	// Column headers that sort ships when clicked.
 	std::vector<ClickZone<InfoPanelState::ShipComparator *>> menuZones;
 
-	// Keep track of which ship the mouse is hovering over.
-	int hoverIndex = -1;
-
 	// Initialize mouse point to something off-screen to not
 	// make the game think the player is hovering on something.
 	Point hoverPoint = Point(-10000, -10000);
 
 	// When reordering ships, the names of ships being moved are displayed alongside the cursor.
 	bool isDragging = false;
+	Point dragPoint;
 
-	uint32_t lastClickTime = 0;
-	int touchSelectedShipIndex = -1;
-	Point touchPos;
-	int touchScrollStart = 0;
-	int touchFingerId = -1;
+	Point scrollPos;
+	int scrollStart = 0;
 };
 
 
