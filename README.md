@@ -7,6 +7,8 @@ If you are looking to try out the cutting edge (and possible failures) of our at
 
 # Development
 
+Look here to find a list of implemented features and to talk about them: https://github.com/endless-sky/Endless-Sky-Delta/discussions/15
+
 This fork has a number of branches, two of which are our primary work environment.
 
 Mirror : This is our base branch, and is kept synchronized with the main Endless Sky "master" branch.
