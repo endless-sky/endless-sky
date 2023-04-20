@@ -2434,7 +2434,8 @@ mission "FW Syndicate Extremists 1A"
 			
 			`	"I don't see why not," says Danforth, fixing Alastair with a piercing gaze. "It's certainly better than leaving it in Syndicate hands."`
 			label end
-			`	Alastair tells you that the device is being kept on Hephaestus, and the engineers there can install it in your ship. Meanwhile, Danforth will call in the rest of his Oathkeeper fleet. "And when we're through with this, I'll be seeing to it that this Oracle is destroyed so that this can never happen again," says Danforth. Alastair gives a meek nod in agreement. "Now, where are the Alphas."`
+			`	Alastair tells you that the device is being kept on Hephaestus, and the engineers there can install it in your ship. "We still don't understand much about the device, and it's very difficult to work with," he says. "Once installed, the device can't be removed. Make sure you fly over with your best ship."` 
+			`	Meanwhile, Danforth will call in the rest of his Oathkeeper fleet. "And when we're through with this, I'll be seeing to it that this Oracle is destroyed so that this can never happen again," says Danforth. Alastair gives a meek nod in agreement. "Now, where are the Alphas."`
 			`	"The Alphas are holed up on Buccaneer Bay," says Alastair, "an old pirate world. Good luck in defeating them."`
 				accept
 	
