@@ -336,6 +336,15 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 
 
 // Allow scrolling by click and drag.
+bool ConversationPanel::Click(int x, int y, int clicks)
+{
+	// Returning true here, so that drag will get called
+	return true;
+}
+
+
+
+// Allow scrolling by click and drag.
 bool ConversationPanel::Drag(double dx, double dy)
 {
 	scroll = min(0., max(maxScroll, scroll + dy));
