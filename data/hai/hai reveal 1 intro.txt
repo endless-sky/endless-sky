@@ -437,7 +437,7 @@ mission "Hai Tour [5] Tour Ends"
 	on offer
 		conversation
 			branch "skipped tours"
-				has "Hai Witness Unfettered [1]"
+				has "Hai Witness Unfettered [1]: done"
 			`After looking around Cloudfire for some time, you stop in the spaceport for a moment to absorb everything you've seen. A screen is playing through news on the wall nearby, and your ears suddenly perk up at the word "marauder".`
 			`	"Yesterday, a marauder terrorized the inhabitants of Allhome. They arrived by posing as a trader to investigate rumors currently circulating in human space about our existence. Hai security failed to identify the danger, and the individual snuck his ship in and landed at the spaceport without any opposition. Then his crew kidnapped nearly four dozen Hai and hijacked a Geocoris before making off with their spoils."`
 				goto "that's awful"
