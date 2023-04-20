@@ -71,4 +71,3 @@ CMakeUserPresets.json
 
 # static code analysis
 /.scannerwork
-.github/*
