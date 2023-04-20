@@ -1187,6 +1187,9 @@ void Engine::Draw() const
 		Point center = hud->GetPoint("flagship velocity indicator");
 		double radius = hud->GetValue("flagship velocity radius");
 		PointerShader::Draw(center, flagship->Velocity().Unit(), 10.f, 10.f, radius, Color(1.f));
+		PointerShader::Draw(center, -flagship->Facing().Unit(), 20.f, flagship->DisplayThrust() * 80, 0., Color(1.f, 0.f, 0.f, 0.f));
+		Angle normal = flagship->Facing() + 90;
+		PointerShader::Draw(center, -normal.Unit(), 20.f, flagship->DisplayLateralThrust() * 80, 0., Color(1.f, 0.f, 0.f, 0.f));
 	}
 
 	if(flash)
