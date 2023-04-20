@@ -159,22 +159,6 @@ government "Bounty Hunter that Won't Enter Hai Space"
 	"fine" 0
 	"hostile hail" "hostile bounty hunter"
 
-government "Bounty Hunter that Attacks Hai"
-	"display name" "Bounty Hunter"
-	swizzle 6
-	color "governments: Pirate"
-	
-	"attitude toward"
-		"Hai (Friendly Unfettered)" -.3
-		"Hai" -.3
-		"Hai (Wormhole Access)" -.3
-		"Hai (Unfettered)" -.3
-
-	"player reputation" -1000
-	"bribe" .2
-	"fine" 0
-	"hostile hail" "hostile bounty hunter"
-
 government "Coalition"
 	swizzle 5
 	color 1 .6 .7
@@ -193,20 +177,6 @@ government "Deep Security"
 	swizzle 0
 	"player reputation" 1
 	"attitude toward"
-		"Deep Security that won't enter wormhole" 1.0
-		"Merchant" .5
-		"Pirate" -.2
-		"Pirate (Devil-Run Gang)" -.2
-		"Smuggler (Hai Trafficker)" -.2
-	"friendly hail" "friendly deep"
-	"hostile hail" "hostile deep"
-
-government "Deep Security that won't enter wormhole"
-	"display name" "Deep Security"
-	swizzle 0
-	"player reputation" 1
-	"attitude toward"
-		"Deep Security" 1
 		"Merchant" .5
 		"Pirate" -.2
 		"Pirate (Devil-Run Gang)" -.2
@@ -473,7 +443,6 @@ government "Hai"
 		"Hai (Friendly Unfettered)" .1
 		"Hai (Unfettered Civilians)" .1
 		"Merchant" .01
-		"Bounty Hunter that Attacks Hai" -.01
 		"Elenctic Commune" .1
 	"bribe" .2
 	"friendly hail" "friendly hai"
@@ -497,7 +466,6 @@ government "Hai (Wormhole Access)"
 		"Hai (Friendly Unfettered)" .1
 		"Hai (Unfettered Civilians)" .1
 		"Merchant" .01
-		"Bounty Hunter that Attacks Hai" -.01
 		"Elenctic Commune" .1
 	"bribe" .2
 	"friendly hail" "friendly hai"
@@ -589,7 +557,6 @@ government "Hai (Unfettered)"
 		"Pug (Wanderer)" -.01
 		"Merchant" -.01
 		"Kor Efret" -.01
-		"Bounty Hunter that Attacks Hai" -.01
 		"Elenctic Commune" .1
 	"bribe" .02
 	"fine" 0
@@ -623,7 +590,6 @@ government "Hai (Friendly Unfettered)"
 		"Hai" .01
 		"Hai (Wormhole Access)" .01
 		"Hai (Unfettered)" 1
-		"Bounty Hunter that Attacks Hai" -.01
 		"Elenctic Commune" .01
 	"bribe" .02
 	"fine" 0
@@ -1384,25 +1350,6 @@ government "Syndicate"
 		"Pirate" -.4
 		"Pirate (Devil-Run Gang)" -.4
 		"Smuggler (Hai Trafficker)" .3
-		"Syndicate that won't enter wormhole" 1
-		"Korath" -.5
-	"bribe" .08
-	"friendly hail" "friendly syndicate"
-	"hostile hail" "hostile syndicate"
-	raid "pirate raid"
-
-government "Syndicate that won't enter wormhole"
-	"display name" "Syndicate"
-	swizzle 4
-	color "governments: Syndicate"
-	
-	"player reputation" 2
-	"attitude toward"
-		"Merchant" .3
-		"Pirate" -.4
-		"Pirate (Devil-Run Gang)" -.4
-		"Smuggler (Hai Trafficker)" .3
-		"Syndicate" 1
 		"Korath" -.5
 	"bribe" .08
 	"friendly hail" "friendly syndicate"
@@ -1494,6 +1441,5 @@ government "Wormhole Alpha"
 		"Hai Merchant (Human)" -.01
 		"Hai (Unfettered)" -.01
 		"Bounty Hunter that Won't Enter Hai Space" -.01
-		"Deep Security that won't enter wormhole" -.01
 		"Free Worlds that won't enter wormhole" -.01
 		"Republic that won't enter wormhole" -.01
