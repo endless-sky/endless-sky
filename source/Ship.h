@@ -431,6 +431,7 @@ public:
 	// Mining target.
 	std::shared_ptr<Minable> GetTargetAsteroid() const;
 	std::shared_ptr<Flotsam> GetTargetFlotsam() const;
+	std::shared_ptr<Ship> GetTargetEventTarget() const;
 
 	// Mark this ship as fleeing.
 	void SetFleeing(bool fleeing = true);
@@ -629,6 +630,7 @@ private:
 	const System *targetSystem = nullptr;
 	std::weak_ptr<Minable> targetAsteroid;
 	std::weak_ptr<Flotsam> targetFlotsam;
+	std::weak_ptr<Ship> targetEventTarget;
 
 	// Links between escorts and parents.
 	std::vector<std::weak_ptr<Ship>> escorts;

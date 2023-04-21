@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Outfit.h"
 #include "Phrase.h"
 #include "Politics.h"
+#include "Ship.h"
 #include "ShipEvent.h"
 
 #include <algorithm>
@@ -202,9 +203,15 @@ void Government::Load(const DataNode &node)
 			else if(key == "foreign penalties for")
 				useForeignPenaltiesFor.clear();
 			else if(key == "illegals")
-				illegals.clear();
+			{
+				illegalOutfits.clear();
+				illegalShips.clear();
+			}
 			else if(key == "atrocities")
-				atrocities.clear();
+			{
+				atrocityOutfits.clear();
+				atrocityShips.clear();
+			}
 			else
 				child.PrintTrace("Cannot \"remove\" the given key:");
 
@@ -309,37 +316,68 @@ void Government::Load(const DataNode &node)
 		else if(key == "illegals")
 		{
 			if(!add)
-				illegals.clear();
+			{
+				illegalOutfits.clear();
+				illegalShips.clear();
+			}
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
 				{
-					if(grand.Token(0) == "ignore")
-						illegals[GameData::Outfits().Get(grand.Token(1))] = 0;
+					if(grand.Token(0) == "remove")
+					{
+						if(grand.Size() >= 3 && grand.Token(1) == "ship")
+						{
+							if(!illegalShips.erase(grand.Token(2)))
+								grand.PrintTrace("Invalid remove, ship not found in existing illegals:");
+						}
+						else if(!illegalOutfits.erase(GameData::Outfits().Get(grand.Token(1))))
+							grand.PrintTrace("Invalid remove, outfit not found in existing illegals:");
+					}
+					else if(grand.Token(0) == "ignore")
+					{
+						if(grand.Size() >= 3 && grand.Token(1) == "ship")
+							illegalShips[grand.Token(2)] = 0;
+						else
+							illegalOutfits[GameData::Outfits().Get(grand.Token(1))] = 0;
+					}
+					else if(grand.Size() >= 3 && grand.Token(0) == "ship")
+						illegalShips[grand.Token(1)] = grand.Value(2);
 					else
-						illegals[GameData::Outfits().Get(grand.Token(0))] = grand.Value(1);
+						illegalOutfits[GameData::Outfits().Get(grand.Token(0))] = grand.Value(1);
 				}
-				else if(grand.Size() >= 3 && grand.Token(0) == "remove")
-				{
-					if(!illegals.erase(GameData::Outfits().Get(grand.Token(1))))
-						grand.PrintTrace("Invalid remove, outfit not found in existing illegals:");
-				}
-				else
-					grand.PrintTrace("Skipping unrecognized attribute:");
 		}
 		else if(key == "atrocities")
 		{
 			if(!add)
-				atrocities.clear();
+			{
+				atrocityOutfits.clear();
+				atrocityShips.clear();
+			}
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
 				{
-					if(grand.Token(0) == "remove" && !atrocities.erase(GameData::Outfits().Get(grand.Token(1))))
-						grand.PrintTrace("Invalid remove, outfit not found in existing atrocities:");
+					if(grand.Token(0) == "remove")
+					{
+						if(grand.Size() >= 3 && grand.Token(1) == "ship")
+						{
+							if(!atrocityShips.erase(grand.Token(2)))
+								grand.PrintTrace("Invalid remove, ship not found in existing atrocities:");
+						}
+						else if(!atrocityOutfits.erase(GameData::Outfits().Get(grand.Token(1))))
+							grand.PrintTrace("Invalid remove, outfit not found in existing atrocities:");
+					}
 					else if(grand.Token(0) == "ignore")
-						atrocities[GameData::Outfits().Get(grand.Token(1))] = false;
+					{
+						if(grand.Size() >= 3 && grand.Token(1) == "ship")
+							atrocityShips[grand.Token(2)] = false;
+						else
+							atrocityOutfits[GameData::Outfits().Get(grand.Token(1))] = false;
+					}
+					else if(grand.Token(0) == "ship")
+						atrocityShips[grand.Token(1)] = true;
 				}
 				else
-					atrocities[GameData::Outfits().Get(grand.Token(0))] = true;
+					atrocityOutfits[GameData::Outfits().Get(grand.Token(0))] = true;
 		}
 		else if(key == "enforces" && child.HasChildren())
 			enforcementZones.emplace_back(child);
@@ -652,9 +690,18 @@ string Government::Fine(PlayerInfo &player, int scan, const Ship *target, double
 
 bool Government::Condemns(const Outfit *outfit) const
 {
-	const auto isAtrocity = atrocities.find(outfit);
-	bool found = isAtrocity != atrocities.cend();
+	const auto isAtrocity = atrocityOutfits.find(outfit);
+	bool found = isAtrocity != atrocityOutfits.cend();
 	return (found && isAtrocity->second) || (!found && outfit->Get("atrocity") > 0.);
+}
+
+
+
+bool Government::Condemns(const Ship *ship) const
+{
+	const auto isAtrocity = atrocityShips.find(ship->ModelName());
+	bool found = isAtrocity != atrocityShips.cend();
+	return (found && isAtrocity->second) || (!found && ship->BaseAttributes().Get("atrocity") > 0.);
 }
 
 
@@ -665,10 +712,24 @@ int Government::Fines(const Outfit *outfit) const
 	if(!fine)
 		return 0;
 
-	for(const auto &it : illegals)
+	for(const auto &it : illegalOutfits)
 		if(it.first == outfit)
 			return it.second;
 	return outfit->Get("illegal");
+}
+
+
+
+int Government::Fines(const Ship *ship) const
+{
+	// If this government doesn't fine anything it won't fine this outfit.
+	if(!fine)
+		return 0;
+
+	for(const auto &it : illegalShips)
+		if(it.first == ship->ModelName())
+			return it.second;
+	return ship->BaseAttributes().Get("illegal");
 }
 
 

@@ -136,8 +136,10 @@ public:
 	std::string Fine(PlayerInfo &player, int scan = 0, const Ship *target = nullptr, double security = 1.) const;
 	// Check to see if the items are condemnable (atrocities) or warrant a fine.
 	bool Condemns(const Outfit *outfit) const;
-	// Returns the fine for given outfit for this government.
+	bool Condemns(const Ship *ship) const;
+	// Returns the fine for given item for this government.
 	int Fines(const Outfit *outfit) const;
+	int Fines(const Ship *ship) const;
 
 	// Get or set the player's reputation with this government.
 	double Reputation() const;
@@ -167,8 +169,10 @@ private:
 	double reputationMax = std::numeric_limits<double>::max();
 	double reputationMin = std::numeric_limits<double>::lowest();
 	std::map<int, double> penaltyFor;
-	std::map<const Outfit*, int> illegals;
-	std::map<const Outfit*, bool> atrocities;
+	std::map<const Outfit*, int> illegalOutfits;
+	std::map<const std::string, int> illegalShips;
+	std::map<const Outfit*, bool> atrocityOutfits;
+	std::map<const std::string, bool> atrocityShips;
 	double bribe = 0.;
 	double fine = 1.;
 	std::vector<LocationFilter> enforcementZones;

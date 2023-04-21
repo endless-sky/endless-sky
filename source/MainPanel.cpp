@@ -584,6 +584,18 @@ void MainPanel::StepEvents(bool &isActive)
 			}
 		}
 
+		if((event.Type() & ShipEvent::TARGET) && !actor->IsPlayer()
+				&& event.TargetGovernment() && event.TargetGovernment()->IsPlayer()
+				&& actor->CanEnforce(player.GetSystem()) && !actor->IsEnemy())
+		{
+			string message = actor->Fine(player, ShipEvent::TARGET, &*event.Target());
+			if(!message.empty())
+			{
+				GetUI()->Push(new Dialog(message));
+				isActive = false;
+			}
+		}
+
 		// Remove the fully-handled event.
 		eventQueue.pop_front();
 		handledFront = false;

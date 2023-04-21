@@ -31,42 +31,44 @@ public:
 	enum {
 		// This is a "null" event.
 		NONE = 0,
+		// This ship set the given ship as its target.
+		TARGET = (1 << 0),
 		// This ship did something good for the given ship.
-		ASSIST = (1 << 0),
+		ASSIST = (1 << 1),
 		// This ship scanned the given ship's cargo. This is not necessarily an
 		// act of aggression, but it implies mistrust or underhanded intentions.
 		// Also, a mission may fail if a ship of a certain government scans your
 		// cargo and discovers you are carrying contraband.
-		SCAN_CARGO = (1 << 1),
+		SCAN_CARGO = (1 << 2),
 		// This ship scanned the given ship's outfits. (If it turns out the
 		// outfits include something illegal, this may result in a fine or an
 		// outright attack on the ship that was scanned.)
-		SCAN_OUTFITS = (1 << 2),
+		SCAN_OUTFITS = (1 << 3),
 		// This ship damaged the given ship while not currently being an enemy
 		// of that ship's government; this will result in temporary animosities
 		// between the two governments. If a ship is "forbearing," it can only
 		// be "provoked" if its shields are below 90%.
 		// Some governments are provoked by starting a scan.
-		PROVOKE = (1 << 3),
+		PROVOKE = (1 << 4),
 		// This ship disabled the given ship. This will have a permanent effect
 		// on your reputation with the given government. This event is generated
 		// when a ship takes damage that switches it to being disabled.
-		DISABLE = (1 << 4),
+		DISABLE = (1 << 5),
 		// This ship boarded the given ship. This may either be an attempt to
 		// render assistance, or an attempt to capture the ship.
-		BOARD = (1 << 5),
+		BOARD = (1 << 6),
 		// This ship captured the given ship.
-		CAPTURE = (1 << 6),
+		CAPTURE = (1 << 7),
 		// This ship destroyed the given ship. If your projectiles hit a ship
 		// that is already exploding, that does not generate a "destroy" event;
 		// this is only for the one projectile that caused the explosion.
-		DESTROY = (1 << 7),
+		DESTROY = (1 << 8),
 		// This is a crime that is so bad that it not only has a negative effect
 		// on your reputation, but entirely wipes out any positive reputation
 		// you had with the given government, first.
-		ATROCITY = (1 << 8),
+		ATROCITY = (1 << 9),
 		// This ship just jumped into a different system.
-		JUMP = (1 << 9)
+		JUMP = (1 << 10)
 	};
 
 

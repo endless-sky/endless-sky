@@ -1715,6 +1715,10 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	// system ready to fire.
 	if(ship->Fire(newProjectiles, newVisuals))
 		hasAntiMissile.push_back(ship.get());
+
+	const shared_ptr<Ship> &targetEventTarget = ship->GetTargetEventTarget();
+	if(targetEventTarget)
+		eventQueue.emplace_back(ship, targetEventTarget, ShipEvent::TARGET);
 }
 
 
