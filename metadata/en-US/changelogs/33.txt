@@ -4,3 +4,4 @@
 * Auto-chase targets if mine/attack is held down
 * Optional on-screen joystick control
 * Fix player info panel selection and scrolling
+* on-screen Fast-forward, select next, and land buttons.
