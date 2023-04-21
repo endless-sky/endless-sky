@@ -1324,9 +1324,9 @@ outfit "Nuclear Missile"
 	category "Secondary Weapons"
 	cost 1000000
 	thumbnail "outfit/nuke"
-	"mass" 8
-	"outfit space" -8
-	"weapon capacity" -8
+	"mass" 10
+	"outfit space" -10
+	"weapon capacity" -10
 	"gun ports" -1
 	weapon
 		sprite "projectile/missile"
