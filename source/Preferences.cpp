@@ -187,6 +187,8 @@ void Preferences::Load()
 			alertIndicatorIndex = max<int>(0, min<int>(node.Value(1), ALERT_INDICATOR_SETTING.size() - 1));
 		else if(node.Token(0) == "previous saves" && node.Size() >= 2)
 			previousSaveCount = max<int>(3, node.Value(1));
+		else if(node.Token(0) == "alt-mouse turning")
+			settings["Control ship with mouse"] = (node.Size() == 1 || node.Value(1));
 		else
 			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
 	}
@@ -198,6 +200,16 @@ void Preferences::Load()
 	{
 		if(!it->second)
 			alertIndicatorIndex = 2;
+		settings.erase(it);
+	}
+
+	// For people updating from a version before the status overlay customization
+	// changes, don't turn all the overlays on if they were off before.
+	it = settings.find("Show status overlays");
+	if(it != settings.end())
+	{
+		if(!it->second)
+			statusOverlaySettings[OverlayType::ALL] = OverlayState::OFF;
 		settings.erase(it);
 	}
 }
