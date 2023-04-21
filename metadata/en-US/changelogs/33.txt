@@ -1,0 +1,6 @@
+* Configurable Gesture input
+* Pinch zoom
+* Fix un-nested plugin zip import
+* Auto-chase targets if mine/attack is held down
+* Optional on-screen joystick control
+* Fix player info panel selection and scrolling
