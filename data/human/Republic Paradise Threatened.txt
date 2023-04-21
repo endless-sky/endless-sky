@@ -357,7 +357,7 @@ mission "RN Licence to Reinforce the Fleet A"
 	autosave
 	landing
 	name "Option to enlist"
-	descriptions "Return to Geminus to meet up with Commander Shah and Admiral Kent."
+	description "Return to Geminus to meet up with Commander Shah and Admiral Kent."
 	priority
 	destination "Geminus"
 	to offer
@@ -430,4 +430,20 @@ mission "RN Licence to Reinforce the Fleet A"
 												`	Kent pins the stripes to your arm and then hands you a small tubular electronic device about the size of a data drive. "Hold this tight in your hand," Kent says, and when you do the device heats up and then vibrates. "It has paired with you, only you will be able to use it from now on. It will unscramble coded messages and identify you to any Navy systems."`
 												`	You put the device in your pocket and then Colonel Kent firmly shakes your hand. "Welcome to the service," he says. You look around the table. Nguyen is grinning in an endearingly goofy way, Hines is staring back at you with a poker face and Shah looks, if anything, proud.`
 												`	"You made the right choice, Captain," she says. "We need people that we can trust for what's coming next."`
+		log "Have enlisted in the Republic Navy as an adjunct officer, which means that I can now buy their ships and tech."
 		# code to add navy licence goes here.
+
+
+
+mission "RN Paradise Sponsored Flying"
+	autosave
+	name "Flying the Flag"
+	description "Tour these border systems to show that the Navy is taking security seriously, and to assess the Free Words forces in the area."
+	priority
+	destination "Delta Sagittarii"
+	to offer
+		has "RN Investigate the Source D: done"
+	on offer
+		dialog
+			`With the formalities out of the way the mood in the room becomes more businesslike and Nguyen activates the window shades. As the room dims Colonel Kent stands and a hologram of the border region with the Free Worlds appears over the table.`
+			`	"This
