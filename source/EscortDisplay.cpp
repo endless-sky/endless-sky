@@ -195,7 +195,7 @@ EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bo
 	cannotJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.JumpsRemaining()),
 	isSelected(isSelected),
 	cost(ship.Cost()),
-	system((!isHere && ship.GetSystem()) ? ship.GetSystem()->Name() : ""),
+	system(ship.GetSystem() ? isHere ? "" : ship.GetSystem()->Name() : "(docked)"),
 	low{ship.Shields(), ship.Hull(), ship.Energy(), ship.Heat(), ship.Fuel()},
 	high(low),
 	ships(1, &ship)
