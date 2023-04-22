@@ -248,6 +248,7 @@ void Command::SetGesture(Command command, Gesture::GestureEnum gesture)
 			if(it->second == command)
 			{
 				commandForGesture.erase(it);
+				break;
 			}
 		}
 	}
