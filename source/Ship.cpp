@@ -3764,6 +3764,10 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 	// Check only for the category that we are interested in.
 	const string &category = ship->attributes.Category();
 
+	// NPC ships should always transfer cargo. Player ships should only
+	// transfer cargo if they set the AI preference.
+	const bool shouldTransferCargo = !IsYours() || Preferences::Has("Fighters transfer cargo");
+
 	for(Bay &bay : bays)
 		if((bay.category == category) && !bay.ship)
 		{
@@ -3778,9 +3782,8 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			ship->isSteering = false;
 			ship->commands.Clear();
 
-			// If this fighter collected anything in space, try to store it
-			// (unless this is a player-owned ship).
-			if(!isYours && cargo.Free() && !ship->Cargo().IsEmpty())
+			// If this fighter collected anything in space, try to store it.
+			if(shouldTransferCargo && cargo.Free() && !ship->Cargo().IsEmpty())
 				ship->Cargo().TransferAll(cargo);
 
 			// Return unused fuel and ammunition to the carrier, so they may

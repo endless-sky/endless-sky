@@ -726,7 +726,7 @@ interface "planet"
 		size 18
 		align right
 		pad 10 0
-	
+
 	visible if "has non-outfitter storage"
 	sprite "ui/planet dialog button"
 		center 280 150

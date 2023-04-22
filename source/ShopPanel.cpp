@@ -282,6 +282,10 @@ void ShopPanel::DrawShipsSidebar()
 				}
 			}
 
+			if(isSelected && playerShips.size() > 1 && ship->OutfitCount(selectedOutfit))
+				PointerShader::Draw(Point(point.X() - static_cast<int>(ICON_TILE / 3), point.Y()),
+					Point(1., 0.), 14.f, 12.f, 0., Color(.9f, .9f, .9f, .2f));
+
 			point.X() += ICON_TILE;
 		}
 		point.Y() += ICON_TILE;
@@ -384,10 +388,18 @@ void ShopPanel::DrawButtons()
 
 	const Point buyCenter = Screen::BottomRight() - Point(210, 25);
 	FillShader::Fill(buyCenter, Point(60, 30), back);
-	string BUY = IsAlreadyOwned() ? (playerShip ? "_Install" : "_Cargo") : "_Buy";
+	bool isOwned = IsAlreadyOwned();
+	const Color *buyTextColor;
+	if(!CanBuy(isOwned))
+		buyTextColor = &inactive;
+	else if(hoverButton == (isOwned ? 'i' : 'b'))
+		buyTextColor = &hover;
+	else
+		buyTextColor = &active;
+	string BUY = isOwned ? (playerShip ? "_Install" : "_Cargo") : "_Buy";
 	bigFont.Draw(BUY,
 		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
-		CanBuy() ? hoverButton == 'b' ? hover : active : inactive);
+		*buyTextColor);
 
 	const Point sellCenter = Screen::BottomRight() - Point(130, 25);
 	FillShader::Fill(sellCenter, Point(60, 30), back);
@@ -948,7 +960,7 @@ int64_t ShopPanel::LicenseCost(const Outfit *outfit) const
 
 	int64_t cost = 0;
 	for(const string &name : outfit->Licenses())
-		if(!player.Conditions().Get("license: " + name))
+		if(!player.HasLicense(name))
 		{
 			const Outfit *license = GameData::Outfits().Find(name + " License");
 			if(!license || !license->Cost() || !available.Has(license))
