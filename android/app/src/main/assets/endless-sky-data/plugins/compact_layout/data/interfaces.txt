@@ -427,14 +427,14 @@ interface "info panel"
 	active if "can park"
 	sprite "ui/dialog cancel"
 		from -660 -50 to -570 0 bottom right
-	button P "Park"
+	button k "Par_k"
 		from -660 -50 to -570 0 bottom right
 	active
 
 	visible if "show unpark"
 	sprite "ui/dialog cancel"
 		from -660 -50 to -570 0 bottom right
-	button P "Unpark"
+	button k "Unpar_k"
 		from -660 -50 to -570 0 bottom right
 
 	visible if "show disown"
@@ -461,6 +461,16 @@ interface "info panel"
 		from -420 -50 to -310 0 bottom right
 	button a "Unpark _All"
 		from -420 -50 to -310 0 bottom right
+	visible if "show park system"
+	sprite "ui/wide button"
+		from -530 -50 to -420 0 bottom right
+	button c "Park Lo_cal"
+		from -530 -50 to -420 0 bottom right
+	visible if "show unpark system"
+	sprite "ui/wide button"
+		from -530 -50 to -420 0 bottom right
+	button c "Unpark Lo_cal"
+		from -530 -50 to -420 0 bottom right
 	visible if "show save order"
 	sprite "ui/wide button"
 		from -760 -50 to -650 0 bottom right
