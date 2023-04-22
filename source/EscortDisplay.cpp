@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "LineShader.h"
 #include "OutlineShader.h"
 #include "Point.h"
+#include "PointerShader.h"
 #include "Rectangle.h"
 #include "Ship.h"
 #include "Sprite.h"
@@ -109,10 +110,12 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 			color = cannotJumpColor;
 		else if(escort.notReadyToJump)
 			color = notReadyToJumpColor;
-		else if(escort.isSelected)
-			color = selectedColor;
 		else
 			color = hereColor;
+
+		// Draw the selection pointer
+		if(escort.isSelected)
+			PointerShader::Draw(pos, Point(1., 0.), ICON_SIZE / 2, ICON_SIZE / 2, -ICON_SIZE / 2, selectedColor);
 
 		// Figure out what scale should be applied to the ship sprite.
 		float scale = min(ICON_SIZE / escort.sprite->Width(), ICON_SIZE / escort.sprite->Height());
