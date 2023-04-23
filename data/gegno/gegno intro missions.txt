@@ -216,7 +216,7 @@ mission "Visit Quarg in Gegno Space"
 				has "Giaru Gegno: Quarg Contact: offered"
 			branch "hostile quarg"
 				"reputation: Gegno Quarg" < 0
-				has visited: "Aleit"
+				has "visited planet: Aleit"
 			`	After fiddling with it, the <alien> marks a new location and presents it to you. "Oukeug," they say, and gesture you to depart in a fashion of urgency. They then leave your ship, walk towards the others, and have a brief discussion. A few moments later, another smaller group of <aliens> arrive with what looks to be some type of fueling device, and after a minute or so of fidgeting with it, they manage to hook it up to your ship. These <aliens> look shorter and thinner than the others, and wear more leather-like garments than heavy metal ones - but their demeanor is just as rigid. Once your ship's fuel has been filled, the <alien> that has been guiding you gestures towards the sky. It seems your visit to the mysterious <alien> homeworld will have to be cut short.`
 				launch
 			
