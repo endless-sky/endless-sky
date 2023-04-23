@@ -277,8 +277,8 @@ mission "Discover Hostile Quarg"
 		"reputation: Gegno Quarg" < 0
 		has "First Contact: Gegno Vi: done"
 		not "First Contact: Gegno Vi: failed"
-	on enter
-		system "Aleit"
+	on enter "Aleit"
+		fail
 		log "Factions" "Gegno" `The Gegno are a humanoid species to the galactic east of the core. According to the Quarg, they are not interested in interaction with outsider species.`
 		conversation
 			`As soon as you enter the system, your eyes are greeted with a familiar sight - a Quarg Ringworld. Shortly after, the Quarg open a communications channel with you. "Your welcome is not desired here, aggressor. What purpose do you seek, if not that of violence?"`
@@ -293,8 +293,7 @@ mission "Discover Hostile Quarg"
 			label "sent"
 			`	After an extensive moment of silence, the Quarg respond. "We have no interest in aiding an instigator. The aliens you speak of, Gegno as they are called, are a fragile species. They themselves do not desire contact, as their attention is had on a great deal of internal struggle. In such a case, the Gegno would gain nothing in relations with interstellar warmongers, and you are strongly cautioned to avoid affiliation with them. We shall be watching."`
 			`	Without the Quarg's help, interaction with these so-called "Gegno" seems unlikely for the foreseeable future.`
-				decline
-	on decline
+	on fail
 		fail "Visit Quarg in Gegno Space"
 
 mission "Giaru Gegno: Quarg Contact"
