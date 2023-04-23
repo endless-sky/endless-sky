@@ -202,6 +202,7 @@ mission "Visit Quarg in Gegno Space"
 	source "Dueyu Eitch"
 	destination "Giaru Gegno"
 	to offer
+		"reputation: Gegno Quarg" >= 0
 		has "First Contact: Gegno Vi: done"
 		not "First Contact: Gegno Vi: failed"
 	on offer
@@ -214,13 +215,21 @@ mission "Visit Quarg in Gegno Space"
 				
 			branch "has met quarg"
 				has "Giaru Gegno: Quarg Contact: offered"
+			branch "hostile quarg visited"
+				"reputation: Gegno Quarg" < 0
+				"has visited: Aleit"
 			`	After fiddling with it, the <alien> marks a new location and presents it to you. "Oukeug," they say, and gesture you to depart in a fashion of urgency. They then leave your ship, walk towards the others, and have a brief discussion. A few moments later, another smaller group of <aliens> arrive with what looks to be some type of fueling device, and after a minute or so of fidgeting with it, they manage to hook it up to your ship. These <aliens> look shorter and thinner than the others, and wear more leather-like garments than heavy metal ones - but their demeanor is just as rigid. Once your ship's fuel has been filled, the <alien> that has been guiding you gestures towards the sky. It seems your visit to the mysterious <alien> homeworld will have to be cut short.`
 				launch
 			
 			label "has met quarg"
 			`	After fiddling with it, the Vi marks a new location and presents it to you. "Oukeug," they say, and gesture you to depart in a fashion of urgency. You look at the location and notice that it's the Quarg ringworld you've previously visited. They then leave your ship, walk towards the others, and have a brief discussion. A few moments later, another smaller group of Gegno arrive with what looks to be some type of fueling device, and after a minute or so of fidgeting with it, they manage to hook it up to your ship. These Gegno look shorter and thinner than the others, and wear more leather-like garments than heavy metal ones - but their demenaor is just as rigid. Once your ship's fuel has been filled, the Gegno Vi that has been guiding you gestures towards the sky. It seems your visit to the mysterious Gegno homeworld will have to be cut short.`
 				launch
-	
+			
+			label "hostile quarg"
+			`	After fiddling with it, the <alien> marks a new location and presents it to you. "Oukeug," they say, and gesture you to depart in a fashion of urgency. You look at the location and realize that it's the nearby Quarg ringworld. Considering your history with the Quarg, they likely won't be welcoming you in open arms, to say the least. The <alien> abruptly jabs you with their elbow, motioning you once more to take off.`
+			`	You begin prepping your ship for depature, and the <alien> leaves your ship. They walk towards the others, have a brief discussion, and another smaller group of <aliens> arrive with what looks to be some type of fueling device. After a minute or so of fidgeting with it, they manage to hook it up to your ship. These <aliens> look shorter and thinner than the others, and wear more leather-like garments than heavy metal ones - but their demenaor is just as rigid. Once your ship's fuel has been filled, the <alien> that has been guiding you points towards the sky. Visting the Quarg isn't an option, so it seems associating with these <aliens> is unlikely for the foreseeable future.`
+				decline
+
 	npc
 		government "Gegno Vi (Neutral)"
 		personality entering staying
@@ -260,7 +269,33 @@ mission "Visit Quarg in Gegno Space"
 			names "gegno scin"
 			variant
 				"Tridymite"
-
+				
+mission "Discover Hostile Quarg"
+	invisible
+	landing
+	source "Dueyu Eitch"
+	to offer
+		"reputation: Gegno Quarg" < 0
+		has "First Contact: Gegno Vi: done"
+		not "First Contact: Gegno Vi: failed"
+	on enter
+on offer
+		log "Factions" "Gegno" `The Gegno are a humanoid species to the galactic east of the core. According to the Quarg, they are not interested in interaction with outsider species.`
+		system "Aleit"
+			conversation
+				`As soon as you enter the system, your eyes are greeted with a familiar sight - a Quarg Ringworld. Shortly after, the Quarg open a communications channel with you. "Your welcome is not desired here, aggressor. What purpose do you seek, if not that of violence?" 
+				choice
+					`	"The aliens on a nearby world sent me to you."`
+						goto "sent"
+					`	"I would like help in conversing with the nearby aliens."`
+				`	The Quarg are quick to respond. "You will find no such help in us. It would be of best interest to not affiliate yourself with these aliens, whom call themselves the Gegno. It is not us, so much as it is the Gegno, that do not desire contact. Little would you understand how impactful your actions may be with them, let alone ones of violence." A slight pause ensues. "We shall be watching."`
+				`	Without the Quarg's help, interaction with these so-called "Gegno" seems unlikely for the forseeable future.`
+					decline
+				
+				label "sent"
+				`	After an extensive moment of silence, the Quarg respond. "We have no interest in aiding an instigator. The aliens you speak of, Gegno as they are called, are a fragile species. They themselves do not desire contact, as their attention is had on a great deal of internal struggle. In such a case, the Gegno would gain nothing in relations with interstellar warmongers, and you are strongly cautioned to avoid affiliation with them. We shall be watching."`
+				`	Without the Quarg's help, interaction with these so-called "Gegno" seems unlikely for the forseeable future.`
+					decline
 
 mission "Giaru Gegno: Quarg Contact"
 	landing
