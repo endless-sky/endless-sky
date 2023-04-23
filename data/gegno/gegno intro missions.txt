@@ -281,7 +281,7 @@ mission "Discover Hostile Quarg"
 		system "Aleit"
 			log "Factions" "Gegno" `The Gegno are a humanoid species to the galactic east of the core. According to the Quarg, they are not interested in interaction with outsider species.`
 			conversation
-				`As soon as you enter the system, your eyes are greeted with a familiar sight - a Quarg Ringworld. Shortly after, the Quarg open a communications channel with you. "Your welcome is not desired here, aggressor. What purpose do you seek, if not that of violence?"
+				`As soon as you enter the system, your eyes are greeted with a familiar sight - a Quarg Ringworld. Shortly after, the Quarg open a communications channel with you. "Your welcome is not desired here, aggressor. What purpose do you seek, if not that of violence?"`
 				choice
 					`	"The aliens on a nearby world sent me to you."`
 						goto "sent"
