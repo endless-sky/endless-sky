@@ -226,7 +226,7 @@ mission "Visit Quarg in Gegno Space"
 			
 			label "hostile quarg"
 			`	After fiddling with it, the <alien> marks a new location and presents it to you. "Oukeug," they say, and gesture you to depart in a fashion of urgency. You look at the location and realize that it's the nearby Quarg ringworld. Considering your history with the Quarg, they likely won't be welcoming you in open arms, to say the least. The <alien> abruptly jabs you with their elbow, motioning you once more to take off.`
-			`	You begin prepping your ship for depature, and the <alien> leaves your ship. They walk towards the others, have a brief discussion, and another smaller group of <aliens> arrive with what looks to be some type of fueling device. After a minute or so of fidgeting with it, they manage to hook it up to your ship. These <aliens> look shorter and thinner than the others, and wear more leather-like garments than heavy metal ones - but their demenaor is just as rigid. Once your ship's fuel has been filled, the <alien> that has been guiding you points towards the sky. Visting the Quarg isn't an option, so it seems associating with these <aliens> is unlikely for the foreseeable future.`
+			`	You begin prepping your ship for depature, and the <alien> leaves your ship. They walk towards the others, have a brief discussion, and another smaller group of <aliens> arrive with what looks to be some type of fueling device. After a minute or so of fidgeting with it, they manage to hook it up to your ship. These <aliens> look shorter and thinner than the others, and wear more leather-like garments than heavy metal ones - but their demenaor is just as rigid. Once your ship's fuel has been filled, the <alien> that has been guiding you points towards the sky. Visiting the Quarg isn't an option, so it seems associating with these <aliens> is unlikely for the foreseeable future.`
 				decline
 
 	npc
@@ -287,12 +287,12 @@ mission "Discover Hostile Quarg"
 						goto "sent"
 					`	"I would like help in conversing with the nearby aliens."`
 				`	The Quarg are quick to respond. "You will find no such help in us. It would be of best interest to not affiliate yourself with these aliens, whom call themselves the Gegno. It is not us, so much as it is the Gegno, that do not desire contact. Little would you understand how impactful your actions may be with them, let alone ones of violence." A slight pause ensues. "We shall be watching."`
-				`	Without the Quarg's help, interaction with these so-called "Gegno" seems unlikely for the forseeable future.`
+				`	Without the Quarg's help, interaction with these so-called "Gegno" seems unlikely for the foreseeable future.`
 					decline
 				
 				label "sent"
 				`	After an extensive moment of silence, the Quarg respond. "We have no interest in aiding an instigator. The aliens you speak of, Gegno as they are called, are a fragile species. They themselves do not desire contact, as their attention is had on a great deal of internal struggle. In such a case, the Gegno would gain nothing in relations with interstellar warmongers, and you are strongly cautioned to avoid affiliation with them. We shall be watching."`
-				`	Without the Quarg's help, interaction with these so-called "Gegno" seems unlikely for the forseeable future.`
+				`	Without the Quarg's help, interaction with these so-called "Gegno" seems unlikely for the foreseeable future.`
 					decline
 	on decline
 		fail "Visit Quarg in Gegno Space"
