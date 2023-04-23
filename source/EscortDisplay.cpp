@@ -75,6 +75,7 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 	const Font &font = FontSet::Get(14);
 	// Top left corner of the current escort icon.
 	Point corner = Point(bounds.Left(), bounds.Bottom());
+	const Color &disabledColor = *colors.Get("escort disabled");
 	const Color &elsewhereColor = *colors.Get("escort elsewhere");
 	const Color &cannotJumpColor = *colors.Get("escort blocked");
 	const Color &notReadyToJumpColor = *colors.Get("escort not ready");
@@ -102,7 +103,9 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 			font.Draw(escort.system, pos + Point(-10., 10.), elsewhereColor);
 
 		Color color;
-		if(escort.isHostile)
+		if(escort.isDisabled)
+			color = disabledColor;
+		else if(escort.isHostile)
 			color = hostileColor;
 		else if(!escort.isHere)
 			color = elsewhereColor;
@@ -192,13 +195,14 @@ const vector<const Ship *> &EscortDisplay::Click(const Point &point) const
 
 EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected)
 	: sprite(ship.GetSprite()),
-	isHere(isHere && !ship.IsDisabled()),
+	isDisabled(ship.IsDisabled()),
+	isHere(isHere),
 	isHostile(ship.GetGovernment() && ship.GetGovernment()->IsEnemy()),
 	notReadyToJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.IsReadyToJump(true)),
 	cannotJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.JumpsRemaining()),
 	isSelected(isSelected),
 	cost(ship.Cost()),
-	system(ship.GetSystem() ? isHere ? "" : ship.GetSystem()->Name() : "(docked)"),
+	system((!isHere && ship.GetSystem()) ? ship.GetSystem()->Name() : ""),
 	low{ship.Shields(), ship.Hull(), ship.Energy(), ship.Heat(), ship.Fuel()},
 	high(low),
 	ships(1, &ship)
@@ -224,6 +228,7 @@ int EscortDisplay::Icon::Height() const
 
 void EscortDisplay::Icon::Merge(const Icon &other)
 {
+	isDisabled &= other.isDisabled;
 	isHere &= other.isHere;
 	isHostile |= other.isHostile;
 	notReadyToJump |= other.notReadyToJump;
