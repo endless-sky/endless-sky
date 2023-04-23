@@ -202,7 +202,6 @@ mission "Visit Quarg in Gegno Space"
 	source "Dueyu Eitch"
 	destination "Giaru Gegno"
 	to offer
-		"reputation: Gegno Quarg" >= 0
 		has "First Contact: Gegno Vi: done"
 		not "First Contact: Gegno Vi: failed"
 	on offer
