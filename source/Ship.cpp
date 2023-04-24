@@ -1716,7 +1716,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		// Enter hyperspace.
 		int direction = hyperspaceSystem ? 1 : -1;
 		hyperspaceCount += direction;
+		//wtf do all these mean, what are they for?
 		static const int HYPER_C = 100;
+		//Setting this to 50 break things for some reason.
 		static const double HYPER_A = 2.;
 		static const double HYPER_D = 1000.;
 		if(hyperspaceSystem)
@@ -1803,6 +1805,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		if(!isUsingJumpDrive)
 		{
 			velocity += (HYPER_A * direction) * angle.Unit();
+			printf("NoJD velo:%f\n", velocity.Length());
+			printf("HyperspaceCount:%f", hyperspaceCount);
 			if(!hyperspaceSystem)
 			{
 				// Exit hyperspace far enough from the planet to be able to land.
@@ -1812,6 +1816,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				// is, about acos(.8) from the proper angle). So:
 				// Stopping distance = .5*a*(v/a)^2 + (150/turn)*v.
 				// Exit distance = HYPER_D + .25 * v^2 = stopping distance.
+
+				//why 150 degrees? 
 				double exitV = max(HYPER_A, MaxVelocity());
 				double a = (.5 / Acceleration() - .25);
 				double b = 150. / TurnRate();
@@ -1821,14 +1827,18 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					double altV = (-b + sqrt(discriminant)) / (2. * a);
 					if(altV > 0. && altV < exitV)
 						exitV = altV;
+						printf("AltV:%f\n", altV);
 				}
 				if(velocity.Length() <= exitV)
 				{
 					velocity = angle.Unit() * exitV;
 					hyperspaceCount = 0;
+					printf("Fin exitV:%f\n", exitV);
+					printf("Fin velo:%f\n", velocity.Length());
 				}
 			}
 		}
+		//selfnote: apply on both entry and exit.
 		position += velocity;
 		if(GetParent() && GetParent()->currentSystem == currentSystem)
 		{
