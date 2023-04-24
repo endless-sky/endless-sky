@@ -183,9 +183,9 @@ ship "Marauder Bounder" "Marauder Bounder (Engines)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 		
-	engine -12.5 50.5 .7
-	engine 0 48
-	engine 12.5 50.5 .7
+	engine -12.5 56 .7
+	engine 0 52.5
+	engine 12.5 56 .7
 	description "The previous owner of this Bounder has modified an already fast courier-scout into an even faster heavy escort interceptor with some truly enormous engines, giving it incredible maneuverability for its size."
 
 
@@ -212,8 +212,8 @@ ship "Marauder Bounder" "Marauder Bounder (Weapons)"
 		
 	engine -10 44
 	engine 10 44
-	gun -6.5 -78.5 "Modified Blaster"
-	gun 6.5 -78.5 "Modified Blaster"
+	gun -9 -84.5 "Modified Blaster"
+	gun 9 -84.5 "Modified Blaster"
 	turret -38 12 "Heavy Laser Turret"
 	turret 38 12 "Heavy Laser Turret"
 	description "Simultaneously the deadliest and most graceful interceptor in the galaxy, this former Bounder courier-scout has been equipped with incredibly powerful weapons for a ship of its size."
