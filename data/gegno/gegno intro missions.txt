@@ -286,7 +286,7 @@ mission "Discover Hostile Quarg"
 			choice
 				`	"The aliens on a nearby world sent me to you."`
 					goto "sent"
-				`	"I would like help in conversing with the nearby aliens."`+
+				`	"I would like help in conversing with the nearby aliens."`
 			`	The Quarg are quick to respond. "You will find no such help in us. It would be of best interest to not affiliate yourself with these aliens, whom call themselves the Gegno. It is not us, so much as it is the Gegno, that do not desire contact. Little would you understand how impactful your actions may be with ether the Vi or Scin, let alone ones of violence." A slight pause ensues. "Now, begone from our system. We shall be watching."`
 			`	Without the Quarg's help, interaction with these so-called "Gegno" seems unlikely for the foreseeable future.`
 				decline
