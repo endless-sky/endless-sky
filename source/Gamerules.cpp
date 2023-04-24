@@ -45,7 +45,7 @@ void Gamerules::Load(const DataNode &node)
 		else if(key == "npc max mining time")
 			npcMaxMiningTime = max<int>(0, child.Value(1));
 		else if(key == "universal frugal threshold")
-			npcMaxMiningTime = min<double>(1,max<double>(0, child.Value(1)));
+			universalFrugalThreshold = min<double>(1, max<double>(0, child.Value(1)));
 		else
 			child.PrintTrace("Skipping unrecognized gamerule:");
 	}
