@@ -3300,7 +3300,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 		// Skip weapons that are not ready to fire.
 		if(!hardpoint.IsReady())
 			continue;
-		
+
 		// Skip weapons omitted by the "Automatic firing" preference.
 		if(isFlagship
 				&& ((Preferences::GetAutoFire() == Preferences::AutoFire::GUNS_ONLY && hardpoint.IsTurret())
