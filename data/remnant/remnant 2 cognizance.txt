@@ -734,7 +734,7 @@ mission "Remnant: Cognizance 20"
 					goto missionchoice
 				`	"Why do you need multiple methods of decision making?"`
 			`	"Because we are in the midst of war, and located in an actively hazardous part of the galaxy. We, as a people, need to make countless thousands of on-the-spot decisions every day. If we had to reach a consensus for every troop movement, expedition, or resource allocation we would be overwhelmed within days." She stops speaking, and another Remnant picks up the explanation.`
-			`	"By the same token, prefects can be killed, or overloaded. Having as much decision making as possible handled by the Remnant as a group reduces our vulnerability to assassination strikes, and helps protect our prefects from burning out under the responsibility. On the flip side, it also protects our society from becoming an autocracy where one powerful person or small group makes all the decisions."`
+			`	"By the same token, prefects can be killed, or overloaded. Having as much decision making as possible handled by the Remnant as a group reduces our vulnerability to assassin strikes, and helps protect our prefects from burning out under the responsibility. On the flip side, it also protects our society from becoming an autocracy where one powerful person or small group makes all the decisions."`
 			label missionchoice
 			`	The Remnant still and look at you. "So, will you take this mission?"`
 			choice
