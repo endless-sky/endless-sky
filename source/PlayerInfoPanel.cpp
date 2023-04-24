@@ -44,8 +44,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	// Number of lines per page of the fleet listing.
-	const int LINES_PER_PAGE = 26;
+	int LinesPerPage()
+	{
+		auto bounds = GameData::Interfaces().Get("info panel")->GetBox("fleet");
+		return (bounds.Height() - 8 - 20 - 5) / 20;
+	}
+
 
 	// Find any condition strings that begin with the given prefix, and convert
 	// them to strings ending in the given suffix (if any). Return those strings
@@ -310,7 +314,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
 	{
 		int direction = (key == SDLK_PAGEDOWN) - (key == SDLK_PAGEUP);
-		Scroll((LINES_PER_PAGE - 2) * direction);
+		Scroll((LinesPerPage() - 2) * direction);
 	}
 	else if(key == SDLK_HOME)
 		Scroll(-static_cast<int>(player.Ships().size()));
@@ -393,6 +397,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		int selected = panelState.SelectedIndex();
 		if(selected >= 0)
 		{
+			const int LINES_PER_PAGE = LinesPerPage();
 			if(selected < panelState.Scroll() + LINES_PER_PAGE && selected >= panelState.Scroll())
 			{
 				// If the selected ship is on screen, do not scroll.
@@ -911,7 +916,7 @@ bool PlayerInfoPanel::Scroll(double /* dx */, double dy)
 
 bool PlayerInfoPanel::ScrollAbsolute(int scroll)
 {
-	int maxScroll = panelState.Ships().size() - LINES_PER_PAGE;
+	int maxScroll = panelState.Ships().size() - LinesPerPage();
 	int newScroll = max(0, min<int>(maxScroll, scroll));
 	if(panelState.Scroll() == newScroll)
 		return false;
