@@ -47,5 +47,5 @@ gamerules
 	
 	# Ships with frugal personality will only use ammo-using weapon after their health drops below this percent threshold.
 	# DEFAULT: .75 (75 percent)
-	# ALLOWABLE VALUES: any double between 0. and 1.
+	# ALLOWABLE VALUES: any value between 0. and 1.
 	"universal frugal threshold" .75
