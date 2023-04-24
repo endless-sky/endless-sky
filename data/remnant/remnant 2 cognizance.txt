@@ -716,7 +716,7 @@ mission "Remnant: Cognizance 20"
 				`	"So there are no problems with the data?"`
 				`	"Skip the technical jargon. What does it mean?"`
 					goto skiptech
-			`	Another Remnant nods. "Exactly. There is no problem with the data or the equipment, so one way or another, this is what it recorded. As such, either there is something here which we have never seen before, or there is something causing problems with conventional sensors." He looks around at the gathered Remnant and pauses as if focusing on something you cannot see or hear, then turns to you. "We have reached a consensus.`
+			`	Another Remnant nods. "Exactly. There is no problem with the data or the equipment, so one way or another, this is what it recorded. As such, either there is something here which we have never seen before, or there is something causing problems with conventional sensors." He looks around at the gathered Remnant and pauses as if focusing on something you cannot see or hear, then turns to you. "We have reached a consensus."`
 				goto missionstatement
 			label skiptech
 			`	The Remnant pauses for a moment to adjust what they were about to say before continuing. "What it means is that there is no obvious explanation for why there would be life signs out there." They glance around at the rest of the gathered Remnant then back to you.`
