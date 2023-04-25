@@ -917,7 +917,7 @@ mission "Midgard Intro [1 Interceptor]"
 			`	Helen chuckles. "Firstly, I'm not part of the Navy, I'm with Deep Security. And secondly, not to disparage your abilities, but we only recruit experienced captains into our ranks."`
 			label job
 			`	James says, "Deep Security mainly acts as the Deep equivalent of the Navy, protecting merchants from pirates. However, they also deal with the transport of confidential documents and equipment, for both the private and government sector."`
-			`	Helen continues. "Recently, one of our logistics ships was attacked and damaged by a heavy merchant warship named the Arm of Odin. We now believe that ship to be a pirate vessel in disguise, who specifically wanted the cargo onboard our ship. We're looking for a replacement ship that is able to avoid the pirate threat. How fast would you say the <ship> is?"`
+			`	Helen continues. "Recently, one of our logistics ships was attacked and damaged by a heavy merchant warship named the Arm of Odin. We now believe that ship to be a pirate vessel in disguise, who specifically wanted the cargo onboard our ship. We're looking for a replacement ship that is able to avoid the threat while we attempt to track down the warlord. How fast would you say the <ship> is?"`
 			choice
 				`	"It'll outspeed anything short of a fighter."`
 				`	"Not fast enough. You'll have to find someone else for the job."`

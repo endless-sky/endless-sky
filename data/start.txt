@@ -56,7 +56,7 @@ start "deep"
 		score 400
 		mortgage Mortgage
 			principal 580000
-			interest 0.001
+			interest 0.002
 			term 365
 	set "license: Pilot's"
 	set "start: deep"
@@ -67,7 +67,7 @@ conversation "deep intro"
 	`The train trip from your hometown to the capital is calm and without interruption. The only other people in your car are a young couple close to your age, and a much older man wearing greasy overalls. You assume the man comes from off-world through how his hair has turned gray.`
 	`	Before long, you arrive in New Reykjavik, and enter a government office. After asking around, you find the desk for handling starship loans. You hand over your application papers, and after verifying them against the online records you submitted beforehand, the office worker hands you two cards. One of them is the card for applying for a loan at a nearby bank; the other is your pilot's license, fully paid for.`
 	`	The bank is only a few blocks away from the office. Hundreds of people are lined up silently inside the building. You patiently wait until you can insert the loan card into one of the bank's automated clerks. The machine takes the card, makes a soft pinging sound, and dispenses a large stack of papers onto a nearby tray.`
-	`	As you pick up and begin reading through the documents, an electronic voice says, "You are borrowing 580,000 credits to be repaid over the course of a year. Your daily interest rate is 0.1%, which means that your daily payments are 1,897 credits, and by the end of the year you will have paid 113,000 credits in interest. Please sign and insert the signed legal documents into this terminal when you are ready."`
+	`	As you pick up and begin reading through the documents, an electronic voice says, "You are borrowing 580,000 credits to be repaid over the course of a year. Your daily interest rate is 0.2%, which means that your daily payments are 2,241 credits, and by the end of the year you will have paid 237,784 credits in interest. Please sign and insert the signed legal documents into this terminal when you are ready."`
 	`	After carefully rereading every page of the loan agreement, you sign your name:`
 	name
 	`	Eager to get started, you rush out of the bank, get on the intra-city transport system, and head towards the shipyard. You can barely keep your face straight as the carriage sways and rocks. After getting off, you consider throwing away your planetary transport pass, but decide against it.`
@@ -78,14 +78,14 @@ conversation "deep intro"
 start "paradise"
 	name "Birthday Surprise"
 	description `You grew up on Mainsail, an oceanic Paradise World terraformed to perfection. Only the richest live on such worlds; luckily, your father is a wealthy financier. But you've always found the rich life boring and are more interested in living a life among the stars. As your eighteenth birthday party winds down, your father takes you aside to talk...`
-	description `This start has no starting mortgage, leaving you free to explore the galaxy at your own pace.`
+	description `This start has low daily repayments, leaving you free to explore the galaxy at your own pace.`
 	thumbnail "scene/mainsail"
 	date 16 11 3013
 	system "Alhena"
 	planet "Mainsail"
 	account
 		credits 640000
-		score 800
+		score 600
 		mortgage Mortgage
 			principal 640000
 			interest 0
@@ -120,7 +120,7 @@ start "syndicate"
 		score 200
 		mortgage Mortgage
 			principal 530000
-			interest 0.015
+			interest 0.005
 			term 365
 	set "license: Pilot's"
 	set "start: syndicate"
@@ -132,7 +132,7 @@ conversation "syndicate intro"
 	`	You hand the last of your credits to the captain that brought you here. Before she leaves, she gives you some advice. "Just a heads up: if you don't feel like dying early, head north after launching. South of here is nothing but uninhabited systems and pirates. You wouldn't last long in whatever ship you're going to buy." You thank her for the ride and for the advice and part ways.`
 	`	You stop by the shipyard first to see what they have. You're noticed by a salesman who seems to reluctantly approach you, perhaps due to the fact that your clothes are rather shabby compared to those around you. You ask him what it would take to purchase a ship here. He mentions the neccessity of a pilot's license before beginning his spiel about all the cheapest models, but you cut him short and say that's all you needed.`
 	`	The bank is luckily not very busy at the moment. One of the tellers eyes you up as you enter. "What can we help you with?" he asks with a strange glee in his voice. You say how you're in need of a loan to buy a starship; 530,000 credits should be enough to cover the cost of the license and the ship. After handing over your Syndicate Account information, the teller comes back with a piece of paper. This whole process seems suspiciously streamlined to you.`
-	`	"Lucky for you the interest rates are great right now!" You take a glance at the paper and feel a sense of dread fall over you. The daily interest rate is 1.5%, meaning the daily payments are 7,984 credits for a whole year. If you don't pay off any of your loan early, you'll have paid a disgusting 2.4 million credits in interest. "Just sign here." The teller grins.`
+	`	"Lucky for you the interest rates are great right now!" You take a glance at the paper and feel a sense of dread fall over you. The daily interest rate is 0.5%, meaning the daily payments are 3,162 credits for a whole year. If you don't pay off any of your loan early, you'll have paid a disgusting 624,205 credits in interest. "Just sign here." The teller grins.`
 	`	The interest is terrible, but there's nothing else you can do about it. You sign your name:`
 	name
 	`	After leaving the bank, you spend an hour waiting in line to apply for a pilot's license. When you finish going through the oddly easy process of applying for a license, you're left with 480,000 credits. You can't help but get the feeling that you're being played by the Syndicate once again in all this.`
