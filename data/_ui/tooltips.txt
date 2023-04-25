@@ -1,0 +1,1075 @@
+# Copyright (c) 2016 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+# Outfit and ship attributes:
+tip "active cooling:"
+	`Provides up to this amount of cooling per second. Active cooling requires energy, but if your heat level is low it runs at a lower cooling rate and lower energy draw. The amount of cooling is proportional to the temperature of your ship, reaching the full level only if you are about to overheat.`
+
+tip "afterburner energy:"
+	`Energy consumed per second when firing this afterburner.`
+
+tip "afterburner shields:"
+	`Shields displaced, consumed, or destroyed, per second when firing this afterburner.`
+
+tip "afterburner hull:"
+	`Hull that flakes off, breaks apart, or is otherwise compromised, per second when firing this afterburner.`
+
+tip "afterburner fuel:"
+	`Fuel consumed per second when firing this afterburner.`
+
+tip "afterburner discharge:"
+	`Accumulated shield discharging per second when firing this afterburner.`
+
+tip "afterburner corrosion:"
+	`Accumulated hull corrosion per second when firing this afterburner.`
+
+tip "afterburner ion:"
+	`Accumulated ionization per second when firing this afterburner.`
+
+tip "afterburner scramble:"
+	`Accumulated scrambling per second when firing this afterburner.`
+
+tip "afterburner leakage:"
+	`Accumulated leaking fuel per second when firing this afterburner.`
+
+tip "afterburner burn:"
+	`Accumulated exothermic interactions per second when firing this afterburner.`
+
+tip "afterburner slowing:"
+	`Accumulated engine interference per second when firing this afterburner.`
+
+tip "afterburner disruption:"
+	`Accumulated shield interference per second when firing this afterburner.`
+
+tip "afterburner heat:"
+	`Heat created per second when firing this afterburner.`
+
+tip "afterburner thrust:"
+	`Thrust produced by this afterburner.`
+
+tip "asteroid scan power:"
+	`The range of this asteroid scanner is proportional to the square root of this value.`
+
+tip "atmosphere scan:"
+	`This type of scanning cannot be performed by your ship, but this outfit might be useful for certain missions.`
+
+tip "bunks:"
+	`How many people (passengers or crew) your ship can hold.`
+
+tip "burn protection:"
+	`Protection against weapons that have a burn effect. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in burn damage, while a total value of 11 only results in a 10 percent reduction.`
+
+tip "burn resistance:"
+	`How much burn damage this ship can resist per second.`
+
+tip "burn resistance energy:"
+	`Energy consumed per second when resisting burn damage.`
+
+tip "burn resistance fuel:"
+	`Fuel consumed per second when resisting burn damage.`
+
+tip "burn resistance heat:"
+	`Heat generated per second when resisting burn damage.`
+
+tip "capture attack:"
+	`Increases the "strength" of one crew member when attacking another ship to capture it. Each crew member can only wield one weapon at a time, but they will use whichever weapons provide the highest power.`
+
+tip "capture defense:"
+	`Increases the "strength" of one crew member when defending against an attempt to capture this ship. Each crew member can only wield one weapon at a time, but they will use whichever weapons provide the highest power.`
+
+tip "cargo scan:"
+	`Lets you scan your target ship's cargo from up to this distance away.`
+
+tip "cargo scan power:"
+	`The range of this cargo scanner is proportional to the square root of this value.`
+
+tip "cargo scan speed:"
+	`Determines how long it takes to perform a cargo scan. A higher value will correspond to a quicker scan.`
+
+tip "cargo scan efficiency:"
+	`The maximum speed of this cargo scanner is proportional to the square root of this value. The observed scan speed will be impacted by multiple factors. Targets which are farther away or have a larger cargo hold will take longer to scan.`
+
+tip "cargo:"
+	`Cargo this ship is carrying right now, out of its maximum.`
+
+tip "cargo space:"
+	`How much cargo (commodities, mission cargo, and plundered outfits) this ship can carry.`
+
+tip "cargo space needed:"
+	`How much cargo space this outfit uses up.`
+
+tip "cloak:"
+	`This outfit allows your ship to cloak. The value represents how long it takes to fully activate or deactivate cloaking. Ships cannot fire while cloaked.`
+
+tip "cloaking energy:"
+	`Energy per second required to maintain cloaking.`
+
+tip "cloaking fuel:"
+	`Fuel per second required to maintain cloaking.`
+	
+tip "cloaking heat:"
+	`Heat generated per second while cloaked.`
+
+tip "cooling:"
+	`Reduces heat by this amount per second. This is for when your ship's built-in heat dissipation is not sufficient to keep it from overheating.`
+
+tip "cooling energy:"
+	`When active cooling is running at full strength (because your ship's temperature is approaching the overheating threshold) it will draw this much energy.`
+
+tip "cooling inefficiency:"
+	`Interferes with your ship's ability to cool itself. Its cooling systems will only be about 75% effective at a cooling inefficiency of 5, and 30% at an inefficiency of 10.`
+
+tip "corrosion protection:"
+	`Protection against weapons that have a corrosion effect. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in corrosion damage, while a total value of 11 only results in a 10 percent reduction.`
+
+tip "corrosion resistance:"
+	`How much corrosion damage this ship can resist per second.`
+
+tip "corrosion resistance energy:"
+	`Energy consumed per second when resisting corrosion damage.`
+
+tip "corrosion resistance fuel:"
+	`Fuel consumed per second when resisting corrosion damage.`
+
+tip "corrosion resistance heat:"
+	`Heat generated per second when resisting corrosion damage.`
+
+tip "cost:"
+	`Cost, in credits. If you have sold any used (depreciated) items today, you can buy them back for the same price you sold them for.`
+
+tip "discharge protection:"
+	`Protection against weapons that have a discharge effect. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in discharge damage, while a total value of 11 only results in a 10 percent reduction.`
+
+tip "discharge resistance:"
+	`How much shield discharge damage this ship can resist per second.`
+
+tip "discharge resistance energy:"
+	`Energy consumed per second when resisting discharge damage.`
+
+tip "discharge resistance fuel:"
+	`Fuel consumed per second when resisting discharge damage.`
+
+tip "discharge resistance heat:"
+	`Heat generated per second when resisting discharge damage.`
+
+tip "disruption protection:"
+	`Protection against weapons that have a disruption effect. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in disruption damage, while a total value of 11 only results in a 10 percent reduction.`
+
+tip "disruption resistance:"
+	`How much shield disruption damage this ship can resist per second.`
+
+tip "disruption resistance energy:"
+	`Energy consumed per second when resisting disruption damage.`
+
+tip "disruption resistance fuel:"
+	`Fuel consumed per second when resisting disruption damage.`
+
+tip "disruption resistance heat:"
+	`Heat generated per second when resisting disruption damage.`
+
+tip "drag:"
+	`Limits the maximum speed of a ship.`
+	
+tip "drag reduction:"
+	`Reduces drag. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in drag, while a total value of 11 only results in a 10 percent reduction.`
+
+tip "drone bays:"
+	`The number of ships from the "Drone" category that this ship can carry.`
+
+tip "energy capacity:"
+	`How much energy this ship can store. This allows you to temporarily use more power than your generators produce.`
+
+tip "energy consumption:"
+	`Energy consumed per second while in flight.`
+	
+tip "energy generation:"
+	`Energy generated per second. If your ship has weapons other than beam weapons, you will probably also need batteries to store energy in.`
+
+tip "engine capacity needed:"
+	`Tons of engine space this outfit takes up.`
+
+tip "    engine capacity:"
+	`How many tons of engines this ship can hold. (To install an engine, you must also have enough total outfit space available.)`
+
+tip "energy protection:"
+	`Protection against weapons that deal energy damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in energy damage, while a total value of 11 only results in a 10 percent reduction.`
+
+tip "fighter bays:"
+	`The number of ships from the "Fighter" category that this ship can carry.`
+
+tip "force protection:"
+	`Protection against weapons that apply a hit force. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in hit force, while a total value of 11 only results in a 10 percent reduction.`
+
+tip "fuel:"
+	`This ship's current fuel amount. An ordinary hyperdrive jump consumes 100 fuel.`
+
+tip "fuel capacity:"
+	`An ordinary hyperdrive jump consumes 100 fuel. Fuel is replenished for free when you land on an inhabited planet.`
+
+tip "fuel consumption:"
+	`Fuel consumed per second while in flight (can generate energy or heat).`
+	
+tip "fuel energy:"
+	`Energy produced per second while in flight, as a consequence of fuel consumption.`
+	
+tip "fuel generation:"
+	`Fuel generated per second.`
+	
+tip "fuel heat:"
+	`Heat produced per second while in flight, as a consequence of fuel consumption.`
+
+tip "fuel protection:"
+	`Protection against weapons that deal fuel damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in fuel damage, while a total value of 11 only results in a 10 percent reduction.`
+
+tip "gun ports needed:"
+	`This weapon uses up a gun port. Guns always fire straight forward; turrets fire in the direction of your currently selected target.`
+
+tip "gun ports free:"
+	`How many guns this ship can hold. This includes most missiles and secondary weapons that fire straight forward.`
+
+tip "heat dissipation:"
+	`How effectively this ship radiates excess heat.`
+
+tip "heat generation:"
+	`Heat generated by this outfit per second. Heat generation can be offset by "cooling" outfits. If your ship exceeds its maximum heat, it must temporarily shut down to cool itself off.`
+
+tip "heat protection:"
+	`Protection against weapons that do heat damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in heat damage, while a total value of 11 only results in a 10 percent reduction.`
+
+tip "heat capacity:"
+	`Increases the maximum heat that this ship is able to withstand before becoming overheated. A value of one has the same influence on a ship's maximum heat as one ton of mass, without the effects that mass has on movement.`
+
+tip "hull (repair):"
+	`Total hull strength and repair rate (per second). The smallest of ships are disabled when their hull strength drops below about 45%, while very large ships are disabled at close to 10%.`
+
+tip "hull:"
+	`Total hull strength. Ships with a higher hull strength are able to take more damage as a proportion of their total strength before being disabled; the smallest of ships are disabled when their hull strength drops below about 45%, while very large ships are disabled at close to 10%.`
+
+tip "hull energy:"
+	`Energy consumed per second when repairing the hull.`
+
+tip "hull energy multiplier:"
+	`Modifies the energy consumed when repairing the hull by the given factor.`
+
+tip "hull fuel:"
+	`Fuel consumed per second when repairing the hull.`
+
+tip "hull fuel multiplier:"
+	`Modifies the fuel consumed when repairing the hull by the given factor.`
+
+tip "hull heat:"
+	`Heat produced per second when repairing the hull.`
+
+tip "hull heat multiplier:"
+	`Modifies the heat produced when repairing the hull by the given factor.`
+
+tip "hull repair rate:"
+	`Amount of hull strength that can be repaired per second. Repairs usually consume energy and may generate heat as well.`
+
+tip "repair delay:"
+	`How many seconds it takes for hull repairs to begin after taking hull damage.`
+
+tip "disabled repair delay:"
+	`How many seconds it takes for hull repairs to begin after being disabled.`
+
+tip "absolute threshold:"
+	`The remaining hull strength at which the ship becomes disabled. This attribute takes priority over other attributes that change the disabled threshold.`
+
+tip "hull threshold:"
+	`Alters the hull strength value at which the ship will become disabled.`
+
+tip "threshold percentage:"
+	`Alters the percentage of the remaining hull strength at which the ship will become disabled.`
+
+tip "hull protection:"
+	`Protection against weapons that do hull damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in hull damage, while a total value of 11 only results in a 10 percent reduction.`
+
+tip "hull repair multiplier:"
+	`Modifies the amount of hull strength repaired per second by the given factor.`
+
+tip "illegal:"
+	`Amount of credits you can be fined for carrying this outfit.`
+
+tip "income:"
+	`Amount of credits you receive per day that you own this outfit, even if it is not in active use.`
+	
+tip "inertia reduction:"
+	`Reduces effective ship mass. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in inertia, while a total value of 11 only results in a 10 percent reduction.`
+
+tip "ion protection:"
+	`Protection against weapons that do ion damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in ion damage, while a total value of 11 only results in a 10 percent reduction.`
+
+tip "scramble protection:"
+	`Protection against weapons that do scrambling damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in ion damage, while a total value of 11 only results in a 10 percent reduction.`
+
+tip "ion resistance:"
+	`How much ionization damage this ship can resist per second.`
+
+tip "ion resistance energy:"
+	`Energy consumed per second when resisting ion damage.`
+
+tip "ion resistance fuel:"
+	`Fuel consumed per second when resisting ion damage.`
+
+tip "ion resistance heat:"
+	`Heat generated per second when resisting ion damage.`
+
+tip "landing speed:"
+	`How fast this ship is able to land on a planet, or travel through a wormhole.`
+
+tip "scramble resistance:"
+	`How much scrambling damage this ship can resist per second.`
+
+tip "scramble resistance energy:"
+	`Energy consumed per second when resisting scrambling damage.`
+
+tip "scramble resistance fuel:"
+	`Fuel consumed per second when resisting scrambling damage.`
+
+tip "scramble resistance heat:"
+	`Heat generated per second when resisting scrambling damage.`
+
+tip "jump speed:"
+	`How slow the ship must be moving to make a jump.`
+
+tip "jump fuel:"
+	`How much fuel is consumed when you jump between systems using this drive.`
+
+tip "jump range:"
+	`How far you can jump between systems using this drive.`
+
+tip "jump mass cost:"
+	`How much fuel this drive consumes, per 100 tons of mass. Additive with jump fuel.`
+
+tip "jump base mass:"
+	`A modifier to the impact your ship's mass has on the jump mass cost. Ships below this mass will have a cheaper jump cost than the base jump fuel cost, while ships above this mass will have more expensive jumps.`
+
+tip "leak protection:"
+	`Protection against weapons that cause fuel leakage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in leak damage, while a total value of 11 only results in a 10 percent reduction.`
+
+tip "leak resistance:"
+	`How much leak damage this ship can resist per second.`
+
+tip "leak resistance energy:"
+	`Energy consumed per second when resisting leak damage.`
+
+tip "leak resistance fuel:"
+	`Fuel consumed per second when resisting leak damage.`
+
+tip "leak resistance heat:"
+	`Heat generated per second when resisting leak damage.`
+
+tip "maintenance costs:"
+	`How many credits per day you need to spend to maintain this outfit. Even if a ship is parked or an outfit is in cargo, you still need to pay for its maintenance.`
+
+tip "map:"
+	`How many star systems are included in this map.`
+
+tip "mass with no cargo:"
+	`Mass of this ship when not carrying any cargo or fighters. Cargo increases mass, which reduces acceleration and turn rate and increases maximum heat before overheating.`
+
+tip "mass:"
+	`Mass, in tons. A ship's mass determines how fast it turns and accelerates and its maximum heat before overheating.`
+
+tip "operating costs:"
+	`How many credits per day you need to spend to maintain this outfit while it is in active use.`
+
+tip "operating income:"
+	`Amount of credits you receive per day that this outfit is in active use.`
+
+tip "outfit scan:"
+	`Lets you scan your target ship's outfits from up to this distance away.`
+
+tip "outfit scan power:"
+	`The range of this outfit scanner is proportional to the square root of this value.`
+
+tip "outfit scan speed:"
+	`Determines how long it takes to perform an outfit scan. A higher value will correspond to a quicker scan.`
+
+tip "outfit scan efficiency:"
+	`The maximum speed of this outfit scanner is proportional to the square root of this value. The observed scan speed will be impacted by multiple factors. Targets which are farther away or have a larger outfit capacity will take longer to scan.`
+
+tip "outfit space added:"
+	`How much general-purpose space this outfit provides.`
+
+tip "outfit space needed:"
+	`How much general-purpose space this outfit uses up. Some outfits also use up weapon space or engine space.`
+
+tip "outfit space free:"
+	`How much space this ship has for outfits (including weapons and engines).`
+
+tip "overheat damage rate:"
+	`How much hull damage this ship will take per second that it is overheated. Overheat damage scales with how far past the overheat threshold the ship is.`
+
+tip "overheat damage threshold:"
+	`Increases the percentage past overheated at which point overheat damage begins.`
+
+tip "piercing protection:"
+	`Protection against weapons that pierce shields. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in damage leak, while a total value of 11 only results in a 10 percent reduction.`
+
+tip "optical jamming:"
+	`Reduces the ability of optical-guided missiles to track your ship, which is mostly useful for larger ships. The more optical jamming is installed, the greater the distance at which missiles can be jammed, and the greater the chance that a jammed missile will fly off in a random direction.`
+
+tip "radar jamming:"
+	`Reduces the ability of radar-guided missiles to track your ship. The more radar jamming is installed, the greater the distance at which missiles can be jammed, and the greater the chance that a jammed missile will fly off in a random direction.`
+
+tip "ramscoop:"
+	`Replenishes fuel by harvesting the stellar wind. Ramscoops are more effective when closer to a star. If you add more than one ramscoop, each additional one is less effective: you need four ramscoops to achieve double the recharge rate that one ramscoop provides.`
+
+tip "required crew / bunks:"
+	`How many crew members are required to operate this ship, and how many total bunks are available. Extra bunks can be used for passengers or extra crew.`
+
+tip "required crew:"
+	`Changes the number of crew members this ship requires by this amount.`
+
+tip "reverse thrust:"
+	`Allows a ship to apply reverse thrust instead of needing to turn backward to slow down.`
+
+tip "reverse thrusting energy:"
+	`Energy consumed per second when firing reverse thrusters.`
+
+tip "reverse thrusting heat:"
+	`Heat produced per second when firing reverse thrusters.`
+
+tip "reverse thrusting shields:"
+	`Shields displaced, consumed, or destroyed, per second when firing reverse thrusters.`
+
+tip "reverse thrusting hull:"
+	`Hull that flakes off, breaks apart, or is otherwise compromised, per second when firing reverse thrusters.`
+
+tip "reverse thrusting fuel:"
+	`Fuel consumed per second when firing reverse thrusters.`
+
+tip "reverse thrusting discharge:"
+	`Accumulated shield discharging per second when firing reverse thrusters.`
+
+tip "reverse thrusting corrosion:"
+	`Accumulated hull corrosion per second when firing reverse thrusters.`
+
+tip "reverse thrusting ion:"
+	`Accumulated ionization per second when firing reverse thrusters.`
+
+tip "reverse thrusting scramble:"
+	`Accumulated scrambling per second when firing reverse thrusters.`
+
+tip "reverse thrusting leakage:"
+	`Accumulated leaking fuel per second when firing reverse thrusters.`
+
+tip "reverse thrusting burn:"
+	`Accumulated exothermic interactions per second when firing reverse thrusters.`
+
+tip "reverse thrusting slowing:"
+	`Accumulated engine interference per second when firing reverse thrusters.`
+
+tip "reverse thrusting disruption:"
+	`Accumulated shield interference per second when firing reverse thrusters.`
+
+tip "scan interference:"
+	`Ability to evade detection when a ship is carrying illegal outfits or cargo. Interference of 1 blocks 50% of scan attempts; 3 blocks 75%, and 9 blocks 90%.`
+
+tip "scram drive:"
+	`This hyperdrive allows you to jump without coming to a stop, as long as your velocity is within this range of being lined up with the direction you are jumping in.`
+
+tip "self destruct:"
+	`How likely this ship is to self-destruct when you try to board or capture it.`
+
+tip "sells for:"
+	`What this outfit will sell for, in credits. Outfits and ships will depreciate (lose resale value) over time, and plunder always starts out fully depreciated.`
+
+tip "shield energy:"
+	`Energy consumed per second when recharging shields.`
+
+tip "shield energy multiplier:"
+	`Modifies the energy consumed when recharging shields by the given factor.`
+
+tip "shield fuel:"
+	`Fuel consumed per second when recharging shields.`
+
+tip "shield fuel multiplier:"
+	`Modifies the fuel consumed when recharging shields by the given factor.`
+
+tip "shield heat:"
+	`Heat produced per second when recharging shields.`
+
+tip "shield heat multiplier:"
+	`Modifies the heat produced when recharging shields by the given factor.`
+
+tip "shield generation:"
+	`Shield points recharged per second. Recharging shields usually consumes energy, and may also produce heat.`
+
+tip "shield generation multiplier:"
+	`Modifies the amount of shield points recharged per second by the given factor.`
+
+tip "high shield permeability:"
+	`This percentage of all incoming damage bypasses shields and applies directly to the hull when at full shields.`
+
+tip "low shield permeability:"
+	`This percentage of all incoming damage will bypass shields and apply directly to the hull as shields approach zero.`
+
+tip "shields (charge):"
+	`Total shield strength and regeneration rate (per second).`
+
+tip "shields:"
+	`Total shield strength. Most weapons cannot damage your hull until your shields are depleted. Some weapon effects, such as heat damage, become more severe once shields are down.`
+
+tip "shield delay:"
+	`How many seconds it takes for shield generation to begin after taking shield damage.`
+
+tip "depleted shield delay:"
+	`How many seconds it takes for shield generation to begin after your shields have been depleted.`
+
+tip "shield protection:"
+	`Protection against weapons that do shield damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in shield damage, while a total value of 11 only results in a 10 percent reduction.`
+
+tip "slowing protection:"
+	`Protection against weapons that have a slowing effect. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in slowing damage, while a total value of 11 only results in a 10 percent reduction.`
+
+tip "slowing resistance:"
+	`How much slowing damage this ship can resist per second.`
+
+tip "slowing resistance energy:"
+	`Energy consumed per second when resisting slowing damage.`
+
+tip "slowing resistance fuel:"
+	`Fuel consumed per second when resisting slowing damage.`
+
+tip "slowing resistance heat:"
+	`Heat generated per second when resisting slowing damage.`
+
+tip "solar collection:"
+	`Produces a variable amount of energy depending on how far this ship is from the star at the center of the system.`
+
+tip "solar heat:"
+	`Produces a variable amount of heat depending on how far this ship is from the star at the center of the system.`
+
+tip "tactical scan power:"
+	`Tactical scanners allow you to view your current target's crew complement, fuel, heat, and energy levels when it is within range. The range is proportional to the square root of this value.`
+
+tip "max speed:"
+	`The fastest this ship can travel when using ordinary thrusters (that is, without afterburner).`
+
+tip "acceleration:"
+	`How quickly this ship gains speed. The higher a ship's mass (including the mass of any cargo or fighters it is carrying), the slower it accelerates.`
+
+tip "movement:"
+	`How quickly this ship can accelerate and turn.`
+
+tip "movement (full - no cargo):"
+	`How quickly this ship can accelerate and turn when its cargo hold is full versus when it is empty.`
+
+tip "thrust:"
+	`Thrust produced by engines. Higher thrust increases a ship's acceleration and top speed. The more mass a ship has, the more thrust is needed to achieve the same acceleration.`
+
+tip "thrusting energy:"
+	`Energy consumed per second when firing thrusters.`
+
+tip "thrusting heat:"
+	`Heat generated per second when firing thrusters.`
+
+tip "thrusting shields:"
+	`Shields displaced, consumed, or destroyed, per second when firing thrusters.`
+
+tip "thrusting hull:"
+	`Hull that flakes off, breaks apart, or is otherwise compromised, per second when firing thrusters.`
+
+tip "thrusting fuel:"
+	`Fuel consumed per second when firing thrusters.`
+
+tip "thrusting discharge:"
+	`Accumulated shield discharging per second when firing thrusters.`
+
+tip "thrusting corrosion:"
+	`Accumulated hull corrosion per second when firing thrusters.`
+
+tip "thrusting ion:"
+	`Accumulated ionization per second when firing thrusters.`
+
+tip "thrusting scramble:"
+	`Accumulated scrambling per second when firing thrusters.`
+
+tip "thrusting leakage:"
+	`Accumulated leaking fuel per second when firing thrusters.`
+
+tip "thrusting burn:"
+	`Accumulated exothermic interactions per second when firing thrusters.`
+
+tip "thrusting slowing:"
+	`Accumulated engine interference per second when firing thrusters.`
+
+tip "thrusting disruption:"
+	`Accumulated shield interference per second when firing thrusters.`
+
+tip "turning:"
+	`Turn rate, in degrees per second. The higher a ship's mass (including the mass of any cargo or fighters it is carrying), the slower it turns.`
+
+tip "turn:"
+	`Turning force generated by this engine. The more mass a ship has, the more thrust is needed to achieve the same acceleration.`
+
+tip "turning energy:"
+	`Energy consumed per second when turning.`
+
+tip "turning heat:"
+	`Heat generated per second when turning.`
+
+tip "turning shields:"
+	`Shields displaced, consumed, or destroyed, per second when turning.`
+
+tip "turning hull:"
+	`Hull that flakes off, breaks apart, or is otherwise compromised, per second when turning.`
+
+tip "turning fuel:"
+	`Fuel consumed per second when turning.`
+
+tip "turning discharge:"
+	`Accumulated shield discharging per second when turning.`
+
+tip "turning corrosion:"
+	`Accumulated hull corrosion per second when turning.`
+
+tip "turning ion:"
+	`Accumulated ionization per second when turning.`
+
+tip "turning scramble:"
+	`Accumulated scrambling per second when turning.`
+
+tip "turning leakage:"
+	`Accumulated leaking fuel per second when turning.`
+
+tip "turning burn:"
+	`Accumulated exothermic interactions per second when turning.`
+
+tip "turning slowing:"
+	`Accumulated engine interference per second when turning.`
+
+tip "turning disruption:"
+	`Accumulated shield interference per second when turning.`
+
+tip "turret mounts needed:"
+	`This weapon can fire in any direction, tracking your currently selected target. It uses up one of your ship's turret mounts.`
+
+tip "turret mounts free:"
+	`How many turrets can be mounted on this ship. Turrets fire in the direction of the currently selected target, instead of firing straight forward like guns.`
+
+tip "weapon capacity needed:"
+	`Tons of weapon space this outfit takes up.`
+
+tip "    weapon capacity:"
+	`How many tons of weapons this ship can hold. (To install a weapon, you must also have enough total outfit space available.)`
+
+tip "scan brightness:"
+	`Modifies the likelihood of this illegal outfit appearing on a cargo scan. The higher the brightness, the more likely a scan will pick it up. A scan brightness of 5 has as much a chance of being scanned as an outfit that is 5 tons.`
+
+tip "scan concealment:"
+	`Hides an equivalent mass of illegal cargo from cargo scans, preventing you from being fined for having it. For example, if you had 10 scan concealment, then up to 10 tons of illegal cargo would not appear on cargo scans.`
+
+
+
+# Sale labels:
+tip "empty hull:"
+	`Price the ship itself would sell for without any outfits installed.`
+
+tip "  + outfits:"
+	`Price that all this ship's outfits will sell for.`
+
+
+
+# Ship heat and energy summary fields:
+tip "idle:"
+	`Energy and heat generated when this ship is idle, i.e. not firing weapons, turning, or thrusting.`
+
+tip "moving:"
+	`Energy consumed and heat generated when this ship is turning and thrusting. This is in addition to the "idle" amount.`
+
+tip "firing:"
+	`Energy consumed and heat generated when this ship is firing all its weapons. This is in addition to the "idle" amount.`
+
+tip "shields / hull:"
+	`Energy consumed and heat generated when this ship is recharging shields and repairing its hull at the same time. This is in addition to the "idle" amount.`
+
+tip "repairing hull:"
+	`Energy consumed and heat generated when this ship is repairing its hull. This is in addition to the "idle" amount.`
+
+tip "charging shields:"
+	`Energy consumed and heat generated when this ship is recharging its shields. This is in addition to the "idle" amount.`
+
+tip "max:"
+	`Energy storage capacity and maximum safe level for heat generation. Energy capacity allows a ship to temporarily draw more energy than it produces. The heat maximum is the highest your heat generation can be without eventually causing your ship to overheat.`
+
+
+
+# Outfit categories:
+tip "Guns:"
+	`Weapons that are fixed in place (firing in the direction your ship is pointed) and that require no ammunition.`
+
+tip "Turrets:"
+	`Weapons that can fire in any direction and will track your currently selected target.`
+
+tip "Secondary Weapons:"
+	`Weapons that require ammunition (which must be purchased separately).`
+
+tip "Ammunition:"
+	`Outfits that serve as ammunition for other weapons. To fire this ammunition, you need a launcher of the appropriate type.`
+
+tip "Systems:"
+	`Outfits that occupy general space, not the space set aside for engines or weapons.`
+
+tip "Power:"
+	`Outfits that either supply energy, or store the energy that is generated.`
+
+tip "Engines:"
+	`Thrusters and steering systems, which affect how quickly your ship moves.`
+
+tip "Hand to Hand:"
+	`Weapons that your crew uses when trying to capture a ship.`
+
+tip "Special:"
+	`Items you can purchase or sell but that are not outfits that can be installed in a ship.`
+
+
+
+# Weapon attributes:
+tip "ammo:"
+	`When this weapon fires it consumes outfits of this type.`
+
+tip "ammo usage:"
+	`The number of units of ammo that this weapon consumes when fired.`
+
+tip "range:"
+	`Total range of this weapon.`
+
+tip "shield damage / second:"
+	`Shield damage, converted to damage per second to allow easy comparisons between different weapons.`
+
+tip "hull damage / second:"
+	`Hull damage, converted to damage per second to allow easy comparisons between different weapons.`
+
+tip "minable damage / second:"
+	`Minable damage, converted to damage per second to allow easy comparisons between different weapons.`
+
+tip "fuel damage / second:"
+	`The amount of fuel lost by the target per second when hit by this weapon. If its shields are up, the loss will be cut in half. A negative amount means fuel is added.`
+
+tip "heat damage / second:"
+	`When hitting a target this weapon increases the target's heat by this amount per second, or half this amount if the target's shields are up.`
+
+tip "energy damage / second:"
+	`When hitting a target this weapon reduces the target's energy by this amount per second, or half this amount if the target's shields are up.`
+
+tip "ion damage / second:"
+	`Reduces the target's energy. Ionization slowly wears off over time.`
+
+tip "scrambling damage / second:"
+	`Causes weapon failures. Scrambling slowly wears off over time.`
+
+tip "slowing damage / second:"
+	`Reduces the target's turn rate, acceleration, and top speed. Slowing wears off over time.`
+
+tip "disruption damage / second:"
+	`Disrupts the target's shields, allowing weapon damage to "leak through" to the hull even if shields are up. Shield disruption wears off over time, and adding additional shield disruption becomes more difficult as damage leaks past shields instead of disrupting them.`
+
+tip "discharge damage / second:"
+	`Amount of shield damage over time dealt by this weapon per second when firing.`
+
+tip "corrosion damage / second:"
+	`Amount of hull damage over time dealt by this weapon per second when firing.`
+
+tip "leak damage / second:"
+	`Amount of fuel damage over time dealt by this weapon per second when firing.`
+
+tip "burn damage / second:"
+	`Amount of heat damage over time dealt by this weapon per second when firing.`
+
+tip "% shield damage / second:"
+	`Relative shield damage, converted to damage per second to allow easy comparisons between different weapons.`
+
+tip "% hull damage / second:"
+	`Relative hull damage, converted to damage per second to allow easy comparisons between different weapons.`
+
+tip "% minable damage / second:"
+	`Relative minable damage, converted to damage per second to allow easy comparisons between different weapons.`
+
+tip "% fuel damage / second:"
+	`The amount of fuel lost as a percentage of a target's total fuel per second when hit by this weapon. If its shields are up, the loss will be cut in half.`
+
+tip "% heat damage / second:"
+	`When hitting a target this weapon increases the target's heat as a percentage of its maximum heat capacity by this amount per second, or half this amount if the target's shields are up.`
+
+tip "% energy damage / second:"
+	`When hitting a target this weapon reduces the target's energy as a percentage of its energy capacity by this amount per second, or half this amount if the target's shields are up.`
+
+tip "firing energy / second:"
+	`Energy consumed by this weapon per second when firing.`
+
+tip "firing heat / second:"
+	`Heat generated by this weapon per second when firing.`
+
+tip "firing fuel / second:"
+	`Fuel consumed by this weapon per second when firing.`
+
+tip "firing hull / second:"
+	`Amount of hull damaged by this weapon per second when firing.`
+
+tip "firing shields / second:"
+	`Amount of shield damaged by this weapon per second when firing.`
+
+tip "firing ion / second:"
+	`Reduces energy levels for some time after this weapon is fired.`
+
+tip "firing scramble / second:"
+	`Jams the weapons for some time after this weapon is fired.`
+
+tip "firing slowing / second:"
+	`Reduces the turn rate, acceleration, and top speed of the ship when this weapon is fired. Slowing wears off over time.`
+
+tip "firing disruption / second:"
+	`Disrupts the ships shields after firing this weapon, allowing damage from hostile weapons to "leak through" to the hull even if shields are up. Shield disruption wears off over time, but imparting disruption on yourself does not lose effectiveness as your shields become more leaky.`
+
+tip "firing discharge / second:"
+	`Reduces shields for some time after this weapon is fired.`
+
+tip "firing corrosion / second:"
+	`Reduces hull for some time after this weapon is fired.`
+
+tip "firing leak / second:"
+	`Reduces fuel for some time after this weapon is fired.`
+
+tip "firing burn / second:"
+	`Increases heat for some time after this weapon is fired.`
+
+tip "% firing energy / second:"
+	`Relative firing energy costs, converted to energy per second to allow easy comparisons between different weapons.`
+
+tip "% firing heat / second:"
+	`When firing this weapon then the ship's heat increases as a percentage of its maximum heat capacity by this amount per second.`
+
+tip "% firing fuel / second:"
+	`The amount of fuel used or lost as a percentage of the ship's total fuel per second when this weapon is fired.`
+
+tip "% firing hull / second:"
+	`Relative hull loss when this weapon is fired, converted to loss per second to allow easy comparisons between different weapons.`
+
+tip "% firing shields / second:"
+	`Relative shields loss when this weapon is fired, converted to loss per second to allow easy comparisons between different weapons.`
+
+tip "shots / second:"
+	`How many projectiles per second this weapon fires. Weapons that fire continuously do not require batteries if the ship's energy generation per second is higher than the weapon's firing energy per second. Some continuous fire weapons only fire a fraction of the time, in which case the ship's energy production must be higher than the weapon's firing energy divided by the firing time to not require batteries.`
+
+tip "turret turn rate:"
+	`How fast this turret turns to track its targets, in degrees per second.`
+
+tip "homing:"
+	`How well this projectile tracks its target. Weapons with better homing can adjust to the target's speed to plot a more effective intercept course.`
+
+tip "tracking:"
+	`How well this weapon maintains its target lock.`
+
+tip "optical tracking:"
+	`How well this weapon maintains an optical target lock, which depends on the size of the target; negatively affected by any potential optical jamming equipement.`
+
+tip "infrared tracking:"
+	`How well this weapon maintains an infrared target lock, which depends on the target ship's heat level and distance from the missile; IR-guided missiles become more accurate the closer they are to their targets.`
+
+tip "radar tracking:"
+	`How well this weapon maintains a radar target lock; negatively affected by the target ship's radar jamming equipment.`
+
+tip "piercing:"
+	`This percentage of this weapon's damage always leaks through to the hull.`
+
+tip "piercing resistance:"
+	`What percentage of a weapon's piercing damage is resisted, preventing damage from leaking through the shields to the hull.`
+
+tip "shield damage / shot:"
+	`Each shot fired by this weapon does this amount of shield damage.`
+
+tip "hull damage / shot:"
+	`Each shot fired by this weapon does this amount of hull damage to ships or minable objects.`
+
+tip "minable damage / shot:"
+	`Each shot fired by this weapon does this amount of damage to minable objects, in lieu of hull damage being used.`
+
+tip "fuel damage / shot:"
+	`The amount of fuel lost by the target per shot when hit by this weapon. If its shields are up, the loss will be cut in half. A negative amount means fuel is added.`
+
+tip "heat damage / shot:"
+	`Each shot increases the target ship's heat by this amount, or half this amount if its shields are up.`
+
+tip "energy damage / shot:"
+	`Each shot reduces the target ship's energy by this amount, or half this amount if its shields are up.`
+
+tip "ion damage / shot:"
+	`Each shot increases the target's ionization by this amount. Ionization reduces the target's energy. Ionization slowly wears off over time.`
+
+tip "scrambling damage / shot:"
+	`Each shot increases the target's scrambling by this amount. scrambling causes weapon failures. It slowly wears off over time.`
+
+tip "slowing damage / shot:"
+	`Reduces the target's turn rate, acceleration, and top speed. Slowing wears off over time.`
+
+tip "disruption damage / shot:"
+	`Disrupts the target's shields, allowing weapon damage to "leak through" to the hull even if shields are up. Shield disruption wears off over time, and adding additional shield disruption becomes more difficult as damage leaks past shields instead of disrupting them.`
+
+tip "discharge damage / shot:"
+	`Each shot increases the target's shield discharge by this amount. Shield discharge continuously reduces the target's shields and slowly wears off over time.`
+
+tip "corrosion damage / shot:"
+	`Each shot increases the target's hull corrosion by this amount. Hull discharge continuously reduces the target's hull and slowly wears off over time.`
+
+tip "leak damage / shot:"
+	`Each shot causes the target to leak by this amount. Leak continuously decreases the target's fuel and slowly wears off over time.`
+
+tip "burn damage / shot:"
+	`Each shot causes the target to burn by this amount. Burn continuously increases the target's heat and slowly wears off over time.`
+
+tip "% shield damage / shot:"
+	`Each shot fired by this weapon does this amount of shield damage as a percentage of the target ship's total shields.`
+
+tip "% hull damage / shot:"
+	`Each shot fired by this weapon does this amount of hull damage as a percentage of the target ship's total hull or the target minable object's total health.`
+
+tip "% minable damage / shot:"
+	`Each shot fired by this weapon does this amount of damage as a percentage of the target minable object's total health, in lieu of relative hull damage being used.`
+
+tip "% fuel damage / shot:"
+	`The amount of fuel lost by the target per shot as a percentage of the ship's total fuel when hit by this weapon. If its shields are up, the loss will be cut in half.`
+
+tip "% heat damage / shot:"
+	`Each shot increases the target ship's heat as a percentage of the ship's maximum heat capacity by this amount, or half this amount if its shields are up.`
+
+tip "% energy damage / shot:"
+	`Each shot reduces the target ship's energy as a percentage of the ship's energy capacity by this amount, or half this amount if its shields are up.`
+
+tip "firing energy / shot:"
+	`Each shot requires this much energy. A weapon will not fire if the ship's batteries do not have at least this amount of energy stored.`
+
+tip "firing heat / shot:"
+	`Heat generated per shot.`
+
+tip "firing fuel / shot:"
+	`Fuel consumed per shot.`
+
+tip "firing hull / shot:"
+	`Each shot fired by this weapon causes this amount of hull to be lost.`
+
+tip "firing shields / shot:"
+	`Each shot fired by this weapon causes this amount of shield to be lost.`
+
+tip "firing ion / shot:"
+	`Each shot increases the ship's ionization by this amount. Ionization reduces the ship's energy and slowly wears off over time.`
+
+tip "firing scramble / shot:"
+	`Each shot increases the ship's scrambling by this amount. This jams the weapons and slowly wears off over time.`
+
+tip "firing slowing / shot:"
+	`Each shot reduces the ship's turn rate, acceleration, and top speed. Slowing wears off over time.`
+
+tip "firing disruption / shot:"
+	`Each shot disrupts the ship's shields, allowing hostile weapon damage to "leak through" to the hull even if shields are up. Shield disruption wears off over time, but imparting disruption on yourself does not lose effectiveness as your shields become more leaky.`
+
+tip "firing discharge / shot:"
+	`Each shot applies discharge to the ship, reducing its shields over time. Shield discharge wears off over time.`
+
+tip "firing corrosion / shot:"
+	`Each shot applies corrosion to the ship, reducing the ship's hull over time. Corrosion wears off over time.`
+
+tip "firing leak / shot:"
+	`Each shot causes the ship's fuel to leak. Fuel leakage wears off over time.`
+
+tip "firing burn / shot:"
+	`Each shot causes the ship to burn, increases the ship's heat over time. Burn wears off over time.`
+
+tip "% firing energy / shot:"
+	`Each shot reduces the ship's energy as a percentage of the ship's total energy capacity by this amount.`
+
+tip "% firing heat / shot:"
+	`Each shot fired increases the ship's heat as a percentage of the ship's maximum heat capacity by this amount.`
+
+tip "% firing fuel / shot:"
+	`The amount of fuel used or lost per shot fired as a percentage of the ship's total fuel.`
+
+tip "% firing hull / shot:"
+	`Each shot fired by this weapon causes this amount of hull damage as a percentage of the ship's total hull.`
+
+tip "% firing shields / shot:"
+	`Each shot fired by this weapon causes this amount of shield loss as a percentage of the ship's total shields.`
+
+tip "inaccuracy:"
+	`Maximum inaccuracy of this weapon, in degrees.`
+
+tip "blast radius:"
+	`When this weapon hits something, everything within this distance (including friendly ships) will be damaged.`
+
+tip "missile strength:"
+	`How resistant this missile is to anti-missile shots.`
+
+tip "anti-missile:"
+	`How powerful this anti-missile system's shots are. Some missiles are harder to destroy than others.`
+
+
+
+# Flight checks:
+tip "overheating!"
+	`This ship's outfits are producing so much heat that it will overheat the moment it takes off. You must either add more cooling or remove some of the outfits that are producing heat.`
+
+tip "no energy!"
+	`This ship does not have any source of energy to power its systems. You should install some sort of generator.`
+
+tip "no fuel!"
+	`This ship does not have enough fuel to provide energy to power its systems. You should increase the fuel capacity.`
+
+tip "no thruster!"
+	`This ship does not have any sort of thruster installed. If it took off, it would be unable to move.`
+
+tip "no steering!"
+	`This ship does not have any steering systems installed. If it took off, it would be unable to turn.`
+
+tip "insufficient bunks!"
+	`This ship does not have enough bunks for its crew. It cannot take off.`
+
+tip "afterburner only?"
+	`This ship's only thruster is an afterburner. It may be unable to move if the afterburner runs out of fuel.`
+
+tip "reverse only?"
+	`This ship has a reverse thruster but no forward thruster, which could make it very difficult to maneuver.`
+
+tip "battery only?"
+	`This ship has no means of generating energy. If its batteries are depleted, you could end up stranded and unable to move.`
+
+tip "limited thrust?"
+	`This ship's energy supply is not sufficient to run the thrusters at full power. Its top speed and acceleration will be diminished.`
+
+tip "limited turn?"
+	`This ship's energy supply is not sufficient to run the steering at full power. Its turn rate will be diminished.`
+
+tip "solar power?"
+	`This ship is powered entirely by solar energy. If you fly too far from the center of a star system, maneuvering may become difficult because your engines will only have a fraction of the power they require.`
+
+tip "fuel?"
+	`This ship consumes fuel. However, it would immediately run out of fuel if it departs.`
+
+tip "no hyperdrive?"
+	`This ship has no hyperdrive. If it took off, it would be unable to leave this star system.`
+
+tip "no fuel?"
+	`This ship has insufficient fuel capacity to make a hyperspace jump. If it took off, it would be unable to leave this star system.`
+
+tip "no bays?"
+	`There are insufficient bays available to carry this ship. If you take off, it would be unable to leave this star system.`
+
+tip "insufficient energy to fire?"
+	`This ship has insufficient energy storage to fire an installed weapon.`
+
+
+
+# Boolean attributes:
+tip "This outfit is considered an atrocity."
+	`Governments that scan for illegal goods will attack you upon discovering this item in your possession in space, or arrest you if found when landed.`

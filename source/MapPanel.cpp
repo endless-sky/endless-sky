@@ -76,6 +76,17 @@ namespace {
 		unsigned unavailable = 0;
 	};
 
+	// Struct for storing the ends of wormhole links and their colors.
+	struct WormholeArrow {
+		WormholeArrow() = default;
+		WormholeArrow(const System *from, const System *to, const Color *color)
+		: from(from), to(to), color(color) {}
+		const System *from = nullptr;
+		const System *to = nullptr;
+		const Color *color = nullptr;
+	};
+
+
 	// Log how many player ships are in a given system, tracking whether
 	// they are parked or in-flight.
 	void TallyEscorts(const vector<shared_ptr<Ship>> &escorts,
@@ -107,8 +118,8 @@ namespace {
 			// Get the system in which the planet storage is located.
 			const Planet *planet = hold.first;
 			const System *system = planet->GetSystem();
-			// Skip outfits stored on planets without a system.
-			if(!system)
+			// Skip outfits stored on planets without a system or an outfitter.
+			if(!system || !planet->HasOutfitter())
 				continue;
 
 			for(const auto &outfit : hold.second.Outfits())
@@ -245,7 +256,89 @@ void MapPanel::Draw()
 	DrawSystems();
 	DrawNames();
 	DrawMissions();
-	DrawTooltips();
+}
+
+
+
+void MapPanel::FinishDrawing(const string &buttonCondition)
+{
+	// Draw the buttons to switch to other map modes.
+
+	// Remember which buttons we're showing.
+	MapPanel::buttonCondition = buttonCondition;
+
+	Information info;
+	info.SetCondition(buttonCondition);
+	const Interface *mapInterface = GameData::Interfaces().Get("map");
+	if(player.MapZoom() >= static_cast<int>(mapInterface->GetValue("max zoom")))
+		info.SetCondition("max zoom");
+	if(player.MapZoom() <= static_cast<int>(mapInterface->GetValue("min zoom")))
+		info.SetCondition("min zoom");
+	const Interface *mapButtonUi = GameData::Interfaces().Get("map buttons");
+	mapButtonUi->Draw(info, this);
+
+	// Draw the tooltips.
+
+	if(hoverSystem && hoverCount >= HOVER_TIME)
+	{
+		// Create the tooltip text.
+		if(tooltip.empty())
+		{
+			MapPanel::SystemTooltipData t = escortSystems.at(hoverSystem);
+
+			if(hoverSystem == &playerSystem)
+			{
+				if(player.Flagship())
+					--t.activeShips;
+				if(t.activeShips || t.parkedShips || !t.outfits.empty())
+					tooltip = "You are here, with:\n";
+				else
+					tooltip = "You are here.";
+			}
+			// If you have both active and parked escorts, call the active ones
+			// "active escorts." Otherwise, just call them "escorts."
+			if(t.activeShips && t.parkedShips)
+				tooltip += to_string(t.activeShips) + (t.activeShips == 1 ? " active escort\n" : " active escorts\n");
+			else if(t.activeShips)
+				tooltip += to_string(t.activeShips) + (t.activeShips == 1 ? " escort" : " escorts");
+			if(t.parkedShips)
+				tooltip += to_string(t.parkedShips) + (t.parkedShips == 1 ? " parked escort" : " parked escorts");
+			if(!t.outfits.empty())
+			{
+				if(t.activeShips || t.parkedShips)
+					tooltip += "\n";
+
+				unsigned sum = 0;
+				for(const auto &it : t.outfits)
+					sum += it.second;
+
+				tooltip += to_string(sum) + (sum == 1 ? " stored outfit" : " stored outfits");
+
+				if(HasMultipleLandablePlanets(*hoverSystem) || t.outfits.size() > 1)
+					for(const auto &it : t.outfits)
+						tooltip += "\n - " + to_string(it.second) + " on " + it.first->Name();
+			}
+
+			hoverText.Wrap(tooltip);
+		}
+		if(!tooltip.empty())
+		{
+			// Add 10px margin to all sides of the text.
+			Point size(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
+			size += Point(20., 20.);
+			Point topLeft = (hoverSystem->Position() + center) * Zoom();
+			// Do not overflow the screen dimensions.
+			if(topLeft.X() + size.X() > Screen::Right())
+				topLeft.X() -= size.X();
+			if(topLeft.Y() + size.Y() > Screen::Bottom())
+				topLeft.Y() -= size.Y();
+			// Draw the background fill and the tooltip text.
+			FillShader::Fill(topLeft + .5 * size, size, *GameData::Colors().Get("tooltip background"));
+			hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
+		}
+	}
+
+	// Draw a warning if the selected system is not routable.
 
 	if(selectedSystem != &playerSystem && !distance.HasRoute(selectedSystem))
 	{
@@ -258,25 +351,6 @@ void MapPanel::Draw()
 		font.Draw(message, point + Point(1, 1), black);
 		font.Draw(message, point, red);
 	}
-}
-
-
-
-void MapPanel::DrawButtons(const string &condition)
-{
-	// Remember which buttons we're showing.
-	buttonCondition = condition;
-
-	// Draw the buttons to switch to other map modes.
-	Information info;
-	info.SetCondition(condition);
-	const Interface *mapInterface = GameData::Interfaces().Get("map");
-	if(player.MapZoom() >= static_cast<int>(mapInterface->GetValue("max zoom")))
-		info.SetCondition("max zoom");
-	if(player.MapZoom() <= static_cast<int>(mapInterface->GetValue("min zoom")))
-		info.SetCondition("min zoom");
-	const Interface *mapButtonUi = GameData::Interfaces().Get("map buttons");
-	mapButtonUi->Draw(info, this);
 }
 
 
@@ -929,7 +1003,7 @@ void MapPanel::DrawTravelPlan()
 	const Color &defaultColor = *colors.Get("map travel ok flagship");
 	const Color &outOfFlagshipFuelRangeColor = *colors.Get("map travel ok none");
 	const Color &withinFleetFuelRangeColor = *colors.Get("map travel ok fleet");
-	const Color &wormholeColor = *colors.Get("map used wormhole");
+	const Color &wormholeColor = *colors.Get("map travel wormhole");
 
 	// At each point in the path, keep track of how many ships in the
 	// fleet are able to make it this far.
@@ -1048,7 +1122,7 @@ void MapPanel::DrawEscorts()
 void MapPanel::DrawWormholes()
 {
 	// Keep track of what arrows and links need to be drawn.
-	set<pair<const System *, const System *>> arrowsToDraw;
+	vector<WormholeArrow> arrowsToDraw;
 
 	// A system can host more than one set of wormholes (e.g. Cardea), and some wormholes may even
 	// share a link vector.
@@ -1064,30 +1138,35 @@ void MapPanel::DrawWormholes()
 		for(auto &&link : it.second.Links())
 			if(!link.first->Inaccessible() && !link.second->Inaccessible() && p.IsInSystem(link.first)
 					&& player.HasVisited(*link.first) && player.HasVisited(*link.second))
-				arrowsToDraw.emplace(link.first, link.second);
+				arrowsToDraw.emplace_back(link.first, link.second, it.second.GetLinkColor());
+
 	}
 
-	const Color &wormholeDim = *GameData::Colors().Get("map unused wormhole");
-	const Color &arrowColor = *GameData::Colors().Get("map used wormhole");
 	static const double ARROW_LENGTH = 4.;
 	static const double ARROW_RATIO = .3;
 	static const Angle LEFT(30.);
 	static const Angle RIGHT(-30.);
 	const double zoom = Zoom();
 
-	for(const pair<const System *, const System *> &link : arrowsToDraw)
+	for(const WormholeArrow &link : arrowsToDraw)
 	{
+		// Get the wormhole link color.
+		const Color &arrowColor = *link.color;
+		const Color &wormholeDim = Color::Multiply(.33f, arrowColor);
+
 		// Compute the start and end positions of the wormhole link.
-		Point from = zoom * (link.first->Position() + center);
-		Point to = zoom * (link.second->Position() + center);
+		Point from = zoom * (link.from->Position() + center);
+		Point to = zoom * (link.to->Position() + center);
 		Point offset = (from - to).Unit() * LINK_OFFSET;
 		from -= offset;
 		to += offset;
 
 		// If an arrow is being drawn, the link will always be drawn too. Draw
 		// the link only for the first instance of it in this set.
-		if(link.first < link.second || !arrowsToDraw.count(make_pair(link.second, link.first)))
-			LineShader::Draw(from, to, LINK_WIDTH, wormholeDim);
+		if(link.from < link.to || !count_if(arrowsToDraw.begin(), arrowsToDraw.end(),
+			[&link](const WormholeArrow &cmp)
+			{ return cmp.from == link.to && cmp.to == link.from; }))
+				LineShader::Draw(from, to, LINK_WIDTH, wormholeDim);
 
 		// Compute the start and end positions of the arrow edges.
 		Point arrowStem = zoom * ARROW_LENGTH * offset;
@@ -1245,70 +1324,6 @@ void MapPanel::DrawMissions()
 			DrawPointer(system, counters.drawn, availableColor);
 		for(unsigned i = 0; i < counters.unavailable; ++i)
 			DrawPointer(system, counters.drawn, unavailableColor);
-	}
-}
-
-
-
-void MapPanel::DrawTooltips()
-{
-	if(!hoverSystem || hoverCount < HOVER_TIME)
-		return;
-
-	// Create the tooltip text.
-	if(tooltip.empty())
-	{
-		MapPanel::SystemTooltipData t = escortSystems.at(hoverSystem);
-
-		if(hoverSystem == &playerSystem)
-		{
-			if(player.Flagship())
-				--t.activeShips;
-			if(t.activeShips || t.parkedShips || !t.outfits.empty())
-				tooltip = "You are here, with:\n";
-			else
-				tooltip = "You are here.";
-		}
-		// If you have both active and parked escorts, call the active ones
-		// "active escorts." Otherwise, just call them "escorts."
-		if(t.activeShips && t.parkedShips)
-			tooltip += to_string(t.activeShips) + (t.activeShips == 1 ? " active escort\n" : " active escorts\n");
-		else if(t.activeShips)
-			tooltip += to_string(t.activeShips) + (t.activeShips == 1 ? " escort" : " escorts");
-		if(t.parkedShips)
-			tooltip += to_string(t.parkedShips) + (t.parkedShips == 1 ? " parked escort" : " parked escorts");
-		if(!t.outfits.empty())
-		{
-			if(t.activeShips || t.parkedShips)
-				tooltip += "\n";
-
-			unsigned sum = 0;
-			for(const auto &it : t.outfits)
-				sum += it.second;
-
-			tooltip += to_string(sum) + (sum == 1 ? " stored outfit" : " stored outfits");
-
-			if(HasMultipleLandablePlanets(*hoverSystem) || t.outfits.size() > 1)
-				for(const auto &it : t.outfits)
-					tooltip += "\n - " + to_string(it.second) + " on " + it.first->Name();
-		}
-
-		hoverText.Wrap(tooltip);
-	}
-	if(!tooltip.empty())
-	{
-		// Add 10px margin to all sides of the text.
-		Point size(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
-		size += Point(20., 20.);
-		Point topLeft = (hoverSystem->Position() + center) * Zoom();
-		// Do not overflow the screen dimensions.
-		if(topLeft.X() + size.X() > Screen::Right())
-			topLeft.X() -= size.X();
-		if(topLeft.Y() + size.Y() > Screen::Bottom())
-			topLeft.Y() -= size.Y();
-		// Draw the background fill and the tooltip text.
-		FillShader::Fill(topLeft + .5 * size, size, *GameData::Colors().Get("tooltip background"));
-		hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
 	}
 }
 

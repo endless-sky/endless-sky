@@ -90,6 +90,12 @@ public:
 	// are multiple pilots with the same name it may have a digit appended.)
 	std::string Identifier() const;
 
+	// Start a transaction. This stores the current state, and any Save()
+	// calls during the transaction will store this saved state.
+	void StartTransaction();
+	// Complete the transaction.
+	void FinishTransaction();
+
 	// Apply the given changes and store them in the player's saved game file.
 	void AddChanges(std::list<DataNode> &changes);
 	// Add an event that will happen at the given date.
@@ -136,6 +142,12 @@ public:
 	int64_t Salaries() const;
 	// Calculate the daily maintenance cost and generated income for all ships and in cargo outfits.
 	FleetBalance MaintenanceAndReturns() const;
+
+	// Access to the licenses the player owns.
+	void AddLicense(const std::string &name);
+	void RemoveLicense(const std::string &name);
+	bool HasLicense(const std::string &name) const;
+	const std::set<std::string> &Licenses() const;
 
 	// Access the flagship (the first ship in the list). This returns null if
 	// the player does not have any ships that can be a flagship.
@@ -211,6 +223,9 @@ public:
 	// Check to see if there is any mission to offer right now.
 	Mission *MissionToOffer(Mission::Location location);
 	Mission *BoardingMission(const std::shared_ptr<Ship> &ship);
+	// Return true if the given ship is capturable only because it's the source
+	// of a boarding mission which allows it to be.
+	bool CaptureOverriden(const std::shared_ptr<Ship> &ship) const;
 	void ClearActiveBoardingMission();
 	// If one of your missions cannot be offered because you do not have enough
 	// space for it, and it specifies a message to be shown in that situation,
@@ -231,6 +246,12 @@ public:
 	ConditionsStore &Conditions();
 	const ConditionsStore &Conditions() const;
 	std::map<std::string, std::string> GetSubstitutions() const;
+
+	// Get and set the "tribute" that the player receives from dominated planets.
+	bool SetTribute(const Planet *planet, int64_t payment);
+	bool SetTribute(const std::string &planetTrueName, int64_t payment);
+	const std::map<const Planet *, int64_t> &GetTribute() const;
+	int64_t GetTributeTotal() const;
 
 	// Check what the player knows about the given system or planet.
 	bool HasSeen(const System &system) const;
@@ -301,6 +322,8 @@ public:
 	void SetMapZoom(int level);
 	// Get the set of collapsed categories for the named panel.
 	std::set<std::string> &Collapsed(const std::string &name);
+	// Should help dialogs relating to carriers be displayed?
+	bool DisplayCarrierHelp() const;
 
 
 private:
@@ -316,6 +339,7 @@ private:
 	void StepMissions(UI *ui);
 	void Autosave() const;
 	void Save(const std::string &path) const;
+	void Save(DataWriter &out) const;
 
 	// Check for and apply any punitive actions from planetary security.
 	void Fine(UI *ui);
@@ -342,11 +366,14 @@ private:
 	const Planet *planet = nullptr;
 	bool shouldLaunch = false;
 	bool isDead = false;
+	bool displayCarrierHelp = false;
 
 	// The amount of in-game time played, in seconds.
 	double playTime = 0.;
 
 	Account accounts;
+	// The licenses that the player owns.
+	std::set<std::string> licenses;
 
 	std::shared_ptr<Ship> flagship;
 	std::vector<std::shared_ptr<Ship>> ships;
@@ -398,6 +425,7 @@ private:
 
 	// Changes that this PlayerInfo wants to make to the global galaxy state:
 	std::vector<std::pair<const Government *, double>> reputationChanges;
+	std::map<const Planet *, int64_t> tributeReceived;
 	std::list<DataNode> dataChanges;
 	DataNode economy;
 	// Persons that have been killed in this player's universe:
@@ -419,6 +447,8 @@ private:
 
 	// Basic information about the player's starting scenario.
 	CoreStartData startData;
+
+	DataWriter *transactionSnapshot = nullptr;
 };
 
 
