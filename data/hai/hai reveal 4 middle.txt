@@ -1520,22 +1520,27 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				`	"I can also testify to the human position on the matter."`
 			`	The moderator says in a dispassionate tone, "Right, well, I doubt that will be necessary."`
 			label correct
-			`	As his expression changes from unemotional to impassive, the moderator continues. "Your presence," he says pointedly, "is distasteful to many Elders, and," he pauses, "presents opportunities to others. Those factions offer you a once in a lifetime opportunity: access to confidential files from Hai intelligence services, in a private reading room. You may travel between the proceedings and reading room at your leisure. At the end of the proceedings, our internal classified news network will brief you on the proceedings' results.`
+			# The moderator's repetitive speech pattern of beginning new declarations with "Now" is intentional.
+			`	While this is clearly a formal piece of proceeding being observed and recorded, the Elders still filtering in and muttering to each other clearly indicate that this is not yet the main event. The moderator's expression changes from unemotional to impassive. "Very well, approach my station with me and I shall brief you on conduct for this session."`
+			`	There is a small desk and seat at the front of the chamber's central circle, opposite the entry point, which was not occupied when you entered here for dealing with Scar's Legion but now the moderator leads you to it and takes a seat, gesturing for you to sit upon the ledge adjacent which is clearly intended to be uncomfortable enough to discourage lengthy arguments with the moderator.`
+			`	"Now, as a witness to this session you should be aware that outbursts are not tolerated out of turn. You will be given ample opportunity to speak if and when it is asked of you. You may raise your hand, should the event arise, to protest a matter of factual inaccuracy. You may not protest on a matter of opinion, and doing so will undermine your quality as a witness so I advise you for your own sake to simply not do it. Process dictates that any matter should be confirmed anyway so should you choose to stay there should be no need.`
+			`	"Your presence," he continues quietly, "is distasteful to many Elders, and," he pauses, "presents opportunities to others."`
+			`	His dispassionate expression slips slightly and as he continues, his tone reveals a hint of compassion. "The situation you find yourself in is one that even the most hardened career politicians of the Hai would not envy. Your presence has great potential to both aid or harm Teeneep's case. While there are certainly those that would think less of you for choosing not to attend, it is my most solemn duty to ensure that due representation is given to the facts. Should you choose to abide in the antechamber your words will be relayed truthfully and sensitively. Of this you have my word.`
+			`	"You may travel between the proceedings and the antechamber at your leisure. The antechamber in question is a reading room, and you may find that there are... other opportunities available there. If you abide in the reading room then at the end of the proceedings, our internal classified news network will brief you on the proceedings' results.`
+			`	"Now, I have preparations to make. The functionary will attend to you for anything further." He dismisses you, gesturing to the functionary who is waiting to intercept you before you could return to Teeneep and Sayari.`
 
 			# SCENE CHANGE
-
-			# People filter out, and Captain Last can choose where to go next (and how quickly)
+			# People are filtering in, there is a delay before beginning, and Captain Last can choose where to go next.
 
 			action
 				"Hai Reveal [A11] Sound the Alarm: time" = 1
-			# Randomly choose whether the proceedings or reading room are offered first
-			# to avoid consistently biasing players to either one.
+			# Randomly choose whether the proceedings or reading room are offered first to avoid consistently biasing players to either one.
 			branch haidepart
 				random < 50
 			action
 				set "Hai Reveal [A11] Sound the Alarm: proceedings first"
 			label haidepart
-			`	Teeneep's expression darkens, but she quickly ensures she has what she needs before the Hai begin to depart. Soon, only you and the functionary remain. "Where to, Captain?"`
+			`	The functionary smiles sweetly as you approach and steps in close to lead you to a recessed doorway where she can be more easily heard above the growing background murmur. "So, where to, Captain?"`
 			label wherego
 			choice
 				`	"I'll stay right here, I won't miss the proceedings."`
