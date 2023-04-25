@@ -1538,37 +1538,37 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			`	Teeneep's expression darkens, but she quickly ensures she has what she needs before the Hai begin to depart. Soon, only you and the functionary remain. "Where to, Captain?"`
 			label wherego
 			choice
-				`	"I'm in a hurry to get to the proceedings."`
+				`	"I'll stay right here, I won't miss the proceedings."`
 					goto hurry
 					to display
 						not "Hai Reveal [A11] Sound the Alarm: asked about files"
 						has "Hai Reveal [A11] Sound the Alarm: proceedings first"
-				`	"What can I expect to find in the diplomatic files?"`
+				`	"What can I expect to find in this reading room?"`
 					goto whazzit
 					to display
 						not "Hai Reveal [A11] Sound the Alarm: asked about files"
-				`	"I'm in a hurry to get to the proceedings."`
+				`	"I'll stay right here, I won't miss the proceedings."`
 					goto hurry
 					to display
 						not "Hai Reveal [A11] Sound the Alarm: asked about files"
 						not "Hai Reveal [A11] Sound the Alarm: proceedings first"
 
 				# Less rush in the dialog to request the proceedings if the player is not "in a hurry"
-				`	"The proceedings, please."`
+				`	"I'll stay for the proceedings, please."`
 					goto nohurry
 					to display
 						has "Hai Reveal [A11] Sound the Alarm: asked about files"
 						has "Hai Reveal [A11] Sound the Alarm: proceedings first"
-				`	"Those documents sound interesting. Lets go to the reading room."`
+				`	"The reading room sounds very interesting. Lets go there."`
 					goto reading
-				`	"The proceedings, please."`
+				`	"I'll stay for the proceedings, please."`
 					goto nohurry
 					to display
 						has "Hai Reveal [A11] Sound the Alarm: asked about files"
 						not "Hai Reveal [A11] Sound the Alarm: proceedings first"
 
 				`	"Actually, I'll just take a nap. Let me know when it's over."`
-			`	"Oh, wow. Um... okay... Before you nap, the Elders have a question. How would you characterize Teeneep's meeting with the Unfettered Choot'k: constructive, aggressive, or something else?"`
+			`	"Oh, wow. Um... okay... Before you nap, the Elders have a predetermined question. How would you characterize Teeneep's meeting with the Unfettered Choot'k: constructive, aggressive, or something else?"`
 			choice
 				`	"It was a constructive discussion."`
 				`	"I witnessed the test of two wills."`
@@ -1576,15 +1576,16 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				`	"Very aggressive and confronting."`
 				`	"Ugh. Fine. Take me to the proceedings."`
 					goto nohurry
-			`	The functionary sets out a cot and promises to wake you at the right time.`
+			`	The functionary takes you to another room, sets out a cot, and promises to wake you at the right time.`
 				goto nap
 
 			label whazzit
 			action
 				set "Hai Reveal [A11] Sound the Alarm: asked about files"
-			`	"Oh, all manner of information. Current and past interactions of our species, including the Unfettered, with other races. The Human, Quarg, Korath, and Wwww-" She twitches nervously, as if she caught herself before saying something she shouldn't. "-wwweeeellll, given the situation, I'd expect details about Teeneep's past, the Unfettered, and our interactions with human pirates.`
-			`	"You'll have a clearance level of Hazel-2, which gives you some juicy information. Some pages will be redacted, but there will be enough lingering text so you'll know the nature of the redacted information. Even the redactions are telling: you will learn about our Elders by the nature of what they choose to redact.`
-			`	"This is definitely a once-in-a-lifetime opportunity; it is exceptionally rare for the Hai to share Hazel-level information with outsiders. Oh, my!" She nibbles her fingers and thinks for a moment. "Your supporters in the Elder Council must place supreme trust in you to take this risk! I will, of course, relay their questions and your answers. Afterwards, you can view the internal news broadcast describing the proceedings, which will show you the highlights. Also, you can travel between the proceedings and the reading room at your leisure."`
+			`	"Oh, all manner of things. We do our best to keep it clean but the Elders are always stuffing documents down the sides of cushions and leaving hidden notes to each other. Once I found a datapad with an entire dossier on all interactions of our species, including the Unfettered, with other races. The Human, Quarg, Korath, and Wwww-" She twitches nervously, as if she caught herself before saying something she shouldn't. "-wwweeeellll, I know the room was cleaned only half an hour ago, but given the situation I wouldn't be surprised if some Elder has already snuck something in there with details about Teeneep's past, the Unfettered, and our interactions with human pirates.`
+			`	"You have a clearance level of Hazel-2 from your involvement so far, so there's all sorts of juicy information that could be left for you quite legally. If it's intended for you, then I'm sure some pages will be redacted, but there would be enough lingering text that you'd guess at the nature of the redacted information. Even the redactions are telling: our Elders can say a lot by the nature of what they choose to redact."`
+			`	She pauses as if suddenly horrified, "You know I'm not sure if I should have said all of that... but no, I'm sure it's ok, they told me you were Hazel-2, none of that knowledge should be a problem for Hazel-2 clearance. It is exceptionally rare for the Hai to share Hazel-level clearance with outsiders. Oh, my!" She nibbles her fingers and thinks for a moment. "Your supporters in the Elder Council must place supreme trust in you to do this! I'm sure anything that's in there are things that they want you to see," she says with a wink.`
+			`	"I will, of course, relay their questions and your answers. Afterwards, you can view the internal news broadcast describing the proceedings, which will show you the highlights. Also, in case the moderator forgot, you can travel between the proceedings and the reading room at your leisure."`
 			`	Her ears perk up as she smiles again, awaiting your response.`
 				goto wherego
 
