@@ -330,7 +330,7 @@ mission "Hai Reveal [B04] The Riddle"
 				`	"I was a little caught up, actually."`
 				`	"What do you know about the blockades?"`
 			`	As you draw breath to speak she cuts you off. "I actually don't have a lot of time or I'll miss my ride, so we'll skip the pleasantries. Obviously if you're calling me back you want to know what I found about the notation. That too is something you have good timing on, I was delayed on that until just a couple days ago. Now where was that file... ah here it is.`
-			`	"The reason I had trouble with this last time you were here is that some of these symbols are from Set 3-A, which were never translated. Fortunately, the researchers in Deneb found a Rosetta Stone of sorts, so I know what it says. The first part is some meaningless prose about something called 'Elenchus', which sounds aspirational. I have its location, in a system called Devil-Hide, far outside of our galaxy to the north-west. The second part contains a riddle, which gives the location of another system, Devil-Run, somewhere near the galactic core. I won't know the exact location until I solve the riddle: 'Where does the soul sleep?'"`
+			`	"So, the notation is actually quite dense which makes perfect translation an uncertain prospect. The first part is some meaningless prose about something called 'Elenchus', which sounds aspirational. I have its location, in a system called Devil-Hide, far outside of our galaxy to the north-west. The second part contains a riddle, which gives the location of another system, Devil-Run, somewhere near the galactic core. I won't know the exact location until I solve the riddle: 'Where does the soul sleep?'"`
 			choice
 				`	"What is Elenchus?"`
 				`	"Why aren't these systems on our star maps?"`
@@ -527,7 +527,7 @@ mission "Hai Reveal [B07-1] Boarded Smuggler"
 				`	"There should be an access panel above you! Maybe you can short-circuit the door?"`
 			`	The Hai says, "This door is jammed, they're locking down the ship and going to blow it up!" In the background you hear a booming sound. "It's 0.184 steradians! Tell them it's 0.184 steradians!"`
 			`	Inside your ship you hear alarms blare into full volume and you have just enough time to nod an acknowledgment to the doomed Hai before the airlock's automatic safeties shut it. A moment later, you hear an explosion and the sound of tearing metal as the docking tube is shredded and your ship is forced away from the expanding debris of the smuggler ship. When you return to the controls it seems the smugglers signaled for help before the ship exploded. An escape pod is flying away from the scene; apparently the smugglers care more about not being caught than about finishing their mission.`
-			`	This doesn't sound like an answer to the riddle, "Where does the soul sleep?" but it does sound like a typical hyperspace aperture size. Any interstellar pilot knows that a proper aperture size is critical to reaching the next star system in one piece, so this may be the information Giti needs. You begin to set a course for <planet>, but your scanners report multiple new contacts; hostile ships entering the system. You prepare for battle.`
+			`	This doesn't sound like an answer to the riddle, "Where does the soul sleep?" but it does sound like a hyperlane aperture size. Any interstellar pilot knows that a proper aperture size is critical to reaching the next star system in one piece, if only because having too much velocity will show an error on the console that reads 'Inadequate Steradian Approach Vector Certainty' when trying to jump. However, 0.184 is a highly unusual size, so this may be the information Giti needs. You begin to set a course for <planet>, but your scanners report multiple new contacts; hostile ships entering the system. You prepare for battle.`
 				launch
 	npc
 		government "Pirate"
@@ -600,34 +600,35 @@ mission "Hai Reveal [B08] Syndicate Internal Affairs"
 		log "Factions" "Republic Intelligence" `The top police force of the Republic, who deal with high-profile civilian crimes that local authorities can't handle: murder investigations, interplanetary kidnappings, and the like. They also gather intelligence throughout human space, and possibly beyond, reporting directly to the Republic Parliament... which mostly means it's beholden to the interests of the members of Parliament.`
 		conversation
 			`After a long series of shuttles, high-speed rails, and a several-minute-long elevator ride, you once again reach Giti's office.`
-			`	You enter the room, and she closes the door. "Captain <last>! Welcome back. Please, come in. I've been working on that translation, and I've finally figured it out. The nonsense words I thought were a riddle were actually a formula for calculating a jump target from the size of a hyperspace aperture, the origin, and a direction. I've managed the direction, and I could determine an origin if I had the aperture size."`
+			`	You enter the room and close the door. "Captain <last>! Welcome back. Please, come in. I've been working on that translation, and I've finally figured it out. The odd set of characters that looked like a riddle were actually a formula for calculating a jump target from the size of a hyperspace aperture, the origin, and a direction. I've managed the direction, and I could determine an origin if I had the aperture size."`
 			choice
 				`	"Does '0.184 steradians' sound like the answer?"`
 				`	"My favorite number has always been 0.184."`
-			`	"Hmmm, 0.184 steradians? Sounds about right; let me check." She fiddles with her datapad for a minute. "Yes, that was it. The system is in the middle of Syndicate-"`
-			`	Suddenly, Giti's door bashes open, and four people in Republic Intelligence uniforms storm in. They each have a hand on their holstered weapons, but none make any move to draw them. Giti sighs, rolls her eyes, and says, "Oh, not again, Horst. Maintenance just replaced that door."`
-			`	"Captain <last>," says the large brawny man to your right, "please shut the door."`
-			`	You look over at the bent door and damaged frame, and then back at the man, wondering if is serious. From his deathly stare, it seems to be so. Giti look of genuine concern warns you to be cautious in this situation.`
+			`	"Hmmm, 0.184 steradians? That'd be highly unusual; let me check." She fiddles with her datapad for a minute. "Yes, that produces an origin match. The system is in the middle of Syndicate-"`
+			`	There is a polite knock on the door and a click as someone opens it. Giti's initial expression is one of having been inconveniently interrupted by a colleague; swiftly transitioning to shock as three people in Republic Intelligence uniforms stride confidently into the room and take up positions. They each have a hand on their holstered weapons, but none make any move to draw them. A fourth person steps through afterwards with the poise of someone in absolute control of the situation.`
+			`	He gives both of you a brief, appraising look, then calmly shuts and locks the door.`
 			choice
-				`	"How? You just broke the door."`
-					goto broke
-				`	"I'll try."`
-					goto shut
-				`	"I think we all need to calm down and talk this through."`
-					goto broke
+				`	"Who are you?"`
+					goto who
+				`	"This was a private conversation."`
+					goto private
 				`	(Draw your weapon.)`
 					goto die
-			label shut
-			`	The door makes several creaking and snapping noises as it slides back into place. It takes most of your strength, but you manage to close it. The man, whose Republic Intelligence uniform is labeled with the name "Agent Kopkow," gestures for you to take one of the only seats in the room. He takes the one opposite and Giti sits at her desk. The other three agents stand around you.`
+			label private
+			action
+				set "Hai Reveal [B08] Syndicate Internal Affairs: private convo"
+			`	"No, it wasn't." The man, whose Republic Intelligence uniform is labeled with the name "Agent Kopkow," gestures for you to take one of the only seats in the room. He takes the one opposite and Giti sits at her desk. The other three agents stand around you.`
 				goto encounters
-			label broke
-			`	The man, whose Republic Intelligence uniform is labeled with the name "Agent Kopkow," punches the door, unbending it and shutting it in one motion. He gestures for you to take one of the only seats in the room. He takes the one opposite and Giti sits at her desk. The other three agents stand around you.`
+			label who
+			`	The man, whose Republic Intelligence uniform is labeled with the name "Agent Kopkow," simply indicates the label with and then gestures for you to take one of the only seats in the room. He takes the one opposite and Giti sits at her desk. The other three agents stand around you.`
 			label encounters
 			`	You've had some encounters with Republic Intelligence, but you know what everyone knows. They're the top police force of the Republic, dealing with high-profile civilian crimes that local authorities can't handle: murder investigations, interplanetary kidnappings, and the like. They also gather intelligence throughout human space, and possibly beyond, reporting directly to the Republic Parliament... which mostly means it's beholden to the interests of the members of Parliament.`
 			choice
 				`	"I'm on an urgent mission that is critical for three governments. Don't bar my way."`
-				`	"If Parliament's interests are repeatedly ruining and replacing library doors, then the Republic is in quite a sorry shape."`
+				`	"If Parliament's interests involve listening in on librarian's conversations, then the Republic is in quite a sorry shape."`
 					goto humor
+					to display
+						has "Hai Reveal [B08] Syndicate Internal Affairs: private convo"
 				`	"What's the problem?"`
 					goto uncomplaining
 			`	Uncannily, the agents all smirk at you at the same time. Kopkow responds flatly, "We don't respond well to threats."`
