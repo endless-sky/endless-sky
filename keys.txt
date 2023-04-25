@@ -27,4 +27,3 @@
 "Fleet: Toggle ammo usage" 117
 "Fleet: Harvest Flotsam" 122
 "Mouse turning (hold)" 1073742050
-"Mouse turning (toggle)" 1073742054
