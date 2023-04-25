@@ -1912,7 +1912,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			`	Before any further exchange can occur, though, the moderator bellows for security to escort you all from the session and shouts down the offending Elder for impropriety. The two remain engaged in a lively shouting match as you depart, the echoes following you until the chamber doors are shut.`
 
 
-			# Proceedings end. 
+			# Proceedings end.
 			action
 				"Hai Reveal [A11] Sound the Alarm: time" = 7
 			`	Teeneep moves to pull out a datapad, but both the security officers and Sayari step in to stay her hand. "The chamber will have to vote on the proposition to act," says Sayari, looking at Teeneep pointedly. "You know that external contact is forbidden during the deliberation grace window."`
