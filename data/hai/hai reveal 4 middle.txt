@@ -1878,10 +1878,11 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				"Hai Reveal [A11] Sound the Alarm: time" = 4
 			choice
 				`	(Remain silent and listen.)`
+					goto "remain silent and listen"
 				`	"That response was sickening. I'm going to the reading room."`
-					goto reading
 				`	"If you'll pardon me, I have some reports to read."`
-					goto reading
+			`	Before you can speak, Sayari puts her hand on your shoulder and shakes her head. "I feel political machinations at work," she whispers. "Be patient."`
+			label "remain silent and listen"
 			`	There is a growing rumble of assent as the crescendo of her impassioned statement crests to its conclusion. She levels a clawed finger directly at Teeneep and the room is filled with the angry cries of both those emboldened by her diatribe and those distressed by her implication. The moderator makes several attempts to restore order as over a dozen Elders jump to their feet, but the cacophony is not so easily restrained. At your side, Sayari's expression is ashen, but Teeneep seems to be seeking out a particular face somewhere in the room with a fierce intensity.`
 			`	There is a shift in the sound of the room and your attention is drawn to one Hai in particular, a particularly elderly man who struggles to his feet in a series of pained stages. The effect on the assembly is profound, though. A ripple of silence flows outward from his position, and Elders all around promptly drop back into their seats as it reaches them, leaving a scant handful who were too slow to react to have their final words trail off awkwardly. Only the last speaker remains on her feet, the moderator weakly announcing in Hai what you know to be, "The council hears Aimet."`
 				goto continue4
