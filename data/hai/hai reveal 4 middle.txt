@@ -1480,11 +1480,8 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			# Moderator, guards, Sayari, and an agent return.
 			
 			label surprise
-			# The stone acorn is the emblem of the Hai central government: sturdy,
-			# stable, and unmoving. Inedible, as a sign that the Hai would never
-			# take necessities from each other. Just like the government, a stone
-			# must be polished and cared for to remain pristine.
-			`	Teeneep's console beeps softly and a masterfully-crafted icon of a polished grey stone acorn is displayed on the screen. She presses the icon and a message comes up. It's hard to make out the words, but the capital letters are obviously in your language.`
+			# The stone acorn is the emblem of the Hai central government: sturdy, stable, and unmoving. Inedible, as a sign that the Hai would never take necessities from each other. Just like the government, a stone must be polished and cared for to remain pristine.
+			`	Teeneep's console beeps softly and an icon of a grey acorn is displayed on the screen. She presses the icon and a message comes up. It's hard to make out the words, but the bold font is obviously in your language.`
 			# Fake copy of the prior questions so the player feels abruptly interrupted.
 			choice
 				`	"What will happen now then?"`
@@ -1509,19 +1506,14 @@ mission "Hai Reveal [A11] Sound the Alarm"
 						not "Hai Reveal: who is Aimet?"
 				`	"What is the message?"`
 					goto message
-			`	As the beeping intensifies, Teeneep thinks for a moment before responding. "Well, the answer-" but before she can finish, several Hai enter the room, surrounding Sayari. Two armed guards look sternly at the startled Teeneep, while a Hai wearing unusual marks of office bears an intensely unemotional face.`
+			`	The steady, insistent, beep of the message stops upon opening, and Teeneep turns away from it to think for a moment before responding to you. "Well, -" she starts, but is abruptly interrupted as the door opens and three armed Hai swiftly enter the room. Sayari and several more are visible in the corridor. The two armed guards who entered look sternly at the startled Teeneep while the third, a Hai wearing unusual marks of office, bears an intensely unemotional face.`
 				goto nervous
 			label message
-			`	The beeping intensifies and Teeneep shows you the message. "Teeneep is hereby subpoenaed by the full Elder Council for an immediate emergency meeting." No sooner do you read this than Sayari returns, aside several other Hai. Two armed guards look sternly at Teeneep, while a Hai wearing unusual marks of office bears an intensely unemotional face.`
+			`	The steady, insistent, beep of the message stops upon opening and Teeneep shows you the message. "Teeneep is hereby summoned to appear before the full Elder Council for an immediate emergency meeting." No sooner do you read this than Sayari returns, flanked by several other Hai. Two armed guards enter and look sternly at the startled Teeneep while a third, a Hai wearing unusual marks of office, bears an intensely unemotional face.`
 			label nervous
 			`	A nervous young Hai rushes through the doorway, weaving between people into the middle of the crowd, bringing a welcome end to the standoff. She gives an elegant curtsy, curving her tail's tip in place of a skirt, and pulls a paper out of nowhere. Reading its elegant calligraphy, she says, "By order of the Elder Council, Teeneep will immediately accompany the moderator," she motions to the unemotional Hai, "to the Council Chambers for an emergency meeting. Sayari's presence is also required, but Captain <first> <last> is given an alternative. A functionary," she points to herself, "will escort the Captain, and relay questions in their absence."`
-			# The "nervous young Hai" is an intelligence operative with high-level
-			# clearance, who has been carefully selected for this situation. She
-			# is displaying behaviors she knows humans find cute and disarming, to
-			# get Captain Last to underestimate her. Any information she "lets slip"
-			# is a calculated move by the Elders or Hai intelligence. The guards,
-			# Sayari, and the moderator know this.
-			`	"Before we depart, Captain <last>," the moderator says, "I need you to confirm you are able to act as a witness, and confirm that the threat carried from the Unfettered was indeed real."`
+			# The "nervous young Hai" is an intelligence operative with high-level clearance, who has been carefully selected for this situation. She is displaying behaviors she knows humans find cute and disarming, to get Captain Last to underestimate her. Any information she "lets slip" is a calculated move by the Elders or Hai intelligence. The guards, Sayari, and the moderator know (or at least suspect) this.
+			`	Teeneep's expression darkens, but she quickly ensures she has what she needs before you are all led to the chambers. This is not the first time you've seen the room, but it is the first time you've seen it full. As you all enter and the security staff take their place, the moderator turns to address you. "Now, for the record," he says in a clear and audible tone, "I need you to confirm you are able to act as a witness, and confirm that the threat carried from the Unfettered was indeed real."`
 			choice
 				`	"That is correct."`
 					goto correct
@@ -1600,8 +1592,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 
 			label reading
 
-			# Entry points. We get here every time Captain Last leaves the proceedings,
-			# or upon first entering, or after each report is read.
+			# Entry points. We get here every time Captain Last leaves the proceedings, or upon first entering, or after each report is read.
 
 			branch "no more time to read"
 				"Hai Reveal [A11] Sound the Alarm: time" > 7
@@ -1622,7 +1613,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			`	"As you take out your datapad to record, you notice it doesn't see anything. It seems the Hai have taken precautions to ensure you don't record the information in full. Fortunately, as an interstellar pilot, you have an excellent memory, and you make mental notes of everything important."`
 				goto library
 			label "decided to read nothing after seeing titles"
-			`	"As you wish," says the functionary. She leads you to the council chambers. Along the way, she explains, "It seems Teeneep is getting a show trial; someone has already decided the outcome. She may yet escape her fate! Many Elders support her, including the ones that wanted you to see those documents."`
+			`	"As you wish," says the functionary. She leads you to the council chambers. Along the way, she explains, "It seems Teeneep is getting a show trial; someone thinks they have already decided the outcome. However, she may yet slip that net. Many Elders support her, including- well, here we are."`
 			`	You sit next to Sayari, who notes your arrival.`
 				goto late
 			label "elders have a question"
@@ -1644,7 +1635,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			# Aimet is one of the Elders who arranged Captain Last's access
 			# and doesn't want the captain to miss the turn of the tide.
 			`	-`
-			`	"Oh my! Oh! Captain <last>, I'm sorry to interrupt, but the proceedings are entering an intense phase. Teeneep is in serious trouble, but..." She touches an unseen earbud, and her expression changes to awe. "...but I think Aimet is about to defend her. Do you want to return?"`
+			`	"Oh my! Oh! Captain <last>, I'm sorry to interrupt, but the proceedings are entering an intense phase. Teeneep is in serious trouble, but..." She touches an unseen earbud, and her expression changes to awe. "...but I think events are about to conclude though, someone is laying all their cards on the table. Do you want to return?"`
 			choice
 				`	"Yes, lets go back now."`
 					goto return4
@@ -1668,7 +1659,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			`	You feel a claw poking repeatedly into your shoulder, startling you awake to the sight of an overgrown squirrel wearing a formal dress. She smiles down at you, making chittering noises that sound almost like words. After a few seconds of groggy confusion, you realize it is a Hai speaking. There was a functionary assigned to you during the proceedings, but that was so long ago... centuries... eons... the darkness begins to return...`
 			`	"Captain Last! Wake up!" Her cheerful demeanor is a grating, but effective alarm clock.`
 			label goto7
-			`	"Captain <last>, the proceedings have completed, and your time here is at an end. The Elder Council voted not to punish Teeneep, probably because she is about to trigger an election. Some Elders have referred to her as Eyrisen of the Mythos," she giggles, "and if I was religious, I'd agree.`
+			`	"Captain <last>, the proceedings have completed, and your time here is at an end. The Elder Council voted not to punish Teeneep, probably because she is about to trigger an election. Some Elders have referred to her as Eyrisen of the Mythos," she giggles, "and if I was superstitious, I'd agree.`
 			`	"I'll escort you to Teeneep's and Sayari's waiting room now."`
 				goto return7
 
@@ -1721,10 +1712,10 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				"Hai Reveal [A11] Sound the Alarm: time" ++
 				log `A Hai intelligence report identifies three problems: "northern troubles," degrading secrecy of the Hai, and piracy. They expect piracy to vanish from the Republic "befriending" anarchist colonies and suggest Hai slowly reveal themselves through leaked information. It is unclear if that ever happened. For the "northern troubles," they have a "skilled mercenary" in mind for the job, and a diplomat.`
 			`	This one-page report is recent, and includes references to other reports you can access.`
-			`	"While we can all agree that the northern troubles could escalate to dangerous levels, it is probably several decades away [UHI-001AX94], and there are more immediate problems. Besides, we've identified ways of improving relations through diplomacy [INT-8C-131X04] or a skilled mercenary [INT-7Z-G81X51]. Instead, we must focus on the growing improbability of the secrecy of the Hai [HUM-931XHF9], and increasing pirate problems [HUM-9XC401Q]. Solving all three problems will open a path for Hai unification.`
-			`	"Total failure of the joint Hai-human disinformation campaign is expected in under five years [HUM-9A38HF]. Fortunately, there is increasing realization among the humans that the Pug 'War' was a benevolent act of self-sacrifice. We believe that, in the coming years, they'll be inclined view a new race in a favorable light. This merits a joint plan with human authorities to leak information that presents Hai as strong and benevolent [HUM-931XHF9].`
+			`	"While we can all agree that the northern troubles could escalate to dangerous levels we've identified ways of improving relations through diplomacy [INT-8C-131X04] or a skilled mercenary [INT-7Z-G81X51]. It would appear that there are more immediate problems. Escalation of northern troubles is probably several decades away [UHI-001AX94], but total failure of the joint Hai-human disinformation campaign is expected in significantly less than that [HUM-9A38HF]. We must focus on the growing improbability of the secrecy of the Hai [HUM-931XHF9], and increasing pirate problems [HUM-9XC401Q]. Solving all three problems will open a path for Hai unification.`
+			`	"Fortunately, there is increasing realization among the humans that the Pug 'War' was a benevolent act. We believe that, in the coming years, they'll be inclined view a new race in a favorable light. This merits a joint plan with human authorities to leak information that presents Hai as strong and benevolent [HUM-931XHF9].`
 			`	"The Free Worlds [HUM-9U4C12A] are assisting the Republic in a long-term solution to the pirate problem: befriend the planet's populations, and convince them to expel the pirates. We expect piracy in human space to reduce to minimal levels in ten years, except in eastern Syndicate space [HUM-8XK194C], where anarchist groups may have ties to the Korath [KTH-1C-910JX4C].`
-			`	"With patience, problems in Hai and human space are easily solvable, barring major incidents at home [CHS-015TNP6]."`
+			`	"Measures designed to tackle the problems in Hai and human space continue to indicate acceptable progress, barring the rise of disruptive major incidents at home [CHS-015TNP6]."`
 				goto reading
 
 			label human
@@ -1733,13 +1724,13 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				"Hai Reveal [A11] Sound the Alarm: time" ++
 				log `The Hai have a vast intelligence network which was able to gather an impressive amount of secret information about the Navy, Free Worlds, and Syndicate. It seems Hai aren't as naive as their cute furry exterior implies. Somehow, this intelligence service could not track independent pirate groups, though.`
 			`	The report refers to recent goings-on in human space as the Human Civil War, and follows the political and military situation, with commentary about human public opinions, theories of past Pug interference, and effects of the war on the Hai. Apparently, there was a massive influx of human refugees to Hai space during the war, which strained their social support systems. What is most surprising is the level of detail the book has on fleet movements and internal political discussions.`
-			`	Some of the details in the report were secrets the Hai shouldn't have known about know about. You recognize some of the information as private war planning discussions known only to yourself and a handful of other people. While there are obvious knowledge gaps, the level of detail they knew of the command hierarchy, fleet movements, special ops missions, intelligence services, and weapons designs, is quite disturbing.`
-			`	This points to a vast intelligence network; it seems Hai aren't as naive as their cute furry exterior implies. You look up at the functionary, and she gives you a friendly little smile that seems more sinister now than it did a minute ago.`
-			`	Of course, if their intelligence agencies are so capable, shouldn't they have been able to solve their pirate problems?`
+			`	Some of the details in the report were secrets the Hai shouldn't have known about. You recognize some of the information from what were believed to be private war planning discussions; known only to yourself and a handful of other people. While there are obvious knowledge gaps, the level of detail they knew of the command hierarchy, fleet movements, special ops missions, intelligence services, and weapons designs, is quite disturbing.`
+			`	This points to a vast, or at least highly reliable, intelligence network; the functionary assigned to you, suddenly feels a little less innocent than it did a minute ago.`
+			`	But it begs the question; if their intelligence agencies are so capable, shouldn't they have been able to solve their pirate problems?`
 				goto reading
 				to display
 					not "Hai Reveal [A11] Sound the Alarm: pirates book"
-			`	It seems that, although the Hai have trouble tracking small, independent, anarchist, groups, they have no trouble with large, established, hierarchies. Their very approach to anarchists was flawed: make deals with the biggest groups, as if those were heads of an anarchist hierarchy. The weakness of the Hai intelligence service is asymmetric warfare.`
+			`	It seems that, although the Hai have trouble tracking small, independent, anarchist, groups, they have no trouble with large, established, hierarchies. Their very approach to anarchists was flawed: make deals with the biggest groups, as if those were heads of an anarchist hierarchy. The Hai intelligence service depended on relatively stable conditions for their methods, which have faltered under conditions of asymmetric informational and organizational warfare.`
 				goto reading
 				to display
 					has "Hai Reveal [A11] Sound the Alarm: pirates book"
@@ -1750,40 +1741,39 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				set "Hai Reveal [A11] Sound the Alarm: pirates book"
 				"Hai Reveal [A11] Sound the Alarm: time" ++
 			`	The report begins with a brief summary of Hai involvement with anarchist groups, which dates back from the founding of the first anarchist colony, Freedom, around the same time as human first contact. Apparently, the Hai have had generally positive relations with the largest organizations on anarchist planets. The Hai trade humanitarian supplies or other goods for assistance from the anarchist planets, even ones as distant as Thule and Greenrock.`
-			`	Much of the nature of the "assistance from anarchist planets" is redacted, but it seems it mostly involves shutting down groups that try to reveal or harm the Hai. However, there are notes about deals with anarchists who oppose slavery, arranging massive rescues, bringing thousands of slaves at a time to freedom in Hai space. Also, there is an amnesty program for pirates who have committed no serious crimes, which explains the abundance of reformed pirates on Allhome.`
-			`	Recent anti-pirate actions by the Free Worlds have weakened the large anarchist organizations that had deals with the Hai, and the Republic is expected to follow suit. This hindered the Hai ability to control pirates' activities near Ultima Thule, leading to the current crisis. Previous approaches that worked with large organizations have not worked with small pirate groups so far.`
+			`	Much of the nature of the "assistance from anarchist planets" is redacted, but it seems it mostly involves shutting down groups that try to reveal or harm the Hai. However, there are notes about deals with anarchists who oppose slavery, arranging massive rescues, and bringing thousands of slaves at a time to freedom in Hai space. There is also mention of an amnesty program for pirates who have committed no serious crimes, which explains the abundance of reformed pirates on Allhome.`
+			`	Recent anti-pirate actions by the Free Worlds have weakened the large anarchist organizations that had deals with the Hai, and the Republic is expected to follow suit. This has disrupted many of the existing avenues used by the Hai to control pirates' activities near Ultima Thule, enabling the current crisis. Previous approaches that worked with large organizations have taken too long to be effective with small pirate groups so far.`
 			`	They can't track small pirate groups, but they clearly have an intelligence network. Is it good for anything?`
 				goto reading
 				to display
 					not "Hai Reveal [A11] Sound the Alarm: human book"
-			`	It seems that, although the Hai have no trouble with large, established hierarchies, they have trouble tracking small, independent, anarchist groups. Their very approach to anarchists was flawed: make deals with the biggest groups, as if those were heads of an anarchist hierarchy. The weakness of the Hai intelligence service is asymmetric warfare.`
+			`	It seems that, although the Hai have no trouble with large, established hierarchies, they have trouble tracking small, independent, anarchist groups. Their very approach to anarchists was flawed: make deals with the biggest groups, as if those were heads of an anarchist hierarchy. The Hai intelligence service depended on relatively stable conditions for their methods, which have faltered under conditions of asymmetric informational and organizational warfare.`
 				goto reading
 				to display
 					has "Hai Reveal [A11] Sound the Alarm: human book"
 
 			label unfettered
 			action
-				log `A Hai intelligence report puts the cost to Hai of the Unfettered raids at 3.5 billion credits a day, while the cost is expected to double in "full Hai unification." Unification costs include 5 billion credits a day of "military aid."`
+				log `A Hai intelligence report puts the relative cost to Hai of seeking "full Hai unification" as being around 2.5 billion credits a day more expensive than handling the ongoing Unfettered raids`
 				log `A Hai intelligence report on "Unfettered military activities" included several fully-redacted sections, including "Multi-Decadal Timeline Expected before Unfettered Progress," and "Theories on the Sentient Evolution of Nocturnal Raptors."`
 				set "Hai Reveal [A11] Sound the Alarm: unfettered book"
 				"Hai Reveal [A11] Sound the Alarm: time" ++
-			`	This report begins with an economic analysis of the cost of raids at Wah Ki, which it places at a staggering 3.5 billion credits per day. This is 1.5 billion impact on trade; 1.5 billion for military fleet repairs, replacements, ammunition, and infrastructure to support it; and an estimated 500 million in humanitarian aid to the Unfettered, to prevent the problem from worsening. It compares that to "full Hai unification" for which the cost is 7 billion credits per day: 3 billion in humanitarian aid to the Unfettered, 5 billion in military aid, but 1 billion per day recouped through improved trade.`
+			`	This report begins with an exceedingly detailed economic analysis of the cost of the northern conflict at Wah Ki, measuring both costs and gains across a mind-boggling scope of minutely defined industries. It goes into details of the impact on downstream industries, social management, direct government expense, and government recoupment throughout the process. It compares that to the cost of "full Hai unification" in almost as much staggering detail. The ultimate outcome is remarked in concluding paragraphs though, that the net cost of pursuing unification would amount to 2.5 billion credits per day.`
 			`	The remaining 80% of the report is redacted in its entirety, save for a few section headings:`
 			`	-	Multi-Decadal Timeline Expected before Unfettered Progress`
 			`	-	Choot'k: Insane Risk-Taker or Brilliant Strategist?`
 			`	-	Reports from Hai Agents on Unfettered Raiding Vessels`
 			`	-	Lack Of Success Spying on Unfettered Military Leadership`
 			`	-	Theories on the Sentient Evolution of Nocturnal Raptors`
-			`	Musing on the titles, you recall that "raptors" are birds of prey. Why would an intelligence report on the Unfettered discuss nocturnal birds of prey?`
 				goto reading
 
 			label acorns
 			action
-				log `A Hai intelligence report said Unfettered planets have been ruined to the point where they can only produce enough food for bare sustenance. Birds, predators, and large species were almost wiped out, destroying the ecosystem. It mentioned three species of oak that could grow, but none are ideal. As time goes on Unfettered will increasingly rely on external food sources.`
+				log `A Hai intelligence report explained Unfettered planets have been mismanaged to the point where they can only produce enough food for bare sustenance. All of their worlds have shallow ecosystems which cause regular catastrophes under the strain of sustaining the Unfettered. It mentioned two species of oak from Earth that could grow, but with notable drawbacks. As time goes on Unfettered will increasingly rely on external food sources.`
 				set "Hai Reveal [A11] Sound the Alarm: acorns book"
 				"Hai Reveal [A11] Sound the Alarm: time" ++
-			`	This report describes the rapid degradation of the environmental condition on Unfettered worlds, and frequent problems with crop blight. This comes from over-farming, lack of pollution controls, over-mining, and simply a lack of resources to handle unexpected environmental catastrophes. Though the Unfettered always have enough food produced internally for bare sustenance, a civilization needs more than that. They stockpile food during excess, including by raids or aid. Such stockpiles run out every year or two during severe catastrophes, causing more raids and necessitating more aid.`
-			`	There is a detailed study on alternative crops, noting that the most efficient food for Hai is nuts, especially acorns, just like squirrels on Earth. It notes that common evolutionary pressures lead to common solutions, listing oak tree species on various planets. Apparently Earth's willow oak would grow well on Warfeed, but the powerful aphrodisiac effects "may have unintended consequences." Also, the "Mile-High Blue Oak" is a rapid food source, but it takes a century to begin producing acorns. The Hai are still investigating possible crops, beyond the ones the Unfettered have already accepted.`
+			`	This report describes the degradation of the environmental condition on Unfettered worlds, and frequent problems with crop blight. This comes from over-farming, over-mining, and the simple fact that none of the Unfettered's worlds had much ecological depth to start with, leading to a lack of resources to handle unexpected environmental catastrophes. Though the Unfettered always have enough food produced internally for bare sustenance, a growing civilization needs more than that. They stockpile food during excess, but such stockpiles run out during severe catastrophes at least once every decade, necessitating more aid.`
+			`	There is a detailed study on alternative crops, noting that the most efficient food for Hai is nuts, which have a long lead time to productivity. It notes that common evolutionary pressures lead to common solutions, listing compatible food source species found on various other planets. Apparently Earth's willow oak would grow well on Warfeed, but the powerful aphrodisiac effects "may have unintended consequences." Of particular note is Earth's holly oak, which is known to be invasive to the growing conditions found on Firelode but the extremely bitter taste of the acorns makes it deeply unpopular despite its high productivity. There is a whole section on efforts made to investigate accessible cooking methods which might make it palatable. The Hai are still investigating possible crops, beyond the ones the Unfettered have already accepted.`
 				goto reading
 
 			label teeneep1
@@ -1795,16 +1785,6 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			`	The most telling event happens shortly after Teeneep's mother mysteriously vanishes on a science expedition to human space, leaving the young Hai quite stressed. Soon after, at school, she saw a teacher berating a classmate about "unfettered tendencies." In response, she stood on a table and started chanting anti-bullying protest slogans. The whole class joined in, and they marched through the hallways chanting. An hour later, all the students in the school were doing it, and they locked themselves in a well-stocked cafeteria, refusing to come out until the teacher was fired.`
 			`	Two days later, the offending teacher was unemployed, and Teeneep was in a "mandatory juvenile behavior modification program" which the report says she was "failing spectacularly."`
 			`	Also, throughout the report there were complaints about Teeneep befriending "problematic members of society." This included former pirates, Unfettered Hai, freed slaves, and even reformed violent convicts. The report admits Teeneep generally had a positive impact on the lives she touched, but insists that her tendency to enter "that part of society" is a major concern. In particular, it notes that her quite athletic combat abilities developed in her youth during her time with "troubled individuals."`
-				goto reading
-
-			label teeneep2
-			action
-				log `A Hai intelligence report explained her frequent visits to the Unfettered began in he early life due to her Unfettered grandfather. This led to her fencing skill, and victories in the Hai equivalent of the Olympics. Later, Sayari encouraged her to ride her fame into politics, forming a pro-rights and anti-corruption movement that angered Elders, often attacking them "by name."`
-				set "Hai Reveal [A11] Sound the Alarm: teeneep2 book"
-				"Hai Reveal [A11] Sound the Alarm: time" ++
-			`	Teeneep's rise to fame began, it seems, on Unfettered worlds, due to her superb fencing skills. Her grandfather is a well-known duelist and mid-ranked Unfettered officer, which ensured Teeneep a warm welcome among the Unfettered. She was known for rarely losing fights, even against opponents twice her weight or triple her age. This fame granted her entry into Hai athletics; they have an equivalent to the Olympics, which includes all Hai worlds, even the Unfettered. There, her fame rapidly grew to the point where "Teeneep" was a household name among all Hai. The report says she was still, "barely an adult," and that the "risks of giving social power to someone so young became obvious."`
-			`	She rode her fame into politics after befriending Sayari, who encouraged Teeneep to pursue her childhood dreams of helping the underprivileged. Teeneep led a movement that united thousands of local activist organizations into a massive political force. They pushed for fair treatment of humans in Hai space, safety of Hai in human space, increased intake of human refugees, investigations into disappearances, anti-corruption laws, and other measures, all directed at perceived unfairness in society. The report pointedly lists over five hundred instances where "Teeneep's movement publicly attacked the actions of Elders 'by name'."`
-			`	It warns the growing movement has become a threat to the stability of both Hai and human society.`
 				goto reading
 
 			label quarg
