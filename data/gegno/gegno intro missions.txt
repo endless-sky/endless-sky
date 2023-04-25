@@ -406,47 +406,24 @@ mission "Giaru Gegno: Revisit"
 				decline
 
 
+# Gegno Superheavy Missions
 
-# Gegno Superheavy
-
-mission "Stationed Augen"
+mission "Vi Augen"
 	invisible
 	landing
+	on offer
+		fail "Stationed Augen"
 	npc save
+		on kill
+			set "dead augen"
 		government "Gegno Vi"
 		personality heroic vindictive staying
 		system "Kiluit"
 		ship "Augen" "Vytii Yrrlausei"
 	to fail
-		has "event: Vesvii war"
+		has "event: Vesvii War"
 	to complete
 		never
-
-mission "Augen Destruction"
-	landing
-	invisible
-	to offer
-		has "Stationed Augen: failed"
-		not "event: Vesvii war"
-	on offer
-		set "dead augen"
-		fail
-
-mission "Active Augen"
-	invisible
-	to offer
-		has "event: Vesvii war"
-		has "Stationed Augen: failed"
-		not "dead augen"
-	npc save
-		government "Gegno Vi"
-		personality heroic vindictive staying
-		system "Vesvii"
-		ship "Augen" "Vytii Yrrlausei"
-	to complete
-		never
-
-
 
 # Gegno Defense Trigger
 
@@ -461,7 +438,7 @@ mission "Gegno Genocide Defense"
 	on offer
 		fail "First Contact: Gegno Vi"
 		fail "Visit Quarg in Gegno Space"
-		fail "Stationed Augen"
+		fail "Vi Augen"
 		"reputation: Gegno" = -100
 		"reputation: Gegno Vi" = -100
 		"reputation: Gegno Scin" = -100
