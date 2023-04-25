@@ -1608,9 +1608,19 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			label "initial visit to reading room"
 			action
 				"Hai Reveal [A11] Sound the Alarm: time" = 2
-			`	You enter a small room with a holographic display and two hovering balls that appear to detect the movement of your hands in the hologram.`
-			`	"The search system is quite complicated, so I prepared a list of documents that Sayari and the Elders thought you would find most interesting, given your current and anticipated situation." She waves her hands and the title pages of selection of documents come up. She pokes one document, and a book appears in the holoprojector, which she is able to manipulate as if it were real. Closing the book returns the interface to the list of documents."`
-			`	"As you take out your datapad to record, you notice it doesn't see anything. It seems the Hai have taken precautions to ensure you don't record the information in full. Fortunately, as an interstellar pilot, you have an excellent memory, and you make mental notes of everything important."`
+			`	The functionary delivers you to a comfortably appointed room with a handful of chairs and an adjustable height table. After assuring you that she'll come back when needed, she steps outside to join the guard posted by the door.`
+			choice
+				`	(Have a poke around.)`
+				`	(Sit down and chill.)`
+					goto beeps
+			`	After fiddling with the table and sticking your hand down behind a couple of seat cushions, a seat on the other side of the room starts to give off a sharp, regular, beeping sound.`
+				goto foundpad
+			label beeps
+			`	After perhaps thirty seconds spent getting comfortable and looking around, a seat on the other side of the room starts to give off a sharp, regular, beeping sound.`
+			label foundpad
+			`	Following the beep, it takes only a moment to uncover a folding datapad with a holographic display. After opening it on your lap, two hovering balls are projected with the outline of Hai hands impressed into them. Touching them, it appears that they detect the movement of your hands in the hologram.`
+			`	Each one shows a little loading circle, and after apparently calibrating to both hands the system lights up fully and a title page with a selection of documents comes up. As you poke one document experimentally, a book appears in the holoprojector, which you are able to manipulate as if it were real. Closing the book returns the interface to the list of documents.`
+			`	As you take out your own datapad to record, you notice it doesn't see anything. It seems the Hai have taken precautions to ensure you don't record the information in full. Fortunately, as an interstellar pilot, you have an excellent memory, and you make mental notes of everything important.`
 				goto library
 			label "decided to read nothing after seeing titles"
 			`	"As you wish," says the functionary. She leads you to the council chambers. Along the way, she explains, "It seems Teeneep is getting a show trial; someone thinks they have already decided the outcome. However, she may yet slip that net. Many Elders support her, including- well, here we are."`
@@ -1689,10 +1699,6 @@ mission "Hai Reveal [A11] Sound the Alarm"
 					goto teeneep1
 					to display
 						not "Hai Reveal [A11] Sound the Alarm: teeneep1 book"
-				`	CHS-015TNP6: Chaos Personified: Teeneep's Rise to Fame and Infamy`
-					goto teeneep2
-					to display
-						not "Hai Reveal [A11] Sound the Alarm: teeneep2 book"
 				`	QRG-3Z-18FJ4KC: Modern Hai-Quarg Relations`
 					goto quarg
 					to display
@@ -1802,10 +1808,10 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			# Beginning of the proceedings
 
 			label hurry
-			# Player "was in a hurry to get to the proceedings," so they catch Teeneep and Sayari talking.
-			`	This is not the first time you've seen the room, but it is the first time you've seen it full. There is a small desk and seat at the front of the central circle, opposite the entry point, which was not occupied when you entered here for dealing with Scar's Legion but now hosts a very serious Hai bearing unusual marks of office. Sayari sees your line of vision and nudges you, conveying in a whisper, "That's the moderator. They're only required when more than two thirds of the council is in attendance, and when there's a debate or petition to address."`
-			`	She glances around the room and raises an eyebrow. "This is a closed session, which is quite unusual for a full Council Assembly. This does not bode well."`
-			`	"Captain, since you have become involved as a witness, protocol dictates that the session will be held in your language, though for the sake of order normal council directions will still be in Hai. We will begin in a moment."`
+			# Player "was in a hurry to get back to Teenep and Sayari," so they catch Teeneep and Sayari talking.
+			`	The functionary explains the proceedings while leading you to Sayari. "The session will be mostly in your language since you're involved as a witness. The moderator will lead; they're rarely present, but this is quite a momentous event."`
+			`	As you rejoin them, Sayari tilts her head towards the moderator's desk and nudges you, conveying in a whisper, "The moderator is only required when more than two thirds of the council is in attendance, and when there's a debate or petition to address." With a pointed look to indicate the room she continues, "And this is a closed session, which is quite unusual for a full Council Assembly. This does not bode well.`
+			`	"They just closed the doors a moment ago, we will begin as soon as the moderator is ready."`
 				goto proceedings
 			label nohurry
 			`	The functionary explains the proceedings while leading you to Sayari. "The session will be mostly in your language since you're involved as a witness. The moderator will lead; they're rarely present, but this is quite a momentous event."`
@@ -1893,7 +1899,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			choice
 				`	"What are they saying?"`
 				`	"What just happened?"`
-				`	"If you'll pardon me, I have some reports to read."`
+				`	"Excuse me, I need to check out something in the reading room."`
 					goto reading
 			`	She glances at you briefly. "They are saying: Veeheylur and Misanaya fight over Eyrisen." Her tone carries with it a sense of awe, and despite the growing volume in the room she leans in close to you and continues in scarcely more than a whisper, "The Mythos has been invoked."`
 			`	As Aimet painfully resumes his seat, one Elder who has thus far been maintaining a fairly neutral demeanor in this seems to regain a certain sense of himself and stands up, quickly heralded by the moderator, who struggles to compose himself suitably. "I think the Council has heard enough. The petitioner is entitled to a closing statement, unless there is objection?"`
@@ -1926,17 +1932,17 @@ mission "Hai Reveal [A11] Sound the Alarm"
 					goto dinner
 				`	"No, thank you. I need to check in with the diplomats.`
 					goto diplomats
-			`	Teeneep gives you directions to a common area with a large holoprojector. You arrive just as the news is about to begin.`
-
+			`	Teeneep gives you directions to a common area with a large holoprojector. You arrive to a room filled with Hai who, from your limited experience, all look to be government employees that you'd expect have medium levels of clearance. Enough to need a summary, without getting to witness sensitive specifics. You arrive just as the 'news' is about to begin.`
 
 			# SCENE CHANGE
 
 			# Deliberation grace period is over and everybody leaves the chamber.
 
 			label news
-			`	The holoprojector turns on, and an elderly Hai presents the news. "In today's closed emergency meeting, the full Elder Council put the known disruptor, Teeneep, on trial for risking the safety of all Hai by her recent actions. While she made an eloquent defense, her previous confession was enough evidence to prove her guilt. There was audibly wide-spread support among the Elders for a stern and righteous action in defense of the secrecy that is so key to our security... until that very premise was challenged.`
-			`	"All the Council was silenced in awe as Aimet Taepip spoke in favor of Teeneep, against the secrecy doctrine, presenting a stark choice. Secrecy and safety now conflict; we must choose one or the other: Teeneep's path to safety, or Gemnali's path to secrecy. At this, some brought to attention what traditionalists have said for years: the remarkable similarity between Teeneep's life and that of Eyrisen from the Mythos. The Mythos and Aimet together convinced many Elders to back down, but not enough.`
-			`	"Today's decision... was indecision. We await another path through the chaos that slowly engulfs us. There are rumors of a petition that may reach its threshold in weeks. Perhaps an election will bring us rapidly to our salvation or doom before time runs out."`
+			`	The holoprojector turns on, and an elderly Hai presents. "In today's closed emergency meeting conducted in the human language, the full Elder Council put the known disruptor, Teeneep, on trial for risking the safety of all Hai by her recent actions. While she made an eloquent defense, her previous confession was considered enough evidence to prove her guilt. There was audibly wide-spread support among the Elders for a stern and righteous action in defense of the secrecy mandate... until that very premise was challenged.`
+			`	"In a rare utterance Aimet Taepip silenced the Council to speak in favor of Teeneep, and against the secrecy mandate, presenting a bold reminder of recent history and a stark choice. Secrecy and safety are now conflict; we must choose one or the other. The scene inspired certain sections to invoke the mythos, 'Veeheylur and Misanaya fight over Eyrisen'. This event appears to have shaken many members of the Council who had previously declared positions. In the vote immediately following, enough Elders abstained that the matter could not be progressed.`
+			`	"Today's decision... was indecision. A watch is being placed on a petition identified in association with this that may reach its threshold in weeks. An election trigger will be the outcome and all departments are on alert to take appropriate action."`
+			`	"Briefing will repeat in Hai in 1 minute."`
 			`	A Hai next to you tells you, "It's all a bit disconcerting, isn't it? Pirates and Unfettered on our borders and Elders doing nothing. A chaos magnet causing mischief while a human mercenary helps her. I wish I was there to see the proceedings, but I know they weren't recorded."`
 			choice
 				`	"Well, you just have to keep living your life, right?"`
@@ -1953,7 +1959,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				`	"No, it's time for dinner."`
 					goto spydinner
 			`	"As you wish," she says. After a minute or two listening to her chat about the importance of Teeneep's work, you arrive at a common area with a holoprojector. Before she departs, her face turns dead serious and she whispers, "After this all blows over, you'll be needed up north. Keep your eyes in that direction, Captain; many lives will depend on it."`
-			`	You open your mouth to respond, but she quickly vanishes into the crowd. Surrounding you are Elders, functionaries, and diplomats, all awaiting the news report that is about to begin.`
+			`	You open your mouth to respond, but she quickly vanishes into the crowd. Surrounding you are officers, functionaries, and diplomats, all awaiting the news briefing that is about to begin.`
 				goto news
 			label spydinner
 			`	"As you wish," she says. After a minute or two listening to her chat about the importance of Teeneep's work, you arrive at a cafeteria. She helps you find the best dishes, and leads you to the seating area. Before she departs, her face turns dead serious and she whispers, "After this all blows over, you'll be needed up north. Keep your eyes in that direction, Captain; many lives will depend on it." You open your mouth to respond, but she quickly vanishes into the crowd.`
