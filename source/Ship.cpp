@@ -1718,8 +1718,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		int direction = hyperspaceSystem ? 1 : -1;
 		hyperspaceCount += direction;
 		//wtf do all these mean, what are they for?
+		// Number of frame it takes to enter or exit hyperspace.
 		static const int HYPER_C = 100;
-		//Setting this to 50 break things for some reason.
+		// Minimum exit velocity and rate the ship slowdown when exiting hyperspace.
 		static const double HYPER_A = 2.;
 		static const double HYPER_D = 1000.;
 		if(hyperspaceSystem)
@@ -1805,9 +1806,13 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		}
 		if(!isUsingJumpDrive)
 		{
+			// Prevent over slow-down during exit if a ship is too slow and causes final velocity to invert.
 			velocity += (HYPER_A * direction) * angle.Unit();
+			printf("------------------------\n");
 			printf("NoJD velo:%f\n", velocity.Length());
-			printf("HyperspaceCount:%f", hyperspaceCount);
+			printf("NoJD veloU:%f,%f\n", velocity.Unit().X(),velocity.Unit().Y());
+			printf("HyperspaceCount:%i\n", hyperspaceCount);
+			//In target system
 			if(!hyperspaceSystem)
 			{
 				// Exit hyperspace far enough from the planet to be able to land.
@@ -1817,9 +1822,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				// is, about acos(.8) from the proper angle). So:
 				// Stopping distance = .5*a*(v/a)^2 + (150/turn)*v.
 				// Exit distance = HYPER_D + .25 * v^2 = stopping distance.
-
-				//why 150 degrees? 
 				double exitV = max(HYPER_A, MaxVelocity());
+				printf("maxV:%f,exitV:%f\n", MaxVelocity(),exitV);
 				double a = (.5 / Acceleration() - .25);
 				double b = 150. / TurnRate();
 				double discriminant = b * b - 4. * a * -HYPER_D;
@@ -1830,13 +1834,24 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 						exitV = altV;
 						printf("AltV:%f\n", altV);
 				}
-				if(velocity.Length() <= exitV)
+				/*
+				Point newVelo = angle.Unit() * exitV;
+				printf("newVelo:%f",newVelo.Length());
+				if(velocity.Length() < newVelo.Length())
+				{
+					velocity = newVelo;
+				}
+				*/
+				
+				// If velocity is lower than rate just consider it done.
+				if(velocity.Length() <= HYPER_A)
 				{
 					velocity = angle.Unit() * exitV;
 					hyperspaceCount = 0;
 					printf("Fin exitV:%f\n", exitV);
 					printf("Fin velo:%f\n", velocity.Length());
 				}
+				//*/
 			}
 		}
 		//selfnote: apply on both entry and exit.
@@ -1848,6 +1863,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			if(length > 1000.)
 				hyperspaceOffset *= 1000. / length;
 		}
+		printf("curVeloHD:%f\n",velocity.Length());
 
 		return;
 	}
