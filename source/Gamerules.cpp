@@ -44,6 +44,8 @@ void Gamerules::Load(const DataNode &node)
 			noPersonSpawnWeight = max<int>(0, child.Value(1));
 		else if(key == "npc max mining time")
 			npcMaxMiningTime = max<int>(0, child.Value(1));
+		else if(key == "jump alignment precision")
+			jumpPrecision = max<double>(0., child.Value(1));
 		else
 			child.PrintTrace("Skipping unrecognized gamerule:");
 	}
@@ -75,4 +77,11 @@ int Gamerules::NoPersonSpawnWeight() const
 int Gamerules::NPCMaxMiningTime() const
 {
 	return npcMaxMiningTime;
+}
+
+
+
+double Gamerules::JumpPrecision() const
+{
+	return jumpPrecision;
 }

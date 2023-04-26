@@ -44,3 +44,10 @@ gamerules
 	# DEFAULT: 3600 frames (one minute)
 	# ALLOWABLE VALUES: any integer >= 0
 	"npc max mining time" 3600
+	
+	# The value of how precise the ship have to be aligned to enter hyperspace jump.
+	# Setting too low can cause some ship to fail to jump entirely while setting too high can
+	# cause fast turning ships to jump sideways.
+	# DEFAULT: 1
+	# ALLOWABLE VALUES: any value >= 0
+	"jump alignment precision" 1
