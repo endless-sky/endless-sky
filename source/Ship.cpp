@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Flotsam.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Government.h"
 #include "JumpTypes.h"
 #include "Logger.h"
@@ -3021,9 +3022,9 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 
 	if(!isJump)
 	{
-		// Figure out if we're within one turn step of facing this system.
+		// Figure out if we're within one turn step or minimal precision of facing this system.
 		bool left = direction.Cross(angle.Unit()) < 0.;
-		Angle turned = angle + TurnRate() * (left - !left);
+		Angle turned = angle + (max<double>(TurnRate(),GameData::GetGamerules().JumpPrecision())) * (left - !left);
 		bool stillLeft = direction.Cross(turned.Unit()) < 0.;
 
 		if(left == stillLeft)
