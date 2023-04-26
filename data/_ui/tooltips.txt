@@ -276,6 +276,9 @@ tip "hull heat multiplier:"
 tip "hull repair rate:"
 	`Amount of hull strength that can be repaired per second. Repairs usually consume energy and may generate heat as well.`
 
+tip "installation cost:"
+	`How much, in credits, it will cost you to install this outfit on your ship.`
+
 tip "repair delay:"
 	`How many seconds it takes for hull repairs to begin after taking hull damage.`
 
@@ -659,6 +662,9 @@ tip "turret mounts needed:"
 
 tip "turret mounts free:"
 	`How many turrets can be mounted on this ship. Turrets fire in the direction of the currently selected target, instead of firing straight forward like guns.`
+
+tip "uninstallation cost:"
+	`How much, in credits, it will cost you to uninstall this outfit from your ship.`
 
 tip "weapon capacity needed:"
 	`Tons of weapon space this outfit takes up.`

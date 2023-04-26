@@ -59,6 +59,8 @@ public:
 	const int Index() const;
 	const std::string &Description() const;
 	int64_t Cost() const;
+	const int64_t InstallationCost() const;
+	const int64_t UninstallationCost() const;
 	double Mass() const;
 	// Get the licenses needed to buy or operate this ship.
 	const std::vector<std::string> &Licenses() const;
@@ -114,6 +116,8 @@ private:
 	std::string description;
 	const Sprite *thumbnail = nullptr;
 	int64_t cost = 0;
+	int64_t installationCost = 0;
+	int64_t uninstallationCost = 0;
 	double mass = 0.;
 	// Licenses needed to purchase this item.
 	std::vector<std::string> licenses;

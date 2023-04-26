@@ -270,6 +270,10 @@ void Outfit::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "cost" && child.Size() >= 2)
 			cost = child.Value(1);
+		else if(child.Token(0) == "installation cost" && child.Size() >= 2)
+			installationCost = child.Value(1);
+		else if(child.Token(0) == "uninstallation cost" && child.Size() >= 2)
+			uninstallationCost = child.Value(1);
 		else if(child.Token(0) == "mass" && child.Size() >= 2)
 			mass = child.Value(1);
 		else if(child.Token(0) == "licenses" && (child.HasChildren() || child.Size() >= 2))
@@ -435,6 +439,20 @@ const string &Outfit::Description() const
 
 
 
+const int64_t Outfit::InstallationCost() const
+{
+	return installationCost;
+}
+
+
+
+const int64_t Outfit::UninstallationCost() const
+{
+	return uninstallationCost;
+}
+
+
+
 // Get the licenses needed to purchase this outfit.
 const vector<string> &Outfit::Licenses() const
 {
@@ -512,6 +530,8 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 void Outfit::Add(const Outfit &other, int count)
 {
 	cost += other.cost * count;
+	installationCost += other.installationCost * count;
+	uninstallationCost += other.uninstallationCost * count;
 	mass += other.mass * count;
 	for(const auto &at : other.attributes)
 	{

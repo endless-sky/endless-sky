@@ -424,6 +424,14 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 	}
 	else
 	{
+		// Installing on a ship, so check if the player can pay for installation.
+		int64_t credits = player.Accounts().Credits();
+		int64_t installationCost = selectedOutfit->InstallationCost();
+		if(installationCost > credits)
+			return "You cannot install this outfit, because the installation process costs "
+				+ Format::CreditString(installationCost) + ", and you only have "
+				+ Format::Credits(credits) + ".";
+		
 		// Find if any ship can install the outfit.
 		for(const Ship *ship : playerShips)
 			if(ShipCanBuy(ship, selectedOutfit))
@@ -559,6 +567,7 @@ void OutfitterPanel::Buy(bool onlyOwned)
 				player.Accounts().AddCredits(-price);
 				player.AddStock(selectedOutfit, -1);
 			}
+			player.Accounts().AddCredits(-selectedOutfit->InstallationCost());
 			ship->AddOutfit(selectedOutfit, 1);
 			int required = selectedOutfit->Get("required crew");
 			if(required && ship->Crew() + required <= static_cast<int>(ship->Attributes().Get("bunks")))
@@ -580,6 +589,11 @@ bool OutfitterPanel::CanSell(bool toStorage) const
 
 	if(!toStorage && player.Storage() && player.Storage()->Get(selectedOutfit))
 		return true;
+
+	int64_t credits = player.Accounts().Credits();
+	int64_t uninstallationCost = selectedOutfit->UninstallationCost();
+	if(uninstallationCost > credits)
+		return false;
 
 	for(const Ship *ship : playerShips)
 		if(ShipCanSell(ship, selectedOutfit))
@@ -623,6 +637,7 @@ void OutfitterPanel::Sell(bool toStorage)
 	{
 		for(Ship *ship : shipsToOutfit)
 		{
+			player.Accounts().AddCredits(-selectedOutfit->UninstallationCost());
 			ship->AddOutfit(selectedOutfit, -1);
 			if(selectedOutfit->Get("required crew"))
 				ship->AddCrew(-selectedOutfit->Get("required crew"));
@@ -708,6 +723,16 @@ void OutfitterPanel::FailSell(bool toStorage) const
 			GetUI()->Push(new Dialog("You do not have any of these outfits to " + verb + "."));
 		else
 		{
+			int64_t credits = player.Accounts().Credits();
+			int64_t uninstallationCost = selectedOutfit->UninstallationCost();
+			if(uninstallationCost > credits)
+			{
+				GetUI()->Push(new Dialog("You cannot uninstall this outfit, because the uninstallation process costs "
+					+ Format::CreditString(uninstallationCost) + ", and you only have "
+					+ Format::Credits(credits) + "."));
+				return;
+			}
+
 			for(const Ship *ship : playerShips)
 				for(const pair<const char *, double> &it : selectedOutfit->Attributes())
 					if(ship->Attributes().Get(it.first) < it.second)

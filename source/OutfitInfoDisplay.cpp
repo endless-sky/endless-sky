@@ -402,6 +402,33 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		hasNormalAttributes = true;
 	}
 
+	int64_t installationCost = outfit.InstallationCost();
+	if(installationCost)
+	{
+		attributeLabels.emplace_back("installation cost:");
+		attributeValues.emplace_back(Format::Credits(installationCost));
+		attributesHeight += 20;
+		hasNormalAttributes = true;
+	}
+
+	int64_t uninstallationCost = outfit.UninstallationCost();
+	if(uninstallationCost)
+	{
+		attributeLabels.emplace_back("uninstallation cost:");
+		attributeValues.emplace_back(Format::Credits(uninstallationCost));
+		attributesHeight += 20;
+		hasNormalAttributes = true;
+	}
+
+	if(installationCost || uninstallationCost)
+	{
+		attributeLabels.emplace_back();
+		attributeValues.emplace_back();
+		attributeLabels.emplace_back();
+		attributeValues.emplace_back();
+		attributesHeight += 20;
+	}
+
 	for(const pair<const char *, double> &it : outfit.Attributes())
 	{
 		if(count(EXPECTED_NEGATIVE.begin(), EXPECTED_NEGATIVE.end(), it.first))
