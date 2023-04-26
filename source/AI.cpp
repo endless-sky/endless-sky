@@ -1989,7 +1989,7 @@ double AI::TurnToward(const Ship &ship, const Point &vector, const double precis
 		// Is the facing direction aligned with the target direction with sufficient precision?
 		// The maximum angle between the two directions is given by: arccos(sqrt(precision)).
 		bool close = false;
-		if(precision < 1. && precision > 0. && dot * dot >= precision * vector.LengthSquared() * facing.LengthSquared())
+		if(precision < 1. && precision > 0. && dot * dot >= precision * vector.LengthSquared())
 			close = true;
 		double angle = asin(min(1., max(-1., cross / vector.Length()))) * TO_DEG;
 		// Is the angle between the facing and target direction smaller than
