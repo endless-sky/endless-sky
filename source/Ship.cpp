@@ -3020,6 +3020,7 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 		if(left == stillLeft)
 			return false;
 	}
+
 	return true;
 }
 
