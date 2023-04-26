@@ -1,0 +1,600 @@
+# Weapons
+
+outfit "Kalapat Repeater"
+	category "Guns"
+	cost 100000
+	thumbnail "outfit/particle cannon"
+	"mass" 7
+	"outfit space" -7
+	"weapon capacity" -7
+	"gun ports" -1
+	weapon
+		sprite "projectile/particle beam"
+		sound "particle"
+		"hit effect" "particle impact"
+		"submunition" "Kalapat Shot"
+		"velocity" 0.5
+		"velocity override" 32
+		"lifetime" 1
+		"reload" 9
+		"firing energy" 9
+		"firing force" 20
+		"firing heat" 14
+		"cluster"
+	description "Kalapat Repeaters are largely intended for use on the Nepetel's drones, where their high recoil allows for the drone to remain thoroughly out of harm's way while pelting the target at a distance."
+
+outfit "Kalapat Shot"
+	weapon
+		sprite "projectile/particle beam"
+		"hit effect" "particle impact"
+		"inaccuracy" 2
+		"velocity" 31.6
+		lifetime 25
+		"hit force" 20
+		"shield damage" 10
+		"hull damage" 11
+		
+outfit "Kalapat Battery"
+	category "Guns"
+	cost 400000
+	thumbnail "outfit/particle cannon"
+	"mass" 24
+	"outfit space" -24
+	"weapon capacity" -24
+	"gun ports" -1
+	weapon
+		sprite "projectile/particle beam"
+		sound "particle"
+		"hit effect" "particle impact"
+		"submunition" "Kalapat Shot" 3
+		"velocity" 0.5
+		"velocity override" 32
+		"lifetime" 1
+		"reload" 9
+		"firing energy" 25
+		"firing force" 60
+		"firing heat" 40
+		"cluster"
+	description "The Nepetel are fluent in the art of installing multiple weapons inside of a single gun port, and have been doing it for millenia. This large battery contains 3 Kalapats with minimal overhead, owing to the fact that no extra compensation has to be made for differing firing clocks."
+
+outfit "Tekelak Gun"
+	category "Guns"
+	cost 200000
+	thumbnail "outfit/proton gun"
+	"mass" 17
+	"outfit space" -17
+	"weapon capacity" -17
+	"gun ports" -1
+	weapon
+		sprite "projectile/blaster"
+		sound "proton"
+		"hit effect" "proton impact"
+		"submunition" "Tekelak Shot"
+		"velocity" .5
+		"velocity override" 16
+		"lifetime" 1
+		"reload" 3
+		"firing energy" 16
+		"firing force" 1
+		"firing heat" 10
+		"firing shields" -1.2
+		"cluster"
+	description "Tekelaks are rugged shipboard weapons that the Nepetel have used for roughly a millenium in some form or another. Though their accuracy is poor and delivers lower energy on target than some other weapons, the Tekelak is designed to regenerate a ship's shields while firing, providing sustainability to the ship during combat."
+
+outfit "Tekelak Turret"
+	category "Turrets"
+	cost 500000
+	thumbnail "outfit/proton gun"
+	"mass" 41
+	"outfit space" -41
+	"weapon capacity" -41
+	"turret mounts" -1
+	weapon
+		sprite "projectile/blaster"
+		sound "proton"
+		"hit effect" "proton impact"
+		"turret turn" 1.1
+		"submunition" "Tekelak Shot" 2
+		"velocity" .5
+		"velocity override" 16
+		"lifetime" 1
+		"reload" 3
+		"firing energy" 32
+		"firing force" 2
+		"firing heat" 20
+		"firing shields" -2.4
+		"cluster"
+	description "This turret mounts a pair of Tekelaks on a single mount. Though Tekelaks are not the most accurate of weapons, a large volley of Tekelak fire can be a very effective deterrent against fighters thanks to its considerable overall damage output. Additionally, Tekelaks regenerate a ship's shields when firing, meaning a ship equipped with a number of these turrets becomes very difficult to kill without special effort."
+
+
+outfit "Tekelak Split 2"
+	weapon
+		lifetime 3
+		"submunition" "Tekelak Shot"
+		"submunition" "Tekelak Split 1"
+
+outfit "Tekelak Split 1"
+	weapon
+		lifetime 3
+		"submunition" "Tekelak Shot"
+
+outfit "Tekelak Shot"
+	weapon
+		sprite "projectile/blaster"
+		"hit effect" "proton impact"
+		"inaccuracy" 11
+		"velocity" 15.6
+		lifetime 43
+		"shield damage" 8.2
+		"hull damage" 9.8
+		
+outfit "Tekepat Combo Block"
+	category "Guns"
+	cost 700000
+	thumbnail "outfit/proton gun"
+	"mass" 28
+	"outfit space" -28
+	"weapon capacity" -28
+	"energy capacity" 100
+	"gun ports" -1
+	weapon
+		sprite "projectile/blaster"
+		sound "proton"
+		"hit effect" "proton impact"
+		"submunition" "Tekelak Shot"
+		"submunition" "Tekelak Split 2"
+		"submunition" "Kalapat Shot"
+		"velocity" .5
+		"velocity override" 24
+		"range override" 736
+		"lifetime" 1
+		"reload" 9
+		"firing energy" 57
+		"firing force" 23
+		"firing heat" 44
+		"firing shields" -3.6
+		"cluster"
+	description "The Nepetel have actually redesigned this permutation of the Tekepat combination block many times, slowly squeezing more of the guns together until the overhead is small enough that the entire assembly can fit into a Lilikar drone's gun port. The result is a weapon that delivers remarkable power on target, especially for a drone-mounted gun."
+		
+outfit "Tekepat Duplex"
+	category "Guns"
+	cost 700000
+	thumbnail "outfit/proton gun"
+	"mass" 60
+	"outfit space" -60
+	"weapon capacity" -60
+	"energy capacity" 250
+	"gun ports" -1
+	weapon
+		sprite "projectile/blaster"
+		sound "proton"
+		"hit effect" "proton impact"
+		"submunition" "Tekelak Shot" 2
+		"submunition" "Tekelak Split 2" 2
+		"submunition" "Kalapat Shot" 2
+		"velocity" .5
+		"velocity override" 24
+		"range override" 736
+		"lifetime" 1
+		"reload" 9
+		"firing energy" 114
+		"firing force" 46
+		"firing heat" 88
+		"firing shields" -7.2
+		"cluster"
+	description `"Tekepat" refers to the combination of a Tekelak Gun and a Kalapat Repeater, which is found in a pair aboard this heavily engineered combo weapon system. The overhead required is quite high, but even one of these blocks is capable of impressive firepower thanks to the 4 independent weapons aboard.`
+	description `	An internal capacitor efficiently directs energy where it needs to go, increasing the resource efficiency of the whole system by a small, but noticeable amount.`
+		
+outfit "Vikomat Gauss Driver"
+	category "Guns"
+	cost 3062000
+	thumbnail "outfit/ka'het nullifier"
+	"mass" 132
+	"outfit space" -132
+	"weapon capacity" -132
+	"gun ports" -1
+	weapon
+		sprite "projectile/ionball"
+			"frame rate" 15
+			"rewind"
+		sound "ionball"
+		"fire effect" "finisher sparks" 20
+		"hit effect" "ionball ring" 15
+		"hit effect" "ionball impact" 2
+		"hit effect" "ionball fragment" 40
+		"live effect" "ionball spark" 180
+		"live effect" "ionball trail" 180
+		"live effect" "ionball twinkle" 580
+		"inaccuracy" 0.2
+		"velocity" 12
+		"lifetime" 120
+		"reload" 390
+		"cluster"
+		"firing energy" 3750
+		"firing ion" 37.5
+		"firing force" 150
+		"firing heat" 5000
+		"turn" 73
+		"shield damage" 1000
+		"hull damage" 25
+		"ion damage" 50
+		"discharge damage" 90
+		"hit force" 25
+	description "For their capital ships, the Nepetel wanted something more than a rearrangement of their existing weapons. The Vikomat works by ionizing and subsequently magnetically accelerating a large chunk of plasma, to devastating effect on target. While the immediate physical damage isn't obvious, one shot causes a debilitating discharging effect, rapidly disbanding a target's shields and ripping energy directly from the subsequently exposed emitters."
+	
+# "Missiles"
+
+outfit `Pokylateran "Missile" Generator`
+	category "Secondary Weapons"
+	cost 860000
+	thumbnail "outfit/pug seeker"
+	"mass" 46
+	"outfit space" -46
+	"weapon capacity" -46
+	"gun ports" -1
+	weapon
+		sprite "projectile/seeker"
+			"frame rate" 20
+			"random start frame"
+		sound "seeker"
+		"hit effect" "seeker impact"
+		"die effect" "seeker impact"
+		"submunition" "Pokylateran Midflight"
+		"inaccuracy" 30
+		"velocity" 15
+		"random velocity" 10
+		"lifetime" 35
+		"reload" 60
+		"burst count" 4
+		"burst reload" 15
+		"firing energy" 450
+		"firing heat" 200
+		"acceleration" 3
+		"drag" .2
+		"turn" 6
+		"homing" 5
+		"tracking" .6
+		"optical tracking" .6
+		"missile strength" 12
+		"split range" 200
+		phasing
+	description `The Nepetali word "Pokylateran" comes from several root words that, together, mean "an answer to a problem that didn't exist". This, perhaps, perfectly describes this weapon's supposed function: Firing a missile without firing a missile. The Pokylateran system is a highly engineered, robust method of producing energy based projectiles. After being fired, Pokylateran "missiles" are guided into a favourable attack vector by repulsors aboard the ship, where they then careen unguided toward their target, until they're close enough to physically lock on to their target, at which point they rapidly course correct, smashing into the target.`	
+
+outfit "Pokylateran Midflight"
+	weapon
+		"submunition" "Pokylateran Final"
+		sprite "projectile/seeker"
+			"frame rate" 20
+			"random start frame"
+		"hit effect" "seeker impact"
+		"die effect" "seeker impact"
+		"inaccuracy" 5
+		"lifetime" 180
+		"acceleration" 3
+		"drag" .2
+		"turn" 0
+		"homing" 3
+		"missile strength" 12
+		"optical tracking" .8
+		"split range" 200
+		phasing
+
+outfit "Pokylateran Final"
+	weapon
+		sprite "projectile/seeker"
+			"frame rate" 20
+			"random start frame"
+		"hit effect" "seeker impact"
+		"die effect" "seeker impact"
+		"inaccuracy" 11
+		lifetime 90
+		"acceleration" 3
+		"drag" .2
+		"turn" 6
+		"homing" 3
+		"missile strength" 12
+		"optical tracking" 1
+		"shield damage" 220
+		"hull damage" 330
+		
+outfit `Pokylateran "Missile" Pod`
+	category "Secondary Weapons"
+	cost 520000
+	thumbnail "outfit/pug seeker"
+	"mass" 26
+	"outfit space" -26
+	"weapon capacity" -26
+	"gun ports" -1
+	weapon
+		sprite "projectile/seeker"
+			"frame rate" 20
+			"random start frame"
+		sound "seeker"
+		"hit effect" "seeker impact"
+		"die effect" "seeker impact"
+		"submunition" "Pokylateran Midflight"
+		"inaccuracy" 30
+		"velocity" 15
+		"random velocity" 10
+		"lifetime" 35
+		"reload" 150
+		"burst count" 2
+		"burst reload" 20
+		"firing energy" 450
+		"firing heat" 200
+		"acceleration" 3
+		"drag" .2
+		"turn" 6
+		"homing" 5
+		"tracking" .6
+		"optical tracking" .6
+		"missile strength" 12
+		"split range" 200
+		phasing
+	description "While the full-sized implementation of the Pokylateran was a very impressive technical feat and a particularly innovative design for the time, the Nepetel felt it could be improved by miniaturizing it so it could be equipped en masse on Lilikar drones, making a swarm equipped with the weapon remarkably formidable. This version of the weapon is just small enough to squeeze into a Lilikar's gun port, at the cost of reduced shots per burst and vastly increased time between bursts."
+		
+# Anti-Missiles
+
+outfit "Nepetel Anti-Missile"
+	category "Turrets"
+	cost 850000
+	thumbnail "outfit/wanderer anti-missile"
+	"mass" 36
+	"outfit space" -36
+	"weapon capacity" -36
+	"energy capacity" 200
+	"turret mounts" -1
+	weapon
+		"hardpoint sprite" "hardpoint/wanderer anti-missile"
+		"hardpoint offset" 6.
+		"hit effect" "wanderer anti-missile"
+		"anti-missile" 28
+		"velocity" 360
+		"lifetime" 1
+		"reload" 7.5
+		"burst count" 6
+		"burst reload" 2
+		"firing energy" 30
+		"firing heat" 20
+	description "The Nepetel don't have any prominent missiles, however this defense system is also very useful for shooting down clusters of debris headed towards the ship. The weapon charges up a large burst of energy in the internal power supply before firing it out as a burst of highly accurate anti-projectile fire."
+
+# Batteries
+
+outfit "Tiny MPSC"
+	category "Power"
+	cost 100000
+	thumbnail "outfit/small battery module"
+	"mass" 12
+	"outfit space" -12
+	"energy capacity" 9600
+	"energy consumption" 0.08
+	"shield generation" 0.1
+	description `For the Nepetel's drones and other small ships, these relatively tiny energy storage complexes are all that stands between a ship and electrical destitution.`
+
+outfit "Small MPSC"
+	category "Power"
+	cost 100000
+	thumbnail "outfit/small battery module"
+	"mass" 26
+	"outfit space" -26
+	"energy capacity" 23400
+	"energy consumption" 0.2
+	"shield generation" 0.25
+	description `The Nepetel do not have particularly potent shipboard generators, so their ships instead employ massive battery complexes to deliver energy where it's needed. Even this "small" complex is larger than most human batteries, capable of storing enough power for most ships to last in combat for quite a long time.`
+	description `The complexes do leak some energy overtime, however, the magnetic nature of the storage means that the leaked energy often recharges the shield matrix, so this design "flaw" has persisted for millenium as a desired side effect.`
+	
+outfit "Medium MPSC"
+	category "Power"
+	cost 250000
+	thumbnail "outfit/small battery module"
+	"mass" 54
+	"outfit space" -54
+	"energy capacity" 54000
+	"energy consumption" 0.44
+	"shield generation" 0.55
+	description `This Magnetic Power Storage Complex can serve the energy needs of most Nepetel ships very handedly, carrying more energy than any human battery while remaining manageably sized for most applications. The larger complex also comparatively leaks more energy, helping to recharge a ship's shields.`
+	
+outfit "Large MPSC"
+	category "Power"
+	cost 600000
+	thumbnail "outfit/large battery module"
+	"mass" 112
+	"outfit space" -112
+	"energy capacity" 123200
+	"energy consumption" 0.96
+	"shield generation" 1.152
+	description `For their capital warships, the Nepetel regularly use this enormous power storage complex; bigger than most reactors humanity has ever produced, it can keep a ship in the fight for a long time without worry of running out of energy, even when hit by heavy doses of ionization.`
+	
+# Generators
+
+outfit "K2-015 Betavoltaic"
+	category "Power"
+	cost 280000
+	thumbnail "outfit/small thermionic"
+	"mass" 21
+	"outfit space" -21
+	"energy generation" 2.2
+	"heat generation" 2.9
+	description "Instead of hotter energy generation methods like Fission or Fusion Reactors, the Nepetel use cool-running Betavoltaic generators that produce a steady supply of energy without risking overheating."
+	
+outfit "K2-033 Betavoltaic"
+	category "Power"
+	cost 660000
+	thumbnail "outfit/small thermionic"
+	"mass" 44
+	"outfit space" -44
+	"energy generation" 5.3
+	"heat generation" 6.3
+	description "Compared to a similarly sized human Radiothermal Generator, this Betavoltaic model doesn't produce quite as much energy for the space it takes up, but produces far less heat."
+	
+outfit "K2-067 Betavoltaic"
+	category "Power"
+	cost 1220000
+	thumbnail "outfit/small thermionic"
+	"mass" 71
+	"outfit space" -71
+	"energy generation" 8.9
+	"heat generation" 10.2
+	description "Compared to a similarly sized human Radiothermal Generator, this Betavoltaic model doesn't produce quite as much energy for the space it takes up, but produces far less heat."
+	
+outfit "K2-105 Betavoltaic"
+	category "Power"
+	cost 2550000
+	thumbnail "outfit/small thermionic"
+	"mass" 103
+	"outfit space" -103
+	"energy generation" 13.4
+	"heat generation" 14.8
+	description "Most Nepetel shipmasters prefer larger batteries to larger generators, but the production of this largest generator is often considered worth the investment."
+	
+# Support Outfits (Fuel Tanks, Coolers, Scanners, et cetera)
+
+outfit "Fuel Node"
+	category "Systems"
+	cost 180000
+	thumbnail "outfit/korath fuel processor"
+	"mass" 7
+	"outfit space" -7
+	"fuel capacity" 75
+	"ramscoop" 1.3
+	description "Nepetel ships have powerful self-repair systems, however these systems require fuel to run. These small nodes don't hold enough fuel for even a single jump, but allow a Nepetel ship to regenerate its fuel reserves mid-flight, ensuring a consistent stream of fuel where it is needed."
+
+# Thrusters
+
+outfit "Potal Dual Thruster"
+	category "Engines"
+	"cost" 35000
+	thumbnail "outfit/tiny plasma thruster"
+	"mass" 12
+	"outfit space" -12
+	"engine capacity" -12
+	"thrust" 6.0
+	"thrusting energy" .6
+	"thrusting heat" 1.4
+	"flare sprite" "effect/plasma flare/tiny"
+		"frame rate" 5
+	"flare sound" "plasma tiny"
+	"afterburner thrust" 3.0
+	"afterburner energy" .45
+	"afterburner heat" 1.05
+	"afterburner effect" "afterburner"
+	description "Dual Thrusters are perhaps one of the strangest pieces of Nepetel technology. The engines run similar to human plasma engines normally, but when needed, can be shifted to produce a great surge of thrust at the cost of extra energy drain and heat."
+
+outfit "Bekir Dual Thruster"
+	category "Engines"
+	"cost" 80000
+	thumbnail "outfit/small plasma thruster"
+	"mass" 26
+	"outfit space" -26
+	"engine capacity" -26
+	"thrust" 12.6
+	"thrusting energy" 1.28
+	"thrusting heat" 2.9
+	"flare sprite" "effect/plasma flare/small"
+		"frame rate" 6
+	"flare sound" "plasma small"
+	"afterburner thrust" 6.3
+	"afterburner energy" .96
+	"afterburner heat" 2.175
+	"afterburner effect" "afterburner" 2
+	description "When the going gets rough, the extra thrust this engine's higher gear can provide is extremely helpful. Even Nepetel freighters use these engines regularly, as raiders with faster engines would be difficult to escape without them."
+
+outfit "Kopar Dual Thruster"
+	category "Engines"
+	"cost" 99000
+	thumbnail "outfit/medium plasma thruster"
+	"mass" 49
+	"outfit space" -49
+	"engine capacity" -49
+	"thrust" 24.9
+	"thrusting energy" 2.4
+	"thrusting heat" 5.8
+	"flare sprite" "effect/plasma flare/medium"
+		"frame rate" 7
+	"flare sound" "plasma medium"
+	"afterburner thrust" 12.45
+	"afterburner energy" 1.8
+	"afterburner heat" 3.6
+	"afterburner effect" "afterburner" 3
+	description "The true benefit of the Nepetel's Dual Thrusters tends to show more often outside of combat than within it; at low gear this engine is only mildly sufficient for a middleweight freighter, but at high gear it can significantly bolster a ship's acceleration, for example to catch asteroids or other high-speed flotsam."
+	
+outfit "Nemet Dual Thruster"
+	category "Engines"
+	"cost" 217000
+	thumbnail "outfit/large plasma thruster"
+	"mass" 83
+	"outfit space" -83
+	"engine capacity" -83
+	"thrust" 43.4
+	"thrusting energy" 9.8
+	"thrusting heat" 20.3
+	"flare sprite" "effect/plasma flare/large"
+		"frame rate" 8
+	"flare sound" "plasma large"
+	"afterburner thrust" 21.7
+	"afterburner energy" 4.9
+	"afterburner heat" 10.15
+	"afterburner effect" "caldera afterburner" 2
+	description "Dual thrusters aren't quite as powerful as similarly sized atomic engines when running at high gear, but the ability to swiftly toggle one's speed (and perhaps more importantly, resource usage) as needed perhaps more than makes up for it."
+
+# Steering
+	
+outfit "Potal Plasma Steering"
+	category "Engines"
+	"cost" 16000
+	thumbnail "outfit/tiny plasma steering"
+	"mass" 9
+	"outfit space" -9
+	"engine capacity" -9
+	"turn" 189
+	"turning energy" .32
+	"turning heat" .8
+	"steering flare sprite" "effect/plasma flare/tiny"
+		"frame rate" 5
+	"steering flare sound" "plasma tiny"
+	description "In contrast to their dual-purpose partners, these plasma steering systems are particularly uninteresting, and somewhat comparable to human plasma steering systems."
+
+outfit "Bekir Plasma Steering"
+	category "Engines"
+	"cost" 36000
+	thumbnail "outfit/small plasma steering"
+	"mass" 21
+	"outfit space" -21
+	"engine capacity" -21
+	"turn" 398
+	"turning energy" 0.7
+	"turning heat" 1.9
+	"steering flare sprite" "effect/plasma flare/small"
+		"frame rate" 6
+	"steering flare sound" "plasma small"
+	description "These plasma steering systems aren't glamorous, or even notably efficient, but they get the job done when the Nepetel need a ship steered."
+	
+outfit "Kopar Plasma Steering"
+	category "Engines"
+	"cost" 79000
+	thumbnail "outfit/medium plasma steering"
+	"mass" 36
+	"outfit space" -36
+	"engine capacity" -36
+	"turn" 757
+	"turning energy" 1.12
+	"turning heat" 3.4
+	"steering flare sprite" "effect/plasma flare/medium"
+		"frame rate" 7
+	"steering flare sound" "plasma medium"
+	description "Though less remarkable than their counterpart thruster system, the Nepetel's plasma engines reflect their values of reliability and functionality just as well as their more exotic technology."
+
+outfit "Nemet Plasma Steering"
+	category "Engines"
+	"cost" 174000
+	thumbnail "outfit/large plasma steering"
+	"mass" 64
+	"outfit space" -64
+	"engine capacity" -64
+	"turn" 1370.6
+	"turning energy" 2.0
+	"turning heat" 6.0
+	"steering flare sprite" "effect/plasma flare/large"
+		"frame rate" 8
+	"steering flare sound" "plasma large"
+	description "One of these steering systems will allow most ships to turn at an at least moderate rate; what these plasma engines lack in unique functionality they make up for in reliable function."

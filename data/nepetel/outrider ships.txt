@@ -1,0 +1,113 @@
+ship "Outrider Petelek"
+	sprite "ship/outrider petelek u"
+	thumbnail "thumbnail/outrider petelek u"
+	attributes
+		category "Medium Warship"
+		"cost" 6230000
+		"shields" 5700
+		"hull" 14000
+		"required crew" 13
+		"bunks" 31
+		"mass" 280
+		"drag" 4.9
+		"hull repair rate" 1.8
+		"hull energy" 1.35
+		"hull heat" 2.7
+		"hull fuel" 0.09
+		"active cooling" 33
+		"cooling energy" 3.3
+		"heat dissipation" .5
+		"fuel capacity" 750
+		"cargo space" 117
+		"outfit space" 409
+		"weapon capacity" 199
+		"engine capacity" 97
+		weapon
+			"blast radius" 220
+			"shield damage" 1600
+			"hull damage" 900
+			"hit force" 2250
+	outfits
+		"Kalapat Battery"
+		"Tekelak Turret"
+		"Tekepat Duplex"
+		"Nepetel Anti-Missile"
+		
+		"Medium MPSC"
+		"Tiny MPSC"
+		"K2-067 Betavoltaic"
+		"Fuel Node"
+		
+		"Bekir Dual Thruster"
+		"Potal Dual Thruster"
+		"Kopar Plasma Steering"
+		"Scram Drive"
+		
+	engine -23 151.5
+		zoom 1.4
+	engine 27.5 129.5
+		zoom 1.1
+	gun -39.5 -156.5
+	gun 65.5 -14.5 "Tekepat Duplex"
+	turret 16 -82.5
+	turret -55 0 "Tekelak Turret"
+	turret 51 73.5
+	bay "Drone" 30.5 -77.5 right under
+	bay "Drone" 30.5 -33 right under
+	bay "Drone" 30.5 8.5 right under
+	bay "Drone" 93 83.5 right under
+	bay "Drone" -78 110 left under
+	leak "leak" 40 50
+	leak "flame" 40 70
+	leak "big leak" 70 30
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description `The "Outriders" are a delegation of the Nepetel that perform drastic aftermarket modifications to ships in circulation, allowing ships to perform vastly different roles than they were originally designed for. This upgraded Petelek has lost a gun port and drone bay in preparation for further modifications, but has gained durability, capacity, and a turret mount, allowing it to fulfill a better anti-swarmer role.`
+
+ship "Outrider Petelek" "Outrider Petelek (Gunship)"
+	sprite "ship/outrider petelek g"
+	thumbnail "thumbnail/outrider petelek g"
+	add attributes
+		"active cooling" 7
+		"cooling energy" .7
+		"outfit space" 52
+		"weapon capacity" 54
+		"engine capacity" 16
+	outfits
+		"Kalapat Repeater"
+		"Kalapat Battery"
+		"Tekelak Gun"
+		"Vikomat Gauss Driver"
+		"Nepetel Anti-Missile" 2
+		
+		"Medium MPSC"
+		"K2-067 Betavoltaic"
+		"Outfits Expansion" 3
+		
+		"Kopar Dual Thruster"
+		"Kopar Plasma Steering"
+		"Potal Plasma Steering"
+		"Scram Drive"
+	engine -112.5 75.5
+		zoom 0.8
+	engine -23 151.5
+		zoom 1.4
+	engine 27.5 129.5
+		zoom 1.1
+	gun -39.5 -156.5
+	gun -63 -149
+	gun -89.5 -75.5
+	gun 65.5 -14.5
+	turret 16 -82.5
+	turret -55 0 "Tekelak Turret"
+	turret 51 73.5
+	bay "Drone" 30.5 -77.5 right under
+	bay "Drone" 30.5 -33 right under
+	bay "Drone" 30.5 8.5 right under
+	bay "Drone" 93 83.5 right under
+	bay "Drone" -78 110 left under
+	description `This Outrider Petelek has been extensively modified to improve its performance in a head-to-head combat role. Its weapon capacity rivals some human heavy warships, and the enhanced cooling systems it sports allows it to suppress even the hottest weapons on offer.`

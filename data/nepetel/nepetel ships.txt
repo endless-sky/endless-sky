@@ -1,0 +1,318 @@
+shipyard "Imo Loo Mer Basics"
+	"Cenokoj"
+	"Cilevikar"
+	"Lilikar"
+	"Petelek"
+	"Outrider Petelek"
+	"Outrider Petelek (Gunship)"
+	
+outfitter "Hai Intermediate"
+	"Kalapat Repeater"
+	"Kalapat Battery"
+	"Tekelak Gun"
+	"Tekelak Turret"
+	"Tekepat Combo Block"
+	"Tekepat Duplex"
+	"Vikomat Gauss Driver"
+	"Nepetel Anti-Missile"
+	`Pokylateran "Missile" Generator`
+	`Pokylateran "Missile" Pod`
+	"Fuel Node"
+	"K2-015 Betavoltaic"
+	"K2-033 Betavoltaic"
+	"K2-067 Betavoltaic"
+	"K2-105 Betavoltaic"
+	"Tiny MPSC"
+	"Small MPSC"
+	"Medium MPSC"
+	"Large MPSC"
+	"Potal Dual Thruster"
+	"Potal Plasma Steering"
+	"Bekir Plasma Steering"
+	"Bekir Plasma Steering"
+	"Kopar Dual Thruster"
+	"Kopar Plasma Steering"
+	
+	
+ship "Cenokoj"
+	sprite "ship/cenokoj"
+	thumbnail "thumbnail/cenokoj"
+	attributes
+		category "Light Freighter"
+		"cost" 6200000
+		"shields" 6900
+		"hull" 10700
+		"required crew" 11
+		"bunks" 29
+		"mass" 320
+		"drag" 6.2
+		"hull repair rate" 1.4
+		"hull energy" 1.05
+		"hull heat" 2.1
+		"hull fuel" 0.07
+		"active cooling" 35
+		"cooling energy" 3.5
+		"heat dissipation" .45
+		"fuel capacity" 1050
+		"cargo space" 310
+		"outfit space" 443
+		"weapon capacity" 163
+		"engine capacity" 91
+		weapon
+			"blast radius" 240
+			"shield damage" 1800
+			"hull damage" 1000
+			"hit force" 2350
+	outfits
+		"Tekelak Turret" 2
+		"Nepetel Anti-Missile" 2
+		
+		"Medium MPSC"
+		"Small MPSC"
+		"K2-067 Betavoltaic"
+		"Fuel Node" 2
+		
+		"Kopar Dual Thruster"
+		"Kopar Plasma Steering"
+		"Scram Drive"
+		
+	engine -123.5 36.5
+		zoom 0.8
+	engine -74.5 118.5
+		zoom 0.8
+	engine -18.5 128.5
+	engine 81.5 138.5
+	turret 80 -98 "Tekelak Turret"
+	turret -25 -86 "Nepetel Anti-Missile"
+	turret -63 29.5
+	turret -15.5 82 "Tekelak Turret"
+	turret 98 89 "Nepetel Anti-Missile"
+	bay "Drone" 11.5 -70.5 back under
+	bay "Drone" -43.5 -47 right under
+	bay "Drone" -105.5 -24.5 left under
+	bay "Drone" -42.5 -5 right under
+	bay "Drone" 50.5 -6 left under
+	bay "Drone" 113.5 9.5 right under
+	bay "Drone" 51 33.5 left under
+	bay "Drone" 112.5 52 right under
+	bay "Drone" 50.5 72 left under
+	bay "Drone" -24.5 66.5 under
+	leak "leak" 40 50
+	leak "flame" 40 70
+	leak "big leak" 70 30
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description `Whereas most human designers might spend their whole lives trying to perfect the art of balancing form and function to create ships that appeal to the eye while remaining effective in the field, the Nepetel believe that originality and functionality is the highest form of design. In fact, one of the highest compliments one can give a Nepetel ship designer is "I have no idea which end the front is".`
+	description `	The Cenokoj illustrates this custom perfectly: A freighter-carrier, capable of hauling cargo and a small flotilla of drones where they're needed, while also packing enough firepower to keep the craft safe.`
+
+ship "Cilevikar"
+	sprite "ship/cilevikar"
+	thumbnail "thumbnail/cilevikar"
+	attributes
+		category "Heavy Freighter"
+		"cost" 6200000
+		"shields" 12200
+		"hull" 28300
+		"required crew" 38
+		"bunks" 102
+		"mass" 925
+		"drag" 20.4
+		"hull repair rate" 2.8
+		"hull energy" 2.1
+		"hull heat" 3.5
+		"hull fuel" 0.14
+		"active cooling" 60
+		"cooling energy" 6
+		"heat dissipation" .4
+		"fuel capacity" 1500
+		"cargo space" 737
+		"outfit space" 679
+		"weapon capacity" 306
+		"engine capacity" 159
+		weapon
+			"blast radius" 400
+			"shield damage" 5000
+			"hull damage" 3000
+			"hit force" 4250
+	outfits
+		"Tekelak Turret" 4
+		"Nepetel Anti-Missile" 3
+		
+		"Large MPSC"
+		"K2-105 Betavoltaic"
+		"Fuel Node" 2
+		
+		"Nemet Dual Thruster"
+		"Nemet Plasma Steering"
+		"Scram Drive"
+		
+	engine 266 -9
+		zoom 1.6
+	engine 172 129
+		zoom 1.2
+	engine 84.5 225
+		zoom 1.6
+	engine -249 198
+		zoom 1.6
+	turret -80 -200 "Tekelak Turret"
+	turret 66.5 -183.5
+	turret 270 -50.5 "Tekelak Turret"
+	turret -239 -32.5
+	turret 208 71 "Tekelak Turret"
+	turret 98 184
+	turret -216.5 189 "Tekelak Turret"
+	bay "Drone" -113.5 -151.5 under back
+	bay "Drone" -19 -131.5 under left
+	bay "Drone" -19 -90.5 under left
+	bay "Drone" -134 -83 under
+	bay "Drone" -93.5 -83 under
+	bay "Drone" 68 -83 under back
+	bay "Drone" 111 -83 under back
+	bay "Drone" 156.5 -83 under back
+	bay "Drone" 187 -14.5 under left
+	bay "Drone" 187 26 under left
+	bay "Drone" 134.5 62.5 under
+	bay "Drone" 92.5 63 under
+	bay "Drone" 79.5 3 under right
+	bay "Drone" -96 -5 under back
+	bay "Drone" -54.5 -5 under back
+	bay "Drone" -13 -4.5 under back
+	bay "Drone" 23 109.5 under left
+	bay "Drone" 23.5 151 under left
+	bay "Drone" -61.5 152 under
+	bay "Drone" -104 152 under
+	bay "Drone" -165 133.5 under
+	bay "Drone" -207 133 under
+	bay "Drone" -191.5 -1.5 under right
+	bay "Drone" 100 147.5 under right
+	bay "Drone" -245 -60 under left
+	bay "Drone" -260 75 under left
+	leak "leak" 40 50
+	leak "flame" 40 70
+	leak "big leak" 70 30
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description `The Cilevikar originated as a design for a space station, but with the success of the Cenokoj, it was reworked to be a station-capital ship hybrid. With its deep reserves of cargo and what seems like a bottomless supply of drones, a Cilevikar can fill the role of a temporary headquarters during the construction of a larger installation. Some Cilevikars are even reworked into stations completely, though these models stop being viable for sale as ships due to mobility being reduced to all but the most basic levels for evading asteroids.`
+	description `	Unlike most Nepetel ships, the Cilevikar has a rather robust shield matrix, to the point where some Nepetel engineers have considering using dedicated shield generators to improve the durability of the ships.`
+
+
+ship "Petelek"
+	sprite "ship/petelek"
+	thumbnail "thumbnail/petelek"
+	attributes
+		category "Medium Warship"
+		"cost" 5750000
+		"shields" 5200
+		"hull" 12800
+		"required crew" 11
+		"bunks" 19
+		"mass" 240
+		"drag" 4.6
+		"hull repair rate" 1.6
+		"hull energy" 1.2
+		"hull heat" 2.4
+		"hull fuel" 0.08
+		"active cooling" 30
+		"cooling energy" 3
+		"heat dissipation" .45
+		"fuel capacity" 750
+		"cargo space" 90
+		"outfit space" 377
+		"weapon capacity" 172
+		"engine capacity" 80
+		weapon
+			"blast radius" 220
+			"shield damage" 1600
+			"hull damage" 900
+			"hit force" 2250
+	outfits
+		"Tekelak Gun"
+		"Kalapat Battery"
+		"Tekepat Duplex"
+		"Nepetel Anti-Missile"
+		
+		"Medium MPSC"
+		"K2-067 Betavoltaic"
+		
+		"Bekir Dual Thruster"
+		"Potal Dual Thruster"
+		"Bekir Plasma Steering" 2
+		"Scram Drive"
+		
+	engine -23 151.5
+		zoom 1.4
+	engine 24.5 129.5
+	gun -39.5 -156.5
+	gun -62.5 -85
+	gun 65.5 -14.5
+	turret 16 -82.5
+	turret -55 0
+	bay "Drone" 30.5 -77.5 right under
+	bay "Drone" 30.5 -33 right under
+	bay "Drone" 30.5 8.5 right under
+	bay "Drone" 67 87 right under
+	bay "Drone" -76 65 left under
+	bay "Drone" -76 107.5 left under
+	leak "leak" 40 50
+	leak "flame" 40 70
+	leak "big leak" 70 30
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description `The Nepetel seem to follow strong design model of form over function, and this ship is no exception. Though it may look like it was carved out of junk, the Petelek is a robust carrier warship with potent offensive potential. Like all Netepel ships, the Petelek boasts a potent internal repair system in addition to powerful shipboard coolers, keeping the ship running cold even when fights begin to get out of hand.`
+
+ship "Lilikar"
+	sprite "ship/lilikar"
+	thumbnail "thumbnail/lilikar"
+	attributes
+		category "Drone"
+		"cost" 910000
+		"shields" 300
+		"hull" 2700
+		"automaton" 1
+		"crew equivalent" 1
+		"mass" 60
+		"drag" 1.4
+		"heat dissipation" .85
+		"fuel capacity" 50
+		"outfit space" 82
+		"weapon capacity" 28
+		"engine capacity" 21
+		"hull repair rate" 0.6
+		"hull energy" 0.45
+		"hull heat" 0.9
+		"hull fuel" 0.03
+		"active cooling" 10
+		"cooling energy" 1
+		weapon
+			"blast radius" 10
+			"shield damage" 100
+			"hull damage" 150
+			"hit force" 250
+	outfits
+		"Tekepat Combo Block"
+		
+		"Tiny MPSC"
+		"K2-015 Betavoltaic"
+		
+		"Potal Dual Thruster"
+		"Potal Plasma Steering"
+		
+	engine 2.5 25.5
+	gun -9 -28
+	explode "tiny explosion" 25
+	explode "small explosion" 25
+	"final explode" "final explosion small"
+	description `The Lilikar, or "Tiny Titan", is the premiere offensive drone offering from the Nepetel. It is rather slow for a drone, but compensates by being able to compete with the fighters of a similarly powerful faction, owing to the fact that all of its weapon space is concentrated around a single, highly-developed gun port, giving it an astonishing capacity for carrying single, high-powered guns, or one of the many combination weapons fielded by the Nepetel.`
+	description `	Though some Nepetel engineers argue what remains of the shield matrix could be better replaced with increased armor, most Nepetel ship designers argue that it should remain to take full advantage of the side-effect shield generation of their weapons and energy storage complexes.`
