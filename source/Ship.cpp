@@ -1717,7 +1717,6 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		// Enter hyperspace.
 		int direction = hyperspaceSystem ? 1 : -1;
 		hyperspaceCount += direction;
-		//wtf do all these mean, what are they for?
 		// Number of frame it takes to enter or exit hyperspace.
 		static const int HYPER_C = 100;
 		// Minimum exit velocity and rate the ship slowdown when exiting hyperspace.
@@ -1826,7 +1825,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					if(altV > 0. && altV < exitV)
 						exitV = altV;
 				}
-				// If velocity is lower than rate just consider it done.
+				// Because velocity.Length() is not signed
+				// If velocity is lower than rate just consider it done so
+				// there's no chance it will skip over.
 				if(velocity.Length() <= HYPER_A)
 				{
 					velocity = angle.Unit() * exitV;
