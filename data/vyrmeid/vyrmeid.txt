@@ -267,7 +267,7 @@ fleet "Vyrmeid (Plankton)"
 		"Vyrmeid" 4
 	variant 20
 		"Vyrmeid" 3
-	variant 
+	variant
 		"Vyrmeid"
 
 fleet "Vyrmeid (Boomerang)"
@@ -279,7 +279,7 @@ fleet "Vyrmeid (Boomerang)"
 		"Vyrmeid (B)"
 	variant
 		"Vyrmeid (B)" 2
-	variant 
+	variant
 		"Vyrmeid (B)" 3
 
 fleet "Vyrmeid (Cephalopod)"

@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Audio.h"
 #include "BatchShader.h"
+#include "CategoryList.h"
 #include "Color.h"
 #include "Command.h"
 #include "ConditionsStore.h"
@@ -779,8 +780,8 @@ const string &GameData::Rating(const string &type, int level)
 
 
 
-// Strings for ship, bay type, and outfit categories.
-const vector<string> &GameData::Category(const CategoryType type)
+// Collections for ship, bay type, outfit, and other categories.
+const CategoryList &GameData::GetCategory(const CategoryType type)
 {
 	return objects.categories[type];
 }
