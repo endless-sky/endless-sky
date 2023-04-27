@@ -628,8 +628,38 @@ bool Interface::BarElement::ParseLine(const DataNode &node)
 		color = GameData::Colors().Get(node.Token(1));
 	else if(node.Token(0) == "size" && node.Size() >= 2)
 		width = node.Value(1);
+	else if(node.Token(0) == "span angle" && node.Size() >= 2)
+		spanAngle = node.Value(1);
+	else if(node.Token(0) == "start angle" && node.Size() >= 2)
+		startAngle = node.Value(1);
 	else
 		return false;
+
+	// Some input validation.
+	string warning;
+	if(spanAngle < 0.)
+	{
+		spanAngle = 0.;
+		warning = "Warning: \"span angle\" may not be negative. Using 0 instead:";
+	}
+	if(spanAngle > 360.)
+	{
+		spanAngle = 360.;
+		warning = "Warning: \"span angle\" may not exceed 360. Using 360 instead:";
+	}
+	if(startAngle < 0.)
+	{
+		startAngle = 0.;
+		warning = "Warning: \"start angle\" may not be negative. Using 0 instead:";
+	}
+	if(startAngle > 360.)
+	{
+		startAngle = 360.;
+		warning = "Warning: \"start angle\" may not exceed 360. Using 360 instead:";
+	}
+
+	if(!warning.empty())
+		node.PrintTrace(warning);
 
 	return true;
 }
@@ -654,7 +684,9 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 		if(!rect.Width() || !rect.Height())
 			return;
 
-		RingShader::Draw(rect.Center(), .5 * rect.Width(), width, value, *color, segments > 1. ? segments : 0.);
+		double fraction = value * spanAngle / 360.;
+
+		RingShader::Draw(rect.Center(), .5 * rect.Width(), width, fraction, *color, segments > 1. ? segments : 0., startAngle);
 	}
 	else
 	{
