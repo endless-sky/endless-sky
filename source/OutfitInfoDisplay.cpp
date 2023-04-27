@@ -584,6 +584,13 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributeValues.emplace_back(Format::Number(turretTurn));
 		attributesHeight += 20;
 	}
+	double arc = outfit.Arc();
+	if(arc < 360.)
+	{
+		attributeLabels.emplace_back("arc:");
+		attributeValues.emplace_back(Format::Number(arc));
+		attributesHeight += 20;
+	}
 	int homing = outfit.Homing();
 	if(homing)
 	{

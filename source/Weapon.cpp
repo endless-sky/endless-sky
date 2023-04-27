@@ -183,6 +183,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				turn = value;
 			else if(key == "turret turn")
 				turretTurn = value;
+			else if(key == "arc")
+				maxAngle = max(0., value);
 			else if(key == "tracking")
 				tracking = max(0., min(1., value));
 			else if(key == "optical tracking")

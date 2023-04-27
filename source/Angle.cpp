@@ -23,6 +23,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cstdlib>
 #include <vector>
 
+using namespace std;
+
 namespace {
 	// Suppose you want to be able to turn 360 degrees in one second. Then you are
 	// turning 6 degrees per time step. If the Angle lookup is 2^16 steps, then 6
@@ -152,6 +154,14 @@ double Angle::Degrees() const
 
 
 
+// Convert an Angle object to degrees, in the range 0 to 360.
+double Angle::AbsDegrees() const
+{
+	return angle / DEG_TO_STEP;
+}
+
+
+
 // Return a point rotated by this angle around (0, 0).
 Point Angle::Rotate(const Point &point) const
 {
@@ -160,6 +170,19 @@ Point Angle::Rotate(const Point &point) const
 	Point unit = Unit();
 	return Point(-unit.Y() * point.X() - unit.X() * point.Y(),
 		-unit.Y() * point.Y() + unit.X() * point.X());
+}
+
+
+
+// Judge whether this is inside from "base" to "limit."
+// The range from "base" to "limit" is expressed by "clock" orientation.
+bool Angle::IsInRange(const Angle& base, const Angle& limit) const
+{
+	// Choose an edge of the arc as the reference angle (base) and
+	// compare relative angles to decide whether this is in the range.
+	Angle normalizedLimit = limit - base;
+	Angle normalizedTarget = *this - base;
+	return normalizedTarget.angle <= normalizedLimit.angle;
 }
 
 

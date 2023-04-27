@@ -3120,7 +3120,8 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 			{
 				// Get the index of this weapon.
 				int index = &hardpoint - &ship.Weapons().front();
-				double offset = (hardpoint.HarmonizedAngle() - hardpoint.GetAngle()).Degrees();
+				Angle targetAngle = hardpoint.GetIdleAngle();
+				double offset = (targetAngle - hardpoint.GetAngle()).Degrees();
 				command.SetAim(index, offset / hardpoint.GetOutfit()->TurretTurn());
 			}
 		return;
@@ -3138,8 +3139,12 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 				if(!previous && (Random::Int(60)))
 					continue;
 
-				Angle centerAngle = Angle(hardpoint.GetPoint());
-				double bias = (centerAngle - hardpoint.GetAngle()).Degrees() / 180.;
+				// Sweep between the min and max arc.
+				Angle centerAngle = Angle(hardpoint.GetIdleAngle());
+				const Angle minArc = hardpoint.GetMinArc();
+				const Angle maxArc = hardpoint.GetMaxArc();
+				const auto arcMiddleDegrees = (minArc.AbsDegrees() + maxArc.AbsDegrees()) / 2.;
+				double bias = (centerAngle - hardpoint.GetAngle()).Degrees() / min(arcMiddleDegrees, 180.);
 				double acceleration = Random::Real() - Random::Real() + bias;
 				command.SetAim(index, previous + .1 * acceleration);
 			}
@@ -3201,7 +3206,32 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 				}
 
 				// Determine how much the turret must turn to face that vector.
-				double degrees = (Angle(p) - aim).Degrees();
+				double degrees = 0.0;
+				Angle angleToPoint = Angle(p);
+				if(hardpoint.IsOmnidirectional())
+					degrees = (angleToPoint - aim).Degrees();
+				else
+				{
+					Angle minArc = hardpoint.GetMinArc();
+					Angle maxArc = hardpoint.GetMaxArc();
+					const Angle facing = ship.Facing();
+					minArc += facing;
+					maxArc += facing;
+					if(!angleToPoint.IsInRange(minArc, maxArc))
+					{
+						// Decrease the priority of the target.
+						rendezvousTime += 2. * weapon->TotalLifetime();
+
+						// Point to the nearer edge of the arc.
+						const double degree1 = (minArc - angleToPoint).Degrees();
+						const double degree2 = (maxArc - angleToPoint).Degrees();
+						if(fabs(degree1) < fabs(degree2))
+							angleToPoint = minArc;
+						else
+							angleToPoint = maxArc;
+					}
+					degrees = (angleToPoint - minArc).AbsDegrees() - (aim - minArc).AbsDegrees();
+				}
 				double turnTime = fabs(degrees) / weapon->TurretTurn();
 				// Always prefer targets that you are able to hit.
 				double score = turnTime + (180. / weapon->TurretTurn()) * rendezvousTime;
