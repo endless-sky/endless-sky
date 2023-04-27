@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "LocationFilter.h"
 
+#include "CategoryList.h"
 #include "CategoryTypes.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -173,6 +174,10 @@ void LocationFilter::Load(const DataNode &node)
 		else
 			LoadChild(child);
 	}
+
+	isEmpty = planets.empty() && attributes.empty() && systems.empty() && governments.empty()
+		&& !center && originMaxDistance < 0 && notFilters.empty() && neighborFilters.empty()
+		&& outfits.empty() && shipCategory.empty();
 }
 
 
@@ -262,9 +267,7 @@ void LocationFilter::Save(DataWriter &out) const
 // Check if this filter contains any specifications.
 bool LocationFilter::IsEmpty() const
 {
-	return planets.empty() && attributes.empty() && systems.empty() && governments.empty()
-		&& !center && originMaxDistance < 0 && notFilters.empty() && neighborFilters.empty()
-		&& outfits.empty() && shipCategory.empty();
+	return isEmpty;
 }
 
 
@@ -297,8 +300,9 @@ bool LocationFilter::IsValid() const
 	if(!shipCategory.empty())
 	{
 		// At least one desired category must be valid.
-		const auto &shipCategories = GameData::Category(CategoryType::SHIP);
-		auto categoriesSet = set<string>(shipCategories.begin(), shipCategories.end());
+		set<string> categoriesSet;
+		for(const auto &category : GameData::GetCategory(CategoryType::SHIP))
+			categoriesSet.insert(category.Name());
 		if(!SetsIntersect(shipCategory, categoriesSet))
 			return false;
 	}
@@ -449,11 +453,12 @@ const System *LocationFilter::PickSystem(const System *origin) const
 	vector<const System *> options;
 	for(const auto &it : GameData::Systems())
 	{
-		// Skip entries with incomplete data.
-		if(!it.second.IsValid())
+		const System &system = it.second;
+		// Skip systems with incomplete data or that are inaccessible.
+		if(!system.IsValid() || system.Inaccessible())
 			continue;
-		if(Matches(&it.second, origin))
-			options.push_back(&it.second);
+		if(Matches(&system, origin))
+			options.push_back(&system);
 	}
 	return options.empty() ? nullptr : options[Random::Int(options.size())];
 }
@@ -468,8 +473,8 @@ const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance
 	for(const auto &it : GameData::Planets())
 	{
 		const Planet &planet = it.second;
-		// Skip entries with incomplete data.
-		if(!planet.IsValid())
+		// Skip planets with incomplete data or which are from inaccessible systems.
+		if(!planet.IsValid() || (planet.GetSystem() && planet.GetSystem()->Inaccessible()))
 			continue;
 		// Skip planets that do not offer special jobs or missions, unless they were explicitly listed as options.
 		if(planet.IsWormhole() || (requireSpaceport && !planet.HasSpaceport()) || (!hasClearance && !planet.CanLand()))

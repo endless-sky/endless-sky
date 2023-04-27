@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MissionAction.h"
 #include "NPC.h"
 #include "TextReplacements.h"
+#include "WormholeStrategy.h"
 
 #include <list>
 #include <map>
@@ -90,6 +91,7 @@ public:
 	bool IsAtLocation(Location location) const;
 
 	// Information about what you are doing.
+	const Ship *SourceShip() const;
 	const Planet *Destination() const;
 	const std::set<const System *> &Waypoints() const;
 	const std::set<const System *> &VisitedWaypoints() const;
@@ -132,6 +134,7 @@ public:
 	bool IsSatisfied(const PlayerInfo &player) const;
 	bool HasFailed(const PlayerInfo &player) const;
 	bool IsFailed() const;
+	bool OverridesCapture() const;
 	// Mark a mission failed (e.g. due to a "fail" action in another mission).
 	void Fail();
 	// Get a string to show if this mission is "blocked" from being offered
@@ -180,6 +183,13 @@ public:
 
 
 private:
+	struct DistanceCalculationSettings {
+		WormholeStrategy wormholeStrategy = WormholeStrategy::NONE;
+		bool assumesJumpDrive = false;
+	};
+
+
+private:
 	bool Enter(const System *system, PlayerInfo &player, UI *ui);
 	// For legacy code, contraband definitions can be placed in two different
 	// locations, so move that parsing out to a helper function.
@@ -200,10 +210,12 @@ private:
 	bool hasPriority = false;
 	bool isMinor = false;
 	bool autosave = false;
+	bool overridesCapture = false;
 	Date deadline;
 	int expectedJumps = 0;
 	int deadlineBase = 0;
 	int deadlineMultiplier = 0;
+	DistanceCalculationSettings distanceCalcSettings;
 	std::string clearance;
 	LocationFilter clearanceFilter;
 	bool hasFullClearance = true;
@@ -229,6 +241,8 @@ private:
 	ConditionSet toFail;
 
 	const Planet *source = nullptr;
+	// The ship this mission originated from, if it is a boarding mission.
+	const Ship *sourceShip = nullptr;
 	LocationFilter sourceFilter;
 	const Planet *destination = nullptr;
 	LocationFilter destinationFilter;

@@ -289,7 +289,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination,
 	{
 		// Conversations offered while boarding or assisting reference a ship,
 		// which may be destroyed depending on the player's choices.
-		ConversationPanel *panel = new ConversationPanel(player, *conversation, destination, ship);
+		ConversationPanel *panel = new ConversationPanel(player, *conversation, destination, ship, isOffer);
 		if(isOffer)
 			panel->SetCallback(&player, &PlayerInfo::MissionCallback);
 		// Use a basic callback to handle forced departure outside of `on offer`
@@ -345,14 +345,14 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	// Create any associated dialog text from phrases, or use the directly specified text.
 	string dialogText = !dialogPhrase->IsEmpty() ? dialogPhrase->Get() : this->dialogText;
 	if(!dialogText.empty())
-		result.dialogText = Format::Replace(dialogText, subs);
+		result.dialogText = Format::Replace(Phrase::ExpandPhrases(dialogText), subs);
 
 	if(!conversation->IsEmpty())
 		result.conversation = ExclusiveItem<Conversation>(conversation->Instantiate(subs, jumps, payload));
 
 	// Restore the "<payment>" and "<fine>" values from the "on complete" condition, for
 	// use in other parts of this mission.
-	if(result.Payment() && trigger != "complete")
+	if(result.Payment() && (trigger != "complete" || !previousPayment.empty()))
 		subs["<payment>"] = previousPayment;
 	if(result.action.Fine() && trigger != "complete")
 		subs["<fine>"] = previousFine;

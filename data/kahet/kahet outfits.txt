@@ -37,6 +37,7 @@ outfit "Ka'het Nullifier"
 		"velocity" 9
 		"lifetime" 200
 		"reload" 350
+		"cluster"
 		"firing energy" 710
 		"firing force" 90
 		"firing heat" 160
@@ -44,6 +45,7 @@ outfit "Ka'het Nullifier"
 		"shield damage" 120
 		"hull damage" 40
 		"ion damage" 150
+		"scrambling damage" 150
 		"hit force" 50
 		"blast radius" 20
 	description "The Nullifier was one of the largest weapons the Builders ever developed, created specifically to be carried in battle by the Vareti. Although it does almost no damage to shields and hull, one shot is capable of disabling most kinds of reactors in a matter of seconds."
@@ -262,6 +264,7 @@ outfit "Ka'het EMP Deployer"
 		"shield damage" 700
 		"hull damage" 100
 		"ion damage" 48
+		"scrambling damage" 48
 		"hit force" 90
 		"missile strength" 80
 	description "Eons ago, the Builders were attacked by alien ships which used weapons that ignored their hull and damaged their reactors. Although they never did recover any of these weapons, after years of research they managed to replicate their effects."

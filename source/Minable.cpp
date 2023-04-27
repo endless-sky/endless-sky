@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "Effect.h"
 #include "Flotsam.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Mask.h"
 #include "Outfit.h"
@@ -43,9 +44,13 @@ void Minable::Load(const DataNode &node)
 
 	for(const DataNode &child : node)
 	{
+		if(child.Token(0) == "display name" && child.Size() >= 2)
+			displayName = child.Token(1);
+		else if(child.Token(0) == "noun" && child.Size() >= 2)
+			noun = child.Token(1);
 		// A full sprite definition (frame rate, etc.) is not needed, because
 		// the frame rate will be set randomly and it will always be looping.
-		if(child.Token(0) == "sprite" && child.Size() >= 2)
+		else if(child.Token(0) == "sprite" && child.Size() >= 2)
 			SetSprite(SpriteSet::Get(child.Token(1)));
 		else if(child.Token(0) == "hull" && child.Size() >= 2)
 			hull = child.Value(1);
@@ -62,13 +67,41 @@ void Minable::Load(const DataNode &node)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+
+	if(displayName.empty())
+		displayName = Format::Capitalize(name);
+	if(noun.empty())
+		noun = "Asteroid";
 }
 
 
 
-const string &Minable::Name() const
+// Calculate the expected payload value of this Minable after all outfits have been fully loaded.
+void Minable::FinishLoading()
+{
+	for(const auto &it : payload)
+		value += it.first->Cost() * it.second * 0.25;
+}
+
+
+
+const string &Minable::TrueName() const
 {
 	return name;
+}
+
+
+
+const string &Minable::DisplayName() const
+{
+	return displayName;
+}
+
+
+
+const string &Minable::Noun() const
+{
+	return noun;
 }
 
 
@@ -196,8 +229,23 @@ void Minable::TakeDamage(const Projectile &projectile)
 
 
 
+double Minable::Hull() const
+{
+	return min(1., hull / maxHull);
+}
+
+
+
 // Determine what flotsam this asteroid will create.
 const map<const Outfit *, int> &Minable::Payload() const
 {
 	return payload;
+}
+
+
+
+// Get the expected value of the flotsams this minable will create when destroyed.
+const int64_t &Minable::GetValue() const
+{
+	return value;
 }
