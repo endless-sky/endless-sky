@@ -328,13 +328,14 @@ target_sources(EndlessSkyLib PRIVATE
 	WeightedList.h
 	Wormhole.cpp
 	Wormhole.h
-	comparators/ByGivenOrder.h
-	comparators/ByName.h
-	comparators/BySeriesAndIndex.h
+	WormholeStrategy.h
 	opengl.cpp
 	opengl.h
 	pi.h
 	shift.h
+	comparators/ByGivenOrder.h
+	comparators/ByName.h
+	comparators/BySeriesAndIndex.h
 	ship/ShipAICache.cpp
 	ship/ShipAICache.h
 	text/DisplayText.cpp

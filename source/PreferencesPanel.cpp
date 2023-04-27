@@ -222,15 +222,15 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 						"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
 			}
 			else if(zone.Value() == STATUS_OVERLAYS_ALL)
-				Preferences::SetStatusOverlays(false, 0);
+				Preferences::CycleStatusOverlays(Preferences::OverlayType::ALL);
 			else if(zone.Value() == STATUS_OVERLAYS_FLAGSHIP)
-				Preferences::SetStatusOverlays(false, 1);
+				Preferences::CycleStatusOverlays(Preferences::OverlayType::FLAGSHIP);
 			else if(zone.Value() == STATUS_OVERLAYS_ESCORT)
-				Preferences::SetStatusOverlays(false, 2);
+				Preferences::CycleStatusOverlays(Preferences::OverlayType::ESCORT);
 			else if(zone.Value() == STATUS_OVERLAYS_ENEMY)
-				Preferences::SetStatusOverlays(false, 3);
+				Preferences::CycleStatusOverlays(Preferences::OverlayType::ENEMY);
 			else if(zone.Value() == STATUS_OVERLAYS_NEUTRAL)
-				Preferences::SetStatusOverlays(false, 4);
+				Preferences::CycleStatusOverlays(Preferences::OverlayType::NEUTRAL);
 			else if(zone.Value() == AUTO_AIM_SETTING)
 				Preferences::ToggleAutoAim();
 			else if(zone.Value() == EXPEND_AMMO)
@@ -395,7 +395,6 @@ void PreferencesPanel::DrawControls()
 		Command::NEAREST_ASTEROID,
 		Command::NONE,
 		Command::MOUSE_TURNING_HOLD,
-		Command::MOUSE_TURNING_TOGGLE,
 		Command::NONE,
 		Command::MENU,
 		Command::MAP,
@@ -538,6 +537,7 @@ void PreferencesPanel::DrawSettings()
 		AUTO_AIM_SETTING,
 		"Automatic firing",
 		BOARDING_PRIORITY,
+		"Control ship with mouse",
 		EXPEND_AMMO,
 		"Extra fleet status messages",
 		"Fighters transfer cargo",
@@ -626,27 +626,27 @@ void PreferencesPanel::DrawSettings()
 		}
 		else if(setting == STATUS_OVERLAYS_ALL)
 		{
-			text = Preferences::StatusOverlaysSetting(0);
+			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::ALL);
 			isOn = text != "off";
 		}
 		else if(setting == STATUS_OVERLAYS_FLAGSHIP)
 		{
-			text = Preferences::StatusOverlaysSetting(1);
+			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::FLAGSHIP);
 			isOn = text != "off" && text != "--";
 		}
 		else if(setting == STATUS_OVERLAYS_ESCORT)
 		{
-			text = Preferences::StatusOverlaysSetting(2);
+			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::ESCORT);
 			isOn = text != "off" && text != "--";
 		}
 		else if(setting == STATUS_OVERLAYS_ENEMY)
 		{
-			text = Preferences::StatusOverlaysSetting(3);
+			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::ENEMY);
 			isOn = text != "off" && text != "--";
 		}
 		else if(setting == STATUS_OVERLAYS_NEUTRAL)
 		{
-			text = Preferences::StatusOverlaysSetting(4);
+			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::NEUTRAL);
 			isOn = text != "off" && text != "--";
 		}
 		else if(setting == AUTO_AIM_SETTING)
