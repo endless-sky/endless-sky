@@ -431,7 +431,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 			return "You cannot install this outfit, because the installation process costs "
 				+ Format::CreditString(installationCost) + ", and you only have "
 				+ Format::Credits(credits) + ".";
-		
+
 		// Find if any ship can install the outfit.
 		for(const Ship *ship : playerShips)
 			if(ShipCanBuy(ship, selectedOutfit))
