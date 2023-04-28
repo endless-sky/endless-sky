@@ -51,9 +51,9 @@ gamerules
 	"universal frugal threshold" .75
 
 	# The value in degree of how precise the ship have to be aligned to enter hyperspace jump.
-	# The game decides the ship is aligned when the ship turns to within one turn step of the direction 
+	# The game decides the ship is aligned when the ship turns to within one turn step of the direction
 	# it need to be pointed at. Where each turn step is in degree per frame or "in-game turn"/60
-	# This value will add to the turn step used for alignment for hyperspace calculation 
+	# This value will add to the turn step used for alignment for hyperspace calculation
 	# so the game will consider the ship aligned earlier.
 	# Setting too low can cause some ship to fail to jump entirely while setting too high can
 	# cause fast turning ships to jump sideways.
