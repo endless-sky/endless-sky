@@ -420,8 +420,6 @@ mission "Vi Augen"
 		personality heroic vindictive staying
 		system "Kiluit"
 		ship "Augen" "Vytii Yrrlausei"
-	to fail
-		has "event: Vesvii War"
 	to complete
 		never
 
