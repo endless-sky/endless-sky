@@ -3231,9 +3231,9 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary) const
 	bool beFrugal = (ship.IsYours() && !escortsUseAmmo);
 	if(person.IsFrugal() || (ship.IsYours() && escortsAreFrugal && escortsUseAmmo))
 	{
-		// The frugal personality is only active when ships have more than 75% of their total health,
-		// and are not outgunned.
-		beFrugal = (ship.Health() > .75);
+		// The frugal personality is only active when ships have more than a certain fraction of their total health,
+		// and are not outgunned. The default threshold is 75%.
+		beFrugal = (ship.Health() > GameData::GetGamerules().UniversalFrugalThreshold());
 		if(beFrugal)
 		{
 			auto ait = allyStrength.find(ship.GetGovernment());

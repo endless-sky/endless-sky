@@ -33,6 +33,7 @@ public:
 	int PersonSpawnPeriod() const;
 	int NoPersonSpawnWeight() const;
 	int NPCMaxMiningTime() const;
+	double UniversalFrugalThreshold() const;
 	double JumpPrecision() const;
 
 
@@ -41,6 +42,7 @@ private:
 	int personSpawnPeriod = 36000;
 	int noPersonSpawnWeight = 1000;
 	int npcMaxMiningTime = 3600;
+	double universalFrugalThreshold = .75;
 	double jumpPrecision = .01;
 };
 
