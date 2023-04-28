@@ -47,6 +47,7 @@ public:
 	double Discharge() const noexcept;
 	double Corrosion() const noexcept;
 	double Ion() const noexcept;
+	double Scrambling() const noexcept;
 	double Burn() const noexcept;
 	double Leak() const noexcept;
 
@@ -75,6 +76,7 @@ private:
 	double corrosionDamage = 0.;
 	double dischargeDamage = 0.;
 	double ionDamage = 0.;
+	double scramblingDamage = 0.;
 	double burnDamage = 0.;
 	double leakDamage = 0.;
 
@@ -96,6 +98,7 @@ inline double DamageDealt::Fuel() const noexcept { return fuelDamage; }
 inline double DamageDealt::Discharge() const noexcept { return dischargeDamage; }
 inline double DamageDealt::Corrosion() const noexcept { return corrosionDamage; }
 inline double DamageDealt::Ion() const noexcept { return ionDamage; }
+inline double DamageDealt::Scrambling() const noexcept { return scramblingDamage; }
 inline double DamageDealt::Burn() const noexcept { return burnDamage; }
 inline double DamageDealt::Leak() const noexcept { return leakDamage; }
 

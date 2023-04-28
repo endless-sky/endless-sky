@@ -762,7 +762,7 @@ mission "Wanderer Captured Unfettered"
 	name "Captured Unfettered to <planet>"
 	job
 	repeat
-	description "Transport <bunks> captured Unfettered soldiers to <planet>. Payment is <payment>."
+	description "Transport <bunks> captured Unfettered soldiers to <planet>. To keep them from making any trouble, you'll need suitable facilities to transport them. Payment is <payment>."
 	passengers 3
 	source
 		not attributes "evacuation"
@@ -775,8 +775,8 @@ mission "Wanderer Captured Unfettered"
 		has "language: Wanderer"
 		not "event: wanderers: the eye opens"
 		random < 20
-	on offer
-		require "Brig"
+	to accept
+		has "outfit (installed): Brig"
 	on complete
 		payment 50000 180
 		dialog "Once you land on <planet>, several uniformed Wanderers drive the Unfettered prisoners off of your ship. You collect your payment of <payment>."
@@ -785,7 +785,7 @@ mission "Wanderer Governor Transport"
 	name "Governor to <planet>"
 	job
 	repeat
-	description "Transport the local governor to the capital city of <planet> by <date>. Payment is <payment>."
+	description "Transport the local governor to the capital city of <planet> by <date>. They expect a comfortable journey and the suitable facilities to go with it. Payment is <payment>."
 	passengers 1
 	deadline
 	source
@@ -797,8 +797,8 @@ mission "Wanderer Governor Transport"
 		has "language: Wanderer"
 		has "Wanderers Solifuge Recon 2: done"
 		random < 10
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		has "outfit (installed): Luxury Accommodations"
 	on complete
 		payment 75000 220
 		dialog phrase "generic passenger dropoff payment"
@@ -811,7 +811,7 @@ mission "Wanderer Kor Efreti: Equipment"
 	description "Deliver <cargo> to the Kor Efreti on <destination>. Payment is <payment>."
 	cargo "Equipment" 5 3 .15
 	to offer
-		has "Wanderers: Sestor: Final: done"
+		has "wanderers sestor done"
 		random < 70
 	source
 		government "Wanderer"
@@ -832,7 +832,7 @@ mission "Wanderer Kor Efreti: Cargo [0]"
 	description "Deliver <cargo> to the Kor Efreti on <destination>. Payment is <payment>."
 	cargo random 5 4 .12
 	to offer
-		has "Wanderers: Sestor: Final: done"
+		has "wanderers sestor done"
 		random < 40
 	source
 		government "Wanderer"
@@ -853,7 +853,7 @@ mission "Wanderer Kor Efreti: Cargo [1]"
 	description "Deliver <cargo> to the Kor Efreti on <destination>. Payment is <payment>."
 	cargo random 5 4 .10
 	to offer
-		has "Wanderers: Sestor: Final: done"
+		has "wanderers sestor done"
 		random < 15
 	source
 		government "Wanderer"

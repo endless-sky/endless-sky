@@ -76,7 +76,9 @@ person "Michael Zahniser"
 		turret -23 14 "Heavy Anti-Missile Turret"
 		turret 23 14 "Heavy Anti-Missile Turret"
 		bay "Fighter" -46 106 under
+			"launch effect" "human internal"
 		bay "Fighter" 46 106 under
+			"launch effect" "human internal"
 		explode "small explosion" 50
 		explode "medium explosion" 80
 		explode "large explosion" 120
@@ -152,17 +154,9 @@ person "Marauding Max"
 			"Do you think you "
 			"Ever wondered if you "
 			"Think you'll also need some luck if you "
-		word
-			"got what it takes to "
-			"got the gumption to "
-			"could "
-			"are capable of "
-			"have the guramba to "
-			"are good enough to "
-		word
-			"capture "
-			"collect "
-			"gather "
+		phrase
+			"MMK subphrase 1" 5
+			"MMK subphrase 2"
 		word
 			"all 28 Marauder models?"
 	phrase
@@ -214,6 +208,26 @@ person "Marauding Max"
 			"into a REAL marauding warship!"
 	ship "Marauder Fury" "Mad Quest"
 
+phrase "MMK subphrase 1"
+	word
+		"got what it takes to "
+		"got the gumption to "
+		"could "
+		"have the guramba to "
+		"are good enough to "
+	word
+		"capture "
+		"collect "
+		"gather "
+
+phrase "MMK subphrase 2"
+	word
+		"are capable of "
+	word
+		"capturing "
+		"collecting "
+		"gathering "
+
 ship "Marauder Fury"
 	plural "Marauder Furies"
 	sprite "ship/mfury"
@@ -254,13 +268,19 @@ ship "Marauder Fury"
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
 		
-	engine -21 42 .9
-	engine 0 48
-	engine 21 42 .9
-	gun -12 -33 "Meteor Missile Launcher"
-	gun 12 -33 "Meteor Missile Launcher"
+	engine -23 44.5 0.6
+	engine 23 44.5 0.6
+	engine -17 43 0.45
+	engine 17 43 0.45
+	engine -12.5 41 0.35
+	engine 12.5 41 0.35
+	engine 0 46
+	gun -13.5 -36 "Meteor Missile Launcher"
+	gun 13.5 -36 "Meteor Missile Launcher"
 	gun -20 -25 "Meteor Missile Launcher"
 	gun 20 -25 "Meteor Missile Launcher"
+	gun -6 -41.5
+	gun 6 -41.5
 	gun -43.5 2 "Hai Tracker Pod"
 	gun 43.5 2 "Hai Tracker Pod"
 	explode "tiny explosion" 10
@@ -616,6 +636,7 @@ ship "Modified Osprey"
 			"hull damage" 3500
 			"heat damage" 24000
 			"ion damage" 24000
+			"scrambling damage" 24000
 			"disruption damage" 1200
 			"hit force" 30000
 	outfits
@@ -782,7 +803,7 @@ ship "Ursa Polaris"
 		"hull repair rate" 7
 		"energy generation" 200
 		"outfit scan power" 186
-		"outfit scan speed" 1
+		"outfit scan efficiency" 15
 		"tactical scan power" 99
 		"asteroid scan power" 69
 		"cargo space" 1408
@@ -1017,7 +1038,7 @@ ship "Shooting Star"
 	explode "pug large explosion" 15
 	"final explode" "final explosion medium"
 	description "This ship appears to be a hollowed-out asteroid filled with strange equipment. It is unclear what is creating the rays of light, but they must have something to do with how it moves without obvious engines."
-	description "	Its advanced properties also allow it to reject the influence of enemy command centers, nullifying their effect."
+	description "	Its advanced properties also allow it to reject the influence of enemy Command Centers, nullifying their effect."
 
 outfit "Crystal Projector"
 	category "Systems"
@@ -1480,7 +1501,7 @@ ship "Modified Boxwing"
 
 person "Gefullte Taubenbrust"
 	government "Author"
-	frequency 1000
+	frequency 200
 	personality
 		heroic plunders opportunistic
 	phrase
@@ -1703,7 +1724,7 @@ effect "fusion cannon cloud"
 
 person "MasterOfGrey"
 	government "Author"
-	frequency 1000
+	frequency 200
 	personality
 		heroic plunders opportunistic
 	system
@@ -1717,14 +1738,14 @@ person "MasterOfGrey"
 			"Why is everything Alphas?"
 			"You're only a terrorist if the people experience terror."
 			"Have you finished the Free Worlds storyline yet?"
-			"Things don’t have to mimic an Earth creature to be not very alien."
+			"Things don't have to mimic an Earth creature to be not very alien."
 			"I have questions. Questions that do not yet need answers."
 			"There are no bugs in my code, only Xapleaux precursors."
 			"If I were green I would photosynthesize."
 			`"Trust the process" isn't a joke for no reason.`
 			"Have you reviewed Hai Reveal yet?"
-			"I gotta go get ready for work. Play nice and don’t @ me."
-			"I don’t even like yellow."
+			"I gotta go get ready for work. Play nice and don't @ me."
+			"I don't even like yellow."
 			"I really enjoy the backstory for the Marauders."
 			"Falling into the Ember Waste and emerging into absolute silence for the first time in dozens of gameplay hours was profoundly moving."
 			"Planet descriptions will be the death of me."
@@ -1760,9 +1781,9 @@ ship "Modified Ladybug"
 		# Features from original Ladybug:
 		"ramscoop" 0.5
 		"cargo scan power" 5
-		"cargo scan speed" 1
+		"cargo scan efficiency" 16
 		"outfit scan power" 17
-		"outfit scan speed" 1
+		"outfit scan efficiency" 15
 		"tactical scan power" 25
 		"atmosphere scan" 100
 		"asteroid scan power" 30
@@ -1801,25 +1822,25 @@ ship "Modified Ladybug"
 	turret 39.5 5 "Warder Anti-Missile"
 	turret -39.5 5 "Point Defense Turret"
 	"reverse engine" 10.5 -64 0.7
-	"reverse engine" -10.5 -64 0.7 
-	"reverse engine" 7.5 -64 0.7 
-	"reverse engine" -7.5 -64 0.7 
-	"reverse engine" 4.5 -64 0.7 
-	"reverse engine" -4.5 -64 0.7 
-	"reverse engine" 1.5 -64 0.7 
-	"reverse engine" -1.5 -64 0.7 
-	engine 10.5 56.5 
-	engine -10.5 56.5 
-	engine 40.5 57 
-	engine -40.5 57 
-	engine 16 57.5 
-	engine -16 57.5 
-	engine 35 58 
-	engine -35 58 
-	engine 22.5 58.5 
-	engine -22.5 58.5 
-	engine 29.5 59 
-	engine -29.5 59 
+	"reverse engine" -10.5 -64 0.7
+	"reverse engine" 7.5 -64 0.7
+	"reverse engine" -7.5 -64 0.7
+	"reverse engine" 4.5 -64 0.7
+	"reverse engine" -4.5 -64 0.7
+	"reverse engine" 1.5 -64 0.7
+	"reverse engine" -1.5 -64 0.7
+	engine 10.5 56.5
+	engine -10.5 56.5
+	engine 40.5 57
+	engine -40.5 57
+	engine 16 57.5
+	engine -16 57.5
+	engine 35 58
+	engine -35 58
+	engine 22.5 58.5
+	engine -22.5 58.5
+	engine 29.5 59
+	engine -29.5 59
 	explode "tiny explosion" 20
 	explode "small explosion" 45
 	explode "medium explosion" 50

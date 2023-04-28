@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 #include "Interface.h"
 #include "text/layout.hpp"
+#include "Plugins.h"
 #include "Preferences.h"
 #include "Screen.h"
 #include "Sprite.h"
@@ -51,8 +52,15 @@ namespace {
 	const int ZOOM_FACTOR_MAX = 200;
 	const int ZOOM_FACTOR_INCREMENT = 10;
 	const string VIEW_ZOOM_FACTOR = "View zoom factor";
+	const string AUTO_AIM_SETTING = "Automatic aiming";
+	const string AUTO_FIRE_SETTING = "Automatic firing";
 	const string SCREEN_MODE_SETTING = "Screen mode";
 	const string VSYNC_SETTING = "VSync";
+	const string STATUS_OVERLAYS_ALL = "Show status overlays";
+	const string STATUS_OVERLAYS_FLAGSHIP = "   Show flagship overlay";
+	const string STATUS_OVERLAYS_ESCORT = "   Show escort overlays";
+	const string STATUS_OVERLAYS_ENEMY = "   Show enemy overlays";
+	const string STATUS_OVERLAYS_NEUTRAL = "   Show neutral overlays";
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string TURRET_TRACKING = "Turret tracking";
 	const string FOCUS_PREFERENCE = "Turrets focus fire";
@@ -61,9 +69,13 @@ namespace {
 	const string SCROLL_SPEED = "Scroll speed";
 	const string FIGHTER_REPAIR = "Repair fighters in";
 	const string SHIP_OUTLINES = "Ship outlines in shops";
+	const string BOARDING_PRIORITY = "Boarding target priority";
+	const string TARGET_ASTEROIDS_BASED_ON = "Target asteroid based on";
+	const string BACKGROUND_PARALLAX = "Parallax background";
+	const string ALERT_INDICATOR = "Alert indicator";
 
 	// How many pages of settings there are.
-	const int SETTINGS_PAGE_COUNT = 1;
+	const int SETTINGS_PAGE_COUNT = 2;
 }
 
 
@@ -71,8 +83,13 @@ namespace {
 PreferencesPanel::PreferencesPanel()
 	: editing(-1), selected(0), hover(-1)
 {
-	if(!GameData::PluginAboutText().empty())
-		selectedPlugin = GameData::PluginAboutText().begin()->first;
+	// Select the first valid plugin.
+	for(const auto &plugin : Plugins::Get())
+		if(plugin.second.IsValid())
+		{
+			selectedPlugin = plugin.first;
+			break;
+		}
 
 	SetIsFullScreen(true);
 }
@@ -87,6 +104,8 @@ void PreferencesPanel::Draw()
 
 	Information info;
 	info.SetBar("volume", Audio::Volume());
+	if(Plugins::HasChanged())
+		info.SetCondition("show plugins changed");
 	if(SETTINGS_PAGE_COUNT > 1)
 		info.SetCondition("multiple pages");
 	if(currentSettingsPage > 0)
@@ -184,6 +203,10 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
 				SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
 			}
+			else if(zone.Value() == BOARDING_PRIORITY)
+				Preferences::ToggleBoarding();
+			else if(zone.Value() == BACKGROUND_PARALLAX)
+				Preferences::ToggleParallax();
 			else if(zone.Value() == VIEW_ZOOM_FACTOR)
 			{
 				// Increase the zoom factor unless it is at the maximum. In that
@@ -199,6 +222,20 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 					GetUI()->Push(new Dialog(
 						"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
 			}
+			else if(zone.Value() == STATUS_OVERLAYS_ALL)
+				Preferences::CycleStatusOverlays(Preferences::OverlayType::ALL);
+			else if(zone.Value() == STATUS_OVERLAYS_FLAGSHIP)
+				Preferences::CycleStatusOverlays(Preferences::OverlayType::FLAGSHIP);
+			else if(zone.Value() == STATUS_OVERLAYS_ESCORT)
+				Preferences::CycleStatusOverlays(Preferences::OverlayType::ESCORT);
+			else if(zone.Value() == STATUS_OVERLAYS_ENEMY)
+				Preferences::CycleStatusOverlays(Preferences::OverlayType::ENEMY);
+			else if(zone.Value() == STATUS_OVERLAYS_NEUTRAL)
+				Preferences::CycleStatusOverlays(Preferences::OverlayType::NEUTRAL);
+			else if(zone.Value() == AUTO_AIM_SETTING)
+				Preferences::ToggleAutoAim();
+			else if(zone.Value() == AUTO_FIRE_SETTING)
+				Preferences::ToggleAutoFire();
 			else if(zone.Value() == EXPEND_AMMO)
 				Preferences::ToggleAmmoUsage();
 			else if(zone.Value() == TURRET_TRACKING)
@@ -216,6 +253,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 					speed = 20;
 				Preferences::SetScrollSpeed(speed);
 			}
+			else if(zone.Value() == ALERT_INDICATOR)
+				Preferences::ToggleAlert();
 			// All other options are handled by just toggling the boolean state.
 			else
 				Preferences::Set(zone.Value(), !Preferences::Has(zone.Value()));
@@ -331,8 +370,10 @@ void PreferencesPanel::DrawControls()
 		"Navigation",
 		"Weapons",
 		"Targeting",
+		"Navigation",
 		"Interface",
-		"Fleet"
+		"Fleet",
+		"Targeting"
 	};
 	const string *category = CATEGORIES;
 	static const Command COMMANDS[] = {
@@ -354,7 +395,9 @@ void PreferencesPanel::DrawControls()
 		Command::TARGET,
 		Command::HAIL,
 		Command::BOARD,
-		Command::SCAN,
+		Command::NEAREST_ASTEROID,
+		Command::NONE,
+		Command::MOUSE_TURNING_HOLD,
 		Command::NONE,
 		Command::MENU,
 		Command::MAP,
@@ -366,7 +409,10 @@ void PreferencesPanel::DrawControls()
 		Command::FIGHT,
 		Command::GATHER,
 		Command::HOLD,
-		Command::AMMO
+		Command::AMMO,
+		Command::HARVEST,
+		Command::NONE,
+		Command::SCAN
 	};
 	static const Command *BREAK = &COMMANDS[19];
 	for(const Command &command : COMMANDS)
@@ -449,31 +495,36 @@ void PreferencesPanel::DrawSettings()
 	int firstY = -248;
 	table.DrawAt(Point(-130, firstY));
 
-	// An empty string indicates that a category has ended.
-	// A '\t' character indicates that the first column on this page has ended,
-	// and the next line should be drawn at the start of the next column.
-	// A '\n' character indicates that this page is complete, no further lines should be drawn on this page.
-	// In all three cases, the first non-special string will be considered the category heading
-	// and will be drawn differently to normal setting entries.
+	// About SETTINGS pagination
+	// * An empty string indicates that a category has ended.
+	// * A '\t' character indicates that the first column on this page has
+	//   ended, and the next line should be drawn at the start of the next
+	//   column.
+	// * A '\n' character indicates that this page is complete, no further lines
+	//   should be drawn on this page.
+	// * In all three cases, the first non-special string will be considered the
+	//   category heading and will be drawn differently to normal setting
+	//   entries.
+	// * The namespace variable SETTINGS_PAGE_COUNT should be updated to the max
+	//   page count (count of '\n' characters plus one).
 	static const string SETTINGS[] = {
 		"Display",
 		ZOOM_FACTOR,
 		VIEW_ZOOM_FACTOR,
 		SCREEN_MODE_SETTING,
 		VSYNC_SETTING,
-		"Show status overlays",
+		STATUS_OVERLAYS_ALL,
+		STATUS_OVERLAYS_FLAGSHIP,
+		STATUS_OVERLAYS_ESCORT,
+		STATUS_OVERLAYS_ENEMY,
+		STATUS_OVERLAYS_NEUTRAL,
+		"Show missile overlays",
 		"Highlight player's flagship",
 		"Rotate flagship in HUD",
 		"Show planet labels",
 		"Show mini-map",
+		"Show asteroid scanner overlay",
 		"Always underline shortcuts",
-		"",
-		"AI",
-		"Automatic aiming",
-		"Automatic firing",
-		EXPEND_AMMO,
-		FIGHTER_REPAIR,
-		TURRET_TRACKING,
 		"\t",
 		"Performance",
 		"Show CPU / GPU load",
@@ -481,21 +532,34 @@ void PreferencesPanel::DrawSettings()
 		"Reduce large graphics",
 		"Draw background haze",
 		"Draw starfield",
-		"Parallax background",
+		BACKGROUND_PARALLAX,
 		"Show hyperspace flash",
 		SHIP_OUTLINES,
-		"",
+		"\n",
+		"Gameplay",
+		AUTO_AIM_SETTING,
+		AUTO_FIRE_SETTING,
+		BOARDING_PRIORITY,
+		"Control ship with mouse",
+		"Flagship flotsam collection",
+		EXPEND_AMMO,
+		"Extra fleet status messages",
+		"Fighters transfer cargo",
+		"Rehire extra crew when lost",
+		FIGHTER_REPAIR,
+		TARGET_ASTEROIDS_BASED_ON,
+		TURRET_TRACKING,
+		"\t",
 		"Other",
 		"Clickable radar display",
 		"Hide unexplored map regions",
 		REACTIVATE_HELP,
 		"Interrupt fast-forward",
-		"Rehire extra crew when lost",
 		SCROLL_SPEED,
 		"Show escort systems on map",
 		"Show stored outfits on map",
 		"System map sends move orders",
-		"Warning siren"
+		ALERT_INDICATOR
 	};
 	bool isCategory = true;
 	int page = 0;
@@ -563,6 +627,41 @@ void PreferencesPanel::DrawSettings()
 			text = Preferences::VSyncSetting();
 			isOn = text != "off";
 		}
+		else if(setting == STATUS_OVERLAYS_ALL)
+		{
+			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::ALL);
+			isOn = text != "off";
+		}
+		else if(setting == STATUS_OVERLAYS_FLAGSHIP)
+		{
+			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::FLAGSHIP);
+			isOn = text != "off" && text != "--";
+		}
+		else if(setting == STATUS_OVERLAYS_ESCORT)
+		{
+			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::ESCORT);
+			isOn = text != "off" && text != "--";
+		}
+		else if(setting == STATUS_OVERLAYS_ENEMY)
+		{
+			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::ENEMY);
+			isOn = text != "off" && text != "--";
+		}
+		else if(setting == STATUS_OVERLAYS_NEUTRAL)
+		{
+			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::NEUTRAL);
+			isOn = text != "off" && text != "--";
+		}
+		else if(setting == AUTO_AIM_SETTING)
+		{
+			text = Preferences::AutoAimSetting();
+			isOn = text != "off";
+		}
+		else if(setting == AUTO_FIRE_SETTING)
+		{
+			text = Preferences::AutoFireSetting();
+			isOn = text != "off";
+		}
 		else if(setting == EXPEND_AMMO)
 			text = Preferences::AmmoUsage();
 		else if(setting == TURRET_TRACKING)
@@ -579,6 +678,21 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = Preferences::Has(SHIP_OUTLINES) ? "fancy" : "fast";
+		}
+		else if(setting == BOARDING_PRIORITY)
+		{
+			isOn = true;
+			text = Preferences::BoardingSetting();
+		}
+		else if(setting == TARGET_ASTEROIDS_BASED_ON)
+		{
+			isOn = true;
+			text = Preferences::Has(TARGET_ASTEROIDS_BASED_ON) ? "proximity" : "value";
+		}
+		else if(setting == BACKGROUND_PARALLAX)
+		{
+			text = Preferences::ParallaxSetting();
+			isOn = text != "off";
 		}
 		else if(setting == REACTIVATE_HELP)
 		{
@@ -616,6 +730,11 @@ void PreferencesPanel::DrawSettings()
 			isOn = true;
 			text = to_string(Preferences::ScrollSpeed());
 		}
+		else if(setting == ALERT_INDICATOR)
+		{
+			isOn = Preferences::GetAlertIndicator() != Preferences::AlertIndicator::NONE;
+			text = Preferences::AlertSetting();
+		}
 		else
 			text = isOn ? "on" : "off";
 
@@ -631,33 +750,55 @@ void PreferencesPanel::DrawSettings()
 void PreferencesPanel::DrawPlugins()
 {
 	const Color &back = *GameData::Colors().Get("faint");
+	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
+
+	const Sprite *box[2] = { SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked") };
 
 	const int MAX_TEXT_WIDTH = 230;
 	Table table;
 	table.AddColumn(-115, {MAX_TEXT_WIDTH, Truncate::MIDDLE});
-	table.SetUnderline(-120, 120);
+	table.SetUnderline(-120, 100);
 
 	int firstY = -238;
-	table.DrawAt(Point(-130, firstY));
+	// Table is at -110 while checkbox is at -130
+	table.DrawAt(Point(-110, firstY));
 	table.DrawUnderline(medium);
-	table.Draw("Installed plugins:", bright);
-	table.DrawGap(5);
+	table.DrawGap(25);
 
 	const Font &font = FontSet::Get(14);
-	for(const auto &plugin : GameData::PluginAboutText())
-	{
-		pluginZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), plugin.first);
 
-		bool isSelected = (plugin.first == selectedPlugin);
-		if(isSelected || plugin.first == hoverPlugin)
+	for(const auto &it : Plugins::Get())
+	{
+		const auto &plugin = it.second;
+		if(!plugin.IsValid())
+			continue;
+
+		pluginZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), plugin.name);
+
+		bool isSelected = (plugin.name == selectedPlugin);
+		if(isSelected || plugin.name == hoverPlugin)
 			table.DrawHighlight(back);
-		table.Draw(plugin.first, isSelected ? bright : medium);
+
+		const Sprite *sprite = box[plugin.currentState];
+		Point topLeft = table.GetRowBounds().TopLeft() - Point(sprite->Width(), 0.);
+		Rectangle spriteBounds = Rectangle::FromCorner(topLeft, Point(sprite->Width(), sprite->Height()));
+		SpriteShader::Draw(sprite, spriteBounds.Center());
+
+		topLeft.X() += 6.;
+		topLeft.Y() += 7.;
+		Rectangle zoneBounds = Rectangle::FromCorner(topLeft, Point(sprite->Width() - 8., sprite->Height() - 8.));
+
+		AddZone(zoneBounds, [&]() { Plugins::TogglePlugin(plugin.name); });
+		if(isSelected)
+			table.Draw(plugin.name, bright);
+		else
+			table.Draw(plugin.name, plugin.enabled ? medium : dim);
 
 		if(isSelected)
 		{
-			const Sprite *sprite = SpriteSet::Get(plugin.first);
+			const Sprite *sprite = SpriteSet::Get(plugin.name);
 			Point top(15., firstY);
 			if(sprite)
 			{
@@ -669,7 +810,7 @@ void PreferencesPanel::DrawPlugins()
 			WrappedText wrap(font);
 			wrap.SetWrapWidth(MAX_TEXT_WIDTH);
 			static const string EMPTY = "(No description given.)";
-			wrap.Wrap(plugin.second.empty() ? EMPTY : plugin.second);
+			wrap.Wrap(plugin.aboutText.empty() ? EMPTY : plugin.aboutText);
 			wrap.Draw(top, medium);
 		}
 	}

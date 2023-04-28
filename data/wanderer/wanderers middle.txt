@@ -20,7 +20,7 @@ mission "Wanderers: Pre-Colony"
 	on offer
 		conversation
 			`With the Eye fully opened, Wanderer ships have begun flooding into this region of space. This desolate planet seems to be of particular interest to them, with drones rapidly surveying in all directions, and a small outpost beginning to form.`
-			`	As you land on the outskirts of this settlement, one of the workers comes up to you as you leave your ship. "[Greetings, welcome], it is [delightful, pleasing] to see you have come to show your interest in our exploration. Unfortunately, there exists much [hazard, risk] on a world we know so little about. This will be our staging ground to [explore, catalog] this new region, but it will take some time to be assured of the [safety, security] of our outpost. I suggest you take time to [orient, locate] yourself in these systems while we set up before returning to help. Of course you are welcome when we have [determined, established] safety, there will be many ships needed to help heal the many ruined planets here.`
+			`	As you land on the outskirts of this settlement, one of the workers comes up to you as you leave your ship. "[Greetings, welcome], it is [delightful, pleasing] to see you have come to show your interest in our exploration. Unfortunately, there exists much [hazard, risk] on a world we know so little about. This will be our staging ground to [explore, catalog] this new region, but it will take some time to be assured of the [safety, security] of our outpost. I suggest you take time to [orient, locate] yourself in these systems while we set up before returning to help. Of course you are welcome when we have [determined, established] safety, there will be many ships needed to help heal the many ruined planets here."`
 				decline
 
 mission "Wanderers: Surveying 1"
@@ -256,7 +256,7 @@ event "wanderers: kaliptari battle begins"
 
 event "wanderers: kaliptari battle ends"
 	system Kaliptari
-		add fleet "Large Quarg" 2000
+		add fleet "Large Quarg (Kor Efret)" 2000
 		add fleet "Small Kor Mereti" 8000
 		add fleet "Large Kor Mereti" 3600
 		add fleet "Wanderer Defense" 1000
@@ -462,7 +462,7 @@ mission "Wanderers: Quarg Assistance 2"
 	on visit
 		dialog `You've reached <planet>, but you left one of the Quarg ships behind. Better depart and wait for it to arrive.`
 	npc accompany save
-		government "Quarg"
+		government "Quarg (Kor Efret)"
 		personality escort
 		ship "Quarg Wardragon" "Elearu-quara"
 		ship "Quarg Wardragon" "Kumawar Kwarca"
@@ -477,7 +477,7 @@ mission "Wanderers: Quarg Defenders"
 	to offer
 		has "Wanderers: Quarg Assistance 2: done"
 	npc kill
-		government "Quarg"
+		government "Quarg (Kor Efret)"
 		personality staying uninterested heroic
 		ship "Quarg Wardragon" "Elearu-quara"
 		ship "Quarg Wardragon" "Kumawar Kwarca"
@@ -714,8 +714,8 @@ event "wanderers: kashikt battle begins"
 
 event "wanderers: kashikt battle ends"
 	system "Kashikt"
-		fleet "Quarg" 1000
-		fleet "Large Quarg" 2000
+		fleet "Quarg (Kor Efret)" 1000
+		fleet "Large Quarg (Kor Efret)" 2000
 		fleet "Kor Efret Home" 1000
 
 mission "Wanderers: Kor Efret 3"
@@ -775,14 +775,14 @@ mission "Wanderers: Kor Efret 3"
 				"Arch-Carrack" 2
 				"Charm-Shallop" 4
 	npc
-		government "Quarg"
+		government "Quarg (Kor Efret)"
 		personality heroic staying entering
 		fleet
 			names "quarg"
 			variant
 				"Quarg Wardragon" 1
 	npc
-		government "Quarg"
+		government "Quarg (Kor Efret)"
 		personality heroic
 		system "Host"
 		fleet
@@ -790,7 +790,7 @@ mission "Wanderers: Kor Efret 3"
 			variant
 				"Quarg Wardragon" 3
 	npc
-		government "Quarg"
+		government "Quarg (Kor Efret)"
 		personality heroic
 		system "Mesuket"
 		fleet
@@ -1070,7 +1070,7 @@ event "wanderers: kor mereti friendly"
 	government "Kor Mereti"
 		"attitude toward"
 			"Wanderer" 1
-	government "Quarg"
+	government "Quarg (Kor Efret)"
 		"attitude toward"
 			"Kor Mereti" 0
 	government "Kor Efret"
@@ -1585,7 +1585,7 @@ event "wanderers: battle in solifar begins"
 
 event "wanderers: battle in solifar ends"
 	system Solifar
-		fleet "Large Quarg" 3000
+		fleet "Large Quarg (Kor Efret)" 3000
 		fleet "Wanderer Defense" 1800
 		fleet "Wanderer Drones" 700
 		fleet "Wanderer Flycatchers" 800
@@ -1763,7 +1763,7 @@ mission "Wanderers: Sestor Search"
 		never
 	destination "Vara K'chrai"
 	on offer
-		log "Someone else seems to have located the Kor Sestor command center before the Wanderers did, and has taken control of the Kor Sestor fleet. Most of the Kor Sestor drones flew through the Eye into the old Wanderer territory, where the Wanderers will probably not be prepared to fight them."
+		log "Someone else seems to have located the Kor Sestor central command before the Wanderers did, and has taken control of the Kor Sestor fleet. Most of the Kor Sestor drones flew through the Eye into the old Wanderer territory, where the Wanderers will probably not be prepared to fight them."
 		event "wanderers: kor sestor are aimless"
 		conversation
 			`You return to the planet expecting the Wanderers to be celebrating their victory, but the leaders have grim news. "The drones we fought were only the [rearguard? remnant?] of the fleet," says Tele'ek. "Dozens of [capital ships?] passed through this system and continued on. With this [heading, destination]." On the holographic projector, he brings up a star map, and points to the system where the Eye is. The wormhole leading back to Wanderer space.`
@@ -1882,7 +1882,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 				`	"You should be glad you're still in one piece."`
 					goto glad1
 					
-			`	"Well," the pilot says, "we had hired a beefy Leviathan escort to Farpoint. When we were going in for landing, two of these hostile ships jumped in from the northwest, the direction of all the anarchist colonies in this area. The ships weren't big, but they were tough: our four heavy laser turrets weren't enough to produce even a dent in their shields. They made short work of the Leviathan, and nearly disabled our ship, too. It was lucky I decided that jumping would be faster than landing. We warped out of the system while in atmosphere, saving the ship, but now I'm in debt to all my crew because I couldn't meet a rush delivery deadline. Still had to deliver the goods, but lost a pretty substantial bonus."`
+			`	"Well," the pilot says, "we had hired a beefy Leviathan escort to Farpoint. When we were going in for landing, two of these hostile ships jumped in from the northwest, the direction of all the anarchist colonies in this area. The ships weren't big, but they were tough: our four Heavy Laser Turrets weren't enough to produce even a dent in their shields. They made short work of the Leviathan, and nearly disabled our ship, too. It was lucky I decided that jumping would be faster than landing. We warped out of the system while in atmosphere, saving the ship, but now I'm in debt to all my crew because I couldn't meet a rush delivery deadline. Still had to deliver the goods, but lost a pretty substantial bonus."`
 			choice
 				`	"You're lucky as hell to be here today."`
 					goto glad
@@ -1898,7 +1898,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 					goto thanks
 			
 			label glad1
-			`	"I am! The attacking ships weren't big, but they were tough: our four heavy laser turrets couldn't even produce a dent in their shields," the captain says. "We even hired a beefy Leviathan to protect us from the pirate raids as we traveled to Farpoint, but when these hostile ships jumped in from the northwest, they made short work of our escort and nearly disabled our ship, too. I had to jump out of the system while in atmosphere to save the ship, but now I'm in debt to all my crew because I didn't meet a rush delivery deadline. Still had to deliver the goods, but lost a pretty substantial bonus."`
+			`	"I am! The attacking ships weren't big, but they were tough: our four Heavy Laser Turrets couldn't even produce a dent in their shields," the captain says. "We even hired a beefy Leviathan to protect us from the pirate raids as we traveled to Farpoint, but when these hostile ships jumped in from the northwest, they made short work of our escort and nearly disabled our ship, too. I had to jump out of the system while in atmosphere to save the ship, but now I'm in debt to all my crew because I didn't meet a rush delivery deadline. Still had to deliver the goods, but lost a pretty substantial bonus."`
 			choice
 				`	"You really are lucky as hell to be here today."`
 					goto glad
@@ -1908,7 +1908,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 			label thanks
 			`	"No problem, kiddo," the captain says, although he looks awed that you are even attempting to fight such powerful ships. "Remember, northwest of Farpoint. If they're anarchists of any sort, they'll be hiding in one of those pirate systems up there. Take care of yourself out there; those are some dangerous ships that jumped us." With that, he bids you farewell.`
 				decline
-					
+				
 			label glad
 			`	"Yeah, those ships would have obliterated us if we hadn't jumped pronto." The pilot looks at you, then asks quizzically, "Say, do you know anything about those ships?"`
 			choice
@@ -2819,6 +2819,20 @@ mission "Wanderers: Sestor Alt: Alnilam 3"
 	on visit
 		dialog `You've reached <planet>, but not all of the Navy Cruisers have entered the system yet. Better depart and wait for them to arrive.`
 
+event "liberated zenith"
+	planet "Zenith"
+		bribe .04
+		"required reputation" 0
+
+mission "Wanderers: Sestor Alt: Zenith Patch"
+	landing
+	invisible
+	to offer
+		has "Wanderers: Sestor Alt: Alnilam 2: done"
+	on offer
+		event "liberated zenith"
+		fail
+
 
 
 mission "Wanderers: Sestor Alt: Return to Wanderers"
@@ -3060,8 +3074,25 @@ mission "Wanderers: Sestor: Factory 1"
 				`	"Are you sure that they really want peace? They aren't trying to trick you?"`
 			`	Rek says, "It is hard to be sure. Their culture is very different from the Kor Efret; even some of their language and gestures are new to me. But they have behaved peacefully toward us so far; we must hope that their peacefulness continues."`
 			label next
-			`	Tele'ek says, "You must bring the [exile, outcast] ships to <planet> and keep them from being destroyed by the drones [along the way?]. There, they will [attempt, accomplish] what they have promised, and shut down the factories. Your only role will be to [shield, protect] them, and we will give you some of our warships to [assist, accompany] you."`
-			`	You return to your ship, and get ready for the trip to <planet>.`
+			`	Tele'ek says, "You must bring the [exile, outcast] ships to <planet> and keep them from being destroyed by the drones [along the way?]. There, they will [attempt, accomplish] what they have promised, and shut down the factories. Your only role will be to [shield, protect] them, and we will give you some of our warships to [assist, accompany] you." He gestures with a wing towards a number of Wanderer vessels being loaded with supplies and prepared for battle. You notice a type of weapon you don't recognize mounted on some of them.`
+			choice
+				`	"Are those ships carrying a new type of weapon?"`
+				`	"Sounds like a good plan. Let's get going!"`
+					goto end
+			`	Tele'ek seems pleased that you noticed. "Indeed. They are more [useful, effective] against hull armor than shields, [perfect, appropriate] for use against the Kor Sestor vessels alongside our [existing, previous] armaments." He pauses before continuing. "[Hopefully, If this goes well], they will not get much use, but will see you [safely, successfully] through this [mission, task] to finally end this [blight, menace]. However, we will have them [ready, prepared] if the need does [arise, return]."`
+			choice
+				`	"Can I get some for my own ship?"`
+					goto buy
+				`	"Is it a good idea to show off these new weapons to the Korath Exiles when making overtures of friendship?"`
+				`	"I look forward to seeing them in action. I should get my ship ready for to go."`
+					goto end
+			`	Tele'ek gestures towards Rek who says, "I raised a similar concern, but in this case, I [recognize, accept] that the benefit outweighs possible risks."`
+			`	Tele'ek explains, "If they view these weapons as signs of [aggression?] against themselves, there is little I can do for them. Their ships are not as [durable, well-armored] as the Kor Sestor automata, so our other technologies would already be [effective, damaging] enough if used against them. If they are [rational, intelligent], they will value the added protection on this [journey, endeavor]."`
+				goto end
+			label buy
+			`	"We have not yet produced many, but they will be [available, present] in our outfitters soon."`
+			label end
+			`	You and Rek say goodbye to Tele'ek before returning to your ship, and preparing it for the trip to <planet>.`
 				accept
 	npc accompany save
 		government "Korath"
@@ -3087,9 +3118,11 @@ mission "Wanderers: Sestor: Factory Escorts"
 			names "wanderer"
 			variant
 				"Hurricane (Tough)"
+				"Hurricane (Moonbeam)"
 				"Derecho"
-				"Derecho (Turret)"
-				"Tempest (Heavy)" 2
+				"Derecho (Moonbeam)" 2
+				"Tempest (Heavy)"
+				"Tempest (Moonbeam)" 2
 				"Tempest"
 
 
@@ -3290,7 +3323,7 @@ event "wanderers: sestor eliminated"
 event "wanderers: sabira eseskrai colony"
 	system "Skeruto"
 		government "Wanderer"
-		fleet "Large Quarg" 1000
+		fleet "Large Quarg (Kor Efret)" 1000
 		fleet "Wanderer Defense" 1200
 		fleet "Wanderer Drones" 800
 		fleet "Kor Efret Home" 800
@@ -3302,13 +3335,16 @@ event "wanderers: sabira eseskrai colony"
 		description `	Due to a recent shift in climate the deserts have begun shrinking once more, with local vegetation growing to cover more and more land each year. The Wanderers, working together with the Kor Efreti, have founded a settlement here and begun working to accelerate the process of rejuvenating the wastelands.`
 		spaceport `This small settlement is populated by a roughly equal number of Korath and Wanderer settlers. Since most of them do not speak each other's language, the two groups do not mingle much, and communicate mostly via gestures and drawings. It's not much, but it's at least a start for the two species to begin learning from each other.`
 
-mission "Wanderers: Sestor: Final"
+mission "Wanderers: Sestor: Final: Patched"
 	landing
 	name "Investigate the exiles"
 	description "Visit the Korath exile territory to look for any signs that they plan to start constructing war drones of their own."
 	source "Desi Seledrak"
 	to offer
 		has "Wanderers: Sestor: Factory 3: done"
+		not "Wanderers: Sestor: Final: offered"
+	to fail
+		has "Wanderers: Sestor: Final: offered"
 	waypoint "Kor Fel'tar"
 	on enter "Kor Fel'tar"
 		dialog `There are several Kor Mereti and Kor Sestor drones in this system, and they don't look friendly. You should report to the Wanderers that the exiles have begun manufacturing drones of their own.`
@@ -3340,30 +3376,31 @@ mission "Wanderers: Sestor: Final"
 		log "Discovered that when the Korath exiles shut down the Kor Sestor factory, they also took enough technology from the factory to be able to begin producing war drones of their own. It is possible that the exiles have just become a whole lot more dangerous than they used to be."
 		log "Factions" "Wanderers" `After the Eye opened, creating a wormhole link between Wanderer territory and the region of space that harbors the devastated Korath worlds, the Wanderers have established several new colonies in the Korath sector and have begun to migrate to this area of Space. They have established formal relations with the Kor Efreti and were able to end the war between the Kor Mereti and the Kor Sestor.`
 		log "Factions" "Korath" `The Wanderers, who have begun to establish colonies on some deserted Korath systems, were able to end the war between the Kor Mereti and the Kor Sestor. The Kor Efreti have begun to rebuild their worlds and are tutored in this endeavor by the Wanderers.`
+		set "wanderers sestor done"
 		event "wanderers: exiles have drones" 20
 		event "wanderers: sabira eseskrai colony" 30
 		event "wanderers: sestor eliminated" 40
+		event "wanderers: sestor planets unrestricted" 40
+		event "wanderers taking jobs from kor efreti" 5
+		event "wanderers: moonbeam mass production" 5
 		conversation
 			`You inform the Wanderers that the Korath exiles are now producing war drones. "This is [unfortunate, regrettable]," says Sobari Tele'ek. "Clearly they [anticipate, expect] further conflict in the future."`
 			`	Tema'a Iriket says, "Perhaps they are [afraid of, threatened by] us and seek only to have the means to [defend, protect] themselves. The important thing is that the drones in this [territory, area] have been [neutralized, pacified] and we can now focus on our true work."`
 			`	From there, the conversation shifts to an excited discussion about what worlds they will settle on next and what their next steps should be in building relationships with the Kor Efret and the Kor Mereti collective. The exiles may become a threat some time in the future, but for now the Wanderers are eager to pursue their peacetime calling in this new territory that the Eye has led them to.`
 
-mission "Wanderers: Sestor: Patch"
-	landing
-	invisible
-	to offer
-		has "event: wanderers: sestor eliminated"
-	on offer
-		event "wanderers: sestor planets unrestricted"
-		fail
-
-mission "Wanderers: Sestor: Patch 2"
+# This patch mission is necessary for people who got the older version of the "Sestor: Final" mission without the patches integrated.
+mission "Wanderers: Sestor: Combined Patch 1"
 	landing
 	invisible
 	to offer
 		has "Wanderers: Sestor: Final: done"
+	to fail
+		has "Wanderers: Sestor: Final: Patched: offered"
 	on offer
+		set "wanderers sestor done"
+		event "wanderers: sestor planets unrestricted" 40
 		event "wanderers taking jobs from kor efreti" 5
+		event "wanderers: moonbeam mass production" 5
 		fail
 
 event "wanderers: sestor planets unrestricted"

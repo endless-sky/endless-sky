@@ -55,7 +55,11 @@ Point::operator bool() const noexcept
 
 bool Point::operator!() const noexcept
 {
+#ifdef __SSE3__
+	return (!val.x & !val.y);
+#else
 	return (!x & !y);
+#endif
 }
 
 

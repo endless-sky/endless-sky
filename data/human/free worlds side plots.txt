@@ -11,6 +11,99 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+
+
+mission "FW Zug Expansion: Assisted"
+	name "Convoy to Zug"
+	description "Escort a convoy of freighters to <destination> for an important project. Expect pirate raids."
+	source
+		government "Free Worlds"
+		near Zubeneschamali 2 4
+	destination "Zug"
+	to offer
+		has "event: tarazed assistance"
+		not "FW Diplomacy 1: done"
+	on offer
+		conversation
+			`While returning from a walk around the spaceport of <origin>, you see the quartermaster of the spaceport inspecting your ship. He notices your arrival and comes up to greet you.`
+			`	"You're Captain <first> <last>, yes? We're looking for a good ship that can escort these freighters to <planet>." He points towards five Syndicate Freighters in Free Worlds colors on the landing pads opposite to your ship, some of which have considerable hull damage and are actively being repaired.`
+			`	"Their last escort was just taken out by pirates, and we need someone who is experienced enough to fend off or evade them. You must have a reputation, since some of our militia captains recognized you. This is for quite a significant project on <planet>, so you will be paid <payment>."`
+			choice
+				`	"What is the project? It seems to be a big enterprise."`
+				`	"That's a fair few freighters. Should I be expecting any more pirates?"`
+					goto pirates
+				`	"Sorry, I'm not planning on going that way."`
+					decline
+			`	"The freighters are carrying construction materials and specialized shipbuilding equipment for a planned extension to Zug's New Port, which has been a long time coming. It would greatly help the Free Worlds' efforts. I suppose that is why there have been pirates trying to pounce on these ships; the equipment would be a rich prize for them."`
+				goto meet
+			label pirates
+			`	"Yes, I would expect more pirate contact, because the movement of so many freighters would be a tempting target for them, and moreover, they are carrying valuable equipment for warship manufacturing. I'd certainly recommend avoiding combat when possible. In these trying times, the loss of these ships would be... not ideal."`
+			label meet
+			`	"Well, will you help us escort these freighters?"`
+			choice
+				`	"Of course, I'll get these freighters to <planet> safely."`
+				`	"No, I won't be able to, sorry."`
+					decline
+			`	"Wonderful! I expect that these ships will benefit the Free Worlds immensely." With that, he leaves you to meet with the captains of the freighters.`
+				accept
+	npc accompany save
+		government "Free Worlds"
+		personality escort timid
+		ship "Freighter" "F.S. Pohutukawa"
+		ship "Freighter" "F.S. Totara"
+		ship "Freighter" "F.S. Kauri"
+		ship "Freighter" "F.S. Rimu"
+		ship "Freighter" "F.S. Kanuka"
+	npc
+		government "Pirate"
+		personality plunders staying
+		system "Zubenelgenubi"
+		fleet "Large Southern Pirates" 3
+	npc
+		government "Pirate"
+		personality plunders staying
+		system "Sabik"
+		fleet "Large Southern Pirates" 2
+	npc
+		government "Pirate"
+		personality plunders staying
+		system "Hadar"
+		fleet "Large Southern Pirates" 3
+	npc
+		government "Pirate"
+		personality plunders staying
+		system "Zeta Centauri"
+		fleet "Large Southern Pirates" 2
+	npc
+		government "Pirate"
+		personality plunders staying
+		system "Izar"
+		fleet "Large Southern Pirates" 2
+	on visit
+		dialog `You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system.`
+	on complete
+		payment 600000
+		event "fw zug expansion underway"
+		event "fw zug expansion complete" 120
+		conversation
+			`The five freighters have all arrived intact, and you are told to land them beside a large area of land set aside for Zug's long-awaited New Port expansion. Not long after, you are sent <payment> by Zug's port authority.`
+			`	It seems that bringing so many freighters was justified, because the expansion also includes a considerable extension to Southbound's shipbuilding facilities to make them capable of building heavy warships like Tarazed Falcons. However, by the looks of it, all this equipment would be more than enough to build a Navy Cruiser.`
+
+
+
+mission "FW Zug Expansion: Unassisted"
+	landing
+	invisible
+	to offer
+		has "FW Diplomacy 1: done"
+		not "FW Zug Expansion: Assisted: done"
+	on offer
+		event "fw zug expansion underway"
+		event "fw zug expansion complete" 120
+		fail
+
+
+
 mission "FW Pirates: Harmony"
 	landing
 	source "Harmony"
@@ -266,10 +359,10 @@ mission "FW Flamethrower 2"
 		dialog `You've landed on <planet>, but you have not disabled the <npc> yet. Disable it and before returning.`
 	on complete
 		event "flamethrower available" 30
-		log "Assisted Barmy Edward with another weapon test: this time, a flamethrower weapon that works by overheating its target rather than dealing lots of damage to it. It may or may not be useful in actual combat, as overheating a ship only disables its reactors, meaning that a ship with large batteries could continue to fight for some time after being overheated."
+		log "Assisted Barmy Edward with another weapon test: this time, a flamethrower weapon that works by overheating and disabling its target rather than dealing lots of damage to it. It may or may not be useful in actual combat."
 		conversation
 			scene "outfit/flamethrower"
-			`You head to the hangar to meet up with Barmy Edward, and find him tinkering with a large gun you don't recognize. Presumably, this is the flamethrower that you were just attacked with in orbit. "It runs on hyperspace fuel, you see," he says. "So, what did you think?"`
+			`You head to the hangar to meet up with Barmy Edward, and find him tinkering with a large gun you don't recognize. Presumably, this is the Flamethrower that you were just attacked with in orbit. "It runs on hyperspace fuel, you see," he says. "So, what did you think?"`
 			choice
 				`	"It's a terrifying weapon."`
 					goto terrifying
@@ -278,15 +371,15 @@ mission "FW Flamethrower 2"
 				`	"Your flamethrower doesn't seem to work very well."`
 					goto bad
 			label terrifying
-			`	"Isn't it?" he says. "Mostly useful against small ships, of course, or ships that are running way too close to their thermal thresholds. But the ability to temporarily disable a ship without even dropping its shields first could be quite useful in certain tactical situations."`
+			`	"Isn't it?" he says. "Mostly useful against small ships, of course, or ships that are running way too close to their thermal thresholds. Need to be almost on top of your target to get the full effect, too. But the ability to temporarily disable a ship without even dropping its shields first could be quite useful in certain tactical situations."`
 			`	"When will it be available for sale?" you ask.`
 				goto available
 			label damage
-			`	"No, doing damage isn't the point," he says. "The idea is to heat up the target to the point where it goes into emergency thermal shutdown. Basically a way to temporarily disable even a ship with full shields. Of course, big ships can absorb an awful lot of heat without changing temperature much, so I suspect it will be most useful against smaller targets."`
+			`	"No, doing damage isn't the point," he says. "The idea is to heat up the target to the point where it goes into emergency thermal shutdown. Basically a way to temporarily disable even a ship with full shields. Of course, big ships can absorb an awful lot of heat without changing temperature much, so I suspect it will be most useful against smaller targets. You've got to get right up close to them to get the full heating effect, which isn't going to be easy if you're dealing with larger warships like the Navy ones."`
 			`	"That is an interesting idea," you say. "Are they available for sale yet?"`
 				goto available
 			label bad
-			`	"Oh." He seems somewhat dejected. "Well, if you were flying a smaller ship, you might think differently. Or if your ship didn't have adequate cooling. My idea was to target pirate ships with those illegal modified blasters that run hotter than usual."`
+			`	"Oh." He seems somewhat dejected. "Well, if you were flying a smaller ship, you might think differently. Or if your ship didn't have adequate cooling. Or maybe the Doombat didn't get close enough to give you the full power of it. My idea was to target pirate ships with those illegal Modified Blasters that run hotter than usual."`
 			`	"I guess that makes sense," you say, "although I wouldn't want to run out of jump fuel by accident. Are you going to be making them available for sale?"`
 				goto available
 			label available
@@ -362,7 +455,7 @@ mission "FW Wolf Pack 1B"
 	
 	on offer
 		conversation
-			`You land your ship by night in a private hangar that you assume is owned by one of the elite families on <origin>. Your contact is wearing a black mask over his face. That seems unnecessary to you, but perhaps he is just really enjoying the thrill of being involved in something illegal. He hands you a data card and says, "This contains all the information you will need to build your own catalytic ramscoop. And before you leave, you may also visit our private outfitter and purchase one of your own, if you wish."`
+			`You land your ship by night in a private hangar that you assume is owned by one of the elite families on <origin>. Your contact is wearing a black mask over his face. That seems unnecessary to you, but perhaps he is just really enjoying the thrill of being involved in something illegal. He hands you a data card and says, "This contains all the information you will need to build your own Catalytic Ramscoop. And before you leave, you may also visit our private outfitter and purchase one of your own, if you wish."`
 			choice
 				`	"Thank you."`
 					goto leave
@@ -377,7 +470,7 @@ mission "FW Wolf Pack 1B"
 		payment 250000
 		event "fw gets catalytic ramscoop" 24
 		log "Helped the Free Worlds gain access to new ramscoop technology that has been developed in the Deep. This should make it significantly easier to travel long distances through unfriendly systems."
-		dialog `You deliver the data card with the details of the catalytic ramscoop to the contact you were given in the Delta V corporation. "Excellent," she says. "We have been trying to duplicate their work for months, but this will make it much easier." She hands you a credit chip worth <payment>, and says, "We'll contact you when we've begun mass-producing the new ramscoops. I hope they will be useful in the conflict ahead."`
+		dialog `You deliver the data card with the details of the Catalytic Ramscoop to the contact you were given in the Delta V corporation. "Excellent," she says. "We have been trying to duplicate their work for months, but this will make it much easier." She hands you a credit chip worth <payment>, and says, "We'll contact you when we've begun mass-producing the new ramscoops. I hope they will be useful in the conflict ahead."`
 
 
 
@@ -503,7 +596,7 @@ event "wolf pack gacrux end"
 mission "FW Wolf Pack 3"
 	landing
 	name "Attack Food Convoy"
-	description "Destroy two Republic bulk freighters in the Gacrux system that are carrying food, then report back to <planet> for payment."
+	description "Destroy two Republic Bulk Freighters in the Gacrux system that are carrying food, then report back to <planet> for payment."
 	source
 		government "Free Worlds"
 	destination "Solace"
@@ -517,7 +610,7 @@ mission "FW Wolf Pack 3"
 	
 	on offer
 		dialog
-			`You receive another message from the Wolf Pack: "Great work with those freighters, Captain! We've got another target for you, if you're interested: a pair of bulk freighters, which you ought to be able to intercept in the Gacrux system. It's an uninhabited system, so you shouldn't have much interference from the Navy. As before, you only need to destroy the freighters, not any other ships you encounter."`
+			`You receive another message from the Wolf Pack: "Great work with those freighters, Captain! We've got another target for you, if you're interested: a pair of Bulk Freighters, which you ought to be able to intercept in the Gacrux system. It's an uninhabited system, so you shouldn't have much interference from the Navy. As before, you only need to destroy the freighters, not any other ships you encounter."`
 			`	Every one of these missions you complete will create more animosity between the Republic and the Free Worlds. But on the other hand, they may be right that it's the fastest way to bring this war to a close.`
 	
 	on accept
@@ -599,7 +692,7 @@ mission "FW Wolf Pack 4"
 		government "Republic"
 		system "Mizar"
 		personality timid staying target
-		ship "Auxiliary (Cargo)" "RNS Golden Fleece"
+		ship "Auxiliary (Cargo Mark II)" "RNS Golden Fleece"
 		dialog "You have eliminated the Auxiliary that was carrying food to the Republic. Time to report back to the Wolf Pack and receive your reward."
 	npc
 		government "Republic"

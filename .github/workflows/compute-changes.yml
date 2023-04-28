@@ -1,3 +1,5 @@
+name: Compute Changes
+
 on:
   workflow_call:
     outputs:
@@ -5,24 +7,20 @@ on:
         value: ${{ jobs.changed.outputs.data }}
       game_code:
         value: ${{ jobs.changed.outputs.game_code }}
-      macos:
-        value: ${{ jobs.changed.outputs.macos }}
-      windows:
-        value: ${{ jobs.changed.outputs.windows }}
-      linux:
-        value: ${{ jobs.changed.outputs.linux }}
       unit_tests:
         value: ${{ jobs.changed.outputs.unit_tests }}
       integration_tests:
         value: ${{ jobs.changed.outputs.integration_tests }}
       codespell:
         value: ${{ jobs.changed.outputs.codespell }}
-      xcode_files:
-        value: ${{ jobs.changed.outputs.xcode_files }}
       codeblocks_files:
         value: ${{ jobs.changed.outputs.codeblocks_files }}
+      cmake_files:
+        value: ${{ jobs.changed.outputs.cmake_files }}
       copyright:
         value: ${{ jobs.changed.outputs.copyright }}
+      parse_script:
+        value: ${{ jobs.changed.outputs.parse_script }}
 
 jobs:
   changed:
@@ -30,17 +28,15 @@ jobs:
     outputs:
       data: ${{ steps.filter.outputs.data }}
       game_code: ${{ steps.filter.outputs.game_code }}
-      macos: ${{ steps.filter.outputs.macos }}
-      windows: ${{ steps.filter.outputs.windows }}
-      linux: ${{ steps.filter.outputs.linux }}
       unit_tests: ${{ steps.filter.outputs.unit_tests }}
       integration_tests: ${{ steps.filter.outputs.integration_tests }}
       codespell: ${{ steps.filter.outputs.codespell }}
-      xcode_files: ${{ steps.filter.outputs.xcode_files }}
       codeblocks_files: ${{ steps.filter.outputs.codeblocks_files }}
+      cmake_files: ${{ steps.filter.outputs.cmake_files }}
       copyright: ${{ steps.filter.outputs.copyright }}
+      parse_script: ${{ steps.filter.outputs.parse_script }}
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 2
     - uses: dorny/paths-filter@v2

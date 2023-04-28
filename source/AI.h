@@ -56,6 +56,7 @@ template <class Type>
 
 	// Fleet commands from the player.
 	void IssueShipTarget(const PlayerInfo &player, const std::shared_ptr<Ship> &target);
+	void IssueAsteroidTarget(const PlayerInfo &player, const std::shared_ptr<Minable> &targetAsteroid);
 	void IssueMoveTarget(const PlayerInfo &player, const Point &target, const System *moveToSystem);
 	// Commands issued via the keyboard (mostly, to the flagship).
 	void UpdateKeys(PlayerInfo &player, Command &clickCommands);
@@ -69,6 +70,9 @@ template <class Type>
 	void ClearOrders();
 	// Issue AI commands to all ships for one game step.
 	void Step(const PlayerInfo &player, Command &activeCommands);
+
+	// Set the mouse position for turning the player's flagship.
+	void SetMousePosition(Point position);
 
 	// Get the in-system strength of each government's allies and enemies.
 	int64_t AllyStrength(const Government *government);
@@ -84,6 +88,7 @@ private:
 	bool HasHelper(const Ship &ship, const bool needsFuel);
 	// Pick a new target for the given ship.
 	std::shared_ptr<Ship> FindTarget(const Ship &ship) const;
+	std::shared_ptr<Ship> FindNonHostileTarget(const Ship &ship) const;
 	// Obtain a list of ships matching the desired hostility.
 	std::vector<Ship *> GetShipsList(const Ship &ship, bool targetEnemies, double maxRange = -1.) const;
 
@@ -96,7 +101,10 @@ private:
 
 	// Methods of moving from the current position to a desired position / orientation.
 	static double TurnBackward(const Ship &ship);
-	static double TurnToward(const Ship &ship, const Point &vector);
+	// Determine the value to use in Command::SetTurn() to turn the ship towards the desired facing.
+	// "precision" is an optional argument corresponding to a value of the dot product of the current and target facing
+	// vectors above which no turning should be attempting, to reduce constant, minute corrections.
+	static double TurnToward(const Ship &ship, const Point &vector, const double precision = 0.9999);
 	static bool MoveToPlanet(Ship &ship, Command &command);
 	static bool MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 		const Point &targetVelocity, double radius, double slow);
@@ -106,6 +114,7 @@ private:
 	static void Swarm(Ship &ship, Command &command, const Body &target);
 	static void KeepStation(Ship &ship, Command &command, const Body &target);
 	static void Attack(Ship &ship, Command &command, const Ship &target);
+	static void AimToAttack(Ship &ship, Command &command, const Body &target);
 	static void MoveToAttack(Ship &ship, Command &command, const Body &target);
 	static void PickUp(Ship &ship, Command &command, const Body &target);
 	// Special decisions a ship might make.
@@ -115,10 +124,11 @@ private:
 	void DoSwarming(Ship &ship, Command &command, std::shared_ptr<Ship> &target);
 	void DoSurveillance(Ship &ship, Command &command, std::shared_ptr<Ship> &target) const;
 	void DoMining(Ship &ship, Command &command);
-	bool DoHarvesting(Ship &ship, Command &command);
+	bool DoHarvesting(Ship &ship, Command &command) const;
 	bool DoCloak(Ship &ship, Command &command);
 	// Prevent ships from stacking on each other when many are moving in sync.
 	void DoScatter(Ship &ship, Command &command);
+	bool DoSecretive(Ship &ship, Command &command);
 
 	static Point StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &shouldReverse);
 	// Get a vector giving the direction this ship should aim in in order to do
@@ -131,7 +141,7 @@ private:
 	void AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic = false) const;
 	// Fire whichever of the given ship's weapons can hit a hostile target.
 	// Return a bitmask giving the weapons to fire.
-	void AutoFire(const Ship &ship, FireCommand &command, bool secondary = true) const;
+	void AutoFire(const Ship &ship, FireCommand &command, bool secondary = true, bool isFlagship = false) const;
 	void AutoFire(const Ship &ship, FireCommand &command, const Body &target) const;
 
 	// Calculate how long it will take a projectile to reach a target given the
@@ -141,6 +151,8 @@ private:
 
 	void MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommands);
 
+	// True if found asteroid.
+	bool TargetMinable(Ship &ship) const;
 	// True if the ship performed the indicated event to the other ship.
 	bool Has(const Ship &ship, const std::weak_ptr<const Ship> &other, int type) const;
 	// True if the government performed the indicated event to the other ship.
@@ -161,16 +173,23 @@ private:
 		// actively needs to move back to the position it was holding.
 		static const int HOLD_ACTIVE = 0x001;
 		static const int MOVE_TO = 0x002;
+		// HARVEST is related to MINE and is for picking up flotsam after
+		// ATTACK.
+		static const int HARVEST = 0x003;
 		static const int KEEP_STATION = 0x100;
 		static const int GATHER = 0x101;
 		static const int ATTACK = 0x102;
 		static const int FINISH_OFF = 0x103;
+		// MINE is for fleet targeting the asteroid for mining. ATTACK is used
+		// to chase and attack the asteroid.
+		static const int MINE = 0x104;
 		// Bit mask to figure out which orders are canceled if their target
 		// ceases to be targetable or present.
 		static const int REQUIRES_TARGET = 0x100;
 
 		int type = 0;
 		std::weak_ptr<Ship> target;
+		std::weak_ptr<Minable> targetAsteroid;
 		Point point;
 		const System *targetSystem = nullptr;
 	};
@@ -194,6 +213,8 @@ private:
 
 	// Command applied by the player's "autopilot."
 	Command autoPilot;
+	// Position of the cursor, for when the player is using mouse turning.
+	Point mousePosition;
 	// General firing command for ships. This is a data member to avoid
 	// thrashing the heap, since we can reuse the storage for
 	// each ship.

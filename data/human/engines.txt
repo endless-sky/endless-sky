@@ -18,8 +18,8 @@ outfit "Volcano Afterburner"
 	"mass" 10
 	"outfit space" -10
 	"engine capacity" -10
-	"afterburner thrust" 37.5
-	"afterburner fuel" .1
+	"afterburner thrust" 27.1
+	"afterburner fuel" .125
 	"afterburner heat" 10.0
 	"afterburner effect" "afterburner"
 	description "An afterburner works by dumping hyperspace fuel into your engines and igniting it, producing a large amount of thrust. This can be very useful for dodging missiles or briefly escaping from faster opponents, but you must be careful to avoid using up so much fuel that you do not have enough left for hyperspace travel."
@@ -42,11 +42,11 @@ outfit "Caldera Afterburner"
 	"mass" 37
 	"outfit space" -37
 	"engine capacity" -37
-	"afterburner thrust" 166.5
-	"afterburner fuel" .4
+	"afterburner thrust" 120.0
+	"afterburner fuel" .5
 	"afterburner heat" 42.0
 	"afterburner effect" "caldera afterburner" 5
-	description "The Caldera afterburner is designed for heavy warships, allowing otherwise slow ships to gain a burst of speed to catch up to a faster target or flee from the heat of battle."
+	description "The Caldera Afterburner is designed for heavy warships, allowing otherwise slow ships to gain a burst of speed to catch up to a faster target or flee from the heat of battle."
 
 effect "caldera afterburner"
 	sprite "effect/afterburner"
@@ -67,12 +67,12 @@ outfit "Ionic Afterburner"
 	"mass" 16
 	"outfit space" -16
 	"engine capacity" -16
-	"afterburner thrust" 43.5
-	"afterburner fuel" .025
+	"afterburner thrust" 31.4
+	"afterburner fuel" .03
 	"afterburner energy" 5.1
 	"afterburner heat" 4.0
 	"afterburner effect" "ionic afterburner"
-	description "The ionic afterburner was designed by the Syndicate to compensate for the primary weakness of an ordinary afterburner: namely, that it consumes hyperspace fuel at a prodigious rate. Ionic afterburners instead use a small amount of fuel combined with a large burst of energy from your ship's batteries to achieve the same effect."
+	description "The Ionic Afterburner was designed by the Syndicate to compensate for the primary weakness of an ordinary afterburner: namely, that it consumes hyperspace fuel at a prodigious rate. Ionic afterburners instead use a small amount of fuel combined with a large burst of energy from your ship's batteries to achieve the same effect."
 
 effect "ionic afterburner"
 	sprite "effect/ionic afterburner"
@@ -140,7 +140,7 @@ outfit "X2700 Ion Thruster"
 	"flare sprite" "effect/ion flare/small"
 		"frame rate" 1.1
 	"flare sound" "ion small"
-	description "The X2700 ion thruster is intended mostly for use in small, single-person or two-person ships, as well as in fighters. It is also used in larger ships, such as freighters, that have very little space for propulsion systems or energy to drive them. But these larger ships move unbearably slowly as a result."
+	description "The X2700 Ion Thruster is intended mostly for use in small, single-person or two-person ships, as well as in fighters. It is also used in larger ships, such as freighters, that have very little space for propulsion systems or energy to drive them. But these larger ships move unbearably slowly as a result."
 	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space for the same amount of thrust."
 
 outfit "X3700 Ion Thruster"
@@ -156,7 +156,7 @@ outfit "X3700 Ion Thruster"
 	"flare sprite" "effect/ion flare/medium"
 		"frame rate" 1.0
 	"flare sound" "ion medium"
-	description "The X3700 ion thruster is designed for heavy freighters and small capital ships. In theory, it could be installed in smaller ships too, if they have enough engine space, to attain almost ridiculous speeds."
+	description "The X3700 Ion Thruster is designed for heavy freighters and small capital ships. In theory, it could be installed in smaller ships too, if they have enough engine space, to attain almost ridiculous speeds."
 	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space for the same amount of thrust."
 
 outfit "X4700 Ion Thruster"
@@ -172,7 +172,7 @@ outfit "X4700 Ion Thruster"
 	"flare sprite" "effect/ion flare/large"
 		"frame rate" 0.9
 	"flare sound" "ion large"
-	description "The X4700 ion thruster was developed when the Republic Navy began building warships so large that the X3700 was not sufficient for them. It allows even a capital ship to move at a respectable speed."
+	description "The X4700 Ion Thruster was developed when the Republic Navy began building warships so large that the X3700 was not sufficient for them. It allows even a capital ship to move at a respectable speed."
 	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space for the same amount of thrust."
 
 outfit "X5700 Ion Thruster"
@@ -544,7 +544,7 @@ outfit "A860 Atomic Thruster"
 	"flare sprite" "effect/atomic flare/huge"
 		"frame rate" 10
 	"flare sound" "atomic huge"
-	description "The A860 atomic thruster is the most powerful engine sold in human space, and is much more compact than any of the alternatives. But, you may need to upgrade your ship's power and cooling systems to handle it."
+	description "The A860 Atomic Thruster is the most powerful engine sold in human space, and is much more compact than any of the alternatives. But, you may need to upgrade your ship's power and cooling systems to handle it."
 
 
 outfit "A125 Atomic Steering"
