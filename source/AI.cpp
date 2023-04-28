@@ -3253,7 +3253,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 
 
 // Fire whichever of the given ship's weapons can hit a hostile target.
-void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary) const
+void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool isFlagship) const
 {
 	const Personality &person = ship.GetPersonality();
 	if(person.IsPacifist() || ship.CannotAct())
@@ -3331,6 +3331,16 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary) const
 		// Skip weapons that are not ready to fire.
 		if(!hardpoint.IsReady())
 			continue;
+
+		// Skip weapons omitted by the "Automatic firing" preference.
+		if(isFlagship)
+		{
+			const Preferences::AutoFire autoFireMode = Preferences::GetAutoFire();
+			if(autoFireMode == Preferences::AutoFire::GUNS_ONLY && hardpoint.IsTurret())
+				continue;
+			if(autoFireMode == Preferences::AutoFire::TURRETS_ONLY && !hardpoint.IsTurret())
+				continue;
+		}
 
 		const Weapon *weapon = hardpoint.GetOutfit();
 		// Don't expend ammo for homing weapons that have no target selected.
@@ -4014,10 +4024,10 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 
 	const shared_ptr<const Ship> target = ship.GetTargetShip();
 	AimTurrets(ship, firingCommands, !Preferences::Has("Turrets focus fire"));
-	if(Preferences::Has("Automatic firing") && !ship.IsBoarding()
+	if(Preferences::GetAutoFire() != Preferences::AutoFire::OFF && !ship.IsBoarding()
 			&& !(autoPilot | activeCommands).Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD)
 			&& (!target || target->GetGovernment()->IsEnemy()))
-		AutoFire(ship, firingCommands, false);
+		AutoFire(ship, firingCommands, false, true);
 
 	const bool mouseTurning = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
 	if(mouseTurning && !ship.IsBoarding() && !ship.IsReversing())
