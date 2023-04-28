@@ -243,6 +243,8 @@ void Mission::Load(const DataNode &node)
 			clearance = (child.Size() == 1 ? "auto" : child.Token(1));
 			clearanceFilter.Load(child);
 		}
+		else if(child.Size() == 2 && child.Token(0) == "ignore" && child.Token(1) == "clearance")
+			ignoreClearance = true;
 		else if(child.Token(0) == "infiltrating")
 			hasFullClearance = false;
 		else if(child.Token(0) == "failed")
@@ -397,6 +399,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("clearance", clearance);
 			clearanceFilter.Save(out);
 		}
+		if(ignoreClearance)
+			out.Write("ignore", "clearance");
 		if(!hasFullClearance)
 			out.Write("infiltrating");
 		if(hasFailed)
@@ -1249,7 +1253,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	for(const LocationFilter &filter : stopoverFilters)
 	{
 		// Unlike destinations, we can allow stopovers on planets that don't have a spaceport.
-		const Planet *planet = filter.PickPlanet(sourceSystem, !clearance.empty(), false);
+		const Planet *planet = filter.PickPlanet(sourceSystem, ignoreClearance || !clearance.empty(), false);
 		if(!planet)
 			return result;
 		result.stopovers.insert(planet);
@@ -1262,7 +1266,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.destination = destination;
 	if(!result.destination && !destinationFilter.IsEmpty())
 	{
-		result.destination = destinationFilter.PickPlanet(sourceSystem, !clearance.empty());
+		result.destination = destinationFilter.PickPlanet(sourceSystem, ignoreClearance || !clearance.empty());
 		if(!result.destination)
 			return result;
 	}
