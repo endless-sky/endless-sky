@@ -1343,7 +1343,7 @@ outfit "Nuclear Missile"
 		"hit effect" "medium explosion"
 		"inaccuracy" 1
 		"velocity" 6
-		"lifetime" 120
+		"lifetime" 60
 		"reload" 400
 		"firing energy" 10
 		"firing heat" 400
