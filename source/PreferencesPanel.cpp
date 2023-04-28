@@ -541,6 +541,7 @@ void PreferencesPanel::DrawSettings()
 		"Automatic firing",
 		BOARDING_PRIORITY,
 		"Control ship with mouse",
+		"Flagship flotsam collection",
 		EXPEND_AMMO,
 		"Extra fleet status messages",
 		"Fighters transfer cargo",

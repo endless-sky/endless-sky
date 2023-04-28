@@ -34,6 +34,7 @@ public:
 	int NoPersonSpawnWeight() const;
 	int NPCMaxMiningTime() const;
 	double DefaultLateralThrustRatio() const;
+	double UniversalFrugalThreshold() const;
 
 
 private:
@@ -42,6 +43,7 @@ private:
 	int noPersonSpawnWeight = 1000;
 	int npcMaxMiningTime = 3600;
 	double defaultLateralThrustRatio = 0.25;
+	double universalFrugalThreshold = .75;
 };
 
 
