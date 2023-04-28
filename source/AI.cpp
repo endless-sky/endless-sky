@@ -3302,10 +3302,14 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 			continue;
 
 		// Skip weapons omitted by the "Automatic firing" preference.
-		if(isFlagship
-				&& ((Preferences::GetAutoFire() == Preferences::AutoFire::GUNS_ONLY && hardpoint.IsTurret())
-				|| (Preferences::GetAutoFire() == Preferences::AutoFire::TURRETS_ONLY && !hardpoint.IsTurret())))
-			continue;
+		if(isFlagship)
+		{
+			const Preferences::AutoFire autoFireMode = Preferences::GetAutoFire();
+			if(autoFireMode == Preferences::AutoFire::GUNS_ONLY && hardpoint.IsTurret())
+				continue;
+			if(autoFireMode == Preferences::AutoFire::TURRETS_ONLY && !hardpoint.IsTurret())
+				continue;
+		}
 
 		const Weapon *weapon = hardpoint.GetOutfit();
 		// Don't expend ammo for homing weapons that have no target selected.
