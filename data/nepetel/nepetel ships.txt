@@ -2,6 +2,7 @@ shipyard "Imo Loo Mer Basics"
 	"Cenokoj"
 	"Cilevikar"
 	"Lilikar"
+	"Witakul"
 	"Petelek"
 	"Outrider Petelek"
 	"Outrider Petelek (Gunship)"
@@ -271,6 +272,63 @@ ship "Petelek"
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
 	description `The Nepetel seem to follow strong design model of form over function, and this ship is no exception. Though it may look like it was carved out of junk, the Petelek is a robust carrier warship with potent offensive potential. Like all Netepel ships, the Petelek boasts a potent internal repair system in addition to powerful shipboard coolers, keeping the ship running cold even when fights begin to get out of hand.`
+
+ship "Witakul"
+	sprite "ship/witakul"
+	thumbnail "thumbnail/witakul"
+	attributes
+		category "Interceptor"
+		"cost" 1280000
+		"shields" 1400
+		"hull" 4700
+		"required crew" 2
+		"bunks" 7
+		"mass" 110
+		"drag" 4.6
+		"hull repair rate" 0.8
+		"hull energy" 0.6
+		"hull heat" 1.2
+		"hull fuel" 0.04
+		"active cooling" 16
+		"cooling energy" 1.6
+		"heat dissipation" .6
+		"fuel capacity" 600
+		"cargo space" 18
+		"outfit space" 189
+		"weapon capacity" 64
+		"engine capacity" 49
+		weapon
+			"blast radius" 100
+			"shield damage" 800
+			"hull damage" 450
+			"hit force" 1000
+	outfits
+		"Tekepat Combo Block"
+		"Nepetel Anti-Missile"
+		
+		"Small MPSC"
+		"K2-015 Betavoltaic"
+		
+		"Bekir Dual Thruster"
+		"Bekir Plasma Steering"
+		"Scram Drive"
+		
+	engine -3 84.5
+		zoom 1.1
+	gun 26 -93.5
+	turret -9.5 42
+	bay "Drone" -22.5 -32.5 under left
+	bay "Drone" -22.5 10 under left
+	leak "leak" 40 50
+	leak "flame" 40 70
+	leak "big leak" 70 30
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description `The Nepetel are extremely fond of drone bays, and even their smallest ships reflect this: despite being an interceptor, the Witakul has space for two Lilikar Drones; this, combined with its rather large armament capacity, makes it perfectly suited to being a "wingleader" of sorts, joining in the fray with its own armament while providing anti-missile support.`
 
 ship "Lilikar"
 	sprite "ship/lilikar"
