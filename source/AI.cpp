@@ -627,13 +627,16 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			if(isCloaking)
 				command |= Command::CLOAK;
 		}
+
 		// Cloak if the AI considers it appropriate.
-		if((!it->IsYours() || (!isCloaking && Preferences::Has("Defensive escort cloaking"))) && DoCloak(*it, command))
-		{
-			// The ship chose to retreat from its target, e.g. to repair.
-			it->SetCommands(command);
-			continue;
-		}
+		bool escortShouldCloak = !isCloaking && Preferences::Has("Defensive escort cloaking");
+		if(!it->IsYours() || escortShouldCloak)
+			if(DoCloak(*it, command))
+			{
+				// The ship chose to retreat from its target, e.g. to repair.
+				it->SetCommands(command);
+				continue;
+			}
 
 		shared_ptr<Ship> parent = it->GetParent();
 		if(parent && parent->IsDestroyed())
