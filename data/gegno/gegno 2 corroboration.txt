@@ -21,7 +21,6 @@ mission "Passing Observations"
 		has: "First Contact: Gegno Scin: offered"
 		not "Gegno Genocide Defense: offered"
 	on complete
-		event "passerby" 0 7
 		conversation
 			`Test.`
 
@@ -29,28 +28,56 @@ mission "Passing Observations"
 		on kill
 			set "vyx killed"
 		government "Gegno Vi"
-		personality heroic vindictive staying uninterested
+		personality heroic vindictive staying ramming daring uninterested swarming
 		system "Vorsuke"
-		ship "Rhyolite" "name"
+		ship "Rhyolite" "Imtydei"
 	npc save
 		government "Gegno Vi"
-		personality heroic vindictive staying uninterested
+		personality heroic vindictive staying uninterested swarming
 		system "Vorsuke"
-		ship "Schist" "name"
-
-event "passerby"
+		ship "Schist" "Ess Ouec"
 
 
-mission "Foreign Spectator"
+mission "Foreign Spectator I"
 	invisible
 	landing
 	to offer
-	
-	
-	on enter
+		has "Passing Observations: offered"
+		not "Gegno Genocide Defense: offered"
+	on enter "Eogho"
 		fail
 		conversation
-
+			`Test.`
+	npc
+		government "Gegno Vi"
+		personality heroic vindictive ramming staying uninterested entering
+		system "Eogho"
+		ship "Eclogite" "Tschelgi Dueyu"
+	npc
+		government "Gegno Scin"
+		personality heroic vindictive staying uninterested entering
+		system "Eogho"
+		ship "Felsic" "Tschelgi Dueich"
+	npc
+		government "Gegno Vi (Neutral)"
+		personality heroic vindictive staying uninterested swarming
+		system "Eogho"
+		fleet
+			names "gegno vi"
+			variant
+				"Hornfel" 2
+				"Eclogite"
+				"Slate"
+	npc
+		government "Gegno Scin (Neutral)"
+		personality heroic vindictive staying uninterested swarming
+		system "Eogho"
+		fleet
+			names "gegno scin"
+			variant
+				"Coesite" 2
+				"Tridymite"
+				"Mica" 2
 
 
 mission "Derelict Desponders"
