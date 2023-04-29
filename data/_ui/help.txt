@@ -1,0 +1,170 @@
+# Copyright (c) 2016 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+help "bank"
+	`This is the bank. Here, you can apply for new mortgages, if your income and credit history allows it. The bank is also a good place to get an overview of your daily expenses: mortgage payments, crew salaries, etc.`
+	`Paying off a mortgage early means you pay less interest to the bank, but it is sometimes wiser to instead use your money to buy a bigger ship which can earn you more income.`
+
+help "bank advanced"
+	`When entering a credit value at the bank, you can put in an exact number, or use the suffixes K, M, B, and T as shorthand for thousands, millions, billions, and trillions. For example, entering a value such as "100k" would count as 100,000 credits.`
+	`Entering a number that is higher than what you or the bank have available will default to the maximum available value. For example, entering "1m" to pay off a 100,000 credit loan will completely pay off the loan without giving extra, should you have available credits.`
+
+help "basics 1"
+	`Press <View star map> to bring up your map. Select a destination, then close the map and press <Initiate hyperspace jump> to jump. Press <Land on planet / station> to land.`
+
+help "basics 2"
+	`For the main menu, press <Show main menu>. The control key bindings can be viewed and changed in the preferences.`
+
+help "dead"
+	`Uh-oh! You just died. The universe can be a dangerous place for new captains!`
+	`Fortunately, your game is automatically saved every time you leave a planet. To load your most recent saved game, press <Show main menu> to return to the main menu, then click on "Load / Save" and "Enter Ship."`
+
+help "disabled"
+	`Your ship just got disabled! Before an enemy ship finishes you off, you should find someone to help you.`
+	`Press <Select next ship> to cycle through all the ships in this system. When you have a friendly one selected, press <Talk to selected ship> to hail it. You can then ask for help, and the ship will come over and patch you up.`
+	`If the ship that disabled you is still hanging around, you might need to hail them first and bribe them to leave you alone.`
+
+help "hiring"
+	`Hiring extra crew is only helpful if you plan on capturing enemy ships. Each crew member other than yourself is paid 100 credits per day. Larger ships require more than one crew member, but you will automatically hire the minimum number of crew when you buy those ships.`
+	`Crew members take up space that can otherwise be used for passengers.`
+
+help "jobs"
+	`Taking on jobs is a safe way to earn money. Special missions are offered in the Spaceport; more mundane jobs are posted on the Job Board. Most special missions are only offered once: if you turn one down, it will not be offered to you again.`
+	`The payment for a job depends on how far you must travel and how much you are carrying. Jobs that have a time limit pay extra, but you are paid nothing if you miss the deadline.`
+	`As you gain a combat reputation, new jobs will become available, including escorting convoys and bounty hunting.`
+
+help "lost 1"
+	`There's nothing out here. The only way to get to another star system is by jumping through hyperspace. Unless you are out of fuel, you can jump by pressing <Initiate hyperspace jump>. To select which system you want to jump to, bring up the map by pressing <View star map>.`
+	`At any time, you can return to the main menu by pressing <Show main menu>. All the key controls can be viewed, and changed, in the Preferences.`
+
+help "lost 2"
+	`You seem to be lost. The universe is a big and complicated place, and no one is going to hold your hand out here. You might want to review the key controls (press <Show main menu> to bring up the main menu, then click on "Preferences") to figure out what is going on. There is also a player's manual with much more information. To read it, go to endless-sky.github.io and click on "Manual."`
+
+help "lost 3"
+	`The void between the stars is cold and empty. Your ship, a tiny oasis of warmth, drifts alone out here illuminated only by the distant light of cold, uncaring suns. The distances between the stars are vast, beyond what the human mind can grasp; you could spend your whole life drifting out here and never reach another star.`
+	`Or, you could press <Initiate hyperspace jump> to use your hyperdrive. It will get you there a whole lot faster.`
+
+help "lost 4"
+	`Out here in the endless sky, you have the freedom to do whatever you want in your tiny new spaceship. Become the captain of a merchant fleet. Or a bounty hunter. Discover strange alien societies and powerful new technology.`
+	`Or if you want, you can just keep drifting here in empty space. Unless you've been ignoring all these messages, you already know that you can jump to another star system by selecting it in the map (which you bring up by pressing <View star map>), then closing the map and pressing <Initiate hyperspace jump>.`
+
+help "lost 5"
+	`The hum of your ship's engine is the only sound you hear. As you have traveled farther and farther away from the center of this star system, even the occasional plink of micrometeorites against your hull has stopped. Deep space is utterly quiet and strangely beautiful. A different captain might grow bored out here, but you find yourself content and at peace.`
+	`Or maybe you're just really, really bad at figuring out how to play this game.`
+
+help "lost 6"
+	`You slip deeper and deeper into the zenlike calm of outer space. The Tao which can be spoken is not the true Tao. The game that must be played is not the true game. You let go of all desire: your desire to press <Show main menu> and check the game's preferences to find out how to control your ship. The desire to view the other places you can travel to by pressing <View star map>. You release even the desire to press <Initiate hyperspace jump> and initiate a random hyperjump in whatever direction you are facing in. Enlightenment hovers on the edge of your consciousness, so close you can almost grasp it.`
+
+# Note to future proofreaders: "vasty nothingness" is a reference to Firefly, see http://signal.serenityfirefly.com/mmx/segment/view.php/2253
+help "lost 7"
+	`The void whispers its secret to your soul: outer space, it says, is not about lasers or explosions. It is not about fighting space pirates or saving the galaxy. No, the true message of the void is the utter loneliness you have found while drifting here: one tiny speck of warmth, insignificant compared to the vasty nothingness between the stars and the trillions upon trillions of souls of proud humans and inscrutable aliens whom you will never meet.`
+	`The inner voice urging you to do something, anything rather than just continuing to drift here, falls silent...`
+
+help "map"
+	`This map shows all the star systems you know about and the hyperspace links between them. You can use the map to plot a hyperspace course by clicking on the system you want to travel to. To initiate a jump to that system, close the map and press <Initiate hyperspace jump>.`
+
+help "map advanced"
+	`As you explore more of the galaxy, the star map will quickly become a very powerful tool. Clicking on a distant system will automatically plot the quickest route to it. You can Shift+click on systems to plot a route between them, or Control+click to select a system without setting a route to it.`
+	`There are many other useful modes the map can be set to. Click on one of the buttons in the lower right corner to learn more.`
+
+help "map advanced ports"
+	`The ports panel shows you where systems with spaceports are, as well as a plethora of other information. Clicking on the name of the system, the government of the system, the lines under the name of each planet, or any trade commodity will color the map differently, the key to which can be seen on the right side of the screen.`
+	`Clicking the name of a planet, or clicking on a planet in the orbit map on the right side of the screen, will show that planet's description if you have visited it already. Clicking a planet on the orbit map will also tell your autopilot to land on that planet after you have arrived at that system at the end of your jump path.`
+
+help "map advanced shops"
+	`The shipyard and outfitter map panels respectively display the ships and outfits sold on any planets that you have seen. Ships and outfits are displayed in categories which can be collapsed by clicking on the category name. Using Shift+click on a category name will collapse or uncollapse all the categories at once.`
+	`Each ship or outfit can be clicked on, displaying that item's stats while also highlighting any planets where it is sold. Using Shift+click on a ship or outfit after you already have one selected will display that item's stats side by side with the previously selected item.`
+
+help "multiple ships"
+	`Now that you have more than one ship, while landed on a planet you can reorder the ships in your fleet by clicking and dragging them in the shipyard, outfitter, or player info panel. Ships can also be sorted by clicking on the column headers in the player info panel. You will use the first ship in the list as your flagship. In the player info panel (accessed with <View player info>) you can also "park" a ship on a planet if you want to travel somewhere without it coming with you.`
+
+help "ship info"
+	`The ship info tab lets you view detailed information about ships in your fleet at any time. This includes any information you could see at a shipyard or outfitter, as well as the cargo and passengers distributed among each ship.`
+	`Ships can be renamed in this panel by clicking on the ship's name. While landed on a planet, you are able to change how guns and turrets are arranged by dragging the name of a weapon to another gun or turret location. While in flight, you are able to jettison individual pieces of cargo by clicking on the name of the cargo.`
+
+help "multiple ship controls"
+	`Once you're in space with multiple ships that you own, you can give orders to those escorts. Orders will be given to all selected escorts, or if no escorts are selected then all your escorts will receive the order. Escorts can be selected by either clicking on them in space, clicking the ship icon at the bottom left of the screen, or by clicking and dragging to select a group of escorts in space. The list of escort order keys can be found in the preferences panel.`
+	`Escorts can also be ordered with the mouse. Right-clicking on an empty point in space will order escorts to fly to and hold position at that point, while right-clicking on a hostile ship will order your escorts to focus fire on it, and right-clicking on a friendly target will cause them to follow it.`
+	`Escorts can be saved into control groups by pressing Control+number key. All selected escorts will then be bound to that number key, selecting the group when pressed.`
+
+help "fleet asteroid mining"
+	`With an asteroid scanner and a fleet, you can direct your fleet to assist with mining operations and collect mined resources.`
+	`If your escort or fighter has no weapons but has cargo space, then it will chase after mined resources instead of mining.`
+
+help "fleet asteroid mining shortcuts"
+	`Shortcuts for asteroid targeting:`
+	`	<Select nearest asteroid> selects the nearest asteroid if you have an asteroid scanner.`
+	`	<Fleet: Fight my target> will focus your fleet on mining a targeted asteroid.`
+	`	<Fleet: Harvest Flotsam> will toggle whether your fleet tries to pick up flotsams.`
+	``
+	`Alternate targeting:`
+	`	Left click - will target an asteroid without mining it.`
+	`	Right click - will focus your fleet to chase an asteroid and mine it.`
+
+help "fleet harvest tutorial"
+	`You can order your escort to pick up discarded cargo or asteroid flotsam.`
+	``
+	`<Fleet: Harvest Flotsam> will order your fleet to collect flotsam if they have free cargo.`
+	``
+	`Equip an asteroid scanner to learn more.`
+
+help "fighters transfer cargo"
+	`By enabling the "Fighters transfer cargo" preference, drones and fighters in your fleet will transfer cargo to their parent carrier if there is cargo space in the carrier. If a fighter cargo hold is full then it will return to the carrier automatically.`
+	``
+	`Drones and fighters will transfer cargo upon docking with their carrier for any reason.`
+
+help "try out fighters transfer cargo"
+	`You have a carrier which can use fighters to collect dropped materials if the fighter has cargo space.`
+	``
+	`	In Preferences and Settings under the AI section, turn on "Fighters transfer cargo" to learn more.`
+
+help "navigation"
+	`Welcome to the sky! To travel to another star system, press <View star map> to view your map, and click on the system you want to travel to. Your hyperdrive can only travel along the "links" shown on your map. After selecting a destination, close your map and press <Initiate hyperspace jump> to jump to that system.`
+	`Your ship does not jump until you release the jump key. Once you have escorts, you can hold the key to get them ready to jump, then release it to have them all jump simultaneously.`
+	`When you reach a new system, you can press <Land on planet / station> to land on any inhabited planets that are there.`
+	`Also, don't worry about crashing into asteroids or other ships; your ship will fly safely below or above them.`
+
+help "outfitter"
+	`Here, you can buy new equipment for your ship. Your ship has a limited amount of "outfit space," and most outfits use up some of that space.`
+	`Some types of outfits have other requirements as well. For example, only some of your outfit space can be used for engines or weapons; this is your ship's "engine capacity" and "weapon capacity." Guns and missile launchers also require a free "gun port," and turrets require a free "turret mount." Also, missiles can only be bought if you have the right launcher installed.`
+	`Use your scroll wheel, or click and drag, to scroll the view.`
+	`As in the trading panel, you can hold down Shift, Control, or Alt to buy 5, 20, or 500 of an outfit at once, or multiple keys for larger amounts.`
+
+help "cargo management"
+	`Sometimes you may want to buy some outfits directly into your cargo hold instead of having them installed. Perhaps a mission has asked you to retrieve some outfits or you want to carry extra ammunition to refill your ships somewhere that does not stock those weapons. To accomplish this, you need to switch out of installation mode into 'purchase to cargo' mode. This can be achieved by Control+clicking on your selected ship to deselect it.`
+	`When you are in 'purchase to cargo' mode, your ship information on the right-hand side will be replaced by information on how much cargo space you currently have available.`
+	`Outfits that are in your cargo hold can be (re)installed at any outfitter without cost.`
+
+help "uninstalling and storage"
+	`You can also uninstall outfits directly into planetary storage by selecting the outfit and pressing U. This can be useful for if you want to shuffle outfits between ships, store outfits for future use, or simply try on different outfits. Outfits in storage can also be transferred to cargo when you go to 'purchase to cargo' mode. Outfits that are in planetary storage or cargo can be (re)installed at any outfitter without cost.`
+	`If you sell an outfit at an outfitter, then you can immediately buy it back for the same price that you sold it, so long as you do not leave the planet. This means that you do not necessarily need to worry about uninstalling outfits into planetary storage when you are changing outfits around.`
+
+help "stranded"
+	`Oops! You just ran out of fuel in an uninhabited star system. Fortunately, other ships are willing to help you.`
+	`Press <Select next ship> to cycle through all the ships in this system. When you have a friendly one selected, press <Talk to selected ship> to hail it. You can then ask for help, and if it has fuel to spare it will fly over and transfer fuel to your ship. This is easiest for the other ship to do if your ship is nearly stationary.`
+
+help "trading"
+	`This is the trading panel. Earn money by buying commodities at a low price in one system, and selling at a higher price elsewhere. To view your map of commodity prices in other systems, press <View star map>. To buy or sell, click on [buy] or [sell], or select a line with the up and down arrows and press "+" or "-" (or Enter and Delete).`
+	`You can buy 5 tons at once by holding down Shift, 20 by holding down Control, 500 by holding down Alt, or larger amounts at a time by holding down two keys at once, or even all three.`
+
+help "friendly disabled"
+	`This ship is disabled and needs your help to patch them up! Pressing <Board selected ship> will fly you to their ship and get them up and running again. Just be sure to do it when no one is trying to kill you, or they could get caught in the crossfire!`
+
+help "control ship with mouse"
+	`You've enabled controlling your ship with your mouse.`
+	``
+	`The nose of your ship will always turn toward your mouse pointer.`
+	`<Forward thrust> is used to thrust forward.`
+	`<Reverse> is used to thrust reverse.`
+	`Right mouse click will fire primary weapons.`
+	`<Mouse turning (hold)> will toggle mouse turning while it is held.`

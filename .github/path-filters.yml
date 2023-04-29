@@ -3,12 +3,8 @@ data:
   - 'images/**/*'
   - 'sounds/**/*'
 
-game_code: &build
+game_code:
   - 'source/**'
-
-linux:
-  - SConstruct
-  - *build
 
 unit_tests:
   - 'tests/unit/**/*.h'
