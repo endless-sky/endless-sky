@@ -3179,7 +3179,7 @@ conversation "cultural data for coalition group"
 	label "walk faster"
 	`	You slightly increase your pace, but the group does too. They eventually catch up to you. You turn to face them, as they begin speaking to you.`
 	label "mission intro"
-	`	"Greetings, fellow human. A peaceful group, we are. Curious about your race, we are, so for you, a mission we have.", says one of the Coalition citizens, using a translation box.`
+	`	"Greetings, human friend. Collectors of literature, we are. Curious about your race, and the books they have written, we are, so for you, a mission we have.", says one of the Coalition citizens, using a translation box.`
 	`	"A small mission, it is. Knowledge from your race, we seek. Pay you 180,000 credits and be very grateful, we would, if accept this mission, you will.", explains the citizen.`
 	branch "you already have everything"
 		has "human cultural data"
