@@ -3179,7 +3179,7 @@ conversation "cultural data for coalition group"
 	label "walk faster"
 	`	You slightly increase your pace, but the group does too. They eventually catch up to you. You turn to face them, as they begin speaking to you.`
 	label "mission intro"
-	`	"Greetings, human friend. Collectors of literature, we are. Curious about your race, and the books they have written, we are, so for you, a mission we have.", says one of the Coalition citizens, using a translation box.`
+	`	"Greetings, fellow human. A peaceful group, we are. Curious about your race, we are, so for you, a mission we have.", says one of the Coalition citizens, using a translation box.`
 	`	"A small mission, it is. Knowledge from your race, we seek. Pay you 180,000 credits and be very grateful, we would, if accept this mission, you will.", explains the citizen.`
 	branch "you already have everything"
 		has "human cultural data"
@@ -3408,12 +3408,12 @@ mission "Fangvin: Struggling Author 3"
 	on offer
 		conversation
 			`Going through the spaceport looking for Anna, you finally find her at a restaurant serving food made for Saryds, eating from a plate of vegetables, her laptop next to the plate of food. She sees you and motions for you to take a seat.`
-			`	You sit down next to Anna. "Finally, something I can eat that isn't a mix of vomit and soup!"`
+			`	You sit down next to Anna. "These vegetables are so delicious! After months of instant noodles and takeout back home, it finally feels good to eat something that's actually much healthier."`
 			choice
 				`	"How good is it?"`
 					goto "it's very good"
 				`	"What did you usually eat back in human space?"`
-			`	"A lot. As an author, all I had to eat were instant noodles and takeout food as I never could find time in my schedule to cook at home. I was working hard on Beyond the Hyperdrive at the time. This food is better than any instant noodle brand I could ever find on Zug."`
+			`	"My diet was not exactly the best. All I could eat were instant noodles and takeout food as I never could find time in my schedule to cook at home. I was working hard on Beyond the Hyperdrive at the time. This food is better than any instant noodle brand I could ever find on Zug."`
 			choice
 				`	"What's our plan now?"`
 				`	"What are we going to do next?"`
