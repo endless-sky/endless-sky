@@ -1,8 +1,8 @@
 # Building on Linux
 
-You will need at least CMake 3.21. You can get the latest version from the [offical website](https://cmake.org/download/). You will also need a C++ compiler (usually gcc) and Ninja.
+You will need at least CMake 3.21. You can get the latest version from the [offical website](https://cmake.org/download/). You will also need a C++ compiler (usually gcc) and [Ninja](https://ninja-build.org/).
 
-**Note**: If your distro does not provide up-to-date version of the needed libraries, you will need to tell CMake to build the libraries from source by passing `-DES_USE_SYSTEM_LIBRARIES=OFF` to CMake when configuring.
+**Note**: If your distro does not provide up-to-date versions of the needed libraries, you will need to tell CMake to build the libraries from source by passing `-DES_USE_SYSTEM_LIBRARIES=OFF` to CMake when configuring.
 
 If you use a reasonably up-to-date distro, then you can use your favorite package manager to install the needed dependencies:
 

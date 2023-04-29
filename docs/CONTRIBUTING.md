@@ -4,7 +4,7 @@
 
 **You can get a copy of the code either using "git clone," or using the repo's download button to obtain a [.ZIP archive](https://github.com/endless-sky/endless-sky/archive/master.zip).** The game's root directory, where your unzipped/`git clone`d files reside, will be your starting point for compiling the game.
 
-How you build Endless Sky will then depend on your operating system: [Windows](readme-windows.md], [Linux](readme-linux.md), [MacOS](readme-macos.md). Popular IDEs are supported through their CMake integration, for example: Visual Studio, Visual Studio Code, XCode, CodeBlocks, CLion, and many more.
+How you build Endless Sky will then depend on your operating system: [Windows](readme-windows.md], [Linux](readme-linux.md), [macOS](readme-macos.md). Popular IDEs are supported through their CMake integration, for example: Visual Studio, Visual Studio Code, XCode, CodeBlocks, CLion, and many more.
 
 <details>
 <summary>Command line build instructions</summary>
@@ -33,7 +33,7 @@ You can get a list of integration tests with `ctest --preset <preset>-integratio
 Replace `<preset>` with one of the following presets:
 
 - Windows: `clang-cl` (builds with Clang for Windows), `mingw` (builds with MinGW)
-- MacOS: `macos` or `macos-arm` (builds with the default compiler)
+- macOS: `macos` or `macos-arm` (builds with the default compiler)
 - Linux: `linux` (builds with the default compiler)
 
 </details>

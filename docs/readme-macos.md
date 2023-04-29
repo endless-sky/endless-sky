@@ -1,4 +1,4 @@
-# Building on MacOS
+# Building on macOS
 
 Install [Homebrew](https://brew.sh). Once it is installed, use it to install the tools and libraries you will need:
 
@@ -18,4 +18,4 @@ If you want to use the XCode IDE, from the root of the project folder run:
 $ cmake --preset macos -G Xcode # macos-arm for Apple Silicon
 ```
 
-The XCode project is located in the `build/` directory.
+The created XCode project is located in the `build/` directory.

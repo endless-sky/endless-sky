@@ -6,14 +6,14 @@ You'll need the MSVCRT runtime version, 64-bit. The latest version is currently 
 
 Extract the zip file in a folder whose path doesn't contain a space (C:\ for example) and add the bin\ folder inside to your PATH (Press the Windows key and type "edit environment variables", then click on PATH and add it in the list).
 
-You will also need to install [CMake](https://cmake.org) (if you don't already have them).
+You will also need to install [CMake](https://cmake.org) (if you don't already have it).
 
 ## Code::Blocks
 
 If you want to use the Code::Blocks IDE, from the root of the project folder run:
 
 ```powershell
-> cmake -G"CodeBlocks - Ninja" --preset mingw
+> cmake -G "CodeBlocks - Ninja" --preset mingw
 ```
 
-Now there will be a Code::Blocks project inside `build\mingw`.
+This will create a Code::Blocks project inside `build\mingw`.
