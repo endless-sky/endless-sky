@@ -3306,9 +3306,9 @@ mission "Fangvin: Struggling Author 1"
 				`	"What do you write?"`
 					goto "what do you write"
 			label "what do you write"
-			`	"I write science fiction novels. My latest novel was 'Beyond the Hyperdrive', which I released a few weeks ago. It's about a bunch of humans who steal jump drives from the Quarg. Here, have a copy."`
-			`	Anna retrieves a hardcover book from her bag. It has an image of a Jump Drive on it. You take the book.`
-			`	"You'll like it, I promise."`
+			`	"I write science fiction novels. My latest novel was 'Beyond the Hyperdrive', which I released a few weeks ago. It is an exciting novel chronicling the story of a group of humans who steal the Quarg's jumping technology and see what's truly beyond the hyperlanes we've known for so long. Here, have a copy."`
+			`	Anna retrieves a hardcover book from her bag. It has an image of a human right next to a Quarg ship on it. You take the book. You read over the front and back flaps, which confirms most of what Anna tells you about her book, and see her signature on the title page.`
+			`	"You'll like it, I promise. It's a signed copy too, just for you."`
 			choice
 				`	"How long is the book?`
 					goto "how long is the book"
