@@ -401,5 +401,9 @@ void MissionAction::LoadDialog(const DataNode &node)
 		if(child.Size() == 2 && child.Token(0) == "phrase")
 			dialog.emplace_back("${" + child.Token(1) + "}", GetToDisplay(child));
 		else
+		{
+			if(child.Size() > 1)
+				child.PrintTrace("Ignoring extra tokens.");
 			dialog.emplace_back(child.Token(0), GetToDisplay(child));
+		}
 }
