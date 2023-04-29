@@ -1680,7 +1680,8 @@ bool PlayerInfo::TakeOff(UI *ui)
 				continue;
 
 			// Figure out how much income you get for selling this cargo.
-			int64_t value = commodity.second * static_cast<int64_t>(system->Trade(commodity.first));
+			int64_t value = 0;
+			if(hasSpaceport) value = commodity.second * static_cast<int64_t>(system->Trade(commodity.first));
 			income += value;
 
 			int original = originalTotals[commodity.first];
@@ -1722,11 +1723,15 @@ bool PlayerInfo::TakeOff(UI *ui)
 	{
 		// Report how much excess cargo was sold, and what profit you earned.
 		ostringstream out;
-		out << "You sold " << Format::CargoString(sold, "excess cargo") << " for " << Format::CreditString(income);
-		if(totalBasis && totalBasis != income)
-			out << " (for a profit of " << Format::CreditString(income - totalBasis) << ").";
-		else
-			out << ".";
+		if(hasSpaceport)
+		{
+		  out << "You sold " << Format::CargoString(sold, "excess cargo") << " for " << Format::CreditString(income);
+		  if(totalBasis && totalBasis != income)
+		    out << " (for a profit of " << Format::CreditString(income - totalBasis) << ").";
+		  else
+		    out << ".";
+		}
+		else out << "You dumped " << Format::CargoString(sold, "excess cargo.") 
 		Messages::Add(out.str(), Messages::Importance::High);
 	}
 
