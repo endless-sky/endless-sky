@@ -479,15 +479,18 @@ mission "First Contact: Gegno Scin"
 				decline
 			
 			label "nothing"
-			`	They stare at you for a few seconds, then retrieve their device. Still staring at you, the Scin sits up more rigidly, then tilts their head to the right, followed by an awkward silence.`
+			`	They stare at you for a few seconds, then retrieve their device. The Scin sits up more rigidly, giving you a deep look, then tilts their head to the right, followed by an awkward silence.`
 			choice
 				`	(Tilt your head to the right as well.)`
 				`	(Tilt your head to the left.)`
 				`	(Do nothing.)`
+					goto "no thoughts"
 			`	Once you tilt your head, they note down your behavior on the device. Subsequently, they get up from the ground and begin heading back to their ships. The heavier-armored Scin also raise from their stances and follow behind them.`
 			`	All of a sudden, a gust of sand rushes past from behind you, and you turn around to see three more armored Scin rising from the sand, one of them fairly close to you. Their armor is much different than that of the others, characterized by darker shades, sharper edges, and several gadgets, but what is most notable is their possesion of sickle-esque blade weapons. It appears the Scin had more control of the situation than you thought, and had you made the wrong choice in the encounter, it's possible you would be on the receiving end of one of those blades.`
 			`	You return to your ship and take off from the planet, but the Scin do not follow you any further.`
 				decline
+				
+			label "no thoughts"
 
 			label "reach"
 			action
