@@ -1,3 +1,4 @@
+
 /* PlayerInfo.cpp
 Copyright (c) 2014 by Michael Zahniser
 
@@ -1682,7 +1683,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 			// Figure out how much income you get for selling this cargo.
 			int64_t value = 0;
 			if(hasSpaceport)
-		value = commodity.second * static_cast<int64_t>(system->Trade(commodity.first));
+                value = commodity.second * static_cast<int64_t>(system->Trade(commodity.first));
 			income += value;
 
 			int original = originalTotals[commodity.first];
@@ -1725,15 +1726,15 @@ bool PlayerInfo::TakeOff(UI *ui)
 		// Report how much excess cargo was sold, and what profit you earned.
 		ostringstream out;
 		if(income) // we check against income for systems like Postverta where trading is disabled by having all prices at 0
-	{
-	    out << "You sold " << Format::CargoString(sold, "excess cargo") << " for " << Format::CreditString(income);
-	    if(totalBasis && totalBasis != income)
-		out << " (for a profit of " << Format::CreditString(income - totalBasis) << ").";
-	    else x
-		out << ".";
+        {
+            out << "You sold " << Format::CargoString(sold, "excess cargo") << " for " << Format::CreditString(income);
+            if(totalBasis && totalBasis != income)
+                out << " (for a profit of " << Format::CreditString(income - totalBasis) << ").";
+            else x
+                out << ".";
 		}
 		else
-	     out << "You dumped " << Format::CargoString(sold, "excess cargo.");
+             out << "You dumped " << Format::CargoString(sold, "excess cargo.");
 		Messages::Add(out.str(), Messages::Importance::High);
 	}
 
