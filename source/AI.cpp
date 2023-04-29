@@ -1986,11 +1986,23 @@ double AI::TurnToward(const Ship &ship, const Point &vector, const double precis
 	double dot = vector.Dot(facing);
 	if(dot > 0.)
 	{
-		if(precision < 1. && precision > 0. && dot * dot >= precision * vector.LengthSquared() * facing.LengthSquared())
-			return 0.;
+		// Is the facing direction aligned with the target direction with sufficient precision?
+		// The maximum angle between the two directions is given by: arccos(sqrt(precision)).
+		bool close = false;
+		if(precision < 1. && precision > 0. && dot * dot >= precision * vector.LengthSquared())
+			close = true;
 		double angle = asin(min(1., max(-1., cross / vector.Length()))) * TO_DEG;
-		if(fabs(angle) <= ship.TurnRate())
+		// Is the angle between the facing and target direction smaller than
+		// the angle the ship can turn through in one step?
+		if(fabs(angle) < ship.TurnRate())
+		{
+			// If the ship is within one step of the target direction,
+			// and the facing is already sufficiently aligned with the target direction,
+			// don't turn any further.
+			if(close)
+				return 0.;
 			return -angle / ship.TurnRate();
+		}
 	}
 
 	bool left = cross < 0.;
@@ -3222,7 +3234,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 
 
 // Fire whichever of the given ship's weapons can hit a hostile target.
-void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary) const
+void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool isFlagship) const
 {
 	const Personality &person = ship.GetPersonality();
 	if(person.IsPacifist() || ship.CannotAct())
@@ -3300,6 +3312,16 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary) const
 		// Skip weapons that are not ready to fire.
 		if(!hardpoint.IsReady())
 			continue;
+
+		// Skip weapons omitted by the "Automatic firing" preference.
+		if(isFlagship)
+		{
+			const Preferences::AutoFire autoFireMode = Preferences::GetAutoFire();
+			if(autoFireMode == Preferences::AutoFire::GUNS_ONLY && hardpoint.IsTurret())
+				continue;
+			if(autoFireMode == Preferences::AutoFire::TURRETS_ONLY && !hardpoint.IsTurret())
+				continue;
+		}
 
 		const Weapon *weapon = hardpoint.GetOutfit();
 		// Don't expend ammo for homing weapons that have no target selected.
@@ -3981,10 +4003,10 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 
 	const shared_ptr<const Ship> target = ship.GetTargetShip();
 	AimTurrets(ship, firingCommands, !Preferences::Has("Turrets focus fire"));
-	if(Preferences::Has("Automatic firing") && !ship.IsBoarding()
+	if(Preferences::GetAutoFire() != Preferences::AutoFire::OFF && !ship.IsBoarding()
 			&& !(autoPilot | activeCommands).Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD)
 			&& (!target || target->GetGovernment()->IsEnemy()))
-		AutoFire(ship, firingCommands, false);
+		AutoFire(ship, firingCommands, false, true);
 
 	const bool mouseTurning = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
 	if(mouseTurning && !ship.IsBoarding() && !ship.IsReversing())

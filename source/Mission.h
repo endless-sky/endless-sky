@@ -217,6 +217,7 @@ private:
 	int deadlineMultiplier = 0;
 	DistanceCalculationSettings distanceCalcSettings;
 	std::string clearance;
+	bool ignoreClearance = false;
 	LocationFilter clearanceFilter;
 	bool hasFullClearance = true;
 
