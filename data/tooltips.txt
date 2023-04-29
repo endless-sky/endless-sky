@@ -260,6 +260,9 @@ tip "hull heat:"
 tip "hull heat multiplier:"
 	`Modifies the heat produced when repairing the hull by the given factor.`
 
+tip "hull multiplier:"
+	`Modifies the ship's total hull strength by the given factor.`
+
 tip "hull repair rate:"
 	`Amount of hull strength that can be repaired per second. Repairs usually consume energy and may generate heat as well.`
 
@@ -508,6 +511,9 @@ tip "shields (charge):"
 
 tip "shields:"
 	`Total shield strength. Most weapons cannot damage your hull until your shields are depleted. Some weapon effects, such as heat damage, become more severe once shields are down.`
+
+tip "shield multiplier:"
+	`Modifies the ship's total shield strength by the given factor.`
 
 tip "shield delay:"
 	`How many seconds it takes for shield generation to begin after taking shield damage.`

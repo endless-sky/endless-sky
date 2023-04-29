@@ -141,7 +141,6 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 			(1. + ship.DisruptionLevel() * .01);
 
 		damage.shieldDamage = (weapon.ShieldDamage()
-
 			+ weapon.RelativeShieldDamage() * ship.MaxShields())
 			* ScaleType(0., 0., attributes.Get("shield protection"));
 
