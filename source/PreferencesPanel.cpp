@@ -53,6 +53,7 @@ namespace {
 	const int ZOOM_FACTOR_INCREMENT = 10;
 	const string VIEW_ZOOM_FACTOR = "View zoom factor";
 	const string AUTO_AIM_SETTING = "Automatic aiming";
+	const string AUTO_FIRE_SETTING = "Automatic firing";
 	const string SCREEN_MODE_SETTING = "Screen mode";
 	const string VSYNC_SETTING = "VSync";
 	const string STATUS_OVERLAYS_ALL = "Show status overlays";
@@ -233,6 +234,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				Preferences::CycleStatusOverlays(Preferences::OverlayType::NEUTRAL);
 			else if(zone.Value() == AUTO_AIM_SETTING)
 				Preferences::ToggleAutoAim();
+			else if(zone.Value() == AUTO_FIRE_SETTING)
+				Preferences::ToggleAutoFire();
 			else if(zone.Value() == EXPEND_AMMO)
 				Preferences::ToggleAmmoUsage();
 			else if(zone.Value() == TURRET_TRACKING)
@@ -535,7 +538,7 @@ void PreferencesPanel::DrawSettings()
 		"\n",
 		"Gameplay",
 		AUTO_AIM_SETTING,
-		"Automatic firing",
+		AUTO_FIRE_SETTING,
 		BOARDING_PRIORITY,
 		"Control ship with mouse",
 		"Flagship flotsam collection",
@@ -652,6 +655,11 @@ void PreferencesPanel::DrawSettings()
 		else if(setting == AUTO_AIM_SETTING)
 		{
 			text = Preferences::AutoAimSetting();
+			isOn = text != "off";
+		}
+		else if(setting == AUTO_FIRE_SETTING)
+		{
+			text = Preferences::AutoFireSetting();
 			isOn = text != "off";
 		}
 		else if(setting == EXPEND_AMMO)
