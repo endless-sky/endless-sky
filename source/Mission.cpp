@@ -162,19 +162,7 @@ void Mission::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "distance calculation settings" && child.HasChildren())
 		{
-			for(const DataNode &grand : child)
-			{
-				if(grand.Token(0) == "no wormholes")
-					distanceCalcSettings.wormholeStrategy = WormholeStrategy::NONE;
-				else if(grand.Token(0) == "only unrestricted wormholes")
-					distanceCalcSettings.wormholeStrategy = WormholeStrategy::ONLY_UNRESTRICTED;
-				else if(grand.Token(0) == "all wormholes")
-					distanceCalcSettings.wormholeStrategy = WormholeStrategy::ALL;
-				else if(grand.Token(0) == "assumes jump drive")
-					distanceCalcSettings.assumesJumpDrive = true;
-				else
-					grand.PrintTrace("Invalid \"distance calculation settings\" child:");
-			}
+			distanceCalcSettings.Load(child);
 		}
 		else if(child.Token(0) == "cargo" && child.Size() >= 3)
 		{
@@ -243,6 +231,8 @@ void Mission::Load(const DataNode &node)
 			clearance = (child.Size() == 1 ? "auto" : child.Token(1));
 			clearanceFilter.Load(child);
 		}
+		else if(child.Size() == 2 && child.Token(0) == "ignore" && child.Token(1) == "clearance")
+			ignoreClearance = true;
 		else if(child.Token(0) == "infiltrating")
 			hasFullClearance = false;
 		else if(child.Token(0) == "failed")
@@ -397,6 +387,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("clearance", clearance);
 			clearanceFilter.Save(out);
 		}
+		if(ignoreClearance)
+			out.Write("ignore", "clearance");
 		if(!hasFullClearance)
 			out.Write("infiltrating");
 		if(hasFailed)
@@ -1249,7 +1241,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	for(const LocationFilter &filter : stopoverFilters)
 	{
 		// Unlike destinations, we can allow stopovers on planets that don't have a spaceport.
-		const Planet *planet = filter.PickPlanet(sourceSystem, !clearance.empty(), false);
+		const Planet *planet = filter.PickPlanet(sourceSystem, ignoreClearance || !clearance.empty(), false);
 		if(!planet)
 			return result;
 		result.stopovers.insert(planet);
@@ -1262,7 +1254,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.destination = destination;
 	if(!result.destination && !destinationFilter.IsEmpty())
 	{
-		result.destination = destinationFilter.PickPlanet(sourceSystem, !clearance.empty());
+		result.destination = destinationFilter.PickPlanet(sourceSystem, ignoreClearance || !clearance.empty());
 		if(!result.destination)
 			return result;
 	}
@@ -1501,8 +1493,8 @@ int Mission::CalculateJumps(const System *sourceSystem)
 	{
 		// Find the closest destination to this location.
 		DistanceMap distance(sourceSystem,
-				distanceCalcSettings.wormholeStrategy,
-				distanceCalcSettings.assumesJumpDrive);
+				distanceCalcSettings.WormholeStrat(),
+				distanceCalcSettings.AssumesJumpDrive());
 		auto it = destinations.begin();
 		auto bestIt = it;
 		int bestDays = distance.Days(*bestIt);
@@ -1524,8 +1516,8 @@ int Mission::CalculateJumps(const System *sourceSystem)
 		destinations.erase(bestIt);
 	}
 	DistanceMap distance(sourceSystem,
-			distanceCalcSettings.wormholeStrategy,
-			distanceCalcSettings.assumesJumpDrive);
+			distanceCalcSettings.WormholeStrat(),
+			distanceCalcSettings.AssumesJumpDrive());
 	// If currently unreachable, this system adds -1 to the deadline, to match previous behavior.
 	expectedJumps += distance.Days(destination->GetSystem());
 
