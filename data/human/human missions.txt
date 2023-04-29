@@ -5283,7 +5283,7 @@ mission "Wool Smuggling 1"
 				`	"I'm still not going to do it."`
 					goto decline
 			label payment
-			`	"Two hundred thousand credits for the job." You wonder how he's able to pay so much for a small delivery job.`
+			`	"Ninety thousand credits for the job." You wonder how he's able to pay so much for a small delivery job.`
 			choice
 				`	"Fine, I'll do it."`
 					goto accept
@@ -5313,7 +5313,7 @@ mission "Wool Smuggling 2"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 200000
+		payment 90000
 		dialog `Your cargo of woolen garments is unloaded by several bulky workers led by a one-armed woman. She hands you <payment> for the trouble of transport, then says, "Thanks for the shipment. I know that you captains think that we're all bad, but I'm glad that you were able to aid the more friendly among us."`
 
 
@@ -5327,7 +5327,7 @@ mission "Deal Change 1"
 		attributes "paradise"
 	destination "Skymoot"
 	to offer
-		random < 35
+		random < 10
 	on offer
 		conversation
 			`The spaceport on <origin> is as spirited as ever: to your left, a family wearing floral shirts pull along their luggage, with the man of the family flaunting a souvenir from some far-away planet. To your right, a cleaner whistles a tuneless song while they wipe down a bench.`
@@ -5410,9 +5410,20 @@ mission "Deal Change 2"
 			label accept
 			`	You stand up and stuff the note in your pocket before continuing towards the spaceport.`
 				accept
+	npc
+		government "Bounty Hunter"
+		personality staying nemesis
+		system "Lesath"
+		ship "Falcon (Heavy)" "Turncoat"
+		ship "Clipper" "Deserter"
+	npc
+		government "Bounty Hunter"
+		personality staying nemesis
+		system "Shaula"
+		ship "Osprey (Laser)" "Sellout"
 	on complete
 		fail "Deal Change 1"
-		payment 500000
+		payment 300000
 		conversation
 			`You follow the coordinates to a clearing within the forests of Greenrock. Several other ships are present near the landing site, all of which wear pirate colors. A person wearing a cloak steps out of one of the vessels to greet you. "I am glad that you were able to trust us," they say. "My name is not Ci, but you may refer to me as such." A gang of pirates emerges from the foliage around your ship and begin to unload the cargo from your ship.`
 			choice
