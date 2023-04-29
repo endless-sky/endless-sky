@@ -1723,7 +1723,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 	{
 		// Report how much excess cargo was sold, and what profit you earned.
 		ostringstream out;
-		if(hasSpaceport && income) // we check against income for systems like Postverta where trading is disabled by having all prices at 0
+		if(income) // we check against income for systems like Postverta where trading is disabled by having all prices at 0
 		{
 		  out << "You sold " << Format::CargoString(sold, "excess cargo") << " for " << Format::CreditString(income);
 		  if(totalBasis && totalBasis != income)
