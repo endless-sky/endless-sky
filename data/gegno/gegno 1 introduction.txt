@@ -541,7 +541,13 @@ mission "First Contact: Gegno Scin"
 			`	The situation you find yourself in is rather precarious - inside an alien species' vessel, strange devices, anything could happen next. You decide to reach for your pistol, but as soon as you do, the first thing you notice is a blade around your neck. Slowly turning your head, your eyes are met with the cold, expressionless look of yet another Scin's face, who you haven't seen yet. They continue to hold the blade to your throat as they activate the elevator again, lowering you back to the surface. Their armor is considerably different from the rest, characterized by darker shades, sharper edges, and several gadgets.`
 			`	They escort you back to your ship, and along the way, several more Scin stand guard, wearing the same armor. Once you are at your ship, the blade is moved away from you neck. Getting a better look at it, the blade is curved like a sickle, as opposed to a sword, meaning there was little chance you could have escaped being decapitated if they chose to do so. Boarding your ship in a hurry, you prepare to take off, and you notice the two Scin warships also begin to power up. It's clear you've overstayed your welcome.`
 				flee
-			
+	on decline
+		event "introduced scin" 0 7
+
+event "introduced scin"
+
+
+
 mission "Scin Intro Warships"
 	invisible
 	landing
@@ -561,6 +567,7 @@ mission "Scin Intro Warships"
 				"Coesite" 2
 	on enter
 		fail
+
 
 # Gegno Superheavy
 

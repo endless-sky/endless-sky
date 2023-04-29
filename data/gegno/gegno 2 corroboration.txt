@@ -1,4 +1,4 @@
-# Copyright (c) 2022 by Saugia
+# Copyright (c) 20223 by Saugia
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -10,4 +10,75 @@
 #
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+mission "Passing Observations"
+	invisible
+	landing
+	destination "Vigales"
+	to offer
+		has "event: introduced scin"
+		has: "First Contact: Gegno Scin: offered"
+		not "Gegno Genocide Defense: offered"
+	on complete
+		event "passerby" 0 7
+		conversation
+			`Test.`
+
+	npc save
+		on kill
+			set "vyx killed"
+		government "Gegno Vi"
+		personality heroic vindictive staying uninterested
+		system "Vorsuke"
+		ship "Rhyolite" "name"
+	npc save
+		government "Gegno Vi"
+		personality heroic vindictive staying uninterested
+		system "Vorsuke"
+		ship "Schist" "name"
+
+event "passerby"
+
+
+mission "Foreign Spectator"
+	invisible
+	landing
+	to offer
+	
+	
+	on enter
+		fail
+		conversation
+
+
+
+mission "Derelict Desponders"
+
+
+
+
+
+mission "Acquiescence"
+
+
+
+job
+job
+job
+job
+job
+
+
+mission "Heart of the Mighty"
+
+mission "Heart of the Clever"
+
+
+
+
+
+
+
+
 
