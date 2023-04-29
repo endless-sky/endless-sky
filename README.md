@@ -24,8 +24,7 @@ Endless Sky has very minimal system requirements, meaning most systems should be
 
 ## Building from source
 
-Most development is done on Linux and Windows, using CMake ([build instructions](docs/readme-cmake.md)) to compile the project. For those wishing to use an IDE, project files are provided for [Code::Blocks](https://www.codeblocks.org/) to simplify the project setup, and other IDEs are supported through their respective CMake integration. [SCons](https://scons.org/) was the primary build tool up until 0.9.16, and some files and information continue to be available for it.
-For full installation instructions, consult the [Build Instructions](docs/readme-developer.md) readme.
+Consult the [Build Instructions](docs/CONTRIBUTING.md) page.
 
 ## Contributing
 
