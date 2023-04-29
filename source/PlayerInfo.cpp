@@ -1681,7 +1681,8 @@ bool PlayerInfo::TakeOff(UI *ui)
 
 			// Figure out how much income you get for selling this cargo.
 			int64_t value = 0;
-			if(hasSpaceport) value = commodity.second * static_cast<int64_t>(system->Trade(commodity.first));
+			if(hasSpaceport)
+			    value = commodity.second * static_cast<int64_t>(system->Trade(commodity.first));
 			income += value;
 
 			int original = originalTotals[commodity.first];
