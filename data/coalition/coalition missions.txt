@@ -3354,7 +3354,7 @@ mission "Fangvin: Struggling Author 1"
 		conversation
 			`	You leave the ship with Anna following you. The moment you are out of your ship, three Kimek surround you and Anna. The Kimek in the middle speaks, and then brief silence. The silence is broken as their translation box speaks.`
 			`	"Greetings, <first> <last>. This other human you have brought, who she is, may I ask you?"`
-			`	You and Anna introduce yourself. Anna's introduction is longer, while you only need to state your name, seeing as you are more familiar with the Coalition now.`
+			`	You are already known to the Coalition, so all you need to do is tell them your name. Anna introduces herself.`
 			`	"About what, do you write?", asks the Kimek.`
 			`	"Oh, I write science fiction books," says Anna.`
 			`	The Kimek begin conversing amongst themselves in their native language for a good ten to twenty seconds before they move to face you again.`
