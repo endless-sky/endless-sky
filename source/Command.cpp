@@ -77,7 +77,7 @@ const Command Command::GATHER(ONE << 26, "Fleet: Gather around me");
 const Command Command::HOLD(ONE << 27, "Fleet: Hold position");
 const Command Command::HARVEST(ONE << 28, "Fleet: Harvest Flotsam");
 const Command Command::AMMO(ONE << 29, "Fleet: Toggle ammo usage");
-const Command Command::AUTOSTEER(ONE << 30, "Auto steer / face target");
+const Command Command::AUTOSTEER(ONE << 30, "Auto steer");
 const Command Command::WAIT(ONE << 31, "");
 const Command Command::STOP(ONE << 32, "");
 const Command Command::SHIFT(ONE << 33, "");
