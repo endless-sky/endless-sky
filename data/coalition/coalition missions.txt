@@ -3597,7 +3597,7 @@ conversation "anna invites you to book signing"
 		`	"Are you left or right handed?"`
 	`	"I was originally born left-handed, but as a child I chose to learn how to use my right hand, because I thought being able to use both hands would be cool."`
 	`	The signing continues for what feels like four hours. Then, the same Kimek in the bookstore uniform announces that the store is to close within an hour.`
-	`	As the store closes and the queue shortens, Anna signs the last Kimek's copy. With that, the event is over. Anna then tells you to meet her at your ship. You and Anna walk into your ship, accompanied by Heliarchs and the occasional camera flash. You open the hatch to allow Anna inside, and you enter and lock it behind you before any obsessed fans or (Coalition equivalent of) paparazzi get the chance to break in.`
+	`	As the store closes and the queue shortens, Anna signs the last Kimek's copy. With that, the event is over. Anna then tells you to meet her at your ship. You and Anna walk back to your ship. You open the hatch to allow Anna inside, and you both walk through.`
 	`	"Today was a resounding success. My book succeeded beyond my wildest dreams, and it was all because of you <first>!", she says, almost in a teary voice. She pulls out a credit chip. "Here, two million credits. You've done so much for me and my career, and you deserve it. Additionally, you will be receiving a salary of 5,000 credits daily, a small but significant portion of my royalties."`
 	branch "player understands coalition edition"
 		has "language: Coalition"
