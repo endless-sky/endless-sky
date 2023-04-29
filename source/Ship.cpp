@@ -1927,7 +1927,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	else if(requiredCrew && static_cast<int>(Random::Int(requiredCrew)) >= Crew())
 	{
 		pilotError = 30;
-		if(isYours)
+		if(isYours || (personality.IsEscort() && Preferences::Has("Extra fleet status messages")))
 		{
 			if(parent.lock())
 				Messages::Add("The " + name + " is moving erratically because there are not enough crew to pilot it."
