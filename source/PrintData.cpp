@@ -60,9 +60,9 @@ namespace {
 		{
 			if(itemIt.first != ObjectName(itemIt.second))
 				continue;
-			cout << itemIt.first;
+			cout << '"' << itemIt.first << '"';
 			for(auto &saleName : itemSales[itemIt.first])
-				cout << ',' << saleName;
+				cout << ',' << '"' << saleName << '"';
 			cout << '\n';
 		}
 	}
@@ -75,10 +75,10 @@ namespace {
 		cout << saleNoun << ';' << itemNoun << '\n';
 		for(auto &saleIt : sales)
 		{
-			cout << saleIt.first;
+			cout << '"' << saleIt.first << '"';
 			int index = 0;
 			for(auto &item : saleIt.second)
-				cout << (index++ ? ';' : ',') << ObjectName(*item);
+				cout << (index++ ? ';' : ',') << '"' << ObjectName(*item) << '"';
 			cout << '\n';
 		}
 	}
@@ -103,11 +103,11 @@ namespace {
 		cout << name << ',' << "attributes" << '\n';
 		for(auto &it : objects)
 		{
-			cout << it.first;
+			cout << '"' << it.first << '"';
 			const Type &object = it.second;
 			int index = 0;
 			for(const string &attribute : object.Attributes())
-				cout << (index++ ? ';' : ',') << attribute;
+				cout << (index++ ? ';' : ',') << '"' << attribute << '"';
 			cout << '\n';
 		}
 	}
@@ -127,13 +127,13 @@ namespace {
 		}
 		for(const string &attribute : attributes)
 		{
-			cout << attribute;
+			cout << '"' << attribute << '"';
 			int index = 0;
 			for(auto &it : objects)
 			{
 				const Type &object = it.second;
 				if(object.Attributes().count(attribute))
-					cout << (index++ ? ';' : ',') << it.first;
+					cout << (index++ ? ';' : ',') << '"' << it.first << '"';
 			}
 			cout << '\n';
 		}
@@ -149,6 +149,7 @@ namespace {
 				<< "required crew" << ',' << "bunks" << ',' << "cargo space" << ',' << "fuel" << ','
 				<< "outfit space" << ',' << "weapon capacity" << ',' << "engine capacity" << ',' << "gun mounts" << ','
 				<< "turret mounts" << ',' << "fighter bays" << ',' << "drone bays" << '\n';
+
 			for(auto &it : GameData::Ships())
 			{
 				// Skip variants and unnamed / partially-defined ships.
@@ -156,10 +157,10 @@ namespace {
 					continue;
 
 				const Ship &ship = it.second;
-				cout << it.first << ',';
+				cout << '"' << it.first << '"' << ',';
 
 				const Outfit &attributes = ship.BaseAttributes();
-				cout << attributes.Category() << ',';
+				cout << '"' << attributes.Category() << '"' << ',';
 				cout << ship.ChassisCost() << ',';
 				cout << ship.Cost() << ',';
 
@@ -205,6 +206,7 @@ namespace {
 				<< "idle/max heat" << ',' << "max heat generation" << ',' << "max heat dissipation" << ','
 				<< "gun mounts" << ',' << "turret mounts" << ',' << "fighter bays" << ','
 				<< "drone bays" << ',' << "deterrence" << '\n';
+
 			for(auto &it : GameData::Ships())
 			{
 				// Skip variants and unnamed / partially-defined ships, unless specified otherwise.
@@ -212,10 +214,10 @@ namespace {
 					continue;
 
 				const Ship &ship = it.second;
-				cout << it.first << ',';
+				cout << '"' << it.first << '"' << ',';
 
 				const Outfit &attributes = ship.Attributes();
-				cout << attributes.Category() << ',';
+				cout << '"' << attributes.Category() << '"' << ',';
 				cout << ship.Cost() << ',';
 
 				auto mass = attributes.Mass() ? attributes.Mass() : 1.;
@@ -361,8 +363,8 @@ namespace {
 					continue;
 
 				const Outfit &outfit = it.second;
-				cout << it.first << ',';
-				cout << outfit.Category() << ',';
+				cout << '"' << it.first << '"' << ',';
+				cout << '"' << outfit.Category() << '"' << ',';
 				cout << outfit.Cost() << ',';
 				cout << -outfit.Get("weapon capacity") << ',';
 
@@ -428,6 +430,7 @@ namespace {
 				double deterrence = .12 * damage / outfit.Reload();
 				cout << deterrence << '\n';
 			}
+
 			cout.flush();
 		};
 
@@ -439,6 +442,7 @@ namespace {
 				<< "turn heat/s" << ',' << "reverse thrust/s" << ',' << "reverse energy/s" << ','
 				<< "reverse heat/s" << ',' << "afterburner thrust/s" << ',' << "afterburner energy/s" << ','
 				<< "afterburner heat/s" << ',' << "afterburner fuel/s" << '\n';
+
 			for(auto &it : GameData::Outfits())
 			{
 				// Skip non-engines.
@@ -446,7 +450,7 @@ namespace {
 					continue;
 
 				const Outfit &outfit = it.second;
-				cout << it.first << ',';
+				cout << '"' << it.first << '"' << ',';
 				cout << outfit.Cost() << ',';
 				cout << outfit.Mass() << ',';
 				cout << outfit.Get("outfit space") << ',';
@@ -465,6 +469,7 @@ namespace {
 				cout << outfit.Get("afterburner heat") * 60. << ',';
 				cout << outfit.Get("afterburner fuel") * 60. << '\n';
 			}
+
 			cout.flush();
 		};
 
@@ -472,6 +477,7 @@ namespace {
 		{
 			cout << "name" << ',' << "cost" << ',' << "mass" << ',' << "outfit space" << ','
 				<< "energy generation" << ',' << "heat generation" << ',' << "energy capacity" << '\n';
+
 			for(auto &it : GameData::Outfits())
 			{
 				// Skip non-power.
@@ -479,7 +485,7 @@ namespace {
 					continue;
 
 				const Outfit &outfit = it.second;
-				cout << it.first << ',';
+				cout << '"' << it.first << '"' << ',';
 				cout << outfit.Cost() << ',';
 				cout << outfit.Mass() << ',';
 				cout << outfit.Get("outfit space") << ',';
@@ -487,6 +493,7 @@ namespace {
 				cout << outfit.Get("heat generation") << ',';
 				cout << outfit.Get("energy capacity") << '\n';
 			}
+
 			cout.flush();
 		};
 
@@ -499,15 +506,19 @@ namespace {
 				for(const auto &attribute : outfit.Attributes())
 					attributes.insert(attribute.first);
 			}
+
 			cout << "name" << ',' << "category" << ',' << "cost" << ',' << "mass";
 			for(const auto &attribute : attributes)
-				cout << ',' << attribute;
+				cout << ',' << '"' << attribute << '"';
 			cout << '\n';
+
 			for(auto &it : GameData::Outfits())
 			{
 				const Outfit &outfit = it.second;
-				cout << outfit.TrueName() << ',' << outfit.Category() << ','
-					<< outfit.Cost() << ',' << outfit.Mass();
+				cout << '"' << outfit.TrueName() << '"' << ',';
+				cout << '"' << outfit.Category() << '"' << ',';
+				cout << outfit.Cost() << ',';
+				cout << outfit.Mass();
 				for(const auto &attribute : attributes)
 					cout << ',' << outfit.Attributes().Get(attribute);
 				cout << '\n';

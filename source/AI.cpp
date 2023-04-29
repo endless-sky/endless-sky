@@ -19,6 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "DistanceMap.h"
 #include "Flotsam.h"
+#include "GameData.h"
+#include "Gamerules.h"
 #include "Government.h"
 #include "Hardpoint.h"
 #include "JumpTypes.h"
@@ -555,6 +557,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 	const int maxMinerCount = minables.empty() ? 0 : 9;
 	bool opportunisticEscorts = !Preferences::Has("Turrets focus fire");
 	bool fightersRetreat = Preferences::Has("Damaged fighters retreat");
+	const int npcMaxMiningTime = GameData::GetGamerules().NPCMaxMiningTime();
 	for(const auto &it : ships)
 	{
 		// Skip any carried fighters or drones that are somehow in the list.
@@ -813,7 +816,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			// Miners with free cargo space and available mining time should mine. Mission NPCs
 			// should mine even if there are other miners or they have been mining a while.
 			if(it->Cargo().Free() >= 5 && IsArmed(*it) && (it->IsSpecial()
-					|| (++miningTime[&*it] < 3600 && ++minerCount < maxMinerCount)))
+					|| (++miningTime[&*it] < npcMaxMiningTime && ++minerCount < maxMinerCount)))
 			{
 				if(it->HasBays())
 				{
@@ -1984,11 +1987,23 @@ double AI::TurnToward(const Ship &ship, const Point &vector, const double precis
 	double dot = vector.Dot(facing);
 	if(dot > 0.)
 	{
-		if(precision < 1. && precision > 0. && dot * dot >= precision * vector.LengthSquared() * facing.LengthSquared())
-			return 0.;
+		// Is the facing direction aligned with the target direction with sufficient precision?
+		// The maximum angle between the two directions is given by: arccos(sqrt(precision)).
+		bool close = false;
+		if(precision < 1. && precision > 0. && dot * dot >= precision * vector.LengthSquared())
+			close = true;
 		double angle = asin(min(1., max(-1., cross / vector.Length()))) * TO_DEG;
-		if(fabs(angle) <= ship.TurnRate())
+		// Is the angle between the facing and target direction smaller than
+		// the angle the ship can turn through in one step?
+		if(fabs(angle) < ship.TurnRate())
+		{
+			// If the ship is within one step of the target direction,
+			// and the facing is already sufficiently aligned with the target direction,
+			// don't turn any further.
+			if(close)
+				return 0.;
 			return -angle / ship.TurnRate();
+		}
 	}
 
 	bool left = cross < 0.;
@@ -2029,7 +2044,7 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 
 	bool isFacing = (dp.Unit().Dot(angle.Unit()) > .95);
 	if(!isClose || (!isFacing && !shouldReverse))
-		command.SetTurn(TurnToward(ship, dp, 0.9999));
+		command.SetTurn(TurnToward(ship, dp));
 	if(isFacing)
 		command |= Command::FORWARD;
 	else if(shouldReverse)
@@ -3220,7 +3235,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 
 
 // Fire whichever of the given ship's weapons can hit a hostile target.
-void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary) const
+void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool isFlagship) const
 {
 	const Personality &person = ship.GetPersonality();
 	if(person.IsPacifist() || ship.CannotAct())
@@ -3229,9 +3244,9 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary) const
 	bool beFrugal = (ship.IsYours() && !escortsUseAmmo);
 	if(person.IsFrugal() || (ship.IsYours() && escortsAreFrugal && escortsUseAmmo))
 	{
-		// The frugal personality is only active when ships have more than 75% of their total health,
-		// and are not outgunned.
-		beFrugal = (ship.Health() > .75);
+		// The frugal personality is only active when ships have more than a certain fraction of their total health,
+		// and are not outgunned. The default threshold is 75%.
+		beFrugal = (ship.Health() > GameData::GetGamerules().UniversalFrugalThreshold());
 		if(beFrugal)
 		{
 			auto ait = allyStrength.find(ship.GetGovernment());
@@ -3298,6 +3313,16 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary) const
 		// Skip weapons that are not ready to fire.
 		if(!hardpoint.IsReady())
 			continue;
+
+		// Skip weapons omitted by the "Automatic firing" preference.
+		if(isFlagship)
+		{
+			const Preferences::AutoFire autoFireMode = Preferences::GetAutoFire();
+			if(autoFireMode == Preferences::AutoFire::GUNS_ONLY && hardpoint.IsTurret())
+				continue;
+			if(autoFireMode == Preferences::AutoFire::TURRETS_ONLY && !hardpoint.IsTurret())
+				continue;
+		}
 
 		const Weapon *weapon = hardpoint.GetOutfit();
 		// Don't expend ammo for homing weapons that have no target selected.
@@ -3980,14 +4005,14 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 
 	const shared_ptr<const Ship> target = ship.GetTargetShip();
 	AimTurrets(ship, firingCommands, !Preferences::Has("Turrets focus fire"));
-	if(Preferences::Has("Automatic firing") && !ship.IsBoarding()
+	if(Preferences::GetAutoFire() != Preferences::AutoFire::OFF && !ship.IsBoarding()
 			&& !(autoPilot | activeCommands).Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD)
 			&& (!target || target->GetGovernment()->IsEnemy()))
-		AutoFire(ship, firingCommands, false);
+		AutoFire(ship, firingCommands, false, true);
 
 	const bool mouseTurning = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
 	if(mouseTurning && !ship.IsBoarding() && !ship.IsReversing())
-		command.SetTurn(TurnToward(ship, mousePosition, 0.9999));
+		command.SetTurn(TurnToward(ship, mousePosition));
 
 	if(activeCommands)
 	{
