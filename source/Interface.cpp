@@ -686,9 +686,7 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 
 
 		double fraction = value * spanAngle / 360.;
-
 		RingShader::Draw(rect.Center(), .5 * rect.Width(), width, fraction, *color, segments, startAngle);
-
 	}
 	else
 	{
