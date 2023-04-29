@@ -1731,7 +1731,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 		  else
 		    out << ".";
 		}
-		else out << "You dumped " << Format::CargoString(sold, "excess cargo.") 
+		else out << "You dumped " << Format::CargoString(sold, "excess cargo."); 
 		Messages::Add(out.str(), Messages::Importance::High);
 	}
 
