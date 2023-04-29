@@ -44,19 +44,3 @@ gamerules
 	# DEFAULT: 3600 frames (one minute)
 	# ALLOWABLE VALUES: any integer >= 0
 	"npc max mining time" 3600
-	
-	# Ships with the "frugal" personality will only use weapons that consume ammo or fuel while their health is at or below this fraction.
-	# DEFAULT: .75 (75 percent)
-	# ALLOWABLE VALUES: any value between 0. and 1.
-	"universal frugal threshold" .75
-
-	# The value in degree of how precise the ship have to be aligned to enter hyperspace jump.
-	# The game decides the ship is aligned when the ship turns to within one turn step of the direction
-	# it need to be pointed at. Where each turn step is in degree per frame or "in-game turn"/60
-	# This value will add to the turn step used for alignment for hyperspace calculation
-	# so the game will consider the ship aligned earlier.
-	# Setting too low can cause some ship to fail to jump entirely while setting too high can
-	# cause fast turning ships to jump sideways.
-	# DEFAULT: 1
-	# ALLOWABLE VALUES: any value >= 0
-	"jump alignment precision" 1
