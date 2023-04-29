@@ -2258,6 +2258,8 @@ void Engine::DoCollection(Flotsam &flotsam)
 	}
 	if(!collector)
 		return;
+	if(collector == player.Flagship() && !Preferences::Has("Flagship flotsam collection"))
+		return;
 
 	// Transfer cargo from the flotsam to the collector ship.
 	int amount = flotsam.TransferTo(collector);
