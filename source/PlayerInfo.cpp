@@ -1729,11 +1729,11 @@ bool PlayerInfo::TakeOff(UI *ui)
             out << "You sold " << Format::CargoString(sold, "excess cargo") << " for " << Format::CreditString(income);
             if(totalBasis && totalBasis != income)
                 out << " (for a profit of " << Format::CreditString(income - totalBasis) << ").";
-            else
+            else x
                 out << ".";
 		}
 		else
-            out << "You dumped " << Format::CargoString(sold, "excess cargo.");
+             out << "You dumped " << Format::CargoString(sold, "excess cargo.");
 		Messages::Add(out.str(), Messages::Importance::High);
 	}
 
