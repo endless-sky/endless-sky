@@ -20,6 +20,7 @@ mission "Immigrant Workers"
 		random < 50
 	source "New Iceland"
 	destination
+		not government "Pirate"
 		attributes "core"
 		attributes "factory" "textile"
 	on complete
@@ -2878,7 +2879,7 @@ mission "Northern Blockade"
 mission "Southern Blockade"
 	minor
 	name `Spaceport Defenses`
-	description `<stopovers> are under attack and in need of spaceport defenses. Drop off your cargo of <cargo> on these three planets and return to <destination> for payment. (<payment>)`
+	description `<stopovers> are under attack. Drop off <cargo> on these planets and return to <destination> for payment. (<payment>)`
 	source
 		near "Pherkad" 2 4
 		government "Free Worlds"
@@ -3637,6 +3638,7 @@ mission "Human to Hai Space - No Contact"
 	to offer
 		random < 2
 		not "First Contact: Hai: offered"
+		not "event: hai-human resolution announced"
 	on offer
 		conversation
 			`	A young man carrying luggage approaches you. "You look like a knowledgeable captain," he says. "In all your travels, have you ever heard tell of any... intelligent rodents?"`
@@ -3662,7 +3664,9 @@ mission "Human to Hai Space"
 	destination "Greenwater"
 	to offer
 		random < 10
-		has "First Contact: Hai: offered"
+		or
+			has "First Contact: Hai: offered"
+			has "event: hai-human resolution announced"
 		not "Human to Hai Space - No Contact: offered"
 	on offer
 		conversation
@@ -3673,6 +3677,8 @@ mission "Human to Hai Space"
 				`	"Ah, I think I know of some large squirrels to the north of here."`
 					goto hai
 				`	"What are you talking about?"`
+					to display
+						not "event: hai-human resolution announced"
 			`	"Oh, never mind then," he says, with a note of disappointment in his voice. You feel good knowing that you are helping to keep the Hai's existence a secret in human space. Better safe than sorry.`
 				decline
 			
@@ -4399,7 +4405,7 @@ mission "Block Hai Wormhole Warning"
 		fail
 
 mission "Hai Wormhole Warning"
-	minor
+	landing
 	source
 		government "Republic"
 		not attributes "deep"
@@ -4409,10 +4415,11 @@ mission "Hai Wormhole Warning"
 			has "First Contact: Unfettered: declined"
 		not "Block Hai Wormhole Warning: offered"
 		not "Wanderers: Alpha Surveillance E: offered"
+		not "Hai Leaks Response 1: offered"
 	on offer
 		log "Was pulled aside by a Navy officer and told to keep the wormhole to the Hai a secret. The Republic doesn't want the knowledge of the wormhole to be widespread, as that could cause chaos for both the Republic and the Hai."
 		conversation
-			`Upon entering the spaceport, you're stopped by a Navy officer. "Captain <last>. I'd like to speak with you for a few minutes. In private." He motions toward a Frigate on a landing pad behind you.`
+			`When you open the door to let in the Navy officer on inspection duty, you expect him to produce the usual set of landing papers and bureaucracy. But instead he says, "Captain <last>. I'd like to speak with you for a few minutes. In private." He motions toward a Frigate on the landing pad next to <ship>.`
 			choice
 				`	"What about?"`
 					goto what
@@ -4424,7 +4431,7 @@ mission "Hai Wormhole Warning"
 			label what
 			`	"I did say in private, did I not?" he says, once again motioning to the Frigate.`
 			label frigate
-			`	The man puts a hand on your shoulder and begins walking you toward the ship. As you approach, you note that the man's uniform doesn't have any Naval markings that you recognize.`
+			`	The man puts a hand on your shoulder and begins walking you toward the ship. As you approach, you note that the man's uniform doesn't have any Navy markings that you recognize.`
 			`	You enter the ship with the officer, and despite the decent crew requirement of a Frigate, you don't notice anyone else on board, and the interior of the ship appears more cushy than you would expect out of a military vessel. The officer leads you to what looks like a rather comfy lounge area. "Please, have a seat," he says.`
 			choice
 				`	(Take a seat.)`
@@ -4477,7 +4484,7 @@ mission "Hai Wormhole Warning"
 			label ok
 			`	"That's good to hear," the officer responds. "Thank you for your cooperation, <last>. Now, if you'll please depart my ship so that I can be on my way."`
 			label end
-			`	The officer leads you out of the ship and closes the doors behind you. As you make your way back to the spaceport, you turn back and see the Frigate take off, slowly getting smaller in the sky until it finally disappears.`
+			`	The officer leads you out of the ship and closes the doors behind you, while the actual Navy officer on inspection duty stands beside <ship>, brandishing a set of landing documents. When you've finished signing them, you turn back to see the Frigate take off, slowly getting smaller in the sky until it finally disappears.`
 				decline
 
 
@@ -5320,7 +5327,7 @@ mission "Deal Change 1"
 		attributes "paradise"
 	destination "Skymoot"
 	to offer
-		random < 35
+		random < 10
 	on offer
 		conversation
 			`The spaceport on <origin> is as spirited as ever: to your left, a family wearing floral shirts pull along their luggage, with the man of the family flaunting a souvenir from some far-away planet. To your right, a cleaner whistles a tuneless song while they wipe down a bench.`
@@ -5403,9 +5410,20 @@ mission "Deal Change 2"
 			label accept
 			`	You stand up and stuff the note in your pocket before continuing towards the spaceport.`
 				accept
+	npc
+		government "Bounty Hunter"
+		personality staying nemesis
+		system "Lesath"
+		ship "Falcon (Heavy)" "Turncoat"
+		ship "Clipper" "Deserter"
+	npc
+		government "Bounty Hunter"
+		personality staying nemesis
+		system "Shaula"
+		ship "Osprey (Laser)" "Sellout"
 	on complete
 		fail "Deal Change 1"
-		payment 500000
+		payment 300000
 		conversation
 			`You follow the coordinates to a clearing within the forests of Greenrock. Several other ships are present near the landing site, all of which wear pirate colors. A person wearing a cloak steps out of one of the vessels to greet you. "I am glad that you were able to trust us," they say. "My name is not Ci, but you may refer to me as such." A gang of pirates emerges from the foliage around your ship and begin to unload the cargo from your ship.`
 			choice
@@ -5547,3 +5565,189 @@ mission "Quicksilver Mixup 1"
 			
 
 event "quicksilver mixup 2 available"
+
+
+
+mission "Argosy Hijacking (Trigger)"
+	landing
+	invisible
+	source
+		government "Syndicate"
+	to offer
+		"combat rating" > 200
+		random < 5
+	on offer
+		fail
+
+mission "Argosy Hijacking"
+	landing
+	name "Stop Ship Hijacking"
+	description "The <npc> was hijacked on <origin>; disable it and return to <origin>. Do not board, capture, or destroy it; Syndicated Security will deal with the hijackers in space after you have disabled it."
+	source
+		government "Syndicate"
+		not attributes "station"
+		not near "Sol" 3
+	to offer
+		has "Argosy Hijacking (Trigger): offered"
+	on offer
+		conversation
+			`You're signing the standard Syndicate landing papers with an officer on <origin>. "Everything seems to be in order. And of course, we'll have your ship refueled promptly. Have a good day, Captain <last>." He nods his head at you and starts to move off towards the next ship.`
+			`	Before he can make it there, you hear a commotion by the <npc>, the <npc model> on the landing pad next to you.`
+			choice
+				`	(Turn around to see what's going on.)`
+					goto turn
+				`	(Ignore the commotion.)`
+					goto ignore
+			label turn
+			`	Both of you turn your heads towards the <npc> to see what's happening, but as you do you hear the deafening blare of warning sirens through <origin>'s spaceport; at the same time, the <npc> suddenly jolts up with its loading ramp still extended.`
+				goto hijack
+			
+			label ignore
+			`	You turn back towards the <ship> only to hear the deafening blares of warning sirens through <origin>'s spaceport. Looking around instinctively, you notice the <npc> jolting up with its loading ramp still extended.`
+
+			label hijack
+			`	"Hey, what's going on here?" the officer tries to shout over the noise of the sirens and the repulsors, but the rogue <npc model> veers rapidly and uncertainly towards you and the officer.`
+			choice
+				`	(Jump for cover.)`
+				`	(Take a shot at the <npc model> with your sidearm.)`
+					goto shoot
+			`	Both of you barely jump down for cover before the ship clips a stack of cargo crates, sending them flying into the refueling platform. The Quad Blaster Turret mounted on the top of the <npc model> swivels around aimlessly, then fires without warning, its energy bolts scattering some of the startled onlookers nearby and sending up debris where they hit the ground. It comes dangerously close to colliding with the <ship> before it veers off to the side and sends its repulsors into full thrust, fleeing away into the sky.`
+				goto dazed
+
+			label shoot
+			`	You fire a shot right at the cockpit with your pistol but the shot is absorbed by the <npc model>'s shield matrix, rendering it useless. The <npc> flies right over you, sending you backwards and into the ground.`
+			`	You prop yourself up to hear the <npc model>'s Quad Blaster Turret fire aimlessly around the spaceport, shortly replaced by the sounds of its repulsors being sent up to full thrust. By the time you get up, the <npc> has already started fleeing off into the sky.`
+
+			label dazed
+			`	The Syndicated Security officer, dazed and coated in dust kicked up from the unpermitted departure, only just pulls himself up before another person runs up to accost him. "Oi, those kids, they just hijacked my <npc model>! Get someone on their tail!"`
+			choice
+				`	"I'll do it!"`
+				`	(Let Syndicated Security deal with it.)`
+					goto securityjob
+			`	The captain of the stolen <npc model> turns towards you. "Thank you, Captain! Don't destroy the <npc>, I'm already late for my bloody contract. Agh, this doesn't help at all," he mutters to himself.`
+			`	The officer looks back at you, having dusted himself off and regained his senses. "Yes, go and deal with his ship now. Don't board it, we'll have Syndicated Security ships come after you to board the hijacked ship and tug it down. Go!"`
+			`	You run towards the <ship> and take off after the hijacked <npc>...`
+				launch
+			
+			label securityjob
+			`	The officer, slightly flustered, calls for a small squadron of Syndicated Security ships to chase the hijacked <npc>, then runs off to one of <origin>'s spaceport terminals to file the paperwork with the captain.`
+				decline
+	
+	npc save disable
+		personality launching daring uninterested target
+			confusion 80
+		government "Bounty (Disguised)"
+		ship "Argosy (Blaster)" "Moonshake Express"
+		dialog `The <npc> has been disabled. Syndicated Security will now deal with the hijackers, but you should go back and report to the captain of the ship.`
+		on board
+			set "boarded hijacked argosy"
+			dialog `You've boarded the Moonshake Express, against the orders of the Syndicated Security officer. The ship's captain won't be impressed.`
+			fail
+		on kill
+			set "destroyed hijacked argosy"
+			dialog `You have destroyed the Moonshake Express. Its captain won't be impressed.`
+
+	on fail
+		conversation
+			branch fail
+				or
+					has "boarded hijacked argosy"
+					has "destroyed hijacked argosy"
+			`You've landed without disabling the <npc>. It's probably gone now, but you might want to report to its captain.`
+			choice
+				`	(Find the captain.)`
+				`	(Don't worry about it.)`
+					decline
+			`	You find him in the spaceport lounge. As you walk in, he recognizes you and calls you over. "How are you doing? Did you recover the <npc>?`
+			choice
+				`	"No, I wasn't able to."`
+				`	"It fled before I could disable it."`
+				`	"I blew it up, just like you wanted."`
+					goto blew
+			`	He frowns at this and lets out a sigh. "Well, I'll contact security and let them deal with this. Don't worry, they'll sort it out. But thanks for getting back to me about it." He walks off towards the Syndicated Security offices.`
+				decline
+
+			label blew
+			`	He jolts his head back. "What'd you say?"`
+			choice
+				`	"Yeah, I blew it up."`
+					goto destroyed
+				`	"The hijackers got away, sorry."`
+			`	He sighs and says, "Man, I don't have time for this. Tell me what actually happened."`
+			choice
+				`	"I blew it up, didn't you hear me?"`
+				`	"You ship got away. That's what happened."`
+			`	"If you're going to waste my time, get out of here." Before you can react, he storms off towards the Syndicated Security offices.`
+				decline
+
+			label fail
+			`When you land, the captain of the <npc> comes up to you, his face rather red.`
+			branch boarded destroyed
+				and
+					has "boarded hijacked argosy"
+					not "destroyed hijacked argosy"
+			label boarded
+			`	He grabs your shoulders and shakes you hard, shouting, "Didn't I tell you not to board my ship? Do you know how many credits I've just lost because of you?"`
+			choice
+				`	"I'm sorry, I was just trying to help!"`
+				`	"I'm sure whatever you lost wasn't worth all that much."`
+					goto worthless
+			`	He stops shaking you for a moment to say, "Well, you didn't need to shoot up the insides of my <npc model> while you were trying to help, weren't you? Fat lot of help that was, even if you tried to do the right thing. Oh, well..."`
+			`	The captain lets you go with a push and turns around to walk off towards the direction of the bar, leaving you to contemplate your actions.`
+				decline
+
+			label destroyed
+			`	He grabs your shoulders and shakes you hard, shouting, "Didn't I tell you not to destroy my ship? Do you know how many credits I've just lost because of you?"`
+			choice
+				`	"I'm sorry, I was just trying to help!"`
+				`	"I'm sure whatever you lost wasn't worth all that much."`
+					goto worthless
+			`	He stops shaking you for a moment to say, "Well, you shouldn't have blown up my <npc model> while you were trying to help, weren't you? Fat lot of help that was, even if you tried to do the right thing. Oh, well..."`
+			`	The captain lets you go with a push and turns around to walk off towards the direction of the bar, leaving you to contemplate your actions.`
+				decline
+
+			label worthless
+			`	He looks at you incredulously, scrunching up his face. "Not--not that much? Is that what you just said?" He pauses for a moment to look at the wall above you with a lost look in his eyes. "That was my life's work up there, an <npc model> that had served me for 14 years, and you have the audacity to say it was all for nothing?!"`
+			choice
+				`	"Well, yeah."`
+				`	"No, that's not what I meant."`
+			`	The captain scoffs, staring you down again with even more intensity than before, and lets you go with a rough push. "I don't need your explanation, I don't think you could give me one. I just can't understand how you can walk away feeling alright that you've set back one man's life so much."`
+			`	Suddenly, he turns around and walks off towards the direction of the bar, leaving you to contemplate your actions.`
+				decline
+
+	on visit
+		fail
+
+	on complete
+		log `Helped an unfortunate captain recover his Argosy after a bunch of delinquents hijacked it.`
+		payment 48000
+		conversation
+			`As you land, Syndicated Security have the <npc> in tow, escorted by a trio of Quicksilvers. The formation lands on one of the larger pads reserved for Syndicated Security vessels, fenced off from the rest of the spaceport.`
+			`	The hijackers, just a raucous group of young kids, are hauled out of the <npc model> by Syndicated Security personnel towards an armored van. Multiple times the kids try to run away, but after a few minutes they're finally detained; the van drives off towards the spaceport terminal.`
+			`	After the incident is wrapped up, the captain of the <npc> sends you <payment>, and a message thanking you for helping him recover his ship.`
+
+mission "Argosy Hijacking (Declined)"
+	invisible
+	landing
+	source
+		government "Syndicate"
+		not attributes "station"
+		not near "Sol" 3
+	deadline 1
+	to offer
+		has "Argosy Hijacking (Trigger): offered"
+	to complete
+		never
+	npc
+		personality launching daring uninterested
+			confusion 40
+		government "Merchant (Hijacked)"
+		ship "Argosy (Blaster)" "Moonshake Express"
+		to spawn
+			has "Argosy Hijacking: declined"
+	npc
+		personality launching disables uninterested
+		government "Syndicate"
+		fleet "Small Syndicate"
+		to spawn
+			has "Argosy Hijacking: declined"
