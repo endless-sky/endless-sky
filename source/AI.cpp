@@ -4062,7 +4062,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		if(target && target->GetSystem() == ship.GetSystem() && target->IsTargetable())
 			command.SetTurn(TurnToward(ship, TargetAim(ship)));
 		else if(ship.GetTargetAsteroid())
-			command.SetTurn(TurnToward(ship, TargetAim(ship, ship.GetTargetAsteroid())));
+			command.SetTurn(TurnToward(ship, TargetAim(ship, *ship.GetTargetAsteroid())));
 		else if(ship.GetTargetStellar())
 			command.SetTurn(TurnToward(ship, ship.GetTargetStellar()->Position() - ship.Position()));
 	}
