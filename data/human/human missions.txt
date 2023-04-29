@@ -5450,7 +5450,7 @@ mission "Escort offer (Betrayal)"
 	destination Maelstrom
 	to offer
 		"armament deterrence" <= 2
-		"cargo attractiveness" >= 2.8
+		"cargo attractiveness" >= 6
 	on offer
 		"reputation: Escort (Betraying)" = 10
 		conversation
