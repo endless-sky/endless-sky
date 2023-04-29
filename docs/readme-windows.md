@@ -17,12 +17,12 @@ Open the folder containing ES, that's it! If you want to use an actual VS soluti
 
 More detailed instructions if needed:
 
-1. Open the endless-sky folder that you cloned in the initial step.
+1. Open the ES folder using Visual Studio ("Open Folder")
 2. Wait while Visual Studio loads everything. This may take a few minutes the first time, but should be relatively fast on subsequent loads.
-3. On your toolbar there should be a pulldown menu that says "debug" or "release." Select the version you want to build.
-4. Hit the "build" button, or find the "Build" menu and select "Build All".
+3. On your toolbar there should be a pulldown menu that says "Debug" or "Release." Select the version you want to build.
+4. Hit the "Build" button, or find the "Build" menu and select "Build All".
 5. In the status window it will give a scrolling list of actions being completed. Wait until it states "Build Complete".
-6. At this point you should be able to launch the recently completed build by hitting the F5 key or the run button. The recently built executable and essential libraries can be found in your Endless-Sky folder, nested within a subfolder created by Visual Studio during the build process.
+6. At this point you should be able to launch the recently completed build by hitting the F5 key or the run button. The recently built executable and essential libraries can be found in the build folder, nested within a subfolder created by Visual Studio during the build process.
 
 ### Notes
 

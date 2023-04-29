@@ -14,7 +14,7 @@ Here's a summary of every command you will need for development:
 ```bash
 $ cmake --preset <preset>                     # configure project (only needs to be done once)
 $ cmake --build --preset <preset>-debug       # actually build Endless Sky (as well as any tests)
-$ ./build/<preset>/Debug/endless-sky          # run the game
+$ ./build/<preset>/Debug/endless-sky          # run the game (the executable name might be different)
 $ ctest --preset <preset>-test                # run the unit tests
 $ ctest --preset <preset>-benchmark           # run the benchmarks
 $ ctest --preset <preset>-integration         # run the integration tests (Linux only)
