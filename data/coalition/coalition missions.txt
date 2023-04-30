@@ -3220,7 +3220,7 @@ conversation "cultural data for coalition group"
 	`	"Thank you. Enlighten us and the rest of the Coalition, this datachip will. And as promised, a chip of 180,000 credits, we have." One member of the group places it within your hand.`
 		accept
 
-mission "Fangvin: Struggling Author - Human Media 1"
+mission "Coalition: Struggling Author - Human Media 1"
 	minor
 	name "Collect Human Media"
 	description "A group of Coalition citizens have asked you for some books from human space. Go to <destination> and buy as many books as possible."
@@ -3240,7 +3240,7 @@ mission "Fangvin: Struggling Author - Human Media 1"
 		set "human cultural data"
 		payment -40
 
-mission "Fangvin: Struggling Author - Data"
+mission "Coalition: Struggling Author - Data"
 	name "Cultural Data to Sol Kimek"
 	description "Bring back the datachip to <destination>, for the group of Coalition citizens who asked for it."
 	source "Alexandria"
@@ -3263,7 +3263,7 @@ mission "Visit the Coalition Citizens Again"
 
 event "coalition citizens discover fangvin"
 
-mission "Fangvin: Book Discovered"
+mission "Coalition: Book Discovered"
 	name "Look for Anna Fangvin"
 	description "Get in contact with Anna Fangvin, an author in which the group of Coalition citizens have shown interest in."
 	source
@@ -3287,7 +3287,7 @@ mission "Fangvin: Book Discovered"
 			`As you prepare to land, you write Anna a short message, offering an interview. In less than 10 minutes you receive a reply, explaining that Anna has accepted your offer and will wait for you in the spaceport.`
 			`	Look for Anna in the spaceport, so you can take her to the Coalition for a little conversation with those Coalition citizens who showed interest in her work.`
 
-mission "Fangvin: Struggling Author 1"
+mission "Coalition: Struggling Author 1"
 	name "Take Anna to Coalition Space"
 	description "Take Anna Fangvin to <destination>, where she might find success as an author after having struggled on <origin> for so long."
 	source "Zug"
@@ -3363,7 +3363,7 @@ mission "Fangvin: Struggling Author 1"
 			`	"You have to register yourself with the Coalition before you can do most stuff here. I'll take you to the Ring of Friendship, that's where you can complete the registration process."`
 			`	"Okay," says Anna, "I'll explore the spaceport a little bit to find some inspiration. Get your ship ready and meet me there."`
 
-mission "Fangvin: Struggling Author 2"
+mission "Coalition: Struggling Author 2"
 	name "Help Anna Register"
 	description "Take Anna Fangvin to the <destination> so she can register with the Heliarchs."
 	source "Ki Patek Ka"
@@ -3398,7 +3398,7 @@ mission "Fangvin: Struggling Author 2"
 			`	"To reach the registration office, this way you must go.", replies the Heliarch, pointing to a hallway.`
 			`	You and Anna walk down the hallway as directed, until you spot a registration office. Anna walks into the registration office while you sit down on a nearby bench. After 15 minutes, Anna walks out and approaches you. "They finally registered me. I'm off to the spaceport now to eat something. Meet me there so we can discuss our next move."`
 
-mission "Fangvin: Struggling Author 3"
+mission "Coalition: Struggling Author 3"
 	name "Back to <planet>"
 	description "Now that Anna Fangvin has completed the registration process, help her get a translation device on <destination>."
 	source "Ring of Friendship"
@@ -3459,7 +3459,7 @@ mission "Fangvin: Struggling Author 3"
 				`	"We'll find a company. There has to be one out there."`
 			`	"The faster we can get the book published, the better. I'm off to the spaceport now. Meet me in the spaceport once you've found a good company."`
 
-mission "Fangvin: Struggling Author 4"
+mission "Coalition: Struggling Author 4"
 	name "Kimek Publishing Company"
 	description "You have found a Kimek publishing company who is willing to take in Anna Fangvin to get her book published. Bring Anna Fangvin to <destination>."
 	source "Ki Patek Ka"
@@ -3544,7 +3544,7 @@ mission "Fangvin: Struggling Author 4"
 
 event "beyond the hyperdrive is published"
 
-mission "Fangvin: Struggling Author 5A"
+mission "Coalition: Struggling Author 5A"
 	landing
 	source
 		not near "Quaru" 0 100
@@ -3560,7 +3560,7 @@ mission "Fangvin: Struggling Author 5A"
 	on complete
 		conversation "anna invites you to book signing"
 
-mission "Fangvin: Struggling Author 5B"
+mission "Coalition: Struggling Author 5B"
 	landing
 	source
 		near "Quaru" 0 100
