@@ -1924,10 +1924,10 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	{
 		// If the ship is disabled, don't show a warning message due to missing crew.
 	}
-	else if(IsYours() && requiredCrew && static_cast<int>(Random::Int(requiredCrew)) >= Crew())
+	else if(requiredCrew && static_cast<int>(Random::Int(requiredCrew)) >= Crew())
 	{
 		pilotError = 30;
-		if(parent.lock())
+		if(parent.lock() || !isYours)
 			Messages::Add("The " + name + " is moving erratically because there are not enough crew to pilot it."
 				, Messages::Importance::Low);
 		else
