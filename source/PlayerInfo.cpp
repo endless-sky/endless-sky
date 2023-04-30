@@ -1697,7 +1697,9 @@ bool PlayerInfo::TakeOff(UI *ui)
 			it->second -= basis;
 			totalBasis += basis;
 		}
-		if(!planet->HasOutfitter())
+		// If the planet has no space port we can neither store nor sell the outfits.
+		if(!hasSpaceport);
+		else if(!planet->HasOutfitter())
 			for(const auto &outfit : cargo.Outfits())
 			{
 				// Compute the total value for each type of excess outfit.
