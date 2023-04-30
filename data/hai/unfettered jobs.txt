@@ -33,7 +33,7 @@ mission "Unfettered Tribute 1"
 		random < 80
 	cargo "food (tribute)" 25 2 .05
 	on complete
-		payment 5000 1600
+		payment 5000 320
 		dialog phrase "unfettered tribute payment dialog"
 	source
 		attributes "unfettered"
@@ -57,7 +57,7 @@ mission "Unfettered Tribute 2"
 		random < 60
 	cargo "food (tribute)" 35 2 .05
 	on complete
-		payment 7000 2000
+		payment 5000 320
 		dialog phrase "unfettered tribute payment dialog"
 	source
 		attributes "unfettered"
@@ -81,7 +81,7 @@ mission "Unfettered Tribute 3"
 		random < 40
 	cargo "food (tribute)" 45 2 .05
 	on complete
-		payment 9000 2400
+		payment 5000 320
 		dialog phrase "unfettered tribute payment dialog"
 	source
 		attributes "unfettered"
@@ -326,7 +326,7 @@ mission "Unfettered Small Medicals Rush"
 	on stopover
 		dialog phrase "unfettered medicals pickup dialog"
 	on complete
-		payment 8000 3300
+		payment 8000 340
 		dialog phrase "unfettered medicals payment dialog"
 
 
@@ -352,5 +352,5 @@ mission "Unfettered Big Medicals Rush"
 	on stopover
 		dialog phrase "unfettered medicals pickup dialog"
 	on complete
-		payment 8000 2800
+		payment 8000 340
 		dialog phrase "unfettered medicals payment dialog"
