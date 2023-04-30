@@ -1463,6 +1463,10 @@ mission "Hai Large Rush Delivery [2]"
 		payment
 		payment 36000
 		"reputation: Hai" += 2
+		"reputation: Hai (Wormhole Access)" += 2
+		"reputation: Hai Merchant" += 2
+		"reputation: Hai Merchant (Human)" += 2
+		"reputation: Hai Merchant (Sympathizers)" += 2
 		dialog phrase "generic cargo delivery payment"
 
 mission "Hai Large Rush Delivery [3]"
@@ -1499,7 +1503,7 @@ mission "Hai Prisoner Roleplay"
 	name `Hai "prison" cruise to <planet>`
 	job
 	repeat
-	description "A group of Hai want to experience what it's like to be human criminals. Transport them to <planet> in a brig. Payment is <payment>."
+	description "A group of <bunks> Hai want to experience what it's like to be human criminals. Transport them to <planet> in a brig. Payment is <payment>."
 	passengers 3 3 .24
 	to offer
 		random < 5
