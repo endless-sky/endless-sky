@@ -5578,7 +5578,7 @@ mission "Quicksilver Mixup 2"
 	"apparent payment" 100000
 	to offer
 		has "Quicksilver Mixup 1: done"
-		has "quicksilver mixup 2 available"
+		has "event: quicksilver mixup 2 available"
 	on offer
 		conversation
 			`As you walk through <origin>'s spaceport, somebody wearing office attire and carrying a tablet power walks up to you after ending a hurried conversation with another pilot.`
