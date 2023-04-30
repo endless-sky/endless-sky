@@ -5283,7 +5283,7 @@ mission "Wool Smuggling 1"
 				`	"I'm still not going to do it."`
 					goto decline
 			label payment
-			`	"Two hundred thousand credits for the job." You wonder how he's able to pay so much for a small delivery job.`
+			`	"Ninety thousand credits for the job." You wonder how he's able to pay so much for a small delivery job.`
 			choice
 				`	"Fine, I'll do it."`
 					goto accept
@@ -5313,7 +5313,7 @@ mission "Wool Smuggling 2"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 200000
+		payment 90000
 		dialog `Your cargo of woolen garments is unloaded by several bulky workers led by a one-armed woman. She hands you <payment> for the trouble of transport, then says, "Thanks for the shipment. I know that you captains think that we're all bad, but I'm glad that you were able to aid the more friendly among us."`
 
 

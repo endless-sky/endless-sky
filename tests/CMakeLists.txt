@@ -22,6 +22,7 @@ target_sources(EndlessSkyTests PRIVATE
 	unit/src/test_datafile.cpp
 	unit/src/test_datanode.cpp
 	unit/src/test_dictionary.cpp
+	unit/src/test_distance_calculation_settings.cpp
 	unit/src/test_esuuid.cpp
 	unit/src/test_exclusiveItem.cpp
 	unit/src/test_firecommand.cpp
