@@ -18,12 +18,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConditionSet.h"
 #include "Date.h"
+#include "DistanceCalculationSettings.h"
 #include "EsUuid.h"
 #include "LocationFilter.h"
 #include "MissionAction.h"
 #include "NPC.h"
 #include "TextReplacements.h"
-#include "WormholeStrategy.h"
 
 #include <list>
 #include <map>
@@ -180,13 +180,6 @@ public:
 	// "Instantiate" a mission by replacing randomly selected values and places
 	// with a single choice, and then replacing any wildcard text as well.
 	Mission Instantiate(const PlayerInfo &player, const std::shared_ptr<Ship> &boardingShip = nullptr) const;
-
-
-private:
-	struct DistanceCalculationSettings {
-		WormholeStrategy wormholeStrategy = WormholeStrategy::NONE;
-		bool assumesJumpDrive = false;
-	};
 
 
 private:
