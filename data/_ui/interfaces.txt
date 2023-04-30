@@ -55,6 +55,19 @@ color "overheat" .70 .61 .43 .75
 color "energy" .6 .6 .6 .75
 color "fuel" .70 .62 .43 .75
 
+# Colors for the escort HUD status bars.
+color "escort shields" .43 .55 .70 0.
+color "escort hull" .70 .62 .43 0.
+color "escort heat" .70 .43 .43 0.
+color "escort energy" .6 .6 .6 0.
+color "escort fuel" .630 .62 .43 0.
+# These values are half the desired "full color" values.
+color "escort split shields" .215 .275 .35 0.
+color "escort split hull" .35 .31 .215 0.
+color "escort split heat" .35 .215 .215 0.
+color "escort split energy" .3 .3 .3 0.
+color "escort split fuel" .35 .31 .215 0.
+
 color "flagship highlight" .5 .8 .2 0.
 
 color "drag select" .2 1. 0. 0.
@@ -693,6 +706,129 @@ interface "hud"
 	anchor top
 	point "mini-map"
 		center 0 100
+
+
+
+interface "escort element"
+	value "width" 120
+	value "basic height" 30
+	value "system label height" 15
+	anchor top left
+	outline "icon"
+		center 20 10
+		dimensions 20 20
+		colored
+	visible if "selected"
+	pointer
+		center 10 10
+		dimensions 10 10
+		"orientation angle" 90
+		color "escort selected"
+	visible if "other system"
+	string "system"
+		from 10 28
+		size 14
+		align left
+		truncate back
+		color "escort elsewhere"
+	visible if "!multiple"
+	bar "shields high"
+		from 35 1.5
+		dimensions 70 0
+		size 1.5
+		reversed
+		color "escort shields"
+	bar "hull high"
+		from 35 5.5
+		dimensions 70 0
+		size 1.5
+		reversed
+		color "escort hull"
+	bar "energy high"
+		from 40 9.5
+		dimensions 65 0
+		size 1.5
+		reversed
+		color "escort energy"
+	bar "heat high"
+		from 40 13.5
+		dimensions 65 0
+		size 1.5
+		reversed
+		color "escort heat"
+	bar "fuel high"
+		from 40 17.5
+		dimensions 65 0
+		size 1.5
+		reversed
+		color "escort fuel"
+	visible if "multiple"
+	anchor top right
+	string "count"
+		from -15 3 to -55 17
+		align right
+		color "escort elsewhere"
+	anchor top left
+	bar "shields high"
+		from 35 1.5
+		dimensions 50 0
+		size 1.5
+		reversed
+		color "escort split shields"
+	bar "shields low"
+		from 35 1.5
+		dimensions 50 0
+		size 1.5
+		reversed
+		color "escort split shields"
+	bar "hull high"
+		from 35 5.5
+		dimensions 50 0
+		size 1.5
+		reversed
+		color "escort split hull"
+	bar "hull low"
+		from 35 5.5
+		dimensions 50 0
+		size 1.5
+		reversed
+		color "escort split hull"
+	bar "energy high"
+		from 40 9.5
+		dimensions 45 0
+		size 1.5
+		reversed
+		color "escort split energy"
+	bar "energy low"
+		from 40 9.5
+		dimensions 45 0
+		size 1.5
+		reversed
+		color "escort split energy"
+	bar "heat high"
+		from 40 13.5
+		dimensions 45 0
+		size 1.5
+		reversed
+		color "escort split heat"
+	bar "heat low"
+		from 40 13.5
+		dimensions 45 0
+		size 1.5
+		reversed
+		color "escort split heat"
+	bar "fuel high"
+		from 40 17.5
+		dimensions 45 0
+		size 1.5
+		reversed
+		color "escort split fuel"
+	bar "fuel low"
+		from 40 17.5
+		dimensions 45 0
+		size 1.5
+		reversed
+		color "escort split fuel"
 
 
 

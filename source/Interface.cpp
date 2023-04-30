@@ -194,6 +194,14 @@ Point Interface::AnchoredPoint::Get() const
 
 
 
+Point Interface::AnchoredPoint::Get(const Information &info) const
+{
+	const Rectangle &region = info.GetCustomRegion();
+	return position + region.Center() + .5 * region.Dimensions() * anchor;
+}
+
+
+
 void Interface::AnchoredPoint::Set(const Point &position, const Point &anchor)
 {
 	this->position = position;
@@ -308,7 +316,11 @@ void Interface::Element::Draw(const Information &info, Panel *panel) const
 		return;
 
 	// Get the bounding box of this element, relative to the anchor point.
-	Rectangle box = Bounds();
+	Rectangle box;
+	if(info.CustomRegion())
+		box = Bounds(info);
+	else
+		box = Bounds();
 	// Check if this element is active.
 	int state = info.HasCondition(activeIf);
 	// Check if the mouse is hovering over this element.
@@ -342,6 +354,13 @@ void Interface::Element::SetConditions(const string &visible, const string &acti
 Rectangle Interface::Element::Bounds() const
 {
 	return Rectangle::WithCorners(from.Get(), to.Get());
+}
+
+
+
+Rectangle Interface::Element::Bounds(const Information &info) const
+{
+	return Rectangle::WithCorners(from.Get(info), to.Get(info));
 }
 
 

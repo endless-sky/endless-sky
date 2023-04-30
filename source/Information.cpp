@@ -21,6 +21,28 @@ using namespace std;
 
 
 
+void Information::SetRegion(const Rectangle &rect)
+{
+	region = rect;
+	customRegion = true;
+}
+
+
+
+const Rectangle &Information::GetCustomRegion() const
+{
+	return region;
+}
+
+
+
+bool Information::CustomRegion() const
+{
+	return customRegion;
+}
+
+
+
 void Information::SetSprite(const string &name, const Sprite *sprite, const Point &unit, float frame)
 {
 	sprites[name] = sprite;
