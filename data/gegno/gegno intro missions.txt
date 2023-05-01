@@ -488,7 +488,6 @@ mission "Gegno Genocide Defense"
 	invisible
 	to offer
 		"reputation: Gegno" < -100
-		has "Giaru Gegno: Quarg Contact: offered"
 	to complete
 		never
 	on offer
@@ -500,6 +499,10 @@ mission "Gegno Genocide Defense"
 		"reputation: Gegno Scin" = -100
 		event "gegno: unified defense"
 		conversation
+			branch "encountered gegno quarg"
+				has "Giaru Gegno: Quarg Contact: offered"
+
+			label "encountered gegno quarg"
 			`As soon as you land your ship, you receive an incoming hail from a Quarg that sounds very displeased. "It was incredibly unwise to engage in the unnecessary destruction of noncombatants belonging to a species not of your own. A species that is still learning from themselves is vulnerable to outside influence, and your aggressive actions against civilians of the Gegno have resulted in needless events."`
 			choice
 				`	"It was an accident!"`
@@ -515,6 +518,29 @@ mission "Gegno Genocide Defense"
 			label "care"
 			`	The Quarg makes an unpleasant sound - one you have not heard from any Quarg before. "Should you be seen in Gegno space once more, expect the same sentiment."`
 				accept
+
+	on enter "Aleit"
+		conversation
+			branch "did not encounter gegno quarg"
+				not "Giaru Gegno: Quarg Contact: offered"
+				
+			label "did not encounter gegno quarg"
+			`As soon as you enter the system, you are greeted by the familiar sight of a Quarg Ringworld. However, soon after, you receive an incoming hail from a Quarg that sounds very displeased. "It was incredibly unwise to engage in the unnecessary destruction of noncombatants belonging to a species not of your own. A species that is still learning from themselves is vulnerable to outside influence, and your aggressive actions against civilians of the Gegno have resulted in needless events."`
+			choice
+				`	"It was an accident!"`
+				`	"What are you talking about?"`
+					goto "what"
+				`	"I do not care."`
+					goto "care"
+			`	"It is greatly unlikely for violence upon unarmed victims to be accidental. Regardless of the cause, the effect has already occurred. The Gegno have banded together under one flag in an effort to deter any more outside interference. You are no longer welcome in their space, and you are advised not to visit again, lest the Gegno show you the same belligerent behavior you have exhibited to their citizens. Now begone, as we do not tolerate naivety of this magnitude."`
+				accept
+			label "what"
+			`	"Your behavior has caused the Gegno to unite their fleets and deter any more presence from outsiders. It is a great shame. The time they would use to resolve their inner conflicts is now wasted upon hostility towards strangers due to your naivety. You are no longer welcome in Gegno space, and if you dare visit again, the Gegno will demonstrate the same treatment you gave their citizens. Now begone, as we do not tolerate naivety of this magnitude."`
+				accept
+			label "care"
+			`	The Quarg makes an unpleasant sound - one you have not heard from any Quarg before. "Should you be seen in Gegno space once more, expect the same sentiment. Now begone, as we do not tolerate naivety of this magnitude."`
+				accept
+
 	npc
 		government "Gegno Vi"
 		to spawn
