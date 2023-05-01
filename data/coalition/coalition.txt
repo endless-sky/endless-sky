@@ -1215,7 +1215,7 @@ phrase "heliarch test dummy"
 		"Focus on the battle you must, Captain."
 		"Distract me from the fight, you must not."
 		"Helping me learn, your unique fighting style is."
-		"New to your alien weaponry I am."
+		"New to your alien weaponry, I am."
 		"Useful for future combat, this experience is."
 
 phrase "disabled heliarch test dummy"
@@ -1223,7 +1223,7 @@ phrase "disabled heliarch test dummy"
 		"Bested us, you have."
 		"Defeated me, you have."
 		"A good fight, it was."
-		"A tough opponent you were."
+		"A tough opponent, you were."
 	word
 		" "
 	word

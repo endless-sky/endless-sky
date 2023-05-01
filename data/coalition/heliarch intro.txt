@@ -295,7 +295,7 @@ mission "HI2-SS"
 				`	"Sorry, I'll have to refuse this time."`
 					goto decline
 			`	"An abandoned mining operation our target is. Received we have reports of suspicious activity near the complex, ships that recently there headed in spite of it shutting down years ago," he explains, and you input the coordinates he gives you into your navigator.`
-			`	You fly to the coordinates, and come to the remains of a gargantuan mining operation, an enormous hole torn into the planet's surface, spiralling down to what must be nearly a kilometer below the otherwise relatively untouched surface. Near the edge, you spot a medium-sized building, made up of a few interconnected blocks, and dirtied up by the planet's sand. Tugroob tells you it must have been the base for the mining workers and managing team, when the mine was active.`
+			`	You fly to the coordinates, and come to the remains of a gargantuan mining operation, an enormous hole torn into the planet's surface, spiralling down to what must be nearly a kilometer below the otherwise relatively untouched surface. Near the edge, you spot a medium-sized building, made up of a few interconnected blocks, dirtied up by the planet's sand. Tugroob tells you it must have been the base for the mining workers and managing team, when the mine was active.`
 			`	Close to the building, farther out from the digging hole, you see a few landing pads of large enough size for even the largest of freighters, likely there for the raw ore to be shipped off via spacecraft to smelting facilities. You land on one of them, and you and Tugroob leave your ship. As you step off the landing pad, Tugroob calls your attention to a desert storm brewing in the distance, and says you two should get started before it reaches here.`
 			choice
 				`	"Let's check out the building."`
@@ -414,7 +414,7 @@ mission "HI2-IW"
 					goto snow
 				`	"On second thought, you're right. Good luck out there."`
 			label warm
-			`	You open the hatch, and she begins her trek. You slouch around your ship for a few hours, waiting for any signal from the Heliarch agents, but nothing comes up on your commlink. Iplora comes back, saying she couldn't find anything, so you leave and pick up Kirrie and Tugroob. They also return empty handed.`
+			`	You open the hatch, and she begins her trek. You slouch around your ship for a few hours, waiting for any signal from the Heliarch agents, but nothing comes up on your commlink. Iplora comes back, saying she couldn't find anything, so you leave and pick up Kirrie and Tugroob. They also return empty-handed.`
 				accept
 			label snow
 			`	She remains silent, moving away from the hatch, and taking a seat to wait. You head to your room, and prepare yourself for what's to come with the warmest, best clothing you could find for the snowy grounds. When you're done, you head back to your controls to open the hatch, and the both of you head out into the white fields. Not long after leaving your ship, you can make out small, dark lines nearby, probably pine trees. It seems you landed close to a forest. Unfortunately, they don't do much to protect you from the increasingly denser snowfall.`
@@ -520,7 +520,7 @@ mission "HI2-RB"
 	on complete
 		conversation
 			`When you land, a couple of other civilian ships land nearby. Some Kimek leave them and wait outside your own. Kirrie is the only one to leave, and after speaking a bit with the other Kimek, they leave for the city, splitting in two groups.`
-			`	"Not fond of outsiders, the people of this world are," Tugroob explains. "Decided to employ undercover Kimek agents, Consul Iekie."`
+			`	"Not fond of outsiders, the people of this world are," Tugroob explains. "Decided to employ undercover Kimek agents, Consul Iekie has."`
 			`	You wait around for a couple hours as Iplora and Tugroob tinker with your ship's communication devices, keeping in contact with the two groups. They don't mention if either group finds anything, and as night falls, Kirrie returns to the ship on his own. He doesn't say anything of the operation, instead just heading to his bunk to rest. Iplora and Tugroob follow suit, after telling you to depart whenever you're ready.`
 
 
@@ -783,7 +783,7 @@ mission "Heliarch Recon 3-A"
 			`	The Saryd interrupts him, "Not... satisfied with them, Consul Aulori was, however. Tasked with acquiring your help again, we were."`
 			branch license
 				has "Heliarch License: done"
-			`	"An exception, the council has decided to make," the Arach explains. "Granted one of our Scanning Modules, you will be. Just for the mission, it is, so return it once it's over, you must. Install it on your ship, a team in the <planet> will."`
+			`	"An exception, the council has decided to make," the Arach explains. "Granted one of our Scanning Modules, you will be. Just for the mission, it is, so return it once it's over, you must. Install it on your ship, a team on the <planet> will."`
 				goto choice
 			label license
 			`	"A 'proper' close-up scan, with a Heliarch Scanning Module, the consul wants," the Arach explains. "Now that in our ranks, you are, simple enough for you, purchasing one should be. Once ready, you are, head to the <planet> to hear the plan, you must."`

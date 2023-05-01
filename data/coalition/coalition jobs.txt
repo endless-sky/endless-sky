@@ -1398,7 +1398,7 @@ mission "Heliarch Contain Fake"
 	on complete
 		payment
 		payment 55000
-		dialog `Your team pounces and catch the targets entirely by surprise. They offer no resistance, relinquishing their weapons immediately. You call for a Heliarch ship to pick them up and then bid the other agents farewell as you leave. An extra <payment> is already waiting in your account when you return to your ship.`
+		dialog `Your team pounces and catches the targets entirely by surprise. They offer no resistance, relinquishing their weapons immediately. You call for a Heliarch ship to pick them up and then bid the other agents farewell as you leave. An extra <payment> is already waiting in your account when you return to your ship.`
 
 
 mission "Heliarch Prisoner Transport"
