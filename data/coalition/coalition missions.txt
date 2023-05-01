@@ -3383,7 +3383,7 @@ mission "Coalition: Struggling Author 2"
 		conversation
 			`As you enter <system>, Anna walks out of her bunk and finds a spot on the side of the bridge, to peer into space. "What a massive ringworld!", she exclaims.`
 			choice
-				`	"It's enormous. They actually stole it from the Quarg, who they rebelled against roughly six thousand years ago."`
+				`	"It's enormous. They actually stole it from the Quarg, who they rebelled against roughly seven thousand years ago."`
 				`	"I'm used to it."`
 			`	"Awesome! This is going to be a great setting and certainly a source of inspiration for my next novel!", says Anna, her voice still in an enthusiastic and excited tone. "This must be where I'm supposed to register, right?"`
 			`	"Yes, this is the <planet>. Prepare your identity documents."`
