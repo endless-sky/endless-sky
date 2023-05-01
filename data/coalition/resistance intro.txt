@@ -793,7 +793,7 @@ event "bebliss research fw"
 
 mission "House Bebliss 7-FW"
 	name "The House Always Wins"
-	description "Head to <destination>, where the members of House Bebliss will return the Jump Drive you provided them, and give you your payment for assisting them."
+	description "Head to <destination>, where the members of House Bebliss will return the jump drive you provided them, and give you your payment for assisting them."
 	landing
 	to offer
 		has "event: bebliss research fw"
