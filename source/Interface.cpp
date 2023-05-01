@@ -733,14 +733,9 @@ bool Interface::PointerElement::ParseLine(const DataNode &node)
 
 void Interface::PointerElement::Draw(const Rectangle &rect, const Information &info, int state) const
 {
-	// Avoid crashes for malformed interface elements that are not fully loaded.
-	if(!from.Get() && !to.Get())
-		return;
-	const Point fromP = from.Get();
-	const Point toP = to.Get();
-	const Point center = (fromP + toP) / 2.;
-	const float width = abs(fromP.X() - toP.X());
-	const float height = abs(fromP.Y() - toP.Y());
+	const Point center = rect.Center();
+	const float width = rect.Width();
+	const float height = rect.Height();
 	PointerShader::Draw(center, orientation, width, height, 0.f, *color);
 }
 
