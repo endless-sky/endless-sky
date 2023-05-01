@@ -3386,7 +3386,7 @@ mission "Coalition: Struggling Author 2"
 				`	"It's enormous. They actually stole it from the Quarg, who they rebelled against roughly seven thousand years ago."`
 				`	"I'm used to it."`
 			`	"Awesome! This is going to be a great setting and certainly a source of inspiration for my next novel!", says Anna, her voice still in an enthusiastic and excited tone. "This must be where I'm supposed to register, right?"`
-			`	"Yes, this is the <planet>. Prepare your identity documents."`
+			`	"Yes, this is the <planet>. Let's go."`
 	on complete
 		conversation
 			`	Anna is still in awe as you touch down on the ringworld. As the two of you open the hatch, you see yet another Heliarch agent in front of you.`
