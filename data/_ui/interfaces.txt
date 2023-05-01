@@ -412,7 +412,9 @@ interface "load menu"
 
 interface "controls"
 	sprite "ui/keys panel"
-		center -65 -20
+		center -25 -20
+	sprite "ui/shift panel"
+		center -346 55
 	button c "_Controls"
 		center -300 -230
 		dimensions 90 30
