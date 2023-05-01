@@ -199,10 +199,10 @@ bool EscortDisplay::Icon::operator<(const Icon &other) const
 
 int EscortDisplay::Icon::Height() const
 {
-	const Interface *interface = GameData::Interfaces().Get("escort element");
-	int height = interface->GetValue("basic height");
+	const Interface *element = GameData::Interfaces().Get("escort element");
+	int height = element->GetValue("basic height");
 	if(!system.empty())
-		height += interface->GetValue("system label height");
+		height += element->GetValue("system label height");
 	return height;
 }
 
