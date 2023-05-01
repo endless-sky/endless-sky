@@ -5459,8 +5459,6 @@ mission "Escort offer (Betrayal)"
 			choice
 				`	"I was just thinking of doing the same, glad to know I'll have you with me!"`
 				`	"Sounds like a plan. 80,000 credits, then?"`
-				`	"Actually, I have other plans. Sorry."`
-					goto otherplans
 				`	"Sorry, that just sounds too dangerous for me."`
 					decline
 			`	"Alright, let's go! Don't forget to pick up a full cargo of luxury goods before setting off. Oh, and if you didn't already know, you can get to <planet> from here in just four jumps. North, west, southwest, then south."`
