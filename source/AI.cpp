@@ -54,7 +54,8 @@ namespace {
 	const Command &AutopilotCancelCommands()
 	{
 		static const Command cancelers(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD
-			| Command::AFTERBURNER | Command::BACK | Command::FORWARD | Command::LEFT | Command::RIGHT | Command::STOP);
+			| Command::AFTERBURNER | Command::BACK | Command::FORWARD | Command::LEFT | Command::RIGHT
+			| Command::AUTOSTEER | Command::STOP);
 
 		return cancelers;
 	}
@@ -4022,7 +4023,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		{
 			if(!activeCommands.Has(Command::FORWARD) && ship.Attributes().Get("reverse thrust"))
 				command |= Command::BACK;
-			else if(!activeCommands.Has(Command::RIGHT | Command::LEFT))
+			else if(!activeCommands.Has(Command::RIGHT | Command::LEFT | Command::AUTOSTEER))
 				command.SetTurn(TurnBackward(ship));
 		}
 
@@ -4055,7 +4056,17 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	}
 	bool shouldAutoAim = false;
 	bool isFiring = activeCommands.Has(Command::PRIMARY) || activeCommands.Has(Command::SECONDARY);
-	if((Preferences::GetAutoAim() == Preferences::AutoAim::ALWAYS_ON
+	if(activeCommands.Has(Command::AUTOSTEER) && !command.Turn() && !ship.IsBoarding()
+			&& !autoPilot.Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD))
+	{
+		if(target && target->GetSystem() == ship.GetSystem() && target->IsTargetable())
+			command.SetTurn(TurnToward(ship, TargetAim(ship)));
+		else if(ship.GetTargetAsteroid())
+			command.SetTurn(TurnToward(ship, TargetAim(ship, *ship.GetTargetAsteroid())));
+		else if(ship.GetTargetStellar())
+			command.SetTurn(TurnToward(ship, ship.GetTargetStellar()->Position() - ship.Position()));
+	}
+	else if((Preferences::GetAutoAim() == Preferences::AutoAim::ALWAYS_ON
 			|| (Preferences::GetAutoAim() == Preferences::AutoAim::WHEN_FIRING && isFiring))
 			&& !command.Turn() && !ship.IsBoarding()
 			&& ((target && target->GetSystem() == ship.GetSystem() && target->IsTargetable()) || ship.GetTargetAsteroid())
