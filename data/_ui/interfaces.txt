@@ -713,6 +713,7 @@ interface "escort element"
 	value "width" 120
 	value "basic height" 30
 	value "system label height" 15
+
 	anchor top left
 	outline "icon"
 		center 20 10
@@ -731,6 +732,7 @@ interface "escort element"
 		align left
 		truncate back
 		color "escort elsewhere"
+
 	visible if "!multiple"
 	bar "shields high"
 		from 35 1.5
@@ -762,6 +764,7 @@ interface "escort element"
 		size 1.5
 		reversed
 		color "escort fuel"
+
 	visible if "multiple"
 	anchor top right
 	string "count"
