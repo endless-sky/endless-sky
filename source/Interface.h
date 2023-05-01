@@ -192,6 +192,7 @@ private:
 		std::string name;
 		const Color *color = nullptr;
 		float width = 2.f;
+		bool reversed = false;
 		bool isRing = false;
 	};
 
