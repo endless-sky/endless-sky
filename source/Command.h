@@ -37,9 +37,9 @@ public:
 	static const Command FORWARD;
 	static const Command LEFT;
 	static const Command RIGHT;
+	static const Command AUTOSTEER;
 	static const Command BACK;
 	static const Command MOUSE_TURNING_HOLD;
-	static const Command MOUSE_TURNING_TOGGLE;
 	static const Command PRIMARY;
 	static const Command SECONDARY;
 	static const Command SELECT;

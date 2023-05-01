@@ -20,7 +20,6 @@ Files:
  images/outfit/fission?hai*
  images/outfit/fusion?hai*
  images/outfit/heavy?anti-missile?hai*
- images/ship/mbounder*
  images/ship/mfury*
 Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
@@ -937,12 +936,14 @@ Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
 Files:
  images/projectile/sunbeam/*
  images/ship/blackbird*
+ images/ship/bounder*
  images/ship/falcon*
  images/ship/hawk*
  images/ship/quicksilver*
  images/ship/scout*
  images/ship/sparrow*
  images/thumbnail/blackbird*
+ images/thumbnail/bounder*
  images/thumbnail/falcon*
  images/thumbnail/hawk*
  images/thumbnail/quicksilver*
@@ -964,8 +965,10 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser and Anarchist2 under the same license. Incorporating texture made with JSPlacement by WindMillArt <https://windmillart.net/>.
 
 Files:
+ images/ship/mbounder*
  images/ship/mfalcon*
  images/ship/mquicksilver*
+ images/thumbnail/mbounder*
  images/thumbnail/mfalcon*
  images/thumbnail/mquicksilver*
 Copyright: Maximilian Korber
@@ -1628,6 +1631,13 @@ Files:
  images/outfit/korath?bow?drive*
 Copyright: Ejo Thims <https://github.com/EjoThims>
 License: CC-BY-SA-4.0
+
+Files:
+ images/ship/hai?emperor?beetle*
+ images/thumbnail/hai?emperor?beetle*
+Copyright: Ejo Thims <https://github.com/EjoThims>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Becca Tommaso and Michael Zahniser (under the same license)
 
 Files:
  images/planet/stationh-ancient0*
