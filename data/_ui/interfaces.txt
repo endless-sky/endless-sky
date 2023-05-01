@@ -401,7 +401,7 @@ interface "load menu"
 	
 	active
 	button b "_Back to Menu"
-		center 300 155
+		center 300 130
 		dimensions 120 30
 	active if "pilot loaded"
 	button l "_Load Game"
@@ -412,7 +412,9 @@ interface "load menu"
 
 interface "controls"
 	sprite "ui/keys panel"
-		center -65 -20
+		center -25 -20
+	sprite "ui/shift panel"
+		center -346 41
 	button c "_Controls"
 		center -300 -230
 		dimensions 90 30
