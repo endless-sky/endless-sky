@@ -2088,6 +2088,10 @@ void Engine::HandleKeyboardInputs()
 		else if(keyHeld.Has(Command::JUMP))
 			activeCommands |= Command::FLEET_JUMP;
 	}
+
+	if(keyHeld.Has(Command::AUTOSTEER) && !activeCommands.Turn()
+			&& !activeCommands.Has(Command::LAND | Command::JUMP | Command::BOARD | Command::STOP))
+		activeCommands |= Command::AUTOSTEER;
 }
 
 

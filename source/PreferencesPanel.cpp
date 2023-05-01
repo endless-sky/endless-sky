@@ -370,7 +370,8 @@ void PreferencesPanel::DrawControls()
 	table.DrawAt(Point(-130, firstY));
 
 	static const string CATEGORIES[] = {
-		"Navigation",
+		"Keyboard Navigation",
+		"Interface",
 		"Targeting",
 		"Weapons",
 		"Interface",
@@ -387,8 +388,12 @@ void PreferencesPanel::DrawControls()
 		Command::LATERALLEFT,
 		Command::LATERALRIGHT,
 		Command::AFTERBURNER,
+		Command::AUTOSTEER,
 		Command::LAND,
 		Command::JUMP,
+		Command::NONE,
+		Command::MAP,
+		Command::INFO,
 		Command::NONE,
 		Command::NEAREST,
 		Command::TARGET,
@@ -396,15 +401,13 @@ void PreferencesPanel::DrawControls()
 		Command::BOARD,
 		Command::NEAREST_ASTEROID,
 		Command::SCAN,
-		Command::CLOAK,
 		Command::NONE,
 		Command::PRIMARY,
 		Command::SELECT,
 		Command::SECONDARY,
+		Command::CLOAK,
 		Command::NONE,
 		Command::MENU,
-		Command::MAP,
-		Command::INFO,
 		Command::FULLSCREEN,
 		Command::FASTFORWARD,
 		Command::NONE,
@@ -468,7 +471,7 @@ void PreferencesPanel::DrawControls()
 	Table shiftTable;
 	shiftTable.AddColumn(125, {150, Alignment::RIGHT});
 	shiftTable.SetUnderline(0, 130);
-	shiftTable.DrawAt(Point(-400, 2));
+	shiftTable.DrawAt(Point(-400, 32));
 
 	shiftTable.DrawUnderline(medium);
 	shiftTable.Draw("With <shift> key", bright);
