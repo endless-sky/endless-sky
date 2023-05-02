@@ -1701,7 +1701,15 @@ bool PlayerInfo::TakeOff(UI *ui)
 	}
 	if(outfitsSold)
 	{
-		if(!planet->HasOutfitter() && hasSpaceport)
+		if(planet->HasOutfitter())
+			for(const auto &outfit : cargo.Outfits())
+			{
+				// Transfer the outfits from cargo to the storage on this planet.
+				if(!outfit.second)
+					continue;
+				cargo.Transfer(outfit.first, outfit.second, *Storage(true));
+			}
+		else if(hasSpaceport)
 			for(const auto &outfit : cargo.Outfits())
 			{
 				// Compute the total value for each type of excess outfit.
@@ -1712,16 +1720,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 					stockDepreciation.Buy(outfit.first, day, &depreciation);
 				outfitsIncome += cost;
 			}
-		else if(planet->HasOutfitter())
-			for(const auto &outfit : cargo.Outfits())
-			{
-				// Transfer the outfits from cargo to the storage on this planet.
-				if(!outfit.second)
-					continue;
-				cargo.Transfer(outfit.first, outfit.second, *Storage(true));
-			 }
-
-	}
+	 }
 
 	accounts.AddCredits(commoditiesIncome + outfitsIncome);
 	cargo.Clear();
