@@ -366,7 +366,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 				out << nonJumpCount << " ships";
 			out << " that will not be able to leave the system.";
 		}
-		// Warn about non-commodity cargo you will have to sell.
+		// Warn about non-commodity cargo you will have to leave.
 		else
 		{
 			out << "If you take off now you will have to ";
