@@ -53,7 +53,7 @@ ship "Rano'erek"
 		"Steering (Planetary Class)"
 		"Thruster (Planetary Class)"
 		"Scram Drive"
-		"Jump Drive"
+		"Korath Jump Drive"
 		
 	turret 0 -153 "Grab-Strike Turret"
 	turret -37.5 -152.5 "Digger Mining Turret"
@@ -137,7 +137,7 @@ ship "Palavret"
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Bow Drive (Meteor Class)"
-		"Jump Drive"
+		"Korath Jump Drive"
 	
 	engine -20 127
 	engine 20 127
@@ -212,7 +212,7 @@ ship "Tubfalet"
 		"Thruster (Planetary Class)"
 		"Thruster (Lunar Class)"
 		"Steering (Planetary Class)"
-		"Jump Drive"
+		"Korath Jump Drive"
 	
 	engine -20 132
 		over
@@ -324,7 +324,7 @@ ship "'nra'ret"
 		"Afterburner (Planetary Class)"
 		"Steering (Lunar Class)"
 		"Thruster (Planetary Class)"
-		"Jump Drive"
+		"Korath Jump Drive"
 
 	engine -29 96
 	engine 29 96
@@ -481,7 +481,7 @@ ship "Rai'alorej"
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Scram Drive"
-		"Jump Drive"
+		"Korath Jump Drive"
 
 	"reverse engine" -79 -186
 		zoom 0.8
@@ -714,7 +714,7 @@ ship "Ra'gru Ik 618"
 		
 		"Thruster (Stellar Class)"
 		"Steering (Stellar Class)"
-		"Jump Drive"
+		"Korath Jump Drive"
 	
 	engine -37 333 .7
 	engine 0 333 .7
@@ -940,7 +940,7 @@ ship "Ra'at Ik 621"
 		"Reverser (Lunar Class)"
 		"Thruster (Stellar Class)"
 		"Steering (Stellar Class)"
-		"Jump Drive"
+		"Korath Jump Drive"
 	
 	engine -42 343 .6
 	engine -22 343 .6
