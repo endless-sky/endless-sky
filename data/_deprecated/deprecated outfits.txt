@@ -609,3 +609,14 @@ outfit "Korath Repeater Rifle"
 	"capture defense" 2.4
 	"unplunderable" 1
 	description "This rifle is commonplace among the Korath, predating the creation of the Repeater by at least two centuries. As it uses superheated plasma instead of lasers, the rifle is slow to fire and can sometimes burn its user's hands if they aren't careful. It makes up for these setbacks by guaranteeing that those hit won't live long enough to fire back."
+
+outfit "Jump Drive"
+	category Systems
+	cost 1000000
+	thumbnail "outfit/jump drive"
+	"mass" 20
+	"outfit space" -20
+	"jump drive" 1
+	"jump speed" 0.3
+	"jump fuel" 200
+	description "The workings of the jump drive are a total mystery. The best that human scientists have been able to find out is that this device is a containment field for matter in a state that cannot normally exist in this universe; if the drive is opened up, the field collapses and its contents disappear. Therefore, even though a few jump drives have been captured over the years, it has so far proved impossible to reverse engineer them."
