@@ -1703,23 +1703,23 @@ bool PlayerInfo::TakeOff(UI *ui)
 	{
 		if(!planet->HasOutfitter() && hasSpaceport)
 			for(const auto &outfit : cargo.Outfits())
-				{
-					// Compute the total value for each type of excess outfit.
-					if(!outfit.second)
-						continue;
-					int64_t cost = depreciation.Value(outfit.first, day, outfit.second);
-					for(int i = 0; i < outfit.second; ++i)
-						stockDepreciation.Buy(outfit.first, day, &depreciation);
-					outfitsIncome += cost;
-				}
+			{
+				// Compute the total value for each type of excess outfit.
+				if(!outfit.second)
+					continue;
+				int64_t cost = depreciation.Value(outfit.first, day, outfit.second);
+				for(int i = 0; i < outfit.second; ++i)
+					stockDepreciation.Buy(outfit.first, day, &depreciation);
+				outfitsIncome += cost;
+			 }
 		else if(planet->HasOutfitter())
 			for(const auto &outfit : cargo.Outfits())
-				{
-					// Transfer the outfits from cargo to the storage on this planet.
-					if(!outfit.second)
-						continue;
-					cargo.Transfer(outfit.first, outfit.second, *Storage(true));
-				}
+			{
+				// Transfer the outfits from cargo to the storage on this planet.
+				if(!outfit.second)
+					continue;
+				cargo.Transfer(outfit.first, outfit.second, *Storage(true));
+			 }
 
 	}
 
