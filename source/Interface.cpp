@@ -616,6 +616,12 @@ Interface::BarElement::BarElement(const DataNode &node, const Point &globalAncho
 	// Fill in a default color if none is specified.
 	if(!color)
 		color = GameData::Colors().Get("active");
+
+	// Make sure these values are within the allowed ranges.
+	spanAngle = max(0., spanAngle);
+	spanAngle = min(360., spanAngle);
+	startAngle = max(0., startAngle);
+	startAngle = min(360., startAngle);
 }
 
 
@@ -634,12 +640,6 @@ bool Interface::BarElement::ParseLine(const DataNode &node)
 		startAngle = node.Value(1);
 	else
 		return false;
-
-	// Some input validation.
-	spanAngle = max(0., spanAngle);
-	spanAngle = spanAngle % 360.;
-	startAngle = max(0., startAngle);
-	startAngle = startAngle % 360.;
 
 	return true;
 }
