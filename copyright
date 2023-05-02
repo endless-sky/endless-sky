@@ -2115,6 +2115,13 @@ Files:
 Copyright: CyberJudas (cyberjudas@dnmx.org)
 License: CC-BY-SA-4.0
 
+Files:
+ images/outfit/jump?drive?korath*
+ images/outfit/jump?drive?quarg*
+Copyright: Roger Tabris
+License: CC-BY-SA-4.0
+Comment: Derived from works of Scrinarii1337#0001 (under the same license)
+
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
