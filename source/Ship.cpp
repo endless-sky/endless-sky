@@ -2722,8 +2722,7 @@ int Ship::Scan(const PlayerInfo &player)
 					break;
 				}
 
-		isImportant = !Preferences::Has("Important scan messages only")
-				|| hasIllegal || target.get() == player.Flagship();
+		isImportant = hasIllegal || target.get() == player.Flagship();
 	}
 
 	if(startedScanning && isYours)
