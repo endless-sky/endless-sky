@@ -1741,31 +1741,22 @@ bool PlayerInfo::TakeOff(UI *ui)
 			else
 				out << ".";
 		}
-		else {
-				out << "You dumped " << Format::CargoString(commoditiesSold, "excess cargo.");
-		}
-		out << " "
+		else
+			out << "You dumped " << Format::CargoString(commoditiesSold, "excess cargo.");
+		out << " ";
 	}
 
 	if(outfitsSold)
 	{
 		if(outfitsIncome)
-		{
 			out << "You sold " << Format::CargoString(outfitsSold, "excess outfits") << " for " << Format::CreditString(outfitsIncome);
-			if(totalBasis && totalBasis != outfitsIncome)
-				out << " (for a profit of " << Format::CreditString(outfitsIncome - totalBasis) << ").";
-			else
-				out << ".";
-		}
-		else if(planet->HasOutfitter()) {
+		else if(planet->HasOutfitter())
 			out << "You stored " << Format::CargoString(outfitsSold, "excess outfits.");
-		}
-		else {
+		else
 			out << "You dumped " << Format::CargoString(outfitsSold, "excess outfits.");
-		}
-
-		Messages::Add(out.str(), Messages::Importance::High);
 	}
+	if(commoditiesSold || outfitsSold)
+		Messages::Add(out.str(), Messages::Importance::High);
 
 	return true;
 }
