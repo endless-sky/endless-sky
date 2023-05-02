@@ -636,30 +636,10 @@ bool Interface::BarElement::ParseLine(const DataNode &node)
 		return false;
 
 	// Some input validation.
-	string warning;
-	if(spanAngle < 0.)
-	{
-		spanAngle = 0.;
-		warning = "Warning: \"span angle\" may not be negative. Using 0 instead:";
-	}
-	if(spanAngle > 360.)
-	{
-		spanAngle = 360.;
-		warning = "Warning: \"span angle\" may not exceed 360. Using 360 instead:";
-	}
-	if(startAngle < 0.)
-	{
-		startAngle = 0.;
-		warning = "Warning: \"start angle\" may not be negative. Using 0 instead:";
-	}
-	if(startAngle > 360.)
-	{
-		startAngle = 360.;
-		warning = "Warning: \"start angle\" may not exceed 360. Using 360 instead:";
-	}
-
-	if(!warning.empty())
-		node.PrintTrace(warning);
+	spanAngle = max(0., spanAngle);
+	spanAngle = spanAngle % 360.;
+	startAngle = max(0., startAngle);
+	startAngle = startAngle % 360.;
 
 	return true;
 }
