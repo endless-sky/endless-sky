@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef FORMATION_PATTERN_H_
@@ -20,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 
 class Body;
+class DataNode;
 
 
 
@@ -36,6 +40,7 @@ public:
 		PositionIterator(const FormationPattern &pattern,
 			double diameterToPx, double widthToPx, double heightToPx,
 			double centerBodyRadius, unsigned int startRing, unsigned int shipsToPlace);
+
 		PositionIterator() = delete;
 
 		// Iterator traits
@@ -60,6 +65,7 @@ public:
 	private:
 		// The pattern for which we are calculating positions.
 		const FormationPattern &pattern;
+
 		// The location in the pattern.
 		unsigned int ring;
 		unsigned int line = 0;
@@ -85,7 +91,6 @@ public:
 		// Internal status variable;
 		bool atEnd = false;
 	};
-
 
 	// Returns the name of this pattern.
 	const std::string &Name() const;
@@ -178,6 +183,7 @@ private:
 	};
 
 
+
 private:
 	// Name of the formation pattern.
 	std::string name;
@@ -196,7 +202,6 @@ private:
 	// The lines that define the formation.
 	std::vector<Line> lines;
 };
-
 
 
 #endif

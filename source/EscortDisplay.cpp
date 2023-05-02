@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "EscortDisplay.h"
@@ -20,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "LineShader.h"
 #include "OutlineShader.h"
 #include "Point.h"
+#include "PointerShader.h"
 #include "Rectangle.h"
 #include "Ship.h"
 #include "Sprite.h"
@@ -71,6 +75,7 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 	const Font &font = FontSet::Get(14);
 	// Top left corner of the current escort icon.
 	Point corner = Point(bounds.Left(), bounds.Bottom());
+	const Color &disabledColor = *colors.Get("escort disabled");
 	const Color &elsewhereColor = *colors.Get("escort elsewhere");
 	const Color &cannotJumpColor = *colors.Get("escort blocked");
 	const Color &notReadyToJumpColor = *colors.Get("escort not ready");
@@ -98,7 +103,9 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 			font.Draw(escort.system, pos + Point(-10., 10.), elsewhereColor);
 
 		Color color;
-		if(escort.isHostile)
+		if(escort.isDisabled)
+			color = disabledColor;
+		else if(escort.isHostile)
 			color = hostileColor;
 		else if(!escort.isHere)
 			color = elsewhereColor;
@@ -106,10 +113,12 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 			color = cannotJumpColor;
 		else if(escort.notReadyToJump)
 			color = notReadyToJumpColor;
-		else if(escort.isSelected)
-			color = selectedColor;
 		else
 			color = hereColor;
+
+		// Draw the selection pointer
+		if(escort.isSelected)
+			PointerShader::Draw(pos, Point(1., 0.), ICON_SIZE / 2, ICON_SIZE / 2, -ICON_SIZE / 2, selectedColor);
 
 		// Figure out what scale should be applied to the ship sprite.
 		float scale = min(ICON_SIZE / escort.sprite->Width(), ICON_SIZE / escort.sprite->Height());
@@ -186,7 +195,8 @@ const vector<const Ship *> &EscortDisplay::Click(const Point &point) const
 
 EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected)
 	: sprite(ship.GetSprite()),
-	isHere(isHere && !ship.IsDisabled()),
+	isDisabled(ship.IsDisabled()),
+	isHere(isHere),
 	isHostile(ship.GetGovernment() && ship.GetGovernment()->IsEnemy()),
 	notReadyToJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.IsReadyToJump(true)),
 	cannotJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.JumpsRemaining()),
@@ -218,6 +228,7 @@ int EscortDisplay::Icon::Height() const
 
 void EscortDisplay::Icon::Merge(const Icon &other)
 {
+	isDisabled &= other.isDisabled;
 	isHere &= other.isHere;
 	isHostile |= other.isHostile;
 	notReadyToJump |= other.notReadyToJump;

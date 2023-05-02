@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "BatchDrawList.h"
@@ -126,7 +129,7 @@ bool BatchDrawList::Add(const Body &body, Point position, float clip)
 
 	// Get unit vectors in the direction of the object's width and height.
 	Point unit = body.Unit() * zoom;
-	Point uw = Point(unit.Y(), -unit.X()) * body.Width();
+	Point uw = Point(-unit.Y(), unit.X()) * body.Width();
 	Point uh = unit * body.Height();
 
 	// Get the "bottom" corner, the one that won't be clipped.

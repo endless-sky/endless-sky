@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Sad Gamblers - Republic"
 	minor
@@ -33,6 +36,21 @@ mission "Sad Gamblers - Syndicate"
 		conversation
 			`Passing through the spaceport you see a sizable group of people waiting on a lottery draw. You hear a whoop of success, and your attention is drawn as one of them wins a moderate sum in a 12th division win. It's one or two day's worth of standard pay.`
 			`	It's difficult not to pity them as they immediately buy more tickets with the whole value.`
+				decline
+
+
+
+mission "Foiled Kidnapping Witnessed"
+	minor
+	source
+		government "Syndicate"
+		not attributes "station" "frontier" "urban"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`A roadblock interrupts your path as you make your way towards the city, forcing you to slow down as you pass by, able to see what the commotion is about. Police wave past car after car coming from the other direction, looking into the vehicles until one gets pulled over to the side, causing police to briefly halt all traffic movements. The driver seems distressed, refusing to open the back even when he is being detained; his face goes pale when a little girl is found inside.`
+			`	You're not sure how to feel about this when the police wave you off, blocking your view from the scene.`
 				decline
 
 
@@ -80,15 +98,57 @@ outfit "Mug"
 
 
 
+mission "New China Mourners"
+	minor
+	source "New China"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`The skies pour down onto the world below, weeping together with the crowds as a plain but stately coffin is carried slowly from a void deck. Rhythmic wailing blends with the susurrant rain, filling the air as the coffin is followed closely by procession of mourners that look to be an extensive gathering of family. Even as it is placed into the van they do not leave the departed, a number of their hands placed on it as if pushing the person toward their final resting place. The two foremost mourners, a woman and a young man, climb in and take their seats next to it. Somewhere nearby, music begins to play as the vehicle slowly moves off.`
+			`	You wonder how well known the person was before they died as those remaining finally turn away from the van receding into the distance and begin to file past some discreet attendants you hadn't noticed at first, accepting slippers for their bare feet before boarding the buses waiting to take them after the van.`
+				decline
+
+
+
+mission "New Holland Foibles"
+	minor
+	source "New Holland"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`The smell of burning metal fills the air as you walk down the uncrowded streets of the factory town near the spaceport, keeping away from the arterial supply route directly feeding the port and its hangars.`
+			`	Despite the distance and absent traffic though, it is far from quiet. Several factory buildings make discernible thrumming noises, and grinders echo amidst the silence as you investigate. Turning a corner, you come across an alley running along a lengthy chain link fence line. Beyond it, you can see a throng of men cutting away at a spaceship. Parts regularly fall to the floor, the workers apparently heedless of those below.`
+			`	Even as you watch you see a hull plate swinging dangerously above a workers head.`
+			choice
+				`	(Call out a warning.)`
+				`	(Leave them be.)`
+					goto leave
+			`	You call out a warning and most of the men pause to look at you, the hull plate swinging gently as the holder of the offending grinder squints in your direction. One of the older men, who you now realize was at least somewhat overseeing the activity, steps forward and flicks his hands at you in a shooing motion. "Oi you, piss off. We've got our safety supervisor, we don't need your nose in our business."`
+			choice
+				`	(Challenge the claim.)`
+				`	(Leave them be.)`
+					goto leave
+			`	You point out that what you were seeing did not look at all safe, supervised or not, and the man glances around briefly before huffily making his way over to stand opposite you behind the fence. "Look stranger," he says, "work here is hard to find. For those working here, we don't have the time to spare. But the pay is good and we can at least feed our kids. Sure, some people get a few scrapes and bruises, but no one has died on my watch, and Rik only lost his smallest finger. If you feel the need to watch then fine, stand around, but leave us be, okay? There ain't no one around here that'll care what you have to say anyway."`
+			`	He looks you dead in the eyes, and once he is sure you understand his message he stomps back over to his crew, who continue their work. You watch them cut the dead ship apart until its pieces completely fill the trailer they have with them, before they proceed to haul the parts away to a factory in the distance.`
+				decline
+			label leave
+			`	You turn and depart. A moment later you hear a clatter and a shout, but when you look back no one appears to have been injured.`
+				decline
+
+
+
 mission "Trash Fire Crops"
 	minor
 	source
 		government "Republic"
-		attributes "dirt belt"
+		attributes "dirt belt" "farming"
 		not attributes "station"
 	to offer
 		random < 1
 	on offer
+		"bumper crop year" = "year"
 		conversation
 			`As you move about the spaceport, you can't avoid the terrible smell. It's like a trash fire, but you can't see any sort of smoke.`
 			choice
@@ -149,6 +209,49 @@ mission "Paradise Cleaner Incident"
 
 
 
+mission "Curious Waiter"
+	minor
+	source
+		government "Syndicate"
+		attributes "factory"
+		not attributes "station"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`On a whim, you decide to dine in at a restaurant well clear of the busy spaceport. You swiftly find yourself searching up a list of delicacies on a physical menu as people stream past the window by your booth, each looking drained from the long work day. Meal soon ordered, you continue watching the crowd until it arrives, a local version of a katsu don and dig in.`
+			`	The place is quiet, perhaps a little early for the dinner rush yet, and you are halfway through your meal when a waiter stops beside you, coughing to catch your attention.`
+			choice
+				`	"May I help you?"`
+				`	"Yes?"`
+				`	"What do you want?"`
+			`	"Sorry," he says, grabbing the edges of his shirt. "But... may I ask... what's it like to see the stars? To visit other worlds?"`
+			choice
+				`	"Most worlds are the same or worse than here."`
+				`	"The stars are prettier under an atmosphere."`
+				`	"It's an adventure, but not for the faint of heart."`
+			`	"Oh... I've never seen any pilots, so I never got to ask," he says, slightly dejected. "Thank you very much for telling me though!"`
+			`	He goes back to his work, with a thoughtful expression of neutral satisfaction on his face.`
+				decline
+
+
+
+mission "Syndicate Security Troops"
+	minor
+	source
+		government "Syndicate"
+		attributes "urban"
+		not attributes "station"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`The low rumble of "Tonners," heavy trucks for moving troops and supplies, rolling down the street causes heads to turn and look at the blocky yet imposing vehicles slowing to a stop. The driver and the commander of the foremost vehicle have their eyes on the road, watching out for any traffic hazards that might pose a risk to either the vehicle or their support.`
+			`	The troops within the back of each tonner, on the other hand, are making small talk, the camo on their face smearing off in the heat. One of them points at you, saying something that garners him a groan from his peers, and you decided that you probably don't want to know what he said.`
+				decline
+
+
+
 mission "Class Trip to Port"
 	minor
 	source
@@ -160,6 +263,49 @@ mission "Class Trip to Port"
 		conversation
 			`A group of children waves at you as you step off your ship, marveling at the spacecraft on display as their teachers try and fail to hold their attention. You can see the fading of their uniform colors from afar as their group walks past, yet none of them look one bit displeased. While you make your way into the spaceport itself, you wonder how many of them may eventually own their own spaceship and fly across the stars.`
 				decline
+
+
+
+mission "Old Defense Turrets"
+	minor
+	source
+		attributes "south"
+		not attributes "station" "frontier"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`With an annoyingly long stopover having encouraged you to do a little exploring, you rent a car for a short drive around the immediate area. Later, as you pull the car into the designated return parking lot, the unexpected sound of large hydraulic motors draws your attention. You watch as a massive turret lifts up from behind a nearby barricade and turns toward the sky, its single cannon poised to fire at seemingly nothing.`
+			`	Looking around for some form of explanation you find a plaque placed conveniently nearby dedicating the turret, and five others like it, offering protection and discouraging piracy until relatively recent years. You can't help but wonder how well the turrets would do if they were to be actually used again.`
+				decline
+
+
+
+mission "Blind Landing"
+	minor
+	landing
+	source
+		government "Free Worlds"
+		attributes "farming"
+		not attributes "station" "frontier"
+	to offer
+		"year" > "bumper crop year" + 2
+		random < 1
+		has "Trash Fire Crops: declined"
+	on offer
+		conversation
+			`Smog fills your windscreen as you make your descent, trying and failing to see anything more than a few meters in front of you. The autopilot systems show solid green across the full range of indicators though, and traffic control has confirmed a lock.`
+			choice
+				`	(Land on autopilot.)`
+				`	(Return to orbit.)`
+					goto orbit
+			`	You let the craft perform the landing, staring blankly at the haze until it clears.`
+			`	On the ground, you see the cause, fields upon fields of plantations burning. You see a crowd of mostly farmers blocking off a smaller group of firefighters, arguing and trying to stop them from putting out the flames as planes fly overhead, dropping water and retardants wherever necessary.`
+			`	You recall seeing something like this years ago, of farmers burning their crops to make the land fertile, and how bad the air was for months.`
+				decline
+			label orbit
+			`	Unwilling to trust landing blind into an unknown situation, you return to orbit and rejoin the spaceport processing queue. One day of delay is a worthwhile price to pay for surety.`
+				flee
 
 
 
@@ -198,15 +344,41 @@ mission "Forest Fire"
 mission "Local Politics"
 	minor
 	source
-		government "Free Worlds"
 		attributes "frontier"
-		not attributes "station"
+		attributes "south"
+		not attributes "station" "urban" "ex-pirate"
 	to offer
-		random < 1
+		or
+			and
+				random < 5
+				or
+					has "flagship planet attribute: south pirate"
+					not "event: war begins"
+			and
+				random < 1
+				has "event: war begins"
+				not "event: fw suppressed Greenrock"
 	on offer
 		conversation
 			`As you land on the pad, you note a general lack of presence around the spaceport. No one has scrambled to hook up your ship, nor has anybody else acknowledged your arrival. Instead, when you leave your ship, all you find is a note within the spaceport detailing where their "overlords" can find their yearly tribute.`
 			`	You decide against finding out where the inhabitants went.`
+				decline
+
+
+
+mission "Military Response Test"
+	landing
+	minor
+	source
+		government "Free Worlds"
+		not attributes "station" "urban" "frontier"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`In a strange set of instructions, the Air Traffic Controller has you punch in a set of coordinates, taking you close to a massive military base on the way to the landing zone. You let the autopilot take over as you watch the view off the cockpit window, hoping the turrets in the base won't shoot you out of the sky.`
+			`	From where you are watching, you see a single woman standing within the parade square, a hand raised like she's looking at her watch. Seconds pass before she raises her other hand and gives a thumbs up to whoever's looking at her. Suddenly, a loud siren sounds out across the base that is audible even in your ship as it passes by at reasonable height. You watch as soldiers drop everything they're doing, some rushing into buildings while others run toward armored vehicles. Within minutes, the base's vehicles are rolling towards the parade square whilst soldiers in full gear run to assemble within the square in neat rows.`
+			`	You aren't sure whether what they were doing was scheduled, or if it was in response to your flight.`
 				decline
 
 
@@ -275,7 +447,7 @@ mission "Tarazed Ship Christening"
 			`	"Uhh... that would be me," the woman says, glancing around awkwardly.`
 			choice
 				`	(Try to salvage the awkward situation.)`
-				`	(Get out while you can.)`
+				`	(Get out while I can.)`
 					goto getout
 			`	"I'm just messing with you, my psychiatrist doesn't think it's very funny when I do it to him either."`
 			`	"Oh," the woman says quietly, "that's... nice, I guess."`
@@ -292,4 +464,161 @@ mission "Tarazed Ship Christening"
 			`	You stay around and talk with the aspiring pilot for a few minutes, giving her tips and advice before stating that you have work to do. As you turn to leave, an older man places his hand on your arm, stopping you.`
 			`	"Before you go," the man says, "we weren't very sure about this whole 'pilot' thing at first, but it's good to hear that my little girl has made the right decision. Thank you for that."`
 			`	"It's the least I could do," you say before walking away.`
+				decline
+
+
+
+mission "Masquerade Hanging"
+	minor
+	source
+		government "Pirate"
+		not attributes "station"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`The smell of burning gunpowder wafts about in the air as you enter a town square, watching as a body is rolled off of a raised platform. Cries and screams fill the air as a masked man drags a lady across the platform and onto the central dias, an old-fashioned pistol to her head as he asks her something you can't make out. Thankfully, the man doesn't shoot, taking his gun off her temple before subsequently knocking her out with his weapon.`
+			`	Moments later the small crowd allows him to depart opposite your viewpoint, without incident and without explanation. You aren't quite sure what to make of this scene as the bodies are swiftly dragged away.`
+				decline
+
+mission "News Reporter - Paradise"
+	minor
+	source
+		government "Republic"
+		attributes "paradise"
+		not attributes "station"
+	to offer
+		random < 8
+		has "event: war begins"
+		not "event: joined the free worlds"
+	on offer
+		conversation
+			`You are passing through the spaceport when you see a young woman walking in your direction. Trailing behind her is a multitude of camera drones, each one marked with a logo consisting of two curves pointing inwards.`
+			choice
+				`	(Wait for her to approach.)`
+					goto walk
+				`	(Hope she doesn't notice me.)`
+					goto notice
+				`	(Try to avoid her.)`
+			`	You take a hallway off to the side to evade her. Just as you think you've gotten out of sight, you hear a voice. "Excuse me!" You turn to see the reporter following you.`
+				goto walk
+			label notice
+			`	As you continue walking, you hear her call out, "Excuse me!" Suppressing a sigh, you turn to face the reporter.`
+			label walk
+			`	As she gets closer to you, she smiles. "Hello Captain! Would you be willing to answer a few questions for our viewers?"`
+			choice
+				`	"Sure, I wouldn't mind."`
+					goto questions
+				`	"No, I'd rather not."`
+					decline
+			label questions
+			`	The camera drones circle around you as she prepares for the interview. After a few seconds, she smiles at one of the drones and begins.`
+			`	"Welcome back. I'm here on <origin> reporting on the situation with the Free Worlds. I'm joined by a merchant captain currently between trips. Captain, what do you think of the ultimatum sent to Parliament?"`
+			choice
+				`	"I think Parliament should reconsider and give the situation some thought."`
+				`	"Parliament made the right decision by refusing the demands."`
+					goto right
+			`	The reporter frowns. "Can you explain your answer for our viewers?"`
+			choice
+				`	"The interests of every world should be considered, whether we agree or not."`
+				`	"The Free Worlds aren't represented well enough to gain traction through normal channels."`
+				`	"The Navy is hardly defending that territory, so taxes shouldn't be as much."`
+				`	"I would prefer to not answer."`
+			`	"I'm not sure that Parliament would agree with you, but I want to thank you for your answers, and for taking the time to do this interview!" she says.`
+			`	The drones dart back to follow her as she continues through the spaceport.`
+				decline
+			label right
+			`	The reporter smiles. "Can you explain that answer for our viewers?"`
+			choice
+				`	"There are proper channels for presenting grievances, and this isn't one of them."`
+				`	"It's a very ungrateful thing to do when Parliament is the one protecting them."`
+				`	"I would prefer to not answer."`
+			`	"We are fortunate that many people feel this way! Thank you for your answers, and for taking the time to do this interview!" she says.`
+			`	The drones dart back to follow her as she continues through the spaceport.`
+				decline
+
+mission "Scientists at the Pub after a Conference"
+	minor
+	source
+		government "Republic"
+		attributes "urban"
+		not attributes "station"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`As you take a break after a long journey and a longer-feeling landing procedure, you notice a group of people enter the pub where you're sitting, streaming in from the conference complex across the street. They vary in age, dress, and accent, but most have an identical badge dangling from a lanyard around their necks. You notice one badge that's been dropped on the floor, reading "Attendee - 35th Annual Pan-galactic Conference on Interstellar Microbial Genomics and Population Dynamics." The group takes their seats at a long table near to you.`
+			choice
+				`	(Order a meal and listen in to their conversation.)`
+					goto "overheard scientists 1"
+				`	(Find somewhere quieter to relax.)`
+					decline
+			label "overheard scientists 1"
+			`	Fragments of conversation make their way to you through the din of the pub.`
+			` `
+			`	Two of the younger attendees are looking a bit nervous. "I'm so glad to have my presentation over with. I was so worried about having to present on the first day, but now I can finally just relax and actually listen to the other talks!"`
+			`	"Oh definitely! I probably shouldn't even be here - I should really be rehearsing... Oh! Waiter, another beer, please!"`
+			`	"Got your slide deck ready for tomorrow?"`
+			`	"Yeah, but I'm still terrified. I hate public speaking."`
+			`	"Don't worry, you know more about your particular area of expertise than they do. You'll be fine once you're on stage! And besides, graduate school is one giant exercise in public speaking. Comfort comes with practice."`
+			` `
+			`	Another scientist is rolling his eyes after a post-mortem of the day's events. "Is there some law I don't know about that requires every 'question' to start with 'I guess this isn't so much a question as a comment...'?"`
+			` `
+			`	An exasperated academic is speaking emphatically to her friend about what you infer to be a presentation they both heard earlier. "I don't think the nucleotide evidence supports their hypothesis at all! Like, I know the proteomic data could be used to support their conclusion, but they're ignoring synonymous mutations!"`
+			choice
+				`	(Order another beverage and continue listening.)`
+					goto "overheard scientists 2"
+				`	(Finish my meal and leave.)`
+					decline
+			label "overheard scientists 2"
+			`	The group's conversation grows louder by virtue of both passion for the subject as well as the influence of a few drinks.`
+			`	"Look, the analysis might be fine, but if they can't even be bothered to provide the version numbers for their analytical software, then it isn't reproducible and that's an automatic 'reject' from me."`
+			` `
+			`	One person is looking slightly shell-shocked after considering what might have been. "Can you believe my computer crashed right before I had to present? Good thing I had backups. Two is one and one is none."`
+			` `
+			`	A group seem to be discussing some other colleagues in the field who are, presumably, not present this evening. "Singh and Esterhazy are such arrogant jerks. Their work is okay, I guess, but not enough to justify their wannabe rockstar personalities!"`
+			`	"Sure, but they aren't just arrogant jerks, they're charismatic arrogant jerks. Charisma attracts good grad students to their lab, who produce good papers, who they put their name on. It's a positive feedback loop."`
+			` `
+			`	Grant applications seem to be a common subject. "The Republic Medical Research Agency said my work is too theoretical, but the University of Chiron Department of Microbiology says it's too applied!"`
+			`	"That's a conundrum, alright. Maybe you could find some funding from industry? The Syndicate might be interested in your work."`
+			`	"Yeah, but I'm not sure yet if I'm willing to give up my academic freedom."`
+			choice
+				`	(Finish up at my own pace.)`
+					goto "overheard scientists 3"
+				`	(Settle my bill as quickly as possible and leave.)`
+					decline
+			label "overheard scientists 3"
+			`	Two attendees compare gripes about job demands. "Teaching sucks. Between class hours, office hours, and preparing lectures, there's hardly any time left for research."`
+			`	"That's funny! Teaching undergrads is my one respite from grant-writing!"`
+			` `
+			`	A sociable but exhausted-looking man is sitting back in his chair. "These conferences only last three or four days, but it always feels like it ages you a year."`
+			`	You leave after finishing your meal, reflecting on having overheard a slice of a life very different from your own.`
+				decline
+
+
+mission "Sol-Bound Shuttle"
+	minor
+	source
+		system "Sol"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`	Upon entering the sprawling spaceport, you notice that a group of factory workers are talking to a captain. As you get closer, you see that the captain's flagship, a Shuttle that has seen better days, lacks a hyperdrive.`
+			choice
+				`	"Where's your hyperdrive?"`
+				`	"How are you going to travel anywhere with that ship?"`
+				`	(Go back to your ship.)`
+					decline
+			`	The captain laughs. "Most pilots are the adventurous type. Not me. I make a pretty decent haul just flying people from Earth to Mars and back. Occasionally I do trips to the Moon for tourists." You notice that she uses the archaic term for Luna. Must be a local expression.`
+			choice
+				`	"Doesn't that get boring?"`
+					goto boring
+				`	"Is there really enough travel within Sol that you can make a living off of it?"`
+			`	"You'd be surprised. There's a lot of people in this system after all, and a lot of those people have enough money to leave Earth but not enough to leave Sol. It's a nice niche I've carved out for myself."`
+				goto end
+			label boring
+			`	"For you, maybe. I can tell by your accent that you've done a bit of travelling from your home planet. I like staying closer to home, though. With all the instability in the galaxy - pirates, aliens, and who knows what else - staying in Sol keeps me safe. Call me paranoid, but being in a place where I don't have to worry about that is something I value." She eyes a ship to the side that's having its hull repaired. The damage appears to have been inflicted by a beam weapon.`
+			label end
+			`	You say your goodbyes as you board your ships. Although you are both captains, the trajectory of your lives have taken very different courses.`
 				decline

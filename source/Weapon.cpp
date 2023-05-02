@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Weapon.h"
@@ -32,6 +35,11 @@ void Weapon::LoadWeapon(const DataNode &node)
 	bool isClustered = false;
 	calculatedDamage = false;
 	doesDamage = false;
+	bool safeRangeOverriden = false;
+	bool disabledDamageSet = false;
+	bool minableDamageSet = false;
+	bool relativeDisabledDamageSet = false;
+	bool relativeMinableDamageSet = false;
 
 	for(const DataNode &child : node)
 	{
@@ -105,6 +113,32 @@ void Weapon::LoadWeapon(const DataNode &node)
 					child.PrintTrace("Skipping unknown or incomplete submunition attribute:");
 			}
 		}
+		else if(key == "inaccuracy")
+		{
+			inaccuracy = child.Value(1);
+			for(const DataNode &grand : child)
+			{
+				for(int j = 0; j < grand.Size(); ++j)
+				{
+					const string &token = grand.Token(j);
+
+					if(token == "inverted")
+						inaccuracyDistribution.second = true;
+					else if(token == "triangular")
+						inaccuracyDistribution.first = Distribution::Type::Triangular;
+					else if(token == "uniform")
+						inaccuracyDistribution.first = Distribution::Type::Uniform;
+					else if(token == "narrow")
+						inaccuracyDistribution.first = Distribution::Type::Narrow;
+					else if(token == "medium")
+						inaccuracyDistribution.first = Distribution::Type::Medium;
+					else if(token == "wide")
+						inaccuracyDistribution.first = Distribution::Type::Wide;
+					else
+						grand.PrintTrace("Skipping unknown distribution attribute:");
+				}
+			}
+		}
 		else
 		{
 			double value = child.Value(1);
@@ -147,8 +181,6 @@ void Weapon::LoadWeapon(const DataNode &node)
 			}
 			else if(key == "turn")
 				turn = value;
-			else if(key == "inaccuracy")
-				inaccuracy = value;
 			else if(key == "turret turn")
 				turretTurn = value;
 			else if(key == "tracking")
@@ -173,6 +205,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				firingShields = value;
 			else if(key == "firing ion")
 				firingIon = value;
+			else if(key == "firing scramble")
+				firingScramble = value;
 			else if(key == "firing slowing")
 				firingSlowing = value;
 			else if(key == "firing disruption")
@@ -201,10 +235,25 @@ void Weapon::LoadWeapon(const DataNode &node)
 				triggerRadius = max(0., value);
 			else if(key == "blast radius")
 				blastRadius = max(0., value);
+			else if(key == "safe range override")
+			{
+				safeRange = max(0., value);
+				safeRangeOverriden = true;
+			}
 			else if(key == "shield damage")
 				damage[SHIELD_DAMAGE] = value;
 			else if(key == "hull damage")
 				damage[HULL_DAMAGE] = value;
+			else if(key == "disabled damage")
+			{
+				damage[DISABLED_DAMAGE] = value;
+				disabledDamageSet = true;
+			}
+			else if(key == "minable damage")
+			{
+				damage[MINABLE_DAMAGE] = value;
+				minableDamageSet = true;
+			}
 			else if(key == "fuel damage")
 				damage[FUEL_DAMAGE] = value;
 			else if(key == "heat damage")
@@ -213,6 +262,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[ENERGY_DAMAGE] = value;
 			else if(key == "ion damage")
 				damage[ION_DAMAGE] = value;
+			else if(key == "scrambling damage")
+				damage[WEAPON_JAMMING_DAMAGE] = value;
 			else if(key == "disruption damage")
 				damage[DISRUPTION_DAMAGE] = value;
 			else if(key == "slowing damage")
@@ -229,6 +280,16 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[RELATIVE_SHIELD_DAMAGE] = value;
 			else if(key == "relative hull damage")
 				damage[RELATIVE_HULL_DAMAGE] = value;
+			else if(key == "relative disabled damage")
+			{
+				damage[RELATIVE_DISABLED_DAMAGE] = value;
+				relativeDisabledDamageSet = true;
+			}
+			else if(key == "relative minable damage")
+			{
+				damage[RELATIVE_MINABLE_DAMAGE] = value;
+				relativeMinableDamageSet = true;
+			}
 			else if(key == "relative fuel damage")
 				damage[RELATIVE_FUEL_DAMAGE] = value;
 			else if(key == "relative heat damage")
@@ -255,6 +316,17 @@ void Weapon::LoadWeapon(const DataNode &node)
 				child.PrintTrace("Unrecognized weapon attribute: \"" + key + "\":");
 		}
 	}
+	// Disabled damage defaults to hull damage instead of 0.
+	if(!disabledDamageSet)
+		damage[DISABLED_DAMAGE] = damage[HULL_DAMAGE];
+	if(!relativeDisabledDamageSet)
+		damage[RELATIVE_DISABLED_DAMAGE] = damage[RELATIVE_HULL_DAMAGE];
+	// Minable damage defaults to hull damage instead of 0.
+	if(!minableDamageSet)
+		damage[MINABLE_DAMAGE] = damage[HULL_DAMAGE];
+	if(!relativeMinableDamageSet)
+		damage[RELATIVE_MINABLE_DAMAGE] = damage[RELATIVE_HULL_DAMAGE];
+
 	// Sanity checks:
 	if(burstReload > reload)
 		burstReload = reload;
@@ -288,6 +360,11 @@ void Weapon::LoadWeapon(const DataNode &node)
 			++it;
 		}
 	}
+
+	// Only when the weapon is not safe and has a blast radius is safeRange needed,
+	// except if it is already overridden.
+	if(!isSafe && blastRadius > 0 && !safeRangeOverriden)
+		safeRange = (blastRadius + triggerRadius);
 }
 
 
@@ -455,4 +532,18 @@ double Weapon::TotalDamage(int index) const
 		}
 	}
 	return damage[index];
+}
+
+
+
+pair<Distribution::Type, bool> Weapon::InaccuracyDistribution() const
+{
+	return inaccuracyDistribution;
+}
+
+
+
+double Weapon::Inaccuracy() const
+{
+	return inaccuracy;
 }

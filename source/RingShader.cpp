@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "RingShader.h"
@@ -128,7 +131,8 @@ void RingShader::Draw(const Point &pos, float out, float in, const Color &color)
 
 
 
-void RingShader::Draw(const Point &pos, float radius, float width, float fraction, const Color &color, float dash, float startAngle)
+void RingShader::Draw(const Point &pos, float radius, float width, float fraction,
+	const Color &color, float dash, float startAngle)
 {
 	Bind();
 
@@ -161,7 +165,8 @@ void RingShader::Add(const Point &pos, float out, float in, const Color &color)
 
 
 
-void RingShader::Add(const Point &pos, float radius, float width, float fraction, const Color &color, float dash, float startAngle)
+void RingShader::Add(const Point &pos, float radius, float width, float fraction,
+	const Color &color, float dash, float startAngle)
 {
 	GLfloat position[2] = {static_cast<float>(pos.X()), static_cast<float>(pos.Y())};
 	glUniform2fv(positionI, 1, position);

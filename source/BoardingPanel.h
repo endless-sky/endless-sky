@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef BOARDING_PANEL_H_
@@ -55,6 +58,9 @@ private:
 	bool CanCapture() const;
 	// Check if you are in the midst of hand to hand combat.
 	bool CanAttack() const;
+
+	// Handle the keyboard scrolling and selection in the panel list.
+	void DoKeyboardNavigation(const SDL_Keycode key);
 
 
 private:
@@ -123,6 +129,9 @@ private:
 	CaptureOdds defenseOdds;
 	// These messages are shown to report the results of hand to hand combat.
 	std::vector<std::string> messages;
+
+	// Whether or not the ship can be captured.
+	bool canCapture = false;
 };
 
 

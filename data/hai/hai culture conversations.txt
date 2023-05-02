@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Theater Chat"
 	minor
@@ -53,7 +56,7 @@ mission "Musical Entertainment Expo"
 			choice
 				`	"Your music comes off a production line?"`
 					goto production
-				`	"Do you not have musicians trying to make it on their own?"` 
+				`	"Do you not have musicians trying to make it on their own?"`
 			`	"Oh for sure, but mostly just to get picked up by one of these companies."`
 			label production
 			`	The bartender chuckles. "We've been doing pop music for longer than your people have had fire. It's about the experience of being a fan of a group as it rises to fame and stardom. A dedicated Hai can go back and find a song for almost any possible life experience in almost any possible genre. It's the journey, and the personalities, that are what it's all about."`
@@ -79,7 +82,7 @@ mission "The Meme Wars 1"
 		conversation
 			`Stepping into the spaceport you are beset by a riot of color. Every blank surface that's not usually paid advertising space seems to be festooned with dangling holographic projectors, banners, and ribbons. There's even actual paper fliers and posters, apparently taped to whatever surface will bear them. At first you wonder if there's some sort of festival going on, but as you watch a young Hai wearing a hood slaps up another holo projector, creating a cartoonish root vegetable with a sword, which begins hacking at the adjacent hologram, some kind of impressionist concept of a Hai elder made up of iridescent triangles. The young Hai then proceeds to tear down a banner and slap some goo on a massive poster which begins dissolving before a pair of security guards, wearing some very obviously non-standard additions to their uniforms, chase him back out of the spaceport.`
 			branch translator
-				has "language: Wanderer"
+				has "language: Hai"
 			`	As you watch, the triangular elder being holoprojected seems to flicker and then fizzles out as the battery unit fades, apparently under the assault of the root vegetable which appears to do a victory dance, before proceeding to act out something that makes precisely no sense to you.`
 			`	A little further on you encounter two different groups of protesters, assuming that's what they are, weaving in and out of the spaceport's entrances like some kind of conga line. The triangular elder and opposing root vegetable make several reappearances on their placards, some of them holographically animated.`
 			`	A different security guard, this one in regular attire, appears at your elbow. "You look a little lost. Don't worry, it's just a meme war. Carry on with your business and don't touch the meme items and no one should bother you over it."`
@@ -218,12 +221,12 @@ mission "Academy Motto"
 		not attributes "station"
 	to offer
 		random < 1
-		has "language: Wanderer"
+		has "language: Hai"
 	on offer
 		conversation
 			`On this particular day, the spaceport is crowded beyond belief by some arcane confluence of chance and logistics. Despite having resolved the bulk of your business the port authorities have informed you that there is no safe departure slot open for at least seven hours (and even that's not a promise). This leaves you alone to fill in your unexpected bit of time in the early morning.`
 			choice
-				`	(Play games on your ship.)`
+				`	(Play games on my ship.)`
 				`	(Have a look around further afield.)`
 					goto fieldtrip
 			`	Not interested in getting lost in an expansive Hai city, you simply load up an entertainment console to keep you occupied for the next few hours.`
@@ -244,10 +247,10 @@ mission "Academy Motto"
 			`	As you eat your strange, but actually surprisingly tasty lunch, you take note of the large text written above the gateway into the grounds for the building complex opposite you. After a moment your translator box takes note of where you're looking and reads it aloud for you.`
 			`	"To know is to lead, to study is to know, to serve is to study, to lead is to serve."`
 			`	Naturally, your translator cannot answer questions, so you eat your lunch and leave it be until a staff member emerges to take your plate.`
-			choice	
+			choice
 				`	(Ask them about it.)`
 					goto question
-				`	(Keep your thoughts to yourself.)`
+				`	(Keep my thoughts to myself.)`
 			`	The staff member takes your plate and wishes you a lovely day.`
 				decline
 			label question
@@ -275,19 +278,19 @@ mission "Robotic Musical 1"
 			`Passing down the main thoroughfare of this spaceport you almost ignore a stack of haphazardly piled crates in the median strip. It's not uncommon for recently unloaded crates to temporarily sit in front of different businesses in a port, placed conspicuously out of the way of the flow of foot traffic, but it is the disordered piling that seems out of place.`
 			`	No sooner do you slow your step to give it your attention though, than the pile of crates immediately springs to life.`
 			branch translator
-				has "language: Wanderer"
-			`	Music plays and some half dozen robotic caricatures of Hai in exaggerated dress spring forth from various crates and begin to caper about in a series of interactions presumably intended to be comedic, at least judging by how they keep turning away from each other to "look" at the audience and wink. Holoprojected banners and glyphs, presumably advertisement information, flicker through a series of displays as it goes through a cycle before the entire cohort appear to finish up; each onlooker the recipient of some kind of entreaty from  at least one robot, before they immediately clamber back into the crates.`
+				has "language: Hai"
+			`	Music plays and some half dozen robotic caricatures of Hai in exaggerated dress spring forth from various crates and begin to caper about in a series of interactions presumably intended to be comedic, at least judging by how they keep turning away from each other to "look" at the audience and wink. Holoprojected banners and glyphs, presumably advertisement information, flicker through a series of displays as it goes through a cycle before the entire cohort appear to finish up; each onlooker the recipient of some kind of entreaty from at least one robot, before they immediately clamber back into the crates.`
 			`	Throughout this a handful of Hai have stopped to watch, and a couple of them let out small chuckles at the conclusion before continuing on their way. Most of them simply roll their eyes and move on though. One child wanders too close as their parents steer around it and a little red holographic warning sign briefly flashes at them. No one seems keen to explain what you just saw, and for the moment the crates remain resolutely closed.`
-			apply
+			action
 				set roboticconfusion
-			#This controls branching if there's a future follow-up where you get to see the performance.
+			# This controls branching if there's a future follow-up where you get to see the performance.
 			`	Now that you think about it, you're not sure they all climbed back into the same boxes they came out of.`
 				decline
 			label translator
-			`	Music plays and some half dozen robotic caricatures of Hai in exaggerated dress spring forth from various crates and begin to caper about in a series of interactions. Your translator struggles to keep up as they run through a rapid-fire string of presumably witty wordplay jokes that don't translate well. The humor appears to be improvisational at first, but the illusion is so good that the realization of the impossibility of robots improvising only catches up with you after the fact. The entire thing is set to a musical score, with beat rests at various points where the animatronic Hai keep turning away from each other to 'look' at the audience and wink. Holoprojected banners and glyphs flicker through a series of displays informing you that this is an advertisement for a fully robotic comedy musical called "The Grandmother's Rules". It claims to be complete with interactive heckling responses and provides a list of dates and venues, all in the far future, where it will be showing.`
+			`	Music plays and some half dozen robotic caricatures of Hai in exaggerated dress spring forth from various crates and begin to caper about in a series of interactions. Your translator struggles to keep up as they run through a rapid-fire string of presumably witty wordplay jokes that don't translate well. The humor appears to be improvisational at first, but the illusion is so good that the realization of the impossibility of robots improvising only catches up with you after the fact. The entire thing is set to a musical score, with beat rests at various points where the animatronic Hai keep turning away from each other to 'look' at the audience and wink. Holoprojected banners and glyphs flicker through a series of displays informing you that this is an advertisement for a fully robotic comedy musical called "The Grandmother's Rules." It claims to be complete with interactive heckling responses and provides a list of dates and venues, all in the far future, where it will be showing.`
 			`	At the end each one of the robots strikes a pose and invites a different demographic to come along and "have the time of a decade," with ticket prices starting from 73 credits, before the entire cohort finish up and immediately clamber back into the crates. You're not sure they all climbed back into the same boxes they came out of.`
 			`	Throughout this a handful of Hai have stopped to watch, and a couple of them let out small chuckles at the conclusion before continuing on their way. Most of them simply roll their eyes and move on though.`
-			`	One middle aged Hai in the crowd with racoon-like gray around his eyes wears the type of attire typical of their merchant captains. He eyes you curiously and steps over to you. "Well well Captain, that's a remarkable box you have there. Didn't know they'd started making live translator devices! Did it keep up alright?"`
+			`	One middle-aged Hai in the crowd with racoon-like gray around his eyes wears the type of attire typical of their merchant captains. He eyes you curiously and steps over to you. "Well, well, Captain, that's a remarkable box you have there. Didn't know they'd started making live translator devices! Did it keep up alright?"`
 			choice
 				`	"Oh, it's the first of its kind."`
 					goto first

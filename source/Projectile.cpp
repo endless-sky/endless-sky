@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Projectile.h"
@@ -31,6 +34,15 @@ namespace {
 	{
 		return (Random::Real() < base * pow(probability, .2));
 	}
+
+	// Returns if the missile is confused or not.
+	bool ConfusedTracking(double tracking, double weaponRange, double jamming, double distance)
+	{
+		if(!jamming)
+			return Random::Real() > tracking;
+		else
+			return Random::Real() > (tracking * distance) / (sqrt(jamming) * weaponRange);
+	}
 }
 
 
@@ -48,11 +60,9 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 	cachedTarget = TargetPtr().get();
 	if(cachedTarget)
 		targetGovernment = cachedTarget->GetGovernment();
-	double inaccuracy = weapon->Inaccuracy();
-	if(inaccuracy)
-		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
 
-	velocity += this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
+	dV = this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
+	velocity += dV;
 
 	// If a random lifetime is specified, add a random amount up to that amount.
 	if(weapon->RandomLifetime())
@@ -62,25 +72,21 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 
 
 Projectile::Projectile(const Projectile &parent, const Point &offset, const Angle &angle, const Weapon *weapon)
-	: Body(weapon->WeaponSprite(), parent.position + parent.velocity + parent.angle.Rotate(offset), parent.velocity, parent.angle + angle),
+	: Body(weapon->WeaponSprite(), parent.position + parent.velocity + parent.angle.Rotate(offset),
+	parent.velocity, parent.angle + angle),
 	weapon(weapon), targetShip(parent.targetShip), lifetime(weapon->Lifetime())
 {
 	government = parent.government;
 	targetGovernment = parent.targetGovernment;
 
 	cachedTarget = TargetPtr().get();
-	double inaccuracy = weapon->Inaccuracy();
-	if(inaccuracy)
-	{
-		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
-		if(!parent.weapon->Acceleration())
-		{
-			// Move in this new direction at the same velocity.
-			double parentVelocity = parent.weapon->Velocity();
-			velocity += (this->angle.Unit() - parent.angle.Unit()) * parentVelocity;
-		}
-	}
-	velocity += this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
+
+	// Given that submunitions inherit the velocity of the parent projectile,
+	// it is often the case that submunitions don't add any additional velocity.
+	// But we still want inaccuracy to have an effect on submunitions. Because of
+	// this, we tilt the velocity of submunitions in the direction of the inaccuracy.
+	dV = this->angle.Unit() * (parent.dV.Length() + weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
+	velocity += dV - parent.dV;
 
 	// If a random lifetime is specified, add a random amount up to that amount.
 	if(weapon->RandomLifetime())
@@ -113,7 +119,12 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 
 			for(const auto &it : weapon->Submunitions())
 				for(size_t i = 0; i < it.count; ++i)
-					projectiles.emplace_back(*this, it.offset, it.facing, it.weapon);
+				{
+					const Weapon *const subWeapon = it.weapon;
+					Angle inaccuracy = Distribution::GenerateInaccuracy(subWeapon->Inaccuracy(),
+							subWeapon->InaccuracyDistribution());
+					projectiles.emplace_back(*this, it.offset, it.facing + inaccuracy, subWeapon);
+				}
 		}
 		MarkForRemoval();
 		return;
@@ -212,23 +223,25 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 		if(weapon->InfraredTracking())
 			infraredConfused = Random::Real() > weapon->InfraredTracking();
 
-		// Optical: proportional tracking quality.
-		if(weapon->OpticalTracking())
-			opticalConfused = Random::Real() > weapon->OpticalTracking();
-
-		// Radar: If the target has no jamming, then proportional to tracking
+		// Optical and Radar: If the target has no jamming, then proportional to tracking
 		// quality. If the target does have jamming, then it's proportional to
 		// tracking quality, the strength of target's jamming, and the distance
 		// to the target (jamming power attenuates with distance).
+		double distance = position.Distance(target->Position());
+		if(weapon->OpticalTracking())
+		{
+			double opticalTracking = weapon->OpticalTracking();
+			double opticalJamming = target->Attributes().Get("optical jamming");
+			opticalConfused = ConfusedTracking(opticalTracking, weapon->Range(),
+				opticalJamming, distance);
+		}
+
 		if(weapon->RadarTracking())
 		{
 			double radarTracking = weapon->RadarTracking();
 			double radarJamming = target->Attributes().Get("radar jamming");
-			if(!radarJamming)
-				radarConfused = Random::Real() > radarTracking;
-			else
-				radarConfused = Random::Real() > (radarTracking * position.Distance(target->Position()))
-					/ (sqrt(radarJamming) * weapon->Range());
+			radarConfused = ConfusedTracking(radarTracking, weapon->Range(),
+				radarJamming, distance);
 		}
 		if(infraredConfused && opticalConfused && radarConfused)
 			turn = Random::Real() - min(.5, turn);
@@ -242,12 +255,19 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 
 	if(accel)
 	{
-		velocity *= 1. - weapon->Drag();
-		velocity += accel * angle.Unit();
+		double d = 1. - weapon->Drag();
+		Point a = accel * angle.Unit();
+		velocity *= d;
+		velocity += a;
+		dV *= d;
+		dV += a;
 	}
 
 	position += velocity;
-	distanceTraveled += velocity.Length();
+	// Only measure the distance that this projectile traveled under its own
+	// power, as opposed to including any velocity that came from the firing
+	// ship.
+	distanceTraveled += dV.Length();
 
 	// If this projectile is now within its "split range," it should split into
 	// sub-munitions next turn.
@@ -262,7 +282,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 void Projectile::Explode(vector<Visual> &visuals, double intersection, Point hitVelocity)
 {
 	clip = intersection;
-	distanceTraveled += velocity.Length() * intersection;
+	distanceTraveled += dV.Length() * intersection;
 	for(const auto &it : weapon->HitEffects())
 		for(int i = 0; i < it.second; ++i)
 		{
@@ -360,11 +380,20 @@ void Projectile::CheckLock(const Ship &target)
 	if(weapon->Tracking())
 		hasLock |= Check(weapon->Tracking(), base);
 
-	// Optical tracking is about 15% for interceptors and 75% for medium warships.
+	// Optical tracking is about 15% for interceptors and 75% for medium warships,
+	// but can be affected by jamming.
 	if(weapon->OpticalTracking())
 	{
+		double opticalJamming = target.IsDisabled() ? 0. : target.Attributes().Get("optical jamming");
+		if(opticalJamming)
+		{
+			double distance = position.Distance(target.Position());
+			double jammingRange = 500. + sqrt(opticalJamming) * 500.;
+			double rangeFraction = min(1., distance / jammingRange);
+			opticalJamming = (1. - rangeFraction) * opticalJamming;
+		}
 		double weight = target.Mass() * target.Mass();
-		double probability = weapon->OpticalTracking() * weight / (150000. + weight);
+		double probability = weapon->OpticalTracking() * weight / (150000. + weight) / (1. + opticalJamming);
 		hasLock |= Check(probability, base);
 	}
 

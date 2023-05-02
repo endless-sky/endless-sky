@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Mission.h"
@@ -16,10 +19,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataWriter.h"
 #include "Dialog.h"
 #include "DistanceMap.h"
-#include "Files.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Logger.h"
 #include "Messages.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -30,6 +33,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 
 #include <cmath>
+#include <limits>
 #include <sstream>
 
 using namespace std;
@@ -97,6 +101,8 @@ namespace {
 				return "on visit";
 			case Mission::Trigger::WAYPOINT:
 				return "on waypoint";
+			case Mission::Trigger::DAILY:
+				return "on daily";
 			default:
 				return "unknown trigger";
 		}
@@ -154,6 +160,10 @@ void Mission::Load(const DataNode &node)
 			if(child.Size() >= 3)
 				deadlineMultiplier += child.Value(2);
 		}
+		else if(child.Token(0) == "distance calculation settings" && child.HasChildren())
+		{
+			distanceCalcSettings.Load(child);
+		}
 		else if(child.Token(0) == "cargo" && child.Size() >= 3)
 		{
 			cargo = child.Token(1);
@@ -168,7 +178,8 @@ void Mission::Load(const DataNode &node)
 				if(!ParseContraband(grand))
 					grand.PrintTrace("Skipping unrecognized attribute:");
 				else
-					grand.PrintTrace("Warning: Deprecated use of \"stealth\" and \"illegal\" as a child of \"cargo\". They are now mission-level properties:");
+					grand.PrintTrace("Warning: Deprecated use of \"stealth\" and \"illegal\" as a child of \"cargo\"."
+						" They are now mission-level properties:");
 			}
 		}
 		else if(child.Token(0) == "passengers" && child.Size() >= 2)
@@ -179,6 +190,8 @@ void Mission::Load(const DataNode &node)
 			if(child.Size() >= 4)
 				passengerProb = child.Value(3);
 		}
+		else if(child.Token(0) == "apparent payment" && child.Size() >= 2)
+			paymentApparent = child.Value(1);
 		else if(ParseContraband(child))
 		{
 			// This was an "illegal" or "stealth" entry. It has already been
@@ -199,7 +212,18 @@ void Mission::Load(const DataNode &node)
 		else if(child.Token(0) == "assisting")
 			location = ASSISTING;
 		else if(child.Token(0) == "boarding")
+		{
 			location = BOARDING;
+			for(const DataNode &grand : child)
+				if(grand.Token(0) == "override capture")
+					overridesCapture = true;
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
+		}
+		else if(child.Token(0) == "shipyard")
+			location = SHIPYARD;
+		else if(child.Token(0) == "outfitter")
+			location = OUTFITTER;
 		else if(child.Token(0) == "repeat")
 			repeat = (child.Size() == 1 ? 0 : static_cast<int>(child.Value(1)));
 		else if(child.Token(0) == "clearance")
@@ -207,6 +231,8 @@ void Mission::Load(const DataNode &node)
 			clearance = (child.Size() == 1 ? "auto" : child.Token(1));
 			clearanceFilter.Load(child);
 		}
+		else if(child.Size() == 2 && child.Token(0) == "ignore" && child.Token(1) == "clearance")
+			ignoreClearance = true;
 		else if(child.Token(0) == "infiltrating")
 			hasFullClearance = false;
 		else if(child.Token(0) == "failed")
@@ -219,6 +245,8 @@ void Mission::Load(const DataNode &node)
 				toComplete.Load(child);
 			else if(child.Token(1) == "fail")
 				toFail.Load(child);
+			else if(child.Token(1) == "accept")
+				toAccept.Load(child);
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
@@ -257,7 +285,7 @@ void Mission::Load(const DataNode &node)
 		else if(child.Token(0) == "substitutions" && child.HasChildren())
 			substitutions.Load(child);
 		else if(child.Token(0) == "npc")
-			npcs.emplace_back(child);
+			npcs.emplace_back(child, name);
 		else if(child.Token(0) == "on" && child.Size() >= 2 && child.Token(1) == "enter")
 		{
 			// "on enter" nodes may either name a specific system or use a LocationFilter
@@ -282,7 +310,8 @@ void Mission::Load(const DataNode &node)
 				{"defer", DEFER},
 				{"visit", VISIT},
 				{"stopover", STOPOVER},
-				{"waypoint", WAYPOINT}
+				{"waypoint", WAYPOINT},
+				{"daily", DAILY},
 			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
@@ -321,6 +350,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("cargo", cargo, cargoSize);
 		if(passengers)
 			out.Write("passengers", passengers);
+		if(paymentApparent)
+			out.Write("apparent payment", paymentApparent);
 		if(illegalCargoFine)
 			out.Write("illegal", illegalCargoFine, illegalCargoMessage);
 		if(failIfDiscovered)
@@ -338,7 +369,17 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		if(location == ASSISTING)
 			out.Write("assisting");
 		if(location == BOARDING)
+		{
 			out.Write("boarding");
+			if(overridesCapture)
+			{
+				out.BeginChild();
+				{
+					out.Write("override capture");
+				}
+				out.EndChild();
+			}
+		}
 		if(location == JOB)
 			out.Write("job");
 		if(!clearance.empty())
@@ -346,6 +387,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("clearance", clearance);
 			clearanceFilter.Save(out);
 		}
+		if(ignoreClearance)
+			out.Write("ignore", "clearance");
 		if(!hasFullClearance)
 			out.Write("infiltrating");
 		if(hasFailed)
@@ -359,6 +402,15 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.BeginChild();
 			{
 				toOffer.Save(out);
+			}
+			out.EndChild();
+		}
+		if(!toAccept.IsEmpty())
+		{
+			out.Write("to", "accept");
+			out.BeginChild();
+			{
+				toAccept.Save(out);
 			}
 			out.EndChild();
 		}
@@ -408,6 +460,14 @@ void Mission::Save(DataWriter &out, const string &tag) const
 				action.Save(out);
 	}
 	out.EndChild();
+}
+
+
+
+void Mission::NeverOffer()
+{
+	// Add the equivalent "never" condition, `"'" != 0`.
+	toOffer.Add("has", "'");
 }
 
 
@@ -520,6 +580,13 @@ bool Mission::IsAtLocation(Location location) const
 
 
 // Information about what you are doing.
+const Ship *Mission::SourceShip() const
+{
+	return sourceShip;
+}
+
+
+
 const Planet *Mission::Destination() const
 {
 	return destination;
@@ -597,6 +664,20 @@ int Mission::Passengers() const
 
 
 
+int64_t Mission::DisplayedPayment() const
+{
+	return paymentApparent ? paymentApparent : GetAction(Mission::Trigger::COMPLETE).Payment();
+}
+
+
+
+const int Mission::ExpectedJumps() const
+{
+	return expectedJumps;
+}
+
+
+
 // The mission must be completed by this deadline (if there is a deadline).
 const Date &Mission::Deadline() const
 {
@@ -669,18 +750,15 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 			return false;
 	}
 
-	if(!toOffer.Test(player.Conditions()))
+	const auto &playerConditions = player.Conditions();
+	if(!toOffer.Test(playerConditions))
 		return false;
 
-	if(!toFail.IsEmpty() && toFail.Test(player.Conditions()))
+	if(!toFail.IsEmpty() && toFail.Test(playerConditions))
 		return false;
 
-	if(repeat)
-	{
-		auto cit = player.Conditions().find(name + ": offered");
-		if(cit != player.Conditions().end() && cit->second >= repeat)
-			return false;
-	}
+	if(repeat && playerConditions.Get(name + ": offered") >= repeat)
+		return false;
 
 	auto it = actions.find(OFFER);
 	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
@@ -705,6 +783,10 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 
 bool Mission::CanAccept(const PlayerInfo &player) const
 {
+	const auto &playerConditions = player.Conditions();
+	if(!toAccept.Test(playerConditions))
+		return false;
+
 	auto it = actions.find(OFFER);
 	if(it != actions.end() && !it->second.CanBeDone(player))
 		return false;
@@ -811,6 +893,13 @@ bool Mission::IsFailed() const
 
 
 
+bool Mission::OverridesCapture() const
+{
+	return overridesCapture;
+}
+
+
+
 // Mark a mission failed (e.g. due to a "fail" action in another mission).
 void Mission::Fail()
 {
@@ -847,8 +936,6 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 		cargoNeeded -= flagship->Cargo().Free();
 		bunksNeeded -= flagship->Cargo().BunksFree();
 	}
-	if(cargoNeeded < 0 && bunksNeeded < 0)
-		return "";
 
 	map<string, string> subs;
 	GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
@@ -858,6 +945,9 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 	if(flagship)
 		subs["<ship>"] = flagship->Name();
 
+	const auto &playerConditions = player.Conditions();
+	subs["<conditions>"] = toAccept.Test(playerConditions) ? "meet" : "do not meet";
+
 	ostringstream out;
 	if(bunksNeeded > 0)
 		out << (bunksNeeded == 1 ? "another bunk" : to_string(bunksNeeded) + " more bunks");
@@ -865,6 +955,8 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 		out << " and ";
 	if(cargoNeeded > 0)
 		out << (cargoNeeded == 1 ? "another ton" : to_string(cargoNeeded) + " more tons") << " of cargo space";
+	if(bunksNeeded <= 0 && cargoNeeded <= 0)
+		out << "no additional space";
 	subs["<capacity>"] = out.str();
 
 	string message = Format::Replace(blocked, subs);
@@ -1031,7 +1123,7 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 	if(event.TargetGovernment()->IsPlayer() && !hasFailed)
 	{
 		bool failed = false;
-		string message = "Your ship '" + event.Target()->Name() + "' has been ";
+		string message = "Your ship \"" + event.Target()->Name() + "\" has been ";
 		if(event.Type() & ShipEvent::DESTROY)
 		{
 			// Destroyed ships carrying mission cargo result in failed missions.
@@ -1118,21 +1210,23 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.isMinor = isMinor;
 	result.autosave = autosave;
 	result.location = location;
+	result.overridesCapture = overridesCapture;
+	result.sourceShip = boardingShip.get();
 	result.repeat = repeat;
 	result.name = name;
 	result.waypoints = waypoints;
 	// Handle waypoint systems that are chosen randomly.
-	const System * const source = player.GetSystem();
+	const System *const sourceSystem = player.GetSystem();
 	for(const LocationFilter &filter : waypointFilters)
 	{
-		const System *system = filter.PickSystem(source);
+		const System *system = filter.PickSystem(sourceSystem);
 		if(!system)
 			return result;
 		result.waypoints.insert(system);
 	}
 	// If one of the waypoints is the current system, it is already visited.
-	if(result.waypoints.erase(source))
-		result.visitedWaypoints.insert(source);
+	if(result.waypoints.erase(sourceSystem))
+		result.visitedWaypoints.insert(sourceSystem);
 
 	// Copy the template's stopovers, and add planets that match the template's filters.
 	result.stopovers = stopovers;
@@ -1147,7 +1241,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	for(const LocationFilter &filter : stopoverFilters)
 	{
 		// Unlike destinations, we can allow stopovers on planets that don't have a spaceport.
-		const Planet *planet = filter.PickPlanet(source, !clearance.empty(), false);
+		const Planet *planet = filter.PickPlanet(sourceSystem, ignoreClearance || !clearance.empty(), false);
 		if(!planet)
 			return result;
 		result.stopovers.insert(planet);
@@ -1160,7 +1254,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.destination = destination;
 	if(!result.destination && !destinationFilter.IsEmpty())
 	{
-		result.destination = destinationFilter.PickPlanet(source, !clearance.empty());
+		result.destination = destinationFilter.PickPlanet(sourceSystem, ignoreClearance || !clearance.empty());
 		if(!result.destination)
 			return result;
 	}
@@ -1178,19 +1272,20 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	// cargo name with something more specific.
 	if(!cargo.empty())
 	{
+		const string expandedCargo = Phrase::ExpandPhrases(cargo);
 		const Trade::Commodity *commodity = nullptr;
-		if(cargo == "random")
-			commodity = PickCommodity(*source, *result.destination->GetSystem());
+		if(expandedCargo == "random")
+			commodity = PickCommodity(*sourceSystem, *result.destination->GetSystem());
 		else
 		{
 			for(const Trade::Commodity &option : GameData::Commodities())
-				if(option.name == cargo)
+				if(option.name == expandedCargo)
 				{
 					commodity = &option;
 					break;
 				}
 			for(const Trade::Commodity &option : GameData::SpecialCommodities())
-				if(option.name == cargo)
+				if(option.name == expandedCargo)
 				{
 					commodity = &option;
 					break;
@@ -1199,7 +1294,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		if(commodity)
 			result.cargo = commodity->items[Random::Int(commodity->items.size())];
 		else
-			result.cargo = cargo;
+			result.cargo = expandedCargo;
 	}
 	// Pick a random cargo amount, if requested.
 	if(cargoSize || cargoLimit)
@@ -1221,37 +1316,13 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		else
 			result.passengers = passengers;
 	}
+	result.paymentApparent = paymentApparent;
 	result.illegalCargoFine = illegalCargoFine;
-	result.illegalCargoMessage = illegalCargoMessage;
+	result.illegalCargoMessage = Phrase::ExpandPhrases(illegalCargoMessage);
 	result.failIfDiscovered = failIfDiscovered;
 
-	// Estimate how far the player will have to travel to visit all the waypoints
-	// and stopovers and then to land on the destination planet. Rather than a
-	// full traveling salesman path, just calculate a greedy approximation.
-	const System *path = source;
-	list<const System *> destinations;
-	for(const System *system : result.waypoints)
-		destinations.push_back(system);
-	for(const Planet *planet : result.stopovers)
-		destinations.push_back(planet->GetSystem());
+	int jumps = result.CalculateJumps(sourceSystem);
 
-	int jumps = 0;
-	while(!destinations.empty())
-	{
-		// Find the closest destination to this location.
-		DistanceMap distance(path);
-		auto it = destinations.begin();
-		auto bestIt = it;
-		for(++it; it != destinations.end(); ++it)
-			if(distance.Days(*it) < distance.Days(*bestIt))
-				bestIt = it;
-
-		path = *bestIt;
-		jumps += distance.Days(*bestIt);
-		destinations.erase(bestIt);
-	}
-	DistanceMap distance(path);
-	jumps += distance.Days(result.destination->GetSystem());
 	int64_t payload = static_cast<int64_t>(result.cargoSize) + 10 * static_cast<int64_t>(result.passengers);
 
 	// Set the deadline, if requested.
@@ -1261,6 +1332,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	// Copy the conditions. The offer conditions must be copied too, because they
 	// may depend on a condition that other mission offers might change.
 	result.toOffer = toOffer;
+	result.toAccept = toAccept;
 	result.toComplete = toComplete;
 	result.toFail = toFail;
 
@@ -1269,8 +1341,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
 	substitutions.Substitutions(subs, player.Conditions());
 	subs["<commodity>"] = result.cargo;
-	subs["<tons>"] = to_string(result.cargoSize) + (result.cargoSize == 1 ? " ton" : " tons");
-	subs["<cargo>"] = subs["<tons>"] + " of " + subs["<commodity>"];
+	subs["<tons>"] = Format::MassString(result.cargoSize);
+	subs["<cargo>"] = Format::CargoString(result.cargoSize, subs["<commodity>"]);
 	subs["<bunks>"] = to_string(result.passengers);
 	subs["<passengers>"] = (result.passengers == 1) ? "passenger" : "passengers";
 	subs["<fare>"] = (result.passengers == 1) ? "a passenger" : (subs["<bunks>"] + " passengers");
@@ -1283,21 +1355,30 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	subs["<destination>"] = subs["<planet>"] + " in the " + subs["<system>"] + " system";
 	subs["<date>"] = result.deadline.ToString();
 	subs["<day>"] = result.deadline.LongString();
+	if(result.paymentApparent)
+		subs["<payment>"] = Format::CreditString(abs(result.paymentApparent));
 	// Stopover and waypoint substitutions: iterate by reference to the
 	// pointers so we can check when we're at the very last one in the set.
 	// Stopovers: "<name> in the <system name> system" with "," and "and".
 	if(!result.stopovers.empty())
 	{
+		string stopovers;
 		string planets;
 		const Planet * const *last = &*--result.stopovers.end();
 		int count = 0;
 		for(const Planet * const &planet : result.stopovers)
 		{
 			if(count++)
-				planets += (&planet != last) ? ", " : (count > 2 ? ", and " : " and ");
-			planets += planet->Name() + " in the " + planet->GetSystem()->Name() + " system";
+			{
+				string result = (&planet != last) ? ", " : (count > 2 ? ", and " : " and ");
+				stopovers += result;
+				planets += result;
+			}
+			stopovers += planet->Name() + " in the " + planet->GetSystem()->Name() + " system";
+			planets += planet->Name();
 		}
-		subs["<stopovers>"] = planets;
+		subs["<stopovers>"] = stopovers;
+		subs["<planet stopovers>"] = planets;
 	}
 	// Waypoints: "<system name>" with "," and "and".
 	if(!result.waypoints.empty())
@@ -1320,12 +1401,12 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		reason = n.Validate(true);
 	if(!reason.empty())
 	{
-		Files::LogError("Instantiation Error: NPC template in mission \""
+		Logger::LogError("Instantiation Error: NPC template in mission \""
 			+ Identifier() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
 	for(const NPC &npc : npcs)
-		result.npcs.push_back(npc.Instantiate(subs, source, result.destination->GetSystem()));
+		result.npcs.push_back(npc.Instantiate(subs, sourceSystem, result.destination->GetSystem(), jumps, payload));
 
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
@@ -1338,12 +1419,12 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	if(ait != actions.end())
 	{
-		Files::LogError("Instantiation Error: Action \"" + TriggerToText(ait->first) + "\" in mission \""
+		Logger::LogError("Instantiation Error: Action \"" + TriggerToText(ait->first) + "\" in mission \""
 			+ Identifier() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
 	for(const auto &it : actions)
-		result.actions[it.first] = it.second.Instantiate(subs, source, jumps, payload);
+		result.actions[it.first] = it.second.Instantiate(subs, sourceSystem, jumps, payload);
 
 	auto oit = onEnter.begin();
 	for( ; oit != onEnter.end(); ++oit)
@@ -1354,12 +1435,12 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	if(oit != onEnter.end())
 	{
-		Files::LogError("Instantiation Error: Action \"on enter '" + oit->first->Name() + "'\" in mission \""
+		Logger::LogError("Instantiation Error: Action \"on enter '" + oit->first->Name() + "'\" in mission \""
 			+ Identifier() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
 	for(const auto &it : onEnter)
-		result.onEnter[it.first] = it.second.Instantiate(subs, source, jumps, payload);
+		result.onEnter[it.first] = it.second.Instantiate(subs, sourceSystem, jumps, payload);
 
 	auto eit = genericOnEnter.begin();
 	for( ; eit != genericOnEnter.end(); ++eit)
@@ -1370,23 +1451,73 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	if(eit != genericOnEnter.end())
 	{
-		Files::LogError("Instantiation Error: Generic \"on enter\" action in mission \""
+		Logger::LogError("Instantiation Error: Generic \"on enter\" action in mission \""
 			+ Identifier() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
 	for(const MissionAction &action : genericOnEnter)
-		result.genericOnEnter.emplace_back(action.Instantiate(subs, source, jumps, payload));
+		result.genericOnEnter.emplace_back(action.Instantiate(subs, sourceSystem, jumps, payload));
 
 	// Perform substitution in the name and description.
-	result.displayName = Format::Replace(displayName, subs);
-	result.description = Format::Replace(description, subs);
-	result.clearance = Format::Replace(clearance, subs);
-	result.blocked = Format::Replace(blocked, subs);
+	result.displayName = Format::Replace(Phrase::ExpandPhrases(displayName), subs);
+	result.description = Format::Replace(Phrase::ExpandPhrases(description), subs);
+	result.clearance = Format::Replace(Phrase::ExpandPhrases(clearance), subs);
+	result.blocked = Format::Replace(Phrase::ExpandPhrases(blocked), subs);
 	result.clearanceFilter = clearanceFilter;
 	result.hasFullClearance = hasFullClearance;
 
 	result.hasFailed = false;
 	return result;
+}
+
+
+
+int Mission::CalculateJumps(const System *sourceSystem)
+{
+	expectedJumps = 0;
+
+	// Estimate how far the player will have to travel to visit all the waypoints
+	// and stopovers and then to land on the destination planet. Rather than a
+	// full traveling salesman path, just calculate a greedy approximation.
+	list<const System *> destinations;
+	for(const System *system : waypoints)
+		destinations.push_back(system);
+	for(const Planet *planet : stopovers)
+		destinations.push_back(planet->GetSystem());
+
+	while(!destinations.empty())
+	{
+		// Find the closest destination to this location.
+		DistanceMap distance(sourceSystem,
+				distanceCalcSettings.WormholeStrat(),
+				distanceCalcSettings.AssumesJumpDrive());
+		auto it = destinations.begin();
+		auto bestIt = it;
+		int bestDays = distance.Days(*bestIt);
+		if(bestDays < 0)
+			bestDays = numeric_limits<int>::max();
+		for(++it; it != destinations.end(); ++it)
+		{
+			int days = distance.Days(*it);
+			if(days >= 0 && days < bestDays)
+			{
+				bestIt = it;
+				bestDays = days;
+			}
+		}
+
+		sourceSystem = *bestIt;
+		// If currently unreachable, this system adds -1 to the deadline, to match previous behavior.
+		expectedJumps += bestDays == numeric_limits<int>::max() ? -1 : bestDays;
+		destinations.erase(bestIt);
+	}
+	DistanceMap distance(sourceSystem,
+			distanceCalcSettings.WormholeStrat(),
+			distanceCalcSettings.AssumesJumpDrive());
+	// If currently unreachable, this system adds -1 to the deadline, to match previous behavior.
+	expectedJumps += distance.Days(destination->GetSystem());
+
+	return expectedJumps;
 }
 
 

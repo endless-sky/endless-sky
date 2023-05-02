@@ -1,4 +1,5 @@
 # Copyright (c) 2014-2016 by Michael Zahniser
+# Copyright (c) 2022 by Lia Gerty, Saugia, and Zitchas
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -6,7 +7,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 # Ship names:
 phrase "korath"
@@ -188,7 +192,16 @@ phrase "kor mereti"
 		":"
 	phrase
 		"digit"
-
+		
+phrase "korath probes"
+	word
+		"X'x"
+	word
+		" "
+	phrase
+		"digit"
+	phrase
+		"digit"
 
 fleet "Korath Raid"
 	government "Korath"
@@ -197,24 +210,67 @@ fleet "Korath Raid"
 	cargo 1
 	personality
 		disables plunders opportunistic harvests
-	variant
-		"Korath Raider"
-		"Korath Chaser" 2
-
+	variant 4
+		"Palavret"
+		"'olofez" 2
+	variant 1
+		"Palavret (Blaze)"
+		"'olofez" 2
 
 fleet "Korath Ember Waste Raid"
 	government "Korath"
 	names "korath"
 	fighters "korath"
 	cargo 1
-	commodities Food Metal Plastic "Heavy Metals"
-	outfitters "Korath Basics" "Korath Exiles"
+	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
+	outfitters "Korath Exiles Remnant Donations"
 	personality
 		disables plunders opportunistic harvests
-	variant
-		"Korath Raider (Ember)"
-		"Korath Chaser" 2
+	variant 15
+		"Palavret (Ember)"
+		"'olofez" 2
+	variant 3
+		"Palavret (Ember Blaze)"
+		"'olofez" 2
+	variant 3
+		"Palavret (Ember Shunt)"
+		"'olofez" 2
+	variant 2
+		"Rano'erek"
+		"'olofez" 4
+	variant 2
+		"Rano'erek (Shunt)"
+		"'olofez" 4
 
+fleet "Korath Miners"
+	government "Korath"
+	names "korath"
+	fighters "korath"
+	cargo 0
+	personality
+		timid disables plunders frugal mining harvests
+	variant
+		"Rano'erek"
+		"'olofez (Digger)" 4
+
+fleet "Korath Civilian Miners"
+	government "Korath (Civilian)"
+	names "korath"
+	fighters "korath"
+	cargo 0
+	personality
+		heroic disables frugal mining harvests coward
+	variant 5
+		"Rano'erek (Civilian)"
+		"'olofez (Digger)" 4
+	variant 10
+		"Lor'kas Ik 577 (Digger)"
+		"'olofez (Digger)" 3
+	variant 4
+		"Ra'at Ik 621 (Digger)"
+		"'olofez (Digger)" 9
+	variant 1
+		"Ikatila'ej"
 
 fleet "Korath Home"
 	government "Korath"
@@ -223,15 +279,217 @@ fleet "Korath Home"
 	cargo 3
 	personality
 		timid opportunistic
+	variant 30
+		"Lor'kas Ik 577"
+		"'olofez" 3
+	variant 10
+		"Kas'lor Ik 582"
+		"'olofez" 3
+	variant 10
+		"Lor'nag Ik 590 (Grab)"
+		"'olofez" 3
+	variant 1
+		"Lor'kas Ik 577 (Jump)"
+		"'olofez" 3
+
+fleet "Korath Defense"
+	government "Korath"
+	names "korath"
+	fighters "korath"
+	cargo 1
+	personality
+		disables plunders opportunistic harvests
+	variant 4
+		"Ra'gru Ik 618"
+	variant 4
+		"Ra'at Ik 621"
+		"'olofez" 9
+	variant 2
+		"Rano'erek (Shunt)"
+		"'olofez" 2
+		"'olofez (Expeller)" 2
+	variant 1
+		"Rano'erek (Heaver)"
+		"'olofez" 4
+	variant 3
+		"Palavret" 3
+		"'olofez" 6
+	variant 2
+		"Palavret" 2
+		"Palavret (Blaze)" 2
+		"'olofez" 8
+	variant 2
+		"Palavret (Ember Shunt)" 3
+		"'olofez" 6
+	variant 1
+		"Rano'erek"
+		"Palavret (Blaze)"
+		"'olofez" 4
+		"'olofez (Expeller)" 2
+	variant 2
+		"Ra'gru Ik 618 (Grab)"
+	variant 1
+		"Ra'gru Ik 618 (Storm)"
+	variant 1
+		"Ra'gru Ik 618"
+		"Palavret" 3
+		"'olofez" 6
+	variant 1
+		"Ra'at Ik 621 (Storm)"
+		"Palavret" 3
+		"'olofez" 11
+		"'olofez (Expeller)" 4
+	variant 1
+		"Rano'erek"
+		"Palavret (Blaze)"
+		"'olofez" 4
+		"'olofez (Expeller)" 2
+
+fleet "Korath Surveillance"
+	government "Korath"
+	names "korath"
+	fighters "korath probes"
+	cargo 1
+	personality
+		disables plunders opportunistic harvests surveillance
+	variant
+		"Ra'at Ik 621 (Probes)"
+		"Kas'ik Tek 7" 9
+
+fleet "Korath Large Raid"
+	government "Korath"
+	names "korath"
+	fighters "korath"
+	cargo 1
+	personality
+		disables plunders opportunistic harvests
+	variant 5
+		"Palavret" 2
+		"'olofez" 4
+	variant 5
+		"Palavret (Blaze)" 2
+		"'olofez" 4
+	variant 2
+		"Rano'erek"
+		"Palavret (Blaze)"
+		"'olofez" 6
+
+fleet "Korath Ember Waste Large Raid"
+	government "Korath"
+	names "korath"
+	fighters "korath"
+	cargo 1
+	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
+	outfitters "Korath Exiles Remnant Donations"
+	personality
+		disables plunders opportunistic harvests
+	variant 15
+		"Palavret (Ember)"
+		"'olofez" 2
+	variant 3
+		"Palavret (Ember Blaze)"
+		"'olofez" 2
+	variant 3
+		"Palavret (Ember Shunt)"
+		"'olofez" 2
+	variant 2
+		"Rano'erek"
+		"'olofez" 4
+	variant 2
+		"Rano'erek (Shunt)"
+		"'olofez" 4
+	variant 1
+		"Ra'gru Ik 618 (Ember)"
+		"Rano'erek (Heaver)"
+		"Palavret (Ember)" 3
+		"'olofez" 10
+	variant 1
+		"Ra'at Ik 621"
+		"Rano'erek (Heaver)"
+		"Palavret (Ember)" 3
+		"'olofez" 19
+	variant 1
+		"Kas'lor Ik 582 (Ember)"
+		"Palavret (Ember)"
+		"Palavret (Ember Blaze)"
+		"Rano'erek"
+		"'olofez" 11
+
+fleet "Korath Civilian Large"
+	government "Korath (Civilian)"
+	names "korath"
+	fighters "korath"
+	cargo 3
+	personality
+		frugal opportunistic disables forbearing
+	variant 22
+		"Lor'nag Ik 590"
+		"'olofez (Expeller)" 3
 	variant 12
-		"Korath World-Ship"
-	variant 12
-		"Korath World-Ship B"
-	variant 12
-		"Korath World-Ship C"
-	variant 12
-		"Korath Dredger"
-		"Korath Chaser" 4
+		"Lor'kas Ik 577"
+		"'olofez (Expeller)" 3
+	variant 10
+		"Kasichara A'awoj"
+		"Palavret" 2
+		"'olofez" 4
+	variant 16
+		"Kasichara A'awoj"
+	variant 10
+		"Kas'lor Ik 582"
+		"'olofez (Expeller)" 3
+	variant 4
+		"Rano'erek (Civilian)" 2
+		"'olofez (Digger)" 4
+		"'olofez (Expeller)" 4
+	variant 1
+		"Ra'at Ik 621"
+		"'olofez" 9
+	variant 1
+		"Ra'gru Ik 618"
+	variant 1
+		"Ra'gru Ik 618 (Grab)"
+	variant 2
+		"'olofez (World-Ship)"
+	variant 1
+		"Ikatila'ej"
+	variant 2
+		"Rai'alorej"
+		"'olofez (Expeller)" 2
+
+
+fleet "Korsmanath A'awojs"
+	government "Korath (Civilian)"
+	names "korath"
+	fighters "korath"
+	cargo 3
+	variant 21
+		"Korsmanath A'awoj"
+		"'olofez" 14
+		"'olofez (Expeller)" 10
+	variant 9
+		"Korsmanath A'awoj (Strike)"
+		"'olofez" 17
+		"'olofez (Expeller)" 7
+	variant 6
+		"Korsmanath A'awoj (Special)"
+		"'olofez (Expeller)" 13
+		"'olofez (Digger)" 6
+		"'olofez" 5
+	variant
+		"Korsmanath A'awoj (Blaze)"
+		"'olofez (Expeller)" 15
+		"'olofez" 9
+
+fleet "Korath Rescue"
+	government "Korath (Civilian)"
+	names "korath"
+	fighters "korath"
+	commodities Medical
+	personality
+		timid disables coward surveillance harvests opportunistic merciful
+	variant
+		"Rai'alorej"
+		"'olofez (World-Ship)" 2
 
 
 fleet "Kor Efret Home"
@@ -241,12 +499,23 @@ fleet "Kor Efret Home"
 	cargo 3
 	personality
 		timid
+	variant 3
+		"Echo-Galleon"
+	variant 5
+		"Arch-Carrack"
+	variant 1
+		"Charm-Shallop"
+
+
+fleet "Kor Efret Miners"
+	government "Kor Efret"
+	names "korath"
+	fighters "korath"
+	cargo 0
+	personality
+		timid disables plunders frugal mining harvests
 	variant
-		"Korath World-Ship"
-	variant
-		"Korath World-Ship B"
-	variant
-		"Korath World-Ship C"
+		"Charm-Shallop"
 
 
 fleet "Small Kor Sestor"
@@ -270,13 +539,13 @@ fleet "Small Kor Sestor"
 	variant 5
 		"Tek Far 71 - Lek (Close Quarters)"
 		"Far Lek 14" 10
-	variant
+	variant 1
 		"Tek Far 71 - Lek"
 		"Far Lek 14" 6
-	variant
+	variant 1
 		"Tek Far 71 - Lek (Close Quarters)"
 		"Far Lek 14" 4
-	variant
+	variant 1
 		"Tek Far 71 - Lek (Close Quarters)"
 		"Far Lek 14" 2
 	variant 6
@@ -285,24 +554,24 @@ fleet "Small Kor Sestor"
 	variant 4
 		"Tek Far 78 - Osk (Close Quarters)"
 		"Far Osk 27" 9
-	variant
+	variant 1
 		"Tek Far 78 - Osk"
 		"Far Osk 27" 7
-	variant
+	variant 1
 		"Tek Far 78 - Osk (Close Quarters)"
 		"Far Osk 27" 5
-	variant
+	variant 1
 		"Tek Far 78 - Osk"
 		"Far Osk 27" 2
 	variant 3
 		"Tek Far 109"
 		"Far Lek 14" 9
 		"Far Osk 27" 7
-	variant
+	variant 1
 		"Tek Far 109"
 		"Far Lek 14" 6
 		"Far Osk 27" 3
-	variant
+	variant 1
 		"Tek Far 109"
 		"Far Lek 14" 3
 		"Far Osk 27" 2
@@ -439,7 +708,7 @@ fleet "Small Kor Mereti"
 	variant 3
 		"Model 64"
 		"Model 32" 2
-		"Model 16" 1
+		"Model 16"
 	variant 1
 		"Model 32"
 		"Model 16" 5
@@ -589,8 +858,8 @@ fleet "Kor Mereti Miners"
 
 
 outfitter "Korath Basics"
-	"Korath Piercer Rack"
-	"Korath Mine Rack"
+	"Piercer Missile Rack"
+	"Cluster Mine Rack"
 	"Command Center"
 	"Hyperdrive"
 	"Small Bunk Room"
@@ -601,10 +870,10 @@ outfitter "Korath Basics"
 	"Local Map"
 
 outfitter "Korath Exiles"
-	"Korath Banisher"
-	"Korath Fire-Lance"
-	"Korath Grab-Strike"
-	"Korath Warder"
+	"Banisher Grav-Turret"
+	"Fire-Lance"
+	"Grab-Strike Turret"
+	"Warder Anti-Missile"
 	"Steering (Asteroid Class)"
 	"Steering (Lunar Class)"
 	"Steering (Planetary Class)"
@@ -628,4 +897,24 @@ outfitter "Korath Exiles"
 	"Outfits Expansion"
 	"Cargo Expansion"
 	"Local Map"
-	"Korath Repeater Rifle"
+	"Thermal Repeater Rifle"
+
+outfitter "Korath Exiles Remnant Donations"
+	"Banisher Grav-Turret"
+	"Fire-Lance"
+	"Grab-Strike Turret"
+	"Warder Anti-Missile"
+	"Steering (Asteroid Class)"
+	"Steering (Lunar Class)"
+	"Steering (Planetary Class)"
+	"Thruster (Asteroid Class)"
+	"Thruster (Comet Class)"
+	"Thruster (Planetary Class)"
+	"Generator (Furnace Class)"
+	"Triple Plasma Core"
+	"Small Heat Shunt"
+	"Large Heat Shunt"
+	"Fuel Processor"
+	"Systems Core (Small)"
+	"Systems Core (Medium)"
+	"Systems Core (Large)"

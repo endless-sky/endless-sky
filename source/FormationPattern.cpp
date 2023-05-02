@@ -7,13 +7,16 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "Angle.h"
 #include "FormationPattern.h"
 
-
+#include "Angle.h"
+#include "DataNode.h"
 #include <cmath>
 
 using namespace std;
@@ -181,7 +184,7 @@ void FormationPattern::Load(const DataNode &node)
 			}
 		else if(child.Token(0) == "rotatable" && child.Size() >= 2)
 			rotatable = child.Value(1);
-		else if(child.Token(0) == "point" && child.Size() >= 3)
+		else if((child.Token(0) == "point" || child.Token(0) == "position") && child.Size() >= 3)
 		{
 			lines.emplace_back();
 			Line &line = lines.back();

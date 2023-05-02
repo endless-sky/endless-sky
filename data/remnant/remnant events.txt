@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 event "ember waste label"
 	galaxy "label waste"
@@ -14,19 +17,22 @@ event "ember waste label"
 
 
 
-event "remnant change hail"
+event "remnant: change hail"
 	government "Remnant"
-		"friendly hail" "friendly remnant"
-		"hostile hail" "hostile remnant"
+		"friendly hail" "remnant friendly"
+		"hostile hail" "remnant hostile"
+	government "Remnant (Research)"
+		"friendly hail" "remnant friendly"
+		"hostile hail" "remnant hostile"
 
 
 
-event "lost in ember waste"
+event "remnant: lost in ember waste"
 
 
 
-event "remnant defense timer"
-	clear "Remnant defense delay"
+event "remnant: defense timer"
+	clear "remnant: defense delay"
 
 
 
@@ -60,6 +66,14 @@ event "remnant: puffin"
 
 
 
+# Replaced by the "remnant: puffin" event but the listed here so older versions of the "Remnant: Void Sprites 3" mission in their save file when they update do not have issues with this event being undefined.
+# The actual content of the event is not strictly necessary, since a patch mission already exists that applies the new event if the condition for this event is present.
+# But the event still needs to be declared so it can be considered "defined" by the game, otherwise, it will disable the mission referring to it.
+# If we ever do something that makes save files from an older version of the game incompatible, this can be removed.
+event "remnant: gascraft"
+
+
+
 event "remnant: void sprite research"
 
 
@@ -86,7 +100,18 @@ event "remnant salvage available"
 
 
 
-event "remnant research update bjd1"
+event "remnant: scanning tolerance"
+	government "Remnant"
+		"penalty for"
+			scan 0
+		remove "provoked on scan"
+		"friendly hail" "remnant trusting"
+	government "Remnant (Research)"
+		"friendly hail" "remnant trusting"
+
+
+
+event "remnant: research update bjd1"
 
 
 
@@ -109,6 +134,34 @@ event "korath hunting"
 		"attitude toward"
 			"Indigenous Lifeform" -.01
 			"Ember Waste" -.01
+
+
+
+event "korath rescue: nenia small"
+	system Nenia
+		add fleet "Korath Rescue" 2000
+
+event "korath rescue: nenia small end"
+	system Nenia
+		remove fleet "Korath Rescue"
+
+
+event "korath rescue: aescolanus medium"
+	system Aescolanus
+		add fleet "Korath Rescue" 1000
+
+event "korath rescue: aescolanus medium end"
+	system Aescolanus
+		remove fleet "Korath Rescue"
+
+
+event "korath rescue: nenia medium"
+	system Nenia
+		add fleet "Korath Rescue" 1000
+
+event "korath rescue: nenia medium end"
+	system Nenia
+		remove fleet "Korath Rescue"
 
 
 
@@ -176,7 +229,7 @@ event "remnant: cognizance 1 systems available"
 		remove attributes "inaccessible"
 	system Egeria
 		remove attributes "inaccessible"
-	system Porrima
+	system Postverta
 		remove attributes "inaccessible"
 	system Prosa
 		remove attributes "inaccessible"
@@ -234,15 +287,32 @@ event "remnant: ssil vida inhabited"
 		landscape land/station0
 		description `The silence of this station rings in your ears, and as you explore you are increasingly surprised that it even has an atmosphere. It is obviously ancient, and patches of ambiguous green and purple material resembling fungus grow through the walls. Whoever built this station designed it for beings much larger than you - either that, or they liked spacious environments. Even the shortest doorway you pass through is easily double your height. They are always wider than they are tall.`
 		description `	Exploring beyond the docks reveals that most of this facility is infrastructure for some type of massive emitter. It is not clear exactly what it's supposed to be emitting, but it might have something to do with how this system appeared in the first place.`
-		spaceport `The Remnant have set up a fully self-contained base of operations in this part of the station. Independent life support, its own power system, and controls tapping into the rest of station occupy much of the space, while a research laboratory and additional equipment fill up the rest. A rudimentary cafeteria, communication links, basic repair equipment, and sleeping quarters round out the amenities of this research camp.`
+		spaceport `The Remnant have set up a fully self-contained base of operations in this part of the station. Independent life support, its own power system, and controls tapping into the rest of station occupy much of the space, while a Research Laboratory and additional equipment fill up the rest. A rudimentary cafeteria, communication links, basic repair equipment, and sleeping quarters round out the amenities of this research camp.`
 		bribe 0
 		government Remnant
 
 
 
+event "korath rescue: egeria tiny"
+	system Egeria
+		add fleet "Korath Rescue" 4000
+
+event "korath rescue: egeria tiny end"
+	system Egeria
+		remove fleet "Korath Rescue"
+
+
+
 event "remnant: cognizance peregrine"
-	shipyard "Remnant"
-		"Peregrine"
+	outfitter "Remnant"
+		"Bellows-Class Afterburner"
+	fleet "Small Remnant"
+		add variant 1
+			"Peregrine"
+	fleet "Large Remnant"
+		add variant 5
+			"Peregrine"
+			"Merganser" 3
 
 
 
@@ -262,7 +332,7 @@ event "remnant: remove hidden"
 
 
 
-event "remnant: ssil vida area unvisted"
+event "remnant: ssil vida area unvisited"
 	unvisit "Diespiter"
 	unvisit "Egeria"
 	unvisit "Prosa"
@@ -272,7 +342,7 @@ event "remnant: ssil vida area unvisted"
 
 
 event "remnant: ssil vida activation"
-	set "Remnant: Ssil Vida Active"
+	set "remnant: ssil vida active"
 	planet Fertriery
 		attributes "requires: gaslining" uninhabited
 		landscape land/nasa8
@@ -285,6 +355,7 @@ event "remnant: ssil vida activation"
 		pos 162.87 343.242
 		government Uninhabited
 		attributes "ember waste"
+		arrival 625
 		habitable 320
 		belt 1797
 		haze _menu/haze-red
@@ -307,6 +378,7 @@ event "remnant: ssil vida activation"
 		trade Metal 272
 		trade Plastic 289
 		fleet "Korath Ember Waste Raid" 20000
+		fleet "Korath Rescue" 60000
 		fleet "Small Remnant" 30000
 		fleet "Large Remnant" 30000
 		hazard "Ember Waste Base Heat" 100
@@ -354,6 +426,7 @@ event "remnant: ssil vida activation"
 		pos 288 146
 		government Uninhabited
 		attributes "ember waste"
+		arrival 2030
 		belt 2000
 		habitable 1505.92
 		haze _menu/haze-red
@@ -373,6 +446,7 @@ event "remnant: ssil vida activation"
 		minables "live crystal" 60 3
 		fleet "Void Sprites (Ember Waste)" 400
 		fleet "Subsidurial (Ember Waste)" 2000
+		fleet "Embersylphs" 3000
 		hazard "Ember Waste Base Heat" 50
 		hazard "Ember Waste Base Storm" 9000
 		hazard "Ember Waste Base Storm" 15000
@@ -401,6 +475,7 @@ event "remnant: ssil vida activation"
 		pos 332 210
 		government Uninhabited
 		attributes "ember waste"
+		arrival 950
 		belt 2000
 		habitable 534.375
 		haze _menu/haze-red
@@ -421,6 +496,7 @@ event "remnant: ssil vida activation"
 		minables "live crystal" 60 3
 		fleet "Void Sprites (Ember Waste)" 400
 		fleet "Subsidurial (Ember Waste)" 2000
+		fleet "Embersylphs" 3000
 		hazard "Ember Waste Base Heat" 50
 		hazard "Ember Waste Base Storm" 9000
 		hazard "Ember Waste Base Storm" 15000
@@ -447,6 +523,7 @@ event "remnant: ssil vida activation"
 		pos 203.504 247.389
 		government Uninhabited
 		attributes "ember waste"
+		arrival 5000
 		habitable 2798.68
 		belt 1202
 		haze _menu/haze-red
@@ -469,6 +546,7 @@ event "remnant: ssil vida activation"
 		trade Metal 407
 		trade Plastic 222
 		fleet "Korath Ember Waste Raid" 10000
+		fleet "Korath Rescue" 30000
 		hazard "Ember Waste Base Heat" 100
 		hazard "Ember Waste Base Storm" 9000
 		object
@@ -516,6 +594,7 @@ event "remnant: ssil vida activation"
 		pos 297 269
 		government Remnant
 		attributes "ember waste"
+		arrival 500
 		belt 2000
 		habitable 135
 		haze _menu/haze-red
@@ -534,11 +613,12 @@ event "remnant: ssil vida activation"
 		minables "live crystal" 60 3
 		fleet "Void Sprites (Ember Waste)" 400
 		fleet "Subsidurial (Ember Waste)" 2000
+		fleet "Embersylphs" 3000
 		hazard "Ember Waste Base Heat" 50
 		hazard "Ember Waste Base Storm" 9000
 		hazard "Ember Waste Base Storm" 15000
 		object
-			sprite star/m3
+			sprite star/m8
 			period 19
 		object
 			sprite planet/desert7
@@ -558,12 +638,14 @@ event "remnant: ssil vida activation"
 			period 654
 		object "Ssil Vida"
 			sprite planet/sheragi_postverta
+				scale 0.5
 			distance 1408
 			period 554
 	system Prosa
 		pos 303 194
 		government Uninhabited
 		attributes "ember waste"
+		arrival 5000
 		habitable 2372.76
 		belt 2000
 		haze _menu/haze-red
@@ -582,6 +664,7 @@ event "remnant: ssil vida activation"
 		minables "live crystal" 60 3
 		fleet "Void Sprites (Ember Waste)" 400
 		fleet "Subsidurial (Ember Waste)" 2000
+		fleet "Embersylphs" 3000
 		hazard "Ember Waste Base Heat" 50
 		hazard "Ember Waste Base Storm" 9000
 		hazard "Ember Waste Base Storm" 15000
@@ -617,6 +700,7 @@ event "remnant: ssil vida activation"
 		pos 385 198
 		government Uninhabited
 		attributes "ember waste" "wormhole"
+		arrival 500
 		belt 2000
 		habitable 135
 		haze _menu/haze-red
@@ -638,11 +722,12 @@ event "remnant: ssil vida activation"
 		minables "live crystal" 60 3
 		fleet "Void Sprites (Ember Waste)" 400
 		fleet "Subsidurial (Ember Waste)" 2000
+		fleet "Embersylphs" 3000
 		hazard "Ember Waste Base Heat" 50
 		hazard "Ember Waste Base Storm" 9000
 		hazard "Ember Waste Base Storm" 15000
 		object
-			sprite star/m3
+			sprite star/m8
 			period 10
 		object
 			sprite planet/desert4
@@ -672,6 +757,7 @@ event "remnant: ssil vida activation"
 		pos 324 112
 		government Uninhabited
 		attributes "ember waste"
+		arrival 500
 		belt 2000
 		habitable 320
 		haze _menu/haze-red
@@ -691,6 +777,7 @@ event "remnant: ssil vida activation"
 		minables "live crystal" 60 3
 		fleet "Void Sprites (Ember Waste)" 400
 		fleet "Subsidurial (Ember Waste)" 2000
+		fleet "Embersylphs" 3000
 		hazard "Ember Waste Base Heat" 50
 		hazard "Ember Waste Base Storm" 9000
 		hazard "Ember Waste Base Storm" 15000
@@ -728,8 +815,12 @@ event "remnant: ssil vida activation"
 
 
 
+# The default value of a system's "jump range" is 0. In this state, the global default will be used.
+# When the bug preventing ships from jumping when the destination system has too little jump range is fixed,
+# the resetting of jump range on deactivation can be removed. Instead, jump range of other systems nearby
+# may need to be reduced on activation to prevent escorts outside the Postverta cluster jumping into that region.
 event "remnant: ssil vida deactivation"
-	clear "Remnant: Ssil Vida Active"
+	clear "remnant: ssil vida active"
 	planet Fertriery
 		attributes "requires: gaslining" uninhabited
 		landscape land/nasa8
@@ -742,9 +833,11 @@ event "remnant: ssil vida deactivation"
 		pos 288 146
 		government Uninhabited
 		attributes "ember waste"
+		arrival 2030
 		belt 2000
 		habitable 1505.92
 		haze _menu/haze-red
+		"jump range" 0
 		link Statina
 		link Vaticanus
 		asteroids "small rock" 1 8
@@ -756,6 +849,7 @@ event "remnant: ssil vida deactivation"
 		minables lead 28 5
 		remove fleet "Void Sprites (Ember Waste)"
 		remove fleet "Subsidurial (Ember Waste)"
+		remove fleet "Embersylphs"
 		hazard "Ember Waste Base Heat" 50
 		hazard "Ember Waste Base Storm" 9000
 		hazard "Ember Waste Base Storm" 15000
@@ -788,9 +882,11 @@ event "remnant: ssil vida deactivation"
 		pos 332 210
 		government Uninhabited
 		attributes "ember waste"
+		arrival 950
 		belt 2000
 		habitable 534.375
 		haze _menu/haze-red
+		"jump range" 0
 		link Statina
 		link Postverta
 		asteroids "small rock" 65 3
@@ -803,6 +899,7 @@ event "remnant: ssil vida deactivation"
 		minables silicon 46 3
 		remove fleet "Void Sprites (Ember Waste)"
 		remove fleet "Subsidurial (Ember Waste)"
+		remove fleet "Embersylphs"
 		minables tungsten 17 3
 		hazard "Ember Waste Base Heat" 50
 		hazard "Ember Waste Base Storm" 9000
@@ -840,9 +937,11 @@ event "remnant: ssil vida deactivation"
 		pos 297 269
 		government Remnant
 		attributes "ember waste"
+		arrival 500
 		belt 2000
 		habitable 135
 		haze _menu/haze-red
+		"jump range" 0
 		link Diespiter
 		link Prosa
 		link Statina
@@ -852,11 +951,12 @@ event "remnant: ssil vida deactivation"
 		asteroids "large metal" 9 3
 		remove fleet "Void Sprites (Ember Waste)"
 		remove fleet "Subsidurial (Ember Waste)"
+		remove fleet "Embersylphs"
 		hazard "Ember Waste Base Heat" 50
 		hazard "Ember Waste Base Storm" 9000
 		hazard "Ember Waste Base Storm" 15000
 		object
-			sprite star/m3
+			sprite star/m8
 			period 19
 		object
 			sprite planet/desert7
@@ -876,15 +976,18 @@ event "remnant: ssil vida deactivation"
 			period 654
 		object "Ssil Vida"
 			sprite planet/sheragi_postverta
+				scale 0.5
 			distance 1408
 			period 554
 	system Prosa
 		pos 303 194
 		government Uninhabited
 		attributes "ember waste"
+		arrival 5000
 		habitable 2372.76
 		belt 2000
 		haze _menu/haze-red
+		"jump range" 0
 		link Vaticanus
 		link Postverta
 		asteroids "medium metal" 11 2
@@ -895,6 +998,7 @@ event "remnant: ssil vida deactivation"
 		minables copper 5 2
 		remove fleet "Void Sprites (Ember Waste)"
 		remove fleet "Subsidurial (Ember Waste)"
+		remove fleet "Embersylphs"
 		hazard "Ember Waste Base Heat" 50
 		hazard "Ember Waste Base Storm" 9000
 		hazard "Ember Waste Base Storm" 15000
@@ -934,9 +1038,11 @@ event "remnant: ssil vida deactivation"
 		pos 385 198
 		government Uninhabited
 		attributes "ember waste" "wormhole"
+		arrival 500
 		belt 2000
 		habitable 135
 		haze _menu/haze-red
+		"jump range" 0
 		link Diespiter
 		link Egeria
 		link Postverta
@@ -949,11 +1055,12 @@ event "remnant: ssil vida deactivation"
 		minables titanium 10 4
 		remove fleet "Void Sprites (Ember Waste)"
 		remove fleet "Subsidurial (Ember Waste)"
+		remove fleet "Embersylphs"
 		hazard "Ember Waste Base Heat" 50
 		hazard "Ember Waste Base Storm" 9000
 		hazard "Ember Waste Base Storm" 15000
 		object
-			sprite star/m3
+			sprite star/m8
 			period 10
 		object
 			sprite planet/desert4
@@ -983,9 +1090,11 @@ event "remnant: ssil vida deactivation"
 		pos 324 112
 		government Uninhabited
 		attributes "ember waste"
+		arrival 500
 		belt 2000
 		habitable 320
 		haze _menu/haze-red
+		"jump range" 0
 		link Egeria
 		link Prosa
 		asteroids "small rock" 3 6
@@ -998,6 +1107,7 @@ event "remnant: ssil vida deactivation"
 		minables tungsten 10 13
 		remove fleet "Void Sprites (Ember Waste)"
 		remove fleet "Subsidurial (Ember Waste)"
+		remove fleet "Embersylphs"
 		hazard "Ember Waste Base Heat" 50
 		hazard "Ember Waste Base Storm" 9000
 		hazard "Ember Waste Base Storm" 15000
@@ -1038,18 +1148,110 @@ event "remnant: ssil vida deactivation"
 event "remnant: ssil vida outfitter"
 	planet "Ssil Vida"
 		add outfitter "Remnant Core"
+
+
+
 event "remnant: cognizance salvage expansion"
 	outfitter "Remnant Salvage"
 		add "Systems Core (Medium)"
 		add "Large Heat Shunt"
 		add "Fuel Processor"
-		add "Korath Repeater Rifle"
-		add "Korath Grab-Strike"
-		add "Korath Banisher"
-		add "Korath Warder"
+		add "Thermal Repeater Rifle"
+		add "Grab-Strike Turret"
+		add "Banisher Grav-Turret"
+		add "Warder Anti-Missile"
 	planet "Viminal"
 		add shipyard "Remnant Salvage Ships"
 	planet "Aventine"
 		add shipyard "Remnant Salvage Ships"
 	planet "Caelian"
 		add shipyard "Remnant Salvage Ships"
+
+
+
+event "remnant: cognizance calm"
+
+
+
+event "remnant: teciimach deployment"
+	outfitter "Remnant"
+		remove "EMP Torpedo Bay"
+		remove "EMP Torpedo"
+		remove "EMP Torpedo Storage Bay"
+		add "Teciimach Bay"
+		add "Teciimach Pod"
+		add "Teciimach Canister"
+		add "Teciimach Canister Rack"
+	fleet "Small Remnant"
+		add variant 5
+			"Merganser (II)" 2
+		add variant 3
+			"Merganser (II)" 4
+		add variant 1
+			"Starling"
+			"Merganser (II)" 2
+	fleet "Large Remnant"
+		add variant 5
+			"Albatross"
+			"Merganser (II)" 4
+		add variant 4
+			"Ibis"
+			"Petrel" 2
+			"Tern" 4
+			"Merganser (II)" 8
+	fleet "Remnant Transport"
+		add variant 3
+			"Gull"
+			"Merganser (II)" 2
+		add variant 1
+			"Pelican"
+			"Merganser (II)" 4
+		remove variant 4
+			"Gull (Support)"
+		add variant 4
+			"Gull (Support II)"
+	fleet "Remnant Home Guard"
+		add variant 5
+			"Merganser (II)"
+		add variant 3
+			"Merganser (II)"
+			"Petrel" 2
+			"Tern" 4
+		add variant 3
+			"Smew (Teciimach Ferry)"
+	fleet "Small Remnant"
+		remove variant 1
+			"Peregrine"
+		add variant 2
+			"Peregrine (II)"
+	fleet "Large Remnant"
+		remove variant 4
+			"Peregrine"
+			"Merganser" 3
+		add variant 5
+			"Peregrine (II)"
+			"Merganser (II)" 3
+
+
+
+event "remnant: shattered light"
+	shipyard "Remnant"
+		add "Modified Dromedary"
+
+
+
+event "remnant: shattered light research"
+
+event "remnant: tubfalet appearance"
+	fleet "Korath Raid"
+		add variant 1
+			"Tubfalet"
+			"'olofez" 3
+	fleet "Korath Ember Waste Raid"
+		add variant 3
+			"Tubfalet"
+			"'olofez" 3
+	fleet "Korath Large Raid"
+		add variant 3
+			"Tubfalet" 2
+			"'olofez" 6

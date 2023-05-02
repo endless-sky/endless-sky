@@ -7,13 +7,17 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "OutfitInfoDisplay.h"
 
 #include "Depreciation.h"
 #include "text/Format.h"
+#include "GameData.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
 
@@ -32,11 +36,13 @@ namespace {
 		make_pair(60. * 100., ""),
 		make_pair(100., "%"),
 		make_pair(100., ""),
-		make_pair(1. / 60., "")
+		make_pair(1. / 60., "s")
 	};
 
 	const map<string, int> SCALE = {
 		{"active cooling", 0},
+		{"afterburner shields", 0},
+		{"afterburner hull", 0},
 		{"afterburner energy", 0},
 		{"afterburner fuel", 0},
 		{"afterburner heat", 0},
@@ -73,11 +79,18 @@ namespace {
 		{"ion resistance energy", 0},
 		{"ion resistance fuel", 0},
 		{"ion resistance heat", 0},
+		{"scramble resistance energy", 0},
+		{"scramble resistance fuel", 0},
+		{"scramble resistance heat", 0},
 		{"jump speed", 0},
 		{"leak resistance energy", 0},
 		{"leak resistance fuel", 0},
 		{"leak resistance heat", 0},
+		{"overheat damage rate", 0},
+		{"reverse thrusting shields", 0},
+		{"reverse thrusting hull", 0},
 		{"reverse thrusting energy", 0},
+		{"reverse thrusting fuel", 0},
 		{"reverse thrusting heat", 0},
 		{"scram drive", 0},
 		{"shield generation", 0},
@@ -89,17 +102,60 @@ namespace {
 		{"slowing resistance heat", 0},
 		{"solar collection", 0},
 		{"solar heat", 0},
+		{"thrusting shields", 0},
+		{"thrusting hull", 0},
 		{"thrusting energy", 0},
+		{"thrusting fuel", 0},
 		{"thrusting heat", 0},
 		{"turn", 0},
+		{"turning shields", 0},
+		{"turning hull", 0},
 		{"turning energy", 0},
+		{"turning fuel", 0},
 		{"turning heat", 0},
 
 		{"thrust", 1},
 		{"reverse thrust", 1},
 		{"afterburner thrust", 1},
 
+		{"afterburner discharge", 2},
+		{"afterburner corrosion", 2},
+		{"afterburner ion", 2},
+		{"afterburner scramble", 2},
+		{"afterburner leakage", 2},
+		{"afterburner burn", 2},
+		{"afterburner slowing", 2},
+		{"afterburner disruption", 2},
+
+		{"reverse thrusting discharge", 2},
+		{"reverse thrusting corrosion", 2},
+		{"reverse thrusting ion", 2},
+		{"reverse thrusting scramble", 2},
+		{"reverse thrusting leakage", 2},
+		{"reverse thrusting burn", 2},
+		{"reverse thrusting slowing", 2},
+		{"reverse thrusting disruption", 2},
+
+		{"thrusting discharge", 2},
+		{"thrusting corrosion", 2},
+		{"thrusting ion", 2},
+		{"thrusting scramble", 2},
+		{"thrusting leakage", 2},
+		{"thrusting burn", 2},
+		{"thrusting slowing", 2},
+		{"thrusting disruption", 2},
+
+		{"turning discharge", 2},
+		{"turning corrosion", 2},
+		{"turning ion", 2},
+		{"turning scramble", 2},
+		{"turning leakage", 2},
+		{"turning burn", 2},
+		{"turning slowing", 2},
+		{"turning disruption", 2},
+
 		{"ion resistance", 2},
+		{"scramble resistance", 2},
 		{"disruption resistance", 2},
 		{"slowing resistance", 2},
 		{"discharge resistance", 2},
@@ -117,17 +173,23 @@ namespace {
 		{"shield fuel multiplier", 3},
 		{"shield heat multiplier", 3},
 		{"threshold percentage", 3},
+		{"overheat damage threshold", 3},
+		{"high shield permeability", 3},
+		{"low shield permeability", 3},
 
 		{"burn protection", 4},
 		{"corrosion protection", 4},
 		{"discharge protection", 4},
 		{"disruption protection", 4},
+		{"drag reduction", 4},
 		{"energy protection", 4},
 		{"force protection", 4},
 		{"fuel protection", 4},
 		{"heat protection", 4},
 		{"hull protection", 4},
+		{"inertia reduction", 4},
 		{"ion protection", 4},
+		{"scramble protection", 4},
 		{"leak protection", 4},
 		{"piercing protection", 4},
 		{"shield protection", 4},
@@ -147,22 +209,30 @@ namespace {
 		{"minable", "This item is mined from asteroids."},
 		{"atrocity", "This outfit is considered an atrocity."}
 	};
+
+	bool IsNotRequirement(const string &label)
+	{
+		return label == "automaton" ||
+			SCALE.find(label) != SCALE.end() ||
+			BOOLEAN_ATTRIBUTES.find(label) != BOOLEAN_ATTRIBUTES.end();
+	}
 }
 
 
 
-OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player, bool canSell)
+OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player,
+		bool canSell, bool descriptionCollapsed)
 {
-	Update(outfit, player, canSell);
+	Update(outfit, player, canSell, descriptionCollapsed);
 }
 
 
 
 // Call this every time the ship changes.
-void OutfitInfoDisplay::Update(const Outfit &outfit, const PlayerInfo &player, bool canSell)
+void OutfitInfoDisplay::Update(const Outfit &outfit, const PlayerInfo &player, bool canSell, bool descriptionCollapsed)
 {
 	UpdateDescription(outfit.Description(), outfit.Licenses(), false);
-	UpdateRequirements(outfit, player, canSell);
+	UpdateRequirements(outfit, player, canSell, descriptionCollapsed);
 	UpdateAttributes(outfit);
 
 	maximumHeight = max(descriptionHeight, max(requirementsHeight, attributesHeight));
@@ -184,7 +254,8 @@ void OutfitInfoDisplay::DrawRequirements(const Point &topLeft) const
 
 
 
-void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInfo &player, bool canSell)
+void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInfo &player,
+		bool canSell, bool descriptionCollapsed)
 {
 	requirementLabels.clear();
 	requirementValues.clear();
@@ -195,6 +266,20 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 	int64_t buyValue = player.StockDepreciation().Value(&outfit, day);
 	int64_t sellValue = player.FleetDepreciation().Value(&outfit, day);
 
+	for(const string &license : outfit.Licenses())
+	{
+		if(player.HasLicense(license))
+			continue;
+
+		const auto &licenseOutfit = GameData::Outfits().Find(license + " License");
+		if(descriptionCollapsed || (licenseOutfit && licenseOutfit->Cost()))
+		{
+			requirementLabels.push_back("license:");
+			requirementValues.push_back(license);
+			requirementsHeight += 20;
+		}
+	}
+
 	if(buyValue == cost)
 		requirementLabels.push_back("cost:");
 	else
@@ -203,7 +288,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		out << "cost (" << (100 * buyValue) / cost << "%):";
 		requirementLabels.push_back(out.str());
 	}
-	requirementValues.push_back(Format::Credits(buyValue));
+	requirementValues.push_back(buyValue ? Format::Credits(buyValue) : "free");
 	requirementsHeight += 20;
 
 	if(canSell && sellValue != buyValue)
@@ -227,33 +312,65 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		requirementsHeight += 20;
 	}
 
-	bool hasContent = true;
-	static const vector<string> NAMES = {
-		"", "",
-		"outfit space needed:", "outfit space",
-		"weapon capacity needed:", "weapon capacity",
-		"engine capacity needed:", "engine capacity",
-		"", "",
-		"gun ports needed:", "gun ports",
-		"turret mounts needed:", "turret mounts"
-	};
-	for(unsigned i = 0; i + 1 < NAMES.size(); i += 2)
+	requirementLabels.emplace_back();
+	requirementValues.emplace_back();
+	requirementsHeight += 10;
+
+	bool hasContent = false;
+	static const vector<string> BEFORE = {"outfit space", "weapon capacity", "engine capacity"};
+	for(const auto &attr : BEFORE)
 	{
-		if(NAMES[i].empty() && hasContent)
+		if(outfit.Get(attr) < 0)
 		{
-			requirementLabels.emplace_back();
-			requirementValues.emplace_back();
-			requirementsHeight += 10;
-			hasContent = false;
-		}
-		else if(outfit.Get(NAMES[i + 1]))
-		{
-			requirementLabels.push_back(NAMES[i]);
-			requirementValues.push_back(Format::Number(-outfit.Get(NAMES[i + 1])));
-			requirementsHeight += 20;
+			AddRequirementAttribute(attr, outfit.Get(attr));
 			hasContent = true;
 		}
 	}
+
+	if(hasContent)
+	{
+		requirementLabels.emplace_back();
+		requirementValues.emplace_back();
+		requirementsHeight += 10;
+	}
+
+	for(const pair<const char *, double> &it : outfit.Attributes())
+		if(!count(BEFORE.begin(), BEFORE.end(), it.first))
+			AddRequirementAttribute(it.first, it.second);
+}
+
+
+
+// Any attribute with a negative value is considered a requirement.
+// Any exceptions to that rule would require in-game code to handle
+// their unique properties, so when code is added to handle a new
+// attribute, this code also should also be updated.
+void OutfitInfoDisplay::AddRequirementAttribute(string label, double value)
+{
+	// These attributes have negative values but are not requirements
+	if(IsNotRequirement(label))
+		return;
+
+	// Special case for 'required crew' - use positive values as a requirement.
+	if(label == "required crew")
+	{
+		if(value > 0)
+		{
+			requirementLabels.push_back(label + ":");
+			requirementValues.push_back(Format::Number(value));
+			requirementsHeight += 20;
+			return;
+		}
+		else
+			value *= -1;
+	}
+
+	if(value >= 0)
+		return;
+
+	requirementLabels.push_back(label + " needed:");
+	requirementValues.push_back(Format::Number(-value));
+	requirementsHeight += 20;
 }
 
 
@@ -265,12 +382,43 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	attributesHeight = 20;
 
 	bool hasNormalAttributes = false;
+
+	// These attributes are regularly negative on outfits, so when positive,
+	// tag them with "added" and show them first. They conveniently
+	// don't use SCALE or BOOLEAN_ATTRIBUTES.
+	static const vector<string> EXPECTED_NEGATIVE = {
+		"outfit space", "weapon capacity", "engine capacity", "gun ports", "turret mounts"
+	};
+
+	for(const string &attr : EXPECTED_NEGATIVE)
+	{
+		double value = outfit.Get(attr);
+		if(value <= 0)
+			continue;
+
+		attributeLabels.emplace_back(attr + " added:");
+		attributeValues.emplace_back(Format::Number(value));
+		attributesHeight += 20;
+		hasNormalAttributes = true;
+	}
+
 	for(const pair<const char *, double> &it : outfit.Attributes())
 	{
-		static const set<string> SKIP = {
-			"outfit space", "weapon capacity", "engine capacity", "gun ports", "turret mounts"
-		};
-		if(SKIP.count(it.first))
+		if(count(EXPECTED_NEGATIVE.begin(), EXPECTED_NEGATIVE.end(), it.first))
+			continue;
+
+		// Only show positive values here, with some exceptions.
+		// Negative values are usually handled as a "requirement"
+		if(static_cast<string>(it.first) == "required crew")
+		{
+			// 'required crew' is inverted - positive values are requirements.
+			if(it.second > 0)
+				continue;
+
+			// A negative 'required crew' would be a benefit, so it is listed here.
+		}
+		// If this attribute is not a requirement, it is always listed here, though it may be negative.
+		else if(it.second < 0 && !IsNotRequirement(it.first))
 			continue;
 
 		auto sit = SCALE.find(it.first);
@@ -307,7 +455,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	if(outfit.Ammo())
 	{
 		attributeLabels.emplace_back("ammo:");
-		attributeValues.emplace_back(outfit.Ammo()->Name());
+		attributeValues.emplace_back(outfit.Ammo()->DisplayName());
 		attributesHeight += 20;
 		if(outfit.AmmoUsage() != 1)
 		{
@@ -324,10 +472,12 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	static const vector<pair<string, string>> VALUE_NAMES = {
 		{"shield damage", ""},
 		{"hull damage", ""},
+		{"minable damage", ""},
 		{"fuel damage", ""},
 		{"heat damage", ""},
 		{"energy damage", ""},
 		{"ion damage", ""},
+		{"scrambling damage", ""},
 		{"slowing damage", ""},
 		{"disruption damage", ""},
 		{"discharge damage", ""},
@@ -336,6 +486,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		{"burn damage", ""},
 		{"% shield damage", "%"},
 		{"% hull damage", "%"},
+		{"% minable damage", "%"},
 		{"% fuel damage", "%"},
 		{"% heat damage", "%"},
 		{"% energy damage", "%"},
@@ -345,6 +496,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		{"firing hull", ""},
 		{"firing shields", ""},
 		{"firing ion", ""},
+		{"firing scramble", ""},
 		{"firing slowing", ""},
 		{"firing disruption", ""},
 		{"firing discharge", ""},
@@ -361,10 +513,12 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	vector<double> values = {
 		outfit.ShieldDamage(),
 		outfit.HullDamage(),
+		outfit.MinableDamage() != outfit.HullDamage() ? outfit.MinableDamage() : 0.,
 		outfit.FuelDamage(),
 		outfit.HeatDamage(),
 		outfit.EnergyDamage(),
 		outfit.IonDamage() * 100.,
+		outfit.ScramblingDamage() * 100.,
 		outfit.SlowingDamage() * 100.,
 		outfit.DisruptionDamage() * 100.,
 		outfit.DischargeDamage() * 100.,
@@ -373,6 +527,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		outfit.BurnDamage() * 100.,
 		outfit.RelativeShieldDamage() * 100.,
 		outfit.RelativeHullDamage() * 100.,
+		outfit.RelativeMinableDamage() != outfit.RelativeHullDamage() ? outfit.RelativeMinableDamage() * 100. : 0.,
 		outfit.RelativeFuelDamage() * 100.,
 		outfit.RelativeHeatDamage() * 100.,
 		outfit.RelativeEnergyDamage() * 100.,
@@ -382,6 +537,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		outfit.FiringHull(),
 		outfit.FiringShields(),
 		outfit.FiringIon() * 100.,
+		outfit.FiringScramble() * 100.,
 		outfit.FiringSlowing() * 100.,
 		outfit.FiringDisruption() * 100.,
 		outfit.FiringDischarge() * 100.,
@@ -409,10 +565,14 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			}
 	}
 
-	bool isContinuous = (reload <= 1);
+	bool oneFrame = (outfit.TotalLifetime() == 1.);
+	bool isContinuous = (reload <= 1. && oneFrame);
+	bool isContinuousBurst = (outfit.BurstCount() > 1 && outfit.BurstReload() <= 1. && oneFrame);
 	attributeLabels.emplace_back("shots / second:");
 	if(isContinuous)
 		attributeValues.emplace_back("continuous");
+	else if(isContinuousBurst)
+		attributeValues.emplace_back("continuous (" + Format::Number(lround(outfit.BurstReload() * 100. / reload)) + "%)");
 	else
 		attributeValues.emplace_back(Format::Number(60. / reload));
 	attributesHeight += 20;
@@ -468,7 +628,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 
 	// Add per-shot values to the table. If the weapon fires continuously,
 	// the values have already been added.
-	if(!isContinuous)
+	if(!isContinuous && !isContinuousBurst)
 	{
 		static const string PER_SHOT = " / shot:";
 		for(unsigned i = 0; i < VALUE_NAMES.size(); ++i)

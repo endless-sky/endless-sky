@@ -7,13 +7,17 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "MainPanel.h"
 
 #include "BoardingPanel.h"
 #include "comparators/ByGivenOrder.h"
+#include "CategoryList.h"
 #include "CoreStartData.h"
 #include "Dialog.h"
 #include "text/Font.h"
@@ -96,6 +100,8 @@ void MainPanel::Step()
 	if(flagship)
 	{
 		// Check if any help messages should be shown.
+		if(isActive && Preferences::Has("Control ship with mouse"))
+			isActive = !DoHelp("control ship with mouse");
 		if(isActive && flagship->IsTargetable())
 			isActive = !DoHelp("navigation");
 		if(isActive && flagship->IsDestroyed())
@@ -110,6 +116,16 @@ void MainPanel::Step()
 			isActive = !DoHelp("friendly disabled");
 		if(isActive && player.Ships().size() > 1)
 			isActive = !DoHelp("multiple ship controls");
+		if(isActive && flagship->IsTargetable() && player.Ships().size() > 1)
+			isActive = !DoHelp("fleet harvest tutorial");
+		if(isActive && flagship->IsTargetable() &&
+				flagship->Attributes().Get("asteroid scan power") &&
+				player.Ships().size() > 1)
+			isActive = !DoHelp("fleet asteroid mining") && !DoHelp("fleet asteroid mining shortcuts");
+		if(isActive && player.DisplayCarrierHelp())
+			isActive = !DoHelp("try out fighters transfer cargo");
+		if(isActive && Preferences::Has("Fighters transfer cargo"))
+			isActive = !DoHelp("fighters transfer cargo");
 		if(isActive && !flagship->IsHyperspacing() && flagship->Position().Length() > 10000.
 				&& player.GetDate() <= player.StartData().GetDate() + 4)
 		{
@@ -259,8 +275,9 @@ bool MainPanel::Click(int x, int y, int clicks)
 
 	SDL_Keymod mod = SDL_GetModState();
 	hasShift = (mod & KMOD_SHIFT);
+	hasControl = (mod & KMOD_CTRL);
 
-	engine.Click(dragSource, dragSource, hasShift);
+	engine.Click(dragSource, dragSource, hasShift, hasControl);
 
 	return true;
 }
@@ -294,7 +311,7 @@ bool MainPanel::Release(int x, int y)
 	{
 		dragPoint = Point(x, y);
 		if(dragPoint.Distance(dragSource) > 5.)
-			engine.Click(dragSource, dragPoint, hasShift);
+			engine.Click(dragSource, dragPoint, hasShift, hasControl);
 
 		isDragging = false;
 	}
@@ -333,9 +350,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 					out << "This " + target->Noun() + " is carrying:\n";
 				first = false;
 
-				out << "\t" << it.second
-					<< (it.second == 1 ? " ton of " : " tons of ")
-					<< it.first << "\n";
+				out << "\t" << Format::CargoString(it.second, it.first) << "\n";
 			}
 		for(const auto &it : target->Cargo().Outfits())
 			if(it.second)
@@ -348,10 +363,10 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 				if(it.first->Get("installable") < 0.)
 				{
 					int tons = ceil(it.second * it.first->Mass());
-					out << (tons == 1 ? " ton of " : " tons of ") << Format::LowerCase(it.first->PluralName()) << "\n";
+					out << Format::CargoString(tons, Format::LowerCase(it.first->PluralName())) << "\n";
 				}
 				else
-					out << " " << (it.second == 1 ? it.first->Name(): it.first->PluralName()) << "\n";
+					out << " " << (it.second == 1 ? it.first->DisplayName(): it.first->PluralName()) << "\n";
 			}
 		if(first)
 			out << "This " + target->Noun() + " is not carrying any cargo.\n";
@@ -366,11 +381,14 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 			out << "This " + target->Noun() + " is not equipped with any outfits.\n";
 
 		// Split target->Outfits() into categories, then iterate over them in order.
-		auto comparator = ByGivenOrder<string>(GameData::Category(CategoryType::OUTFIT));
+		vector<string> categories;
+		for(const auto &category : GameData::GetCategory(CategoryType::OUTFIT))
+			categories.push_back(category.Name());
+		auto comparator = ByGivenOrder<string>(categories);
 		map<string, map<const string, int>, ByGivenOrder<string>> outfitsByCategory(comparator);
 		for(const auto &it : target->Outfits())
 		{
-			string outfitNameForDisplay = (it.second == 1 ? it.first->Name() : it.first->PluralName());
+			string outfitNameForDisplay = (it.second == 1 ? it.first->DisplayName() : it.first->PluralName());
 			outfitsByCategory[it.first->Category()].emplace(std::move(outfitNameForDisplay), it.second);
 		}
 		for(const auto &it : outfitsByCategory)
@@ -452,7 +470,7 @@ bool MainPanel::ShowHailPanel()
 		else
 		{
 			GetUI()->Push(new HailPanel(player, target,
-				[&](const Government *bribed) { MainPanel::OnBribeCallback(bribed); } ));
+				[&](const Government *bribed) { MainPanel::OnBribeCallback(bribed); }));
 			return true;
 		}
 	}

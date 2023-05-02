@@ -7,14 +7,20 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef FLEET_H_
 #define FLEET_H_
 
+#include "FleetCargo.h"
 #include "Personality.h"
 #include "Sale.h"
+#include "Variant.h"
+#include "WeightedList.h"
 
 #include <list>
 #include <memory>
@@ -60,7 +66,8 @@ public:
 	void Enter(const System &system, std::list<std::shared_ptr<Ship>> &ships, const Planet *planet = nullptr) const;
 	// Place a fleet in the given system, already "in action." If the carried flag is set, only
 	// uncarried ships will be added to the list (as any carriables will be stored in bays).
-	void Place(const System &system, std::list<std::shared_ptr<Ship>> &ships, bool carried = true) const;
+	void Place(const System &system, std::list<std::shared_ptr<Ship>> &ships,
+			bool carried = true, bool addCargo = true) const;
 
 	// Do the randomization to make a ship enter or be in the given system.
 	// Return the system that was chosen for the ship to enter from.
@@ -71,21 +78,9 @@ public:
 
 
 private:
-	class Variant {
-	public:
-		explicit Variant(const DataNode &node);
-
-		int weight;
-		std::vector<const Ship *> ships;
-	};
-
-
-private:
-	const Variant &ChooseVariant() const;
 	static std::pair<Point, double> ChooseCenter(const System &system);
-	std::vector<std::shared_ptr<Ship>> Instantiate(const Variant &variant) const;
+	std::vector<std::shared_ptr<Ship>> Instantiate(const std::vector<const Ship *> &ships) const;
 	bool PlaceFighter(std::shared_ptr<Ship> fighter, std::vector<std::shared_ptr<Ship>> &placed) const;
-	void SetCargo(Ship *ship) const;
 
 
 private:
@@ -94,13 +89,13 @@ private:
 	const Phrase *names = nullptr;
 	const Phrase *fighterNames = nullptr;
 	const FormationPattern *formation = nullptr;
-	std::vector<Variant> variants;
 	// The sum of all available variant weights.
 	int total = 0;
-	// The number of different items the ships in this fleet will carry in cargo.
-	int cargo = 3;
+	WeightedList<Variant> variants;
 	std::vector<std::string> commodities;
 	std::set<const Sale<Outfit> *> outfitters;
+	// The cargo ships in this fleet will carry.
+	FleetCargo cargo;
 
 	Personality personality;
 };

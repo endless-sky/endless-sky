@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "WrappedText.h"
@@ -162,7 +165,7 @@ void WrappedText::Draw(const Point &topLeft, const Color &color) const
 		for(size_t i = 0; i < words.size(); ++i)
 		{
 			const Word &w = words[i];
-			if(h == w.y && (i != words.size() - 1 && w.y == words[i+1].y))
+			if(h == w.y && (i != words.size() - 1 && w.y == words[i + 1].y))
 				font->Draw(text.c_str() + w.Index(), w.Pos() + topLeft, color);
 			else
 				font->Draw({text.c_str() + w.Index(), {wrapWidth, truncate}}, w.Pos() + topLeft, color);

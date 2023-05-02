@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef MAP_SALES_PANEL_H_
@@ -15,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapPanel.h"
 
+#include "CategoryList.h"
 #include "ClickZone.h"
 
 #include <set>
@@ -84,7 +88,7 @@ protected:
 	double scroll = 0.;
 	double maxScroll = 0.;
 
-	const std::vector<std::string> &categories;
+	const CategoryList &categories;
 	bool onlyShowSoldHere = false;
 
 

@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 outfit "Sunbeam"
 	category "Guns"
@@ -19,9 +22,8 @@ outfit "Sunbeam"
 	"weapon capacity" -34
 	"gun ports" -1
 	weapon
-		sprite "projectile/sunbeam"
-			"frame rate" 1.3
-			"random start frame"
+		sprite "projectile/sunbeam/sunbeam"
+			"frame rate" 30
 		sound "sunbeam"
 		"hit effect" "sunbeam impact"
 		"inaccuracy" .2
@@ -57,11 +59,10 @@ outfit "Sunbeam Turret"
 	"turret mounts" -1
 	"required crew" 1
 	weapon
-		sprite "projectile/sunbeam"
-			"frame rate" 1.3
-			"random start frame"
+		sprite "projectile/sunbeam/sunbeam"
+			"frame rate" 30
 		"hardpoint sprite" "hardpoint/sunbeam turret"
-		"hardpoint offset" 12.
+		"hardpoint offset" -2.0 12.0
 		sound "sunbeam"
 		"hit effect" "sunbeam impact"
 		"inaccuracy" .2
@@ -88,13 +89,12 @@ outfit "Dual Sunbeam Turret"
 	"turret mounts" -1
 	"required crew" 2
 	weapon
-		sprite "projectile/2x sunbeam"
-			"frame rate" 1.3
-			"random start frame"
+		sprite "projectile/sunbeam/2x sunbeam"
+			"frame rate" 30
 		"hardpoint sprite" "hardpoint/dual sunbeam turret"
 		"hardpoint offset" 12.
 		sound "sunbeam"
-		"hit effect" "sunbeam impact"
+		"hit effect" "sunbeam impact" 2
 		"inaccuracy" .2
 		"turret turn" 1.0
 		"velocity" 540
@@ -120,7 +120,7 @@ outfit "Moonbeam"
 	weapon
 		sprite "projectile/moonbeam"
 			"random start frame"
-		sound "sunbeam"
+		sound "moonbeam"
 		"fire effect" "moonbeam fleck"
 		"hit effect" "moonbeam impact"
 		"inaccuracy" 2.0
@@ -167,7 +167,7 @@ outfit "Moonbeam Turret"
 			"random start frame"
 		"hardpoint sprite" "hardpoint/moonbeam turret"
 		"hardpoint offset" 9.
-		sound "sunbeam"
+		sound "moonbeam"
 		"fire effect" "moonbeam fleck"
 		"hit effect" "moonbeam impact"
 		"inaccuracy" 2.0
@@ -250,7 +250,7 @@ outfit "Thunderhead Launcher"
 		"infrared tracking" .9
 		"radar tracking" .6
 		"missile strength" 12
-	description "A prime example of Wanderer ingenuity, Thunderhead missiles each carry five submunitions that are capable of independent tracking. Even if the target is able to shoot down or evade a few of them, the remaining missile fragments will still find their mark."
+	description "A prime example of Wanderer ingenuity, Thunderhead Missiles each carry five submunitions that are capable of independent tracking. Even if the target is able to shoot down or evade a few of them, the remaining missile fragments will still find their mark."
 
 outfit "Thunderhead Missile"
 	category "Ammunition"
@@ -303,7 +303,7 @@ outfit "Small Biochemical Cell"
 	"outfit space" -17
 	"energy generation" 1.6
 	"heat generation" 1.4
-	"energy capacity" 300
+	"energy capacity" 7500
 	description "This tiny generator draws energy from the metabolic byproducts of a collection of microorganisms that have been engineered by the Wanderers specifically for this purpose."
 
 outfit "Large Biochemical Cell"
@@ -316,7 +316,7 @@ outfit "Large Biochemical Cell"
 	"outfit space" -63
 	"energy generation" 6.2
 	"heat generation" 4.9
-	"energy capacity" 700
+	"energy capacity" 30000
 	description "The Wanderers are masters of unusual and efficient technology. This bioreactor is fueled by a culture of microorganisms that produce a small electric charge."
 
 outfit "Red Sun Reactor"
@@ -329,7 +329,7 @@ outfit "Red Sun Reactor"
 	"outfit space" -47
 	"energy generation" 8.3
 	"heat generation" 13
-	"energy capacity" 1100
+	"energy capacity" 2200
 	description "The Wanderers have recently begun producing this tiny reactor as a way to squeeze a bit more energy production into their warships."
 
 outfit "Yellow Sun Reactor"
@@ -342,7 +342,7 @@ outfit "Yellow Sun Reactor"
 	"outfit space" -82
 	"energy generation" 15.2
 	"heat generation" 21
-	"energy capacity" 2600
+	"energy capacity" 5200
 	description "This is a compact nuclear reactor designed by the Wanderers. In addition to generating power, it is able to store a small amount of energy."
 
 outfit "White Sun Reactor"
@@ -355,7 +355,7 @@ outfit "White Sun Reactor"
 	"outfit space" -127
 	"energy generation" 24.85
 	"heat generation" 32
-	"energy capacity" 6700
+	"energy capacity" 13400
 	description "The White Sun is a large nuclear reactor that the Wanderers use for powering their Strong Wind warships."
 
 outfit "Blue Sun Reactor"
@@ -368,7 +368,7 @@ outfit "Blue Sun Reactor"
 	"outfit space" -152
 	"energy generation" 31.3
 	"heat generation" 39
-	"energy capacity" 8900
+	"energy capacity" 17800
 	description "As the Wanderers have begun producing heavy warships, a need has arisen for larger and larger reactor cores to power them."
 
 
@@ -429,11 +429,11 @@ outfit "Type 1 Radiant Thruster"
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
-	"thrust" 6.6
-	"thrusting energy" 0.5
-	"thrusting heat" 0.9
+	"thrust" 6.9
+	"thrusting energy" 0.55
+	"thrusting heat" 0.85
 	"cooling" 1.5
-	"flare sprite" "effect/plasma flare/tiny"
+	"flare sprite" "effect/wanderer flare/tiny"
 		"frame rate" 12
 	"flare sound" "plasma tiny"
 	description "This is the tiniest Wanderer engine. Like all their engines, it works in part by radiating excess heat, and as a result it doubles as a cooler for your ship."
@@ -447,11 +447,11 @@ outfit "Type 2 Radiant Thruster"
 	"mass" 27
 	"outfit space" -27
 	"engine capacity" -27
-	"thrust" 17.6
-	"thrusting energy" 1.4
-	"thrusting heat" 2.5
+	"thrust" 18.5
+	"thrusting energy" 1.3
+	"thrusting heat" 2.4
 	"cooling" 3.6
-	"flare sprite" "effect/plasma flare/small"
+	"flare sprite" "effect/wanderer flare/small"
 		"frame rate" 14
 	"flare sound" "plasma small"
 	description "Wanderer engines work by transferring excess heat from the ship into the exhaust plasma. When not providing thrust, the engines still serve as a cooling system."
@@ -465,11 +465,11 @@ outfit "Type 3 Radiant Thruster"
 	"mass" 42
 	"outfit space" -42
 	"engine capacity" -42
-	"thrust" 31.5
-	"thrusting energy" 2.3
-	"thrusting heat" 4.4
+	"thrust" 33.1
+	"thrusting energy" 2.2
+	"thrusting heat" 4.3
 	"cooling" 6.5
-	"flare sprite" "effect/plasma flare/medium"
+	"flare sprite" "effect/wanderer flare/medium"
 		"frame rate" 16
 	"flare sound" "plasma medium"
 	description "Most engines this size generate a considerable amount of heat, but the Wanderers have developed a way of using the engine itself to vent extra heat from a ship, generating extra propulsive force in the process."
@@ -483,11 +483,11 @@ outfit "Type 4 Radiant Thruster"
 	"mass" 65
 	"outfit space" -65
 	"engine capacity" -65
-	"thrust" 55.2
+	"thrust" 58
 	"thrusting energy" 3.7
 	"thrusting heat" 7.6
 	"cooling" 11.7
-	"flare sprite" "effect/plasma flare/large"
+	"flare sprite" "effect/wanderer flare/large"
 		"frame rate" 18
 	"flare sound" "plasma large"
 	description "This is the largest engine that the Wanderers have developed. Its incredibly efficient design allows it to cool your ship even while it is firing."
@@ -501,11 +501,11 @@ outfit "Type 1 Radiant Steering"
 	"mass" 9
 	"outfit space" -9
 	"engine capacity" -9
-	"turn" 172.8
+	"turn" 181
 	"turning energy" .3
 	"turning heat" 0.6
 	"cooling" 1.0
-	"steering flare sprite" "effect/plasma flare/tiny"
+	"steering flare sprite" "effect/wanderer flare/tiny"
 		"frame rate" 12
 	"steering flare sound" "plasma tiny"
 	description "This tiny steering system is used by the Wanderers to power their unpiloted mining and surveying drones."
@@ -519,11 +519,11 @@ outfit "Type 2 Radiant Steering"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"turn" 454.0
+	"turn" 476
 	"turning energy" .7
 	"turning heat" 1.5
 	"cooling" 2.1
-	"steering flare sprite" "effect/plasma flare/small"
+	"steering flare sprite" "effect/wanderer flare/small"
 		"frame rate" 14
 	"steering flare sound" "plasma small"
 	description "This small Wanderer steering system vents excess heat from your ship even when it is not in use, allowing it to double as a cooling system."
@@ -537,11 +537,11 @@ outfit "Type 3 Radiant Steering"
 	"mass" 30
 	"outfit space" -30
 	"engine capacity" -30
-	"turn" 786.0
+	"turn" 825
 	"turning energy" 1.2
 	"turning heat" 2.6
 	"cooling" 3.9
-	"steering flare sprite" "effect/plasma flare/medium"
+	"steering flare sprite" "effect/wanderer flare/medium"
 		"frame rate" 16
 	"steering flare sound" "plasma medium"
 	description "This steering system is used by the Wanderers in their mid-sized ships. In addition to turning your ship, it is able to vent a considerable amount of heat."
@@ -555,26 +555,26 @@ outfit "Type 4 Radiant Steering"
 	"mass" 47
 	"outfit space" -47
 	"engine capacity" -47
-	"turn" 1395.9
+	"turn" 1466
 	"turning energy" 2.0
 	"turning heat" 4.5
 	"cooling" 6.7
-	"steering flare sprite" "effect/plasma flare/large"
+	"steering flare sprite" "effect/wanderer flare/large"
 		"frame rate" 18
 	"steering flare sound" "plasma large"
 	description "This is the largest steering system that the Wanderers sell."
 
 outfit "Wanderer Outfits License"
-	category "Special"
+	category "Licenses"
 	thumbnail "outfit/wanderer outfits license"
 	description "Spoke with a Wanderer ambassador named Iktat Rek using the translation device and received permission to purchase some of their technology, but not their ships."
 
 outfit "Wanderer License"
-	category "Special"
+	category "Licenses"
 	thumbnail "outfit/wanderer license"
 	description "Managed to broker a temporary ceasefire between the Unfettered Hai and the Wanderers. Was granted access to purchase the non-military Wanderer ships, as a reward."
 
 outfit "Wanderer Military License"
-	category "Special"
+	category "Licenses"
 	thumbnail "outfit/wanderer military license"
 	description "Received permission to purchase warships from the Wanderers, including a new one called the Tempest."

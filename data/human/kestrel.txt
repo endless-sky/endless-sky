@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Kestrel Testing"
 	name "Warship Testing"
@@ -14,7 +17,11 @@ mission "Kestrel Testing"
 	source "Wayfarer"
 	waypoint "Umbral"
 	to offer
-		"combat rating" > 8000
+		or
+			"combat rating" > 8000
+			and
+				"combat rating" > 2000
+				has "global: unlocked kestrel"
 	
 	on offer
 		conversation
@@ -23,7 +30,7 @@ mission "Kestrel Testing"
 				`	"Tell me more."`
 				`	"Sorry, I don't have time right now."`
 					defer
-			`	"Well," he says, "here's the story. Seven years ago, in a time of deep personal crisis, I left my job at Tarazed to wander the galaxy with nothing in my backpack but a change of clothes, a canteen of water, and a few boxes of emergency rations. An anarchist commune on one of the fringe worlds took me in. After I had been there for a month, the village elder, sensing my inner turmoil, invited me to a vision quest in their sweat lodge. I fell into a trance and my consciousness journeyed through many universes, where I saw strange things. I saw a sword made of light. I saw a blue sun. I saw..." He pauses for a moment. "...a Welsh Corgi hacking into a computer? Some of it was hard to understand."`
+			`	"Well," he says, "here's the story. Seven years ago, in a time of deep personal crisis, I left my job at Tarazed to wander the galaxy with nothing in my backpack but a change of clothes, a canteen of water, and a few boxes of emergency rations. An anarchist commune on one of the fringe worlds took me in. After I had been there for a month, the village elder, sensing my inner turmoil, invited me to a vision quest in their sweat lodge. I fell into a trance and my consciousness journeyed through many universes, where I saw strange things. I saw a sword made of light. I saw a blue sun. I saw..." He pauses for a moment. "... a Welsh Corgi hacking into a computer? Some of it was hard to understand."`
 			choice
 				`	"Fascinating."`
 					goto continue
@@ -57,6 +64,7 @@ mission "Kestrel Testing"
 	
 	on complete
 		payment 2000000
+		"global: unlocked kestrel" ++
 		conversation
 			`Atinoda meets up with you soon after you land. "I see that you survived," he says. "Was it a difficult fight?"`
 			choice
@@ -66,11 +74,11 @@ mission "Kestrel Testing"
 					goto no
 			
 			label yes
-			`	"Glad to hear it," he says. "Now, we have the opportunity to make a few tweaks before we start mass producing this ship. What changes would you recommend?"`
+			`	"Glad to hear it," he says. "Now, we have the opportunity to make a few tweaks before we start mass-producing this ship. What changes would you recommend?"`
 				goto changes
 			
 			label no
-			`	"Oh well," he says, "you are the infamous <first> <last>, after all, so I suppose any single warship will be little threat to you. Now, we have the opportunity to make a few tweaks before we start mass producing this ship. What changes would you recommend?"`
+			`	"Oh well," he says, "you are the infamous <first> <last>, after all, so I suppose any single warship will be little threat to you. Now, we have the opportunity to make a few tweaks before we start mass-producing this ship. What changes would you recommend?"`
 				goto changes
 			
 			label changes
@@ -83,19 +91,19 @@ mission "Kestrel Testing"
 					goto shields
 			
 			label weapons
-			apply
+			action
 				set "kestrel: more weapons"
 			`	"Very well," he says, "we'll see if we can expand the weapon capacity so that even the biggest weapons will fit."`
 				goto name
 			
 			label engines
-			apply
+			action
 				set "kestrel: more engines"
 			`	"Very well," he says, "we'll see if we can expand the engine capacity enough that even the biggest engines will fit."`
 				goto name
 			
 			label shields
-			apply
+			action
 				set "kestrel: more shields"
 			`	"Okay," he says, "we'll focus on strengthening the hull and the shield matrix."`
 				goto name
@@ -191,7 +199,25 @@ mission "Kestrel Available"
 	destination "Wayfarer"
 	on offer
 		conversation
-			scene thumbnail/kestrel
+			branch engines
+				has "kestrel: more engines"
+			
+			branch shields
+				has "kestrel: more shields"
+			
+			scene "thumbnail/kestrelw"
+			``
+				goto message
+			
+			label engines
+			scene "thumbnail/kestrele"
+			``
+				goto message
+			
+			label shields
+			scene "thumbnail/kestrels"
+			``
+			label message
 			`You receive a message from Charles Atinoda, the ship designer at Tarazed Corporation: "Captain <last>, we are pleased to inform you that our latest warship is now available for sale here on Wayfarer. We've taken all your feedback into account in the final design. Thank you again!"`
 				decline
 
@@ -319,7 +345,9 @@ ship "Kestrel"
 	turret -20.5 9 "Heavy Laser Turret"
 	turret 20.5 9 "Heavy Laser Turret"
 	bay "Fighter" -46 106 under
+		"launch effect" "human internal"
 	bay "Fighter" 46 106 under
+		"launch effect" "human internal"
 	explode "small explosion" 25
 	explode "medium explosion" 35
 	explode "large explosion" 45

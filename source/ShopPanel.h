@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef SHOP_PANEL_H_
@@ -15,7 +18,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
+#include "CategoryList.h"
 #include "ClickZone.h"
+#include "Mission.h"
 #include "OutfitInfoDisplay.h"
 #include "Point.h"
 #include "ShipInfoDisplay.h"
@@ -41,6 +46,30 @@ public:
 	virtual void Step() override;
 	virtual void Draw() override;
 
+
+protected:
+	// BuyResult holds the result of an attempt to buy. It is implicitly
+	// created from a string or boolean in code. Any string indicates failure.
+	// True indicates success, of course, while false (without a string)
+	// indicates failure, but no need to pop up a message about it.
+	class BuyResult {
+	public:
+		BuyResult(const char *error) : success(false), message(error) {}
+		BuyResult(std::string error) : success(false), message(std::move(error)) {}
+		BuyResult(bool result) : success(result), message() {}
+
+		explicit operator bool() const noexcept { return success; }
+
+		bool HasMessage() const noexcept { return !message.empty(); }
+		const std::string &Message() const noexcept { return message; }
+
+
+	private:
+		bool success = true;
+		std::string message;
+	};
+
+
 protected:
 	void DrawShipsSidebar();
 	void DrawDetailsSidebar();
@@ -49,17 +78,19 @@ protected:
 
 	void DrawShip(const Ship &ship, const Point &center, bool isSelected);
 
+	void CheckForMissions(Mission::Location location);
+
 	// These are for the individual shop panels to override.
 	virtual int TileSize() const = 0;
+	virtual int VisibilityCheckboxesSize() const;
 	virtual int DrawPlayerShipInfo(const Point &point) = 0;
 	virtual bool HasItem(const std::string &name) const = 0;
 	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) = 0;
 	virtual int DividerOffset() const = 0;
 	virtual int DetailWidth() const = 0;
 	virtual int DrawDetails(const Point &center) = 0;
-	virtual bool CanBuy(bool checkAlreadyOwned = true) const = 0;
-	virtual void Buy(bool alreadyOwned = false) = 0;
-	virtual void FailBuy() const = 0;
+	virtual BuyResult CanBuy(bool onlyOwned = false) const = 0;
+	virtual void Buy(bool onlyOwned = false) = 0;
 	virtual bool CanSell(bool toStorage = false) const = 0;
 	virtual void Sell(bool toStorage = false) = 0;
 	virtual void FailSell(bool toStorage = false) const;
@@ -68,6 +99,7 @@ protected:
 	virtual bool ShouldHighlight(const Ship *ship);
 	virtual void DrawKey();
 	virtual void ToggleForSale();
+	virtual void ToggleStorage();
 	virtual void ToggleCargo();
 
 	// Only override the ones you need; the default action is to return false.
@@ -110,7 +142,7 @@ protected:
 	static const int SIDE_WIDTH = SIDEBAR_WIDTH + INFOBAR_WIDTH;
 	static const int BUTTON_HEIGHT = 70;
 	static const int SHIP_SIZE = 250;
-	static const int OUTFIT_SIZE = 180;
+	static const int OUTFIT_SIZE = 183;
 
 
 protected:
@@ -151,8 +183,8 @@ protected:
 	std::vector<Zone> zones;
 	std::vector<ClickZone<std::string>> categoryZones;
 
-	std::map<std::string, std::set<std::string>> catalog;
-	const std::vector<std::string> &categories;
+	std::map<std::string, std::vector<std::string>> catalog;
+	const CategoryList &categories;
 	std::set<std::string> &collapsed;
 
 	ShipInfoDisplay shipInfo;
@@ -164,6 +196,8 @@ protected:
 
 private:
 	bool DoScroll(double dy);
+	bool SetScrollToTop();
+	bool SetScrollToBottom();
 	void SideSelect(int count);
 	void SideSelect(Ship *ship);
 	void MainLeft();

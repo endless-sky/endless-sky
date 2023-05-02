@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef RECTANGLE_H_
@@ -60,6 +63,8 @@ public:
 	// Check if the given rectangle is inside this one. If one of its edges is
 	// touching the edge of this one, that still counts.
 	bool Contains(const Rectangle &other) const;
+	// Check if the given rectangle overlaps with this one.
+	bool Overlaps(const Rectangle &other) const;
 
 
 private:

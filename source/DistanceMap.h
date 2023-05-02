@@ -7,11 +7,16 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef DISTANCE_MAP_H_
 #define DISTANCE_MAP_H_
+
+#include "WormholeStrategy.h"
 
 #include <map>
 #include <queue>
@@ -34,6 +39,10 @@ public:
 	// Find paths to the given system. The optional arguments put a limit on how
 	// many systems will be returned and how far away they are allowed to be.
 	explicit DistanceMap(const System *center, int maxCount = -1, int maxDistance = -1);
+	// Find paths to the given system, potentially using wormholes, a jump drive, or both.
+	// Optional arguments are as above.
+	explicit DistanceMap(const System *center, WormholeStrategy wormholeStrategy,
+			bool useJumpDrive, int maxCount = -1, int maxDistance = -1);
 	// If a player is given, the map will only use hyperspace paths known to the
 	// player; that is, one end of the path has been visited. Also, if the
 	// player's flagship has a jump drive, the jumps will be make use of it.
@@ -103,13 +112,13 @@ private:
 	const PlayerInfo *player = nullptr;
 	const System *source = nullptr;
 	const System *center = nullptr;
+	WormholeStrategy wormholeStrategy = WormholeStrategy::ALL;
 	int maxCount = -1;
 	int maxDistance = -1;
 	// How much fuel is used for travel. If either value is zero, it means that
 	// the ship does not have that type of drive.
 	int hyperspaceFuel = 100;
 	int jumpFuel = 0;
-	bool useWormholes = true;
 	double jumpRange = 0.;
 };
 

@@ -7,13 +7,17 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef ENGINE_H_
 #define ENGINE_H_
 
 #include "AI.h"
+#include "AmmoDisplay.h"
 #include "AsteroidField.h"
 #include "BatchDrawList.h"
 #include "CollisionSet.h"
@@ -22,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "EscortDisplay.h"
 #include "Information.h"
 #include "Point.h"
+#include "Preferences.h"
 #include "Radar.h"
 #include "Rectangle.h"
 
@@ -33,6 +38,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <utility>
 #include <vector>
 
+class AlertLabel;
 class Flotsam;
 class Government;
 class NPC;
@@ -85,7 +91,7 @@ public:
 	void SetTestContext(TestContext &newTestContext);
 
 	// Select the object the player clicked on.
-	void Click(const Point &from, const Point &to, bool hasShift);
+	void Click(const Point &from, const Point &to, bool hasShift, bool hasControl);
 	void RClick(const Point &point);
 	void SelectGroup(int group, bool hasShift, bool hasControl);
 
@@ -93,6 +99,33 @@ public:
 	// government; gov projectiles stop targeting the player and player's
 	// projectiles stop targeting gov.
 	void BreakTargeting(const Government *gov);
+
+
+private:
+	class Target {
+	public:
+		Point center;
+		Angle angle;
+		double radius;
+		const Color &color;
+		int count;
+	};
+
+	class Status {
+	public:
+		Status(const Point &position, double outer, double inner,
+			double disabled, double radius, int type, double angle = 0.)
+			: position(position), outer(outer), inner(inner),
+				disabled(disabled), radius(radius), type(type), angle(angle) {}
+
+		Point position;
+		double outer;
+		double inner;
+		double disabled;
+		double radius;
+		int type;
+		double angle;
+	};
 
 
 private:
@@ -109,6 +142,7 @@ private:
 	void SendHails();
 	void HandleKeyboardInputs();
 	void HandleMouseClicks();
+	void HandleMouseInput(Command &activeCommands);
 
 	void FillCollisionSets();
 
@@ -123,29 +157,8 @@ private:
 
 	void DoGrudge(const std::shared_ptr<Ship> &target, const Government *attacker);
 
-
-private:
-	class Target {
-	public:
-		Point center;
-		Angle angle;
-		double radius;
-		int type;
-		int count;
-	};
-
-	class Status {
-	public:
-		Status(const Point &position, double outer, double inner, double disabled, double radius, int type, double angle = 0.);
-
-		Point position;
-		double outer;
-		double inner;
-		double disabled;
-		double radius;
-		int type;
-		double angle;
-	};
+	void CreateStatusOverlays();
+	void EmplaceStatusOverlay(const std::shared_ptr<Ship> &ship, Preferences::OverlayState overlaySetting, int value);
 
 
 private:
@@ -175,8 +188,11 @@ private:
 
 	bool calcTickTock = false;
 	bool drawTickTock = false;
+	bool hasFinishedCalculating = true;
 	bool terminate = false;
 	bool wasActive = false;
+	bool isMouseHoldEnabled = false;
+	bool isMouseTurningEnabled = false;
 	DrawList draw[2];
 	BatchDrawList batchDraw[2];
 	Radar radar[2];
@@ -190,8 +206,10 @@ private:
 	Point targetUnit;
 	int targetSwizzle = -1;
 	EscortDisplay escorts;
+	AmmoDisplay ammoDisplay;
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;
+	std::vector<AlertLabel> missileLabels;
 	std::vector<std::pair<const Outfit *, int>> ammo;
 	int jumpCount = 0;
 	const System *jumpInProgress[2] = {nullptr, nullptr};
@@ -220,8 +238,8 @@ private:
 	Command activeCommands;
 	// Keyboard commands that were active in the previous step.
 	Command keyHeld;
-	// Pressing "land" rapidly toggles targets; pressing it once re-engages landing.
-	int landKeyInterval = 0;
+	// Pressing "land" or "board" rapidly toggles targets; pressing it once re-engages landing or boarding.
+	int keyInterval = 0;
 
 	// Inputs received from a mouse or other pointer device.
 	bool doClickNextStep = false;
@@ -231,13 +249,20 @@ private:
 	bool isRightClick = false;
 	bool isRadarClick = false;
 	Point clickPoint;
+	Rectangle uiClickBox;
 	Rectangle clickBox;
 	int groupSelect = -1;
+
+	// Set of asteroids scanned in the current system.
+	std::set<std::string> asteroidsScanned;
+	bool isAsteroidCatalogComplete = false;
 
 	// Input, Output and State handling for automated tests.
 	TestContext *testContext = nullptr;
 
 	double zoom = 1.;
+	// Tracks the next zoom change so that objects aren't drawn at different zooms in a single frame.
+	double nextZoom = 0.;
 
 	double load = 0.;
 	int loadCount = 0;
