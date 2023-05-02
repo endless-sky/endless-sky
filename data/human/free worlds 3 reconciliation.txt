@@ -1252,7 +1252,7 @@ mission "FW Pug 2C: Hyperdrive"
 				accept
 	
 	on accept
-		outfit "Jump Drive" 1
+		outfit "Korath Jump Drive" 1
 		set "fw given jump drive"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
