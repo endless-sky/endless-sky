@@ -711,10 +711,10 @@ ship "Bounder"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -12 44
-	engine 12 44
-	turret -37 4 "Anti-Missile Turret"
-	turret 37 4 "Anti-Missile Turret"
+	engine -10 44
+	engine 10 44
+	turret -38 12 "Anti-Missile Turret"
+	turret 38 12 "Anti-Missile Turret"
 	leak "leak" 60 50
 	explode "tiny explosion" 10
 	explode "small explosion" 20
