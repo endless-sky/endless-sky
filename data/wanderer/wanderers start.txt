@@ -1175,7 +1175,7 @@ ship "Carrier" "Carrier (Alpha)"
 		
 		`"Bondir" Atomic Thruster`
 		"Steering (Stellar Class)"
-		"Jump Drive"
+		"Korath Jump Drive"
 	
 	gun "Hai Tracker Pod"
 	gun "Hai Tracker Pod"
