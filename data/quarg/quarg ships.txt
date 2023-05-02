@@ -48,7 +48,7 @@ ship "Quarg Skylark"
 		
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
-		"Jump Drive"
+		"Quarg Jump Drive"
 		
 	engine -15 117
 	engine 15 117
@@ -102,7 +102,7 @@ ship "Quarg Wardragon"
 		
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
-		"Jump Drive"
+		"Quarg Jump Drive"
 		
 	engine -14 47
 	engine 14 47
