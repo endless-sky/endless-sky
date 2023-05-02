@@ -322,7 +322,6 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 	// Count how many active ships we have that cannot make the jump (e.g. due to lack of fuel,
 	// drive, or carrier). All such ships will have been logged in the player's flightcheck.
 	size_t nonJumpCount = 0;
-	bool hasSpaceport = planet.HasSpaceport() && planet.CanUseServices();
 	if(!flightChecks.empty())
 	{
 		// There may be multiple warnings reported, but only 3 result in a ship which cannot jump.
@@ -368,15 +367,22 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 			out << " that will not be able to leave the system.";
 		}
 		// Warn about non-commodity cargo you will have to sell.
-		else if(hasSpaceport)
+		else if(planet.HasSpaceport() && !planet.HasOutfitter() && planet.CanUseServices())
 		{
 			out << "If you take off now you will have to sell ";
 			out << Format::CargoString(cargoToSell, "cargo");
 			out << " that you do not have space for.";
 		}
 		// Warn about non-commodity cargo you will have to dump.
-		else {
+		else if(!planet.HasSpaceport() && !planet.HasOutfitter()) {
 			out << "If you take off now you will have to dump ";
+			out << Format::CargoString(cargoToSell, "cargo");
+			out << " that you do not have space for.";
+		}
+
+		// Warn about non-commodity cargo you will have to store.
+		else {
+			out << "If you take off now you will have to store ";
 			out << Format::CargoString(cargoToSell, "cargo");
 			out << " that you do not have space for.";
 		}

@@ -1668,11 +1668,12 @@ bool PlayerInfo::TakeOff(UI *ui)
 		RemoveMission(Mission::ABORT, *mission, ui);
 
 	// Any ordinary cargo left behind can be sold.
-	int64_t income = 0;
+	int64_t commoditiesIncome = 0, outfitsIncome = 0;
 	int day = date.DaysSinceEpoch();
-	int64_t sold = cargo.Used();
+	int64_t commoditiesSold = cargo.Used() - cargo.OutfitsSize();
+	int64_t outfitsSold = cargo.Used() - cargo.CommoditiesSize();
 	int64_t totalBasis = 0;
-	if(sold)
+	if(commoditiesSold)
 	{
 		for(const auto &commodity : cargo.Commodities())
 		{
@@ -1683,7 +1684,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 			int64_t value = 0;
 			if(hasSpaceport)
 				value = commodity.second * static_cast<int64_t>(system->Trade(commodity.first));
-			income += value;
+			commoditiesIncome += value;
 
 			int original = originalTotals[commodity.first];
 			auto it = costBasis.find(commodity.first);
@@ -1697,46 +1698,71 @@ bool PlayerInfo::TakeOff(UI *ui)
 			it->second -= basis;
 			totalBasis += basis;
 		}
-		// If the planet has no space port we can neither store nor sell the outfits.
-		if(!hasSpaceport);
-		else if(!planet->HasOutfitter())
-			for(const auto &outfit : cargo.Outfits())
-			{
-				// Compute the total value for each type of excess outfit.
-				if(!outfit.second)
-					continue;
-				int64_t cost = depreciation.Value(outfit.first, day, outfit.second);
-				for(int i = 0; i < outfit.second; ++i)
-					stockDepreciation.Buy(outfit.first, day, &depreciation);
-				income += cost;
-			}
-		else
-			for(const auto &outfit : cargo.Outfits())
-			{
-				// Transfer the outfits from cargo to the storage on this planet.
-				if(!outfit.second)
-					continue;
-				cargo.Transfer(outfit.first, outfit.second, *Storage(true));
-			}
 	}
-	accounts.AddCredits(income);
+	if(outfitsSold)
+	{
+		if(!planet->HasOutfitter() && hasSpaceport)
+			for(const auto &outfit : cargo.Outfits())
+				{
+					// Compute the total value for each type of excess outfit.
+					if(!outfit.second)
+						continue;
+					int64_t cost = depreciation.Value(outfit.first, day, outfit.second);
+					for(int i = 0; i < outfit.second; ++i)
+						stockDepreciation.Buy(outfit.first, day, &depreciation);
+					outfitsIncome += cost;
+				}
+		else if(planet->HasOutfitter())
+			for(const auto &outfit : cargo.Outfits())
+				{
+					// Transfer the outfits from cargo to the storage on this planet.
+					if(!outfit.second)
+						continue;
+					cargo.Transfer(outfit.first, outfit.second, *Storage(true));
+				}
+
+	}
+
+	accounts.AddCredits(commoditiesIncome + outfitsIncome);
 	cargo.Clear();
 	stockDepreciation = Depreciation();
-	if(sold)
+
+	// Report how much excess cargo was sold, and what profit you earned.
+	ostringstream out;
+
+	if(commoditiesSold)
 	{
-		// Report how much excess cargo was sold, and what profit you earned.
-		ostringstream out;
 		// We check against income for systems like Postverta where trading is disabled by having all prices at 0.
-		if(income)
+		if(commoditiesIncome)
 		{
-			out << "You sold " << Format::CargoString(sold, "excess cargo") << " for " << Format::CreditString(income);
-			if(totalBasis && totalBasis != income)
-				out << " (for a profit of " << Format::CreditString(income - totalBasis) << ").";
+			out << "You sold " << Format::CargoString(commoditiesSold, "excess cargo") << " for " << Format::CreditString(commoditiesIncome);
+			if(totalBasis && totalBasis != commoditiesIncome)
+				out << " (for a profit of " << Format::CreditString(commoditiesIncome - totalBasis) << ").";
 			else
 				out << ".";
 		}
-		else
-			out << "You dumped " << Format::CargoString(sold, "excess cargo.");
+		else {
+				out << "You dumped " << Format::CargoString(commoditiesSold, "excess cargo.");
+		}
+	}
+
+	if(outfitsSold)
+	{
+		if(outfitsIncome)
+		{
+			out << "You sold " << Format::CargoString(outfitsSold, "excess outfits") << " for " << Format::CreditString(outfitsIncome);
+			if(totalBasis && totalBasis != outfitsIncome)
+				out << " (for a profit of " << Format::CreditString(outfitsIncome - totalBasis) << ").";
+			else
+				out << ".";
+		}
+		else if(planet->HasOutfitter()) {
+			out << "You stored " << Format::CargoString(outfitsSold, "excess outfits.");
+		}
+		else {
+			out << "You dumped " << Format::CargoString(outfitsSold, "excess outfits.");
+		}
+
 		Messages::Add(out.str(), Messages::Importance::High);
 	}
 
