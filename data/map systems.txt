@@ -7188,15 +7188,15 @@ system "Bote Asu"
 	asteroids "large metal" 5 4.0546
 	minables iron 12 7.05904
 	minables titanium 9 4.77203
-	trade Clothing 303
+	trade Clothing 268
 	trade Electronics 723
 	trade Equipment 480
 	trade Food 428
 	trade "Heavy Metals" 929
 	trade Industrial 678
-	trade "Luxury Goods" 1094
+	trade "Luxury Goods" 1035
 	trade Medical 746
-	trade Metal 403
+	trade Metal 408
 	trade Plastic 401
 	fleet "Small Hai" 1800
 	fleet "Large Hai" 1200
@@ -8849,9 +8849,9 @@ system "Da Ent"
 	minables lead 85 5.2954
 	minables silicon 4 4.19935
 	trade Clothing 255
-	trade Electronics 719
+	trade Electronics 698
 	trade Equipment 476
-	trade Food 432
+	trade Food 487
 	trade "Heavy Metals" 1005
 	trade Industrial 646
 	trade "Luxury Goods" 1090
@@ -8928,9 +8928,9 @@ system "Da Lest"
 	minables titanium 12 3.16646
 	minables uranium 5 3.90543
 	trade Clothing 331
-	trade Electronics 811
+	trade Electronics 836
 	trade Equipment 520
-	trade Food 388
+	trade Food 377
 	trade "Heavy Metals" 1021
 	trade Industrial 702
 	trade "Luxury Goods" 1130
@@ -12973,13 +12973,13 @@ system "Fah Soom"
 	minables neodymium 1 3.87433
 	trade Clothing 359
 	trade Electronics 811
-	trade Equipment 600
+	trade Equipment 643
 	trade Food 332
 	trade "Heavy Metals" 1101
 	trade Industrial 790
 	trade "Luxury Goods" 1130
 	trade Medical 686
-	trade Metal 387
+	trade Metal 368
 	trade Plastic 469
 	fleet "Small Hai" 1200
 	fleet "Large Hai" 3200
@@ -27306,13 +27306,13 @@ system "Rati Cal"
 	minables tungsten 3 3.30683
 	trade Clothing 331
 	trade Electronics 767
-	trade Equipment 492
+	trade Equipment 460
 	trade Food 356
 	trade "Heavy Metals" 1021
 	trade Industrial 706
 	trade "Luxury Goods" 1126
 	trade Medical 706
-	trade Metal 419
+	trade Metal 448
 	trade Plastic 413
 	fleet "Small Hai" 1800
 	fleet "Large Hai" 3400
@@ -32111,14 +32111,14 @@ system "Ula Mon"
 	asteroids "large metal" 2 2.793
 	minables silicon 9 5.62634
 	minables titanium 2 4.55496
-	trade Clothing 307
+	trade Clothing 278
 	trade Electronics 727
 	trade Equipment 484
 	trade Food 404
 	trade "Heavy Metals" 929
 	trade Industrial 670
-	trade "Luxury Goods" 1086
-	trade Medical 782
+	trade "Luxury Goods" 1015
+	trade Medical 855
 	trade Metal 391
 	trade Plastic 405
 	fleet "Small Hai" 800
@@ -34701,15 +34701,15 @@ system "Zuba Zub"
 	asteroids "small metal" 4 1.776
 	asteroids "medium metal" 3 1.944
 	asteroids "large metal" 1 2.928
-	trade Clothing 367
+	trade Clothing 387
 	trade Electronics 735
 	trade Equipment 492
 	trade Food 456
-	trade "Heavy Metals" 849
+	trade "Heavy Metals" 791
 	trade Industrial 666
-	trade "Luxury Goods" 1170
+	trade "Luxury Goods" 1225
 	trade Medical 810
-	trade Metal 335
+	trade Metal 302
 	trade Plastic 437
 	fleet "Small Hai" 2000
 	fleet "Large Hai" 1600
