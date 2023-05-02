@@ -4160,21 +4160,6 @@ const FormationPattern *Ship::GetFormationPattern() const
 
 
 
-unsigned int Ship::GetFormationRing() const
-{
-	return formationRing;
-}
-
-
-
-void Ship::SetFormationRing(int newRing)
-{
-	if(newRing >= 0)
-		formationRing = newRing;
-}
-
-
-
 void Ship::SetFleeing(bool fleeing)
 {
 	isFleeing = fleeing;

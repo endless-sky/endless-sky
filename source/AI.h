@@ -57,7 +57,6 @@ template <class Type>
 
 	// Fleet commands from the player.
 	void IssueFormationChange(const PlayerInfo &player);
-	void IssueFormationRingChange(const PlayerInfo &player, int change);
 	void IssueShipTarget(const PlayerInfo &player, const std::shared_ptr<Ship> &target);
 	void IssueAsteroidTarget(const PlayerInfo &player, const std::shared_ptr<Minable> &targetAsteroid);
 	void IssueMoveTarget(const PlayerInfo &player, const Point &target, const System *moveToSystem);

@@ -420,37 +420,6 @@ void AI::IssueFormationChange(const PlayerInfo &player)
 
 
 
-// Change the formation ring in which ships fly. This function acts on
-// the maximum ring in the set of affected ships and then applies the
-// change.
-void AI::IssueFormationRingChange(const PlayerInfo &player, int change)
-{
-	// Figure out what ships we are giving orders to
-	vector<Ship *> targetShips = GetShipsForFormationCommand(player);
-	if(targetShips.empty())
-		return;
-
-	// First check which and how many formations we have in the current set of selected ships.
-	int maxRing = 0;
-	for(Ship *ship : targetShips)
-	{
-		int shipRing = ship->GetFormationRing();
-		if(shipRing > maxRing)
-			maxRing = shipRing;
-	}
-	maxRing += change;
-	if(maxRing < 0)
-		maxRing = 0;
-
-	// Now set the new ring on the selected ships.
-	for(Ship *ship : targetShips)
-		ship->SetFormationRing(maxRing);
-
-	Messages::Add(to_string(targetShips.size()) + " ships are now flying in ring " + to_string(maxRing) + " of their formation.", Messages::Importance::Low);
-}
-
-
-
 void AI::IssueShipTarget(const PlayerInfo &player, const shared_ptr<Ship> &target)
 {
 	Orders newOrders;
@@ -536,17 +505,10 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	if(activeCommands.Has(Command::DEPLOY))
 		IssueDeploy(player);
 
-	// The gather, hold and fight commands control formation flying when combined with shift.
+	// The gather command controls formation flying when combined with shift.
 	const bool shift = activeCommands.Has(Command::SHIFT);
-	if(shift)
-	{
-		if(activeCommands.Has(Command::GATHER))
-			IssueFormationChange(player);
-		else if(activeCommands.Has(Command::FIGHT))
-			IssueFormationRingChange(player, 1);
-		else if(activeCommands.Has(Command::HOLD))
-			IssueFormationRingChange(player, -1);
-	}
+	if(shift && activeCommands.Has(Command::GATHER))
+		IssueFormationChange(player);
 
 	shared_ptr<Ship> target = flagship->GetTargetShip();
 	shared_ptr<Minable> targetAsteroid = flagship->GetTargetAsteroid();

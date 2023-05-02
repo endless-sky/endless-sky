@@ -55,7 +55,9 @@ void FormationPositioner::Step()
 
 Point FormationPositioner::Position(const Ship *ship)
 {
-	unsigned int formationRing = ship->GetFormationRing();
+	// TODO: Remove formationRing completely (including the ringShips variable)
+	//unsigned int formationRing = ship->GetFormationRing();
+	unsigned int formationRing = 0;
 
 	Point relPos;
 
@@ -249,7 +251,6 @@ bool FormationPositioner::IsActiveInFormation(unsigned int ring, const Ship *shi
 	// need to be in the same system as their formation lead in order to
 	// participate in the formation.
 	if(ship->GetFormationPattern() != pattern ||
-			ship->GetFormationRing() != ring ||
 			ship->IsDisabled() || ship->IsLanding() || ship->IsBoarding())
 		return false;
 
