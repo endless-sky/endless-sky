@@ -366,23 +366,19 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 				out << nonJumpCount << " ships";
 			out << " that will not be able to leave the system.";
 		}
-		// Warn about non-commodity cargo you will have to sell.
-		else if(planet.HasSpaceport() && !planet.HasOutfitter() && planet.CanUseServices())
+		// Warn about non-commodity cargo you will have to leave.
+		else
 		{
-			out << "If you take off now you will have to sell ";
-			out << Format::CargoString(cargoToSell, "cargo");
-			out << " that you do not have space for.";
-		}
-		// Warn about non-commodity cargo you will have to dump.
-		else if(!planet.HasSpaceport() && !planet.HasOutfitter()) {
-			out << "If you take off now you will have to dump ";
-			out << Format::CargoString(cargoToSell, "cargo");
-			out << " that you do not have space for.";
-		}
-
-		// Warn about non-commodity cargo you will have to store.
-		else {
-			out << "If you take off now you will have to store ";
+			out << "If you take off now you will have to ";
+			if(planet.CanUseServices())
+			{
+				if(planet.HasOutfitter())
+					out << "store ";
+				else
+					out << (planet.HasSpaceport() ? "sell " : "dump ");
+			}
+			else
+				out << "dump ";
 			out << Format::CargoString(cargoToSell, "cargo");
 			out << " that you do not have space for.";
 		}

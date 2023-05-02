@@ -1699,7 +1699,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 			totalBasis += basis;
 		}
 	}
-	if(outfitsSold)
+	if(outfitsSold && planet->CanUseServices())
 	{
 		if(planet->HasOutfitter())
 			for(const auto &outfit : cargo.Outfits())
