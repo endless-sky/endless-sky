@@ -1744,6 +1744,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 		else {
 				out << "You dumped " << Format::CargoString(commoditiesSold, "excess cargo.");
 		}
+		out << " "
 	}
 
 	if(outfitsSold)
