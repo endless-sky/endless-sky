@@ -168,6 +168,33 @@ phrase "hostile pug"
 	word
 		"."
 
+outfit "Pug Jump Drive"
+	category Systems
+	cost 1000000
+	thumbnail "outfit/jump drive"
+	"mass" 20
+	"outfit space" -20
+	"jump drive" 1
+	"jump speed" 0.3
+	"jump fuel" 200
+	description "The workings of the jump drive are a total mystery. The best that human scientists have been able to find out is that this device is a containment field for matter in a state that cannot normally exist in this universe; if the drive is opened up, the field collapses and its contents disappear. Therefore, even though a few jump drives have been captured over the years, it has so far proved impossible to reverse engineer them."
+	description "The Pug Jump Drive is between the Korath and Quarg in strength and worth."
+
+outfit "Pug Tier 3 Jump Drive"
+	category Systems
+	cost 5000000
+	thumbnail "outfit/jump drive"
+	"mass" 20
+	"outfit space" -20
+	"jump drive" 1
+	"jump speed" 0.6
+	"jump fuel" 150
+	"jump range" 300
+	description "The workings of the jump drive are a total mystery. The best that human scientists have been able to find out is that this device is a containment field for matter in a state that cannot normally exist in this universe; if the drive is opened up, the field collapses and its contents disappear. Therefore, even though a few jump drives have been captured over the years, it has so far proved impossible to reverse engineer them."
+	description "These jump drives are used by the Pug Arfectas and are very powerful. They allow you to travel farther than you would usually be able to do with a common jump drive."
+
+
+
 outfit "Pug Zapper"
 	category "Guns"
 	cost 290000
@@ -543,7 +570,7 @@ ship "Pug Zibruka"
 		
 		"Pug Akfar Thruster"
 		"Pug Akfar Steering"
-		"Jump Drive"
+		"Pug Jump Drive"
 		
 	engine -8.5 43
 	engine 8.5 43
@@ -595,7 +622,7 @@ ship "Pug Enfolta"
 		
 		"Pug Cormet Thruster"
 		"Pug Cormet Steering"
-		"Jump Drive"
+		"Pug Jump Drive"
 		
 	engine -10 63.5
 	engine 10 63.5
@@ -650,7 +677,7 @@ ship "Pug Maboro"
 		
 		"Pug Lohmar Thruster"
 		"Pug Lohmar Steering"
-		"Jump Drive"
+		"Pug Jump Drive"
 		
 	engine -21 134.5
 	engine 21 134.5
@@ -713,7 +740,7 @@ ship "Pug Arfecta"
 		
 		"Pug Lohmar Thruster"
 		"Pug Lohmar Steering" 2
-		"Jump Drive"
+		"Pug Tier 3 Jump Drive"
 	
 	engine -17.5 157.5
 	engine 17.5 157.5
