@@ -1711,7 +1711,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 				for(int i = 0; i < outfit.second; ++i)
 					stockDepreciation.Buy(outfit.first, day, &depreciation);
 				outfitsIncome += cost;
-			 }
+			}
 		else if(planet->HasOutfitter())
 			for(const auto &outfit : cargo.Outfits())
 			{
