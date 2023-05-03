@@ -161,6 +161,10 @@ mission "lost in coalition"
 		has "license: Coalition"
 	on offer
 		require "Jump Drive" 0
+		require "Korath Jump Drive" 0
+		require "Quarg Jump Drive" 0
+		require "Pug Jump Drive" 0
+		require "Pug Tier 3 Jump Drive" 0
 		event "lost in coalition" 14
 		fail
 
@@ -212,22 +216,22 @@ mission "Coalition: Lost: Offer"
 			`The Heliarchs are waiting for you when you land. You see no civilians as you look around, but there are enough armed guards to man several of their Punishers. Said Punishers are all parked near your own ship.`
 			`	The Saryd starts speaking, "As to be trusted, you have been deemed, provide you with a jump drive, so that stranded you are not, we will."`
 			`	"Mind you, not a gift this is, but a loan, Captain," the Kimek continues. "Another one to replace this one, you must bring us, so that losing a copy of such valuable equipment, we are not."`
-			`	"By <date>, brought here the replacement jump drive must be. If any longer you take, assume that betrayed our trust you have, we will, and an enemy, considered you will be," the Arach finishes explaining. "Agree with those terms, do you, Captain?"`
+			`	"By <date>, brought here the replacement jump drive from the Quarg must be. If any longer you take, assume that betrayed our trust you have, we will, and an enemy, considered you will be," the Arach finishes explaining. "Agree with those terms, do you, Captain?"`
 			choice
-				`	"Yes, I promise I'll return with a second jump drive."`
+				`	"Yes, I promise I'll return with a second jump drive from the Quarg.."`
 				`	"Sorry, I need more time to think on this."`
 					defer
-			`	Their engineers proceed to install the jump drive in your ship. A couple of the guards come a bit closer during the process. When it's all done, you're reminded that you need to bring another jump drive here by <date>.`
+			`	Their engineers proceed to install the jump drive in your ship. A couple of the guards come a bit closer during the process. When it's all done, you're reminded that you need to bring another jump drive from the Quarg here by <date>.`
 				accept
 	on accept
-		outfit "Jump Drive" 1
+		outfit "Quarg Jump Drive" 1
 		fail "Coalition: Lost: Marker"
 	on fail
 		"reputation: Heliarch" = -1000
 		"reputation: Coalition" = -1000
 	on complete
-		require "Jump Drive" 2
-		outfit "Jump Drive" -1
+		require "Quarg Jump Drive" 2
+		outfit "Quarg Jump Drive" -1
 		dialog `After you once again land near several of their warships and armed guards, the Heliarchs take the jump drive you brought them. They thank you for keeping true to your word, and ask that you avoid losing such an important outfit again.`
 
 
@@ -901,6 +905,134 @@ mission "Kimek Gift"
 
 
 
+mission "Kimek Gift (Quarg JD)"
+	minor
+	name "Not One Minute Late"
+	description "A Kimek researcher from <origin> forgot the birthday of her Saryd friend, who lives on <destination>. Since you have a jump drive and can make it there in time, she asked you to deliver the present by <date>."
+	deadline 2
+	to offer
+		has "Coalition: First Contact: done"
+	source "Second Cerulean"
+	destination "Cold Horizon"
+	on offer
+		require "Quarg Jump Drive"
+		conversation
+			`A Kimek in a lab coat is desperately running around the spaceport here, carrying a small package with some papers attached.`
+			`	As soon as she spots you, she quickly approaches you and says, "Human! The visitor I've heard about, you are! From the outside! A jump drive you have, if our space you've reached, yes?"`
+			`	You nod, and she continues, "Live on <planet>, a Saryd friend of mine does. Forgotten that his birthday was on <date>, I had! Make it in time for the party, I cannot. Busy with work, I am. At least send his present, I'd like to, but make it in time, regular ships here can't! With your jump drive, get there in a day you could. Help me, would you, Captain?"`
+			choice
+				`	"Just that small package? Easy enough, I'll do it."`
+					accept
+				`	"I'm not headed there, sorry, have another mission to do. Somewhere else."`
+					decline
+	on complete
+		payment 36750
+		"coalition jobs" += 2
+		conversation
+			`Apparently this Saryd in question doesn't live here in the spaceport village, so you must take a train to go to his home. Thankfully, a train ticket was attached to the package, so you waste no time and get on the next train there.`
+			`	Even for a world without too large a population, the train wagons here feel unusually empty, with only a handful of other passengers on the one you settle in. The trip takes a few hours, so you have plenty of time to look out the window and gaze at the sights of the seemingly infinite winter forest.`
+			`	Halfway through, a blizzard makes it tough to see much outside. The ticket inspectors come through again, but now they are serving something akin to hot chocolate, only it is instead a blue, creamy substance.`
+			`	Once you arrive at the village, you follow the makeshift map of the streets the Kimek included and deliver the present to her Saryd friend. Apparently the party had just started.`
+			`	When you get back to your ship, <payment> are transferred to your account, and you get a short message from the Kimek researcher, thanking you for helping out.`
+
+
+
+mission "Kimek Gift (Korath JD)"
+	minor
+	name "Not One Minute Late"
+	description "A Kimek researcher from <origin> forgot the birthday of her Saryd friend, who lives on <destination>. Since you have a jump drive and can make it there in time, she asked you to deliver the present by <date>."
+	deadline 2
+	to offer
+		has "Coalition: First Contact: done"
+	source "Second Cerulean"
+	destination "Cold Horizon"
+	on offer
+		require "Korath Jump Drive"
+		conversation
+			`A Kimek in a lab coat is desperately running around the spaceport here, carrying a small package with some papers attached.`
+			`	As soon as she spots you, she quickly approaches you and says, "Human! The visitor I've heard about, you are! From the outside! A jump drive you have, if our space you've reached, yes?"`
+			`	You nod, and she continues, "Live on <planet>, a Saryd friend of mine does. Forgotten that his birthday was on <date>, I had! Make it in time for the party, I cannot. Busy with work, I am. At least send his present, I'd like to, but make it in time, regular ships here can't! With your jump drive, get there in a day you could. Help me, would you, Captain?"`
+			choice
+				`	"Just that small package? Easy enough, I'll do it."`
+					accept
+				`	"I'm not headed there, sorry, have another mission to do. Somewhere else."`
+					decline
+	on complete
+		payment 36750
+		"coalition jobs" += 2
+		conversation
+			`Apparently this Saryd in question doesn't live here in the spaceport village, so you must take a train to go to his home. Thankfully, a train ticket was attached to the package, so you waste no time and get on the next train there.`
+			`	Even for a world without too large a population, the train wagons here feel unusually empty, with only a handful of other passengers on the one you settle in. The trip takes a few hours, so you have plenty of time to look out the window and gaze at the sights of the seemingly infinite winter forest.`
+			`	Halfway through, a blizzard makes it tough to see much outside. The ticket inspectors come through again, but now they are serving something akin to hot chocolate, only it is instead a blue, creamy substance.`
+			`	Once you arrive at the village, you follow the makeshift map of the streets the Kimek included and deliver the present to her Saryd friend. Apparently the party had just started.`
+			`	When you get back to your ship, <payment> are transferred to your account, and you get a short message from the Kimek researcher, thanking you for helping out.`
+
+
+
+mission "Kimek Gift (Pug JD)"
+	minor
+	name "Not One Minute Late"
+	description "A Kimek researcher from <origin> forgot the birthday of her Saryd friend, who lives on <destination>. Since you have a jump drive and can make it there in time, she asked you to deliver the present by <date>."
+	deadline 2
+	to offer
+		has "Coalition: First Contact: done"
+	source "Second Cerulean"
+	destination "Cold Horizon"
+	on offer
+		require "Pug Jump Drive"
+		conversation
+			`A Kimek in a lab coat is desperately running around the spaceport here, carrying a small package with some papers attached.`
+			`	As soon as she spots you, she quickly approaches you and says, "Human! The visitor I've heard about, you are! From the outside! A jump drive you have, if our space you've reached, yes?"`
+			`	You nod, and she continues, "Live on <planet>, a Saryd friend of mine does. Forgotten that his birthday was on <date>, I had! Make it in time for the party, I cannot. Busy with work, I am. At least send his present, I'd like to, but make it in time, regular ships here can't! With your jump drive, get there in a day you could. Help me, would you, Captain?"`
+			choice
+				`	"Just that small package? Easy enough, I'll do it."`
+					accept
+				`	"I'm not headed there, sorry, have another mission to do. Somewhere else."`
+					decline
+	on complete
+		payment 36750
+		"coalition jobs" += 2
+		conversation
+			`Apparently this Saryd in question doesn't live here in the spaceport village, so you must take a train to go to his home. Thankfully, a train ticket was attached to the package, so you waste no time and get on the next train there.`
+			`	Even for a world without too large a population, the train wagons here feel unusually empty, with only a handful of other passengers on the one you settle in. The trip takes a few hours, so you have plenty of time to look out the window and gaze at the sights of the seemingly infinite winter forest.`
+			`	Halfway through, a blizzard makes it tough to see much outside. The ticket inspectors come through again, but now they are serving something akin to hot chocolate, only it is instead a blue, creamy substance.`
+			`	Once you arrive at the village, you follow the makeshift map of the streets the Kimek included and deliver the present to her Saryd friend. Apparently the party had just started.`
+			`	When you get back to your ship, <payment> are transferred to your account, and you get a short message from the Kimek researcher, thanking you for helping out.`
+
+
+
+mission "Kimek Gift (Pug T3 JD)"
+	minor
+	name "Not One Minute Late"
+	description "A Kimek researcher from <origin> forgot the birthday of her Saryd friend, who lives on <destination>. Since you have a jump drive and can make it there in time, she asked you to deliver the present by <date>."
+	deadline 2
+	to offer
+		has "Coalition: First Contact: done"
+	source "Second Cerulean"
+	destination "Cold Horizon"
+	on offer
+		require "Pug Tier 3 Jump Drive"
+		conversation
+			`A Kimek in a lab coat is desperately running around the spaceport here, carrying a small package with some papers attached.`
+			`	As soon as she spots you, she quickly approaches you and says, "Human! The visitor I've heard about, you are! From the outside! A jump drive you have, if our space you've reached, yes?"`
+			`	You nod, and she continues, "Live on <planet>, a Saryd friend of mine does. Forgotten that his birthday was on <date>, I had! Make it in time for the party, I cannot. Busy with work, I am. At least send his present, I'd like to, but make it in time, regular ships here can't! With your jump drive, get there in a day you could. Help me, would you, Captain?"`
+			choice
+				`	"Just that small package? Easy enough, I'll do it."`
+					accept
+				`	"I'm not headed there, sorry, have another mission to do. Somewhere else."`
+					decline
+	on complete
+		payment 36750
+		"coalition jobs" += 2
+		conversation
+			`Apparently this Saryd in question doesn't live here in the spaceport village, so you must take a train to go to his home. Thankfully, a train ticket was attached to the package, so you waste no time and get on the next train there.`
+			`	Even for a world without too large a population, the train wagons here feel unusually empty, with only a handful of other passengers on the one you settle in. The trip takes a few hours, so you have plenty of time to look out the window and gaze at the sights of the seemingly infinite winter forest.`
+			`	Halfway through, a blizzard makes it tough to see much outside. The ticket inspectors come through again, but now they are serving something akin to hot chocolate, only it is instead a blue, creamy substance.`
+			`	Once you arrive at the village, you follow the makeshift map of the streets the Kimek included and deliver the present to her Saryd friend. Apparently the party had just started.`
+			`	When you get back to your ship, <payment> are transferred to your account, and you get a short message from the Kimek researcher, thanking you for helping out.`
+
+
+
 mission "Saryd Students 1"
 	minor
 	name "Acquire Arach Rum"
@@ -1276,6 +1408,154 @@ mission "Longcow Antibiotics 1"
 	on complete
 		"coalition jobs" += 2
 		payment 421000
+
+
+
+mission "Longcow Antibiotics 1 (Quarg JD)"
+	minor
+	name "Longcow Antibiotics"
+	description "Arach ranchers have asked you to pick up <cargo> on <stopovers>, then deliver them to <destination>."
+	cargo "longcow antibiotics" 7
+	to offer
+		has "Coalition: First Contact: done"
+		random < 35
+	source
+		attributes arach
+		not attributes "coalition station"
+	stopover "New Finding"
+	destination "Corral of Meblumem"
+	on offer
+		require "Quarg Jump Drive"
+		conversation
+			`You see some Arachi talking among themselves in the spaceport, occasionally glancing at and pointing at you.`
+			`	One of them finally comes to you and says, "Greetings, Captain. Interested in performing a cargo mission for us, are you?"`
+			`	She tells you that they are a cooperative of Arach ranchers, explains that the safety and health regulations for their business, longcow ranching, were recently updated, and that they need someone to pick up the newest antibiotics for the cattle on <stopovers>.`
+			`	"A jump drive you have, so get them faster - and allow us to resume business faster - you would."`
+			choice
+				`	"You've found the perfect person for the job. I'm in."`
+				`	"I suppose that's true, but I'm not looking for courier jobs, sorry."`
+					decline
+			`	The other Arachi come over to thank you after she signals to them that you've accepted to help. They explain that after you've picked up the antibiotics on <stopovers>, you'll have to drop them off on <planet> before wishing you a good trip.`
+				accept
+	on stopover
+		dialog `The dockworkers load <cargo> into your cargo hold after verifying you've been hired by the Arach cooperative. A bit after the last crate has been placed, you're contacted by the Arachi, and they say you should bring the antibiotics to <destination>, where they will pay you <payment>.`
+	on visit
+		dialog `You land on <planet>, but the Arach ranchers don't come to meet you as you've not brought the longcow antibiotics. Make sure all your ships carrying the cargo arrive in this system after you've picked it up.`
+	on complete
+		"coalition jobs" += 2
+		payment 421000
+		set "Longcow Antibiotics 1: done"
+
+
+
+mission "Longcow Antibiotics 1 (Korath JD)"
+	minor
+	name "Longcow Antibiotics"
+	description "Arach ranchers have asked you to pick up <cargo> on <stopovers>, then deliver them to <destination>."
+	cargo "longcow antibiotics" 7
+	to offer
+		has "Coalition: First Contact: done"
+		random < 35
+	source
+		attributes arach
+		not attributes "coalition station"
+	stopover "New Finding"
+	destination "Corral of Meblumem"
+	on offer
+		require "Korath Jump Drive"
+		conversation
+			`You see some Arachi talking among themselves in the spaceport, occasionally glancing at and pointing at you.`
+			`	One of them finally comes to you and says, "Greetings, Captain. Interested in performing a cargo mission for us, are you?"`
+			`	She tells you that they are a cooperative of Arach ranchers, explains that the safety and health regulations for their business, longcow ranching, were recently updated, and that they need someone to pick up the newest antibiotics for the cattle on <stopovers>.`
+			`	"A jump drive you have, so get them faster - and allow us to resume business faster - you would."`
+			choice
+				`	"You've found the perfect person for the job. I'm in."`
+				`	"I suppose that's true, but I'm not looking for courier jobs, sorry."`
+					decline
+			`	The other Arachi come over to thank you after she signals to them that you've accepted to help. They explain that after you've picked up the antibiotics on <stopovers>, you'll have to drop them off on <planet> before wishing you a good trip.`
+				accept
+	on stopover
+		dialog `The dockworkers load <cargo> into your cargo hold after verifying you've been hired by the Arach cooperative. A bit after the last crate has been placed, you're contacted by the Arachi, and they say you should bring the antibiotics to <destination>, where they will pay you <payment>.`
+	on visit
+		dialog `You land on <planet>, but the Arach ranchers don't come to meet you as you've not brought the longcow antibiotics. Make sure all your ships carrying the cargo arrive in this system after you've picked it up.`
+	on complete
+		"coalition jobs" += 2
+		payment 421000
+		set "Longcow Antibiotics 1: done"
+
+
+
+mission "Longcow Antibiotics 1 (Pug JD)"
+	minor
+	name "Longcow Antibiotics"
+	description "Arach ranchers have asked you to pick up <cargo> on <stopovers>, then deliver them to <destination>."
+	cargo "longcow antibiotics" 7
+	to offer
+		has "Coalition: First Contact: done"
+		random < 35
+	source
+		attributes arach
+		not attributes "coalition station"
+	stopover "New Finding"
+	destination "Corral of Meblumem"
+	on offer
+		require "Pug Jump Drive"
+		conversation
+			`You see some Arachi talking among themselves in the spaceport, occasionally glancing at and pointing at you.`
+			`	One of them finally comes to you and says, "Greetings, Captain. Interested in performing a cargo mission for us, are you?"`
+			`	She tells you that they are a cooperative of Arach ranchers, explains that the safety and health regulations for their business, longcow ranching, were recently updated, and that they need someone to pick up the newest antibiotics for the cattle on <stopovers>.`
+			`	"A jump drive you have, so get them faster - and allow us to resume business faster - you would."`
+			choice
+				`	"You've found the perfect person for the job. I'm in."`
+				`	"I suppose that's true, but I'm not looking for courier jobs, sorry."`
+					decline
+			`	The other Arachi come over to thank you after she signals to them that you've accepted to help. They explain that after you've picked up the antibiotics on <stopovers>, you'll have to drop them off on <planet> before wishing you a good trip.`
+				accept
+	on stopover
+		dialog `The dockworkers load <cargo> into your cargo hold after verifying you've been hired by the Arach cooperative. A bit after the last crate has been placed, you're contacted by the Arachi, and they say you should bring the antibiotics to <destination>, where they will pay you <payment>.`
+	on visit
+		dialog `You land on <planet>, but the Arach ranchers don't come to meet you as you've not brought the longcow antibiotics. Make sure all your ships carrying the cargo arrive in this system after you've picked it up.`
+	on complete
+		"coalition jobs" += 2
+		payment 421000
+		set "Longcow Antibiotics 1: done"
+
+
+
+mission "Longcow Antibiotics 1 (Pug T3 JD)"
+	minor
+	name "Longcow Antibiotics"
+	description "Arach ranchers have asked you to pick up <cargo> on <stopovers>, then deliver them to <destination>."
+	cargo "longcow antibiotics" 7
+	to offer
+		has "Coalition: First Contact: done"
+		random < 35
+	source
+		attributes arach
+		not attributes "coalition station"
+	stopover "New Finding"
+	destination "Corral of Meblumem"
+	on offer
+		require "Pug Tier 3 Jump Drive"
+		conversation
+			`You see some Arachi talking among themselves in the spaceport, occasionally glancing at and pointing at you.`
+			`	One of them finally comes to you and says, "Greetings, Captain. Interested in performing a cargo mission for us, are you?"`
+			`	She tells you that they are a cooperative of Arach ranchers, explains that the safety and health regulations for their business, longcow ranching, were recently updated, and that they need someone to pick up the newest antibiotics for the cattle on <stopovers>.`
+			`	"A jump drive you have, so get them faster - and allow us to resume business faster - you would."`
+			choice
+				`	"You've found the perfect person for the job. I'm in."`
+				`	"I suppose that's true, but I'm not looking for courier jobs, sorry."`
+					decline
+			`	The other Arachi come over to thank you after she signals to them that you've accepted to help. They explain that after you've picked up the antibiotics on <stopovers>, you'll have to drop them off on <planet> before wishing you a good trip.`
+				accept
+	on stopover
+		dialog `The dockworkers load <cargo> into your cargo hold after verifying you've been hired by the Arach cooperative. A bit after the last crate has been placed, you're contacted by the Arachi, and they say you should bring the antibiotics to <destination>, where they will pay you <payment>.`
+	on visit
+		dialog `You land on <planet>, but the Arach ranchers don't come to meet you as you've not brought the longcow antibiotics. Make sure all your ships carrying the cargo arrive in this system after you've picked it up.`
+	on complete
+		"coalition jobs" += 2
+		payment 421000
+		set "Longcow Antibiotics 1: done"
 
 
 
@@ -2394,6 +2674,218 @@ mission "Coalition: Expeditions Past 1"
 			`	"Kicharri, I am. For many decades, the arbiter supervising Sedlitaris' work, I have been. A bright girl. Produced many excellent theoretical models of the outside, she has, but in recent years, obsessed with leaving on an official expedition, she became. Denied her nearly a dozen times, the consuls have, but get the hint, she won't." He rapidly taps the ground with his legs, as if the ground was hot to the touch. "Helped her set up this specific 'petition,' I have. Asked the council to be extra strict and definitive this time, I did. Contracted you for a longer trip, I assume she has, but be allowed to leave, she will not."`
 			`	He wishes you a good day, and leaves to an office opposite to the spaceport.`
 
+mission "Coalition: Expeditions Past 1 (Quarg JD)"
+	minor
+	name "Scouting Permit"
+	description "Transport Sedlitaris, a Heliarch Tribune, to the <destination>, where she will petition the Heliarch council to allow her to go on a scouting expedition out of the Coalition. Payment is <payment>."
+	passengers 1
+	to offer
+		"coalition jobs" >= 40
+		random < 5
+	source
+		government "Coalition"
+	destination "Ring of Friendship"
+	on offer
+		require "Quarg Jump Drive"
+		conversation
+			`As you exit your ship and start heading to the spaceport, you hear a rushed galloping getting closer. As you turn you see a Saryd Heliarch coming to you, gesturing for you to wait. She slows down once she sees you're obliging, and slowly walks to you while glancing at your ship.`
+			`	"Apologize for cutting you off, I must, Captain <last>, but in need of extended transport services, I am," she says. "Sedlitaris Quatcid, my name is, and a Heliarch tribune, I am. Brought to <destination>, I must be. A petition to the council, I am to make."`
+			choice
+				`	"A 'petition'? What do you mean?"`
+				`	"I don't think you'd need some 'extended' service just for that."`
+				`	"Sorry, I'm not taking any more passengers right now."`
+					decline
+			`	"Nearly a thousand years ago, leading an expeditionary fleet to outside of the Coalition, an ancestor of mine was," she explains. "Mimodum, his name was, and after having risen the ranks and lifted our family from poorer conditions, chosen to lead the expedition he was. Only, return, he did not. To find out what happened, I wish. Looking for you, I was, as after my request is approved, need a transport to bring me to planets he visited, I will."`
+			choice
+				`	"I'd be glad to help you find out what happened. Let me show you to your bunk."`
+					goto accept
+				`	"Couldn't you just have gone on your own, or paid someone to bring you there if you don't have a ship?"`
+				`	"Actually, I'm not going to be leaving Coalition space anytime soon. Sorry."`
+					decline
+			`	She shakes her head. "Forbidden from leaving just like that, anyone is, and steal a jump drive for it, I'd need to. Obviously illegal, that is. Allowed to head out, only Heliarchs who have received permission from the council can. Finally time to hear my request again, they have, so go to <planet>, I must."`
+			choice
+				`	"Well, let's not keep them waiting then. Let me show you to your bunk."`
+				`	"I hope things work out for you, but I'm not heading out of the Coalition anytime soon. Sorry."`
+					decline
+			label accept
+			`	"Great! I promise you, very well paid you will be, once finished. For the moment, pay you <payment> I shall, when we arrive at the ring."`
+			`	You bring her inside your ship, and set a route to <destination>.`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Sedlitaris hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		set "Coalition: Expeditions Past 1: done"
+		payment 100000
+		conversation
+			`Sedlitaris gives you your payment of <payment> before you open your hatch for her to leave. "Take a few hours, this might, so wait for me in the spaceport, you can. Know the layout well, I do, so find you without issue, I will."`
+			`	As you open your hatch to see her leave, you're faced with a Kimek Heliarch waiting for the two of you, startling Sedlitaris as she sees him.`
+			`	"Made it clear, have I not, that cease your stubborn attempts, you should, tribune?" he asks. "Too precious, the consuls' time is. Keep wasting it in telling you off, they cannot."`
+			`	Sedlitaris brings a hand to her hair as she looks down. She opens her mouth, but cuts whatever she had to say at her throat. Instead, she goes down the ramp and leaves quickly for some section of the ringworld, ignoring the Kimek's protests. He sighs and approaches you. "Roped you into her exploration plan has she, Captain? An outsider with a jump drive, you are, so of course drawn to you, she would be, that girl..."`
+			choice
+				`	"Are you two colleagues?"`
+				`	"What was that about her being stubborn?"`
+			`	"Kicharri, I am. For many decades, the arbiter supervising Sedlitaris' work, I have been. A bright girl. Produced many excellent theoretical models of the outside, she has, but in recent years, obsessed with leaving on an official expedition, she became. Denied her nearly a dozen times, the consuls have, but get the hint, she won't." He rapidly taps the ground with his legs, as if the ground was hot to the touch. "Helped her set up this specific 'petition,' I have. Asked the council to be extra strict and definitive this time, I did. Contracted you for a longer trip, I assume she has, but be allowed to leave, she will not."`
+			`	He wishes you a good day, and leaves to an office opposite to the spaceport.`
+
+mission "Coalition: Expeditions Past 1 (Korath JD)"
+	minor
+	name "Scouting Permit"
+	description "Transport Sedlitaris, a Heliarch Tribune, to the <destination>, where she will petition the Heliarch council to allow her to go on a scouting expedition out of the Coalition. Payment is <payment>."
+	passengers 1
+	to offer
+		"coalition jobs" >= 40
+		random < 5
+	source
+		government "Coalition"
+	destination "Ring of Friendship"
+	on offer
+		require "Korath Jump Drive"
+		conversation
+			`As you exit your ship and start heading to the spaceport, you hear a rushed galloping getting closer. As you turn you see a Saryd Heliarch coming to you, gesturing for you to wait. She slows down once she sees you're obliging, and slowly walks to you while glancing at your ship.`
+			`	"Apologize for cutting you off, I must, Captain <last>, but in need of extended transport services, I am," she says. "Sedlitaris Quatcid, my name is, and a Heliarch tribune, I am. Brought to <destination>, I must be. A petition to the council, I am to make."`
+			choice
+				`	"A 'petition'? What do you mean?"`
+				`	"I don't think you'd need some 'extended' service just for that."`
+				`	"Sorry, I'm not taking any more passengers right now."`
+					decline
+			`	"Nearly a thousand years ago, leading an expeditionary fleet to outside of the Coalition, an ancestor of mine was," she explains. "Mimodum, his name was, and after having risen the ranks and lifted our family from poorer conditions, chosen to lead the expedition he was. Only, return, he did not. To find out what happened, I wish. Looking for you, I was, as after my request is approved, need a transport to bring me to planets he visited, I will."`
+			choice
+				`	"I'd be glad to help you find out what happened. Let me show you to your bunk."`
+					goto accept
+				`	"Couldn't you just have gone on your own, or paid someone to bring you there if you don't have a ship?"`
+				`	"Actually, I'm not going to be leaving Coalition space anytime soon. Sorry."`
+					decline
+			`	She shakes her head. "Forbidden from leaving just like that, anyone is, and steal a jump drive for it, I'd need to. Obviously illegal, that is. Allowed to head out, only Heliarchs who have received permission from the council can. Finally time to hear my request again, they have, so go to <planet>, I must."`
+			choice
+				`	"Well, let's not keep them waiting then. Let me show you to your bunk."`
+				`	"I hope things work out for you, but I'm not heading out of the Coalition anytime soon. Sorry."`
+					decline
+			label accept
+			`	"Great! I promise you, very well paid you will be, once finished. For the moment, pay you <payment> I shall, when we arrive at the ring."`
+			`	You bring her inside your ship, and set a route to <destination>.`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Sedlitaris hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		set "Coalition: Expeditions Past 1: done"
+		payment 100000
+		conversation
+			`Sedlitaris gives you your payment of <payment> before you open your hatch for her to leave. "Take a few hours, this might, so wait for me in the spaceport, you can. Know the layout well, I do, so find you without issue, I will."`
+			`	As you open your hatch to see her leave, you're faced with a Kimek Heliarch waiting for the two of you, startling Sedlitaris as she sees him.`
+			`	"Made it clear, have I not, that cease your stubborn attempts, you should, tribune?" he asks. "Too precious, the consuls' time is. Keep wasting it in telling you off, they cannot."`
+			`	Sedlitaris brings a hand to her hair as she looks down. She opens her mouth, but cuts whatever she had to say at her throat. Instead, she goes down the ramp and leaves quickly for some section of the ringworld, ignoring the Kimek's protests. He sighs and approaches you. "Roped you into her exploration plan has she, Captain? An outsider with a jump drive, you are, so of course drawn to you, she would be, that girl..."`
+			choice
+				`	"Are you two colleagues?"`
+				`	"What was that about her being stubborn?"`
+			`	"Kicharri, I am. For many decades, the arbiter supervising Sedlitaris' work, I have been. A bright girl. Produced many excellent theoretical models of the outside, she has, but in recent years, obsessed with leaving on an official expedition, she became. Denied her nearly a dozen times, the consuls have, but get the hint, she won't." He rapidly taps the ground with his legs, as if the ground was hot to the touch. "Helped her set up this specific 'petition,' I have. Asked the council to be extra strict and definitive this time, I did. Contracted you for a longer trip, I assume she has, but be allowed to leave, she will not."`
+			`	He wishes you a good day, and leaves to an office opposite to the spaceport.`
+
+mission "Coalition: Expeditions Past 1 (Pug JD)"
+	minor
+	name "Scouting Permit"
+	description "Transport Sedlitaris, a Heliarch Tribune, to the <destination>, where she will petition the Heliarch council to allow her to go on a scouting expedition out of the Coalition. Payment is <payment>."
+	passengers 1
+	to offer
+		"coalition jobs" >= 40
+		random < 5
+	source
+		government "Coalition"
+	destination "Ring of Friendship"
+	on offer
+		require "Pug Jump Drive"
+		conversation
+			`As you exit your ship and start heading to the spaceport, you hear a rushed galloping getting closer. As you turn you see a Saryd Heliarch coming to you, gesturing for you to wait. She slows down once she sees you're obliging, and slowly walks to you while glancing at your ship.`
+			`	"Apologize for cutting you off, I must, Captain <last>, but in need of extended transport services, I am," she says. "Sedlitaris Quatcid, my name is, and a Heliarch tribune, I am. Brought to <destination>, I must be. A petition to the council, I am to make."`
+			choice
+				`	"A 'petition'? What do you mean?"`
+				`	"I don't think you'd need some 'extended' service just for that."`
+				`	"Sorry, I'm not taking any more passengers right now."`
+					decline
+			`	"Nearly a thousand years ago, leading an expeditionary fleet to outside of the Coalition, an ancestor of mine was," she explains. "Mimodum, his name was, and after having risen the ranks and lifted our family from poorer conditions, chosen to lead the expedition he was. Only, return, he did not. To find out what happened, I wish. Looking for you, I was, as after my request is approved, need a transport to bring me to planets he visited, I will."`
+			choice
+				`	"I'd be glad to help you find out what happened. Let me show you to your bunk."`
+					goto accept
+				`	"Couldn't you just have gone on your own, or paid someone to bring you there if you don't have a ship?"`
+				`	"Actually, I'm not going to be leaving Coalition space anytime soon. Sorry."`
+					decline
+			`	She shakes her head. "Forbidden from leaving just like that, anyone is, and steal a jump drive for it, I'd need to. Obviously illegal, that is. Allowed to head out, only Heliarchs who have received permission from the council can. Finally time to hear my request again, they have, so go to <planet>, I must."`
+			choice
+				`	"Well, let's not keep them waiting then. Let me show you to your bunk."`
+				`	"I hope things work out for you, but I'm not heading out of the Coalition anytime soon. Sorry."`
+					decline
+			label accept
+			`	"Great! I promise you, very well paid you will be, once finished. For the moment, pay you <payment> I shall, when we arrive at the ring."`
+			`	You bring her inside your ship, and set a route to <destination>.`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Sedlitaris hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		set "Coalition: Expeditions Past 1: done"
+		payment 100000
+		conversation
+			`Sedlitaris gives you your payment of <payment> before you open your hatch for her to leave. "Take a few hours, this might, so wait for me in the spaceport, you can. Know the layout well, I do, so find you without issue, I will."`
+			`	As you open your hatch to see her leave, you're faced with a Kimek Heliarch waiting for the two of you, startling Sedlitaris as she sees him.`
+			`	"Made it clear, have I not, that cease your stubborn attempts, you should, tribune?" he asks. "Too precious, the consuls' time is. Keep wasting it in telling you off, they cannot."`
+			`	Sedlitaris brings a hand to her hair as she looks down. She opens her mouth, but cuts whatever she had to say at her throat. Instead, she goes down the ramp and leaves quickly for some section of the ringworld, ignoring the Kimek's protests. He sighs and approaches you. "Roped you into her exploration plan has she, Captain? An outsider with a jump drive, you are, so of course drawn to you, she would be, that girl..."`
+			choice
+				`	"Are you two colleagues?"`
+				`	"What was that about her being stubborn?"`
+			`	"Kicharri, I am. For many decades, the arbiter supervising Sedlitaris' work, I have been. A bright girl. Produced many excellent theoretical models of the outside, she has, but in recent years, obsessed with leaving on an official expedition, she became. Denied her nearly a dozen times, the consuls have, but get the hint, she won't." He rapidly taps the ground with his legs, as if the ground was hot to the touch. "Helped her set up this specific 'petition,' I have. Asked the council to be extra strict and definitive this time, I did. Contracted you for a longer trip, I assume she has, but be allowed to leave, she will not."`
+			`	He wishes you a good day, and leaves to an office opposite to the spaceport.`
+
+mission "Coalition: Expeditions Past 1 (Pug T3 JD)"
+	minor
+	name "Scouting Permit"
+	description "Transport Sedlitaris, a Heliarch Tribune, to the <destination>, where she will petition the Heliarch council to allow her to go on a scouting expedition out of the Coalition. Payment is <payment>."
+	passengers 1
+	to offer
+		"coalition jobs" >= 40
+		random < 5
+	source
+		government "Coalition"
+	destination "Ring of Friendship"
+	on offer
+		require "Pug Tier 3 Jump Drive"
+		conversation
+			`As you exit your ship and start heading to the spaceport, you hear a rushed galloping getting closer. As you turn you see a Saryd Heliarch coming to you, gesturing for you to wait. She slows down once she sees you're obliging, and slowly walks to you while glancing at your ship.`
+			`	"Apologize for cutting you off, I must, Captain <last>, but in need of extended transport services, I am," she says. "Sedlitaris Quatcid, my name is, and a Heliarch tribune, I am. Brought to <destination>, I must be. A petition to the council, I am to make."`
+			choice
+				`	"A 'petition'? What do you mean?"`
+				`	"I don't think you'd need some 'extended' service just for that."`
+				`	"Sorry, I'm not taking any more passengers right now."`
+					decline
+			`	"Nearly a thousand years ago, leading an expeditionary fleet to outside of the Coalition, an ancestor of mine was," she explains. "Mimodum, his name was, and after having risen the ranks and lifted our family from poorer conditions, chosen to lead the expedition he was. Only, return, he did not. To find out what happened, I wish. Looking for you, I was, as after my request is approved, need a transport to bring me to planets he visited, I will."`
+			choice
+				`	"I'd be glad to help you find out what happened. Let me show you to your bunk."`
+					goto accept
+				`	"Couldn't you just have gone on your own, or paid someone to bring you there if you don't have a ship?"`
+				`	"Actually, I'm not going to be leaving Coalition space anytime soon. Sorry."`
+					decline
+			`	She shakes her head. "Forbidden from leaving just like that, anyone is, and steal a jump drive for it, I'd need to. Obviously illegal, that is. Allowed to head out, only Heliarchs who have received permission from the council can. Finally time to hear my request again, they have, so go to <planet>, I must."`
+			choice
+				`	"Well, let's not keep them waiting then. Let me show you to your bunk."`
+				`	"I hope things work out for you, but I'm not heading out of the Coalition anytime soon. Sorry."`
+					decline
+			label accept
+			`	"Great! I promise you, very well paid you will be, once finished. For the moment, pay you <payment> I shall, when we arrive at the ring."`
+			`	You bring her inside your ship, and set a route to <destination>.`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Sedlitaris hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		set "Coalition: Expeditions Past 1: done"
+		payment 100000
+		conversation
+			`Sedlitaris gives you your payment of <payment> before you open your hatch for her to leave. "Take a few hours, this might, so wait for me in the spaceport, you can. Know the layout well, I do, so find you without issue, I will."`
+			`	As you open your hatch to see her leave, you're faced with a Kimek Heliarch waiting for the two of you, startling Sedlitaris as she sees him.`
+			`	"Made it clear, have I not, that cease your stubborn attempts, you should, tribune?" he asks. "Too precious, the consuls' time is. Keep wasting it in telling you off, they cannot."`
+			`	Sedlitaris brings a hand to her hair as she looks down. She opens her mouth, but cuts whatever she had to say at her throat. Instead, she goes down the ramp and leaves quickly for some section of the ringworld, ignoring the Kimek's protests. He sighs and approaches you. "Roped you into her exploration plan has she, Captain? An outsider with a jump drive, you are, so of course drawn to you, she would be, that girl..."`
+			choice
+				`	"Are you two colleagues?"`
+				`	"What was that about her being stubborn?"`
+			`	"Kicharri, I am. For many decades, the arbiter supervising Sedlitaris' work, I have been. A bright girl. Produced many excellent theoretical models of the outside, she has, but in recent years, obsessed with leaving on an official expedition, she became. Denied her nearly a dozen times, the consuls have, but get the hint, she won't." He rapidly taps the ground with his legs, as if the ground was hot to the touch. "Helped her set up this specific 'petition,' I have. Asked the council to be extra strict and definitive this time, I did. Contracted you for a longer trip, I assume she has, but be allowed to leave, she will not."`
+			`	He wishes you a good day, and leaves to an office opposite to the spaceport.`
+
 mission "Coalition: Expeditions Past 2"
 	name "Relay Pylon"
 	description "Bring Sedlitaris and some representatives of the Heliarch council to <destination>, where members of House Idriss will provide her with a relay pylon to search for signs of her ancestor's expedition."
@@ -3121,7 +3613,11 @@ mission "Heliarchs Buy Jump Drive Mission"
 	invisible
 	to offer
 		has "known to the heliarchs"
-		has "outfit (cargo): Jump Drive"
+		or
+			has "outfit (cargo): Jump Drive"
+			has "outfit (cargo): Korath Jump Drive"
+			has "outfit (cargo): Quarg Jump Drive"
+			has "outfit (cargo): Pug Jump Drive"
 	source
 		government "Heliarch"
 	on offer
@@ -3164,6 +3660,27 @@ mission "Heliarchs Buy Jump Drive Mission"
 
 	on accept
 		"coalition jobs" >?= 30
-		outfit "Jump Drive" -1
 		payment 5000000
-		fail
+		conversation
+			branch "korath"
+				has "outfit: Korath Jump Drive"
+			branch "quarg"
+				has "outfit: Quarg Jump Drive"
+			branch "pug"
+				has "outfit: Pug Jump Drive"
+			label default
+			action
+				outfit "Jump Drive" -1
+			fail
+			label korath
+			action
+				outfit "Korath Jump Drive" -1
+			fail
+			label quarg
+			action
+				outfit "Quarg Jump Drive" -1
+			fail
+			label pug
+			action
+				outfit "Pug Jump Drive" -1
+			fail

@@ -184,10 +184,29 @@ mission "Unfettered Jump Drive 1"
 				accept
 	
 	on accept
-		outfit "Jump Drive" -1
 		outfit "Hyperdrive" 1
 		payment 1000000
 		"reputation: Hai (Unfettered)" >?= 10
+		conversation
+			branch "korath"
+				has "outfit: Korath Jump Drive"
+			branch "quarg"
+				has "outfit: Quarg Jump Drive"
+			branch "pug"
+				has "outfit: Pug Jump Drive"
+			label default
+			action
+				outfit "Jump Drive" -1
+			label korath
+			action
+				outfit "Korath Jump Drive" -1
+			label quarg
+			action
+				outfit "Quarg Jump Drive" -1
+			label pug
+			action
+				outfit "Pug Jump Drive" -1
+
 
 
 
@@ -226,11 +245,30 @@ mission "Unfettered Jump Drive 2"
 				accept
 	
 	on accept
-		outfit "Jump Drive" -1
 		outfit "Hyperdrive" 1
 		payment 1000000
 		"reputation: Hai (Unfettered)" >?= 20
 		fail "Unfettered Jump Drive 1"
+		conversation
+			branch "korath"
+				has "outfit: Korath Jump Drive"
+			branch "quarg"
+				has "outfit: Quarg Jump Drive"
+			branch "pug"
+				has "outfit: Pug Jump Drive"
+			label default
+			action
+				outfit "Jump Drive" -1
+			label korath
+			action
+				outfit "Korath Jump Drive" -1
+			label quarg
+			action
+				outfit "Quarg Jump Drive" -1
+			label pug
+			action
+				outfit "Pug Jump Drive" -1
+
 
 
 
@@ -289,11 +327,30 @@ mission "Unfettered Jump Drive 3"
 				accept
 	
 	on accept
-		outfit "Jump Drive" -1
 		outfit "Hyperdrive" 1
 		payment 1000000
 		"reputation: Hai (Unfettered)" >?= 30
 		fail "Unfettered Jump Drive 2"
+		conversation
+			branch "korath"
+				has "outfit: Korath Jump Drive"
+			branch "quarg"
+				has "outfit: Quarg Jump Drive"
+			branch "pug"
+				has "outfit: Pug Jump Drive"
+			label default
+			action
+				outfit "Jump Drive" -1
+			label korath
+			action
+				outfit "Korath Jump Drive" -1
+			label quarg
+			action
+				outfit "Quarg Jump Drive" -1
+			label pug
+			action
+				outfit "Pug Jump Drive" -1
+
 		fail
 
 
@@ -502,9 +559,28 @@ mission "Unfettered Jump Drive Trading"
 		clear "choice: turret"
 		clear "choice: tripulse"
 		clear "choice: blaster"
-		outfit "Jump Drive" -1
 		outfit "Hyperdrive" 1
 		"reputation: Hai (Unfettered)" >?= 40
+		conversation
+			branch "korath"
+				has "outfit: Korath Jump Drive"
+			branch "quarg"
+				has "outfit: Quarg Jump Drive"
+			branch "pug"
+				has "outfit: Pug Jump Drive"
+			label default
+			action
+				outfit "Jump Drive" -1
+			label korath
+			action
+				outfit "Korath Jump Drive" -1
+			label quarg
+			action
+				outfit "Quarg Jump Drive" -1
+			label pug
+			action
+				outfit "Pug Jump Drive" -1
+
 		fail
 
 

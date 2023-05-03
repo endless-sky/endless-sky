@@ -696,7 +696,7 @@ ship "Deep River" "Deep River (Jump, Unarmed)"
 		"Fuel Pod"
 		"Type 2 Radiant Thruster"
 		"Type 4 Radiant Steering"
-		"Jump Drive"
+		"Korath Jump Drive"
 
 
 
@@ -929,10 +929,28 @@ mission "Unfettered: Jump Drive Source"
 				accept
 	on accept
 		log `Learned from the Unfettered Hai that they have been purchasing jump drives from the Alphas (whom they refer to as "unfettered humans").`
-		outfit "Jump Drive" -1
 		outfit "Hyperdrive" 1
 		payment 1000000
 		"reputation: Hai (Unfettered)" >?= 10
+		conversation
+			branch "korath"
+				has "outfit: Korath Jump Drive"
+			branch "quarg"
+				has "outfit: Quarg Jump Drive"
+			branch "pug"
+				has "outfit: Pug Jump Drive"
+			label default
+			action
+				outfit "Jump Drive" -1
+			label korath
+			action
+				outfit "Korath Jump Drive" -1
+			label quarg
+			action
+				outfit "Quarg Jump Drive" -1
+			label pug
+			action
+				outfit "Pug Jump Drive" -1
 		fail
 
 

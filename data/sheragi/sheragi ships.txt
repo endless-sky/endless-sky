@@ -164,6 +164,84 @@ ship "Emerald Sword" "Emerald Sword (Fixed)"
 	turret "Sheragi Anti-Missile"
 	gun "Dragonflame Cannon"
 
+ship "Emerald Sword" "Emerald Sword (Fixed Korath JD)"
+	sprite ship/emeraldsword
+	thumbnail "thumbnail/emeraldsword"
+	swizzle 3
+	outfits
+		"Dragonflame Cannon"
+		"Particle Waveform Turret" 6
+		"Sheragi Anti-Missile" 2
+		
+		"Large EM Battery"
+		"Large Hybrid Cooling"
+		"Electronic Warfare System" 2
+		"Outfits Expansion" 2
+		
+		"Fusion Drive"
+		"Korath Jump Drive"
+	turret "Particle Waveform Turret"
+	turret "Particle Waveform Turret"
+	turret "Particle Waveform Turret"
+	turret "Particle Waveform Turret"
+	turret "Particle Waveform Turret"
+	turret "Particle Waveform Turret"
+	turret "Sheragi Anti-Missile"
+	turret "Sheragi Anti-Missile"
+	gun "Dragonflame Cannon"
+
+ship "Emerald Sword" "Emerald Sword (Fixed Quarg JD)"
+	sprite ship/emeraldsword
+	thumbnail "thumbnail/emeraldsword"
+	swizzle 3
+	outfits
+		"Dragonflame Cannon"
+		"Particle Waveform Turret" 6
+		"Sheragi Anti-Missile" 2
+		
+		"Large EM Battery"
+		"Large Hybrid Cooling"
+		"Electronic Warfare System" 2
+		"Outfits Expansion" 2
+		
+		"Fusion Drive"
+		"Quarg Jump Drive"
+	turret "Particle Waveform Turret"
+	turret "Particle Waveform Turret"
+	turret "Particle Waveform Turret"
+	turret "Particle Waveform Turret"
+	turret "Particle Waveform Turret"
+	turret "Particle Waveform Turret"
+	turret "Sheragi Anti-Missile"
+	turret "Sheragi Anti-Missile"
+	gun "Dragonflame Cannon"
+
+ship "Emerald Sword" "Emerald Sword (Fixed Pug JD)"
+	sprite ship/emeraldsword
+	thumbnail "thumbnail/emeraldsword"
+	swizzle 3
+	outfits
+		"Dragonflame Cannon"
+		"Particle Waveform Turret" 6
+		"Sheragi Anti-Missile" 2
+		
+		"Large EM Battery"
+		"Large Hybrid Cooling"
+		"Electronic Warfare System" 2
+		"Outfits Expansion" 2
+		
+		"Fusion Drive"
+		"Pug Jump Drive"
+	turret "Particle Waveform Turret"
+	turret "Particle Waveform Turret"
+	turret "Particle Waveform Turret"
+	turret "Particle Waveform Turret"
+	turret "Particle Waveform Turret"
+	turret "Particle Waveform Turret"
+	turret "Sheragi Anti-Missile"
+	turret "Sheragi Anti-Missile"
+	gun "Dragonflame Cannon"
+
 ship "Black Diamond"
 	sprite "ship/blackdiamond"
 	thumbnail "thumbnail/blackdiamond"

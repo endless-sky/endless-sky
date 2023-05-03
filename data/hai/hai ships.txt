@@ -1234,7 +1234,7 @@ ship "Shield Beetle" "Shield Beetle (Jump)"
 		"Pulse Rifle" 55
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
-		"Jump Drive"
+		"Korath Jump Drive"
 	gun "Ion Cannon"
 	gun "Ion Cannon"
 	gun "Hai Tracker Pod"
@@ -1282,7 +1282,7 @@ ship "Shield Beetle" "Shield Beetle (Fuel Jump)"
 		"Ion Cannon" 4
 		"Hai Tracker Pod" 4
 		"Hai Tracker" 280
-		"Jump Drive"
+		"Korath Jump Drive"
 		"Quantum Keystone"
 		"Outfits Expansion" 4
 		"Hai Ravine Batteries"
@@ -1315,7 +1315,7 @@ ship "Shield Beetle" "Shield Beetle (Particle Jump)"
 		"LP036a Battery Pack"
 		"Liquid Helium Cooler"
 		"Catalytic Ramscoop"
-		"Jump Drive"
+		"Korath Jump Drive"
 		"Quantum Keystone"
 		"Outfits Expansion" 2
 		"Boulder Reactor" 2
@@ -1331,7 +1331,7 @@ ship "Shield Beetle" "Shield Beetle (Plasma Blaster Jump)"
 	outfits
 		"Liquid Helium Cooler" 2
 		"Catalytic Ramscoop"
-		"Jump Drive"
+		"Korath Jump Drive"
 		"Quantum Keystone"
 		"Outfits Expansion" 3
 		"Boulder Reactor" 2
@@ -1358,7 +1358,7 @@ ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
 		"Pulse Rifle" 47
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
-		"Jump Drive"
+		"Korath Jump Drive"
 
 ship "Shield Beetle" "Shield Beetle (Pulse)"
 	outfits
@@ -1467,7 +1467,7 @@ ship "Emperor Beetle"
 		
 		"Large Heat Shunt"
 		"Fuel Processor"
-		"Jump Drive"
+		"Korath Jump Drive"
 		"Quantum Keystone"
 		"Systems Core (Large)"
 		"Systems Core (Medium)"
@@ -1638,7 +1638,7 @@ ship "Solifuge" "Solifuge (Jump)"
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
-		"Jump Drive"
+		"Korath Jump Drive"
 
 ship "Solifuge" "Solifuge (Jump, Pulse)"
 	outfits
@@ -1655,7 +1655,7 @@ ship "Solifuge" "Solifuge (Jump, Pulse)"
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
-		"Jump Drive"
+		"Korath Jump Drive"
 	gun "Pulse Cannon"
 	gun "Pulse Cannon"
 	gun "Pulse Cannon"
@@ -1678,7 +1678,7 @@ ship "Solifuge" "Solifuge (Jump, Tracker)"
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
-		"Jump Drive"
+		"Korath Jump Drive"
 
 ship "Solifuge" "Solifuge (Pulse)"
 	outfits
@@ -1846,7 +1846,7 @@ ship "Water Bug" "Water Bug (Jump)"
 		"Pulse Rifle" 8
 		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
-		"Jump Drive"
+		"Korath Jump Drive"
 
 ship "Water Bug" "Water Bug (Pulse)"
 	outfits

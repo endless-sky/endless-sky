@@ -1032,7 +1032,7 @@ ship "Centipede" "Centipede (Teeneep Jump)"
 		"required crew" 50
 	outfits
 		"Catalytic Ramscoop"
-		"Jump Drive"
+		"Korath Jump Drive"
 		"Chameleon Anti-Missile" 3
 		"Quantum Keystone"
 		"Outfits Expansion"

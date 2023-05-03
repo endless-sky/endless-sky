@@ -1353,9 +1353,20 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 	
 	to offer
 		has "Sheragi Archaeology: The Emerald Sword 2: active"
+		or
+			has "outfit (installed): Jump Drive"
+			has "outfit (installed): Korath Jump Drive"
+			has "outfit (installed): Quarg Jump Drive"
+			has "outfit (installed): Pug Jump Drive"
+			has "outfit (installed): Pug Tier 3 Jump Drive"
+		or
+			has "outfit (cargo): Jump Drive"
+			has "outfit (cargo): Korath Jump Drive"
+			has "outfit (cargo): Quarg Jump Drive"
+			has "outfit (cargo): Pug Jump Drive"
 	
 	on offer
-		require "Jump Drive" 2
+#		require "Jump Drive" 2
 		conversation
 			`You have a spare jump drive in your possession. Would you like to give it to Albert's crew?`
 			choice
@@ -1369,9 +1380,28 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 	
 	on accept
 		fail "Sheragi Archaeology: The Emerald Sword 2"
-		outfit "Jump Drive" -1
 		event "zubenelhakrabi discovered"
 		"reputation: Sheragi" = 1
+		conversation
+			branch "korath"
+				has "outfit: Korath Jump Drive"
+			branch "quarg"
+				has "outfit: Quarg Jump Drive"
+			branch "pug"
+				has "outfit: Pug Jump Drive"
+			label default
+			action
+				outfit "Jump Drive" -1
+			label korath
+			action
+				outfit "Korath Jump Drive" -1
+			label quarg
+			action
+				outfit "Quarg Jump Drive" -1
+			label pug
+			action
+				outfit "Pug Jump Drive" -1
+
 
 	on enter "Zubenelhakrabi"
 		conversation

@@ -696,7 +696,7 @@ ship "Heron"
 		"Smelter-Class Thruster" 4
 		"Smelter-Class Steering" 5
 		"Hyperdrive"
-		"Jump Drive"
+		"Korath Jump Drive"
 		"Scram Drive"
 		
 	engine -111 307.5
