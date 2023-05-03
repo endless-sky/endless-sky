@@ -3604,7 +3604,7 @@ conversation "anna invites you to book signing"
 		`	Anna then takes out another copy of "Beyond the Hyperdrive", which she signs in front of you. It is the Coalition edition of the book. The symbols are indecipherable to you, but your translation device helps you understand the contents. You realize that the book has been significantly altered from the version sold in human space.`
 		choice
 			`	"Anna, why is this book so different from the copies sold in human space?"`
-		`	Anna explains how strict the Coalition was in their censorship, having to continually make revisions to the book to make it "more suitable for the Coalition". The major plot points remained unchanged, but many parts of the book, particularly those about rebellion or the casual mention of ideas "unsuitable for the Coalition" were either deleted or heavily edited.`
+		`	"Well, for one, it's not in our language. Some concepts just don't translate very well, so I tried to capture the spirit of the story. The Heliarch linguists were very helpful," she explains. "They really went into depth on some aspects of the Coalition's languages. None of the major plot points were changed, thankfully, though some content in the book had to be edited or removed. My Heliarch friend said that if I changed this or removed that the book would sell so much better, and as they said, they wanted to 'make it more suitable for the Coalition'. Their words."`
 		choice
 			`	"Wait, that's how bad the censorship is?"`
 		`	"Yes. It caught me unexpectedly. On Zug, you can write whatever you want and you didn't have to worry about censorship. But here, the Heliarchs were breathing down my neck for the six months I had to stay to help revise the book."`
