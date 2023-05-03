@@ -3065,7 +3065,7 @@ ship "Racing Flivver"
 	explode "tiny explosion" 10
 	explode "small explosion" 10
 	description "One of the champion racer Artemis Renard's many beloved racing craft, this Lionheart Flivver has been so heavily modified you're not sure if it can even be considered the same craft. Its sleek, elegant lines belie its underlying power: the oversized engines hum with energy and roar to life with spine-bending force at the gentlest touch of the controls, propelling the craft and its pilot to the stars like butterflies on a moonbeam."
-	description "	A gift to you for saving Artemis' life after you pulled it from the sand where she crashed post-race, the Renard family has spared no expense in restoring the craft to gleaming perfection."
+	description "	A gift to you for saving Artemis' life after it was pulled from the sand where she crashed post-race, the Renard family has spared no expense in restoring the craft to gleaming perfection."
 
 
 ship "Rainmaker"

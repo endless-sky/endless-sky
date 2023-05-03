@@ -5827,7 +5827,7 @@ mission "Argosy Hijacking (Declined)"
 
 mission "Lost Racer 1"
 	name "Search for a Missing Racing Pilot"
-	description "Bring the father of a lost racing pilot to Sunracer by <date>, passing through the <waypoints> systems. You will be paid <payment>."
+	description "Bring the father of a missing racing pilot to Sunracer by <date>, passing through the <waypoints> systems. You will be paid <payment>."
 	minor
 	passengers 1
 	deadline 7
@@ -5852,7 +5852,7 @@ mission "Lost Racer 1"
 			`	"I'm sorry, again. You don't need to hear all that. The loop was through Mirfak. I just need to know if you can take me to <destination> and scan for her transponder in those uninhabited systems north of there. Money is not an object."`
 				goto help
 			label depends
-			`	He sighs. "It's search-and-rescue; my daughter's ship has gone missing. She's a racing pilot, best in the Paradise Circuit three times over; it's got to be some sort of foul play, pirates or a jealous competitor; that's what I told that useless Navy woman, that they've got to put out a search but she says that she has to have authorization..." He pauses for a moment, clearly realizing his digression.`
+			`	He sighs. "It's search-and-rescue; my daughter's ship has gone missing. She's a racing pilot, best in the Republic three times over; it's got to be some sort of foul play, pirates or a jealous competitor; that's what I told that useless Navy woman, that they've got to put out a search but she says that she has to have authorization..." He pauses for a moment, clearly realizing his digression.`
 			`	"I'm sorry, again. You don't need to hear all that. The loop was through Mirfak. I just need to know if you can take me to <destination> and scan for her transponder in those uninhabited systems north of there. Money is not an object."`
 			label help
 			choice
@@ -5878,32 +5878,116 @@ mission "Lost Racer 1"
 		dialog "You have passed through all three systems laid out in the search plan, performing a long-range deep scan for Artemis Renard's transponder in each, but it has returned nothing but static. As far as you can tell, she is not in any of these systems."
 	on complete
 		conversation
-			`You were unable to find Artemis Renard in any of the three uninhabited systems, and you have watched the transition from hope to desperation in her father after each successive failure; by the time you land on Sunracer, he is practically demanding that you visit the three systems north in a line to Alnitak. "She must have gone around," he says, "wanted to push the limit. Will you take me?"`
+			`You were unable to find Artemis Renard in any of the three uninhabited systems, and you have watched the transition from hope to desperation in her father after each successive failure; you can't imagine that he has been getting much sleep.`
+			`	During the landing on Sunracer, you notice that there is a great deal of race infrastructure still in place around the planet and spaceport: large camera drones remain in low orbit, and the spaceport is filled with a variety of Syndicate ship models in race-related livery. A small Navy contingent is also present, and the spaceport seems busier and more hectic than usual.`
+			`	"I've got to speak with the race coordinators here," says Mr. Renard, "I see they've finally gone to the trouble of starting a search of their own. Syndicate idiots, probably didn't even notice she was missing till it was on the news. We've got to keep searching. Will you meet me back here in the spaceport in an hour or two? I'll double your fee."`
 			choice
-				`	"Of course."`
+				`	"Of course. We're going to find her."`
 					goto next
 				`	"I'm sorry, but I can't help any more."`
 			`	"Fine," he says, "then take your money." He slams a credit chip in your hand and storms off into the spaceport. He looks on the verge of tears.`
 			action
-				set "failed_lost_racer"
+				set "abandoned lost racer"
 			label next
-			`	"You're a saint for this," he says, and hands you a credit chip for <payment>. "I'll double your pay for the next leg. We have to find her."`
+			`	"You're a saint for this," he says, and hands you a credit chip for <payment>. "We have to find her."`
 		payment 100000
 
 mission "Lost Racer 2"
-	name "Find Artemis Renard"
-	description "Bring August Renard through the <waypoints> systems to search for his daughter before landing on <destination>. He is paying you <payment>."
+	name "Find Artemis Renard in Acamar"
+	source
+		planet "Sunracer"
+	destination
+		planet "Tinker"
+	passengers 1
+	deadline 7
+	to offer
+		has "Lost Racer 1: done"
+	to fail
+		has "abandoned lost racer"
+	on offer
+		conversation
+			`The displays in the spaceport hangar are playing a news channel, showing aerial views of the spaceport and pictures of the missing Artemis Renard in front of her red and white Flivver, wearing a calm, confident expression while a caption at the bottom of the screen reads "CHAMPION RACER MISSING AFTER COMPETITION."`
+			`	"...of course today's top story: three-time Republic starship racing champion Artemis Renard has been officially declared 'missing' after she did not return here to Sunracer after this year's Megaparsec Core Championship. The search effort has been ongoing for two days now, led by Megaparsec with support from the Republic Navy and Syndicated Systems' internal security forces. The head of the event, Quinn Emerson, put out the following statement:`
+			`	'We at Megaparsec put the greatest attention into ensuring the safety and well-being of all our event participants and guests. Over the past forty-six hours, our search teams have fully scanned the Volax, Cardax, Moktar, Bellatrix, and Menkar systems, and we are working in conjunction with the Republic and Syndicate to fully scour their territories belonging to the circuit as well. Ms. Renard's family can rest assured that if she's out there, we'll find her.'`
+			`	Artemis Renard, daughter of terraforming magnates August and Louisa Renard, is perhaps best known for shattering the record for the Betelgeuse Classic in last year's race, crossing the finish line nearly fifteen minutes faster than Jackson Lee in 3002. She was last seen flying her ship, the "Moonfox," a white and red Lionheart Flivver with race registration B-168, in the Diphida system. Anyone with information regarding her whereabouts is encouraged to contact the Megaparsec Racing Events Commission and may be entitled to monetary reward if such information leads to the retrieval of Ms. Renard or her ship."`
+			`	The broadcast then goes to an advertisement for the Quicksilver. Several minutes later, you see Mr. Renard returning from the terminal side of the spaceport, looking frustrated. "Idiots!" he says, "They couldn't find their legs in a dressing room! They tell me that they had 'some network and monitoring issues' and that they don't have surveillance for the entire last leg of the race. I told Artemis to never trust these Syndicate amateurs."`
+			choice
+				`	"I'm sure they're trying their best."`
+					goto trying
+				`	"'Network and monitoring issues' sounds suspicious."`
+					goto suspicious
+				`	"Do you have a plan for where to go next?"`
+					goto plan
+			label trying
+			`	"Well their best isn't very good, is it! They don't notice that their number-one pilot has been missing for almost a week? I'll get the best lawyers in the Republic to drag Megaparsec through court 'till the only thing left they'll be able to sell will be scrap."`
+			choice
+				`	"What you said about 'network and monitoring issues' sounded suspicious."`
+					goto suspicious
+				`	"So what's the plan from here?"`
+					goto plan
+			label suspicious
+			`	Mr. Renard's suddenly speaks more quietly. "I thought so too. I think it might have been sabotage."`
+			`	"What do you mean?"`
+			`	"Every day that we don''t find Artemis, Megaparsec stock dives further and further. I've spend enough time making money to know that there's no faster way to bruise a competitor than scandal. I think someone sabotaged the race and went after my daughter because they knew it would make headlines and they knew that could make them money."`
+			choice
+			`	"Who do you think did it?"`
+				goto perp
+			`	"I'm not sure I'm convinced. Couldn't she just have crashed?"`
+				goto inept
+			label inept
+			`	Mr. Renard scoffs. "She's been named the best racing pilot in the Republic three times! She didn't just crash."`
+			choice
+				`	"Fair enough. So if this was sabotage, who do you think did it?"`
+					goto perp
+				`	"I didn't mean to cast doubt on her skill; I just meant that I'm not sure this has to be a conspiracy."`
+			`	""`
+			label perp
+			`	"I'm not sure," Mr. Renard says, "Maybe the Syndicate, maybe Betelgeuse or Lionheart."`
+			choice
+				`	"So what's your plan? How are we going to find her?"`
+					goto plan				
+			label plan
+			`	"They said she was last seen in Diphida. If she was going north, as she should have been, they probably caught up to her in Acamar. It's an unihabited system,and with surveillance down, they could have disabled her ship before any of the other racers entered the system. But if it was sabotage, her transponder was probably disabled; that's why no one's found her with scans.`
+			choice
+				`	"How are we supposed to find her if her transponder is disabled?"`
+					goto how
+			label how
+			`	"Artemis' engines were a custom modification of Deep Sky atomics. They leak a trace amount of tritium; not enough to be dangerous, but your ship's sensors should be able to detect her exhaust residue." He sighs. "So, Acamar it is, then, Captain <last>?"`
+			choice
+				`	"I'll set course for Acamar. You say you're sure she would have passed through there on the circuit. That's our best bet."`
+					goto acamar					
+			label acamar
+			`	"I agree, Captain. We need to get moving immediately."`
+				accept
+	on complete
+		conversation
+			"Artemis Renard's ship is not in this system."
+		payment 100000
+
+mission "Lost Racer 3"
+	name "Find Artemis Renard in Sospi"
 	passengers 1
 	deadline 7
 	source
 		planet "Sunracer"
-	waypoint "Sumar"
-	waypoint "Hassaleh"
-	waypoint "Rigel"
 	destination
-		planet "Farpoint"
+		planet "Maelstrom"
 	to offer
 		has "Lost Racer 1: done"
-	to fail
-		has "failed_lost_racer"
-	
+		not "Lost Racer 2: done"
+	on offer
+		conversation
+			"Artemis in Sospi"
+	on complete
+		payment 150000
+		event "artemis renard ship rebuilt" 30
+
+mission "Lost Racer Epilogue"
+	name `Retrieve a "special gift" from the Renard family on <destination>.`
+	destination
+		planet "Glory"
+	to offer
+		has "Lost Racer 3 Sospi: done"
+		has "artemis renard ship rebuilt"
+	on complete
+		give ship "Racing Flivver" `B-168 "Moonfox"`
