@@ -5761,7 +5761,7 @@ mission "A Dead Man's Path 1"
 			`	Her face brightens up with a smile, and she continues, "That's good to hear! My brother and I were searching for someone who could give us a ride to <destination>. We received notice that our father's last will is going to be published there. Do you think you could take us there? We will pay you for your service, of course."`
 				goto helpornot
 			label suspicious
-			`	She laughs. "There's no need to be suspicious, my brother and I were just searching for someone who could give us a ride to New China. We received notice that our father's last will is going to be published there. Do you think you could take us there? We will pay you for your service, of course.`
+			`	She laughs. "There's no need to be suspicious, my brother and I were just searching for someone who could give us a ride to <destination>. We received notice that our father's last will is going to be published there. Do you think you could take us there? We will pay you for your service, of course.`
 			label helpornot
 			choice
 				`	"Of course I can."`
