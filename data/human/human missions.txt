@@ -5824,3 +5824,86 @@ mission "Argosy Hijacking (Declined)"
 		fleet "Small Syndicate"
 		to spawn
 			has "Argosy Hijacking: declined"
+
+mission "Lost Racer 1"
+	name "Search for a Missing Racing Pilot"
+	description "Bring the father of a lost racing pilot to Sunracer by <date>, passing through the <waypoints> systems. You will be paid <payment>."
+	minor
+	passengers 1
+	deadline 7
+	source
+		near "Kursa" 4
+		attributes "paradise"
+		not attributes "tourism" "station"
+	waypoint "Volax"
+	waypoint "Cardax"
+	waypoint "Moktar"
+	destination
+		planet "Sunracer"
+	on offer
+		conversation
+			`While sitting in the <origin> spaceport waiting for your ship to be refueled, you notice a commotion near one of the other docks; someone appears to be shouting. Upon approaching, you see a well-dressed older man in a heated discussion with a Navy officer standing outside a parked Frigate while it is being loaded with cargo. Eventually, after several more exchanged shouts and some disapproving motions by the officer, the man turns away, exasperated, before he sees you and walks over.`
+			`	"You," the man says, "you're an independent captain, aren't you? You take missions for credits?" He winces a little bit after he says it, maybe a little embarrassed by his pointedness.`
+			choice
+				"	I'm Captain <last>, and yes, I do."
+				"	It depends on what the mission is."
+					goto depends
+			`	"Oh. That's good to hear. I'm sorry for being so brusque with you, but my daughter's ship has gone missing. She's a racing pilot, best in the Paradise Circuit three times over; it's got to be some sort of foul play, pirates or a jealous competitor; that's what I told that useless Navy woman, that they've got to put out a search but she says that she has to have authorization..." He pauses for a moment, clearly realizing his digression.`
+			`	"I'm sorry, again. You don't need to hear all that. The loop was through Mirfak. I just need to know if you can take me to <destination> and scan for her transponder in those uninhabited systems north of there. Money is not an object."`
+				goto help
+			label depends
+			`	He sighs. "It's search-and-rescue; my daughter's ship has gone missing. She's a racing pilot, best in the Paradise Circuit three times over; it's got to be some sort of foul play, pirates or a jealous competitor; that's what I told that useless Navy woman, that they've got to put out a search but she says that she has to have authorization..." He pauses for a moment, clearly realizing his digression.`
+			`	"I'm sorry, again. You don't need to hear all that. The loop was through Mirfak. I just need to know if you can take me to <destination> and scan for her transponder in those uninhabited systems north of there. Money is not an object."`
+			label help
+			choice
+				`	"I'd be happy to help."`
+					goto agree
+				`	"I'm sorry, but I can't transport you. You'll have to find another captain able to take you on."`
+			`	A series of emotions passes across the man's face: anger, scorn, resignation. "I thought you would be better than those Navy bastards," he says, shaking his head, "Well I hope I can find someone in this place with a shred of decency before she dies out there." He walks away and you are left with a sinking sense of guilt.`
+				decline
+			label agree
+			`	The man exhales, relieved. "Thank you so much," he says, "My name is August Renard, and my daughter is Artemis. She's out there, I know it, but we'd better get moving soon."`
+			choice
+				`"My ship is as fast as they come. We'll find her in no time."`
+					goto fast
+				`"Artemis Renard? I think I remember hearing about her winning recently, something in Betelgeuse."`
+			`	"Ah yes," the man says with pride in his voice, "the Betelgeuse Classic, stable orbit of every planet and spherical moon in the system without refueling. They've been doing it since the Firebird was new, and no one's done it faster than my daughter, no one. She's the best; that's how I know something's gone wrong. Tell your people to warm up the engines."`
+				goto board
+			label fast
+			`	"I'm glad you have pride in your ship. I've seen 'fast as they come' for twenty years now and I've never needed it as much as today."`
+			label board
+			`	You lead Mr. Renard to your ship, which he boards with unusual nimbleness and comfort for an old man from the Paradise Worlds.`
+				accept
+	on waypoint
+		dialog "You have passed through all three systems laid out in the search plan, performing a long-range deep scan for Artemis Renard's transponder in each, but it has returned nothing but static. As far as you can tell, she is not in any of these systems."
+	on complete
+		conversation
+			`You were unable to find Artemis Renard in any of the three uninhabited systems, and you have watched the transition from hope to desperation in her father after each successive failure; by the time you land on Sunracer, he is practically demanding that you visit the three systems north in a line to Alnitak. "She must have gone around," he says, "wanted to push the limit. Will you take me?"`
+			choice
+				`	"Of course."`
+					goto next
+				`	"I'm sorry, but I can't help any more."`
+			`	"Fine," he says, "then take your money." He slams a credit chip in your hand and storms off into the spaceport. He looks on the verge of tears.`
+			action
+				set "failed_lost_racer"
+			label next
+			`	"You're a saint for this," he says, and hands you a credit chip for <payment>. "I'll double your pay for the next leg. We have to find her."`
+		payment 100000
+
+mission "Lost Racer 2"
+	name "Find Artemis Renard"
+	description "Bring August Renard through the <waypoints> systems to search for his daughter before landing on <destination>. He is paying you <payment>."
+	passengers 1
+	deadline 7
+	source
+		planet "Sunracer"
+	waypoint "Sumar"
+	waypoint "Hassaleh"
+	waypoint "Rigel"
+	destination
+		planet "Farpoint"
+	to offer
+		has "Lost Racer 1: done"
+	to fail
+		has "failed_lost_racer"
+	
