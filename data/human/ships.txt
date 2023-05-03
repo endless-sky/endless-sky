@@ -3010,6 +3010,62 @@ ship "Quicksilver"
 	description "The Megaparsec Quicksilver is a warship built around a single concept: to design the smallest and fastest ship capable of carrying two Particle Cannons. Because of its speed and long weapons range, the Quicksilver can keep a safe distance from most targets and bombard them with particle bursts until they are destroyed. Unfortunately the Headhunter eventually surpassed the original design intent, but the Quicksilver's better durability to cost ratio, and the existence of long-term contracts, has kept it in use with Syndicate security forces."
 
 
+ship "Racing Flivver"
+	sprite "ship/racing flivver"
+	thumbnail "thumbnail/racing flivver"
+	attributes
+		category "Transport"
+		"cost" 1250000
+		"shields" 1100
+		"hull" 150
+		"required crew" 1
+		"bunks" 2
+		"mass" 32
+		"drag" 1.0
+		"heat dissipation" .9
+		"fuel capacity" 600
+		"cargo space" 0
+		"outfit space" 160
+		"weapon capacity" 22
+		"engine capacity" 60
+		weapon
+			"blast radius" 16
+			"shield damage" 160
+			"hull damage" 80
+			"hit force" 240
+	outfits
+		
+		"Ramscoop"
+		"Water Coolant System"
+		"Hyperdrive"
+
+		"Dwarf Core"
+		"Supercapacitor"
+		
+		"A125 Atomic Steering"
+		"A250 Atomic Thruster"
+		"AR120 Reverse Thruster"
+		"Volcano Afterburner"
+		
+	engine -16.5 26
+	engine 16.5 26
+	"reverse engine" -16.5 -11 0.8
+	"reverse engine" 16.5 -11 0.8
+	"steering engine" -16.5 26 0.8
+		"right"
+	"steering engine" 16.5 26 0.8
+		"left"
+	"steering engine" -16.5 -11 0.8
+		"angle" 180
+		"left"
+	"steering engine" 16.5 -11 0.8
+		"angle" 180
+		"right"
+	leak "leak" 60 50
+	explode "tiny explosion" 10
+	explode "small explosion" 10
+	description "Artemis Renard's once-beloved racing craft, this Lionheart Flivver has been so heavily modified you're not sure if it can even be considered the same craft. A gift to you after you pulled it from the sand where she crashed post-race."
+
 
 ship "Rainmaker"
 	sprite "ship/rainmaker"
