@@ -5746,7 +5746,7 @@ mission "Blind Man from Martini"
 		random < 15
 	on offer
 		conversation
-			`As you walk through <origin>'s cramped new planetary spaceport, you see a middle-aged man on the other side of the corridor, behind a column of people. He sits on a bench with a suitcase at his side, looking at and doing nothing particular aside from the occasional tap of his cane when someone passes by.`
+			`As you walk through <origin>'s cramped new planetary spaceport, you see a middle-aged man on the other side of the corridor, behind a column of people. He sits on a bench with a suitcase at his side, doing nothing particular aside from the occasional tap of his cane when someone passes by.`
 			choice
 				`	(Go up to him.)`
 				`	(Ignore him.)`
@@ -5830,7 +5830,7 @@ mission "Blind Man from Martini"
 					goto comealong
 			
 			label comealong
-			`	Douglas looks taken aback for a moment, but says, "Well, I suppose you can come along. I'm not sure if the university would let you in, though. But I think Anita would like to meet you, or at least say hello." You get into the taxi with him, and it starts toward New Sydney's University district.`
+			`	Douglas looks taken aback for a moment, but says, "Well, I suppose you can come along. I'm not sure if the university would let you in, though. But I think Anita would like to meet you, or at least say hello." You get into the taxi with him, and it starts toward New Sydney's University District.`
 
 			# The player can do three actions before arriving at the hospital.
 			label taxi
@@ -5879,7 +5879,7 @@ mission "Blind Man from Martini"
 				set "Blind Man from Martini: label blind"
 				"Blind Man from Martini: taxi questions count" ++
 			`	"It was the fourth of July, 3014. I was in my office, on one of the high rises on the outskirts of the capital, with my office window pointed right at the city center." He turns to look out the window, as if he knew New Sydney's skyline was out there where he couldn't see. In the small lull, he takes an audible breath.`
-			`	"It was a beautiful day that day. I... I remember that Pollux was especially bright and colorful that day, and the songbirds that inhabit the city were alive with sound. They were unusually so. It was very vivid, very strange. Maybe I should have listened to the birds...`
+			`	"It was a beautiful day that day. I... I remember that Pollux was especially bright and colorful that day, and the songbirds that inhabited the city were alive with sound. They were unusually so. It was very vivid, very strange. Maybe I should have listened to the birds...`
 			`	"But when the bomb dropped, I was looking right at it, from my office window. All I could remember next was that I was in a lot of pain, that I couldn't see, but one of my colleagues - thank goodness for her - found me afterwards, during the evacuation, covered in glass from the shockwave. I survived mostly because I was sitting at my terminal and that protected me from the bulk of the shards."`
 				goto taxi
 
@@ -5928,7 +5928,7 @@ mission "Blind Man from Martini"
 					"Blind Man from Martini: taxi questions count" == 1
 				goto taxi
 
-			`	As the taxi drives on a highway on the edge of a small hill, the window gives you a panorama of the suburbs of New Sydney and the two skylines on each side, one marking the commercial district where the spaceport is prominent in its gleaming steel-glass architecture, and the other being the University district, a series of clean and white, flowing buildings and skyscrapers. Far away on the horizon, you can barely notice the smokestacks of factories.`
+			`	As the taxi drives on a highway on the edge of a small hill, the window gives you a panorama of the suburbs of New Sydney and the two skylines on each side, one marking the commercial sector where the spaceport is prominent in its gleaming steel-glass architecture, and the other being the University District, a series of clean and white, flowing buildings and skyscrapers. Far away on the horizon, you can barely notice the smokestacks of factories.`
 				to display
 					"Blind Man from Martini: taxi questions count" == 2
 				goto taxi
@@ -5939,7 +5939,7 @@ mission "Blind Man from Martini"
 				goto taxi
 
 			label hospital
-			`	Eventually, the taxi passes by a sign for the "UNS Health Sciences" quarter, which by the looks of it takes up an entire section of the University district. The taxi pulls up beside the entrance of the university hospital, where you help Douglas out with his luggage. The building is stark from the outside, to match the architecture of the surroundings, yet strangely colorful on the inside, as if the person building it decided that hospital interiors were far too unimaginative.`
+			`	Eventually, the taxi passes by a sign for the "UNS Health Sciences" quarter, which by the looks of it takes up an entire section of the University District. The taxi pulls up beside the entrance of the university hospital, where you help Douglas out with his luggage. The building is stark from the outside, to match the architecture of the surroundings, yet strangely colorful on the inside, as if the person building it decided that hospital interiors were far too unimaginative.`
 			`	After a short queue, you reach the reception with Douglas. The receptionist, placed behind a sterile-looking screen that looks far out of place with the colorful hallways, asks with a well-practiced smile, "How may I help you?"`
 			choice
 				`	"We're looking for Anita Pears. Where can we find her?"`
@@ -5957,4 +5957,14 @@ mission "Blind Man from Martini"
 				`	"Goodbye."`
 				`	"Farewell to you too."`
 			`	With that, he grabs his cane and his luggage, and follows a hospital attendant toward his daughter's room, leaving you in the reception.`
+			action
+				clear "Blind Man from Martini: label blind"
+				clear "Blind Man from Martini: label blind-1"
+				clear "Blind Man from Martini: label atomic-bombings"
+				clear "Blind Man from Martini: label illness"
+				clear "Blind Man from Martini: label daughter"
+				clear "Blind Man from Martini: label waiting"
+				clear "Blind Man from Martini: taxi questions count"
+				clear "Blind Man from Martini: label far"
+				clear "Blind Man from Martini: label looking"
 				decline
