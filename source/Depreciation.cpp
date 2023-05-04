@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Outfit.h"
 #include "Ship.h"
 
@@ -30,10 +31,10 @@ namespace {
 	// Names for the two kinds of depreciation records.
 	string NAME[2] = {"fleet depreciation", "stock depreciation"};
 	// Depreciation parameters.
-	constexpr double FULL_DEPRECIATION = 0.25;
-	constexpr double DAILY_DEPRECIATION = 0.997;
-	constexpr int GRACE_PERIOD = 7;
-	constexpr int MAX_AGE = 1000 + GRACE_PERIOD;
+	const double FULL_DEPRECIATION = GameData::GetGamerules().DepreciationMaxPercent();
+	const double DAILY_DEPRECIATION = GameData::GetGamerules().DepreciationDailyPercent();
+	const int GRACE_PERIOD = GameData::GetGamerules().DepreciationGracePeriod();
+	const int MAX_AGE = GameData::GetGamerules().DepreciationMaxAge();
 }
 
 
