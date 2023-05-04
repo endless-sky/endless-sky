@@ -295,7 +295,7 @@ mission "Hai Reveal [B03] Contact Giti"
 			label whazzit
 			`	"I have some leads on the smuggling operation, but there's something else you'll want to know about, too.`
 			label gossip
-			`	Certain people have noticed that you have had close interactions with Teeneep and I through this, and people have asked whether you are responsible for the mess caused by Teeneep going public with information you helped her find." Her expression is very serious. "We have not told them every detail, but we made it clear to your diplomats that the issue was a matter which would have blocked any solution until it was resolved, regardless of if you helped or not. They understand that your involvement has helped move towards a solution, even if parts of it could be misconstrued when seen from the outside."`
+			`	Certain people have noticed that you have had close interactions with Teeneep and I through this, and people have asked whether you are responsible for the mess caused by Teeneep going public with information you helped her find." Her expression is very serious. "We have not told them every detail, but we made it clear to your diplomats that the issue was a matter which would have blocked any solution until it was resolved, whether you helped or not. They understand that your involvement has helped moving towards a solution, even if parts of it could be misconstrued when seen from the outside."`
 			`	Sayari turns to her console and brings up a map. "Now on to the smuggling leads. These are the suspected routes used to justify the <origin> operation. Unfortunately, while many matches were found, there was nothing in the new data that conclusively linked to the mysterious symbol. No human escapees had been tested for mild cadmium poisoning, so that was a dead end too. I know it's been thrust into the background pretty heavily, but did you find anything yourself? We need to decide if we're setting this aside or not."`
 			choice
 				`	"I've met a researcher named Giti who has been quite informative."`
@@ -625,7 +625,7 @@ mission "Hai Reveal [B08] Syndicate Internal Affairs"
 			`	You've had some encounters with Republic Intelligence, but you know what everyone knows. They're the top police force of the Republic, dealing with high-profile civilian crimes that local authorities can't handle: murder investigations, interplanetary kidnappings, and the like. They also gather intelligence throughout human space, and possibly beyond, reporting directly to the Republic Parliament... which mostly means it's beholden to the interests of the members of Parliament.`
 			choice
 				`	"I'm on an urgent mission that is critical for three governments. Don't bar my way."`
-				`	"If Parliament's interests involve listening in on librarian's conversations, then the Republic is in quite a sorry shape."`
+				`	"If Parliament's interests involve listening in on a librarian's conversations, then the Republic is in quite a sorry shape."`
 					goto humor
 					to display
 						has "Hai Reveal [B08] Syndicate Internal Affairs: private convo"
@@ -666,7 +666,7 @@ mission "Hai Reveal [B08] Syndicate Internal Affairs"
 mission "Hai Reveal [B09] Scanning Devil-Hide"
 	landing
 	name "Searching Beyond the Wormhole"
-	description "Return to <planet> after finding and scanning the wormhole, and key system beyond it. The Syndicate will pay <payment>."
+	description "Return to <planet> after finding and scanning the wormhole and the key system beyond it. The Syndicate will pay you <payment>."
 	source "Hephaestus"
 	waypoint "Devil-Run"
 	waypoint "Devil-Hide"
