@@ -48,7 +48,7 @@ void Gamerules::Load(const DataNode &node)
 			universalFrugalThreshold = min<double>(1., max<double>(0., child.Value(1)));
 		else if(key == "depreciation min percent")
 			depreciationMinPercent = min<double>(1., max<double>(0., child.Value(1)));
-		else if(key == "depreciation daily precent")
+		else if(key == "depreciation daily percent")
 			depreciationDailyPercent = min<double>(1., max<double>(0., child.Value(1)));
 		else if(key == "depreciation grace period")
 			depreciationGracePeriod = max<int>(0, child.Value(1));

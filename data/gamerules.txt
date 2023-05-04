@@ -45,7 +45,7 @@ gamerules
 	# ALLOWABLE VALUES: any integer >= 0
 	"npc max mining time" 3600
 	
-	# Ships with the "frugal" personality will only use weapons that consume ammo or fuel while their 
+	# Ships with the "frugal" personality will only use weapons that consume ammo or fuel while their
 	# health is at or below this fraction.
 	# DEFAULT: .75 (75 percent)
 	# ALLOWABLE VALUES: any value between 0. and 1.
@@ -69,18 +69,18 @@ gamerules
 	# where age is in days. "remaining daily percent" is then multiplied by result from next factor.
 	# DEFAULT: .997 (99.7 percent)
 	# ALLOWABLE VALUES: any value between 0. and 1.
-	"depreciation daily precent" .997
+	"depreciation daily percent" .997
 
 	# Second factor of depreciation calculation.
 	# Maximum day for fully depreciated ship or outfit in percent.
 	# This value will automatically include grace period so 1000 days actually means
 	# 1000 days + 7 days where 7 days is the grace period. After addition of grace period
 	# this value is then subtracted by current age of the outfit and divided by max age without grace period
-	# or in equation: "current age percent" = ("max age" - age) / ("max age" - "grace period") 
-	# where "max age" is the value below added with grace period. 
+	# or in equation: "current age percent" = ("max age" - age) / ("max age" - "grace period")
+	# where "max age" is the value below added with grace period.
 	# The final value for current depreciation percentage is:
 	# "min percent" + (1 - "min percent") * "remaining percent" * "current age percent"
-	# where "remaining percent" is what calculated from "depreciation daily precent" in gamerule above and
+	# where "remaining percent" is what calculated from "depreciation daily percent" in gamerule above and
 	# "min percent" is directly from "depreciation min percent" gamerule
 	# DEFAULT: .25 (25 percent)
 	# ALLOWABLE VALUES: any value between 0. and 1.
