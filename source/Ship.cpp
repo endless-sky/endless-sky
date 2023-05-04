@@ -1827,7 +1827,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				// Because velocity.Length() is not signed
 				// If velocity is lower than rate just consider it done so
 				// there's no chance it will skip over.
-				if(velocity.Length() <= HYPER_A)
+				if(velocity.Dot(angle.Unit()) <= exitV)
 				{
 					velocity = angle.Unit() * exitV;
 					hyperspaceCount = 0;
