@@ -1824,9 +1824,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					if(altV > 0. && altV < exitV)
 						exitV = altV;
 				}
-				// Because velocity.Length() is not signed
-				// If velocity is lower than rate just consider it done so
-				// there's no chance it will skip over.
+				// If current velocity is less than or equal to targeted velocity
+				// consider the hyperspace exit done.
 				if(velocity.Dot(angle.Unit()) <= exitV)
 				{
 					velocity = angle.Unit() * exitV;
