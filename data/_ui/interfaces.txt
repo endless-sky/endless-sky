@@ -74,6 +74,7 @@ color "waypoint" .1 .2 .9 1.
 color "waypoint back" 0. .3 .7 .5
 
 # Colors for the Escort HUD that is displayed in-flight.
+color "escort disabled" .4 .4 .4 0.
 color "escort present" .8 .8 .8 1.
 color "escort elsewhere" .4 .4 .6 1.
 color "escort not ready" .9 .8 0. 1.
