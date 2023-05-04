@@ -20251,7 +20251,7 @@ system Kugel
 	object
 		sprite star/g5
 		period 10
-	object
+	object "Sandswell"
 		sprite planet/desert0-b
 		distance 155.36
 		period 30.9833
@@ -30592,7 +30592,7 @@ system Sospi
 			sprite planet/dust3
 			distance 185
 			period 12.4028
-		object "Sandswell"
+		object
 			sprite planet/desert4
 			distance 322
 			period 28.4804

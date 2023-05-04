@@ -5960,27 +5960,132 @@ mission "Lost Racer 2"
 
 mission "Lost Racer 3"
 	landing
-	name "Find Artemis Renard in Sospi"
+	name "Find Artemis Renard in Kugel"
 	deadline
 	source "Pummel"
 	destination "Sandswell"
+	passengers 1
 	to offer
 		has "Lost Racer 2: done"
 	on offer
 		conversation
-			`The descent to the surface of the third planet is turbulent and slow, and neither you nor Mr. Renard leave the ship. Upon performing a scan from the surface, however, you realize that the radio signal is a result of the electrical discharges in the planet's atmosphere produced by the many volcanoes on the surface. After recalibrating your sensors to account for this, you are unable to detect any transponder signal matching Artemis' ship. She isn't here.`
-			`	Mr. Renard paces around the bridge of the <flagship>, prodding at consoles. "Are you sure you checked it? Is that the right frequency?"`
+			`The descent to the surface of the third planet is turbulent and slow, and neither you nor Mr. Renard leave the ship. Upon performing a scan from the surface, however, you realize that the radio signal is a result of the electrical discharges in the planet's atmosphere produced by the many volcanoes on the surface. After recalibrating your sensors to account for this, you are unable to detect any transponder signal matching Artemis' ship.`
+			`	Mr. Renard paces around the bridge of the <ship>, prodding at consoles. "Are you sure you checked it? Is that the right frequency?"`
+			choice
+				`	"Is there anywhere else she could be?"`
+					goto elsewhere
+				`	"Please calm down."`
+					goto calm
+			label calm
+			`	"Calm! Calm? You expect me to be calm? If your daughter was missing would you be calm?"`
+			choice
+				`	"I'm sorry. Is there anywhere else she could be?"`
+					goto elsewhere			
+			label elsewhere
+			`	"I'm not sure. The route went north from here, up through Elnath and Nihal and then through the uninhabited systems back to Mirfak. But we've checked every one of those systems! We should have seen a signal!" He stops for a moment, sitting down and putting his head in his hands. "We should have found her!" You clear the rest of your crew off the bridge. "I suppose I should just give you your money and go home."`
+			`	"What about there," you say, pointing to the neighboring system. "Kugel. It's off the circuit, so no one will have searched there, but if her hyperdrive malfunctioned or was sabotaged, she might have ended up there. It's only a single jump away."`
+			`	"Okay," he says, wiping his eyes with the corners of his sleeves. "Kugel it is, Captain."`
+				accept
+	on enter "Kugel"
+		dialog
+			"As soon as you enter the Kugel system, your sensors begin to pick up a weak radio signal coming from the second planet, this time matching exactly the frequency of Artemis Renard's transponder. It seems you have arrived in the correct system."
+
+mission "Lost Racer 4"
+	landing
+	name "Return Artemis Renard home."
+	source "Sandswell"
+	passengers 1
+	destination "Glory"
+	to offer
+		has "Lost Racer 3: done"
+	on offer
+		conversation
+			`Upon reaching the second planet, you pinpoint the radio signal to a valley in the southern hemisphere. You descend through a raging sandstorm; you have to rely entirely on instruments as the view from the <ship>'s bridge is almost entirely obscured. Soon, your scanners report that the source of the signal is less than a kilometer out, and after a few moments more, you begin to discern the vague shape of a crashed Flivver through the haze of dust. You land the <ship> next to the wreck, and both you and Mr. Renard go to exit the ship.`
+			`	Visibility is even worse on foot, and while Renard shouts over the howling wind, you cannot tell what he is saying. As you clear the front part of your own ship, you see the crashed ship before you.`
+			scene "scene/flivver crash"
+			`	Mr. Renard shouts with what you believe to be joy at seeing the parachute and scattered flares. The two of you wade through the sand and increasingly dense scattered debris as quickly as you can until you arrive at the rear hatch of the crashed Flivver. You struggle to turn the lock but eventually force it open, briefly letting the sand-filled air rush into the interior of the ship before you close it behind you. Inside, the ship is dark and depowered but more or less intact. At the fore of the craft, sitting in the half-submerged cockpit is the woman you saw on the broadcast, wiping the sand from her face.`
+			`	"Hmph," she says, somewhat weakly, "I thought you were going to be the Navy."`
+			`	Mr. Renard rushes to her and the two embrace.`
+			`	"And who's this?`
+			choice
+				`	"Captain <first> <last> of the <ship>."`
+					goto introduce
+				`	"I'm here to get you out of here."`
+					goto notime
+			label introduce
+			`	"A pilot, eh? I can appreciate that. I'd appreciate it more if you could fly me out of here, though."`
+			choice
+				`	"My ship is landed outside. Follow me."`
+					goto ship
+				`	"I have some questions."`
+			`	Artemis coughs. "Later, okay?"`
+				goto ship
+			label notime
+			`	"A real professional, eh? I can appreciate that. I think I'm about ready to get to it, then, if that's all right with you.`
+			choice
+				`	"My ship is landed outside. Follow me."`
+					goto ship
+				`	"I have some questions."`
+			`	Artemis coughs. "Later, okay?"`
+				goto ship
+			label ship
+			`	The three of you exit the crashed Flivver and make the trudge back to the <ship>. Artemis stumbles several times but the two of you steady her and eventually make it to your ship's airlock. You wipe the sand from your face and fetch your ship's first aid equipment, but to your surprise upon returning, Artemis seems remarkably uninjured despite the crash.`
+			`	"Oh, shove off, Captain. I'm fine. Ejection system in the ship, safety first, spare no expense. Wouldn't mind a visit to your galley, though."`
+			choice
+				`	"Of course."`
+					goto galley
+				`	"An ejection system? I've never considered that."`
+			`	"Really? What is it with you spacers and 'going down with the ship' anyway?"`
+				goto galley
+			label galley
+			`	You don't think you've ever seen someone devour a sleeve of freeze-dried peas as quickly or with as much verve as Artemis does. After eating her way through several more of the <ship>'s varieties of stored foodstuffs, she eventually slows down, though the hungry look on her face remains. Her father sits beside her, tightly holding her hand.`
+			`	"I suppose you have some questions," she says, "both of you. Well, I hope you do, at least."`
+			choice
+				`	"Why did you crash?`
+					goto crash
+				`	"That was a beautiful ship you had there. I've never seen a Flivver quite like that."`
+					goto beautiful
+				`	"I'll leave the questions to your father."`
+					goto noquestions
+			label crash
+			`	Description of why she crashed.`
+			label beautiful
+			`	"You have good taste, Captain. It's modified for racing: lighter hull plating, no weapon mounts, ample engines, of course. We've got a dozen for all the different races, but that one was a personal favorite."`
+			choice
+				`	"Why did you crash?`
+					goto crash
+				`	"I have no more questions."`
+					goto noquestions
+			label noquestions
+			`	You have no more questions.`
 				accept
 	on complete
+		conversation
+			`You have returned Artemis Renard home.`
 		payment 150000
-		#event "artemis renard ship rebuilt" 30
+		event "artemis renard recovered" 40
+
+event "artemis renard recovered"
 
 mission "Lost Racer Epilogue"
-	name `Retrieve a "special gift" from the Renard family on <destination>.`
+	landing
+	name `Retrieve some "surplus equipment" from Artemis Renard on <destination>.`
+	source
+		not attributes uninhabited
 	destination
 		planet "Glory"
 	to offer
 		has "Lost Racer 3: done"
-		has "artemis renard ship rebuilt"
+		has "event: artemis renard recovered"
+	on offer
+		conversation
+			`While you are checking incoming messages while landed on <source>, you notice one from Artemis Renard, the crashed racing pilot who you rescued a couple months ago:`
+			`"Captain <last>,`
+			`I'd like to thank you again for your timely rescue. Recovering from the ordeal has been a long process, of course, but a worthwhile one. Unfortunately that length of time has meant that following the settlement with Megaparsec and as I've been working my way back into the various circuits, we've built up a surplus of increasingly outdated equipment and while we could of course simply have it scrapped locally, we were hoping that you might join us on <destination> to see if you can put it to better use.`
+			`Sincerely,`
+			`Artemis Renard`
+				accept
 	on complete
+		conversation
+			`You speak with the Renards again.`
 		give ship "Racing Flivver" `B-168 "Moonfox"`
