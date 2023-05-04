@@ -1984,7 +1984,7 @@ system Acamar
 		sprite planet/ice0
 		distance 396.53
 		period 96.1085
-	object
+	object "Pummel"
 		sprite planet/rock9-b
 		distance 798.37
 		period 274.570
@@ -30592,7 +30592,7 @@ system Sospi
 			sprite planet/dust3
 			distance 185
 			period 12.4028
-		object
+		object "Sandswell"
 			sprite planet/desert4
 			distance 322
 			period 28.4804

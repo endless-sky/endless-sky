@@ -5830,7 +5830,7 @@ mission "Lost Racer 1"
 	description "Bring the father of a missing racing pilot to Sunracer by <date>, passing through the <waypoints> systems. You will be paid <payment>."
 	minor
 	passengers 1
-	deadline 7
+	deadline
 	source
 		near "Kursa" 4
 		attributes "paradise"
@@ -5838,8 +5838,7 @@ mission "Lost Racer 1"
 	waypoint "Volax"
 	waypoint "Cardax"
 	waypoint "Moktar"
-	destination
-		planet "Sunracer"
+	destination "Sunracer"
 	on offer
 		conversation
 			`While sitting in the <origin> spaceport waiting for your ship to be refueled, you notice a commotion near one of the other docks; someone appears to be shouting. Upon approaching, you see a well-dressed older man in a heated discussion with a Navy officer standing outside a parked Frigate while it is being loaded with cargo. Eventually, after several more exchanged shouts and some disapproving motions by the officer, the man turns away, exasperated, before he sees you and walks over.`
@@ -5894,12 +5893,10 @@ mission "Lost Racer 1"
 
 mission "Lost Racer 2"
 	name "Find Artemis Renard in Acamar"
-	source
-		planet "Sunracer"
-	destination
-		planet "Tinker"
+	source "Sunracer"
+	destination "Pummel"
 	passengers 1
-	deadline 7
+	deadline
 	to offer
 		has "Lost Racer 1: done"
 	to fail
@@ -5926,68 +5923,65 @@ mission "Lost Racer 2"
 				`	"So what's the plan from here?"`
 					goto plan
 			label suspicious
-			`	Mr. Renard's suddenly speaks more quietly. "I thought so too. I think it might have been sabotage."`
+			`	Mr. Renard suddenly speaks more quietly. "I thought so too. I think it might have been sabotage."`
 			`	"What do you mean?"`
-			`	"Every day that we don''t find Artemis, Megaparsec stock dives further and further. I've spend enough time making money to know that there's no faster way to bruise a competitor than scandal. I think someone sabotaged the race and went after my daughter because they knew it would make headlines and they knew that could make them money."`
+			`	"Every day that we don't find Artemis, Megaparsec stock dives further and further. I've spend enough time making money to know that there's no faster way to bruise a competitor than scandal. I think someone sabotaged the race and went after my daughter because they knew it would make headlines and they knew that could make them money."`
 			choice
-			`	"Who do you think did it?"`
-				goto perp
-			`	"I'm not sure I'm convinced. Couldn't she just have crashed?"`
-				goto inept
-			label inept
+				`	"Who do you think did it?"`
+					goto perp
+				`	"I'm not sure I'm convinced. Couldn't she just have crashed?"`
 			`	Mr. Renard scoffs. "She's been named the best racing pilot in the Republic three times! She didn't just crash."`
 			choice
 				`	"Fair enough. So if this was sabotage, who do you think did it?"`
 					goto perp
 				`	"I didn't mean to cast doubt on her skill; I just meant that I'm not sure this has to be a conspiracy."`
-			`	""`
+					goto noconspiracy
 			label perp
-			`	"I'm not sure," Mr. Renard says, "Maybe the Syndicate, maybe Betelgeuse or Lionheart."`
+			`	"I'm not sure," Mr. Renard says, "Maybe the Syndicate, maybe Betelgeuse or Lionheart. Each could benefit from airing Megaparsec's ineptitude."`
 			choice
 				`	"So what's your plan? How are we going to find her?"`
 					goto plan				
+			label noconspiracy
+			`	Mr. Renard sighs. "Maybe not. I just want her back, you know." He pulls out a photo of her; it looks a couple of years younger than the one on the news broadcast, moving it slightly between his fingers so that it is evenly lit. "They said she was last seen in Diphida. If she was going north, as she should have been, then we should keep looking in Acamar. It's an uninhabited system, and with surveillance down, whatever went wrong would have happened long before anyone else even entered the system.`
+			choice
+				`	"I'll set a course for Acamar."`
+					goto acamar
 			label plan
-			`	"They said she was last seen in Diphida. If she was going north, as she should have been, they probably caught up to her in Acamar. It's an unihabited system,and with surveillance down, they could have disabled her ship before any of the other racers entered the system. But if it was sabotage, her transponder was probably disabled; that's why no one's found her with scans.`
+			`	"They said she was last seen in Diphida. If she was going north, as she should have been, they probably caught up to her in Acamar. It's an uninhabited system, and with surveillance down, whoever did it could have disabled her ship before any of the other racers entered the system.`
 			choice
-				`	"How are we supposed to find her if her transponder is disabled?"`
-					goto how
-			label how
-			`	"Artemis' engines were a custom modification of Deep Sky atomics. They leak a trace amount of tritium; not enough to be dangerous, but your ship's sensors should be able to detect her exhaust residue." He sighs. "So, Acamar it is, then, Captain <last>?"`
-			choice
-				`	"I'll set course for Acamar. You say you're sure she would have passed through there on the circuit. That's our best bet."`
+				`	"I'll set a course for Acamar."`
 					goto acamar					
 			label acamar
-			`	"I agree, Captain. We need to get moving immediately."`
+			`	"Thank you, Captain. We need to get moving immediately."`
 				accept
+	on enter "Acamar"
+		dialog
+			"Upon entering the Acamar system, your sensors detect a faint radio signal coming from the third planet in the system, but are unable to resolve any details without landing to take a closer scan."
 	on complete
-		conversation
-			"Artemis Renard's ship is not in this system."
 		payment 100000
 
 mission "Lost Racer 3"
+	landing
 	name "Find Artemis Renard in Sospi"
-	passengers 1
-	deadline 7
-	source
-		planet "Sunracer"
-	destination
-		planet "Maelstrom"
+	deadline
+	source "Pummel"
+	destination "Sandswell"
 	to offer
-		has "Lost Racer 1: done"
-		not "Lost Racer 2: done"
+		has "Lost Racer 2: done"
 	on offer
 		conversation
-			"Artemis in Sospi"
-	on complete
-		payment 150000
-		event "artemis renard ship rebuilt" 30
+			`The descent to the surface of the third planet is turbulent and slow, and neither you nor Mr. Renard leave the ship. Upon performing a scan from the surface, however, you realize that the radio signal is a result of the electrical discharges in the planet's atmosphere produced by the many volcanoes on the surface. After recalibrating your sensors to account for this, you are unable to detect any transponder signal matching Artemis' ship.`
+				accept
+	#on complete
+	#	payment 150000
+	#	event "artemis renard ship rebuilt" 30
 
 mission "Lost Racer Epilogue"
 	name `Retrieve a "special gift" from the Renard family on <destination>.`
 	destination
 		planet "Glory"
 	to offer
-		has "Lost Racer 3 Sospi: done"
+		has "Lost Racer 3: done"
 		has "artemis renard ship rebuilt"
 	on complete
 		give ship "Racing Flivver" `B-168 "Moonfox"`
