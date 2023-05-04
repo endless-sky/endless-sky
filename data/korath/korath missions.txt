@@ -300,7 +300,7 @@ mission "Korath Stormhold Artifacts [2] Drones"
 		not "Hai Reveal [B12] Devil-Hide Battle: offered"
 	on offer
 		log "Factions" "Korath" `According to the Unfettered, the Korath were intelligent and well-cultured reptiles, until their civilization fell apart a few centuries ago. They peacefully coexisted with the Hai until they got desperate for resources and invaded. The Hai valiantly defended themselves against the Korath, but eventually the Korath nearly wiped themselves out through infighting. The few survivors live east of Syndicate space and frequently raid nearby human settlements.`
-		log `There was an abundance of Korath artifacts at Stormhold, but Batu fears Stormhold was merely a staging area and sales distribution site. He expects this is part of a larger Korath outfit sales operation that is based on a nearby planet.`
+		log `There was an abundance of Korath artifacts at Stormhold, but Batu fears Stormhold was merely a staging area and sales distribution site. He expects this to be part of a larger Korath outfit sales operation that is based on a nearby planet.`
 		conversation
 			`Choot'k greets you, with a worried-looking Batu at his side. "Welcome back, Captain <last>! We found many spoils of war on this planet. Sadly, there weren't any jump drives," he says, winking. "The pirates had plenty of other gadgetry littering their bunkers, including limited-access human goods and Hai equipment. We've found a few Korath outfits, too, including some quite advanced ones. It looks like these pirates must have gotten lucky and managed to actually loot one of their ships! Navy inventory crewmen are gathering it to secure areas for inventory and analysis before divvying it up."`
 				to display
