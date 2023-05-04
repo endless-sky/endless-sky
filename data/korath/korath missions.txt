@@ -273,7 +273,7 @@ mission "Small Scale Delivery"
 
 mission "Korath Stormhold Artifacts [1] Coded Message"
 	landing
-	name "Go to <planet>"
+	name "Security issue on <planet>"
 	description `Head to <planet> to deal with a "security issue."`
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai" "Hai (Unfettered)" "Pirate"
@@ -345,22 +345,17 @@ mission "Korath Stormhold Artifacts [2] Drones"
 				`	"Sounds foreboding."`
 					goto foreboding
 				`	"When do I get my cut of the spoils?"`
-			`	"Ha! I'd think you were a True Hai if it weren't for the missing fur. Don't worry, Captain, I'll make sure the others give you a suitable payment."`
-			`	Batu sighs as Choot'k continues. "We've made an unpleasant discovery recently. The Korath have stealth drones hiding in two pirate systems: Alcyone and Almach. They've been using these to spy on nearby traffic, including us. It's also... eh," he turns to Batu, "read that technical explanation again, Batu."`
-				goto next
+			`	"Ha! I'd think you were a True Hai if it weren't for the missing fur. Don't worry, Captain, I'll make sure the others give you a suitable payment.`
 			label foreboding
-			`	"Indeed it does, especially with our recent discovery. The Korath have stealth drones hiding in two pirate systems: Alcyone and Almach. They've been using these to spy on nearby traffic, including us. It's also... eh," he turns to Batu, "read that technical explanation again, Batu."`
-			label next
-			`	Batu nods and pulls up something on his datapad, which he recites mechanically. "The drone fleet acts as a phase array transceiver and hyperwave sounder. A phase array uses signals from multiple sources (the drones) transmitting or receiving slightly out of phase, to emulate a much larger antenna. It's the same principle as phase array radars used for meteorology and phase array telescopes for astronomy. Each drone's communication system is not much stronger than a human hyperspace relay, but the fleet acts together as one powerful relay. We think it's able to relay signals as far as 120 light-years, without the need for starlanes. What's most concerning is that relaying is only a secondary functionality; they're mostly observation systems.`
-			`	He slides his finger across the pad and continues. "They were hard to detect, and have probably been hiding for years, perhaps decades. From debris analysis, we determined the drones are painted with a material that tricks human sensors, so seeing them is tough. Their transmissions are cleverly disguised as ambient noise, so you can't listen for them either. However, we've developed a quad tree search algorithm to find the probes. The algorithm detects everywhere the probes cannot be, and all that's left are probe locations." He looks up from his datapad at last.`
-			`	Choot'k says, "We've destroyed the ones in this system, but we need you to fly to Almach and destroy the drones there."`
+			`	"We've made an unpleasant discovery recently," says General Choot'k. "The Korath put stealth drones in two pirate systems: Alcyone and Almach. It's a tactic the Korath used against us centuries ago. The drones spy on traffic in nearby systems, and report back to the Korath."`
+			`	Batu looks more hopeful. "The Unfettered helped us modify our sensor algorithms to detect these drones. You can easily do the same. We've destroyed the drones in this system, but someone must fly to Almach and destroy the drones there."`
 			choice
 				`	"Just blow up drones? Why do you need me for this?"`
 					goto whyme
-				`	"I'm surprised you don't want the fight."`
+				`	"I'm surprised you don't want the fight, General Choot'k."`
 				`	"Sounds like target practice to me."`
 					goto practice
-			`	"My troops need me here to command the pacification of Stormhold. I wish I could come with; it will be a glorious fight." He almost looks sad as he says that. "The largest ship we have seen since the Korath war now guards the drones."`
+			`	Choot'k responds. "My troops need me here to command the pacification of Stormhold. I wish I could come with; it will be a glorious fight." He almost looks sad as he says that. "The largest ship we have seen since the Korath war now guards the drones."`
 				goto navy
 			label practice
 			`	Choot'k looks worried. "You may be target practice if you aren't prepared. The drones are guarded now, by the largest ship we've seen since the Korath war. You'll need to dodge it while shooting the drones."`
