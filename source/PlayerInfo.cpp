@@ -1431,6 +1431,10 @@ void PlayerInfo::Land(UI *ui)
 			++it;
 	}
 
+	// "Unload" all fighters, so they will get recharged, etc.
+	for(const shared_ptr<Ship> &ship : ships)
+		ship->UnloadBays();
+
 	// Ships that are landed with you on the planet should fully recharge
 	// and pool all their cargo together. Those in remote systems restore
 	// what they can without landing.
@@ -1447,14 +1451,6 @@ void PlayerInfo::Land(UI *ui)
 					ship->Cargo().TransferAll(cargo);
 					if(!ship->GetPlanet())
 						ship->SetPlanet(planet);
-					// Recharge and unload carried ships.
-					for(const auto &bay : ship->Bays())
-						if(bay.ship)
-						{
-							bay.ship->Recharge(hasSpaceport);
-							bay.ship->Cargo().TransferAll(cargo);
-						}
-					ship->UnloadBays();
 				}
 				// Ships that cannot land with the flagship choose the most suitable planet
 				// in the system.
@@ -1821,7 +1817,7 @@ void PlayerInfo::UpdateCargoCapacities()
 	int bunks = 0;
 	flagship = FlagshipPtr();
 	for(const shared_ptr<Ship> &ship : ships)
-		if(ship->GetSystem() == system && !ship->IsParked() && !ship->IsDisabled())
+		if(ship->GetPlanet() == planet && !ship->IsParked() && !ship->IsDisabled())
 		{
 			size += ship->Attributes().Get("cargo space");
 			int crew = (ship == flagship ? ship->Crew() : ship->RequiredCrew());
