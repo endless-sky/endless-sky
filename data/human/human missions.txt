@@ -5957,8 +5957,6 @@ mission "Lost Racer 2"
 	on enter "Acamar"
 		dialog
 			"Upon entering the Acamar system, your sensors detect a faint radio signal coming from the third planet in the system, but are unable to resolve any details without landing to take a closer scan."
-	on complete
-		payment 100000
 
 mission "Lost Racer 3"
 	landing
@@ -5970,11 +5968,12 @@ mission "Lost Racer 3"
 		has "Lost Racer 2: done"
 	on offer
 		conversation
-			`The descent to the surface of the third planet is turbulent and slow, and neither you nor Mr. Renard leave the ship. Upon performing a scan from the surface, however, you realize that the radio signal is a result of the electrical discharges in the planet's atmosphere produced by the many volcanoes on the surface. After recalibrating your sensors to account for this, you are unable to detect any transponder signal matching Artemis' ship.`
+			`The descent to the surface of the third planet is turbulent and slow, and neither you nor Mr. Renard leave the ship. Upon performing a scan from the surface, however, you realize that the radio signal is a result of the electrical discharges in the planet's atmosphere produced by the many volcanoes on the surface. After recalibrating your sensors to account for this, you are unable to detect any transponder signal matching Artemis' ship. She isn't here.`
+			`	Mr. Renard paces around the bridge of the <flagship>, prodding at consoles. "Are you sure you checked it? Is that the right frequency?"`
 				accept
-	#on complete
-	#	payment 150000
-	#	event "artemis renard ship rebuilt" 30
+	on complete
+		payment 150000
+		#event "artemis renard ship rebuilt" 30
 
 mission "Lost Racer Epilogue"
 	name `Retrieve a "special gift" from the Renard family on <destination>.`
