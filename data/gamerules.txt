@@ -82,6 +82,6 @@ gamerules
 	# "min percent" + (1 - "min percent") * "remaining percent" * "current age percent"
 	# where "remaining percent" is what calculated from "depreciation daily percent" in gamerule above and
 	# "min percent" is directly from "depreciation min percent" gamerule
-	# DEFAULT: .25 (25 percent)
-	# ALLOWABLE VALUES: any value between 0. and 1.
+	# DEFAULT: 1000 (1000 days)
+	# ALLOWABLE VALUES: any integer >= 1.
 	"depreciation max age" 1000
