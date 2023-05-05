@@ -145,7 +145,7 @@ outfit `Type I "Lepido" Engine`
 	"flare sound" "ion small"
 	"reverse flare sound" "ion small"
 	"steering flare sound" "ion small"
-	description `This thruster pair is one of the three primary drive types produced by the Xapleaux. Unlike the powerful Coleo or space efficient Haltere engines the Lepido is incredibly massive and produces very little thrust per ton. However, this "caterpillar"-style drive uses its much more significant, multi-staged turbine length to produce thrust extremely efficiently with low power requirements and little waste heat. For this reason it is popular on civilian ships that can afford to run it on solar power alone.`
+	description `This thruster pair is one of the three primary drive types produced by the Xapleaux. Unlike the powerful Coleo or space efficient Haltere engines the Lepido is incredibly massive and produces very little thrust per ton. However, this "caterpillar-style" drive uses its much more significant, multi-staged turbine length to produce thrust extremely efficiently with low power requirements and little waste heat. For this reason it is popular on civilian ships that can afford to run it on solar power alone.`
 	description "	Like all Xapleaux engines which are mounted on the long side spars away from the center of mass, though vessels which utilize this engine often have spars so thick that the definition holds only tenuously. The reversible, turbine-style exhaust facilitates reverse thrust just as efficiently and doubles as steering by using opposing thrust on either side. Only a ship with a specialized I Ring Cradle can mount this engine."
 
 outfit `Type V "Strepsip" Engine`
