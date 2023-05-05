@@ -17,7 +17,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define DATA_WRITER_H_
 
 #include <algorithm>
+#include <functional>
 #include <map>
+#include <ostream>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -33,10 +35,12 @@ class DataNode;
 // automatically adds quotation marks around strings if they contain whitespace.
 class DataWriter {
 public:
-	// Constructor, specifying the file to write.
-	explicit DataWriter(const std::string &path);
+	// Constructor, specifying the file to write
+	// and the specified character (tab or space) for indentation.
+	explicit DataWriter(const std::string &path, const char indentChar = '\t');
 	// Constructor for a DataWriter that will not save its contents automatically
-	DataWriter();
+	// and uses the specified character (tab or space) for indentation.
+	DataWriter(const char indentChar = '\t');
 	DataWriter(const DataWriter &) = delete;
 	DataWriter(DataWriter &&) = delete;
 	DataWriter &operator=(const DataWriter &) = delete;
@@ -47,33 +51,55 @@ public:
 
 	// Save the contents to a file.
 	void SaveToPath(const std::string &path);
+	// Save the contents to a stream.
+	void SaveToStream(std::ostream &stream);
+	// Pass the contents to a function.
+	void SaveToFunction(const std::function<void(std::string)> func);
+
+	// Writes the contents of the string without any escaping, quoting or
+	// any other kind of modification.
+	DataWriter &WriteRaw(const std::string &c);
+	template <class C>
+	DataWriter &WriteRaw(const C &c);
+	// Writes the string that separates two tokens. If no tokens are present on the current line,
+	// it writes the indentation string instead.
+	DataWriter &WriteSeparator();
 
 	// The Write() function can take any number of arguments. Each argument is
 	// converted to a token. Arguments may be strings or numeric values.
 	template <class A, class ...B>
-	void Write(const A &a, B... others);
+	DataWriter &Write(const A &a, B... others);
 	// Write the entire structure represented by a DataNode, including any
 	// children that it has.
-	void Write(const DataNode &node);
+	DataWriter &Write(const DataNode &node);
 	// End the current line. This can be used to add line breaks or to terminate
 	// a line you have been writing token by token with WriteToken().
-	void Write();
+	DataWriter &Write();
 
 	// Begin a new line that is a "child" of the previous line.
-	void BeginChild();
+	DataWriter &BeginChild();
 	// Finish writing a block of child nodes and decrease the indentation.
-	void EndChild();
+	DataWriter &EndChild();
 
 	// Write a comment. It will be at the current indentation level, and will
 	// have "# " inserted before it.
-	void WriteComment(const std::string &str);
+	DataWriter &WriteComment(const std::string &str);
 
 	// Write a token, without writing a whole line. Use this very carefully.
-	void WriteToken(const char *a);
-	void WriteToken(const std::string &a);
+	DataWriter &WriteToken(const char *a);
+	DataWriter &WriteToken(const std::string &a);
 	// Write a token of any arithmetic type.
 	template <class A>
-	void WriteToken(const A &a);
+	DataWriter &WriteToken(const A &a);
+	// Writes a series of tokens without terminating the line.
+	template <class A, class ...B>
+	DataWriter &WriteToken(const A &a, B... others);
+	// Write the tokens of this DataNode without writing its children,
+	// then ends the current line.
+	DataWriter &WriteTokens(const DataNode &node);
+
+	// Changes the separator used between tokens. The default is a single space.
+	DataWriter &SetSeparator(const std::string &sep);
 
 
 private:
@@ -81,11 +107,14 @@ private:
 	std::string path;
 	// Current indentation level.
 	std::string indent;
+	// The character used for indentation.
+	const char indentChar;
 	// Before writing each token, we will write either the indentation string
 	// above, or this string.
-	static const std::string space;
+	std::string separator = " ";
 	// Remember which string should be written before the next token. This is
-	// "indent" for the first token in a line and "space" for subsequent tokens.
+	// "indent" for the first token in a line and "separator" for subsequent tokens.
+	// Null pointer signals that this string was already written for the next token.
 	const std::string *before;
 	// Compose the output in memory before writing it to file.
 	std::ostringstream out;
@@ -96,23 +125,39 @@ private:
 // The Write() function can take any number of arguments, each of which becomes
 // a token. They must be either strings or numeric types.
 template <class A, class ...B>
-void DataWriter::Write(const A &a, B... others)
+DataWriter &DataWriter::Write(const A &a, B... others)
 {
 	WriteToken(a);
 	Write(others...);
+	return *this;
 }
 
 
 
 // Write any numeric type as a single token.
 template <class A>
-void DataWriter::WriteToken(const A &a)
+DataWriter &DataWriter::WriteToken(const A &a)
 {
 	static_assert(std::is_arithmetic<A>::value,
 		"DataWriter cannot output anything but strings and arithmetic types.");
 
-	out << *before << a;
-	before = &space;
+	WriteSeparator();
+	out << a;
+	before = &separator;
+	return *this;
+}
+
+
+
+// Writes a series of tokens without terminating the line.
+template <class A, class ...B>
+DataWriter &DataWriter::WriteToken(const A &a, B... others)
+{
+	WriteToken(a);
+	const std::size_t n = sizeof...(B);
+	if(n)
+		WriteToken(others...);
+	return *this;
 }
 
 

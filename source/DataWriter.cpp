@@ -22,15 +22,9 @@ using namespace std;
 
 
 
-// This string constant is just used for remembering what string needs to be
-// written before the next token - either the full indentation or this, a space:
-const string DataWriter::space = " ";
-
-
-
 // Constructor, specifying the file to save.
-DataWriter::DataWriter(const string &path)
-	: DataWriter()
+DataWriter::DataWriter(const string &path, const char indentChar)
+	: DataWriter(indentChar)
 {
 	this->path = path;
 }
@@ -38,8 +32,8 @@ DataWriter::DataWriter(const string &path)
 
 
 // Constructor for a DataWriter that will not save its contents automatically
-DataWriter::DataWriter()
-	: before(&indent)
+DataWriter::DataWriter(const char indentChar)
+	: indentChar(indentChar), before(&indent)
 {
 	out.precision(8);
 }
@@ -56,20 +50,69 @@ DataWriter::~DataWriter()
 
 
 // Save the contents to a file.
-void DataWriter::SaveToPath(const std::string &filepath)
+void DataWriter::SaveToPath(const string &filepath)
 {
 	Files::Write(filepath, out.str());
 }
 
 
 
-// Write a DataNode with all its children.
-void DataWriter::Write(const DataNode &node)
+// Save the contents to a stream.
+void DataWriter::SaveToStream(ostream &stream)
 {
-	// Write all this node's tokens.
-	for(int i = 0; i < node.Size(); ++i)
-		WriteToken(node.Token(i).c_str());
-	Write();
+	stream << out.str();
+}
+
+
+
+// Pass the contents to a function.
+void DataWriter::SaveToFunction(const function<void(string)> func)
+{
+	func(out.str());
+}
+
+
+
+// Writes the contents of the string without any escaping, quoting or
+// any other kind of modification.
+DataWriter &DataWriter::WriteRaw(const string &c)
+{
+	out << c;
+	return *this;
+}
+
+
+
+// Raw write for numeric types.
+template <class C>
+DataWriter &DataWriter::WriteRaw(const C &c)
+{
+	static_assert(is_arithmetic<C>::value,
+		"DataWriter cannot output anything but strings and arithmetic types.");
+	out << c;
+	return *this;
+}
+
+
+
+// Writes the string that separates two tokens. If no tokens are present on the current line,
+// it writes the indentation string instead.
+DataWriter &DataWriter::WriteSeparator()
+{
+	if(before)
+	{
+		out << *before;
+		before = nullptr;
+	}
+	return *this;
+}
+
+
+
+// Write a DataNode with all its children.
+DataWriter &DataWriter::Write(const DataNode &node)
+{
+	WriteTokens(node);
 
 	// If this node has any children, call this function recursively on them.
 	if(node.HasChildren())
@@ -81,45 +124,50 @@ void DataWriter::Write(const DataNode &node)
 		}
 		EndChild();
 	}
+	return *this;
 }
 
 
 
 // Begin a new line of the file.
-void DataWriter::Write()
+DataWriter &DataWriter::Write()
 {
 	out << '\n';
 	before = &indent;
+	return *this;
 }
 
 
 
 // Increase the indentation level.
-void DataWriter::BeginChild()
+DataWriter &DataWriter::BeginChild()
 {
-	indent += '\t';
+	indent += indentChar;
+	return *this;
 }
 
 
 
 // Decrease the indentation level.
-void DataWriter::EndChild()
+DataWriter &DataWriter::EndChild()
 {
 	indent.erase(indent.length() - 1);
+	return *this;
 }
 
 
 
 // Write a comment line, at the current indentation level.
-void DataWriter::WriteComment(const string &str)
+DataWriter &DataWriter::WriteComment(const string &str)
 {
 	out << indent << "# " << str << '\n';
+	return *this;
 }
 
 
 
 // Write a token, given as a character string.
-void DataWriter::WriteToken(const char *a)
+DataWriter &DataWriter::WriteToken(const char *a)
 {
 	// Figure out what kind of quotation marks need to be used for this string.
 	bool needsQuoting = !*a || *a == '#';
@@ -131,8 +179,8 @@ void DataWriter::WriteToken(const char *a)
 	}
 
 	// Write the token, enclosed in quotes if necessary.
-	out << *before;
-	if(needsQuoting && hasQuote)
+	WriteSeparator();
+	if(hasQuote)
 		out << '`' << a << '`';
 	else if(needsQuoting)
 		out << '"' << a << '"';
@@ -141,13 +189,34 @@ void DataWriter::WriteToken(const char *a)
 
 	// The next token written will not be the first one on this line, so it only
 	// needs to have a single space before it.
-	before = &space;
+	before = &separator;
+	return *this;
 }
 
 
 
 // Write a token, given as a string object.
-void DataWriter::WriteToken(const string &a)
+DataWriter &DataWriter::WriteToken(const string &a)
 {
 	WriteToken(a.c_str());
+	return *this;
+}
+
+
+
+// Write the tokens of this DataNode without writing its children.
+DataWriter &DataWriter::WriteTokens(const DataNode &node)
+{
+	for(int i = 0; i < node.Size(); ++i)
+		WriteToken(node.Token(i).c_str());
+	Write();
+	return *this;
+}
+
+
+// Changes the separator used between tokens. The default is a single space.
+DataWriter &DataWriter::SetSeparator(const string &sep)
+{
+	separator = sep;
+	return *this;
 }
