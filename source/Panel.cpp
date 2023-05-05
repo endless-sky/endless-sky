@@ -30,6 +30,14 @@ using namespace std;
 
 
 
+Panel::Panel() noexcept
+{
+	// Clear any triggered commands when starting a new panel
+	Command::InjectClear();
+}
+
+
+
 // Clean up any stale injected commands
 Panel::~Panel()
 {

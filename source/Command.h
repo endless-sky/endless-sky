@@ -147,11 +147,14 @@ public:
 	// Allow UI's to simulate keyboard input
 	static void InjectOnce(const Command& command);
 	static void InjectSet(const Command& command);
+	static void InjectClear();
 	static void InjectUnset(const Command& command);
 	static Command Get(const std::string& description);
 	// Register an event, and return its value. This event gets triggered
 	// whenever we call InjectSet/InjetUnset
 	static uint32_t EventID();
+
+	static void DebugDumpGestures();
 
 private:
 	explicit Command(uint64_t state);

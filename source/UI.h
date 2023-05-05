@@ -96,7 +96,7 @@ private:
 
 	uint32_t lastTap = 0;
 	// Track which finger was used for zone/panels, so we send followup motion/
-	// finger controls to the correct one. If we want to be able to 
+	// finger controls to the correct one.
 	int zoneFingerId = -1;
 	int panelFingerId = -1;
 };

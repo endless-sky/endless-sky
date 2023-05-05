@@ -174,7 +174,7 @@ void Command::LoadSettings(const string &path)
 			Command command = it->second;
 			if(node.Token(1) == "gesture" && node.Size() >= 3)
 			{
-				commandForGesture[static_cast<Gesture::GestureEnum>(node.Value(2))] = command;
+				SetGesture(command, static_cast<Gesture::GestureEnum>(node.Value(2)));
 			}
 			else
 			{
@@ -241,18 +241,19 @@ void Command::SetKey(Command command, int keycode)
 // Set the gesture that is mapped to the given command
 void Command::SetGesture(Command command, Gesture::GestureEnum gesture)
 {
-	if(gesture == Gesture::NONE)
+	for(auto it = commandForGesture.begin(); it != commandForGesture.end();)
 	{
-		for(auto it = commandForGesture.begin(); it != commandForGesture.end(); ++it)
+		if(it->second == command)
 		{
-			if(it->second == command)
-			{
-				commandForGesture.erase(it);
-				break;
-			}
+			it = commandForGesture.erase(it);
+		}
+		else
+		{
+			++it;
 		}
 	}
-	else
+
+	if(gesture != Gesture::NONE)
 	{
 		commandForGesture[gesture] = command;
 	}
@@ -525,6 +526,19 @@ void Command::InjectOnce(const Command& command)
 	event.key.state = SDL_RELEASED;
 	SDL_PushEvent(&event);
 }
+
+
+
+// Clear any set commands
+void Command::InjectClear()
+{
+	SDL_Event event{};
+	event.type = EventID();
+	event.key.windowID = simulated_command.exchange(0);
+	event.key.state = SDL_RELEASED;
+	SDL_PushEvent(&event);
+}
+
 
 
 
