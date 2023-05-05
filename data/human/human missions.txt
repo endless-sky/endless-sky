@@ -5283,7 +5283,7 @@ mission "Wool Smuggling 1"
 				`	"I'm still not going to do it."`
 					goto decline
 			label payment
-			`	"Two hundred thousand credits for the job." You wonder how he's able to pay so much for a small delivery job.`
+			`	"Ninety thousand credits for the job." You wonder how he's able to pay so much for a small delivery job.`
 			choice
 				`	"Fine, I'll do it."`
 					goto accept
@@ -5313,7 +5313,7 @@ mission "Wool Smuggling 2"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 200000
+		payment 90000
 		dialog `Your cargo of woolen garments is unloaded by several bulky workers led by a one-armed woman. She hands you <payment> for the trouble of transport, then says, "Thanks for the shipment. I know that you captains think that we're all bad, but I'm glad that you were able to aid the more friendly among us."`
 
 
@@ -5565,6 +5565,79 @@ mission "Quicksilver Mixup 1"
 			
 
 event "quicksilver mixup 2 available"
+
+
+mission "Quicksilver Mixup 2"
+	name "Misposted Mail Delivery"
+	description "Deliver <tons> of misposted mail from <origin> to <planet> by <date> and then come back with the return shipment. You will be paid <payment> after you return from <planet>."
+	minor
+	deadline 10 1
+	source "Silver"
+	destination "Quicksilver"
+	cargo "misposted mail" 38
+	"apparent payment" 100000
+	to offer
+		has "Quicksilver Mixup 1: done"
+		has "event: quicksilver mixup 2 available"
+	on offer
+		conversation
+			`As you walk through <origin>'s spaceport, somebody wearing office attire and carrying a tablet power walks up to you after ending a hurried conversation with another pilot.`
+			`	"Captain! I work for the postmaster's office. The regular pilot who carries misposted mail to <planet> and back couldn't make it this month, some mechanical issues with his ship, I'm told. Would you be willing to carry this month's load there by <day> and then return with the mail from <planet>? We'll pay you what he'd be paid: <payment>."`
+			choice
+				`	"Oh, so you guys did set up that regular shipment after all!"`
+					goto context
+
+				`	"Sure, how much mail are we talking about?"`
+					goto shipment
+
+				`	"Sorry, but I'm not heading in that direction."`
+					goto refuse
+
+			label context
+			`	The mail employee appears confused for a moment, leaning his head to the side slightly.`
+			choice
+				`	"I once delivered a misposted package like that, and the clerk mentioned that it happened so often somebody should set up a regular delivery."`
+				`	"Never mind. What's the size of the shipment?"`
+					goto shipment
+			`	The post employee smiles and responds, "Oh! That was me, actually, back when I worked as a clerk for the post office. I was sick of always having that same conversation with so many pilots a day, so I went out and found a captain to set up a regular delivery with and made the proposal to my boss, who was just as sick of my and the <planet> postmaster's endless reports. Got a bonus and promotion for it; I'm now responsible for the delivery's management, instead! Anyways, are you interested in covering for them?"`
+			choice
+				`	"Yeah, what's the size of the shipment?"`
+					goto shipment
+				`	"Sorry, but I'm not able to work that into my plans."`
+					goto refuse
+
+			label shipment
+			`	The man takes a look at his tablet and says, "This week, it totaled... <tons> of letters and miscellaneous packages here, and then 29 tons to be brought back from Quicksilver."`
+			`	"<tons> of misposted packages? Just this month?!" you ask.`
+			`	He nods. "Told you it happened often. And only a few of these packages even weigh over a kilo! Big shipments hardly get misposted; it's mostly private citizens who make these kinds of mistakes. Mostly. You'd be amazed!"`
+			`	You two shake hands and arrange for the misposted packages to be loaded onto the <ship>. Time to head to <planet>.`
+				accept
+
+			label refuse
+			`	The mail employee thanks you for your time, and continues his search for a willing captain. At least pilots that get hired to deliver such wrongly-posted packages, like you once did, won't have to finish those deliveries themselves in the future.`
+				decline
+	on visit
+		dialog `You have reached <planet>, but your escort, loaded with the shipment, has not arrived. Better depart and wait for your escorts to arrive in this star system.`
+	on complete
+		dialog `You contact the spaceport authorities and they direct you to the respective landing pad, where the post office staff is already waiting. They transfer the cargo and you prepare to head back to <origin>. Again, you have 10 days to make the delivery.`
+
+
+mission "Quicksilver Mixup 3"
+	name "Misposted Mail Delivery"
+	deadline 10 1
+	landing
+	description "Return to <planet> with <cargo>. You will be paid <payment>."
+	source "Quicksilver"
+	destination "Silver"
+	cargo "misposted mail" 29
+	to offer
+		has "Quicksilver Mixup 2: done"
+	on visit
+		dialog `You have reached <planet>, but your escort carrying the misposted mail has not arrived. Better depart and wait for your escorts to arrive in this star system.`
+	on complete
+		payment 100000
+		dialog `The same manager from before is waiting with the unloading crew, and thanks you for covering for the other pilot before handing you the credit chip for payment. It's nice to know that captains who get hired to deliver such wrongly-posted packages, like you once did, won't have to finish those deliveries themselves in the future."`
+
 
 
 
