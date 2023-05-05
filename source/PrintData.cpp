@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DataFile.h"
 #include "DataNode.h"
+#include "DataWriter.h"
 #include "GameData.h"
 #include "GameEvent.h"
 #include "LocationFilter.h"
@@ -50,20 +51,29 @@ namespace {
 	void PrintItemSales(const Set<Type> &items, const Set<Sale<Type>> &sales,
 		const string &itemNoun, const string &saleNoun)
 	{
-		cout << itemNoun << ',' << saleNoun << '\n';
+		DataWriter writer;
+		writer.SetSeparator(",").Write(itemNoun, saleNoun);
 		map<string, set<string>> itemSales;
 		for(auto &saleIt : sales)
 			for(auto &itemIt : saleIt.second)
 				itemSales[ObjectName(*itemIt)].insert(saleIt.first);
+
 		for(auto &itemIt : items)
 		{
 			if(itemIt.first != ObjectName(itemIt.second))
 				continue;
-			cout << '"' << itemIt.first << '"';
-			for(auto &saleName : itemSales[itemIt.first])
-				cout << ',' << '"' << saleName << '"';
-			cout << '\n';
+			writer.SetSeparator(",").WriteToken(itemIt.first);
+			if(!itemSales[itemIt.first].empty())
+			{
+				// The first value is separated with a comma,
+				// the rest use semicolons
+				writer.WriteSeparator().SetSeparator(";");
+				for(auto &saleName : itemSales[itemIt.first])
+					writer.WriteToken(saleName);
+			}
+			writer.Write();
 		}
+		writer.SaveToStream(cout);
 	}
 
 	// Take a set of sales and print a list of each followed by the items it contains.
@@ -71,15 +81,19 @@ namespace {
 	template <class Type>
 	void PrintSales(const Set<Sale<Type>> &sales, const string &saleNoun, const string &itemNoun)
 	{
-		cout << saleNoun << ';' << itemNoun << '\n';
+		DataWriter writer;
+		writer.SetSeparator(",").Write(saleNoun, itemNoun);
 		for(auto &saleIt : sales)
 		{
-			cout << '"' << saleIt.first << '"';
-			int index = 0;
+			// The first value is separated with a comma,
+			// the rest use semicolons
+			writer.WriteToken(saleIt.first);
+			writer.WriteSeparator().SetSeparator(";");
 			for(auto &item : saleIt.second)
-				cout << (index++ ? ';' : ',') << '"' << ObjectName(*item) << '"';
-			cout << '\n';
+				writer.WriteToken(ObjectName(*item));
+			writer.Write().SetSeparator(",");
 		}
+		writer.SaveToStream(cout);
 	}
 
 
@@ -87,11 +101,15 @@ namespace {
 	template <class Type>
 	void PrintObjectList(const Set<Type> &objects, bool withQuotes, const string &name)
 	{
-		cout << name << '\n';
-		const string start = withQuotes ? "\"" : "";
-		const string end = withQuotes ? "\"\n" : "\n";
-		for(const auto &it : objects)
-			cout << start << it.first << end;
+		DataWriter writer;
+		writer.Write(name);
+		if(withQuotes)
+			for(const auto &it : objects)
+				writer.Write(it.first);
+		else
+			for(const auto &it : objects)
+				writer.WriteRaw(it.first).Write();
+		writer.SaveToStream(cout);
 	}
 
 	// Takes a Set of objects and prints the key for each, followed by a list of its attributes.
@@ -99,16 +117,19 @@ namespace {
 	template <class Type>
 	void PrintObjectAttributes(const Set<Type> &objects, const string &name)
 	{
-		cout << name << ',' << "attributes" << '\n';
+		DataWriter writer;
+		writer.SetSeparator(",").Write(name, "attributes");
 		for(auto &it : objects)
 		{
-			cout << '"' << it.first << '"';
-			const Type &object = it.second;
-			int index = 0;
-			for(const string &attribute : object.Attributes())
-				cout << (index++ ? ';' : ',') << '"' << attribute << '"';
-			cout << '\n';
+			// The first value is separated with a comma,
+			// the rest use semicolons
+			writer.WriteToken(it.first);
+			writer.WriteSeparator().SetSeparator(";");
+			for(const string &attribute : it.second.Attributes())
+				writer.WriteToken(attribute);
+			writer.Write().SetSeparator(",");
 		}
+		writer.SaveToStream(cout);
 	}
 
 	// Takes a Set of objects, which must have an accessible member `Attributes()`, returning a collection of strings.
@@ -116,7 +137,8 @@ namespace {
 	template <class Type>
 	void PrintObjectsByAttribute(const Set<Type> &objects, const string &name)
 	{
-		cout << "attribute" << ',' << name << '\n';
+		DataWriter writer;
+		writer.SetSeparator(",").Write("attribute", name);
 		set<string> attributes;
 		for(auto &it : objects)
 		{
@@ -126,16 +148,14 @@ namespace {
 		}
 		for(const string &attribute : attributes)
 		{
-			cout << '"' << attribute << '"';
-			int index = 0;
+			writer.WriteToken(attribute);
+			writer.WriteSeparator().SetSeparator(";");
 			for(auto &it : objects)
-			{
-				const Type &object = it.second;
-				if(object.Attributes().count(attribute))
-					cout << (index++ ? ';' : ',') << '"' << it.first << '"';
-			}
-			cout << '\n';
+				if(it.second.Attributes().count(attribute))
+					writer.WriteToken(it.first);
+			writer.Write().SetSeparator(",");
 		}
+		writer.SaveToStream(cout);
 	}
 
 
@@ -143,11 +163,16 @@ namespace {
 	{
 		auto PrintBaseShipStats = []() -> void
 		{
-			cout << "model" << ',' << "category" << ',' << "chassis cost" << ',' << "loaded cost" << ',' << "shields" << ','
-				<< "hull" << ',' << "mass" << ',' << "drag" << ',' << "heat dissipation" << ','
-				<< "required crew" << ',' << "bunks" << ',' << "cargo space" << ',' << "fuel" << ','
-				<< "outfit space" << ',' << "weapon capacity" << ',' << "engine capacity" << ',' << "gun mounts" << ','
-				<< "turret mounts" << ',' << "fighter bays" << ',' << "drone bays" << '\n';
+			string keys[] = {"shields", "hull",
+					"drag", "required crew", "bunks", "cargo space", "fuel capacity",
+					"outift space", "weapon space", "engine capacity"};
+
+			DataWriter writer;
+			writer.SetSeparator(",");
+			writer.WriteToken("model", "category", "chassis cost", "loaded cost", "mass", "heat dissipation");
+			for(auto &key : keys)
+				writer.WriteToken(key);
+			writer.Write("gun mounts", "turret mounts", "fighter bays", "drone bays");
 
 			for(auto &it : GameData::Ships())
 			{
@@ -155,28 +180,19 @@ namespace {
 				if(it.second.ModelName() != it.first)
 					continue;
 
+				// The first value is separated with a comma,
+				// the rest use semicolons
 				const Ship &ship = it.second;
-				cout << '"' << it.first << '"' << ',';
+				writer.WriteToken(it.first);
+				writer.WriteSeparator().SetSeparator(";");
 
 				const Outfit &attributes = ship.BaseAttributes();
-				cout << '"' << attributes.Category() << '"' << ',';
-				cout << ship.ChassisCost() << ',';
-				cout << ship.Cost() << ',';
+				writer.WriteToken(attributes.Category(), ship.ChassisCost(), ship.Cost());
+				writer.WriteToken(attributes.Mass() ? attributes.Mass() : 1.);
+				writer.WriteToken(ship.HeatDissipation() * 1000.);
 
-				auto mass = attributes.Mass() ? attributes.Mass() : 1.;
-				cout << attributes.Get("shields") << ',';
-				cout << attributes.Get("hull") << ',';
-				cout << mass << ',';
-				cout << attributes.Get("drag") << ',';
-				cout << ship.HeatDissipation() * 1000. << ',';
-				cout << attributes.Get("required crew") << ',';
-				cout << attributes.Get("bunks") << ',';
-				cout << attributes.Get("cargo space") << ',';
-				cout << attributes.Get("fuel capacity") << ',';
-
-				cout << attributes.Get("outfit space") << ',';
-				cout << attributes.Get("weapon capacity") << ',';
-				cout << attributes.Get("engine capacity") << ',';
+				for(auto &key : keys)
+					writer.WriteToken(attributes.Get(key));
 
 				int numTurrets = 0;
 				int numGuns = 0;
@@ -187,24 +203,26 @@ namespace {
 					else
 						++numGuns;
 				}
-				cout << numGuns << ',' << numTurrets << ',';
+				writer.WriteToken(numGuns, numTurrets);
 
 				int numFighters = ship.BaysTotal("Fighter");
 				int numDrones = ship.BaysTotal("Drone");
-				cout << numFighters << ',' << numDrones << '\n';
+				writer.WriteToken(numFighters, numDrones);
+				writer.Write().SetSeparator(",");
 			}
+			writer.SaveToStream(cout);
 		};
 
 		auto PrintLoadedShipStats = [](bool variants) -> void
 		{
-			cout << "model" << ',' << "category" << ',' << "cost" << ',' << "shields" << ','
-				<< "hull" << ',' << "mass" << ',' << "required crew" << ',' << "bunks" << ','
-				<< "cargo space" << ',' << "fuel" << ',' << "outfit space" << ',' << "weapon capacity" << ','
-				<< "engine capacity" << ',' << "speed" << ',' << "accel" << ',' << "turn" << ','
-				<< "energy generation" << ',' << "max energy usage" << ',' << "energy capacity" << ','
-				<< "idle/max heat" << ',' << "max heat generation" << ',' << "max heat dissipation" << ','
-				<< "gun mounts" << ',' << "turret mounts" << ',' << "fighter bays" << ','
-				<< "drone bays" << ',' << "deterrence" << '\n';
+			DataWriter writer;
+			writer.SetSeparator(",");
+			writer.WriteToken("model", "category", "cost", "shields", "hull", "mass", "required crew", "bunks");
+			writer.WriteToken("cargo space", "fuel", "outfit space", "weapon capacity", "engine capacity");
+			writer.WriteToken("speed", "accel", "turn", "energy generation", "max energy usage", "energy capacity");
+			writer.WriteToken("idle/max heat", "max heat generation", "max heat dissipation");
+			writer.WriteToken("gun mounts", "turret mounts", "fighter bays", "drone bays", "deterrence");
+			writer.Write();
 
 			for(auto &it : GameData::Ships())
 			{
@@ -212,28 +230,26 @@ namespace {
 				if(it.second.ModelName() != it.first && !variants)
 					continue;
 
+				// The first value is separated with a comma,
+				// the rest use semicolons
 				const Ship &ship = it.second;
-				cout << '"' << it.first << '"' << ',';
+				writer.WriteToken(it.first);
+				writer.WriteSeparator().SetSeparator(";");
 
 				const Outfit &attributes = ship.Attributes();
-				cout << '"' << attributes.Category() << '"' << ',';
-				cout << ship.Cost() << ',';
+				const Outfit &baseAttributes = ship.BaseAttributes();
+				writer.WriteToken(attributes.Category(), ship.Cost());
 
 				auto mass = attributes.Mass() ? attributes.Mass() : 1.;
-				cout << attributes.Get("shields") << ',';
-				cout << attributes.Get("hull") << ',';
-				cout << mass << ',';
-				cout << attributes.Get("required crew") << ',';
-				cout << attributes.Get("bunks") << ',';
-				cout << attributes.Get("cargo space") << ',';
-				cout << attributes.Get("fuel capacity") << ',';
+				writer.WriteToken(attributes.Get("shields"), attributes.Get("hull"));
+				writer.WriteToken(mass);
+				writer.WriteToken(attributes.Get("required crew"), attributes.Get("bunks"));
+				writer.WriteToken(attributes.Get("cargo space"), attributes.Get("fuel capacity"));
 
-				cout << ship.BaseAttributes().Get("outfit space") << ',';
-				cout << ship.BaseAttributes().Get("weapon capacity") << ',';
-				cout << ship.BaseAttributes().Get("engine capacity") << ',';
-				cout << (attributes.Get("drag") ? (60. * attributes.Get("thrust") / attributes.Get("drag")) : 0) << ',';
-				cout << 3600. * attributes.Get("thrust") / mass << ',';
-				cout << 60. * attributes.Get("turn") / mass << ',';
+				writer.WriteToken(baseAttributes.Get("outfit space"), baseAttributes.Get("weapon capacity"), baseAttributes.Get("outfit space"));
+				writer.WriteToken(attributes.Get("drag") ? (60. * attributes.Get("thrust") / attributes.Get("drag")) : 0);
+				writer.WriteToken(3600. * attributes.Get("thrust") / mass);
+				writer.WriteToken(60. * attributes.Get("turn") / mass);
 
 				double energyConsumed = attributes.Get("energy consumption")
 					+ max(attributes.Get("thrusting energy"), attributes.Get("reverse thrusting energy"))
@@ -262,13 +278,13 @@ namespace {
 						energyConsumed += oit.second * oit.first->FiringEnergy() / reload;
 						heatProduced += oit.second * oit.first->FiringHeat() / reload;
 					}
-				cout << 60. * (attributes.Get("energy generation") + attributes.Get("solar collection")) << ',';
-				cout << 60. * energyConsumed << ',';
-				cout << attributes.Get("energy capacity") << ',';
-				cout << ship.IdleHeat() / max(1., ship.MaximumHeat()) << ',';
-				cout << 60. * heatProduced << ',';
+				writer.WriteToken(60. * (attributes.Get("energy generation") + attributes.Get("solar collection")));
+				writer.WriteToken(60. * energyConsumed);
+				writer.WriteToken(attributes.Get("energy capacity"));
+				writer.WriteToken(ship.IdleHeat() / max(1., ship.MaximumHeat()));
+				writer.WriteToken(60. * heatProduced);
 				// Maximum heat is 100 degrees per ton. Bleed off rate is 1/1000 per 60th of a second, so:
-				cout << 60. * ship.HeatDissipation() * ship.MaximumHeat() << ',';
+				writer.WriteToken(60. * ship.HeatDissipation() * ship.MaximumHeat());
 
 				int numTurrets = 0;
 				int numGuns = 0;
@@ -279,11 +295,11 @@ namespace {
 					else
 						++numGuns;
 				}
-				cout << numGuns << ',' << numTurrets << ',';
+				writer.WriteToken(numGuns, numTurrets);
 
 				int numFighters = ship.BaysTotal("Fighter");
 				int numDrones = ship.BaysTotal("Drone");
-				cout << numFighters << ',' << numDrones << ',';
+				writer.WriteToken(numFighters, numDrones);
 
 				double deterrence = 0.;
 				for(const Hardpoint &hardpoint : ship.Weapons())
@@ -297,20 +313,23 @@ namespace {
 							+ (weapon->RelativeHullDamage() * ship.Attributes().Get("hull"));
 						deterrence += .12 * damage / weapon->Reload();
 					}
-				cout << deterrence << '\n';
+				writer.Write(deterrence).SetSeparator(",");
 			}
+			writer.SaveToStream(cout);
 		};
 
 		auto PrintShipList = [](bool variants) -> void
 		{
+			DataWriter writer;
 			for(auto &it : GameData::Ships())
 			{
 				// Skip variants and unnamed / partially-defined ships, unless specified otherwise.
 				if(it.second.ModelName() != it.first && !variants)
 					continue;
 
-				cout << "\"" << it.first << "\"\n";
+				writer.Write(it.first);
 			}
+			writer.SaveToStream(cout);
 		};
 
 		bool loaded = false;
@@ -345,15 +364,15 @@ namespace {
 	{
 		auto PrintWeaponStats = []() -> void
 		{
-			cout << "name" << ',' << "category" << ',' << "cost" << ',' << "space" << ',' << "range" << ','
-				<< "reload" << ',' << "burst count" << ',' << "burst reload" << ',' << "lifetime" << ','
-				<< "shots/second" << ',' << "energy/shot" << ',' << "heat/shot" << ',' << "recoil/shot" << ','
-				<< "energy/s" << ',' << "heat/s" << ',' << "recoil/s" << ',' << "shield/s" << ','
-				<< "discharge/s" << ',' << "hull/s" << ',' << "corrosion/s" << ',' << "heat dmg/s" << ','
-				<< "burn dmg/s" << ',' << "energy dmg/s" << ',' << "ion dmg/s" << ',' << "scrambling dmg/s" << ','
-				<< "slow dmg/s" << ',' << "disruption dmg/s" << ',' << "piercing" << ',' << "fuel dmg/s" << ','
-				<< "leak dmg/s" << ',' << "push/s" << ',' << "homing" << ',' << "strength" << ','
-				<< "deterrence" << '\n';
+			DataWriter writer;
+			writer.SetSeparator(",");
+			writer.Write("name", "category", "cost", "space", "range",
+					"reload", "burst count", "burst reload", "lifetime", "shots/second",
+					"energy/shot", "heat/shot", "recoil/shot",
+					"energy/s", "heat/s", "recoil/s", "shield/s",
+					"discharge/s", "hull/s", "corrosion/s", "heat dmg/s", "burn dmg/s", "energy dmg/s", "ion dmg/s"
+					"scrambling dmg/s", "slow dmg/s", "disruption dmg/s", "piercing", "fuel dmg/s", "leak dmg/s", "push/s",
+					"homing", "strength", "deterrence");
 
 			for(auto &it : GameData::Outfits())
 			{
@@ -361,86 +380,81 @@ namespace {
 				if(!it.second.IsWeapon() || it.second.Category().empty())
 					continue;
 
+				// The first value is separated with a comma,
+				// the rest use semicolons
 				const Outfit &outfit = it.second;
-				cout << '"' << it.first << '"' << ',';
-				cout << '"' << outfit.Category() << '"' << ',';
-				cout << outfit.Cost() << ',';
-				cout << -outfit.Get("weapon capacity") << ',';
+				writer.WriteToken(it.first);
+				writer.WriteSeparator().SetSeparator(";");
 
-				cout << outfit.Range() << ',';
+				writer.WriteToken(outfit.Category(), outfit.Cost(), -outfit.Get("weapon capacity"));
+
+				writer.WriteToken(outfit.Range());
 
 				double reload = outfit.Reload();
-				cout << reload << ',';
-				cout << outfit.BurstCount() << ',';
-				cout << outfit.BurstReload() << ',';
-				cout << outfit.TotalLifetime() << ',';
+				writer.WriteToken(reload, outfit.BurstCount(), outfit.BurstReload(), outfit.TotalLifetime());
 				double fireRate = 60. / reload;
-				cout << fireRate << ',';
+				writer.WriteToken(fireRate);
 
 				double firingEnergy = outfit.FiringEnergy();
-				cout << firingEnergy << ',';
+				writer.WriteToken(firingEnergy);
 				firingEnergy *= fireRate;
 				double firingHeat = outfit.FiringHeat();
-				cout << firingHeat << ',';
+				writer.WriteToken(firingHeat);
 				firingHeat *= fireRate;
 				double firingForce = outfit.FiringForce();
-				cout << firingForce << ',';
+				writer.WriteToken(firingForce);
 				firingForce *= fireRate;
 
-				cout << firingEnergy << ',';
-				cout << firingHeat << ',';
-				cout << firingForce << ',';
+				writer.WriteToken(firingEnergy, firingHeat, firingForce);
 
 				double shieldDmg = outfit.ShieldDamage() * fireRate;
-				cout << shieldDmg << ',';
+				writer.WriteToken(shieldDmg);
 				double dischargeDmg = outfit.DischargeDamage() * 100. * fireRate;
-				cout << dischargeDmg << ',';
+				writer.WriteToken(dischargeDmg);
 				double hullDmg = outfit.HullDamage() * fireRate;
-				cout << hullDmg << ',';
+				writer.WriteToken(hullDmg);
 				double corrosionDmg = outfit.CorrosionDamage() * 100. * fireRate;
-				cout << corrosionDmg << ',';
+				writer.WriteToken(corrosionDmg);
 				double heatDmg = outfit.HeatDamage() * fireRate;
-				cout << heatDmg << ',';
+				writer.WriteToken(heatDmg);
 				double burnDmg = outfit.BurnDamage() * 100. * fireRate;
-				cout << burnDmg << ',';
+				writer.WriteToken(burnDmg);
 				double energyDmg = outfit.EnergyDamage() * fireRate;
-				cout << energyDmg << ',';
+				writer.WriteToken(energyDmg);
 				double ionDmg = outfit.IonDamage() * 100. * fireRate;
-				cout << ionDmg << ',';
+				writer.WriteToken(ionDmg);
 				double scramblingDmg = outfit.ScramblingDamage() * 100. * fireRate;
-				cout << scramblingDmg << ',';
+				writer.WriteToken(scramblingDmg);
 				double slowDmg = outfit.SlowingDamage() * fireRate;
-				cout << slowDmg << ',';
+				writer.WriteToken(slowDmg);
 				double disruptDmg = outfit.DisruptionDamage() * fireRate;
-				cout << disruptDmg << ',';
-				cout << outfit.Piercing() << ',';
+				writer.WriteToken(disruptDmg);
+				writer.WriteToken(outfit.Piercing());
 				double fuelDmg = outfit.FuelDamage() * fireRate;
-				cout << fuelDmg << ',';
+				writer.WriteToken(fuelDmg);
 				double leakDmg = outfit.LeakDamage() * 100. * fireRate;
-				cout << leakDmg << ',';
+				writer.WriteToken(leakDmg);
 				double hitforce = outfit.HitForce() * fireRate;
-				cout << hitforce << ',';
+				writer.WriteToken(hitforce);
 
-				cout << outfit.Homing() << ',';
+				writer.WriteToken(outfit.Homing());
 				double strength = outfit.MissileStrength() + outfit.AntiMissile();
-				cout << strength << ',';
+				writer.WriteToken(strength);
 
 				double damage = outfit.ShieldDamage() + outfit.HullDamage();
 				double deterrence = .12 * damage / outfit.Reload();
-				cout << deterrence << '\n';
+				writer.Write(deterrence).SetSeparator(",");
 			}
-
-			cout.flush();
+			writer.SaveToStream(cout);
 		};
 
 		auto PrintEngineStats = []() -> void
 		{
-			cout << "name" << ',' << "cost" << ',' << "mass" << ',' << "outfit space" << ','
-				<< "engine capacity" << ',' << "thrust/s" << ',' << "thrust energy/s" << ','
-				<< "thrust heat/s" << ',' << "turn/s" << ',' << "turn energy/s" << ','
-				<< "turn heat/s" << ',' << "reverse thrust/s" << ',' << "reverse energy/s" << ','
-				<< "reverse heat/s" << ',' << "afterburner thrust/s" << ',' << "afterburner energy/s" << ','
-				<< "afterburner heat/s" << ',' << "afterburner fuel/s" << '\n';
+			DataWriter writer;
+			writer.SetSeparator(",");
+			writer.Write("name", "cost", "mass", "outfit space", "engine capacity", "thrust/s", "thrust energy/s",
+					"thrust heat/s", "turn/s", "turn energy/s", "turn heat/s", "reverse thrust/s", "reverse energy/s",
+					"reverse heat/s", "afterburner thrust/s", "afterburner energy/s", "afterburner heat/s", "afterburner fuel/s");
 
 			for(auto &it : GameData::Outfits())
 			{
@@ -448,34 +462,32 @@ namespace {
 				if(it.second.Category() != "Engines")
 					continue;
 
+				// The first value is separated with a comma,
+				// the rest use semicolons
 				const Outfit &outfit = it.second;
-				cout << '"' << it.first << '"' << ',';
-				cout << outfit.Cost() << ',';
-				cout << outfit.Mass() << ',';
-				cout << outfit.Get("outfit space") << ',';
-				cout << outfit.Get("engine capacity") << ',';
-				cout << outfit.Get("thrust") * 3600. << ',';
-				cout << outfit.Get("thrusting energy") * 60. << ',';
-				cout << outfit.Get("thrusting heat") * 60. << ',';
-				cout << outfit.Get("turn") * 60. << ',';
-				cout << outfit.Get("turning energy") * 60. << ',';
-				cout << outfit.Get("turning heat") * 60. << ',';
-				cout << outfit.Get("reverse thrust") * 3600. << ',';
-				cout << outfit.Get("reverse thrusting energy") * 60. << ',';
-				cout << outfit.Get("reverse thrusting heat") * 60. << ',';
-				cout << outfit.Get("afterburner thrust") * 3600. << ',';
-				cout << outfit.Get("afterburner energy") * 60. << ',';
-				cout << outfit.Get("afterburner heat") * 60. << ',';
-				cout << outfit.Get("afterburner fuel") * 60. << '\n';
+				writer.WriteToken(it.first);
+				writer.WriteSeparator().SetSeparator(";");
+
+				writer.WriteToken(outfit.Cost(), outfit.Mass());
+				writer.WriteToken(outfit.Get("outfit space"), outfit.Get("engine capacity"));
+				writer.WriteToken(outfit.Get("thrust") * 3600., outfit.Get("thrusting energy") * 60., outfit.Get("thrusting heat") * 60.);
+				writer.WriteToken(outfit.Get("turn") * 60., outfit.Get("turning energy") * 60., outfit.Get("turning heat") * 60.);
+				writer.WriteToken(outfit.Get("reverse thrust") * 3600., outfit.Get("reverse thrusting energy") * 60.,
+						outfit.Get("reverse thrusting heat") * 60.);
+				writer.WriteToken(outfit.Get("afterburner thrust") * 3600., outfit.Get("afterburner energy") * 60.);
+				writer.WriteToken(outfit.Get("afterburner heat") * 60., outfit.Get("afterburner fuel") * 60.);
+
+				writer.Write().SetSeparator(",");
 			}
 
-			cout.flush();
+			writer.SaveToStream(cout);
 		};
 
 		auto PrintPowerStats = []() -> void
 		{
-			cout << "name" << ',' << "cost" << ',' << "mass" << ',' << "outfit space" << ','
-				<< "energy generation" << ',' << "heat generation" << ',' << "energy capacity" << '\n';
+			DataWriter writer;
+			writer.SetSeparator(",");
+			writer.Write("name", "cost", "mass", "outfit space", "energy generation", "heat generation", "energy capacity");
 
 			for(auto &it : GameData::Outfits())
 			{
@@ -483,17 +495,18 @@ namespace {
 				if(it.second.Category() != "Power")
 					continue;
 
+				// The first value is separated with a comma,
+				// the rest use semicolons
 				const Outfit &outfit = it.second;
-				cout << '"' << it.first << '"' << ',';
-				cout << outfit.Cost() << ',';
-				cout << outfit.Mass() << ',';
-				cout << outfit.Get("outfit space") << ',';
-				cout << outfit.Get("energy generation") << ',';
-				cout << outfit.Get("heat generation") << ',';
-				cout << outfit.Get("energy capacity") << '\n';
+				writer.WriteToken(it.first);
+				writer.WriteSeparator().SetSeparator(";");
+
+				writer.WriteToken(outfit.Cost(), outfit.Mass());
+				writer.WriteToken(outfit.Get("outfit space"), outfit.Get("energy generation"), outfit.Get("heat generation"), outfit.Get("energy capacity"));
+				writer.Write().SetSeparator(",");
 			}
 
-			cout.flush();
+			writer.SaveToStream(cout);
 		};
 
 		auto PrintOutfitsAllStats = []() -> void
@@ -506,22 +519,26 @@ namespace {
 					attributes.insert(attribute.first);
 			}
 
-			cout << "name" << ',' << "category" << ',' << "cost" << ',' << "mass";
+			DataWriter writer;
+			writer.SetSeparator(",");
+			writer.WriteToken("name", "category", "cost", "mass");
 			for(const auto &attribute : attributes)
-				cout << ',' << '"' << attribute << '"';
-			cout << '\n';
+				writer.WriteToken(attribute);
+			writer.Write();
 
 			for(auto &it : GameData::Outfits())
 			{
+				// The first value is separated with a comma,
+				// the rest use semicolons
 				const Outfit &outfit = it.second;
-				cout << '"' << outfit.TrueName() << '"' << ',';
-				cout << '"' << outfit.Category() << '"' << ',';
-				cout << outfit.Cost() << ',';
-				cout << outfit.Mass();
+				writer.WriteToken(outfit.TrueName());
+				writer.WriteSeparator().SetSeparator(";");
+				writer.WriteToken(outfit.Category(), outfit.Cost(), outfit.Mass());
 				for(const auto &attribute : attributes)
-					cout << ',' << outfit.Attributes().Get(attribute);
-				cout << '\n';
+					writer.WriteToken(outfit.Attributes().Get(attribute));
+				writer.Write().SetSeparator(",");
 			}
+			writer.SaveToStream(cout);
 		};
 
 		bool weapons = false;
@@ -589,14 +606,18 @@ namespace {
 	{
 		auto PrintPlanetDescriptions = []() -> void
 		{
-			cout << "planet::description::spaceport\n";
+			DataWriter writer;
+			writer.SetSeparator(",");
+			writer.Write("planet", "description", "spaceport");
 			for(auto &it : GameData::Planets())
 			{
-				cout << it.first << "::";
+				writer.WriteToken(it.first);
+				writer.WriteSeparator().SetSeparator(";");
 				const Planet &planet = it.second;
-				cout << planet.Description() << "::";
-				cout << planet.SpaceportDescription() << "\n";
+				writer.WriteToken(planet.Description(), planet.SpaceportDescription());
+				writer.Write().SetSeparator(",");
 			}
+			writer.SaveToStream(cout);
 		};
 
 		bool descriptions = false;
