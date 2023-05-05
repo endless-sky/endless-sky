@@ -246,7 +246,8 @@ namespace {
 				writer.WriteToken(attributes.Get("required crew"), attributes.Get("bunks"));
 				writer.WriteToken(attributes.Get("cargo space"), attributes.Get("fuel capacity"));
 
-				writer.WriteToken(baseAttributes.Get("outfit space"), baseAttributes.Get("weapon capacity"), baseAttributes.Get("outfit space"));
+				writer.WriteToken(baseAttributes.Get("outfit space"), baseAttributes.Get("weapon capacity"),
+						baseAttributes.Get("outfit space"));
 				writer.WriteToken(attributes.Get("drag") ? (60. * attributes.Get("thrust") / attributes.Get("drag")) : 0);
 				writer.WriteToken(3600. * attributes.Get("thrust") / mass);
 				writer.WriteToken(60. * attributes.Get("turn") / mass);
@@ -470,7 +471,8 @@ namespace {
 
 				writer.WriteToken(outfit.Cost(), outfit.Mass());
 				writer.WriteToken(outfit.Get("outfit space"), outfit.Get("engine capacity"));
-				writer.WriteToken(outfit.Get("thrust") * 3600., outfit.Get("thrusting energy") * 60., outfit.Get("thrusting heat") * 60.);
+				writer.WriteToken(outfit.Get("thrust") * 3600., outfit.Get("thrusting energy") * 60.,
+						outfit.Get("thrusting heat") * 60.);
 				writer.WriteToken(outfit.Get("turn") * 60., outfit.Get("turning energy") * 60., outfit.Get("turning heat") * 60.);
 				writer.WriteToken(outfit.Get("reverse thrust") * 3600., outfit.Get("reverse thrusting energy") * 60.,
 						outfit.Get("reverse thrusting heat") * 60.);
@@ -502,7 +504,8 @@ namespace {
 				writer.WriteSeparator().SetSeparator(";");
 
 				writer.WriteToken(outfit.Cost(), outfit.Mass());
-				writer.WriteToken(outfit.Get("outfit space"), outfit.Get("energy generation"), outfit.Get("heat generation"), outfit.Get("energy capacity"));
+				writer.WriteToken(outfit.Get("outfit space"), outfit.Get("energy generation"), outfit.Get("heat generation"),
+						outfit.Get("energy capacity"));
 				writer.Write().SetSeparator(",");
 			}
 
