@@ -69,7 +69,7 @@ public:
 	// can be used to access them.
 	bool HasChildren() const noexcept;
 	std::list<DataNode>::const_iterator begin() const noexcept;
-	std::list<DataNode>::const_iterator end() const noexcept;e
+	std::list<DataNode>::const_iterator end() const noexcept;
 
 	// Print a message followed by a "trace" of this node and its parents.
 	int PrintTrace(const std::string &message = "", DataWriter *writer = nullptr) const;

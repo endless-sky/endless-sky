@@ -23,8 +23,8 @@ using namespace std;
 
 
 // Constructor, specifying the file to save.
-DataWriter::DataWriter(const string &path, const char *indentString)
-	: DataWriter(indentString)
+DataWriter::DataWriter(const string &path)
+	: DataWriter()
 {
 	this->path = path;
 }
@@ -32,8 +32,8 @@ DataWriter::DataWriter(const string &path, const char *indentString)
 
 
 // Constructor for a DataWriter that will not save its contents automatically
-DataWriter::DataWriter(const char *indentString)
-	: indentString(string(indentString)), before(&indent)
+DataWriter::DataWriter()
+	: before(&indent)
 {
 	out.precision(8);
 }
@@ -113,7 +113,7 @@ DataWriter &DataWriter::WriteSeparator()
 DataWriter &DataWriter::Write(const DataNode &node)
 {
 	WriteTokens(node);
-
+	Write();
 	// If this node has any children, call this function recursively on them.
 	if(node.HasChildren())
 	{
@@ -160,7 +160,9 @@ DataWriter &DataWriter::EndChild()
 // Write a comment line, at the current indentation level.
 DataWriter &DataWriter::WriteComment(const string &str)
 {
-	out << indent << "# " << str << '\n';
+	WriteSeparator();
+	out << "# " << str;
+	Write();
 	return *this;
 }
 
@@ -211,5 +213,14 @@ DataWriter &DataWriter::WriteTokens(const DataNode &node)
 DataWriter &DataWriter::SetSeparator(const string &sep)
 {
 	separator = sep;
+	return *this;
+}
+
+
+
+// Changes the indentation used before child tokens. The default is a single tabulator.
+DataWriter &DataWriter::SetIndentation(const std::string &indent)
+{
+	indentString = indent;
 	return *this;
 }
