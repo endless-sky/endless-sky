@@ -313,18 +313,15 @@ int DataNode::PrintTrace(const string &message) const
 	int indentLevel = stack.size() * 2;
 	while(!stack.empty())
 	{
-		if(tokens.empty())
+		if(stack.top()->tokens.empty())
 			continue;
-		writer.Write().BeginChild();
-		writer.WriteRaw("L" + to_string(stack.top()->lineNumber) + ": ");
-		writer.WriteTokens(*stack.top());
+		writer.Write().BeginChild().WriteRaw("L" + to_string(stack.top()->lineNumber) + ": ").WriteTokens(*stack.top());
 		stack.pop();
 	}
+	if(!message.empty() && !tokens.empty())
+		writer.Write();
 
 	writer.SaveToFunction(&Logger::LogError);
-	// Put an empty line in the log between each error message.
-	if(!message.empty() && !tokens.empty())
-		Logger::LogError("");
 
 	return indentLevel;
 }
