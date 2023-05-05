@@ -265,5 +265,5 @@ ship "Neocalli"
 	gun 0 -14
 	turret 0 10
 	explode "tiny explosion" 15
-	description `The purpose of the Neocalli is quite simple: to keep unpleasant things away from more valuable assets while less valuable assets deal with the problem. By default they are deployed against flocks of space fauna which occasionally wander too close to an inhabited world and disrupt traffic, where large numbers of Neocalli can use their standard Repulsor Wave Turret to gently shepherd them away safely. They can also be equipped with an anti-missile turret though, allowing them to act as screens for larger ships if their systems are threatened once more.`
+	description `The purpose of the Neocalli is quite simple: to keep unpleasant things away from more valuable assets while less valuable assets deal with the problem. By default they are deployed against flocks of space fauna which occasionally wander too close to an inhabited world and disrupt traffic, where large numbers of Neocalli can use their standard Repulsor Wave Turret to gently shepherd them away safely. They can also be equipped with an anti-missile turret, allowing them to act as screens for larger ships if their systems are threatened once more.`
 	description `	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay.`

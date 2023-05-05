@@ -112,8 +112,8 @@ outfit `Type X "Coleo" Engine`
 	"flare sound" "ion medium"
 	"reverse flare sound" "ion medium"
 	"steering flare sound" "ion medium"
-	description "This thruster pair is one of the three primary drive types produced by the Xapleaux. Unlike the much larger Lepido or efficient but undersized Haltere engines the Coleo produces comparatively more heat and consumes rather more energy to achieve higher thrust outputs per ton. They are built to propel their Ascomy warships quickly to a point of crisis."
-	description "	Like all Xapleaux engines which are mounted on the long side spars away from the center of mass; the reversible, turbine-style exhaust facilitates reverse thrust just as efficiently and doubles as steering by using opposing thrust on either side. Only a ship with a specialized X Ring Cradle can mount this engine."
+	description "This thruster pair is one of the three primary drive types produced by the Xapleaux. Unlike the much larger Lepido or the efficient but undersized Haltere engines the Coleo produces comparatively more heat and consumes rather more energy to achieve higher thrust outputs per ton. They are built to propel their Ascomy warships quickly to a point of crisis."
+	description "	Like all Xapleaux engines which are mounted on the long side spars away from the center of mass, the reversible, turbine-style exhaust facilitates reverse thrust just as efficiently and doubles as steering by using opposing thrust on either side. Only a ship with a specialized X Ring Cradle can mount this engine."
 
 outfit `Type I "Lepido" Engine`
 	category Engines
