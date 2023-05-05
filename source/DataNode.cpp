@@ -15,11 +15,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DataNode.h"
 
+#include "DataWriter.h"
 #include "Logger.h"
 
 #include <algorithm>
 #include <cctype>
 #include <cmath>
+#include <stack>
 
 using namespace std;
 
@@ -289,40 +291,35 @@ list<DataNode>::const_iterator DataNode::end() const noexcept
 // Print a message followed by a "trace" of this node and its parents.
 int DataNode::PrintTrace(const string &message) const
 {
-	if(!message.empty())
-		Logger::LogError(message);
+	Logger::LogError(message);
 
-	// Recursively print all the parents of this node, so that the user can
+	// Print all the parents of this node, so that the user can
 	// trace it back to the right point in the file.
-	size_t indent = 0;
-	if(parent)
-		indent = parent->PrintTrace() + 2;
-	if(tokens.empty())
-		return indent;
-
-	// Convert this node back to tokenized text, with quotes used as necessary.
-	string line = !parent ? "" : "L" + to_string(lineNumber) + ": ";
-	line.append(string(indent, ' '));
-	for(const string &token : tokens)
+	DataWriter writer(' ');
+	const DataNode *ancestor = this;
+	stack<const DataNode*> stack;
+	// Gather the ancestors of this node
+	while(ancestor)
 	{
-		if(&token != &tokens.front())
-			line += ' ';
-		bool hasSpace = any_of(token.begin(), token.end(), [](char c) { return isspace(c); });
-		bool hasQuote = any_of(token.begin(), token.end(), [](char c) { return (c == '"'); });
-		if(hasSpace)
-			line += hasQuote ? '`' : '"';
-		line += token;
-		if(hasSpace)
-			line += hasQuote ? '`' : '"';
+		stack.push(ancestor);
+		ancestor = ancestor->parent;
 	}
-	Logger::LogError(line);
+	// And print them. The first one is missing the line number.
+	writer.WriteTokens(*stack.top());
+	stack.pop();
+	// Store the max indentation level for compatibility with the old tests
+	int indentLevel = stack.size();
+	while(!stack.empty())
+	{
+		writer.BeginChild();
+		writer.WriteRaw("L" + to_string(stack.top()->lineNumber) + ":");
+		writer.WriteTokens(*stack.top());
+		stack.pop();
+	}
 
-	// Put an empty line in the log between each error message.
-	if(!message.empty())
-		Logger::LogError("");
+	writer.SaveToFunction(&Logger::LogError);
 
-	// Tell the caller what indentation level we're at now.
-	return indent;
+	return indentLevel;
 }
 
 
