@@ -3601,9 +3601,10 @@ conversation "anna invites you to book signing"
 	`	Anna then takes out another copy of "Beyond the Hyperdrive", which she signs in front of you. It is the Coalition edition of the book. The symbols are completely indecipherable to you. Just another book for your collection.`
 		accept
 	label "player understands coalition edition"
-		`	Anna then takes out another copy of "Beyond the Hyperdrive", which she signs in front of you. It is the Coalition edition of the book. The symbols are indecipherable to you, but your translation device helps you understand the contents. You realize that the book has been significantly altered from the version sold in human space.`
+		`	Anna then takes out another copy of "Beyond the Hyperdrive", which she signs in front of you. It is the Coalition edition of the book, but translated to your language. Quickly reading through it, you realize that the book has been significantly altered from the version sold in human space. "Here, take it. A special copy just for you, as a thank you for all you've done."`
 		choice
 			`	"Anna, why is this book so different from the copies sold in human space?"`
 		`	"Well, for one, it's not in our language. Some concepts just don't translate very well, so I tried to capture the spirit of the story. The Heliarch linguists were very helpful," she explains. "They really went into depth on some aspects of the Coalition's languages. None of the major plot points were changed, thankfully, though some content in the book had to be edited or removed. My Heliarch friend said that if I changed this or removed that the book would sell so much better, and as they said, they wanted to 'make it more suitable for the Coalition'. Their words."`
+		`	"As for the special copy, it was so I could verify and look at the changes they made, in my language, so I wouldn't have to learn their language. They agreed to print another copy for me so I could give it to you."`
 		`	"I've got to go now. I want to see how well my book is selling. Goodbye!"`
 		`	Anna then leaves your ship. You ponder what to do next, but you do feel rewarded having helped a struggling author make it big. In alien space, that is.`
