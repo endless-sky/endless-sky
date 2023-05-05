@@ -15,13 +15,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DataNode.h"
 
-#include "DataWriter.h"
 #include "Logger.h"
 
 #include <algorithm>
 #include <cctype>
 #include <cmath>
-#include <stack>
 
 using namespace std;
 
@@ -288,42 +286,41 @@ list<DataNode>::const_iterator DataNode::end() const noexcept
 
 
 
-// Print a message followed by a "trace" of this node and its parents.
-int DataNode::PrintTrace(const string &message) const
+// Recrusively print a message followed by a "trace" of this node and its parents.
+int DataNode::PrintTrace(const string &message, DataWriter *writer) const
 {
+	if(!writer)
+	{
+		char indent[] = "  ";
+		DataWriter w(indent);
+		int temp = PrintTrace(message, &w);
+		w.SaveToFunction([](const string &s){Logger::LogError(s);});
+		return temp;
+	}
+
 	if(!message.empty())
-		Logger::LogError(message);
+	{
+		writer->WriteRaw(message);
+		if(parent || !tokens.empty())
+			writer->Write();
+	}
 
-	// Print all the parents of this node, so that the user can
+	// Recursively print all the parents of this node, so that the user can
 	// trace it back to the right point in the file.
-	char indent[] = "  ";
-	DataWriter writer(indent);
-	const DataNode *ancestor = this;
-	stack<const DataNode*> stack;
-	// Gather the ancestors of this node
-	while(ancestor)
-	{
-		stack.push(ancestor);
-		ancestor = ancestor->parent;
-	}
-	// And print them. The first one is missing the line number.
-	writer.WriteTokens(*stack.top());
-	stack.pop();
-	// Store the max indentation level for compatibility with the old tests
-	int indentLevel = stack.size() * 2;
-	while(!stack.empty())
-	{
-		if(stack.top()->tokens.empty())
-			continue;
-		writer.Write().BeginChild().WriteRaw("L" + to_string(stack.top()->lineNumber) + ": ").WriteTokens(*stack.top());
-		stack.pop();
-	}
-	if(!message.empty() && !tokens.empty())
-		writer.Write();
+	size_t indent = 0;
+	if(parent)
+		indent = parent->PrintTrace("", writer) + 2;
+	if(tokens.empty())
+		return indent;
+	// Convert this node back to tokenized text, with quotes used as necessary.
+	if(parent)
+		writer->Write().WriteRaw("L" + to_string(lineNumber) + ": ");
+	writer->WriteTokens(*this).BeginChild();
 
-	writer.SaveToFunction(&Logger::LogError);
-
-	return indentLevel;
+	if(!message.empty())
+		writer->Write();
+	// Tell the caller what indentation level we're at now.
+	return indent;
 }
 
 

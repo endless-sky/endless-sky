@@ -16,6 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef DATA_NODE_H_
 #define DATA_NODE_H_
 
+#include "DataWriter.h"
+
 #include <list>
 #include <string>
 #include <vector>
@@ -70,7 +72,7 @@ public:
 	std::list<DataNode>::const_iterator end() const noexcept;
 
 	// Print a message followed by a "trace" of this node and its parents.
-	int PrintTrace(const std::string &message = "") const;
+	int PrintTrace(const std::string &message = "", DataWriter *writer = nullptr) const;
 
 
 private:
