@@ -35,7 +35,7 @@ class DataNode;
 // automatically adds quotation marks around strings if they contain whitespace.
 class DataWriter {
 public:
-	// Constructor, specifying the file to write
+	// Constructor, specifying the file to write.
 	explicit DataWriter(const std::string &path);
 	// Constructor for a DataWriter that will not save its contents automatically
 	DataWriter();
