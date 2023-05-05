@@ -36,11 +36,11 @@ class DataNode;
 class DataWriter {
 public:
 	// Constructor, specifying the file to write
-	// and the specified character (tab or space) for indentation.
-	explicit DataWriter(const std::string &path, const char indentChar = '\t');
+	// and the specified string (usually tab or space) for indentation.
+	explicit DataWriter(const std::string &path, const char* indentString = "\t");
 	// Constructor for a DataWriter that will not save its contents automatically
-	// and uses the specified character (tab or space) for indentation.
-	DataWriter(const char indentChar = '\t');
+	// and uses the specified string (usually tab or space) for indentation.
+	explicit DataWriter(const char* indentString = "\t");
 	DataWriter(const DataWriter &) = delete;
 	DataWriter(DataWriter &&) = delete;
 	DataWriter &operator=(const DataWriter &) = delete;
@@ -94,8 +94,7 @@ public:
 	// Writes a series of tokens without terminating the line.
 	template <class A, class ...B>
 	DataWriter &WriteToken(const A &a, B... others);
-	// Write the tokens of this DataNode without writing its children,
-	// then ends the current line.
+	// Write the tokens of this DataNode without writing its children.
 	DataWriter &WriteTokens(const DataNode &node);
 
 	// Changes the separator used between tokens. The default is a single space.
@@ -107,8 +106,8 @@ private:
 	std::string path;
 	// Current indentation level.
 	std::string indent;
-	// The character used for indentation.
-	const char indentChar;
+	// The string used for indentation.
+	const std::string indentString;
 	// Before writing each token, we will write either the indentation string
 	// above, or this string.
 	std::string separator = " ";

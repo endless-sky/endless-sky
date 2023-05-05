@@ -291,11 +291,13 @@ list<DataNode>::const_iterator DataNode::end() const noexcept
 // Print a message followed by a "trace" of this node and its parents.
 int DataNode::PrintTrace(const string &message) const
 {
-	Logger::LogError(message);
+	if(!message.empty())
+		Logger::LogError(message);
 
 	// Print all the parents of this node, so that the user can
 	// trace it back to the right point in the file.
-	DataWriter writer(' ');
+	char indent[] = "  ";
+	DataWriter writer(indent);
 	const DataNode *ancestor = this;
 	stack<const DataNode*> stack;
 	// Gather the ancestors of this node
@@ -308,16 +310,21 @@ int DataNode::PrintTrace(const string &message) const
 	writer.WriteTokens(*stack.top());
 	stack.pop();
 	// Store the max indentation level for compatibility with the old tests
-	int indentLevel = stack.size();
+	int indentLevel = stack.size() * 2;
 	while(!stack.empty())
 	{
-		writer.BeginChild();
-		writer.WriteRaw("L" + to_string(stack.top()->lineNumber) + ":");
+		if(tokens.empty())
+			continue;
+		writer.Write().BeginChild();
+		writer.WriteRaw("L" + to_string(stack.top()->lineNumber) + ": ");
 		writer.WriteTokens(*stack.top());
 		stack.pop();
 	}
 
 	writer.SaveToFunction(&Logger::LogError);
+	// Put an empty line in the log between each error message.
+	if(!message.empty() && !tokens.empty())
+		Logger::LogError("");
 
 	return indentLevel;
 }

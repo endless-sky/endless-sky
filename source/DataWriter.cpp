@@ -23,8 +23,8 @@ using namespace std;
 
 
 // Constructor, specifying the file to save.
-DataWriter::DataWriter(const string &path, const char indentChar)
-	: DataWriter(indentChar)
+DataWriter::DataWriter(const string &path, const char* indentString)
+	: DataWriter(indentString)
 {
 	this->path = path;
 }
@@ -32,8 +32,8 @@ DataWriter::DataWriter(const string &path, const char indentChar)
 
 
 // Constructor for a DataWriter that will not save its contents automatically
-DataWriter::DataWriter(const char indentChar)
-	: indentChar(indentChar), before(&indent)
+DataWriter::DataWriter(const char* indentString)
+	: indentString(string(indentString)), before(&indent)
 {
 	out.precision(8);
 }
@@ -142,7 +142,7 @@ DataWriter &DataWriter::Write()
 // Increase the indentation level.
 DataWriter &DataWriter::BeginChild()
 {
-	indent += indentChar;
+	indent += indentString;
 	return *this;
 }
 
@@ -151,7 +151,7 @@ DataWriter &DataWriter::BeginChild()
 // Decrease the indentation level.
 DataWriter &DataWriter::EndChild()
 {
-	indent.erase(indent.length() - 1);
+	indent.erase(indent.length() - indentString.length());
 	return *this;
 }
 
@@ -169,8 +169,7 @@ DataWriter &DataWriter::WriteComment(const string &str)
 // Write a token, given as a character string.
 DataWriter &DataWriter::WriteToken(const char *a)
 {
-	std::string str(a);
-	WriteToken(str);
+	WriteToken(string(a));
 	return *this;
 }
 
@@ -204,7 +203,6 @@ DataWriter &DataWriter::WriteTokens(const DataNode &node)
 {
 	for(int i = 0; i < node.Size(); ++i)
 		WriteToken(node.Token(i).c_str());
-	Write();
 	return *this;
 }
 
