@@ -37,10 +37,10 @@ class DataWriter {
 public:
 	// Constructor, specifying the file to write
 	// and the specified string (usually tab or space) for indentation.
-	explicit DataWriter(const std::string &path, const char* indentString = "\t");
+	explicit DataWriter(const std::string &path, const char *indentString = "\t");
 	// Constructor for a DataWriter that will not save its contents automatically
 	// and uses the specified string (usually tab or space) for indentation.
-	explicit DataWriter(const char* indentString = "\t");
+	explicit DataWriter(const char *indentString = "\t");
 	DataWriter(const DataWriter &) = delete;
 	DataWriter(DataWriter &&) = delete;
 	DataWriter &operator=(const DataWriter &) = delete;

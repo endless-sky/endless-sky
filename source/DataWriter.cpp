@@ -23,7 +23,7 @@ using namespace std;
 
 
 // Constructor, specifying the file to save.
-DataWriter::DataWriter(const string &path, const char* indentString)
+DataWriter::DataWriter(const string &path, const char *indentString)
 	: DataWriter(indentString)
 {
 	this->path = path;
@@ -32,7 +32,7 @@ DataWriter::DataWriter(const string &path, const char* indentString)
 
 
 // Constructor for a DataWriter that will not save its contents automatically
-DataWriter::DataWriter(const char* indentString)
+DataWriter::DataWriter(const char *indentString)
 	: indentString(string(indentString)), before(&indent)
 {
 	out.precision(8);
