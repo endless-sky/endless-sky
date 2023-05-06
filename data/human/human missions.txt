@@ -5904,10 +5904,20 @@ mission "Lost Racer 2"
 	on offer
 		conversation
 			`The displays in the spaceport hangar are playing a news channel, showing aerial views of the spaceport and pictures of the missing Artemis Renard in front of her red and white Flivver, wearing a calm, confident expression while a caption at the bottom of the screen reads "CHAMPION RACER MISSING AFTER COMPETITION."`
-			`	"...of course today's top story: three-time Republic starship racing champion Artemis Renard has been officially declared 'missing' after she did not return here to Sunracer after this year's Megaparsec Core Championship. The search effort has been ongoing for two days now, led by Megaparsec with support from the Republic Navy and Syndicated Systems' internal security forces. The head of the event, Quinn Emerson, put out the following statement:`
+			choice
+				`	(Watch the news broadcast.)`
+					goto broadcast
+				`	(Wait for Mr. Renard to return.)`
+					goto renard
+
+			label broadcast
+			`	The voice of an eerily calm anchor plays over more vignettes of the race infrastructure. "...of course today's top story: three-time Republic starship racing champion Artemis Renard has been officially declared 'missing' after she did not return here to Sunracer after this year's Megaparsec Core Championship. The search effort has been ongoing for two days now, led by Megaparsec with support from the Republic Navy and Syndicated Systems' internal security forces. The head of the event, Quinn Emerson, put out the following statement:`
 			`	'We at Megaparsec put the greatest attention into ensuring the safety and well-being of all our event participants and guests. Over the past forty-six hours, our search teams have fully scanned the Volax, Cardax, Moktar, Bellatrix, and Menkar systems, and we are working in conjunction with the Republic and Syndicate to fully scour their territories belonging to the circuit as well. Ms. Renard's family can rest assured that if she's out there, we'll find her.'`
 			`	Artemis Renard, daughter of terraforming magnates August and Louisa Renard, is perhaps best known for shattering the record for the Betelgeuse Classic in last year's race, crossing the finish line nearly fifteen minutes faster than Jackson Lee in 3002. She was last seen flying her ship, the "Moonfox," a white and red Lionheart Flivver with race registration B-168, in the Diphida system. Anyone with information regarding her whereabouts is encouraged to contact the Megaparsec Racing Events Commission and may be entitled to monetary reward if such information leads to the retrieval of Ms. Renard or her ship."`
-			`	The broadcast then goes to an advertisement for the Quicksilver. Several minutes later, you see Mr. Renard returning from the terminal side of the spaceport, looking frustrated. "Idiots!" he says, "They couldn't find their legs in a dressing room! They tell me that they had 'some network and monitoring issues' and that they don't have surveillance for the entire last leg of the race. I told Artemis to never trust these Syndicate amateurs."`
+			`	The broadcast then ends, going to an advertisement for the Megaparsec Splinter. `
+				
+			label renard
+			`	Several minutes later, you see Mr. Renard returning from the terminal side of the spaceport, looking frustrated. "Idiots!" he says, "They couldn't find their legs in a dressing room! They tell me that they had 'some network and monitoring issues' and that they don't have surveillance for the entire last leg of the race. I told Artemis to never trust these Syndicate amateurs."`
 			choice
 				`	"I'm sure they're trying their best."`
 					goto trying
@@ -5915,6 +5925,7 @@ mission "Lost Racer 2"
 					goto suspicious
 				`	"Do you have a plan for where to go next?"`
 					goto plan
+
 			label trying
 			`	"Well their best isn't very good, is it! They don't notice that their number-one pilot has been missing for almost a week? I'll get the best lawyers in the Republic to drag Megaparsec through court 'till the only thing left they'll be able to sell will be scrap."`
 			choice
@@ -5983,21 +5994,51 @@ mission "Lost Racer 3"
 					goto elsewhere			
 			label elsewhere
 			`	"I'm not sure. The route went north from here, up through Elnath and Nihal and then through the uninhabited systems back to Mirfak. But we've checked every one of those systems! We should have seen a signal!" He stops for a moment, sitting down and putting his head in his hands. "We should have found her!" You clear the rest of your crew off the bridge. "I suppose I should just give you your money and go home."`
+			choice
+				`	"Perhaps that would be best."`
+						goto abandon
+				`	(Suggest a different system).`
+						goto rescue
+			
+			label rescue
+			action
+				set "rescue artemis renard"
 			`	"What about there," you say, pointing to the neighboring system. "Kugel. It's off the circuit, so no one will have searched there, but if her hyperdrive malfunctioned or was sabotaged, she might have ended up there. It's only a single jump away."`
 			`	"Okay," he says, wiping his eyes with the corners of his sleeves. "Kugel it is, Captain."`
 				accept
+			
+			label abandon
+			`	[PH] You have abandoned Artemis Renard.`
+				decline
+
 	on enter "Kugel"
 		dialog
 			"As soon as you enter the Kugel system, your sensors begin to pick up a weak radio signal coming from the second planet, this time matching exactly the frequency of Artemis Renard's transponder. It seems you have arrived in the correct system."
 
-mission "Lost Racer 4"
+mission "Lost Racer 4 - Abandoned"
+	landing
+	name "Return August Renard to Glory"
+	deadline 7
+	source "Pummel"
+	destination "Glory"
+	passengers 1
+	to offer
+		has "Lost Racer 2: done"
+	to fail
+		has "rescue artemis renard"
+	on complete
+		conversation
+			"[PH] You have returned Artemis Renard's grieving father home."
+
+
+mission "Lost Racer 4 - Rescued"
 	landing
 	name "Return Artemis Renard home."
 	source "Sandswell"
 	passengers 1
 	destination "Glory"
 	to offer
-		has "Lost Racer 3: done"
+		has "Lost Racer 3"
 	on offer
 		conversation
 			`Upon reaching the second planet, you pinpoint the radio signal to a valley in the southern hemisphere. You descend through a raging sandstorm; you have to rely entirely on instruments as the view from the <ship>'s bridge is almost entirely obscured. Soon, your scanners report that the source of the signal is less than a kilometer out, and after a few moments more, you begin to discern the vague shape of a crashed Flivver through the haze of dust. You land the <ship> next to the wreck, and both you and Mr. Renard go to exit the ship.`
