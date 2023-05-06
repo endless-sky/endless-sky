@@ -49,13 +49,13 @@ gamerules
 	# health is at or below this fraction.
 	# DEFAULT: .75 (75 percent)
 	# ALLOWABLE VALUES: any value between 0. and 1.
-	"universal frugal threshold" .75
+	"universal frugal threshold" 0.75
 
 	# Minimum percentage of a ship or outfit value at maximum depreciation. A value of .25 (25 percent) means
 	# a fully depreciated outfit that normally sold at 1000 credits will be sold for 250 credits.
 	# DEFAULT: .25 (25 percent)
 	# ALLOWABLE VALUES: any value between 0. and 1.
-	"depreciation min" .25
+	"depreciation min" 0.25
 
 	# Amount of days before a new outfit and ship begin to depreciate.
 	# DEFAULT: 7 (7 days)
@@ -69,7 +69,7 @@ gamerules
 	# where age is in days. "remaining daily percent" is then multiplied by result from next factor.
 	# DEFAULT: .997 (99.7 percent)
 	# ALLOWABLE VALUES: any value between 0. and 1.
-	"depreciation daily" .997
+	"depreciation daily" 0.997
 
 	# Second factor of depreciation calculation.
 	# Maximum day for fully depreciated ship or outfit in percent.

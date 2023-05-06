@@ -31,8 +31,8 @@ namespace {
 	// Names for the two kinds of depreciation records.
 	string NAME[2] = {"fleet depreciation", "stock depreciation"};
 	// Depreciation parameters.
-	const double FULL_DEPRECIATION = GameData::GetGamerules().DepreciationMinPercent();
-	const double DAILY_DEPRECIATION = GameData::GetGamerules().DepreciationDailyPercent();
+	const double FULL_DEPRECIATION = GameData::GetGamerules().DepreciationMin();
+	const double DAILY_DEPRECIATION = GameData::GetGamerules().DepreciationDaily();
 	const int GRACE_PERIOD = GameData::GetGamerules().DepreciationGracePeriod();
 	const int MAX_AGE = GameData::GetGamerules().DepreciationMaxAge();
 }
