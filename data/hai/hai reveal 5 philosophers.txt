@@ -519,7 +519,7 @@ mission "Hai Reveal [B07-1] Boarded Smuggler"
 	source
 		government "Smuggler (Hai Trafficker)"
 	on offer
-		log `A doomed Hai in a smuggler's vessel yelled "0.184 steradians" as their last words. That is a typical hyperspace aperture size, so it may be the information Giti needs to find Devil-Run.`
+		log `A doomed Hai in a smuggler's vessel yelled "0.184 steradians" as their last words. That could be an unusual hyperspace aperture size, so it may be useful information for Giti to find Devil-Run.`
 		conversation
 			`As you maneuver to board this ship you send a message telling them that you know they're smugglers and demand their surrender. There is no response, but once you dock and open your side of the airlock, the door to the smuggler ship <origin> also opens partway and a Hai pokes their head through. The Hai's eyes are wide with fear but also determination as they shout at you through the docking tube.`
 			choice
