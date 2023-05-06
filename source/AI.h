@@ -141,7 +141,7 @@ private:
 	void AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic = false) const;
 	// Fire whichever of the given ship's weapons can hit a hostile target.
 	// Return a bitmask giving the weapons to fire.
-	void AutoFire(const Ship &ship, FireCommand &command, bool secondary = true) const;
+	void AutoFire(const Ship &ship, FireCommand &command, bool secondary = true, bool isFlagship = false) const;
 	void AutoFire(const Ship &ship, FireCommand &command, const Body &target) const;
 
 	// Calculate how long it will take a projectile to reach a target given the
