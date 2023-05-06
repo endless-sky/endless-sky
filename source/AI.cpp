@@ -1590,8 +1590,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		return;
 	}
 
-	// A ship has restricted movement options if it is 'staying' or is hostile to its parent,
-	// or has the lingering personality.
+	// A ship has restricted movement options if it is 'staying', 'lingering', or hostile to its parent.
 	const System *origin = ship.GetSystem();
 	const bool shouldStay = ship.GetPersonality().IsStaying()
 			|| (ship.GetParent() && ship.GetParent()->GetGovernment()->IsEnemy(gov))
