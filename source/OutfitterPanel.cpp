@@ -392,7 +392,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 	}
 
 	// Check if you need to pay, and can't afford it.
-	if(!isInCargo && !isInStorage)
+	if(!onlyOwned)
 	{
 		// Determine what you will have to pay to buy this outfit.
 		int64_t cost = player.StockDepreciation().Value(selectedOutfit, day);
