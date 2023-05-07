@@ -1509,6 +1509,28 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 
 
 
+bool AI::ShouldStay(Ship &ship) const
+{
+	const Personality &personality = ship.GetPersonality();
+	if(personality.IsStaying())
+		return true;
+
+	shared_ptr<const Ship> parent = ship.GetParent();
+	if(parent && parent->GetGovernment()->IsEnemy(ship.GetGovernment()))
+		return true;
+
+	if(ship.IsFleeing())
+		return false;
+
+	const System *system = ship.GetSystem();
+	if(system && personality.IsLingering())
+		return Random::Int(max<int>(300, system->MinimumFleetPeriod()));
+
+	return false;
+}
+
+
+
 void AI::MoveIndependent(Ship &ship, Command &command) const
 {
 	double invisibleFenceRadius = ship.GetSystem()->InvisibleFenceRadius();
@@ -1592,10 +1614,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 
 	// A ship has restricted movement options if it is 'staying', 'lingering', or hostile to its parent.
 	const System *origin = ship.GetSystem();
-	const bool shouldStay = ship.GetPersonality().IsStaying()
-			|| (ship.GetParent() && ship.GetParent()->GetGovernment()->IsEnemy(gov));
-	if(!shouldStay && origin && ship.GetPersonality().IsLingering() && !ship.IsFleeing())
-		shouldStay |= Random::Int(max<int>(300, origin->MinimumFleetPeriod()));
+	const bool shouldStay = ShouldStay(ship);
 
 	// Ships should choose a random system/planet for travel if they do not
 	// already have a system/planet in mind, and are free to move about.
