@@ -300,6 +300,26 @@ namespace {
 
 	// The minimum speed advantage a ship has to have to consider running away.
 	const double SAFETY_MULTIPLIER = 1.1;
+
+	bool ShouldStay(const Ship &ship)
+	{
+		const Personality &personality = ship.GetPersonality();
+		if(personality.IsStaying())
+			return true;
+
+		shared_ptr<const Ship> parent = ship.GetParent();
+		if(parent && parent->GetGovernment()->IsEnemy(ship.GetGovernment()))
+			return true;
+
+		if(ship.IsFleeing())
+			return false;
+
+		const System *system = ship.GetSystem();
+		if(system && personality.IsLingering())
+			return Random::Int(max<int>(300, system->MinimumFleetPeriod()));
+
+		return false;
+	}
 }
 
 
@@ -1505,28 +1525,6 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 		MoveIndependent(ship, command);
 
 	return true;
-}
-
-
-
-bool AI::ShouldStay(Ship &ship) const
-{
-	const Personality &personality = ship.GetPersonality();
-	if(personality.IsStaying())
-		return true;
-
-	shared_ptr<const Ship> parent = ship.GetParent();
-	if(parent && parent->GetGovernment()->IsEnemy(ship.GetGovernment()))
-		return true;
-
-	if(ship.IsFleeing())
-		return false;
-
-	const System *system = ship.GetSystem();
-	if(system && personality.IsLingering())
-		return Random::Int(max<int>(300, system->MinimumFleetPeriod()));
-
-	return false;
 }
 
 
