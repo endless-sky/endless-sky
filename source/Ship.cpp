@@ -1826,9 +1826,10 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				}
 				// If current velocity is less than or equal to targeted velocity
 				// consider the hyperspace exit done.
-				if(velocity.Dot(angle.Unit()) <= exitV)
+				const Point facingUnit = angle.Unit();
+				if(velocity.Dot(facingUnit) <= exitV)
 				{
-					velocity = angle.Unit() * exitV;
+					velocity = facingUnit * exitV;
 					hyperspaceCount = 0;
 				}
 			}
