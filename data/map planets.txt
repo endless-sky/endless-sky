@@ -3040,7 +3040,7 @@ planet Newhome
 	landscape land/myrabella7
 	description `Newhome's gravity, climate, and geography is very similar to the Hai homeworld. Several billion Hai live here. Most dwell in large factory cities, but there are also ranches in the undeveloped areas where the Hai raise animals that are larger than elephants but produce wool similar to sheep. Shearing them is a dangerous undertaking, but their wool can be used to make excellent, long-lasting clothing.`
 	spaceport `The roads in the spaceport are very wide, so that Hai ranchers can lead their massive, sheep-like beasts along them. The animals seem docile enough, but their size is alarming.`
-	spaceport `	Most of the shops only sell clothing made for the Hai but, due to the growing human population in the spaceport district, a few enterprising artisans have begun making clothing for humans as well: larger dimensions, and no tail holes in the pants.`
+	spaceport `	Most of the shops only sell clothing made for the Hai, but a few enterprising artisans have responded to the growing human population in the spaceport district and begun making clothing for humans as well: larger dimensions, and no tail holes in the pants.`
 	outfitter "Hai Basics"
 	security 0.2
 
