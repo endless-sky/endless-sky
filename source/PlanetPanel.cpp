@@ -375,7 +375,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 				if(planet.HasOutfitter())
 					out << "store ";
 				else
-					out << (planet.HasSpaceport() ? "sell " : "dump ");
+					out << (planet.IsInhabited() ? "sell " : "dump ");
 			}
 			else
 				out << "dump ";
