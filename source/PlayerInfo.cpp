@@ -1709,7 +1709,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 					continue;
 				cargo.Transfer(outfit.first, outfit.second, *Storage(true));
 			}
-		else if(hasSpaceport)
+		else if(planet->IsInhabited())
 			for(const auto &outfit : cargo.Outfits())
 			{
 				// Compute the total value for each type of excess outfit.
