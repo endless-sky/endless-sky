@@ -303,7 +303,7 @@ namespace {
 
 		const System *system = ship.GetSystem();
 		if(system && personality.IsLingering())
-			return Random::Int(max<int>(300, system->MinimumFleetPeriod()));
+			return Random::Int(max<int>(1, system->MinimumFleetPeriod()/4));
 
 		return false;
 	}
