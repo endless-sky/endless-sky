@@ -16154,8 +16154,8 @@ system Heutesl
 	asteroids "small metal" 6 1.71
 	asteroids "medium metal" 44 2.1
 	minables copper 8 1.1
-	minables lead 12 1.4
-	minables silicon 12 1.3
+	minables lead 10 1.4
+	minables silicon 10 1.3
 	trade Clothing 262
 	trade Electronics 814
 	trade Equipment 693
@@ -32926,9 +32926,10 @@ system Vesvii
 	asteroids "small metal" 15 2.2
 	asteroids "medium metal" 2 3.3
 	asteroids "large metal" 4 2.9
-	minables aluminum 6 1.5
-	minables gold 7 3.2
+	minables aluminum 8 1.5
+	minables gold 6 2.4
 	minables iron 9 1.7
+	minables lead 11 2.1
 	fleet "Vi Warfleet" 1100
 	fleet "Scin Warfleet" 1000
 	object
