@@ -288,19 +288,6 @@ namespace {
 		ship.SetTargetStellar(nullptr);
 	}
 
-	// Constants for the invisible fence timer.
-	const int FENCE_DECAY = 4;
-	const int FENCE_MAX = 600;
-	// The health remaining before becoming disabled, at which fighters and
-	// other ships consider retreating from battle.
-	const double RETREAT_HEALTH = .25;
-
-	// An offset to prevent the ship from being not quite over the point to departure.
-	const double SAFETY_OFFSET = 1.;
-
-	// The minimum speed advantage a ship has to have to consider running away.
-	const double SAFETY_MULTIPLIER = 1.1;
-
 	bool ShouldStay(const Ship &ship)
 	{
 		const Personality &personality = ship.GetPersonality();
@@ -320,6 +307,19 @@ namespace {
 
 		return false;
 	}
+
+	// Constants for the invisible fence timer.
+	const int FENCE_DECAY = 4;
+	const int FENCE_MAX = 600;
+	// The health remaining before becoming disabled, at which fighters and
+	// other ships consider retreating from battle.
+	const double RETREAT_HEALTH = .25;
+
+	// An offset to prevent the ship from being not quite over the point to departure.
+	const double SAFETY_OFFSET = 1.;
+
+	// The minimum speed advantage a ship has to have to consider running away.
+	const double SAFETY_MULTIPLIER = 1.1;
 }
 
 
