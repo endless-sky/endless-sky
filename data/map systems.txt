@@ -24407,7 +24407,7 @@ system Ookmya
 	minables lead 11 1.2
 	trade Clothing 160
 	trade Electronics 590
-	trade Equipment 418
+	trade Equipment 700
 	trade Food 380
 	trade "Heavy Metals" 870
 	trade Industrial 710
