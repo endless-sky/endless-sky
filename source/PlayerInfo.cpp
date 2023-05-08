@@ -1673,7 +1673,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 	int64_t commoditiesSold = cargo.Used() - cargo.OutfitsSize();
 	int64_t outfitsSold = cargo.Used() - cargo.CommoditiesSize();
 	int64_t totalBasis = 0;
-	if(commoditiesSold)
+	if(planet->IsInhabited() && planet->CanUseServices())
 	{
 		for(const auto &commodity : cargo.Commodities())
 		{
@@ -1681,9 +1681,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 				continue;
 
 			// Figure out how much income you get for selling this cargo.
-			int64_t value = 0;
-			if(hasSpaceport)
-				value = commodity.second * static_cast<int64_t>(system->Trade(commodity.first));
+			int64_t value = commodity.second * static_cast<int64_t>(system->Trade(commodity.first));
 			commoditiesIncome += value;
 
 			int original = originalTotals[commodity.first];
