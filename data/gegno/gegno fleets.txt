@@ -383,10 +383,10 @@ fleet "Scin Warfleet"
 	cargo 0
 	personality
 		vindictive opportunistic harvests
-	variant 5
+	variant 6
 		"Felsic"
 		"Coesite" 3
-	variant 3
+	variant 4
 		"Felsic"
 		"Coesite" 2
 	variant
