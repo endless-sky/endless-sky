@@ -4124,7 +4124,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		if(Stop(ship, command))
 			autoPilot.Clear(Command::STOP);
 	}
-	else if(autoPilot.Has(Command::JUMP | Command::FLEET_JUMP))
+	else if(autoPilot.Has((Command::JUMP | Command::FLEET_JUMP)) && !ship.IsHyperspacing())
 	{
 		if(!ship.JumpNavigation().HasHyperdrive() && !ship.JumpNavigation().HasJumpDrive())
 		{
