@@ -44,11 +44,11 @@ fleet "Gegno Miners"
 		pacifist timid plunders mining harvests ramming
 	variant 22
 		"Gypsum"
-	variant 7
+	variant 6
 		"Corundum"
-	variant 4
+	variant 5
 		"Corundum (Torch)"
-	variant 2
+	variant
 		"Corundum (Multi)"
 	variant
 		"Gypsum"
