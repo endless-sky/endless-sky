@@ -187,7 +187,7 @@ ship "Granofel"
 	explode "medium explosion" 30
 	explode "small explosion" 24
 	"final explode" "final explosion large"
-	description `Unlike many Gegno ships that are capable in a variety of roles, Granofels were designed for the sole purpose of hauling huge loads of cargo; they lack bunks for anything beyond a proper crew, and are most often found freighting massive shipments of both raw and refined ore to and from mining industries. They can also be seen paired with a mining vessel to extend the duration of a mining run due to the conveniently higher capacity. Apart from mining, Granofels are also used in transporting heavy materials needed to construct other large ships.`
+	description `Unlike many Gegno ships that are capable in a variety of roles, Granofels were designed for the sole purpose of hauling huge loads of cargo; they lack bunks for anything beyond a proper crew, and are most often found freighting massive shipments of both raw and refined ore to and from mining industries. They can also be seen paired with a mining vessel to extend the duration of a mining run due to the higher cargo capacity. Apart from mining, Granofels are also used in transporting heavy materials needed to construct other large ships.`
 
 ship "Gypsum"
 	sprite "ship/gegno gypsum"
@@ -292,7 +292,7 @@ ship "Corundum"
 	explode "tiny explosion" 12
 	"final explode" "final explosion medium"
 	description `While the Gypsum has remained the most reliable mining platform for generations, the Corundum was designed for the purpose of modularity on account of the ever-growing technological potential of the Gegno. Using a similar principle to the Gypusm's design, the Corundum's structure is mostly built around not one but two adjustable drill systems that are capable of mounting more advanced mining tools.`
-	description `Although not able to mount the powerful Excavator Drill, the Corundum's engine capacity is twice that of the Gypsum, and the modularity of the two new mounting systems grants it the ability to adapt to future technologies that the Gegno may develop.`
+	description `	Although not able to mount the powerful Excavator Drill, the Corundum's engine capacity is twice that of the Gypsum, and the modularity of the two new mounting systems grants it the ability to adapt to future technologies that the Gegno may develop.`
 
 ship "Corundum" "Corundum (Torch)"
 	outfits
@@ -371,7 +371,7 @@ ship "Protolith"
 	explode "medium explosion" 46
 	explode "small explosion" 42
 	"final explode" "final explosion large"
-	description `A relic from another age, Protoliths are the last of the Generation ships constructed by the Gegno to colonize the stars. Now that other more easily constructed and hyperdrive-capable transport ships are commonplace, Protoliths are no longer found in service, and the very few that are still functioning are either preserved as artifacts or seldom used as hauling vessels between planets of the Gegno home system of Heutsel.`
+	description `A relic from another age, Protoliths are the last of the Generation ships constructed by the Gegno to colonize the stars. Now that other more easily constructed and hyperdrive-capable transport ships are commonplace, Protoliths are no longer found in service, and the very few that are still functioning are either preserved as artifacts or seldom used as hauling vessels between planets of the Gegno home system of Heutesl.`
 
 # Gegno Vi:
 
