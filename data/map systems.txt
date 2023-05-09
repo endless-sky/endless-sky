@@ -3482,6 +3482,7 @@ system Aleit
 	fleet "Quarg (Gegno)" 1100
 	fleet "Large Quarg (Gegno)" 1600
 	fleet "Gegno Basic" 1000
+	fleet "Gegno Cargo" 6000
 	object
 		sprite star/g3
 		period 10
@@ -5840,9 +5841,9 @@ system Asio
 	asteroids "medium metal" 9 4.13
 	asteroids "large metal" 2 4.2
 	minables iron 7 1.8
-	fleet "Gegno Basic" 1200
-	fleet "Small Vi" 2300
-	fleet "Gegno Miners" 1600
+	fleet "Gegno Basic" 400
+	fleet "Gegno Cargo" 1000
+	fleet "Gegno Miners" 1200
 	object
 		sprite star/m0
 		period 10
@@ -11702,6 +11703,7 @@ system Elifennka
 	asteroids "large metal" 27 4.49
 	minables aluminum 28 8.68
 	minables titanium 31 9.59
+	fleet "Gegno Miners" 10000
 	fleet "Quarg (Gegno)" 4000
 	object
 		sprite star/a3
@@ -12186,6 +12188,7 @@ system Eogho
 	asteroids "medium metal" 9 6.98
 	asteroids "large metal" 46 6.84
 	fleet "Gegno Basic" 2200
+	fleet "Gegno Cargo" 4000
 	object
 		sprite star/b0
 		period 10
@@ -15519,6 +15522,7 @@ system Gualetri
 	link Uelawan
 	asteroids "large metal" 1 2.8
 	fleet "Gegno Basic" 4400
+	fleet "Gegno Cargo" 6000
 	fleet "Small Scin" 2100
 	object
 		sprite star/k-dwarf
@@ -16150,8 +16154,8 @@ system Heutesl
 	asteroids "small metal" 6 1.71
 	asteroids "medium metal" 44 2.1
 	minables copper 8 1.1
-	minables lead 12 1.4
-	minables silicon 12 1.3
+	minables lead 10 1.4
+	minables silicon 10 1.3
 	trade Clothing 262
 	trade Electronics 814
 	trade Equipment 693
@@ -16163,8 +16167,10 @@ system Heutesl
 	trade Metal 571
 	trade Plastic 196
 	fleet "Gegno Basic" 200
+	fleet "Gegno Miners" 1000
+	fleet "Gegno Cargo" 800
+	fleet "Gegno Old" 40000
 	fleet "Quarg (Gegno)" 2800
-	fleet "Gegno Miners" 2000
 	object
 		sprite star/f8
 		period 10
@@ -16740,9 +16746,10 @@ system Iigen
 	asteroids "large metal" 45 3.84
 	minables uranium 4 5.8
 	minables iron 22 1.47
-	fleet "Gegno Basic" 1900
-	fleet "Gegno Miners" 2100
-	fleet "Quarg (Gegno)" 3500
+	fleet "Gegno Basic" 1100
+	fleet "Gegno Cargo" 2800
+	fleet "Gegno Miners" 2400
+	fleet "Quarg (Gegno)" 3400
 	object
 		sprite star/m3
 		period 10
@@ -19197,7 +19204,7 @@ system Kilema
 	government Uninhabited
 	arrival 500
 	habitable 150
-	belt 1612
+	belt 612
 	haze _menu/haze-brown
 	link "Erba Yle"
 	asteroids "small rock" 4 1.9
@@ -19206,8 +19213,11 @@ system Kilema
 	asteroids "small metal" 8 1.8
 	asteroids "medium metal" 7 2.7
 	asteroids "large metal" 3 2.3
+	minables lead 3 1.4
+	minables iron 5 1.1
 	fleet "Small Scin" 4600
 	fleet "Scin Transport" 3500
+	fleet "Scin Science" 14400
 	object
 		sprite star/g-dwarf
 		period 10
@@ -19215,6 +19225,14 @@ system Kilema
 		sprite planet/ice8
 		distance 638
 		period 526.314
+		offset -10
+	object "Beryl"
+		sprite planet/beryl/beryl
+			"scale" 0.5
+			"frame rate" 4
+		distance 1200
+		period 3000
+		offset 75
 	object
 		sprite planet/rock17
 		distance 1761
@@ -19223,10 +19241,6 @@ system Kilema
 		sprite planet/gas0
 		distance 4002
 		period 8268.56
-	object
-		sprite planet/browndwarf-l
-		distance 15993
-		period 66055.5
 
 system Kiluit
 	pos 699.45 -562.23
@@ -23946,7 +23960,8 @@ system Nnaug
 	fleet "Large Vi" 2100
 	fleet "Vi Transport" 800
 	fleet "Vi Cargo" 1000
-	fleet "Gegno Basic" 4400
+	fleet "Gegno Basic" 3400
+	fleet "Gegno Cargo" 4600
 	object
 		sprite star/a0
 		period 10
@@ -24355,6 +24370,7 @@ system Oihaug
 	minables copper 22 3.51
 	minables tungsten 11 2.56
 	fleet "Gegno Basic" 3700
+	fleet "Gegno Cargo" 4700
 	fleet "Small Vi" 1600
 	fleet "Vi Transport" 3200
 	object
@@ -24472,8 +24488,9 @@ system Oosuoro
 	trade Medical 664
 	trade Metal 496
 	trade Plastic 274
-	fleet "Gegno Basic" 500
-	fleet "Gegno Miners" 2150
+	fleet "Gegno Basic" 800
+	fleet "Gegno Miners" 2000
+	fleet "Gegno Cargo" 2400
 	object
 		sprite star/g3
 		period 10
@@ -25107,7 +25124,8 @@ system Pbelnep
 	fleet "Scin Transport" 1500
 	fleet "Scin Cargo" 1300
 	fleet "Gegno Miners" 2600
-	fleet "Gegno Basic" 4100
+	fleet "Gegno Basic" 2800
+	fleet "Gegno Cargo" 3600
 	object
 		sprite star/g5
 		distance 28.47
@@ -28829,11 +28847,12 @@ system Scija
 	trade Medical 609
 	trade Metal 489
 	trade Plastic 311
-	fleet "Small Vi" 800
-	fleet "Large Vi" 1900
-	fleet "Vi Transport" 900
-	fleet "Vi Cargo" 1400
-	fleet "Gegno Basic" 3600
+	fleet "Small Vi" 500
+	fleet "Large Vi" 1500
+	fleet "Vi Transport" 600
+	fleet "Vi Cargo" 1200
+	fleet "Gegno Basic" 3200
+	fleet "Gegno Cargo" 4000
 	fleet "Gegno Miners" 2500
 	object
 		sprite star/b5
@@ -31859,8 +31878,9 @@ system Tscera
 	asteroids "large metal" 2 4.27
 	minables aluminum 1 5.75
 	minables lead 7 6.19
+	fleet "Gegno Basic" 1000
+	fleet "Gegno Cargo" 3000
 	fleet "Quarg (Gegno)" 3800
-	fleet "Gegno Basic" 3000
 	object
 		sprite star/f0
 		period 10
@@ -32506,8 +32526,8 @@ system Uttna
 	asteroids "large metal" 16 3.42
 	minables platinum 5 1.4
 	minables uranium 8 2.2
-	fleet "Gegno Basic" 2700
-	fleet "Gegno Miners" 1900
+	fleet "Gegno Basic" 2600
+	fleet "Gegno Miners" 1800
 	object
 		sprite star/a8
 		period 10
@@ -32915,11 +32935,12 @@ system Vesvii
 	asteroids "small metal" 15 2.2
 	asteroids "medium metal" 2 3.3
 	asteroids "large metal" 4 2.9
-	minables aluminum 6 1.5
-	minables gold 7 3.2
+	minables aluminum 8 1.5
+	minables gold 6 2.4
 	minables iron 9 1.7
-	fleet "Vi Warfleet" 800
-	fleet "Scin Warfleet" 800
+	minables lead 11 2.1
+	fleet "Vi Warfleet" 1100
+	fleet "Scin Warfleet" 1000
 	object
 		sprite star/k5-old
 		distance 81.5
@@ -34250,8 +34271,9 @@ system Yllke
 	asteroids "large metal" 36 0.99
 	minables iron 27 2.32
 	minables aluminum 42 1.94
-	fleet "Gegno Miners" 3000
 	fleet "Gegno Basic" 1300
+	fleet "Gegno Cargo" 4000
+	fleet "Gegno Miners" 3000
 	fleet "Quarg (Gegno)" 3300
 	object
 		sprite star/b8
@@ -34421,11 +34443,12 @@ system Zeinar
 	trade Medical 873
 	trade Metal 275
 	trade Plastic 262
-	fleet "Small Scin" 700
-	fleet "Large Scin" 2300
-	fleet "Scin Transport" 800
-	fleet "Scin Cargo" 1500
-	fleet "Gegno Basic" 2600
+	fleet "Small Scin" 400
+	fleet "Large Scin" 2000
+	fleet "Scin Transport" 500
+	fleet "Scin Cargo" 1200
+	fleet "Gegno Basic" 3400
+	fleet "Gegno Cargo" 3600
 	fleet "Gegno Miners" 2500
 	object
 		sprite star/k5
