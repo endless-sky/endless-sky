@@ -55,7 +55,7 @@ private:
 	const Interface *mainMenuUi;
 
 	std::vector<std::string> credits;
-	long long int scroll = 0;
+	unsigned scroll = 0U;
 	bool scrollingPaused = false;
 };
 

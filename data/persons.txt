@@ -154,9 +154,17 @@ person "Marauding Max"
 			"Do you think you "
 			"Ever wondered if you "
 			"Think you'll also need some luck if you "
-		phrase
-			"MMK subphrase 1" 5
-			"MMK subphrase 2"
+		word
+			"got what it takes to "
+			"got the gumption to "
+			"could "
+			"are capable of "
+			"have the guramba to "
+			"are good enough to "
+		word
+			"capture "
+			"collect "
+			"gather "
 		word
 			"all 28 Marauder models?"
 	phrase
@@ -207,26 +215,6 @@ person "Marauding Max"
 		word
 			"into a REAL marauding warship!"
 	ship "Marauder Fury" "Mad Quest"
-
-phrase "MMK subphrase 1"
-	word
-		"got what it takes to "
-		"got the gumption to "
-		"could "
-		"have the guramba to "
-		"are good enough to "
-	word
-		"capture "
-		"collect "
-		"gather "
-
-phrase "MMK subphrase 2"
-	word
-		"are capable of "
-	word
-		"capturing "
-		"collecting "
-		"gathering "
 
 ship "Marauder Fury"
 	plural "Marauder Furies"
@@ -689,6 +677,7 @@ ship "Modified Osprey"
 	turret 49.5 20 "Heliarch Repulsor"
 	turret 0 29 "Point Defense Turret"
 	turret 0 89.5 "Point Defense Turret"
+	
 	explode "medium explosion" 24
 	explode "large explosion" 16
 	explode "small explosion" 40

@@ -37,9 +37,7 @@ public:
 	static const Command FORWARD;
 	static const Command LEFT;
 	static const Command RIGHT;
-	static const Command AUTOSTEER;
 	static const Command BACK;
-	static const Command MOUSE_TURNING_HOLD;
 	static const Command PRIMARY;
 	static const Command SECONDARY;
 	static const Command SELECT;
@@ -48,10 +46,11 @@ public:
 	static const Command HAIL;
 	static const Command SCAN;
 	static const Command JUMP;
+	static const Command MOUSE_TURNING_HOLD;
+	static const Command MOUSE_TURNING_TOGGLE;
 	static const Command FLEET_JUMP;
 	static const Command TARGET;
 	static const Command NEAREST;
-	static const Command NEAREST_ASTEROID;
 	static const Command DEPLOY;
 	static const Command AFTERBURNER;
 	static const Command CLOAK;
@@ -65,7 +64,6 @@ public:
 	static const Command GATHER;
 	static const Command HOLD;
 	static const Command AMMO;
-	static const Command HARVEST;
 	// This command is given in combination with JUMP or LAND and tells a ship
 	// not to jump or land yet even if it is in position to do so. It can be
 	// given from the AI when a ship is waiting for its parent. It can also be
@@ -137,14 +135,14 @@ public:
 
 
 private:
-	explicit Command(uint64_t state);
-	Command(uint64_t state, const std::string &text);
+	explicit Command(uint32_t state);
+	Command(uint32_t state, const std::string &text);
 
 
 private:
 	// The key commands are stored in a single bitmask with
-	// 64 bits for key commands.
-	uint64_t state = 0;
+	// 32 bits for key commands.
+	uint32_t state = 0;
 	// Turning amount is stored as a separate double to allow fractional values.
 	double turn = 0.;
 };

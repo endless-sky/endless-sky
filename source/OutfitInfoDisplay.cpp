@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Depreciation.h"
 #include "text/Format.h"
-#include "GameData.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
 
@@ -174,8 +173,6 @@ namespace {
 		{"shield heat multiplier", 3},
 		{"threshold percentage", 3},
 		{"overheat damage threshold", 3},
-		{"high shield permeability", 3},
-		{"low shield permeability", 3},
 
 		{"burn protection", 4},
 		{"corrosion protection", 4},
@@ -220,19 +217,18 @@ namespace {
 
 
 
-OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player,
-		bool canSell, bool descriptionCollapsed)
+OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player, bool canSell)
 {
-	Update(outfit, player, canSell, descriptionCollapsed);
+	Update(outfit, player, canSell);
 }
 
 
 
 // Call this every time the ship changes.
-void OutfitInfoDisplay::Update(const Outfit &outfit, const PlayerInfo &player, bool canSell, bool descriptionCollapsed)
+void OutfitInfoDisplay::Update(const Outfit &outfit, const PlayerInfo &player, bool canSell)
 {
 	UpdateDescription(outfit.Description(), outfit.Licenses(), false);
-	UpdateRequirements(outfit, player, canSell, descriptionCollapsed);
+	UpdateRequirements(outfit, player, canSell);
 	UpdateAttributes(outfit);
 
 	maximumHeight = max(descriptionHeight, max(requirementsHeight, attributesHeight));
@@ -254,8 +250,7 @@ void OutfitInfoDisplay::DrawRequirements(const Point &topLeft) const
 
 
 
-void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInfo &player,
-		bool canSell, bool descriptionCollapsed)
+void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInfo &player, bool canSell)
 {
 	requirementLabels.clear();
 	requirementValues.clear();
@@ -265,20 +260,6 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 	int64_t cost = outfit.Cost();
 	int64_t buyValue = player.StockDepreciation().Value(&outfit, day);
 	int64_t sellValue = player.FleetDepreciation().Value(&outfit, day);
-
-	for(const string &license : outfit.Licenses())
-	{
-		if(player.HasLicense(license))
-			continue;
-
-		const auto &licenseOutfit = GameData::Outfits().Find(license + " License");
-		if(descriptionCollapsed || (licenseOutfit && licenseOutfit->Cost()))
-		{
-			requirementLabels.push_back("license:");
-			requirementValues.push_back(license);
-			requirementsHeight += 20;
-		}
-	}
 
 	if(buyValue == cost)
 		requirementLabels.push_back("cost:");

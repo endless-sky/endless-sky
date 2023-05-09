@@ -47,6 +47,16 @@ namespace {
 
 
 
+Angle Projectile::Inaccuracy(double value)
+{
+	Angle inaccuracy;
+	if(value)
+		inaccuracy = Angle::Random(value) - Angle::Random(value);
+	return inaccuracy;
+}
+
+
+
 Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon)
 	: Body(weapon->WeaponSprite(), position, parent.Velocity(), angle),
 	weapon(weapon), targetShip(parent.GetTargetShip()), lifetime(weapon->Lifetime())
@@ -119,12 +129,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 
 			for(const auto &it : weapon->Submunitions())
 				for(size_t i = 0; i < it.count; ++i)
-				{
-					const Weapon *const subWeapon = it.weapon;
-					Angle inaccuracy = Distribution::GenerateInaccuracy(subWeapon->Inaccuracy(),
-							subWeapon->InaccuracyDistribution());
-					projectiles.emplace_back(*this, it.offset, it.facing + inaccuracy, subWeapon);
-				}
+					projectiles.emplace_back(*this, it.offset, it.facing + Projectile::Inaccuracy(it.weapon->Inaccuracy()), it.weapon);
 		}
 		MarkForRemoval();
 		return;

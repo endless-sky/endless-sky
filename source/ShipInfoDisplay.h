@@ -22,7 +22,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class Depreciation;
-class PlayerInfo;
 class Point;
 class Ship;
 
@@ -35,10 +34,10 @@ class Ship;
 class ShipInfoDisplay : public ItemInfoDisplay {
 public:
 	ShipInfoDisplay() = default;
-	ShipInfoDisplay(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed = true);
+	ShipInfoDisplay(const Ship &ship, const Depreciation &depreciation, int day);
 
 	// Call this every time the ship changes.
-	void Update(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed = true);
+	void Update(const Ship &ship, const Depreciation &depreciation, int day);
 
 	// Provided by ItemInfoDisplay:
 	// int PanelWidth();
@@ -56,8 +55,8 @@ public:
 
 
 private:
-	void UpdateAttributes(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed);
-	void UpdateOutfits(const Ship &ship, const PlayerInfo &player, const Depreciation &depreciation);
+	void UpdateAttributes(const Ship &ship, const Depreciation &depreciation, int day);
+	void UpdateOutfits(const Ship &ship, const Depreciation &depreciation, int day);
 
 
 private:

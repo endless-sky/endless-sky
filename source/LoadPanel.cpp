@@ -352,9 +352,8 @@ bool LoadPanel::Click(int x, int y, int clicks)
 		for(const auto &it : filesIt->second)
 			if(i++ == selected)
 			{
-				const bool sameSelected = selectedFile == it.first;
 				selectedFile = it.first;
-				if(sameSelected && clicks > 1)
+				if(clicks > 1)
 					KeyDown('l', 0, Command(), true);
 				break;
 			}

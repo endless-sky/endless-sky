@@ -441,7 +441,7 @@ event "role-play station active"
 		security 0.7
 		"required reputation" -10
 
-# Now that more ships are involved elsewhere, Ladybugs start getting used to take up the slack in surveillance security fleets.
+# Now that more ships are involved elsewhere, Ladybugs start getting used to take up the slack in surveillance security fleets.	
 event "ladybug surveillance"
 	fleet "Hai Surveillance"
 		add variant 10

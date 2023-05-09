@@ -256,89 +256,7 @@ void MapPanel::Draw()
 	DrawSystems();
 	DrawNames();
 	DrawMissions();
-}
-
-
-
-void MapPanel::FinishDrawing(const string &buttonCondition)
-{
-	// Draw the buttons to switch to other map modes.
-
-	// Remember which buttons we're showing.
-	MapPanel::buttonCondition = buttonCondition;
-
-	Information info;
-	info.SetCondition(buttonCondition);
-	const Interface *mapInterface = GameData::Interfaces().Get("map");
-	if(player.MapZoom() >= static_cast<int>(mapInterface->GetValue("max zoom")))
-		info.SetCondition("max zoom");
-	if(player.MapZoom() <= static_cast<int>(mapInterface->GetValue("min zoom")))
-		info.SetCondition("min zoom");
-	const Interface *mapButtonUi = GameData::Interfaces().Get("map buttons");
-	mapButtonUi->Draw(info, this);
-
-	// Draw the tooltips.
-
-	if(hoverSystem && hoverCount >= HOVER_TIME)
-	{
-		// Create the tooltip text.
-		if(tooltip.empty())
-		{
-			MapPanel::SystemTooltipData t = escortSystems.at(hoverSystem);
-
-			if(hoverSystem == &playerSystem)
-			{
-				if(player.Flagship())
-					--t.activeShips;
-				if(t.activeShips || t.parkedShips || !t.outfits.empty())
-					tooltip = "You are here, with:\n";
-				else
-					tooltip = "You are here.";
-			}
-			// If you have both active and parked escorts, call the active ones
-			// "active escorts." Otherwise, just call them "escorts."
-			if(t.activeShips && t.parkedShips)
-				tooltip += to_string(t.activeShips) + (t.activeShips == 1 ? " active escort\n" : " active escorts\n");
-			else if(t.activeShips)
-				tooltip += to_string(t.activeShips) + (t.activeShips == 1 ? " escort" : " escorts");
-			if(t.parkedShips)
-				tooltip += to_string(t.parkedShips) + (t.parkedShips == 1 ? " parked escort" : " parked escorts");
-			if(!t.outfits.empty())
-			{
-				if(t.activeShips || t.parkedShips)
-					tooltip += "\n";
-
-				unsigned sum = 0;
-				for(const auto &it : t.outfits)
-					sum += it.second;
-
-				tooltip += to_string(sum) + (sum == 1 ? " stored outfit" : " stored outfits");
-
-				if(HasMultipleLandablePlanets(*hoverSystem) || t.outfits.size() > 1)
-					for(const auto &it : t.outfits)
-						tooltip += "\n - " + to_string(it.second) + " on " + it.first->Name();
-			}
-
-			hoverText.Wrap(tooltip);
-		}
-		if(!tooltip.empty())
-		{
-			// Add 10px margin to all sides of the text.
-			Point size(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
-			size += Point(20., 20.);
-			Point topLeft = (hoverSystem->Position() + center) * Zoom();
-			// Do not overflow the screen dimensions.
-			if(topLeft.X() + size.X() > Screen::Right())
-				topLeft.X() -= size.X();
-			if(topLeft.Y() + size.Y() > Screen::Bottom())
-				topLeft.Y() -= size.Y();
-			// Draw the background fill and the tooltip text.
-			FillShader::Fill(topLeft + .5 * size, size, *GameData::Colors().Get("tooltip background"));
-			hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
-		}
-	}
-
-	// Draw a warning if the selected system is not routable.
+	DrawTooltips();
 
 	if(selectedSystem != &playerSystem && !distance.HasRoute(selectedSystem))
 	{
@@ -351,6 +269,25 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 		font.Draw(message, point + Point(1, 1), black);
 		font.Draw(message, point, red);
 	}
+}
+
+
+
+void MapPanel::DrawButtons(const string &condition)
+{
+	// Remember which buttons we're showing.
+	buttonCondition = condition;
+
+	// Draw the buttons to switch to other map modes.
+	Information info;
+	info.SetCondition(condition);
+	const Interface *mapInterface = GameData::Interfaces().Get("map");
+	if(player.MapZoom() >= static_cast<int>(mapInterface->GetValue("max zoom")))
+		info.SetCondition("max zoom");
+	if(player.MapZoom() <= static_cast<int>(mapInterface->GetValue("min zoom")))
+		info.SetCondition("min zoom");
+	const Interface *mapButtonUi = GameData::Interfaces().Get("map buttons");
+	mapButtonUi->Draw(info, this);
 }
 
 
@@ -1324,6 +1261,70 @@ void MapPanel::DrawMissions()
 			DrawPointer(system, counters.drawn, availableColor);
 		for(unsigned i = 0; i < counters.unavailable; ++i)
 			DrawPointer(system, counters.drawn, unavailableColor);
+	}
+}
+
+
+
+void MapPanel::DrawTooltips()
+{
+	if(!hoverSystem || hoverCount < HOVER_TIME)
+		return;
+
+	// Create the tooltip text.
+	if(tooltip.empty())
+	{
+		MapPanel::SystemTooltipData t = escortSystems.at(hoverSystem);
+
+		if(hoverSystem == &playerSystem)
+		{
+			if(player.Flagship())
+				--t.activeShips;
+			if(t.activeShips || t.parkedShips || !t.outfits.empty())
+				tooltip = "You are here, with:\n";
+			else
+				tooltip = "You are here.";
+		}
+		// If you have both active and parked escorts, call the active ones
+		// "active escorts." Otherwise, just call them "escorts."
+		if(t.activeShips && t.parkedShips)
+			tooltip += to_string(t.activeShips) + (t.activeShips == 1 ? " active escort\n" : " active escorts\n");
+		else if(t.activeShips)
+			tooltip += to_string(t.activeShips) + (t.activeShips == 1 ? " escort" : " escorts");
+		if(t.parkedShips)
+			tooltip += to_string(t.parkedShips) + (t.parkedShips == 1 ? " parked escort" : " parked escorts");
+		if(!t.outfits.empty())
+		{
+			if(t.activeShips || t.parkedShips)
+				tooltip += "\n";
+
+			unsigned sum = 0;
+			for(const auto &it : t.outfits)
+				sum += it.second;
+
+			tooltip += to_string(sum) + (sum == 1 ? " stored outfit" : " stored outfits");
+
+			if(HasMultipleLandablePlanets(*hoverSystem) || t.outfits.size() > 1)
+				for(const auto &it : t.outfits)
+					tooltip += "\n - " + to_string(it.second) + " on " + it.first->Name();
+		}
+
+		hoverText.Wrap(tooltip);
+	}
+	if(!tooltip.empty())
+	{
+		// Add 10px margin to all sides of the text.
+		Point size(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
+		size += Point(20., 20.);
+		Point topLeft = (hoverSystem->Position() + center) * Zoom();
+		// Do not overflow the screen dimensions.
+		if(topLeft.X() + size.X() > Screen::Right())
+			topLeft.X() -= size.X();
+		if(topLeft.Y() + size.Y() > Screen::Bottom())
+			topLeft.Y() -= size.Y();
+		// Draw the background fill and the tooltip text.
+		FillShader::Fill(topLeft + .5 * size, size, *GameData::Colors().Get("tooltip background"));
+		hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
 	}
 }
 

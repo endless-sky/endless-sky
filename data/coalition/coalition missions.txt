@@ -959,7 +959,6 @@ mission "Saryd Students 2"
 	landing
 	deadline
 	cargo "arach rum" 2
-	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	to offer
 		has "Saryd Students 1: done"
 	source "Weir of Glubatub"
@@ -1526,13 +1525,20 @@ mission "Saryd University Lecture"
 					decline
 			label answer
 			`	"Answering some questions from the attendees, would you be comfortable with? Simple, they would be, about aspects of human society, physical structure, and the like, they would pertain to."`
-				goto choosetostay
+			choice
+				`	"Sure, I'd be glad to."`
+					goto yes
+				`	"Sorry, I don't have time."`
+					decline
 			label low
 			`	"Nonsense! Travel the galaxy, you do. A most knowledgeable individual, surely you must be. Accept my offer, will you?"`
-				goto choosetostay
+			choice
+				`	"Sure, I'd be glad to."`
+					goto yes
+				`	"Sorry, I don't have time."`
+					decline
 			label explanation
 			`	"Contact with a human world, Heliarchs have. Some documents on humanity, the government there gave. Shared their knowledge with civilian researchers, the Heliarchs have, so analyze the info, we do, so that understand humans better, we may."`
-			label choosetostay
 			choice
 				`	"Sure, I'd be glad to."`
 					goto yes
@@ -1559,59 +1565,58 @@ mission "Saryd University Lecture"
 				decline
 			label questions
 			`	As soon as you walk up to the stage, several scientists in the crowd stand up out of their chairs. The Arach Heliarch comes up to you on the stage, and explains that this is their way of asking questions. She selects a Saryd from the crowd.`
+			branch hai
+				has "First Contact: Hai: offered"
+			`	"What is the extent of contact that humans have with other aliens?"`
+			choice
+				`	"Humans have official contact with the Quarg, but the Quarg don't trade technology with humanity."`
+					goto quarg
+				`	"Humans have official contact with the Quarg, but humans and Quarg don't really intermix."`
+					goto quarg
+				`	"Humans know about the Quarg, but most people know little about them."`
+					goto quarg
+			label hai
 			`	"What is the extent of contact that humans have with other aliens?"`
 			choice
 				`	"Humans are in contact with the Hai. Some of them even live on Hai planets. They live to the north of human space, and we can visit them through a wormhole."`
-					goto hai
-					to display
-						has "First Contact: Hai: offered"
+					goto "know"
 				`	"A few humans know about the Hai, but there's no official acknowledgment of their existence. They live to the north of human space, and we can visit them through a wormhole."`
-					goto hai
-					to display
-						has "First Contact: Hai: offered"
-						not "event: hai-human resolution announced"
+					goto "know"
 				`	"Humans have official contact with the Quarg, but the Quarg don't trade technology with humanity."`
 				`	"Humans have official contact with the Quarg, but humans and Quarg don't really intermix."`
 				`	"Humans know about the Quarg, but most people know little about them."`
+			label quarg
 			`	The audience response is muted. You get the impression that you haven't told them anything they don't already know.`
 				goto nextquestion
-			label hai
+			label know
+			branch coalitionknow
+				has "coalition knows hai"
 			action
 				set "coalition knows hai"
 			`	Several members of the audience are delighted. "Unknown to us, this species is," says the Heliarch. "That you have made contact with them despite the Quarg, good news it is."`
-				to display
-					not "coalition knows hai"
+			`	"Tell us more of them, could you?" asks another scientist.`
+			`	As you open your mouth to speak, the Heliarch cuts you off. "Enough questions on the Hai, we have." The crowd looks disappointed at this development.`
+				goto nextquestion
+			label coalitionknow
 			`	Several members of the audience are delighted. "Ah, the Hai, we have heard of," says the Heliarch. "That you have made contact with them despite the Quarg, good news it is."`
-				to display
-					has "coalition knows hai"
 			`	"Tell us more of them, could you?" asks another scientist.`
 			`	As you open your mouth to speak, the Heliarch cuts you off. "Enough questions on the Hai, we have." The crowd looks disappointed at this development.`
 			label nextquestion
+			branch war
+				has "FWC End: completed"
 			`	The Arach selects another, this time a Kimek. "All of human space, united politically is it?"`
 			choice
 				`	"No, human space is split between the Republic in the north and the Free Worlds in the south."`
-					to display
-						has "event: war begins"
-						not "free worlds checkmate"
 				`	"No, human space is split between the Republic in the west, the Free Worlds in the south, and the Syndicate in the east. The Syndicate is technically part of the Republic, but they have a lot of autonomy."`
-					to display
-						has "event: war begins"
-						not "free worlds checkmate"
+			`	As you answer the question, your translator begins to cut out. Repeating your answer does no good, as it continues to fizzle out as you talk. You look over to the Heliarch, who eyes the curious Kimek with suspicion. "Apologize for the malfunction, I must," says the Heliarch. "The next question, answer it please."`
+				goto questionthree
+			label war
+			`	The Arach selects another, this time a Kimek. "All of human space, united politically is it?"`
+			choice
 				`	"Yes, all of human space is united under the Republic."`
 					goto united
-					to display
-						or
-							not "event: war begins"
-							has "free worlds checkmate"
 				`	"Yes, but there are internal subdivisions: the Free Worlds in the south, the Republic in the north, and the Syndicate in the east."`
-					to display
-						has "free worlds checkmate"
-				`	"No. Technically all of human space is under the Republic, but the Syndicate has significant autonomy."`
-					to display
-						not "event: war begins"
 				`	"No. Technically all of human space is under the Republic, but the Free Worlds and Syndicate have significant autonomy."`
-					to display
-						has "free worlds checkmate"
 			`	As you answer the question, your translator begins to cut out. Repeating your answer does no good, as it continues to fizzle out as you talk. You look over to the Heliarch, who eyes the curious Kimek with suspicion. "Apologize for the malfunction, I must," says the Heliarch. "The next question, answer it please."`
 				goto questionthree
 			label united
@@ -1627,47 +1632,41 @@ mission "Saryd University Lecture"
 			label pirategood
 			`	Your microphone starts to fizzle out as you attempt to answer. The Heliarch's eight eyes are all on you, and you sense that it might not be a good idea to finish your sentence. The Heliarch selects a Saryd for the next question.`
 			`	"A fairly comprehensive map of human space, we have." The Saryd brings out a star map of the galactic south. "But of the core, we know not. Inform us of the galaxy, can you?"`
+			branch korath
+				or
+					has "First Contact: Korathi Efreti: offered"
+					has "First Contact: Laki Nemparu: offered"
+					has "First Contact: Karek Fornati: offered"
+					has "First Contact: Setar Fort: offered"
+					has "Wanderers: Rek To Kor Efret: offered"
+			choice
+				`	"Sorry, I don't know what's there any more than you do."`
+			`	The Saryd walks away, disappointed.`
+				goto sorry
+			label korath
 			choice
 				`	(Tell them about the Korath.)`
 					goto tell
-					to display
-						or
-							has "Discovered Korath Space: offered"
-							has "Wanderers: Rek To Kor Efret: offered"
 				`	(Don't tell them about the Korath.)`
-					to display
-						or
-							has "Discovered Korath Space: offered"
-							has "Wanderers: Rek To Kor Efret: offered"
-				`	"Sorry, I don't know what's there any more than you do."`
-					to display
-						not "Discovered Korath Space: offered"
-						not "Wanderers: Rek To Kor Efret: offered"
+					goto donttell
+			label donttell
 			`	"Sorry, I don't know what's there any more than you do."`
-				to display
-					or
-						has "Discovered Korath Space: offered"
-						has "Wanderers: Rek To Kor Efret: offered"
 			`	The Saryd walks away, disappointed.`
 				goto sorry
 			label tell
 			`	"I've met an alien species there called the Korath," you say. "They're reptilian creatures. What's left of their planets has been ruined by infighting. The Kor Sestor and Kor Mereti have been fighting a civil war using autonomous ships. The Kor Efreti have stayed out of the civil war, living under the Quarg's protection. The Korath Exiles have been banished to the Core by the Drak for refusing to give up their ability to manufacture jump drives. They are now raiding humanity for supplies."`
 			`	The crowd shows considerable interest at this last part. "Knowledge of the jump drive, a species besides the Quarg possesses? Great news, this is! Our struggle against the Quarg, we do not take up alone. Possess jump drives, do any other species?" The Heliarch does not seem to mind you answering another question.`
+			branch unfettered
+				has "coalition knows hai"
 			choice
 				`	"There are aliens to the north of human space called the Hai. Some of them steal from the normal Hai, and try to get their hands on jump drives any way they can."`
 					goto knowunfettered
-					to display
-						not "coalition knows hai"
-						or
-							has "unfettered requested jump drives"
-							has "Wanderers: Translation Machine: offered"
+				`	"Sorry, I don't know of any other species that does."`
+					goto sorry
+			label unfettered
+			choice
 				`	"There is a faction among the Hai, the Unfettered. They steal from the normal Hai, and try to get their hands on jump drives any way they can."`
 					goto unfortunate
-					to display
-						has "coalition knows hai"
-						or
-							has "unfettered requested jump drives"
-							has "Wanderers: Translation Machine: offered"
 				`	"Sorry, I don't know of any other species that does."`
 					goto sorry
 			label unfortunate
@@ -1675,13 +1674,13 @@ mission "Saryd University Lecture"
 				goto exit
 			label knowunfettered
 			`	Several members of the audience are delighted. "Unknown to us, this species is," says the Heliarch. "Powerful in their fight against the Quarg, may they become."`
-				goto exit
 			label sorry
 			`	The crowd's mood dampens a bit, but everyone is still quite exuberant as you leave the building. It is now night, and your eyes take a moment to adjust from the lecture hall's bright lights. Aelbris meets up with you outside, bubbling with excitement.`
-				goto end
+			`	"Thank you, captain! Expanded our knowledge greatly, you have." He leans in, quieter this time. "Strict with knowledge of humans, the Heliarchs are. Unbiased sources of information, rare they are. Hope to see you again, I do. Safe travels!"`
+			`	After he shakes your hand, you say your goodbyes and board your ship.`
+				decline
 			label exit
 			`	Upon the announcement of the interview's end, the crowd begins to leave. The mood is exuberant as you exit the building. It is now night, and your eyes take a moment to adjust from the lecture hall's bright lights. Aelbris meets up with you outside, bubbling with excitement.`
-			label end
 			`	"Thank you, captain! Expanded our knowledge greatly, you have." He leans in, quieter this time. "Strict with knowledge of humans, the Heliarchs are. Unbiased sources of information, rare they are. Hope to see you again, I do. Safe travels!"`
 			`	After he shakes your hand, you say your goodbyes and board your ship.`
 				decline
@@ -3146,7 +3145,7 @@ mission "Heliarchs Buy Jump Drive Mission"
 				"reputation: Coalition" += 10
 				"reputation: Heliarch" += 10
 				set "license: Coalition"
-				log "Sold a jump drive to the Heliarchs and received permission to purchase Coalition civilian technology and ships."
+				log "Sold a Jump Drive to the Heliarchs and received permission to purchase Coalition civilian technology and ships."
 				log "Factions" "Saryds" `Saryds are an alien species who look suspiciously similar to the centaurs found in early human mythology. They prefer to live on worlds with as much green space as possible, and even their major cities are full of parks and gardens. Most Saryds live in small communes with up to a few dozen of them per house.`
 				log "Factions" "Kimek" `The Kimek are large insectoid aliens, and are members of the Coalition. They discovered spaceflight after the Saryds, but before the Arachi. They are intensely social creatures, preferring to live together in massive buildings with thousands of inhabitants, and many of their worlds have populations in the tens of billions, far more than any human world.`
 				log "Factions" "Arachi" `The spider-like Arachi were the last of the three Coalition species to discover interstellar travel. Most members of their society owe allegiance to one of the great Arach "Houses," organizations that are somewhat similar to guilds and that each specialize in one particular form of industry or technology.`

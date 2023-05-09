@@ -162,8 +162,8 @@ event "graveyard insights"
 		add description `	Soon after the beginning the invasion, an attack on some sort of advanced nuclear facility started a meltdown; the fallout quickly spread across most of the planet, leaving all Builder settlements uninhabitable.`
 
 mission "Ringworld Debris"
-	landing
 	invisible
+	landing
 	on enter "Queri"
 		set "ringworld debris"
 		conversation
@@ -177,9 +177,8 @@ mission "Ringworld Debris"
 		never
 
 mission "Ringworld Debris: Remnant"
-	minor
-	landing
 	invisible
+	landing
 	source
 		government "Remnant"
 	to offer
@@ -198,9 +197,8 @@ mission "Ringworld Debris: Remnant"
 				decline
 
 mission "Ringworld Debris: Hai"
-	minor
-	landing
 	invisible
+	landing
 	source
 		government "Hai"
 	to offer
@@ -220,9 +218,8 @@ mission "Ringworld Debris: Hai"
 				decline
 
 mission "Ringworld Debris: Coalition"
-	minor
-	landing
 	invisible
+	landing
 	source
 		government "Coalition" "Heliarch"
 	to offer
@@ -242,12 +239,11 @@ mission "Ringworld Debris: Coalition"
 				decline
 
 mission "Ringworld Debris: Quarg"
-	minor
-	landing
 	invisible
+	landing
+	deadline 1
 	source
 		attributes "quarg"
-		not attributes "gegno quarg"
 	to offer
 		has "ringworld debris"
 		has "First Contact: Quarg: offered"
@@ -260,8 +256,6 @@ mission "Ringworld Debris: Quarg"
 					defer
 			action
 				clear "ringworld debris"
-				log "Factions" "Builders" `The Builders inhabited the Graveyard millennia ago, but have since become extinct. They developed some sort of weapon, called the "Ka'het," which stopped obeying their orders and rebelled against them.`
-				log "Factions" "Ka'het" `According to the Quarg, the Ka'het were initially a weapon created by the Builders, which then rebelled and led them to extinction. Even in the millennia that passed, they are still being produced in the Graveyard.`
 			`	Walking down the principal, alien-looking hall, you decide to stop one of the few Quarg you see there. "Hello, human. How may I be of service?" the Quarg says. You show it the piece of debris, and ask what it knows about it. It is momentarily stunned when you show the dark piece of technology, calmly taking it into its own hands after recovering. "A fragment of our ships, is what it is. A remnant of part of our equipment. Thank you for returning it to us."`
 			`	You continue by telling it about your travels in the section of the galaxy where you found the debris, and asking what it knows of the place and the hostiles that inhabit it.`
 			`	"Ah, you encountered the remains of the Builders. Millennia ago, they were a flourishing and thoughtful empire, but hostile contacts forced them to grow fearful and hawkish. Although they never did attack us, they always refrained from accepting our aid, and attempted to relocate a greater distance from us and our ringworld there, in worlds easier to maintain than ones they were closer to."`
@@ -275,24 +269,35 @@ mission "Ringworld Debris: Quarg"
 			label ka'het
 			`	The Quarg stops for a few seconds before continuing, as if it was reflecting on something. "For many millennia they grew, developing brilliant pieces of technology. Then, compelled by their past experiences, they began creating weapons not only to defend themselves, but also to retaliate; these 'Ka'het', as they named them, turned on their creators shortly after they were complete.`
 			`	"For a few more centuries the Builders lasted, before falling under their very own hubris. Their space is still populated by the Ka'het they gave birth to through the immense facilities they assembled, a being that does not yet possess a vast intelligence." The Quarg bows, still holding on to the piece of debris, and seems to be preparing to walk away.`
+			branch pug
+				has "main plot completed"
 			choice
 				`	"What happened to your ringworld in the Graveyard? Was it in the system I found that thing?"`
 				`	(Let the Quarg walk away.)`
 					decline
 			`	For the briefest moment, you see patches of skin all over the Quarg's body radically shift from the usual gray to red and blue, some spots mixing into purple, and you could have sworn you saw some part of the iris on its eyes "open" very slightly.`
-			branch pug
-				has "main plot completed"
-			action
-				log "Asked the Quarg about the history of the Graveyard, and have learned about the previous inhabitants of the region, the Builders."
 			`	After coming back to normal, it ponders for a second, then says, "It was in that system, and it was lost in a war, millennia after the Builders had perished."`
-				goto end
-			label pug
-			action
-				log "Asked the Quarg about the history of the Graveyard. Was told that the ringworld the Quarg had there was lost in their war with the Pug, and have learned about the previous inhabitants of the region, the Builders."
-			`	After coming back to normal, it ponders for a second, then says, "It was in that system, and it was lost in our war with the despicable Pug. When we tried to resist them. By then, the Builders had been gone for millennia."`
-			label end
 			`	It doesn't seem too inclined on answering any more questions, and swiftly walks away.`
 				decline
+			label pug
+			choice
+				`	"What happened to your ringworld in the Graveyard? Was it in the system I found that thing?"`
+				`	(Let the Quarg walk away.)`
+					decline
+			`	For the briefest moment, you see patches of skin all over the Quarg's body radically shift from the usual gray to red and blue, some spots mixing into purple, and you could have sworn you saw some part of the iris on its eyes "open" very slightly.`
+			`	After coming back to normal, it ponders for a second, then says, "It was in that system, and it was lost in our war with the despicable Pug. When we tried to resist them. By then, the Builders had been gone for millennia."`
+			`	It doesn't seem too inclined on answering any more questions, and swiftly walks away.`
+				accept
+	on decline
+		fail "Ringworld Debris"
+		log "Asked the Quarg about the history of the Graveyard, and have learned about the previous inhabitants of the region, the Builders."
+		log "Factions" "Builders" `The Builders inhabited the Graveyard millennia ago, but have since become extinct. They developed some sort of weapon, called the "Ka'het," which stopped obeying their orders and rebelled against them.`
+		log "Factions" "Ka'het" `According to the Quarg, the Ka'het were initially a weapon created by the Builders, which then rebelled and led them to extinction. Even in the millennia that passed, they are still being produced in the Graveyard.`
+	on accept
+		fail "Ringworld Debris"
+		log "Asked the Quarg about the history of the Graveyard. Was told that the ringworld the Quarg had there was lost in their war with the Pug, and have learned about the previous inhabitants of the region, the Builders."
+		log "Factions" "Builders" `The Builders inhabited the Graveyard millennia ago, but have since become extinct. They developed some sort of weapon, called the "Ka'het," which stopped obeying their orders and rebelled against them.`
+		log "Factions" "Ka'het" `According to the Quarg, the Ka'het were initially a weapon created by the Builders, which then rebelled and led them to extinction. Even in the millennia that passed, they are still being produced in the Graveyard.`
 
 mission "Ka'het: Patir Reveal"
 	invisible

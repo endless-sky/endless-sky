@@ -914,21 +914,21 @@ event "wanderers: the eye opens"
 		add fleet "Wanderer Defense" 1600
 		add fleet "Wanderer Drones" 800
 	system Kaliptari
-		fleet "Large Quarg (Kor Efret)" 2000
+		fleet "Large Quarg" 2000
 		fleet "Small Kor Mereti" 8000
 		fleet "Large Kor Mereti" 3600
 		fleet "Wanderer Defense" 1000
 		fleet "Wanderer Drones" 500
 	system Solifar
-		fleet "Large Quarg (Kor Efret)" 3000
+		fleet "Large Quarg" 3000
 		fleet "Wanderer Defense" 1800
 		fleet "Wanderer Drones" 700
 	system Fornarep
-		fleet "Large Quarg (Kor Efret)" 1000
+		fleet "Large Quarg" 1000
 		fleet "Small Kor Mereti" 7000
 		fleet "Large Kor Mereti" 4000
 	system Skeruto
-		fleet "Large Quarg (Kor Efret)" 1000
+		fleet "Large Quarg" 1000
 	system Mekislepti
 		add fleet "Small Kor Mereti" 4000
 		add fleet "Large Kor Mereti" 12000

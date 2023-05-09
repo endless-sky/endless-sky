@@ -20,7 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ExclusiveItem.h"
 #include "LocationFilter.h"
 
-#include <limits>
 #include <map>
 #include <set>
 #include <string>
@@ -106,8 +105,6 @@ public:
 	std::string GetHail(bool isDisabled) const;
 	// Find out if this government speaks a different language.
 	const std::string &Language() const;
-	// Find out if this government should send custom hails even if the player does not know its language.
-	bool SendUntranslatedHails() const;
 	// Pirate raids in this government's systems use these fleet definitions. If
 	// it is empty, there are no pirate raids.
 	// The second attribute denotes the minimal and maximal attraction required for the fleet to appear.
@@ -141,8 +138,6 @@ public:
 
 	// Get or set the player's reputation with this government.
 	double Reputation() const;
-	double ReputationMax() const;
-	double ReputationMin() const;
 	void AddReputation(double value) const;
 	void SetReputation(double value) const;
 
@@ -164,8 +159,6 @@ private:
 	std::set<const Government *> trusted;
 	std::map<unsigned, std::map<int, double>> customPenalties;
 	double initialPlayerReputation = 0.;
-	double reputationMax = std::numeric_limits<double>::max();
-	double reputationMin = std::numeric_limits<double>::lowest();
 	std::map<int, double> penaltyFor;
 	std::map<const Outfit*, int> illegals;
 	std::map<const Outfit*, bool> atrocities;
@@ -178,7 +171,6 @@ private:
 	const Phrase *hostileHail = nullptr;
 	const Phrase *hostileDisabledHail = nullptr;
 	std::string language;
-	bool sendUntranslatedHails = false;
 	std::vector<RaidFleet> raidFleets;
 	double crewAttack = 1.;
 	double crewDefense = 2.;

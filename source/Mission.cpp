@@ -33,7 +33,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <cmath>
-#include <limits>
 #include <sstream>
 
 using namespace std;
@@ -160,10 +159,6 @@ void Mission::Load(const DataNode &node)
 			if(child.Size() >= 3)
 				deadlineMultiplier += child.Value(2);
 		}
-		else if(child.Token(0) == "distance calculation settings" && child.HasChildren())
-		{
-			distanceCalcSettings.Load(child);
-		}
 		else if(child.Token(0) == "cargo" && child.Size() >= 3)
 		{
 			cargo = child.Token(1);
@@ -231,8 +226,6 @@ void Mission::Load(const DataNode &node)
 			clearance = (child.Size() == 1 ? "auto" : child.Token(1));
 			clearanceFilter.Load(child);
 		}
-		else if(child.Size() == 2 && child.Token(0) == "ignore" && child.Token(1) == "clearance")
-			ignoreClearance = true;
 		else if(child.Token(0) == "infiltrating")
 			hasFullClearance = false;
 		else if(child.Token(0) == "failed")
@@ -285,7 +278,7 @@ void Mission::Load(const DataNode &node)
 		else if(child.Token(0) == "substitutions" && child.HasChildren())
 			substitutions.Load(child);
 		else if(child.Token(0) == "npc")
-			npcs.emplace_back(child, name);
+			npcs.emplace_back(child);
 		else if(child.Token(0) == "on" && child.Size() >= 2 && child.Token(1) == "enter")
 		{
 			// "on enter" nodes may either name a specific system or use a LocationFilter
@@ -387,8 +380,6 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("clearance", clearance);
 			clearanceFilter.Save(out);
 		}
-		if(ignoreClearance)
-			out.Write("ignore", "clearance");
 		if(!hasFullClearance)
 			out.Write("infiltrating");
 		if(hasFailed)
@@ -1123,7 +1114,7 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 	if(event.TargetGovernment()->IsPlayer() && !hasFailed)
 	{
 		bool failed = false;
-		string message = "Your ship \"" + event.Target()->Name() + "\" has been ";
+		string message = "Your ship '" + event.Target()->Name() + "' has been ";
 		if(event.Type() & ShipEvent::DESTROY)
 		{
 			// Destroyed ships carrying mission cargo result in failed missions.
@@ -1241,7 +1232,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	for(const LocationFilter &filter : stopoverFilters)
 	{
 		// Unlike destinations, we can allow stopovers on planets that don't have a spaceport.
-		const Planet *planet = filter.PickPlanet(sourceSystem, ignoreClearance || !clearance.empty(), false);
+		const Planet *planet = filter.PickPlanet(sourceSystem, !clearance.empty(), false);
 		if(!planet)
 			return result;
 		result.stopovers.insert(planet);
@@ -1254,7 +1245,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.destination = destination;
 	if(!result.destination && !destinationFilter.IsEmpty())
 	{
-		result.destination = destinationFilter.PickPlanet(sourceSystem, ignoreClearance || !clearance.empty());
+		result.destination = destinationFilter.PickPlanet(sourceSystem, !clearance.empty());
 		if(!result.destination)
 			return result;
 	}
@@ -1406,7 +1397,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		return result;
 	}
 	for(const NPC &npc : npcs)
-		result.npcs.push_back(npc.Instantiate(subs, sourceSystem, result.destination->GetSystem(), jumps, payload));
+		result.npcs.push_back(npc.Instantiate(subs, sourceSystem, result.destination->GetSystem()));
 
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
@@ -1488,33 +1479,18 @@ int Mission::CalculateJumps(const System *sourceSystem)
 	while(!destinations.empty())
 	{
 		// Find the closest destination to this location.
-		DistanceMap distance(sourceSystem,
-				distanceCalcSettings.WormholeStrat(),
-				distanceCalcSettings.AssumesJumpDrive());
+		DistanceMap distance(sourceSystem);
 		auto it = destinations.begin();
 		auto bestIt = it;
-		int bestDays = distance.Days(*bestIt);
-		if(bestDays < 0)
-			bestDays = numeric_limits<int>::max();
 		for(++it; it != destinations.end(); ++it)
-		{
-			int days = distance.Days(*it);
-			if(days >= 0 && days < bestDays)
-			{
+			if(distance.Days(*it) < distance.Days(*bestIt))
 				bestIt = it;
-				bestDays = days;
-			}
-		}
 
 		sourceSystem = *bestIt;
-		// If currently unreachable, this system adds -1 to the deadline, to match previous behavior.
-		expectedJumps += bestDays == numeric_limits<int>::max() ? -1 : bestDays;
+		expectedJumps += distance.Days(*bestIt);
 		destinations.erase(bestIt);
 	}
-	DistanceMap distance(sourceSystem,
-			distanceCalcSettings.WormholeStrat(),
-			distanceCalcSettings.AssumesJumpDrive());
-	// If currently unreachable, this system adds -1 to the deadline, to match previous behavior.
+	DistanceMap distance(sourceSystem);
 	expectedJumps += distance.Days(destination->GetSystem());
 
 	return expectedJumps;

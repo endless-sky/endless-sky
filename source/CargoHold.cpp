@@ -509,7 +509,7 @@ int CargoHold::Add(const Outfit *outfit, int amount)
 	// If the outfit has mass and this cargo hold has a size limit, apply it.
 	double mass = outfit->Mass();
 	if(size >= 0 && mass > 0.)
-		amount = max(0, min(amount, static_cast<int>(FreePrecise() / mass)));
+		amount = max(0, min(amount, static_cast<int>(Free() / mass)));
 	outfits[outfit] += amount;
 	return amount;
 }

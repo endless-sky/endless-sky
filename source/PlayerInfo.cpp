@@ -249,12 +249,7 @@ void PlayerInfo::Load(const string &path)
 					reputationChanges.emplace_back(
 						GameData::Governments().Get(grand.Token(0)), grand.Value(1));
 		}
-		else if(child.Token(0) == "tribute received")
-		{
-			for(const DataNode &grand : child)
-				if(grand.Size() >= 2)
-					tributeReceived[GameData::Planets().Get(grand.Token(0))] = grand.Value(1);
-		}
+
 		// Records of things you own:
 		else if(child.Token(0) == "ship")
 		{
@@ -276,11 +271,6 @@ void PlayerInfo::Load(const string &path)
 							CargoHold &storage = planetaryStorage[GameData::Planets().Get(grand.Token(1))];
 							storage.Load(grandGrand);
 						}
-		}
-		else if(child.Token(0) == "licenses")
-		{
-			for(const DataNode &grand : child)
-				AddLicense(grand.Token(0));
 		}
 		else if(child.Token(0) == "account")
 			accounts.Load(child, true);
@@ -714,8 +704,16 @@ void PlayerInfo::IncrementDate()
 	}
 
 	// Check what salaries and tribute the player receives.
-	int64_t salariesIncome = accounts.SalariesIncomeTotal();
-	int64_t tributeIncome = GetTributeTotal();
+	auto GetIncome = [&](string prefix)
+	{
+		int64_t total = 0;
+		auto it = conditions.PrimariesLowerBound(prefix);
+		for( ; it != conditions.PrimariesEnd() && !it->first.compare(0, prefix.length(), prefix); ++it)
+			total += it->second;
+		return total;
+	};
+	int64_t salariesIncome = GetIncome("salary: ");
+	int64_t tributeIncome = GetIncome("tribute: ");
 	FleetBalance b = MaintenanceAndReturns();
 	if(salariesIncome || tributeIncome || b.assetsReturns)
 	{
@@ -932,35 +930,6 @@ PlayerInfo::FleetBalance PlayerInfo::MaintenanceAndReturns() const
 
 
 
-void PlayerInfo::AddLicense(const string &name)
-{
-	licenses.insert(name);
-}
-
-
-
-void PlayerInfo::RemoveLicense(const string &name)
-{
-	licenses.erase(name);
-}
-
-
-
-bool PlayerInfo::HasLicense(const string &name) const
-{
-	// TODO: This should be changed to use std::set<>::contains when we move to C++20.
-	return licenses.count(name);
-}
-
-
-
-const set<string> &PlayerInfo::Licenses() const
-{
-	return licenses;
-}
-
-
-
 // Get a pointer to the ship that the player controls. This is always the first
 // ship in the list.
 const Ship *PlayerInfo::Flagship() const
@@ -1122,8 +1091,6 @@ void PlayerInfo::AddShip(const shared_ptr<Ship> &ship)
 	ships.push_back(ship);
 	ship->SetIsSpecial();
 	ship->SetIsYours();
-	if(ship->HasBays())
-		displayCarrierHelp = true;
 }
 
 
@@ -1158,9 +1125,6 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift)
 			for(const auto &it : model->Outfits())
 				stock[it.first] -= it.second;
 		}
-
-		if(ships.back()->HasBays())
-			displayCarrierHelp = true;
 	}
 }
 
@@ -2178,61 +2142,6 @@ map<string, string> PlayerInfo::GetSubstitutions() const
 
 
 
-bool PlayerInfo::SetTribute(const Planet *planet, int64_t payment)
-{
-	if(payment > 0)
-	{
-		tributeReceived[planet] = payment;
-		// Properly connect this function to the dominated property of planets.
-		GameData::GetPolitics().DominatePlanet(planet);
-	}
-	else
-	{
-		tributeReceived.erase(planet);
-		// Properly connect this function to the (no longer) dominated property of planets.
-		GameData::GetPolitics().DominatePlanet(planet, false);
-	}
-
-	return true;
-}
-
-
-
-bool PlayerInfo::SetTribute(const string &planetTrueName, int64_t payment)
-{
-	const Planet *planet = GameData::Planets().Find(planetTrueName);
-	if(!planet)
-		return false;
-
-	return SetTribute(planet, payment);
-}
-
-
-
-// Get a list of all tribute that the player receives.
-const map<const Planet *, int64_t> &PlayerInfo::GetTribute() const
-{
-	return tributeReceived;
-}
-
-
-
-// Get the total sum of the tribute the player receives.
-int64_t PlayerInfo::GetTributeTotal() const
-{
-	return accumulate(
-		tributeReceived.begin(),
-		tributeReceived.end(),
-		0,
-		[](int64_t value, const std::map<const Planet *, int64_t>::value_type &tribute)
-		{
-			return value + tribute.second;
-		}
-	);
-}
-
-
-
 // Check if the player knows the location of the given system (whether or not
 // they have actually visited it).
 bool PlayerInfo::HasSeen(const System &system) const
@@ -2815,8 +2724,16 @@ void PlayerInfo::ApplyChanges()
 	destroyedPersons.clear();
 
 	// Check which planets you have dominated.
-	for(auto it = tributeReceived.begin(); it != tributeReceived.end(); ++it)
-		GameData::GetPolitics().DominatePlanet(it->first);
+	static const string prefix = "tribute: ";
+	for(auto it = Conditions().PrimariesLowerBound(prefix); it != Conditions().PrimariesEnd(); ++it)
+	{
+		if(it->first.compare(0, prefix.length(), prefix))
+			break;
+
+		const Planet *planet = GameData::Planets().Find(it->first.substr(prefix.length()));
+		if(planet)
+			GameData::GetPolitics().DominatePlanet(planet);
+	}
 
 	// Issue warnings for any data which has been mentioned but not actually defined, and
 	// ensure that all "undefined" data is appropriately named.
@@ -2991,7 +2908,7 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	auto &&unpaidSalariesProvider = conditions.GetProviderNamed("unpaid salaries");
 	unpaidSalariesProvider.SetGetFunction([this](const string &name) {
-		return min(limit, accounts.CrewSalariesOwed()); });
+		return min(limit, accounts.SalariesOwed()); });
 
 	auto &&unpaidMaintenanceProvider = conditions.GetProviderNamed("unpaid maintenance");
 	unpaidMaintenanceProvider.SetGetFunction([this](const string &name) {
@@ -3000,74 +2917,6 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto &&creditScoreProvider = conditions.GetProviderNamed("credit score");
 	creditScoreProvider.SetGetFunction([this](const string &name) {
 		return accounts.CreditScore(); });
-
-	// Read/write assets and debts.
-	auto &&salaryIncomeProvider = conditions.GetProviderPrefixed("salary: ");
-	auto salaryIncomeHasGetFun = [this](const string &name) -> int64_t
-	{
-		const map<string, int64_t> &si = accounts.SalariesIncome();
-		auto it = si.find(name.substr(strlen("salary: ")));
-		if(it == si.end())
-			return 0;
-		return it->second;
-	};
-	salaryIncomeProvider.SetHasFunction(salaryIncomeHasGetFun);
-	salaryIncomeProvider.SetGetFunction(salaryIncomeHasGetFun);
-	salaryIncomeProvider.SetSetFunction([this](const string &name, int64_t value) -> bool
-	{
-		accounts.SetSalaryIncome(name.substr(strlen("salary: ")), value);
-		return true;
-	});
-	salaryIncomeProvider.SetEraseFunction([this](const string &name) -> bool
-	{
-		accounts.SetSalaryIncome(name.substr(strlen("salary: ")), 0);
-		return true;
-	});
-
-	auto &&tributeProvider = conditions.GetProviderPrefixed("tribute: ");
-	auto tributeHasGetFun = [this](const string &name) -> int64_t
-	{
-		const Planet *planet = GameData::Planets().Find(name);
-		if(!planet)
-			return 0;
-
-		auto it = tributeReceived.find(planet);
-		if(it == tributeReceived.end())
-			return 0;
-
-		return it->second;
-	};
-	tributeProvider.SetHasFunction(tributeHasGetFun);
-	tributeProvider.SetGetFunction(tributeHasGetFun);
-	tributeProvider.SetSetFunction([this](const string &name, int64_t value) -> bool {
-		return SetTribute(name.substr(strlen("tribute: ")), value);
-	});
-	tributeProvider.SetEraseFunction([this](const string &name) -> bool {
-		return SetTribute(name.substr(strlen("tribute: ")), 0);
-	});
-
-	auto &&licenseProvider = conditions.GetProviderPrefixed("license: ");
-	licenseProvider.SetHasFunction([this](const string &name) -> bool {
-		return HasLicense(name.substr(strlen("license: ")));
-	});
-	licenseProvider.SetGetFunction([this](const string &name) -> int64_t {
-		return HasLicense(name.substr(strlen("license: ")));
-	});
-
-	licenseProvider.SetSetFunction([this](const string &name, int64_t value) -> bool
-	{
-		if(!value)
-			RemoveLicense(name.substr(strlen("license: ")));
-		else
-			AddLicense(name.substr(strlen("license: ")));
-		return true;
-	});
-
-	licenseProvider.SetEraseFunction([this](const string &name) -> bool
-	{
-		RemoveLicense(name.substr(strlen("license: ")));
-		return true;
-	});
 
 	// Read-only flagship conditions.
 	auto &&flagshipCrewProvider = conditions.GetProviderNamed("flagship crew");
@@ -3287,7 +3136,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	// The following condition checks all sources of outfits which are present with the player.
 	// If in orbit, this means checking all ships in-system for installed and in cargo outfits.
 	// If landed, this means checking all landed ships for installed outfits, the pooled cargo
-	// hold, and the planetary storage of the planet. Excludes parked ships.
+	// hold, and the planetary storage of the planet.
 	auto &&presentOutfitProvider = conditions.GetProviderPrefixed("outfit: ");
 	presentOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
@@ -3304,12 +3153,10 @@ void PlayerInfo::RegisterDerivedConditions()
 		}
 		for(const shared_ptr<Ship> &ship : ships)
 		{
-			// Destroyed and parked ships aren't checked.
-			// If not on a planet, the ship's system must match.
+			// If not on a planet, parked ships in system don't count.
 			// If on a planet, the ship's planet must match.
-			if(ship->IsDestroyed() || ship->IsParked()
-					|| (planet && ship->GetPlanet() != planet)
-					|| (!planet && ship->GetActualSystem() != system))
+			if(ship->IsDestroyed() || (planet && ship->GetPlanet() != planet)
+					|| (!planet && (ship->GetActualSystem() != system || ship->IsParked())))
 				continue;
 			retVal += ship->OutfitCount(outfit);
 			retVal += ship->Cargo().Get(outfit);
@@ -3338,8 +3185,8 @@ void PlayerInfo::RegisterDerivedConditions()
 		return retVal;
 	});
 
-	// The following condition checks the player's fleet for installed outfits on active
-	// escorts local to the player.
+	// The following condition checks the player's fleet for installed outfits on escorts
+	// local to the player.
 	auto &presentInstalledOutfitProvider = conditions.GetProviderPrefixed("outfit (installed): ");
 	presentInstalledOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
@@ -3349,33 +3196,10 @@ void PlayerInfo::RegisterDerivedConditions()
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
 		{
-			// Destroyed and parked ships aren't checked.
-			// If not on a planet, the ship's system must match.
+			// If not on a planet, parked ships in system don't count.
 			// If on a planet, the ship's planet must match.
-			if(ship->IsDestroyed() || ship->IsParked()
-					|| (planet && ship->GetPlanet() != planet)
-					|| (!planet && ship->GetActualSystem() != system))
-				continue;
-			retVal += ship->OutfitCount(outfit);
-		}
-		return retVal;
-	});
-
-	// The following condition checks the player's fleet for installed outfits on parked escorts
-	// which are local to the player.
-	auto &parkedInstalledOutfitProvider = conditions.GetProviderPrefixed("outfit (parked): ");
-	parkedInstalledOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
-	{
-		// If the player isn't landed then there can be no parked ships local to them.
-		if(!planet)
-			return 0;
-		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (parked): ")));
-		if(!outfit)
-			return 0;
-		int64_t retVal = 0;
-		for(const shared_ptr<Ship> &ship : ships)
-		{
-			if(!ship->IsParked() || ship->GetPlanet() != planet)
+			if(ship->IsDestroyed() || (planet && ship->GetPlanet() != planet)
+					|| (!planet && (ship->GetActualSystem() != system || ship->IsParked())))
 				continue;
 			retVal += ship->OutfitCount(outfit);
 		}
@@ -4047,14 +3871,6 @@ void PlayerInfo::Save(DataWriter &out) const
 	}
 	out.EndChild();
 
-	out.Write("tribute received");
-	out.BeginChild();
-	{
-		for(const auto &it : tributeReceived)
-			if(it.second > 0)
-				out.Write((it.first)->TrueName(), it.second);
-	}
-	out.EndChild();
 
 	// Records of things you own:
 	out.Write();
@@ -4083,16 +3899,6 @@ void PlayerInfo::Save(DataWriter &out) const
 					}
 					out.EndChild();
 				}
-		}
-		out.EndChild();
-	}
-	if(!licenses.empty())
-	{
-		out.Write("licenses");
-		out.BeginChild();
-		{
-			for(const string &license : licenses)
-				out.Write(license);
 		}
 		out.EndChild();
 	}
@@ -4379,11 +4185,6 @@ void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
 			*first = false;
 		}
 	}
-}
-
-bool PlayerInfo::DisplayCarrierHelp() const
-{
-	return displayCarrierHelp;
 }
 
 

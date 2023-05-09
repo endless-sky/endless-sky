@@ -26,7 +26,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "EscortDisplay.h"
 #include "Information.h"
 #include "Point.h"
-#include "Preferences.h"
 #include "Radar.h"
 #include "Rectangle.h"
 
@@ -102,33 +101,6 @@ public:
 
 
 private:
-	class Target {
-	public:
-		Point center;
-		Angle angle;
-		double radius;
-		const Color &color;
-		int count;
-	};
-
-	class Status {
-	public:
-		Status(const Point &position, double outer, double inner,
-			double disabled, double radius, int type, double angle = 0.)
-			: position(position), outer(outer), inner(inner),
-				disabled(disabled), radius(radius), type(type), angle(angle) {}
-
-		Point position;
-		double outer;
-		double inner;
-		double disabled;
-		double radius;
-		int type;
-		double angle;
-	};
-
-
-private:
 	void EnterSystem();
 
 	void ThreadEntryPoint();
@@ -157,8 +129,30 @@ private:
 
 	void DoGrudge(const std::shared_ptr<Ship> &target, const Government *attacker);
 
-	void CreateStatusOverlays();
-	void EmplaceStatusOverlay(const std::shared_ptr<Ship> &ship, Preferences::OverlayState overlaySetting, int value);
+
+private:
+	class Target {
+	public:
+		Point center;
+		Angle angle;
+		double radius;
+		const Color &color;
+		int count;
+	};
+
+	class Status {
+	public:
+		Status(const Point &position, double outer, double inner,
+			double disabled, double radius, int type, double angle = 0.);
+
+		Point position;
+		double outer;
+		double inner;
+		double disabled;
+		double radius;
+		int type;
+		double angle;
+	};
 
 
 private:
@@ -191,6 +185,7 @@ private:
 	bool hasFinishedCalculating = true;
 	bool terminate = false;
 	bool wasActive = false;
+	bool isMouseToggleEnabled = false;
 	bool isMouseHoldEnabled = false;
 	bool isMouseTurningEnabled = false;
 	DrawList draw[2];
@@ -252,10 +247,6 @@ private:
 	Rectangle uiClickBox;
 	Rectangle clickBox;
 	int groupSelect = -1;
-
-	// Set of asteroids scanned in the current system.
-	std::set<std::string> asteroidsScanned;
-	bool isAsteroidCatalogComplete = false;
 
 	// Input, Output and State handling for automated tests.
 	TestContext *testContext = nullptr;

@@ -74,7 +74,6 @@ color "waypoint" .1 .2 .9 1.
 color "waypoint back" 0. .3 .7 .5
 
 # Colors for the Escort HUD that is displayed in-flight.
-color "escort disabled" .4 .4 .4 0.
 color "escort present" .8 .8 .8 1.
 color "escort elsewhere" .4 .4 .6 1.
 color "escort not ready" .9 .8 0. 1.
@@ -89,9 +88,6 @@ color "overlay friendly disabled" .5 0 0 .25
 color "overlay hostile shields" .5 .15 0. .25
 color "overlay hostile hull" .5 .3 0. .25
 color "overlay hostile disabled" .3 .3 0 .25
-color "overlay neutral shields" .43 .55 .70 .75
-color "overlay neutral hull" .45 .5 0. .25
-color "overlay neutral disabled" .5 0 0 .25
 color "overlay outfit scan" .5 .5 .5 .25
 color "overlay cargo scan" .7 .7 .7 .25
 

@@ -1673,7 +1673,7 @@ mission "Slave Transport [0]"
 		"reputation: Pirate" > 0
 		"combat rating" > 1100
 	to accept
-		has "outfit (installed): Brig"
+		has "outfit: Brig"
 	source
 		government "Pirate"
 	destination
@@ -1697,7 +1697,7 @@ mission "Slave Transport [1]"
 		"reputation: Pirate" > 0
 		"combat rating" > 1100
 	to accept
-		has "outfit (installed): Brig"
+		has "outfit: Brig"
 	source
 		government "Pirate"
 	destination
@@ -1721,7 +1721,7 @@ mission "Slave Transport [2]"
 		"reputation: Pirate" > 0
 		"combat rating" > 1100
 	to accept
-		has "outfit (installed): Brig"
+		has "outfit: Brig"
 	source
 		government "Pirate"
 	destination
@@ -1747,7 +1747,7 @@ mission "Bulk Slave Transport [0]"
 		"reputation: Pirate" > 0
 		"combat rating" > 3000
 	to accept
-		has "outfit (installed): Brig"
+		has "outfit: Brig"
 	source
 		government "Pirate"
 	destination
@@ -1771,7 +1771,7 @@ mission "Bulk Slave Transport [1]"
 		"reputation: Pirate" > 0
 		"combat rating" > 3000
 	to accept
-		has "outfit (installed): Brig"
+		has "outfit: Brig"
 	source
 		government "Pirate"
 	destination

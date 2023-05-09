@@ -64,7 +64,7 @@ mission "Paradise Job: Art Delivery"
 	repeat
 	deadline
 	description "Deliver <cargo> for an upcoming art exhibition on <destination> by <date>. Payment is <payment>."
-	cargo "Luxury Goods" 1 2 .4
+	cargo "Luxury Goods" 3 8
 	to offer
 		random < 10
 	source
@@ -92,7 +92,7 @@ mission "Paradise Job: Newlyweds"
 	to offer
 		random < 10
 	to accept
-		has "outfit (installed): Luxury Accommodations"
+		has "outfit: Luxury Accommodations"
 	source
 		attributes "paradise"
 	destination
@@ -112,7 +112,7 @@ mission "Paradise Job: Theater Props"
 	repeat
 	deadline
 	description "A theater troupe on <destination> needs a delivery of <tons> of special <commodity> to use as props in an upcoming performance on <date>. Payment is <payment>."
-	cargo "Luxury Goods" 2 6 .35
+	cargo "Luxury Goods" 9 15
 	to offer
 		random < 10
 	source
@@ -135,7 +135,7 @@ mission "Paradise Job: Fine Food"
 	repeat
 	deadline
 	description "A highly-rated restaurant on <destination> seeks to acquire <tons> of fine <commodity> by <date>. Payment is <payment>."
-	cargo "Food" 2 5 .25
+	cargo "Food" 9 25
 	to offer
 		random < 10
 	source
@@ -164,7 +164,7 @@ mission "Transport partiers [1]"
 	to offer
 		random < 10
 	to accept
-		has "outfit (installed): Luxury Accommodations"
+		has "outfit: Luxury Accommodations"
 	source
 		attributes "paradise"
 	destination
@@ -188,7 +188,7 @@ mission "Transport partiers [2]"
 	to offer
 		random < 10
 	to accept
-		has "outfit (installed): Luxury Accommodations"
+		has "outfit: Luxury Accommodations"
 	source
 		attributes "paradise"
 	destination
@@ -380,7 +380,7 @@ mission "Transport high-class tourists"
 	to offer
 		random < 10
 	to accept
-		has "outfit (installed): Luxury Accommodations"
+		has "outfit: Luxury Accommodations"
 	source
 		attributes "paradise"
 	destination
@@ -397,7 +397,7 @@ mission "Pleasure cruise security"
 	description "Escort the <npc> on a pleasure cruise to the wild and exotic planet of <stopovers> along with <tons> of their <commodity>, then return to <destination>, where you will be paid <payment>."
 	job
 	repeat
-	cargo "Luxury Goods" 15 3 .17
+	cargo "Luxury Goods" 20 35
 	to offer
 		random < 10
 		"combat rating" > 10
@@ -437,9 +437,8 @@ mission "Paradise Job: Parolees"
 		random < 15
 		"passenger space" > 40
 	to accept
-		has "outfit (installed): Brig"
+		has "outfit: Brig"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "mining" "fishing" "textiles" "factory" "farming" "oil"
 	destination
 		distance 2 18
@@ -462,7 +461,7 @@ mission "Paradise Job: Debtors"
 		random < 15
 		"passenger space" > 40
 	to accept
-		has "outfit (installed): Brig"
+		has "outfit: Brig"
 	source
 		attributes "paradise"
 	destination
@@ -488,9 +487,8 @@ mission "Paradise Job: Retirees"
 		"passenger space" > 15
 		"cargo space" > 40
 	to accept
-		has "outfit (installed): Luxury Accommodations"
+		has "outfit: Luxury Accommodations"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest" "urban"
 	destination
 		distance 3 16
@@ -500,58 +498,6 @@ mission "Paradise Job: Retirees"
 	on complete
 		payment 10000 200
 		dialog "You bid goodbye to the retirees, who were somewhat prone to spilling drinks or irritating you whilst attempting to do work. They were otherwise extremely polite and full of highly amusing, though often morally questionable, anecdotes. Once the last of their belongings have been safely unloaded your accounts receive the payment of <payment> from their travel broker."
-
-
-mission "Paradise Job: Pirate Retirees (Illegal)"
-	name "Wealthy retirees to <planet>"
-	job
-	repeat
-	description `This coterie of <bunks> wealthy "retirees" is willing to pay <payment> for stylish, no-questions-asked transport to <destination>, along with <tons> of their most treasured possessions.`
-	passengers 4 10 .6
-	cargo "treasured possessions" 4 10 .2
-	illegal 15000 `After scanning your ship, law enforcement notifies you. Apparently the "retirees" you've been carting around are secretly wanted individuals. After taking boarding your ship, they arrest the so-called retirees and search through their "treasured possessions," which are innocent enough, besides being obtained illegally. In the end, they confiscate the possessions and take away the criminals, leaving you with a small fine.`
-	stealth
-	to offer
-		random < 5
-		"passenger space" > 15
-		"cargo space" > 40
-	to accept
-		has "outfit: Luxury Accommodations"
-	source
-		government "Pirate"
-	destination
-		distance 3 16
-		attributes "paradise"
-	on visit
-		dialog phrase "generic passenger on visit"
-	on complete
-		payment 15000 300
-		dialog "You bid goodbye to the self-proclaimed retirees, who were somewhat prone to spilling drinks or irritating you whilst attempting to do work. They were otherwise extremely polite, if raucous, and full of highly amusing, though often morally questionable, anecdotes. Once the last of their belongings have been safely unloaded your accounts receive the payment of <payment> from an anyonymous source."
-
-
-mission "Paradise Job: Pirate Retirees (Legal)"
-	name "Wealthy retirees to <planet>"
-	job
-	repeat
-	description `This coterie of <bunks> wealthy "retirees" is willing to pay <payment> for stylish, no-questions-asked transport to <destination>, along with <tons> of their most treasured possessions.`
-	passengers 4 10 .6
-	cargo "treasured possessions" 4 10 .2
-	to offer
-		random < 5
-		"passenger space" > 15
-		"cargo space" > 40
-	to accept
-		has "outfit: Luxury Accommodations"
-	source
-		government "Pirate"
-	destination
-		distance 3 16
-		attributes "paradise"
-	on visit
-		dialog phrase "generic passenger on visit"
-	on complete
-		payment 10000 200
-		dialog "You bid goodbye to the self-proclaimed retirees, who were somewhat prone to spilling drinks or irritating you whilst attempting to do work. They were otherwise extremely polite, if raucous, and full of highly amusing, though often morally questionable, anecdotes. Once the last of their belongings have been safely unloaded your accounts receive the payment of <payment> from an anyonymous source."
 
 
 mission "Paradise Job: Wilderness Retreat"
@@ -564,9 +510,8 @@ mission "Paradise Job: Wilderness Retreat"
 		random < 10
 		"passenger space" > 25
 	to accept
-		has "outfit (installed): Luxury Accommodations"
+		has "outfit: Luxury Accommodations"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "urban" "near earth" "core" "paradise"
 	destination
 		distance 6 20
@@ -586,7 +531,7 @@ mission "Martini Evacuation (Resident Family)"
 	description "This family of <bunks> from Martini had their <martini house> destroyed in the nuclear bombing and wish to leave immediately. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
 	job
 	repeat
-	passengers 3 20 .96
+	passengers 3 6
 	cargo "belongings" 2 4
 	substitutions
 		"<martini house>" "apartment"
@@ -615,7 +560,7 @@ mission "Martini Evacuation (Resident Group)"
 	description "These <bunks> residents from Martini had their <martini house> destroyed in the nuclear bombing and wish to leave immediately. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
 	job
 	repeat
-	passengers 3 2 .68
+	passengers 3 6
 	cargo "belongings" 3 6
 	substitutions
 		"<martini house>" "apartment"
@@ -673,7 +618,7 @@ mission "Martini Evacuation (Family, Luxury)"
 	description "This family of <bunks> from Martini had their <martini house> destroyed in the nuclear bombing, and wish to leave immediately on a luxury ship. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
 	job
 	repeat
-	passengers 3 20 .96
+	passengers 3 6
 	cargo "belongings" 2 4
 	substitutions
 		"<martini house>" "apartment"
@@ -777,7 +722,7 @@ mission "Martini Evacuation (Tourist Family)"
 	description "This family of <bunks> tourists from <planet>, who were on Martini to see its sights when the nuclear bombings occurred, wish to leave immediately. Transport them back to their home on <planet>, where they will pay you <payment>."
 	job
 	repeat
-	passengers 3 20 .96
+	passengers 3 6
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
@@ -797,7 +742,7 @@ mission "Martini Evacuation (Tourist Group)"
 	description "This group of <bunks> tourists from <planet>, who were on Martini to see its sights when the nuclear bombings occurred, wish to leave immediately. Transport them back to their homes on <planet>, where they will pay you <payment>."
 	job
 	repeat
-	passengers 3 20 .68
+	passengers 3 6
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
@@ -861,7 +806,7 @@ mission "Martini Evacuation (Exhausted Doctors)"
 	description "These <bunks> doctors have been constantly treating patients on Martini after the bombings, and now have been discharged. Transport them back to their home on <planet>, where they will pay you <payment>."
 	job
 	repeat
-	passengers 2 10 .9
+	passengers 2 6
 	to offer
 		has "event: initial deployment 1"
 		not "event: initial deployment 2"
@@ -882,7 +827,7 @@ mission "Martini Evacuation (Exhausted Search and Rescue Team)"
 	description "These <bunks> search and rescue operatives have been searching for victims of the nuclear bombings in Martini's capital city, and now have been discharged. Transport them back to their home on <planet>, where they will pay you <payment>."
 	job
 	repeat
-	passengers 2 10 .9
+	passengers 2 6
 	to offer
 		has "event: initial deployment 1"
 		not "event: initial deployment 2"
@@ -1126,7 +1071,7 @@ mission "Martini Relief (Medical) [0]"
 	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help treat the wounded. You will need to hail the spaceport controller to gain clearance to the planet. Payment is <payment>."
 	job
 	repeat
-	cargo Medical 1 2 .2
+	cargo Medical 5 25
 	clearance "When you explain to the spaceport controller that you are carrying a vital supply of <commodity> to help treat the wounded, they give you the clearance to land."
 	to offer
 		has "event: war begins"
@@ -1147,7 +1092,7 @@ mission "Martini Relief (Medical) [1]"
 	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help treat the wounded. You will need to hail the spaceport controller to gain clearance to the planet. Payment is <payment>."
 	job
 	repeat
-	cargo Medical 1 2 .2
+	cargo Medical 5 25
 	clearance "When you explain to the spaceport controller that you are carrying a vital supply of <commodity> to help treat the wounded, they give you the clearance to land."
 	to offer
 		has "event: war begins"
@@ -1168,7 +1113,7 @@ mission "Martini Relief (Reconstruction)"
 	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help the reconstruction efforts. You will need to hail the spaceport controller to gain clearance to the planet. Payment is <payment>."
 	job
 	repeat
-	cargo Construction 1 2 .2
+	cargo Construction 5 25
 	clearance "When you explain to the spaceport controller that you are carrying a vital supply of <commodity> for the reconstruction efforts, they give you the clearance to land."
 	to offer
 		has "event: war begins"
@@ -1189,7 +1134,7 @@ mission "Martini Relief (Food)"
 	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help keep up supply. You will need to hail the spaceport controller to gain clearance to the planet. Payment is <payment>."
 	job
 	repeat
-	cargo "food packages" 1 2 .2
+	cargo "food packages" 5 25
 	clearance "When you explain to the spaceport controller that you are carrying a vital supply of <commodity> for the refugee camps, they give you the clearance to land."
 	to offer
 		has "event: war begins"
@@ -1210,7 +1155,7 @@ mission "Martini Relief (Water Tablets)"
 	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help keep up supply. You will need to hail the spaceport controller to gain clearance to the planet. Payment is <payment>."
 	job
 	repeat
-	cargo "water purification tablets" 1 2 .2
+	cargo "water purification tablets" 5 25
 	clearance "When you explain to the spaceport controller that you are carrying a vital supply of <commodity> for the refugee camps, they give you the clearance to land."
 	to offer
 		has "event: war begins"
@@ -1231,7 +1176,7 @@ mission "Martini Relief (Fire Retardant)"
 	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help keep up supply. You will need to hail the spaceport controller to gain clearance to the planet. Payment is <payment>."
 	job
 	repeat
-	cargo "fire retardant" 1 2 .2
+	cargo "fire retardant" 5 25
 	clearance "When you explain to the spaceport controller that you are carrying a vital supply of <commodity> to help defeat the growing fires around the capital, they give you the clearance to land."
 	to offer
 		has "event: war begins"
@@ -1252,7 +1197,7 @@ mission "Martini Relief (People) [0]"
 	description "Due to the recent nuclear bombings on Martini, bring <bunks> <martini relief occupations> to <planet> to release demand from overloaded hospitals. You will need to hail the spaceport controller to gain clearance to the planet. Payment is <payment>."
 	job
 	repeat
-	passengers 2 2 .3
+	passengers 5 15
 	substitutions
 		"<martini relief occupations>" "doctors"
 		"<martini relief occupations>" "technicians"
@@ -1280,7 +1225,7 @@ mission "Martini Relief (People) [1]"
 	description "Due to the recent nuclear bombings on Martini, bring <bunks> <martini relief occupations> to <planet> to assist in Martini's relief efforts. You will need to hail the spaceport controller to gain clearance to the planet. Payment is <payment>."
 	job
 	repeat
-	passengers 2 2 .3
+	passengers 5 15
 	substitutions
 		"<martini relief occupations>" "evacuation coordinators"
 		"<martini relief occupations>" "search and rescue operatives"
@@ -1308,7 +1253,7 @@ mission "Martini Relief (People) [2]"
 	description "Due to the recent nuclear bombings on Martini, bring <bunks> <martini relief occupations> to <planet> to assist in the accommodation and reconstruction efforts. You will need to hail the spaceport controller to gain clearance to the planet. Payment is <payment>."
 	job
 	repeat
-	passengers 2 2 .3
+	passengers 5 15
 	substitutions
 		"<martini relief occupations>" "engineers"
 		"<martini relief occupations>" "technicians"

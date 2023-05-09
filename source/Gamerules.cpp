@@ -42,10 +42,6 @@ void Gamerules::Load(const DataNode &node)
 			personSpawnPeriod = max<int>(1, child.Value(1));
 		else if(key == "no person spawn weight")
 			noPersonSpawnWeight = max<int>(0, child.Value(1));
-		else if(key == "npc max mining time")
-			npcMaxMiningTime = max<int>(0, child.Value(1));
-		else if(key == "universal frugal threshold")
-			universalFrugalThreshold = min<double>(1., max<double>(0., child.Value(1)));
 		else
 			child.PrintTrace("Skipping unrecognized gamerule:");
 	}
@@ -70,18 +66,4 @@ int Gamerules::PersonSpawnPeriod() const
 int Gamerules::NoPersonSpawnWeight() const
 {
 	return noPersonSpawnWeight;
-}
-
-
-
-int Gamerules::NPCMaxMiningTime() const
-{
-	return npcMaxMiningTime;
-}
-
-
-
-double Gamerules::UniversalFrugalThreshold() const
-{
-	return universalFrugalThreshold;
 }

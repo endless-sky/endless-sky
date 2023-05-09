@@ -256,7 +256,7 @@ event "wanderers: kaliptari battle begins"
 
 event "wanderers: kaliptari battle ends"
 	system Kaliptari
-		add fleet "Large Quarg (Kor Efret)" 2000
+		add fleet "Large Quarg" 2000
 		add fleet "Small Kor Mereti" 8000
 		add fleet "Large Kor Mereti" 3600
 		add fleet "Wanderer Defense" 1000
@@ -462,7 +462,7 @@ mission "Wanderers: Quarg Assistance 2"
 	on visit
 		dialog `You've reached <planet>, but you left one of the Quarg ships behind. Better depart and wait for it to arrive.`
 	npc accompany save
-		government "Quarg (Kor Efret)"
+		government "Quarg"
 		personality escort
 		ship "Quarg Wardragon" "Elearu-quara"
 		ship "Quarg Wardragon" "Kumawar Kwarca"
@@ -477,7 +477,7 @@ mission "Wanderers: Quarg Defenders"
 	to offer
 		has "Wanderers: Quarg Assistance 2: done"
 	npc kill
-		government "Quarg (Kor Efret)"
+		government "Quarg"
 		personality staying uninterested heroic
 		ship "Quarg Wardragon" "Elearu-quara"
 		ship "Quarg Wardragon" "Kumawar Kwarca"
@@ -714,8 +714,8 @@ event "wanderers: kashikt battle begins"
 
 event "wanderers: kashikt battle ends"
 	system "Kashikt"
-		fleet "Quarg (Kor Efret)" 1000
-		fleet "Large Quarg (Kor Efret)" 2000
+		fleet "Quarg" 1000
+		fleet "Large Quarg" 2000
 		fleet "Kor Efret Home" 1000
 
 mission "Wanderers: Kor Efret 3"
@@ -775,14 +775,14 @@ mission "Wanderers: Kor Efret 3"
 				"Arch-Carrack" 2
 				"Charm-Shallop" 4
 	npc
-		government "Quarg (Kor Efret)"
+		government "Quarg"
 		personality heroic staying entering
 		fleet
 			names "quarg"
 			variant
 				"Quarg Wardragon" 1
 	npc
-		government "Quarg (Kor Efret)"
+		government "Quarg"
 		personality heroic
 		system "Host"
 		fleet
@@ -790,7 +790,7 @@ mission "Wanderers: Kor Efret 3"
 			variant
 				"Quarg Wardragon" 3
 	npc
-		government "Quarg (Kor Efret)"
+		government "Quarg"
 		personality heroic
 		system "Mesuket"
 		fleet
@@ -1070,7 +1070,7 @@ event "wanderers: kor mereti friendly"
 	government "Kor Mereti"
 		"attitude toward"
 			"Wanderer" 1
-	government "Quarg (Kor Efret)"
+	government "Quarg"
 		"attitude toward"
 			"Kor Mereti" 0
 	government "Kor Efret"
@@ -1585,7 +1585,7 @@ event "wanderers: battle in solifar begins"
 
 event "wanderers: battle in solifar ends"
 	system Solifar
-		fleet "Large Quarg (Kor Efret)" 3000
+		fleet "Large Quarg" 3000
 		fleet "Wanderer Defense" 1800
 		fleet "Wanderer Drones" 700
 		fleet "Wanderer Flycatchers" 800
@@ -2819,20 +2819,6 @@ mission "Wanderers: Sestor Alt: Alnilam 3"
 	on visit
 		dialog `You've reached <planet>, but not all of the Navy Cruisers have entered the system yet. Better depart and wait for them to arrive.`
 
-event "liberated zenith"
-	planet "Zenith"
-		bribe .04
-		"required reputation" 0
-
-mission "Wanderers: Sestor Alt: Zenith Patch"
-	landing
-	invisible
-	to offer
-		has "Wanderers: Sestor Alt: Alnilam 2: done"
-	on offer
-		event "liberated zenith"
-		fail
-
 
 
 mission "Wanderers: Sestor Alt: Return to Wanderers"
@@ -3323,7 +3309,7 @@ event "wanderers: sestor eliminated"
 event "wanderers: sabira eseskrai colony"
 	system "Skeruto"
 		government "Wanderer"
-		fleet "Large Quarg (Kor Efret)" 1000
+		fleet "Large Quarg" 1000
 		fleet "Wanderer Defense" 1200
 		fleet "Wanderer Drones" 800
 		fleet "Kor Efret Home" 800

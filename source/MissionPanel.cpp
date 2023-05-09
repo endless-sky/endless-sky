@@ -257,7 +257,7 @@ void MissionPanel::Draw()
 	DrawSelectedSystem();
 	DrawMissionInfo();
 	DrawTooltips();
-	FinishDrawing("is missions");
+	DrawButtons("is missions");
 }
 
 
@@ -385,17 +385,11 @@ bool MissionPanel::Click(int x, int y, int clicks)
 		unsigned index = max(0, (y + static_cast<int>(availableScroll) - 36 - Screen::Top()) / 20);
 		if(index < available.size())
 		{
-			const auto lastAvailableIt = availableIt;
 			availableIt = available.begin();
 			while(index--)
 				++availableIt;
 			acceptedIt = accepted.end();
 			dragSide = -1;
-			if(availableIt == lastAvailableIt)
-			{
-				CycleInvolvedSystems(*availableIt);
-				return true;
-			}
 			SetSelectedScrollAndCenter();
 			return true;
 		}
@@ -406,7 +400,6 @@ bool MissionPanel::Click(int x, int y, int clicks)
 		int index = max(0, (y + static_cast<int>(acceptedScroll) - 36 - Screen::Top()) / 20);
 		if(index < AcceptedVisible())
 		{
-			const auto lastAcceptedIt = acceptedIt;
 			acceptedIt = accepted.begin();
 			while(index || !acceptedIt->IsVisible())
 			{
@@ -415,11 +408,6 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			}
 			availableIt = available.end();
 			dragSide = 1;
-			if(lastAcceptedIt == acceptedIt)
-			{
-				CycleInvolvedSystems(*acceptedIt);
-				return true;
-			}
 			SetSelectedScrollAndCenter();
 			return true;
 		}
@@ -607,8 +595,6 @@ void MissionPanel::SetSelectedScrollAndCenter(bool immediate)
 
 	// Center on the selected system.
 	CenterOnSystem(selectedSystem, immediate);
-
-	cycleInvolvedIndex = 0;
 }
 
 
@@ -985,8 +971,6 @@ void MissionPanel::Accept(bool force)
 					break;
 			}
 	}
-
-	cycleInvolvedIndex = 0;
 }
 
 
@@ -1082,30 +1066,4 @@ bool MissionPanel::SelectAnyMission()
 		return availableIt != available.end() || acceptedIt != accepted.end();
 	}
 	return false;
-}
-
-
-
-void MissionPanel::CycleInvolvedSystems(const Mission &mission)
-{
-	cycleInvolvedIndex++;
-
-	int index = 0;
-	for(const System *waypoint : mission.Waypoints())
-		if(++index == cycleInvolvedIndex)
-		{
-			CenterOnSystem(waypoint);
-			return;
-		}
-
-	for(const Planet *stopover : mission.Stopovers())
-		if(++index == cycleInvolvedIndex)
-		{
-			CenterOnSystem(stopover->GetSystem());
-			return;
-		}
-
-
-	cycleInvolvedIndex = 0;
-	CenterOnSystem(mission.Destination()->GetSystem());
 }

@@ -97,37 +97,6 @@ help "multiple ship controls"
 	`Escorts can also be ordered with the mouse. Right-clicking on an empty point in space will order escorts to fly to and hold position at that point, while right-clicking on a hostile ship will order your escorts to focus fire on it, and right-clicking on a friendly target will cause them to follow it.`
 	`Escorts can be saved into control groups by pressing Control+number key. All selected escorts will then be bound to that number key, selecting the group when pressed.`
 
-help "fleet asteroid mining"
-	`With an asteroid scanner and a fleet, you can direct your fleet to assist with mining operations and collect mined resources.`
-	`If your escort or fighter has no weapons but has cargo space, then it will chase after mined resources instead of mining.`
-
-help "fleet asteroid mining shortcuts"
-	`Shortcuts for asteroid targeting:`
-	`	<Select nearest asteroid> selects the nearest asteroid if you have an asteroid scanner.`
-	`	<Fleet: Fight my target> will focus your fleet on mining a targeted asteroid.`
-	`	<Fleet: Harvest Flotsam> will toggle whether your fleet tries to pick up flotsams.`
-	``
-	`Alternate targeting:`
-	`	Left click - will target an asteroid without mining it.`
-	`	Right click - will focus your fleet to chase an asteroid and mine it.`
-
-help "fleet harvest tutorial"
-	`You can order your escort to pick up discarded cargo or asteroid flotsam.`
-	``
-	`<Fleet: Harvest Flotsam> will order your fleet to collect flotsam if they have free cargo.`
-	``
-	`Equip an asteroid scanner to learn more.`
-
-help "fighters transfer cargo"
-	`By enabling the "Fighters transfer cargo" preference, drones and fighters in your fleet will transfer cargo to their parent carrier if there is cargo space in the carrier. If a fighter cargo hold is full then it will return to the carrier automatically.`
-	``
-	`Drones and fighters will transfer cargo upon docking with their carrier for any reason.`
-
-help "try out fighters transfer cargo"
-	`You have a carrier which can use fighters to collect dropped materials if the fighter has cargo space.`
-	``
-	`	In Preferences and Settings under the AI section, turn on "Fighters transfer cargo" to learn more.`
-
 help "navigation"
 	`Welcome to the sky! To travel to another star system, press <View star map> to view your map, and click on the system you want to travel to. Your hyperdrive can only travel along the "links" shown on your map. After selecting a destination, close your map and press <Initiate hyperspace jump> to jump to that system.`
 	`Your ship does not jump until you release the jump key. Once you have escorts, you can hold the key to get them ready to jump, then release it to have them all jump simultaneously.`
@@ -159,12 +128,3 @@ help "trading"
 
 help "friendly disabled"
 	`This ship is disabled and needs your help to patch them up! Pressing <Board selected ship> will fly you to their ship and get them up and running again. Just be sure to do it when no one is trying to kill you, or they could get caught in the crossfire!`
-
-help "control ship with mouse"
-	`You've enabled controlling your ship with your mouse.`
-	``
-	`The nose of your ship will always turn toward your mouse pointer.`
-	`<Forward thrust> is used to thrust forward.`
-	`<Reverse> is used to thrust reverse.`
-	`Right mouse click will fire primary weapons.`
-	`<Mouse turning (hold)> will toggle mouse turning while it is held.`

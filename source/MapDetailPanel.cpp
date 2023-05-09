@@ -131,7 +131,6 @@ void MapDetailPanel::Draw()
 	DrawInfo();
 	DrawOrbits();
 	DrawKey();
-	FinishDrawing("is ports");
 }
 
 
@@ -802,6 +801,8 @@ void MapDetailPanel::DrawInfo()
 		text.Wrap(selectedPlanet->Description());
 		text.Draw(Point(Screen::Right() - X_OFFSET - WIDTH, Screen::Top() + 20), medium);
 	}
+
+	DrawButtons("is ports");
 }
 
 

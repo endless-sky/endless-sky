@@ -51,6 +51,10 @@ public:
 
 
 public:
+	static Angle Inaccuracy(double value);
+
+
+public:
 	Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon);
 	Projectile(const Projectile &parent, const Point &offset, const Angle &angle, const Weapon *weapon);
 	// Ship explosion.
