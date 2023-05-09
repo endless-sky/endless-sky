@@ -288,26 +288,6 @@ namespace {
 		ship.SetTargetStellar(nullptr);
 	}
 
-	bool ShouldStay(const Ship &ship)
-	{
-		const Personality &personality = ship.GetPersonality();
-		if(personality.IsStaying())
-			return true;
-
-		shared_ptr<const Ship> parent = ship.GetParent();
-		if(parent && parent->GetGovernment()->IsEnemy(ship.GetGovernment()))
-			return true;
-
-		if(ship.IsFleeing())
-			return false;
-
-		const System *system = ship.GetSystem();
-		if(system && personality.IsLingering())
-			return Random::Int(max<int>(1, system->MinimumFleetPeriod()/4));
-
-		return false;
-	}
-
 	// Constants for the invisible fence timer.
 	const int FENCE_DECAY = 4;
 	const int FENCE_MAX = 600;
@@ -1612,7 +1592,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 
 	// A ship has restricted movement options if it is 'staying', 'lingering', or hostile to its parent.
 	const System *origin = ship.GetSystem();
-	const bool shouldStay = ShouldStay(ship);
+	const bool shouldStay = ship.StayOrLinger();
 
 	// Ships should choose a random system/planet for travel if they do not
 	// already have a system/planet in mind, and are free to move about.
