@@ -5460,10 +5460,10 @@ mission "Escort offer (Betrayal)"
 		conversation
 			`As you land, a heavily modified Firebird with oversized guns follows you down, settling on the pad next to you. A young man with short hair steps out, walks over to your ship, and says, "Hey, you've got a lot of cargo space there. I bet you make loads of dough with it, trading or running jobs. Say, I know somebody who could use a ship like yours. He needs to get <tons> of cargo to <destination> by <day>, you see. Payment's about 350,000 credits. Lot of pirates round there, though. I can fight 'em, but there's not much money to be made hauling cargo in this thing." He gestures to his ship. "Tell you what, for 20% of the payment, I'll see to it that you arrive there safely. What do you think?"`
 			choice
-				`	"Sounds like a plan. 80,000 credits, then?"`
+				`	"Sounds like a plan. You'll be taking 70,000 credits, then?"`
 				`	"Sorry, that just sounds too dangerous for me."`
 					decline
-			`	"Alright, let's go! Don't forget to pick up a full cargo of luxury goods before setting off. Oh, and if you didn't already know, you can get to <planet> from here in just four jumps. North, west, southwest, then south."`
+			`	"That's right. Now, let's go! The cargo'll be loaded on your ship by sundown. Oh, and if you didn't already know, you can get to <planet> from here in just four jumps. North, west, southwest, then south."`
 				accept
 	on enter Moktar
 		dialog `As expected, there are pirates waiting for you in Moktar. Unfortunately, the <npc> makes no attempt to attack them, instead turning its guns on you.`
