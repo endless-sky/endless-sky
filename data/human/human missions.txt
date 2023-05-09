@@ -5471,7 +5471,7 @@ mission "Escort offer (Betrayal)"
 		"reputation: Escort (Betraying)" <?= -1000
 		fail
 	on enter Menkar
-		dialog `The <npc> hails you: "Wrong way, mate! It'll take you more than a week to get there if you go the whole way round. Head back up to Mirfak, then north, west, southwest and south."`
+		dialog `The <npc> hails you: "Wrong way, mate! You'll miss the deadline if you go the whole way round. Head back up to Mirfak, then north, west, southwest and south."`
 	on enter Zaurak
 		dialog `The <npc> hails you again: "Figured it out, did you? Bit late for that now, mate. You're still going down."`
 		"reputation: Escort (Betraying)" <?= -1000
