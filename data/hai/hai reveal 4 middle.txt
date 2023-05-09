@@ -1519,7 +1519,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			`	The steady, insistent, beep of the message stops upon opening, and Teeneep turns away from it to think for a moment before responding to you. "Well, -" she starts, but is abruptly interrupted as the door opens and three armed Hai swiftly enter the room. Sayari and several more are visible in the corridor. The two armed guards who entered look sternly at the startled Teeneep while the third, a Hai wearing unusual marks of office, bears an intensely unemotional face.`
 				goto nervous
 			label "no questions"
-			`	She nods and returns to her terminal while you look at maintenance logs. It's surprising how many little things go wrong on a vessel over long journeys through hyperspace. Suddenly, an insistent beeping emanates from a datapad next to Teeneep.`
+			`	Teeneep nods and returns to her terminal while you look at maintenance logs. It's surprising how many little things go wrong on a vessel over long journeys through hyperspace. Suddenly, an insistent beeping emanates from a datapad next to Teeneep.`
 			`	She is visibly startled as the door opens and three armed Hai swiftly enter the room. Sayari and several more are visible in the corridor. The two armed guards who entered look sternly at the startled Teeneep while the third, a Hai wearing unusual marks of office, bears an intensely unemotional face.`
 				goto nervous
 			label message
@@ -1554,9 +1554,11 @@ mission "Hai Reveal [A11] Sound the Alarm"
 
 			label "short explanation"
 			`	"Do not misunderstand your position. Even the most hardened Hai politicians would not envy the situation you are in. You have great potential to both aid or harm Teeneep's case.`
+			`	He leans in, and whispers in a compassionate monotone. "Your presence is distasteful to many Elders, and," he pauses, "presents opportunities to others. In an antechamber's reading room, they have prepared materials you might find... interesting. You may travel between the antechamber and the proceedings as you please. Should we have any questions for you, a functionary will act as a messenger. At the end of the proceedings, you may view our internal classified news network's report."`
+				goto "functionary will attend you"
 
 			label "please stop flooding my screen with dry text"
-			`	Nodding, he leans in, and speaks in a compassionate monotone. "Your presence is distasteful to many Elders, and," he pauses, "presents opportunities to others. In an antechamber's reading room, they have prepared materials you might find... interesting. You may travel between the antechamber and the proceedings as you please. Should we have any questions for you, a functionary will act as a messenger. At the end of the proceedings, you may view our internal classified news network's report."`
+			`	He leans in and whispers in a droll monotone. "Your presence is distasteful to many Elders, and," he pauses, "presents opportunities to others. In an antechamber's reading room, they have prepared materials you might find... interesting. You may travel between the antechamber and the proceedings as you please. Should we have any questions for you, a functionary will act as a messenger. At the end of the proceedings, you may view our internal classified news network's report."`
 
 			label "functionary will attend you"
 			`	"Now, I have preparations to make. The functionary will attend to you for anything further." He dismisses you, but the functionary intercepts you before you can rejoin Teeneep and Sayari.`
