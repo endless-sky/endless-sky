@@ -5446,7 +5446,7 @@ mission "Escort offer (Betrayal)"
 	minor
 	landing
 	name "Cargo to <planet>"
-	description "The captain of the <npc> has offered to fly alongside you, protecting you from pirates, on your way to <destination>. In exchange, he has asked for 80,000 credits upon your arrival."
+	description "Transport <tons> of cargo to <destination> by <date>. You will be paid <payment>. The captain of the <npc> has offered to protect you from any pirates along the way in exchange for a cut of the profits."
 	source Sunracer
 	destination Maelstrom
 	to offer
