@@ -5447,6 +5447,9 @@ mission "Escort offer (Betrayal)"
 	landing
 	name "Cargo to <planet>"
 	description "Transport <tons> of cargo to <destination> by <date>. You will be paid <payment>. The captain of the <npc> has offered to protect you from any pirates along the way in exchange for a cut of the profits."
+	deadline
+	"apparent payment" 280000
+	cargo "sealed barrels" 220
 	source Sunracer
 	destination Maelstrom
 	to offer
