@@ -5458,7 +5458,7 @@ mission "Escort offer (Betrayal)"
 	on offer
 		"reputation: Escort (Betraying)" = 10
 		conversation
-			`Almost immediately after you land, a heavily modified Firebird with oversized guns follows you down, landing on the pad next to you. A young man with short hair steps out, walks over to your ship, and says, "Hey, you've got a lot of cargo space there. I bet you make loads of dough with it, trading or running jobs. Say, luxury goods are quite cheap here, aren't they? I reckon you'd make an absolute shedload running 'em from here to <planet>. At least 200k, I'll bet. It's in <system>, if you're not familiar with it. Lot of pirates round there, though. I can fight 'em, but there's not much money to be made hauling cargo in this thing." He gestures to his ship. "Tell you what, for 40%, I'll see to it that you arrive there safely. What do you think?"`
+			`As you land, a heavily modified Firebird with oversized guns follows you down, settling on the pad next to you. A young man with short hair steps out, walks over to your ship, and says, "Hey, you've got a lot of cargo space there. I bet you make loads of dough with it, trading or running jobs. Say, I know somebody who could use a ship like yours. He needs to get <tons> of cargo to <destination> by <day>, you see. Payment's about 350,000 credits. Lot of pirates round there, though. I can fight 'em, but there's not much money to be made hauling cargo in this thing." He gestures to his ship. "Tell you what, for 20% of the payment, I'll see to it that you arrive there safely. What do you think?"`
 			choice
 				`	"I was just thinking of doing the same, glad to know I'll have you with me!"`
 				`	"Sounds like a plan. 80,000 credits, then?"`
