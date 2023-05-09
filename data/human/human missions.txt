@@ -5431,17 +5431,6 @@ mission "Deal Change 2"
 
 
 
-government "Escort (Betraying)"
-	"display name" "Merchant"
-	swizzle 5
-	
-	"player reputation" 10
-	"attitude toward"
-		"Korath" -.01
-	"fine" 0
-	"friendly hail" "friendly civilian"
-	"hostile hail" "hostile pirate"
-
 mission "Escort offer (Betrayal)"
 	minor
 	landing
