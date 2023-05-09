@@ -749,7 +749,7 @@ outfit "Acumen Bolt Cannon"
 	description `Although more powerful than Astuit blaster projectiles, Acumen plasma bolts are harder to fire accurately, travel much slower, and require more energy to fire.`
 
 effect "neutron explosion"
-	sprite "effect/explosion/neutron/tiny"
+	sprite "effect/explosion/neutron"
 		"no repeat"
 		"frame rate" 15
 	sound "explosion tiny"
