@@ -1949,8 +1949,14 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	// disabled, all it can do is slow down to a stop.
 	double mass = InertialMass();
 	bool isUsingAfterburner = false;
+	const double drag = Drag();
 	if(isDisabled)
-		velocity *= 1. - Drag() / mass;
+	{
+		if(drag >= mass)
+			velocity = Point();
+		else
+			velocity *= 1. - drag / mass;
+	}
 	else if(!pilotError)
 	{
 		if(commands.Turn())
@@ -2112,7 +2118,11 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	if(acceleration)
 	{
 		acceleration *= slowMultiplier;
-		Point dragAcceleration = acceleration - velocity * (Drag() / mass);
+		Point dragAcceleration = acceleration;
+		if(drag >= mass)
+			dragAcceleration -= velocity;
+		else
+			dragAcceleration -= velocity * drag / mass;
 		// Make sure dragAcceleration has nonzero length, to avoid divide by zero.
 		if(dragAcceleration)
 		{
