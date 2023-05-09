@@ -1705,6 +1705,7 @@ Files:
  images/hardpoint/ion?torch*
  images/hardpoint/irate*
  images/outfit/acuit*
+ images/outfit/acumen*
  images/outfit/ameliorate?cell*
  images/outfit/astuit*
  images/outfit/ballistic?cannon*
@@ -1738,6 +1739,7 @@ Files:
  images/outfit/warforge?battery*
  images/outfit/warzone?core*
  images/planet/asura*
+ images/planet/*beryl*
  images/planet/tschyss*
  images/planet/*vajra*
  images/planet/vesvi*
@@ -1752,6 +1754,7 @@ Files:
  images/projectile/irate*
  images/projectile/locust?blaster*
  images/projectile/mandible?cannon*
+ images/projectile/neutron?bolt*
  images/projectile/thorax?cannon*
  images/projectile/torch*
  images/scene/rulei?flash*
@@ -1773,6 +1776,7 @@ Files:
  images/ship/gegno?granulite*
  images/ship/gegno?gypsum*
  images/ship/gegno?halite*
+ images/ship/gegno?kyanite*
  images/ship/gegno?mica*
  images/ship/gegno?protolith*
  images/ship/gegno?schist*
@@ -1797,6 +1801,7 @@ Files:
  images/thumbnail/gegno?granulite*
  images/thumbnail/gegno?gypsum*
  images/thumbnail/gegno?halite*
+ images/thumbnail/gegno?kyanite*
  images/thumbnail/gegno?mica*
  images/thumbnail/gegno?schist*
  images/thumbnail/gegno?shale*
@@ -1871,6 +1876,7 @@ Files:
  sounds/remnant?afterburner*
  sounds/remnant?launch*
  sounds/remnant?launch?external*
+ sounds/neutron?bolt*
  sounds/scin?launch*
  sounds/sheragi?launch*
  sounds/swarm?missile*
