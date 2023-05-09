@@ -5477,7 +5477,7 @@ mission "Escort offer (Betrayal)"
 		"reputation: Escort (Betraying)" <?= -1000
 		fail
 	on enter Oblate Cardax Volax Nihal Elnath Acamar Kugel Algol Hamal
-		dialog `You receive a message from the <npc>, which is now several systems away: "Hello? You still there? I don't know what just happened, but on the off chance you're still alive, I thought I'd just let you know that the deal's off, don't worry about the payment."`
+		dialog `You receive a message from the <npc>, which is now several systems away: "Hello? You still there? I don't know what just happened, but on the off chance you're still alive, I thought I'd just let you know that the deal's off." You open up the cargo that he wanted you to carry, and find nothing but worthless barrels of water.`
 		fail
 	on abort
 		dialog `The <npc> hails you: "Figured it out, did you? Bit late for that now, mate. You're still going down."`
