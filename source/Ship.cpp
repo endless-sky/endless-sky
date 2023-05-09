@@ -1717,7 +1717,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		// Enter hyperspace.
 		int direction = hyperspaceSystem ? 1 : -1;
 		hyperspaceCount += direction;
+		// Number of frames it takes to enter or exit hyperspace.
 		static const int HYPER_C = 100;
+		// Rate the ship accelerate and slow down when exiting hyperspace.
 		static const double HYPER_A = 2.;
 		static const double HYPER_D = 1000.;
 		if(hyperspaceSystem)
@@ -1823,9 +1825,12 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					if(altV > 0. && altV < exitV)
 						exitV = altV;
 				}
-				if(velocity.Length() <= exitV)
+				// If current velocity is less than or equal to targeted velocity
+				// consider the hyperspace exit done.
+				const Point facingUnit = angle.Unit();
+				if(velocity.Dot(facingUnit) <= exitV)
 				{
-					velocity = angle.Unit() * exitV;
+					velocity = facingUnit * exitV;
 					hyperspaceCount = 0;
 				}
 			}

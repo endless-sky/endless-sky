@@ -131,8 +131,8 @@ ship "Conglomerate"
 		"Hyperdrive"
 	engine -34.5 220
 	engine 34.5 220
-	engine 13 206 0.75
-	engine -13 206 0.75
+	engine 15 210 0.75
+	engine -15 210 0.75
 	leak "leak" 30 40
 	leak "flame" 80 20
 	explode "huge explosion" 10
@@ -142,6 +142,53 @@ ship "Conglomerate"
 	"final explode" "final explosion large"
 	description `Over time, the Gegno needed larger vessels to carry materials to and from new worlds - ones that would be easier to build and operate than their older, outdated generation ships, but larger than their shuttlecraft. The Conglomerate was designed to fill that exact role.`
 
+ship "Granofel"
+	sprite "ship/gegno granofel"
+	thumbnail "thumbnail/gegno granofel"
+	attributes
+		category "Heavy Freighter"
+		licenses
+			"Gegno Civilian"
+		"cost" 5150000
+		"shields" 0
+		"hull" 8800
+		"required crew" 10
+		"bunks" 15
+		"mass" 800
+		"drag" 10.5
+		"heat dissipation" 0.6
+		"fuel capacity" 500
+		"cargo space" 560
+		"outfit space" 230
+		"weapon capacity" 0
+		"engine capacity" 151
+		weapon
+			"blast radius" 96
+			"shield damage" 480
+			"hull damage" 860
+			"hit force" 970
+	outfits
+		"C7 Brawl Cell"
+		"R02 Battlezone Battery"
+		
+		"RG18 Torch Thruster" 2
+		"RG18 Torch Steering"
+		"Hyperdrive"
+	engine -36 114
+	engine 36 114
+	"steering engine" 94 -6 0.75
+		left
+	"steering engine" -94 -6 0.75
+		right
+	leak "leak" 20 30
+	leak "flame" 60 10
+	explode "huge explosion" 6
+	explode "large explosion" 22
+	explode "medium explosion" 30
+	explode "small explosion" 24
+	"final explode" "final explosion large"
+	description `Unlike many Gegno ships that are capable in a variety of roles, Granofels were designed for the sole purpose of hauling huge loads of cargo; they lack bunks for anything beyond a proper crew, and are most often found freighting massive shipments of both raw and refined ore to and from mining industries. They can also be seen paired with a mining vessel to extend the duration of a mining run due to the higher cargo capacity. Apart from mining, Granofels are also used in transporting heavy materials needed to construct other large ships.`
+
 ship "Gypsum"
 	sprite "ship/gegno gypsum"
 	thumbnail "thumbnail/gegno gypsum"
@@ -149,6 +196,7 @@ ship "Gypsum"
 		category "Light Freighter"
 		licenses
 			"Gegno Civilian"
+			"Gegno Driller"
 		"cost" 1692000
 		"shields" 0
 		"hull" 5500
@@ -171,7 +219,6 @@ ship "Gypsum"
 			"hit force" 720
 	outfits
 		"Excavator"
-		
 		"C7 Brawl Cell"
 		"R01 Skirmish Battery"
 		
@@ -190,6 +237,141 @@ ship "Gypsum"
 	"final explode" "final explosion medium"
 	description `To fuel their increasing need for materials, the Gegno designed a new ship class for the sole purpose of mining. The resulting platform, the Gypsum, is not much more than a flying drill with cargo containers, engines, and a bridge attached behind it, making it cost-efficient and easy to manufacture.`
 	description `	Because Gegno engines are not very powerful, the Gypsum has difficulty chasing faster-moving asteroids. In order to alleviate this problem without needing to massively increase the engine space on the ship, the Gegno have instead developed the powerful Excavator Drill, which can shred asteroids in a matter of seconds, meaning the Gypsum only needs to be near an asteroid for a mere moment in order to mine it.`
+
+ship "Corundum"
+	sprite "ship/gegno corundum"
+	thumbnail "thumbnail/gegno corundum"
+	attributes
+		category "Light Freighter"
+		licenses
+			"Gegno Civilian"
+			"Gegno Driller"
+		"cost" 2465000
+		"shields" 0
+		"hull" 5400
+		"required crew" 6
+		"bunks" 9
+		"mass" 440
+		"drag" 3.6
+		"heat dissipation" 0.8
+		"fuel capacity" 600
+		"cargo space" 140
+		"outfit space" 316
+		"weapon capacity" 64
+		"engine capacity" 162
+		"drill spar" 2
+		weapon
+			"blast radius" 84
+			"shield damage" 410
+			"hull damage" 710
+			"hit force" 800
+	outfits
+		"Burrower" 2
+		"C3 Scrap Cell"
+		"C7 Brawl Cell"
+		"R01 Skirmish Battery"
+		
+		"RG18 Torch Thruster"
+		"RG18 Torch Steering" 2
+		"Hyperdrive"
+	engine 58 -58
+	engine -58 -58
+	"steering engine" 58 -58
+		left
+	"steering engine" -58 -58
+		right
+	gun 9 -132
+		over
+	gun -9 -132
+		over
+	leak "leak" 50 60
+	leak "flame" 70 70
+	explode "large explosion" 16
+	explode "medium explosion" 22
+	explode "small explosion" 28
+	explode "tiny explosion" 12
+	"final explode" "final explosion medium"
+	description `While the Gypsum has remained the most reliable mining platform for generations, the Corundum was designed for the purpose of modularity on account of the ever-growing technological potential of the Gegno. Using a similar principle to the Gypusm's design, the Corundum's structure is mostly built around not one but two adjustable drill systems that are capable of mounting more advanced mining tools.`
+	description `	Although not able to mount the powerful Excavator Drill, the Corundum's engine capacity is twice that of the Gypsum, and the modularity of the two new mounting systems grants it the ability to adapt to future technologies that the Gegno may develop.`
+
+ship "Corundum" "Corundum (Torch)"
+	outfits
+		"Ion Torch" 2
+		"C3 Scrap Cell"
+		"C7 Brawl Cell"
+		"R01 Skirmish Battery"
+		
+		"RG18 Torch Thruster"
+		"RG18 Torch Steering" 2
+		"Hyperdrive"
+
+ship "Corundum" "Corundum (Multi)"
+	outfits
+		"Ion Torch"
+		"Burrower"
+		"C3 Scrap Cell"
+		"C7 Brawl Cell"
+		"R01 Skirmish Battery"
+		
+		"RG18 Torch Thruster"
+		"RG18 Torch Steering" 2
+		"Hyperdrive"
+
+ship "Protolith"
+	sprite "ship/gegno protolith"
+	thumbnail "thumbnail/gegno protolith"
+	attributes
+		category "Heavy Freighter"
+		"cost" 115700000
+		"shields" 0
+		"hull" 48600
+		"required crew" 402
+		"bunks" 4040
+		"mass" 4690
+		"drag" 62.4
+		"heat dissipation" 0.36
+		"fuel capacity" 2100
+		"cargo space" 1160
+		"outfit space" 942
+		"weapon capacity" 0
+		"engine capacity" 480
+		weapon
+			"blast radius" 360
+			"shield damage" 1860
+			"hull damage" 2400
+			"hit force" 2720
+	outfits
+		"C7 Brawl Cell" 2
+		"C3 Scrap Cell" 2
+		"R03 Warforge Battery" 2
+
+		"RG3 Torch Thruster" 4
+		"RG3 Torch Steering" 2
+	"steering engine" 87 -289 0.5
+		angle -90
+		left
+	"steering engine" -87 -289 0.5
+		angle 90
+		right
+	"steering engine" 97 214 0.5
+		angle -90
+		right
+	"steering engine" -97 214 0.5
+		angle 90
+		left
+	engine 76 365
+	engine -76 365
+	engine 46 366
+	engine -46 366
+	leak "leak" 40 50
+	leak "flame" 40 70
+	leak "big leak" 60 40
+	explode "huge explosion" 34
+	explode "large explosion" 38
+	explode "medium explosion" 46
+	explode "small explosion" 42
+	"final explode" "final explosion large"
+	description `A relic from another age, Protoliths are the last of the Generation ships constructed by the Gegno to colonize the stars. Now that other more easily constructed and hyperdrive-capable transport ships are commonplace, Protoliths are no longer found in service, and the very few that are still functioning are either preserved as artifacts or seldom used as hauling vessels between planets of the Gegno home system of Heutesl.`
 
 # Gegno Vi:
 
@@ -1021,7 +1203,7 @@ ship "Tridymite"
 		"outfit space" 200
 		"weapon capacity" 0
 		"engine capacity" 86
-		
+
 		"outfit scan power" 18
 		"outfit scan efficiency" 8
 		"cargo scan power" 6
