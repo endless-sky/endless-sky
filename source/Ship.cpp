@@ -2712,18 +2712,7 @@ int Ship::Scan(const PlayerInfo &player)
 
 	bool isImportant = false;
 	if(target->isYours)
-	{
-		bool hasIllegal = target->Cargo().IllegalCargoFine(government);
-		if(!hasIllegal)
-			for(auto &it : target->Outfits())
-				if(government->Fines(it.first) || government->Condemns(it.first))
-				{
-					hasIllegal = true;
-					break;
-				}
-
-		isImportant = hasIllegal || target.get() == player.Flagship();
-	}
+		isImportant = government->FinesContents(target.get()) || target.get() == player.Flagship();
 
 	if(startedScanning && isYours)
 	{
