@@ -5875,4 +5875,3 @@ mission "Argosy Hijacking (Declined)"
 		fleet "Small Syndicate"
 		to spawn
 			has "Argosy Hijacking: declined"
->>>>>>> master
