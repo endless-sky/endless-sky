@@ -1591,11 +1591,11 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	}
 
 	// A ship has restricted movement options if it is 'staying', 'lingering', or hostile to its parent.
-	const System *origin = ship.GetSystem();
 	const bool shouldStay = ship.StayOrLinger();
 
 	// Ships should choose a random system/planet for travel if they do not
 	// already have a system/planet in mind, and are free to move about.
+	const System *origin = ship.GetSystem();
 	if(!ship.GetTargetSystem() && !ship.GetTargetStellar() && !shouldStay)
 	{
 		// TODO: This should problably be changed, because JumpsRemaining
