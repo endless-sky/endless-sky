@@ -319,7 +319,7 @@ public:
 	// disabled threshold.
 	double HullUntilDisabled() const;
 	// Get the time in ticks since the last time this ship was hit.
-	int TicksSincelastHit() const;
+	int StepsSinceLastHit() const;
 	// Get this ship's jump navigation, which contains information about how
 	// much it costs for this ship to jump, how far it can jump, and its possible
 	// jump methods.
@@ -580,9 +580,9 @@ private:
 	// Accrued "burn damage" that will affect this ship's heat over time.
 	double burning = 0.;
 	// Delays for shield generation and hull repair.
-	int ticksSinceLastHit = 0;
 	int shieldDelay = 0;
 	int hullDelay = 0;
+	int stepsSinceLastHit = 0;
 	// Acceleration can be created by engines, firing weapons, or weapon impacts.
 	Point acceleration;
 

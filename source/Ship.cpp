@@ -1567,10 +1567,11 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	int requiredCrew = RequiredCrew();
 	double slowMultiplier = 1. / (1. + slowness * .05);
 
+	stepsSinceLastHit++;
+
 	// Move the turrets.
 	if(!isDisabled)
 	{
-		ticksSinceLastHit++;
 		armament.Aim(firingCommands);
 	}
 
@@ -3368,9 +3369,9 @@ double Ship::HullUntilDisabled() const
 
 
 
-int Ship::TicksSincelastHit() const
+int Ship::StepsSinceLastHit() const
 {
-	return ticksSinceLastHit;
+	return stepsSinceLastHit;
 }
 
 
@@ -3593,7 +3594,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 
-	ticksSinceLastHit = 0;
+	stepsSinceLastHit = 0;
 	shields -= damage.Shield();
 	if(damage.Shield() && !isDisabled)
 	{
