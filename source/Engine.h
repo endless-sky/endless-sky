@@ -192,7 +192,6 @@ private:
 	bool hasFinishedCalculating = true;
 	bool terminate = false;
 	bool wasActive = false;
-	bool isMouseToggleEnabled = false;
 	bool isMouseHoldEnabled = false;
 	bool isMouseTurningEnabled = false;
 	DrawList draw[2];

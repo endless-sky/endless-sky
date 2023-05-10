@@ -243,7 +243,6 @@ namespace {
 
 Engine::Engine(PlayerInfo &player)
 	: player(player), ai(ships, asteroids.Minables(), flotsam),
-	isMouseToggleEnabled(Preferences::Has("alt-mouse turning")),
 	ammoDisplay(player), shipCollisions(256u, 32u)
 {
 	zoom = Preferences::ViewZoom();
@@ -1932,6 +1931,10 @@ void Engine::HandleKeyboardInputs()
 		else if(keyHeld.Has(Command::JUMP))
 			activeCommands |= Command::FLEET_JUMP;
 	}
+
+	if(keyHeld.Has(Command::AUTOSTEER) && !activeCommands.Turn()
+			&& !activeCommands.Has(Command::LAND | Command::JUMP | Command::BOARD | Command::STOP))
+		activeCommands |= Command::AUTOSTEER;
 }
 
 
@@ -2063,11 +2066,8 @@ void Engine::HandleMouseClicks()
 void Engine::HandleMouseInput(Command &activeCommands)
 {
 	isMouseHoldEnabled = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
-	if(activeCommands.Has(Command::MOUSE_TURNING_TOGGLE))
-	{
-		isMouseToggleEnabled = !isMouseToggleEnabled;
-		Preferences::Set("alt-mouse turning", isMouseToggleEnabled);
-	}
+	bool isMouseToggleEnabled = Preferences::Has("Control ship with mouse");
+
 	// XOR mouse hold and mouse toggle. If mouse toggle is OFF, then mouse hold
 	// will temporarily turn ON mouse control. If mouse toggle is ON, then mouse
 	// hold will temporarily turn OFF mouse control.
@@ -2257,6 +2257,8 @@ void Engine::DoCollection(Flotsam &flotsam)
 		}
 	}
 	if(!collector)
+		return;
+	if(collector == player.Flagship() && !Preferences::Has("Flagship flotsam collection"))
 		return;
 
 	// Transfer cargo from the flotsam to the collector ship.
