@@ -409,7 +409,7 @@ void Preferences::CycleStatusOverlays(Preferences::OverlayType type)
 {
 	// Calling OverlaySetting::Increment when the state is DAMAGED will cycle to off.
 	// But, for the ALL overlay type, allow it to cycle to DISABLED.
-	if(type == OverlayType::ALL && statusOverlaySettings[OverlayType::ALL] == OverlayState::DAMAGED)
+	if(type == OverlayType::ALL && statusOverlaySettings[OverlayType::ALL] == OverlayState::ON_HIT)
 		statusOverlaySettings[OverlayType::ALL] = OverlayState::DISABLED;
 	// If one of the child types was clicked, but the all overlay state is the one currently being used,
 	// set the all overlay state to DISABLED but do not increment any of the child settings.
