@@ -53,6 +53,7 @@ namespace {
 	const int ZOOM_FACTOR_INCREMENT = 10;
 	const string VIEW_ZOOM_FACTOR = "View zoom factor";
 	const string AUTO_AIM_SETTING = "Automatic aiming";
+	const string AUTO_FIRE_SETTING = "Automatic firing";
 	const string SCREEN_MODE_SETTING = "Screen mode";
 	const string VSYNC_SETTING = "VSync";
 	const string STATUS_OVERLAYS_ALL = "Show status overlays";
@@ -238,6 +239,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				Preferences::CycleStatusOverlays(Preferences::OverlayType::NEUTRAL);
 			else if(zone.Value() == AUTO_AIM_SETTING)
 				Preferences::ToggleAutoAim();
+			else if(zone.Value() == AUTO_FIRE_SETTING)
+				Preferences::ToggleAutoFire();
 			else if(zone.Value() == EXPEND_AMMO)
 				Preferences::ToggleAmmoUsage();
 			else if(zone.Value() == TURRET_TRACKING)
@@ -378,13 +381,12 @@ void PreferencesPanel::DrawControls()
 	table.DrawAt(Point(-130, firstY));
 
 	static const string CATEGORIES[] = {
-		"Navigation",
-		"Weapons",
-		"Targeting",
-		"Navigation",
+		"Keyboard Navigation",
 		"Interface",
-		"Fleet",
-		"Targeting"
+		"Targeting",
+		"Weapons",
+		"Interface",
+		"Fleet"
 	};
 	const string *category = CATEGORIES;
 	static const Command COMMANDS[] = {
@@ -394,25 +396,27 @@ void PreferencesPanel::DrawControls()
 		Command::RIGHT,
 		Command::BACK,
 		Command::AFTERBURNER,
+		Command::AUTOSTEER,
 		Command::LAND,
 		Command::JUMP,
 		Command::NONE,
-		Command::PRIMARY,
-		Command::SELECT,
-		Command::SECONDARY,
-		Command::CLOAK,
+		Command::MAP,
+		Command::INFO,
 		Command::NONE,
 		Command::NEAREST,
 		Command::TARGET,
 		Command::HAIL,
 		Command::BOARD,
 		Command::NEAREST_ASTEROID,
+		Command::SCAN,
 		Command::NONE,
+		Command::PRIMARY,
+		Command::SELECT,
+		Command::SECONDARY,
+		Command::CLOAK,
 		Command::MOUSE_TURNING_HOLD,
 		Command::NONE,
 		Command::MENU,
-		Command::MAP,
-		Command::INFO,
 		Command::FULLSCREEN,
 		Command::FASTFORWARD,
 		Command::NONE,
@@ -421,9 +425,7 @@ void PreferencesPanel::DrawControls()
 		Command::GATHER,
 		Command::HOLD,
 		Command::AMMO,
-		Command::HARVEST,
-		Command::NONE,
-		Command::SCAN
+		Command::HARVEST
 	};
 	static const Command *BREAK = &COMMANDS[19];
 	for(const Command &command : COMMANDS)
@@ -479,7 +481,7 @@ void PreferencesPanel::DrawControls()
 	Table shiftTable;
 	shiftTable.AddColumn(125, {150, Alignment::RIGHT});
 	shiftTable.SetUnderline(0, 130);
-	shiftTable.DrawAt(Point(-400, 52));
+	shiftTable.DrawAt(Point(-400, 32));
 
 	shiftTable.DrawUnderline(medium);
 	shiftTable.Draw("With <shift> key", bright);
@@ -550,9 +552,10 @@ void PreferencesPanel::DrawSettings()
 		"\n",
 		"Gameplay",
 		AUTO_AIM_SETTING,
-		"Automatic firing",
+		AUTO_FIRE_SETTING,
 		BOARDING_PRIORITY,
 		"Control ship with mouse",
+		"Flagship flotsam collection",
 		EXPEND_AMMO,
 		"Extra fleet status messages",
 		"Fighters transfer cargo",
@@ -666,6 +669,11 @@ void PreferencesPanel::DrawSettings()
 		else if(setting == AUTO_AIM_SETTING)
 		{
 			text = Preferences::AutoAimSetting();
+			isOn = text != "off";
+		}
+		else if(setting == AUTO_FIRE_SETTING)
+		{
+			text = Preferences::AutoFireSetting();
 			isOn = text != "off";
 		}
 		else if(setting == EXPEND_AMMO)
