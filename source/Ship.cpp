@@ -1288,7 +1288,8 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	forget = 1;
 	targetShip.reset();
 	shipToAssist.reset();
-	lingerSteps = 0;
+	if(isDeparting)
+		lingerSteps = 0;
 
 	// The swizzle is only updated if this ship has a government or when it is departing
 	// from a planet. Launching a carry from a carrier does not update its swizzle.
@@ -4254,26 +4255,16 @@ const vector<weak_ptr<Ship>> &Ship::GetEscorts() const
 
 
 
-bool Ship::StayOrLinger()
+int Ship::GetLingerSteps() const
 {
-	if(personality.IsStaying())
-		return true;
+	return lingerSteps;
+}
 
-	shared_ptr<const Ship> parent = GetParent();
-	if(parent && parent->GetGovernment()->IsEnemy(government))
-		return true;
 
-	if(isFleeing)
-		return false;
 
-	const System *system = currentSystem;
-	if(system && personality.IsLingering() && lingerSteps < system->MinimumFleetPeriod() / 4)
-	{
-		lingerSteps++;
-		return true;
-	}
-
-	return false;
+void Ship::Linger()
+{
+	lingerSteps++;
 }
 
 
