@@ -359,7 +359,7 @@ void PreferencesPanel::DrawControls()
 
 	// Colors for highlighting.
 	const Color &warning = *GameData::Colors().Get("warning conflict");
-	const Color &nocommand = *GameData::Colors().Get("warning nocommand");
+	const Color &noCommand = *GameData::Colors().Get("warning no command");
 
 	if(selected != oldSelected)
 		latest = selected;
@@ -453,7 +453,7 @@ void PreferencesPanel::DrawControls()
 			if(isConflicted || isEditing || isEmpty)
 			{
 				table.SetHighlight(56, 120);
-				table.DrawHighlight(isEditing ? dim : isEmpty ? nocommand : warning);
+				table.DrawHighlight(isEditing ? dim : isEmpty ? noCommand : warning);
 			}
 
 			// Mark the selected row.

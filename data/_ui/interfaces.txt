@@ -143,7 +143,7 @@ color "planet target pointer dominated" 1. 1. 1. 0.
 color "error back" .25 .1 .1 1.
 color "warning back" .21 .18 .08 1.
 color "warning conflict" .315 .27 .12 1.
-color "warning nocommand" 0.16 0.16 0.13 1.
+color "warning no command" 0.16 0.16 0.13 1.
 
 # Colors used for messages
 color "message importance highest"	1. .5 0. 1.

@@ -218,14 +218,17 @@ const string &Command::KeyName() const
 	return (!HasBinding() ? empty : it->second);
 }
 
+
+
 // Check if the key has no binding.
 bool Command::HasBinding() const
 {
 	auto it = keyName.find(*this);
 
-	if(it == keyName.end() || it->second == "")
+	if(it == keyName.end())
 		return false;
-
+	if(it->second.empty())
+		return false;
 	return true;
 }
 
