@@ -285,7 +285,6 @@ public:
 	void SelfDestruct();
 	void Restore();
 	bool IsDamaged() const;
-	float SmoothIsDamaged(int ticksBeforeFade, int fadeTicks) const;
 	// Check if this ship has been destroyed.
 	bool IsDestroyed() const;
 	// Recharge and repair this ship (e.g. because it has landed).

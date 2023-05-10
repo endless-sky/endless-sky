@@ -3133,13 +3133,6 @@ bool Ship::IsDamaged() const
 
 
 
-float Ship::SmoothIsDamaged(int ticksBeforeFade, int fadeTicks) const
-{
-	return max(fadeTicks - max(ticksSinceLastHit - ticksBeforeFade, 0), 0) / static_cast<float>(fadeTicks);
-}
-
-
-
 // Check if this ship has been destroyed.
 bool Ship::IsDestroyed() const
 {
