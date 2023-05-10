@@ -2614,7 +2614,25 @@ void Engine::EmplaceStatusOverlay(const shared_ptr<Ship> &it, Preferences::Overl
 		return;
 
 	double width = min(it->Width(), it->Height());
-	float alpha = (overlaySetting == Preferences::OverlayState::ON_HIT) ? it->SmoothIsDamaged(30, 10) : 1.f;
+	float alpha = 1.f;
+	if(overlaySetting == Preferences::OverlayState::ON_HIT)
+	{
+		// Where t is the number of steps since this ship was last hit, t > 0:
+		// For t <= 30, alpha = 1.
+		// For 30 < t <= 40, alpha = (40 - t) / 10.
+		// For t > 40, alpha = 0.
+		static const int FADE_STEPS = 10;
+		static const int STEPS_BEFORE_FADE = 30;
+		static const int LIMIT = FADE_STEPS + STEPS_BEFORE_FADE;
+
+		const int t = it->StepsSinceLastHit();
+		if(t <= STEPS_BEFORE_FADE)
+			alpha = 1.f;
+		else if(t < LIMIT)
+			alpha = static_cast<float>(LIMIT - t) / static_cast<float>(FADE_STEPS);
+		else
+			alpha = 0.f;
+	}
 	statuses.emplace_back(it->Position() - center, it->Shields(), it->Hull(),
 		min(it->Hull(), it->DisabledHull()), max(20., width * .5), type, alpha);
 }
