@@ -4267,7 +4267,7 @@ bool Ship::StayOrLinger()
 		return false;
 
 	const System *system = currentSystem;
-	if(system && personality.IsLingering() && lingerSteps < system->MinimumFleetPeriod()/4)
+	if(system && personality.IsLingering() && lingerSteps < system->MinimumFleetPeriod() / 4)
 	{
 		lingerSteps++;
 		return true;
