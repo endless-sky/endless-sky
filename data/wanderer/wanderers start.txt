@@ -446,37 +446,7 @@ mission "Wanderers: Diplomacy"
 		has "event: hai-human resolution announced"
 	on offer
 		log "People" "Sayari" `Now that the crisis with humanity is over she has volunteered to serve as a translator and be the Hai diplomat to the Wanderers as a capstone for her career.`
-		conversation
-			`As you are approaching Hai-home, you contact the Hai government and inform them that you have found new aliens to the north. You submit a request for ambassadorial assistance to help you communicate with the aliens to the north, who seem to speak the Hai language. They immediately direct you to a now familiar private government hangar, where a familiar diplomat meets you.`
-				to display
-					not "Wanderers: Diplomacy Delayed: offered"
-			`As you are approaching Hai-home, you contact the Hai government and inform them you are ready to receive an ambassador to the aliens to the north. They immediately direct you to a now familiar private government hangar, where a familiar diplomat meets you.`
-				to display
-					has "Wanderers: Diplomacy Delayed: offered"
-			`	"Good to see you again Captain <last>, I have arranged for some refreshments so please, come and tell me all about these new aliens you have discovered!"`
-			`	Her exuberance is catching and after recent stressful events you see a new side to her as you relay your experience with the bird-like aliens. You realize that opportunities like this are why she became a diplomat in the first place and that this is, to some degree, a dream come true.`
-			`	"So in conclusion, it seems you need a translator," she says with a wry smile.`
-			choice
-				`	"Indeed, I'm hoping you have someone in mind."`
-				`	"It would be great to work with you again if you're willing."`
-			`	You open your mouth to respond but the effort is pointless.`
-			`	"I accept!" she cries, leaning forward on the desk with a gleeful look in her eyes.`
-			`	"A first contact is a dream opportunity, and there are so very few of them. So of course I will come with you."`
-			choice
-				`	"Let's go visit these aliens immediately!"`
-					accept
-				`	"Can a distinguished ambassador such as yourself just leave like that?"`
-				`	"What if the humans want our own envoy to these aliens?"`
-					goto envoy
-			`	"Yes," she says. "If these aliens will provide a place for me, I mean to live with them permanently, an ambassador between their people and ours. I am old, and in need of a great novelty like this to make my life interesting once more." You note that the fur on her face, especially on the snout, has turned from brown to silvery gray - a sign of age in terrestrial creatures, and perhaps in the Hai as well.`
-			`	"Besides," she says, "after recent events they can hardly say no to me."`
-			choice
-				`	"Let's go visit these aliens immediately!"`
-					accept
-				`	"What if the humans want our own envoy to these aliens?"`
-			label envoy
-			`	She says, "If they prove to be friendly, I will help you to find a way to communicate with them directly, so you need not use me as an intermediary. But our first step must be to speak with them." You help her aboard your ship, and get ready to return to the alien homeworld.`
-				accept
+		conversation "Hai Diplomat Intro"
 	on accept
 		fail "First Contact: Wanderer"
 		event "Wanderers after Hai Reveal"
@@ -484,6 +454,76 @@ mission "Wanderers: Diplomacy"
 		dialog `Your ship is surrounded by the birdlike aliens. When you step onto the planet, one of the aliens seems to recognize you. "Ka'hai?" it seems to ask, once again mimicking the rodent-like ears of the Hai with its feathered limbs. You attempt to gesture to Sayari, but become embarrassed when you realize that you left her on one of your escorts that hasn't yet entered the system. Better depart and wait for it to arrive.`
 	on complete
 		fail "Wanderers: Meet Professor"
+
+
+conversation "Hai Diplomat Intro"
+
+	branch "Alternative Ambassador"
+		has "Wanderers: Diplomacy Delayed: offered"
+		not "event: Sayari available after Hai Reveal"
+
+	`As you are approaching Hai-home, you contact the Hai government and inform them that you have found new aliens to the north. You submit a request for ambassadorial assistance to help you communicate with the aliens to the north, who seem to speak the Hai language. They immediately direct you to a now familiar private government hangar, where a familiar diplomat meets you.`
+		to display
+			not "Wanderers: Diplomacy Delayed: offered"
+	`As you are approaching Hai-home, you contact the Hai government and inform them you are ready to receive an ambassador to the aliens to the north. They immediately direct you to a now familiar private government hangar, where a familiar diplomat meets you.`
+		to display
+			has "Wanderers: Diplomacy Delayed: offered"
+	`	"Good to see you again Captain <last>, I have arranged for some refreshments so please, come and tell me all about these new aliens you have discovered!"`
+	`	Her exuberance is catching and after recent stressful events you see a new side to her as you relay your experience with the bird-like aliens. You realize that opportunities like this are why she became a diplomat in the first place and that this is, to some degree, a dream come true.`
+	`	"So in conclusion, it seems you need a translator," she says with a wry smile.`
+	choice
+		`	"Indeed, I'm hoping you have someone in mind."`
+		`	"It would be great to work with you again if you're willing."`
+	`	You open your mouth to respond but the effort is pointless.`
+	`	"I accept!" she cries, leaning forward on the desk with a gleeful look in her eyes.`
+	`	"A first contact is a dream opportunity, and there are so very few of them. So of course I will come with you."`
+	choice
+		`	"Let's go visit these aliens immediately!"`
+			accept
+		`	"Can a distinguished ambassador such as yourself just leave like that?"`
+		`	"What if the humans want our own envoy to these aliens?"`
+			goto envoy
+	`	"Yes," she says. "If these aliens will provide a place for me, I mean to live with them permanently, an ambassador between their people and ours. I am old, and in need of a great novelty like this to make my life interesting once more." You note that the fur on her face, especially on the snout, has turned from brown to silvery gray - a sign of age in terrestrial creatures, and perhaps in the Hai as well.`
+	`	"Besides," she says, "after recent events they can hardly say no to me."`
+	choice
+		`	"Let's go visit these aliens immediately!"`
+			accept
+		`	"What if the humans want our own envoy to these aliens?"`
+	label envoy
+	`	She says, "If they prove to be friendly, I will help you to find a way to communicate with them directly, so you need not use me as an intermediary. But our first step must be to speak with them." You help her aboard your ship, and get ready to return to the alien homeworld.`
+		accept
+
+	label "Alternative Ambassador"
+
+	action
+		log "People" "Irayas Payaana" `A Hai ambassador who made first contact with the Syndicate and "other hostile human groups." Sayari, the head of the Hai diplomatic corps, chose her as the Hai ambassador to the aliens to the north of Hai space.`
+		log "People" "Sayari" `The head of the Hai diplomatic corps who hand-picked Irayas Payaana as the Hai representative to the aliens north of Hai space. Her diplomatic corps believes you have "a lot of potential... and a jump drive."`
+		log `The Hai chose an ambassador, Irayas, to represent them in the dispute with the aliens to the north. Apparently the Hai Elders have known about the conflict for a while, but were stalling their involvement while they dealt with matters closer to home. Searching for an interpreter has stirred up trouble, forcing the Elders to send a diplomat before they were ready.`
+
+	`As you are approaching Hai-home, you contact the Hai government and inform them you are ready to receive an ambassador to the aliens to the north. They direct you to the same hangar as before. A serious-looking Hai woman in a military uniform meets you and leads you into a secure underground base.`
+	`	Along the way, through bulkheads and security checkpoints, she explains the situation. "You have stirred up a lot of unnecessary trouble. We were delaying our attention to the northern problem until our issues near home were settled. Now, thanks to you, we have threats on a second front and the Unfettered are watching our intelligence efforts closely. You've compounded our internal problems and added new external ones."`
+	`	As you enter a conference room, a friendlier face greets you. She shakes your hand, saying, "Hello, Captain <last>. My name is Irayas Payaana. I've been chosen as the Hai ambassador to the Wanderers, and your guide in this matter."`
+	choice
+		`	"The two of you already seem to know a lot about the situation."`
+		`	"What happens next?"`
+		`	"It sounds like we have an understanding. Let's do this."`
+			accept
+	`	Irayas answers. "Our Unfettered brethren have had an unhealthy fascination with the aliens to the north for quite some time. The main focus of Unfettered civilization is hostilities towards these birds. We're worried those hostilities may one day turn into an all-out war.`
+	`	"Our job, you and I, is to bring the matter conflict to a conclusion - one way or the other - as soon as possible. We must avoid dragging the whole of the Hai into this war, or the conflict may escalate uncontrollably.`
+	`	"I will fight with words, while you fight with guns."`
+	choice
+		`	"Why me?"`
+		`	"Why were you chosen?"`
+		`	"It sounds like we have an understanding. Let's do this."`
+			accept
+	`	Irayas explains. "The head of our diplomatic corps - Sayari - hand-picked both of us for this task. My specialty is maintaining positive relations with groups that have unknown, and possibly hostile, objectives. I made the first contact between Hai and Syndicate, among other dangerous human groups."`
+	`	"Inquisitive human merchant captains like you have been reliable partners in difficult matters in the past. The secrecy of the Hai has been, in part, due to help from such merchants. Our diplomatic corps believes you have much potential... and a jump drive."`
+	choice
+		`	"It sounds like we have an understanding. Let's do this."`
+			accept
+		`	"I'm getting too old for this sort of thing. You can find someone else."`
+			decline
+
 
 event "Wanderers after Hai Reveal"
 
