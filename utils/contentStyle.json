@@ -7,7 +7,7 @@
 		"forceUnixLineSeparator": true,
 		"trailingEmptyLine": "always",
 		"checkCopyright": true,
-		"copyrightBlacklist": ["**/disabling troublesome missions.txt"],
+		"copyrightBlacklist": ["tests/integration/config/plugins/integration-tests/data/disabling troublesome missions.txt"],
 		"copyrightFormats": [
 			{
 				"holder": "^# (Based on earlier text copyright|Copyright) \\(c\\) \\d{4}(?:(?:-|, )\\d{4})? (by )?.+$",
