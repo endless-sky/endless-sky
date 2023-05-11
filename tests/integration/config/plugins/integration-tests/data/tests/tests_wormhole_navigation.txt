@@ -337,7 +337,6 @@ test "Ember Wastes Navigation"
 			travel Peragenor
 			"travel destination" "Remnant Wormhole"
 			travel Edusa
-			#"travel destination" Viminal
 			travel Arculus
 			travel Edusa
 			travel Peragenor
@@ -352,14 +351,10 @@ test "Ember Wastes Navigation"
 			travel Terminus
 			travel Limen
 			travel Mora
-		# Our test-savegames don't have the date conditions serialized. Need to
-		# have passed at least one date-transition to get the date conditions set
-		# (until PR https://github.com/endless-sky/endless-sky/pull/5244 removes
-		# this need to serialize the date conditions completely).
-		#assert
-		#	year == 3013
-		#	month == 12
-		#	day == 16
+		assert
+			year == 3013
+			month == 12
+			day == 16
 		call "Depart"
 		# Give jump command.
 		assert

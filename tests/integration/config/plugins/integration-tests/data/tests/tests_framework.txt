@@ -84,10 +84,6 @@ test "Test-Framework - UI Keyboard controls"
 			# TODO: check if the panel is actually loaded
 		# Enter and leave shipyard
 		# Skipped, since Earth (the starting planet) doesn't have a shipyard.
-		#input
-		#	key s
-		#input
-		#	key l
 		# Enter and leave outfitter
 		input
 			key o
@@ -209,7 +205,7 @@ test-data "Test Mission Injection Mission"
 			on offer
 				conversation
 					`This mission has been injected!`
-					`   It was not present in the base game data.`
+					`	It was not present in the base game data.`
 						accept
 
 
