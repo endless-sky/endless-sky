@@ -1557,7 +1557,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		CreateSparks(visuals, "leakage spark", leakage * .1);
 	if(burning)
 		CreateSparks(visuals, "burning spark", burning * .1);
-	if (fogging)
+	if(fogging)
 		CreateSparks(visuals, "fogging spark", fogging * .1);
 	// Jettisoned cargo effects (only for ships in the current system).
 	if(!jettisoned.empty() && !forget)
@@ -4071,7 +4071,7 @@ bool Ship::CanFire(const Weapon *weapon) const
 		return false;
 	if(slowness < -weapon->FiringSlowing())
 		return false;
-	if (fogging < -weapon->FiringFog())
+	if(fogging < -weapon->FiringFog())
 		return false;
 
 	return true;

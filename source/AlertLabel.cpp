@@ -46,7 +46,6 @@ AlertLabel::AlertLabel(const Point &position, const Projectile &projectile, cons
 		double missileDamage = projectile.GetWeapon().HullDamage() + projectile.GetWeapon().ShieldDamage();
 		isDangerous = (missileDamage / maxHP) > DANGEROUS_ABOVE;
 	}
-	float fogAlpha = max(1.f - (fogLevel / 100), .3 - (position.Length() * .001 * zoom));
 	if(isDangerous)
 		color = GameData::Colors().Get("missile dangerous");
 	else if(isTargetingFlagship)

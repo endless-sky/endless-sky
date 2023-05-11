@@ -491,7 +491,7 @@ void Engine::Step(bool isActive)
 	const shared_ptr<Ship> flagship = player.FlagshipPtr();
 	const StellarObject *object = player.GetStellarObject();
 	double fog = 0;
-	if (player.Flagship())
+	if(player.Flagship())
 		fog = player.Flagship()->FogLevel();
 	if(object)
 	{
@@ -973,7 +973,7 @@ list<ShipEvent> &Engine::Events()
 void Engine::Draw() const
 {
 	double fog = 0;
-	if (player.Flagship())
+	if(player.Flagship())
 		fog = player.Flagship()->FogLevel();
 	GameData::Background().Draw(center, centerVelocity, zoom, (player.Flagship() ?
 		player.Flagship()->GetSystem() : player.GetSystem()), fog);
@@ -2352,7 +2352,7 @@ void Engine::FillRadar()
 		{
 			// Do not show cloaked ships on the radar, except the player's ships.
 			bool isYours = ship->IsYours();
-			if (!isYours && (ship->Cloaking() || ship->Attributes().Get("radar cloak") >= 1.))
+			if(!isYours && (ship->Cloaking() || ship->Attributes().Get("radar cloak") >= 1.))
 				continue;
 
 			// Figure out what radar color should be used for this ship.
