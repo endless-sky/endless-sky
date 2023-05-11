@@ -306,18 +306,18 @@ namespace {
 
 		if(!personality.IsLingering())
 			return false;
-		if(ship.IsSpecial() && !personality.IsStaying() && !personality.IsUninterested())
-			// NPCs that can follow the player do not linger.
+		// NPCs that can follow the player do not linger.
+		if(ship.IsSpecial() && !personality.IsUninterested())
 			return false;
 
 		const System *system = ship.GetSystem();
 		const System *destination = ship.GetTargetSystem();
 
+		// Ships not yet at their destination must go there before they can linger.
 		if(destination && destination != system)
-			// Ships not yet at their destination must go there before they can linger.
 			return false;
+		// Ship cannot linger any longer in this system.
 		if(!system || ship.GetLingerSteps() >= system->MinimumFleetPeriod() / 4)
-			// Ship cannot linger any longer in this system.
 			return false;
 
 		ship.Linger();

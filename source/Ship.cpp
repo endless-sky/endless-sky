@@ -4269,7 +4269,7 @@ int Ship::GetLingerSteps() const
 
 void Ship::Linger()
 {
-	lingerSteps++;
+	++lingerSteps;
 }
 
 
