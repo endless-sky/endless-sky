@@ -101,7 +101,11 @@ jobs:
   check_content_style:
     name: Content Style
     needs: changed
+<<<<<<< Updated upstream
     if: ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.integration_tests == 'true' }}
+=======
+    if: ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.content_style_cript == 'true' }}
+>>>>>>> Stashed changes
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3

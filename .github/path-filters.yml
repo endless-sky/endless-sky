@@ -36,3 +36,7 @@ copyright:
 
 parse_script:
   - 'utils/test_parse.ps1'
+
+content_style_script:
+  - 'utils/check_content_style.py'
+  - 'utils/contentStyle.json'

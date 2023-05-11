@@ -21,6 +21,8 @@ on:
         value: ${{ jobs.changed.outputs.copyright }}
       parse_script:
         value: ${{ jobs.changed.outputs.parse_script }}
+      content_style_script:
+        value: ${{ jobs.changed.outputs.content_style_script }}
 
 jobs:
   changed:
@@ -35,6 +37,7 @@ jobs:
       cmake_files: ${{ steps.filter.outputs.cmake_files }}
       copyright: ${{ steps.filter.outputs.copyright }}
       parse_script: ${{ steps.filter.outputs.parse_script }}
+      content_style_script: ${{ steps.filter.outputs.content_style_script }}
     steps:
     - uses: actions/checkout@v3
       with:
