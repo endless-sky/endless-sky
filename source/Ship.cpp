@@ -3394,7 +3394,7 @@ double Ship::FogLevel() const
 // Get the field of view of this ship, accounting for fog.
 double Ship::FoggedViewRange() const
 {
-	return 100. * (1000. / (fogging + 100.) + 2);
+	return min(10000., 100. * (600. / fogging + 2));
 }
 
 
