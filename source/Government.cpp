@@ -734,6 +734,17 @@ int Government::Fines(const Ship *ship) const
 
 
 
+bool Government::FinesContents(const Ship *ship) const
+{
+	for(auto &it : ship->Outfits())
+		if(this->Fines(it.first) || this->Condemns(it.first))
+			return true;
+
+	return ship->Cargo().IllegalCargoFine(this);
+}
+
+
+
 // Get or set the player's reputation with this government.
 double Government::Reputation() const
 {
