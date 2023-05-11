@@ -5843,7 +5843,7 @@ mission "A Dead Man's Path 1"
 	on offer
 		conversation
 			`The spaceport on <origin> is lively tonight. There are porters running to and from depots with crates, crewmen buying rounds of drinks for each other around the bars before they hit the bed, and bands of Navy officers jovially greeting captains and systematically inspecting ships. The energy and self-purpose of this spaceport is on full display this one night.`
-			`	The only exception to the bustle and activity are a young woman and man, both dressed very formally, who are seemingly lost and having no luck approaching anybody. You watch them drift from one person to another, each time being sent off without an answer. Finally, they come towards you.`
+			`	The only exception to the bustle and activity are a young man and woman, both dressed very formally, who are seemingly lost and having no luck approaching anybody. You watch them drift from one person to another, each time being sent off without an answer. Finally, they come towards you.`
 			`	Their faces show clearly that they are on their last legs of hope. It is only with reluctance that the woman says, "Excuse me, are you a spaceship captain?"`
 			choice
 				`	"Yes, my name's Captain <last>."`
@@ -5858,7 +5858,7 @@ mission "A Dead Man's Path 1"
 				`	"Of course I can."`
 					goto agreed
 				`	"I'm sorry, but I've got more urgent things to do. You'll need to find someone else."`
-			`	Her smile fades away as you say that, but they both simply nod and walk away out the gates of the spaceport, with both heads looking down.`
+			`	Her smile fades away as you say that, but they both simply nod and walk away out the gates of the spaceport with their heads down.`
 				decline
 			label agreed
 			`	"Fantastic! My name is Sophie, and this is my younger brother," she says, pointing at the man to her side, who goes to shake your hand. "Hi, I'm Liam. We've been looking for a ride for some time now. We were starting to worry that we wouldn't get there in time! You'll have to bring us there quickly."`
@@ -5902,7 +5902,7 @@ mission "A Dead Man's Path 2"
 				`	"But what do you want me to do?"`
 				`	"Sorry, but I'd be stupid to accept a mission I don't know anything about."`
 			`	Sophie smiles at her brother. "Of course, Liam just can't wait to get started!" She turns back to you. "Maybe I should start with who our father was. We didn't get to know him very well - he came home only occasionally. Don't get me wrong, our parents weren't fighting, but he had this passion that couldn't make him stay in one place for very long. He was a captain, not unlike you, and he was restless to explore even the furthest parts of the galaxy. We believe he traveled further than most human captains; sometimes he brought small items back home that nobody could explain."`
-			`	She pauses for a moment. "Anyway, in his testament he told us that he left something behind for us on <planet>, in <system>. He said that he would not make it easy, though; he loved fantasy books, and in those stories there is always something mysterious at play that we do not understand the meaning of until the very end. So he told us of a few systems that we should visit before we go to Prime.`
+			`	She pauses for a moment. "Anyway, in his testament he told us that he left something behind for us on <planet>, in <system>. He said that he would not make it easy, though; he loved fantasy books, and in those stories there is always something mysterious at play that we do not understand the meaning of until the very end. So he told us of a few systems that we should visit before we go to Prime. It'll be like one last fantasy story from our dad!`
 			`	"Of course, it would be much easier if we could go directly to Prime, but we want to respect our father's last will." She looks directly at you now. "And that is why we need your help. Could you help us again and take us through all these systems?"`
 			choice
 				`	"Which systems would we have to fly through?"`
@@ -5950,7 +5950,7 @@ mission "A Dead Man's Path 2"
 				`	"Sounds good. I'll follow your lead."`
 					goto shuttle
 				`	"We could also have a look around here, and see why your father chose this planet."`
-			`	"You're right. I hadn't thought of that," Sophie says."`
+			`	"You're right. I hadn't thought of that, there must surely have been a reason he picked here," Sophie says."`
 			`	All three of you walk around the spaceport district for some time. Coming into a giant plaza, you see one of the newest models from Betelgeuse, a Behemoth, on display in the center. The massive freighter with its many turret emplacements towers over even the plaza, an obvious showcase of Prime's leading shipbuilding industry.`
 			`	Liam's face brightens as if he just understood something. "I think our father chose this planet because he was always a fan of Betelgeuse ships. Before he went on his adventures he used to be a test pilot for the shipyard."`
 			`	Sophie nods. "Right! And once he was allowed to keep one of their experimental models as a gift for being one of their most productive pilots. Betelgeuse wouldn't let him go when he wanted to leave and start exploring the galaxy! But we're running out of time. Shall we go to the mountain now?"`
