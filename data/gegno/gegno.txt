@@ -180,3 +180,19 @@ phrase "gegno united"
 		"Dueyoh"
 		"Uuftei"
 		"Ootyff"
+
+
+# Untranslated Hails.
+
+phrase "gegno untranslated"
+	word
+		"Dudyei deiar tii cie dueyu."
+		"Udiyh tei tdiser, yye dudyei."
+		"Yye dudyei tei piyepuo."
+		"Tii duieml emm taei ooutei."
+		"Yye dudyei udiei tii ayyr dueyu."
+		"Tii keiou uf Oukeug."
+		"Oukeug keiou uf teim."
+		"Tii ayyr eno Gegno."
+		"Vytii ayyr eisktici uf tii."
+		"Scienn ayyr eisktici uf tii."

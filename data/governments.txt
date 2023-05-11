@@ -278,6 +278,7 @@ government "Free Worlds that won't enter wormhole"
 	"hostile hail" "hostile free worlds"
 	raid "pirate raid"
 
+
 government "Gegno"
 	swizzle 0
 	language "Gegno"
@@ -344,7 +345,6 @@ government "Gegno Scin (Neutral)"
 	"foreign penalties for"
 		"Gegno"
 
-	
 government "Gegno Vi (Neutral)"
 	"display name" "Gegno Vi"
 	swizzle 0
@@ -396,6 +396,27 @@ government "Gegno Vi (Duelist B)"
 		"Gegno Vi (Duelist A)" -0.01
 	"penalty for"
 		assist 0
+
+
+# Gegno Government that displays untranslated skeptic hails.
+government "Gegno (Hails)"
+	swizzle 0
+	color "governments: Gegno"
+
+	"player reputation" 0
+	"crew attack" 1.1
+	"crew defense" 1.2
+	"attitude toward"
+		"Gegno" 1
+		"Gegno Scin" 0.01
+		"Gegno Vi" 0.01
+		"Quarg (Gegno)" 0.02
+	"penalty for"
+		assist 0
+		provoke 10
+	"bribe" 0
+	"friendly hail" "gegno untranslated"
+
 
 color "governments: Hai" .86 .48 .79
 
