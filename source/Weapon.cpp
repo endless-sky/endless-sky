@@ -113,6 +113,32 @@ void Weapon::LoadWeapon(const DataNode &node)
 					child.PrintTrace("Skipping unknown or incomplete submunition attribute:");
 			}
 		}
+		else if(key == "inaccuracy")
+		{
+			inaccuracy = child.Value(1);
+			for(const DataNode &grand : child)
+			{
+				for(int j = 0; j < grand.Size(); ++j)
+				{
+					const string &token = grand.Token(j);
+
+					if(token == "inverted")
+						inaccuracyDistribution.second = true;
+					else if(token == "triangular")
+						inaccuracyDistribution.first = Distribution::Type::Triangular;
+					else if(token == "uniform")
+						inaccuracyDistribution.first = Distribution::Type::Uniform;
+					else if(token == "narrow")
+						inaccuracyDistribution.first = Distribution::Type::Narrow;
+					else if(token == "medium")
+						inaccuracyDistribution.first = Distribution::Type::Medium;
+					else if(token == "wide")
+						inaccuracyDistribution.first = Distribution::Type::Wide;
+					else
+						grand.PrintTrace("Skipping unknown distribution attribute:");
+				}
+			}
+		}
 		else
 		{
 			double value = child.Value(1);
@@ -155,8 +181,6 @@ void Weapon::LoadWeapon(const DataNode &node)
 			}
 			else if(key == "turn")
 				turn = value;
-			else if(key == "inaccuracy")
-				inaccuracy = value;
 			else if(key == "turret turn")
 				turretTurn = value;
 			else if(key == "tracking")
@@ -512,4 +536,18 @@ double Weapon::TotalDamage(int index) const
 		}
 	}
 	return damage[index];
+}
+
+
+
+pair<Distribution::Type, bool> Weapon::InaccuracyDistribution() const
+{
+	return inaccuracyDistribution;
+}
+
+
+
+double Weapon::Inaccuracy() const
+{
+	return inaccuracy;
 }

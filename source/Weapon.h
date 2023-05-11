@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Angle.h"
 #include "Body.h"
+#include "Distribution.h"
 #include "Point.h"
 
 #include <cstddef>
@@ -101,6 +102,7 @@ public:
 
 	double Turn() const;
 	double Inaccuracy() const;
+	std::pair<Distribution::Type, bool> InaccuracyDistribution() const;
 	double TurretTurn() const;
 
 	double Tracking() const;
@@ -255,6 +257,9 @@ private:
 
 	double turn = 0.;
 	double inaccuracy = 0.;
+	// A pair representing the disribution type of this weapon's inaccuracy
+	// and whether it is inverted
+	std::pair<Distribution::Type, bool> inaccuracyDistribution = {Distribution::Type::Triangular, false};
 	double turretTurn = 0.;
 
 	double tracking = 0.;
@@ -356,7 +361,6 @@ inline double Weapon::Drag() const { return drag; }
 inline const Point &Weapon::HardpointOffset() const { return hardpointOffset; }
 
 inline double Weapon::Turn() const { return turn; }
-inline double Weapon::Inaccuracy() const { return inaccuracy; }
 inline double Weapon::TurretTurn() const { return turretTurn; }
 
 inline double Weapon::Tracking() const { return tracking; }
