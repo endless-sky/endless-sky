@@ -609,10 +609,9 @@ mission "Remnant: Rescue 4"
 	npc accompany save
 		system
 			attributes "graveyard"
-			not attributes "inaccessible"
 			not government "Remnant"
-			not system "Patir"
-			not system "Aki'il"
+			near "Nona" 100
+				"only unrestricted wormholes"
 		personality escort derelict heroic plunders
 		government "Remnant"
 		fleet
