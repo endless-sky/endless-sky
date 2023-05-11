@@ -82,8 +82,6 @@ test "Test-Framework - UI Keyboard controls"
 		input
 			key p
 			# TODO: check if the panel is actually loaded
-		# Enter and leave shipyard
-		# Skipped, since Earth (the starting planet) doesn't have a shipyard.
 		# Enter and leave outfitter
 		input
 			key o
