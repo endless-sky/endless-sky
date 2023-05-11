@@ -401,7 +401,7 @@ government "Gegno Vi (Duelist B)"
 # Gegno Government that displays untranslated skeptic hails.
 government "Gegno (Hails)"
 	swizzle 0
-	color "governments: Gegno"
+	color .75 .59 .27
 
 	"player reputation" 0
 	"crew attack" 1.1

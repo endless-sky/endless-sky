@@ -30,7 +30,7 @@ mission "Passing Observations"
 			`	The approaching ships continue their descent while paying you no attention. They appear to be ones you spotted in orbit when you first entered the system. One of them is the same type of model as the one on the ground, likely some type of transport. The other, however, isn't one you've seen before. It looks like some sort of interceptor vessel, though it is definitely larger than something like a Sparrow from human space, maybe even the size of a Headhunter. Perhaps that ship belongs to someone of importance.`
 			`	In any case, getting mixed up with what may be some sort of military exercise with the Vi could be dangerous, considering that the planet is home to more of those monsters from before. It's best you take your leave now before the situation gets out of control again.`
 
-		label "leave"
+			label leave
 			`	You decide to withdraw from the area, and the approaching ships continue their way towards the one on the ground as if you weren't present. Regardless of whether or not they were hostile, getting mixed up with what may be some sort of military exercise could be dangerous, especially with the Vi.`
 
 	npc save
@@ -182,6 +182,7 @@ mission "Scin Suspicion"
 	invisible
 	landing
 	to offer
+		has "event: watcher"
 		has "Curious Civilians: offered"
 		has "Veering Vi: offered"
 		has "Scin Suspicion: offered"
